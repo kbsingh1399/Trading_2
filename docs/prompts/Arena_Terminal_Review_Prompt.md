@@ -144,3 +144,24 @@ Please present your review in the following structured format:
 3. **Microstructure & Econometric Hardening Recommendations** (Mathematical definitions and precise algorithmic logic).
 4. **Concrete Code Patches** (Drop-in Python / JS snippets for recommended improvements).
 5. **Next-Phase Quantitative Roadmap** (Integrating these orderflow features into our 20 Out-Of-Sample walk-forward execution engines).
+
+---
+
+## 🔄 MANDATORY GITHUB REPO INTEGRATION & LOCAL PULL PROTOCOL
+
+**TARGET REPOSITORY**: `https://github.com/kbsingh1399/Trading_2` (Branch: `main`)
+
+Arena.ai / Ox Alpha, you are required to deliver your modifications directly through Git:
+1. **Push to Repository**:
+   - Push all audited, hardened code directly to the repository `kbsingh1399/Trading_2` (or create a dedicated audit branch e.g. `arena-terminal-audit` or Pull Request).
+2. **Local Pull Instructions**:
+   - Provide the exact, copy-pasteable Git CLI commands so we can immediately pull all your changes locally into `C:\Users\SIGMA\Documents\Trading_2`.
+   - Examples of required commands to provide:
+     ```bash
+     git fetch origin
+     git checkout -b arena-terminal-audit origin/arena-terminal-audit
+     # OR
+     git pull origin main
+     ```
+3. **Full Unabridged Code Embeds**:
+   - In addition to pushing to Git, embed the complete, production-grade updated files in your response so we can inspect and diff every single line locally.
