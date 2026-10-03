@@ -53,7 +53,7 @@ CACHED_UNIVERSE: List[Dict[str, Any]] = []
 def get_universe() -> List[Dict[str, Any]]:
     global LAST_UNIVERSE_TIME, CACHED_UNIVERSE
     now = time.time()
-    if not CACHED_UNIVERSE or (now - LAST_UNIVERSE_TIME > 10.0):
+    if not CACHED_UNIVERSE or (now - LAST_UNIVERSE_TIME > 60.0):
         try:
             CACHED_UNIVERSE = CLIENT.fetch_all_assets()
             LAST_UNIVERSE_TIME = now
@@ -71,6 +71,137 @@ def get_heatmap_engine(coin: str, timeframe: str = "1h") -> Any:
         HEATMAP_ENGINES[key] = HeatmapEngine(coin=coin, timeframe=timeframe)
     return HEATMAP_ENGINES[key]
 
+LIVE_ANALYTICS_CACHE: Dict[str, Dict[str, Any]] = {}
+ANALYTICS_CACHE_TTL = 8.0  # seconds
+REFRESHING_COINS: set = set()
+
+def _refresh_analytics_worker(coin: str, live_px: float):
+    global LIVE_ANALYTICS_CACHE, REFRESHING_COINS
+    try:
+        now = time.time()
+        cached = LIVE_ANALYTICS_CACHE.get(coin)
+        liqs = cached.get("liquidations", {"total_long_size": 0, "total_short_size": 0, "bands": []}) if cached else {"total_long_size": 0, "total_short_size": 0, "bands": []}
+        stops = cached.get("stops", {"total_buy_size": 0, "total_sell_size": 0, "bands": []}) if cached else {"total_buy_size": 0, "total_sell_size": 0, "bands": []}
+        l3_orders = cached.get("l3_orders", []) if cached else []
+        current_candle_info = cached.get("current_candle", {}) if cached else {}
+
+        # 1. Liquidations
+        try:
+            min_px = live_px * 0.80
+            max_px = live_px * 1.20
+            raw_liqs = CLIENT.fetch_liquidations(coin, min_px, max_px)
+            bands = []
+            for b in raw_liqs.get("bands", []):
+                amt = b.get("amount", 0.0)
+                if amt > 0:
+                    mid = b.get("mid_px", 0.0)
+                    dist = ((mid - live_px) / live_px * 100.0) if live_px > 0 else 0.0
+                    bands.append({
+                        "min_px": b.get("min_px", 0.0),
+                        "max_px": b.get("max_px", 0.0),
+                        "mid_px": mid,
+                        "amount": amt,
+                        "dist_pct": dist,
+                        "type": "SHORT SQUEEZE" if mid >= live_px else "LONG CASCADE"
+                    })
+            bands.sort(key=lambda x: x["mid_px"], reverse=True)
+            liqs = {
+                "total_long_size": raw_liqs.get("total_long_size", 0.0),
+                "total_short_size": raw_liqs.get("total_short_size", 0.0),
+                "bands": bands[:12],
+                "top_long_whales": raw_liqs.get("top_long_whales", [])[:5],
+                "top_short_whales": raw_liqs.get("top_short_whales", [])[:5]
+            }
+        except Exception:
+            pass
+
+        # 2. Stops
+        try:
+            min_px = live_px * 0.80
+            max_px = live_px * 1.20
+            raw_stops = CLIENT.fetch_stops(coin, min_px, max_px)
+            bands = []
+            for b in raw_stops.get("bands", []):
+                amt = b.get("amount", 0.0)
+                if amt > 0:
+                    mid = b.get("mid_px", 0.0)
+                    dist = ((mid - live_px) / live_px * 100.0) if live_px > 0 else 0.0
+                    bands.append({
+                        "min_px": b.get("min_px", 0.0),
+                        "max_px": b.get("max_px", 0.0),
+                        "mid_px": mid,
+                        "amount": amt,
+                        "dist_pct": dist,
+                        "side": "BUY STOPS" if mid >= live_px else "SELL STOPS"
+                    })
+            bands.sort(key=lambda x: x["mid_px"], reverse=True)
+            stops = {
+                "total_buy_size": raw_stops.get("total_buy_size", 0.0),
+                "total_sell_size": raw_stops.get("total_sell_size", 0.0),
+                "bands": bands[:10]
+            }
+        except Exception:
+            pass
+
+        # 3. L3 Whale Orders
+        try:
+            raw_l3 = CLIENT.fetch_l3_orders(coin, live_px * 0.985, live_px * 1.015)
+            new_l3 = []
+            for o in raw_l3[:15]:
+                val = o.get("notional_usd", 0.0)
+                tier = "MEGA WHALE" if val >= 500000 else ("WHALE" if val >= 150000 else ("SHARK" if val >= 50000 else "DOLPHIN"))
+                px = o.get("price", 0.0)
+                dist = ((px - live_px) / live_px * 100.0) if live_px > 0 else 0.0
+                new_l3.append({
+                    "address": o.get("address", ""),
+                    "side": o.get("side", ""),
+                    "price": px,
+                    "size": o.get("size", 0.0),
+                    "notional_usd": val,
+                    "tier": tier,
+                    "dist_pct": dist
+                })
+            if new_l3:
+                l3_orders = new_l3
+        except Exception:
+            pass
+
+        # 4. Current Candle Microstructure Status (read cached safely)
+        try:
+            key = f"{coin}_1h"
+            if key in HEATMAP_ENGINES:
+                current_candle_info = getattr(HEATMAP_ENGINES[key], "cached_current_candle", {}) or {}
+        except Exception:
+            pass
+
+        LIVE_ANALYTICS_CACHE[coin] = {
+            "timestamp": now,
+            "liquidations": liqs,
+            "stops": stops,
+            "l3_orders": l3_orders,
+            "current_candle": current_candle_info
+        }
+    finally:
+        REFRESHING_COINS.discard(coin)
+
+def get_live_analytics(coin: str, live_px: float) -> Dict[str, Any]:
+    global LIVE_ANALYTICS_CACHE, REFRESHING_COINS
+    now = time.time()
+    cached = LIVE_ANALYTICS_CACHE.get(coin)
+
+    # Initial load if never fetched
+    if not cached:
+        _refresh_analytics_worker(coin, live_px)
+        return LIVE_ANALYTICS_CACHE.get(coin, {})
+
+    # Non-blocking async background refresh if stale
+    if (now - cached.get("timestamp", 0) > ANALYTICS_CACHE_TTL) and (coin not in REFRESHING_COINS):
+        REFRESHING_COINS.add(coin)
+        import threading
+        threading.Thread(target=_refresh_analytics_worker, args=(coin, live_px), daemon=True).start()
+
+    return cached
+
 @app.get("/api/universe")
 def api_universe():
     assets = get_universe()
@@ -86,18 +217,21 @@ def api_live(coin: str):
 
     mark_px = meta.get("mark_px", 0.0)
 
-    # 1. Fetch L2 Book & Recent Trades
+    # 1. Fast Path: Concurrent L2 Book & Recent Trades via Hyperliquid REST
     l2_book = {}
-    try:
-        l2_book = CLIENT.fetch_l2_book(coin)
-    except Exception as e:
-        l2_book = {"bids": [], "asks": [], "spread": 0, "spread_bps": 0, "error": str(e)}
-
     trades = []
-    try:
-        trades = CLIENT.fetch_recent_trades(coin)
-    except Exception:
-        trades = []
+    from concurrent.futures import ThreadPoolExecutor
+    with ThreadPoolExecutor(max_workers=2) as executor:
+        f_book = executor.submit(CLIENT.fetch_l2_book, coin)
+        f_trades = executor.submit(CLIENT.fetch_recent_trades, coin)
+        try:
+            l2_book = f_book.result()
+        except Exception as e:
+            l2_book = {"bids": [], "asks": [], "spread": 0, "spread_bps": 0, "error": str(e)}
+        try:
+            trades = f_trades.result()
+        except Exception:
+            trades = []
 
     # Dynamic live price resolution
     live_px = mark_px
@@ -106,96 +240,10 @@ def api_live(coin: str):
     elif l2_book.get("best_bid") and l2_book.get("best_ask"):
         live_px = (l2_book["best_bid"] + l2_book["best_ask"]) / 2.0
 
-    # 2. Fetch Liquidations
-    liqs = {}
-    try:
-        min_px = live_px * 0.80
-        max_px = live_px * 1.20
-        raw_liqs = CLIENT.fetch_liquidations(coin, min_px, max_px)
-        bands = []
-        for b in raw_liqs.get("bands", []):
-            amt = b.get("amount", 0.0)
-            if amt > 0:
-                mid = b.get("mid_px", 0.0)
-                dist = ((mid - live_px) / live_px * 100.0) if live_px > 0 else 0.0
-                bands.append({
-                    "min_px": b.get("min_px", 0.0),
-                    "max_px": b.get("max_px", 0.0),
-                    "mid_px": mid,
-                    "amount": amt,
-                    "dist_pct": dist,
-                    "type": "SHORT SQUEEZE" if mid >= live_px else "LONG CASCADE"
-                })
-        bands.sort(key=lambda x: x["mid_px"], reverse=True)
-        liqs = {
-            "total_long_size": raw_liqs.get("total_long_size", 0.0),
-            "total_short_size": raw_liqs.get("total_short_size", 0.0),
-            "bands": bands[:12],
-            "top_long_whales": raw_liqs.get("top_long_whales", [])[:5],
-            "top_short_whales": raw_liqs.get("top_short_whales", [])[:5]
-        }
-    except Exception as e:
-        liqs = {"total_long_size": 0, "total_short_size": 0, "bands": [], "error": str(e)}
+    # 2. Analytics Path: Liquidations, Stops, L3 Whales (Cached with 5s TTL)
+    analytics = get_live_analytics(coin, live_px)
 
-    # 3. Fetch Stops
-    stops = {}
-    try:
-        min_px = live_px * 0.80
-        max_px = live_px * 1.20
-        raw_stops = CLIENT.fetch_stops(coin, min_px, max_px)
-        bands = []
-        for b in raw_stops.get("bands", []):
-            amt = b.get("amount", 0.0)
-            if amt > 0:
-                mid = b.get("mid_px", 0.0)
-                dist = ((mid - live_px) / live_px * 100.0) if live_px > 0 else 0.0
-                bands.append({
-                    "min_px": b.get("min_px", 0.0),
-                    "max_px": b.get("max_px", 0.0),
-                    "mid_px": mid,
-                    "amount": amt,
-                    "dist_pct": dist,
-                    "side": "BUY STOPS" if mid >= live_px else "SELL STOPS"
-                })
-        bands.sort(key=lambda x: x["mid_px"], reverse=True)
-        stops = {
-            "total_buy_size": raw_stops.get("total_buy_size", 0.0),
-            "total_sell_size": raw_stops.get("total_sell_size", 0.0),
-            "bands": bands[:10]
-        }
-    except Exception as e:
-        stops = {"total_buy_size": 0, "total_sell_size": 0, "bands": [], "error": str(e)}
-
-    # 4. Fetch L3 Whale Orders (Wallet Addresses)
-    l3_orders = []
-    try:
-        raw_l3 = CLIENT.fetch_l3_orders(coin, live_px * 0.985, live_px * 1.015)
-        for o in raw_l3[:15]:
-            val = o.get("notional_usd", 0.0)
-            if val >= 500000:
-                tier = "MEGA WHALE"
-            elif val >= 150000:
-                tier = "WHALE"
-            elif val >= 50000:
-                tier = "SHARK"
-            else:
-                tier = "DOLPHIN"
-
-            px = o.get("price", 0.0)
-            dist = ((px - live_px) / live_px * 100.0) if live_px > 0 else 0.0
-            l3_orders.append({
-                "address": o.get("address", ""),
-                "side": o.get("side", ""),
-                "price": px,
-                "size": o.get("size", 0.0),
-                "notional_usd": val,
-                "tier": tier,
-                "dist_pct": dist
-            })
-    except Exception:
-        l3_orders = []
-
-    # 5. Formatted Trades Tape
+    # 3. Formatted Trades Tape
     formatted_trades = []
     for t in trades[:20]:
         px = float(t.get("px", 0.0))
@@ -210,25 +258,16 @@ def api_live(coin: str):
             "is_whale": notional >= 50000
         })
 
-    # 6. Current Candle Microstructure Status
-    current_candle_info = {}
-    try:
-        engine = get_heatmap_engine(coin)
-        summary = engine.get_summary()
-        current_candle_info = summary.get("current_candle", {})
-    except Exception:
-        pass
-
     return {
         "coin": coin,
         "price": live_px,
         "meta": meta,
         "l2_book": l2_book,
-        "liquidations": liqs,
-        "stops": stops,
-        "l3_orders": l3_orders,
+        "liquidations": analytics.get("liquidations", {}),
+        "stops": analytics.get("stops", {}),
+        "l3_orders": analytics.get("l3_orders", []),
         "recent_trades": formatted_trades,
-        "current_candle": current_candle_info,
+        "current_candle": analytics.get("current_candle", {}),
         "timestamp": int(time.time() * 1000),
         "utc_time": datetime.datetime.now(datetime.timezone.utc).strftime("%H:%M:%S UTC")
     }
@@ -1605,6 +1644,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 
         // 0. Update Current Candle Orderflow HUD
         const currCandle = data.current_candle || {};
+        const price = data.price || 0.0;
         if (currCandle && currCandle.datetime) {
           const parts = currCandle.datetime.split(' ');
           const timePart = parts.length > 1 ? parts[1] : currCandle.datetime;
@@ -1615,10 +1655,22 @@ HTML_TEMPLATE = """<!DOCTYPE html>
           const peakLiqAmt = currCandle.liq_peak_amount || 0;
           document.getElementById('hudPeakLiq').textContent = peakLiqPx > 0 ? ('$' + peakLiqPx.toLocaleString() + ' ($' + formatVol(peakLiqAmt) + ')') : '--';
           document.getElementById('hudTotalStops').textContent = '$' + formatVol(currCandle.stop_total_usd || 0);
+        } else {
+          // Continuous Live fallback from real-time liquidation & stop aggregates
+          const liqs = data.liquidations || {};
+          const stops = data.stops || {};
+          const longUsd = (liqs.total_long_size || 0) * (price || 1);
+          const shortUsd = (liqs.total_short_size || 0) * (price || 1);
+          const totalStopsUsd = ((stops.total_buy_size || 0) + (stops.total_sell_size || 0)) * (price || 1);
+          const topBand = (liqs.bands && liqs.bands[0]) ? liqs.bands[0] : null;
+          document.getElementById('candleTimeBadge').textContent = 'LIVE FEED';
+          document.getElementById('hudLongLiq').textContent = '$' + formatVol(longUsd);
+          document.getElementById('hudShortLiq').textContent = '$' + formatVol(shortUsd);
+          document.getElementById('hudPeakLiq').textContent = topBand ? ('$' + Math.round(topBand.mid_px).toLocaleString() + ' ($' + formatVol(topBand.amount) + ')') : '--';
+          document.getElementById('hudTotalStops').textContent = '$' + formatVol(totalStopsUsd);
         }
 
         // 1. Update Price & Top Header
-        const price = data.price || 0.0;
         const markElem = document.getElementById('markPrice');
         const container = document.getElementById('priceContainer');
         const arrow = document.getElementById('priceArrow');
