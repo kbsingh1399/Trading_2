@@ -11,6 +11,7 @@ import time
 import pathlib
 from typing import Dict, List, Any, Optional
 import polars as pl
+from Terminal.Microstructure import TokenBucket
 
 HL_INFO_URL = "https://api.hyperliquid.xyz/info"
 HD_GRAPHQL_URL = "https://api.hyperdash.com/graphql"
@@ -24,8 +25,11 @@ class HyperdashClient:
         self.timeout = timeout
         self.asset_cache: Dict[str, Any] = {}
         self.universe: List[str] = []
+        # Shared limiter protects both REST and GraphQL when callers switch assets.
+        self._rate_limiter = TokenBucket(rate=2.0, capacity=4.0)
 
     def _post_json(self, url: str, payload: dict) -> dict:
+        self._rate_limiter.acquire()
         data_bytes = json.dumps(payload).encode("utf-8")
         req = urllib.request.Request(url, data=data_bytes, headers=DEFAULT_HEADERS)
         try:

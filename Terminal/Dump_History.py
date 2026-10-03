@@ -28,6 +28,7 @@ sys.path.insert(0, str(pathlib.Path(__file__).parent.parent))
 
 import polars as pl
 from Terminal.Api_Client import HyperdashClient
+from Terminal.Microstructure import safe_imbalance
 
 # ── Config ─────────────────────────────────────────────────────────────────
 OUTPUT_DIR   = pathlib.Path("Data/Hyperdash_Historical")
@@ -304,8 +305,10 @@ def fuse_candles(candles, liq_snap, stop_snap, funding_hist) -> pl.DataFrame:
 
         # ── Combined liq/stop cascade signal ──────────────────────────────
         # Imbalance: positive = more long-side pressure, negative = short-side
-        cascade_imbalance = (long_liq - short_liq) / (total_liq + 1.0)
-        stop_imbalance    = (buy_stops - sell_stops) / (total_stops + 1.0)
+        # Bounded, scale-free features.  Do not add 1 USD: that creates a
+        # volume-dependent discontinuity for small-cap markets.
+        cascade_imbalance = safe_imbalance(long_liq, short_liq)
+        stop_imbalance    = safe_imbalance(buy_stops, sell_stops)
 
         records.append({
             # Core OHLCV

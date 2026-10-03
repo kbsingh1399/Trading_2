@@ -226,9 +226,8 @@ class HeatmapEngine:
             idx = bisect.bisect_right(sorted_snap_keys, dt_str) - 1
             if idx >= 0:
                 return candle_snapshots[sorted_snap_keys[idx]]
-            # No preceding snapshot → try nearest future one
-            if sorted_snap_keys:
-                return candle_snapshots[sorted_snap_keys[0]]
+            # No preceding observation: never use a future snapshot. Returning
+            # it would leak information into the first candles of a backtest.
             return []
 
         for c in candles:
