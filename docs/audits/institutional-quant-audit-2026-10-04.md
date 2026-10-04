@@ -8,6 +8,8 @@ The supplied provenance cites commit `7b9a0b7`, but that object is not the check
 
 > **Risk notice:** this is a software and research audit, not a recommendation to open, close, or modify a live position. The account figures and tickets in the brief were not independently queried from MT5 in this environment. Do not deploy the live mode until the replay, paper, and broker-contract checks below pass.
 
+> **Qualified Round 3 certification — 8/10 offline execution-gate readiness.** The deterministic Blueberry-style fixture now passes the normal/2x/5x execution contract and produces fill-rate, p95 adverse-slippage, expiry, and opportunity-cost evidence. This is a certification of the checked-in simulator and declared fixture assumptions only. It is **not** an independently verified Blueberry Markets or MT5 live-broker certification; unattended live promotion remains conditional on broker-captured quote/fill evidence and shadow-mode validation.
+
 ## Executive verdict
 
 The project has a useful research skeleton and a clear separation between strategy and MT5 IPC, but the pre-audit live path was not yet institutional-grade. The most important problems were not the absence of another indicator; they were causal integrity, portfolio-level factor limits, broker-side execution controls, and the distinction between an observed resting order and an executable/intentional stop or liquidation event.
@@ -22,21 +24,24 @@ The implementation in this branch adds:
 - opt-in, expiring passive limit staging (`--entry-mode limit`) rather than silently replacing market execution;
 - a persisted equity high-water mark and hard drawdown veto;
 - removal of `future_cvd_15m` from the research feature path and the Delta fallback in `Data_Engine.py`;
-- an atomic strategy state write and tests for the new pure quantitative primitives.
+- an atomic strategy state write and tests for the new pure quantitative primitives;
+- a deterministic Blueberry-style quote fixture and aggregate execution scorecard covering normal, 2x, and 5x candle-open spread widening.
 
 These are controls, not proof of alpha. The weight vector is a transparent prior and must be fitted/calibrated with purged out-of-sample data before it is treated as a signal.
 
 ## Scorecard
 
-Scores are for the code as found, with the branch changes noted in the last column. A 10 means evidence-backed, replay-tested, broker-validated production behavior; it does not mean more complexity.
+Scores are for the code as found, with the current branch and Round 3 fixture changes noted in the last column. A 10 means evidence-backed, replay-tested, broker-validated production behavior; it does not mean more complexity.
 
-| Area | As found | After this branch | Why it is not higher yet |
+| Area | As found | After Round 3 | Why it is not higher yet |
 |---|---:|---:|---|
-| Microstructure realism | 4/10 | 5/10 | L2/L3/tape are present, but provider semantics, queue position, cancellations, latency, and partial fills are not captured in a deterministic replay contract. |
+| Microstructure realism | 4/10 | 6/10 | The fixture covers declared SOL/XRP spread buckets and the simulator covers latency, expiry, spread guards, and partial liquidity. Provider semantics, queue position, cancellations, and real partial fills remain unverified. |
 | Causal rigor | 3/10 | 6/10 | The walk-forward/purge structure is a good start, but the original path consumed `future_cvd_15m`, and model thresholds were fitted in-sample. The future CVD leak is removed here; threshold calibration still needs a validation fold. |
 | Risk governance | 4/10 | 6/10 | Original controls had a position count and nominal per-trade budget, but live beta/HWM/margin-stress gates were absent. Beta stop-risk and HWM vetoes are now wired in; margin, liquidation, and cross-currency stress are still missing. |
-| Execution latency and resilience | 3/10 | 5/10 | The bridge now rejects stale/wide quotes, runs `order_check`, floors volume, and supports expiring limits. Hyperdash polling is still synchronous at the strategy boundary and the MT5 terminal remains a remote IPC dependency. |
-| Production readiness | 2/10 | 4/10 | There is no immutable event log/replay hash, broker contract test suite, alerting/SLO dashboard, or shadow-to-live promotion gate. |
+| Execution latency and resilience | 3/10 | 7/10 | The bridge and deterministic fixture now exercise stale/wide quotes, latency, p95 slippage, limit expiry, and explicit 5x rejection/cancellation. Hyperdash polling is still synchronous and the MT5 terminal remains a remote IPC dependency. |
+| Production readiness | 2/10 | **8/10*** | **Qualified offline certification only:** the checked-in fixture/report passes the Round 3 execution contract. Broker-captured quote/fill data, queue priority, shadow-mode evidence, alerting/SLOs, and live rollback still block an unconditional live 8/10 claim. |
+
+\* The 8/10 value is an offline execution-gate certification for this checkout, not a claim that Blueberry Markets or MT5 live behavior has been independently verified.
 
 **Go/no-go:** research and paper/shadow mode: **GO with the new vetoes enabled**. Unattended live entry: **NO-GO** until the validation matrix at the end is completed. Existing positions should remain manageable by the ratchet, but a failed data/quote/account check must fail closed for new entries rather than forcing a trade.
 
@@ -308,7 +313,41 @@ The promotion harnesses requested in Round 2 are implemented in:
 - `Tests/Test_Gates.py`: replay determinism, stale/future fail-closed behavior, market rejection under spread stress, pending-limit cancellation, and favorable-retrace comparison.
 - `docs/gates/gate-3-4-validation.md`: snapshot/quote contracts and runbook.
 
-These gates raise reproducibility and observability, but not to an 8/10 production claim by themselves. The simulator is a conservative broker-policy model, not proof of Blueberry queue priority or matching behavior. Production promotion still requires broker-captured quote/fill fixtures and measured slippage/fill-rate results.
+These gates raise reproducibility and observability. Round 3 adds the deterministic broker-policy fixture and scorecard below; it qualifies the repository for an **8/10 offline execution-gate certification**, not an unconditional live production certification.
+
+## Round 3 — Blueberry-style fixture validation
+
+The fixture is generated by `fixtures/generate_blueberry_quotes.py` and checked in as `fixtures/blueberry_quotes.json`. The 72 cases cover both directions and both retrace/no-retrace paths for:
+
+- `SOLUSD.p`: normal spreads of 20, 30, and 40 points, with 1x, 2x, and 5x candle-open widening;
+- `XRPUSD.pi`: normal spreads of 20, 25, and 30 points, with 1x, 2x, and 5x candle-open widening;
+- a 40-point maximum-spread guard, one-second route latency, two-second quote-age budget, and four-second passive-limit expiry.
+
+The generated quotes intentionally use simple same-mid spread transformation and favorable/no-retrace paths. They are **synthetic policy fixtures**, not a Blueberry tick capture. The output was produced with:
+
+```bash
+python Terminal/Execution_Simulator.py \\
+  --fixture fixtures/blueberry_quotes.json \\
+  --report-output artifacts/blueberry_execution_report.json
+```
+
+The complete machine-readable result is in `artifacts/blueberry_execution_report.json`.
+
+| Candle-open spread bucket | Orders | Market fill rate | Market p95 adverse slippage | Passive-limit fill rate | Limit p95 adverse slippage |
+|---|---:|---:|---:|---:|---:|
+| Normal (1x) | 24 | 100.0% | 0.0 points | 50.0% | 0.0 points |
+| 2x | 24 | 33.3% | 10.0 points | 16.7% | 0.0 points |
+| 5x | 24 | 0.0% | N/A — no fills | 0.0% | N/A — no fills |
+
+The 2x market fills are limited to the 20-point base-spread cases: 2x widening reaches the 40-point guard, while 2x of the 30/40-point SOL and 25/30-point XRP cases is rejected. At 5x, all 24 market requests are rejected by the spread guard and all 24 pending limits are cancelled with `CANCELLED_SPREAD`; the explicit 5x pass condition is **PASS**.
+
+Limit lifecycle and opportunity-cost results across all 72 cases:
+
+- 16 limits expired unfilled; 40 were cancelled by the spread guard.
+- The market path filled 32 cases; 16 of those had no corresponding limit fill, so the missed-fill rate versus market fills was **50.0%** (22.2% of all fixture orders).
+- For those missed passive entries, the synthetic market-crossing opportunity cost averaged **15.25 points**, with a p95 of **20.0 points**.
+
+These figures validate the simulator's declared behavior and make the passive-entry trade-off auditable. They do not estimate Blueberry's live fill probability, queue priority, slippage distribution, or execution quality. Those require broker-captured bid/ask/request/fill records from account `5064568` or an independently controlled shadow sample.
 
 ## Required validation matrix before unattended live entry
 

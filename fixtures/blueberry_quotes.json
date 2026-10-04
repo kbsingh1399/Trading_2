@@ -1,0 +1,4838 @@
+{
+  "assumptions": {
+    "candle_open_spikes": "1x, 2x, and 5x for a 3-second open window",
+    "max_spread_guard_points": 40,
+    "normal_spreads": "SOL 20/30/40 points; XRP 20/25/30 points",
+    "point_units": "SOL point=0.01; XRP point=0.001",
+    "purpose": "deterministic policy stress, not broker-captured market data",
+    "quote_path": "same-mid spread widening plus favorable/no-retrace paths"
+  },
+  "cases": [
+    {
+      "asset": "SOL",
+      "base_spread_points": 20,
+      "case_id": "SOL_long_20pt_1x_retrace",
+      "direction": "LONG",
+      "limit_price": 121.0,
+      "outcome": "retrace",
+      "point": 0.01,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 121.1,
+          "available_volume": 10.0,
+          "bid": 120.9,
+          "point": 0.01,
+          "timestamp": 1699999999.0
+        },
+        {
+          "ask": 121.1,
+          "available_volume": 10.0,
+          "bid": 120.9,
+          "point": 0.01,
+          "timestamp": 1700000000.0
+        },
+        {
+          "ask": 120.95,
+          "available_volume": 10.0,
+          "bid": 120.75,
+          "point": 0.01,
+          "timestamp": 1700000001.0
+        },
+        {
+          "ask": 120.8,
+          "available_volume": 10.0,
+          "bid": 120.6,
+          "point": 0.01,
+          "timestamp": 1700000002.0
+        },
+        {
+          "ask": 120.8,
+          "available_volume": 10.0,
+          "bid": 120.6,
+          "point": 0.01,
+          "timestamp": 1700000003.0
+        }
+      ],
+      "spike_multiplier": 1,
+      "spread_bucket": "normal",
+      "spread_spike": {
+        "candle_epoch": 1700000000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 1.0,
+        "name": "1x_SOL_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1699999999.0,
+      "symbol": "SOLUSD.p",
+      "volume": 0.5
+    },
+    {
+      "asset": "SOL",
+      "base_spread_points": 20,
+      "case_id": "SOL_long_20pt_1x_no_retrace",
+      "direction": "LONG",
+      "limit_price": 121.0,
+      "outcome": "no_retrace",
+      "point": 0.01,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 121.1,
+          "available_volume": 10.0,
+          "bid": 120.9,
+          "point": 0.01,
+          "timestamp": 1700009999.0
+        },
+        {
+          "ask": 121.1,
+          "available_volume": 10.0,
+          "bid": 120.9,
+          "point": 0.01,
+          "timestamp": 1700010000.0
+        },
+        {
+          "ask": 121.1,
+          "available_volume": 10.0,
+          "bid": 120.9,
+          "point": 0.01,
+          "timestamp": 1700010001.0
+        },
+        {
+          "ask": 121.1,
+          "available_volume": 10.0,
+          "bid": 120.9,
+          "point": 0.01,
+          "timestamp": 1700010002.0
+        },
+        {
+          "ask": 121.1,
+          "available_volume": 10.0,
+          "bid": 120.9,
+          "point": 0.01,
+          "timestamp": 1700010003.0
+        }
+      ],
+      "spike_multiplier": 1,
+      "spread_bucket": "normal",
+      "spread_spike": {
+        "candle_epoch": 1700010000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 1.0,
+        "name": "1x_SOL_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700009999.0,
+      "symbol": "SOLUSD.p",
+      "volume": 0.5
+    },
+    {
+      "asset": "SOL",
+      "base_spread_points": 20,
+      "case_id": "SOL_long_20pt_2x_retrace",
+      "direction": "LONG",
+      "limit_price": 121.0,
+      "outcome": "retrace",
+      "point": 0.01,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 121.1,
+          "available_volume": 10.0,
+          "bid": 120.9,
+          "point": 0.01,
+          "timestamp": 1700019999.0
+        },
+        {
+          "ask": 121.1,
+          "available_volume": 10.0,
+          "bid": 120.9,
+          "point": 0.01,
+          "timestamp": 1700020000.0
+        },
+        {
+          "ask": 120.95,
+          "available_volume": 10.0,
+          "bid": 120.75,
+          "point": 0.01,
+          "timestamp": 1700020001.0
+        },
+        {
+          "ask": 120.8,
+          "available_volume": 10.0,
+          "bid": 120.6,
+          "point": 0.01,
+          "timestamp": 1700020002.0
+        },
+        {
+          "ask": 120.8,
+          "available_volume": 10.0,
+          "bid": 120.6,
+          "point": 0.01,
+          "timestamp": 1700020003.0
+        }
+      ],
+      "spike_multiplier": 2,
+      "spread_bucket": "2x",
+      "spread_spike": {
+        "candle_epoch": 1700020000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 2.0,
+        "name": "2x_SOL_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700019999.0,
+      "symbol": "SOLUSD.p",
+      "volume": 0.5
+    },
+    {
+      "asset": "SOL",
+      "base_spread_points": 20,
+      "case_id": "SOL_long_20pt_2x_no_retrace",
+      "direction": "LONG",
+      "limit_price": 121.0,
+      "outcome": "no_retrace",
+      "point": 0.01,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 121.1,
+          "available_volume": 10.0,
+          "bid": 120.9,
+          "point": 0.01,
+          "timestamp": 1700029999.0
+        },
+        {
+          "ask": 121.1,
+          "available_volume": 10.0,
+          "bid": 120.9,
+          "point": 0.01,
+          "timestamp": 1700030000.0
+        },
+        {
+          "ask": 121.1,
+          "available_volume": 10.0,
+          "bid": 120.9,
+          "point": 0.01,
+          "timestamp": 1700030001.0
+        },
+        {
+          "ask": 121.1,
+          "available_volume": 10.0,
+          "bid": 120.9,
+          "point": 0.01,
+          "timestamp": 1700030002.0
+        },
+        {
+          "ask": 121.1,
+          "available_volume": 10.0,
+          "bid": 120.9,
+          "point": 0.01,
+          "timestamp": 1700030003.0
+        }
+      ],
+      "spike_multiplier": 2,
+      "spread_bucket": "2x",
+      "spread_spike": {
+        "candle_epoch": 1700030000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 2.0,
+        "name": "2x_SOL_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700029999.0,
+      "symbol": "SOLUSD.p",
+      "volume": 0.5
+    },
+    {
+      "asset": "SOL",
+      "base_spread_points": 20,
+      "case_id": "SOL_long_20pt_5x_retrace",
+      "direction": "LONG",
+      "limit_price": 121.0,
+      "outcome": "retrace",
+      "point": 0.01,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 121.1,
+          "available_volume": 10.0,
+          "bid": 120.9,
+          "point": 0.01,
+          "timestamp": 1700039999.0
+        },
+        {
+          "ask": 121.1,
+          "available_volume": 10.0,
+          "bid": 120.9,
+          "point": 0.01,
+          "timestamp": 1700040000.0
+        },
+        {
+          "ask": 120.95,
+          "available_volume": 10.0,
+          "bid": 120.75,
+          "point": 0.01,
+          "timestamp": 1700040001.0
+        },
+        {
+          "ask": 120.8,
+          "available_volume": 10.0,
+          "bid": 120.6,
+          "point": 0.01,
+          "timestamp": 1700040002.0
+        },
+        {
+          "ask": 120.8,
+          "available_volume": 10.0,
+          "bid": 120.6,
+          "point": 0.01,
+          "timestamp": 1700040003.0
+        }
+      ],
+      "spike_multiplier": 5,
+      "spread_bucket": "5x",
+      "spread_spike": {
+        "candle_epoch": 1700040000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 5.0,
+        "name": "5x_SOL_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700039999.0,
+      "symbol": "SOLUSD.p",
+      "volume": 0.5
+    },
+    {
+      "asset": "SOL",
+      "base_spread_points": 20,
+      "case_id": "SOL_long_20pt_5x_no_retrace",
+      "direction": "LONG",
+      "limit_price": 121.0,
+      "outcome": "no_retrace",
+      "point": 0.01,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 121.1,
+          "available_volume": 10.0,
+          "bid": 120.9,
+          "point": 0.01,
+          "timestamp": 1700049999.0
+        },
+        {
+          "ask": 121.1,
+          "available_volume": 10.0,
+          "bid": 120.9,
+          "point": 0.01,
+          "timestamp": 1700050000.0
+        },
+        {
+          "ask": 121.1,
+          "available_volume": 10.0,
+          "bid": 120.9,
+          "point": 0.01,
+          "timestamp": 1700050001.0
+        },
+        {
+          "ask": 121.1,
+          "available_volume": 10.0,
+          "bid": 120.9,
+          "point": 0.01,
+          "timestamp": 1700050002.0
+        },
+        {
+          "ask": 121.1,
+          "available_volume": 10.0,
+          "bid": 120.9,
+          "point": 0.01,
+          "timestamp": 1700050003.0
+        }
+      ],
+      "spike_multiplier": 5,
+      "spread_bucket": "5x",
+      "spread_spike": {
+        "candle_epoch": 1700050000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 5.0,
+        "name": "5x_SOL_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700049999.0,
+      "symbol": "SOLUSD.p",
+      "volume": 0.5
+    },
+    {
+      "asset": "SOL",
+      "base_spread_points": 30,
+      "case_id": "SOL_long_30pt_1x_retrace",
+      "direction": "LONG",
+      "limit_price": 121.0,
+      "outcome": "retrace",
+      "point": 0.01,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 121.15,
+          "available_volume": 10.0,
+          "bid": 120.85,
+          "point": 0.01,
+          "timestamp": 1700059999.0
+        },
+        {
+          "ask": 121.15,
+          "available_volume": 10.0,
+          "bid": 120.85,
+          "point": 0.01,
+          "timestamp": 1700060000.0
+        },
+        {
+          "ask": 120.93,
+          "available_volume": 10.0,
+          "bid": 120.62,
+          "point": 0.01,
+          "timestamp": 1700060001.0
+        },
+        {
+          "ask": 120.7,
+          "available_volume": 10.0,
+          "bid": 120.4,
+          "point": 0.01,
+          "timestamp": 1700060002.0
+        },
+        {
+          "ask": 120.7,
+          "available_volume": 10.0,
+          "bid": 120.4,
+          "point": 0.01,
+          "timestamp": 1700060003.0
+        }
+      ],
+      "spike_multiplier": 1,
+      "spread_bucket": "normal",
+      "spread_spike": {
+        "candle_epoch": 1700060000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 1.0,
+        "name": "1x_SOL_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700059999.0,
+      "symbol": "SOLUSD.p",
+      "volume": 0.5
+    },
+    {
+      "asset": "SOL",
+      "base_spread_points": 30,
+      "case_id": "SOL_long_30pt_1x_no_retrace",
+      "direction": "LONG",
+      "limit_price": 121.0,
+      "outcome": "no_retrace",
+      "point": 0.01,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 121.15,
+          "available_volume": 10.0,
+          "bid": 120.85,
+          "point": 0.01,
+          "timestamp": 1700069999.0
+        },
+        {
+          "ask": 121.15,
+          "available_volume": 10.0,
+          "bid": 120.85,
+          "point": 0.01,
+          "timestamp": 1700070000.0
+        },
+        {
+          "ask": 121.15,
+          "available_volume": 10.0,
+          "bid": 120.85,
+          "point": 0.01,
+          "timestamp": 1700070001.0
+        },
+        {
+          "ask": 121.15,
+          "available_volume": 10.0,
+          "bid": 120.85,
+          "point": 0.01,
+          "timestamp": 1700070002.0
+        },
+        {
+          "ask": 121.15,
+          "available_volume": 10.0,
+          "bid": 120.85,
+          "point": 0.01,
+          "timestamp": 1700070003.0
+        }
+      ],
+      "spike_multiplier": 1,
+      "spread_bucket": "normal",
+      "spread_spike": {
+        "candle_epoch": 1700070000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 1.0,
+        "name": "1x_SOL_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700069999.0,
+      "symbol": "SOLUSD.p",
+      "volume": 0.5
+    },
+    {
+      "asset": "SOL",
+      "base_spread_points": 30,
+      "case_id": "SOL_long_30pt_2x_retrace",
+      "direction": "LONG",
+      "limit_price": 121.0,
+      "outcome": "retrace",
+      "point": 0.01,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 121.15,
+          "available_volume": 10.0,
+          "bid": 120.85,
+          "point": 0.01,
+          "timestamp": 1700079999.0
+        },
+        {
+          "ask": 121.15,
+          "available_volume": 10.0,
+          "bid": 120.85,
+          "point": 0.01,
+          "timestamp": 1700080000.0
+        },
+        {
+          "ask": 120.93,
+          "available_volume": 10.0,
+          "bid": 120.62,
+          "point": 0.01,
+          "timestamp": 1700080001.0
+        },
+        {
+          "ask": 120.7,
+          "available_volume": 10.0,
+          "bid": 120.4,
+          "point": 0.01,
+          "timestamp": 1700080002.0
+        },
+        {
+          "ask": 120.7,
+          "available_volume": 10.0,
+          "bid": 120.4,
+          "point": 0.01,
+          "timestamp": 1700080003.0
+        }
+      ],
+      "spike_multiplier": 2,
+      "spread_bucket": "2x",
+      "spread_spike": {
+        "candle_epoch": 1700080000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 2.0,
+        "name": "2x_SOL_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700079999.0,
+      "symbol": "SOLUSD.p",
+      "volume": 0.5
+    },
+    {
+      "asset": "SOL",
+      "base_spread_points": 30,
+      "case_id": "SOL_long_30pt_2x_no_retrace",
+      "direction": "LONG",
+      "limit_price": 121.0,
+      "outcome": "no_retrace",
+      "point": 0.01,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 121.15,
+          "available_volume": 10.0,
+          "bid": 120.85,
+          "point": 0.01,
+          "timestamp": 1700089999.0
+        },
+        {
+          "ask": 121.15,
+          "available_volume": 10.0,
+          "bid": 120.85,
+          "point": 0.01,
+          "timestamp": 1700090000.0
+        },
+        {
+          "ask": 121.15,
+          "available_volume": 10.0,
+          "bid": 120.85,
+          "point": 0.01,
+          "timestamp": 1700090001.0
+        },
+        {
+          "ask": 121.15,
+          "available_volume": 10.0,
+          "bid": 120.85,
+          "point": 0.01,
+          "timestamp": 1700090002.0
+        },
+        {
+          "ask": 121.15,
+          "available_volume": 10.0,
+          "bid": 120.85,
+          "point": 0.01,
+          "timestamp": 1700090003.0
+        }
+      ],
+      "spike_multiplier": 2,
+      "spread_bucket": "2x",
+      "spread_spike": {
+        "candle_epoch": 1700090000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 2.0,
+        "name": "2x_SOL_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700089999.0,
+      "symbol": "SOLUSD.p",
+      "volume": 0.5
+    },
+    {
+      "asset": "SOL",
+      "base_spread_points": 30,
+      "case_id": "SOL_long_30pt_5x_retrace",
+      "direction": "LONG",
+      "limit_price": 121.0,
+      "outcome": "retrace",
+      "point": 0.01,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 121.15,
+          "available_volume": 10.0,
+          "bid": 120.85,
+          "point": 0.01,
+          "timestamp": 1700099999.0
+        },
+        {
+          "ask": 121.15,
+          "available_volume": 10.0,
+          "bid": 120.85,
+          "point": 0.01,
+          "timestamp": 1700100000.0
+        },
+        {
+          "ask": 120.93,
+          "available_volume": 10.0,
+          "bid": 120.62,
+          "point": 0.01,
+          "timestamp": 1700100001.0
+        },
+        {
+          "ask": 120.7,
+          "available_volume": 10.0,
+          "bid": 120.4,
+          "point": 0.01,
+          "timestamp": 1700100002.0
+        },
+        {
+          "ask": 120.7,
+          "available_volume": 10.0,
+          "bid": 120.4,
+          "point": 0.01,
+          "timestamp": 1700100003.0
+        }
+      ],
+      "spike_multiplier": 5,
+      "spread_bucket": "5x",
+      "spread_spike": {
+        "candle_epoch": 1700100000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 5.0,
+        "name": "5x_SOL_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700099999.0,
+      "symbol": "SOLUSD.p",
+      "volume": 0.5
+    },
+    {
+      "asset": "SOL",
+      "base_spread_points": 30,
+      "case_id": "SOL_long_30pt_5x_no_retrace",
+      "direction": "LONG",
+      "limit_price": 121.0,
+      "outcome": "no_retrace",
+      "point": 0.01,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 121.15,
+          "available_volume": 10.0,
+          "bid": 120.85,
+          "point": 0.01,
+          "timestamp": 1700109999.0
+        },
+        {
+          "ask": 121.15,
+          "available_volume": 10.0,
+          "bid": 120.85,
+          "point": 0.01,
+          "timestamp": 1700110000.0
+        },
+        {
+          "ask": 121.15,
+          "available_volume": 10.0,
+          "bid": 120.85,
+          "point": 0.01,
+          "timestamp": 1700110001.0
+        },
+        {
+          "ask": 121.15,
+          "available_volume": 10.0,
+          "bid": 120.85,
+          "point": 0.01,
+          "timestamp": 1700110002.0
+        },
+        {
+          "ask": 121.15,
+          "available_volume": 10.0,
+          "bid": 120.85,
+          "point": 0.01,
+          "timestamp": 1700110003.0
+        }
+      ],
+      "spike_multiplier": 5,
+      "spread_bucket": "5x",
+      "spread_spike": {
+        "candle_epoch": 1700110000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 5.0,
+        "name": "5x_SOL_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700109999.0,
+      "symbol": "SOLUSD.p",
+      "volume": 0.5
+    },
+    {
+      "asset": "SOL",
+      "base_spread_points": 40,
+      "case_id": "SOL_long_40pt_1x_retrace",
+      "direction": "LONG",
+      "limit_price": 121.0,
+      "outcome": "retrace",
+      "point": 0.01,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 121.2,
+          "available_volume": 10.0,
+          "bid": 120.8,
+          "point": 0.01,
+          "timestamp": 1700119999.0
+        },
+        {
+          "ask": 121.2,
+          "available_volume": 10.0,
+          "bid": 120.8,
+          "point": 0.01,
+          "timestamp": 1700120000.0
+        },
+        {
+          "ask": 120.9,
+          "available_volume": 10.0,
+          "bid": 120.5,
+          "point": 0.01,
+          "timestamp": 1700120001.0
+        },
+        {
+          "ask": 120.6,
+          "available_volume": 10.0,
+          "bid": 120.2,
+          "point": 0.01,
+          "timestamp": 1700120002.0
+        },
+        {
+          "ask": 120.6,
+          "available_volume": 10.0,
+          "bid": 120.2,
+          "point": 0.01,
+          "timestamp": 1700120003.0
+        }
+      ],
+      "spike_multiplier": 1,
+      "spread_bucket": "normal",
+      "spread_spike": {
+        "candle_epoch": 1700120000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 1.0,
+        "name": "1x_SOL_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700119999.0,
+      "symbol": "SOLUSD.p",
+      "volume": 0.5
+    },
+    {
+      "asset": "SOL",
+      "base_spread_points": 40,
+      "case_id": "SOL_long_40pt_1x_no_retrace",
+      "direction": "LONG",
+      "limit_price": 121.0,
+      "outcome": "no_retrace",
+      "point": 0.01,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 121.2,
+          "available_volume": 10.0,
+          "bid": 120.8,
+          "point": 0.01,
+          "timestamp": 1700129999.0
+        },
+        {
+          "ask": 121.2,
+          "available_volume": 10.0,
+          "bid": 120.8,
+          "point": 0.01,
+          "timestamp": 1700130000.0
+        },
+        {
+          "ask": 121.2,
+          "available_volume": 10.0,
+          "bid": 120.8,
+          "point": 0.01,
+          "timestamp": 1700130001.0
+        },
+        {
+          "ask": 121.2,
+          "available_volume": 10.0,
+          "bid": 120.8,
+          "point": 0.01,
+          "timestamp": 1700130002.0
+        },
+        {
+          "ask": 121.2,
+          "available_volume": 10.0,
+          "bid": 120.8,
+          "point": 0.01,
+          "timestamp": 1700130003.0
+        }
+      ],
+      "spike_multiplier": 1,
+      "spread_bucket": "normal",
+      "spread_spike": {
+        "candle_epoch": 1700130000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 1.0,
+        "name": "1x_SOL_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700129999.0,
+      "symbol": "SOLUSD.p",
+      "volume": 0.5
+    },
+    {
+      "asset": "SOL",
+      "base_spread_points": 40,
+      "case_id": "SOL_long_40pt_2x_retrace",
+      "direction": "LONG",
+      "limit_price": 121.0,
+      "outcome": "retrace",
+      "point": 0.01,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 121.2,
+          "available_volume": 10.0,
+          "bid": 120.8,
+          "point": 0.01,
+          "timestamp": 1700139999.0
+        },
+        {
+          "ask": 121.2,
+          "available_volume": 10.0,
+          "bid": 120.8,
+          "point": 0.01,
+          "timestamp": 1700140000.0
+        },
+        {
+          "ask": 120.9,
+          "available_volume": 10.0,
+          "bid": 120.5,
+          "point": 0.01,
+          "timestamp": 1700140001.0
+        },
+        {
+          "ask": 120.6,
+          "available_volume": 10.0,
+          "bid": 120.2,
+          "point": 0.01,
+          "timestamp": 1700140002.0
+        },
+        {
+          "ask": 120.6,
+          "available_volume": 10.0,
+          "bid": 120.2,
+          "point": 0.01,
+          "timestamp": 1700140003.0
+        }
+      ],
+      "spike_multiplier": 2,
+      "spread_bucket": "2x",
+      "spread_spike": {
+        "candle_epoch": 1700140000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 2.0,
+        "name": "2x_SOL_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700139999.0,
+      "symbol": "SOLUSD.p",
+      "volume": 0.5
+    },
+    {
+      "asset": "SOL",
+      "base_spread_points": 40,
+      "case_id": "SOL_long_40pt_2x_no_retrace",
+      "direction": "LONG",
+      "limit_price": 121.0,
+      "outcome": "no_retrace",
+      "point": 0.01,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 121.2,
+          "available_volume": 10.0,
+          "bid": 120.8,
+          "point": 0.01,
+          "timestamp": 1700149999.0
+        },
+        {
+          "ask": 121.2,
+          "available_volume": 10.0,
+          "bid": 120.8,
+          "point": 0.01,
+          "timestamp": 1700150000.0
+        },
+        {
+          "ask": 121.2,
+          "available_volume": 10.0,
+          "bid": 120.8,
+          "point": 0.01,
+          "timestamp": 1700150001.0
+        },
+        {
+          "ask": 121.2,
+          "available_volume": 10.0,
+          "bid": 120.8,
+          "point": 0.01,
+          "timestamp": 1700150002.0
+        },
+        {
+          "ask": 121.2,
+          "available_volume": 10.0,
+          "bid": 120.8,
+          "point": 0.01,
+          "timestamp": 1700150003.0
+        }
+      ],
+      "spike_multiplier": 2,
+      "spread_bucket": "2x",
+      "spread_spike": {
+        "candle_epoch": 1700150000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 2.0,
+        "name": "2x_SOL_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700149999.0,
+      "symbol": "SOLUSD.p",
+      "volume": 0.5
+    },
+    {
+      "asset": "SOL",
+      "base_spread_points": 40,
+      "case_id": "SOL_long_40pt_5x_retrace",
+      "direction": "LONG",
+      "limit_price": 121.0,
+      "outcome": "retrace",
+      "point": 0.01,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 121.2,
+          "available_volume": 10.0,
+          "bid": 120.8,
+          "point": 0.01,
+          "timestamp": 1700159999.0
+        },
+        {
+          "ask": 121.2,
+          "available_volume": 10.0,
+          "bid": 120.8,
+          "point": 0.01,
+          "timestamp": 1700160000.0
+        },
+        {
+          "ask": 120.9,
+          "available_volume": 10.0,
+          "bid": 120.5,
+          "point": 0.01,
+          "timestamp": 1700160001.0
+        },
+        {
+          "ask": 120.6,
+          "available_volume": 10.0,
+          "bid": 120.2,
+          "point": 0.01,
+          "timestamp": 1700160002.0
+        },
+        {
+          "ask": 120.6,
+          "available_volume": 10.0,
+          "bid": 120.2,
+          "point": 0.01,
+          "timestamp": 1700160003.0
+        }
+      ],
+      "spike_multiplier": 5,
+      "spread_bucket": "5x",
+      "spread_spike": {
+        "candle_epoch": 1700160000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 5.0,
+        "name": "5x_SOL_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700159999.0,
+      "symbol": "SOLUSD.p",
+      "volume": 0.5
+    },
+    {
+      "asset": "SOL",
+      "base_spread_points": 40,
+      "case_id": "SOL_long_40pt_5x_no_retrace",
+      "direction": "LONG",
+      "limit_price": 121.0,
+      "outcome": "no_retrace",
+      "point": 0.01,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 121.2,
+          "available_volume": 10.0,
+          "bid": 120.8,
+          "point": 0.01,
+          "timestamp": 1700169999.0
+        },
+        {
+          "ask": 121.2,
+          "available_volume": 10.0,
+          "bid": 120.8,
+          "point": 0.01,
+          "timestamp": 1700170000.0
+        },
+        {
+          "ask": 121.2,
+          "available_volume": 10.0,
+          "bid": 120.8,
+          "point": 0.01,
+          "timestamp": 1700170001.0
+        },
+        {
+          "ask": 121.2,
+          "available_volume": 10.0,
+          "bid": 120.8,
+          "point": 0.01,
+          "timestamp": 1700170002.0
+        },
+        {
+          "ask": 121.2,
+          "available_volume": 10.0,
+          "bid": 120.8,
+          "point": 0.01,
+          "timestamp": 1700170003.0
+        }
+      ],
+      "spike_multiplier": 5,
+      "spread_bucket": "5x",
+      "spread_spike": {
+        "candle_epoch": 1700170000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 5.0,
+        "name": "5x_SOL_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700169999.0,
+      "symbol": "SOLUSD.p",
+      "volume": 0.5
+    },
+    {
+      "asset": "SOL",
+      "base_spread_points": 20,
+      "case_id": "SOL_short_20pt_1x_retrace",
+      "direction": "SHORT",
+      "limit_price": 121.0,
+      "outcome": "retrace",
+      "point": 0.01,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 121.1,
+          "available_volume": 10.0,
+          "bid": 120.9,
+          "point": 0.01,
+          "timestamp": 1700179999.0
+        },
+        {
+          "ask": 121.1,
+          "available_volume": 10.0,
+          "bid": 120.9,
+          "point": 0.01,
+          "timestamp": 1700180000.0
+        },
+        {
+          "ask": 121.25,
+          "available_volume": 10.0,
+          "bid": 121.05,
+          "point": 0.01,
+          "timestamp": 1700180001.0
+        },
+        {
+          "ask": 121.4,
+          "available_volume": 10.0,
+          "bid": 121.2,
+          "point": 0.01,
+          "timestamp": 1700180002.0
+        },
+        {
+          "ask": 121.4,
+          "available_volume": 10.0,
+          "bid": 121.2,
+          "point": 0.01,
+          "timestamp": 1700180003.0
+        }
+      ],
+      "spike_multiplier": 1,
+      "spread_bucket": "normal",
+      "spread_spike": {
+        "candle_epoch": 1700180000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 1.0,
+        "name": "1x_SOL_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700179999.0,
+      "symbol": "SOLUSD.p",
+      "volume": 0.5
+    },
+    {
+      "asset": "SOL",
+      "base_spread_points": 20,
+      "case_id": "SOL_short_20pt_1x_no_retrace",
+      "direction": "SHORT",
+      "limit_price": 121.0,
+      "outcome": "no_retrace",
+      "point": 0.01,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 121.1,
+          "available_volume": 10.0,
+          "bid": 120.9,
+          "point": 0.01,
+          "timestamp": 1700189999.0
+        },
+        {
+          "ask": 121.1,
+          "available_volume": 10.0,
+          "bid": 120.9,
+          "point": 0.01,
+          "timestamp": 1700190000.0
+        },
+        {
+          "ask": 121.1,
+          "available_volume": 10.0,
+          "bid": 120.9,
+          "point": 0.01,
+          "timestamp": 1700190001.0
+        },
+        {
+          "ask": 121.1,
+          "available_volume": 10.0,
+          "bid": 120.9,
+          "point": 0.01,
+          "timestamp": 1700190002.0
+        },
+        {
+          "ask": 121.1,
+          "available_volume": 10.0,
+          "bid": 120.9,
+          "point": 0.01,
+          "timestamp": 1700190003.0
+        }
+      ],
+      "spike_multiplier": 1,
+      "spread_bucket": "normal",
+      "spread_spike": {
+        "candle_epoch": 1700190000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 1.0,
+        "name": "1x_SOL_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700189999.0,
+      "symbol": "SOLUSD.p",
+      "volume": 0.5
+    },
+    {
+      "asset": "SOL",
+      "base_spread_points": 20,
+      "case_id": "SOL_short_20pt_2x_retrace",
+      "direction": "SHORT",
+      "limit_price": 121.0,
+      "outcome": "retrace",
+      "point": 0.01,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 121.1,
+          "available_volume": 10.0,
+          "bid": 120.9,
+          "point": 0.01,
+          "timestamp": 1700199999.0
+        },
+        {
+          "ask": 121.1,
+          "available_volume": 10.0,
+          "bid": 120.9,
+          "point": 0.01,
+          "timestamp": 1700200000.0
+        },
+        {
+          "ask": 121.25,
+          "available_volume": 10.0,
+          "bid": 121.05,
+          "point": 0.01,
+          "timestamp": 1700200001.0
+        },
+        {
+          "ask": 121.4,
+          "available_volume": 10.0,
+          "bid": 121.2,
+          "point": 0.01,
+          "timestamp": 1700200002.0
+        },
+        {
+          "ask": 121.4,
+          "available_volume": 10.0,
+          "bid": 121.2,
+          "point": 0.01,
+          "timestamp": 1700200003.0
+        }
+      ],
+      "spike_multiplier": 2,
+      "spread_bucket": "2x",
+      "spread_spike": {
+        "candle_epoch": 1700200000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 2.0,
+        "name": "2x_SOL_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700199999.0,
+      "symbol": "SOLUSD.p",
+      "volume": 0.5
+    },
+    {
+      "asset": "SOL",
+      "base_spread_points": 20,
+      "case_id": "SOL_short_20pt_2x_no_retrace",
+      "direction": "SHORT",
+      "limit_price": 121.0,
+      "outcome": "no_retrace",
+      "point": 0.01,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 121.1,
+          "available_volume": 10.0,
+          "bid": 120.9,
+          "point": 0.01,
+          "timestamp": 1700209999.0
+        },
+        {
+          "ask": 121.1,
+          "available_volume": 10.0,
+          "bid": 120.9,
+          "point": 0.01,
+          "timestamp": 1700210000.0
+        },
+        {
+          "ask": 121.1,
+          "available_volume": 10.0,
+          "bid": 120.9,
+          "point": 0.01,
+          "timestamp": 1700210001.0
+        },
+        {
+          "ask": 121.1,
+          "available_volume": 10.0,
+          "bid": 120.9,
+          "point": 0.01,
+          "timestamp": 1700210002.0
+        },
+        {
+          "ask": 121.1,
+          "available_volume": 10.0,
+          "bid": 120.9,
+          "point": 0.01,
+          "timestamp": 1700210003.0
+        }
+      ],
+      "spike_multiplier": 2,
+      "spread_bucket": "2x",
+      "spread_spike": {
+        "candle_epoch": 1700210000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 2.0,
+        "name": "2x_SOL_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700209999.0,
+      "symbol": "SOLUSD.p",
+      "volume": 0.5
+    },
+    {
+      "asset": "SOL",
+      "base_spread_points": 20,
+      "case_id": "SOL_short_20pt_5x_retrace",
+      "direction": "SHORT",
+      "limit_price": 121.0,
+      "outcome": "retrace",
+      "point": 0.01,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 121.1,
+          "available_volume": 10.0,
+          "bid": 120.9,
+          "point": 0.01,
+          "timestamp": 1700219999.0
+        },
+        {
+          "ask": 121.1,
+          "available_volume": 10.0,
+          "bid": 120.9,
+          "point": 0.01,
+          "timestamp": 1700220000.0
+        },
+        {
+          "ask": 121.25,
+          "available_volume": 10.0,
+          "bid": 121.05,
+          "point": 0.01,
+          "timestamp": 1700220001.0
+        },
+        {
+          "ask": 121.4,
+          "available_volume": 10.0,
+          "bid": 121.2,
+          "point": 0.01,
+          "timestamp": 1700220002.0
+        },
+        {
+          "ask": 121.4,
+          "available_volume": 10.0,
+          "bid": 121.2,
+          "point": 0.01,
+          "timestamp": 1700220003.0
+        }
+      ],
+      "spike_multiplier": 5,
+      "spread_bucket": "5x",
+      "spread_spike": {
+        "candle_epoch": 1700220000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 5.0,
+        "name": "5x_SOL_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700219999.0,
+      "symbol": "SOLUSD.p",
+      "volume": 0.5
+    },
+    {
+      "asset": "SOL",
+      "base_spread_points": 20,
+      "case_id": "SOL_short_20pt_5x_no_retrace",
+      "direction": "SHORT",
+      "limit_price": 121.0,
+      "outcome": "no_retrace",
+      "point": 0.01,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 121.1,
+          "available_volume": 10.0,
+          "bid": 120.9,
+          "point": 0.01,
+          "timestamp": 1700229999.0
+        },
+        {
+          "ask": 121.1,
+          "available_volume": 10.0,
+          "bid": 120.9,
+          "point": 0.01,
+          "timestamp": 1700230000.0
+        },
+        {
+          "ask": 121.1,
+          "available_volume": 10.0,
+          "bid": 120.9,
+          "point": 0.01,
+          "timestamp": 1700230001.0
+        },
+        {
+          "ask": 121.1,
+          "available_volume": 10.0,
+          "bid": 120.9,
+          "point": 0.01,
+          "timestamp": 1700230002.0
+        },
+        {
+          "ask": 121.1,
+          "available_volume": 10.0,
+          "bid": 120.9,
+          "point": 0.01,
+          "timestamp": 1700230003.0
+        }
+      ],
+      "spike_multiplier": 5,
+      "spread_bucket": "5x",
+      "spread_spike": {
+        "candle_epoch": 1700230000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 5.0,
+        "name": "5x_SOL_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700229999.0,
+      "symbol": "SOLUSD.p",
+      "volume": 0.5
+    },
+    {
+      "asset": "SOL",
+      "base_spread_points": 30,
+      "case_id": "SOL_short_30pt_1x_retrace",
+      "direction": "SHORT",
+      "limit_price": 121.0,
+      "outcome": "retrace",
+      "point": 0.01,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 121.15,
+          "available_volume": 10.0,
+          "bid": 120.85,
+          "point": 0.01,
+          "timestamp": 1700239999.0
+        },
+        {
+          "ask": 121.15,
+          "available_volume": 10.0,
+          "bid": 120.85,
+          "point": 0.01,
+          "timestamp": 1700240000.0
+        },
+        {
+          "ask": 121.38,
+          "available_volume": 10.0,
+          "bid": 121.07,
+          "point": 0.01,
+          "timestamp": 1700240001.0
+        },
+        {
+          "ask": 121.6,
+          "available_volume": 10.0,
+          "bid": 121.3,
+          "point": 0.01,
+          "timestamp": 1700240002.0
+        },
+        {
+          "ask": 121.6,
+          "available_volume": 10.0,
+          "bid": 121.3,
+          "point": 0.01,
+          "timestamp": 1700240003.0
+        }
+      ],
+      "spike_multiplier": 1,
+      "spread_bucket": "normal",
+      "spread_spike": {
+        "candle_epoch": 1700240000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 1.0,
+        "name": "1x_SOL_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700239999.0,
+      "symbol": "SOLUSD.p",
+      "volume": 0.5
+    },
+    {
+      "asset": "SOL",
+      "base_spread_points": 30,
+      "case_id": "SOL_short_30pt_1x_no_retrace",
+      "direction": "SHORT",
+      "limit_price": 121.0,
+      "outcome": "no_retrace",
+      "point": 0.01,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 121.15,
+          "available_volume": 10.0,
+          "bid": 120.85,
+          "point": 0.01,
+          "timestamp": 1700249999.0
+        },
+        {
+          "ask": 121.15,
+          "available_volume": 10.0,
+          "bid": 120.85,
+          "point": 0.01,
+          "timestamp": 1700250000.0
+        },
+        {
+          "ask": 121.15,
+          "available_volume": 10.0,
+          "bid": 120.85,
+          "point": 0.01,
+          "timestamp": 1700250001.0
+        },
+        {
+          "ask": 121.15,
+          "available_volume": 10.0,
+          "bid": 120.85,
+          "point": 0.01,
+          "timestamp": 1700250002.0
+        },
+        {
+          "ask": 121.15,
+          "available_volume": 10.0,
+          "bid": 120.85,
+          "point": 0.01,
+          "timestamp": 1700250003.0
+        }
+      ],
+      "spike_multiplier": 1,
+      "spread_bucket": "normal",
+      "spread_spike": {
+        "candle_epoch": 1700250000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 1.0,
+        "name": "1x_SOL_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700249999.0,
+      "symbol": "SOLUSD.p",
+      "volume": 0.5
+    },
+    {
+      "asset": "SOL",
+      "base_spread_points": 30,
+      "case_id": "SOL_short_30pt_2x_retrace",
+      "direction": "SHORT",
+      "limit_price": 121.0,
+      "outcome": "retrace",
+      "point": 0.01,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 121.15,
+          "available_volume": 10.0,
+          "bid": 120.85,
+          "point": 0.01,
+          "timestamp": 1700259999.0
+        },
+        {
+          "ask": 121.15,
+          "available_volume": 10.0,
+          "bid": 120.85,
+          "point": 0.01,
+          "timestamp": 1700260000.0
+        },
+        {
+          "ask": 121.38,
+          "available_volume": 10.0,
+          "bid": 121.07,
+          "point": 0.01,
+          "timestamp": 1700260001.0
+        },
+        {
+          "ask": 121.6,
+          "available_volume": 10.0,
+          "bid": 121.3,
+          "point": 0.01,
+          "timestamp": 1700260002.0
+        },
+        {
+          "ask": 121.6,
+          "available_volume": 10.0,
+          "bid": 121.3,
+          "point": 0.01,
+          "timestamp": 1700260003.0
+        }
+      ],
+      "spike_multiplier": 2,
+      "spread_bucket": "2x",
+      "spread_spike": {
+        "candle_epoch": 1700260000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 2.0,
+        "name": "2x_SOL_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700259999.0,
+      "symbol": "SOLUSD.p",
+      "volume": 0.5
+    },
+    {
+      "asset": "SOL",
+      "base_spread_points": 30,
+      "case_id": "SOL_short_30pt_2x_no_retrace",
+      "direction": "SHORT",
+      "limit_price": 121.0,
+      "outcome": "no_retrace",
+      "point": 0.01,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 121.15,
+          "available_volume": 10.0,
+          "bid": 120.85,
+          "point": 0.01,
+          "timestamp": 1700269999.0
+        },
+        {
+          "ask": 121.15,
+          "available_volume": 10.0,
+          "bid": 120.85,
+          "point": 0.01,
+          "timestamp": 1700270000.0
+        },
+        {
+          "ask": 121.15,
+          "available_volume": 10.0,
+          "bid": 120.85,
+          "point": 0.01,
+          "timestamp": 1700270001.0
+        },
+        {
+          "ask": 121.15,
+          "available_volume": 10.0,
+          "bid": 120.85,
+          "point": 0.01,
+          "timestamp": 1700270002.0
+        },
+        {
+          "ask": 121.15,
+          "available_volume": 10.0,
+          "bid": 120.85,
+          "point": 0.01,
+          "timestamp": 1700270003.0
+        }
+      ],
+      "spike_multiplier": 2,
+      "spread_bucket": "2x",
+      "spread_spike": {
+        "candle_epoch": 1700270000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 2.0,
+        "name": "2x_SOL_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700269999.0,
+      "symbol": "SOLUSD.p",
+      "volume": 0.5
+    },
+    {
+      "asset": "SOL",
+      "base_spread_points": 30,
+      "case_id": "SOL_short_30pt_5x_retrace",
+      "direction": "SHORT",
+      "limit_price": 121.0,
+      "outcome": "retrace",
+      "point": 0.01,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 121.15,
+          "available_volume": 10.0,
+          "bid": 120.85,
+          "point": 0.01,
+          "timestamp": 1700279999.0
+        },
+        {
+          "ask": 121.15,
+          "available_volume": 10.0,
+          "bid": 120.85,
+          "point": 0.01,
+          "timestamp": 1700280000.0
+        },
+        {
+          "ask": 121.38,
+          "available_volume": 10.0,
+          "bid": 121.07,
+          "point": 0.01,
+          "timestamp": 1700280001.0
+        },
+        {
+          "ask": 121.6,
+          "available_volume": 10.0,
+          "bid": 121.3,
+          "point": 0.01,
+          "timestamp": 1700280002.0
+        },
+        {
+          "ask": 121.6,
+          "available_volume": 10.0,
+          "bid": 121.3,
+          "point": 0.01,
+          "timestamp": 1700280003.0
+        }
+      ],
+      "spike_multiplier": 5,
+      "spread_bucket": "5x",
+      "spread_spike": {
+        "candle_epoch": 1700280000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 5.0,
+        "name": "5x_SOL_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700279999.0,
+      "symbol": "SOLUSD.p",
+      "volume": 0.5
+    },
+    {
+      "asset": "SOL",
+      "base_spread_points": 30,
+      "case_id": "SOL_short_30pt_5x_no_retrace",
+      "direction": "SHORT",
+      "limit_price": 121.0,
+      "outcome": "no_retrace",
+      "point": 0.01,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 121.15,
+          "available_volume": 10.0,
+          "bid": 120.85,
+          "point": 0.01,
+          "timestamp": 1700289999.0
+        },
+        {
+          "ask": 121.15,
+          "available_volume": 10.0,
+          "bid": 120.85,
+          "point": 0.01,
+          "timestamp": 1700290000.0
+        },
+        {
+          "ask": 121.15,
+          "available_volume": 10.0,
+          "bid": 120.85,
+          "point": 0.01,
+          "timestamp": 1700290001.0
+        },
+        {
+          "ask": 121.15,
+          "available_volume": 10.0,
+          "bid": 120.85,
+          "point": 0.01,
+          "timestamp": 1700290002.0
+        },
+        {
+          "ask": 121.15,
+          "available_volume": 10.0,
+          "bid": 120.85,
+          "point": 0.01,
+          "timestamp": 1700290003.0
+        }
+      ],
+      "spike_multiplier": 5,
+      "spread_bucket": "5x",
+      "spread_spike": {
+        "candle_epoch": 1700290000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 5.0,
+        "name": "5x_SOL_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700289999.0,
+      "symbol": "SOLUSD.p",
+      "volume": 0.5
+    },
+    {
+      "asset": "SOL",
+      "base_spread_points": 40,
+      "case_id": "SOL_short_40pt_1x_retrace",
+      "direction": "SHORT",
+      "limit_price": 121.0,
+      "outcome": "retrace",
+      "point": 0.01,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 121.2,
+          "available_volume": 10.0,
+          "bid": 120.8,
+          "point": 0.01,
+          "timestamp": 1700299999.0
+        },
+        {
+          "ask": 121.2,
+          "available_volume": 10.0,
+          "bid": 120.8,
+          "point": 0.01,
+          "timestamp": 1700300000.0
+        },
+        {
+          "ask": 121.5,
+          "available_volume": 10.0,
+          "bid": 121.1,
+          "point": 0.01,
+          "timestamp": 1700300001.0
+        },
+        {
+          "ask": 121.8,
+          "available_volume": 10.0,
+          "bid": 121.4,
+          "point": 0.01,
+          "timestamp": 1700300002.0
+        },
+        {
+          "ask": 121.8,
+          "available_volume": 10.0,
+          "bid": 121.4,
+          "point": 0.01,
+          "timestamp": 1700300003.0
+        }
+      ],
+      "spike_multiplier": 1,
+      "spread_bucket": "normal",
+      "spread_spike": {
+        "candle_epoch": 1700300000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 1.0,
+        "name": "1x_SOL_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700299999.0,
+      "symbol": "SOLUSD.p",
+      "volume": 0.5
+    },
+    {
+      "asset": "SOL",
+      "base_spread_points": 40,
+      "case_id": "SOL_short_40pt_1x_no_retrace",
+      "direction": "SHORT",
+      "limit_price": 121.0,
+      "outcome": "no_retrace",
+      "point": 0.01,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 121.2,
+          "available_volume": 10.0,
+          "bid": 120.8,
+          "point": 0.01,
+          "timestamp": 1700309999.0
+        },
+        {
+          "ask": 121.2,
+          "available_volume": 10.0,
+          "bid": 120.8,
+          "point": 0.01,
+          "timestamp": 1700310000.0
+        },
+        {
+          "ask": 121.2,
+          "available_volume": 10.0,
+          "bid": 120.8,
+          "point": 0.01,
+          "timestamp": 1700310001.0
+        },
+        {
+          "ask": 121.2,
+          "available_volume": 10.0,
+          "bid": 120.8,
+          "point": 0.01,
+          "timestamp": 1700310002.0
+        },
+        {
+          "ask": 121.2,
+          "available_volume": 10.0,
+          "bid": 120.8,
+          "point": 0.01,
+          "timestamp": 1700310003.0
+        }
+      ],
+      "spike_multiplier": 1,
+      "spread_bucket": "normal",
+      "spread_spike": {
+        "candle_epoch": 1700310000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 1.0,
+        "name": "1x_SOL_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700309999.0,
+      "symbol": "SOLUSD.p",
+      "volume": 0.5
+    },
+    {
+      "asset": "SOL",
+      "base_spread_points": 40,
+      "case_id": "SOL_short_40pt_2x_retrace",
+      "direction": "SHORT",
+      "limit_price": 121.0,
+      "outcome": "retrace",
+      "point": 0.01,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 121.2,
+          "available_volume": 10.0,
+          "bid": 120.8,
+          "point": 0.01,
+          "timestamp": 1700319999.0
+        },
+        {
+          "ask": 121.2,
+          "available_volume": 10.0,
+          "bid": 120.8,
+          "point": 0.01,
+          "timestamp": 1700320000.0
+        },
+        {
+          "ask": 121.5,
+          "available_volume": 10.0,
+          "bid": 121.1,
+          "point": 0.01,
+          "timestamp": 1700320001.0
+        },
+        {
+          "ask": 121.8,
+          "available_volume": 10.0,
+          "bid": 121.4,
+          "point": 0.01,
+          "timestamp": 1700320002.0
+        },
+        {
+          "ask": 121.8,
+          "available_volume": 10.0,
+          "bid": 121.4,
+          "point": 0.01,
+          "timestamp": 1700320003.0
+        }
+      ],
+      "spike_multiplier": 2,
+      "spread_bucket": "2x",
+      "spread_spike": {
+        "candle_epoch": 1700320000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 2.0,
+        "name": "2x_SOL_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700319999.0,
+      "symbol": "SOLUSD.p",
+      "volume": 0.5
+    },
+    {
+      "asset": "SOL",
+      "base_spread_points": 40,
+      "case_id": "SOL_short_40pt_2x_no_retrace",
+      "direction": "SHORT",
+      "limit_price": 121.0,
+      "outcome": "no_retrace",
+      "point": 0.01,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 121.2,
+          "available_volume": 10.0,
+          "bid": 120.8,
+          "point": 0.01,
+          "timestamp": 1700329999.0
+        },
+        {
+          "ask": 121.2,
+          "available_volume": 10.0,
+          "bid": 120.8,
+          "point": 0.01,
+          "timestamp": 1700330000.0
+        },
+        {
+          "ask": 121.2,
+          "available_volume": 10.0,
+          "bid": 120.8,
+          "point": 0.01,
+          "timestamp": 1700330001.0
+        },
+        {
+          "ask": 121.2,
+          "available_volume": 10.0,
+          "bid": 120.8,
+          "point": 0.01,
+          "timestamp": 1700330002.0
+        },
+        {
+          "ask": 121.2,
+          "available_volume": 10.0,
+          "bid": 120.8,
+          "point": 0.01,
+          "timestamp": 1700330003.0
+        }
+      ],
+      "spike_multiplier": 2,
+      "spread_bucket": "2x",
+      "spread_spike": {
+        "candle_epoch": 1700330000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 2.0,
+        "name": "2x_SOL_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700329999.0,
+      "symbol": "SOLUSD.p",
+      "volume": 0.5
+    },
+    {
+      "asset": "SOL",
+      "base_spread_points": 40,
+      "case_id": "SOL_short_40pt_5x_retrace",
+      "direction": "SHORT",
+      "limit_price": 121.0,
+      "outcome": "retrace",
+      "point": 0.01,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 121.2,
+          "available_volume": 10.0,
+          "bid": 120.8,
+          "point": 0.01,
+          "timestamp": 1700339999.0
+        },
+        {
+          "ask": 121.2,
+          "available_volume": 10.0,
+          "bid": 120.8,
+          "point": 0.01,
+          "timestamp": 1700340000.0
+        },
+        {
+          "ask": 121.5,
+          "available_volume": 10.0,
+          "bid": 121.1,
+          "point": 0.01,
+          "timestamp": 1700340001.0
+        },
+        {
+          "ask": 121.8,
+          "available_volume": 10.0,
+          "bid": 121.4,
+          "point": 0.01,
+          "timestamp": 1700340002.0
+        },
+        {
+          "ask": 121.8,
+          "available_volume": 10.0,
+          "bid": 121.4,
+          "point": 0.01,
+          "timestamp": 1700340003.0
+        }
+      ],
+      "spike_multiplier": 5,
+      "spread_bucket": "5x",
+      "spread_spike": {
+        "candle_epoch": 1700340000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 5.0,
+        "name": "5x_SOL_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700339999.0,
+      "symbol": "SOLUSD.p",
+      "volume": 0.5
+    },
+    {
+      "asset": "SOL",
+      "base_spread_points": 40,
+      "case_id": "SOL_short_40pt_5x_no_retrace",
+      "direction": "SHORT",
+      "limit_price": 121.0,
+      "outcome": "no_retrace",
+      "point": 0.01,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 121.2,
+          "available_volume": 10.0,
+          "bid": 120.8,
+          "point": 0.01,
+          "timestamp": 1700349999.0
+        },
+        {
+          "ask": 121.2,
+          "available_volume": 10.0,
+          "bid": 120.8,
+          "point": 0.01,
+          "timestamp": 1700350000.0
+        },
+        {
+          "ask": 121.2,
+          "available_volume": 10.0,
+          "bid": 120.8,
+          "point": 0.01,
+          "timestamp": 1700350001.0
+        },
+        {
+          "ask": 121.2,
+          "available_volume": 10.0,
+          "bid": 120.8,
+          "point": 0.01,
+          "timestamp": 1700350002.0
+        },
+        {
+          "ask": 121.2,
+          "available_volume": 10.0,
+          "bid": 120.8,
+          "point": 0.01,
+          "timestamp": 1700350003.0
+        }
+      ],
+      "spike_multiplier": 5,
+      "spread_bucket": "5x",
+      "spread_spike": {
+        "candle_epoch": 1700350000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 5.0,
+        "name": "5x_SOL_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700349999.0,
+      "symbol": "SOLUSD.p",
+      "volume": 0.5
+    },
+    {
+      "asset": "XRP",
+      "base_spread_points": 20,
+      "case_id": "XRP_long_20pt_1x_retrace",
+      "direction": "LONG",
+      "limit_price": 1.5,
+      "outcome": "retrace",
+      "point": 0.001,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 1.51,
+          "available_volume": 10.0,
+          "bid": 1.49,
+          "point": 0.001,
+          "timestamp": 1700359999.0
+        },
+        {
+          "ask": 1.51,
+          "available_volume": 10.0,
+          "bid": 1.49,
+          "point": 0.001,
+          "timestamp": 1700360000.0
+        },
+        {
+          "ask": 1.495,
+          "available_volume": 10.0,
+          "bid": 1.475,
+          "point": 0.001,
+          "timestamp": 1700360001.0
+        },
+        {
+          "ask": 1.48,
+          "available_volume": 10.0,
+          "bid": 1.46,
+          "point": 0.001,
+          "timestamp": 1700360002.0
+        },
+        {
+          "ask": 1.48,
+          "available_volume": 10.0,
+          "bid": 1.46,
+          "point": 0.001,
+          "timestamp": 1700360003.0
+        }
+      ],
+      "spike_multiplier": 1,
+      "spread_bucket": "normal",
+      "spread_spike": {
+        "candle_epoch": 1700360000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 1.0,
+        "name": "1x_XRP_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700359999.0,
+      "symbol": "XRPUSD.pi",
+      "volume": 1.0
+    },
+    {
+      "asset": "XRP",
+      "base_spread_points": 20,
+      "case_id": "XRP_long_20pt_1x_no_retrace",
+      "direction": "LONG",
+      "limit_price": 1.5,
+      "outcome": "no_retrace",
+      "point": 0.001,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 1.51,
+          "available_volume": 10.0,
+          "bid": 1.49,
+          "point": 0.001,
+          "timestamp": 1700369999.0
+        },
+        {
+          "ask": 1.51,
+          "available_volume": 10.0,
+          "bid": 1.49,
+          "point": 0.001,
+          "timestamp": 1700370000.0
+        },
+        {
+          "ask": 1.51,
+          "available_volume": 10.0,
+          "bid": 1.49,
+          "point": 0.001,
+          "timestamp": 1700370001.0
+        },
+        {
+          "ask": 1.51,
+          "available_volume": 10.0,
+          "bid": 1.49,
+          "point": 0.001,
+          "timestamp": 1700370002.0
+        },
+        {
+          "ask": 1.51,
+          "available_volume": 10.0,
+          "bid": 1.49,
+          "point": 0.001,
+          "timestamp": 1700370003.0
+        }
+      ],
+      "spike_multiplier": 1,
+      "spread_bucket": "normal",
+      "spread_spike": {
+        "candle_epoch": 1700370000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 1.0,
+        "name": "1x_XRP_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700369999.0,
+      "symbol": "XRPUSD.pi",
+      "volume": 1.0
+    },
+    {
+      "asset": "XRP",
+      "base_spread_points": 20,
+      "case_id": "XRP_long_20pt_2x_retrace",
+      "direction": "LONG",
+      "limit_price": 1.5,
+      "outcome": "retrace",
+      "point": 0.001,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 1.51,
+          "available_volume": 10.0,
+          "bid": 1.49,
+          "point": 0.001,
+          "timestamp": 1700379999.0
+        },
+        {
+          "ask": 1.51,
+          "available_volume": 10.0,
+          "bid": 1.49,
+          "point": 0.001,
+          "timestamp": 1700380000.0
+        },
+        {
+          "ask": 1.495,
+          "available_volume": 10.0,
+          "bid": 1.475,
+          "point": 0.001,
+          "timestamp": 1700380001.0
+        },
+        {
+          "ask": 1.48,
+          "available_volume": 10.0,
+          "bid": 1.46,
+          "point": 0.001,
+          "timestamp": 1700380002.0
+        },
+        {
+          "ask": 1.48,
+          "available_volume": 10.0,
+          "bid": 1.46,
+          "point": 0.001,
+          "timestamp": 1700380003.0
+        }
+      ],
+      "spike_multiplier": 2,
+      "spread_bucket": "2x",
+      "spread_spike": {
+        "candle_epoch": 1700380000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 2.0,
+        "name": "2x_XRP_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700379999.0,
+      "symbol": "XRPUSD.pi",
+      "volume": 1.0
+    },
+    {
+      "asset": "XRP",
+      "base_spread_points": 20,
+      "case_id": "XRP_long_20pt_2x_no_retrace",
+      "direction": "LONG",
+      "limit_price": 1.5,
+      "outcome": "no_retrace",
+      "point": 0.001,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 1.51,
+          "available_volume": 10.0,
+          "bid": 1.49,
+          "point": 0.001,
+          "timestamp": 1700389999.0
+        },
+        {
+          "ask": 1.51,
+          "available_volume": 10.0,
+          "bid": 1.49,
+          "point": 0.001,
+          "timestamp": 1700390000.0
+        },
+        {
+          "ask": 1.51,
+          "available_volume": 10.0,
+          "bid": 1.49,
+          "point": 0.001,
+          "timestamp": 1700390001.0
+        },
+        {
+          "ask": 1.51,
+          "available_volume": 10.0,
+          "bid": 1.49,
+          "point": 0.001,
+          "timestamp": 1700390002.0
+        },
+        {
+          "ask": 1.51,
+          "available_volume": 10.0,
+          "bid": 1.49,
+          "point": 0.001,
+          "timestamp": 1700390003.0
+        }
+      ],
+      "spike_multiplier": 2,
+      "spread_bucket": "2x",
+      "spread_spike": {
+        "candle_epoch": 1700390000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 2.0,
+        "name": "2x_XRP_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700389999.0,
+      "symbol": "XRPUSD.pi",
+      "volume": 1.0
+    },
+    {
+      "asset": "XRP",
+      "base_spread_points": 20,
+      "case_id": "XRP_long_20pt_5x_retrace",
+      "direction": "LONG",
+      "limit_price": 1.5,
+      "outcome": "retrace",
+      "point": 0.001,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 1.51,
+          "available_volume": 10.0,
+          "bid": 1.49,
+          "point": 0.001,
+          "timestamp": 1700399999.0
+        },
+        {
+          "ask": 1.51,
+          "available_volume": 10.0,
+          "bid": 1.49,
+          "point": 0.001,
+          "timestamp": 1700400000.0
+        },
+        {
+          "ask": 1.495,
+          "available_volume": 10.0,
+          "bid": 1.475,
+          "point": 0.001,
+          "timestamp": 1700400001.0
+        },
+        {
+          "ask": 1.48,
+          "available_volume": 10.0,
+          "bid": 1.46,
+          "point": 0.001,
+          "timestamp": 1700400002.0
+        },
+        {
+          "ask": 1.48,
+          "available_volume": 10.0,
+          "bid": 1.46,
+          "point": 0.001,
+          "timestamp": 1700400003.0
+        }
+      ],
+      "spike_multiplier": 5,
+      "spread_bucket": "5x",
+      "spread_spike": {
+        "candle_epoch": 1700400000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 5.0,
+        "name": "5x_XRP_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700399999.0,
+      "symbol": "XRPUSD.pi",
+      "volume": 1.0
+    },
+    {
+      "asset": "XRP",
+      "base_spread_points": 20,
+      "case_id": "XRP_long_20pt_5x_no_retrace",
+      "direction": "LONG",
+      "limit_price": 1.5,
+      "outcome": "no_retrace",
+      "point": 0.001,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 1.51,
+          "available_volume": 10.0,
+          "bid": 1.49,
+          "point": 0.001,
+          "timestamp": 1700409999.0
+        },
+        {
+          "ask": 1.51,
+          "available_volume": 10.0,
+          "bid": 1.49,
+          "point": 0.001,
+          "timestamp": 1700410000.0
+        },
+        {
+          "ask": 1.51,
+          "available_volume": 10.0,
+          "bid": 1.49,
+          "point": 0.001,
+          "timestamp": 1700410001.0
+        },
+        {
+          "ask": 1.51,
+          "available_volume": 10.0,
+          "bid": 1.49,
+          "point": 0.001,
+          "timestamp": 1700410002.0
+        },
+        {
+          "ask": 1.51,
+          "available_volume": 10.0,
+          "bid": 1.49,
+          "point": 0.001,
+          "timestamp": 1700410003.0
+        }
+      ],
+      "spike_multiplier": 5,
+      "spread_bucket": "5x",
+      "spread_spike": {
+        "candle_epoch": 1700410000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 5.0,
+        "name": "5x_XRP_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700409999.0,
+      "symbol": "XRPUSD.pi",
+      "volume": 1.0
+    },
+    {
+      "asset": "XRP",
+      "base_spread_points": 25,
+      "case_id": "XRP_long_25pt_1x_retrace",
+      "direction": "LONG",
+      "limit_price": 1.5,
+      "outcome": "retrace",
+      "point": 0.001,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 1.512,
+          "available_volume": 10.0,
+          "bid": 1.488,
+          "point": 0.001,
+          "timestamp": 1700419999.0
+        },
+        {
+          "ask": 1.512,
+          "available_volume": 10.0,
+          "bid": 1.488,
+          "point": 0.001,
+          "timestamp": 1700420000.0
+        },
+        {
+          "ask": 1.494,
+          "available_volume": 10.0,
+          "bid": 1.469,
+          "point": 0.001,
+          "timestamp": 1700420001.0
+        },
+        {
+          "ask": 1.475,
+          "available_volume": 10.0,
+          "bid": 1.45,
+          "point": 0.001,
+          "timestamp": 1700420002.0
+        },
+        {
+          "ask": 1.475,
+          "available_volume": 10.0,
+          "bid": 1.45,
+          "point": 0.001,
+          "timestamp": 1700420003.0
+        }
+      ],
+      "spike_multiplier": 1,
+      "spread_bucket": "normal",
+      "spread_spike": {
+        "candle_epoch": 1700420000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 1.0,
+        "name": "1x_XRP_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700419999.0,
+      "symbol": "XRPUSD.pi",
+      "volume": 1.0
+    },
+    {
+      "asset": "XRP",
+      "base_spread_points": 25,
+      "case_id": "XRP_long_25pt_1x_no_retrace",
+      "direction": "LONG",
+      "limit_price": 1.5,
+      "outcome": "no_retrace",
+      "point": 0.001,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 1.512,
+          "available_volume": 10.0,
+          "bid": 1.488,
+          "point": 0.001,
+          "timestamp": 1700429999.0
+        },
+        {
+          "ask": 1.512,
+          "available_volume": 10.0,
+          "bid": 1.488,
+          "point": 0.001,
+          "timestamp": 1700430000.0
+        },
+        {
+          "ask": 1.512,
+          "available_volume": 10.0,
+          "bid": 1.488,
+          "point": 0.001,
+          "timestamp": 1700430001.0
+        },
+        {
+          "ask": 1.512,
+          "available_volume": 10.0,
+          "bid": 1.488,
+          "point": 0.001,
+          "timestamp": 1700430002.0
+        },
+        {
+          "ask": 1.512,
+          "available_volume": 10.0,
+          "bid": 1.488,
+          "point": 0.001,
+          "timestamp": 1700430003.0
+        }
+      ],
+      "spike_multiplier": 1,
+      "spread_bucket": "normal",
+      "spread_spike": {
+        "candle_epoch": 1700430000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 1.0,
+        "name": "1x_XRP_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700429999.0,
+      "symbol": "XRPUSD.pi",
+      "volume": 1.0
+    },
+    {
+      "asset": "XRP",
+      "base_spread_points": 25,
+      "case_id": "XRP_long_25pt_2x_retrace",
+      "direction": "LONG",
+      "limit_price": 1.5,
+      "outcome": "retrace",
+      "point": 0.001,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 1.512,
+          "available_volume": 10.0,
+          "bid": 1.488,
+          "point": 0.001,
+          "timestamp": 1700439999.0
+        },
+        {
+          "ask": 1.512,
+          "available_volume": 10.0,
+          "bid": 1.488,
+          "point": 0.001,
+          "timestamp": 1700440000.0
+        },
+        {
+          "ask": 1.494,
+          "available_volume": 10.0,
+          "bid": 1.469,
+          "point": 0.001,
+          "timestamp": 1700440001.0
+        },
+        {
+          "ask": 1.475,
+          "available_volume": 10.0,
+          "bid": 1.45,
+          "point": 0.001,
+          "timestamp": 1700440002.0
+        },
+        {
+          "ask": 1.475,
+          "available_volume": 10.0,
+          "bid": 1.45,
+          "point": 0.001,
+          "timestamp": 1700440003.0
+        }
+      ],
+      "spike_multiplier": 2,
+      "spread_bucket": "2x",
+      "spread_spike": {
+        "candle_epoch": 1700440000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 2.0,
+        "name": "2x_XRP_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700439999.0,
+      "symbol": "XRPUSD.pi",
+      "volume": 1.0
+    },
+    {
+      "asset": "XRP",
+      "base_spread_points": 25,
+      "case_id": "XRP_long_25pt_2x_no_retrace",
+      "direction": "LONG",
+      "limit_price": 1.5,
+      "outcome": "no_retrace",
+      "point": 0.001,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 1.512,
+          "available_volume": 10.0,
+          "bid": 1.488,
+          "point": 0.001,
+          "timestamp": 1700449999.0
+        },
+        {
+          "ask": 1.512,
+          "available_volume": 10.0,
+          "bid": 1.488,
+          "point": 0.001,
+          "timestamp": 1700450000.0
+        },
+        {
+          "ask": 1.512,
+          "available_volume": 10.0,
+          "bid": 1.488,
+          "point": 0.001,
+          "timestamp": 1700450001.0
+        },
+        {
+          "ask": 1.512,
+          "available_volume": 10.0,
+          "bid": 1.488,
+          "point": 0.001,
+          "timestamp": 1700450002.0
+        },
+        {
+          "ask": 1.512,
+          "available_volume": 10.0,
+          "bid": 1.488,
+          "point": 0.001,
+          "timestamp": 1700450003.0
+        }
+      ],
+      "spike_multiplier": 2,
+      "spread_bucket": "2x",
+      "spread_spike": {
+        "candle_epoch": 1700450000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 2.0,
+        "name": "2x_XRP_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700449999.0,
+      "symbol": "XRPUSD.pi",
+      "volume": 1.0
+    },
+    {
+      "asset": "XRP",
+      "base_spread_points": 25,
+      "case_id": "XRP_long_25pt_5x_retrace",
+      "direction": "LONG",
+      "limit_price": 1.5,
+      "outcome": "retrace",
+      "point": 0.001,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 1.512,
+          "available_volume": 10.0,
+          "bid": 1.488,
+          "point": 0.001,
+          "timestamp": 1700459999.0
+        },
+        {
+          "ask": 1.512,
+          "available_volume": 10.0,
+          "bid": 1.488,
+          "point": 0.001,
+          "timestamp": 1700460000.0
+        },
+        {
+          "ask": 1.494,
+          "available_volume": 10.0,
+          "bid": 1.469,
+          "point": 0.001,
+          "timestamp": 1700460001.0
+        },
+        {
+          "ask": 1.475,
+          "available_volume": 10.0,
+          "bid": 1.45,
+          "point": 0.001,
+          "timestamp": 1700460002.0
+        },
+        {
+          "ask": 1.475,
+          "available_volume": 10.0,
+          "bid": 1.45,
+          "point": 0.001,
+          "timestamp": 1700460003.0
+        }
+      ],
+      "spike_multiplier": 5,
+      "spread_bucket": "5x",
+      "spread_spike": {
+        "candle_epoch": 1700460000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 5.0,
+        "name": "5x_XRP_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700459999.0,
+      "symbol": "XRPUSD.pi",
+      "volume": 1.0
+    },
+    {
+      "asset": "XRP",
+      "base_spread_points": 25,
+      "case_id": "XRP_long_25pt_5x_no_retrace",
+      "direction": "LONG",
+      "limit_price": 1.5,
+      "outcome": "no_retrace",
+      "point": 0.001,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 1.512,
+          "available_volume": 10.0,
+          "bid": 1.488,
+          "point": 0.001,
+          "timestamp": 1700469999.0
+        },
+        {
+          "ask": 1.512,
+          "available_volume": 10.0,
+          "bid": 1.488,
+          "point": 0.001,
+          "timestamp": 1700470000.0
+        },
+        {
+          "ask": 1.512,
+          "available_volume": 10.0,
+          "bid": 1.488,
+          "point": 0.001,
+          "timestamp": 1700470001.0
+        },
+        {
+          "ask": 1.512,
+          "available_volume": 10.0,
+          "bid": 1.488,
+          "point": 0.001,
+          "timestamp": 1700470002.0
+        },
+        {
+          "ask": 1.512,
+          "available_volume": 10.0,
+          "bid": 1.488,
+          "point": 0.001,
+          "timestamp": 1700470003.0
+        }
+      ],
+      "spike_multiplier": 5,
+      "spread_bucket": "5x",
+      "spread_spike": {
+        "candle_epoch": 1700470000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 5.0,
+        "name": "5x_XRP_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700469999.0,
+      "symbol": "XRPUSD.pi",
+      "volume": 1.0
+    },
+    {
+      "asset": "XRP",
+      "base_spread_points": 30,
+      "case_id": "XRP_long_30pt_1x_retrace",
+      "direction": "LONG",
+      "limit_price": 1.5,
+      "outcome": "retrace",
+      "point": 0.001,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 1.515,
+          "available_volume": 10.0,
+          "bid": 1.485,
+          "point": 0.001,
+          "timestamp": 1700479999.0
+        },
+        {
+          "ask": 1.515,
+          "available_volume": 10.0,
+          "bid": 1.485,
+          "point": 0.001,
+          "timestamp": 1700480000.0
+        },
+        {
+          "ask": 1.492,
+          "available_volume": 10.0,
+          "bid": 1.463,
+          "point": 0.001,
+          "timestamp": 1700480001.0
+        },
+        {
+          "ask": 1.47,
+          "available_volume": 10.0,
+          "bid": 1.44,
+          "point": 0.001,
+          "timestamp": 1700480002.0
+        },
+        {
+          "ask": 1.47,
+          "available_volume": 10.0,
+          "bid": 1.44,
+          "point": 0.001,
+          "timestamp": 1700480003.0
+        }
+      ],
+      "spike_multiplier": 1,
+      "spread_bucket": "normal",
+      "spread_spike": {
+        "candle_epoch": 1700480000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 1.0,
+        "name": "1x_XRP_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700479999.0,
+      "symbol": "XRPUSD.pi",
+      "volume": 1.0
+    },
+    {
+      "asset": "XRP",
+      "base_spread_points": 30,
+      "case_id": "XRP_long_30pt_1x_no_retrace",
+      "direction": "LONG",
+      "limit_price": 1.5,
+      "outcome": "no_retrace",
+      "point": 0.001,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 1.515,
+          "available_volume": 10.0,
+          "bid": 1.485,
+          "point": 0.001,
+          "timestamp": 1700489999.0
+        },
+        {
+          "ask": 1.515,
+          "available_volume": 10.0,
+          "bid": 1.485,
+          "point": 0.001,
+          "timestamp": 1700490000.0
+        },
+        {
+          "ask": 1.515,
+          "available_volume": 10.0,
+          "bid": 1.485,
+          "point": 0.001,
+          "timestamp": 1700490001.0
+        },
+        {
+          "ask": 1.515,
+          "available_volume": 10.0,
+          "bid": 1.485,
+          "point": 0.001,
+          "timestamp": 1700490002.0
+        },
+        {
+          "ask": 1.515,
+          "available_volume": 10.0,
+          "bid": 1.485,
+          "point": 0.001,
+          "timestamp": 1700490003.0
+        }
+      ],
+      "spike_multiplier": 1,
+      "spread_bucket": "normal",
+      "spread_spike": {
+        "candle_epoch": 1700490000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 1.0,
+        "name": "1x_XRP_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700489999.0,
+      "symbol": "XRPUSD.pi",
+      "volume": 1.0
+    },
+    {
+      "asset": "XRP",
+      "base_spread_points": 30,
+      "case_id": "XRP_long_30pt_2x_retrace",
+      "direction": "LONG",
+      "limit_price": 1.5,
+      "outcome": "retrace",
+      "point": 0.001,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 1.515,
+          "available_volume": 10.0,
+          "bid": 1.485,
+          "point": 0.001,
+          "timestamp": 1700499999.0
+        },
+        {
+          "ask": 1.515,
+          "available_volume": 10.0,
+          "bid": 1.485,
+          "point": 0.001,
+          "timestamp": 1700500000.0
+        },
+        {
+          "ask": 1.492,
+          "available_volume": 10.0,
+          "bid": 1.463,
+          "point": 0.001,
+          "timestamp": 1700500001.0
+        },
+        {
+          "ask": 1.47,
+          "available_volume": 10.0,
+          "bid": 1.44,
+          "point": 0.001,
+          "timestamp": 1700500002.0
+        },
+        {
+          "ask": 1.47,
+          "available_volume": 10.0,
+          "bid": 1.44,
+          "point": 0.001,
+          "timestamp": 1700500003.0
+        }
+      ],
+      "spike_multiplier": 2,
+      "spread_bucket": "2x",
+      "spread_spike": {
+        "candle_epoch": 1700500000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 2.0,
+        "name": "2x_XRP_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700499999.0,
+      "symbol": "XRPUSD.pi",
+      "volume": 1.0
+    },
+    {
+      "asset": "XRP",
+      "base_spread_points": 30,
+      "case_id": "XRP_long_30pt_2x_no_retrace",
+      "direction": "LONG",
+      "limit_price": 1.5,
+      "outcome": "no_retrace",
+      "point": 0.001,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 1.515,
+          "available_volume": 10.0,
+          "bid": 1.485,
+          "point": 0.001,
+          "timestamp": 1700509999.0
+        },
+        {
+          "ask": 1.515,
+          "available_volume": 10.0,
+          "bid": 1.485,
+          "point": 0.001,
+          "timestamp": 1700510000.0
+        },
+        {
+          "ask": 1.515,
+          "available_volume": 10.0,
+          "bid": 1.485,
+          "point": 0.001,
+          "timestamp": 1700510001.0
+        },
+        {
+          "ask": 1.515,
+          "available_volume": 10.0,
+          "bid": 1.485,
+          "point": 0.001,
+          "timestamp": 1700510002.0
+        },
+        {
+          "ask": 1.515,
+          "available_volume": 10.0,
+          "bid": 1.485,
+          "point": 0.001,
+          "timestamp": 1700510003.0
+        }
+      ],
+      "spike_multiplier": 2,
+      "spread_bucket": "2x",
+      "spread_spike": {
+        "candle_epoch": 1700510000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 2.0,
+        "name": "2x_XRP_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700509999.0,
+      "symbol": "XRPUSD.pi",
+      "volume": 1.0
+    },
+    {
+      "asset": "XRP",
+      "base_spread_points": 30,
+      "case_id": "XRP_long_30pt_5x_retrace",
+      "direction": "LONG",
+      "limit_price": 1.5,
+      "outcome": "retrace",
+      "point": 0.001,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 1.515,
+          "available_volume": 10.0,
+          "bid": 1.485,
+          "point": 0.001,
+          "timestamp": 1700519999.0
+        },
+        {
+          "ask": 1.515,
+          "available_volume": 10.0,
+          "bid": 1.485,
+          "point": 0.001,
+          "timestamp": 1700520000.0
+        },
+        {
+          "ask": 1.492,
+          "available_volume": 10.0,
+          "bid": 1.463,
+          "point": 0.001,
+          "timestamp": 1700520001.0
+        },
+        {
+          "ask": 1.47,
+          "available_volume": 10.0,
+          "bid": 1.44,
+          "point": 0.001,
+          "timestamp": 1700520002.0
+        },
+        {
+          "ask": 1.47,
+          "available_volume": 10.0,
+          "bid": 1.44,
+          "point": 0.001,
+          "timestamp": 1700520003.0
+        }
+      ],
+      "spike_multiplier": 5,
+      "spread_bucket": "5x",
+      "spread_spike": {
+        "candle_epoch": 1700520000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 5.0,
+        "name": "5x_XRP_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700519999.0,
+      "symbol": "XRPUSD.pi",
+      "volume": 1.0
+    },
+    {
+      "asset": "XRP",
+      "base_spread_points": 30,
+      "case_id": "XRP_long_30pt_5x_no_retrace",
+      "direction": "LONG",
+      "limit_price": 1.5,
+      "outcome": "no_retrace",
+      "point": 0.001,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 1.515,
+          "available_volume": 10.0,
+          "bid": 1.485,
+          "point": 0.001,
+          "timestamp": 1700529999.0
+        },
+        {
+          "ask": 1.515,
+          "available_volume": 10.0,
+          "bid": 1.485,
+          "point": 0.001,
+          "timestamp": 1700530000.0
+        },
+        {
+          "ask": 1.515,
+          "available_volume": 10.0,
+          "bid": 1.485,
+          "point": 0.001,
+          "timestamp": 1700530001.0
+        },
+        {
+          "ask": 1.515,
+          "available_volume": 10.0,
+          "bid": 1.485,
+          "point": 0.001,
+          "timestamp": 1700530002.0
+        },
+        {
+          "ask": 1.515,
+          "available_volume": 10.0,
+          "bid": 1.485,
+          "point": 0.001,
+          "timestamp": 1700530003.0
+        }
+      ],
+      "spike_multiplier": 5,
+      "spread_bucket": "5x",
+      "spread_spike": {
+        "candle_epoch": 1700530000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 5.0,
+        "name": "5x_XRP_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700529999.0,
+      "symbol": "XRPUSD.pi",
+      "volume": 1.0
+    },
+    {
+      "asset": "XRP",
+      "base_spread_points": 20,
+      "case_id": "XRP_short_20pt_1x_retrace",
+      "direction": "SHORT",
+      "limit_price": 1.5,
+      "outcome": "retrace",
+      "point": 0.001,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 1.51,
+          "available_volume": 10.0,
+          "bid": 1.49,
+          "point": 0.001,
+          "timestamp": 1700539999.0
+        },
+        {
+          "ask": 1.51,
+          "available_volume": 10.0,
+          "bid": 1.49,
+          "point": 0.001,
+          "timestamp": 1700540000.0
+        },
+        {
+          "ask": 1.525,
+          "available_volume": 10.0,
+          "bid": 1.505,
+          "point": 0.001,
+          "timestamp": 1700540001.0
+        },
+        {
+          "ask": 1.54,
+          "available_volume": 10.0,
+          "bid": 1.52,
+          "point": 0.001,
+          "timestamp": 1700540002.0
+        },
+        {
+          "ask": 1.54,
+          "available_volume": 10.0,
+          "bid": 1.52,
+          "point": 0.001,
+          "timestamp": 1700540003.0
+        }
+      ],
+      "spike_multiplier": 1,
+      "spread_bucket": "normal",
+      "spread_spike": {
+        "candle_epoch": 1700540000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 1.0,
+        "name": "1x_XRP_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700539999.0,
+      "symbol": "XRPUSD.pi",
+      "volume": 1.0
+    },
+    {
+      "asset": "XRP",
+      "base_spread_points": 20,
+      "case_id": "XRP_short_20pt_1x_no_retrace",
+      "direction": "SHORT",
+      "limit_price": 1.5,
+      "outcome": "no_retrace",
+      "point": 0.001,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 1.51,
+          "available_volume": 10.0,
+          "bid": 1.49,
+          "point": 0.001,
+          "timestamp": 1700549999.0
+        },
+        {
+          "ask": 1.51,
+          "available_volume": 10.0,
+          "bid": 1.49,
+          "point": 0.001,
+          "timestamp": 1700550000.0
+        },
+        {
+          "ask": 1.51,
+          "available_volume": 10.0,
+          "bid": 1.49,
+          "point": 0.001,
+          "timestamp": 1700550001.0
+        },
+        {
+          "ask": 1.51,
+          "available_volume": 10.0,
+          "bid": 1.49,
+          "point": 0.001,
+          "timestamp": 1700550002.0
+        },
+        {
+          "ask": 1.51,
+          "available_volume": 10.0,
+          "bid": 1.49,
+          "point": 0.001,
+          "timestamp": 1700550003.0
+        }
+      ],
+      "spike_multiplier": 1,
+      "spread_bucket": "normal",
+      "spread_spike": {
+        "candle_epoch": 1700550000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 1.0,
+        "name": "1x_XRP_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700549999.0,
+      "symbol": "XRPUSD.pi",
+      "volume": 1.0
+    },
+    {
+      "asset": "XRP",
+      "base_spread_points": 20,
+      "case_id": "XRP_short_20pt_2x_retrace",
+      "direction": "SHORT",
+      "limit_price": 1.5,
+      "outcome": "retrace",
+      "point": 0.001,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 1.51,
+          "available_volume": 10.0,
+          "bid": 1.49,
+          "point": 0.001,
+          "timestamp": 1700559999.0
+        },
+        {
+          "ask": 1.51,
+          "available_volume": 10.0,
+          "bid": 1.49,
+          "point": 0.001,
+          "timestamp": 1700560000.0
+        },
+        {
+          "ask": 1.525,
+          "available_volume": 10.0,
+          "bid": 1.505,
+          "point": 0.001,
+          "timestamp": 1700560001.0
+        },
+        {
+          "ask": 1.54,
+          "available_volume": 10.0,
+          "bid": 1.52,
+          "point": 0.001,
+          "timestamp": 1700560002.0
+        },
+        {
+          "ask": 1.54,
+          "available_volume": 10.0,
+          "bid": 1.52,
+          "point": 0.001,
+          "timestamp": 1700560003.0
+        }
+      ],
+      "spike_multiplier": 2,
+      "spread_bucket": "2x",
+      "spread_spike": {
+        "candle_epoch": 1700560000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 2.0,
+        "name": "2x_XRP_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700559999.0,
+      "symbol": "XRPUSD.pi",
+      "volume": 1.0
+    },
+    {
+      "asset": "XRP",
+      "base_spread_points": 20,
+      "case_id": "XRP_short_20pt_2x_no_retrace",
+      "direction": "SHORT",
+      "limit_price": 1.5,
+      "outcome": "no_retrace",
+      "point": 0.001,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 1.51,
+          "available_volume": 10.0,
+          "bid": 1.49,
+          "point": 0.001,
+          "timestamp": 1700569999.0
+        },
+        {
+          "ask": 1.51,
+          "available_volume": 10.0,
+          "bid": 1.49,
+          "point": 0.001,
+          "timestamp": 1700570000.0
+        },
+        {
+          "ask": 1.51,
+          "available_volume": 10.0,
+          "bid": 1.49,
+          "point": 0.001,
+          "timestamp": 1700570001.0
+        },
+        {
+          "ask": 1.51,
+          "available_volume": 10.0,
+          "bid": 1.49,
+          "point": 0.001,
+          "timestamp": 1700570002.0
+        },
+        {
+          "ask": 1.51,
+          "available_volume": 10.0,
+          "bid": 1.49,
+          "point": 0.001,
+          "timestamp": 1700570003.0
+        }
+      ],
+      "spike_multiplier": 2,
+      "spread_bucket": "2x",
+      "spread_spike": {
+        "candle_epoch": 1700570000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 2.0,
+        "name": "2x_XRP_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700569999.0,
+      "symbol": "XRPUSD.pi",
+      "volume": 1.0
+    },
+    {
+      "asset": "XRP",
+      "base_spread_points": 20,
+      "case_id": "XRP_short_20pt_5x_retrace",
+      "direction": "SHORT",
+      "limit_price": 1.5,
+      "outcome": "retrace",
+      "point": 0.001,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 1.51,
+          "available_volume": 10.0,
+          "bid": 1.49,
+          "point": 0.001,
+          "timestamp": 1700579999.0
+        },
+        {
+          "ask": 1.51,
+          "available_volume": 10.0,
+          "bid": 1.49,
+          "point": 0.001,
+          "timestamp": 1700580000.0
+        },
+        {
+          "ask": 1.525,
+          "available_volume": 10.0,
+          "bid": 1.505,
+          "point": 0.001,
+          "timestamp": 1700580001.0
+        },
+        {
+          "ask": 1.54,
+          "available_volume": 10.0,
+          "bid": 1.52,
+          "point": 0.001,
+          "timestamp": 1700580002.0
+        },
+        {
+          "ask": 1.54,
+          "available_volume": 10.0,
+          "bid": 1.52,
+          "point": 0.001,
+          "timestamp": 1700580003.0
+        }
+      ],
+      "spike_multiplier": 5,
+      "spread_bucket": "5x",
+      "spread_spike": {
+        "candle_epoch": 1700580000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 5.0,
+        "name": "5x_XRP_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700579999.0,
+      "symbol": "XRPUSD.pi",
+      "volume": 1.0
+    },
+    {
+      "asset": "XRP",
+      "base_spread_points": 20,
+      "case_id": "XRP_short_20pt_5x_no_retrace",
+      "direction": "SHORT",
+      "limit_price": 1.5,
+      "outcome": "no_retrace",
+      "point": 0.001,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 1.51,
+          "available_volume": 10.0,
+          "bid": 1.49,
+          "point": 0.001,
+          "timestamp": 1700589999.0
+        },
+        {
+          "ask": 1.51,
+          "available_volume": 10.0,
+          "bid": 1.49,
+          "point": 0.001,
+          "timestamp": 1700590000.0
+        },
+        {
+          "ask": 1.51,
+          "available_volume": 10.0,
+          "bid": 1.49,
+          "point": 0.001,
+          "timestamp": 1700590001.0
+        },
+        {
+          "ask": 1.51,
+          "available_volume": 10.0,
+          "bid": 1.49,
+          "point": 0.001,
+          "timestamp": 1700590002.0
+        },
+        {
+          "ask": 1.51,
+          "available_volume": 10.0,
+          "bid": 1.49,
+          "point": 0.001,
+          "timestamp": 1700590003.0
+        }
+      ],
+      "spike_multiplier": 5,
+      "spread_bucket": "5x",
+      "spread_spike": {
+        "candle_epoch": 1700590000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 5.0,
+        "name": "5x_XRP_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700589999.0,
+      "symbol": "XRPUSD.pi",
+      "volume": 1.0
+    },
+    {
+      "asset": "XRP",
+      "base_spread_points": 25,
+      "case_id": "XRP_short_25pt_1x_retrace",
+      "direction": "SHORT",
+      "limit_price": 1.5,
+      "outcome": "retrace",
+      "point": 0.001,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 1.512,
+          "available_volume": 10.0,
+          "bid": 1.488,
+          "point": 0.001,
+          "timestamp": 1700599999.0
+        },
+        {
+          "ask": 1.512,
+          "available_volume": 10.0,
+          "bid": 1.488,
+          "point": 0.001,
+          "timestamp": 1700600000.0
+        },
+        {
+          "ask": 1.531,
+          "available_volume": 10.0,
+          "bid": 1.506,
+          "point": 0.001,
+          "timestamp": 1700600001.0
+        },
+        {
+          "ask": 1.55,
+          "available_volume": 10.0,
+          "bid": 1.525,
+          "point": 0.001,
+          "timestamp": 1700600002.0
+        },
+        {
+          "ask": 1.55,
+          "available_volume": 10.0,
+          "bid": 1.525,
+          "point": 0.001,
+          "timestamp": 1700600003.0
+        }
+      ],
+      "spike_multiplier": 1,
+      "spread_bucket": "normal",
+      "spread_spike": {
+        "candle_epoch": 1700600000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 1.0,
+        "name": "1x_XRP_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700599999.0,
+      "symbol": "XRPUSD.pi",
+      "volume": 1.0
+    },
+    {
+      "asset": "XRP",
+      "base_spread_points": 25,
+      "case_id": "XRP_short_25pt_1x_no_retrace",
+      "direction": "SHORT",
+      "limit_price": 1.5,
+      "outcome": "no_retrace",
+      "point": 0.001,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 1.512,
+          "available_volume": 10.0,
+          "bid": 1.488,
+          "point": 0.001,
+          "timestamp": 1700609999.0
+        },
+        {
+          "ask": 1.512,
+          "available_volume": 10.0,
+          "bid": 1.488,
+          "point": 0.001,
+          "timestamp": 1700610000.0
+        },
+        {
+          "ask": 1.512,
+          "available_volume": 10.0,
+          "bid": 1.488,
+          "point": 0.001,
+          "timestamp": 1700610001.0
+        },
+        {
+          "ask": 1.512,
+          "available_volume": 10.0,
+          "bid": 1.488,
+          "point": 0.001,
+          "timestamp": 1700610002.0
+        },
+        {
+          "ask": 1.512,
+          "available_volume": 10.0,
+          "bid": 1.488,
+          "point": 0.001,
+          "timestamp": 1700610003.0
+        }
+      ],
+      "spike_multiplier": 1,
+      "spread_bucket": "normal",
+      "spread_spike": {
+        "candle_epoch": 1700610000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 1.0,
+        "name": "1x_XRP_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700609999.0,
+      "symbol": "XRPUSD.pi",
+      "volume": 1.0
+    },
+    {
+      "asset": "XRP",
+      "base_spread_points": 25,
+      "case_id": "XRP_short_25pt_2x_retrace",
+      "direction": "SHORT",
+      "limit_price": 1.5,
+      "outcome": "retrace",
+      "point": 0.001,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 1.512,
+          "available_volume": 10.0,
+          "bid": 1.488,
+          "point": 0.001,
+          "timestamp": 1700619999.0
+        },
+        {
+          "ask": 1.512,
+          "available_volume": 10.0,
+          "bid": 1.488,
+          "point": 0.001,
+          "timestamp": 1700620000.0
+        },
+        {
+          "ask": 1.531,
+          "available_volume": 10.0,
+          "bid": 1.506,
+          "point": 0.001,
+          "timestamp": 1700620001.0
+        },
+        {
+          "ask": 1.55,
+          "available_volume": 10.0,
+          "bid": 1.525,
+          "point": 0.001,
+          "timestamp": 1700620002.0
+        },
+        {
+          "ask": 1.55,
+          "available_volume": 10.0,
+          "bid": 1.525,
+          "point": 0.001,
+          "timestamp": 1700620003.0
+        }
+      ],
+      "spike_multiplier": 2,
+      "spread_bucket": "2x",
+      "spread_spike": {
+        "candle_epoch": 1700620000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 2.0,
+        "name": "2x_XRP_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700619999.0,
+      "symbol": "XRPUSD.pi",
+      "volume": 1.0
+    },
+    {
+      "asset": "XRP",
+      "base_spread_points": 25,
+      "case_id": "XRP_short_25pt_2x_no_retrace",
+      "direction": "SHORT",
+      "limit_price": 1.5,
+      "outcome": "no_retrace",
+      "point": 0.001,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 1.512,
+          "available_volume": 10.0,
+          "bid": 1.488,
+          "point": 0.001,
+          "timestamp": 1700629999.0
+        },
+        {
+          "ask": 1.512,
+          "available_volume": 10.0,
+          "bid": 1.488,
+          "point": 0.001,
+          "timestamp": 1700630000.0
+        },
+        {
+          "ask": 1.512,
+          "available_volume": 10.0,
+          "bid": 1.488,
+          "point": 0.001,
+          "timestamp": 1700630001.0
+        },
+        {
+          "ask": 1.512,
+          "available_volume": 10.0,
+          "bid": 1.488,
+          "point": 0.001,
+          "timestamp": 1700630002.0
+        },
+        {
+          "ask": 1.512,
+          "available_volume": 10.0,
+          "bid": 1.488,
+          "point": 0.001,
+          "timestamp": 1700630003.0
+        }
+      ],
+      "spike_multiplier": 2,
+      "spread_bucket": "2x",
+      "spread_spike": {
+        "candle_epoch": 1700630000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 2.0,
+        "name": "2x_XRP_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700629999.0,
+      "symbol": "XRPUSD.pi",
+      "volume": 1.0
+    },
+    {
+      "asset": "XRP",
+      "base_spread_points": 25,
+      "case_id": "XRP_short_25pt_5x_retrace",
+      "direction": "SHORT",
+      "limit_price": 1.5,
+      "outcome": "retrace",
+      "point": 0.001,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 1.512,
+          "available_volume": 10.0,
+          "bid": 1.488,
+          "point": 0.001,
+          "timestamp": 1700639999.0
+        },
+        {
+          "ask": 1.512,
+          "available_volume": 10.0,
+          "bid": 1.488,
+          "point": 0.001,
+          "timestamp": 1700640000.0
+        },
+        {
+          "ask": 1.531,
+          "available_volume": 10.0,
+          "bid": 1.506,
+          "point": 0.001,
+          "timestamp": 1700640001.0
+        },
+        {
+          "ask": 1.55,
+          "available_volume": 10.0,
+          "bid": 1.525,
+          "point": 0.001,
+          "timestamp": 1700640002.0
+        },
+        {
+          "ask": 1.55,
+          "available_volume": 10.0,
+          "bid": 1.525,
+          "point": 0.001,
+          "timestamp": 1700640003.0
+        }
+      ],
+      "spike_multiplier": 5,
+      "spread_bucket": "5x",
+      "spread_spike": {
+        "candle_epoch": 1700640000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 5.0,
+        "name": "5x_XRP_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700639999.0,
+      "symbol": "XRPUSD.pi",
+      "volume": 1.0
+    },
+    {
+      "asset": "XRP",
+      "base_spread_points": 25,
+      "case_id": "XRP_short_25pt_5x_no_retrace",
+      "direction": "SHORT",
+      "limit_price": 1.5,
+      "outcome": "no_retrace",
+      "point": 0.001,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 1.512,
+          "available_volume": 10.0,
+          "bid": 1.488,
+          "point": 0.001,
+          "timestamp": 1700649999.0
+        },
+        {
+          "ask": 1.512,
+          "available_volume": 10.0,
+          "bid": 1.488,
+          "point": 0.001,
+          "timestamp": 1700650000.0
+        },
+        {
+          "ask": 1.512,
+          "available_volume": 10.0,
+          "bid": 1.488,
+          "point": 0.001,
+          "timestamp": 1700650001.0
+        },
+        {
+          "ask": 1.512,
+          "available_volume": 10.0,
+          "bid": 1.488,
+          "point": 0.001,
+          "timestamp": 1700650002.0
+        },
+        {
+          "ask": 1.512,
+          "available_volume": 10.0,
+          "bid": 1.488,
+          "point": 0.001,
+          "timestamp": 1700650003.0
+        }
+      ],
+      "spike_multiplier": 5,
+      "spread_bucket": "5x",
+      "spread_spike": {
+        "candle_epoch": 1700650000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 5.0,
+        "name": "5x_XRP_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700649999.0,
+      "symbol": "XRPUSD.pi",
+      "volume": 1.0
+    },
+    {
+      "asset": "XRP",
+      "base_spread_points": 30,
+      "case_id": "XRP_short_30pt_1x_retrace",
+      "direction": "SHORT",
+      "limit_price": 1.5,
+      "outcome": "retrace",
+      "point": 0.001,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 1.515,
+          "available_volume": 10.0,
+          "bid": 1.485,
+          "point": 0.001,
+          "timestamp": 1700659999.0
+        },
+        {
+          "ask": 1.515,
+          "available_volume": 10.0,
+          "bid": 1.485,
+          "point": 0.001,
+          "timestamp": 1700660000.0
+        },
+        {
+          "ask": 1.537,
+          "available_volume": 10.0,
+          "bid": 1.508,
+          "point": 0.001,
+          "timestamp": 1700660001.0
+        },
+        {
+          "ask": 1.56,
+          "available_volume": 10.0,
+          "bid": 1.53,
+          "point": 0.001,
+          "timestamp": 1700660002.0
+        },
+        {
+          "ask": 1.56,
+          "available_volume": 10.0,
+          "bid": 1.53,
+          "point": 0.001,
+          "timestamp": 1700660003.0
+        }
+      ],
+      "spike_multiplier": 1,
+      "spread_bucket": "normal",
+      "spread_spike": {
+        "candle_epoch": 1700660000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 1.0,
+        "name": "1x_XRP_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700659999.0,
+      "symbol": "XRPUSD.pi",
+      "volume": 1.0
+    },
+    {
+      "asset": "XRP",
+      "base_spread_points": 30,
+      "case_id": "XRP_short_30pt_1x_no_retrace",
+      "direction": "SHORT",
+      "limit_price": 1.5,
+      "outcome": "no_retrace",
+      "point": 0.001,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 1.515,
+          "available_volume": 10.0,
+          "bid": 1.485,
+          "point": 0.001,
+          "timestamp": 1700669999.0
+        },
+        {
+          "ask": 1.515,
+          "available_volume": 10.0,
+          "bid": 1.485,
+          "point": 0.001,
+          "timestamp": 1700670000.0
+        },
+        {
+          "ask": 1.515,
+          "available_volume": 10.0,
+          "bid": 1.485,
+          "point": 0.001,
+          "timestamp": 1700670001.0
+        },
+        {
+          "ask": 1.515,
+          "available_volume": 10.0,
+          "bid": 1.485,
+          "point": 0.001,
+          "timestamp": 1700670002.0
+        },
+        {
+          "ask": 1.515,
+          "available_volume": 10.0,
+          "bid": 1.485,
+          "point": 0.001,
+          "timestamp": 1700670003.0
+        }
+      ],
+      "spike_multiplier": 1,
+      "spread_bucket": "normal",
+      "spread_spike": {
+        "candle_epoch": 1700670000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 1.0,
+        "name": "1x_XRP_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700669999.0,
+      "symbol": "XRPUSD.pi",
+      "volume": 1.0
+    },
+    {
+      "asset": "XRP",
+      "base_spread_points": 30,
+      "case_id": "XRP_short_30pt_2x_retrace",
+      "direction": "SHORT",
+      "limit_price": 1.5,
+      "outcome": "retrace",
+      "point": 0.001,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 1.515,
+          "available_volume": 10.0,
+          "bid": 1.485,
+          "point": 0.001,
+          "timestamp": 1700679999.0
+        },
+        {
+          "ask": 1.515,
+          "available_volume": 10.0,
+          "bid": 1.485,
+          "point": 0.001,
+          "timestamp": 1700680000.0
+        },
+        {
+          "ask": 1.537,
+          "available_volume": 10.0,
+          "bid": 1.508,
+          "point": 0.001,
+          "timestamp": 1700680001.0
+        },
+        {
+          "ask": 1.56,
+          "available_volume": 10.0,
+          "bid": 1.53,
+          "point": 0.001,
+          "timestamp": 1700680002.0
+        },
+        {
+          "ask": 1.56,
+          "available_volume": 10.0,
+          "bid": 1.53,
+          "point": 0.001,
+          "timestamp": 1700680003.0
+        }
+      ],
+      "spike_multiplier": 2,
+      "spread_bucket": "2x",
+      "spread_spike": {
+        "candle_epoch": 1700680000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 2.0,
+        "name": "2x_XRP_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700679999.0,
+      "symbol": "XRPUSD.pi",
+      "volume": 1.0
+    },
+    {
+      "asset": "XRP",
+      "base_spread_points": 30,
+      "case_id": "XRP_short_30pt_2x_no_retrace",
+      "direction": "SHORT",
+      "limit_price": 1.5,
+      "outcome": "no_retrace",
+      "point": 0.001,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 1.515,
+          "available_volume": 10.0,
+          "bid": 1.485,
+          "point": 0.001,
+          "timestamp": 1700689999.0
+        },
+        {
+          "ask": 1.515,
+          "available_volume": 10.0,
+          "bid": 1.485,
+          "point": 0.001,
+          "timestamp": 1700690000.0
+        },
+        {
+          "ask": 1.515,
+          "available_volume": 10.0,
+          "bid": 1.485,
+          "point": 0.001,
+          "timestamp": 1700690001.0
+        },
+        {
+          "ask": 1.515,
+          "available_volume": 10.0,
+          "bid": 1.485,
+          "point": 0.001,
+          "timestamp": 1700690002.0
+        },
+        {
+          "ask": 1.515,
+          "available_volume": 10.0,
+          "bid": 1.485,
+          "point": 0.001,
+          "timestamp": 1700690003.0
+        }
+      ],
+      "spike_multiplier": 2,
+      "spread_bucket": "2x",
+      "spread_spike": {
+        "candle_epoch": 1700690000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 2.0,
+        "name": "2x_XRP_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700689999.0,
+      "symbol": "XRPUSD.pi",
+      "volume": 1.0
+    },
+    {
+      "asset": "XRP",
+      "base_spread_points": 30,
+      "case_id": "XRP_short_30pt_5x_retrace",
+      "direction": "SHORT",
+      "limit_price": 1.5,
+      "outcome": "retrace",
+      "point": 0.001,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 1.515,
+          "available_volume": 10.0,
+          "bid": 1.485,
+          "point": 0.001,
+          "timestamp": 1700699999.0
+        },
+        {
+          "ask": 1.515,
+          "available_volume": 10.0,
+          "bid": 1.485,
+          "point": 0.001,
+          "timestamp": 1700700000.0
+        },
+        {
+          "ask": 1.537,
+          "available_volume": 10.0,
+          "bid": 1.508,
+          "point": 0.001,
+          "timestamp": 1700700001.0
+        },
+        {
+          "ask": 1.56,
+          "available_volume": 10.0,
+          "bid": 1.53,
+          "point": 0.001,
+          "timestamp": 1700700002.0
+        },
+        {
+          "ask": 1.56,
+          "available_volume": 10.0,
+          "bid": 1.53,
+          "point": 0.001,
+          "timestamp": 1700700003.0
+        }
+      ],
+      "spike_multiplier": 5,
+      "spread_bucket": "5x",
+      "spread_spike": {
+        "candle_epoch": 1700700000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 5.0,
+        "name": "5x_XRP_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700699999.0,
+      "symbol": "XRPUSD.pi",
+      "volume": 1.0
+    },
+    {
+      "asset": "XRP",
+      "base_spread_points": 30,
+      "case_id": "XRP_short_30pt_5x_no_retrace",
+      "direction": "SHORT",
+      "limit_price": 1.5,
+      "outcome": "no_retrace",
+      "point": 0.001,
+      "policy": {
+        "deviation_points": 100.0,
+        "expiry_seconds": 4.0,
+        "max_quote_age_seconds": 2.0,
+        "max_spread_points": 40.0,
+        "passive_only": true,
+        "route_latency_seconds": 1.0,
+        "slippage_points": 0.0
+      },
+      "quotes": [
+        {
+          "ask": 1.515,
+          "available_volume": 10.0,
+          "bid": 1.485,
+          "point": 0.001,
+          "timestamp": 1700709999.0
+        },
+        {
+          "ask": 1.515,
+          "available_volume": 10.0,
+          "bid": 1.485,
+          "point": 0.001,
+          "timestamp": 1700710000.0
+        },
+        {
+          "ask": 1.515,
+          "available_volume": 10.0,
+          "bid": 1.485,
+          "point": 0.001,
+          "timestamp": 1700710001.0
+        },
+        {
+          "ask": 1.515,
+          "available_volume": 10.0,
+          "bid": 1.485,
+          "point": 0.001,
+          "timestamp": 1700710002.0
+        },
+        {
+          "ask": 1.515,
+          "available_volume": 10.0,
+          "bid": 1.485,
+          "point": 0.001,
+          "timestamp": 1700710003.0
+        }
+      ],
+      "spike_multiplier": 5,
+      "spread_bucket": "5x",
+      "spread_spike": {
+        "candle_epoch": 1700710000.0,
+        "candle_seconds": 900.0,
+        "multiplier": 5.0,
+        "name": "5x_XRP_candle_open",
+        "open_window_seconds": 3.0
+      },
+      "submitted_at": 1700709999.0,
+      "symbol": "XRPUSD.pi",
+      "volume": 1.0
+    }
+  ],
+  "generated_by": "fixtures/generate_blueberry_quotes.py",
+  "schema_version": "blueberry-cfd-policy-fixture-v1"
+}

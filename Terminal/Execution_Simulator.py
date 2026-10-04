@@ -321,6 +321,153 @@ class BrokerExecutionSimulator:
         return result
 
 
+def percentile(values: Sequence[float], q: float) -> Optional[float]:
+    """Deterministic linear percentile without a NumPy dependency."""
+    clean = sorted(float(value) for value in values if math.isfinite(float(value)))
+    if not clean:
+        return None
+    q = min(1.0, max(0.0, float(q)))
+    index = (len(clean) - 1) * q
+    lower, upper = math.floor(index), math.ceil(index)
+    if lower == upper:
+        return round(clean[lower], 6)
+    fraction = index - lower
+    return round(clean[lower] + fraction * (clean[upper] - clean[lower]), 6)
+
+
+def _fixture_quotes(rows: Sequence[Mapping[str, Any]], default_point: float = 0.001) -> List[SimQuote]:
+    output = []
+    for row in rows:
+        point = _finite(row.get("point", default_point), default_point)
+        output.append(SimQuote(
+            timestamp=_finite(row.get("timestamp", row.get("time"))),
+            bid=_finite(row.get("bid")),
+            ask=_finite(row.get("ask")),
+            point=point,
+            available_volume=(
+                _finite(row.get("available_volume"))
+                if row.get("available_volume") is not None else None
+            ),
+        ))
+    return output
+
+
+def load_fixture(path: Path) -> Mapping[str, Any]:
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(payload, Mapping) or not isinstance(payload.get("cases"), list):
+        raise ValueError("Fixture must be an object containing a cases list")
+    return payload
+
+
+def evaluate_fixture(payload: Mapping[str, Any]) -> Dict[str, Any]:
+    """Run all fixture cases and calculate Gate 4 certification metrics."""
+    simulator = BrokerExecutionSimulator()
+    case_results: List[Dict[str, Any]] = []
+    comparisons: List[Tuple[Mapping[str, Any], StressComparison]] = []
+    for case in payload.get("cases", []):
+        rows = case.get("quotes", [])
+        quotes = _fixture_quotes(rows, default_point=_finite(case.get("point", 0.001), 0.001))
+        spike = SpreadSpike(**dict(case.get("spread_spike", {})))
+        policy = dict(case.get("policy", {}))
+        comparison = simulator.stress_spread_open(
+            quotes,
+            symbol=str(case["symbol"]),
+            direction=str(case["direction"]),
+            volume=float(case["volume"]),
+            submitted_at=float(case["submitted_at"]),
+            limit_price=float(case["limit_price"]),
+            spike=spike,
+            **policy,
+        )
+        comparisons.append((case, comparison))
+        case_results.append({
+            "case_id": case.get("case_id", f"case_{len(case_results)}"),
+            "asset": case.get("asset", case.get("symbol")),
+            "direction": case.get("direction"),
+            "spread_bucket": case.get("spread_bucket", "unknown"),
+            "base_spread_points": case.get("base_spread_points"),
+            "spike_multiplier": spike.multiplier,
+            "market": comparison.market.to_dict(),
+            "limit": comparison.limit.to_dict(),
+        })
+
+    buckets = sorted({str(case.get("spread_bucket", "unknown")) for case, _ in comparisons})
+    fill_rates: Dict[str, Dict[str, Any]] = {}
+    p95_slippage: Dict[str, Dict[str, Any]] = {}
+    for bucket in buckets:
+        bucket_pairs = [(case, comparison) for case, comparison in comparisons if str(case.get("spread_bucket", "unknown")) == bucket]
+        fill_rates[bucket] = {}
+        p95_slippage[bucket] = {}
+        for mode in ("market", "limit"):
+            executions = [getattr(comparison, mode) for _, comparison in bucket_pairs]
+            filled = [execution for execution in executions if execution.filled]
+            slippage = [execution.adverse_slippage_points for execution in filled if execution.adverse_slippage_points is not None]
+            fill_rates[bucket][mode] = {
+                "orders": len(executions),
+                "filled": len(filled),
+                "fill_rate": len(filled) / len(executions) if executions else 0.0,
+                "statuses": {status: sum(execution.status == status for execution in executions) for status in sorted({execution.status for execution in executions})},
+            }
+            p95_slippage[bucket][mode] = {
+                "filled_observations": len(slippage),
+                "p95_adverse_slippage_points": percentile(slippage, 0.95),
+            }
+
+    missed = []
+    for case, comparison in comparisons:
+        market, limit = comparison.market, comparison.limit
+        if market.filled and not limit.filled:
+            point = _finite(case.get("point", 0.001), 0.001)
+            if market.fill_price is not None:
+                if str(case["direction"]).upper() in {"LONG", "BUY"}:
+                    cost_points = max(0.0, (market.fill_price - float(case["limit_price"])) / point)
+                else:
+                    cost_points = max(0.0, (float(case["limit_price"]) - market.fill_price) / point)
+            else:
+                cost_points = None
+            missed.append({
+                "case_id": case.get("case_id"),
+                "spread_bucket": case.get("spread_bucket"),
+                "limit_status": limit.status,
+                "market_fill_price": market.fill_price,
+                "market_crossing_cost_points": round(cost_points, 6) if cost_points is not None else None,
+            })
+
+    market_filled_count = sum(comparison.market.filled for _, comparison in comparisons)
+    five_x = [(case, comparison) for case, comparison in comparisons if str(case.get("spread_bucket")) == "5x"]
+    five_x_pass = bool(five_x) and all(
+        comparison.market.status == "REJECTED"
+        and comparison.market.reason in {"spread_guard_at_submission", "spread_guard_at_execution"}
+        and comparison.limit.status == "CANCELLED_SPREAD"
+        for _, comparison in five_x
+    )
+    return {
+        "schema_version": payload.get("schema_version", "blueberry-execution-fixture-v1"),
+        "assumptions": payload.get("assumptions", {}),
+        "case_count": len(case_results),
+        "fill_rate_by_spread_bucket": fill_rates,
+        "p95_adverse_slippage_points": p95_slippage,
+        "limit_expiry_opportunity_cost": {
+            "limit_expired_count": sum(result["limit"]["status"] == "EXPIRED" for result in case_results),
+            "limit_cancelled_spread_count": sum(result["limit"]["status"] == "CANCELLED_SPREAD" for result in case_results),
+            "market_filled_count": market_filled_count,
+            "missed_fill_count_vs_market": len(missed),
+            "missed_fill_rate_vs_market": len(missed) / market_filled_count if market_filled_count else 0.0,
+            "missed_case_rate_all_orders": len(missed) / len(case_results) if case_results else 0.0,
+            "market_crossing_cost_points_mean": round((sum(item["market_crossing_cost_points"] for item in missed if item["market_crossing_cost_points"] is not None) / len([item for item in missed if item["market_crossing_cost_points"] is not None])), 6) if any(item["market_crossing_cost_points"] is not None for item in missed) else None,
+            "market_crossing_cost_points_p95": percentile([item["market_crossing_cost_points"] for item in missed if item["market_crossing_cost_points"] is not None], 0.95),
+            "missed_cases": missed,
+        },
+        "five_x_spread_pass": {
+            "pass": five_x_pass,
+            "cases": len(five_x),
+            "expected_market": "REJECTED via spread guard",
+            "expected_limit": "CANCELLED_SPREAD",
+        },
+        "cases": case_results,
+    }
+
+
 def load_quotes(path: Path, default_point: float = 0.001) -> List[SimQuote]:
     payload = json.loads(path.read_text(encoding="utf-8"))
     rows = payload if isinstance(payload, list) else payload.get("quotes", [])
@@ -342,15 +489,30 @@ def load_quotes(path: Path, default_point: float = 0.001) -> List[SimQuote]:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Deterministic MT5 market-vs-limit stress simulator")
-    parser.add_argument("--input", required=True, type=Path, help="JSON quote list")
+    parser.add_argument("--fixture", type=Path, help="Blueberry fixture with a cases list; emits aggregate scorecard")
+    parser.add_argument("--report-output", type=Path, help="Optional output path for a fixture scorecard")
+    parser.add_argument("--input", type=Path, help="Single JSON quote list")
     parser.add_argument("--symbol", default="SOLUSD.p")
     parser.add_argument("--direction", choices=["LONG", "SHORT"], default="LONG")
     parser.add_argument("--volume", type=float, default=0.5)
-    parser.add_argument("--submitted-at", type=float, required=True)
-    parser.add_argument("--limit-price", type=float, required=True)
+    parser.add_argument("--submitted-at", type=float)
+    parser.add_argument("--limit-price", type=float)
     parser.add_argument("--max-spread-points", type=float, default=40.0)
     parser.add_argument("--spike-multiplier", type=float, default=5.0)
     args = parser.parse_args()
+
+    if args.fixture:
+        report = evaluate_fixture(load_fixture(args.fixture))
+        encoded = json.dumps(report, indent=2, sort_keys=True)
+        if args.report_output:
+            args.report_output.parent.mkdir(parents=True, exist_ok=True)
+            args.report_output.write_text(encoded + "\n", encoding="utf-8")
+        else:
+            print(encoded)
+        return
+
+    if not args.input or args.submitted_at is None or args.limit_price is None:
+        parser.error("single-case mode requires --input, --submitted-at, and --limit-price; or use --fixture")
     quotes = load_quotes(args.input)
     simulator = BrokerExecutionSimulator()
     comparison = simulator.stress_spread_open(
