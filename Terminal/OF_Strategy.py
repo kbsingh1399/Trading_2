@@ -1808,12 +1808,18 @@ class AI15mMT5Trader:
                     if o.get("side") == "SELL" and px_o > curr_px and val >= 100000:
                         candidate_walls.append((px_o, val))
 
-                if candidate_walls:
-                    candidate_walls.sort(key=lambda x: x[0])
-                    nearest_wall_px = candidate_walls[0][0]
-                    wall_tp = round(nearest_wall_px - offset, digits)
-                    if wall_tp >= entry + 1.80 * r_dist and abs(wall_tp - curr_tp) >= min_tp_step:
+                valid_walls = []
+                for mid, amt in candidate_walls:
+                    c_tp = round(mid - offset, digits)
+                    if c_tp >= entry + 1.80 * r_dist:
+                        valid_walls.append((mid, amt, c_tp))
+                if valid_walls:
+                    valid_walls.sort(key=lambda x: x[0])  # Nearest valid wall above entry + 1.80R
+                    wall_tp = valid_walls[0][2]
+                    if abs(wall_tp - curr_tp) >= min_tp_step:
                         target_tp = wall_tp
+                elif curr_tp <= 0 or curr_tp < entry + 1.80 * r_dist:
+                    target_tp = round(entry + 2.50 * r_dist, digits)
             else:
                 candidate_walls = []
                 for b in bands:
@@ -1826,12 +1832,18 @@ class AI15mMT5Trader:
                     val = o.get("notional_usd", 0.0)
                     if o.get("side") == "BUY" and px_o < curr_px and val >= 100000:
                         candidate_walls.append((px_o, val))
-                if candidate_walls:
-                    candidate_walls.sort(key=lambda x: x[0], reverse=True)
-                    nearest_wall_px = candidate_walls[0][0]
-                    wall_tp = round(nearest_wall_px + offset, digits)
-                    if wall_tp <= entry - 1.80 * r_dist and abs(wall_tp - curr_tp) >= min_tp_step:
+                valid_walls = []
+                for mid, amt in candidate_walls:
+                    c_tp = round(mid + offset, digits)
+                    if c_tp <= entry - 1.80 * r_dist:
+                        valid_walls.append((mid, amt, c_tp))
+                if valid_walls:
+                    valid_walls.sort(key=lambda x: x[0], reverse=True)  # Nearest valid wall below entry - 1.80R
+                    wall_tp = valid_walls[0][2]
+                    if abs(wall_tp - curr_tp) >= min_tp_step:
                         target_tp = wall_tp
+                elif curr_tp <= 0 or curr_tp > entry - 1.80 * r_dist:
+                    target_tp = round(entry - 2.50 * r_dist, digits)
 
             # Apply modification if SL or TP changed
             sl_changed = (round(target_sl, digits) != round(curr_sl, digits))
