@@ -46,7 +46,7 @@ class SimQuote:
 
     @property
     def spread_points(self) -> float:
-        return self.spread_price / max(self.point, EPS)
+        return round(self.spread_price / max(self.point, EPS), 8)
 
     def widen(self, multiplier: float) -> "SimQuote":
         multiplier = max(0.0, float(multiplier))

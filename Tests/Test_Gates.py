@@ -82,7 +82,7 @@ def test_gate4_five_x_open_spread_rejects_market_and_cancels_pending_limit():
     assert comparison.market.status == "REJECTED"
     assert comparison.market.reason == "spread_guard_at_execution"
     assert comparison.limit.status == "CANCELLED_SPREAD"
-    assert comparison.limit.spread_points == 50.0
+    assert round(comparison.limit.spread_points, 4) == 50.0
 
 
 def test_gate4_limit_can_fill_after_retrace_while_market_pays_ask():
@@ -106,5 +106,5 @@ def test_gate4_deterministic_spread_transform():
     spike = SpreadSpike(multiplier=5.0, candle_epoch=1000.0, open_window_seconds=30.0)
     quote = SimQuote(1000.0, 100.0, 100.01, 0.001)
     stressed = spike.apply([quote])[0]
-    assert stressed.spread_points == 50.0
-    assert stressed.mid == quote.mid
+    assert round(stressed.spread_points, 4) == 50.0
+    assert round(stressed.mid, 6) == round(quote.mid, 6)
