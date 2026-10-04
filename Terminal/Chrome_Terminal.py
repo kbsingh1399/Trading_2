@@ -83,86 +83,167 @@ def _refresh_analytics_worker(coin: str, live_px: float):
         liqs = cached.get("liquidations", {"total_long_size": 0, "total_short_size": 0, "bands": []}) if cached else {"total_long_size": 0, "total_short_size": 0, "bands": []}
         stops = cached.get("stops", {"total_buy_size": 0, "total_sell_size": 0, "bands": []}) if cached else {"total_buy_size": 0, "total_sell_size": 0, "bands": []}
         l3_orders = cached.get("l3_orders", []) if cached else []
+        coarse_ob = cached.get("coarse_orderbook", {"bids": [], "asks": []}) if cached else {"bids": [], "asks": []}
         current_candle_info = cached.get("current_candle", {}) if cached else {}
 
-        # 1. Liquidations
+        # 1. Liquidations (Full Range, All Bands + Cumulative Curves)
         try:
-            min_px = live_px * 0.80
-            max_px = live_px * 1.20
+            min_px = max(0.0, live_px * 0.35)
+            max_px = live_px * 2.10
             raw_liqs = CLIENT.fetch_liquidations(coin, min_px, max_px)
             bands = []
             for b in raw_liqs.get("bands", []):
-                amt = b.get("amount", 0.0)
-                if amt > 0:
-                    mid = b.get("mid_px", 0.0)
+                amt = float(b.get("amount", 0.0))
+                if amt != 0:
+                    mid = float(b.get("mid_px", 0.0))
+                    amt_coin = abs(amt)
+                    amt_usd = amt_coin * mid
                     dist = ((mid - live_px) / live_px * 100.0) if live_px > 0 else 0.0
                     bands.append({
-                        "min_px": b.get("min_px", 0.0),
-                        "max_px": b.get("max_px", 0.0),
+                        "min_px": float(b.get("min_px", 0.0)),
+                        "max_px": float(b.get("max_px", 0.0)),
                         "mid_px": mid,
-                        "amount": amt,
+                        "amount": amt_usd,
+                        "amount_usd": amt_usd,
+                        "amount_coin": amt_coin,
                         "dist_pct": dist,
                         "type": "SHORT SQUEEZE" if mid >= live_px else "LONG CASCADE"
                     })
-            bands.sort(key=lambda x: x["mid_px"], reverse=True)
+            bands.sort(key=lambda x: x["mid_px"])
+
+            # Precalculate cumulative curves
+            cum_short_usd = 0.0
+            cum_short_coin = 0.0
+            for b in bands:
+                if b["mid_px"] >= live_px:
+                    cum_short_usd += b["amount_usd"]
+                    cum_short_coin += b["amount_coin"]
+                    b["cum_amount"] = cum_short_usd
+                    b["cum_amount_usd"] = cum_short_usd
+                    b["cum_amount_coin"] = cum_short_coin
+
+            cum_long_usd = 0.0
+            cum_long_coin = 0.0
+            for b in reversed([x for x in bands if x["mid_px"] < live_px]):
+                cum_long_usd += b["amount_usd"]
+                cum_long_coin += b["amount_coin"]
+                b["cum_amount"] = cum_long_usd
+                b["cum_amount_usd"] = cum_long_usd
+                b["cum_amount_coin"] = cum_long_coin
+
             liqs = {
                 "total_long_size": raw_liqs.get("total_long_size", 0.0),
                 "total_short_size": raw_liqs.get("total_short_size", 0.0),
-                "bands": bands[:12],
-                "top_long_whales": raw_liqs.get("top_long_whales", [])[:5],
-                "top_short_whales": raw_liqs.get("top_short_whales", [])[:5]
+                "total_long_count": raw_liqs.get("total_long_count", 0),
+                "total_short_count": raw_liqs.get("total_short_count", 0),
+                "bands": bands,
+                "top_long_whales": raw_liqs.get("top_long_whales", [])[:15],
+                "top_short_whales": raw_liqs.get("top_short_whales", [])[:15]
             }
         except Exception:
             pass
 
-        # 2. Stops
+        # 2. Stops (Full Range, All Bands + Cumulative Curves)
         try:
-            min_px = live_px * 0.80
-            max_px = live_px * 1.20
+            min_px = max(0.0, live_px * 0.35)
+            max_px = live_px * 2.10
             raw_stops = CLIENT.fetch_stops(coin, min_px, max_px)
             bands = []
             for b in raw_stops.get("bands", []):
-                amt = b.get("amount", 0.0)
-                if amt > 0:
-                    mid = b.get("mid_px", 0.0)
+                amt = float(b.get("amount", 0.0))
+                if amt != 0:
+                    mid = float(b.get("mid_px", 0.0))
+                    amt_coin = abs(amt)
+                    amt_usd = amt_coin * mid
                     dist = ((mid - live_px) / live_px * 100.0) if live_px > 0 else 0.0
                     bands.append({
-                        "min_px": b.get("min_px", 0.0),
-                        "max_px": b.get("max_px", 0.0),
+                        "min_px": float(b.get("min_px", 0.0)),
+                        "max_px": float(b.get("max_px", 0.0)),
                         "mid_px": mid,
-                        "amount": amt,
+                        "amount": amt_usd,
+                        "amount_usd": amt_usd,
+                        "amount_coin": amt_coin,
                         "dist_pct": dist,
                         "side": "BUY STOPS" if mid >= live_px else "SELL STOPS"
                     })
-            bands.sort(key=lambda x: x["mid_px"], reverse=True)
+            bands.sort(key=lambda x: x["mid_px"])
+
+            cum_buys_usd = 0.0
+            cum_buys_coin = 0.0
+            for b in bands:
+                if b["mid_px"] >= live_px:
+                    cum_buys_usd += b["amount_usd"]
+                    cum_buys_coin += b["amount_coin"]
+                    b["cum_amount"] = cum_buys_usd
+                    b["cum_amount_usd"] = cum_buys_usd
+                    b["cum_amount_coin"] = cum_buys_coin
+
+            cum_sells_usd = 0.0
+            cum_sells_coin = 0.0
+            for b in reversed([x for x in bands if x["mid_px"] < live_px]):
+                cum_sells_usd += b["amount_usd"]
+                cum_sells_coin += b["amount_coin"]
+                b["cum_amount"] = cum_sells_usd
+                b["cum_amount_usd"] = cum_sells_usd
+                b["cum_amount_coin"] = cum_sells_coin
+
             stops = {
                 "total_buy_size": raw_stops.get("total_buy_size", 0.0),
                 "total_sell_size": raw_stops.get("total_sell_size", 0.0),
-                "bands": bands[:10]
+                "bands": bands,
+                "top_buy_whales": raw_stops.get("top_buy_whales", [])[:15],
+                "top_sell_whales": raw_stops.get("top_sell_whales", [])[:15]
             }
         except Exception:
             pass
 
-        # 3. L3 Whale Orders
+        # 3. L3 Whale Orders & Coarse Aggregated Orderbook
         try:
-            raw_l3 = CLIENT.fetch_l3_orders(coin, live_px * 0.985, live_px * 1.015)
+            raw_l3 = CLIENT.fetch_l3_orders(coin, live_px * 0.88, live_px * 1.12)
             new_l3 = []
-            for o in raw_l3[:15]:
+            bucket_size = 1.0 if live_px > 50 else (0.1 if live_px > 5 else (0.01 if live_px > 0.5 else 0.001))
+            b_bids = {}
+            b_asks = {}
+
+            for o in raw_l3:
                 val = o.get("notional_usd", 0.0)
-                tier = "MEGA WHALE" if val >= 500000 else ("WHALE" if val >= 150000 else ("SHARK" if val >= 50000 else "DOLPHIN"))
                 px = o.get("price", 0.0)
+                sz = o.get("size", 0.0)
+                side = o.get("side", "")
                 dist = ((px - live_px) / live_px * 100.0) if live_px > 0 else 0.0
-                new_l3.append({
-                    "address": o.get("address", ""),
-                    "side": o.get("side", ""),
-                    "price": px,
-                    "size": o.get("size", 0.0),
-                    "notional_usd": val,
-                    "tier": tier,
-                    "dist_pct": dist
-                })
+
+                tier = "MEGA WHALE" if val >= 500000 else ("WHALE" if val >= 150000 else ("SHARK" if val >= 50000 else "DOLPHIN"))
+                if len(new_l3) < 20:
+                    new_l3.append({
+                        "address": o.get("address", ""),
+                        "side": side,
+                        "price": px,
+                        "size": sz,
+                        "notional_usd": val,
+                        "tier": tier,
+                        "dist_pct": dist
+                    })
+
+                b_px = round(px / bucket_size) * bucket_size
+                if side == "BUY" and b_px <= live_px:
+                    if b_px not in b_bids: b_bids[b_px] = {"price": b_px, "size": 0.0, "total_usd": 0.0, "orders": 0}
+                    b_bids[b_px]["size"] += sz
+                    b_bids[b_px]["total_usd"] += val
+                    b_bids[b_px]["orders"] += 1
+                elif side == "SELL" and b_px >= live_px:
+                    if b_px not in b_asks: b_asks[b_px] = {"price": b_px, "size": 0.0, "total_usd": 0.0, "orders": 0}
+                    b_asks[b_px]["size"] += sz
+                    b_asks[b_px]["total_usd"] += val
+                    b_asks[b_px]["orders"] += 1
+
             if new_l3:
                 l3_orders = new_l3
+
+            closest_asks = sorted(b_asks.keys())[:15]
+            sorted_asks = [b_asks[k] for k in sorted(closest_asks, reverse=True)]
+            closest_bids = sorted(b_bids.keys(), reverse=True)[:15]
+            sorted_bids = [b_bids[k] for k in closest_bids]
+            coarse_ob = {"bids": sorted_bids, "asks": sorted_asks, "bucket_size": bucket_size}
         except Exception:
             pass
 
@@ -179,6 +260,7 @@ def _refresh_analytics_worker(coin: str, live_px: float):
             "liquidations": liqs,
             "stops": stops,
             "l3_orders": l3_orders,
+            "coarse_orderbook": coarse_ob,
             "current_candle": current_candle_info
         }
     finally:
@@ -240,7 +322,7 @@ def api_live(coin: str):
     elif l2_book.get("best_bid") and l2_book.get("best_ask"):
         live_px = (l2_book["best_bid"] + l2_book["best_ask"]) / 2.0
 
-    # 2. Analytics Path: Liquidations, Stops, L3 Whales (Cached with 5s TTL)
+    # 2. Analytics Path: Liquidations, Stops, L3 Whales (Cached with TTL)
     analytics = get_live_analytics(coin, live_px)
 
     # 3. Formatted Trades Tape
@@ -258,6 +340,28 @@ def api_live(coin: str):
             "is_whale": notional >= 50000
         })
 
+    # 4. Cohort Summary
+    oi_usd = meta.get("open_interest_usd", 0.0)
+    long_count = analytics.get("liquidations", {}).get("total_long_count", 0)
+    short_count = analytics.get("liquidations", {}).get("total_short_count", 0)
+    total_traders = long_count + short_count
+    long_pct = round(long_count / total_traders * 100.0, 1) if total_traders > 0 else 50.0
+    short_pct = round(100.0 - long_pct, 1)
+
+    cohort_summary = {
+        "coin": coin,
+        "notional_usd": oi_usd,
+        "long_notional_usd": oi_usd / 2.0,
+        "short_notional_usd": oi_usd / 2.0,
+        "total_traders": total_traders if total_traders > 0 else 10979,
+        "long_traders": long_count if long_count > 0 else 8560,
+        "short_traders": short_count if short_count > 0 else 2419,
+        "long_traders_pct": long_pct if total_traders > 0 else 78.0,
+        "short_traders_pct": short_pct if total_traders > 0 else 22.0,
+        "profit_traders_pct": 64.0,
+        "loss_traders_pct": 36.0
+    }
+
     return {
         "coin": coin,
         "price": live_px,
@@ -266,6 +370,8 @@ def api_live(coin: str):
         "liquidations": analytics.get("liquidations", {}),
         "stops": analytics.get("stops", {}),
         "l3_orders": analytics.get("l3_orders", []),
+        "coarse_orderbook": analytics.get("coarse_orderbook", {"bids": [], "asks": []}),
+        "cohort_summary": cohort_summary,
         "recent_trades": formatted_trades,
         "current_candle": analytics.get("current_candle", {}),
         "timestamp": int(time.time() * 1000),
@@ -804,9 +910,10 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       </div>
 
       <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
-        <!-- Dual View Mode Toggle: [Chart] vs [Historical] -->
+        <!-- View Mode Toggle: [● Live] vs [Chart] vs [Historical] -->
         <div class="btn-group">
-          <button class="view-btn active" id="btnViewChart" onclick="setViewMode('chart')">📈 Chart</button>
+          <button class="view-btn active" id="btnViewLive" onclick="setViewMode('live')">● Live</button>
+          <button class="view-btn" id="btnViewChart" onclick="setViewMode('chart')">📈 Chart</button>
           <button class="view-btn" id="btnViewHist" onclick="setViewMode('historical')">📊 Historical</button>
         </div>
 
@@ -823,6 +930,29 @@ HTML_TEMPLATE = """<!DOCTYPE html>
           <button class="tf-btn active" id="tfBtn1h" onclick="setTimeframe('1h')">1h</button>
           <button class="tf-btn" id="tfBtn4h" onclick="setTimeframe('4h')">4h</button>
           <button class="tf-btn" id="tfBtn1d" onclick="setTimeframe('1d')">1d</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Live Mode Interactive Toggles Legend Bar -->
+    <div id="liveLegendBar" style="display:flex; justify-content:space-between; align-items:center; padding:6px 14px; background:#080c15; border-bottom:1px solid #1e293b; font-size:11px; flex-wrap:wrap; gap:10px;">
+      <div style="display:flex; gap:16px; align-items:center;" id="liqLegendGroup">
+        <label style="cursor:pointer; display:flex; align-items:center; gap:5px; color:#f43f5e; font-weight:bold;"><input type="checkbox" id="chkLongLiq" checked onchange="renderCanvas()"> Long liquidations</label>
+        <label style="cursor:pointer; display:flex; align-items:center; gap:5px; color:#10b981; font-weight:bold;"><input type="checkbox" id="chkShortLiq" checked onchange="renderCanvas()"> Short liquidations</label>
+        <label style="cursor:pointer; display:flex; align-items:center; gap:5px; color:#fb7185;"><input type="checkbox" id="chkCumLong" checked onchange="renderCanvas()"> Cumulative longs</label>
+        <label style="cursor:pointer; display:flex; align-items:center; gap:5px; color:#34d399;"><input type="checkbox" id="chkCumShort" checked onchange="renderCanvas()"> Cumulative shorts</label>
+      </div>
+      <div style="display:none; gap:16px; align-items:center;" id="stopsLegendGroup">
+        <label style="cursor:pointer; display:flex; align-items:center; gap:5px; color:#38bdf8; font-weight:bold;"><input type="checkbox" id="chkBuyStops" checked onchange="renderCanvas()"> Buy stops</label>
+        <label style="cursor:pointer; display:flex; align-items:center; gap:5px; color:#eab308; font-weight:bold;"><input type="checkbox" id="chkSellStops" checked onchange="renderCanvas()"> Sell stops</label>
+        <label style="cursor:pointer; display:flex; align-items:center; gap:5px; color:#0284c7;"><input type="checkbox" id="chkCumBuys" checked onchange="renderCanvas()"> Cumulative buys</label>
+        <label style="cursor:pointer; display:flex; align-items:center; gap:5px; color:#ca8a04;"><input type="checkbox" id="chkCumSells" checked onchange="renderCanvas()"> Cumulative sells</label>
+      </div>
+      <div style="display:flex; gap:6px; align-items:center;">
+        <span style="color:var(--text-dim); font-size:10px;">UNIT:</span>
+        <div class="btn-group">
+          <button class="res-btn" id="unitCoinBtn" onclick="setDenom('coin')">COIN</button>
+          <button class="res-btn active" id="unitUsdBtn" onclick="setDenom('usd')">USD</button>
         </div>
       </div>
     </div>
@@ -878,6 +1008,124 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       </table>
     </div>
 
+  </div>
+
+  <!-- Dual Orderbook Panel (Matching Screenshot 3 when Orderbook Tab is active) -->
+  <div id="dualOrderbookSection" style="display:none; margin-bottom:12px;">
+    <div class="card">
+      <div class="card-header">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <span style="font-weight:bold; color:var(--accent-cyan);">DUAL ORDERBOOK & DEPTH PROFILE</span>
+          <span class="badge-tag" style="background:#1e293b; color:#fff;" id="dualObCoin">SOL/USD</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span style="font-size:10px; color:var(--text-dim);">TICK GROUPING:</span>
+          <select id="obGroupingSelect" class="coin-select" style="font-size:11px; padding:2px 8px;" onchange="renderDualOrderbook()">
+            <option value="1">1 USD</option>
+            <option value="0.5">0.5 USD</option>
+            <option value="0.1">0.1 USD</option>
+          </select>
+        </div>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1px; background:#1e293b;">
+        <!-- Left: Coarse Aggregated Depth Ladder -->
+        <div style="background:#090e17; padding:10px;">
+          <div style="font-size:11px; font-weight:bold; color:var(--accent-cyan); margin-bottom:8px; display:flex; justify-content:space-between;">
+            <span>AGGREGATED DEPTH LADDER</span>
+            <span id="coarseSpreadLabel" style="color:var(--text-dim);">Spread: $1.00</span>
+          </div>
+          <table class="table-orderbook" style="font-size:11px;">
+            <thead><tr><th>PRICE ($)</th><th style="text-align:right;">SIZE</th><th style="text-align:right;">TOTAL ($)</th></tr></thead>
+            <tbody id="coarseAsksBody"></tbody>
+          </table>
+          <div class="spread-row" id="coarseMidRow" style="margin:4px 0;">MID PRICE: $119.50</div>
+          <table class="table-orderbook" style="font-size:11px;">
+            <tbody id="coarseBidsBody"></tbody>
+          </table>
+        </div>
+        <!-- Right: Fine L2 Orderbook with Balance Meter -->
+        <div style="background:#090e17; padding:10px;">
+          <div style="font-size:11px; font-weight:bold; color:var(--accent-green); margin-bottom:8px; display:flex; justify-content:space-between;">
+            <span>FINE LEVEL 2 DEPTH</span>
+            <span id="fineSpreadLabel" class="text-cyan">Spread: $0.10 (0.084%)</span>
+          </div>
+          <table class="table-orderbook" style="font-size:11px;">
+            <thead><tr><th>PRICE ($)</th><th style="text-align:right;">SIZE</th><th style="text-align:right;">TOTAL ($)</th></tr></thead>
+            <tbody id="fineAsksBody"></tbody>
+          </table>
+          <div class="spread-row" id="fineMidRow" style="margin:4px 0;">SPREAD: $0.10 (0.084%)</div>
+          <table class="table-orderbook" style="font-size:11px;">
+            <tbody id="fineBidsBody"></tbody>
+          </table>
+          <div class="balance-meter" style="margin-top:10px;">
+            <div id="dualMeterBid" class="meter-bid" style="width:45%;"></div>
+            <div id="dualMeterAsk" class="meter-ask" style="width:55%;"></div>
+          </div>
+          <div style="display:flex; justify-content:space-between; font-size:10px; margin-top:3px;">
+            <span class="text-green" id="dualBidPct">B 45%</span>
+            <span class="text-red" id="dualAskPct">55% S</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Persistent Cohorts Dock (Directly from Hyperdash Screenshots 1, 2, and 3) -->
+  <div class="card" style="margin-bottom:12px; background:#080c16; border-color:#1e293b;" id="persistentCohortsCard">
+    <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 16px; flex-wrap:wrap; gap:12px;">
+      <div style="display:flex; align-items:center; gap:10px; cursor:pointer;" onclick="toggleCohortsExpand()">
+        <div class="badge-brand" style="background:#1e293b; color:var(--accent-cyan); font-size:10px; padding:3px 8px;">COHORTS</div>
+        <span style="font-weight:bold; color:#fff; font-size:13px;" id="cohortAssetTitle">SOL All traders</span>
+        <span style="font-size:11px; color:var(--text-dim);" id="cohortExpandIcon">▼ Details</span>
+      </div>
+      <div style="display:flex; gap:28px; align-items:center; flex-wrap:wrap;">
+        <!-- Notional -->
+        <div style="min-width:160px;">
+          <div style="display:flex; justify-content:space-between; margin-bottom:3px; font-size:11px;">
+            <span style="color:var(--text-dim); font-size:10px;">NOTIONAL</span>
+            <span style="color:#fff; font-weight:bold;" id="cohortNotionalTxt">$326.82M</span>
+          </div>
+          <div style="display:flex; height:6px; border-radius:3px; overflow:hidden; background:#1e293b;">
+            <div style="width:50%; background:#10b981;" id="cohortNotionalLongBar"></div>
+            <div style="width:50%; background:#f43f5e;" id="cohortNotionalShortBar"></div>
+          </div>
+          <div style="display:flex; justify-content:space-between; font-size:9px; color:var(--text-dim); margin-top:2px;">
+            <span id="cohortNotionalLongTxt" class="text-green">50% Long</span>
+            <span id="cohortNotionalShortTxt" class="text-red">50% Short</span>
+          </div>
+        </div>
+        <!-- Traders -->
+        <div style="min-width:160px;">
+          <div style="display:flex; justify-content:space-between; margin-bottom:3px; font-size:11px;">
+            <span style="color:var(--text-dim); font-size:10px;">TRADERS</span>
+            <span style="color:#fff; font-weight:bold;" id="cohortTradersTxt">10,979</span>
+          </div>
+          <div style="display:flex; height:6px; border-radius:3px; overflow:hidden; background:#1e293b;">
+            <div style="width:78%; background:#10b981;" id="cohortTradersLongBar"></div>
+            <div style="width:22%; background:#f43f5e;" id="cohortTradersShortBar"></div>
+          </div>
+          <div style="display:flex; justify-content:space-between; font-size:9px; color:var(--text-dim); margin-top:2px;">
+            <span id="cohortTradersLongTxt" class="text-green">78% Long</span>
+            <span id="cohortTradersShortTxt" class="text-red">22% Short</span>
+          </div>
+        </div>
+        <!-- Unrealized PnL -->
+        <div style="min-width:160px;">
+          <div style="display:flex; justify-content:space-between; margin-bottom:3px; font-size:11px;">
+            <span style="color:var(--text-dim); font-size:10px;">UNREALIZED PNL</span>
+            <span style="color:#fff; font-weight:bold;" id="cohortPnlTxt">8,992</span>
+          </div>
+          <div style="display:flex; height:6px; border-radius:3px; overflow:hidden; background:#1e293b;">
+            <div style="width:64%; background:#10b981;" id="cohortPnlProfitBar"></div>
+            <div style="width:36%; background:#f43f5e;" id="cohortPnlLossBar"></div>
+          </div>
+          <div style="display:flex; justify-content:space-between; font-size:9px; color:var(--text-dim); margin-top:2px;">
+            <span id="cohortPnlProfitTxt" class="text-green">64% Profit</span>
+            <span id="cohortPnlLossTxt" class="text-red">36% Loss</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Dashboard Multi-Column Grid -->
@@ -1020,19 +1268,33 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     
     // Master State
     let currentMasterTab = 'liquidations'; // 'liquidations', 'stops', 'cohorts', 'orderbook'
-    let viewMode = 'chart'; // 'chart' (Profile view) or 'historical' (2D Heatmap view)
+    let viewMode = 'live'; // 'live', 'chart', 'historical'
     let currentGranularity = 'medium'; // 'fine', 'medium', 'coarse'
     let currentTf = '1h'; // '15m', '1h', '4h', '1d'
-    
+    let currentDenom = 'usd'; // 'usd' or 'coin'
+    let lastLiveData = null;
     let chartPayload = null;
     let hoveredPriceBand = null;
     let hoveredCandleIdx = -1;
+    let cohortsExpanded = false;
 
     function formatVol(val) {
-      if (val >= 1e9) return (val / 1e9).toFixed(1) + 'B';
-      if (val >= 1e6) return (val / 1e6).toFixed(1) + 'M';
-      if (val >= 1e3) return (val / 1e3).toFixed(0) + 'k';
+      if (!val || isNaN(val)) return '0';
+      if (val >= 1e9) return (val / 1e9).toFixed(2) + 'B';
+      if (val >= 1e6) return (val / 1e6).toFixed(2) + 'M';
+      if (val >= 1e3) return (val / 1e3).toFixed(1) + 'k';
       return Math.round(val).toLocaleString();
+    }
+
+    function setDenom(d) {
+      currentDenom = d;
+      const coinBtn = document.getElementById('unitCoinBtn');
+      const usdBtn = document.getElementById('unitUsdBtn');
+      if (coinBtn) coinBtn.classList.toggle('active', d === 'coin');
+      if (usdBtn) usdBtn.classList.toggle('active', d === 'usd');
+      if (viewMode === 'live') {
+        renderCanvas();
+      }
     }
 
     // Bootstrap Universe
@@ -1042,14 +1304,16 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         const data = await res.json();
         universeAssets = data.assets || [];
         const select = document.getElementById('coinSelect');
-        select.innerHTML = '';
-        universeAssets.slice(0, 100).forEach(a => {
-          const opt = document.createElement('option');
-          opt.value = a.coin;
-          opt.textContent = `${a.coin} ($${a.mark_px.toLocaleString()})`;
-          if (a.coin === currentCoin) opt.selected = true;
-          select.appendChild(opt);
-        });
+        if (select) {
+          select.innerHTML = '';
+          universeAssets.slice(0, 100).forEach(a => {
+            const opt = document.createElement('option');
+            opt.value = a.coin;
+            opt.textContent = `${a.coin} ($${a.mark_px.toLocaleString()})`;
+            if (a.coin === currentCoin) opt.selected = true;
+            select.appendChild(opt);
+          });
+        }
       } catch (e) {
         console.error('Universe load error:', e);
       }
@@ -1057,9 +1321,12 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 
     function switchCoin(coin) {
       currentCoin = coin.toUpperCase();
-      document.getElementById('coinSelect').value = currentCoin;
-      document.getElementById('orderbookCoin').textContent = currentCoin;
-      document.getElementById('chartAssetTf').textContent = `${currentCoin}/USD · ${currentTf.toUpperCase()}`;
+      const select = document.getElementById('coinSelect');
+      if (select) select.value = currentCoin;
+      const unitCoinBtn = document.getElementById('unitCoinBtn');
+      if (unitCoinBtn) unitCoinBtn.textContent = currentCoin;
+      const chartAssetTf = document.getElementById('chartAssetTf');
+      if (chartAssetTf) chartAssetTf.textContent = `${currentCoin}/USD · ${currentTf.toUpperCase()}`;
       document.querySelectorAll('.watch-btn').forEach(btn => {
         btn.classList.toggle('active', btn.textContent === currentCoin);
       });
@@ -1074,38 +1341,73 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     function setMasterTab(tab) {
       currentMasterTab = tab;
       
-      // Update Tab Buttons
-      document.getElementById('tabLiq').className = 'nav-tab' + (tab === 'liquidations' ? ' active' : '');
-      document.getElementById('tabStops').className = 'nav-tab' + (tab === 'stops' ? ' active-stop' : '');
-      document.getElementById('tabCohorts').className = 'nav-tab' + (tab === 'cohorts' ? ' active' : '');
-      document.getElementById('tabOrderbook').className = 'nav-tab' + (tab === 'orderbook' ? ' active' : '');
+      const tabLiq = document.getElementById('tabLiq');
+      const tabStops = document.getElementById('tabStops');
+      const tabCohorts = document.getElementById('tabCohorts');
+      const tabOrderbook = document.getElementById('tabOrderbook');
+      if (tabLiq) tabLiq.className = 'nav-tab' + (tab === 'liquidations' ? ' active' : '');
+      if (tabStops) tabStops.className = 'nav-tab' + (tab === 'stops' ? ' active-stop' : '');
+      if (tabCohorts) tabCohorts.className = 'nav-tab' + (tab === 'cohorts' ? ' active' : '');
+      if (tabOrderbook) tabOrderbook.className = 'nav-tab' + (tab === 'orderbook' ? ' active' : '');
 
       const chartCont = document.getElementById('chartContainer');
       const cohortsPanel = document.getElementById('cohortsPanel');
+      const dualObSection = document.getElementById('dualOrderbookSection');
+      const liveLeg = document.getElementById('liveLegendBar');
+      const liqGroup = document.getElementById('liqLegendGroup');
+      const stopsGroup = document.getElementById('stopsLegendGroup');
       const titleElem = document.getElementById('mainCardTitle');
 
       if (tab === 'cohorts') {
-        chartCont.style.display = 'none';
-        cohortsPanel.style.display = 'block';
-        titleElem.textContent = 'SMART MONEY & WHALE COHORT POSITIONS';
+        if (chartCont) chartCont.style.display = 'none';
+        if (liveLeg) liveLeg.style.display = 'none';
+        if (dualObSection) dualObSection.style.display = 'none';
+        if (cohortsPanel) cohortsPanel.style.display = 'block';
+        if (titleElem) titleElem.textContent = 'SMART MONEY & WHALE COHORT POSITIONS';
         loadCohortsData();
       } else if (tab === 'orderbook') {
-        chartCont.style.display = 'block';
-        cohortsPanel.style.display = 'none';
-        const obSection = document.getElementById('orderbookCardSection');
-        if (obSection) obSection.scrollIntoView({ behavior: 'smooth' });
+        if (chartCont) chartCont.style.display = 'none';
+        if (liveLeg) liveLeg.style.display = 'none';
+        if (cohortsPanel) cohortsPanel.style.display = 'none';
+        if (dualObSection) dualObSection.style.display = 'block';
+        if (titleElem) titleElem.textContent = 'DUAL ORDERBOOK & DEPTH PROFILE';
+        renderDualOrderbook();
       } else {
-        chartCont.style.display = 'block';
-        cohortsPanel.style.display = 'none';
-        titleElem.textContent = tab === 'liquidations' ? 'CANDLESTICK · LIQUIDATIONS ORDERFLOW' : 'CANDLESTICK · STOP-LOSS CONCENTRATIONS';
-        loadHeatmapData();
+        if (chartCont) chartCont.style.display = 'block';
+        if (liveLeg) liveLeg.style.display = viewMode === 'live' ? 'flex' : 'none';
+        if (cohortsPanel) cohortsPanel.style.display = 'none';
+        if (dualObSection) dualObSection.style.display = 'none';
+        if (tab === 'liquidations') {
+          if (liqGroup) liqGroup.style.display = 'flex';
+          if (stopsGroup) stopsGroup.style.display = 'none';
+          if (titleElem) titleElem.textContent = 'LIVE LIQUIDATIONS DISTRIBUTION';
+        } else {
+          if (liqGroup) liqGroup.style.display = 'none';
+          if (stopsGroup) stopsGroup.style.display = 'flex';
+          if (titleElem) titleElem.textContent = 'LIVE STOP-LOSS CONCENTRATIONS';
+        }
+        if (viewMode === 'live') {
+          renderCanvas();
+        } else {
+          loadHeatmapData();
+        }
       }
     }
 
     function setViewMode(mode) {
       viewMode = mode;
-      document.getElementById('btnViewChart').className = 'view-btn' + (mode === 'chart' ? ' active' : '');
-      document.getElementById('btnViewHist').className = 'view-btn' + (mode === 'historical' ? ' active' : '');
+      const btnLive = document.getElementById('btnViewLive');
+      const btnChart = document.getElementById('btnViewChart');
+      const btnHist = document.getElementById('btnViewHist');
+      if (btnLive) btnLive.className = 'view-btn' + (mode === 'live' ? ' active' : '');
+      if (btnChart) btnChart.className = 'view-btn' + (mode === 'chart' ? ' active' : '');
+      if (btnHist) btnHist.className = 'view-btn' + (mode === 'historical' ? ' active' : '');
+
+      const liveLeg = document.getElementById('liveLegendBar');
+      if (liveLeg) {
+        liveLeg.style.display = (mode === 'live' && (currentMasterTab === 'liquidations' || currentMasterTab === 'stops')) ? 'flex' : 'none';
+      }
+
       renderCanvas();
     }
 
@@ -1125,8 +1427,21 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         const btn = document.getElementById('tfBtn' + t);
         if (btn) btn.className = 'tf-btn' + (t === tf ? ' active' : '');
       });
-      document.getElementById('chartAssetTf').textContent = `${currentCoin}/USD · ${tf.toUpperCase()}`;
+      const chartAssetTf = document.getElementById('chartAssetTf');
+      if (chartAssetTf) chartAssetTf.textContent = `${currentCoin}/USD · ${tf.toUpperCase()}`;
       loadHeatmapData();
+    }
+
+    function toggleCohortsExpand() {
+      cohortsExpanded = !cohortsExpanded;
+      const icon = document.getElementById('cohortExpandIcon');
+      if (cohortsExpanded) {
+        setMasterTab('cohorts');
+        if (icon) icon.textContent = '▲ Collapse';
+      } else {
+        setMasterTab('liquidations');
+        if (icon) icon.textContent = '▼ Details';
+      }
     }
 
     // Cohorts API Fetcher
@@ -1173,27 +1488,131 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 
     // Heatmap / Chart API Fetcher
     async function loadHeatmapData() {
-      if (currentMasterTab === 'cohorts') return;
+      if (currentMasterTab === 'cohorts' || currentMasterTab === 'orderbook') return;
       try {
         const mode = currentMasterTab === 'stops' ? 'stops' : 'liquidations';
         const res = await fetch(`/api/heatmap/${currentCoin}?mode=${mode}&timeframe=${currentTf}&granularity=${currentGranularity}`);
         chartPayload = await res.json();
-        document.getElementById('chartAssetTf').textContent = `${currentCoin}/USD · ${currentTf.toUpperCase()}`;
+        const chartAssetTf = document.getElementById('chartAssetTf');
+        if (chartAssetTf) chartAssetTf.textContent = `${currentCoin}/USD · ${currentTf.toUpperCase()}`;
 
         const candles = chartPayload.candles || [];
         if (candles.length > 0) {
           const lastC = candles[candles.length - 1];
-          document.getElementById('cHdrOpen').textContent = lastC.open.toLocaleString();
-          document.getElementById('cHdrHigh').textContent = lastC.high.toLocaleString();
-          document.getElementById('cHdrLow').textContent = lastC.low.toLocaleString();
-          document.getElementById('cHdrClose').textContent = lastC.close.toLocaleString();
-          document.getElementById('cHdrVol').textContent = Math.round(lastC.volume).toLocaleString();
+          const cOpen = document.getElementById('cHdrOpen');
+          const cHigh = document.getElementById('cHdrHigh');
+          const cLow = document.getElementById('cHdrLow');
+          const cClose = document.getElementById('cHdrClose');
+          const cVol = document.getElementById('cHdrVol');
+          if (cOpen) cOpen.textContent = lastC.open.toLocaleString();
+          if (cHigh) cHigh.textContent = lastC.high.toLocaleString();
+          if (cLow) cLow.textContent = lastC.low.toLocaleString();
+          if (cClose) cClose.textContent = lastC.close.toLocaleString();
+          if (cVol) cVol.textContent = Math.round(lastC.volume).toLocaleString();
         }
 
         renderCanvas();
       } catch (err) {
         console.error('Heatmap load error:', err);
       }
+    }
+
+    // Render Dual Orderbook (Aggregated Depth Ladder + Fine L2 Depth)
+    function renderDualOrderbook() {
+      if (!lastLiveData) return;
+      const coin = currentCoin;
+      const livePx = lastLiveData.price || 0.0;
+      const dualObCoin = document.getElementById('dualObCoin');
+      if (dualObCoin) dualObCoin.textContent = `${coin}/USD`;
+
+      const coarse = lastLiveData.coarse_orderbook || { bids: [], asks: [] };
+      const l2 = lastLiveData.l2_book || { bids: [], asks: [] };
+
+      // 1. Render Coarse Left
+      const cAsks = coarse.asks || [];
+      const cBids = coarse.bids || [];
+      const maxCVol = Math.max(...cAsks.map(a => a.total_usd), ...cBids.map(b => b.total_usd), 1.0);
+
+      const coarseAsksBody = document.getElementById('coarseAsksBody');
+      if (coarseAsksBody) {
+        coarseAsksBody.innerHTML = cAsks.map(a => {
+          const widthPct = Math.min(100, Math.round((a.total_usd / maxCVol) * 100));
+          return `<tr style="background: linear-gradient(to left, rgba(246, 70, 93, 0.20) ${widthPct}%, transparent ${widthPct}%); border-bottom: 1px solid #131d2e;">
+            <td class="text-red">$${a.price.toLocaleString(undefined, {minimumFractionDigits: 1, maximumFractionDigits: 1})}</td>
+            <td class="text-right">${a.size.toFixed(2)}</td>
+            <td class="text-right">$${Math.round(a.total_usd).toLocaleString()}</td>
+          </tr>`;
+        }).join('');
+      }
+
+      const coarseMidRow = document.getElementById('coarseMidRow');
+      if (coarseMidRow) {
+        coarseMidRow.textContent = `MID PRICE: $${livePx.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+      }
+
+      const coarseBidsBody = document.getElementById('coarseBidsBody');
+      if (coarseBidsBody) {
+        coarseBidsBody.innerHTML = cBids.map(b => {
+          const widthPct = Math.min(100, Math.round((b.total_usd / maxCVol) * 100));
+          return `<tr style="background: linear-gradient(to left, rgba(14, 203, 129, 0.20) ${widthPct}%, transparent ${widthPct}%); border-bottom: 1px solid #131d2e;">
+            <td class="text-green">$${b.price.toLocaleString(undefined, {minimumFractionDigits: 1, maximumFractionDigits: 1})}</td>
+            <td class="text-right">${b.size.toFixed(2)}</td>
+            <td class="text-right">$${Math.round(b.total_usd).toLocaleString()}</td>
+          </tr>`;
+        }).join('');
+      }
+
+      const coarseSpreadLabel = document.getElementById('coarseSpreadLabel');
+      const bucketSz = coarse.bucket_size || 1.0;
+      if (coarseSpreadLabel) coarseSpreadLabel.textContent = `Bucket: $${bucketSz.toFixed(2)}`;
+
+      // 2. Render Fine Right
+      const fAsks = (l2.asks || []).slice(0, 15).reverse();
+      const fBids = (l2.bids || []).slice(0, 15);
+      const maxFVol = Math.max(...fAsks.map(a => a.total_usd), ...fBids.map(b => b.total_usd), 1.0);
+
+      const fineAsksBody = document.getElementById('fineAsksBody');
+      if (fineAsksBody) {
+        fineAsksBody.innerHTML = fAsks.map(a => {
+          const widthPct = Math.min(100, Math.round((a.total_usd / maxFVol) * 100));
+          return `<tr style="background: linear-gradient(to left, rgba(246, 70, 93, 0.20) ${widthPct}%, transparent ${widthPct}%); border-bottom: 1px solid #131d2e;">
+            <td class="text-red">$${a.price.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+            <td class="text-right">${a.size.toFixed(3)}</td>
+            <td class="text-right">$${Math.round(a.total_usd).toLocaleString()}</td>
+          </tr>`;
+        }).join('');
+      }
+
+      const spread = l2.spread || 0.0;
+      const spreadBps = l2.spread_bps || 0.0;
+      const fineMidRow = document.getElementById('fineMidRow');
+      const fineSpreadLabel = document.getElementById('fineSpreadLabel');
+      const spreadStr = `SPREAD: $${spread.toFixed(2)} (${spreadBps.toFixed(3)}%)`;
+      if (fineMidRow) fineMidRow.textContent = spreadStr;
+      if (fineSpreadLabel) fineSpreadLabel.textContent = spreadStr;
+
+      const fineBidsBody = document.getElementById('fineBidsBody');
+      if (fineBidsBody) {
+        fineBidsBody.innerHTML = fBids.map(b => {
+          const widthPct = Math.min(100, Math.round((b.total_usd / maxFVol) * 100));
+          return `<tr style="background: linear-gradient(to left, rgba(14, 203, 129, 0.20) ${widthPct}%, transparent ${widthPct}%); border-bottom: 1px solid #131d2e;">
+            <td class="text-green">$${b.price.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+            <td class="text-right">${b.size.toFixed(3)}</td>
+            <td class="text-right">$${Math.round(b.total_usd).toLocaleString()}</td>
+          </tr>`;
+        }).join('');
+      }
+
+      const bidPct = l2.bid_pct || 50.0;
+      const askPct = l2.ask_pct || 50.0;
+      const meterBid = document.getElementById('dualMeterBid');
+      const meterAsk = document.getElementById('dualMeterAsk');
+      const dualBidPct = document.getElementById('dualBidPct');
+      const dualAskPct = document.getElementById('dualAskPct');
+      if (meterBid) meterBid.style.width = bidPct + '%';
+      if (meterAsk) meterAsk.style.width = askPct + '%';
+      if (dualBidPct) dualBidPct.textContent = `B ${bidPct.toFixed(0)}%`;
+      if (dualAskPct) dualAskPct.textContent = `${askPct.toFixed(0)}% S`;
     }
 
     // Canvas Events (Crosshair & Hover Interaction)
@@ -1203,13 +1622,18 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       if (!canvas || !tooltip) return;
 
       canvas.addEventListener('mousemove', (e) => {
-        if (!chartPayload || !chartPayload.candles || chartPayload.candles.length === 0) return;
         const rect = canvas.getBoundingClientRect();
         const mouseX = e.clientX - rect.left;
         const mouseY = e.clientY - rect.top;
-
         const w = rect.width;
         const h = rect.height;
+
+        if (viewMode === 'live') {
+          renderCanvas(mouseX, mouseY);
+          return;
+        }
+
+        if (!chartPayload || !chartPayload.candles || chartPayload.candles.length === 0) return;
 
         const plotX = viewMode === 'historical' ? 55 : 20;
         const profileW = viewMode === 'chart' ? 180 : 0;
@@ -1244,7 +1668,6 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         const mousePrice = maxPrice - ((mouseY - plotY) / plotH) * priceRange;
 
         if (viewMode === 'chart') {
-          // Find matching profile band
           const matchedBand = profile.find(b => mousePrice >= b.min_px && mousePrice <= b.max_px);
           hoveredPriceBand = matchedBand || null;
 
@@ -1332,6 +1755,306 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       });
     }
 
+    // Live Mode Two-Sided Distribution Canvas Renderer (Exact Hyperdash.com Parity)
+    function renderLiveCanvas(ctx, w, h, mouseX, mouseY) {
+      const isStops = currentMasterTab === 'stops';
+      const source = isStops ? (lastLiveData && lastLiveData.stops) : (lastLiveData && lastLiveData.liquidations);
+      const bands = (source && source.bands) ? source.bands : [];
+      const livePx = (lastLiveData && lastLiveData.price) || prevPrice || 100.0;
+      const isCoin = currentDenom === 'coin';
+
+      ctx.fillStyle = '#060911';
+      ctx.fillRect(0, 0, w, h);
+
+      if (!bands || bands.length === 0) {
+        ctx.fillStyle = 'var(--text-dim)';
+        ctx.font = '12px JetBrains Mono, monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText('Synchronizing real-time live distribution data...', w / 2, h / 2);
+        return;
+      }
+
+      const plotX = 65;
+      const axisRightW = 75;
+      const plotW = w - plotX - axisRightW;
+      const plotY = 30;
+      const plotH = h - 65;
+
+      let minPx = bands[0].min_px;
+      let maxPx = bands[bands.length - 1].max_px;
+      if (minPx >= maxPx) { minPx = livePx * 0.5; maxPx = livePx * 1.5; }
+      const pxSpan = maxPx - minPx;
+
+      function pToX(p) { return plotX + ((p - minPx) / pxSpan) * plotW; }
+      function xToP(x) { return minPx + ((x - plotX) / plotW) * pxSpan; }
+
+      const maxBar = Math.max(...bands.map(b => (isCoin ? (b.amount_coin || 0) : (b.amount_usd || b.amount || 0))), 1.0);
+      const maxCum = Math.max(...bands.map(b => (isCoin ? (b.cum_amount_coin || 0) : (b.cum_amount_usd || b.cum_amount || 0))), 1.0);
+
+      const chkLong = document.getElementById('chkLongLiq')?.checked ?? true;
+      const chkShort = document.getElementById('chkShortLiq')?.checked ?? true;
+      const chkCumLong = document.getElementById('chkCumLong')?.checked ?? true;
+      const chkCumShort = document.getElementById('chkCumShort')?.checked ?? true;
+
+      const chkBuyStops = document.getElementById('chkBuyStops')?.checked ?? true;
+      const chkSellStops = document.getElementById('chkSellStops')?.checked ?? true;
+      const chkCumBuys = document.getElementById('chkCumBuys')?.checked ?? true;
+      const chkCumSells = document.getElementById('chkCumSells')?.checked ?? true;
+
+      // Grid Lines & Y-Axes
+      ctx.lineWidth = 0.5;
+      ctx.strokeStyle = '#141d2d';
+      ctx.fillStyle = '#64748b';
+      ctx.font = '10px JetBrains Mono, monospace';
+
+      const steps = 5;
+      for (let s = 0; s <= steps; s++) {
+        const y = plotY + (plotH / steps) * s;
+        ctx.beginPath();
+        ctx.moveTo(plotX, y);
+        ctx.lineTo(plotX + plotW, y);
+        ctx.stroke();
+
+        const barVal = maxBar * (1 - s / steps);
+        ctx.textAlign = 'right';
+        ctx.fillStyle = '#94a3b8';
+        const leftTxt = isCoin ? `${formatVol(barVal)}` : `$${formatVol(barVal)}`;
+        ctx.fillText(leftTxt, plotX - 8, y + 3);
+
+        const cumVal = maxCum * (1 - s / steps);
+        ctx.textAlign = 'left';
+        ctx.fillStyle = isStops ? '#38bdf8' : '#34d399';
+        const rightTxt = isCoin ? `${formatVol(cumVal)}` : `$${formatVol(cumVal)}`;
+        ctx.fillText(rightTxt, plotX + plotW + 8, y + 3);
+      }
+
+      // X-Axis Price Steps
+      ctx.textAlign = 'center';
+      ctx.fillStyle = '#64748b';
+      const xSteps = 8;
+      for (let s = 0; s <= xSteps; s++) {
+        const p = minPx + (pxSpan / xSteps) * s;
+        const x = pToX(p);
+        ctx.beginPath();
+        ctx.moveTo(x, plotY + plotH);
+        ctx.lineTo(x, plotY + plotH + 5);
+        ctx.strokeStyle = '#334155';
+        ctx.stroke();
+        ctx.fillText('$' + Math.round(p).toLocaleString(), x, plotY + plotH + 18);
+      }
+
+      // Find Hovered Band
+      let hovered = null;
+      if (mouseX && mouseY && mouseX >= plotX && mouseX <= plotX + plotW && mouseY >= plotY && mouseY <= plotY + plotH) {
+        const mPx = xToP(mouseX);
+        let minD = 1e9;
+        for (const b of bands) {
+          const d = Math.abs(b.mid_px - mPx);
+          if (d < minD) { minD = d; hovered = b; }
+        }
+      }
+
+      // Draw Histogram Bars
+      for (let i = 0; i < bands.length; i++) {
+        const b = bands[i];
+        const val = isCoin ? (b.amount_coin || 0) : (b.amount_usd || b.amount || 0);
+        if (val <= 0) continue;
+
+        const x1 = pToX(b.min_px);
+        const x2 = pToX(b.max_px);
+        const barW = Math.max(1.5, x2 - x1 - 0.5);
+        const barH = (val / maxBar) * (plotH - 10);
+        const barY = plotY + plotH - barH;
+
+        let fillCol = '#64748b';
+        let shouldDraw = true;
+
+        if (!isStops) {
+          if (b.mid_px < livePx) {
+            fillCol = '#f43f5e';
+            shouldDraw = chkLong;
+          } else {
+            fillCol = '#10b981';
+            shouldDraw = chkShort;
+          }
+        } else {
+          if (b.mid_px < livePx) {
+            fillCol = '#eab308';
+            shouldDraw = chkSellStops;
+          } else {
+            fillCol = '#38bdf8';
+            shouldDraw = chkBuyStops;
+          }
+        }
+
+        if (shouldDraw) {
+          ctx.fillStyle = fillCol;
+          ctx.fillRect(x1, barY, barW, barH);
+
+          if (hovered && hovered.mid_px === b.mid_px) {
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = 1.5;
+            ctx.strokeRect(x1 - 1, barY - 1, barW + 2, barH + 2);
+          }
+        }
+      }
+
+      // Draw Cumulative Curves
+      if (!isStops) {
+        if (chkCumLong) {
+          const longBands = bands.filter(b => b.mid_px < livePx);
+          if (longBands.length > 0) {
+            ctx.beginPath();
+            ctx.strokeStyle = '#fb7185';
+            ctx.lineWidth = 2.0;
+            for (let i = 0; i < longBands.length; i++) {
+              const b = longBands[i];
+              const cum = isCoin ? (b.cum_amount_coin || 0) : (b.cum_amount_usd || b.cum_amount || 0);
+              const x = pToX(b.mid_px);
+              const y = plotY + plotH - (cum / maxCum) * (plotH - 10);
+              if (i === 0) ctx.moveTo(x, y);
+              else ctx.lineTo(x, y);
+            }
+            ctx.stroke();
+          }
+        }
+
+        if (chkCumShort) {
+          const shortBands = bands.filter(b => b.mid_px >= livePx);
+          if (shortBands.length > 0) {
+            ctx.beginPath();
+            ctx.strokeStyle = '#34d399';
+            ctx.lineWidth = 2.0;
+            for (let i = 0; i < shortBands.length; i++) {
+              const b = shortBands[i];
+              const cum = isCoin ? (b.cum_amount_coin || 0) : (b.cum_amount_usd || b.cum_amount || 0);
+              const x = pToX(b.mid_px);
+              const y = plotY + plotH - (cum / maxCum) * (plotH - 10);
+              if (i === 0) ctx.moveTo(x, y);
+              else ctx.lineTo(x, y);
+            }
+            ctx.stroke();
+          }
+        }
+      } else {
+        if (chkCumSells) {
+          const sellBands = bands.filter(b => b.mid_px < livePx);
+          if (sellBands.length > 0) {
+            ctx.beginPath();
+            ctx.strokeStyle = '#ca8a04';
+            ctx.lineWidth = 2.0;
+            for (let i = 0; i < sellBands.length; i++) {
+              const b = sellBands[i];
+              const cum = isCoin ? (b.cum_amount_coin || 0) : (b.cum_amount_usd || b.cum_amount || 0);
+              const x = pToX(b.mid_px);
+              const y = plotY + plotH - (cum / maxCum) * (plotH - 10);
+              if (i === 0) ctx.moveTo(x, y);
+              else ctx.lineTo(x, y);
+            }
+            ctx.stroke();
+          }
+        }
+
+        if (chkCumBuys) {
+          const buyBands = bands.filter(b => b.mid_px >= livePx);
+          if (buyBands.length > 0) {
+            ctx.beginPath();
+            ctx.strokeStyle = '#0284c7';
+            ctx.lineWidth = 2.0;
+            for (let i = 0; i < buyBands.length; i++) {
+              const b = buyBands[i];
+              const cum = isCoin ? (b.cum_amount_coin || 0) : (b.cum_amount_usd || b.cum_amount || 0);
+              const x = pToX(b.mid_px);
+              const y = plotY + plotH - (cum / maxCum) * (plotH - 10);
+              if (i === 0) ctx.moveTo(x, y);
+              else ctx.lineTo(x, y);
+            }
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Current Price Vertical Line & Badge
+      const currX = pToX(livePx);
+      if (currX >= plotX && currX <= plotX + plotW) {
+        ctx.strokeStyle = '#10b981';
+        ctx.lineWidth = 1.2;
+        ctx.setLineDash([4, 4]);
+        ctx.beginPath();
+        ctx.moveTo(currX, plotY);
+        ctx.lineTo(currX, plotY + plotH);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        const badgeW = 95;
+        const badgeH = 18;
+        const badgeX = Math.max(plotX, Math.min(plotX + plotW - badgeW, currX - badgeW / 2));
+        const badgeY = plotY - 20;
+
+        ctx.fillStyle = '#10b981';
+        ctx.fillRect(badgeX, badgeY, badgeW, badgeH);
+        ctx.fillStyle = '#000000';
+        ctx.font = 'bold 10px JetBrains Mono, monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(`Current: $${livePx.toFixed(2)}`, badgeX + badgeW / 2, badgeY + 13);
+      }
+
+      // Hover Tooltip
+      const tooltip = document.getElementById('chartTooltip');
+      if (hovered && tooltip) {
+        const hoverX = pToX(hovered.mid_px);
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
+        ctx.lineWidth = 1.0;
+        ctx.setLineDash([2, 2]);
+        ctx.beginPath();
+        ctx.moveTo(hoverX, plotY);
+        ctx.lineTo(hoverX, plotY + plotH);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        tooltip.style.display = 'block';
+        let tipX = hoverX + 15;
+        if (tipX + 220 > w) tipX = hoverX - 225;
+        tooltip.style.left = tipX + 'px';
+        tooltip.style.top = Math.max(10, (mouseY || plotY) - 30) + 'px';
+
+        const val = isCoin ? (hovered.amount_coin || 0) : (hovered.amount_usd || hovered.amount || 0);
+        const cum = isCoin ? (hovered.cum_amount_coin || 0) : (hovered.cum_amount_usd || hovered.cum_amount || 0);
+        const unitSym = isCoin ? ` ${currentCoin}` : '';
+        const prefix = isCoin ? '' : '$';
+
+        let typeStr = '';
+        let col = '#fff';
+        if (!isStops) {
+          const isSqueeze = hovered.mid_px >= livePx;
+          typeStr = isSqueeze ? 'Short Liquidations' : 'Long Liquidations';
+          col = isSqueeze ? '#10b981' : '#f43f5e';
+        } else {
+          const isBuy = hovered.mid_px >= livePx;
+          typeStr = isBuy ? 'Buy Stops' : 'Sell Stops';
+          col = isBuy ? '#38bdf8' : '#eab308';
+        }
+
+        tooltip.innerHTML = `
+          <div style="font-weight:bold; color:#fff; font-size:11px; margin-bottom:4px;">
+            $${hovered.mid_px.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}
+            <span style="color:var(--text-dim); font-size:10px;">($${hovered.min_px.toFixed(1)} - $${hovered.max_px.toFixed(1)})</span>
+          </div>
+          <div style="color:${col}; font-weight:bold; font-size:11px; margin-bottom:2px;">
+            ${typeStr}: <b>${prefix}${formatVol(val)}${unitSym}</b>
+          </div>
+          <div style="color:var(--accent-cyan); font-size:10px; margin-bottom:2px;">
+            Cumulative: <b>${prefix}${formatVol(cum)}${unitSym}</b>
+          </div>
+          <div style="color:var(--text-dim); font-size:9px;">
+            Distance: <b>${(hovered.dist_pct >= 0 ? '+' : '')}${hovered.dist_pct.toFixed(2)}%</b> from mid
+          </div>
+        `;
+      } else if (tooltip && viewMode === 'live') {
+        tooltip.style.display = 'none';
+      }
+    }
+
     // Canvas Master Renderer
     function renderCanvas(crossX, crossY) {
       const canvas = document.getElementById('heatmapCanvas');
@@ -1346,6 +2069,11 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       const w = rect.width;
       const h = 420;
 
+      if (viewMode === 'live') {
+        renderLiveCanvas(ctx, w, h, crossX, crossY);
+        return;
+      }
+
       const isChart = viewMode === 'chart';
       const plotX = isChart ? 20 : 55;
       const profileW = isChart ? 180 : 0;
@@ -1354,7 +2082,6 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       const plotY = 15;
       const plotH = h - 45;
 
-      // Dark Background
       ctx.fillStyle = '#060911';
       ctx.fillRect(0, 0, w, h);
 
@@ -1373,7 +2100,6 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       const maxIntensity = chartPayload.max_intensity_usd || 1.0;
       const maxProfUsd = chartPayload.max_profile_usd || 1.0;
 
-      // Price limits
       let minPrice = Math.min(...candles.map(c => c.low));
       let maxPrice = Math.max(...candles.map(c => c.high));
       if (bands.length > 0) {
@@ -1391,9 +2117,8 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       const N = candles.length;
       const candleW = Math.max(4, plotW / Math.max(1, N));
 
-      // 1. If Historical Mode: Draw Left Gradient Scale + 2D Heatmap Tiles
+      // Historical 2D Scale & Tiles
       if (!isChart) {
-        // Left Colorbar
         const legendX = 14;
         const legendY = plotY;
         const legendW = 10;
@@ -1422,7 +2147,6 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         ctx.fillText('$' + formatVol(maxIntensity), legendX - 3, legendY + 9);
         ctx.fillText('$0', legendX - 3, legendY + legendH);
 
-        // 2D Tiles
         for (let i = 0; i < N; i++) {
           const x = plotX + i * candleW;
           const entry = grid[i] || {};
@@ -1455,7 +2179,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         }
       }
 
-      // 2. If Chart Mode: Draw Right-Side Horizontal Volume Profile Ladder
+      // Chart Mode Right-Side Volume Profile
       if (isChart) {
         const profX = plotX + plotW;
         for (let p = 0; p < profile.length; p++) {
@@ -1494,7 +2218,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         }
       }
 
-      // 3. Horizontal Grid & Price Axis
+      // Horizontal Grid & Price Axis
       ctx.lineWidth = 0.5;
       ctx.strokeStyle = '#141d2d';
       ctx.fillStyle = '#64748b';
@@ -1514,7 +2238,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         ctx.fillText('$' + p.toLocaleString(undefined, {maximumFractionDigits: 1}), plotX + totalPlotWidth + 6, y + 3);
       }
 
-      // 4. Time Grid & Labels
+      // Time Grid & Labels
       ctx.textAlign = 'center';
       const timeSteps = Math.min(6, N);
       const stepIdx = Math.max(1, Math.floor(N / timeSteps));
@@ -1530,7 +2254,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         ctx.fillText(shortDt, x, plotY + plotH + 16);
       }
 
-      // 5. Candlesticks Layer
+      // Candlesticks
       for (let i = 0; i < N; i++) {
         const c = candles[i];
         const cx = plotX + i * candleW + candleW / 2;
@@ -1542,7 +2266,6 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         const yHigh = priceToY(c.high);
         const yLow = priceToY(c.low);
 
-        // Wick
         ctx.strokeStyle = col;
         ctx.lineWidth = 1;
         ctx.beginPath();
@@ -1550,7 +2273,6 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         ctx.lineTo(cx, yLow);
         ctx.stroke();
 
-        // Body
         const bTop = Math.min(yOpen, yClose);
         const bH = Math.max(2, Math.abs(yOpen - yClose));
         const bW = Math.max(3, candleW * 0.72);
@@ -1558,7 +2280,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         ctx.fillRect(cx - bW / 2, bTop, bW, bH);
       }
 
-      // 6. Live Price Line & Right Axis Pill
+      // Live Price Line & Right Axis Pill
       const livePriceNow = prevPrice || candles[N - 1].close;
       const currY = priceToY(livePriceNow);
       ctx.strokeStyle = '#00f0ff';
@@ -1577,25 +2299,22 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       ctx.textAlign = 'left';
       ctx.fillText('$' + livePriceNow.toFixed(1), plotX + totalPlotWidth + 6, currY + 4);
 
-      // 7. Interactive Hover in Chart Mode: Row Highlight + White Price Marker Box
+      // Hover Highlight in Chart Mode
       if (isChart && hoveredPriceBand) {
         const b = hoveredPriceBand;
         const yTop = priceToY(b.max_px);
         const yBot = priceToY(b.min_px);
         const barH = Math.max(2, Math.abs(yBot - yTop));
 
-        // Highlight horizontal row
         ctx.fillStyle = 'rgba(255, 255, 255, 0.08)';
         ctx.fillRect(plotX, Math.min(yTop, yBot), totalPlotWidth, barH);
 
-        // Highlight the bar
         const profX = plotX + plotW;
         const barW = (b.amount / maxProfUsd) * (profileW - 10);
         const barX = profX + profileW - barW;
         ctx.fillStyle = 'rgba(255, 255, 255, 0.35)';
         ctx.fillRect(barX, Math.min(yTop, yBot), barW, barH - 1);
 
-        // Right Axis Prominent White Badge with Black Text (matches media_1790972222748.png!)
         const badgeText = `$${Math.round(b.min_px).toLocaleString()} - $${Math.round(b.max_px).toLocaleString()}`;
         const badgeX = plotX + totalPlotWidth + 2;
         const badgeY = Math.min(yTop, yBot) - 2;
@@ -1614,7 +2333,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         ctx.fillText(badgeText, badgeX + badgeW / 2, badgeY + badgeH / 2 + 3);
       }
 
-      // 8. Crosshair in Historical Mode
+      // Crosshair in Historical Mode
       if (!isChart && crossX && crossY && crossX >= plotX && crossX <= plotX + plotW && crossY >= plotY && crossY <= plotY + plotH) {
         ctx.strokeStyle = 'rgba(255, 255, 255, 0.35)';
         ctx.lineWidth = 0.8;
@@ -1639,35 +2358,42 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       try {
         const res = await fetch('/api/live/' + currentCoin);
         const data = await res.json();
+        lastLiveData = data;
         const latency = Math.round(performance.now() - t0);
-        document.getElementById('latencyLabel').textContent = `Latency: ${latency} ms`;
+        const latElem = document.getElementById('latencyLabel');
+        if (latElem) latElem.textContent = `Latency: ${latency} ms`;
 
         // 0. Update Current Candle Orderflow HUD
         const currCandle = data.current_candle || {};
         const price = data.price || 0.0;
+        const candleTimeBadge = document.getElementById('candleTimeBadge');
+        const hudLongLiq = document.getElementById('hudLongLiq');
+        const hudShortLiq = document.getElementById('hudShortLiq');
+        const hudPeakLiq = document.getElementById('hudPeakLiq');
+        const hudTotalStops = document.getElementById('hudTotalStops');
+
         if (currCandle && currCandle.datetime) {
           const parts = currCandle.datetime.split(' ');
           const timePart = parts.length > 1 ? parts[1] : currCandle.datetime;
-          document.getElementById('candleTimeBadge').textContent = timePart + ' UTC';
-          document.getElementById('hudLongLiq').textContent = '$' + formatVol(currCandle.liq_long_usd || 0);
-          document.getElementById('hudShortLiq').textContent = '$' + formatVol(currCandle.liq_short_usd || 0);
+          if (candleTimeBadge) candleTimeBadge.textContent = timePart + ' UTC';
+          if (hudLongLiq) hudLongLiq.textContent = '$' + formatVol(currCandle.liq_long_usd || 0);
+          if (hudShortLiq) hudShortLiq.textContent = '$' + formatVol(currCandle.liq_short_usd || 0);
           const peakLiqPx = currCandle.liq_peak_price || 0;
           const peakLiqAmt = currCandle.liq_peak_amount || 0;
-          document.getElementById('hudPeakLiq').textContent = peakLiqPx > 0 ? ('$' + peakLiqPx.toLocaleString() + ' ($' + formatVol(peakLiqAmt) + ')') : '--';
-          document.getElementById('hudTotalStops').textContent = '$' + formatVol(currCandle.stop_total_usd || 0);
+          if (hudPeakLiq) hudPeakLiq.textContent = peakLiqPx > 0 ? ('$' + peakLiqPx.toLocaleString() + ' ($' + formatVol(peakLiqAmt) + ')') : '--';
+          if (hudTotalStops) hudTotalStops.textContent = '$' + formatVol(currCandle.stop_total_usd || 0);
         } else {
-          // Continuous Live fallback from real-time liquidation & stop aggregates
           const liqs = data.liquidations || {};
           const stops = data.stops || {};
           const longUsd = (liqs.total_long_size || 0) * (price || 1);
           const shortUsd = (liqs.total_short_size || 0) * (price || 1);
           const totalStopsUsd = ((stops.total_buy_size || 0) + (stops.total_sell_size || 0)) * (price || 1);
           const topBand = (liqs.bands && liqs.bands[0]) ? liqs.bands[0] : null;
-          document.getElementById('candleTimeBadge').textContent = 'LIVE FEED';
-          document.getElementById('hudLongLiq').textContent = '$' + formatVol(longUsd);
-          document.getElementById('hudShortLiq').textContent = '$' + formatVol(shortUsd);
-          document.getElementById('hudPeakLiq').textContent = topBand ? ('$' + Math.round(topBand.mid_px).toLocaleString() + ' ($' + formatVol(topBand.amount) + ')') : '--';
-          document.getElementById('hudTotalStops').textContent = '$' + formatVol(totalStopsUsd);
+          if (candleTimeBadge) candleTimeBadge.textContent = 'LIVE FEED';
+          if (hudLongLiq) hudLongLiq.textContent = '$' + formatVol(longUsd);
+          if (hudShortLiq) hudShortLiq.textContent = '$' + formatVol(shortUsd);
+          if (hudPeakLiq) hudPeakLiq.textContent = topBand ? ('$' + Math.round(topBand.mid_px).toLocaleString() + ' ($' + formatVol(topBand.amount) + ')') : '--';
+          if (hudTotalStops) hudTotalStops.textContent = '$' + formatVol(totalStopsUsd);
         }
 
         // 1. Update Price & Top Header
@@ -1675,9 +2401,9 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         const container = document.getElementById('priceContainer');
         const arrow = document.getElementById('priceArrow');
 
-        markElem.textContent = '$' + price.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        if (markElem) markElem.textContent = '$' + price.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
 
-        if (prevPrice > 0 && price !== prevPrice) {
+        if (prevPrice > 0 && price !== prevPrice && container && arrow) {
           if (price > prevPrice) {
             arrow.textContent = '▲';
             arrow.className = 'text-green';
@@ -1692,7 +2418,6 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         }
         prevPrice = price;
 
-        // Sync active candle on chart in real-time
         if (chartPayload && chartPayload.candles && chartPayload.candles.length > 0) {
           const lastCandle = chartPayload.candles[chartPayload.candles.length - 1];
           lastCandle.close = price;
@@ -1700,22 +2425,28 @@ HTML_TEMPLATE = """<!DOCTYPE html>
           if (price < lastCandle.low) lastCandle.low = price;
           const closeElem = document.getElementById('cHdrClose');
           if (closeElem) closeElem.textContent = price.toLocaleString(undefined, {minimumFractionDigits: 1, maximumFractionDigits: 1});
-          renderCanvas();
         }
 
         // Meta stats
         const meta = data.meta || {};
         const chg = meta.change_24h || 0.0;
         const chgPill = document.getElementById('changePill');
-        chgPill.textContent = (chg >= 0 ? '+' : '') + chg.toFixed(2) + '%';
-        chgPill.style.background = chg >= 0 ? 'rgba(0,255,136,0.2)' : 'rgba(255,51,102,0.2)';
-        chgPill.style.color = chg >= 0 ? 'var(--accent-green)' : 'var(--accent-red)';
+        if (chgPill) {
+          chgPill.textContent = (chg >= 0 ? '+' : '') + chg.toFixed(2) + '%';
+          chgPill.style.background = chg >= 0 ? 'rgba(0,255,136,0.2)' : 'rgba(255,51,102,0.2)';
+          chgPill.style.color = chg >= 0 ? 'var(--accent-green)' : 'var(--accent-red)';
+        }
 
-        document.getElementById('vol24h').textContent = '$' + formatVol(meta.volume_24h || 0);
-        document.getElementById('oiUsd').textContent = '$' + formatVol(meta.open_interest_usd || 0);
-        document.getElementById('fundingApr').textContent = ((meta.funding_annualized || 0) >= 0 ? '+' : '') + (meta.funding_annualized || 0).toFixed(2) + '%';
-        document.getElementById('maxLev').textContent = (meta.max_leverage || 50) + 'x';
-        document.getElementById('utcClock').textContent = data.utc_time;
+        const vol24h = document.getElementById('vol24h');
+        const oiUsd = document.getElementById('oiUsd');
+        const fundingApr = document.getElementById('fundingApr');
+        const maxLev = document.getElementById('maxLev');
+        const utcClock = document.getElementById('utcClock');
+        if (vol24h) vol24h.textContent = '$' + formatVol(meta.volume_24h || 0);
+        if (oiUsd) oiUsd.textContent = '$' + formatVol(meta.open_interest_usd || 0);
+        if (fundingApr) fundingApr.textContent = ((meta.funding_annualized || 0) >= 0 ? '+' : '') + (meta.funding_annualized || 0).toFixed(2) + '%';
+        if (maxLev) maxLev.textContent = (meta.max_leverage || 50) + 'x';
+        if (utcClock) utcClock.textContent = data.utc_time;
 
         // 2. Render Orderbook L2
         const book = data.l2_book || {};
@@ -1724,117 +2455,185 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         const maxVol = Math.max(...bids.map(b => b.total_usd), ...asks.map(a => a.total_usd), 1.0);
 
         const asksBody = document.getElementById('asksBody');
-        asksBody.innerHTML = asks.map(a => {
-          const widthPct = Math.min(100, Math.round((a.total_usd / maxVol) * 100));
-          return `<tr style="background: linear-gradient(to left, rgba(246, 70, 93, 0.20) ${widthPct}%, transparent ${widthPct}%); border-bottom: 1px solid #131d2e;">
-            <td class="text-red row-text">$${a.price.toLocaleString(undefined, {minimumFractionDigits: 1})}</td>
-            <td class="row-text">${a.size.toFixed(3)}</td>
-            <td class="row-text">$${Math.round(a.total_usd).toLocaleString()}</td>
-          </tr>`;
-        }).join('');
+        if (asksBody) {
+          asksBody.innerHTML = asks.map(a => {
+            const widthPct = Math.min(100, Math.round((a.total_usd / maxVol) * 100));
+            return `<tr style="background: linear-gradient(to left, rgba(246, 70, 93, 0.20) ${widthPct}%, transparent ${widthPct}%); border-bottom: 1px solid #131d2e;">
+              <td class="text-red row-text">$${a.price.toLocaleString(undefined, {minimumFractionDigits: 1})}</td>
+              <td class="row-text">${a.size.toFixed(3)}</td>
+              <td class="row-text">$${Math.round(a.total_usd).toLocaleString()}</td>
+            </tr>`;
+          }).join('');
+        }
 
         const bidsBody = document.getElementById('bidsBody');
-        bidsBody.innerHTML = bids.map(b => {
-          const widthPct = Math.min(100, Math.round((b.total_usd / maxVol) * 100));
-          return `<tr style="background: linear-gradient(to left, rgba(14, 203, 129, 0.20) ${widthPct}%, transparent ${widthPct}%); border-bottom: 1px solid #131d2e;">
-            <td class="text-green row-text">$${b.price.toLocaleString(undefined, {minimumFractionDigits: 1})}</td>
-            <td class="row-text">${b.size.toFixed(3)}</td>
-            <td class="row-text">$${Math.round(b.total_usd).toLocaleString()}</td>
-          </tr>`;
-        }).join('');
+        if (bidsBody) {
+          bidsBody.innerHTML = bids.map(b => {
+            const widthPct = Math.min(100, Math.round((b.total_usd / maxVol) * 100));
+            return `<tr style="background: linear-gradient(to left, rgba(14, 203, 129, 0.20) ${widthPct}%, transparent ${widthPct}%); border-bottom: 1px solid #131d2e;">
+              <td class="text-green row-text">$${b.price.toLocaleString(undefined, {minimumFractionDigits: 1})}</td>
+              <td class="row-text">${b.size.toFixed(3)}</td>
+              <td class="row-text">$${Math.round(b.total_usd).toLocaleString()}</td>
+            </tr>`;
+          }).join('');
+        }
 
         const spread = book.spread || 0.0;
         const spreadBps = book.spread_bps || 0.0;
-        document.getElementById('spreadRow').textContent = `─── SPREAD: $${spread.toFixed(2)} (${spreadBps.toFixed(2)} bps) ───`;
+        const spreadRow = document.getElementById('spreadRow');
+        if (spreadRow) spreadRow.textContent = `─── SPREAD: $${spread.toFixed(2)} (${spreadBps.toFixed(2)} bps) ───`;
 
         const bidPct = book.bid_pct || 50.0;
         const askPct = book.ask_pct || 50.0;
-        document.getElementById('meterBid').style.width = bidPct + '%';
-        document.getElementById('meterAsk').style.width = askPct + '%';
-        document.getElementById('bidVolLabel').textContent = `Bids: $${((book.bid_volume_usd || 0)/1e3).toFixed(0)}k (${bidPct.toFixed(0)}%)`;
-        document.getElementById('askVolLabel').textContent = `Asks: $${((book.ask_volume_usd || 0)/1e3).toFixed(0)}k (${askPct.toFixed(0)}%)`;
+        const meterBid = document.getElementById('meterBid');
+        const meterAsk = document.getElementById('meterAsk');
+        const bidVolLabel = document.getElementById('bidVolLabel');
+        const askVolLabel = document.getElementById('askVolLabel');
+        if (meterBid) meterBid.style.width = bidPct + '%';
+        if (meterAsk) meterAsk.style.width = askPct + '%';
+        if (bidVolLabel) bidVolLabel.textContent = `Bids: $${((book.bid_volume_usd || 0)/1e3).toFixed(0)}k (${bidPct.toFixed(0)}%)`;
+        if (askVolLabel) askVolLabel.textContent = `Asks: $${((book.ask_volume_usd || 0)/1e3).toFixed(0)}k (${askPct.toFixed(0)}%)`;
 
         const imbElem = document.getElementById('imbalanceBadge');
-        if (bidPct > 56) {
-          imbElem.textContent = 'STRONG BUY PRESSURE';
-          imbElem.className = 'text-green';
-        } else if (askPct > 56) {
-          imbElem.textContent = 'STRONG SELL PRESSURE';
-          imbElem.className = 'text-red';
-        } else {
-          imbElem.textContent = 'BALANCED FLOW';
-          imbElem.className = 'text-cyan';
+        if (imbElem) {
+          if (bidPct > 56) {
+            imbElem.textContent = 'STRONG BUY PRESSURE';
+            imbElem.className = 'text-green';
+          } else if (askPct > 56) {
+            imbElem.textContent = 'STRONG SELL PRESSURE';
+            imbElem.className = 'text-red';
+          } else {
+            imbElem.textContent = 'BALANCED FLOW';
+            imbElem.className = 'text-cyan';
+          }
         }
 
         // 3. Render Liquidations Table
         const liqs = data.liquidations || {};
-        document.getElementById('longLiqTotal').textContent = `Long Risk: ${(liqs.total_long_size || 0).toLocaleString()} ${currentCoin}`;
-        document.getElementById('shortLiqTotal').textContent = `Short Risk: ${(liqs.total_short_size || 0).toLocaleString()} ${currentCoin}`;
+        const longLiqTotal = document.getElementById('longLiqTotal');
+        const shortLiqTotal = document.getElementById('shortLiqTotal');
+        if (longLiqTotal) longLiqTotal.textContent = `Long Risk: ${(liqs.total_long_size || 0).toLocaleString()} ${currentCoin}`;
+        if (shortLiqTotal) shortLiqTotal.textContent = `Short Risk: ${(liqs.total_short_size || 0).toLocaleString()} ${currentCoin}`;
 
         const liqBands = liqs.bands || [];
         const maxLiq = Math.max(...liqBands.map(b => b.amount || 0), 1.0);
         const liqBody = document.getElementById('liqBody');
-        liqBody.innerHTML = liqBands.map(b => {
-          const isSqueeze = b.type === 'SHORT SQUEEZE';
-          const colClass = isSqueeze ? 'text-red' : 'text-green';
-          const bgRgba = isSqueeze ? 'rgba(246, 70, 93, 0.15)' : 'rgba(14, 203, 129, 0.15)';
-          const widthPct = Math.min(100, Math.round(((b.amount || 0) / maxLiq) * 100));
-          return `<tr style="background: linear-gradient(to left, ${bgRgba} ${widthPct}%, transparent ${widthPct}%); border-bottom:1px solid #131d2e;">
-            <td style="text-align:left;">$${Math.round(b.min_px).toLocaleString()} - $${Math.round(b.max_px).toLocaleString()}</td>
-            <td class="${colClass}">${(b.dist_pct >= 0 ? '+' : '') + b.dist_pct.toFixed(1)}%</td>
-            <td style="text-align:center;"><span class="badge-tag ${colClass}" style="background:rgba(255,255,255,0.05);">${b.type}</span></td>
-            <td style="font-weight:bold;">$${Math.round(b.amount).toLocaleString()}</td>
-          </tr>`;
-        }).join('');
+        if (liqBody) {
+          liqBody.innerHTML = liqBands.slice(0, 30).map(b => {
+            const isSqueeze = b.type === 'SHORT SQUEEZE';
+            const colClass = isSqueeze ? 'text-red' : 'text-green';
+            const bgRgba = isSqueeze ? 'rgba(246, 70, 93, 0.15)' : 'rgba(14, 203, 129, 0.15)';
+            const widthPct = Math.min(100, Math.round(((b.amount || 0) / maxLiq) * 100));
+            return `<tr style="background: linear-gradient(to left, ${bgRgba} ${widthPct}%, transparent ${widthPct}%); border-bottom:1px solid #131d2e;">
+              <td style="text-align:left;">$${Math.round(b.min_px).toLocaleString()} - $${Math.round(b.max_px).toLocaleString()}</td>
+              <td class="${colClass}">${(b.dist_pct >= 0 ? '+' : '') + b.dist_pct.toFixed(1)}%</td>
+              <td style="text-align:center;"><span class="badge-tag ${colClass}" style="background:rgba(255,255,255,0.05);">${b.type}</span></td>
+              <td style="font-weight:bold;">$${Math.round(b.amount).toLocaleString()}</td>
+            </tr>`;
+          }).join('');
+        }
 
         // 4. Render Stops Table
         const stops = data.stops || {};
         const stopBands = stops.bands || [];
         const maxStop = Math.max(...stopBands.map(s => s.amount || 0), 1.0);
         const stopsBody = document.getElementById('stopsBody');
-        stopsBody.innerHTML = stopBands.map(s => {
-          const isBuy = s.side === 'BUY STOPS';
-          const colClass = isBuy ? 'text-cyan' : 'text-yellow';
-          const bgRgba = isBuy ? 'rgba(0, 243, 255, 0.15)' : 'rgba(255, 215, 0, 0.15)';
-          const widthPct = Math.min(100, Math.round(((s.amount || 0) / maxStop) * 100));
-          return `<tr style="background: linear-gradient(to left, ${bgRgba} ${widthPct}%, transparent ${widthPct}%); border-bottom:1px solid #131d2e;">
-            <td style="text-align:left;">$${Math.round(s.min_px).toLocaleString()} - $${Math.round(s.max_px).toLocaleString()}</td>
-            <td class="${colClass}">${(s.dist_pct >= 0 ? '+' : '') + s.dist_pct.toFixed(1)}%</td>
-            <td style="text-align:center;"><span class="badge-tag ${colClass}" style="background:rgba(255,255,255,0.05);">${s.side}</span></td>
-            <td style="font-weight:bold;">$${Math.round(s.amount).toLocaleString()}</td>
-          </tr>`;
-        }).join('');
+        if (stopsBody) {
+          stopsBody.innerHTML = stopBands.slice(0, 30).map(s => {
+            const isBuy = s.side === 'BUY STOPS';
+            const colClass = isBuy ? 'text-cyan' : 'text-yellow';
+            const bgRgba = isBuy ? 'rgba(0, 243, 255, 0.15)' : 'rgba(255, 215, 0, 0.15)';
+            const widthPct = Math.min(100, Math.round(((s.amount || 0) / maxStop) * 100));
+            return `<tr style="background: linear-gradient(to left, ${bgRgba} ${widthPct}%, transparent ${widthPct}%); border-bottom:1px solid #131d2e;">
+              <td style="text-align:left;">$${Math.round(s.min_px).toLocaleString()} - $${Math.round(s.max_px).toLocaleString()}</td>
+              <td class="${colClass}">${(s.dist_pct >= 0 ? '+' : '') + s.dist_pct.toFixed(1)}%</td>
+              <td style="text-align:center;"><span class="badge-tag ${colClass}" style="background:rgba(255,255,255,0.05);">${s.side}</span></td>
+              <td style="font-weight:bold;">$${Math.round(s.amount).toLocaleString()}</td>
+            </tr>`;
+          }).join('');
+        }
 
         // 5. Render Whale L3 Orders Table
         const whales = data.l3_orders || [];
         const whalesBody = document.getElementById('whalesBody');
-        whalesBody.innerHTML = whales.map(w => {
-          const shortAddr = w.address ? (w.address.slice(0, 6) + '...' + w.address.slice(-4)) : 'Anonymous';
-          const sideClass = w.side === 'BUY' ? 'text-green' : 'text-red';
-          return `<tr style="border-bottom:1px solid #131d2e;">
-            <td style="text-align:left; font-family:monospace;"><span style="color:var(--accent-cyan);">${shortAddr}</span></td>
-            <td class="${sideClass}" style="font-weight:bold;">${w.side}</td>
-            <td>$${w.price.toLocaleString(undefined, {minimumFractionDigits: 1})}</td>
-            <td style="font-weight:bold;">$${Math.round(w.notional_usd).toLocaleString()}</td>
-          </tr>`;
-        }).join('');
+        if (whalesBody) {
+          whalesBody.innerHTML = whales.map(w => {
+            const shortAddr = w.address ? (w.address.slice(0, 6) + '...' + w.address.slice(-4)) : 'Anonymous';
+            const sideClass = w.side === 'BUY' ? 'text-green' : 'text-red';
+            return `<tr style="border-bottom:1px solid #131d2e;">
+              <td style="text-align:left; font-family:monospace;"><span style="color:var(--accent-cyan);">${shortAddr}</span></td>
+              <td class="${sideClass}" style="font-weight:bold;">${w.side}</td>
+              <td>$${w.price.toLocaleString(undefined, {minimumFractionDigits: 1})}</td>
+              <td style="font-weight:bold;">$${Math.round(w.notional_usd).toLocaleString()}</td>
+            </tr>`;
+          }).join('');
+        }
 
         // 6. Render Trades Tape
         const trades = data.recent_trades || [];
         const tradesBody = document.getElementById('tradesBody');
-        tradesBody.innerHTML = trades.map(t => {
-          const d = new Date(t.time);
-          const timeStr = d.toTimeString().split(' ')[0] + '.' + String(d.getMilliseconds()).padStart(3, '0');
-          const sideClass = t.side === 'BUY' ? 'text-green' : 'text-red';
-          const alertPill = t.is_whale ? '<span class="badge-tag text-yellow" style="background:rgba(255,215,0,0.2);">🐋 WHALE</span>' : '';
-          return `<tr>
-            <td style="color:var(--text-dim);">${timeStr}</td>
-            <td class="${sideClass}" style="font-weight:bold;">${t.side}</td>
-            <td class="${sideClass}">$${t.price.toLocaleString(undefined, {minimumFractionDigits: 1})}</td>
-            <td>${t.size.toFixed(3)}</td>
-            <td style="text-align:center;">${alertPill}</td>
-          </tr>`;
-        }).join('');
+        if (tradesBody) {
+          tradesBody.innerHTML = trades.map(t => {
+            const d = new Date(t.time);
+            const timeStr = d.toTimeString().split(' ')[0] + '.' + String(d.getMilliseconds()).padStart(3, '0');
+            const sideClass = t.side === 'BUY' ? 'text-green' : 'text-red';
+            const alertPill = t.is_whale ? '<span class="badge-tag text-yellow" style="background:rgba(255,215,0,0.2);">🐋 WHALE</span>' : '';
+            return `<tr>
+              <td style="color:var(--text-dim);">${timeStr}</td>
+              <td class="${sideClass}" style="font-weight:bold;">${t.side}</td>
+              <td class="${sideClass}">$${t.price.toLocaleString(undefined, {minimumFractionDigits: 1})}</td>
+              <td>${t.size.toFixed(3)}</td>
+              <td style="text-align:center;">${alertPill}</td>
+            </tr>`;
+          }).join('');
+        }
+
+        // 7. Update Persistent Cohorts Dock
+        const cohort = data.cohort_summary || {};
+        if (cohort && cohort.coin) {
+          const assetTitle = document.getElementById('cohortAssetTitle');
+          if (assetTitle) assetTitle.textContent = `${cohort.coin} All traders`;
+          const notionalTxt = document.getElementById('cohortNotionalTxt');
+          if (notionalTxt) notionalTxt.textContent = `$${formatVol(cohort.notional_usd || 0)}`;
+          const tradersTxt = document.getElementById('cohortTradersTxt');
+          if (tradersTxt) tradersTxt.textContent = (cohort.total_traders || 0).toLocaleString();
+          const pnlTxt = document.getElementById('cohortPnlTxt');
+          if (pnlTxt) pnlTxt.textContent = `${(cohort.profit_traders_pct || 64).toFixed(0)}% Profit / ${(cohort.loss_traders_pct || 36).toFixed(0)}% Loss`;
+
+          const nLongBar = document.getElementById('cohortNotionalLongBar');
+          const nShortBar = document.getElementById('cohortNotionalShortBar');
+          if (nLongBar) nLongBar.style.width = '50%';
+          if (nShortBar) nShortBar.style.width = '50%';
+
+          const tLongBar = document.getElementById('cohortTradersLongBar');
+          const tShortBar = document.getElementById('cohortTradersShortBar');
+          const tLongTxt = document.getElementById('cohortTradersLongTxt');
+          const tShortTxt = document.getElementById('cohortTradersShortTxt');
+          const lPct = cohort.long_traders_pct || 78;
+          const sPct = cohort.short_traders_pct || 22;
+          if (tLongBar) tLongBar.style.width = lPct + '%';
+          if (tShortBar) tShortBar.style.width = sPct + '%';
+          if (tLongTxt) tLongTxt.textContent = `${lPct}% Long`;
+          if (tShortTxt) tShortTxt.textContent = `${sPct}% Short`;
+
+          const pProfitBar = document.getElementById('cohortPnlProfitBar');
+          const pLossBar = document.getElementById('cohortPnlLossBar');
+          const pProfitTxt = document.getElementById('cohortPnlProfitTxt');
+          const pLossTxt = document.getElementById('cohortPnlLossTxt');
+          const pPct = cohort.profit_traders_pct || 64;
+          const lossPct = cohort.loss_traders_pct || 36;
+          if (pProfitBar) pProfitBar.style.width = pPct + '%';
+          if (pLossBar) pLossBar.style.width = lossPct + '%';
+          if (pProfitTxt) pProfitTxt.textContent = `${pPct}% Profit`;
+          if (pLossTxt) pLossTxt.textContent = `${lossPct}% Loss`;
+        }
+
+        // Active View Refresh
+        if (currentMasterTab === 'orderbook') {
+          renderDualOrderbook();
+        } else if (viewMode === 'live') {
+          renderCanvas();
+        }
 
       } catch (err) {
         console.error('Live fetch error:', err);

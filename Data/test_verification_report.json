@@ -1,0 +1,122 @@
+{
+  "test_mt5_execution_bridge": {
+    "status": "PASSED",
+    "assertions": {
+      "connection_established": true,
+      "account_summary": {
+        "connected": true,
+        "login": 5064568,
+        "trade_mode": 0,
+        "company": "Blueberry Markets (SVG) LLC",
+        "currency": "USD",
+        "balance_usd": 4742.9,
+        "equity_usd": 4837.4,
+        "profit_usd": 94.5,
+        "margin_usd": 2988.75,
+        "margin_free_usd": 1848.65,
+        "margin_level_pct": 161.85
+      },
+      "resolved_symbols": {
+        "SOL": "SOLUSD.p",
+        "BTC": "BTCUSD.pi",
+        "ETH": "ETHUSD.pi"
+      },
+      "sol_price_info": {
+        "symbol": "SOLUSD.p",
+        "bid": 121.44,
+        "ask": 121.69,
+        "last": 121.565,
+        "spread": 25,
+        "point": 0.01,
+        "digits": 2,
+        "contract_size": 100.0,
+        "min_lot": 0.01,
+        "max_lot": 50.0,
+        "step_lot": 0.01
+      },
+      "open_positions": [
+        {
+          "ticket": 18464576,
+          "time": 1791042020,
+          "symbol": "SOLUSD.p",
+          "direction": "LONG",
+          "volume": 0.5,
+          "price_open": 119.55,
+          "sl": 120.49,
+          "tp": 122.78,
+          "price_current": 121.44,
+          "profit_usd": 94.5,
+          "swap_usd": 0.0,
+          "magic": 0,
+          "comment": ""
+        }
+      ],
+      "open_positions_count": 1
+    }
+  },
+  "test_market_intelligence": {
+    "status": "PASSED",
+    "assertions": {
+      "headline_count": 20,
+      "headlines_sample": [
+        {
+          "title": "El Salvador receives $138 million from IMF after Bitcoin waivers granted",
+          "date": "Sun, 04 Oct 2026 09:39:51 +0000",
+          "source": "cointelegraph.com"
+        },
+        {
+          "title": "Russia\u2019s Finance Ministry pays wages in digital rubles for first time",
+          "date": "Sun, 04 Oct 2026 07:16:53 +0000",
+          "source": "cointelegraph.com"
+        },
+        {
+          "title": "Here\u2019s what happened in crypto today",
+          "date": "Sat, 03 Oct 2026 12:20:00 +0000",
+          "source": "cointelegraph.com"
+        }
+      ],
+      "live_blackout": {
+        "is_blackout": true,
+        "event_name": "US Tier-1 Macro (CPI / NFP / PCE)",
+        "delta_mins": 5
+      },
+      "blackout_boundary_tests": "ALL_PASSED",
+      "cached_sentiment": -0.6,
+      "synthetic_sentiment_tests": "ALL_PASSED",
+      "synthesis_report": {
+        "macro_sentiment_score": -0.6,
+        "macro_bias": "BEARISH",
+        "blackout_active": true,
+        "blackout_event": "US Tier-1 Macro (CPI / NFP / PCE)",
+        "headlines_count": 20
+      }
+    }
+  },
+  "test_of_strategy_mt5_trader": {
+    "status": "PASSED",
+    "assertions": {
+      "return_code": 0,
+      "elapsed_sec": 16.57,
+      "stdout_snippet": "USD.p | Mode: PAPER (MT5 Price)\nCadence: Evaluates at minute 14 of every 15m candle (:14, :29, :44, :59)\nMacro Gate: Active (+/- 15m blackout on CPI, FOMC, NFP) | 3-Stage Ratchets: ON\n================================================================================\n\n[12:35:26 UTC] >>> EXECUTING 360-DEGREE 15M CANDLE PASS (Minute 35: 5/15m) <<<\n  \u00e2\u0161\u00a1 [2026-10-04 12:35:26 UTC] RATCHET TRIGGER: Ticket 18464576 (SOLUSD.p LONG) Gain=+2.01R (+94.50 USD)\n     Advancing SL from 120.49 -> 120.96 USD (P2_RUNNER_TRAIL)\n[2026-10-04 18:05:29,223][MT5Bridge] \u00e2\u0153\u2026 Position 18464576 (SOLUSD.p) modified: SL -> 120.96 USD, TP -> 122.78 USD\n  Account Equity: 4,837.40 USD | Open MT5 Positions: 1\n  Macro Bias: BEARISH (Score: -0.60) | Blackout: True\n  Orderflow: Below Liq=609,889 USD | Above Liq=6,126,008 USD\n  Decision: [BLACKOUT_VETO] - Macro Blackout Active: US Tier-1 Macro (CPI / NFP / PCE) within +/- 15 min\n\n[12:35:39 UTC] Heartbeat | SOL: 121.57 USD | Next 360 Pass in ~9m | Monitored Open Positions: 1\n",
+      "stderr": "",
+      "persisted_state": {
+        "coin": "SOL",
+        "mt5_symbol": "SOLUSD.p",
+        "capital_usd": 5000.0,
+        "updated_utc": "2026-10-04T12:35:29.224236+00:00",
+        "decision": "BLACKOUT_VETO",
+        "reason": "Macro Blackout Active: US Tier-1 Macro (CPI / NFP / PCE) within +/- 15 min",
+        "ratchet_updates_count": 1,
+        "macro_bias": null,
+        "orderflow_metrics": {
+          "below_liq_usd": 609888.9799999999,
+          "above_liq_usd": 6126008.33,
+          "whale_buys_usd": 0,
+          "whale_sells_usd": 0,
+          "resting_bid_whale": true,
+          "resting_ask_whale": true
+        }
+      }
+    }
+  }
+}

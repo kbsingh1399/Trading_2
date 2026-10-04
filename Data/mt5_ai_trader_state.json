@@ -1,0 +1,64 @@
+{
+  "coin": "SOL",
+  "mt5_symbol": "SOLUSD.p",
+  "paper_mode": false,
+  "capital_usd": 5000.0,
+  "peak_capital_usd": 5000.0,
+  "paper_positions": [
+    {
+      "coin": "ETH",
+      "symbol": "ETHUSD.pi",
+      "direction": "SHORT",
+      "volume": 0.74,
+      "price": 2698.55,
+      "sl": 2718.79,
+      "tp": 2655.1,
+      "risk_usd": 15.0,
+      "conviction_score": 4,
+      "paper": true
+    }
+  ],
+  "trade_history": [],
+  "last_360_report": {
+    "timestamp": "2026-10-04 13:25:40 UTC",
+    "coin": "SOL",
+    "mt5_symbol": "SOLUSD.p",
+    "effective_price": 121.5,
+    "mt5_account": {
+      "balance": 4742.9,
+      "equity": 4834.4,
+      "profit": 91.5,
+      "open_positions_count": 1
+    },
+    "macro_intelligence": {
+      "sentiment_score": -0.71,
+      "bias": "BEARISH",
+      "blackout": false,
+      "blackout_event": "NO_EVENT"
+    },
+    "orderflow_metrics": {
+      "below_liq_usd": 682644.5649999998,
+      "above_liq_usd": 6161680.755,
+      "whale_buys_usd": 0,
+      "whale_sells_usd": 0,
+      "resting_bid_whale": true,
+      "resting_ask_whale": true
+    },
+    "ratchet_updates": [],
+    "decision": "XRP_SHORT_ENTRY_TRIGGERED",
+    "reason": "Supply flush (628,007 USD) + Imb (+0.08) + Whales (Score: 4/6)",
+    "trade_details": {
+      "coin": "XRP",
+      "symbol": "XRPUSD.pi",
+      "direction": "SHORT",
+      "volume": 1.0,
+      "price": 1.501,
+      "sl": 2.0,
+      "tp": 0.0,
+      "risk_usd": 15.0,
+      "conviction_score": 4,
+      "paper": false
+    }
+  },
+  "updated_utc": "2026-10-04T13:25:45.894886+00:00"
+}

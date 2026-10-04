@@ -369,14 +369,22 @@ def run_backtest(parquet_path: str = "Data/Hyperdash_Historical/BTC_15m_full_dum
 
     df_pl = pl.read_parquet(parquet_path)
     df = df_pl.to_pandas()
-    df["datetime"] = pd.to_datetime(df["datetime"])
+    if "datetime" in df.columns:
+        df["datetime"] = pd.to_datetime(df["datetime"], utc=True)
+    elif "datetime_utc" in df.columns:
+        df["datetime"] = pd.to_datetime(df["datetime_utc"], utc=True)
+    elif "open_time_ms" in df.columns:
+        df["datetime"] = pd.to_datetime(df["open_time_ms"], unit="ms", utc=True)
+
+    if "volume" not in df.columns and "volume_base" in df.columns:
+        df["volume"] = df["volume_base"]
 
     opens = df["open"].values.astype(np.float64)
     highs = df["high"].values.astype(np.float64)
     lows = df["low"].values.astype(np.float64)
     closes = df["close"].values.astype(np.float64)
     volumes = df["volume"].values.astype(np.float64)
-    timestamps = df["datetime"].astype("datetime64[s]").astype(np.int64).values
+    timestamps = (df["datetime"].values.astype("datetime64[ms]").astype(np.int64) // 1000)
     df["date_int"] = df["datetime"].dt.strftime("%Y%m%d").astype(np.int64)
     dates = df["date_int"].values
     hours = df["datetime"].dt.hour.values.astype(np.int32)
