@@ -45,7 +45,7 @@ import json
 import argparse
 import datetime
 from pathlib import Path
-from typing import Dict, Any, List, Tuple
+from typing import Dict, Any, List, Tuple, Optional
 
 # Ensure workspace root and Terminal are in sys.path
 root_dir = Path(__file__).resolve().parent.parent
@@ -60,6 +60,13 @@ import pandas as pd
 from numba import njit
 import lightgbm as lgb
 from sklearn.linear_model import LogisticRegression
+from Terminal.Quantitative_Governance import (
+    PortfolioBetaRisk,
+    classify_market_regime,
+    compute_orderflow_features,
+    front_run_offset,
+    regime_allows,
+)
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
@@ -82,6 +89,10 @@ MAX_CONCURRENT     = 2        # Max simultaneous open positions across all sleev
 MAX_S1_CONCURRENT  = 2
 MAX_ORB_CONCURRENT = 1
 COOLDOWN_BARS      = 4        # Minimum bars between consecutive entries on same asset
+MAX_NET_BETA_RISK_FRACTION = 0.025  # BTC-factor stop-risk budget as a fraction of equity
+MAX_GROSS_BETA_RISK_FRACTION = 0.050
+MAX_SPREAD_POINTS = 40.0
+MAX_TICK_AGE_MS = 2_000
 
 CORE_SYMBOLS = [
     "BTCUSDT", "ETHUSDT", "XRPUSDT", "BNBUSDT", "DOGEUSDT",
@@ -94,7 +105,7 @@ COLS_TO_LOAD = [
     "open_time_ms", "open", "high", "low", "close",
     "atr_14", "atr_100", "vwap_zscore", "long_liq_zs", "short_liq_zs",
     "zc_div", "volume_base", "rsi_14", "volume_ratio", "ema_50", "ema_200",
-    "session_vah", "session_val", "taker_volume_ratio", "future_cvd_15m",
+    "session_vah", "session_val", "taker_volume_ratio",
     "spot_cvd_15m", "funding_rate_pct", "basis_index_bps"
 ]
 
@@ -243,7 +254,8 @@ def label_triple_barriers_numba(
         hit = False
         hold_count = horizon_bars
 
-        for j in range(i + 1, i + 1 + horizon_bars):
+        # Include the horizon bar so the time-decay rule is actually evaluated.
+        for j in range(i + 1, i + 1 + horizon_bars + 1):
             if s == 1:
                 adverse_r = (lo[j] - entry_p) / dist
                 favorable_r = (h[j] - entry_p) / dist
@@ -708,7 +720,10 @@ def compile_s1_candidates(data_dir: Path) -> pd.DataFrame:
         vol_ratio = df["volume_ratio"].fillna(1.0).to_numpy(float)
         vol_base = df["volume_base"].replace(0, 1.0)
         zc_norm = (df["zc_div"] / vol_base).clip(-3.0, 3.0).fillna(0.0).to_numpy(float)
-        sf_div = ((df["spot_cvd_15m"] - df["future_cvd_15m"]) / vol_base).clip(-3.0, 3.0).fillna(0.0).to_numpy(float)
+        observed_spot_cvd = df["spot_cvd_15m"].fillna(0.0)
+        # Observed CVD change, normalized by contemporaneous volume; no future
+        # CVD label is allowed to enter the model feature matrix.
+        sf_div = (observed_spot_cvd.diff().fillna(0.0) / vol_base).clip(-3.0, 3.0).to_numpy(float)
         long_liq = df["long_liq_zs"].fillna(0.0).to_numpy(float)
         short_liq = df["short_liq_zs"].fillna(0.0).to_numpy(float)
         s_val = df["session_val"].fillna(df["low"]).to_numpy(float)
@@ -722,12 +737,15 @@ def compile_s1_candidates(data_dir: Path) -> pd.DataFrame:
         vol_strain = np.clip(atr / np.maximum(c, 1e-6), 0.005, 0.10)
         hour = (t // (3600 * 1000)) % 24
 
-        fut_delta = df["future_cvd_15m"].fillna(0.0).to_numpy(float)
+        # Causal guard: the historical file contains fields named
+        # ``future_cvd_15m`` for labeling, but they are never loaded into the
+        # feature frame.  Use only the observed spot CVD series here.
+        observed_delta = observed_spot_cvd.diff().fillna(0.0).to_numpy(float)
         (
             pdh, pdl, pwh, pwl, pmh, pml,
             pdl_dist, pdh_dist, pwl_dist, pwh_dist,
             pdl_sweep_bull, pdh_sweep_bear
-        ) = compute_structural_pivots_and_sweeps(t, h, lo, c, fut_delta, vol_base, vol_ratio, atr)
+        ) = compute_structural_pivots_and_sweeps(t, h, lo, c, observed_delta, vol_base, vol_ratio, atr)
 
         ret = np.diff(np.log(np.maximum(c, 1e-9)), prepend=0.0)
         rv_96 = pd.Series(ret).rolling(96, min_periods=8).std().fillna(0.0).to_numpy(float)
@@ -1608,6 +1626,10 @@ class AI15mMT5Trader:
         min_risk_usd: float = 10.0,
         max_risk_usd: float = 20.0,
         cadence_minute: int = 14,
+        cadence_second: int = 30,
+        entry_mode: str = "market",
+        account_id: Optional[int] = None,
+        max_spread_points: float = MAX_SPREAD_POINTS,
         state_file: str = "Data/mt5_ai_trader_state.json"
     ):
         self.coin = coin.upper()
@@ -1617,13 +1639,21 @@ class AI15mMT5Trader:
         self.min_risk_usd = min_risk_usd
         self.max_risk_usd = max_risk_usd
         self.cadence_minute = cadence_minute
+        self.cadence_second = max(0, min(59, int(cadence_second)))
+        self.entry_mode = entry_mode.lower()
+        if self.entry_mode not in {"market", "limit"}:
+            raise ValueError("entry_mode must be 'market' or 'limit'")
+        self.max_spread_points = max_spread_points
         self.state_file = Path(state_file)
         self.state_file.parent.mkdir(parents=True, exist_ok=True)
         
-        # Connect to MT5 Bridge
+        # Connect to MT5 Bridge.  An account id is optional but, when supplied,
+        # the bridge fails closed on a terminal/account mismatch.
         from Terminal.MT5_Execution_Bridge import MT5ExecutionBridge
-        self.bridge = MT5ExecutionBridge()
+        self.bridge = MT5ExecutionBridge(account_id=account_id)
         self.mt5_symbol = self.bridge.resolve_symbol(self.coin)
+        self.beta_risk = PortfolioBetaRisk(lookback=96, min_observations=24)
+        self.last_cadence_slot = None
         
         # Connect to Market Intelligence Engine
         from Terminal.Market_Intelligence import MarketIntelligenceEngine
@@ -1632,8 +1662,10 @@ class AI15mMT5Trader:
         # State tracking
         self.capital = INITIAL_CAPITAL
         self.peak_capital = INITIAL_CAPITAL
+        self.peak_equity = INITIAL_CAPITAL
         self.paper_positions = []
         self.trade_history = []
+        self.position_r_dist: Dict[str, float] = {}
         self.last_evaluated_bar = -1
         self._load_state()
 
@@ -1658,6 +1690,35 @@ class AI15mMT5Trader:
 
         return float(min(self.max_risk_usd, max(self.min_risk_usd, allocated)))
 
+    def _equity_guard(self, account: Dict[str, Any]) -> Dict[str, Any]:
+        """Enforce a high-water-mark circuit breaker before any new entry."""
+        equity = float(account.get("equity_usd", 0.0) or 0.0)
+        if equity > 0.0:
+            self.peak_equity = max(self.peak_equity, equity)
+        hard_floor = self.peak_equity * (1.0 - HARD_DD_LIMIT / 100.0)
+        drawdown_pct = ((self.peak_equity - equity) / self.peak_equity * 100.0) if self.peak_equity > 0 else 100.0
+        return {
+            "equity_usd": equity,
+            "peak_equity_usd": self.peak_equity,
+            "hard_floor_usd": hard_floor,
+            "drawdown_pct": drawdown_pct,
+            "halted": equity <= 0.0 or equity <= hard_floor,
+            "defense": equity < 4800.0 or drawdown_pct >= DEF_DD_TRIGGER,
+        }
+
+    def _update_beta_history(self, multi_data: Dict[str, Any]) -> None:
+        """Update factor history once per scan using the provider observation time."""
+        for coin, payload in (multi_data or {}).items():
+            price = float(payload.get("price", 0.0) or 0.0)
+            stamp = float(payload.get("timestamp", time.time() * 1000.0) or 0.0)
+            self.beta_risk.update(coin, price, stamp / 1000.0 if stamp > 100_000_000_000 else stamp)
+
+    def _completed_regime(self, symbol: str) -> Dict[str, Any]:
+        try:
+            return classify_market_regime(self.bridge.get_recent_bars(symbol, count=96), lookback=20)
+        except Exception as exc:
+            return {"regime": "UNKNOWN", "available": False, "allow": True, "reason": str(exc)}
+
     def _load_state(self):
         if self.state_file.exists():
             try:
@@ -1665,8 +1726,12 @@ class AI15mMT5Trader:
                     d = json.load(f)
                 self.capital = d.get("capital_usd", INITIAL_CAPITAL)
                 self.peak_capital = d.get("peak_capital_usd", INITIAL_CAPITAL)
+                self.peak_equity = d.get("peak_equity_usd", self.peak_capital)
                 self.paper_positions = d.get("paper_positions", [])
                 self.trade_history = d.get("trade_history", [])
+                self.position_r_dist = {str(k): float(v) for k, v in d.get("position_r_dist", {}).items() if float(v) > 0.0}
+                previous_equity = d.get("last_360_report", {}).get("mt5_account", {}).get("equity", 0.0)
+                self.peak_equity = max(self.peak_equity, float(previous_equity or 0.0), INITIAL_CAPITAL)
             except Exception:
                 pass
 
@@ -1677,13 +1742,19 @@ class AI15mMT5Trader:
             "paper_mode": self.paper_mode,
             "capital_usd": round(self.capital, 2),
             "peak_capital_usd": round(self.peak_capital, 2),
+            "peak_equity_usd": round(self.peak_equity, 2),
             "paper_positions": self.paper_positions,
             "trade_history": self.trade_history[-50:],
+            "position_r_dist": self.position_r_dist,
             "last_360_report": extra_report or {},
             "updated_utc": datetime.datetime.now(datetime.timezone.utc).isoformat()
         }
-        with open(self.state_file, "w", encoding="utf-8") as f:
+        tmp = self.state_file.with_suffix(self.state_file.suffix + ".tmp")
+        with open(tmp, "w", encoding="utf-8") as f:
             json.dump(payload, f, indent=2)
+            f.flush()
+            os.fsync(f.fileno())
+        os.replace(tmp, self.state_file)
 
     def _fetch_hyperdash_live(self) -> dict | None:
         try:
@@ -1755,19 +1826,26 @@ class AI15mMT5Trader:
             profit_usd = pos["profit_usd"]
             curr_px = pos["price_current"] if pos.get("price_current", 0) > 0 else mt5_price
 
-            # Asset-aware precision and offsets
-            digits = 3 if "XRP" in sym else 2
-            offset = max(round(curr_px * 0.001, digits), 0.001 if digits == 3 else 0.05)
-            min_tp_step = 0.005 if digits == 3 else 0.20
+            # Broker metadata, not a hard-coded XRP/SOL branch, determines
+            # precision and the scale-aware wall front-run distance.
+            quote = self.bridge.get_symbol_price(sym) or {}
+            digits = int(quote.get("digits", 2))
+            point = float(quote.get("point", 10 ** (-digits)) or 10 ** (-digits))
+            spread_points = float(quote.get("spread", 0.0) or 0.0)
+            recent_bars = self.bridge.get_recent_bars(sym, count=20)
+            atr = 0.0
+            if recent_bars:
+                atr = float(np.mean([max(0.0, float(b.get("high", 0.0)) - float(b.get("low", 0.0))) for b in recent_bars[-14:]]))
+            offset = front_run_offset(price=curr_px, atr=atr, point=point, spread_points=spread_points)
+            min_tp_step = max(2.0 * point, offset * 0.25)
 
-            # Compute R distance
-            if curr_sl > 0:
-                r_dist = abs(entry - curr_sl)
-            else:
-                r_dist = entry * 0.015
-
-            if r_dist <= 0:
-                r_dist = entry * 0.015
+            # R is immutable after entry.  Recomputing it from the ratcheted
+            # broker SL would make gain_R jump and over-trail the position.
+            key = str(ticket)
+            r_dist = self.position_r_dist.get(key, 0.0)
+            if r_dist <= 0.0:
+                r_dist = max(entry * 0.015, point * 25.0)
+                self.position_r_dist[key] = r_dist
 
             # Current gain in R
             gain_r = ((curr_px - entry) / r_dist) if direction == "LONG" else ((entry - curr_px) / r_dist)
@@ -1952,6 +2030,7 @@ class AI15mMT5Trader:
         utc_now = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
         account = self.bridge.get_account_summary()
         open_positions = self.bridge.get_open_positions()
+        equity_guard = self._equity_guard(account)
         
         # MT5 Price
         sym_price = self.bridge.get_symbol_price(self.mt5_symbol) if self.mt5_symbol else None
@@ -1966,6 +2045,7 @@ class AI15mMT5Trader:
 
         # 0. Multi-Asset Orderflow Screening across All Assets
         multi_data = self.scan_multi_asset_orderflow(["SOL", "BTC", "ETH", "XRP", "BNB"])
+        self._update_beta_history(multi_data)
         self.print_multi_asset_intelligence_matrix(multi_data, utc_now)
 
         # Hyperdash Orderflow for target coin
@@ -1973,20 +2053,19 @@ class AI15mMT5Trader:
         hd_px = float(hd_data.get("price", mt5_px))
         effective_px = mt5_px if mt5_px > 0 else hd_px
 
-        # Microstructure Confluence
+        # Microstructure Confluence.  The feature builder retains raw totals for
+        # telemetry but uses normalized, age-decayed evidence for decisions.
         liqs = hd_data.get("liquidations", {})
         bands = liqs.get("bands", [])
         l3_orders = hd_data.get("l3_orders", [])
         trades = hd_data.get("recent_trades", [])
-
-        below_liq_usd = sum(b.get("amount_usd", 0) for b in bands if b.get("mid_px", 0) < effective_px and abs(b.get("dist_pct", 99)) <= 3.0)
-        above_liq_usd = sum(b.get("amount_usd", 0) for b in bands if b.get("mid_px", 0) > effective_px and abs(b.get("dist_pct", 99)) <= 3.0)
-
+        target_features = compute_orderflow_features(hd_data, effective_px)
+        below_liq_usd = target_features["below_liq_usd_weighted"]
+        above_liq_usd = target_features["above_liq_usd_weighted"]
         whale_buys = sum(t.get("notional_usd", 0) for t in trades if t.get("side") == "BUY" and t.get("is_whale", False))
         whale_sells = sum(t.get("notional_usd", 0) for t in trades if t.get("side") == "SELL" and t.get("is_whale", False))
-
-        resting_bid_whale = any(o.get("side") == "BUY" and o.get("notional_usd", 0) >= 150000 and abs(o.get("dist_pct", 99)) < 0.8 for o in l3_orders)
-        resting_ask_whale = any(o.get("side") == "SELL" and o.get("notional_usd", 0) >= 150000 and abs(o.get("dist_pct", 99)) < 0.8 for o in l3_orders)
+        resting_bid_whale = target_features["l3_bid_count"] > 0
+        resting_ask_whale = target_features["l3_ask_count"] > 0
 
         # 1. Manage Active Positions & Adjust Dynamic SL/TP using live orderflow
         ratchets = self.manage_active_positions(effective_px, utc_now, hd_data)
@@ -2012,51 +2091,14 @@ class AI15mMT5Trader:
             trades = d.get("recent_trades", [])
             l2 = d.get("l2_book", {})
 
-            below_liq = sum(b.get("amount_usd", 0) for b in bands if b.get("mid_px", 0) < px and abs(b.get("dist_pct", 99)) <= 3.0)
-            above_liq = sum(b.get("amount_usd", 0) for b in bands if b.get("mid_px", 0) > px and abs(b.get("dist_pct", 99)) <= 3.0)
+            features = compute_orderflow_features(d, px)
+            below_liq = features["below_liq_usd_weighted"]
+            above_liq = features["above_liq_usd_weighted"]
+            imb = features["l2_imbalance"]
+            long_pts = min(6.0, features["long_score"] + (0.50 if macro_score >= 0.0 else 0.0))
+            short_pts = min(6.0, features["short_score"] + (0.50 if macro_score <= 0.0 else 0.0))
 
-            b_vol = l2.get("bid_volume_usd", 0.0)
-            a_vol = l2.get("ask_volume_usd", 0.0)
-            tot_vol = b_vol + a_vol
-            imb = round((b_vol - a_vol) / tot_vol, 2) if tot_vol > 0 else 0.0
-
-            whale_buys = sum(t.get("notional_usd", 0) for t in trades if t.get("side") == "BUY" and t.get("is_whale", False))
-            whale_sells = sum(t.get("notional_usd", 0) for t in trades if t.get("side") == "SELL" and t.get("is_whale", False))
-
-            resting_bid_whale = any(o.get("side") == "BUY" and o.get("notional_usd", 0) >= 150000 and abs(o.get("dist_pct", 99)) < 0.8 for o in l3_orders)
-            resting_ask_whale = any(o.get("side") == "SELL" and o.get("notional_usd", 0) >= 150000 and abs(o.get("dist_pct", 99)) < 0.8 for o in l3_orders)
-
-            # Long confluence points
-            long_pts = 0
-            if below_liq >= 100000:
-                long_pts += 1
-            if below_liq >= 500000:
-                long_pts += 1
-            if resting_bid_whale:
-                long_pts += 1
-            if imb > 0.15:
-                long_pts += 1
-            if whale_buys > 50000 and whale_buys > whale_sells * 1.5:
-                long_pts += 1
-            if macro_score >= 0.0:
-                long_pts += 1
-
-            # Short confluence points
-            short_pts = 0
-            if above_liq >= 100000:
-                short_pts += 1
-            if above_liq >= 500000:
-                short_pts += 1
-            if resting_ask_whale:
-                short_pts += 1
-            if imb < -0.15:
-                short_pts += 1
-            if whale_sells > 50000 and whale_sells > whale_buys * 1.5:
-                short_pts += 1
-            if macro_score <= 0.0:
-                short_pts += 1
-
-            if long_pts >= 3 and long_pts > short_pts and macro_score >= -0.30:
+            if long_pts >= 3.0 and long_pts > short_pts + 0.25 and macro_score >= -0.30:
                 candidate_setups.append({
                     "coin": scan_coin,
                     "symbol": sym,
@@ -2064,10 +2106,14 @@ class AI15mMT5Trader:
                     "score": long_pts,
                     "price": px,
                     "bands": bands,
+                    "l3_orders": l3_orders,
                     "below_liq": below_liq,
                     "above_liq": above_liq,
+                    "features": features,
+                    "regime": self._completed_regime(sym),
+                    "setup_kind": "LIQUIDATION_FADE",
                     "already_open": is_already_open,
-                    "reason": f"Demand absorption ({below_liq:,.0f} USD) + Imb ({imb:+.2f}) + Whales"
+                    "reason": f"Demand absorption ({below_liq:,.0f} USD) + Imb ({imb:+.2f}) + CVD/tape confluence"
                 })
             elif short_pts >= 3 and short_pts > long_pts and macro_score <= 0.30:
                 candidate_setups.append({
@@ -2077,10 +2123,14 @@ class AI15mMT5Trader:
                     "score": short_pts,
                     "price": px,
                     "bands": bands,
+                    "l3_orders": l3_orders,
                     "below_liq": below_liq,
                     "above_liq": above_liq,
+                    "features": features,
+                    "regime": self._completed_regime(sym),
+                    "setup_kind": "LIQUIDATION_FADE",
                     "already_open": is_already_open,
-                    "reason": f"Supply flush ({above_liq:,.0f} USD) + Imb ({imb:+.2f}) + Whales"
+                    "reason": f"Supply flush ({above_liq:,.0f} USD) + Imb ({imb:+.2f}) + CVD/tape confluence"
                 })
 
         # Sort candidate setups by confluence score descending
@@ -2100,12 +2150,24 @@ class AI15mMT5Trader:
         if blackout_active:
             decision = "BLACKOUT_VETO"
             reason = f"Macro Blackout Active: {blackout_event} within +/- 15 min"
+        elif equity_guard["halted"]:
+            decision = "HARD_DD_VETO"
+            reason = f"Equity {equity_guard['equity_usd']:.2f} <= high-water-mark floor {equity_guard['hard_floor_usd']:.2f}"
         elif len(open_positions) >= MAX_CONCURRENT:
             top_name = f"{candidate_setups[0]['coin']} {candidate_setups[0]['direction']}" if candidate_setups else "None"
             decision = "MAX_EXPOSURE_REACHED"
             reason = f"Max concurrent positions active ({len(open_positions)}/{MAX_CONCURRENT}). Best setup held: {top_name}"
         else:
-            eligible_setups = [c for c in candidate_setups if not c["already_open"]]
+            eligible_setups = []
+            veto_reasons = []
+            for candidate in candidate_setups:
+                if candidate["already_open"]:
+                    continue
+                allowed, regime_reason = regime_allows(candidate.get("regime", {}), candidate.get("setup_kind", "LIQUIDATION_FADE"), candidate["direction"])
+                if allowed:
+                    eligible_setups.append(candidate)
+                else:
+                    veto_reasons.append(f"{candidate['coin']}:{regime_reason}")
             if eligible_setups:
                 best = eligible_setups[0]
                 decision = f"{best['coin']}_{best['direction']}_ENTRY_TRIGGERED"
@@ -2113,55 +2175,97 @@ class AI15mMT5Trader:
 
                 sym_price = self.bridge.get_symbol_price(best["symbol"])
                 if sym_price:
-                    digits = sym_price.get("digits", 2)
-                    pt = sym_price.get("point", 0.001)
-                    exec_px = sym_price["last"] if sym_price["last"] > 0 else best["price"]
-                    
+                    digits = int(sym_price.get("digits", 2))
+                    pt = float(sym_price.get("point", 0.001) or 0.001)
+                    bid = float(sym_price.get("bid", 0.0) or 0.0)
+                    ask = float(sym_price.get("ask", 0.0) or 0.0)
+                    last = float(sym_price.get("last", 0.0) or 0.0)
+                    use_limit_quote = self.entry_mode == "limit" and not self.paper_mode and bid > 0.0 and ask > bid
+                    exec_px = round((bid + ask) / 2.0, digits) if use_limit_quote else (last if last > 0 else best["price"])
+                    recent_bars = self.bridge.get_recent_bars(best["symbol"], count=20)
+                    atr = float(np.mean([max(0.0, b["high"] - b["low"]) for b in recent_bars[-14:]])) if recent_bars else 0.0
+
                     # Strictly proportional risk distance (1.50% of price, minimum 25 points)
                     r_dist = max(round(exec_px * 0.015, digits), pt * 25.0)
                     risk_budget = self.calculate_dynamic_risk(best["score"], macro_score, account.get("equity_usd", 5000.0))
-                    contract_size = sym_price.get("contract_size", 100.0)
+                    contract_size = float(sym_price.get("contract_size", 100.0) or 100.0)
                     units = risk_budget / r_dist
-                    calc_lot = round(units / contract_size, 2)
-                    calc_lot = max(sym_price["min_lot"], min(sym_price["max_lot"], calc_lot))
+                    calc_lot = units / contract_size
+                    calc_lot = max(float(sym_price["min_lot"]), min(float(sym_price["max_lot"]), calc_lot))
+                    calc_lot = round(calc_lot, 8)
 
-                    sl_px = round(exec_px - r_dist if best["direction"] == "LONG" else exec_px + r_dist, digits)
-                    
-                    # Proportional front-run offset (0.10% of price, minimum 2 points)
-                    offset = max(round(exec_px * 0.001, digits), pt * 2.0)
-
-                    # Dynamic TP aligned with orderflow liquidation walls & L3 resting orders
-                    tp_px = round(exec_px + 2.50 * r_dist if best["direction"] == "LONG" else exec_px - 2.50 * r_dist, digits)
-                    if best["direction"] == "LONG":
-                        c_tp = [round(b.get("mid_px", 0.0) - offset, digits) for b in best["bands"] if b.get("mid_px", 0.0) > exec_px + 1.8 * r_dist and b.get("amount_usd", 0.0) >= 200000]
-                        if c_tp:
-                            c_tp.sort()
-                            tp_px = min(tp_px, c_tp[0])
+                    # Beta is applied to stop-risk, not raw CFD notional, so
+                    # leverage cannot make the hedge gate meaningless.
+                    contract_sizes = {p.get("symbol", ""): float((self.bridge.get_symbol_price(p.get("symbol", "")) or {}).get("contract_size", 1.0) or 1.0) for p in open_positions if p.get("symbol")}
+                    contract_sizes[best["symbol"]] = contract_size
+                    beta_check = self.beta_risk.check_candidate(
+                        open_positions,
+                        asset=best["coin"], direction=best["direction"], risk_usd=risk_budget,
+                        equity_usd=account.get("equity_usd", 0.0),
+                        max_net_fraction=MAX_NET_BETA_RISK_FRACTION,
+                        max_gross_fraction=MAX_GROSS_BETA_RISK_FRACTION,
+                        contract_sizes=contract_sizes,
+                    )
+                    if not beta_check["allowed"]:
+                        decision = "BETA_RISK_VETO"
+                        reason = f"{beta_check['reason']}: projected net {beta_check['projected_net_beta_risk_usd']:.2f} / gross {beta_check['projected_gross_beta_risk_usd']:.2f} USD"
+                        trade_details = {"beta_check": beta_check, "candidate": best["coin"], "direction": best["direction"]}
                     else:
-                        c_tp = [round(b.get("mid_px", 0.0) + offset, digits) for b in best["bands"] if b.get("mid_px", 0.0) < exec_px - 1.8 * r_dist and b.get("amount_usd", 0.0) >= 200000]
-                        if c_tp:
-                            c_tp.sort(reverse=True)
-                            tp_px = max(tp_px, c_tp[0])
+                        sl_px = round(exec_px - r_dist if best["direction"] == "LONG" else exec_px + r_dist, digits)
+                        offset = front_run_offset(
+                            price=exec_px, atr=atr, point=pt,
+                            spread_points=float(sym_price.get("spread", 0.0) or 0.0),
+                        )
 
-                    trade_details = {
-                        "coin": best["coin"],
-                        "symbol": best["symbol"],
-                        "direction": best["direction"],
-                        "volume": calc_lot,
-                        "price": exec_px,
-                        "sl": sl_px,
-                        "tp": tp_px,
-                        "risk_usd": risk_budget,
-                        "conviction_score": best["score"],
-                        "paper": self.paper_mode
-                    }
+                        # Dynamic TP aligned with orderflow liquidation walls & L3 resting orders
+                        tp_px = round(exec_px + 2.50 * r_dist if best["direction"] == "LONG" else exec_px - 2.50 * r_dist, digits)
+                        if best["direction"] == "LONG":
+                            c_tp = [round(b.get("mid_px", 0.0) - offset, digits) for b in best["bands"] if b.get("mid_px", 0.0) > exec_px + 1.8 * r_dist and b.get("amount_usd", 0.0) >= 200000]
+                            c_tp += [round(o.get("price", 0.0) - offset, digits) for o in best.get("l3_orders", []) if o.get("side") in {"SELL", "ASK"} and o.get("price", 0.0) > exec_px + 1.8 * r_dist and o.get("notional_usd", 0.0) >= 150000]
+                            if c_tp:
+                                c_tp.sort()
+                                tp_px = min(tp_px, c_tp[0])
+                        else:
+                            c_tp = [round(b.get("mid_px", 0.0) + offset, digits) for b in best["bands"] if b.get("mid_px", 0.0) < exec_px - 1.8 * r_dist and b.get("amount_usd", 0.0) >= 200000]
+                            c_tp += [round(o.get("price", 0.0) + offset, digits) for o in best.get("l3_orders", []) if o.get("side") in {"BUY", "BID"} and o.get("price", 0.0) < exec_px - 1.8 * r_dist and o.get("notional_usd", 0.0) >= 150000]
+                            if c_tp:
+                                c_tp.sort(reverse=True)
+                                tp_px = max(tp_px, c_tp[0])
 
-                    if self.paper_mode:
-                        print(f"  📝 [{utc_now}] PAPER TRADE LOGGED: {trade_details['direction']} {calc_lot} lots {trade_details['symbol']} at {exec_px:.2f} USD | SL: {sl_px:.2f} | TP: {tp_px:.2f} | Dynamic Risk: {risk_budget:.2f} USD (Conviction: {best['score']}/6)", flush=True)
-                        self.paper_positions.append(trade_details)
-                    else:
-                        print(f"  🚀 [{utc_now}] LIVE MT5 EXECUTION: {trade_details['direction']} {calc_lot} lots {trade_details['symbol']} at {exec_px:.2f} USD | SL: {sl_px:.2f} | TP: {tp_px:.2f} | Dynamic Risk: {risk_budget:.2f} USD (Conviction: {best['score']}/6)", flush=True)
-                        self.bridge.execute_market_order(trade_details['symbol'], trade_details['direction'], calc_lot, sl_px, tp_px)
+                        trade_details = {
+                            "coin": best["coin"],
+                            "symbol": best["symbol"],
+                            "direction": best["direction"],
+                            "volume": calc_lot,
+                            "price": exec_px,
+                            "sl": sl_px,
+                            "tp": tp_px,
+                            "risk_usd": risk_budget,
+                            "conviction_score": best["score"],
+                            "paper": self.paper_mode
+                        }
+
+                        if self.paper_mode:
+                            print(f"  📝 [{utc_now}] PAPER TRADE LOGGED: {trade_details['direction']} {calc_lot} lots {trade_details['symbol']} at {exec_px:.2f} USD | SL: {sl_px:.2f} | TP: {tp_px:.2f} | Dynamic Risk: {risk_budget:.2f} USD (Conviction: {best['score']}/6)", flush=True)
+                            self.paper_positions.append(trade_details)
+                        else:
+                            print(f"  🚀 [{utc_now}] LIVE MT5 {self.entry_mode.upper()} EXECUTION: {trade_details['direction']} {calc_lot} lots {trade_details['symbol']} at {exec_px:.2f} USD | SL: {sl_px:.2f} | TP: {tp_px:.2f} | Dynamic Risk: {risk_budget:.2f} USD (Conviction: {best['score']}/6)", flush=True)
+                            if self.entry_mode == "limit":
+                                execution_result = self.bridge.stage_limit_order(
+                                    trade_details['symbol'], trade_details['direction'], calc_lot, exec_px, sl_px, tp_px,
+                                    expiration_seconds=30, max_spread_points=self.max_spread_points,
+                                )
+                            else:
+                                execution_result = self.bridge.execute_market_order(
+                                    trade_details['symbol'], trade_details['direction'], calc_lot, sl_px, tp_px,
+                                    max_spread_points=self.max_spread_points,
+                                    deviation_points=20,
+                                    max_tick_age_ms=MAX_TICK_AGE_MS,
+                                )
+                            trade_details["execution_result"] = execution_result
+            elif 'veto_reasons' in locals() and veto_reasons:
+                decision = "REGIME_VETO"
+                reason = "; ".join(veto_reasons)
 
         report = {
             "timestamp": utc_now,
@@ -2186,8 +2290,15 @@ class AI15mMT5Trader:
                 "whale_buys_usd": whale_buys,
                 "whale_sells_usd": whale_sells,
                 "resting_bid_whale": resting_bid_whale,
-                "resting_ask_whale": resting_ask_whale
+                "resting_ask_whale": resting_ask_whale,
+                "l2_imbalance": target_features["l2_imbalance"],
+                "tick_imbalance": target_features["tick_imbalance"],
+                "whale_imbalance": target_features["whale_imbalance"],
+                "cvd_divergence": target_features["cvd_divergence"],
+                "target_long_score": target_features["long_score"],
+                "target_short_score": target_features["short_score"]
             },
+            "risk_governance": equity_guard,
             "ratchet_updates": ratchets,
             "decision": decision,
             "reason": reason,
@@ -2201,8 +2312,8 @@ class AI15mMT5Trader:
         print("\n" + "=" * 80, flush=True)
         print(f"AUTONOMOUS 15-MINUTE CANDLE AI TRADER & MT5 EXECUTION ENGINE [{self.coin}]", flush=True)
         print(f"Target MT5 Symbol: {self.mt5_symbol} | Mode: {'PAPER (MT5 Price)' if self.paper_mode else 'LIVE MT5'}", flush=True)
-        print(f"Cadence: Evaluates at minute {self.cadence_minute} of every 15m candle (:14, :29, :44, :59)", flush=True)
-        print(f"Macro Gate: Active (+/- 15m blackout on CPI, FOMC, NFP) | 3-Stage Ratchets: ON", flush=True)
+        print(f"Cadence: evaluates at :{self.cadence_minute:02d}:{self.cadence_second:02d} of every 15m candle | Entry mode: {self.entry_mode}", flush=True)
+        print(f"Macro Gate: Active (+/- 15m blackout on CPI, FOMC, NFP) | Beta/regime gates: ON | 3-Stage Ratchets: ON", flush=True)
         print("=" * 80 + "\n", flush=True)
 
         cycle = 0
@@ -2211,10 +2322,12 @@ class AI15mMT5Trader:
             now = datetime.datetime.now(datetime.timezone.utc)
             minute_mod = now.minute % 15
 
-            is_cadence_time = (minute_mod == self.cadence_minute)
+            slot_key = (now.date().isoformat(), now.hour, now.minute)
+            is_cadence_time = (minute_mod == self.cadence_minute and now.second >= self.cadence_second and slot_key != self.last_cadence_slot)
             
-            # Run immediate evaluation on cycle 1 or whenever cadence triggers
-            if cycle == 1 or is_cadence_time:
+            # Cycle one remains an explicit health/verification pass; subsequent
+            # full scans are one-shot at :14:30/:29:30/:44:30/:59:30.
+            if (cycle == 1 and minute_mod != self.cadence_minute) or is_cadence_time:
                 print(f"[{now.strftime('%H:%M:%S UTC')}] >>> EXECUTING 360-DEGREE 15M CANDLE PASS (Minute {now.minute}: {minute_mod}/15m) <<<", flush=True)
                 rep = self.evaluate_360_degree_pass()
                 print(f"  Account Equity: {rep['mt5_account']['equity']:,.2f} USD | Open MT5 Positions: {rep['mt5_account']['open_positions_count']}", flush=True)
@@ -2223,6 +2336,7 @@ class AI15mMT5Trader:
                 print(f"  Decision: [{rep['decision']}] - {rep['reason']}\n", flush=True)
 
                 if is_cadence_time:
+                    self.last_cadence_slot = slot_key
                     # Sleep 60s so we don't re-trigger in the same minute
                     time.sleep(60)
 
@@ -2260,6 +2374,10 @@ if __name__ == "__main__":
     parser.add_argument("--min-risk", type=float, default=10.0, help="Minimum dynamic risk in USD (default: 10.0 USD)")
     parser.add_argument("--max-risk", type=float, default=20.0, help="Maximum dynamic risk in USD (default: 20.0 USD)")
     parser.add_argument("--cadence-minute", type=int, default=14, help="Minute of 15m candle to evaluate (:14, :29, :44, :59)")
+    parser.add_argument("--cadence-second", type=int, default=30, help="Second within the cadence minute for pre-staging (default: 30)")
+    parser.add_argument("--entry-mode", choices=["market", "limit"], default="market", help="Market with spread guard, or opt-in passive inside-spread limit")
+    parser.add_argument("--account-id", type=int, default=None, help="Optional MT5 login allow-list; mismatch fails closed")
+    parser.add_argument("--max-spread-points", type=float, default=MAX_SPREAD_POINTS, help="Reject market/limit entries above this spread")
     args = parser.parse_args()
 
     if args.mode == "backtest":
@@ -2276,7 +2394,11 @@ if __name__ == "__main__":
             risk_usd=args.risk,
             min_risk_usd=args.min_risk,
             max_risk_usd=args.max_risk,
-            cadence_minute=args.cadence_minute
+            cadence_minute=args.cadence_minute,
+            cadence_second=args.cadence_second,
+            entry_mode=args.entry_mode,
+            account_id=args.account_id,
+            max_spread_points=args.max_spread_points,
         )
         trader.run(max_cycles=args.ticks)
 

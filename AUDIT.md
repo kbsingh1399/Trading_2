@@ -47,19 +47,10 @@ Maintenance cushion should be computed from provider tiered maintenance margin a
 5. Model transaction costs, queue position, latency, funding, liquidation slippage, partial fills, and exchange outages. Promote only after paper and shadow execution.
 6. Run all 20 engines from one feature-versioned Parquet contract and report calibration, turnover, capacity, PnL attribution, and degradation by asset/liquidity bucket.
 
-## Pull commands
+## This session's expanded audit
 
-This session's branch is `arena/01a100cd-trading-2`:
+The implementation review, scorecard, formulas for Questions 1–5, and validation matrix are in:
 
-```bash
-git fetch origin
-git checkout arena/01a100cd-trading-2
-git pull --ff-only origin arena/01a100cd-trading-2
-```
+`docs/audits/institutional-quant-audit-2026-10-04.md`
 
-For a local copy that has only `main`, inspect or merge the reviewed branch rather than assuming it is safe to overwrite production:
-
-```bash
-git fetch origin
-git checkout -b arena-terminal-audit origin/arena/01a100cd-trading-2
-```
+The reviewed work is on the fixed Arena session branch `arena/01a10721-trading-2`. The branch is not a live-trading approval; use paper/shadow validation and the promotion gates in the expanded audit before enabling unattended entries.

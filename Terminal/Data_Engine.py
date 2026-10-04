@@ -116,7 +116,9 @@ class ParquetDataEngine:
                 self.df[c] = pd.to_numeric(self.df[c], errors='coerce').fillna(0.0)
 
         # 4. Detect / Compute ATAS Orderflow Delta & CVD
-        self.delta_col = self._match_col(['delta', 'net_delta', 'net_delta_coin', 'future_cvd_15m'], lower_cols)
+        # Never use a column labelled future_* as a live/visualization delta;
+        # those fields are valid labels only in a causal research pipeline.
+        self.delta_col = self._match_col(['delta', 'net_delta', 'net_delta_coin', 'spot_cvd_15m'], lower_cols)
         self.cvd_col = self._match_col(['cvd', 'future_cvd_lifetime', 'future_cvd_session', 'spot_cvd_lifetime'], lower_cols)
 
         if self.delta_col and self.delta_col in self.df.columns:
