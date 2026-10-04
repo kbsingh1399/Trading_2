@@ -1755,14 +1755,19 @@ class AI15mMT5Trader:
             profit_usd = pos["profit_usd"]
             curr_px = pos["price_current"] if pos.get("price_current", 0) > 0 else mt5_price
 
+            # Asset-aware precision and offsets
+            digits = 3 if "XRP" in sym else 2
+            offset = max(round(curr_px * 0.001, digits), 0.001 if digits == 3 else 0.05)
+            min_tp_step = 0.005 if digits == 3 else 0.20
+
             # Compute R distance
             if curr_sl > 0:
                 r_dist = abs(entry - curr_sl)
             else:
-                r_dist = entry * 0.0075
+                r_dist = entry * 0.015
 
             if r_dist <= 0:
-                r_dist = entry * 0.0075
+                r_dist = entry * 0.015
 
             # Current gain in R
             gain_r = ((curr_px - entry) / r_dist) if direction == "LONG" else ((entry - curr_px) / r_dist)
@@ -1775,17 +1780,17 @@ class AI15mMT5Trader:
                 trail_r = max(1.50, gain_r - 0.65)
                 calc_sl = (entry + trail_r * r_dist) if direction == "LONG" else (entry - trail_r * r_dist)
                 if (direction == "LONG" and calc_sl > curr_sl) or (direction == "SHORT" and (curr_sl == 0 or calc_sl < curr_sl)):
-                    target_sl = calc_sl
+                    target_sl = round(calc_sl, digits)
                     ratchet_phase = "P2_RUNNER_TRAIL"
             elif gain_r >= 1.50:
                 calc_sl = (entry + 0.85 * r_dist) if direction == "LONG" else (entry - 0.85 * r_dist)
                 if (direction == "LONG" and calc_sl > curr_sl) or (direction == "SHORT" and (curr_sl == 0 or calc_sl < curr_sl)):
-                    target_sl = calc_sl
+                    target_sl = round(calc_sl, digits)
                     ratchet_phase = "P1_PROFIT_LOCK"
             elif gain_r >= 0.80:
                 calc_sl = (entry + 0.15 * r_dist) if direction == "LONG" else (entry - 0.15 * r_dist)
                 if (direction == "LONG" and calc_sl > curr_sl) or (direction == "SHORT" and (curr_sl == 0 or calc_sl < curr_sl)):
-                    target_sl = calc_sl
+                    target_sl = round(calc_sl, digits)
                     ratchet_phase = "P0_BE_LOCK"
 
             # 2. Dynamic Take Profit Intelligence via Orderflow Liquidity Walls
@@ -1806,8 +1811,8 @@ class AI15mMT5Trader:
                 if candidate_walls:
                     candidate_walls.sort(key=lambda x: x[0])
                     nearest_wall_px = candidate_walls[0][0]
-                    wall_tp = round(nearest_wall_px - 0.10, 2)
-                    if wall_tp >= entry + 2.20 * r_dist and abs(wall_tp - curr_tp) >= 0.20:
+                    wall_tp = round(nearest_wall_px - offset, digits)
+                    if wall_tp >= entry + 1.80 * r_dist and abs(wall_tp - curr_tp) >= min_tp_step:
                         target_tp = wall_tp
             else:
                 candidate_walls = []
@@ -1824,13 +1829,13 @@ class AI15mMT5Trader:
                 if candidate_walls:
                     candidate_walls.sort(key=lambda x: x[0], reverse=True)
                     nearest_wall_px = candidate_walls[0][0]
-                    wall_tp = round(nearest_wall_px + 0.10, 2)
-                    if wall_tp <= entry - 2.20 * r_dist and abs(wall_tp - curr_tp) >= 0.20:
+                    wall_tp = round(nearest_wall_px + offset, digits)
+                    if wall_tp <= entry - 1.80 * r_dist and abs(wall_tp - curr_tp) >= min_tp_step:
                         target_tp = wall_tp
 
             # Apply modification if SL or TP changed
-            sl_changed = (round(target_sl, 2) != round(curr_sl, 2))
-            tp_changed = (round(target_tp, 2) != round(curr_tp, 2) and target_tp > 0)
+            sl_changed = (round(target_sl, digits) != round(curr_sl, digits))
+            tp_changed = (round(target_tp, digits) != round(curr_tp, digits) and target_tp > 0)
 
             if sl_changed or tp_changed:
                 print(f"  ⚡ [{utc_now}] DYNAMIC SL/TP ADJUSTMENT: Ticket {ticket} ({sym} {direction}) Gain={gain_r:+.2f}R ({profit_usd:+,.2f} USD)", flush=True)
@@ -2096,25 +2101,32 @@ class AI15mMT5Trader:
 
                 sym_price = self.bridge.get_symbol_price(best["symbol"])
                 if sym_price:
+                    digits = sym_price.get("digits", 2)
+                    pt = sym_price.get("point", 0.001)
                     exec_px = sym_price["last"] if sym_price["last"] > 0 else best["price"]
-                    r_dist = max(exec_px * 0.0075, 0.50)
+                    
+                    # Strictly proportional risk distance (1.50% of price, minimum 25 points)
+                    r_dist = max(round(exec_px * 0.015, digits), pt * 25.0)
                     risk_budget = self.calculate_dynamic_risk(best["score"], macro_score, account.get("equity_usd", 5000.0))
                     contract_size = sym_price.get("contract_size", 100.0)
                     units = risk_budget / r_dist
                     calc_lot = round(units / contract_size, 2)
                     calc_lot = max(sym_price["min_lot"], min(sym_price["max_lot"], calc_lot))
 
-                    sl_px = exec_px - r_dist if best["direction"] == "LONG" else exec_px + r_dist
+                    sl_px = round(exec_px - r_dist if best["direction"] == "LONG" else exec_px + r_dist, digits)
+                    
+                    # Proportional front-run offset (0.10% of price, minimum 2 points)
+                    offset = max(round(exec_px * 0.001, digits), pt * 2.0)
 
-                    # Dynamic TP aligned with orderflow liquidation walls
-                    tp_px = exec_px + 3.00 * r_dist if best["direction"] == "LONG" else exec_px - 3.00 * r_dist
+                    # Dynamic TP aligned with orderflow liquidation walls & L3 resting orders
+                    tp_px = round(exec_px + 2.50 * r_dist if best["direction"] == "LONG" else exec_px - 2.50 * r_dist, digits)
                     if best["direction"] == "LONG":
-                        c_tp = [b.get("mid_px", 0.0) - 0.10 for b in best["bands"] if b.get("mid_px", 0.0) > exec_px + 2.0 * r_dist and b.get("amount_usd", 0.0) >= 200000]
+                        c_tp = [round(b.get("mid_px", 0.0) - offset, digits) for b in best["bands"] if b.get("mid_px", 0.0) > exec_px + 1.8 * r_dist and b.get("amount_usd", 0.0) >= 200000]
                         if c_tp:
                             c_tp.sort()
                             tp_px = min(tp_px, c_tp[0])
                     else:
-                        c_tp = [b.get("mid_px", 0.0) + 0.10 for b in best["bands"] if b.get("mid_px", 0.0) < exec_px - 2.0 * r_dist and b.get("amount_usd", 0.0) >= 200000]
+                        c_tp = [round(b.get("mid_px", 0.0) + offset, digits) for b in best["bands"] if b.get("mid_px", 0.0) < exec_px - 1.8 * r_dist and b.get("amount_usd", 0.0) >= 200000]
                         if c_tp:
                             c_tp.sort(reverse=True)
                             tp_px = max(tp_px, c_tp[0])
@@ -2125,8 +2137,8 @@ class AI15mMT5Trader:
                         "direction": best["direction"],
                         "volume": calc_lot,
                         "price": exec_px,
-                        "sl": round(sl_px, 2),
-                        "tp": round(tp_px, 2),
+                        "sl": sl_px,
+                        "tp": tp_px,
                         "risk_usd": risk_budget,
                         "conviction_score": best["score"],
                         "paper": self.paper_mode
