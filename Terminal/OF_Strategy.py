@@ -94,6 +94,14 @@ MAX_GROSS_BETA_RISK_FRACTION = 0.050
 MAX_SPREAD_POINTS = 40.0
 MAX_TICK_AGE_MS = 2_000
 
+DEFAULT_SYMBOL_MAX_SPREAD_POINTS: Dict[str, float] = {
+    "SOLUSD.p": 50.0,     # Normal: 20-30 pts (0.20-0.30 USD ~20 bps)
+    "XRPUSD.pi": 35.0,    # Normal: 5-15 pts (0.005-0.015 USD ~33-100 bps)
+    "BTCUSD.pi": 2500.0,  # Normal: 1200-1800 pts (12.0-18.0 USD ~1.75 bps)
+    "ETHUSD.pi": 500.0,   # Normal: 200-350 pts (2.0-3.5 USD ~10 bps)
+    "BNBUSD.p": 150.0,    # Normal: 50-80 pts (0.5-0.8 USD ~8 bps)
+}
+
 CORE_SYMBOLS = [
     "BTCUSDT", "ETHUSDT", "XRPUSDT", "BNBUSDT", "DOGEUSDT",
     "ADAUSDT", "TRXUSDT", "LINKUSDT", "DOTUSDT", "LTCUSDT", "BCHUSDT"
@@ -1669,6 +1677,12 @@ class AI15mMT5Trader:
         self.last_evaluated_bar = -1
         self._load_state()
 
+    def get_symbol_max_spread_points(self, symbol: str) -> float:
+        """Return calibrated max spread points for a symbol, respecting explicit CLI overrides."""
+        if self.max_spread_points != MAX_SPREAD_POINTS:
+            return self.max_spread_points
+        return DEFAULT_SYMBOL_MAX_SPREAD_POINTS.get(symbol, self.max_spread_points)
+
     def calculate_dynamic_risk(self, conviction_score: int, macro_score: float, current_equity: float) -> float:
         """
         Dynamically calculates risk budget between min_risk_usd (10.00 USD) and max_risk_usd (20.00 USD).
@@ -2250,15 +2264,16 @@ class AI15mMT5Trader:
                             self.paper_positions.append(trade_details)
                         else:
                             print(f"  🚀 [{utc_now}] LIVE MT5 {self.entry_mode.upper()} EXECUTION: {trade_details['direction']} {calc_lot} lots {trade_details['symbol']} at {exec_px:.2f} USD | SL: {sl_px:.2f} | TP: {tp_px:.2f} | Dynamic Risk: {risk_budget:.2f} USD (Conviction: {best['score']}/6)", flush=True)
+                            sym_max_spread = self.get_symbol_max_spread_points(trade_details['symbol'])
                             if self.entry_mode == "limit":
                                 execution_result = self.bridge.stage_limit_order(
                                     trade_details['symbol'], trade_details['direction'], calc_lot, exec_px, sl_px, tp_px,
-                                    expiration_seconds=30, max_spread_points=self.max_spread_points,
+                                    expiration_seconds=30, max_spread_points=sym_max_spread,
                                 )
                             else:
                                 execution_result = self.bridge.execute_market_order(
                                     trade_details['symbol'], trade_details['direction'], calc_lot, sl_px, tp_px,
-                                    max_spread_points=self.max_spread_points,
+                                    max_spread_points=sym_max_spread,
                                     deviation_points=20,
                                     max_tick_age_ms=MAX_TICK_AGE_MS,
                                 )
