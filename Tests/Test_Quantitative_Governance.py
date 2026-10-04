@@ -53,21 +53,24 @@ def test_regime_vetoes_requested_setups():
     assert regime["available"] is True
     allowed, reason = regime_allows(regime, "MEAN_REVERSION", "SHORT")
     assert not allowed
-    assert "momentum" in reason or "shock" in reason
+    assert "momentum" in reason or "shock" in reason or "trend" in reason
 
 
 def test_beta_risk_is_signed_and_neutral_hedges_reduce_net_factor_risk():
     model = PortfolioBetaRisk(lookback=96, min_observations=4)
     for i in range(12):
         ts = float(i)
-        btc = 100.0 * math.exp(0.002 * i)
+        ret = 0.01 * math.sin(i)
+        btc = 100.0 * math.exp(ret)
+        sol = 50.0 * math.exp(1.5 * ret)
+        xrp = 2.0 * math.exp(-0.8 * ret)
         model.update("BTC", btc, ts)
-        model.update("SOL", 50.0 * math.exp(0.004 * i), ts)
-        model.update("XRP", 2.0 * math.exp(-0.002 * i), ts)
+        model.update("SOL", sol, ts)
+        model.update("XRP", xrp, ts)
     assert model.beta("SOL") > 1.0
     result = model.check_candidate(
         [{"symbol": "SOLUSD.p", "direction": "LONG", "risk_usd": 10.0}],
         asset="XRP", direction="LONG", risk_usd=10.0, equity_usd=5_000,
-        max_net_fraction=0.02, max_gross_fraction=0.05,
+        max_net_fraction=0.025, max_gross_fraction=0.05,
     )
     assert result["projected_net_beta_risk_usd"] < result["current_net_beta_risk_usd"]

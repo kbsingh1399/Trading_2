@@ -376,7 +376,7 @@ def regime_allows(regime: Mapping[str, Any], setup_kind: str, direction: str) ->
         return True, "regime_unknown_no_veto"
     if setup == "BREAKOUT" and name in {"CHOP", "RANGE"}:
         return False, f"breakout_veto_{name.lower()}"
-    if setup in {"MEAN_REVERSION", "LIQUIDATION_FADE", "ORDERFLOW_FADE"} and name in {"MOMENTUM", "SHOCK"}:
+    if setup in {"MEAN_REVERSION", "LIQUIDATION_FADE", "ORDERFLOW_FADE"} and name in {"MOMENTUM", "SHOCK", "TREND"}:
         return False, f"mean_reversion_veto_{name.lower()}"
     return True, "regime_permitted"
 
