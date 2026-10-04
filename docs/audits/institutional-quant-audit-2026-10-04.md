@@ -299,6 +299,17 @@ python Terminal/OF_Strategy.py --mode mt5-trader --coin SOL --live \
 
 The account id is intentionally optional in code but should be mandatory in a live deployment configuration. Never put broker passwords or tokens in the repository or command history.
 
+## Gate 3 and Gate 4 implementation
+
+The promotion harnesses requested in Round 2 are implemented in:
+
+- `Terminal/Orderflow_Replay.py`: deterministic cached-snapshot replay with explicit `observed_at`/`decision_at`, stable SHA-256 input/source hashes, `FRESH`/`DECAYED`/`STALE`/`NO_OBSERVATION`/`FUTURE_OBSERVATION` states, and exponential quote-age decay.
+- `Terminal/Execution_Simulator.py`: deterministic market-versus-passive-limit simulator with route latency, quote-age, deviation, spread guard, expiry, partial liquidity, and a configurable 5x candle-open spread spike.
+- `Tests/Test_Gates.py`: replay determinism, stale/future fail-closed behavior, market rejection under spread stress, pending-limit cancellation, and favorable-retrace comparison.
+- `docs/gates/gate-3-4-validation.md`: snapshot/quote contracts and runbook.
+
+These gates raise reproducibility and observability, but not to an 8/10 production claim by themselves. The simulator is a conservative broker-policy model, not proof of Blueberry queue priority or matching behavior. Production promotion still requires broker-captured quote/fill fixtures and measured slippage/fill-rate results.
+
 ## Required validation matrix before unattended live entry
 
 1. **Causal replay:** assert no feature column, including CVD, has availability time after the decision time. Add a schema test that rejects names beginning with `future_` outside label code.
