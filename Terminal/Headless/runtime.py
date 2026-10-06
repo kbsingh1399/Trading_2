@@ -128,6 +128,76 @@ class HeadlessRuntime:
                 reasons.append("no_fresh_book")
         return (not reasons), reasons
 
+    # -------------------------------------------------------- market state
+    def market_state(self, assets=None):
+        """Signed-read endpoint payload: live positions, pending orders,
+        quotes and per-asset orderflow snapshots for the brain's
+        deliberation. Read-only; no secrets; no account credentials."""
+        now = self.clock()
+        positions = []
+        if self.bridge is not None:
+            try:
+                positions = self.bridge.get_open_positions() or []
+            except Exception as exc:                      # noqa: BLE001
+                positions = [{"error": repr(exc)}]
+        pending = []
+        if self.bridge is not None:
+            try:
+                pending = self.bridge.get_pending_orders() or []
+            except Exception:                             # noqa: BLE001
+                pending = []
+        quotes = {}
+        symbols = {p.get("symbol") for p in positions if p.get("symbol")}
+        symbols |= {o.get("symbol") for o in pending if o.get("symbol")}
+        trader_symbols = getattr(getattr(self, "trader", None), "symbols", {}) or {}
+        for asset in (assets or self.assets):
+            symbol = trader_symbols.get(asset)
+            if symbol:
+                symbols.add(symbol)
+        if self.bridge is not None:
+            for symbol in sorted(s for s in symbols if s):
+                try:
+                    quote = self.bridge.get_symbol_price(symbol)
+                    if quote:
+                        # Full contract spec so the brain can size locally
+                        # (the muscle re-enforces every cap on arrival).
+                        quotes[symbol] = {k: quote.get(k) for k in
+                                          ("bid", "ask", "tick_size", "contract_size",
+                                           "min_lot", "step_lot", "digits")}
+                except Exception:                         # noqa: BLE001
+                    continue
+        account = {}
+        if self.bridge is not None:
+            try:
+                summary = self.bridge.get_account_summary() or {}
+                account = {"balance_usd": summary.get("balance"),
+                           "equity_usd": summary.get("equity_usd"),
+                           "margin_free_usd": summary.get("margin_free_usd")}
+            except Exception:                             # noqa: BLE001
+                account = {}
+        orderflow = {}
+        if self.factory is not None:
+            for asset in (assets or self.assets):
+                try:
+                    book = self.factory.bus.book(asset) or {}
+                    ts = number(book.get("ts"), 0.0)
+                    if ts > 0 and 0.0 <= now - ts <= 120.0:
+                        snap = self.factory.bus.snapshot(asset, now)
+                        snap["atr"] = self.factory._atr(asset)
+                        orderflow[asset] = snap
+                except Exception:                         # noqa: BLE001
+                    continue
+        macro = {}
+        try:
+            if self.trader is not None and hasattr(self.trader.intel, "check_macro_blackout"):
+                blackout, event, _minutes = self.trader.intel.check_macro_blackout()
+                macro = {"blackout_active": bool(blackout), "blackout_event": event}
+        except Exception:                                 # noqa: BLE001
+            macro = {"blackout_active": True, "blackout_event": "MACRO_UNAVAILABLE"}
+        return {"service": SERVICE_VERSION, "as_of": now, "positions": positions,
+                "pending_orders": pending, "quotes": quotes, "symbols": trader_symbols,
+                "orderflow": orderflow, "macro": macro, "account": account}
+
     # --------------------------------------------------------------- status
     def status(self):
         """Muscle health for the brain: bridge, data pillars, sealed quality,

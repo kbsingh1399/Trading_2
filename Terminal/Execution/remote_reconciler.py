@@ -52,7 +52,7 @@ TEST_LIMIT_RISK_CAP_USD = 10.00        # strictly <=, preserving the floor cushi
 GENERIC_RISK_CAP_USD = 20.00
 REPLAY_WINDOW_SEC = 30.0
 COMMAND_TYPES = ("STAGE_TEST_LIMIT", "STAGE_ORDER", "MODIFY_SLTP",
-                 "CANCEL_ORDER", "PURGE_TEST_LIMITS")
+                 "CANCEL_ORDER", "CLOSE_POSITION", "PURGE_TEST_LIMITS")
 
 
 # --------------------------------------------------------------- signing
@@ -281,6 +281,16 @@ def apply_command(bridge, command: Dict, *, clock: Callable = time.time,
         tp = params.get("tp")
         return bridge.modify_position_sltp(ticket, sl,
                                            None if tp is None else float(number(tp, 0.0)))
+
+    if type_ == "CLOSE_POSITION":
+        ticket = int(number(params.get("ticket"), 0))
+        if ticket <= 0:
+            raise ValueError("missing_ticket")
+        reason = str(params.get("reason", "brain_close"))
+        result = bridge.close_position(ticket)
+        result.setdefault("success", False)
+        result["reason"] = reason
+        return result
 
     if type_ == "CANCEL_ORDER":
         ticket = int(number(params.get("ticket"), 0))

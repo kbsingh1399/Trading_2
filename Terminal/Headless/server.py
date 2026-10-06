@@ -158,6 +158,28 @@ class HeadlessService:
                 await self._respond(writer, 200, result)
                 return
 
+            if method == "POST" and path == "/api/v1/market_state":
+                # Live positions/orders/quotes/orderflow for the brain's
+                # deliberation (OX_ALPHA_62). Signed envelope, read-only.
+                if self.secret:
+                    try:
+                        envelope = {"payload": body,
+                                    "ts": float(headers.get("x-signature-ts", "0") or 0),
+                                    "signature": headers.get("x-signature", "")}
+                    except ValueError:
+                        envelope = None
+                    if not verify_signed(envelope, self.secret, now=self.clock()):
+                        await self._respond(writer, 401, {"error": "invalid_signature"})
+                        return
+                try:
+                    assets = (body or {}).get("assets")
+                    state = await asyncio.to_thread(self.runtime.market_state, assets)
+                except Exception as exc:                  # noqa: BLE001 - probe isolation
+                    state = {"service": "omni.headless.v1", "as_of": self.clock(),
+                             "error": repr(exc)}
+                await self._respond(writer, 200, state)
+                return
+
             if method == "POST" and path == "/api/v1/status":
                 # Muscle health for the brain (OX_ALPHA_61 follow-up): the
                 # same signed-envelope discipline as evaluate_candle - the
