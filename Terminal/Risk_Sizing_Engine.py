@@ -298,6 +298,18 @@ class OrderflowModel:
                 "target_fuel_usd": target_fuel_usd, "target_friction_usd": target_friction_usd,
                 "risk_intent_usd": self.policy.min_risk + (self.policy.max_risk-self.policy.min_risk)*(quality*confluence)**2}
 
+    def features_from_factory(self, factory, asset, bars, macro, as_of):
+        """Zero-Cost Data Factory ingestion: build the payload from the
+        ``IntelligenceBus`` (streams + synthetic liquidation/stop engines)
+        and run the identical deterministic feature pipeline. The factory
+        payload carries the same schema and per-block receipt timestamps the
+        Hyperdash path produced, so every staleness/coverage guard above
+        applies unchanged - synthetic blocks are never mistaken for observed
+        ones (``coverage`` markers are preserved end-to-end)."""
+        payload = factory.payload(asset, now=as_of)
+        return self.features(asset, payload, bars, macro, as_of)
+
+
 class CovarianceGate:
     def __init__(self, assets, matrix, metadata=None):
         self.assets = [canonical_asset(a) for a in assets]

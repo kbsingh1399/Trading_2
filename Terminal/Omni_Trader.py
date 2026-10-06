@@ -170,6 +170,10 @@ class AI15mMT5Trader:
         # Tamper-proof feature seals (Incident B): per-asset hash chain.
         self.sealer = FeatureSealer(self.state.get("feature_chain"))
         self.fetcher = fetcher or self._fetch
+        # Pioneer conviction layer (consultation 4): advisory/veto-only. It can
+        # suppress a NEW entry on data-quality or opposed-conviction grounds;
+        # it never sizes, forces, or touches an open position or an exit.
+        self.pioneer = None
         self.pool = ThreadPoolExecutor(max_workers=8, thread_name_prefix="omni-data")
         self.intel_pool = ThreadPoolExecutor(max_workers=1, thread_name_prefix="omni-macro")
         self.inference_pool = ThreadPoolExecutor(max_workers=1, thread_name_prefix="omni-inference")
@@ -708,6 +712,17 @@ class AI15mMT5Trader:
                         if features.get("ffr") is not None and features["ffr"] < getattr(self.policy, "min_ffr", 0.50):
                             raise ValueError(f"dense_friction_veto:ffr_{features['ffr']:.3f}_below_min_{getattr(self.policy, 'min_ffr', 0.50):.2f}")
                         if features["confluence"] < self.policy.min_confluence: raise ValueError("confluence_below_threshold")
+                        # Pioneer cross-validated conviction (consultation 4):
+                        # veto-only consult - quality floor, staleness, blackout
+                        # and opposed conviction suppress NEW entries; aligned or
+                        # neutral conviction passes through with its sealed digest.
+                        if self.pioneer is not None:
+                            advisory = self.pioneer.evaluate(asset, payload, features, macro, now)
+                            if not advisory.get("tradeable"):
+                                raise ValueError(f"pioneer_veto:{advisory.get('reason')}")
+                            features["pioneer"] = {k: advisory.get(k) for k in
+                                                   ("conviction", "advice", "min_favorable_move_bps",
+                                                    "quality_score", "digest")}
                         # Sector Correlation Governor: Check against existing portfolio positions
                         for p in positions:
                             existing_asset = self.state["positions"].get(str(p["ticket"]), {}).get("asset", canonical_asset(p["symbol"]))
@@ -1039,6 +1054,11 @@ class AI15mMT5Trader:
         self._append("decisions.jsonl", report); self._save_state()
         print(json.dumps({k: v for k, v in report.items() if k != "candidates"}, default=str), flush=True)
         return report
+
+    def attach_pioneer(self, engine):
+        """Attach the Pioneer conviction layer (advisory/veto-only)."""
+        self.pioneer = engine
+        return engine
 
     def _dispatch(self, candidate, slot):
         key = hashlib.sha256(f"{slot}:{candidate['candidate_id']}".encode()).hexdigest()[:20]

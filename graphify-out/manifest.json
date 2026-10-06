@@ -105,8 +105,8 @@
     "semantic_hash": ""
   },
   "Data/mt5_ai_trader_state.json": {
-    "mtime": 1791280055.544974,
-    "ast_hash": "8198f0f805f6d1d231729adab4123c43",
+    "mtime": 1791296482.818971,
+    "ast_hash": "7316687a03889515f167cd61773605b5",
     "semantic_hash": ""
   },
   "Data/ofc_paper_positions.json": {
@@ -170,8 +170,8 @@
     "semantic_hash": ""
   },
   "Terminal/Cognitive_Engine.py": {
-    "mtime": 1791187595.211332,
-    "ast_hash": "469f0b9802d1d04bb046efd4b75fe97e",
+    "mtime": 1791286927.121938,
+    "ast_hash": "be15f1d1044384aa86e2e35d74451e46",
     "semantic_hash": ""
   },
   "Terminal/Data_Engine.py": {
@@ -225,8 +225,8 @@
     "semantic_hash": ""
   },
   "Terminal/MT5_Execution_Bridge.py": {
-    "mtime": 1791277662.138975,
-    "ast_hash": "15a2ab56206d3178528698b66888eb64",
+    "mtime": 1791296432.1778088,
+    "ast_hash": "a3b43a7b1496bb031019fdb74b8b8dd9",
     "semantic_hash": ""
   },
   "Terminal/Macro_Calendar.py": {
@@ -235,8 +235,8 @@
     "semantic_hash": ""
   },
   "Terminal/Market_Intelligence.py": {
-    "mtime": 1791199051.428959,
-    "ast_hash": "23e4b44482e6537b933dfbd7d84fb516",
+    "mtime": 1791296432.179812,
+    "ast_hash": "745c66764134c52b3fe74f4ac6f85e8a",
     "semantic_hash": ""
   },
   "Terminal/Microstructure.py": {
@@ -250,13 +250,13 @@
     "semantic_hash": ""
   },
   "Terminal/OF_Strategy.py": {
-    "mtime": 1791203182.3976264,
-    "ast_hash": "2bc178442c312047680ac18c96b1a4a3",
+    "mtime": 1791286927.1259365,
+    "ast_hash": "c9c3d193110f0944f922ef4653c70f67",
     "semantic_hash": ""
   },
   "Terminal/Omni_Trader.py": {
-    "mtime": 1791279128.5802345,
-    "ast_hash": "a5f2c4125a95301bc32e22340094dd2e",
+    "mtime": 1791296571.1004665,
+    "ast_hash": "90d52c98c0897549c3b3601442faf06f",
     "semantic_hash": ""
   },
   "Terminal/Orderflow_Replay.py": {
@@ -270,13 +270,13 @@
     "semantic_hash": ""
   },
   "Terminal/Risk_Sizing_Engine.py": {
-    "mtime": 1791213232.7746785,
-    "ast_hash": "bf159c67dd3d0f839f3a6cd098dfdaba",
+    "mtime": 1791286927.1299376,
+    "ast_hash": "63b73a53484b7242d50c81a983b4f036",
     "semantic_hash": ""
   },
   "Terminal/Uplift_Model.py": {
-    "mtime": 1791270459.782574,
-    "ast_hash": "7c419a2ed1ea2b98651d8842a2d5c93d",
+    "mtime": 1791296440.663554,
+    "ast_hash": "1e0732c11d533e6c4c1f996cd8471f99",
     "semantic_hash": ""
   },
   "Terminal/Verify_Terminal.py": {
@@ -315,8 +315,8 @@
     "semantic_hash": ""
   },
   "Tests/Test_Microstructure.py": {
-    "mtime": 1791213318.944446,
-    "ast_hash": "d559e8bea8b004fa635c92ede0535e62",
+    "mtime": 1791286927.130937,
+    "ast_hash": "7d85292adab8553b28b6d7702cd31798",
     "semantic_hash": ""
   },
   "Tests/Test_Omni_Engine.py": {
@@ -377,11 +377,6 @@
   "index.js": {
     "mtime": 1791182962.7773023,
     "ast_hash": "5be532c000cb70721652806af526df70",
-    "semantic_hash": ""
-  },
-  "temp/state.json": {
-    "mtime": 1791213208.4787107,
-    "ast_hash": "054a5730ebcd0467030d0fbff9afa8be",
     "semantic_hash": ""
   },
   "AUDIT.md": {
@@ -494,26 +489,6 @@
     "ast_hash": "f9c67d1c3bf45e3c6f70c07a5271223b",
     "semantic_hash": ""
   },
-  "check_focus.py": {
-    "mtime": 1791228695.5051808,
-    "ast_hash": "9c6d41a4fee81061ea569694d009369e",
-    "semantic_hash": ""
-  },
-  "deep_scan.py": {
-    "mtime": 1791228654.7761762,
-    "ast_hash": "c5979dadd89e5667962425b56fef8c77",
-    "semantic_hash": ""
-  },
-  "eth_deep.py": {
-    "mtime": 1791228760.201434,
-    "ast_hash": "a33877f1830bc1d4e943656f51d12f99",
-    "semantic_hash": ""
-  },
-  "inspect_orderflow.py": {
-    "mtime": 1791228619.557916,
-    "ast_hash": "dba05e4b4420681da4983863b4a26f10",
-    "semantic_hash": ""
-  },
   "Terminal/MT5_Sentinel.py": {
     "mtime": 1791271145.4403386,
     "ast_hash": "3ebbf1a7db4e3b731d7278e3ac6637f0",
@@ -547,6 +522,96 @@
   "docs/prompts/Autonomous_15m_Orderflow_AI_Trader_Prompt.md": {
     "mtime": 1791270052.6580453,
     "ast_hash": "35116b8f5295e4a1a0646eea85ec5ff9",
+    "semantic_hash": ""
+  },
+  "Terminal/Adverse_Selection.py": {
+    "mtime": 1791296440.6577835,
+    "ast_hash": "0b9d4e3e5027a4f343a1762a4afb33ba",
+    "semantic_hash": ""
+  },
+  "Terminal/Candle_Indicator_Engine.py": {
+    "mtime": 1791290509.153733,
+    "ast_hash": "b935d7fe5b0c1ac9dcb7e0b685ae01be",
+    "semantic_hash": ""
+  },
+  "Terminal/Causal_Candle_Stream.py": {
+    "mtime": 1791296440.6588376,
+    "ast_hash": "bdaa6417ddc7b3e2235ab2e2e1a5f005",
+    "semantic_hash": ""
+  },
+  "Terminal/Commodity_Microstructure.py": {
+    "mtime": 1791296440.659893,
+    "ast_hash": "809ef85268624b64911fdd32e4499e4a",
+    "semantic_hash": ""
+  },
+  "Terminal/Deterministic_Features.py": {
+    "mtime": 1791286927.1229405,
+    "ast_hash": "ce310a32f9e638a9fe33a3b7e67db2d8",
+    "semantic_hash": ""
+  },
+  "Terminal/Order_Persistence_Governor.py": {
+    "mtime": 1791296571.1026192,
+    "ast_hash": "816f8312f6d8bc059b803f808089bb10",
+    "semantic_hash": ""
+  },
+  "Terminal/Orderbook_Structure.py": {
+    "mtime": 1791296571.1042197,
+    "ast_hash": "494d9b979a569bdb28614aefb2f1e468",
+    "semantic_hash": ""
+  },
+  "Tests/Test_Candle_Indicator_Engine.py": {
+    "mtime": 1791290591.1437573,
+    "ast_hash": "f637ea467903423740e6383794e8ecbe",
+    "semantic_hash": ""
+  },
+  "Tests/Test_Omni_Consultation.py": {
+    "mtime": 1791296440.6645968,
+    "ast_hash": "a5e6c5911671887ad473115161237c64",
+    "semantic_hash": ""
+  },
+  "Tests/Test_Omni_Hardening.py": {
+    "mtime": 1791286927.131937,
+    "ast_hash": "7f8e55ed2b38265e1d4eacc1d9a7839e",
+    "semantic_hash": ""
+  },
+  "docs/prompts/build_arena_forensic_prompt.py": {
+    "mtime": 1791284593.7135596,
+    "ast_hash": "6eae2d6da5d0ef165bb91e10f8f439bd",
+    "semantic_hash": ""
+  },
+  "docs/prompts/build_ox_alpha_58_prompt.py": {
+    "mtime": 1791291638.3468876,
+    "ast_hash": "20e2a8d647addc911499ec213ff801ac",
+    "semantic_hash": ""
+  },
+  "docs/audits/OMNI_Hardening_Audit_20261006.md": {
+    "mtime": 1791286927.132937,
+    "ast_hash": "8417f01b11001c5757f011536582b206",
+    "semantic_hash": ""
+  },
+  "docs/audits/OMNI_Queue_Governance_Consultation_20261006.md": {
+    "mtime": 1791296440.6656444,
+    "ast_hash": "b5309e03c28662eaee16264a168d9a78",
+    "semantic_hash": ""
+  },
+  "docs/prompts/Ox_Alpha_58_MultiAsset_Limit_Queue_Commodity_VWAP_Audit.txt": {
+    "mtime": 1791291643.7626967,
+    "ast_hash": "fbdb29392569cdc7c389ba841fb6da11",
+    "semantic_hash": ""
+  },
+  "docs/prompts/Ox_Alpha_59_Zero_Cost_All_In_One_Data_Factory.txt": {
+    "mtime": 1791293868.0503314,
+    "ast_hash": "3997bcfc0956224f9df4587d520c9a03",
+    "semantic_hash": ""
+  },
+  "docs/prompts/Ox_Alpha_59_Zero_Cost_Institutional_Market_Intelligence_Engine.txt": {
+    "mtime": 1791293559.058181,
+    "ast_hash": "e4a48e8cd84b96a3ca48629b4ac17d8f",
+    "semantic_hash": ""
+  },
+  "docs/prompts/Ox_Alpha_Omni_Forensic_Chain_Audit.md": {
+    "mtime": 1791284601.279322,
+    "ast_hash": "7c5a74358fd351f2f4e723b199a5603b",
     "semantic_hash": ""
   }
 }
