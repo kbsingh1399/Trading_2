@@ -158,6 +158,28 @@ class HeadlessService:
                 await self._respond(writer, 200, result)
                 return
 
+            if method == "POST" and path == "/api/v1/status":
+                # Muscle health for the brain (OX_ALPHA_61 follow-up): the
+                # same signed-envelope discipline as evaluate_candle - the
+                # brain proves itself before reading operational state.
+                if self.secret:
+                    try:
+                        envelope = {"payload": body,
+                                    "ts": float(headers.get("x-signature-ts", "0") or 0),
+                                    "signature": headers.get("x-signature", "")}
+                    except ValueError:
+                        envelope = None
+                    if not verify_signed(envelope, self.secret, now=self.clock()):
+                        await self._respond(writer, 401, {"error": "invalid_signature"})
+                        return
+                try:
+                    status = self.runtime.status()
+                except Exception as exc:                  # noqa: BLE001 - probe isolation
+                    status = {"service": "omni.headless.v1", "as_of": self.clock(),
+                              "ready": False, "reasons": [f"status_error:{exc!r}"]}
+                await self._respond(writer, 200, status)
+                return
+
             if method == "POST" and path in ("/api/v1/stage_order",
                                              "/api/v1/modify_sltp",
                                              "/api/v1/cancel_order"):

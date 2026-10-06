@@ -111,6 +111,24 @@ class BrainClient:
         except (urllib.error.URLError, OSError) as exc:
             return {"http_status": 0, "error": f"tunnel_unreachable:{exc}"}
 
+    def status(self) -> Dict:
+        """Fetch muscle health (signed): bridge, pillars, quality, last evaluation."""
+        from Terminal.Headless.server import sign_payload
+        envelope = sign_payload({}, self.secret, ts=self.clock())
+        request = urllib.request.Request(
+            self.base_url + "/api/v1/status",
+            data=json.dumps(envelope["payload"]).encode("utf-8"), method="POST",
+            headers={"Content-Type": "application/json",
+                     "X-Signature": envelope["signature"],
+                     "X-Signature-Ts": f"{envelope['ts']:.3f}"})
+        try:
+            with urllib.request.urlopen(request, timeout=self.timeout) as response:
+                return json.loads(response.read() or b"{}")
+        except urllib.error.HTTPError as exc:
+            return {"http_status": exc.code, "error": exc.read().decode("utf-8", "replace")}
+        except (urllib.error.URLError, OSError) as exc:
+            return {"http_status": 0, "error": f"tunnel_unreachable:{exc}"}
+
     def purge_test_limits(self) -> Dict:
         return self._post("/api/v1/stage_order", self._command("PURGE_TEST_LIMITS", {}))
 

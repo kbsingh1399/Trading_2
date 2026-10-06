@@ -34,7 +34,10 @@ cloudflared tunnel --url http://127.0.0.1:8080
 #        --price 4182.00 --volume 0.01
 #    -> stages ARENA:TEST_LIMIT_v1 (risk <= 10.00 USD, 6h auto-purge).
 #
-# 6) Pathway C fallback (tunnel down): the laptop runs the reconciler loop
-#    polling a secret GitHub Gist:
-#    python -c "from Terminal.Execution.remote_reconciler import RemoteCommandReconciler, gist_fetch; import os; RemoteCommandReconciler(bridge, secret=os.environ['OMNI_API_SECRET'], fetch=lambda: gist_fetch(os.environ['ARENA_GIST_URL'])).run_forever()"
-#    The brain publishes with Terminal.Headless.brain_client.publish_to_gist.
+# 6) Pathway C fallback (tunnel down) - ONE command, zero open ports:
+#      set ARENA_COMMANDS_URL=<secret gist raw URL>
+#      python -m Terminal.Execution.remote_reconciler
+#    It polls -> verifies (HMAC + nonce + window) -> applies with full local
+#    risk enforcement -> purges expired ARENA:TEST_LIMIT_v1 orders.
+#    The brain publishes with Terminal.Headless.brain_client.publish_to_gist
+#    and can check muscle health any time via BrainClient.status().

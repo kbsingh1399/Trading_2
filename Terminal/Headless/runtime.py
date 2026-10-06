@@ -128,6 +128,43 @@ class HeadlessRuntime:
                 reasons.append("no_fresh_book")
         return (not reasons), reasons
 
+    # --------------------------------------------------------------- status
+    def status(self):
+        """Muscle health for the brain: bridge, data pillars, sealed quality,
+        last evaluation. Deliberately carries NO account balances - health
+        only; the brain's Macro analyst gets equity from its own signed
+        evaluate_candle payloads."""
+        now = self.clock()
+        ready, reasons = self.readiness()
+        bridge_health = {}
+        if self.bridge is not None and hasattr(self.bridge, "health"):
+            try:
+                bridge_health = self.bridge.health() or {}
+            except Exception as exc:                      # noqa: BLE001
+                bridge_health = {"healthy": False, "detail": repr(exc)}
+        runner_status = {}
+        if self.runner is not None and hasattr(self.runner, "status"):
+            try:
+                runner_status = self.runner.status() or {}
+            except Exception:                             # noqa: BLE001
+                runner_status = {}
+        quality = None
+        if self.runner is not None and getattr(self.runner, "last_quality", None):
+            quality = {"score": self.runner.last_quality.get("quality_score"),
+                       "digest": self.runner.last_quality.get("digest")}
+        last = self.last_evaluation or {}
+        return {"service": SERVICE_VERSION, "as_of": now, "ready": ready,
+                "reasons": list(reasons),
+                "bridge": {"backend": getattr(self.bridge, "name", None),
+                           "healthy": bridge_health.get("healthy"),
+                           "detail": bridge_health.get("detail", "")},
+                "pillars": runner_status.get("pillars"),
+                "stall_streaks": runner_status.get("stall_streaks"),
+                "data_quality": quality,
+                "last_evaluation": {"decision": last.get("decision"),
+                                    "as_of": last.get("as_of"),
+                                    "traded": last.get("traded")} if last else None}
+
     # ------------------------------------------------------------- evaluate
     def evaluate_candle(self, force: bool = False) -> dict:
         """One candle-close evaluation. Returns the signed microservice payload

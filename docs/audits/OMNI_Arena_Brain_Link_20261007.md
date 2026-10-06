@@ -219,3 +219,31 @@ nonce + timestamp + idempotency replay protection on every remote command.
 | `Terminal/Headless/brain_client.py` | new — brain-side signed client, gist publisher, CLI |
 | `deploy/start_tunnel.ps1` | new — laptop setup script |
 | `Tests/Test_Arena_Brain_Link.py` | new — 17 offline deterministic tests |
+
+---
+
+## Follow-up hardening (same day, post-review)
+
+Three operational gaps found on re-review of the delivered link, now closed
+(+3 tests, suite 267 → 270):
+
+1. **One-command Pathway-C fallback.** `python -m Terminal.Execution.remote_reconciler`
+   is now a proper CLI: env-driven (`ARENA_COMMANDS_URL`, `OMNI_API_SECRET`,
+   `ARENA_POLL_INTERVAL`), fail-closed bridge discovery (identical semantics to
+   `Terminal.Headless` — paper only when `OMNI_ALLOW_PAPER=1`), clean SIGINT/SIGTERM
+   shutdown, and a final stats line. `deploy/start_tunnel.ps1` step 6 now references
+   it instead of an inline python -c.
+2. **Guaranteed test-limit purge in Pathway-A-only deployments.** The broker-side
+   expiration and the reconciler's scans both required either the broker clock or the
+   fallback loop to be alive; now the trader's own ~1-second manage cadence scans for
+   expired `ARENA:TEST_LIMIT_v1` orders too (throttled to one scan per 5 minutes,
+   failure-isolated, journalled). Tested: a stale limit is purged while a fresh one
+   survives, and the throttle holds on an immediate second call.
+3. **Muscle health visibility for the brain.** `POST /api/v1/status` (signed with the
+   same envelope discipline as evaluate_candle) plus `HeadlessRuntime.status()` and
+   `BrainClient.status()`: bridge backend/health, per-pillar freshness and stall
+   streaks, sealed data quality (score + digest), and the last evaluation summary.
+   Deliberately carries NO account balances — health only; the macro analyst's equity
+   context comes from the signed evaluate_candle payloads. Tested both the runtime
+   composition (ready, backend name, no balance keys) and the endpoint over a real
+   socket (401 unsigned, 200 signed).
