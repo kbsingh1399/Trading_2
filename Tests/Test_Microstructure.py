@@ -104,28 +104,30 @@ def test_microstructure():
 
     print("\n--- 6. Testing Whale Eligibility Filter Hierarchy ---")
     import ast
+    from Terminal.Orderbook_Structure import wall_clusters
     source = (root_dir / "Terminal/Omni_Trader.py").read_text(encoding="utf-8")
     tree = ast.parse(source)
-    whales = next(n for n in ast.walk(tree) if isinstance(n, ast.Assign) and any(isinstance(x, ast.Name) and x.id == "whale_bids" for x in n.targets))
+    clusters = next(n for n in ast.walk(tree) if isinstance(n, ast.Assign) and any(isinstance(x, ast.Name) and x.id == "bid_clusters" for x in n.targets))
+
+    def run_filter(l3_orders):
+        ns = {"l3": l3_orders, "quote": {"bid": 100}, "atr": 1,
+              "number": float, "now": 0, "wall_clusters": wall_clusters}
+        exec(compile(ast.Module(body=[clusters], type_ignores=[]), "isolated_whale_filter", "exec"), ns)
+        return [c["edge_price"] for c in ns["bid_clusters"]]
 
     # Reject small wall
-    ns_small = {"payload": {"l3_orders": [{"side": "BUY", "price": 99.99, "notional_usd": 1, "observed_span_s": 0}]},
-                "quote": {"bid": 100}, "atr": 1, "number": float}
-    exec(compile(ast.Module(body=[whales], type_ignores=[]), "isolated_whale_filter", "exec"), ns_small)
-    assert ns_small["whale_bids"] == []
+    assert run_filter([{"side": "BUY", "price": 99.99, "notional_usd": 1, "observed_span_s": 0}]) == []
 
     # Reject non-persistent wall (<180s)
-    ns_short = {"payload": {"l3_orders": [{"side": "BUY", "price": 99.99, "notional_usd": 200_000, "persistence_sec": 30}]},
-                "quote": {"bid": 100}, "atr": 1, "number": float}
-    exec(compile(ast.Module(body=[whales], type_ignores=[]), "isolated_whale_filter", "exec"), ns_short)
-    assert ns_short["whale_bids"] == []
+    assert run_filter([{"side": "BUY", "price": 99.99, "notional_usd": 200_000, "persistence_sec": 30}]) == []
+
+    # Reject stale wall (feed older than the freshness gate)
+    assert run_filter([{"side": "BUY", "price": 99.99, "notional_usd": 200_000, "persistence_sec": 600,
+                        "observed_at": -120}]) == []
 
     # Accept genuine persistent institutional whale
-    ns_inst = {"payload": {"l3_orders": [{"side": "BUY", "price": 99.99, "notional_usd": 200_000, "persistence_sec": 180}]},
-               "quote": {"bid": 100}, "atr": 1, "number": float}
-    exec(compile(ast.Module(body=[whales], type_ignores=[]), "isolated_whale_filter", "exec"), ns_inst)
-    assert ns_inst["whale_bids"] == [99.99]
-    print("PASS: Whale filter strictly enforces notional >= 150000 USD and persistence >= 180s.")
+    assert run_filter([{"side": "BUY", "price": 99.99, "notional_usd": 200_000, "persistence_sec": 180}]) == [99.99]
+    print("PASS: Whale filter strictly enforces notional >= 150000 USD, persistence >= 180s and feed freshness.")
 
     print("\n>>> ALL MICROSTRUCTURE UNIT TESTS PASSED 100%! <<<")
 
