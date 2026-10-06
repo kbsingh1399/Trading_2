@@ -7,6 +7,7 @@ from pathlib import Path
 import os
 from collections import deque
 from Terminal.Risk_Sizing_Engine import epoch, number
+from Terminal.Deterministic_Features import attest_decision, canon_value, SEAL_KEYS, SEAL_SCHEMA
 
 # Astra's specified schemas
 DECISION_SCHEMA = {
@@ -77,8 +78,15 @@ class CognitiveEngine:
         self.decision_ledger_path = Path(ledger_path or Path(__file__).resolve().parents[1]/"Data/decision_ledger.jsonl")
         self.decision_ledger_path.parent.mkdir(exist_ok=True, parents=True)
 
-    def build_snapshot(self, coin: str, sym: str, px: float, features: dict, raw_walls: list, raw_bands: list, macro: dict, portfolio: dict, regime: dict) -> Dict[str, Any]:
-        """Builds Astra's market_state.v1 snapshot"""
+    def build_snapshot(self, coin: str, sym: str, px: float, features: dict, raw_walls: list, raw_bands: list, macro: dict, portfolio: dict, regime: dict, sealed: dict = None) -> Dict[str, Any]:
+        """Builds Astra's market_state.v1 snapshot.
+
+        ``sealed`` is the tamper-proof deterministic feature vector (see
+        Terminal/Deterministic_Features.py). When supplied, the cognitive
+        engine sees ONLY the sealed values as econometrics, never raw or
+        self-computed statistics, and the snapshot carries the digest chain so
+        any downstream numeric claim can be attested mechanically.
+        """
         now = datetime.datetime.now(datetime.timezone.utc)
         snap_id = f"snap_{coin}_{int(now.timestamp())}"
         
@@ -88,6 +96,7 @@ class CognitiveEngine:
             walls.append({
                 "id": f"W{i}",
                 "side": w.get("side", "UNKNOWN"),
+                "price": number(w.get("price")),
                 "distance_bps": round(((w.get("price", px) - px) / px) * 10000, 2),
                 "visible_notional_usd": number(w.get("notional_usd")),
                 "cluster_observed_span_s": w.get("observed_span_s"),
@@ -106,6 +115,12 @@ class CognitiveEngine:
                 "estimated_notional_usd": b.get("amount_usd")
             })
 
+        if sealed is not None:
+            econometrics = dict(sealed.get("values") or {})
+        else:
+            # Fallback: numeric subset only, canonically rounded, so that the
+            # attestation layer always works on deterministic magnitudes.
+            econometrics = {k: canon_value(features.get(k)) for k in SEAL_KEYS if isinstance(features.get(k), (int, float)) or features.get(k) is None}
         snapshot = {
             "schema_version": "market_state.v1",
             "snapshot_id": snap_id,
@@ -127,7 +142,14 @@ class CognitiveEngine:
                 "target_long_score": features.get("long_score", 0.0),
                 "target_short_score": features.get("short_score", 0.0)
             },
-            "econometrics": features,
+            "econometrics": econometrics,
+            "attestation": {
+                "schema": SEAL_SCHEMA,
+                "feature_digest": (sealed or {}).get("digest"),
+                "chain_digest": (sealed or {}).get("chain_digest"),
+                "policy": "Every numeric claim in the decision prose must match a value in this snapshot; unmatched statistics are rejected as fabricated.",
+            },
+            "sleeve": features.get("sleeve", "S1_PULLBACK"),
             "candidate": {"candidate_id": f"{coin}_{features.get('direction', 'UNKNOWN')}", "direction": features.get("direction")},
             "walls": walls,
             "liquidations": {
@@ -207,6 +229,16 @@ class CognitiveEngine:
                 decision = json.loads(content)
                 if not self.validate_decision(snapshot, decision):
                     return None
+                # Anti-hallucination gate (Incident B): every numeric claim in
+                # the decision prose must exist in the sealed snapshot. A
+                # fabricated statistic ("+1.8 sigma CVD divergence" when the
+                # sealed vector says +0.92) rejects the decision outright.
+                attested, violations = attest_decision(snapshot, decision)
+                if not attested:
+                    self.record_rejection(snapshot, decision, violations)
+                    print(f"  [Cognitive Engine] Decision rejected: {len(violations)} unattested numeric claim(s): "
+                          + "; ".join(f"{v['field']}:'{v['raw']}'" for v in violations))
+                    return None
                 self.record_decision(snapshot, decision)
                 return decision
             else:
@@ -225,6 +257,22 @@ class CognitiveEngine:
         }
         with open(self.decision_ledger_path, "a", encoding="utf-8") as f:
             f.write(json.dumps(record) + "\n")
+
+    def record_rejection(self, snapshot: dict, decision: dict, violations: list):
+        """Journal a fabricated-statistic rejection for forensic review."""
+        record = {
+            "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+            "event": "cognitive_fabrication_rejection",
+            "snapshot_id": snapshot.get("snapshot_id"),
+            "feature_digest": (snapshot.get("attestation") or {}).get("feature_digest"),
+            "violations": violations,
+            "decision": decision
+        }
+        try:
+            with open(self.decision_ledger_path, "a", encoding="utf-8") as f:
+                f.write(json.dumps(record) + "\n")
+        except OSError:
+            pass
 
     @staticmethod
     def validate_decision(snapshot, decision):

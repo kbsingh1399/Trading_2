@@ -40,6 +40,7 @@ class MT5ExecutionBridge:
         self.timeout_ms = timeout_ms
         self.initialized = False
         self._symbol_cache: Dict[str, str] = {}
+        self._offset_cache: Dict[str, tuple] = {}
         # MetaQuotes ticks are broker server time (EET/UTC+3, offset 10800s)
         self.broker_utc_offset_sec: int = 10800
         self.broker_utc_offset_ms: int = 10800 * 1000
@@ -53,6 +54,33 @@ class MT5ExecutionBridge:
         if raw_msc - now_ms > 3600 * 1000:
             return int(raw_msc - self.broker_utc_offset_ms)
         return int(raw_msc)
+
+    def _utc_offset_seconds(self, symbol: Optional[str] = None) -> int:
+        """Best-effort broker-server-to-UTC offset, snapped to a 30-min grid.
+
+        MT5 bar, position and order timestamps are broker *server* time. Ticks
+        carry ``time_msc`` from the same clock, so a fresh tick gives us the
+        offset. Returning 0 when the server already runs UTC keeps behaviour
+        unchanged for UTC brokers. Cached 300s per symbol; failures are
+        treated as offset 0 (the historical behaviour).
+        """
+        cached = self._offset_cache.get(symbol or "*")
+        if cached and abs(time.time() - cached[1]) < 300:
+            return cached[0]
+        offset = 0
+        try:
+            if symbol and MT5_AVAILABLE:
+                tick = mt5.symbol_info_tick(symbol)
+                raw_msc = getattr(tick, "time_msc", 0) if tick else 0
+                if raw_msc:
+                    delta = raw_msc/1000.0 - time.time()
+                    if abs(delta) > 2700:  # > 45 min out: a real TZ offset
+                        offset = int(round(delta/1800.0)*1800)
+                        offset = max(-14*3600, min(14*3600, offset))
+        except Exception:
+            offset = 0
+        self._offset_cache[symbol or "*"] = (offset, time.time())
+        return offset
 
     def ensure_connected(self) -> bool:
         if not MT5_AVAILABLE:
@@ -179,6 +207,10 @@ class MT5ExecutionBridge:
             return []
         if raw is None:
             return []
+        # Bar timestamps are broker server time; normalize to UTC epoch so
+        # downstream causality filters (epoch(bar)+900 <= now) are not biased
+        # by the server timezone (Finding F-06).
+        offset = self._utc_offset_seconds(symbol)
         bars = []
         for row in raw:
             def value(name: str, default: float = 0.0) -> float:
@@ -188,7 +220,7 @@ class MT5ExecutionBridge:
                 except (KeyError, TypeError, ValueError, AttributeError):
                     return default
             bars.append({
-                "time": value("time"),
+                "time": value("time") - offset,
                 "open": value("open"),
                 "high": value("high"),
                 "low": value("low"),
@@ -235,7 +267,7 @@ class MT5ExecutionBridge:
             out.append({
                 "ticket": p.ticket,
                 "identifier": getattr(p, "identifier", p.ticket),
-                "time": p.time,
+                "time": p.time - self._utc_offset_seconds(p.symbol),
                 "symbol": p.symbol,
                 "direction": "LONG" if p.type == mt5.ORDER_TYPE_BUY else "SHORT",
                 "volume": p.volume,
@@ -258,7 +290,22 @@ class MT5ExecutionBridge:
                  "volume": o.volume_current, "price_open": getattr(o, "price_open", 0.0),
                  "sl": getattr(o, "sl", 0.0), "tp": getattr(o, "tp", 0.0), "type": getattr(o, "type", 0),
                  "direction": "LONG" if getattr(o, "type", 0) in (getattr(mt5, "ORDER_TYPE_BUY", 0), getattr(mt5, "ORDER_TYPE_BUY_LIMIT", 2)) else "SHORT",
-                 "expiration": getattr(o, "time_expiration", 0), "time_setup": getattr(o, "time_setup", getattr(o, "time", 0))} for o in orders]
+                 "expiration": getattr(o, "time_expiration", 0) - self._utc_offset_seconds(o.symbol),
+                 "time_setup": getattr(o, "time_setup", getattr(o, "time", 0)) - self._utc_offset_seconds(o.symbol)} for o in orders]
+
+    def intent_filled(self, comment: str, prepared_at: float, magic: int = 100895) -> bool:
+        """Fill evidence for an intent: True iff an entry deal exists for it.
+
+        Used by the reconciler to distinguish "limit order expired unfilled"
+        from "limit order filled inside the inventory race window" without
+        waiting for the next position snapshot.
+        """
+        if not self.ensure_connected(): raise RuntimeError("Intent history unavailable")
+        start = datetime.datetime.fromtimestamp(prepared_at-30, datetime.timezone.utc)
+        end = datetime.datetime.now(datetime.timezone.utc)
+        deals = mt5.history_deals_get(start, end)
+        if deals is None: raise RuntimeError("Intent deal-history query failed")
+        return any(d.comment == comment and d.magic == magic and d.entry in (0, 2) for d in deals)
 
     def estimate_order(self, symbol, direction, entry, sl):
         """Use the broker's CFD calculation mode, not an assumed pip multiplier."""
@@ -508,15 +555,19 @@ class MT5ExecutionBridge:
         expiration_seconds: int = 3600,
         max_spread_points: Optional[float] = None,
         passive_only: bool = True,
+        persistent: bool = False,
         magic: int = 100895,
         comment: str = "OFC_AI_15M_LIMIT",
     ) -> Dict[str, Any]:
-        """Stage a short-lived limit order with an attached protective bracket.
+        """Stage a limit order with an attached protective bracket.
 
-        This is opt-in.  A passive order inside the spread can miss the trade
-        or be adversely selected, so callers should retain a market/marketable
-        limit fallback and cancel it at expiry.  The method never silently
-        converts a passive order into a market order.
+        ``persistent=True`` stages a GTC order with no broker expiration at
+        all. Multi-hour resting orders (the Incident A remediation) must not
+        rely on broker-side expirations: MT5 ``ORDER_TIME_SPECIFIED`` deadlines
+        are evaluated in broker server time, which is DST-fragile from a UTC
+        host. A persistent order is owned by the Order Persistence Governor,
+        which enforces its own UTC deadlines and explicit cancels. The method
+        never silently converts a passive order into a market order.
         """
         if not self.ensure_connected():
             return {"success": False, "error": "MT5 not connected"}
@@ -568,8 +619,8 @@ class MT5ExecutionBridge:
             "deviation": 0,
             "magic": magic,
             "comment": comment,
-            "type_time": getattr(mt5, "ORDER_TIME_SPECIFIED", mt5.ORDER_TIME_GTC),
-            "expiration": broker_now + max(1, int(expiration_seconds)),
+            "type_time": getattr(mt5, "ORDER_TIME_GTC", 0) if persistent else getattr(mt5, "ORDER_TIME_SPECIFIED", mt5.ORDER_TIME_GTC),
+            "expiration": 0 if persistent else broker_now + max(1, int(expiration_seconds)),
             "type_filling": getattr(mt5, "ORDER_FILLING_RETURN", getattr(mt5, "ORDER_FILLING_IOC", 1)),
         }
         if hasattr(mt5, "order_check"):
@@ -582,8 +633,10 @@ class MT5ExecutionBridge:
             retcode = result.retcode if result else "None"
             error = result.comment if result else str(mt5.last_error())
             return {"success": False, "retcode": retcode, "error": f"Limit order rejected: {retcode} ({error})"}
-        logger.info("[LIMIT] MT5 limit staged: %s %s %s lots at %s (expires in %ss)", direction, normalized, symbol, price, expiration_seconds)
-        return {"success": True, "ticket": getattr(result, "order", 0), "symbol": symbol, "direction": direction, "volume": normalized, "price": price, "sl": request["sl"], "tp": request["tp"], "expires_at": request["expiration"], "spread_points": spread_points}
+        logger.info("[LIMIT] MT5 limit staged: %s %s %s lots at %s (%s)", direction, normalized, symbol, price,
+                    "GTC, governor-owned deadline" if persistent else f"expires in {expiration_seconds}s")
+        return {"success": True, "ticket": getattr(result, "order", 0), "symbol": symbol, "direction": direction, "volume": normalized, "price": price, "sl": request["sl"], "tp": request["tp"],
+                "persistent": bool(persistent), "expires_at": None if persistent else request["expiration"], "spread_points": spread_points}
 
     def cancel_pending_order(self, order_ticket: int) -> Dict[str, Any]:
         """Cancel one pending order; safe to call after an expiry race."""

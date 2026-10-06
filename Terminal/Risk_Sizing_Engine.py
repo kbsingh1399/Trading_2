@@ -197,6 +197,11 @@ class OrderflowModel:
             if t.get("side") == "BUY": buy += usd
             elif t.get("side") == "SELL": sell += usd
         tape = (buy-sell)/(buy+sell) if buy+sell else 0.0
+        # Deterministic robust z-scores for the aggressor tape (CVD) and wall
+        # imbalance. These are the ground-truth values the cognitive engine is
+        # attested against; it can never substitute its own statistics.
+        z_tape = self.normalizer.score_then_observe(asset+":aggressor", tape)
+        z_wall = self.normalizer.score_then_observe(asset+":walls", wall_imb)
         # Match each cluster corridor against visible depth in that exact corridor.
         # Do not infer stop/liquidation exposure from historical realized prints.
         pressure = {"LONG": 0.0, "SHORT": 0.0}
@@ -270,14 +275,26 @@ class OrderflowModel:
             ffr = None
         else:
             ffr = 1.0
+        # Friction-adjusted fuel ratio (FAFR): fuel exposure measured against
+        # corridor depth PLUS the round-trip friction carried by a
+        # minimum-risk reference position (stop = 1.5*ATR, risk = min_risk).
+        # Deterministic from already-computed quantities; None when undefined.
+        stop_ref = 1.5*stats["atr"]
+        friction_ref_usd = (mid/stop_ref)*self.policy.min_risk*(self.policy.minimum_friction_bps/10000.0) if stop_ref > 0 else 0.0
+        fafr_denominator = target_friction_usd + friction_ref_usd
+        friction_adjusted_fuel_ratio = float(target_fuel_usd/fafr_denominator) if fafr_denominator > 0 else None
         return {**stats, "asset": asset, "as_of": as_of, "signal_mid": mid, "book_as_of": observed,
                 "direction": "LONG" if direction == 1 else "SHORT", "l2_imbalance": imbalance,
                 "l2_signal": l2, "l2_robust_z": z, "wall_imbalance": wall_imb,
-                "aggressor_imbalance": tape, "liquidation_delta": liq_delta, "macro_score": macro_value,
+                "wall_imbalance_robust_z": z_wall,
+                "aggressor_imbalance": tape, "aggressor_robust_z": z_tape,
+                "liquidation_delta": liq_delta, "macro_score": macro_value,
                 "confluence": confluence, "quality": quality, "corridors": corridor_records,
                 "liquidity_vacuum": liquidity_vacuum, "target_fuel": target_fuel, "opposing_magnet": opposing_magnet,
-                "ffr": ffr, "coverage_missing": coverage_missing, "unobserved_corridor": coverage_missing,
+                "ffr": ffr, "friction_adjusted_fuel_ratio": friction_adjusted_fuel_ratio,
+                "coverage_missing": coverage_missing, "unobserved_corridor": coverage_missing,
                 "fresh_walls": fresh_walls,
+                "friction_bps": self.policy.minimum_friction_bps,
                 "target_fuel_usd": target_fuel_usd, "target_friction_usd": target_friction_usd,
                 "risk_intent_usd": self.policy.min_risk + (self.policy.max_risk-self.policy.min_risk)*(quality*confluence)**2}
 

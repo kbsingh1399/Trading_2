@@ -33,6 +33,9 @@ def main():
     parser.add_argument("--cadence-minute", type=int, default=14)
     parser.add_argument("--cadence-second", type=int, default=30)
     parser.add_argument("--entry-mode", choices=("market", "limit"), default="limit")
+    parser.add_argument("--ttl-min", type=float, default=7200, help="Minimum resting limit TTL seconds (Order Persistence Governor)")
+    parser.add_argument("--ttl-max", type=float, default=21600, help="Maximum resting limit TTL seconds (hard cap)")
+    parser.add_argument("--no-persistent-limits", action="store_true", help="Disable GTC persistent limits; fall back to broker-expiring orders")
     parser.add_argument("--account-id", type=int)
     parser.add_argument("--max-spread-points", type=float, default=None, help="Optional broker-specific cap; cost gates always apply")
     parser.add_argument("--state-file")
@@ -75,6 +78,8 @@ def main():
                            covariance_path=args.covariance, uplift_path=args.uplift_model,
                            intel=MarketIntelligenceEngine(calendar_path=args.calendar),
                            cognitive_enabled=not args.no_cognitive,
+                           ttl_min_seconds=args.ttl_min, ttl_max_seconds=args.ttl_max,
+                           persistent_limits=not args.no_persistent_limits,
                            policy=RiskPolicy(min_risk=args.min_risk, max_risk=args.max_risk, sigma_budget_usd=args.sigma_budget,
                                              min_confluence=args.min_confluence, max_book_age=30.0, max_future_skew_sec=30.0))
     trader.run(max_cycles=args.ticks)
