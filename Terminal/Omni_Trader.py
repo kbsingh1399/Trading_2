@@ -541,7 +541,12 @@ class AI15mMT5Trader:
                 atr = number(stats.get("atr"), number(meta.get("atr"), initial_r*0.5))
                 tick_size = max(number(q.get("tick_size")), number(q.get("point")))
                 distance = max(number(q.get("stops_level")), number(q.get("freeze_level")), 1)*q["point"]
-                friction_bps = number(meta.get("sizing", {}).get("friction_bps", meta.get("friction_bps", self.policy.minimum_friction_bps)))
+                if cls in ("COMMODITY", "INDEX"):
+                    mid_price = max(1e-6, (number(q.get("ask")) + number(q.get("bid"))) / 2.0)
+                    spread_bps = (number(q.get("ask")) - number(q.get("bid"))) / mid_price * 10000.0
+                    friction_bps = max(1.0, spread_bps + 1.0)
+                else:
+                    friction_bps = number(meta.get("sizing", {}).get("friction_bps", meta.get("friction_bps", self.policy.minimum_friction_bps)))
                 proposed = executable_ratchet(entry, initial_r, p["direction"], gain, p["sl"], atr,
                                               q["bid"], q["ask"], tick_size, distance,
                                               friction_bps=friction_bps, buffer_r=0.05, params=params)

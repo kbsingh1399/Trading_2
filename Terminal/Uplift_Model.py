@@ -132,12 +132,16 @@ def ratchet(entry, initial_r, direction, gain_r, current_sl, atr, friction_bps: 
     if gain_r >= be_trigger:
         if friction_bps > 0 and initial_r > 0:
             required_lock_r = (friction_bps / 10000.0 * entry / initial_r) + buffer_r
+            if required_lock_r > be_trigger:
+                required_lock_r = lock_1
             lock = max(lock_1, required_lock_r)
         else:
             lock = lock_1
     if gain_r >= trigger_2:
         if friction_bps > 0 and initial_r > 0:
             required_lock_r = (friction_bps / 10000.0 * entry / initial_r) + buffer_r
+            if required_lock_r > trigger_2:
+                required_lock_r = lock_2
             lock = max(lock_2, required_lock_r)
         else:
             lock = lock_2
