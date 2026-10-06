@@ -1,0 +1,109 @@
+# ARENA.AI / OX ALPHA INSTITUTIONAL QUANT SPECIFICATION & ARCHITECTURAL CONSULTATION
+## MISSION: HEADLESS CLOUD EXECUTION & DESKTOP DEPENDENCY ABSTRACTION FOR AUTONOMOUS INSTITUTIONAL TRADING
+### PROMPT CODE: OX_ALPHA_60_HEADLESS_CLOUD_ARCHITECTURE
+### TARGET REPOSITORY: https://github.com/kbsingh1399/Trading_2
+### ACTIVE BRANCH: arena/4adf3661-trading-2 (https://github.com/kbsingh1399/Trading_2/tree/arena%2F4adf3661-trading-2)
+### BASELINE BRANCH: main (https://github.com/kbsingh1399/Trading_2/tree/main)
+
+---
+
+### 1. SYSTEM IDENTITY & GITHUB REPOSITORY ACCESS
+You are Ox Alpha / Arena.ai, the supreme quantitative trading systems architect, high-frequency microstructure econometrician, and low-latency C++/Python execution engineer.
+
+You have direct access to our GitHub repository:
+- Repository URL: https://github.com/kbsingh1399/Trading_2
+- Primary Active Branch: `arena/4adf3661-trading-2` (Direct Tree: https://github.com/kbsingh1399/Trading_2/tree/arena%2F4adf3661-trading-2)
+- Production Master: `main` (Direct Tree: https://github.com/kbsingh1399/Trading_2/tree/main)
+
+**STRICT PROMPT INSTRUCTION:**
+Per our institutional architectural standards, this prompt contains **ZERO embedded source code blocks**. You are instructed to inspect, analyze, and cite the codebase directly from our GitHub branches above. All context, operational invariants, empirical audit findings, and mathematical specifications are delivered below in pure, high-density instructions.
+
+---
+
+### 2. LIVE PRODUCTION ENVIRONMENT & GROUND-TRUTH EXECUTION STATE
+1. **Live Broker Execution State (MetaTrader 5 Account 5064568 - Blueberry Markets LLC):**
+   - Live Account: 5064568 (Currency: USD | Trade Mode: Real).
+   - Capital Peak: 5,000.00 USD | Live Balance: 4,841.23 USD | Live Equity: ~4,836.72 USD.
+   - Hard Risk Defense Floor: 4,775.00 USD (4.50% hard risk defense floor / 225.00 USD max drawdown).
+   - Equity Cushion Above Floor: +61.72 USD.
+   - Margin Free: ~3,691.13 USD | Margin Used: ~1,145.59 USD.
+2. **Active Live Positions & Resting Orderbook:**
+   - **Active Live Position (Ticket #18593333):**
+     * Asset: `ETHUSD.pi`
+     * Direction: **LONG** | Volume: **0.85 lots** | Open Price: **2,695.50 USD**
+     * Stop Loss: **2,686.00 USD** (Risk: 8.08 USD / 0.17% of capital)
+     * Take Profit: **2,725.00 USD** (Target Reward: +25.08 USD / +3.11R)
+     * Microstructure Ratchets Armed: Phase 0 Break-Even lock at Entry + 0.80R (2,703.10 USD) moving SL to Entry + 0.35R (2,698.82 USD); Phase 1 Profit lock at Entry + 1.50R (2,709.75 USD) moving SL to Entry + 0.80R (2,703.10 USD).
+   - **Active Resting Pending Limit Orders (4 Orders):**
+     * Ticket #18573320: `ETHUSD.pi` SELL LIMIT 0.55 lots @ 2,732.80 USD (SL 2,741.50, TP 2,705.00, Risk: 4.79 USD)
+     * Ticket #18576872: `XAUUSD.pi` SELL LIMIT 0.01 lots @ 4,176.00 USD (SL 4,186.50, TP 4,143.00, Risk: 10.50 USD)
+     * Ticket #18581548: `SOLUSD.p` SELL LIMIT 0.06 lots @ 122.25 USD (SL 123.15, TP 120.10, Risk: 5.40 USD)
+     * Ticket #18590522: `SP500.p` SELL LIMIT 0.09 lots @ 7,897.00 USD (SL 7,909.00, TP 7,830.00, Risk: 10.80 USD)
+   - First-Fill OCO Governor: ARMED (MAX_CONCURRENT = 2 filled positions simultaneously).
+3. **Software & Test Suite Parity:**
+   - Complete 119/119 unit and integration tests passing green (100% green across `Tests/Test_Zero_Cost_Data_Factory.py`, `Tests/Test_Pioneer_Decision_Engine.py`, `Tests/Test_Omni_Consultation.py`, `Tests/Test_Microstructure.py`, `Tests/Test_Omni_Engine.py`, `Tests/Test_Omni_Execution.py`).
+   - Git commits synchronized across `main` and `arena/4adf3661-trading-2`.
+
+---
+
+### 3. THE ARCHITECTURAL CHALLENGE: DESKTOP DEPENDENCY ABSTRACTION
+Currently, our institutional trading loop (`Terminal/OF_Strategy.py`) runs on a local Windows machine. We require you to design a **production-grade cloud architecture** that allows the entire institutional decision-making and execution chain to run **100% headless in an isolated cloud/container environment**, completely eliminating local desktop dependencies.
+
+#### The 3 Desktop Dependencies that Currently Bind Execution:
+1. **Dependency 1: Windows MetaTrader 5 Desktop IPC (`Terminal/MT5_Execution_Bridge.py`):**
+   - The official `MetaTrader5` Python package requires Windows and communicates via named pipes / shared memory with a local running desktop `terminal64.exe` GUI process.
+   - In cloud containers (Linux Docker, AWS ECS, Google Cloud Run), there is no Windows GUI or native desktop terminal.
+   - **Requirement:** Design a clean, polymorphic execution abstraction layer (`ExecutionBridgeBase`) that decouples trading logic from the Windows-only `MetaTrader5` package.
+2. **Dependency 2: Browser CDP Orderbook Scraping (`Terminal/Chrome_Terminal.py`):**
+   - Currently, `Chrome_Terminal.py` connects over Chrome DevTools Protocol (CDP port 9222) to a running Chromium browser instance to scrape and expose L2/L3 orderbook depth and whale clusters on `http://localhost:8095`.
+   - In headless cloud deployments, running a full desktop browser with graphical rendering is resource-heavy, fragile, and prone to memory leaks.
+   - **Requirement:** Fully absorb orderbook depth aggregation and whale cluster detection directly into pure asynchronous Python inside `Terminal/Data_Factory/streams.py` and `factory.py`, streaming directly from Binance, Coinbase, and Hyperliquid WebSockets without any browser dependency.
+3. **Dependency 3: Local Process Lifecycle & Scheduling:**
+   - Currently, cycles are orchestrated via local Windows tasks and background schedules.
+   - **Requirement:** Design a robust, containerized 24/7 service runtime with auto-reconnection, heartbeat health monitoring, and deterministic 15-minute candle boundary execution (:14, :29, :44, :59 UTC).
+
+---
+
+### 4. SPECIFIC ARCHITECTURAL QUESTIONS & DELIVERABLES REQUESTED
+
+#### DELIVERABLE 1: POLYMORPHIC BROKER EXECUTION ADAPTER ARCHITECTURE
+Design an abstract, multi-backend execution architecture (`Terminal/Execution/` or updated `Terminal/MT5_Execution_Bridge.py`):
+1. **Abstract Base Interface (`BaseExecutionBridge`):**
+   - Defining mandatory contract methods: `get_account_summary()`, `get_open_positions()`, `get_pending_orders()`, `get_symbol_price()`, `stage_limit_order()`, `modify_position_sltp()`, `cancel_order()`.
+2. **Backend Implementations:**
+   - **Backend A (`NativeMT5Bridge`):** The current high-speed Windows desktop IPC bridge for local operation.
+   - **Backend B (`MetaApiCloudBridge` / `HeadlessRESTBridge`):** A headless cloud REST/WebSocket bridge connecting to broker accounts via cloud gateways (such as MetaApi, direct broker FIX protocol, or Blueberry Markets REST API) that runs cleanly on Linux Docker without any desktop terminal.
+   - **Backend C (`PaperSimulatedBridge`):** A zero-dependency institutional paper matching simulator that executes limit orders against raw WebSocket orderbook ticks, supporting deterministic offline testing and headless simulation.
+3. **Auto-Discovery & Fail-Closed Fallback:**
+   - How the engine detects available execution backends at runtime and automatically falls back or fails closed if broker connectivity degrades.
+
+#### DELIVERABLE 2: PURE PYTHON ZERO-BROWSER L2/L3 ORDERBOOK AGGREGATION
+In our Zero-Cost Data Factory (`Terminal/Data_Factory/`):
+1. How to replace `Chrome_Terminal.py` by aggregating multi-venue L2 orderbook feeds (Binance depth20@100ms, Coinbase match/level2, Hyperliquid l2Book) directly into the `IntelligenceBus` ring buffer.
+2. Reconstruct persistent resting whale walls (notional >= 150k USD with persistence >= 180s) in pure Python with sub-millisecond memory footprint.
+3. Ensure 100% schema parity with the payload consumed by `Risk_Sizing_Engine.py` and `Pioneer_Decision_Engine.py`.
+
+#### DELIVERABLE 3: PRODUCTION CONTAINERIZATION & DEPLOYMENT BLUEPRINT
+1. **Minimal Docker Architecture:**
+   - Provide the complete production `Dockerfile` (Python 3.11/3.12 slim, multi-stage build, minimal dependencies).
+   - Provide `docker-compose.yml` specifying resource limits, restart policies, and healthcheck endpoints.
+2. **Environment & Secrets Management:**
+   - Secure configuration pattern for broker account IDs, cloud gateway tokens, and RPC endpoints via environment variables without hardcoded secrets.
+3. **15-Minute Candle Boundary Synchronization:**
+   - Provide the exact asynchronous loop pattern in Python that sleeps with sub-second drift compensation to wake precisely at minute :14, :29, :44, :59 UTC of each candle.
+
+#### DELIVERABLE 4: INSTITUTIONAL CONVICTION & DECISION-MAKING IN THE CLOUD
+1. Can the cloud engine expose a lightweight microservice endpoint (e.g. `/api/v1/evaluate_candle`) that outputs the Pioneer decision, orderflow conviction vector, and staged order tickets as a signed JSON payload?
+2. If external LLM reasoning (via Claude / DeepSeek / Gemini) is invoked at candle close, how should the structured JSON prompt and deterministic response schema be designed to enforce the 4,775.00 USD hard floor, dynamic risk budget (10-20 USD), and 3-stage piecewise ratchets with zero hallucination?
+
+---
+
+### 5. EVALUATION CRITERIA & OUTPUT FORMAT
+1. **Zero Hallucination & Codebase Consistency:**
+   - Reference exact files, classes, and methods from our repository branches (`arena/4adf3661-trading-2` and `main`).
+2. **Production-Ready & Minimal:**
+   - Favor clean, pragmatic code over excessive boilerplate. All suggested classes must be directly implementable and tested against our existing 119 unit tests.
+3. **Strict Risk & Frictions Invariants:**
+   - Preserve all settled invariants: 4,775.00 USD hard equity floor, 10.00 to 20.00 USD dynamic risk budget, 41 bps round-trip friction, MAX_CONCURRENT = 2, and 3-phase piecewise ratchets.
+
+Please provide your complete institutional architectural analysis, module designs, and implementation roadmap.
