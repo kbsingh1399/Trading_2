@@ -1,0 +1,74 @@
+# ====================================================================================================
+# OX ALPHA 61: HYBRID "ARENA BRAIN + LAPTOP MUSCLE" MT5 AUTONOMOUS EXECUTION SPECIFICATION
+# ====================================================================================================
+# Repository: https://github.com/kbsingh1399/Trading_2 (Branches: main & arena/4adf3661-trading-2)
+# Master Audit Baseline: OX_ALPHA_60 merged at commits 55d20c5 and 50965ca (247 passing tests).
+# Target Execution Environment: Local Windows Laptop (MT5 Terminal IPC) + Cloud / Arena.ai Multi-Agent Brain.
+# Broker Connection: MetaTrader 5 Account 5064568 (Blueberry Markets SVG LLC).
+# Live Account Status: Balance 4,833.15 USD | Equity 4,837.78 USD | Hard Floor: 4,775.00 USD (+62.78 USD cushion).
+# Active Open Position: Ticket #18576872 - XAUUSD.pi SHORT 0.01 lots @ 4,176.00 USD (Floating Profit +4.63 USD / +0.44R).
+# Closed Trade: Ticket #18593333 - ETHUSD.pi LONG stopped out at 2,686.00 USD (-8.08 USD loss, 0.17% risk budget).
+# ====================================================================================================
+
+MISSION BRIEFING FOR ARENA.AI FRONTIER MODELS (CLAUDE 3.7 / GEMINI 2.5 PRO / GPT-4.5 / DEEPSEEK R1):
+
+The quantitative trader keeps their local laptop powered on 24/7 for low-latency MetaTrader 5 execution and WebSocket orderflow streaming. However, the trader specifically wants ARENA.AI to act as the primary DECISION-MAKING BRAIN, leveraging its frontier multi-agent capabilities (tri-specialist debate: Orderflow Analyst, Position Manager, Macro Risk Analyst) to analyze all market data points and dictate trades.
+
+Furthermore, we require a verifiable LIVE TEST LIMIT ORDER staged by Arena.ai to demonstrate end-to-end bidirectional control over MT5 Account 5064568.
+
+You must deliver the complete, production-grade architectural and implementation package across 4 core deliverables:
+
+----------------------------------------------------------------------------------------------------
+DELIVERABLE 1: SECURE "ARENA BRAIN <-> LAPTOP MUSCLE" BIDIRECTIONAL TUNNEL
+----------------------------------------------------------------------------------------------------
+Architect the zero-cost, secure, low-latency communication layer connecting Arena.ai (cloud brain) with the local laptop (execution muscle):
+1. Evaluate two primary communication pathways:
+   - Pathway A: Zero-config Cloudflare Tunnel / ngrok exposing `Terminal/Headless/server.py` on port 8080. Arena.ai or a cloud microservice sends signed HMAC-SHA256 HTTP POST requests (`/api/v1/stage_order`, `/api/v1/modify_sltp`) directly to the laptop.
+   - Pathway B: Cloud Gateway via MetaApi (`HeadlessRESTBridge`), where Arena.ai directly dispatches orders to Blueberry Markets Account 5064568 over cloud REST, while the laptop monitors fills locally via MT5 IPC.
+   - Pathway C: Event-driven Polling Reconciler (`Terminal/Execution/remote_reconciler.py`), where the laptop regularly pulls signed trade instructions from a GitHub Gist / Supabase / Redis ring buffer written by Arena.ai.
+2. Select the optimal pathway that requires ZERO open router ports, guarantees sub-second order dispatch, and prevents replay attacks via HMAC-SHA256 nonces and timestamps.
+3. Provide the complete setup script and configuration instructions.
+
+----------------------------------------------------------------------------------------------------
+DELIVERABLE 2: END-TO-END VERIFIABLE LIVE TEST LIMIT ORDER PROTOCOL
+----------------------------------------------------------------------------------------------------
+Define the exact protocol for Arena.ai to stage a safe, verifiable test limit order on MT5 Account 5064568 to confirm active control:
+1. Candidate Selection: Choose a safe, non-market-crossing limit order on an institutional asset (e.g., GOLD Sell Limit @ 4,182.00 USD or SOL Buy Limit @ 118.50 USD) with:
+   - Volume: Minimum lot size (0.01 lot for Gold, 0.05 lot for SOL).
+   - Strict Stop Loss and Take Profit calculated via Wilder ATR(14).
+   - Dollar Risk capped strictly at <= 10.00 USD (preserving our +62.78 USD cushion above the 4,775.00 USD floor).
+   - Comment tag: `ARENA:TEST_LIMIT_v1`.
+2. Generate the exact Python execution snippet or signed HTTP payload for staging this order via `BaseExecutionBridge.stage_limit_order()`.
+3. Include an automatic cancellation / timeout mechanism: if the test order remains unfilled after 24 bars (6 hours), the reconciler purges it automatically.
+
+----------------------------------------------------------------------------------------------------
+DELIVERABLE 3: MULTI-AGENT BRAIN DELIBERATION CONTRACT ON ARENA.AI
+----------------------------------------------------------------------------------------------------
+Formalize how Arena.ai conducts the multi-perspective deliberation before any trade decision is signed:
+1. Swarm Composition:
+   - Agent 1: Orderflow Analyst (Evaluates Session VWAP Z-scores, CVD 1m/5m/15m divergence, L2 20-level skew, and L3 resting whale walls >= 150k USD persisting >= 180s).
+   - Agent 2: Position Manager (Monitors active trades like GOLD Short #18576872, calculates R-multiples, enforces 3-phase ratchets: +0.80R BE lock, +1.50R profit lock, checks MAX_CONCURRENT = 2).
+   - Agent 3: Macro Risk Analyst (Checks economic calendar for Tier-1 blackouts, source-weighted sentiment, cross-asset correlation, and portfolio cushion vs 4,775.00 USD floor).
+2. Synthesis Engine:
+   - Fuses the 3 perspectives into the `PioneerDecisionEngine` conviction vector (Orderflow 30%, Cascade 25%, Stops 15%, Whale 15%, Macro 15%).
+   - Formulates the attested response conforming strictly to `Terminal/Headless/llm_contract.py` (zero hallucination, exact numeric price echoes, sealed hash digest).
+
+----------------------------------------------------------------------------------------------------
+DELIVERABLE 4: ALPHA SQUEEZE & ABSORPTION DETECTION ENHANCEMENT
+----------------------------------------------------------------------------------------------------
+Address recent live execution findings (ETH Long stopped out at 2,686.00 USD before bouncing to 2,691.00 USD; GOLD Short holding profitably at +0.44R):
+1. Root-cause analysis: Why did ETH trigger its stop? (Static VWAP band entry without waiting for aggressive seller exhaustion).
+2. The Solution: Implement an Orderflow Taker Delta Exhaustion Gate.
+   - Require negative CVD slope deceleration AND minimum 1m/5m buy absorption at support before staging limit orders.
+3. Adaptive Volatility Stop Buffer: Stop distance = max(1.5 * ATR_15m, structural_swing_low - 0.2 * ATR_15m), with lot size dynamically scaled to preserve exact 10.00 USD risk.
+
+----------------------------------------------------------------------------------------------------
+SYSTEM INVARIANTS (NEVER TO BE VIOLATED):
+- Initial Capital: 5,000.00 USD | Hard Equity Floor: 4,775.00 USD (Current Cushion: +62.78 USD).
+- Risk Budget per Trade: 10.00 to 20.00 USD (0.20% to 0.40%).
+- Max Concurrent Positions: 2 filled positions simultaneously across all 14 assets.
+- Friction Allowance: Minimum 41 bps round-trip friction on crypto / broker spread on metals.
+- Zero Dollar Signs in prose; always write USD.
+- Zero raw LaTeX math delimiters ($ or $$); write plain text, unicode, and clear variables.
+- All code must pass pytest without regressions on top of the 247 passing tests.
+# ====================================================================================================
