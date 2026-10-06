@@ -32,7 +32,7 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from Terminal.Asset_Universe import UNIVERSE, canonical_asset
+from Terminal.Asset_Universe import UNIVERSE, EXTENDED_UNIVERSE, canonical_asset
 from Terminal.MT5_Execution_Bridge import MT5ExecutionBridge
 
 CANDLE_DIR = ROOT / "Data" / "Candles"
@@ -348,10 +348,12 @@ def main():
     parser = argparse.ArgumentParser(description="Candle Persistence & Indicator Engine")
     parser.add_argument("--sync", action="store_true", help="Sync all candles from MT5")
     parser.add_argument("--scan", action="store_true", help="Scan for VWAP 2 SD opportunities")
+    parser.add_argument("--extended", action="store_true", help="Scan full 24-asset extended universe")
     parser.add_argument("--asset", type=str, default=None, help="Inspect specific asset")
     args = parser.parse_args()
 
-    engine = CandleIndicatorEngine()
+    active_uni = EXTENDED_UNIVERSE if args.extended else UNIVERSE
+    engine = CandleIndicatorEngine(universe=active_uni)
 
     if args.asset:
         res = engine.sync_candles(args.asset)
