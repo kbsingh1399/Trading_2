@@ -1,0 +1,6 @@
+# Runtime dependencies for the headless cloud image. Deliberately minimal:
+# everything else in the stack is stdlib (asyncio, hmac, hashlib, urllib).
+numpy>=1.26          # CovarianceGate / robust z-scores
+websockets>=12.0     # venue streams (lazy-imported; only needed live)
+requests>=2.31       # CognitiveEngine LLM transport
+polars>=0.20         # bulk parquet archives (data.binance.vision backfill)

@@ -79,12 +79,18 @@ class _WallTracker:
         return self.l3_orders(asset, now)
 
     def l3_orders(self, asset, now):
+        """Persistent resting walls only: notional >= min_notional_usd AND
+        persistence >= min_persistence_sec (default 180s). A wall observed
+        once is fleeting depth, not a resting whale cluster."""
         out = []
         for (a, side, edge), wall in self._walls.items():
             if a != asset or now - wall["last"] > 30:
                 continue
+            persistence = wall["last"] - wall["first"]
+            if persistence < self.min_persistence_sec:
+                continue
             out.append({"side": side, "price": edge, "notional_usd": wall["usd"],
-                        "persistence_sec": wall["last"] - wall["first"],
+                        "persistence_sec": persistence,
                         "observed_at": wall["last"], "order_id": f"wall:{side}:{edge}"})
         out.sort(key=lambda w: w["notional_usd"], reverse=True)
         return out[:self.top_n]

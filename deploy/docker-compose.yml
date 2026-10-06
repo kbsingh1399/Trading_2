@@ -1,0 +1,47 @@
+# OMNI headless cloud deployment.
+#   cp deploy/.env.example deploy/.env   # fill in secrets, never commit .env
+#   docker compose -f deploy/docker-compose.yml --env-file deploy/.env up -d
+services:
+  omni-headless:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    image: omni-headless:latest
+    container_name: omni-headless
+    restart: unless-stopped          # 24/7; the app's own gates handle the rest
+    stop_grace_period: 30s           # let the candle loop land the current slot
+    env_file:
+      - .env
+    ports:
+      - "8080:8080"                  # /healthz /readyz /api/v1/evaluate_candle
+    volumes:
+      - ../Data:/app/Data            # state, journals, covariance, seals survive restarts
+    # Resource envelope: the factory holds ring buffers + band state per asset;
+    # 1 vCPU / 1 GiB is measured headroom for 4 assets with 30s watchdogs.
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 1g
+        reservations:
+          cpus: "0.25"
+          memory: 256m
+    # Non-swarm fallbacks (docker compose v2 honours these directly)
+    mem_limit: 1g
+    cpus: 1.0
+    memswap_limit: 1g                # no swap spillover: fail, don't crawl
+    healthcheck:
+      test: ["CMD", "python", "-c", "import sys,urllib.request; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8080/healthz', timeout=3).status == 200 else 1)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+    logging:
+      driver: json-file
+      options:
+        max-size: "50m"
+        max-file: "5"
+    # Hardening: no new privileges, minimal capabilities
+    security_opt:
+      - no-new-privileges:true
+    read_only: false                 # /app/Data must stay writable (journals/state)

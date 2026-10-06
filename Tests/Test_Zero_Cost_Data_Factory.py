@@ -585,6 +585,11 @@ def feed_factory(now=NOW):
                                  "volume": 100} for i in range(30)])
     factory.ingest_oi("SOL", ts=now - 900, oi_contracts=0, price=120.5)
     factory.ingest_oi("SOL", ts=now, oi_contracts=83_000, price=120.5)   # ~10M USD
+    # Persistent walls need a >=180s observation span with no >30s gap
+    # (the unseen-drop rule resets lapsed walls): observe every 30s for 240s.
+    book = factory.bus.book("SOL")
+    for step in range(9):
+        factory.wall_tracker.observe("SOL", book, now - 240 + step * 30)
     return factory
 
 
