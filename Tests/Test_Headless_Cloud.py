@@ -222,7 +222,9 @@ def test_headless_rest_bridge_trades_and_fails_closed():
 
 
 def test_create_bridge_is_fail_closed_on_explicit_unhealthy_backend(monkeypatch):
-    monkeypatch.setenv("EXECUTION_BACKEND", "native_mt5")   # no terminal in this container
+    monkeypatch.setattr("Terminal.Execution.native_mt5.NativeMT5Bridge.health",
+                        lambda self: {"healthy": False, "detail": "simulated_down"})
+    monkeypatch.setenv("EXECUTION_BACKEND", "native_mt5")   # simulate down/unreachable terminal
     with pytest.raises(NoExecutionBackend):
         create_bridge()
     monkeypatch.setenv("EXECUTION_BACKEND", "fix_protocol")
@@ -231,6 +233,8 @@ def test_create_bridge_is_fail_closed_on_explicit_unhealthy_backend(monkeypatch)
 
 
 def test_create_bridge_auto_discovers_paper_only_when_allowed(monkeypatch):
+    monkeypatch.setattr("Terminal.Execution.native_mt5.NativeMT5Bridge.health",
+                        lambda self: {"healthy": False, "detail": "simulated_down"})
     for var in ("EXECUTION_BACKEND", "METAAPI_TOKEN", "METAAPI_ACCOUNT_ID"):
         monkeypatch.delenv(var, raising=False)
     monkeypatch.setenv("OMNI_ALLOW_PAPER", "0")
