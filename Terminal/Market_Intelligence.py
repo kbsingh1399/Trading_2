@@ -49,6 +49,48 @@ BULLISH_KEYWORDS = [
     "rebound", "breakout", "soar"
 ]
 
+# Canonical 23-source institutional news & squawk roster (from Hyperdash)
+INSTITUTIONAL_SOURCES = {
+    # 1. Fast Breaking Squawks & Terminal Wires (Highest Impact)
+    "Deltaone": {"tier": "BREAKING_SQUAWK", "weight": 2.0, "aliases": ["deltaone", "walter bloomberg"]},
+    "First Squawk": {"tier": "BREAKING_SQUAWK", "weight": 2.0, "aliases": ["first squawk", "firstsquawk"]},
+    "FinancialJuice": {"tier": "BREAKING_SQUAWK", "weight": 1.8, "aliases": ["financialjuice", "financial juice"]},
+    # 2. Tier-1 Institutional Financial Newswires
+    "Bloomberg": {"tier": "TIER_1_NEWSWIRE", "weight": 1.5, "aliases": ["bloomberg"]},
+    "Reuters": {"tier": "TIER_1_NEWSWIRE", "weight": 1.5, "aliases": ["reuters"]},
+    "WSJ": {"tier": "TIER_1_NEWSWIRE", "weight": 1.5, "aliases": ["wsj", "wall street journal"]},
+    "Financial Times": {"tier": "TIER_1_NEWSWIRE", "weight": 1.5, "aliases": ["financial times", "ft.com"]},
+    "Barron's": {"tier": "TIER_1_NEWSWIRE", "weight": 1.3, "aliases": ["barron's", "barrons"]},
+    # 3. Macro Financial Media & Whale Trackers
+    "CNBC": {"tier": "MACRO_FINANCIAL", "weight": 1.2, "aliases": ["cnbc"]},
+    "MarketWatch": {"tier": "MACRO_FINANCIAL", "weight": 1.2, "aliases": ["marketwatch"]},
+    "Unusual Whales": {"tier": "WHALE_INTELLIGENCE", "weight": 1.3, "aliases": ["unusual whales", "unusualwhales"]},
+    "Kobeissi Letter": {"tier": "MACRO_RESEARCH", "weight": 1.2, "aliases": ["kobeissi letter", "kobeissiletter"]},
+    # 4. Institutional Research & Investigative Tech
+    "Citrini": {"tier": "INSTITUTIONAL_RESEARCH", "weight": 1.1, "aliases": ["citrini", "citrini research"]},
+    "SolidIntel": {"tier": "INSTITUTIONAL_RESEARCH", "weight": 1.0, "aliases": ["solidintel", "solid intel"]},
+    "The Information": {"tier": "INVESTIGATIVE_TECH", "weight": 1.0, "aliases": ["the information", "theinformation"]},
+    "Semafor": {"tier": "INVESTIGATIVE_TECH", "weight": 0.9, "aliases": ["semafor"]},
+    # 5. General Business & TradFi Publications
+    "Forbes": {"tier": "GENERAL_BUSINESS", "weight": 0.8, "aliases": ["forbes"]},
+    "Fortune": {"tier": "GENERAL_BUSINESS", "weight": 0.8, "aliases": ["fortune"]},
+    "Business Insider": {"tier": "GENERAL_BUSINESS", "weight": 0.8, "aliases": ["business insider", "insider"]},
+    "TradFi": {"tier": "TRADFI", "weight": 0.8, "aliases": ["tradfi"]},
+    # 6. Geopolitical & Catalyst Sentiment
+    "Watcher Guru": {"tier": "CATALYST_SENTIMENT", "weight": 1.0, "aliases": ["watcher guru", "watcherguru"]},
+    "Trump Truth": {"tier": "GEOPOLITICAL_SENTIMENT", "weight": 1.2, "aliases": ["trump truth", "truth social"]},
+    "Zephyr": {"tier": "CATALYST_SENTIMENT", "weight": 0.8, "aliases": ["zephyr"]},
+}
+
+
+def resolve_source_meta(source_name: str) -> Dict[str, Any]:
+    """Resolves tier and weight for any of the 23 institutional sources."""
+    src_lower = (source_name or "").lower().strip()
+    for name, meta in INSTITUTIONAL_SOURCES.items():
+        if src_lower == name.lower() or any(alias in src_lower for alias in meta["aliases"]):
+            return {"name": name, "tier": meta["tier"], "weight": meta["weight"]}
+    return {"name": source_name or "Unknown", "tier": "GENERAL", "weight": 1.0}
+
 
 class MarketIntelligenceEngine:
     def __init__(self, blackout_minutes: int = 15, calendar_path=None, clock=time.time):
@@ -62,22 +104,47 @@ class MarketIntelligenceEngine:
         self.calendar_error = None
         self.last_calendar_attempt = 0.0
 
+    def ingest_hyperdash_news(self, news_items: List[Dict[str, Any]]) -> int:
+        """
+        Directly ingests structured news items from Hyperdash's 23-source stream.
+        """
+        ingested = 0
+        for item in news_items:
+            title = item.get("title") or item.get("text") or item.get("headline", "")
+            if not title:
+                continue
+            src = item.get("source") or item.get("publisher") or "Hyperdash"
+            meta = resolve_source_meta(src)
+            self.cached_headlines.append({
+                "title": title.strip(),
+                "date": item.get("date") or item.get("timestamp") or "",
+                "source": meta["name"],
+                "tier": meta["tier"],
+                "weight": meta["weight"]
+            })
+            ingested += 1
+        if ingested > 0:
+            self.cached_headlines = self.cached_headlines[-50:]  # Keep last 50
+            self._compute_sentiment_score()
+        return ingested
+
     def fetch_live_headlines(self) -> List[Dict[str, Any]]:
         """
-        Fetches breaking financial and crypto RSS feeds.
+        Fetches breaking financial and crypto RSS feeds from verified institutional endpoints.
         """
         now = self.clock()
         if self.cached_headlines and (now - self.last_fetch_time < 300.0):
             return self.cached_headlines
 
         feeds = [
-            "https://feeds.content.dowjones.com/public/rss/mw_topstories",
-            "https://cointelegraph.com/rss",
-            "https://www.coindesk.com/arc/outboundfeeds/rss/"
+            ("https://feeds.content.dowjones.com/public/rss/mw_topstories", "MarketWatch"),
+            ("https://search.cnbc.com/rs/search/view.html?partnerId=2000&keywords=markets&sort=date", "CNBC"),
+            ("https://cointelegraph.com/rss", "Cointelegraph"),
+            ("https://www.coindesk.com/arc/outboundfeeds/rss/", "CoinDesk")
         ]
 
         headlines = []
-        for url in feeds:
+        for url, default_src in feeds:
             try:
                 req = urllib.request.Request(url, headers=DEFAULT_HEADERS)
                 with urllib.request.urlopen(req, timeout=5) as resp:
@@ -87,16 +154,19 @@ class MarketIntelligenceEngine:
                         title = item.find("title")
                         pub_date = item.find("pubDate")
                         if title is not None and title.text:
+                            src_meta = resolve_source_meta(default_src)
                             headlines.append({
                                 "title": title.text.strip(),
                                 "date": pub_date.text.strip() if pub_date is not None and pub_date.text else "",
-                                "source": url.split("//")[-1].split("/")[0]
+                                "source": src_meta["name"],
+                                "tier": src_meta["tier"],
+                                "weight": src_meta["weight"]
                             })
             except Exception:
                 continue
 
         if headlines:
-            self.cached_headlines = headlines[:25]
+            self.cached_headlines = headlines[:35]
             self.last_fetch_time = now
             self._compute_sentiment_score()
 
@@ -104,32 +174,42 @@ class MarketIntelligenceEngine:
 
     def _compute_sentiment_score(self):
         """
-        Computes a bounded score [-1.0, +1.0] from cached headlines.
+        Computes a source-weighted bounded score [-1.0, +1.0] from cached headlines.
+        Headlines from Breaking Squawks (Deltaone, First Squawk) and Tier-1 Newswires
+        (Bloomberg, Reuters, WSJ) carry up to 2.0x weight.
         """
         if not self.cached_headlines:
             self.cached_sentiment = 0.0
             return
 
-        bull_count = 0
-        bear_count = 0
-        total_matched = 0
+        weighted_bull = 0.0
+        weighted_bear = 0.0
+        total_weight = 0.0
 
         for h in self.cached_headlines:
             text = h["title"].lower()
+            weight = float(h.get("weight", 1.0))
+            matched = False
+
             for kw in BEARISH_KEYWORDS:
                 if kw in text:
-                    bear_count += 1
-                    total_matched += 1
+                    weighted_bear += weight
+                    matched = True
+                    break
+
             for kw in BULLISH_KEYWORDS:
                 if kw in text:
-                    bull_count += 1
-                    total_matched += 1
+                    weighted_bull += weight
+                    matched = True
+                    break
 
-        if total_matched == 0:
+            if matched:
+                total_weight += weight
+
+        if total_weight == 0.0:
             self.cached_sentiment = 0.0
         else:
-            raw_score = (bull_count - bear_count) / max(total_matched, 1)
-            # Bound and smooth
+            raw_score = (weighted_bull - weighted_bear) / max(total_weight, 1.0)
             self.cached_sentiment = round(max(-1.0, min(1.0, raw_score)), 2)
 
     def check_macro_blackout(self) -> Tuple[bool, str, float]:

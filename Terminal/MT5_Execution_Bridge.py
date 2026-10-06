@@ -556,7 +556,7 @@ class MT5ExecutionBridge:
         if normalized <= 0.0:
             return {"success": False, "error": "Requested volume is below broker minimum"}
         order_type = getattr(mt5, "ORDER_TYPE_BUY_LIMIT", 2) if is_long else getattr(mt5, "ORDER_TYPE_SELL_LIMIT", 3)
-        broker_now = int(getattr(tick, "time", 0)) if getattr(tick, "time", 0) > 0 else int(time.time()) + 10800
+        broker_now = max(int(getattr(tick, "time", 0)), int(time.time()) + self.broker_utc_offset_sec)
         request = {
             "action": mt5.TRADE_ACTION_PENDING,
             "symbol": symbol,

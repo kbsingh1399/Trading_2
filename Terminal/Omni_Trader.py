@@ -509,7 +509,8 @@ class AI15mMT5Trader:
                         if quote and atr > 0:
                             mid = (number(quote["bid"]) + number(quote["ask"])) / 2.0
                             limit_px = number(order.get("price_open", 0.0))
-                            if limit_px > 0 and abs(mid - limit_px) > 3.0 * atr:
+                            drift_threshold = max(6.0 * atr, 0.03 * mid)
+                            if limit_px > 0 and abs(mid - limit_px) > drift_threshold:
                                 res = self.bridge.cancel_pending_order(oticket)
                                 self._append("executions.jsonl", {"time": self.clock(), "event": "cancel_pending", "ticket": oticket, "reason": "price_drifted_far_from_limit", "result": res})
                                 changes.append({"ticket": str(oticket), "action": "CANCEL", "reason": "price_drifted_far_from_limit"})
@@ -614,6 +615,7 @@ class AI15mMT5Trader:
                         pivots = compute_pivot_levels(bars, tick)
 
                         if self.entry_mode == "limit":
+                            now_ts = self.clock()
                             min_broker_dist = (max(number(quote.get("stops_level", 0)), number(quote.get("freeze_level", 0)), 1) + 2) * quote["point"]
                             if features["direction"] == "LONG":
                                 whale_bids = [number(w.get("price")) for w in payload.get("l3_orders", [])
@@ -621,7 +623,7 @@ class AI15mMT5Trader:
                                               and number(w.get("notional_usd", 0)) >= 150000.0
                                               and max(number(w.get("persistence_sec", 0)), number(w.get("observed_span_s", 0))) >= 180.0
                                               and (not w.get("is_stale", False))
-                                              and (globals().get("now") is None or globals().get("epoch") is None or w.get("observed_at") is None or 0.0 <= globals()["now"] - globals()["epoch"](w.get("observed_at")) <= 30.0)
+                                              and (w.get("observed_at") is None or 0.0 <= now_ts - epoch(w.get("observed_at")) <= 30.0)
                                               and quote["bid"] - 2.5*atr <= number(w.get("price")) <= quote["bid"]]
                                 bull_fvg_ce = pivots.get("bull_fvg_ce") if pivots else None
                                 vwap_lower = pivots.get("vwap_lower_1") if pivots else None
@@ -653,13 +655,21 @@ class AI15mMT5Trader:
                                     sl = round(math.floor((entry - min_broker_dist) / tick) * tick, digits)
                                 r = abs(entry - sl)
                                 tp = round(math.floor(max(entry + target_r * r, entry + min_broker_dist) / tick) * tick, digits)
+                                overhead_asks = [number(w.get("price")) for w in payload.get("l3_orders", [])
+                                                 if w.get("side") == "SELL" and number(w.get("notional_usd", 0)) >= 150000.0
+                                                 and number(w.get("price")) > entry + min_broker_dist]
+                                if overhead_asks:
+                                    nearest_ask = min(overhead_asks)
+                                    snapped_tp = round(math.floor((nearest_ask - tick) / tick) * tick, digits)
+                                    if snapped_tp > entry + 1.2 * r:
+                                        tp = min(tp, snapped_tp)
                             else:
                                 whale_asks = [number(w.get("price")) for w in payload.get("l3_orders", [])
                                               if w.get("side") == "SELL"
                                               and number(w.get("notional_usd", 0)) >= 150000.0
                                               and max(number(w.get("persistence_sec", 0)), number(w.get("observed_span_s", 0))) >= 180.0
                                               and (not w.get("is_stale", False))
-                                              and (globals().get("now") is None or globals().get("epoch") is None or w.get("observed_at") is None or 0.0 <= globals()["now"] - globals()["epoch"](w.get("observed_at")) <= 30.0)
+                                              and (w.get("observed_at") is None or 0.0 <= now_ts - epoch(w.get("observed_at")) <= 30.0)
                                               and quote["ask"] <= number(w.get("price")) <= quote["ask"] + 2.5*atr]
                                 bear_fvg_ce = pivots.get("bear_fvg_ce") if pivots else None
                                 vwap_upper = pivots.get("vwap_upper_1") if pivots else None
@@ -691,6 +701,14 @@ class AI15mMT5Trader:
                                     sl = round(math.ceil((entry + min_broker_dist) / tick) * tick, digits)
                                 r = abs(entry - sl)
                                 tp = round(math.ceil(min(entry - target_r * r, entry - min_broker_dist) / tick) * tick, digits)
+                                underlying_bids = [number(w.get("price")) for w in payload.get("l3_orders", [])
+                                                   if w.get("side") == "BUY" and number(w.get("notional_usd", 0)) >= 150000.0
+                                                   and number(w.get("price")) < entry - min_broker_dist]
+                                if underlying_bids:
+                                    nearest_bid = max(underlying_bids)
+                                    snapped_tp = round(math.ceil((nearest_bid + tick) / tick) * tick, digits)
+                                    if snapped_tp < entry - 1.2 * r:
+                                        tp = max(tp, snapped_tp)
                         else:
                             entry = quote["ask"] if features["direction"] == "LONG" else quote["bid"]
                             min_dist = (max(quote.get("stops_level", 0), quote.get("freeze_level", 0))+2)*quote["point"]+(quote["ask"]-quote["bid"])
