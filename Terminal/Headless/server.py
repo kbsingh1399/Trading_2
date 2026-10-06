@@ -116,6 +116,7 @@ class HeadlessService:
                 await self._respond(writer, 400, {"error": "bad_request_line"})
                 return
             method, path = parts[0].upper(), parts[1].split("?")[0]
+            print(f"[HTTP] {method} {path}", flush=True)
             headers = {}
             while True:
                 line = await asyncio.wait_for(reader.readline(), timeout=10.0)
