@@ -13,9 +13,11 @@ Provides robust IPC communication with MetaTrader 5 terminal:
 
 import sys
 import time
-import math
+import datetime
 import logging
 from typing import Dict, List, Any, Optional, Sequence
+from Terminal.Asset_Universe import broker_candidates
+from Terminal.Risk_Sizing_Engine import floor_volume
 
 try:
     import MetaTrader5 as mt5
@@ -38,7 +40,19 @@ class MT5ExecutionBridge:
         self.timeout_ms = timeout_ms
         self.initialized = False
         self._symbol_cache: Dict[str, str] = {}
+        # MetaQuotes ticks are broker server time (EET/UTC+3, offset 10800s)
+        self.broker_utc_offset_sec: int = 10800
+        self.broker_utc_offset_ms: int = 10800 * 1000
         self.ensure_connected()
+
+    def _normalize_tick_msc(self, raw_msc: int) -> int:
+        if not raw_msc:
+            return 0
+        now_ms = time.time() * 1000
+        # If broker tick is ~3 hours ahead (EET server time), normalize to UTC
+        if raw_msc - now_ms > 3600 * 1000:
+            return int(raw_msc - self.broker_utc_offset_ms)
+        return int(raw_msc)
 
     def ensure_connected(self) -> bool:
         if not MT5_AVAILABLE:
@@ -46,7 +60,7 @@ class MT5ExecutionBridge:
             return False
 
         if not mt5.terminal_info() or not mt5.terminal_info().connected:
-            ok = mt5.initialize()
+            ok = mt5.initialize(timeout=self.timeout_ms)
             if not ok:
                 logger.error(f"MT5 initialize() failed. Error code: {mt5.last_error()}")
                 self.initialized = False
@@ -100,46 +114,12 @@ class MT5ExecutionBridge:
             return None
 
         candidates = [s.name for s in symbols]
-        
-        # Priority mapping patterns:
-        patterns = [
-            f"{coin}USD.p",
-            f"{coin}USD.pi",
-            f"{coin}USDT",
-            f"{coin}USD",
-            f"{coin[:3]}USD.p" if len(coin) > 3 else f"{coin}USD.p"
-        ]
-
-        # Handle known short codes (e.g. DOGE -> DOGUSD.p, LINK -> LNKUSD.p, NEAR -> NERUSD.p)
-        known_aliases = {
-            "DOGE": "DOGUSD.p",
-            "LINK": "LNKUSD.p",
-            "NEAR": "NERUSD.p",
-            "AVAX": "AVXUSD.p",
-            "SOL": "SOLUSD.p",
-            "BTC": "BTCUSD.pi",
-            "ETH": "ETHUSD.pi",
-            "XRP": "XRPUSD.pi",
-            "BNB": "BNBUSD.p",
-            "ADA": "ADAUSD.p",
-            "LTC": "LTCUSD.pi",
-            "BCH": "BCHUSD.p"
-        }
-        if coin in known_aliases and known_aliases[coin] in candidates:
-            self._symbol_cache[coin] = known_aliases[coin]
-            return known_aliases[coin]
-
-        for p in patterns:
-            if p in candidates:
-                self._symbol_cache[coin] = p
-                return p
-
-        # Partial match
-        for s in candidates:
-            if coin in s and "USD" in s:
-                self._symbol_cache[coin] = s
-                return s
-
+        for name in broker_candidates(coin):
+            if name in candidates:
+                self._symbol_cache[coin] = name
+                return name
+        # Unknown aliases must be configured explicitly; substring discovery can
+        # map a synthetic index to an unrelated broker instrument.
         return None
 
     def get_symbol_price(self, symbol: str) -> Optional[Dict[str, Any]]:
@@ -155,6 +135,8 @@ class MT5ExecutionBridge:
         if not tick or not info:
             return None
 
+        raw_msc = getattr(tick, "time_msc", 0) or 0
+        utc_msc = self._normalize_tick_msc(raw_msc)
         return {
             "symbol": symbol,
             "bid": tick.bid,
@@ -166,7 +148,15 @@ class MT5ExecutionBridge:
             "contract_size": info.trade_contract_size,
             "min_lot": info.volume_min,
             "max_lot": info.volume_max,
-            "step_lot": info.volume_step
+            "step_lot": info.volume_step,
+            "time_msc": utc_msc,
+            "raw_time_msc": raw_msc,
+            "receipt_time": time.time(),
+            "tick_size": getattr(info, "trade_tick_size", info.point),
+            "stops_level": getattr(info, "trade_stops_level", 0),
+            "freeze_level": getattr(info, "trade_freeze_level", 0),
+            "trade_mode": getattr(info, "trade_mode", None),
+            "currency_profit": getattr(info, "currency_profit", None)
         }
 
     def get_recent_bars(self, symbol: str, count: int = 96, timeframe: Any = None) -> List[Dict[str, Any]]:
@@ -230,30 +220,21 @@ class MT5ExecutionBridge:
     @staticmethod
     def _floor_volume(volume: float, step: float, minimum: float, maximum: float) -> float:
         """Normalize down, never up, so requested stop risk is not exceeded."""
-        step = max(float(step), 1e-12)
-        minimum, maximum = max(0.0, float(minimum)), max(float(maximum), float(minimum))
-        requested = min(max(float(volume), 0.0), maximum)
-        if requested < minimum:
-            return 0.0
-        units = math.floor((requested + 1e-12) / step)
-        normalized = units * step
-        if normalized < minimum:
-            return 0.0
-        decimals = max(0, min(8, int(round(-math.log10(step))) if step < 1 else 2))
-        return round(min(normalized, maximum), decimals)
+        return floor_volume(volume, step, minimum, maximum)
 
     def get_open_positions(self, symbol: Optional[str] = None) -> List[Dict[str, Any]]:
         if not self.ensure_connected():
-            return []
+            raise RuntimeError("Position inventory unavailable: MT5 disconnected")
 
         raw_positions = mt5.positions_get(symbol=symbol) if symbol else mt5.positions_get()
         if raw_positions is None:
-            return []
+            raise RuntimeError(f"Position inventory failed: {mt5.last_error()}")
 
         out = []
         for p in raw_positions:
             out.append({
                 "ticket": p.ticket,
+                "identifier": getattr(p, "identifier", p.ticket),
                 "time": p.time,
                 "symbol": p.symbol,
                 "direction": "LONG" if p.type == mt5.ORDER_TYPE_BUY else "SHORT",
@@ -268,6 +249,54 @@ class MT5ExecutionBridge:
                 "comment": p.comment
             })
         return out
+
+    def get_pending_orders(self):
+        if not self.ensure_connected(): raise RuntimeError("Pending inventory unavailable")
+        orders = mt5.orders_get()
+        if orders is None: raise RuntimeError(f"Pending inventory failed: {mt5.last_error()}")
+        return [{"ticket": o.ticket, "symbol": o.symbol, "magic": o.magic, "comment": o.comment,
+                 "volume": o.volume_current, "price_open": getattr(o, "price_open", 0.0),
+                 "sl": getattr(o, "sl", 0.0), "tp": getattr(o, "tp", 0.0), "type": getattr(o, "type", 0),
+                 "direction": "LONG" if getattr(o, "type", 0) in (getattr(mt5, "ORDER_TYPE_BUY", 0), getattr(mt5, "ORDER_TYPE_BUY_LIMIT", 2)) else "SHORT",
+                 "expiration": getattr(o, "time_expiration", 0), "time_setup": getattr(o, "time_setup", getattr(o, "time", 0))} for o in orders]
+
+    def estimate_order(self, symbol, direction, entry, sl):
+        """Use the broker's CFD calculation mode, not an assumed pip multiplier."""
+        if not self.ensure_connected(): raise ValueError("Broker valuation unavailable")
+        kind = mt5.ORDER_TYPE_BUY if direction == "LONG" else mt5.ORDER_TYPE_SELL
+        profit = mt5.order_calc_profit(kind, symbol, 1.0, entry, sl)
+        margin = mt5.order_calc_margin(kind, symbol, 1.0, entry)
+        if profit is None or margin is None or profit >= 0 or margin <= 0:
+            raise ValueError(f"Broker risk/margin calculation failed: {mt5.last_error()}")
+        return {"stop_loss_per_lot": abs(float(profit)), "margin_per_lot": float(margin)}
+
+    def position_deals(self, ticket):
+        if not self.ensure_connected(): raise RuntimeError("Deal history unavailable")
+        deals = mt5.history_deals_get(position=int(ticket))
+        if deals is None: raise RuntimeError("Deal history failed")
+        return [{"ticket": d.ticket, "position_id": d.position_id, "time_msc": d.time_msc,
+                 "entry": d.entry, "volume": d.volume, "price": d.price,
+                 "profit_usd": d.profit, "commission_usd": d.commission, "swap_usd": d.swap,
+                 "fee_usd": getattr(d, "fee", 0)} for d in deals]
+
+    def reconcile_intent_history(self, comment, prepared_at, magic=100895):
+        """A filled-and-already-closed position can disappear before inventory polling."""
+        if not self.ensure_connected(): raise RuntimeError("Intent history unavailable")
+        start = datetime.datetime.fromtimestamp(prepared_at-30, datetime.timezone.utc)
+        end = datetime.datetime.now(datetime.timezone.utc)
+        deals = mt5.history_deals_get(start, end)
+        if deals is None: raise RuntimeError("Intent deal-history query failed")
+        entries = [d for d in deals if d.comment == comment and d.magic == magic and d.entry in (0, 2)]
+        if not entries: return None
+        ids = {d.position_id for d in entries}
+        if len(ids) != 1: raise RuntimeError("Intent maps to multiple position identifiers")
+        identifier = ids.pop(); history = self.position_deals(identifier)
+        incoming = sum(d["volume"] for d in history if d["entry"] == 0)
+        outgoing = sum(d["volume"] for d in history if d["entry"] in (1, 3))
+        if incoming > 0 and outgoing >= incoming-1e-8:
+            return {"state": "FILLED_CLOSED", "position_id": identifier, "deals": history,
+                    "net_pnl_usd": sum(d[k] for d in history for k in ("profit_usd", "commission_usd", "swap_usd", "fee_usd"))}
+        return None
 
     def modify_position_sltp(self, ticket: int, new_sl: float, new_tp: Optional[float] = None) -> Dict[str, Any]:
         """Modify SL/TP after validating side, quote freshness, and broker stops.
@@ -293,19 +322,26 @@ class MT5ExecutionBridge:
         digits = info.digits
         rounded_sl = round(float(new_sl), digits) if new_sl and new_sl > 0 else 0.0
         current_sl = float(getattr(pos, "sl", 0.0) or 0.0)
+        if rounded_sl <= 0: return {"success": False, "error": "Protective SL cannot be removed"}
         if rounded_sl > 0.0 and current_sl > 0.0:
             if pos.type == mt5.ORDER_TYPE_BUY and rounded_sl < current_sl:
                 return {"success": False, "error": "SL ratchet cannot move a buy stop lower"}
             if pos.type == mt5.ORDER_TYPE_SELL and rounded_sl > current_sl:
                 return {"success": False, "error": "SL ratchet cannot move a sell stop higher"}
         current_tp = float(getattr(pos, "tp", 0.0) or 0.0)
-        rounded_tp = round(float(new_tp), digits) if new_tp is not None and new_tp > 0 else round(current_tp, digits)
+        rounded_tp = round(float(new_tp), digits) if new_tp is not None else round(current_tp, digits)
         point = max(float(getattr(info, "point", 0.0) or 0.0), 1e-12)
         min_distance = max(
             float(getattr(info, "trade_stops_level", 0) or 0),
             float(getattr(info, "trade_freeze_level", 0) or 0),
         ) * point
         bid, ask = float(getattr(tick, "bid", 0.0) or 0.0), float(getattr(tick, "ask", 0.0) or 0.0)
+        raw_msc = getattr(tick, "time_msc", 0) or 0
+        tick_utc_ms = self._normalize_tick_msc(raw_msc)
+        tick_age = time.time()*1000 - tick_utc_ms
+        if not -30000 <= tick_age <= 30000 or not 0 < bid < ask:
+            return {"success": False, "error": f"Stale or invalid ratchet quote: age {tick_age:.0f}ms"}
+        min_distance = max(min_distance, point)
         if rounded_sl > 0.0 and min_distance > 0.0:
             if pos.type == mt5.ORDER_TYPE_BUY and rounded_sl > bid - min_distance:
                 return {"success": False, "error": "SL violates buy stop/freeze distance"}
@@ -338,7 +374,7 @@ class MT5ExecutionBridge:
                 "error": f"Retcode: {result.retcode} ({result.comment})"
             }
 
-        logger.info(f"✅ Position {ticket} ({symbol}) modified: SL -> {rounded_sl} USD, TP -> {rounded_tp} USD")
+        logger.info(f"[OK] Position {ticket} ({symbol}) modified: SL -> {rounded_sl} USD, TP -> {rounded_tp} USD")
         return {
             "success": True,
             "ticket": ticket,
@@ -389,9 +425,10 @@ class MT5ExecutionBridge:
         if max_spread_points is not None and spread_points > float(max_spread_points):
             return {"success": False, "error": f"Spread guard: {spread_points:.1f} > {max_spread_points} points", "spread_points": spread_points}
         tick_time_msc = getattr(tick, "time_msc", 0) or 0
-        if max_tick_age_ms > 0 and tick_time_msc:
-            age_ms = int(time.time() * 1000 - tick_time_msc)
-            if age_ms > max_tick_age_ms:
+        if max_tick_age_ms > 0:
+            tick_utc_ms = self._normalize_tick_msc(tick_time_msc)
+            age_ms = int(time.time() * 1000 - tick_utc_ms)
+            if not tick_time_msc or not -30000 <= age_ms <= max_tick_age_ms:
                 return {"success": False, "error": f"Stale quote: {age_ms} ms", "age_ms": age_ms}
 
         clamped_vol = self._floor_volume(volume, sym_info.volume_step, sym_info.volume_min, sym_info.volume_max)
@@ -399,6 +436,10 @@ class MT5ExecutionBridge:
             return {"success": False, "error": "Requested volume is below broker minimum after risk-preserving normalization"}
         rounded_sl = round(float(sl), digits) if sl > 0 else 0.0
         rounded_tp = round(float(tp), digits) if tp > 0 else 0.0
+        if not 0 < tick.bid < tick.ask or rounded_sl <= 0 or rounded_tp <= 0:
+            return {"success": False, "error": "Valid two-sided quote and protective bracket required"}
+        if not (rounded_sl < price < rounded_tp if is_long else rounded_tp < price < rounded_sl):
+            return {"success": False, "error": "Invalid bracket direction"}
         request = {
             "action": mt5.TRADE_ACTION_DEAL,
             "symbol": symbol,
@@ -418,38 +459,40 @@ class MT5ExecutionBridge:
             getattr(mt5, "ORDER_FILLING_FOK", 0),
             getattr(mt5, "ORDER_FILLING_RETURN", 2),
         ])
-        request["type_filling"] = candidates[0]
-        # order_check is a cheap server-side validation and prevents a send
-        # when stops, margin, or volume are already invalid.
-        if hasattr(mt5, "order_check"):
-            try:
-                checked = mt5.order_check(request)
-                check_code = getattr(checked, "retcode", 0) if checked is not None else 0
-                if check_code not in (0, getattr(mt5, "TRADE_RETCODE_DONE", 10009)):
-                    return {"success": False, "retcode": check_code, "error": f"order_check rejected: {getattr(checked, 'comment', '')}"}
-            except Exception as exc:
-                logger.warning("order_check unavailable for %s: %s", symbol, exc)
-
         result = None
         attempted = []
+        sent = False
         for filling in candidates:
             if filling in attempted:
                 continue
             attempted.append(filling)
             request["type_filling"] = filling
+            try:
+                checked = mt5.order_check(request)
+            except Exception as exc:
+                return {"success": False, "error": f"order_check failed: {exc}"}
+            if checked is None: return {"success": False, "error": "order_check returned no result"}
+            if checked.retcode == getattr(mt5, "TRADE_RETCODE_INVALID_FILL", 10030): continue
+            if checked.retcode not in (0, getattr(mt5, "TRADE_RETCODE_DONE", 10009)):
+                return {"success": False, "retcode": checked.retcode, "error": f"order_check rejected: {checked.comment}"}
             result = mt5.order_send(request)
-            if result is not None and result.retcode == mt5.TRADE_RETCODE_DONE:
+            sent = True
+            # Only INVALID_FILL proves no fill occurred and permits another send.
+            if result is None or result.retcode != getattr(mt5, "TRADE_RETCODE_INVALID_FILL", 10030):
                 break
-        if result is None or result.retcode != mt5.TRADE_RETCODE_DONE:
+        filled_codes = {mt5.TRADE_RETCODE_DONE, getattr(mt5, "TRADE_RETCODE_DONE_PARTIAL", 10010)}
+        if result is None or result.retcode not in filled_codes:
             retcode = result.retcode if result else "None"
             comment_err = result.comment if result else str(mt5.last_error())
-            return {"success": False, "retcode": retcode, "error": f"Order rejected: {retcode} ({comment_err})", "spread_points": spread_points}
+            uncertain = (sent and result is None) or retcode in (getattr(mt5, "TRADE_RETCODE_TIMEOUT", 10012), getattr(mt5, "TRADE_RETCODE_CONNECTION", 10031), getattr(mt5, "TRADE_RETCODE_PLACED", 10008))
+            return {"success": False, "uncertain": uncertain, "retcode": retcode, "error": f"Order rejected: {retcode} ({comment_err})", "spread_points": spread_points}
 
-        logger.info(f"🚀 MT5 Order filled: Deal {result.deal}, Ticket {result.order}, {direction} {clamped_vol} {symbol} at {result.price} USD")
+        logger.info(f"[FILL] MT5 Order filled: Deal {result.deal}, Ticket {result.order}, {direction} {clamped_vol} {symbol} at {result.price} USD")
         return {
             "success": True, "ticket": result.order, "deal": result.deal,
-            "symbol": symbol, "direction": direction, "volume": clamped_vol,
+            "symbol": symbol, "direction": direction, "volume": float(getattr(result, "volume", clamped_vol)),
             "price": result.price, "sl": rounded_sl, "tp": rounded_tp,
+            "partial": result.retcode == getattr(mt5, "TRADE_RETCODE_DONE_PARTIAL", 10010), "retcode": result.retcode,
             "spread_points": spread_points, "deviation_points": int(deviation_points),
         }
 
@@ -462,7 +505,7 @@ class MT5ExecutionBridge:
         sl: float,
         tp: float,
         *,
-        expiration_seconds: int = 30,
+        expiration_seconds: int = 3600,
         max_spread_points: Optional[float] = None,
         passive_only: bool = True,
         magic: int = 100895,
@@ -493,12 +536,27 @@ class MT5ExecutionBridge:
         price = round(float(limit_price), info.digits)
         if price <= 0.0:
             return {"success": False, "error": "Limit price must be positive"}
-        if passive_only and not (float(tick.bid) <= price < float(tick.ask) if is_long else float(tick.bid) < price <= float(tick.ask)):
-            return {"success": False, "error": "Limit is not passive and was rejected by passive_only guard"}
+        if passive_only:
+            if is_long and price >= float(tick.ask):
+                return {"success": False, "error": f"Buy limit {price} crosses ask {tick.ask} (not passive)"}
+            if not is_long and price <= float(tick.bid):
+                return {"success": False, "error": f"Sell limit {price} crosses bid {tick.bid} (not passive)"}
+        tick_size = float(getattr(info, "trade_tick_size", point) or point)
+        if abs(price/tick_size-round(price/tick_size)) > 1e-6:
+            return {"success": False, "error": "limit_price_not_on_tick_grid"}
+        min_distance = max(0, int(getattr(info, "trade_stops_level", 0)))*point
+        entry_distance = float(tick.ask)-price if is_long else price-float(tick.bid)
+        if entry_distance+point*1e-6 < min_distance:
+            return {"success": False, "retcode": 10015, "error": "pending_entry_inside_broker_stops_level"}
+        if sl <= 0 or tp <= 0 or (price-sl if is_long else sl-price) <= 0 or (tp-price if is_long else price-tp) <= 0:
+            return {"success": False, "error": "pending_protective_bracket_invalid"}
+        if min(abs(price-sl), abs(tp-price))+point*1e-6 < min_distance:
+            return {"success": False, "retcode": 10016, "error": "pending_bracket_inside_broker_stops_level"}
         normalized = self._floor_volume(volume, info.volume_step, info.volume_min, info.volume_max)
         if normalized <= 0.0:
             return {"success": False, "error": "Requested volume is below broker minimum"}
         order_type = getattr(mt5, "ORDER_TYPE_BUY_LIMIT", 2) if is_long else getattr(mt5, "ORDER_TYPE_SELL_LIMIT", 3)
+        broker_now = int(getattr(tick, "time", 0)) if getattr(tick, "time", 0) > 0 else int(time.time()) + 10800
         request = {
             "action": mt5.TRADE_ACTION_PENDING,
             "symbol": symbol,
@@ -511,16 +569,20 @@ class MT5ExecutionBridge:
             "magic": magic,
             "comment": comment,
             "type_time": getattr(mt5, "ORDER_TIME_SPECIFIED", mt5.ORDER_TIME_GTC),
-            "expiration": int(time.time()) + max(1, int(expiration_seconds)),
+            "expiration": broker_now + max(1, int(expiration_seconds)),
             "type_filling": getattr(mt5, "ORDER_FILLING_RETURN", getattr(mt5, "ORDER_FILLING_IOC", 1)),
         }
+        if hasattr(mt5, "order_check"):
+            checked = mt5.order_check(request)
+            if checked is None or checked.retcode not in (0, getattr(mt5, "TRADE_RETCODE_DONE", 10009)):
+                return {"success": False, "retcode": getattr(checked, "retcode", None), "error": "pending_order_check_rejected:"+str(getattr(checked, "comment", mt5.last_error()))}
         result = mt5.order_send(request)
         placed_codes = {getattr(mt5, "TRADE_RETCODE_DONE", 10009), getattr(mt5, "TRADE_RETCODE_PLACED", 10008)}
         if result is None or result.retcode not in placed_codes:
             retcode = result.retcode if result else "None"
             error = result.comment if result else str(mt5.last_error())
             return {"success": False, "retcode": retcode, "error": f"Limit order rejected: {retcode} ({error})"}
-        logger.info("📌 MT5 limit staged: %s %s %s lots at %s (expires in %ss)", direction, normalized, symbol, price, expiration_seconds)
+        logger.info("[LIMIT] MT5 limit staged: %s %s %s lots at %s (expires in %ss)", direction, normalized, symbol, price, expiration_seconds)
         return {"success": True, "ticket": getattr(result, "order", 0), "symbol": symbol, "direction": direction, "volume": normalized, "price": price, "sl": request["sl"], "tp": request["tp"], "expires_at": request["expiration"], "spread_points": spread_points}
 
     def cancel_pending_order(self, order_ticket: int) -> Dict[str, Any]:
@@ -568,17 +630,17 @@ class MT5ExecutionBridge:
         }
 
         result = mt5.order_send(request)
-        if result is None or result.retcode != mt5.TRADE_RETCODE_DONE:
+        if result is not None and result.retcode == getattr(mt5, "TRADE_RETCODE_INVALID_FILL", 10030):
             request["type_filling"] = mt5.ORDER_FILLING_FOK
             result = mt5.order_send(request)
 
-        if result is None or result.retcode != mt5.TRADE_RETCODE_DONE:
+        if result is None or result.retcode not in {mt5.TRADE_RETCODE_DONE, getattr(mt5, "TRADE_RETCODE_DONE_PARTIAL", 10010)}:
             retcode = result.retcode if result else "None"
             err = result.comment if result else str(mt5.last_error())
-            return {"success": False, "error": f"Close failed: {retcode} ({err})"}
+            return {"success": False, "uncertain": result is None or retcode in (10012, 10031), "error": f"Close failed: {retcode} ({err})"}
 
-        logger.info(f"🛑 MT5 Position {ticket} closed at {result.price} USD | Deal: {result.deal}")
-        return {"success": True, "ticket": ticket, "price": result.price, "deal": result.deal}
+        logger.info(f"[CLOSE] MT5 Position {ticket} closed at {result.price} USD | Deal: {result.deal}")
+        return {"success": True, "partial": result.retcode != mt5.TRADE_RETCODE_DONE, "ticket": ticket, "price": result.price, "deal": result.deal}
 
 
 if __name__ == "__main__":

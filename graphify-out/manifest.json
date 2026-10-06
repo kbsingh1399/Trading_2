@@ -1,0 +1,552 @@
+{
+  "Binance_Data/ADAUSDT_dataset_manifest.json": {
+    "mtime": 1789579552.6998203,
+    "ast_hash": "44e1fa593d925475bff4c3e7132fd4a7",
+    "semantic_hash": ""
+  },
+  "Binance_Data/APTUSDT_dataset_manifest.json": {
+    "mtime": 1789579553.413404,
+    "ast_hash": "81f5a6ab38c5f6795efbc6c5fc87b5af",
+    "semantic_hash": ""
+  },
+  "Binance_Data/ARBUSDT_dataset_manifest.json": {
+    "mtime": 1789579553.9261038,
+    "ast_hash": "ad01365a3bf4dd691fc4c61abfa71613",
+    "semantic_hash": ""
+  },
+  "Binance_Data/AVAXUSDT_dataset_manifest.json": {
+    "mtime": 1789579554.6389105,
+    "ast_hash": "e9d430a3f3095f2d8f325026f38c1c48",
+    "semantic_hash": ""
+  },
+  "Binance_Data/BCHUSDT_dataset_manifest.json": {
+    "mtime": 1789579555.6480172,
+    "ast_hash": "b364b7dd0e67c3ac76e38b93e5458885",
+    "semantic_hash": ""
+  },
+  "Binance_Data/BNBUSDT_dataset_manifest.json": {
+    "mtime": 1789579556.6696212,
+    "ast_hash": "8600500b2cb0af3b06d4750c0f1c5280",
+    "semantic_hash": ""
+  },
+  "Binance_Data/BTCUSDT_dataset_manifest.json": {
+    "mtime": 1789579557.870597,
+    "ast_hash": "b901417c806e56bb6ba89ad4b57cc85e",
+    "semantic_hash": ""
+  },
+  "Binance_Data/DOGEUSDT_dataset_manifest.json": {
+    "mtime": 1789579558.691645,
+    "ast_hash": "49ab190e343a0485af44d967867c75d6",
+    "semantic_hash": ""
+  },
+  "Binance_Data/DOTUSDT_dataset_manifest.json": {
+    "mtime": 1789579559.7936673,
+    "ast_hash": "523d06796501693d551a34e3ce3fde26",
+    "semantic_hash": ""
+  },
+  "Binance_Data/ETHUSDT_dataset_manifest.json": {
+    "mtime": 1789579561.109319,
+    "ast_hash": "8819f9b55b98d5675f043d8aec25d850",
+    "semantic_hash": ""
+  },
+  "Binance_Data/LINKUSDT_dataset_manifest.json": {
+    "mtime": 1789579562.0857563,
+    "ast_hash": "e50869d1829d68bd18818adee586052d",
+    "semantic_hash": ""
+  },
+  "Binance_Data/LTCUSDT_dataset_manifest.json": {
+    "mtime": 1789579562.9395301,
+    "ast_hash": "dc6382055989bc81fb29e02ee22599e0",
+    "semantic_hash": ""
+  },
+  "Binance_Data/NEARUSDT_dataset_manifest.json": {
+    "mtime": 1789579563.667697,
+    "ast_hash": "71767e0527bb66110cf95f3d4e35a42a",
+    "semantic_hash": ""
+  },
+  "Binance_Data/OPUSDT_dataset_manifest.json": {
+    "mtime": 1789579564.312037,
+    "ast_hash": "239ed8c28ce7543535147fa54b7126ae",
+    "semantic_hash": ""
+  },
+  "Binance_Data/SOLUSDT_dataset_manifest.json": {
+    "mtime": 1789579565.0639985,
+    "ast_hash": "bdb189ff1fe7334f2ccb38b4054e28af",
+    "semantic_hash": ""
+  },
+  "Binance_Data/SUIUSDT_dataset_manifest.json": {
+    "mtime": 1789579565.5123692,
+    "ast_hash": "36f83fff1a499af829a4dac391d88075",
+    "semantic_hash": ""
+  },
+  "Binance_Data/TRXUSDT_dataset_manifest.json": {
+    "mtime": 1789579566.2277596,
+    "ast_hash": "9d70fc018e6f8885562e1118bd92a5ed",
+    "semantic_hash": ""
+  },
+  "Binance_Data/XRPUSDT_dataset_manifest.json": {
+    "mtime": 1789579567.1129656,
+    "ast_hash": "4512809dbd44d0c12f1a222d3711a114",
+    "semantic_hash": ""
+  },
+  "Binance_Data/verification_report.json": {
+    "mtime": 1789579567.1139672,
+    "ast_hash": "6531fdc0550050191fcd531154dcb0f5",
+    "semantic_hash": ""
+  },
+  "Data/Hyperdash_Historical/ledoit_wolf_covariance.json": {
+    "mtime": 1791198798.918672,
+    "ast_hash": "7f5a93d407f17d132d7a4f3e62bd0c74",
+    "semantic_hash": ""
+  },
+  "Data/macro_calendar.json": {
+    "mtime": 1791186901.5467465,
+    "ast_hash": "4742466e330a910ab43c8836888812df",
+    "semantic_hash": ""
+  },
+  "Data/mt5_ai_trader_state.json": {
+    "mtime": 1791280055.544974,
+    "ast_hash": "8198f0f805f6d1d231729adab4123c43",
+    "semantic_hash": ""
+  },
+  "Data/ofc_paper_positions.json": {
+    "mtime": 1791117390.6371877,
+    "ast_hash": "a90dc5d8ddb60677491a3199bd869952",
+    "semantic_hash": ""
+  },
+  "Data/omni_paper_state.json": {
+    "mtime": 1791198185.5010965,
+    "ast_hash": "bcb73306c2a599ef5366900a3f7aa9ec",
+    "semantic_hash": ""
+  },
+  "Data/oos_windows_20.json": {
+    "mtime": 1789829366.4101582,
+    "ast_hash": "81dc0a9eb7bf52b38432dfff6d37ae31",
+    "semantic_hash": ""
+  },
+  "Data/paper_positions.json": {
+    "mtime": 1791029824.6981575,
+    "ast_hash": "06c461f0084c486c35a39dcdbfc2d998",
+    "semantic_hash": ""
+  },
+  "Data/target_oos_criteria.json": {
+    "mtime": 1789989458.8972971,
+    "ast_hash": "c8e67ab73ff57b85793d22e0c2b1985b",
+    "semantic_hash": ""
+  },
+  "Data/test_verification_report.json": {
+    "mtime": 1791117340.1017704,
+    "ast_hash": "b2c2a00bddf78e42fa0e3a8a2a998af4",
+    "semantic_hash": ""
+  },
+  "Forex_Data/manifest.json": {
+    "mtime": 1789416121.0108726,
+    "ast_hash": "783791a20b2bbcb9ba4084292abef09e",
+    "semantic_hash": ""
+  },
+  "Forex_Data/manifest_crypto.json": {
+    "mtime": 1789827901.2797127,
+    "ast_hash": "f101e37d7db7604052675c2ef2ae261e",
+    "semantic_hash": ""
+  },
+  "Terminal/Api_Client.py": {
+    "mtime": 1791203025.6166303,
+    "ast_hash": "013f49ecf4599c789c773fa5eb7d399c",
+    "semantic_hash": ""
+  },
+  "Terminal/Asset_Universe.py": {
+    "mtime": 1791198175.6794217,
+    "ast_hash": "ab2c0fcc9ffc1e1ddac42ae774b1db0f",
+    "semantic_hash": ""
+  },
+  "Terminal/Chart_Engine.py": {
+    "mtime": 1790970158.2009816,
+    "ast_hash": "eed7b53e33fdd443f76702f5b90c050d",
+    "semantic_hash": ""
+  },
+  "Terminal/Chrome_Terminal.py": {
+    "mtime": 1791194929.0622783,
+    "ast_hash": "8c87c61322fca9ef5193169a9c7bb214",
+    "semantic_hash": ""
+  },
+  "Terminal/Cognitive_Engine.py": {
+    "mtime": 1791187595.211332,
+    "ast_hash": "469f0b9802d1d04bb046efd4b75fe97e",
+    "semantic_hash": ""
+  },
+  "Terminal/Data_Engine.py": {
+    "mtime": 1791121893.3963058,
+    "ast_hash": "0309b9e308f3534cdc831e038c75d98e",
+    "semantic_hash": ""
+  },
+  "Terminal/Desktop_App.py": {
+    "mtime": 1790970167.0402353,
+    "ast_hash": "c6b3285b6af3e9bf49b52e5bca1d08ac",
+    "semantic_hash": ""
+  },
+  "Terminal/Dump_History.py": {
+    "mtime": 1791015049.2651374,
+    "ast_hash": "9142160f2309987150a1d86c83491088",
+    "semantic_hash": ""
+  },
+  "Terminal/Execution_Simulator.py": {
+    "mtime": 1791124100.255429,
+    "ast_hash": "774d8971b69deea73bce5f34259d1785",
+    "semantic_hash": ""
+  },
+  "Terminal/Export_MT5_Ticks.py": {
+    "mtime": 1791186496.8636606,
+    "ast_hash": "43487f711006416cb01a5a7b34a83d13",
+    "semantic_hash": ""
+  },
+  "Terminal/Heatmap_Engine.py": {
+    "mtime": 1791015049.2661908,
+    "ast_hash": "bee0bf8fdcc7b76060b4bf97278ef070",
+    "semantic_hash": ""
+  },
+  "Terminal/Historical_Downloader.py": {
+    "mtime": 1790970137.5927005,
+    "ast_hash": "c2a3b3e3f086425ca16cd84997af7701",
+    "semantic_hash": ""
+  },
+  "Terminal/Hyperdash_Terminal.py": {
+    "mtime": 1790971292.0956223,
+    "ast_hash": "0baecdd10ce78fcf2fd5e7fc7460d5fd",
+    "semantic_hash": ""
+  },
+  "Terminal/Indicator_Engine.py": {
+    "mtime": 1790869996.3626764,
+    "ast_hash": "97347173374419809f98baa63c6891c4",
+    "semantic_hash": ""
+  },
+  "Terminal/LSAR_Strategy.py": {
+    "mtime": 1791030149.0528605,
+    "ast_hash": "211c1d5b42f6b5d41bdb6e9cbcf18cc3",
+    "semantic_hash": ""
+  },
+  "Terminal/MT5_Execution_Bridge.py": {
+    "mtime": 1791277662.138975,
+    "ast_hash": "15a2ab56206d3178528698b66888eb64",
+    "semantic_hash": ""
+  },
+  "Terminal/Macro_Calendar.py": {
+    "mtime": 1791186155.943542,
+    "ast_hash": "ae08e487408845b3c7d6ddc34325e237",
+    "semantic_hash": ""
+  },
+  "Terminal/Market_Intelligence.py": {
+    "mtime": 1791199051.428959,
+    "ast_hash": "23e4b44482e6537b933dfbd7d84fb516",
+    "semantic_hash": ""
+  },
+  "Terminal/Microstructure.py": {
+    "mtime": 1791015049.2667208,
+    "ast_hash": "a524d88f4f15178e74b67265138b0e67",
+    "semantic_hash": ""
+  },
+  "Terminal/OF_Backtest_Legacy.py": {
+    "mtime": 1791185877.488053,
+    "ast_hash": "391d8d1072962aee04e46ce39d7d892d",
+    "semantic_hash": ""
+  },
+  "Terminal/OF_Strategy.py": {
+    "mtime": 1791203182.3976264,
+    "ast_hash": "2bc178442c312047680ac18c96b1a4a3",
+    "semantic_hash": ""
+  },
+  "Terminal/Omni_Trader.py": {
+    "mtime": 1791279128.5802345,
+    "ast_hash": "a5f2c4125a95301bc32e22340094dd2e",
+    "semantic_hash": ""
+  },
+  "Terminal/Orderflow_Replay.py": {
+    "mtime": 1791123624.0328567,
+    "ast_hash": "10e4e1143c470bed6c28ca147d61f258",
+    "semantic_hash": ""
+  },
+  "Terminal/Quantitative_Governance.py": {
+    "mtime": 1791148232.876293,
+    "ast_hash": "d58f2db502448760676a0b5013d57c47",
+    "semantic_hash": ""
+  },
+  "Terminal/Risk_Sizing_Engine.py": {
+    "mtime": 1791213232.7746785,
+    "ast_hash": "bf159c67dd3d0f839f3a6cd098dfdaba",
+    "semantic_hash": ""
+  },
+  "Terminal/Uplift_Model.py": {
+    "mtime": 1791270459.782574,
+    "ast_hash": "7c419a2ed1ea2b98651d8842a2d5c93d",
+    "semantic_hash": ""
+  },
+  "Terminal/Verify_Terminal.py": {
+    "mtime": 1790970216.4381258,
+    "ast_hash": "6d5d766bf3123a0d7f67ed1a54a80280",
+    "semantic_hash": ""
+  },
+  "Terminal/Web_Terminal.py": {
+    "mtime": 1790970254.568055,
+    "ast_hash": "0119b8a10278feb21daba5df01b046a0",
+    "semantic_hash": ""
+  },
+  "Terminal/__init__.py": {
+    "mtime": 1791186046.0496407,
+    "ast_hash": "0773dc3c41567f0e621b140a5bd32355",
+    "semantic_hash": ""
+  },
+  "Terminal/__main__.py": {
+    "mtime": 1790970745.47969,
+    "ast_hash": "dc7ca3e3a0a4fc311f09ac1b32823dc6",
+    "semantic_hash": ""
+  },
+  "Tests/Test_Blueberry_Fixture.py": {
+    "mtime": 1791124100.2559533,
+    "ast_hash": "f03527f05c49f26d5613c3d4d0c7471e",
+    "semantic_hash": ""
+  },
+  "Tests/Test_Gates.py": {
+    "mtime": 1791123683.0265932,
+    "ast_hash": "975830ce16cd85cb0fe03f9b2e41c160",
+    "semantic_hash": ""
+  },
+  "Tests/Test_Hyperdash_Client.py": {
+    "mtime": 1791206282.7104177,
+    "ast_hash": "0b16ceae5bb7fe0ede58bcc4ace2428a",
+    "semantic_hash": ""
+  },
+  "Tests/Test_Microstructure.py": {
+    "mtime": 1791213318.944446,
+    "ast_hash": "d559e8bea8b004fa635c92ede0535e62",
+    "semantic_hash": ""
+  },
+  "Tests/Test_Omni_Engine.py": {
+    "mtime": 1791277883.1514828,
+    "ast_hash": "b18dc0c011790a7a7af16e3a974d2824",
+    "semantic_hash": ""
+  },
+  "Tests/Test_Omni_Execution.py": {
+    "mtime": 1791270517.5640264,
+    "ast_hash": "f53e8ad05bc5b4bf2822c4aaadbb0adc",
+    "semantic_hash": ""
+  },
+  "Tests/Test_Quantitative_Governance.py": {
+    "mtime": 1791122043.8702762,
+    "ast_hash": "03ce3a673cc9bc47bab8f5cb5daa841f",
+    "semantic_hash": ""
+  },
+  "Tests/Test_Terminal_Render.py": {
+    "mtime": 1790970766.9768841,
+    "ast_hash": "93678ffa7c5b0499a4b856d59e7a0758",
+    "semantic_hash": ""
+  },
+  "artifacts/blueberry_execution_report.json": {
+    "mtime": 1791124100.258044,
+    "ast_hash": "3f265959962a0e18df9917448628e1ca",
+    "semantic_hash": ""
+  },
+  "docs/audits/microstructure_stress_20261005.json": {
+    "mtime": 1791212836.4847622,
+    "ast_hash": "840bf18ea88b89f238dbc3c1b82ce4c8",
+    "semantic_hash": ""
+  },
+  "docs/audits/omni_branch_inventory_20261005.json": {
+    "mtime": 1791197462.6068861,
+    "ast_hash": "64a3603cb453384cac6c19f185b29c7e",
+    "semantic_hash": ""
+  },
+  "docs/audits/omni_reproductions_20261005.json": {
+    "mtime": 1791197462.4697726,
+    "ast_hash": "993ba6d10004605b173d12800dd98073",
+    "semantic_hash": ""
+  },
+  "docs/prompts/build_astra_prompt.py": {
+    "mtime": 1791145766.0053527,
+    "ast_hash": "d118b5a004b906ee144df500d5319d33",
+    "semantic_hash": ""
+  },
+  "fixtures/blueberry_quotes.json": {
+    "mtime": 1791124100.2601216,
+    "ast_hash": "e53b430c28e83e883163d1db79686a1d",
+    "semantic_hash": ""
+  },
+  "fixtures/generate_blueberry_quotes.py": {
+    "mtime": 1791124100.2612634,
+    "ast_hash": "3bea8369b35474f1234256c81275181b",
+    "semantic_hash": ""
+  },
+  "index.js": {
+    "mtime": 1791182962.7773023,
+    "ast_hash": "5be532c000cb70721652806af526df70",
+    "semantic_hash": ""
+  },
+  "temp/state.json": {
+    "mtime": 1791213208.4787107,
+    "ast_hash": "054a5730ebcd0467030d0fbff9afa8be",
+    "semantic_hash": ""
+  },
+  "AUDIT.md": {
+    "mtime": 1791121893.3957777,
+    "ast_hash": "df53021858935d04524bc3679d0ed28a",
+    "semantic_hash": ""
+  },
+  "README.md": {
+    "mtime": 1791014158.1743681,
+    "ast_hash": "c4a8dd2f30a540066d99dd493ec8d3ce",
+    "semantic_hash": ""
+  },
+  "Terminal/requirements-omni.txt": {
+    "mtime": 1791186498.8361793,
+    "ast_hash": "d9b9e87aa1fdd3ad841b98a13b310fcb",
+    "semantic_hash": ""
+  },
+  "docs/OMNI_ENGINE.md": {
+    "mtime": 1791187124.5607576,
+    "ast_hash": "a61794dbbbd66dd7e5909e157abb0eaf",
+    "semantic_hash": ""
+  },
+  "docs/audits/OMNI_Architecture_Audit_20261005.md": {
+    "mtime": 1791197945.0383513,
+    "ast_hash": "20f9155003123f1aaf824549eb361e88",
+    "semantic_hash": ""
+  },
+  "docs/audits/OMNI_Branch_Review_20261005.md": {
+    "mtime": 1791197945.0518715,
+    "ast_hash": "7de9c34d3343502111d69a86e6063e41",
+    "semantic_hash": ""
+  },
+  "docs/audits/OMNI_Microstructure_Review_20261005.md": {
+    "mtime": 1791207392.7671604,
+    "ast_hash": "37e376144b1678d3254eeb797c74d7e8",
+    "semantic_hash": ""
+  },
+  "docs/audits/institutional-quant-audit-2026-10-04.md": {
+    "mtime": 1791124100.2585602,
+    "ast_hash": "f894a82848b84a6de7640d48e408f7d2",
+    "semantic_hash": ""
+  },
+  "docs/gates/gate-3-4-validation.md": {
+    "mtime": 1791123624.0360734,
+    "ast_hash": "14daf3b542e8c53a294e45d0fa085905",
+    "semantic_hash": ""
+  },
+  "docs/prompts/Arena_AI_15m_MT5_Trader_Prompt.md": {
+    "mtime": 1791120886.1369984,
+    "ast_hash": "53f492b6a07f2b7dca1b88d21a2456ce",
+    "semantic_hash": ""
+  },
+  "docs/prompts/Arena_Terminal_Review_Prompt.md": {
+    "mtime": 1791014394.061252,
+    "ast_hash": "233394d5c5aaa8bd0e74742ca4dac1f3",
+    "semantic_hash": ""
+  },
+  "docs/prompts/Astra_Architecture_Pipeline_Audit.txt": {
+    "mtime": 1791198264.1653838,
+    "ast_hash": "947cfaf76c57cb7dbb47bbda193486fa",
+    "semantic_hash": ""
+  },
+  "docs/prompts/Astra_LightGBM_Covariance_Sizing.txt": {
+    "mtime": 1791184699.8163242,
+    "ast_hash": "c98d794793003f9b136dbdd584cee32a",
+    "semantic_hash": ""
+  },
+  "docs/prompts/Astra_Master_Optimization.txt": {
+    "mtime": 1791184841.065531,
+    "ast_hash": "40faf8272668f648cde4c0dfbde2ec7d",
+    "semantic_hash": ""
+  },
+  "docs/prompts/GPT_Astra_Consultation_1.txt": {
+    "mtime": 1791145772.2346282,
+    "ast_hash": "40ea620e8dbba6c8a6ab29f7d0dabdee",
+    "semantic_hash": ""
+  },
+  "docs/specs/ASTRA_OMNI_MICROSTRUCTURE_ARCHITECTURE.md": {
+    "mtime": 1791206462.9338183,
+    "ast_hash": "a4b4df25b1373fa8ed31f539d9909090",
+    "semantic_hash": ""
+  },
+  "docs/specs/ai-15m-candle-mt5-trader.md": {
+    "mtime": 1791119585.39007,
+    "ast_hash": "b8905785a5850334ff91f14a5747630f",
+    "semantic_hash": ""
+  },
+  "hd.html": {
+    "mtime": 1791182952.1892574,
+    "ast_hash": "7e89eef7449f7aed9199e19a8798e4e2",
+    "semantic_hash": ""
+  },
+  "Terminal/lsar_equity_curve.png": {
+    "mtime": 1791030161.6092727,
+    "ast_hash": "6c4f44408f03136006e63ac9636b75eb",
+    "semantic_hash": ""
+  },
+  "Terminal/lsar_multiyear_equity.png": {
+    "mtime": 1791019933.5239134,
+    "ast_hash": "f2570caea66e26ec3ff0ef65be7082a2",
+    "semantic_hash": ""
+  },
+  "Terminal/of_equity_curve.png": {
+    "mtime": 1791030572.7543275,
+    "ast_hash": "2f54c45e9e8fe4d9b5e0ce1385ee90f0",
+    "semantic_hash": ""
+  },
+  "docs/specs/institutional_orderflow_live_checklist.md": {
+    "mtime": 1791226250.8037612,
+    "ast_hash": "f9c67d1c3bf45e3c6f70c07a5271223b",
+    "semantic_hash": ""
+  },
+  "check_focus.py": {
+    "mtime": 1791228695.5051808,
+    "ast_hash": "9c6d41a4fee81061ea569694d009369e",
+    "semantic_hash": ""
+  },
+  "deep_scan.py": {
+    "mtime": 1791228654.7761762,
+    "ast_hash": "c5979dadd89e5667962425b56fef8c77",
+    "semantic_hash": ""
+  },
+  "eth_deep.py": {
+    "mtime": 1791228760.201434,
+    "ast_hash": "a33877f1830bc1d4e943656f51d12f99",
+    "semantic_hash": ""
+  },
+  "inspect_orderflow.py": {
+    "mtime": 1791228619.557916,
+    "ast_hash": "dba05e4b4420681da4983863b4a26f10",
+    "semantic_hash": ""
+  },
+  "Terminal/MT5_Sentinel.py": {
+    "mtime": 1791271145.4403386,
+    "ast_hash": "3ebbf1a7db4e3b731d7278e3ac6637f0",
+    "semantic_hash": ""
+  },
+  "Tests/Test_MT5_Sentinel.py": {
+    "mtime": 1791270701.9966853,
+    "ast_hash": "d267ee408b39e174a500d13d4eadf252",
+    "semantic_hash": ""
+  },
+  "docs/audits/OMNI_Sentinel_Schedule_Diagnosis_20261006.md": {
+    "mtime": 1791273196.4517148,
+    "ast_hash": "bdc7e1c469874814c58f03f2fe9ed265",
+    "semantic_hash": ""
+  },
+  "docs/audits/OMNI_Sentinel_Status_20261006.md": {
+    "mtime": 1791271345.5853226,
+    "ast_hash": "543582782751e102bab42f63e4f08b1e",
+    "semantic_hash": ""
+  },
+  "docs/operations/OMNI_Sentinel_Automation_Prompt.txt": {
+    "mtime": 1791272351.151332,
+    "ast_hash": "d202a5893b72a3d16e1da33fcdb447ae",
+    "semantic_hash": ""
+  },
+  "docs/operations/OMNI_Sentinel_Wake_Protocol.md": {
+    "mtime": 1791272259.2009904,
+    "ast_hash": "830a71a74166412bf9b88bbbf1a423bf",
+    "semantic_hash": ""
+  },
+  "docs/prompts/Autonomous_15m_Orderflow_AI_Trader_Prompt.md": {
+    "mtime": 1791270052.6580453,
+    "ast_hash": "35116b8f5295e4a1a0646eea85ec5ff9",
+    "semantic_hash": ""
+  }
+}

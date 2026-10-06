@@ -1,0 +1,65 @@
+# ASTRA OMNI-Ω DIRECTIVE: END-TO-END 360-DEGREE ORDERFLOW MODELING & EXECUTION OPTIMIZATION
+
+## 1. ABSOLUTE MANDATE & AUTONOMY
+You are granted full unrestricted autonomy over the quantitative architecture, strategy logic, and execution engine of this repository. Your singular objective is to maximize absolute PnL (Make Money) across our 16-asset universe while strictly enforcing a 4.5 percent hard drawdown stop on a 5,000.00 USD initial capital base. 
+
+You are free to refactor, overwrite, or completely redesign `Terminal/OF_Strategy.py`, `Terminal/Api_Client.py`, and any associated AI or econometric modules. You do not ask for permission. You execute.
+
+## 2. THE UNIVERSE & DATA TOPOLOGY
+We are trading 16 assets cross-margined on MetaTrader 5, fed by 360-degree intelligence from Hyperliquid / Hyperdash.
+- **Crypto (11)**: BTC, ETH, SOL, BNB, XRP, ADA, DOGE, TRX, DOT, LINK, BCH
+- **Metals & Indices (5)**: SP500, NAS100, DJ30, GOLD, SILVER (Sourced via Hyperliquid HIP-3 synthetic markets `xyz` and `flx` DEXes).
+
+**Data Streams Available (Real-Time)**:
+1. **L2 Orderbook**: 20 levels deep, refreshed in real-time.
+2. **Liquidations**: Projected long/short liquidation clusters and historical realized totals.
+3. **Stops**: Resting stop-loss clusters.
+4. **L3 Whale Tracking**: Individual wallet positions, unrealized PnL, and resting orders.
+5. **Macro Intelligence**: Live news scraping, sentiment scoring, and strict +/- 15m blackout windows for Tier-1 events (CPI, FOMC, NFP).
+6. **MT5 Bridge**: Live spreads, margin levels, and exact execution capabilities via `Terminal/MT5_Execution_Bridge.py`.
+
+## 3. EXHAUSTIVE ECONOMETRIC MODELING REQUIREMENTS
+You must build a mathematically rigorous decision-making engine that processes the 360-degree data into actionable, risk-adjusted trade signals.
+
+### A. Volatility-Normalized Orderbook Mechanics
+Raw liquidity is meaningless without adjusting for local volatility. You must implement a spatial decay function for L2/L3 liquidity:
+1. Calculate the H-minute trailing standard deviation of log returns (sigma_H).
+2. Measure the distance of resting liquidity from the mid-price in volatility units.
+3. Apply an exponential decay function so liquidity further away contributes less to the immediate imbalance score.
+4. Normalize this anomaly score using robust z-scores (median and Median Absolute Deviation) to prevent outlier distortion.
+
+### B. Liquidation & Stop Confluence (The 'S' Score)
+You must mathematically model the interaction between resting L2 depth and projected liquidations. 
+If projected long liquidations below the price exceed the visible bid depth in that specific price corridor, the downside pressure ratio is high.
+Calculate a Confluence Score (S) bounded between 0 and 1, combining:
+- Directional L2 Imbalance
+- Asset-Specific Macro Sentiment
+- Persistent Whale Wall Presence (L3)
+- Aggressor Trade Imbalance
+- Liquidation Delta
+
+### C. Covariance Portfolio Risk Sizing (Ledoit-Wolf)
+We already have a calculated Ledoit-Wolf Shrinkage Covariance Matrix residing in `Data/Hyperdash_Historical/ledoit_wolf_covariance.parquet`.
+You must replace any hardcoded directional throttles with a mathematical covariance gate. 
+If a candidate trade's incremental variance pushes the total portfolio variance (across the max 2 concurrent positions) beyond the strict risk budget limit, the trade is rejected or downsized. Risk budget scales dynamically between 10.00 USD and 45.00 USD based on the Confluence Score (S).
+
+### D. Machine Learning: Uplift Classifier
+You must implement a LightGBM or XGBoost classifier that evaluates the "Uplift" of taking a trade.
+Target = (Net Equity after accepting candidate) minus (Net Equity if candidate rejected).
+The model must explicitly govern the decision to take a second concurrent position, factoring in the existing trade's floating PnL, correlation, and the candidate's forward expectancy. 
+
+## 4. MICROSTRUCTURE & EXECUTION RIGOR
+Your execution logic inside `Terminal/OF_Strategy.py` must strictly adhere to the following microstructure realities:
+- **Causal Execution**: All decisions made at the 14th minute of the 15m candle must be executed causally. Zero lookahead bias.
+- **3-Stage Piecewise Ratchet**: 
+  - Phase 0 (BE Lock): At +0.8R gain, stop moves to Entry +0.35R.
+  - Phase 1 (Profit Lock): At +1.5R gain, stop moves to Entry +0.80R.
+  - Phase 2 (Trailing): Exit targets at +2.5R to +3.0R. Time decay forces market exit if trade fails to gain +0.20R within 24 bars.
+- **Frictions**: Must account for live MT5 spread and a minimum of 41 bps round-trip friction.
+
+## 5. YOUR DELIVERABLES
+1. Rewrite `Terminal/OF_Strategy.py` to seamlessly orchestrate the ML uplift model, the covariance matrix gating, and the 360-degree data ingestion.
+2. Build `Terminal/Risk_Sizing_Engine.py` to house the Polars/NumPy econometric math.
+3. Ensure the system autonomously wakes up, evaluates all 16 assets, manages open MT5 trades via the ratchets, sizes risk dynamically, and logs execution accurately.
+
+Execute without hesitation. Your success is measured solely by the net equity curve.

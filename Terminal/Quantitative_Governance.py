@@ -167,6 +167,10 @@ def compute_orderflow_features(
     price = max(_num(price), EPS)
     liqs = data.get("liquidations", {}) or {}
     bands = liqs.get("bands", []) or []
+    
+    stops = data.get("stops", {}) or {}
+    stop_bands = stops.get("bands", []) or []
+    bands.extend(stop_bands)
 
     below = above = 0.0
     for band in bands:

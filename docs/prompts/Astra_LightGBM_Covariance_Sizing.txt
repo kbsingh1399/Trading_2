@@ -1,0 +1,71 @@
+# ASTRA OMNI-Ω DIRECTIVE: LightGBM Uplift Classifier & Covariance Risk Sizing
+
+## 1. Context & Architecture
+You are operating within the OMNI-Ω framework. We are deploying a 360-degree orderflow intelligence terminal that runs on 15m candles and streams live L2/L3 data from Hyperliquid/Hyperdash.
+Our universe is 16 assets:
+- Cryptos: BTC, ETH, SOL, BNB, XRP, ADA, DOGE, TRX, DOT, LINK, BCH
+- Metals/Indices (HIP-3 synthetic): SP500, NAS100, DJ30, GOLD, SILVER
+
+**Current State**: 
+- We have the execution bridge (`Terminal/MT5_Execution_Bridge.py`) and the 15-minute trader logic (`Terminal/OF_Strategy.py`).
+- We are fetching real-time L2 orderbook, liquidations, and L3 whales via `Terminal/Api_Client.py`.
+- We currently lack deep historical L2/L3 orderflow data for the newly integrated legacy assets.
+
+## 2. Quantitative Specifications to Implement
+
+Your task is to write the Python implementation for the following math and sizing specs:
+
+### A. Volatility-Normalized L2 Imbalance
+First, establish a volatility-normalized L2 imbalance score:
+```python
+mid = (best_bid + best_ask) / 2
+sigma_H = trailing standard deviation of H-minute log returns (H=15)
+distance_k = abs(log(level_price_k / mid)) / sigma_H
+notional_k = quantity_k * contract_multiplier * level_price_k * FX_to_USD
+weight_k = exp(-distance_k / bandwidth)
+bid_depth = sum(weight_k * notional_k for eligible bid levels)
+ask_depth = sum(weight_k * notional_k for eligible ask levels)
+imbalance = (bid_depth - ask_depth) / (bid_depth + ask_depth)
+
+# Anomaly Scoring
+robust_z(x) = (x - trailing_median(x)) / max(1.4826 * trailing_MAD(x), scale_floor)
+normalized_anomaly = clip(robust_z(x), -3, 3)
+```
+
+### B. Liquidation Exposure & Confluence Score
+```python
+downside_pressure = projected_long_liq_notional_below / observed_bid_depth
+upside_pressure = projected_short_liq_notional_above / observed_ask_depth
+L = d * (upside_pressure - downside_pressure) / (upside_pressure + downside_pressure)
+
+# Confluence Score (S)
+d = +1 (LONG), -1 (SHORT)
+B = d * smoothed_L2_imbalance
+M = d * macro_score
+W = d * persistent_wall_imbalance
+T = d * aggressor_trade_imbalance
+C = sqrt(max(B, 0) * max(M, 0))
+
+S = clip(0.25*B + 0.15*M + 0.20*W + 0.15*T + 0.10*L + 0.15*C, 0, 1)
+Q = data_quality_score (0 to 1)
+risk_intent_USD = 10 + 35 * (Q * S)^2
+```
+
+### C. Covariance Portfolio Risk Gate (Ledoit-Wolf)
+We must replace simple direction-only correlation throttles with a covariance variance impact calculation.
+Use `sklearn.covariance.ledoit_wolf` on aligned 15m returns.
+```python
+portfolio_variance_USD = transpose(n) * covariance_H * n
+incremental_variance_USD = candidate_notional^2 * candidate_return_variance + 2 * candidate_notional * sum(existing_notional_i * covariance(candidate, i))
+```
+
+### D. LightGBM Uplift Classifier (Second-Position Opportunities)
+Train a `lightgbm.LGBMRegressor` or `LGBMClassifier` specifically designed to evaluate if we should take a second concurrent position.
+Targets:
+`uplift = net_equity_after_accepting_candidate - net_equity_if_candidate_rejected`
+Or `relative_return = candidate_forward_R - average_existing_position_forward_R`
+
+## 3. Output Requirements
+Generate the standalone Python module `Terminal/Risk_Sizing_Engine.py` that implements the Ledoit-Wolf covariance sizing and the mathematical definitions of the Confluence Score. Use Polars for performance where possible. Include the stub for the LightGBM uplift model training pipeline. 
+
+No sycophancy. Just the raw, lethal implementation.

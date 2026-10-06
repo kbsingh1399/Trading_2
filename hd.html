@@ -1,0 +1,230 @@
+<!DOCTYPE html><html lang="en" class="antialiased"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover"/><link rel="stylesheet" href="/assets/globals-D-C-inqb.css" data-precedence="default"/><title>Hyperdash | Advanced Trading Platform</title><meta property="og:type" content="website"/><meta property="og:site_name" content="Hyperdash"/><meta name="twitter:card" content="summary_large_image"/><meta name="google" content="notranslate"/><meta name="description" content="Advanced trading platform built for global markets. Real-time analytics, portfolio tracking and professional execution tools."/><meta property="og:title" content="Hyperdash | Advanced Trading Platform"/><meta property="og:description" content="Advanced trading platform built for global markets. Real-time analytics, portfolio tracking and professional execution tools."/><meta property="og:image" content="https://hyperdash.com/og.png"/><meta property="og:url" content="https://hyperdash.com/"/><meta name="twitter:title" content="Hyperdash | Advanced Trading Platform"/><meta name="twitter:description" content="Advanced trading platform built for global markets. Real-time analytics, portfolio tracking and professional execution tools."/><meta name="twitter:image" content="https://hyperdash.com/og.png"/><link rel="modulepreload" href="/assets/index-JDO5_3P6.js"/><link rel="modulepreload" href="/assets/vendor-react-bZS8Yu6g.js"/><link rel="modulepreload" href="/assets/vendor-ui-BvabaQuS.js"/><link rel="modulepreload" href="/assets/vendor-framer-DtHBF-ol.js"/><link rel="modulepreload" href="/assets/vendor-utils-Cx7GqGD6.js"/><link rel="modulepreload" href="/assets/vendor-router-CX-AMRNi.js"/><link rel="modulepreload" href="/assets/vendor-apollo-Ce-aVmYD.js"/><link rel="modulepreload" href="/assets/vendor-query-DXNq5_sS.js"/><link rel="preload" href="/fonts/BDOGrotesk-normalized/BDOGrotesk-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous"/><link rel="preload" href="/fonts/BDOGrotesk-normalized/BDOGrotesk-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous"/><link rel="preload" href="/fonts/BDOGrotesk-normalized/BDOGrotesk-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous"/><link rel="preload" href="/fonts/GeistMono-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous"/><link rel="icon" type="image/svg+xml" href="/favicon.svg"/><link rel="apple-touch-icon" type="image/png" sizes="180x180" href="/apple-touch-icon.png"/><script>(() => {
+    if (window.__hyperdashAssetLoadTelemetry) return;
+
+    const buildId = "efba18e8f726bb671fa6828deb39cb0cc52887ee";
+    const storageKey = 'hd:asset-load-failures';
+    const maxQueuedFailures = 20;
+    let queue = [];
+    try {
+      const stored = JSON.parse(sessionStorage.getItem(storageKey) || '[]');
+      if (Array.isArray(stored)) queue = stored.slice(-maxQueuedFailures);
+    } catch {}
+    const seen = new Set();
+    let reporter = null;
+
+    function persistQueue() {
+      try {
+        if (queue.length) sessionStorage.setItem(storageKey, JSON.stringify(queue));
+        else sessionStorage.removeItem(storageKey);
+      } catch {}
+    }
+
+    const bridge = {
+      queue,
+      report(properties) {
+        if (reporter) reporter(properties);
+        else {
+          queue.push(properties);
+          if (queue.length > maxQueuedFailures) queue.splice(0, queue.length - maxQueuedFailures);
+          persistQueue();
+        }
+      },
+      setReporter(nextReporter) {
+        reporter = nextReporter;
+        const pending = queue.splice(0, queue.length);
+        persistQueue();
+        for (const properties of pending) reporter(properties);
+      },
+    };
+    window.__hyperdashAssetLoadTelemetry = bridge;
+
+    const assetRoute = /^\/(?:[a-z]{2}(?:_[a-z]{2})?\/)?asset(?:\/|$)/i;
+    const assetHash = /-[A-Za-z0-9_-]{8,}(?=\.(?:css|js|mjs)$)/;
+
+    function pageLocale(pathname) {
+      const segments = pathname.split('/').filter(Boolean);
+      return segments[0] === 'asset' ? 'en' : (segments[1] === 'asset' ? segments[0] : 'en');
+    }
+
+    function navigationType() {
+      try {
+        return performance.getEntriesByType('navigation')[0]?.type ?? null;
+      } catch {
+        return null;
+      }
+    }
+
+    function normalizeAsset(rawUrl) {
+      if (!rawUrl) return { assetUrl: null, assetPath: null, assetFamily: null };
+      try {
+        const url = new URL(rawUrl, location.href);
+        return {
+          assetUrl: url.href,
+          assetPath: url.pathname,
+          assetFamily: url.pathname.replace(assetHash, '-*'),
+        };
+      } catch {
+        return { assetUrl: String(rawUrl), assetPath: null, assetFamily: null };
+      }
+    }
+
+    function emit({ failureKind, assetType, rawUrl, message }) {
+      const normalized = normalizeAsset(rawUrl);
+      const dedupeKey = [failureKind, assetType, normalized.assetPath, message].join(':');
+      if (seen.has(dedupeKey)) return;
+      seen.add(dedupeKey);
+
+      bridge.report({
+        failure_kind: failureKind,
+        asset_type: assetType,
+        asset_url: normalized.assetUrl,
+        asset_path: normalized.assetPath,
+        asset_family: normalized.assetFamily,
+        failure_message: message || null,
+        page_path: location.pathname,
+        is_asset_page: assetRoute.test(location.pathname),
+        locale: pageLocale(location.pathname),
+        build_id: buildId,
+        online: navigator.onLine,
+        document_visibility: document.visibilityState,
+        navigation_type: navigationType(),
+        telemetry_source: 'early_head_monitor',
+        occurred_at: new Date().toISOString(),
+      });
+    }
+
+    // Recovery for the pre-boot stale-chunk 404 ONLY. Once the app bundle has
+    // booted (chunkReloadGuard installed) a failed /assets/ link is a lazy
+    // chunk's dep — Vite's preload helper injects modulepreload/stylesheet links
+    // for hover warmups too — and reloading would yank a live trading session.
+    // At most one reload per 15s (loop guard), and only while online (an
+    // offline reload can't fetch fresh HTML).
+    const reloadKey = 'hd:chunk-reload-at';
+    const reloadWindowMs = 15000;
+    function recoverFromStaleChunk() {
+      if (window.__hyperdashChunkReloadGuard) return;
+      try { if (navigator.onLine === false) return; } catch {}
+      const now = Date.now();
+      let last = 0;
+      try { last = Number(sessionStorage.getItem(reloadKey) || '0'); } catch {}
+      if (last && (now - last) < reloadWindowMs) return;
+      try { sessionStorage.setItem(reloadKey, String(now)); } catch {}
+      location.reload();
+    }
+
+    window.addEventListener('error', (event) => {
+      const target = event.target;
+      let assetType = null;
+      let rawUrl = null;
+
+      if (target instanceof HTMLScriptElement) {
+        assetType = 'script';
+        rawUrl = target.src;
+      } else if (target instanceof HTMLLinkElement && (target.rel === 'stylesheet' || target.rel === 'modulepreload')) {
+        // modulepreload covers Vite's entry-dependency chunks (e.g. vendor-*); a
+        // stale one 404s to text/html just like the entry script, so recover here too.
+        assetType = target.rel === 'modulepreload' ? 'module' : 'stylesheet';
+        rawUrl = target.href;
+      } else {
+        return;
+      }
+
+      const normalized = normalizeAsset(rawUrl);
+      try {
+        if (new URL(rawUrl, location.href).origin !== location.origin) return;
+      } catch {
+        return;
+      }
+      if (!normalized.assetPath?.startsWith('/assets/')) return;
+      // Record telemetry first — bridge.report persists to sessionStorage
+      // synchronously, so the failure survives the reload below.
+      emit({ failureKind: 'resource_error', assetType, rawUrl, message: null });
+      recoverFromStaleChunk();
+    }, true);
+
+    window.addEventListener('vite:preloadError', (event) => {
+      const payload = event.payload;
+      const message = payload instanceof Error ? payload.message : String(payload ?? '');
+      const urlMatch = message.match(/https?:\/\/[^\s"')]+/);
+      emit({
+        failureKind: 'vite_preload_error',
+        assetType: 'module',
+        rawUrl: urlMatch?.[0] ?? null,
+        message,
+      });
+    });
+  })();</script><script>(function() {
+    'use strict';
+    if (typeof Promise !== 'undefined' && !Promise.withResolvers) {
+      Promise.withResolvers = function() {
+        var resolve, reject;
+        var promise = new Promise(function(res, rej) {
+          resolve = res;
+          reject = rej;
+        });
+        return { promise: promise, resolve: resolve, reject: reject };
+      };
+    }
+    try {
+      var validThemes = ["phantom","covert","stealth","radar","overcast","dune"];
+      function isValidTheme(theme) {
+        return validThemes.indexOf(theme) !== -1;
+      }
+      function readLocalStorage(key) {
+        try {
+          return localStorage.getItem(key);
+        } catch (e) {
+          return null;
+        }
+      }
+      function readCookie(key) {
+        var prefix = key + '=';
+        var parts = document.cookie ? document.cookie.split(';') : [];
+        for (var i = 0; i < parts.length; i++) {
+          var part = parts[i].trim();
+          if (part.indexOf(prefix) === 0) {
+            try {
+              return decodeURIComponent(part.slice(prefix.length));
+            } catch (e) {
+              return null;
+            }
+          }
+        }
+        return null;
+      }
+      var growthLandingPaths = ["/advanced-orders","/advanced-trading","/copy-or-fade-traders","/copytrade","/cxmt","/cxmt-ipo","/cxmt-price","/cxmt-stock","/cxmt-上市前交易","/cxmt-股价","/cxmt-上場前取引","/cxmt-株価","/cxmt-상장전거래","/cxmt-주가","/get-started","/mica","/otc","/rfq","/stop-clusters","/start","/switch-from-binance","/switch-from-coinbase","/switch-from-robinhood","/switch-from-trading-212","/trade-24-7","/trade-cxmt-pre-ipo","/track-247","/track-cxmt","/track-mrvl","/track-mu","/track-nvda","/track-sndk","/track-spcx","/track-skhx","/unitree"];
+      var darkOnlyGrowthLandingPaths = ["/advanced-trading","/rfq","/sentry-node"];
+      var supportedLocaleSegments = ["cn","de","es","fr","ja","ko","pl","pt_br","ru","th","zh","ms","id","tr"];
+      var pathname = window.location.pathname;
+      try {
+        pathname = decodeURI(pathname);
+      } catch (e) {}
+      pathname = pathname.replace(/\/+$/, '') || '/';
+      var segments = pathname.split('/').filter(Boolean);
+      var normalizedPathname = pathname;
+      var localeSegment = segments.length === 2
+        ? segments[0].toLowerCase().replace(/-/g, '_')
+        : '';
+      var localeBase = localeSegment.split('_')[0];
+      var hasLocalePrefix =
+        localeSegment === 'en' ||
+        localeBase === 'en' ||
+        supportedLocaleSegments.indexOf(localeSegment) !== -1 ||
+        supportedLocaleSegments.indexOf(localeBase) !== -1;
+      if (segments.length === 2 && hasLocalePrefix) {
+        normalizedPathname = '/' + segments[1];
+      }
+      var storedLocalTheme = readLocalStorage('theme');
+      var storedCookieTheme = readCookie('theme');
+      var theme = darkOnlyGrowthLandingPaths.indexOf(normalizedPathname) !== -1
+        ? 'covert'
+        : isValidTheme(storedLocalTheme)
+        ? storedLocalTheme
+        : isValidTheme(storedCookieTheme)
+          ? storedCookieTheme
+          : growthLandingPaths.indexOf(normalizedPathname) !== -1
+            ? 'overcast'
+            : 'covert';
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {}
+  })();</script></head><body><!--$--><!--/$--><!--$--><!--$--><!--$--><!--/$--><div id="app" class="relative isolate flex h-dvh bg-base text-fg-primary"><!--$!--><template></template><!--/$--></div><!--$--><!--/$--><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5W3XNXG7" height="0" width="0" style="display:none;visibility:hidden" title="GTM"></iframe></noscript><noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1224537942743320&amp;ev=PageView&amp;noscript=1" alt=""/></noscript><!--/$--><!--/$--><script data-tsr-stream-part="">(self.$R=self.$R||{})["tsr"]=[];self.$_TSR={h(){this.hydrated=!0,this.c()},e(){this.streamEnded=!0,this.c()},c(){this.hydrated&&this.streamEnded&&(delete self.$_TSR,delete self.$R.tsr)},p(e){this.initialized?e():this.buffer.push(e)},buffer:[]};$_TSR.router=($R=>$R[0]={manifest:$R[1]={routes:$R[2]={__root__:$R[3]={preloads:$R[4]=["/assets/index-JDO5_3P6.js","/assets/vendor-react-bZS8Yu6g.js","/assets/vendor-ui-BvabaQuS.js","/assets/vendor-framer-DtHBF-ol.js","/assets/vendor-utils-Cx7GqGD6.js","/assets/vendor-router-CX-AMRNi.js","/assets/vendor-apollo-Ce-aVmYD.js","/assets/vendor-query-DXNq5_sS.js"],scripts:$R[5]=[$R[6]={attrs:$R[7]={type:"module",async:!0,src:"/assets/index-JDO5_3P6.js"}}]}}},matches:$R[8]=[$R[9]={i:"__root__ ",u:1791182957180,s:"success",l:$R[10]={cookies:$R[11]={theme:"covert",sidebarCollapsed:!1,terminalDataTableTab:"topTraders",terminalDataTableHistorySubTab:"fills",terminalDataTableTwapSubTab:"active",liquidationsChartSubTab:"live",stopsChartSubTab:"live",perpsTradingOrderType:"Market",spotTradingOrderType:"Market",orderbookExpanded:!1,heatmapPalette:"viridis",heatmapTimeRange:"3d",stopsHeatmapPalette:"viridis",stopsHeatmapTimeRange:"3d",tradesWidgetView:"orderbook",orderBookGrouping:"",orderBookSizeUnit:"coin",perpsTradingInputMode:"USD",spotTradingInputMode:"USD",tradesMinNotional:"0",liqsMinNotional:"0",ordersMinNotional:"0",exploreLeftSidebar:"",exploreRightSidebar:"",analyticsLeftSidebar:"",activeAsset:"",activeAssetType:"perps",activeLayoutId:"",activeLayoutName:"",orderFormVisible:!0,locale:"en"},session:null,flags:null,role:null,loggedOut:!0},ssr:!0},$R[12]={i:" _app ",u:1791182957180,s:"success",ssr:!0},$R[13]={i:" _app  ",u:1791182957180,s:"success",l:$R[14]={workspace:$R[15]={layouts:$R[16]=[$R[17]={id:"board-1",label:"Starter",root:$R[18]={type:"row",id:"starter-root",direction:"column",sizes:$R[19]=[0.85,0.15],children:$R[20]=[$R[21]={type:"row",id:"starter-top-row",direction:"row",sizes:$R[22]=[0.76,0.24],children:$R[23]=[$R[24]={type:"tabset",id:"starter-g-chart",children:$R[25]=[$R[26]={type:"panel",id:"terminal-price-chart",name:"Price Chart",component:"terminal-price-chart"}],activeId:"terminal-price-chart"},$R[27]={type:"tabset",id:"starter-g-orderbook",children:$R[28]=[$R[29]={type:"panel",id:"terminal-orderbook",name:"Orderbook",component:"terminal-orderbook"}],activeId:"terminal-orderbook"}]},$R[30]={type:"tabset",id:"starter-g-portfolio",children:$R[31]=[$R[32]={type:"panel",id:"dashboard-positions",name:"Positions",component:"dashboard-positions"},$R[33]={type:"panel",id:"dashboard-copytrade",name:"Copytrade",component:"dashboard-copytrade"},$R[34]={type:"panel",id:"dashboard-balances",name:"Balances",component:"dashboard-balances"},$R[35]={type:"panel",id:"dashboard-predictions",name:"Predictions",component:"dashboard-predictions"},$R[36]={type:"panel",id:"dashboard-orders",name:"Open Orders",component:"dashboard-orders"},$R[37]={type:"panel",id:"dashboard-twap",name:"TWAP",component:"dashboard-twap"},$R[38]={type:"panel",id:"dashboard-history",name:"History",component:"dashboard-history"},$R[39]={type:"panel",id:"dashboard-top-traders",name:"Top Traders",component:"dashboard-top-traders"},$R[40]={type:"panel",id:"dashboard-cohorts",name:"Cohorts",component:"dashboard-cohorts"},$R[41]={type:"panel",id:"dashboard-deltas",name:"Position Changes",component:"dashboard-deltas"},$R[42]={type:"panel",id:"dashboard-current-twaps",name:"Current TWAPs",component:"dashboard-current-twaps"}],activeId:"dashboard-top-traders"}]}},$R[43]={id:"board-2",label:"News",root:$R[44]={type:"row",id:"news-root",direction:"row",sizes:$R[45]=[0.81,0.19],children:$R[46]=[$R[47]={type:"row",id:"news-left-column",direction:"column",sizes:$R[48]=[0.51,0.49],children:$R[49]=[$R[50]={type:"tabset",id:"news-g-chart",children:$R[51]=[$R[52]={type:"panel",id:"news-chart",name:"Price Chart",component:"terminal-price-chart"}],activeId:"news-chart"},$R[53]={type:"row",id:"news-bottom-row",direction:"row",sizes:$R[54]=[0.5,0.5],children:$R[55]=[$R[56]={type:"tabset",id:"news-g-liquidations",children:$R[57]=[$R[58]={type:"panel",id:"news-liquidations",name:"Liquidations",component:"terminal-liquidations"}],activeId:"news-liquidations"},$R[59]={type:"tabset",id:"news-g-trades",children:$R[60]=[$R[61]={type:"panel",id:"news-trades",name:"Trades",component:"terminal-recent-trades"},$R[62]={type:"panel",id:"news-positions",name:"Positions",component:"dashboard-positions"}],activeId:"news-trades"}]}]},$R[63]={type:"row",id:"news-right-column",direction:"column",sizes:$R[64]=[0.82,0.18],children:$R[65]=[$R[66]={type:"tabset",id:"news-g-feed",children:$R[67]=[$R[68]={type:"panel",id:"news-feed",name:"News",component:"dashboard-news"}],activeId:"news-feed"},$R[69]={type:"tabset",id:"news-g-quick-trade",children:$R[70]=[$R[71]={type:"panel",id:"news-quick-trade",name:"Quick Trade",component:"dashboard-quick-trade"}],activeId:"news-quick-trade"}]}]}}],activeLayoutId:"board-1",width:1200,height:700},result:$R[72]={panels:$R[73]={"starter-g-chart":$R[74]={x:0,y:0,width:908.96,height:591.6,contentX:0,contentY:36,contentWidth:908.96,contentHeight:555.6},"starter-g-orderbook":$R[75]={x:912.96,y:0,width:287.03999999999996,height:591.6,contentX:912.96,contentY:36,contentWidth:287.03999999999996,contentHeight:555.6},"starter-g-portfolio":$R[76]={x:0,y:595.6,width:1200,height:104.39999999999999,contentX:0,contentY:631.6,contentWidth:1200,contentHeight:68.39999999999999}},tabBars:$R[77]={"starter-g-chart":$R[78]={groupId:"starter-g-chart",tabs:$R[79]=[$R[80]={x:0,width:104,labelWidth:103}],height:36},"starter-g-orderbook":$R[81]={groupId:"starter-g-orderbook",tabs:$R[82]=[$R[83]={x:0,width:90,labelWidth:89}],height:36},"starter-g-portfolio":$R[84]={groupId:"starter-g-portfolio",tabs:$R[85]=[$R[86]={x:0,width:90,labelWidth:89},$R[87]={x:90,width:90,labelWidth:89},$R[88]={x:180,width:83,labelWidth:82},$R[89]={x:263,width:104,labelWidth:103},$R[90]={x:367,width:104,labelWidth:103},$R[91]={x:471,width:54,labelWidth:53},$R[92]={x:525,width:76,labelWidth:75},$R[93]={x:601,width:104,labelWidth:103},$R[94]={x:705,width:76,labelWidth:75},$R[95]={x:781,width:140,labelWidth:139},$R[96]={x:921,width:118,labelWidth:117}],height:36}},splitters:$R[97]=[$R[98]={splitId:"starter-top-row",childIndex:0,x:908.96,y:0,width:4,height:591.6,direction:"row",sectionId:void 0},$R[99]={splitId:"starter-root",childIndex:0,x:0,y:591.6,width:1200,height:4,direction:"column",sectionId:void 0}]}},ssr:!0}]})($R["tsr"]);$_TSR.e();{let s=document.currentScript,p;while((p=s.previousElementSibling)&&p.hasAttribute('data-tsr-stream-part'))p.remove();s.remove()}</script><script type="module" async="" src="/assets/index-JDO5_3P6.js"></script><script>document.currentScript.remove();/*$tsr-stream-boundary*/</script></body></html>

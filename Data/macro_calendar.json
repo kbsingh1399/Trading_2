@@ -1,0 +1,43 @@
+{
+  "schema": "omni.calendar.v1",
+  "verified_at": "2026-10-05T07:55:01.545977+00:00",
+  "coverage_start": "2026-10-01T00:00:00Z",
+  "coverage_end": "2026-11-01T00:00:00Z",
+  "required_series": [
+    "CPI",
+    "NFP",
+    "FOMC"
+  ],
+  "events": [
+    {
+      "name": "NFP",
+      "time_utc": "2026-10-02T12:30:00Z",
+      "impact": "HIGH",
+      "source": "https://www.bls.gov/schedule/2026/10_sched.htm"
+    },
+    {
+      "name": "CPI",
+      "time_utc": "2026-10-14T12:30:00Z",
+      "impact": "HIGH",
+      "source": "https://www.bls.gov/schedule/2026/10_sched.htm"
+    },
+    {
+      "name": "FOMC Minutes",
+      "time_utc": "2026-10-07T18:00:00Z",
+      "impact": "HIGH",
+      "source": "https://www.federalreserve.gov/newsevents/2026-october.htm"
+    },
+    {
+      "name": "FOMC",
+      "time_utc": "2026-10-28T18:00:00Z",
+      "impact": "HIGH",
+      "source": "https://www.federalreserve.gov/newsevents/2026-october.htm"
+    },
+    {
+      "name": "FOMC Press Conference",
+      "time_utc": "2026-10-28T18:30:00Z",
+      "impact": "HIGH",
+      "source": "https://www.federalreserve.gov/newsevents/2026-october.htm"
+    }
+  ]
+}

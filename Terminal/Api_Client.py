@@ -12,6 +12,7 @@ import pathlib
 from typing import Dict, List, Any, Optional
 import polars as pl
 from Terminal.Microstructure import TokenBucket
+from Terminal.Asset_Universe import canonical_asset, UNIVERSE
 
 HL_INFO_URL = "https://api.hyperliquid.xyz/info"
 HD_GRAPHQL_URL = "https://api.hyperdash.com/graphql"
@@ -25,6 +26,7 @@ class HyperdashClient:
         self.timeout = timeout
         self.asset_cache: Dict[str, Any] = {}
         self.universe: List[str] = []
+        self.wallet_risk_cache = {}
         # Dedicated limiters: fast REST for live orderbook/trades, protected GraphQL for analytics
         self._hl_limiter = TokenBucket(rate=15.0, capacity=30.0)
         self._graphql_limiter = TokenBucket(rate=1.5, capacity=3.0)
@@ -36,26 +38,70 @@ class HyperdashClient:
             self._hl_limiter.acquire()
         data_bytes = json.dumps(payload).encode("utf-8")
         req = urllib.request.Request(url, data=data_bytes, headers=DEFAULT_HEADERS)
-        try:
-            with urllib.request.urlopen(req, timeout=self.timeout) as resp:
-                return json.loads(resp.read().decode("utf-8"))
-        except urllib.error.HTTPError as e:
-            err_msg = e.read().decode("utf-8", errors="ignore")
-            raise RuntimeError(f"HTTP {e.code} Error from {url}: {err_msg}")
-        except Exception as e:
-            raise RuntimeError(f"Connection Error to {url}: {e}")
+        for attempt in range(3):
+            try:
+                with urllib.request.urlopen(req, timeout=self.timeout) as resp:
+                    result = json.loads(resp.read().decode("utf-8"))
+                    if isinstance(result, dict) and result.get("errors"):
+                        raise ValueError(f"GraphQL rejected request: {result['errors']}")
+                    return result
+            except urllib.error.HTTPError as e:
+                if e.code == 429 and attempt < 2:
+                    time.sleep(1.0 * (attempt + 1))
+                    continue
+                err_msg = e.read().decode("utf-8", errors="ignore")
+                raise RuntimeError(f"HTTP {e.code} Error from {url}: {err_msg}")
+            except Exception as e:
+                if attempt < 2 and "timeout" in str(e).lower():
+                    time.sleep(0.5)
+                    continue
+                raise RuntimeError(f"Connection Error to {url}: {e}")
 
     def fetch_all_assets(self) -> List[Dict[str, Any]]:
         """Fetch all active perpetual assets on Hyperliquid with live stats."""
+        # 1. Fetch main global DEX assets
         payload = {"type": "metaAndAssetCtxs"}
         data = self._post_json(HL_INFO_URL, payload)
         meta_universe = data[0]["universe"]
         asset_ctxs = data[1]
+        origins = [""]*len(meta_universe)
+
+        # 2. Fetch HIP-3 builder markets (xyz DEX) for legacy assets
+        xyz_payload = {"type": "metaAndAssetCtxs", "dex": "xyz"}
+        try:
+            xyz_data = self._post_json(HL_INFO_URL, xyz_payload)
+            if xyz_data and len(xyz_data) == 2:
+                meta_universe.extend(xyz_data[0]["universe"])
+                asset_ctxs.extend(xyz_data[1])
+                origins.extend(["xyz"]*len(xyz_data[0]["universe"]))
+        except Exception as e:
+            pass # fallback to global only if xyz fails
+
+        # 3. Fetch HIP-3 builder markets (flx DEX) for NAS100/DJ30
+        flx_payload = {"type": "metaAndAssetCtxs", "dex": "flx"}
+        try:
+            flx_data = self._post_json(HL_INFO_URL, flx_payload)
+            if flx_data and len(flx_data) == 2:
+                meta_universe.extend(flx_data[0]["universe"])
+                asset_ctxs.extend(flx_data[1])
+                origins.extend(["flx"]*len(flx_data[0]["universe"]))
+        except Exception as e:
+            pass
 
         results = []
         self.universe = []
-        for meta, ctx in zip(meta_universe, asset_ctxs):
-            coin = meta["name"]
+        new_cache = {}
+        for meta, ctx, dex in zip(meta_universe, asset_ctxs, origins):
+            # Clean prefix for terminal consistency if present
+            raw_coin = meta["name"]
+            if dex and ":" not in raw_coin: raw_coin = dex+":"+raw_coin
+            coin = raw_coin.split(":")[-1] if ":" in raw_coin else raw_coin
+            coin = canonical_asset(coin)
+            if meta.get("isDelisted"): continue
+
+            if coin in self.universe:
+                continue
+
             self.universe.append(coin)
             mark_px = float(ctx.get("markPx", 0.0))
             oi = float(ctx.get("openInterest", 0.0))
@@ -66,30 +112,47 @@ class HyperdashClient:
 
             item = {
                 "coin": coin,
+                "signal_market": raw_coin,
+                "metadata_observed_at": time.time(),
                 "mark_px": mark_px,
                 "open_interest": oi,
                 "open_interest_usd": oi * mark_px,
                 "funding_rate": funding,
-                "funding_annualized": funding * 3 * 365 * 100, # 8h to annual %
+                "funding_annualized": funding * 24 * 365 * 100, # Hyperliquid hourly rate
                 "volume_24h": volume_24h,
                 "change_24h": change_24h,
                 "max_leverage": meta.get("maxLeverage", 50),
                 "sz_decimals": meta.get("szDecimals", 2)
             }
             results.append(item)
-            self.asset_cache[coin] = item
+            new_cache[coin] = item
 
         # Sort by 24h volume descending
         results.sort(key=lambda x: x["volume_24h"], reverse=True)
+        self.asset_cache = new_cache
         return results
+
+    def _resolve_coin(self, coin: str) -> str:
+        if ":" in coin: return coin
+        asset = canonical_asset(coin)
+        if asset in {"SP500", "NAS100", "DJ30", "GOLD", "SILVER"}:
+            cached = self.asset_cache.get(asset)
+            if not cached:
+                self.fetch_all_assets()
+                cached = self.asset_cache.get(asset)
+            if not cached or not cached.get("signal_market"):
+                raise ValueError(f"No observed HIP-3 market for {asset}")
+            return cached["signal_market"]
+        return asset
 
     def fetch_l2_book(self, coin: str) -> Dict[str, Any]:
         """Fetch real-time Level 2 orderbook (20 bids, 20 asks) with depth metrics."""
-        payload = {"type": "l2Book", "coin": coin}
+        hl_coin = self._resolve_coin(coin)
+        payload = {"type": "l2Book", "coin": hl_coin}
         raw = self._post_json(HL_INFO_URL, payload)
-        levels = raw.get("levels", [[], []])
-        raw_bids = levels[0]
-        raw_asks = levels[1]
+        levels = raw.get("levels", [[], []]) if raw else [[], []]
+        raw_bids = levels[0][:20] if len(levels) > 0 else []
+        raw_asks = levels[1][:20] if len(levels) > 1 else []
 
         bids = [{"price": float(b["px"]), "size": float(b["sz"]), "total_usd": float(b["px"]) * float(b["sz"])} for b in raw_bids]
         asks = [{"price": float(a["px"]), "size": float(a["sz"]), "total_usd": float(a["px"]) * float(a["sz"])} for a in raw_asks]
@@ -106,6 +169,7 @@ class HyperdashClient:
 
         return {
             "coin": coin,
+            "signal_market": hl_coin,
             "best_bid": best_bid,
             "best_ask": best_ask,
             "spread": spread,
@@ -116,7 +180,8 @@ class HyperdashClient:
             "ask_volume_usd": ask_vol,
             "bid_pct": bid_ratio,
             "ask_pct": 100.0 - bid_ratio,
-            "timestamp": raw.get("time", int(time.time() * 1000))
+            "timestamp": raw.get("time", 0),
+            "received_at": time.time()
         }
 
     def fetch_l3_orders(self, coin: str, min_price: float, max_price: float) -> List[Dict[str, Any]]:
@@ -124,6 +189,7 @@ class HyperdashClient:
         Fetch individual Level 3 resting orders mapped to specific Ethereum wallet addresses.
         Powers the Hyperdash Level 3 orderbook overlay.
         """
+        hl_coin = self._resolve_coin(coin)
         query = """
         query GetOrderbookSnapshotFiltered($market: String!, $minPrice: Float!, $maxPrice: Float!) {
           orderbookSnapshotFiltered(market: $market, minPrice: $minPrice, maxPrice: $maxPrice) {
@@ -137,21 +203,24 @@ class HyperdashClient:
           }
         }
         """
-        variables = {"market": coin, "minPrice": float(min_price), "maxPrice": float(max_price)}
+        variables = {"market": hl_coin, "minPrice": float(min_price), "maxPrice": float(max_price)}
         data = self._post_json(HD_GRAPHQL_URL, {"query": query, "variables": variables})
         orders_raw = data.get("data", {}).get("orderbookSnapshotFiltered", [])
 
         orders = []
+        observed_at = time.time()
         for o in orders_raw:
             sub = o.get("order", {})
             px = float(sub.get("limitPx", 0.0))
             sz = float(sub.get("sz", 0.0))
             orders.append({
                 "address": o.get("address", ""),
-                "side": "BUY" if sub.get("side") == "B" else "SELL",
+                "side": "BUY" if sub.get("side") == "B" else "SELL" if sub.get("side") == "A" else "UNKNOWN",
                 "price": px,
                 "size": sz,
-                "notional_usd": px * sz
+                "notional_usd": px * sz,
+                "observed_at": observed_at,
+                "timestamp_basis": "RECEIPT_ONLY"
             })
 
         # Sort by notional value descending (whales first)
@@ -160,6 +229,7 @@ class HyperdashClient:
 
     def fetch_liquidations(self, coin: str, min_price: float, max_price: float, lookback_days: int = 3) -> Dict[str, Any]:
         """Fetch real-time liquidation clusters, totals, and top liquidation whale addresses."""
+        hl_coin = self._resolve_coin(coin)
         query = """
         query GetLiquidationLevelsV2(
           $coin: String!
@@ -214,7 +284,7 @@ class HyperdashClient:
         now = int(time.time())
         start_time = now - (lookback_days * 24 * 3600)
         variables = {
-            "coin": coin,
+            "coin": hl_coin,
             "minPrice": float(min_price),
             "maxPrice": float(max_price),
             "startTime": float(start_time),
@@ -239,7 +309,8 @@ class HyperdashClient:
                 "min_px": min_px,
                 "max_px": max_px,
                 "mid_px": mid_px,
-                "amount": latest_amt
+                "amount": latest_amt,
+                "observed_at": hist[-1].get("timestamp", 0) if hist else 0
             })
 
             # Index every historical candle point
@@ -274,6 +345,8 @@ class HyperdashClient:
         return {
             "coin": coin,
             "current_price": res.get("currentPrice", 0.0),
+            "kind": "UNVERIFIED_BAND_LANDSCAPE",
+            "received_at": time.time(),
             "band_size": res.get("bandSize", 100.0),
             "total_long_size": res.get("totalLongLiquidations", {}).get("size", 0.0),
             "total_long_count": res.get("totalLongLiquidations", {}).get("count", 0),
@@ -294,6 +367,7 @@ class HyperdashClient:
 
     def fetch_stops(self, coin: str, min_price: float, max_price: float, lookback_days: int = 3) -> Dict[str, Any]:
         """Fetch live buy/sell stop orders, stop clusters, and top stop-loss whale addresses."""
+        hl_coin = self._resolve_coin(coin)
         query = """
         query GetStopOrderLevelsV2(
           $coin: String!
@@ -346,7 +420,7 @@ class HyperdashClient:
         now = int(time.time())
         start_time = now - (lookback_days * 24 * 3600)
         variables = {
-            "coin": coin,
+            "coin": hl_coin,
             "minPrice": float(min_price),
             "maxPrice": float(max_price),
             "startTime": float(start_time),
@@ -408,6 +482,8 @@ class HyperdashClient:
             "current_price": res.get("currentPrice", 0.0),
             "band_size": res.get("bandSize", 100.0),
             "total_buy_size": res.get("totalBuyStops", {}).get("size", 0.0),
+            "kind": "UNVERIFIED_STOP_LANDSCAPE",
+            "received_at": time.time(),
             "total_buy_count": res.get("totalBuyStops", {}).get("count", 0),
             "total_sell_size": res.get("totalSellStops", {}).get("size", 0.0),
             "total_sell_count": res.get("totalSellStops", {}).get("count", 0),
@@ -426,6 +502,7 @@ class HyperdashClient:
 
     def fetch_top_traders(self, coin: str, limit: int = 20) -> List[Dict[str, Any]]:
         """Fetch top PnL positions and smart money wallets for the asset."""
+        hl_coin = self._resolve_coin(coin)
         query = """
         query GetAssetTopTraders($coin: String!, $pnlLimit: Int) {
           analytics {
@@ -441,35 +518,87 @@ class HyperdashClient:
                 displayName
                 label
                 size
-                notional
+                notionalSize
                 entryPrice
                 unrealizedPnl
-                returnOnEquity
-                leverage
               }
             }
           }
         }
         """
-        variables = {"coin": coin, "pnlLimit": limit}
+        variables = {"coin": hl_coin, "pnlLimit": limit}
         data = self._post_json(HD_GRAPHQL_URL, {"query": query, "variables": variables})
         positions = data.get("data", {}).get("analytics", {}).get("winners", {}).get("positions", [])
         return positions
 
     def fetch_recent_trades(self, coin: str) -> List[Dict[str, Any]]:
         """Fetch latest tick trades with aggressor side."""
-        payload = {"type": "recentTrades", "coin": coin}
-        trades = self._post_json(HL_INFO_URL, payload)
-        return trades
+        hl_coin = self._resolve_coin(coin)
+        payload = {"type": "recentTrades", "coin": hl_coin}
+        try:
+            trades = self._post_json(HL_INFO_URL, payload)
+            return trades if trades else []
+        except Exception:
+            return []
+
+    def fetch_wallet_risk(self, coin, addresses, book):
+        """Observed positions and trigger orders for a sampled whale cohort.
+
+        These are lower-bound exposures of observed wallets, not estimates of
+        every trader's hidden leverage. Historical band landscapes stay separate.
+        """
+        qualified = self._resolve_coin(coin)
+        dex = qualified.split(":")[0] if ":" in qualified else ""
+        now = time.time(); cache = self.wallet_risk_cache.get(qualified)
+        if cache and now-cache["observed_at"] < 30: return cache
+        positions, liquidations, stops = [], [], []
+        sampled = list(dict.fromkeys(a for a in addresses if a))[:2]
+        for address in sampled:
+            context = {"user": address, **({"dex": dex} if dex else {})}
+            state = self._post_json(HL_INFO_URL, {"type": "clearinghouseState", **context})
+            orders = self._post_json(HL_INFO_URL, {"type": "frontendOpenOrders", **context})
+            for item in state.get("assetPositions", []):
+                p = item.get("position", {})
+                if canonical_asset(p.get("coin")) != canonical_asset(coin): continue
+                size = float(p.get("szi", 0)); liq = float(p.get("liquidationPx") or 0)
+                positions.append({"address": address, "size": size, "entry_price": float(p.get("entryPx", 0)),
+                                  "notional_usd": float(p.get("positionValue", 0)), "unrealized_pnl_usd": float(p.get("unrealizedPnl", 0)),
+                                  "liquidation_price": liq or None})
+                if liq > 0 and size:
+                    long = size > 0
+                    endpoint = float(book.get("best_bid" if long else "best_ask", 0))
+                    if endpoint > 0 and (liq < endpoint if long else liq > endpoint):
+                        liquidations.append({"min_px": min(liq, endpoint), "max_px": max(liq, endpoint),
+                                             "mid_px": liq, "amount_usd": abs(size)*liq,
+                                             "position_side_at_risk": "LONG" if long else "SHORT", "address": address,
+                                             "kind": "PROJECTED_EXPOSURE"})
+            for order in orders:
+                if not order.get("isTrigger") or not order.get("reduceOnly") or canonical_asset(order.get("coin")) != canonical_asset(coin): continue
+                # A take-profit trigger is not a stop loss. Explicit order type is required.
+                if "stop" not in str(order.get("orderType", "")).lower(): continue
+                trigger, size = float(order.get("triggerPx") or 0), float(order.get("sz") or 0)
+                side = "LONG" if order.get("side") == "A" else "SHORT" if order.get("side") == "B" else None
+                if trigger <= 0 or size <= 0 or side is None: continue
+                endpoint = float(book.get("best_bid" if side=="LONG" else "best_ask", 0))
+                if endpoint <= 0 or not (trigger < endpoint if side=="LONG" else trigger > endpoint): continue
+                stops.append({"min_px": min(trigger,endpoint), "max_px": max(trigger,endpoint), "mid_px": trigger,
+                              "amount_usd": trigger*size, "position_side_at_risk": side, "address": address,
+                              "order_id": order.get("oid"), "kind": "OBSERVED_STOP_ORDERS"})
+        result = {"observed_at": time.time(), "positions": positions,
+                  "liquidations": {"kind": "PROJECTED_EXPOSURE", "bands": liquidations, "coverage": "SAMPLED_WALLETS", "wallets": sampled},
+                  "stops": {"kind": "OBSERVED_STOP_ORDERS", "bands": stops, "coverage": "SAMPLED_WALLETS", "wallets": sampled}}
+        self.wallet_risk_cache[qualified] = result
+        return result
 
     def fetch_candles(self, coin: str, interval: str = "1h", lookback_days: int = 3) -> List[Dict[str, Any]]:
         """Fetch live OHLCV candles from Hyperliquid for charting & alignment."""
+        hl_coin = self._resolve_coin(coin)
         now_ms = int(time.time() * 1000)
         start_ms = now_ms - (lookback_days * 24 * 3600 * 1000)
         payload = {
             "type": "candleSnapshot",
             "req": {
-                "coin": coin,
+                "coin": hl_coin,
                 "interval": interval,
                 "startTime": start_ms,
                 "endTime": now_ms

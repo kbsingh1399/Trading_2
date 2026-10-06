@@ -85,12 +85,15 @@ def _refresh_analytics_worker(coin: str, live_px: float):
         l3_orders = cached.get("l3_orders", []) if cached else []
         coarse_ob = cached.get("coarse_orderbook", {"bids": [], "asks": []}) if cached else {"bids": [], "asks": []}
         current_candle_info = cached.get("current_candle", {}) if cached else {}
+        sources = dict(cached.get("sources", {})) if cached else {}
+        wallet_risk = cached.get("wallet_risk", {}) if cached else {}
 
         # 1. Liquidations (Full Range, All Bands + Cumulative Curves)
         try:
             min_px = max(0.0, live_px * 0.35)
             max_px = live_px * 2.10
             raw_liqs = CLIENT.fetch_liquidations(coin, min_px, max_px)
+            sources["liquidations"] = {"observed_at": raw_liqs.get("received_at", 0), "timestamp_basis": "RECEIPT_ONLY"}
             bands = []
             for b in raw_liqs.get("bands", []):
                 amt = float(b.get("amount", 0.0))
@@ -132,6 +135,7 @@ def _refresh_analytics_worker(coin: str, live_px: float):
                 b["cum_amount_coin"] = cum_long_coin
 
             liqs = {
+                "kind": raw_liqs.get("kind") or "PROJECTED_EXPOSURE",
                 "total_long_size": raw_liqs.get("total_long_size", 0.0),
                 "total_short_size": raw_liqs.get("total_short_size", 0.0),
                 "total_long_count": raw_liqs.get("total_long_count", 0),
@@ -148,6 +152,7 @@ def _refresh_analytics_worker(coin: str, live_px: float):
             min_px = max(0.0, live_px * 0.35)
             max_px = live_px * 2.10
             raw_stops = CLIENT.fetch_stops(coin, min_px, max_px)
+            sources["stops"] = {"observed_at": raw_stops.get("received_at", 0), "timestamp_basis": "RECEIPT_ONLY"}
             bands = []
             for b in raw_stops.get("bands", []):
                 amt = float(b.get("amount", 0.0))
@@ -188,6 +193,7 @@ def _refresh_analytics_worker(coin: str, live_px: float):
                 b["cum_amount_coin"] = cum_sells_coin
 
             stops = {
+                "kind": raw_stops.get("kind") or "OBSERVED_STOP_ORDERS",
                 "total_buy_size": raw_stops.get("total_buy_size", 0.0),
                 "total_sell_size": raw_stops.get("total_sell_size", 0.0),
                 "bands": bands,
@@ -200,6 +206,7 @@ def _refresh_analytics_worker(coin: str, live_px: float):
         # 3. L3 Whale Orders & Coarse Aggregated Orderbook
         try:
             raw_l3 = CLIENT.fetch_l3_orders(coin, live_px * 0.88, live_px * 1.12)
+            sources["l3"] = {"observed_at": time.time(), "timestamp_basis": "RECEIPT_ONLY", "coverage": "TOP20_IN_12_PERCENT_CORRIDOR"}
             new_l3 = []
             bucket_size = 1.0 if live_px > 50 else (0.1 if live_px > 5 else (0.01 if live_px > 0.5 else 0.001))
             b_bids = {}
@@ -220,6 +227,7 @@ def _refresh_analytics_worker(coin: str, live_px: float):
                         "price": px,
                         "size": sz,
                         "notional_usd": val,
+                        "observed_at": o.get("observed_at"),
                         "tier": tier,
                         "dist_pct": dist
                     })
@@ -236,8 +244,13 @@ def _refresh_analytics_worker(coin: str, live_px: float):
                     b_asks[b_px]["total_usd"] += val
                     b_asks[b_px]["orders"] += 1
 
-            if new_l3:
-                l3_orders = new_l3
+            l3_orders = new_l3  # An observed empty book clears previous walls.
+            try:
+                risk_book = CLIENT.fetch_l2_book(coin)
+                wallet_risk = CLIENT.fetch_wallet_risk(coin, [o.get("address") for o in new_l3], risk_book)
+                sources["wallet_risk"] = {"observed_at": wallet_risk["observed_at"], "timestamp_basis": "RECEIPT_ONLY", "coverage": "SAMPLED_WALLETS"}
+            except Exception:
+                pass
 
             closest_asks = sorted(b_asks.keys())[:15]
             sorted_asks = [b_asks[k] for k in sorted(closest_asks, reverse=True)]
@@ -262,6 +275,7 @@ def _refresh_analytics_worker(coin: str, live_px: float):
             "l3_orders": l3_orders,
             "coarse_orderbook": coarse_ob,
             "current_candle": current_candle_info
+            ,"sources": sources, "wallet_risk": wallet_risk
         }
     finally:
         REFRESHING_COINS.discard(coin)
@@ -317,23 +331,24 @@ def api_live(coin: str):
 
     # Dynamic live price resolution
     live_px = mark_px
-    if trades and len(trades) > 0:
-        live_px = float(trades[0].get("px", mark_px))
-    elif l2_book.get("best_bid") and l2_book.get("best_ask"):
+    if l2_book.get("best_bid") and l2_book.get("best_ask"):
         live_px = (l2_book["best_bid"] + l2_book["best_ask"]) / 2.0
+    elif trades:
+        live_px = float(max(trades, key=lambda t: float(t.get("time", 0))).get("px", mark_px))
 
     # 2. Analytics Path: Liquidations, Stops, L3 Whales (Cached with TTL)
     analytics = get_live_analytics(coin, live_px)
 
     # 3. Formatted Trades Tape
     formatted_trades = []
-    for t in trades[:20]:
+    for t in sorted(trades, key=lambda t: float(t.get("time", 0)), reverse=True)[:100]:
         px = float(t.get("px", 0.0))
         sz = float(t.get("sz", 0.0))
         notional = px * sz
         formatted_trades.append({
             "time": t.get("time", 0),
-            "side": "BUY" if t.get("side") == "B" else "SELL",
+            "trade_id": t.get("tid", t.get("hash")),
+            "side": "BUY" if t.get("side") == "B" else "SELL" if t.get("side") == "A" else "UNKNOWN",
             "price": px,
             "size": sz,
             "notional_usd": notional,
@@ -353,19 +368,25 @@ def api_live(coin: str):
         "notional_usd": oi_usd,
         "long_notional_usd": oi_usd / 2.0,
         "short_notional_usd": oi_usd / 2.0,
-        "total_traders": total_traders if total_traders > 0 else 10979,
-        "long_traders": long_count if long_count > 0 else 8560,
-        "short_traders": short_count if short_count > 0 else 2419,
-        "long_traders_pct": long_pct if total_traders > 0 else 78.0,
-        "short_traders_pct": short_pct if total_traders > 0 else 22.0,
-        "profit_traders_pct": 64.0,
-        "loss_traders_pct": 36.0
+        "total_traders": total_traders,
+        "long_traders": long_count,
+        "short_traders": short_count,
+        "long_traders_pct": long_pct if total_traders else None,
+        "short_traders_pct": short_pct if total_traders else None,
+        "profit_traders_pct": None,
+        "loss_traders_pct": None,
+        "kind": "LIQUIDATION_COHORT_COUNTS_NOT_ALL_TRADERS"
     }
 
     return {
         "coin": coin,
         "price": live_px,
         "meta": meta,
+        "signal_market": meta.get("signal_market"),
+        "sources": {**analytics.get("sources", {}), "l2": {"observed_at": l2_book.get("timestamp", 0), "timestamp_basis": "VENUE_EVENT_TIME"}},
+        "whale_positions": analytics.get("wallet_risk", {}).get("positions", []),
+        "projected_liquidations": analytics.get("wallet_risk", {}).get("liquidations", {}),
+        "observed_stops": analytics.get("wallet_risk", {}).get("stops", {}),
         "l2_book": l2_book,
         "liquidations": analytics.get("liquidations", {}),
         "stops": analytics.get("stops", {}),
@@ -2592,13 +2613,13 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         const cohort = data.cohort_summary || {};
         if (cohort && cohort.coin) {
           const assetTitle = document.getElementById('cohortAssetTitle');
-          if (assetTitle) assetTitle.textContent = `${cohort.coin} All traders`;
+          if (assetTitle) assetTitle.textContent = `${cohort.coin} Observed liquidation cohort`;
           const notionalTxt = document.getElementById('cohortNotionalTxt');
           if (notionalTxt) notionalTxt.textContent = `$${formatVol(cohort.notional_usd || 0)}`;
           const tradersTxt = document.getElementById('cohortTradersTxt');
           if (tradersTxt) tradersTxt.textContent = (cohort.total_traders || 0).toLocaleString();
           const pnlTxt = document.getElementById('cohortPnlTxt');
-          if (pnlTxt) pnlTxt.textContent = `${(cohort.profit_traders_pct || 64).toFixed(0)}% Profit / ${(cohort.loss_traders_pct || 36).toFixed(0)}% Loss`;
+          if (pnlTxt) pnlTxt.textContent = cohort.profit_traders_pct == null ? 'PnL coverage unavailable' : `${cohort.profit_traders_pct.toFixed(0)}% Profit / ${cohort.loss_traders_pct.toFixed(0)}% Loss`;
 
           const nLongBar = document.getElementById('cohortNotionalLongBar');
           const nShortBar = document.getElementById('cohortNotionalShortBar');
@@ -2609,23 +2630,23 @@ HTML_TEMPLATE = """<!DOCTYPE html>
           const tShortBar = document.getElementById('cohortTradersShortBar');
           const tLongTxt = document.getElementById('cohortTradersLongTxt');
           const tShortTxt = document.getElementById('cohortTradersShortTxt');
-          const lPct = cohort.long_traders_pct || 78;
-          const sPct = cohort.short_traders_pct || 22;
+          const lPct = cohort.long_traders_pct ?? 0;
+          const sPct = cohort.short_traders_pct ?? 0;
           if (tLongBar) tLongBar.style.width = lPct + '%';
           if (tShortBar) tShortBar.style.width = sPct + '%';
-          if (tLongTxt) tLongTxt.textContent = `${lPct}% Long`;
-          if (tShortTxt) tShortTxt.textContent = `${sPct}% Short`;
+          if (tLongTxt) tLongTxt.textContent = cohort.long_traders_pct == null ? 'Unknown' : `${lPct}% Long`;
+          if (tShortTxt) tShortTxt.textContent = cohort.short_traders_pct == null ? 'Unknown' : `${sPct}% Short`;
 
           const pProfitBar = document.getElementById('cohortPnlProfitBar');
           const pLossBar = document.getElementById('cohortPnlLossBar');
           const pProfitTxt = document.getElementById('cohortPnlProfitTxt');
           const pLossTxt = document.getElementById('cohortPnlLossTxt');
-          const pPct = cohort.profit_traders_pct || 64;
-          const lossPct = cohort.loss_traders_pct || 36;
+          const pPct = cohort.profit_traders_pct ?? 0;
+          const lossPct = cohort.loss_traders_pct ?? 0;
           if (pProfitBar) pProfitBar.style.width = pPct + '%';
           if (pLossBar) pLossBar.style.width = lossPct + '%';
-          if (pProfitTxt) pProfitTxt.textContent = `${pPct}% Profit`;
-          if (pLossTxt) pLossTxt.textContent = `${lossPct}% Loss`;
+          if (pProfitTxt) pProfitTxt.textContent = cohort.profit_traders_pct == null ? 'Unknown' : `${pPct}% Profit`;
+          if (pLossTxt) pLossTxt.textContent = cohort.loss_traders_pct == null ? 'Unknown' : `${lossPct}% Loss`;
         }
 
         // Active View Refresh

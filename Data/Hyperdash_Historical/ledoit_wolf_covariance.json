@@ -1,0 +1,1 @@
+{"sha256": "992efa504b55df19c58a062ee9651406ff5f799381ba4d54e5d01e7b44bfd3fe", "label_column": "asset", "return_units": "decimal_log_return", "horizon_minutes": 15, "created_at": 1791188126.8793328, "data_end": 1791188026.8793342, "max_age_seconds": 86400}

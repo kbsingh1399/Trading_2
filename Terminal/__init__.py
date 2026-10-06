@@ -2,20 +2,18 @@
 Terminal package.
 Production Trading Terminal for Arbitrary Parquet Data Visualization & Live Microstructure Execution.
 """
-from Terminal.Data_Engine import ParquetDataEngine
-from Terminal.Indicator_Engine import IndicatorEngine
-from Terminal.Chart_Engine import ChartEngine
-from Terminal.Desktop_App import DesktopQuantTerminal
-from Terminal.Api_Client import HyperdashClient
-from Terminal.Hyperdash_Terminal import HyperdashTerminal
+from importlib import import_module
 
-# Casing-tolerant and legacy compatibility aliases
-ParquetDataEngine = ParquetDataEngine
-IndicatorEngine = IndicatorEngine
-ChartEngine = ChartEngine
-DesktopQuantTerminal = DesktopQuantTerminal
-HyperdashClient = HyperdashClient
-HyperdashTerminal = HyperdashTerminal
+# Headless risk/execution must not import desktop charting dependencies.
+_EXPORTS = {"ParquetDataEngine": "Data_Engine", "IndicatorEngine": "Indicator_Engine",
+            "ChartEngine": "Chart_Engine", "DesktopQuantTerminal": "Desktop_App",
+            "HyperdashClient": "Api_Client", "HyperdashTerminal": "Hyperdash_Terminal"}
+
+def __getattr__(name):
+    if name not in _EXPORTS: raise AttributeError(name)
+    value = getattr(import_module("Terminal."+_EXPORTS[name]), name)
+    globals()[name] = value
+    return value
 
 __all__ = [
     "ParquetDataEngine",

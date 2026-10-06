@@ -1,0 +1,113 @@
+[
+  {
+    "case": "rebased_capital_bypasses_original_floor",
+    "persisted_capital": 4775.0,
+    "guard": {
+      "equity_usd": 4774.04,
+      "peak_equity_usd": 4775.0,
+      "hard_floor_usd": 4560.125,
+      "drawdown_room": 213.91499999999996,
+      "halted": false
+    },
+    "mandated_floor": 4775
+  },
+  {
+    "case": "uncertain_close_blocks_later_flatten",
+    "close_calls": 1,
+    "inventory_remaining": 1,
+    "metadata": {
+      "close_uncertain": true,
+      "close_requested_at": 1700000070
+    }
+  },
+  {
+    "case": "hour_old_tick_laundered_only_in_quote_path",
+    "raw_age_seconds": 3600,
+    "normalized_age_seconds": 7.796287536621094e-05,
+    "dispatch": {
+      "success": false,
+      "error": "Stale quote: 3600000 ms",
+      "age_ms": 3600000
+    }
+  },
+  {
+    "case": "live_future_book_accepted",
+    "as_of": 1700000070,
+    "book_as_of": 1700000075.0
+  },
+  {
+    "case": "future_trade_accepted_even_with_strict_policy",
+    "aggressor_imbalance": 1.0,
+    "trade_timestamp": 1700000075
+  },
+  {
+    "case": "partly_unobserved_corridor_uses_truncated_depth",
+    "deepest_bid": 99.8,
+    "corridor": {
+      "kind": "liquidations",
+      "side": "LONG",
+      "low": 90.0,
+      "high": 99.99,
+      "depth_usd": 19979000.0,
+      "exposure_usd": 1000000000.0,
+      "ratio": 50.052555182942086
+    },
+    "liquidation_delta": -1.0
+  },
+  {
+    "case": "macro_weight_threshold_discontinuity",
+    "macro_before": 0.001,
+    "macro_after": 0.001001,
+    "confluence_before": 0.5005444695657002,
+    "confluence_after": 0.35038337833619787,
+    "risk_before": 17.10294411646311,
+    "risk_after": 13.480487309935043
+  },
+  {
+    "case": "empty_calendar_with_missing_verification_accepted",
+    "blackout_result": [
+      false,
+      "NO_EVENT",
+      999.0
+    ]
+  },
+  {
+    "case": "native_model_load_error_escapes_fail_closed_handler",
+    "exception_type": "LightGBMError",
+    "error": "Unknown model format or submodel type in model file C:\\Users\\SIGMA\\AppData\\Local\\Temp\\omni_audit_dz6o0b0w\\bad_model\\uplift_classifier.txt"
+  },
+  {
+    "case": "invalid_parquet_exception_class",
+    "exception_type": "ComputeError",
+    "constructor_handler_catches": false
+  },
+  {
+    "case": "phase_zero_lock_is_not_cost_break_even",
+    "notional_usd": 1000,
+    "stop_fraction": 0.01,
+    "gross_locked_pnl_usd": 3.5,
+    "friction_usd": 4.1,
+    "net_locked_pnl_usd": -0.600000000000001,
+    "candidate_net_target_r": 2.09
+  },
+  {
+    "case": "covariance_accepts_one_year_future_staleness",
+    "horizon_minutes": 15,
+    "max_age_seconds": 86400000,
+    "missing_assets": [
+      "DJ30",
+      "NAS100"
+    ]
+  },
+  {
+    "case": "live_uplift_manifest_matches_synthetic_labels",
+    "rows": 600,
+    "labels_sha256": "b0d18d4fc485a52a4a1958aedc24e41552813d8779ab2803a97f9026250277b8",
+    "targets": [
+      -100.0,
+      100.0
+    ],
+    "live_eligible": true,
+    "reported_selected_net_uplift": 11000.0
+  }
+]

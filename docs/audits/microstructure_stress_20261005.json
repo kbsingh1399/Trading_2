@@ -1,0 +1,89 @@
+{
+  "scope": "Fake IPC and mathematical counterexamples; not calibrated market performance",
+  "sources": [
+    {
+      "path": "Terminal/Omni_Trader.py",
+      "sha256": "f3b9ffd7149db416ef5b186c818fb1e8357796e6a1689e4e6da8f4f8b5f4a8ab"
+    },
+    {
+      "path": "Terminal/Risk_Sizing_Engine.py",
+      "sha256": "50ffc0499a8d8ebd269e2b86132bdc43b0495c3e51f6e3cfc64eaadfe1ed48cd"
+    },
+    {
+      "path": "Terminal/Uplift_Model.py",
+      "sha256": "b6da37a17813e568e291edb02875c1e33d31f4fd28aff0240b2d8c1cb750893a"
+    },
+    {
+      "path": "Terminal/MT5_Execution_Bridge.py",
+      "sha256": "46d39ff0428032d5ee37e309f697ee2a76b1c043f09c4b2713c30a722a182cde"
+    }
+  ],
+  "cases": [
+    {
+      "case": "silver_price_lock_vs_stated_cost_model",
+      "entry": 62.02,
+      "stop_r_price": 0.58,
+      "units_assumed": 10.0,
+      "locked_price_move": 0.20299999999999999,
+      "locked_return_bps": 32.7313769751693,
+      "gross_usd": 2.03,
+      "cost_usd": 2.5428200000000003,
+      "net_usd": -0.5128200000000005,
+      "cost_break_even_r": 0.4384172413793104,
+      "phase_one_net_usd": 2.0971799999999994,
+      "half_stop_only_risk_usd": 2.9
+    },
+    {
+      "case": "dense_friction_not_vetoed",
+      "ffr": 0.004994755506717946,
+      "confluence": 0.7288568951232984,
+      "paper_decision": "PAPER_FILLED"
+    },
+    {
+      "case": "unobserved_corridor_becomes_high_ffr",
+      "ffr": 10.0,
+      "target_fuel_usd": 1000000.0,
+      "visible_depth_usd": 0.0,
+      "pressure_ratio": null
+    },
+    {
+      "case": "sector_veto_exception_swallowed",
+      "correlation": 0.7655,
+      "existing_direction": "SHORT",
+      "candidate_direction": "LONG",
+      "block_returned_without_veto": true
+    },
+    {
+      "case": "small_new_wall_passes_entry_hierarchy",
+      "notional_usd": 1,
+      "observed_span_s": 0,
+      "eligible_prices": [
+        99.99
+      ]
+    },
+    {
+      "case": "ce_already_touched_still_active",
+      "ce": 101.0,
+      "subsequent_low": 100.5,
+      "gap_floor": 100
+    },
+    {
+      "case": "zero_volume_produces_vwap_instead_of_missing",
+      "all_volumes_zero": true,
+      "computed_vwap": 101.375
+    },
+    {
+      "case": "sector_sign_rule_rejects_variance_reducing_hedge",
+      "leg_sigma_usd": 20.0,
+      "rho": 0.7655,
+      "opposite_direction_sigma_usd": 13.696714934611146,
+      "same_direction_sigma_usd": 37.581910542174406
+    },
+    {
+      "case": "overlapping_corridors_repeat_depth",
+      "fuel_usd": 2000000.0,
+      "naive_ffr": 1.0,
+      "union_depth_ffr": 2.0
+    }
+  ]
+}

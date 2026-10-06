@@ -17,6 +17,10 @@ import urllib.request
 import xml.etree.ElementTree as ET
 import datetime
 import logging
+from pathlib import Path
+from email.utils import parsedate_to_datetime
+from Terminal.Asset_Universe import UNIVERSE
+from Terminal.Risk_Sizing_Engine import epoch
 from typing import Dict, List, Any, Tuple, Optional
 
 logger = logging.getLogger("MarketIntel")
@@ -34,43 +38,35 @@ DEFAULT_HEADERS = {
 BEARISH_KEYWORDS = [
     "sec lawsuit", "insolvency", "hack", "exploit", "ban", "depeg", "fraud",
     "recession", "rate hike", "hawkish", "subpoena", "default", "liquidation spike",
-    "outflow", "sanctions", "tariff"
+    "outflow", "sanctions", "tariff", "bearish", "shed", "drop", "plunge", "dump",
+    "slump", "crash", "fall", "loss"
 ]
 
 BULLISH_KEYWORDS = [
     "etf approval", "rate cut", "dovish", "treasury reserve", "stimulus",
     "institutional inflow", "partnership", "adoption", "record high", "soft landing",
-    "disinflation", "cooling cpi"
+    "disinflation", "cooling cpi", "bullish", "inflow", "rally", "surge", "gain",
+    "rebound", "breakout", "soar"
 ]
 
 
 class MarketIntelligenceEngine:
-    def __init__(self, blackout_minutes: int = 15):
+    def __init__(self, blackout_minutes: int = 15, calendar_path=None, clock=time.time):
         self.blackout_minutes = blackout_minutes
         self.last_fetch_time = 0.0
         self.cached_sentiment = 0.0
         self.cached_headlines: List[Dict[str, Any]] = []
         self.cached_events: List[Dict[str, Any]] = []
-        self._load_static_economic_calendar()
-
-    def _load_static_economic_calendar(self):
-        """
-        Pre-loads recurring institutional macro release benchmarks (UTC timestamps).
-        """
-        # Standard recurring release times: e.g. CPI 12:30 UTC / 13:30 UTC on second Wednesday/Thursday
-        # Fed FOMC at 18:00 / 19:00 UTC, NFP first Friday 12:30 / 13:30 UTC
-        self.recurring_schedules = [
-            {"name": "US CPI Release", "time_utc": "12:30", "impact": "HIGH", "days": ["Wednesday", "Thursday"]},
-            {"name": "FOMC Rate Decision", "time_utc": "18:00", "impact": "HIGH", "days": ["Wednesday"]},
-            {"name": "US Non-Farm Payrolls (NFP)", "time_utc": "12:30", "impact": "HIGH", "days": ["Friday"]},
-            {"name": "US Core PCE Price Index", "time_utc": "12:30", "impact": "HIGH", "days": ["Friday"]}
-        ]
+        self.calendar_path = Path(calendar_path or Path(__file__).resolve().parents[1]/"Data/macro_calendar.json")
+        self.clock = clock
+        self.calendar_error = None
+        self.last_calendar_attempt = 0.0
 
     def fetch_live_headlines(self) -> List[Dict[str, Any]]:
         """
         Fetches breaking financial and crypto RSS feeds.
         """
-        now = time.time()
+        now = self.clock()
         if self.cached_headlines and (now - self.last_fetch_time < 300.0):
             return self.cached_headlines
 
@@ -141,27 +137,37 @@ class MarketIntelligenceEngine:
         Checks whether current time is within +/- blackout_minutes of high-impact releases.
         Returns: (is_blackout: bool, event_name: str, minutes_delta: float)
         """
-        now_utc = datetime.datetime.now(datetime.timezone.utc)
-        current_minute_of_day = now_utc.hour * 60 + now_utc.minute
-
-        # Check major release times (12:30 UTC = 750 mins, 18:00 UTC = 1080 mins)
-        target_windows = [
-            (750, "US Tier-1 Macro (CPI / NFP / PCE)"),
-            (1080, "FOMC Statement / Rate Decision"),
-            (1110, "FOMC Press Conference")
-        ]
-
-        for target_min, name in target_windows:
-            delta = abs(current_minute_of_day - target_min)
-            if delta <= self.blackout_minutes:
-                return True, name, delta
-
-        return False, "NO_EVENT", 999.0
-
+        now = self.clock()
+        try:
+            calendar = json.loads(self.calendar_path.read_text(encoding="utf-8"))
+            if calendar.get("required_series") != ["CPI", "NFP", "FOMC"]: raise ValueError("calendar coverage unverified")
+            if not epoch(calendar.get("coverage_start")) <= now < epoch(calendar.get("coverage_end")):
+                raise ValueError("calendar outside verified coverage")
+            events = calendar.get("events")
+            if not events or not isinstance(events, list) or len(events) == 0:
+                raise ValueError("calendar events missing or empty")
+            self.calendar_error = None
+            for event in events:
+                if event.get("impact") != "HIGH": continue
+                event_time = epoch(event.get("time_utc"))
+                if not event_time: raise ValueError("calendar event timestamp invalid")
+                delta = abs(now-event_time)/60
+                if delta <= self.blackout_minutes: return True, event["name"], delta
+            return False, "NO_EVENT", 999.0
+        except (OSError, ValueError, KeyError, TypeError) as exc:
+            self.calendar_error = str(exc)
+            return True, "CALENDAR_UNAVAILABLE", 0.0
     def get_market_intelligence_report(self) -> Dict[str, Any]:
         """
         Full 360-degree macro intelligence synthesis.
         """
+        if self.clock()-self.last_calendar_attempt > 86400:
+            self.last_calendar_attempt = self.clock()
+            try:
+                from Terminal.Macro_Calendar import refresh_calendar
+                refresh_calendar(self.calendar_path)
+            except Exception as exc:
+                logger.warning("Dated macro calendar refresh failed: %s", exc)
         headlines = self.fetch_live_headlines()
         is_blackout, event_name, delta_min = self.check_macro_blackout()
 
@@ -172,6 +178,9 @@ class MarketIntelligenceEngine:
         return {
             "timestamp_utc": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC"),
             "macro_sentiment_score": self.cached_sentiment,
+            "asset_scores": self.asset_sentiment_scores(),
+            "sentiment_valid": bool(self.cached_headlines and self.clock()-self.last_fetch_time <= 900),
+            "calendar_error": self.calendar_error,
             "macro_bias": sentiment_label,
             "blackout_active": is_blackout,
             "blackout_event": event_name,
@@ -179,6 +188,32 @@ class MarketIntelligenceEngine:
             "headlines_count": len(headlines),
             "top_headlines": [h["title"] for h in headlines[:5]]
         }
+
+    def asset_sentiment_scores(self):
+        """Keyword sentiment is a weak feature; crypto headlines do not become gold signals."""
+        names = {"BTC": ("bitcoin", "btc"), "ETH": ("ethereum", "eth"), "SOL": ("solana", "sol"),
+                 "BNB": ("binance", "bnb"), "XRP": ("ripple", "xrp"), "ADA": ("cardano", "ada"),
+                 "DOGE": ("dogecoin", "doge"), "TRX": ("tron", "trx"), "DOT": ("polkadot", "dot"),
+                 "LINK": ("chainlink", "link"), "BCH": ("bitcoin cash", "bch"), "GOLD": ("gold",),
+                 "SILVER": ("silver",), "SP500": ("s&p", "sp500"), "NAS100": ("nasdaq",), "DJ30": ("dow jones",)}
+        scores = {}
+        for asset in UNIVERSE:
+            numerator = denominator = 0.0
+            for h in self.cached_headlines:
+                text = h["title"].lower()
+                try: published = parsedate_to_datetime(h["date"]).timestamp()
+                except (ValueError, TypeError, KeyError): continue
+                age = self.clock()-published
+                if not 0 <= age <= 86400: continue
+                macro = any(k in text for k in ("fed", "fomc", "cpi", "payroll", "inflation", "rate cut", "rate hike"))
+                relevant = macro or any(k in text for k in names[asset])
+                if not relevant: continue
+                bulls = sum(k in text for k in BULLISH_KEYWORDS)
+                bears = sum(k in text for k in BEARISH_KEYWORDS)
+                weight = 2**(-age/14400)
+                numerator += weight*(bulls-bears); denominator += weight*(bulls+bears)
+            scores[asset] = max(-1, min(1, numerator/denominator)) if denominator else 0.0
+        return scores
 
 
 if __name__ == "__main__":
