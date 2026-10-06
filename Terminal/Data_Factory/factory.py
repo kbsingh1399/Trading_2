@@ -22,6 +22,7 @@ from __future__ import annotations
 import asyncio
 import math
 import time
+from collections import deque
 from pathlib import Path
 from Terminal.Risk_Sizing_Engine import number
 from Terminal.Data_Factory.bus import IntelligenceBus
@@ -113,6 +114,8 @@ class ZeroCostDataFactory:
         self._bars = {}
         self._profiles = {}
         self._oi_notional = {}
+        self._whales = {}          # asset -> {"observed_at", "positions": [...]}
+        self._whale_flows = {}     # asset -> deque of classified on-chain transfers
         self.stats = {"trades": 0, "books": 0, "liquidations": 0, "oi_samples": 0}
 
     # -------------------------------------------------------------- ingestion
@@ -167,6 +170,40 @@ class ZeroCostDataFactory:
         self.stats["oi_samples"] += 1
         return self.liq.observe_oi(asset, ts=ts, price=price, oi_usd=notional,
                                    taker_buy_ratio=ratio if previous is not None else 0.5)
+
+    def ingest_whale_positions(self, asset, positions, observed_at=None):
+        """Sampled whale cohort (Hyperliquid public /info clearinghouseState +
+        frontendOpenOrders for tracked addresses - the exact Api_Client
+        ``fetch_wallet_risk`` positions schema, $0 and keyless)."""
+        rows = [dict(p) for p in (positions or []) if p]
+        if rows:
+            self._whales[asset] = {"observed_at": float(number(observed_at, self.clock())),
+                                   "positions": rows[-32:]}
+        return len(rows)
+
+    def ingest_whale_flow(self, asset, transfer):
+        """One classified on-chain whale transfer (WhaleTransferListener)."""
+        if not transfer:
+            return None
+        flows = self._whale_flows.setdefault(asset, deque(maxlen=256))
+        flows.append(dict(transfer))
+        return transfer
+
+    def _whale_net_flow_usd(self, asset, now, window_sec=86400.0):
+        """Signed net exchange flow: OUTFLOW (coins leaving exchanges) is
+        bullish accumulation, INFLOW is distribution. Zero lookahead."""
+        net = 0.0
+        for f in self._whale_flows.get(asset, ()):
+            ts = number(f.get("ts"), 0.0)
+            if ts <= 0 or not 0.0 <= now - ts <= window_sec:
+                continue
+            direction = str(f.get("direction", "")).upper()
+            usd = number(f.get("notional_usd"), 0.0)
+            if direction == "EXCHANGE_OUTFLOW":
+                net += usd
+            elif direction == "EXCHANGE_INFLOW":
+                net -= usd
+        return net
 
     # ---------------------------------------------------------------- frames
     def on_binance_frame(self, asset, frame):
@@ -223,6 +260,9 @@ class ZeroCostDataFactory:
             stop_bands = self.stops.reconstruct(self._bars[asset], now=now, mid=mid,
                                                 atr=atr, profile=self._profiles.get(asset))
         l3 = self.wall_tracker.observe(asset, book, now) if book else []
+        whale = self._whales.get(asset)
+        whale_positions = whale["positions"] if whale and 0.0 <= now - whale["observed_at"] <= 3600.0 else []
+        orderflow = self.bus.snapshot(asset, now)
         sources = {"l2": {"observed_at": number(book.get("ts"), 0.0),
                           "timestamp_basis": "VENUE_EVENT_TIME"},
                    "l3": {"observed_at": now, "timestamp_basis": "RECEIPT_ONLY",
@@ -237,6 +277,9 @@ class ZeroCostDataFactory:
                              "coverage": "SYNTHETIC_STRUCTURAL_MODEL"}}
         return {"coin": asset, "price": mid, "l2_book": book,
                 "recent_trades": trades, "l3_orders": l3,
+                "orderflow": orderflow,
+                "whale_positions": whale_positions,
+                "whale_net_flow_usd_24h": self._whale_net_flow_usd(asset, now),
                 "projected_liquidations": liq_bands,
                 "observed_stops": stop_bands,
                 "liquidations": {**liq_bands, "empirical_bands": self.liq.empirical_bands(asset)},
