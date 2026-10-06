@@ -88,6 +88,11 @@ class BrainClient:
         return self._post("/api/v1/modify_sltp", self._command("MODIFY_SLTP", {
             "ticket": int(ticket), "sl": float(sl), "tp": tp}))
 
+    def close_position(self, *, ticket: int, reason: str = "brain_close") -> Dict:
+        """Close a position at market (the 24-bar time-decay actuator)."""
+        return self._post("/api/v1/stage_order", self._command("CLOSE_POSITION", {
+            "ticket": int(ticket), "reason": str(reason)}))
+
     def cancel_order(self, *, ticket: int) -> Dict:
         return self._post("/api/v1/cancel_order", self._command("CANCEL_ORDER", {
             "ticket": int(ticket)}))
@@ -99,6 +104,43 @@ class BrainClient:
         envelope = sign_payload({"force": bool(force)}, secret, ts=self.clock())
         request = urllib.request.Request(
             self.base_url + "/api/v1/evaluate_candle",
+            data=json.dumps(envelope["payload"]).encode("utf-8"), method="POST",
+            headers={"Content-Type": "application/json",
+                     "X-Signature": envelope["signature"],
+                     "X-Signature-Ts": f"{envelope['ts']:.3f}"})
+        try:
+            with urllib.request.urlopen(request, timeout=self.timeout) as response:
+                return json.loads(response.read() or b"{}")
+        except urllib.error.HTTPError as exc:
+            return {"http_status": exc.code, "error": exc.read().decode("utf-8", "replace")}
+        except (urllib.error.URLError, OSError) as exc:
+            return {"http_status": 0, "error": f"tunnel_unreachable:{exc}"}
+
+    def market_state(self, assets=None) -> Dict:
+        """Live positions, pending orders, quotes and orderflow snapshots."""
+        from Terminal.Headless.server import sign_payload
+        envelope = sign_payload({"assets": assets} if assets else {}, self.secret,
+                                 ts=self.clock())
+        request = urllib.request.Request(
+            self.base_url + "/api/v1/market_state",
+            data=json.dumps(envelope["payload"]).encode("utf-8"), method="POST",
+            headers={"Content-Type": "application/json",
+                     "X-Signature": envelope["signature"],
+                     "X-Signature-Ts": f"{envelope['ts']:.3f}"})
+        try:
+            with urllib.request.urlopen(request, timeout=self.timeout) as response:
+                return json.loads(response.read() or b"{}")
+        except urllib.error.HTTPError as exc:
+            return {"http_status": exc.code, "error": exc.read().decode("utf-8", "replace")}
+        except (urllib.error.URLError, OSError) as exc:
+            return {"http_status": 0, "error": f"tunnel_unreachable:{exc}"}
+
+    def status(self) -> Dict:
+        """Fetch muscle health (signed): bridge, pillars, quality, last evaluation."""
+        from Terminal.Headless.server import sign_payload
+        envelope = sign_payload({}, self.secret, ts=self.clock())
+        request = urllib.request.Request(
+            self.base_url + "/api/v1/status",
             data=json.dumps(envelope["payload"]).encode("utf-8"), method="POST",
             headers={"Content-Type": "application/json",
                      "X-Signature": envelope["signature"],

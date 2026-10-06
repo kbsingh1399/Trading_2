@@ -52,7 +52,7 @@ TEST_LIMIT_RISK_CAP_USD = 10.00        # strictly <=, preserving the floor cushi
 GENERIC_RISK_CAP_USD = 20.00
 REPLAY_WINDOW_SEC = 30.0
 COMMAND_TYPES = ("STAGE_TEST_LIMIT", "STAGE_ORDER", "MODIFY_SLTP",
-                 "CANCEL_ORDER", "PURGE_TEST_LIMITS")
+                 "CANCEL_ORDER", "CLOSE_POSITION", "PURGE_TEST_LIMITS")
 
 
 # --------------------------------------------------------------- signing
@@ -282,6 +282,16 @@ def apply_command(bridge, command: Dict, *, clock: Callable = time.time,
         return bridge.modify_position_sltp(ticket, sl,
                                            None if tp is None else float(number(tp, 0.0)))
 
+    if type_ == "CLOSE_POSITION":
+        ticket = int(number(params.get("ticket"), 0))
+        if ticket <= 0:
+            raise ValueError("missing_ticket")
+        reason = str(params.get("reason", "brain_close"))
+        result = bridge.close_position(ticket)
+        result.setdefault("success", False)
+        result["reason"] = reason
+        return result
+
     if type_ == "CANCEL_ORDER":
         ticket = int(number(params.get("ticket"), 0))
         if ticket <= 0:
@@ -415,3 +425,75 @@ class RemoteCommandReconciler:
                 self.journal("arena_protocol.jsonl", record)
             except Exception:                             # noqa: BLE001
                 pass
+
+
+# ------------------------------------------------------------- laptop CLI
+def reconciler_from_env(*, bridge=None, environ=None):
+    """Build the Pathway-C fallback reconciler from the environment.
+
+    Env (see deploy/.env.example):
+      ARENA_COMMANDS_URL   HTTPS JSON store of signed commands (gist raw /
+                           Supabase REST / Redis-over-HTTP)
+      OMNI_API_SECRET      the shared HMAC secret (required)
+      ARENA_POLL_INTERVAL  poll cadence seconds (default 5)
+      EXECUTION_BACKEND / OMNI_ALLOW_PAPER / MT5_ACCOUNT_ID govern the
+      fail-closed bridge discovery exactly as in Terminal.Headless.
+    """
+    env = dict(environ if environ is not None else os.environ)
+    url = env.get("ARENA_COMMANDS_URL", "").strip()
+    secret = env.get("OMNI_API_SECRET", "").strip()
+    if not url or not secret:
+        raise ValueError("reconciler_requires:ARENA_COMMANDS_URL+OMNI_API_SECRET")
+    if bridge is None:
+        from Terminal.Execution import create_bridge
+        bridge = create_bridge()          # fail-closed: no healthy backend, no trading
+    interval = number(env.get("ARENA_POLL_INTERVAL"), 5.0)
+    return RemoteCommandReconciler(bridge, secret=secret,
+                                   fetch=lambda: gist_fetch(url),
+                                   poll_interval=max(1.0, float(interval)))
+
+
+def _main(argv=None):
+    """Laptop-side Pathway C entrypoint:
+
+        python -m Terminal.Execution.remote_reconciler
+
+    Runs until SIGINT/SIGTERM: poll -> verify -> apply (full local risk) ->
+    purge expired test limits. Zero open ports; outbound HTTPS only."""
+    import argparse
+    import signal
+    import threading
+
+    parser = argparse.ArgumentParser(description="Arena Brain Pathway-C reconciler "
+                                                 "(laptop muscle side)")
+    parser.add_argument("--url", default=os.environ.get("ARENA_COMMANDS_URL", ""),
+                        help="HTTPS JSON store of signed commands")
+    parser.add_argument("--secret", default=os.environ.get("OMNI_API_SECRET", ""))
+    parser.add_argument("--interval", type=float,
+                        default=float(os.environ.get("ARENA_POLL_INTERVAL", "5") or 5))
+    args = parser.parse_args(argv)
+    environ = dict(os.environ)
+    if args.url:
+        environ["ARENA_COMMANDS_URL"] = args.url
+    if args.secret:
+        environ["OMNI_API_SECRET"] = args.secret
+    environ["ARENA_POLL_INTERVAL"] = str(args.interval)
+    reconciler = reconciler_from_env(environ=environ)
+    stop = threading.Event()
+
+    def _signal(_sig, _frame):
+        stop.set()
+
+    for sig in (signal.SIGINT, signal.SIGTERM):
+        try:
+            signal.signal(sig, _signal)
+        except (ValueError, OSError):              # pragma: no cover - non-main thread
+            pass
+    print(f"[arena-reconciler] polling {environ['ARENA_COMMANDS_URL']} every "
+          f"{reconciler.poll_interval:.0f}s until SIGINT", flush=True)
+    reconciler.run_forever(stop=stop)
+    print(f"[arena-reconciler] stopped: {reconciler.stats}", flush=True)
+
+
+if __name__ == "__main__":
+    _main()

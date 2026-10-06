@@ -20,6 +20,7 @@ from Terminal.Commodity_Microstructure import gk_vol
 from Terminal.MT5_Execution_Bridge import MT5ExecutionBridge
 from Terminal.Market_Intelligence import MarketIntelligenceEngine
 from Terminal.Cognitive_Engine import CognitiveEngine
+from Terminal.Execution.remote_reconciler import purge_expired_test_limits
 from Terminal.Orderbook_Structure import (wall_clusters, hazard_ttl, structural_exit, classify_sleeve,
                                          taker_delta_exhaustion, adaptive_stop_level,
                                           anchors_from_clusters)
@@ -181,6 +182,7 @@ class AI15mMT5Trader:
         self.fetches, self.payloads, self.symbols, self.bars = {}, {}, {}, {}
         self.macro_future, self.macro = None, {}
         self.last_prefetch = self.last_bars = self.last_macro = -math.inf
+        self._last_test_limit_purge = 0.0
         self.last_report = {}
         self._lock_fd = None
         if self.covariance is None:
@@ -491,6 +493,17 @@ class AI15mMT5Trader:
         self._save_state()
 
     def manage_active_positions(self, *unused):
+        # Arena test limits (OX_ALPHA_61): purge unfilled ARENA:TEST_LIMIT_v1
+        # orders older than 24 bars even in Pathway-A-only deployments -
+        # belt-and-braces beyond the broker-side expiration and the
+        # reconciler's own scans. Throttled to one scan per 5 minutes.
+        if self.clock() - self._last_test_limit_purge >= 300.0:
+            self._last_test_limit_purge = self.clock()
+            try:
+                purge_expired_test_limits(self.bridge, clock=self.clock,
+                                          journal=self._append)
+            except Exception:                             # noqa: BLE001 - purge isolation
+                pass
         positions, pending = self._inventory()
         account = self._account(positions); guard = self._equity_guard(account)
         if guard["halted"]:

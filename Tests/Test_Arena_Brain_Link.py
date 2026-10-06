@@ -24,7 +24,8 @@ from Terminal.Execution.remote_reconciler import (PROTOCOL_VERSION, TEST_LIMIT_C
                                                   new_command, sign_command, verify_command,
                                                   apply_command, purge_expired_test_limits,
                                                   plan_test_limit, wilder_atr,
-                                                  RemoteCommandReconciler, gist_fetch)
+                                                  RemoteCommandReconciler, gist_fetch,
+                                                  reconciler_from_env)
 from Terminal.Execution.paper import PaperSimulatedBridge
 from Terminal.Orderbook_Structure import taker_delta_exhaustion, adaptive_stop_level
 from Terminal.Headless.swarm import (orderflow_analyst, position_manager,
@@ -500,3 +501,141 @@ def test_trader_vetoes_limit_entry_while_sellers_still_press():
 def _shared_tmp(tmp_path_factory):
     pytest.active_tmp = tmp_path_factory.mktemp("arena")
     yield
+
+
+# ============================================== follow-up hardening
+def test_manage_cadence_purges_stale_test_limits(tmp_path):
+    """Pathway-A-only deployments still purge: the trader's ~1s manage
+    cadence scans for expired ARENA:TEST_LIMIT_v1 orders (throttled 5 min)."""
+    from Terminal.Omni_Trader import AI15mMT5Trader
+    from Terminal.Asset_Universe import UNIVERSE
+    from Terminal.Risk_Sizing_Engine import CovarianceGate
+    import numpy as np
+
+    clock = {"t": NOW}
+
+    class OfflineIntel:
+        def check_macro_blackout(self): return False, "NO_EVENT", 999
+        def get_market_intelligence_report(self):
+            return {"asset_scores": {a: 1 for a in UNIVERSE}, "sentiment_valid": True}
+
+    bridge = PaperSimulatedBridge(clock=lambda: clock["t"])
+    bridge.set_price("XAUUSD.pi", 4175.99, 4176.01, ts=NOW)
+    covariance = CovarianceGate(UNIVERSE, np.eye(len(UNIVERSE)) * 0.003 ** 2,
+                                {"return_units": "decimal_log_return",
+                                 "horizon_minutes": 15, "created_at": NOW - 60,
+                                 "data_end": NOW - 900, "max_age_seconds": 86400})
+    trader = AI15mMT5Trader(bridge=bridge, covariance=covariance, intel=OfflineIntel(),
+                            cognitive=object(), cognitive_enabled=False,
+                            uplift_path=tmp_path / "no_uplift", clock=lambda: clock["t"],
+                            paper_mode=False, entry_mode="limit",
+                            state_file=tmp_path / "state.json",
+                            journal_dir=tmp_path / "journal")
+    stale = _signed("STAGE_TEST_LIMIT", {"symbol": "XAUUSD.pi", "direction": "SHORT",
+                                         "limit_price": 4182.00, "volume": 0.01,
+                                         "atr": 4.1})
+    assert apply_command(bridge, stale, clock=lambda: clock["t"])["success"]
+    # 6 hours + 1s later, a FRESH test limit joins it, then the manage cadence runs.
+    clock["t"] = NOW + 24 * 900 + 1
+    fresh = _signed("STAGE_TEST_LIMIT", {"symbol": "XAUUSD.pi", "direction": "SHORT",
+                                         "limit_price": 4185.00, "volume": 0.01,
+                                         "atr": 4.1})
+    assert apply_command(bridge, fresh, clock=lambda: clock["t"])["success"]
+    assert len(bridge.get_pending_orders()) == 2
+    trader.manage_active_positions()
+    pending = bridge.get_pending_orders()
+    assert len(pending) == 1 and pending[0]["price_open"] == pytest.approx(4185.00)
+    # The throttle holds: an immediate second call is a no-op (fresh survives).
+    trader.manage_active_positions()
+    assert len(bridge.get_pending_orders()) == 1
+
+
+def test_reconciler_from_env_is_fail_closed(monkeypatch, tmp_path):
+    # Missing configuration: refuses to build.
+    with pytest.raises(ValueError, match="reconciler_requires"):
+        reconciler_from_env(environ={})
+    # Paper fallback allowed: builds on the deterministic paper bridge.
+    for var in ("EXECUTION_BACKEND", "METAAPI_TOKEN", "METAAPI_ACCOUNT_ID"):
+        monkeypatch.delenv(var, raising=False)
+    monkeypatch.setenv("OMNI_ALLOW_PAPER", "1")
+    monkeypatch.setenv("ARENA_COMMANDS_URL", "https://gist.example/raw/arena_commands.json")
+    monkeypatch.setenv("OMNI_API_SECRET", SECRET)
+    monkeypatch.setenv("ARENA_POLL_INTERVAL", "3")
+    reconciler = reconciler_from_env()
+    assert isinstance(reconciler.bridge, PaperSimulatedBridge)
+    assert reconciler.secret == SECRET and reconciler.poll_interval == 3.0
+    # Paper fallback disallowed and no MT5 terminal here: fail-closed.
+    monkeypatch.setenv("OMNI_ALLOW_PAPER", "0")
+    from Terminal.Execution import NoExecutionBackend
+    with pytest.raises(NoExecutionBackend):
+        reconciler_from_env()
+
+
+def test_status_endpoint_and_runtime_status(tmp_path):
+    from Terminal.Headless.server import HeadlessService, sign_payload, canonical_json
+    from Terminal.Headless.runtime import HeadlessRuntime
+
+    # Runtime composition: bridge + fresh book -> ready, no balances exposed.
+    class Factory:
+        def __init__(self):
+            self.bus = self
+        def book(self, asset):
+            return {"ts": NOW - 2}
+        def payload(self, asset, now=None):
+            return {"coin": asset}
+
+    runtime = HeadlessRuntime(assets=["SOL"],
+                              bridge=PaperSimulatedBridge(clock=lambda: NOW),
+                              factory=Factory(), clock=lambda: NOW)
+    status = runtime.status()
+    assert status["ready"] and status["bridge"]["backend"] == "paper"
+    assert status["bridge"]["healthy"] is True
+    assert "balance" not in status and "equity" not in status
+    assert status["last_evaluation"] is None
+
+    class Runtime:
+        def __init__(self, status_payload):
+            self.status_payload = status_payload
+        def readiness(self):
+            return True, []
+        def evaluate_candle(self, force=False):
+            return {"decision": "HOLD"}
+        def status(self):
+            return self.status_payload
+
+    service = HeadlessService(Runtime(status), host="127.0.0.1", port=0,
+                              secret=SECRET, clock=lambda: NOW)
+
+    async def request(body, headers):
+        reader, writer = await asyncio.open_connection("127.0.0.1", service._bound_port)
+        raw = canonical_json(body)
+        lines = ["POST /api/v1/status HTTP/1.1", "Host: x",
+                 f"Content-Length: {len(raw)}", "Connection: close"]
+        for key, value in (headers or {}).items():
+            lines.append(f"{key}: {value}")
+        writer.write(("\r\n".join(lines) + "\r\n\r\n").encode() + raw)
+        await writer.drain()
+        response = b""
+        while True:
+            chunk = await reader.read(4096)
+            if not chunk:
+                break
+            response += chunk
+        writer.close()
+        head, _, body_out = response.partition(b"\r\n\r\n")
+        return int(head.split(b"\r\n")[0].decode().split()[1]), json.loads(body_out or b"{}")
+
+    async def scenario():
+        server = await service.serve()
+        service._bound_port = server.sockets[0].getsockname()[1]
+        # Unsigned: refused.
+        status_code, body = await request({}, None)
+        assert status_code == 401 and body["error"] == "invalid_signature"
+        # Signed: the muscle reports in.
+        envelope = sign_payload({}, SECRET, ts=NOW)
+        status_code, body = await request({}, {"X-Signature": envelope["signature"],
+                                               "X-Signature-Ts": f"{envelope['ts']:.3f}"})
+        assert status_code == 200 and body["ready"] and body["bridge"]["backend"] == "paper"
+        server.close()
+
+    asyncio.run(scenario())
