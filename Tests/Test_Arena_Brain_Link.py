@@ -557,6 +557,7 @@ def test_reconciler_from_env_is_fail_closed(monkeypatch, tmp_path):
     # Paper fallback allowed: builds on the deterministic paper bridge.
     for var in ("EXECUTION_BACKEND", "METAAPI_TOKEN", "METAAPI_ACCOUNT_ID"):
         monkeypatch.delenv(var, raising=False)
+    monkeypatch.setattr("Terminal.Execution.base._native_available", lambda: False)
     monkeypatch.setenv("OMNI_ALLOW_PAPER", "1")
     monkeypatch.setenv("ARENA_COMMANDS_URL", "https://gist.example/raw/arena_commands.json")
     monkeypatch.setenv("OMNI_API_SECRET", SECRET)
