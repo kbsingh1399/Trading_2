@@ -14,7 +14,9 @@ import uuid
 from Terminal.Asset_Universe import UNIVERSE, canonical_asset
 from Terminal.Risk_Sizing_Engine import (RiskPolicy, OrderflowModel, CovarianceGate, fit_covariance,
                                         size_trade, cost_bps, epoch, number, completed_statistics)
-from Terminal.Uplift_Model import UpliftGate, executable_ratchet, POLICY_VERSION
+from Terminal.Uplift_Model import (UpliftGate, executable_ratchet, ratchet_params, session_regime,
+                                   asset_class_of, POLICY_VERSION, RATCHET_POLICY_VERSION)
+from Terminal.Commodity_Microstructure import gk_vol
 from Terminal.MT5_Execution_Bridge import MT5ExecutionBridge
 from Terminal.Market_Intelligence import MarketIntelligenceEngine
 from Terminal.Cognitive_Engine import CognitiveEngine
@@ -512,17 +514,32 @@ class AI15mMT5Trader:
                 meta["max_favorable_r"] = max(number(meta.get("max_favorable_r")), gain)
                 if self.paper_mode and (sign*(px-p["sl"]) <= 0 or (number(p.get("tp")) > 0 and sign*(px-p["tp"]) >= 0)):
                     self._close(p, "paper_bracket"); continue
-                if self.clock()-epoch(p["time"]) >= 24*900 and meta["max_favorable_r"] < 0.20:
-                    self._close(p, "24_bar_time_decay"); continue
                 asset = meta.get("asset", canonical_asset(p["symbol"]))
-                stats = completed_statistics(self.bars.get(asset, []), self.clock()) if self.bars.get(asset) else {}
+                # Session-conditional exit overlay (Q3): asset class x GK-vol
+                # regime x UTC session x sleeve. Labels keep the uniform v2
+                # policy; live management runs the conditional ladder.
+                cls = asset_class_of(asset)
+                session = session_regime(self.clock(), cls)
+                bars_asset = self.bars.get(asset) or []
+                gk14 = gk_vol(bars_asset, lookback=14, now=self.clock())
+                gk96 = gk_vol(bars_asset, lookback=96, now=self.clock())
+                gk_ratio = gk14/gk96 if gk96 > 0 else 1.0
+                sleeve = "trend" if meta.get("sleeve") == "T1_BREAKOUT" else "reversion"
+                params = ratchet_params(asset, session=session, gk_ratio=gk_ratio, sleeve=sleeve)
+                meta["ratchet_regime"] = {"policy": RATCHET_POLICY_VERSION, "session": session,
+                                          "vol_bucket": params["vol_bucket"], "gk_ratio": round(gk_ratio, 3),
+                                          "sleeve": sleeve, "params": params}
+                if (self.clock()-epoch(p["time"]) >= params["decay_bars"]*900
+                        and meta["max_favorable_r"] < 0.20):
+                    self._close(p, f"{params['decay_bars']}_bar_time_decay"); continue
+                stats = completed_statistics(bars_asset, self.clock()) if bars_asset else {}
                 atr = number(stats.get("atr"), number(meta.get("atr"), initial_r*0.5))
                 tick_size = max(number(q.get("tick_size")), number(q.get("point")))
                 distance = max(number(q.get("stops_level")), number(q.get("freeze_level")), 1)*q["point"]
                 friction_bps = number(meta.get("sizing", {}).get("friction_bps", meta.get("friction_bps", self.policy.minimum_friction_bps)))
                 proposed = executable_ratchet(entry, initial_r, p["direction"], gain, p["sl"], atr,
                                               q["bid"], q["ask"], tick_size, distance,
-                                              friction_bps=friction_bps, buffer_r=0.05)
+                                              friction_bps=friction_bps, buffer_r=0.05, params=params)
                 if proposed != p["sl"]:
                     if self.paper_mode:
                         for stored in self.state["paper_positions"]:
@@ -578,7 +595,9 @@ class AI15mMT5Trader:
                     changes.append({"ticket": str(oticket), "action": "CANCEL", "reason": f"macro_blackout:{event}"})
                     continue
 
-                # Check 2: Price drifted far from limit (> 3.0 * ATR away)
+                # Check 2: Price drifted far from limit (max(6*ATR, 3% of mid)
+                # - production drift bound: wide enough for weekend gaps,
+                # tight enough to recycle dead queue priority)
                 bars = self.bars.get(asset, [])
                 if bars:
                     stats = completed_statistics(bars, self.clock())
@@ -588,8 +607,7 @@ class AI15mMT5Trader:
                         if quote and atr > 0:
                             mid = (number(quote["bid"]) + number(quote["ask"])) / 2.0
                             limit_px = number(order.get("price_open", 0.0))
-                            drift_threshold = max(6.0 * atr, 0.03 * mid)
-                            if limit_px > 0 and abs(mid - limit_px) > drift_threshold:
+                            if limit_px > 0 and abs(mid - limit_px) > max(6.0 * atr, 0.03 * mid):
                                 res = self.bridge.cancel_pending_order(oticket)
                                 self._append("executions.jsonl", {"time": self.clock(), "event": "cancel_pending", "ticket": oticket, "reason": "price_drifted_far_from_limit", "result": res})
                                 changes.append({"ticket": str(oticket), "action": "CANCEL", "reason": "price_drifted_far_from_limit"})
@@ -661,7 +679,15 @@ class AI15mMT5Trader:
             self._save_state(); self._flatten(positions, pending, "hard_drawdown_stop")
             report.update(decision="HARD_DD_VETO", reason="sticky_drawdown_latch")
         elif blackout: report.update(decision="MACRO_VETO", reason=event)
-        elif len(positions) + active_limits >= 2: report.update(reason="maximum_two_positions")
+        elif self.entry_mode == "limit" and (len(positions) >= 2 or active_limits >= 5):
+            # Decoupled gates (production): 2 max FILLED, 5 max RESTING
+            # limits; the first-fill OCO governor purges pendings when
+            # positions reach capacity.
+            report.update(reason="max_filled_2" if len(positions) >= 2 else "max_resting_limits_5")
+        elif self.entry_mode != "limit" and len(positions) + active_limits >= 2:
+            # Market mode keeps the coupled commitment cap: an instant fill
+            # plus a resting limit is already two risk legs.
+            report.update(reason="maximum_two_positions")
         elif any(i["status"] in ("PREPARED", "ACKNOWLEDGED", "UNCERTAIN") for i in self.state["intents"].values()):
             report.update(reason="unresolved_execution_intent")
         else:
@@ -859,7 +885,12 @@ class AI15mMT5Trader:
                 candidates.sort(key=lambda c: c["features"]["confluence"]*c["features"]["quality"], reverse=True)
                 if candidates:
                     deadline = slot*900+898
-                    max_stageable = max(0, 2 - len(positions) - len(pending)) if self.entry_mode == "limit" else 1
+                    if self.entry_mode == "limit":
+                        # Decoupled staging cap: fill the resting-limit book to
+                        # 5; the first-fill OCO governor enforces the 2-fill cap.
+                        max_stageable = max(0, 5 - active_limits)
+                    else:
+                        max_stageable = max(0, 2 - len(positions) - len(pending))
                     staged_results = []
                     dispatched_candidates = []
 
@@ -925,12 +956,6 @@ class AI15mMT5Trader:
                             if not decision or decision.get("action") != "SELECT":
                                 self._append("decisions.jsonl", {"time": self.clock(), "candidate_id": cand["candidate_id"], "event": "cognitive_abstention"})
                                 continue
-                            cand["cognitive_snapshot"], cand["cognitive_decision"] = snapshot, decision
-
-                        if self.clock() >= deadline and not (force and self.paper_mode):
-                            break
-
-                        quote = self._quote(cand["symbol"])
                         if cand.get("entry_mode", self.entry_mode) == "limit":
                             if cand["direction"] == "LONG" and cand["price_open"] >= quote["ask"]:
                                 continue
@@ -1105,8 +1130,11 @@ class AI15mMT5Trader:
                 cycle += 1
                 try:
                     self.refresh_background()
-                    self.manage_active_positions()  # Manage before potentially expensive broker history work.
+                    # Bars BEFORE manage: the ratchet, ATR and drift guards
+                    # must see the freshest completed history (production
+                    # 10s-cadence ordering).
                     self.refresh_broker_history()
+                    self.manage_active_positions()
                     self.capture_quotes()
                     self.evaluate_market()
                 except Exception as exc:

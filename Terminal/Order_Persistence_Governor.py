@@ -4,14 +4,25 @@ The governor owns the lifecycle of *persistent* (GTC) limit orders that rest
 for hours ahead of verified whale walls. The 15-minute decision cadence in
 ``Omni_Trader.evaluate_market`` is untouched: staging still happens in minute
 14, but the resting order is then managed continuously (every ``run`` loop
-tick, ~1s) by this component, which is the single authority for:
+tick) by this component, which is the single authority for:
 
   * Dynamic TTL: an exponential wall-survival horizon (see
     ``Orderbook_Structure.hazard_ttl``), renewed monotonically while the
     anchor wall persists, hard-capped at ``ttl_max_sec`` after staging.
   * Wall tracking: cancel when the primary anchor wall is pulled or thinned
     below ``pull_ratio`` (adverse-selection guard), and cancel/replace when
-    the wall *shifts* within ``replace_shift_bps`` while still qualifying.
+    the wall *shifts* inside ``replace_shift_bps`` while still qualifying.
+  * Queue-priority hysteresis (Q1b): a replace is only worth losing queue
+    position when the shift clears a noise-adaptive threshold:
+    ``max(min_shift_bps, 2 x MAD(edge shifts), proximity floor)``. Micro
+    shifts (e.g. SOL whale breathing 118.41 -> 118.45) are absorbed first by
+    cluster aggregation (10 bps) and the liveness match tolerance, then by
+    the shift floor; the replacement wall must also have persisted at least
+    ``dwell_sec`` (flicker filter).
+  * Adverse-selection telemetry (Q1c): an ``AdverseSelectionMonitor`` scores
+    book-thinning velocity, cancel-to-trade intensity, aggressor pressure
+    toward the level and spread velocity; a corroborated hazard aborts the
+    order before price reaches the level.
   * Drift bounds: cancel when price wanders further than ``drift_atr`` * ATR
     from the limit with no surviving anchor (1.5x ATR) or with one (3.0x).
   * Fill-race safety: a cancel that comes back "order unknown" is treated as
@@ -30,6 +41,7 @@ import time
 from Terminal.Orderbook_Structure import (wall_clusters, hazard_ttl, wall_liveness,
                                           DEFAULT_ENTRY_WALL_MIN_USD)
 from Terminal.Risk_Sizing_Engine import number, epoch
+from Terminal.Adverse_Selection import AdverseSelectionMonitor
 
 
 def _round_to_tick(price, tick, direction_up):
@@ -39,12 +51,22 @@ def _round_to_tick(price, tick, direction_up):
     return (math.floor(steps + 1e-9) if direction_up else math.ceil(steps - 1e-9)) * tick
 
 
+def _median(values):
+    ordered = sorted(values)
+    n = len(ordered)
+    if n == 0:
+        return 0.0
+    return ordered[n//2] if n % 2 else 0.5*(ordered[n//2-1]+ordered[n//2])
+
+
 class OrderPersistenceGovernor:
     def __init__(self, bridge=None, journal=None, clock=time.time, *,
                  ttl_min_sec=7200.0, ttl_max_sec=21600.0,
                  pull_ratio=0.40, match_tol_bps=15.0, replace_shift_bps=75.0,
                  drift_atr_no_anchor=1.5, drift_atr_anchored=3.0,
-                 max_recenters=2, scan_band_atr=2.5, wall_min_usd=DEFAULT_ENTRY_WALL_MIN_USD):
+                 max_recenters=2, scan_band_atr=2.5, wall_min_usd=DEFAULT_ENTRY_WALL_MIN_USD,
+                 dwell_sec=240.0, min_shift_bps=5.0, proximity_bps=25.0, proximity_atr=0.25,
+                 adverse=None):
         if not 0 < ttl_min_sec <= ttl_max_sec:
             raise ValueError("ttl band invalid")
         self.bridge = bridge
@@ -55,6 +77,9 @@ class OrderPersistenceGovernor:
         self.replace_shift_bps, self.max_recenters = float(replace_shift_bps), int(max_recenters)
         self.drift_atr_no_anchor, self.drift_atr_anchored = float(drift_atr_no_anchor), float(drift_atr_anchored)
         self.scan_band_atr, self.wall_min_usd = float(scan_band_atr), float(wall_min_usd)
+        self.dwell_sec, self.min_shift_bps = float(dwell_sec), float(min_shift_bps)
+        self.proximity_bps, self.proximity_atr = float(proximity_bps), float(proximity_atr)
+        self.adverse = adverse if adverse is not None else AdverseSelectionMonitor()
         self.orders = {}
 
     # ------------------------------------------------------------------ state
@@ -124,10 +149,23 @@ class OrderPersistenceGovernor:
                 changes.append(self._cancel(key, order, now, reason="cancel_retry_after_uncertain"))
                 continue
             payload = (payloads or {}).get(order["asset"]) or {}
+            try:
+                quote = quote_fn(order["symbol"]) if quote_fn else None
+            except (ValueError, RuntimeError):
+                quote = None
             clusters, wall_data_fresh = self._anchor_scan(order, payload, now)
             alive, detail = wall_liveness(order["anchors"], clusters,
                                           pull_ratio=self.pull_ratio,
                                           match_tol_bps=self.match_tol_bps)
+            # Track the primary anchor's observed edge for noise-adaptive
+            # re-center hysteresis (Q1b).
+            if alive and wall_data_fresh:
+                matched = self._matched_edge(order, clusters)
+                if matched:
+                    history = order.setdefault("edge_history", [])
+                    if not history or abs(math.log(max(matched, 1e-12)/max(history[-1], 1e-12))) > 1e-9:
+                        history.append(matched)
+                    del history[:-16]
             # 1) TTL expiry first: a deadline that has passed must cancel
             #    before any renewal arithmetic can lift it (the renewal below
             #    only ever extends a still-live deadline).
@@ -140,21 +178,31 @@ class OrderPersistenceGovernor:
             ttl = hazard_ttl(self._primary_span(order, clusters, wall_data_fresh),
                              ttl_min_sec=self.ttl_min_sec, ttl_max_sec=self.ttl_max_sec)
             order["deadline"] = min(max(order["deadline"], now + ttl), order["hard_deadline"])
-            # 3) Anchor pull: cancel, or cancel/replace onto a shifted wall.
+            # 3) Anchor pull: cancel, or cancel/replace onto a shifted wall
+            #    that clears the queue-priority hysteresis threshold.
             if not alive:
-                shift = self._replacement_cluster(order, clusters)
+                shift = self._replacement_cluster(order, clusters, quote)
                 if shift is not None and order["recenters"] < self.max_recenters:
                     changes.extend(self._replace(key, order, shift, now, detail))
                 else:
                     changes.append(self._cancel(key, order, now, reason="anchor_wall_pulled", detail=detail))
                 continue
-            # 4) Adverse drift guard (outer bound; the trader keeps its own
-            #    3.0*ATR structural check as defence in depth).
+            # 4) Adverse-selection telemetry (Q1c): corroborated flow hazard
+            #    aborts the order before price reaches the level.
+            if self.adverse is not None:
+                try:
+                    self.adverse.observe(order["asset"], payload, now)
+                    score, alarms = self.adverse.hazard(order["asset"], order["direction"],
+                                                        order["limit_price"], order["atr"])
+                    if score >= self.adverse.abort_score:
+                        changes.append(self._cancel(key, order, now, reason="adverse_selection_hazard",
+                                                    detail={"score": score, "alarms": alarms}))
+                        continue
+                except Exception:
+                    pass
+            # 5) Adverse drift guard (outer bound; the trader keeps its own
+            #    structural check as defence in depth).
             drift_atr = self.drift_atr_no_anchor if not order["anchors"] else self.drift_atr_anchored
-            try:
-                quote = quote_fn(order["symbol"]) if quote_fn else None
-            except (ValueError, RuntimeError):
-                quote = None
             if quote and order["atr"] > 0:
                 mid = (number(quote.get("bid")) + number(quote.get("ask"))) / 2.0
                 if abs(mid - order["limit_price"]) > drift_atr * order["atr"]:
@@ -195,21 +243,56 @@ class OrderPersistenceGovernor:
                     return max(number(c.get("persistence_sec")), number(primary.get("persistence_sec")))
         return number(primary.get("persistence_sec"))
 
-    def _replacement_cluster(self, order, clusters):
+    def _matched_edge(self, order, clusters):
+        """Current edge of the cluster matching the primary anchor, if any."""
+        primary = next((a for a in order["anchors"] if a.get("role") == "primary"), None)
+        if primary is None or not clusters:
+            return None
+        tol = self.match_tol_bps / 10_000.0
+        for c in clusters:
+            if abs(math.log(max(number(c.get("edge_price")), 1e-12) / max(primary["price"], 1e-12))) <= tol:
+                return number(c.get("edge_price"))
+        return None
+
+    def _replace_threshold_bps(self, order, quote=None):
+        """Queue-priority hysteresis threshold (Q1b): the minimum wall shift,
+        in bps, that justifies losing our queue position via cancel/replace.
+
+        ``max(min_shift_bps, 2 x MAD(edge shifts), proximity floor)`` where
+        the proximity floor widens to ``proximity_bps`` once price is within
+        ``proximity_atr`` ATR of the limit: at the touch, queue priority is
+        worth the most.
+        """
+        threshold = self.min_shift_bps
+        history = order.get("edge_history") or []
+        if len(history) >= 4:
+            shifts = [abs(math.log(max(history[i], 1e-12)/max(history[i-1], 1e-12))) * 1e4
+                      for i in range(1, len(history))]
+            if shifts:
+                threshold = max(threshold, 2.0*_median(shifts))
+        if quote and order.get("atr", 0) > 0:
+            mid = (number(quote.get("bid")) + number(quote.get("ask"))) / 2.0
+            if mid > 0 and abs(mid-order["limit_price"]) <= self.proximity_atr*order["atr"]:
+                threshold = max(threshold, self.proximity_bps)
+        return threshold
+
+    def _replacement_cluster(self, order, clusters, quote=None):
         """A qualifying shifted wall to re-anchor onto, if any.
 
         A wall that merely thinned at the same price is a pull (cancel), not
-        a shift; only a genuine relocation beyond ``min_shift_bps`` qualifies
-        for a cancel/replace.
+        a shift; only a genuine relocation beyond the hysteresis threshold
+        (and inside ``replace_shift_bps``) that has itself persisted at least
+        ``dwell_sec`` qualifies for a cancel/replace.
         """
         primary = next((a for a in order["anchors"] if a.get("role") == "primary"), None)
         if primary is None or not clusters:
             return None
         tol = self.replace_shift_bps / 10_000.0
-        min_shift = 0.0005  # 5 bps
+        min_shift = self._replace_threshold_bps(order, quote) / 10_000.0
         side = "BUY" if order["direction"] == "LONG" else "SELL"
         candidates = [c for c in clusters
                       if number(c.get("notional_usd")) >= self.wall_min_usd
+                      and number(c.get("persistence_sec")) >= self.dwell_sec
                       and min_shift <= abs(math.log(max(number(c.get("edge_price")), 1e-12) / max(primary["price"], 1e-12))) <= tol]
         if not candidates:
             return None

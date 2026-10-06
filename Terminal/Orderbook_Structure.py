@@ -103,20 +103,24 @@ def hazard_ttl(span_sec, *, prior_sec=1800.0, survival_target=0.35,
 def structural_exit(entry, sl, direction, overhead_clusters, *, tick, friction_r,
                     min_broker_dist=0.0, target_base_r=2.50, target_max_r=2.75,
                     min_net_target_r=1.50, buffer_ticks=2,
-                    wall_min_usd=DEFAULT_TPF_WALL_MIN_USD):
+                    wall_min_usd=DEFAULT_TPF_WALL_MIN_USD, magnet_price=None):
     """Orderbook-aware take-profit. Returns (plan, veto_reason).
 
     LONG exits consider SELL clusters above entry; SHORT exits consider BUY
     clusters below entry. Policy:
-      1. Default hurdle is the band target ``target_base_r`` (2.40R..2.75R).
+      1. Default hurdle is the band target ``target_base_r`` (e.g. 2.40R..2.90R).
       2. If the first major overhead cluster (>= ``wall_min_usd``) sits inside
          the band, the TP snaps to ``edge - buffer_ticks * tick`` (front-run
          the wall) and the hurdle becomes the wall distance in R.
-      3. The hurdle must clear ``min_net_target_r + friction_r``; otherwise
+      3. ``magnet_price`` (session POC / VWAP for commodity mean-reversion
+         sleeves, where no L3 wall exists) behaves identically to a wall: if
+         it sits inside the band the TP front-runs it; if it is closer than
+         the net-payoff floor the candidate is vetoed.
+      4. The hurdle must clear ``min_net_target_r + friction_r``; otherwise
          the candidate is vetoed (net_payoff_insufficient) rather than
-         targeting beyond an institutional wall.
-      4. The hurdle is capped at ``target_max_r`` so no exit is ever staged
-         beyond the ratchet band even when no wall is visible.
+         targeting beyond an institutional wall or through a magnet.
+      5. The hurdle is capped at ``target_max_r`` so no exit is ever staged
+         beyond the ratchet band even when no wall or magnet is visible.
     """
     sign = 1.0 if direction == "LONG" else -1.0
     r = abs(entry - sl)
@@ -139,6 +143,13 @@ def structural_exit(entry, sl, direction, overhead_clusters, *, tick, friction_r
         if wall_r < hurdle_r:
             hurdle_r = wall_r
             mode = "wall_front_run"
+    elif magnet_price is not None and magnet_price > 0:
+        tp_magnet = magnet_price - sign * buffer_ticks * tick
+        magnet_r = sign * (tp_magnet - entry) / r
+        if magnet_r > 0 and magnet_r < hurdle_r:
+            hurdle_r = magnet_r
+            mode = "vwap_poc_magnet"
+            wall_price = float(magnet_price)
     floor_r = min_net_target_r + max(0.0, number(friction_r))
     if hurdle_r < floor_r:
         return None, (f"net_payoff_insufficient:structural_hurdle_{hurdle_r:.3f}R_"
@@ -151,6 +162,7 @@ def structural_exit(entry, sl, direction, overhead_clusters, *, tick, friction_r
         tp = (math.floor(anchor / tick) if sign == 1 else math.ceil(anchor / tick)) * tick
     plan = {"tp": tp, "hurdle_r": tp_r, "mode": mode,
             "wall_price": wall_price, "wall_notional_usd": wall_notional or 0.0,
+            "magnet_price": float(magnet_price) if (mode == "vwap_poc_magnet" and magnet_price) else None,
             "target_base_r": float(target_base_r), "target_max_r": float(target_max_r)}
     return plan, None
 

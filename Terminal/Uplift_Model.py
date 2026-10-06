@@ -10,6 +10,7 @@ import copy
 import hashlib
 import json
 import math
+from datetime import datetime, timezone
 from pathlib import Path
 import time
 import numpy as np
@@ -21,34 +22,135 @@ FEATURES = ("confluence", "quality", "l2_signal", "macro_score", "wall_imbalance
             "signed_correlation", "variance_before", "incremental_variance", "drawdown_room",
             "candidate_net_target_r")
 POLICY_VERSION = "omni.ratchet.costaware_0.8-0.35_1.5-0.85_runner-0.65_tp2.5_24bars.v2"
+# Live conditional policy layered ON TOP of the fixed label policy above:
+# labels keep the uniform v2 rule so trained uplift comparisons stay paired;
+# the daemon may manage with session-conditional parameters stamped by this
+# version string.
+RATCHET_POLICY_VERSION = "omni.ratchet.session_conditional.v1"
 
-def ratchet(entry, initial_r, direction, gain_r, current_sl, atr, friction_bps: float = 41.0, buffer_r: float = 0.05):
+# Uniform baseline (must stay identical to v2 label behaviour).
+RATCHET_BASE = {"be_trigger_r": 0.80, "lock_1_r": 0.35, "trigger_2_r": 1.50,
+                "lock_2_r": 0.85, "runner_trigger_r": 2.00, "runner_trail_r": 0.65,
+                "target_r": 2.50, "target_max_r": 2.75, "decay_bars": 24}
+
+# Session windows (UTC hours). Commodities: Asia thin tape (MR-favorable),
+# London/NY deep liquidity, US data releases 13:30-14:00. Crypto is 24/7 but
+# exhibits US-hours momentum and thin weekend books.
+SESSION_HOURS = {"asia": (0, 7), "london": (7, 12), "ny_overlap": (12, 16), "us_data": (13.5, 14), "late_ny": (16, 21), "offhours": (21, 24)}
+
+def asset_class_of(asset):
+    """Canonical asset class for ratchet conditioning."""
+    a = str(asset).upper()
+    if a in ("GOLD", "SILVER"): return "COMMODITY"
+    if a in ("SP500",): return "INDEX"
+    return "CRYPTO"
+
+def session_regime(now, asset_class="COMMODITY"):
+    """UTC session label for ratchet conditioning. US data window takes
+    precedence inside the NY overlap (13:30-14:00 weekday prints)."""
+    cls = asset_class_of(asset_class)
+    dt = datetime.fromtimestamp(number(now), timezone.utc)
+    h = dt.hour + dt.minute/60.0
+    weekday = dt.weekday() < 5
+    if cls == "CRYPTO":
+        if not weekday: return "weekend"
+        if SESSION_HOURS["us_data"][0] <= h < SESSION_HOURS["us_data"][1]: return "us_data"
+        if 12 <= h < 21: return "us_hours"
+        return "asia"
+    if not weekday: return "weekend"
+    if SESSION_HOURS["us_data"][0] <= h < SESSION_HOURS["us_data"][1]: return "us_data"
+    for name, (lo, hi) in SESSION_HOURS.items():
+        if name != "us_data" and lo <= h < hi: return name
+    return "offhours"
+
+def gk_vol_bucket(ratio):
+    """Garman-Klass vol vs its rolling median: calm < 0.75 < normal <= 1.50 < stressed."""
+    r = number(ratio)
+    return "calm" if r < 0.75 else ("stressed" if r > 1.50 else "normal")
+
+# Conditional parameter table: (asset_class, session, vol_bucket, sleeve) ->
+# deltas over RATCHET_BASE; None = wildcard dimension. Lookup precedence runs
+# from most to least specific. Rationale is in
+# docs/audits/OMNI_Queue_Governance_Consultation_20261006.md (Q3).
+RATCHET_CONDITIONAL = {
+    # --- CRYPTO (24/7, US-hours momentum, thin weekends) ---
+    ("CRYPTO", "us_hours", "normal", None):     {"runner_trail_r": 0.65, "target_r": 2.60},
+    ("CRYPTO", "us_hours", "stressed", None):   {"be_trigger_r": 1.00, "runner_trail_r": 0.80, "target_r": 2.60},
+    ("CRYPTO", "us_hours", "calm", None):       {"be_trigger_r": 0.75, "runner_trail_r": 0.55},
+    ("CRYPTO", "asia", "normal", None):         {"be_trigger_r": 0.90, "decay_bars": 18},
+    ("CRYPTO", "weekend", "normal", None):      {"be_trigger_r": 1.00, "runner_trail_r": 0.80, "target_r": 2.20, "decay_bars": 16},
+    ("CRYPTO", "us_data", None, None):          {"be_trigger_r": 1.10, "runner_trail_r": 0.90},
+    # --- COMMODITY (Gold/Silver CFDs; VWAP/POC structural exits) ---
+    ("COMMODITY", "london", "normal", "trend"):     {"be_trigger_r": 0.85, "trigger_2_r": 1.40, "lock_2_r": 0.80, "runner_trail_r": 0.55, "target_r": 2.20},
+    ("COMMODITY", "ny_overlap", "normal", "trend"): {"be_trigger_r": 0.85, "trigger_2_r": 1.40, "lock_2_r": 0.80, "runner_trail_r": 0.55, "target_r": 2.20},
+    ("COMMODITY", "asia", "normal", "reversion"):   {"be_trigger_r": 0.90, "trigger_2_r": 1.20, "lock_2_r": 0.75, "runner_trigger_r": 1.60, "runner_trail_r": 0.35, "target_r": 1.80, "decay_bars": 12},
+    ("COMMODITY", "london", "normal", "reversion"): {"trigger_2_r": 1.30, "lock_2_r": 0.75, "runner_trail_r": 0.40, "target_r": 2.00, "decay_bars": 16},
+    ("COMMODITY", "ny_overlap", "normal", "reversion"): {"trigger_2_r": 1.30, "lock_2_r": 0.75, "runner_trail_r": 0.40, "target_r": 2.00, "decay_bars": 16},
+    ("COMMODITY", "us_data", None, None):           {"be_trigger_r": 1.10, "runner_trail_r": 0.90, "target_r": 2.60},
+    ("COMMODITY", "london", "stressed", None):      {"be_trigger_r": 1.00, "runner_trail_r": 0.75},
+    ("COMMODITY", "ny_overlap", "stressed", None):  {"be_trigger_r": 1.00, "runner_trail_r": 0.75},
+    ("COMMODITY", "london", "calm", "reversion"):   {"runner_trail_r": 0.35, "target_r": 1.80, "decay_bars": 12},
+    # --- INDEX CFDs (US500.cash) ---
+    ("INDEX", "ny_overlap", "normal", None):    {"runner_trail_r": 0.60, "target_r": 2.40},
+    ("INDEX", "asia", "normal", None):          {"be_trigger_r": 0.95, "runner_trail_r": 0.75, "target_r": 2.00, "decay_bars": 16},
+}
+
+def ratchet_params(asset_class, session=None, gk_ratio=1.0, sleeve="trend"):
+    """Resolved conditional ratchet parameters. Lookup runs most-specific
+    first; missing keys fall back to the uniform v2 baseline. The
+    friction-aware lock floor always dominates any table value."""
+    cls = asset_class_of(asset_class)
+    sess = session or session_regime(_now_utc(), cls)
+    vol = gk_vol_bucket(gk_ratio)
+    out = dict(RATCHET_BASE)
+    for key in ((cls, sess, vol, sleeve), (cls, sess, vol, None), (cls, sess, None, sleeve),
+                (cls, sess, None, None), (cls, None, vol, sleeve), (cls, None, None, sleeve),
+                (cls, None, vol, None), (cls, None, None, None)):
+        deltas = RATCHET_CONDITIONAL.get(key)
+        if deltas:
+            out.update(deltas)
+            break
+    out["session"], out["vol_bucket"], out["sleeve"] = sess, vol, sleeve
+    return out
+
+def _now_utc():
+    return datetime.now(timezone.utc).timestamp()
+
+def ratchet(entry, initial_r, direction, gain_r, current_sl, atr, friction_bps: float = 41.0, buffer_r: float = 0.05, params=None):
+    """Cost-aware trailing-stop ladder. ``params=None`` (or omitted) is the
+    exact v2 uniform label policy; passing a resolved ``ratchet_params(...)``
+    dict applies the session-conditional live overlay (Q3)."""
+    p = params or {}
     sign = 1 if direction == "LONG" else -1
+    be_trigger = number(p.get("be_trigger_r"), 0.8)
+    lock_1 = number(p.get("lock_1_r"), 0.35)
+    trigger_2 = number(p.get("trigger_2_r"), 1.5)
+    lock_2 = number(p.get("lock_2_r"), 0.85)
+    runner_trigger = number(p.get("runner_trigger_r"), 2.0)
+    runner_trail = number(p.get("runner_trail_r"), 0.65)
     lock = None
-    if gain_r >= 0.8:
-        base_lock = 0.35
+    if gain_r >= be_trigger:
         if friction_bps > 0 and initial_r > 0:
             required_lock_r = (friction_bps / 10000.0 * entry / initial_r) + buffer_r
-            lock = max(base_lock, required_lock_r)
+            lock = max(lock_1, required_lock_r)
         else:
-            lock = base_lock
-    if gain_r >= 1.5:
-        base_lock = 0.85
+            lock = lock_1
+    if gain_r >= trigger_2:
         if friction_bps > 0 and initial_r > 0:
             required_lock_r = (friction_bps / 10000.0 * entry / initial_r) + buffer_r
-            lock = max(base_lock, required_lock_r)
+            lock = max(lock_2, required_lock_r)
         else:
-            lock = base_lock
-    if gain_r >= 2.0: lock = max(lock or 0.85, gain_r-0.65)
+            lock = lock_2
+    if gain_r >= runner_trigger: lock = max(lock if lock is not None else lock_2, gain_r-runner_trail)
     if lock is None: return current_sl
     proposed = entry+sign*lock*initial_r
     if current_sl <= 0: return proposed
     return max(current_sl, proposed) if sign == 1 else min(current_sl, proposed)
 
 def executable_ratchet(entry, initial_r, direction, gain_r, current_sl, atr, bid, ask, tick_size, stop_distance,
-                       friction_bps: float = 41.0, buffer_r: float = 0.05):
+                       friction_bps: float = 41.0, buffer_r: float = 0.05, params=None):
     sign = 1 if direction == "LONG" else -1
-    proposed = ratchet(entry, initial_r, direction, gain_r, current_sl, atr, friction_bps=friction_bps, buffer_r=buffer_r)
+    proposed = ratchet(entry, initial_r, direction, gain_r, current_sl, atr, friction_bps=friction_bps, buffer_r=buffer_r, params=params)
     proposed = (math.floor(proposed/tick_size) if sign==1 else math.ceil(proposed/tick_size))*tick_size
     valid = proposed < bid-stop_distance if sign==1 else proposed > ask+stop_distance
     return proposed if valid and sign*(proposed-current_sl) >= tick_size*0.99 else current_sl
@@ -58,7 +160,7 @@ def feature_vector(mapping):
     if not np.isfinite(values).all(): raise ValueError("uplift_features_missing_or_nonfinite")
     return values
 
-def replay_episode(episode, ticks):
+def replay_episode(episode, ticks, ratchet_params=None):
     start, end = episode["as_of"], episode["as_of"]+24*900
     equity = number(episode["equity_usd"])
     floor = number(episode["hard_floor_usd"])
@@ -104,7 +206,8 @@ def replay_episode(episode, ticks):
                                                   p.get("atr", p["initial_r"]*0.5), bid, ask,
                                                   number(t.get("tick_size"), number(p.get("tick_size"), .01)),
                                                   number(t.get("stop_distance"), number(p.get("stop_distance"), .01)),
-                                                  friction_bps=p_fric, buffer_r=0.05)
+                                                  friction_bps=p_fric, buffer_r=0.05,
+                                                  params=ratchet_params)
             mark_equity = state["cash"]
             for p in state["positions"]:
                 quote = last.get(p["symbol"])
