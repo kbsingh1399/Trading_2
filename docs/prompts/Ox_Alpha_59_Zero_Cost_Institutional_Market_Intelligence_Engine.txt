@@ -1,0 +1,1313 @@
+# ARENA.AI / OX ALPHA INSTITUTIONAL QUANT SPECIFICATION & ARCHITECTURAL CONSULTATION
+## MISSION: ZERO-COST INSTITUTIONAL MARKET INTELLIGENCE & DERIVATIVES ORDERFLOW INGESTION ENGINE (COINGLASS & ARKHAM REPLICATION & ADVANCEMENT FOR 0 USD)
+### PROMPT CODE: OX_ALPHA_59
+
+---
+
+### 1. FRESH SESSION NOTICE & SYSTEM IDENTITY
+OPERATIONAL MANDATE FOR OX ALPHA:
+You are operating in a brand-new chat session with zero memory, zero previous chat context, zero local repository access, and zero internet access. All required system identity, empirical data provenance, mathematical models, risk invariants, live execution states, and full unabridged source codes are embedded directly within this prompt.
+
+You are Ox Alpha / Arena.ai, the supreme quantitative trading systems architect, high-frequency microstructure econometrician, and low-latency C++/Python execution engineer.
+
+---
+
+### 2. DATASET PROVENANCE, EXCHANGE FRICTIONS & RISK GOVERNANCE
+1. Universe & Instruments:
+   - Institutional 14-Asset Core: BTC, ETH, SOL, BNB, XRP, ADA, DOGE, TRX, DOT, LINK, BCH, SP500, GOLD, SILVER.
+   - Expanding Domain: Union of all 58 MetaTrader 5 institutional CFD pairs (Blueberry Markets SVG LLC) and 288 Hyperliquid DEX perpetuals.
+   - Historical Validation Baseline: 18 Binance USDT-M perpetuals, 3,467,571 15-minute candles (2020-2026), 0 nulls, monotonic. Certified across 20/20 non-overlapping out-of-sample (OOS) quarterly walk-forward windows.
+2. Exchange Frictions & Execution Realism:
+   - Minimum mandatory round-trip friction on notional: 41 bps (8 bps taker fees + 10 bps entry slippage + 15 bps stop slippage + spread). On Gold (XAUUSD.pi), institutional spread is 0.24 bps.
+3. Capital & Risk Architecture (5,000.00 USD Initial Capital):
+   - Live MT5 Balance: 4,841.23 USD
+   - Live MT5 Equity: 4,841.23 USD (0 open positions, 100% cash preserved)
+   - Hard Drawdown Floor: 4,775.00 USD (4.50% hard risk defense floor / 225.00 USD max drawdown from 5,000.00 USD peak)
+   - Available Risk Cushion: +66.23 USD above hard floor
+   - Drawdown Defense Risk per Trade: 10.00 to 12.00 USD (0.20% to 0.24% on 5,000 USD)
+   - Maximum Concurrent Filled Positions: Exactly 2 across all assets simultaneously
+   - Decoupled Staged Limit Queue: Up to 5 resting limits permitted under First-Fill OCO rules (once 2 positions fill, all remaining staged orders are automatically purged)
+4. Active Live Resting Orders on MetaTrader 5 (Account 5064568):
+   - Ticket #18572624: SOL Buy Limit @ 118.50 USD | SL 117.95 USD | TP 120.60 USD | Initial Volume: 0.10 lots | Risk: 10.36 USD | Defending Anchor: 7.32M USD whale bid wall @ 118.45 USD (Address 0xeac842b2...)
+   - Ticket #18573320: ETH Sell Limit @ 2,732.80 USD | SL 2,741.50 USD | TP 2,705.00 USD | Initial Volume: 0.55 lots | Risk: 10.95 USD | Defending Anchor: 32.35M USD whale ask corridor across 2,724.80 to 2,751.10 USD (Address 0xab5e6f39...)
+   - Ticket #18576872: GOLD Sell Limit @ 4,176.00 USD | SL 4,186.50 USD | TP 4,143.00 USD | Initial Volume: 0.01 lots | Risk: 11.10 USD | Defending Anchor: Session VWAP +1.60 SD band (4,179.42 USD) and 617k USD ask resistance @ 4,187.80 USD
+   - Maximum filled risk under worst-case dual-fill: 10.95 + 11.10 = 22.05 USD. Leaves projected equity at 4,819.18 USD, preserving a safe +44.18 USD buffer above the 4,775.00 USD floor.
+
+---
+
+### 3. THE PROBLEM & EMPIRICAL AUDIT: THE VENDOR RENT-SEEKING TRAP
+We recently audited the commercial derivatives data landscape:
+1. CoinGlass API V4 (open-api-v4.coinglass.com):
+   - We probed the live CoinGlass V4 API gateway with an authenticated user API key.
+   - Empirical Result: CoinGlass returned Code: 400, Msg: Invalid API key provided across all endpoints (/api/futures/supported-coins, /api/futures/open-interest/history, /api/futures/funding-rate/history, /api/futures/liquidation/history, /api/index/fear-greed-history).
+   - Root Cause: CoinGlass API has zero free tier. Every programmatic call requires a paid monthly subscription (29 to 500 USD/month).
+2. Arkham Intelligence (arkm.com):
+   - Charges thousands of dollars per month for institutional API access to on-chain whale balances, entity labels, and transfer graphs.
+   - Reality: All underlying blockchain data is completely public, decentralized, and free to query directly from nodes and open data warehouses.
+
+THE STRATEGIC IMPERATIVE:
+We refuse to pay rent-seeking data vendors 500 to 5,000 USD/month for data that is already public. We demand a Zero-Cost Institutional Market Intelligence & Derivatives Orderflow Engine (Terminal/Zero_Cost_Intelligence_Engine.py) that operates 100% locally in Python, streaming, reconstructing, and persisting all critical market intelligence completely for free (0.00 USD).
+
+---
+
+### 4. THE 6-PILLAR ZERO-COST ARCHITECTURE SPECIFICATION
+
+```
+                           ZERO-COST INTELLIGENCE BUS (0 USD)
+                                          │
+    ┌──────────────────┬──────────────────┼──────────────────┬──────────────────┐
+    ▼                  ▼                  ▼                  ▼                  ▼
+1. CEX WEBSOCKETS  2. BULK ARCHIVES   3. ON-CHAIN WHALES  4. SYNTHETIC LIQS  5. MACRO & ETF
+• Coinbase Match   • Binance Data     • Google BigQuery   • OI Delta x Vol   • Public SEC/Farside
+• Binance Futures    Vision (CSV/ZIP)   (1 TB/mo Free)    • 25x/50x/100x     • Coinbase Premium
+• Hyperliquid DEX  • Auto Daily Sync  • Alchemy Free RPC    Leverage Bands   • Fear & Greed API
+• Real-Time CVD    • Monotonic Parquet• Dune Spellbook    • Liquidation      • Macro Blackout
+• L2 Depth Deltas    Tick Tables        Entity Labels       Max Pain Map       Calendar (+/-15m)
+                                          │
+                                          ▼
+                      6. COGNITIVE ENGINE & MT5 IPC BUS
+                      • Continuous Causal Feature Sealing (SHA-256)
+                      • In-Memory Ring Buffer (< 1ms Query Latency)
+                      • Direct Integration into Risk_Sizing_Engine & OF_Strategy
+```
+
+#### Pillar 1: High-Frequency Free CEX Orderflow Streamer (Coinbase, Binance, Hyperliquid)
+- Public Streams (No Keys, No Limits, 0 USD):
+  * Coinbase Exchange: wss://ws-feed.exchange.coinbase.com
+    - Channels: matches (individual trade ticks with maker/taker side) and level2_batch (orderbook depth).
+  * Binance USD-M Futures: wss://fstream.binance.com/ws
+    - Channels: <symbol>@trade, <symbol>@depth20@100ms, <symbol>@aggTrade, and <symbol>@forceOrder (streams every real-time forced liquidation event with price, quantity, and side).
+  * Hyperliquid DEX: wss://api.hyperliquid.xyz/ws
+    - Channels: l2Book, trades, and allMids.
+- Derived Metrics (Computed In-Memory):
+  * Real-time Cumulative Volume Delta (CVD) per asset and aggregated cross-exchange.
+  * Taker aggressive buy/sell ratio over rolling 1m, 5m, 15m windows.
+  * Real-time 90-day Footprint tick ladders (volume traded at each discrete price tick).
+
+#### Pillar 2: Automated Historical Bulk Ingestion via Binance Data Vision
+- Source: https://data.binance.vision/
+  * Binance publishes daily and monthly tick-level trades (aggTrades), liquidation snapshots, 15m/1m OHLCV, and funding rates going back to 2019 as public, free ZIP/CSV files hosted on Amazon S3.
+- Engine Capability:
+  * Automated asynchronous downloader and updater that syncs daily trade files, validates monotonic millisecond timestamps, ensures 0 nulls, and converts them into partitioned local Parquet tables (Data/Ticks/ASSET_trades.parquet).
+
+#### Pillar 3: Free On-Chain Whale & Smart Contract Intelligence Engine (Arkham Alternative)
+- Batch Forensics (Google Cloud BigQuery Public Datasets):
+  * Google Cloud hosts the complete historical ledger of Ethereum, Bitcoin, Polygon, and Arbitrum in public datasets (bigquery-public-data.crypto_ethereum.traces, token_transfers, transactions and crypto_bitcoin).
+  * Free Quota: 1 Terabyte of free SQL query analysis every month per Google account.
+  * Extracts large whale transfers (> 1,000,000 USD), contract creations, and exchange hot wallet sweeps.
+- Streaming Whale Detection (Free Developer RPC Gateways):
+  * Free Alchemy gateway (300,000,000 Compute Units/month) or public RPCs (Ankr, LlamaRPC).
+  * Listens for ERC-20 Transfer(address,address,uint256) events and native transfers filtered for notional > 500,000 USD.
+- Open-Source Entity Resolution:
+  * Uses open-source community label registries from Dune Analytics Spellbook (duneanalytics/spellbook) and GitHub repositories (brianleese/crypto-labels) to resolve raw hexadecimal addresses to institutional entities (Binance, Coinbase, Wintermute, Jump Trading, Cumberland, etc.).
+
+#### Pillar 4: Synthetic Liquidation Heatmap & Gravity Model (Mathematical CoinGlass Replication)
+- The Challenge: CoinGlass charges 29 to 500 USD/month for proprietary liquidation heatmaps.
+- The Solution: Design a deterministic mathematical model that reconstructs the liquidation heatmap:
+  * Ingest rolling Open Interest deltas (Delta OI_t) and candle price ranges from public streams.
+  * Estimate position accumulation clusters across discrete leverage bands (10x, 25x, 50x, 100x):
+    P_liq_long(P_0, L) = P_0 * (1 - 1/L + mmr)
+    P_liq_short(P_0, L) = P_0 * (1 + 1/L - mmr)
+  * Decay resting liquidation density using an exponential hazard model based on elapsed time and subsequent trading volume at adjacent price levels.
+  * Compute Liquidation Max Pain (the price level that maximizes total dollar value of liquidated contracts) and the Friction-Adjusted Fuel Ratio (FAFR).
+
+#### Pillar 5: Institutional Macro, ETF Inflow & Sentiment Tracking
+- Bitcoin & Ethereum ETF Inflows/Outflows: Free daily scraper for SEC Form 8-K / public daily ETF trackers (Farside Investors / The Block public feeds) providing net daily flows by ticker (IBIT, FBTC, ETHE, etc.).
+- Coinbase Premium Index: Real-time percentage price spread between Coinbase Pro BTC/USD and Binance BTC/USDT:
+  Coinbase_Premium = ((P_Coinbase - P_Binance) / P_Binance) * 10,000 bps
+- Crypto Fear & Greed Index: Free daily endpoint from https://api.alternative.me/fng/.
+- Macro Economic Calendar & Blackout Filter: Automated tracking of FOMC, CPI, NFP releases with strict +/- 15-minute execution blackout gates.
+
+#### Pillar 6: Unified Integration into Local MT5 Quantitative Architecture
+- In-Memory Message Bus (IntelligenceBus):
+  * Thread-safe, lock-free ring buffer holding the most recent 1,024 ticks and orderbook states.
+  * Sub-millisecond lookup latency for Risk_Sizing_Engine.py and OF_Strategy.py.
+- Deterministic Feature Sealing:
+  * Every computed feature vector is hashed with SHA-256 to guarantee zero lookahead, immutable reproducibility, and strict audit compliance.
+
+---
+
+### 5. COMPLETE ACTIVE SOURCE CODE MODULES (EMBEDDED IN FULL)
+
+Below is the complete, unabridged source code of all active production modules in our local quantitative repository:
+
+#### MODULE 1: `Terminal/Asset_Universe.py`
+```python
+"""Canonical assets; signal-market names and broker symbols remain separate."""
+UNIVERSE = ("BTC", "ETH", "SOL", "BNB", "XRP", "ADA", "DOGE", "TRX", "DOT", "LINK", "BCH",
+            "SP500", "GOLD", "SILVER")
+ALIASES = {"XAUUSD": "GOLD", "XAGUSD": "SILVER", "USA100": "NAS100", "USTEC": "NAS100",
+           "US100": "NAS100", "US500": "SP500", "SPX500": "SP500", "US30": "DJ30", "DJI": "DJ30"}
+BROKER_BASES = {"GOLD": ("XAUUSD", "GOLD"), "SILVER": ("XAGUSD", "SILVER"),
+                "SP500": ("SP500", "US500", "SPX500"), "NAS100": ("NAS100", "USTEC", "US100"),
+                "DJ30": ("DJ30", "US30", "DJI")}
+
+def canonical_asset(value):
+    name = str(value).split(":")[-1].upper()
+    name = name.split(".")[0]
+    if name in ALIASES:
+        return ALIASES[name]
+    for suffix in ("USDT", "USD"):
+        if name.endswith(suffix) and name[:-len(suffix)] in UNIVERSE:
+            return name[:-len(suffix)]
+    return {"DOGUSD": "DOGE", "LNKUSD": "LINK"}.get(name, name)
+
+def broker_candidates(asset):
+    asset = canonical_asset(asset)
+    bases = BROKER_BASES.get(asset, (asset + "USD", asset + "USDT", asset))
+    if asset == "DOGE": bases = ("DOGUSD",) + bases
+    if asset == "LINK": bases = ("LNKUSD",) + bases
+    return [base + suffix for base in bases for suffix in (".p", ".pi", "", ".a", "m")]
+
+```
+
+#### MODULE 2: `Terminal/Market_Intelligence.py`
+```python
+#!/usr/bin/env python3
+"""
+Terminal/Market_Intelligence.py
+===============================
+Macro Economic Calendar & Web Market Intelligence Engine.
+Monitors:
+- Tier-1 High-Impact Economic Releases (CPI, PCE, FOMC, NFP, GDP)
+- Event Blackout Window Controller (vetoes entries within +/- 15 mins of high-impact releases)
+- Real-time RSS & Web News sentiment parser for breaking macro and crypto catalysts
+- Normalized Macro Sentiment Score (-1.0 to +1.0)
+"""
+
+import sys
+import time
+import json
+import urllib.request
+import xml.etree.ElementTree as ET
+import datetime
+import logging
+from pathlib import Path
+from email.utils import parsedate_to_datetime
+from Terminal.Asset_Universe import UNIVERSE
+from Terminal.Risk_Sizing_Engine import epoch
+from typing import Dict, List, Any, Tuple, Optional
+
+logger = logging.getLogger("MarketIntel")
+if not logger.handlers:
+    handler = logging.StreamHandler(sys.stdout)
+    handler.setFormatter(logging.Formatter("[%(asctime)s][MarketIntel] %(message)s"))
+    logger.addHandler(handler)
+    logger.setLevel(logging.INFO)
+
+DEFAULT_HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+}
+
+# Known high-impact keywords triggering risk blackout or sentiment shifts
+BEARISH_KEYWORDS = [
+    "sec lawsuit", "insolvency", "hack", "exploit", "ban", "depeg", "fraud",
+    "recession", "rate hike", "hawkish", "subpoena", "default", "liquidation spike",
+    "outflow", "sanctions", "tariff", "bearish", "shed", "drop", "plunge", "dump",
+    "slump", "crash", "fall", "loss"
+]
+
+BULLISH_KEYWORDS = [
+    "etf approval", "rate cut", "dovish", "treasury reserve", "stimulus",
+    "institutional inflow", "partnership", "adoption", "record high", "soft landing",
+    "disinflation", "cooling cpi", "bullish", "inflow", "rally", "surge", "gain",
+    "rebound", "breakout", "soar"
+]
+
+# Canonical 23-source institutional news & squawk roster (from Hyperdash)
+INSTITUTIONAL_SOURCES = {
+    # 1. Fast Breaking Squawks & Terminal Wires (Highest Impact)
+    "Deltaone": {"tier": "BREAKING_SQUAWK", "weight": 2.0, "aliases": ["deltaone", "walter bloomberg"]},
+    "First Squawk": {"tier": "BREAKING_SQUAWK", "weight": 2.0, "aliases": ["first squawk", "firstsquawk"]},
+    "FinancialJuice": {"tier": "BREAKING_SQUAWK", "weight": 1.8, "aliases": ["financialjuice", "financial juice"]},
+    # 2. Tier-1 Institutional Financial Newswires
+    "Bloomberg": {"tier": "TIER_1_NEWSWIRE", "weight": 1.5, "aliases": ["bloomberg"]},
+    "Reuters": {"tier": "TIER_1_NEWSWIRE", "weight": 1.5, "aliases": ["reuters"]},
+    "WSJ": {"tier": "TIER_1_NEWSWIRE", "weight": 1.5, "aliases": ["wsj", "wall street journal"]},
+    "Financial Times": {"tier": "TIER_1_NEWSWIRE", "weight": 1.5, "aliases": ["financial times", "ft.com"]},
+    "Barron's": {"tier": "TIER_1_NEWSWIRE", "weight": 1.3, "aliases": ["barron's", "barrons"]},
+    # 3. Macro Financial Media & Whale Trackers
+    "CNBC": {"tier": "MACRO_FINANCIAL", "weight": 1.2, "aliases": ["cnbc"]},
+    "MarketWatch": {"tier": "MACRO_FINANCIAL", "weight": 1.2, "aliases": ["marketwatch"]},
+    "Unusual Whales": {"tier": "WHALE_INTELLIGENCE", "weight": 1.3, "aliases": ["unusual whales", "unusualwhales"]},
+    "Kobeissi Letter": {"tier": "MACRO_RESEARCH", "weight": 1.2, "aliases": ["kobeissi letter", "kobeissiletter"]},
+    # 4. Institutional Research & Investigative Tech
+    "Citrini": {"tier": "INSTITUTIONAL_RESEARCH", "weight": 1.1, "aliases": ["citrini", "citrini research"]},
+    "SolidIntel": {"tier": "INSTITUTIONAL_RESEARCH", "weight": 1.0, "aliases": ["solidintel", "solid intel"]},
+    "The Information": {"tier": "INVESTIGATIVE_TECH", "weight": 1.0, "aliases": ["the information", "theinformation"]},
+    "Semafor": {"tier": "INVESTIGATIVE_TECH", "weight": 0.9, "aliases": ["semafor"]},
+    # 5. General Business & TradFi Publications
+    "Forbes": {"tier": "GENERAL_BUSINESS", "weight": 0.8, "aliases": ["forbes"]},
+    "Fortune": {"tier": "GENERAL_BUSINESS", "weight": 0.8, "aliases": ["fortune"]},
+    "Business Insider": {"tier": "GENERAL_BUSINESS", "weight": 0.8, "aliases": ["business insider", "insider"]},
+    "TradFi": {"tier": "TRADFI", "weight": 0.8, "aliases": ["tradfi"]},
+    # 6. Geopolitical & Catalyst Sentiment
+    "Watcher Guru": {"tier": "CATALYST_SENTIMENT", "weight": 1.0, "aliases": ["watcher guru", "watcherguru"]},
+    "Trump Truth": {"tier": "GEOPOLITICAL_SENTIMENT", "weight": 1.2, "aliases": ["trump truth", "truth social"]},
+    "Zephyr": {"tier": "CATALYST_SENTIMENT", "weight": 0.8, "aliases": ["zephyr"]},
+}
+
+
+def resolve_source_meta(source_name: str) -> Dict[str, Any]:
+    """Resolves tier and weight for any of the 23 institutional sources."""
+    src_lower = (source_name or "").lower().strip()
+    for name, meta in INSTITUTIONAL_SOURCES.items():
+        if src_lower == name.lower() or any(alias in src_lower for alias in meta["aliases"]):
+            return {"name": name, "tier": meta["tier"], "weight": meta["weight"]}
+    return {"name": source_name or "Unknown", "tier": "GENERAL", "weight": 1.0}
+
+
+class MarketIntelligenceEngine:
+    def __init__(self, blackout_minutes: int = 15, calendar_path=None, clock=time.time):
+        self.blackout_minutes = blackout_minutes
+        self.last_fetch_time = 0.0
+        self.cached_sentiment = 0.0
+        self.cached_headlines: List[Dict[str, Any]] = []
+        self.cached_events: List[Dict[str, Any]] = []
+        self.calendar_path = Path(calendar_path or Path(__file__).resolve().parents[1]/"Data/macro_calendar.json")
+        self.clock = clock
+        self.calendar_error = None
+        self.last_calendar_attempt = 0.0
+
+    def ingest_hyperdash_news(self, news_items: List[Dict[str, Any]]) -> int:
+        """
+        Directly ingests structured news items from Hyperdash's 23-source stream.
+        """
+        ingested = 0
+        for item in news_items:
+            title = item.get("title") or item.get("text") or item.get("headline", "")
+            if not title:
+                continue
+            src = item.get("source") or item.get("publisher") or "Hyperdash"
+            meta = resolve_source_meta(src)
+            self.cached_headlines.append({
+                "title": title.strip(),
+                "date": item.get("date") or item.get("timestamp") or "",
+                "source": meta["name"],
+                "tier": meta["tier"],
+                "weight": meta["weight"]
+            })
+            ingested += 1
+        if ingested > 0:
+            self.cached_headlines = self.cached_headlines[-50:]  # Keep last 50
+            self._compute_sentiment_score()
+        return ingested
+
+    def fetch_live_headlines(self) -> List[Dict[str, Any]]:
+        """
+        Fetches breaking financial and crypto RSS feeds from verified institutional endpoints.
+        """
+        now = self.clock()
+        if self.cached_headlines and (now - self.last_fetch_time < 300.0):
+            return self.cached_headlines
+
+        feeds = [
+            ("https://feeds.content.dowjones.com/public/rss/mw_topstories", "MarketWatch"),
+            ("https://search.cnbc.com/rs/search/view.html?partnerId=2000&keywords=markets&sort=date", "CNBC"),
+            ("https://cointelegraph.com/rss", "Cointelegraph"),
+            ("https://www.coindesk.com/arc/outboundfeeds/rss/", "CoinDesk")
+        ]
+
+        headlines = []
+        for url, default_src in feeds:
+            try:
+                req = urllib.request.Request(url, headers=DEFAULT_HEADERS)
+                with urllib.request.urlopen(req, timeout=5) as resp:
+                    xml_data = resp.read()
+                    root = ET.fromstring(xml_data)
+                    for item in root.findall(".//item")[:10]:
+                        title = item.find("title")
+                        pub_date = item.find("pubDate")
+                        if title is not None and title.text:
+                            src_meta = resolve_source_meta(default_src)
+                            headlines.append({
+                                "title": title.text.strip(),
+                                "date": pub_date.text.strip() if pub_date is not None and pub_date.text else "",
+                                "source": src_meta["name"],
+                                "tier": src_meta["tier"],
+                                "weight": src_meta["weight"]
+                            })
+            except Exception:
+                continue
+
+        if headlines:
+            self.cached_headlines = headlines[:35]
+            self.last_fetch_time = now
+            self._compute_sentiment_score()
+
+        return self.cached_headlines
+
+    def _compute_sentiment_score(self):
+        """
+        Computes a source-weighted bounded score [-1.0, +1.0] from cached headlines.
+        Headlines from Breaking Squawks (Deltaone, First Squawk) and Tier-1 Newswires
+        (Bloomberg, Reuters, WSJ) carry up to 2.0x weight.
+        """
+        if not self.cached_headlines:
+            self.cached_sentiment = 0.0
+            return
+
+        weighted_bull = 0.0
+        weighted_bear = 0.0
+        total_weight = 0.0
+
+        for h in self.cached_headlines:
+            text = h["title"].lower()
+            weight = float(h.get("weight", 1.0))
+            matched = False
+
+            for kw in BEARISH_KEYWORDS:
+                if kw in text:
+                    weighted_bear += weight
+                    matched = True
+                    break
+
+            for kw in BULLISH_KEYWORDS:
+                if kw in text:
+                    weighted_bull += weight
+                    matched = True
+                    break
+
+            if matched:
+                total_weight += weight
+
+        if total_weight == 0.0:
+            self.cached_sentiment = 0.0
+        else:
+            raw_score = (weighted_bull - weighted_bear) / max(total_weight, 1.0)
+            self.cached_sentiment = round(max(-1.0, min(1.0, raw_score)), 2)
+
+    def check_macro_blackout(self) -> Tuple[bool, str, float]:
+        """
+        Checks whether current time is within +/- blackout_minutes of high-impact releases.
+        Returns: (is_blackout: bool, event_name: str, minutes_delta: float)
+        """
+        now = self.clock()
+        try:
+            calendar = json.loads(self.calendar_path.read_text(encoding="utf-8"))
+            if calendar.get("required_series") != ["CPI", "NFP", "FOMC"]: raise ValueError("calendar coverage unverified")
+            if not epoch(calendar.get("coverage_start")) <= now < epoch(calendar.get("coverage_end")):
+                raise ValueError("calendar outside verified coverage")
+            events = calendar.get("events")
+            if not events or not isinstance(events, list) or len(events) == 0:
+                raise ValueError("calendar events missing or empty")
+            self.calendar_error = None
+            for event in events:
+                if event.get("impact") != "HIGH": continue
+                event_time = epoch(event.get("time_utc"))
+                if not event_time: raise ValueError("calendar event timestamp invalid")
+                delta = abs(now-event_time)/60
+                if delta <= self.blackout_minutes: return True, event["name"], delta
+            return False, "NO_EVENT", 999.0
+        except (OSError, ValueError, KeyError, TypeError) as exc:
+            self.calendar_error = str(exc)
+            return True, "CALENDAR_UNAVAILABLE", 0.0
+    def get_market_intelligence_report(self) -> Dict[str, Any]:
+        """
+        Full 360-degree macro intelligence synthesis.
+        """
+        if self.clock()-self.last_calendar_attempt > 86400:
+            self.last_calendar_attempt = self.clock()
+            try:
+                from Terminal.Macro_Calendar import refresh_calendar
+                refresh_calendar(self.calendar_path)
+            except Exception as exc:
+                logger.warning("Dated macro calendar refresh failed: %s", exc)
+        headlines = self.fetch_live_headlines()
+        is_blackout, event_name, delta_min = self.check_macro_blackout()
+
+        sentiment_label = "BULLISH" if self.cached_sentiment >= 0.25 else (
+            "BEARISH" if self.cached_sentiment <= -0.25 else "NEUTRAL"
+        )
+
+        return {
+            "timestamp_utc": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC"),
+            "macro_sentiment_score": self.cached_sentiment,
+            "asset_scores": self.asset_sentiment_scores(),
+            "sentiment_valid": bool(self.cached_headlines and self.clock()-self.last_fetch_time <= 900),
+            "calendar_error": self.calendar_error,
+            "macro_bias": sentiment_label,
+            "blackout_active": is_blackout,
+            "blackout_event": event_name,
+            "minutes_to_window": delta_min,
+            "headlines_count": len(headlines),
+            "top_headlines": [h["title"] for h in headlines[:5]]
+        }
+
+    def asset_sentiment_scores(self):
+        """Keyword sentiment is a weak feature; crypto headlines do not become gold signals."""
+        names = {"BTC": ("bitcoin", "btc"), "ETH": ("ethereum", "eth"), "SOL": ("solana", "sol"),
+                 "BNB": ("binance", "bnb"), "XRP": ("ripple", "xrp"), "ADA": ("cardano", "ada"),
+                 "DOGE": ("dogecoin", "doge"), "TRX": ("tron", "trx"), "DOT": ("polkadot", "dot"),
+                 "LINK": ("chainlink", "link"), "BCH": ("bitcoin cash", "bch"), "GOLD": ("gold",),
+                 "SILVER": ("silver",), "SP500": ("s&p", "sp500"), "NAS100": ("nasdaq",), "DJ30": ("dow jones",)}
+        scores = {}
+        for asset in UNIVERSE:
+            numerator = denominator = 0.0
+            for h in self.cached_headlines:
+                text = h["title"].lower()
+                try: published = parsedate_to_datetime(h["date"]).timestamp()
+                except (ValueError, TypeError, KeyError): continue
+                age = self.clock()-published
+                if not 0 <= age <= 86400: continue
+                macro = any(k in text for k in ("fed", "fomc", "cpi", "payroll", "inflation", "rate cut", "rate hike"))
+                relevant = macro or any(k in text for k in names[asset])
+                if not relevant: continue
+                bulls = sum(k in text for k in BULLISH_KEYWORDS)
+                bears = sum(k in text for k in BEARISH_KEYWORDS)
+                weight = 2**(-age/14400)
+                numerator += weight*(bulls-bears); denominator += weight*(bulls+bears)
+            scores[asset] = max(-1, min(1, numerator/denominator)) if denominator else 0.0
+        return scores
+
+
+if __name__ == "__main__":
+    engine = MarketIntelligenceEngine()
+    report = engine.get_market_intelligence_report()
+    print(json.dumps(report, indent=2))
+
+```
+
+#### MODULE 3: `Terminal/Risk_Sizing_Engine.py`
+```python
+"""Causal orderflow features, cost-inclusive risk and signed-notional covariance.
+
+Covariance units are decimal log-return squared over the manifest's horizon.
+Risk is planned stop loss PLUS round-trip costs, never a notional allocation.
+"""
+from __future__ import annotations
+from dataclasses import dataclass
+from collections import deque
+from decimal import Decimal, ROUND_FLOOR
+from pathlib import Path
+import hashlib
+import json
+import math
+import time
+import numpy as np
+from Terminal.Asset_Universe import canonical_asset
+
+def number(value, default=0.0):
+    try:
+        value = float(value)
+        return value if math.isfinite(value) else default
+    except (TypeError, ValueError):
+        return default
+
+def epoch(value):
+    if isinstance(value, str) and not value.replace(".", "", 1).isdigit():
+        from datetime import datetime, timezone
+        try:
+            parsed = datetime.fromisoformat(value.replace(" UTC", "+00:00").replace("Z", "+00:00"))
+            return parsed.replace(tzinfo=timezone.utc).timestamp() if parsed.tzinfo is None else parsed.timestamp()
+        except ValueError: return 0.0
+    value = number(value)
+    return value / 1000 if value > 1e11 else value
+
+@dataclass(frozen=True)
+class RiskPolicy:
+    initial_capital: float = 5000.0
+    drawdown_fraction: float = 0.045
+    min_risk: float = 10.0
+    max_risk: float = 45.0
+    max_positions: int = 2
+    minimum_friction_bps: float = 41.0
+    commission_bps: float = 0.0
+    slippage_bps: float = 2.0
+    sigma_budget_usd: float = 45.0
+    covariance_horizon_minutes: int = 15
+    volatility_lookback: int = 96
+    min_confluence: float = 0.35
+    max_book_age: float = 10.0
+    max_basis_sigma: float = 1.0
+    max_future_skew_sec: float = 0.0
+
+    def __post_init__(self):
+        if not (10 <= self.min_risk <= self.max_risk <= 45):
+            raise ValueError("Risk must stay inside 10 to 45 USD")
+        if self.initial_capital != 5000 or self.drawdown_fraction != 0.045 or self.max_positions != 2:
+            raise ValueError("OMNI capital, drawdown and position invariants are fixed")
+        if self.minimum_friction_bps < 41 or self.sigma_budget_usd <= 0:
+            raise ValueError("Invalid friction/variance budget")
+
+def floor_volume(volume, step, minimum, maximum):
+    if step <= 0 or minimum <= 0 or maximum < minimum: return 0.0
+    capped = Decimal(str(min(volume, maximum)))
+    unit = Decimal(str(step))
+    result = (capped / unit).to_integral_value(rounding=ROUND_FLOOR) * unit
+    return float(result) if float(result) >= minimum else 0.0
+
+def completed_statistics(bars, as_of, lookback=96, horizon_minutes=15):
+    """MT5 bar timestamps are opens. Exclude any bar not closed at decision time."""
+    ordered = sorted((b for b in bars if epoch(b.get("time")) + 900 <= as_of), key=lambda b: epoch(b["time"]))
+    ordered = ordered[-lookback-1:]
+    if len(ordered) < 25: raise ValueError("volatility_history_insufficient")
+    closes = np.array([number(b.get("close")) for b in ordered])
+    if np.any(closes <= 0): raise ValueError("invalid_bar_price")
+    times = np.array([epoch(b["time"]) for b in ordered])
+    if as_of-times[-1]-900 > 900: raise ValueError("completed_bars_stale")
+    returns = np.diff(np.log(closes))
+    # Session gaps are not treated as one ordinary 15-minute observation.
+    returns = returns[np.diff(times) == 900]
+    if len(returns) < 24: raise ValueError("continuous_return_history_insufficient")
+    sigma = float(np.std(returns, ddof=1)) * math.sqrt(horizon_minutes / 15)
+    if not math.isfinite(sigma) or sigma <= 1e-8: raise ValueError("volatility_unavailable")
+    tr = [max(number(b["high"])-number(b["low"]), abs(number(b["high"])-closes[i-1]),
+              abs(number(b["low"])-closes[i-1])) for i, b in enumerate(ordered[1:], 1)]
+    atr = float(np.mean(tr[-14:]))
+    movement = float(np.sum(np.abs(np.diff(closes[-21:]))))
+    er = abs(float(closes[-1]-closes[-21])) / movement if movement else 0.0
+    return {"sigma_h": sigma, "atr": atr, "efficiency_ratio": er,
+            "last_bar_close": float(times[-1]+900), "bar_count": len(ordered)}
+
+class RobustNormalizer:
+    def __init__(self, history=None, window=256):
+        self.history = {k: deque(v[-window:], maxlen=window) for k, v in (history or {}).items()}
+        self.window = window
+
+    def score_then_observe(self, key, value):
+        past = self.history.setdefault(key, deque(maxlen=self.window))
+        z = None
+        if len(past) >= 24:
+            values = np.array(past)
+            median = float(np.median(values))
+            scale = max(1.4826 * float(np.median(np.abs(values-median))), 0.05)
+            z = float(np.clip((value-median)/scale, -3, 3))
+        past.append(float(value))
+        return z
+
+    def export(self): return {k: list(v) for k, v in self.history.items()}
+
+class OrderflowModel:
+    def __init__(self, policy=None, history=None, walls=None):
+        self.policy = policy or RiskPolicy()
+        self.normalizer = RobustNormalizer(history)
+        self.walls = walls or {}
+
+    def observe_walls(self, asset, payload, as_of):
+        sources = payload.get("sources") or {}
+        wall_asof = epoch(sources.get("l3", {}).get("observed_at") or payload.get("timestamp"))
+        if not wall_asof or not 0.0 <= as_of-wall_asof <= 30: return False
+        previous = self.walls.get(asset, {})
+        if previous and wall_asof < max(v["last"] for v in previous.values()): return False
+        current = {}
+        for w in payload.get("l3_orders", []):
+            px, usd, side = number(w.get("price")), number(w.get("notional_usd")), w.get("side")
+            if px <= 0 or usd <= 0 or side not in ("BUY", "SELL"): continue
+            key = str(w.get("order_id") or f"{w.get('address')}:{side}:{px}")
+            old = previous.get(key, {})
+            first = number(old.get("first"), wall_asof) if wall_asof-number(old.get("last"), wall_asof) <= 30 else wall_asof
+            current[key] = {"first": first, "last": wall_asof}
+            span = max(number(w.get("observed_span_s") or w.get("persistence_sec") or 0.0), wall_asof - first)
+            w["observed_span_s"] = span
+            w["persistence_sec"] = span
+            w["is_stale"] = False
+        self.walls[asset] = current
+        return True
+
+    @staticmethod
+    def _levels(rows, mid, sigma, side):
+        out = []
+        for row in rows[:20]:
+            px = number(row.get("price", row.get("px")))
+            size = number(row.get("size", row.get("sz")))
+            if px <= 0 or size <= 0 or side*(mid-px) < 0: continue
+            distance = abs(math.log(px/mid)) / sigma
+            usd = px * size  # Hyperliquid quantities are base units, already USD quoted.
+            if not math.isfinite(usd): continue
+            out.append((px, usd, distance, usd*math.exp(-distance)))
+        return out
+
+    def features(self, asset, payload, bars, macro, as_of):
+        stats = completed_statistics(bars, as_of, self.policy.volatility_lookback,
+                                     self.policy.covariance_horizon_minutes)
+        book = payload.get("l2_book") or {}
+        observed = epoch(book.get("timestamp"))
+        received = number(book.get("received_at"))
+        check_time = received if received > 0 else observed
+        skew_limit = self.policy.max_future_skew_sec
+        if not check_time or not -skew_limit <= as_of-check_time <= self.policy.max_book_age:
+            raise ValueError("book_stale_or_future")
+        if observed and observed - as_of > max(30.0, skew_limit):
+            raise ValueError("book_stale_or_future")
+        bid, ask = number(book.get("best_bid")), number(book.get("best_ask"))
+        if not (0 < bid < ask): raise ValueError("book_crossed_or_missing")
+        mid, sigma = (bid+ask)/2, stats["sigma_h"]
+        bids, asks = self._levels(book.get("bids", []), mid, sigma, 1), self._levels(book.get("asks", []), mid, sigma, -1)
+        if not bids or not asks: raise ValueError("depth_missing")
+        b, a = sum(x[3] for x in bids), sum(x[3] for x in asks)
+        if not math.isfinite(b+a) or b+a <= 0: raise ValueError("weighted_depth_invalid")
+        imbalance = (b-a)/(b+a)
+        z = self.normalizer.score_then_observe(asset, imbalance)
+        anomaly = math.tanh(z/2) if z is not None else 0.0
+        l2 = float(np.clip(0.8*imbalance+0.2*anomaly, -1, 1))
+        sources = payload.get("sources") or {}
+        wall_asof = epoch(sources.get("l3", {}).get("observed_at") or payload.get("timestamp"))
+        fresh_walls = self.observe_walls(asset, payload, as_of)
+        wall_totals = {"BUY": 0.0, "SELL": 0.0}
+        tracked = self.walls.get(asset, {})
+        if fresh_walls:
+            for w in payload.get("l3_orders", []):
+                px, usd, side = number(w.get("price")), number(w.get("notional_usd")), w.get("side")
+                if px <= 0 or usd <= 0 or side not in wall_totals: continue
+                key = str(w.get("order_id") or f"{w.get('address')}:{side}:{px}")
+                first = number(tracked.get(key, {}).get("first"))
+                if not first or wall_asof <= first: continue
+                persistence = min(1.0, max(0.0, (wall_asof-first)/60))
+                distance = abs(math.log(px/mid)) / max(sigma * 3.0, 0.01)
+                wall_totals[side] += usd*math.exp(-distance)*persistence
+        wall_sum = sum(wall_totals.values())
+        wall_imb = (wall_totals["BUY"]-wall_totals["SELL"])/wall_sum if wall_sum else 0.0
+        buy = sell = 0.0
+        seen = set()
+        for t in payload.get("recent_trades", []):
+            ts = epoch(t.get("time"))
+            uid = str(t.get("trade_id") or t.get("tid") or (ts, t.get("price"), t.get("size"), t.get("side")))
+            if uid in seen or not 0.0 <= as_of-ts <= 60: continue
+            seen.add(uid)
+            usd = number(t.get("notional_usd")) * math.exp(-(as_of-ts)/30)
+            if t.get("side") == "BUY": buy += usd
+            elif t.get("side") == "SELL": sell += usd
+        tape = (buy-sell)/(buy+sell) if buy+sell else 0.0
+        # Deterministic robust z-scores for the aggressor tape (CVD) and wall
+        # imbalance. These are the ground-truth values the cognitive engine is
+        # attested against; it can never substitute its own statistics.
+        z_tape = self.normalizer.score_then_observe(asset+":aggressor", tape)
+        z_wall = self.normalizer.score_then_observe(asset+":walls", wall_imb)
+        # Match each cluster corridor against visible depth in that exact corridor.
+        # Do not infer stop/liquidation exposure from historical realized prints.
+        pressure = {"LONG": 0.0, "SHORT": 0.0}
+        corridor_records = []
+        for name in ("liquidations", "stops"):
+            observed_name = "projected_liquidations" if name == "liquidations" else "observed_stops"
+            sampled_data = payload.get(observed_name) or {}
+            data = sampled_data if sampled_data.get("kind") in ("PROJECTED_EXPOSURE", "OBSERVED_STOP_ORDERS") else payload.get(name) or {}
+            if data.get("kind") not in ("PROJECTED_EXPOSURE", "OBSERVED_STOP_ORDERS"): continue
+            component_asof = epoch(sources.get("wallet_risk" if data is sampled_data else name, {}).get("observed_at") or payload.get("timestamp"))
+            if not component_asof or not 0.0 <= as_of-component_asof <= 60: continue
+            for band in data.get("projected_bands", data.get("bands", [])):
+                low, high = number(band.get("min_px")), number(band.get("max_px"))
+                amt_raw = number(band.get("amount_usd") or band.get("amount"))
+                amount = amt_raw * ((low+high)/2) if amt_raw < 1e5 and not band.get("amount_usd") else amt_raw
+                if not 0 < low <= high or amount <= 0: continue
+                side = band.get("position_side_at_risk")
+                if side is None:
+                    b_type = str(band.get("type", "")).upper()
+                    if "LONG" in b_type: side = "LONG"
+                    elif "SHORT" in b_type: side = "SHORT"
+                    elif name == "stops": side = "LONG" if high < mid else "SHORT" if low > mid else None
+                if side not in pressure: continue
+                rows = bids if side == "LONG" else asks
+                if rows:
+                    min_book_px, max_book_px = min(x[0] for x in rows), max(x[0] for x in rows)
+                    corridor_low = max(low, min_book_px)
+                    corridor_high = min(high, max_book_px)
+                    if corridor_low <= corridor_high and high > low:
+                        corridor_overlap = (corridor_high - corridor_low) / (high - low)
+                        effective_amount = amount * corridor_overlap
+                        depth = sum(x[1] for x in rows if corridor_low <= x[0] <= corridor_high)
+                        ratio = effective_amount / depth if depth > 0 else None
+                    else:
+                        depth, ratio = 0.0, None
+                else:
+                    depth, ratio = 0.0, None
+                corridor_records.append({"kind": name, "side": side, "low": low, "high": high,
+                                         "depth_usd": depth, "exposure_usd": amount, "ratio": ratio})
+                if ratio is not None:
+                    pressure[side] += math.log1p(min(ratio, 100.0))*math.exp(-abs(math.log((low+high)/2/mid))/sigma)
+        total_pressure = sum(pressure.values())
+        liq_delta = (pressure["SHORT"]-pressure["LONG"])/total_pressure if total_pressure else 0.0
+        macro_value = number(macro.get("asset_scores", {}).get(asset), 0.0) if macro.get("sentiment_valid") else 0.0
+        quality = (0.55 + 0.15*bool(buy+sell) + 0.10*fresh_walls +
+                   0.10*bool(total_pressure) + 0.10*bool(macro.get("sentiment_valid")))
+        signed = 0.25*l2 + 0.15*macro_value + 0.20*wall_imb + 0.15*tape + 0.10*liq_delta
+        direction = 1 if signed > 0 else -1
+        B, M, W, T, L = [direction*x for x in (l2, macro_value, wall_imb, tape, liq_delta)]
+        target_fuel = pressure["SHORT"] if direction == 1 else pressure["LONG"]
+        opposing_magnet = pressure["LONG"] if direction == 1 else pressure["SHORT"]
+        liquidity_vacuum = bool(opposing_magnet > 1e-5 and target_fuel <= 0.0)
+        active_weight = 0.25 + (0.15 if abs(macro_value) > 0.001 else 0.0) + 0.20 + 0.15 + 0.10 + (0.15 if abs(macro_value) > 0.001 else 0.0)
+        raw_confluence = 0.25*B + 0.15*M + 0.20*W + 0.15*T + 0.10*L + 0.15*math.sqrt(max(B, 0)*max(M, 0))
+        confluence = 0.0 if liquidity_vacuum else float(np.clip(raw_confluence / active_weight, 0, 1))
+        target_corridors = [c for c in corridor_records if (direction == 1 and c["side"] == "SHORT" and c["high"] >= mid) or
+                            (direction == -1 and c["side"] == "LONG" and c["low"] <= mid)]
+        opposing_corridors = [c for c in corridor_records if (direction == 1 and c["side"] == "LONG" and c["low"] <= mid) or
+                              (direction == -1 and c["side"] == "SHORT" and c["high"] >= mid)]
+        target_fuel_usd = sum(c["exposure_usd"] for c in target_corridors)
+        opposing_levels = asks if direction == 1 else bids
+        if target_corridors:
+            target_friction_usd = sum(usd for px, usd, dist, w_usd in opposing_levels
+                                      if any(c["low"] <= px <= c["high"] for c in target_corridors))
+        else:
+            target_friction_usd = 0.0
+        coverage_missing = bool(target_fuel_usd > 0 and target_friction_usd <= 0.0)
+        if target_friction_usd > 0:
+            ffr = float(target_fuel_usd / target_friction_usd)
+        elif coverage_missing:
+            ffr = None
+        else:
+            ffr = 1.0
+        # Friction-adjusted fuel ratio (FAFR): fuel exposure measured against
+        # corridor depth PLUS the round-trip friction carried by a
+        # minimum-risk reference position (stop = 1.5*ATR, risk = min_risk).
+        # Deterministic from already-computed quantities; None when undefined.
+        stop_ref = 1.5*stats["atr"]
+        friction_ref_usd = (mid/stop_ref)*self.policy.min_risk*(self.policy.minimum_friction_bps/10000.0) if stop_ref > 0 else 0.0
+        fafr_denominator = target_friction_usd + friction_ref_usd
+        friction_adjusted_fuel_ratio = float(target_fuel_usd/fafr_denominator) if fafr_denominator > 0 else None
+        return {**stats, "asset": asset, "as_of": as_of, "signal_mid": mid, "book_as_of": observed,
+                "direction": "LONG" if direction == 1 else "SHORT", "l2_imbalance": imbalance,
+                "l2_signal": l2, "l2_robust_z": z, "wall_imbalance": wall_imb,
+                "wall_imbalance_robust_z": z_wall,
+                "aggressor_imbalance": tape, "aggressor_robust_z": z_tape,
+                "liquidation_delta": liq_delta, "macro_score": macro_value,
+                "confluence": confluence, "quality": quality, "corridors": corridor_records,
+                "liquidity_vacuum": liquidity_vacuum, "target_fuel": target_fuel, "opposing_magnet": opposing_magnet,
+                "ffr": ffr, "friction_adjusted_fuel_ratio": friction_adjusted_fuel_ratio,
+                "coverage_missing": coverage_missing, "unobserved_corridor": coverage_missing,
+                "fresh_walls": fresh_walls,
+                "friction_bps": self.policy.minimum_friction_bps,
+                "target_fuel_usd": target_fuel_usd, "target_friction_usd": target_friction_usd,
+                "risk_intent_usd": self.policy.min_risk + (self.policy.max_risk-self.policy.min_risk)*(quality*confluence)**2}
+
+class CovarianceGate:
+    def __init__(self, assets, matrix, metadata=None):
+        self.assets = [canonical_asset(a) for a in assets]
+        self.matrix = np.asarray(matrix, dtype=float)
+        self.metadata = metadata or {}
+        n = len(self.assets)
+        if len(set(self.assets)) != n or self.matrix.shape != (n, n) or not np.isfinite(self.matrix).all():
+            raise ValueError("invalid_covariance_labels_or_shape")
+        if not np.allclose(self.matrix, self.matrix.T, rtol=1e-5, atol=1e-12): raise ValueError("asymmetric_covariance")
+        if np.min(np.linalg.eigvalsh(self.matrix)) < -1e-12 or np.any(np.diag(self.matrix) <= 0):
+            raise ValueError("covariance_not_positive_semidefinite")
+        self.index = {a: i for i, a in enumerate(self.assets)}
+
+    @classmethod
+    def load(cls, path):
+        import polars as pl
+        path = Path(path)
+        metadata = json.loads(path.with_suffix(".json").read_text(encoding="utf-8"))
+        if metadata.get("sha256") != hashlib.sha256(path.read_bytes()).hexdigest(): raise ValueError("covariance_checksum_mismatch")
+        df = pl.read_parquet(path)
+        label = metadata.get("label_column", "asset")
+        assets = df[label].to_list()
+        return cls(assets, df.select(assets).to_numpy(), metadata)
+
+    def validate_time(self, as_of, horizon_minutes=15):
+        meta = self.metadata
+        if meta.get("return_units") != "decimal_log_return" or meta.get("horizon_minutes") != horizon_minutes:
+            raise ValueError("covariance_units_or_horizon_unknown")
+        data_end = epoch(meta.get("data_end"))
+        if epoch(meta.get("created_at")) > as_of: raise ValueError("covariance_future_vintage")
+        max_age = min(number(meta.get("max_age_seconds"), 86400.0), 86400.0)
+        if not data_end or data_end > as_of or as_of-data_end > max_age:
+            raise ValueError("covariance_stale_or_future")
+
+    def variance(self, exposures):
+        vector = np.zeros(len(self.assets))
+        for asset, notional in exposures.items():
+            key = canonical_asset(asset)
+            if key not in self.index: raise ValueError(f"covariance_asset_missing:{key}")
+            vector[self.index[key]] += number(notional)
+        return max(0.0, float(vector @ self.matrix @ vector))
+
+    def scale_candidate(self, existing, asset, signed_notional, sigma_budget):
+        key = canonical_asset(asset)
+        if key not in self.index: raise ValueError(f"covariance_asset_missing:{key}")
+        i = self.index[key]
+        v = np.zeros(len(self.assets))
+        for a, n in existing.items():
+            if canonical_asset(a) not in self.index: raise ValueError(f"covariance_asset_missing:{a}")
+            v[self.index[canonical_asset(a)]] += n
+        before = float(v @ self.matrix @ v)
+        A = signed_notional**2*self.matrix[i, i]
+        B = 2*signed_notional*float(self.matrix[i] @ v)
+        C = before-sigma_budget**2
+        after = before+A+B
+        if after <= sigma_budget**2: scale = 1.0
+        else:
+            disc = B*B-4*A*C
+            upper = (-B+math.sqrt(disc))/(2*A) if A > 0 and disc >= 0 else 0.0
+            scale = max(0.0, min(1.0, upper))
+            if before+A*scale**2+B*scale > sigma_budget**2+1e-8: scale = 0.0
+        return {"scale": scale, "variance_before": before, "variance_after": before+A*scale**2+B*scale,
+                "incremental_variance": A*scale**2+B*scale, "sigma_budget_usd": sigma_budget}
+
+    def correlation(self, a, b):
+        i, j = self.index[canonical_asset(a)], self.index[canonical_asset(b)]
+        return float(self.matrix[i, j]/math.sqrt(self.matrix[i, i]*self.matrix[j, j]))
+
+def fit_covariance(bars_by_asset, as_of, path, min_observations=48):
+    """Fit aligned, completed 15-minute broker returns; never mix venues/horizons."""
+    import polars as pl
+    from sklearn.covariance import LedoitWolf
+    series = {}
+    for asset, bars in bars_by_asset.items():
+        rows = sorted([b for b in bars if epoch(b.get("time"))+900 <= as_of], key=lambda b: epoch(b["time"]))
+        values = {}
+        for left, right in zip(rows, rows[1:]):
+            if epoch(right["time"])-epoch(left["time"]) != 900: continue
+            if number(left["close"]) <= 0 or number(right["close"]) <= 0: continue
+            values[epoch(right["time"])+900] = math.log(number(right["close"])/number(left["close"]))
+        if len(values) >= min_observations: series[asset] = values
+    if not series: raise ValueError("covariance_history_unavailable")
+    aligned = sorted(set.intersection(*(set(v) for v in series.values())))
+    if len(aligned) < min_observations: raise ValueError("covariance_common_history_insufficient")
+    assets = sorted(series)
+    returns = np.array([[series[a][t] for a in assets] for t in aligned])
+    estimator = LedoitWolf().fit(returns)
+    # Guard completely constant broker histories before declaring valid coverage.
+    if np.any(np.std(returns, axis=0) <= 1e-8): raise ValueError("covariance_constant_asset_history")
+    path = Path(path); path.parent.mkdir(parents=True, exist_ok=True)
+    frame = pl.DataFrame({"asset": assets, **{a: estimator.covariance_[:, i] for i, a in enumerate(assets)}})
+    temp = path.with_suffix(".parquet.tmp"); frame.write_parquet(temp); temp.replace(path)
+    metadata = {"schema": "omni.covariance.v1", "label_column": "asset", "assets": assets,
+                "return_units": "decimal_log_return", "horizon_minutes": 15, "data_start": aligned[0],
+                "data_end": aligned[-1], "created_at": as_of, "max_age_seconds": 86400,
+                "source": "MT5_completed_M15", "observations": len(aligned), "shrinkage": float(estimator.shrinkage_),
+                "sha256": hashlib.sha256(path.read_bytes()).hexdigest()}
+    path.with_suffix(".json").write_text(json.dumps(metadata, indent=2), encoding="utf-8")
+    return CovarianceGate(assets, estimator.covariance_, metadata)
+
+def cost_bps(quote, policy):
+    mid = (number(quote.get("bid"))+number(quote.get("ask")))/2
+    if mid <= 0: raise ValueError("invalid_broker_quote")
+    spread = (number(quote.get("ask"))-number(quote.get("bid")))/mid*10000
+    return max(policy.minimum_friction_bps, spread+policy.commission_bps+policy.slippage_bps)
+
+def size_trade(quote, stop_loss_per_lot, risk_budget, covariance, existing, asset, direction,
+               policy, drawdown_room, free_margin, margin_per_lot):
+    mid = (number(quote["bid"])+number(quote["ask"]))/2
+    notional_per_lot = mid*number(quote.get("contract_size"))
+    if min(notional_per_lot, stop_loss_per_lot, margin_per_lot) <= 0: raise ValueError("broker_valuation_missing")
+    friction_per_lot = notional_per_lot*cost_bps(quote, policy)/10000
+    loss_per_lot = stop_loss_per_lot+friction_per_lot
+    budget = min(policy.max_risk, risk_budget, max(0, drawdown_room)*0.90)
+    if budget < policy.min_risk: return {"accepted": False, "reason": "drawdown_or_risk_room"}
+    volume = min(budget/loss_per_lot, max(0, free_margin)*0.80/margin_per_lot)
+    sign = 1 if direction == "LONG" else -1
+    check = covariance.scale_candidate(existing, asset, sign*volume*notional_per_lot, policy.sigma_budget_usd)
+    volume = floor_volume(volume*check["scale"], number(quote["step_lot"]), number(quote["min_lot"]), number(quote["max_lot"]))
+    planned = volume*loss_per_lot
+    if volume <= 0 or planned < policy.min_risk: return {"accepted": False, "reason": "minimum_lot_or_variance_budget", **check}
+    exposure = dict(existing); exposure[asset] = exposure.get(asset, 0)+sign*volume*notional_per_lot
+    variance = covariance.variance(exposure)
+    if planned > budget+1e-8 or variance > policy.sigma_budget_usd**2+1e-8: raise ValueError("sizing_invariant_failure")
+    return {"accepted": True, "volume": volume, "risk_usd": planned, "stop_risk_usd": volume*stop_loss_per_lot,
+            "friction_usd": volume*friction_per_lot, "friction_bps": cost_bps(quote, policy),
+            "signed_notional_usd": sign*volume*notional_per_lot, **check, "variance_after": variance}
+
+```
+
+#### MODULE 4: `Terminal/Candle_Indicator_Engine.py`
+```python
+"""
+Terminal/Candle_Indicator_Engine.py
+===================================
+Institutional Historical Candle Persistence, Gap-Detection & Indicator Engine.
+
+Key Responsibilities:
+1. Persists completed 15m OHLCV candles to Data/Candles/{ASSET}_15m.parquet.
+2. Performs gap audits: detects missing candles, non-monotonic timestamps, and weekend/session halts.
+3. Computes deterministic causal indicators:
+   - True Daily Session VWAP (resets 00:00 UTC) with +/-1, +/-2, +/-3 SD bands and vwap_z.
+   - Rolling 24h VWAP (96-bar window) with continuous volatility bands.
+   - EMA 20, EMA 50, EMA 200 and 3-hour slope.
+   - ATR(14) and Wilder RSI(14).
+4. Mean-Reversion Scanner: Identifies extreme deviations (>= +2 SD or <= -2 SD from VWAP)
+   for Gold, Silver, and Institutional Crypto Perpetuals.
+"""
+from __future__ import annotations
+
+import argparse
+import math
+import pathlib
+import sys
+import time
+from concurrent.futures import ThreadPoolExecutor
+from datetime import datetime, timezone
+from typing import Any, Dict, List, Optional, Tuple
+
+import numpy as np
+import pandas as pd
+
+ROOT = pathlib.Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from Terminal.Asset_Universe import UNIVERSE, canonical_asset
+from Terminal.MT5_Execution_Bridge import MT5ExecutionBridge
+
+CANDLE_DIR = ROOT / "Data" / "Candles"
+CANDLE_DIR.mkdir(parents=True, exist_ok=True)
+
+
+class CandleIndicatorEngine:
+    def __init__(
+        self,
+        bridge: Optional[MT5ExecutionBridge] = None,
+        storage_dir: pathlib.Path = CANDLE_DIR,
+        universe: Tuple[str, ...] = UNIVERSE,
+    ):
+        self.bridge = bridge or MT5ExecutionBridge(5064568)
+        self.storage_dir = pathlib.Path(storage_dir)
+        self.storage_dir.mkdir(parents=True, exist_ok=True)
+        self.universe = list(universe)
+        self.cache: Dict[str, List[Dict[str, Any]]] = {}
+
+    def sync_candles(self, asset: str, count: int = 512) -> Dict[str, Any]:
+        """Fetch completed 15m bars from MT5, audit gaps, persist to disk."""
+        asset = canonical_asset(asset)
+        symbol = self.bridge.resolve_symbol(asset)
+        if not symbol:
+            return {"asset": asset, "success": False, "error": f"Symbol unresolved for {asset}"}
+
+        bars = self.bridge.get_recent_bars(symbol, count=count)
+        if not bars:
+            return {"asset": asset, "success": False, "error": "No bars returned by broker"}
+
+        # Sort chronologically by open time
+        ordered = sorted(bars, key=lambda b: float(b.get("time", 0.0)))
+
+        # Gap detection & sanity audit
+        times = [float(b["time"]) for b in ordered]
+        gaps: List[Dict[str, Any]] = []
+        for i in range(1, len(times)):
+            delta = times[i] - times[i - 1]
+            if delta > 900.0:
+                missing_bars = int(round((delta - 900.0) / 900.0))
+                gaps.append({
+                    "start_utc": datetime.fromtimestamp(times[i - 1], tz=timezone.utc).strftime("%Y-%m-%d %H:%M"),
+                    "end_utc": datetime.fromtimestamp(times[i], tz=timezone.utc).strftime("%Y-%m-%d %H:%M"),
+                    "delta_seconds": int(delta),
+                    "missing_bars": missing_bars,
+                })
+
+        # Save to disk as Parquet for durable historical cache
+        df = pd.DataFrame(ordered)
+        df["datetime_utc"] = pd.to_datetime(df["time"], unit="s", utc=True)
+        parquet_file = self.storage_dir / f"{asset}_15m.parquet"
+        df.to_parquet(parquet_file, index=False)
+
+        self.cache[asset] = ordered
+        indicators = self.compute_indicators(ordered)
+
+        return {
+            "asset": asset,
+            "symbol": symbol,
+            "success": True,
+            "bar_count": len(ordered),
+            "first_bar_utc": datetime.fromtimestamp(times[0], tz=timezone.utc).strftime("%Y-%m-%d %H:%M"),
+            "latest_bar_utc": datetime.fromtimestamp(times[-1], tz=timezone.utc).strftime("%Y-%m-%d %H:%M"),
+            "latest_close": ordered[-1]["close"],
+            "gap_count": len(gaps),
+            "gaps": gaps[-5:],  # Last 5 gaps if any (e.g. weekend closures on Gold/Silver)
+            "indicators": indicators,
+        }
+
+    def sync_all(self, count: int = 512, max_workers: int = 6) -> Dict[str, Dict[str, Any]]:
+        """Sync all assets in the universe concurrently."""
+        results: Dict[str, Dict[str, Any]] = {}
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
+            future_to_asset = {
+                executor.submit(self.sync_candles, asset, count): asset for asset in self.universe
+            }
+            for future in future_to_asset:
+                asset = future_to_asset[future]
+                try:
+                    results[asset] = future.result()
+                except Exception as exc:
+                    results[asset] = {"asset": asset, "success": False, "error": str(exc)}
+        return results
+
+    @staticmethod
+    def compute_indicators(bars: List[Dict[str, Any]]) -> Dict[str, Any]:
+        """Compute Session VWAP, Rolling VWAP, EMAs, ATR, RSI from historical bars."""
+        if len(bars) < 14:
+            return {}
+
+        closes = np.array([float(b["close"]) for b in bars])
+        highs = np.array([float(b["high"]) for b in bars])
+        lows = np.array([float(b["low"]) for b in bars])
+        times = np.array([float(b["time"]) for b in bars])
+        volumes = np.array([float(b.get("volume") or b.get("tick_volume") or 1.0) for b in bars])
+
+        # Typical price
+        tps = (highs + lows + closes) / 3.0
+        last_price = closes[-1]
+        now_ts = times[-1] + 900.0  # Close of latest bar
+
+        # -------------------------------------------------------------
+        # 1. Daily Session VWAP (Anchored to 00:00:00 UTC of latest bar)
+        # -------------------------------------------------------------
+        latest_dt = datetime.fromtimestamp(times[-1], tz=timezone.utc)
+        session_start_ts = datetime(
+            latest_dt.year, latest_dt.month, latest_dt.day, 0, 0, 0, tzinfo=timezone.utc
+        ).timestamp()
+
+        session_mask = times >= session_start_ts
+        if np.sum(session_mask) >= 3:
+            s_tps = tps[session_mask]
+            s_vols = volumes[session_mask]
+            s_cum_vol = np.sum(s_vols)
+            s_vwap = np.sum(s_tps * s_vols) / max(s_cum_vol, 1e-9)
+            s_var = np.sum(s_vols * ((s_tps - s_vwap) ** 2)) / max(s_cum_vol, 1e-9)
+            s_sigma = math.sqrt(max(0.0, s_var))
+            s_bars_count = int(np.sum(session_mask))
+        else:
+            # Fall back to rolling 96 bars if early in session (< 1h)
+            s_vwap = None
+            s_sigma = None
+            s_bars_count = 0
+
+        # -------------------------------------------------------------
+        # 2. Rolling 24-Hour VWAP (96 bars lookback)
+        # -------------------------------------------------------------
+        r_window = min(len(bars), 96)
+        r_tps = tps[-r_window:]
+        r_vols = volumes[-r_window:]
+        r_cum_vol = np.sum(r_vols)
+        r_vwap = np.sum(r_tps * r_vols) / max(r_cum_vol, 1e-9)
+        r_var = np.sum(r_vols * ((r_tps - r_vwap) ** 2)) / max(r_cum_vol, 1e-9)
+        r_sigma = math.sqrt(max(0.0, r_var))
+
+        # Primary VWAP selection: prefer Session VWAP if >= 8 bars, else Rolling
+        primary_vwap = s_vwap if (s_vwap is not None and s_bars_count >= 8) else r_vwap
+        primary_sigma = s_sigma if (s_sigma is not None and s_bars_count >= 8) else r_sigma
+
+        vwap_z = (last_price - primary_vwap) / primary_sigma if primary_sigma > 1e-8 else 0.0
+
+        upper_1 = primary_vwap + primary_sigma
+        lower_1 = primary_vwap - primary_sigma
+        upper_2 = primary_vwap + 2.0 * primary_sigma
+        lower_2 = primary_vwap - 2.0 * primary_sigma
+        upper_3 = primary_vwap + 3.0 * primary_sigma
+        lower_3 = primary_vwap - 3.0 * primary_sigma
+
+        # -------------------------------------------------------------
+        # 3. Moving Averages (EMA 20, 50, 200)
+        # -------------------------------------------------------------
+        def calc_ema(arr: np.ndarray, period: int) -> float:
+            alpha = 2.0 / (period + 1.0)
+            ema = arr[0]
+            for val in arr[1:]:
+                ema = alpha * val + (1.0 - alpha) * ema
+            return float(ema)
+
+        ema_20 = calc_ema(closes, 20)
+        ema_50 = calc_ema(closes, 50)
+        ema_200 = calc_ema(closes, 200) if len(closes) >= 200 else calc_ema(closes, min(len(closes), 96))
+
+        # EMA 200 slope over past 12 bars (3 hours)
+        if len(closes) >= 212:
+            ema_200_prev12 = calc_ema(closes[:-12], 200)
+            ema_200_slope_pct = (ema_200 - ema_200_prev12) / ema_200_prev12 * 100.0
+        else:
+            ema_200_slope_pct = 0.0
+
+        # -------------------------------------------------------------
+        # 4. Average True Range (ATR 14)
+        # -------------------------------------------------------------
+        tr = [highs[0] - lows[0]]
+        for i in range(1, len(bars)):
+            tr.append(max(highs[i] - lows[i], abs(highs[i] - closes[i - 1]), abs(lows[i] - closes[i - 1])))
+        atr_14 = float(np.mean(tr[-14:]))
+
+        # -------------------------------------------------------------
+        # 5. Wilder RSI (14)
+        # -------------------------------------------------------------
+        diffs = np.diff(closes)
+        gains = np.maximum(diffs, 0.0)
+        losses = np.maximum(-diffs, 0.0)
+        if len(gains) >= 14:
+            avg_gain = float(np.mean(gains[-14:]))
+            avg_loss = float(np.mean(losses[-14:]))
+            rs = avg_gain / max(avg_loss, 1e-12)
+            rsi_14 = 100.0 - (100.0 / (1.0 + rs))
+        else:
+            rsi_14 = 50.0
+
+        # -------------------------------------------------------------
+        # 6. Swing Extremes (24h / 96 bars)
+        # -------------------------------------------------------------
+        h24 = float(np.max(highs[-96:]))
+        l24 = float(np.min(lows[-96:]))
+
+        return {
+            "last_price": float(last_price),
+            "session_vwap": float(s_vwap) if s_vwap else None,
+            "session_sigma": float(s_sigma) if s_sigma else None,
+            "session_bars": s_bars_count,
+            "rolling_vwap_24h": float(r_vwap),
+            "rolling_sigma_24h": float(r_sigma),
+            "active_vwap": float(primary_vwap),
+            "active_sigma": float(primary_sigma),
+            "vwap_z": float(vwap_z),
+            "upper_1sd": float(upper_1),
+            "lower_1sd": float(lower_1),
+            "upper_2sd": float(upper_2),
+            "lower_2sd": float(lower_2),
+            "upper_3sd": float(upper_3),
+            "lower_3sd": float(lower_3),
+            "ema_20": float(ema_20),
+            "ema_50": float(ema_50),
+            "ema_200": float(ema_200),
+            "ema_200_slope_pct": float(ema_200_slope_pct),
+            "atr_14": float(atr_14),
+            "atr_pct": float(atr_14 / last_price * 100.0),
+            "rsi_14": float(rsi_14),
+            "high_24h": h24,
+            "low_24h": l24,
+        }
+
+    def scan_vwap_opportunities(self, z_threshold: float = 1.75) -> List[Dict[str, Any]]:
+        """Identify assets stretched beyond +/- 2 SD from VWAP."""
+        if not self.cache:
+            self.sync_all()
+
+        opportunities = []
+        for asset, bars in self.cache.items():
+            if not bars:
+                continue
+            ind = self.compute_indicators(bars)
+            if not ind or "vwap_z" not in ind:
+                continue
+
+            z = ind["vwap_z"]
+            px = ind["last_price"]
+            vwap = ind["active_vwap"]
+            sigma = ind["active_sigma"]
+            atr = ind["atr_14"]
+            rsi = ind["rsi_14"]
+
+            # Extreme Overbought (>= +1.75 SD, target mean reversion SHORT)
+            if z >= z_threshold:
+                dist_pct = (px - vwap) / vwap * 100.0
+                opp = {
+                    "asset": asset,
+                    "direction": "SHORT",
+                    "bias": "EXTREME_OVERBOUGHT",
+                    "current_price": px,
+                    "vwap": vwap,
+                    "upper_2sd": ind["upper_2sd"],
+                    "vwap_z": round(z, 2),
+                    "dist_to_vwap_pct": round(dist_pct, 2),
+                    "rsi_14": round(rsi, 1),
+                    "atr_14": round(atr, 4),
+                    "suggested_sl": round(px + 1.5 * atr, 4),
+                    "suggested_tp": round(vwap, 4),
+                    "potential_r": round((px - vwap) / (1.5 * atr), 2) if atr > 0 else 0.0,
+                    "confluence": "Look for Ask Whale Walls + Long Squeeze Sweeps",
+                }
+                opportunities.append(opp)
+
+            # Extreme Oversold (<= -1.75 SD, target mean reversion LONG)
+            elif z <= -z_threshold:
+                dist_pct = (vwap - px) / vwap * 100.0
+                opp = {
+                    "asset": asset,
+                    "direction": "LONG",
+                    "bias": "EXTREME_OVERSOLD",
+                    "current_price": px,
+                    "vwap": vwap,
+                    "lower_2sd": ind["lower_2sd"],
+                    "vwap_z": round(z, 2),
+                    "dist_to_vwap_pct": round(dist_pct, 2),
+                    "rsi_14": round(rsi, 1),
+                    "atr_14": round(atr, 4),
+                    "suggested_sl": round(px - 1.5 * atr, 4),
+                    "suggested_tp": round(vwap, 4),
+                    "potential_r": round((vwap - px) / (1.5 * atr), 2) if atr > 0 else 0.0,
+                    "confluence": "Look for Bid Whale Walls + Short Squeeze Sweeps",
+                }
+                opportunities.append(opp)
+
+        # Sort by absolute deviation magnitude
+        opportunities.sort(key=lambda x: abs(x["vwap_z"]), reverse=True)
+        return opportunities
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Candle Persistence & Indicator Engine")
+    parser.add_argument("--sync", action="store_true", help="Sync all candles from MT5")
+    parser.add_argument("--scan", action="store_true", help="Scan for VWAP 2 SD opportunities")
+    parser.add_argument("--asset", type=str, default=None, help="Inspect specific asset")
+    args = parser.parse_args()
+
+    engine = CandleIndicatorEngine()
+
+    if args.asset:
+        res = engine.sync_candles(args.asset)
+        print(f"\n=== CANDLE AUDIT FOR {args.asset} ===")
+        print(f"Symbol: {res.get('symbol')} | Bars: {res.get('bar_count')} | Latest Close: {res.get('latest_close')}")
+        print(f"Range: {res.get('first_bar_utc')} -> {res.get('latest_bar_utc')} UTC")
+        print(f"Gaps Detected: {res.get('gap_count')}")
+        if res.get("gaps"):
+            for g in res["gaps"]:
+                print(f"  Gap: {g['start_utc']} to {g['end_utc']} ({g['missing_bars']} bars)")
+        ind = res.get("indicators", {})
+        print("\n--- INDICATORS ---")
+        print(f"Price: {ind.get('last_price')} | VWAP: {ind.get('active_vwap'):.2f} (Z: {ind.get('vwap_z'):.2f} SD)")
+        print(f"Bands: Lower 2 SD = {ind.get('lower_2sd'):.2f} | Upper 2 SD = {ind.get('upper_2sd'):.2f}")
+        print(f"EMA 200: {ind.get('ema_200'):.2f} (Slope: {ind.get('ema_200_slope_pct'):.3f}%) | RSI: {ind.get('rsi_14'):.1f} | ATR: {ind.get('atr_14'):.2f}")
+        return
+
+    print("\n[SYNC] Fetching and auditing completed 15m candles across universe...")
+    t0 = time.time()
+    results = engine.sync_all()
+    t1 = time.time()
+    print(f"[OK] Synced {len(results)} assets in {(t1 - t0):.2f}s.\n")
+
+    print(f"{'Asset':<8} {'Price':<10} {'VWAP':<10} {'VWAP Z':<8} {'Upper 2SD':<10} {'Lower 2SD':<10} {'RSI':<6} {'Bars':<6} {'Gaps':<5}")
+    print("-" * 80)
+    for asset, r in results.items():
+        if not r.get("success"):
+            print(f"{asset:<8} ERROR: {r.get('error')}")
+            continue
+        ind = r.get("indicators", {})
+        px = ind.get("last_price", 0.0)
+        vwap = ind.get("active_vwap", 0.0)
+        z = ind.get("vwap_z", 0.0)
+        u2 = ind.get("upper_2sd", 0.0)
+        l2 = ind.get("lower_2sd", 0.0)
+        rsi = ind.get("rsi_14", 50.0)
+        bars = r.get("bar_count", 0)
+        gaps = r.get("gap_count", 0)
+        print(f"{asset:<8} {px:<10.2f} {vwap:<10.2f} {z:<8.2f} {u2:<10.2f} {l2:<10.2f} {rsi:<6.1f} {bars:<6} {gaps:<5}")
+
+    print("\n[SCAN] Scanning for extreme VWAP extensions (|Z| >= 1.75 SD)...")
+    opps = engine.scan_vwap_opportunities()
+    if not opps:
+        print("No assets currently stretched beyond +/- 1.75 SD from VWAP.")
+    else:
+        print(f"Found {len(opps)} extreme VWAP opportunities:\n")
+        for op in opps:
+            print(f"  * {op['asset']} {op['direction']} ({op['bias']}):")
+            print(f"    Current: {op['current_price']} | VWAP: {op['vwap']:.2f} | Z-Score: {op['vwap_z']} SD")
+            print(f"    Suggested SL: {op['suggested_sl']} | Suggested TP: {op['suggested_tp']} | R:R: +{op['potential_r']}R")
+            print(f"    Notes: {op['confluence']}\n")
+
+
+if __name__ == "__main__":
+    main()
+
+```
+
+---
+
+### 6. DELIVERABLES REQUESTED FROM OX ALPHA / ARENA.AI
+
+Conduct an institutional architectural review and provide complete, unabridged production artifacts:
+
+1. Complete Production Source Code for `Terminal/Zero_Cost_Intelligence_Engine.py`:
+   - Unified asynchronous Python 3.11+ implementation combining all 5 data pillars (Coinbase WebSocket, Binance Futures WebSocket with @forceOrder liquidations, Hyperliquid DEX WebSocket, Binance Data Vision bulk downloader, free RPC on-chain whale listener, and free Macro/ETF/Coinbase Premium calculations).
+   - Resilient WebSocket connection management: automatic exponential backoff reconnection, heartbeat keep-alive pings, and message buffering.
+   - Low-latency in-memory data store with thread-safe access for the 15-minute trading loop.
+2. Mathematical Formulation of the Synthetic Liquidation Heatmap:
+   - Formal mathematical model for reconstructing resting liquidation density and calculating Liquidation Max Pain and FAFR directly from public trade and open interest deltas.
+3. Comprehensive Unit & Integration Test Suite (`Tests/Test_Zero_Cost_Intelligence.py`):
+   - 100% offline, deterministic tests using mocked WebSocket frames and mocked RPC responses.
+   - Assertions verifying monotonic timestamp ordering, zero lookahead bias, and sub-millisecond bus query latency.
+4. Integration Guide:
+   - Step-by-step instructions for mutating `Terminal/Market_Intelligence.py` and `Terminal/Risk_Sizing_Engine.py` to seamlessly ingest the new `IntelligenceBus` feeds while preserving all existing risk invariants.

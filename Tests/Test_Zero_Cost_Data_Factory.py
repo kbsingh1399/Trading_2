@@ -651,6 +651,7 @@ def test_market_intelligence_reports_the_factory_macro_block():
     engine = MarketIntelligenceEngine(clock=lambda: NOW)
     engine.attach_data_factory(factory)
     factory.fng.cached = {"value": 40, "classification": "Fear", "as_of": int(NOW)}
+    factory.fng.last_fetch = NOW
     report = engine.get_market_intelligence_report()
     assert "data_factory" in report
     assert report["data_factory"]["fear_greed"]["value"] == 40

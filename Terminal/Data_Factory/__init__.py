@@ -24,7 +24,9 @@ from Terminal.Data_Factory.factory import ZeroCostDataFactory, VERSION
 from Terminal.Data_Factory.crosscheck import CrossSourceValidator, CrossCheckPolicy
 from Terminal.Data_Factory.live import RealtimeRunner, LivePolicy
 
-__all__ = ["ZeroCostDataFactory", "IntelligenceBus", "RingBuffer",
+DataFactory = ZeroCostDataFactory
+
+__all__ = ["DataFactory", "ZeroCostDataFactory", "IntelligenceBus", "RingBuffer",
            "ReconnectingWebsocket", "parse_binance_trade", "parse_binance_depth",
            "parse_binance_force_order", "parse_coinbase_match", "CoinbaseBookAssembler",
            "parse_hyperliquid", "LiquidationReconstructionEngine", "StopClusterEngine",

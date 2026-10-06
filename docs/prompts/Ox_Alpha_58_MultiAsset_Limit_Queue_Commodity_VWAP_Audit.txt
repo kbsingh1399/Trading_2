@@ -1,0 +1,3091 @@
+# ARENA.AI / OX ALPHA INSTITUTIONAL QUANT AUDIT & STRATEGY CONSULTATION SPECIFICATION
+## MISSION: MULTI-ASSET LIMIT ORDER QUEUE GOVERNANCE, COMMODITY TICK-VOLUME VWAP FUSION & ASYMMETRIC EXIT ARCHITECTURE FOR 15-MINUTE AUTONOMOUS MT5 AI TRADER
+
+### 1. SYSTEM IDENTITY & PRODUCTION PROVENANCE
+You are Ox Alpha / Arena.ai, the supreme quantitative trading systems architect, microstructure econometrician, and institutional C++/Python execution engineer.
+
+You are conducting an exhaustive, institutional architectural audit and providing world-class mathematical recommendations for our live autonomous 15-minute candle trading system (OMNI) deployed via native IPC to MetaTrader 5 (Blueberry Markets Account 5064568).
+
+### 2. DATASET, FRICTIONS & PRODUCTION MANDATES
+1. **Universe:** 14 active tradeable assets (BTC, ETH, SOL, BNB, XRP, ADA, DOGE, TRX, DOT, LINK, BCH, SP500, GOLD, SILVER).
+2. **Historical Validation:** 18 Binance perpetuals, 3.47M 15m candles (2020-2026), 0 nulls, monotonic. Certified across 20/20 non-overlapping out-of-sample (OOS) walk-forward windows.
+3. **Friction Enforcement:** Mandatory 41 bps round-trip friction on notional (8 bps taker fees + 10 bps entry slippage + 15 bps stop slippage + spread). On Gold (`XAUUSD.pi`), spread is ultra-tight at 0.24 bps.
+4. **Capital & Risk Architecture (5,000.00 USD Initial Capital):**
+   - Live MT5 Balance: 4,841.23 USD.
+   - Hard Drawdown Floor: 4,775.00 USD (4.50% hard DD limit / 225.00 USD max allowable drawdown from 5,000.00 USD peak).
+   - Equity Cushion Above Floor: +66.23 USD.
+   - Drawdown Defense Risk per Trade: 10.00 to 12.00 USD (0.20% to 0.24% on 5,000 USD).
+   - Max Concurrent Open (Filled) Positions: Exactly 2 across all assets simultaneously.
+   - Decoupled Staged Limit Queue: Up to 5 resting limits permitted across uncorrelated assets under First-Fill OCO rules.
+
+---
+
+### 3. OUR COMPLETE ANALYSIS & EXECUTION CHAIN
+Our autonomous quantitative architecture operates as a dual-tier, event-driven trading engine:
+
+```
+[ Tier 1: Real-Time Execution Daemon (Ticking every 10s) ]
+  ├── MT5 Position & Deal Reconciliation
+  ├── GTC Order Persistence Governor (Heartbeat check on resting limits & anchor walls)
+  └── First-Fill OCO Governor (Cancels excess pending orders once 2 positions fill)
+
+[ Tier 2: 14th-Minute Candle Coordinator Swarm (Wake-up at :14, :29, :44, :59 UTC) ]
+  ├── Step 1: Candle Indicator Engine
+  │     ├── Continuous 15m OHLCV Ingestion (Data/Candles/{ASSET}_15m.parquet)
+  │     ├── Monotonic Gap Verification (dt == 900s assertion)
+  │     ├── Session VWAP (00:00 UTC Anchor) & Rolling 24h VWAP Envelopes (+/-1, 2, 3 SD)
+  │     └── Extreme Deviation Scanner (|vwap_z| >= 1.75 SD)
+  ├── Step 2: Orderbook Geometry & L3 Liquidity Clustering
+  │     ├── REST JSON Ingestion from Live Hyperliquid/Binance Feed
+  │     ├── Top-20 Bid/Ask Cluster Aggregation (Min 150k USD, Mega Whales >= 2.0M USD)
+  │     ├── Dynamic Anchor Wall Filtering (Persistence >= 180s, Distance <= 1.2% ATR)
+  │     └── Structural Take-Profit Snapping (Clamps TP ahead of overhead ask clusters)
+  ├── Step 3: Sleeve Classification & Entry Signal Synthesis
+  │     ├── Sleeve S1 (Pullback Reversal): Front-run verified absorption walls post-liquidity sweep
+  │     └── Sleeve T1 (Donchian Breakout): Aggressive market entry into liquidity vacuums
+  ├── Step 4: Quantitative Risk & Capacity Gating
+  │     ├── Covariance & Drawdown Floor Verification (Total filled risk <= 22.05 USD vs 66.23 USD cushion)
+  │     ├── Friction-Adjusted Fuel Ratio Check (R_eff >= 1.50 net of 41 bps friction)
+  │     └── Dynamic Order Persistence Governor (Calculates dynamic survival TTL: 2h - 6h)
+  └── Step 5: Native MT5 IPC Staging & Management
+        ├── Persistent GTC Limit Order Placement with Broker-Verified SL & TP
+        └── Dynamic Ratchet (BE lock @ +0.80R, Profit lock @ +1.50R, Structural Exit @ +2.4R - +2.9R)
+```
+
+---
+
+### 4. CURRENT LIVE MARKET EXPOSURE & ACTIVE RESTING LIMITS
+As of October 6, 2026 13:00 UTC, the system has 0 open positions and 3 high-conviction resting limit orders staged on MetaTrader 5 Account 5064568:
+
+1. **Ticket #18572624 — SOL Buy Limit @ 118.50 USD:**
+   - Volume: 0.10 lots | SL: 117.95 USD | TP: 120.60 USD
+   - Risk: 10.36 USD | Expected Reward: +16.14 USD (+1.56R)
+   - Setup: Previous Day Low (PDL) Sweep Reclaim.
+   - Anchor Defense: 8.68M USD whale bid floor resting at 118.41–118.45 USD.
+
+2. **Ticket #18573320 — ETH Sell Limit @ 2,732.80 USD:**
+   - Volume: 0.55 lots | SL: 2,741.50 USD | TP: 2,705.00 USD
+   - Risk: 10.95 USD | Expected Reward: +9.13 USD (+1.48R)
+   - Setup: Mean-Reversion Short against overhead resistance.
+   - Anchor Defense: 25.52M USD whale ask corridor resting at 2,728.10–2,751.10 USD.
+
+3. **Ticket #18576872 — GOLD (XAUUSD.pi) Sell Limit @ 4,176.00 USD:**
+   - Volume: 0.01 lots (1.0 oz) | SL: 4,186.50 USD | TP: 4,143.00 USD
+   - Risk: 11.10 USD | Expected Reward: +33.00 USD (+2.97R)
+   - Setup: Extreme Session VWAP Deviation (+2.11 SD) & Session High Liquidity Rejection.
+   - Anchor Defense: Session VWAP +2 SD Upper Band Envelope (4,176.09 USD).
+
+---
+
+### 5. THE FOUR HIGH-LEVEL ARCHITECTURAL & QUANTITATIVE QUESTIONS FOR ARENA.AI
+We require your deep mathematical analysis, architectural critique, and concrete Python/C++ code recommendations for the following 4 pillars:
+
+#### Question 1: Multi-Asset Limit Order Queue Governance & Microsecond Race Conditions
+We decoupled resting limits (`staged_limits <= 5`) from filled positions (`positions < 2`). This allows simultaneous stalking across uncorrelated assets.
+- **Microsecond Fill Collisions:** If market volatility spikes and 2 orders fill simultaneously across different assets, how should the daemon handle execution races if a 3rd order fills before the IPC cancel call completes?
+- **Queue Priority & Hysteresis:** When an underlying whale wall shifts slightly (e.g. SOL whale moves from 118.41 to 118.45 USD), what is the optimal mathematical threshold for triggering a cancel-replace vs maintaining our existing broker queue priority?
+- **Adverse Selection Protection:** What orderbook flow metrics (e.g. orderbook book-thinning velocity, cancellation intensity) should immediately abort a resting limit order *before* price reaches the level?
+
+#### Question 2: Mathematical Fusion of Commodity Tick-Volume VWAP with Crypto L2/L3 Orderflow
+On Binance/Hyperliquid crypto perps, we have full L2/L3 tick ladders and whale addresses. On MetaTrader 5 CFDs (Gold `XAUUSD.pi`, Silver `XAGUSD.pi`, SP500 `US500.cash`), we have no resting L3 depth, but we have ultra-high tick volume (7,000+ ticks per 15m candle) and sub-tick execution.
+- How can we mathematically fuse **Session Volume Profile (Point of Control, Value Area High/Low)** and **Volume-Weighted Average Price Standard Deviation Bands** with microstructure price rejection (e.g. pin bar wick volume ratio, volume delta proxy) to optimize mean-reversion entries in Gold/Silver?
+- Is standard deviation of VWAP sufficient, or should we employ an anchored Volume Variance or Median Absolute Deviation (MAD) band to prevent band ballooning during news volatility spikes?
+
+#### Question 3: Asymmetric Exit Ratchets for Commodities vs Crypto
+Crypto exhibits high volatility clustering, fat-tailed pullbacks, and sharp mean-reversions. Gold often exhibits directional session trends (London/NY breakout) with clean, persistent trending.
+- Our current piecewise ratchet is uniform: BE @ +0.80R, Profit Lock @ +1.50R, Target @ +2.4R - +2.9R, 24-bar time decay.
+- How should the ratchet be dynamically conditioned on asset class, Garman-Klass historical volatility, and session regime?
+- Specifically, how should Gold stops trail—structural swing pivots vs VWAP rolling bands vs ATR ratchets?
+
+#### Question 4: Offline Parquet Ingestion, Causal Synchronization & Gap Repair
+Our `Candle_Indicator_Engine.py` dumps 15m OHLCV bars into monotonic Parquet files and asserts continuous 900-second step intervals.
+- If the MT5 terminal temporarily disconnects or misses weekend gaps in commodities, how should the pipeline causally reconcile historical timestamps without leaking future bars into rolling indicators?
+- What is the most efficient, zero-latency Polars/Numpy streaming architecture to maintain live VWAP and indicators in memory while ensuring 100% crash recovery from disk?
+
+---
+
+### 6. COMPLETE UNABRIDGED SOURCE CODE OF ACTIVE PRODUCTION MODULES
+
+
+================================================================================
+### MODULE 1: CANDLE INDICATOR ENGINE (OHLCV, VWAP & GAP AUDITOR)
+### FILE: Terminal/Candle_Indicator_Engine.py
+================================================================================
+```python
+"""
+Terminal/Candle_Indicator_Engine.py
+===================================
+Institutional Historical Candle Persistence, Gap-Detection & Indicator Engine.
+
+Key Responsibilities:
+1. Persists completed 15m OHLCV candles to Data/Candles/{ASSET}_15m.parquet.
+2. Performs gap audits: detects missing candles, non-monotonic timestamps, and weekend/session halts.
+3. Computes deterministic causal indicators:
+   - True Daily Session VWAP (resets 00:00 UTC) with +/-1, +/-2, +/-3 SD bands and vwap_z.
+   - Rolling 24h VWAP (96-bar window) with continuous volatility bands.
+   - EMA 20, EMA 50, EMA 200 and 3-hour slope.
+   - ATR(14) and Wilder RSI(14).
+4. Mean-Reversion Scanner: Identifies extreme deviations (>= +2 SD or <= -2 SD from VWAP)
+   for Gold, Silver, and Institutional Crypto Perpetuals.
+"""
+from __future__ import annotations
+
+import argparse
+import math
+import pathlib
+import sys
+import time
+from concurrent.futures import ThreadPoolExecutor
+from datetime import datetime, timezone
+from typing import Any, Dict, List, Optional, Tuple
+
+import numpy as np
+import pandas as pd
+
+ROOT = pathlib.Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from Terminal.Asset_Universe import UNIVERSE, canonical_asset
+from Terminal.MT5_Execution_Bridge import MT5ExecutionBridge
+
+CANDLE_DIR = ROOT / "Data" / "Candles"
+CANDLE_DIR.mkdir(parents=True, exist_ok=True)
+
+
+class CandleIndicatorEngine:
+    def __init__(
+        self,
+        bridge: Optional[MT5ExecutionBridge] = None,
+        storage_dir: pathlib.Path = CANDLE_DIR,
+        universe: Tuple[str, ...] = UNIVERSE,
+    ):
+        self.bridge = bridge or MT5ExecutionBridge(5064568)
+        self.storage_dir = pathlib.Path(storage_dir)
+        self.storage_dir.mkdir(parents=True, exist_ok=True)
+        self.universe = list(universe)
+        self.cache: Dict[str, List[Dict[str, Any]]] = {}
+
+    def sync_candles(self, asset: str, count: int = 512) -> Dict[str, Any]:
+        """Fetch completed 15m bars from MT5, audit gaps, persist to disk."""
+        asset = canonical_asset(asset)
+        symbol = self.bridge.resolve_symbol(asset)
+        if not symbol:
+            return {"asset": asset, "success": False, "error": f"Symbol unresolved for {asset}"}
+
+        bars = self.bridge.get_recent_bars(symbol, count=count)
+        if not bars:
+            return {"asset": asset, "success": False, "error": "No bars returned by broker"}
+
+        # Sort chronologically by open time
+        ordered = sorted(bars, key=lambda b: float(b.get("time", 0.0)))
+
+        # Gap detection & sanity audit
+        times = [float(b["time"]) for b in ordered]
+        gaps: List[Dict[str, Any]] = []
+        for i in range(1, len(times)):
+            delta = times[i] - times[i - 1]
+            if delta > 900.0:
+                missing_bars = int(round((delta - 900.0) / 900.0))
+                gaps.append({
+                    "start_utc": datetime.fromtimestamp(times[i - 1], tz=timezone.utc).strftime("%Y-%m-%d %H:%M"),
+                    "end_utc": datetime.fromtimestamp(times[i], tz=timezone.utc).strftime("%Y-%m-%d %H:%M"),
+                    "delta_seconds": int(delta),
+                    "missing_bars": missing_bars,
+                })
+
+        # Save to disk as Parquet for durable historical cache
+        df = pd.DataFrame(ordered)
+        df["datetime_utc"] = pd.to_datetime(df["time"], unit="s", utc=True)
+        parquet_file = self.storage_dir / f"{asset}_15m.parquet"
+        df.to_parquet(parquet_file, index=False)
+
+        self.cache[asset] = ordered
+        indicators = self.compute_indicators(ordered)
+
+        return {
+            "asset": asset,
+            "symbol": symbol,
+            "success": True,
+            "bar_count": len(ordered),
+            "first_bar_utc": datetime.fromtimestamp(times[0], tz=timezone.utc).strftime("%Y-%m-%d %H:%M"),
+            "latest_bar_utc": datetime.fromtimestamp(times[-1], tz=timezone.utc).strftime("%Y-%m-%d %H:%M"),
+            "latest_close": ordered[-1]["close"],
+            "gap_count": len(gaps),
+            "gaps": gaps[-5:],  # Last 5 gaps if any (e.g. weekend closures on Gold/Silver)
+            "indicators": indicators,
+        }
+
+    def sync_all(self, count: int = 512, max_workers: int = 6) -> Dict[str, Dict[str, Any]]:
+        """Sync all assets in the universe concurrently."""
+        results: Dict[str, Dict[str, Any]] = {}
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
+            future_to_asset = {
+                executor.submit(self.sync_candles, asset, count): asset for asset in self.universe
+            }
+            for future in future_to_asset:
+                asset = future_to_asset[future]
+                try:
+                    results[asset] = future.result()
+                except Exception as exc:
+                    results[asset] = {"asset": asset, "success": False, "error": str(exc)}
+        return results
+
+    @staticmethod
+    def compute_indicators(bars: List[Dict[str, Any]]) -> Dict[str, Any]:
+        """Compute Session VWAP, Rolling VWAP, EMAs, ATR, RSI from historical bars."""
+        if len(bars) < 14:
+            return {}
+
+        closes = np.array([float(b["close"]) for b in bars])
+        highs = np.array([float(b["high"]) for b in bars])
+        lows = np.array([float(b["low"]) for b in bars])
+        times = np.array([float(b["time"]) for b in bars])
+        volumes = np.array([float(b.get("volume") or b.get("tick_volume") or 1.0) for b in bars])
+
+        # Typical price
+        tps = (highs + lows + closes) / 3.0
+        last_price = closes[-1]
+        now_ts = times[-1] + 900.0  # Close of latest bar
+
+        # -------------------------------------------------------------
+        # 1. Daily Session VWAP (Anchored to 00:00:00 UTC of latest bar)
+        # -------------------------------------------------------------
+        latest_dt = datetime.fromtimestamp(times[-1], tz=timezone.utc)
+        session_start_ts = datetime(
+            latest_dt.year, latest_dt.month, latest_dt.day, 0, 0, 0, tzinfo=timezone.utc
+        ).timestamp()
+
+        session_mask = times >= session_start_ts
+        if np.sum(session_mask) >= 3:
+            s_tps = tps[session_mask]
+            s_vols = volumes[session_mask]
+            s_cum_vol = np.sum(s_vols)
+            s_vwap = np.sum(s_tps * s_vols) / max(s_cum_vol, 1e-9)
+            s_var = np.sum(s_vols * ((s_tps - s_vwap) ** 2)) / max(s_cum_vol, 1e-9)
+            s_sigma = math.sqrt(max(0.0, s_var))
+            s_bars_count = int(np.sum(session_mask))
+        else:
+            # Fall back to rolling 96 bars if early in session (< 1h)
+            s_vwap = None
+            s_sigma = None
+            s_bars_count = 0
+
+        # -------------------------------------------------------------
+        # 2. Rolling 24-Hour VWAP (96 bars lookback)
+        # -------------------------------------------------------------
+        r_window = min(len(bars), 96)
+        r_tps = tps[-r_window:]
+        r_vols = volumes[-r_window:]
+        r_cum_vol = np.sum(r_vols)
+        r_vwap = np.sum(r_tps * r_vols) / max(r_cum_vol, 1e-9)
+        r_var = np.sum(r_vols * ((r_tps - r_vwap) ** 2)) / max(r_cum_vol, 1e-9)
+        r_sigma = math.sqrt(max(0.0, r_var))
+
+        # Primary VWAP selection: prefer Session VWAP if >= 8 bars, else Rolling
+        primary_vwap = s_vwap if (s_vwap is not None and s_bars_count >= 8) else r_vwap
+        primary_sigma = s_sigma if (s_sigma is not None and s_bars_count >= 8) else r_sigma
+
+        vwap_z = (last_price - primary_vwap) / primary_sigma if primary_sigma > 1e-8 else 0.0
+
+        upper_1 = primary_vwap + primary_sigma
+        lower_1 = primary_vwap - primary_sigma
+        upper_2 = primary_vwap + 2.0 * primary_sigma
+        lower_2 = primary_vwap - 2.0 * primary_sigma
+        upper_3 = primary_vwap + 3.0 * primary_sigma
+        lower_3 = primary_vwap - 3.0 * primary_sigma
+
+        # -------------------------------------------------------------
+        # 3. Moving Averages (EMA 20, 50, 200)
+        # -------------------------------------------------------------
+        def calc_ema(arr: np.ndarray, period: int) -> float:
+            alpha = 2.0 / (period + 1.0)
+            ema = arr[0]
+            for val in arr[1:]:
+                ema = alpha * val + (1.0 - alpha) * ema
+            return float(ema)
+
+        ema_20 = calc_ema(closes, 20)
+        ema_50 = calc_ema(closes, 50)
+        ema_200 = calc_ema(closes, 200) if len(closes) >= 200 else calc_ema(closes, min(len(closes), 96))
+
+        # EMA 200 slope over past 12 bars (3 hours)
+        if len(closes) >= 212:
+            ema_200_prev12 = calc_ema(closes[:-12], 200)
+            ema_200_slope_pct = (ema_200 - ema_200_prev12) / ema_200_prev12 * 100.0
+        else:
+            ema_200_slope_pct = 0.0
+
+        # -------------------------------------------------------------
+        # 4. Average True Range (ATR 14)
+        # -------------------------------------------------------------
+        tr = [highs[0] - lows[0]]
+        for i in range(1, len(bars)):
+            tr.append(max(highs[i] - lows[i], abs(highs[i] - closes[i - 1]), abs(lows[i] - closes[i - 1])))
+        atr_14 = float(np.mean(tr[-14:]))
+
+        # -------------------------------------------------------------
+        # 5. Wilder RSI (14)
+        # -------------------------------------------------------------
+        diffs = np.diff(closes)
+        gains = np.maximum(diffs, 0.0)
+        losses = np.maximum(-diffs, 0.0)
+        if len(gains) >= 14:
+            avg_gain = float(np.mean(gains[-14:]))
+            avg_loss = float(np.mean(losses[-14:]))
+            rs = avg_gain / max(avg_loss, 1e-12)
+            rsi_14 = 100.0 - (100.0 / (1.0 + rs))
+        else:
+            rsi_14 = 50.0
+
+        # -------------------------------------------------------------
+        # 6. Swing Extremes (24h / 96 bars)
+        # -------------------------------------------------------------
+        h24 = float(np.max(highs[-96:]))
+        l24 = float(np.min(lows[-96:]))
+
+        return {
+            "last_price": float(last_price),
+            "session_vwap": float(s_vwap) if s_vwap else None,
+            "session_sigma": float(s_sigma) if s_sigma else None,
+            "session_bars": s_bars_count,
+            "rolling_vwap_24h": float(r_vwap),
+            "rolling_sigma_24h": float(r_sigma),
+            "active_vwap": float(primary_vwap),
+            "active_sigma": float(primary_sigma),
+            "vwap_z": float(vwap_z),
+            "upper_1sd": float(upper_1),
+            "lower_1sd": float(lower_1),
+            "upper_2sd": float(upper_2),
+            "lower_2sd": float(lower_2),
+            "upper_3sd": float(upper_3),
+            "lower_3sd": float(lower_3),
+            "ema_20": float(ema_20),
+            "ema_50": float(ema_50),
+            "ema_200": float(ema_200),
+            "ema_200_slope_pct": float(ema_200_slope_pct),
+            "atr_14": float(atr_14),
+            "atr_pct": float(atr_14 / last_price * 100.0),
+            "rsi_14": float(rsi_14),
+            "high_24h": h24,
+            "low_24h": l24,
+        }
+
+    def scan_vwap_opportunities(self, z_threshold: float = 1.75) -> List[Dict[str, Any]]:
+        """Identify assets stretched beyond +/- 2 SD from VWAP."""
+        if not self.cache:
+            self.sync_all()
+
+        opportunities = []
+        for asset, bars in self.cache.items():
+            if not bars:
+                continue
+            ind = self.compute_indicators(bars)
+            if not ind or "vwap_z" not in ind:
+                continue
+
+            z = ind["vwap_z"]
+            px = ind["last_price"]
+            vwap = ind["active_vwap"]
+            sigma = ind["active_sigma"]
+            atr = ind["atr_14"]
+            rsi = ind["rsi_14"]
+
+            # Extreme Overbought (>= +1.75 SD, target mean reversion SHORT)
+            if z >= z_threshold:
+                dist_pct = (px - vwap) / vwap * 100.0
+                opp = {
+                    "asset": asset,
+                    "direction": "SHORT",
+                    "bias": "EXTREME_OVERBOUGHT",
+                    "current_price": px,
+                    "vwap": vwap,
+                    "upper_2sd": ind["upper_2sd"],
+                    "vwap_z": round(z, 2),
+                    "dist_to_vwap_pct": round(dist_pct, 2),
+                    "rsi_14": round(rsi, 1),
+                    "atr_14": round(atr, 4),
+                    "suggested_sl": round(px + 1.5 * atr, 4),
+                    "suggested_tp": round(vwap, 4),
+                    "potential_r": round((px - vwap) / (1.5 * atr), 2) if atr > 0 else 0.0,
+                    "confluence": "Look for Ask Whale Walls + Long Squeeze Sweeps",
+                }
+                opportunities.append(opp)
+
+            # Extreme Oversold (<= -1.75 SD, target mean reversion LONG)
+            elif z <= -z_threshold:
+                dist_pct = (vwap - px) / vwap * 100.0
+                opp = {
+                    "asset": asset,
+                    "direction": "LONG",
+                    "bias": "EXTREME_OVERSOLD",
+                    "current_price": px,
+                    "vwap": vwap,
+                    "lower_2sd": ind["lower_2sd"],
+                    "vwap_z": round(z, 2),
+                    "dist_to_vwap_pct": round(dist_pct, 2),
+                    "rsi_14": round(rsi, 1),
+                    "atr_14": round(atr, 4),
+                    "suggested_sl": round(px - 1.5 * atr, 4),
+                    "suggested_tp": round(vwap, 4),
+                    "potential_r": round((vwap - px) / (1.5 * atr), 2) if atr > 0 else 0.0,
+                    "confluence": "Look for Bid Whale Walls + Short Squeeze Sweeps",
+                }
+                opportunities.append(opp)
+
+        # Sort by absolute deviation magnitude
+        opportunities.sort(key=lambda x: abs(x["vwap_z"]), reverse=True)
+        return opportunities
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Candle Persistence & Indicator Engine")
+    parser.add_argument("--sync", action="store_true", help="Sync all candles from MT5")
+    parser.add_argument("--scan", action="store_true", help="Scan for VWAP 2 SD opportunities")
+    parser.add_argument("--asset", type=str, default=None, help="Inspect specific asset")
+    args = parser.parse_args()
+
+    engine = CandleIndicatorEngine()
+
+    if args.asset:
+        res = engine.sync_candles(args.asset)
+        print(f"\n=== CANDLE AUDIT FOR {args.asset} ===")
+        print(f"Symbol: {res.get('symbol')} | Bars: {res.get('bar_count')} | Latest Close: {res.get('latest_close')}")
+        print(f"Range: {res.get('first_bar_utc')} -> {res.get('latest_bar_utc')} UTC")
+        print(f"Gaps Detected: {res.get('gap_count')}")
+        if res.get("gaps"):
+            for g in res["gaps"]:
+                print(f"  Gap: {g['start_utc']} to {g['end_utc']} ({g['missing_bars']} bars)")
+        ind = res.get("indicators", {})
+        print("\n--- INDICATORS ---")
+        print(f"Price: {ind.get('last_price')} | VWAP: {ind.get('active_vwap'):.2f} (Z: {ind.get('vwap_z'):.2f} SD)")
+        print(f"Bands: Lower 2 SD = {ind.get('lower_2sd'):.2f} | Upper 2 SD = {ind.get('upper_2sd'):.2f}")
+        print(f"EMA 200: {ind.get('ema_200'):.2f} (Slope: {ind.get('ema_200_slope_pct'):.3f}%) | RSI: {ind.get('rsi_14'):.1f} | ATR: {ind.get('atr_14'):.2f}")
+        return
+
+    print("\n[SYNC] Fetching and auditing completed 15m candles across universe...")
+    t0 = time.time()
+    results = engine.sync_all()
+    t1 = time.time()
+    print(f"[OK] Synced {len(results)} assets in {(t1 - t0):.2f}s.\n")
+
+    print(f"{'Asset':<8} {'Price':<10} {'VWAP':<10} {'VWAP Z':<8} {'Upper 2SD':<10} {'Lower 2SD':<10} {'RSI':<6} {'Bars':<6} {'Gaps':<5}")
+    print("-" * 80)
+    for asset, r in results.items():
+        if not r.get("success"):
+            print(f"{asset:<8} ERROR: {r.get('error')}")
+            continue
+        ind = r.get("indicators", {})
+        px = ind.get("last_price", 0.0)
+        vwap = ind.get("active_vwap", 0.0)
+        z = ind.get("vwap_z", 0.0)
+        u2 = ind.get("upper_2sd", 0.0)
+        l2 = ind.get("lower_2sd", 0.0)
+        rsi = ind.get("rsi_14", 50.0)
+        bars = r.get("bar_count", 0)
+        gaps = r.get("gap_count", 0)
+        print(f"{asset:<8} {px:<10.2f} {vwap:<10.2f} {z:<8.2f} {u2:<10.2f} {l2:<10.2f} {rsi:<6.1f} {bars:<6} {gaps:<5}")
+
+    print("\n[SCAN] Scanning for extreme VWAP extensions (|Z| >= 1.75 SD)...")
+    opps = engine.scan_vwap_opportunities()
+    if not opps:
+        print("No assets currently stretched beyond +/- 1.75 SD from VWAP.")
+    else:
+        print(f"Found {len(opps)} extreme VWAP opportunities:\n")
+        for op in opps:
+            print(f"  * {op['asset']} {op['direction']} ({op['bias']}):")
+            print(f"    Current: {op['current_price']} | VWAP: {op['vwap']:.2f} | Z-Score: {op['vwap_z']} SD")
+            print(f"    Suggested SL: {op['suggested_sl']} | Suggested TP: {op['suggested_tp']} | R:R: +{op['potential_r']}R")
+            print(f"    Notes: {op['confluence']}\n")
+
+
+if __name__ == "__main__":
+    main()
+
+```
+
+
+================================================================================
+### MODULE 2: ORDER PERSISTENCE GOVERNOR (DYNAMIC GTC SURVIVAL & WALL DEFENSE)
+### FILE: Terminal/Order_Persistence_Governor.py
+================================================================================
+```python
+"""Order Persistence & TTL Governor for resting limit orders (Incident A).
+
+The governor owns the lifecycle of *persistent* (GTC) limit orders that rest
+for hours ahead of verified whale walls. The 15-minute decision cadence in
+``Omni_Trader.evaluate_market`` is untouched: staging still happens in minute
+14, but the resting order is then managed continuously (every ``run`` loop
+tick, ~1s) by this component, which is the single authority for:
+
+  * Dynamic TTL: an exponential wall-survival horizon (see
+    ``Orderbook_Structure.hazard_ttl``), renewed monotonically while the
+    anchor wall persists, hard-capped at ``ttl_max_sec`` after staging.
+  * Wall tracking: cancel when the primary anchor wall is pulled or thinned
+    below ``pull_ratio`` (adverse-selection guard), and cancel/replace when
+    the wall *shifts* within ``replace_shift_bps`` while still qualifying.
+  * Drift bounds: cancel when price wanders further than ``drift_atr`` * ATR
+    from the limit with no surviving anchor (1.5x ATR) or with one (3.0x).
+  * Fill-race safety: a cancel that comes back "order unknown" is treated as
+    UNCERTAIN and never followed by a replacement in the same cycle; the
+    reconciler in ``Omni_Trader._reconcile`` owns disappearance semantics.
+
+The governor never sizes trades and never places orders that were not already
+vetted by the deterministic candidate pipeline; a replacement preserves the
+original R-geometry (same volume, same R distance, same hurdle), so USD risk
+and friction exposure are invariant across a replace.
+"""
+from __future__ import annotations
+import math
+import time
+
+from Terminal.Orderbook_Structure import (wall_clusters, hazard_ttl, wall_liveness,
+                                          DEFAULT_ENTRY_WALL_MIN_USD)
+from Terminal.Risk_Sizing_Engine import number, epoch
+
+
+def _round_to_tick(price, tick, direction_up):
+    if tick <= 0:
+        return float(price)
+    steps = price / tick
+    return (math.floor(steps + 1e-9) if direction_up else math.ceil(steps - 1e-9)) * tick
+
+
+class OrderPersistenceGovernor:
+    def __init__(self, bridge=None, journal=None, clock=time.time, *,
+                 ttl_min_sec=7200.0, ttl_max_sec=21600.0,
+                 pull_ratio=0.40, match_tol_bps=15.0, replace_shift_bps=75.0,
+                 drift_atr_no_anchor=1.5, drift_atr_anchored=3.0,
+                 max_recenters=2, scan_band_atr=2.5, wall_min_usd=DEFAULT_ENTRY_WALL_MIN_USD):
+        if not 0 < ttl_min_sec <= ttl_max_sec:
+            raise ValueError("ttl band invalid")
+        self.bridge = bridge
+        self.journal = journal or (lambda name, record: None)
+        self.clock = clock
+        self.ttl_min_sec, self.ttl_max_sec = float(ttl_min_sec), float(ttl_max_sec)
+        self.pull_ratio, self.match_tol_bps = float(pull_ratio), float(match_tol_bps)
+        self.replace_shift_bps, self.max_recenters = float(replace_shift_bps), int(max_recenters)
+        self.drift_atr_no_anchor, self.drift_atr_anchored = float(drift_atr_no_anchor), float(drift_atr_anchored)
+        self.scan_band_atr, self.wall_min_usd = float(scan_band_atr), float(wall_min_usd)
+        self.orders = {}
+
+    # ------------------------------------------------------------------ state
+    def load(self, state):
+        self.orders = {str(k): dict(v) for k, v in (state or {}).items()
+                       if isinstance(v, dict) and v.get("status") == "RESTING"}
+
+    def export(self):
+        return {k: dict(v) for k, v in self.orders.items()}
+
+    def count(self):
+        return len(self.orders)
+
+    # ----------------------------------------------------------------- events
+    def register(self, key, *, asset, symbol, direction, order_ticket, limit_price,
+                 sl, tp, volume, anchors, atr, ttl_sec, now, comment, hurdle_r,
+                 risk_usd=0.0, tick_size=0.01, magic=100895):
+        if key in self.orders:
+            raise ValueError("governor_duplicate_registration")
+        self.orders[key] = {
+            "asset": asset, "symbol": symbol, "direction": direction,
+            "order_ticket": int(order_ticket), "limit_price": float(limit_price),
+            "sl": float(sl), "tp": float(tp), "volume": float(volume),
+            "anchors": [dict(a) for a in anchors or []], "atr": float(atr),
+            "r": abs(float(limit_price) - float(sl)), "hurdle_r": float(hurdle_r or 0.0),
+            "risk_usd": float(risk_usd), "comment": comment,
+            "tick_size": float(tick_size), "magic": int(magic),
+            "staged_at": float(now), "deadline": float(now) + float(ttl_sec),
+            "hard_deadline": float(now) + self.ttl_max_sec,
+            "recenters": 0, "status": "RESTING", "cancel_uncertain_at": 0.0,
+        }
+        self.journal("executions.jsonl", {"time": self.clock(), "event": "governor_register",
+                                          "intent_id": key, "order_ticket": int(order_ticket),
+                                          "anchors": self.orders[key]["anchors"],
+                                          "deadline": self.orders[key]["deadline"],
+                                          "ttl_sec": float(ttl_sec)})
+        return self.orders[key]
+
+    # -------------------------------------------------------------- main loop
+    def heartbeat(self, *, now, intents, payloads, pending, quote_fn):
+        """Manage every resting order once. Returns a list of change records.
+
+        ``intents`` is the trader intent table (status STAGED_LIMIT keeps the
+        order alive), ``payloads`` the latest feed snapshot per asset,
+        ``pending`` the broker pending-order inventory and ``quote_fn(symbol)``
+        a fresh-quote callable that may raise ValueError when stale.
+        """
+        changes = []
+        pending_tickets = {int(o.get("ticket", 0)) for o in (pending or [])}
+        for key in list(self.orders):
+            order = self.orders.get(key)
+            if order is None:
+                continue
+            intent = (intents or {}).get(key) or {}
+            if intent.get("status") != "STAGED_LIMIT" or order["order_ticket"] not in pending_tickets:
+                # Filled, expired, cancelled elsewhere or already reconciled:
+                # disappearance semantics belong to the reconciler only.
+                self.orders.pop(key, None)
+                self.journal("executions.jsonl", {"time": now, "event": "governor_release",
+                                                  "intent_id": key,
+                                                  "intent_status": intent.get("status"),
+                                                  "order_ticket": order["order_ticket"]})
+                continue
+            if order.get("cancel_uncertain_at", 0.0) > 0:
+                # Retry a cancel that previously came back ambiguous. Never
+                # replace in the same cycle as an uncertain cancel.
+                changes.append(self._cancel(key, order, now, reason="cancel_retry_after_uncertain"))
+                continue
+            payload = (payloads or {}).get(order["asset"]) or {}
+            clusters, wall_data_fresh = self._anchor_scan(order, payload, now)
+            alive, detail = wall_liveness(order["anchors"], clusters,
+                                          pull_ratio=self.pull_ratio,
+                                          match_tol_bps=self.match_tol_bps)
+            # 1) TTL expiry first: a deadline that has passed must cancel
+            #    before any renewal arithmetic can lift it (the renewal below
+            #    only ever extends a still-live deadline).
+            if now >= order["deadline"] or now >= order["hard_deadline"]:
+                changes.append(self._cancel(key, order, now, reason="ttl_expired",
+                                            detail={"deadline": order["deadline"],
+                                                    "hard_deadline": order["hard_deadline"]}))
+                continue
+            # 2) TTL renewal while the anchor keeps being observed.
+            ttl = hazard_ttl(self._primary_span(order, clusters, wall_data_fresh),
+                             ttl_min_sec=self.ttl_min_sec, ttl_max_sec=self.ttl_max_sec)
+            order["deadline"] = min(max(order["deadline"], now + ttl), order["hard_deadline"])
+            # 3) Anchor pull: cancel, or cancel/replace onto a shifted wall.
+            if not alive:
+                shift = self._replacement_cluster(order, clusters)
+                if shift is not None and order["recenters"] < self.max_recenters:
+                    changes.extend(self._replace(key, order, shift, now, detail))
+                else:
+                    changes.append(self._cancel(key, order, now, reason="anchor_wall_pulled", detail=detail))
+                continue
+            # 4) Adverse drift guard (outer bound; the trader keeps its own
+            #    3.0*ATR structural check as defence in depth).
+            drift_atr = self.drift_atr_no_anchor if not order["anchors"] else self.drift_atr_anchored
+            try:
+                quote = quote_fn(order["symbol"]) if quote_fn else None
+            except (ValueError, RuntimeError):
+                quote = None
+            if quote and order["atr"] > 0:
+                mid = (number(quote.get("bid")) + number(quote.get("ask"))) / 2.0
+                if abs(mid - order["limit_price"]) > drift_atr * order["atr"]:
+                    changes.append(self._cancel(key, order, now, reason="adverse_drift",
+                                                detail={"mid": mid, "limit": order["limit_price"],
+                                                        "atr": order["atr"]}))
+                    continue
+            order["last_heartbeat"] = now
+            order["liveness"] = detail
+        return changes
+
+    # ---------------------------------------------------------------- helpers
+    def _anchor_scan(self, order, payload, now):
+        """Entry-side clusters for this order from the freshest payload."""
+        sources = payload.get("sources") or {}
+        observed = epoch((sources.get("l3") or {}).get("observed_at") or payload.get("timestamp"))
+        fresh = bool(observed and 0.0 <= now - observed <= 60.0)
+        if not fresh:
+            return [], False
+        side = "BUY" if order["direction"] == "LONG" else "SELL"
+        ref = order["limit_price"]
+        band = self.scan_band_atr * max(order["atr"], 1e-9)
+        lo, hi = (ref - band, ref + 0.05 * max(order["atr"], 1e-9)) if side == "BUY" else (ref - 0.05 * max(order["atr"], 1e-9), ref + band)
+        clusters = wall_clusters(payload.get("l3_orders", []), side, lo, hi, now,
+                                 min_notional_usd=min(self.wall_min_usd * self.pull_ratio, self.wall_min_usd),
+                                 min_persistence_sec=0.0, max_age_sec=60.0)
+        return clusters, True
+
+    def _primary_span(self, order, clusters, fresh):
+        primary = next((a for a in order["anchors"] if a.get("role") == "primary"),
+                       (order["anchors"] or [{}])[0] if order["anchors"] else None)
+        if primary is None:
+            return 0.0
+        if fresh and clusters:
+            tol = self.match_tol_bps / 10_000.0
+            for c in clusters:
+                if abs(math.log(max(number(c.get("edge_price")), 1e-12) / max(primary["price"], 1e-12))) <= tol:
+                    return max(number(c.get("persistence_sec")), number(primary.get("persistence_sec")))
+        return number(primary.get("persistence_sec"))
+
+    def _replacement_cluster(self, order, clusters):
+        """A qualifying shifted wall to re-anchor onto, if any.
+
+        A wall that merely thinned at the same price is a pull (cancel), not
+        a shift; only a genuine relocation beyond ``min_shift_bps`` qualifies
+        for a cancel/replace.
+        """
+        primary = next((a for a in order["anchors"] if a.get("role") == "primary"), None)
+        if primary is None or not clusters:
+            return None
+        tol = self.replace_shift_bps / 10_000.0
+        min_shift = 0.0005  # 5 bps
+        side = "BUY" if order["direction"] == "LONG" else "SELL"
+        candidates = [c for c in clusters
+                      if number(c.get("notional_usd")) >= self.wall_min_usd
+                      and min_shift <= abs(math.log(max(number(c.get("edge_price")), 1e-12) / max(primary["price"], 1e-12))) <= tol]
+        if not candidates:
+            return None
+        return (max(candidates, key=lambda c: c["edge_price"]) if side == "BUY"
+                else min(candidates, key=lambda c: c["edge_price"]))
+
+    def _cancel(self, key, order, now, *, reason, detail=None):
+        record = {"time": now, "event": "governor_cancel", "intent_id": key,
+                  "order_ticket": order["order_ticket"], "reason": reason, "detail": detail or {}}
+        result = None
+        if self.bridge is not None:
+            try:
+                result = self.bridge.cancel_pending_order(order["order_ticket"])
+            except Exception as exc:  # IPC failure is uncertainty, never success
+                result = {"success": False, "uncertain": True, "error": str(exc)}
+        record["result"] = result
+        if result is None or result.get("success"):
+            self.orders.pop(key, None)
+        elif result.get("uncertain") or _order_unknown(result):
+            order["cancel_uncertain_at"] = now
+            record["uncertain"] = True
+            # Keep the order registered; a fill in the cancel window is
+            # resolved by the reconciler, and the cancel is retried next beat.
+        else:
+            # Definite rejection (e.g. already filling): release to reconciler.
+            self.orders.pop(key, None)
+        self.journal("executions.jsonl", record)
+        return record
+
+    def _replace(self, key, order, cluster, now, detail):
+        """Cancel/replace onto a shifted wall preserving R-geometry and risk."""
+        sign = 1.0 if order["direction"] == "LONG" else -1.0
+        side = "BUY" if order["direction"] == "LONG" else "SELL"
+        new_edge = number(cluster.get("edge_price"))
+        new_limit = new_edge + sign * max(order.get("tick_size", 0.01) or 0.01, 1e-9)
+        new_sl = new_limit - sign * order["r"]
+        new_tp = new_limit + sign * order["hurdle_r"] * order["r"]
+        actions = []
+        cancel = self._cancel(key, order, now, reason="anchor_shifted_replace", detail=detail)
+        actions.append(cancel)
+        if order.get("cancel_uncertain_at", 0.0) > 0 or not (cancel.get("result") or {}).get("success", True):
+            return actions  # never stage a second order while the first is ambiguous
+        if self.bridge is None or not hasattr(self.bridge, "stage_limit_order"):
+            return actions
+        try:
+            result = self.bridge.stage_limit_order(order["symbol"], order["direction"], order["volume"],
+                                                   new_limit, new_sl, new_tp,
+                                                   persistent=True, magic=order.get("magic", 100895),
+                                                   comment=order["comment"])
+        except Exception as exc:
+            result = {"success": False, "error": str(exc)}
+        record = {"time": now, "event": "governor_replace", "intent_id": key,
+                  "old_limit": order["limit_price"], "new_limit": new_limit,
+                  "new_sl": new_sl, "new_tp": new_tp, "cluster_edge": new_edge,
+                  "result": result}
+        if result.get("success"):
+            order.update(order_ticket=int(result.get("ticket") or 0), limit_price=new_limit,
+                         sl=new_sl, tp=new_tp, recenters=order["recenters"] + 1,
+                         deadline=min(max(order["deadline"], now + hazard_ttl(cluster.get("persistence_sec"),
+                            ttl_min_sec=self.ttl_min_sec, ttl_max_sec=self.ttl_max_sec)), order["hard_deadline"]),
+                         cancel_uncertain_at=0.0,
+                         anchors=[{"price": new_edge, "notional_usd": number(cluster.get("notional_usd")),
+                                   "persistence_sec": number(cluster.get("persistence_sec")),
+                                   "order_id": cluster.get("order_id"), "role": "primary"}])
+            # The cancel above removed the registry entry; re-adopt the replacement.
+            self.orders[key] = order
+        else:
+            order["cancel_uncertain_at"] = 0.0
+        self.journal("executions.jsonl", record)
+        actions.append(record)
+        return actions
+
+
+def _order_unknown(result):
+    text = str(result.get("error", "")).lower()
+    return "not found" in text or "unknown" in text
+
+```
+
+
+### MISSING FILE: Terminal/Orderbook_Geometry.py
+
+
+================================================================================
+### MODULE 4: META TRADER 5 IPC EXECUTION BRIDGE
+### FILE: Terminal/MT5_Execution_Bridge.py
+================================================================================
+```python
+#!/usr/bin/env python3
+"""
+Terminal/MT5_Execution_Bridge.py
+================================
+Native MetaTrader 5 Execution & Position Management Bridge.
+Provides robust IPC communication with MetaTrader 5 terminal:
+- Account status inspection (balance, equity, margin)
+- Open position tracking and ticket resolution
+- Dynamic 3-stage ratchet SL/TP modification (TRADE_ACTION_SLTP)
+- Market order execution with contract size awareness
+- Auto-discovery symbol mapping (e.g. SOL -> SOLUSD.p, BTC -> BTCUSD.pi)
+"""
+
+import sys
+import time
+import datetime
+import logging
+from typing import Dict, List, Any, Optional, Sequence
+from Terminal.Asset_Universe import broker_candidates
+from Terminal.Risk_Sizing_Engine import floor_volume
+
+try:
+    import MetaTrader5 as mt5
+    MT5_AVAILABLE = True
+except ImportError:
+    mt5 = None
+    MT5_AVAILABLE = False
+
+logger = logging.getLogger("MT5Bridge")
+if not logger.handlers:
+    handler = logging.StreamHandler(sys.stdout)
+    handler.setFormatter(logging.Formatter("[%(asctime)s][MT5Bridge] %(message)s"))
+    logger.addHandler(handler)
+    logger.setLevel(logging.INFO)
+
+
+class MT5ExecutionBridge:
+    def __init__(self, account_id: Optional[int] = None, timeout_ms: int = 5000):
+        self.account_id = account_id
+        self.timeout_ms = timeout_ms
+        self.initialized = False
+        self._symbol_cache: Dict[str, str] = {}
+        self._offset_cache: Dict[str, tuple] = {}
+        # MetaQuotes ticks are broker server time (EET/UTC+3, offset 10800s)
+        self.broker_utc_offset_sec: int = 10800
+        self.broker_utc_offset_ms: int = 10800 * 1000
+        self.ensure_connected()
+
+    def _normalize_tick_msc(self, raw_msc: int) -> int:
+        if not raw_msc:
+            return 0
+        now_ms = time.time() * 1000
+        # If broker tick is ~3 hours ahead (EET server time), normalize to UTC
+        if raw_msc - now_ms > 3600 * 1000:
+            return int(raw_msc - self.broker_utc_offset_ms)
+        return int(raw_msc)
+
+    def _utc_offset_seconds(self, symbol: Optional[str] = None) -> int:
+        """Best-effort broker-server-to-UTC offset, snapped to a 30-min grid.
+
+        MT5 bar, position and order timestamps are broker *server* time. Ticks
+        carry ``time_msc`` from the same clock, so a fresh tick gives us the
+        offset. Returning 0 when the server already runs UTC keeps behaviour
+        unchanged for UTC brokers. Cached 300s per symbol; failures are
+        treated as offset 0 (the historical behaviour).
+        """
+        cached = self._offset_cache.get(symbol or "*")
+        if cached and abs(time.time() - cached[1]) < 300:
+            return cached[0]
+        offset = 0
+        try:
+            if symbol and MT5_AVAILABLE:
+                tick = mt5.symbol_info_tick(symbol)
+                raw_msc = getattr(tick, "time_msc", 0) if tick else 0
+                if raw_msc:
+                    delta = raw_msc/1000.0 - time.time()
+                    if abs(delta) > 2700:  # > 45 min out: a real TZ offset
+                        offset = int(round(delta/1800.0)*1800)
+                        offset = max(-14*3600, min(14*3600, offset))
+        except Exception:
+            offset = 0
+        self._offset_cache[symbol or "*"] = (offset, time.time())
+        return offset
+
+    def ensure_connected(self) -> bool:
+        if not MT5_AVAILABLE:
+            logger.warning("MetaTrader5 python module is not installed.")
+            return False
+
+        if not mt5.terminal_info() or not mt5.terminal_info().connected:
+            ok = mt5.initialize(timeout=self.timeout_ms)
+            if not ok:
+                logger.error(f"MT5 initialize() failed. Error code: {mt5.last_error()}")
+                self.initialized = False
+                return False
+            self.initialized = True
+        else:
+            self.initialized = True
+
+        if self.account_id is not None:
+            acc = mt5.account_info()
+            actual = getattr(acc, "login", None) if acc else None
+            if actual != self.account_id:
+                logger.error("MT5 account mismatch: expected %s, got %s", self.account_id, actual)
+                self.initialized = False
+                return False
+        return True
+
+    def get_account_summary(self) -> Dict[str, Any]:
+        if not self.ensure_connected():
+            return {"connected": False, "error": "MT5 not connected"}
+
+        acc = mt5.account_info()
+        if not acc:
+            return {"connected": False, "error": f"Failed to get account info: {mt5.last_error()}"}
+
+        return {
+            "connected": True,
+            "login": acc.login,
+            "trade_mode": acc.trade_mode,
+            "company": acc.company,
+            "currency": acc.currency,
+            "balance_usd": round(acc.balance, 2),
+            "equity_usd": round(acc.equity, 2),
+            "profit_usd": round(acc.profit, 2),
+            "margin_usd": round(acc.margin, 2),
+            "margin_free_usd": round(acc.margin_free, 2),
+            "margin_level_pct": round(acc.margin_level, 2) if acc.margin_level else 0.0,
+        }
+
+    def resolve_symbol(self, coin: str) -> Optional[str]:
+        coin = coin.strip().upper()
+        if coin in self._symbol_cache:
+            return self._symbol_cache[coin]
+
+        if not self.ensure_connected():
+            return None
+
+        # Fetch all symbols and search for exact or prefixed/suffixed match
+        symbols = mt5.symbols_get()
+        if not symbols:
+            return None
+
+        candidates = [s.name for s in symbols]
+        for name in broker_candidates(coin):
+            if name in candidates:
+                self._symbol_cache[coin] = name
+                return name
+        # Unknown aliases must be configured explicitly; substring discovery can
+        # map a synthetic index to an unrelated broker instrument.
+        return None
+
+    def get_symbol_price(self, symbol: str) -> Optional[Dict[str, Any]]:
+        if not self.ensure_connected():
+            return None
+
+        if not mt5.symbol_select(symbol, True):
+            logger.warning(f"Failed to select symbol {symbol}")
+            return None
+
+        tick = mt5.symbol_info_tick(symbol)
+        info = mt5.symbol_info(symbol)
+        if not tick or not info:
+            return None
+
+        raw_msc = getattr(tick, "time_msc", 0) or 0
+        utc_msc = self._normalize_tick_msc(raw_msc)
+        return {
+            "symbol": symbol,
+            "bid": tick.bid,
+            "ask": tick.ask,
+            "last": tick.last if tick.last > 0 else (tick.bid + tick.ask) / 2.0,
+            "spread": info.spread,
+            "point": info.point,
+            "digits": info.digits,
+            "contract_size": info.trade_contract_size,
+            "min_lot": info.volume_min,
+            "max_lot": info.volume_max,
+            "step_lot": info.volume_step,
+            "time_msc": utc_msc,
+            "raw_time_msc": raw_msc,
+            "receipt_time": time.time(),
+            "tick_size": getattr(info, "trade_tick_size", info.point),
+            "stops_level": getattr(info, "trade_stops_level", 0),
+            "freeze_level": getattr(info, "trade_freeze_level", 0),
+            "trade_mode": getattr(info, "trade_mode", None),
+            "currency_profit": getattr(info, "currency_profit", None)
+        }
+
+    def get_recent_bars(self, symbol: str, count: int = 96, timeframe: Any = None) -> List[Dict[str, Any]]:
+        """Return completed MT5 bars for the local regime classifier.
+
+        The current, still-forming bar is deliberately excluded.  If the
+        terminal does not expose ``copy_rates_from_pos`` this returns an empty
+        list rather than fabricating candles.
+        """
+        if not self.ensure_connected() or not hasattr(mt5, "copy_rates_from_pos"):
+            return []
+        if timeframe is None:
+            timeframe = getattr(mt5, "TIMEFRAME_M15", None)
+        if timeframe is None or not mt5.symbol_select(symbol, True):
+            return []
+        try:
+            raw = mt5.copy_rates_from_pos(symbol, timeframe, 1, max(8, int(count)))
+        except Exception as exc:
+            logger.warning("Unable to read recent bars for %s: %s", symbol, exc)
+            return []
+        if raw is None:
+            return []
+        # Bar timestamps are broker server time; normalize to UTC epoch so
+        # downstream causality filters (epoch(bar)+900 <= now) are not biased
+        # by the server timezone (Finding F-06).
+        offset = self._utc_offset_seconds(symbol)
+        bars = []
+        for row in raw:
+            def value(name: str, default: float = 0.0) -> float:
+                try:
+                    item = row[name] if hasattr(row, "dtype") and name in row.dtype.names else getattr(row, name, default)
+                    return float(item)
+                except (KeyError, TypeError, ValueError, AttributeError):
+                    return default
+            real_v = value("real_volume", 0.0)
+            tick_v = value("tick_volume", 0.0)
+            vol = real_v if real_v > 0 else (tick_v if tick_v > 0 else 1.0)
+            bars.append({
+                "time": value("time") - offset,
+                "open": value("open"),
+                "high": value("high"),
+                "low": value("low"),
+                "close": value("close"),
+                "volume": vol,
+                "tick_volume": tick_v,
+                "real_volume": real_v,
+            })
+        return bars
+
+    def get_execution_quality(self, symbol: str) -> Optional[Dict[str, float]]:
+        """Return a fresh quote and spread metrics used by the execution guard."""
+        quote = self.get_symbol_price(symbol)
+        if not quote:
+            return None
+        point = max(float(quote.get("point", 0.0)), 1e-12)
+        bid, ask = float(quote.get("bid", 0.0)), float(quote.get("ask", 0.0))
+        spread_price = max(0.0, ask - bid)
+        mid = (bid + ask) / 2.0 if bid > 0.0 and ask > 0.0 else 0.0
+        return {
+            "bid": bid,
+            "ask": ask,
+            "mid": mid,
+            "spread_price": spread_price,
+            "spread_points": spread_price / point,
+            "spread_bps": spread_price / mid * 10_000.0 if mid > 0.0 else 0.0,
+            "point": point,
+            "digits": float(quote.get("digits", 2)),
+        }
+
+    @staticmethod
+    def _floor_volume(volume: float, step: float, minimum: float, maximum: float) -> float:
+        """Normalize down, never up, so requested stop risk is not exceeded."""
+        return floor_volume(volume, step, minimum, maximum)
+
+    def get_open_positions(self, symbol: Optional[str] = None) -> List[Dict[str, Any]]:
+        if not self.ensure_connected():
+            raise RuntimeError("Position inventory unavailable: MT5 disconnected")
+
+        raw_positions = mt5.positions_get(symbol=symbol) if symbol else mt5.positions_get()
+        if raw_positions is None:
+            raise RuntimeError(f"Position inventory failed: {mt5.last_error()}")
+
+        out = []
+        for p in raw_positions:
+            out.append({
+                "ticket": p.ticket,
+                "identifier": getattr(p, "identifier", p.ticket),
+                "time": p.time - self._utc_offset_seconds(p.symbol),
+                "symbol": p.symbol,
+                "direction": "LONG" if p.type == mt5.ORDER_TYPE_BUY else "SHORT",
+                "volume": p.volume,
+                "price_open": p.price_open,
+                "sl": p.sl,
+                "tp": p.tp,
+                "price_current": p.price_current,
+                "profit_usd": round(p.profit, 2),
+                "swap_usd": round(p.swap, 2),
+                "magic": p.magic,
+                "comment": p.comment
+            })
+        return out
+
+    def get_pending_orders(self):
+        if not self.ensure_connected(): raise RuntimeError("Pending inventory unavailable")
+        orders = mt5.orders_get()
+        if orders is None: raise RuntimeError(f"Pending inventory failed: {mt5.last_error()}")
+        return [{"ticket": o.ticket, "symbol": o.symbol, "magic": o.magic, "comment": o.comment,
+                 "volume": o.volume_current, "price_open": getattr(o, "price_open", 0.0),
+                 "sl": getattr(o, "sl", 0.0), "tp": getattr(o, "tp", 0.0), "type": getattr(o, "type", 0),
+                 "direction": "LONG" if getattr(o, "type", 0) in (getattr(mt5, "ORDER_TYPE_BUY", 0), getattr(mt5, "ORDER_TYPE_BUY_LIMIT", 2)) else "SHORT",
+                 "expiration": getattr(o, "time_expiration", 0) - self._utc_offset_seconds(o.symbol),
+                 "time_setup": getattr(o, "time_setup", getattr(o, "time", 0)) - self._utc_offset_seconds(o.symbol)} for o in orders]
+
+    def intent_filled(self, comment: str, prepared_at: float, magic: int = 100895) -> bool:
+        """Fill evidence for an intent: True iff an entry deal exists for it.
+
+        Used by the reconciler to distinguish "limit order expired unfilled"
+        from "limit order filled inside the inventory race window" without
+        waiting for the next position snapshot.
+        """
+        if not self.ensure_connected(): raise RuntimeError("Intent history unavailable")
+        start = datetime.datetime.fromtimestamp(prepared_at-30, datetime.timezone.utc)
+        end = datetime.datetime.now(datetime.timezone.utc)
+        deals = mt5.history_deals_get(start, end)
+        if deals is None: raise RuntimeError("Intent deal-history query failed")
+        return any(d.comment == comment and d.magic == magic and d.entry in (0, 2) for d in deals)
+
+    def estimate_order(self, symbol, direction, entry, sl):
+        """Use the broker's CFD calculation mode, not an assumed pip multiplier."""
+        if not self.ensure_connected(): raise ValueError("Broker valuation unavailable")
+        kind = mt5.ORDER_TYPE_BUY if direction == "LONG" else mt5.ORDER_TYPE_SELL
+        profit = mt5.order_calc_profit(kind, symbol, 1.0, entry, sl)
+        margin = mt5.order_calc_margin(kind, symbol, 1.0, entry)
+        if profit is None or margin is None or profit >= 0 or margin <= 0:
+            raise ValueError(f"Broker risk/margin calculation failed: {mt5.last_error()}")
+        return {"stop_loss_per_lot": abs(float(profit)), "margin_per_lot": float(margin)}
+
+    def position_deals(self, ticket):
+        if not self.ensure_connected(): raise RuntimeError("Deal history unavailable")
+        deals = mt5.history_deals_get(position=int(ticket))
+        if deals is None: raise RuntimeError("Deal history failed")
+        return [{"ticket": d.ticket, "position_id": d.position_id, "time_msc": d.time_msc,
+                 "entry": d.entry, "volume": d.volume, "price": d.price,
+                 "profit_usd": d.profit, "commission_usd": d.commission, "swap_usd": d.swap,
+                 "fee_usd": getattr(d, "fee", 0)} for d in deals]
+
+    def reconcile_intent_history(self, comment, prepared_at, magic=100895):
+        """A filled-and-already-closed position can disappear before inventory polling."""
+        if not self.ensure_connected(): raise RuntimeError("Intent history unavailable")
+        start = datetime.datetime.fromtimestamp(prepared_at-30, datetime.timezone.utc)
+        end = datetime.datetime.now(datetime.timezone.utc)
+        deals = mt5.history_deals_get(start, end)
+        if deals is None: raise RuntimeError("Intent deal-history query failed")
+        entries = [d for d in deals if d.comment == comment and d.magic == magic and d.entry in (0, 2)]
+        if not entries: return None
+        ids = {d.position_id for d in entries}
+        if len(ids) != 1: raise RuntimeError("Intent maps to multiple position identifiers")
+        identifier = ids.pop(); history = self.position_deals(identifier)
+        incoming = sum(d["volume"] for d in history if d["entry"] == 0)
+        outgoing = sum(d["volume"] for d in history if d["entry"] in (1, 3))
+        if incoming > 0 and outgoing >= incoming-1e-8:
+            return {"state": "FILLED_CLOSED", "position_id": identifier, "deals": history,
+                    "net_pnl_usd": sum(d[k] for d in history for k in ("profit_usd", "commission_usd", "swap_usd", "fee_usd"))}
+        return None
+
+    def modify_position_sltp(self, ticket: int, new_sl: float, new_tp: Optional[float] = None) -> Dict[str, Any]:
+        """Modify SL/TP after validating side, quote freshness, and broker stops.
+
+        ``new_tp=None`` preserves the current TP.  The method is idempotent at
+        the caller and never moves a stop in the adverse direction; ratchet
+        policy remains in ``OF_Strategy.py``.
+        """
+        if not self.ensure_connected():
+            return {"success": False, "error": "MT5 not connected"}
+
+        # Find position to check symbol and digits
+        positions = mt5.positions_get(ticket=ticket)
+        if not positions or len(positions) == 0:
+            return {"success": False, "error": f"Position ticket {ticket} not found"}
+
+        pos = positions[0]
+        symbol = pos.symbol
+        info = mt5.symbol_info(symbol)
+        tick = mt5.symbol_info_tick(symbol)
+        if not info or not tick:
+            return {"success": False, "error": f"Quote metadata missing for {symbol}"}
+        digits = info.digits
+        rounded_sl = round(float(new_sl), digits) if new_sl and new_sl > 0 else 0.0
+        current_sl = float(getattr(pos, "sl", 0.0) or 0.0)
+        if rounded_sl <= 0: return {"success": False, "error": "Protective SL cannot be removed"}
+        if rounded_sl > 0.0 and current_sl > 0.0:
+            if pos.type == mt5.ORDER_TYPE_BUY and rounded_sl < current_sl:
+                return {"success": False, "error": "SL ratchet cannot move a buy stop lower"}
+            if pos.type == mt5.ORDER_TYPE_SELL and rounded_sl > current_sl:
+                return {"success": False, "error": "SL ratchet cannot move a sell stop higher"}
+        current_tp = float(getattr(pos, "tp", 0.0) or 0.0)
+        rounded_tp = round(float(new_tp), digits) if new_tp is not None else round(current_tp, digits)
+        point = max(float(getattr(info, "point", 0.0) or 0.0), 1e-12)
+        min_distance = max(
+            float(getattr(info, "trade_stops_level", 0) or 0),
+            float(getattr(info, "trade_freeze_level", 0) or 0),
+        ) * point
+        bid, ask = float(getattr(tick, "bid", 0.0) or 0.0), float(getattr(tick, "ask", 0.0) or 0.0)
+        raw_msc = getattr(tick, "time_msc", 0) or 0
+        tick_utc_ms = self._normalize_tick_msc(raw_msc)
+        tick_age = time.time()*1000 - tick_utc_ms
+        if not -30000 <= tick_age <= 30000 or not 0 < bid < ask:
+            return {"success": False, "error": f"Stale or invalid ratchet quote: age {tick_age:.0f}ms"}
+        min_distance = max(min_distance, point)
+        if rounded_sl > 0.0 and min_distance > 0.0:
+            if pos.type == mt5.ORDER_TYPE_BUY and rounded_sl > bid - min_distance:
+                return {"success": False, "error": "SL violates buy stop/freeze distance"}
+            if pos.type == mt5.ORDER_TYPE_SELL and rounded_sl < ask + min_distance:
+                return {"success": False, "error": "SL violates sell stop/freeze distance"}
+        if rounded_tp > 0.0 and min_distance > 0.0:
+            if pos.type == mt5.ORDER_TYPE_BUY and rounded_tp < ask + min_distance:
+                return {"success": False, "error": "TP violates buy stop/freeze distance"}
+            if pos.type == mt5.ORDER_TYPE_SELL and rounded_tp > bid - min_distance:
+                return {"success": False, "error": "TP violates sell stop/freeze distance"}
+
+        request = {
+            "action": mt5.TRADE_ACTION_SLTP,
+            "position": ticket,
+            "symbol": symbol,
+            "sl": rounded_sl,
+            "tp": rounded_tp
+        }
+
+        result = mt5.order_send(request)
+        if result is None:
+            err = mt5.last_error()
+            return {"success": False, "error": f"order_send failed: {err}"}
+
+        if result.retcode != mt5.TRADE_RETCODE_DONE:
+            return {
+                "success": False,
+                "retcode": result.retcode,
+                "comment": result.comment,
+                "error": f"Retcode: {result.retcode} ({result.comment})"
+            }
+
+        logger.info(f"[OK] Position {ticket} ({symbol}) modified: SL -> {rounded_sl} USD, TP -> {rounded_tp} USD")
+        return {
+            "success": True,
+            "ticket": ticket,
+            "symbol": symbol,
+            "sl": rounded_sl,
+            "tp": rounded_tp,
+            "retcode": result.retcode
+        }
+
+    def execute_market_order(
+        self,
+        symbol: str,
+        direction: str,
+        volume: float,
+        sl: float,
+        tp: float,
+        magic: int = 100895,
+        comment: str = "OFC_AI_15M",
+        *,
+        max_spread_points: Optional[float] = None,
+        deviation_points: int = 20,
+        max_tick_age_ms: int = 2_000,
+        filling_types: Optional[Sequence[int]] = None,
+    ) -> Dict[str, Any]:
+        """
+        Executes a live market order on MT5.
+        """
+        if not self.ensure_connected():
+            return {"success": False, "error": "MT5 not connected"}
+
+        if not mt5.symbol_select(symbol, True):
+            return {"success": False, "error": f"Symbol {symbol} select failed"}
+
+        sym_info = mt5.symbol_info(symbol)
+        tick = mt5.symbol_info_tick(symbol)
+        if not sym_info or not tick:
+            return {"success": False, "error": f"Failed to get tick for {symbol}"}
+
+        side = direction.upper()
+        if side not in {"LONG", "SHORT", "BUY", "SELL"}:
+            return {"success": False, "error": f"Unsupported direction: {direction}"}
+        is_long = side in {"LONG", "BUY"}
+        order_type = mt5.ORDER_TYPE_BUY if is_long else mt5.ORDER_TYPE_SELL
+        price = float(tick.ask if is_long else tick.bid)
+        digits = sym_info.digits
+        point = max(float(sym_info.point), 1e-12)
+        spread_points = max(0.0, float(tick.ask - tick.bid) / point)
+        if max_spread_points is not None and spread_points > float(max_spread_points):
+            return {"success": False, "error": f"Spread guard: {spread_points:.1f} > {max_spread_points} points", "spread_points": spread_points}
+        tick_time_msc = getattr(tick, "time_msc", 0) or 0
+        if max_tick_age_ms > 0:
+            tick_utc_ms = self._normalize_tick_msc(tick_time_msc)
+            age_ms = int(time.time() * 1000 - tick_utc_ms)
+            if not tick_time_msc or not -30000 <= age_ms <= max_tick_age_ms:
+                return {"success": False, "error": f"Stale quote: {age_ms} ms", "age_ms": age_ms}
+
+        clamped_vol = self._floor_volume(volume, sym_info.volume_step, sym_info.volume_min, sym_info.volume_max)
+        if clamped_vol <= 0.0:
+            return {"success": False, "error": "Requested volume is below broker minimum after risk-preserving normalization"}
+        rounded_sl = round(float(sl), digits) if sl > 0 else 0.0
+        rounded_tp = round(float(tp), digits) if tp > 0 else 0.0
+        if not 0 < tick.bid < tick.ask or rounded_sl <= 0 or rounded_tp <= 0:
+            return {"success": False, "error": "Valid two-sided quote and protective bracket required"}
+        if not (rounded_sl < price < rounded_tp if is_long else rounded_tp < price < rounded_sl):
+            return {"success": False, "error": "Invalid bracket direction"}
+        request = {
+            "action": mt5.TRADE_ACTION_DEAL,
+            "symbol": symbol,
+            "volume": clamped_vol,
+            "type": order_type,
+            "price": round(price, digits),
+            "sl": rounded_sl,
+            "tp": rounded_tp,
+            "deviation": max(0, int(deviation_points)),
+            "magic": magic,
+            "comment": comment,
+            "type_time": mt5.ORDER_TIME_GTC,
+        }
+
+        candidates = list(filling_types or [
+            getattr(mt5, "ORDER_FILLING_IOC", 1),
+            getattr(mt5, "ORDER_FILLING_FOK", 0),
+            getattr(mt5, "ORDER_FILLING_RETURN", 2),
+        ])
+        result = None
+        attempted = []
+        sent = False
+        for filling in candidates:
+            if filling in attempted:
+                continue
+            attempted.append(filling)
+            request["type_filling"] = filling
+            try:
+                checked = mt5.order_check(request)
+            except Exception as exc:
+                return {"success": False, "error": f"order_check failed: {exc}"}
+            if checked is None: return {"success": False, "error": "order_check returned no result"}
+            if checked.retcode == getattr(mt5, "TRADE_RETCODE_INVALID_FILL", 10030): continue
+            if checked.retcode not in (0, getattr(mt5, "TRADE_RETCODE_DONE", 10009)):
+                return {"success": False, "retcode": checked.retcode, "error": f"order_check rejected: {checked.comment}"}
+            result = mt5.order_send(request)
+            sent = True
+            # Only INVALID_FILL proves no fill occurred and permits another send.
+            if result is None or result.retcode != getattr(mt5, "TRADE_RETCODE_INVALID_FILL", 10030):
+                break
+        filled_codes = {mt5.TRADE_RETCODE_DONE, getattr(mt5, "TRADE_RETCODE_DONE_PARTIAL", 10010)}
+        if result is None or result.retcode not in filled_codes:
+            retcode = result.retcode if result else "None"
+            comment_err = result.comment if result else str(mt5.last_error())
+            uncertain = (sent and result is None) or retcode in (getattr(mt5, "TRADE_RETCODE_TIMEOUT", 10012), getattr(mt5, "TRADE_RETCODE_CONNECTION", 10031), getattr(mt5, "TRADE_RETCODE_PLACED", 10008))
+            return {"success": False, "uncertain": uncertain, "retcode": retcode, "error": f"Order rejected: {retcode} ({comment_err})", "spread_points": spread_points}
+
+        logger.info(f"[FILL] MT5 Order filled: Deal {result.deal}, Ticket {result.order}, {direction} {clamped_vol} {symbol} at {result.price} USD")
+        return {
+            "success": True, "ticket": result.order, "deal": result.deal,
+            "symbol": symbol, "direction": direction, "volume": float(getattr(result, "volume", clamped_vol)),
+            "price": result.price, "sl": rounded_sl, "tp": rounded_tp,
+            "partial": result.retcode == getattr(mt5, "TRADE_RETCODE_DONE_PARTIAL", 10010), "retcode": result.retcode,
+            "spread_points": spread_points, "deviation_points": int(deviation_points),
+        }
+
+    def stage_limit_order(
+        self,
+        symbol: str,
+        direction: str,
+        volume: float,
+        limit_price: float,
+        sl: float,
+        tp: float,
+        *,
+        expiration_seconds: int = 3600,
+        max_spread_points: Optional[float] = None,
+        passive_only: bool = True,
+        persistent: bool = False,
+        magic: int = 100895,
+        comment: str = "OFC_AI_15M_LIMIT",
+    ) -> Dict[str, Any]:
+        """Stage a limit order with an attached protective bracket.
+
+        ``persistent=True`` stages a GTC order with no broker expiration at
+        all. Multi-hour resting orders (the Incident A remediation) must not
+        rely on broker-side expirations: MT5 ``ORDER_TIME_SPECIFIED`` deadlines
+        are evaluated in broker server time, which is DST-fragile from a UTC
+        host. A persistent order is owned by the Order Persistence Governor,
+        which enforces its own UTC deadlines and explicit cancels. The method
+        never silently converts a passive order into a market order.
+        """
+        if not self.ensure_connected():
+            return {"success": False, "error": "MT5 not connected"}
+        side = direction.upper()
+        if side not in {"LONG", "SHORT", "BUY", "SELL"}:
+            return {"success": False, "error": f"Unsupported direction: {direction}"}
+        is_long = side in {"LONG", "BUY"}
+        if not mt5.symbol_select(symbol, True):
+            return {"success": False, "error": f"Symbol {symbol} select failed"}
+        info, tick = mt5.symbol_info(symbol), mt5.symbol_info_tick(symbol)
+        if not info or not tick:
+            return {"success": False, "error": f"Quote metadata missing for {symbol}"}
+        point = max(float(info.point), 1e-12)
+        spread_points = max(0.0, float(tick.ask - tick.bid) / point)
+        if max_spread_points is not None and spread_points > float(max_spread_points):
+            return {"success": False, "error": f"Spread guard: {spread_points:.1f} > {max_spread_points} points"}
+        price = round(float(limit_price), info.digits)
+        if price <= 0.0:
+            return {"success": False, "error": "Limit price must be positive"}
+        if passive_only:
+            if is_long and price >= float(tick.ask):
+                return {"success": False, "error": f"Buy limit {price} crosses ask {tick.ask} (not passive)"}
+            if not is_long and price <= float(tick.bid):
+                return {"success": False, "error": f"Sell limit {price} crosses bid {tick.bid} (not passive)"}
+        tick_size = float(getattr(info, "trade_tick_size", point) or point)
+        if abs(price/tick_size-round(price/tick_size)) > 1e-6:
+            return {"success": False, "error": "limit_price_not_on_tick_grid"}
+        min_distance = max(0, int(getattr(info, "trade_stops_level", 0)))*point
+        entry_distance = float(tick.ask)-price if is_long else price-float(tick.bid)
+        if entry_distance+point*1e-6 < min_distance:
+            return {"success": False, "retcode": 10015, "error": "pending_entry_inside_broker_stops_level"}
+        if sl <= 0 or tp <= 0 or (price-sl if is_long else sl-price) <= 0 or (tp-price if is_long else price-tp) <= 0:
+            return {"success": False, "error": "pending_protective_bracket_invalid"}
+        if min(abs(price-sl), abs(tp-price))+point*1e-6 < min_distance:
+            return {"success": False, "retcode": 10016, "error": "pending_bracket_inside_broker_stops_level"}
+        normalized = self._floor_volume(volume, info.volume_step, info.volume_min, info.volume_max)
+        if normalized <= 0.0:
+            return {"success": False, "error": "Requested volume is below broker minimum"}
+        order_type = getattr(mt5, "ORDER_TYPE_BUY_LIMIT", 2) if is_long else getattr(mt5, "ORDER_TYPE_SELL_LIMIT", 3)
+        broker_now = max(int(getattr(tick, "time", 0)), int(time.time()) + self.broker_utc_offset_sec)
+        request = {
+            "action": mt5.TRADE_ACTION_PENDING,
+            "symbol": symbol,
+            "volume": normalized,
+            "type": order_type,
+            "price": price,
+            "sl": round(float(sl), info.digits) if sl > 0 else 0.0,
+            "tp": round(float(tp), info.digits) if tp > 0 else 0.0,
+            "deviation": 0,
+            "magic": magic,
+            "comment": comment,
+            "type_time": getattr(mt5, "ORDER_TIME_GTC", 0) if persistent else getattr(mt5, "ORDER_TIME_SPECIFIED", mt5.ORDER_TIME_GTC),
+            "expiration": 0 if persistent else broker_now + max(1, int(expiration_seconds)),
+            "type_filling": getattr(mt5, "ORDER_FILLING_RETURN", getattr(mt5, "ORDER_FILLING_IOC", 1)),
+        }
+        if hasattr(mt5, "order_check"):
+            checked = mt5.order_check(request)
+            if checked is None or checked.retcode not in (0, getattr(mt5, "TRADE_RETCODE_DONE", 10009)):
+                return {"success": False, "retcode": getattr(checked, "retcode", None), "error": "pending_order_check_rejected:"+str(getattr(checked, "comment", mt5.last_error()))}
+        result = mt5.order_send(request)
+        placed_codes = {getattr(mt5, "TRADE_RETCODE_DONE", 10009), getattr(mt5, "TRADE_RETCODE_PLACED", 10008)}
+        if result is None or result.retcode not in placed_codes:
+            retcode = result.retcode if result else "None"
+            error = result.comment if result else str(mt5.last_error())
+            return {"success": False, "retcode": retcode, "error": f"Limit order rejected: {retcode} ({error})"}
+        logger.info("[LIMIT] MT5 limit staged: %s %s %s lots at %s (%s)", direction, normalized, symbol, price,
+                    "GTC, governor-owned deadline" if persistent else f"expires in {expiration_seconds}s")
+        return {"success": True, "ticket": getattr(result, "order", 0), "symbol": symbol, "direction": direction, "volume": normalized, "price": price, "sl": request["sl"], "tp": request["tp"],
+                "persistent": bool(persistent), "expires_at": None if persistent else request["expiration"], "spread_points": spread_points}
+
+    def cancel_pending_order(self, order_ticket: int) -> Dict[str, Any]:
+        """Cancel one pending order; safe to call after an expiry race."""
+        if not self.ensure_connected():
+            return {"success": False, "error": "MT5 not connected"}
+        result = mt5.order_send({"action": mt5.TRADE_ACTION_REMOVE, "order": int(order_ticket)})
+        if result is None or result.retcode != getattr(mt5, "TRADE_RETCODE_DONE", 10009):
+            return {"success": False, "retcode": getattr(result, "retcode", None), "error": getattr(result, "comment", str(mt5.last_error()))}
+        return {"success": True, "ticket": int(order_ticket), "retcode": result.retcode}
+
+    def close_position(self, ticket: int) -> Dict[str, Any]:
+        """
+        Closes an active position by ticket at market.
+        """
+        if not self.ensure_connected():
+            return {"success": False, "error": "MT5 not connected"}
+
+        positions = mt5.positions_get(ticket=ticket)
+        if not positions or len(positions) == 0:
+            return {"success": False, "error": f"Position ticket {ticket} not found"}
+
+        pos = positions[0]
+        symbol = pos.symbol
+        sym_info = mt5.symbol_info(symbol)
+        tick = mt5.symbol_info_tick(symbol)
+        if not sym_info or not tick:
+            return {"success": False, "error": f"Tick info missing for {symbol}"}
+
+        close_type = mt5.ORDER_TYPE_SELL if pos.type == mt5.ORDER_TYPE_BUY else mt5.ORDER_TYPE_BUY
+        close_price = tick.bid if pos.type == mt5.ORDER_TYPE_BUY else tick.ask
+
+        request = {
+            "action": mt5.TRADE_ACTION_DEAL,
+            "position": ticket,
+            "symbol": symbol,
+            "volume": pos.volume,
+            "type": close_type,
+            "price": close_price,
+            "deviation": 25,
+            "magic": pos.magic,
+            "comment": "OFC_CLOSE",
+            "type_time": mt5.ORDER_TIME_GTC,
+            "type_filling": mt5.ORDER_FILLING_IOC,
+        }
+
+        result = mt5.order_send(request)
+        if result is not None and result.retcode == getattr(mt5, "TRADE_RETCODE_INVALID_FILL", 10030):
+            request["type_filling"] = mt5.ORDER_FILLING_FOK
+            result = mt5.order_send(request)
+
+        if result is None or result.retcode not in {mt5.TRADE_RETCODE_DONE, getattr(mt5, "TRADE_RETCODE_DONE_PARTIAL", 10010)}:
+            retcode = result.retcode if result else "None"
+            err = result.comment if result else str(mt5.last_error())
+            return {"success": False, "uncertain": result is None or retcode in (10012, 10031), "error": f"Close failed: {retcode} ({err})"}
+
+        logger.info(f"[CLOSE] MT5 Position {ticket} closed at {result.price} USD | Deal: {result.deal}")
+        return {"success": True, "partial": result.retcode != mt5.TRADE_RETCODE_DONE, "ticket": ticket, "price": result.price, "deal": result.deal}
+
+
+if __name__ == "__main__":
+    bridge = MT5ExecutionBridge()
+    print("Account Summary:", bridge.get_account_summary())
+    sol_symbol = bridge.resolve_symbol("SOL")
+    print(f"Resolved SOL -> {sol_symbol}")
+    if sol_symbol:
+        print("Price Info:", bridge.get_symbol_price(sol_symbol))
+    positions = bridge.get_open_positions()
+    print(f"Open Positions ({len(positions)}):", positions)
+
+```
+
+
+================================================================================
+### MODULE 5: OMNI TRADER (AUTONOMOUS 15-MINUTE ORCHESTRATOR)
+### FILE: Terminal/Omni_Trader.py
+================================================================================
+```python
+"""Single-writer 16-asset execution loop. Network inference cannot place orders."""
+from __future__ import annotations
+from concurrent.futures import ThreadPoolExecutor
+from pathlib import Path
+import copy
+import datetime as dt
+import hashlib
+import json
+import math
+import os
+import time
+import urllib.request
+import uuid
+from Terminal.Asset_Universe import UNIVERSE, canonical_asset
+from Terminal.Risk_Sizing_Engine import (RiskPolicy, OrderflowModel, CovarianceGate, fit_covariance,
+                                        size_trade, cost_bps, epoch, number, completed_statistics)
+from Terminal.Uplift_Model import UpliftGate, executable_ratchet, POLICY_VERSION
+from Terminal.MT5_Execution_Bridge import MT5ExecutionBridge
+from Terminal.Market_Intelligence import MarketIntelligenceEngine
+from Terminal.Cognitive_Engine import CognitiveEngine
+from Terminal.Orderbook_Structure import (wall_clusters, hazard_ttl, structural_exit, classify_sleeve,
+                                          anchors_from_clusters)
+from Terminal.Order_Persistence_Governor import OrderPersistenceGovernor
+from Terminal.Deterministic_Features import FeatureSealer
+
+ROOT = Path(__file__).resolve().parents[1]
+MAGIC = 100895
+
+def compute_pivot_levels(bars, tick_size=0.01):
+    """Computes daily pivot points, intraday swing extremes, Anchored VWAP with sigma bands,
+    and ICT Fair Value Gaps (FVG) with Consequent Encroachment (CE 50% midpoint) from completed bars."""
+    if not bars: return None
+    window = bars[-96:] if len(bars) >= 96 else bars
+    h = max(b["high"] for b in window)
+    l = min(b["low"] for b in window)
+    c = window[-1]["close"]
+    p = (h + l + c) / 3.0
+    r1 = 2 * p - l
+    s1 = 2 * p - h
+    r2 = p + (h - l)
+    s2 = p - (h - l)
+    swing_window = bars[-8:] if len(bars) >= 8 else bars
+    swing_high = max(b["high"] for b in swing_window)
+    swing_low = min(b["low"] for b in swing_window)
+
+    # Anchored VWAP and standard deviation bands over window
+    cum_vol = 0.0
+    cum_vol_price = 0.0
+    for b in window:
+        tp_bar = (b["high"] + b["low"] + b["close"]) / 3.0
+        v = float(b.get("volume") or b.get("tick_volume") or 0.0)
+        if v > 0:
+            cum_vol += v
+            cum_vol_price += tp_bar * v
+    if cum_vol > 0:
+        vwap = cum_vol_price / cum_vol
+        variance_sum = 0.0
+        for b in window:
+            tp_bar = (b["high"] + b["low"] + b["close"]) / 3.0
+            v = float(b.get("volume") or b.get("tick_volume") or 0.0)
+            if v > 0:
+                variance_sum += v * ((tp_bar - vwap) ** 2)
+        vwap_sigma = math.sqrt(variance_sum / cum_vol)
+        vwap_valid = True
+        vwap_upper_1 = vwap + vwap_sigma
+        vwap_lower_1 = vwap - vwap_sigma
+        vwap_upper_2 = vwap + 2.0 * vwap_sigma
+        vwap_lower_2 = vwap - 2.0 * vwap_sigma
+    else:
+        vwap = None
+        vwap_sigma = None
+        vwap_valid = False
+        vwap_upper_1 = vwap_lower_1 = vwap_upper_2 = vwap_lower_2 = None
+
+    # ICT Fair Value Gaps (FVG) detection on recent bars
+    recent = bars[-24:] if len(bars) >= 24 else bars
+    bull_fvg_list = []
+    bear_fvg_list = []
+    if len(recent) >= 3:
+        for i in range(2, len(recent)):
+            b_prev2 = recent[i-2]
+            b_curr = recent[i]
+            if b_curr["low"] > b_prev2["high"]:
+                gap_low = b_prev2["high"]
+                gap_high = b_curr["low"]
+                subsequent_lows = [recent[k]["low"] for k in range(i+1, len(recent))]
+                min_subsequent = min(subsequent_lows) if subsequent_lows else gap_high
+                ce = (gap_low + gap_high) / 2.0
+                ce_untouched = min_subsequent > ce
+                if min_subsequent > gap_low and ce_untouched:
+                    bull_fvg_list.append({"low": gap_low, "high": gap_high, "ce": ce, "bar_index": i, "ce_untouched": ce_untouched})
+            if b_curr["high"] < b_prev2["low"]:
+                gap_low = b_curr["high"]
+                gap_high = b_prev2["low"]
+                subsequent_highs = [recent[k]["high"] for k in range(i+1, len(recent))]
+                max_subsequent = max(subsequent_highs) if subsequent_highs else gap_low
+                ce = (gap_low + gap_high) / 2.0
+                ce_untouched = max_subsequent < ce
+                if max_subsequent < gap_high and ce_untouched:
+                    bear_fvg_list.append({"low": gap_low, "high": gap_high, "ce": ce, "bar_index": i, "ce_untouched": ce_untouched})
+
+    bull_fvg_ce = bull_fvg_list[-1]["ce"] if bull_fvg_list else None
+    bear_fvg_ce = bear_fvg_list[-1]["ce"] if bear_fvg_list else None
+
+    return {"P": p, "S1": s1, "R1": r1, "S2": s2, "R2": r2,
+            "swing_high": swing_high, "swing_low": swing_low,
+            "h24": h, "l24": l, "c24": c,
+            "vwap": vwap, "vwap_sigma": vwap_sigma,
+            "vwap_upper_1": vwap_upper_1, "vwap_lower_1": vwap_lower_1,
+            "vwap_upper_2": vwap_upper_2, "vwap_lower_2": vwap_lower_2,
+            "bull_fvg_ce": bull_fvg_ce, "bear_fvg_ce": bear_fvg_ce,
+            "bull_fvgs": bull_fvg_list, "bear_fvgs": bear_fvg_list}
+
+class AI15mMT5Trader:
+    def __init__(self, coin="SOL", host="http://localhost:8095", paper_mode=True,
+                 risk_usd=10, min_risk_usd=10, max_risk_usd=45, cadence_minute=14,
+                 cadence_second=30, entry_mode="market", account_id=None,
+                 max_spread_points=None, state_file=None, allow_list=None, *,
+                 bridge=None, intel=None, cognitive=None, covariance=None, uplift=None,
+                 covariance_path=None, uplift_path=None, policy=None, clock=time.time,
+                 fetcher=None, cognitive_enabled=True, journal_dir=None,
+                 limit_expiration_seconds=3600, ttl_min_seconds=7200.0, ttl_max_seconds=21600.0,
+                 persistent_limits=True):
+        if cadence_minute != 14 or not 0 <= cadence_second <= 50:
+            raise ValueError("Entries must be scheduled in minute 14 before the candle close")
+        if entry_mode not in ("market", "limit"):
+            raise ValueError("entry_mode must be 'market' or 'limit'")
+        self.entry_mode = entry_mode
+        self.limit_expiration_seconds = int(limit_expiration_seconds)
+        self.coin, self.host, self.paper_mode = canonical_asset(coin), host.rstrip("/"), paper_mode
+        self.policy = policy or RiskPolicy(min_risk=min_risk_usd, max_risk=max_risk_usd, max_book_age=30.0, max_future_skew_sec=30.0)
+        self.assets = tuple(canonical_asset(a) for a in (allow_list or UNIVERSE))
+        if any(a not in UNIVERSE for a in self.assets) or len(set(self.assets)) != len(self.assets): raise ValueError("Invalid asset allow-list")
+        self.clock, self.cadence_second, self.max_spread_points = clock, cadence_second, max_spread_points
+        self.bridge = bridge or MT5ExecutionBridge(account_id=account_id)
+        self.intel = intel or MarketIntelligenceEngine(clock=clock)
+        self.cognitive = cognitive or CognitiveEngine()
+        self.cognitive_enabled = cognitive_enabled
+        self.covariance_path = Path(covariance_path or ROOT/"Data/Hyperdash_Historical/ledoit_wolf_covariance.parquet")
+        self.fitted_covariance_path = self.covariance_path.with_name(self.covariance_path.stem+".omni.parquet")
+        self.covariance, self.covariance_error = covariance, None
+        self.uplift = uplift or UpliftGate(uplift_path or ROOT/"Data/Models/omni_uplift")
+        self.state_file = Path(state_file or ROOT/"Data"/("omni_paper_state.json" if paper_mode else "mt5_ai_trader_state.json"))
+        self.journal_dir = Path(journal_dir or ROOT/"Data/Omni"/("paper" if paper_mode else "live"))
+        self.journal_dir.mkdir(parents=True, exist_ok=True)
+        self.state = {"schema": "omni.state.v1", "original_capital_usd": 5000.0, "capital_usd": 5000.0,
+                      "peak_equity_usd": 5000.0, "halted": False,
+                      "last_slot": -1, "positions": {}, "intents": {}, "paper_positions": [], "paper_cash": 5000.0}
+        if self.state_file.exists():
+            loaded = json.loads(self.state_file.read_text(encoding="utf-8"))
+            # Preserve the user's ledger fields on migration; a malformed state is fatal.
+            self.state.update(loaded)
+            orig_cap = self.policy.initial_capital
+            self.state["original_capital_usd"] = orig_cap
+            self.state["peak_equity_usd"] = max(orig_cap, number(loaded.get("peak_equity_usd", loaded.get("peak_equity", orig_cap))))
+            if "last_slot" not in loaded:
+                prior_pass = epoch((loaded.get("last_360_report") or {}).get("timestamp"))
+                if prior_pass: self.state["last_slot"] = int(prior_pass//900)
+        self.flow = OrderflowModel(self.policy, self.state.get("normalizer"), self.state.get("walls"))
+        # Order Persistence Governor (Incident A): owns multi-hour resting
+        # limit orders, dynamic TTL and wall-tracking cancel/replace. Runs on
+        # the ~1s manage cadence, never inside the minute-14 decision window.
+        self.ttl_min_seconds, self.ttl_max_seconds = float(ttl_min_seconds), float(ttl_max_seconds)
+        self.persistent_limits = bool(persistent_limits)
+        self.governor = OrderPersistenceGovernor(self.bridge, journal=self._append, clock=self.clock,
+                                                 ttl_min_sec=self.ttl_min_seconds, ttl_max_sec=self.ttl_max_seconds)
+        self.governor.load(self.state.get("resting_orders"))
+        # Tamper-proof feature seals (Incident B): per-asset hash chain.
+        self.sealer = FeatureSealer(self.state.get("feature_chain"))
+        self.fetcher = fetcher or self._fetch
+        self.pool = ThreadPoolExecutor(max_workers=8, thread_name_prefix="omni-data")
+        self.intel_pool = ThreadPoolExecutor(max_workers=1, thread_name_prefix="omni-macro")
+        self.inference_pool = ThreadPoolExecutor(max_workers=1, thread_name_prefix="omni-inference")
+        self.fetches, self.payloads, self.symbols, self.bars = {}, {}, {}, {}
+        self.macro_future, self.macro = None, {}
+        self.last_prefetch = self.last_bars = self.last_macro = -math.inf
+        self.last_report = {}
+        self._lock_fd = None
+        if self.covariance is None:
+            for path in (self.covariance_path, self.fitted_covariance_path):
+                try: self.covariance = CovarianceGate.load(path); break
+                except Exception as exc: self.covariance_error = str(exc)
+
+    def _append(self, name, record):
+        with open(self.journal_dir/name, "a", encoding="utf-8") as stream:
+            stream.write(json.dumps(record, allow_nan=False, default=str)+"\n")
+            stream.flush(); os.fsync(stream.fileno())
+
+    def _sync_external_state(self):
+        if not self.state_file.exists(): return
+        try:
+            mtime = self.state_file.stat().st_mtime
+            if getattr(self, "_last_state_mtime", 0) > 0 and mtime > self._last_state_mtime + 0.05:
+                external = json.loads(self.state_file.read_text(encoding="utf-8"))
+                self.state["halted"] = bool(self.state["halted"] or external.get("halted"))
+                self.state["original_capital_usd"] = self.policy.initial_capital
+                self.state["peak_equity_usd"] = max(self.state["peak_equity_usd"], number(external.get("peak_equity_usd")))
+            self._last_state_mtime = mtime
+        except Exception: pass
+
+    def unhalt(self, reason: str = "operator_recovery"):
+        """Explicitly reset the drawdown halt latch and persist."""
+        self.state["halted"] = False
+        self._append("risk_events.jsonl", {"time": self.clock(), "event": "unhalt", "reason": reason})
+        self._save_state()
+
+    def _save_state(self):
+        self._sync_external_state()
+        resolved = [key for key, value in self.state["intents"].items() if value["status"] in ("REJECTED", "RECONCILED", "RECONCILED_CLOSED", "EXPIRED")]
+        for key in resolved[:-32]: del self.state["intents"][key]
+        self.state["normalizer"] = self.flow.normalizer.export()
+        self.state["walls"] = self.flow.walls
+        self.state["resting_orders"] = self.governor.export()
+        self.state["feature_chain"] = self.sealer.export()
+        self.state["latest_report"] = self.last_report
+        self.state_file.parent.mkdir(parents=True, exist_ok=True)
+        temporary = self.state_file.with_suffix(self.state_file.suffix+".tmp")
+        with open(temporary, "w", encoding="utf-8") as stream:
+            json.dump(self.state, stream, allow_nan=False, default=str)
+            stream.flush(); os.fsync(stream.fileno())
+        os.replace(temporary, self.state_file)
+        try: self._last_state_mtime = self.state_file.stat().st_mtime
+        except Exception: pass
+
+    def _fetch(self, asset):
+        with urllib.request.urlopen(self.host+"/api/live/"+asset, timeout=3.0) as response:
+            payload = json.loads(response.read())
+        if canonical_asset(payload.get("coin")) != asset: raise ValueError("Signal asset mismatch")
+        return payload
+
+    def refresh_background(self):
+        now = self.clock()
+        for asset, future in list(self.fetches.items()):
+            if future.done():
+                try:
+                    self.payloads[asset] = future.result()
+                    self.flow.observe_walls(asset, self.payloads[asset], now)
+                except Exception as exc: self._append("feed_errors.jsonl", {"time": now, "asset": asset, "error": str(exc)})
+                del self.fetches[asset]
+        if now-self.last_prefetch >= 5:
+            for asset in self.assets:
+                if asset not in self.fetches: self.fetches[asset] = self.pool.submit(self.fetcher, asset)
+            self.last_prefetch = now
+        if self.macro_future and self.macro_future.done():
+            try: self.macro = self.macro_future.result(); self.macro["received_at"] = now
+            except Exception as exc: self._append("feed_errors.jsonl", {"time": now, "asset": "MACRO", "error": str(exc)})
+            self.macro_future = None
+        if now-self.last_macro >= 300 and self.macro_future is None:
+            self.macro_future = self.intel_pool.submit(self.intel.get_market_intelligence_report)
+            self.last_macro = now
+
+    def refresh_broker_history(self):
+        now = self.clock()
+        if now-self.last_bars < 30: return
+        for asset in self.assets:
+            symbol = self.bridge.resolve_symbol(asset)
+            if symbol:
+                self.symbols[asset] = symbol
+                self.bars[asset] = self.bridge.get_recent_bars(symbol, count=512)
+        self.last_bars = now
+        is_valid = False
+        if self.covariance:
+            try:
+                self.covariance.validate_time(now, self.policy.covariance_horizon_minutes)
+                if all(a in self.covariance.index for a in self.bars):
+                    is_valid = True
+            except Exception:
+                is_valid = False
+        if is_valid:
+            return
+        try:
+            self.covariance = fit_covariance(self.bars, now, self.fitted_covariance_path)
+            self.covariance_error = None
+            self._append("risk_events.jsonl", {"time": now, "event": "covariance_refit", "metadata": self.covariance.metadata})
+        except (ValueError, OSError, ImportError) as exc:
+            self.covariance_error = str(exc)
+
+    def _quote(self, symbol):
+        quote = self.bridge.get_symbol_price(symbol)
+        if not quote or not 0 < number(quote.get("bid")) < number(quote.get("ask")): raise ValueError("broker_quote_invalid")
+        age = self.clock()-epoch(quote.get("time_msc"))
+        max_skew = max(15.0, getattr(self.policy, "max_future_skew_sec", 15.0))
+        max_age = max(15.0, getattr(self.policy, "max_book_age", 15.0))
+        if not -max_skew <= age <= max_age: raise ValueError("broker_quote_stale_or_future")
+        return quote
+
+    def _own(self, position): return int(position.get("magic", 0)) == MAGIC or str(position.get("ticket")) in self.state["positions"]
+
+    def _inventory(self):
+        # Read live inventory even in paper mode so disconnected IPC cannot masquerade as a healthy broker.
+        actual = self.bridge.get_open_positions()
+        pending = self.bridge.get_pending_orders()
+        if self.paper_mode: return copy.deepcopy(self.state["paper_positions"]), []
+        return actual, pending
+
+    def _account(self, positions):
+        account = self.bridge.get_account_summary()
+        if not account.get("connected") or account.get("currency") != "USD": raise ValueError("USD_broker_account_required")
+        if not self.paper_mode:
+            login = account.get("login")
+            if not login: raise ValueError("broker_account_identity_unavailable")
+            if self.state.get("account_login") not in (None, login): raise ValueError("persisted_state_account_mismatch")
+            self.state["account_login"] = login
+        if self.paper_mode:
+            equity = self.state["paper_cash"]
+            for p in positions:
+                q = self._quote(p["symbol"]); sign = 1 if p["direction"] == "LONG" else -1
+                px = q["bid"] if sign == 1 else q["ask"]
+                equity += sign*(px-p["price_open"])*p["volume"]*p["contract_size"]-p["residual_cost_usd"]
+            account = dict(account, equity_usd=equity, balance_usd=self.state["paper_cash"], margin_free_usd=self.state["paper_cash"])
+        return account
+
+    def _equity_guard(self, account):
+        equity = number(account.get("equity_usd"))
+        orig_cap = self.policy.initial_capital
+        peak = max(self.state.get("peak_equity_usd", orig_cap), equity, orig_cap)
+        floor = max(orig_cap*(1-0.045), peak-orig_cap*0.045)
+        self.state["peak_equity_usd"] = peak
+        emergency_marker = not self.paper_mode and (ROOT/"Data/Omni/live/emergency_halt.json").exists()
+        self.state["halted"] = bool(self.state["halted"] or equity <= floor or emergency_marker)
+        return {"equity_usd": equity, "peak_equity_usd": peak, "hard_floor_usd": floor,
+                "drawdown_room": max(0, equity-floor), "halted": self.state["halted"],
+                "risk_cap_usd": self._risk_cap(equity)}
+
+    def _risk_cap(self, equity):
+        return 10.0 if equity < 4800.0 else min(20.0, self.policy.max_risk)
+
+    def _reconcile(self, positions, pending):
+        pending_tickets = {int(o.get("ticket", 0)) for o in pending}
+        for key, intent in self.state["intents"].items():
+            if intent["status"] not in ("PREPARED", "ACKNOWLEDGED", "UNCERTAIN", "STAGED_LIMIT", "ABANDONED"): continue
+            # Aged unresolved intents deadlock all future entries
+            # ("unresolved_execution_intent"). Only demote when the broker can
+            # prove no fill ever happened; without history evidence the
+            # intent is conservatively kept (fail-closed).
+            if intent["status"] in ("PREPARED", "ACKNOWLEDGED", "UNCERTAIN") and not self.paper_mode:
+                age = self.clock()-number(intent.get("prepared_at"))
+                limit = 120.0 if intent["status"] == "PREPARED" else 300.0
+                if age > limit and not self._bridge_intent_filled(intent):
+                    intent["status"] = "ABANDONED"
+                    self._append("executions.jsonl", {"time": self.clock(), "event": "intent_aged_out",
+                                                      "intent_id": key, "age": age})
+            matched = [p for p in positions if p.get("comment") == intent["comment"] and int(p.get("magic", 0)) == MAGIC]
+            if matched:
+                if len(matched) != 1: raise ValueError("ambiguous_order_reconciliation")
+                p = matched[0]; intent["status"] = "RECONCILED"; intent["position_ticket"] = p["ticket"]
+                metadata = copy.deepcopy(intent["candidate"])
+                metadata["price_open"] = p["price_open"]
+                metadata["initial_r"] = abs(p["price_open"]-metadata["sl"])
+                metadata["time"] = p["time"]
+                metadata["volume"] = p["volume"]
+                metadata["identifier"] = p.get("identifier", p["ticket"])
+                # Check price drift at fill vs planned entry price (Finding H-09)
+                planned_px = intent["candidate"].get("price_open", p["price_open"])
+                planned_r = intent["candidate"].get("initial_r", metadata["initial_r"])
+                drift = abs(p["price_open"]-planned_px)
+                if planned_r > 0 and drift > 0.05 * planned_r:
+                    self._append("executions.jsonl", {"time": self.clock(), "event": "fill_drift_warning",
+                                                      "intent_id": key, "drift": drift, "planned_px": planned_px, "fill_px": p["price_open"]})
+                self.state["positions"][str(p["ticket"])] = metadata
+                self._append("executions.jsonl", {"time": self.clock(), "event": "reconciled", "intent_id": key, "position": p})
+                quote = self._quote(p["symbol"])
+                if p.get("sl", 0) <= 0:
+                    self._close(p, "filled_without_protective_sl")
+                else:
+                    estimate = self.bridge.estimate_order(p["symbol"], p["direction"], p["price_open"], metadata["sl"])
+                    actual_risk = p["volume"]*(estimate["stop_loss_per_lot"]+quote["contract_size"]*p["price_open"]*cost_bps(quote, self.policy)/10000)
+                    if actual_risk > min(45, metadata["risk_usd"])+0.01:
+                        self._close(p, "fill_exceeded_planned_risk")
+            elif intent["status"] == "STAGED_LIMIT":
+                ticket = intent.get("order_ticket")
+                if ticket and ticket not in pending_tickets:
+                    # The order vanished between the two IPC inventory
+                    # snapshots. A fill inside that race window must never be
+                    # mistaken for an expiry (Finding F-04): check deal
+                    # history before declaring EXPIRED.
+                    resolution = self._resolve_vanished_limit(key, intent)
+                    if resolution == "uncertain":
+                        continue
+            elif not self.paper_mode and hasattr(self.bridge, "reconcile_intent_history"):
+                history = self.bridge.reconcile_intent_history(intent["comment"], intent["prepared_at"])
+                if history and history["state"] == "FILLED_CLOSED":
+                    intent["status"] = "RECONCILED_CLOSED"
+                    self._append("outcomes.jsonl", {"intent_id": key, "available_at": self.clock(), **history})
+                    meta = intent["candidate"]
+                    if meta.get("cognitive_snapshot") and meta.get("cognitive_decision"):
+                        self.cognitive.record_outcome(meta["cognitive_snapshot"], meta["cognitive_decision"], history)
+            # Absence of inventory/history still cannot prove a send failed.
+        active_tickets = {str(p["ticket"]) for p in positions}
+        if not self.paper_mode:
+            for ticket, meta in list(self.state["positions"].items()):
+                if ticket in active_tickets: continue
+                deals = self.bridge.position_deals(meta.get("identifier", int(ticket)))
+                if not any(d["entry"] in (1, 2, 3) for d in deals): continue
+                outcome = {"ticket": ticket, "deals": deals, "net_pnl_usd": sum(number(d.get(k)) for d in deals for k in ("profit_usd", "commission_usd", "swap_usd", "fee_usd")), "available_at": self.clock()}
+                self._append("outcomes.jsonl", outcome)
+                if meta.get("cognitive_snapshot") and meta.get("cognitive_decision"):
+                    self.cognitive.record_outcome(meta["cognitive_snapshot"], meta["cognitive_decision"], outcome)
+                del self.state["positions"][ticket]
+
+    def _bridge_intent_filled(self, intent):
+        """True iff the broker shows fill evidence for this intent's comment.
+
+        Returns True (conservative: never age out) when the bridge cannot
+        answer, so evidence-free demotion is impossible.
+        """
+        try:
+            if hasattr(self.bridge, "intent_filled"):
+                return bool(self.bridge.intent_filled(intent["comment"], number(intent.get("prepared_at"))))
+        except (RuntimeError, ValueError, OSError):
+            return True
+        return True
+
+    def _resolve_vanished_limit(self, key, intent):
+        """Classify a pending limit that disappeared from the broker inventory.
+
+        Returns "filled_closed", "filled_open", "expired" or "uncertain".
+        A fill inside the inventory race window is reconciled from deal
+        history instead of being silently marked EXPIRED (Finding F-04).
+        """
+        ticket = intent.get("order_ticket")
+        if not self.paper_mode:
+            try:
+                if hasattr(self.bridge, "reconcile_intent_history"):
+                    history = self.bridge.reconcile_intent_history(intent["comment"], intent["prepared_at"])
+                    if history and history["state"] == "FILLED_CLOSED":
+                        intent["status"] = "RECONCILED_CLOSED"
+                        self._append("outcomes.jsonl", {"intent_id": key, "available_at": self.clock(), **history})
+                        meta = intent["candidate"]
+                        if meta.get("cognitive_snapshot") and meta.get("cognitive_decision"):
+                            self.cognitive.record_outcome(meta["cognitive_snapshot"], meta["cognitive_decision"], history)
+                        return "filled_closed"
+                if hasattr(self.bridge, "intent_filled") and bool(self.bridge.intent_filled(intent["comment"], number(intent.get("prepared_at")))):
+                    # Filled and still open: it will reconcile from the next
+                    # position snapshot via the comment match above.
+                    intent["status"] = "ACKNOWLEDGED"
+                    self._append("executions.jsonl", {"time": self.clock(), "event": "limit_filled_pending_reconcile",
+                                                      "intent_id": key, "ticket": ticket})
+                    return "filled_open"
+            except RuntimeError:
+                return "uncertain"
+        intent["status"] = "EXPIRED"
+        self._append("executions.jsonl", {"time": self.clock(), "event": "limit_expired", "intent_id": key,
+                                          "ticket": ticket, "fill_checked": not self.paper_mode})
+        return "expired"
+
+    def _flatten(self, positions, pending, reason):
+        for order in pending:
+            if reason == "hard_drawdown_stop" or int(order.get("magic", 0)) == MAGIC:
+                result = self.bridge.cancel_pending_order(order["ticket"])
+                self._append("executions.jsonl", {"time": self.clock(), "event": "cancel", "reason": reason, "result": result})
+        for p in positions:
+            if reason == "hard_drawdown_stop" or self._own(p): self._close(p, reason)
+
+    def _close(self, position, reason):
+        ticket = str(position["ticket"])
+        metadata = self.state["positions"].setdefault(ticket, {})
+        is_emergency = reason in ("hard_drawdown_stop", "unprotected_position")
+        if metadata.get("close_uncertain") and not is_emergency:
+            if self.clock() - number(metadata.get("close_requested_at", 0)) < 3.0:
+                return
+        if self.paper_mode:
+            q = self._quote(position["symbol"]); sign = 1 if position["direction"] == "LONG" else -1
+            px = q["bid"] if sign == 1 else q["ask"]
+            pnl = sign*(px-position["price_open"])*position["volume"]*position["contract_size"]-position["residual_cost_usd"]
+            self.state["paper_cash"] += pnl
+            self.state["paper_positions"] = [p for p in self.state["paper_positions"] if p["ticket"] != position["ticket"]]
+            self.state["positions"].pop(ticket, None)
+            result = {"success": True, "paper": True, "ticket": ticket, "price": px, "net_pnl_usd": pnl}
+            self._append("outcomes.jsonl", {"time": self.clock(), **result})
+            if metadata.get("cognitive_snapshot") and metadata.get("cognitive_decision"):
+                self.cognitive.record_outcome(metadata["cognitive_snapshot"], metadata["cognitive_decision"], result)
+        else:
+            metadata["close_uncertain"] = True
+            metadata["close_requested_at"] = self.clock()
+            self._save_state()
+            result = self.bridge.close_position(int(ticket))
+            if result.get("success"):
+                metadata["close_uncertain"] = False
+                self.state["positions"].pop(ticket, None)
+            else:
+                metadata["close_uncertain"] = bool(result.get("uncertain", True))
+        self._append("executions.jsonl", {"time": self.clock(), "event": "close", "reason": reason, "result": result})
+        self._save_state()
+
+    def manage_active_positions(self, *unused):
+        positions, pending = self._inventory()
+        account = self._account(positions); guard = self._equity_guard(account)
+        if guard["halted"]:
+            self._save_state()
+            self._flatten(positions, pending, "hard_drawdown_stop")
+            self._reconcile(positions, pending)
+            return [{"event": "hard_drawdown_stop", **guard}]
+        self._reconcile(positions, pending)
+        changes = []
+        for p in positions:
+            if not self._own(p): continue
+            key = str(p["ticket"]); meta = self.state["positions"].setdefault(key, {})
+            try:
+                q = self._quote(p["symbol"])
+                entry = number(p["price_open"]); sign = 1 if p["direction"] == "LONG" else -1
+                initial_r = number(meta.get("initial_r", self.state.get("position_r_dist", {}).get(key)))
+                if initial_r <= 0 and sign*(entry-number(p.get("sl"))) > 0 and number(p.get("sl")) > 0:
+                    initial_r = abs(entry-p["sl"]); meta["initial_r"] = initial_r
+                if not number(p.get("sl")):
+                    self._close(p, "unprotected_position"); continue
+                if initial_r <= 0:
+                    if self.clock()-epoch(p["time"]) >= 24*900: self._close(p, "initial_r_unknown_at_time_limit")
+                    changes.append({"ticket": key, "reason": "initial_r_unknown_keep_protective_sl"}); continue
+                px = q["bid"] if sign == 1 else q["ask"]
+                gain = sign*(px-entry)/initial_r
+                meta["max_favorable_r"] = max(number(meta.get("max_favorable_r")), gain)
+                if self.paper_mode and (sign*(px-p["sl"]) <= 0 or (number(p.get("tp")) > 0 and sign*(px-p["tp"]) >= 0)):
+                    self._close(p, "paper_bracket"); continue
+                if self.clock()-epoch(p["time"]) >= 24*900 and meta["max_favorable_r"] < 0.20:
+                    self._close(p, "24_bar_time_decay"); continue
+                asset = meta.get("asset", canonical_asset(p["symbol"]))
+                stats = completed_statistics(self.bars.get(asset, []), self.clock()) if self.bars.get(asset) else {}
+                atr = number(stats.get("atr"), number(meta.get("atr"), initial_r*0.5))
+                tick_size = max(number(q.get("tick_size")), number(q.get("point")))
+                distance = max(number(q.get("stops_level")), number(q.get("freeze_level")), 1)*q["point"]
+                friction_bps = number(meta.get("sizing", {}).get("friction_bps", meta.get("friction_bps", self.policy.minimum_friction_bps)))
+                proposed = executable_ratchet(entry, initial_r, p["direction"], gain, p["sl"], atr,
+                                              q["bid"], q["ask"], tick_size, distance,
+                                              friction_bps=friction_bps, buffer_r=0.05)
+                if proposed != p["sl"]:
+                    if self.paper_mode:
+                        for stored in self.state["paper_positions"]:
+                            if stored["ticket"] == p["ticket"]: stored["sl"] = proposed
+                        result = {"success": True, "ticket": key, "sl": proposed, "paper": True}
+                    else: result = self.bridge.modify_position_sltp(int(p["ticket"]), proposed, p.get("tp"))
+                    changes.append(result); self._append("executions.jsonl", {"time": self.clock(), "event": "ratchet", "gain_r": gain, "result": result})
+            except (ValueError, RuntimeError) as exc:
+                changes.append({"ticket": key, "error": str(exc)})
+
+        # First-Fill OCO Governor: If open positions reach capacity (2), purge all pending limit orders
+        if len(positions) >= 2 and pending:
+            for order in list(pending):
+                oticket = int(order.get("ticket", 0))
+                if int(order.get("magic", 0)) == MAGIC or any(v.get("order_ticket") == oticket for v in self.state.get("intents", {}).values()):
+                    res = self.bridge.cancel_pending_order(oticket)
+                    self._append("executions.jsonl", {"time": self.clock(), "event": "oco_capacity_cancel", "ticket": oticket, "reason": "max_positions_reached_2", "result": res})
+                    changes.append({"ticket": str(oticket), "action": "CANCEL", "reason": "max_positions_reached_2"})
+            pending = []
+        elif len(positions) == 1 and pending:
+            active_p = positions[0]
+            active_asset = self.state["positions"].get(str(active_p["ticket"]), {}).get("asset", canonical_asset(active_p["symbol"]))
+            for order in list(pending):
+                oticket = int(order.get("ticket", 0))
+                if int(order.get("magic", 0)) == MAGIC or any(v.get("order_ticket") == oticket for v in self.state.get("intents", {}).values()):
+                    rem_sym = order.get("symbol")
+                    rem_asset = canonical_asset(rem_sym)
+                    rem_dir = order.get("direction", "LONG")
+                    if self.covariance and active_asset != rem_asset:
+                        try:
+                            corr = self.covariance.correlation(rem_asset, active_asset)
+                            if corr >= 0.55 and rem_dir == active_p.get("direction"):
+                                res = self.bridge.cancel_pending_order(oticket)
+                                self._append("executions.jsonl", {"time": self.clock(), "event": "oco_correlated_cancel", "ticket": oticket, "reason": f"correlated_with_active_{active_asset}_corr_{corr:.2f}", "result": res})
+                                changes.append({"ticket": str(oticket), "action": "CANCEL", "reason": f"correlated_with_active_{active_asset}_corr_{corr:.2f}"})
+                                pending = [o for o in pending if int(o.get("ticket", 0)) != oticket]
+                        except Exception:
+                            pass
+
+        # Dynamic pending order monitoring & structural invalidation
+        for order in pending:
+            oticket = int(order.get("ticket", 0))
+            if int(order.get("magic", 0)) == MAGIC or any(v.get("ticket") == oticket or v.get("order_ticket") == oticket for v in self.state.get("intents", {}).values()):
+                sym = order.get("symbol")
+                asset = canonical_asset(sym)
+                direction = order.get("direction", "LONG")
+
+                # Check 1: Macro blackout active
+                blackout, event, _ = self.intel.check_macro_blackout()
+                if blackout:
+                    res = self.bridge.cancel_pending_order(oticket)
+                    self._append("executions.jsonl", {"time": self.clock(), "event": "cancel_pending", "ticket": oticket, "reason": f"macro_blackout:{event}", "result": res})
+                    changes.append({"ticket": str(oticket), "action": "CANCEL", "reason": f"macro_blackout:{event}"})
+                    continue
+
+                # Check 2: Price drifted far from limit (> 3.0 * ATR away)
+                bars = self.bars.get(asset, [])
+                if bars:
+                    try:
+                        stats = completed_statistics(bars, self.clock())
+                        atr = stats.get("atr", 0.0)
+                        quote = self._quote(sym)
+                        if quote and atr > 0:
+                            mid = (number(quote["bid"]) + number(quote["ask"])) / 2.0
+                            limit_px = number(order.get("price_open", 0.0))
+                            drift_threshold = max(6.0 * atr, 0.03 * mid)
+                            if limit_px > 0 and abs(mid - limit_px) > drift_threshold:
+                                res = self.bridge.cancel_pending_order(oticket)
+                                self._append("executions.jsonl", {"time": self.clock(), "event": "cancel_pending", "ticket": oticket, "reason": "price_drifted_far_from_limit", "result": res})
+                                changes.append({"ticket": str(oticket), "action": "CANCEL", "reason": "price_drifted_far_from_limit"})
+                                continue
+                    except (ValueError, KeyError):
+                        pass
+
+        # Order Persistence Governor heartbeat (Incident A): dynamic TTL,
+        # wall-pull cancel / cancel-replace and drift bounds for resting
+        # persistent limit orders. Runs on every manage cycle so multi-hour
+        # orders never depend on the 15-minute decision cadence.
+        if not self.paper_mode and self.governor.count():
+            try:
+                changes.extend(self.governor.heartbeat(now=self.clock(), intents=self.state["intents"],
+                                                       payloads=self.payloads, pending=pending,
+                                                       quote_fn=self._quote))
+            except Exception as exc:
+                self._append("runtime_errors.jsonl", {"time": self.clock(), "event": "governor_heartbeat_failed",
+                                                      "error": str(exc)})
+
+        self._save_state()
+        return changes
+
+    def _portfolio_exposure(self, positions, guard):
+        exposure, stop_reserve = {}, 0.0
+        enriched = []
+        for p in positions:
+            q = self._quote(p["symbol"]); sign = 1 if p["direction"] == "LONG" else -1
+            asset = self.state["positions"].get(str(p["ticket"]), {}).get("asset", canonical_asset(p["symbol"]))
+            mid = (q["bid"]+q["ask"])/2; notional = mid*q["contract_size"]*p["volume"]
+            exposure[asset] = exposure.get(asset, 0)+sign*notional
+            if number(p.get("sl")) <= 0: raise ValueError("portfolio_has_unprotected_position")
+            mark = q["bid"] if sign == 1 else q["ask"]
+            stop_reserve += max(0, sign*(mark-p["sl"]))*q["contract_size"]*p["volume"]+notional*cost_bps(q, self.policy)/10000
+            meta = self.state["positions"].get(str(p["ticket"]), {})
+            initial_r = number(meta.get("initial_r")) or abs(p["price_open"]-p["sl"])
+            if initial_r <= 0: raise ValueError("portfolio_initial_r_unknown")
+            enriched.append({**p, "asset": asset, "initial_r": initial_r, "contract_size": q["contract_size"],
+                             "profit_usd": sign*(mark-p["price_open"])*p["volume"]*q["contract_size"],
+                             "tick_size": max(number(q.get("tick_size")), q["point"]),
+                             "stop_distance": max(number(q.get("stops_level")), number(q.get("freeze_level")), 1)*q["point"],
+                             "residual_cost_usd": number(meta.get("residual_cost_usd")), "atr": number(meta.get("atr"), initial_r*0.5)})
+        return exposure, max(0, guard["drawdown_room"]-stop_reserve), enriched
+
+    def evaluate_market(self, multi_data=None, macro=None, force=False):
+        now = self.clock(); slot = int(now//900); elapsed = now-slot*900
+        report = {"time": now, "slot": slot, "decision": "HOLD", "candidates": [], "vetoes": {}}
+        # force permits a research evaluation, never bypasses the live cadence.
+        if not (840+self.cadence_second <= elapsed < 898) and not (force and self.paper_mode):
+            return {**report, "reason": "outside_execution_window"}
+        if self.state["last_slot"] >= slot: return {**report, "reason": "slot_already_evaluated"}
+        if multi_data is None and self.fetches and any(a not in self.payloads for a in self.assets) and elapsed < 888:
+            return {**report, "reason": "waiting_for_initial_feeds"}
+        data = multi_data if multi_data is not None else self.payloads
+        for asset in self.assets:
+            if asset not in data: report["vetoes"][asset] = "signal_data_unavailable"
+        self.state["last_slot"] = slot
+        self._save_state()  # A crash during inference cannot repeat this decision slot.
+        positions, pending = self._inventory()
+        account = self._account(positions); guard = self._equity_guard(account)
+        if not guard["halted"]: self._reconcile(positions, pending)
+        blackout, event, _ = self.intel.check_macro_blackout()
+        macro = dict(macro or self.macro)
+        if not 0 <= self.clock()-number(macro.get("received_at"), 0) <= 900:
+            macro.update(asset_scores={}, sentiment_valid=False)
+        macro["blackout_active"] = blackout
+        active_limits = sum(1 for i in self.state["intents"].values() if i["status"] == "STAGED_LIMIT")
+        if guard["halted"]:
+            self._save_state(); self._flatten(positions, pending, "hard_drawdown_stop")
+            report.update(decision="HARD_DD_VETO", reason="sticky_drawdown_latch")
+        elif blackout: report.update(decision="MACRO_VETO", reason=event)
+        elif len(positions) >= 2 or active_limits >= 5: report.update(reason="maximum_two_positions")
+        elif any(i["status"] in ("PREPARED", "ACKNOWLEDGED", "UNCERTAIN") for i in self.state["intents"].values()):
+            report.update(reason="unresolved_execution_intent")
+        else:
+            try:
+                if self.covariance is None: raise ValueError("covariance_unavailable:"+str(self.covariance_error))
+                self.covariance.validate_time(now, self.policy.covariance_horizon_minutes)
+                existing, room, enriched = self._portfolio_exposure(positions, guard)
+                candidates = []
+                for asset, payload in data.items():
+                    if asset not in self.assets: continue
+                    symbol = self.symbols.get(asset) or self.bridge.resolve_symbol(asset)
+                    if not symbol or any(p["symbol"] == symbol for p in positions): continue
+                    try:
+                        bars = self.bars.get(asset) or self.bridge.get_recent_bars(symbol, count=96)
+                        features = self.flow.features(asset, payload, bars, macro, now)
+                        if features.get("coverage_missing"):
+                            raise ValueError("unobserved_corridor_veto:no_visible_depth_for_target_fuel")
+                        if features.get("ffr") is not None and features["ffr"] < getattr(self.policy, "min_ffr", 0.50):
+                            raise ValueError(f"dense_friction_veto:ffr_{features['ffr']:.3f}_below_min_{getattr(self.policy, 'min_ffr', 0.50):.2f}")
+                        if features["confluence"] < self.policy.min_confluence: raise ValueError("confluence_below_threshold")
+                        # Sector Correlation Governor: Check against existing portfolio positions
+                        for p in positions:
+                            existing_asset = self.state["positions"].get(str(p["ticket"]), {}).get("asset", canonical_asset(p["symbol"]))
+                            existing_dir = p.get("direction")
+                            if self.covariance and existing_asset != asset and existing_dir:
+                                corr = None
+                                try:
+                                    corr = self.covariance.correlation(asset, existing_asset)
+                                except (ValueError, KeyError):
+                                    corr = None
+                                if corr is not None:
+                                    if abs(corr) >= 0.60:
+                                        raise ValueError(f"sector_correlation_conflict:{asset}_{features['direction']}_shares_{existing_asset}_{existing_dir}_corr_{corr:.2f}")
+                        quote = self._quote(symbol)
+                        mid = (quote["bid"]+quote["ask"])/2
+                        if abs(math.log(mid/features["signal_mid"]))/features["sigma_h"] > self.policy.max_basis_sigma:
+                            raise ValueError("signal_broker_basis_dislocation")
+                        sign = 1 if features["direction"] == "LONG" else -1
+                        tick = max(number(quote.get("tick_size")), quote["point"])
+                        digits = int(quote.get("digits", 2))
+                        atr = features["atr"]
+                        pivots = compute_pivot_levels(bars, tick)
+                        # Sleeve decoupling (Incident C): S1 pullbacks rest
+                        # passively ahead of verified absorption walls; T1
+                        # breakouts enter aggressively into liquidity vacuums.
+                        # Classification is deterministic and cannot be
+                        # overridden by the cognitive layer.
+                        features["sleeve"] = classify_sleeve(features)
+                        effective_mode = "market" if features["sleeve"] == "T1_BREAKOUT" else self.entry_mode
+                        l3 = payload.get("l3_orders", [])
+                        entry_anchors = []
+
+                        if effective_mode == "limit":
+                            min_broker_dist = (max(number(quote.get("stops_level", 0)), number(quote.get("freeze_level", 0)), 1) + 2) * quote["point"]
+                            if features["direction"] == "LONG":
+                                # Verified whale bid clusters (freshness-gated by the
+                                # feed's own observed_at stamp; the previous inline
+                                # freshness clause could never fire - Finding F-02).
+                                bid_clusters = wall_clusters(l3, "BUY", quote["bid"] - 2.5*atr, quote["bid"], now)
+                                whale_bids = [c["edge_price"] for c in bid_clusters]
+                                bull_fvg_ce = pivots.get("bull_fvg_ce") if pivots else None
+                                vwap_lower = pivots.get("vwap_lower_1") if pivots else None
+                                vwap = pivots.get("vwap") if pivots else None
+
+                                # Limit Entry Hierarchy for LONGs:
+                                if whale_bids:
+                                    raw_entry = min(max(whale_bids) + tick, quote["bid"] - min_broker_dist)
+                                elif bull_fvg_ce and quote["bid"] - 2.5*atr <= bull_fvg_ce <= quote["bid"] - min_broker_dist:
+                                    raw_entry = bull_fvg_ce
+                                elif vwap_lower and quote["bid"] - 2.5*atr <= vwap_lower <= quote["bid"] - min_broker_dist:
+                                    raw_entry = vwap_lower
+                                elif vwap and quote["bid"] - 2.5*atr <= vwap <= quote["bid"] - min_broker_dist:
+                                    raw_entry = vwap
+                                elif pivots and quote["bid"] - 2.5*atr <= pivots["S1"] <= quote["bid"] - min_broker_dist:
+                                    raw_entry = pivots["S1"]
+                                elif pivots and quote["bid"] - 2.5*atr <= pivots["P"] <= quote["bid"] - min_broker_dist:
+                                    raw_entry = pivots["P"]
+                                else:
+                                    raw_entry = quote["bid"] - max(0.4*atr, min_broker_dist)
+                                max_entry = min(quote["bid"] - tick, quote["ask"] - min_broker_dist)
+                                entry = round(min(raw_entry, max_entry), digits)
+                                swing_anchor = pivots["swing_low"] - 2*tick if pivots else entry - 1.5*atr
+                                whale_shield = min(whale_bids) - 2*tick if whale_bids else swing_anchor
+                                sl_cap = entry - min_broker_dist
+                                raw_sl = min(entry - 1.5*atr, swing_anchor, whale_shield, sl_cap)
+                                sl = round(math.floor(raw_sl / tick) * tick, digits)
+                                if entry - sl < min_broker_dist:
+                                    sl = round(math.floor((entry - min_broker_dist) / tick) * tick, digits)
+                                r = abs(entry - sl)
+                                if r > 2.5*atr:
+                                    raise ValueError(f"stop_width_runaway:{r/max(atr, 1e-12):.2f}atr_beyond_liquidity_shield")
+                                # Anchors handed to the persistence governor: the
+                                # clusters this passive bid front-runs.
+                                entry_anchors = anchors_from_clusters(bid_clusters, entry, "BUY")
+                            else:
+                                ask_clusters = wall_clusters(l3, "SELL", quote["ask"], quote["ask"] + 2.5*atr, now)
+                                whale_asks = [c["edge_price"] for c in ask_clusters]
+                                bear_fvg_ce = pivots.get("bear_fvg_ce") if pivots else None
+                                vwap_upper = pivots.get("vwap_upper_1") if pivots else None
+                                vwap = pivots.get("vwap") if pivots else None
+
+                                # Limit Entry Hierarchy for SHORTs:
+                                if whale_asks:
+                                    raw_entry = max(min(whale_asks) - tick, quote["ask"] + min_broker_dist)
+                                elif bear_fvg_ce and quote["ask"] + min_broker_dist <= bear_fvg_ce <= quote["ask"] + 2.5*atr:
+                                    raw_entry = bear_fvg_ce
+                                elif vwap_upper and quote["ask"] + min_broker_dist <= vwap_upper <= quote["ask"] + 2.5*atr:
+                                    raw_entry = vwap_upper
+                                elif vwap and quote["ask"] + min_broker_dist <= vwap <= quote["ask"] + 2.5*atr:
+                                    raw_entry = vwap
+                                elif pivots and quote["ask"] + min_broker_dist <= pivots["R1"] <= quote["ask"] + 2.5*atr:
+                                    raw_entry = pivots["R1"]
+                                elif pivots and quote["ask"] + min_broker_dist <= pivots["P"] <= quote["ask"] + 2.5*atr:
+                                    raw_entry = pivots["P"]
+                                else:
+                                    raw_entry = quote["ask"] + max(0.4*atr, min_broker_dist)
+                                min_entry = max(quote["ask"] + tick, quote["bid"] + min_broker_dist)
+                                entry = round(max(raw_entry, min_entry), digits)
+                                swing_anchor = pivots["swing_high"] + 2*tick if pivots else entry + 1.5*atr
+                                whale_shield = max(whale_asks) + 2*tick if whale_asks else swing_anchor
+                                sl_floor = entry + min_broker_dist
+                                raw_sl = max(entry + 1.5*atr, swing_anchor, whale_shield, sl_floor)
+                                sl = round(math.ceil(raw_sl / tick) * tick, digits)
+                                if sl - entry < min_broker_dist:
+                                    sl = round(math.ceil((entry + min_broker_dist) / tick) * tick, digits)
+                                r = abs(entry - sl)
+                                if r > 2.5*atr:
+                                    raise ValueError(f"stop_width_runaway:{r/max(atr, 1e-12):.2f}atr_beyond_liquidity_shield")
+                                entry_anchors = anchors_from_clusters(ask_clusters, entry, "SELL")
+                            tp_min_dist = min_broker_dist
+                        else:
+                            entry = quote["ask"] if features["direction"] == "LONG" else quote["bid"]
+                            min_dist = (max(quote.get("stops_level", 0), quote.get("freeze_level", 0))+2)*quote["point"]+(quote["ask"]-quote["bid"])
+                            r = max(1.5*features["atr"], min_dist)
+                            sl = (math.floor((entry-r)/tick) if sign == 1 else math.ceil((entry+r)/tick))*tick
+                            r = abs(entry-sl)
+                            tp_min_dist = min_dist
+                        estimate = self.bridge.estimate_order(symbol, features["direction"], entry, sl)
+                        features["risk_intent_usd"] = min(features["risk_intent_usd"], guard["risk_cap_usd"])
+                        sizing = size_trade(quote, estimate["stop_loss_per_lot"], features["risk_intent_usd"], self.covariance,
+                                            existing, asset, features["direction"], self.policy, room, number(account["margin_free_usd"]), estimate["margin_per_lot"])
+                        if not sizing["accepted"]: raise ValueError(sizing["reason"])
+                        friction_r = sizing["friction_usd"]/sizing["stop_risk_usd"]
+                        # Orderbook-aware structural take-profit (Incident C):
+                        # scan the top L3 clusters on the profit side and snap
+                        # the TP to front-run the first major wall instead of
+                        # staging an arbitrary fixed-R target beyond it. The
+                        # R-hurdle flexes with wall geometry and is vetoed when
+                        # the net-of-friction payoff cannot clear the floor.
+                        overhead_side = "SELL" if sign == 1 else "BUY"
+                        overhead_lo, overhead_hi = (entry, entry + 3.5*r) if sign == 1 else (entry - 3.5*r, entry)
+                        overhead = wall_clusters(l3, overhead_side, overhead_lo, overhead_hi, now,
+                                                 min_notional_usd=2_000_000.0, min_persistence_sec=0.0)
+                        exit_plan, exit_veto = structural_exit(entry, sl, features["direction"], overhead,
+                                                               tick=tick, friction_r=friction_r,
+                                                               min_broker_dist=max(tp_min_dist, tick))
+                        if exit_veto: raise ValueError(exit_veto)
+                        tp = round(exit_plan["tp"], digits)
+                        target_r = exit_plan["hurdle_r"]
+                        if target_r-friction_r < 1.5: raise ValueError("net_payoff_insufficient_after_friction")
+                        if self.max_spread_points is not None and (quote["ask"]-quote["bid"])/quote["point"] > self.max_spread_points:
+                            raise ValueError("spread_limit")
+                        # Lot estimates used by paper replay are USD-valued linear CFDs only.
+                        if quote.get("currency_profit") not in (None, "USD"): raise ValueError("non_USD_profit_currency_unsupported")
+                        candidate = {"candidate_id": f"{slot}:{asset}:{features['direction']}", "asset": asset,
+                                     "symbol": symbol, "direction": features["direction"], "volume": sizing["volume"],
+                                     "price_open": entry, "sl": sl, "tp": tp, "initial_r": r, "time": now,
+                                     "atr": features["atr"], "contract_size": quote["contract_size"], "magic": MAGIC,
+                                     "tick_size": tick, "stop_distance": max(quote.get("stops_level", 0), quote.get("freeze_level", 0), 1)*quote["point"],
+                                     "residual_cost_usd": max(0, sizing["friction_usd"]-sizing["volume"]*quote["contract_size"]*(quote["ask"]-quote["bid"])),
+                                     "risk_usd": sizing["risk_usd"], "features": features, "sizing": sizing, "payload": payload,
+                                     "sleeve": features["sleeve"], "entry_mode": effective_mode,
+                                     "hurdle_r": target_r, "tp_mode": exit_plan["mode"],
+                                     "tp_wall_price": exit_plan["wall_price"],
+                                     "tp_wall_notional_usd": exit_plan["wall_notional_usd"],
+                                     "entry_anchors": entry_anchors}
+                        uplift_features = {**features, **sizing, "drawdown_room": room, "candidate_net_target_r": target_r-friction_r,
+                                           "existing_floating_r": 0.0, "existing_age_bars": 0.0, "signed_correlation": 0.0}
+                        if enriched:
+                            p = enriched[0]; same = 1 if p["direction"] == candidate["direction"] else -1
+                            uplift_features.update(existing_floating_r=number(p.get("profit_usd"))/(p["initial_r"]*p["volume"]*p["contract_size"]),
+                                                   existing_age_bars=(now-epoch(p["time"]))/900,
+                                                   signed_correlation=same*self.covariance.correlation(asset, p["asset"]))
+                            episode = {"episode_id": candidate["candidate_id"], "as_of": now, "equity_usd": guard["equity_usd"],
+                                       "hard_floor_usd": guard["hard_floor_usd"], "existing_positions": enriched,
+                                       "candidate": {k: v for k, v in candidate.items() if k not in ("payload", "features", "sizing")},
+                                       "features": uplift_features, "policy_version": POLICY_VERSION}
+                            self._append("uplift_episodes.jsonl", episode)
+                            gate = self.uplift.decide(uplift_features, now)
+                            candidate["uplift"] = gate
+                            if not gate["accepted"]: raise ValueError(gate["reason"])
+                        candidates.append(candidate)
+                        report["candidates"].append({"asset": asset, "direction": candidate["direction"], "features": features, "sizing": sizing})
+                    except (ValueError, KeyError, RuntimeError) as exc: report["vetoes"][asset] = str(exc)
+                candidates.sort(key=lambda c: c["features"]["confluence"]*c["features"]["quality"], reverse=True)
+                if candidates:
+                    deadline = slot*900+898
+                    max_stageable = max(0, 2 - len(positions) - len(pending)) if self.entry_mode == "limit" else 1
+                    staged_results = []
+                    dispatched_candidates = []
+
+                    last_result = None
+                    for cand in candidates:
+                        if len(staged_results) >= max_stageable:
+                            break
+                        cand_sym = cand["symbol"]
+                        cand_asset = cand["asset"]
+                        if any(p["symbol"] == cand_sym for p in positions) or any(o.get("symbol") == cand_sym for o in pending):
+                            continue
+                        if any(c["symbol"] == cand_sym for c in dispatched_candidates):
+                            continue
+
+                        corr_conflict = False
+                        for p in positions:
+                            pos_asset = self.state["positions"].get(str(p["ticket"]), {}).get("asset", canonical_asset(p["symbol"]))
+                            if self.covariance and pos_asset != cand_asset:
+                                try:
+                                    if abs(self.covariance.correlation(cand_asset, pos_asset)) >= 0.60:
+                                        corr_conflict = True; break
+                                except Exception: pass
+                        if corr_conflict:
+                            continue
+                        for already in dispatched_candidates:
+                            if self.covariance and already["asset"] != cand_asset:
+                                try:
+                                    if abs(self.covariance.correlation(cand_asset, already["asset"])) >= 0.60:
+                                        corr_conflict = True; break
+                                except Exception: pass
+                        if corr_conflict:
+                            continue
+
+                        if self.cognitive_enabled:
+                            payload = cand["payload"]
+                            # Sealed deterministic features (Incident B): the
+                            # cognitive engine receives only the tamper-proof
+                            # vector; its numeric prose is attested against it.
+                            sealed = self.sealer.update(cand["asset"], cand["features"])
+                            snapshot = self.cognitive.build_snapshot(cand["asset"], cand["symbol"], cand["features"]["signal_mid"], cand["features"],
+                                                                     payload.get("l3_orders", []), payload.get("liquidations", {}).get("bands", []),
+                                                                     {"score": cand["features"]["macro_score"], "blackout": False},
+                                                                     {"equity": guard["equity_usd"], "slots": 2 - len(positions) - len(staged_results)}, {},
+                                                                     sealed=sealed)
+                            cand["feature_digest"] = sealed["digest"]
+                            snapshot["candidate"] = {"candidate_id": cand["candidate_id"], "direction": cand["direction"], "sizing": cand["sizing"],
+                                                     "sleeve": cand["sleeve"], "hurdle_r": cand["hurdle_r"],
+                                                     "tp": cand["tp"], "sl": cand["sl"], "price_open": cand["price_open"]}
+                            snapshot["sources"] = payload.get("sources", {})
+                            snapshot["whale_positions"] = payload.get("whale_positions", [])
+                            snapshot["projected_liquidations"] = payload.get("projected_liquidations", {})
+                            snapshot["observed_stops"] = payload.get("observed_stops", {})
+                            budget = max(0.1, min(6, deadline - self.clock()))
+                            future = self.inference_pool.submit(self.cognitive.evaluate_snapshot, snapshot, cand["direction"], budget_seconds=budget)
+                            wall_deadline = time.monotonic() + budget
+                            next_management = 0.0
+                            while not future.done() and time.monotonic() < wall_deadline:
+                                if time.monotonic() >= next_management:
+                                    self.manage_active_positions(); self.capture_quotes()
+                                    next_management = time.monotonic() + 1
+                                time.sleep(0.05)
+                            decision = future.result() if future.done() else None
+                            if not decision or decision.get("action") != "SELECT":
+                                self._append("decisions.jsonl", {"time": self.clock(), "candidate_id": cand["candidate_id"], "event": "cognitive_abstention"})
+                                continue
+                            cand["cognitive_snapshot"], cand["cognitive_decision"] = snapshot, decision
+
+                        if self.clock() >= deadline and not (force and self.paper_mode):
+                            break
+
+                        quote = self._quote(cand["symbol"])
+                        if cand.get("entry_mode", self.entry_mode) == "limit":
+                            if cand["direction"] == "LONG" and cand["price_open"] >= quote["ask"]:
+                                continue
+                            if cand["direction"] == "SHORT" and cand["price_open"] <= quote["bid"]:
+                                continue
+                            px = cand["price_open"]
+                        else:
+                            px = quote["ask"] if cand["direction"] == "LONG" else quote["bid"]
+                            if abs(px - cand["price_open"]) > 0.05 * cand["initial_r"]:
+                                continue
+                        # Staleness gate must reflect the freshest polled book,
+                        # not the book snapshot the candidate was built from:
+                        # refresh_background keeps polling during inference, and
+                        # rejecting on the original stamp wastes the entire
+                        # cognitive wait (Finding F-03).
+                        fresh_book = epoch((self.payloads.get(cand["asset"]) or {}).get("l2_book", {}).get("timestamp")) \
+                            or cand["features"]["book_as_of"]
+                        if self.clock() - fresh_book > self.policy.max_book_age:
+                            continue
+
+                        refreshed_positions, refreshed_pending = self._inventory()
+                        fresh_account = self._account(refreshed_positions)
+                        fresh_guard = self._equity_guard(fresh_account)
+                        if fresh_guard["halted"] or self.intel.check_macro_blackout()[0]:
+                            break
+
+                        estimate = self.bridge.estimate_order(cand["symbol"], cand["direction"], px, cand["sl"])
+                        existing, room, _ = self._portfolio_exposure(refreshed_positions, fresh_guard)
+                        dispatch_risk = min(cand["risk_usd"], fresh_guard["risk_cap_usd"])
+                        recheck = size_trade(quote, estimate["stop_loss_per_lot"], dispatch_risk, self.covariance, existing, cand["asset"],
+                                             cand["direction"], self.policy, room, fresh_account["margin_free_usd"], estimate["margin_per_lot"])
+                        if not recheck["accepted"]:
+                            continue
+                        final_volume = min(cand["volume"], recheck["volume"])
+                        ratio = final_volume / recheck["volume"] if recheck["volume"] > 0 else 1.0
+                        for key in ("risk_usd", "stop_risk_usd", "friction_usd", "signed_notional_usd"):
+                            recheck[key] *= ratio
+                        recheck["volume"] = final_volume
+                        final_exposures = dict(existing)
+                        final_exposures[cand["asset"]] = final_exposures.get(cand["asset"], 0) + recheck["signed_notional_usd"]
+                        recheck["variance_after"] = self.covariance.variance(final_exposures)
+                        recheck["incremental_variance"] = recheck["variance_after"] - recheck["variance_before"]
+                        cand.update(volume=final_volume, price_open=px, initial_r=abs(px - cand["sl"]), sizing=recheck, risk_usd=recheck["risk_usd"])
+                        cand["residual_cost_usd"] = max(0, recheck["friction_usd"] - final_volume * quote["contract_size"] * (quote["ask"] - quote["bid"]))
+
+                        if refreshed_positions:
+                            _, _, enriched_now = self._portfolio_exposure(refreshed_positions, fresh_guard)
+                            p = enriched_now[0]
+                            fresh_uplift = {**cand["features"], **recheck, "drawdown_room": room,
+                                            "existing_floating_r": p["profit_usd"] / (p["initial_r"] * p["volume"] * p["contract_size"]),
+                                            "existing_age_bars": (self.clock() - epoch(p["time"])) / 900,
+                                            "signed_correlation": (1 if p["direction"] == cand["direction"] else -1) * self.covariance.correlation(cand["asset"], p["asset"]),
+                                            "candidate_net_target_r": abs(cand["tp"] - px) / cand["initial_r"] - recheck["friction_usd"] / recheck["stop_risk_usd"]}
+                            gate = self.uplift.decide(fresh_uplift, self.clock())
+                            self._append("uplift_dispatch_checks.jsonl", {"time": self.clock(), "candidate_id": cand["candidate_id"], "features": fresh_uplift, "gate": gate})
+                            if not gate["accepted"]:
+                                continue
+
+                        result = self._dispatch(cand, slot)
+                        last_result = result
+                        if result.get("success"):
+                            staged_results.append(result)
+                            dispatched_candidates.append(cand)
+                        elif result.get("uncertain"):
+                            break
+
+                    if staged_results:
+                        if self.paper_mode:
+                            report.update(decision="PAPER_FILLED", execution=staged_results[0], staged_count=len(staged_results))
+                        elif self.entry_mode == "limit":
+                            report.update(decision="LIMIT_STAGED", staged_count=len(staged_results), staged_assets=[c["asset"] for c in dispatched_candidates], execution=staged_results[0])
+                        else:
+                            report.update(decision="ORDER_FILLED", execution=staged_results[0])
+                    elif last_result is not None:
+                        dec = "ORDER_UNCERTAIN" if last_result.get("uncertain") else "ORDER_REJECTED"
+                        report.update(decision=dec, execution=last_result)
+                    else:
+                        report.update(decision="NO_DISPATCH", reason="candidates_rejected_or_abstained")
+            except (ValueError, RuntimeError, KeyError) as exc: report["reason"] = str(exc)
+        self.last_report = report
+        self._append("decisions.jsonl", report); self._save_state()
+        print(json.dumps({k: v for k, v in report.items() if k != "candidates"}, default=str), flush=True)
+        return report
+
+    def _dispatch(self, candidate, slot):
+        key = hashlib.sha256(f"{slot}:{candidate['candidate_id']}".encode()).hexdigest()[:20]
+        comment = "OMNI:"+key
+        if key in self.state["intents"]: raise ValueError("duplicate_execution_intent")
+        stored = {k: copy.deepcopy(v) for k, v in candidate.items() if k != "payload"}
+        stored["comment"] = comment
+        intent = {"status": "PREPARED", "comment": comment, "candidate": stored, "prepared_at": self.clock()}
+        self.state["intents"][key] = intent; self._save_state()
+        self._append("executions.jsonl", {"time": self.clock(), "event": "intent_prepared", "intent_id": key, "candidate": stored})
+        if self.paper_mode:
+            ticket = "paper-"+key
+            position = {**stored, "ticket": ticket, "profit_usd": 0.0, "time": self.clock()}
+            self.state["paper_positions"].append(position); self.state["positions"][ticket] = stored
+            intent["status"] = "RECONCILED"
+            result = {"success": True, "ticket": ticket, "paper": True, "volume": candidate["volume"], "price": candidate["price_open"]}
+        else:
+            if candidate.get("entry_mode", self.entry_mode) == "limit":
+                try:
+                    # Order Persistence Governor (Incident A): S1 pullback
+                    # limits rest as GTC orders under a dynamic, wall-survival
+                    # based TTL instead of a rigid slot-bound expiration. The
+                    # deadline lives in UTC on our side of the IPC bridge, so
+                    # broker server-time DST quirks can never expire or keep
+                    # an order alive by accident.
+                    persistent = self.persistent_limits and not self.paper_mode
+                    anchors = candidate.get("entry_anchors") or []
+                    primary_span = max((number(a.get("persistence_sec")) for a in anchors), default=0.0)
+                    ttl = hazard_ttl(primary_span, ttl_min_sec=self.ttl_min_seconds, ttl_max_sec=self.ttl_max_seconds)
+                    result = self.bridge.stage_limit_order(candidate["symbol"], candidate["direction"], candidate["volume"],
+                                                           candidate["price_open"], candidate["sl"], candidate["tp"],
+                                                           expiration_seconds=getattr(self, "limit_expiration_seconds", 3600),
+                                                           persistent=persistent, comment=comment, magic=MAGIC,
+                                                           max_spread_points=self.max_spread_points, passive_only=True)
+                    intent["status"] = "STAGED_LIMIT" if result.get("success") else "REJECTED"
+                    intent["order_ticket"] = result.get("ticket")
+                    intent["expires_at"] = result.get("expires_at")
+                    intent["anchors"] = anchors
+                    intent["hurdle_r"] = candidate.get("hurdle_r")
+                    if result.get("success") and persistent:
+                        self.governor.register(key, asset=candidate["asset"], symbol=candidate["symbol"],
+                                               direction=candidate["direction"], order_ticket=result.get("ticket"),
+                                               limit_price=candidate["price_open"], sl=candidate["sl"], tp=candidate["tp"],
+                                               volume=candidate["volume"], anchors=anchors, atr=candidate["atr"],
+                                               ttl_sec=ttl, now=self.clock(), comment=comment,
+                                               hurdle_r=candidate.get("hurdle_r"), risk_usd=candidate.get("risk_usd", 0.0),
+                                               tick_size=candidate.get("tick_size", 0.01), magic=MAGIC)
+                except Exception as exc:
+                    intent["status"] = "REJECTED"; result = {"success": False, "error": str(exc)}
+            else:
+                try:
+                    result = self.bridge.execute_market_order(candidate["symbol"], candidate["direction"], candidate["volume"], candidate["sl"], candidate["tp"],
+                                                              magic=MAGIC, comment=comment, max_spread_points=self.max_spread_points,
+                                                              deviation_points=0, max_tick_age_ms=2000)
+                    intent["status"] = "ACKNOWLEDGED" if result.get("success") else "UNCERTAIN" if result.get("uncertain") else "REJECTED"
+                except Exception as exc:
+                    intent["status"] = "UNCERTAIN"; result = {"success": False, "uncertain": True, "error": str(exc)}
+        intent["result"] = result
+        self._append("executions.jsonl", {"time": self.clock(), "event": "dispatch_result", "intent_id": key, "result": result})
+        self._save_state()
+        return result
+
+    def capture_quotes(self):
+        # These sampled bid/ask observations label held-out second-position episodes.
+        now = self.clock()
+        for symbol in set(self.symbols.values()):
+            try:
+                q = self._quote(symbol)
+                self._append("broker_quotes.jsonl", {"time": epoch(q["time_msc"]), "received_at": now, "symbol": symbol,
+                                                    "bid": q["bid"], "ask": q["ask"], "feed_kind": "POLLED_QUOTES",
+                                                    "tick_size": max(number(q.get("tick_size")), q["point"]),
+                                                    "stop_distance": max(q.get("stops_level",0), q.get("freeze_level",0),1)*q["point"]})
+            except ValueError: pass
+
+    def run(self, max_cycles=0):
+        lock_path = ROOT/"Data"/("omni-paper.lock" if self.paper_mode else "omni-live.lock")
+        lock_path.parent.mkdir(parents=True, exist_ok=True)
+        # OS releases the lock after a crash; no stale PID heuristics or lock deletion.
+        import msvcrt
+        lock_stream = open(lock_path, "a+b")
+        if lock_stream.tell() == 0: lock_stream.write(b"0"); lock_stream.flush()
+        lock_stream.seek(0)
+        try: msvcrt.locking(lock_stream.fileno(), msvcrt.LK_NBLCK, 1)
+        except OSError:
+            lock_stream.close(); raise RuntimeError("Another OMNI writer owns this execution mode")
+        cycle = 0
+        try:
+            while max_cycles <= 0 or cycle < max_cycles:
+                cycle += 1
+                try:
+                    self.refresh_background()
+                    self.refresh_broker_history()
+                    self.manage_active_positions()
+                    self.capture_quotes()
+                    self.evaluate_market()
+                except Exception as exc:
+                    self._append("runtime_errors.jsonl", {"time": self.clock(), "error": str(exc)})
+                    print("OMNI cycle failed closed: "+str(exc), flush=True)
+                time.sleep(1)
+        finally:
+            self._save_state()
+            self.pool.shutdown(wait=False, cancel_futures=True); self.intel_pool.shutdown(wait=False, cancel_futures=True)
+            self.inference_pool.shutdown(wait=False, cancel_futures=True)
+            lock_stream.seek(0); msvcrt.locking(lock_stream.fileno(), msvcrt.LK_UNLCK, 1); lock_stream.close()
+
+```
+
+
+================================================================================
+### MODULE 6: RISK SIZING & QUANTITATIVE CONVICTION ENGINE
+### FILE: Terminal/Risk_Sizing_Engine.py
+================================================================================
+```python
+"""Causal orderflow features, cost-inclusive risk and signed-notional covariance.
+
+Covariance units are decimal log-return squared over the manifest's horizon.
+Risk is planned stop loss PLUS round-trip costs, never a notional allocation.
+"""
+from __future__ import annotations
+from dataclasses import dataclass
+from collections import deque
+from decimal import Decimal, ROUND_FLOOR
+from pathlib import Path
+import hashlib
+import json
+import math
+import time
+import numpy as np
+from Terminal.Asset_Universe import canonical_asset
+
+def number(value, default=0.0):
+    try:
+        value = float(value)
+        return value if math.isfinite(value) else default
+    except (TypeError, ValueError):
+        return default
+
+def epoch(value):
+    if isinstance(value, str) and not value.replace(".", "", 1).isdigit():
+        from datetime import datetime, timezone
+        try:
+            parsed = datetime.fromisoformat(value.replace(" UTC", "+00:00").replace("Z", "+00:00"))
+            return parsed.replace(tzinfo=timezone.utc).timestamp() if parsed.tzinfo is None else parsed.timestamp()
+        except ValueError: return 0.0
+    value = number(value)
+    return value / 1000 if value > 1e11 else value
+
+@dataclass(frozen=True)
+class RiskPolicy:
+    initial_capital: float = 5000.0
+    drawdown_fraction: float = 0.045
+    min_risk: float = 10.0
+    max_risk: float = 45.0
+    max_positions: int = 2
+    minimum_friction_bps: float = 41.0
+    commission_bps: float = 0.0
+    slippage_bps: float = 2.0
+    sigma_budget_usd: float = 45.0
+    covariance_horizon_minutes: int = 15
+    volatility_lookback: int = 96
+    min_confluence: float = 0.35
+    max_book_age: float = 10.0
+    max_basis_sigma: float = 1.0
+    max_future_skew_sec: float = 0.0
+
+    def __post_init__(self):
+        if not (10 <= self.min_risk <= self.max_risk <= 45):
+            raise ValueError("Risk must stay inside 10 to 45 USD")
+        if self.initial_capital != 5000 or self.drawdown_fraction != 0.045 or self.max_positions != 2:
+            raise ValueError("OMNI capital, drawdown and position invariants are fixed")
+        if self.minimum_friction_bps < 41 or self.sigma_budget_usd <= 0:
+            raise ValueError("Invalid friction/variance budget")
+
+def floor_volume(volume, step, minimum, maximum):
+    if step <= 0 or minimum <= 0 or maximum < minimum: return 0.0
+    capped = Decimal(str(min(volume, maximum)))
+    unit = Decimal(str(step))
+    result = (capped / unit).to_integral_value(rounding=ROUND_FLOOR) * unit
+    return float(result) if float(result) >= minimum else 0.0
+
+def completed_statistics(bars, as_of, lookback=96, horizon_minutes=15):
+    """MT5 bar timestamps are opens. Exclude any bar not closed at decision time."""
+    ordered = sorted((b for b in bars if epoch(b.get("time")) + 900 <= as_of), key=lambda b: epoch(b["time"]))
+    ordered = ordered[-lookback-1:]
+    if len(ordered) < 25: raise ValueError("volatility_history_insufficient")
+    closes = np.array([number(b.get("close")) for b in ordered])
+    if np.any(closes <= 0): raise ValueError("invalid_bar_price")
+    times = np.array([epoch(b["time"]) for b in ordered])
+    if as_of-times[-1]-900 > 900: raise ValueError("completed_bars_stale")
+    returns = np.diff(np.log(closes))
+    # Session gaps are not treated as one ordinary 15-minute observation.
+    returns = returns[np.diff(times) == 900]
+    if len(returns) < 24: raise ValueError("continuous_return_history_insufficient")
+    sigma = float(np.std(returns, ddof=1)) * math.sqrt(horizon_minutes / 15)
+    if not math.isfinite(sigma) or sigma <= 1e-8: raise ValueError("volatility_unavailable")
+    tr = [max(number(b["high"])-number(b["low"]), abs(number(b["high"])-closes[i-1]),
+              abs(number(b["low"])-closes[i-1])) for i, b in enumerate(ordered[1:], 1)]
+    atr = float(np.mean(tr[-14:]))
+    movement = float(np.sum(np.abs(np.diff(closes[-21:]))))
+    er = abs(float(closes[-1]-closes[-21])) / movement if movement else 0.0
+    return {"sigma_h": sigma, "atr": atr, "efficiency_ratio": er,
+            "last_bar_close": float(times[-1]+900), "bar_count": len(ordered)}
+
+class RobustNormalizer:
+    def __init__(self, history=None, window=256):
+        self.history = {k: deque(v[-window:], maxlen=window) for k, v in (history or {}).items()}
+        self.window = window
+
+    def score_then_observe(self, key, value):
+        past = self.history.setdefault(key, deque(maxlen=self.window))
+        z = None
+        if len(past) >= 24:
+            values = np.array(past)
+            median = float(np.median(values))
+            scale = max(1.4826 * float(np.median(np.abs(values-median))), 0.05)
+            z = float(np.clip((value-median)/scale, -3, 3))
+        past.append(float(value))
+        return z
+
+    def export(self): return {k: list(v) for k, v in self.history.items()}
+
+class OrderflowModel:
+    def __init__(self, policy=None, history=None, walls=None):
+        self.policy = policy or RiskPolicy()
+        self.normalizer = RobustNormalizer(history)
+        self.walls = walls or {}
+
+    def observe_walls(self, asset, payload, as_of):
+        sources = payload.get("sources") or {}
+        wall_asof = epoch(sources.get("l3", {}).get("observed_at") or payload.get("timestamp"))
+        if not wall_asof or not 0.0 <= as_of-wall_asof <= 30: return False
+        previous = self.walls.get(asset, {})
+        if previous and wall_asof < max(v["last"] for v in previous.values()): return False
+        current = {}
+        for w in payload.get("l3_orders", []):
+            px, usd, side = number(w.get("price")), number(w.get("notional_usd")), w.get("side")
+            if px <= 0 or usd <= 0 or side not in ("BUY", "SELL"): continue
+            key = str(w.get("order_id") or f"{w.get('address')}:{side}:{px}")
+            old = previous.get(key, {})
+            first = number(old.get("first"), wall_asof) if wall_asof-number(old.get("last"), wall_asof) <= 30 else wall_asof
+            current[key] = {"first": first, "last": wall_asof}
+            span = max(number(w.get("observed_span_s") or w.get("persistence_sec") or 0.0), wall_asof - first)
+            w["observed_span_s"] = span
+            w["persistence_sec"] = span
+            w["is_stale"] = False
+        self.walls[asset] = current
+        return True
+
+    @staticmethod
+    def _levels(rows, mid, sigma, side):
+        out = []
+        for row in rows[:20]:
+            px = number(row.get("price", row.get("px")))
+            size = number(row.get("size", row.get("sz")))
+            if px <= 0 or size <= 0 or side*(mid-px) < 0: continue
+            distance = abs(math.log(px/mid)) / sigma
+            usd = px * size  # Hyperliquid quantities are base units, already USD quoted.
+            if not math.isfinite(usd): continue
+            out.append((px, usd, distance, usd*math.exp(-distance)))
+        return out
+
+    def features(self, asset, payload, bars, macro, as_of):
+        stats = completed_statistics(bars, as_of, self.policy.volatility_lookback,
+                                     self.policy.covariance_horizon_minutes)
+        book = payload.get("l2_book") or {}
+        observed = epoch(book.get("timestamp"))
+        received = number(book.get("received_at"))
+        check_time = received if received > 0 else observed
+        skew_limit = self.policy.max_future_skew_sec
+        if not check_time or not -skew_limit <= as_of-check_time <= self.policy.max_book_age:
+            raise ValueError("book_stale_or_future")
+        if observed and observed - as_of > max(30.0, skew_limit):
+            raise ValueError("book_stale_or_future")
+        bid, ask = number(book.get("best_bid")), number(book.get("best_ask"))
+        if not (0 < bid < ask): raise ValueError("book_crossed_or_missing")
+        mid, sigma = (bid+ask)/2, stats["sigma_h"]
+        bids, asks = self._levels(book.get("bids", []), mid, sigma, 1), self._levels(book.get("asks", []), mid, sigma, -1)
+        if not bids or not asks: raise ValueError("depth_missing")
+        b, a = sum(x[3] for x in bids), sum(x[3] for x in asks)
+        if not math.isfinite(b+a) or b+a <= 0: raise ValueError("weighted_depth_invalid")
+        imbalance = (b-a)/(b+a)
+        z = self.normalizer.score_then_observe(asset, imbalance)
+        anomaly = math.tanh(z/2) if z is not None else 0.0
+        l2 = float(np.clip(0.8*imbalance+0.2*anomaly, -1, 1))
+        sources = payload.get("sources") or {}
+        wall_asof = epoch(sources.get("l3", {}).get("observed_at") or payload.get("timestamp"))
+        fresh_walls = self.observe_walls(asset, payload, as_of)
+        wall_totals = {"BUY": 0.0, "SELL": 0.0}
+        tracked = self.walls.get(asset, {})
+        if fresh_walls:
+            for w in payload.get("l3_orders", []):
+                px, usd, side = number(w.get("price")), number(w.get("notional_usd")), w.get("side")
+                if px <= 0 or usd <= 0 or side not in wall_totals: continue
+                key = str(w.get("order_id") or f"{w.get('address')}:{side}:{px}")
+                first = number(tracked.get(key, {}).get("first"))
+                if not first or wall_asof <= first: continue
+                persistence = min(1.0, max(0.0, (wall_asof-first)/60))
+                distance = abs(math.log(px/mid)) / max(sigma * 3.0, 0.01)
+                wall_totals[side] += usd*math.exp(-distance)*persistence
+        wall_sum = sum(wall_totals.values())
+        wall_imb = (wall_totals["BUY"]-wall_totals["SELL"])/wall_sum if wall_sum else 0.0
+        buy = sell = 0.0
+        seen = set()
+        for t in payload.get("recent_trades", []):
+            ts = epoch(t.get("time"))
+            uid = str(t.get("trade_id") or t.get("tid") or (ts, t.get("price"), t.get("size"), t.get("side")))
+            if uid in seen or not 0.0 <= as_of-ts <= 60: continue
+            seen.add(uid)
+            usd = number(t.get("notional_usd")) * math.exp(-(as_of-ts)/30)
+            if t.get("side") == "BUY": buy += usd
+            elif t.get("side") == "SELL": sell += usd
+        tape = (buy-sell)/(buy+sell) if buy+sell else 0.0
+        # Deterministic robust z-scores for the aggressor tape (CVD) and wall
+        # imbalance. These are the ground-truth values the cognitive engine is
+        # attested against; it can never substitute its own statistics.
+        z_tape = self.normalizer.score_then_observe(asset+":aggressor", tape)
+        z_wall = self.normalizer.score_then_observe(asset+":walls", wall_imb)
+        # Match each cluster corridor against visible depth in that exact corridor.
+        # Do not infer stop/liquidation exposure from historical realized prints.
+        pressure = {"LONG": 0.0, "SHORT": 0.0}
+        corridor_records = []
+        for name in ("liquidations", "stops"):
+            observed_name = "projected_liquidations" if name == "liquidations" else "observed_stops"
+            sampled_data = payload.get(observed_name) or {}
+            data = sampled_data if sampled_data.get("kind") in ("PROJECTED_EXPOSURE", "OBSERVED_STOP_ORDERS") else payload.get(name) or {}
+            if data.get("kind") not in ("PROJECTED_EXPOSURE", "OBSERVED_STOP_ORDERS"): continue
+            component_asof = epoch(sources.get("wallet_risk" if data is sampled_data else name, {}).get("observed_at") or payload.get("timestamp"))
+            if not component_asof or not 0.0 <= as_of-component_asof <= 60: continue
+            for band in data.get("projected_bands", data.get("bands", [])):
+                low, high = number(band.get("min_px")), number(band.get("max_px"))
+                amt_raw = number(band.get("amount_usd") or band.get("amount"))
+                amount = amt_raw * ((low+high)/2) if amt_raw < 1e5 and not band.get("amount_usd") else amt_raw
+                if not 0 < low <= high or amount <= 0: continue
+                side = band.get("position_side_at_risk")
+                if side is None:
+                    b_type = str(band.get("type", "")).upper()
+                    if "LONG" in b_type: side = "LONG"
+                    elif "SHORT" in b_type: side = "SHORT"
+                    elif name == "stops": side = "LONG" if high < mid else "SHORT" if low > mid else None
+                if side not in pressure: continue
+                rows = bids if side == "LONG" else asks
+                if rows:
+                    min_book_px, max_book_px = min(x[0] for x in rows), max(x[0] for x in rows)
+                    corridor_low = max(low, min_book_px)
+                    corridor_high = min(high, max_book_px)
+                    if corridor_low <= corridor_high and high > low:
+                        corridor_overlap = (corridor_high - corridor_low) / (high - low)
+                        effective_amount = amount * corridor_overlap
+                        depth = sum(x[1] for x in rows if corridor_low <= x[0] <= corridor_high)
+                        ratio = effective_amount / depth if depth > 0 else None
+                    else:
+                        depth, ratio = 0.0, None
+                else:
+                    depth, ratio = 0.0, None
+                corridor_records.append({"kind": name, "side": side, "low": low, "high": high,
+                                         "depth_usd": depth, "exposure_usd": amount, "ratio": ratio})
+                if ratio is not None:
+                    pressure[side] += math.log1p(min(ratio, 100.0))*math.exp(-abs(math.log((low+high)/2/mid))/sigma)
+        total_pressure = sum(pressure.values())
+        liq_delta = (pressure["SHORT"]-pressure["LONG"])/total_pressure if total_pressure else 0.0
+        macro_value = number(macro.get("asset_scores", {}).get(asset), 0.0) if macro.get("sentiment_valid") else 0.0
+        quality = (0.55 + 0.15*bool(buy+sell) + 0.10*fresh_walls +
+                   0.10*bool(total_pressure) + 0.10*bool(macro.get("sentiment_valid")))
+        signed = 0.25*l2 + 0.15*macro_value + 0.20*wall_imb + 0.15*tape + 0.10*liq_delta
+        direction = 1 if signed > 0 else -1
+        B, M, W, T, L = [direction*x for x in (l2, macro_value, wall_imb, tape, liq_delta)]
+        target_fuel = pressure["SHORT"] if direction == 1 else pressure["LONG"]
+        opposing_magnet = pressure["LONG"] if direction == 1 else pressure["SHORT"]
+        liquidity_vacuum = bool(opposing_magnet > 1e-5 and target_fuel <= 0.0)
+        active_weight = 0.25 + (0.15 if abs(macro_value) > 0.001 else 0.0) + 0.20 + 0.15 + 0.10 + (0.15 if abs(macro_value) > 0.001 else 0.0)
+        raw_confluence = 0.25*B + 0.15*M + 0.20*W + 0.15*T + 0.10*L + 0.15*math.sqrt(max(B, 0)*max(M, 0))
+        confluence = 0.0 if liquidity_vacuum else float(np.clip(raw_confluence / active_weight, 0, 1))
+        target_corridors = [c for c in corridor_records if (direction == 1 and c["side"] == "SHORT" and c["high"] >= mid) or
+                            (direction == -1 and c["side"] == "LONG" and c["low"] <= mid)]
+        opposing_corridors = [c for c in corridor_records if (direction == 1 and c["side"] == "LONG" and c["low"] <= mid) or
+                              (direction == -1 and c["side"] == "SHORT" and c["high"] >= mid)]
+        target_fuel_usd = sum(c["exposure_usd"] for c in target_corridors)
+        opposing_levels = asks if direction == 1 else bids
+        if target_corridors:
+            target_friction_usd = sum(usd for px, usd, dist, w_usd in opposing_levels
+                                      if any(c["low"] <= px <= c["high"] for c in target_corridors))
+        else:
+            target_friction_usd = 0.0
+        coverage_missing = bool(target_fuel_usd > 0 and target_friction_usd <= 0.0)
+        if target_friction_usd > 0:
+            ffr = float(target_fuel_usd / target_friction_usd)
+        elif coverage_missing:
+            ffr = None
+        else:
+            ffr = 1.0
+        # Friction-adjusted fuel ratio (FAFR): fuel exposure measured against
+        # corridor depth PLUS the round-trip friction carried by a
+        # minimum-risk reference position (stop = 1.5*ATR, risk = min_risk).
+        # Deterministic from already-computed quantities; None when undefined.
+        stop_ref = 1.5*stats["atr"]
+        friction_ref_usd = (mid/stop_ref)*self.policy.min_risk*(self.policy.minimum_friction_bps/10000.0) if stop_ref > 0 else 0.0
+        fafr_denominator = target_friction_usd + friction_ref_usd
+        friction_adjusted_fuel_ratio = float(target_fuel_usd/fafr_denominator) if fafr_denominator > 0 else None
+        return {**stats, "asset": asset, "as_of": as_of, "signal_mid": mid, "book_as_of": observed,
+                "direction": "LONG" if direction == 1 else "SHORT", "l2_imbalance": imbalance,
+                "l2_signal": l2, "l2_robust_z": z, "wall_imbalance": wall_imb,
+                "wall_imbalance_robust_z": z_wall,
+                "aggressor_imbalance": tape, "aggressor_robust_z": z_tape,
+                "liquidation_delta": liq_delta, "macro_score": macro_value,
+                "confluence": confluence, "quality": quality, "corridors": corridor_records,
+                "liquidity_vacuum": liquidity_vacuum, "target_fuel": target_fuel, "opposing_magnet": opposing_magnet,
+                "ffr": ffr, "friction_adjusted_fuel_ratio": friction_adjusted_fuel_ratio,
+                "coverage_missing": coverage_missing, "unobserved_corridor": coverage_missing,
+                "fresh_walls": fresh_walls,
+                "friction_bps": self.policy.minimum_friction_bps,
+                "target_fuel_usd": target_fuel_usd, "target_friction_usd": target_friction_usd,
+                "risk_intent_usd": self.policy.min_risk + (self.policy.max_risk-self.policy.min_risk)*(quality*confluence)**2}
+
+class CovarianceGate:
+    def __init__(self, assets, matrix, metadata=None):
+        self.assets = [canonical_asset(a) for a in assets]
+        self.matrix = np.asarray(matrix, dtype=float)
+        self.metadata = metadata or {}
+        n = len(self.assets)
+        if len(set(self.assets)) != n or self.matrix.shape != (n, n) or not np.isfinite(self.matrix).all():
+            raise ValueError("invalid_covariance_labels_or_shape")
+        if not np.allclose(self.matrix, self.matrix.T, rtol=1e-5, atol=1e-12): raise ValueError("asymmetric_covariance")
+        if np.min(np.linalg.eigvalsh(self.matrix)) < -1e-12 or np.any(np.diag(self.matrix) <= 0):
+            raise ValueError("covariance_not_positive_semidefinite")
+        self.index = {a: i for i, a in enumerate(self.assets)}
+
+    @classmethod
+    def load(cls, path):
+        import polars as pl
+        path = Path(path)
+        metadata = json.loads(path.with_suffix(".json").read_text(encoding="utf-8"))
+        if metadata.get("sha256") != hashlib.sha256(path.read_bytes()).hexdigest(): raise ValueError("covariance_checksum_mismatch")
+        df = pl.read_parquet(path)
+        label = metadata.get("label_column", "asset")
+        assets = df[label].to_list()
+        return cls(assets, df.select(assets).to_numpy(), metadata)
+
+    def validate_time(self, as_of, horizon_minutes=15):
+        meta = self.metadata
+        if meta.get("return_units") != "decimal_log_return" or meta.get("horizon_minutes") != horizon_minutes:
+            raise ValueError("covariance_units_or_horizon_unknown")
+        data_end = epoch(meta.get("data_end"))
+        if epoch(meta.get("created_at")) > as_of: raise ValueError("covariance_future_vintage")
+        max_age = min(number(meta.get("max_age_seconds"), 86400.0), 86400.0)
+        if not data_end or data_end > as_of or as_of-data_end > max_age:
+            raise ValueError("covariance_stale_or_future")
+
+    def variance(self, exposures):
+        vector = np.zeros(len(self.assets))
+        for asset, notional in exposures.items():
+            key = canonical_asset(asset)
+            if key not in self.index: raise ValueError(f"covariance_asset_missing:{key}")
+            vector[self.index[key]] += number(notional)
+        return max(0.0, float(vector @ self.matrix @ vector))
+
+    def scale_candidate(self, existing, asset, signed_notional, sigma_budget):
+        key = canonical_asset(asset)
+        if key not in self.index: raise ValueError(f"covariance_asset_missing:{key}")
+        i = self.index[key]
+        v = np.zeros(len(self.assets))
+        for a, n in existing.items():
+            if canonical_asset(a) not in self.index: raise ValueError(f"covariance_asset_missing:{a}")
+            v[self.index[canonical_asset(a)]] += n
+        before = float(v @ self.matrix @ v)
+        A = signed_notional**2*self.matrix[i, i]
+        B = 2*signed_notional*float(self.matrix[i] @ v)
+        C = before-sigma_budget**2
+        after = before+A+B
+        if after <= sigma_budget**2: scale = 1.0
+        else:
+            disc = B*B-4*A*C
+            upper = (-B+math.sqrt(disc))/(2*A) if A > 0 and disc >= 0 else 0.0
+            scale = max(0.0, min(1.0, upper))
+            if before+A*scale**2+B*scale > sigma_budget**2+1e-8: scale = 0.0
+        return {"scale": scale, "variance_before": before, "variance_after": before+A*scale**2+B*scale,
+                "incremental_variance": A*scale**2+B*scale, "sigma_budget_usd": sigma_budget}
+
+    def correlation(self, a, b):
+        i, j = self.index[canonical_asset(a)], self.index[canonical_asset(b)]
+        return float(self.matrix[i, j]/math.sqrt(self.matrix[i, i]*self.matrix[j, j]))
+
+def fit_covariance(bars_by_asset, as_of, path, min_observations=48):
+    """Fit aligned, completed 15-minute broker returns; never mix venues/horizons."""
+    import polars as pl
+    from sklearn.covariance import LedoitWolf
+    series = {}
+    for asset, bars in bars_by_asset.items():
+        rows = sorted([b for b in bars if epoch(b.get("time"))+900 <= as_of], key=lambda b: epoch(b["time"]))
+        values = {}
+        for left, right in zip(rows, rows[1:]):
+            if epoch(right["time"])-epoch(left["time"]) != 900: continue
+            if number(left["close"]) <= 0 or number(right["close"]) <= 0: continue
+            values[epoch(right["time"])+900] = math.log(number(right["close"])/number(left["close"]))
+        if len(values) >= min_observations: series[asset] = values
+    if not series: raise ValueError("covariance_history_unavailable")
+    aligned = sorted(set.intersection(*(set(v) for v in series.values())))
+    if len(aligned) < min_observations: raise ValueError("covariance_common_history_insufficient")
+    assets = sorted(series)
+    returns = np.array([[series[a][t] for a in assets] for t in aligned])
+    estimator = LedoitWolf().fit(returns)
+    # Guard completely constant broker histories before declaring valid coverage.
+    if np.any(np.std(returns, axis=0) <= 1e-8): raise ValueError("covariance_constant_asset_history")
+    path = Path(path); path.parent.mkdir(parents=True, exist_ok=True)
+    frame = pl.DataFrame({"asset": assets, **{a: estimator.covariance_[:, i] for i, a in enumerate(assets)}})
+    temp = path.with_suffix(".parquet.tmp"); frame.write_parquet(temp); temp.replace(path)
+    metadata = {"schema": "omni.covariance.v1", "label_column": "asset", "assets": assets,
+                "return_units": "decimal_log_return", "horizon_minutes": 15, "data_start": aligned[0],
+                "data_end": aligned[-1], "created_at": as_of, "max_age_seconds": 86400,
+                "source": "MT5_completed_M15", "observations": len(aligned), "shrinkage": float(estimator.shrinkage_),
+                "sha256": hashlib.sha256(path.read_bytes()).hexdigest()}
+    path.with_suffix(".json").write_text(json.dumps(metadata, indent=2), encoding="utf-8")
+    return CovarianceGate(assets, estimator.covariance_, metadata)
+
+def cost_bps(quote, policy):
+    mid = (number(quote.get("bid"))+number(quote.get("ask")))/2
+    if mid <= 0: raise ValueError("invalid_broker_quote")
+    spread = (number(quote.get("ask"))-number(quote.get("bid")))/mid*10000
+    return max(policy.minimum_friction_bps, spread+policy.commission_bps+policy.slippage_bps)
+
+def size_trade(quote, stop_loss_per_lot, risk_budget, covariance, existing, asset, direction,
+               policy, drawdown_room, free_margin, margin_per_lot):
+    mid = (number(quote["bid"])+number(quote["ask"]))/2
+    notional_per_lot = mid*number(quote.get("contract_size"))
+    if min(notional_per_lot, stop_loss_per_lot, margin_per_lot) <= 0: raise ValueError("broker_valuation_missing")
+    friction_per_lot = notional_per_lot*cost_bps(quote, policy)/10000
+    loss_per_lot = stop_loss_per_lot+friction_per_lot
+    budget = min(policy.max_risk, risk_budget, max(0, drawdown_room)*0.90)
+    if budget < policy.min_risk: return {"accepted": False, "reason": "drawdown_or_risk_room"}
+    volume = min(budget/loss_per_lot, max(0, free_margin)*0.80/margin_per_lot)
+    sign = 1 if direction == "LONG" else -1
+    check = covariance.scale_candidate(existing, asset, sign*volume*notional_per_lot, policy.sigma_budget_usd)
+    volume = floor_volume(volume*check["scale"], number(quote["step_lot"]), number(quote["min_lot"]), number(quote["max_lot"]))
+    planned = volume*loss_per_lot
+    if volume <= 0 or planned < policy.min_risk: return {"accepted": False, "reason": "minimum_lot_or_variance_budget", **check}
+    exposure = dict(existing); exposure[asset] = exposure.get(asset, 0)+sign*volume*notional_per_lot
+    variance = covariance.variance(exposure)
+    if planned > budget+1e-8 or variance > policy.sigma_budget_usd**2+1e-8: raise ValueError("sizing_invariant_failure")
+    return {"accepted": True, "volume": volume, "risk_usd": planned, "stop_risk_usd": volume*stop_loss_per_lot,
+            "friction_usd": volume*friction_per_lot, "friction_bps": cost_bps(quote, policy),
+            "signed_notional_usd": sign*volume*notional_per_lot, **check, "variance_after": variance}
+
+```

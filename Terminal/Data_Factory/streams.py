@@ -185,10 +185,16 @@ def parse_hyperliquid(frame):
     data = frame.get("data")
     if channel == "l2Book" and isinstance(data, dict):
         levels = data.get("levels") or {}
+        if isinstance(levels, list) and len(levels) >= 2:
+            raw_bids, raw_asks = levels[0], levels[1]
+        elif isinstance(levels, dict):
+            raw_bids, raw_asks = levels.get("bids") or [], levels.get("asks") or []
+        else:
+            raw_bids, raw_asks = [], []
         bids = [{"price": number(l.get("px")), "size": number(l.get("sz"))}
-                for l in (levels.get("bids") or []) if number(l.get("sz")) > 0]
+                for l in raw_bids if number(l.get("sz")) > 0]
         asks = [{"price": number(l.get("px")), "size": number(l.get("sz"))}
-                for l in (levels.get("asks") or []) if number(l.get("sz")) > 0]
+                for l in raw_asks if number(l.get("sz")) > 0]
         if not bids or not asks:
             return None
         return {"book": {"ts": number(data.get("time")) / 1000.0,
@@ -256,7 +262,8 @@ class ReconnectingWebsocket:
         except ImportError as exc:
             raise RuntimeError("install 'websockets' to run live streams") from exc
         return await websockets.connect(url, ping_interval=20, ping_timeout=20,
-                                        max_queue=4096, compression=None)
+                                        max_queue=4096, compression=None,
+                                        max_size=10 * 1024 * 1024)
 
     async def run(self):
         self._stop = self._stop or asyncio.Event()

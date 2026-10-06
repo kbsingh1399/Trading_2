@@ -105,8 +105,8 @@
     "semantic_hash": ""
   },
   "Data/mt5_ai_trader_state.json": {
-    "mtime": 1791296482.818971,
-    "ast_hash": "7316687a03889515f167cd61773605b5",
+    "mtime": 1791306217.6553724,
+    "ast_hash": "8f69ae9372a4b07d192c3da8b0a09734",
     "semantic_hash": ""
   },
   "Data/ofc_paper_positions.json": {
@@ -235,8 +235,8 @@
     "semantic_hash": ""
   },
   "Terminal/Market_Intelligence.py": {
-    "mtime": 1791296432.179812,
-    "ast_hash": "745c66764134c52b3fe74f4ac6f85e8a",
+    "mtime": 1791302838.7163658,
+    "ast_hash": "3850f89e2fbd057312debc45bb3777d0",
     "semantic_hash": ""
   },
   "Terminal/Microstructure.py": {
@@ -250,13 +250,13 @@
     "semantic_hash": ""
   },
   "Terminal/OF_Strategy.py": {
-    "mtime": 1791286927.1259365,
-    "ast_hash": "c9c3d193110f0944f922ef4653c70f67",
+    "mtime": 1791304424.2726836,
+    "ast_hash": "0f055d1c8f3a14699226d96331e8730f",
     "semantic_hash": ""
   },
   "Terminal/Omni_Trader.py": {
-    "mtime": 1791296571.1004665,
-    "ast_hash": "90d52c98c0897549c3b3601442faf06f",
+    "mtime": 1791303212.8061538,
+    "ast_hash": "6d8e4b065949cae924790a408f4770f8",
     "semantic_hash": ""
   },
   "Terminal/Orderflow_Replay.py": {
@@ -270,8 +270,8 @@
     "semantic_hash": ""
   },
   "Terminal/Risk_Sizing_Engine.py": {
-    "mtime": 1791286927.1299376,
-    "ast_hash": "63b73a53484b7242d50c81a983b4f036",
+    "mtime": 1791302805.2311776,
+    "ast_hash": "f249935fadb2b40b176660d9360f56cb",
     "semantic_hash": ""
   },
   "Terminal/Uplift_Model.py": {
@@ -612,6 +612,81 @@
   "docs/prompts/Ox_Alpha_Omni_Forensic_Chain_Audit.md": {
     "mtime": 1791284601.279322,
     "ast_hash": "7c5a74358fd351f2f4e723b199a5603b",
+    "semantic_hash": ""
+  },
+  "Terminal/Data_Factory/__init__.py": {
+    "mtime": 1791304385.0995014,
+    "ast_hash": "403eaf2b0f555a313882470a8a76640a",
+    "semantic_hash": ""
+  },
+  "Terminal/Data_Factory/bulk.py": {
+    "mtime": 1791302805.218348,
+    "ast_hash": "21f880ff8590151b39587adee3a8882c",
+    "semantic_hash": ""
+  },
+  "Terminal/Data_Factory/bus.py": {
+    "mtime": 1791302805.2193499,
+    "ast_hash": "39cb77f71583c7341613dfa95df18376",
+    "semantic_hash": ""
+  },
+  "Terminal/Data_Factory/crosscheck.py": {
+    "mtime": 1791302805.221349,
+    "ast_hash": "14d18d3788b0c158588ddedbcaa99c31",
+    "semantic_hash": ""
+  },
+  "Terminal/Data_Factory/factory.py": {
+    "mtime": 1791302805.2223437,
+    "ast_hash": "d1b5905ca3ff8572c2a17df5e9148dcf",
+    "semantic_hash": ""
+  },
+  "Terminal/Data_Factory/liquidation_engine.py": {
+    "mtime": 1791302805.2223437,
+    "ast_hash": "37e12e862092b9970f52fd15138394de",
+    "semantic_hash": ""
+  },
+  "Terminal/Data_Factory/live.py": {
+    "mtime": 1791302805.223654,
+    "ast_hash": "5678233e2e8b0d3dd842ca4637b9e8b3",
+    "semantic_hash": ""
+  },
+  "Terminal/Data_Factory/macro.py": {
+    "mtime": 1791302805.2241595,
+    "ast_hash": "48b7e60ceb92c356ce5a15e9fb091d64",
+    "semantic_hash": ""
+  },
+  "Terminal/Data_Factory/onchain.py": {
+    "mtime": 1791302805.2251682,
+    "ast_hash": "b7327df6c2177af93d752fb814c23a91",
+    "semantic_hash": ""
+  },
+  "Terminal/Data_Factory/streams.py": {
+    "mtime": 1791304459.6938818,
+    "ast_hash": "5ab7fcc63256592421697a6e70de4ff7",
+    "semantic_hash": ""
+  },
+  "Terminal/Pioneer_Decision_Engine.py": {
+    "mtime": 1791302805.2301745,
+    "ast_hash": "d3543563e835535073a6198c60769c03",
+    "semantic_hash": ""
+  },
+  "Tests/Test_Pioneer_Decision_Engine.py": {
+    "mtime": 1791302805.2321734,
+    "ast_hash": "4795137c6ca073ed11dbf18e46e79208",
+    "semantic_hash": ""
+  },
+  "Tests/Test_Zero_Cost_Data_Factory.py": {
+    "mtime": 1791302980.8479857,
+    "ast_hash": "d9d7e8ac6ff24d9ed67306ebe4da871b",
+    "semantic_hash": ""
+  },
+  "docs/audits/OMNI_Pioneer_Decision_Engine_20261006.md": {
+    "mtime": 1791302805.2341735,
+    "ast_hash": "4a84a52538e111e9283d522b56bfeddc",
+    "semantic_hash": ""
+  },
+  "docs/audits/OMNI_Zero_Cost_Data_Factory_20261006.md": {
+    "mtime": 1791302805.2341735,
+    "ast_hash": "ddcaaddcaf64083e749ffcb79dbfea21",
     "semantic_hash": ""
   }
 }

@@ -604,9 +604,9 @@ class AI15mMT5Trader:
                 # tight enough to recycle dead queue priority)
                 bars = self.bars.get(asset, [])
                 if bars:
-                    stats = completed_statistics(bars, self.clock())
-                    atr = stats.get("atr", 0.0)
                     try:
+                        stats = completed_statistics(bars, self.clock())
+                        atr = stats.get("atr", 0.0)
                         quote = self._quote(sym)
                         if quote and atr > 0:
                             mid = (number(quote["bid"]) + number(quote["ask"])) / 2.0

@@ -1,0 +1,177 @@
+# ARENA.AI / OX ALPHA INSTITUTIONAL QUANT SPECIFICATION & ARCHITECTURAL CONSULTATION
+## MISSION: ALL-IN-ONE ZERO-COST DATA FACTORY & DERIVATIVES INTELLIGENCE ENGINE (0 USD REPLICATION & ADVANCEMENT OF COINGLASS, HYPERDASH & ARKHAM)
+### PROMPT CODE: OX_ALPHA_59_DATA_FACTORY
+### TARGET REPOSITORY: https://github.com/kbsingh1399/Trading_2
+### ACTIVE BRANCH: arena/4adf3661-trading-2 (https://github.com/kbsingh1399/Trading_2/tree/arena%2F4adf3661-trading-2)
+### BASELINE BRANCH: main (https://github.com/kbsingh1399/Trading_2/tree/main)
+
+---
+
+### 1. SYSTEM IDENTITY & GITHUB REPOSITORY ACCESS
+You are Ox Alpha / Arena.ai, the supreme quantitative trading systems architect, high-frequency microstructure econometrician, and low-latency C++/Python execution engineer.
+
+You have direct access to our GitHub repository:
+- Repository URL: https://github.com/kbsingh1399/Trading_2
+- Primary Active Branch: `arena/4adf3661-trading-2` (Direct Tree: https://github.com/kbsingh1399/Trading_2/tree/arena%2F4adf3661-trading-2)
+- Production Master: `main` (Direct Tree: https://github.com/kbsingh1399/Trading_2/tree/main)
+
+**STRICT PROMPT INSTRUCTION:**
+Per our institutional architectural standards, this prompt contains **ZERO embedded source code blocks**. You are instructed to inspect, analyze, and cite the codebase directly from our GitHub branches above. All context, operational invariants, empirical audit findings, and mathematical specifications are delivered below in pure, high-density instructions.
+
+---
+
+### 2. LIVE PRODUCTION ENVIRONMENT & RISK INVARIANTS
+1. **Live Broker Connection:**
+   - Broker: Blueberry Markets (SVG) LLC via native MetaTrader 5 IPC bridge.
+   - Live Account: 5064568 (Currency: USD).
+   - Initial Capital: 5,000.00 USD.
+   - Live Balance / Equity: 4,841.23 USD (0 open positions, 100% cash preserved).
+   - Hard Drawdown Floor: 4,775.00 USD (4.50% hard risk defense floor / 225.00 USD max drawdown from 5,000.00 USD peak).
+   - Current Equity Cushion Above Floor: +66.23 USD.
+   - Drawdown Defense Risk Per Trade: 10.00 to 12.00 USD (0.20% to 0.24% on 5,000 USD).
+   - Max Concurrent Open (Filled) Positions: Exactly 2 across all assets simultaneously.
+   - Limit Order Queue: Decoupled queue up to 5 staged limits under First-Fill OCO rules (once 2 positions fill, all remaining staged limits are automatically purged).
+2. **Active Live Resting Orders Monitored in MT5 Broker Book:**
+   - Ticket #18572624: SOL Buy Limit @ 118.50 USD | SL 117.95 USD | TP 120.60 USD | Volume: 0.10 lots | Risk: 10.36 USD | Protected by 7.32M USD resting whale bid wall @ 118.45 USD.
+   - Ticket #18573320: ETH Sell Limit @ 2,732.80 USD | SL 2,741.50 USD | TP 2,705.00 USD | Volume: 0.55 lots | Risk: 10.95 USD | Protected by 32.35M USD resting whale ask corridor across 2,724.80 to 2,751.10 USD.
+   - Ticket #18576872: GOLD Sell Limit @ 4,176.00 USD | SL 4,186.50 USD | TP 4,143.00 USD | Volume: 0.01 lots | Risk: 11.10 USD | Protected by Session VWAP +1.60 SD band (4,179.42 USD) and 617k USD ask resistance @ 4,187.80 USD.
+   - Worst-case dual stop-out loss: 10.95 + 11.10 = 22.05 USD. Leaves projected equity at 4,819.18 USD (+44.18 USD safe buffer preserved above the 4,775.00 USD hard floor).
+3. **Execution Realism & Frictions:**
+   - Mandatory minimum round-trip friction on notional: 41 bps (8 bps taker fees + 10 bps entry slippage + 15 bps stop slippage + spread). On Gold (`XAUUSD.pi`), institutional spread is 0.24 bps.
+4. **Universe Scope:**
+   - Institutional 14-Asset Core: BTC, ETH, SOL, BNB, XRP, ADA, DOGE, TRX, DOT, LINK, BCH, SP500, GOLD, SILVER.
+   - Expanding Domain: The union of all 58 MetaTrader 5 crypto/CFD assets and 288 Hyperliquid perpetuals.
+
+---
+
+### 3. THE PROBLEM STATEMENT: COMMERCIAL VENDOR RENT-SEEKING
+Our recent empirical audits revealed the commercial vendor landscape to be extractive and closed:
+1. **CoinGlass API V4 (`open-api-v4.coinglass.com`):**
+   - We probed the live gateway with an authenticated user API key.
+   - Empirical Result: CoinGlass returned `Code: 400, Msg: Invalid API key provided` across all endpoints (`/api/futures/supported-coins`, `/api/futures/open-interest/history`, `/api/futures/funding-rate/history`, `/api/futures/liquidation/history`, `/api/index/fear-greed-history`).
+   - Ground Truth: The programmatic API is strictly paid-only (29 to 500 USD/month) with zero free tier.
+2. **Hyperdash API / GraphQL:**
+   - As implemented in `Terminal/Api_Client.py` (lines 350-420), our local terminal currently queries Hyperdash GraphQL (`GetStopOrderLevelsV2`, `GetLiquidationLevelsV2`) to fetch stop loss clusters, liquidation bands, and whale addresses.
+   - Vulnerability: Relying on a third-party frontend GraphQL endpoint introduces single-point-of-failure risks, rate-limiting, and potential IP blacklisting.
+3. **Arkham Intelligence (`arkm.com`):**
+   - Charges thousands of dollars per month for institutional API access to on-chain whale balances, entity labels, and transfer graphs, despite all underlying blockchain data being public.
+
+**THE CORE MANDATE:**
+We refuse to pay commercial vendors 500 to 5,000 USD/month for data that is inherently public. We require you to design and implement an **All-in-One Zero-Cost Data Factory (`Terminal/Zero_Cost_Data_Factory.py` or modular package `Terminal/Data_Factory/`)** that operates 100% locally in Python, streaming, reconstructing, and persisting all critical derivatives, orderflow, and on-chain intelligence for **0.00 USD**.
+
+---
+
+### 4. KEY ARCHITECTURAL CHALLENGE: LIQUIDATION & STOP LOSS RECONSTRUCTION
+A critical requirement of this consultation is solving the **Liquidation and Stop Loss Data Problem** without paying CoinGlass or relying on third-party scrapers:
+
+1. **How Can We Replicate the Hyperdash Stops & Liquidations Data for Free?**
+   - In `Terminal/Api_Client.py` (lines 368-450 on GitHub branch `arena/4adf3661-trading-2`), we fetch:
+     * `totalBuyStops`, `totalSellStops` (size and count)
+     * `topBuyStops`, `topSellStops` (whale addresses, prices, and sizes)
+     * `bands` (minPrice, maxPrice, totalBuySize, totalSellSize)
+     * `totalLongLiquidations`, `totalShortLiquidations`, and `topLongWhales`/`topShortWhales`
+   - **Question 1A (Direct Free Streams):** Can we query Hyperliquid's raw public endpoints, WebSocket channels (`l2Book`, `allMids`, user fills), or open API schemas directly to extract or derive these exact resting stop-loss orders and liquidation price levels for free without third-party middle-tier dependencies?
+   - **Question 1B (Mathematical Reconstruction / Synthetic Model):** If resting stops are hidden by exchanges inside matching engine books, how can we mathematically **calculate and reconstruct** synthetic stop loss clusters and liquidation density from public data?
+     * Reconstructing liquidation pools from rolling Open Interest deltas ($$\Delta OI_t$$) conditioned on price intervals and standard exchange leverage tiers (10x, 25x, 50x, 100x).
+     * Reconstructing stop-loss clusters based on structural swing highs/lows, Average True Range (ATR) multiples (e.g. 1.0 ATR, 1.5 ATR, 2.0 ATR offsets), and volume profile points of control (POC / VAH / VAL).
+     * Deriving **Liquidation Max Pain** (the exact price level that forces maximum dollar-value liquidations across the market) and the **Friction-Adjusted Fuel Ratio (FAFR)**.
+
+---
+
+### 5. THE 6 PILLARS OF THE ALL-IN-ONE ZERO-COST DATA FACTORY
+The Data Factory must unify 6 core pillars into a single high-performance, asynchronous Python architecture:
+
+```
+                      ALL-IN-ONE ZERO-COST DATA FACTORY (0 USD)
+                                          │
+    ┌──────────────────┬──────────────────┼──────────────────┬──────────────────┐
+    ▼                  ▼                  ▼                  ▼                  ▼
+1. CEX WEBSOCKETS  2. BULK ARCHIVES   3. LIQS & STOPS    4. ON-CHAIN WHALES  5. MACRO & ETF
+• Coinbase Match   • Binance Data     • Synthetic Heat-  • Google BigQuery   • Public SEC/Farside
+• Binance Futures    Vision (CSV/ZIP)   map (OI Delta)     (1 TB/mo Free)    • Coinbase Premium
+• Hyperliquid DEX  • Auto Daily Sync  • Liquidation      • Alchemy Free RPC    (Coinbase vs Bin)
+• Real-Time CVD    • Monotonic Parquet  Max Pain Map     • Dune Spellbook    • Fear & Greed API
+• L2 Depth Deltas    Tick Tables      • FAFR Calculation   Entity Labels     • Macro Blackout
+                                          │
+                                          ▼
+                      6. UNIFIED IN-MEMORY BUS & MT5 BRIDGE
+                      • Thread-Safe Ring Buffer (`IntelligenceBus`)
+                      • SHA-256 Deterministic Feature Vector Attestation
+                      • Seamless Ingestion by `Risk_Sizing_Engine.py` & `OF_Strategy.py`
+```
+
+#### Pillar 1: High-Frequency Free CEX Orderflow Streamer (Coinbase, Binance, Hyperliquid)
+- Connects to public, keyless WebSocket streams:
+  * Coinbase Exchange: `wss://ws-feed.exchange.coinbase.com` (`matches` individual trade ticks, `level2_batch` orderbook depth).
+  * Binance USD-M Futures: `wss://fstream.binance.com/ws` (`<symbol>@trade`, `<symbol>@depth20@100ms`, `<symbol>@aggTrade`, and `<symbol>@forceOrder` for real-time forced liquidations).
+  * Hyperliquid DEX: `wss://api.hyperliquid.xyz/ws` (`l2Book`, `trades`, `allMids`).
+- Computes in real time:
+  * Multi-venue Cumulative Volume Delta (CVD) per asset and aggregated.
+  * Taker aggressive buy/sell ratio across rolling 1m, 5m, 15m windows.
+  * Real-time 90-day Footprint tick ladders (volume traded per discrete price tick).
+
+#### Pillar 2: Automated Historical Bulk Ingestion via Binance Data Vision
+- Automated asynchronous downloader for `https://data.binance.vision/`.
+- Pulls daily and monthly tick-level trades (`aggTrades`), liquidation snapshots, 15m/1m OHLCV, and funding rates going back to 2019 completely for free without API keys or rate limits.
+- Validates monotonic millisecond timestamps, verifies zero nulls, and converts them into partitioned local Parquet tables (`Data/Ticks/{ASSET}_trades.parquet`).
+
+#### Pillar 3: Liquidations & Stop-Loss Reconstruction Engine
+- Replaces CoinGlass Heatmaps and Hyperdash Stops tab with a local mathematical model:
+  * Ingests real-time Binance `@forceOrder` streams for empirical liquidation prints.
+  * Estimates resting liquidation clusters across leverage bands (10x, 25x, 50x, 100x):
+    $$P_{{\text{{liq, long}}}}(P_0, L) = P_0 \cdot \left(1 - \frac{{1}}{{L}} + \text{{mmr}}\right)$$
+    $$P_{{\text{{liq, short}}}}(P_0, L) = P_0 \cdot \left(1 + \frac{{1}}{{L}} - \text{{mmr}}\right)$$
+  * Decays resting liquidation density using an exponential hazard model based on elapsed time and cumulative traded volume across adjacent price corridors.
+  * Computes Liquidation Max Pain and Friction-Adjusted Fuel Ratio (FAFR).
+
+#### Pillar 4: Free On-Chain Whale & Smart Contract Intelligence Engine (Arkham Alternative)
+- **Batch Forensics (Google Cloud BigQuery Public Datasets):**
+  * Leverages Google's 1 Terabyte per month free query tier over `bigquery-public-data.crypto_ethereum.traces`, `token_transfers`, `transactions` and `crypto_bitcoin`.
+  * Extracts large whale transfers (> 1,000,000 USD), contract creations, and exchange hot wallet sweeps.
+- **Streaming Whale Detection (Free Developer RPC Gateways):**
+  * Free Alchemy gateway (300M Compute Units/month) or public RPCs (Ankr, LlamaRPC) to listen for live ERC-20 `Transfer` and native transfers exceeding 500,000 USD notional.
+- **Open-Source Entity Resolution:**
+  * Uses open-source community label registries from the Dune Analytics Spellbook (`duneanalytics/spellbook`) and GitHub repositories to map raw addresses to institutional entities (Binance, Coinbase, Wintermute, Jump Trading, Cumberland).
+
+#### Pillar 5: Institutional Macro, ETF Inflow & Sentiment Tracking
+- **Spot ETF Daily Flows:** Free daily scraper for SEC Form 8-K / Farside Investors daily net inflows and outflows for Bitcoin and Ethereum spot ETFs.
+- **Coinbase Premium Index:** Real-time percentage spread between Coinbase Pro BTC/USD and Binance BTC/USDT in basis points:
+  $$\text{{Coinbase\_Premium}} = \frac{{P_{{\text{{Coinbase}}}} - P_{{\text{{Binance}}}}}}{{P_{{\text{{Binance}}}}}} \times 10{,}000 \text{{ bps}}$$
+- **Crypto Fear & Greed Index:** Free daily endpoint from `https://api.alternative.me/fng/`.
+- **Macro Economic Calendar:** Automated Tier-1 economic release tracking (FOMC, CPI, NFP) with pre-event +/- 15-minute execution blackout vetoes (as specified in `Terminal/Market_Intelligence.py`).
+
+#### Pillar 6: Unified In-Memory Bus & Local MT5 Quantitative Architecture Integration
+- **`IntelligenceBus`:**
+  * Thread-safe, lock-free ring buffer holding the most recent 1,024 ticks and orderbook states.
+  * Sub-millisecond lookup latency for `Terminal/Risk_Sizing_Engine.py` and `Terminal/OF_Strategy.py`.
+- **Deterministic Feature Sealing:**
+  * Every feature vector is hashed with SHA-256 for mathematical auditability and zero lookahead enforcement.
+
+---
+
+### 6. REPOSITORY MODULES TO AUDIT ON GITHUB
+Before designing the implementation, inspect these specific active modules on branch `arena/4adf3661-trading-2`:
+1. `Terminal/Api_Client.py` (Lines 350-450: Current Hyperdash GraphQL queries for `GetStopOrderLevelsV2` and `GetLiquidationLevelsV2`).
+2. `Terminal/Chrome_Terminal.py` (How stops, liquidations, and L3 whale orders are ingested and processed).
+3. `Terminal/Asset_Universe.py` (Canonical assets, broker aliases, and candidate resolution).
+4. `Terminal/Market_Intelligence.py` (Macro calendar, 23-source institutional news roster, blackout gates).
+5. `Terminal/Risk_Sizing_Engine.py` (OrderflowModel, CovarianceGate, piecewise ratchets, friction budgets).
+6. `Terminal/Candle_Indicator_Engine.py` (15m historical candle persistence, monotonic gap audits, session VWAP).
+
+---
+
+### 7. DELIVERABLES REQUESTED FROM OX ALPHA / ARENA.AI
+Conduct an institutional architectural review and provide complete, production-ready artifacts:
+
+1. **All-in-One Data Factory Architecture & Production Code:**
+   - Complete, unabridged Python implementation for `Terminal/Zero_Cost_Data_Factory.py` (or modular package `Terminal/Data_Factory/`).
+   - Unified asynchronous Python 3.11+ architecture combining all 5 data pillars (Coinbase, Binance with `@forceOrder`, Hyperliquid, Binance Data Vision downloader, free RPC on-chain whale listener, and free Macro/ETF/Coinbase Premium calculations).
+   - Resilient connection management: automatic exponential backoff reconnection, heartbeat keep-alive pings, and message buffering.
+   - Low-latency in-memory data store with thread-safe access for the 15-minute trading loop.
+2. **Liquidations & Stops Reconstruction Methodology:**
+   - Detailed answers to Questions 1A and 1B: provide exact instructions and mathematical formulas to either stream or synthetically calculate stop-loss clusters and liquidation heatmaps without paid subscriptions or third-party scrapers.
+3. **Comprehensive Unit & Integration Test Suite (`Tests/Test_Zero_Cost_Data_Factory.py`):**
+   - 100% offline, deterministic tests using mocked WebSocket frames and mocked RPC responses.
+   - Assertions verifying monotonic timestamp ordering, zero lookahead bias, and sub-millisecond bus query latency.
+4. **Integration Guide:**
+   - Step-by-step instructions for updating `Terminal/Market_Intelligence.py` and `Terminal/Risk_Sizing_Engine.py` on branch `arena/4adf3661-trading-2` to seamlessly ingest the new `IntelligenceBus` feeds while preserving all existing risk invariants.

@@ -43,6 +43,7 @@ def main():
     parser.add_argument("--uplift-model", default=str(ROOT/"Data/Models/omni_uplift"))
     parser.add_argument("--calendar", default=str(ROOT/"Data/macro_calendar.json"))
     parser.add_argument("--no-cognitive", action="store_true", help="Explicitly run the deterministic econometric policy")
+    parser.add_argument("--no-pioneer", action="store_true", help="Disable the Pioneer decision engine conviction layer")
     parser.add_argument("--data-dir", default="Binance_Data")
     parser.add_argument("--forex-dir", default="Forex_Data")
     parser.add_argument("--chart", default="Terminal/of_equity_curve.png")
@@ -57,6 +58,8 @@ def main():
         from Terminal.Uplift_Model import UpliftGate
         from Terminal.Risk_Sizing_Engine import CovarianceGate
         from Terminal.Market_Intelligence import MarketIntelligenceEngine
+        from Terminal.Data_Factory import DataFactory
+        from Terminal.Pioneer_Decision_Engine import PioneerDecisionEngine
         import time
         report = {"assets": UNIVERSE, "live_orders": False}
         try:
@@ -65,23 +68,56 @@ def main():
         except Exception as exc: report["covariance_error"] = str(exc)
         gate = UpliftGate(args.uplift_model)
         report["uplift"] = gate.error or gate.meta
+        df = DataFactory(assets=UNIVERSE)
         macro = MarketIntelligenceEngine(calendar_path=args.calendar)
+        macro.attach_data_factory(df)
         report["blackout"] = macro.check_macro_blackout(); report["calendar_error"] = macro.calendar_error
+        pioneer = PioneerDecisionEngine()
+        report["pioneer"] = {"policy_version": pioneer.policy.version,
+                             "weights": pioneer.policy.weights,
+                             "min_quality": pioneer.policy.min_quality,
+                             "friction_bps": pioneer.policy.friction_bps}
+        report["data_factory"] = df.macro_snapshot()
         print(json.dumps(report, indent=2)); return
+
     from Terminal.Market_Intelligence import MarketIntelligenceEngine
+    from Terminal.Data_Factory import DataFactory, CrossSourceValidator
+    from Terminal.Pioneer_Decision_Engine import PioneerDecisionEngine
+
+    assets_list = [a.strip() for a in args.assets.split(",") if a.strip()]
+    data_factory = DataFactory(assets=assets_list)
+    validator = CrossSourceValidator(data_factory)
+
+    def quality_provider(asset):
+        if not data_factory.bus.book(asset):
+            return None
+        try:
+            rep = validator.quality_report([asset])
+            return rep.get("assets", {}).get(asset, rep)
+        except Exception:
+            return None
+
+    intel = MarketIntelligenceEngine(calendar_path=args.calendar)
+    intel.attach_data_factory(data_factory)
+
     trader = AI15mMT5Trader(coin=args.coin, host=args.host, paper_mode=not args.live,
                            min_risk_usd=args.min_risk, max_risk_usd=args.max_risk,
                            cadence_minute=args.cadence_minute, cadence_second=args.cadence_second,
                            entry_mode=args.entry_mode,
                            account_id=args.account_id, max_spread_points=args.max_spread_points,
-                           state_file=args.state_file, allow_list=args.assets.split(","),
+                           state_file=args.state_file, allow_list=assets_list,
                            covariance_path=args.covariance, uplift_path=args.uplift_model,
-                           intel=MarketIntelligenceEngine(calendar_path=args.calendar),
+                           intel=intel,
                            cognitive_enabled=not args.no_cognitive,
                            ttl_min_seconds=args.ttl_min, ttl_max_seconds=args.ttl_max,
                            persistent_limits=not args.no_persistent_limits,
                            policy=RiskPolicy(min_risk=args.min_risk, max_risk=args.max_risk, sigma_budget_usd=args.sigma_budget,
                                              min_confluence=args.min_confluence, max_book_age=30.0, max_future_skew_sec=30.0))
+
+    if not args.no_pioneer:
+        pioneer = PioneerDecisionEngine(quality_provider=quality_provider)
+        trader.attach_pioneer(pioneer)
+
     trader.run(max_cycles=args.ticks)
 
 if __name__ == "__main__": main()
