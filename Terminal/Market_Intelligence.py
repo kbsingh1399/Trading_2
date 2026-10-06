@@ -53,6 +53,7 @@ BULLISH_KEYWORDS = [
 class MarketIntelligenceEngine:
     def __init__(self, blackout_minutes: int = 15, calendar_path=None, clock=time.time):
         self.blackout_minutes = blackout_minutes
+        self.data_factory = None  # optional Zero-Cost Data Factory enrichment
         self.last_fetch_time = 0.0
         self.cached_sentiment = 0.0
         self.cached_headlines: List[Dict[str, Any]] = []
@@ -61,6 +62,13 @@ class MarketIntelligenceEngine:
         self.clock = clock
         self.calendar_error = None
         self.last_calendar_attempt = 0.0
+
+    def attach_data_factory(self, factory) -> None:
+        """Enrich the intelligence report with the Zero-Cost Data Factory's
+        macro block (Coinbase premium, Fear & Greed, ETF flows). Purely
+        additive: the blackout gate and sentiment scoring are untouched, and
+        a missing/unbuilt factory block never degrades the base report."""
+        self.data_factory = factory
 
     def fetch_live_headlines(self) -> List[Dict[str, Any]]:
         """
@@ -175,7 +183,7 @@ class MarketIntelligenceEngine:
             "BEARISH" if self.cached_sentiment <= -0.25 else "NEUTRAL"
         )
 
-        return {
+        report = {
             "timestamp_utc": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC"),
             "macro_sentiment_score": self.cached_sentiment,
             "asset_scores": self.asset_sentiment_scores(),
@@ -188,6 +196,12 @@ class MarketIntelligenceEngine:
             "headlines_count": len(headlines),
             "top_headlines": [h["title"] for h in headlines[:5]]
         }
+        if self.data_factory is not None:
+            try:
+                report["data_factory"] = self.data_factory.macro_snapshot()
+            except Exception as exc:  # noqa: BLE001 - enrichment never blocks the report
+                report["data_factory"] = {"error": repr(exc)}
+        return report
 
     def asset_sentiment_scores(self):
         """Keyword sentiment is a weak feature; crypto headlines do not become gold signals."""

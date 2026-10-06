@@ -1,0 +1,192 @@
+"""Macro, ETF flows & sentiment tracking (Pillar 5) - all free endpoints.
+
+  * Spot ETF daily flows - Farside Investors tables (free HTML) parsed into
+    per-fund and total net flows; SEC EDGAR full-text query builder as the
+    archival cross-check. Fetchers are injectable; parsers are pure.
+  * Coinbase Premium Index - (P_coinbase - P_binance) / P_binance in bps,
+    computed live from the two venue mids already on the IntelligenceBus.
+  * Crypto Fear & Greed - api.alternative.me/fng/ (free, no key).
+  * Macro blackout - delegate to ``Market_Intelligence``'s verified calendar
+    (fail-closed) rather than duplicating it; a standalone helper covers
+    ad-hoc calendars with the same +/- 15-minute rule.
+"""
+from __future__ import annotations
+import json
+import re
+import time
+import urllib.request
+from datetime import datetime, timezone
+from Terminal.Risk_Sizing_Engine import number, epoch
+
+FARSIDE_BTC_URL = "https://farside.co.uk/btc/"
+FARSIDE_ETH_URL = "https://farside.co.uk/eth/"
+FNG_URL = "https://api.alternative.me/fng/"
+EDGAR_FULL_TEXT = "https://efts.sec.gov/LATEST/search-index?q="
+USER_AGENT = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+              "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
+
+
+def default_fetch(url, timeout=10.0):
+    request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+    with urllib.request.urlopen(request, timeout=timeout) as response:
+        return response.read()
+
+
+# ------------------------------------------------------------------ Farside
+def parse_farside_table(html):
+    """Farside Investors flow table -> [{date, funds{...}, total_musd}].
+
+    The page is one big <table> whose header row is the fund tickers and
+    whose last data row is 'Total (US$)'. Values are millions of USD, '' or
+    '-' mean zero. Dates are 'DD MMM YYYY' UTC.
+    """
+    text = html.decode() if isinstance(html, bytes) else str(html)
+    rows = re.findall(r"<tr[^>]*>(.*?)</tr>", text, flags=re.S | re.I)
+    header, funds, out = None, [], []
+    for row in rows:
+        cells = [re.sub(r"<[^>]+>", "", c).strip()
+                 for c in re.findall(r"<t[dh][^>]*>(.*?)</t[dh]>", row, flags=re.S | re.I)]
+        if not cells:
+            continue
+        if header is None and cells and cells[0].lower().startswith("date") \
+                and any(str(c).startswith("Total") for c in cells):
+            header = [c for c in cells if c]
+            funds = [c for c in header[1:] if not c.lower().startswith("total")]
+            continue
+        if header is None:
+            continue
+        if not re.match(r"\d{1,2}\s+\w{3}\s+\d{4}", cells[0]):
+            continue
+        entry = {"date": cells[0], "funds": {}}
+        values = cells[1:]
+        for name, value in zip(funds, values):
+            cleaned = value.replace(",", "").replace("(", "-").replace(")", "")
+            try:
+                entry["funds"][name] = float(cleaned)
+            except ValueError:
+                entry["funds"][name] = 0.0
+        try:
+            entry["total_musd"] = float(values[len(funds)].replace(",", "")
+                                        .replace("(", "-").replace(")", ""))
+        except (ValueError, IndexError):
+            entry["total_musd"] = sum(entry["funds"].values())
+        entry["date_epoch"] = datetime.strptime(cells[0], "%d %b %Y") \
+            .replace(tzinfo=timezone.utc).timestamp()
+        out.append(entry)
+    out.sort(key=lambda r: r["date_epoch"])     # chronological regardless of page order
+    return out
+
+
+class FarsideETFFlows:
+    """Daily spot-ETF net flows (millions USD) for BTC and ETH."""
+
+    def __init__(self, fetch=None, clock=time.time):
+        self.fetch = fetch or default_fetch
+        self.clock = clock
+        self.cache = {"BTC": None, "ETH": None}
+
+    def refresh(self, asset="BTC"):
+        url = FARSIDE_ETH_URL if asset == "ETH" else FARSIDE_BTC_URL
+        rows = list(parse_farside_table(self.fetch(url)))
+        if rows:
+            self.cache[asset] = rows
+        return rows
+
+    def net_flow(self, asset="BTC", lookback_days=1):
+        rows = self.cache.get(asset)
+        if not rows:
+            return None
+        now = self.clock()
+        recent = [r for r in rows if 0.0 <= now - r["date_epoch"] < lookback_days * 86400]
+        return {"asset": asset, "days": lookback_days,
+                "total_musd": sum(r["total_musd"] for r in recent),
+                "last_date": rows[-1]["date"], "rows": len(rows)}
+
+    def streak(self, asset="BTC", n=5):
+        """Last n daily totals, newest first (for consecutive-flow signals)."""
+        rows = self.cache.get(asset) or []
+        return [r["total_musd"] for r in rows[-n:]][::-1]
+
+
+def edgar_full_text_url(query, date_from, date_to):
+    """SEC EDGAR full-text search URL builder (8-K cross-check of flows)."""
+    return (f"https://efts.sec.gov/LATEST/search-index?q=%22{query.replace(' ', '+')}"
+            f"%22&dateRange=custom&startdt={date_from}&enddt={date_to}&forms=8-K")
+
+
+# ------------------------------------------------------------------ premium
+def coinbase_premium_bps(coinbase_mid, binance_mid):
+    """(P_coinbase - P_binance)/P_binance * 10,000, in bps."""
+    cb, bn = float(number(coinbase_mid)), float(number(binance_mid))
+    if cb <= 0 or bn <= 0:
+        return None
+    return (cb - bn) / bn * 1e4
+
+
+class CoinbasePremiumIndex:
+    """Live premium from the two venue mids already streaming on the bus."""
+
+    def __init__(self, bus, asset="BTC"):
+        self.bus, self.asset = bus, asset
+
+    def bps(self, now=None):
+        mids = {}
+        for tick in self.bus.ticks(self.asset, limit=64):
+            venue = tick.get("venue")
+            if venue in ("COINBASE", "BINANCE") and venue not in mids:
+                mids[venue] = tick["price"]
+        if len(mids) < 2:
+            return None
+        return coinbase_premium_bps(mids["COINBASE"], mids["BINANCE"])
+
+
+# -------------------------------------------------------------- fear & greed
+def parse_fng(payload):
+    """alternative.me/fng/ JSON -> {value, classification, as_of}."""
+    try:
+        row = payload["data"][0]
+        return {"value": int(row["value"]), "classification": row["value_classification"],
+                "as_of": int(row["timestamp"])}
+    except (KeyError, TypeError, ValueError, IndexError):
+        return None
+
+
+class FearGreedIndex:
+    def __init__(self, fetch=None, clock=time.time, max_age=6 * 3600):
+        self.fetch = fetch or default_fetch
+        self.clock = clock
+        self.max_age = float(max_age)
+        self.cached = None
+        self.last_fetch = 0.0
+
+    def value(self):
+        now = self.clock()
+        if self.cached and now - self.last_fetch <= self.max_age:
+            return self.cached
+        try:
+            payload = json.loads(self.fetch(FNG_URL))
+            parsed = parse_fng(payload)
+            if parsed:
+                self.cached, self.last_fetch = parsed, now
+        except (ValueError, RuntimeError, OSError):
+            pass
+        return self.cached
+
+
+# ------------------------------------------------------------ macro blackout
+def blackout_from_calendar(events, now, minutes=15.0):
+    """Standalone +/- ``minutes`` blackout check over an events list
+    [{name, time_utc, impact}]. Same semantics as Market_Intelligence:
+    missing coverage returns (True, 'CALENDAR_UNAVAILABLE') - fail closed."""
+    now = float(number(now))
+    if not events:
+        return True, "CALENDAR_UNAVAILABLE"
+    for event in events:
+        if str(event.get("impact", "")).upper() != "HIGH":
+            continue
+        event_time = epoch(event.get("time_utc"))
+        if not event_time:
+            return True, "CALENDAR_UNAVAILABLE"
+        if abs(now - event_time) / 60.0 <= minutes:
+            return True, str(event.get("name", "MACRO_EVENT"))
+    return False, "NO_EVENT"
