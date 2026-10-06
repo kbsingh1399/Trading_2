@@ -21,6 +21,7 @@ from Terminal.MT5_Execution_Bridge import MT5ExecutionBridge
 from Terminal.Market_Intelligence import MarketIntelligenceEngine
 from Terminal.Cognitive_Engine import CognitiveEngine
 from Terminal.Orderbook_Structure import (wall_clusters, hazard_ttl, structural_exit, classify_sleeve,
+                                         taker_delta_exhaustion, adaptive_stop_level,
                                           anchors_from_clusters)
 from Terminal.Order_Persistence_Governor import OrderPersistenceGovernor
 from Terminal.Deterministic_Features import FeatureSealer
@@ -756,6 +757,17 @@ class AI15mMT5Trader:
                         entry_anchors = []
 
                         if effective_mode == "limit":
+                            # Orderflow Taker Delta Exhaustion Gate (OX_ALPHA_61
+                            # D4.2): a passive limit stages only after the
+                            # aggressive flow pressing the level decelerates AND
+                            # the opposing side absorbs at the level. Without an
+                            # orderflow tape the gate passes UNVERIFIED (the
+                            # remote Arena protocol refuses instead).
+                            gate = taker_delta_exhaustion(payload.get("orderflow"),
+                                                          features["direction"])
+                            if gate["status"] == "ENFORCED" and not gate["ok"]:
+                                raise ValueError("exhaustion_gate:" + "|".join(gate["reasons"]))
+                            features["exhaustion_gate"] = gate
                             min_broker_dist = (max(number(quote.get("stops_level", 0)), number(quote.get("freeze_level", 0)), 1) + 2) * quote["point"]
                             if features["direction"] == "LONG":
                                 # Verified whale bid clusters (freshness-gated by the
@@ -784,10 +796,17 @@ class AI15mMT5Trader:
                                     raw_entry = quote["bid"] - max(0.4*atr, min_broker_dist)
                                 max_entry = min(quote["bid"] - tick, quote["ask"] - min_broker_dist)
                                 entry = round(min(raw_entry, max_entry), digits)
-                                swing_anchor = pivots["swing_low"] - 2*tick if pivots else entry - 1.5*atr
-                                whale_shield = min(whale_bids) - 2*tick if whale_bids else swing_anchor
+                                # Adaptive Volatility Stop Buffer (OX_ALPHA_61 D4.3):
+                                # distance = max(1.5*ATR, structural swing low - 0.2*ATR).
+                                # The 2-tick swing buffer was the ETH failure mode -
+                                # the sweep that took the swing took the stop.
+                                vol_stop = adaptive_stop_level(entry, atr,
+                                                               pivots.get("swing_low") if pivots else None,
+                                                               "LONG")
+                                whale_shield = min(whale_bids) - 2*tick if whale_bids else None
                                 sl_cap = entry - min_broker_dist
-                                raw_sl = min(entry - 1.5*atr, swing_anchor, whale_shield, sl_cap)
+                                raw_sl = min([lvl for lvl in (vol_stop, whale_shield, sl_cap)
+                                              if lvl is not None])
                                 sl = round(math.floor(raw_sl / tick) * tick, digits)
                                 if entry - sl < min_broker_dist:
                                     sl = round(math.floor((entry - min_broker_dist) / tick) * tick, digits)
@@ -821,10 +840,14 @@ class AI15mMT5Trader:
                                     raw_entry = quote["ask"] + max(0.4*atr, min_broker_dist)
                                 min_entry = max(quote["ask"] + tick, quote["bid"] + min_broker_dist)
                                 entry = round(max(raw_entry, min_entry), digits)
-                                swing_anchor = pivots["swing_high"] + 2*tick if pivots else entry + 1.5*atr
-                                whale_shield = max(whale_asks) + 2*tick if whale_asks else swing_anchor
+                                # Adaptive Volatility Stop Buffer (OX_ALPHA_61 D4.3), mirrored.
+                                vol_stop = adaptive_stop_level(entry, atr,
+                                                               pivots.get("swing_high") if pivots else None,
+                                                               "SHORT")
+                                whale_shield = max(whale_asks) + 2*tick if whale_asks else None
                                 sl_floor = entry + min_broker_dist
-                                raw_sl = max(entry + 1.5*atr, swing_anchor, whale_shield, sl_floor)
+                                raw_sl = max([lvl for lvl in (vol_stop, whale_shield, sl_floor)
+                                              if lvl is not None])
                                 sl = round(math.ceil(raw_sl / tick) * tick, digits)
                                 if sl - entry < min_broker_dist:
                                     sl = round(math.ceil((entry + min_broker_dist) / tick) * tick, digits)

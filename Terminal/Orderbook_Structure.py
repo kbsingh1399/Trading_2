@@ -227,3 +227,93 @@ def wall_liveness(anchors, clusters, *, pull_ratio=0.40, match_tol_bps=15.0):
     return alive, {"reason": "anchor_retained" if alive else "anchor_thinned",
                    "anchor_price": primary["price"], "anchor_notional_usd": primary["notional_usd"],
                    "current_notional_usd": retained, "retained_ratio": retained / max(primary["notional_usd"], 1e-9)}
+
+
+# ============================================== OX_ALPHA_61 D4: absorption
+def taker_delta_exhaustion(orderflow, direction, *, min_absorption_usd=25_000.0,
+                           deceleration_ratio=0.60, window_share=0.20):
+    """Orderflow Taker Delta Exhaustion Gate (OX_ALPHA_61 Deliverable 4.2).
+
+    Root cause of the ETH stop-out (long 2695.50, stopped 2686.00, bounce to
+    2691.00): the entry rested at a static VWAP band while aggressive sellers
+    were still pressing - the tape had not exhausted. This gate refuses to
+    stage a passive limit entry until BOTH hold:
+
+      1. DECELERATION - the aggressive flow that pressed price into the level
+         is fading: the 1-minute CVD pace is better (less adverse) than
+         ``deceleration_ratio`` x the 5-minute per-minute average, with the
+         5-minute CVD still on the pressing side.
+      2. ABSORPTION - buyers (for a LONG) are lifting the offer into support:
+         1-minute taker buy USD >= ``min_absorption_usd`` AND >=
+         ``window_share`` x the 5-minute taker buy USD (a live tape, not a
+         dead one). Mirrored for SHORTs.
+
+    ``orderflow`` is the factory payload block (cvd_1m/5m, taker buy/sell
+    USD by window). Returns a status dict:
+
+      {"status": "ENFORCED", "ok": bool, "reasons": [...], "metrics": {...}}
+      {"status": "UNVERIFIED_NO_TAPE"}   - no orderflow block: the caller
+      decides policy (the trader passes with a marker; the remote protocol
+      refuses - it must prove the tape before touching live money).
+    """
+    of = orderflow or {}
+    cvd1, cvd5 = of.get("cvd_1m"), of.get("cvd_5m")
+    buy1 = number(of.get("taker_buy_usd_1m"), -1.0)
+    sell1 = number(of.get("taker_sell_usd_1m"), -1.0)
+    buy5 = number(of.get("taker_buy_usd_5m"), -1.0)
+    sell5 = number(of.get("taker_sell_usd_5m"), -1.0)
+    if cvd1 is None or cvd5 is None or buy1 < 0 or sell1 < 0 or buy5 < 0 or sell5 < 0:
+        return {"status": "UNVERIFIED_NO_TAPE"}
+
+    long_side = str(direction).upper() == "LONG"
+    reasons, metrics = [], {
+        "cvd_1m": number(cvd1), "cvd_5m": number(cvd5),
+        "taker_buy_usd_1m": buy1, "taker_sell_usd_1m": sell1,
+        "taker_buy_usd_5m": buy5, "taker_sell_usd_5m": sell5}
+
+    if long_side:
+        pressing = number(cvd5) < 0                       # sellers pressed into support
+        decelerating = number(cvd1) > deceleration_ratio * number(cvd5) / 5.0
+        absorbing = buy1 >= min_absorption_usd and buy1 >= window_share * max(buy5, 1e-9)
+        if not pressing: reasons.append("no_seller_pressure_to_exhaust")
+        if not decelerating: reasons.append("seller_pressure_not_decelerating")
+        if not absorbing: reasons.append("insufficient_buy_absorption_at_support")
+    else:
+        pressing = number(cvd5) > 0                       # buyers pressed into resistance
+        decelerating = number(cvd1) < deceleration_ratio * number(cvd5) / 5.0
+        absorbing = sell1 >= min_absorption_usd and sell1 >= window_share * max(sell5, 1e-9)
+        if not pressing: reasons.append("no_buyer_pressure_to_exhaust")
+        if not decelerating: reasons.append("buyer_pressure_not_decelerating")
+        if not absorbing: reasons.append("insufficient_sell_absorption_at_resistance")
+
+    metrics["deceleration_ratio"] = deceleration_ratio
+    metrics["min_absorption_usd"] = min_absorption_usd
+    return {"status": "ENFORCED", "ok": not reasons, "reasons": reasons,
+            "metrics": metrics}
+
+
+def adaptive_stop_level(entry, atr, swing_level, side, *, swing_buffer_atr=0.20,
+                        min_atr_multiple=1.5):
+    """Adaptive Volatility Stop Buffer (OX_ALPHA_61 Deliverable 4.3).
+
+    Stop distance = max(min_atr_multiple x ATR_15m, structural swing buffered
+    by swing_buffer_atr x ATR_15m). The ETH failure mode was a stop resting a
+    couple of ticks under the swing low: the wick that swept the swing took
+    the stop, then price bounced. The buffer puts the stop 0.2 ATR BELOW the
+    structural swing so the sweep does not reach it, while the 1.5 ATR floor
+    keeps volatility honesty. ``swing_level`` None degrades to the pure
+    volatility stop. The existing 2.5 ATR runaway veto in Omni_Trader still
+    caps the result.
+    """
+    entry, atr = float(entry), float(atr)
+    if atr <= 0:
+        return None
+    if str(side).upper() == "LONG":
+        structural = (float(swing_level) - swing_buffer_atr * atr) \
+            if swing_level is not None else entry - min_atr_multiple * atr
+        distance = max(min_atr_multiple * atr, entry - structural)
+        return entry - distance
+    structural = (float(swing_level) + swing_buffer_atr * atr) \
+        if swing_level is not None else entry + min_atr_multiple * atr
+    distance = max(min_atr_multiple * atr, structural - entry)
+    return entry + distance

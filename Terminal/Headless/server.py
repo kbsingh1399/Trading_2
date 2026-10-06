@@ -27,6 +27,9 @@ import json
 import time
 from typing import Optional
 
+from Terminal.Execution.remote_reconciler import (apply_command, verify_command,
+                                                  purge_expired_test_limits)
+
 MAX_HEADER_BYTES = 8192
 MAX_BODY_BYTES = 1 << 20
 REPLAY_WINDOW_SEC = 30.0
@@ -76,6 +79,8 @@ class HeadlessService:
         self.evaluate_timeout = float(evaluate_timeout)
         self._server = None
         self._lock = asyncio.Lock()
+        self._command_nonces = set()      # replay ledger for remote commands
+        self._applied_commands = set()    # idempotency ledger
 
     # ------------------------------------------------------------- handlers
     def readiness(self) -> dict:
@@ -153,6 +158,44 @@ class HeadlessService:
                 await self._respond(writer, 200, result)
                 return
 
+            if method == "POST" and path in ("/api/v1/stage_order",
+                                             "/api/v1/modify_sltp",
+                                             "/api/v1/cancel_order"):
+                # Arena Brain -> laptop muscle command channel (OX_ALPHA_61).
+                # The body IS a signed command envelope (protocol
+                # omni.arena_remote.v1): HMAC-SHA256 + timestamp window +
+                # single-use nonce + single-use command_id.
+                if not self.secret:
+                    await self._respond(writer, 503, {"error": "no_secret_configured"})
+                    return
+                verdict = verify_command(body, self.secret, now=self.clock(),
+                                         seen_nonces=self._command_nonces,
+                                         applied_ids=self._applied_commands)
+                if not verdict["ok"]:
+                    await self._respond(writer, 401, {"error": verdict["reason"]})
+                    return
+                bridge = getattr(self.runtime, "bridge", None)
+                if bridge is None:
+                    await self._respond(writer, 503, {"error": "no_bridge"})
+                    return
+                try:
+                    result = await asyncio.wait_for(
+                        asyncio.to_thread(apply_command, bridge, body,
+                                          clock=self.clock,
+                                          bars_provider=self._bars_provider()), 15.0)
+                except asyncio.TimeoutError:
+                    await self._respond(writer, 504, {"error": "command_timeout"})
+                    return
+                except Exception as exc:              # noqa: BLE001 - risk refusal
+                    await self._respond(writer, 409, {"error": str(exc),
+                                                      "command_id": body.get("command_id")})
+                    return
+                self._applied_commands.add(str(body.get("command_id")))
+                await self._respond(writer, 200, {"command_id": body.get("command_id"),
+                                                  "type": body.get("type"),
+                                                  "result": result})
+                return
+
             status, payload = self._dispatch(method, path, body)
             if isinstance(payload, tuple):            # pragma: no cover - defensive
                 payload = {"error": "internal"}
@@ -169,6 +212,18 @@ class HeadlessService:
                 writer.close()
             except Exception:                         # noqa: BLE001
                 pass
+
+    def _bars_provider(self):
+        runtime = self.runtime
+        def provider(symbol):
+            bridge = getattr(runtime, "bridge", None)
+            if bridge is None:
+                return None
+            try:
+                return bridge.get_recent_bars(symbol, count=30)
+            except Exception:                         # noqa: BLE001
+                return None
+        return provider
 
     async def _respond(self, writer, status: int, payload: dict):
         body = canonical_json(payload)
