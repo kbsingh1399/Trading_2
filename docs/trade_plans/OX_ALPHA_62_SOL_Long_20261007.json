@@ -1,0 +1,71 @@
+{
+  "plan_version": "omni.trade_plan.v1",
+  "plan_id": "OXALPHA62-SOL-LONG-20261007A",
+  "asset": "SOL",
+  "symbol": "SOLUSD.p",
+  "direction": "LONG",
+  "limit_price": 119.95,
+  "sl": 119.25,
+  "tp": 121.7,
+  "volume": 0.15,
+  "risk_usd": 10.5,
+  "atr": 0.46123,
+  "tp_r": 2.5,
+  "ttl_bars": 24,
+  "comment": "ARENA:PLAN_v1",
+  "created_at_epoch": 1791315000.0,
+  "expires_at_epoch": 1791374400.0,
+  "max_friction_r": 0.35,
+  "blackout_windows": [
+    {
+      "start_epoch": 1791392400.0,
+      "end_epoch": 1791397800.0,
+      "reason": "FOMC meeting minutes 2026-10-07 18:00 UTC (Tier-1); no staging from 60 min pre-release through 30 min aftermath"
+    }
+  ],
+  "contract": {
+    "tick_size": 0.01,
+    "contract_size": 100.0,
+    "min_lot": 0.01,
+    "step_lot": 0.01,
+    "digits": 2
+  },
+  "thesis": {
+    "summary": "Trend-continuation dip-buy at the structural 24-hour low retest in the strongest-momentum major of the 24-asset universe, against a risk-on macro regime (soft labour, cooling inflation, Fed hold priced).",
+    "structural_level": "119.99 = 24h low (96-bar window); limit rests 0.04 below it",
+    "momentum": "SOL 1M +13.79 pct, 1W +1.76 pct; mid-range position 0.55 of 96-bar range (not extended)",
+    "macro": "Sep NFP +29k vs +90k expected, unemployment 4.2 pct; core PCE 3.0 pct y/y below consensus; Oct 28 FOMC ~80 pct priced hold; S&P 500 and Nasdaq at records"
+  },
+  "management": {
+    "ratchet": "omni.ratchet.session_conditional.v1 (0.80R/1.50R/2.00R phases; entry-0.15R / entry+0.85R locks / 0.65R trail)",
+    "decay": "close at market if gain < 0.20R after 24 bars",
+    "target_band": "2.50R..3.14R"
+  },
+  "provenance": {
+    "candles": "Data/Candles/SOL_15m.parquet: 512 x 15m bars, last bar 2026-10-06 19:30 UTC, close 120.39, Wilder ATR(14) 0.46123, 24h low 119.99, 96-bar range position 0.55",
+    "sources": [
+      "https://economictimes.indiatimes.com/markets/cryptocurrency (BTC/ETH/SOL/DOGE live prices, 2026-10-07 00:57 IST)",
+      "https://www.investing.com/currencies/xau-usd (XAUUSD 4166.79/4167.13, day range 4103.70-4179.72, 2026-10-06)",
+      "https://admiralmarkets.com/analytics/traders-blog/fomc-minutes-october-2026 (FOMC minutes 2026-10-07 14:00 ET; Sep hike 25bp to 3.75-4.00 pct, 12-0)",
+      "https://vtmarkets.com/en-ca/featured/week-ahead-weak-us-jobs-shift-fed-outlook-as-gold-usd-and-sp-500-react (NFP +29k, core PCE 3.0 pct, JOLTS -256k)",
+      "https://coinpaper.com/36876/stock-market-today-sp-500-and-nasdaq-hit-records-as-dow-jones-gains (S&P above 7830 intraday, Nasdaq 100 record 31076)",
+      "https://fedratecalc.com/us-economic-calendar/october-2026/ (October Tier-1 calendar: CPI Oct 14, PPI/retail Oct 15, FOMC Oct 28, GDP/PCE Oct 29)"
+    ],
+    "account_snapshot": {
+      "as_of": "OX_ALPHA_62 specification",
+      "equity_usd": 4839.88,
+      "floor_usd": 4775.0,
+      "filled_positions": 1,
+      "filled_detail": "GOLD short #18576872 XAUUSD.pi 0.01 lots entry 4176.00 SL 4186.50 TP 4143.00",
+      "open_slots": 1
+    },
+    "friction_accounting": {
+      "conservative_bps": 41.0,
+      "conservative_usd": 7.38,
+      "conservative_r": 0.7,
+      "live_spread_assumption_usd": 0.09,
+      "live_spread_assumption_r": 0.13,
+      "note": "41 bps round-trip on notional is the mandated conservative bound (backtest haircut); the stager gates on the ACTUAL live spread from the tunnel quote at stage time"
+    }
+  }
+}

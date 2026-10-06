@@ -77,12 +77,19 @@ class BrainClient:
 
     def stage_order(self, *, symbol: str, direction: str, volume: float,
                     limit_price: float, sl: float, tp: float,
-                    comment: str = "ARENA:ORDER") -> Dict:
-        """Stage a generic signed limit order (risk <= 20.00 USD enforced laptop-side)."""
-        return self._post("/api/v1/stage_order", self._command("STAGE_ORDER", {
-            "symbol": symbol, "direction": direction, "volume": float(volume),
-            "limit_price": float(limit_price), "sl": float(sl), "tp": float(tp),
-            "comment": comment}))
+                    comment: str = "ARENA:ORDER",
+                    expiration_seconds: Optional[int] = None) -> Dict:
+        """Stage a generic signed limit order (risk <= 20.00 USD enforced laptop-side).
+
+        ``expiration_seconds`` maps to the muscle-side STAGE_ORDER TTL (the
+        24-bar decay convention = 24 * 900 s); omitted -> muscle default.
+        """
+        params = {"symbol": symbol, "direction": direction,
+                  "volume": float(volume), "limit_price": float(limit_price),
+                  "sl": float(sl), "tp": float(tp), "comment": comment}
+        if expiration_seconds is not None:
+            params["expiration_seconds"] = int(expiration_seconds)
+        return self._post("/api/v1/stage_order", self._command("STAGE_ORDER", params))
 
     def modify_sltp(self, *, ticket: int, sl: float, tp: Optional[float] = None) -> Dict:
         return self._post("/api/v1/modify_sltp", self._command("MODIFY_SLTP", {
