@@ -18,6 +18,10 @@ from Terminal.Uplift_Model import UpliftGate, executable_ratchet, POLICY_VERSION
 from Terminal.MT5_Execution_Bridge import MT5ExecutionBridge
 from Terminal.Market_Intelligence import MarketIntelligenceEngine
 from Terminal.Cognitive_Engine import CognitiveEngine
+from Terminal.Orderbook_Structure import (wall_clusters, hazard_ttl, structural_exit, classify_sleeve,
+                                          anchors_from_clusters)
+from Terminal.Order_Persistence_Governor import OrderPersistenceGovernor
+from Terminal.Deterministic_Features import FeatureSealer
 
 ROOT = Path(__file__).resolve().parents[1]
 MAGIC = 100895
@@ -115,7 +119,8 @@ class AI15mMT5Trader:
                  bridge=None, intel=None, cognitive=None, covariance=None, uplift=None,
                  covariance_path=None, uplift_path=None, policy=None, clock=time.time,
                  fetcher=None, cognitive_enabled=True, journal_dir=None,
-                 limit_expiration_seconds=3600):
+                 limit_expiration_seconds=3600, ttl_min_seconds=7200.0, ttl_max_seconds=21600.0,
+                 persistent_limits=True):
         if cadence_minute != 14 or not 0 <= cadence_second <= 50:
             raise ValueError("Entries must be scheduled in minute 14 before the candle close")
         if entry_mode not in ("market", "limit"):
@@ -152,6 +157,16 @@ class AI15mMT5Trader:
                 prior_pass = epoch((loaded.get("last_360_report") or {}).get("timestamp"))
                 if prior_pass: self.state["last_slot"] = int(prior_pass//900)
         self.flow = OrderflowModel(self.policy, self.state.get("normalizer"), self.state.get("walls"))
+        # Order Persistence Governor (Incident A): owns multi-hour resting
+        # limit orders, dynamic TTL and wall-tracking cancel/replace. Runs on
+        # the ~1s manage cadence, never inside the minute-14 decision window.
+        self.ttl_min_seconds, self.ttl_max_seconds = float(ttl_min_seconds), float(ttl_max_seconds)
+        self.persistent_limits = bool(persistent_limits)
+        self.governor = OrderPersistenceGovernor(self.bridge, journal=self._append, clock=self.clock,
+                                                 ttl_min_sec=self.ttl_min_seconds, ttl_max_sec=self.ttl_max_seconds)
+        self.governor.load(self.state.get("resting_orders"))
+        # Tamper-proof feature seals (Incident B): per-asset hash chain.
+        self.sealer = FeatureSealer(self.state.get("feature_chain"))
         self.fetcher = fetcher or self._fetch
         self.pool = ThreadPoolExecutor(max_workers=8, thread_name_prefix="omni-data")
         self.intel_pool = ThreadPoolExecutor(max_workers=1, thread_name_prefix="omni-macro")
@@ -191,10 +206,12 @@ class AI15mMT5Trader:
 
     def _save_state(self):
         self._sync_external_state()
-        resolved = [key for key, value in self.state["intents"].items() if value["status"] in ("REJECTED", "RECONCILED", "RECONCILED_CLOSED")]
+        resolved = [key for key, value in self.state["intents"].items() if value["status"] in ("REJECTED", "RECONCILED", "RECONCILED_CLOSED", "EXPIRED")]
         for key in resolved[:-32]: del self.state["intents"][key]
         self.state["normalizer"] = self.flow.normalizer.export()
         self.state["walls"] = self.flow.walls
+        self.state["resting_orders"] = self.governor.export()
+        self.state["feature_chain"] = self.sealer.export()
         self.state["latest_report"] = self.last_report
         self.state_file.parent.mkdir(parents=True, exist_ok=True)
         temporary = self.state_file.with_suffix(self.state_file.suffix+".tmp")
@@ -311,7 +328,18 @@ class AI15mMT5Trader:
     def _reconcile(self, positions, pending):
         pending_tickets = {int(o.get("ticket", 0)) for o in pending}
         for key, intent in self.state["intents"].items():
-            if intent["status"] not in ("PREPARED", "ACKNOWLEDGED", "UNCERTAIN", "STAGED_LIMIT"): continue
+            if intent["status"] not in ("PREPARED", "ACKNOWLEDGED", "UNCERTAIN", "STAGED_LIMIT", "ABANDONED"): continue
+            # Aged unresolved intents deadlock all future entries
+            # ("unresolved_execution_intent"). Only demote when the broker can
+            # prove no fill ever happened; without history evidence the
+            # intent is conservatively kept (fail-closed).
+            if intent["status"] in ("PREPARED", "ACKNOWLEDGED", "UNCERTAIN") and not self.paper_mode:
+                age = self.clock()-number(intent.get("prepared_at"))
+                limit = 120.0 if intent["status"] == "PREPARED" else 300.0
+                if age > limit and not self._bridge_intent_filled(intent):
+                    intent["status"] = "ABANDONED"
+                    self._append("executions.jsonl", {"time": self.clock(), "event": "intent_aged_out",
+                                                      "intent_id": key, "age": age})
             matched = [p for p in positions if p.get("comment") == intent["comment"] and int(p.get("magic", 0)) == MAGIC]
             if matched:
                 if len(matched) != 1: raise ValueError("ambiguous_order_reconciliation")
@@ -342,8 +370,13 @@ class AI15mMT5Trader:
             elif intent["status"] == "STAGED_LIMIT":
                 ticket = intent.get("order_ticket")
                 if ticket and ticket not in pending_tickets:
-                    intent["status"] = "EXPIRED"
-                    self._append("executions.jsonl", {"time": self.clock(), "event": "limit_expired", "intent_id": key, "ticket": ticket})
+                    # The order vanished between the two IPC inventory
+                    # snapshots. A fill inside that race window must never be
+                    # mistaken for an expiry (Finding F-04): check deal
+                    # history before declaring EXPIRED.
+                    resolution = self._resolve_vanished_limit(key, intent)
+                    if resolution == "uncertain":
+                        continue
             elif not self.paper_mode and hasattr(self.bridge, "reconcile_intent_history"):
                 history = self.bridge.reconcile_intent_history(intent["comment"], intent["prepared_at"])
                 if history and history["state"] == "FILLED_CLOSED":
@@ -364,6 +397,52 @@ class AI15mMT5Trader:
                 if meta.get("cognitive_snapshot") and meta.get("cognitive_decision"):
                     self.cognitive.record_outcome(meta["cognitive_snapshot"], meta["cognitive_decision"], outcome)
                 del self.state["positions"][ticket]
+
+    def _bridge_intent_filled(self, intent):
+        """True iff the broker shows fill evidence for this intent's comment.
+
+        Returns True (conservative: never age out) when the bridge cannot
+        answer, so evidence-free demotion is impossible.
+        """
+        try:
+            if hasattr(self.bridge, "intent_filled"):
+                return bool(self.bridge.intent_filled(intent["comment"], number(intent.get("prepared_at"))))
+        except (RuntimeError, ValueError, OSError):
+            return True
+        return True
+
+    def _resolve_vanished_limit(self, key, intent):
+        """Classify a pending limit that disappeared from the broker inventory.
+
+        Returns "filled_closed", "filled_open", "expired" or "uncertain".
+        A fill inside the inventory race window is reconciled from deal
+        history instead of being silently marked EXPIRED (Finding F-04).
+        """
+        ticket = intent.get("order_ticket")
+        if not self.paper_mode:
+            try:
+                if hasattr(self.bridge, "reconcile_intent_history"):
+                    history = self.bridge.reconcile_intent_history(intent["comment"], intent["prepared_at"])
+                    if history and history["state"] == "FILLED_CLOSED":
+                        intent["status"] = "RECONCILED_CLOSED"
+                        self._append("outcomes.jsonl", {"intent_id": key, "available_at": self.clock(), **history})
+                        meta = intent["candidate"]
+                        if meta.get("cognitive_snapshot") and meta.get("cognitive_decision"):
+                            self.cognitive.record_outcome(meta["cognitive_snapshot"], meta["cognitive_decision"], history)
+                        return "filled_closed"
+                if hasattr(self.bridge, "intent_filled") and bool(self.bridge.intent_filled(intent["comment"], number(intent.get("prepared_at")))):
+                    # Filled and still open: it will reconcile from the next
+                    # position snapshot via the comment match above.
+                    intent["status"] = "ACKNOWLEDGED"
+                    self._append("executions.jsonl", {"time": self.clock(), "event": "limit_filled_pending_reconcile",
+                                                      "intent_id": key, "ticket": ticket})
+                    return "filled_open"
+            except RuntimeError:
+                return "uncertain"
+        intent["status"] = "EXPIRED"
+        self._append("executions.jsonl", {"time": self.clock(), "event": "limit_expired", "intent_id": key,
+                                          "ticket": ticket, "fill_checked": not self.paper_mode})
+        return "expired"
 
     def _flatten(self, positions, pending, reason):
         for order in pending:
@@ -517,6 +596,19 @@ class AI15mMT5Trader:
                     except (ValueError, KeyError):
                         pass
 
+        # Order Persistence Governor heartbeat (Incident A): dynamic TTL,
+        # wall-pull cancel / cancel-replace and drift bounds for resting
+        # persistent limit orders. Runs on every manage cycle so multi-hour
+        # orders never depend on the 15-minute decision cadence.
+        if not self.paper_mode and self.governor.count():
+            try:
+                changes.extend(self.governor.heartbeat(now=self.clock(), intents=self.state["intents"],
+                                                       payloads=self.payloads, pending=pending,
+                                                       quote_fn=self._quote))
+            except Exception as exc:
+                self._append("runtime_errors.jsonl", {"time": self.clock(), "event": "governor_heartbeat_failed",
+                                                      "error": str(exc)})
+
         self._save_state()
         return changes
 
@@ -610,19 +702,25 @@ class AI15mMT5Trader:
                         tick = max(number(quote.get("tick_size")), quote["point"])
                         digits = int(quote.get("digits", 2))
                         atr = features["atr"]
-                        target_r = 2.5
                         pivots = compute_pivot_levels(bars, tick)
+                        # Sleeve decoupling (Incident C): S1 pullbacks rest
+                        # passively ahead of verified absorption walls; T1
+                        # breakouts enter aggressively into liquidity vacuums.
+                        # Classification is deterministic and cannot be
+                        # overridden by the cognitive layer.
+                        features["sleeve"] = classify_sleeve(features)
+                        effective_mode = "market" if features["sleeve"] == "T1_BREAKOUT" else self.entry_mode
+                        l3 = payload.get("l3_orders", [])
+                        entry_anchors = []
 
-                        if self.entry_mode == "limit":
+                        if effective_mode == "limit":
                             min_broker_dist = (max(number(quote.get("stops_level", 0)), number(quote.get("freeze_level", 0)), 1) + 2) * quote["point"]
                             if features["direction"] == "LONG":
-                                whale_bids = [number(w.get("price")) for w in payload.get("l3_orders", [])
-                                              if w.get("side") == "BUY"
-                                              and number(w.get("notional_usd", 0)) >= 150000.0
-                                              and max(number(w.get("persistence_sec", 0)), number(w.get("observed_span_s", 0))) >= 180.0
-                                              and (not w.get("is_stale", False))
-                                              and (globals().get("now") is None or globals().get("epoch") is None or w.get("observed_at") is None or 0.0 <= globals()["now"] - globals()["epoch"](w.get("observed_at")) <= 30.0)
-                                              and quote["bid"] - 2.5*atr <= number(w.get("price")) <= quote["bid"]]
+                                # Verified whale bid clusters (freshness-gated by the
+                                # feed's own observed_at stamp; the previous inline
+                                # freshness clause could never fire - Finding F-02).
+                                bid_clusters = wall_clusters(l3, "BUY", quote["bid"] - 2.5*atr, quote["bid"], now)
+                                whale_bids = [c["edge_price"] for c in bid_clusters]
                                 bull_fvg_ce = pivots.get("bull_fvg_ce") if pivots else None
                                 vwap_lower = pivots.get("vwap_lower_1") if pivots else None
                                 vwap = pivots.get("vwap") if pivots else None
@@ -652,15 +750,14 @@ class AI15mMT5Trader:
                                 if entry - sl < min_broker_dist:
                                     sl = round(math.floor((entry - min_broker_dist) / tick) * tick, digits)
                                 r = abs(entry - sl)
-                                tp = round(math.floor(max(entry + target_r * r, entry + min_broker_dist) / tick) * tick, digits)
+                                if r > 2.5*atr:
+                                    raise ValueError(f"stop_width_runaway:{r/max(atr, 1e-12):.2f}atr_beyond_liquidity_shield")
+                                # Anchors handed to the persistence governor: the
+                                # clusters this passive bid front-runs.
+                                entry_anchors = anchors_from_clusters(bid_clusters, entry, "BUY")
                             else:
-                                whale_asks = [number(w.get("price")) for w in payload.get("l3_orders", [])
-                                              if w.get("side") == "SELL"
-                                              and number(w.get("notional_usd", 0)) >= 150000.0
-                                              and max(number(w.get("persistence_sec", 0)), number(w.get("observed_span_s", 0))) >= 180.0
-                                              and (not w.get("is_stale", False))
-                                              and (globals().get("now") is None or globals().get("epoch") is None or w.get("observed_at") is None or 0.0 <= globals()["now"] - globals()["epoch"](w.get("observed_at")) <= 30.0)
-                                              and quote["ask"] <= number(w.get("price")) <= quote["ask"] + 2.5*atr]
+                                ask_clusters = wall_clusters(l3, "SELL", quote["ask"], quote["ask"] + 2.5*atr, now)
+                                whale_asks = [c["edge_price"] for c in ask_clusters]
                                 bear_fvg_ce = pivots.get("bear_fvg_ce") if pivots else None
                                 vwap_upper = pivots.get("vwap_upper_1") if pivots else None
                                 vwap = pivots.get("vwap") if pivots else None
@@ -690,20 +787,39 @@ class AI15mMT5Trader:
                                 if sl - entry < min_broker_dist:
                                     sl = round(math.ceil((entry + min_broker_dist) / tick) * tick, digits)
                                 r = abs(entry - sl)
-                                tp = round(math.ceil(min(entry - target_r * r, entry - min_broker_dist) / tick) * tick, digits)
+                                if r > 2.5*atr:
+                                    raise ValueError(f"stop_width_runaway:{r/max(atr, 1e-12):.2f}atr_beyond_liquidity_shield")
+                                entry_anchors = anchors_from_clusters(ask_clusters, entry, "SELL")
+                            tp_min_dist = min_broker_dist
                         else:
                             entry = quote["ask"] if features["direction"] == "LONG" else quote["bid"]
                             min_dist = (max(quote.get("stops_level", 0), quote.get("freeze_level", 0))+2)*quote["point"]+(quote["ask"]-quote["bid"])
                             r = max(1.5*features["atr"], min_dist)
                             sl = (math.floor((entry-r)/tick) if sign == 1 else math.ceil((entry+r)/tick))*tick
                             r = abs(entry-sl)
-                            tp = (math.floor((entry+sign*target_r*r)/tick) if sign == 1 else math.ceil((entry+sign*target_r*r)/tick))*tick
+                            tp_min_dist = min_dist
                         estimate = self.bridge.estimate_order(symbol, features["direction"], entry, sl)
                         features["risk_intent_usd"] = min(features["risk_intent_usd"], guard["risk_cap_usd"])
                         sizing = size_trade(quote, estimate["stop_loss_per_lot"], features["risk_intent_usd"], self.covariance,
                                             existing, asset, features["direction"], self.policy, room, number(account["margin_free_usd"]), estimate["margin_per_lot"])
                         if not sizing["accepted"]: raise ValueError(sizing["reason"])
                         friction_r = sizing["friction_usd"]/sizing["stop_risk_usd"]
+                        # Orderbook-aware structural take-profit (Incident C):
+                        # scan the top L3 clusters on the profit side and snap
+                        # the TP to front-run the first major wall instead of
+                        # staging an arbitrary fixed-R target beyond it. The
+                        # R-hurdle flexes with wall geometry and is vetoed when
+                        # the net-of-friction payoff cannot clear the floor.
+                        overhead_side = "SELL" if sign == 1 else "BUY"
+                        overhead_lo, overhead_hi = (entry, entry + 3.5*r) if sign == 1 else (entry - 3.5*r, entry)
+                        overhead = wall_clusters(l3, overhead_side, overhead_lo, overhead_hi, now,
+                                                 min_notional_usd=2_000_000.0, min_persistence_sec=0.0)
+                        exit_plan, exit_veto = structural_exit(entry, sl, features["direction"], overhead,
+                                                               tick=tick, friction_r=friction_r,
+                                                               min_broker_dist=max(tp_min_dist, tick))
+                        if exit_veto: raise ValueError(exit_veto)
+                        tp = round(exit_plan["tp"], digits)
+                        target_r = exit_plan["hurdle_r"]
                         if target_r-friction_r < 1.5: raise ValueError("net_payoff_insufficient_after_friction")
                         if self.max_spread_points is not None and (quote["ask"]-quote["bid"])/quote["point"] > self.max_spread_points:
                             raise ValueError("spread_limit")
@@ -715,7 +831,12 @@ class AI15mMT5Trader:
                                      "atr": features["atr"], "contract_size": quote["contract_size"], "magic": MAGIC,
                                      "tick_size": tick, "stop_distance": max(quote.get("stops_level", 0), quote.get("freeze_level", 0), 1)*quote["point"],
                                      "residual_cost_usd": max(0, sizing["friction_usd"]-sizing["volume"]*quote["contract_size"]*(quote["ask"]-quote["bid"])),
-                                     "risk_usd": sizing["risk_usd"], "features": features, "sizing": sizing, "payload": payload}
+                                     "risk_usd": sizing["risk_usd"], "features": features, "sizing": sizing, "payload": payload,
+                                     "sleeve": features["sleeve"], "entry_mode": effective_mode,
+                                     "hurdle_r": target_r, "tp_mode": exit_plan["mode"],
+                                     "tp_wall_price": exit_plan["wall_price"],
+                                     "tp_wall_notional_usd": exit_plan["wall_notional_usd"],
+                                     "entry_anchors": entry_anchors}
                         uplift_features = {**features, **sizing, "drawdown_room": room, "candidate_net_target_r": target_r-friction_r,
                                            "existing_floating_r": 0.0, "existing_age_bars": 0.0, "signed_correlation": 0.0}
                         if enriched:
@@ -773,11 +894,19 @@ class AI15mMT5Trader:
 
                         if self.cognitive_enabled:
                             payload = cand["payload"]
+                            # Sealed deterministic features (Incident B): the
+                            # cognitive engine receives only the tamper-proof
+                            # vector; its numeric prose is attested against it.
+                            sealed = self.sealer.update(cand["asset"], cand["features"])
                             snapshot = self.cognitive.build_snapshot(cand["asset"], cand["symbol"], cand["features"]["signal_mid"], cand["features"],
                                                                      payload.get("l3_orders", []), payload.get("liquidations", {}).get("bands", []),
                                                                      {"score": cand["features"]["macro_score"], "blackout": False},
-                                                                     {"equity": guard["equity_usd"], "slots": 2 - len(positions) - len(staged_results)}, {})
-                            snapshot["candidate"] = {"candidate_id": cand["candidate_id"], "direction": cand["direction"], "sizing": cand["sizing"]}
+                                                                     {"equity": guard["equity_usd"], "slots": 2 - len(positions) - len(staged_results)}, {},
+                                                                     sealed=sealed)
+                            cand["feature_digest"] = sealed["digest"]
+                            snapshot["candidate"] = {"candidate_id": cand["candidate_id"], "direction": cand["direction"], "sizing": cand["sizing"],
+                                                     "sleeve": cand["sleeve"], "hurdle_r": cand["hurdle_r"],
+                                                     "tp": cand["tp"], "sl": cand["sl"], "price_open": cand["price_open"]}
                             snapshot["sources"] = payload.get("sources", {})
                             snapshot["whale_positions"] = payload.get("whale_positions", [])
                             snapshot["projected_liquidations"] = payload.get("projected_liquidations", {})
@@ -801,7 +930,7 @@ class AI15mMT5Trader:
                             break
 
                         quote = self._quote(cand["symbol"])
-                        if self.entry_mode == "limit":
+                        if cand.get("entry_mode", self.entry_mode) == "limit":
                             if cand["direction"] == "LONG" and cand["price_open"] >= quote["ask"]:
                                 continue
                             if cand["direction"] == "SHORT" and cand["price_open"] <= quote["bid"]:
@@ -811,7 +940,14 @@ class AI15mMT5Trader:
                             px = quote["ask"] if cand["direction"] == "LONG" else quote["bid"]
                             if abs(px - cand["price_open"]) > 0.05 * cand["initial_r"]:
                                 continue
-                        if self.clock() - cand["features"]["book_as_of"] > self.policy.max_book_age:
+                        # Staleness gate must reflect the freshest polled book,
+                        # not the book snapshot the candidate was built from:
+                        # refresh_background keeps polling during inference, and
+                        # rejecting on the original stamp wastes the entire
+                        # cognitive wait (Finding F-03).
+                        fresh_book = epoch((self.payloads.get(cand["asset"]) or {}).get("l2_book", {}).get("timestamp")) \
+                            or cand["features"]["book_as_of"]
+                        if self.clock() - fresh_book > self.policy.max_book_age:
                             continue
 
                         refreshed_positions, refreshed_pending = self._inventory()
@@ -894,16 +1030,36 @@ class AI15mMT5Trader:
             intent["status"] = "RECONCILED"
             result = {"success": True, "ticket": ticket, "paper": True, "volume": candidate["volume"], "price": candidate["price_open"]}
         else:
-            if self.entry_mode == "limit":
+            if candidate.get("entry_mode", self.entry_mode) == "limit":
                 try:
-                    exp_sec = getattr(self, "limit_expiration_seconds", 3600)
+                    # Order Persistence Governor (Incident A): S1 pullback
+                    # limits rest as GTC orders under a dynamic, wall-survival
+                    # based TTL instead of a rigid slot-bound expiration. The
+                    # deadline lives in UTC on our side of the IPC bridge, so
+                    # broker server-time DST quirks can never expire or keep
+                    # an order alive by accident.
+                    persistent = self.persistent_limits and not self.paper_mode
+                    anchors = candidate.get("entry_anchors") or []
+                    primary_span = max((number(a.get("persistence_sec")) for a in anchors), default=0.0)
+                    ttl = hazard_ttl(primary_span, ttl_min_sec=self.ttl_min_seconds, ttl_max_sec=self.ttl_max_seconds)
                     result = self.bridge.stage_limit_order(candidate["symbol"], candidate["direction"], candidate["volume"],
                                                            candidate["price_open"], candidate["sl"], candidate["tp"],
-                                                           expiration_seconds=exp_sec, comment=comment, magic=MAGIC,
+                                                           expiration_seconds=getattr(self, "limit_expiration_seconds", 3600),
+                                                           persistent=persistent, comment=comment, magic=MAGIC,
                                                            max_spread_points=self.max_spread_points, passive_only=True)
                     intent["status"] = "STAGED_LIMIT" if result.get("success") else "REJECTED"
                     intent["order_ticket"] = result.get("ticket")
                     intent["expires_at"] = result.get("expires_at")
+                    intent["anchors"] = anchors
+                    intent["hurdle_r"] = candidate.get("hurdle_r")
+                    if result.get("success") and persistent:
+                        self.governor.register(key, asset=candidate["asset"], symbol=candidate["symbol"],
+                                               direction=candidate["direction"], order_ticket=result.get("ticket"),
+                                               limit_price=candidate["price_open"], sl=candidate["sl"], tp=candidate["tp"],
+                                               volume=candidate["volume"], anchors=anchors, atr=candidate["atr"],
+                                               ttl_sec=ttl, now=self.clock(), comment=comment,
+                                               hurdle_r=candidate.get("hurdle_r"), risk_usd=candidate.get("risk_usd", 0.0),
+                                               tick_size=candidate.get("tick_size", 0.01), magic=MAGIC)
                 except Exception as exc:
                     intent["status"] = "REJECTED"; result = {"success": False, "error": str(exc)}
             else:
