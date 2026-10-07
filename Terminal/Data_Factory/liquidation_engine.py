@@ -21,13 +21,11 @@ public data. Two honest data regimes:
       (b) cumulative traded volume across the band's corridor: a corridor the
       tape has already traded through has consumed whatever rested there.
 
-Stop-loss clusters are reconstructed structurally: fractal swing highs/lows,
-ATR multiples (1.0/1.5/2.0), volume-profile POC/VAH/VAL and round numbers,
-weighted by recency and the volume that printed at the swing. Output bands
-use the exact ``OBSERVED_STOP_ORDERS`` / ``PROJECTED_EXPOSURE`` schema that
-``Risk_Sizing_Engine.OrderflowModel.features`` consumes (``min_px``, ``max_px``,
-``amount_usd``, ``position_side_at_risk``), so the trader ingests them
-unchanged - with an explicit ``coverage`` marker that they are synthetic.
+Stop-loss clusters are research reconstructions from fractal swings, ATR,
+bar volume and round prices. Model outputs are explicitly marked
+MODEL_STOP_CLUSTERS or MODEL_PROJECTED_EXPOSURE; neither is published to
+live telemetry or eligible for execution evidence. Historical Binance
+force-order prints are real *executions*, not resting liquidation exposure.
 
 Derived analytics:
   * Liquidation Max Pain - the price maximizing forced-liquidation notional
@@ -216,7 +214,7 @@ class LiquidationReconstructionEngine:
                     total_long += risk
                 else:
                     total_short += risk
-        return {"kind": "PROJECTED_EXPOSURE", "coverage": "SYNTHETIC_OI_DELTA_MODEL",
+        return {"kind": "MODEL_PROJECTED_EXPOSURE", "coverage": "SYNTHETIC_OI_DELTA_MODEL",
                 "bands": bands[-self.max_bands:], "total_long_size": total_long,
                 "total_short_size": total_short, "total_long_count": count,
                 "total_short_count": count, "observed_at": float(now),
@@ -319,11 +317,11 @@ class StopClusterEngine:
 
     def reconstruct(self, bars, *, now, mid, atr, profile=None):
         """Bands of resting stop-loss clusters in the OBSERVED_STOP_ORDERS
-        schema. Sell stops (longs' stops) rest BELOW mid at swing lows and
+        shape (MODEL_STOP_CLUSTERS, never observed exchange stops). Sell stops (longs' stops) rest BELOW mid at swing lows and
         ATR offsets; buy stops (shorts' stops) rest ABOVE at swing highs."""
         atr = float(number(atr))
         if not bars or mid <= 0 or atr <= 0:
-            return {"kind": "OBSERVED_STOP_ORDERS", "coverage": "SYNTHETIC_STRUCTURAL_MODEL",
+            return {"kind": "MODEL_STOP_CLUSTERS", "coverage": "SYNTHETIC_STRUCTURAL_MODEL",
                     "bands": [], "total_sell_size": 0.0, "total_buy_size": 0.0,
                     "observed_at": float(now)}
         completed = [b for b in bars if number(b.get("time")) > 0]
@@ -394,7 +392,7 @@ class StopClusterEngine:
                     total_sell += usd
                 else:
                     total_buy += usd
-        return {"kind": "OBSERVED_STOP_ORDERS", "coverage": "SYNTHETIC_STRUCTURAL_MODEL",
+        return {"kind": "MODEL_STOP_CLUSTERS", "coverage": "SYNTHETIC_STRUCTURAL_MODEL",
                 "bands": bands, "total_sell_size": total_sell, "total_buy_size": total_buy,
                 "total_sell_count": sum(1 for b in bands if b["side"] == "SELL STOPS"),
                 "total_buy_count": sum(1 for b in bands if b["side"] == "BUY STOPS"),

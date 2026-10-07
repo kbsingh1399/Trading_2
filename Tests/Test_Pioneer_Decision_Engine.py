@@ -202,7 +202,9 @@ def test_stop_model_parity_against_legacy_vendor_feed():
     validator = CrossSourceValidator(factory)
     # No vendor reachable: parity degrades honestly.
     assert validator.stop_model_parity("SOL")["available"] is False
-    synthetic_total = sum(b["amount_usd"] for b in factory.payload("SOL", NOW)["observed_stops"]["bands"])
+    synthetic_total = sum(b["amount_usd"] for b in factory.stops.reconstruct(
+        factory._bars["SOL"], now=NOW, mid=factory.bus.mid("SOL"),
+        atr=factory._atr("SOL"))["bands"])
     comparable = {"bands": [{"amount_usd": synthetic_total}]}
     parity = validator.stop_model_parity("SOL", legacy_stops=comparable)
     assert parity["available"] and parity["pass"] and parity["ratio"] == pytest.approx(1.0)
@@ -283,8 +285,8 @@ def test_runner_samples_the_whale_cohort_into_the_payload():
                                stop_after_calls=3)
     assert calls >= 3 and runner.stats["whale_polls"] >= 3
     payload = factory.payload("SOL", NOW)
-    assert payload["whale_positions"] and payload["whale_positions"][0]["address"] == "0xabc"
-    assert payload["whale_net_flow_usd_24h"] == pytest.approx(900_000.0)   # the seeded outflow
+    assert payload["whale_positions"] == []  # sampler lacks a verified provider receipt
+    assert payload["whale_net_flow_usd_24h"] is None
     assert runner.status()["pillars"]["whales"]["healthy"]
 
 
@@ -360,49 +362,42 @@ def test_orderflow_signal_reads_the_live_tape():
     assert empty["signals"]["orderflow"]["available"] is False    # no tape: no opinion
 
 
-def test_cascade_signal_squeezes_toward_the_heavier_fuel():
+def test_model_cascades_cannot_authorize_pioneer_signal():
     pioneer = PioneerDecisionEngine(clock=lambda: NOW)
-    short_fuel = {"projected_liquidations": {"bands": [
-        {"mid_px": 122.0, "amount_usd": 4_000_000.0, "position_side_at_risk": "SHORT"}]}}
-    advisory = pioneer.evaluate("SOL", synthetic_payload(**short_fuel), features(), now=NOW)
-    assert advisory["signals"]["cascade"]["value"] > 0            # shorts fuel the upside
-    long_fuel = {"projected_liquidations": {"bands": [
-        {"mid_px": 118.0, "amount_usd": 4_000_000.0, "position_side_at_risk": "LONG"}]}}
-    advisory = pioneer.evaluate("SOL", synthetic_payload(**long_fuel), features(), now=NOW)
-    assert advisory["signals"]["cascade"]["value"] < 0            # longs fuel the downside
-    # Proximity discount: the same fuel 10% away counts for almost nothing.
-    far = {"projected_liquidations": {"bands": [
-        {"mid_px": 132.0, "amount_usd": 4_000_000.0, "position_side_at_risk": "SHORT"}]}}
-    advisory = pioneer.evaluate("SOL", synthetic_payload(**far), features(), now=NOW)
-    assert advisory["signals"]["cascade"]["available"] is False   # beyond the 5% reach
+    payload = synthetic_payload(projected_liquidations={"kind": "PROJECTED_EXPOSURE",
+        "coverage": "SYNTHETIC_OI_DELTA_MODEL", "bands": [
+        {"mid_px": 122, "amount_usd": 4_000_000, "position_side_at_risk": "SHORT"}]})
+    advisory = pioneer.evaluate("SOL", payload, features(), now=NOW)
+    assert advisory["signals"]["cascade"]["available"] is False
 
 
-def test_stops_signal_points_at_the_heavier_stop_pool():
+def test_only_verified_sampled_wallet_stops_count_as_stops():
     pioneer = PioneerDecisionEngine(clock=lambda: NOW)
-    sell_heavy = {"observed_stops": {"bands": [
-        {"mid_px": 118.0, "amount_usd": 2_000_000.0, "position_side_at_risk": "LONG"},
-        {"mid_px": 122.0, "amount_usd": 500_000.0, "position_side_at_risk": "SHORT"}]}}
-    advisory = pioneer.evaluate("SOL", synthetic_payload(**sell_heavy), features(), now=NOW)
-    assert advisory["signals"]["stops"]["value"] < 0              # sell stops below magnet down
-    buy_heavy = {"observed_stops": {"bands": [
-        {"mid_px": 118.0, "amount_usd": 500_000.0, "position_side_at_risk": "LONG"},
-        {"mid_px": 122.0, "amount_usd": 2_000_000.0, "position_side_at_risk": "SHORT"}]}}
-    advisory = pioneer.evaluate("SOL", synthetic_payload(**buy_heavy), features(), now=NOW)
-    assert advisory["signals"]["stops"]["value"] > 0
+    stop = {"mid_px": 118.0, "amount_usd": 2_000_000.0,
+            "position_side_at_risk": "LONG", "address": "0xabc", "kind": "OBSERVED_STOP_ORDERS", "min_px": 118.0, "max_px": 118.0}
+    block = {"kind": "OBSERVED_STOP_ORDERS", "coverage": "SAMPLED_WALLETS",
+             "wallets": ["0xabc"], "bands": [stop]}
+    payload = synthetic_payload(observed_stops=block)
+    assert pioneer.evaluate("SOL", payload, features(), now=NOW)["signals"]["stops"]["available"] is False
+    payload["sources"] = {**(payload.get("sources") or {}), "wallet_risk": {
+        "coverage": "SAMPLED_WALLETS", "provider": "HYPERLIQUID_PUBLIC_INFO", "observed_at": NOW-2}}
+    result = pioneer.evaluate("SOL", payload, features(), now=NOW)
+    assert result["signals"]["stops"]["value"] < 0
+    payload["sources"]["wallet_risk"]["observed_at"] = NOW-61
+    assert pioneer.evaluate("SOL", payload, features(), now=NOW)["signals"]["stops"]["available"] is False
 
 
-def test_whale_signal_reads_cohort_positions_and_onchain_flows():
+def test_whale_signal_requires_attested_wallet_sample():
     pioneer = PioneerDecisionEngine(clock=lambda: NOW)
-    longs = {"whale_positions": [{"size": 40_000.0, "notional_usd": 4_800_000.0}],
-             "whale_net_flow_usd_24h": 900_000.0}
-    advisory = pioneer.evaluate("SOL", synthetic_payload(**longs), features(), now=NOW)
-    assert advisory["signals"]["whale"]["value"] > 0
-    shorts = {"whale_positions": [{"size": -40_000.0, "notional_usd": 4_800_000.0}],
-              "whale_net_flow_usd_24h": -900_000.0}
-    advisory = pioneer.evaluate("SOL", synthetic_payload(**shorts), features(), now=NOW)
-    assert advisory["signals"]["whale"]["value"] < 0
-    none = pioneer.evaluate("SOL", synthetic_payload(), features(), now=NOW)
-    assert none["signals"]["whale"]["available"] is False
+    unauthenticated = synthetic_payload(whale_positions=[
+        {"address": "0xabc", "size": 40_000, "notional_usd": 4_800_000}],
+        whale_net_flow_usd_24h=900_000)
+    assert pioneer.evaluate("SOL", unauthenticated, features(), now=NOW)["signals"]["whale"]["available"] is False
+    unauthenticated["observed_stops"] = {"kind": "OBSERVED_STOP_ORDERS",
+        "coverage": "SAMPLED_WALLETS", "wallets": ["0xabc"], "bands": []}
+    unauthenticated["sources"] = {"wallet_risk": {
+        "coverage": "SAMPLED_WALLETS", "provider": "HYPERLIQUID_PUBLIC_INFO", "observed_at": NOW}}
+    assert pioneer.evaluate("SOL", unauthenticated, features(), now=NOW)["signals"]["whale"]["value"] > 0
 
 
 def test_macro_signal_combines_etf_premium_and_contrarian_fng():
@@ -508,7 +503,7 @@ def test_pioneer_end_to_end_over_factory_features():
     advisory = pioneer.evaluate("SOL", factory.payload("SOL", NOW), feats, macro, now=NOW)
     assert advisory["policy_version"] == POLICY_VERSION
     assert advisory["signals"]["orderflow"]["available"]
-    assert advisory["signals"]["whale"]["value"] > 0
+    assert advisory["signals"]["whale"]["available"] is False  # factory sample not attested
     # Whatever the base model proposed, the pioneer only passes or vetoes -
     # and here the live tape, whale cohort and flows all agree bullish.
     direction = feats["direction"]
@@ -587,7 +582,15 @@ def _payload(now=SLOT, l3=None, mid=120.0):
                                "notional_usd": 10000},
                               {"time": now * 1000, "side": "BUY", "price": mid, "size": 100,
                                "notional_usd": 10000}],
-            "sources": {"l3": {"observed_at": now}, "liquidations": {"observed_at": now}},
+            "sources": {"l3": {"observed_at": now}, "liquidations": {"observed_at": now},
+                        "wallet_risk": {"observed_at": now, "provider": "HYPERLIQUID_PUBLIC_INFO",
+                                        "coverage": "SAMPLED_WALLETS"}},
+            "observed_stops": {"kind": "OBSERVED_STOP_ORDERS", "coverage": "SAMPLED_WALLETS",
+                "wallets": ["0xtest"], "bands": [
+                    {"kind": "OBSERVED_STOP_ORDERS", "address": "0xtest", "position_side_at_risk": "LONG",
+                     "min_px": mid - 0.10, "max_px": mid - 0.10, "mid_px": mid - 0.10, "amount_usd": 1e7},
+                    {"kind": "OBSERVED_STOP_ORDERS", "address": "0xtest", "position_side_at_risk": "SHORT",
+                     "min_px": mid + 0.10, "max_px": mid + 0.10, "mid_px": mid + 0.10, "amount_usd": 1e7}]},
             "l3_orders": l3 or [], "liquidations": {}}
 
 

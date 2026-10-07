@@ -62,6 +62,18 @@ def test_indicator_math_and_bands_ordering():
     assert ind["ema_50"] > 0
 
 
+def test_missing_volume_or_short_lookback_does_not_invent_vwap_or_ema200():
+    empty_volume = _generate_synthetic_bars(count=96)
+    for b in empty_volume:
+        b.update(volume=0, tick_volume=0, real_volume=0)
+    ind = CandleIndicatorEngine.compute_indicators(empty_volume)
+    assert ind["active_vwap"] is ind["vwap_z"] is None
+    assert ind["ema_200"] is ind["ema_200_slope_pct"] is None
+    assert ind["ema_20"] is not None  # price-only EMA is still observed-derived
+    short = CandleIndicatorEngine.compute_indicators(_generate_synthetic_bars(count=14))
+    assert short["rsi_14"] is short["ema_20"] is None
+
+
 def test_gap_detection():
     with tempfile.TemporaryDirectory() as tmpdir:
         class MockBridge:

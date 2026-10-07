@@ -134,7 +134,7 @@ class CandleIndicatorEngine:
         highs = np.array([float(b["high"]) for b in bars])
         lows = np.array([float(b["low"]) for b in bars])
         times = np.array([float(b["time"]) for b in bars])
-        volumes = np.array([float(b.get("volume") or b.get("tick_volume") or 1.0) for b in bars])
+        volumes = np.array([float(b.get("real_volume") or b.get("volume") or b.get("tick_volume") or 0.0) for b in bars])
 
         # Typical price
         tps = (highs + lows + closes) / 3.0
@@ -148,8 +148,8 @@ class CandleIndicatorEngine:
             if v <= 0.0:
                 v = float(b.get("volume") or 0.0)
             if v <= 0.0:
-                v = float(b.get("tick_volume") or 1.0)
-            vols_list.append(max(v, 1.0))
+                v = float(b.get("tick_volume") or 0.0)
+            vols_list.append(max(v, 0.0))
         volumes = np.array(vols_list)
 
         # -------------------------------------------------------------
@@ -169,7 +169,7 @@ class CandleIndicatorEngine:
         ).timestamp()
 
         session_mask = utc_times >= session_start_ts
-        if np.sum(session_mask) >= 3:
+        if np.sum(session_mask) >= 3 and np.sum(volumes[session_mask]) > 0:
             s_tps = tps[session_mask]
             s_vols = volumes[session_mask]
             s_cum_vol = np.sum(s_vols)
@@ -190,22 +190,24 @@ class CandleIndicatorEngine:
         r_tps = tps[-r_window:]
         r_vols = volumes[-r_window:]
         r_cum_vol = np.sum(r_vols)
-        r_vwap = np.sum(r_tps * r_vols) / max(r_cum_vol, 1e-9)
-        r_var = np.sum(r_vols * ((r_tps - r_vwap) ** 2)) / max(r_cum_vol, 1e-9)
-        r_sigma = math.sqrt(max(0.0, r_var))
+        if r_cum_vol > 0:
+            r_vwap = np.sum(r_tps * r_vols) / r_cum_vol
+            r_var = np.sum(r_vols * ((r_tps - r_vwap) ** 2)) / r_cum_vol
+            r_sigma = math.sqrt(max(0.0, r_var))
+        else:
+            r_vwap = r_sigma = None
 
-        # Primary VWAP selection: prefer Session VWAP if >= 8 bars, else Rolling
+        # Price-only bars never masquerade as volume-weighted observations.
         primary_vwap = s_vwap if (s_vwap is not None and s_bars_count >= 8) else r_vwap
         primary_sigma = s_sigma if (s_sigma is not None and s_bars_count >= 8) else r_sigma
-
-        vwap_z = (last_price - primary_vwap) / primary_sigma if primary_sigma > 1e-8 else 0.0
-
-        upper_1 = primary_vwap + primary_sigma
-        lower_1 = primary_vwap - primary_sigma
-        upper_2 = primary_vwap + 2.0 * primary_sigma
-        lower_2 = primary_vwap - 2.0 * primary_sigma
-        upper_3 = primary_vwap + 3.0 * primary_sigma
-        lower_3 = primary_vwap - 3.0 * primary_sigma
+        vwap_z = ((last_price - primary_vwap) / primary_sigma
+                  if primary_vwap is not None and primary_sigma and primary_sigma > 1e-8 else None)
+        upper_1 = primary_vwap + primary_sigma if primary_vwap is not None and primary_sigma is not None else None
+        lower_1 = primary_vwap - primary_sigma if primary_vwap is not None and primary_sigma is not None else None
+        upper_2 = primary_vwap + 2.0 * primary_sigma if upper_1 is not None else None
+        lower_2 = primary_vwap - 2.0 * primary_sigma if lower_1 is not None else None
+        upper_3 = primary_vwap + 3.0 * primary_sigma if upper_1 is not None else None
+        lower_3 = primary_vwap - 3.0 * primary_sigma if lower_1 is not None else None
 
         # -------------------------------------------------------------
         # 3. Moving Averages (EMA 20, 50, 200)
@@ -217,16 +219,16 @@ class CandleIndicatorEngine:
                 ema = alpha * val + (1.0 - alpha) * ema
             return float(ema)
 
-        ema_20 = calc_ema(closes, 20)
-        ema_50 = calc_ema(closes, 50)
-        ema_200 = calc_ema(closes, 200) if len(closes) >= 200 else calc_ema(closes, min(len(closes), 96))
+        ema_20 = calc_ema(closes, 20) if len(closes) >= 20 else None
+        ema_50 = calc_ema(closes, 50) if len(closes) >= 50 else None
+        ema_200 = calc_ema(closes, 200) if len(closes) >= 200 else None
 
         # EMA 200 slope over past 12 bars (3 hours)
         if len(closes) >= 212:
             ema_200_prev12 = calc_ema(closes[:-12], 200)
             ema_200_slope_pct = (ema_200 - ema_200_prev12) / ema_200_prev12 * 100.0
         else:
-            ema_200_slope_pct = 0.0
+            ema_200_slope_pct = None
 
         # -------------------------------------------------------------
         # 4. Wilder Average True Range (ATR 14)
@@ -257,7 +259,7 @@ class CandleIndicatorEngine:
             rs = avg_gain / max(avg_loss, 1e-12)
             rsi_14 = 100.0 - (100.0 / (1.0 + rs))
         else:
-            rsi_14 = 50.0
+            rsi_14 = None  # 14 deltas need at least 15 observed closes
 
         # -------------------------------------------------------------
         # 6. Swing Extremes (24h / 96 bars)
@@ -270,24 +272,24 @@ class CandleIndicatorEngine:
             "session_vwap": float(s_vwap) if s_vwap else None,
             "session_sigma": float(s_sigma) if s_sigma else None,
             "session_bars": s_bars_count,
-            "rolling_vwap_24h": float(r_vwap),
-            "rolling_sigma_24h": float(r_sigma),
-            "active_vwap": float(primary_vwap),
-            "active_sigma": float(primary_sigma),
-            "vwap_z": float(vwap_z),
-            "upper_1sd": float(upper_1),
-            "lower_1sd": float(lower_1),
-            "upper_2sd": float(upper_2),
-            "lower_2sd": float(lower_2),
-            "upper_3sd": float(upper_3),
-            "lower_3sd": float(lower_3),
-            "ema_20": float(ema_20),
-            "ema_50": float(ema_50),
-            "ema_200": float(ema_200),
-            "ema_200_slope_pct": float(ema_200_slope_pct),
+            "rolling_vwap_24h": float(r_vwap) if r_vwap is not None else None,
+            "rolling_sigma_24h": float(r_sigma) if r_sigma is not None else None,
+            "active_vwap": float(primary_vwap) if primary_vwap is not None else None,
+            "active_sigma": float(primary_sigma) if primary_sigma is not None else None,
+            "vwap_z": float(vwap_z) if vwap_z is not None else None,
+            "upper_1sd": float(upper_1) if upper_1 is not None else None,
+            "lower_1sd": float(lower_1) if lower_1 is not None else None,
+            "upper_2sd": float(upper_2) if upper_2 is not None else None,
+            "lower_2sd": float(lower_2) if lower_2 is not None else None,
+            "upper_3sd": float(upper_3) if upper_3 is not None else None,
+            "lower_3sd": float(lower_3) if lower_3 is not None else None,
+            "ema_20": float(ema_20) if ema_20 is not None else None,
+            "ema_50": float(ema_50) if ema_50 is not None else None,
+            "ema_200": float(ema_200) if ema_200 is not None else None,
+            "ema_200_slope_pct": float(ema_200_slope_pct) if ema_200_slope_pct is not None else None,
             "atr_14": float(atr_14),
             "atr_pct": float(atr_14 / last_price * 100.0),
-            "rsi_14": float(rsi_14),
+            "rsi_14": float(rsi_14) if rsi_14 is not None else None,
             "high_24h": h24,
             "low_24h": l24,
         }
@@ -302,7 +304,7 @@ class CandleIndicatorEngine:
             if not bars:
                 continue
             ind = self.compute_indicators(bars)
-            if not ind or "vwap_z" not in ind:
+            if not ind or ind.get("vwap_z") is None or ind.get("rsi_14") is None:
                 continue
 
             z = ind["vwap_z"]

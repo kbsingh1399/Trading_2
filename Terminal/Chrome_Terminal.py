@@ -80,133 +80,48 @@ def _refresh_analytics_worker(coin: str, live_px: float):
     try:
         now = time.time()
         cached = LIVE_ANALYTICS_CACHE.get(coin)
-        liqs = cached.get("liquidations", {"total_long_size": 0, "total_short_size": 0, "bands": []}) if cached else {"total_long_size": 0, "total_short_size": 0, "bands": []}
-        stops = cached.get("stops", {"total_buy_size": 0, "total_sell_size": 0, "bands": []}) if cached else {"total_buy_size": 0, "total_sell_size": 0, "bands": []}
+        liqs = cached.get("liquidations", {"kind": "UNAVAILABLE", "total_long_size": None, "total_short_size": None, "bands": [], "reason": "NO_VERIFIED_PROVIDER_DATA"}) if cached else {"kind": "UNAVAILABLE", "total_long_size": None, "total_short_size": None, "bands": [], "reason": "NO_VERIFIED_PROVIDER_DATA"}
+        stops = cached.get("stops", {"kind": "UNAVAILABLE", "total_buy_size": None, "total_sell_size": None, "bands": [], "reason": "NO_VERIFIED_PROVIDER_DATA"}) if cached else {"kind": "UNAVAILABLE", "total_buy_size": None, "total_sell_size": None, "bands": [], "reason": "NO_VERIFIED_PROVIDER_DATA"}
         l3_orders = cached.get("l3_orders", []) if cached else []
         coarse_ob = cached.get("coarse_orderbook", {"bids": [], "asks": []}) if cached else {"bids": [], "asks": []}
         current_candle_info = cached.get("current_candle", {}) if cached else {}
         sources = dict(cached.get("sources", {})) if cached else {}
         wallet_risk = cached.get("wallet_risk", {}) if cached else {}
 
-        # 1. Liquidations (Full Range, All Bands + Cumulative Curves)
+        # Hyperdash analytics are genuine provider responses, but their
+        # historicalData.totalAmount unit/coverage and aggregation methodology
+        # are NOT attested as exchange-reported hidden orders. Surface raw
+        # bands for audit; do not convert them to "USD" or populate live bands.
         try:
-            min_px = max(0.0, live_px * 0.35)
-            max_px = live_px * 2.10
-            raw_liqs = CLIENT.fetch_liquidations(coin, min_px, max_px)
-            sources["liquidations"] = {"observed_at": raw_liqs.get("received_at", 0), "timestamp_basis": "RECEIPT_ONLY"}
-            bands = []
-            for b in raw_liqs.get("bands", []):
-                amt = float(b.get("amount", 0.0))
-                if amt != 0:
-                    mid = float(b.get("mid_px", 0.0))
-                    amt_coin = abs(amt)
-                    amt_usd = amt_coin * mid
-                    dist = ((mid - live_px) / live_px * 100.0) if live_px > 0 else 0.0
-                    bands.append({
-                        "min_px": float(b.get("min_px", 0.0)),
-                        "max_px": float(b.get("max_px", 0.0)),
-                        "mid_px": mid,
-                        "amount": amt_usd,
-                        "amount_usd": amt_usd,
-                        "amount_coin": amt_coin,
-                        "dist_pct": dist,
-                        "type": "SHORT SQUEEZE" if mid >= live_px else "LONG CASCADE"
-                    })
-            bands.sort(key=lambda x: x["mid_px"])
-
-            # Precalculate cumulative curves
-            cum_short_usd = 0.0
-            cum_short_coin = 0.0
-            for b in bands:
-                if b["mid_px"] >= live_px:
-                    cum_short_usd += b["amount_usd"]
-                    cum_short_coin += b["amount_coin"]
-                    b["cum_amount"] = cum_short_usd
-                    b["cum_amount_usd"] = cum_short_usd
-                    b["cum_amount_coin"] = cum_short_coin
-
-            cum_long_usd = 0.0
-            cum_long_coin = 0.0
-            for b in reversed([x for x in bands if x["mid_px"] < live_px]):
-                cum_long_usd += b["amount_usd"]
-                cum_long_coin += b["amount_coin"]
-                b["cum_amount"] = cum_long_usd
-                b["cum_amount_usd"] = cum_long_usd
-                b["cum_amount_coin"] = cum_long_coin
-
-            liqs = {
-                "kind": raw_liqs.get("kind") or "PROJECTED_EXPOSURE",
-                "total_long_size": raw_liqs.get("total_long_size", 0.0),
-                "total_short_size": raw_liqs.get("total_short_size", 0.0),
-                "total_long_count": raw_liqs.get("total_long_count", 0),
-                "total_short_count": raw_liqs.get("total_short_count", 0),
-                "bands": bands,
-                "top_long_whales": raw_liqs.get("top_long_whales", [])[:15],
-                "top_short_whales": raw_liqs.get("top_short_whales", [])[:15]
-            }
+            raw_liqs = CLIENT.fetch_liquidations(coin, max(0.0, live_px * .35), live_px * 2.10)
+            sources["liquidations"] = {"observed_at": raw_liqs.get("received_at"),
+                "timestamp_basis": "RECEIPT_ONLY", "provider": "HYPERDASH_GRAPHQL_ANALYTICS_UNVERIFIED_METHODOLOGY"}
+            liqs = {"kind": "UNVERIFIED_BAND_LANDSCAPE", "bands": [],
+                    "unverified_raw_bands": raw_liqs.get("bands") or [],
+                    "reported_totals": {"long": raw_liqs.get("total_long_size"),
+                                        "short": raw_liqs.get("total_short_size")},
+                    "amount_semantics": "PROVIDER_REPORTED_UNIT_UNVERIFIED_NOT_USD",
+                    "reason": "Unverified analytics units/coverage; no executable resting exposure"}
         except Exception:
             pass
 
-        # 2. Stops (Full Range, All Bands + Cumulative Curves)
         try:
-            min_px = max(0.0, live_px * 0.35)
-            max_px = live_px * 2.10
-            raw_stops = CLIENT.fetch_stops(coin, min_px, max_px)
-            sources["stops"] = {"observed_at": raw_stops.get("received_at", 0), "timestamp_basis": "RECEIPT_ONLY"}
-            bands = []
-            for b in raw_stops.get("bands", []):
-                amt = float(b.get("amount", 0.0))
-                if amt != 0:
-                    mid = float(b.get("mid_px", 0.0))
-                    amt_coin = abs(amt)
-                    amt_usd = amt_coin * mid
-                    dist = ((mid - live_px) / live_px * 100.0) if live_px > 0 else 0.0
-                    bands.append({
-                        "min_px": float(b.get("min_px", 0.0)),
-                        "max_px": float(b.get("max_px", 0.0)),
-                        "mid_px": mid,
-                        "amount": amt_usd,
-                        "amount_usd": amt_usd,
-                        "amount_coin": amt_coin,
-                        "dist_pct": dist,
-                        "side": "BUY STOPS" if mid >= live_px else "SELL STOPS"
-                    })
-            bands.sort(key=lambda x: x["mid_px"])
-
-            cum_buys_usd = 0.0
-            cum_buys_coin = 0.0
-            for b in bands:
-                if b["mid_px"] >= live_px:
-                    cum_buys_usd += b["amount_usd"]
-                    cum_buys_coin += b["amount_coin"]
-                    b["cum_amount"] = cum_buys_usd
-                    b["cum_amount_usd"] = cum_buys_usd
-                    b["cum_amount_coin"] = cum_buys_coin
-
-            cum_sells_usd = 0.0
-            cum_sells_coin = 0.0
-            for b in reversed([x for x in bands if x["mid_px"] < live_px]):
-                cum_sells_usd += b["amount_usd"]
-                cum_sells_coin += b["amount_coin"]
-                b["cum_amount"] = cum_sells_usd
-                b["cum_amount_usd"] = cum_sells_usd
-                b["cum_amount_coin"] = cum_sells_coin
-
-            stops = {
-                "kind": raw_stops.get("kind") or "OBSERVED_STOP_ORDERS",
-                "total_buy_size": raw_stops.get("total_buy_size", 0.0),
-                "total_sell_size": raw_stops.get("total_sell_size", 0.0),
-                "bands": bands,
-                "top_buy_whales": raw_stops.get("top_buy_whales", [])[:15],
-                "top_sell_whales": raw_stops.get("top_sell_whales", [])[:15]
-            }
+            raw_stops = CLIENT.fetch_stops(coin, max(0.0, live_px * .35), live_px * 2.10)
+            sources["stops"] = {"observed_at": raw_stops.get("received_at"),
+                "timestamp_basis": "RECEIPT_ONLY", "provider": "HYPERDASH_GRAPHQL_ANALYTICS_UNVERIFIED_METHODOLOGY"}
+            stops = {"kind": "UNVERIFIED_STOP_LANDSCAPE", "bands": [],
+                     "unverified_raw_bands": raw_stops.get("bands") or [],
+                     "reported_totals": {"buy": raw_stops.get("total_buy_size"),
+                                         "sell": raw_stops.get("total_sell_size")},
+                     "amount_semantics": "PROVIDER_REPORTED_UNIT_UNVERIFIED_NOT_USD",
+                     "reason": "Unverified analytics units/coverage; use only sampled exchange stop triggers"}
         except Exception:
             pass
 
         # 3. L3 Whale Orders & Coarse Aggregated Orderbook
         try:
             raw_l3 = CLIENT.fetch_l3_orders(coin, live_px * 0.88, live_px * 1.12)
-            sources["l3"] = {"observed_at": time.time(), "timestamp_basis": "RECEIPT_ONLY", "coverage": "TOP20_IN_12_PERCENT_CORRIDOR"}
+            sources["l3"] = {"observed_at": time.time(), "timestamp_basis": "RECEIPT_ONLY", "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3", "provider": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT"}
             new_l3 = []
             bucket_size = 1.0 if live_px > 50 else (0.1 if live_px > 5 else (0.01 if live_px > 0.5 else 0.001))
             b_bids = {}
@@ -248,7 +163,7 @@ def _refresh_analytics_worker(coin: str, live_px: float):
             try:
                 risk_book = CLIENT.fetch_l2_book(coin)
                 wallet_risk = CLIENT.fetch_wallet_risk(coin, [o.get("address") for o in new_l3], risk_book)
-                sources["wallet_risk"] = {"observed_at": wallet_risk["observed_at"], "timestamp_basis": "RECEIPT_ONLY", "coverage": "SAMPLED_WALLETS"}
+                sources["wallet_risk"] = {"observed_at": wallet_risk["observed_at"], "timestamp_basis": "RECEIPT_ONLY", "coverage": "SAMPLED_WALLETS", "provider": "HYPERLIQUID_PUBLIC_INFO"}
             except Exception:
                 pass
 
@@ -363,11 +278,13 @@ def api_live(coin: str):
 
     # 4. Cohort Summary
     oi_usd = meta.get("open_interest_usd", 0.0)
-    long_count = analytics.get("liquidations", {}).get("total_long_count", 0)
-    short_count = analytics.get("liquidations", {}).get("total_short_count", 0)
-    total_traders = long_count + short_count
-    long_pct = round(long_count / total_traders * 100.0, 1) if total_traders > 0 else 50.0
-    short_pct = round(100.0 - long_pct, 1)
+    liq_totals = analytics.get("liquidations") or {}
+    long_count = liq_totals.get("total_long_count")
+    short_count = liq_totals.get("total_short_count")
+    total_traders = (long_count + short_count if isinstance(long_count, (int, float))
+                     and isinstance(short_count, (int, float)) else None)
+    long_pct = round(long_count / total_traders * 100.0, 1) if total_traders and total_traders > 0 else None
+    short_pct = round(100.0 - long_pct, 1) if long_pct is not None else None
 
     # Forensics round 3: the even 50/50 notional split below was a FABRICATED
     # statistic (no venue reports a long/short notional split here; OI is
@@ -381,8 +298,8 @@ def api_live(coin: str):
         "total_traders": total_traders,
         "long_traders": long_count,
         "short_traders": short_count,
-        "long_traders_pct": long_pct if total_traders else None,
-        "short_traders_pct": short_pct if total_traders else None,
+        "long_traders_pct": long_pct,
+        "short_traders_pct": short_pct,
         "profit_traders_pct": None,
         "loss_traders_pct": None,
         "kind": "LIQUIDATION_COHORT_COUNTS_NOT_ALL_TRADERS"
@@ -393,7 +310,7 @@ def api_live(coin: str):
         "price": live_px,
         "meta": meta,
         "signal_market": meta.get("signal_market"),
-        "sources": {**analytics.get("sources", {}), "l2": {"observed_at": l2_book.get("timestamp", 0), "timestamp_basis": "VENUE_EVENT_TIME"}},
+        "sources": {**analytics.get("sources", {}), "l2": {"observed_at": l2_book.get("timestamp", 0), "timestamp_basis": "VENUE_EVENT_TIME", "provider": "HYPERLIQUID_PUBLIC_INFO"}},
         "whale_positions": analytics.get("wallet_risk", {}).get("positions", []),
         "projected_liquidations": analytics.get("wallet_risk", {}).get("liquidations", {}),
         "observed_stops": analytics.get("wallet_risk", {}).get("stops", {}),
@@ -415,12 +332,15 @@ def api_live(coin: str):
 @app.get("/api/heatmap/{coin}")
 def api_heatmap(coin: str, mode: str = "liquidations", timeframe: str = "1h", granularity: str = "medium", lookback: int = 3):
     coin = coin.strip().upper()
-    try:
-        engine = get_heatmap_engine(coin, timeframe=timeframe)
-        payload = engine.get_chart_heatmap_payload(mode=mode, granularity=granularity)
-        return payload
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+    # Research heatmaps carry historical GraphQL bands forward into later
+    # candles, infer side by price and label provider units USD. None of those
+    # transformations is an observed resting stop/liquidation instruction.
+    # Keep the research engine separate; do not publish it as a live chart.
+    return {"coin": coin, "mode": mode, "timeframe": timeframe,
+            "kind": "UNAVAILABLE_UNVERIFIED_ANALYTICS",
+            "reason": "Hyperdash band methodology/unit not verified; carried-forward heatmaps are research, not live observations",
+            "candles": [], "price_bands": [], "heatmap_grid": [], "volume_profile": [],
+            "total_long_size": None, "total_short_size": None}
 
 @app.get("/api/cohorts/{coin}")
 def api_cohorts(coin: str, limit: int = 30):
@@ -428,52 +348,10 @@ def api_cohorts(coin: str, limit: int = 30):
     try:
         cohorts = CLIENT.fetch_top_traders(coin, limit=limit)
         if not cohorts:
-            universe = get_universe()
-            meta = next((a for a in universe if a["coin"] == coin), None)
-            mark_px = meta.get("mark_px", 2600.0) if meta else 2600.0
-
-            min_px = mark_px * 0.70
-            max_px = mark_px * 1.30
-            liqs = CLIENT.fetch_liquidations(coin, min_px, max_px)
-            stops = CLIENT.fetch_stops(coin, min_px, max_px)
-
-            cohort_items = []
-            for w in liqs.get("top_long_whales", []):
-                sz = float(w.get("size", 0.0))
-                px = float(w.get("price", 0.0))
-                notional = sz * mark_px
-                pnl = (mark_px - px) * sz * 0.15
-                roe = (pnl / (notional / 10.0)) if notional > 0 else 0.0
-                cohort_items.append({
-                    "address": w.get("address", ""),
-                    "displayName": w.get("address", "")[:6] + "..." + w.get("address", "")[-4:],
-                    "size": sz,
-                    "notional": notional,
-                    "entryPrice": px * 1.04,
-                    "liqPrice": px,
-                    "unrealizedPnl": pnl,
-                    "returnOnEquity": roe,
-                    "leverage": 10.0
-                })
-            for w in liqs.get("top_short_whales", []):
-                sz = float(w.get("size", 0.0))
-                px = float(w.get("price", 0.0))
-                notional = sz * mark_px
-                pnl = (px - mark_px) * sz * 0.15
-                roe = (pnl / (notional / 10.0)) if notional > 0 else 0.0
-                cohort_items.append({
-                    "address": w.get("address", ""),
-                    "displayName": w.get("address", "")[:6] + "..." + w.get("address", "")[-4:],
-                    "size": -sz,
-                    "notional": notional,
-                    "entryPrice": px * 0.96,
-                    "liqPrice": px,
-                    "unrealizedPnl": pnl,
-                    "returnOnEquity": roe,
-                    "leverage": 10.0
-                })
-            cohort_items.sort(key=lambda x: x["notional"], reverse=True)
-            cohorts = cohort_items[:limit]
+            # Analytics liquidation bands do not report entry, leverage or
+            # unrealized PnL. The former fallback fabricated these fields.
+            return {"coin": coin, "cohorts": [],
+                    "status": "UNAVAILABLE_NO_EXCHANGE_REPORTED_TRADER_POSITIONS"}
         return {"coin": coin, "cohorts": cohorts}
     except Exception as e:
         return {"coin": coin, "cohorts": [], "error": str(e)}
@@ -1528,7 +1406,9 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         const res = await fetch(`/api/heatmap/${currentCoin}?mode=${mode}&timeframe=${currentTf}&granularity=${currentGranularity}`);
         chartPayload = await res.json();
         const chartAssetTf = document.getElementById('chartAssetTf');
-        if (chartAssetTf) chartAssetTf.textContent = `${currentCoin}/USD · ${currentTf.toUpperCase()}`;
+        if (chartAssetTf) chartAssetTf.textContent = chartPayload.kind === 'UNAVAILABLE_UNVERIFIED_ANALYTICS'
+          ? `${currentCoin} · CHART UNAVAILABLE (UNVERIFIED UNITS)`
+          : `${currentCoin}/USD · ${currentTf.toUpperCase()}`;
 
         const candles = chartPayload.candles || [];
         if (candles.length > 0) {
@@ -2123,7 +2003,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         ctx.fillStyle = 'var(--text-dim)';
         ctx.font = '12px JetBrains Mono, monospace';
         ctx.textAlign = 'center';
-        ctx.fillText('Synchronizing institutional orderflow telemetry...', w / 2, h / 2);
+        ctx.fillText(chartPayload?.reason || 'Synchronizing market telemetry...', w / 2, h / 2);
         return;
       }
 

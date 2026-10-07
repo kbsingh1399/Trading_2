@@ -131,6 +131,9 @@ def test_wallet_risk_uses_reported_leverage_exposure_and_explicit_stop_type(monk
     assert risk["liquidations"]["bands"][0]["amount_usd"]==199.8
     assert risk["positions"][0]["unrealized_pnl_usd"]==-2
     assert len(risk["stops"]["bands"])==1 and risk["liquidations"]["coverage"]=="SAMPLED_WALLETS"
+    stop = risk["stops"]["bands"][0]
+    assert stop["min_px"] == stop["max_px"] == stop["mid_px"] == 99.95
+    assert risk["liquidations"]["bands"][0]["min_px"] == 99.9
 
 def test_bls_parser_handles_eastern_dst():
     text="BEGIN:VEVENT\nSUMMARY:Consumer Price Index\nDTSTART;TZID=America/New_York:20261014T083000\nEND:VEVENT\nBEGIN:VEVENT\nSUMMARY:Employment Situation\nDTSTART;TZID=America/New_York:20261106T083000\nEND:VEVENT"
@@ -164,6 +167,24 @@ def test_server_does_not_freshen_failed_components_and_clears_empty_walls(monkey
     assert result["sources"]["stops"]["observed_at"]==past
     assert result["l3_orders"]==[]
 
+def test_unverified_historical_heatmap_not_published_as_live_chart(monkeypatch):
+    import Terminal.Chrome_Terminal as server
+    monkeypatch.setattr(server, "get_heatmap_engine", lambda *args, **kwargs: (_ for _ in ()).throw(
+        AssertionError("research heatmap must not be consulted by live endpoint")))
+    result = server.api_heatmap("BTC", mode="stops")
+    assert result["kind"] == "UNAVAILABLE_UNVERIFIED_ANALYTICS"
+    assert result["heatmap_grid"] == [] and result["total_long_size"] is None
+
+
+def test_empty_reported_cohort_never_invents_pnl_or_leverage(monkeypatch):
+    import Terminal.Chrome_Terminal as server
+    fake = NS(fetch_top_traders=lambda *args, **kwargs: [])
+    monkeypatch.setattr(server, "CLIENT", fake)
+    result = server.api_cohorts("BTC")
+    assert result["cohorts"] == []
+    assert result["status"].startswith("UNAVAILABLE")
+
+
 def test_live_api_uses_book_mid_and_explicit_unknown_cohorts(monkeypatch):
     import Terminal.Chrome_Terminal as server
     book={"best_bid":99,"best_ask":101,"bids":[],"asks":[],"timestamp":time.time()*1000}
@@ -174,4 +195,4 @@ def test_live_api_uses_book_mid_and_explicit_unknown_cohorts(monkeypatch):
     result=server.api_live("BTC")
     assert result["price"]==100 and result["recent_trades"][0]["side"]=="UNKNOWN"
     assert result["cohort_summary"]["profit_traders_pct"] is None
-    assert result["cohort_summary"]["total_traders"]==0
+    assert result["cohort_summary"]["total_traders"] is None  # missing report != zero traders

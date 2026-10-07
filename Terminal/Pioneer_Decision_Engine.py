@@ -9,8 +9,8 @@ feeding the book before:
   signal          source (all $0, all live)                     weight
   --------------- ------------------------------------------------ ------
   orderflow       bus CVD 1m/5m/15m + 15m taker imbalance        0.30
-  cascade         synthetic liquidation fuel asymmetry around mid 0.25
-  stops           structural stop-cluster asymmetry (magnet)      0.15
+  cascade         unavailable without observed resting exposure       0.25
+  stops           sampled exchange-reported stop trigger orders       0.15
   whales          sampled HL cohort positioning + on-chain flows  0.15
   macro           ETF net flows + Coinbase premium + F&G extremes 0.15
 
@@ -37,6 +37,7 @@ import math
 import time
 from dataclasses import dataclass, field
 
+from Terminal.Telemetry_Provenance import verified_wallet_block, verified_wallet_l3
 from Terminal.Risk_Sizing_Engine import number
 
 POLICY_VERSION = "omni.pioneer.v1"
@@ -103,36 +104,19 @@ class PioneerDecisionEngine:
                        "tape_usd_15m": buy + sell}
 
     def _signal_cascade(self, payload, mid):
-        bands = (payload.get("projected_liquidations") or {}).get("bands") or []
-        if not bands or mid <= 0:
-            return None, {"available": False, "reason": "no_liquidation_model"}
-        reach = math.log(1.0 + self.policy.cascade_reach)
-        long_fuel = short_fuel = 0.0
-        for band in bands:
-            px = number(band.get("mid_px"), 0.0)
-            usd = number(band.get("amount_usd"), 0.0)
-            side = str(band.get("position_side_at_risk", "")).upper()
-            if px <= 0 or usd <= 0:
-                continue
-            proximity = max(0.0, 1.0 - abs(math.log(px / mid)) / reach) if reach > 0 else 1.0
-            if side == "LONG" and px < mid:          # longs liquidated below
-                long_fuel += usd * proximity
-            elif side == "SHORT" and px > mid:       # shorts liquidated above
-                short_fuel += usd * proximity
-        if long_fuel + short_fuel <= 0:
-            return None, {"available": False, "reason": "no_fuel_within_reach"}
-        net = short_fuel - long_fuel                 # upside squeeze fuel minus downside
-        value = math.tanh(net / self.policy.cascade_scale_usd)
-        return value, {"available": True, "long_fuel_usd": long_fuel,
-                       "short_fuel_usd": short_fuel, "reach": self.policy.cascade_reach}
+        # Reported wallet liquidation prices are projections, not forced
+        # executions or complete resting exposure: never count as cascade fuel.
+        return None, {"available": False, "reason": "no_observed_resting_liquidations"}
 
     def _signal_stops(self, payload, mid):
-        bands = (payload.get("observed_stops") or {}).get("bands") or []
+        bands = (verified_wallet_block(payload, "observed_stops", self.clock()) or {}).get("bands") or []
         sell_usd = buy_usd = 0.0
         for band in bands:
             usd = number(band.get("amount_usd"), 0.0)
             side = str(band.get("position_side_at_risk", "")).upper()
             px = number(band.get("mid_px"), 0.0)
+            if px <= 0 or usd <= 0:
+                continue
             if side == "LONG" and px < mid:          # longs' sell stops below
                 sell_usd += usd
             elif side == "SHORT" and px > mid:       # shorts' buy stops above
@@ -146,10 +130,16 @@ class PioneerDecisionEngine:
                        "buy_stop_usd": buy_usd}
 
     def _signal_whale(self, payload):
-        positions = payload.get("whale_positions") or []
+        # Only a fresh public clearinghouseState sample is wallet-attributed.
+        # Arbitrary injected whale_positions and unattributed on-chain flow
+        # cannot add conviction to a live order.
+        block = verified_wallet_block(payload, "observed_stops", self.clock())
+        wallets = set(block.get("wallets") or []) if block else set()
+        positions = [p for p in (payload.get("whale_positions") or [])
+                     if p.get("address") in wallets]
         pos_net = sum(_sign(p.get("size")) * number(p.get("notional_usd"), 0.0)
                       for p in positions if number(p.get("notional_usd"), 0.0) > 0)
-        flow = number(payload.get("whale_net_flow_usd_24h"), 0.0)
+        flow = 0.0  # no independently attested on-chain provider in this payload
         if not positions and flow == 0:
             return None, {"available": False, "reason": "no_whale_data"}
         value = math.tanh((0.6 * pos_net + 0.4 * flow) / self.policy.whale_scale_usd)
@@ -328,7 +318,7 @@ class DecisionChainEngine(PioneerDecisionEngine):
         (defense in depth - a payload from any other source gets the same
         anti-spoof guarantee).
         """
-        walls = payload.get("l3_orders") or []
+        walls = verified_wallet_l3(payload, self.clock())
         if mid <= 0:
             return None, {"available": False, "reason": "no_mid"}
         reach = math.log(1.0 + self.policy.wall_reach)

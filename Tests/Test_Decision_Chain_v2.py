@@ -127,7 +127,8 @@ def test_wall_signal_bid_support_is_positive():
     engine = DecisionChainEngine(clock=lambda: NOW)
     payload = chain_payload(l3_orders=[
         {"side": "BUY", "price": 119.0, "notional_usd": 1e7,
-         "persistence_sec": 400.0}])
+         "address": "0xabc", "persistence_sec": 400.0}],
+        sources={"l3": {"provider": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT", "observed_at": NOW}})
     value, basis = engine._signal_walls(payload, 120.0)
     expected = math.tanh(1e7 * (1.0 - abs(math.log(119.0 / 120.0))
                                 / math.log(1.015)) / 5.0e6)
@@ -141,7 +142,8 @@ def test_wall_signal_ask_resistance_is_negative():
     engine = DecisionChainEngine(clock=lambda: NOW)
     payload = chain_payload(l3_orders=[
         {"side": "SELL", "price": 121.0, "notional_usd": 1e7,
-         "persistence_sec": 400.0}])
+         "address": "0xabc", "persistence_sec": 400.0}],
+        sources={"l3": {"provider": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT", "observed_at": NOW}})
     value, basis = engine._signal_walls(payload, 120.0)
     assert value < 0.0
     assert basis["ask_wall_usd"] > 0.0 and basis["bid_wall_usd"] == 0.0
@@ -233,7 +235,7 @@ def test_pillar_manifest_complete_and_inside_digest():
         "P2B_WHALE_WALL_PERSISTENCE", "P3_ONCHAIN_WHALE_FLOWS",
         "P4_FARSIDE_ETF_FLOWS", "P5_SENTIMENT_COINBASE_PREMIUM",
         "P6_CROSS_SOURCE_CONSISTENCY"]
-    assert pillars["P2B_WHALE_WALL_PERSISTENCE"]["available"] is True
+    assert pillars["P2B_WHALE_WALL_PERSISTENCE"]["available"] is False
     assert pillars["P6_CROSS_SOURCE_CONSISTENCY"]["available"] is True
     assert pillars["P1_RECONSTRUCTED_LIQUIDATIONS"]["available"] is False
     # The manifest is stamped INSIDE the digest: recompute the chain hash
@@ -247,7 +249,7 @@ def test_pillar_manifest_complete_and_inside_digest():
     assert advisory["digest"] == rebuilt
 
 
-def test_seven_signals_all_available_through_synthetic_payload():
+def test_synthetic_signals_cannot_make_all_pillars_available():
     engine = DecisionChainEngine(clock=lambda: NOW)
     payload = chain_payload(
         orderflow={"taker_buy_usd_15m": 900.0, "taker_sell_usd_15m": 100.0,
@@ -265,10 +267,9 @@ def test_seven_signals_all_available_through_synthetic_payload():
                     "mid_divergence_bps": 4.2, "oi_agreement": None})
     advisory = engine.evaluate("SOL", payload, features(), macro_block(), NOW)
     assert len(advisory["signals"]) == 7
-    assert all(sig["available"] for sig in advisory["signals"].values())
-    # Every pillar reports available in the manifest too.
-    assert all(p["available"] for p in advisory["pillars"].values())
-    assert advisory["advice"] == "SUPPORT_LONG"      # everything is bullish
+    for name in ("cascade", "stops", "walls"):
+        assert advisory["signals"][name]["available"] is False
+    assert advisory["pillars"]["P1_RECONSTRUCTED_LIQUIDATIONS"]["available"] is False
 
 
 # --------------------------------------------------- 5. full-chain integration
@@ -284,19 +285,20 @@ def test_full_chain_factory_validator_to_advisory():
     payload = None
     for tick in range(int(NOW - 400), int(NOW) + 1, 15):
         payload = factory.payload("SOL", tick)
-    assert payload["l3_orders"], "walls must persist across the tick cadence"
+    assert payload["l3_orders"] == []  # anonymous aggregated L2 is not wallet L3
+    assert payload["l2_wall_levels"]
     advisory = engine.evaluate("SOL", payload, features(),
                                macro_block(), NOW)
     assert advisory["policy_version"] == DECISION_CHAIN_VERSION
     # The validator enriched the payload with the pillar-6 block.
     assert advisory["signals"]["consistency"]["available"] is True
-    assert advisory["signals"]["walls"]["available"] is True
+    assert advisory["signals"]["walls"]["available"] is False
     assert advisory["signals"]["orderflow"]["available"] is True
     assert advisory["pillars"]["P6_CROSS_SOURCE_CONSISTENCY"][
         "quality_score"] == advisory["quality_score"]
     # Bids 80k x 20 levels outweigh asks 50k x 20 at equal proximity:
     # net bid support from the resting walls.
-    assert advisory["signals"]["walls"]["value"] > 0.0
+    assert advisory["signals"]["walls"]["value"] is None
 
 
 def test_engine_without_validator_leaves_consistency_unavailable():

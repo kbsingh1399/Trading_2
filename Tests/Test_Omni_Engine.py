@@ -25,7 +25,17 @@ def payload(now=NOW, asset="BTC", reverse=False):
             "best_ask": 100.01, "bids": [{"price": 99.99-i*0.01, "size": 10000 if not reverse else 100} for i in range(20)],
             "asks": [{"price": 100.01+i*0.01, "size": 100 if not reverse else 10000} for i in range(20)]},
             "recent_trades": [{"time": now*1000, "side": "SELL" if reverse else "BUY", "price": 100, "size": 100, "notional_usd": 10000}],
-            "sources": {"l3": {"observed_at": now}, "liquidations": {"observed_at": now}}, "l3_orders": []}
+            # Offline, explicitly attributed fake exchange stops: these test
+            # execution mechanics, not production data acquisition.
+            "observed_stops": {"kind": "OBSERVED_STOP_ORDERS", "coverage": "SAMPLED_WALLETS",
+                "wallets": ["0xtest"], "bands": [
+                    {"kind": "OBSERVED_STOP_ORDERS", "address": "0xtest", "position_side_at_risk": "LONG",
+                     "min_px": 99.90, "max_px": 99.90, "mid_px": 99.90, "amount_usd": 1e7},
+                    {"kind": "OBSERVED_STOP_ORDERS", "address": "0xtest", "position_side_at_risk": "SHORT",
+                     "min_px": 100.10, "max_px": 100.10, "mid_px": 100.10, "amount_usd": 1e7}]},
+            "sources": {"l3": {"observed_at": now}, "liquidations": {"observed_at": now},
+                        "wallet_risk": {"observed_at": now, "coverage": "SAMPLED_WALLETS",
+                                        "provider": "HYPERLIQUID_PUBLIC_INFO"}}, "l3_orders": []}
 
 def covariance(now=NOW, assets=UNIVERSE, sigma=0.003):
     matrix = np.eye(len(assets))*sigma**2
@@ -112,37 +122,57 @@ def test_directional_macro_confluence_is_symmetric():
     assert abs(long["confluence"]-short["confluence"])<.01
     assert 10 <= long["risk_intent_usd"] <=45
 
-def test_projected_liquidation_pressure_uses_same_corridor():
-    data=payload()
-    data["liquidations"]={"kind":"PROJECTED_EXPOSURE","bands":[{"min_px":99.9,"max_px":99.95,"amount_usd":5e8,"position_side_at_risk":"LONG"}]}
-    f=OrderflowModel().features("BTC",data,bars(),{},NOW)
-    record=f["corridors"][0]
-    expected=sum(x["price"]*x["size"] for x in data["l2_book"]["bids"] if 99.9<=x["price"]<=99.95)
-    assert record["depth_usd"]==expected and record["ratio"]==5e8/expected
-    assert f["liquidation_delta"]==-1
-    data["liquidations"]["kind"]="UNVERIFIED_BAND_LANDSCAPE"
-    assert OrderflowModel().features("BTC",data,bars(),{},NOW)["liquidation_delta"]==0
+def test_unverified_liquidation_bands_have_no_corridor_or_fuel():
+    data = payload()
+    data["observed_stops"] = {}
+    data["liquidations"] = {"kind": "PROJECTED_EXPOSURE", "bands": [
+        {"min_px": 99.90, "max_px": 99.90, "mid_px": 99.90, "amount_usd": 5e8,
+         "position_side_at_risk": "LONG"}]}
+    result = OrderflowModel().features("BTC", data, bars(), {}, NOW)
+    assert result["corridors"] == [] and result["liquidation_delta"] == 0
+    assert result["ffr"] is None and result["coverage_missing"]
 
-def test_unobserved_corridor_cannot_be_divided_by_zero_depth():
-    data=payload();data["liquidations"]={"kind":"PROJECTED_EXPOSURE","bands":[{"min_px":80,"max_px":90,"amount_usd":1e9,"position_side_at_risk":"LONG"}]}
-    f=OrderflowModel().features("BTC",data,bars(),{},NOW)
-    assert f["corridors"][0]["ratio"] is None and f["liquidation_delta"]==0
+
+def test_observed_wallet_stops_require_provider_and_fresh_receipt():
+    data = payload()
+    data["observed_stops"] = {"kind": "OBSERVED_STOP_ORDERS",
+        "coverage": "SAMPLED_WALLETS", "wallets": ["0xabc"], "bands": [
+            {"kind": "OBSERVED_STOP_ORDERS", "address": "0xabc",
+             "min_px": 99.90, "max_px": 99.90, "mid_px": 99.90, "amount_usd": 5e8,
+             "position_side_at_risk": "LONG"}]}
+    del data["sources"]["wallet_risk"]
+    assert OrderflowModel().features("BTC", data, bars(), {}, NOW)["corridors"] == []
+    data["sources"]["wallet_risk"] = {
+        "provider": "HYPERLIQUID_PUBLIC_INFO", "coverage": "SAMPLED_WALLETS",
+        "observed_at": NOW - 1}
+    result = OrderflowModel().features("BTC", data, bars(), {}, NOW)
+    assert len(result["corridors"]) == 1
+    assert result["corridors"][0]["depth_usd"] > 0
+    data["sources"]["wallet_risk"]["observed_at"] = NOW - 61
+    assert OrderflowModel().features("BTC", data, bars(), {}, NOW)["corridors"] == []
+
 
 def test_cached_generation_does_not_manufacture_wall_persistence():
-    data=payload();data["l3_orders"]=[{"address":"whale","price":99.99,"side":"BUY","notional_usd":1e6}]
-    flow=OrderflowModel()
-    assert flow.features("BTC",data,bars(),{},NOW)["wall_imbalance"]==0
-    assert flow.features("BTC",data,bars(),{},NOW+10)["wall_imbalance"]==0
-    data=payload(NOW+20);data["l3_orders"]=[{"address":"whale","price":99.99,"side":"BUY","notional_usd":1e6}]
-    assert flow.features("BTC",data,bars(),{},NOW+20)["wall_imbalance"]==1
+    flow = OrderflowModel()
+    for stamp in (NOW, NOW + 10, NOW + 20):
+        data = payload(stamp)
+        data["l3_orders"] = [{"address": "whale", "price": 99.99,
+                               "side": "BUY", "notional_usd": 1e6}]
+        assert flow.features("BTC", data, bars(), {}, stamp)["wall_imbalance"] == 0
 
-def test_background_wall_observation_survives_between_decisions():
-    flow=OrderflowModel()
-    for stamp in range(NOW-80,NOW+1,20):
-        data=payload(stamp);data["l3_orders"]=[{"address":"whale","price":99.99,"side":"BUY","notional_usd":1e6}]
-        flow.observe_walls("BTC",data,stamp)
-    assert flow.features("BTC",data,bars(),{},NOW)["wall_imbalance"]==1
-    assert flow.walls["BTC"]["whale:BUY:99.99"]["first"]==NOW-80
+
+def test_verified_wallet_sampled_recurrence_is_not_anonymous_l2():
+    flow = OrderflowModel()
+    for stamp in range(NOW-80, NOW+1, 20):
+        data = payload(stamp)
+        data["l3_orders"] = [{"address": "0xabc", "price": 99.99,
+                               "side": "BUY", "notional_usd": 1e6}]
+        data["sources"]["l3"] = {"provider": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
+                                   "observed_at": stamp}
+        flow.observe_walls("BTC", data, stamp)
+    assert flow.features("BTC", data, bars(), {}, NOW)["wall_imbalance"] == 1
+    assert flow.walls["BTC"]["0xabc:BUY:99.99"]["first"] == NOW-80
+
 
 def test_invalid_macro_sentiment_cannot_contribute_to_confluence():
     f=OrderflowModel().features("BTC",payload(),bars(),{"asset_scores":{"BTC":1},"sentiment_valid":False},NOW)

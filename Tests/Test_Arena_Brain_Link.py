@@ -472,7 +472,15 @@ def test_trader_vetoes_limit_entry_while_sellers_still_press():
                                   {"time": slot * 1000, "side": "BUY", "price": 120.0,
                                    "size": 100, "notional_usd": 10000}],
                 "sources": {"l3": {"observed_at": slot},
-                            "liquidations": {"observed_at": slot}},
+                            "liquidations": {"observed_at": slot},
+                            "wallet_risk": {"observed_at": slot, "coverage": "SAMPLED_WALLETS",
+                                            "provider": "HYPERLIQUID_PUBLIC_INFO"}},
+                "observed_stops": {"kind": "OBSERVED_STOP_ORDERS", "coverage": "SAMPLED_WALLETS",
+                    "wallets": ["0xtest"], "bands": [
+                        {"kind": "OBSERVED_STOP_ORDERS", "address": "0xtest", "position_side_at_risk": "LONG",
+                         "min_px": 119.90, "max_px": 119.90, "mid_px": 119.90, "amount_usd": 1e7},
+                        {"kind": "OBSERVED_STOP_ORDERS", "address": "0xtest", "position_side_at_risk": "SHORT",
+                         "min_px": 120.10, "max_px": 120.10, "mid_px": 120.10, "amount_usd": 1e7}]},
                 "l3_orders": [], "liquidations": {}, "orderflow": orderflow}
 
     macro = {"received_at": slot, "sentiment_valid": True, "asset_scores": {"SOL": 1}}

@@ -270,16 +270,18 @@ def test_resting_walls_require_150k_and_180s_persistence():
     # Observed every 30s for 240s: now it is persistent.
     for step in range(9):
         factory.wall_tracker.observe("SOL", book, NOW - 240 + step * 30)
-    walls = factory.payload("SOL", NOW)["l3_orders"]
+    payload = factory.payload("SOL", NOW)
+    assert payload["l3_orders"] == []  # aggregated L2 never becomes wallet L3
+    walls = payload["l2_wall_levels"]
     assert walls and walls[0]["notional_usd"] >= 150_000
-    assert walls[0]["persistence_sec"] >= 180
+    assert walls[0]["sample_span_sec"] >= 180
     # Sub-150k depth never qualifies, however long it rests.
     thin = _book_with_walls(bid_size=100, ask_size=100)
     factory.ingest_book("SOL", thin)
     for step in range(9):
         factory.wall_tracker.observe("SOL", thin, NOW + step * 30)
     assert all(w["notional_usd"] >= 150_000
-               for w in factory.payload("SOL", NOW + 240)["l3_orders"])
+               for w in factory.payload("SOL", NOW + 240)["l2_wall_levels"])
 
 
 # ============================================== 3. CandleScheduler
@@ -664,8 +666,16 @@ def test_full_stack_paper_bridge_trade_through_the_real_trader(tmp_path):
                                    "size": 100, "notional_usd": 10000},
                                   {"time": now * 1000, "side": "BUY", "price": mid,
                                    "size": 100, "notional_usd": 10000}],
-                "sources": {"l3": {"observed_at": now}, "liquidations": {"observed_at": now}},
-                "l3_orders": [], "liquidations": {}}
+                "sources": {"l3": {"observed_at": now}, "liquidations": {"observed_at": now},
+                                "wallet_risk": {"observed_at": now, "coverage": "SAMPLED_WALLETS",
+                                                "provider": "HYPERLIQUID_PUBLIC_INFO"}},
+                "l3_orders": [], "liquidations": {},
+                    "observed_stops": {"kind": "OBSERVED_STOP_ORDERS", "coverage": "SAMPLED_WALLETS",
+                        "wallets": ["0xtest"], "bands": [
+                        {"kind": "OBSERVED_STOP_ORDERS", "address": "0xtest", "position_side_at_risk": "LONG",
+                         "min_px": mid - 0.10, "max_px": mid - 0.10, "mid_px": mid - 0.10, "amount_usd": 1e7},
+                        {"kind": "OBSERVED_STOP_ORDERS", "address": "0xtest", "position_side_at_risk": "SHORT",
+                         "min_px": mid + 0.10, "max_px": mid + 0.10, "mid_px": mid + 0.10, "amount_usd": 1e7}]}}
 
     result = trader.evaluate_market({"SOL": payload()}, {"received_at": slot,
                                                          "sentiment_valid": True,

@@ -13,6 +13,7 @@ import json
 import math
 import time
 import numpy as np
+from Terminal.Telemetry_Provenance import verified_wallet_block, verified_wallet_l3
 from Terminal.Asset_Universe import canonical_asset
 
 def number(value, default=0.0):
@@ -115,11 +116,11 @@ class OrderflowModel:
     def observe_walls(self, asset, payload, as_of):
         sources = payload.get("sources") or {}
         wall_asof = epoch(sources.get("l3", {}).get("observed_at") or payload.get("timestamp"))
-        if not wall_asof or not 0.0 <= as_of-wall_asof <= 30: return False
+        if not wall_asof or not 0.0 <= as_of-wall_asof <= 30 or not verified_wallet_l3(payload, as_of): return False
         previous = self.walls.get(asset, {})
         if previous and wall_asof < max(v["last"] for v in previous.values()): return False
         current = {}
-        for w in payload.get("l3_orders", []):
+        for w in verified_wallet_l3(payload, as_of):
             px, usd, side = number(w.get("price")), number(w.get("notional_usd")), w.get("side")
             if px <= 0 or usd <= 0 or side not in ("BUY", "SELL"): continue
             key = str(w.get("order_id") or f"{w.get('address')}:{side}:{px}")
@@ -175,7 +176,7 @@ class OrderflowModel:
         wall_totals = {"BUY": 0.0, "SELL": 0.0}
         tracked = self.walls.get(asset, {})
         if fresh_walls:
-            for w in payload.get("l3_orders", []):
+            for w in verified_wallet_l3(payload, as_of):
                 px, usd, side = number(w.get("price")), number(w.get("notional_usd")), w.get("side")
                 if px <= 0 or usd <= 0 or side not in wall_totals: continue
                 key = str(w.get("order_id") or f"{w.get('address')}:{side}:{px}")
@@ -206,13 +207,13 @@ class OrderflowModel:
         # Do not infer stop/liquidation exposure from historical realized prints.
         pressure = {"LONG": 0.0, "SHORT": 0.0}
         corridor_records = []
-        for name in ("liquidations", "stops"):
-            observed_name = "projected_liquidations" if name == "liquidations" else "observed_stops"
-            sampled_data = payload.get(observed_name) or {}
-            data = sampled_data if sampled_data.get("kind") in ("PROJECTED_EXPOSURE", "OBSERVED_STOP_ORDERS") else payload.get(name) or {}
-            if data.get("kind") not in ("PROJECTED_EXPOSURE", "OBSERVED_STOP_ORDERS"): continue
-            component_asof = epoch(sources.get("wallet_risk" if data is sampled_data else name, {}).get("observed_at") or payload.get("timestamp"))
-            if not component_asof or not 0.0 <= as_of-component_asof <= 60: continue
+        for name in ("stops",):
+            # Only fresh exchange-reported reduce-only stop trigger orders for
+            # explicitly sampled wallets may enter corridor/fuel calculations.
+            data = verified_wallet_block(payload, "observed_stops", as_of)
+            if data is None: continue
+            component_asof = epoch(sources["wallet_risk"]["observed_at"])
+            if not component_asof or not 0 <= as_of-component_asof <= 60: continue
             for band in data.get("projected_bands", data.get("bands", [])):
                 low, high = number(band.get("min_px")), number(band.get("max_px"))
                 amt_raw = number(band.get("amount_usd") or band.get("amount"))
@@ -230,7 +231,13 @@ class OrderflowModel:
                     min_book_px, max_book_px = min(x[0] for x in rows), max(x[0] for x in rows)
                     corridor_low = max(low, min_book_px)
                     corridor_high = min(high, max_book_px)
-                    if corridor_low <= corridor_high and high > low:
+                    if high == low:
+                        # The exchange reports a single trigger, not a
+                        # synthetic density spread along the way to mid.
+                        depth = sum(usd for px, usd, *_ in rows
+                                    if abs(px - low) <= max(1e-8, abs(low)*1e-9))
+                        ratio = amount / depth if depth > 0 else None
+                    elif corridor_low <= corridor_high:
                         corridor_overlap = (corridor_high - corridor_low) / (high - low)
                         effective_amount = amount * corridor_overlap
                         depth = sum(x[1] for x in rows if corridor_low <= x[0] <= corridor_high)
@@ -265,16 +272,18 @@ class OrderflowModel:
         opposing_levels = asks if direction == 1 else bids
         if target_corridors:
             target_friction_usd = sum(usd for px, usd, dist, w_usd in opposing_levels
-                                      if any(c["low"] <= px <= c["high"] for c in target_corridors))
+                                      if any((abs(px - c["low"]) <= max(1e-8, abs(c["low"])*1e-9))
+                                             if c["low"] == c["high"] else c["low"] <= px <= c["high"]
+                                             for c in target_corridors))
         else:
             target_friction_usd = 0.0
-        coverage_missing = bool(target_fuel_usd > 0 and target_friction_usd <= 0.0)
-        if target_friction_usd > 0:
+        # No verified wallet stop corridor is NOT a neutral 1.0 fuel ratio.
+        # Treat absent coverage as a veto, never as evidence of clear passage.
+        coverage_missing = not target_corridors or bool(target_fuel_usd > 0 and target_friction_usd <= 0.0)
+        if target_friction_usd > 0 and target_fuel_usd > 0:
             ffr = float(target_fuel_usd / target_friction_usd)
-        elif coverage_missing:
-            ffr = None
         else:
-            ffr = 1.0
+            ffr = None
         # Friction-adjusted fuel ratio (FAFR): fuel exposure measured against
         # corridor depth PLUS the round-trip friction carried by a
         # minimum-risk reference position (stop = 1.5*ATR, risk = min_risk).

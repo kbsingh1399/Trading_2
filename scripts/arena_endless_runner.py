@@ -103,7 +103,7 @@ def _risk(snapshot: dict[str, Any], item: dict[str, Any]) -> float | None:
     return risk
 
 
-def _pending_entry_wall_unconfirmed(snapshot: dict[str, Any], order: dict[str, Any]) -> bool:
+def _pending_entry_wall_unconfirmed(snapshot: dict[str, Any], order: dict[str, Any], now: dt.datetime) -> bool:
     """Fail closed when a crypto limit has no persistent exchange wall at its entry.
 
     This is reference Binance L2, NOT broker-native L3 or proof of an entry trigger.
@@ -120,9 +120,17 @@ def _pending_entry_wall_unconfirmed(snapshot: dict[str, Any], order: dict[str, A
     book = asset.get("orderbook_live_depth") or {}
     if side is None or entry is None or atr is None or atr <= 0 or not book:
         return True
-    walls = book.get("whale_walls_l3") or []
+    # Legacy whale_walls_l3 held anonymous Binance aggregated L2. It cannot
+    # validate a wallet-attributed persistent limit wall, even on old v2 JSON.
+    if book.get("l3_provider") != "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT":
+        return True
+    sampled_at = _number(book.get("l3_observed_at"))
+    if sampled_at is None or not 0 <= now.timestamp() - sampled_at <= 30:
+        return True
+    walls = book.get("l3_wallet_orders") or []
     return not any(
-        w.get("side") == side
+        str(w.get("address", "")).startswith("0x")
+        and w.get("side") == side
         and (_number(w.get("notional_usd")) or 0) >= 150_000
         and (_number(w.get("persistence_sec")) or 0) >= 180
         and (price := _number(w.get("price"))) is not None
@@ -161,7 +169,7 @@ def assess(snapshot: dict[str, Any], now: dt.datetime) -> dict[str, Any]:
         tickets = ",".join(str(x.get("ticket", "?")) for x in positions if isinstance(x, dict))
         issues.append(f"BLACKOUT_FILLED: tickets {tickets}; human/MT5 event-hold or exit audit required")
     unconfirmed = [str(x.get("ticket", "?")) for x in pending if isinstance(x, dict)
-                   and _pending_entry_wall_unconfirmed(snapshot, x)]
+                   and _pending_entry_wall_unconfirmed(snapshot, x, now)]
     if unconfirmed:
         issues.append("PENDING_ENTRY_WALL_UNCONFIRMED: tickets " + ",".join(unconfirmed)
                       + "; no >=$150k/180s exchange-side wall within 0.25 ATR of entry; "

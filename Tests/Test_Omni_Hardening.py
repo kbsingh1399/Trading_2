@@ -43,7 +43,16 @@ def payload(now=NOW, asset="SOL", reverse=False, l3=None, liquidations=None, mid
             "asks": [{"price": mid + 0.01 + i * 0.01, "size": 100 if not reverse else 10000} for i in range(20)]},
             "recent_trades": [{"time": now * 1000, "side": "SELL" if reverse else "BUY", "price": mid, "size": 100, "notional_usd": 10000},
                               {"time": now * 1000, "side": "BUY", "price": mid, "size": 100, "notional_usd": 10000}],
-            "sources": {"l3": {"observed_at": now}, "liquidations": {"observed_at": now}},
+            "sources": {"l3": {"observed_at": now, "provider": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT"},
+                        "liquidations": {"observed_at": now},
+                        "wallet_risk": {"observed_at": now, "coverage": "SAMPLED_WALLETS",
+                                        "provider": "HYPERLIQUID_PUBLIC_INFO"}},
+            "observed_stops": {"kind": "OBSERVED_STOP_ORDERS", "coverage": "SAMPLED_WALLETS",
+                "wallets": ["0xtest"], "bands": [
+                    {"kind": "OBSERVED_STOP_ORDERS", "address": "0xtest", "position_side_at_risk": "LONG",
+                     "min_px": mid - 0.10, "max_px": mid - 0.10, "mid_px": mid - 0.10, "amount_usd": 1e7},
+                    {"kind": "OBSERVED_STOP_ORDERS", "address": "0xtest", "position_side_at_risk": "SHORT",
+                     "min_px": mid + 0.10, "max_px": mid + 0.10, "mid_px": mid + 0.10, "amount_usd": 1e7}]},
             "l3_orders": l3 or [], "liquidations": liquidations or {}}
 
 
@@ -400,9 +409,9 @@ def test_s1_pullback_stages_passive_limit_and_front_runs_overhead_wall(tmp_path)
     # SOL 2026-10-06 geometry: 4.93M bid wall at 119.41, 8.04M ask wall at 122.34.
     t, b = trader(tmp_path, mid=120.0, entry_mode="limit")
     walls = [{"side": "BUY", "price": 119.41, "notional_usd": 4.93e6, "persistence_sec": 600,
-              "observed_at": NOW},
+              "observed_at": NOW, "address": "0xabc"},
              {"side": "SELL", "price": 122.34, "notional_usd": 8.04e6, "persistence_sec": 300,
-              "observed_at": NOW}]
+              "observed_at": NOW, "address": "0xabc"}]
     seed = payload(NOW - 10, l3=[dict(walls[0], observed_at=NOW - 10)])
     t.flow.observe_walls("SOL", seed, NOW - 10)  # second observation earns persistence credit
     data = payload(NOW, l3=walls)

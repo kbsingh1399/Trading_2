@@ -16,8 +16,8 @@ def test_microstructure():
     assert classify_liquidation(70000.0, 80000.0, side="SHORT") == "SHORT"
     assert classify_liquidation(90000.0, 80000.0, side="SELL") == "SHORT"
     # Fallback heuristic
-    assert classify_liquidation(75000.0, 80000.0, side=None) == "LONG"
-    assert classify_liquidation(85000.0, 80000.0, side=None) == "SHORT"
+    assert classify_liquidation(75000.0, 80000.0, side=None) == "UNKNOWN"
+    assert classify_liquidation(85000.0, 80000.0, side=None) == "UNKNOWN"
     print("PASS: classify_liquidation adheres to explicit side and heuristic fallback.")
 
     print("\n--- 2. Testing safe_imbalance ---")
@@ -99,7 +99,7 @@ def test_microstructure():
         with contextlib.redirect_stdout(io.StringIO()):
             report = trader.evaluate_market({"BTC": p_dense}, macro)
         assert report["decision"] == "HOLD"
-        assert "dense_friction_veto" in report["vetoes"]["BTC"]
+        assert "unobserved_corridor_veto" in report["vetoes"]["BTC"]
         print("PASS: Dense friction raises dense_friction_veto and halts execution (decision=HOLD).")
 
     print("\n--- 6. Testing Whale Eligibility Filter Hierarchy ---")

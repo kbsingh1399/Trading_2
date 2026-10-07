@@ -89,8 +89,17 @@ class TestArenaEndlessRunner(unittest.TestCase):
              "persistence_sec": 179}]
         self.assertTrue(any("PENDING_ENTRY_WALL_UNCONFIRMED" in issue
                             for issue in sentinel.assess(data, later)["issues"]))
-        data["assets_matrix_24"]["BTC"]["orderbook_live_depth"]["whale_walls_l3"][0][
-            "persistence_sec"] = 180
+        # Anonymous Binance L2 remains unconfirmed even after repeated samples.
+        data["assets_matrix_24"]["BTC"]["orderbook_live_depth"]["whale_walls_l3"][0]["persistence_sec"] = 180
+        self.assertTrue(any("PENDING_ENTRY_WALL_UNCONFIRMED" in issue
+                            for issue in sentinel.assess(data, later)["issues"]))
+        # Only fresh wallet-attributed snapshots could clear this *read-only*
+        # alert; the v3 Binance-only snapshot never claims such coverage.
+        book = data["assets_matrix_24"]["BTC"]["orderbook_live_depth"]
+        book["l3_provider"] = "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT"
+        book["l3_observed_at"] = later.timestamp() - 2
+        book["l3_wallet_orders"] = [{"address": "0xabc", "side": "SELL", "price": 83875,
+                                     "notional_usd": 180_000, "persistence_sec": 180}]
         self.assertFalse(any("PENDING_ENTRY_WALL_UNCONFIRMED" in issue
                              for issue in sentinel.assess(data, later)["issues"]))
 

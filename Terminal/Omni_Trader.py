@@ -26,6 +26,7 @@ from Terminal.Orderbook_Structure import (wall_clusters, hazard_ttl, structural_
                                           anchors_from_clusters)
 from Terminal.Order_Persistence_Governor import OrderPersistenceGovernor
 from Terminal.Deterministic_Features import FeatureSealer
+from Terminal.Telemetry_Provenance import verified_wallet_block, verified_wallet_l3
 
 ROOT = Path(__file__).resolve().parents[1]
 MAGIC = 100895
@@ -771,7 +772,9 @@ class AI15mMT5Trader:
                         # overridden by the cognitive layer.
                         features["sleeve"] = classify_sleeve(features)
                         effective_mode = "market" if features["sleeve"] == "T1_BREAKOUT" else self.entry_mode
-                        l3 = payload.get("l3_orders", [])
+                        # Never anchor a limit/TP to anonymous Binance L2 or
+                        # an unverified addressless "L3" row.
+                        l3 = verified_wallet_l3(payload, now)
                         entry_anchors = []
 
                         if effective_mode == "limit":
@@ -987,7 +990,7 @@ class AI15mMT5Trader:
                             # vector; its numeric prose is attested against it.
                             sealed = self.sealer.update(cand["asset"], cand["features"])
                             snapshot = self.cognitive.build_snapshot(cand["asset"], cand["symbol"], cand["features"]["signal_mid"], cand["features"],
-                                                                     payload.get("l3_orders", []), payload.get("liquidations", {}).get("bands", []),
+                                                                     verified_wallet_l3(payload, now), [],  # unknown analytics are not exchange-reported liquidation orders
                                                                      {"score": cand["features"]["macro_score"], "blackout": False},
                                                                      {"equity": guard["equity_usd"], "slots": 2 - len(positions) - len(staged_results)}, {},
                                                                      sealed=sealed)
@@ -996,9 +999,9 @@ class AI15mMT5Trader:
                                                      "sleeve": cand["sleeve"], "hurdle_r": cand["hurdle_r"],
                                                      "tp": cand["tp"], "sl": cand["sl"], "price_open": cand["price_open"]}
                             snapshot["sources"] = payload.get("sources", {})
-                            snapshot["whale_positions"] = payload.get("whale_positions", [])
-                            snapshot["projected_liquidations"] = payload.get("projected_liquidations", {})
-                            snapshot["observed_stops"] = payload.get("observed_stops", {})
+                            snapshot["whale_positions"] = (payload.get("whale_positions", []) if verified_wallet_block(payload, "observed_stops", now) else [])
+                            snapshot["projected_liquidations"] = verified_wallet_block(payload, "projected_liquidations", now) or {}
+                            snapshot["observed_stops"] = verified_wallet_block(payload, "observed_stops", now) or {}
                             budget = max(0.1, min(6, deadline - self.clock()))
                             future = self.inference_pool.submit(self.cognitive.evaluate_snapshot, snapshot, cand["direction"], budget_seconds=budget)
                             wall_deadline = time.monotonic() + budget

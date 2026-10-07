@@ -238,21 +238,69 @@ def test_as_of_utc_remains_a_string(offline):
     assert isinstance(payload["as_of_utc"], str) and "UTC" in payload["as_of_utc"]
 
 
-def test_synthetic_reconstructions_are_labeled(offline):
-    """C4: stop clusters and liquidation bands are models — the coverage
-    markers must survive into the telemetry, and liquidations must not claim
-    source REAL_BINANCE_FUTURES_OI for the band allocation."""
+def test_live_snapshot_contains_no_model_stop_or_liquidation_levels(offline):
     payload, _ = _generate(offline, FakeConnectedBridge(n_bars=800))
-    btc = payload["assets_matrix_24"]["BTC"]
-    sc = btc["structural_stop_clusters"]
-    assert sc["coverage"] == "SYNTHETIC_STRUCTURAL_MODEL"
-    assert sc["amount_semantics"] == "MODEL_WEIGHT_NOT_USD"
-    # crypto with no OI payload in this offline fixture -> UNAVAILABLE, honest
+    assert payload["protocol"] == "omni.telemetry.v3.observed_only"
+    assert payload["trade_authorization"].startswith("DENIED")
+    for asset, row in payload["assets_matrix_24"].items():
+        stops = row["structural_stop_clusters"]
+        liqs = row["reconstructed_liquidations"]
+        assert stops["source"] == "UNAVAILABLE" and stops["coverage"] == "NONE"
+        assert stops["total_sell_stops_usd"] is None and stops["total_buy_stops_usd"] is None
+        assert stops["top_sell_stop_clusters_below"] == stops["top_buy_stop_clusters_above"] == []
+        assert liqs["source"] in ("UNAVAILABLE", "NOT_APPLICABLE")
+        assert liqs["max_pain"] is None and liqs["top_long_cascade_bands_below"] == []
+        assert liqs["top_short_squeeze_bands_above"] == []
+        assert row["orderbook_live_depth"]["whale_walls_l3"] == []
+        assert row["pioneer_microstructure_eval"]["confluence_trade_setup"] is None
+
+
+def test_binance_observed_book_and_oi_remain_separate_from_mt5_and_wallet_l3(offline, monkeypatch):
+    def observed(asset):
+        if asset == "BTC":
+            return asset, {"bids": [["100.0", "2000"]], "asks": [["100.1", "2500"]]}, \
+                {"openInterest": "123.5", "time": 1791408000000}, \
+                {"lastFundingRate": "0.0001", "markPrice": "100.05", "indexPrice": "100.0"}
+        return asset, {}, {}, {}
+    monkeypatch.setattr(gts, "fetch_crypto_depth_and_oi", observed)
+    data, _ = _generate(offline, FakeConnectedBridge())
+    btc = data["assets_matrix_24"]["BTC"]
+    assert btc["quotes"]["mid"] == 83350.0  # separate MT5 venue
+    book = btc["orderbook_live_depth"]
+    assert book["source"] == "REAL_BINANCE_FUTURES_L2"
+    assert book["binance_mid"] == 100.05 and book["venue"] == "BINANCE_USDM_FUTURES"
+    assert book["bids_top20"][0][2] == 200000.0
+    assert book["whale_walls_l3"] == []
+    assert book["l2_wall_levels"][0]["persistence_status"] == "SAMPLED_ONLY_NOT_CONTINUOUS"
     liq = btc["reconstructed_liquidations"]
-    assert liq["source"] in ("MODEL_RECONSTRUCTED_OI_COHORTS", "UNAVAILABLE")
-    assert liq["source"] != "REAL_BINANCE_FUTURES_OI"
-    uswti = payload["assets_matrix_24"]["USWTI"]["reconstructed_liquidations"]
-    assert uswti["source"] == "NOT_APPLICABLE"
+    assert liq["binance_futures_open_interest_contracts"] == 123.5
+    assert liq["open_interest_source"] == "BINANCE_FUTURES_PUBLIC_REST"
+    assert liq["source"] == "UNAVAILABLE" and liq["max_pain"] is None
+    assert btc["funding_and_rates"]["last_funding_rate_bps"] == 1.0
+
+
+def test_missing_quote_and_volume_are_null_not_synthesized(offline):
+    class NoQuoteOrVolume(FakeConnectedBridge):
+        def get_symbol_price(self, symbol):
+            return {}
+        def get_recent_bars(self, symbol, count=96, timeframe=None):
+            return [{**b, "volume": 0, "tick_volume": 0}
+                    for b in super().get_recent_bars(symbol, count, timeframe)]
+    payload, _ = _generate(offline, NoQuoteOrVolume())
+    row = payload["assets_matrix_24"]["BTC"]
+    assert row["quotes"]["quote_source"] == "UNAVAILABLE"
+    assert row["quotes"]["bid"] is row["quotes"]["ask"] is row["quotes"]["spread_bps"] is None
+    assert row["causal_indicators"]["session_vwap_utc"] is None
+    assert row["volume_profile"]["source"] == "UNAVAILABLE_NO_OBSERVED_VOLUME"
+    assert row["volume_profile"]["poc"] is None
+
+
+def test_coinbase_premium_failure_is_null_not_binance_mark_index(monkeypatch):
+    def down(*args, **kwargs):
+        raise OSError("coinbase unavailable")
+    monkeypatch.setattr(gts.urllib.request, "urlopen", down)
+    assert gts.compute_live_coinbase_premium_bps(
+        {"BTC": {"markPrice": 100, "indexPrice": 90}}) is None
 
 
 def test_orderbook_unavailable_is_honest_for_crypto_without_depth(offline):

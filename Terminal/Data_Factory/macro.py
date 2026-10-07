@@ -147,9 +147,10 @@ class CoinbasePremiumIndex:
 
     def bps(self, now=None):
         mids = {}
-        for tick in self.bus.ticks(self.asset, limit=64):
+        for tick in reversed(self.bus.ticks(self.asset, limit=64)):
             venue = tick.get("venue")
-            if venue in ("COINBASE", "BINANCE") and venue not in mids:
+            if (venue in ("COINBASE", "BINANCE") and venue not in mids
+                    and (now is None or 0 <= float(now) - float(tick.get("ts") or 0) <= 30)):
                 mids[venue] = tick["price"]
         if len(mids) < 2:
             return None

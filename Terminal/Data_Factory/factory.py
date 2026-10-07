@@ -1,22 +1,10 @@
-"""ZeroCostDataFactory: the all-in-one orchestrator (Pillars 1-6).
+"""ZeroCostDataFactory: multi-venue bus and research engines.
 
-Owns the IntelligenceBus, the liquidation/stop reconstruction engines, the
-whale label registry and the macro trackers, and exposes:
-
-  * ``ingest_*``      - feed entry points used by the venue streamers and tests
-  * ``payload``       - the SAME payload schema ``Omni_Trader``/``Chrome_Terminal``
-                        build from Hyperdash today (l2_book, recent_trades,
-                        l3_orders walls, projected_liquidations, observed_stops,
-                        sources receipt timestamps) so ``Risk_Sizing_Engine``
-                        and ``OF_Strategy`` consume it unchanged
-  * ``payload_fetcher`` - a drop-in ``fetcher=`` adapter for ``AI15mMT5Trader``
-  * ``snapshot``      - sealed (SHA-256 chained) bus feature vector
-  * ``run``           - async lifecycle over injectable transports (tests
-                        inject fakes; production lazy-imports websockets)
-
-Everything degrades honestly: each payload block carries its own receipt
-time in ``sources``, and ``Risk_Sizing_Engine`` already refuses stale blocks
-- the factory never backfills or interpolates timestamps.
+The live payload publishes observed L2/trade prints, sampled realized Binance
+force-order events and explicitly unavailable resting liquidation/stop data.
+Research reconstruction models remain callable separately but cannot populate
+observed live fields or authorize an execution gate. L2 wall samples are not
+wallet-attributed L3 orders and never carry continuous persistence claims.
 """
 from __future__ import annotations
 import asyncio
@@ -43,7 +31,7 @@ VERSION = "omni.zero_cost_data_factory.v1"
 
 
 class _WallTracker:
-    """Aggregates depth snapshots into persistent wall clusters (l3_orders)."""
+    """Summarizes repeated anonymous aggregated L2 depth samples (not L3)."""
 
     def __init__(self, *, cluster_tol_bps=10.0, min_notional_usd=150_000.0,
                  min_persistence_sec=180.0, top_n=20):
@@ -54,7 +42,7 @@ class _WallTracker:
         self._walls = {}   # (asset, side, rounded_px) -> {"first":, "last":, "usd":}
 
     def observe(self, asset, book, now):
-        """Refresh cluster persistence spans; returns l3_orders rows."""
+        """Refresh observed sample spans; return anonymous L2 price-level rows."""
         for side, rows, sign in (("BUY", book.get("bids") or [], -1),
                                  ("SELL", book.get("asks") or [], 1)):
             clusters = {}
@@ -76,12 +64,12 @@ class _WallTracker:
                     wall = {"first": now, "last": now, "usd": cluster["usd"]}
                 wall.update(last=now, usd=cluster["usd"])
                 self._walls[wall_key] = wall
-        return self.l3_orders(asset, now)
+        return self.l2_wall_levels(asset, now)
 
-    def l3_orders(self, asset, now):
-        """Persistent resting walls only: notional >= min_notional_usd AND
-        persistence >= min_persistence_sec (default 180s). A wall observed
-        once is fleeting depth, not a resting whale cluster."""
+    def l2_wall_levels(self, asset, now):
+        """Repeated sampled anonymous L2 price levels only: notional >= min_notional_usd AND
+        sample span >= min_persistence_sec (default 180s). This is not
+        proof of a continuously resting order or wallet identity."""
         out = []
         for (a, side, edge), wall in self._walls.items():
             if a != asset or now - wall["last"] > 30:
@@ -90,8 +78,9 @@ class _WallTracker:
             if persistence < self.min_persistence_sec:
                 continue
             out.append({"side": side, "price": edge, "notional_usd": wall["usd"],
-                        "persistence_sec": persistence,
-                        "observed_at": wall["last"], "order_id": f"wall:{side}:{edge}"})
+                        "sample_span_sec": persistence,
+                        "observed_at": wall["last"], "level_key": f"aggregate:{side}:{edge}",
+                        "identity": "ANONYMOUS_L2_PRICE_LEVEL_NOT_AN_ORDER"})
         out.sort(key=lambda w: w["notional_usd"], reverse=True)
         return out[:self.top_n]
 
@@ -259,36 +248,35 @@ class ZeroCostDataFactory:
                    "notional_usd": e.get("notional_usd"),
                    "is_whale": number(e.get("notional_usd")) >= self.min_whale_usd}
                   for e in recent if e.get("kind") != "LIQUIDATION" and e["ts"] <= now]
-        liq_bands = self.liq.reconstruct(asset, now=now, current_price=mid)
-        stop_bands = {"kind": "OBSERVED_STOP_ORDERS", "bands": [], "observed_at": now}
-        if self._bars.get(asset) and mid:
-            atr = self._atr(asset)
-            stop_bands = self.stops.reconstruct(self._bars[asset], now=now, mid=mid,
-                                                atr=atr, profile=self._profiles.get(asset))
-        l3 = self.wall_tracker.observe(asset, book, now) if book else []
-        whale = self._whales.get(asset)
-        whale_positions = whale["positions"] if whale and 0.0 <= now - whale["observed_at"] <= 3600.0 else []
+        # Reconstruction engines remain research-only. No modeled bands or
+        # anonymous aggregated L2 wall may impersonate an observed order.
+        liq_bands = {"kind": "UNAVAILABLE", "coverage": "NONE", "bands": [],
+                     "reason": "No verified wallet-risk sample"}
+        stop_bands = {"kind": "UNAVAILABLE", "coverage": "NONE", "bands": [],
+                      "reason": "No verified stop-order sample"}
+        l2_wall_levels = self.wall_tracker.observe(asset, book, now) if book else []
+        l3 = []
         orderflow = self.bus.snapshot(asset, now)
         sources = {"l2": {"observed_at": number(book.get("ts"), 0.0),
-                          "timestamp_basis": "VENUE_EVENT_TIME"},
-                   "l3": {"observed_at": now, "timestamp_basis": "RECEIPT_ONLY",
-                          "coverage": "SYNTHETIC_WALL_CLUSTERS"},
-                   "wallet_risk": {"observed_at": now, "timestamp_basis": "RECEIPT_ONLY",
-                                   "coverage": liq_bands.get("coverage", "")},
-                   "liquidations": {"observed_at": liq_bands.get("observed_at", 0.0),
-                                    "timestamp_basis": "RECEIPT_ONLY",
-                                    "coverage": "SYNTHETIC_OI_DELTA_MODEL"},
-                   "stops": {"observed_at": stop_bands.get("observed_at", 0.0),
-                             "timestamp_basis": "RECEIPT_ONLY",
-                             "coverage": "SYNTHETIC_STRUCTURAL_MODEL"}}
+                          "timestamp_basis": "VENUE_EVENT_TIME",
+                          "provider": book.get("venue", "UNKNOWN")},
+                   "l3": {"observed_at": None, "coverage": "NONE"},
+                   "wallet_risk": {"observed_at": None, "coverage": "NONE"},
+                   "liquidations": {"observed_at": None, "coverage": "NONE"},
+                   "stops": {"observed_at": None, "coverage": "NONE"}}
         return {"coin": asset, "price": mid, "l2_book": book,
                 "recent_trades": trades, "l3_orders": l3,
+                "l2_wall_levels": l2_wall_levels,
                 "orderflow": orderflow,
-                "whale_positions": whale_positions,
-                "whale_net_flow_usd_24h": self._whale_net_flow_usd(asset, now),
+                "whale_positions": [],  # sampler lacks verifiable provider receipt
+                "whale_net_flow_usd_24h": None,
+                "whale_coverage": "UNAVAILABLE_UNATTESTED_SAMPLER",
                 "projected_liquidations": liq_bands,
                 "observed_stops": stop_bands,
-                "liquidations": {**liq_bands, "empirical_bands": self.liq.empirical_bands(asset)},
+                "liquidations": liq_bands,
+                "realized_liquidation_events": {"source": "BINANCE_FORCE_ORDER_WS",
+                                                "coverage": "SAMPLED_EXECUTIONS_NOT_RESTING_EXPOSURE",
+                                                "bands": self.liq.empirical_bands(asset)},
                 "stops": stop_bands,
                 "sources": sources, "timestamp": int(now * 1000),
                 "factory_version": VERSION}
@@ -328,7 +316,7 @@ class ZeroCostDataFactory:
 
     def macro_snapshot(self):
         """Pillar 5 block for ``Market_Intelligence`` enrichment."""
-        premium = self.premium.bps()
+        premium = self.premium.bps(now=self.clock())
         fng = self.fng.value()
         flows = {}
         for asset in ("BTC", "ETH"):

@@ -6,8 +6,8 @@ Zero-Token Autonomous Background Telemetry & Git Synchronization Daemon.
 
 Operates 100% autonomously without LLM / AI token consumption:
 1. Every 60 seconds, refreshes the live 24-asset market orderbook, liquidation
-   bands, stop clusters, indicators, and MT5 account state via generate_full_snapshot().
-2. Automatically performs git fetch against origin/arena/4adf3661-trading-2.
+   observed depth, indicators, and MT5 account state via generate_full_snapshot().
+2. Automatically performs git fetch against the Arena session branch.
 3. If Arena.ai has pushed a new commit (Council report or trade plan):
    - Rebases remote commits into local branch.
    - Logs commit details and alerts the trading engine.
@@ -17,6 +17,7 @@ Operates 100% autonomously without LLM / AI token consumption:
 from __future__ import annotations
 
 import datetime
+import json
 import gc
 import logging
 import os
@@ -122,6 +123,17 @@ def sync_git_cycle():
     # 3. Check for modified telemetry or audit files to commit and push
     code, status_out, _ = run_cmd(["git", "status", "--porcelain", "docs/telemetry/", "docs/audits/"])
     if status_out:
+        from Terminal.Telemetry_Provenance import validate_observed_snapshot
+        try:
+            document = json.loads((ROOT / "docs/telemetry/live_snapshot_latest.json").read_text(encoding="utf-8"))
+            if (not validate_observed_snapshot(document) or
+                    not 0 <= time.time() - float(document.get("as_of_epoch") or 0) <= 180 or
+                    document.get("snapshot_status") != "LIVE_OBSERVATION"):
+                logger.error("REFUSING stale/model-backed telemetry commit; regenerate with observed-only v3 producer")
+                return
+        except (OSError, ValueError, TypeError) as exc:
+            logger.error("REFUSING invalid telemetry snapshot: %s", exc)
+            return
         run_cmd(["git", "add", "docs/telemetry/live_snapshot_latest.json", "docs/audits/"])
         now_str = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
         commit_msg = f"telemetry: live 1m auto-sync [as_of {now_str}]"
@@ -131,13 +143,12 @@ def sync_git_cycle():
             p_code, p_out, p_err = run_cmd(["git", "push", "origin", BRANCH_NAME])
             if p_code == 0:
                 logger.info(f"Successfully pushed telemetry to origin/{BRANCH_NAME}")
-                # Also keep main updated at all times per user directive
-                run_cmd(["git", "push", "origin", f"{BRANCH_NAME}:main"])
+                # Only this Arena branch may be pushed from this session.
             else:
                 logger.warning(f"git push rejected or failed: {p_err}. Retrying with rebase...")
                 run_cmd(["git", "pull", "--rebase", "--autostash", "origin", BRANCH_NAME])
                 run_cmd(["git", "push", "origin", BRANCH_NAME])
-                run_cmd(["git", "push", "origin", f"{BRANCH_NAME}:main"])
+
 
 
 def main():

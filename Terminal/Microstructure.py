@@ -1,8 +1,7 @@
 """Causal, exchange-agnostic microstructure helpers.
 
-These helpers deliberately do not infer liquidation side from price alone unless the
-upstream feed documents that convention. Hyperliquid liquidation events should carry
-an explicit position side; a price split is only a visualization fallback.
+These helpers never infer the position side of an actual liquidation event from
+price alone. A missing explicit side is unknown, not an observed long/short.
 """
 from __future__ import annotations
 
@@ -15,15 +14,14 @@ from dataclasses import dataclass
 def classify_liquidation(price: float, current_price: float, side: str | None = None) -> str:
     """Return LONG/SHORT using explicit position side when available.
 
-    Price location is a fallback heuristic only: below-market liquidations are
-    commonly long-liquidation risk and above-market commonly short-liquidation
-    risk, but the exchange event direction is authoritative.
+    No side is inferred from location: price-relative rules are hypothetical
+    positioning models, not observed exchange liquidation events.
     """
     if side:
         s = side.upper()
         if s in {"LONG", "BUY", "B"}: return "LONG"
         if s in {"SHORT", "SELL", "A"}: return "SHORT"
-    return "LONG" if price < current_price else "SHORT"
+    return "UNKNOWN"
 
 
 def safe_imbalance(positive: float, negative: float) -> float:

@@ -1,23 +1,10 @@
 #!/usr/bin/env python3
-"""
-Terminal/Data_Factory/generate_telemetry_snapshot.py
-=====================================================
-Comprehensive Multi-Asset Orderflow, Liquidation & Stop Telemetry Exporter.
+"""Observed-only 24-asset telemetry exporter.
 
-Gathers and serializes the complete, unabridged real-time market state for:
-- MT5 Account 5064568 (Blueberry Markets SVG LLC): equity, balance, margins, positions, pending orders.
-- Macro Intelligence: Fear & Greed Index, Farside ETF flows, FOMC blackout calendar, Coinbase premium.
-- All 24 Institutional Assets (14 Crypto, 4 Indices, 3 Commodities, 3 Forex):
-  * Live broker quotes & specifications (bid, ask, spread, tick size, contract size)
-  * Causal indicators: Daily Session VWAP (00:00 UTC anchor), VWAP Z-score, SD bands, RSI(14), ATR(14), EMA 20/50/200, slope
-  * Volume Profile: POC, VAH, VAL
-  * Structural Stop Clusters: Fractal swing stops, ATR offsets, volume profile bounds, round numbers
-  * Reconstructed Liquidation Bands: Synthetic OI delta cohorts (10x, 25x, 50x, 100x), Max Pain, FAFR
-  * Live L2 Orderbook Depth: Top 20 bids & top 20 asks, cumulative notional USD, book imbalance, skew ratio
-  * Persistent L3 Whale Walls: Resting orders >= 150k USD
-  * Pioneer Microstructure Gating & Analysis
-
-Outputs directly to `docs/telemetry/live_snapshot_latest.json`.
+MT5 account/inventory/quotes and broker candle-derived indicators are distinct
+from Binance Futures anonymous L2/OI/klines. No reconstructed stop or
+liquidation levels are emitted; missing observations are explicitly unavailable.
+The published document never authorizes an order.
 """
 from __future__ import annotations
 
@@ -41,12 +28,8 @@ if str(ROOT) not in sys.path:
 from Terminal.Asset_Universe import UNIVERSE, EXTENDED_UNIVERSE, canonical_asset
 from Terminal.MT5_Execution_Bridge import MT5ExecutionBridge
 from Terminal.Candle_Indicator_Engine import CandleIndicatorEngine
-from Terminal.Data_Factory.liquidation_engine import (
-    LiquidationReconstructionEngine,
-    StopClusterEngine,
-    liq_price,
-)
 from Terminal.Data_Factory.macro import FearGreedIndex, FarsideETFFlows
+from Terminal.Telemetry_Provenance import validate_observed_snapshot
 
 TELEMETRY_PATH = ROOT / "docs" / "telemetry" / "live_snapshot_latest.json"
 TELEMETRY_PATH.parent.mkdir(parents=True, exist_ok=True)
@@ -89,6 +72,8 @@ def fetch_crypto_cvd_buckets(asset: str) -> Tuple[str, List[Dict[str, Any]]]:
             klines = json.loads(resp.read())
         for k in klines:
             ts_ms, o, h, l, c, vol, close_ts, quote_vol, trades, taker_buy_vol, taker_buy_quote, _ = k
+            if int(close_ts) > time.time() * 1000:
+                continue  # forming minute is not a completed CVD bucket
             total_vol = float(quote_vol)
             taker_buy = float(taker_buy_quote)
             taker_sell = total_vol - taker_buy
@@ -118,6 +103,8 @@ def fetch_crypto_htf_ohlcv(asset: str) -> Tuple[str, List[Dict], List[Dict]]:
             with urllib.request.urlopen(req, timeout=5) as resp:
                 klines = json.loads(resp.read())
             for k in klines:
+                if int(k[6]) > time.time() * 1000:
+                    continue  # do not mix the forming 4h/D1 bar with completed bars
                 target.append({
                     "ts": int(k[0]) // 1000,
                     "open": float(k[1]), "high": float(k[2]),
@@ -142,14 +129,14 @@ def fetch_crypto_funding_history(asset: str) -> Tuple[str, List[Dict]]:
             rates.append({
                 "ts": int(r["fundingTime"]) // 1000,
                 "rate_bps": round(float(r["fundingRate"]) * 1e4, 4),
-                "mark_price": round(float(r.get("markPrice", 0)), 4)
+                "mark_price": round(float(r["markPrice"]), 4) if r.get("markPrice") is not None else None
             })
     except Exception:
         pass
     return asset, rates
 
 
-def compute_live_coinbase_premium_bps(crypto_prems: Dict[str, Dict] = None) -> float:
+def compute_live_coinbase_premium_bps(crypto_prems: Dict[str, Dict] = None) -> Optional[float]:
     """Compute true live Coinbase Premium: (Coinbase_BTC_Spot - Binance_BTC_Spot) / Binance * 10000 bps."""
     try:
         req_cb = urllib.request.Request("https://api.coinbase.com/v2/prices/BTC-USD/spot", headers={"User-Agent": USER_AGENT})
@@ -162,14 +149,7 @@ def compute_live_coinbase_premium_bps(crypto_prems: Dict[str, Dict] = None) -> f
             return round((cb_price - bn_price) / bn_price * 1e4, 2)
     except Exception:
         pass
-    # Secondary real fallback: Binance mark vs index spread
-    if crypto_prems:
-        btc_prem = crypto_prems.get("BTC", {})
-        mark = float(btc_prem.get("markPrice", 0))
-        index = float(btc_prem.get("indexPrice", 0))
-        if mark > 0 and index > 0:
-            return round((mark - index) / index * 1e4, 2)
-    return 0.0
+    return None  # A Binance-only mark/index spread is NOT a Coinbase premium.
 
 
 def _write_error_marker(reason: str) -> None:
@@ -248,18 +228,18 @@ def fetch_crypto_depth_and_oi(asset: str) -> Tuple[str, Dict[str, Any], Dict[str
 
 def compute_volume_profile(bars: List[Dict[str, Any]], num_bins: int = 50) -> Dict[str, float]:
     """Compute Point of Control (POC), Value Area High (VAH), and Value Area Low (VAL)."""
-    if not bars:
-        return {"poc": 0.0, "vah": 0.0, "val": 0.0, "total_volume": 0.0}
+    if not bars or not any(float(b.get("real_volume") or b.get("volume") or b.get("tick_volume") or 0) > 0 for b in bars):
+        return {"poc": None, "vah": None, "val": None, "total_volume": None, "source": "UNAVAILABLE_NO_OBSERVED_VOLUME"}
 
     highs = [float(b.get("high", 0.0)) for b in bars]
     lows = [float(b.get("low", 0.0)) for b in bars]
-    volumes = [float(b.get("volume") or b.get("tick_volume") or 1.0) for b in bars]
+    volumes = [float(b.get("real_volume") or b.get("volume") or b.get("tick_volume") or 0.0) for b in bars]
 
     min_p = min(lows)
     max_p = max(highs)
     if min_p >= max_p or min_p <= 0:
         mid = (min_p + max_p) / 2.0
-        return {"poc": mid, "vah": mid, "val": mid, "total_volume": sum(volumes)}
+        return {"poc": mid, "vah": mid, "val": mid, "total_volume": sum(volumes), "source": "DERIVED_FROM_MT5_BAR_VOLUME"}
 
     bins = np.linspace(min_p, max_p, num_bins + 1)
     bin_vols = np.zeros(num_bins)
@@ -292,7 +272,7 @@ def compute_volume_profile(bars: List[Dict[str, Any]], num_bins: int = 50) -> Di
 
     val = float(bins[lo_idx])
     vah = float(bins[hi_idx + 1])
-    return {"poc": round(poc, 4), "vah": round(vah, 4), "val": round(val, 4), "total_volume": round(total_vol, 1)}
+    return {"poc": round(poc, 4), "vah": round(vah, 4), "val": round(val, 4), "total_volume": round(total_vol, 1), "source": "DERIVED_FROM_MT5_BAR_VOLUME"}
 
 
 def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
@@ -344,21 +324,21 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
         p_cur = float(p.get("price_current", 0.0))
         sl = float(p.get("sl", 0.0))
         tp = float(p.get("tp", 0.0))
-        direction = p.get("direction", "LONG")
+        direction = p.get("direction")
         ticket = str(p.get("ticket"))
         initial_r = _initial_r_by_ticket.get(ticket, 0.0)
-        risk_dist = abs(p_open - sl) if sl > 0 else 1.0
-        gain_dist = (p_cur - p_open) if direction == "LONG" else (p_open - p_cur)
-        r_mult = gain_dist / risk_dist if risk_dist > 0 else 0.0
-        r_initial = gain_dist / initial_r if initial_r > 0 else None
+        risk_dist = abs(p_open - sl) if sl > 0 and p_open > 0 and sl != p_open else None
+        gain_dist = (p_cur - p_open) if direction == "LONG" else (p_open - p_cur) if direction == "SHORT" else None
+        r_mult = gain_dist / risk_dist if gain_dist is not None and risk_dist else None
+        r_initial = gain_dist / initial_r if gain_dist is not None and initial_r > 0 else None
 
         # Label on initial-risk R when known (honest); fall back to live-SL R
         # with an explicit basis flag so the label can never masquerade.
         r_label = r_initial if r_initial is not None else r_mult
         ratchet_state = "PHASE_0_PENDING"
-        if r_label >= 1.50:
+        if r_label is not None and r_label >= 1.50:
             ratchet_state = "PHASE_1_PROFIT_LOCKED"
-        elif r_label >= 0.80:
+        elif r_label is not None and r_label >= 0.80:
             ratchet_state = "PHASE_0_BE_LOCKED"
 
         formatted_positions.append({
@@ -370,12 +350,12 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
             "price_current": p_cur,
             "sl": sl,
             "tp": tp,
-            "profit_usd": p.get("profit_usd", 0.0),
-            "r_multiple": round(r_mult, 2),
+            "profit_usd": p.get("profit_usd"),
+            "r_multiple": round(r_mult, 2) if r_mult is not None else None,
             "r_multiple_basis": "live_sl_distance",
             "r_multiple_initial_risk": round(r_initial, 2) if r_initial is not None else None,
             "ratchet_state": ratchet_state,
-            "time_open_utc": datetime.fromtimestamp(p.get("time", now_ts), tz=timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
+            "time_open_utc": datetime.fromtimestamp(p["time"], tz=timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC") if p.get("time") else None
         })
 
     # Format pending orders
@@ -501,6 +481,7 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
         "fng_index": fng_val,
         "etf_net_flows": etf_flows_1d,
         "coinbase_premium_bps": live_cb_premium,
+        "coinbase_premium_source": "COINBASE_SPOT_AND_BINANCE_SPOT_RECEIPT" if live_cb_premium is not None else "UNAVAILABLE",
         "runway_hours_to_blackout": round((datetime(2026, 10, 7, 17, 0, 0, tzinfo=timezone.utc).timestamp() - now_ts) / 3600.0, 2)
     }
     # Audit finding M2: the event window above is a declared constant, not a
@@ -514,15 +495,13 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
     new_whale_state: Dict[str, Any] = {}
 
     # 4. Process all 24 Assets
-    stop_engine = StopClusterEngine()
-    liq_engine = LiquidationReconstructionEngine()
 
     assets_matrix: Dict[str, Any] = {}
 
     for asset in ALL_24_ASSETS:
         # Resolve broker symbol & quote
         broker_sym = bridge.resolve_symbol(asset) if bridge.initialized else None
-        quote = bridge.get_symbol_price(broker_sym) if (bridge.initialized and broker_sym) else {}
+        quote = (bridge.get_symbol_price(broker_sym) or {}) if (bridge.initialized and broker_sym) else {}
 
         # Broker Execution Specs
         exec_specs: Dict[str, Any] = {}
@@ -534,24 +513,30 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                 if s_info:
                     specs_source = "BROKER_MT5_SYMBOL_INFO"
                     exec_specs = {
-                        "tick_size": getattr(s_info, "trade_tick_size", 0.0001),
-                        "contract_size": getattr(s_info, "trade_contract_size", 1.0),
-                        "min_lot": getattr(s_info, "volume_min", 0.01),
-                        "step_lot": getattr(s_info, "volume_step", 0.01),
-                        "max_lot": getattr(s_info, "volume_max", 100.0),
-                        "stops_level": getattr(s_info, "trade_stops_level", 0),
-                        "point": getattr(s_info, "point", 0.0001),
-                        "digits": getattr(s_info, "digits", 4)
+                        "tick_size": getattr(s_info, "trade_tick_size", None),
+                        "contract_size": getattr(s_info, "trade_contract_size", None),
+                        "min_lot": getattr(s_info, "volume_min", None),
+                        "step_lot": getattr(s_info, "volume_step", None),
+                        "max_lot": getattr(s_info, "volume_max", None),
+                        "stops_level": getattr(s_info, "trade_stops_level", None),
+                        "point": getattr(s_info, "point", None),
+                        "digits": getattr(s_info, "digits", None)
                     }
             except Exception:
                 pass
 
-        # Quotes resolution
+        # A bar close is not an executable bid/ask; never infer a spread.
         bid_price = float(quote.get("bid") or 0.0)
         ask_price = float(quote.get("ask") or 0.0)
-        mid_price = (bid_price + ask_price) / 2.0 if (bid_price > 0 and ask_price > 0) else float(quote.get("last") or 0.0)
-        spread_price = ask_price - bid_price if (bid_price > 0 and ask_price > 0) else float(quote.get("spread") or 0.0)
-        spread_bps = (spread_price / max(mid_price, 1e-6) * 1e4) if mid_price > 0 else 0.0
+        quote_valid = bid_price > 0 and ask_price >= bid_price
+        mid_price = (bid_price + ask_price) / 2.0 if quote_valid else 0.0
+        spread_price = ask_price - bid_price if quote_valid else None
+        spread_bps = spread_price / mid_price * 1e4 if quote_valid else None
+        quote_source = "MT5_L1_TICK" if quote_valid else "UNAVAILABLE"
+        tick_epoch = float(quote.get("time_msc") or 0) / 1000 or None
+        quote_age_s = round(now_ts - tick_epoch, 2) if tick_epoch else None
+        quote_freshness = ("FRESH" if quote_age_s is not None and 0 <= quote_age_s <= 30
+                           else "STALE" if quote_age_s is not None else "TIMESTAMP_UNAVAILABLE")
 
         # Fetch fresh 15m candles directly from live broker or fall back to parquet
         bars: List[Dict[str, Any]] = []
@@ -597,41 +582,23 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
             indicator_age_min = None
             bars_last_close_utc = None
 
-        if not mid_price and bars:
-            # Audit finding C3: broker quote missing — derive from last candle
-            # close, but LABEL it. A synthetic 4 bps spread must never
-            # masquerade as a live L1 quote.
-            mid_price = float(bars[-1].get("close", 0.0))
-            bid_price = mid_price * 0.9998
-            ask_price = mid_price * 1.0002
-            spread_price = ask_price - bid_price
-            spread_bps = 4.0
-            quote_source = "SYNTHETIC_FROM_LAST_CLOSE"
-        elif bid_price > 0 and ask_price > 0:
-            quote_source = "MT5_L1_TICK"
-        else:
-            quote_source = "UNAVAILABLE"
-
-        # Indicators
-        indicators = CandleIndicatorEngine.compute_indicators(bars) if bars else {}
-        atr = float(indicators.get("atr_14") or (mid_price * 0.006))
-        rsi = float(indicators.get("rsi_14") or 50.0)
-        session_vwap = indicators.get("session_vwap")
-        session_sigma = indicators.get("session_sigma") or (atr * 0.8)
-        if session_vwap and session_sigma and session_sigma > 0:
-            vwap_z = (mid_price - session_vwap) / session_sigma
-        else:
-            vwap_z = float(indicators.get("vwap_z") or 0.0)
-        ema_20 = float(indicators.get("ema_20") or mid_price)
-        ema_50 = float(indicators.get("ema_50") or mid_price)
-        # Audit finding C2: with fewer than EMA200_MIN_BARS bars the engine
-        # silently computes a ~96-period EMA. Emit null instead of a proxy
-        # mislabeled as EMA200 — consumers must see the truth.
+        # Bars without measured broker volume cannot yield a volume-weighted
+        # price; old indicator code used fictitious unit weights for these.
+        has_bar_volume = bool(bars) and all(
+            float(b.get("real_volume") or b.get("volume") or b.get("tick_volume") or 0) > 0
+            for b in bars)
+        bars_fresh = indicator_age_min is not None and indicator_age_min <= 30
+        indicators = CandleIndicatorEngine.compute_indicators(bars) if bars and bars_fresh else {}
+        atr = indicators.get("atr_14")
+        rsi = indicators.get("rsi_14")
+        session_vwap = indicators.get("session_vwap") if has_bar_volume else None
+        session_sigma = indicators.get("session_sigma") if has_bar_volume else None
+        vwap_z = ((mid_price - session_vwap) / session_sigma
+                  if quote_valid and session_vwap is not None and session_sigma and session_sigma > 0 else None)
+        ema_20 = indicators.get("ema_20")
+        ema_50 = indicators.get("ema_50")
         _ema200_raw = indicators.get("ema_200")
-        if _ema200_raw is not None and len(bars) >= EMA200_MIN_BARS:
-            ema_200 = float(_ema200_raw)
-        else:
-            ema_200 = None
+        ema_200 = float(_ema200_raw) if _ema200_raw is not None and len(bars) >= EMA200_MIN_BARS else None
         # (audit H2 root cause: the engine emits "ema_200_slope_pct" - the
         # old code read a nonexistent "_3h" key and hard-zeroed the slope.)
         _slope_raw = indicators.get("ema_200_slope_pct")
@@ -641,126 +608,26 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
             ema_200_slope = None
 
         # Volume profile
-        vol_profile = compute_volume_profile(bars[-96:] if len(bars) >= 96 else bars)
+        vol_profile = compute_volume_profile(bars[-96:] if len(bars) >= 96 else bars) if bars_fresh else compute_volume_profile([])
 
-        # -----------------------------------------------------------------
-        # Structural Stop Clusters (StopClusterEngine)
-        # -----------------------------------------------------------------
-        stop_results = stop_engine.reconstruct(bars, now=now_ts, mid=mid_price, atr=atr, profile=vol_profile)
-        raw_stop_bands = stop_results.get("bands", [])
-
-        sell_stops = []  # Below mid (longs' stops)
-        buy_stops = []   # Above mid (shorts' stops)
-
-        for sb in raw_stop_bands:
-            band_mid = float(sb.get("mid_px", 0.0))
-            dist_pct = round((band_mid - mid_price) / max(mid_price, 1e-6) * 100.0, 2)
-            band_entry = {
-                "min_px": round(float(sb.get("min_px", 0.0)), 4),
-                "max_px": round(float(sb.get("max_px", 0.0)), 4),
-                "mid_px": round(band_mid, 4),
-                "amount_usd": round(float(sb.get("amount_usd", 0.0)), 2),
-                "distance_pct": dist_pct,
-                "cluster_type": sb.get("side", "STOP")
-            }
-            if band_mid < mid_price:
-                sell_stops.append(band_entry)
-            else:
-                buy_stops.append(band_entry)
-
-        # Sort: sell stops descending (closest to price first), buy stops ascending
-        sell_stops.sort(key=lambda x: x["mid_px"], reverse=True)
-        buy_stops.sort(key=lambda x: x["mid_px"])
-
-        # -----------------------------------------------------------------
-        # Liquidation Bands & Density (LiquidationReconstructionEngine)
-        # -----------------------------------------------------------------
-        # -----------------------------------------------------------------
-        # Liquidation Bands & Density (LiquidationReconstructionEngine)
-        # ONLY for Crypto Perpetuals with Real Binance Futures Open Interest
-        # -----------------------------------------------------------------
-        if asset in CRYPTO_ASSETS:
-            oi_info = crypto_ois.get(asset, {})
-            oi_contracts = float(oi_info.get("openInterest") or 0.0)
-            oi_usd = oi_contracts * mid_price if oi_contracts > 0 else 0.0
-
-            if oi_contracts > 0:
-                for b in bars[-48:]:
-                    p_close = float(b.get("close", mid_price))
-                    v_usd = float(b.get("volume") or b.get("tick_volume") or 1.0) * p_close
-                    liq_engine.observe_trade(asset, ts=float(b.get("time", now_ts)), price=p_close, notional_usd=v_usd)
-
-                liq_engine.observe_oi(asset, ts=now_ts - 3600, price=mid_price * 0.998, oi_usd=oi_usd * 0.99, taker_buy_ratio=0.50)
-                liq_engine.observe_oi(asset, ts=now_ts, price=mid_price, oi_usd=oi_usd, taker_buy_ratio=0.52)
-
-                liq_recon = liq_engine.reconstruct(asset, now=now_ts, current_price=mid_price)
-                raw_liq_bands = liq_recon.get("bands", [])
-
-                long_liqs = []
-                short_liqs = []
-                for lb in raw_liq_bands:
-                    l_mid = float(lb.get("mid_px", 0.0))
-                    dist_pct = round((l_mid - mid_price) / max(mid_price, 1e-6) * 100.0, 2)
-                    liq_entry = {
-                        "min_px": round(float(lb.get("min_px", 0.0)), 4),
-                        "max_px": round(float(lb.get("max_px", 0.0)), 4),
-                        "mid_px": round(l_mid, 4),
-                        "amount_usd": round(float(lb.get("amount_usd", 0.0)), 2),
-                        "distance_pct": dist_pct,
-                        "type": lb.get("type", "CASCADE")
-                    }
-                    if l_mid < mid_price:
-                        long_liqs.append(liq_entry)
-                    else:
-                        short_liqs.append(liq_entry)
-
-                long_liqs.sort(key=lambda x: x["mid_px"], reverse=True)
-                short_liqs.sort(key=lambda x: x["mid_px"])
-                max_pain = liq_engine.max_pain(asset, now=now_ts, current_price=mid_price)
-
-                reconstructed_liquidations = {
-                    # Audit finding C4: only the OI total is exchange data. The
-                    # band allocation is a synthetic single-cohort leverage-tier
-                    # model (proven: bands == liq_price(mid, 10/25/50/100)).
-                    # Label it honestly; keep the real-OI provenance separate.
-                    "source": "MODEL_RECONSTRUCTED_OI_COHORTS",
-                    "coverage": liq_recon.get("coverage", "SYNTHETIC_OI_DELTA_MODEL"),
-                    "oi_source": "REAL_BINANCE_FUTURES_OI",
-                    "open_interest_usd": round(oi_usd, 2),
-                    "open_interest_contracts": round(oi_contracts, 2),
-                    "total_long_liquidation_usd": round(liq_recon.get("total_long_size", 0.0), 2),
-                    "total_short_liquidation_usd": round(liq_recon.get("total_short_size", 0.0), 2),
-                    "max_pain": {
-                        "price": round(float(max_pain.get("price", mid_price)), 4),
-                        "cascade_usd": round(float(max_pain.get("cascade_usd", 0.0)), 2),
-                        "direction": max_pain.get("direction", "NONE")
-                    },
-                    "top_long_cascade_bands_below": long_liqs[:5],
-                    "top_short_squeeze_bands_above": short_liqs[:5]
-                }
-            else:
-                reconstructed_liquidations = {
-                    "source": "UNAVAILABLE",
-                    "open_interest_usd": None,
-                    "open_interest_contracts": None,
-                    "total_long_liquidation_usd": None,
-                    "total_short_liquidation_usd": None,
-                    "max_pain": None,
-                    "top_long_cascade_bands_below": [],
-                    "top_short_squeeze_bands_above": []
-                }
-        else:
-            # Forex, Commodities, and Indices CFDs do not have perpetual futures liquidations
-            reconstructed_liquidations = {
-                "source": "NOT_APPLICABLE",
-                "open_interest_usd": None,
-                "open_interest_contracts": None,
-                "total_long_liquidation_usd": None,
-                "total_short_liquidation_usd": None,
-                "max_pain": None,
-                "top_long_cascade_bands_below": [],
-                "top_short_squeeze_bands_above": []
-            }
+        # Neither MT5 bars nor Binance aggregate open interest reveal pending
+        # stops or resting liquidation prices. Keep OI as a separate observed
+        # metric; live stop/liq bands remain unavailable without a direct feed.
+        oi_info = crypto_ois.get(asset, {}) if asset in CRYPTO_ASSETS else {}
+        oi_contracts = float(oi_info.get("openInterest") or 0.0) or None
+        stop_results = {"source": "UNAVAILABLE", "coverage": "NONE", "bands": [],
+                        "reason": "No verified exchange stop-order feed"}
+        reconstructed_liquidations = {
+            "source": "UNAVAILABLE" if asset in CRYPTO_ASSETS else "NOT_APPLICABLE",
+            "coverage": "NONE", "long_liquidations_below": [], "short_liquidations_above": [],
+            "max_pain": None, "top_long_cascade_bands_below": [],
+            "top_short_squeeze_bands_above": [],
+            "reason": "Open interest cannot identify liquidation prices or leverage" if asset in CRYPTO_ASSETS else "No perpetual venue",
+            "binance_futures_open_interest_contracts": oi_contracts,
+            "open_interest_source": "BINANCE_FUTURES_PUBLIC_REST" if oi_contracts is not None else "UNAVAILABLE",
+            "open_interest_venue": "BINANCE_USDM_FUTURES" if asset in CRYPTO_ASSETS else None,
+            "open_interest_as_of_epoch": float(oi_info["time"]) / 1000 if oi_info.get("time") else None,
+        }
 
         # -----------------------------------------------------------------
         # Live L2 Orderbook Depth (Top 20 Bids and Top 20 Asks)
@@ -773,7 +640,10 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
         cum_ask_usd = 0.0
         whale_walls = []
 
-        if raw_book and "bids" in raw_book and "asks" in raw_book and raw_book["bids"] and raw_book["asks"]:
+        if (raw_book and isinstance(raw_book.get("bids"), list) and isinstance(raw_book.get("asks"), list)
+                and raw_book["bids"] and raw_book["asks"]
+                and all(float(r[0]) > 0 and float(r[1]) > 0 for r in raw_book["bids"][:20] + raw_book["asks"][:20])
+                and float(raw_book["bids"][0][0]) < float(raw_book["asks"][0][0])):
             for p_str, sz_str in raw_book["bids"][:20]:
                 p_lvl = float(p_str)
                 sz_lvl = float(sz_str)
@@ -789,8 +659,9 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                         "side": "BUY",
                         "price": round(p_lvl, 4),
                         "notional_usd": round(notional, 2),
-                        "distance_pct": round((p_lvl - mid_price) / mid_price * 100.0, 2),
-                        "persistence_sec": pers_sec,
+                        "distance_pct": round((p_lvl - ((float(raw_book["bids"][0][0]) + float(raw_book["asks"][0][0])) / 2)) / ((float(raw_book["bids"][0][0]) + float(raw_book["asks"][0][0])) / 2) * 100.0, 2),
+                        "sample_span_sec": pers_sec,
+                        "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
                         "first_seen_utc": datetime.fromtimestamp(first_seen, tz=timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
                     })
 
@@ -809,24 +680,29 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                         "side": "SELL",
                         "price": round(p_lvl, 4),
                         "notional_usd": round(notional, 2),
-                        "distance_pct": round((p_lvl - mid_price) / mid_price * 100.0, 2),
-                        "persistence_sec": pers_sec,
+                        "distance_pct": round((p_lvl - ((float(raw_book["bids"][0][0]) + float(raw_book["asks"][0][0])) / 2)) / ((float(raw_book["bids"][0][0]) + float(raw_book["asks"][0][0])) / 2) * 100.0, 2),
+                        "sample_span_sec": pers_sec,
+                        "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
                         "first_seen_utc": datetime.fromtimestamp(first_seen, tz=timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
                     })
 
+            binance_mid = (float(raw_book["bids"][0][0]) + float(raw_book["asks"][0][0])) / 2
             total_bid_depth = cum_bid_usd
             total_ask_depth = cum_ask_usd
             book_imbalance = round((total_bid_depth - total_ask_depth) / max(total_bid_depth + total_ask_depth, 1.0), 4)
             skew_ratio = round(total_bid_depth / max(total_ask_depth, 1.0), 4)
             orderbook_payload = {
                 "source": "REAL_BINANCE_FUTURES_L2",
+                "venue": "BINANCE_USDM_FUTURES", "aggregation": "ANONYMOUS_PRICE_LEVELS_NOT_ORDERS",
+                "binance_mid": round(binance_mid, 4),
                 "top20_bid_depth_usd": round(total_bid_depth, 2),
                 "top20_ask_depth_usd": round(total_ask_depth, 2),
                 "book_imbalance": book_imbalance,
                 "skew_ratio": skew_ratio,
                 "bids_top20": bids_top20,
                 "asks_top20": asks_top20,
-                "whale_walls_l3": whale_walls,  # deprecated compatibility key, NOT wallet L3
+                "whale_walls_l3": [],  # no address/individual order feed
+                "l2_wall_levels": whale_walls,
                 "wall_coverage": "SAMPLED_ANONYMOUS_BINANCE_AGGREGATED_L2_NOT_L3",
                 "wall_sample_ts_epoch": now_ts
             }
@@ -834,6 +710,8 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
             # NO SYNTHETIC DEPTH! Report real L1 only honestly
             orderbook_payload = {
                 "source": "UNAVAILABLE_L1_ONLY",
+                "venue": "BINANCE_USDM_FUTURES" if asset in CRYPTO_ASSETS else None,
+                "binance_mid": None,
                 "top20_bid_depth_usd": None,
                 "top20_ask_depth_usd": None,
                 "book_imbalance": None,
@@ -841,6 +719,7 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                 "bids_top20": [],
                 "asks_top20": [],
                 "whale_walls_l3": [],
+                "l2_wall_levels": [],
                 "wall_coverage": "UNAVAILABLE_L1_ONLY",
                 "wall_sample_ts_epoch": None
             }
@@ -851,7 +730,9 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
         # Audit finding H2: slope was hard-0 with short bar history, making
         # BEARISH impossible and biasing the board BULLISH on a crash day.
         # With ema_200/slope now null below the bar threshold, say so.
-        if ema_200 is None or ema_200_slope is None:
+        if not quote_valid:
+            trend_status = "UNAVAILABLE_NO_MT5_QUOTE"
+        elif ema_200 is None or ema_200_slope is None:
             trend_status = "INSUFFICIENT_HISTORY"
         elif mid_price > ema_200 and ema_200_slope >= 0:
             trend_status = "BULLISH"
@@ -860,153 +741,76 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
         else:
             trend_status = "RANGE_BOUND"
         
-        session_low = float(min(b["low"] for b in bars[-32:])) if bars else (mid_price * 0.99)
-        session_high = float(max(b["high"] for b in bars[-32:])) if bars else (mid_price * 1.01)
-        swept_low = mid_price <= session_low + (0.2 * atr)
-        swept_high = mid_price >= session_high - (0.2 * atr)
+        session_low = min(float(b["low"]) for b in bars[-32:]) if bars else None
+        session_high = max(float(b["high"]) for b in bars[-32:]) if bars else None
+        swept_low = (mid_price <= session_low + 0.2 * atr
+                     if quote_valid and session_low is not None and atr is not None else None)
+        swept_high = (mid_price >= session_high - 0.2 * atr
+                      if quote_valid and session_high is not None and atr is not None else None)
 
-        # Active MT5 position and order checking
+        # Observed MT5 inventory is status only, not an instruction to trade.
         sym_check = "XAU" if asset == "GOLD" else ("USWTI" if asset == "USWTI" else asset)
         active_pos = [p for p in formatted_positions if sym_check in str(p.get("symbol", ""))]
         active_pending = [o for o in formatted_orders if sym_check in str(o.get("symbol", ""))]
-
         if active_pos:
-            pioneer_eval = f"ACTIVE_{active_pos[0].get('direction', 'LONG')}_FILLED"
-            pioneer_reason = f"Ticket #{active_pos[0].get('ticket')} active: {active_pos[0].get('direction')} {active_pos[0].get('volume')} lots @ {active_pos[0].get('price_open')}. SL {active_pos[0].get('sl')}, TP {active_pos[0].get('tp')}."
+            pioneer_eval = "ACTIVE_FILLED"
+            pioneer_reason = "MT5 reports an open position"
         elif active_pending:
-            pioneer_eval = f"ACTIVE_PENDING_{active_pending[0].get('direction', 'BUY')}_LIMIT"
-            pioneer_reason = f"Ticket #{active_pending[0].get('ticket')} resting limit: {active_pending[0].get('volume')} lots @ {active_pending[0].get('price_open')}."
+            pioneer_eval = "ACTIVE_PENDING"
+            pioneer_reason = "MT5 reports a resting order"
         else:
-            # Dynamic technical evaluation across all un-allocated assets
-            if vwap_z <= -2.0:
-                pioneer_eval = "MODEL_1_EXTREME_DISCOUNT_2SD"
-                pioneer_reason = f"Extreme discount flush ({vwap_z:.2f} SD below Session VWAP {session_vwap:.4f}). High-probability mean-reversion long on orderbook support."
-            elif vwap_z >= 2.0:
-                pioneer_eval = "MODEL_1_EXTREME_PREMIUM_2SD"
-                pioneer_reason = f"Extreme premium extension ({vwap_z:.2f} SD above Session VWAP {session_vwap:.4f}). High-probability mean-reversion short on overhead resistance."
-            elif ema_200 is not None and ema_200_slope is not None and mid_price > ema_200 and ema_200_slope >= 0 and session_vwap and abs(mid_price - session_vwap) <= (1.2 * atr):
-                pioneer_eval = "MODEL_2_BULLISH_VWAP_PULLBACK"
-                pioneer_reason = f"Bullish trend continuation (Price > 200 EMA {ema_200:.4f}). Pullback to Session VWAP {session_vwap:.4f} within 1.2x ATR. Joining momentum toward overhead liquidity."
-            elif ema_200 is not None and ema_200_slope is not None and mid_price < ema_200 and ema_200_slope < 0 and session_vwap and abs(session_vwap - mid_price) <= (1.2 * atr):
-                pioneer_eval = "MODEL_2_BEARISH_VWAP_PULLBACK"
-                pioneer_reason = f"Bearish trend continuation (Price < 200 EMA {ema_200:.4f}). Pullback up to Session VWAP {session_vwap:.4f} within 1.2x ATR. Joining momentum toward downside stops."
-            elif swept_low and rsi < 35:
-                pioneer_eval = "POTENTIAL_SWEEP_ABSORPTION"
-                pioneer_reason = f"Session low swept ({session_low:.4f}), RSI oversold ({rsi:.1f}). Awaiting CVD absorption confirmation."
-            elif swept_high and rsi > 65:
-                pioneer_eval = "POTENTIAL_TOP_EXHAUSTION"
-                pioneer_reason = f"Session high swept ({session_high:.4f}), RSI overbought ({rsi:.1f}). Resistance rejection zone."
-            elif trend_status == "BULLISH":
-                pioneer_eval = "TREND_CONTINUATION_BULLISH"
-                pioneer_reason = f"Trading above 200 EMA ({ema_200:.4f}) with positive slope. Uptrend intact."
-            elif trend_status == "BEARISH":
-                pioneer_eval = "TREND_CONTINUATION_BEARISH"
-                pioneer_reason = f"Trading below 200 EMA ({ema_200:.4f}) with negative slope. Downtrend intact."
-            else:
-                pioneer_eval = "CONSOLIDATION_RANGE"
-                pioneer_reason = f"Trading within session value area [{vol_profile['val']:.4f} - {vol_profile['vah']:.4f}]. No structural breakout."
-
-        # Compute concrete limit geometry for high-confluence candidates
+            pioneer_eval = "UNAVAILABLE_UNVERIFIED_ORDERFLOW"
+            pioneer_reason = "No observed stop/liquidation bands or cross-venue execution validation; no trade authorization"
         confluence_trade_setup = None
-        if vwap_z <= -2.0 and rsi < 40:
-            limit_px = round(mid_price - (0.15 * atr), 4)
-            sl_px = round(limit_px - (1.1 * atr), 4)
-            tp_px = round(limit_px + 2.5 * (limit_px - sl_px), 4)
-            confluence_trade_setup = {
-                "model": "MODEL_1_EXTREME_DISCOUNT_2SD",
-                "direction": "LONG",
-                "limit_price": limit_px,
-                "sl": sl_px,
-                "tp": tp_px,
-                "reward_risk": 2.50,
-                "confluence": f"Extreme Z {vwap_z:.2f} SD + RSI {rsi:.1f} + discount liquidity pool"
-            }
-        elif vwap_z >= 2.0 and rsi > 60:
-            limit_px = round(mid_price + (0.15 * atr), 4)
-            sl_px = round(limit_px + (1.1 * atr), 4)
-            tp_px = round(limit_px - 2.5 * (sl_px - limit_px), 4)
-            confluence_trade_setup = {
-                "model": "MODEL_1_EXTREME_PREMIUM_2SD",
-                "direction": "SHORT",
-                "limit_price": limit_px,
-                "sl": sl_px,
-                "tp": tp_px,
-                "reward_risk": 2.50,
-                "confluence": f"Extreme Z {vwap_z:.2f} SD + RSI {rsi:.1f} + premium liquidity pool"
-            }
-        elif ema_200 is not None and ema_200_slope is not None and mid_price > ema_200 and ema_200_slope >= 0 and session_vwap and abs(mid_price - session_vwap) <= (1.2 * atr):
-            limit_px = round(session_vwap, 4)
-            sl_px = round(limit_px - (1.0 * atr), 4)
-            tp_px = round(limit_px + 2.5 * (limit_px - sl_px), 4)
-            confluence_trade_setup = {
-                "model": "MODEL_2_TREND_PULLBACK_VWAP",
-                "direction": "LONG",
-                "limit_price": limit_px,
-                "sl": sl_px,
-                "tp": tp_px,
-                "reward_risk": 2.50,
-                "confluence": f"Bullish trend continuation pullback to Session VWAP {session_vwap:.4f}"
-            }
-        elif ema_200 is not None and ema_200_slope is not None and mid_price < ema_200 and ema_200_slope < 0 and session_vwap and abs(session_vwap - mid_price) <= (1.2 * atr):
-            limit_px = round(session_vwap, 4)
-            sl_px = round(limit_px + (1.0 * atr), 4)
-            tp_px = round(limit_px - 2.5 * (sl_px - limit_px), 4)
-            confluence_trade_setup = {
-                "model": "MODEL_2_TREND_PULLBACK_VWAP",
-                "direction": "SHORT",
-                "limit_price": limit_px,
-                "sl": sl_px,
-                "tp": tp_px,
-                "reward_risk": 2.50,
-                "confluence": f"Bearish trend continuation pullback up to Session VWAP {session_vwap:.4f}"
-            }
 
         assets_matrix[asset] = {
             "symbol_broker": broker_sym or asset,
             "category": "CRYPTO" if asset in CRYPTO_ASSETS else ("INDICES" if asset in INDICES_ASSETS else ("COMMODITIES" if asset in COMMODITIES_ASSETS else "FOREX")),
             "quotes": {
-                "bid": round(bid_price, 4),
-                "ask": round(ask_price, 4),
-                "mid": round(mid_price, 4),
-                "spread_price": round(spread_price, 4),
-                "spread_bps": round(spread_bps, 2),
+                "bid": round(bid_price, 4) if quote_valid else None,
+                "ask": round(ask_price, 4) if quote_valid else None,
+                "mid": round(mid_price, 4) if quote_valid else None,
+                "spread_price": round(spread_price, 4) if spread_price is not None else None,
+                "spread_bps": round(spread_bps, 2) if spread_bps is not None else None,
                 "quote_source": quote_source,
+                "quote_age_s": quote_age_s,
+                "quote_freshness": quote_freshness,
                 "specs_source": specs_source,
-                "tick_size": exec_specs.get("tick_size", 0.0001),
-                "contract_size": exec_specs.get("contract_size", 1.0),
-                "min_lot": exec_specs.get("min_lot", 0.01),
-                "step_lot": exec_specs.get("step_lot", 0.01),
-                "max_lot": exec_specs.get("max_lot", 100.0),
-                "stops_level": exec_specs.get("stops_level", 0),
-                "digits": exec_specs.get("digits", 4)
+                "tick_size": exec_specs.get("tick_size"),
+                "contract_size": exec_specs.get("contract_size"),
+                "min_lot": exec_specs.get("min_lot"),
+                "step_lot": exec_specs.get("step_lot"),
+                "max_lot": exec_specs.get("max_lot"),
+                "stops_level": exec_specs.get("stops_level"),
+                "digits": exec_specs.get("digits")
             },
             "execution_specs": exec_specs,
             "causal_indicators": {
                 "session_vwap_utc": round(session_vwap, 4) if session_vwap else None,
                 "session_sigma": round(session_sigma, 4) if session_sigma else None,
                 "session_bars": indicators.get("session_bars", 0),
-                "vwap_z_score": round(vwap_z, 2),
-                "rsi_14": round(rsi, 2),
-                "atr_14": round(atr, 4),
-                "atr_pct": round(atr / max(mid_price, 1e-6) * 100.0, 3),
-                "ema_20": round(ema_20, 4),
-                "ema_50": round(ema_50, 4),
+                "vwap_z_score": round(vwap_z, 2) if vwap_z is not None else None,
+                "rsi_14": round(rsi, 2) if rsi is not None else None,
+                "atr_14": round(atr, 4) if atr is not None else None,
+                "atr_pct": round(atr / mid_price * 100.0, 3) if atr is not None and quote_valid else None,
+                "ema_20": round(ema_20, 4) if ema_20 is not None else None,
+                "ema_50": round(ema_50, 4) if ema_50 is not None else None,
                 "ema_200": round(ema_200, 4) if ema_200 is not None else None,
                 "ema_200_bars_used": len(bars),
                 "ema_200_slope_3h_pct": round(ema_200_slope, 4) if ema_200_slope is not None else None,
                 "trend_regime": trend_status,
                 "indicators_source": bars_source,
+                "vwap_weight_unit": "MT5_BROKER_BAR_VOLUME_OR_TICK_COUNT" if has_bar_volume else "UNAVAILABLE",
                 "bars_last_close_utc": bars_last_close_utc,
                 "indicator_age_min": indicator_age_min
             },
-            "volume_profile": vol_profile,
+            "volume_profile": {**vol_profile, "volume_unit": "MT5_BROKER_BAR_VOLUME_OR_TICK_COUNT_NOT_EXCHANGE_BASE_ASSET_VOLUME"},
             "structural_stop_clusters": {
-                "coverage": stop_results.get("coverage", "SYNTHETIC_STRUCTURAL_MODEL"),
-                "amount_semantics": "MODEL_WEIGHT_NOT_USD",
-                "total_sell_stops_usd": round(stop_results.get("total_sell_size", 0.0), 2),
-                "total_buy_stops_usd": round(stop_results.get("total_buy_size", 0.0), 2),
-                "top_sell_stop_clusters_below": sell_stops[:5],
-                "top_buy_stop_clusters_above": buy_stops[:5]
+                "source": "UNAVAILABLE", "coverage": "NONE",
+                "amount_semantics": "UNAVAILABLE",
+                "total_sell_stops_usd": None, "total_buy_stops_usd": None,
+                "top_sell_stop_clusters_below": [], "top_buy_stop_clusters_above": [],
+                "reason": stop_results["reason"]
             },
             "reconstructed_liquidations": reconstructed_liquidations,
             "orderbook_live_depth": orderbook_payload,
@@ -1016,15 +820,15 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                 "swept_session_high": swept_high,
                 "reasoning": pioneer_reason,
                 "confluence_trade_setup": confluence_trade_setup,
-                "portfolio_gating": "ADMISSION_OPEN" if (filled_count + pending_count) < max_slots else "ADMISSION_FROZEN_MAX_CAPACITY"
+                "portfolio_gating": "ADMISSION_FROZEN_UNVERIFIED_DATA"
             },
             "funding_and_rates": (
                 {
-                    "last_funding_rate_bps": round(float(crypto_prems.get(asset, {}).get("lastFundingRate", 0.0)) * 1e4, 2),
+                    "last_funding_rate_bps": round(float(crypto_prems[asset]["lastFundingRate"]) * 1e4, 2) if crypto_prems.get(asset, {}).get("lastFundingRate") is not None else None,
                     "predicted_funding_rate_bps": None,  # premiumIndex interestRate is NOT predicted funding
                     "predicted_funding_source": "UNAVAILABLE_IN_PREMIUM_INDEX",
-                    "mark_price": round(float(crypto_prems.get(asset, {}).get("markPrice", mid_price)), 4),
-                    "index_price": round(float(crypto_prems.get(asset, {}).get("indexPrice", mid_price)), 4)
+                    "mark_price": round(float(crypto_prems[asset]["markPrice"]), 4) if crypto_prems.get(asset, {}).get("markPrice") is not None else None,
+                    "index_price": round(float(crypto_prems[asset]["indexPrice"]), 4) if crypto_prems.get(asset, {}).get("indexPrice") is not None else None
                 } if asset in CRYPTO_ASSETS else None
             ),
             "cvd_1m_buckets": crypto_cvd.get(asset, []) if asset in CRYPTO_ASSETS else None,
@@ -1036,7 +840,7 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
         # Audit finding H5: raw-spread MT5 accounts print 0.0 spread with
         # commission billed separately — flag it so friction math never
         # silently assumes a free round trip.
-        if spread_price == 0:
+        if spread_price == 0 and quote_valid:
             assets_matrix[asset]["quotes"]["spread_caveat"] = "RAW_ZERO_SPREAD_COMMISSION_EXCLUDED"
 
     # Save whale wall state for persistence tracking across iterations
@@ -1044,13 +848,16 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
 
     # Assemble master document
     payload = {
-        "protocol": "omni.telemetry.v2",
+        "protocol": "omni.telemetry.v3.observed_only",
+        "snapshot_status": "LIVE_OBSERVATION",
+        "data_policy": "OBSERVED_OR_DERIVED_FROM_OBSERVED; unavailable fields never authorize trades",
         "as_of_utc": now_utc,
         "as_of_epoch": now_ts,
-        "generated_by": "Antigravity Autonomous Quant & Zero-Cost Data Factory",
+        "generated_by": "MT5 bridge + public feeds; no broker execution performed here",
+        "trade_authorization": "DENIED_UNVERIFIED_ORDERFLOW",
         "account": {
-            "login": 5064568,
-            "server": "BlueberryMarkets-Real",
+            "login": acc_summary.get("login"),
+            "server": acc_summary.get("server"),
             "balance_usd": balance_usd,
             "equity_usd": equity_usd,
             "margin_used_usd": margin_used,
@@ -1071,14 +878,20 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
         "assets_matrix_24": assets_matrix
     }
 
-    # Write JSON atomically (to the injectable path for tests)
-    with open(out_path, "w", encoding="utf-8") as f:
-        json.dump(payload, f, indent=2)
+    if not validate_observed_snapshot(payload):
+        raise RuntimeError("FAIL_CLOSED: telemetry provenance validation failed")
 
-    print(f"[{now_utc}] Successfully exported enriched telemetry snapshot v2 to {out_path}")
+    # Write JSON atomically (to the injectable path for tests)
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    temp_path = out_path.with_suffix(".tmp")
+    with open(temp_path, "w", encoding="utf-8") as f:
+        json.dump(payload, f, indent=2, allow_nan=False)
+    temp_path.replace(out_path)
+
+    print(f"[{now_utc}] Successfully exported observed-only telemetry snapshot v3 to {out_path}")
     print(f"  Account Equity: {equity_usd:.2f} USD | Hard Floor: {hard_floor:.2f} USD | Cushion: +{cushion:.2f} USD")
     print(f"  Active Positions: {filled_count} | Pending Orders: {pending_count} | Capacity: {capacity_status}")
-    print(f"  Assets Exported: {len(assets_matrix)} / 24 institutional assets with full L2 books, stop bands, & liq cascades.")
+    print(f"  Assets Exported: {len(assets_matrix)} / 24 assets; L2 only where fetched, stops/liquidation exposure unavailable.")
     return payload
 
 

@@ -161,8 +161,8 @@ class CognitiveEngine:
                 "blackout_active": macro.get("blackout", False)
             },
             "portfolio": {
-                "equity_usd": portfolio.get("equity", 5000.0),
-                "available_position_slots": portfolio.get("slots", 2)
+                "equity_usd": portfolio.get("equity"),
+                "available_position_slots": portfolio.get("slots")
             }
         }
         return snapshot

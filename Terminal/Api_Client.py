@@ -103,12 +103,14 @@ class HyperdashClient:
                 continue
 
             self.universe.append(coin)
-            mark_px = float(ctx.get("markPx", 0.0))
-            oi = float(ctx.get("openInterest", 0.0))
-            funding = float(ctx.get("funding", 0.0))
-            volume_24h = float(ctx.get("dayNtlVlm", 0.0))
-            prev_day_px = float(ctx.get("prevDayPx", mark_px))
-            change_24h = ((mark_px - prev_day_px) / prev_day_px * 100.0) if prev_day_px > 0 else 0.0
+            mark_px = float(ctx["markPx"]) if ctx.get("markPx") is not None else None
+            if mark_px is None or mark_px <= 0:
+                continue  # cannot quote/size a market without a real mark
+            oi = float(ctx["openInterest"]) if ctx.get("openInterest") is not None else None
+            funding = float(ctx["funding"]) if ctx.get("funding") is not None else None
+            volume_24h = float(ctx["dayNtlVlm"]) if ctx.get("dayNtlVlm") is not None else None
+            prev_day_px = float(ctx["prevDayPx"]) if ctx.get("prevDayPx") is not None else None
+            change_24h = ((mark_px - prev_day_px) / prev_day_px * 100.0) if prev_day_px and prev_day_px > 0 else None
 
             item = {
                 "coin": coin,
@@ -116,19 +118,19 @@ class HyperdashClient:
                 "metadata_observed_at": time.time(),
                 "mark_px": mark_px,
                 "open_interest": oi,
-                "open_interest_usd": oi * mark_px,
+                "open_interest_usd": oi * mark_px if oi is not None else None,
                 "funding_rate": funding,
-                "funding_annualized": funding * 24 * 365 * 100, # Hyperliquid hourly rate
+                "funding_annualized": funding * 24 * 365 * 100 if funding is not None else None, # Hyperliquid hourly rate
                 "volume_24h": volume_24h,
                 "change_24h": change_24h,
-                "max_leverage": meta.get("maxLeverage", 50),
-                "sz_decimals": meta.get("szDecimals", 2)
+                "max_leverage": meta.get("maxLeverage"),
+                "sz_decimals": meta.get("szDecimals")
             }
             results.append(item)
             new_cache[coin] = item
 
         # Sort by 24h volume descending
-        results.sort(key=lambda x: x["volume_24h"], reverse=True)
+        results.sort(key=lambda x: x["volume_24h"] or 0, reverse=True)
         self.asset_cache = new_cache
         return results
 
@@ -150,22 +152,25 @@ class HyperdashClient:
         hl_coin = self._resolve_coin(coin)
         payload = {"type": "l2Book", "coin": hl_coin}
         raw = self._post_json(HL_INFO_URL, payload)
-        levels = raw.get("levels", [[], []]) if raw else [[], []]
+        levels = raw.get("levels") if isinstance(raw, dict) else None
+        if not isinstance(levels, list) or len(levels) < 2 or not levels[0] or not levels[1]:
+            raise RuntimeError("Hyperliquid L2 book unavailable")
         raw_bids = levels[0][:20] if len(levels) > 0 else []
         raw_asks = levels[1][:20] if len(levels) > 1 else []
 
         bids = [{"price": float(b["px"]), "size": float(b["sz"]), "total_usd": float(b["px"]) * float(b["sz"])} for b in raw_bids]
         asks = [{"price": float(a["px"]), "size": float(a["sz"]), "total_usd": float(a["px"]) * float(a["sz"])} for a in raw_asks]
 
-        best_bid = bids[0]["price"] if bids else 0.0
-        best_ask = asks[0]["price"] if asks else 0.0
-        spread = best_ask - best_bid if (best_bid and best_ask) else 0.0
-        spread_bps = (spread / best_bid * 10000.0) if best_bid > 0 else 0.0
+        best_bid, best_ask = bids[0]["price"], asks[0]["price"]
+        if not 0 < best_bid < best_ask or any(r["price"] <= 0 or r["size"] <= 0 for r in bids + asks):
+            raise RuntimeError("Hyperliquid L2 book crossed or invalid")
+        spread = best_ask - best_bid
+        spread_bps = spread / best_bid * 10000.0
 
         bid_vol = sum(b["total_usd"] for b in bids)
         ask_vol = sum(a["total_usd"] for a in asks)
         total_vol = bid_vol + ask_vol
-        bid_ratio = (bid_vol / total_vol * 100.0) if total_vol > 0 else 50.0
+        bid_ratio = bid_vol / total_vol * 100.0  # validated positive sizes
 
         return {
             "coin": coin,
@@ -205,7 +210,10 @@ class HyperdashClient:
         """
         variables = {"market": hl_coin, "minPrice": float(min_price), "maxPrice": float(max_price)}
         data = self._post_json(HD_GRAPHQL_URL, {"query": query, "variables": variables})
-        orders_raw = data.get("data", {}).get("orderbookSnapshotFiltered", [])
+        node = data.get("data") or {}
+        if "orderbookSnapshotFiltered" not in node or not isinstance(node["orderbookSnapshotFiltered"], list):
+            raise RuntimeError("Hyperdash orderbookSnapshotFiltered response unavailable")
+        orders_raw = node["orderbookSnapshotFiltered"]
 
         orders = []
         observed_at = time.time()
@@ -213,6 +221,8 @@ class HyperdashClient:
             sub = o.get("order", {})
             px = float(sub.get("limitPx", 0.0))
             sz = float(sub.get("sz", 0.0))
+            if px <= 0 or sz <= 0 or not str(o.get("address", "")).startswith("0x") or sub.get("side") not in ("B", "A"):
+                continue
             orders.append({
                 "address": o.get("address", ""),
                 "side": "BUY" if sub.get("side") == "B" else "SELL" if sub.get("side") == "A" else "UNKNOWN",
@@ -220,7 +230,9 @@ class HyperdashClient:
                 "size": sz,
                 "notional_usd": px * sz,
                 "observed_at": observed_at,
-                "timestamp_basis": "RECEIPT_ONLY"
+                "timestamp_basis": "RECEIPT_ONLY",
+                "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
+                "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
             })
 
         # Sort by notional value descending (whales first)
@@ -291,7 +303,10 @@ class HyperdashClient:
             "endTime": float(now)
         }
         data = self._post_json(HD_GRAPHQL_URL, {"query": query, "variables": variables})
-        res = data.get("data", {}).get("analytics", {}).get("liquidationLevels") or {}
+        res = (data.get("data") or {}).get("analytics") or {}
+        if "liquidationLevels" not in res or not isinstance(res["liquidationLevels"], dict):
+            raise RuntimeError("Hyperdash liquidationLevels response unavailable")
+        res = res["liquidationLevels"]
 
         bands = []
         time_series_by_candle: Dict[str, List[Dict[str, Any]]] = {}
@@ -300,9 +315,13 @@ class HyperdashClient:
         raw_bands = res.get("bands", [])
         for b in raw_bands:
             hist = b.get("historicalData", [])
-            latest_amt = hist[-1]["totalAmount"] if hist else 0.0
-            min_px = b.get("minPrice", 0.0)
-            max_px = b.get("maxPrice", 0.0)
+            if not hist or hist[-1].get("totalAmount") is None:
+                continue  # missing history is not an observed zero
+            latest_amt = float(hist[-1]["totalAmount"])
+            min_px = float(b.get("minPrice") or 0)
+            max_px = float(b.get("maxPrice") or 0)
+            if min_px <= 0 or max_px < min_px:
+                continue
             mid_px = (min_px + max_px) / 2.0
 
             bands.append({
@@ -344,14 +363,16 @@ class HyperdashClient:
 
         return {
             "coin": coin,
-            "current_price": res.get("currentPrice", 0.0),
+            "current_price": res.get("currentPrice"),
             "kind": "UNVERIFIED_BAND_LANDSCAPE",
             "received_at": time.time(),
-            "band_size": res.get("bandSize", 100.0),
-            "total_long_size": res.get("totalLongLiquidations", {}).get("size", 0.0),
-            "total_long_count": res.get("totalLongLiquidations", {}).get("count", 0),
-            "total_short_size": res.get("totalShortLiquidations", {}).get("size", 0.0),
-            "total_short_count": res.get("totalShortLiquidations", {}).get("count", 0),
+            "band_size": res.get("bandSize"),
+            "source": "HYPERDASH_GRAPHQL_ANALYTICS_UNVERIFIED_METHODOLOGY",
+            "size_unit": "BASE_ASSET_REPORTED_UNVERIFIED",
+            "total_long_size": (res.get("totalLongLiquidations") or {}).get("size"),
+            "total_long_count": (res.get("totalLongLiquidations") or {}).get("count"),
+            "total_short_size": (res.get("totalShortLiquidations") or {}).get("size"),
+            "total_short_count": (res.get("totalShortLiquidations") or {}).get("count"),
             "top_long_whales": res.get("topLongLiquidations", []),
             "top_short_whales": res.get("topShortLiquidations", []),
             "bands": bands,
@@ -360,7 +381,7 @@ class HyperdashClient:
             "candle_totals": candle_totals,
             "current_candle": {
                 "timestamp": latest_ts,
-                "total_amount": candle_totals.get(latest_ts, 0.0) if latest_ts else 0.0,
+                "total_amount": candle_totals.get(latest_ts) if latest_ts else None,
                 "distribution": current_candle_distribution
             }
         }
@@ -427,7 +448,10 @@ class HyperdashClient:
             "endTime": float(now)
         }
         data = self._post_json(HD_GRAPHQL_URL, {"query": query, "variables": variables})
-        res = data.get("data", {}).get("analytics", {}).get("stopOrderLevels") or {}
+        res = (data.get("data") or {}).get("analytics") or {}
+        if "stopOrderLevels" not in res or not isinstance(res["stopOrderLevels"], dict):
+            raise RuntimeError("Hyperdash stopOrderLevels response unavailable")
+        res = res["stopOrderLevels"]
 
         bands = []
         time_series_by_candle: Dict[str, List[Dict[str, Any]]] = {}
@@ -436,9 +460,13 @@ class HyperdashClient:
         raw_bands = res.get("bands", [])
         for b in raw_bands:
             hist = b.get("historicalData", [])
-            latest_amt = hist[-1]["totalAmount"] if hist else 0.0
-            min_px = b.get("minPrice", 0.0)
-            max_px = b.get("maxPrice", 0.0)
+            if not hist or hist[-1].get("totalAmount") is None:
+                continue  # missing history is not an observed zero
+            latest_amt = float(hist[-1]["totalAmount"])
+            min_px = float(b.get("minPrice") or 0)
+            max_px = float(b.get("maxPrice") or 0)
+            if min_px <= 0 or max_px < min_px:
+                continue
             mid_px = (min_px + max_px) / 2.0
 
             bands.append({
@@ -479,14 +507,16 @@ class HyperdashClient:
 
         return {
             "coin": coin,
-            "current_price": res.get("currentPrice", 0.0),
-            "band_size": res.get("bandSize", 100.0),
-            "total_buy_size": res.get("totalBuyStops", {}).get("size", 0.0),
+            "current_price": res.get("currentPrice"),
+            "band_size": res.get("bandSize"),
+            "source": "HYPERDASH_GRAPHQL_ANALYTICS_UNVERIFIED_METHODOLOGY",
+            "size_unit": "BASE_ASSET_REPORTED_UNVERIFIED",
+            "total_buy_size": (res.get("totalBuyStops") or {}).get("size"),
             "kind": "UNVERIFIED_STOP_LANDSCAPE",
             "received_at": time.time(),
-            "total_buy_count": res.get("totalBuyStops", {}).get("count", 0),
-            "total_sell_size": res.get("totalSellStops", {}).get("size", 0.0),
-            "total_sell_count": res.get("totalSellStops", {}).get("count", 0),
+            "total_buy_count": (res.get("totalBuyStops") or {}).get("count"),
+            "total_sell_size": (res.get("totalSellStops") or {}).get("size"),
+            "total_sell_count": (res.get("totalSellStops") or {}).get("count"),
             "top_buy_whales": res.get("topBuyStops", []),
             "top_sell_whales": res.get("topSellStops", []),
             "bands": bands,
@@ -495,7 +525,7 @@ class HyperdashClient:
             "candle_totals": candle_totals,
             "current_candle": {
                 "timestamp": latest_ts,
-                "total_amount": candle_totals.get(latest_ts, 0.0) if latest_ts else 0.0,
+                "total_amount": candle_totals.get(latest_ts) if latest_ts else None,
                 "distribution": current_candle_distribution
             }
         }
@@ -568,8 +598,8 @@ class HyperdashClient:
                     long = size > 0
                     endpoint = float(book.get("best_bid" if long else "best_ask", 0))
                     if endpoint > 0 and (liq < endpoint if long else liq > endpoint):
-                        liquidations.append({"min_px": min(liq, endpoint), "max_px": max(liq, endpoint),
-                                             "mid_px": liq, "amount_usd": abs(size)*liq,
+                        liquidations.append({"min_px": liq, "max_px": liq,
+                                             "mid_px": liq, "book_reference_px": endpoint, "amount_usd": abs(size)*liq,
                                              "position_side_at_risk": "LONG" if long else "SHORT", "address": address,
                                              "kind": "PROJECTED_EXPOSURE"})
             for order in orders:
@@ -581,8 +611,8 @@ class HyperdashClient:
                 if trigger <= 0 or size <= 0 or side is None: continue
                 endpoint = float(book.get("best_bid" if side=="LONG" else "best_ask", 0))
                 if endpoint <= 0 or not (trigger < endpoint if side=="LONG" else trigger > endpoint): continue
-                stops.append({"min_px": min(trigger,endpoint), "max_px": max(trigger,endpoint), "mid_px": trigger,
-                              "amount_usd": trigger*size, "position_side_at_risk": side, "address": address,
+                stops.append({"min_px": trigger, "max_px": trigger, "mid_px": trigger,
+                              "book_reference_px": endpoint, "amount_usd": trigger*size, "position_side_at_risk": side, "address": address,
                               "order_id": order.get("oid"), "kind": "OBSERVED_STOP_ORDERS"})
         result = {"observed_at": time.time(), "positions": positions,
                   "liquidations": {"kind": "PROJECTED_EXPOSURE", "bands": liquidations, "coverage": "SAMPLED_WALLETS", "wallets": sampled},

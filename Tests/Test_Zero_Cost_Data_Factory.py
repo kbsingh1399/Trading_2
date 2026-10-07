@@ -275,7 +275,7 @@ def test_reconstruct_emits_risk_sizing_schema_with_correct_sides():
     engine.observe_oi("SOL", ts=1000, price=120.0, oi_usd=0)
     engine.observe_oi("SOL", ts=2000, price=120.0, oi_usd=10_000_000, taker_buy_ratio=0.6)
     snapshot = engine.reconstruct("SOL", now=2000 + 60, current_price=120.0)
-    assert snapshot["kind"] == "PROJECTED_EXPOSURE"
+    assert snapshot["kind"] == "MODEL_PROJECTED_EXPOSURE"
     assert snapshot["coverage"] == "SYNTHETIC_OI_DELTA_MODEL"
     assert all({"min_px", "max_px", "mid_px", "amount_usd", "position_side_at_risk"} <= set(b)
                for b in snapshot["bands"])
@@ -348,7 +348,7 @@ def test_stop_clusters_from_swings_atr_and_profile():
     stops = engine.reconstruct(bars, now=NOW + 40 * 900, mid=120.0, atr=1.0,
                                profile={"poc": 120.5, "vah": 121.5, "val": 118.8,
                                         "total_volume": 40_000})
-    assert stops["kind"] == "OBSERVED_STOP_ORDERS"
+    assert stops["kind"] == "MODEL_STOP_CLUSTERS"
     assert stops["coverage"] == "SYNTHETIC_STRUCTURAL_MODEL"
     below = [b for b in stops["bands"] if b["mid_px"] < 120.0]
     above = [b for b in stops["bands"] if b["mid_px"] > 120.0]
@@ -593,19 +593,20 @@ def feed_factory(now=NOW):
     return factory
 
 
-def test_factory_payload_matches_the_trader_contract():
+def test_factory_payload_does_not_promote_research_models_to_live_orders():
     factory = feed_factory()
     payload = factory.payload("SOL", now=NOW)
     for key in ("coin", "price", "l2_book", "recent_trades", "l3_orders",
                 "projected_liquidations", "observed_stops", "sources", "timestamp"):
-        assert key in payload, key
-    assert payload["projected_liquidations"]["kind"] == "PROJECTED_EXPOSURE"
-    assert payload["observed_stops"]["kind"] == "OBSERVED_STOP_ORDERS"
-    assert payload["sources"]["wallet_risk"]["observed_at"] <= NOW
-    assert all(t["time"] <= NOW for t in payload["recent_trades"])   # zero lookahead
+        assert key in payload
+    assert payload["projected_liquidations"]["kind"] == "UNAVAILABLE"
+    assert payload["observed_stops"]["kind"] == "UNAVAILABLE"
+    assert payload["sources"]["wallet_risk"]["observed_at"] is None
+    assert payload["l3_orders"] == []
+    assert payload["l2_wall_levels"]  # anonymous aggregated depth is real L2
+    assert payload["realized_liquidation_events"]["source"] == "BINANCE_FORCE_ORDER_WS"
+    assert all(t["time"] <= NOW for t in payload["recent_trades"])
     assert 0 < payload["l2_book"]["best_bid"] < payload["l2_book"]["best_ask"]
-    assert payload["l3_orders"]                                  # 150k+ walls aggregated
-    assert payload["l3_orders"][0]["notional_usd"] >= 150_000
 
 
 def test_factory_payload_hides_future_ticks():
