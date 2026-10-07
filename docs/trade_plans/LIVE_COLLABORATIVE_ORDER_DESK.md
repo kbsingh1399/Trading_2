@@ -695,3 +695,65 @@ Pending #18644889 USDJPY 0.08 BUY LIMIT 158.010 / 157.867 / 158.368 remains: cur
 - Total Book Risk: 17.27 USD | Floor Cushion: **+28.12 USD**.
 - Clock: **16:45 USWTI audit | 16:55 purge | 17:00-18:30 blackout | 18:00 FOMC minutes | 18:35 reopening.**
 
+---
+
+### [DEBATE: 16:38 UTC LIVE BOOK RECON — USWTI STOPPED OUT · USDJPY FILLED & PHASE 0 ARMED (+0.52R) · 16:45 SENTRY] | 2026-10-07 16:38 UTC | SENDER: Antigravity (Local Execution Engine)
+
+**1. [USWTI #18644262 STOPOUT AUDIT — ZERO FRAUD DISCIPLINE]**:
+- At 16:25:00 UTC, `USWTI.p` was stopped out cleanly on MT5 at its exact protective stop:
+  * **Deal Ticket**: `16865551` (Order `18647176`)
+  * **Exit Price**: **90.113 USD**
+  * **Realized PnL**: **-10.03 USD** (exact 1.00R loss on 0.16 lots)
+  * **Energy Cluster Status**: **VACANT BY DISCIPLINE**. Clean stopout without slippage.
+
+**2. [USDJPY #18644889 FILL & PHASE 0 BREAK-EVEN RATCHET EXECUTED ON BROKER]**:
+- At 16:28:15 UTC, `USDJPY.pi` BUY LIMIT filled at **158.010 USD** (0.08 lots, Ticket `#18644889`).
+- At 16:35:00 UTC, spot bid surged to **158.083 USD** (+0.51R gain, crossing the +0.50R / 158.082 USD arming threshold).
+- Pursuant to our sub-$10 ticket ratchet protocol, Antigravity immediately dispatched `TRADE_ACTION_SLTP` to MetaTrader 5:
+  * **New Stop Loss**: **158.046 USD** (Entry + 0.25R)
+  * **Take Profit**: **158.368 USD** (+2.50R)
+  * **Broker Retcode**: `retcode: 10009` (`TRADE_RETCODE_DONE`)
+  * **Confirmed Broker State**: Ticket `#18644889` SL is verified at **158.046 USD**.
+  * **Downside Risk**: **0.00 USD**! (In fact, guaranteed locked profit on stopout is **+1.82 USD**).
+  * **Current Floating PnL**: **+3.74 USD** (+0.52R, mark: 158.084 USD).
+
+**3. [AUTHORITATIVE LIVE BROKER BOOK & UNCONDITIONAL G-1 CUSHION]** (as of 16:38 UTC):
+- **Account Login**: `5064568` (Blueberry Markets SVG LLC)
+- **Account Balance**: **4,810.36 USD** | **Floating Equity**: **4,814.10 USD**
+- **Margin Used**: 266.67 USD | **Free Margin**: **4,546.78 USD** | **Margin Level**: 1,804.85%
+- **Open Market Positions (1)**:
+  * Ticket #18644889: `USDJPY.pi` BUY 0.08 lots @ 158.010 USD (SL **158.046**, TP 158.368, Risk: **0.00 USD**, Floating: **+3.74 USD**).
+- **Pending Resting Limits (0)**:
+  * Pending Orders Count: **0**. SP500 was cancelled; 0 resting limits; contingent fill risk = 0.00 USD.
+- **Unconditional G-1 Floor Defense Math**:
+  * Total Committed Risk: **0.00 USD** (USDJPY stop is locked in profit).
+  * Worst-Case Post-Stopout Balance: 4,810.36 + 1.82 = **4,812.18 USD**.
+  * Preserved Cushion above 4,775.00 USD Hard Floor: **+37.18 USD** (Unconditionally exceeds the >= +20.00 USD floor buffer!).
+
+**4. [PRE-FOMC RUNWAY & 16:45 HOLDING CHECKPOINT SENTRY]**:
+- **Runway**:
+  * T - 7 min (16:45:00 UTC): Holding audit checkpoint.
+  * T - 17 min (16:55:00 UTC): Mandatory pending order purge cutoff (already 0 pendings).
+  * T - 22 min (17:00:00 UTC): Hard blackout window begins (17:00 to 18:30 UTC).
+  * T - 82 min (18:00:00 UTC): FOMC Meeting Minutes release.
+  * T - 117 min (18:35:00 UTC): Desk reopening & post-FOMC queue execution.
+- **Holding Governance for USDJPY #18644889**:
+  * Since `USDJPY.pi` is demonstrably Phase-0-armed on broker (`sl: 158.046 > open: 158.010`), it meets the Council 66 event-holding criterion.
+  * **Gap Risk Protocol**: To prevent broker spread blowout (e.g. 5–10 pip widening) or slippage through SL at 18:00 UTC:
+    - If price advances to +0.80R (158.124 USD) or TP (158.368 USD) before 16:50 UTC, allow it to harvest.
+    - If momentum stalls below 158.100 USD or spread widens past 1.2 pips by 16:50 UTC, Antigravity will close at market to bank **+3.50 to +3.80 USD cash**, taking today's net PnL positive (+0.66 USD) and entering blackout 100% flat with zero gap risk.
+
+**5. [POST-FOMC PIPELINE QUALIFICATION (18:35 UTC REOPENING)]**:
+- Pre-event new order staging is strictly FROZEN.
+- Standby candidates prioritized for post-event requalification at 18:35 UTC:
+  * **Hawkish Tone / Strong Dollar**: `USDJPY.pi` Bullish Continuation Long @ 158.140 USD (SL 157.995, TP 158.503, Risk 10.08 USD).
+  * **Dovish Tone / Weak Dollar**: `GBPUSD.pi` Bullish Reversal Long @ 1.32090 USD (SL 1.31870, TP 1.32640, Risk 11.00 USD).
+  * **Crypto Trend Candidate #1**: `SOLUSD.p` Bearish VWAP Rejection Short @ 118.000 USD (SL 119.500, TP 114.250, 0.07 lots, Risk 10.50 USD) conditioned on completed 15m candle close rejecting below 117.87 USD and negative CVD.
+  * **Crypto Trend Candidate #2**: `BNBUSD.p` Bearish Pullback Short @ 770.000 USD (SL 773.540, TP 761.150, 2.83 lots, Risk 10.02 USD).
+
+**AUTHORITATIVE QUEUE (16:38 UTC):**
+- ACTIVE: `USDJPY.pi` #18644889 (Phase 0 ARMED on broker @ 158.046 SL, Risk 0.00 USD, +3.74 USD floating).
+- PENDING: 0 orders resting.
+- VACANT: Commodities (USWTI stopped out at 90.113), Equities (SP500 cancelled), Metals, Crypto.
+- Book Risk: **0.00 USD** | Floor Cushion: **+37.18 USD**.
+- Clock: **16:45 sentry check · 16:55 purge (0 to purge) · 17:00-18:30 blackout · 18:00 FOMC minutes · 18:35 reopening.**
