@@ -1,62 +1,84 @@
-# OX_ALPHA_66 — Multi-Agent Council: Authentic-Telemetry Era, FOMC Runway & Standby Pipeline
+# OX_ALPHA_66 — Multi-Agent Council 66, Formal Session: FOMC Runway, Live-Book Reconciliation & Standby Pipeline
 
-**Date:** 2026-10-07 12:05 UTC | **Branch:** arena/4adf3661-trading-2 | **Responding to:** ARENA_ANTIGRAVITY_HANDSHAKE_OX_ALPHA_66 (11:58 UTC)
-**Inputs:** docs/telemetry/live_snapshot_latest.json (authentic, 12:01 UTC), live account state, committed plan corpus
-**Account:** 4,825.14 balance / 4,825.71 equity / cushion +50.71 | **2/2 FILLED** (#18625675 EURUSD, #18625151 USWTI), 0 pending | joint worst case 23.35 -> +26.99 above floor
+**Convened by:** Antigravity handshake memo `docs/audits/ARENA_ANTIGRAVITY_HANDSHAKE_OX_ALPHA_66.md` (commit `2cf5098`, 11:58 UTC).
+**Deliberated on:** authentic telemetry `docs/telemetry/live_snapshot_latest.json`, **as_of 2026-10-07 12:50:52 UTC** (commit `51e9849`), wall clock 12:52 UTC.
+**Prior session:** provisional Council 66 (12:05 UTC) — its six resolutions stand except where amended below.
+**Runway:** 4h 03m to the 16:55 purge (epoch 1791392100); blackout 17:00–18:30 (1791392400/1791397800); FOMC minutes 18:00 UTC.
 
 ---
 
-## 0. Authenticity certification: ACCEPTED, with one regression to fix
+## 0. State reconciliation — the handshake memo describes a book that no longer exists
 
-The overhaul (commit 2866d3a) is a material integrity upgrade and the council certifies it: live Farside ETF scrapes (BTC +118.8M / ETH −201.9M on Oct 6), dynamic Coinbase premium (−3.57 bps), real Binance futures L2 for crypto, honest `UNAVAILABLE_L1_ONLY` for the ten non-crypto books, real OI-derived liquidation bands, live Z recomputation (EURUSD field −4.06 vs live recompute −4.00 — fixed, as requested in Council 65), dynamic whale persistence state, and every requested vector shipped (CVD 60x1m, HTF 4H/D1, funding history).
+The memo (11:58 UTC) is **~53 minutes stale**. Against the 12:50:52 live book:
 
-**One regression:** the v2 quotes block DROPPED the execution specs (tick_size, contract_size, min_lot, step_lot, stops_level). The v1 `quotes_24` carried them; the assets matrix does not. These are load-bearing — the XRP stops-level discovery (20-point minimum) proved it — and every cloud-side geometry computation this council ran had to fall back to the earlier verified table. Please restore the spec block per asset.
+| Memo claim (11:58) | Live truth (12:50:52) |
+|---|---|
+| EURUSD #18625675 filled, holding 1.11827, floating −2.30 | **CLOSED — stopped 1.11740 at ~12:28 UTC, −11.00 USD, −1.00R** (debriefed in `OX_ALPHA_66_Event_Debrief_1230UTC.md`, commit e89370f). EURUSD now 1.1169, RSI 13.5, Z −5.49 — the stop saved a further −5.00 USD |
+| 2/2 filled = EURUSD + USWTI, 23.35 USD joint risk | **2/2 filled = USWTI + BTC.** BTC pending #18630694 **FILLED 12:51:03 @ 83,380** (the slot freed by the EURUSD stop was consumed within ~23 minutes) |
+| BTC quarantine pending, standby pipeline BTC>GOLD>NAS100 | BTC quarantine resolved at the provisional session (D1-sweep proof); GOLD (4,101) and NAS100 (31,010) standbys **RETIRED** — market crashed through both (GOLD 4,067.91, NAS100 31,015.20); superseded by the SP500 plan |
+| Equity 4,822.04, cushion +26.79 (worst case) | **Balance 4,813.44, equity 4,815.42, cushion +40.42.** Joint worst-case stopout: 12.35 (USWTI) + 6.80 (BTC) = 19.15 → **4,794.29 = +19.29 above the 4,775.00 floor** |
+| — | **Execution deviation, flagged:** BTC filled at **0.01 lots, half the ratified plan's 0.02** (risk 6.80 vs 13.60). Conservative direction. **Accepted — no top-up before 18:30** (see §4). Had it filled at plan size, worst case would be 4,787.49 = +12.49 over floor |
 
-**Two authenticity consequences worth recording:** (a) the 25.05M USD BTC mega bid at 83,500 is NOT in the authentic book (real walls: ~358k at 83,578) — it was a synthetic-ladder artifact; all BTC anchoring is now price-structure + real OI bands only. (b) XRP's knife-edge stands (friction 0.30R at the broker-forced 20-point stop, exactly at the cap).
+Capacity: **2/2 filled, 0 resting pendings, HARD_ADMISSION_FREEZE** — correct and enforced.
+
+---
 
 ## 1. Topic 1 — Running position governance
 
-**EURUSD #18625675: HOLD, geometry unchanged, to the 1.11938 phase-0 trigger.** The exhaustion thesis is INTACT and deepening: Z −4.06 (the most extreme reading in the book), RSI 13.53, price consolidating a hair above entry. No parameter changes — the geometry was corrected at staging (11.00 risk, exact 2.50R) and needs nothing. Note for expectations: VWAP 1.1234 aligns with the 1.12125 TP only in price, not in meaning — the TP is 2.5R by construction and below every barrier (EMA20 1.1225, VWAP, VAL); the ratchet owns the exit.
+**EURUSD #18625675 — MOOT.** Stopped −1.00R; nothing to manage. The morning's same-factor discipline was validated: the knife never based (RSI 13.5 at 12:50).
 
-**USWTI #18625151: HOLD while 91.016 holds.** The shelf-reclaim thesis is intact (price 91.19-91.27 consolidating above the 91.016 swing shelf, Z −1.65, RSI 38.6). Honest limitation: energy is L1-only in the authentic telemetry, so "buying absorption" cannot be measured from depth — it must be inferred from structure (the 90.69 flush-and-reclaim, price holding above the shelf). The GOLD-autopsy discipline applies verbatim: if 91.016 breaks, the thesis dies and the position is cut at market ahead of the 90.55 stop; the stop is disaster protection, not thesis arbitration. Phase-0 trigger 91.720.
+**USWTI #18625151 — MAINTAIN the bracket unchanged to the phase-0 trigger 91.720 (+0.80R → SL 91.298).**
+Fresh evidence (12:50:52): mid 91.3455, **BULLISH regime** (one of only three on the 24-asset board, with USDJPY and NEAR), price **above EMA200 91.2373, EMA50 91.232 and EMA20 91.3526**, Z −0.93 (oil sidestepped the USD-squeeze flush — unsqueezed), RSI 38.6 recovering, **no session-low sweep** (`swept_session_low: false` — no stop-hunt underneath), spread 5.58 bps stable. Non-crypto orderflow depth is honestly `UNAVAILABLE_L1_ONLY` (per certification), so the absorption call rests on regime + EMA structure + Z + RSI — which are unanimous. **Thesis kill unchanged: a break of the 91.016 swing shelf** (which sits inside the 90.86–91.09 sell-stop cluster, 3.7k) → exit at market, do not wait for 90.550. Phase-1: trigger 92.175 → SL 91.753 (locks +10.50).
 
-## 2. Topic 2 — Pre-FOMC runway policy (16:55 purge, 18:00 minutes)
+**BTC #18630694 (the running leg the memo doesn't know about) — MAINTAIN 82,700 / 85,080.**
+Phase-0 trigger **83,924** (+0.80R → SL 83,482 = entry + 0.15R). Phase-1: trigger 84,400 → SL 83,958 (locks +5.78 at 0.01 lots). Flow is two-sided: CVD last-15m **−19.8M** (sellers pressing) against a bid-heavy book (imbalance +0.233, skew 1.61, top-20 depth 674k bid vs 419k ask) and price holding 42 points above today's D1 sweep low 83,356, on top of the 83,145–83,353 cascade band (2.11M). Funding −0.37 bps (last print), predicted +1.0 — no crowded-long risk. **Thesis kill: a 4H close below 83,356 (the sweep low) → exit at market**; the plan's decay clause (close if gain < 0.20R after 24 bars) stands. No parameter changes.
 
-The council's recommendation, in tiers:
+---
 
-1. **The standing rule is unchanged and non-negotiable:** by 16:55 UTC, every unfilled pending is cancelled and every position without the phase-0 BE lock is closed at market. EURUSD's natural decay deadline (17:27) falls after the purge — the purge binds first, as flagged in the pipeline debrief.
-2. **Council preference for this event: FLAT INTO THE MINUTES.** Both theses are intraday mean-reversion plays; neither is an event thesis. A BE lock (+0.15R = +1.65/+1.85 USD) does not compensate FOMC-minutes gap risk — stops fill at the gap price, not the stop price, and the joint cushion is only +26.99. Unless **phase 1** (+0.85R lock = +9.35/+10.50 USD guaranteed, which survives a moderate gap) is secured by 16:55, close both positions and walk into the release flat.
-3. **Rationale:** today's P&L discipline was won by cutting the GOLD thesis early (−6.52 instead of −11.50). Handing it back on a two-sided event gap with intraday-scale positions would be the exact opposite trade. Post-event (18:30+), a fresh council re-deliberates over post-minutes data with two open slots and the standby pipeline below.
+## 2. Topic 2 — Pre-FOMC policy (ratified epochs: purge 16:55 = 1791392100; blackout 17:00–18:30; minutes 18:00)
 
-## 3. Topic 3 — Standby pipeline (top 3, risk <= 12.00 where the lot grid allows)
+1. **Purge rule non-negotiable:** every resting pending is gone by 16:55 UTC. Current pendings = 0. If SP500 stages into a freed slot it must **fill by 16:55 or be pulled** — its `expires_at_epoch` (1791392100) enforces this mechanically.
+2. **16:55 checkpoint for filled positions — hold only what is locked, and the two legs get different bars:**
+   - **USWTI: HOLD through the blackout iff phase-0 is armed by 16:55** (SL ≥ 91.298, +0.15R locked server-side). Oil is second-order to FOMC minutes; a locked floor plus the event move is an acceptable free option. **Else exit at market before 16:55.** Current gap: +0.375 to 91.720 ≈ 1.4×ATR — plausible in 4 hours.
+   - **BTC: HOLD iff phase-1 is armed by 16:55** (trigger 84,400 → SL 83,958, +5.78 locked). **Else exit at market before 16:55.** The bar is deliberately higher: BTC is a first-order expression of the minutes' risk tone AND its downside is cascade-shaped — 8.44M at 82,525–82,731, 16.87M at 80,289–80,490, max pain 75,336 with 42.2M of long-cascade fuel. A BE stop can gap through the first band in seconds; the free-option argument fails against a fat-left tail. Current gap: +526 to 83,924 ≈ 2.7×ATR — unlikely by 16:55.
+   - **Honest default trajectory: FLAT into the blackout** — which is the standing council preference.
+3. **17:00–18:30 absolute blackout:** no staging, no modification, no manual intervention. Both positions are already protected by server-side (Blueberry) SL/TP — fail-closed semantics hold.
+4. **18:35+ re-deliberation:** fresh council on the minutes' tone precedes any new staging; the GBPUSD/USDJPY decision tree in §3 applies.
 
-The 22-asset scan on authentic data found the US index complex flushing to its EMA200 cluster (NAS100 Z −10.54, SP500 −9.88 ON its EMA200, DJ30 −8.86 — pre-FOMC de-risking), GOLD at Z −2.07 sliding toward the 4,099.90 shelf, and BTC's reclaim flow-confirmed. Ranked:
+---
 
-| # | Plan | Entry / SL / TP | Risk | Thesis anchor |
-| --- | --- | --- | --- | --- |
-| 1 | `OXALPHA66-BTC-LONG-POSTSWEEP-V2` | 83,380 / 82,700 / 85,080 | 13.60* | Pocket SWEPT (D1 low 83,356), reclaim live (+39.4M 15m taker delta), SL below the REAL 8.46M cascade band floor, TP under EMA200 |
-| 2 | `OXALPHA66-GOLD-LONG-SHELF` | 4,101 / 4,090 / 4,128.50 | 11.00 | Z at entry −4.23 at the 4,099.90 shelf — the GOLD-done-right deep-extreme bid (fills only ~21 USD lower) |
-| 3 | `OXALPHA66-NAS100-LONG-EMA200` | 31,010 / 30,975 / 31,097.50 | 10.50 | First EMA200 test of the index uptrend at Z −10.5 (sigma-inflated but structurally real); TP = the EMA200 reclaim from below |
+## 3. Topic 3 — 22-asset scan: Top-3 contingent standby pipeline (fresh 12:50:52 matrix)
 
-*Cap exception requested: with a cascade-aware BTC stop (d = 680) the 0.01 lot grid admits only 6.80 (below the 10.00 floor) or 13.60 — the 12.00 memo window is grid-infeasible. 13.60 is inside the 10-20 band and the 14.70 queue cap; accept or widen the window.
+The board is still ONE trade — the pre-FOMC USD squeeze expressing six ways (SP500 Z −10.79, NAS100 −10.87, DJ30 −10.82, GOLD −7.60, GBPUSD −8.93, EURUSD −5.49; only USDJPY/USWTI/NEAR are BULLISH). Ranking therefore enforces factor separation:
 
-Watchlist (not staged): SP500 at its EMA200 7,789.44 (the cleanest index structure of the three — would be #3a if a fourth slot ever existed); USDJPY (Z −2.79, RSI 29.6, cheapest friction 0.016R, and a long would HEDGE the EUR long's USD factor — but note the muscle's risk formula must divide by price for JPY-quoted pairs: 0.12 lots x 0.130 / 158.2 = 11.99 USD, not 1,560); DJ30 (Z −8.86, weakest index structure); SILVER (Z −2.25, redundant with the GOLD factor).
+| # | Setup | Limit / SL / TP | Lots | Risk | Friction | Gate |
+|---|---|---|---|---|---|---|
+| **1** | **SP500 EMA200 bid** (committed, validated, PASSIVE — ask 7,789.04 vs limit) | 7,786 / 7,780 / 7,801 (2.50R) | 0.17 | **10.20** | 0.052R | **The ONLY pre-event promotable.** Market defending the EMA200 (mid 7,788.89 vs EMA 7,789.44); TP 7,801 toward VWAP 7,825. Promotes the moment a filled slot vacates, before 16:55 only |
+| **2** | **GBPUSD deep-reversion** (committed, validated, PASSIVE; `created_at` 18:35 = mechanical pre-event lock — validator refusal proven in test) | 1.3190 / 1.3181 / 1.32125 (2.50R) | 0.12 | **10.80** | ~0.011R | Post-blackout only (expires 22:00). Z −8.93 — deepest FX extreme, but the SAME anti-USD factor that stopped EURUSD; a fresh council pass + EUR-factor overlap check precedes staging |
+| **3** | **USDJPY EMA200 dip-buy** (provisional — draft the plan only after 18:30, anchored to the LIVE EMA200) | ≈158.14 / 158.013 / 158.459 (2.50R, 1.50×ATR stop 0.1274) | 0.13 | **10.47** | 0.008R | The only WITH-dollar alignment: BULLISH regime, Z −3.11, RSI 29.6, mid 158.1975 sitting 7 pips above EMA200 158.1232, VWAP 158.384 above. The hawkish-tone alternative |
 
-All three plans: 2.50R exact geometry, 16-bar TTL, expiry at the 16:55 purge deadline, stage ONLY into a freed slot.
+**Factor-hedge rule for #2/#3: they are the same dollar event with opposite signs — post-minutes, pick ONE by the minutes' tone, never both.**
 
-## 4. Topic 4 — BTC stop-cluster audit: the quarantine condition is SATISFIED
+**Vetoed, with reasons (no statistic fabricated — all from the 12:50:52 matrix):** ETH — weakest crypto flow (CVD −19.8M last-15m; ETF −201.9M on 06 Oct) at Z −1.90, no extreme, friction 0.321R borderline. SOL — friction 0.407R > 0.35R cap. GOLD — falling knife Z −7.60 with the lot-grid gap (0.01 → 8.53, 0.02 → 17.07; nothing inside 10–12) and no base. NAS100/DJ30 — redundant with SP500 on the same factor, and NAS100 is already 87 points BELOW its EMA200 (31,102) while SP500 is defending its own. GER40 — 12.26 > 12.00 cap at the minimum lot grid, RSI 25.3. SILVER — feasible (0.01 → 10.92, friction 0.165R) but same anti-USD factor; post-event only, ranks behind GBPUSD on extremity. EURUSD — RSI 13.5 knife, this morning's −1.00R lesson. Alts friction-capped: XRP 0.53R, ADA 1.08R, DOGE 4.67R, TRX 1.50R, DOT 2.19R, LINK 0.91R, BCH 0.44R, LTC 0.90R; AVAX 0.32R but Z −0.56 no edge; NEAR 0.43R over cap and chasing +1.17Z; BNB no edge (Z −0.89, RSI 65.6).
 
-The authentic D1 bar settles it: **today's low is 83,356 — the 83,450–83,510 pocket was swept in the overnight flush** (the same flush that stopped out SOL #18596013). The "un-swept stops" framing in the morning telemetry was a stale string — the stop-cluster ladder is ATR-rung-based and moves with price; the D1 bar is the ground truth. Price now 83,612, back above the swept zone, with the reclaim live-confirmed by authentic flow: 15m taker delta +39.4M USD, last 5m +11.4M, funding −0.37 bps (shorts paying). This is exactly the causal configuration the Council 64/65 quarantine was waiting for.
+---
 
-Verdict: **quarantine LIFTS, replaced by the discipline of the standby plan** — entry at the retest (83,380), stop below the REAL residual cascade (82,700, under the 8.46M band floor 82,731 — the synthetic map's 8.38M band has been superseded by the real Binance-OI map), target under the EMA200. It stages only into a freed slot, only before 16:55. The OX_ALPHA_63 autopsy's lesson is preserved structurally: the stop no longer sits in any pocket or band.
+## 4. Topic 4 — BTC stop cluster 83,450–83,510: SWEPT; entry-quarantine RESOLVED; add-quarantine REMAINS
 
-## Council 66 Resolutions
+- **The pocket is swept, with proof:** today's D1 candle (ts 1791331200) low **83,356** traded through the entire 83,450–83,510 pocket; the 4H candles confirm (lows 83,356 / 83,368); and our own passive limit at 83,380 filling at 12:51:03 is the sweep's footprint. The muscle's pioneer eval itself prints `swept_session_low: True`.
+- **The reclaim leg is NOT confirmed:** session VWAP 84,402.6 is +1,004 above; CVD last-15m −19.8M; RSI 37.0. Price holds 42 points above the sweep low.
+- **Quarantine status, precisely:** the **entry** quarantine was satisfied and lifted at the provisional session on this same D1 proof — that decision is now live as position #18630694. The pioneer engine's lingering `QUARANTINED_LIQUIDITY_TRAP` label is **stale on the entry leg** but **directionally right on the add leg**: the zone stays a liquidity trap until VWAP reclaim or absorption proof. **Therefore: no top-up to 0.02 lots before 18:30** — the 0.01 fill stands as the conservative deviation.
+- **Fresh fuel map (real Binance OI reconstruction):** long cascades below 83,145–83,353 (2.11M) / 82,525–82,731 (8.44M) / 80,289–80,490 (16.87M) / 75,242–75,431 (14.77M); max pain 75,336 DOWN (42.2M). **SL 82,700 rests at the upper lip of the 8.44M band — cascade-aware by design.** Short-squeeze fuel above: 83,562–83,770 (1.79M) / 84,190–84,400 (7.27M) / 86,103–86,318 (15.58M) — the path to TP 85,080. The memo's 84.3M figure is superseded by fresh totals: 42.2M long / 38.3M short.
 
-1. Authentic telemetry CERTIFIED; restore the per-asset execution-spec block (the one regression).
-2. EURUSD and USWTI: HOLD to phase-0 triggers (1.11938 / 91.720); USWTI cut early if 91.016 breaks.
-3. FOMC policy: purge rule non-negotiable at 16:55; council preference is FLAT into 18:00 unless phase-1 locks are secured; full re-deliberation after 18:30.
-4. Standby pipeline committed (BTC v2 13.60 with cap-exception request, GOLD shelf 11.00, NAS100 EMA200 10.50) — promotion to the first freed slot in that order, before 16:55 only.
-5. BTC quarantine condition SATISFIED (D1-low proof); the mega-wall narrative retired with the synthetic ladders.
-6. Watchlist: SP500 (EMA200), USDJPY (factor hedge; JPY risk-formula pitfall flagged), DJ30, SILVER.
+---
 
-*Every figure traces to the 12:01 UTC authentic telemetry snapshot or the committed plan corpus; no statistic is fabricated.*
+## Council 66 Resolutions (formal session, superseding the provisional list where amended)
+
+1. **State reconciled:** the 11:58 memo is stale — EURUSD #18625675 stopped −1.00R at ~12:28; BTC #18630694 filled 12:51:03 @ 83,380 at 0.01 lots (half plan size; conservative deviation ACCEPTED, no top-up before 18:30). Book: USWTI + BTC, 2/2 filled, 0 pendings, worst case 4,794.29 = +19.29 over the 4,775 floor.
+2. **USWTI: HOLD** the existing bracket to phase-0 91.720 (→ SL 91.298); thesis kill 91.016. **BTC: HOLD** 82,700/85,080 to phase-0 83,924 (→ SL 83,482); thesis kill 4H close < 83,356.
+3. **Pre-FOMC:** purge at 16:55 non-negotiable (0 pendings today). At the 16:55 checkpoint — USWTI holds iff phase-0 armed; **BTC holds iff phase-1 armed (84,400 → 83,958), else market-exit** — cascade-shaped tail justifies the higher bar. Default trajectory: flat into the blackout.
+4. **Standby pipeline:** **SP500 (7,786/7,780/7,801, 10.20) → GBPUSD post-FOMC (1.3190/1.3181/1.32125, 10.80) → USDJPY post-FOMC provisional (≈158.14/158.013/158.459, 10.47)**; #2/#3 are opposite signs of one dollar event — pick one by the minutes' tone, never both.
+5. **BTC pocket 83,450–83,510: SWEPT** (D1 low 83,356); entry-quarantine resolved and live; **add-quarantine remains** until VWAP reclaim or a confirmed CVD absorption flip.
+6. **Standing items:** authentic telemetry re-certified; the v2 execution-spec regression (restore tick/contract/min_lot/step_lot in quotes) is still open; ETF 07-Oct flows print 0.0 before Farside reports — should be NULL/NOT_REPORTED semantics; FNG 71 (Greed, as-of 00:00 UTC); Coinbase premium −2.4 bps.
+
+*Every figure traces to the 12:50:52 UTC authentic snapshot (commit 51e9849), the committed plan corpus, or the git audit trail. No statistic is fabricated.*
