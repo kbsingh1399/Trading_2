@@ -105,8 +105,8 @@
     "semantic_hash": ""
   },
   "Data/mt5_ai_trader_state.json": {
-    "mtime": 1791306217.6553724,
-    "ast_hash": "8f69ae9372a4b07d192c3da8b0a09734",
+    "mtime": 1791358831.071764,
+    "ast_hash": "36de8cc25cae36a18e15e3e7d5eee069",
     "semantic_hash": ""
   },
   "Data/ofc_paper_positions.json": {
@@ -155,8 +155,8 @@
     "semantic_hash": ""
   },
   "Terminal/Asset_Universe.py": {
-    "mtime": 1791198175.6794217,
-    "ast_hash": "ab2c0fcc9ffc1e1ddac42ae774b1db0f",
+    "mtime": 1791316092.3619242,
+    "ast_hash": "1035e4c848cf0cdedd3136ac2311e4da",
     "semantic_hash": ""
   },
   "Terminal/Chart_Engine.py": {
@@ -225,7 +225,7 @@
     "semantic_hash": ""
   },
   "Terminal/MT5_Execution_Bridge.py": {
-    "mtime": 1791296432.1778088,
+    "mtime": 1791310280.4740183,
     "ast_hash": "a3b43a7b1496bb031019fdb74b8b8dd9",
     "semantic_hash": ""
   },
@@ -235,7 +235,7 @@
     "semantic_hash": ""
   },
   "Terminal/Market_Intelligence.py": {
-    "mtime": 1791302838.7163658,
+    "mtime": 1791310280.4750185,
     "ast_hash": "3850f89e2fbd057312debc45bb3777d0",
     "semantic_hash": ""
   },
@@ -250,13 +250,13 @@
     "semantic_hash": ""
   },
   "Terminal/OF_Strategy.py": {
-    "mtime": 1791304424.2726836,
-    "ast_hash": "0f055d1c8f3a14699226d96331e8730f",
+    "mtime": 1791358832.0516746,
+    "ast_hash": "3262ba6482cd9cccfa07f4845a83ce63",
     "semantic_hash": ""
   },
   "Terminal/Omni_Trader.py": {
-    "mtime": 1791303212.8061538,
-    "ast_hash": "6d8e4b065949cae924790a408f4770f8",
+    "mtime": 1791318927.1804934,
+    "ast_hash": "c8a186cc45e046c9b82962a834ef073c",
     "semantic_hash": ""
   },
   "Terminal/Orderflow_Replay.py": {
@@ -270,12 +270,12 @@
     "semantic_hash": ""
   },
   "Terminal/Risk_Sizing_Engine.py": {
-    "mtime": 1791302805.2311776,
+    "mtime": 1791310266.639727,
     "ast_hash": "f249935fadb2b40b176660d9360f56cb",
     "semantic_hash": ""
   },
   "Terminal/Uplift_Model.py": {
-    "mtime": 1791296440.663554,
+    "mtime": 1791319061.3894103,
     "ast_hash": "1e0732c11d533e6c4c1f996cd8471f99",
     "semantic_hash": ""
   },
@@ -530,8 +530,8 @@
     "semantic_hash": ""
   },
   "Terminal/Candle_Indicator_Engine.py": {
-    "mtime": 1791290509.153733,
-    "ast_hash": "b935d7fe5b0c1ac9dcb7e0b685ae01be",
+    "mtime": 1791316132.5842178,
+    "ast_hash": "fd0deccee910351889bc71a979218727",
     "semantic_hash": ""
   },
   "Terminal/Causal_Candle_Stream.py": {
@@ -555,13 +555,13 @@
     "semantic_hash": ""
   },
   "Terminal/Orderbook_Structure.py": {
-    "mtime": 1791296571.1042197,
-    "ast_hash": "494d9b979a569bdb28614aefb2f1e468",
+    "mtime": 1791317463.7062843,
+    "ast_hash": "99dd9be9cf93cc774b112d6a0455914e",
     "semantic_hash": ""
   },
   "Tests/Test_Candle_Indicator_Engine.py": {
-    "mtime": 1791290591.1437573,
-    "ast_hash": "f637ea467903423740e6383794e8ecbe",
+    "mtime": 1791310280.4780192,
+    "ast_hash": "00c2155a3a1981d5d1d71e845d568550",
     "semantic_hash": ""
   },
   "Tests/Test_Omni_Consultation.py": {
@@ -580,8 +580,8 @@
     "semantic_hash": ""
   },
   "docs/prompts/build_ox_alpha_58_prompt.py": {
-    "mtime": 1791291638.3468876,
-    "ast_hash": "20e2a8d647addc911499ec213ff801ac",
+    "mtime": 1791310280.4830186,
+    "ast_hash": "aa93759e188cb98a009ec951cc600cfd",
     "semantic_hash": ""
   },
   "docs/audits/OMNI_Hardening_Audit_20261006.md": {
@@ -595,17 +595,17 @@
     "semantic_hash": ""
   },
   "docs/prompts/Ox_Alpha_58_MultiAsset_Limit_Queue_Commodity_VWAP_Audit.txt": {
-    "mtime": 1791291643.7626967,
+    "mtime": 1791310280.480026,
     "ast_hash": "fbdb29392569cdc7c389ba841fb6da11",
     "semantic_hash": ""
   },
   "docs/prompts/Ox_Alpha_59_Zero_Cost_All_In_One_Data_Factory.txt": {
-    "mtime": 1791293868.0503314,
+    "mtime": 1791310280.4810205,
     "ast_hash": "3997bcfc0956224f9df4587d520c9a03",
     "semantic_hash": ""
   },
   "docs/prompts/Ox_Alpha_59_Zero_Cost_Institutional_Market_Intelligence_Engine.txt": {
-    "mtime": 1791293559.058181,
+    "mtime": 1791310280.4820213,
     "ast_hash": "e4a48e8cd84b96a3ca48629b4ac17d8f",
     "semantic_hash": ""
   },
@@ -615,78 +615,283 @@
     "semantic_hash": ""
   },
   "Terminal/Data_Factory/__init__.py": {
-    "mtime": 1791304385.0995014,
+    "mtime": 1791310280.47202,
     "ast_hash": "403eaf2b0f555a313882470a8a76640a",
     "semantic_hash": ""
   },
   "Terminal/Data_Factory/bulk.py": {
-    "mtime": 1791302805.218348,
+    "mtime": 1791310266.6303144,
     "ast_hash": "21f880ff8590151b39587adee3a8882c",
     "semantic_hash": ""
   },
   "Terminal/Data_Factory/bus.py": {
-    "mtime": 1791302805.2193499,
+    "mtime": 1791310266.6313884,
     "ast_hash": "39cb77f71583c7341613dfa95df18376",
     "semantic_hash": ""
   },
   "Terminal/Data_Factory/crosscheck.py": {
-    "mtime": 1791302805.221349,
+    "mtime": 1791310266.63191,
     "ast_hash": "14d18d3788b0c158588ddedbcaa99c31",
     "semantic_hash": ""
   },
   "Terminal/Data_Factory/factory.py": {
-    "mtime": 1791302805.2223437,
-    "ast_hash": "d1b5905ca3ff8572c2a17df5e9148dcf",
+    "mtime": 1791314928.4917262,
+    "ast_hash": "19e5eced80c251749c523fbf607ba0ac",
     "semantic_hash": ""
   },
   "Terminal/Data_Factory/liquidation_engine.py": {
-    "mtime": 1791302805.2223437,
+    "mtime": 1791310266.633493,
     "ast_hash": "37e12e862092b9970f52fd15138394de",
     "semantic_hash": ""
   },
   "Terminal/Data_Factory/live.py": {
-    "mtime": 1791302805.223654,
+    "mtime": 1791310266.634092,
     "ast_hash": "5678233e2e8b0d3dd842ca4637b9e8b3",
     "semantic_hash": ""
   },
   "Terminal/Data_Factory/macro.py": {
-    "mtime": 1791302805.2241595,
+    "mtime": 1791310266.6346242,
     "ast_hash": "48b7e60ceb92c356ce5a15e9fb091d64",
     "semantic_hash": ""
   },
   "Terminal/Data_Factory/onchain.py": {
-    "mtime": 1791302805.2251682,
+    "mtime": 1791310266.6356716,
     "ast_hash": "b7327df6c2177af93d752fb814c23a91",
     "semantic_hash": ""
   },
   "Terminal/Data_Factory/streams.py": {
-    "mtime": 1791304459.6938818,
+    "mtime": 1791310280.4730196,
     "ast_hash": "5ab7fcc63256592421697a6e70de4ff7",
     "semantic_hash": ""
   },
   "Terminal/Pioneer_Decision_Engine.py": {
-    "mtime": 1791302805.2301745,
-    "ast_hash": "d3543563e835535073a6198c60769c03",
+    "mtime": 1791358832.0527265,
+    "ast_hash": "cd1f3329383326cd93f9dbec489fc5bf",
     "semantic_hash": ""
   },
   "Tests/Test_Pioneer_Decision_Engine.py": {
-    "mtime": 1791302805.2321734,
+    "mtime": 1791310266.6407282,
     "ast_hash": "4795137c6ca073ed11dbf18e46e79208",
     "semantic_hash": ""
   },
   "Tests/Test_Zero_Cost_Data_Factory.py": {
-    "mtime": 1791302980.8479857,
-    "ast_hash": "d9d7e8ac6ff24d9ed67306ebe4da871b",
+    "mtime": 1791314928.5002635,
+    "ast_hash": "eaf39b6df1ca22983bafd0e3faad17d8",
     "semantic_hash": ""
   },
   "docs/audits/OMNI_Pioneer_Decision_Engine_20261006.md": {
-    "mtime": 1791302805.2341735,
+    "mtime": 1791310266.6417303,
     "ast_hash": "4a84a52538e111e9283d522b56bfeddc",
     "semantic_hash": ""
   },
   "docs/audits/OMNI_Zero_Cost_Data_Factory_20261006.md": {
-    "mtime": 1791302805.2341735,
+    "mtime": 1791310266.6427267,
     "ast_hash": "ddcaaddcaf64083e749ffcb79dbfea21",
+    "semantic_hash": ""
+  },
+  "Terminal/Execution/__init__.py": {
+    "mtime": 1791314928.492789,
+    "ast_hash": "45f47124f6a5778394b4c632407a92d4",
+    "semantic_hash": ""
+  },
+  "Terminal/Execution/base.py": {
+    "mtime": 1791314928.4933176,
+    "ast_hash": "5f45081716472af1f451b10204ad9ec1",
+    "semantic_hash": ""
+  },
+  "Terminal/Execution/headless_rest.py": {
+    "mtime": 1791314928.4933176,
+    "ast_hash": "ca61e76c4f76665d21c0730025a385ab",
+    "semantic_hash": ""
+  },
+  "Terminal/Execution/native_mt5.py": {
+    "mtime": 1791314928.4943607,
+    "ast_hash": "77f01ed2c1dc4bfa9a9e64c75118a017",
+    "semantic_hash": ""
+  },
+  "Terminal/Execution/paper.py": {
+    "mtime": 1791314928.494883,
+    "ast_hash": "813b87f2e5dbe3d14eafbac9562b8fde",
+    "semantic_hash": ""
+  },
+  "Terminal/Execution/remote_reconciler.py": {
+    "mtime": 1791318927.1767876,
+    "ast_hash": "6148ee14d12e3f56000bb0f256cb4527",
+    "semantic_hash": ""
+  },
+  "Terminal/Headless/__init__.py": {
+    "mtime": 1791314928.4954064,
+    "ast_hash": "c627d1432cbccce2585bd3f365eb5851",
+    "semantic_hash": ""
+  },
+  "Terminal/Headless/__main__.py": {
+    "mtime": 1791314928.4959302,
+    "ast_hash": "1c5bdadb0f213ecda9a2e6cf070faaea",
+    "semantic_hash": ""
+  },
+  "Terminal/Headless/arena_continuous_brain.py": {
+    "mtime": 1791358832.0511425,
+    "ast_hash": "6fa77679b657cb6a7b8b19cb191064f1",
+    "semantic_hash": ""
+  },
+  "Terminal/Headless/brain_client.py": {
+    "mtime": 1791320883.6021779,
+    "ast_hash": "2f63b51b73494dd12bd381c80812e8ef",
+    "semantic_hash": ""
+  },
+  "Terminal/Headless/llm_contract.py": {
+    "mtime": 1791314928.496452,
+    "ast_hash": "04d2bc536b88f7849d604f0f13308902",
+    "semantic_hash": ""
+  },
+  "Terminal/Headless/runtime.py": {
+    "mtime": 1791355797.6255279,
+    "ast_hash": "4be5ba30fcb56a303d30dfb93131faec",
+    "semantic_hash": ""
+  },
+  "Terminal/Headless/scheduler.py": {
+    "mtime": 1791314928.4975226,
+    "ast_hash": "dc2e36f0563e405a0eaaa6d1c5d730e8",
+    "semantic_hash": ""
+  },
+  "Terminal/Headless/server.py": {
+    "mtime": 1791320280.0443206,
+    "ast_hash": "9530de3617562ec727874b7427d4beed",
+    "semantic_hash": ""
+  },
+  "Terminal/Headless/stage_trade_plan.py": {
+    "mtime": 1791320883.6037972,
+    "ast_hash": "16fadfda845a5c6d5c69343d2e3150e9",
+    "semantic_hash": ""
+  },
+  "Terminal/Headless/swarm.py": {
+    "mtime": 1791317463.7047164,
+    "ast_hash": "8f3f8db4aeefc90e71771248cafac908",
+    "semantic_hash": ""
+  },
+  "Tests/Test_Arena_Brain_Link.py": {
+    "mtime": 1791319010.609336,
+    "ast_hash": "96cecfd0ca1730df192ef7de2bbc4b6a",
+    "semantic_hash": ""
+  },
+  "Tests/Test_Continuous_Brain.py": {
+    "mtime": 1791318927.1820438,
+    "ast_hash": "4c9e8b48ffb77907e7b347e4cd6f0e44",
+    "semantic_hash": ""
+  },
+  "Tests/Test_Decision_Chain_v2.py": {
+    "mtime": 1791358832.0532455,
+    "ast_hash": "4381be6805438a566005813b558cb964",
+    "semantic_hash": ""
+  },
+  "Tests/Test_Headless_Cloud.py": {
+    "mtime": 1791315001.6154978,
+    "ast_hash": "db4733a348d359eb8a6567d29b44d378",
+    "semantic_hash": ""
+  },
+  "Tests/Test_Stage_Trade_Plan.py": {
+    "mtime": 1791358832.054288,
+    "ast_hash": "adc025b63be5fc9319d3f95064751f46",
+    "semantic_hash": ""
+  },
+  "deploy/run_headless.py": {
+    "mtime": 1791317980.8586395,
+    "ast_hash": "420cc2d74b16716be6d2f2b99091fe30",
+    "semantic_hash": ""
+  },
+  "deploy/start_tunnel.ps1": {
+    "mtime": 1791318927.182561,
+    "ast_hash": "3db8fffbce2cf592fff084d0b4bfd685",
+    "semantic_hash": ""
+  },
+  "docs/trade_plans/OMNI_CAUSAL_EURUSD_Long_20261007.json": {
+    "mtime": 1791361474.7466967,
+    "ast_hash": "63d1a4e298ced216a5e6c5615c15c775",
+    "semantic_hash": ""
+  },
+  "docs/trade_plans/OMNI_CAUSAL_GOLD_Long_20261007.json": {
+    "mtime": 1791361483.526477,
+    "ast_hash": "b3fb96ca56ead5fadac8785d2aa7fdac",
+    "semantic_hash": ""
+  },
+  "docs/trade_plans/OX_ALPHA_62_SOL_Long_20261007.json": {
+    "mtime": 1791320883.6060586,
+    "ast_hash": "a126a8544e6603bbb7a2f3afc517576f",
+    "semantic_hash": ""
+  },
+  "docs/trade_plans/OX_ALPHA_63_BTC_Long_20261007.json": {
+    "mtime": 1791358832.0558965,
+    "ast_hash": "8f0cea322561b376851304bb567f97ab",
+    "semantic_hash": ""
+  },
+  "docs/trade_plans/OX_ALPHA_63_GOLD_Long_20261007.json": {
+    "mtime": 1791358832.056969,
+    "ast_hash": "2ae3c38e5feb0ce2d0ba911576c47d4a",
+    "semantic_hash": ""
+  },
+  "docs/trade_plans/OX_ALPHA_63_SOL_Long_20261007.json": {
+    "mtime": 1791358832.0575051,
+    "ast_hash": "38454accef989da6e1d91089487820bf",
+    "semantic_hash": ""
+  },
+  "deploy/docker-compose.yml": {
+    "mtime": 1791314928.5018344,
+    "ast_hash": "a01921150684d47642ffe6f3da406866",
+    "semantic_hash": ""
+  },
+  "deploy/requirements-headless.txt": {
+    "mtime": 1791314928.5023549,
+    "ast_hash": "77e7832e9c87d0421f6da75181a77c66",
+    "semantic_hash": ""
+  },
+  "docs/audits/OMNI_Arena_Brain_Link_20261007.md": {
+    "mtime": 1791318927.1836047,
+    "ast_hash": "c75a2024f74b38e4896941bed4bd5bf6",
+    "semantic_hash": ""
+  },
+  "docs/audits/OMNI_Continuous_Autonomous_Brain_20261007.md": {
+    "mtime": 1791318927.184124,
+    "ast_hash": "2857355054f9e3790a23955bde240abc",
+    "semantic_hash": ""
+  },
+  "docs/audits/OMNI_Headless_Cloud_Architecture_20261007.md": {
+    "mtime": 1791314928.5034556,
+    "ast_hash": "64505443bb190072b58a3d8a7d91cf28",
+    "semantic_hash": ""
+  },
+  "docs/audits/OX_ALPHA_63_Decision_Chain_v2_20261007.md": {
+    "mtime": 1791358832.055359,
+    "ast_hash": "701b6428f2985b5a1bda4d19e611621c",
+    "semantic_hash": ""
+  },
+  "docs/prompts/Ox_Alpha_60_Headless_Cloud_Execution_and_Dependency_Abstraction.txt": {
+    "mtime": 1791312957.6371036,
+    "ast_hash": "9f35605d1019f694d8a86716c3adb5eb",
+    "semantic_hash": ""
+  },
+  "docs/prompts/Ox_Alpha_61_Hybrid_Brain_Muscle_Architecture_and_Arena_MT5_Execution.txt": {
+    "mtime": 1791315374.1558945,
+    "ast_hash": "599d3017208d99373c09dbd42b7b69b4",
+    "semantic_hash": ""
+  },
+  "docs/prompts/Ox_Alpha_62_Autonomous_Endless_Brain_Orchestration_and_Cloudflare_MT5_Control.txt": {
+    "mtime": 1791318090.9694135,
+    "ast_hash": "0cfb63fb6cd154057da76d4d0e02bc54",
+    "semantic_hash": ""
+  },
+  "docs/prompts/Ox_Alpha_63.txt": {
+    "mtime": 1791356967.4747336,
+    "ast_hash": "92e4a48734807abdb5c769dea961de84",
+    "semantic_hash": ""
+  },
+  "docs/specs/OX_ALPHA_63_DECISION_CHAIN_SPECIFICATION.md": {
+    "mtime": 1791356940.6906285,
+    "ast_hash": "470dbedc5c2f617334840fb98fef7e53",
+    "semantic_hash": ""
+  },
+  "docs/trade_plans/OX_ALPHA_62_SOL_Long_20261007.md": {
+    "mtime": 1791320883.6065826,
+    "ast_hash": "3f5e9080c4161b00755cb5238250400c",
     "semantic_hash": ""
   }
 }

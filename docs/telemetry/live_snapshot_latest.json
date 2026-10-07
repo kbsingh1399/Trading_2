@@ -1,0 +1,298 @@
+{
+  "protocol": "omni.telemetry.v1",
+  "as_of_utc": "2026-10-07 08:33:07 UTC",
+  "as_of_epoch": 1791361987.0435987,
+  "account": {
+    "login": 5064568,
+    "server": "BlueberryMarkets-Real",
+    "balance_usd": 4831.73,
+    "equity_usd": 4834.1,
+    "margin_used_usd": 412.5,
+    "margin_free_usd": 4421.6,
+    "margin_level_pct": 1171.9030303030304,
+    "hard_floor_usd": 4775.0,
+    "cushion_above_floor_usd": 59.1
+  },
+  "active_positions": [
+    {
+      "ticket": 18617135,
+      "symbol": "XAUUSD.pi",
+      "direction": "LONG",
+      "volume": 0.01,
+      "price_open": 4125.0,
+      "price_current": 4127.37,
+      "sl": 4113.5,
+      "tp": 4153.75,
+      "profit_usd": 2.37,
+      "time_setup": 1791372326
+    }
+  ],
+  "pending_orders": [
+    {
+      "ticket": 18617132,
+      "symbol": "EURUSD.pi",
+      "type": "BUY_LIMIT",
+      "volume": 0.09,
+      "price_open": 1.1188,
+      "sl": 1.1174,
+      "tp": 1.1223,
+      "time_setup": 1791372276
+    }
+  ],
+  "capacity": {
+    "filled": 1,
+    "pending": 1,
+    "max_concurrent": 2,
+    "status": "HARD_ADMISSION_FREEZE (2/2 slots occupied)"
+  },
+  "macro_calendar": {
+    "fomc_minutes_utc": "2026-10-07 18:00:00 UTC",
+    "hard_blackout_window_utc": [
+      "2026-10-07 17:00:00 UTC",
+      "2026-10-07 18:30:00 UTC"
+    ],
+    "purge_deadline_utc": "2026-10-07 16:55:00 UTC"
+  },
+  "quotes_24": {
+    "BTCUSD.pi": {
+      "bid": 84014.5,
+      "ask": 84030.5,
+      "spread": 16.0,
+      "digits": 2,
+      "contract_size": 1.0,
+      "tick_size": 0.01,
+      "min_lot": 0.01,
+      "step_lot": 0.01
+    },
+    "ETHUSD.pi": {
+      "bid": 2613.5,
+      "ask": 2616.5,
+      "spread": 3.0,
+      "digits": 2,
+      "contract_size": 1.0,
+      "tick_size": 0.01,
+      "min_lot": 0.01,
+      "step_lot": 0.01
+    },
+    "SOLUSD.p": {
+      "bid": 118.34,
+      "ask": 118.57,
+      "spread": 0.23,
+      "digits": 2,
+      "contract_size": 100.0,
+      "tick_size": 0.01,
+      "min_lot": 0.01,
+      "step_lot": 0.01
+    },
+    "BNBUSD.p": {
+      "bid": 774.1,
+      "ask": 774.8,
+      "spread": 0.7,
+      "digits": 2,
+      "contract_size": 1.0,
+      "tick_size": 0.01,
+      "min_lot": 0.01,
+      "step_lot": 0.01
+    },
+    "XRPUSD.pi": {
+      "bid": 1.464,
+      "ask": 1.4689999999999999,
+      "spread": 0.005,
+      "digits": 3,
+      "contract_size": 1000.0,
+      "tick_size": 0.001,
+      "min_lot": 1.0,
+      "step_lot": 1.0
+    },
+    "ADAUSD.p": {
+      "bid": 0.2571,
+      "ask": 0.2592,
+      "spread": 0.0021,
+      "digits": 4,
+      "contract_size": 5000.0,
+      "tick_size": 0.0001,
+      "min_lot": 1.0,
+      "step_lot": 1.0
+    },
+    "DOGUSD.p": {
+      "bid": 0.0899,
+      "ask": 0.092,
+      "spread": 0.0021,
+      "digits": 4,
+      "contract_size": 10000.0,
+      "tick_size": 0.0001,
+      "min_lot": 1.0,
+      "step_lot": 1.0
+    },
+    "TRXUSD.p": {
+      "bid": 0.3324,
+      "ask": 0.3334,
+      "spread": 0.001,
+      "digits": 4,
+      "contract_size": 10000.0,
+      "tick_size": 0.0001,
+      "min_lot": 1.0,
+      "step_lot": 1.0
+    },
+    "DOTUSD.pi": {
+      "bid": 1.1219999999999999,
+      "ask": 1.142,
+      "spread": 0.02,
+      "digits": 3,
+      "contract_size": 1000.0,
+      "tick_size": 0.001,
+      "min_lot": 0.01,
+      "step_lot": 0.01
+    },
+    "LNKUSD.p": {
+      "bid": 13.673,
+      "ask": 13.758,
+      "spread": 0.085,
+      "digits": 3,
+      "contract_size": 100.0,
+      "tick_size": 0.001,
+      "min_lot": 0.1,
+      "step_lot": 0.1
+    },
+    "BCHUSD.p": {
+      "bid": 307.46,
+      "ask": 308.04,
+      "spread": 0.58,
+      "digits": 3,
+      "contract_size": 10.0,
+      "tick_size": 0.001,
+      "min_lot": 0.1,
+      "step_lot": 0.1
+    },
+    "LTCUSD.pi": {
+      "bid": 67.46,
+      "ask": 67.76,
+      "spread": 0.3,
+      "digits": 3,
+      "contract_size": 100.0,
+      "tick_size": 0.001,
+      "min_lot": 0.1,
+      "step_lot": 0.1
+    },
+    "AVXUSD.p": {
+      "bid": 11.24,
+      "ask": 11.27,
+      "spread": 0.03,
+      "digits": 2,
+      "contract_size": 100.0,
+      "tick_size": 0.01,
+      "min_lot": 0.01,
+      "step_lot": 0.01
+    },
+    "NERUSD.p": {
+      "bid": 5.183,
+      "ask": 5.216,
+      "spread": 0.033,
+      "digits": 3,
+      "contract_size": 100.0,
+      "tick_size": 0.001,
+      "min_lot": 1.0,
+      "step_lot": 1.0
+    },
+    "SP500.p": {
+      "bid": 7821.79,
+      "ask": 7822.62,
+      "spread": 0.83,
+      "digits": 2,
+      "contract_size": 10.0,
+      "tick_size": 0.01,
+      "min_lot": 0.01,
+      "step_lot": 0.01
+    },
+    "NAS100.p": {
+      "bid": 31177.0,
+      "ask": 31178.26,
+      "spread": 1.26,
+      "digits": 2,
+      "contract_size": 10.0,
+      "tick_size": 0.01,
+      "min_lot": 0.01,
+      "step_lot": 0.01
+    },
+    "DJ30.p": {
+      "bid": 51498.46,
+      "ask": 51500.04,
+      "spread": 1.58,
+      "digits": 2,
+      "contract_size": 10.0,
+      "tick_size": 0.01,
+      "min_lot": 0.01,
+      "step_lot": 0.01
+    },
+    "GER40.p": {
+      "bid": 25321.0,
+      "ask": 25322.1,
+      "spread": 1.1,
+      "digits": 2,
+      "contract_size": 10.0,
+      "tick_size": 0.01,
+      "min_lot": 0.01,
+      "step_lot": 0.01
+    },
+    "XAUUSD.pi": {
+      "bid": 4127.37,
+      "ask": 4127.47,
+      "spread": 0.1,
+      "digits": 2,
+      "contract_size": 100.0,
+      "tick_size": 0.01,
+      "min_lot": 0.01,
+      "step_lot": 0.01
+    },
+    "XAGUSD.pi": {
+      "bid": 60.39,
+      "ask": 60.448,
+      "spread": 0.058,
+      "digits": 3,
+      "contract_size": 5000.0,
+      "tick_size": 0.001,
+      "min_lot": 0.01,
+      "step_lot": 0.01
+    },
+    "USWTI.p": {
+      "bid": 90.863,
+      "ask": 90.899,
+      "spread": 0.036,
+      "digits": 3,
+      "contract_size": 100.0,
+      "tick_size": 0.001,
+      "min_lot": 0.01,
+      "step_lot": 0.01
+    },
+    "EURUSD.pi": {
+      "bid": 1.11939,
+      "ask": 1.1194,
+      "spread": 1e-05,
+      "digits": 5,
+      "contract_size": 100000.0,
+      "tick_size": 1e-05,
+      "min_lot": 0.01,
+      "step_lot": 0.01
+    },
+    "GBPUSD.pi": {
+      "bid": 1.32394,
+      "ask": 1.32396,
+      "spread": 2e-05,
+      "digits": 5,
+      "contract_size": 100000.0,
+      "tick_size": 1e-05,
+      "min_lot": 0.01,
+      "step_lot": 0.01
+    },
+    "USDJPY.pi": {
+      "bid": 158.086,
+      "ask": 158.087,
+      "spread": 0.001,
+      "digits": 3,
+      "contract_size": 100000.0,
+      "tick_size": 0.001,
+      "min_lot": 0.01,
+      "step_lot": 0.01
+    }
+  }
+}

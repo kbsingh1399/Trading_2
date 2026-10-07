@@ -1,16 +1,16 @@
-# Graph Report - Trading_2  (2026-10-06)
+# Graph Report - Trading_2  (2026-10-07)
 
 ## Corpus Check
-- 125 files · ~431,343 words
+- 160 files · ~477,162 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 6141 nodes · 17723 edges · 291 communities (248 shown, 43 thin omitted)
-- Extraction: 81% EXTRACTED · 19% INFERRED · 0% AMBIGUOUS · INFERRED: 3319 edges (avg confidence: 0.79)
+- 6716 nodes · 19079 edges · 327 communities (284 shown, 43 thin omitted)
+- Extraction: 82% EXTRACTED · 18% INFERRED · 0% AMBIGUOUS · INFERRED: 3451 edges (avg confidence: 0.78)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `c741e622`
+- Built from commit: `601fd223`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -303,18 +303,53 @@
 - [[_COMMUNITY_Community 288|Community 288]]
 - [[_COMMUNITY_Community 289|Community 289]]
 - [[_COMMUNITY_Community 290|Community 290]]
+- [[_COMMUNITY_Community 291|Community 291]]
+- [[_COMMUNITY_Community 292|Community 292]]
+- [[_COMMUNITY_Community 293|Community 293]]
+- [[_COMMUNITY_Community 294|Community 294]]
+- [[_COMMUNITY_Community 295|Community 295]]
+- [[_COMMUNITY_Community 296|Community 296]]
+- [[_COMMUNITY_Community 297|Community 297]]
+- [[_COMMUNITY_Community 298|Community 298]]
+- [[_COMMUNITY_Community 299|Community 299]]
+- [[_COMMUNITY_Community 300|Community 300]]
+- [[_COMMUNITY_Community 301|Community 301]]
+- [[_COMMUNITY_Community 302|Community 302]]
+- [[_COMMUNITY_Community 303|Community 303]]
+- [[_COMMUNITY_Community 304|Community 304]]
+- [[_COMMUNITY_Community 305|Community 305]]
+- [[_COMMUNITY_Community 306|Community 306]]
+- [[_COMMUNITY_Community 307|Community 307]]
+- [[_COMMUNITY_Community 308|Community 308]]
+- [[_COMMUNITY_Community 309|Community 309]]
+- [[_COMMUNITY_Community 310|Community 310]]
+- [[_COMMUNITY_Community 311|Community 311]]
+- [[_COMMUNITY_Community 312|Community 312]]
+- [[_COMMUNITY_Community 313|Community 313]]
+- [[_COMMUNITY_Community 314|Community 314]]
+- [[_COMMUNITY_Community 315|Community 315]]
+- [[_COMMUNITY_Community 316|Community 316]]
+- [[_COMMUNITY_Community 317|Community 317]]
+- [[_COMMUNITY_Community 318|Community 318]]
+- [[_COMMUNITY_Community 319|Community 319]]
+- [[_COMMUNITY_Community 320|Community 320]]
+- [[_COMMUNITY_Community 321|Community 321]]
+- [[_COMMUNITY_Community 322|Community 322]]
+- [[_COMMUNITY_Community 323|Community 323]]
+- [[_COMMUNITY_Community 324|Community 324]]
+- [[_COMMUNITY_Community 325|Community 325]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `push()` - 256 edges
 2. `at()` - 169 edges
 3. `z` - 167 edges
-4. `forEach()` - 140 edges
-5. `number()` - 133 edges
+4. `number()` - 160 edges
+5. `forEach()` - 140 edges
 6. `cWe()` - 85 edges
-7. `node()` - 67 edges
-8. `Ft()` - 64 edges
-9. `qL()` - 63 edges
-10. `r()` - 62 edges
+7. `AI15mMT5Trader` - 69 edges
+8. `node()` - 67 edges
+9. `Ft()` - 64 edges
+10. `qL()` - 63 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `Broker` --uses--> `AdverseSelectionMonitor`  [INFERRED]
@@ -324,22 +359,22 @@
 - `Broker` --uses--> `CausalCandleStream`  [INFERRED]
   Tests/Test_Omni_Consultation.py → Terminal/Causal_Candle_Stream.py
 - `Broker` --uses--> `CognitiveEngine`  [INFERRED]
-  Tests/Test_Omni_Engine.py → Terminal/Cognitive_Engine.py
-- `Cognitive` --uses--> `CognitiveEngine`  [INFERRED]
-  Tests/Test_Omni_Engine.py → Terminal/Cognitive_Engine.py
+  Tests/Test_Omni_Hardening.py → Terminal/Cognitive_Engine.py
+- `Intel` --uses--> `CognitiveEngine`  [INFERRED]
+  Tests/Test_Omni_Hardening.py → Terminal/Cognitive_Engine.py
 
 ## Import Cycles
 - None detected.
 
-## Communities (291 total, 43 thin omitted)
+## Communities (327 total, 43 thin omitted)
 
 ### Community 0 - "Community 0"
 Cohesion: 0.00
-Nodes (355): _1t, _3e, _6e, $8, a4, a6e, a9e(), abt (+347 more)
+Nodes (371): _1t, _3e, _6e, $8, a4, a6e, a9e(), abt (+363 more)
 
 ### Community 1 - "Community 1"
-Cohesion: 0.03
-Nodes (19): aVe(), bHe(), bVe(), cWe(), dVe(), eHe, eVe, hVe() (+11 more)
+Cohesion: 0.04
+Nodes (14): aVe(), bHe(), bVe(), cWe(), dVe(), dWe(), hVe(), ict() (+6 more)
 
 ### Community 2 - "Community 2"
 Cohesion: 0.06
@@ -347,203 +382,207 @@ Nodes (48): build_fixture(), main(), make_case(), quote(), Generate a small dete
 
 ### Community 3 - "Community 3"
 Cohesion: 0.03
-Nodes (101): AdverseSelectionMonitor, batch_reference(), CausalCandleStream, IncrementalIndicators, Causal candle ingestion: O(1) incremental indicators with WAL crash recovery., Slow-but-obvious recomputation of the exact same recursions; exists so     test, Event-sourced per-symbol candle stream with WAL crash recovery., Bound the WAL: once it exceeds ROTATE_AFTER_EVENTS records, compact         to (+93 more)
+Nodes (96): AdverseSelectionMonitor, Composite abort score plus the individual alarms (deterministic)., batch_reference(), CausalCandleStream, IncrementalIndicators, Causal candle ingestion: O(1) incremental indicators with WAL crash recovery., Slow-but-obvious recomputation of the exact same recursions; exists so     test, Event-sourced per-symbol candle stream with WAL crash recovery. (+88 more)
 
 ### Community 4 - "Community 4"
 Cohesion: 0.06
 Nodes (54): LGBMClassifier, LogisticRegression, apply_atr_floor(), compile_orb_candidates(), compile_s1_candidates(), compute_structural_pivots_and_sweeps(), label_triple_barriers_numba(), load_btc_macro_tide() (+46 more)
 
 ### Community 5 - "Community 5"
-Cohesion: 0.04
-Nodes (38): aet(), deleteNode(), dispatch(), dT(), eq(), findDiffEnd(), findDiffStart(), gM() (+30 more)
+Cohesion: 0.07
+Nodes (26): addToSet(), between(), bqt(), check(), checkContent(), computeAttrs(), create(), createAndFill() (+18 more)
 
 ### Community 6 - "Community 6"
 Cohesion: 0.10
-Nodes (62): _2e, _7t(), art(), _b(), bFe, bp(), Bs(), bz() (+54 more)
+Nodes (63): _2e, bFe, bp(), Bs(), bz(), Cc(), cp(), d1e() (+55 more)
 
 ### Community 7 - "Community 7"
 Cohesion: 0.07
 Nodes (30): aqt, bY, Cpt, din(), G8(), gDt(), h9e(), hSe() (+22 more)
 
 ### Community 8 - "Community 8"
-Cohesion: 0.04
-Nodes (53): _median(), _order_unknown(), OrderPersistenceGovernor, Order Persistence & TTL Governor for resting limit orders (Incident A).  The g, Manage every resting order once. Returns a list of change records.          ``, Entry-side clusters for this order from the freshest payload., Current edge of the cluster matching the primary anchor, if any., Queue-priority hysteresis threshold (Q1b): the minimum wall shift,         in b (+45 more)
+Cohesion: 0.03
+Nodes (67): Any, Builds Astra's market_state.v1 snapshot.          ``sealed`` is the tamper-pro, attest_decision(), canon_value(), canonical_json(), _claim_exempt(), extract_numeric_claims(), FeatureSealer (+59 more)
 
 ### Community 9 - "Community 9"
-Cohesion: 0.05
-Nodes (53): CrossCheckPolicy, CrossSourceValidator, Optional side-by-side of the synthetic stop model against a legacy         vend, Records multi-source samples and scores factory data quality., LivePolicy, main(), OMNI production: 16 assets, causal orderflow, covariance sizing and uplift.  p, PioneerDecisionEngine (+45 more)
+Cohesion: 0.22
+Nodes (22): PioneerDecisionEngine, Cross-validated conviction layer over the zero-cost data factory., features(), _macro(), _payload(), Tests for consultation 4: the Pioneer decision layer.  Covers, 100% offline an, A minimal trader-contract payload for pioneer signal isolation., synthetic_payload() (+14 more)
 
 ### Community 10 - "Community 10"
 Cohesion: 0.08
-Nodes (56): _7(), Akt(), bAe, bi(), Di(), dkt(), Du, dvt() (+48 more)
+Nodes (50): _1(), Akt(), aM(), avt, bde(), bi(), cht(), cxt() (+42 more)
 
 ### Community 11 - "Community 11"
-Cohesion: 0.08
-Nodes (54): A1(), A8(), addGlobalAttributes(), agt(), ai, attributes(), _Be, Bx() (+46 more)
+Cohesion: 0.09
+Nodes (50): _7t(), A1(), A8(), addInputRules(), agt(), ai, b0e(), _Be (+42 more)
 
 ### Community 12 - "Community 12"
-Cohesion: 0.05
-Nodes (40): Af(), atEnd(), atStart(), b6e(), b9t(), cHe(), closest(), dXe() (+32 more)
+Cohesion: 0.04
+Nodes (63): AD(), addAngleAxis(), addRadiusAxis(), Af(), aHe(), atEnd(), atStart(), BL() (+55 more)
+
+### Community 13 - "Community 13"
+Cohesion: 0.11
+Nodes (6): aO, cO(), fN, Kk(), maxOpen(), yh
 
 ### Community 14 - "Community 14"
-Cohesion: 0.04
-Nodes (9): b8e, Bb(), fBe(), hKe(), nUe(), qL(), xBe, yBe() (+1 more)
+Cohesion: 0.05
+Nodes (9): b8e, dBe(), hKe(), Lue(), nUe(), qL(), rf(), wg() (+1 more)
 
 ### Community 15 - "Community 15"
-Cohesion: 0.06
-Nodes (45): a0e(), a3e(), Bc(), bzt, cfe(), db(), dq(), dut() (+37 more)
+Cohesion: 0.07
+Nodes (42): a0e(), a3e(), b9t(), Bc(), czt(), db(), dut(), ede() (+34 more)
 
 ### Community 16 - "Community 16"
 Cohesion: 0.05
-Nodes (56): _a(), act(), Aue(), avt, b4e(), Bg(), c7e(), cU() (+48 more)
+Nodes (34): afe(), b$t(), Bgt(), c1e(), csn(), d_e(), dan(), fM() (+26 more)
 
 ### Community 17 - "Community 17"
-Cohesion: 0.06
-Nodes (55): after(), aHe(), allowsMarks(), aXe, before(), bXe(), canAppend(), canReplace() (+47 more)
+Cohesion: 0.07
+Nodes (56): after(), allowsMarks(), aXe, before(), bje, bXe(), bYe(), canReplace() (+48 more)
 
 ### Community 18 - "Community 18"
-Cohesion: 0.26
-Nodes (18): a8t(), ane(), e6t(), e8t(), gV(), hv(), I6t(), i8t() (+10 more)
+Cohesion: 0.22
+Nodes (13): a8t(), ane(), ckt, e8t(), gJ(), hv(), I6t(), l6t() (+5 more)
 
 ### Community 19 - "Community 19"
-Cohesion: 0.07
-Nodes (28): amt(), Bmt(), boe, BSe(), cne(), dmt(), dv, Eln() (+20 more)
+Cohesion: 0.50
+Nodes (5): boe, hoe, JI(), kln(), UOe
 
 ### Community 20 - "Community 20"
-Cohesion: 0.25
-Nodes (8): Byt(), GS(), K5(), r1e(), s1e(), syt(), tpt(), zyt()
+Cohesion: 0.33
+Nodes (6): Byt(), K5(), o1e(), r1e(), s1e(), zyt()
 
 ### Community 21 - "Community 21"
 Cohesion: 0.13
 Nodes (14): 1. MISSION IDENTITY & CORE MANDATE, 2. CORE CAPITAL INVARIANTS & RISK GOVERNANCE GATES, 3. MICROSTRUCTURE PIECEWISE RATCHET (ANTI-RETRACEMENT PROTOCOL), 4. DATA SOURCES & RUNTIME REPOSITORY INVENTORY, 5. STEP-BY-STEP AUTONOMOUS SURVEILLANCE PROTOCOL, 6. REPORTING FORMAT & PRESENTATION STANDARDS, Autonomous Orderflow Microstructure Surveillance, Risk Governance & MetaTrader 5 Bridge, INSTITUTIONAL AUTONOMOUS 15-MINUTE CANDLE AI TRADER & MT5 SENTINEL PROMPT (+6 more)
 
 ### Community 22 - "Community 22"
-Cohesion: 0.14
-Nodes (14): _6(), descendants(), Dh(), gNt(), iO, jTt(), Mtt(), nodesBetween() (+6 more)
+Cohesion: 0.20
+Nodes (10): Ctt(), descendants(), gNt(), gtt(), htt(), nodesBetween(), pnt(), rangeHasMark() (+2 more)
 
 ### Community 23 - "Community 23"
-Cohesion: 0.06
-Nodes (48): _1e(), _5(), adt(), bde(), C1t(), cellsInRect(), cse(), d7t() (+40 more)
+Cohesion: 0.25
+Nodes (9): _5(), adt(), jdt(), jL, k2e(), wft(), xdt(), yXe (+1 more)
 
 ### Community 24 - "Community 24"
-Cohesion: 0.07
-Nodes (28): a9(), Aa(), aGe, ase(), compile(), dot(), forEach(), fot (+20 more)
+Cohesion: 0.11
+Nodes (17): a9(), aGe, aRe, bnt(), compile(), cwt(), forEach(), i3() (+9 more)
 
 ### Community 25 - "Community 25"
-Cohesion: 0.11
-Nodes (8): apt, CN(), findIndex(), parent(), Pn, rT(), shouldAttemptRetry(), wq
+Cohesion: 0.09
+Nodes (11): apt, childAfter(), childBefore(), CN(), findIndex(), gz(), nGe, Pn (+3 more)
 
 ### Community 26 - "Community 26"
-Cohesion: 0.09
-Nodes (31): aM(), b2e(), cK(), dIe(), dpt(), E0(), fIe(), FOe() (+23 more)
+Cohesion: 0.11
+Nodes (19): act(), b2e(), cK(), E0(), f6(), fIe(), g2e(), gft() (+11 more)
 
 ### Community 27 - "Community 27"
-Cohesion: 0.29
-Nodes (8): aat(), cat(), h0e(), Kat, kte(), nat(), tat(), uat()
+Cohesion: 0.05
+Nodes (44): _9t(), aat(), Ame(), Ate(), bat(), bcn(), cat(), CW() (+36 more)
 
 ### Community 28 - "Community 28"
-Cohesion: 0.33
-Nodes (4): Lue(), rf(), wg(), Zk()
+Cohesion: 0.06
+Nodes (66): BrainClient, _main(), Pull one evaluation payload (signed with the envelope wrapper)., Live positions, pending orders, quotes and orderflow snapshots., Fetch muscle health (signed): bridge, pillars, quality, last evaluation., Signed HTTP client for the laptop's HeadlessService command routes., Stage the ARENA:TEST_LIMIT_v1 verification order (D2)., Stage a generic signed limit order (risk <= 20.00 USD enforced laptop-side). (+58 more)
 
 ### Community 29 - "Community 29"
-Cohesion: 0.08
-Nodes (42): a_e(), aBe, ar(), at(), bBe, cBe(), Da(), dBe() (+34 more)
+Cohesion: 0.10
+Nodes (25): a_e(), ar(), bBe, cBe(), DOe(), __e(), eBe, EFe (+17 more)
 
 ### Community 30 - "Community 30"
 Cohesion: 0.06
-Nodes (23): _AssetState, IntelligenceBus, IntelligenceBus: thread-safe in-memory ring buffers for the Data Factory.  Des, Record one trade print. ``side`` is the AGGRESSOR side (BUY/SELL).         Time, Record the latest book snapshot {ts, best_bid, best_ask, bids, asks}., Record a forced-liquidation print (Binance @forceOrder)., Cumulative volume delta over the trailing window (signed USD)., (buy_usd, sell_usd) aggressive notional over the trailing window. (+15 more)
+Nodes (22): _AssetState, IntelligenceBus, Record one trade print. ``side`` is the AGGRESSOR side (BUY/SELL).         Time, Record the latest book snapshot {ts, best_bid, best_ask, bids, asks}., Record a forced-liquidation print (Binance @forceOrder)., Cumulative volume delta over the trailing window (signed USD)., (buy_usd, sell_usd) aggressive notional over the trailing window., Top price buckets by traded size: [{price, buy_sz, sell_sz, total_sz}]. (+14 more)
 
 ### Community 31 - "Community 31"
 Cohesion: 0.04
-Nodes (60): compute_pivot_levels(), Computes daily pivot points, intraday swing extremes, Anchored VWAP with sigma b, completed_statistics(), CovarianceGate, fit_covariance(), OrderflowModel, Zero-Cost Data Factory ingestion: build the payload from the         ``Intellig, Fit aligned, completed 15-minute broker returns; never mix venues/horizons. (+52 more)
+Nodes (67): CognitiveEngine, Retrieves the last 3 decisions for this specific asset to maintain continuity., Send snapshot to LLM and retrieve decision, Append to the decision ledger (Astra's Memory Layer), Journal a fabricated-statistic rejection for forensic review., main(), OMNI production: 16 assets, causal orderflow, covariance sizing and uplift.  p, compute_pivot_levels() (+59 more)
 
 ### Community 32 - "Community 32"
-Cohesion: 0.22
-Nodes (11): c4t, e4t(), go(), GOt(), has(), k4t(), n4t(), P4t() (+3 more)
+Cohesion: 0.23
+Nodes (14): a4t(), c4t, fr(), GK(), go(), has(), ise(), k4t() (+6 more)
 
 ### Community 33 - "Community 33"
 Cohesion: 0.05
-Nodes (25): aqe(), bqe(), c5(), cqe(), Dit(), dme(), dqe(), fqe() (+17 more)
+Nodes (28): aqe(), bqe(), c5(), cdt(), cqe(), Dit(), dme(), dqe() (+20 more)
 
 ### Community 34 - "Community 34"
-Cohesion: 0.09
-Nodes (27): addExtensions(), configure(), constructor(), createCommandManager(), createDoc(), createEditor(), createExtensionManager(), createSchema() (+19 more)
+Cohesion: 0.18
+Nodes (12): constructor(), createCommandManager(), createEditor(), createSchema(), dK(), getInitialEditor(), getShouldShow(), refreshEditorInstance() (+4 more)
 
 ### Community 35 - "Community 35"
-Cohesion: 0.10
-Nodes (26): Real-time continuous operation for the Zero-Cost Data Factory.  ``RealtimeRunn, Adverse-selection telemetry for resting limit orders (Consultation Q1c).  The, Record one deduplicated L2 snapshot for the asset. Returns the snap., broker_candidates(), canonical_asset(), Canonical assets; signal-market names and broker symbols remain separate., Terminal/Candle_Indicator_Engine.py =================================== Institut, Commodity tick-volume microstructure: fusing candle VWAP with price action.  M (+18 more)
+Cohesion: 0.05
+Nodes (67): apply_command(), _canonical(), _capacity_open(), _command_body(), gist_fetch(), _main(), new_command(), plan_test_limit() (+59 more)
 
 ### Community 36 - "Community 36"
-Cohesion: 0.12
-Nodes (17): b9(), eH(), g9(), GP(), h9(), k9(), LRe(), M9() (+9 more)
+Cohesion: 0.09
+Nodes (25): ape(), b9(), bon(), E8(), eH(), fgt(), g9(), GP() (+17 more)
 
 ### Community 37 - "Community 37"
 Cohesion: 0.04
-Nodes (37): BM(), cje, dje, F5(), FF(), fsn(), $G, gXe() (+29 more)
+Nodes (41): cje, closest(), dje, extend(), F5(), FF(), fje, $G (+33 more)
 
 ### Community 38 - "Community 38"
 Cohesion: 0.10
 Nodes (18): Panel, HyperdashTerminal, Cycle through the institutional watchlist with Left/Right keys., Fetch real-time data frame for the current asset., Render high-density institutional header with live status and badges., Render Level 2 Orderbook with Cyberpunk Visual Depth Bars & Bid/Ask Ratio., Render Level 3 Resting Whale Orders mapped to verified Ethereum Wallets., Render Live Liquidation Risk Ladder & Concentration Heatmap. (+10 more)
 
 ### Community 39 - "Community 39"
-Cohesion: 0.16
-Nodes (11): MarketIntelligenceEngine, Any, Enrich the intelligence report with the Zero-Cost Data Factory's         macro, Directly ingests structured news items from Hyperdash's 23-source stream., Fetches breaking financial and crypto RSS feeds from verified institutional endp, Computes a source-weighted bounded score [-1.0, +1.0] from cached headlines., Checks whether current time is within +/- blackout_minutes of high-impact releas, Full 360-degree macro intelligence synthesis. (+3 more)
+Cohesion: 0.11
+Nodes (15): _env_float(), Production wiring from environment (see deploy/.env.example)., MarketIntelligenceEngine, Any, Enrich the intelligence report with the Zero-Cost Data Factory's         macro, Directly ingests structured news items from Hyperdash's 23-source stream., Fetches breaking financial and crypto RSS feeds from verified institutional endp, Computes a source-weighted bounded score [-1.0, +1.0] from cached headlines. (+7 more)
 
 ### Community 40 - "Community 40"
-Cohesion: 0.15
-Nodes (19): parse_bls(), parse_fed(), Refresh dated CPI/NFP/FOMC windows from BLS ICS and Fed monthly HTML., refresh_calendar(), ipc(), Execution failure tests use a fake IPC module; never connect to a terminal., test_bls_parser_handles_eastern_dst(), test_calendar_refresh_failure_preserves_previous_dated_file() (+11 more)
+Cohesion: 0.13
+Nodes (22): parse_bls(), parse_fed(), Refresh dated CPI/NFP/FOMC windows from BLS ICS and Fed monthly HTML., refresh_calendar(), executable_ratchet(), ipc(), Execution failure tests use a fake IPC module; never connect to a terminal., test_bls_parser_handles_eastern_dst() (+14 more)
 
 ### Community 41 - "Community 41"
 Cohesion: 0.14
 Nodes (11): book_payload(), Broker, governor(), register_sol_long(), test_governor_aborts_resting_limit_on_adverse_selection_hazard(), test_governor_adaptive_mad_threshold_tracks_edge_noise(), test_governor_adaptive_mad_threshold_widens_after_large_edge_moves(), test_governor_flicker_filter_blocks_young_replacement_wall() (+3 more)
 
 ### Community 42 - "Community 42"
-Cohesion: 0.22
-Nodes (9): A0(), cancel(), Dpe(), jpe(), _pe(), pon(), rze, uin() (+1 more)
+Cohesion: 0.24
+Nodes (9): cancel(), dze(), fze(), jpe(), MG(), _pe(), rze, uin() (+1 more)
 
 ### Community 43 - "Community 43"
-Cohesion: 0.04
-Nodes (29): A6(), aje, bK, _bt(), dO(), EGe, fEt(), Fz() (+21 more)
+Cohesion: 0.05
+Nodes (22): A6(), aje, bK, dO(), dT(), EGe, element(), Fz() (+14 more)
 
 ### Community 44 - "Community 44"
-Cohesion: 0.08
-Nodes (32): addToEnd(), addToStart(), cjt(), CKe(), concat(), d_t(), E5(), fr() (+24 more)
+Cohesion: 0.10
+Nodes (21): aht(), aY, c0e(), E5(), eht(), fqt(), hb(), iyt() (+13 more)
 
 ### Community 46 - "Community 46"
 Cohesion: 0.06
 Nodes (32): 1.1 Objective and Mandate, 1.2 The 14th-Minute Cadence Rationale, 1.3 System Overview Diagram, 1.4 Single Strategy File Invariant, 1. Executive Architecture, 2. Risk Governance Invariants, 3. Current Live State & Active Position Audit, 4. Phase Breakdown & Execution Plan (+24 more)
 
 ### Community 47 - "Community 47"
-Cohesion: 0.15
+Cohesion: 0.14
 Nodes (4): getJSON(), Gx, Kf(), toJSON()
 
 ### Community 48 - "Community 48"
-Cohesion: 0.14
-Nodes (16): ayt(), Bce(), eyt(), f4(), iIe(), jlt(), m0(), mIe() (+8 more)
+Cohesion: 0.06
+Nodes (52): A9t(), bAe, Bce(), bft(), Bne(), D1(), DAe(), e0e() (+44 more)
 
 ### Community 49 - "Community 49"
-Cohesion: 0.12
-Nodes (23): _0t(), aG, d0t, ext(), f0t(), g0t(), g1e(), h0t() (+15 more)
+Cohesion: 0.13
+Nodes (21): _0t(), aG, d0t, ext(), f0t(), g0t(), h0t(), j0t() (+13 more)
 
 ### Community 50 - "Community 50"
 Cohesion: 0.06
-Nodes (83): _0(), _1(), aht(), b0t(), bft(), bit(), c0t(), cdt() (+75 more)
+Nodes (70): _0(), _1e(), bit(), ci(), Cv, ddt, fGe, FOe() (+62 more)
 
 ### Community 51 - "Community 51"
-Cohesion: 0.10
-Nodes (16): MT5ExecutionBridge, Path, MT5ExecutionBridge, Any, Return completed MT5 bars for the local regime classifier.          The curren, Return a fresh quote and spread metrics used by the execution guard., Normalize down, never up, so requested stop risk is not exceeded., Fill evidence for an intent: True iff an entry deal exists for it.          Us (+8 more)
+Cohesion: 0.06
+Nodes (34): MT5ExecutionBridge, RuntimeError, broker_candidates(), Canonical assets; signal-market names and broker symbols remain separate., MT5ExecutionBridge, Path, export_ticks(), Read-only MT5 quote-history export for paired uplift replay (no order API). (+26 more)
 
 ### Community 52 - "Community 52"
 Cohesion: 0.09
 Nodes (22): Causality contract (no future bars, ever), File map, How should Gold trail? (direct answer), Is plain VWAP σ sufficient? No — use volume-weighted MAD bands, O(1) incremental engine, OMNI Queue Governance Consultation — Ox Alpha / Arena.ai, Parquet reconciliation (the 3.47M-candle store), Production drift ports (Omni_Trader) (+14 more)
 
 ### Community 53 - "Community 53"
-Cohesion: 0.12
-Nodes (17): HyperdashClient, Any, Fetch real-time Level 2 orderbook (20 bids, 20 asks) with depth metrics., Fetch individual Level 3 resting orders mapped to specific Ethereum wallet addre, Fetch real-time liquidation clusters, totals, and top liquidation whale addresse, Fetch live buy/sell stop orders, stop clusters, and top stop-loss whale addresse, Fetch top PnL positions and smart money wallets for the asset., Fetch latest tick trades with aggressor side. (+9 more)
+Cohesion: 0.05
+Nodes (48): HyperdashClient, Any, Hyperdash & Hyperliquid Production API Client Fetches real-time Level 2, Level, Fetch real-time Level 2 orderbook (20 bids, 20 asks) with depth metrics., Fetch individual Level 3 resting orders mapped to specific Ethereum wallet addre, Fetch real-time liquidation clusters, totals, and top liquidation whale addresse, Fetch live buy/sell stop orders, stop clusters, and top stop-loss whale addresse, Fetch top PnL positions and smart money wallets for the asset. (+40 more)
 
 ### Community 54 - "Community 54"
-Cohesion: 0.08
-Nodes (24): bct(), bJ(), evt, fail(), fromReplace(), ize, kC, kEt() (+16 more)
+Cohesion: 0.05
+Nodes (33): _9(), allowedMarks(), allowsMarkType(), bet(), bKe(), bU(), evt, het() (+25 more)
 
 ### Community 55 - "Community 55"
 Cohesion: 0.09
@@ -554,39 +593,35 @@ Cohesion: 0.10
 Nodes (19): 1.1 Lifecycle trace (`run` → `_dispatch`), 1.2 Findings register, 1. End-to-End Execution Chain Audit, 2.1 The mathematics, 2.2 The mechanism (`Terminal/Order_Persistence_Governor.py`), 2.3 Why this fixes the SOL PDL sweep, 2. Incident A — Dynamic Order Persistence & TTL Governor, 3.1 Sealed vector (`Terminal/Deterministic_Features.py`) (+11 more)
 
 ### Community 57 - "Community 57"
-Cohesion: 0.33
-Nodes (5): AOe(), cD(), G5e(), ooe(), wue()
+Cohesion: 0.08
+Nodes (10): at(), eHe, eVe, gpe(), lVe, Oue, oVe, _Ve() (+2 more)
 
 ### Community 58 - "Community 58"
-Cohesion: 0.06
-Nodes (43): $0e(), aq(), b$t(), bsn(), childAfter(), childBefore(), cht(), cqt() (+35 more)
+Cohesion: 0.05
+Nodes (48): $0e(), A0(), A1t(), aJ(), aq(), bdt(), BN(), bsn() (+40 more)
 
 ### Community 59 - "Community 59"
-Cohesion: 0.10
-Nodes (20): afe(), awt(), bKe(), checkAttrs(), cwt(), ewt(), kM(), lGe() (+12 more)
+Cohesion: 0.21
+Nodes (12): awt(), checkAttrs(), ewt(), GS(), Lme(), M2(), nwt(), Rb() (+4 more)
 
 ### Community 60 - "Community 60"
-Cohesion: 0.07
-Nodes (33): a7t(), b7t(), B8t(), Bv(), c7t(), ccn(), ecn, f7t() (+25 more)
+Cohesion: 0.24
+Nodes (11): ccn(), ecn, kv(), l7t(), mqt(), ncn, o7t(), u7() (+3 more)
 
 ### Community 61 - "Community 61"
 Cohesion: 0.06
-Nodes (54): append(), aYe(), azt, bw(), bYe(), C9t(), cet(), child() (+46 more)
+Nodes (52): append(), apply(), aYe(), bw(), canAppend(), Cme(), compatibleContent(), cut() (+44 more)
 
 ### Community 62 - "Community 62"
-Cohesion: 0.21
-Nodes (12): CandleIndicatorEngine, main(), Any, Sync all assets in the universe concurrently., Compute Session VWAP, Rolling VWAP, EMAs, ATR, RSI from historical bars., Identify assets stretched beyond +/- 2 SD from VWAP., Fetch completed 15m bars from MT5, audit gaps, persist to disk., _generate_synthetic_bars() (+4 more)
-
-### Community 63 - "Community 63"
-Cohesion: 0.14
-Nodes (3): e3e, y3e, zOe()
+Cohesion: 0.19
+Nodes (13): CandleIndicatorEngine, main(), Any, Terminal/Candle_Indicator_Engine.py =================================== Instit, Sync all assets in the universe concurrently., Compute Session VWAP, Rolling VWAP, EMAs, ATR, RSI from historical bars., Identify assets stretched beyond +/- 2 SD from VWAP., Fetch completed 15m bars from MT5, audit gaps, persist to disk. (+5 more)
 
 ### Community 64 - "Community 64"
-Cohesion: 0.20
-Nodes (8): Hyperdash & Hyperliquid Production API Client Fetches real-time Level 2, Level, Terminal/Heatmap_Engine.py Real-Time & Historical Candle-Level Liquidation & St, classify_liquidation(), Causal, exchange-agnostic microstructure helpers.  These helpers deliberately, Return LONG/SHORT using explicit position side when available.      Price loca, safe_imbalance(), TokenBucket, test_microstructure()
+Cohesion: 0.08
+Nodes (35): Headless cloud execution package (OX_ALPHA_60).    python -m Terminal.Headless, build_consultation_request(), _canonical(), default_invariant_envelope(), invariant_digest(), Deterministic LLM consultation contract for headless candle-close reasoning., Enforce the contract. Returns (ok, violations) - ok only when every     invaria, Stable digest of the invariant envelope the response must echo. (+27 more)
 
 ### Community 65 - "Community 65"
-Cohesion: 0.08
+Cohesion: 0.09
 Nodes (28): binance_ws_base(), ZeroCostDataFactory: the all-in-one orchestrator (Pillars 1-6).  Owns the Inte, Async lifecycle. ``transports`` maps ('BINANCE'|'COINBASE'|         'HYPERLIQUI, binance_symbol(), coinbase_product(), hyperliquid_coin(), hyperliquid_subscription(), _loop_running() (+20 more)
 
 ### Community 66 - "Community 66"
@@ -594,60 +629,60 @@ Cohesion: 0.10
 Nodes (23): BaseModel, calculate_indicator(), DimensionRequest, get_candles(), get_dimension_series(), get_dimension_statistics(), get_lightweight_charts_js(), get_volume_profile() (+15 more)
 
 ### Community 67 - "Community 67"
-Cohesion: 0.06
-Nodes (27): _band_bounds(), _band_index(), _Cohort, liq_price(), LiquidationReconstructionEngine, Liquidations & stop-loss reconstruction engine (Pillar 3, Q1A/Q1B).  Replaces, One OI sample per bar/interval. Positive delta opens a cohort at         ``pric, Accumulate traded volume per 25 bps band (hazard input). (+19 more)
+Cohesion: 0.07
+Nodes (24): _band_bounds(), _band_index(), _Cohort, liq_price(), LiquidationReconstructionEngine, Liquidations & stop-loss reconstruction engine (Pillar 3, Q1A/Q1B).  Replaces, One OI sample per bar/interval. Positive delta opens a cohort at         ``pric, Accumulate traded volume per 25 bps band (hazard input). (+16 more)
 
 ### Community 68 - "Community 68"
-Cohesion: 0.31
-Nodes (9): Ejt(), gF(), kJt(), Mjt(), n6e(), Njt(), O4(), Tjt() (+1 more)
+Cohesion: 0.40
+Nodes (6): Fce(), gF(), kJt(), n6e(), UL(), unmount()
 
 ### Community 69 - "Community 69"
-Cohesion: 0.24
-Nodes (12): bot(), extendNodeSchema(), fS(), m4t(), mRe(), options(), Ps(), storage() (+4 more)
+Cohesion: 0.36
+Nodes (9): bot(), extendNodeSchema(), fS(), options(), Ps(), storage(), ur(), vot() (+1 more)
 
 ### Community 70 - "Community 70"
-Cohesion: 0.06
-Nodes (43): bD(), bF(), but(), children(), D0(), F4t(), FL(), Fp() (+35 more)
+Cohesion: 0.20
+Nodes (13): bF(), children(), kut, nsn(), pM(), qut, R1(), rde() (+5 more)
 
 ### Community 71 - "Community 71"
 Cohesion: 0.14
-Nodes (6): BN(), ct(), getMap(), q0e(), Xb(), Yj
+Nodes (5): ct(), getMap(), pWe, q0e(), recover()
 
 ### Community 72 - "Community 72"
 Cohesion: 0.11
-Nodes (14): Chart, ChartEngine, Engine/terminal/chart_engine.py TradingView & ATAS Grade Interactive Chart Contr, Load a parquet file and populate the candlestick and volume series., Fetch candle data and render onto the active chart., Display an institutional floating summary stats HUD directly on the chart., Update visible bar horizon and re-render., Institutional-grade interactive chart controller for arbitrary Parquet financial (+6 more)
+Nodes (14): Chart, ChartEngine, _patched_df_datetime_format(), Any, DataFrame, Load a parquet file and populate the candlestick and volume series., Fetch candle data and render onto the active chart., Add moving average, bollinger, or vwap overlay on the main price chart. (+6 more)
 
 ### Community 73 - "Community 73"
 Cohesion: 0.38
 Nodes (5): cmt, fWe(), jSe(), k6t(), s4t()
 
 ### Community 74 - "Community 74"
-Cohesion: 0.67
-Nodes (4): _9t(), m1e(), mat(), nG()
+Cohesion: 0.09
+Nodes (23): available_backends(), BridgeError, NoExecutionBackend, Polymorphic broker execution backends (OX_ALPHA_60 Deliverable 1).  The tradin, Register a backend factory: callable(config: dict) -> bridge instance., A backend could not honour the execution contract., Fail-closed: no backend proved connectivity (or the requested one is down)., register_backend() (+15 more)
 
 ### Community 75 - "Community 75"
-Cohesion: 0.11
-Nodes (21): aC(), bh, cY, e1t(), fvt(), g0(), iVe(), jue() (+13 more)
+Cohesion: 0.23
+Nodes (8): bh, cY, fvt(), iVe(), Lt(), mvt(), oK(), YD
 
 ### Community 76 - "Community 76"
-Cohesion: 0.20
-Nodes (10): bdn(), eW(), i4t(), iEe(), irn, kit(), Vce(), w1 (+2 more)
+Cohesion: 0.07
+Nodes (20): Launch Headless service on port 8080 with native MT5 bridge and HMAC signing., amain(), Container entrypoint: ``python -m Terminal.Headless``.  Environment (see deplo, HeadlessRuntime, (ready, reasons). Fail-closed: bridge health + at least one live book., Signed-read endpoint payload: live positions, pending orders,         quotes an, Muscle health for the brain: bridge, data pillars, sealed quality,         last, One candle-close evaluation. Returns the signed microservice payload         bo (+12 more)
 
 ### Community 77 - "Community 77"
-Cohesion: 0.06
-Nodes (25): BigQueryWhaleForensics, decode_uint(), default_rpc_call(), LabelRegistry, Free on-chain whale intelligence (Pillar 4): the Arkham alternative.  All unde, Parse spellbook-style CSV rows: address, label, entity..., Streaming whale-transfer detection over a free RPC gateway., Parse eth_getLogs result rows -> whale transfers (pure; testable). (+17 more)
+Cohesion: 0.10
+Nodes (17): decode_uint(), default_rpc_call(), LabelRegistry, Free on-chain whale intelligence (Pillar 4): the Arkham alternative.  All unde, Parse spellbook-style CSV rows: address, label, entity..., Streaming whale-transfer detection over a free RPC gateway., Parse eth_getLogs result rows -> whale transfers (pure; testable)., Full-block native ETH transfers above threshold. (+9 more)
 
 ### Community 78 - "Community 78"
 Cohesion: 0.15
 Nodes (15): api_cohorts(), api_heatmap(), api_live(), api_universe(), get_heatmap_engine(), get_live_analytics(), get_universe(), Any (+7 more)
 
 ### Community 79 - "Community 79"
-Cohesion: 0.10
-Nodes (9): deselectNode(), eje, ignoreMutation(), K2(), nN(), O6(), selectNode(), setAttribute() (+1 more)
+Cohesion: 0.08
+Nodes (12): b6e(), deselectNode(), dIe(), eje, fle(), lZe, nN(), qS() (+4 more)
 
 ### Community 80 - "Community 80"
-Cohesion: 0.43
-Nodes (8): aB(), d0e(), f0e(), Hat(), Hu(), p0e(), Rw(), th()
+Cohesion: 0.08
+Nodes (20): BaseExecutionBridge, create_bridge(), _native_available(), number_or(), _probe(), Connectivity probe used by auto-discovery and the readiness endpoint., Select and construct an execution backend. FAIL-CLOSED.      Selection order:, The mandatory execution contract every backend must honour.      The seven cor (+12 more)
 
 ### Community 81 - "Community 81"
 Cohesion: 0.10
@@ -658,40 +693,40 @@ Cohesion: 0.10
 Nodes (20): <module>, MT5ExecutionBridge.cancel_pending_order, MT5ExecutionBridge.close_position, MT5ExecutionBridge.ensure_connected, MT5ExecutionBridge.estimate_order, MT5ExecutionBridge.execute_market_order, MT5ExecutionBridge._floor_volume, MT5ExecutionBridge.get_account_summary (+12 more)
 
 ### Community 83 - "Community 83"
-Cohesion: 0.20
-Nodes (14): ain(), ap(), CW(), Dce(), eIe(), ic(), Jq(), kin() (+6 more)
+Cohesion: 0.22
+Nodes (13): ain(), ap(), Dce(), e9(), eIe(), ic(), J5e(), Jq() (+5 more)
 
 ### Community 84 - "Community 84"
 Cohesion: 0.17
 Nodes (11): 1. SYSTEM IDENTITY & PRODUCTION PROVENANCE, 2. DATASET, FRICTIONS & PRODUCTION MANDATES, 3. FORENSIC PROBLEM STATEMENT: RECENT LIVE INCIDENTS & BRANCH WEAKNESSES, 4. YOUR EXHAUSTIVE DELIVERABLES, ARENA.AI / OX ALPHA INSTITUTIONAL QUANT AUDIT & FORENSIC SPECIFICATION, Astra's specified schemas, Incident A: Premature Limit Expiry vs Liquidity Sweep (The TTL Dilemma), Incident B: Auxiliary Subagent Hallucination vs Ground-Truth Orderbook Math (+3 more)
 
 ### Community 85 - "Community 85"
-Cohesion: 0.07
-Nodes (25): _9e, a0t, av(), b3e, cJ, czt(), d9e(), e0t (+17 more)
+Cohesion: 0.06
+Nodes (28): _9e, a0t, av(), b3e, cle(), d9e(), e0t, f3e() (+20 more)
 
 ### Community 86 - "Community 86"
-Cohesion: 0.11
-Nodes (19): aan(), c9e(), ian(), iRe, jon(), ko(), lan(), mX (+11 more)
+Cohesion: 0.13
+Nodes (20): aan(), c9e(), ian(), iRe, JN(), jon(), ko(), lan() (+12 more)
 
 ### Community 87 - "Community 87"
-Cohesion: 0.09
-Nodes (34): aK(), bbt(), bSt(), cG(), cVe(), dzt(), fVe(), gH() (+26 more)
+Cohesion: 0.11
+Nodes (35): aK(), bbt(), bct(), bSt(), cG(), cVe(), Di(), dvt() (+27 more)
 
 ### Community 88 - "Community 88"
 Cohesion: 0.18
 Nodes (12): accepts(), bRt(), eO(), Hot(), Nrt(), onRender(), p0(), qot() (+4 more)
 
 ### Community 89 - "Community 89"
-Cohesion: 0.06
-Nodes (40): AD(), ade(), ajt(), BL(), cde(), dDe(), dsn(), Edt() (+32 more)
+Cohesion: 0.17
+Nodes (12): dDe(), dsn(), ein(), jsn(), Qsn(), Qy(), S0(), tin() (+4 more)
 
 ### Community 90 - "Community 90"
 Cohesion: 0.25
 Nodes (8): IndicatorEngine, Any, DataFrame, Series, Dynamically dispatch indicator computation based on UI config., Volume Weighted Average Price (cumulative over active slice)., VWAP with dynamic standard deviation bands (ATAS style)., Rolling Z-score for arbitrary numerical dimensions (e.g. CVD, spread, liq).
 
 ### Community 91 - "Community 91"
-Cohesion: 0.07
-Nodes (22): band_index(), _OIRecord, Cross-source validation for the Zero-Cost Data Factory.  The factory's pillars, Relative disagreement between the freshest OI samples per source., Did realized @forceOrder fuel land in the bands the synthetic model         ran, Age of every pillar's data vs its max age., Deterministic per-asset quality score in [0, 1] + SHA-256 digest.          Sco, Record an OI sample from one venue for cross-source agreement. (+14 more)
+Cohesion: 0.06
+Nodes (48): IntelligenceBus: thread-safe in-memory ring buffers for the Data Factory.  Des, band_index(), _OIRecord, Cross-source validation for the Zero-Cost Data Factory.  The factory's pillars, Did realized @forceOrder fuel land in the bands the synthetic model         ran, Record an OI sample from one venue for cross-source agreement., LivePolicy, Real-time continuous operation for the Zero-Cost Data Factory.  ``RealtimeRunn (+40 more)
 
 ### Community 92 - "Community 92"
 Cohesion: 0.11
@@ -706,8 +741,8 @@ Cohesion: 0.27
 Nodes (14): a5(), bin(), cq, dlt(), EE(), mq(), oze, RC() (+6 more)
 
 ### Community 95 - "Community 95"
-Cohesion: 0.06
-Nodes (9): a8e(), aN(), f1t(), Fht(), No, OG(), qon, son() (+1 more)
+Cohesion: 0.13
+Nodes (3): a8e(), aN(), No
 
 ### Community 96 - "Community 96"
 Cohesion: 0.24
@@ -718,16 +753,16 @@ Cohesion: 0.12
 Nodes (16): Answer to the specific suggestions, Executive verdict, Gate 3 and Gate 4 implementation, Institutional quantitative audit — Trading_2, Integration map, Material findings, Q1 — Orderflow entry trigger refinement, Q2 — Cross-asset beta and hedge governance (+8 more)
 
 ### Community 98 - "Community 98"
-Cohesion: 0.16
-Nodes (16): A2t(), dG(), dTe(), g2t(), gte(), hte(), k2t(), N2t() (+8 more)
+Cohesion: 0.12
+Nodes (20): dG(), dTe(), dxt(), Ene(), fTe(), hte(), i4t(), Ih() (+12 more)
 
 ### Community 99 - "Community 99"
 Cohesion: 0.09
 Nodes (22): All-in-One Zero-Cost Data Factory (0 USD CoinGlass/Hyperdash/Arkham replacement), blackout_from_calendar(), coinbase_premium_bps(), CoinbasePremiumIndex, edgar_full_text_url(), FarsideETFFlows, FearGreedIndex, parse_farside_table() (+14 more)
 
 ### Community 100 - "Community 100"
-Cohesion: 0.38
-Nodes (5): iN(), _me, slt(), uB(), wHe()
+Cohesion: 0.16
+Nodes (9): Bb(), fBe(), iN(), _me, slt(), uB(), wHe(), xBe (+1 more)
 
 ### Community 101 - "Community 101"
 Cohesion: 0.25
@@ -742,68 +777,60 @@ Cohesion: 0.12
 Nodes (16): 1. `Terminal/Api_Client.py` (Dual REST / GraphQL Exchange Ingestion), 2. `Terminal/Heatmap_Engine.py` (Multi-Timeframe Orderflow Engine), 3. `Terminal/Chrome_Terminal.py` (FastAPI Server & HTML5 Canvas UI), 4. `Terminal/Dump_History.py` (Historical Multi-Modal Data Dump Pipeline), 📋 AUDIT & REVIEW CHECKLIST FOR ARENA.AI, 🔍 DEEP-DIVE COMPONENT SPECIFICATIONS, Domain 1: Microstructure Realism & Data Provenance, Domain 2: Causal Soundness & Lookahead Prevention (+8 more)
 
 ### Community 104 - "Community 104"
-Cohesion: 0.17
-Nodes (10): ParquetDataEngine, Any, DataFrame, Path, Institutional-grade data and orderflow engine for arbitrary Parquet financial da, Compute comprehensive statistical metrics across all dimensions in the parquet., Return clean OHLCV slice formatted for high-performance candlestick rendering., Compute ATAS-grade Volume Profile across the specified candle window.         R (+2 more)
+Cohesion: 0.11
+Nodes (16): Engine/terminal/chart_engine.py TradingView & ATAS Grade Interactive Chart Contr, ParquetDataEngine, Any, DataFrame, Path, Engine/terminal/data_engine.py Universal High-Performance Parquet Data & Orderf, Institutional-grade data and orderflow engine for arbitrary Parquet financial da, Compute comprehensive statistical metrics across all dimensions in the parquet. (+8 more)
 
 ### Community 106 - "Community 106"
-Cohesion: 0.22
-Nodes (4): d_e(), i_e(), r_e, s_e()
+Cohesion: 0.12
+Nodes (11): asset_of_symbol(), default_symbol_of(), PaperSimulatedBridge, Backend C: zero-dependency institutional paper matching simulator.  Fills rest, Event-driven matching: resting limits, then SL/TP on open positions., Deterministic paper matching against an injectable tick feed., Prime/override the quote for one symbol., One raw tick: quote becomes price +/- half spread, then pump. (+3 more)
 
 ### Community 107 - "Community 107"
-Cohesion: 0.31
-Nodes (9): endIndex(), getObj(), render(), startIndex(), toFormattedHref(), toFormattedObject(), toFormattedString(), toHref() (+1 more)
+Cohesion: 0.12
+Nodes (20): Drt(), endIndex(), est(), eYe(), getObj(), hGe, jrt(), mSt() (+12 more)
 
 ### Community 108 - "Community 108"
-Cohesion: 0.19
-Nodes (15): _carry_forward(), fetch_all_candles(), fetch_funding_history(), fetch_liq_stop_snapshots(), fuse_candles(), main(), DataFrame, Terminal/Dump_History.py ======================== Full historical data dump fo (+7 more)
+Cohesion: 0.10
+Nodes (23): CrossCheckPolicy, CrossSourceValidator, Relative disagreement between the freshest OI samples per source., Optional side-by-side of the synthetic stop model against a legacy         vend, Age of every pillar's data vs its max age., Deterministic per-asset quality score in [0, 1] + SHA-256 digest.          Sco, Records multi-source samples and scores factory data quality., Last trade price per venue inside the comparison window. (+15 more)
 
 ### Community 109 - "Community 109"
-Cohesion: 0.08
-Nodes (33): aut(), aY, dqt(), eet(), eht(), eut(), fqt(), Ft() (+25 more)
+Cohesion: 0.10
+Nodes (30): aut(), C1t(), DL(), eut(), fmt(), Ft(), gct, gin() (+22 more)
 
 ### Community 110 - "Community 110"
-Cohesion: 0.11
-Nodes (18): A1t(), aJ(), e_e, gqt(), hf(), Hpe(), icn(), jze() (+10 more)
+Cohesion: 0.12
+Nodes (20): Aa(), aB(), bdn(), d0e(), e_e, f0e(), fot, Hpe() (+12 more)
 
 ### Community 111 - "Community 111"
-Cohesion: 0.07
-Nodes (25): aRe, bRe(), c_t(), eD(), ese(), g3t(), G_t(), HIt() (+17 more)
+Cohesion: 0.20
+Nodes (6): bRe(), g3t(), K3t(), x3t(), y3t(), z3t()
 
 ### Community 112 - "Community 112"
 Cohesion: 0.08
-Nodes (25): append_parquet(), archive_url(), binance_open_interest_url(), checksum_url(), DataVisionDownloader, default_fetch(), hyperliquid_meta_request(), parse_hyperliquid_meta() (+17 more)
+Nodes (27): append_parquet(), archive_url(), binance_open_interest_url(), checksum_url(), DataVisionDownloader, default_fetch(), hyperliquid_meta_request(), parse_agg_trades_zip() (+19 more)
 
 ### Community 113 - "Community 113"
-Cohesion: 0.24
-Nodes (8): LSARDryRunRunner, main(), Any, ndarray, Terminal/LSAR_Strategy.py ========================== Master Institutional Liquid, Connects to the running Hyperdash terminal (http://localhost:8095) or Hyperliqui, run_backtest(), simulate_lsar_trades()
+Cohesion: 0.17
+Nodes (26): DecisionChainEngine, The 6-pillar decision chain (omni.decision_chain.v2).      Drop-in for the v1, Attach the pillar-6 crosscheck block (never raises; a missing         validator, chain_payload(), features(), feed_factory(), macro_block(), Tests for OX_ALPHA_63: the omni.decision_chain.v2 decision chain.  100% offlin (+18 more)
 
 ### Community 114 - "Community 114"
 Cohesion: 0.14
 Nodes (14): HyperdashClient.download_historical_candles, HyperdashClient.download_historical_funding, HyperdashClient.fetch_all_assets, HyperdashClient.fetch_candles, HyperdashClient.fetch_l2_book, HyperdashClient.fetch_l3_orders, HyperdashClient.fetch_liquidations, HyperdashClient.fetch_recent_trades (+6 more)
 
 ### Community 115 - "Community 115"
-Cohesion: 0.12
-Nodes (26): parse_agg_trades_zip(), Strict monotonic unique timestamps + zero nulls; raises on violation., aggTrades CSV -> [{ts_ms, price, size, side}].      Columns: agg_trade_id, pri, validate_rows(), fractal_swings(), Completed-bar fractal pivots: [(index, 'HIGH', price), ...]., decode_topic_address(), erc20_transfer_logs_request() (+18 more)
+Cohesion: 0.13
+Nodes (24): parse_hyperliquid_meta(), parse_open_interest(), /openInterest response {symbol, openInterest, time} (base units)., metaAndAssetCtxs -> {coin: {mark_px, open_interest, funding}}., fractal_swings(), Completed-bar fractal pivots: [(index, 'HIGH', price), ...]., decode_topic_address(), erc20_transfer_logs_request() (+16 more)
 
 ### Community 116 - "Community 116"
 Cohesion: 0.12
-Nodes (17): EF(), fq(), h7t(), I_t(), ion(), L_t(), ljt(), n0t() (+9 more)
-
-### Community 117 - "Community 117"
-Cohesion: 0.14
-Nodes (3): pT(), wh, x$
+Nodes (19): EF(), fpe(), fq(), h7t(), ion(), ph(), q3e(), Q_t() (+11 more)
 
 ### Community 118 - "Community 118"
-Cohesion: 0.10
-Nodes (11): Completed 15m bars power the stop-cluster structural model., Open-interest poll (Binance REST or Hyperliquid meta). Contracts         are co, Sampled whale cohort (Hyperliquid public /info clearinghouseState +         fro, One classified on-chain whale transfer (WhaleTransferListener)., Signed net exchange flow: OUTFLOW (coins leaving exchanges) is         bullish, Risk_Sizing-compatible payload (same contract as Chrome_Terminal)., Adapter for ``AI15mMT5Trader(fetcher=...)``., Pillar 5 block for ``Market_Intelligence`` enrichment. (+3 more)
-
-### Community 119 - "Community 119"
-Cohesion: 0.16
-Nodes (9): _7e(), bdt(), d7e(), eze(), gze, mT(), Nct(), oGe() (+1 more)
+Cohesion: 0.08
+Nodes (11): Single object the trading loop talks to., Completed 15m bars power the stop-cluster structural model., Open-interest poll (Binance REST or Hyperliquid meta). Contracts         are co, Sampled whale cohort (Hyperliquid public /info clearinghouseState +         fro, One classified on-chain whale transfer (WhaleTransferListener)., Signed net exchange flow: OUTFLOW (coins leaving exchanges) is         bullish, Risk_Sizing-compatible payload (same contract as Chrome_Terminal)., Adapter for ``AI15mMT5Trader(fetcher=...)``. (+3 more)
 
 ### Community 120 - "Community 120"
-Cohesion: 0.18
-Nodes (12): addAngleAxis(), addRadiusAxis(), h1e(), j8(), kde(), mP(), reducer(), s0t() (+4 more)
+Cohesion: 0.25
+Nodes (9): g1e(), h1e(), j8(), o1t(), s0t(), u1e(), v0t(), Wyt() (+1 more)
 
 ### Community 121 - "Community 121"
 Cohesion: 0.08
@@ -814,12 +841,12 @@ Cohesion: 0.15
 Nodes (12): 1. Executive Summary & Problem Formulation, 2.1 Fuel-to-Friction Ratio (FFR), 2.2 Anchored Session VWAP and Standard Deviation Sigma Bands, 2.3 ICT Fair Value Gaps (FVG) and Consequent Encroachment (CE), 2.4 Multi-Tier Limit Staging Hierarchy, 2.5 Piecewise Microstructure Ratchet (Anti-Retracement), 2.6 Dynamic Conviction Sizing & Risk Governance, 2. Mathematical Formulations (+4 more)
 
 ### Community 123 - "Community 123"
-Cohesion: 0.07
-Nodes (31): CognitiveEngine, Any, Retrieves the last 3 decisions for this specific asset to maintain continuity., Send snapshot to LLM and retrieve decision, Append to the decision ledger (Astra's Memory Layer), Journal a fabricated-statistic rejection for forensic review., Builds Astra's market_state.v1 snapshot.          ``sealed`` is the tamper-pro, attest_decision() (+23 more)
+Cohesion: 0.12
+Nodes (16): canonical_json(), HeadlessService, Signed headless microservice (OX_ALPHA_60 Deliverable 4.1).  A minimal, depend, Wrap a payload with its HMAC signature and timestamp., Constant-time verification of a signed envelope., Routes + signing around a HeadlessRuntime (or anything duck-compatible)., sign_payload(), verify_signed() (+8 more)
 
 ### Community 124 - "Community 124"
-Cohesion: 0.21
-Nodes (3): hasRequiredAttrs(), htt(), jY
+Cohesion: 0.10
+Nodes (17): aet(), _bt(), cet(), dispatchTransaction(), eq(), findDiffEnd(), findDiffStart(), IYe() (+9 more)
 
 ### Community 125 - "Community 125"
 Cohesion: 0.29
@@ -830,20 +857,20 @@ Cohesion: 0.09
 Nodes (21): 0. Repository audit performed (as instructed), 1. Question 1A — can the raw public venues replace Hyperdash for free?, 1A.1 What Hyperliquid gives you for free, keyless, today, 1A.2 What no venue gives (and never will), 2.1 Liquidation levels from leverage arithmetic, 2.2 Cohort construction from ΔOI conditioned on price intervals, 2.3 Hazard decay: density is consumed, not static, 2.4 Stop-loss clusters from structure (swings × ATR × profile × round numbers) (+13 more)
 
 ### Community 127 - "Community 127"
-Cohesion: 0.09
-Nodes (20): addToSet(), allowedMarks(), allowsMarkType(), bqt(), check(), checkContent(), computeAttrs(), create() (+12 more)
+Cohesion: 0.21
+Nodes (17): brain(), FakeClient, gold_position(), gold_state(), Tests for OX_ALPHA_62: the continuous autonomous Arena Brain loop.  100% offli, Scripted tunnel double: records every dispatch, mutates the shared     position, The live GOLD short #18576872: entry 4176.00, initial R = 10.50., _sol_state() (+9 more)
 
 ### Community 129 - "Community 129"
-Cohesion: 0.12
-Nodes (19): Ate(), bpt, ept(), fne(), ipt(), lpt(), mpt(), Npt (+11 more)
+Cohesion: 0.13
+Nodes (17): bpt, ept(), fne(), ipt(), lpt(), mpt(), Npt, NS() (+9 more)
 
 ### Community 130 - "Community 130"
-Cohesion: 0.17
-Nodes (16): cYe(), El(), idt(), ldt(), ndt(), Nq(), odt(), Pdt() (+8 more)
+Cohesion: 0.25
+Nodes (11): El(), idt(), ndt(), Nq(), odt(), rdt(), sdt(), TB() (+3 more)
 
 ### Community 131 - "Community 131"
-Cohesion: 0.11
-Nodes (19): bkt(), Ekt(), Fnt(), Hnt(), iEt(), int(), ju(), kNt() (+11 more)
+Cohesion: 0.05
+Nodes (38): amt(), bA(), bkt(), Bmt(), BSe(), cne(), dmt(), dv (+30 more)
 
 ### Community 132 - "Community 132"
 Cohesion: 0.18
@@ -870,16 +897,16 @@ Cohesion: 0.20
 Nodes (10): executable_ratchet, feature_vector, label_episodes, ratchet, replay_episode, Terminal/Uplift_Model.py, train_uplift, train_uplift.xy (+2 more)
 
 ### Community 138 - "Community 138"
-Cohesion: 0.33
-Nodes (6): gAe, gvt, h1(), hvt(), Ml(), pJ()
+Cohesion: 0.25
+Nodes (9): gAe, gvt, h1(), hvt(), Ml(), pJ(), svt, tvt (+1 more)
 
 ### Community 139 - "Community 139"
-Cohesion: 0.23
-Nodes (9): aKe(), bue(), COe(), Cue(), kOe(), sle(), Sue(), Tue() (+1 more)
+Cohesion: 0.25
+Nodes (8): aKe(), bue(), COe(), Cue(), kOe(), Sue(), Tue(), vOe()
 
 ### Community 140 - "Community 140"
-Cohesion: 0.22
-Nodes (5): az, bnt(), crt(), tG(), znt()
+Cohesion: 0.21
+Nodes (5): az, crt(), mze(), tG(), Tpe()
 
 ### Community 141 - "Community 141"
 Cohesion: 0.22
@@ -946,48 +973,44 @@ Cohesion: 0.22
 Nodes (9): category, contract_size, description, digits, point, raw_symbol, timeframes, trade_tick_size (+1 more)
 
 ### Community 157 - "Community 157"
-Cohesion: 0.06
-Nodes (60): al(), Aon(), apply(), between(), bje, Cme(), colCount(), colSelection() (+52 more)
+Cohesion: 0.09
+Nodes (37): axt(), cellsInRect(), colSelection(), content(), det(), ez, fEt(), findCell() (+29 more)
 
 ### Community 158 - "Community 158"
 Cohesion: 0.67
 Nodes (3): bvt, iJ(), Xvt()
 
 ### Community 159 - "Community 159"
-Cohesion: 0.08
-Nodes (29): bWe(), C0, cct(), d7(), Ent(), Ezt(), gkt(), jkt() (+21 more)
-
-### Community 160 - "Community 160"
-Cohesion: 0.12
-Nodes (9): bU(), iot(), k1e(), nNt(), oOt(), r1t(), s1t(), tl (+1 more)
+Cohesion: 0.38
+Nodes (10): cct(), kct(), $nodes(), qkt(), querySelector(), querySelectorAll(), wje, wzt (+2 more)
 
 ### Community 161 - "Community 161"
-Cohesion: 0.40
-Nodes (5): B5t(), H5t(), nRe, tRe, U5t()
+Cohesion: 0.22
+Nodes (8): B5t(), H5t(), iot(), lot(), nRe, oOt(), tRe, U5t()
 
 ### Community 162 - "Community 162"
-Cohesion: 0.31
-Nodes (3): Bze, fpe(), R_t()
+Cohesion: 0.15
+Nodes (10): _4(), _7e(), AOe(), bEe(), Bze, d7e(), ooe(), ple() (+2 more)
 
 ### Community 163 - "Community 163"
-Cohesion: 0.26
-Nodes (13): aln(), cft(), cln(), Dft, Fft(), ift(), jbt(), lft() (+5 more)
+Cohesion: 0.10
+Nodes (29): aln(), cft(), cln(), cz, Dft, dgt(), Fft(), gFe() (+21 more)
 
 ### Community 164 - "Community 164"
-Cohesion: 0.22
-Nodes (9): Drt(), hGe, jrt(), Kx, mRt(), pRt(), uRe(), urt (+1 more)
+Cohesion: 0.40
+Nodes (5): frt(), Kx, mRt(), uRe(), yA()
 
 ### Community 165 - "Community 165"
-Cohesion: 0.18
+Cohesion: 0.20
 Nodes (11): componentDidMount(), componentDidUpdate(), componentWillUnmount(), createNodeViews(), init(), ost(), POe(), setOptions() (+3 more)
 
 ### Community 166 - "Community 166"
-Cohesion: 0.20
-Nodes (6): Aggregates depth snapshots into persistent wall clusters (l3_orders)., Refresh cluster persistence spans; returns l3_orders rows., _WallTracker, CoinbaseBookAssembler, Assembles ``level2_batch`` snapshot + l2update frames into a book., test_coinbase_level2_assembler_applies_updates_and_deletes()
+Cohesion: 0.14
+Nodes (10): Aggregates depth snapshots into persistent wall clusters (l3_orders)., Refresh cluster persistence spans; returns l3_orders rows., Persistent resting walls only: notional >= min_notional_usd AND         persist, _WallTracker, Structural stop-loss cluster reconstruction (Q1B, stops half)., StopClusterEngine, CoinbaseBookAssembler, Assembles ``level2_batch`` snapshot + l2update frames into a book. (+2 more)
 
 ### Community 167 - "Community 167"
-Cohesion: 0.20
-Nodes (12): addInputRules(), b0e(), cnt(), d6(), EK, nlt(), o9e(), qb() (+4 more)
+Cohesion: 0.09
+Nodes (21): 1.1 The contract — `Terminal/Execution/base.py`, 1.2 Backend A — `NativeMT5Bridge` (`Terminal/Execution/native_mt5.py`), 1.3 Backend B — `HeadlessRESTBridge` (`Terminal/Execution/headless_rest.py`), 1.4 Backend C — `PaperSimulatedBridge` (`Terminal/Execution/paper.py`), 1.5 Auto-discovery & fail-closed fallback — `create_bridge()`, 3.1 `deploy/Dockerfile` (multi-stage, minimal, non-root), 3.2 `deploy/docker-compose.yml`, 3.3 Secrets — `deploy/.env.example` (+13 more)
 
 ### Community 168 - "Community 168"
 Cohesion: 0.25
@@ -998,28 +1021,28 @@ Cohesion: 0.67
 Nodes (3): e9e(), nbt(), sL
 
 ### Community 170 - "Community 170"
-Cohesion: 0.13
-Nodes (15): B_e(), C1(), gcn(), ggt(), hgt(), iT, _Ke(), mgt() (+7 more)
+Cohesion: 0.27
+Nodes (7): B_e(), iT, _Ke(), o6e(), ugt(), __vite__mapDeps(), xRe()
 
 ### Community 171 - "Community 171"
-Cohesion: 0.20
-Nodes (12): bme(), e1e(), fwt, jBe, kgt, Ky(), lwt(), owt() (+4 more)
+Cohesion: 0.38
+Nodes (7): bme(), e1e(), Fht(), jBe, kgt, Ky(), zgt()
 
 ### Community 172 - "Community 172"
-Cohesion: 0.26
-Nodes (3): eft(), P_t(), u9e()
+Cohesion: 0.14
+Nodes (6): e3e, e7(), eft(), o8t(), P_t(), u9e()
 
 ### Community 173 - "Community 173"
-Cohesion: 0.13
-Nodes (11): _4t(), b4t(), D4t, fX(), G4t(), j4t(), q4t(), r4t() (+3 more)
+Cohesion: 0.10
+Nodes (14): Da(), Due, g_e(), gBe, gUe(), Iue(), j_e(), Nx() (+6 more)
 
 ### Community 174 - "Community 174"
-Cohesion: 0.12
-Nodes (24): aTt(), Ctt(), d9(), DSt(), dTt(), f9(), Gst(), gtt() (+16 more)
+Cohesion: 0.14
+Nodes (19): aTt(), DSt(), dTt(), f9(), Itt(), JSt(), jVe, Kst (+11 more)
 
 ### Community 175 - "Community 175"
-Cohesion: 0.05
-Nodes (49): aze, ch(), e9t(), Ea(), Fh(), hze(), i9e(), I9t() (+41 more)
+Cohesion: 0.10
+Nodes (26): A1e(), aze, can(), ch(), Ejt(), fxt(), hxt(), i9e() (+18 more)
 
 ### Community 176 - "Community 176"
 Cohesion: 0.29
@@ -1042,20 +1065,20 @@ Cohesion: 0.33
 Nodes (5): Current unresolved findings to recheck, Independent roles, OMNI Sentinel multi-agent wake protocol, Structured debate record, Wake sequence
 
 ### Community 181 - "Community 181"
-Cohesion: 0.67
-Nodes (3): q3e(), v3e, w3e
+Cohesion: 0.13
+Nodes (9): _clamp(), Signal evaluators for evaluate(). The v2 decision chain         (DecisionChainE, Deterministic advisory for one asset. Never raises on data gaps., SHA-256 chain the advisory (tamper-evident, deterministic)., Persistent resting whale walls (pillar 2, L3 half).          Bid walls below m, Cross-venue consensus divergence (pillar 6).          Positive when the per-ve, Availability manifest of the 6 factory pillars (deterministic)., Stamp the pillar manifest INSIDE the digest (tamper-evident). (+1 more)
 
 ### Community 182 - "Community 182"
-Cohesion: 0.13
-Nodes (21): Bgt(), bwt, gwt(), ime(), jr(), Ku(), kwt(), ls() (+13 more)
+Cohesion: 0.14
+Nodes (19): bwt, gwt(), ime(), jr(), Ku(), kwt(), ls(), oMe() (+11 more)
 
 ### Community 184 - "Community 184"
-Cohesion: 0.17
-Nodes (12): fGe, getAttributes(), i1e(), Lr(), mWe, uan(), vht(), VSe() (+4 more)
+Cohesion: 0.10
+Nodes (5): test_scheduler_wakes_exactly_on_boundaries_with_drift_compensation(), _bars(), _Broker, _covariance(), _trader()
 
 ### Community 185 - "Community 185"
-Cohesion: 0.10
-Nodes (18): clt(), Elt(), H2(), H4(), Hh(), k7t(), Klt, plt() (+10 more)
+Cohesion: 0.22
+Nodes (8): H2(), H4(), sze, wze(), x6t(), X9(), yze(), zSe()
 
 ### Community 186 - "Community 186"
 Cohesion: 0.18
@@ -1070,20 +1093,20 @@ Cohesion: 0.33
 Nodes (5): Gate 3 — orderflow replay, Gate 4 — broker execution simulation, Promotion Gates 3 and 4 — deterministic replay and execution stress, Promotion interpretation, Test command
 
 ### Community 189 - "Community 189"
-Cohesion: 0.06
-Nodes (43): A1e(), adn(), Au(), axt(), bun(), c1e(), can(), cdn() (+35 more)
+Cohesion: 0.39
+Nodes (8): adn(), cdn(), i4(), ldn(), nee(), odn(), tee(), zC()
 
 ### Community 191 - "Community 191"
-Cohesion: 0.50
-Nodes (5): sft(), _Xe(), xpt, yI, zXe()
+Cohesion: 0.20
+Nodes (9): BrainPolicy, ContinuousBrain, _main(), OX_ALPHA_62: the continuous autonomous Arena Brain loop.  The relentless 24/7, Full tri-specialist deliberation for this candle slot., Stage ONE validated limit for an extreme-conviction asset the         muscle ab, The endless loop: tick every interval, deliberate at minute 14., The endless loop. Everything injectable for deterministic tests. (+1 more)
 
 ### Community 193 - "Community 193"
-Cohesion: 0.18
-Nodes (8): a6t(), cyt(), kyt(), M6t(), n6t(), o6t(), one, Q6t()
+Cohesion: 0.17
+Nodes (9): a6t(), cyt(), kyt(), M6t(), n6t(), o6t(), one, p6t() (+1 more)
 
 ### Community 194 - "Community 194"
-Cohesion: 0.15
-Nodes (7): gBe, gde(), ght(), Nx(), vBe(), z1e(), zze
+Cohesion: 0.29
+Nodes (3): gde(), v_e(), zze
 
 ### Community 195 - "Community 195"
 Cohesion: 0.40
@@ -1094,8 +1117,12 @@ Cohesion: 0.40
 Nodes (5): addPasteRules(), dnt(), n0(), unt(), Vnt()
 
 ### Community 197 - "Community 197"
-Cohesion: 0.20
-Nodes (10): Cc(), cle(), dFe, f3e(), fKe(), Ife(), iKe(), kKe() (+2 more)
+Cohesion: 0.33
+Nodes (6): fKe(), iKe(), kKe(), kz(), mKe(), nNt()
+
+### Community 198 - "Community 198"
+Cohesion: 0.14
+Nodes (18): ayt(), cU(), Du, eAe, eyt(), f$t(), GOe, jut() (+10 more)
 
 ### Community 199 - "Community 199"
 Cohesion: 0.40
@@ -1103,31 +1130,31 @@ Nodes (5): c3t(), I3t(), l3t(), O3t(), u3t()
 
 ### Community 200 - "Community 200"
 Cohesion: 0.16
-Nodes (14): addKeyboardShortcuts(), ett(), eWe, fK(), iGe(), JN(), ktt(), l9() (+6 more)
+Nodes (14): addKeyboardShortcuts(), ett(), eWe, fK(), iGe(), ktt(), l9(), nTt() (+6 more)
 
 ### Community 201 - "Community 201"
 Cohesion: 0.40
 Nodes (5): d6t(), R8t(), s8t(), t7(), v6t()
 
 ### Community 202 - "Community 202"
-Cohesion: 0.22
-Nodes (10): a7, e7(), KG, m7, o8t(), pAe(), updatePosition(), x7() (+2 more)
+Cohesion: 0.15
+Nodes (16): b5(), buildProps(), commands(), createCan(), displayable(), dne(), eet(), h5() (+8 more)
 
 ### Community 204 - "Community 204"
 Cohesion: 0.50
 Nodes (4): _2t(), D2t(), F2t(), j2t()
 
-### Community 205 - "Community 205"
-Cohesion: 0.27
-Nodes (3): ckt, gJ(), se
-
 ### Community 206 - "Community 206"
-Cohesion: 0.20
-Nodes (10): dGe(), ect, g3e(), getText(), getTextContent(), pGe, post(), Rct() (+2 more)
+Cohesion: 0.50
+Nodes (4): dGe(), getText(), getTextContent(), pGe
 
 ### Community 207 - "Community 207"
 Cohesion: 0.50
 Nodes (4): bpe(), kW(), Nht(), rht()
+
+### Community 208 - "Community 208"
+Cohesion: 0.13
+Nodes (14): 1.1 Pathway evaluation, 1.2 The shared security model (both pathways), 1.3 What was built, 4.1 Root cause of the ETH stop-out, 4.2 The Taker Delta Exhaustion Gate (implemented, wired, tested), 4.3 The Adaptive Volatility Stop Buffer (implemented, wired, tested), DELIVERABLE 1 — The secure bidirectional tunnel, DELIVERABLE 2 — The ARENA:TEST_LIMIT_v1 protocol (+6 more)
 
 ### Community 209 - "Community 209"
 Cohesion: 0.67
@@ -1135,55 +1162,55 @@ Nodes (4): Djt(), fjt(), jjt(), jt()
 
 ### Community 210 - "Community 210"
 Cohesion: 0.05
-Nodes (47): _5t(), a2(), aIe(), b5(), buildProps(), c2(), c2t(), clamp() (+39 more)
+Nodes (36): _4t(), _5t(), aIe(), b4t(), c2(), D4t, eRe, F5t() (+28 more)
 
 ### Community 211 - "Community 211"
-Cohesion: 0.06
-Nodes (35): addProseMirrorPlugins(), ale(), bEe(), bGe(), Cot(), ele(), Gce(), Hi() (+27 more)
+Cohesion: 0.25
+Nodes (11): addProseMirrorPlugins(), Cot(), kot(), lit(), mot(), not, Qit(), tot() (+3 more)
 
 ### Community 212 - "Community 212"
-Cohesion: 0.15
-Nodes (7): dM(), gq(), N6(), Nme(), toString(), toStringInner(), wAe()
+Cohesion: 0.18
+Nodes (5): dM(), gq(), N6(), textBetween(), textContent()
 
 ### Community 213 - "Community 213"
-Cohesion: 0.22
-Nodes (9): $8e(), B2(), Fce(), J5e(), jce(), unmount(), WL(), X5e() (+1 more)
+Cohesion: 0.29
+Nodes (7): B2(), cD(), G5e(), jce(), Oce(), q5e(), xF()
 
 ### Community 214 - "Community 214"
-Cohesion: 0.22
-Nodes (7): ait(), aO, fN, MIt(), nit(), Qst(), Zst
+Cohesion: 0.40
+Nodes (5): ait(), MIt(), nit(), Qst(), Zst
 
 ### Community 215 - "Community 215"
 Cohesion: 0.67
 Nodes (3): c8e, w8e(), yM()
 
 ### Community 216 - "Community 216"
-Cohesion: 0.25
-Nodes (6): _patched_df_datetime_format(), Any, DataFrame, Add moving average, bollinger, or vwap overlay on the main price chart., Create a synchronized bottom subchart pane for RSI, MACD, ATR, CVD, Delta., Plot ANY arbitrary numerical dimension from the Parquet file onto a synchronized
+Cohesion: 0.16
+Nodes (14): eze(), hze(), jFe(), kl(), kM(), Ks(), kze(), lpe() (+6 more)
 
 ### Community 217 - "Community 217"
 Cohesion: 0.67
 Nodes (3): E2t(), nI, P2t()
 
 ### Community 218 - "Community 218"
-Cohesion: 0.13
-Nodes (23): AE(), aEe(), Bht(), c(), Hp(), i1t(), I7(), iAe() (+15 more)
+Cohesion: 0.06
+Nodes (51): _a(), AE(), aEe(), Bht(), c(), cse(), ect, eon() (+43 more)
 
 ### Community 220 - "Community 220"
-Cohesion: 0.25
-Nodes (9): b9e(), fv(), mv(), NC(), sin(), USe(), VMt(), win() (+1 more)
+Cohesion: 0.22
+Nodes (10): b9e(), fv(), J6t(), lne(), mv(), sin(), USe(), VMt() (+2 more)
 
 ### Community 221 - "Community 221"
-Cohesion: 0.15
-Nodes (11): E_t(), LFe(), Llt(), NFe(), OD(), q2(), rP(), tA() (+3 more)
+Cohesion: 0.08
+Nodes (23): Aue(), _b(), b4e(), i1t(), ikt(), Jb, LFe(), NFe() (+15 more)
 
 ### Community 222 - "Community 222"
-Cohesion: 0.67
-Nodes (3): gsn(), vDe, zq()
+Cohesion: 0.25
+Nodes (9): Edt(), gsn(), Kh(), ldt(), mDt(), Pdt(), _q, vDe (+1 more)
 
 ### Community 223 - "Community 223"
-Cohesion: 0.31
-Nodes (9): _ce(), Eb(), EM, hpt(), jpt, OXe(), upt(), vpt (+1 more)
+Cohesion: 0.21
+Nodes (12): _ce(), cte(), Eb(), EM, hpt(), ite(), jpt, jX() (+4 more)
 
 ### Community 224 - "Community 224"
 Cohesion: 0.67
@@ -1194,144 +1221,292 @@ Cohesion: 0.67
 Nodes (3): uen(), vdn(), vle()
 
 ### Community 228 - "Community 228"
-Cohesion: 0.33
-Nodes (6): fct(), GSe(), mEt(), pct(), Rh(), Z0e()
+Cohesion: 0.20
+Nodes (10): fct(), GSe(), mEt(), pct(), pq, pTe(), QSe(), Rh() (+2 more)
 
 ### Community 231 - "Community 231"
-Cohesion: 0.25
-Nodes (8): d3t(), dat(), f3t(), iI(), p3t(), qP(), rrt, TRt()
+Cohesion: 0.33
+Nodes (7): d3t(), dat(), f3t(), iI(), p3t(), rrt, TRt()
 
 ### Community 233 - "Community 233"
-Cohesion: 0.25
-Nodes (3): element(), fje, kA()
+Cohesion: 0.14
+Nodes (8): BigQueryWhaleForensics, Batch forensics over Google's 1 TB/month free public-data tier., Native ETH transfers above the USD threshold (approximate USD via         a par, Top ERC-20 transfer counterparties by raw transfer count (label         candida, Outflows from a set of known exchange hot wallets (sweeps)., Run a query (lazy google-cloud-bigquery import; billed bytes 0 on         the p, Normalize query rows to the whale-transfer shape., test_bigquery_sql_builders()
+
+### Community 234 - "Community 234"
+Cohesion: 0.29
+Nodes (5): bWe(), hkt(), ree(), uWe, vkt()
 
 ### Community 236 - "Community 236"
-Cohesion: 0.29
-Nodes (8): aH(), ei(), QSe(), wan(), wJ(), wK(), xSe(), YSe()
+Cohesion: 0.15
+Nodes (16): aH(), Au(), ei(), Elt(), Hh(), i0t(), j5(), o0t() (+8 more)
 
 ### Community 239 - "Community 239"
-Cohesion: 0.12
-Nodes (21): B1e(), b7(), bA(), dbt, ebt(), gbt, gFe(), hbt (+13 more)
+Cohesion: 0.08
+Nodes (34): a7, b0t(), B1e(), b7(), c0t(), dbt, ebt(), gbt (+26 more)
 
 ### Community 242 - "Community 242"
-Cohesion: 0.32
-Nodes (8): iat(), iq, jat(), oat(), Ov(), Rat(), sat(), wat()
+Cohesion: 0.24
+Nodes (3): C0, K2(), mN()
+
+### Community 243 - "Community 243"
+Cohesion: 0.17
+Nodes (4): aWe(), f3(), mP(), reducer()
 
 ### Community 244 - "Community 244"
 Cohesion: 0.67
 Nodes (3): g1t(), x1t(), y1t()
 
 ### Community 245 - "Community 245"
-Cohesion: 0.67
-Nodes (3): iX(), pgt, uBe
+Cohesion: 0.15
+Nodes (12): 10. Invalidation and Reassessment, 11. Provenance and Disclaimers, 1. Executive Summary, 2. Multi-Source Data Foundation, 3. Macro Regime Read (Specialist 3 lens), 4. Candidate Ranking (Specialist 1 lens), 5. The Order, 6. Friction Accounting and Expectancy (+4 more)
 
 ### Community 247 - "Community 247"
-Cohesion: 0.29
-Nodes (6): acn(), bIe(), qce(), rM(), tcn, zce()
+Cohesion: 0.18
+Nodes (11): acn(), bIe(), qce(), rM(), Rue(), tcn, vIe(), Wce() (+3 more)
 
 ### Community 248 - "Community 248"
-Cohesion: 0.29
-Nodes (7): Ame(), bcn(), dwt(), eat, fcn(), jwt(), oQ()
+Cohesion: 0.17
+Nodes (11): Deliverable 1 — `Terminal/Headless/arena_continuous_brain.py`, Deliverable 2 — `Tests/Test_Continuous_Brain.py` (11 tests, 100 % offline), Error recovery (tested), File map, New muscle-side surface (read-only, signed), OMNI Continuous Autonomous Brain — Endless Loop & Live Tunnel Control, Operational notes, System invariants (all preserved, muscle-enforced, re-tested) (+3 more)
 
 ### Community 249 - "Community 249"
-Cohesion: 0.29
-Nodes (7): bat(), bO(), Fat(), Pat(), xat(), xte(), zat()
+Cohesion: 0.19
+Nodes (13): addToEnd(), addToStart(), bO(), concat(), Fat(), Of(), Pat(), prepend() (+5 more)
 
 ### Community 250 - "Community 250"
-Cohesion: 0.29
-Nodes (7): destroy(), hide(), off(), onDestroy(), removeAllListeners(), Sit(), tit()
+Cohesion: 0.25
+Nodes (8): createDoc(), destroy(), emit(), hide(), off(), R6(), removeAllListeners(), setEditable()
 
 ### Community 251 - "Community 251"
-Cohesion: 0.40
-Nodes (5): dze(), fze(), MG(), mze(), Tpe()
+Cohesion: 0.17
+Nodes (12): bGe(), createView(), injectCSS(), mount(), plugins(), prependClass(), Ss, transformPastedHTML() (+4 more)
 
 ### Community 253 - "Community 253"
-Cohesion: 0.29
-Nodes (7): ijt(), nse(), ojt(), sjt(), TE(), TSe(), Z2t()
+Cohesion: 0.15
+Nodes (12): ase(), CKe(), GOt(), ijt(), nse(), ojt(), Rjt(), sjt() (+4 more)
 
 ### Community 255 - "Community 255"
-Cohesion: 0.10
-Nodes (23): A9t(), Bne(), c3e(), Cv, DL(), h3t(), i2e(), iB() (+15 more)
+Cohesion: 0.09
+Nodes (24): a7t(), dqt(), eme, fu, gH(), hme(), iB(), JAe() (+16 more)
 
 ### Community 256 - "Community 256"
-Cohesion: 0.53
-Nodes (6): cit(), getHTML(), k$(), t5(), vit(), We()
+Cohesion: 0.29
+Nodes (8): cit(), getHTML(), HIt(), k$(), l8(), UIt(), vit(), We()
 
 ### Community 258 - "Community 258"
-Cohesion: 0.33
-Nodes (6): e9(), Ene(), fTe(), Ih(), KSe(), UG
+Cohesion: 0.18
+Nodes (7): DecisionChainPolicy, PioneerPolicy, Pioneer Decision Engine — deterministic conviction fusion over the Zero-Cost Da, v2 weights + the two new pillar calibrations (sum = 1.00; unavailable     pilla, test_policy_weights_sum_and_scales(), test_v1_policy_default_untouched(), _Intel
 
 ### Community 259 - "Community 259"
 Cohesion: 0.33
 Nodes (6): gpt(), kpt, lTe(), P1(), yq(), zpt
 
+### Community 261 - "Community 261"
+Cohesion: 0.20
+Nodes (11): d9(), dY, Gst(), Hi(), Hst(), mM, qYe(), renderHTML() (+3 more)
+
 ### Community 262 - "Community 262"
-Cohesion: 0.50
-Nodes (5): a4t(), GK(), T5t(), wNt(), Xce()
+Cohesion: 0.22
+Nodes (10): ajt(), cjt(), ljt(), Mjt(), Njt(), q9(), r6e(), s6e() (+2 more)
 
 ### Community 264 - "Community 264"
-Cohesion: 0.40
-Nodes (4): Gmt(), hA(), lht(), Qmt()
+Cohesion: 0.15
+Nodes (13): aBe, Gmt(), hA(), _ht, iBe, iht(), lBe(), lht() (+5 more)
 
 ### Community 268 - "Community 268"
-Cohesion: 0.50
-Nodes (4): _9(), bet(), xet(), yEt()
+Cohesion: 0.27
+Nodes (10): b7t(), c7t(), f7t(), i7t(), m7t(), s7t(), u7t(), v7t() (+2 more)
 
-### Community 270 - "Community 270"
-Cohesion: 0.50
-Nodes (4): ape(), bon(), qQ, xq()
+### Community 269 - "Community 269"
+Cohesion: 0.24
+Nodes (10): e9t(), Ea(), J8t(), jnt(), n9t(), qm(), r9t(), s9t() (+2 more)
 
 ### Community 271 - "Community 271"
-Cohesion: 0.06
-Nodes (43): aft(), btt(), CRe(), cz, DF(), dYe(), eKe(), fme() (+35 more)
+Cohesion: 0.04
+Nodes (69): aft(), al(), Aon(), art(), btt(), c3e(), cfe(), cl() (+61 more)
 
 ### Community 272 - "Community 272"
 Cohesion: 0.50
 Nodes (4): b0(), hq(), u8e(), uw()
 
 ### Community 274 - "Community 274"
-Cohesion: 0.50
-Nodes (4): c0e(), flt(), l0e(), Ow()
+Cohesion: 0.22
+Nodes (8): 1. Git Synchronization (directive step 1), 2. Ground Truth Acknowledged (directive step 2), 3. Forensic Autopsy of the OX_ALPHA_62 SOL Refusal — Endorsed, 4. Decision Chain v2 (omni.decision_chain.v2) — Directive Step 3, 5. Calibrated Plan Queue — Directive Step 4, 6. Test Evidence — Directive Step 5, 7. Execution Procedure (muscle side, tunnel-reachable), OX_ALPHA_63 — GitHub-Anchored Co-Pilot: Decision Chain v2 and Calibrated Plan Queue
 
 ### Community 275 - "Community 275"
-Cohesion: 0.50
-Nodes (4): den(), dJ(), Os(), uJ()
+Cohesion: 0.22
+Nodes (9): cJ, den(), dJ(), e4(), hqt(), Os(), qG, T4() (+1 more)
 
 ### Community 276 - "Community 276"
-Cohesion: 0.50
-Nodes (4): E8(), fgt(), IE(), n9()
-
-### Community 277 - "Community 277"
-Cohesion: 0.50
-Nodes (4): eme, hcn(), JAe(), mme()
+Cohesion: 0.22
+Nodes (9): Bg(), c7e(), fG(), hwt(), k7e(), mwt(), N7e(), sN() (+1 more)
 
 ### Community 278 - "Community 278"
-Cohesion: 0.67
-Nodes (3): b6t(), h6t, u6t()
+Cohesion: 0.21
+Nodes (12): aX(), b6t(), e6t(), gV(), h6t, hG, i8t(), $S() (+4 more)
+
+### Community 279 - "Community 279"
+Cohesion: 0.40
+Nodes (4): c8t(), H8t(), tIe(), u8t()
 
 ### Community 280 - "Community 280"
+Cohesion: 0.22
+Nodes (9): D0(), Fp(), Glt, HL(), hlt(), j0(), lO(), mLt() (+1 more)
+
+### Community 281 - "Community 281"
+Cohesion: 0.28
+Nodes (9): d7(), Ezt(), jkt(), jme, nzt(), oKt(), pee(), uAe() (+1 more)
+
+### Community 282 - "Community 282"
+Cohesion: 0.22
+Nodes (8): 1. System Topology & Synchronization Protocol, 2. Live Account Financials & Ground Truth (As of 2026-10-07 07:15 UTC), 3. Forensic Autopsy of OX_ALPHA_62 SOL Plan Refusal, 4. Institutional Upgrade Mandate: Zero-Cost Factory Suite Integration, 5. Deliverables for Arena.ai, Operational Invariants:, OX_ALPHA_63 Master Specification: GitHub-Anchored Strategy Co-Pilot & Decision Chain Upgrade, The 6 Pillars to Integrate:
+
+### Community 283 - "Community 283"
+Cohesion: 0.25
+Nodes (8): _6(), Dh(), iO, isActive(), jTt(), Mtt(), om(), wxt
+
+### Community 286 - "Community 286"
+Cohesion: 0.25
+Nodes (8): $8e(), e4t(), m4t(), mRe(), P4t(), U2(), WL(), zw()
+
+### Community 287 - "Community 287"
+Cohesion: 0.29
+Nodes (8): aC(), g0(), kce(), L1t(), p1t(), pIe(), tD(), vF()
+
+### Community 289 - "Community 289"
+Cohesion: 0.29
+Nodes (8): addGlobalAttributes(), attributes(), cGe(), markViews(), nodeViews(), sY, Vb(), wtt()
+
+### Community 290 - "Community 290"
+Cohesion: 0.36
+Nodes (7): B8t(), Bv(), HS(), lyt(), St, V8t(), Xue()
+
+### Community 291 - "Community 291"
+Cohesion: 0.25
+Nodes (8): c_t(), ese(), G_t(), jRe(), k_t(), N_t(), updateYAxisWidth(), Y_t()
+
+### Community 292 - "Community 292"
+Cohesion: 0.32
+Nodes (6): e1t(), jue(), lp(), pvt(), rVe(), Xrn()
+
+### Community 293 - "Community 293"
+Cohesion: 0.32
+Nodes (8): eD(), ID(), ide(), jde(), ode(), qDe, sde(), wde()
+
+### Community 294 - "Community 294"
+Cohesion: 0.43
+Nodes (7): ade(), DRe(), fRe(), hRe(), Hy(), lde(), osn()
+
+### Community 295 - "Community 295"
+Cohesion: 0.33
+Nodes (7): bD(), F4t(), FL(), gRe(), UF(), yRe(), z4t()
+
+### Community 296 - "Community 296"
+Cohesion: 0.29
+Nodes (7): but(), fut(), gut(), put(), uct(), UUt(), vut()
+
+### Community 297 - "Community 297"
+Cohesion: 0.29
+Nodes (7): c2t(), I2t(), Ki(), Kie(), l2t(), u2t(), w2e()
+
+### Community 298 - "Community 298"
+Cohesion: 0.29
+Nodes (6): clt(), k7t(), Klt, qne(), tlt(), zp
+
+### Community 299 - "Community 299"
+Cohesion: 0.33
+Nodes (6): Ent(), gkt(), kkt(), tNt(), ukt(), wWe()
+
+### Community 300 - "Community 300"
+Cohesion: 0.29
+Nodes (7): gzt(), hzt(), im(), lEe(), sdn, vdt(), vXe
+
+### Community 301 - "Community 301"
+Cohesion: 0.33
+Nodes (6): _7(), dkt(), fkt(), nkt(), tkt(), wkt()
+
+### Community 302 - "Community 302"
+Cohesion: 0.47
+Nodes (6): a2(), clamp(), EP(), formatHsl(), J8e(), yne()
+
+### Community 303 - "Community 303"
+Cohesion: 0.33
+Nodes (6): A2t(), g2t(), k2t(), N2t(), r2(), Y2t()
+
+### Community 304 - "Community 304"
+Cohesion: 0.40
+Nodes (6): C1(), gcn(), ggt(), hgt(), mgt(), P8()
+
+### Community 305 - "Community 305"
+Cohesion: 0.33
+Nodes (6): Dpe(), Fh(), is(), JD(), kft(), Qn
+
+### Community 306 - "Community 306"
+Cohesion: 0.33
+Nodes (6): fwt, lwt(), owt(), QU(), swt(), Zu()
+
+### Community 307 - "Community 307"
+Cohesion: 0.33
+Nodes (6): KRe(), Qa(), rsn(), vRe(), zRe(), Zy
+
+### Community 308 - "Community 308"
+Cohesion: 0.47
+Nodes (6): MAe(), OAe(), v7(), WOe, xut(), yut()
+
+### Community 309 - "Community 309"
+Cohesion: 0.40
+Nodes (3): OG(), qon, son()
+
+### Community 311 - "Community 311"
+Cohesion: 0.40
+Nodes (4): Nme(), toString(), toStringInner(), wAe()
+
+### Community 312 - "Community 312"
+Cohesion: 0.40
+Nodes (5): dot(), E_t(), jot(), OD(), xWe
+
+### Community 313 - "Community 313"
+Cohesion: 0.40
+Nodes (4): Eln(), jV(), vWe, ykt()
+
+### Community 314 - "Community 314"
+Cohesion: 0.40
+Nodes (4): GRt(), qP(), xrt(), yRt()
+
+### Community 315 - "Community 315"
+Cohesion: 0.50
+Nodes (5): onDestroy(), Sit(), tit(), wit(), zit()
+
+### Community 316 - "Community 316"
+Cohesion: 0.50
+Nodes (4): ale(), ele(), middlewares(), nle
+
+### Community 318 - "Community 318"
 Cohesion: 0.67
-Nodes (3): cte(), ite(), jX()
+Nodes (3): addExtensions(), configure(), createExtensionManager()
+
+### Community 320 - "Community 320"
+Cohesion: 0.67
+Nodes (3): ist(), rst(), sst()
 
 ## Knowledge Gaps
-- **789 isolated node(s):** `export_timestamp`, `broker`, `server`, `timeframes`, `history_start` (+784 more)
+- **852 isolated node(s):** `export_timestamp`, `broker`, `server`, `timeframes`, `history_start` (+847 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **43 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `HyperdashClient` connect `Community 53` to `Community 64`, `Community 38`, `Community 40`, `Community 108`, `Community 78`, `Community 113`?**
-  _High betweenness centrality (0.017) - this node is a cross-community bridge._
-- **Why does `HyperdashTerminal` connect `Community 38` to `Community 53`, `Community 55`?**
-  _High betweenness centrality (0.015) - this node is a cross-community bridge._
-- **Why does `number()` connect `Community 91` to `Community 65`, `Community 67`, `Community 35`, `Community 133`, `Community 166`, `Community 99`, `Community 3`, `Community 9`, `Community 8`, `Community 77`, `Community 112`, `Community 115`, `Community 118`, `Community 123`, `Community 30`, `Community 31`?**
+- **Why does `number()` connect `Community 91` to `Community 258`, `Community 3`, `Community 133`, `Community 8`, `Community 9`, `Community 30`, `Community 31`, `Community 35`, `Community 166`, `Community 181`, `Community 191`, `Community 64`, `Community 65`, `Community 67`, `Community 76`, `Community 77`, `Community 99`, `Community 233`, `Community 108`, `Community 112`, `Community 113`, `Community 115`, `Community 118`?**
+  _High betweenness centrality (0.025) - this node is a cross-community bridge._
+- **Why does `ParquetDataEngine` connect `Community 104` to `Community 72`, `Community 66`, `Community 55`?**
+  _High betweenness centrality (0.012) - this node is a cross-community bridge._
+- **Why does `MT5ExecutionBridge` connect `Community 51` to `Community 74`, `Community 80`, `Community 91`, `Community 62`, `Community 31`?**
   _High betweenness centrality (0.011) - this node is a cross-community bridge._
 - **Are the 3 inferred relationships involving `at()` (e.g. with `a5()` and `kW()`) actually correct?**
   _`at()` has 3 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 10 inferred relationships involving `z` (e.g. with `bp()` and `Bs()`) actually correct?**
   _`z` has 10 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `export_timestamp`, `broker`, `server` to the rest of the system?**
-  _1117 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _1310 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
-  _Cohesion score 0.0032258064516129032 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.0031446540880503146 - nodes in this community are weakly interconnected._

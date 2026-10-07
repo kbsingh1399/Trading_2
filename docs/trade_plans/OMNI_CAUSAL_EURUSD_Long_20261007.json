@@ -1,0 +1,39 @@
+{
+  "plan_version": "omni.trade_plan.v1",
+  "plan_id": "OMNI-EURUSD-LONG-20261007A",
+  "asset": "EURUSD",
+  "symbol": "EURUSD.pi",
+  "direction": "LONG",
+  "limit_price": 1.11880,
+  "sl": 1.11740,
+  "tp": 1.12230,
+  "volume": 0.09,
+  "risk_usd": 12.60,
+  "atr": 0.00071,
+  "tp_r": 2.5,
+  "ttl_bars": 24,
+  "comment": "OMNI_CAUSAL_v1",
+  "ticket": 18617132,
+  "created_at_epoch": 1791358450.0,
+  "expires_at_epoch": 1791394450.0,
+  "max_friction_r": 0.35,
+  "blackout_windows": [
+    {
+      "start_epoch": 1791392400.0,
+      "end_epoch": 1791397800.0,
+      "reason": "FOMC meeting minutes 2026-10-07 18:00 UTC (Tier-1)"
+    }
+  ],
+  "contract": {
+    "tick_size": 0.00001,
+    "contract_size": 100000.0,
+    "min_lot": 0.01,
+    "step_lot": 0.01,
+    "digits": 5
+  },
+  "thesis": {
+    "summary": "Historic statistical exhaustion reclaim (RSI 13.5, VWAP Z -3.67). Prior low 1.11800 was swept into 1.11793 and reclaimed to 1.11945.",
+    "structural_level": "Limit 1.11880 offers shallow retest of reclaim; stop sits below sweep wick at 1.11740 (1.55x ATR).",
+    "target": "Take profit 1.12230 (+2.50R) pays before Session VWAP at 1.12335."
+  }
+}

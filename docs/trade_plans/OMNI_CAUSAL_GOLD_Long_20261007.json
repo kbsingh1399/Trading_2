@@ -1,0 +1,39 @@
+{
+  "plan_version": "omni.trade_plan.v1",
+  "plan_id": "OMNI-GOLD-LONG-20261007A",
+  "asset": "GOLD",
+  "symbol": "XAUUSD.pi",
+  "direction": "LONG",
+  "limit_price": 4125.00,
+  "sl": 4113.50,
+  "tp": 4153.75,
+  "volume": 0.01,
+  "risk_usd": 11.50,
+  "atr": 5.69,
+  "tp_r": 2.5,
+  "ttl_bars": 24,
+  "comment": "OMNI_CAUSAL_v1",
+  "ticket": 18617135,
+  "created_at_epoch": 1791358450.0,
+  "expires_at_epoch": 1791394450.0,
+  "max_friction_r": 0.35,
+  "blackout_windows": [
+    {
+      "start_epoch": 1791392400.0,
+      "end_epoch": 1791397800.0,
+      "reason": "FOMC meeting minutes 2026-10-07 18:00 UTC (Tier-1)"
+    }
+  ],
+  "contract": {
+    "tick_size": 0.01,
+    "contract_size": 100.0,
+    "min_lot": 0.01,
+    "step_lot": 0.01,
+    "digits": 2
+  },
+  "thesis": {
+    "summary": "Liquidity sweep dip-buy into the 4,120.00 USD persistent whale shelf (975k USD resting bids).",
+    "structural_level": "Limit 4125.00 sits 5.40 USD below market; stop 4113.50 is placed 6.50 USD below the 4,120 shelf (2.02x ATR).",
+    "target": "Take profit 4153.75 (+2.50R) pays right into the 200 EMA retest at 4,151.03."
+  }
+}
