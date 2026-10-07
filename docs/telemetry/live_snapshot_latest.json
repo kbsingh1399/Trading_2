@@ -2,8 +2,8 @@
   "protocol": "omni.telemetry.v3.observed_only",
   "snapshot_status": "LIVE_OBSERVATION",
   "data_policy": "OBSERVED_OR_DERIVED_FROM_OBSERVED; unavailable fields never authorize trades",
-  "as_of_utc": "2026-10-07 21:44:56 UTC",
-  "as_of_epoch": 1791409496.473645,
+  "as_of_utc": "2026-10-07 21:45:55 UTC",
+  "as_of_epoch": 1791409555.599304,
   "generated_by": "MT5 bridge + public feeds; no broker execution performed here",
   "trade_authorization": "DENIED_UNVERIFIED_ORDERFLOW",
   "account": {
@@ -47,22 +47,22 @@
       "ETH_report_status": "NOT_YET_REPORTED",
       "data_source": "Farside Investors (live HTML scrape - verified authentic)"
     },
-    "coinbase_premium_bps": -6.3,
+    "coinbase_premium_bps": -5.61,
     "coinbase_premium_source": "COINBASE_SPOT_AND_BINANCE_SPOT_RECEIPT",
-    "runway_hours_to_blackout": -4.75
+    "runway_hours_to_blackout": -4.77
   },
   "assets_matrix_24": {
     "BTC": {
       "symbol_broker": "BTCUSD.pi",
       "category": "CRYPTO",
       "quotes": {
-        "bid": 83169.0,
-        "ask": 83204.0,
-        "mid": 83186.5,
-        "spread_price": 35.0,
-        "spread_bps": 4.21,
+        "bid": 83152.0,
+        "ask": 83173.0,
+        "mid": 83162.5,
+        "spread_price": 21.0,
+        "spread_bps": 2.53,
         "quote_source": "MT5_L1_TICK",
-        "quote_age_s": -31.66,
+        "quote_age_s": -31.45,
         "quote_freshness": "STALE",
         "specs_source": "BROKER_MT5_SYMBOL_INFO",
         "tick_size": 0.01,
@@ -100,7 +100,7 @@
         "indicators_source": "LIVE_BRIDGE",
         "vwap_weight_unit": "UNAVAILABLE",
         "bars_last_close_utc": "2026-10-07 21:45 UTC",
-        "indicator_age_min": 0.0
+        "indicator_age_min": 0.9
       },
       "volume_profile": {
         "poc": null,
@@ -129,287 +129,278 @@
         "top_long_cascade_bands_below": [],
         "top_short_squeeze_bands_above": [],
         "reason": "Open interest cannot identify liquidation prices or leverage",
-        "binance_futures_open_interest_contracts": 96274.257,
+        "binance_futures_open_interest_contracts": 96262.836,
         "open_interest_source": "BINANCE_FUTURES_PUBLIC_REST",
         "open_interest_venue": "BINANCE_USDM_FUTURES",
-        "open_interest_as_of_epoch": 1791409517.339
+        "open_interest_as_of_epoch": 1791409580.682
       },
       "orderbook_live_depth": {
         "source": "REAL_BINANCE_FUTURES_L2",
         "venue": "BINANCE_USDM_FUTURES",
         "aggregation": "ANONYMOUS_PRICE_LEVELS_NOT_ORDERS",
-        "binance_mid": 83176.05,
-        "top20_bid_depth_usd": 962912.76,
-        "top20_ask_depth_usd": 421544.89,
-        "book_imbalance": 0.391,
-        "skew_ratio": 2.2842,
+        "binance_mid": 83158.25,
+        "top20_bid_depth_usd": 155921.06,
+        "top20_ask_depth_usd": 851628.85,
+        "book_imbalance": -0.6905,
+        "skew_ratio": 0.1831,
         "bids_top20": [
           [
-            83176.0,
-            6.079,
-            505626.9,
-            505626.9
+            83158.2,
+            1.468,
+            122076.24,
+            122076.24
           ],
           [
-            83175.9,
+            83158.1,
+            0.07,
+            5821.07,
+            127897.3
+          ],
+          [
+            83158.0,
             0.001,
-            83.18,
-            505710.08
+            83.16,
+            127980.46
           ],
           [
-            83175.8,
-            0.001,
-            83.18,
-            505793.26
-          ],
-          [
-            83175.4,
-            0.061,
-            5073.7,
-            510866.96
-          ],
-          [
-            83174.9,
-            0.063,
-            5240.02,
-            516106.97
-          ],
-          [
-            83174.7,
-            0.001,
-            83.17,
-            516190.15
-          ],
-          [
-            83174.4,
-            0.001,
-            83.17,
-            516273.32
-          ],
-          [
-            83174.3,
-            0.063,
-            5239.98,
-            521513.3
-          ],
-          [
-            83173.9,
-            0.004,
-            332.7,
-            521846.0
-          ],
-          [
-            83173.8,
-            0.061,
-            5073.6,
-            526919.6
-          ],
-          [
-            83173.3,
-            0.001,
-            83.17,
-            527002.77
-          ],
-          [
-            83173.2,
-            3.774,
-            313895.66,
-            840898.43
-          ],
-          [
-            83173.1,
-            0.888,
-            73857.71,
-            914756.14
-          ],
-          [
-            83172.7,
-            0.061,
-            5073.53,
-            919829.68
-          ],
-          [
-            83172.6,
+            83157.9,
             0.002,
-            166.35,
-            919996.02
+            166.32,
+            128146.78
           ],
           [
-            83172.5,
+            83157.8,
             0.001,
-            83.17,
-            920079.2
+            83.16,
+            128229.94
           ],
           [
-            83172.3,
+            83157.7,
+            0.02,
+            1663.15,
+            129893.09
+          ],
+          [
+            83157.6,
+            0.053,
+            4407.35,
+            134300.44
+          ],
+          [
+            83157.3,
+            0.001,
+            83.16,
+            134383.6
+          ],
+          [
+            83157.2,
+            0.001,
+            83.16,
+            134466.76
+          ],
+          [
+            83157.1,
+            0.18,
+            14968.28,
+            149435.04
+          ],
+          [
+            83157.0,
+            0.001,
+            83.16,
+            149518.19
+          ],
+          [
+            83156.4,
+            0.001,
+            83.16,
+            149601.35
+          ],
+          [
+            83156.2,
+            0.001,
+            83.16,
+            149684.51
+          ],
+          [
+            83155.8,
+            0.001,
+            83.16,
+            149767.66
+          ],
+          [
+            83155.7,
+            0.001,
+            83.16,
+            149850.82
+          ],
+          [
+            83155.1,
+            0.002,
+            166.31,
+            150017.13
+          ],
+          [
+            83155.0,
             0.003,
-            249.52,
-            920328.71
+            249.47,
+            150266.59
           ],
           [
-            83172.2,
-            0.061,
-            5073.5,
-            925402.22
+            83154.3,
+            0.001,
+            83.15,
+            150349.75
           ],
           [
-            83172.0,
-            0.16,
-            13307.52,
-            938709.74
+            83154.1,
+            0.001,
+            83.15,
+            150432.9
           ],
           [
-            83171.9,
-            0.291,
-            24203.02,
-            962912.76
+            83154.0,
+            0.066,
+            5488.16,
+            155921.06
           ]
         ],
         "asks_top20": [
           [
-            83176.1,
-            0.235,
-            19546.38,
-            19546.38
+            83158.3,
+            7.943,
+            660526.38,
+            660526.38
           ],
           [
-            83176.2,
-            0.687,
-            57142.05,
-            76688.43
-          ],
-          [
-            83176.3,
-            0.334,
-            27780.88,
-            104469.32
-          ],
-          [
-            83176.5,
+            83158.4,
             0.004,
-            332.71,
-            104802.02
+            332.63,
+            660859.01
           ],
           [
-            83176.7,
-            0.002,
-            166.35,
-            104968.38
-          ],
-          [
-            83176.8,
-            0.004,
-            332.71,
-            105301.08
-          ],
-          [
-            83176.9,
+            83159.0,
             0.001,
-            83.18,
-            105384.26
+            83.16,
+            660942.17
           ],
           [
-            83177.2,
+            83159.1,
+            0.004,
+            332.64,
+            661274.81
+          ],
+          [
+            83159.2,
+            0.044,
+            3659.0,
+            664933.81
+          ],
+          [
+            83159.6,
+            0.251,
+            20873.06,
+            685806.87
+          ],
+          [
+            83159.7,
+            0.52,
+            43243.04,
+            729049.91
+          ],
+          [
+            83159.8,
+            0.001,
+            83.16,
+            729133.07
+          ],
+          [
+            83160.0,
+            0.488,
+            40582.08,
+            769715.15
+          ],
+          [
+            83160.1,
+            0.037,
+            3076.92,
+            772792.08
+          ],
+          [
+            83160.2,
+            0.362,
+            30103.99,
+            802896.07
+          ],
+          [
+            83160.3,
             0.002,
-            166.35,
-            105550.62
+            166.32,
+            803062.39
           ],
           [
-            83177.5,
+            83160.6,
             0.003,
-            249.53,
-            105800.15
+            249.48,
+            803311.87
           ],
           [
-            83177.6,
-            0.017,
-            1414.02,
-            107214.17
+            83161.0,
+            0.002,
+            166.32,
+            803478.19
           ],
           [
-            83177.7,
-            0.198,
-            16469.18,
-            123683.35
+            83161.1,
+            0.001,
+            83.16,
+            803561.36
           ],
           [
-            83177.8,
-            0.247,
-            20544.92,
-            144228.27
+            83161.4,
+            0.003,
+            249.48,
+            803810.84
           ],
           [
-            83177.9,
-            0.017,
-            1414.02,
-            145642.29
+            83161.5,
+            0.006,
+            498.97,
+            804309.81
           ],
           [
-            83178.1,
-            0.788,
-            65544.34,
-            211186.64
+            83161.6,
+            0.264,
+            21954.66,
+            826264.47
           ],
           [
-            83178.2,
-            0.55,
-            45748.01,
-            256934.65
-          ],
-          [
-            83178.3,
-            0.161,
-            13391.71,
-            270326.35
-          ],
-          [
-            83178.4,
+            83161.9,
             0.301,
-            25036.7,
-            295363.05
+            25031.73,
+            851296.2
           ],
           [
-            83178.5,
-            1.135,
-            94407.6,
-            389770.65
-          ],
-          [
-            83178.6,
-            0.241,
-            20046.04,
-            409816.69
-          ],
-          [
-            83178.7,
-            0.141,
-            11728.2,
-            421544.89
+            83162.0,
+            0.004,
+            332.65,
+            851628.85
           ]
         ],
         "whale_walls_l3": [],
         "l2_wall_levels": [
           {
-            "side": "BUY",
-            "price": 83176.0,
-            "notional_usd": 505626.9,
-            "distance_pct": -0.0,
+            "side": "SELL",
+            "price": 83158.3,
+            "notional_usd": 660526.38,
+            "distance_pct": 0.0,
             "sample_span_sec": 0.0,
             "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
-            "first_seen_utc": "2026-10-07 21:44:56 UTC"
-          },
-          {
-            "side": "BUY",
-            "price": 83173.2,
-            "notional_usd": 313895.66,
-            "distance_pct": -0.0,
-            "sample_span_sec": 0.0,
-            "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
-            "first_seen_utc": "2026-10-07 21:44:56 UTC"
+            "first_seen_utc": "2026-10-07 21:45:55 UTC"
           }
         ],
         "wall_coverage": "SAMPLED_ANONYMOUS_BINANCE_AGGREGATED_L2_NOT_L3",
-        "wall_sample_ts_epoch": 1791409496.473645
+        "wall_sample_ts_epoch": 1791409555.599304
       },
       "pioneer_microstructure_eval": {
         "status": "UNAVAILABLE_UNVERIFIED_ORDERFLOW",
@@ -423,18 +414,10 @@
         "last_funding_rate_bps": -0.2,
         "predicted_funding_rate_bps": null,
         "predicted_funding_source": "UNAVAILABLE_IN_PREMIUM_INDEX",
-        "mark_price": 83164.833,
-        "index_price": 83212.228
+        "mark_price": 83158.3,
+        "index_price": 83204.0389
       },
       "cvd_1m_buckets": [
-        {
-          "ts": 1791405960,
-          "total_vol_usd": 2315915.31,
-          "taker_buy_usd": 943695.1,
-          "taker_sell_usd": 1372220.21,
-          "cvd_delta_usd": -428525.11,
-          "trades": 806
-        },
         {
           "ts": 1791406020,
           "total_vol_usd": 1517523.75,
@@ -1415,13 +1398,13 @@
       "symbol_broker": "ETHUSD.pi",
       "category": "CRYPTO",
       "quotes": {
-        "bid": 2563.7,
-        "ask": 2567.7,
-        "mid": 2565.7,
-        "spread_price": 4.0,
-        "spread_bps": 15.59,
+        "bid": 2563.5,
+        "ask": 2567.8,
+        "mid": 2565.65,
+        "spread_price": 4.3,
+        "spread_bps": 16.76,
         "quote_source": "MT5_L1_TICK",
-        "quote_age_s": -31.75,
+        "quote_age_s": -13.03,
         "quote_freshness": "STALE",
         "specs_source": "BROKER_MT5_SYMBOL_INFO",
         "tick_size": 0.01,
@@ -1459,7 +1442,7 @@
         "indicators_source": "LIVE_BRIDGE",
         "vwap_weight_unit": "UNAVAILABLE",
         "bars_last_close_utc": "2026-10-07 21:45 UTC",
-        "indicator_age_min": 0.0
+        "indicator_age_min": 0.9
       },
       "volume_profile": {
         "poc": null,
@@ -1488,287 +1471,278 @@
         "top_long_cascade_bands_below": [],
         "top_short_squeeze_bands_above": [],
         "reason": "Open interest cannot identify liquidation prices or leverage",
-        "binance_futures_open_interest_contracts": 2402123.523,
+        "binance_futures_open_interest_contracts": 2402415.337,
         "open_interest_source": "BINANCE_FUTURES_PUBLIC_REST",
         "open_interest_venue": "BINANCE_USDM_FUTURES",
-        "open_interest_as_of_epoch": 1791409522.858
+        "open_interest_as_of_epoch": 1791409580.454
       },
       "orderbook_live_depth": {
         "source": "REAL_BINANCE_FUTURES_L2",
         "venue": "BINANCE_USDM_FUTURES",
         "aggregation": "ANONYMOUS_PRICE_LEVELS_NOT_ORDERS",
-        "binance_mid": 2565.415,
-        "top20_bid_depth_usd": 787344.23,
-        "top20_ask_depth_usd": 1439247.36,
-        "book_imbalance": -0.2928,
-        "skew_ratio": 0.5471,
+        "binance_mid": 2565.525,
+        "top20_bid_depth_usd": 329599.17,
+        "top20_ask_depth_usd": 186024.34,
+        "book_imbalance": 0.2784,
+        "skew_ratio": 1.7718,
         "bids_top20": [
           [
-            2565.41,
-            212.037,
-            543961.84,
-            543961.84
+            2565.52,
+            84.331,
+            216352.87,
+            216352.87
+          ],
+          [
+            2565.51,
+            0.334,
+            856.88,
+            217209.75
+          ],
+          [
+            2565.5,
+            18.177,
+            46633.09,
+            263842.84
+          ],
+          [
+            2565.49,
+            0.024,
+            61.57,
+            263904.41
+          ],
+          [
+            2565.48,
+            0.2,
+            513.1,
+            264417.51
+          ],
+          [
+            2565.46,
+            0.056,
+            143.67,
+            264561.17
+          ],
+          [
+            2565.45,
+            0.2,
+            513.09,
+            265074.26
+          ],
+          [
+            2565.44,
+            0.049,
+            125.71,
+            265199.97
+          ],
+          [
+            2565.43,
+            10.456,
+            26824.14,
+            292024.11
+          ],
+          [
+            2565.42,
+            8.412,
+            21580.31,
+            313604.42
           ],
           [
             2565.4,
-            5.485,
-            14071.22,
-            558033.06
+            0.008,
+            20.52,
+            313624.94
+          ],
+          [
+            2565.39,
+            0.086,
+            220.62,
+            313845.57
           ],
           [
             2565.38,
-            0.011,
-            28.22,
-            558061.28
+            0.008,
+            20.52,
+            313866.09
           ],
           [
             2565.37,
-            0.017,
-            43.61,
-            558104.89
+            0.222,
+            569.51,
+            314435.6
+          ],
+          [
+            2565.36,
+            0.043,
+            110.31,
+            314545.91
+          ],
+          [
+            2565.35,
+            0.639,
+            1639.26,
+            316185.17
           ],
           [
             2565.34,
-            0.008,
-            20.52,
-            558125.41
+            0.169,
+            433.54,
+            316618.71
           ],
           [
             2565.33,
-            0.217,
-            556.68,
-            558682.09
+            0.952,
+            2442.19,
+            319060.91
           ],
           [
             2565.32,
-            5.031,
-            12906.12,
-            571588.21
-          ],
-          [
-            2565.31,
-            6.142,
-            15756.13,
-            587344.35
+            0.521,
+            1336.53,
+            320397.44
           ],
           [
             2565.3,
-            26.892,
-            68986.05,
-            656330.4
-          ],
-          [
-            2565.29,
-            0.022,
-            56.44,
-            656386.83
-          ],
-          [
-            2565.28,
-            5.322,
-            13652.42,
-            670039.25
-          ],
-          [
-            2565.27,
-            0.425,
-            1090.24,
-            671129.49
-          ],
-          [
-            2565.26,
-            3.38,
-            8670.58,
-            679800.07
-          ],
-          [
-            2565.25,
-            0.008,
-            20.52,
-            679820.59
-          ],
-          [
-            2565.24,
-            9.804,
-            25149.61,
-            704970.21
-          ],
-          [
-            2565.23,
-            0.086,
-            220.61,
-            705190.82
-          ],
-          [
-            2565.22,
-            0.333,
-            854.22,
-            706045.03
-          ],
-          [
-            2565.21,
-            31.63,
-            81137.59,
-            787182.63
-          ],
-          [
-            2565.2,
-            0.041,
-            105.17,
-            787287.8
-          ],
-          [
-            2565.19,
-            0.022,
-            56.43,
-            787344.23
+            3.587,
+            9201.73,
+            329599.17
           ]
         ],
         "asks_top20": [
           [
-            2565.42,
-            3.203,
-            8217.04,
-            8217.04
-          ],
-          [
-            2565.43,
-            13.455,
-            34517.86,
-            42734.9
-          ],
-          [
-            2565.44,
-            0.008,
-            20.52,
-            42755.42
-          ],
-          [
-            2565.45,
-            0.014,
-            35.92,
-            42791.34
-          ],
-          [
-            2565.47,
-            0.026,
-            66.7,
-            42858.04
-          ],
-          [
-            2565.48,
-            0.328,
-            841.48,
-            43699.52
-          ],
-          [
-            2565.5,
-            0.018,
-            46.18,
-            43745.7
-          ],
-          [
-            2565.51,
-            0.016,
-            41.05,
-            43786.75
-          ],
-          [
-            2565.52,
-            11.61,
-            29785.69,
-            73572.43
-          ],
-          [
             2565.53,
-            14.487,
-            37166.83,
-            110739.27
+            1.718,
+            4407.58,
+            4407.58
           ],
           [
             2565.54,
-            55.319,
-            141923.11,
-            252662.38
+            0.185,
+            474.62,
+            4882.21
           ],
           [
             2565.55,
-            367.932,
-            943947.94,
-            1196610.32
+            0.025,
+            64.14,
+            4946.34
           ],
           [
             2565.56,
-            0.048,
-            123.15,
-            1196733.46
-          ],
-          [
-            2565.57,
-            0.04,
-            102.62,
-            1196836.09
+            0.081,
+            207.81,
+            5154.15
           ],
           [
             2565.58,
-            0.008,
-            20.52,
-            1196856.61
-          ],
-          [
-            2565.59,
-            13.108,
-            33629.75,
-            1230486.37
+            0.254,
+            651.66,
+            5805.81
           ],
           [
             2565.6,
-            57.696,
-            148024.86,
-            1378511.22
+            0.017,
+            43.62,
+            5849.43
           ],
           [
             2565.61,
-            0.116,
-            297.61,
-            1378808.83
+            0.054,
+            138.54,
+            5987.97
           ],
           [
             2565.62,
-            1.853,
-            4754.09,
-            1383562.93
+            3.189,
+            8181.76,
+            14169.73
           ],
           [
             2565.63,
-            21.704,
-            55684.43,
-            1439247.36
+            3.495,
+            8966.88,
+            23136.61
+          ],
+          [
+            2565.64,
+            7.261,
+            18629.11,
+            41765.72
+          ],
+          [
+            2565.65,
+            0.031,
+            79.54,
+            41845.26
+          ],
+          [
+            2565.66,
+            8.571,
+            21990.27,
+            63835.53
+          ],
+          [
+            2565.67,
+            16.685,
+            42808.2,
+            106643.73
+          ],
+          [
+            2565.68,
+            0.04,
+            102.63,
+            106746.36
+          ],
+          [
+            2565.69,
+            15.36,
+            39409.0,
+            146155.36
+          ],
+          [
+            2565.7,
+            0.017,
+            43.62,
+            146198.97
+          ],
+          [
+            2565.71,
+            0.086,
+            220.65,
+            146419.63
+          ],
+          [
+            2565.72,
+            1.367,
+            3507.34,
+            149926.96
+          ],
+          [
+            2565.73,
+            2.017,
+            5175.08,
+            155102.04
+          ],
+          [
+            2565.74,
+            12.052,
+            30922.3,
+            186024.34
           ]
         ],
         "whale_walls_l3": [],
         "l2_wall_levels": [
           {
             "side": "BUY",
-            "price": 2565.41,
-            "notional_usd": 543961.84,
+            "price": 2565.52,
+            "notional_usd": 216352.87,
             "distance_pct": -0.0,
             "sample_span_sec": 0.0,
             "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
-            "first_seen_utc": "2026-10-07 21:44:56 UTC"
-          },
-          {
-            "side": "SELL",
-            "price": 2565.55,
-            "notional_usd": 943947.94,
-            "distance_pct": 0.01,
-            "sample_span_sec": 0.0,
-            "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
-            "first_seen_utc": "2026-10-07 21:44:56 UTC"
+            "first_seen_utc": "2026-10-07 21:45:55 UTC"
           }
         ],
         "wall_coverage": "SAMPLED_ANONYMOUS_BINANCE_AGGREGATED_L2_NOT_L3",
-        "wall_sample_ts_epoch": 1791409496.473645
+        "wall_sample_ts_epoch": 1791409555.599304
       },
       "pioneer_microstructure_eval": {
         "status": "UNAVAILABLE_UNVERIFIED_ORDERFLOW",
@@ -1779,21 +1753,13 @@
         "portfolio_gating": "ADMISSION_FROZEN_UNVERIFIED_DATA"
       },
       "funding_and_rates": {
-        "last_funding_rate_bps": -0.53,
+        "last_funding_rate_bps": -0.54,
         "predicted_funding_rate_bps": null,
         "predicted_funding_source": "UNAVAILABLE_IN_PREMIUM_INDEX",
-        "mark_price": 2565.43,
-        "index_price": 2566.8653
+        "mark_price": 2565.6148,
+        "index_price": 2567.0274
       },
       "cvd_1m_buckets": [
-        {
-          "ts": 1791405960,
-          "total_vol_usd": 1493486.99,
-          "taker_buy_usd": 811688.74,
-          "taker_sell_usd": 681798.25,
-          "cvd_delta_usd": 129890.49,
-          "trades": 911
-        },
         {
           "ts": 1791406020,
           "total_vol_usd": 1435950.97,
@@ -2774,13 +2740,13 @@
       "symbol_broker": "SOLUSD.p",
       "category": "CRYPTO",
       "quotes": {
-        "bid": 115.25,
-        "ask": 115.48,
-        "mid": 115.365,
-        "spread_price": 0.23,
-        "spread_bps": 19.94,
+        "bid": 115.29,
+        "ask": 115.53,
+        "mid": 115.41,
+        "spread_price": 0.24,
+        "spread_bps": 20.8,
         "quote_source": "MT5_L1_TICK",
-        "quote_age_s": -31.41,
+        "quote_age_s": -31.94,
         "quote_freshness": "STALE",
         "specs_source": "BROKER_MT5_SYMBOL_INFO",
         "tick_size": 0.01,
@@ -2818,7 +2784,7 @@
         "indicators_source": "LIVE_BRIDGE",
         "vwap_weight_unit": "UNAVAILABLE",
         "bars_last_close_utc": "2026-10-07 21:45 UTC",
-        "indicator_age_min": 0.0
+        "indicator_age_min": 0.9
       },
       "volume_profile": {
         "poc": null,
@@ -2847,467 +2813,494 @@
         "top_long_cascade_bands_below": [],
         "top_short_squeeze_bands_above": [],
         "reason": "Open interest cannot identify liquidation prices or leverage",
-        "binance_futures_open_interest_contracts": 8568488.13,
+        "binance_futures_open_interest_contracts": 8571714.79,
         "open_interest_source": "BINANCE_FUTURES_PUBLIC_REST",
         "open_interest_venue": "BINANCE_USDM_FUTURES",
-        "open_interest_as_of_epoch": 1791409517.738
+        "open_interest_as_of_epoch": 1791409582.942
       },
       "orderbook_live_depth": {
         "source": "REAL_BINANCE_FUTURES_L2",
         "venue": "BINANCE_USDM_FUTURES",
         "aggregation": "ANONYMOUS_PRICE_LEVELS_NOT_ORDERS",
         "binance_mid": 115.395,
-        "top20_bid_depth_usd": 4617731.86,
-        "top20_ask_depth_usd": 4171842.88,
-        "book_imbalance": 0.0507,
-        "skew_ratio": 1.1069,
+        "top20_bid_depth_usd": 4487685.39,
+        "top20_ask_depth_usd": 3871184.51,
+        "book_imbalance": 0.0738,
+        "skew_ratio": 1.1593,
         "bids_top20": [
           [
             115.39,
-            981.05,
-            113203.36,
-            113203.36
+            1828.08,
+            210942.15,
+            210942.15
           ],
           [
             115.38,
-            774.5,
-            89361.81,
-            202565.17
+            1635.78,
+            188736.3,
+            399678.45
           ],
           [
             115.37,
-            854.83,
-            98621.74,
-            301186.91
+            1605.46,
+            185221.92,
+            584900.37
           ],
           [
             115.36,
-            1152.86,
-            132993.93,
-            434180.84
+            1400.78,
+            161593.98,
+            746494.35
           ],
           [
             115.35,
-            1316.58,
-            151867.5,
-            586048.34
+            1894.82,
+            218567.49,
+            965061.84
           ],
           [
             115.34,
-            1218.62,
-            140555.63,
-            726603.97
+            1891.5,
+            218165.61,
+            1183227.45
           ],
           [
             115.33,
-            1277.97,
-            147388.28,
-            873992.25
+            938.77,
+            108268.34,
+            1291495.79
           ],
           [
             115.32,
-            1430.53,
-            164968.72,
-            1038960.97
+            1023.01,
+            117973.51,
+            1409469.3
           ],
           [
             115.31,
-            2110.24,
-            243331.77,
-            1282292.74
+            2263.03,
+            260949.99,
+            1670419.29
           ],
           [
             115.3,
-            1278.96,
-            147464.09,
-            1429756.83
+            611.84,
+            70545.15,
+            1740964.44
           ],
           [
             115.29,
-            1090.5,
-            125723.75,
-            1555480.58
+            608.75,
+            70182.79,
+            1811147.23
           ],
           [
             115.28,
-            3136.19,
-            361539.98,
-            1917020.56
+            1302.97,
+            150206.38,
+            1961353.61
           ],
           [
             115.27,
-            2828.75,
-            326070.01,
-            2243090.57
+            3142.22,
+            362203.7,
+            2323557.31
           ],
           [
             115.26,
-            860.52,
-            99183.54,
-            2342274.11
+            1431.56,
+            165001.61,
+            2488558.92
           ],
           [
             115.25,
-            2169.01,
-            249978.4,
-            2592252.51
+            1789.95,
+            206291.74,
+            2694850.66
           ],
           [
             115.24,
-            2651.37,
-            305543.88,
-            2897796.39
+            3561.98,
+            410482.58,
+            3105333.23
           ],
           [
             115.23,
-            1081.46,
-            124616.64,
-            3022413.03
+            337.07,
+            38840.58,
+            3144173.81
           ],
           [
             115.22,
-            2856.57,
-            329134.0,
-            3351547.02
+            913.91,
+            105300.71,
+            3249474.52
           ],
           [
             115.21,
-            3546.23,
-            408561.16,
-            3760108.18
+            3666.31,
+            422395.58,
+            3671870.09
           ],
           [
             115.2,
-            7444.65,
-            857623.68,
-            4617731.86
+            7081.73,
+            815815.3,
+            4487685.39
           ]
         ],
         "asks_top20": [
           [
             115.4,
-            1057.11,
-            121990.49,
-            121990.49
+            214.71,
+            24777.53,
+            24777.53
           ],
           [
             115.41,
-            394.33,
-            45509.63,
-            167500.12
+            651.16,
+            75150.38,
+            99927.91
           ],
           [
             115.42,
-            1369.17,
-            158029.6,
-            325529.72
+            1030.29,
+            118916.07,
+            218843.98
           ],
           [
             115.43,
-            2897.28,
-            334433.03,
-            659962.75
+            1777.36,
+            205160.66,
+            424004.65
           ],
           [
             115.44,
-            2065.54,
-            238445.94,
-            898408.69
+            1923.27,
+            222022.29,
+            646026.93
           ],
           [
             115.45,
-            941.22,
-            108663.85,
-            1007072.54
+            988.24,
+            114092.31,
+            760119.24
           ],
           [
             115.46,
-            1212.73,
-            140021.81,
-            1147094.34
+            1042.82,
+            120404.0,
+            880523.24
           ],
           [
             115.47,
-            2349.41,
-            271286.37,
-            1418380.72
+            2749.65,
+            317502.09,
+            1198025.33
           ],
           [
             115.48,
-            1827.75,
-            211068.57,
-            1629449.29
+            1575.3,
+            181915.64,
+            1379940.97
           ],
           [
             115.49,
-            3425.76,
-            395641.02,
-            2025090.31
+            1508.98,
+            174272.1,
+            1554213.07
           ],
           [
             115.5,
-            1843.31,
-            212902.3,
-            2237992.61
+            2313.35,
+            267191.92,
+            1821404.99
           ],
           [
             115.51,
-            2328.87,
-            269007.77,
-            2507000.39
+            4173.34,
+            482062.5,
+            2303467.5
           ],
           [
             115.52,
-            452.43,
-            52264.71,
-            2559265.1
+            454.69,
+            52525.79,
+            2355993.29
           ],
           [
             115.53,
-            915.69,
-            105789.67,
-            2665054.77
+            1573.74,
+            181814.18,
+            2537807.47
           ],
           [
             115.54,
-            2468.44,
-            285203.56,
-            2950258.32
+            3802.34,
+            439322.36,
+            2977129.83
           ],
           [
             115.55,
-            1267.39,
-            146446.91,
-            3096705.24
+            452.99,
+            52342.99,
+            3029472.83
           ],
           [
             115.56,
-            1245.57,
-            143938.07,
-            3240643.31
+            1510.64,
+            174569.56,
+            3204042.39
           ],
           [
             115.57,
-            2143.34,
-            247705.8,
-            3488349.11
+            907.35,
+            104862.44,
+            3308904.83
           ],
           [
             115.58,
-            2804.37,
-            324129.08,
-            3812478.2
+            1133.89,
+            131055.01,
+            3439959.83
           ],
           [
             115.59,
-            3108.96,
-            359364.69,
-            4171842.88
+            3730.64,
+            431224.68,
+            3871184.51
           ]
         ],
         "whale_walls_l3": [],
         "l2_wall_levels": [
           {
             "side": "BUY",
-            "price": 115.35,
-            "notional_usd": 151867.5,
-            "distance_pct": -0.04,
+            "price": 115.39,
+            "notional_usd": 210942.15,
+            "distance_pct": -0.0,
             "sample_span_sec": 0.0,
+            "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
+            "first_seen_utc": "2026-10-07 21:45:55 UTC"
+          },
+          {
+            "side": "BUY",
+            "price": 115.38,
+            "notional_usd": 188736.3,
+            "distance_pct": -0.01,
+            "sample_span_sec": 0.0,
+            "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
+            "first_seen_utc": "2026-10-07 21:45:55 UTC"
+          },
+          {
+            "side": "BUY",
+            "price": 115.37,
+            "notional_usd": 185221.92,
+            "distance_pct": -0.02,
+            "sample_span_sec": 0.0,
+            "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
+            "first_seen_utc": "2026-10-07 21:45:55 UTC"
+          },
+          {
+            "side": "BUY",
+            "price": 115.36,
+            "notional_usd": 161593.98,
+            "distance_pct": -0.03,
+            "sample_span_sec": 0.0,
+            "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
+            "first_seen_utc": "2026-10-07 21:45:55 UTC"
+          },
+          {
+            "side": "BUY",
+            "price": 115.35,
+            "notional_usd": 218567.49,
+            "distance_pct": -0.04,
+            "sample_span_sec": 59.1,
             "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
             "first_seen_utc": "2026-10-07 21:44:56 UTC"
           },
           {
             "side": "BUY",
-            "price": 115.32,
-            "notional_usd": 164968.72,
-            "distance_pct": -0.06,
-            "sample_span_sec": 33.2,
+            "price": 115.34,
+            "notional_usd": 218165.61,
+            "distance_pct": -0.05,
+            "sample_span_sec": 0.0,
             "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
-            "first_seen_utc": "2026-10-07 21:44:23 UTC"
+            "first_seen_utc": "2026-10-07 21:45:55 UTC"
           },
           {
             "side": "BUY",
             "price": 115.31,
-            "notional_usd": 243331.77,
+            "notional_usd": 260949.99,
             "distance_pct": -0.07,
-            "sample_span_sec": 33.2,
+            "sample_span_sec": 92.3,
             "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
             "first_seen_utc": "2026-10-07 21:44:23 UTC"
           },
           {
             "side": "BUY",
             "price": 115.28,
-            "notional_usd": 361539.98,
+            "notional_usd": 150206.38,
             "distance_pct": -0.1,
-            "sample_span_sec": 33.2,
+            "sample_span_sec": 92.3,
             "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
             "first_seen_utc": "2026-10-07 21:44:23 UTC"
           },
           {
             "side": "BUY",
             "price": 115.27,
-            "notional_usd": 326070.01,
+            "notional_usd": 362203.7,
             "distance_pct": -0.11,
-            "sample_span_sec": 33.2,
+            "sample_span_sec": 92.3,
             "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
             "first_seen_utc": "2026-10-07 21:44:23 UTC"
           },
           {
             "side": "BUY",
+            "price": 115.26,
+            "notional_usd": 165001.61,
+            "distance_pct": -0.12,
+            "sample_span_sec": 0.0,
+            "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
+            "first_seen_utc": "2026-10-07 21:45:55 UTC"
+          },
+          {
+            "side": "BUY",
             "price": 115.25,
-            "notional_usd": 249978.4,
+            "notional_usd": 206291.74,
             "distance_pct": -0.13,
-            "sample_span_sec": 33.2,
+            "sample_span_sec": 92.3,
             "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
             "first_seen_utc": "2026-10-07 21:44:23 UTC"
           },
           {
             "side": "BUY",
             "price": 115.24,
-            "notional_usd": 305543.88,
+            "notional_usd": 410482.58,
             "distance_pct": -0.13,
-            "sample_span_sec": 33.2,
+            "sample_span_sec": 92.3,
             "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
             "first_seen_utc": "2026-10-07 21:44:23 UTC"
           },
           {
             "side": "BUY",
-            "price": 115.22,
-            "notional_usd": 329134.0,
-            "distance_pct": -0.15,
-            "sample_span_sec": 0.0,
-            "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
-            "first_seen_utc": "2026-10-07 21:44:56 UTC"
-          },
-          {
-            "side": "BUY",
             "price": 115.21,
-            "notional_usd": 408561.16,
+            "notional_usd": 422395.58,
             "distance_pct": -0.16,
-            "sample_span_sec": 93.3,
+            "sample_span_sec": 152.4,
             "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
             "first_seen_utc": "2026-10-07 21:43:23 UTC"
           },
           {
             "side": "BUY",
             "price": 115.2,
-            "notional_usd": 857623.68,
+            "notional_usd": 815815.3,
             "distance_pct": -0.17,
-            "sample_span_sec": 93.3,
-            "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
-            "first_seen_utc": "2026-10-07 21:43:23 UTC"
-          },
-          {
-            "side": "SELL",
-            "price": 115.42,
-            "notional_usd": 158029.6,
-            "distance_pct": 0.02,
-            "sample_span_sec": 93.3,
+            "sample_span_sec": 152.4,
             "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
             "first_seen_utc": "2026-10-07 21:43:23 UTC"
           },
           {
             "side": "SELL",
             "price": 115.43,
-            "notional_usd": 334433.03,
+            "notional_usd": 205160.66,
             "distance_pct": 0.03,
-            "sample_span_sec": 93.3,
+            "sample_span_sec": 152.4,
             "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
             "first_seen_utc": "2026-10-07 21:43:23 UTC"
           },
           {
             "side": "SELL",
             "price": 115.44,
-            "notional_usd": 238445.94,
+            "notional_usd": 222022.29,
             "distance_pct": 0.04,
-            "sample_span_sec": 93.3,
+            "sample_span_sec": 152.4,
             "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
             "first_seen_utc": "2026-10-07 21:43:23 UTC"
           },
           {
             "side": "SELL",
             "price": 115.47,
-            "notional_usd": 271286.37,
+            "notional_usd": 317502.09,
             "distance_pct": 0.06,
-            "sample_span_sec": 93.3,
+            "sample_span_sec": 152.4,
             "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
             "first_seen_utc": "2026-10-07 21:43:23 UTC"
           },
           {
             "side": "SELL",
             "price": 115.48,
-            "notional_usd": 211068.57,
+            "notional_usd": 181915.64,
             "distance_pct": 0.07,
-            "sample_span_sec": 93.3,
+            "sample_span_sec": 152.4,
             "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
             "first_seen_utc": "2026-10-07 21:43:23 UTC"
           },
           {
             "side": "SELL",
             "price": 115.49,
-            "notional_usd": 395641.02,
+            "notional_usd": 174272.1,
             "distance_pct": 0.08,
-            "sample_span_sec": 33.2,
+            "sample_span_sec": 92.3,
             "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
             "first_seen_utc": "2026-10-07 21:44:23 UTC"
           },
           {
             "side": "SELL",
             "price": 115.5,
-            "notional_usd": 212902.3,
+            "notional_usd": 267191.92,
             "distance_pct": 0.09,
-            "sample_span_sec": 93.3,
+            "sample_span_sec": 152.4,
             "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
             "first_seen_utc": "2026-10-07 21:43:23 UTC"
           },
           {
             "side": "SELL",
             "price": 115.51,
-            "notional_usd": 269007.77,
+            "notional_usd": 482062.5,
             "distance_pct": 0.1,
-            "sample_span_sec": 93.3,
+            "sample_span_sec": 152.4,
             "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
             "first_seen_utc": "2026-10-07 21:43:23 UTC"
           },
           {
             "side": "SELL",
+            "price": 115.53,
+            "notional_usd": 181814.18,
+            "distance_pct": 0.12,
+            "sample_span_sec": 0.0,
+            "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
+            "first_seen_utc": "2026-10-07 21:45:55 UTC"
+          },
+          {
+            "side": "SELL",
             "price": 115.54,
-            "notional_usd": 285203.56,
+            "notional_usd": 439322.36,
             "distance_pct": 0.13,
-            "sample_span_sec": 33.2,
+            "sample_span_sec": 92.3,
             "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
             "first_seen_utc": "2026-10-07 21:44:23 UTC"
           },
           {
             "side": "SELL",
-            "price": 115.57,
-            "notional_usd": 247705.8,
-            "distance_pct": 0.15,
-            "sample_span_sec": 33.2,
+            "price": 115.56,
+            "notional_usd": 174569.56,
+            "distance_pct": 0.14,
+            "sample_span_sec": 0.0,
             "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
-            "first_seen_utc": "2026-10-07 21:44:23 UTC"
-          },
-          {
-            "side": "SELL",
-            "price": 115.58,
-            "notional_usd": 324129.08,
-            "distance_pct": 0.16,
-            "sample_span_sec": 33.2,
-            "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
-            "first_seen_utc": "2026-10-07 21:44:23 UTC"
+            "first_seen_utc": "2026-10-07 21:45:55 UTC"
           },
           {
             "side": "SELL",
             "price": 115.59,
-            "notional_usd": 359364.69,
+            "notional_usd": 431224.68,
             "distance_pct": 0.17,
-            "sample_span_sec": 33.2,
+            "sample_span_sec": 92.3,
             "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
             "first_seen_utc": "2026-10-07 21:44:23 UTC"
           }
         ],
         "wall_coverage": "SAMPLED_ANONYMOUS_BINANCE_AGGREGATED_L2_NOT_L3",
-        "wall_sample_ts_epoch": 1791409496.473645
+        "wall_sample_ts_epoch": 1791409555.599304
       },
       "pioneer_microstructure_eval": {
         "status": "UNAVAILABLE_UNVERIFIED_ORDERFLOW",
@@ -3321,18 +3314,10 @@
         "last_funding_rate_bps": -0.01,
         "predicted_funding_rate_bps": null,
         "predicted_funding_source": "UNAVAILABLE_IN_PREMIUM_INDEX",
-        "mark_price": 115.4017,
-        "index_price": 115.4564
+        "mark_price": 115.3981,
+        "index_price": 115.4608
       },
       "cvd_1m_buckets": [
-        {
-          "ts": 1791405960,
-          "total_vol_usd": 361972.26,
-          "taker_buy_usd": 278787.34,
-          "taker_sell_usd": 83184.91,
-          "cvd_delta_usd": 195602.43,
-          "trades": 587
-        },
         {
           "ts": 1791406020,
           "total_vol_usd": 913020.87,
@@ -4319,7 +4304,7 @@
         "spread_price": 0.6,
         "spread_bps": 7.8,
         "quote_source": "MT5_L1_TICK",
-        "quote_age_s": -26.23,
+        "quote_age_s": -16.38,
         "quote_freshness": "STALE",
         "specs_source": "BROKER_MT5_SYMBOL_INFO",
         "tick_size": 0.01,
@@ -4357,7 +4342,7 @@
         "indicators_source": "LIVE_BRIDGE",
         "vwap_weight_unit": "UNAVAILABLE",
         "bars_last_close_utc": "2026-10-07 21:45 UTC",
-        "indicator_age_min": 0.0
+        "indicator_age_min": 0.9
       },
       "volume_profile": {
         "poc": null,
@@ -4386,268 +4371,268 @@
         "top_long_cascade_bands_below": [],
         "top_short_squeeze_bands_above": [],
         "reason": "Open interest cannot identify liquidation prices or leverage",
-        "binance_futures_open_interest_contracts": 574725.29,
+        "binance_futures_open_interest_contracts": 574718.01,
         "open_interest_source": "BINANCE_FUTURES_PUBLIC_REST",
         "open_interest_venue": "BINANCE_USDM_FUTURES",
-        "open_interest_as_of_epoch": 1791409522.842
+        "open_interest_as_of_epoch": 1791409579.098
       },
       "orderbook_live_depth": {
         "source": "REAL_BINANCE_FUTURES_L2",
         "venue": "BINANCE_USDM_FUTURES",
         "aggregation": "ANONYMOUS_PRICE_LEVELS_NOT_ORDERS",
-        "binance_mid": 769.445,
-        "top20_bid_depth_usd": 133715.51,
-        "top20_ask_depth_usd": 150820.02,
-        "book_imbalance": -0.0601,
-        "skew_ratio": 0.8866,
+        "binance_mid": 769.485,
+        "top20_bid_depth_usd": 126674.05,
+        "top20_ask_depth_usd": 147244.6,
+        "book_imbalance": -0.0751,
+        "skew_ratio": 0.8603,
         "bids_top20": [
           [
+            769.48,
+            32.5,
+            25008.1,
+            25008.1
+          ],
+          [
+            769.47,
+            9.61,
+            7394.61,
+            32402.71
+          ],
+          [
+            769.46,
+            1.48,
+            1138.8,
+            33541.51
+          ],
+          [
+            769.45,
+            5.41,
+            4162.72,
+            37704.23
+          ],
+          [
             769.44,
-            30.43,
-            23414.06,
-            23414.06
+            4.64,
+            3570.2,
+            41274.43
           ],
           [
             769.43,
-            4.66,
-            3585.54,
-            26999.6
+            5.81,
+            4470.39,
+            45744.82
           ],
           [
             769.42,
-            6.89,
-            5301.3,
-            32300.91
+            0.63,
+            484.73,
+            46229.56
           ],
           [
             769.41,
-            8.71,
-            6701.56,
-            39002.47
+            3.1,
+            2385.17,
+            48614.73
           ],
           [
             769.4,
-            34.74,
-            26728.96,
-            65731.42
+            39.25,
+            30198.95,
+            78813.68
           ],
           [
             769.39,
-            0.13,
-            100.02,
-            65831.44
+            8.07,
+            6208.98,
+            85022.65
           ],
           [
             769.38,
-            2.03,
-            1561.84,
-            67393.29
+            0.04,
+            30.78,
+            85053.43
           ],
           [
             769.37,
-            3.91,
-            3008.24,
-            70401.52
+            1.44,
+            1107.89,
+            86161.32
           ],
           [
             769.36,
-            10.56,
-            8124.44,
-            78525.96
+            5.46,
+            4200.71,
+            90362.03
           ],
           [
             769.35,
             0.01,
             7.69,
-            78533.66
+            90369.72
           ],
           [
             769.34,
-            0.02,
-            15.39,
-            78549.04
+            2.35,
+            1807.95,
+            92177.67
           ],
           [
             769.33,
-            27.19,
-            20918.08,
-            99467.13
+            28.73,
+            22102.85,
+            114280.52
           ],
           [
             769.32,
-            5.32,
-            4092.78,
-            103559.91
+            4.71,
+            3623.5,
+            117904.02
           ],
           [
             769.31,
-            6.33,
-            4869.73,
-            108429.64
+            4.46,
+            3431.12,
+            121335.14
           ],
           [
             769.3,
-            4.46,
-            3431.08,
-            111860.72
+            3.22,
+            2477.15,
+            123812.29
           ],
           [
             769.29,
-            5.01,
-            3854.14,
-            115714.86
-          ],
-          [
-            769.28,
-            5.55,
-            4269.5,
-            119984.37
-          ],
-          [
-            769.27,
-            0.3,
-            230.78,
-            120215.15
-          ],
-          [
-            769.26,
-            2.33,
-            1792.38,
-            122007.52
-          ],
-          [
-            769.25,
-            15.22,
-            11707.99,
-            133715.51
+            3.72,
+            2861.76,
+            126674.05
           ]
         ],
         "asks_top20": [
           [
-            769.45,
-            11.8,
-            9079.51,
-            9079.51
-          ],
-          [
-            769.46,
-            0.16,
-            123.11,
-            9202.62
-          ],
-          [
-            769.47,
-            0.25,
-            192.37,
-            9394.99
-          ],
-          [
-            769.48,
-            0.04,
-            30.78,
-            9425.77
-          ],
-          [
             769.49,
-            0.19,
-            146.2,
-            9571.97
+            7.38,
+            5678.84,
+            5678.84
           ],
           [
             769.5,
-            3.36,
-            2585.52,
-            12157.49
+            3.42,
+            2631.69,
+            8310.53
+          ],
+          [
+            769.51,
+            0.02,
+            15.39,
+            8325.92
           ],
           [
             769.52,
-            0.07,
-            53.87,
-            12211.36
+            0.15,
+            115.43,
+            8441.34
           ],
           [
             769.53,
-            5.41,
-            4163.16,
-            16374.52
+            0.59,
+            454.02,
+            8895.37
           ],
           [
             769.54,
-            7.0,
-            5386.78,
-            21761.3
+            0.67,
+            515.59,
+            9410.96
           ],
           [
             769.55,
-            1.19,
-            915.76,
-            22677.06
+            0.1,
+            76.95,
+            9487.91
           ],
           [
             769.56,
-            2.11,
-            1623.77,
-            24300.83
+            0.15,
+            115.43,
+            9603.35
           ],
           [
             769.57,
-            25.26,
-            19439.34,
-            43740.17
+            1.13,
+            869.61,
+            10472.96
           ],
           [
             769.58,
-            12.0,
-            9234.96,
-            52975.13
+            7.38,
+            5679.5,
+            16152.46
           ],
           [
             769.59,
-            1.14,
-            877.33,
-            53852.46
+            7.17,
+            5517.96,
+            21670.42
           ],
           [
             769.6,
-            1.85,
-            1423.76,
-            55276.22
+            9.12,
+            7018.75,
+            28689.17
           ],
           [
             769.61,
-            3.07,
-            2362.7,
-            57638.93
+            32.49,
+            25004.63,
+            53693.8
           ],
           [
             769.62,
-            1.08,
-            831.19,
-            58470.12
+            1.58,
+            1216.0,
+            54909.8
           ],
           [
             769.63,
-            7.41,
-            5702.96,
-            64173.07
+            0.4,
+            307.85,
+            55217.66
           ],
           [
             769.64,
-            25.21,
-            19402.62,
-            83575.7
+            21.34,
+            16424.12,
+            71641.77
           ],
           [
             769.65,
-            87.37,
-            67244.32,
-            150820.02
+            91.25,
+            70230.56,
+            141872.34
+          ],
+          [
+            769.66,
+            4.88,
+            3755.94,
+            145628.28
+          ],
+          [
+            769.67,
+            0.05,
+            38.48,
+            145666.76
+          ],
+          [
+            769.68,
+            2.05,
+            1577.84,
+            147244.6
           ]
         ],
         "whale_walls_l3": [],
         "l2_wall_levels": [],
         "wall_coverage": "SAMPLED_ANONYMOUS_BINANCE_AGGREGATED_L2_NOT_L3",
-        "wall_sample_ts_epoch": 1791409496.473645
+        "wall_sample_ts_epoch": 1791409555.599304
       },
       "pioneer_microstructure_eval": {
         "status": "UNAVAILABLE_UNVERIFIED_ORDERFLOW",
@@ -4661,18 +4646,10 @@
         "last_funding_rate_bps": 0.0,
         "predicted_funding_rate_bps": null,
         "predicted_funding_source": "UNAVAILABLE_IN_PREMIUM_INDEX",
-        "mark_price": 769.44,
-        "index_price": 769.3501
+        "mark_price": 769.48,
+        "index_price": 769.3591
       },
       "cvd_1m_buckets": [
-        {
-          "ts": 1791405960,
-          "total_vol_usd": 23991.8,
-          "taker_buy_usd": 20323.32,
-          "taker_sell_usd": 3668.49,
-          "cvd_delta_usd": 16654.83,
-          "trades": 253
-        },
         {
           "ts": 1791406020,
           "total_vol_usd": 90520.11,
@@ -5659,7 +5636,7 @@
         "spread_price": 0.005,
         "spread_bps": 35.4,
         "quote_source": "MT5_L1_TICK",
-        "quote_age_s": -31.1,
+        "quote_age_s": -31.69,
         "quote_freshness": "STALE",
         "specs_source": "BROKER_MT5_SYMBOL_INFO",
         "tick_size": 0.001,
@@ -5697,7 +5674,7 @@
         "indicators_source": "LIVE_BRIDGE",
         "vwap_weight_unit": "UNAVAILABLE",
         "bars_last_close_utc": "2026-10-07 21:45 UTC",
-        "indicator_age_min": 0.0
+        "indicator_age_min": 0.9
       },
       "volume_profile": {
         "poc": null,
@@ -5726,262 +5703,262 @@
         "top_long_cascade_bands_below": [],
         "top_short_squeeze_bands_above": [],
         "reason": "Open interest cannot identify liquidation prices or leverage",
-        "binance_futures_open_interest_contracts": 319378707.3,
+        "binance_futures_open_interest_contracts": 319742636.0,
         "open_interest_source": "BINANCE_FUTURES_PUBLIC_REST",
         "open_interest_venue": "BINANCE_USDM_FUTURES",
-        "open_interest_as_of_epoch": 1791409519.353
+        "open_interest_as_of_epoch": 1791409577.304
       },
       "orderbook_live_depth": {
         "source": "REAL_BINANCE_FUTURES_L2",
         "venue": "BINANCE_USDM_FUTURES",
         "aggregation": "ANONYMOUS_PRICE_LEVELS_NOT_ORDERS",
-        "binance_mid": 1.4118,
-        "top20_bid_depth_usd": 1598600.55,
-        "top20_ask_depth_usd": 1484656.3,
-        "book_imbalance": 0.037,
-        "skew_ratio": 1.0767,
+        "binance_mid": 1.412,
+        "top20_bid_depth_usd": 1189222.78,
+        "top20_ask_depth_usd": 1383383.33,
+        "book_imbalance": -0.0755,
+        "skew_ratio": 0.8596,
         "bids_top20": [
           [
+            1.412,
+            50833.1,
+            71776.34,
+            71776.34
+          ],
+          [
+            1.4119,
+            16650.1,
+            23508.28,
+            95284.61
+          ],
+          [
+            1.4118,
+            18338.0,
+            25889.59,
+            121174.2
+          ],
+          [
             1.4117,
-            15494.2,
-            21873.16,
-            21873.16
+            13722.3,
+            19371.77,
+            140545.97
           ],
           [
             1.4116,
-            27067.6,
-            38208.62,
-            60081.79
+            19646.9,
+            27733.56,
+            168279.54
           ],
           [
             1.4115,
-            30162.0,
-            42573.66,
-            102655.45
+            15952.6,
+            22517.09,
+            190796.63
           ],
           [
             1.4114,
-            72586.8,
-            102449.01,
-            205104.46
+            76721.6,
+            108284.87,
+            299081.5
           ],
           [
             1.4113,
-            67737.0,
-            95597.23,
-            300701.69
+            101051.5,
+            142613.98,
+            441695.48
           ],
           [
             1.4112,
-            13154.6,
-            18563.77,
-            319265.46
+            2717.5,
+            3834.94,
+            445530.42
           ],
           [
             1.4111,
-            27261.7,
-            38468.98,
-            357734.44
+            11784.1,
+            16628.54,
+            462158.96
           ],
           [
             1.411,
-            57964.7,
-            81788.19,
-            439522.64
+            25875.4,
+            36510.19,
+            498669.15
           ],
           [
             1.4109,
-            48606.0,
-            68578.21,
-            508100.84
+            46865.0,
+            66121.83,
+            564790.98
           ],
           [
             1.4108,
-            38174.9,
-            53857.15,
-            561957.99
+            31022.7,
+            43766.83,
+            608557.8
           ],
           [
             1.4107,
-            120725.2,
-            170307.04,
-            732265.03
+            121139.1,
+            170890.93,
+            779448.73
           ],
           [
             1.4106,
-            35630.5,
-            50260.38,
-            782525.41
+            40645.5,
+            57334.54,
+            836783.27
           ],
           [
             1.4105,
-            51341.1,
-            72416.62,
-            854942.03
+            53257.4,
+            75119.56,
+            911902.84
           ],
           [
             1.4104,
-            1743.7,
-            2459.31,
-            857401.35
+            13223.4,
+            18650.28,
+            930553.12
           ],
           [
             1.4103,
-            9825.3,
-            13856.62,
-            871257.97
+            77299.3,
+            109015.2,
+            1039568.32
           ],
           [
             1.4102,
-            35966.5,
-            50719.96,
-            921977.93
+            42087.3,
+            59351.51,
+            1098919.83
           ],
           [
             1.4101,
-            116747.2,
-            164625.23,
-            1086603.15
-          ],
-          [
-            1.41,
-            352224.6,
-            496636.69,
-            1583239.84
-          ],
-          [
-            1.4099,
-            3780.7,
-            5330.41,
-            1588570.25
-          ],
-          [
-            1.4098,
-            7114.7,
-            10030.3,
-            1598600.55
+            64040.1,
+            90302.95,
+            1189222.78
           ]
         ],
         "asks_top20": [
           [
-            1.4118,
-            181114.1,
-            255696.89,
-            255696.89
-          ],
-          [
-            1.4119,
-            910.9,
-            1286.1,
-            256982.99
-          ],
-          [
-            1.412,
-            8444.5,
-            11923.63,
-            268906.62
-          ],
-          [
             1.4121,
-            8587.5,
-            12126.41,
-            281033.03
+            14100.2,
+            19910.89,
+            19910.89
           ],
           [
             1.4122,
-            5375.0,
-            7590.57,
-            288623.6
+            4500.6,
+            6355.75,
+            26266.64
           ],
           [
             1.4123,
-            19854.7,
-            28040.79,
-            316664.4
+            14490.6,
+            20465.07,
+            46731.71
           ],
           [
             1.4124,
-            25683.9,
-            36275.94,
-            352940.34
+            35524.0,
+            50174.1,
+            96905.81
           ],
           [
             1.4125,
-            38048.9,
-            53744.07,
-            406684.41
+            29498.9,
+            41667.2,
+            138573.01
           ],
           [
             1.4126,
-            48052.6,
-            67879.1,
-            474563.51
+            63864.5,
+            90214.99,
+            228788.0
           ],
           [
             1.4127,
-            36606.4,
-            51713.86,
-            526277.37
+            40791.7,
+            57626.43,
+            286414.44
           ],
           [
             1.4128,
-            10939.5,
-            15455.33,
-            541732.7
+            22512.3,
+            31805.38,
+            318219.81
           ],
           [
             1.4129,
-            46920.0,
-            66293.27,
-            608025.97
+            26838.8,
+            37920.54,
+            356140.35
           ],
           [
             1.413,
-            123303.7,
-            174228.13,
-            782254.09
+            87227.5,
+            123252.46,
+            479392.81
           ],
           [
             1.4131,
-            58939.8,
-            83287.83,
-            865541.93
+            25765.4,
+            36409.09,
+            515801.9
           ],
           [
             1.4132,
-            48195.8,
-            68110.3,
-            933652.23
+            53960.3,
+            76256.7,
+            592058.59
           ],
           [
             1.4133,
-            27010.6,
-            38174.08,
-            971826.31
+            21653.1,
+            30602.33,
+            622660.92
           ],
           [
             1.4134,
-            72481.2,
-            102444.93,
-            1074271.24
+            58200.9,
+            82261.15,
+            704922.07
           ],
           [
             1.4135,
-            164357.0,
-            232318.62,
-            1306589.86
+            62216.1,
+            87942.46,
+            792864.53
           ],
           [
             1.4136,
-            95676.9,
-            135248.87,
-            1441838.72
+            80270.7,
+            113470.66,
+            906335.19
           ],
           [
             1.4137,
-            30287.6,
-            42817.58,
-            1484656.3
+            158150.4,
+            223577.22,
+            1129912.41
+          ],
+          [
+            1.4138,
+            47338.5,
+            66927.17,
+            1196839.58
+          ],
+          [
+            1.4139,
+            23019.1,
+            32546.71,
+            1229386.29
+          ],
+          [
+            1.414,
+            108908.8,
+            153997.04,
+            1383383.33
           ]
         ],
         "whale_walls_l3": [],
@@ -5989,60 +5966,33 @@
           {
             "side": "BUY",
             "price": 1.4107,
-            "notional_usd": 170307.04,
-            "distance_pct": -0.07,
-            "sample_span_sec": 0.0,
-            "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
-            "first_seen_utc": "2026-10-07 21:44:56 UTC"
-          },
-          {
-            "side": "BUY",
-            "price": 1.4101,
-            "notional_usd": 164625.23,
-            "distance_pct": -0.12,
-            "sample_span_sec": 0.0,
-            "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
-            "first_seen_utc": "2026-10-07 21:44:56 UTC"
-          },
-          {
-            "side": "BUY",
-            "price": 1.41,
-            "notional_usd": 496636.69,
-            "distance_pct": -0.12,
-            "sample_span_sec": 0.0,
+            "notional_usd": 170890.93,
+            "distance_pct": -0.1,
+            "sample_span_sec": 59.1,
             "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
             "first_seen_utc": "2026-10-07 21:44:56 UTC"
           },
           {
             "side": "SELL",
-            "price": 1.4118,
-            "notional_usd": 255696.89,
-            "distance_pct": 0.0,
-            "sample_span_sec": 0.0,
-            "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
-            "first_seen_utc": "2026-10-07 21:44:56 UTC"
-          },
-          {
-            "side": "SELL",
-            "price": 1.413,
-            "notional_usd": 174228.13,
-            "distance_pct": 0.09,
-            "sample_span_sec": 0.0,
-            "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
-            "first_seen_utc": "2026-10-07 21:44:56 UTC"
-          },
-          {
-            "side": "SELL",
-            "price": 1.4135,
-            "notional_usd": 232318.62,
+            "price": 1.4137,
+            "notional_usd": 223577.22,
             "distance_pct": 0.12,
             "sample_span_sec": 0.0,
             "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
-            "first_seen_utc": "2026-10-07 21:44:56 UTC"
+            "first_seen_utc": "2026-10-07 21:45:55 UTC"
+          },
+          {
+            "side": "SELL",
+            "price": 1.414,
+            "notional_usd": 153997.04,
+            "distance_pct": 0.14,
+            "sample_span_sec": 0.0,
+            "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
+            "first_seen_utc": "2026-10-07 21:45:55 UTC"
           }
         ],
         "wall_coverage": "SAMPLED_ANONYMOUS_BINANCE_AGGREGATED_L2_NOT_L3",
-        "wall_sample_ts_epoch": 1791409496.473645
+        "wall_sample_ts_epoch": 1791409555.599304
       },
       "pioneer_microstructure_eval": {
         "status": "UNAVAILABLE_UNVERIFIED_ORDERFLOW",
@@ -6056,18 +6006,10 @@
         "last_funding_rate_bps": -0.33,
         "predicted_funding_rate_bps": null,
         "predicted_funding_source": "UNAVAILABLE_IN_PREMIUM_INDEX",
-        "mark_price": 1.4118,
-        "index_price": 1.4126
+        "mark_price": 1.412,
+        "index_price": 1.4129
       },
       "cvd_1m_buckets": [
-        {
-          "ts": 1791405960,
-          "total_vol_usd": 174243.41,
-          "taker_buy_usd": 135274.66,
-          "taker_sell_usd": 38968.75,
-          "cvd_delta_usd": 96305.91,
-          "trades": 460
-        },
         {
           "ts": 1791406020,
           "total_vol_usd": 320008.16,
@@ -7049,12 +6991,12 @@
       "category": "CRYPTO",
       "quotes": {
         "bid": 0.2524,
-        "ask": 0.2546,
+        "ask": 0.2545,
         "mid": 0.2535,
-        "spread_price": 0.0022,
-        "spread_bps": 86.79,
+        "spread_price": 0.0021,
+        "spread_bps": 82.86,
         "quote_source": "MT5_L1_TICK",
-        "quote_age_s": -29.61,
+        "quote_age_s": -22.31,
         "quote_freshness": "STALE",
         "specs_source": "BROKER_MT5_SYMBOL_INFO",
         "tick_size": 0.0001,
@@ -7092,7 +7034,7 @@
         "indicators_source": "LIVE_BRIDGE",
         "vwap_weight_unit": "UNAVAILABLE",
         "bars_last_close_utc": "2026-10-07 21:45 UTC",
-        "indicator_age_min": 0.0
+        "indicator_age_min": 0.9
       },
       "volume_profile": {
         "poc": null,
@@ -7121,262 +7063,262 @@
         "top_long_cascade_bands_below": [],
         "top_short_squeeze_bands_above": [],
         "reason": "Open interest cannot identify liquidation prices or leverage",
-        "binance_futures_open_interest_contracts": 424142945.0,
+        "binance_futures_open_interest_contracts": 424138603.0,
         "open_interest_source": "BINANCE_FUTURES_PUBLIC_REST",
         "open_interest_venue": "BINANCE_USDM_FUTURES",
-        "open_interest_as_of_epoch": 1791409517.463
+        "open_interest_as_of_epoch": 1791409579.158
       },
       "orderbook_live_depth": {
         "source": "REAL_BINANCE_FUTURES_L2",
         "venue": "BINANCE_USDM_FUTURES",
         "aggregation": "ANONYMOUS_PRICE_LEVELS_NOT_ORDERS",
-        "binance_mid": 0.2535,
-        "top20_bid_depth_usd": 2858636.14,
-        "top20_ask_depth_usd": 2784936.28,
-        "book_imbalance": 0.0131,
-        "skew_ratio": 1.0265,
+        "binance_mid": 0.2534,
+        "top20_bid_depth_usd": 3057567.05,
+        "top20_ask_depth_usd": 2777067.43,
+        "book_imbalance": 0.0481,
+        "skew_ratio": 1.101,
         "bids_top20": [
           [
-            0.2534,
-            74263.0,
-            18818.24,
-            18818.24
-          ],
-          [
             0.2533,
-            133509.0,
-            33817.83,
-            52636.07
+            68790.0,
+            17424.51,
+            17424.51
           ],
           [
             0.2532,
-            279385.0,
-            70740.28,
-            123376.36
+            237343.0,
+            60095.25,
+            77519.75
           ],
           [
             0.2531,
-            458325.0,
-            116002.06,
-            239378.41
+            250335.0,
+            63359.79,
+            140879.54
           ],
           [
             0.253,
-            490068.0,
-            123987.2,
-            363365.62
+            447673.0,
+            113261.27,
+            254140.81
           ],
           [
             0.2529,
-            431543.0,
-            109137.22,
-            472502.84
+            503049.0,
+            127221.09,
+            381361.9
           ],
           [
             0.2528,
-            454717.0,
-            114952.46,
-            587455.3
+            572261.0,
+            144667.58,
+            526029.48
           ],
           [
             0.2527,
-            1369190.0,
-            345994.31,
-            933449.61
+            1457030.0,
+            368191.48,
+            894220.97
           ],
           [
             0.2526,
-            494840.0,
-            124996.58,
-            1058446.2
+            502806.0,
+            127008.8,
+            1021229.76
           ],
           [
             0.2525,
-            540224.0,
-            136406.56,
-            1194852.76
+            517573.0,
+            130687.18,
+            1151916.94
           ],
           [
             0.2524,
-            529058.0,
-            133534.24,
-            1328387.0
+            537254.0,
+            135602.91,
+            1287519.85
           ],
           [
             0.2523,
-            443432.0,
-            111877.89,
-            1440264.89
+            455064.0,
+            114812.65,
+            1402332.5
           ],
           [
             0.2522,
-            887152.0,
-            223739.73,
-            1664004.62
+            696197.0,
+            175580.88,
+            1577913.38
           ],
           [
             0.2521,
-            1335063.0,
-            336569.38,
-            2000574.01
+            1327746.0,
+            334724.77,
+            1912638.15
           ],
           [
             0.252,
-            346239.0,
-            87252.23,
-            2087826.23
+            563600.0,
+            142027.2,
+            2054665.35
           ],
           [
             0.2519,
-            289262.0,
-            72865.1,
-            2160691.33
+            310882.0,
+            78311.18,
+            2132976.53
           ],
           [
             0.2518,
-            316293.0,
-            79642.58,
-            2240333.91
+            574076.0,
+            144552.34,
+            2277528.86
           ],
           [
             0.2517,
-            544653.0,
-            137089.16,
-            2377423.07
+            544967.0,
+            137168.19,
+            2414697.06
           ],
           [
             0.2516,
-            1456353.0,
-            366418.41,
-            2743841.48
+            1591585.0,
+            400442.79,
+            2815139.84
           ],
           [
             0.2515,
-            456440.0,
-            114794.66,
-            2858636.14
+            441671.0,
+            111080.26,
+            2926220.1
+          ],
+          [
+            0.2514,
+            522462.0,
+            131346.95,
+            3057567.05
           ]
         ],
         "asks_top20": [
           [
+            0.2534,
+            42343.0,
+            10729.72,
+            10729.72
+          ],
+          [
             0.2535,
-            94044.0,
-            23840.15,
-            23840.15
+            235921.0,
+            59805.97,
+            70535.69
           ],
           [
             0.2536,
-            341508.0,
-            86606.43,
-            110446.58
+            378584.0,
+            96008.9,
+            166544.59
           ],
           [
             0.2537,
-            548261.0,
-            139093.82,
-            249540.4
+            446796.0,
+            113352.15,
+            279896.74
           ],
           [
             0.2538,
-            682639.0,
-            173253.78,
-            422794.18
+            678365.0,
+            172169.04,
+            452065.77
           ],
           [
             0.2539,
-            1503162.0,
-            381652.83,
-            804447.01
+            1481649.0,
+            376190.68,
+            828256.46
           ],
           [
             0.254,
-            464046.0,
-            117867.68,
-            922314.69
+            553342.0,
+            140548.87,
+            968805.32
           ],
           [
             0.2541,
-            544876.0,
-            138452.99,
-            1060767.68
+            414740.0,
+            105385.43,
+            1074190.76
           ],
           [
             0.2542,
-            1521324.0,
-            386720.56,
-            1447488.24
+            496245.0,
+            126145.48,
+            1200336.24
           ],
           [
             0.2543,
-            697072.0,
-            177265.41,
-            1624753.65
+            579524.0,
+            147372.95,
+            1347709.19
           ],
           [
             0.2544,
-            433769.0,
-            110350.83,
-            1735104.49
+            1364392.0,
+            347101.32,
+            1694810.51
           ],
           [
             0.2545,
-            453379.0,
-            115384.96,
-            1850489.44
+            426070.0,
+            108434.82,
+            1803245.33
           ],
           [
             0.2546,
-            316049.0,
-            80466.08,
-            1930955.52
+            431571.0,
+            109877.98,
+            1913123.31
           ],
           [
             0.2547,
-            233028.0,
-            59352.23,
-            1990307.75
+            288476.0,
+            73474.84,
+            1986598.14
           ],
           [
             0.2548,
-            279085.0,
-            71110.86,
-            2061418.61
+            437785.0,
+            111547.62,
+            2098145.76
           ],
           [
             0.2549,
-            381162.0,
-            97158.19,
-            2158576.8
+            392280.0,
+            99992.17,
+            2198137.93
           ],
           [
             0.255,
-            1279529.0,
-            326279.9,
-            2484856.7
+            1299658.0,
+            331412.79,
+            2529550.72
           ],
           [
             0.2551,
-            240847.0,
-            61440.07,
-            2546296.77
+            260769.0,
+            66522.17,
+            2596072.9
           ],
           [
             0.2552,
-            338045.0,
-            86269.08,
-            2632565.85
+            361384.0,
+            92225.2,
+            2688298.09
           ],
           [
             0.2553,
-            384995.0,
-            98289.22,
-            2730855.07
-          ],
-          [
-            0.2554,
-            211751.0,
-            54081.21,
-            2784936.28
+            347706.0,
+            88769.34,
+            2777067.43
           ]
         ],
         "whale_walls_l3": [],
@@ -7384,87 +7326,78 @@
           {
             "side": "BUY",
             "price": 0.2527,
-            "notional_usd": 345994.31,
-            "distance_pct": -0.3,
-            "sample_span_sec": 33.2,
+            "notional_usd": 368191.48,
+            "distance_pct": -0.26,
+            "sample_span_sec": 92.3,
             "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
             "first_seen_utc": "2026-10-07 21:44:23 UTC"
           },
           {
             "side": "BUY",
             "price": 0.2522,
-            "notional_usd": 223739.73,
-            "distance_pct": -0.49,
-            "sample_span_sec": 93.3,
+            "notional_usd": 175580.88,
+            "distance_pct": -0.45,
+            "sample_span_sec": 152.4,
             "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
             "first_seen_utc": "2026-10-07 21:43:23 UTC"
           },
           {
             "side": "BUY",
             "price": 0.2521,
-            "notional_usd": 336569.38,
-            "distance_pct": -0.53,
-            "sample_span_sec": 273.3,
+            "notional_usd": 334724.77,
+            "distance_pct": -0.49,
+            "sample_span_sec": 332.4,
             "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
             "first_seen_utc": "2026-10-07 21:40:23 UTC"
           },
           {
             "side": "BUY",
             "price": 0.2516,
-            "notional_usd": 366418.41,
-            "distance_pct": -0.73,
-            "sample_span_sec": 0.0,
+            "notional_usd": 400442.79,
+            "distance_pct": -0.69,
+            "sample_span_sec": 59.1,
             "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
             "first_seen_utc": "2026-10-07 21:44:56 UTC"
           },
           {
             "side": "SELL",
             "price": 0.2538,
-            "notional_usd": 173253.78,
-            "distance_pct": 0.14,
-            "sample_span_sec": 0.0,
+            "notional_usd": 172169.04,
+            "distance_pct": 0.18,
+            "sample_span_sec": 59.1,
             "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
             "first_seen_utc": "2026-10-07 21:44:56 UTC"
           },
           {
             "side": "SELL",
             "price": 0.2539,
-            "notional_usd": 381652.83,
-            "distance_pct": 0.18,
-            "sample_span_sec": 0.0,
+            "notional_usd": 376190.68,
+            "distance_pct": 0.22,
+            "sample_span_sec": 59.1,
             "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
             "first_seen_utc": "2026-10-07 21:44:56 UTC"
           },
           {
             "side": "SELL",
-            "price": 0.2542,
-            "notional_usd": 386720.56,
-            "distance_pct": 0.3,
-            "sample_span_sec": 213.2,
+            "price": 0.2544,
+            "notional_usd": 347101.32,
+            "distance_pct": 0.41,
+            "sample_span_sec": 0.0,
             "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
-            "first_seen_utc": "2026-10-07 21:41:23 UTC"
-          },
-          {
-            "side": "SELL",
-            "price": 0.2543,
-            "notional_usd": 177265.41,
-            "distance_pct": 0.34,
-            "sample_span_sec": 33.2,
-            "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
-            "first_seen_utc": "2026-10-07 21:44:23 UTC"
+            "first_seen_utc": "2026-10-07 21:45:55 UTC"
           },
           {
             "side": "SELL",
             "price": 0.255,
-            "notional_usd": 326279.9,
-            "distance_pct": 0.61,
-            "sample_span_sec": 0.0,
+            "notional_usd": 331412.79,
+            "distance_pct": 0.65,
+            "sample_span_sec": 59.1,
             "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
             "first_seen_utc": "2026-10-07 21:44:56 UTC"
           }
         ],
         "wall_coverage": "SAMPLED_ANONYMOUS_BINANCE_AGGREGATED_L2_NOT_L3",
-        "wall_sample_ts_epoch": 1791409496.473645
+        "wall_sample_ts_epoch": 1791409555.599304
       },
       "pioneer_microstructure_eval": {
         "status": "UNAVAILABLE_UNVERIFIED_ORDERFLOW",
@@ -7475,21 +7408,13 @@
         "portfolio_gating": "ADMISSION_FROZEN_UNVERIFIED_DATA"
       },
       "funding_and_rates": {
-        "last_funding_rate_bps": -0.37,
+        "last_funding_rate_bps": -0.35,
         "predicted_funding_rate_bps": null,
         "predicted_funding_source": "UNAVAILABLE_IN_PREMIUM_INDEX",
         "mark_price": 0.2534,
         "index_price": 0.2535
       },
       "cvd_1m_buckets": [
-        {
-          "ts": 1791405960,
-          "total_vol_usd": 82493.73,
-          "taker_buy_usd": 74523.22,
-          "taker_sell_usd": 7970.5,
-          "cvd_delta_usd": 66552.72,
-          "trades": 249
-        },
         {
           "ts": 1791406020,
           "total_vol_usd": 42563.32,
@@ -8470,13 +8395,13 @@
       "symbol_broker": "DOGUSD.p",
       "category": "CRYPTO",
       "quotes": {
-        "bid": 0.0872,
-        "ask": 0.0893,
-        "mid": 0.0882,
+        "bid": 0.0873,
+        "ask": 0.0894,
+        "mid": 0.0883,
         "spread_price": 0.0021,
-        "spread_bps": 237.96,
+        "spread_bps": 237.69,
         "quote_source": "MT5_L1_TICK",
-        "quote_age_s": -4.08,
+        "quote_age_s": -14.86,
         "quote_freshness": "STALE",
         "specs_source": "BROKER_MT5_SYMBOL_INFO",
         "tick_size": 0.0001,
@@ -8514,7 +8439,7 @@
         "indicators_source": "LIVE_BRIDGE",
         "vwap_weight_unit": "UNAVAILABLE",
         "bars_last_close_utc": "2026-10-07 21:45 UTC",
-        "indicator_age_min": 0.0
+        "indicator_age_min": 0.9
       },
       "volume_profile": {
         "poc": null,
@@ -8543,314 +8468,305 @@
         "top_long_cascade_bands_below": [],
         "top_short_squeeze_bands_above": [],
         "reason": "Open interest cannot identify liquidation prices or leverage",
-        "binance_futures_open_interest_contracts": 2842827181.0,
+        "binance_futures_open_interest_contracts": 2839345250.0,
         "open_interest_source": "BINANCE_FUTURES_PUBLIC_REST",
         "open_interest_venue": "BINANCE_USDM_FUTURES",
-        "open_interest_as_of_epoch": 1791409519.394
+        "open_interest_as_of_epoch": 1791409580.645
       },
       "orderbook_live_depth": {
         "source": "REAL_BINANCE_FUTURES_L2",
         "venue": "BINANCE_USDM_FUTURES",
         "aggregation": "ANONYMOUS_PRICE_LEVELS_NOT_ORDERS",
         "binance_mid": 0.0883,
-        "top20_bid_depth_usd": 1575659.35,
-        "top20_ask_depth_usd": 1510963.74,
-        "book_imbalance": 0.021,
-        "skew_ratio": 1.0428,
+        "top20_bid_depth_usd": 1323953.71,
+        "top20_ask_depth_usd": 1925190.16,
+        "book_imbalance": -0.185,
+        "skew_ratio": 0.6877,
         "bids_top20": [
           [
             0.0883,
-            435743.0,
-            38458.68,
-            38458.68
+            167741.0,
+            14818.24,
+            14818.24
+          ],
+          [
+            0.0883,
+            382845.0,
+            33816.7,
+            48634.94
+          ],
+          [
+            0.0883,
+            943092.0,
+            83293.89,
+            131928.82
+          ],
+          [
+            0.0883,
+            4453594.0,
+            393296.89,
+            525225.71
+          ],
+          [
+            0.0883,
+            130906.0,
+            11559.0,
+            536784.71
+          ],
+          [
+            0.0883,
+            120157.0,
+            10608.66,
+            547393.37
+          ],
+          [
+            0.0883,
+            270092.0,
+            23843.72,
+            571237.09
+          ],
+          [
+            0.0883,
+            693126.0,
+            61182.23,
+            632419.33
+          ],
+          [
+            0.0883,
+            1224399.0,
+            108065.46,
+            740484.78
           ],
           [
             0.0882,
-            368589.0,
-            32527.98,
-            70986.66
+            362459.0,
+            31987.01,
+            772471.79
           ],
           [
             0.0882,
-            581528.0,
-            51314.03,
-            122300.69
+            587599.0,
+            51849.74,
+            824321.52
           ],
           [
             0.0882,
-            195489.0,
-            17247.99,
-            139548.68
+            552595.0,
+            48755.46,
+            873076.98
           ],
           [
             0.0882,
-            460973.0,
-            40667.04,
-            180215.72
+            869395.0,
+            76698.03,
+            949775.01
           ],
           [
             0.0882,
-            592857.0,
-            52295.92,
-            232511.64
+            812903.0,
+            71706.17,
+            1021481.18
           ],
           [
             0.0882,
-            1130903.0,
-            99745.64,
-            332257.28
+            987375.0,
+            87086.48,
+            1108567.66
           ],
           [
             0.0882,
-            288392.0,
-            25433.29,
-            357690.57
+            598817.0,
+            52809.67,
+            1161377.33
           ],
           [
             0.0882,
-            368615.0,
-            32504.47,
-            390195.04
+            233435.0,
+            20584.3,
+            1181961.63
           ],
           [
             0.0882,
-            712789.0,
-            62846.61,
-            453041.65
+            453204.0,
+            39959.0,
+            1221920.62
           ],
           [
             0.0882,
-            1077559.0,
-            94997.6,
-            548039.25
+            757112.0,
+            66746.99,
+            1288667.62
           ],
           [
             0.0882,
-            182211.0,
-            16061.9,
-            564101.15
-          ],
-          [
-            0.0881,
-            515432.0,
-            45430.18,
-            609531.33
-          ],
-          [
-            0.0881,
-            1836005.0,
-            161807.12,
-            771338.45
-          ],
-          [
-            0.0881,
-            2174554.0,
-            191621.7,
-            962960.14
-          ],
-          [
-            0.0881,
-            4639777.0,
-            408810.75,
-            1371770.9
-          ],
-          [
-            0.0881,
-            678138.0,
-            59743.96,
-            1431514.85
-          ],
-          [
-            0.0881,
-            535651.0,
-            47185.5,
-            1478700.35
-          ],
-          [
-            0.0881,
-            987300.0,
-            86961.38,
-            1565661.73
-          ],
-          [
-            0.0881,
-            113519.0,
-            9997.62,
-            1575659.35
+            400296.0,
+            35286.09,
+            1323953.71
           ]
         ],
         "asks_top20": [
           [
             0.0883,
-            221985.0,
-            19594.62,
-            19594.62
-          ],
-          [
-            0.0883,
-            235101.0,
-            20754.72,
-            40349.33
-          ],
-          [
-            0.0883,
-            289729.0,
-            25580.17,
-            65929.51
-          ],
-          [
-            0.0883,
-            258608.0,
-            22835.09,
-            88764.59
-          ],
-          [
-            0.0883,
-            754439.0,
-            66624.51,
-            155389.1
-          ],
-          [
-            0.0883,
-            689335.0,
-            60882.07,
-            216271.17
-          ],
-          [
-            0.0883,
-            349208.0,
-            30845.54,
-            247116.71
-          ],
-          [
-            0.0883,
-            272413.0,
-            24064.96,
-            271181.67
-          ],
-          [
-            0.0883,
-            935882.0,
-            82685.17,
-            353866.85
+            556143.0,
+            49135.23,
+            49135.23
           ],
           [
             0.0884,
-            234138.0,
-            20688.43,
-            374555.28
+            373705.0,
+            33020.57,
+            82155.81
           ],
           [
             0.0884,
-            204461.0,
-            18068.22,
-            392623.5
+            532741.0,
+            47078.32,
+            129234.13
           ],
           [
             0.0884,
-            972107.0,
-            85914.82,
-            478538.32
+            367635.0,
+            32491.58,
+            161725.71
           ],
           [
             0.0884,
-            547579.0,
-            48400.51,
-            526938.83
+            687931.0,
+            60806.22,
+            222531.93
           ],
           [
             0.0884,
-            1245786.0,
-            110127.48,
-            637066.31
+            492680.0,
+            43552.91,
+            266084.84
           ],
           [
             0.0884,
-            2569039.0,
-            227128.74,
-            864195.05
+            409665.0,
+            36218.48,
+            302303.33
           ],
           [
             0.0884,
-            4571267.0,
-            404191.43,
-            1268386.47
+            768653.0,
+            67964.3,
+            370267.63
           ],
           [
             0.0884,
-            1079986.0,
-            95503.16,
-            1363889.64
+            1740537.0,
+            153915.69,
+            524183.31
           ],
           [
             0.0884,
-            618628.0,
-            54711.46,
-            1418601.1
+            665443.0,
+            58851.78,
+            583035.09
           ],
           [
             0.0885,
-            649178.0,
-            57419.79,
-            1476020.89
+            1133317.0,
+            100241.89,
+            683276.98
           ],
           [
             0.0885,
-            395013.0,
-            34942.85,
-            1510963.74
+            1667821.0,
+            147535.45,
+            830812.43
+          ],
+          [
+            0.0885,
+            662380.0,
+            58600.76,
+            889413.18
+          ],
+          [
+            0.0885,
+            589954.0,
+            52199.13,
+            941612.31
+          ],
+          [
+            0.0885,
+            1097754.0,
+            97140.25,
+            1038752.57
+          ],
+          [
+            0.0885,
+            4889222.0,
+            432696.15,
+            1471448.71
+          ],
+          [
+            0.0885,
+            638194.0,
+            56486.55,
+            1527935.26
+          ],
+          [
+            0.0885,
+            802527.0,
+            71039.69,
+            1598974.95
+          ],
+          [
+            0.0885,
+            3149364.0,
+            278813.19,
+            1877788.15
+          ],
+          [
+            0.0885,
+            535374.0,
+            47402.01,
+            1925190.16
           ]
         ],
         "whale_walls_l3": [],
         "l2_wall_levels": [
           {
             "side": "BUY",
-            "price": 0.0881,
-            "notional_usd": 161807.12,
-            "distance_pct": -0.15,
-            "sample_span_sec": 93.3,
+            "price": 0.0883,
+            "notional_usd": 393296.89,
+            "distance_pct": -0.04,
+            "sample_span_sec": 0.0,
             "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
-            "first_seen_utc": "2026-10-07 21:43:23 UTC"
-          },
-          {
-            "side": "BUY",
-            "price": 0.0881,
-            "notional_usd": 191621.7,
-            "distance_pct": -0.16,
-            "sample_span_sec": 93.3,
-            "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
-            "first_seen_utc": "2026-10-07 21:43:23 UTC"
-          },
-          {
-            "side": "BUY",
-            "price": 0.0881,
-            "notional_usd": 408810.75,
-            "distance_pct": -0.18,
-            "sample_span_sec": 93.3,
-            "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
-            "first_seen_utc": "2026-10-07 21:43:23 UTC"
+            "first_seen_utc": "2026-10-07 21:45:55 UTC"
           },
           {
             "side": "SELL",
             "price": 0.0884,
-            "notional_usd": 227128.74,
-            "distance_pct": 0.16,
-            "sample_span_sec": 273.3,
+            "notional_usd": 153915.69,
+            "distance_pct": 0.1,
+            "sample_span_sec": 332.4,
             "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
             "first_seen_utc": "2026-10-07 21:40:23 UTC"
           },
           {
             "side": "SELL",
-            "price": 0.0884,
-            "notional_usd": 404191.43,
+            "price": 0.0885,
+            "notional_usd": 432696.15,
             "distance_pct": 0.18,
-            "sample_span_sec": 273.3,
+            "sample_span_sec": 0.0,
             "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
-            "first_seen_utc": "2026-10-07 21:40:23 UTC"
+            "first_seen_utc": "2026-10-07 21:45:55 UTC"
+          },
+          {
+            "side": "SELL",
+            "price": 0.0885,
+            "notional_usd": 278813.19,
+            "distance_pct": 0.21,
+            "sample_span_sec": 0.0,
+            "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
+            "first_seen_utc": "2026-10-07 21:45:55 UTC"
           }
         ],
         "wall_coverage": "SAMPLED_ANONYMOUS_BINANCE_AGGREGATED_L2_NOT_L3",
-        "wall_sample_ts_epoch": 1791409496.473645
+        "wall_sample_ts_epoch": 1791409555.599304
       },
       "pioneer_microstructure_eval": {
         "status": "UNAVAILABLE_UNVERIFIED_ORDERFLOW",
@@ -8861,21 +8777,13 @@
         "portfolio_gating": "ADMISSION_FROZEN_UNVERIFIED_DATA"
       },
       "funding_and_rates": {
-        "last_funding_rate_bps": -0.1,
+        "last_funding_rate_bps": -0.11,
         "predicted_funding_rate_bps": null,
         "predicted_funding_source": "UNAVAILABLE_IN_PREMIUM_INDEX",
         "mark_price": 0.0883,
-        "index_price": 0.0883
+        "index_price": 0.0884
       },
       "cvd_1m_buckets": [
-        {
-          "ts": 1791405960,
-          "total_vol_usd": 42599.92,
-          "taker_buy_usd": 29191.97,
-          "taker_sell_usd": 13407.95,
-          "cvd_delta_usd": 15784.03,
-          "trades": 299
-        },
         {
           "ts": 1791406020,
           "total_vol_usd": 181612.71,
@@ -9862,7 +9770,7 @@
         "spread_price": 0.0011,
         "spread_bps": 32.84,
         "quote_source": "MT5_L1_TICK",
-        "quote_age_s": -11.95,
+        "quote_age_s": -12.83,
         "quote_freshness": "STALE",
         "specs_source": "BROKER_MT5_SYMBOL_INFO",
         "tick_size": 0.0001,
@@ -9900,7 +9808,7 @@
         "indicators_source": "LIVE_BRIDGE",
         "vwap_weight_unit": "UNAVAILABLE",
         "bars_last_close_utc": "2026-10-07 21:45 UTC",
-        "indicator_age_min": 0.0
+        "indicator_age_min": 0.9
       },
       "volume_profile": {
         "poc": null,
@@ -9929,268 +9837,268 @@
         "top_long_cascade_bands_below": [],
         "top_short_squeeze_bands_above": [],
         "reason": "Open interest cannot identify liquidation prices or leverage",
-        "binance_futures_open_interest_contracts": 293562762.0,
+        "binance_futures_open_interest_contracts": 293565173.0,
         "open_interest_source": "BINANCE_FUTURES_PUBLIC_REST",
         "open_interest_venue": "BINANCE_USDM_FUTURES",
-        "open_interest_as_of_epoch": 1791409508.918
+        "open_interest_as_of_epoch": 1791409575.945
       },
       "orderbook_live_depth": {
         "source": "REAL_BINANCE_FUTURES_L2",
         "venue": "BINANCE_USDM_FUTURES",
         "aggregation": "ANONYMOUS_PRICE_LEVELS_NOT_ORDERS",
         "binance_mid": 0.335,
-        "top20_bid_depth_usd": 127012.99,
-        "top20_ask_depth_usd": 134893.73,
-        "book_imbalance": -0.0301,
-        "skew_ratio": 0.9416,
+        "top20_bid_depth_usd": 135154.82,
+        "top20_ask_depth_usd": 128285.41,
+        "book_imbalance": 0.0261,
+        "skew_ratio": 1.0535,
         "bids_top20": [
           [
             0.335,
-            19522.0,
-            6538.89,
-            6538.89
+            37902.0,
+            12695.27,
+            12695.27
           ],
           [
             0.3349,
-            3347.0,
-            1121.04,
-            7659.94
+            3145.0,
+            1053.39,
+            13748.66
           ],
           [
             0.3349,
-            17.0,
-            5.69,
-            7665.63
+            716.0,
+            239.81,
+            13988.47
           ],
           [
             0.3349,
-            5486.0,
-            1837.37,
-            9503.0
+            6211.0,
+            2080.19,
+            16068.66
           ],
           [
             0.3349,
-            18581.0,
-            6222.96,
-            15725.97
+            19803.0,
+            6632.22,
+            22700.88
           ],
           [
             0.3349,
-            19135.0,
-            6408.31,
-            22134.28
+            20532.0,
+            6876.17,
+            29577.05
           ],
           [
             0.3349,
-            9501.0,
-            3181.79,
-            25316.07
+            23209.0,
+            7772.46,
+            37349.51
           ],
           [
             0.3349,
-            15049.0,
-            5039.61,
-            30355.68
+            13613.0,
+            4558.72,
+            41908.23
           ],
           [
             0.3349,
-            26425.0,
-            8848.94,
-            39204.62
+            27993.0,
+            9374.02,
+            51282.25
           ],
           [
             0.3349,
-            27382.0,
-            9169.14,
-            48373.75
+            13382.0,
+            4481.1,
+            55763.34
           ],
           [
             0.3348,
-            28025.0,
-            9384.17,
-            57757.92
+            24006.0,
+            8038.41,
+            63801.75
           ],
           [
             0.3348,
             32207.0,
             10784.19,
-            68542.12
+            74585.95
           ],
           [
             0.3348,
-            12359.0,
-            4138.16,
-            72680.28
+            12636.0,
+            4230.91,
+            78816.86
           ],
           [
             0.3348,
-            26053.0,
-            8723.07,
-            81403.35
+            25774.0,
+            8629.65,
+            87446.51
           ],
           [
             0.3348,
             8738.0,
             2925.57,
-            84328.91
+            90372.08
           ],
           [
             0.3348,
             30307.0,
             10146.78,
-            94475.7
+            100518.86
           ],
           [
             0.3348,
             38689.0,
             12952.69,
-            107428.39
+            113471.55
           ],
           [
             0.3348,
-            13248.0,
-            4435.17,
-            111863.55
+            16235.0,
+            5435.15,
+            118906.71
           ],
           [
             0.3348,
-            21088.0,
-            7059.63,
-            118923.18
+            20790.0,
+            6959.87,
+            125866.57
           ],
           [
             0.3348,
-            24166.0,
-            8089.81,
-            127012.99
+            27746.0,
+            9288.25,
+            135154.82
           ]
         ],
         "asks_top20": [
           [
             0.335,
-            42381.0,
-            14195.94,
-            14195.94
+            40203.0,
+            13466.4,
+            13466.4
           ],
           [
             0.335,
-            10934.0,
-            3662.56,
-            17858.5
+            14944.0,
+            5005.79,
+            18472.19
           ],
           [
             0.335,
-            8682.0,
-            2908.3,
-            20766.8
+            24985.0,
+            8369.48,
+            26841.66
           ],
           [
             0.335,
-            24797.0,
-            8306.75,
-            29073.55
+            3177.0,
+            1064.26,
+            27905.93
           ],
           [
             0.335,
-            11306.0,
-            3787.51,
-            32861.06
+            5996.0,
+            2008.66,
+            29914.59
           ],
           [
             0.335,
-            5305.0,
-            1777.23,
-            34638.28
+            4788.0,
+            1604.03,
+            31518.61
           ],
           [
             0.335,
-            40930.0,
-            13712.37,
-            48350.65
+            30365.0,
+            10172.88,
+            41691.5
           ],
           [
             0.335,
             20934.0,
             7013.52,
-            55364.17
+            48705.02
           ],
           [
             0.335,
-            8692.0,
-            2912.17,
-            58276.34
+            4841.0,
+            1621.93,
+            50326.94
           ],
           [
             0.3351,
-            5814.0,
-            1947.98,
-            60224.32
+            15204.0,
+            5094.1,
+            55421.04
           ],
           [
             0.3351,
-            28519.0,
-            9555.58,
-            69779.89
+            31682.0,
+            10615.37,
+            66036.42
           ],
           [
             0.3351,
-            10779.0,
-            3611.72,
-            73391.61
+            10802.0,
+            3619.43,
+            69655.84
           ],
           [
             0.3351,
             22018.0,
             7377.79,
-            80769.41
+            77033.63
           ],
           [
             0.3351,
-            32096.0,
-            10755.05,
-            91524.45
+            31500.0,
+            10555.33,
+            87588.97
           ],
           [
             0.3351,
             23966.0,
             8031.01,
-            99555.46
+            95619.97
           ],
           [
             0.3351,
-            18094.0,
-            6063.48,
-            105618.94
+            10118.0,
+            3390.64,
+            99010.62
           ],
           [
             0.3351,
             39081.0,
             13096.82,
-            118715.77
+            112107.44
           ],
           [
             0.3351,
             16233.0,
             5440.17,
-            124155.93
+            117547.61
           ],
           [
             0.3351,
             6719.0,
             2251.81,
-            126407.74
+            119799.41
           ],
           [
             0.3352,
             25320.0,
             8486.0,
-            134893.73
+            128285.41
           ]
         ],
         "whale_walls_l3": [],
         "l2_wall_levels": [],
         "wall_coverage": "SAMPLED_ANONYMOUS_BINANCE_AGGREGATED_L2_NOT_L3",
-        "wall_sample_ts_epoch": 1791409496.473645
+        "wall_sample_ts_epoch": 1791409555.599304
       },
       "pioneer_microstructure_eval": {
         "status": "UNAVAILABLE_UNVERIFIED_ORDERFLOW",
@@ -10201,21 +10109,13 @@
         "portfolio_gating": "ADMISSION_FROZEN_UNVERIFIED_DATA"
       },
       "funding_and_rates": {
-        "last_funding_rate_bps": -0.74,
+        "last_funding_rate_bps": -0.75,
         "predicted_funding_rate_bps": null,
         "predicted_funding_source": "UNAVAILABLE_IN_PREMIUM_INDEX",
         "mark_price": 0.335,
         "index_price": 0.3352
       },
       "cvd_1m_buckets": [
-        {
-          "ts": 1791405960,
-          "total_vol_usd": 2486.22,
-          "taker_buy_usd": 1350.25,
-          "taker_sell_usd": 1135.96,
-          "cvd_delta_usd": 214.29,
-          "trades": 73
-        },
         {
           "ts": 1791406020,
           "total_vol_usd": 1938.67,
@@ -11202,7 +11102,7 @@
         "spread_price": 0.02,
         "spread_bps": 180.83,
         "quote_source": "MT5_L1_TICK",
-        "quote_age_s": -30.92,
+        "quote_age_s": -32.1,
         "quote_freshness": "STALE",
         "specs_source": "BROKER_MT5_SYMBOL_INFO",
         "tick_size": 0.001,
@@ -11240,7 +11140,7 @@
         "indicators_source": "LIVE_BRIDGE",
         "vwap_weight_unit": "UNAVAILABLE",
         "bars_last_close_utc": "2026-10-07 21:45 UTC",
-        "indicator_age_min": 0.0
+        "indicator_age_min": 0.9
       },
       "volume_profile": {
         "poc": null,
@@ -11269,268 +11169,268 @@
         "top_long_cascade_bands_below": [],
         "top_short_squeeze_bands_above": [],
         "reason": "Open interest cannot identify liquidation prices or leverage",
-        "binance_futures_open_interest_contracts": 34232757.1,
+        "binance_futures_open_interest_contracts": 34234479.9,
         "open_interest_source": "BINANCE_FUTURES_PUBLIC_REST",
         "open_interest_venue": "BINANCE_USDM_FUTURES",
-        "open_interest_as_of_epoch": 1791409518.91
+        "open_interest_as_of_epoch": 1791409577.223
       },
       "orderbook_live_depth": {
         "source": "REAL_BINANCE_FUTURES_L2",
         "venue": "BINANCE_USDM_FUTURES",
         "aggregation": "ANONYMOUS_PRICE_LEVELS_NOT_ORDERS",
-        "binance_mid": 1.1052,
-        "top20_bid_depth_usd": 91529.52,
-        "top20_ask_depth_usd": 452510.0,
-        "book_imbalance": -0.6635,
-        "skew_ratio": 0.2023,
+        "binance_mid": 1.105,
+        "top20_bid_depth_usd": 96874.51,
+        "top20_ask_depth_usd": 340819.46,
+        "book_imbalance": -0.5573,
+        "skew_ratio": 0.2842,
         "bids_top20": [
           [
-            1.1051,
-            386.3,
-            426.9,
-            426.9
-          ],
-          [
-            1.105,
-            303.2,
-            335.04,
-            761.94
-          ],
-          [
             1.1049,
-            1912.3,
-            2112.9,
-            2874.84
+            65.8,
+            72.7,
+            72.7
           ],
           [
             1.1048,
-            2250.0,
-            2485.8,
-            5360.64
+            1535.5,
+            1696.42,
+            1769.12
           ],
           [
             1.1047,
-            1857.6,
-            2052.09,
-            7412.73
+            1955.5,
+            2160.24,
+            3929.36
           ],
           [
             1.1046,
-            2084.9,
-            2302.98,
-            9715.71
+            1313.7,
+            1451.11,
+            5380.48
           ],
           [
             1.1045,
-            1943.7,
-            2146.82,
-            11862.52
+            1201.1,
+            1326.61,
+            6707.09
           ],
           [
             1.1044,
-            1988.0,
-            2195.55,
-            14058.07
+            1526.8,
+            1686.2,
+            8393.29
           ],
           [
             1.1043,
-            3554.2,
-            3924.9,
-            17982.97
+            1809.9,
+            1998.67,
+            10391.96
           ],
           [
             1.1042,
-            3479.4,
-            3841.95,
-            21824.93
+            1992.9,
+            2200.56,
+            12592.52
           ],
           [
             1.1041,
-            11892.7,
-            13130.73,
-            34955.66
+            5125.7,
+            5659.29,
+            18251.81
           ],
           [
             1.104,
-            5221.7,
-            5764.76,
-            40720.41
+            6421.9,
+            7089.78,
+            25341.59
           ],
           [
             1.1039,
-            5614.6,
-            6197.96,
-            46918.37
+            15110.7,
+            16680.7,
+            42022.29
           ],
           [
             1.1038,
-            12176.4,
-            13440.31,
-            60358.68
+            7410.4,
+            8179.6,
+            50201.89
           ],
           [
             1.1037,
-            391.5,
-            432.1,
-            60790.78
+            6580.4,
+            7262.79,
+            57464.67
           ],
           [
             1.1036,
-            2201.8,
-            2429.91,
-            63220.69
+            2224.2,
+            2454.63,
+            59919.3
           ],
           [
             1.1035,
-            1832.6,
-            2022.27,
-            65242.96
+            4164.9,
+            4595.97,
+            64515.27
           ],
           [
             1.1034,
-            7877.9,
-            8692.47,
-            73935.44
+            5273.1,
+            5818.34,
+            70333.61
           ],
           [
             1.1033,
-            13521.2,
-            14917.94,
-            88853.38
+            15244.7,
+            16819.48,
+            87153.08
           ],
           [
             1.1032,
-            2425.8,
-            2676.14,
-            91529.52
+            1681.1,
+            1854.59,
+            89007.67
+          ],
+          [
+            1.1031,
+            2430.3,
+            2680.86,
+            91688.54
+          ],
+          [
+            1.103,
+            4701.7,
+            5185.98,
+            96874.51
           ]
         ],
         "asks_top20": [
           [
+            1.105,
+            26.4,
+            29.17,
+            29.17
+          ],
+          [
+            1.1051,
+            206.8,
+            228.53,
+            257.71
+          ],
+          [
             1.1052,
-            502.6,
-            555.47,
-            555.47
+            1397.4,
+            1544.41,
+            1802.11
           ],
           [
             1.1053,
-            1459.6,
-            1613.3,
-            2168.77
+            2451.8,
+            2709.97,
+            4512.09
           ],
           [
             1.1054,
-            1887.1,
-            2086.0,
-            4254.77
+            1846.1,
+            2040.68,
+            6552.77
           ],
           [
             1.1055,
-            2055.2,
-            2272.02,
-            6526.79
+            5097.3,
+            5635.07,
+            12187.83
           ],
           [
             1.1056,
-            4780.6,
-            5285.43,
-            11812.22
+            4335.1,
+            4792.89,
+            16980.72
           ],
           [
             1.1057,
-            1325.6,
-            1465.72,
-            13277.94
+            2178.9,
+            2409.21,
+            19389.93
           ],
           [
             1.1058,
-            3221.6,
-            3562.45,
-            16840.39
+            6018.5,
+            6655.26,
+            26045.19
           ],
           [
             1.1059,
-            7412.0,
-            8196.93,
-            25037.32
+            2926.0,
+            3235.86,
+            29281.05
           ],
           [
             1.106,
-            5851.5,
-            6471.76,
-            31509.08
+            4723.7,
+            5224.41,
+            34505.46
           ],
           [
             1.1061,
-            13116.7,
-            14508.38,
-            46017.46
+            14136.2,
+            15636.05,
+            50141.51
           ],
           [
             1.1062,
-            10815.9,
-            11964.55,
-            57982.01
+            41795.5,
+            46234.18,
+            96375.69
           ],
           [
             1.1063,
-            10003.8,
-            11067.2,
-            69049.21
+            23945.7,
+            26491.13,
+            122866.82
           ],
           [
             1.1064,
-            3029.4,
-            3351.73,
-            72400.94
+            65091.4,
+            72017.12,
+            194883.95
           ],
           [
             1.1065,
-            2007.0,
-            2220.75,
-            74621.68
+            2163.2,
+            2393.58,
+            197277.53
           ],
           [
             1.1066,
-            2943.5,
-            3257.28,
-            77878.96
+            3132.7,
+            3466.65,
+            200744.17
           ],
           [
             1.1067,
-            21862.0,
-            24194.68,
-            102073.64
+            23718.6,
+            26249.37,
+            226993.55
           ],
           [
             1.1068,
-            110900.6,
-            122744.78,
-            224818.42
+            96803.7,
+            107142.34,
+            334135.88
           ],
           [
             1.1069,
-            97184.9,
-            107573.97,
-            332392.39
-          ],
-          [
-            1.107,
-            16250.3,
-            17989.08,
-            350381.47
-          ],
-          [
-            1.1071,
-            92248.7,
-            102128.54,
-            452510.0
+            6038.1,
+            6683.57,
+            340819.46
           ]
         ],
         "whale_walls_l3": [],
         "l2_wall_levels": [],
         "wall_coverage": "SAMPLED_ANONYMOUS_BINANCE_AGGREGATED_L2_NOT_L3",
-        "wall_sample_ts_epoch": 1791409496.473645
+        "wall_sample_ts_epoch": 1791409555.599304
       },
       "pioneer_microstructure_eval": {
         "status": "UNAVAILABLE_UNVERIFIED_ORDERFLOW",
@@ -11541,21 +11441,13 @@
         "portfolio_gating": "ADMISSION_FROZEN_UNVERIFIED_DATA"
       },
       "funding_and_rates": {
-        "last_funding_rate_bps": -0.9,
+        "last_funding_rate_bps": -0.92,
         "predicted_funding_rate_bps": null,
         "predicted_funding_source": "UNAVAILABLE_IN_PREMIUM_INDEX",
-        "mark_price": 1.1052,
-        "index_price": 1.1067
+        "mark_price": 1.1051,
+        "index_price": 1.1066
       },
       "cvd_1m_buckets": [
-        {
-          "ts": 1791405960,
-          "total_vol_usd": 9526.64,
-          "taker_buy_usd": 8478.46,
-          "taker_sell_usd": 1048.18,
-          "cvd_delta_usd": 7430.28,
-          "trades": 183
-        },
         {
           "ts": 1791406020,
           "total_vol_usd": 14246.85,
@@ -12536,13 +12428,13 @@
       "symbol_broker": "LNKUSD.p",
       "category": "CRYPTO",
       "quotes": {
-        "bid": 13.232,
-        "ask": 13.317,
-        "mid": 13.2745,
+        "bid": 13.233,
+        "ask": 13.318,
+        "mid": 13.2755,
         "spread_price": 0.085,
         "spread_bps": 64.03,
         "quote_source": "MT5_L1_TICK",
-        "quote_age_s": -30.95,
+        "quote_age_s": -29.99,
         "quote_freshness": "STALE",
         "specs_source": "BROKER_MT5_SYMBOL_INFO",
         "tick_size": 0.001,
@@ -12570,7 +12462,7 @@
         "vwap_z_score": null,
         "rsi_14": 37.46,
         "atr_14": 0.0581,
-        "atr_pct": 0.438,
+        "atr_pct": 0.437,
         "ema_20": 13.3162,
         "ema_50": 13.3842,
         "ema_200": 13.6549,
@@ -12580,7 +12472,7 @@
         "indicators_source": "LIVE_BRIDGE",
         "vwap_weight_unit": "UNAVAILABLE",
         "bars_last_close_utc": "2026-10-07 21:45 UTC",
-        "indicator_age_min": 0.0
+        "indicator_age_min": 0.9
       },
       "volume_profile": {
         "poc": null,
@@ -12609,278 +12501,268 @@
         "top_long_cascade_bands_below": [],
         "top_short_squeeze_bands_above": [],
         "reason": "Open interest cannot identify liquidation prices or leverage",
-        "binance_futures_open_interest_contracts": 9096013.97,
+        "binance_futures_open_interest_contracts": 9093409.28,
         "open_interest_source": "BINANCE_FUTURES_PUBLIC_REST",
         "open_interest_venue": "BINANCE_USDM_FUTURES",
-        "open_interest_as_of_epoch": 1791409518.349
+        "open_interest_as_of_epoch": 1791409579.993
       },
       "orderbook_live_depth": {
         "source": "REAL_BINANCE_FUTURES_L2",
         "venue": "BINANCE_USDM_FUTURES",
         "aggregation": "ANONYMOUS_PRICE_LEVELS_NOT_ORDERS",
         "binance_mid": 13.2745,
-        "top20_bid_depth_usd": 263954.92,
-        "top20_ask_depth_usd": 511731.48,
-        "book_imbalance": -0.3194,
-        "skew_ratio": 0.5158,
+        "top20_bid_depth_usd": 259089.51,
+        "top20_ask_depth_usd": 211316.82,
+        "book_imbalance": 0.1016,
+        "skew_ratio": 1.2261,
         "bids_top20": [
           [
             13.274,
-            165.31,
-            2194.32,
-            2194.32
+            162.26,
+            2153.84,
+            2153.84
           ],
           [
             13.273,
-            5.37,
-            71.28,
-            2265.6
+            141.29,
+            1875.34,
+            4029.18
           ],
           [
             13.272,
-            216.19,
-            2869.27,
-            5134.87
+            356.6,
+            4732.8,
+            8761.98
           ],
           [
             13.271,
-            290.92,
-            3860.8,
-            8995.67
+            283.31,
+            3759.81,
+            12521.78
           ],
           [
             13.27,
-            292.42,
-            3880.41,
-            12876.09
+            539.17,
+            7154.79,
+            19676.57
           ],
           [
             13.269,
-            325.89,
-            4324.23,
-            17200.32
+            475.04,
+            6303.31,
+            25979.88
           ],
           [
             13.268,
-            747.06,
-            9911.99,
-            27112.31
+            658.53,
+            8737.38,
+            34717.25
           ],
           [
             13.267,
-            398.37,
-            5285.17,
-            32397.49
+            566.8,
+            7519.74,
+            42236.99
           ],
           [
             13.266,
-            503.97,
-            6685.67,
-            39083.15
+            358.04,
+            4749.76,
+            46986.75
           ],
           [
             13.265,
-            770.87,
-            10225.59,
-            49308.75
+            2027.1,
+            26889.48,
+            73876.23
           ],
           [
             13.264,
-            1550.65,
-            20567.82,
-            69876.57
+            5368.94,
+            71213.62,
+            145089.85
           ],
           [
             13.263,
-            1324.37,
-            17565.12,
-            87441.69
+            286.53,
+            3800.25,
+            148890.09
           ],
           [
             13.262,
-            6716.46,
-            89073.69,
-            176515.38
+            767.4,
+            10177.26,
+            159067.35
           ],
           [
             13.261,
-            2296.06,
-            30448.05,
-            206963.43
+            2826.12,
+            37477.18,
+            196544.53
           ],
           [
             13.26,
-            939.86,
-            12462.54,
-            219425.97
+            1674.27,
+            22200.82,
+            218745.35
           ],
           [
             13.259,
-            487.23,
-            6460.18,
-            225886.16
+            1388.06,
+            18404.29,
+            237149.64
           ],
           [
             13.258,
-            180.46,
-            2392.54,
-            228278.7
+            149.34,
+            1979.95,
+            239129.59
           ],
           [
             13.257,
-            400.73,
-            5312.48,
-            233591.17
+            280.71,
+            3721.37,
+            242850.96
           ],
           [
             13.256,
-            1707.48,
-            22634.35,
-            256225.53
+            642.43,
+            8516.05,
+            251367.01
           ],
           [
             13.255,
-            583.13,
-            7729.39,
-            263954.92
+            582.61,
+            7722.5,
+            259089.51
           ]
         ],
         "asks_top20": [
           [
             13.275,
-            189.56,
-            2516.41,
-            2516.41
+            34.9,
+            463.3,
+            463.3
           ],
           [
             13.276,
-            577.04,
-            7660.78,
-            10177.19
+            268.74,
+            3567.79,
+            4031.09
           ],
           [
             13.277,
-            144.36,
-            1916.67,
-            12093.86
+            418.12,
+            5551.38,
+            9582.47
           ],
           [
             13.278,
-            73.49,
-            975.8,
-            13069.66
+            273.88,
+            3636.58,
+            13219.05
           ],
           [
             13.279,
-            303.09,
-            4024.73,
-            17094.39
+            459.69,
+            6104.22,
+            19323.27
           ],
           [
             13.28,
-            395.85,
-            5256.89,
-            22351.28
+            859.64,
+            11416.02,
+            30739.29
           ],
           [
             13.281,
-            492.36,
-            6539.03,
-            28890.31
+            603.8,
+            8019.07,
+            38758.36
           ],
           [
             13.282,
-            636.73,
-            8457.05,
-            37347.36
+            700.78,
+            9307.76,
+            48066.12
           ],
           [
             13.283,
-            680.53,
-            9039.48,
-            46386.84
+            588.74,
+            7820.23,
+            55886.35
           ],
           [
             13.284,
-            706.05,
-            9379.17,
-            55766.01
+            1461.2,
+            19410.58,
+            75296.93
           ],
           [
             13.285,
-            1373.31,
-            18244.42,
-            74010.43
+            438.88,
+            5830.52,
+            81127.45
           ],
           [
             13.286,
-            1628.66,
-            21638.38,
-            95648.81
+            712.01,
+            9459.76,
+            90587.22
           ],
           [
             13.287,
-            1807.87,
-            24021.17,
-            119669.98
+            674.24,
+            8958.63,
+            99545.84
           ],
           [
             13.288,
-            565.16,
-            7509.85,
-            127179.82
+            1153.71,
+            15330.5,
+            114876.34
           ],
           [
             13.289,
-            1690.07,
-            22459.34,
-            149639.16
+            1706.46,
+            22677.15,
+            137553.49
           ],
           [
             13.29,
-            1925.4,
-            25588.57,
-            175227.73
+            2275.49,
+            30241.26,
+            167794.75
           ],
           [
             13.291,
-            643.56,
-            8553.56,
-            183781.29
+            480.12,
+            6381.27,
+            174176.03
           ],
           [
             13.292,
-            663.5,
-            8819.24,
-            192600.53
+            1532.22,
+            20366.27,
+            194542.3
           ],
           [
             13.293,
-            5472.31,
-            72743.42,
-            265343.95
+            1170.26,
+            15556.27,
+            210098.56
           ],
           [
             13.294,
-            18533.74,
-            246387.54,
-            511731.48
+            91.64,
+            1218.26,
+            211316.82
           ]
         ],
         "whale_walls_l3": [],
-        "l2_wall_levels": [
-          {
-            "side": "SELL",
-            "price": 13.294,
-            "notional_usd": 246387.54,
-            "distance_pct": 0.15,
-            "sample_span_sec": 0.0,
-            "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
-            "first_seen_utc": "2026-10-07 21:44:56 UTC"
-          }
-        ],
+        "l2_wall_levels": [],
         "wall_coverage": "SAMPLED_ANONYMOUS_BINANCE_AGGREGATED_L2_NOT_L3",
-        "wall_sample_ts_epoch": 1791409496.473645
+        "wall_sample_ts_epoch": 1791409555.599304
       },
       "pioneer_microstructure_eval": {
         "status": "UNAVAILABLE_UNVERIFIED_ORDERFLOW",
@@ -12891,21 +12773,13 @@
         "portfolio_gating": "ADMISSION_FROZEN_UNVERIFIED_DATA"
       },
       "funding_and_rates": {
-        "last_funding_rate_bps": 0.35,
+        "last_funding_rate_bps": 0.37,
         "predicted_funding_rate_bps": null,
         "predicted_funding_source": "UNAVAILABLE_IN_PREMIUM_INDEX",
-        "mark_price": 13.2746,
-        "index_price": 13.2802
+        "mark_price": 13.2741,
+        "index_price": 13.2812
       },
       "cvd_1m_buckets": [
-        {
-          "ts": 1791405960,
-          "total_vol_usd": 21859.04,
-          "taker_buy_usd": 14549.25,
-          "taker_sell_usd": 7309.79,
-          "cvd_delta_usd": 7239.46,
-          "trades": 136
-        },
         {
           "ts": 1791406020,
           "total_vol_usd": 38823.18,
@@ -13886,13 +13760,13 @@
       "symbol_broker": "BCHUSD.p",
       "category": "CRYPTO",
       "quotes": {
-        "bid": 298.9,
+        "bid": 299.0,
         "ask": 299.4,
-        "mid": 299.15,
-        "spread_price": 0.5,
-        "spread_bps": 16.71,
+        "mid": 299.2,
+        "spread_price": 0.4,
+        "spread_bps": 13.37,
         "quote_source": "MT5_L1_TICK",
-        "quote_age_s": -13.8,
+        "quote_age_s": -25.3,
         "quote_freshness": "STALE",
         "specs_source": "BROKER_MT5_SYMBOL_INFO",
         "tick_size": 0.001,
@@ -13930,7 +13804,7 @@
         "indicators_source": "LIVE_BRIDGE",
         "vwap_weight_unit": "UNAVAILABLE",
         "bars_last_close_utc": "2026-10-07 21:45 UTC",
-        "indicator_age_min": 0.0
+        "indicator_age_min": 0.9
       },
       "volume_profile": {
         "poc": null,
@@ -13959,268 +13833,268 @@
         "top_long_cascade_bands_below": [],
         "top_short_squeeze_bands_above": [],
         "reason": "Open interest cannot identify liquidation prices or leverage",
-        "binance_futures_open_interest_contracts": 369634.367,
+        "binance_futures_open_interest_contracts": 369588.05,
         "open_interest_source": "BINANCE_FUTURES_PUBLIC_REST",
         "open_interest_venue": "BINANCE_USDM_FUTURES",
-        "open_interest_as_of_epoch": 1791409520.862
+        "open_interest_as_of_epoch": 1791409578.546
       },
       "orderbook_live_depth": {
         "source": "REAL_BINANCE_FUTURES_L2",
         "venue": "BINANCE_USDM_FUTURES",
         "aggregation": "ANONYMOUS_PRICE_LEVELS_NOT_ORDERS",
-        "binance_mid": 299.125,
-        "top20_bid_depth_usd": 24584.65,
-        "top20_ask_depth_usd": 74452.1,
-        "book_imbalance": -0.5035,
-        "skew_ratio": 0.3302,
+        "binance_mid": 299.155,
+        "top20_bid_depth_usd": 79758.76,
+        "top20_ask_depth_usd": 58748.6,
+        "book_imbalance": 0.1517,
+        "skew_ratio": 1.3576,
         "bids_top20": [
           [
+            299.15,
+            8.897,
+            2661.54,
+            2661.54
+          ],
+          [
+            299.14,
+            0.074,
+            22.14,
+            2683.67
+          ],
+          [
+            299.13,
+            0.272,
+            81.36,
+            2765.04
+          ],
+          [
             299.12,
-            3.585,
-            1072.35,
-            1072.35
+            0.981,
+            293.44,
+            3058.47
           ],
           [
             299.11,
-            1.269,
-            379.57,
-            1451.92
+            0.914,
+            273.39,
+            3331.86
+          ],
+          [
+            299.1,
+            167.792,
+            50186.59,
+            53518.45
           ],
           [
             299.09,
-            5.526,
-            1652.77,
-            3104.69
+            2.248,
+            672.35,
+            54190.8
           ],
           [
             299.08,
-            0.278,
-            83.14,
-            3187.83
+            9.311,
+            2784.73,
+            56975.54
           ],
           [
             299.07,
-            0.698,
-            208.75,
-            3396.58
+            10.606,
+            3171.94,
+            60147.47
           ],
           [
             299.06,
-            0.948,
-            283.51,
-            3680.09
+            4.409,
+            1318.56,
+            61466.03
           ],
           [
             299.05,
-            0.489,
-            146.24,
-            3826.33
+            12.777,
+            3820.96,
+            65286.99
           ],
           [
             299.04,
-            3.762,
-            1124.99,
-            4951.32
+            2.063,
+            616.92,
+            65903.91
           ],
           [
             299.03,
-            1.879,
-            561.88,
-            5513.19
+            3.663,
+            1095.35,
+            66999.26
           ],
           [
             299.02,
-            0.392,
-            117.22,
-            5630.41
+            7.386,
+            2208.56,
+            69207.82
           ],
           [
             299.01,
-            0.068,
-            20.33,
-            5650.74
+            0.135,
+            40.37,
+            69248.18
           ],
           [
             299.0,
-            2.347,
-            701.75,
-            6352.49
+            0.452,
+            135.15,
+            69383.33
           ],
           [
             298.99,
-            6.394,
-            1911.74,
-            8264.24
+            4.298,
+            1285.06,
+            70668.39
           ],
           [
             298.98,
-            7.763,
-            2320.98,
-            10585.22
+            5.411,
+            1617.78,
+            72286.17
           ],
           [
             298.97,
-            9.493,
-            2838.12,
-            13423.34
+            8.641,
+            2583.4,
+            74869.57
           ],
           [
             298.96,
-            25.137,
-            7514.96,
-            20938.3
-          ],
-          [
-            298.95,
-            0.142,
-            42.45,
-            20980.75
-          ],
-          [
-            298.94,
-            3.06,
-            914.76,
-            21895.5
-          ],
-          [
-            298.93,
-            5.81,
-            1736.78,
-            23632.29
-          ],
-          [
-            298.92,
-            3.186,
-            952.36,
-            24584.65
+            16.354,
+            4889.19,
+            79758.76
           ]
         ],
         "asks_top20": [
           [
-            299.13,
-            0.168,
-            50.25,
-            50.25
-          ],
-          [
-            299.14,
-            35.547,
-            10633.53,
-            10683.78
-          ],
-          [
-            299.15,
-            12.782,
-            3823.74,
-            14507.52
-          ],
-          [
             299.16,
-            35.581,
-            10644.41,
-            25151.93
+            1.913,
+            572.29,
+            572.29
           ],
           [
             299.17,
-            2.051,
-            613.6,
-            25765.53
-          ],
-          [
-            299.18,
-            10.371,
-            3102.8,
-            28868.32
+            19.963,
+            5972.33,
+            6544.62
           ],
           [
             299.19,
-            2.238,
-            669.59,
-            29537.91
+            0.145,
+            43.38,
+            6588.01
           ],
           [
             299.2,
-            18.762,
-            5613.59,
-            35151.5
+            0.843,
+            252.23,
+            6840.23
           ],
           [
             299.21,
-            22.368,
-            6692.73,
-            41844.23
+            0.378,
+            113.1,
+            6953.33
           ],
           [
             299.22,
-            30.859,
-            9233.63,
-            51077.86
+            0.779,
+            233.09,
+            7186.43
           ],
           [
             299.23,
-            14.646,
-            4382.52,
-            55460.38
+            5.209,
+            1558.69,
+            8745.11
           ],
           [
             299.24,
-            0.544,
-            162.79,
-            55623.17
+            8.028,
+            2402.3,
+            11147.41
           ],
           [
             299.25,
-            1.058,
-            316.61,
-            55939.78
+            5.054,
+            1512.41,
+            12659.82
           ],
           [
             299.26,
-            5.738,
-            1717.15,
-            57656.93
+            44.838,
+            13418.22,
+            26078.04
           ],
           [
             299.27,
-            7.125,
-            2132.3,
-            59789.23
+            2.465,
+            737.7,
+            26815.74
           ],
           [
             299.28,
-            41.216,
-            12335.12,
-            72124.35
+            5.723,
+            1712.78,
+            28528.52
           ],
           [
             299.29,
-            1.639,
-            490.54,
-            72614.89
+            2.83,
+            846.99,
+            29375.51
           ],
           [
             299.3,
-            0.887,
-            265.48,
-            72880.37
+            17.601,
+            5267.98,
+            34643.49
           ],
           [
             299.31,
-            0.243,
-            72.73,
-            72953.1
+            19.605,
+            5867.97,
+            40511.47
           ],
           [
             299.32,
-            5.008,
-            1498.99,
-            74452.1
+            20.308,
+            6078.59,
+            46590.06
+          ],
+          [
+            299.33,
+            10.949,
+            3277.36,
+            49867.42
+          ],
+          [
+            299.34,
+            23.597,
+            7063.53,
+            56930.95
+          ],
+          [
+            299.35,
+            5.761,
+            1724.56,
+            58655.5
+          ],
+          [
+            299.36,
+            0.311,
+            93.1,
+            58748.6
           ]
         ],
         "whale_walls_l3": [],
         "l2_wall_levels": [],
         "wall_coverage": "SAMPLED_ANONYMOUS_BINANCE_AGGREGATED_L2_NOT_L3",
-        "wall_sample_ts_epoch": 1791409496.473645
+        "wall_sample_ts_epoch": 1791409555.599304
       },
       "pioneer_microstructure_eval": {
         "status": "UNAVAILABLE_UNVERIFIED_ORDERFLOW",
@@ -14231,21 +14105,13 @@
         "portfolio_gating": "ADMISSION_FROZEN_UNVERIFIED_DATA"
       },
       "funding_and_rates": {
-        "last_funding_rate_bps": 0.79,
+        "last_funding_rate_bps": 0.8,
         "predicted_funding_rate_bps": null,
         "predicted_funding_source": "UNAVAILABLE_IN_PREMIUM_INDEX",
-        "mark_price": 299.2016,
-        "index_price": 299.3477
+        "mark_price": 299.1705,
+        "index_price": 299.357
       },
       "cvd_1m_buckets": [
-        {
-          "ts": 1791405960,
-          "total_vol_usd": 5960.08,
-          "taker_buy_usd": 4402.57,
-          "taker_sell_usd": 1557.51,
-          "cvd_delta_usd": 2845.06,
-          "trades": 83
-        },
         {
           "ts": 1791406020,
           "total_vol_usd": 12772.89,
@@ -15226,13 +15092,13 @@
       "symbol_broker": "LTCUSD.pi",
       "category": "CRYPTO",
       "quotes": {
-        "bid": 65.46,
-        "ask": 65.76,
-        "mid": 65.61,
+        "bid": 65.45,
+        "ask": 65.75,
+        "mid": 65.6,
         "spread_price": 0.3,
-        "spread_bps": 45.72,
+        "spread_bps": 45.73,
         "quote_source": "MT5_L1_TICK",
-        "quote_age_s": -16.57,
+        "quote_age_s": -9.74,
         "quote_freshness": "STALE",
         "specs_source": "BROKER_MT5_SYMBOL_INFO",
         "tick_size": 0.001,
@@ -15270,7 +15136,7 @@
         "indicators_source": "LIVE_BRIDGE",
         "vwap_weight_unit": "UNAVAILABLE",
         "bars_last_close_utc": "2026-10-07 21:45 UTC",
-        "indicator_age_min": 0.0
+        "indicator_age_min": 0.9
       },
       "volume_profile": {
         "poc": null,
@@ -15299,262 +15165,262 @@
         "top_long_cascade_bands_below": [],
         "top_short_squeeze_bands_above": [],
         "reason": "Open interest cannot identify liquidation prices or leverage",
-        "binance_futures_open_interest_contracts": 1379677.758,
+        "binance_futures_open_interest_contracts": 1379920.929,
         "open_interest_source": "BINANCE_FUTURES_PUBLIC_REST",
         "open_interest_venue": "BINANCE_USDM_FUTURES",
-        "open_interest_as_of_epoch": 1791409517.605
+        "open_interest_as_of_epoch": 1791409576.715
       },
       "orderbook_live_depth": {
         "source": "REAL_BINANCE_FUTURES_L2",
         "venue": "BINANCE_USDM_FUTURES",
         "aggregation": "ANONYMOUS_PRICE_LEVELS_NOT_ORDERS",
-        "binance_mid": 65.605,
-        "top20_bid_depth_usd": 956383.1,
-        "top20_ask_depth_usd": 1232965.83,
-        "book_imbalance": -0.1263,
-        "skew_ratio": 0.7757,
+        "binance_mid": 65.595,
+        "top20_bid_depth_usd": 999932.02,
+        "top20_ask_depth_usd": 930829.45,
+        "book_imbalance": 0.0358,
+        "skew_ratio": 1.0742,
         "bids_top20": [
           [
-            65.6,
-            136.827,
-            8975.85,
-            8975.85
-          ],
-          [
             65.59,
-            193.415,
-            12686.09,
-            21661.94
+            138.704,
+            9097.6,
+            9097.6
           ],
           [
             65.58,
-            123.584,
-            8104.64,
-            29766.58
+            148.038,
+            9708.33,
+            18805.93
           ],
           [
             65.57,
-            213.117,
-            13974.08,
-            43740.66
+            210.414,
+            13796.85,
+            32602.77
           ],
           [
             65.56,
-            647.649,
-            42459.87,
-            86200.53
+            451.285,
+            29586.24,
+            62189.02
           ],
           [
             65.55,
-            620.616,
-            40681.38,
-            126881.91
+            579.351,
+            37976.46,
+            100165.48
           ],
           [
             65.54,
-            450.484,
-            29524.72,
-            156406.63
+            407.652,
+            26717.51,
+            126882.99
           ],
           [
             65.53,
-            432.609,
-            28348.87,
-            184755.5
+            864.329,
+            56639.48,
+            183522.47
           ],
           [
             65.52,
-            1840.213,
-            120570.76,
-            305326.25
+            1854.447,
+            121503.37,
+            305025.83
           ],
           [
             65.51,
-            1051.623,
-            68891.82,
-            374218.08
+            1299.008,
+            85098.01,
+            390123.85
           ],
           [
             65.5,
-            331.564,
-            21717.44,
-            395935.52
+            345.782,
+            22648.72,
+            412772.57
           ],
           [
             65.49,
-            226.19,
-            14813.18,
-            410748.7
+            218.257,
+            14293.65,
+            427066.22
           ],
           [
             65.48,
-            312.404,
-            20456.21,
-            431204.92
+            344.758,
+            22574.75,
+            449640.97
           ],
           [
             65.47,
             213.203,
             13958.4,
-            445163.32
+            463599.38
           ],
           [
             65.46,
             224.286,
             14681.76,
-            459845.08
+            478281.14
           ],
           [
             65.45,
-            1278.427,
-            83673.05,
-            543518.12
+            1121.106,
+            73376.39,
+            551657.52
           ],
           [
             65.44,
-            4284.466,
-            280375.46,
-            823893.58
+            4188.117,
+            274070.38,
+            825727.9
           ],
           [
             65.43,
-            1544.976,
-            101087.78,
-            924981.36
+            1566.433,
+            102491.71,
+            928219.61
           ],
           [
             65.42,
-            212.988,
-            13933.67,
-            938915.03
+            343.647,
+            22481.39,
+            950701.0
           ],
           [
             65.41,
             267.055,
             17468.07,
-            956383.1
+            968169.07
+          ],
+          [
+            65.4,
+            485.672,
+            31762.95,
+            999932.02
           ]
         ],
         "asks_top20": [
           [
+            65.6,
+            471.623,
+            30938.47,
+            30938.47
+          ],
+          [
             65.61,
-            664.686,
-            43610.05,
-            43610.05
+            165.729,
+            10873.48,
+            41811.95
           ],
           [
             65.62,
-            184.491,
-            12106.3,
-            55716.35
+            172.623,
+            11327.52,
+            53139.47
           ],
           [
             65.63,
-            132.058,
-            8666.97,
-            64383.31
+            188.714,
+            12385.3,
+            65524.77
           ],
           [
             65.64,
-            617.019,
-            40501.13,
-            104884.44
+            678.971,
+            44567.66,
+            110092.43
           ],
           [
             65.65,
-            249.047,
-            16349.94,
-            121234.38
+            308.214,
+            20234.25,
+            130326.68
           ],
           [
             65.66,
-            378.837,
-            24874.44,
-            146108.81
+            238.862,
+            15683.68,
+            146010.35
           ],
           [
             65.67,
-            2010.872,
-            132053.96,
-            278162.78
+            742.908,
+            48786.77,
+            194797.12
           ],
           [
             65.68,
-            1543.308,
-            101364.47,
-            379527.25
+            1862.926,
+            122356.98,
+            317154.1
           ],
           [
             65.69,
-            537.161,
-            35286.11,
-            414813.35
+            515.784,
+            33881.85,
+            351035.95
           ],
           [
             65.7,
-            500.47,
-            32880.88,
-            447694.23
+            347.744,
+            22846.78,
+            373882.73
           ],
           [
             65.71,
-            636.523,
-            41825.93,
-            489520.16
+            577.525,
+            37949.17,
+            411831.9
           ],
           [
             65.72,
-            846.961,
-            55662.28,
-            545182.44
+            851.982,
+            55992.26,
+            467824.16
           ],
           [
             65.73,
-            3969.785,
-            260933.97,
-            806116.4
+            3994.728,
+            262573.47,
+            730397.63
           ],
           [
             65.74,
-            180.912,
-            11893.15,
-            818009.56
+            224.808,
+            14778.88,
+            745176.51
           ],
           [
             65.75,
-            496.942,
-            32673.94,
-            850683.5
+            542.368,
+            35660.7,
+            780837.2
           ],
           [
             65.76,
-            784.322,
-            51577.01,
-            902260.51
+            761.249,
+            50059.73,
+            830896.94
           ],
           [
             65.77,
-            183.011,
-            12036.63,
-            914297.14
+            188.028,
+            12366.6,
+            843263.54
           ],
           [
             65.78,
-            228.09,
-            15003.76,
-            929300.9
+            228.534,
+            15032.97,
+            858296.51
           ],
           [
             65.79,
             1102.492,
             72532.95,
-            1001833.85
-          ],
-          [
-            65.8,
-            3512.644,
-            231131.98,
-            1232965.83
+            930829.45
           ]
         ],
         "whale_walls_l3": [],
@@ -15562,33 +15428,24 @@
           {
             "side": "BUY",
             "price": 65.44,
-            "notional_usd": 280375.46,
-            "distance_pct": -0.25,
-            "sample_span_sec": 33.2,
+            "notional_usd": 274070.38,
+            "distance_pct": -0.24,
+            "sample_span_sec": 92.3,
             "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
             "first_seen_utc": "2026-10-07 21:44:23 UTC"
           },
           {
             "side": "SELL",
             "price": 65.73,
-            "notional_usd": 260933.97,
-            "distance_pct": 0.19,
-            "sample_span_sec": 0.0,
-            "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
-            "first_seen_utc": "2026-10-07 21:44:56 UTC"
-          },
-          {
-            "side": "SELL",
-            "price": 65.8,
-            "notional_usd": 231131.98,
-            "distance_pct": 0.3,
-            "sample_span_sec": 0.0,
+            "notional_usd": 262573.47,
+            "distance_pct": 0.21,
+            "sample_span_sec": 59.1,
             "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
             "first_seen_utc": "2026-10-07 21:44:56 UTC"
           }
         ],
         "wall_coverage": "SAMPLED_ANONYMOUS_BINANCE_AGGREGATED_L2_NOT_L3",
-        "wall_sample_ts_epoch": 1791409496.473645
+        "wall_sample_ts_epoch": 1791409555.599304
       },
       "pioneer_microstructure_eval": {
         "status": "UNAVAILABLE_UNVERIFIED_ORDERFLOW",
@@ -15602,18 +15459,10 @@
         "last_funding_rate_bps": 0.83,
         "predicted_funding_rate_bps": null,
         "predicted_funding_source": "UNAVAILABLE_IN_PREMIUM_INDEX",
-        "mark_price": 65.61,
-        "index_price": 65.6406
+        "mark_price": 65.6,
+        "index_price": 65.6415
       },
       "cvd_1m_buckets": [
-        {
-          "ts": 1791405960,
-          "total_vol_usd": 18266.88,
-          "taker_buy_usd": 16682.62,
-          "taker_sell_usd": 1584.26,
-          "cvd_delta_usd": 15098.37,
-          "trades": 108
-        },
         {
           "ts": 1791406020,
           "total_vol_usd": 7797.77,
@@ -16595,12 +16444,12 @@
       "category": "CRYPTO",
       "quotes": {
         "bid": 11.02,
-        "ask": 11.06,
-        "mid": 11.04,
-        "spread_price": 0.04,
-        "spread_bps": 36.23,
+        "ask": 11.05,
+        "mid": 11.035,
+        "spread_price": 0.03,
+        "spread_bps": 27.19,
         "quote_source": "MT5_L1_TICK",
-        "quote_age_s": -30.88,
+        "quote_age_s": -24.67,
         "quote_freshness": "STALE",
         "specs_source": "BROKER_MT5_SYMBOL_INFO",
         "tick_size": 0.01,
@@ -16638,7 +16487,7 @@
         "indicators_source": "LIVE_BRIDGE",
         "vwap_weight_unit": "UNAVAILABLE",
         "bars_last_close_utc": "2026-10-07 21:45 UTC",
-        "indicator_age_min": 0.0
+        "indicator_age_min": 0.9
       },
       "volume_profile": {
         "poc": null,
@@ -16667,268 +16516,268 @@
         "top_long_cascade_bands_below": [],
         "top_short_squeeze_bands_above": [],
         "reason": "Open interest cannot identify liquidation prices or leverage",
-        "binance_futures_open_interest_contracts": 10434028.0,
+        "binance_futures_open_interest_contracts": 10430542.0,
         "open_interest_source": "BINANCE_FUTURES_PUBLIC_REST",
         "open_interest_venue": "BINANCE_USDM_FUTURES",
-        "open_interest_as_of_epoch": 1791409519.515
+        "open_interest_as_of_epoch": 1791409582.19
       },
       "orderbook_live_depth": {
         "source": "REAL_BINANCE_FUTURES_L2",
         "venue": "BINANCE_USDM_FUTURES",
         "aggregation": "ANONYMOUS_PRICE_LEVELS_NOT_ORDERS",
-        "binance_mid": 11.0345,
-        "top20_bid_depth_usd": 98554.93,
-        "top20_ask_depth_usd": 180994.09,
-        "book_imbalance": -0.2949,
-        "skew_ratio": 0.5445,
+        "binance_mid": 11.0315,
+        "top20_bid_depth_usd": 120362.55,
+        "top20_ask_depth_usd": 297992.96,
+        "book_imbalance": -0.4246,
+        "skew_ratio": 0.4039,
         "bids_top20": [
           [
-            11.034,
-            118.0,
-            1302.01,
-            1302.01
-          ],
-          [
-            11.033,
-            102.0,
-            1125.37,
-            2427.38
-          ],
-          [
-            11.032,
-            40.0,
-            441.28,
-            2868.66
-          ],
-          [
             11.031,
-            7.0,
-            77.22,
-            2945.88
+            184.0,
+            2029.7,
+            2029.7
           ],
           [
             11.03,
-            127.0,
-            1400.81,
-            4346.69
+            1827.0,
+            20151.81,
+            22181.51
           ],
           [
             11.029,
-            165.0,
-            1819.79,
-            6166.47
+            14.0,
+            154.41,
+            22335.92
           ],
           [
             11.028,
-            287.0,
-            3165.04,
-            9331.51
+            20.0,
+            220.56,
+            22556.48
           ],
           [
             11.027,
-            276.0,
-            3043.45,
-            12374.96
+            32.0,
+            352.86,
+            22909.34
           ],
           [
             11.026,
             278.0,
             3065.23,
-            15440.19
+            25974.57
           ],
           [
             11.025,
-            393.0,
-            4332.82,
-            19773.01
+            218.0,
+            2403.45,
+            28378.02
           ],
           [
             11.024,
-            840.0,
-            9260.16,
-            29033.17
+            307.0,
+            3384.37,
+            31762.39
           ],
           [
             11.023,
-            498.0,
-            5489.45,
-            34522.62
+            621.0,
+            6845.28,
+            38607.67
           ],
           [
             11.022,
-            218.0,
-            2402.8,
-            36925.42
+            252.0,
+            2777.54,
+            41385.22
           ],
           [
             11.021,
-            417.0,
-            4595.76,
-            41521.18
+            450.0,
+            4959.45,
+            46344.67
           ],
           [
             11.02,
-            531.0,
-            5851.62,
-            47372.8
+            501.0,
+            5521.02,
+            51865.69
           ],
           [
             11.019,
-            275.0,
-            3030.22,
-            50403.02
+            1005.0,
+            11074.09,
+            62939.78
           ],
           [
             11.018,
-            408.0,
-            4495.34,
-            54898.37
+            605.0,
+            6665.89,
+            69605.67
           ],
           [
             11.017,
-            871.0,
-            9595.81,
-            64494.17
+            1509.0,
+            16624.65,
+            86230.33
           ],
           [
             11.016,
-            2372.0,
-            26129.95,
-            90624.13
+            553.0,
+            6091.85,
+            92322.17
           ],
           [
             11.015,
-            720.0,
-            7930.8,
-            98554.93
+            751.0,
+            8272.27,
+            100594.44
+          ],
+          [
+            11.014,
+            638.0,
+            7026.93,
+            107621.37
+          ],
+          [
+            11.013,
+            296.0,
+            3259.85,
+            110881.22
+          ],
+          [
+            11.012,
+            861.0,
+            9481.33,
+            120362.55
           ]
         ],
         "asks_top20": [
           [
+            11.032,
+            1322.0,
+            14584.3,
+            14584.3
+          ],
+          [
+            11.033,
+            48.0,
+            529.58,
+            15113.89
+          ],
+          [
+            11.034,
+            532.0,
+            5870.09,
+            20983.98
+          ],
+          [
             11.035,
-            348.0,
-            3840.18,
-            3840.18
+            768.0,
+            8474.88,
+            29458.86
           ],
           [
             11.036,
-            721.0,
-            7956.96,
-            11797.14
+            234.0,
+            2582.42,
+            32041.28
           ],
           [
             11.037,
-            449.0,
-            4955.61,
-            16752.75
+            421.0,
+            4646.58,
+            36687.86
           ],
           [
             11.038,
-            576.0,
-            6357.89,
-            23110.64
+            541.0,
+            5971.56,
+            42659.42
           ],
           [
             11.039,
-            1002.0,
-            11061.08,
-            34171.71
+            812.0,
+            8963.67,
+            51623.08
           ],
           [
             11.04,
-            504.0,
-            5564.16,
-            39735.88
+            836.0,
+            9229.44,
+            60852.52
           ],
           [
             11.041,
-            336.0,
-            3709.78,
-            43445.65
+            1236.0,
+            13646.68,
+            74499.2
           ],
           [
             11.042,
-            787.0,
-            8690.05,
-            52135.71
+            2496.0,
+            27560.83,
+            102060.03
           ],
           [
             11.043,
-            2325.0,
-            25674.97,
-            77810.68
+            785.0,
+            8668.75,
+            110728.79
           ],
           [
             11.044,
-            2871.0,
-            31707.32,
-            109518.0
+            364.0,
+            4020.02,
+            114748.8
           ],
           [
             11.045,
-            1556.0,
-            17186.02,
-            126704.02
+            238.0,
+            2628.71,
+            117377.51
           ],
           [
             11.046,
-            615.0,
-            6793.29,
-            133497.31
+            1135.0,
+            12537.21,
+            129914.72
           ],
           [
             11.047,
-            592.0,
-            6539.82,
-            140037.14
+            593.0,
+            6550.87,
+            136465.59
           ],
           [
             11.048,
-            307.0,
-            3391.74,
-            143428.87
+            480.0,
+            5303.04,
+            141768.63
           ],
           [
             11.049,
-            367.0,
-            4054.98,
-            147483.86
+            2904.0,
+            32086.3,
+            173854.93
           ],
           [
             11.05,
-            573.0,
-            6331.65,
-            153815.51
+            8902.0,
+            98367.1,
+            272222.03
           ],
           [
             11.051,
-            769.0,
-            8498.22,
-            162313.73
-          ],
-          [
-            11.052,
-            241.0,
-            2663.53,
-            164977.26
-          ],
-          [
-            11.053,
-            415.0,
-            4586.99,
-            169564.25
-          ],
-          [
-            11.054,
-            1034.0,
-            11429.84,
-            180994.09
+            2332.0,
+            25770.93,
+            297992.96
           ]
         ],
         "whale_walls_l3": [],
         "l2_wall_levels": [],
         "wall_coverage": "SAMPLED_ANONYMOUS_BINANCE_AGGREGATED_L2_NOT_L3",
-        "wall_sample_ts_epoch": 1791409496.473645
+        "wall_sample_ts_epoch": 1791409555.599304
       },
       "pioneer_microstructure_eval": {
         "status": "UNAVAILABLE_UNVERIFIED_ORDERFLOW",
@@ -16939,21 +16788,13 @@
         "portfolio_gating": "ADMISSION_FROZEN_UNVERIFIED_DATA"
       },
       "funding_and_rates": {
-        "last_funding_rate_bps": 0.62,
+        "last_funding_rate_bps": 0.61,
         "predicted_funding_rate_bps": null,
         "predicted_funding_source": "UNAVAILABLE_IN_PREMIUM_INDEX",
-        "mark_price": 11.0352,
-        "index_price": 11.0438
+        "mark_price": 11.032,
+        "index_price": 11.0394
       },
       "cvd_1m_buckets": [
-        {
-          "ts": 1791405960,
-          "total_vol_usd": 50183.17,
-          "taker_buy_usd": 42601.11,
-          "taker_sell_usd": 7582.06,
-          "cvd_delta_usd": 35019.04,
-          "trades": 288
-        },
         {
           "ts": 1791406020,
           "total_vol_usd": 69766.89,
@@ -17934,13 +17775,13 @@
       "symbol_broker": "NERUSD.p",
       "category": "CRYPTO",
       "quotes": {
-        "bid": 5.234,
-        "ask": 5.272,
-        "mid": 5.253,
-        "spread_price": 0.038,
-        "spread_bps": 72.34,
+        "bid": 5.227,
+        "ask": 5.264,
+        "mid": 5.2455,
+        "spread_price": 0.037,
+        "spread_bps": 70.54,
         "quote_source": "MT5_L1_TICK",
-        "quote_age_s": -29.96,
+        "quote_age_s": -31.51,
         "quote_freshness": "STALE",
         "specs_source": "BROKER_MT5_SYMBOL_INFO",
         "tick_size": 0.001,
@@ -17968,7 +17809,7 @@
         "vwap_z_score": null,
         "rsi_14": 50.68,
         "atr_14": 0.0699,
-        "atr_pct": 1.33,
+        "atr_pct": 1.332,
         "ema_20": 5.2638,
         "ema_50": 5.1728,
         "ema_200": 5.0971,
@@ -17978,7 +17819,7 @@
         "indicators_source": "LIVE_BRIDGE",
         "vwap_weight_unit": "UNAVAILABLE",
         "bars_last_close_utc": "2026-10-07 21:45 UTC",
-        "indicator_age_min": 0.0
+        "indicator_age_min": 0.9
       },
       "volume_profile": {
         "poc": null,
@@ -18007,268 +17848,268 @@
         "top_long_cascade_bands_below": [],
         "top_short_squeeze_bands_above": [],
         "reason": "Open interest cannot identify liquidation prices or leverage",
-        "binance_futures_open_interest_contracts": 56611790.0,
+        "binance_futures_open_interest_contracts": 56620221.0,
         "open_interest_source": "BINANCE_FUTURES_PUBLIC_REST",
         "open_interest_venue": "BINANCE_USDM_FUTURES",
-        "open_interest_as_of_epoch": 1791409523.116
+        "open_interest_as_of_epoch": 1791409583.024
       },
       "orderbook_live_depth": {
         "source": "REAL_BINANCE_FUTURES_L2",
         "venue": "BINANCE_USDM_FUTURES",
         "aggregation": "ANONYMOUS_PRICE_LEVELS_NOT_ORDERS",
-        "binance_mid": 5.2545,
-        "top20_bid_depth_usd": 555377.55,
-        "top20_ask_depth_usd": 729095.67,
-        "book_imbalance": -0.1352,
-        "skew_ratio": 0.7617,
+        "binance_mid": 5.2455,
+        "top20_bid_depth_usd": 497484.46,
+        "top20_ask_depth_usd": 823545.06,
+        "book_imbalance": -0.2468,
+        "skew_ratio": 0.6041,
         "bids_top20": [
           [
-            5.254,
-            666.0,
-            3499.16,
-            3499.16
-          ],
-          [
-            5.253,
-            2867.0,
-            15060.35,
-            18559.51
-          ],
-          [
-            5.252,
-            530.0,
-            2783.56,
-            21343.08
-          ],
-          [
-            5.251,
-            1040.0,
-            5461.04,
-            26804.12
-          ],
-          [
-            5.25,
-            1639.0,
-            8604.75,
-            35408.87
-          ],
-          [
-            5.249,
-            3535.0,
-            18555.22,
-            53964.08
-          ],
-          [
-            5.248,
-            2599.0,
-            13639.55,
-            67603.63
-          ],
-          [
-            5.247,
-            4001.0,
-            20993.25,
-            88596.88
-          ],
-          [
-            5.246,
-            2746.0,
-            14405.52,
-            103002.4
-          ],
-          [
             5.245,
-            4447.0,
-            23324.51,
-            126326.91
+            161.0,
+            844.45,
+            844.45
           ],
           [
             5.244,
-            4184.0,
-            21940.9,
-            148267.81
+            577.0,
+            3025.79,
+            3870.23
           ],
           [
             5.243,
-            5160.0,
-            27053.88,
-            175321.69
+            1319.0,
+            6915.52,
+            10785.75
           ],
           [
             5.242,
-            8059.0,
-            42245.28,
-            217566.96
+            4879.0,
+            25575.72,
+            36361.47
           ],
           [
             5.241,
-            10190.0,
-            53405.79,
-            270972.75
+            1838.0,
+            9632.96,
+            45994.43
           ],
           [
             5.24,
-            22682.0,
-            118853.68,
-            389826.43
+            5573.0,
+            29202.52,
+            75196.95
           ],
           [
             5.239,
-            4207.0,
-            22040.47,
-            411866.91
+            6249.0,
+            32738.51,
+            107935.46
           ],
           [
             5.238,
-            9784.0,
-            51248.59,
-            463115.5
+            5867.0,
+            30731.35,
+            138666.8
           ],
           [
             5.237,
-            7863.0,
-            41178.53,
-            504294.03
+            19224.0,
+            100676.09,
+            239342.89
           ],
           [
             5.236,
-            5623.0,
-            29442.03,
-            533736.06
+            6343.0,
+            33211.95,
+            272554.84
           ],
           [
             5.235,
-            4134.0,
-            21641.49,
-            555377.55
+            2162.0,
+            11318.07,
+            283872.91
+          ],
+          [
+            5.234,
+            4025.0,
+            21066.85,
+            304939.76
+          ],
+          [
+            5.233,
+            5343.0,
+            27959.92,
+            332899.68
+          ],
+          [
+            5.232,
+            3849.0,
+            20137.97,
+            353037.65
+          ],
+          [
+            5.231,
+            3814.0,
+            19951.03,
+            372988.68
+          ],
+          [
+            5.23,
+            2466.0,
+            12897.18,
+            385885.86
+          ],
+          [
+            5.229,
+            4485.0,
+            23452.06,
+            409337.92
+          ],
+          [
+            5.228,
+            2990.0,
+            15631.72,
+            424969.64
+          ],
+          [
+            5.227,
+            9292.0,
+            48569.28,
+            473538.93
+          ],
+          [
+            5.226,
+            4582.0,
+            23945.53,
+            497484.46
           ]
         ],
         "asks_top20": [
           [
+            5.246,
+            1965.0,
+            10308.39,
+            10308.39
+          ],
+          [
+            5.247,
+            3290.0,
+            17262.63,
+            27571.02
+          ],
+          [
+            5.248,
+            5675.0,
+            29782.4,
+            57353.42
+          ],
+          [
+            5.249,
+            5861.0,
+            30764.39,
+            88117.81
+          ],
+          [
+            5.25,
+            4196.0,
+            22029.0,
+            110146.81
+          ],
+          [
+            5.251,
+            5864.0,
+            30791.86,
+            140938.67
+          ],
+          [
+            5.252,
+            3636.0,
+            19096.27,
+            160034.95
+          ],
+          [
+            5.253,
+            5737.0,
+            30136.46,
+            190171.41
+          ],
+          [
+            5.254,
+            2291.0,
+            12036.91,
+            202208.32
+          ],
+          [
             5.255,
-            1338.0,
-            7031.19,
-            7031.19
+            6132.0,
+            32223.66,
+            234431.98
           ],
           [
             5.256,
-            2716.0,
-            14275.3,
-            21306.49
+            4323.0,
+            22721.69,
+            257153.67
           ],
           [
             5.257,
-            3218.0,
-            16917.03,
-            38223.51
+            4325.0,
+            22736.52,
+            279890.19
           ],
           [
             5.258,
-            4893.0,
-            25727.39,
-            63950.91
+            6189.0,
+            32541.76,
+            312431.96
           ],
           [
             5.259,
-            5393.0,
-            28361.79,
-            92312.69
+            6099.0,
+            32074.64,
+            344506.6
           ],
           [
             5.26,
-            6271.0,
-            32985.46,
-            125298.15
+            7563.0,
+            39781.38,
+            384287.98
           ],
           [
             5.261,
-            5410.0,
-            28462.01,
-            153760.16
+            9543.0,
+            50205.72,
+            434493.7
           ],
           [
             5.262,
-            5977.0,
-            31450.97,
-            185211.14
+            12518.0,
+            65869.72,
+            500363.42
           ],
           [
             5.263,
-            4194.0,
-            22073.02,
-            207284.16
+            26945.0,
+            141811.54,
+            642174.95
           ],
           [
             5.264,
-            5855.0,
-            30820.72,
-            238104.88
+            9139.0,
+            48107.7,
+            690282.65
           ],
           [
             5.265,
-            3204.0,
-            16869.06,
-            254973.94
-          ],
-          [
-            5.266,
-            3369.0,
-            17741.15,
-            272715.09
-          ],
-          [
-            5.267,
-            4414.0,
-            23248.54,
-            295963.63
-          ],
-          [
-            5.268,
-            5625.0,
-            29632.5,
-            325596.13
-          ],
-          [
-            5.269,
-            8190.0,
-            43153.11,
-            368749.24
-          ],
-          [
-            5.27,
-            17060.0,
-            89906.2,
-            458655.44
-          ],
-          [
-            5.271,
-            6710.0,
-            35368.41,
-            494023.85
-          ],
-          [
-            5.272,
-            9749.0,
-            51396.73,
-            545420.58
-          ],
-          [
-            5.273,
-            23600.0,
-            124442.8,
-            669863.38
-          ],
-          [
-            5.274,
-            11231.0,
-            59232.29,
-            729095.67
+            25311.0,
+            133262.41,
+            823545.06
           ]
         ],
         "whale_walls_l3": [],
         "l2_wall_levels": [],
         "wall_coverage": "SAMPLED_ANONYMOUS_BINANCE_AGGREGATED_L2_NOT_L3",
-        "wall_sample_ts_epoch": 1791409496.473645
+        "wall_sample_ts_epoch": 1791409555.599304
       },
       "pioneer_microstructure_eval": {
         "status": "UNAVAILABLE_UNVERIFIED_ORDERFLOW",
@@ -18282,18 +18123,10 @@
         "last_funding_rate_bps": 1.0,
         "predicted_funding_rate_bps": null,
         "predicted_funding_source": "UNAVAILABLE_IN_PREMIUM_INDEX",
-        "mark_price": 5.255,
-        "index_price": 5.2553
+        "mark_price": 5.246,
+        "index_price": 5.2478
       },
       "cvd_1m_buckets": [
-        {
-          "ts": 1791405960,
-          "total_vol_usd": 366981.45,
-          "taker_buy_usd": 170075.46,
-          "taker_sell_usd": 196905.98,
-          "cvd_delta_usd": -26830.52,
-          "trades": 1358
-        },
         {
           "ts": 1791406020,
           "total_vol_usd": 571515.91,
@@ -19280,7 +19113,7 @@
         "spread_price": 0.87,
         "spread_bps": 1.12,
         "quote_source": "MT5_L1_TICK",
-        "quote_age_s": 2696.72,
+        "quote_age_s": 2755.84,
         "quote_freshness": "STALE",
         "specs_source": "BROKER_MT5_SYMBOL_INFO",
         "tick_size": 0.01,
@@ -19318,7 +19151,7 @@
         "indicators_source": "LIVE_BRIDGE",
         "vwap_weight_unit": "UNAVAILABLE",
         "bars_last_close_utc": "2026-10-07 21:45 UTC",
-        "indicator_age_min": 0.0
+        "indicator_age_min": 0.9
       },
       "volume_profile": {
         "poc": null,
@@ -19391,7 +19224,7 @@
         "spread_price": 1.42,
         "spread_bps": 0.46,
         "quote_source": "MT5_L1_TICK",
-        "quote_age_s": 2696.72,
+        "quote_age_s": 2755.84,
         "quote_freshness": "STALE",
         "specs_source": "BROKER_MT5_SYMBOL_INFO",
         "tick_size": 0.01,
@@ -19429,7 +19262,7 @@
         "indicators_source": "LIVE_BRIDGE",
         "vwap_weight_unit": "UNAVAILABLE",
         "bars_last_close_utc": "2026-10-07 21:45 UTC",
-        "indicator_age_min": 0.0
+        "indicator_age_min": 0.9
       },
       "volume_profile": {
         "poc": null,
@@ -19502,7 +19335,7 @@
         "spread_price": 2.04,
         "spread_bps": 0.4,
         "quote_source": "MT5_L1_TICK",
-        "quote_age_s": 2697.9,
+        "quote_age_s": 2757.02,
         "quote_freshness": "STALE",
         "specs_source": "BROKER_MT5_SYMBOL_INFO",
         "tick_size": 0.01,
@@ -19540,7 +19373,7 @@
         "indicators_source": "LIVE_BRIDGE",
         "vwap_weight_unit": "UNAVAILABLE",
         "bars_last_close_utc": "2026-10-07 21:45 UTC",
-        "indicator_age_min": 0.0
+        "indicator_age_min": 0.9
       },
       "volume_profile": {
         "poc": null,
@@ -19613,7 +19446,7 @@
         "spread_price": 2.3,
         "spread_bps": 0.92,
         "quote_source": "MT5_L1_TICK",
-        "quote_age_s": 2757.56,
+        "quote_age_s": 2816.69,
         "quote_freshness": "STALE",
         "specs_source": "BROKER_MT5_SYMBOL_INFO",
         "tick_size": 0.01,
@@ -19651,7 +19484,7 @@
         "indicators_source": "LIVE_BRIDGE",
         "vwap_weight_unit": "UNAVAILABLE",
         "bars_last_close_utc": "2026-10-07 21:45 UTC",
-        "indicator_age_min": 0.0
+        "indicator_age_min": 0.9
       },
       "volume_profile": {
         "poc": null,
@@ -19724,7 +19557,7 @@
         "spread_price": 0.31,
         "spread_bps": 0.75,
         "quote_source": "MT5_L1_TICK",
-        "quote_age_s": 2756.57,
+        "quote_age_s": 2815.69,
         "quote_freshness": "STALE",
         "specs_source": "BROKER_MT5_SYMBOL_INFO",
         "tick_size": 0.01,
@@ -19762,7 +19595,7 @@
         "indicators_source": "LIVE_BRIDGE",
         "vwap_weight_unit": "UNAVAILABLE",
         "bars_last_close_utc": "2026-10-07 21:45 UTC",
-        "indicator_age_min": 0.0
+        "indicator_age_min": 0.9
       },
       "volume_profile": {
         "poc": null,
@@ -19835,7 +19668,7 @@
         "spread_price": 0.519,
         "spread_bps": 86.53,
         "quote_source": "MT5_L1_TICK",
-        "quote_age_s": 2696.6,
+        "quote_age_s": 2755.72,
         "quote_freshness": "STALE",
         "specs_source": "BROKER_MT5_SYMBOL_INFO",
         "tick_size": 0.001,
@@ -19873,7 +19706,7 @@
         "indicators_source": "LIVE_BRIDGE",
         "vwap_weight_unit": "UNAVAILABLE",
         "bars_last_close_utc": "2026-10-07 21:45 UTC",
-        "indicator_age_min": 0.0
+        "indicator_age_min": 0.9
       },
       "volume_profile": {
         "poc": null,
@@ -19946,7 +19779,7 @@
         "spread_price": 0.03,
         "spread_bps": 3.32,
         "quote_source": "MT5_L1_TICK",
-        "quote_age_s": 2715.66,
+        "quote_age_s": 2774.79,
         "quote_freshness": "STALE",
         "specs_source": "BROKER_MT5_SYMBOL_INFO",
         "tick_size": 0.001,
@@ -19984,7 +19817,7 @@
         "indicators_source": "LIVE_BRIDGE",
         "vwap_weight_unit": "UNAVAILABLE",
         "bars_last_close_utc": "2026-10-07 21:45 UTC",
-        "indicator_age_min": 0.0
+        "indicator_age_min": 0.9
       },
       "volume_profile": {
         "poc": null,
@@ -20051,13 +19884,13 @@
       "symbol_broker": "EURUSD.pi",
       "category": "FOREX",
       "quotes": {
-        "bid": 1.1192,
+        "bid": 1.1193,
         "ask": 1.1199,
         "mid": 1.1196,
-        "spread_price": 0.0007,
-        "spread_bps": 5.98,
+        "spread_price": 0.0006,
+        "spread_bps": 5.45,
         "quote_source": "MT5_L1_TICK",
-        "quote_age_s": -27.73,
+        "quote_age_s": -31.92,
         "quote_freshness": "STALE",
         "specs_source": "BROKER_MT5_SYMBOL_INFO",
         "tick_size": 1e-05,
@@ -20095,7 +19928,7 @@
         "indicators_source": "LIVE_BRIDGE",
         "vwap_weight_unit": "UNAVAILABLE",
         "bars_last_close_utc": "2026-10-07 21:45 UTC",
-        "indicator_age_min": 0.0
+        "indicator_age_min": 0.9
       },
       "volume_profile": {
         "poc": null,
@@ -20168,8 +20001,8 @@
         "spread_price": 0.0004,
         "spread_bps": 3.03,
         "quote_source": "MT5_L1_TICK",
-        "quote_age_s": 4.42,
-        "quote_freshness": "FRESH",
+        "quote_age_s": -14.93,
+        "quote_freshness": "STALE",
         "specs_source": "BROKER_MT5_SYMBOL_INFO",
         "tick_size": 1e-05,
         "contract_size": 100000.0,
@@ -20194,19 +20027,19 @@
         "session_sigma": null,
         "session_bars": 0,
         "vwap_z_score": null,
-        "rsi_14": 46.25,
-        "atr_14": 0.0006,
-        "atr_pct": 0.042,
+        "rsi_14": 45.88,
+        "atr_14": 0.0005,
+        "atr_pct": 0.04,
         "ema_20": 1.3213,
         "ema_50": 1.3218,
-        "ema_200": 1.3233,
+        "ema_200": 1.3232,
         "ema_200_bars_used": 800,
-        "ema_200_slope_3h_pct": -0.0184,
+        "ema_200_slope_3h_pct": -0.0188,
         "trend_regime": "BEARISH",
         "indicators_source": "LIVE_BRIDGE",
         "vwap_weight_unit": "UNAVAILABLE",
-        "bars_last_close_utc": "2026-10-07 21:30 UTC",
-        "indicator_age_min": 14.9
+        "bars_last_close_utc": "2026-10-07 21:45 UTC",
+        "indicator_age_min": 0.9
       },
       "volume_profile": {
         "poc": null,
@@ -20279,7 +20112,7 @@
         "spread_price": 0.079,
         "spread_bps": 5.0,
         "quote_source": "MT5_L1_TICK",
-        "quote_age_s": -17.41,
+        "quote_age_s": -31.51,
         "quote_freshness": "STALE",
         "specs_source": "BROKER_MT5_SYMBOL_INFO",
         "tick_size": 0.001,
@@ -20317,7 +20150,7 @@
         "indicators_source": "LIVE_BRIDGE",
         "vwap_weight_unit": "UNAVAILABLE",
         "bars_last_close_utc": "2026-10-07 21:45 UTC",
-        "indicator_age_min": 0.0
+        "indicator_age_min": 0.9
       },
       "volume_profile": {
         "poc": null,
