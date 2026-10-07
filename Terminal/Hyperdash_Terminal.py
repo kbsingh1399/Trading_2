@@ -230,7 +230,6 @@ class HyperdashTerminal:
             ("4", "Stop Clusters"),
             ("5", "Recent Trades"),
             ("6", "Universe Screener (234 Coins)"),
-            ("7", "Web2API Council (Port 8081)"),
         ]
         for key, label in tabs:
             if key == self.active_tab:
@@ -556,66 +555,6 @@ class HyperdashTerminal:
         subtitle = f"Showing Top 24 of {len(self.all_assets)} Active Perpetual Assets  |  Press [S] to switch or [←/→] to cycle"
         return Panel(table, subtitle=subtitle, style="cyan", border_style="cyan", box=box.ROUNDED)
 
-    def render_web2api(self) -> Panel:
-        """Render Live Gemini Web2API Council Service Monitor (Port 8081)."""
-        import urllib.request, json
-        start_t = time.time()
-        is_online = False
-        models = []
-        error_msg = ""
-        latency_ms = 0.0
-
-        try:
-            req = urllib.request.Request("http://localhost:8081/v1/models", headers={"Authorization": "Bearer sk-gemini"})
-            with urllib.request.urlopen(req, timeout=1.5) as resp:
-                data = json.loads(resp.read().decode("utf-8"))
-                models = data.get("data", [])
-                is_online = True
-                latency_ms = (time.time() - start_t) * 1000.0
-        except Exception as exc:
-            error_msg = str(exc)
-
-        table = Table(title="GEMINI WEB2API MULTI-AGENT COUNCIL DAEMON (PORT 8081)", box=box.SIMPLE_HEAD, expand=True)
-        table.add_column("Service / Host", style="bold")
-        table.add_column("Model ID", style="bold bright_cyan")
-        table.add_column("Capabilities & Tier", style="bright_white")
-        table.add_column("Latency / Quota", justify="right")
-
-        if is_online:
-            for idx, m in enumerate(models, 1):
-                mid = m.get("id", "unknown")
-                desc = m.get("description", "LLM Model")
-                is_flagship = "flash" in mid or "pro" in mid or "thinking" in mid
-                host_label = "[bold bright_green]ONLINE (HTTP 200)[/]" if idx == 1 else "[dim]http://localhost:8081[/]"
-                quota_label = f"[bold green]{latency_ms:.1f}ms[/]" if idx == 1 else "[dim cyan]Zero Token[/]"
-                table.add_row(
-                    host_label,
-                    mid,
-                    desc,
-                    quota_label
-                )
-            subtitle = f"Daemon Active on port 8081 | {len(models)} models available | Zero-Token Parallel Aux Swarms | Auth: Bearer sk-gemini"
-            panel_style = "bright_green"
-            border_style = "green"
-        else:
-            table.add_row(
-                "[bold bright_red]OFFLINE ✖[/]",
-                "None",
-                f"Service unreachable: {error_msg[:45]}",
-                "N/A"
-            )
-            table.add_row(
-                "[dim]Start Command[/]",
-                "python .agents/scripts/start_web2api.py",
-                "powershell -ExecutionPolicy Bypass -File .agents/scripts/start_web2api.ps1",
-                "[bold yellow]PORT 8081[/]"
-            )
-            subtitle = "Service Offline — Run: python .agents/scripts/start_web2api.py"
-            panel_style = "bright_red"
-            border_style = "red"
-
-        return Panel(table, subtitle=subtitle, style=panel_style, border_style=border_style, box=box.ROUNDED)
-
     def interactive_switch_modal(self):
         """Prompt to switch asset smoothly without breaking continuous stream."""
         console.clear()
@@ -675,8 +614,6 @@ class HyperdashTerminal:
             body = self.render_trades()
         elif self.active_tab == "6":
             body = self.render_universe_matrix()
-        elif self.active_tab == "7":
-            body = self.render_web2api()
         else:
             body = self.render_l2_orderbook()
 
@@ -731,7 +668,7 @@ class HyperdashTerminal:
                         console.clear()
                         console.print("[bold bright_yellow]Hyperdash Terminal shutdown cleanly. Happy Trading![/bold bright_yellow]")
                         break
-                    elif key in ["1", "2", "3", "4", "5", "6", "7"]:
+                    elif key in ["1", "2", "3", "4", "5", "6"]:
                         self.active_tab = key
                         self.fetch_live_tick()
                         self.render_screen()
