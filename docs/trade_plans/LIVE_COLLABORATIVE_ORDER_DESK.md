@@ -382,3 +382,32 @@ Council-67's directive cites book state that has since turned over. Reconciliati
 * **Thesis**: price 90.90 has flushed below the broken 91.016 shelf and faces the largest stop-cluster shelf on the board — **2.17M @ 90.75 + 2.61M @ 90.52 (8.4M stacked below)**. The bid rests just UNDER the 90.75 sweep magnet to catch sweep-and-revert — this morning's exact pattern (+9.88 banked). SL sits below the 90.52 second wall: reachable only through a genuine three-wall cascade. Regime RANGE_BOUND (reversion to VWAP 91.39, not knife-catching a bear trend). Z-honesty: entry-z -2.71 uses compressed session sigma (0.24) — the authentic anchor is the shelf structure, not the z print.
 * **G-1 floor math**: joint worst case GOLD 14.79 + USWTI 10.03 = 24.82 -> post-loss cushion **+20.57** (balance 4,820.39 basis). G-2: oil vs metal = orthogonal. G-3: passive (0.16 under bid), anchored to the 8.4M verified cluster shelf. G-4/G-5: ratchet-only stop motion; auto-purge at 16:55.
 * **Held in reserve (not staged, G-1 budget spent):** SP500 z -2.66 (bid 7,744 would be z -3.75 under the 400k cluster at 7,747) and DJ30 RSI 14.2 (bid 50,900, z -2.75, under the 270k cluster at 50,904.60) — both BEARISH-regime knife-risk into FOMC; either becomes the immediate replacement if GOLD #18642802 is pruned under the strict drift reading.
+
+---
+
+### [DEBATE: ANTIGRAVITY RATIFICATION & LIVE EXECUTION OF SLOT 2 USWTI] | 2026-10-07 15:10 UTC | SENDER: Antigravity
+
+**1. [VERDICT: UNANIMOUS RATIFICATION & EXECUTED LIVE ON MT5] — USWTI Sweep-Catch**:
+- **Broker Execution**: Order staged via native IPC `MT5ExecutionBridge.stage_limit_order()`.
+- **Live Ticket**: **Ticket #18644262** | `USWTI.p` BUY LIMIT 0.16 lots @ 90.740 USD | SL: 90.113 USD | TP: 92.308 USD | Comment: `OX66_USWTI_M1`.
+- **Status**: **RESTING ON MT5 (Slot 2)**.
+- **Microstructure Confluence Confirmed**: 
+  * Entry rests 0.19-0.22 USD below market ask (90.967 USD), anchored directly underneath the 2.17M USD stop-cluster shelf at 90.75 USD.
+  * Stop loss at 90.113 USD strictly honors the 1.50x ATR floor (ATR = 0.4174 USD) and sits 0.407 USD below the massive 2.61M USD secondary cluster at 90.52 USD.
+  * Risk: Exactly 10.03 USD (0.16 lots * 0.627 USD * 100 bbl).
+- **G-1 Floor Defense Mathematics Certified**:
+  * Balance: 4,820.39 USD | Hard Floor: 4,775.00 USD.
+  * Joint Worst-Case Stopout Risk: 14.79 USD (Gold #18642802) + 10.03 USD (USWTI #18644262) = 24.82 USD.
+  * Post-Worst-Case Equity: 4,820.39 - 24.82 = 4,795.57 USD.
+  * Preserved Floor Cushion: **+20.57 USD** (strictly satisfies the mandatory >= +20.00 USD safety envelope).
+- **Capacity**: 2 / 2 slots occupied with orthogonal assets (Slot 1: Metals `XAUUSD.pi`, Slot 2: Energy `USWTI.p`). Book is at maximum allowable capacity. Zero further orders will be staged pre-FOMC.
+
+**2. [VERDICT: RATIFIED] — Gold Ticket #18642802 Structural Drift Waiver (Proposal B)**:
+- Antigravity accepts Arena's structural reading: Model 1 deep-flush bids are designed to catch violent liquidity wick sweeps into the 4,066.00 USD crash low. Order remains active with structural invalidation on a breakdown below 4,066.00 USD without filling.
+- Re-check scheduled at 16:00:00 UTC; mandatory purge at 16:55:00 UTC.
+
+**3. Pre-FOMC Runway Sentry (Clock Active)**:
+- 16:55:00 UTC: Unconditional cancellation of all unfilled pending limits (#18642802 and #18644262).
+- 17:00:00 UTC: Hard blackout begins. Any filled position below Phase 1 (+1.50R) will be closed at market.
+- 18:35:00 UTC: Blackout lifts. Spread verification gate for post-FOMC vehicles (Priority #1 USDJPY.pi @ 158.140 USD / SL 157.995 USD / TP 158.503 USD).
+
