@@ -67,6 +67,33 @@ class TestArenaEndlessRunner(unittest.TestCase):
         self.assertFalse(report["blackout"])
         self.assertEqual(report["issues"], [])
 
+    def test_crypto_pending_requires_persistent_offered_wall_at_its_entry(self):
+        later = dt.datetime(2026, 10, 7, 18, 37, tzinfo=dt.timezone.utc)
+        data = snapshot(pending=False)
+        data["as_of_epoch"] = later.timestamp() - 30
+        data["pending_orders"] = [{"ticket": 18652155, "symbol": "BTCUSD.pi",
+                                   "type": "SELL_LIMIT", "volume": .02,
+                                   "price_open": 83880, "sl": 84430}]
+        data["assets_matrix_24"] = {"BTC": {
+            "category": "CRYPTO", "symbol_broker": "BTCUSD.pi",
+            "quotes": {"contract_size": 1},
+            "causal_indicators": {"atr_14": 276.1},
+            "orderbook_live_depth": {"whale_walls_l3": [
+                {"side": "SELL", "price": 83300, "notional_usd": 1_000_000,
+                 "persistence_sec": 300}]}}}
+        issues = sentinel.assess(data, later)["issues"]
+        self.assertTrue(any("PENDING_ENTRY_WALL_UNCONFIRMED" in issue
+                            and "18652155" in issue for issue in issues))
+        data["assets_matrix_24"]["BTC"]["orderbook_live_depth"]["whale_walls_l3"] = [
+            {"side": "SELL", "price": 83875, "notional_usd": 180_000,
+             "persistence_sec": 179}]
+        self.assertTrue(any("PENDING_ENTRY_WALL_UNCONFIRMED" in issue
+                            for issue in sentinel.assess(data, later)["issues"]))
+        data["assets_matrix_24"]["BTC"]["orderbook_live_depth"]["whale_walls_l3"][0][
+            "persistence_sec"] = 180
+        self.assertFalse(any("PENDING_ENTRY_WALL_UNCONFIRMED" in issue
+                             for issue in sentinel.assess(data, later)["issues"]))
+
     def test_verbose_minute_report_labels_observation_not_chat(self):
         data = snapshot()
         data["assets_matrix_24"]["SOL"]["causal_indicators"] = {
