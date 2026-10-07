@@ -1,0 +1,21 @@
+{
+  "order_kind": "PRINCIPAL_DIRECTED_RANDOM_CHECK",
+  "note": "Genuinely random parameters (unseeded system RNG) drawn 2026-10-07 ~11:11 UTC against SOL 117.49/117.73. Not deliberated, not plan-validated, not council-recommended. Muscle-side hard caps (risk <= 20.00 USD, passive non-crossing limit, capacity) still apply and would refuse any draw that breaches them.",
+  "symbol": "SOLUSD.p",
+  "direction": "SHORT",
+  "limit_price": 117.99,
+  "sl": 119.47,
+  "tp": 115.03,
+  "volume": 0.05,
+  "expiration_seconds": 1800,
+  "comment": "ARENA:RANDOM_CHECK_v1",
+  "draw": {
+    "offset_ticks": 26,
+    "stop_width": 1.48,
+    "tp_r": 2.0,
+    "ttl_bars": 2,
+    "volume_max": 0.14,
+    "quote_basis": "117.49/117.73 at 2026-10-07 11:09:47 UTC"
+  },
+  "execute": "python -c \"import os; from Terminal.Headless.brain_client import BrainClient; print(BrainClient(os.environ['ARENA_TUNNEL_URL'], os.environ['OMNI_API_SECRET']).stage_order(symbol='SOLUSD.p', direction='SHORT', volume=0.05, limit_price=117.99, sl=119.47, tp=115.03, comment='ARENA:RANDOM_CHECK_v1', expiration_seconds=1800))\""
+}
