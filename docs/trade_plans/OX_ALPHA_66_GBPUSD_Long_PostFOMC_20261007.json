@@ -1,0 +1,26 @@
+{
+  "plan_version": "omni.trade_plan.v1",
+  "plan_id": "OXALPHA66-GBPUSD-LONG-POSTFOMC-20261007A",
+  "asset": "GBPUSD", "symbol": "GBPUSD.pi", "direction": "LONG",
+  "limit_price": 1.3190, "sl": 1.3181, "tp": 1.32125, "volume": 0.12,
+  "risk_usd": 10.8, "atr": 0.0006, "tp_r": 2.5, "ttl_bars": 16,
+  "comment": "ARENA:PLAN_v1",
+  "created_at_epoch": 1791394500.0, "expires_at_epoch": 1791410400.0, "max_friction_r": 0.35,
+  "blackout_windows": [],
+  "contract": {"tick_size": 0.00001, "contract_size": 100000.0, "min_lot": 0.01, "step_lot": 0.01, "digits": 5},
+  "thesis": {
+    "summary": "NEW ENTRY from the 12:41 scan, POST-FOMC ONLY: GBPUSD at Z -8.60 is the deepest FX extreme in the book (RSI 30.5, friction approx 0.011R) - but it is the SAME anti-USD factor that just stopped out EURUSD #18625675 at -1.00R. The same-factor veto applies: no anti-USD longs into the event.",
+    "postfomc_mechanism": "created_at_epoch is deliberately set to 18:35 UTC - AFTER the 17:00-18:30 blackout. The validator refuses this plan (plan_created_in_future) until the blackout lifts: it mechanically cannot stage pre-event. If the minutes are dovish (USD eases), the -8.6 sigma reversion is the best ticket in the book; if hawkish, the level likely breaks and the plan simply never stages or fills.",
+    "structural_level": "Limit 1.3190 rests 8 pips under the flat market; SL 1.3181 (9.0 pips = 1.5 x ATR, below the flush lows); TP 1.32125 = 2.50R toward EMA20/50 approx 1.3205-1.3215 and VWAP 1.3253",
+    "correlation_note": "GBPUSD and EURUSD anti-USD correlation is approx 0.8+; staging this while any EUR long is live would double the same factor. Post-FOMC staging must check the live book first."
+  },
+  "management": {"ratchet": "omni.ratchet.session_conditional.v1 (0.80R/1.50R/2.00R; entry+0.15R/+0.85R locks, 0.65R trail)",
+    "decay": "close at market if gain < 0.20R after 24 bars", "target_band": "2.50R..3.14R",
+    "fomc_discipline": "Post-event only by construction (created_at 18:35 UTC > blackout end 18:30); expires 22:00 UTC; a fresh post-event council pass precedes any promotion."},
+  "provenance": {
+    "telemetry": "docs/telemetry/live_snapshot_latest.json 12:41 UTC: GBPUSD 1.3198/1.3198 (0.08 bps), RSI 30.47, Z -8.60, sigma 0.0006, ATR 0.0006, EMA200 1.3246, VWAP 1.3253",
+    "council": "docs/audits/OX_ALPHA_66_Asset_Scan_Study_1245UTC.md - same-factor analysis and post-FOMC gating",
+    "friction_accounting": {"live_spread_usd": 0.0, "live_friction_r": 0.0111},
+    "invariants": "limit 1.3190 < ask 1.3198; SL 1.3181, 1.50 x ATR exactly; risk 10.80 (inside 10-12 standby cap); TP 1.32125 = 2.50R on the 0.00001 grid; friction 0.011R; plan mechanically unstaged until 18:35 UTC"
+  }
+}

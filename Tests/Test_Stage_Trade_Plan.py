@@ -149,6 +149,10 @@ COMMITTED_PLANS = [
      1_791_374_700.0),      # 2026-10-07 12:05:00 UTC
     (REPO_ROOT / "docs/trade_plans/OX_ALPHA_66_NAS100_Long_EMA200_20261007.json",
      1_791_374_700.0),      # 2026-10-07 12:05:00 UTC
+    (REPO_ROOT / "docs/trade_plans/OX_ALPHA_66_SP500_Long_EMA200_20261007.json",
+     1_791_377_100.0),      # 2026-10-07 12:45:00 UTC
+    (REPO_ROOT / "docs/trade_plans/OX_ALPHA_66_GBPUSD_Long_PostFOMC_20261007.json",
+     1_791_395_000.0),      # 2026-10-07 18:43:20 UTC (inside post-FOMC validity)
 ]
 
 

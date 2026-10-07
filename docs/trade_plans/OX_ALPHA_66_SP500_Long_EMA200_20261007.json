@@ -1,0 +1,27 @@
+{
+  "plan_version": "omni.trade_plan.v1",
+  "plan_id": "OXALPHA66-SP500-LONG-EMA200-20261007A",
+  "asset": "SP500", "symbol": "SP500.p", "direction": "LONG",
+  "limit_price": 7786.0, "sl": 7780.0, "tp": 7801.0, "volume": 0.17,
+  "risk_usd": 10.2, "atr": 3.0932, "tp_r": 2.5, "ttl_bars": 16,
+  "comment": "ARENA:PLAN_v1",
+  "created_at_epoch": 1791377100.0, "expires_at_epoch": 1791392100.0, "max_friction_r": 0.35,
+  "blackout_windows": [{"start_epoch": 1791392400.0, "end_epoch": 1791397800.0,
+    "reason": "FOMC meeting minutes 2026-10-07 18:00 UTC (Tier-1); hard blackout 17:00-18:30 UTC"}],
+  "contract": {"tick_size": 0.01, "contract_size": 10.0, "min_lot": 0.01, "step_lot": 0.01, "digits": 2},
+  "thesis": {
+    "summary": "NEW ENTRY from the 12:41 scan: SP500 is sitting EXACTLY on its 15m EMA200 (mid 7,789.37 vs EMA200 7,789.44) at Z -10.65 in the pre-FOMC risk-off flush - the first EMA200 test of the index uptrend. Unlike the knife-catch longs, this is a trend-continuation bid AT the trend's defining level.",
+    "structural_level": "Limit 7,786 rests 3.52 under the live ask and just under the EMA200/VWAP stack; SL 7,780 below the flush zone (1.94 x ATR); TP 7,801 = 2.50R back inside value (VWAP 7,825 remains above - the realistic exit is the ratchet trail)",
+    "z_honesty": "Z -10.65 (at entry -11.66) is sigma-inflated by a quiet session (sigma 3.35 vs ATR 3.09); the flush is approx 0.45 pct intraday. The anchor is the EMA200 trend test, not the Z print.",
+    "flush_context": "The whole complex flushed together (NAS100 -11.27, DJ30 -10.89, GOLD -6.89, GBPUSD -8.60): one broad USD-squeeze factor into the 18:00 FOMC minutes. This plan stages ONLY into a freed slot before 16:55 and the flat-into-event preference stands - post-minutes re-deliberation governs anything live."
+  },
+  "management": {"ratchet": "omni.ratchet.session_conditional.v1 (0.80R/1.50R/2.00R; entry+0.15R/+0.85R locks, 0.65R trail)",
+    "decay": "close at market if gain < 0.20R after 24 bars", "target_band": "2.50R..3.14R",
+    "fomc_discipline": "Stages ONLY into a freed slot and ONLY before the 16:55 UTC purge deadline; expires at 1791392100."},
+  "provenance": {
+    "telemetry": "docs/telemetry/live_snapshot_latest.json 12:41 UTC: SP500 7,789.22/7,789.52, spread 0.30 (0.39 bps), RSI 35.49, Z -10.65, sigma 3.347, ATR 3.0932, EMA200 7,789.4404, VWAP 7,825.0106",
+    "council": "docs/audits/OX_ALPHA_66_Asset_Scan_Study_1245UTC.md - replaces the stale NAS100 standby as the index-complex representative",
+    "friction_accounting": {"live_spread_usd": 0.3, "live_friction_r": 0.0517},
+    "invariants": "limit 7,786 < ask 7,789.52; SL 7,780, 1.94 x ATR; risk 10.20 (inside 10-12 standby cap); TP exactly 2.50R; friction 0.052R"
+  }
+}
