@@ -79,7 +79,7 @@ def sync_git_cycle():
     if local_rev != remote_rev and remote_rev:
         logger.info(f"Detected new remote revision on origin/{BRANCH_NAME}: {remote_rev[:7]} (local: {local_rev[:7]})")
         # Pull with rebase
-        pull_code, pull_out, pull_err = run_cmd(["git", "pull", "--rebase", "origin", BRANCH_NAME])
+        pull_code, pull_out, pull_err = run_cmd(["git", "pull", "--rebase", "--autostash", "origin", BRANCH_NAME])
         if pull_code == 0:
             logger.info(f"Successfully rebased remote changes from Arena.ai: {pull_out}")
             # Log any newly received trade plans or audits
@@ -104,7 +104,7 @@ def sync_git_cycle():
                 logger.info(f"Successfully pushed telemetry to origin/{BRANCH_NAME}")
             else:
                 logger.warning(f"git push rejected or failed: {p_err}. Retrying with rebase...")
-                run_cmd(["git", "pull", "--rebase", "origin", BRANCH_NAME])
+                run_cmd(["git", "pull", "--rebase", "--autostash", "origin", BRANCH_NAME])
                 run_cmd(["git", "push", "origin", BRANCH_NAME])
 
 

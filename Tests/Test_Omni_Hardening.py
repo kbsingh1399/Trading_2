@@ -267,7 +267,6 @@ def test_incident_b_exact_hallucination_is_rejected(tmp_path):
     assert "1.8" in flagged and "122.00" in flagged
 
 
-def test_numeric_claim_extraction_handles_suffixes_and_percent():
 def test_attestation_scientific_notation_is_one_claim_not_exempt():
     """Forensics round 3: '3e5' used to parse as exempt integer 3; '1.2e-4'
     as 1.2. Exponent literals must attest as their full magnitudes."""
@@ -276,12 +275,12 @@ def test_attestation_scientific_notation_is_one_claim_not_exempt():
     assert ok_true
     ok_true2, _ = attest_decision(snap, {"rationale_summary": "sigma 1.2e-4"})
     assert ok_true2
-    bad, violations = attest_decision(snap, {"rationale_summary": "fuel of 3e5 USD"})
     snap_wrong = {"econometrics": {"notional": 42.0, "sigma": 0.00012}}
     rejected, _ = attest_decision(snap_wrong, {"rationale_summary": "fuel of 3e5 USD"})
     assert not rejected
 
 
+def test_numeric_claim_extraction_handles_suffixes_and_percent():
     claims = extract_numeric_claims("8.04M wall, +1.8 sigma, 5.2% spread, 41 bps, 122.34, 2 hours")
     values = {c["raw"]: c["value"] for c in claims}
     assert values["8.04"] == pytest.approx(8.04e6)     # M suffix scales the value

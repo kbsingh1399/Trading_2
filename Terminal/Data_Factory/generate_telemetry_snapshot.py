@@ -327,6 +327,17 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
         raise RuntimeError(f"FAIL_CLOSED: {reason}")
 
     # Format positions
+    # (forensics round 3 / master audit Q4: the R-multiple below used the
+    # CURRENT SL as denominator - after any ratchet the SL tightens and R
+    # inflates (USWTI printed "+4.57R" at a true +1.6R initial-risk peak).
+    # Initial risk is now recovered from the omni state file when present;
+    # otherwise the basis is declared explicitly so consumers can distrust it.)
+    try:
+        _omni_state = json.loads((ROOT / "Data" / "mt5_ai_trader_state.json").read_text(encoding="utf-8"))
+        _initial_r_by_ticket = {str(k): float(v.get("initial_r", 0.0))
+                                for k, v in (_omni_state.get("positions") or {}).items()}
+    except Exception:
+        _initial_r_by_ticket = {}
     formatted_positions = []
     for p in open_positions:
         p_open = float(p.get("price_open", 0.0))
@@ -334,14 +345,20 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
         sl = float(p.get("sl", 0.0))
         tp = float(p.get("tp", 0.0))
         direction = p.get("direction", "LONG")
+        ticket = str(p.get("ticket"))
+        initial_r = _initial_r_by_ticket.get(ticket, 0.0)
         risk_dist = abs(p_open - sl) if sl > 0 else 1.0
         gain_dist = (p_cur - p_open) if direction == "LONG" else (p_open - p_cur)
         r_mult = gain_dist / risk_dist if risk_dist > 0 else 0.0
+        r_initial = gain_dist / initial_r if initial_r > 0 else None
 
+        # Label on initial-risk R when known (honest); fall back to live-SL R
+        # with an explicit basis flag so the label can never masquerade.
+        r_label = r_initial if r_initial is not None else r_mult
         ratchet_state = "PHASE_0_PENDING"
-        if r_mult >= 1.50:
+        if r_label >= 1.50:
             ratchet_state = "PHASE_1_PROFIT_LOCKED"
-        elif r_mult >= 0.80:
+        elif r_label >= 0.80:
             ratchet_state = "PHASE_0_BE_LOCKED"
 
         formatted_positions.append({
@@ -355,6 +372,8 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
             "tp": tp,
             "profit_usd": p.get("profit_usd", 0.0),
             "r_multiple": round(r_mult, 2),
+            "r_multiple_basis": "live_sl_distance",
+            "r_multiple_initial_risk": round(r_initial, 2) if r_initial is not None else None,
             "ratchet_state": ratchet_state,
             "time_open_utc": datetime.fromtimestamp(p.get("time", now_ts), tz=timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
         })
