@@ -1,5 +1,5 @@
 # ARENA.AI MASTER FORENSIC & SYSTEMATIC PIPELINE AUDIT — TRADING_2
-**Date:** 2026-10-07, delivered 14:25 UTC | **Branch:** `arena/4adf3661-trading-2`
+**Date:** 2026-10-07, delivered 14:25 UTC (delta verification 14:20 UTC) | **Branch:** `arena/4adf3661-trading-2`
 **Auditor:** Arena.ai Remote Cloud Brain (multi-agent council, forensic division)
 **Inputs audited:** full repository tree at origin tip + the complete 60s telemetry commit history + live external sources + this session's three prior forensic rounds (`OX_ALPHA_66_Data_Forensics_Audit_20261007.md`, `_Round2_`, round-3 commit `1645f52`).
 
@@ -96,3 +96,40 @@ The brief claims a ratified expansion to 4 slots with a ≥20.00 USD cushion pre
 5. Update plan prose: friction-inclusive lock floors (0.63R/0.55R), encode invalidation levels machine-readably.
 
 *Every claim is reproducible from the repository, its git history, or the live public sources cited. No statistic is fabricated.*
+
+---
+
+## DELTA VERIFICATION (2026-10-07 14:20 UTC — mandate re-dispatched; code at tip identical to `e66f222`, all five verdicts re-confirmed on code)
+
+### 🔴 NEW P0 — SPLIT-BRAIN TELEMETRY: two daemons are writing the canonical snapshot simultaneously
+
+The minute-by-minute fingerprint scan of the telemetry history proves **two independent daemon processes are running at once**:
+
+| Evidence | Value |
+|---|---|
+| Minutes with MULTIPLE telemetry commits | **33 of the last 42** |
+| Writer A cadence | commits at :00–:01 of each minute |
+| Writer B cadence | commits at :13–:17 of each minute |
+| Writer A generator | **PRE-ROUND-1 BUILD** — no integrity fields, no spec block, no honest-R basis, liq still labeled `REAL_BINANCE_FUTURES_OI`, ETF placeholder-as-zero, **all fabrication fallbacks ARMED** (fake 4,834.50 equity on MT5 blip, synthetic quotes, capacity-hiding empty book) |
+| Writer B generator | the hardened repo generator (integrity fields + specs + coverage markers verified in its snapshots) |
+
+**Consequences:**
+1. `docs/telemetry/live_snapshot_latest.json` alternates vintage minute-by-minute — every staleness/honesty defense from rounds 1–3 is a coin flip depending on which writer committed last.
+2. The old writer re-arms every fabrication path the audit removed. One MT5 disconnect during a Writer-A cycle and a **fabricated account snapshot goes live again** — the exact round-1 C3 scenario, now with a 50% duty cycle.
+3. Two concurrent git daemons pulling/rebasing/pushing on a 60s cadence is the root cause of today's stuck-rebase races (the autostash fix only covers whichever daemon runs the repo script).
+
+**REQUIRED (immediate, before 16:55): kill Writer A.** Identify the stale `autonomous_telemetry_git_daemon.py` process (started before the round-1 hardening, ~:00 offset cadence) and terminate it; keep exactly one daemon, running the repo-tip generator. Verify by observing single commits per minute with integrity fields present.
+
+### Live governance status at 14:13:52 UTC (Writer-B snapshot)
+
+- Book: **SP500 #18640304 alone** — mid 7,768.97, position −0.17R, risk 11.05 USD, equity 4,814.63, cushion +39.63, capacity 1/2.
+- **ATR-floor status improved but still short:** ATR cooled 6.92 → 5.93, so the 8.50-pt stop is now **1.43× ATR** (floor 1.5× → SL must be ≤ 7,761.11; current 7,761.50 — **0.39 points from compliance**). A 4-tick stop tightening (7,761.50 → 7,761.10, still on the 0.01 grid, still > current bid 7,768.96 − stops-distance) brings the ticket fully compliant — cheaper than a waiver and removes the only open governance flag before the 16:55 decision point.
+- Z −3.31, RANGE_BOUND, price below EMA200 7,791.92 — the flush continues; thesis needs the 15m close back above 7,770 to stay alive.
+
+### Muscle action list (refreshed, with countdown — purge at 16:55, blackout 17:00–18:30, minutes 18:00)
+
+1. **NOW: kill the stale Writer-A daemon** (P0 above). One daemon, repo generator.
+2. **SP500 #18640304:** tighten SL to ≤ 7,761.10 (1.5×ATR compliance) or file an explicit waiver; at 16:55 apply the FOMC rule (hold only with phase-0 armed, else market-exit).
+3. Redeploy check for the repo generator is MOOT once Writer A is dead — Writer B already runs it (its snapshots carry the full hardening set).
+4. Rotate `OMNI_API_SECRET` (round-2 P0, still outstanding).
+5. Re-apply the in-flight `Omni_Trader` whale-filter refactor (`Orderbook_Structure.py` + `Test_Microstructure.py` preserved in the workspace, uncommitted).
