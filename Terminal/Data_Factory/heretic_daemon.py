@@ -35,21 +35,39 @@ logging.basicConfig(
 logger = logging.getLogger("HereticDaemon")
 
 
+def probe_heretic() -> tuple[bool, str]:
+    try:
+        import heretic
+        return True, getattr(heretic, "__version__", "2.0.0.dev0")
+    except Exception as exc:
+        return False, f"import_error:{exc}"
+
+
+_CURRENT_ENGINE_STATUS = {
+    "engine": "heretic-llm",
+    "repo_url": "https://github.com/p-e-w/heretic",
+    "status": "INITIALIZING",
+    "engine_probed": False,
+    "engine_version": "unknown",
+}
+
+
 class HereticStatusHandler(http.server.BaseHTTPRequestHandler):
     def do_GET(self):
         if self.path in ("/health", "/status", "/"):
-            self.send_response(200)
+            engine_ok, engine_ver = probe_heretic()
+            _CURRENT_ENGINE_STATUS["engine_probed"] = engine_ok
+            _CURRENT_ENGINE_STATUS["engine_version"] = engine_ver
+            _CURRENT_ENGINE_STATUS["status"] = "HEALTHY" if engine_ok else "DEGRADED"
+
+            status_code = 200 if engine_ok else 503
+            self.send_response(status_code)
             self.send_header("Content-Type", "application/json")
             self.end_headers()
-            status = {
-                "status": "HEALTHY",
-                "engine": "heretic-llm",
-                "version": "2.0.0.dev0",
-                "repository": "https://github.com/p-e-w/heretic",
-                "as_of_utc": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC"),
-                "pid": os.getpid(),
-                "uptime_sec": round(time.time() - START_TIME, 1)
-            }
+            status = dict(_CURRENT_ENGINE_STATUS)
+            status["as_of_utc"] = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
+            status["pid"] = os.getpid()
+            status["uptime_sec"] = round(time.time() - START_TIME, 1)
             self.wfile.write(json.dumps(status, indent=2).encode("utf-8"))
         else:
             self.send_response(404)
@@ -63,9 +81,13 @@ def run_http_server():
     server_address = ("127.0.0.1", PORT)
     try:
         httpd = http.server.HTTPServer(server_address, HereticStatusHandler)
+        _CURRENT_ENGINE_STATUS["listening_port"] = PORT
+        _CURRENT_ENGINE_STATUS["bind_error"] = None
         logger.info(f"Heretic HTTP server listening on http://127.0.0.1:{PORT}")
         httpd.serve_forever()
     except Exception as exc:
+        _CURRENT_ENGINE_STATUS["listening_port"] = None
+        _CURRENT_ENGINE_STATUS["bind_error"] = str(exc)
         logger.warning(f"Heretic HTTP server could not bind to port {PORT}: {exc}")
 
 
