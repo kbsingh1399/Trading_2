@@ -47,6 +47,35 @@ BRANCH_NAME = "arena/4adf3661-trading-2"
 INTERVAL_SECONDS = 60
 
 
+PID_FILE = ROOT / "logs" / "autonomous_telemetry_git_daemon.pid"
+
+
+def enforce_single_instance() -> None:
+    """Ensure exactly one instance of this daemon runs across the OS."""
+    current_pid = os.getpid()
+    if PID_FILE.exists():
+        try:
+            content = PID_FILE.read_text(encoding="utf-8").strip()
+            if content:
+                old_pid = int(content)
+                if old_pid != current_pid:
+                    check = subprocess.run(
+                        ["tasklist", "/FI", f"PID eq {old_pid}"],
+                        capture_output=True,
+                        text=True
+                    )
+                    if str(old_pid) in check.stdout:
+                        logger.warning(f"Detected existing daemon instance PID {old_pid}. Terminating to eliminate split-brain...")
+                        subprocess.run(["taskkill", "/F", "/PID", str(old_pid)], capture_output=True)
+                        time.sleep(1.0)
+        except Exception as exc:
+            logger.warning(f"Error checking previous PID file: {exc}")
+    try:
+        PID_FILE.write_text(str(current_pid), encoding="utf-8")
+    except Exception as exc:
+        logger.warning(f"Failed to write PID file: {exc}")
+
+
 def run_cmd(cmd: list[str], cwd: pathlib.Path = ROOT) -> tuple[int, str, str]:
     """Execute shell command cleanly and return code, stdout, stderr."""
     try:
@@ -109,18 +138,13 @@ def sync_git_cycle():
 
 
 def main():
+    enforce_single_instance()
     logger.info("=====================================================================")
     logger.info("Starting Zero-Token Autonomous Telemetry & Git Synchronization Daemon")
-    logger.info(f"Target Branch: {BRANCH_NAME} | Cadence: Every {INTERVAL_SECONDS}s")
+    logger.info(f"Target Branch: {BRANCH_NAME} | Cadence: Every {INTERVAL_SECONDS}s | PID: {os.getpid()}")
     logger.info("=====================================================================")
 
-    # Import telemetry generation directly in-process
-    try:
-        from Terminal.Data_Factory.generate_telemetry_snapshot import generate_full_snapshot
-    except Exception as exc:
-        logger.error(f"Failed to import generate_full_snapshot: {exc}")
-        return
-
+    import importlib
     iteration = 0
     while True:
         iteration += 1
@@ -128,9 +152,11 @@ def main():
         now_str = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
         logger.info(f"--- Iteration #{iteration} [{now_str}] ---")
 
-        # Step 1: Refresh telemetry snapshot (zero tokens)
+        # Step 1: Refresh telemetry snapshot with dynamic reload to eliminate stale RAM state
         try:
-            snapshot = generate_full_snapshot()
+            import Terminal.Data_Factory.generate_telemetry_snapshot as gen_mod
+            importlib.reload(gen_mod)
+            snapshot = gen_mod.generate_full_snapshot()
             equity = snapshot.get("account", {}).get("equity_usd", 0.0)
             cushion = snapshot.get("account", {}).get("cushion_above_floor_usd", 0.0)
             pending = snapshot.get("capacity", {}).get("pending", 0)
