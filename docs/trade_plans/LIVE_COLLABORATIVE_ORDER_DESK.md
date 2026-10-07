@@ -29,23 +29,29 @@
 
 ## 2. ACTIVE MT5 POSITIONS & PENDING ORDERS LEDGER (LIVE MONITORING)
 
-### Active Open Positions: NONE (0 / 2 slots)
-* **All active positions have achieved clean, profitable exits**:
-  - `USWTI.p` (#18625151): **CLOSED AT PHASE 1 PROFIT LOCK @ 91.720 USD** (Deal #16858349). Realized **+9.88 USD net profit** deposited directly to cash balance!
-  - `BTCUSD.pi` (#18630694): **CLOSED AT STOP LOSS @ 82,700.00 USD** (Deal #16857838). Realized -6.80 USD loss. Downside protected, zero slippage.
-
-### Active Pending Limit Orders (1 / 2 slots):
-* **Slot 1 (PUNCHED LIVE ON BROKER)**:
+### Active Open Positions (1 / 2 slots occupied):
+* **Slot 1 (FILLED & RUNNING IN PROFIT)**:
   - **Ticket**: `#18640304` (`SP500.p`)
-  - **Direction & Sizing**: BUY LIMIT 0.13 lots (Contract size: 10.0)
-  - **Staging Timestamp**: 2026-10-07 13:59:18 UTC
-  - **Limit Entry Price**: **7,770.00 USD** (Passive order resting below 7,772.31 bid)
-  - **Stop Loss**: **7,761.50 USD** (Risk Distance: 8.50 pts)
-  - **Take Profit**: **7,791.25 USD** (+2.50R target / +21.25 pts gain)
-  - **Notional Risk**: **11.05 USD** (0.23% of capital)
-  - **Auto-Expiration**: Expires at 16:54:00 UTC (10,500s TTL, auto-purging before FOMC blackout)
-  - **Confluence Model**: Model 1 Extreme Oversold Mean Reversion (Z = -2.47 SD, RSI = 19.57, spread 0.31 bps).
-  - **Floor Preservation**: Under worst-case stopout at 7,761.50 USD, post-loss balance is **4,805.47 USD**, strictly preserving **+30.47 USD cushion** above the 4,775.00 USD floor!
+  - **Direction & Sizing**: BUY 0.13 lots (Contract size: 10.0)
+  - **Execution Fill Timestamp**: 2026-10-07 14:02:17 UTC
+  - **Entry Fill Price**: **7,770.00 USD** (Passive limit order filled at bottom of flush)
+  - **Current Market Price**: **7,772.60 USD**
+  - **Current Floating PnL**: **+3.38 USD (+0.306R)**
+  - **Active Stop Loss**: **7,761.50 USD** (Risk Distance: 8.50 pts | Notional Risk: **11.05 USD**)
+  - **Active Take Profit**: **7,791.25 USD** (+2.50R target / +21.25 pts gain = **+27.63 USD**)
+  - **Microstructure Status**: Defending session sweep low shelf at 7,766–7,770 USD. VWAP Z = -2.47 SD.
+  - **Ratchet Trigger Thresholds**:
+    * **Phase 0 BE Arming Price**: **7,776.80 USD** (+0.80R gain). Once hit, SL moves to **7,772.98 USD** (+0.35R BE lock), reducing risk to 0.00 USD!
+    * **Phase 1 Profit Lock Price**: **7,782.75 USD** (+1.50R gain). Once hit, SL moves to **7,776.80 USD** (+0.80R profit lock = +8.84 USD cash locked).
+    * **Pre-FOMC Holding Rule**: Position will be closed prior to 16:55:00 UTC unless Phase 1 (+1.50R / 7,782.75 USD) is secured.
+
+### Active Pending Limit Orders (0 / 2 slots):
+* **None currently resting** (Slot 2 vacant and available for high-confluence staging).
+
+### Reconciled Closed Positions This Cycle:
+* `USWTI.p` (#18625151): Closed at **91.720 USD** (Deal #16858349) via protective Phase 1 Profit Lock for **+9.88 USD profit** banked.
+* `BTCUSD.pi` (#18630694): Closed at **82,700.00 USD** (Deal #16857838) via protective SL for **-6.80 USD loss**.
+* **Cycle Net Delta**: **+3.08 USD net profit realized into cash balance**.
 
 ---
 
