@@ -1,0 +1,55 @@
+{
+ "plan_version": "omni.trade_plan.v1",
+ "plan_id": "OXALPHA66-SP500-LONG-FLUSHCATCH-20261007B",
+ "asset": "SP500",
+ "symbol": "SP500.p",
+ "direction": "LONG",
+ "limit_price": 7752.0,
+ "sl": 7739.69,
+ "tp": 7782.78,
+ "volume": 0.09,
+ "risk_usd": 11.08,
+ "atr": 8.2059,
+ "tp_r": 2.5,
+ "ttl_bars": 6,
+ "comment": "ARENA:PLAN_v1",
+ "created_at_epoch": 1791386700.0,
+ "expires_at_epoch": 1791392100.0,
+ "max_friction_r": 0.35,
+ "blackout_windows": [
+  {
+   "start_epoch": 1791392400.0,
+   "end_epoch": 1791397800.0,
+   "reason": "FOMC meeting minutes 2026-10-07 18:00 UTC (Tier-1); hard blackout 17:00-18:30 UTC"
+  }
+ ],
+ "contract": {
+  "tick_size": 0.01,
+  "contract_size": 10.0,
+  "min_lot": 0.01,
+  "step_lot": 0.01,
+  "digits": 2
+ },
+ "thesis": {
+  "summary": "INDEX-CLUSTER HOOK under the Section-10 perpetual-pipeline doctrine (pendings consume zero margin; capacity freeze on pendings repealed). SP500 bounced from z -2.66 to -1.86 (bid 7,774.54); this bid at 7,752 rests 2.99x ATR below as a FLUSH-RESUMPTION catch at entry-z ~ -3.05 - it fills only if the pre-FOMC fade re-deepens toward the modelled 7,747 shelf (MODEL_WEIGHT_NOT_USD, synthetic structural model - the heaviest SP500 modelled cluster at 1,708 above it at 7,766).",
+  "structural_level": "Limit 7,752 sits under the modelled 7,747 cluster level and 22.54 below the live bid; SL 7,739.69 = 1.50 x fresh ATR 8.2059 (below the 7,747 shelf by a full stop distance); TP 7,782.78 = 2.50R toward VWAP 7,812 and the EMA200 ~7,791 - realistic exit is the ratchet trail.",
+  "z_honesty": "Entry-z -3.05 uses session sigma 19.30, which is bounce-stretched: the anchor is the flush-resumption scenario + the modelled shelf, not the z print (round-1 sigma-inflation caveat, symmetric form).",
+  "sizing_note": "0.09 lots (risk 11.08) sits inside the 10-20 envelope. G-1 ACTIVATION GATE: while GOLD #18642802 (14.79) is pending, punching this hook would drive the worst-pair cushion to +19.52 (< 20.00) - therefore this plan is CONDITIONALLY QUEUED: punch ONLY after GOLD #18642802 is cancelled (16:00 decision) or purged (16:55), or on any GOLD exit. Post-GOLD-exit worst pair: this 11.08 + USWTI 10.03 = 21.11 -> cushion +24.28 (clean). The stager correctly refused a sub-envelope 0.08-lot variant (risk 9.85 < 10.00) - the envelope floor and G-1 are both preserved by this gate."
+ },
+ "management": {
+  "ratchet": "omni.ratchet.session_conditional.v1 (0.80R/1.50R/2.00R; friction-inclusive lock floor 41bps*entry/initial_r + 0.05R dominates table values - for this ticket the floor is ~0.32R, above the +0.15R table minimum)",
+  "decay": "close at market if gain < 0.20R after 24 bars",
+  "target_band": "2.50R..3.14R",
+  "fomc_discipline": "Pre-event ONLY: unfilled at 16:55 UTC purge is cancelled unconditionally (expires_at_epoch = purge). If FILLED before 16:55: flat-into-event rule - hold only with Phase 0 armed (+0.80R = 7,761.85), else market-exit before 17:00 UTC.",
+  "queue_policy": "Index-cluster hook, 4th pending behind GOLD #18642802 / USWTI #18644262 / USDJPY #18644889. *** CONDITIONAL ACTIVATION: DO NOT PUNCH while GOLD #18642802 is live on the book (G-1 worst-pair breach: 14.79 + 11.08 -> +19.52 < 20.00). Activate only after GOLD leaves the book (16:00 decision-cancel, 16:55 purge, or fill-then-exit); then worst pair 11.08 + 10.03 = 21.11 -> +24.28. *** Max-2-FILLED gate (RiskPolicy tamper-sealed) bounds all fill scenarios. Prune gates: modelled 7,747 shelf basis broken, drift > 3.0x ATR without fill, regime recovery above 7,800 (thesis dead), 16:55 purge. NOT double-staged with DJ30 (same cluster - one index hook only)."
+ },
+ "provenance": {
+  "telemetry": "docs/telemetry/live_snapshot_latest.json 15:19:18 UTC (hardened, single-writer): SP500 7,774.54/7,775.31, ATR 8.2059, Z -1.86, RSI 34.09, sigma 19.30, modelled clusters 7,766 (w 1,708) / 7,747 (w 400) / 7,728 (w 42) - MODEL_WEIGHT_NOT_USD",
+  "council": "docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md Section 10 doctrine; named reserve candidate since 14:53 scan",
+  "friction_accounting": {
+   "live_spread_usd": 0.77,
+   "live_friction_r": 0.063
+  },
+  "invariants": "limit 7,752 < bid 7,774.54 (passive); SL 7,739.69 = 1.5001 x ATR; risk 11.08 (10-20 envelope); TP 2.5006R; friction 0.063R; expires 16:55 UTC; G-1 conditional gate active (punch only post-GOLD-exit)"
+ }
+}

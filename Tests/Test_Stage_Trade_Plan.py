@@ -161,6 +161,8 @@ COMMITTED_PLANS = [
      1_791_398_620.0),      # 2026-10-07 18:50:20 UTC (post-blackout)
     (REPO_ROOT / "docs/trade_plans/OX_ALPHA_66_USWTI_Long_SweepCatch_20261007.json",
      1_791_387_900.0),      # 2026-10-07 15:05:00 UTC (pre-event window, before 16:55 purge)
+    (REPO_ROOT / "docs/trade_plans/OX_ALPHA_66_SP500_Long_FlushCatch_20261007B.json",
+     1_791_388_200.0),      # 2026-10-07 15:10:00 UTC (pre-event window, before 16:55 purge)
 ]
 
 
