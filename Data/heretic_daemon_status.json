@@ -1,0 +1,16 @@
+{
+  "engine": "heretic-llm",
+  "repo_url": "https://github.com/p-e-w/heretic",
+  "status": "RUNNING",
+  "heartbeat": 4,
+  "pid": 988,
+  "uptime_seconds": 90.0,
+  "last_heartbeat_utc": "2026-10-07 20:24:50 UTC",
+  "listening_port": 8083,
+  "capabilities": [
+    "directional_ablation",
+    "ara_optimization",
+    "optuna_tpe",
+    "representation_engineering"
+  ]
+}
