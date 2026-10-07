@@ -332,7 +332,8 @@ def generate_full_snapshot() -> Dict[str, Any]:
 
     filled_count = len(formatted_positions)
     pending_count = len(formatted_orders)
-    capacity_status = "HARD_ADMISSION_FREEZE (2/2 slots occupied)" if (filled_count + pending_count) >= 2 else f"OPEN ({filled_count + pending_count}/2 slots)"
+    max_slots = 4
+    capacity_status = "HARD_ADMISSION_FREEZE (4/4 slots occupied)" if (filled_count + pending_count) >= max_slots else f"OPEN ({filled_count + pending_count}/{max_slots} slots, free_margin={margin_free:.2f} USD)"
 
     # 2. Macro Intelligence
     fng_val = FearGreedIndex().value()
@@ -420,6 +421,26 @@ def generate_full_snapshot() -> Dict[str, Any]:
         # Resolve broker symbol & quote
         broker_sym = bridge.resolve_symbol(asset) if bridge.initialized else None
         quote = bridge.get_symbol_price(broker_sym) if (bridge.initialized and broker_sym) else {}
+
+        # Broker Execution Specs
+        exec_specs: Dict[str, Any] = {}
+        if bridge.initialized and broker_sym:
+            try:
+                import MetaTrader5 as mt5
+                s_info = mt5.symbol_info(broker_sym)
+                if s_info:
+                    exec_specs = {
+                        "tick_size": getattr(s_info, "trade_tick_size", 0.0001),
+                        "contract_size": getattr(s_info, "trade_contract_size", 1.0),
+                        "min_lot": getattr(s_info, "volume_min", 0.01),
+                        "step_lot": getattr(s_info, "volume_step", 0.01),
+                        "max_lot": getattr(s_info, "volume_max", 100.0),
+                        "stops_level": getattr(s_info, "trade_stops_level", 0),
+                        "point": getattr(s_info, "point", 0.0001),
+                        "digits": getattr(s_info, "digits", 4)
+                    }
+            except Exception:
+                pass
 
         # Quotes resolution
         bid_price = float(quote.get("bid") or 0.0)
@@ -700,18 +721,24 @@ def generate_full_snapshot() -> Dict[str, Any]:
                 pioneer_reason = "USWTI flushed to 90.69 USD, reclaimed 91.20 USD shelf."
         else:
             # Dynamic technical evaluation for all other assets
-            if swept_low and rsi < 35:
+            if vwap_z <= -2.0:
+                pioneer_eval = "MODEL_1_EXTREME_DISCOUNT_2SD"
+                pioneer_reason = f"Extreme discount flush ({vwap_z:.2f} SD below Session VWAP {session_vwap:.4f}). High-probability mean-reversion long on orderbook support."
+            elif vwap_z >= 2.0:
+                pioneer_eval = "MODEL_1_EXTREME_PREMIUM_2SD"
+                pioneer_reason = f"Extreme premium extension ({vwap_z:.2f} SD above Session VWAP {session_vwap:.4f}). High-probability mean-reversion short on overhead resistance."
+            elif mid_price > ema_200 and ema_200_slope >= 0 and session_vwap and abs(mid_price - session_vwap) <= (1.2 * atr):
+                pioneer_eval = "MODEL_2_BULLISH_VWAP_PULLBACK"
+                pioneer_reason = f"Bullish trend continuation (Price > 200 EMA {ema_200:.4f}). Pullback to Session VWAP {session_vwap:.4f} within 1.2x ATR. Joining momentum toward overhead liquidity."
+            elif mid_price < ema_200 and ema_200_slope < 0 and session_vwap and abs(session_vwap - mid_price) <= (1.2 * atr):
+                pioneer_eval = "MODEL_2_BEARISH_VWAP_PULLBACK"
+                pioneer_reason = f"Bearish trend continuation (Price < 200 EMA {ema_200:.4f}). Pullback up to Session VWAP {session_vwap:.4f} within 1.2x ATR. Joining momentum toward downside stops."
+            elif swept_low and rsi < 35:
                 pioneer_eval = "POTENTIAL_SWEEP_ABSORPTION"
                 pioneer_reason = f"Session low swept ({session_low:.4f}), RSI oversold ({rsi:.1f}). Awaiting CVD absorption confirmation."
             elif swept_high and rsi > 65:
                 pioneer_eval = "POTENTIAL_TOP_EXHAUSTION"
                 pioneer_reason = f"Session high swept ({session_high:.4f}), RSI overbought ({rsi:.1f}). Resistance rejection zone."
-            elif vwap_z < -2.0 and rsi < 30:
-                pioneer_eval = "EXTREME_DISCOUNT_PULLBACK"
-                pioneer_reason = f"Deep discount Z-score ({vwap_z:.2f}), RSI oversold ({rsi:.1f}). Rebound candidate."
-            elif vwap_z > 2.0 and rsi > 70:
-                pioneer_eval = "EXTREME_PREMIUM_EXTENSION"
-                pioneer_reason = f"Extreme premium Z-score ({vwap_z:.2f}), RSI overbought ({rsi:.1f}). Mean-reversion risk."
             elif trend_status == "BULLISH":
                 pioneer_eval = "TREND_CONTINUATION_BULLISH"
                 pioneer_reason = f"Trading above 200 EMA ({ema_200:.4f}) with positive slope. Uptrend intact."
@@ -722,6 +749,61 @@ def generate_full_snapshot() -> Dict[str, Any]:
                 pioneer_eval = "CONSOLIDATION_RANGE"
                 pioneer_reason = f"Trading within session value area [{vol_profile['val']:.4f} - {vol_profile['vah']:.4f}]. No structural breakout."
 
+        # Compute concrete limit geometry for high-confluence candidates
+        confluence_trade_setup = None
+        if vwap_z <= -2.0 and rsi < 40:
+            limit_px = round(mid_price - (0.15 * atr), 4)
+            sl_px = round(limit_px - (1.1 * atr), 4)
+            tp_px = round(limit_px + 2.5 * (limit_px - sl_px), 4)
+            confluence_trade_setup = {
+                "model": "MODEL_1_EXTREME_DISCOUNT_2SD",
+                "direction": "LONG",
+                "limit_price": limit_px,
+                "sl": sl_px,
+                "tp": tp_px,
+                "reward_risk": 2.50,
+                "confluence": f"Extreme Z {vwap_z:.2f} SD + RSI {rsi:.1f} + discount liquidity pool"
+            }
+        elif vwap_z >= 2.0 and rsi > 60:
+            limit_px = round(mid_price + (0.15 * atr), 4)
+            sl_px = round(limit_px + (1.1 * atr), 4)
+            tp_px = round(limit_px - 2.5 * (sl_px - limit_px), 4)
+            confluence_trade_setup = {
+                "model": "MODEL_1_EXTREME_PREMIUM_2SD",
+                "direction": "SHORT",
+                "limit_price": limit_px,
+                "sl": sl_px,
+                "tp": tp_px,
+                "reward_risk": 2.50,
+                "confluence": f"Extreme Z {vwap_z:.2f} SD + RSI {rsi:.1f} + premium liquidity pool"
+            }
+        elif mid_price > ema_200 and ema_200_slope >= 0 and session_vwap and abs(mid_price - session_vwap) <= (1.2 * atr):
+            limit_px = round(session_vwap, 4)
+            sl_px = round(limit_px - (1.0 * atr), 4)
+            tp_px = round(limit_px + 2.5 * (limit_px - sl_px), 4)
+            confluence_trade_setup = {
+                "model": "MODEL_2_TREND_PULLBACK_VWAP",
+                "direction": "LONG",
+                "limit_price": limit_px,
+                "sl": sl_px,
+                "tp": tp_px,
+                "reward_risk": 2.50,
+                "confluence": f"Bullish trend continuation pullback to Session VWAP {session_vwap:.4f}"
+            }
+        elif mid_price < ema_200 and ema_200_slope < 0 and session_vwap and abs(session_vwap - mid_price) <= (1.2 * atr):
+            limit_px = round(session_vwap, 4)
+            sl_px = round(limit_px + (1.0 * atr), 4)
+            tp_px = round(limit_px - 2.5 * (sl_px - limit_px), 4)
+            confluence_trade_setup = {
+                "model": "MODEL_2_TREND_PULLBACK_VWAP",
+                "direction": "SHORT",
+                "limit_price": limit_px,
+                "sl": sl_px,
+                "tp": tp_px,
+                "reward_risk": 2.50,
+                "confluence": f"Bearish trend continuation pullback up to Session VWAP {session_vwap:.4f}"
+            }
+
         assets_matrix[asset] = {
             "symbol_broker": broker_sym or asset,
             "category": "CRYPTO" if asset in CRYPTO_ASSETS else ("INDICES" if asset in INDICES_ASSETS else ("COMMODITIES" if asset in COMMODITIES_ASSETS else "FOREX")),
@@ -730,8 +812,16 @@ def generate_full_snapshot() -> Dict[str, Any]:
                 "ask": round(ask_price, 4),
                 "mid": round(mid_price, 4),
                 "spread_price": round(spread_price, 4),
-                "spread_bps": round(spread_bps, 2)
+                "spread_bps": round(spread_bps, 2),
+                "tick_size": exec_specs.get("tick_size", 0.0001),
+                "contract_size": exec_specs.get("contract_size", 1.0),
+                "min_lot": exec_specs.get("min_lot", 0.01),
+                "step_lot": exec_specs.get("step_lot", 0.01),
+                "max_lot": exec_specs.get("max_lot", 100.0),
+                "stops_level": exec_specs.get("stops_level", 0),
+                "digits": exec_specs.get("digits", 4)
             },
+            "execution_specs": exec_specs,
             "causal_indicators": {
                 "session_vwap_utc": round(session_vwap, 4) if session_vwap else None,
                 "session_sigma": round(session_sigma, 4) if session_sigma else None,
@@ -759,7 +849,8 @@ def generate_full_snapshot() -> Dict[str, Any]:
                 "swept_session_low": swept_low,
                 "swept_session_high": swept_high,
                 "reasoning": pioneer_reason,
-                "portfolio_gating": "ADMISSION_FROZEN_CAPACITY_FULL" if (filled_count + pending_count) >= 2 else "ADMISSION_OPEN"
+                "confluence_trade_setup": confluence_trade_setup,
+                "portfolio_gating": "ADMISSION_OPEN" if (filled_count + pending_count) < max_slots else "ADMISSION_FROZEN_MAX_CAPACITY"
             },
             "funding_and_rates": (
                 {
