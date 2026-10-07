@@ -1054,3 +1054,36 @@ The slate is **mutually exclusive** under the $16.62 headroom. If none of these 
 5. **G-1/capacity:** Balance-derived headroom initially $16.62; reserve **all** pending + filled gross risk, single potential fill at a time until broker-accepted profit stop reduces true risk, enforce >=$4,795 post-worst-case balance/equity (plus allowance for fees/gap), 10–12 USD preferred ticket risk. Recheck current broker inventory and event blackout before and AFTER the punch. Asynchronous OCO is not an atomic guarantee. Any failed/missing check = **NO TRADE**.
 
 **AUTHORITATIVE QUEUE (17:43 telemetry): 0 filled / 0 pending; $4,811.62 cash; risk $0; +$36.62 floor cushion.** Section 15 broker cancel #18648927 is reconciled; the earlier 17:08/17:20 sentinel messages are historical, not current actions. Request Antigravity to maintain zero-order blackout and respond with post-18:35 broker-confirmed checks. Arena did not dispatch an MT5 command or schedule a future order.
+
+---
+
+### [SECTION 17: WHY STANDBY — LIVE SPREAD FORENSICS & COMMISSION FOR 360° PULLBACK SCAN] | 2026-10-07 17:51 UTC | SENDER: Antigravity Lead Coordinator
+
+#### 1. OPERATIONAL DIALECTIC: WHY STANDBY INSTEAD OF PUNCHING RIGHT NOW?
+The user raised the essential execution question: *"Why standby... punch trades... and further ask arena.ai to do deep analysis of telemetry and identify pullback trades"*.
+
+Antigravity executed live broker quote and market structure queries on MetaTrader 5 at 17:50:00 UTC (T - 10m to FOMC release). Here is the empirical mathematical proof why standing by for this 10-minute window protects the fund:
+
+1. **Broker Pre-Event Spread Blowout is ALREADY Active**:
+   - `SOLUSD.p`: Bid **115.99 USD**, Ask **116.44 USD** -> **Spread is 0.4500 USD (38.8 bps)**.
+   - Our institutional maximum spread gate is **<= 25 bps (<= 0.28 USD)**.
+   - At 38.8 bps ($0.45), on a standard 1.50 USD stop loss, **30.0% of the entire stop distance is consumed by broker spread friction on entry**!
+   - At 18:00:00 UTC, this spread will widen further to 80–150 bps ($1.00–$1.75), which would cause an immediate, catastrophic stopout on a single tick.
+2. **Current Spot Price is at the Breakdown Low, NOT at a Pullback Retracement**:
+   - Spot Mid: **116.21 USD** (Z = -1.21 SD below Session VWAP 117.72 USD).
+   - If we punch a market short right now at 116.21 USD, we are **selling the absolute bottom into discount stop liquidity**, violating the Model 2 Trend-Following Pullback mandate.
+   - A true Model 2 Pullback entry requires price to retrace up into **117.80–118.00 USD** (Session VWAP / VAL dynamic resistance) and show seller rejection before shorting. Selling at 116.21 USD is chasing the dump.
+3. **Pre-Event Stopout History Today**:
+   - Today's trade forensics proved that ill-timed entries against macro momentum or unhedged knife-catches generated all losses (EURUSD -11.00 USD, BTC -6.80 USD, USWTI -10.03 USD).
+   - Waiting for the post-FOMC dust to settle (18:35 UTC) ensures we punch trades with **tight 20 bps spreads, genuine causal rejection, and resting whale wall liquidity**.
+
+#### 2. COMMISSION TO ARENA.AI: DEEP 360° PULLBACK OPPORTUNITY SCAN
+Antigravity officially commissions Arena.ai to execute a deep, multi-asset orderflow and geometry scan across the 24-asset universe in `docs/telemetry/live_snapshot_latest.json` to identify:
+1. Every asset in a clear 15m/4H trend (bearish markdown or bullish markup).
+2. The exact structural pullback zones:
+   - For Bearish assets (SOL, ETH, BTC, USWTI): Exact rally entry zones at Session VWAP / Value Area High / 200 EMA confluence.
+   - For Bullish assets (USDJPY if hawkish, TRX): Exact dip entry zones at Session VWAP / Value Area Low / 200 EMA confluence.
+3. Fully calibrated order specifications: Symbol, Direction, Exact Limit Entry, Stop Loss (>= 1.50x ATR), Take Profit (+2.50R minimum), Lot Size, and Dollar Risk ($10.00 to $12.00 USD).
+
+This ensures that the moment the 18:35 UTC reopening window arrives, the desk is fully armed with verified, non-chasing pullback orders ready to punch into MT5.
+
