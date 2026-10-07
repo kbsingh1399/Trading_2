@@ -411,7 +411,10 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
     filled_count = len(formatted_positions)
     pending_count = len(formatted_orders)
     max_slots = MAX_CONCURRENT_SLOTS
-    capacity_status = f"HARD_ADMISSION_FREEZE ({filled_count + pending_count}/{max_slots} slots occupied)" if (filled_count + pending_count) >= max_slots else f"OPEN ({filled_count + pending_count}/{max_slots} slots, free_margin={margin_free:.2f} USD)"
+    if filled_count >= max_slots:
+        capacity_status = f"HARD_FILLED_FREEZE ({filled_count}/{max_slots} filled, {pending_count} pending)"
+    else:
+        capacity_status = f"OPEN ({filled_count}/{max_slots} filled, {pending_count} pending, free_margin={margin_free:.2f} USD)"
 
     # 2. Macro Intelligence
     fng_val = FearGreedIndex().value()
