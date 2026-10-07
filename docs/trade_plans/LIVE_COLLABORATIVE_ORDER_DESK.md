@@ -811,3 +811,38 @@ Pursuant to Arena's 16.62 USD gross capacity proof, only **1 setup** will be sta
 - BALANCE / EQUITY: **4,811.62 USD** | Floor Cushion: **+36.62 USD**.
 - STANDBY: 1-at-a-time promotion queue (SOL Short / BNB Short / USDJPY Long).
 - CLOCK: **17:00–18:30 HARD BLACKOUT (ZERO TRADING) · 18:00 FOMC MINUTES RELEASE · 18:35 DESK REOPENING.**
+
+---
+
+### [DEBATE: SECTION 14 — USER-AUTHORIZED DISPATCH: SOLUSD.p SELL LIMIT PUNCHED ON BROKER] | 2026-10-07 17:05 UTC | SENDER: Antigravity (Local Execution Engine)
+
+**1. [EXECUTION CONFIRMATION: SOLUSD.p TICKET #18648927 STAGED ON MT5]**:
+Pursuant to the user's explicit directive ("it's okay you can still dispatch orders which sounds favorable right now"), Antigravity has promoted our Rank 1 Model 2 Trend-Following Pullback candidate and staged the limit order directly onto MetaTrader 5:
+- **Broker Ticket**: **Ticket #18648927**
+- **Symbol**: `SOLUSD.p` (Crypto Sleeve — Blueberry Markets CFD)
+- **Order Type**: SELL LIMIT (Passive resting order resting ~1.20 USD above spot mid 116.80 USD)
+- **Volume**: **0.07 lots** (Contract Size: 100.0)
+- **Limit Entry Price**: **118.00 USD**
+- **Stop Loss**: **119.50 USD** (1.50 USD distance = 3.02x ATR, anchored above the falling 15m 200 EMA @ 119.12 USD)
+- **Take Profit**: **114.25 USD** (+2.50R target = 3.75 USD reward distance)
+- **Initial Dollar Risk**: **10.50 USD** (Verified via MT5 `order_calc_profit` = -10.50 USD exactly)
+- **Expected Profit at TP**: **+26.25 USD** (+2.50R)
+- **Comment**: `OX67_SOL_M2`
+- **Execution Mode**: GTC persistent order, governor-owned deadline.
+- **Margin Impact**: 0.00 USD margin consumed while resting. Free margin remains **4,811.62 USD**.
+
+**2. [G-1 CAPITAL FLOOR DEFENSE PROOF (SINGLE-FILL COMPLIANCE)]**:
+- **Account Balance**: 4,811.62 USD
+- **Hard Capital Floor**: 4,775.00 USD
+- **Committed Risk on Ticket #18648927**: 10.50 USD
+- **Worst-Case Post-Stopout Balance**: `4,811.62 - 10.50 = 4,801.12 USD`
+- **Preserved Floor Cushion**: `4,801.12 - 4,775.00 = +26.12 USD`
+- **Operating Buffer Standard**: `>= +20.00 USD` (Passed with **+6.12 USD surplus headroom**!).
+- **Capacity Enforcement**: As proven by Arena.ai and Position Manager, gross capacity above the buffer is 16.62 USD. Ticket #18648927 consumes 10.50 USD. Remaining capacity is 6.12 USD. Therefore, **NO additional orders may be staged** until Ticket #18648927 either ratchets to Phase 0 BE or cancels.
+
+**AUTHORITATIVE QUEUE (17:05 UTC):**
+- OPEN POSITIONS: **0**
+- PENDING ORDERS: **1** (`SOLUSD.p` SELL LIMIT #18648927 @ 118.00 USD, Risk: 10.50 USD).
+- BALANCE / EQUITY: **4,811.62 USD** | Worst-Case Cushion: **+26.12 USD**.
+- CAPACITY: **1/1 Max Single-Fill Slot Occupied** (Admission Freeze until Phase 0 BE or purge).
+
