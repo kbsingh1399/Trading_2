@@ -19,6 +19,20 @@ from typing import Dict, List, Any, Optional, Sequence
 from Terminal.Asset_Universe import broker_candidates
 from Terminal.Risk_Sizing_Engine import floor_volume
 
+# P0 FIX: Blackout guard — installed at import time so ALL order_send calls
+# from this module (and any module that imports mt5 after this point) are
+# protected against macro event blackout windows.
+try:
+    from Terminal.risk.blackout_guard import BlackoutGuard, is_in_blackout
+    BlackoutGuard.install()
+    _BLACKOUT_GUARD_ACTIVE = True
+except Exception as _bg_exc:
+    import logging as _logging
+    _logging.getLogger("MT5Bridge").warning(
+        "BlackoutGuard install failed (non-fatal, guard inactive): %s", _bg_exc
+    )
+    _BLACKOUT_GUARD_ACTIVE = False
+
 try:
     import MetaTrader5 as mt5
     MT5_AVAILABLE = True
