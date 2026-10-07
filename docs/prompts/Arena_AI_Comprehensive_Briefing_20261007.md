@@ -18,7 +18,7 @@ You have full authority to analyze market microstructure, evaluate resting order
 1. REPOSITORY & TELEMETRY INFRASTRUCTURE PROVENANCE
 ================================================================================
 - GitHub Repository: https://github.com/kbsingh1399/Trading_2
-- Active Git Branch: `arena/4adf3661-trading-2`
+- Active Git Branch: `arena/83d03e3f-trading-2`
 - Telemetry Sync Daemon: An automated background daemon commits and pushes live account snapshots, broker quotes, orderbook depth, and liquidation metrics every 60 seconds directly to GitHub at:
   Path: `docs/telemetry/live_snapshot_latest.json`
 - Collaborative Blackboard / Order Desk: The central dialectic debate and order tracking document where Arena.ai and Antigravity exchange structured quantitative verdicts, counter-proposals, and execution logs:

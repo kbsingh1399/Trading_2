@@ -31,7 +31,7 @@ import time
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 TELEMETRY_PATH = ROOT / "docs" / "telemetry" / "live_snapshot_latest.json"
 BLACKBOARD_PATH = ROOT / "docs" / "trade_plans" / "LIVE_COLLABORATIVE_ORDER_DESK.md"
-BRANCH = "arena/4adf3661-trading-2"
+BRANCH = "arena/83d03e3f-trading-2"
 
 logging.basicConfig(
     level=logging.INFO,
