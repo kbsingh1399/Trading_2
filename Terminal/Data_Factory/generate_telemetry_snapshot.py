@@ -298,7 +298,10 @@ def generate_full_snapshot() -> Dict[str, Any]:
         rsi = float(indicators.get("rsi_14") or 50.0)
         session_vwap = indicators.get("session_vwap")
         session_sigma = indicators.get("session_sigma") or (atr * 0.8)
-        vwap_z = float(indicators.get("vwap_z") or 0.0)
+        if session_vwap and session_sigma and session_sigma > 0:
+            vwap_z = (mid_price - session_vwap) / session_sigma
+        else:
+            vwap_z = float(indicators.get("vwap_z") or 0.0)
         ema_20 = float(indicators.get("ema_20") or mid_price)
         ema_50 = float(indicators.get("ema_50") or mid_price)
         ema_200 = float(indicators.get("ema_200") or mid_price)
@@ -473,8 +476,13 @@ def generate_full_snapshot() -> Dict[str, Any]:
                 pioneer_eval = "MONITORING_RECLAIM"
                 pioneer_reason = "EURUSD monitoring for session low sweep and structural reclaim."
         elif asset == "USWTI":
-            pioneer_eval = "CANDIDATE_EXHAUSTION_RECLAIM"
-            pioneer_reason = "USWTI flushed to 90.69 USD, reclaimed 91.20 USD shelf and 200 EMA (91.24 USD). Extreme VWAP Z -3.42 SD, RSI 38.6. Prime candidate for Slot 2 allocation."
+            wti_pending = [o for o in formatted_orders if "USWTI" in str(o.get("symbol", ""))]
+            if wti_pending:
+                pioneer_eval = "ACTIVE_PENDING_BUY_LIMIT"
+                pioneer_reason = f"Ticket #{wti_pending[0].get('ticket')} BUY LIMIT {wti_pending[0].get('volume')} lots @ {wti_pending[0].get('price_open')} USD resting below market on 91.20 USD support shelf. Target 92.825 USD (+2.50R)."
+            else:
+                pioneer_eval = "CANDIDATE_EXHAUSTION_RECLAIM"
+                pioneer_reason = "USWTI flushed to 90.69 USD, reclaimed 91.20 USD shelf and 200 EMA (91.24 USD). Extreme VWAP Z -3.42 SD, RSI 38.6. Prime candidate for Slot 2 allocation."
 
         assets_matrix[asset] = {
             "symbol_broker": broker_sym or asset,
