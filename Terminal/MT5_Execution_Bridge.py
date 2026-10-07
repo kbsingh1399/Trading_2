@@ -275,12 +275,19 @@ class MT5ExecutionBridge:
 
         out = []
         for p in raw_positions:
+            p_type = getattr(p, "type", None)
+            if p_type == getattr(mt5, "ORDER_TYPE_BUY", 0):
+                direction = "LONG"
+            elif p_type == getattr(mt5, "ORDER_TYPE_SELL", 1):
+                direction = "SHORT"
+            else:
+                raise ValueError(f"unsupported_position_type:{p_type}")
             out.append({
                 "ticket": p.ticket,
                 "identifier": getattr(p, "identifier", p.ticket),
                 "time": p.time - self._utc_offset_seconds(p.symbol),
                 "symbol": p.symbol,
-                "direction": "LONG" if p.type == mt5.ORDER_TYPE_BUY else "SHORT",
+                "direction": direction,
                 "volume": p.volume,
                 "price_open": p.price_open,
                 "sl": p.sl,
@@ -297,12 +304,32 @@ class MT5ExecutionBridge:
         if not self.ensure_connected(): raise RuntimeError("Pending inventory unavailable")
         orders = mt5.orders_get()
         if orders is None: raise RuntimeError(f"Pending inventory failed: {mt5.last_error()}")
-        return [{"ticket": o.ticket, "symbol": o.symbol, "magic": o.magic, "comment": o.comment,
-                 "volume": o.volume_current, "price_open": getattr(o, "price_open", 0.0),
-                 "sl": getattr(o, "sl", 0.0), "tp": getattr(o, "tp", 0.0), "type": getattr(o, "type", 0),
-                 "direction": "LONG" if getattr(o, "type", 0) in (getattr(mt5, "ORDER_TYPE_BUY", 0), getattr(mt5, "ORDER_TYPE_BUY_LIMIT", 2)) else "SHORT",
-                 "expiration": getattr(o, "time_expiration", 0) - self._utc_offset_seconds(o.symbol),
-                 "time_setup": getattr(o, "time_setup", getattr(o, "time", 0)) - self._utc_offset_seconds(o.symbol)} for o in orders]
+        buy_types = {getattr(mt5, "ORDER_TYPE_BUY", 0), getattr(mt5, "ORDER_TYPE_BUY_LIMIT", 2),
+                     getattr(mt5, "ORDER_TYPE_BUY_STOP", 4), getattr(mt5, "ORDER_TYPE_BUY_STOP_LIMIT", 6),
+                     "ORDER_TYPE_BUY", "BUY", "ORDER_TYPE_BUY_LIMIT", "BUY_LIMIT",
+                     "ORDER_TYPE_BUY_STOP", "BUY_STOP", "ORDER_TYPE_BUY_STOP_LIMIT", "BUY_STOP_LIMIT"}
+        sell_types = {getattr(mt5, "ORDER_TYPE_SELL", 1), getattr(mt5, "ORDER_TYPE_SELL_LIMIT", 3),
+                      getattr(mt5, "ORDER_TYPE_SELL_STOP", 5), getattr(mt5, "ORDER_TYPE_SELL_STOP_LIMIT", 7),
+                      "ORDER_TYPE_SELL", "SELL", "ORDER_TYPE_SELL_LIMIT", "SELL_LIMIT",
+                      "ORDER_TYPE_SELL_STOP", "SELL_STOP", "ORDER_TYPE_SELL_STOP_LIMIT", "SELL_STOP_LIMIT"}
+        out = []
+        for o in orders:
+            o_type = getattr(o, "type", None)
+            if o_type in buy_types:
+                direction = "LONG"
+            elif o_type in sell_types:
+                direction = "SHORT"
+            else:
+                raise ValueError(f"unsupported_pending_order_type:{o_type}")
+            out.append({
+                "ticket": o.ticket, "symbol": o.symbol, "magic": o.magic, "comment": o.comment,
+                "volume": o.volume_current, "price_open": getattr(o, "price_open", 0.0),
+                "sl": getattr(o, "sl", 0.0), "tp": getattr(o, "tp", 0.0), "type": o_type,
+                "direction": direction,
+                "expiration": getattr(o, "time_expiration", 0) - self._utc_offset_seconds(o.symbol),
+                "time_setup": getattr(o, "time_setup", getattr(o, "time", 0)) - self._utc_offset_seconds(o.symbol)
+            })
+        return out
 
     def intent_filled(self, comment: str, prepared_at: float, magic: int = 100895) -> bool:
         """Fill evidence for an intent: True iff an entry deal exists for it.

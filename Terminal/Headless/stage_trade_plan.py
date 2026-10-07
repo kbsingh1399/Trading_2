@@ -282,8 +282,9 @@ def live_precheck(client: Any, plan: Dict, *, now: float) -> Dict:
         return {"ok": False, "reason": "market_state_exception",
                 "detail": repr(exc), "checks": checks}
     if not _transport_ok(state):
+        detail = str(state.get("error", state.get("http_status"))) if isinstance(state, dict) else str(state)
         return {"ok": False, "reason": "tunnel_unreachable",
-                "detail": str(state.get("error", state.get("http_status"))),
+                "detail": detail,
                 "checks": checks}
     checks["transport"] = "ok"
 

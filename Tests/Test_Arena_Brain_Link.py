@@ -214,7 +214,8 @@ def test_wilder_atr_matches_hand_computed_smoothing():
 def test_plan_test_limit_enforces_the_10_usd_cap_and_atr_geometry():
     plan = plan_test_limit(direction="SHORT", limit_price=4182.00, volume=0.01, atr=4.1)
     assert plan["sl"] == pytest.approx(4182.00 + 1.5 * 4.1)      # Wilder stop
-    assert plan["tp"] == pytest.approx(4182.00 - 2.5 * 4.1)      # 2.5 ATR target
+    assert plan["tp"] == pytest.approx(4182.00 - 3.75 * 4.1)     # 2.50R target (3.75 ATR)
+    assert (plan["sl"] - plan["limit_price"]) * 2.5 == pytest.approx(plan["limit_price"] - plan["tp"])
     assert plan["risk_usd"] == pytest.approx(0.01 * 100 * 1.5 * 4.1)
     assert plan["risk_usd"] <= TEST_LIMIT_RISK_CAP_USD
     assert plan["comment"] == TEST_LIMIT_COMMENT

@@ -37,14 +37,20 @@ class TestBlackout(unittest.TestCase):
 
     @unittest.skipUnless(importlib.util.find_spec("numpy"), "requires bridge numpy dependency")
     def test_bridge_import_reports_guard_only_if_patched(self):
+        import numpy  # ensure numpy is permanently resident in sys.modules
         fake = types.ModuleType("MetaTrader5")
         fake.order_send = lambda request: types.SimpleNamespace(retcode=10009)
         with patch.dict(sys.modules, {"MetaTrader5": fake}):
-            with patch.dict(sys.modules):
-                sys.modules.pop("Terminal.MT5_Execution_Bridge", None)
+            saved = sys.modules.pop("Terminal.MT5_Execution_Bridge", None)
+            try:
                 bridge_module = importlib.import_module("Terminal.MT5_Execution_Bridge")
                 self.assertTrue(bridge_module._BLACKOUT_GUARD_ACTIVE)
                 self.assertTrue(getattr(fake.order_send, "_omni_blackout_guard", False))
+            finally:
+                if saved is not None:
+                    sys.modules["Terminal.MT5_Execution_Bridge"] = saved
+                else:
+                    sys.modules.pop("Terminal.MT5_Execution_Bridge", None)
 
     @unittest.skipUnless(importlib.util.find_spec("numpy"), "requires bridge numpy dependency")
     def test_missing_native_currency_is_not_fabricated_as_usd(self):
@@ -187,5 +193,68 @@ class TestRatchetAndWall(unittest.TestCase):
             self.assertFalse(oi_confirms_short("BTCUSD.pi"))
 
 
+    def test_native_pending_order_decoding_and_unknown_type_fail_closed(self):
+        import Terminal.MT5_Execution_Bridge as bridge_module
+        native = object.__new__(bridge_module.MT5ExecutionBridge)
+        native.ensure_connected = lambda: True
+        native._utc_offset_seconds = lambda sym: 0
+
+        # Fake MT5 orders with BUY_STOP (4), BUY_STOP_LIMIT (6), SELL_STOP (5)
+        Order = types.SimpleNamespace
+        fake_orders = [
+            Order(ticket=1, symbol="BTCUSD.pi", magic=100895, comment="test", volume_current=0.02,
+                  price_open=100.0, sl=90.0, tp=125.0, type=4, time_expiration=0, time_setup=0),
+            Order(ticket=2, symbol="ETHUSD.pi", magic=100895, comment="test", volume_current=0.1,
+                  price_open=2000.0, sl=2050.0, tp=1875.0, type=5, time_expiration=0, time_setup=0),
+        ]
+        with patch.object(bridge_module, "mt5", types.SimpleNamespace(orders_get=lambda: fake_orders)):
+            pending = native.get_pending_orders()
+            self.assertEqual(pending[0]["direction"], "LONG")   # BUY_STOP is LONG, not SHORT
+            self.assertEqual(pending[1]["direction"], "SHORT")  # SELL_STOP is SHORT
+
+        # Unknown type must fail closed
+        unknown_orders = [
+            Order(ticket=3, symbol="BTCUSD.pi", magic=100895, comment="test", volume_current=0.02,
+                  price_open=100.0, sl=90.0, tp=125.0, type=99, time_expiration=0, time_setup=0)
+        ]
+        with patch.object(bridge_module, "mt5", types.SimpleNamespace(orders_get=lambda: unknown_orders)):
+            with self.assertRaisesRegex(ValueError, "unsupported_pending_order_type"):
+                native.get_pending_orders()
+
+    def test_stage_order_rejects_sub_2_5r_target_and_invalid_levels(self):
+        from Terminal.Execution.remote_reconciler import apply_command
+
+        class FakeBridge:
+            def get_open_positions(self): return []
+            def get_symbol_price(self, sym): return {"bid": 100.0, "ask": 101.0, "contract_size": 1.0}
+            def estimate_order(self, sym, direction, entry, sl): return {"stop_loss_per_lot": 10.0}
+
+        # 0.1R target (entry 101, SL 111, TP 100 on SHORT) must be rejected
+        params_0_1r = {"symbol": "XAUUSD.pi", "direction": "SHORT", "limit_price": 101.0,
+                       "sl": 111.0, "tp": 100.0, "volume": 1.0}
+        with self.assertRaisesRegex(ValueError, "r_multiple_below_minimum"):
+            apply_command(FakeBridge(), {"type": "STAGE_ORDER", "params": params_0_1r},
+                          clock=lambda: 1700000000)
+
+        # Non-protective stop (SL on wrong side) must be rejected
+        params_bad_sl = {"symbol": "XAUUSD.pi", "direction": "SHORT", "limit_price": 101.0,
+                         "sl": 95.0, "tp": 76.0, "volume": 1.0}
+        with self.assertRaisesRegex(ValueError, "protective_stop_must_be_adverse"):
+            apply_command(FakeBridge(), {"type": "STAGE_ORDER", "params": params_bad_sl},
+                          clock=lambda: 1700000000)
+
+    def test_stage_trade_plan_handles_none_market_state_fail_closed(self):
+        from Terminal.Headless.stage_trade_plan import live_precheck
+
+        class FakeClient:
+            def market_state(self): return None
+
+        res = live_precheck(FakeClient(), {}, now=1700000000)
+        self.assertFalse(res["ok"])
+        self.assertEqual(res["reason"], "tunnel_unreachable")
+        self.assertEqual(res["detail"], "None")
+
+
 if __name__ == "__main__":
     unittest.main()
+

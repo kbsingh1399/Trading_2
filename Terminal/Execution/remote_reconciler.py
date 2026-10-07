@@ -150,13 +150,13 @@ def wilder_atr(bars: List[Dict], period: int = 14) -> Optional[float]:
 def plan_test_limit(*, direction: str, limit_price: float, volume: float,
                     atr: float, contract_size: float = 100.0,
                     risk_cap_usd: float = TEST_LIMIT_RISK_CAP_USD,
-                    tp_atr_multiple: float = 2.5):
+                    tp_atr_multiple: float = 3.75,
+                    tp_r_multiple: Optional[float] = None):
     """Compute SL/TP for the Arena test limit and ENFORCE the risk cap.
 
-    SL distance is 1.5 x Wilder ATR(14); TP is tp_atr_multiple x ATR. Returns
-    the plan dict or raises ValueError (fail-closed) when the risk cap or the
-    sanity checks fail. The ETH lesson applies to test orders too: the stop
-    must be honest volatility distance, not a token offset.
+    SL distance is 1.5 x Wilder ATR(14); TP is tp_atr_multiple x ATR (default 3.75 x ATR = 2.50R).
+    Returns the plan dict or raises ValueError (fail-closed) when the risk cap, target R-multiple,
+    or sanity checks fail.
     """
     direction = str(direction).upper()
     limit_price, volume, atr = float(limit_price), float(volume), float(atr)
@@ -167,10 +167,17 @@ def plan_test_limit(*, direction: str, limit_price: float, volume: float,
     if atr is None or atr <= 0:
         raise ValueError("atr_unavailable")
     sl_distance = 1.5 * atr
-    if direction == "LONG":
-        sl, tp = limit_price - sl_distance, limit_price + tp_atr_multiple * atr
+    if tp_r_multiple is not None:
+        tp_distance = float(tp_r_multiple) * sl_distance
     else:
-        sl, tp = limit_price + sl_distance, limit_price - tp_atr_multiple * atr
+        tp_distance = float(tp_atr_multiple) * atr
+    r_multiple = tp_distance / sl_distance
+    if r_multiple < 2.5 - 1e-6:
+        raise ValueError(f"test_limit_r_multiple_below_min:{r_multiple:.4f}<2.50")
+    if direction == "LONG":
+        sl, tp = limit_price - sl_distance, limit_price + tp_distance
+    else:
+        sl, tp = limit_price + sl_distance, limit_price - tp_distance
     risk_usd = volume * float(contract_size) * sl_distance
     if risk_usd > risk_cap_usd + 1e-9:
         raise ValueError(f"test_limit_risk_cap_exceeded:{risk_usd:.2f}>{risk_cap_usd:.2f}")
@@ -263,6 +270,21 @@ def apply_command(bridge, command: Dict, *, clock: Callable = time.time,
         sl = float(number(params.get("sl"), 0.0))
         tp = float(number(params.get("tp"), 0.0))
         volume = float(number(params.get("volume"), 0.0))
+        if min(limit_price, sl, tp, volume) <= 0:
+            raise ValueError("invalid_order_levels_or_volume")
+        # Enforce protective stop geometry and minimum 2.50R target
+        sl_dist = (limit_price - sl) if direction == "LONG" else (sl - limit_price)
+        tp_dist = (tp - limit_price) if direction == "LONG" else (limit_price - tp)
+        if sl_dist <= 0:
+            raise ValueError(f"protective_stop_must_be_adverse:entry={limit_price},sl={sl}")
+        if tp_dist <= 0:
+            raise ValueError(f"take_profit_must_be_favorable:entry={limit_price},tp={tp}")
+        r_multiple = tp_dist / sl_dist
+        if r_multiple < 2.5 - 1e-6:
+            raise ValueError(f"r_multiple_below_minimum:{r_multiple:.4f}<2.50R_required")
+        atr = number(params.get("atr"), 0.0)
+        if atr > 0 and sl_dist < 1.5 * atr - 1e-6:
+            raise ValueError(f"stop_distance_below_atr_floor:{sl_dist:.4f}<{1.5 * atr:.4f}")
         quote = bridge.get_symbol_price(symbol)
         if not quote:
             raise ValueError("quote_unavailable")

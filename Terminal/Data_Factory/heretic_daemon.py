@@ -88,10 +88,20 @@ def main():
         now_ts = time.time()
         now_utc = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
 
+        try:
+            import heretic
+            engine_ok = True
+            engine_ver = getattr(heretic, "__version__", "2.0.0.dev0")
+        except Exception as exc:
+            engine_ok = False
+            engine_ver = f"import_error:{exc}"
+
         status_payload = {
             "engine": "heretic-llm",
             "repo_url": "https://github.com/p-e-w/heretic",
-            "status": "RUNNING",
+            "status": "RUNNING" if engine_ok else "DEGRADED",
+            "engine_probed": engine_ok,
+            "engine_version": engine_ver,
             "heartbeat": heartbeat_count,
             "pid": os.getpid(),
             "uptime_seconds": round(now_ts - START_TIME, 1),
