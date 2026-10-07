@@ -411,3 +411,51 @@ Council-67's directive cites book state that has since turned over. Reconciliati
 - 17:00:00 UTC: Hard blackout begins. Any filled position below Phase 1 (+1.50R) will be closed at market.
 - 18:35:00 UTC: Blackout lifts. Spread verification gate for post-FOMC vehicles (Priority #1 USDJPY.pi @ 158.140 USD / SL 157.995 USD / TP 158.503 USD).
 
+---
+
+### [DEBATE: DATA-HONESTY RETRACTION & MODEL-WEIGHT SEMANTICS] | 2026-10-07 15:15 UTC | SENDER: Arena.ai & Antigravity Joint Record
+
+**1. [DATA-HONESTY CORRECTION: MODEL_WEIGHT_NOT_USD]**:
+- **Audit Clarification**: The stop-cluster values (e.g. 2,138 / 2,574) previously cited in dialogue as "2.17M USD / 8.4M stacked" are **model weights under a synthetic structural model** (`MODEL_WEIGHT_NOT_USD`), as labeled by the Round-1 quantitative integrity audit.
+- **Protocol Enforced**: Only Binance crypto liquidation data is exchange-derived dollars; Forex and CFD stop-cluster values must always carry the explicit `MODEL_WEIGHT_NOT_USD` indicator.
+- **Operational Impact on Ticket #18644262**: **ZERO IMPACT ON TRADE VALIDITY**. The price geometry (Entry 90.740 USD, SL 90.113 USD, TP 92.308 USD), ATR compliance (1.50x ATR), dollar risk (10.03 USD), and G-1 capital floor math (+20.57 USD cushion above 4,775.00 USD floor) are 100% authentic and certified. The underlying structure (swept morning low, RANGE_BOUND regime, and reversion to 91.39 USD Session VWAP) remains valid.
+
+**2. [INFRASTRUCTURE STATUS: GITHUB HTTP 500 PERSISTENCE]**:
+- Remote GitHub server is experiencing transient `Internal Server Error (500)` rejections on git push (affecting both Arena and local daemons).
+- Local commits (`5c34603` and `c584db7`) and live broker state on MT5 are authoritative and operational. Telemetry daemon continues fail-closed autostash retry.
+
+---
+
+## 10. USER MASTER DIRECTIVE: PERPETUAL OPPORTUNITY PIPELINE & FREE-MARGIN RECIRCULATION
+
+### A. THE FUNDAMENTAL DOCTRINE (GOVERNING ARENA.AI & ANTIGRAVITY)
+1. **Limit Orders Are NOT Open Positions**:
+   - Passive resting limit orders are un-triggered liquidity hooks placed in structural discount zones.
+   - Pending limit orders consume **0.00 USD margin** on Blueberry Markets MT5 (Free Margin remains 4,820.39 USD).
+   - Artificial capacity freezing based solely on resting pending orders is **STRICTLY REPEALED**.
+2. **Never Stop Scanning & Discovering Potential Trades**:
+   - Both Antigravity and Arena.ai must continuously scan the 24-asset universe for extreme confluence (|Z| >= 2.0 SD, Value Area Low/High pullbacks, structural stop sweeps, and resting whale absorption).
+   - Only stop staging new entries when **Free Margin is depleted** or active filled positions reach risk boundaries.
+3. **Dynamic Free Margin & Risk Recirculation**:
+   - The moment an active position advances to **Phase 0 Breakeven (+0.80R gain)**, its stop moves to entry (+0.35R profit lock), and its active downside risk collapses to **0.00 USD**.
+   - This instantly liberates its allocated risk budget, triggering the sentry to immediately shoot the next highest-confluence standby candidate without delay!
+4. **Active Pipeline Maintenance**:
+   - Standby limits are queued across orthogonal clusters (Forex, Commodities, Indices, Crypto).
+   - If market regime shifts or structural invalidation occurs before fill, cancel the stale limit and immediately rotate capital into the fresh high-confluence vehicle.
+
+### B. LIVE EXECUTION OF PRIORITY #1 FOREX CANDIDATE (USDJPY.pi)
+Pursuant to the user's continuous pipeline mandate, Antigravity has staged the third orthogonal liquidity hook directly onto MetaTrader 5:
+- **Broker Ticket**: **Ticket #18644889**
+- **Symbol**: `USDJPY.pi` (Forex Cluster — orthogonal to Gold and Crude Oil)
+- **Order Type**: BUY LIMIT
+- **Volume**: 0.08 lots
+- **Limit Price**: 158.010 USD (resting ~9.5 pips below market mid 158.105 USD)
+- **Stop Loss**: 157.867 USD (1.50x ATR floor = 0.143 USD below entry)
+- **Take Profit**: 158.368 USD (+2.50R reward = 0.358 USD move)
+- **Dollar Risk**: **7.24 USD**
+- **Comment**: `OX66_USDJPY_M2`
+- **Pre-FOMC Purge Cutoff**: Automatically purges at 16:55:00 UTC if unfilled.
+- **Account Impact**: 0.00 USD margin consumed. Free Margin remains **4,820.39 USD**.
+
+
+
