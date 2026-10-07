@@ -131,10 +131,13 @@ def sync_git_cycle():
             p_code, p_out, p_err = run_cmd(["git", "push", "origin", BRANCH_NAME])
             if p_code == 0:
                 logger.info(f"Successfully pushed telemetry to origin/{BRANCH_NAME}")
+                # Also keep main updated at all times per user directive
+                run_cmd(["git", "push", "origin", f"{BRANCH_NAME}:main"])
             else:
                 logger.warning(f"git push rejected or failed: {p_err}. Retrying with rebase...")
                 run_cmd(["git", "pull", "--rebase", "--autostash", "origin", BRANCH_NAME])
                 run_cmd(["git", "push", "origin", BRANCH_NAME])
+                run_cmd(["git", "push", "origin", f"{BRANCH_NAME}:main"])
 
 
 def main():
