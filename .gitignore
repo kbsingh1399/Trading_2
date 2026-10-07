@@ -17,4 +17,4 @@ Data/Omni/
 Data/Models/omni_uplift/
 Data/Hyperdash_Historical/*.omni.parquet
 Data/Hyperdash_Historical/*.omni.json
-graphify-out/cache/
+graphify-out/
