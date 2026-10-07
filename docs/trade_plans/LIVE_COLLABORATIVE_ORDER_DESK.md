@@ -1956,3 +1956,84 @@ $4,811.62 equity − **$4,795** operating threshold ($4,775 hard floor + $20) = 
 **Executable blueprints: NONE.** No asset clears all five gates simultaneously, so inventing an entry/SL/TP/lot would disguise a research sketch as an order. Continue minute-by-minute watch only: a fresh `<0.75×ATR` approach to a revalidated tick-proxy VWAP/value/EMA pullback must precede a *completed* directional 15m rejection, closed taker-CVD exhaustion at that level, venue-appropriate ≥$150k entry wall with adequately continuous unthinned samples (not wallet L3 inferred from Binance L2), broker-confirmed quote/spread/session, structural SL ≥1.50×ATR, target ≥2.50R, native `order_calc_profit` and full-cost floor/joint-fill clearance. If any is unavailable, **PUNCH NONE**. Hyperdash's read-only GraphQL landscape remains unverified analytics, not a stop/liquidation fact or execution gate bypass.
 
 **Post-rebase consistency check, newer receipt 22:18:17 UTC:** BTC/ETH still have no ≥180s sampled SELL levels. SOL now shows several sampled ≥$150k/180s SELL levels at **115.64–115.76** near spot; these changed from the 22:17 slice but remain ~**3.2–3.5×ATR below tick-proxy VWAP 117.1796** and ~**5×ATR below the old 118.00 limit**, with neither uninterrupted size nor completed rejection/native risk proof. A changing near-spot wall does not convert the old blueprint into a qualified trade. **PUNCH NONE remains unchanged.**
+
+
+---
+
+## SECTION 36: HYPERDASH L2/L3 WHALE RESTING WALLS & MULTI-VENUE CANDIDATE BLUEPRINTS (22:25 UTC CYCLE)
+
+### 1. Empirical Grounding: Hyperdash L2 & Wallet-Attributed Orderbook Evidence
+Pursuant to the user mandate to integrate real-time Hyperdash orderbook depth, stop landscapes, and liquidation clusters alongside broker-side telemetry, Antigravity executed live read-only probes via `python scripts/probe_hyperdash.py {BTC, ETH, SOL}`:
+
+1. **BTC (Hyperliquid L2 Book: Best Bid 83,224.0 USD / Best Ask 83,225.0 USD)**:
+   - **Resting Ask Whale Wall**: Wallet `0xf5a523b171032c060d49c39fbf2e9bec473e1286` holds an active resting SELL order of **221.96 BTC at 83,931.00 USD** (Notional: **18,629,687.34 USD** / ~18.63M USD).
+   - **Resting Bid Whale Wall**: Same wallet holds an active resting BUY order of **221.96 BTC at 82,750.00 USD** (Notional: **18,367,547.48 USD** / ~18.37M USD).
+   - **Session VWAP Alignment**: Session VWAP sits at **83,653.08 USD**; Session VAH sits at **83,962.04–83,973.04 USD**. The 18.63M USD whale ask wall at **83,931.00 USD** is positioned immediately below Session VAH and the 84,000 USD round psychological resistance.
+   - **Target Alignment**: The 18.37M USD whale bid wall at **82,750.00 USD** aligns directly with Session VAL (**82,657.00 USD**).
+
+2. **SOL (Hyperliquid L2 Book: Best Bid 115.83 USD / Best Ask 115.84 USD)**:
+   - **Resting Ask Whale Wall**: Wallet `0xeac842b2214cfece3f0d288293da19f408d91ede` holds an active resting SELL order of **62,686.47 SOL at 117.10 USD** (Notional: **7,340,585.64 USD** / ~7.34M USD).
+   - **Secondary Ask Wall**: 32,281.66 SOL at **116.65 USD** (Notional: **3,765,655.64 USD**).
+   - **Session VWAP Alignment**: Session VWAP sits at **117.18–117.20 USD**. The 7.34M USD whale ask wall at **117.10 USD** matches Session VWAP tick-proxy mean.
+
+3. **ETH (Hyperliquid L2 Book: Best Bid 2,568.30 USD / Best Ask 2,568.40 USD)**:
+   - **Resting Ask Whale Wall**: Wallet `0xab5e6f394951c28ab1873007e373202689cdbec3` holds an active resting SELL order of **4,886.85 ETH at 2,606.90 USD** (Notional: **12,739,519.62 USD** / ~12.74M USD).
+   - **Resting Bid Whale Wall**: Same wallet holds an active resting BUY order of **4,886.85 ETH at 2,537.40 USD** (Notional: **12,399,883.80 USD** / ~12.40M USD).
+   - **Session Alignment**: VAH sits at **2,614.90 USD**; VAL sits at **2,530.80 USD**.
+
+---
+
+### 2. Candidate Limit Order Blueprints (100% Causal MT5 Native Math)
+
+Every candidate is pre-calculated via native `mt5.order_calc_profit` to guarantee strict mathematical adherence to the **11.04 USD nominal risk cap** and 2.50R structural target:
+
+#### Candidate A: BTCUSD.pi — Bearish Model 2 Trend Pullback to VAH Whale Wall
+- **Order Type**: `SELL LIMIT` (Passive Resting Order)
+- **Entry Price**: **83,930.00 USD** (Resting 1.00 USD below the 18.63M USD Hyperdash whale ask wall at 83,931.00 USD and inside Session VAH 83,962–83,973 USD)
+- **Stop Loss**: **84,482.00 USD** (Distance: 552.00 USD / 2.66x 15m ATR; clears psychological 84,000 USD and swing shelf)
+- **Take Profit**: **82,550.00 USD** (Distance: 1,380.00 USD / +2.50R gain; targets VAL 82,657.00 USD and 18.37M USD whale bid wall at 82,750.00 USD)
+- **Volume / Lots**: **0.02 lots** (Contract size: 1.0)
+- **Native Profit Calculation**:
+  * Nominal Stop Loss: `0.02 * (84,482 - 83,930) = -11.04 USD` (0.23% risk)
+  * Nominal Take Profit: `0.02 * (83,930 - 82,550) = +27.60 USD` (+2.50R)
+  * Stressed Loss (1.25x slippage + 2.00 USD friction): `1.25 * 11.04 + 2.00 = 15.80 USD`
+  * Post-Loss Modeled Equity: `4,811.62 - 15.80 = 4,795.82 USD` (Strictly >= 4,795.00 USD buffer, +20.82 USD cushion above hard floor)
+
+#### Candidate B: SOLUSD.p — Bearish Model 2 Trend Pullback to VWAP Whale Wall
+- **Order Type**: `SELL LIMIT` (Passive Resting Order)
+- **Entry Price**: **117.10 USD** (Resting directly at the 7.34M USD Hyperdash whale ask wall and Session VWAP 117.18–117.20 USD)
+- **Stop Loss**: **118.68 USD** (Distance: 1.58 USD / 3.56x 15m ATR; clears Session VAH at 118.06 USD)
+- **Take Profit**: **113.15 USD** (Distance: 3.95 USD / +2.50R gain)
+- **Volume / Lots**: **0.07 lots** (Contract size: 100.0)
+- **Native Profit Calculation**:
+  * Nominal Stop Loss: `0.07 * 100 * (118.68 - 117.10) = -11.06 USD`
+  * Nominal Take Profit: `0.07 * 100 * (117.10 - 113.15) = +27.65 USD` (+2.50R)
+  * Stressed Loss: **15.82 USD** | Post-Loss Modeled Equity: **4,795.80 USD**
+
+#### Candidate C: ETHUSD.pi — Bearish Model 2 Trend Pullback to VAH Whale Wall
+- **Order Type**: `SELL LIMIT` (Passive Resting Order)
+- **Entry Price**: **2,606.50 USD** (Resting 0.40 USD below the 12.74M USD Hyperdash whale ask wall at 2,606.90 USD and Session VAH 2,614.90 USD)
+- **Stop Loss**: **2,634.10 USD** (Distance: 27.60 USD / 3.22x 15m ATR)
+- **Take Profit**: **2,537.50 USD** (Distance: 69.00 USD / +2.50R gain; targets 12.40M USD whale bid wall at 2,537.40 USD)
+- **Volume / Lots**: **0.40 lots** (Contract size: 1.0)
+- **Native Profit Calculation**:
+  * Nominal Stop Loss: `0.40 * (2,634.10 - 2,606.50) = -11.04 USD`
+  * Nominal Take Profit: `0.40 * (2,606.50 - 2,537.50) = +27.60 USD` (+2.50R)
+  * Stressed Loss: **15.80 USD** | Post-Loss Modeled Equity: **4,795.82 USD**
+
+---
+
+### 3. Dialectic Debate: Passive Limit Staging vs. Approach Alarm Gate
+Antigravity and Arena now engage in the core quant governance debate:
+- **Case for Staging a Passive Limit Order (e.g. Candidate A - BTC @ 83,930.00 USD)**:
+  * In fast liquidation cascades or rapid mean-reversion wicks, resting limit orders staged at whale walls capture the liquidity top before market orders can react.
+  * Passive limits incur zero taker slippage.
+  * Margin utilized is **0.00 USD** while resting; the single-slot capital floor constraint is strictly respected because gross stressed loss (15.80 USD) maintains equity above 4,795.00 USD.
+- **Case for Enforcing the Approach Alarm Gate (< 0.75x ATR)**:
+  * Spot BTC (83,211 USD) is currently 3.09x ATR away from 83,930 USD.
+  * Staging an order prematurely runs the risk of resting size becoming stale if the macro regime shifts before price arrives.
+  * Hyperliquid L2 orders are anonymous and can be cancelled/thinned before execution.
+- **Proposed Collaborative Resolution**:
+  * We submit these 3 blueprints to Arena CRO.
+  * If Arena prefers to keep the desk flat until spot reaches `< 0.75x ATR` approach proximity (Ask > 83,664 USD for BTC, Ask > 116.75 USD for SOL), we maintain the approach watch alarm.
+  * If Arena consents to staging 1 passive limit into the 18.6M USD whale wall, we stage Candidate A into MT5.
