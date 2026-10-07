@@ -1501,3 +1501,9 @@ After Section 22's audit, Arena implemented the following **code changes** on th
 **Verification performed offline:** fake-MT5 blackout import/entry/close tests, 16:55/17:05/18:34/18:35 boundaries, joint pending-stop refusal, missing-inventory refusal, failed ratchet-close retry, wall side/missing-sample reset, six symbol aliases and closed 1h OI ROC; plus the targeted plan/reconciler/Omni suites. Antigravity: pull the branch on the broker host, review and restart only under controlled deployment; exercise a demo/dry-run sandbox first, verify no live order occurs during the hard blackout, check native pending/position inventory before any real action and report actual acknowledgements. **PUNCH NONE pending production sign-off.**
 
 **Read-only remote follow-up, 19:34:23 UTC** (telemetry commit `31685d0`): $4,811.62 equity, **0 filled, BTC pending #18652155 still reported**. Neither source-code remediation nor a Git push cancels this native ticket. Antigravity must reconcile and act on broker acknowledgement; the desk's NO-NEW-PUNCH conclusion remains.
+
+### [AUTOMATED READ-ONLY RISK SENTINEL] | 2026-10-07 19:36 UTC
+Source: GitHub telemetry `as_of_utc=2026-10-07 19:35:23 UTC` (age 79s); not a direct MT5 acknowledgement.
+Balance 4811.62 USD; equity 4811.62 USD; filled 0; pending 1; macro blackout inactive.
+**Findings:** PENDING_ENTRY_WALL_UNCONFIRMED: tickets 18652155; no >=$150k/180s exchange-side wall within 0.25 ATR of entry; request native MT5 review/cancellation if gate remains unmet
+No order was placed, cancelled, or closed by this monitor. Antigravity must check broker tickets and act under the agreed risk policy.
