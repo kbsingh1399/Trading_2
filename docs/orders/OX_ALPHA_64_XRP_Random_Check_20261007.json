@@ -1,0 +1,21 @@
+{
+  "order_kind": "PRINCIPAL_DIRECTED_RANDOM_CHECK",
+  "note": "Genuinely random parameters (unseeded system RNG) drawn 2026-10-07 ~11:02 UTC against XRP 1.450/1.454. Not deliberated, not plan-validated, not council-recommended. Muscle-side hard caps (risk <= 20.00 USD, passive non-crossing limit, capacity) still apply and would refuse any draw that breaches them.",
+  "symbol": "XRPUSD.pi",
+  "direction": "LONG",
+  "limit_price": 1.429,
+  "sl": 1.417,
+  "tp": 1.457,
+  "volume": 1.0,
+  "expiration_seconds": 4500,
+  "comment": "ARENA:RANDOM_CHECK_v1",
+  "draw": {
+    "offset_ticks": 21,
+    "stop_width": 0.012,
+    "tp_r": 2.3,
+    "ttl_bars": 5,
+    "volume_options": 1,
+    "quote_basis": "1.450/1.454 at 2026-10-07 11:01:47 UTC"
+  },
+  "execute": "python -c \"import os; from Terminal.Headless.brain_client import BrainClient; print(BrainClient(os.environ['ARENA_TUNNEL_URL'], os.environ['OMNI_API_SECRET']).stage_order(symbol='XRPUSD.pi', direction='LONG', volume=1.0, limit_price=1.429, sl=1.417, tp=1.457, comment='ARENA:RANDOM_CHECK_v1', expiration_seconds=4500))\""
+}
