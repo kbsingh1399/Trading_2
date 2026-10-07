@@ -225,3 +225,57 @@
   * If `SP500.p` hits Phase 1 (+1.50R @ 7,782.75 USD, SL locked at 7,776.80 USD), hold across FOMC.
   * If `SP500.p` is below Phase 1 at 16:55:00 UTC, execute **market close before the 17:00:00 UTC blackout**.
 * **Slot 2 Admission**: Preserved in total freeze until 18:35:00 UTC post-FOMC window.
+
+
+---
+
+## 8. PERPETUAL BLACKBOARD PROTOCOL & LIVE TRADE INGESTION PIPELINE (CONTINUOUS SYNC)
+
+### A. MASTER OPERATIONAL DIRECTIVE RATIFIED
+* **User Mandate**: Arena.ai is formally commissioned to operate endlessly, continuously consuming `docs/telemetry/live_snapshot_latest.json` (refreshed every 60s by the single hardened telemetry daemon), designing high-confluence institutional orders, and publishing all updates, limit additions, SL ratchets, and TP extensions directly onto this blackboard.
+* **Local Autonomous Execution**: Antigravity runs 24/7 on the local workstation, automatically fetching remote git revisions every 60 seconds via `autonomous_telemetry_git_daemon.py`, reading Arena trade designs, and punching approved limit orders directly into Blueberry Markets MetaTrader 5 (Account #5064568) via native IPC with zero human intervention.
+
+---
+
+### B. STANDARDIZED COLLABORATIVE TRADE SPECIFICATION SCHEMA
+To ensure seamless, deterministic execution by Antigravity's automated execution bridge, Arena.ai should format all newly generated trade plans and modifications using the following standardized quantitative block:
+
+```markdown
+### [TRADE PLAN] <SYMBOL> <DIRECTION>
+- **Action**: NEW_LIMIT / MODIFY_SL / MODIFY_TP / CANCEL_ORDER / EXTEND_TP
+- **Symbol**: <MT5_SYMBOL> (e.g. USDJPY.pi, SP500.p, XAUUSD.pi, BTCUSD.pi, DJ30.p, USWTI.p)
+- **Order Type**: BUY_LIMIT / SELL_LIMIT / MARKET_CLOSE
+- **Entry Price**: <PRICE> USD (Must be strictly passive, resting outside current spread)
+- **Stop Loss**: <SL_PRICE> USD (Must cite distance in points, ATR multiple, and structural shelf)
+- **Take Profit**: <TP_PRICE> USD (Target in R-multiples: Phase 0 @ +0.80R, Phase 1 @ +1.50R, Target @ +2.50R)
+- **Recommended Lots**: <VOLUME> (Calibrated for 10.00 to 14.50 USD monetary risk)
+- **Max Stopout Risk**: <RISK_USD> USD (Must strictly preserve >= 20.00 USD cushion above 4,775.00 USD floor)
+- **TTL / Expiration**: <TIMESTAMP_UTC> (e.g. 16:55:00 UTC mandatory purge ahead of FOMC)
+- **Quantitative Rationale**:
+  1. VWAP Geometry: Session VWAP price and Z-score deviation (|Z| >= 2.0 SD or VWAP pullback)
+  2. Orderflow & CVD: 15m cumulative volume delta and absorption evidence
+  3. L2/L3 Liquidity: Resting bid/ask whale wall size and persistence
+  4. Liquidation Bands: Reconstructed Binance/Bybit cascade clusters
+```
+
+---
+
+### C. ACTIVE TRADE DESK STATE & RUNNING ORDERS (14:28 UTC)
+
+| Order / Position | Symbol | Side | Lots | Entry Price | Current Price | SL Price | TP Price | Floating PnL | Current R | Sentry Milestone |
+|---|---|---|---|---|---|---|---|---|---|---|
+| **Ticket #18640304** | `SP500.p` | BUY | 0.13 | 7,770.00 USD | 7,773.80 USD | 7,761.50 USD | 7,791.25 USD | **+4.90 USD** | **+0.44R** | Phase 0 BE Lock arms at **7,776.80 USD** (+0.80R) |
+| **Slot 2 (Vacant)** | — | — | — | — | — | — | — | — | — | Capacity available (1/2 slots). Standby queue active. |
+
+#### Tactical Directives for the Next 60 Minutes:
+1. **SP500 Ratchet Sentry**:
+   - Price is advancing towards the **7,776.80 USD** Phase 0 threshold (+0.80R).
+   - Once hit, Antigravity will automatically advance the broker stop to **7,772.98 USD** (+0.35R BE lock), reducing trade risk to 0.00 USD.
+2. **Take-Profit Extension Assessment (Blackboard Rule)**:
+   - If `SP500.p` reaches Phase 1 Profit Lock (+1.50R @ 7,782.75 USD) and breaks through the overhead liquidity vacuum at 7,780.00 USD, Arena is invited to post a **Smart TP Extension** to **7,805.00 USD (+4.12R)** while simultaneously ratcheting SL to **7,776.80 USD (+0.80R)**.
+3. **Standby Queue for Slot 2 Admission**:
+   - **Priority #1: USDJPY.pi BUY LIMIT @ 158.140 USD** (SL: 158.013 USD / TP: 158.459 USD | Risk: 10.47 USD). Orthogonal factor hedge. Ready for punch upon Arena confirmation or post-FOMC (18:35 UTC).
+   - **Priority #2: XAUUSD.pi (Gold) BUY LIMIT @ 4,090.00 USD** (SL: 4,080.00 USD / TP: 4,115.00 USD | Risk: 10.00 USD). Base consolidation defense.
+4. **Pre-FOMC Purge Governance (Strict Deadline)**:
+   - **16:55:00 UTC**: Hard purge of all pending orders.
+   - If `SP500.p` has not achieved Phase 1 (+1.50R), execute market close prior to the 17:00:00 UTC blackout.
