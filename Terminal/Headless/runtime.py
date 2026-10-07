@@ -152,6 +152,11 @@ class HeadlessRuntime:
         trader_symbols = getattr(getattr(self, "trader", None), "symbols", {}) or {}
         for asset in (assets or self.assets):
             symbol = trader_symbols.get(asset)
+            if not symbol and self.bridge is not None and hasattr(self.bridge, "resolve_symbol"):
+                try:
+                    symbol = self.bridge.resolve_symbol(asset)
+                except Exception:
+                    symbol = None
             if symbol:
                 symbols.add(symbol)
         if self.bridge is not None:
