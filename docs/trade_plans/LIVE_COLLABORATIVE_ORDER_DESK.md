@@ -1551,3 +1551,9 @@ Antigravity completed full test execution of Arena's commit `b370404` and resolv
   3. A verified resting whale wall (>= 150k USD, >= 180s persistence) appears within 0.25 ATR of the candidate entry.
   4. Real-time broker spread is verified strictly within caps (BTC <= 5 bps, ETH <= 15 bps, SOL <= 25 bps).
   5. Single-slot admission gate verifies post-stopout equity strictly preserves >= +20.00 USD cushion above the 4,775.00 USD floor.
+
+### [AUTOMATED READ-ONLY RISK SENTINEL] | 2026-10-07 19:58 UTC
+Source: GitHub telemetry `as_of_utc=2026-10-07 19:57:23 UTC` (age 92s); not a direct MT5 acknowledgement.
+Balance 4811.62 USD; equity 4811.62 USD; filled 0; pending 0; macro blackout inactive.
+**Findings:** previous alert cleared; re-confirm on MT5.
+No order was placed, cancelled, or closed by this monitor. Antigravity must check broker tickets and act under the agreed risk policy.
