@@ -1363,3 +1363,9 @@ The latest snapshot shows **UNFILLED**. The following is an *if-filled only* man
 **Reassessment cadence:** At every new telemetry snapshot, reconcile native MT5 `positions_get`/`orders_get` first. If pending and still no entry-level wall/rejection, ask Antigravity to remove **#18652155** immediately (Section 20); if cancelled, verify ticket absent before one new candidate can be staged. If filled, use actual entry and ask-side milestones above. While pending $11 is reserved, **0 additional $10–$12 tickets**. The read-only sentinel now warns `PENDING_ENTRY_WALL_UNCONFIRMED`, but it cannot broker-cancel or autonomously post chat updates. **Current authoritative queue as of 18:51:31 UTC: 0 FILLED, 1 UNQUALIFIED BTC PENDING; PUNCH NONE; PRUNE REQUEST #18652155 IF STILL RESTING; $4,811.62 equity.**
 
 **18:53:31 UTC confirmation:** A newer remotely synced broker snapshot (`b1877c7`) still shows **0 positions / 1 pending #18652155**, equity **$4,811.62**; there is **no cancellation acknowledgement**. This confirms the cancellation request is outstanding, not evidence Arena or Antigravity has removed the ticket. Recheck MT5 before acting on any subsequent minute's data.
+
+### [AUTOMATED READ-ONLY RISK SENTINEL] | 2026-10-07 18:58 UTC
+Source: GitHub telemetry `as_of_utc=2026-10-07 18:57:31 UTC` (age 38s); not a direct MT5 acknowledgement.
+Balance 4811.62 USD; equity 4811.62 USD; filled 0; pending 1; macro blackout inactive.
+**Findings:** PENDING_ENTRY_WALL_UNCONFIRMED: tickets 18652155; no >=$150k/180s exchange-side wall within 0.25 ATR of entry; request native MT5 review/cancellation if gate remains unmet
+No order was placed, cancelled, or closed by this monitor. Antigravity must check broker tickets and act under the agreed risk policy.
