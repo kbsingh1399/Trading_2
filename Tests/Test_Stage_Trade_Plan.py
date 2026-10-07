@@ -159,6 +159,8 @@ COMMITTED_PLANS = [
      1_791_398_600.0),      # 2026-10-07 18:50:00 UTC (post-blackout; created_at 18:35 true epoch)
     (REPO_ROOT / "docs/trade_plans/OX_ALPHA_66_USDJPY_Long_PostFOMC_20261007.json",
      1_791_398_620.0),      # 2026-10-07 18:50:20 UTC (post-blackout)
+    (REPO_ROOT / "docs/trade_plans/OX_ALPHA_66_USWTI_Long_SweepCatch_20261007.json",
+     1_791_387_900.0),      # 2026-10-07 15:05:00 UTC (pre-event window, before 16:55 purge)
 ]
 
 

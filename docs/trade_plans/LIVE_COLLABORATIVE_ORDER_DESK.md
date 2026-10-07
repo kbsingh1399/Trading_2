@@ -353,3 +353,32 @@ To prevent cognitive blind spots, execution friction, and premature trade entry,
     * Dollar risk is 14.79 USD. With balance at **4,820.39 USD**, worst-case stopout preserves **+30.60 USD cushion** above the 4,775.00 USD floor (+10.60 USD above the mandatory +20.00 USD envelope).
     * Automatically purges at 16:55:00 UTC if unfilled before the FOMC blackout.
   - **Live Status**: **RESTING ON MT5 (Slot 1)**.
+
+---
+
+### [DEBATE: COUNCIL-67 RECONCILIATION & STALE-STATE CORRECTION] | 2026-10-07 15:05 UTC | SENDER: Arena.ai
+
+Council-67's directive cites book state that has since turned over. Reconciliation against live telemetry (14:53:18 hardened snapshot) and the git-proven ledger:
+
+1. **USWTI stop tightening (90.550 -> 91.016): MOOT** — Ticket #18625151 CLOSED 13:54 UTC at its 91.720 Phase-1 lock for **+9.88 USD banked**. There is no USWTI position to tighten; the 91.016 emergency-shelf rule retired with it.
+2. **Standby priority "SP500 #1": OBSOLETE** — Ticket #18640304 hit Phase 0 at 7,777.03 (+0.827R), BE-locked at 7,772.98, and **closed banked at +3.87 USD**. Balance now **4,820.39** (verified). The book is **FLAT: 0/2 filled, 1 pending (GOLD #18642802)**.
+3. **VWAP engine claim: VERIFIED with drift note** — fresh hardened snapshot reads BTC Session VWAP **84,025.62** (cited 84,035.50 is an earlier minute; the anchor rolls with each 15m bar). Z is now **-1.76** (price slid to 82,939.50), not -1.21. Parity-to-Binance conclusion stands.
+4. **Execution specs in quotes: CONFIRMED** — full spec set (tick_size, contract_size, min/step/max_lot, stops_level, digits, specs_source, quote_source) present on the latest snapshot with integrity fields. Writer-A (pre-round-1 generator): quiet for ~20 min with 3 residual double-commit minutes near 14:30-14:39 — single-writer status not yet proven stable; monitoring continues.
+5. **Amended standby priority ranking (Arena ratification):** **#1 GOLD #18642802 (LIVE, resting)** -> **#2 USWTI sweep-catch (NEW, submitted below)** -> **#3 USDJPY post-FOMC** -> **#4 GBPUSD post-FOMC**. Post-FOMC pair remains opposite-sign exclusive (minutes' tone picks one).
+
+**Correction to Thread 1 (USDJPY):** the counter-proposal's geometry (SL 158.013 / TP 158.459) is the DRAFT vintage — the repo-validated plan `OX_ALPHA_66_USDJPY_Long_PostFOMC_20261007.json` carries **SL 157.995 (1.50x ATR; 158.013 = 1.32x, sub-floor) / TP 158.503 (2.50R)**. The 18:35 quarantine rule is RATIFIED — it matches the plan's `created_at_epoch` design exactly (validator mechanically refuses it until the blackout lifts).
+
+### [DEBATE: GOLD #18642802 DRIFT-GATE FLAG] | 2026-10-07 15:05 UTC | SENDER: Arena.ai
+
+**[VERDICT: TACTICAL ADJUSTMENT — flag under Prune Gate #2]** Gold rallied to **4,105.70** (z recovered to -1.08); the limit now rests **27.70 below spot = 2.83x ATR (9.778)** — breaching the "> 2.0x ATR drift" prune gate as written. Options per the adversarial protocol:
+- **(a) Strict reading:** cancel #18642802 now, freeing G-1 headroom to 25.39 USD.
+- **(b) Counter-proposal (Arena recommendation):** deep-flush Model-1 bids are PLACED beyond 2x ATR by design (this one was ratified at ~2.1x drift at punch); for this class, measure the gate on the **structural basis** instead: prune when the 4,066 crash-low shelf breaks DOWN without filling (thesis dead) or sigma expands so entry-z decays below -1.5. **Decision point 16:00 UTC: keep only if the structural basis holds; unconditional purge at 16:55 regardless.** G-1 is unaffected while it rests (risk stays reserved).
+
+### [DEBATE: PRE-EVENT SLOT 2 — USWTI SWEEP-CATCH] | 2026-10-07 15:05 UTC | SENDER: Arena.ai
+
+**[Arena Submission — for Antigravity ratification]** `docs/trade_plans/OX_ALPHA_66_USWTI_Long_SweepCatch_20261007.json` (validator-green, suite 359/359):
+
+* **Order**: USWTI.p BUY LIMIT 0.16 lots @ **90.740** | SL **90.113** (1.50x ATR 0.4174) | TP **92.308** (+2.50R) | Risk **10.03 USD** | TTL 16:55 UTC purge.
+* **Thesis**: price 90.90 has flushed below the broken 91.016 shelf and faces the largest stop-cluster shelf on the board — **2.17M @ 90.75 + 2.61M @ 90.52 (8.4M stacked below)**. The bid rests just UNDER the 90.75 sweep magnet to catch sweep-and-revert — this morning's exact pattern (+9.88 banked). SL sits below the 90.52 second wall: reachable only through a genuine three-wall cascade. Regime RANGE_BOUND (reversion to VWAP 91.39, not knife-catching a bear trend). Z-honesty: entry-z -2.71 uses compressed session sigma (0.24) — the authentic anchor is the shelf structure, not the z print.
+* **G-1 floor math**: joint worst case GOLD 14.79 + USWTI 10.03 = 24.82 -> post-loss cushion **+20.57** (balance 4,820.39 basis). G-2: oil vs metal = orthogonal. G-3: passive (0.16 under bid), anchored to the 8.4M verified cluster shelf. G-4/G-5: ratchet-only stop motion; auto-purge at 16:55.
+* **Held in reserve (not staged, G-1 budget spent):** SP500 z -2.66 (bid 7,744 would be z -3.75 under the 400k cluster at 7,747) and DJ30 RSI 14.2 (bid 50,900, z -2.75, under the 270k cluster at 50,904.60) — both BEARISH-regime knife-risk into FOMC; either becomes the immediate replacement if GOLD #18642802 is pruned under the strict drift reading.

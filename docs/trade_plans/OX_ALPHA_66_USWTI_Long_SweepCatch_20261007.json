@@ -1,0 +1,55 @@
+{
+ "plan_version": "omni.trade_plan.v1",
+ "plan_id": "OXALPHA66-USWTI-LONG-SWEEPCATCH-20261007A",
+ "asset": "USWTI",
+ "symbol": "USWTI.p",
+ "direction": "LONG",
+ "limit_price": 90.74,
+ "sl": 90.113,
+ "tp": 92.308,
+ "volume": 0.16,
+ "risk_usd": 10.03,
+ "atr": 0.4174,
+ "tp_r": 2.5,
+ "ttl_bars": 7,
+ "comment": "ARENA:PLAN_v1",
+ "created_at_epoch": 1791385200.0,
+ "expires_at_epoch": 1791392100.0,
+ "max_friction_r": 0.35,
+ "blackout_windows": [
+  {
+   "start_epoch": 1791392400.0,
+   "end_epoch": 1791397800.0,
+   "reason": "FOMC meeting minutes 2026-10-07 18:00 UTC (Tier-1); hard blackout 17:00-18:30 UTC"
+  }
+ ],
+ "contract": {
+  "tick_size": 0.001,
+  "contract_size": 100.0,
+  "min_lot": 0.01,
+  "step_lot": 0.01,
+  "digits": 3
+ },
+ "thesis": {
+  "summary": "RANK 2 pre-event entry from the 14:53 verified scan (book flat 0/2, GOLD #18642802 the only pending): USWTI has flushed to 90.90 below the broken 91.016 shelf and now faces the largest stop-cluster shelf on the board - 2.17M USD at 90.75 with 2.61M stacked at 90.52 (8.4M total below). The bid at 90.740 rests just UNDER the 90.75 mega-cluster to catch the sweep-and-revert - the exact pattern that banked +9.88 USD this morning.",
+  "structural_level": "Limit 90.740 sits 0.16 under the live bid 90.90 and just beneath the 90.75 sweep magnet; SL 90.113 = 1.50 x fresh ATR 0.4174, placed BELOW the 90.52 second mega-cluster (the stop is reachable only through a genuine cascade of three walls: 90.75, 90.52, 90.30); TP 92.308 = 2.50R, an overshoot bracket above VWAP 91.39 - the realistic exit is the ratchet trail, as this morning.",
+  "z_honesty": "Entry z ~ -2.71 uses session sigma 0.24 which is compressed by the quiet overnight session (the audit's sigma-inflation caveat, in reverse): the AUTHENTIC anchor is the 8.4M stop-cluster shelf + the sweep pattern, not the z print. ATR-basis deviation at entry: 0.16/0.4174 = 0.38 ATR below mid.",
+  "regime_note": "RANGE_BOUND (not BEARISH): reversion target is the range mean (VWAP 91.39), higher base-rate than fading a trending market. Indices (SP500 z -2.66 / DJ30 RSI 14.2) were considered and held in reserve - BEARISH regime knife-risk into FOMC, and one index complex must not double with GOLD's fill risk under G-1."
+ },
+ "management": {
+  "ratchet": "omni.ratchet.session_conditional.v1 (0.80R/1.50R/2.00R; friction-inclusive lock floor 41bps*entry/initial_r + 0.05R dominates table values)",
+  "decay": "close at market if gain < 0.20R after 24 bars",
+  "target_band": "2.50R..3.14R",
+  "fomc_discipline": "Pre-event ONLY: unfilled at 16:55 UTC purge is cancelled unconditionally (expires_at_epoch = purge). If FILLED before 16:55: flat-into-event rule - hold only with Phase 0 armed (+0.80R = 91.241), else market-exit before 17:00 UTC.",
+  "queue_policy": "PRIORITY RANK 2 of the OX_ALPHA_66 entry pipeline behind GOLD #18642802. First-fill OCO across all pendings (max 2 filled). Joint worst case with GOLD: 14.79 + 10.03 = 24.82 -> post-loss cushion +20.57 (balance 4,820.39 basis) - G-1 satisfied. Prune gates: 90.75/90.52 shelf clusters thinned >50%, drift >2.0x ATR unfilled, regime break to BEARISH, 16:55 purge."
+ },
+ "provenance": {
+  "telemetry": "docs/telemetry/live_snapshot_latest.json 14:53:18 UTC (hardened, integrity fields present): USWTI 90.90 mid, ATR 0.4174, Z -2.09, RSI 44.6, VWAP 91.39, stop clusters 90.75 (2,168.7k) / 90.52 (2,611.4k) / 90.30 (1,769.8k) / 90.07 (1,918.7k)",
+  "council": "docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md Section 9 debate thread (pre-event slot 2); morning precedent ticket #18625151 (+9.88 banked)",
+  "friction_accounting": {
+   "live_spread_usd": 0.049,
+   "live_friction_r": 0.078
+  },
+  "invariants": "limit 90.740 < bid 90.90 (passive, under the sweep magnet); SL 90.113 = 1.5005 x ATR; risk 10.03 (10-20 envelope, G-1 headroom 10.60); TP 2.5024R; friction 0.078R; expires 16:55 UTC"
+ }
+}
