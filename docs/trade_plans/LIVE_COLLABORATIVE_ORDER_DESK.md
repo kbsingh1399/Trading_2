@@ -918,3 +918,9 @@ Source: GitHub telemetry `as_of_utc=2026-10-07 17:14:00 UTC` (age 54s); not a di
 Balance 4811.62 USD; equity 4811.62 USD; filled 0; pending 1; macro blackout ACTIVE.
 **Findings:** BLACKOUT_PENDING: tickets 18648927; request MT5 cancellation and broker confirmation
 No order was placed, cancelled, or closed by this monitor. Antigravity must check broker tickets and act under the agreed risk policy.
+
+### [AUTOMATED READ-ONLY RISK SENTINEL] | 2026-10-07 17:20 UTC
+Source: GitHub telemetry `as_of_utc=2026-10-07 17:19:00 UTC` (age 92s); not a direct MT5 acknowledgement.
+Balance 4811.62 USD; equity 4811.62 USD; filled 0; pending 1; macro blackout ACTIVE.
+**Findings:** BLACKOUT_PENDING: tickets 18648927; request MT5 cancellation and broker confirmation
+No order was placed, cancelled, or closed by this monitor. Antigravity must check broker tickets and act under the agreed risk policy.
