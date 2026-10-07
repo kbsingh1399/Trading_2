@@ -1,0 +1,27 @@
+{
+  "plan_version": "omni.trade_plan.v1",
+  "plan_id": "OXALPHA66-GOLD-LONG-SHELF-20261007A",
+  "asset": "GOLD", "symbol": "XAUUSD.pi", "direction": "LONG",
+  "limit_price": 4101.0, "sl": 4090.0, "tp": 4128.5, "volume": 0.01,
+  "risk_usd": 11.0, "atr": 5.6896, "tp_r": 2.5, "ttl_bars": 16,
+  "comment": "ARENA:PLAN_v1",
+  "created_at_epoch": 1791374700.0, "expires_at_epoch": 1791392100.0, "max_friction_r": 0.35,
+  "blackout_windows": [{"start_epoch": 1791392400.0, "end_epoch": 1791397800.0,
+    "reason": "FOMC meeting minutes 2026-10-07 18:00 UTC (Tier-1); hard blackout 17:00-18:30 UTC"}],
+  "contract": {"tick_size": 0.01, "contract_size": 100.0, "min_lot": 0.01, "step_lot": 0.01, "digits": 2},
+  "thesis": {
+    "summary": "STANDBY #2: the GOLD-done-right dip-buy - NOT a mid-fall bid like the closed #18617135, but a resting limit at the NEXT structural shelf (4,099.90 print from the 07:15 spec) where Z at entry reaches -4.23 SD, the deep-extreme zone the morning entry never had.",
+    "structural_level": "Limit 4,101 rides the 4,099.90 shelf + round 4,100; SL 4,090 (below shelf and 1.93 x ATR); TP 4,128.50 = 2.50R toward the EMA20 4,137 zone. Fills only on a further flush of ~21 USD - passive by design, no chase.",
+    "honesty_notes": "(a) GOLD is L1-only in authentic telemetry - the 4,099.90 shelf is a morning spec print, NOT live-verified depth; the anchor is price structure + extreme Z. (b) VWAP 4,142.63 still falling: this is a counter-trend extreme-reversion bid, valid only at the deep extreme, and the ratchet trail - not the 2.50R TP - is the realistic exit. (c) The morning long was exited at -0.57R for exactly this reason; this plan only fires ~22 USD lower.",
+    "momentum": "RSI(14) 40.7, Z -2.07 at 4,122.29 (12:01 UTC), sliding toward the entry zone"
+  },
+  "management": {"ratchet": "omni.ratchet.session_conditional.v1 (0.80R/1.50R/2.00R; entry+0.15R/+0.85R locks, 0.65R trail)",
+    "decay": "close at market if gain < 0.20R after 24 bars", "target_band": "2.50R..3.14R",
+    "fomc_discipline": "Stages ONLY into a freed slot and ONLY before the 16:55 UTC purge deadline; expires at 1791392100."},
+  "provenance": {
+    "telemetry": "docs/telemetry/live_snapshot_latest.json 12:01 UTC: GOLD 4,122.25/4,122.33, spread 0.08 (0.19 bps), RSI 40.7, Z -2.07, VWAP 4,142.63, ATR 5.6896, EMA20 4,137.30 / EMA200 4,151.03",
+    "council": "docs/audits/OX_ALPHA_66_Multi_Agent_Council_20261007.md Standby ranking; the AD.7 VWAP autopsy governs the entry discipline",
+    "friction_accounting": {"live_spread_usd": 0.08, "live_friction_r": 0.0082},
+    "invariants": "limit 4,101 < ask 4,122.33; SL 4,090 below shelf, 1.93 x ATR; risk 11.00 (inside 10-12 standby cap); TP exactly 2.50R; friction 0.008R"
+  }
+}

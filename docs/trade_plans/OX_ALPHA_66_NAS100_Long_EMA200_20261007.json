@@ -1,0 +1,27 @@
+{
+  "plan_version": "omni.trade_plan.v1",
+  "plan_id": "OXALPHA66-NAS100-LONG-EMA200-20261007A",
+  "asset": "NAS100", "symbol": "NAS100.p", "direction": "LONG",
+  "limit_price": 31010.0, "sl": 30975.0, "tp": 31097.5, "volume": 0.03,
+  "risk_usd": 10.5, "atr": 22.8462, "tp_r": 2.5, "ttl_bars": 16,
+  "comment": "ARENA:PLAN_v1",
+  "created_at_epoch": 1791374700.0, "expires_at_epoch": 1791392100.0, "max_friction_r": 0.35,
+  "blackout_windows": [{"start_epoch": 1791392400.0, "end_epoch": 1791397800.0,
+    "reason": "FOMC meeting minutes 2026-10-07 18:00 UTC (Tier-1); hard blackout 17:00-18:30 UTC"}],
+  "contract": {"tick_size": 0.01, "contract_size": 10.0, "min_lot": 0.01, "step_lot": 0.01, "digits": 2},
+  "thesis": {
+    "summary": "STANDBY #3: the US index complex has flushed to its EMA200 cluster in pre-FOMC de-risking (NAS100 Z -10.54, SP500 -9.88 sitting exactly ON its EMA200, DJ30 -8.86). This is the first EMA200 test of the index uptrend; the plan bids just below the NAS100 flush low with the EMA200 reclaim as the target.",
+    "structural_level": "Limit 31,010 (11 under the 12:01 mid 31,021); SL 30,975 below the flush zone (1.53 x ATR); TP 31,097.50 = 2.50R landing just UNDER EMA200 31,102 - the reversion target IS the EMA200/VWAP zone from below",
+    "z_caveat": "Z -10.5 is inflated by a quiet-session sigma (approx 19 pts vs ATR 22.8): the flush is approx 0.65 pct intraday, real but not a crash. The setup is EMA200-reclaim, not crash-reversion.",
+    "event_risk": "The flush may BE pre-FOMC positioning; the 17:00-18:30 blackout and the 16:55 purge cap all exposure. Stages only into a freed slot before 16:55; the 4-hour FOMC tail is deliberately outside this plan's life."
+  },
+  "management": {"ratchet": "omni.ratchet.session_conditional.v1 (0.80R/1.50R/2.00R; entry+0.15R/+0.85R locks, 0.65R trail)",
+    "decay": "close at market if gain < 0.20R after 24 bars", "target_band": "2.50R..3.14R",
+    "fomc_discipline": "Stages ONLY into a freed slot and ONLY before the 16:55 UTC purge deadline; expires at 1791392100."},
+  "provenance": {
+    "telemetry": "docs/telemetry/live_snapshot_latest.json 12:01 UTC: NAS100 31,021 mid, spread 1.06 (0.34 bps), RSI 34.29, Z -10.54, VWAP 31,222.88, ATR 22.8462, EMA200 31,102.02; SP500 mid 7,791.93 vs EMA200 7,789.44 (sitting ON it)",
+    "council": "docs/audits/OX_ALPHA_66_Multi_Agent_Council_20261007.md Standby ranking; SP500/USDJPY/DJ30 recorded as watchlist",
+    "friction_accounting": {"live_spread_usd": 1.06, "live_friction_r": 0.0317},
+    "invariants": "limit 31,010 < ask approx 31,022; SL 30,975, 1.53 x ATR; risk 10.50 (inside 10-12 standby cap); TP exactly 2.50R under EMA200; friction 0.032R"
+  }
+}

@@ -143,6 +143,12 @@ COMMITTED_PLANS = [
      1_791_368_400.0),      # 2026-10-07 10:20:00 UTC (inside repunch validity)
     (REPO_ROOT / "docs/trade_plans/OX_ALPHA_64_XRP_Long_PipelineCheck_20261007.json",
      1_791_368_400.0),      # 2026-10-07 10:20:00 UTC (inside check validity)
+    (REPO_ROOT / "docs/trade_plans/OX_ALPHA_66_BTC_Long_PostSweep_v2_20261007.json",
+     1_791_374_700.0),      # 2026-10-07 12:05:00 UTC
+    (REPO_ROOT / "docs/trade_plans/OX_ALPHA_66_GOLD_Long_Shelf_20261007.json",
+     1_791_374_700.0),      # 2026-10-07 12:05:00 UTC
+    (REPO_ROOT / "docs/trade_plans/OX_ALPHA_66_NAS100_Long_EMA200_20261007.json",
+     1_791_374_700.0),      # 2026-10-07 12:05:00 UTC
 ]
 
 

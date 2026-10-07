@@ -1,0 +1,29 @@
+{
+  "plan_version": "omni.trade_plan.v1",
+  "plan_id": "OXALPHA66-BTC-LONG-POSTSWEEP-V2-20261007A",
+  "asset": "BTC", "symbol": "BTCUSD.pi", "direction": "LONG",
+  "limit_price": 83380.0, "sl": 82700.0, "tp": 85080.0, "volume": 0.02,
+  "risk_usd": 13.6, "atr": 194.4848, "tp_r": 2.5, "ttl_bars": 16,
+  "comment": "ARENA:PLAN_v1",
+  "created_at_epoch": 1791374700.0, "expires_at_epoch": 1791392100.0, "max_friction_r": 0.35,
+  "blackout_windows": [{"start_epoch": 1791392400.0, "end_epoch": 1791397800.0,
+    "reason": "FOMC meeting minutes 2026-10-07 18:00 UTC (Tier-1); hard blackout 17:00-18:30 UTC"}],
+  "contract": {"tick_size": 0.01, "contract_size": 1.0, "min_lot": 0.01, "step_lot": 0.01, "digits": 2},
+  "thesis": {
+    "summary": "STANDBY #1 (promoted by Council 66): the 83,450-83,510 pocket was SWEPT in the overnight flush (today D1 low 83,356, string-verified), and the reclaim is live-confirmed by authentic flow (15m taker delta +39.4M USD, last 5m +11.4M, price 83,612 back above the pocket). The sweep precondition of the Council 64/65 quarantine is SATISFIED.",
+    "structural_level": "Limit 83,380 retests the swept zone top; SL 82,700 sits below the REAL Binance-OI cascade band 2 floor (82,731-82,938, 8.46M USD long fuel) so the plan survives the residual cascade; TP 85,080 lands just under EMA200 85,333 - the reversion magnet",
+    "supersedes": "OXALPHA64-BTC-LONG-POSTSWEEP-20261007A (SL 82,900 sat inside the real band 2; risk 14.40) - this v2 uses the AUTHENTIC Binance OI cascade map, not the synthetic one",
+    "flow_evidence": "cvd_1m_buckets (authentic Binance): 60m taker delta +34.5M, 15m +39.4M with price rising = buyers pressing the reclaim; funding -0.37 bps (shorts paying) with predicted +1.0 bps",
+    "mega_wall_correction": "The 25.05M USD mega bid at 83,500 from the morning spec is NOT in the authentic Binance L2 (real walls: ~358k at 83,578) - it was a synthetic-ladder artifact, now purged. This plan anchors to price structure and REAL OI bands only.",
+    "cap_exception": "Risk 13.60 exceeds the memo's 12.00 standby cap: with a cascade-aware stop (d=680) the 0.01 lot grid admits only 6.80 (below the 10.00 floor) or 13.60. Council requests the muscle accept 13.60 (inside the 10-20 band and the 14.70 queue cap) or widen the standby window."
+  },
+  "management": {"ratchet": "omni.ratchet.session_conditional.v1 (0.80R/1.50R/2.00R; entry+0.15R/+0.85R locks, 0.65R trail)",
+    "decay": "close at market if gain < 0.20R after 24 bars", "target_band": "2.50R..3.14R",
+    "fomc_discipline": "Stages ONLY into a freed slot (capacity 2/2 filled) and ONLY before the 16:55 UTC purge deadline; expires at 1791392100."},
+  "provenance": {
+    "telemetry": "docs/telemetry/live_snapshot_latest.json 12:01 UTC (authentic): REAL_BINANCE_FUTURES_L2, OI 8.13B USD, cascade bands 83,353-83,562 (2.11M) / 82,731-82,938 (8.46M) / 80,490-80,691 (16.91M); squeeze bands 83,770-83,980 (1.51M) / 84,400-84,611 (7.61M); D1 low 83,356 = sweep proof; CVD buckets 60x1m",
+    "council": "docs/audits/OX_ALPHA_66_Multi_Agent_Council_20261007.md Topic 4 and Standby ranking",
+    "friction_accounting": {"live_spread_usd": 16.0, "live_friction_r": 0.0235},
+    "invariants": "limit 83,380 < ask 83,620; SL 82,700 below real band-2 floor 82,731, 3.50 x ATR; risk 13.60 (exception requested); TP exactly 2.50R under EMA200; friction 0.024R"
+  }
+}
