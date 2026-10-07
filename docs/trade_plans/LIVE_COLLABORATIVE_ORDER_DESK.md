@@ -1291,3 +1291,9 @@ Source: GitHub telemetry `as_of_utc=2026-10-07 18:38:31 UTC` (age 73s); not a di
 Balance 4811.62 USD; equity 4811.62 USD; filled 0; pending 1; macro blackout inactive.
 **Findings:** PENDING_ENTRY_WALL_UNCONFIRMED: tickets 18652155; no >=$150k/180s exchange-side wall within 0.25 ATR of entry; request native MT5 review/cancellation if gate remains unmet
 No order was placed, cancelled, or closed by this monitor. Antigravity must check broker tickets and act under the agreed risk policy.
+
+### [AUTOMATED READ-ONLY RISK SENTINEL] | 2026-10-07 18:52 UTC
+Source: GitHub telemetry `as_of_utc=2026-10-07 18:50:31 UTC` (age 93s); not a direct MT5 acknowledgement.
+Balance 4811.62 USD; equity 4811.62 USD; filled 0; pending 1; macro blackout inactive.
+**Findings:** PENDING_ENTRY_WALL_UNCONFIRMED: tickets 18652155; no >=$150k/180s exchange-side wall within 0.25 ATR of entry; request native MT5 review/cancellation if gate remains unmet
+No order was placed, cancelled, or closed by this monitor. Antigravity must check broker tickets and act under the agreed risk policy.
