@@ -1003,6 +1003,39 @@ Read Antigravity's Section 15 (`ff53b34`): `TRADE_ACTION_REMOVE` on SOLUSD.p SEL
 - **Strategy architect:** Suspend Model-1 countertrend flush-catching in a confirmed trend; Model-2 requires **rally-then-rejection** for shorts or **dip-then-exhaustion** for longs. The five cited trades motivate a regime-matched study but do not statistically *prove* a universally toxic strategy. The old BNB 770 SELL LIMIT is not an entry simply because price reaches it; rerun structure, VWAP slope and broker marketability. USDJPY 157.996/157.997 is **below** falling EMA200 158.1433 with VWAP down 0.0043 since 17:28: the pre-event **158.140 LONG fails today's bullish screen**; hawkish minutes alone cannot override the price/slope gate. GBPUSD 1.3210/1.3210 is also below falling EMA200 1.3236, and zero broker spread in the snapshot is quote-integrity suspect; no unverified reversal long.
 - **Capital/macro guardian:** It is **17:44 inside the 17:00–18:30 hard blackout**. FOMC minutes arrive 18:00. **PUNCH NOW: NONE. PRUNE NOW: NONE** (book empty). The verbose minute monitor is observational, not broker execution. Re-open earliest **18:35 only if all five gates below clear**. Do not stage merely because the clock changes, and no guarantee of 24/7 monitor uptime is implied by a live sandbox process.
 
+#### 2a. Fresh 24-asset veto matrix (17:43 UTC pre-event only)
+
+Computed from commit `197936b` versus 17:28 snapshot `0615e29`. `15m/4H` means bridge 15m regime / direction of last three **fully closed** 4H closes (no closed 4H data = N/A; MIXED is not a confirmation). VWAP cell shows level and **15-minute same-session Δ**. `C/T/M` is MT5 contract size / tick size / minimum lots. Flow is 5x1m Binance taker CVD in USD millions / top-20 L2 imbalance / count of >=$150k walls persisting >=180s **anywhere** in book (not necessarily at entry). Quoted spread in bps is indicative only: always re-check the *unrounded* live MT5 bid/ask and broker `order_calc_profit`. The provisional strategy/regime screen does **not** waive blackout or qualify a punch.
+
+| Asset | 15m / closed 4H | MT5 spread | VWAP (Δ vs 17:28) | C/T/M broker spec | Flow / imbalance / persistent walls |
+|---|---|---:|---:|---:|---:|
+| BTC | BEAR/DOWN | 2.0 bp | 83905.4 (-9.448) | 1/.01/.01 | -19.06m/+0.38/0 |
+| ETH | BEAR/DOWN | 13.8 bp | 2601.29 (-.5916) | 1/.01/.01 | -157.85m/-.46/0 |
+| SOL | BEAR/DOWN | 22.4 bp | 117.72 (-.0194) | 100/.01/.01 | -4.19m/+.06/0 |
+| BNB | BEAR/MIXED | 7.8 bp | 768.913 (+.0133) | 1/.01/.01 | -.40m/-.03/0 |
+| XRP | BEAR/DOWN | 35.3 bp | 1.4547 (-.0005) | 1000/.001/1 | -.09m/-.02/0 |
+| ADA | BEAR/MIXED | 82.7 bp | .2552 (-.0001) | 5000/.0001/1 | -.37m/+.10/3 |
+| DOGE | BEAR/DOWN | 238.2 bp | .089 (+0) | 10000/.0001/1 | -.97m/-.16/0 |
+| TRX | BULL/UP | 26.8 bp | .333 (+0) | 10000/.0001/1 | -.05m/+.09/0 |
+| DOT | BEAR/DOWN | 191.9 bp | 1.1148 (-.0004) | 1000/.001/.01 | -.04m/-.25/0 |
+| LINK | BEAR/MIXED | 65.3 bp | 13.5347 (-.0026) | 100/.001/.1 | -.32m/+.06/0 |
+| BCH | BEAR/DOWN | 19.3 bp | 304.978 (-.0543) | 10/.001/.1 | -.03m/+.37/0 |
+| LTC | BEAR/DOWN | 45.6 bp | 67.2072 (-.0204) | 100/.001/.1 | -.06m/+.09/0 |
+| AVAX | BULL/MIXED | 35.7 bp | 11.1783 (+.0007) | 100/.01/.01 | -.19m/-.09/0 |
+| NEAR | RANGE/MIXED | 68.5 bp | 5.0448 (+.0011) | 100/.001/1 | -.42m/+.07/0 |
+| SP500 | RANGE/N/A | 1.0 bp | 7808.18 (-.1116) | 10/.01/.01 | N/A/N/A/0 |
+| NAS100 | RANGE/N/A | .4 bp | 31133.7 (-.2263) | 10/.01/.01 | N/A/N/A/0 |
+| DJ30 | BEAR/N/A | .2 bp | 51323.8 (-1.4499) | 10/.01/.01 | N/A/N/A/0 |
+| GER40 | BEAR/N/A | .4 bp | 25213.4 (-1.0306) | 10/.01/.01 | N/A/N/A/0 |
+| GOLD | BEAR/N/A | .2 bp | 4124.91 (-.1149) | 100/.01/.01 | N/A/N/A/0 |
+| SILVER | BEAR/N/A | 9.7 bp | 60.348 (-.0054) | 5000/.001/.01 | N/A/N/A/0 |
+| USWTI | BEAR/N/A | 3.4 bp | 91.2388 (-.0223) | 100/.001/.01 | N/A/N/A/0 |
+| EURUSD | BEAR/N/A | **UNTRUSTED** | 1.1208 (-.0001) | 100000/.00001/.01 | N/A/N/A/0 |
+| GBPUSD | BEAR/N/A | **UNTRUSTED** | 1.3233 (+0) | 100000/.00001/.01 | N/A/N/A/0 |
+| USDJPY | BEAR/N/A | .1 bp | 158.279 (-.0043) | 100000/.001/.01 | N/A/N/A/0 |
+
+**Veto taxonomy:** BTC/ETH/SOL/BCH = bearish 15m+closed-4H *watch* only, but **no qualifying persistent offered wall at entry and no completed pullback rejection**; BTC/BCH also have bid-heavy depth. BNB/LINK/ADA = 4H mixed (BNB VWAP rises); ADA's three qualifying walls do **not** cure 82.7-bp spread or establish a wall at the intended entry. XRP/DOGE/DOT/LTC = crypto >25-bp spread (DOGE also flat VWAP); TRX = 26.8-bp spread, flat VWAP and negative CVD against the bull case; AVAX/NEAR = mixed 4H, wide spread/uncertain trend. SP500/NAS100 = range; DJ30/GER40/GOLD/SILVER/USWTI = bearish screen but no native broker depth/CVD or closed 4H corroboration under strict Gate 4. EURUSD/GBPUSD broker quotes round to bid=ask in this snapshot, so spread is untrusted; GBPUSD VWAP flat. USDJPY 15m bearish and no 4H/L2 support for the proposed long. **24/24 NO PUNCH in blackout**. No new per-symbol 2.5R geometry is warranted when mandatory regime, spread, depth, or event-time gates already veto staging; use the three *research-only* geometries below solely if requalified on new data.
+
 #### 3. At-18:35 re-ranking slate: research references, NOT auto-stage orders
 
 | Priority *if new evidence supports it* | Reference geometry at a SINGLE exact entry | Verified pre-event broker math | Fail-closed disposition |
