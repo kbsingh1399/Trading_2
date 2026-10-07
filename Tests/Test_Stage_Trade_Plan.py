@@ -248,8 +248,9 @@ def test_live_precheck_passes_with_full_report():
     assert checks["capacity"] == {"filled": 1, "pending": 0}
     assert checks["friction"]["friction_r"] == pytest.approx(
         round((120.39 - 120.31 + 0.01) / 0.70, 4), abs=1e-9)
+    # Conservative cash/equity minimum, 25% SL stress, and $2/ticket costs.
     assert checks["account"]["cushion_above_floor_usd"] == pytest.approx(
-        4839.88 - 10.50 - 10.50 - 4775.0, abs=0.01)
+        min(4833.15, 4839.88) - (10.50 + 10.50)*1.25 - 4.0 - 4775.0, abs=0.01)
 
 
 def test_live_precheck_refuses_transport_and_stale_state():
@@ -278,6 +279,23 @@ def test_live_precheck_refuses_equity_floor_breach():
                  "margin_free_usd": 4400.0})),
         validate_plan(plan(), now=NOW), now=NOW)
     assert squeezed["ok"] is False and squeezed["reason"] == "equity_floor_breach"
+
+
+def test_live_precheck_reserves_pending_risk_and_fails_on_missing_stops():
+    btc_pending = {"ticket": 18652155, "symbol": "BTCUSD.pi", "direction": "SHORT",
+                   "volume": 0.02, "price_open": 83880.0, "sl": 84430.0}
+    quote = {"bid": 83432.0, "ask": 83447.0, "contract_size": 1.0}
+    portfolio = state(account={"balance_usd": 4811.62, "equity_usd": 4811.62},
+                      positions=[], pending_orders=[btc_pending],
+                      quotes={**GOOD_STATE["quotes"], "BTCUSD.pi": quote})
+    result = live_precheck(FakeClient(state=portfolio),
+                           validate_plan(plan(), now=NOW), now=NOW)
+    assert result["ok"] is False and result["reason"] == "equity_floor_breach"
+    assert result["checks"]["account"]["existing_risk_usd"] == 11.0
+    portfolio["pending_orders"][0]["sl"] = None
+    result = live_precheck(FakeClient(state=portfolio),
+                           validate_plan(plan(), now=NOW), now=NOW)
+    assert result["ok"] is False and result["reason"] == "risk_inventory_unavailable"
 
 
 def test_live_precheck_refuses_capacity_exhaustion():

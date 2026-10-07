@@ -233,6 +233,14 @@ def apply_command(bridge, command: Dict, *, clock: Callable = time.time,
         plan = plan_test_limit(direction=direction, limit_price=limit_price,
                                volume=volume, atr=atr,
                                contract_size=number(quote.get("contract_size"), 100.0))
+        from datetime import datetime, timezone
+        from Terminal.risk.blackout_guard import is_in_blackout
+        blocked, reason = is_in_blackout(datetime.fromtimestamp(now, tz=timezone.utc))
+        if blocked:
+            raise ValueError(f"macro_blackout:{reason}")
+        from Terminal.risk.live_admission import assert_joint_fill_safe
+        assert_joint_fill_safe(bridge, symbol, direction, plan["volume"],
+                               plan["limit_price"], plan["sl"], min_risk_usd=0.0)
         result = bridge.stage_limit_order(
             symbol, direction, plan["volume"], plan["limit_price"], plan["sl"], plan["tp"],
             expiration_seconds=TEST_LIMIT_MAX_BARS * 900,
@@ -264,6 +272,13 @@ def apply_command(bridge, command: Dict, *, clock: Callable = time.time,
         if risk_usd > GENERIC_RISK_CAP_USD + 1e-9:
             raise ValueError(f"order_risk_cap_exceeded:{risk_usd:.2f}>"
                              f"{GENERIC_RISK_CAP_USD:.2f}")
+        from datetime import datetime, timezone
+        from Terminal.risk.blackout_guard import is_in_blackout
+        blocked, reason = is_in_blackout(datetime.fromtimestamp(now, tz=timezone.utc))
+        if blocked:
+            raise ValueError(f"macro_blackout:{reason}")
+        from Terminal.risk.live_admission import assert_joint_fill_safe
+        assert_joint_fill_safe(bridge, symbol, direction, volume, limit_price, sl)
         result = bridge.stage_limit_order(
             symbol, direction, volume, limit_price, sl, tp,
             expiration_seconds=int(number(params.get("expiration_seconds"), 3600)),

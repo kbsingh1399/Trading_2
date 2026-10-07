@@ -5,12 +5,13 @@ P2 FIX — Persistent Order Book Wall Tracker.
 PROBLEM:
   Snapshot-based wall detection is spoofable. A whale wall present at one
   moment may be pulled 10 seconds later (classic iceberg / spoof cycle).
-  We only count walls that have persisted continuously for ≥ 120 seconds.
+  A wall is counted only when present in every ingested sample for ≥180s;
+  this is *sampled* continuity, not proof of uninterrupted liquidity.
 
-INTEGRATION:
-  Instantiate ONE PersistentWallTracker per session (singleton via get_tracker()).
-  The telemetry daemon calls tracker.update() every cycle.
-  Entry gates call tracker.get_persistent_walls() to confirm anchor presence.
+INTEGRATION STATUS:
+  This tracker is a component with corrected side/absence handling, but the
+  telemetry daemon and execution admission do not yet call it. Do not claim
+  this module alone enforces an entry wall or observes wallet-attributed L3.
 
 WALL PERSISTENCE RULE (from ACTIVE_CONTEXT.md Section 6):
   - Minimum wall size: >= 150,000 USD notional
@@ -35,7 +36,7 @@ DEFAULT_CLUSTER_BPS    = 10.0        # Aggregate walls within 10 bps (avoids noi
 
 class WallRecord:
     """Single level's persistence record."""
-    __slots__ = ("price", "side", "first_seen", "last_seen", "max_notional")
+    __slots__ = ("price", "side", "first_seen", "last_seen", "max_notional", "current_notional")
 
     def __init__(self, price: float, side: str, notional: float, ts: float):
         self.price       = price
@@ -43,10 +44,12 @@ class WallRecord:
         self.first_seen  = ts
         self.last_seen   = ts
         self.max_notional = notional
+        self.current_notional = notional
 
     def refresh(self, notional: float, ts: float) -> None:
         self.last_seen    = ts
         self.max_notional = max(self.max_notional, notional)
+        self.current_notional = notional
 
     def age(self, now: float) -> float:
         return now - self.first_seen
@@ -91,8 +94,8 @@ class PersistentWallTracker:
         self.max_dist_pct = max_dist_pct
         self.cluster_bps  = cluster_bps   # aggregate walls within this many bps
 
-        # symbol -> price_rounded -> WallRecord
-        self._walls: Dict[str, Dict[float, WallRecord]] = defaultdict(dict)
+        # symbol -> (side, price_rounded) -> WallRecord
+        self._walls: Dict[str, Dict[tuple[str, float], WallRecord]] = defaultdict(dict)
         self._last_mark: Dict[str, float] = {}  # symbol -> last mark_price
 
     def update(
@@ -112,9 +115,9 @@ class PersistentWallTracker:
             mark_price:  Current mid/mark price for distance filtering.
             timestamp:   Unix epoch (defaults to time.time()).
         """
-        now = timestamp or time.time()
+        now = timestamp if timestamp is not None else time.time()
         self._last_mark[symbol] = mark_price
-        active_prices: set[float] = set()
+        active_prices: set[tuple[str, float]] = set()
 
         for side, levels in (("bid", bids), ("ask", asks)):
             for level in levels:
@@ -128,24 +131,21 @@ class PersistentWallTracker:
                 if dist_pct > self.max_dist_pct:
                     continue
                 # Cluster to nearest cluster_bps band
-                cluster_key = self._cluster_price(price, mark_price)
+                cluster_key = (side, self._cluster_price(price, mark_price))
                 active_prices.add(cluster_key)
-                if cluster_key in self._walls[symbol]:
-                    self._walls[symbol][cluster_key].refresh(notional, now)
+                wall = self._walls[symbol].get(cluster_key)
+                if wall is not None and 0 <= now - wall.last_seen <= 90:
+                    wall.refresh(notional, now)
                 else:
                     self._walls[symbol][cluster_key] = WallRecord(
-                        price=cluster_key, side=side, notional=notional, ts=now
+                        price=cluster_key[1], side=side, notional=notional, ts=now
                     )
 
-        # Expire walls not seen in this snapshot (more than 90s stale)
-        stale_threshold = 90.0
-        expired = [
-            p for p, w in self._walls[symbol].items()
-            if not w.is_live(now, stale_threshold)
-        ]
+        # Missing from even ONE sampled snapshot breaks continuous persistence.
+        expired = [p for p in self._walls[symbol] if p not in active_prices]
         for p in expired:
             del self._walls[symbol][p]
-            logger.debug("Wall expired: %s @ %.2f (stale > %ds)", symbol, p, stale_threshold)
+            logger.debug("Wall disappeared from book: %s %s", symbol, p)
 
     def get_persistent_walls(
         self,
@@ -160,14 +160,14 @@ class PersistentWallTracker:
             side:   Filter to "bid" (support) or "ask" (resistance). None = all.
             now:    Timestamp for age calculation (defaults to time.time()).
         """
-        now = now or time.time()
+        now = now if now is not None else time.time()
         result = []
         for wall in self._walls.get(symbol, {}).values():
             if side and wall.side != side:
                 continue
             if wall.is_persistent(now, self.min_age_sec) and wall.is_live(now):
                 result.append(wall)
-        return sorted(result, key=lambda w: w.max_notional, reverse=True)
+        return sorted(result, key=lambda w: w.current_notional, reverse=True)
 
     def has_persistent_wall(
         self,
@@ -179,7 +179,7 @@ class PersistentWallTracker:
         """Quick gate: True if at least one qualifying persistent wall exists."""
         now = time.time()
         for wall in self._walls.get(symbol, {}).values():
-            if wall.side == side and wall.max_notional >= min_usd:
+            if wall.side == side and wall.current_notional >= min_usd:
                 if wall.is_persistent(now, min_age) and wall.is_live(now):
                     return True
         return False
@@ -195,8 +195,8 @@ class PersistentWallTracker:
             "persistent_walls":    len(persistent),
             "persistent_bid_walls": sum(1 for w in persistent if w.side == "bid"),
             "persistent_ask_walls": sum(1 for w in persistent if w.side == "ask"),
-            "max_bid_notional_usd": max((w.max_notional for w in persistent if w.side == "bid"), default=0),
-            "max_ask_notional_usd": max((w.max_notional for w in persistent if w.side == "ask"), default=0),
+            "max_bid_notional_usd": max((w.current_notional for w in persistent if w.side == "bid"), default=0),
+            "max_ask_notional_usd": max((w.current_notional for w in persistent if w.side == "ask"), default=0),
             "min_age_sec":         self.min_age_sec,
             "min_size_usd":        self.min_size_usd,
         }
@@ -216,11 +216,11 @@ class PersistentWallTracker:
     def _cluster_price(self, price: float, mark: float) -> float:
         """Snap price to nearest cluster_bps band."""
         if mark <= 0:
-            return round(price, 2)
+            return round(price, 8)
         band_size = mark * self.cluster_bps / 10_000.0
         if band_size <= 0:
-            return round(price, 2)
-        return round(round(price / band_size) * band_size, 2)
+            return round(price, 8)
+        return round(round(price / band_size) * band_size, 8)
 
 
 # ---------------------------------------------------------------------------

@@ -535,14 +535,17 @@ def test_manage_cadence_purges_stale_test_limits(tmp_path):
                                          "limit_price": 4182.00, "volume": 0.01,
                                          "atr": 4.1})
     assert apply_command(bridge, stale, clock=lambda: clock["t"])["success"]
-    # 6 hours + 1s later, a FRESH test limit joins it, then the manage cadence runs.
+    # 6 hours + 1s later, joint-fill defense refuses a second correlated
+    # order until the stale order is *actually* purged from broker inventory.
     clock["t"] = NOW + 24 * 900 + 1
     fresh = _signed("STAGE_TEST_LIMIT", {"symbol": "XAUUSD.pi", "direction": "SHORT",
                                          "limit_price": 4185.00, "volume": 0.01,
                                          "atr": 4.1})
-    assert apply_command(bridge, fresh, clock=lambda: clock["t"])["success"]
-    assert len(bridge.get_pending_orders()) == 2
+    with pytest.raises(ValueError, match="correlated_joint_fill"):
+        apply_command(bridge, fresh, clock=lambda: clock["t"])
     trader.manage_active_positions()
+    assert bridge.get_pending_orders() == []
+    assert apply_command(bridge, fresh, clock=lambda: clock["t"])["success"]
     pending = bridge.get_pending_orders()
     assert len(pending) == 1 and pending[0]["price_open"] == pytest.approx(4185.00)
     # The throttle holds: an immediate second call is a no-op (fresh survives).

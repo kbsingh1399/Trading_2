@@ -826,7 +826,9 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                 "skew_ratio": skew_ratio,
                 "bids_top20": bids_top20,
                 "asks_top20": asks_top20,
-                "whale_walls_l3": whale_walls
+                "whale_walls_l3": whale_walls,  # deprecated compatibility key, NOT wallet L3
+                "wall_coverage": "SAMPLED_ANONYMOUS_BINANCE_AGGREGATED_L2_NOT_L3",
+                "wall_sample_ts_epoch": now_ts
             }
         else:
             # NO SYNTHETIC DEPTH! Report real L1 only honestly
@@ -838,7 +840,9 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                 "skew_ratio": None,
                 "bids_top20": [],
                 "asks_top20": [],
-                "whale_walls_l3": []
+                "whale_walls_l3": [],
+                "wall_coverage": "UNAVAILABLE_L1_ONLY",
+                "wall_sample_ts_epoch": None
             }
 
         # -----------------------------------------------------------------
@@ -1017,7 +1021,8 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
             "funding_and_rates": (
                 {
                     "last_funding_rate_bps": round(float(crypto_prems.get(asset, {}).get("lastFundingRate", 0.0)) * 1e4, 2),
-                    "predicted_funding_rate_bps": round(float(crypto_prems.get(asset, {}).get("interestRate", 0.0)) * 1e4, 2),
+                    "predicted_funding_rate_bps": None,  # premiumIndex interestRate is NOT predicted funding
+                    "predicted_funding_source": "UNAVAILABLE_IN_PREMIUM_INDEX",
                     "mark_price": round(float(crypto_prems.get(asset, {}).get("markPrice", mid_price)), 4),
                     "index_price": round(float(crypto_prems.get(asset, {}).get("indexPrice", mid_price)), 4)
                 } if asset in CRYPTO_ASSETS else None

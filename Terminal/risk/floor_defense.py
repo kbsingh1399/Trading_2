@@ -27,8 +27,9 @@ MAX_RISK_USD      =    20.00
 # Cluster map for correlation governor
 CLUSTER_MAP: dict[str, list[str]] = {
     "crypto":  ["BTCUSD.pi", "ETHUSD.pi", "SOLUSD.p", "BNBUSD.p", "ADAUSD.p",
-                "DOTUSD.p", "XRPUSD.pi", "BNBUSD.pi", "DOGEUSD.p", "LTCUSD.p",
-                "LINKUSD.p", "AVAXUSD.p", "TRXUSD.p", "BCHUSD.p"],
+                "DOTUSD.pi", "DOTUSD.p", "XRPUSD.pi", "BNBUSD.pi", "DOGEUSD.p", "DOGUSD.p",
+                "LTCUSD.p", "LTCUSD.pi", "LINKUSD.p", "LNKUSD.p", "AVAXUSD.p",
+                "AVXUSD.p", "NEARUSD.p", "NERUSD.p", "TRXUSD.p", "BCHUSD.p"],
     "energy":  ["USWTI.p", "UKOIL.p"],
     "indices": ["SP500.p", "NAS100.p", "UK100.p", "GER40.p", "JPN225.p"],
     "forex":   ["EURUSD.pi", "GBPUSD.pi", "USDJPY.pi", "AUDUSD.pi", "NZDUSD.pi",

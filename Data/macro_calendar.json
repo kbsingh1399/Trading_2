@@ -25,7 +25,10 @@
       "name": "FOMC Minutes",
       "time_utc": "2026-10-07T18:00:00Z",
       "impact": "HIGH",
-      "source": "https://www.federalreserve.gov/newsevents/2026-october.htm"
+      "source": "https://www.federalreserve.gov/newsevents/2026-october.htm",
+      "purge_at_utc": "2026-10-07T16:55:00Z",
+      "blackout_start_utc": "2026-10-07T17:00:00Z",
+      "blackout_end_utc": "2026-10-07T18:35:00Z"
     },
     {
       "name": "FOMC",

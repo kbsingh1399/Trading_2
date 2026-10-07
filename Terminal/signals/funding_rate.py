@@ -6,9 +6,9 @@ Provides real-time funding rate for any Binance USDT-M perpetual.
 Positive funding = longs paying shorts = crowded long positioning.
 High positive funding on a bearish VWAP setup = +1 to +2 confluence points.
 
-INTEGRATION:
-  Score breakdown added to 24-asset telemetry export in
-  Terminal/Data_Factory/generate_telemetry_snapshot.py.
+INTEGRATION STATUS: mapping and source-label hygiene only. No receiving
+order-admission caller currently consumes this module's confluence points.
+The premiumIndex endpoint does not always provide a predicted next rate.
 """
 from __future__ import annotations
 
@@ -19,7 +19,7 @@ from typing import Optional
 logger = logging.getLogger("FundingRate")
 
 # Cache TTL: funding rates change every 8 hours, but we poll every 15m bar
-_CACHE: dict[str, tuple[float, float, float]] = {}  # symbol -> (rate, predicted, fetch_time)
+_CACHE: dict[str, tuple[float, Optional[float], float]] = {}  # symbol -> (rate, predicted|None, fetch_time)
 _CACHE_TTL_SEC = 300   # 5 minutes cache
 
 
@@ -34,12 +34,18 @@ def _binance_symbol(mt5_symbol: str) -> Optional[str]:
         "XRPUSD.pi":  "XRPUSDT",
         "ADAUSD.p":   "ADAUSDT",
         "DOGEUSD.p":  "DOGEUSDT",
+        "DOGUSD.p":   "DOGEUSDT",
         "LINKUSD.p":  "LINKUSDT",
+        "LNKUSD.p":  "LINKUSDT",
         "LTCUSD.p":   "LTCUSDT",
+        "LTCUSD.pi":  "LTCUSDT",
         "BCHUSD.p":   "BCHUSDT",
         "AVAXUSD.p":  "AVAXUSDT",
+        "AVXUSD.p":  "AVAXUSDT",
         "TRXUSD.p":   "TRXUSDT",
         "DOTUSD.p":   "DOTUSDT",
+        "DOTUSD.pi":  "DOTUSDT",
+        "NERUSD.p":  "NEARUSDT",
     }
     return _MAP.get(mt5_symbol)
 
@@ -85,9 +91,11 @@ def get_funding_rate(mt5_symbol: str, *, force_refresh: bool = False) -> dict:
         with urllib.request.urlopen(req, timeout=5) as resp:
             d = json.loads(resp.read().decode())
 
-        rate      = float(d.get("lastFundingRate", 0.0))
-        predicted = float(d.get("nextFundingRate", d.get("lastFundingRate", rate)))
-        mark      = float(d.get("markPrice", 0.0))
+        if d.get("lastFundingRate") is None or d.get("markPrice") is None:
+            return {"available": False, "symbol": binance_sym, "reason": "missing_funding_or_mark"}
+        rate      = float(d["lastFundingRate"])
+        predicted = float(d["nextFundingRate"]) if d.get("nextFundingRate") is not None else None
+        mark      = float(d["markPrice"])
 
         _CACHE[binance_sym] = (rate, predicted, time.time())
         return _build_result(binance_sym, rate, predicted, mark)
@@ -97,7 +105,7 @@ def get_funding_rate(mt5_symbol: str, *, force_refresh: bool = False) -> dict:
         return {"available": False, "symbol": binance_sym, "reason": str(exc)}
 
 
-def _build_result(symbol: str, rate: float, predicted: float, mark_price: Optional[float]) -> dict:
+def _build_result(symbol: str, rate: float, predicted: Optional[float], mark_price: Optional[float]) -> dict:
     rate_bps = rate * 10_000  # e.g. 0.00021 → 2.1 bps
 
     # Bias classification
@@ -120,7 +128,8 @@ def _build_result(symbol: str, rate: float, predicted: float, mark_price: Option
     return {
         "symbol":           symbol,
         "funding_rate":     round(rate, 6),
-        "predicted_rate":   round(predicted, 6),
+        "predicted_rate":   round(predicted, 6) if predicted is not None else None,
+        "predicted_source": "nextFundingRate" if predicted is not None else "unavailable",
         "mark_price":       mark_price,
         "rate_bps":         round(rate_bps, 3),
         "bias":             bias,

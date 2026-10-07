@@ -19,26 +19,23 @@ from typing import Dict, List, Any, Optional, Sequence
 from Terminal.Asset_Universe import broker_candidates
 from Terminal.Risk_Sizing_Engine import floor_volume
 
-# P0 FIX: Blackout guard — installed at import time so ALL order_send calls
-# from this module (and any module that imports mt5 after this point) are
-# protected against macro event blackout windows.
-try:
-    from Terminal.risk.blackout_guard import BlackoutGuard, is_in_blackout
-    BlackoutGuard.install()
-    _BLACKOUT_GUARD_ACTIVE = True
-except Exception as _bg_exc:
-    import logging as _logging
-    _logging.getLogger("MT5Bridge").warning(
-        "BlackoutGuard install failed (non-fatal, guard inactive): %s", _bg_exc
-    )
-    _BLACKOUT_GUARD_ACTIVE = False
-
+# Install against MetaTrader5 itself, without importing a partially initialized
+# bridge from the guard. Refuse to load a trading bridge if installation fails.
 try:
     import MetaTrader5 as mt5
     MT5_AVAILABLE = True
 except ImportError:
     mt5 = None
     MT5_AVAILABLE = False
+
+from Terminal.risk.blackout_guard import BlackoutGuard, is_in_blackout
+if MT5_AVAILABLE:
+    try:
+        _BLACKOUT_GUARD_ACTIVE = BlackoutGuard.install()
+    except Exception as exc:
+        raise RuntimeError(f"MT5 blackout protection unavailable: {exc}") from exc
+else:
+    _BLACKOUT_GUARD_ACTIVE = False
 
 logger = logging.getLogger("MT5Bridge")
 if not logger.handlers:
@@ -515,6 +512,13 @@ class MT5ExecutionBridge:
             "type_time": mt5.ORDER_TIME_GTC,
         }
 
+        try:
+            from Terminal.risk.live_admission import assert_joint_fill_safe
+            assert_joint_fill_safe(self, symbol, "LONG" if is_long else "SHORT",
+                                   clamped_vol, price, rounded_sl)
+        except (ValueError, RuntimeError, TypeError) as exc:
+            return {"success": False, "error": f"admission_refused:{exc}"}
+
         candidates = list(filling_types or [
             getattr(mt5, "ORDER_FILLING_IOC", 1),
             getattr(mt5, "ORDER_FILLING_FOK", 0),
@@ -637,6 +641,12 @@ class MT5ExecutionBridge:
             "expiration": 0 if persistent else broker_now + max(1, int(expiration_seconds)),
             "type_filling": getattr(mt5, "ORDER_FILLING_RETURN", getattr(mt5, "ORDER_FILLING_IOC", 1)),
         }
+        try:
+            from Terminal.risk.live_admission import assert_joint_fill_safe
+            assert_joint_fill_safe(self, symbol, "LONG" if is_long else "SHORT",
+                                   normalized, price, request["sl"])
+        except (ValueError, RuntimeError, TypeError) as exc:
+            return {"success": False, "error": f"admission_refused:{exc}"}
         if hasattr(mt5, "order_check"):
             checked = mt5.order_check(request)
             if checked is None or checked.retcode not in (0, getattr(mt5, "TRADE_RETCODE_DONE", 10009)):

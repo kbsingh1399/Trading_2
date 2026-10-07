@@ -7,13 +7,14 @@ INSIGHT:
   OI falling while price falls = long liquidations (exhaustion → AVOID new shorts)
   OI rising while price rises  = new longs added (institutional conviction → avoid new longs at resistance)
 
-INTEGRATION:
-  Filter applied in 24-asset telemetry export. OI_ROC gate added to entry
-  qualification in OF_Strategy.py decision chain.
+INTEGRATION STATUS: source freshness and six missing symbol mappings are
+fixed here, but the receiving order-admission path does not yet consume this
+module. Until then an OI exhaustion veto is not an operational gate.
 """
 from __future__ import annotations
 
 import logging
+import math
 import time
 from typing import Optional
 
@@ -38,12 +39,18 @@ def _binance_symbol(mt5_symbol: str) -> Optional[str]:
         "XRPUSD.pi":  "XRPUSDT",
         "ADAUSD.p":   "ADAUSDT",
         "DOGEUSD.p":  "DOGEUSDT",
+        "DOGUSD.p":   "DOGEUSDT",
         "LINKUSD.p":  "LINKUSDT",
+        "LNKUSD.p":  "LINKUSDT",
         "LTCUSD.p":   "LTCUSDT",
+        "LTCUSD.pi":  "LTCUSDT",
         "BCHUSD.p":   "BCHUSDT",
         "AVAXUSD.p":  "AVAXUSDT",
+        "AVXUSD.p":  "AVAXUSDT",
         "TRXUSD.p":   "TRXUSDT",
         "DOTUSD.p":   "DOTUSDT",
+        "DOTUSD.pi":  "DOTUSDT",
+        "NERUSD.p":  "NEARUSDT",
     }
     return _MAP.get(mt5_symbol)
 
@@ -79,7 +86,7 @@ def get_oi_roc(mt5_symbol: str, *, lookback_bars: int = _LOOKBACK_BARS, force_re
 
     try:
         import urllib.request, json
-        n_fetch = lookback_bars + 2   # extra for clean ROC
+        n_fetch = lookback_bars + 3   # extra to exclude open/future buckets
         url = (
             f"https://fapi.binance.com/futures/data/openInterestHist"
             f"?symbol={binance_sym}&period=15m&limit={n_fetch}"
@@ -88,13 +95,25 @@ def get_oi_roc(mt5_symbol: str, *, lookback_bars: int = _LOOKBACK_BARS, force_re
         with urllib.request.urlopen(req, timeout=5) as resp:
             data = json.loads(resp.read().decode())
 
-        if not data or len(data) < 2:
-            return {"available": False, "symbol": binance_sym, "reason": "insufficient_oi_history"}
-
-        oi_values = [float(d["sumOpenInterestValue"]) for d in data]
+        # Require two closed observations exactly four 15m intervals apart.
+        now_ms = time.time() * 1000
+        closed = sorted((d for d in data if float(d["timestamp"]) <= now_ms - 900_000),
+                        key=lambda d: float(d["timestamp"]))
+        if len(closed) < lookback_bars + 1:
+            return {"available": False, "symbol": binance_sym, "reason": "insufficient_closed_oi_history"}
+        window = closed[-(lookback_bars + 1):]
+        stamps = [float(d["timestamp"]) for d in window]
+        if now_ms - stamps[-1] > 30 * 60_000 or any(
+            abs(stamps[i + 1] - stamps[i] - 900_000) > 60_000
+            for i in range(len(stamps) - 1)
+        ):
+            return {"available": False, "symbol": binance_sym, "reason": "stale_or_gapped_oi_history"}
+        oi_values = [float(d["sumOpenInterestValue"]) for d in window]
         oi_start  = oi_values[0]
         oi_end    = oi_values[-1]
-        roc = (oi_end - oi_start) / max(abs(oi_start), 1.0) * 100.0
+        if oi_start <= 0 or oi_end <= 0 or any(not math.isfinite(v) for v in oi_values):
+            return {"available": False, "symbol": binance_sym, "reason": "invalid_oi_values"}
+        roc = (oi_end - oi_start) / oi_start * 100.0
 
         _CACHE[binance_sym] = (roc, oi_end, oi_values, time.time())
         return _build_result(binance_sym, roc, oi_end, oi_values)
@@ -134,6 +153,6 @@ def oi_confirms_short(mt5_symbol: str) -> bool:
     """Return True if OI_ROC pattern supports a new short entry (not exhaustion)."""
     result = get_oi_roc(mt5_symbol)
     if not result.get("available"):
-        return True   # fail-open: if data unavailable, don't veto (other gates still apply)
+        return False  # cannot prove absence of liquidation exhaustion
     # Reject only if clearly in exhaustion territory
     return not result.get("blocks_short", False)

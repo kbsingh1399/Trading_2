@@ -48,7 +48,7 @@ TP_R_MIN = 2.5                 # target band lower edge (2.50R)
 TP_R_MAX = 3.14                # target band upper edge (never chase moonshots)
 EQUITY_FLOOR_USD = 4775.0      # hard equity defense floor (4.50% of 5,000 USD)
 MAX_FILLED_POSITIONS = 2       # MAX_CONCURRENT invariant (filled positions)
-MAX_PENDING_TOTAL = 5          # decoupled resting-limit ceiling (first-fill OCO)
+MAX_PENDING_TOTAL = 2          # without proven atomic OCO, count every possible joint fill
 STATE_STALENESS_S = 120.0      # market_state as_of freshness bound
 DEFAULT_MAX_FRICTION_R = 0.35  # round-trip spread cost ceiling, in R units
 TTL_BARS_MAX = 24              # the 24-bar decay convention
@@ -245,26 +245,28 @@ def _transport_ok(payload: Dict) -> bool:
 
 
 def _existing_risk_usd(state: Dict) -> float:
-    """Best-effort worst-case loss of currently filled positions.
-
-    Missing payload fields degrade to 0.0 (reported, not trusted): the muscle
-    enforces the true portfolio caps on arrival regardless.
-    """
+    """Count filled AND resting worst-case stop losses; refuse incomplete data."""
     total = 0.0
     quotes = state.get("quotes") or {}
-    for position in state.get("positions") or []:
-        if not isinstance(position, dict):
-            continue
-        symbol = position.get("symbol")
+    for row in [*state["positions"], *state["pending_orders"]]:
+        if not isinstance(row, dict):
+            raise ValueError("invalid_risk_inventory_row")
+        symbol = row.get("symbol")
         quote = quotes.get(symbol) or {}
-        contract = _num(position.get("contract_size"),
-                        _num(quote.get("contract_size"), 0.0))
-        volume = _num(position.get("volume"), 0.0)
-        entry = _num(position.get("entry"), _num(position.get("price_open"), 0.0))
-        sl = _num(position.get("sl"), 0.0)
-        if contract <= 0 or volume <= 0 or entry <= 0 or sl <= 0:
-            continue
-        total += volume * abs(entry - sl) * contract
+        contract = _num(row.get("contract_size"), _num(quote.get("contract_size")))
+        volume = _num(row.get("volume"))
+        entry = _num(row.get("entry"), _num(row.get("price_open")))
+        sl = _num(row.get("sl"))
+        if not symbol or min(contract, volume, entry, sl) <= 0:
+            raise ValueError("missing_inventory_stop_or_contract")
+        direction = str(row.get("direction", "")).upper()
+        if direction not in ("LONG", "SHORT"):
+            raise ValueError("unknown_inventory_direction")
+        adverse = sl < entry if direction == "LONG" else sl > entry
+        risk = volume * abs(entry - sl) * contract if adverse else 0.0
+        if symbol.upper().startswith("USDJPY"):
+            risk /= entry  # quote currency JPY, account currency USD
+        total += risk
     return total
 
 
@@ -291,6 +293,12 @@ def live_precheck(client: Any, plan: Dict, *, now: float) -> Dict:
         return {"ok": False, "reason": "market_state_stale", "checks": checks}
     checks["freshness"] = "ok"
 
+    from datetime import datetime, timezone
+    from Terminal.risk.blackout_guard import is_in_blackout
+    blocked, block_reason = is_in_blackout(datetime.fromtimestamp(now, tz=timezone.utc))
+    if blocked:
+        checks["macro"] = f"blackout:{block_reason}"
+        return {"ok": False, "reason": "macro_blackout", "checks": checks}
     macro = state.get("macro") or {}
     if macro.get("blackout_active"):
         checks["macro"] = f"blackout:{macro.get('blackout_event')}"
@@ -301,22 +309,35 @@ def live_precheck(client: Any, plan: Dict, *, now: float) -> Dict:
     equity = _num(account.get("equity_usd"), 0.0)
     if equity <= 0:
         return {"ok": False, "reason": "equity_unavailable", "checks": checks}
-    positions = [p for p in (state.get("positions") or []) if isinstance(p, dict)]
-    pending = [o for o in (state.get("pending_orders") or []) if isinstance(o, dict)]
+    if not isinstance(state.get("positions"), list) or not isinstance(state.get("pending_orders"), list):
+        return {"ok": False, "reason": "risk_inventory_unavailable", "checks": checks}
+    positions = state["positions"]
+    pending = state["pending_orders"]
+    if len(positions) >= MAX_FILLED_POSITIONS:
+        return {"ok": False, "reason": "max_filled_positions", "checks": checks}
+    if len(positions) + len(pending) >= MAX_FILLED_POSITIONS:
+        return {"ok": False, "reason": "pending_limit_ceiling", "checks": checks}
     plan_risk = _num(plan.get("computed_risk_usd", plan.get("risk_usd")))
-    existing_risk = _existing_risk_usd(state)
-    cushion = equity - existing_risk - plan_risk
+    try:
+        existing_risk = _existing_risk_usd(state)
+    except (KeyError, ValueError, TypeError) as exc:
+        return {"ok": False, "reason": "risk_inventory_unavailable",
+                "detail": str(exc), "checks": checks}
+    balance = _num(account.get("balance_usd"), 0.0)
+    if balance <= 0:
+        return {"ok": False, "reason": "balance_unavailable", "checks": checks}
+    # Broker receiver independently recomputes using native order_calc_profit.
+    from Terminal.risk.live_admission import STOP_STRESS_MULTIPLIER, MIN_EXECUTION_COST_USD
+    total_risk_stressed = ((existing_risk + plan_risk) * STOP_STRESS_MULTIPLIER
+                           + (len(positions) + len(pending) + 1) * MIN_EXECUTION_COST_USD)
+    cushion = min(balance, equity) - total_risk_stressed
     checks["account"] = {"equity_usd": round(equity, 2),
                          "existing_risk_usd": round(existing_risk, 2),
                          "plan_risk_usd": round(plan_risk, 2),
+                         "stressed_joint_risk_usd": round(total_risk_stressed, 2),
                          "cushion_above_floor_usd": round(cushion - EQUITY_FLOOR_USD, 2)}
-    if cushion <= EQUITY_FLOOR_USD:
+    if cushion < EQUITY_FLOOR_USD + 20.0:
         return {"ok": False, "reason": "equity_floor_breach", "checks": checks}
-
-    if len(positions) >= MAX_FILLED_POSITIONS:
-        return {"ok": False, "reason": "max_filled_positions", "checks": checks}
-    if len(positions) + len(pending) >= MAX_PENDING_TOTAL:
-        return {"ok": False, "reason": "pending_limit_ceiling", "checks": checks}
     checks["capacity"] = {"filled": len(positions), "pending": len(pending)}
 
     quote = (state.get("quotes") or {}).get(plan["symbol"])

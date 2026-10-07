@@ -213,23 +213,34 @@ class RatchetManager:
                 "[TIME DECAY] Ticket %d %s: %d bars old, gain only +%.2fR < +0.20R → market close",
                 ticket, state.symbol, int(state.age_bars()), gain_r,
             )
-            self._close_at_market(state)
-            state.phase = RatchetPhase.CLOSED
-            return {"action": "time_decay_exit", "phase_new": state.phase,
+            if self._close_at_market(state):
+                state.phase = RatchetPhase.CLOSED
+                return {"action": "time_decay_exit", "phase_new": state.phase,
+                        "r_gain": round(gain_r, 3)}
+            logger.error("[TIME DECAY] Ticket %d close failed; retaining OPEN for retry", ticket)
+            return {"action": "time_decay_exit_failed", "phase_new": state.phase,
                     "r_gain": round(gain_r, 3)}
 
         return None
 
     def run_once(self) -> list[dict]:
         """Run one poll cycle across all registered positions. Returns list of actions fired."""
-        if not self._positions:
-            return []
         try:
             import MetaTrader5 as mt5
             if not mt5.terminal_info():
+                logger.error("Ratchet MT5 terminal unavailable")
                 return []
             results = []
-            positions = {p.ticket: p for p in (mt5.positions_get() or [])}
+            raw_positions = mt5.positions_get()
+            if raw_positions is None:
+                raise RuntimeError("MT5 positions_get failed; do not mark positions closed")
+            positions = {p.ticket: p for p in raw_positions}
+            # Discover new fills every poll, not only at process start.
+            for ticket, p in positions.items():
+                if ticket not in self._positions and float(p.sl) > 0:
+                    direction = 1 if p.type == mt5.ORDER_TYPE_BUY else -1
+                    self.register(ticket, p.symbol, float(p.price_open), float(p.sl),
+                                  float(p.tp), direction, staged_at=float(p.time))
             for ticket, state in list(self._positions.items()):
                 live = positions.get(ticket)
                 if live is None:
@@ -264,24 +275,40 @@ class RatchetManager:
     # Private MT5 helpers
     # ------------------------------------------------------------------
     def _modify_sl(self, state: PositionState, new_sl: float) -> bool:
-        """Fire TRADE_ACTION_SLTP via the bridge or raw mt5."""
+        """Tighten a native stop only; verify broker acceptance and readback."""
         try:
-            new_sl = round(new_sl, 2)
-            if self._bridge is not None:
-                result = self._bridge.modify_position_sl_tp(
-                    ticket=state.ticket, new_sl=new_sl, new_tp=state.tp
-                )
-                return result.get("success", False)
             import MetaTrader5 as mt5
-            req = {
-                "action": mt5.TRADE_ACTION_SLTP,
-                "position": state.ticket,
-                "symbol": state.symbol,
-                "sl": new_sl,
-                "tp": round(state.tp, 2),
-            }
-            res = mt5.order_send(req)
-            return res is not None and res.retcode == getattr(mt5, "TRADE_RETCODE_DONE", 10009)
+            live = mt5.positions_get(ticket=state.ticket)
+            if not live or len(live) != 1:
+                return False
+            pos = live[0]
+            info = mt5.symbol_info(state.symbol)
+            if info is None:
+                return False
+            tick = float(getattr(info, "trade_tick_size", 0) or info.point)
+            if tick <= 0:
+                return False
+            new_sl = round(round(new_sl / tick) * tick, int(info.digits))
+            current = float(pos.sl)
+            if current <= 0 or (state.direction == 1 and new_sl < current) or (state.direction == -1 and new_sl > current):
+                return False
+            if self._bridge is not None:
+                result = self._bridge.modify_position_sltp(
+                    ticket=state.ticket, new_sl=new_sl, new_tp=None
+                )
+                if not result.get("success", False):
+                    return False
+            else:
+                res = mt5.order_send({
+                    "action": mt5.TRADE_ACTION_SLTP,
+                    "position": state.ticket, "symbol": state.symbol,
+                    "sl": new_sl, "tp": float(pos.tp),
+                })
+                if res is None or res.retcode != getattr(mt5, "TRADE_RETCODE_DONE", 10009):
+                    return False
+            confirmed = mt5.positions_get(ticket=state.ticket)
+            return (confirmed is not None and len(confirmed) == 1 and
+                    abs(float(confirmed[0].sl) - new_sl) <= tick * 0.51)
         except Exception as exc:
             logger.error("_modify_sl error for ticket %d: %s", state.ticket, exc)
             return False

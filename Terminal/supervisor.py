@@ -62,7 +62,7 @@ PROCESSES = [
     },
     {
         "name":          "ratchet_monitor",
-        "cmd":           [sys.executable, "-m", "Terminal.risk.ratchet_standalone"],
+        "cmd":           [sys.executable, "-m", "Terminal.supervisor", "--ratchet-only"],
         "restart_delay": 5,
         "critical":      True,
         "crash_limit":   10,
@@ -96,14 +96,6 @@ class Supervisor:
         if self.dry_run:
             logger.info("[DRY-RUN] Would launch: %s → %s", name, " ".join(str(c) for c in cfg["cmd"]))
             return None
-        # Skip ratchet_standalone if module doesn't exist yet (optional)
-        if name == "ratchet_monitor":
-            try:
-                import importlib
-                importlib.util.find_spec("Terminal.risk.ratchet_standalone")
-            except Exception:
-                logger.info("ratchet_monitor skipped — ratchet_standalone not yet present.")
-                return None
         # Skip risk_monitor if script doesn't exist
         if name == "risk_monitor":
             script = Path(cfg["cmd"][-3])
