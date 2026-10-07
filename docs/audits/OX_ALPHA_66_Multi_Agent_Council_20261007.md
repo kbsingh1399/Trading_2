@@ -82,3 +82,15 @@ The board is still ONE trade — the pre-FOMC USD squeeze expressing six ways (S
 6. **Standing items:** authentic telemetry re-certified; the v2 execution-spec regression (restore tick/contract/min_lot/step_lot in quotes) is still open; ETF 07-Oct flows print 0.0 before Farside reports — should be NULL/NOT_REPORTED semantics; FNG 71 (Greed, as-of 00:00 UTC); Coinbase premium −2.4 bps.
 
 *Every figure traces to the 12:50:52 UTC authentic snapshot (commit 51e9849), the committed plan corpus, or the git audit trail. No statistic is fabricated.*
+
+---
+
+## Correction addendum — forensics audit 2026-10-07 (~13:30 UTC)
+
+The full-repository forensic audit (`OX_ALPHA_66_Data_Forensics_Audit_20261007.md`) found that the indicator citations in this report were produced during a stale-bar window (all candle indicators frozen at ~07:45 UTC through 13:04, recovered by muscle commit 44bc5a9). Specific corrections:
+
+1. **§1/§2 indicator readings** (Z, RSI, ATR, EMA, regimes for the 12:50 matrix) describe ~07:45 data. Fresh readings at 13:04+: SP500 Z −2.2 (not −10.8), ATR 5.90 (not 3.09), BTC ATR 232 (not 194). USWTI/BTC HOLD decisions stand — they rest on price/bracket/ratchet logic, not the corrupted indicators.
+2. **§3 SP500 standby**: the "EMA200 test at 7,789.44" anchor was the frozen proxy value; the deployed "ema_200" is an EMA96-in-disguise (fetches 120 bars). SP500 plan is on STAGING HOLD — its stop is 1.02× the fresh ATR (floor 1.5×). GBPUSD plan likewise (1.13×; premise Z was an artifact).
+3. **§4/§1 BTC cascade bands**: the "8.44M at 82,525–82,731" band is a synthetic single-cohort leverage-tier artifact (bands == liq_price(mid, 10/25/50/100) — proven mathematically), not observed fuel. The phase-1-before-FOMC requirement for holding BTC through the blackout stands on event-risk conservatism alone.
+4. The 16:55 purge, blackout discipline, and factor-separation rules are unaffected.
+

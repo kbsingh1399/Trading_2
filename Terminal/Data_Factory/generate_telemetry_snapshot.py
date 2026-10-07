@@ -52,6 +52,19 @@ TELEMETRY_PATH = ROOT / "docs" / "telemetry" / "live_snapshot_latest.json"
 TELEMETRY_PATH.parent.mkdir(parents=True, exist_ok=True)
 CANDLE_DIR = ROOT / "Data" / "Candles"
 WHALE_STATE_PATH = ROOT / "docs" / "telemetry" / ".whale_wall_state.json"
+ERROR_MARKER_PATH = ROOT / "docs" / "telemetry" / ".generator_error.json"
+
+# --- Data-integrity invariants (OX_ALPHA_66 forensics audit 2026-10-07) -----
+# RiskPolicy: maximum concurrent FILLED positions is 2. One constant, used by
+# the capacity block, the freeze status string AND per-asset gating (the audit
+# caught max_slots=4 drifting from the ratified policy of 2).
+MAX_CONCURRENT_SLOTS = 2
+# Fetch enough bars for EMA200 warmup convergence (>= 4x period). The audit
+# proved count=120 makes "ema_200" an EMA96-in-disguise (engine silently
+# falls back to min(len,96) periods when fewer than 200 bars exist).
+BAR_FETCH_COUNT = 800
+# Below this many bars we emit ema_200 as null rather than a mislabeled proxy.
+EMA200_MIN_BARS = 400
 
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 
@@ -159,21 +172,39 @@ def compute_live_coinbase_premium_bps(crypto_prems: Dict[str, Dict] = None) -> f
     return 0.0
 
 
-def load_whale_state() -> Dict[str, Any]:
+def _write_error_marker(reason: str) -> None:
+    """FAIL-CLOSED: record why generation aborted without touching the live
+    snapshot. A stale live_snapshot_latest.json is then detectable by its
+    as_of age, and the brain must NO_TRADE on it (consultation-5 semantics)."""
+    try:
+        ERROR_MARKER_PATH.parent.mkdir(parents=True, exist_ok=True)
+        ERROR_MARKER_PATH.write_text(json.dumps({
+            "ts_utc": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC"),
+            "ts_epoch": time.time(),
+            "fatal": True,
+            "reason": reason,
+        }, indent=2), encoding="utf-8")
+    except Exception:
+        pass
+
+
+def load_whale_state(path: pathlib.Path = None) -> Dict[str, Any]:
     """Load previous whale wall state for persistence tracking."""
     try:
-        if WHALE_STATE_PATH.exists():
-            return json.loads(WHALE_STATE_PATH.read_text(encoding="utf-8"))
+        p = pathlib.Path(path or WHALE_STATE_PATH)
+        if p.exists():
+            return json.loads(p.read_text(encoding="utf-8"))
     except Exception:
         pass
     return {}
 
 
-def save_whale_state(state: Dict[str, Any]) -> None:
+def save_whale_state(state: Dict[str, Any], path: pathlib.Path = None) -> None:
     """Save whale wall state for next iteration's persistence tracking."""
     try:
-        WHALE_STATE_PATH.parent.mkdir(parents=True, exist_ok=True)
-        WHALE_STATE_PATH.write_text(json.dumps(state), encoding="utf-8")
+        p = pathlib.Path(path or WHALE_STATE_PATH)
+        p.parent.mkdir(parents=True, exist_ok=True)
+        p.write_text(json.dumps(state), encoding="utf-8")
     except Exception:
         pass
 
@@ -264,16 +295,36 @@ def compute_volume_profile(bars: List[Dict[str, Any]], num_bins: int = 50) -> Di
     return {"poc": round(poc, 4), "vah": round(vah, 4), "val": round(val, 4), "total_volume": round(total_vol, 1)}
 
 
-def generate_full_snapshot() -> Dict[str, Any]:
-    """Master generation routine."""
+def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
+                           whale_state_path: Any = None) -> Dict[str, Any]:
+    """Master generation routine.
+
+    ``bridge`` / ``telemetry_path`` / ``whale_state_path`` are injectable for
+    deterministic offline tests (Tests/Test_Telemetry_Data_Integrity.py).
+    """
     now_ts = datetime.now(timezone.utc).timestamp()
     now_utc = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
+    out_path = pathlib.Path(telemetry_path) if telemetry_path else TELEMETRY_PATH
 
-    # 1. Initialize MT5 Bridge
-    bridge = MT5ExecutionBridge(5064568)
+    # 1. Initialize MT5 Bridge — FAIL-CLOSED (audit finding C3): if the broker
+    # is unreachable we must NEVER emit a snapshot with fabricated account
+    # numbers or an empty positions list (real positions would still be live
+    # server-side while the snapshot advertises open capacity). Write an error
+    # marker, keep the previous snapshot untouched (its as_of age exposes the
+    # staleness) and abort.
+    bridge = bridge or MT5ExecutionBridge(5064568)
     acc_summary = bridge.get_account_summary()
-    open_positions = bridge.get_open_positions() if bridge.initialized else []
-    pending_orders = bridge.get_pending_orders() if bridge.initialized else []
+    if not acc_summary.get("connected"):
+        reason = f"MT5 account summary unavailable: {acc_summary.get('error', 'unknown')}"
+        _write_error_marker(reason)
+        raise RuntimeError(f"FAIL_CLOSED: {reason}")
+    try:
+        open_positions = bridge.get_open_positions()
+        pending_orders = bridge.get_pending_orders()
+    except Exception as exc:
+        reason = f"MT5 position/order inventory unavailable: {exc}"
+        _write_error_marker(reason)
+        raise RuntimeError(f"FAIL_CLOSED: {reason}")
 
     # Format positions
     formatted_positions = []
@@ -322,18 +373,26 @@ def generate_full_snapshot() -> Dict[str, Any]:
             "time_setup": o.get("time_setup")
         })
 
-    equity_usd = float(acc_summary.get("equity_usd") or 4834.50)
-    balance_usd = float(acc_summary.get("balance_usd") or 4831.73)
-    margin_used = float(acc_summary.get("margin_usd") or 412.50)
-    margin_free = float(acc_summary.get("margin_free_usd") or 4421.60)
-    margin_level = float(acc_summary.get("margin_level_pct") or 1172.0)
+    # Audit finding C3: no fabricated fallback constants. ``connected`` is
+    # guaranteed True by the fail-closed gate above; a missing numeric field
+    # is an abort condition, not a value to invent.
+    try:
+        equity_usd = float(acc_summary["equity_usd"])
+        balance_usd = float(acc_summary["balance_usd"])
+        margin_used = float(acc_summary["margin_usd"])
+        margin_free = float(acc_summary["margin_free_usd"])
+        margin_level = float(acc_summary["margin_level_pct"])
+    except (KeyError, TypeError, ValueError) as exc:
+        reason = f"MT5 account summary incomplete: {exc}"
+        _write_error_marker(reason)
+        raise RuntimeError(f"FAIL_CLOSED: {reason}")
     hard_floor = 4775.00
     cushion = round(equity_usd - hard_floor, 2)
 
     filled_count = len(formatted_positions)
     pending_count = len(formatted_orders)
-    max_slots = 4
-    capacity_status = "HARD_ADMISSION_FREEZE (4/4 slots occupied)" if (filled_count + pending_count) >= max_slots else f"OPEN ({filled_count + pending_count}/{max_slots} slots, free_margin={margin_free:.2f} USD)"
+    max_slots = MAX_CONCURRENT_SLOTS
+    capacity_status = f"HARD_ADMISSION_FREEZE ({filled_count + pending_count}/{max_slots} slots occupied)" if (filled_count + pending_count) >= max_slots else f"OPEN ({filled_count + pending_count}/{max_slots} slots, free_margin={margin_free:.2f} USD)"
 
     # 2. Macro Intelligence
     fng_val = FearGreedIndex().value()
@@ -355,11 +414,27 @@ def generate_full_snapshot() -> Dict[str, Any]:
     except Exception:
         pass
 
+    # Audit finding M1: Farside prints a "-" row totalling 0.0 for the current
+    # day until funds have reported. That placeholder is NOT a reported zero
+    # flow — emit null + NOT_YET_REPORTED instead of a fabricated 0.0.
+    today_str = datetime.now(timezone.utc).strftime("%d %b %Y")
+
+    def classify_etf_row(flow_musd: float, date_str: Optional[str]):
+        if date_str is None:
+            return None, "UNAVAILABLE"
+        if date_str == today_str and flow_musd == 0.0:
+            return None, "NOT_YET_REPORTED"
+        return round(flow_musd, 1), "REPORTED"
+
+    btc_val, btc_status = classify_etf_row(btc_flow_musd, btc_date)
+    eth_val, eth_status = classify_etf_row(eth_flow_musd, eth_date)
     etf_flows_1d = {
-        "BTC_net_usd_millions": round(btc_flow_musd, 1),
+        "BTC_net_usd_millions": btc_val,
         "BTC_report_date": btc_date,
-        "ETH_net_usd_millions": round(eth_flow_musd, 1),
+        "BTC_report_status": btc_status,
+        "ETH_net_usd_millions": eth_val,
         "ETH_report_date": eth_date,
+        "ETH_report_status": eth_status,
         "data_source": "Farside Investors (live HTML scrape - verified authentic)"
     }
 
@@ -406,9 +481,14 @@ def generate_full_snapshot() -> Dict[str, Any]:
         "coinbase_premium_bps": live_cb_premium,
         "runway_hours_to_blackout": round((datetime(2026, 10, 7, 17, 0, 0, tzinfo=timezone.utc).timestamp() - now_ts) / 3600.0, 2)
     }
+    # Audit finding M2: the event window above is a declared constant, not a
+    # live calendar read. Once it is more than 24h in the past, flag it so a
+    # stale blackout claim can never pass silently.
+    if macro_calendar["runway_hours_to_blackout"] < -24.0:
+        macro_calendar["calendar_status"] = "STALE_REVIEW_REQUIRED"
 
     # Load previous whale wall state for persistence tracking
-    prev_whale_state = load_whale_state()
+    prev_whale_state = load_whale_state(whale_state_path)
     new_whale_state: Dict[str, Any] = {}
 
     # 4. Process all 24 Assets
@@ -424,11 +504,13 @@ def generate_full_snapshot() -> Dict[str, Any]:
 
         # Broker Execution Specs
         exec_specs: Dict[str, Any] = {}
+        specs_source = "DEFAULTS_UNAVAILABLE"
         if bridge.initialized and broker_sym:
             try:
                 import MetaTrader5 as mt5
                 s_info = mt5.symbol_info(broker_sym)
                 if s_info:
+                    specs_source = "BROKER_MT5_SYMBOL_INFO"
                     exec_specs = {
                         "tick_size": getattr(s_info, "trade_tick_size", 0.0001),
                         "contract_size": getattr(s_info, "trade_contract_size", 1.0),
@@ -451,15 +533,19 @@ def generate_full_snapshot() -> Dict[str, Any]:
 
         # Fetch fresh 15m candles directly from live broker or fall back to parquet
         bars: List[Dict[str, Any]] = []
+        bars_source = "NONE"
         if bridge.initialized and broker_sym:
-            raw_bars = bridge.get_recent_bars(broker_sym, count=120)
+            raw_bars = bridge.get_recent_bars(broker_sym, count=BAR_FETCH_COUNT)
             if raw_bars:
                 bars = raw_bars
+                bars_source = "LIVE_BRIDGE"
                 try:
                     df_bars = pd.DataFrame(raw_bars)
-                    now_utc = datetime.now(timezone.utc).timestamp()
-                    t_last = float(raw_bars[-1].get("time", now_utc))
-                    diff = t_last - now_utc
+                    # (audit: renamed from now_utc — this used to shadow the
+                    # top-level as_of string and corrupt payload["as_of_utc"])
+                    now_ts_fetch = datetime.now(timezone.utc).timestamp()
+                    t_last = float(raw_bars[-1].get("time", now_ts_fetch))
+                    diff = t_last - now_ts_fetch
                     offset_sec = int(round(diff / 3600.0) * 3600) if (abs(diff) < 86400 * 3 and diff > 1800) else 0
                     df_bars["utc_time"] = df_bars["time"] - offset_sec
                     df_bars["datetime_utc"] = pd.to_datetime(df_bars["utc_time"], unit="s", utc=True)
@@ -474,15 +560,35 @@ def generate_full_snapshot() -> Dict[str, Any]:
                 try:
                     df = pd.read_parquet(parquet_file)
                     bars = df.to_dict("records")
+                    bars_source = "PARQUET_FALLBACK"
                 except Exception:
                     bars = []
 
+        # Audit finding C1: make indicator staleness visible. A snapshot whose
+        # candles are hours old must never look identical to a live one.
+        if bars:
+            bars_last_close_epoch = float(bars[-1].get("time", 0.0)) + 900.0
+            indicator_age_min = round(max(0.0, (now_ts - bars_last_close_epoch) / 60.0), 1)
+            bars_last_close_utc = datetime.fromtimestamp(bars_last_close_epoch, tz=timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+        else:
+            bars_last_close_epoch = None
+            indicator_age_min = None
+            bars_last_close_utc = None
+
         if not mid_price and bars:
+            # Audit finding C3: broker quote missing — derive from last candle
+            # close, but LABEL it. A synthetic 4 bps spread must never
+            # masquerade as a live L1 quote.
             mid_price = float(bars[-1].get("close", 0.0))
             bid_price = mid_price * 0.9998
             ask_price = mid_price * 1.0002
             spread_price = ask_price - bid_price
             spread_bps = 4.0
+            quote_source = "SYNTHETIC_FROM_LAST_CLOSE"
+        elif bid_price > 0 and ask_price > 0:
+            quote_source = "MT5_L1_TICK"
+        else:
+            quote_source = "UNAVAILABLE"
 
         # Indicators
         indicators = CandleIndicatorEngine.compute_indicators(bars) if bars else {}
@@ -496,8 +602,21 @@ def generate_full_snapshot() -> Dict[str, Any]:
             vwap_z = float(indicators.get("vwap_z") or 0.0)
         ema_20 = float(indicators.get("ema_20") or mid_price)
         ema_50 = float(indicators.get("ema_50") or mid_price)
-        ema_200 = float(indicators.get("ema_200") or mid_price)
-        ema_200_slope = float(indicators.get("ema_200_slope_pct_3h") or 0.0)
+        # Audit finding C2: with fewer than EMA200_MIN_BARS bars the engine
+        # silently computes a ~96-period EMA. Emit null instead of a proxy
+        # mislabeled as EMA200 — consumers must see the truth.
+        _ema200_raw = indicators.get("ema_200")
+        if _ema200_raw is not None and len(bars) >= EMA200_MIN_BARS:
+            ema_200 = float(_ema200_raw)
+        else:
+            ema_200 = None
+        # (audit H2 root cause: the engine emits "ema_200_slope_pct" - the
+        # old code read a nonexistent "_3h" key and hard-zeroed the slope.)
+        _slope_raw = indicators.get("ema_200_slope_pct")
+        if ema_200 is not None and _slope_raw is not None:
+            ema_200_slope = float(_slope_raw)
+        else:
+            ema_200_slope = None
 
         # Volume profile
         vol_profile = compute_volume_profile(bars[-96:] if len(bars) >= 96 else bars)
@@ -578,7 +697,13 @@ def generate_full_snapshot() -> Dict[str, Any]:
                 max_pain = liq_engine.max_pain(asset, now=now_ts, current_price=mid_price)
 
                 reconstructed_liquidations = {
-                    "source": "REAL_BINANCE_FUTURES_OI",
+                    # Audit finding C4: only the OI total is exchange data. The
+                    # band allocation is a synthetic single-cohort leverage-tier
+                    # model (proven: bands == liq_price(mid, 10/25/50/100)).
+                    # Label it honestly; keep the real-OI provenance separate.
+                    "source": "MODEL_RECONSTRUCTED_OI_COHORTS",
+                    "coverage": liq_recon.get("coverage", "SYNTHETIC_OI_DELTA_MODEL"),
+                    "oi_source": "REAL_BINANCE_FUTURES_OI",
                     "open_interest_usd": round(oi_usd, 2),
                     "open_interest_contracts": round(oi_contracts, 2),
                     "total_long_liquidation_usd": round(liq_recon.get("total_long_size", 0.0), 2),
@@ -643,7 +768,8 @@ def generate_full_snapshot() -> Dict[str, Any]:
                         "price": round(p_lvl, 4),
                         "notional_usd": round(notional, 2),
                         "distance_pct": round((p_lvl - mid_price) / mid_price * 100.0, 2),
-                        "persistence_sec": pers_sec
+                        "persistence_sec": pers_sec,
+                        "first_seen_utc": datetime.fromtimestamp(first_seen, tz=timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
                     })
 
             for p_str, sz_str in raw_book["asks"][:20]:
@@ -662,7 +788,8 @@ def generate_full_snapshot() -> Dict[str, Any]:
                         "price": round(p_lvl, 4),
                         "notional_usd": round(notional, 2),
                         "distance_pct": round((p_lvl - mid_price) / mid_price * 100.0, 2),
-                        "persistence_sec": pers_sec
+                        "persistence_sec": pers_sec,
+                        "first_seen_utc": datetime.fromtimestamp(first_seen, tz=timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
                     })
 
             total_bid_depth = cum_bid_usd
@@ -695,7 +822,17 @@ def generate_full_snapshot() -> Dict[str, Any]:
         # -----------------------------------------------------------------
         # Microstructure & Pioneer Setup Evaluation (100% Dynamic)
         # -----------------------------------------------------------------
-        trend_status = "BULLISH" if mid_price > ema_200 and ema_200_slope >= 0 else ("BEARISH" if mid_price < ema_200 and ema_200_slope < 0 else "RANGE_BOUND")
+        # Audit finding H2: slope was hard-0 with short bar history, making
+        # BEARISH impossible and biasing the board BULLISH on a crash day.
+        # With ema_200/slope now null below the bar threshold, say so.
+        if ema_200 is None or ema_200_slope is None:
+            trend_status = "INSUFFICIENT_HISTORY"
+        elif mid_price > ema_200 and ema_200_slope >= 0:
+            trend_status = "BULLISH"
+        elif mid_price < ema_200 and ema_200_slope < 0:
+            trend_status = "BEARISH"
+        else:
+            trend_status = "RANGE_BOUND"
         
         session_low = float(min(b["low"] for b in bars[-32:])) if bars else (mid_price * 0.99)
         session_high = float(max(b["high"] for b in bars[-32:])) if bars else (mid_price * 1.01)
@@ -721,10 +858,10 @@ def generate_full_snapshot() -> Dict[str, Any]:
             elif vwap_z >= 2.0:
                 pioneer_eval = "MODEL_1_EXTREME_PREMIUM_2SD"
                 pioneer_reason = f"Extreme premium extension ({vwap_z:.2f} SD above Session VWAP {session_vwap:.4f}). High-probability mean-reversion short on overhead resistance."
-            elif mid_price > ema_200 and ema_200_slope >= 0 and session_vwap and abs(mid_price - session_vwap) <= (1.2 * atr):
+            elif ema_200 is not None and ema_200_slope is not None and mid_price > ema_200 and ema_200_slope >= 0 and session_vwap and abs(mid_price - session_vwap) <= (1.2 * atr):
                 pioneer_eval = "MODEL_2_BULLISH_VWAP_PULLBACK"
                 pioneer_reason = f"Bullish trend continuation (Price > 200 EMA {ema_200:.4f}). Pullback to Session VWAP {session_vwap:.4f} within 1.2x ATR. Joining momentum toward overhead liquidity."
-            elif mid_price < ema_200 and ema_200_slope < 0 and session_vwap and abs(session_vwap - mid_price) <= (1.2 * atr):
+            elif ema_200 is not None and ema_200_slope is not None and mid_price < ema_200 and ema_200_slope < 0 and session_vwap and abs(session_vwap - mid_price) <= (1.2 * atr):
                 pioneer_eval = "MODEL_2_BEARISH_VWAP_PULLBACK"
                 pioneer_reason = f"Bearish trend continuation (Price < 200 EMA {ema_200:.4f}). Pullback up to Session VWAP {session_vwap:.4f} within 1.2x ATR. Joining momentum toward downside stops."
             elif swept_low and rsi < 35:
@@ -771,7 +908,7 @@ def generate_full_snapshot() -> Dict[str, Any]:
                 "reward_risk": 2.50,
                 "confluence": f"Extreme Z {vwap_z:.2f} SD + RSI {rsi:.1f} + premium liquidity pool"
             }
-        elif mid_price > ema_200 and ema_200_slope >= 0 and session_vwap and abs(mid_price - session_vwap) <= (1.2 * atr):
+        elif ema_200 is not None and ema_200_slope is not None and mid_price > ema_200 and ema_200_slope >= 0 and session_vwap and abs(mid_price - session_vwap) <= (1.2 * atr):
             limit_px = round(session_vwap, 4)
             sl_px = round(limit_px - (1.0 * atr), 4)
             tp_px = round(limit_px + 2.5 * (limit_px - sl_px), 4)
@@ -784,7 +921,7 @@ def generate_full_snapshot() -> Dict[str, Any]:
                 "reward_risk": 2.50,
                 "confluence": f"Bullish trend continuation pullback to Session VWAP {session_vwap:.4f}"
             }
-        elif mid_price < ema_200 and ema_200_slope < 0 and session_vwap and abs(session_vwap - mid_price) <= (1.2 * atr):
+        elif ema_200 is not None and ema_200_slope is not None and mid_price < ema_200 and ema_200_slope < 0 and session_vwap and abs(session_vwap - mid_price) <= (1.2 * atr):
             limit_px = round(session_vwap, 4)
             sl_px = round(limit_px + (1.0 * atr), 4)
             tp_px = round(limit_px - 2.5 * (sl_px - limit_px), 4)
@@ -807,6 +944,8 @@ def generate_full_snapshot() -> Dict[str, Any]:
                 "mid": round(mid_price, 4),
                 "spread_price": round(spread_price, 4),
                 "spread_bps": round(spread_bps, 2),
+                "quote_source": quote_source,
+                "specs_source": specs_source,
                 "tick_size": exec_specs.get("tick_size", 0.0001),
                 "contract_size": exec_specs.get("contract_size", 1.0),
                 "min_lot": exec_specs.get("min_lot", 0.01),
@@ -826,12 +965,18 @@ def generate_full_snapshot() -> Dict[str, Any]:
                 "atr_pct": round(atr / max(mid_price, 1e-6) * 100.0, 3),
                 "ema_20": round(ema_20, 4),
                 "ema_50": round(ema_50, 4),
-                "ema_200": round(ema_200, 4),
-                "ema_200_slope_3h_pct": round(ema_200_slope, 4),
-                "trend_regime": trend_status
+                "ema_200": round(ema_200, 4) if ema_200 is not None else None,
+                "ema_200_bars_used": len(bars),
+                "ema_200_slope_3h_pct": round(ema_200_slope, 4) if ema_200_slope is not None else None,
+                "trend_regime": trend_status,
+                "indicators_source": bars_source,
+                "bars_last_close_utc": bars_last_close_utc,
+                "indicator_age_min": indicator_age_min
             },
             "volume_profile": vol_profile,
             "structural_stop_clusters": {
+                "coverage": stop_results.get("coverage", "SYNTHETIC_STRUCTURAL_MODEL"),
+                "amount_semantics": "MODEL_WEIGHT_NOT_USD",
                 "total_sell_stops_usd": round(stop_results.get("total_sell_size", 0.0), 2),
                 "total_buy_stops_usd": round(stop_results.get("total_buy_size", 0.0), 2),
                 "top_sell_stop_clusters_below": sell_stops[:5],
@@ -861,8 +1006,14 @@ def generate_full_snapshot() -> Dict[str, Any]:
             "funding_history_8x8h": crypto_funding_hist.get(asset, []) if asset in CRYPTO_ASSETS else None
         }
 
+        # Audit finding H5: raw-spread MT5 accounts print 0.0 spread with
+        # commission billed separately — flag it so friction math never
+        # silently assumes a free round trip.
+        if spread_price == 0:
+            assets_matrix[asset]["quotes"]["spread_caveat"] = "RAW_ZERO_SPREAD_COMMISSION_EXCLUDED"
+
     # Save whale wall state for persistence tracking across iterations
-    save_whale_state(new_whale_state)
+    save_whale_state(new_whale_state, whale_state_path)
 
     # Assemble master document
     payload = {
@@ -893,11 +1044,11 @@ def generate_full_snapshot() -> Dict[str, Any]:
         "assets_matrix_24": assets_matrix
     }
 
-    # Write JSON atomically
-    with open(TELEMETRY_PATH, "w", encoding="utf-8") as f:
+    # Write JSON atomically (to the injectable path for tests)
+    with open(out_path, "w", encoding="utf-8") as f:
         json.dump(payload, f, indent=2)
 
-    print(f"[{now_utc}] Successfully exported enriched telemetry snapshot v2 to {TELEMETRY_PATH}")
+    print(f"[{now_utc}] Successfully exported enriched telemetry snapshot v2 to {out_path}")
     print(f"  Account Equity: {equity_usd:.2f} USD | Hard Floor: {hard_floor:.2f} USD | Cushion: +{cushion:.2f} USD")
     print(f"  Active Positions: {filled_count} | Pending Orders: {pending_count} | Capacity: {capacity_status}")
     print(f"  Assets Exported: {len(assets_matrix)} / 24 institutional assets with full L2 books, stop bands, & liq cascades.")

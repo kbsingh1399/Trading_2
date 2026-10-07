@@ -1,5 +1,8 @@
 # OX_ALPHA_66 — Full 24-Asset Scan Study (12:41 UTC): New Entries, Retirements, and the One-Factor Flush
 
+> **DATA-INTEGRITY CORRECTION (2026-10-07 ~13:30 UTC — see `OX_ALPHA_66_Data_Forensics_Audit_20261007.md`):** this study was produced during a telemetry defect window in which all candle-derived indicators (EMA/ATR/RSI/VWAP/sigma) were computed on bars frozen at ~07:45 UTC while quotes stayed live. The Z-extremes below (SP500 −10.65, NAS100 −11.27, GBPUSD −8.60, GOLD −6.89…) are stale-sigma artifacts — fresh Zs are −1.8 to −2.3. ATRs understated by ~2x (SP500 3.09→5.90, BTC 194→232). The SP500 and GBPUSD plans are on STAGING HOLD pending re-anchor. Structural conclusions that survive: the one-factor USD-squeeze correlation structure, the same-factor veto, the retirements of the stale GOLD/NAS100 standbys, and the pre-FOMC discipline.
+
+
 **Question (principal):** "Did you find any new entry — scan/study assets."
 **Method:** full-board scan on the authentic 12:41 UTC telemetry — friction at 1.5xATR stops, Z/RSI extremity, EMA200/VWAP structure, 10-12 USD lot-grid feasibility (with the JPY price-conversion correction), HTF flow context for crypto.
 
