@@ -534,7 +534,15 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
         spread_bps = spread_price / mid_price * 1e4 if quote_valid else None
         quote_source = "MT5_L1_TICK" if quote_valid else "UNAVAILABLE"
         tick_epoch = float(quote.get("time_msc") or 0) / 1000 or None
-        quote_age_s = round(now_ts - tick_epoch, 2) if tick_epoch else None
+        receipt_epoch = float(quote.get("receipt_time") or 0) or None
+        # Audit: broker server time_msc can be skewed slightly ahead of local system time.
+        # Use receipt_time (local host epoch) if available to prevent negative quote_age_s.
+        if receipt_epoch:
+            quote_age_s = round(max(0.0, now_ts - receipt_epoch), 2)
+        elif tick_epoch:
+            quote_age_s = round(max(0.0, now_ts - tick_epoch), 2)
+        else:
+            quote_age_s = None
         quote_freshness = ("FRESH" if quote_age_s is not None and 0 <= quote_age_s <= 30
                            else "STALE" if quote_age_s is not None else "TIMESTAMP_UNAVAILABLE")
 

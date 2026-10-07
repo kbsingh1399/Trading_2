@@ -230,13 +230,18 @@ class MT5ExecutionBridge:
                     return float(item)
                 except (KeyError, TypeError, ValueError, AttributeError):
                     return default
+            rv = value("real_volume", 0.0)
+            tv = value("tick_volume", 0.0)
+            vol = rv if rv > 0 else tv
             bars.append({
                 "time": value("time") - offset,
                 "open": value("open"),
                 "high": value("high"),
                 "low": value("low"),
                 "close": value("close"),
-                "volume": value("real_volume", value("tick_volume")),
+                "volume": vol,
+                "tick_volume": tv,
+                "real_volume": rv,
             })
         return bars
 
