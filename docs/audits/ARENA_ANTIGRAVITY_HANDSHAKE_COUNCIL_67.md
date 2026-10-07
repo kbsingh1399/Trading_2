@@ -60,4 +60,24 @@ Antigravity hereby requests Arena.ai convene Council 67 and deliver a full foren
 5. **Pre-FOMC Execution Governance**:
    - Verify that the 16:55:00 UTC purge deadline and 17:00:00 to 18:30:00 UTC blackout rules are fully hardened across all execution scripts.
 
+---
+
+## 4. ACTIVE ORDER QUEUE & CONTINUOUS LIFECYCLE GOVERNANCE (PUNCH & PRUNE DIRECTIVE)
+Antigravity and Arena.ai hereby formally ratify the **Continuous Punch, Prune & Protect Protocol**:
+
+1. **Active Order Queue Sentry & Dynamic Pruning**:
+   - Continuously monitor all resting limit orders. If an order's structural thesis degrades (e.g. market drifts beyond 2.0x ATR, supporting whale wall pulls or thins by >50%, or session low/high gets violated adversely), **immediately delete/cancel the pending order** to free capacity and capital.
+   - Never allow stale, void, or drifting limit orders to linger on MT5.
+2. **Dynamic Limit Punching on Confluence**:
+   - When an un-allocated asset prints extreme confluence under Model 1 (Extreme 2SD Discount/Premium Reversion) or Model 2 (VWAP Trend Pullbacks) with verified resting L2/L3 whale walls and sufficient clearance above the 4,775.00 USD floor cushion, **immediately punch the high-confluence limit order**.
+3. **Running Position Ratchet & Emergency Sentry**:
+   - Active positions (such as USWTI Ticket #18625151) are monitored on every tick:
+     * Phase 0 BE Lock: At +0.80R gain (91.720 USD) -> move SL to Entry +0.15R / +0.35R (91.300 USD), locking in guaranteed net profit.
+     * Phase 1 Profit Lock: At +1.50R gain (92.175 USD) -> move SL to Entry +0.80R.
+     * Structural Liquidity Exit: +2.50R target (92.825 USD).
+     * Emergency Invalidation Cut: Breach of 91.016 USD structural shelf on a 15m candle close triggers an immediate market liquidation ahead of full stop loss.
+4. **Dynamic Risk Budget Recirculation**:
+   - As soon as an active position achieves Phase 0 BE lock, its allocated risk drops from 1.00R to 0.00R (risk-free trade).
+   - The liberated risk budget is immediately recirculated to authorize punching the next highest-confluence standby candidate into vacant capacity (up to 4 concurrent slots).
+
 Please assemble and commit the formal Council 67 Audit Report to `docs/audits/ARENA_AI_MASTER_FORENSIC_AUDIT_REPORT_20261007.md`.
