@@ -139,6 +139,8 @@ COMMITTED_PLANS = [
     (REPO_ROOT / "docs/trade_plans/OX_ALPHA_63_SOL_Long_20261007.json", NOW),
     (REPO_ROOT / "docs/trade_plans/OX_ALPHA_64_BTC_Long_PostSweep_20261007.json",
      1_791_363_160.0),      # 2026-10-07 08:52:40 UTC (telemetry v2 as_of)
+    (REPO_ROOT / "docs/trade_plans/OX_ALPHA_64_EURUSD_Long_Repunch_20261007.json",
+     1_791_368_400.0),      # 2026-10-07 10:20:00 UTC (inside repunch validity)
 ]
 
 

@@ -1,0 +1,65 @@
+{
+  "plan_version": "omni.trade_plan.v1",
+  "plan_id": "OXALPHA64-EURUSD-LONG-REPUNCH-20261007A",
+  "asset": "EURUSD",
+  "symbol": "EURUSD.pi",
+  "direction": "LONG",
+  "limit_price": 1.1188,
+  "sl": 1.1174,
+  "tp": 1.1223,
+  "volume": 0.09,
+  "risk_usd": 12.6,
+  "atr": 0.00071,
+  "tp_r": 2.5,
+  "ttl_bars": 16,
+  "comment": "ARENA:PLAN_v1",
+  "created_at_epoch": 1791367393.0,
+  "expires_at_epoch": 1791392100.0,
+  "max_friction_r": 0.35,
+  "blackout_windows": [
+    {
+      "start_epoch": 1791392400.0,
+      "end_epoch": 1791397800.0,
+      "reason": "FOMC meeting minutes 2026-10-07 18:00 UTC (Tier-1); hard blackout 17:00-18:30 UTC"
+    }
+  ],
+  "contract": {
+    "tick_size": 0.00001,
+    "contract_size": 100000.0,
+    "min_lot": 0.01,
+    "step_lot": 0.01,
+    "digits": 5
+  },
+  "thesis": {
+    "summary": "Repunch of the EUR long at the ORIGINAL level 1.11880 (ticket #18617132's level): the statistically extreme exhaustion reclaim (RSI 13.53, VWAP Z -3.67) with exactly 2.50R geometry, restoring queue position 7.6 pips closer to the market as price drifts up and away from the 1.11850 re-stage.",
+    "structural_level": "Limit 1.11880 is the shallow retest of the 1.11800-sweep reclaim (original design); SL 1.11740 below the sweep wick; TP 1.12230 = 2.50R exactly, below EMA20 1.1225, VWAP 1.1234 and VAL 1.1237 - no barrier needs to break",
+    "repunch_context": "Live market 1.1196 at 10:03 UTC (drifting up): the 1.11850 re-stage (#18620547) is 11 pips below market and may never fill before the 16:55 purge; the 1.11880 level is 7.6 pips below the ask - passive, compliant, and materially closer to the fill window",
+    "momentum": "RSI(14) 13.53 and VWAP Z -3.67 (both string-verified telemetry) - the most extreme reversion setup in the 24-asset book; buy-stop rung 1.1217-1.1245 (5.31k) is the acceleration zone above"
+  },
+  "management": {
+    "ratchet": "omni.ratchet.session_conditional.v1 (0.80R/1.50R/2.00R phases; entry+0.15R / entry+0.85R locks / 0.65R trail)",
+    "decay": "close at market if gain < 0.20R after 24 bars",
+    "target_band": "2.50R..3.14R",
+    "fomc_discipline": "Plan expires at the 16:55:00 UTC purge deadline (epoch 1791392100); nothing stages into the 17:00-18:30 UTC blackout; post-minutes requires a fresh deliberation"
+  },
+  "provenance": {
+    "candles": "Data/Candles/EURUSD_15m.parquet through 2026-10-07 (Wilder ATR(14) 0.00071 = 7.1 pips; arena computation matches telemetry 0.0007)",
+    "telemetry": "docs/telemetry/live_snapshot_latest.json as_of 2026-10-07 10:03:13 UTC (string-verified): EURUSD.pi 1.1196/1.1196, RSI 13.53, VWAP 1.1234, Z -3.67; capacity OPEN (1/2) after GOLD #18617135 was closed at 4,118.48 executing council Resolution 1; balance 4,825.14, cushion +50.14. NOTE: the snapshot's as_of_epoch field runs +2,400 s ahead of its as_of_utc string - the string is the correct one (muscle generator bug to fix)",
+    "council": "docs/audits/OX_ALPHA_64_Multi_Agent_Council_20261007.md AD.7.5 (re-stage assessment) and AD.8 (repunch order)",
+    "account_snapshot": {
+      "as_of": "2026-10-07 10:03 UTC telemetry",
+      "equity_usd": 4825.14,
+      "floor_usd": 4775.0,
+      "filled_positions": 0,
+      "pending_orders": 1,
+      "capacity_status": "OPEN (1/2) - repunch replaces or joins the resting 1.11850 re-stage"
+    },
+    "friction_accounting": {
+      "live_spread_usd": 0.00001,
+      "live_friction_r": 0.0143,
+      "conservative_bps": 41.0,
+      "note": "Elite raw spread; friction (spread + tick)/0.0014 = 0.014R, far inside the 0.35R ceiling"
+    },
+    "invariants": "limit 1.11880 < live ask 1.11960 (passive, 7.6 pips); SL 1.11740 < limit, 14.0 pips = 1.97 x ATR (>= 1.5 x ATR floor); risk 12.60 <= 14.70 USD queue cap; TP 2.50R exactly (inside the 2.50-3.14R band, unlike the 1.11850 re-stage's 3.18R); friction 0.014R <= 0.35R; 16-bar (4 h) TTL ends before the purge deadline"
+  }
+}
