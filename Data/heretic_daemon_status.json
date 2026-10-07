@@ -2,10 +2,10 @@
   "engine": "heretic-llm",
   "repo_url": "https://github.com/p-e-w/heretic",
   "status": "RUNNING",
-  "heartbeat": 155,
+  "heartbeat": 207,
   "pid": 988,
-  "uptime_seconds": 4620.5,
-  "last_heartbeat_utc": "2026-10-07 21:40:20 UTC",
+  "uptime_seconds": 6180.7,
+  "last_heartbeat_utc": "2026-10-07 22:06:20 UTC",
   "listening_port": 8083,
   "capabilities": [
     "directional_ablation",
