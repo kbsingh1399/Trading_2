@@ -82,7 +82,14 @@ class CandleIndicatorEngine:
 
         # Save to disk as Parquet for durable historical cache
         df = pd.DataFrame(ordered)
-        df["datetime_utc"] = pd.to_datetime(df["time"], unit="s", utc=True)
+        now_utc = datetime.now(timezone.utc).timestamp()
+        offset_sec = 0
+        if times:
+            diff = times[-1] - now_utc
+            if abs(diff) < 86400 * 3 and diff > 1800:
+                offset_sec = int(round(diff / 3600.0) * 3600)
+        df["utc_time"] = df["time"] - offset_sec
+        df["datetime_utc"] = pd.to_datetime(df["utc_time"], unit="s", utc=True)
         parquet_file = self.storage_dir / f"{asset}_15m.parquet"
         df.to_parquet(parquet_file, index=False)
 
@@ -146,14 +153,22 @@ class CandleIndicatorEngine:
         volumes = np.array(vols_list)
 
         # -------------------------------------------------------------
-        # 1. Daily Session VWAP (Anchored to 00:00:00 UTC of latest bar)
+        # 1. Daily Session VWAP (Anchored strictly to 00:00:00 UTC)
         # -------------------------------------------------------------
-        latest_dt = datetime.fromtimestamp(times[-1], tz=timezone.utc)
+        now_utc = datetime.now(timezone.utc).timestamp()
+        offset_sec = 0
+        if len(times) > 0:
+            diff = times[-1] - now_utc
+            if abs(diff) < 86400 * 3 and diff > 1800:
+                offset_sec = int(round(diff / 3600.0) * 3600)
+
+        utc_times = times - offset_sec
+        latest_dt = datetime.fromtimestamp(utc_times[-1], tz=timezone.utc)
         session_start_ts = datetime(
             latest_dt.year, latest_dt.month, latest_dt.day, 0, 0, 0, tzinfo=timezone.utc
         ).timestamp()
 
-        session_mask = times >= session_start_ts
+        session_mask = utc_times >= session_start_ts
         if np.sum(session_mask) >= 3:
             s_tps = tps[session_mask]
             s_vols = volumes[session_mask]

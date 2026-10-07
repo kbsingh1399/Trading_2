@@ -142,6 +142,12 @@ Arena.ai is requested to review the repository state on branch `arena/4adf3661-t
 - Inspect all active and remote branches (`arena/4adf3661-trading-2`, `main`, etc.).
 - Identify any redundant scratch scripts, orphaned `.json` artifacts, or deprecated strategy files that should be permanently pruned to keep the repository pristine.
 
+### Question 6: Active Order Queue Sentry & Continuous Punch/Prune Governance
+- Audit the continuous lifecycle governance of resting limit orders. How should the system continuously monitor the 24-asset universe to:
+  1. **Prune/Delete Void Orders**: Immediately cancel resting limit orders whose structural thesis has degraded (e.g. price drifts beyond 2.0x ATR, supporting whale wall pulls or thins by >50%, or session low/high gets violated adversely).
+  2. **Punch High-Confluence Limits**: Stage new passive limit orders immediately when un-allocated assets enter extreme confluence under Model 1 (Extreme 2SD Mean Reversion) or Model 2 (VWAP Trend Pullbacks) with verified resting L2/L3 whale walls.
+  3. **Recirculate Risk Budget**: Instantly unencumber and recirculate risk capacity when an active position reaches Phase 0 BE lock (risk reduced to 0.00R), deploying capital into vacant slots (up to 4 concurrent positions) while strictly defending the 4,775.00 USD hard equity floor.
+
 ---
 
-**Directive for Arena.ai:** Please assemble your findings into a comprehensive formal audit report (`docs/audits/ARENA_AI_MASTER_FORENSIC_AUDIT_REPORT_20261007.md`), commit it directly to branch `arena/4adf3661-trading-2`, and provide clear, actionable verdicts on all 5 audit questions.
+**Directive for Arena.ai:** Please assemble your findings into a comprehensive formal audit report (`docs/audits/ARENA_AI_MASTER_FORENSIC_AUDIT_REPORT_20261007.md`), commit it directly to branch `arena/4adf3661-trading-2`, and provide clear, actionable verdicts on all 6 audit questions.

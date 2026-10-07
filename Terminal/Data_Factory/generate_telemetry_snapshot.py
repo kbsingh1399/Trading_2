@@ -449,15 +449,33 @@ def generate_full_snapshot() -> Dict[str, Any]:
         spread_price = ask_price - bid_price if (bid_price > 0 and ask_price > 0) else float(quote.get("spread") or 0.0)
         spread_bps = (spread_price / max(mid_price, 1e-6) * 1e4) if mid_price > 0 else 0.0
 
-        # Read historical 15m candles
-        parquet_file = CANDLE_DIR / f"{asset}_15m.parquet"
+        # Fetch fresh 15m candles directly from live broker or fall back to parquet
         bars: List[Dict[str, Any]] = []
-        if parquet_file.exists():
-            try:
-                df = pd.read_parquet(parquet_file)
-                bars = df.to_dict("records")
-            except Exception:
-                bars = []
+        if bridge.initialized and broker_sym:
+            raw_bars = bridge.get_recent_bars(broker_sym, count=120)
+            if raw_bars:
+                bars = raw_bars
+                try:
+                    df_bars = pd.DataFrame(raw_bars)
+                    now_utc = datetime.now(timezone.utc).timestamp()
+                    t_last = float(raw_bars[-1].get("time", now_utc))
+                    diff = t_last - now_utc
+                    offset_sec = int(round(diff / 3600.0) * 3600) if (abs(diff) < 86400 * 3 and diff > 1800) else 0
+                    df_bars["utc_time"] = df_bars["time"] - offset_sec
+                    df_bars["datetime_utc"] = pd.to_datetime(df_bars["utc_time"], unit="s", utc=True)
+                    (CANDLE_DIR / f"{asset}_15m.parquet").parent.mkdir(parents=True, exist_ok=True)
+                    df_bars.to_parquet(CANDLE_DIR / f"{asset}_15m.parquet", index=False)
+                except Exception:
+                    pass
+
+        if not bars:
+            parquet_file = CANDLE_DIR / f"{asset}_15m.parquet"
+            if parquet_file.exists():
+                try:
+                    df = pd.read_parquet(parquet_file)
+                    bars = df.to_dict("records")
+                except Exception:
+                    bars = []
 
         if not mid_price and bars:
             mid_price = float(bars[-1].get("close", 0.0))
@@ -801,6 +819,7 @@ def generate_full_snapshot() -> Dict[str, Any]:
             "causal_indicators": {
                 "session_vwap_utc": round(session_vwap, 4) if session_vwap else None,
                 "session_sigma": round(session_sigma, 4) if session_sigma else None,
+                "session_bars": indicators.get("session_bars", 0),
                 "vwap_z_score": round(vwap_z, 2),
                 "rsi_14": round(rsi, 2),
                 "atr_14": round(atr, 4),
