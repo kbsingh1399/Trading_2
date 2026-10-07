@@ -130,7 +130,7 @@ class MT5ExecutionBridge:
             "login": getattr(acc, "login", 0),
             "trade_mode": getattr(acc, "trade_mode", 0),
             "company": getattr(acc, "company", ""),
-            "currency": getattr(acc, "currency", "USD"),
+            "currency": getattr(acc, "currency", None),  # never infer account denomination
             "balance_usd": round(float(getattr(acc, "balance", 0.0) or 0.0), 2),
             "equity_usd": round(float(getattr(acc, "equity", 0.0) or 0.0), 2),
             "profit_usd": round(float(getattr(acc, "profit", 0.0) or 0.0), 2),

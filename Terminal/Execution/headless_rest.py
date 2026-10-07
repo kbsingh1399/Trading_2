@@ -62,6 +62,8 @@ class HeadlessRESTBridge(BaseExecutionBridge):
         self.transport = transport or _default_transport
         self.clock = clock
         self._specs = dict(symbol_specs or {})
+        # Generated display defaults are never valid for USD risk valuation.
+        self._verified_risk_specs = set(self._specs)
         self._intent_ledger: Dict[str, Dict[str, Any]] = {}
 
     # ----------------------------------------------------------- plumbing
@@ -89,22 +91,46 @@ class HeadlessRESTBridge(BaseExecutionBridge):
 
     # ------------------------------------------------------- mandatory surface
     def get_account_summary(self) -> Dict[str, Any]:
-        raw = self._call("GET", "/account-summary") or {}
+        raw = self._call("GET", "/account-summary")
+        if not isinstance(raw, dict) or any(raw.get(key) is None for key in
+                                            ("currency", "balance", "equity")):
+            raise BridgeError("risk_account_currency_balance_or_equity_unavailable")
         return {"connected": True, "login": raw.get("login") or self.account_id,
-                "currency": raw.get("currency", "USD"),
-                "balance": float(raw.get("balance") or 0.0),
-                "equity_usd": float(raw.get("equity") or raw.get("balance") or 0.0),
+                "currency": raw["currency"],
+                "balance": float(raw["balance"]),
+                "equity_usd": float(raw["equity"]),
                 "margin_usd": float(raw.get("margin") or 0.0),
                 "margin_free_usd": float(raw.get("freeMargin") or raw.get("marginFree") or 0.0)}
 
+    @staticmethod
+    def _inventory_direction(raw_type: Any, *, pending: bool) -> str:
+        """Explicitly decode known gateway order kinds; unknown means NO TRADE."""
+        kind = str(raw_type).strip().upper()
+        if pending:
+            buys = {"ORDER_TYPE_BUY_LIMIT", "BUY_LIMIT", "ORDER_TYPE_BUY_STOP",
+                    "BUY_STOP", "ORDER_TYPE_BUY_STOP_LIMIT", "BUY_STOP_LIMIT"}
+            sells = {"ORDER_TYPE_SELL_LIMIT", "SELL_LIMIT", "ORDER_TYPE_SELL_STOP",
+                     "SELL_STOP", "ORDER_TYPE_SELL_STOP_LIMIT", "SELL_STOP_LIMIT"}
+        else:
+            buys = {"POSITION_TYPE_BUY", "ORDER_TYPE_BUY", "BUY", "LONG"}
+            sells = {"POSITION_TYPE_SELL", "ORDER_TYPE_SELL", "SELL", "SHORT"}
+        if kind in buys:
+            return "LONG"
+        if kind in sells:
+            return "SHORT"
+        raise BridgeError(f"unrecognized_inventory_type:{kind}")
+
     def get_open_positions(self, symbol: Optional[str] = None) -> List[Dict[str, Any]]:
-        rows = self._call("GET", "/positions") or []
+        rows = self._call("GET", "/positions")
+        if not isinstance(rows, list) or any(not isinstance(row, dict) for row in rows):
+            raise BridgeError("position_inventory_unavailable")
         out = []
         for p in rows:
             if symbol and p.get("symbol") != symbol:
                 continue
             out.append({"ticket": int(p.get("id") or p.get("positionId") or 0),
-                        "symbol": p.get("symbol"), "direction": "LONG" if float(p.get("type") == "POSITION_TYPE_BUY" or p.get("type") == "buy") else "SHORT",
+                        "symbol": p.get("symbol"),
+                        "direction": self._inventory_direction(p.get("type"), pending=False),
                         "volume": float(p.get("volume") or 0.0),
                         "price_open": float(p.get("openPrice") or 0.0),
                         "sl": float(p.get("stopLoss") or 0.0) or None,
@@ -115,11 +141,13 @@ class HeadlessRESTBridge(BaseExecutionBridge):
         return out
 
     def get_pending_orders(self) -> List[Dict[str, Any]]:
-        rows = self._call("GET", "/pendingOrders") or []
+        rows = self._call("GET", "/pendingOrders")
+        if not isinstance(rows, list) or any(not isinstance(row, dict) for row in rows):
+            raise BridgeError("pending_inventory_unavailable")
         out = []
         for o in rows:
             out.append({"ticket": int(o.get("id") or 0), "symbol": o.get("symbol"),
-                        "direction": "LONG" if str(o.get("type", "")).upper().endswith("BUY") else "SHORT",
+                        "direction": self._inventory_direction(o.get("type"), pending=True),
                         "volume": float(o.get("volume") or 0.0),
                         "price_open": float(o.get("openPrice") or 0.0),
                         "sl": float(o.get("stopLoss") or 0.0) or None,
@@ -139,7 +167,9 @@ class HeadlessRESTBridge(BaseExecutionBridge):
                 "digits": spec["digits"], "contract_size": spec["contract_size"],
                 "min_lot": spec["min_lot"], "step_lot": spec["step_lot"],
                 "max_lot": spec["max_lot"], "stops_level": spec["stops_level"],
-                "freeze_level": spec["freeze_level"], "currency_profit": "USD"}
+                "freeze_level": spec["freeze_level"],
+                "currency_profit": spec.get("currency_profit") if symbol in self._verified_risk_specs else None,
+                "specs_source": "EXPLICIT_CONFIG_REQUIRES_BROKER_CHECK" if symbol in self._verified_risk_specs else "DISPLAY_DEFAULT_UNVERIFIED"}
 
     def stage_limit_order(self, symbol: str, direction: str, volume: float,
                           limit_price: float, sl: float, tp: float, **kwargs) -> Dict[str, Any]:
@@ -173,8 +203,12 @@ class HeadlessRESTBridge(BaseExecutionBridge):
 
     # ---------------------------------------------------- extended surface
     def estimate_order(self, symbol: str, direction: str, entry: float, sl: float) -> Dict[str, Any]:
+        if symbol not in self._verified_risk_specs:
+            raise BridgeError(f"risk_contract_spec_unverified:{symbol}")
         spec = self._spec(symbol)
-        return {"stop_loss_per_lot": abs(float(entry) - float(sl)) * spec["contract_size"],
+        if spec.get("currency_profit") != "USD" or float(spec.get("contract_size") or 0) <= 0:
+            raise BridgeError(f"risk_contract_currency_or_size_unverified:{symbol}")
+        return {"stop_loss_per_lot": abs(float(entry) - float(sl)) * float(spec["contract_size"]),
                 "margin_per_lot": 1000.0}
 
     def execute_market_order(self, symbol: str, direction: str, volume: float,

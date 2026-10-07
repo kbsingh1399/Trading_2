@@ -46,6 +46,18 @@ class TestBlackout(unittest.TestCase):
                 self.assertTrue(bridge_module._BLACKOUT_GUARD_ACTIVE)
                 self.assertTrue(getattr(fake.order_send, "_omni_blackout_guard", False))
 
+    @unittest.skipUnless(importlib.util.find_spec("numpy"), "requires bridge numpy dependency")
+    def test_missing_native_currency_is_not_fabricated_as_usd(self):
+        import Terminal.MT5_Execution_Bridge as bridge_module
+        native = object.__new__(bridge_module.MT5ExecutionBridge)
+        native.ensure_connected = lambda: True
+        fake_mt5 = types.SimpleNamespace(account_info=lambda: types.SimpleNamespace(
+            login=5064568, balance=5000.0, equity=5000.0))
+        with patch.object(bridge_module, "mt5", fake_mt5):
+            self.assertIsNone(native.get_account_summary()["currency"])
+            with self.assertRaisesRegex(ValueError, "risk_account_unavailable_or_non_usd"):
+                assert_joint_fill_safe(native, "BTCUSD.pi", "SHORT", .02, 83880, 84430)
+
     def test_install_blocks_entries_allows_only_verified_close_and_protection(self):
         calls = []
         mt5 = types.ModuleType("MetaTrader5")

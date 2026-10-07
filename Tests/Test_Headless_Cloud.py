@@ -189,7 +189,8 @@ def test_headless_rest_bridge_maps_account_state():
     assert pending[0]["ticket"] == 18573320 and pending[0]["direction"] == "SHORT"
     assert pending[0]["price_open"] == 2732.80
     quote = bridge.get_symbol_price("ETHUSD.pi")
-    assert quote["bid"] == 2710.00 and 0 < quote["point"] and quote["currency_profit"] == "USD"
+    assert quote["bid"] == 2710.00 and 0 < quote["point"]
+    assert quote["currency_profit"] is None and quote["specs_source"] == "DISPLAY_DEFAULT_UNVERIFIED"
     # Token rides the auth header; nothing is in the URL.
     assert all(h.get("auth") == "tok" for (_m, _u, h, _p) in transport.calls)
     assert all("tok" not in u for (_m, u, _h, _p) in transport.calls)
@@ -682,3 +683,51 @@ def test_full_stack_paper_bridge_trade_through_the_real_trader(tmp_path):
     assert bridge.modify_position_sltp(position["ticket"], 120.30)["success"]
     assert bridge.get_open_positions()[0]["sl"] == 120.30
     assert len(bridge.get_open_positions()) == 1
+
+
+def test_rest_buy_limit_readback_reserves_joint_fill_risk():
+    """A BUY_LIMIT is not a short: its below-entry stop consumes G-1 capital."""
+    from Terminal.risk.live_admission import assert_joint_fill_safe
+    transport = FakeTransport()
+    transport.routes["summary"] = (200, {"login": 5064568, "currency": "USD",
+                                         "balance": 4811.62, "equity": 4811.62})
+    transport.routes["positions"] = (200, [])
+    transport.routes["pending"] = (200, [{"id": 18652155, "symbol": "BTCUSD.pi",
+                                         "type": "ORDER_TYPE_BUY_LIMIT", "volume": .02,
+                                         "openPrice": 83880, "stopLoss": 83330,
+                                         "takeProfit": 85000}])
+    specs = {name: {"contract_size": 1.0, "currency_profit": "USD"}
+             for name in ("BTCUSD.pi", "XAUUSD.pi")}
+    bridge = HeadlessRESTBridge(token="fake", account_id="fake",
+                                transport=transport, symbol_specs=specs)
+    assert bridge.get_pending_orders()[0]["direction"] == "LONG"
+    with pytest.raises(ValueError, match="joint_fill_floor_breach"):
+        assert_joint_fill_safe(bridge, "XAUUSD.pi", "SHORT", .01, 4176, 5176)
+
+
+def test_rest_missing_inventory_account_or_order_type_fails_closed():
+    from Terminal.Execution.base import BridgeError
+    transport = FakeTransport()
+    bridge = HeadlessRESTBridge(token="fake", account_id="fake", transport=transport)
+    transport.routes["pending"] = (200, None)  # HTTP 200 with unknown body != empty book
+    with pytest.raises(BridgeError, match="pending_inventory_unavailable"):
+        bridge.get_pending_orders()
+    transport.routes["positions"] = (200, None)
+    with pytest.raises(BridgeError, match="position_inventory_unavailable"):
+        bridge.get_open_positions()
+    transport.routes["summary"] = (200, {"balance": 5000, "equity": 5000})
+    with pytest.raises(BridgeError, match="risk_account_currency"):
+        bridge.get_account_summary()
+    transport.routes["pending"] = (200, [{"type": "UNKNOWN_ORDER_KIND"}])
+    with pytest.raises(BridgeError, match="unrecognized_inventory_type"):
+        bridge.get_pending_orders()
+
+
+def test_rest_display_contract_defaults_cannot_authorize_risk():
+    from Terminal.Execution.base import BridgeError
+    bridge, _ = _rest_bridge()
+    quote = bridge.get_symbol_price("ETHUSD.pi")
+    assert quote["specs_source"] == "DISPLAY_DEFAULT_UNVERIFIED"
+    assert quote["currency_profit"] is None
+    with pytest.raises(BridgeError, match="risk_contract_spec_unverified"):
+        bridge.estimate_order("ETHUSD.pi", "SHORT", 2600.0, 2610.0)
