@@ -542,3 +542,19 @@ A systematic scan across 12 primary crypto assets reveals the current macro mark
 **3. [VERDICT: COUNTER-PROPOSAL — CONDITIONALLY QUEUED] — SP500 index hook `OX_ALPHA_66_SP500_Long_FlushCatch_20261007B.json`** (validator-green, suite 360/363): **BUY LIMIT 0.09 @ 7,752.00 / SL 7,739.69 (1.50x ATR 8.2059) / TP 7,782.78 (+2.50R) / risk 11.08 / auto-purge 16:55.** Flush-resumption catch at entry-z ~ -3.05 under the modelled 7,747 shelf (MODEL_WEIGHT_NOT_USD). **ACTIVATION GATE: DO NOT PUNCH while GOLD #18642802 is on the book** — 14.79 + 11.08 drives worst-pair cushion to +19.52 (< 20.00). Punch only after GOLD leaves (16:00 decision-cancel / 16:55 purge / fill-then-exit): then worst pair 11.08 + 10.03 = 21.11 -> +24.28, clean. This is Arena's index-cluster hook under Section 10 — DJ30 deliberately not double-staged (same cluster, one hook).
 
 **AUTHORITATIVE QUEUE (15:30 UTC):** Pendings: GOLD #18642802 (14.79) | USWTI #18644262 (10.03) | USDJPY #18644889 (7.24) | SP500 7,752 (11.08, GATED post-GOLD). Worst pair 24.82 -> +20.57. Clock: **16:00 GOLD re-check | 16:55 purge | 17:00-18:30 blackout | 18:00 FOMC minutes | 18:35 post-event vehicles (USDJPY/GBPUSD by tone).**
+
+### [DEBATE: USWTI #18644262 FILL — SENTRY ARMED + GOLD CANCELLATION ACK + SP500 GATE OPEN] | 2026-10-07 15:35 UTC | SENDER: Arena.ai
+
+**1. [VERDICT: TACTICAL ADJUSTMENT — FILL ACKNOWLEDGEMENT, SENTRY ACTIVE]** — USWTI Sweep-Catch **#18644262 FILLED @ 90.740** (the flush resumed through the 91.016 shelf and swept the bid; z -2.58 at fill). Management thresholds for the muscle's ratchet sentry:
+   * **Phase 0 arming (+0.80R): 91.242** -> SL to **91.141** (friction-inclusive floor for THIS ticket: 41bps on 1,451.84 notional = 5.95 USD = 0.59R + 0.05 = **0.64R lock**, dominating the +0.15R table value per the master audit).
+   * **Phase 1 (+1.50R): 91.680** -> SL to 91.242 (+0.80R). TP 92.308 stands; smart-extension only per protocol (SL >= +1.50R first).
+   * **Flat-into-event rule (controls everything): if #18644262 is not phase-0 armed by 16:45 UTC, market-exit before 16:55.** No USWTI position rides the 18:00 minutes.
+   * Overhead map: 91.016 (broken shelf, now first resistance) -> VWAP 91.373 -> EMA200 ~91.27 zone. Reversion target stack intact.
+
+**2. [VERDICT: ACKNOWLEDGED] — GOLD #18642802 cancellation** (absent from the pending book; balance 4,820.39 unchanged = cancel, not stop-out). Correct drift-gate execution at 2.91x ATR. **Metals cluster is now VACANT BY DISCIPLINE**: fresh read shows GOLD bid 4,105.26, z -1.04, BEARISH regime - no qualifying Model-1 discount (entry-z >= 2 requires a bid <= ~4,083 at current sigma) and no Model-2 long pullback in a bear regime. No replacement hook staged; re-scan each cycle.
+
+**3. [VERDICT: GATE OPEN — PUNCH AUTHORIZED] — SP500 index hook `OX_ALPHA_66_SP500_Long_FlushCatch_20261007B.json`.** The G-1 activation gate (GOLD live) is LIFTED by the cancellation. Worst pair with USWTI filled: 10.03 + 11.08 = 21.11 -> post-stopout cushion **+24.28** (>= 20.00, clean). USDJPY-alternative pair: 10.03 + 7.24 = 17.27 -> +28.09. All fill combinations G-1-safe. **Antigravity is authorized to punch SP500 BUY LIMIT 0.09 @ 7,752.00 / SL 7,739.69 / TP 7,782.78** (bid 7,774.81; flush-resumption catch at entry-z ~ -3.05, auto-purge 16:55).
+
+**4. USDJPY #18644889 proximity warning**: bid 158.158, only 0.148 above the 158.010 limit (1.58x ATR) and regime now BULLISH - fill probability rising. Riders stand: phase-0 lock for this sub-10 ticket = **+0.50R (158.082)**, and if filled before 16:45 without 158.124 (+0.80R) armed, market-exit before 16:55.
+
+**AUTHORITATIVE QUEUE (15:35 UTC):** FILLED: USWTI #18644262 (10.03, sentry live). PENDING: USDJPY #18644889 (7.24). AUTHORIZED-TO-PUNCH: SP500 7,752 (11.08). VACANT: metals (no qualifying setup). Post-FOMC 18:35: USDJPY/GBPUSD vehicles by minutes' tone. Clock: **16:45 phase-0 checks | 16:55 purge | 17:00-18:30 blackout | 18:00 minutes.**
