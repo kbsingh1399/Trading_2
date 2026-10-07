@@ -8,7 +8,7 @@ it posts material risk alerts to the desk on that branch, at most once per
 alert signature every five minutes. Heartbeats always appear in process logs.
 
     python scripts/arena_endless_runner.py --once
-    python scripts/arena_endless_runner.py --daemon --interval 60 --publish
+    python scripts/arena_endless_runner.py --daemon --interval 60 --publish --verbose
 """
 from __future__ import annotations
 
@@ -206,13 +206,65 @@ def publish(report: dict[str, Any], now: dt.datetime) -> bool:
     return True
 
 
-def execute_cycle(*, do_publish: bool = False, now: dt.datetime | None = None) -> dict[str, Any]:
+def verbose_report(snapshot: dict[str, Any], report: dict[str, Any], now: dt.datetime) -> str:
+    """Human-readable minute report; screens are descriptive, not trade signals."""
+    account = snapshot.get("account") or {}
+    balance = report["balance"]
+    headroom = round(balance - FLOOR - BUFFER, 2) if balance is not None else "UNKNOWN"
+    lines = ["=" * 78,
+             f"ARENA READ-ONLY MINUTE REPORT | {now:%Y-%m-%d %H:%M:%S} UTC",
+             f"Snapshot: {report['as_of_utc']} | age: {report['age_s']}s | "
+             f"hard blackout: {'YES' if report['blackout'] else 'no'}",
+             f"Balance: {balance} | equity: {report['equity']} | "
+             f"free margin: {account.get('margin_free_usd', 'UNKNOWN')} USD",
+             f"Floor: {FLOOR:.2f} | required buffer: {BUFFER:.2f} | "
+             f"nominal new-risk headroom: {headroom} USD",
+             f"Filled: {report['filled']} | pending: {report['pending']}"]
+    for kind, rows in (("FILLED", snapshot.get("active_positions") or []),
+                       ("PENDING", snapshot.get("pending_orders") or [])):
+        for item in rows:
+            risk = _risk(snapshot, item)
+            lines.append(f"  {kind} #{item.get('ticket', '?')} {item.get('symbol', '?')} "
+                         f"{item.get('direction', item.get('type', '?'))} "
+                         f"entry={item.get('price_open', '?')} SL={item.get('sl', '?')} "
+                         f"gross-risk-estimate={round(risk, 2) if risk is not None else 'UNKNOWN'} USD "
+                         f"floating={item.get('profit_usd', '?')} USD")
+    lines.append("RISK FINDINGS: " + ("; ".join(report["issues"]) or "none"))
+    lines.append("24-ASSET 15m OBSERVATION (price/EMA slope only; VWAP/4H confirmation "
+                 "and MT5 validation still required):")
+    assets = snapshot.get("assets_matrix_24") or {}
+    for asset, row in assets.items():
+        q, ind = row.get("quotes") or {}, row.get("causal_indicators") or {}
+        bid, ema = _number(q.get("bid")), _number(ind.get("ema_200"))
+        slope = _number(ind.get("ema_200_slope_3h_pct"))
+        if None in (bid, ema, slope):
+            label = "UNKNOWN"
+        else:
+            label = "BEAR?" if bid < ema and slope < 0 else (
+                "BULL?" if bid > ema and slope > 0 else "CHOP?")
+        cvd = row.get("cvd_1m_buckets") or []
+        cvd5 = sum((_number(x.get("cvd_delta_usd")) or 0) for x in cvd[-5:])
+        l2 = row.get("orderbook_live_depth") or {}
+        lines.append(f"  {asset:7} {str(row.get('symbol_broker', '?')):11} {label:7} "
+                     f"bid={bid} ask={q.get('ask', '?')} EMA200={ema} "
+                     f"VWAP={ind.get('session_vwap_utc', '?')} "
+                     f"spread={q.get('spread_price', '?')} "
+                     f"CVD5={cvd5:+.0f} L2={l2.get('source', '?')}")
+    lines.append("No live trading decisions, broker commands or chat messages are generated "
+                 "by this log. Reconcile all alerts on MT5.")
+    return "\n".join(lines + ["=" * 78])
+
+
+def execute_cycle(*, do_publish: bool = False, verbose: bool = False,
+                  now: dt.datetime | None = None) -> dict[str, Any]:
     now = now or dt.datetime.now(dt.timezone.utc)
     snapshot = fetch_snapshot()
     report = assess(snapshot, now)
     LOG.info("heartbeat snapshot=%s age=%ss balance=%s equity=%s filled=%s pending=%s blackout=%s findings=%s",
              report["as_of_utc"], report["age_s"], report["balance"], report["equity"],
              report["filled"], report["pending"], report["blackout"], "; ".join(report["issues"]) or "none")
+    if verbose:
+        print(verbose_report(snapshot, report, now), flush=True)
     if do_publish and publish(report, now):
         LOG.warning("published risk alert to %s", BRANCH)
     return report
@@ -223,6 +275,7 @@ def main() -> None:
     parser.add_argument("--daemon", action="store_true", help="Repeat until stopped")
     parser.add_argument("--once", action="store_true", help="One cycle, no background process")
     parser.add_argument("--publish", action="store_true", help="Commit/push deduplicated desk alerts")
+    parser.add_argument("--verbose", action="store_true", help="Print account, risk and all 24 asset readings every cycle")
     parser.add_argument("--interval", type=int, default=60, help="Heartbeat seconds (default 60)")
     args = parser.parse_args()
     if args.interval < 30:
@@ -230,7 +283,7 @@ def main() -> None:
     logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
     while True:
         try:
-            execute_cycle(do_publish=args.publish)
+            execute_cycle(do_publish=args.publish, verbose=args.verbose)
         except Exception:
             LOG.exception("Sentinel failed closed; no trade action taken")
         if not args.daemon:

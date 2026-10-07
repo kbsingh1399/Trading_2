@@ -67,6 +67,20 @@ class TestArenaEndlessRunner(unittest.TestCase):
         self.assertFalse(report["blackout"])
         self.assertEqual(report["issues"], [])
 
+    def test_verbose_minute_report_labels_observation_not_chat(self):
+        data = snapshot()
+        data["assets_matrix_24"]["SOL"]["causal_indicators"] = {
+            "ema_200": 119, "ema_200_slope_3h_pct": -.3,
+            "session_vwap_utc": 117.7}
+        data["assets_matrix_24"]["SOL"]["quotes"].update(
+            bid=116.9, ask=117.1, spread_price=.2)
+        report = sentinel.assess(data, NOW)
+        text = sentinel.verbose_report(data, report, NOW)
+        self.assertIn("ARENA READ-ONLY MINUTE REPORT", text)
+        self.assertIn("BLACKOUT_PENDING", text)
+        self.assertIn("SOLUSD.p", text)
+        self.assertIn("No live trading decisions, broker commands or chat messages", text)
+
 
 if __name__ == "__main__":
     unittest.main()
