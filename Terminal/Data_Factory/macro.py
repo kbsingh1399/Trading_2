@@ -33,30 +33,60 @@ def default_fetch(url, timeout=10.0):
 
 
 # ------------------------------------------------------------------ Farside
+def _farside_number(cell: str):
+    """Farside cell -> float. '(40.0)' is negative; '-' means not reported."""
+    s = cell.replace(",", "").replace("(", "-").replace(")", "").strip()
+    if s in ("-", "", "N/A"):
+        return None
+    try:
+        return float(s)
+    except ValueError:
+        return None
+
+
 def parse_farside_table(html):
-    """Farside Investors flow table -> [{date, funds{...}, total_musd, date_epoch}]."""
+    """Farside Investors flow table -> [{date, funds{...}, total_musd, date_epoch}].
+
+    Restored per-fund contract (forensics round 2): the docstring always
+    promised per-fund flows, but the parser only emitted the total - the
+    committed test ``funds["GBTC"]`` proved the regression. Fund names come
+    from the header row; '-' cells (not yet reported) map to None.
+    """
     text = html.decode() if isinstance(html, bytes) else str(html)
     rows = re.findall(r"<tr[^>]*>(.*?)</tr>", text, flags=re.S | re.I)
+    fund_names: list = []
     out = []
     for row in rows:
         cells = [re.sub(r"<[^>]+>", "", c).strip().replace("\xa0", "")
                  for c in re.findall(r"<t[dh][^>]*>(.*?)</t[dh]>", row, flags=re.S | re.I)]
-        if not cells or not re.match(r"^\d{1,2}\s+\w{3}\s+\d{4}$", cells[0]):
+        if not cells:
             continue
-        tot_str = cells[-1].replace(",", "").replace("(", "-").replace(")", "")
-        try:
-            tot = float(tot_str)
-        except ValueError:
+        first = cells[0].strip().lower()
+        if first == "date" and len(cells) >= 3:
+            # Header row: Date | FUND... | Total
+            fund_names = [c.strip() for c in cells[1:-1]]
+            continue
+        if not re.match(r"^\d{1,2}\s+\w{3}\s+\d{4}$", cells[0]):
+            continue
+        tot = _farside_number(cells[-1])
+        if tot is None:
             continue
         try:
             dt = datetime.strptime(cells[0], "%d %b %Y").replace(tzinfo=timezone.utc)
             date_epoch = dt.timestamp()
         except Exception:
             continue
+        funds = {}
+        if fund_names:
+            for name, cell in zip(fund_names, cells[1:-1]):
+                value = _farside_number(cell)
+                if value is not None:
+                    funds[name] = value
         out.append({
             "date": cells[0],
             "date_epoch": date_epoch,
             "total_musd": tot,
+            "funds": funds,
             "raw_cells": cells
         })
     out.sort(key=lambda r: r["date_epoch"])

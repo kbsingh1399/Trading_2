@@ -1178,13 +1178,23 @@ class AI15mMT5Trader:
         lock_path = ROOT/"Data"/("omni-paper.lock" if self.paper_mode else "omni-live.lock")
         lock_path.parent.mkdir(parents=True, exist_ok=True)
         # OS releases the lock after a crash; no stale PID heuristics or lock deletion.
-        import msvcrt
+        # Cross-platform (forensics round 2): msvcrt is Windows-only and used to
+        # be imported unconditionally, crashing the trader loop on Linux (the
+        # deploy/Dockerfile path). fcntl.flock provides the same exclusive,
+        # crash-released semantics on POSIX.
         lock_stream = open(lock_path, "a+b")
         if lock_stream.tell() == 0: lock_stream.write(b"0"); lock_stream.flush()
         lock_stream.seek(0)
-        try: msvcrt.locking(lock_stream.fileno(), msvcrt.LK_NBLCK, 1)
-        except OSError:
-            lock_stream.close(); raise RuntimeError("Another OMNI writer owns this execution mode")
+        try:
+            import msvcrt
+            try: msvcrt.locking(lock_stream.fileno(), msvcrt.LK_NBLCK, 1)
+            except OSError:
+                lock_stream.close(); raise RuntimeError("Another OMNI writer owns this execution mode")
+        except ImportError:
+            import fcntl
+            try: fcntl.flock(lock_stream.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+            except OSError:
+                lock_stream.close(); raise RuntimeError("Another OMNI writer owns this execution mode")
         cycle = 0
         try:
             while max_cycles <= 0 or cycle < max_cycles:
@@ -1206,4 +1216,13 @@ class AI15mMT5Trader:
             self._save_state()
             self.pool.shutdown(wait=False, cancel_futures=True); self.intel_pool.shutdown(wait=False, cancel_futures=True)
             self.inference_pool.shutdown(wait=False, cancel_futures=True)
-            lock_stream.seek(0); msvcrt.locking(lock_stream.fileno(), msvcrt.LK_UNLCK, 1); lock_stream.close()
+            # Cross-platform unlock (forensics round 2): the unconditional
+            # msvcrt reference here crashed the run loop's exit path on Linux.
+            lock_stream.seek(0)
+            try:
+                import msvcrt
+                msvcrt.locking(lock_stream.fileno(), msvcrt.LK_UNLCK, 1)
+            except ImportError:
+                import fcntl
+                fcntl.flock(lock_stream.fileno(), fcntl.LOCK_UN)
+            lock_stream.close()

@@ -376,7 +376,10 @@ def test_stage_limit_order_passive_guard(monkeypatch):
     import types
     fake_info = types.SimpleNamespace(point=0.01, digits=2, volume_step=0.01, volume_min=0.01, volume_max=100.0)
     fake_tick = types.SimpleNamespace(bid=100.00, ask=100.10)
-    import MetaTrader5 as mt5_mock
+    try:
+        import MetaTrader5 as mt5_mock
+    except ImportError:
+        pytest.skip("MetaTrader5 module is Windows-native (offline/CI environment)")
     monkeypatch.setattr(mt5_mock, "symbol_select", lambda s, e: True)
     monkeypatch.setattr(mt5_mock, "symbol_info", lambda s: fake_info)
     monkeypatch.setattr(mt5_mock, "symbol_info_tick", lambda s: fake_tick)
