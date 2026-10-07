@@ -684,43 +684,19 @@ def generate_full_snapshot() -> Dict[str, Any]:
         swept_low = mid_price <= session_low + (0.2 * atr)
         swept_high = mid_price >= session_high - (0.2 * atr)
 
-        if asset == "BTC":
-            pioneer_eval = "QUARANTINED_LIQUIDITY_TRAP"
-            pioneer_reason = "BTC resting retail stops clustered at 83,450-83,510 USD with un-swept liquidity. Strict quarantine enforced until sweep + absorption or confirmed VWAP reclaim."
-        elif asset == "GOLD":
-            gold_pos = [p for p in formatted_positions if "XAU" in str(p.get("symbol", "")) or "GOLD" in str(p.get("symbol", ""))]
-            if gold_pos:
-                pioneer_eval = "ACTIVE_LONG_FILLED"
-                pioneer_reason = f"Ticket #{gold_pos[0].get('ticket')} active."
-            else:
-                pioneer_eval = "PROACTIVELY_CLOSED_RISK_DEFENSE"
-                pioneer_reason = "Ticket #18617135 LONG exited at market @ 4,118.48 USD (-0.567R) cutting loss ahead of stop following falling VWAP resistance. Preserved +4.98 USD."
-        elif asset == "EURUSD":
-            eur_pos = [p for p in formatted_positions if "EURUSD" in str(p.get("symbol", ""))]
-            eur_pending = [o for o in formatted_orders if "EURUSD" in str(o.get("symbol", ""))]
-            if eur_pos:
-                pioneer_eval = "ACTIVE_LONG_FILLED"
-                pioneer_reason = f"Ticket #{eur_pos[0].get('ticket')} BUY 0.10 lots filled @ {eur_pos[0].get('price_open')}. SL 1.11740, TP 1.12125 (+2.50R). Phase 0 BE ratchet armed at 1.11938 (+0.80R)."
-            elif eur_pending:
-                pioneer_eval = "ACTIVE_PENDING_BUY_LIMIT"
-                pioneer_reason = f"Ticket #{eur_pending[0].get('ticket')} BUY LIMIT resting below market."
-            else:
-                pioneer_eval = "MONITORING_RECLAIM"
-                pioneer_reason = "EURUSD monitoring session low sweep and structural reclaim."
-        elif asset == "USWTI":
-            wti_pos = [p for p in formatted_positions if "USWTI" in str(p.get("symbol", ""))]
-            wti_pending = [o for o in formatted_orders if "USWTI" in str(o.get("symbol", ""))]
-            if wti_pos:
-                pioneer_eval = "ACTIVE_LONG_FILLED"
-                pioneer_reason = f"Ticket #{wti_pos[0].get('ticket')} active."
-            elif wti_pending:
-                pioneer_eval = "ACTIVE_PENDING_BUY_LIMIT"
-                pioneer_reason = f"Ticket #{wti_pending[0].get('ticket')} BUY LIMIT 0.19 lots resting @ 91.200 USD. SL 90.550, TP 92.825 (+2.50R). Max risk 12.35 USD."
-            else:
-                pioneer_eval = "CANDIDATE_EXHAUSTION_RECLAIM"
-                pioneer_reason = "USWTI flushed to 90.69 USD, reclaimed 91.20 USD shelf."
+        # Active MT5 position and order checking
+        sym_check = "XAU" if asset == "GOLD" else ("USWTI" if asset == "USWTI" else asset)
+        active_pos = [p for p in formatted_positions if sym_check in str(p.get("symbol", ""))]
+        active_pending = [o for o in formatted_orders if sym_check in str(o.get("symbol", ""))]
+
+        if active_pos:
+            pioneer_eval = f"ACTIVE_{active_pos[0].get('direction', 'LONG')}_FILLED"
+            pioneer_reason = f"Ticket #{active_pos[0].get('ticket')} active: {active_pos[0].get('direction')} {active_pos[0].get('volume')} lots @ {active_pos[0].get('price_open')}. SL {active_pos[0].get('sl')}, TP {active_pos[0].get('tp')}."
+        elif active_pending:
+            pioneer_eval = f"ACTIVE_PENDING_{active_pending[0].get('direction', 'BUY')}_LIMIT"
+            pioneer_reason = f"Ticket #{active_pending[0].get('ticket')} resting limit: {active_pending[0].get('volume')} lots @ {active_pending[0].get('price_open')}."
         else:
-            # Dynamic technical evaluation for all other assets
+            # Dynamic technical evaluation across all un-allocated assets
             if vwap_z <= -2.0:
                 pioneer_eval = "MODEL_1_EXTREME_DISCOUNT_2SD"
                 pioneer_reason = f"Extreme discount flush ({vwap_z:.2f} SD below Session VWAP {session_vwap:.4f}). High-probability mean-reversion long on orderbook support."
