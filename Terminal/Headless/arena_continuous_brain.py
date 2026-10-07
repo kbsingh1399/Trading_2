@@ -38,7 +38,7 @@ from Terminal.Risk_Sizing_Engine import number
 BRAIN_VERSION = "omni.arena_continuous_brain.v1"
 BRAIN_COMMENT = "ARENA:BRAIN_v1"
 
-DEFAULT_TUNNEL_URL = "https://mailman-jumping-detailed-observation.trycloudflare.com"
+DEFAULT_TUNNEL_URL = "https://constantly-combines-collectables-script.trycloudflare.com"
 DEFAULT_SECRET = ""          # pulled from OMNI_API_SECRET; never committed
 
 

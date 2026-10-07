@@ -1,0 +1,64 @@
+{
+  "plan_version": "omni.trade_plan.v1",
+  "plan_id": "OXALPHA63-BTC-LONG-20261007A",
+  "asset": "BTC",
+  "symbol": "BTCUSD.pi",
+  "direction": "LONG",
+  "limit_price": 83750.0,
+  "sl": 83443.0,
+  "tp": 84517.5,
+  "volume": 0.04,
+  "risk_usd": 12.28,
+  "atr": 204.48306,
+  "tp_r": 2.5,
+  "ttl_bars": 24,
+  "comment": "ARENA:PLAN_v1",
+  "created_at_epoch": 1791315000.0,
+  "expires_at_epoch": 1791403200.0,
+  "max_friction_r": 0.35,
+  "blackout_windows": [
+    {
+      "start_epoch": 1791392400.0,
+      "end_epoch": 1791397800.0,
+      "reason": "FOMC meeting minutes 2026-10-07 18:00 UTC (Tier-1); no staging from 60 min pre-release through 30 min aftermath"
+    }
+  ],
+  "contract": {
+    "tick_size": 0.01,
+    "contract_size": 1.0,
+    "min_lot": 0.01,
+    "step_lot": 0.01,
+    "digits": 2
+  },
+  "thesis": {
+    "summary": "Queue-priority front-run of the 25.05M USD mega whale bid shelf at 83,500 in an oversold tape (RSI 28.9), with the stop resting under the shelf itself.",
+    "structural_level": "Limit 83,750.00 rests 250 USD ABOVE the 25.05M USD wall (300 BTC) so a dip into the shelf fills this order first; secondary support 18.76M USD at 83,666.00",
+    "whale_anchor": "Largest single persistent bid wall in the 24-asset book (25.05M USD); ask-side resistance 19.03M USD at 84,866.00 sits beyond the 2.50R target",
+    "momentum": "Wilder RSI 28.9 - deeply oversold; price 84,218.50 is 0.42 pct below session VWAP 84,574.00"
+  },
+  "management": {
+    "ratchet": "omni.ratchet.session_conditional.v1 (0.80R/1.50R/2.00R phases; entry+0.15R / entry+0.85R locks / 0.65R trail)",
+    "decay": "close at market if gain < 0.20R after 24 bars",
+    "target_band": "2.50R..3.14R"
+  },
+  "provenance": {
+    "candles": "Data/Candles/BTC_15m.parquet: 512 x 15m bars through 2026-10-07 06:45 UTC, close 84,180.50, Wilder ATR(14) 204.48306",
+    "spec_telemetry": "OX_ALPHA_63 spec 2026-10-07 07:15 UTC: price 84,218.50, VWAP 84,574.00, RSI 28.9, whale bids 25.05M @ 83,500.00 + 18.76M @ 83,666.00, whale asks 19.03M @ 84,866.00 + 16.52M @ 85,408.00, spread 1.78 bps (15.00 USD)",
+    "account_snapshot": {
+      "as_of": "2026-10-07 07:15 UTC (OX_ALPHA_63 spec)",
+      "equity_usd": 4831.73,
+      "floor_usd": 4775.0,
+      "filled_positions": 0,
+      "pending_orders": 0,
+      "capacity_slots_open": 2
+    },
+    "friction_accounting": {
+      "live_spread_usd": 15.0,
+      "live_friction_r": 0.0489,
+      "conservative_bps": 41.0,
+      "conservative_usd": 137.27,
+      "note": "Live spread 1.78 bps is 23x cheaper than the 41 bps conservative bound; the stager gates on the live spread at stage time"
+    },
+    "invariants": "limit 83,750.00 < live ask; SL 83,443.00 < limit, below the 83,500.00 mega wall, 1.5014 x ATR (>= 1.5 x ATR floor); risk 12.28 <= 14.70 USD queue cap; friction 0.0489R <= 0.35R"
+  }
+}

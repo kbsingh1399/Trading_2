@@ -178,6 +178,16 @@ class PioneerDecisionEngine:
                                       "fear_greed_contra": round(s_fng, 6)}}
 
     # ------------------------------------------------------------- lifecycle
+    def _evaluators(self, payload, mid, macro):
+        """Signal evaluators for evaluate(). The v2 decision chain
+        (DecisionChainEngine) extends this hook with the wall-persistence
+        and cross-source-consistency pillars; v1 behavior is identical."""
+        return {"orderflow": lambda: self._signal_orderflow(payload),
+                "cascade": lambda: self._signal_cascade(payload, mid),
+                "stops": lambda: self._signal_stops(payload, mid),
+                "whale": lambda: self._signal_whale(payload),
+                "macro": lambda: self._signal_macro(macro)}
+
     def evaluate(self, asset, payload, features, macro=None, now=None):
         """Deterministic advisory for one asset. Never raises on data gaps."""
         asset = str(asset).upper()
@@ -212,11 +222,7 @@ class PioneerDecisionEngine:
                 return self._finalize(advisory, payload)
 
         # ---- signals -----------------------------------------------------------
-        evaluators = {"orderflow": lambda: self._signal_orderflow(payload),
-                      "cascade": lambda: self._signal_cascade(payload, mid),
-                      "stops": lambda: self._signal_stops(payload, mid),
-                      "whale": lambda: self._signal_whale(payload),
-                      "macro": lambda: self._signal_macro(macro)}
+        evaluators = self._evaluators(payload, mid, macro)
         raw, weight_total = 0.0, 0.0
         for name, evaluate_one in evaluators.items():
             value, basis = evaluate_one()
@@ -258,3 +264,195 @@ class PioneerDecisionEngine:
         self._chain[advisory["asset"]] = digest
         self.last[advisory["asset"]] = advisory
         return advisory
+
+
+# ===========================================================================
+# omni.decision_chain.v2 (OX_ALPHA_63): the 6 Factory pillars fused.
+#
+#   pillar                          signal            source module
+#   ------------------------------  ----------------  ------------------------
+#   P1 reconstructed liquidations   cascade           liquidation_engine.py
+#   P2A structural stop clusters    stops             liquidation_engine.py
+#   P2B whale-wall persistence      walls   (NEW)     factory.py _WallTracker
+#   P3 on-chain whale flows         whale             onchain.py / factory.py
+#   P4 Farside ETF flows            macro             macro.py
+#   P5 F&G + Coinbase premium       macro             macro.py
+#   P6 cross-source consistency     consistency (NEW) crosscheck.py
+#
+# The chain is a strict superset of the v1 Pioneer layer: every v1 signal,
+# gate, digest rule and invariant is preserved verbatim; v2 ADDS two signals
+# (persistent resting walls, cross-venue consensus divergence), attaches the
+# CrossSourceValidator block to the payload, and stamps a 6-pillar
+# availability manifest into every advisory (inside the SHA-256 digest).
+# ===========================================================================
+DECISION_CHAIN_VERSION = "omni.decision_chain.v2"
+
+
+@dataclass
+class DecisionChainPolicy(PioneerPolicy):
+    """v2 weights + the two new pillar calibrations (sum = 1.00; unavailable
+    pillars renormalize exactly like v1)."""
+
+    weights: dict = field(default_factory=lambda: {
+        "orderflow": 0.24, "cascade": 0.20, "stops": 0.08, "whale": 0.08,
+        "walls": 0.16, "macro": 0.16, "consistency": 0.08})
+    wall_reach: float = 0.015            # walls within 1.5% of mid count fully
+    wall_scale_usd: float = 5.0e6        # tanh scale for wall asymmetry
+    wall_min_persistence_sec: float = 180.0   # >= 3 min resting (anti-spoof)
+    consistency_scale_bps: float = 10.0  # tanh scale for consensus gap
+    consistency_min_venues: int = 2      # fail closed below this
+    version: str = DECISION_CHAIN_VERSION
+
+
+class DecisionChainEngine(PioneerDecisionEngine):
+    """The 6-pillar decision chain (omni.decision_chain.v2).
+
+    Drop-in for the v1 engine wherever ``attach_pioneer`` is used: the
+    ``evaluate`` signature and the advisory contract are unchanged, so the
+    Omni_Trader veto hook keeps working with zero modifications.
+    """
+
+    def __init__(self, policy=None, *, quality_provider=None, validator=None,
+                 clock=time.time):
+        super().__init__(policy or DecisionChainPolicy(),
+                         quality_provider=quality_provider, clock=clock)
+        self.validator = validator        # optional CrossSourceValidator
+
+    # ------------------------------------------------------------ new signals
+    def _signal_walls(self, payload, mid):
+        """Persistent resting whale walls (pillar 2, L3 half).
+
+        Bid walls below mid are support, ask walls above are resistance,
+        proximity-weighted inside ``wall_reach`` exactly like cascade fuel.
+        The tracker already filters persistence; the signal re-verifies it
+        (defense in depth - a payload from any other source gets the same
+        anti-spoof guarantee).
+        """
+        walls = payload.get("l3_orders") or []
+        if mid <= 0:
+            return None, {"available": False, "reason": "no_mid"}
+        reach = math.log(1.0 + self.policy.wall_reach)
+        bid_usd = ask_usd = 0.0
+        counted = 0
+        top_bid = top_ask = None
+        for wall in walls:
+            if not isinstance(wall, dict):
+                continue
+            side = str(wall.get("side", "")).upper()
+            px = number(wall.get("price"), 0.0)
+            usd = number(wall.get("notional_usd"), 0.0)
+            persistence = number(wall.get("persistence_sec"), 0.0)
+            if px <= 0 or usd <= 0:
+                continue
+            if persistence + 1e-9 < self.policy.wall_min_persistence_sec:
+                continue                      # fleeting depth, not a wall
+            proximity = (max(0.0, 1.0 - abs(math.log(px / mid)) / reach)
+                         if reach > 0 else 1.0)
+            if side == "BUY" and px < mid:
+                bid_usd += usd * proximity
+                counted += 1
+                if top_bid is None or usd > top_bid[1]:
+                    top_bid = (px, usd)
+            elif side == "SELL" and px > mid:
+                ask_usd += usd * proximity
+                counted += 1
+                if top_ask is None or usd > top_ask[1]:
+                    top_ask = (px, usd)
+        if bid_usd + ask_usd <= 0 or counted == 0:
+            return None, {"available": False, "reason": "no_persistent_walls"}
+        value = math.tanh((bid_usd - ask_usd) / self.policy.wall_scale_usd)
+        basis = {"available": True, "bid_wall_usd": round(bid_usd, 4),
+                 "ask_wall_usd": round(ask_usd, 4), "walls_counted": counted}
+        if top_bid is not None:
+            basis["top_bid_wall"] = {"price": top_bid[0],
+                                     "notional_usd": top_bid[1]}
+        if top_ask is not None:
+            basis["top_ask_wall"] = {"price": top_ask[0],
+                                     "notional_usd": top_ask[1]}
+        return value, basis
+
+    def _signal_consistency(self, payload, mid):
+        """Cross-venue consensus divergence (pillar 6).
+
+        Positive when the per-venue last-trade consensus sits ABOVE the bus
+        mid (the local book is cheap relative to the cross-source consensus).
+        Fail-closed: fewer than ``consistency_min_venues`` venues, or a
+        failing OI agreement between sources, degrades to unavailable.
+        """
+        block = payload.get("crosscheck") or {}
+        venue_prices = block.get("venue_prices") or {}
+        venues = {str(name): number(price, 0.0)
+                  for name, price in venue_prices.items()
+                  if number(price, 0.0) > 0}
+        if len(venues) < self.policy.consistency_min_venues:
+            return None, {"available": False, "reason": "insufficient_venues",
+                          "venues": sorted(venues)}
+        oi = block.get("oi_agreement")
+        if isinstance(oi, dict) and oi.get("pass") is False:
+            return None, {"available": False, "reason": "oi_disagreement",
+                          "disagreement": oi.get("disagreement")}
+        if mid <= 0:
+            return None, {"available": False, "reason": "no_mid"}
+        consensus = sum(venues.values()) / len(venues)
+        delta_bps = (consensus - mid) / mid * 1e4
+        value = _clamp(math.tanh(delta_bps / self.policy.consistency_scale_bps))
+        return value, {"available": True, "venues": sorted(venues),
+                       "consensus_price": round(consensus, 8),
+                       "delta_bps": round(delta_bps, 6),
+                       "mid_divergence_bps": block.get("mid_divergence_bps")}
+
+    # ------------------------------------------------------------ chain hooks
+    def _evaluators(self, payload, mid, macro):
+        evaluators = super()._evaluators(payload, mid, macro)
+        evaluators["walls"] = lambda: self._signal_walls(payload, mid)
+        evaluators["consistency"] = lambda: self._signal_consistency(payload, mid)
+        return evaluators
+
+    def _enrich_payload(self, asset, payload, now):
+        """Attach the pillar-6 crosscheck block (never raises; a missing
+        validator simply leaves the consistency pillar unavailable)."""
+        if self.validator is None or not isinstance(payload, dict):
+            return payload
+        try:
+            block = {"venue_prices": self.validator.venue_prices(asset, now),
+                     "mid_divergence_bps": self.validator.mid_divergence_bps(asset, now),
+                     "oi_agreement": self.validator.oi_agreement(asset, now)}
+        except Exception:                                 # noqa: BLE001
+            return payload
+        payload = dict(payload)
+        payload["crosscheck"] = block
+        return payload
+
+    def _pillar_manifest(self, payload, advisory):
+        """Availability manifest of the 6 factory pillars (deterministic)."""
+        signals = advisory.get("signals") or {}
+
+        def availability(name):
+            signal = signals.get(name) or {}
+            out = {"signal": name, "available": bool(signal.get("available"))}
+            if not out["available"]:
+                out["reason"] = signal.get("reason", "no_data")
+            return out
+
+        return {
+            "P1_RECONSTRUCTED_LIQUIDATIONS": availability("cascade"),
+            "P2A_STOP_CLUSTERS": availability("stops"),
+            "P2B_WHALE_WALL_PERSISTENCE": availability("walls"),
+            "P3_ONCHAIN_WHALE_FLOWS": availability("whale"),
+            "P4_FARSIDE_ETF_FLOWS": availability("macro"),
+            "P5_SENTIMENT_COINBASE_PREMIUM": availability("macro"),
+            "P6_CROSS_SOURCE_CONSISTENCY": {**availability("consistency"),
+                                            "quality_score": advisory.get("quality_score")},
+        }
+
+    def evaluate(self, asset, payload, features, macro=None, now=None):
+        asset = str(asset).upper()
+        resolved = float(number(now, self.clock()))
+        payload = self._enrich_payload(asset, payload, resolved)
+        return super().evaluate(asset, payload, features, macro, now)
+
+    def _finalize(self, advisory, payload):
+        """Stamp the pillar manifest INSIDE the digest (tamper-evident)."""
+        if "pillars" not in advisory:
+            advisory["pillars"] = self._pillar_manifest(payload, advisory)
+        return super()._finalize(advisory, payload)

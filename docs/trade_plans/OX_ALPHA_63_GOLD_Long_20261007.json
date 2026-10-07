@@ -1,0 +1,64 @@
+{
+  "plan_version": "omni.trade_plan.v1",
+  "plan_id": "OXALPHA63-GOLD-LONG-20261007A",
+  "asset": "GOLD",
+  "symbol": "XAUUSD.pi",
+  "direction": "LONG",
+  "limit_price": 4131.0,
+  "sl": 4119.5,
+  "tp": 4159.75,
+  "volume": 0.01,
+  "risk_usd": 11.5,
+  "atr": 5.19343,
+  "tp_r": 2.5,
+  "ttl_bars": 24,
+  "comment": "ARENA:PLAN_v1",
+  "created_at_epoch": 1791315000.0,
+  "expires_at_epoch": 1791403200.0,
+  "max_friction_r": 0.35,
+  "blackout_windows": [
+    {
+      "start_epoch": 1791392400.0,
+      "end_epoch": 1791397800.0,
+      "reason": "FOMC meeting minutes 2026-10-07 18:00 UTC (Tier-1); no staging from 60 min pre-release through 30 min aftermath"
+    }
+  ],
+  "contract": {
+    "tick_size": 0.01,
+    "contract_size": 100.0,
+    "min_lot": 0.01,
+    "step_lot": 0.01,
+    "digits": 2
+  },
+  "thesis": {
+    "summary": "Mean-reversion dip-buy below session VWAP toward and through it, anchored on the 975k USD persistent whale-bid shelf at 4,120.00.",
+    "structural_level": "Limit 4,131.00 rests inside the spec's 4,131-4,133 band, 1.90 USD under the 975k USD whale bid at 4,120.00 which itself defends the 1.01M USD shelf at 4,099.90",
+    "vwap_reversion": "Session VWAP 4,149.50 vs price 4,132.85 (Z = -0.96 SD); VWAP is the +1.62R waypoint en route to the 2.50R target",
+    "momentum": "Wilder RSI 35.9 - oversold but not capitulation; the overnight flush already delivered the down-leg the entry is bidding for"
+  },
+  "management": {
+    "ratchet": "omni.ratchet.session_conditional.v1 (0.80R/1.50R/2.00R phases; entry+0.15R / entry+0.85R locks / 0.65R trail)",
+    "decay": "close at market if gain < 0.20R after 24 bars",
+    "target_band": "2.50R..3.14R"
+  },
+  "provenance": {
+    "candles": "Data/Candles/GOLD_15m.parquet: 512 x 15m bars through 2026-10-07 06:45 UTC, close 4,130.57, Wilder ATR(14) 5.19343",
+    "spec_telemetry": "OX_ALPHA_63 spec 2026-10-07 07:15 UTC: price 4,132.85, VWAP 4,149.50 (Z=-0.96), RSI 35.9, whale bids 975k @ 4,120.00 + 1.01M @ 4,099.90 + 1.21M @ 4,035.00, spread 0.24 bps (0.10 USD)",
+    "account_snapshot": {
+      "as_of": "2026-10-07 07:15 UTC (OX_ALPHA_63 spec)",
+      "equity_usd": 4831.73,
+      "floor_usd": 4775.0,
+      "filled_positions": 0,
+      "pending_orders": 0,
+      "capacity_slots_open": 2
+    },
+    "friction_accounting": {
+      "live_spread_usd": 0.10,
+      "live_friction_r": 0.0096,
+      "conservative_bps": 41.0,
+      "conservative_usd": 16.94,
+      "note": "Broker spread 0.24 bps is elite; the 41 bps conservative bound remains the sizing haircut of record"
+    },
+    "invariants": "limit 4,131.00 < live ask (approx 4,132.90); SL 4,119.50 < limit and 2.21 x ATR (>= 1.5 x ATR floor); risk 11.50 <= 14.70 USD queue cap; friction 0.0096R <= 0.35R"
+  }
+}

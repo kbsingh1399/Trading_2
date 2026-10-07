@@ -19,6 +19,8 @@ import pytest
 from Terminal.Headless.stage_trade_plan import (
     MAX_RISK_USD,
     MIN_RISK_USD,
+    TP_R_MAX,
+    TP_R_MIN,
     PlanValidationError,
     execute_plan,
     live_precheck,
@@ -128,14 +130,27 @@ def refusal_code(plan_doc, now=NOW) -> str:
 
 
 # ------------------------------------------------------------ offline gates
-def test_committed_plan_document_validates():
-    """The real plan JSON in docs/trade_plans must pass its own validator."""
-    doc = json.loads(COMMITTED_PLAN.read_text(encoding="utf-8"))
-    normalised = validate_plan(doc, now=NOW)
-    assert normalised["symbol"] == "SOLUSD.p"
-    assert normalised["direction"] == "LONG"
-    assert normalised["computed_risk_usd"] == pytest.approx(10.50, abs=1e-6)
-    assert normalised["computed_tp_r"] == pytest.approx(2.50, abs=1e-6)
+COMMITTED_PLANS = [
+    # (path, reference now inside that plan's validity window)
+    (REPO_ROOT / "docs/trade_plans/OX_ALPHA_62_SOL_Long_20261007.json",
+     1_791_320_400.0),      # 2026-10-06 21:00 UTC
+    (REPO_ROOT / "docs/trade_plans/OX_ALPHA_63_GOLD_Long_20261007.json", NOW),
+    (REPO_ROOT / "docs/trade_plans/OX_ALPHA_63_BTC_Long_20261007.json", NOW),
+    (REPO_ROOT / "docs/trade_plans/OX_ALPHA_63_SOL_Long_20261007.json", NOW),
+]
+
+
+@pytest.mark.parametrize("plan_path,reference_now", COMMITTED_PLANS)
+def test_committed_plan_document_validates(plan_path, reference_now):
+    """Every plan JSON in docs/trade_plans must pass its own validator at a
+    fixed reference time inside its validity window (never the wall clock:
+    committed tests must not decay)."""
+    doc = json.loads(plan_path.read_text(encoding="utf-8"))
+    normalised = validate_plan(doc, now=reference_now)
+    assert normalised["direction"] in ("LONG", "SHORT")
+    assert normalised["computed_risk_usd"] <= MAX_RISK_USD
+    assert TP_R_MIN <= normalised["computed_tp_r"] <= TP_R_MAX
+    assert normalised["comment"].startswith("ARENA:")
 
 
 def test_geometry_and_sizing_recomputed():

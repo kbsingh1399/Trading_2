@@ -44,6 +44,8 @@ def main():
     parser.add_argument("--calendar", default=str(ROOT/"Data/macro_calendar.json"))
     parser.add_argument("--no-cognitive", action="store_true", help="Explicitly run the deterministic econometric policy")
     parser.add_argument("--no-pioneer", action="store_true", help="Disable the Pioneer decision engine conviction layer")
+    parser.add_argument("--decision-chain", choices=("v2", "v1"), default="v2",
+                        help="Decision chain generation: v2 = omni.decision_chain.v2 (6 factory pillars), v1 = legacy Pioneer")
     parser.add_argument("--data-dir", default="Binance_Data")
     parser.add_argument("--forex-dir", default="Forex_Data")
     parser.add_argument("--chart", default="Terminal/of_equity_curve.png")
@@ -59,7 +61,8 @@ def main():
         from Terminal.Risk_Sizing_Engine import CovarianceGate
         from Terminal.Market_Intelligence import MarketIntelligenceEngine
         from Terminal.Data_Factory import DataFactory
-        from Terminal.Pioneer_Decision_Engine import PioneerDecisionEngine
+        from Terminal.Pioneer_Decision_Engine import (PioneerDecisionEngine,
+                                                      DecisionChainEngine)
         import time
         report = {"assets": UNIVERSE, "live_orders": False}
         try:
@@ -72,7 +75,7 @@ def main():
         macro = MarketIntelligenceEngine(calendar_path=args.calendar)
         macro.attach_data_factory(df)
         report["blackout"] = macro.check_macro_blackout(); report["calendar_error"] = macro.calendar_error
-        pioneer = PioneerDecisionEngine()
+        pioneer = DecisionChainEngine() if args.decision_chain == "v2" else PioneerDecisionEngine()
         report["pioneer"] = {"policy_version": pioneer.policy.version,
                              "weights": pioneer.policy.weights,
                              "min_quality": pioneer.policy.min_quality,
@@ -115,7 +118,12 @@ def main():
                                              min_confluence=args.min_confluence, max_book_age=30.0, max_future_skew_sec=30.0))
 
     if not args.no_pioneer:
-        pioneer = PioneerDecisionEngine(quality_provider=quality_provider)
+        if args.decision_chain == "v2":
+            from Terminal.Pioneer_Decision_Engine import DecisionChainEngine
+            pioneer = DecisionChainEngine(quality_provider=quality_provider,
+                                          validator=validator)
+        else:
+            pioneer = PioneerDecisionEngine(quality_provider=quality_provider)
         trader.attach_pioneer(pioneer)
 
     trader.run(max_cycles=args.ticks)
