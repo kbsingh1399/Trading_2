@@ -397,9 +397,13 @@ def test_purge_expired_cancels_only_stale_tickets(tmp_path):
 def test_cli_main_validate_dry_run(tmp_path):
     import time as _time
     doc_path = tmp_path / "plan.json"
-    doc_path.write_text(json.dumps(plan()), encoding="utf-8")
-    # The CLI resolves `now` from the wall clock, so the scripted state must
-    # carry a fresh as_of (real construction time) for the freshness gate.
+    # The CLI resolves `now` from the wall clock, so the plan's validity
+    # window must be built relative to the real current time (a hardcoded
+    # expiry rots the test the moment the clock passes it).
+    doc = plan(created_at_epoch=_time.time() - 60.0,
+               expires_at_epoch=_time.time() + 3600.0)
+    doc_path.write_text(json.dumps(doc), encoding="utf-8")
+    # The scripted state must likewise carry a fresh as_of for the gate.
     fake = FakeClient(state=state(as_of=_time.time()))
     journal = tmp_path / "cli_journal.jsonl"     # never touch the default path
     code = _main([str(doc_path), "--url", "https://tunnel.example",
