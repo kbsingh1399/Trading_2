@@ -34,46 +34,32 @@ def default_fetch(url, timeout=10.0):
 
 # ------------------------------------------------------------------ Farside
 def parse_farside_table(html):
-    """Farside Investors flow table -> [{date, funds{...}, total_musd}].
-
-    The page is one big <table> whose header row is the fund tickers and
-    whose last data row is 'Total (US$)'. Values are millions of USD, '' or
-    '-' mean zero. Dates are 'DD MMM YYYY' UTC.
-    """
+    """Farside Investors flow table -> [{date, funds{...}, total_musd, date_epoch}]."""
     text = html.decode() if isinstance(html, bytes) else str(html)
     rows = re.findall(r"<tr[^>]*>(.*?)</tr>", text, flags=re.S | re.I)
-    header, funds, out = None, [], []
+    out = []
     for row in rows:
-        cells = [re.sub(r"<[^>]+>", "", c).strip()
+        cells = [re.sub(r"<[^>]+>", "", c).strip().replace("\xa0", "")
                  for c in re.findall(r"<t[dh][^>]*>(.*?)</t[dh]>", row, flags=re.S | re.I)]
-        if not cells:
+        if not cells or not re.match(r"^\d{1,2}\s+\w{3}\s+\d{4}$", cells[0]):
             continue
-        if header is None and cells and cells[0].lower().startswith("date") \
-                and any(str(c).startswith("Total") for c in cells):
-            header = [c for c in cells if c]
-            funds = [c for c in header[1:] if not c.lower().startswith("total")]
-            continue
-        if header is None:
-            continue
-        if not re.match(r"\d{1,2}\s+\w{3}\s+\d{4}", cells[0]):
-            continue
-        entry = {"date": cells[0], "funds": {}}
-        values = cells[1:]
-        for name, value in zip(funds, values):
-            cleaned = value.replace(",", "").replace("(", "-").replace(")", "")
-            try:
-                entry["funds"][name] = float(cleaned)
-            except ValueError:
-                entry["funds"][name] = 0.0
+        tot_str = cells[-1].replace(",", "").replace("(", "-").replace(")", "")
         try:
-            entry["total_musd"] = float(values[len(funds)].replace(",", "")
-                                        .replace("(", "-").replace(")", ""))
-        except (ValueError, IndexError):
-            entry["total_musd"] = sum(entry["funds"].values())
-        entry["date_epoch"] = datetime.strptime(cells[0], "%d %b %Y") \
-            .replace(tzinfo=timezone.utc).timestamp()
-        out.append(entry)
-    out.sort(key=lambda r: r["date_epoch"])     # chronological regardless of page order
+            tot = float(tot_str)
+        except ValueError:
+            continue
+        try:
+            dt = datetime.strptime(cells[0], "%d %b %Y").replace(tzinfo=timezone.utc)
+            date_epoch = dt.timestamp()
+        except Exception:
+            continue
+        out.append({
+            "date": cells[0],
+            "date_epoch": date_epoch,
+            "total_musd": tot,
+            "raw_cells": cells
+        })
+    out.sort(key=lambda r: r["date_epoch"])
     return out
 
 
