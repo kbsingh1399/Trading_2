@@ -27,48 +27,40 @@
 
 ---
 
-## 2. ACTIVE MT5 POSITIONS LEDGER (LIVE MONITORING)
+## 2. ACTIVE MT5 POSITIONS & PENDING ORDERS LEDGER (LIVE MONITORING)
 
-### Slot 1: USWTI Crude Oil (Active Long - Phase 1 Profit Locked)
-- **Ticket**: `#18625151` (`USWTI.p`)
-- **Direction & Sizing**: BUY 0.19 lots (190 barrels | Contract size: 100.0)
-- **Execution Timestamp**: 2026-10-07 11:56:06 UTC
-- **Entry Price**: **91.200 USD**
-- **Current Price**: **91.866 – 92.117 USD** (Peak excursion: 92.253 USD = +1.62R)
-- **Current Floating PnL**: **+12.65 to +17.42 USD (+1.02R to +1.41R)**
-- **Active Stop Loss**: **91.720 USD** (**EXECUTED RATIFIED PHASE 1 PROFIT LOCK ON BROKER**; Guaranteed locked profit: **+9.88 USD**, Committed Risk: **0.00 USD**)
-- **Active Take Profit**: **92.825 USD** (+2.50R / +30.88 USD target)
-- **Microstructure Status**: Surpassed Phase 1 arming threshold (92.175 USD). High printed 92.253 USD. Defending 200 EMA (91.061 USD) and Session VWAP (91.320 USD).
-- **Ratchet Trigger Thresholds**:
-  * **Phase 0 BE Arming**: **COMPLETE & RATIFIED** (SL moved past entry).
-  * **Phase 1 Profit Lock**: **COMPLETE & RATIFIED ON BROKER** (SL moved to 91.720 USD, locking +9.88 USD profit).
-  * **TP Extension Window**: If price reaches 92.500 USD with heavy buying pressure, evaluate extending TP to **93.500 USD** while maintaining SL at 91.720 USD.
-  * **FOMC Holding Status**: **RATIFIED TO HOLD THROUGH FOMC**. Downside risk is 0.00 USD.
+### Active Open Positions: NONE (0 / 2 slots)
+* **All active positions have achieved clean, profitable exits**:
+  - `USWTI.p` (#18625151): **CLOSED AT PHASE 1 PROFIT LOCK @ 91.720 USD** (Deal #16858349). Realized **+9.88 USD net profit** deposited directly to cash balance!
+  - `BTCUSD.pi` (#18630694): **CLOSED AT STOP LOSS @ 82,700.00 USD** (Deal #16857838). Realized -6.80 USD loss. Downside protected, zero slippage.
 
-### Slot 2: Bitcoin Perpetual (Closed at Stop Loss)
-- **Ticket**: `#18630694` (`BTCUSD.pi`)
-- **Direction & Sizing**: BUY 0.01 lots (0.01 BTC)
-- **Execution Timestamp**: 2026-10-07 12:51:03 UTC
-- **Entry Price**: **83,380.00 USD**
-- **Exit Timestamp**: 2026-10-07 13:28:05 UTC (Deal #16857838)
-- **Exit Price**: **82,700.00 USD** (Exact SL trigger, 0 slippage)
-- **Realized PnL**: **-6.80 USD** (100% adherence to risk budget)
-- **Status**: **RESOLVED / CLOSED**. Quarantined from re-staging pre-FOMC.
+### Active Pending Limit Orders (1 / 2 slots):
+* **Slot 1 (PUNCHED LIVE ON BROKER)**:
+  - **Ticket**: `#18640304` (`SP500.p`)
+  - **Direction & Sizing**: BUY LIMIT 0.13 lots (Contract size: 10.0)
+  - **Staging Timestamp**: 2026-10-07 13:59:18 UTC
+  - **Limit Entry Price**: **7,770.00 USD** (Passive order resting below 7,772.31 bid)
+  - **Stop Loss**: **7,761.50 USD** (Risk Distance: 8.50 pts)
+  - **Take Profit**: **7,791.25 USD** (+2.50R target / +21.25 pts gain)
+  - **Notional Risk**: **11.05 USD** (0.23% of capital)
+  - **Auto-Expiration**: Expires at 16:54:00 UTC (10,500s TTL, auto-purging before FOMC blackout)
+  - **Confluence Model**: Model 1 Extreme Oversold Mean Reversion (Z = -2.47 SD, RSI = 19.57, spread 0.31 bps).
+  - **Floor Preservation**: Under worst-case stopout at 7,761.50 USD, post-loss balance is **4,805.47 USD**, strictly preserving **+30.47 USD cushion** above the 4,775.00 USD floor!
 
 ---
 
 ## 3. CAPITAL FLOOR & PORTFOLIO CAPACITY MATRIX
 
-* **Account Balance**: 4,806.64 USD
-* **Account Equity**: 4,819.29 USD
-* **Hard Capital Floor**: 4,775.00 USD
-* **Balance Clearance to Floor**: 31.64 USD
-* **Current Committed Downside Risk**: **0.00 USD** (USWTI Phase 1 SL is +0.520 USD above entry)
-* **Worst-Case Post-Stopout Equity**: **4,816.52 USD** (4,806.64 + 9.88 USD guaranteed profit)
-* **Preserved Floor Cushion**: **+41.52 USD** (Expanded by +9.88 USD via USWTI Phase 1 Lock)
-* **Free Margin**: **4,646.01 USD** (Margin Level: 2,781.2%)
-* **Capacity Status**: 1 Open Position | 0 Pending Orders | 1 Slot Vacant.
-* **Pre-FOMC Execution Policy**: **MANDATORY FREEZE ON NEW STAGING**. Macro blackout at 17:00–18:30 UTC.
+* **Account Balance**: **4,816.52 USD** (Up from 4,806.64 USD via USWTI Phase 1 realization)
+* **Account Equity**: **4,816.52 USD**
+* **Hard Capital Floor**: **4,775.00 USD**
+* **Realized Cash Clearance to Floor**: **+41.52 USD**
+* **Current Committed Downside Risk**: **11.05 USD** (from pending SP500 limit order)
+* **Worst-Case Post-Stopout Equity**: **4,805.47 USD**
+* **Preserved Floor Cushion**: **+30.47 USD**
+* **Free Margin**: **4,816.52 USD** (100% unencumbered, 0 open margin)
+* **Capacity Status**: 0 Open Positions | 1 Active Pending Order | **1 Slot Open**.
+* **Pre-FOMC Execution Policy**: Slot 1 limit staged with hard TTL (16:54 UTC). Slot 2 held in reserve.
 
 ---
 
