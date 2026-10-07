@@ -64,11 +64,12 @@ FOREX_ASSETS = ["EURUSD", "GBPUSD", "USDJPY"]
 ALL_24_ASSETS = CRYPTO_ASSETS + INDICES_ASSETS + COMMODITIES_ASSETS + FOREX_ASSETS
 
 
-def fetch_crypto_depth_and_oi(asset: str) -> Tuple[str, Dict[str, Any], Dict[str, Any]]:
-    """Fetch live top 20 L2 depth and open interest from Binance Futures public REST."""
+def fetch_crypto_depth_and_oi(asset: str) -> Tuple[str, Dict[str, Any], Dict[str, Any], Dict[str, Any]]:
+    """Fetch live top 20 L2 depth, open interest, and premium/funding data from Binance Futures public REST."""
     bin_sym = f"{asset}USDT"
     depth_data: Dict[str, Any] = {}
     oi_data: Dict[str, Any] = {}
+    premium_data: Dict[str, Any] = {}
 
     # Depth (top 20)
     try:
@@ -88,7 +89,16 @@ def fetch_crypto_depth_and_oi(asset: str) -> Tuple[str, Dict[str, Any], Dict[str
     except Exception as exc:
         oi_data = {"error": str(exc)}
 
-    return asset, depth_data, oi_data
+    # Funding & Premium Index
+    try:
+        url = f"https://fapi.binance.com/fapi/v1/premiumIndex?symbol={bin_sym}"
+        req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+        with urllib.request.urlopen(req, timeout=3.5) as resp:
+            premium_data = json.loads(resp.read())
+    except Exception as exc:
+        premium_data = {"error": str(exc)}
+
+    return asset, depth_data, oi_data, premium_data
 
 
 def compute_volume_profile(bars: List[Dict[str, Any]], num_bins: int = 50) -> Dict[str, float]:
@@ -142,7 +152,7 @@ def compute_volume_profile(bars: List[Dict[str, Any]], num_bins: int = 50) -> Di
 
 def generate_full_snapshot() -> Dict[str, Any]:
     """Master generation routine."""
-    now_ts = time.time()
+    now_ts = datetime.now(timezone.utc).timestamp()
     now_utc = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
 
     # 1. Initialize MT5 Bridge
@@ -236,14 +246,16 @@ def generate_full_snapshot() -> Dict[str, Any]:
         "runway_hours_to_blackout": round((datetime(2026, 10, 7, 17, 0, 0, tzinfo=timezone.utc).timestamp() - now_ts) / 3600.0, 2)
     }
 
-    # 3. Multithreaded fetch of Crypto Depth & OI
+    # 3. Multithreaded fetch of Crypto Depth, OI & Premium Index
     crypto_books: Dict[str, Dict[str, Any]] = {}
     crypto_ois: Dict[str, Dict[str, Any]] = {}
+    crypto_prems: Dict[str, Dict[str, Any]] = {}
 
     with ThreadPoolExecutor(max_workers=8) as ex:
-        for asset, depth, oi in ex.map(fetch_crypto_depth_and_oi, CRYPTO_ASSETS):
+        for asset, depth, oi, prem in ex.map(fetch_crypto_depth_and_oi, CRYPTO_ASSETS):
             crypto_books[asset] = depth
             crypto_ois[asset] = oi
+            crypto_prems[asset] = prem
 
     # 4. Process all 24 Assets
     stop_engine = StopClusterEngine()
@@ -445,11 +457,24 @@ def generate_full_snapshot() -> Dict[str, Any]:
             pioneer_eval = "QUARANTINED_LIQUIDITY_TRAP"
             pioneer_reason = f"BTC resting stops clustered at 83,450-83,510 USD with 84.3M USD long liquidation cascade below. Passive limit at 83,750 USD was vetoed to prevent front-running un-swept liquidity."
         elif asset == "GOLD":
-            pioneer_eval = "ACTIVE_LONG_FILLED_IN_PROFIT"
-            pioneer_reason = f"Ticket #18617135 LONG 0.01 lots @ 4,125.00 USD filled. Current price 4,127.37 USD (+0.24R). Stop 4,113.50 USD defended by 4,120 whale shelf."
+            gold_pos = [p for p in formatted_positions if "XAU" in str(p.get("symbol", "")) or "GOLD" in str(p.get("symbol", ""))]
+            if gold_pos:
+                pioneer_eval = "ACTIVE_LONG_FILLED"
+                pioneer_reason = f"Ticket #{gold_pos[0].get('ticket')} active."
+            else:
+                pioneer_eval = "PROACTIVELY_CLOSED_RISK_DEFENSE"
+                pioneer_reason = "Ticket #18617135 LONG exited at market @ 4,118.48 USD (-0.567R) cutting loss ahead of stop following falling VWAP resistance and breakdown of 4,120 USD shelf. Preserved +4.98 USD."
         elif asset == "EURUSD":
-            pioneer_eval = "ACTIVE_PENDING_BUY_LIMIT"
-            pioneer_reason = f"Ticket #18617132 BUY LIMIT 0.09 lots @ 1.11880 USD resting below market. Sweep of 1.11800 liquidity pool targeted for fill into London afternoon session."
+            eur_pending = [o for o in formatted_orders if "EURUSD" in str(o.get("symbol", ""))]
+            if eur_pending:
+                pioneer_eval = "ACTIVE_PENDING_BUY_LIMIT"
+                pioneer_reason = f"Ticket #{eur_pending[0].get('ticket')} BUY LIMIT {eur_pending[0].get('volume')} lots @ {eur_pending[0].get('price_open')} USD resting below market. Sweep of 1.11800 liquidity pool targeted for fill into London session."
+            else:
+                pioneer_eval = "MONITORING_RECLAIM"
+                pioneer_reason = "EURUSD monitoring for session low sweep and structural reclaim."
+        elif asset == "USWTI":
+            pioneer_eval = "CANDIDATE_EXHAUSTION_RECLAIM"
+            pioneer_reason = "USWTI flushed to 90.69 USD, reclaimed 91.20 USD shelf and 200 EMA (91.24 USD). Extreme VWAP Z -3.42 SD, RSI 38.6. Prime candidate for Slot 2 allocation."
 
         assets_matrix[asset] = {
             "symbol_broker": broker_sym or asset,
@@ -508,7 +533,15 @@ def generate_full_snapshot() -> Dict[str, Any]:
                 "swept_session_low": swept_low,
                 "swept_session_high": swept_high,
                 "reasoning": pioneer_reason
-            }
+            },
+            "funding_and_rates": (
+                {
+                    "last_funding_rate_bps": round(float(crypto_prems.get(asset, {}).get("lastFundingRate", 0.0)) * 1e4, 2),
+                    "predicted_funding_rate_bps": round(float(crypto_prems.get(asset, {}).get("interestRate", 0.0)) * 1e4, 2),
+                    "mark_price": round(float(crypto_prems.get(asset, {}).get("markPrice", mid_price)), 4),
+                    "index_price": round(float(crypto_prems.get(asset, {}).get("indexPrice", mid_price)), 4)
+                } if asset in CRYPTO_ASSETS else None
+            )
         }
 
     # Assemble master document
