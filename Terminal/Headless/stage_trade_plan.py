@@ -90,7 +90,17 @@ def _on_tick(price: float, tick: float) -> bool:
 def _risk_usd(plan: Dict) -> float:
     contract = _num(plan.get("contract", {}).get("contract_size"), 1.0)
     distance = abs(_num(plan.get("limit_price")) - _num(plan.get("sl")))
-    return _num(plan.get("volume")) * distance * contract
+    risk = _num(plan.get("volume")) * distance * contract
+    # JPY-quoted pairs: the account is USD but the contract denominates one
+    # leg in JPY, so USD risk requires division by the entry price (the
+    # SPEC-table pitfall the forensics audit flagged; without this every
+    # USDJPY plan overstates risk ~158x and can never validate).
+    symbol = str(plan.get("symbol", "")).upper()
+    if symbol.endswith("JPY") or str(plan.get("asset", "")).upper() == "USDJPY":
+        price = _num(plan.get("limit_price"))
+        if price > 0:
+            risk /= price
+    return risk
 
 
 def _tp_r(plan: Dict) -> float:
@@ -176,7 +186,7 @@ def validate_plan(plan: Dict, *, now: float) -> Dict:
         raise PlanValidationError("volume_off_step", f"{volume} not multiple of {step_lot}")
 
     # Risk envelope: 10.00 .. 20.00 USD, declared value must match recomputed.
-    risk = volume * distance * contract_size
+    risk = _risk_usd(plan)
     if risk + EPS < MIN_RISK_USD:
         raise PlanValidationError("risk_below_floor", f"{risk:.4f} < {MIN_RISK_USD}")
     if risk > MAX_RISK_USD + EPS:

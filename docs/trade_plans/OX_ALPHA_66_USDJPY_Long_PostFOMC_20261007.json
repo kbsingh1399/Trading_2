@@ -1,0 +1,55 @@
+{
+ "plan_version": "omni.trade_plan.v1",
+ "plan_id": "OXALPHA66-USDJPY-LONG-POSTFOMC-20261007A",
+ "asset": "USDJPY",
+ "symbol": "USDJPY.pi",
+ "direction": "LONG",
+ "limit_price": 158.14,
+ "sl": 157.995,
+ "tp": 158.503,
+ "volume": 0.11,
+ "risk_usd": 10.09,
+ "atr": 0.0966,
+ "tp_r": 2.5,
+ "ttl_bars": 13,
+ "comment": "ARENA:PLAN_v1",
+ "created_at_epoch": 1791398100.0,
+ "expires_at_epoch": 1791410400.0,
+ "max_friction_r": 0.35,
+ "blackout_windows": [
+  {
+   "start_epoch": 1791392400.0,
+   "end_epoch": 1791397800.0,
+   "reason": "FOMC meeting minutes 2026-10-07 18:00 UTC (Tier-1); hard blackout 17:00-18:30 UTC"
+  }
+ ],
+ "contract": {
+  "tick_size": 0.001,
+  "contract_size": 100000.0,
+  "min_lot": 0.01,
+  "step_lot": 0.01,
+  "digits": 3
+ },
+ "thesis": {
+  "summary": "RANK 3, post-FOMC hawkish vehicle: USDJPY is the ONLY BULLISH-regime asset on the board (price 158.1645 above EMA200 158.1513, slope >= 0) and the only WITH-dollar alignment; the dip bid at 158.140 catches the pullback just under the EMA200/round-number 158.15 shelf at Z ~ -1.9.",
+  "structural_level": "Limit 158.140 rests 2.4 pips under the live bid, just below EMA200 158.1513; SL 157.995 = 1.50 x fresh ATR 0.0966 (JPY conversion applied: 0.11 lots x 0.145 x 100000 / 158.1645 = 10.09 USD); TP 158.503 = 2.50R toward VWAP 158.322 and beyond.",
+  "postfomc_mechanism": "created_at_epoch = 18:35 UTC: validator-refused until the blackout lifts, same as the GBPUSD vehicle.",
+  "factor_note": "OPPOSITE SIGN of the GBPUSD vehicle - promote at most ONE by the minutes' tone."
+ },
+ "management": {
+  "ratchet": "omni.ratchet.session_conditional.v1 (0.80R/1.50R/2.00R; friction-inclusive lock floor 41bps*entry/initial_r + 0.05R dominates table values)",
+  "decay": "close at market if gain < 0.20R after 24 bars",
+  "target_band": "2.50R..3.14R",
+  "fomc_discipline": "Post-event ONLY by construction (created_at 18:35 UTC > blackout end 18:30). Expires 22:00 UTC. A fresh post-minutes council pass + factor-overlap check precedes promotion; GBPUSD (dovish) and USDJPY (hawkish) are OPPOSITE SIGNS of the dollar event - promote at most ONE by the minutes' tone.",
+  "queue_policy": "Post-FOMC vehicle. First-fill OCO across all pendings (max 2 filled). Re-ranked at every scan; displaced by a higher-ranked plan when pendings > 4. Prune gates: anchor invalidation, drift > 2.0x ATR unfilled, regime break, 22:00 expiry."
+ },
+ "provenance": {
+  "telemetry": "docs/telemetry/live_snapshot_latest.json 14:25:50 UTC (hardened): USDJPY 158.164/158.165, ATR 0.0966, Z -1.51, RSI 44.5, EMA200 158.1513, VWAP 158.322, regime BULLISH",
+  "council": "docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md Section 6 (Arena slate)",
+  "friction_accounting": {
+   "live_spread_usd": 0.001,
+   "live_friction_r": 0.0069
+  },
+  "invariants": "limit 158.140 < bid 158.164 (passive); SL 157.995 = 1.501 x ATR; risk 10.09 (JPY-converted); TP 2.503R; friction 0.007R"
+ }
+}

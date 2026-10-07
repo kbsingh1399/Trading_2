@@ -1,0 +1,56 @@
+{
+ "plan_version": "omni.trade_plan.v1",
+ "plan_id": "OXALPHA66-GBPUSD-LONG-POSTFOMC-V2-20261007A",
+ "asset": "GBPUSD",
+ "symbol": "GBPUSD.pi",
+ "direction": "LONG",
+ "limit_price": 1.319,
+ "sl": 1.31765,
+ "tp": 1.32238,
+ "volume": 0.08,
+ "risk_usd": 10.8,
+ "atr": 0.0009,
+ "tp_r": 2.5,
+ "ttl_bars": 13,
+ "comment": "ARENA:PLAN_v1",
+ "created_at_epoch": 1791398100.0,
+ "expires_at_epoch": 1791410400.0,
+ "max_friction_r": 0.35,
+ "blackout_windows": [
+  {
+   "start_epoch": 1791392400.0,
+   "end_epoch": 1791397800.0,
+   "reason": "FOMC meeting minutes 2026-10-07 18:00 UTC (Tier-1); hard blackout 17:00-18:30 UTC"
+  }
+ ],
+ "contract": {
+  "tick_size": 1e-05,
+  "contract_size": 100000.0,
+  "min_lot": 0.01,
+  "step_lot": 0.01,
+  "digits": 5
+ },
+ "thesis": {
+  "summary": "RANK 2, post-FOMC dovish vehicle, RE-ANCHORED on fresh data (supersedes the staging-held V1 whose -8.6Z premise was a stale-sigma artifact): GBPUSD bounced to 1.3214 (Z -1.14) but the 1.3190 deep bid sits at Z ~ -2.33 (sigma 0.00202) - the discount pocket of the anti-USD complex.",
+  "structural_level": "Limit 1.3190 rests 24 pips under the live bid; SL 1.31765 = 1.50 x fresh ATR 0.0009; TP 1.32238 = 2.50R toward VWAP 1.3237 / EMA200 1.3239.",
+  "postfomc_mechanism": "created_at_epoch = 18:35 UTC (after the 17:00-18:30 blackout): the validator refuses this plan (plan_created_in_future) until the blackout lifts - mechanically post-event, proven in test.",
+  "factor_note": "OPPOSITE SIGN of the USDJPY vehicle: promote at most ONE by the minutes' tone (GBPUSD if dovish/USD-bearish, USDJPY if hawkish)."
+ },
+ "management": {
+  "ratchet": "omni.ratchet.session_conditional.v1 (0.80R/1.50R/2.00R; friction-inclusive lock floor 41bps*entry/initial_r + 0.05R dominates table values)",
+  "decay": "close at market if gain < 0.20R after 24 bars",
+  "target_band": "2.50R..3.14R",
+  "fomc_discipline": "Post-event ONLY by construction (created_at 18:35 UTC > blackout end 18:30). Expires 22:00 UTC. A fresh post-minutes council pass + factor-overlap check precedes promotion; GBPUSD (dovish) and USDJPY (hawkish) are OPPOSITE SIGNS of the dollar event - promote at most ONE by the minutes' tone.",
+  "queue_policy": "Post-FOMC vehicle. First-fill OCO across all pendings (max 2 filled). Re-ranked at every scan; displaced by a higher-ranked plan when pendings > 4. Prune gates: anchor invalidation, drift > 2.0x ATR unfilled, regime break, 22:00 expiry."
+ },
+ "provenance": {
+  "telemetry": "docs/telemetry/live_snapshot_latest.json 14:25:50 UTC (hardened): GBPUSD 1.3214/1.3214 raw-spread (commission ~3.5 USD/lot/side accounted separately), ATR 0.0009, Z -1.14, RSI 37.4, EMA200 1.3239, VWAP 1.3237",
+  "council": "docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md Section 6 (Arena slate); supersedes OXALPHA66-GBPUSD-LONG-POSTFOMC-20261007A v1 (staging-held, stale-ATR basis)",
+  "friction_accounting": {
+   "live_spread_usd": 0.0,
+   "commission_r_basis": 0.052,
+   "note": "raw-spread account: spread prints 0.0; round-trip commission ~0.56 USD on 0.08 lots = 0.052R"
+  },
+  "invariants": "limit 1.3190 < bid 1.3214 (passive); SL 1.31765 = 1.50 x ATR; risk 10.80; TP 2.50R; commission-aware friction 0.052R"
+ }
+}

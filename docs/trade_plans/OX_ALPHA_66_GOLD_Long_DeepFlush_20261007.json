@@ -1,0 +1,55 @@
+{
+ "plan_version": "omni.trade_plan.v1",
+ "plan_id": "OXALPHA66-GOLD-LONG-DEEPFLUSH-20261007A",
+ "asset": "GOLD",
+ "symbol": "XAUUSD.pi",
+ "direction": "LONG",
+ "limit_price": 4078.0,
+ "sl": 4063.21,
+ "tp": 4114.98,
+ "volume": 0.01,
+ "risk_usd": 14.79,
+ "atr": 9.8584,
+ "tp_r": 2.5,
+ "ttl_bars": 9,
+ "comment": "ARENA:PLAN_v1",
+ "created_at_epoch": 1791383400.0,
+ "expires_at_epoch": 1791392100.0,
+ "max_friction_r": 0.35,
+ "blackout_windows": [
+  {
+   "start_epoch": 1791392400.0,
+   "end_epoch": 1791397800.0,
+   "reason": "FOMC meeting minutes 2026-10-07 18:00 UTC (Tier-1); hard blackout 17:00-18:30 UTC"
+  }
+ ],
+ "contract": {
+  "tick_size": 0.01,
+  "contract_size": 100.0,
+  "min_lot": 0.01,
+  "step_lot": 0.01,
+  "digits": 2
+ },
+ "thesis": {
+  "summary": "RANK 1 pre-event entry from the 14:25 verified scan: GOLD bounced to 4,099 (Z -1.48) off the morning crash, but the renewed-flush bid at 4,078 is where the Model-1 edge lives - at 4,078 the entry sits at Z ~ -2.53 (sigma 20.09), retesting the swept 4,066-4,078 flush zone with the deepest discount of the uncorrelated clusters (metals vs the held SP500 index long).",
+  "structural_level": "Limit 4,078 rests 21 below the live bid (passive - fills ONLY on renewed flush); SL 4,063.21 = 1.50 x fresh ATR 9.8584, below the 4,088/4,078 stop-cluster shelf; TP 4,114.97 = 2.50R back toward the VWAP 4,128.74 / EMA200 4,141.89 stack.",
+  "fresh_data_certificate": "All inputs from the 14:25:50 UTC HARDENED-generator snapshot (integrity fields present, LIVE_BRIDGE bars, indicator_age 0 min) - NOT the stale-indicator window that compromised the morning plans.",
+  "factor_note": "GOLD correlates ~0.3-0.5 with SP500 (below the 0.60 veto) - the one deep-discount cluster that does NOT stack the held index factor."
+ },
+ "management": {
+  "ratchet": "omni.ratchet.session_conditional.v1 (0.80R/1.50R/2.00R; friction-inclusive lock floor 41bps*entry/initial_r + 0.05R dominates table values)",
+  "decay": "close at market if gain < 0.20R after 24 bars",
+  "target_band": "2.50R..3.14R",
+  "fomc_discipline": "Pre-event ONLY: unfilled at 16:55 UTC purge is cancelled unconditionally (expires_at_epoch = purge). Filled position follows the flat-into-event rule (hold only with phase-0 armed).",
+  "queue_policy": "PRIORITY RANK 1 of the OX_ALPHA_66 entry pipeline. First-fill OCO across all pendings (max 2 filled). Displaced by a higher-ranked new plan only when pendings > 4. Prune gates: anchor wall pulled/thinned >50%, drift > 2.0x ATR unfilled, regime break, 16:55 purge."
+ },
+ "provenance": {
+  "telemetry": "docs/telemetry/live_snapshot_latest.json 14:25:50 UTC (hardened): GOLD 4,098.98/4,099.05, ATR 9.8584, Z -1.48, RSI 41.8, EMA200 4,141.89, VWAP 4,128.74, sigma ~20.09",
+  "council": "docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md Section 6 (Arena slate); supersedes the retired 4,101 shelf standby",
+  "friction_accounting": {
+   "live_spread_usd": 0.07,
+   "live_friction_r": 0.0047
+  },
+  "invariants": "limit 4,078 < bid 4,098.98 (passive); SL 4,063.21 = 1.50 x ATR; risk 14.79 (10-20 envelope); TP 2.5003R; friction 0.005R; worst-case pair with held SP500 11.05 = 25.84 -> post-loss cushion +20.37 (equity 4,821.21 basis)"
+ }
+}

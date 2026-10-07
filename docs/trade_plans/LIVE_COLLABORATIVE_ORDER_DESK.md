@@ -226,6 +226,26 @@
   * If `SP500.p` is below Phase 1 at 16:55:00 UTC, execute **market close before the 17:00:00 UTC blackout**.
 * **Slot 2 Admission**: Preserved in total freeze until 18:35:00 UTC post-FOMC window.
 
+### B. ARENA.AI RATIFIED ENTRY PIPELINE (2026-10-07 14:35 UTC — priority-ordered, replaceable, OCO-disciplined)
+
+**Principal directive:** stage more than 2 entries; re-rank continuously; replace when better setups emerge. Implemented as a **standing queue: up to 5 resting limits, first-fill OCO, max 2 FILLED** — margin (3,811 USD free) was never the constraint; the 4,775 floor is. Floor math for the full slate: worst-case concurrent pair = SP500 11.05 + GOLD 14.79 = 25.84 -> post-loss cushion **+20.37** (equity 4,821.21 basis) — passes even the muscle's own >= 20.00 precondition.
+
+| Rank | Plan file | Instrument | Limit / SL / TP | Lots | Risk | Window | Vehicle |
+|---|---|---|---|---|---|---|---|
+| 1 | `OX_ALPHA_66_GOLD_Long_DeepFlush_20261007.json` | XAUUSD.pi BUY LIMIT | **4,078.00 / 4,063.21 / 4,114.98** (2.50R) | 0.01 | **14.79** | NOW -> 16:55 purge | Model-1 renewed-flush bid at Z ~ −2.53 (fills only if the bounce fails); the one deep-discount cluster NOT correlated >0.60 with the held SP500 long |
+| 2 | `OX_ALPHA_66_GBPUSD_Long_PostFOMC_v2_20261007.json` | GBPUSD.pi BUY LIMIT | **1.31900 / 1.31765 / 1.32238** (2.50R) | 0.08 | **10.80** | 18:35 -> 22:00 | Dovish-tone vehicle, re-anchored on FRESH ATR (v1 was stale-ATR + its created_at epoch was actually 17:35, inside the blackout — v2 uses the true 18:35 = 1791398100) |
+| 3 | `OX_ALPHA_66_USDJPY_Long_PostFOMC_20261007.json` | USDJPY.pi BUY LIMIT | **158.140 / 157.995 / 158.503** (2.50R) | 0.11 | **10.09** | 18:35 -> 22:00 | Hawkish-tone vehicle — the ONLY BULLISH-regime asset on the board, dip just under EMA200 158.1513 |
+
+**Queue policy (standing):** re-rank at every scan cycle; a new higher-ranked plan displaces the lowest rank whenever pendings > 4; prune gates = anchor wall pulled/thinned > 50%, drift > 2.0x ATR unfilled, regime break; **16:55 unconditional purge**; post-event vehicles (ranks 2/3) are OPPOSITE SIGNS of the dollar event — promote at most ONE by the minutes' tone, never both.
+
+**Vetoes of Section 6-A candidates (correlation discipline vs the OPEN #18640304 SP500 long):**
+- *Candidate Alpha (SP500 re-stage 7,774.50)*: **VETO** — same instrument as the open position (correlation 1.0; double exposure into FOMC), and the 8.50-pt stop = **1.17x fresh ATR 7.2530** (below the 1.5x floor).
+- *Candidate Beta (DJ30 51,020)*: **VETO** — DJ30 correlates ~0.95 with SP500; the sector-correlation guard (0.60) would refuse it live. Deepest Z (−2.73, RSI 16.7) does not overcome factor stacking.
+- Ledger correction: Section 2 header line "0 Open Positions | 1 Active Pending" mislabels the FILLED ticket #18640304 (filled 14:02:17); the worst-case math (4,805.47) is correct.
+
+**SP500 #18640304 governance (carried from the master audit):** fresh ATR expanded 5.93 -> 7.2530, so SL 7,761.50 is now 1.17x ATR. Either tighten to **7,759.10** (1.5x floor, risk 14.14, pair worst-case with GOLD 28.93 -> cushion +17.28, still floor-safe) or file an explicit ATR-floor waiver. The 16:55 rule (phase-1 @ 7,782.75 secured or market-exit) stands.
+
+**Pipeline fixes delivered with this slate:** the stager now applies the **JPY price conversion** for USDJPY risk (`_risk_usd` divides by entry price — previously every USDJPY plan overstated risk ~158x and could never validate); all three plans stager-VALID (358/358 suite green). Telemetry writer-A status: last 3 minutes show single commits — resolution appears live, monitoring continues.
 
 ---
 
@@ -260,6 +280,9 @@ To ensure seamless, deterministic execution by Antigravity's automated execution
 
 ---
 
+
+**Arena note on Section C priorities (14:35 UTC):** ratified geometry supersedes the C-section drafts — USDJPY Priority #1 is confirmed but with SL **157.995** (1.50x ATR, not 158.013 = 1.32x), and GOLD Priority #2 is superseded by the Rank-1 plan at **4,078 / SL 4,063.21** (the 4,090 draft's 10-pt stop = 1.01x ATR, below the 1.5x floor). Both are validator-green in `docs/trade_plans/`.
+
 ### C. ACTIVE TRADE DESK STATE & RUNNING ORDERS (14:28 UTC)
 
 | Order / Position | Symbol | Side | Lots | Entry Price | Current Price | SL Price | TP Price | Floating PnL | Current R | Sentry Milestone |
@@ -279,3 +302,4 @@ To ensure seamless, deterministic execution by Antigravity's automated execution
 4. **Pre-FOMC Purge Governance (Strict Deadline)**:
    - **16:55:00 UTC**: Hard purge of all pending orders.
    - If `SP500.p` has not achieved Phase 1 (+1.50R), execute market close prior to the 17:00:00 UTC blackout.
+
