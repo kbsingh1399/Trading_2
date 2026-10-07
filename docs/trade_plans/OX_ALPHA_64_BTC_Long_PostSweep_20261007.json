@@ -1,0 +1,65 @@
+{
+  "plan_version": "omni.trade_plan.v1",
+  "plan_id": "OXALPHA64-BTC-LONG-POSTSWEEP-20261007A",
+  "asset": "BTC",
+  "symbol": "BTCUSD.pi",
+  "direction": "LONG",
+  "limit_price": 83380.0,
+  "sl": 82900.0,
+  "tp": 84580.0,
+  "volume": 0.03,
+  "risk_usd": 14.4,
+  "atr": 194.48479,
+  "tp_r": 2.5,
+  "ttl_bars": 24,
+  "comment": "ARENA:PLAN_v1",
+  "created_at_epoch": 1791363160.0,
+  "expires_at_epoch": 1791392100.0,
+  "max_friction_r": 0.35,
+  "blackout_windows": [
+    {
+      "start_epoch": 1791392400.0,
+      "end_epoch": 1791397800.0,
+      "reason": "FOMC meeting minutes 2026-10-07 18:00 UTC (Tier-1); hard blackout 17:00-18:30 UTC"
+    }
+  ],
+  "contract": {
+    "tick_size": 0.01,
+    "contract_size": 1.0,
+    "min_lot": 0.01,
+    "step_lot": 0.01,
+    "digits": 2
+  },
+  "thesis": {
+    "summary": "Post-sweep dip-buy BELOW the un-swept 83,450-83,510 stop pocket, with the stop placed BELOW the first reconstructed long-liquidation cascade band (8.38M USD at 82,938-83,145) so the plan survives the cascade that the pocket sweep would trigger.",
+    "structural_level": "Limit 83,380.00 fills only AFTER the sweep of the 83,450-83,510 pocket completes (the v2 stop ladder's densest below-market rung); SL 82,900.00 sits under the cascade band floor 82,938; TP 84,580.00 = 2.50R lands at the edge of the 7.73M USD short-squeeze band at 84,611-84,822 - exit liquidity tailwind",
+    "quarantine_replacement": "Supersedes OXALPHA63-BTC-LONG-20261007A (limit 83,750 / SL 83,443): that stop was inside the sweep pocket AND that entry sat on the first cascade band's upper edge (83,566-83,770, 1.93M USD) - fill condition and invalidation were the same zone",
+    "momentum": "Wilder RSI(14) 36.99, VWAP Z -0.57, price below EMA20 84,270.56 / EMA50 84,679.36 / EMA200 85,333.07 - RANGE_BOUND repair tape, dip-buy only; max_pain direction DOWN (41.73M long vs 38.08M short liquidation fuel)"
+  },
+  "management": {
+    "ratchet": "omni.ratchet.session_conditional.v1 (0.80R/1.50R/2.00R phases; entry+0.15R / entry+0.85R locks / 0.65R trail)",
+    "decay": "close at market if gain < 0.20R after 24 bars",
+    "target_band": "2.50R..3.14R",
+    "fomc_discipline": "Expiry is deliberately the 16:55:00 UTC purge deadline: this plan may only stage into a freed slot BEFORE the FOMC blackout; after the minutes a fresh post-event deliberation is mandatory"
+  },
+  "provenance": {
+    "candles": "Data/Candles/BTC_15m.parquet: 512 x 15m bars through 2026-10-07 08:45 UTC, close 84,081.50, Wilder ATR(14) 194.48479, RSI(14) 37.0, EMA200 85,341.25 (arena computation); v2 telemetry RSI 36.99 / ATR 194.4848 / EMA200 85,333.07 - cross-source agreement within 0.01 pct",
+    "telemetry": "docs/telemetry/live_snapshot_latest.json omni.telemetry.v2 (2026-10-07 08:52:40 UTC): BTC quote 84,014.5/84,030.5 spread 16.00; pioneer_microstructure_eval QUARANTINED_LIQUIDITY_TRAP (stops 83,450-83,510, 84.3M cascade below); stop ladder rungs 83,875/83,665/83,457/83,249/83,041; long cascade bands 83,566-83,770 (1.93M) / 82,938-83,145 (8.38M) / 80,893-81,095 (16.76M); short squeeze bands 84,611-84,822 (7.73M) / 86,750-86,967 (15.47M)",
+    "council": "docs/audits/OX_ALPHA_64_Multi_Agent_Council_20261007.md section A1.2 (quarantine math), the telemetry.v2 addendum (cascade cross-examination), and consensus resolution 3",
+    "account_snapshot": {
+      "as_of": "2026-10-07 08:52 UTC telemetry v2",
+      "equity_usd": 4834.51,
+      "floor_usd": 4775.0,
+      "filled_positions": 1,
+      "pending_orders": 1,
+      "capacity_status": "HARD_ADMISSION_FREEZE - contingency only, stages into the first freed slot"
+    },
+    "friction_accounting": {
+      "live_spread_usd": 16.0,
+      "live_friction_r": 0.0334,
+      "conservative_bps": 41.0,
+      "note": "Friction 16.01/480 = 0.033R at the plan stop (the widened cascade-aware stop also shrinks friction-in-R); the stager re-gates on the live spread at stage time"
+    },
+    "invariants": "limit 83,380.00 < live ask 84,030.50; SL 82,900.00 < limit and below the 82,938-83,145 cascade band floor, 2.47 x ATR (>= 1.5 x ATR floor); risk 14.40 <= 14.70 USD queue cap; friction 0.033R <= 0.35R; expires at the 16:55 UTC purge deadline"
+  }
+}

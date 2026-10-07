@@ -137,6 +137,8 @@ COMMITTED_PLANS = [
     (REPO_ROOT / "docs/trade_plans/OX_ALPHA_63_GOLD_Long_20261007.json", NOW),
     (REPO_ROOT / "docs/trade_plans/OX_ALPHA_63_BTC_Long_20261007.json", NOW),
     (REPO_ROOT / "docs/trade_plans/OX_ALPHA_63_SOL_Long_20261007.json", NOW),
+    (REPO_ROOT / "docs/trade_plans/OX_ALPHA_64_BTC_Long_PostSweep_20261007.json",
+     1_791_363_160.0),      # 2026-10-07 08:52:40 UTC (telemetry v2 as_of)
 ]
 
 
