@@ -141,6 +141,8 @@ COMMITTED_PLANS = [
      1_791_363_160.0),      # 2026-10-07 08:52:40 UTC (telemetry v2 as_of)
     (REPO_ROOT / "docs/trade_plans/OX_ALPHA_64_EURUSD_Long_Repunch_20261007.json",
      1_791_368_400.0),      # 2026-10-07 10:20:00 UTC (inside repunch validity)
+    (REPO_ROOT / "docs/trade_plans/OX_ALPHA_64_XRP_Long_PipelineCheck_20261007.json",
+     1_791_368_400.0),      # 2026-10-07 10:20:00 UTC (inside check validity)
 ]
 
 

@@ -1,0 +1,64 @@
+{
+  "plan_version": "omni.trade_plan.v1",
+  "plan_id": "OXALPHA64-XRP-LONG-CHECK-20261007A",
+  "asset": "XRP",
+  "symbol": "XRPUSD.pi",
+  "direction": "LONG",
+  "limit_price": 1.455,
+  "sl": 1.437,
+  "tp": 1.5,
+  "volume": 1.0,
+  "risk_usd": 18.0,
+  "atr": 0.005,
+  "tp_r": 2.5,
+  "ttl_bars": 4,
+  "comment": "ARENA:PLAN_v1",
+  "created_at_epoch": 1791368400.0,
+  "expires_at_epoch": 1791392100.0,
+  "max_friction_r": 0.35,
+  "blackout_windows": [
+    {
+      "start_epoch": 1791392400.0,
+      "end_epoch": 1791397800.0,
+      "reason": "FOMC meeting minutes 2026-10-07 18:00 UTC (Tier-1); hard blackout 17:00-18:30 UTC"
+    }
+  ],
+  "contract": {
+    "tick_size": 0.001,
+    "contract_size": 1000.0,
+    "min_lot": 1.0,
+    "step_lot": 1.0,
+    "digits": 3
+  },
+  "thesis": {
+    "summary": "PRINCIPAL-DIRECTED PIPELINE CHECK TRADE, NOT A COUNCIL-RECOMMENDED SETUP. The principal asked to place an XRP trade 'randomly just to check'. A random/standard XRP entry violates two hard invariants simultaneously (friction 0.667R at a 1.5xATR stop vs the 0.35R ceiling; min-lot risk 7.50 USD below the 10.00 floor), so this document is the UNIQUE constraint-solved compliant geometry instead - the only XRP shape that passes every gate.",
+    "constraint_solve": "Stop distance d must satisfy d >= 1.5*ATR (0.0075), (spread 0.004 + tick 0.001)/d <= 0.35 -> d >= 0.0143, risk = 1.0 lot * d * 1000 in [10,20] -> d <= 0.020, and both d and 2.5*d on the 0.001 grid. Only d = 0.018 and d = 0.020 survive; 0.018 chosen for lower risk. Entry 1.455 rests one tick under the live ask 1.456 for maximum fill likelihood - this is a check, fill probability is the point.",
+    "council_position": "The council does NOT recommend XRP for anything: 27.5 bps live spread (friction table NO-TRADE zone, 0.805R at standard stops on the 08:38 reading), VWAP Z -0.18 (no exhaustion edge), RSI 44.4 (neutral), price below the full EMA stack. The purpose-built pipeline-verification instrument remains ARENA:TEST_LIMIT_v1 on a tight-spread symbol (GOLD/USDJPY/EURUSD at 0.01 lots, <= 10 USD risk, 24-bar TTL) - the #18595858 pattern. If the principal's goal is purely 'check the pipe', that is the better tool; this plan exists because the principal named XRP specifically.",
+    "size_warning": "XRP min lot is 1.0 (telemetry ground truth, superseding the OX_ALPHA_62 static table's 0.01): a compliant check CANNOT be small - 18.00 USD risk is the near-minimum invariant-compliant size, not a conviction statement."
+  },
+  "management": {
+    "ratchet": "omni.ratchet.session_conditional.v1 (0.80R/1.50R/2.00R phases; entry+0.15R / entry+0.85R locks / 0.65R trail)",
+    "decay": "close at market if gain < 0.20R after 24 bars; TTL deliberately 4 bars (1 h) - a check trade retires fast",
+    "target_band": "2.50R..3.14R",
+    "fomc_discipline": "Plan expires at the 16:55:00 UTC purge deadline (epoch 1791392100); nothing stages into the 17:00-18:30 UTC blackout"
+  },
+  "provenance": {
+    "telemetry": "docs/telemetry/live_snapshot_latest.json as_of 2026-10-07 10:03:13 UTC (string-verified): XRPUSD.pi 1.452/1.456, spread 0.004 (27.51 bps), tick 0.001, contract 1000, min/step lot 1.0; RSI 44.36, VWAP 1.4714 (Z -0.18), ATR 0.005, EMA20 1.4707 / EMA50 1.4786 / EMA200 1.4935",
+    "council": "docs/audits/OX_ALPHA_64_Multi_Agent_Council_20261007.md section A1.3 (friction screen: XRP 0.805R NO-TRADE at 08:38) and AD.9 (this check order)",
+    "account_snapshot": {
+      "as_of": "2026-10-07 10:03 UTC telemetry",
+      "equity_usd": 4825.14,
+      "floor_usd": 4775.0,
+      "filled_positions": 0,
+      "pending_orders": 1,
+      "capacity_status": "OPEN (1/2); with this plan and the EUR repunch both resting, pending = 3 of the 5-order ceiling; worst case (XRP 18.00 + EUR 12.60 both stopped) leaves equity 4,794.54, still +19.54 above the floor"
+    },
+    "friction_accounting": {
+      "live_spread_usd": 0.004,
+      "live_friction_r": 0.2778,
+      "conservative_bps": 41.0,
+      "note": "Even the widest compliant stop barely clears the friction ceiling - structurally the most expensive execution in the book after the locked-out alt complex. The stager re-gates on the live spread at stage time."
+    },
+    "invariants": "limit 1.455 < live ask 1.456 (passive by one tick); SL 1.437 < limit, 0.018 = 3.60 x ATR (>= 1.5 x ATR floor); risk 18.00 within 10-20 USD; TP 1.500 = exactly 2.50R on the 0.001 grid; volume 1.0 = min_lot on step 1.0; friction 0.278R <= 0.35R; 4-bar TTL ends ~11:20 UTC, far inside the purge deadline"
+  }
+}
