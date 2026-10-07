@@ -272,7 +272,14 @@ def compute_volume_profile(bars: List[Dict[str, Any]], num_bins: int = 50) -> Di
 
     val = float(bins[lo_idx])
     vah = float(bins[hi_idx + 1])
-    return {"poc": round(poc, 4), "vah": round(vah, 4), "val": round(val, 4), "total_volume": round(total_vol, 1), "source": "DERIVED_FROM_MT5_BAR_VOLUME"}
+    return {
+        "poc": round(poc, 4),
+        "vah": round(vah, 4),
+        "val": round(val, 4),
+        "total_volume": round(total_vol, 1),
+        "source": "DERIVED_FROM_MT5_BAR_VOLUME",
+        "volume_unit": "MT5_TICK_VOLUME_PROXY_NOT_EXCHANGE_CONTRACTS"
+    }
 
 
 def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
@@ -533,16 +540,12 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
         spread_price = ask_price - bid_price if quote_valid else None
         spread_bps = spread_price / mid_price * 1e4 if quote_valid else None
         quote_source = "MT5_L1_TICK" if quote_valid else "UNAVAILABLE"
+        now_ts_quote = time.time()
         tick_epoch = float(quote.get("time_msc") or 0) / 1000 or None
         receipt_epoch = float(quote.get("receipt_time") or 0) or None
-        # Audit: broker server time_msc can be skewed slightly ahead of local system time.
-        # Use receipt_time (local host epoch) if available to prevent negative quote_age_s.
-        if receipt_epoch:
-            quote_age_s = round(max(0.0, now_ts - receipt_epoch), 2)
-        elif tick_epoch:
-            quote_age_s = round(max(0.0, now_ts - tick_epoch), 2)
-        else:
-            quote_age_s = None
+        local_receipt_age_s = round(now_ts_quote - receipt_epoch, 2) if receipt_epoch else None
+        broker_tick_age_s = round(now_ts_quote - tick_epoch, 2) if tick_epoch else None
+        quote_age_s = local_receipt_age_s if local_receipt_age_s is not None else broker_tick_age_s
         quote_freshness = ("FRESH" if quote_age_s is not None and 0 <= quote_age_s <= 30
                            else "STALE" if quote_age_s is not None else "TIMESTAMP_UNAVAILABLE")
 
@@ -783,6 +786,11 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                 "quote_source": quote_source,
                 "quote_age_s": quote_age_s,
                 "quote_freshness": quote_freshness,
+                "local_receipt_age_s": local_receipt_age_s,
+                "broker_tick_age_s": broker_tick_age_s,
+                "broker_tick_time_utc_msc": quote.get("time_msc"),
+                "broker_raw_server_time_msc": quote.get("raw_time_msc"),
+                "local_receipt_time_epoch": receipt_epoch,
                 "specs_source": specs_source,
                 "tick_size": exec_specs.get("tick_size"),
                 "contract_size": exec_specs.get("contract_size"),
@@ -808,7 +816,7 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                 "ema_200_slope_3h_pct": round(ema_200_slope, 4) if ema_200_slope is not None else None,
                 "trend_regime": trend_status,
                 "indicators_source": bars_source,
-                "vwap_weight_unit": "MT5_BROKER_BAR_VOLUME_OR_TICK_COUNT" if has_bar_volume else "UNAVAILABLE",
+                "vwap_weight_unit": "MT5_TICK_VOLUME_PROXY_NOT_EXCHANGE_CONTRACTS" if has_bar_volume else "UNAVAILABLE",
                 "bars_last_close_utc": bars_last_close_utc,
                 "indicator_age_min": indicator_age_min
             },

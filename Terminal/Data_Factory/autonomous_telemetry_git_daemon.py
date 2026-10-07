@@ -168,6 +168,8 @@ def main():
 
         # Step 1: Refresh telemetry snapshot with dynamic reload to eliminate stale RAM state
         try:
+            import Terminal.MT5_Execution_Bridge as bridge_mod
+            importlib.reload(bridge_mod)
             import Terminal.Data_Factory.generate_telemetry_snapshot as gen_mod
             importlib.reload(gen_mod)
             snapshot = gen_mod.generate_full_snapshot()
