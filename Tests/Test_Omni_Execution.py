@@ -17,11 +17,17 @@ def ipc(monkeypatch, codes, check=0):
     tick=NS(bid=100.0,ask=100.02,time_msc=int(time.time()*1000))
     results=[NS(retcode=c,comment="fake",order=123,deal=456,volume=.25,price=100.02) if c is not None else None for c in codes]
     def send(request): sends.append(copy.deepcopy(request));return results.pop(0)
-    fake=NS(terminal_info=lambda:NS(connected=True),account_info=lambda:NS(login=1),symbol_select=lambda *x:True,
+    fake=NS(terminal_info=lambda:NS(connected=True),
+            account_info=lambda:NS(login=1, trade_mode=0, company="Blueberry", currency="USD",
+                                   balance=5000.0, equity=5000.0, profit=0.0, margin=0.0, margin_free=5000.0, margin_level=0.0),
+            positions_get=lambda *x:(), orders_get=lambda *x:(),
+            order_calc_profit=lambda *x:-24.0, order_calc_margin=lambda *x:100.0,
+            symbol_select=lambda *x:True,
             symbol_info=lambda *x:info,symbol_info_tick=lambda *x:tick,order_check=lambda x:NS(retcode=check,comment="check"),
             order_send=send,last_error=lambda:(0,"fake"),ORDER_TYPE_BUY=0,ORDER_TYPE_SELL=1,
+            ORDER_TYPE_BUY_LIMIT=2,TRADE_ACTION_PENDING=5,
             TRADE_ACTION_DEAL=1,TRADE_ACTION_SLTP=6,ORDER_TIME_GTC=0,ORDER_FILLING_IOC=1,ORDER_FILLING_FOK=0,ORDER_FILLING_RETURN=2,
-            TRADE_RETCODE_DONE=10009,TRADE_RETCODE_DONE_PARTIAL=10010,TRADE_RETCODE_INVALID_FILL=10030)
+            TRADE_RETCODE_DONE=10009,TRADE_RETCODE_DONE_PARTIAL=10010,TRADE_RETCODE_INVALID_FILL=10030,TRADE_RETCODE_PLACED=10008)
     monkeypatch.setattr(module,"mt5",fake);monkeypatch.setattr(module,"MT5_AVAILABLE",True)
     bridge=module.MT5ExecutionBridge();return bridge,fake,sends
 

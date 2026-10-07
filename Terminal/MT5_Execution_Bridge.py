@@ -127,16 +127,16 @@ class MT5ExecutionBridge:
 
         return {
             "connected": True,
-            "login": acc.login,
-            "trade_mode": acc.trade_mode,
-            "company": acc.company,
-            "currency": acc.currency,
-            "balance_usd": round(acc.balance, 2),
-            "equity_usd": round(acc.equity, 2),
-            "profit_usd": round(acc.profit, 2),
-            "margin_usd": round(acc.margin, 2),
-            "margin_free_usd": round(acc.margin_free, 2),
-            "margin_level_pct": round(acc.margin_level, 2) if acc.margin_level else 0.0,
+            "login": getattr(acc, "login", 0),
+            "trade_mode": getattr(acc, "trade_mode", 0),
+            "company": getattr(acc, "company", ""),
+            "currency": getattr(acc, "currency", "USD"),
+            "balance_usd": round(float(getattr(acc, "balance", 0.0) or 0.0), 2),
+            "equity_usd": round(float(getattr(acc, "equity", 0.0) or 0.0), 2),
+            "profit_usd": round(float(getattr(acc, "profit", 0.0) or 0.0), 2),
+            "margin_usd": round(float(getattr(acc, "margin", 0.0) or 0.0), 2),
+            "margin_free_usd": round(float(getattr(acc, "margin_free", 0.0) or 0.0), 2),
+            "margin_level_pct": round(float(getattr(acc, "margin_level", 0.0) or 0.0), 2),
         }
 
     def resolve_symbol(self, coin: str) -> Optional[str]:

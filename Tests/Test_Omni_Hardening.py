@@ -484,7 +484,11 @@ def test_bridge_stages_persistent_gtc_limit(monkeypatch):
     tick = SimpleNamespace(bid=100.0, ask=100.02, time_msc=int(NOW * 1000), time=int(NOW))
     def send(request): sends.append(copy.deepcopy(request)); return SimpleNamespace(retcode=10009, comment="ok", order=321, deal=0, volume=.25, price=99.90)
     fake = SimpleNamespace(terminal_info=lambda: SimpleNamespace(connected=True),
-                           account_info=lambda: SimpleNamespace(login=1),
+                           account_info=lambda: SimpleNamespace(login=1, trade_mode=0, company="Blueberry", currency="USD",
+                                                                balance=5000.0, equity=5000.0, profit=0.0, margin=0.0,
+                                                                margin_free=5000.0, margin_level=0.0),
+                           positions_get=lambda *a: (), orders_get=lambda *a: (),
+                           order_calc_profit=lambda *a: -48.0, order_calc_margin=lambda *a: 100.0,
                            symbol_select=lambda *a: True, symbol_info=lambda *a: info,
                            symbol_info_tick=lambda *a: tick,
                            order_check=lambda r: SimpleNamespace(retcode=0, comment="ok"),

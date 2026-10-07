@@ -200,9 +200,19 @@ class FloorDefense:
     # Correlation cluster governor
     # ------------------------------------------------------------------
     def cluster_of(self, symbol: str) -> str:
+        s = str(symbol).strip().upper()
         for cluster, members in CLUSTER_MAP.items():
-            if symbol in members:
+            if s in members:
                 return cluster
+        base = s.split(".")[0]
+        for cluster, members in CLUSTER_MAP.items():
+            member_bases = [m.split(".")[0] for m in members]
+            if base in member_bases:
+                return cluster
+            for m in members:
+                coin = m.split(".")[0].replace("USD", "")
+                if base == coin or base.startswith(coin):
+                    return cluster
         return "other"
 
     def _cluster_check(self, proposed: str, open_syms: List[str]) -> Optional[str]:
