@@ -20,3 +20,7 @@ Data/Hyperdash_Historical/*.omni.json
 graphify-out/
 docs/telemetry/.whale_wall_state.json
 logs/
+.env
+*.env
+deploy/.env
+
