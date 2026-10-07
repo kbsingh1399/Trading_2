@@ -221,7 +221,10 @@ class CognitiveEngine:
                 "response_format": {"type": "json_object"}
             }
             
-            headers = {"Authorization": "Bearer "+os.environ.get("OMNI_LLM_API_KEY", "sk-gemini")}
+            # Forensics round 3: no placeholder credentials. If the key is
+            # unset, send no Authorization header (endpoint enforces access).
+            _llm_key = os.environ.get("OMNI_LLM_API_KEY")
+            headers = {"Authorization": "Bearer " + _llm_key} if _llm_key else {}
             resp = requests.post(self.endpoint_url, json=payload, headers=headers, timeout=max(0.1, min(8.0, budget_seconds)))
             if resp.status_code == 200:
                 data = resp.json()

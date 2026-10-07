@@ -94,8 +94,11 @@ class FeatureSealer:
 
 
 # --------------------------------------------------------------- attestation
-_NUMBER_RE = re.compile(r"[-+]?\d+(?:[,_\s]?\d{3})*(?:\.\d+)?")
+# Forensics round 3: exponent notation ("3e5", "1.2e-4") is now captured as
+# ONE claim instead of misparsing as its mantissa ("3" -> exempt integer).
+_NUMBER_RE = re.compile(r"[-+]?\d+(?:[,_\s]?\d{3})*(?:\.\d+)?(?:[eE][-+]?\d+)?")
 _SUFFIX_RE = re.compile(r"^\s*(k|m|bn|b)(?![a-z])", re.IGNORECASE)
+_EXP_RE = re.compile(r"[eE][-+]?\d+$")
 
 
 def extract_numeric_claims(text):
@@ -119,8 +122,11 @@ def extract_numeric_claims(text):
         if percent:
             value *= 0.01
             suffixed = True
+        # An exponentiated literal is a deliberate statistic citation, never
+        # exempt counting prose ("3e5 USD" must attest against 300000).
+        exponentiated = bool(_EXP_RE.search(raw))
         claims.append({"raw": raw, "value": value, "decimal": "." in raw,
-                       "suffixed": suffixed, "percent": percent,
+                       "suffixed": suffixed or exponentiated, "percent": percent,
                        "context": text[max(0, match.start() - 24):match.end() + 24].strip()})
     return claims
 

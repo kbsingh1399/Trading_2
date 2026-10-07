@@ -301,7 +301,13 @@ def get_live_analytics(coin: str, live_px: float) -> Dict[str, Any]:
 @app.get("/api/universe")
 def api_universe():
     assets = get_universe()
-    return {"count": len(assets), "assets": assets}
+    # Forensics round 3: on upstream failure get_universe() serves its cache
+    # indefinitely - expose the fetch age so stale data is detectable.
+    age = time.time() - LAST_UNIVERSE_TIME if LAST_UNIVERSE_TIME else None
+    return {"count": len(assets), "assets": assets,
+            "universe_fetched_at_epoch": LAST_UNIVERSE_TIME or None,
+            "universe_age_seconds": round(age, 1) if age is not None else None,
+            "universe_stale": bool(age is not None and age > 300.0)}
 
 @app.get("/api/live/{coin}")
 def api_live(coin: str):
@@ -363,11 +369,15 @@ def api_live(coin: str):
     long_pct = round(long_count / total_traders * 100.0, 1) if total_traders > 0 else 50.0
     short_pct = round(100.0 - long_pct, 1)
 
+    # Forensics round 3: the even 50/50 notional split below was a FABRICATED
+    # statistic (no venue reports a long/short notional split here; OI is
+    # two-sided by construction). Emit null + status instead of pseudo-data.
     cohort_summary = {
         "coin": coin,
         "notional_usd": oi_usd,
-        "long_notional_usd": oi_usd / 2.0,
-        "short_notional_usd": oi_usd / 2.0,
+        "long_notional_usd": None,
+        "short_notional_usd": None,
+        "notional_split_status": "NOT_MEASURED (OI is two-sided; no venue split reported)",
         "total_traders": total_traders,
         "long_traders": long_count,
         "short_traders": short_count,
@@ -395,6 +405,9 @@ def api_live(coin: str):
         "cohort_summary": cohort_summary,
         "recent_trades": formatted_trades,
         "current_candle": analytics.get("current_candle", {}),
+        # Forensics round 3: analytics (liq/stops/L3) are TTL-cached and may
+        # lag the live book - publish the cache age alongside the payload.
+        "analytics_cache_age_seconds": round(time.time() - analytics.get("timestamp", 0), 1) if analytics.get("timestamp") else None,
         "timestamp": int(time.time() * 1000),
         "utc_time": datetime.datetime.now(datetime.timezone.utc).strftime("%H:%M:%S UTC")
     }
