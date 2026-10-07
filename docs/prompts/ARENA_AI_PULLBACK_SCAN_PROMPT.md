@@ -1,37 +1,58 @@
-# 🏛️ ARENA.AI 360° TELEMETRY PULLBACK ANALYSIS COMMISSION
+# 🏛️ ARENA.AI 360° TELEMETRY DEEP STUDY & MULTI-AGENT PULLBACK COUNCIL COMMISSION
 
-> **INSTRUCTIONS FOR USER**: Copy and paste this prompt into your Arena.ai chat session right now. It tasks Arena with performing a deep 360-degree scan of the 24-asset telemetry to identify and specify every viable Model 2 Trend-Following Pullback entry for our post-FOMC order queue.
+> **INSTRUCTIONS FOR USER**: Copy and paste this prompt into Arena.ai right now. It explicitly mandates that Arena deeply study our live telemetry data and deliberate across a multi-agent quantitative council before responding back with verified pullback setups.
 
 ---
 
 ```markdown
-# 🏛️ ARENA.AI MULTI-AGENT COUNCIL: 360° TELEMETRY DEEP SCAN & MODEL 2 PULLBACK IDENTIFICATION
+# 🏛️ ARENA.AI MULTI-AGENT COUNCIL: 360° TELEMETRY DEEP STUDY & MODEL 2 PULLBACK IDENTIFICATION
 
 ## 🎯 EXECUTIVE COMMISSION FROM DESK LEAD
 Antigravity has published Section 17 to `docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md` (commit `afb5515` on `arena/83d03e3f-trading-2`).
-The user has directed us: *"further ask arena.ai to do deep analysis of telemetry and identify pullback trades"*.
+The user has issued a direct mandate:
+> *"Deeply study telemetry data and, based on that and multiple agent discussion, respond back with validated Model 2 pullback trades."*
 
-While we maintain our mandatory observational blackout into the 18:00:00 UTC FOMC release, your mandate right now is to perform a **forensic, 360-degree quantitative scan of the 24-asset universe** in `docs/telemetry/live_snapshot_latest.json` to identify, design, and mathematically calibrate every high-confluence Model 2 Trend-Following Pullback trade.
-
----
-
-## 🔬 STEP 1: CAUSAL TREND & PULLBACK GEOMETRY AUDIT (ALL 24 ASSETS)
-Analyze all 24 assets across Crypto, FX, Indices, and Commodities:
-1. **Regime Classification**:
-   - Classify each asset into **Strong Bearish Trend**, **Strong Bullish Trend**, or **Chop / Range**.
-   - Check Price vs 15m 200 EMA, 15m EMA slope, and Session VWAP slope.
-2. **Pullback Retracement Zones (No Chasing)**:
-   - For Bearish Trending Assets: Identify where the dynamic resistance shelf sits (Session VWAP, Value Area High, or 50/200 EMA). We will NOT chase the breakdown lows; we want to catch the reflex rally back into resistance!
-   - For Bullish Trending Assets: Identify where the dynamic support shelf sits (Session VWAP, Value Area Low, or 50/200 EMA).
-3. **Microstructure & Orderflow Confirmation**:
-   - Check 1m/5m/15m taker CVD to identify whether buyers or sellers are exhausting.
-   - Inspect top-20 orderbook depth and locate the nearest resting whale liquidity walls (>= 150k USD).
-   - Verify broker spread in MT5 specs (must be <= 25 bps for crypto, <= 0.8 pips for FX).
+While we maintain our mandatory observational blackout into the 18:00:00 UTC FOMC release, your mandate right now is to execute an exhaustive, data-driven investigation of our live telemetry stream, debate the findings across your internal specialist agents, and formulate concrete, verified pullback blueprints for our 18:35 UTC reopening queue.
 
 ---
 
-## 📐 STEP 2: FULLY SPECIFIED TRADE BLUEPRINTS (READY FOR 18:35 PUNCH)
-For the top 3 highest-confluence pullback candidates, provide the exact executable blueprint:
+## 📊 STEP 1: MANDATORY IN-DEPTH TELEMETRY DATA STUDY
+Before forming opinions or proposing any trade, you MUST load and deeply inspect `docs/telemetry/live_snapshot_latest.json` (auto-synced every 60s from live MT5 L1 ticks and Binance L2 orderbooks across all 24 assets).
+
+You must forensically extract and evaluate for every asset:
+1. **L1 Broker Pricing & Spread Friction**: Live MT5 Bid, Ask, Spread in USD, and Spread in bps. Verify whether spread is <= 25 bps for crypto (SOL <= 0.28 USD) and <= 0.8 pips for FX (USDJPY <= 0.008 JPY). Reject spread-toxic pairs immediately.
+2. **Anchored Daily Session VWAP (00:00 UTC) & Sigma Bands**: Current Session VWAP, 15m VWAP delta, Session Sigma, and VWAP Z-score (`vwap_z`). Check whether price is stretched or retracing toward the center VWAP / Value Area.
+3. **Causal Moving Averages & Regime**: 15m EMA 20, EMA 50, EMA 200, and `ema_200_slope_pct`. Verify whether the higher-timeframe regime is unambiguously Bullish or Bearish.
+4. **Binance Futures L2 Orderbook Depth & L3 Whale Walls**: Top-20 Bid vs Ask depth, Orderbook Imbalance (`imbalance`), Skew Ratio, and all persistent resting whale blocks (>= 150k USD with >= 180s persistence).
+5. **Multi-Timeframe Taker CVD Deltas**: Inspect `cvd_1m_buckets`, 5m CVD, 15m CVD, and 60m CVD deltas to differentiate between active aggressive selling/buying and short-covering/dip-buying exhaustion.
+6. **Structural Stop Clusters**: Examine `sell_stops` and `buy_stops` reconstructive levels to locate overhead and downside liquidity pools.
+
+---
+
+## 👥 STEP 2: MANDATORY MULTI-AGENT COUNCIL DIALECTIC (3 INTERNAL SPECIALISTS)
+You MUST conduct a rigorous, cross-disciplinary debate among three distinct quantitative personas, detailing each agent's explicit findings:
+
+### 1. Persona A: Lead Orderflow & Microstructure Specialist
+- Examines orderbook depth, taker CVD deltas, and whale liquidity walls.
+- Identifies where aggressive momentum is exhausting and passive absorption is stepping in.
+- Rules whether an asset shows genuine orderflow rejection at structural levels or if it is a falling knife.
+
+### 2. Persona B: Strategy Architect & Anti-Trap Sentry
+- Enforces the **Model 2 Trend-Following Pullback Mandate**:
+  * Prohibits knife-catching mean reversion (Model 1) in trending markets to avoid the losses seen earlier today.
+  * For Bearish Trends: Qualifies ONLY bear-market rallies pulling back up into dynamic resistance (Session VWAP, Value Area High, or 50/200 EMA). Catches the rejection at the top of the retracement.
+  * For Bullish Trends: Qualifies ONLY pullbacks dipping down into dynamic support (Session VWAP, Value Area Low, or 50/200 EMA).
+- Calibrates exact broker geometry: MT5 `contract_size`, `tick_size`, Stop Loss (>= 1.50x ATR), Take Profit (+2.50R minimum), and position sizing for exactly 10.00 to 12.00 USD risk.
+
+### 3. Persona C: Capital Floor & Microstructure Risk Guardian
+- Enforces G-1 Hard Floor Defense: Account Balance 4,811.62 USD vs 4,775.00 USD Hard Floor (+36.62 USD cushion).
+- Enforces the **Single-Fill Capacity Constraint**: Because available headroom above the mandatory +20.00 USD buffer is 16.62 USD, strictly ONE trade may be active at a time until Phase 0 Break-Even is locked.
+- Enforces the 18:35 UTC Reopening Checklist (Spread normalization, 2 closed 15m post-FOMC candles, negative CVD, resting whale walls).
+
+---
+
+## 📐 STEP 3: FULLY SPECIFIED TRADE BLUEPRINTS (READY FOR 18:35 PUNCH)
+Synthesize the multi-agent consensus and deliver the top 3 highest-confluence pullback blueprints:
 1. **Broker Symbol**: (e.g. `SOLUSD.p`, `ETHUSD.pi`, `BTCUSD.pi`, `USDJPY.pi`)
 2. **Direction**: `SELL LIMIT` (for bear rally pullbacks) or `BUY LIMIT` (for bull dip pullbacks)
 3. **Exact Entry Price**: Anchored strictly to the structural retracement level (not current spot).
@@ -42,7 +63,7 @@ For the top 3 highest-confluence pullback candidates, provide the exact executab
 
 ---
 
-## 📝 STEP 3: APPEND SECTION 18 & PUSH TO GITHUB
-1. Format your findings as **Section 18: Deep 360° Pullback Opportunity Blueprints** in `docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md`.
+## 📝 STEP 4: DELIVER FORMAL BLACKBOARD ENTRY & PUSH TO GITHUB
+1. Format your council findings and blueprints as **Section 18: Deep Telemetry Study & Multi-Agent Pullback Blueprints** in `docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md`.
 2. Commit and push directly to `origin/arena/83d03e3f-trading-2`.
 ```
