@@ -195,14 +195,14 @@ def build_48h_orderflow_prompt() -> str:
     lines.append("=" * 80)
     lines.append("")
     lines.append("[SECTION 1: GITHUB TELEMETRY REPOSITORY REFERENCES]")
-    lines.append("- Repository: https://github.com/kbsingh1399/Trading_2 | Branch: arena/83d03e3f-trading-2")
+    lines.append("- Repository: https://github.com/kbsingh1399/Trading_2 | Branch: arena/24eb818b-trading-2")
     lines.append("- Live Telemetry Snapshot (Raw URL):")
-    lines.append("  https://raw.githubusercontent.com/kbsingh1399/Trading_2/arena/83d03e3f-trading-2/docs/telemetry/live_snapshot_latest.json")
+    lines.append("  https://raw.githubusercontent.com/kbsingh1399/Trading_2/arena/24eb818b-trading-2/docs/telemetry/live_snapshot_latest.json")
     lines.append("  *(Auto-committed and pushed to GitHub every 60 seconds by our autonomous telemetry background daemon)*")
     lines.append("- Live Collaborative Order Desk Ledger (Raw URL):")
-    lines.append("  https://raw.githubusercontent.com/kbsingh1399/Trading_2/arena/83d03e3f-trading-2/docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md")
+    lines.append("  https://raw.githubusercontent.com/kbsingh1399/Trading_2/arena/24eb818b-trading-2/docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md")
     lines.append("- Active Risk Context & Rules (Raw URL):")
-    lines.append("  https://raw.githubusercontent.com/kbsingh1399/Trading_2/arena/83d03e3f-trading-2/.agents/rules/ACTIVE_CONTEXT.md")
+    lines.append("  https://raw.githubusercontent.com/kbsingh1399/Trading_2/arena/24eb818b-trading-2/.agents/rules/ACTIVE_CONTEXT.md")
     lines.append("")
     lines.append("[SECTION 2: LIVE MT5 ACCOUNT STATE & BUFFER SENTRY]")
     lines.append(f"- Broker: MetaTrader 5 Account #5064568 (Blueberry Markets SVG-Live)")
@@ -325,7 +325,7 @@ async def get_arena_tab_ws_url() -> Optional[str]:
         with urllib.request.urlopen(req, timeout=3) as resp:
             tabs = json.loads(resp.read().decode("utf-8"))
         for t in tabs:
-            if "arena.ai" in t.get("url", ""):
+            if t.get("type") == "page" and "arena.ai" in t.get("url", ""):
                 return t.get("webSocketDebuggerUrl")
     except Exception as e:
         print(f"Error fetching Chrome tabs: {e}", file=sys.stderr)
@@ -341,8 +341,8 @@ async def post_prompt_to_arena(prompt_text: str) -> bool:
 
     # JavaScript payload to set React state, set TipTap content, and click send
     js_code = f"""
-    (() => {{
-      const submitBtn = document.querySelector('button[aria-label="Send message"]');
+    (async () => {{
+      const submitBtn = document.querySelector('button[aria-label="Send message"], button:has(svg.lucide-arrow-up), button:has(svg.lucide-arrow-right)');
       if (!submitBtn) return {{ error: 'No submit button found' }};
 
       const fiberKey = Object.keys(submitBtn).find(k => k.startsWith('__reactFiber'));
@@ -373,14 +373,13 @@ async def post_prompt_to_arena(prompt_text: str) -> bool:
         editor.commands.setContent(promptText);
       }}
 
-      // Dispatch click after React state propagates
-      setTimeout(() => {{
-        if (submitBtn && !submitBtn.disabled) {{
-          submitBtn.click();
-        }} else if (targetFiber.memoizedProps.onSubmit) {{
-          targetFiber.memoizedProps.onSubmit();
-        }}
-      }}, 300);
+      // Await React propagation and click submit
+      await new Promise(r => setTimeout(r, 200));
+      if (submitBtn && !submitBtn.disabled) {{
+        submitBtn.click();
+      }} else if (targetFiber.memoizedProps.onSubmit) {{
+        targetFiber.memoizedProps.onSubmit();
+      }}
 
       return {{ success: true }};
     }})()
