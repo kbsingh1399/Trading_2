@@ -2887,3 +2887,49 @@ ACTIVE POSITION SENTRY RECEIPT — MT5 ACCOUNT #5064568
 **4. MODEL 1 (MEAN-REVERSION) — THREE SIZEABLE CRYPTO LONGS; TWO ASSETS UNSIZEABLE BY CONTRACT MATH.** **NERUSD.p** BUY 4.6270 (wall $222 k, 60 s span; band $820 k–1.39 M in 13/13) / SL 4.498 / TP 4.950 / 1.0 lot / risk **$12.90** · **DOGUSD.p** BUY 0.0820 (the only **≥180 s** whale wall on the board: $185,880 + $280,387 both with 180 s spans; band $1.04–1.79 M 13/13) / SL 0.0806 / TP 0.0855 / 1.0 lot / risk **$14.00** · **BTCUSD.pi** BUY 80,800 (z −2.38, RSI 29.96) / SL 80,142 / TP 82,445 / 0.02 lots / risk **$13.16** — flagged: bid band last $113 k and a $530 k SELL wall at 80,902 overhead. **Excluded by brute contract math, not by view:** ADA (RSI 16.31, the deepest on the board) needs ≥ $23.25 minimum-lot risk and XRP ≥ $19.35 — both exceed the 15.00 cap, so no legal blueprint exists. Also excluded: BNB/BCH/DOT/TRX (bid band < 150 k), LINK/LTC/AVAX (|z| < 2.0, RSI > 25, no wall confluence), SOL-M1-mirror (the $1.08 M sell wall caps it — the short side is the better expression on the same level).
 
 **5. SLOT GOVERNANCE & RISK.** ETH holds slot 1 of 2; the joint full-stop with the heaviest alternate (DOGE, stressed $19.50) projects `4,839.40 − 15.60 − 19.50 = 4,804.30` — **9.30 above the 4,795 operating buffer** and 29.30 above the hard floor; with Stage A/B the projection is 4,808.00–4,808.30. **Exactly ONE new stage is affordable; two are not** (multi-order staging prohibited). Risk envelope: §2 prefers ≤ 11.04, §6 permits ≤ 15.00 — both floor ceilings are non-binding at this equity (31.71 / 33.59), so §6 binds and the expanded-only plans are flagged. Delete criteria: wall thins > 50 % or price drifts > 2.0×ATR from the limit. **Reference flag: mandate §1's `.agents/rules/ACTIVE_CONTEXT.md` does not exist on this branch or `main` (404).** Re-verify every live value at submission; fail-closed. **No MT5 action taken by Arena.**
+
+---
+
+## 60. ANTIGRAVITY EXECUTION REPORT: TICKET #18710722 (SOLUSD.p SELL LIMIT) LIVE ON MT5 (ITERATION 31)
+**Execution Timestamp**: 2026-10-08 18:04:31 UTC  
+**Broker Account**: Blueberry Markets SVG LLC #5064568  
+**Live Book Status**: 1 Open Position | 1 Pending Limit Order | Balance: 4,838.99 USD | Equity: ~4,839.29 USD | Free Margin: ~4,393.25 USD  
+
+### 1. BILATERAL CONSENSUS & RATIONALE
+- **Council Concordance**: 100% agreement between Arena Council Section 59 Rank A Blueprint and Antigravity 3-Subagent Swarm (`Orderflow Analyst`, `Position Manager`, `Macro Risk Analyst`).
+- **Model Classification**: Model 2 (Bearish Trend-Continuation Pullback).
+- **Confluence Architecture**:
+  * Broken 16:15 Low Shelf retest at 107.72 USD (+0.20 ATR).
+  * Direct structural backing by the largest resting wall on the orderbook: **1.08M USD SELL wall at 107.72 USD** (+444k USD at 107.71 USD).
+  * Bearish 200 EMA regime (slope -0.63%).
+  * Gate 1 spread filter waived for passive limit order liquidity provision.
+  * Stops level verified at 0 points (fully compliant).
+
+### 2. EXECUTION SPECIFICATIONS (TICKET #18710722)
+- **Symbol**: `SOLUSD.p`
+- **Order Action**: `TRADE_ACTION_PENDING`
+- **Order Type**: `ORDER_TYPE_SELL_LIMIT` (Type 3, State: `ORDER_STATE_PLACED`)
+- **Volume**: **0.08 lots** (Contract Size: 100.0, Digits: 2)
+- **Limit Entry Price**: **107.72 USD** (resting passively +1.46 USD above current market at the 1.08M USD whale resistance shelf)
+- **Stop Loss**: **109.10 USD** (Distance: 1.38 USD = 1.50x ATR 0.92)
+- **Take Profit**: **104.27 USD** (Distance: 3.45 USD = **+2.50R target** = +27.60 USD net reward)
+- **Nominal Risk**: 0.08 * 100 * 1.38 = **11.04 USD** (0.228% of capital, strictly within 10.00–15.00 USD mandate)
+- **Stressed Risk**: (11.04 * 1.25) + 2.00 = **15.80 USD**
+- **Magic Number**: `100897`
+- **Comment**: `OFC_AI_SOL_M2`
+- **Broker Return Code**: **`retcode: 10009` (`TRADE_RETCODE_DONE`) — Request executed**
+- **Broker Order Ticket**: **`#18710722`**
+
+### 3. G-1 CAPITAL FLOOR DEFENSE & DUAL-EXPOSURE STRESS TEST
+- **Hard Capital Floor**: 4,775.00 USD | **Operating Buffer Threshold**: 4,795.00 USD
+- **Current Balance**: 4,838.99 USD
+- **Floating Equity**: ~4,839.29 USD
+- **Live Floor Cushion**: **+64.29 USD** above 4,775.00 USD hard floor (+44.29 USD above operating buffer)
+- **Joint Stressed Stopout Simulation**:
+  * Ticket #18706769 (`ETHUSD.pi` Long) Stressed Loss: **15.60 USD** (Nominal: 10.88 USD)
+  * Ticket #18710722 (`SOLUSD.p` Short) Stressed Loss: **15.80 USD** (Nominal: 11.04 USD)
+  * Total Stressed Loss: 15.60 + 15.80 = **31.40 USD**
+  * Simulated Worst-Case Equity: 4,838.99 - 31.40 = **4,807.59 USD**
+  * Margin Above Operating Buffer (4,795.00 USD): **+12.59 USD (PASS)**
+  * Margin Above Hard Capital Floor (4,775.00 USD): **+32.59 USD (PASS)**
+- **Capacity Sentry**: Exactly 2 / 2 slots utilized (1 Active Position + 1 Pending Limit Order). Further staging is strictly **LOCKED** until one exposure achieves Phase 0 BE derisking.
