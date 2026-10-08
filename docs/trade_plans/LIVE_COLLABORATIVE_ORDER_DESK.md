@@ -2,7 +2,7 @@
 **Joint Operational Ledger**: Antigravity (Local Execution Muscle) ⇄ Arena.ai (Cloud Quant Council)  
 **Target Repository**: `https://github.com/kbsingh1399/Trading_2` | Branch: `arena/83d03e3f-trading-2`
 **Execution Broker**: MetaTrader 5 | Account #5064568 (Blueberry Markets SVG-Live)  
-**Established**: 2026-10-07 13:15:00 UTC | **Last Updated**: 2026-10-08 19:16 UTC (Arena Section 64 — 19:13:28 UTC dual-model ruling: SOL #18710722 EMERGENCY SHELF CUT TRIGGERED (15m close 108.40-108.55 >= 108.35, close at market now); ETH #18706769 HOLD on SL 2,415.41 (PHASE_1 label premature, arm 2,455.10 -> SL 2,434.52); capacity HARD_ADMISSION_FREEZE 2/2 — zero punch until SOL closes; Model 1 empty; Model 2 top-2 LTC SELL 62.330 (A) / LNK SELL 12.456 (B) re-validated at 19:16, DJ30/BTC/BNB/BCH/DOT/AVAX standbys retired; telemetry `2f8030c` @19:15:06)
+**Established**: 2026-10-07 13:15:00 UTC | **Last Updated**: 2026-10-08 19:24 UTC (Arena Section 64 ADDENDUM 19:23:06 — SOL cut executed by desk, capacity OPEN 1/2, replacement stage A LTC SELL 62.450 / B LNK SELL 12.476 validated; Arena Section 64 — 19:13:28 UTC dual-model ruling: SOL #18710722 EMERGENCY SHELF CUT TRIGGERED (15m close 108.40-108.55 >= 108.35, close at market now); ETH #18706769 HOLD on SL 2,415.41 (PHASE_1 label premature, arm 2,455.10 -> SL 2,434.52); capacity HARD_ADMISSION_FREEZE 2/2 — zero punch until SOL closes; Model 1 empty; Model 2 top-2 LTC SELL 62.330 (A) / LNK SELL 12.456 (B) re-validated at 19:16, DJ30/BTC/BNB/BCH/DOT/AVAX standbys retired; telemetry `2f8030c` @19:15:06)
 
 ---
 
@@ -3076,3 +3076,13 @@ ACTIVE POSITION SENTRY RECEIPT — MT5 ACCOUNT #5064568
 2. Hold ETH on 2,415.41. Watch for 2,455.10 → SL 2,434.52.
 3. After the SOL close is confirmed (capacity 1/2), stage **A (LTC 62.330)** only. B stays as the alternate.
 4. Re-rule at the next briefing (20:13 UTC cadence) or sooner on the ETH arm or LTC fill.
+
+### 64-ADDENDUM (19:23:06 UTC): SOL cut executed · capacity OPEN 1/2 · 19:15 stages retired · replacement A/B staged for desk
+
+- **SOL #18710722 CLOSED by desk.** Balance 4,838.99 to 4,829.79 (realized -9.20 USD, -0.83R). Cut executed about four minutes after the 19:15 trigger (mark 108.91 at 19:19:06). Equity 4,845.22.
+- **Capacity OPEN 1/2, 0 pending.** One slot.
+- **Retired:** LTC 62.330 and LINK 12.456. Price reached the shelf (LTC mid 62.34, offset -0.02 ATR; LINK mid 12.451, offset +0.04 ATR), so the 0.10 ATR pullback minimum fails. No pending orders to delete.
+- **Stage A (primary, one order):** LTCUSD.pi SELL LIMIT **62.450** · SL **63.500** · TP **59.825** (2.50R) · 0.10 lot · risk **10.50 USD** · ask band 425,045 USD · expires 21:23:06 UTC · `validate_plan` PASS.
+- **Alternate B:** LNKUSD.p SELL LIMIT **12.476** · SL **12.746** · TP **11.801** (2.50R) · 0.40 lot · risk **10.80 USD** · ask band 220,866 USD · only if A is deleted.
+- **ETH #18706769:** mark 2,452.70, 2.40 USD below the Phase-1 arm 2,455.10. HOLD on SL 2,415.41. At >= 2,455.10 move SL to **2,434.52**. The `PHASE_1_PROFIT_LOCKED` label is still premature until the SL field moves.
+- **Worst case after stage A:** 4,831.42 - 10.50 = 4,820.92 USD (+25.92 over buffer). Files: `docs/trade_plans/ARENA_24_ASSET_DUAL_TRACK_RULING_20261008_1915UTC.md` §10, `docs/trade_plans/ARENA_LIMIT_STAGES_20261008_1923.json`.

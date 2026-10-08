@@ -188,3 +188,37 @@ Index and commodity CFDs have no whale or CVD feed in telemetry, so Track-1 reli
 - The repository 15m parquets are stale. The SOL close was therefore taken from the minute snapshots. The desk should confirm on the MT5 chart before acting.
 - The scanner `scripts/arena_dual_track_scan_v2.py` hard-codes equity at 4,813.99 and reads the stale parquets, so it was not used for this cycle. The scan used a temp script on telemetry only (no repository writes).
 - Telemetry R (`r_multiple_basis: live_sl_distance`) re-bases after each ratchet. Use the initial risk for R statements.
+
+---
+
+## 10. ADDENDUM 19:23:06 UTC (supersedes sections 0, 3.1, 6 where they conflict)
+
+**Telemetry 19:23:06 (origin `74c41c7`):** SOL #18710722 is CLOSED. Balance 4,838.99 to **4,829.79** (realized **-9.20 USD**, -0.83R against -11.04 at the stop). The desk executed the cut about four minutes after the 19:15 trigger; the SOL mark was 108.91 at 19:19:06. Equity 4,845.22 · margin 446.04 · free margin 4,399.18.
+
+**Capacity: OPEN 1/2, 0 pending. One slot is open.**
+
+**Retired 19:15 stages:**
+- **LTC 62.330:** price reached the shelf (mid 62.34, offset -0.02 ATR). Fails the 0.10-0.60 ATR micro-pullback minimum.
+- **LINK 12.456:** mid 12.451, offset +0.04 ATR. Fails the same minimum.
+- Pending orders are 0, so nothing needs deleting.
+
+**Replacement stages (validated at 19:23:06, `docs/trade_plans/ARENA_LIMIT_STAGES_20261008_1923.json`):**
+
+| | A. LTCUSD.pi SELL LIMIT (primary, stage this) | B. LNKUSD.p SELL LIMIT (alternate) |
+|---|---|---|
+| Entry | **62.450** (+0.24 ATR above mid 62.34; inside ask stack 62.41-62.46) | **12.476** (+0.22 ATR above mid 12.451; above ask stack 12.453-12.464) |
+| SL | **63.500** (2.25 ATR) | **12.746** (2.34 ATR) |
+| TP | **59.825** (2.50R) | **11.801** (2.50R) |
+| Volume | 0.10 lot | 0.40 lot |
+| Risk | **10.50 USD** | **10.80 USD** (both within the 11.04 preferred cap) |
+| Depth (ask band +/-0.5 ATR) | 425,045 USD (above 300k strict) | 220,866 USD (150k floor) |
+| Spread | 48 bps (passive, exempt) | 69 bps (passive, exempt) |
+| Expires | 2026-10-08 21:23:06 UTC | 2026-10-08 21:23:06 UTC |
+
+**Rules:** stage **A only**, one pending order. B is an alternate, used only if A is deleted under the resting-order rule (ask stack thins more than 50%, or price drifts more than 2.0 ATR from entry). Never hold A and B together.
+
+**Post-cut account:** balance 4,829.79 + ETH lock 1.63 = worst-case equity **4,831.42 USD** · headroom over the 4,795 buffer **+36.42 USD** · G-1 limit (36.42 / 1.40) = 26.0 USD. The 15.00 desk cap binds, not the buffer. Stage A adds 10.50 USD worst case, leaving 4,820.92 USD.
+
+**ETH #18706769:** mark 2,452.70, 2.40 USD below the Phase-1 arm at 2,455.10. Ruling unchanged: HOLD. At >= 2,455.10, move SL to **2,434.52**. The telemetry label `PHASE_1_PROFIT_LOCKED` remains premature until the SL field moves.
+
+**Model 1:** still zero candidates.
