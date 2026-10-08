@@ -1,0 +1,42 @@
+{
+ "plan_version": "omni.trade_plan.v1",
+ "plan_id": "arena-20261008-1401-sp500-m2-short",
+ "symbol": "SP500.p",
+ "direction": "SHORT",
+ "limit_price": 7783.40,
+ "sl": 7794.40,
+ "tp": 7755.90,
+ "volume": 0.10,
+ "atr": 7.2623,
+ "risk_usd": 11.00,
+ "ttl_bars": 8,
+ "comment": "ARENA: M2 Track1 pullback short at VWAP retest; 2x rejection wicks 7779.33/7783.38 on 2.4-2.9x volume; SL above VAH 7792.94",
+ "created_at_epoch": 1791468400,
+ "expires_at_epoch": 1791473800,
+ "blackout_windows": [],
+ "max_friction_r": 0.35,
+ "contract": {
+  "tick_size": 0.01,
+  "min_lot": 0.01,
+  "step_lot": 0.01,
+  "contract_size": 10.0
+ },
+ "evidence": {
+  "receipt_commit": "2a1c7ce",
+  "as_of_utc": "2026-10-08 14:00:38",
+  "session_vwap": 7777.4345,
+  "mid": 7779.2,
+  "dist_vwap_atr": 0.243,
+  "atr_14": 7.2623,
+  "ema_200_slope_3h_pct": -0.0307,
+  "spread_bps": 0.31,
+  "rejection_bars": [
+   {"bar": "13:30", "high": 7779.33, "upper_wick_pct": 55.5, "tick_vol": 31976, "vol_vs_20bar_avg_x": 2.89},
+   {"bar": "13:45", "high": 7783.38, "upper_wick_pct": 41.1, "tick_vol": 26520, "vol_vs_20bar_avg_x": 2.39}
+  ],
+  "profile": {"poc": 7771.9303, "vah": 7792.9352, "val": 7749.79},
+  "stress": {"stressed_usd": 15.75, "post_loss_equity": 4798.24, "floor": 4795.0},
+  "friction_r": 0.022
+ },
+ "desk_note": "CONDITIONAL — not staged. Regenerate created_at/expires at staging time (fail-closed on expiry). Requires live re-validation (quote, VWAP/ATR recompute, broker-native stop valuation, joint-fill admission). Prune if a 15m bar closes above 7784.20. CRO reservations: weak EMA slope (-0.03%), 13:45 delta positive (+4722), DJ30 risk-on divergence."
+}

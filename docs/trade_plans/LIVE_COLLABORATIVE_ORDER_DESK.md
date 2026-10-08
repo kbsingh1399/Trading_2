@@ -2481,3 +2481,28 @@ Indices/FX near VWAP in geometry (EURUSD −0.25, SP500 −0.26, GER40 +0.38, DJ
 **6. Post-briefing tape update (13:43:18 receipt, advisory):** extremes deepened while the missing gate worsened — SOL Z −2.07 → **−2.63**, RSI 21.0 → **19.4**, spread 24.21 bps, closed 5m CVD **−5.16 M**; BNB Z −1.52 → **−2.52**, RSI 29.7, spread 9.27, 5m CVD **−1.30 M**; BTC/ETH 5m CVD −16.97 M / −22.47 M. Z/RSI now qualify for SOL **and** BNB, but **no strict wall and no exhaustion** — falling-knife condition; the conjunction still fails.
 
 **7. Operational directives:** stage nothing; keep 100 % cash flat; preserve +38.99 cushion / +18.99 headroom. Priority alerts — **BCH**: closed 15M rejection ≥295.89 + ≥$150k ask wall ≥180 s + closed 5m CVD flip negative; **SOL / BNB**: −2σ re-test held on a closed 15M bar + closed 5m/15m CVD ≥0 + unbroken ≥$150k bid ≥3 samples; **BTC/ETH**: rally to within 0.75 ATR of VWAP with the full checklist (closed rejection OHLC, price-anchored wall, CVD flip, spread ≤25 bps, SL ≥1.5×ATR, TP 2.50R, floor check). Every level decays with each new receipt — re-derive ATR/VWAP/book at decision time. Non-crypto names remain ineligible until an instrument-appropriate flow feed or approved replacement policy exists. **No MT5 action taken by Arena.**
+
+---
+
+## Section 46: Arena Council — 24-Asset Dual-Track Ruling (briefing 2026-10-08 14:01:10 UTC) | 2026-10-08 14:07 UTC | SENDER: Arena.ai
+
+> **Evidence basis (read-only):** receipt `2a1c7ce` (`as_of_utc 2026-10-08 14:00:38 UTC`), committed 15m candle parquets (`Data/Candles/*` — last bar 13:30), and the briefing's Section-5 15m footprints (13:45 bar) where they are exact; 12 one-minute receipts 13:49–14:00 for depth-persistence sampling. No broker I/O; no order placed, changed or cancelled. Full ruling: `docs/trade_plans/ARENA_24_ASSET_DUAL_TRACK_RULING_20261008_1401UTC.md` · machine artifact: `artifacts/arena_dual_track_scan_20261008_1401.json` · reproducer: `scripts/arena_dual_track_scan.py`.
+
+**1. Venue-appropriate dual-track gating applied as mandated** (Track 1 CFD: spread / geometry / 15m tick-volume ≥0.8× 20-bar avg + ≥30 % rejection wick at shelf / SL ≥1.5×ATR, TP 2.5R, risk ≤11.04; Track 2 crypto: spread / geometry / **any** of top-20 depth ratio ≥1.25×, clustered ±0.50 ATR depth ≥$300k, or 1m/5m CVD exhaustion). CFD instruments are no longer failed for lacking Binance L2 — previous blanket L1-only rejections are superseded for these gates.
+
+**2. RULING — one Track 1 qualifier, zero Track 2 qualifiers.**
+
+```
+TRACK 1 QUALIFIER: SP500.p — Model 2 trend-pullback SHORT
+SELL LIMIT 7783.40 | SL 7794.40 (11.00 pts = 1.515×ATR) | TP 7755.90 (2.50R)
+0.10 lots | nominal risk $11.00 | stressed $15.75 | post-loss equity 4,798.24 (≥4,795)
+friction 0.31 bps = 0.022R | TTL 8 bars | plan template docs/trade_plans/ARENA_SP500_M2_SHORT_20261008_1401.json (passes validate_plan; not staged)
+```
+
+Microstructure: mid +0.243 ATR above Session VWAP 7777.4345 with negative 200-EMA slope (−0.0307 %); **two consecutive rejection bars** at the same shelf — 13:30 H 7779.33 (upper wick **55.5 %**, tick vol **2.89×** 20-bar avg) and 13:45 H **7783.38** (upper wick **41.1 %**, **2.39×**); SL above snapshot VAH 7792.94 (invalidation); TP between POC 7771.93 and VAL 7749.79. CRO reservations disclosed: weak trend slope, 13:45 delta +4722, DJ30 risk-on divergence, receipt's own `DENIED_UNVERIFIED_ORDERFLOW` flag. Alternate false-breakout entry: 7784.20 / SL 7795.20 / TP 7756.70 / 0.10 lots (risk $11.00).
+
+**3. BCHUSD.p NOT certified — Track 2 depth proxy refuted by persistence sampling.** BCH ticked every box point-in-time (spread 23.04 bps, ΔVWAP −0.09 ATR, slope −0.356 %, sizing 0.40 lots @ 1.67×ATR risk $10.40, ask/bid **1.273** ≥ 1.25). But across the last 12 one-minute receipts the ask/bid ratio swings **0.46 → 2.11** on a $65–98k book: 13:49 2.11 · 13:50 1.60 · 13:51 1.20 · 13:52 0.51 · 13:53 1.04 · 13:54 0.52 · 13:55 2.10 · 13:56 1.72 · 13:57 0.96 · 13:58 0.55 · 13:59 0.46 · 14:00 1.27. Seven of twelve samples were below the 1.25 threshold. Clustered ±0.50 ATR depth = $67.7k (≪$300k) and 1m/5m CVD shows buyers pressing (+$283k last 5 closed minutes) — no seller exhaustion. BCH stays a watch item; trigger = ask/bid ≥1.25 in ≥3 consecutive samples, book ≥$150k, price within 0.75 ATR of VWAP, closed 15m rejection ≥295.96.
+
+**4. Runners-up with exact triggers:** GER40 short (0.32 bps, +0.67 ATR, slope −0.113 % — but 13:45 upper wick 28.5 % < 30 %; trigger = ≥30 % upper-wick bar failing at/above 24968.1, then SL ≥25073, TP 2.5R) · EURUSD short (0.09 bps, +0.62 ATR, slope −0.024 % — 13:45 bar unverifiable at 2-dp print; trigger = closed bar ≥1.1197 with ≥30 % upper wick, SL 1.1217, TP 1.1147) · USWTI long (slope **+0.2727 %**, but +2.63 ATR above VWAP — trigger = pullback to ≤92.65 with ≥30 % lower wick, vol ≥0.8×) · SOL/BNB Model 1 (RSI 27.7 / 24.8 ✓ but Z −1.77 / −1.74 < −2.0; require Z ≤ −2.0 + stalled CVD + ≥$300k band ≥180 s) · GOLD (all gates met except G5 — min lot 0.01 with SL ≥1.5×ATR forces $12.27 > $11.04 cap; structurally untradeable at this budget).
+
+**5. Capacity & protocol:** exactly **1** risk slot; multi-order staging prohibited — at most the SP500.p blueprint (or its alternate), never both. Wire the standard ratchet (BE +0.80R, lock +1.50R, TP 2.50R), prune on a 15m close above 7784.20, drift >2.0×ATR, or spread >25 bps. Any live-check failure (broker-native valuation, joint-fill admission, blackout) ⇒ no stage command. **No MT5 action taken by Arena.**
