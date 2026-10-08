@@ -1,0 +1,113 @@
+{
+  "_note": "ARENA 19:58:17 council briefing (telemetry 19:58:06 UTC). Capacity OPEN 1/2, 0 pending, ETH only. ONE slot: stage A only. B and C are ranked alternates; multi-order staging prohibited. C is expanded-only (13.30 > 11.04). LTC 62.600 (19:43 stage A) RETIRED: mid 62.675 is through the level, fails the 0.10 ATR minimum; no bearish shelf above mid. LINK 12.530 retired: no shelf above mid after breakout above 12.48.",
+  "receipt": {
+    "telemetry_as_of_utc": "2026-10-08 19:58:06 UTC",
+    "validation_now_utc": "2026-10-08 19:58:06 UTC"
+  },
+  "ranking": [
+    "A DOGE 0.0840 (preferred cap 11.00)",
+    "B BTC 81,800 (preferred cap 10.50)",
+    "C NEAR 4.617 (expanded-only 13.30)"
+  ],
+  "plans": [
+    {
+      "plan_version": "omni.trade_plan.v1",
+      "plan_id": "arena-20261008-1958-doge-m2-short",
+      "model": "Model 2 trend-following",
+      "direction": "SHORT",
+      "symbol": "DOGUSD.p",
+      "asset": "DOGUSD",
+      "limit_price": 0.084,
+      "sl": 0.0851,
+      "tp": 0.0812,
+      "volume": 1.0,
+      "atr": 0.0007,
+      "risk_usd": 11.0,
+      "sl_atr": 1.571,
+      "stressed_usd": 15.84,
+      "tp_r": 2.545,
+      "ttl_bars": 8,
+      "created_at_epoch": 1791489486.668391,
+      "expires_at_epoch": 1791496680.0,
+      "blackout_windows": [],
+      "max_friction_r": 0.35,
+      "tp_r_recomputed": 2.545,
+      "validation": "PASS",
+      "contract": {
+        "tick_size": 0.0001,
+        "min_lot": 1.0,
+        "step_lot": 1.0,
+        "contract_size": 10000.0
+      },
+      "label": "DOGE SELL LIMIT A (preferred cap, one slot)",
+      "comment": "ARENA: 19:58 scan (telemetry 19:58:06 UTC). DOGE mid 0.0837, ATR 0.0007. SELL LIMIT 0.0840 = +0.43 ATR above mid on 50 EMA shelf (EMA50 0.0840; EMA20 0.0825 below). 200 EMA slope -0.87% BEARISH. Ask band 1.99M min / 12 receipts (2.67M now), book imbalance -0.20 (ask-heavy 1.50x). Spread 251 bps exempt (passive, bid 0.0827 below entry). SL 0.0851 = 1.57 ATR; TP 0.0812 = 2.55R.",
+      "validated_at_epoch": 1791489486.668391
+    },
+    {
+      "plan_version": "omni.trade_plan.v1",
+      "plan_id": "arena-20261008-1958-btc-m2-short",
+      "model": "Model 2 trend-following",
+      "direction": "SHORT",
+      "symbol": "BTCUSD.pi",
+      "asset": "BTCUSD",
+      "limit_price": 81800.0,
+      "sl": 82850.0,
+      "tp": 79175.0,
+      "volume": 0.01,
+      "atr": 378.8038,
+      "risk_usd": 10.5,
+      "sl_atr": 2.772,
+      "stressed_usd": 15.12,
+      "tp_r": 2.5,
+      "ttl_bars": 8,
+      "created_at_epoch": 1791489486.668391,
+      "expires_at_epoch": 1791496680.0,
+      "blackout_windows": [],
+      "max_friction_r": 0.35,
+      "tp_r_recomputed": 2.5,
+      "validation": "PASS",
+      "contract": {
+        "tick_size": 0.01,
+        "min_lot": 0.01,
+        "step_lot": 0.01,
+        "contract_size": 1.0
+      },
+      "label": "BTC SELL LIMIT B (preferred cap, alternate)",
+      "comment": "ARENA: 19:58 scan (telemetry 19:58:06 UTC). BTC mid 81736.5, ATR 378.80. SELL LIMIT 81800 = +0.17 ATR above mid, just above the 81771 swing high (4H 16:00, 1H 19:00, 15M 19:30 highs). Ask band 150k min / 12 receipts (440k now). 200 EMA slope -0.32% BEARISH; EMA50 81892 above. Spread 1.8 bps. SL 82850 = 2.77 ATR; TP 79175 = 2.50R. Alternate only.",
+      "validated_at_epoch": 1791489486.668391
+    },
+    {
+      "plan_version": "omni.trade_plan.v1",
+      "plan_id": "arena-20261008-1958-near-m2-short",
+      "model": "Model 2 trend-following",
+      "direction": "SHORT",
+      "symbol": "NERUSD.p",
+      "asset": "NEAR",
+      "limit_price": 4.617,
+      "sl": 4.75,
+      "tp": 4.284,
+      "volume": 1.0,
+      "atr": 0.0875,
+      "risk_usd": 13.3,
+      "sl_atr": 1.52,
+      "stressed_usd": 19.15,
+      "tp_r": 2.504,
+      "ttl_bars": 8,
+      "created_at_epoch": 1791489486.668391,
+      "expires_at_epoch": 1791496680.0,
+      "blackout_windows": [],
+      "max_friction_r": 0.35,
+      "tp_r_recomputed": 2.504,
+      "validation": "PASS",
+      "contract": {
+        "tick_size": 0.001,
+        "min_lot": 1.0,
+        "step_lot": 1.0,
+        "contract_size": 100.0
+      },
+      "label": "NEAR SELL LIMIT C (expanded-only 13.30)",
+      "comment": "ARENA: 19:58 scan (telemetry 19:58:06 UTC). NEAR mid 4.5775, ATR 0.0875. SELL LIMIT 4.617 = +0.45 ATR above mid on 20 EMA shelf (EMA20 4.6172; EMA50 4.846 above). 200 EMA slope -1.39% BEARISH. Ask band 199k min / 12 receipts (938k now). Spread 63 bps exempt (passive). SL 4.750 = 1.52 ATR; TP 4.284 = 2.50R. Expanded-only: needs 15.00 desk cap.",
+      "validated_at_epoch": 1791489486.668391
+    }
+  ]
+}

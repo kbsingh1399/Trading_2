@@ -3136,3 +3136,17 @@ ACTIVE POSITION SENTRY RECEIPT — MT5 ACCOUNT #5064568
 - **Worst case after stage A:** 4,838.49 - 10.50 = 4,827.99 USD (+32.99 over the 4,795.00 USD buffer). G-1 limit 31.07 USD; the 15.00 USD desk cap binds.
 - **Ruling file:** `docs/trade_plans/ARENA_24_ASSET_DUAL_TRACK_RULING_20261008_1943UTC.md`. **Stage file:** `docs/trade_plans/ARENA_LIMIT_STAGES_20261008_1943.json`.
 - **Gating:** stage A is dry-run only. No `--execute` and no MT5 order placed. Desk executes.
+
+### 64-ADDENDUM-3 (19:58:17 UTC briefing; telemetry 19:58:06 UTC): LTC 62.600 retired · DOGE 0.0840 staged as A · BTC 81,800 alternate B · NEAR 4.617 expanded-only C
+
+- **Telemetry 19:58:06 UTC:** balance 4,829.79 USD, equity 4,848.25 USD, margin 446.04 USD, free 4,402.21 USD. Capacity OPEN 1/2, 0 pending. Briefing §2 ("margin 0.00", "exactly ONE slot") and §4 (4,813.99 USD) are stale and not used.
+- **ETH #18706769 LONG 0.37 @ 2,411.00:** SL 2,434.52 (Phase-1 lock). Mark 2,460.90, floating +18.46 USD, telemetry R 2.12 on live SL basis. **HOLD.** The R basis differs from the 1.65R used earlier, so the desk should confirm before any Phase-2 move.
+- **LTC 62.600 (19:43 stage A): RETIRED.** Never placed. Mid 62.675 is above the level; the 0.10 ATR minimum fails. No bearish shelf above mid.
+- **Stage A (primary, one order):** DOGUSD.p SELL LIMIT **0.0840** · SL **0.0851** · TP **0.0812** (2.55R) · 1.0 lot · risk **11.00 USD** (inside 11.04 cap) · EMA50 shelf · ask band 1.99M minimum over 12 receipts · imbalance -0.20 · expires 21:58:00 UTC · `validate_plan` PASS.
+- **Alternate B:** BTCUSD.pi SELL LIMIT **81,800** · SL **82,850** · TP **79,175** (2.50R) · 0.01 lot · risk **10.50 USD** · swing-high shelf 81,771 · ask band 150k minimum over 12 receipts · only if A is deleted.
+- **Expanded-only C (not staged):** NERUSD.p SELL LIMIT **4.617** · SL **4.750** · TP **4.284** (2.50R) · 1.0 lot · risk **13.30 USD** · EMA20 shelf · needs the 15.00 desk cap.
+- **Rejected:** BNB (depth 80k minimum, fails), TRX (depth 101k, slope -0.06%), BCH (depth fails), LNK (breakout, no shelf), SOL (cut thesis), XRP and ADA (unsizeable), CFDs (SP500, NAS100, SILVER shelves untested; GOLD, DJ30, USWTI, FX outside the Track 1 geometry).
+- **Model 1:** zero candidates (no |Z| of 2.0 or more).
+- **Worst case after stage A:** 4,838.49 - 11.00 = 4,827.49 USD (+32.49 over the 4,795.00 USD buffer). G-1 limit 31.07 USD.
+- **Ruling file:** `docs/trade_plans/ARENA_24_ASSET_DUAL_TRACK_RULING_20261008_1958UTC.md`. **Stage file:** `docs/trade_plans/ARENA_LIMIT_STAGES_20261008_1958.json`.
+- **Gating:** dry-run only. No `--execute`, no MT5 order placed. Desk executes.
