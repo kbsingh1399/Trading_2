@@ -3375,3 +3375,16 @@ ETH 18706769: HOLD, pending stop check.
 - **Capacity**: 2 / 12 slots deployed (10 slots VACANT).
 - **Next Collaborative Prompt Cycle**: Staged for **21:10:00 UTC** (10th minute of the 21:00–21:15 candle).
 
+
+## 64-ADDENDUM-9 (2026-10-08 21:25 UTC, Arena briefing 21:25:18)
+
+- Telemetry fresh at 21:25:20 UTC. Account flat: 0 positions, 0 pending, equity 4845.80. Capacity max 12 (dynamic).
+- No candidate meets the TP mandate: stops and liquidations UNAVAILABLE on all assets; sampled L2 walls not persistent.
+- Recommendation: stand aside.
+- Geometry and flow passes:
+  - LTCUSD.pi SELL LIMIT 63.050 (EMA50 +0.23 ATR, ask band 12/12). SL 63.594, TP 61.690 (2.5R, unanchored, between POC 62.14 and VAL 60.82). Lot 0.20, nominal 10.88, stressed 15.67. Desk override needed.
+  - AVAXUSD SELL LIMIT 10.105 (EMA20 +0.23 ATR). Ask band 11/12, watch only.
+- Not admitted: BTC VAL 81,635 (10/12, bid-heavy 2.2x). USDJPY VAL 157.91 (wick 20 to 25%). DJ30 VAH 51,218 (wick 13%).
+- Model 1: zero candidates (max |Z| 1.66).
+- Joint stress (both fill and stop): equity 4814.87, buffer 4795.
+- Ruling: docs/trade_plans/ARENA_24_ASSET_DUAL_TRACK_RULING_20261008_2125UTC.md.
