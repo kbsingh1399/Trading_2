@@ -3204,3 +3204,19 @@ ACTIVE POSITION SENTRY RECEIPT — MT5 ACCOUNT #5064568
 - NERUSD 18713247: KEEP (drift +0.36 ATR at briefing mid; ask band 11/12, latest 1.03M). Sizing flag open.
 - Model 1: zero candidates (max |Z| 1.74).
 - Ruling: docs/trade_plans/ARENA_24_ASSET_DUAL_TRACK_RULING_20261008_2055UTC.md.
+
+## 64-ADDENDUM-8 (2026-10-08 21:11 UTC, Arena briefing 21:11:19)
+
+- Telemetry on origin still stalled at 20:41:20 UTC (about 30 min stale). Restart the sync.
+- Briefing account: 0 open positions, 1 pending (NERUSD), balance 4845.80. ETH likely closed (+16.01 vs 4829.79). Verify in MT5.
+- Capacity: briefing states "no artificial 2-order cap". Telemetry says max 2. Ruling applies max 2: one slot free.
+- TP mandate: no verified liquidation, stop, or whale anchor for any asset (all UNAVAILABLE). No candidate meets the new TP rule.
+- Blocked top 2 stages (ready if desk accepts a TP override):
+  - #1 LNKUSD.p SELL LIMIT 12.651, SL 12.798, TP 12.284 (2.5R, beyond VAL about 12.38, ~1.8R), lot 0.70, nominal 10.28, stressed 14.80.
+  - #2 LTCUSD.pi SELL LIMIT 63.100 (standby A), SL 64.150, TP 60.475 (2.5R, beyond VAL about 61.78, ~1.3R), lot 0.10, risk 10.50, stressed 15.12.
+- NERUSD 18713247: KEEP (drift 1.37 ATR at briefing price 4.519). Sizing flag open.
+- Watch: BTC 81,833 SELL LIMIT (+0.56 ATR, ask band 11/12). Not admitted.
+- Not admitted: DJ30 VAH 51,217 (13% wick). SP500 and USDJPY dropped (out of band).
+- Model 1: zero candidates.
+- Joint stress (NERUSD, LTC, LINK all stop): equity 4797.59, buffer 4795 (headroom 2.59).
+- Ruling: docs/trade_plans/ARENA_24_ASSET_DUAL_TRACK_RULING_20261008_2111UTC.md.
