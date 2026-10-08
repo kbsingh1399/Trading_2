@@ -187,15 +187,14 @@ def test_no_fabricated_account_constants_in_output(offline):
 
 
 def test_capacity_freezes_at_two_slots(offline):
-    """H6: capacity must use MAX_CONCURRENT_SLOTS == 2 everywhere."""
+    """Dynamic capacity: capacity must use MAX_CONCURRENT_SLOTS == 12 with DYNAMIC_FREE_MARGIN_CAPACITY."""
     payload, _ = _generate(offline, FakeConnectedBridge())
     cap = payload["capacity"]
-    assert cap["max_concurrent"] == 2
+    assert cap["max_concurrent"] == 12
+    assert cap["policy"] == "DYNAMIC_FREE_MARGIN_CAPACITY"
     assert cap["filled"] == 2 and cap["pending"] == 0
-    assert "HARD_ADMISSION_FREEZE" in cap["status"]
-    assert "2/2" in cap["status"]
-    gating = payload["assets_matrix_24"]["BTC"]["pioneer_microstructure_eval"]["portfolio_gating"]
-    assert "FROZEN" in gating
+    assert "2/12" in cap["status"]
+    assert "OPEN" in cap["status"]
 
 
 def test_ema200_null_below_min_bars(offline):

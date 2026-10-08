@@ -314,9 +314,11 @@ def live_precheck(client: Any, plan: Dict, *, now: float) -> Dict:
         return {"ok": False, "reason": "risk_inventory_unavailable", "checks": checks}
     positions = state["positions"]
     pending = state["pending_orders"]
-    if len(positions) >= MAX_FILLED_POSITIONS:
+    max_filled = int(state.get("max_filled_positions", MAX_FILLED_POSITIONS))
+    max_pending = int(state.get("max_pending_orders", MAX_PENDING_TOTAL))
+    if len(positions) >= max_filled:
         return {"ok": False, "reason": "max_filled_positions", "checks": checks}
-    if len(positions) + len(pending) >= MAX_FILLED_POSITIONS:
+    if len(positions) + len(pending) >= max_pending:
         return {"ok": False, "reason": "pending_limit_ceiling", "checks": checks}
     plan_risk = _num(plan.get("computed_risk_usd", plan.get("risk_usd")))
     try:

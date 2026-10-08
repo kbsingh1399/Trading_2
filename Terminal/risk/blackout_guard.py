@@ -121,6 +121,15 @@ class BlackoutGuard:
                 return True, f"invalid_macro_event:{exc}"
         return False, ""
 
+    @staticmethod
+    def is_forex_rollover(dt: Optional[datetime] = None) -> bool:
+        """Check if time is inside the interbank rollover spread quarantine (21:30–22:30 UTC)."""
+        now = dt or datetime.now(timezone.utc)
+        if now.tzinfo is None:
+            now = now.replace(tzinfo=timezone.utc)
+        t = now.time()
+        return (t.hour == 21 and t.minute >= 30) or (t.hour == 22 and t.minute < 30)
+
     # ------------------------------------------------------------------
     # Patching helpers
     # ------------------------------------------------------------------
@@ -171,6 +180,13 @@ class BlackoutGuard:
                     logger.error("ORDER BLOCKED — %s", reason)
                     return SimpleNamespace(retcode=10036, comment=f"ORDER BLOCKED — {reason}",
                                            order=0, deal=0, price=0.0)
+                sym = str(request.get("symbol", "")).upper()
+                if any(fx in sym for fx in ("EURUSD", "GBPUSD", "USDJPY")) and guard.is_forex_rollover():
+                    if not cls._is_verified_close(request, mt5_raw):
+                        reason = f"forex_interbank_rollover_spread_quarantine:21:30_22:30_UTC:{sym}"
+                        logger.error("ORDER BLOCKED — %s", reason)
+                        return SimpleNamespace(retcode=10036, comment=f"ORDER BLOCKED — {reason}",
+                                               order=0, deal=0, price=0.0)
             return current(request)
 
         guarded_order_send._omni_blackout_guard = True
@@ -190,6 +206,11 @@ _guard = BlackoutGuard.get()
 def is_in_blackout(dt: Optional[datetime] = None) -> tuple[bool, str]:
     """Check if the current (or given) UTC time is inside a macro blackout."""
     return _guard.is_blocked(dt)
+
+
+def is_forex_rollover(dt: Optional[datetime] = None) -> bool:
+    """Check if current (or given) UTC time is inside the Forex interbank rollover quarantine (21:30–22:30 UTC)."""
+    return BlackoutGuard.is_forex_rollover(dt)
 
 
 def safe_order_send(request: dict, *, raise_on_block: bool = True):

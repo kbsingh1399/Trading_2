@@ -19,6 +19,17 @@ STOP_STRESS_MULTIPLIER = 1.25
 MIN_EXECUTION_COST_USD = 2.0
 
 
+def is_forex_rollover_window(dt: Any = None) -> bool:
+    """Check if time is inside the interbank rollover spread quarantine (21:30–22:30 UTC)."""
+    from datetime import datetime, timezone
+    now = dt or datetime.now(timezone.utc)
+    if hasattr(now, "tzinfo") and now.tzinfo is not None:
+        t = now.time()
+    else:
+        t = datetime.fromtimestamp(now, tz=timezone.utc).time() if isinstance(now, (int, float)) else now.time()
+    return (t.hour == 21 and t.minute >= 30) or (t.hour == 22 and t.minute < 30)
+
+
 def _positive(value: Any, name: str) -> float:
     try:
         n = float(value)
@@ -117,6 +128,8 @@ def assert_joint_fill_safe(bridge, symbol: str, direction: str, volume: float,
     own_cluster = clusters.cluster_of(symbol)
     if own_cluster == "other":
         raise ValueError(f"unknown_correlation_cluster:{symbol}")
+    if own_cluster == "forex" and is_forex_rollover_window():
+        raise ValueError(f"forex_interbank_rollover_spread_quarantine:{symbol}:21:30_22:30_UTC")
     for row in [*positions, *pending]:
         if clusters.cluster_of(str(row["symbol"])) == own_cluster:
             row_dir = str(row.get("direction") or "").upper()

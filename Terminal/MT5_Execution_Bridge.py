@@ -638,10 +638,10 @@ class MT5ExecutionBridge:
         if price <= 0.0:
             return {"success": False, "error": "Limit price must be positive"}
         if passive_only:
-            if is_long and price >= float(tick.ask):
-                return {"success": False, "error": f"Buy limit {price} crosses ask {tick.ask} (not passive)"}
-            if not is_long and price <= float(tick.bid):
-                return {"success": False, "error": f"Sell limit {price} crosses bid {tick.bid} (not passive)"}
+            if is_long and price >= float(tick.bid):
+                return {"success": False, "error": f"Buy limit {price} crosses ask/bid (must rest strictly below current bid {tick.bid})"}
+            if not is_long and price <= float(tick.ask):
+                return {"success": False, "error": f"Sell limit {price} crosses bid/ask (must rest strictly above current ask {tick.ask})"}
         tick_size = float(getattr(info, "trade_tick_size", point) or point)
         if abs(price/tick_size-round(price/tick_size)) > 1e-6:
             return {"success": False, "error": "limit_price_not_on_tick_grid"}

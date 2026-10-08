@@ -50924,3 +50924,58 @@ Also add a mandate that you should refer to previosu conversation then only you 
    - 100% Cash Flat status maintained into the 21:45–22:00 candle.
 4. Next Collaborative Prompt Cycle:
    - Staged for **21:55:00 UTC** (10th minute of the 21:45–22:00 candle) via cron `task-26141`.
+
+---
+
+### [21:50 UTC OPERATOR MANDATES: TWICE-HOURLY CRON & ARENA SESSION CHAT STUDY MANDATE] | 2026-10-08 21:50:00 UTC
+**Operator Directives**:
+1. "kindly change cron job time twice in hour rather than 4 times."
+2. "and in areana.ai promt you can also ask him to read entire sessin chat first along with other files."
+
+**Implementation & Operational Adjustments**:
+1. **Twice-Hourly Cron Scheduled (`25,55 * * * *`)**:
+   - Terminated previous 4x/hr cron `task-26141` (`10,25,40,55 * * * *`).
+   - Launched new twice-hourly cron `task-26509` with expression `25,55 * * * *` (IsDaemon=true).
+   - Execution rhythm aligned directly with the major 30-minute and 1-hour candle closes:
+     * :25 UTC trigger -> :29 UTC Arena check -> :30 UTC candle close execution
+     * :55 UTC trigger -> :59 UTC Arena check -> :00 UTC candle close execution
+   - Immediate next trigger: **21:55:00 UTC** (in ~4 minutes).
+2. **Arena.ai Prompt Ingestion of Full Session Chat History**:
+   - Upgraded `Terminal/arena_bridge.py`:
+     * Injected prominent "STOP: MANDATORY OPERATOR DIRECTIVE FOR ARENA.AI" at the top of Section 1 with raw GitHub URL to `.agents/memory/session_chat_history.md`.
+     * Added Rule 0 to Section 2: "MANDATORY COMPLETE SESSION CHAT HISTORY REVIEW: Before analyzing setups or proposing orders, you MUST review the entire session history. Both Antigravity and Arena must be on the exact same page regarding historical rulings, operator feedback, avoided traps, and active account trajectory."
+3. **Repository State & Floor Defense**:
+   - Balance: **4,845.80 USD** | Equity: **4,845.80 USD** | Free Margin: **4,845.80 USD** (100% Cash Reserves).
+   - G-1 Hard Floor Cushion: **+70.80 USD** above 4,775.00 USD hard floor (**+50.80 USD** above operating buffer).
+   - Capacity: **0 / 12 slots deployed (12 slots VACANT)**.
+
+
+---
+
+### [21:55 UTC DUAL-ENGINE STRATEGY MANDATE & IN-RANGE TREND FOLLOWING DEBATE] | 2026-10-08 21:55:00 UTC
+**Operator Directive**:
+"if z is less than range...then we should also opt for trend following strategies based on orderflow l2 l3 liquidation stops etc...discuss about that as well...I had alrady mentioned that we should opt for either trend follow or mean reversion...debate on btoh...make this as a madaate as well. and run wake up chain again as of now"
+
+**System Governance Codification**:
+1. **Arena.ai Bridge** (`Terminal/arena_bridge.py`):
+   - Added Mandate 7 to OPERATOR MANDATES: When |Z| < 2.0 SD (in range), actively opt for Model 2 Trend-Following based on orderflow, L2/L3 whales, liquidations, and stops. Dialectic debate between Model 1 (Mean Reversion) and Model 2 (Trend Following) is strictly mandatory on every cycle.
+   - Enhanced Section 4 with explicit instructions requiring dialectic debate on both models across all 24 assets.
+2. **Operational Context** (`.agents/rules/ACTIVE_CONTEXT.md` Section 3):
+   - Formally enshrined Mandatory Dual-Engine Governance: When |Z| is inside range (|Z| < 2.0 SD, e.g. 0.2 to 1.7 SD), the desk and Arena are strictly forbidden from disqualifying assets or defaulting to Stand Aside simply because price is not at a Mean-Reversion extreme.
+3. **Master Execution Protocols** (`.agents/AGENTS.md` Directive 5):
+   - Added subagent directive requiring explicit empirical evaluation and debate of both models on every cycle.
+
+**Collaborative Wake-Up Chain Execution (21:55 / 22:00 UTC Cycle)**:
+1. **Arena.ai Advisory Ruling**:
+   - Evaluated both Model 1 and Model 2 across BTC, AVAX, NEAR, DJ30.
+   - Confirmed all four in-band levels are in-range (|Z| < 2.0 SD), directly addressing the operator directive.
+   - Identified BTC top-20 depth ask-heavy (2.6x), but 1m taker CVD surged +1.30M USD buy; AVAX bid-heavy with MT5 broker conflict; NEAR has taker buying into short; DJ30 lacks CFD L2 depth/wick confirmation.
+   - Highlighted operator trade-off: 21:36 message said 'keep punching limit orders', but 21:23 mandate requires TP anchoring to liquidation or stop pools (which are unavailable in telemetry). Arena followed the more specific anchor rule.
+2. **Subagent Swarm Independent Empirical Research**:
+   - `Orderflow Analyst`: Verified that on Blueberry Markets MT5, only `BTCUSD.pi` has institutional-grade spread (2.33 bps). All altcoins suffer from severe spread friction (SOL 33.4 bps, NEAR 77 bps, LTC 47.5 bps). Non-crypto CFDs (USWTI, Gold, Indices) are paused for daily broker rollover maintenance (tick ages > 3,300s). Forex majors are in interbank rollover spread expansion (21:30–22:30 UTC).
+   - `Position Manager`: Verified account holds 4,845.80 USD Equity, 4,845.80 USD Free Margin, 0 positions, 0 orders (100% cash flat). Floor cushion: +70.80 USD above hard floor (+50.80 USD above operating buffer). Stressed post-loss models confirm up to 3-4 concurrent filled positions safe. Dynamic capacity: 12 slots vacant.
+   - `Macro Risk Analyst`: Clear runway (US CPI on Oct 14 in 134.6h). Forex rollover quarantine active.
+   - `Chain Verification Auditor`: Full test suite 398 passed, 1 skipped, 0 failed (100% green). All 6 operator mandates verified.
+3. **Unanimous Council Consensus**:
+   - STAND ASIDE / CASH FLAT into the 22:00 UTC candle close to defend banked profit (+33.23 USD net cash) and +70.80 USD floor cushion.
+   - Next collaborative cycle scheduled for **22:25:00 UTC** per twice-hourly cron (`task-26509`).

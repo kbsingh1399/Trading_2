@@ -24,28 +24,30 @@ _CACHE_TTL_SEC = 300   # 5 minutes cache
 
 
 def _binance_symbol(mt5_symbol: str) -> Optional[str]:
-    """Convert MT5 broker symbol to Binance futures symbol, e.g. BTCUSD.pi → BTCUSDT."""
+    """Convert MT5 broker symbol to Binance futures symbol, e.g. BTCUSD.pi -> BTCUSDT, NERUSD.p -> NEARUSDT."""
+    try:
+        from Terminal.Asset_Universe import canonical_asset
+        asset = canonical_asset(mt5_symbol)
+        CRYPTO_ASSETS = {"BTC", "ETH", "SOL", "BNB", "XRP", "ADA", "DOGE", "TRX", "DOT", "LINK", "BCH", "LTC", "AVAX", "NEAR"}
+        if asset in CRYPTO_ASSETS:
+            return f"{asset}USDT"
+    except Exception:
+        pass
     _MAP = {
-        "BTCUSD.pi":  "BTCUSDT",
-        "ETHUSD.pi":  "ETHUSDT",
-        "SOLUSD.p":   "SOLUSDT",
-        "BNBUSD.p":   "BNBUSDT",
-        "BNBUSD.pi":  "BNBUSDT",
-        "XRPUSD.pi":  "XRPUSDT",
-        "ADAUSD.p":   "ADAUSDT",
-        "DOGEUSD.p":  "DOGEUSDT",
-        "DOGUSD.p":   "DOGEUSDT",
-        "LINKUSD.p":  "LINKUSDT",
-        "LNKUSD.p":  "LINKUSDT",
-        "LTCUSD.p":   "LTCUSDT",
-        "LTCUSD.pi":  "LTCUSDT",
-        "BCHUSD.p":   "BCHUSDT",
-        "AVAXUSD.p":  "AVAXUSDT",
-        "AVXUSD.p":  "AVAXUSDT",
-        "TRXUSD.p":   "TRXUSDT",
-        "DOTUSD.p":   "DOTUSDT",
-        "DOTUSD.pi":  "DOTUSDT",
-        "NERUSD.p":  "NEARUSDT",
+        "BTCUSD.pi": "BTCUSDT", "BTCUSD.p": "BTCUSDT", "BTCUSDT": "BTCUSDT", "BTC": "BTCUSDT",
+        "ETHUSD.pi": "ETHUSDT", "ETHUSD.p": "ETHUSDT", "ETHUSDT": "ETHUSDT", "ETH": "ETHUSDT",
+        "SOLUSD.p": "SOLUSDT", "SOLUSD.pi": "SOLUSDT", "SOLUSDT": "SOLUSDT", "SOL": "SOLUSDT",
+        "BNBUSD.p": "BNBUSDT", "BNBUSD.pi": "BNBUSDT", "BNBUSDT": "BNBUSDT", "BNB": "BNBUSDT",
+        "XRPUSD.pi": "XRPUSDT", "XRPUSD.p": "XRPUSDT", "XRPUSDT": "XRPUSDT", "XRP": "XRPUSDT",
+        "ADAUSD.p": "ADAUSDT", "ADAUSD.pi": "ADAUSDT", "ADAUSDT": "ADAUSDT", "ADA": "ADAUSDT",
+        "DOGEUSD.p": "DOGEUSDT", "DOGEUSD.pi": "DOGEUSDT", "DOGUSD.p": "DOGEUSDT", "DOGUSD.pi": "DOGEUSDT", "DOGE": "DOGEUSDT",
+        "LINKUSD.p": "LINKUSDT", "LINKUSD.pi": "LINKUSDT", "LNKUSD.p": "LINKUSDT", "LNKUSD.pi": "LINKUSDT", "LINK": "LINKUSDT",
+        "LTCUSD.p": "LTCUSDT", "LTCUSD.pi": "LTCUSDT", "LTCUSDT": "LTCUSDT", "LTC": "LTCUSDT",
+        "BCHUSD.p": "BCHUSDT", "BCHUSD.pi": "BCHUSDT", "BCHUSDT": "BCHUSDT", "BCH": "BCHUSDT",
+        "AVAXUSD.p": "AVAXUSDT", "AVAXUSD.pi": "AVAXUSDT", "AVXUSD.p": "AVAXUSDT", "AVXUSD.pi": "AVAXUSDT", "AVAX": "AVAXUSDT",
+        "TRXUSD.p": "TRXUSDT", "TRXUSD.pi": "TRXUSDT", "TRXUSDT": "TRXUSDT", "TRX": "TRXUSDT",
+        "DOTUSD.p": "DOTUSDT", "DOTUSD.pi": "DOTUSDT", "DOTUSDT": "DOTUSDT", "DOT": "DOTUSDT",
+        "NEARUSD.p": "NEARUSDT", "NEARUSD.pi": "NEARUSDT", "NERUSD.p": "NEARUSDT", "NERUSD.pi": "NEARUSDT", "NEAR": "NEARUSDT",
     }
     return _MAP.get(mt5_symbol)
 
