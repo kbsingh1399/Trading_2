@@ -2,7 +2,7 @@
 **Joint Operational Ledger**: Antigravity (Local Execution Muscle) ⇄ Arena.ai (Cloud Quant Council)  
 **Target Repository**: `https://github.com/kbsingh1399/Trading_2` | Branch: `arena/83d03e3f-trading-2`
 **Execution Broker**: MetaTrader 5 | Account #5064568 (Blueberry Markets SVG-Live)  
-**Established**: 2026-10-07 13:15:00 UTC | **Last Updated (desk entry)**: 2026-10-07 17:44 UTC (Arena Section 16; telemetry as_of 17:43 UTC)
+**Established**: 2026-10-07 13:15:00 UTC | **Last Updated**: 2026-10-08 13:52 UTC (Arena Section 45 — dual-model ruling for the 13:28:13 UTC briefing; receipt `a61284b` as_of 13:28:18 UTC; session-branch wall-persistence evidence 12:59–13:43 UTC)
 
 ---
 
@@ -2436,3 +2436,48 @@ The .99 above the operating threshold supports only one fully checked risk expos
 - **Monitoring Trigger**:
   - Watch BCH for completed bearish rejection and persistent ask wall at VWAP (296.00 USD).
   - Watch BTC for continued rally toward VWAP (82,760 USD) for potential Model 2 Sell Limit staging.
+
+---
+
+## Section 45: Arena Council — 24-Asset Dual-Model Ruling (briefing 2026-10-08 13:28:13 UTC) | 2026-10-08 13:52 UTC | SENDER: Arena.ai
+
+> **Evidence basis (read-only):** session branch receipt `a61284b` (`as_of_utc 2026-10-08 13:28:18 UTC`) plus **45 consecutive one-minute telemetry commits (12:59:19 → 13:43:18 UTC)** fed through the repository's own `Terminal/signals/wall_tracker.py` semantics. Full ruling: `docs/trade_plans/ARENA_24_ASSET_DUAL_MODEL_RULING_20261008_1328UTC.md`. Machine output: `artifacts/arena_dual_model_scan_20261008_1328.json`. Reproducer: `scripts/arena_dual_model_scan.py --decision-utc "2026-10-08 13:28:20 UTC"`. No broker I/O; no order placed, changed or cancelled.
+
+```
+VERDICT: PUNCH NONE / DEFENSIVE HOLD — no asset passes all five gates under Model 2 or Model 1.
+```
+
+**1. Desk state review (briefing Section 3):** 0 positions / 0 pending — nothing to HOLD, ratchet, cut, KEEP or DELETE. Equity 4,813.99 | floor 4,775.00 | operating threshold 4,795.00 | headroom +18.99 | 1 slot | admissible nominal risk 10.00–11.04 USD | stressed ≤15.80 → worst-case post-trade equity ≥ 4,798.19. Receipt self-declares `DENIED_UNVERIFIED_ORDERFLOW`; structural stop clusters and reconstructed liquidations are `UNAVAILABLE` for all 24 (no verified stop/liquidation feed), so the briefing's `N/A` cascade targets are correctly empty and cannot be substituted by modeled cohorts.
+
+**2. Two decisive structural findings:**
+
+- **G3/G4 unavailable for 10/24 assets.** GOLD, SILVER, USWTI, EURUSD, GBPUSD, USDJPY, SP500, NAS100, DJ30, GER40 are `UNAVAILABLE_L1_ONLY` — no taker CVD, no L2. Tight CFD spreads (0.06–6.09 bps) are not a substitute; they fail closed. Only USWTI (+0.2994 %/3h) and USDJPY (+0.0084 %) are in bullish regimes, so **no executable buy-pullback exists this cycle**.
+- **G4 fails for all 14 crypto assets under the strict price-anchored definition.** Fed through the repo `PersistentWallTracker` (≥$150k, present in **every** sampled snapshot for ≥180 s, 10-bps clustering), **zero** qualifying entry walls exist. A looser ±band test finds ADA 34 samples ($646k max), SOL 9 ($569k), BTC 4 ($716k), NEAR 3 ($211k) — but the SOL minute-by-minute timeline shows the largest level (**$730,094 at 112.21**) migrating **downward with price** to 111.4–111.6 within 15 minutes. Band presence ≠ price-anchored persistence.
+
+**3. Model 2 (trend pullback) — closest names and exact triggers:**
+
+| Rank | Asset | Δ to VWAP | Approach trigger (0.75×ATR) | Blocking gate |
+|---|---|---|---|---|
+| 1 | **BCHUSD.p** (spread 19.62 ✓, sizing 11.04 ✓) | **−0.25 ATR (in zone)** | 295.89 ± 1.03 → [294.86 – 296.91] | **G3**: closed 5m/15m CVD still positive (+0.023/+0.147 M — buyers, not sellers, in control). **G4**: no persistent ask wall at VWAP. No completed bearish rejection OHLC at the shelf. |
+| 2 | BTCUSD.pi (spread 1.94 ✓, 0.02 lots @ SL 500–552 pts → 10.00–11.04 ✓) | −1.40 ATR | rally to **82,545.8** | Not at approach; entry wall unverifiable 1.4 ATR away (top-20 book ≈2 USD wide); CVD mixed (15m +30.0 M vs 5m −4.0 M, 60m −72.6 M). |
+| 3 | ETHUSD.pi (spread 13.02 ✓, 0.38–0.40 lots ✓) | −2.10 ATR | rally to **2,548.06** | Same wall-coverage + CVD blockers; still net selling. |
+| — | LTC −1.31 / XRP −1.08 / ADA −2.17 / LINK −2.02 / BNB −2.86 / AVAX −3.01 / SOL −4.16 / NEAR −4.44 | — | — | G1 spread and/or G4 wall and/or sizing veto (ADA min lot 1.0 × 5,000 × 1.5 ATR = 13.50 > 11.04 cap; SOL/BNB near-zero G4). |
+
+Indices/FX near VWAP in geometry (EURUSD −0.25, SP500 −0.26, GER40 +0.38, DJ30 +1.09) remain ineligible (L1-only). **Live proof of the rejection-gate necessity:** DJ30 rallied **+2.17 ATR within the 15 minutes after the receipt** (50,943 → 51,074) — a fade without a completed rejection would have been run over.
+
+**4. Model 1 (extreme mean reversion) — closest extremes and missing confirmation:**
+
+- **SOLUSD.p — only asset meeting both numeric extreme gates:** Z **−2.07**, RSI **21.03**, spread 23.15 bps (<25, 1.85 bps margin), ATR 0.569. Missing: (1) strict price-anchored ≥$150k/180 s bid wall at the −2σ band (112.39) — loose-band only; (2) closed 5m CVD still **−0.42 M** (15m +2.37 M is suggestive absorption, not a confirmed flip); (3) a closed 15M sweep-and-reclaim of the band. **Live adjudication:** SOL fell a further **−1.40 ATR** (worst 111.215); the 112.21/$730k level and the −2σ band were both absorbed. An illustrative 0.10-lot long at 112.30 / SL 111.25 (1.85×ATR) would have been **filled and stopped out within ~14 minutes** (mid 111.465 @13:39; low 111.215 @13:42). This is why pre-staging an unconfirmed limit is refused.
+- Runners-up: **NEAR** Z −2.25 but RSI 32.5 (needs <30) and spread 63.76 ✗. **ADA** best raw persistence (34 samples, $646k) but Z −1.47 / RSI 33.3 / spread 84.76 ✗ **and un-sizeable**. **BTC** 240-s band wall but Z −1.31 / RSI 41.8 ✗. **BNB** RSI 29.1 ✓ but Z −1.52 ✗ and no wall. **DOGE** ≈$947k stacked asks at 0.0867 but spread 241.80 ✗.
+
+**5. Research geometry only (NOT authorized to stage):**
+
+| Setup | Entry | SL (ATR×) | TP (2.50R) | Vol | Risk USD | Stressed | Post-loss equity |
+|---|---|---|---|---|---|---|---|
+| SOLUSD.p M1 long (illustrative) | 112.30 | 111.25 (1.85×) | 114.93 | 0.10 | 10.50 | 15.13 | 4,798.86 |
+| BTCUSD.pi M2 short (conditional) | 82,761 (VWAP; recompute) | 83,313 (1.92×) | 81,381 | 0.02 | 11.04 | 15.80 | 4,798.19 |
+| BCHUSD.p M2 short (conditional) | 295.89 (VWAP) | 298.10 (1.62×) | 290.37 | 0.50 | 11.04 | 15.80 | 4,798.19 |
+
+**6. Post-briefing tape update (13:43:18 receipt, advisory):** extremes deepened while the missing gate worsened — SOL Z −2.07 → **−2.63**, RSI 21.0 → **19.4**, spread 24.21 bps, closed 5m CVD **−5.16 M**; BNB Z −1.52 → **−2.52**, RSI 29.7, spread 9.27, 5m CVD **−1.30 M**; BTC/ETH 5m CVD −16.97 M / −22.47 M. Z/RSI now qualify for SOL **and** BNB, but **no strict wall and no exhaustion** — falling-knife condition; the conjunction still fails.
+
+**7. Operational directives:** stage nothing; keep 100 % cash flat; preserve +38.99 cushion / +18.99 headroom. Priority alerts — **BCH**: closed 15M rejection ≥295.89 + ≥$150k ask wall ≥180 s + closed 5m CVD flip negative; **SOL / BNB**: −2σ re-test held on a closed 15M bar + closed 5m/15m CVD ≥0 + unbroken ≥$150k bid ≥3 samples; **BTC/ETH**: rally to within 0.75 ATR of VWAP with the full checklist (closed rejection OHLC, price-anchored wall, CVD flip, spread ≤25 bps, SL ≥1.5×ATR, TP 2.50R, floor check). Every level decays with each new receipt — re-derive ATR/VWAP/book at decision time. Non-crypto names remain ineligible until an instrument-appropriate flow feed or approved replacement policy exists. **No MT5 action taken by Arena.**

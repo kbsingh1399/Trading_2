@@ -1,0 +1,1499 @@
+{
+ "as_of_utc": "2026-10-08 13:28:18 UTC",
+ "equity_usd": 4813.99,
+ "assets": {
+  "BTC": {
+   "broker_symbol": "BTCUSD.pi",
+   "category": "CRYPTO",
+   "mid": 82360.0,
+   "spread_bps": 1.94,
+   "regime": "BEARISH",
+   "vwap": 82761.3441,
+   "vwap_z": -1.31,
+   "rsi_14": 41.77,
+   "atr_14": 287.3595,
+   "l2_source": "REAL_BINANCE_FUTURES_L2",
+   "gate1_spread": true,
+   "gate3_cvd": {
+    "cvd_1m": -1724959.22,
+    "cvd_5m": -4010789.9000000004,
+    "cvd_15m": 30004490.179999996,
+    "cvd_60m": -72592207.86
+   },
+   "m2": {
+    "level": 82761.3441,
+    "distance_atr": -1.397,
+    "approach_trigger": 82761.3441,
+    "direction": "SELL",
+    "approach_ok": false,
+    "entry_bid_walls": [],
+    "entry_ask_walls": [],
+    "gate4_wall": false
+   },
+   "m1": {
+    "level": 82149.7717,
+    "distance_atr": 0.732,
+    "oversold_long_ok": false,
+    "overbought_short_ok": false,
+    "entry_bid_walls": [],
+    "entry_ask_walls": [],
+    "gate4_wall": false
+   },
+   "sizing": [
+    {
+     "volume": 0.02,
+     "sl_low": 500.0,
+     "sl_high": 552.0,
+     "sl_atr_low": 1.74,
+     "sl_atr_high": 1.921
+    }
+   ],
+   "gate5": {
+    "example_volume": 0.02,
+    "example_nominal_risk_usd": 10.52,
+    "stress_total_usd": 15.15,
+    "post_loss_equity_usd": 4798.84,
+    "floor_ok": true
+   }
+  },
+  "ETH": {
+   "broker_symbol": "ETHUSD.pi",
+   "category": "CRYPTO",
+   "mid": 2533.85,
+   "spread_bps": 13.02,
+   "regime": "BEARISH",
+   "vwap": 2555.9738,
+   "vwap_z": -1.37,
+   "rsi_14": 34.43,
+   "atr_14": 10.5555,
+   "l2_source": "REAL_BINANCE_FUTURES_L2",
+   "gate1_spread": true,
+   "gate3_cvd": {
+    "cvd_1m": -2151584.96,
+    "cvd_5m": -6797918.86,
+    "cvd_15m": -1542685.92,
+    "cvd_60m": -58418912.81999999
+   },
+   "m2": {
+    "level": 2555.9738,
+    "distance_atr": -2.096,
+    "approach_trigger": 2555.9738,
+    "direction": "SELL",
+    "approach_ok": false,
+    "entry_bid_walls": [],
+    "entry_ask_walls": [],
+    "gate4_wall": false
+   },
+   "m1": {
+    "level": 2523.787,
+    "distance_atr": 0.953,
+    "oversold_long_ok": false,
+    "overbought_short_ok": false,
+    "entry_bid_walls": [],
+    "entry_ask_walls": [],
+    "gate4_wall": false
+   },
+   "sizing": [
+    {
+     "volume": 0.38,
+     "sl_low": 26.31578947,
+     "sl_high": 26.38875,
+     "sl_atr_low": 2.493,
+     "sl_atr_high": 2.5
+    },
+    {
+     "volume": 0.39,
+     "sl_low": 25.64102564,
+     "sl_high": 26.38875,
+     "sl_atr_low": 2.429,
+     "sl_atr_high": 2.5
+    },
+    {
+     "volume": 0.4,
+     "sl_low": 25.0,
+     "sl_high": 26.38875,
+     "sl_atr_low": 2.368,
+     "sl_atr_high": 2.5
+    },
+    {
+     "volume": 0.41,
+     "sl_low": 24.3902439,
+     "sl_high": 26.38875,
+     "sl_atr_low": 2.311,
+     "sl_atr_high": 2.5
+    }
+   ],
+   "gate5": {
+    "example_volume": 0.38,
+    "example_nominal_risk_usd": 10.01,
+    "stress_total_usd": 14.52,
+    "post_loss_equity_usd": 4799.47,
+    "floor_ok": true
+   }
+  },
+  "SOL": {
+   "broker_symbol": "SOLUSD.p",
+   "category": "CRYPTO",
+   "mid": 112.31,
+   "spread_bps": 23.15,
+   "regime": "BEARISH",
+   "vwap": 114.6754,
+   "vwap_z": -2.07,
+   "rsi_14": 21.03,
+   "atr_14": 0.569,
+   "l2_source": "REAL_BINANCE_FUTURES_L2",
+   "gate1_spread": true,
+   "gate3_cvd": {
+    "cvd_1m": 126073.95,
+    "cvd_5m": -419701.35000000003,
+    "cvd_15m": 2373837.25,
+    "cvd_60m": -20601858.910000008
+   },
+   "m2": {
+    "level": 114.6754,
+    "distance_atr": -4.157,
+    "approach_trigger": 114.6754,
+    "direction": "SELL",
+    "approach_ok": false,
+    "entry_bid_walls": [],
+    "entry_ask_walls": [],
+    "gate4_wall": false
+   },
+   "m1": {
+    "level": 112.3906,
+    "distance_atr": -0.142,
+    "oversold_long_ok": true,
+    "overbought_short_ok": false,
+    "entry_bid_walls": [],
+    "entry_ask_walls": [],
+    "gate4_wall": false
+   },
+   "sizing": [
+    {
+     "volume": 0.08,
+     "sl_low": 1.25,
+     "sl_high": 1.38,
+     "sl_atr_low": 2.197,
+     "sl_atr_high": 2.425
+    },
+    {
+     "volume": 0.09,
+     "sl_low": 1.11111111,
+     "sl_high": 1.22666667,
+     "sl_atr_low": 1.953,
+     "sl_atr_high": 2.156
+    },
+    {
+     "volume": 0.1,
+     "sl_low": 1.0,
+     "sl_high": 1.104,
+     "sl_atr_low": 1.757,
+     "sl_atr_high": 1.94
+    },
+    {
+     "volume": 0.11,
+     "sl_low": 0.90909091,
+     "sl_high": 1.00363636,
+     "sl_atr_low": 1.598,
+     "sl_atr_high": 1.764
+    }
+   ],
+   "gate5": {
+    "example_volume": 0.08,
+    "example_nominal_risk_usd": 10.52,
+    "stress_total_usd": 15.15,
+    "post_loss_equity_usd": 4798.84,
+    "floor_ok": true
+   }
+  },
+  "BNB": {
+   "broker_symbol": "BNBUSD.p",
+   "category": "CRYPTO",
+   "mid": 759.75,
+   "spread_bps": 9.21,
+   "regime": "BEARISH",
+   "vwap": 766.2856,
+   "vwap_z": -1.52,
+   "rsi_14": 29.14,
+   "atr_14": 2.2866,
+   "l2_source": "REAL_BINANCE_FUTURES_L2",
+   "gate1_spread": true,
+   "gate3_cvd": {
+    "cvd_1m": -20589.88,
+    "cvd_5m": 39464.499999999985,
+    "cvd_15m": 99150.43000000002,
+    "cvd_60m": -7290557.989999998
+   },
+   "m2": {
+    "level": 766.2856,
+    "distance_atr": -2.858,
+    "approach_trigger": 766.2856,
+    "direction": "SELL",
+    "approach_ok": false,
+    "entry_bid_walls": [],
+    "entry_ask_walls": [],
+    "gate4_wall": false
+   },
+   "m1": {
+    "level": 757.7026,
+    "distance_atr": 0.895,
+    "oversold_long_ok": false,
+    "overbought_short_ok": false,
+    "entry_bid_walls": [],
+    "entry_ask_walls": [],
+    "gate4_wall": false
+   },
+   "sizing": [
+    {
+     "volume": 1.75,
+     "sl_low": 5.71428571,
+     "sl_high": 5.7165,
+     "sl_atr_low": 2.499,
+     "sl_atr_high": 2.5
+    },
+    {
+     "volume": 1.76,
+     "sl_low": 5.68181818,
+     "sl_high": 5.7165,
+     "sl_atr_low": 2.485,
+     "sl_atr_high": 2.5
+    },
+    {
+     "volume": 1.77,
+     "sl_low": 5.64971751,
+     "sl_high": 5.7165,
+     "sl_atr_low": 2.471,
+     "sl_atr_high": 2.5
+    },
+    {
+     "volume": 1.78,
+     "sl_low": 5.61797753,
+     "sl_high": 5.7165,
+     "sl_atr_low": 2.457,
+     "sl_atr_high": 2.5
+    }
+   ],
+   "gate5": {
+    "example_volume": 1.75,
+    "example_nominal_risk_usd": 10.0,
+    "stress_total_usd": 14.5,
+    "post_loss_equity_usd": 4799.49,
+    "floor_ok": true
+   }
+  },
+  "XRP": {
+   "broker_symbol": "XRPUSD.pi",
+   "category": "CRYPTO",
+   "mid": 1.3995,
+   "spread_bps": 35.73,
+   "regime": "BEARISH",
+   "vwap": 1.4072,
+   "vwap_z": -0.75,
+   "rsi_14": 44.3,
+   "atr_14": 0.0071,
+   "l2_source": "REAL_BINANCE_FUTURES_L2",
+   "gate1_spread": false,
+   "gate3_cvd": {
+    "cvd_1m": 60316.39,
+    "cvd_5m": 296664.27,
+    "cvd_15m": 298055.7100000001,
+    "cvd_60m": -1803201.3099999998
+   },
+   "m2": {
+    "level": 1.4072,
+    "distance_atr": -1.085,
+    "approach_trigger": 1.4072,
+    "direction": "SELL",
+    "approach_ok": false,
+    "entry_bid_walls": [],
+    "entry_ask_walls": [],
+    "gate4_wall": false
+   },
+   "m1": {
+    "level": 1.3866,
+    "distance_atr": 1.817,
+    "oversold_long_ok": false,
+    "overbought_short_ok": false,
+    "entry_bid_walls": [],
+    "entry_ask_walls": [],
+    "gate4_wall": false
+   },
+   "sizing": [
+    {
+     "volume": 1.0,
+     "sl_low": 0.01065,
+     "sl_high": 0.01104,
+     "sl_atr_low": 1.5,
+     "sl_atr_high": 1.555
+    }
+   ],
+   "gate5": {
+    "example_volume": 1.0,
+    "example_nominal_risk_usd": 10.85,
+    "stress_total_usd": 15.56,
+    "post_loss_equity_usd": 4798.43,
+    "floor_ok": true
+   }
+  },
+  "ADA": {
+   "broker_symbol": "ADAUSD.p",
+   "category": "CRYPTO",
+   "mid": 0.2477,
+   "spread_bps": 84.76,
+   "regime": "BEARISH",
+   "vwap": 0.2516,
+   "vwap_z": -1.47,
+   "rsi_14": 33.34,
+   "atr_14": 0.0018,
+   "l2_source": "REAL_BINANCE_FUTURES_L2",
+   "gate1_spread": false,
+   "gate3_cvd": {
+    "cvd_1m": 54422.13,
+    "cvd_5m": 151839.43,
+    "cvd_15m": 192687.08,
+    "cvd_60m": -4545423.7700000005
+   },
+   "m2": {
+    "level": 0.2516,
+    "distance_atr": -2.167,
+    "approach_trigger": 0.2516,
+    "direction": "SELL",
+    "approach_ok": false,
+    "entry_bid_walls": [],
+    "entry_ask_walls": [],
+    "gate4_wall": false
+   },
+   "m1": {
+    "level": 0.2464,
+    "distance_atr": 0.722,
+    "oversold_long_ok": false,
+    "overbought_short_ok": false,
+    "entry_bid_walls": [],
+    "entry_ask_walls": [],
+    "gate4_wall": false
+   },
+   "sizing": [],
+   "gate5": {
+    "example_volume": null,
+    "floor_ok": false
+   }
+  },
+  "DOGE": {
+   "broker_symbol": "DOGUSD.p",
+   "category": "CRYPTO",
+   "mid": 0.0869,
+   "spread_bps": 241.8,
+   "regime": "BEARISH",
+   "vwap": 0.0867,
+   "vwap_z": 0.2,
+   "rsi_14": 35.99,
+   "atr_14": 0.0004,
+   "l2_source": "REAL_BINANCE_FUTURES_L2",
+   "gate1_spread": false,
+   "gate3_cvd": {
+    "cvd_1m": -198085.74,
+    "cvd_5m": -101748.18,
+    "cvd_15m": 395008.4399999998,
+    "cvd_60m": -6940037.969999999
+   },
+   "m2": {
+    "level": 0.0867,
+    "distance_atr": 0.5,
+    "approach_trigger": 0.0867,
+    "direction": "SELL",
+    "approach_ok": true,
+    "entry_bid_walls": [],
+    "entry_ask_walls": [],
+    "gate4_wall": false
+   },
+   "m1": {
+    "level": 0.0851,
+    "distance_atr": 4.5,
+    "oversold_long_ok": false,
+    "overbought_short_ok": false,
+    "entry_bid_walls": [],
+    "entry_ask_walls": [],
+    "gate4_wall": false
+   },
+   "sizing": [
+    {
+     "volume": 1.0,
+     "sl_low": 0.001,
+     "sl_high": 0.001,
+     "sl_atr_low": 2.5,
+     "sl_atr_high": 2.5
+    }
+   ],
+   "gate5": {
+    "example_volume": 1.0,
+    "example_nominal_risk_usd": 10.0,
+    "stress_total_usd": 14.5,
+    "post_loss_equity_usd": 4799.49,
+    "floor_ok": true
+   }
+  },
+  "TRX": {
+   "broker_symbol": "TRXUSD.p",
+   "category": "CRYPTO",
+   "mid": 0.3345,
+   "spread_bps": 26.91,
+   "regime": "RANGE_BOUND",
+   "vwap": 0.3349,
+   "vwap_z": -0.91,
+   "rsi_14": 38.85,
+   "atr_14": 0.0004,
+   "l2_source": "REAL_BINANCE_FUTURES_L2",
+   "gate1_spread": false,
+   "gate3_cvd": {
+    "cvd_1m": -8107.05,
+    "cvd_5m": -18865.250000000004,
+    "cvd_15m": -5471.140000000001,
+    "cvd_60m": -668730.2099999996
+   },
+   "m2": {
+    "level": 0.3349,
+    "distance_atr": -1.0,
+    "approach_trigger": 0.3349,
+    "direction": "NONE",
+    "approach_ok": false,
+    "entry_bid_walls": [],
+    "entry_ask_walls": [],
+    "gate4_wall": false
+   },
+   "m1": {
+    "level": 0.3339,
+    "distance_atr": 1.5,
+    "oversold_long_ok": false,
+    "overbought_short_ok": false,
+    "entry_bid_walls": [],
+    "entry_ask_walls": [],
+    "gate4_wall": false
+   },
+   "sizing": [
+    {
+     "volume": 1.0,
+     "sl_low": 0.001,
+     "sl_high": 0.001,
+     "sl_atr_low": 2.5,
+     "sl_atr_high": 2.5
+    }
+   ],
+   "gate5": {
+    "example_volume": 1.0,
+    "example_nominal_risk_usd": 10.0,
+    "stress_total_usd": 14.5,
+    "post_loss_equity_usd": 4799.49,
+    "floor_ok": true
+   }
+  },
+  "DOT": {
+   "broker_symbol": "DOTUSD.pi",
+   "category": "CRYPTO",
+   "mid": 1.106,
+   "spread_bps": 180.83,
+   "regime": "BEARISH",
+   "vwap": 1.0961,
+   "vwap_z": 1.19,
+   "rsi_14": 47.77,
+   "atr_14": 0.0083,
+   "l2_source": "REAL_BINANCE_FUTURES_L2",
+   "gate1_spread": false,
+   "gate3_cvd": {
+    "cvd_1m": 2963.94,
+    "cvd_5m": 27035.309999999998,
+    "cvd_15m": 30985.950000000004,
+    "cvd_60m": -260738.70999999996
+   },
+   "m2": {
+    "level": 1.0961,
+    "distance_atr": 1.193,
+    "approach_trigger": 1.0961,
+    "direction": "SELL",
+    "approach_ok": false,
+    "entry_bid_walls": [],
+    "entry_ask_walls": [],
+    "gate4_wall": false
+   },
+   "m1": {
+    "level": 1.0795,
+    "distance_atr": 3.193,
+    "oversold_long_ok": false,
+    "overbought_short_ok": false,
+    "entry_bid_walls": [],
+    "entry_ask_walls": [],
+    "gate4_wall": false
+   },
+   "sizing": [
+    {
+     "volume": 0.49,
+     "sl_low": 0.02040816,
+     "sl_high": 0.02075,
+     "sl_atr_low": 2.459,
+     "sl_atr_high": 2.5
+    },
+    {
+     "volume": 0.5,
+     "sl_low": 0.02,
+     "sl_high": 0.02075,
+     "sl_atr_low": 2.41,
+     "sl_atr_high": 2.5
+    },
+    {
+     "volume": 0.51,
+     "sl_low": 0.01960784,
+     "sl_high": 0.02075,
+     "sl_atr_low": 2.362,
+     "sl_atr_high": 2.5
+    },
+    {
+     "volume": 0.52,
+     "sl_low": 0.01923077,
+     "sl_high": 0.02075,
+     "sl_atr_low": 2.317,
+     "sl_atr_high": 2.5
+    }
+   ],
+   "gate5": {
+    "example_volume": 0.49,
+    "example_nominal_risk_usd": 10.08,
+    "stress_total_usd": 14.6,
+    "post_loss_equity_usd": 4799.39,
+    "floor_ok": true
+   }
+  },
+  "LINK": {
+   "broker_symbol": "LNKUSD.p",
+   "category": "CRYPTO",
+   "mid": 12.9505,
+   "spread_bps": 65.63,
+   "regime": "BEARISH",
+   "vwap": 13.0796,
+   "vwap_z": -1.23,
+   "rsi_14": 35.21,
+   "atr_14": 0.0638,
+   "l2_source": "REAL_BINANCE_FUTURES_L2",
+   "gate1_spread": false,
+   "gate3_cvd": {
+    "cvd_1m": 24292.81,
+    "cvd_5m": -8368.039999999997,
+    "cvd_15m": 159743.63,
+    "cvd_60m": -3232658.43
+   },
+   "m2": {
+    "level": 13.0796,
+    "distance_atr": -2.024,
+    "approach_trigger": 13.0796,
+    "direction": "SELL",
+    "approach_ok": false,
+    "entry_bid_walls": [],
+    "entry_ask_walls": [],
+    "gate4_wall": false
+   },
+   "m1": {
+    "level": 12.869,
+    "distance_atr": 1.277,
+    "oversold_long_ok": false,
+    "overbought_short_ok": false,
+    "entry_bid_walls": [],
+    "entry_ask_walls": [],
+    "gate4_wall": false
+   },
+   "sizing": [
+    {
+     "volume": 0.7,
+     "sl_low": 0.14285714,
+     "sl_high": 0.15771429,
+     "sl_atr_low": 2.239,
+     "sl_atr_high": 2.472
+    },
+    {
+     "volume": 0.8,
+     "sl_low": 0.125,
+     "sl_high": 0.138,
+     "sl_atr_low": 1.959,
+     "sl_atr_high": 2.163
+    },
+    {
+     "volume": 0.9,
+     "sl_low": 0.11111111,
+     "sl_high": 0.12266667,
+     "sl_atr_low": 1.742,
+     "sl_atr_high": 1.923
+    },
+    {
+     "volume": 1.0,
+     "sl_low": 0.1,
+     "sl_high": 0.1104,
+     "sl_atr_low": 1.567,
+     "sl_atr_high": 1.73
+    }
+   ],
+   "gate5": {
+    "example_volume": 0.7,
+    "example_nominal_risk_usd": 10.52,
+    "stress_total_usd": 15.15,
+    "post_loss_equity_usd": 4798.84,
+    "floor_ok": true
+   }
+  },
+  "BCH": {
+   "broker_symbol": "BCHUSD.p",
+   "category": "CRYPTO",
+   "mid": 295.55,
+   "spread_bps": 19.62,
+   "regime": "BEARISH",
+   "vwap": 295.8868,
+   "vwap_z": -0.17,
+   "rsi_14": 47.94,
+   "atr_14": 1.3669,
+   "l2_source": "REAL_BINANCE_FUTURES_L2",
+   "gate1_spread": true,
+   "gate3_cvd": {
+    "cvd_1m": -15327.11,
+    "cvd_5m": 22749.089999999997,
+    "cvd_15m": 146936.72999999998,
+    "cvd_60m": 415670.2600000001
+   },
+   "m2": {
+    "level": 295.8868,
+    "distance_atr": -0.246,
+    "approach_trigger": 295.8868,
+    "direction": "SELL",
+    "approach_ok": true,
+    "entry_bid_walls": [],
+    "entry_ask_walls": [],
+    "gate4_wall": false
+   },
+   "m1": {
+    "level": 291.872,
+    "distance_atr": 2.691,
+    "oversold_long_ok": false,
+    "overbought_short_ok": false,
+    "entry_bid_walls": [],
+    "entry_ask_walls": [],
+    "gate4_wall": false
+   },
+   "sizing": [
+    {
+     "volume": 0.3,
+     "sl_low": 3.33333333,
+     "sl_high": 3.41725,
+     "sl_atr_low": 2.439,
+     "sl_atr_high": 2.5
+    },
+    {
+     "volume": 0.4,
+     "sl_low": 2.5,
+     "sl_high": 2.76,
+     "sl_atr_low": 1.829,
+     "sl_atr_high": 2.019
+    },
+    {
+     "volume": 0.5,
+     "sl_low": 2.05035,
+     "sl_high": 2.208,
+     "sl_atr_low": 1.5,
+     "sl_atr_high": 1.615
+    }
+   ],
+   "gate5": {
+    "example_volume": 0.3,
+    "example_nominal_risk_usd": 10.13,
+    "stress_total_usd": 14.66,
+    "post_loss_equity_usd": 4799.33,
+    "floor_ok": true
+   }
+  },
+  "LTC": {
+   "broker_symbol": "LTCUSD.pi",
+   "category": "CRYPTO",
+   "mid": 64.19,
+   "spread_bps": 46.74,
+   "regime": "BEARISH",
+   "vwap": 64.5368,
+   "vwap_z": -0.51,
+   "rsi_14": 40.48,
+   "atr_14": 0.264,
+   "l2_source": "REAL_BINANCE_FUTURES_L2",
+   "gate1_spread": false,
+   "gate3_cvd": {
+    "cvd_1m": -19116.93,
+    "cvd_5m": 32520.840000000004,
+    "cvd_15m": 104172.80000000005,
+    "cvd_60m": -178737.51999999984
+   },
+   "m2": {
+    "level": 64.5368,
+    "distance_atr": -1.314,
+    "approach_trigger": 64.5368,
+    "direction": "SELL",
+    "approach_ok": false,
+    "entry_bid_walls": [],
+    "entry_ask_walls": [],
+    "gate4_wall": false
+   },
+   "m1": {
+    "level": 63.1876,
+    "distance_atr": 3.797,
+    "oversold_long_ok": false,
+    "overbought_short_ok": false,
+    "entry_bid_walls": [],
+    "entry_ask_walls": [],
+    "gate4_wall": false
+   },
+   "sizing": [
+    {
+     "volume": 0.2,
+     "sl_low": 0.5,
+     "sl_high": 0.552,
+     "sl_atr_low": 1.894,
+     "sl_atr_high": 2.091
+    }
+   ],
+   "gate5": {
+    "example_volume": 0.2,
+    "example_nominal_risk_usd": 10.52,
+    "stress_total_usd": 15.15,
+    "post_loss_equity_usd": 4798.84,
+    "floor_ok": true
+   }
+  },
+  "AVAX": {
+   "broker_symbol": "AVXUSD.p",
+   "category": "CRYPTO",
+   "mid": 10.595,
+   "spread_bps": 28.32,
+   "regime": "BEARISH",
+   "vwap": 10.8421,
+   "vwap_z": -1.66,
+   "rsi_14": 33.45,
+   "atr_14": 0.0822,
+   "l2_source": "REAL_BINANCE_FUTURES_L2",
+   "gate1_spread": false,
+   "gate3_cvd": {
+    "cvd_1m": 42178.53,
+    "cvd_5m": 5668.639999999999,
+    "cvd_15m": 451063.28,
+    "cvd_60m": -3100443.28
+   },
+   "m2": {
+    "level": 10.8421,
+    "distance_atr": -3.006,
+    "approach_trigger": 10.8421,
+    "direction": "SELL",
+    "approach_ok": false,
+    "entry_bid_walls": [],
+    "entry_ask_walls": [],
+    "gate4_wall": false
+   },
+   "m1": {
+    "level": 10.5441,
+    "distance_atr": 0.619,
+    "oversold_long_ok": false,
+    "overbought_short_ok": false,
+    "entry_bid_walls": [],
+    "entry_ask_walls": [],
+    "gate4_wall": false
+   },
+   "sizing": [
+    {
+     "volume": 0.49,
+     "sl_low": 0.20408163,
+     "sl_high": 0.2055,
+     "sl_atr_low": 2.483,
+     "sl_atr_high": 2.5
+    },
+    {
+     "volume": 0.5,
+     "sl_low": 0.2,
+     "sl_high": 0.2055,
+     "sl_atr_low": 2.433,
+     "sl_atr_high": 2.5
+    },
+    {
+     "volume": 0.51,
+     "sl_low": 0.19607843,
+     "sl_high": 0.2055,
+     "sl_atr_low": 2.385,
+     "sl_atr_high": 2.5
+    },
+    {
+     "volume": 0.52,
+     "sl_low": 0.19230769,
+     "sl_high": 0.2055,
+     "sl_atr_low": 2.34,
+     "sl_atr_high": 2.5
+    }
+   ],
+   "gate5": {
+    "example_volume": 0.49,
+    "example_nominal_risk_usd": 10.03,
+    "stress_total_usd": 14.54,
+    "post_loss_equity_usd": 4799.45,
+    "floor_ok": true
+   }
+  },
+  "NEAR": {
+   "broker_symbol": "NERUSD.p",
+   "category": "CRYPTO",
+   "mid": 5.019,
+   "spread_bps": 63.76,
+   "regime": "BEARISH",
+   "vwap": 5.3092,
+   "vwap_z": -2.25,
+   "rsi_14": 32.54,
+   "atr_14": 0.0654,
+   "l2_source": "REAL_BINANCE_FUTURES_L2",
+   "gate1_spread": false,
+   "gate3_cvd": {
+    "cvd_1m": 18562.85,
+    "cvd_5m": -529284.08,
+    "cvd_15m": -169360.30999999997,
+    "cvd_60m": -2571034.3299999987
+   },
+   "m2": {
+    "level": 5.3092,
+    "distance_atr": -4.437,
+    "approach_trigger": 5.3092,
+    "direction": "SELL",
+    "approach_ok": false,
+    "entry_bid_walls": [],
+    "entry_ask_walls": [],
+    "gate4_wall": false
+   },
+   "m1": {
+    "level": 5.0512,
+    "distance_atr": -0.492,
+    "oversold_long_ok": false,
+    "overbought_short_ok": false,
+    "entry_bid_walls": [],
+    "entry_ask_walls": [],
+    "gate4_wall": false
+   },
+   "sizing": [
+    {
+     "volume": 1.0,
+     "sl_low": 0.1,
+     "sl_high": 0.1104,
+     "sl_atr_low": 1.529,
+     "sl_atr_high": 1.688
+    }
+   ],
+   "gate5": {
+    "example_volume": 1.0,
+    "example_nominal_risk_usd": 10.52,
+    "stress_total_usd": 15.15,
+    "post_loss_equity_usd": 4798.84,
+    "floor_ok": true
+   }
+  },
+  "SP500": {
+   "broker_symbol": "SP500.p",
+   "category": "INDICES",
+   "mid": 7775.96,
+   "spread_bps": 0.39,
+   "regime": "BEARISH",
+   "vwap": 7777.6966,
+   "vwap_z": -0.12,
+   "rsi_14": 53.37,
+   "atr_14": 6.7696,
+   "l2_source": "UNAVAILABLE_L1_ONLY",
+   "gate1_spread": true,
+   "gate3_cvd": {
+    "cvd_1m": 0,
+    "cvd_5m": 0,
+    "cvd_15m": 0,
+    "cvd_60m": 0
+   },
+   "m2": {
+    "level": 7777.6966,
+    "distance_atr": -0.257,
+    "approach_trigger": 7777.6966,
+    "direction": "SELL",
+    "approach_ok": true,
+    "entry_bid_walls": [],
+    "entry_ask_walls": [],
+    "gate4_wall": false
+   },
+   "m1": {
+    "level": 7749.4994,
+    "distance_atr": 3.909,
+    "oversold_long_ok": false,
+    "overbought_short_ok": false,
+    "entry_bid_walls": [],
+    "entry_ask_walls": [],
+    "gate4_wall": false
+   },
+   "sizing": [
+    {
+     "volume": 0.06,
+     "sl_low": 16.66666667,
+     "sl_high": 16.924,
+     "sl_atr_low": 2.462,
+     "sl_atr_high": 2.5
+    },
+    {
+     "volume": 0.07,
+     "sl_low": 14.28571429,
+     "sl_high": 15.77142857,
+     "sl_atr_low": 2.11,
+     "sl_atr_high": 2.33
+    },
+    {
+     "volume": 0.08,
+     "sl_low": 12.5,
+     "sl_high": 13.8,
+     "sl_atr_low": 1.846,
+     "sl_atr_high": 2.039
+    },
+    {
+     "volume": 0.09,
+     "sl_low": 11.11111111,
+     "sl_high": 12.26666667,
+     "sl_atr_low": 1.641,
+     "sl_atr_high": 1.812
+    }
+   ],
+   "gate5": {
+    "example_volume": 0.06,
+    "example_nominal_risk_usd": 10.08,
+    "stress_total_usd": 14.6,
+    "post_loss_equity_usd": 4799.39,
+    "floor_ok": true
+   }
+  },
+  "NAS100": {
+   "broker_symbol": "NAS100.p",
+   "category": "INDICES",
+   "mid": 30991.45,
+   "spread_bps": 0.34,
+   "regime": "BEARISH",
+   "vwap": 31045.6088,
+   "vwap_z": -0.57,
+   "rsi_14": 49.02,
+   "atr_14": 38.971,
+   "l2_source": "UNAVAILABLE_L1_ONLY",
+   "gate1_spread": true,
+   "gate3_cvd": {
+    "cvd_1m": 0,
+    "cvd_5m": 0,
+    "cvd_15m": 0,
+    "cvd_60m": 0
+   },
+   "m2": {
+    "level": 31045.6088,
+    "distance_atr": -1.39,
+    "approach_trigger": 31045.6088,
+    "direction": "SELL",
+    "approach_ok": false,
+    "entry_bid_walls": [],
+    "entry_ask_walls": [],
+    "gate4_wall": false
+   },
+   "m1": {
+    "level": 30856.5604,
+    "distance_atr": 3.461,
+    "oversold_long_ok": false,
+    "overbought_short_ok": false,
+    "entry_bid_walls": [],
+    "entry_ask_walls": [],
+    "gate4_wall": false
+   },
+   "sizing": [],
+   "gate5": {
+    "example_volume": null,
+    "floor_ok": false
+   }
+  },
+  "DJ30": {
+   "broker_symbol": "DJ30.p",
+   "category": "INDICES",
+   "mid": 50943.15,
+   "spread_bps": 0.23,
+   "regime": "BEARISH",
+   "vwap": 50877.6611,
+   "vwap_z": 0.43,
+   "rsi_14": 59.09,
+   "atr_14": 60.0419,
+   "l2_source": "UNAVAILABLE_L1_ONLY",
+   "gate1_spread": true,
+   "gate3_cvd": {
+    "cvd_1m": 0,
+    "cvd_5m": 0,
+    "cvd_15m": 0,
+    "cvd_60m": 0
+   },
+   "m2": {
+    "level": 50877.6611,
+    "distance_atr": 1.091,
+    "approach_trigger": 50877.6611,
+    "direction": "SELL",
+    "approach_ok": false,
+    "entry_bid_walls": [],
+    "entry_ask_walls": [],
+    "gate4_wall": false
+   },
+   "m1": {
+    "level": 50575.0801,
+    "distance_atr": 6.13,
+    "oversold_long_ok": false,
+    "overbought_short_ok": false,
+    "entry_bid_walls": [],
+    "entry_ask_walls": [],
+    "gate4_wall": false
+   },
+   "sizing": [
+    {
+     "volume": 0.01,
+     "sl_low": 100.0,
+     "sl_high": 110.4,
+     "sl_atr_low": 1.666,
+     "sl_atr_high": 1.839
+    }
+   ],
+   "gate5": {
+    "example_volume": 0.01,
+    "example_nominal_risk_usd": 10.52,
+    "stress_total_usd": 15.15,
+    "post_loss_equity_usd": 4798.84,
+    "floor_ok": true
+   }
+  },
+  "GER40": {
+   "broker_symbol": "GER40.p",
+   "category": "INDICES",
+   "mid": 24944.55,
+   "spread_bps": 0.32,
+   "regime": "BEARISH",
+   "vwap": 24928.8365,
+   "vwap_z": 0.18,
+   "rsi_14": 56.39,
+   "atr_14": 41.1952,
+   "l2_source": "UNAVAILABLE_L1_ONLY",
+   "gate1_spread": true,
+   "gate3_cvd": {
+    "cvd_1m": 0,
+    "cvd_5m": 0,
+    "cvd_15m": 0,
+    "cvd_60m": 0
+   },
+   "m2": {
+    "level": 24928.8365,
+    "distance_atr": 0.381,
+    "approach_trigger": 24928.8365,
+    "direction": "SELL",
+    "approach_ok": true,
+    "entry_bid_walls": [],
+    "entry_ask_walls": [],
+    "gate4_wall": false
+   },
+   "m1": {
+    "level": 24751.6363,
+    "distance_atr": 4.683,
+    "oversold_long_ok": false,
+    "overbought_short_ok": false,
+    "entry_bid_walls": [],
+    "entry_ask_walls": [],
+    "gate4_wall": false
+   },
+   "sizing": [
+    {
+     "volume": 0.01,
+     "sl_low": 100.0,
+     "sl_high": 102.988,
+     "sl_atr_low": 2.427,
+     "sl_atr_high": 2.5
+    }
+   ],
+   "gate5": {
+    "example_volume": 0.01,
+    "example_nominal_risk_usd": 10.15,
+    "stress_total_usd": 14.69,
+    "post_loss_equity_usd": 4799.3,
+    "floor_ok": true
+   }
+  },
+  "GOLD": {
+   "broker_symbol": "XAUUSD.pi",
+   "category": "COMMODITIES",
+   "mid": 4121.825,
+   "spread_bps": 0.17,
+   "regime": "BEARISH",
+   "vwap": 4124.8181,
+   "vwap_z": -0.42,
+   "rsi_14": 53.11,
+   "atr_14": 7.9913,
+   "l2_source": "UNAVAILABLE_L1_ONLY",
+   "gate1_spread": true,
+   "gate3_cvd": {
+    "cvd_1m": 0,
+    "cvd_5m": 0,
+    "cvd_15m": 0,
+    "cvd_60m": 0
+   },
+   "m2": {
+    "level": 4124.8181,
+    "distance_atr": -0.375,
+    "approach_trigger": 4124.8181,
+    "direction": "SELL",
+    "approach_ok": true,
+    "entry_bid_walls": [],
+    "entry_ask_walls": [],
+    "gate4_wall": false
+   },
+   "m1": {
+    "level": 4110.6859,
+    "distance_atr": 1.394,
+    "oversold_long_ok": false,
+    "overbought_short_ok": false,
+    "entry_bid_walls": [],
+    "entry_ask_walls": [],
+    "gate4_wall": false
+   },
+   "sizing": [],
+   "gate5": {
+    "example_volume": null,
+    "floor_ok": false
+   }
+  },
+  "SILVER": {
+   "broker_symbol": "XAGUSD.pi",
+   "category": "COMMODITIES",
+   "mid": 59.098,
+   "spread_bps": 6.09,
+   "regime": "BEARISH",
+   "vwap": 59.4219,
+   "vwap_z": -0.54,
+   "rsi_14": 50.19,
+   "atr_14": 0.225,
+   "l2_source": "UNAVAILABLE_L1_ONLY",
+   "gate1_spread": true,
+   "gate3_cvd": {
+    "cvd_1m": 0,
+    "cvd_5m": 0,
+    "cvd_15m": 0,
+    "cvd_60m": 0
+   },
+   "m2": {
+    "level": 59.4219,
+    "distance_atr": -1.44,
+    "approach_trigger": 59.4219,
+    "direction": "SELL",
+    "approach_ok": false,
+    "entry_bid_walls": [],
+    "entry_ask_walls": [],
+    "gate4_wall": false
+   },
+   "m1": {
+    "level": 58.2313,
+    "distance_atr": 3.852,
+    "oversold_long_ok": false,
+    "overbought_short_ok": false,
+    "entry_bid_walls": [],
+    "entry_ask_walls": [],
+    "gate4_wall": false
+   },
+   "sizing": [],
+   "gate5": {
+    "example_volume": null,
+    "floor_ok": false
+   }
+  },
+  "USWTI": {
+   "broker_symbol": "USWTI.p",
+   "category": "COMMODITIES",
+   "mid": 92.986,
+   "spread_bps": 5.38,
+   "regime": "BULLISH",
+   "vwap": 92.3137,
+   "vwap_z": 0.56,
+   "rsi_14": 53.26,
+   "atr_14": 0.3272,
+   "l2_source": "UNAVAILABLE_L1_ONLY",
+   "gate1_spread": true,
+   "gate3_cvd": {
+    "cvd_1m": 0,
+    "cvd_5m": 0,
+    "cvd_15m": 0,
+    "cvd_60m": 0
+   },
+   "m2": {
+    "level": 92.3137,
+    "distance_atr": 2.055,
+    "approach_trigger": 92.3137,
+    "direction": "BUY",
+    "approach_ok": false,
+    "entry_bid_walls": [],
+    "entry_ask_walls": [],
+    "gate4_wall": false
+   },
+   "m1": {
+    "level": 89.9141,
+    "distance_atr": 9.388,
+    "oversold_long_ok": false,
+    "overbought_short_ok": false,
+    "entry_bid_walls": [],
+    "entry_ask_walls": [],
+    "gate4_wall": false
+   },
+   "sizing": [
+    {
+     "volume": 0.13,
+     "sl_low": 0.76923077,
+     "sl_high": 0.818,
+     "sl_atr_low": 2.351,
+     "sl_atr_high": 2.5
+    },
+    {
+     "volume": 0.14,
+     "sl_low": 0.71428571,
+     "sl_high": 0.78857143,
+     "sl_atr_low": 2.183,
+     "sl_atr_high": 2.41
+    },
+    {
+     "volume": 0.15,
+     "sl_low": 0.66666667,
+     "sl_high": 0.736,
+     "sl_atr_low": 2.037,
+     "sl_atr_high": 2.249
+    },
+    {
+     "volume": 0.16,
+     "sl_low": 0.625,
+     "sl_high": 0.69,
+     "sl_atr_low": 1.91,
+     "sl_atr_high": 2.109
+    }
+   ],
+   "gate5": {
+    "example_volume": 0.13,
+    "example_nominal_risk_usd": 10.32,
+    "stress_total_usd": 14.9,
+    "post_loss_equity_usd": 4799.09,
+    "floor_ok": true
+   }
+  },
+  "EURUSD": {
+   "broker_symbol": "EURUSD.pi",
+   "category": "FOREX",
+   "mid": 1.1189,
+   "spread_bps": 0.09,
+   "regime": "BEARISH",
+   "vwap": 1.1191,
+   "vwap_z": -0.3,
+   "rsi_14": 51.21,
+   "atr_14": 0.0008,
+   "l2_source": "UNAVAILABLE_L1_ONLY",
+   "gate1_spread": true,
+   "gate3_cvd": {
+    "cvd_1m": 0,
+    "cvd_5m": 0,
+    "cvd_15m": 0,
+    "cvd_60m": 0
+   },
+   "m2": {
+    "level": 1.1191,
+    "distance_atr": -0.25,
+    "approach_trigger": 1.1191,
+    "direction": "SELL",
+    "approach_ok": true,
+    "entry_bid_walls": [],
+    "entry_ask_walls": [],
+    "gate4_wall": false
+   },
+   "m1": {
+    "level": 1.1175,
+    "distance_atr": 1.75,
+    "oversold_long_ok": false,
+    "overbought_short_ok": false,
+    "entry_bid_walls": [],
+    "entry_ask_walls": [],
+    "gate4_wall": false
+   },
+   "sizing": [
+    {
+     "volume": 0.05,
+     "sl_low": 0.002,
+     "sl_high": 0.002,
+     "sl_atr_low": 2.5,
+     "sl_atr_high": 2.5
+    },
+    {
+     "volume": 0.06,
+     "sl_low": 0.00166667,
+     "sl_high": 0.00184,
+     "sl_atr_low": 2.083,
+     "sl_atr_high": 2.3
+    },
+    {
+     "volume": 0.07,
+     "sl_low": 0.00142857,
+     "sl_high": 0.00157714,
+     "sl_atr_low": 1.786,
+     "sl_atr_high": 1.971
+    },
+    {
+     "volume": 0.08,
+     "sl_low": 0.00125,
+     "sl_high": 0.00138,
+     "sl_atr_low": 1.562,
+     "sl_atr_high": 1.725
+    }
+   ],
+   "gate5": {
+    "example_volume": 0.05,
+    "example_nominal_risk_usd": 10.0,
+    "stress_total_usd": 14.5,
+    "post_loss_equity_usd": 4799.49,
+    "floor_ok": true
+   }
+  },
+  "GBPUSD": {
+   "broker_symbol": "GBPUSD.pi",
+   "category": "FOREX",
+   "mid": 1.3207,
+   "spread_bps": 0.15,
+   "regime": "BEARISH",
+   "vwap": 1.3202,
+   "vwap_z": 0.55,
+   "rsi_14": 56.54,
+   "atr_14": 0.0009,
+   "l2_source": "UNAVAILABLE_L1_ONLY",
+   "gate1_spread": true,
+   "gate3_cvd": {
+    "cvd_1m": 0,
+    "cvd_5m": 0,
+    "cvd_15m": 0,
+    "cvd_60m": 0
+   },
+   "m2": {
+    "level": 1.3202,
+    "distance_atr": 0.556,
+    "approach_trigger": 1.3202,
+    "direction": "SELL",
+    "approach_ok": true,
+    "entry_bid_walls": [],
+    "entry_ask_walls": [],
+    "gate4_wall": false
+   },
+   "m1": {
+    "level": 1.3186,
+    "distance_atr": 2.333,
+    "oversold_long_ok": false,
+    "overbought_short_ok": false,
+    "entry_bid_walls": [],
+    "entry_ask_walls": [],
+    "gate4_wall": false
+   },
+   "sizing": [
+    {
+     "volume": 0.05,
+     "sl_low": 0.002,
+     "sl_high": 0.002208,
+     "sl_atr_low": 2.222,
+     "sl_atr_high": 2.453
+    },
+    {
+     "volume": 0.06,
+     "sl_low": 0.00166667,
+     "sl_high": 0.00184,
+     "sl_atr_low": 1.852,
+     "sl_atr_high": 2.044
+    },
+    {
+     "volume": 0.07,
+     "sl_low": 0.00142857,
+     "sl_high": 0.00157714,
+     "sl_atr_low": 1.587,
+     "sl_atr_high": 1.752
+    },
+    {
+     "volume": 0.08,
+     "sl_low": 0.00135,
+     "sl_high": 0.00138,
+     "sl_atr_low": 1.5,
+     "sl_atr_high": 1.533
+    }
+   ],
+   "gate5": {
+    "example_volume": 0.05,
+    "example_nominal_risk_usd": 10.52,
+    "stress_total_usd": 15.15,
+    "post_loss_equity_usd": 4798.84,
+    "floor_ok": true
+   }
+  },
+  "USDJPY": {
+   "broker_symbol": "USDJPY.pi",
+   "category": "FOREX",
+   "mid": 158.1835,
+   "spread_bps": 0.06,
+   "regime": "BULLISH",
+   "vwap": 158.0867,
+   "vwap_z": 0.55,
+   "rsi_14": 48.96,
+   "atr_14": 0.067,
+   "l2_source": "UNAVAILABLE_L1_ONLY",
+   "gate1_spread": true,
+   "gate3_cvd": {
+    "cvd_1m": 0,
+    "cvd_5m": 0,
+    "cvd_15m": 0,
+    "cvd_60m": 0
+   },
+   "m2": {
+    "level": 158.0867,
+    "distance_atr": 1.445,
+    "approach_trigger": 158.0867,
+    "direction": "BUY",
+    "approach_ok": false,
+    "entry_bid_walls": [],
+    "entry_ask_walls": [],
+    "gate4_wall": false
+   },
+   "m1": {
+    "level": 157.7323,
+    "distance_atr": 6.734,
+    "oversold_long_ok": false,
+    "overbought_short_ok": false,
+    "entry_bid_walls": [],
+    "entry_ask_walls": [],
+    "gate4_wall": false
+   },
+   "sizing": [],
+   "gate5": {
+    "example_volume": null,
+    "floor_ok": false
+   }
+  }
+ },
+ "receipt_commit_relative_index": 29,
+ "history_samples": 45,
+ "verdicts": {
+  "BTC": "FAIL: M2 not at approach (-1.40 ATR from VWAP); M2 no persistent defending wall at VWAP (0.25 ATR band); M1 z/rsi thresholds not both met; M1 no persistent entry wall within 0.25 ATR of +-2 sigma",
+  "ETH": "FAIL: M2 not at approach (-2.10 ATR from VWAP); M2 no persistent defending wall at VWAP (0.25 ATR band); M1 z/rsi thresholds not both met; M1 no persistent entry wall within 0.25 ATR of +-2 sigma",
+  "SOL": "FAIL: M2 not at approach (-4.16 ATR from VWAP); M2 no persistent defending wall at VWAP (0.25 ATR band); M1 no persistent entry wall within 0.25 ATR of +-2 sigma",
+  "BNB": "FAIL: M2 not at approach (-2.86 ATR from VWAP); M2 no persistent defending wall at VWAP (0.25 ATR band); M1 z/rsi thresholds not both met; M1 no persistent entry wall within 0.25 ATR of +-2 sigma",
+  "XRP": "FAIL: G1 spread 35.73 bps > cap; M2 not at approach (-1.08 ATR from VWAP); M2 no persistent defending wall at VWAP (0.25 ATR band); M1 z/rsi thresholds not both met; M1 no persistent entry wall within 0.25 ATR of +-2 sigma",
+  "ADA": "FAIL: G1 spread 84.76 bps > cap; M2 not at approach (-2.17 ATR from VWAP); M2 no persistent defending wall at VWAP (0.25 ATR band); M1 z/rsi thresholds not both met; M1 no persistent entry wall within 0.25 ATR of +-2 sigma; G5 no admissible size in [10.00, 11.04] USD risk",
+  "DOGE": "FAIL: G1 spread 241.80 bps > cap; M2 no persistent defending wall at VWAP (0.25 ATR band); M1 z/rsi thresholds not both met; M1 no persistent entry wall within 0.25 ATR of +-2 sigma",
+  "TRX": "FAIL: G1 spread 26.91 bps > cap; M2 not at approach (-1.00 ATR from VWAP); M2 no persistent defending wall at VWAP (0.25 ATR band); M1 z/rsi thresholds not both met; M1 no persistent entry wall within 0.25 ATR of +-2 sigma",
+  "DOT": "FAIL: G1 spread 180.83 bps > cap; M2 not at approach (+1.19 ATR from VWAP); M2 no persistent defending wall at VWAP (0.25 ATR band); M1 z/rsi thresholds not both met; M1 no persistent entry wall within 0.25 ATR of +-2 sigma",
+  "LINK": "FAIL: G1 spread 65.63 bps > cap; M2 not at approach (-2.02 ATR from VWAP); M2 no persistent defending wall at VWAP (0.25 ATR band); M1 z/rsi thresholds not both met; M1 no persistent entry wall within 0.25 ATR of +-2 sigma",
+  "BCH": "FAIL: M2 no persistent defending wall at VWAP (0.25 ATR band); M1 z/rsi thresholds not both met; M1 no persistent entry wall within 0.25 ATR of +-2 sigma",
+  "LTC": "FAIL: G1 spread 46.74 bps > cap; M2 not at approach (-1.31 ATR from VWAP); M2 no persistent defending wall at VWAP (0.25 ATR band); M1 z/rsi thresholds not both met; M1 no persistent entry wall within 0.25 ATR of +-2 sigma",
+  "AVAX": "FAIL: G1 spread 28.32 bps > cap; M2 not at approach (-3.01 ATR from VWAP); M2 no persistent defending wall at VWAP (0.25 ATR band); M1 z/rsi thresholds not both met; M1 no persistent entry wall within 0.25 ATR of +-2 sigma",
+  "NEAR": "FAIL: G1 spread 63.76 bps > cap; M2 not at approach (-4.44 ATR from VWAP); M2 no persistent defending wall at VWAP (0.25 ATR band); M1 z/rsi thresholds not both met; M1 no persistent entry wall within 0.25 ATR of +-2 sigma",
+  "SP500": "FAIL: G3/G4 unavailable (L1-only feed); M2 no persistent defending wall at VWAP (0.25 ATR band); M1 z/rsi thresholds not both met; M1 no persistent entry wall within 0.25 ATR of +-2 sigma",
+  "NAS100": "FAIL: G3/G4 unavailable (L1-only feed); M2 not at approach (-1.39 ATR from VWAP); M2 no persistent defending wall at VWAP (0.25 ATR band); M1 z/rsi thresholds not both met; M1 no persistent entry wall within 0.25 ATR of +-2 sigma; G5 no admissible size in [10.00, 11.04] USD risk",
+  "DJ30": "FAIL: G3/G4 unavailable (L1-only feed); M2 not at approach (+1.09 ATR from VWAP); M2 no persistent defending wall at VWAP (0.25 ATR band); M1 z/rsi thresholds not both met; M1 no persistent entry wall within 0.25 ATR of +-2 sigma",
+  "GER40": "FAIL: G3/G4 unavailable (L1-only feed); M2 no persistent defending wall at VWAP (0.25 ATR band); M1 z/rsi thresholds not both met; M1 no persistent entry wall within 0.25 ATR of +-2 sigma",
+  "GOLD": "FAIL: G3/G4 unavailable (L1-only feed); M2 no persistent defending wall at VWAP (0.25 ATR band); M1 z/rsi thresholds not both met; M1 no persistent entry wall within 0.25 ATR of +-2 sigma; G5 no admissible size in [10.00, 11.04] USD risk",
+  "SILVER": "FAIL: G3/G4 unavailable (L1-only feed); M2 not at approach (-1.44 ATR from VWAP); M2 no persistent defending wall at VWAP (0.25 ATR band); M1 z/rsi thresholds not both met; M1 no persistent entry wall within 0.25 ATR of +-2 sigma; G5 no admissible size in [10.00, 11.04] USD risk",
+  "USWTI": "FAIL: G3/G4 unavailable (L1-only feed); M2 not at approach (+2.06 ATR from VWAP); M2 no persistent defending wall at VWAP (0.25 ATR band); M1 z/rsi thresholds not both met; M1 no persistent entry wall within 0.25 ATR of +-2 sigma",
+  "EURUSD": "FAIL: G3/G4 unavailable (L1-only feed); M2 no persistent defending wall at VWAP (0.25 ATR band); M1 z/rsi thresholds not both met; M1 no persistent entry wall within 0.25 ATR of +-2 sigma",
+  "GBPUSD": "FAIL: G3/G4 unavailable (L1-only feed); M2 no persistent defending wall at VWAP (0.25 ATR band); M1 z/rsi thresholds not both met; M1 no persistent entry wall within 0.25 ATR of +-2 sigma",
+  "USDJPY": "FAIL: G3/G4 unavailable (L1-only feed); M2 not at approach (+1.45 ATR from VWAP); M2 no persistent defending wall at VWAP (0.25 ATR band); M1 z/rsi thresholds not both met; M1 no persistent entry wall within 0.25 ATR of +-2 sigma; G5 no admissible size in [10.00, 11.04] USD risk"
+ }
+}
