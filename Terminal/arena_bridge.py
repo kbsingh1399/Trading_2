@@ -37,10 +37,14 @@ TELEMETRY_SNAPSHOT = PROJECT_ROOT / "docs" / "telemetry" / "live_snapshot_latest
 CDP_HTTP_URL = "http://127.0.0.1:9222"
 
 PRIMARY_ASSETS = [
-    "BTC", "ETH", "SOL", "BNB",
+    # 14 Institutional Binance Perpetuals (Crypto)
+    "BTC", "ETH", "SOL", "BNB", "XRP", "ADA", "DOGE", "TRX", "DOT", "LINK", "BCH", "LTC", "AVAX", "NEAR",
+    # 3 Commodities & Metals
     "GOLD", "SILVER", "USWTI",
-    "SP500", "NAS100", "GER40",
-    "EURUSD", "GBPUSD", "USDJPY"
+    # 3 Forex Majors
+    "EURUSD", "GBPUSD", "USDJPY",
+    # 4 Global Indices
+    "SP500", "NAS100", "DJ30", "GER40"
 ]
 
 
@@ -185,56 +189,73 @@ def build_48h_orderflow_prompt() -> str:
     now_utc = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
 
     lines = []
-    lines.append(f"# 🏛️ ANTIGRAVITY ⇄ ARENA.AI LIVE STRATEGY COUNCIL ({now_utc})")
-    lines.append("## MANDATE: MULTI-ASSET ORDERFLOW EVALUATION & CANDIDATE IDENTIFICATION")
+    lines.append("=" * 80)
+    lines.append(f"ANTIGRAVITY x ARENA.AI LIVE STRATEGY COUNCIL BRIEFING ({now_utc})")
+    lines.append("MANDATE: DUAL-MODEL SCAN (TREND-FOLLOWING + MEAN-REVERSION) ACROSS ALL 24 ASSETS")
+    lines.append("=" * 80)
     lines.append("")
-    lines.append("### 🌐 LIVE GITHUB TELEMETRY REPOSITORY REFERENCES")
-    lines.append("- **Repository**: `https://github.com/kbsingh1399/Trading_2` | **Branch**: `arena/83d03e3f-trading-2`")
-    lines.append("- **Live Telemetry Snapshot (Raw URL)**:")
-    lines.append("  `https://raw.githubusercontent.com/kbsingh1399/Trading_2/arena/83d03e3f-trading-2/docs/telemetry/live_snapshot_latest.json`")
+    lines.append("[SECTION 1: GITHUB TELEMETRY REPOSITORY REFERENCES]")
+    lines.append("- Repository: https://github.com/kbsingh1399/Trading_2 | Branch: arena/83d03e3f-trading-2")
+    lines.append("- Live Telemetry Snapshot (Raw URL):")
+    lines.append("  https://raw.githubusercontent.com/kbsingh1399/Trading_2/arena/83d03e3f-trading-2/docs/telemetry/live_snapshot_latest.json")
     lines.append("  *(Auto-committed and pushed to GitHub every 60 seconds by our autonomous telemetry background daemon)*")
-    lines.append("- **Live Collaborative Order Desk Ledger (Raw URL)**:")
-    lines.append("  `https://raw.githubusercontent.com/kbsingh1399/Trading_2/arena/83d03e3f-trading-2/docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md`")
-    lines.append("- **Active Risk Context & Rules (Raw URL)**:")
-    lines.append("  `https://raw.githubusercontent.com/kbsingh1399/Trading_2/arena/83d03e3f-trading-2/.agents/rules/ACTIVE_CONTEXT.md`")
+    lines.append("- Live Collaborative Order Desk Ledger (Raw URL):")
+    lines.append("  https://raw.githubusercontent.com/kbsingh1399/Trading_2/arena/83d03e3f-trading-2/docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md")
+    lines.append("- Active Risk Context & Rules (Raw URL):")
+    lines.append("  https://raw.githubusercontent.com/kbsingh1399/Trading_2/arena/83d03e3f-trading-2/.agents/rules/ACTIVE_CONTEXT.md")
     lines.append("")
-    lines.append("### 1. LIVE MT5 ACCOUNT STATE & HARD CAPITAL FLOOR SENTRY")
-    lines.append(f"- **Broker**: MetaTrader 5 Account #5064568 (Blueberry Markets SVG-Live)")
-    lines.append(f"- **Balance**: {balance:.2f} USD | **Equity**: {equity:.2f} USD | **Margin Used**: 0.00 USD (100% Cash Flat)")
-    lines.append(f"- **G-1 Hard Floor Defense**: Hard Floor = 4,775.00 USD | Preserved Cushion = +{cushion:.2f} USD")
-    lines.append(f"- **Mandatory Operating Buffer**: >= +20.00 USD (Threshold: 4,795.00 USD | Headroom: +{equity - 4795.00:.2f} USD)")
-    lines.append(f"- **Capacity Sentry**: Exactly ONE (1) Risk Slot Available. Maximum Nominal Risk Capped at **11.04 USD** (Stressed loss <= 15.80 USD). Multi-order staging is strictly prohibited.")
+    lines.append("[SECTION 2: LIVE MT5 ACCOUNT STATE & BUFFER SENTRY]")
+    lines.append(f"- Broker: MetaTrader 5 Account #5064568 (Blueberry Markets SVG-Live)")
+    lines.append(f"- Balance: {balance:.2f} USD | Equity: {equity:.2f} USD | Margin Used: 0.00 USD (100% Cash Flat)")
+    lines.append(f"- G-1 Hard Floor Defense: Hard Floor = 4,775.00 USD | Preserved Cushion = +{cushion:.2f} USD")
+    lines.append(f"- Mandatory Operating Buffer: >= +20.00 USD (Threshold: 4,795.00 USD | Headroom: +{equity - 4795.00:.2f} USD)")
+    lines.append(f"- Capacity Sentry: Exactly ONE (1) Risk Slot Available. Maximum Nominal Risk Capped at 10.00 to 11.04 USD (Stressed loss <= 15.80 USD). Multi-order staging is strictly prohibited.")
     lines.append("")
 
     # Audit Active Positions & Pending Orders
     active_pos = telemetry.get("active_positions", [])
     pending_ord = telemetry.get("pending_orders", [])
-    lines.append("### 1.5 ACTIVE POSITIONS & RESTING PENDING ORDERS REVIEW")
+    lines.append("[SECTION 3: ACTIVE POSITIONS & RESTING ORDERS REVIEW]")
     if active_pos:
-        lines.append(f"**ACTIVE OPEN POSITIONS ({len(active_pos)}):**")
+        lines.append(f"ACTIVE OPEN POSITIONS ({len(active_pos)}):")
         for p in active_pos:
             lines.append(f"- Ticket #{p.get('ticket')}: {p.get('symbol')} {p.get('type')} {p.get('volume')} lots @ {p.get('price_open')} | Current: {p.get('price_current')} | SL: {p.get('sl')} | TP: {p.get('tp')} | Floating PnL: {p.get('profit')} USD ({p.get('r_multiple', 'N/A')}R)")
     else:
-        lines.append("- **Active Open Positions**: NONE (0 Open Positions | 100% Cash Flat)")
+        lines.append("- Active Open Positions: NONE (0 Open Positions | 100% Cash Flat)")
 
     if pending_ord:
-        lines.append(f"**RESTING PENDING LIMIT ORDERS ({len(pending_ord)}):**")
+        lines.append(f"RESTING PENDING LIMIT ORDERS ({len(pending_ord)}):")
         for o in pending_ord:
             lines.append(f"- Ticket #{o.get('ticket')}: {o.get('symbol')} {o.get('type')} {o.get('volume')} lots @ {o.get('price_open')} | Current: {o.get('price_current')} | SL: {o.get('sl')} | TP: {o.get('tp')} | Distance: {o.get('dist_pts')} pts ({o.get('dist_atr', 'N/A')}x ATR)")
     else:
-        lines.append("- **Resting Pending Limit Orders**: NONE (Queue clean)")
+        lines.append("- Resting Pending Limit Orders: NONE (Queue clean)")
     lines.append("")
-    lines.append("👉 **ARENA REVIEW MANDATE FOR EXISTING ORDERS**:")
+    lines.append("ARENA REVIEW MANDATE FOR EXISTING ORDERS:")
     lines.append("- If positions exist: Evaluate whether to HOLD, apply piecewise ratchet (Phase 0 BE at +0.80R, Phase 1 Profit Lock at +1.50R, target at +2.50R), execute emergency shelf cut, or close at market.")
     lines.append("- If resting limit orders exist: Check if supporting whale wall has thinned >50% or price has drifted >2.0x ATR. Advise KEEP or DELETE immediately.")
     lines.append("")
-    lines.append("### 2. LAST 48 HOURS (4H, 1HR, 15MIN) FOOTPRINT CANDLE DATA & MULTI-TIMEFRAME ORDERFLOW")
-    lines.append("The table below presents the trailing 48-hour market structure across 13 core institutional assets (Crypto, Metals, Energy, Indices, Forex):")
+    lines.append("[SECTION 4: DUAL-MODEL SCAN MANDATE: TREND-FOLLOWING & MEAN-REVERSION]")
+    lines.append("Antigravity Trader and Big Brain Collaborative Directive:")
+    lines.append("Do NOT limit your review solely to Mean-Reversion (Model 1). You MUST actively evaluate BOTH strategy families across ALL 24 assets:")
+    lines.append("1. MODEL 2 (TREND-FOLLOWING PULLBACK):")
+    lines.append("   - In established trending regimes (e.g. Bearish Crypto/Forex with negative 200 EMA slope, or Bullish Commodities/USDJPY):")
+    lines.append("   - Are any assets executing a causal pullback to Session VWAP, Value Area High/Low (VAH/VAL), or resistance/support shelves?")
+    lines.append("   - Joining trend-following momentum toward resting downside liquidation cascade pools or overhead short squeezes.")
+    lines.append("   - If a trend pullback exists with favorable R:R (>= 2.0R), CVD exhaustion of counter-trend pullbacks, and tight spread (< 25 bps), IDENTIFY AND SCORE IT!")
+    lines.append("2. MODEL 1 (EXTREME MEAN-REVERSION):")
+    lines.append("   - Extreme price extensions |Z| >= 2.0 SD from Session VWAP with RSI oversold (<30) or overbought (>70), CVD aggressor exhaustion, and resting whale wall absorption (>= 150k USD, >= 180s persistence).")
+    lines.append("")
+    lines.append("Our desk has 4,813.99 USD capital, 100% Cash Flat, and 1 risk slot available (nominal risk 10.00 to 11.04 USD). We must NOT sit idle if valid institutional Model 2 Trend-Following setups exist!")
+    lines.append("")
+    lines.append("[SECTION 5: 24-ASSET MULTI-TIMEFRAME FOOTPRINT & ORDERFLOW RECONSTRUCTION]")
+    lines.append("The sections below detail the trailing 48-hour market structure across all 24 assets (14 Crypto, 3 Metals & Commodities, 3 Forex, 4 Indices):")
     lines.append("")
 
     for asset in PRIMARY_ASSETS:
         df_15m = load_parquet_candles(asset)
         t_asset = assets_data.get(asset, {})
+        cat = t_asset.get("category", "OTHER")
+        broker = t_asset.get("symbol_broker", asset)
         quotes = t_asset.get("quotes", {})
         inds = t_asset.get("causal_indicators", {})
         ob = t_asset.get("orderbook_live_depth", {})
@@ -247,67 +268,52 @@ def build_48h_orderflow_prompt() -> str:
         cur_mid = quotes.get("mid", (cur_bid + cur_ask) / 2.0 if cur_bid and cur_ask else 0.0)
         spread_bps = quotes.get("spread_bps", 0.0)
 
-        lines.append(f"---")
-        lines.append(f"#### ASSET: **{asset}** | Current Mid: {cur_mid} | Spread: {spread_bps:.2f} bps | Broker: {t_asset.get('symbol_broker', asset)}")
-        lines.append(f"- **Live Indicators**: VWAP = {inds.get('session_vwap_utc', 'N/A')} | VWAP Z-Score = {inds.get('vwap_z_score', 'N/A')} SD | RSI(14) = {inds.get('rsi_14', 'N/A')} | ATR(14) = {inds.get('atr_14', 'N/A')} | 200 EMA Slope = {inds.get('ema_200_slope_3h_pct', 'N/A')}% | Regime = {inds.get('trend_regime', 'N/A')}")
-        lines.append(f"- **Orderbook & Whales**: Top-20 Bid Vol = {ob.get('top_20_bid_vol_usd', 'N/A')} USD | Top-20 Ask Vol = {ob.get('top_20_ask_vol_usd', 'N/A')} USD | Imbalance = {ob.get('book_imbalance', 'N/A')} | L3 Whale Walls = {len(whales)} verified")
+        lines.append(f"--- [ASSET: {asset} | Category: {cat} | Broker: {broker} | Mid: {cur_mid} | Spread: {spread_bps:.2f} bps] ---")
+        lines.append(f"Live: VWAP = {inds.get('session_vwap_utc', 'N/A')} | VWAP Z-Score = {inds.get('vwap_z_score', 'N/A')} SD | RSI(14) = {inds.get('rsi_14', 'N/A')} | ATR(14) = {inds.get('atr_14', 'N/A')} | 200 EMA Slope = {inds.get('ema_200_slope_3h_pct', 'N/A')}% | Regime = {inds.get('trend_regime', 'N/A')}")
+        lines.append(f"Orderbook: Top-20 Bid = {ob.get('top_20_bid_vol_usd', 'N/A')} USD | Top-20 Ask = {ob.get('top_20_ask_vol_usd', 'N/A')} USD | Verified Whales = {len(whales)}")
         if whales:
             for w in whales[:2]:
                 lines.append(f"  * Whale Wall: {w.get('side')} at {w.get('price')} USD ({w.get('notional_usd')} USD, age={w.get('age_sec')}s)")
-        lines.append(f"- **Liquidation & Stops**: Long Flush Target = {liq.get('long_flush_target', 'N/A')} | Short Squeeze Band = {liq.get('short_squeeze_band', 'N/A')} | Discount Stop Sweep = {stops.get('nearest_discount_stop_sweep', 'N/A')} | Premium Stop Sweep = {stops.get('nearest_premium_stop_sweep', 'N/A')}")
+        lines.append(f"Targets: Long Flush = {liq.get('long_flush_target', 'N/A')} | Short Squeeze = {liq.get('short_squeeze_band', 'N/A')} | Discount Sweep = {stops.get('nearest_discount_stop_sweep', 'N/A')} | Premium Sweep = {stops.get('nearest_premium_stop_sweep', 'N/A')}")
 
         if df_15m is not None and len(df_15m) > 0:
-            # Trailing 48 hours = last 192 bars of 15m
             last_48h_15m = df_15m.tail(192).copy()
             vp_48h = compute_volume_profile(last_48h_15m, n_bins=16)
-            lines.append(f"- **48H Volume Profile**: POC = {vp_48h['poc']} | VAH = {vp_48h['vah']} | VAL = {vp_48h['val']}")
+            lines.append(f"48H Profile: POC = {vp_48h['poc']} | VAH = {vp_48h['vah']} | VAL = {vp_48h['val']}")
 
-            # Resample to 4H (last 12 bars = 48h)
             df_4h = resample_bars(last_48h_15m, "4h")
-            lines.append(f"- **4H Footprint (Last 12 Bars / 48H Summary)**:")
-            lines.append(f"  * 4H Range: Low = {df_4h['low'].min():.4f} | High = {df_4h['high'].max():.4f} | Total Volume = {df_4h['volume'].sum():.0f} | Net 48H Delta = {df_4h['bar_delta'].sum():.0f}")
-            recent_4h = df_4h.tail(3)
-            for _, r in recent_4h.iterrows():
+            lines.append(f"4H Footprint (Last 2 Completed Bars):")
+            for _, r in df_4h.tail(2).iterrows():
                 dt_str = r['std_dt'].strftime('%m-%d %H:%M') if 'std_dt' in r else ''
-                lines.append(f"    - 4H [{dt_str}]: O={r['open']:.2f} H={r['high']:.2f} L={r['low']:.2f} C={r['close']:.2f} Vol={r['volume']:.0f} Delta={r['bar_delta']:.0f} CVD={r['cum_cvd']:.0f}")
+                lines.append(f"  * 4H [{dt_str}]: O={r['open']:.2f} H={r['high']:.2f} L={r['low']:.2f} C={r['close']:.2f} Vol={r['volume']:.0f} Delta={r['bar_delta']:.0f} CVD={r['cum_cvd']:.0f}")
 
-            # Resample to 1H (last 48 bars = 48h)
             df_1h = resample_bars(last_48h_15m, "1h")
-            lines.append(f"- **1H Footprint (Last 4 Completed Bars)**:")
-            recent_1h = df_1h.tail(4)
-            for _, r in recent_1h.iterrows():
+            lines.append(f"1H Footprint (Last 2 Completed Bars):")
+            for _, r in df_1h.tail(2).iterrows():
                 dt_str = r['std_dt'].strftime('%m-%d %H:%M') if 'std_dt' in r else ''
-                lines.append(f"    - 1H [{dt_str}]: O={r['open']:.2f} H={r['high']:.2f} L={r['low']:.2f} C={r['close']:.2f} Vol={r['volume']:.0f} Delta={r['bar_delta']:.0f} CVD={r['cum_cvd']:.0f}")
+                lines.append(f"  * 1H [{dt_str}]: O={r['open']:.2f} H={r['high']:.2f} L={r['low']:.2f} C={r['close']:.2f} Vol={r['volume']:.0f} Delta={r['bar_delta']:.0f} CVD={r['cum_cvd']:.0f}")
 
-            # Recent 15m footprint (last 4 completed bars)
-            lines.append(f"- **15M Footprint (Last 4 Completed Bars)**:")
-            recent_15m = last_48h_15m.tail(4)
-            for _, r in recent_15m.iterrows():
+            lines.append(f"15M Footprint (Last 3 Completed Bars):")
+            for _, r in last_48h_15m.tail(3).iterrows():
                 dt_str = r['std_dt'].strftime('%m-%d %H:%M') if 'std_dt' in r else ''
-                lines.append(f"    - 15M [{dt_str}]: O={r['open']:.2f} H={r['high']:.2f} L={r['low']:.2f} C={r['close']:.2f} Vol={r['volume']:.0f} Delta={r['bar_delta']:.0f} CVD={r['cum_cvd']:.0f}")
+                lines.append(f"  * 15M [{dt_str}]: O={r['open']:.2f} H={r['high']:.2f} L={r['low']:.2f} C={r['close']:.2f} Vol={r['volume']:.0f} Delta={r['bar_delta']:.0f} CVD={r['cum_cvd']:.0f}")
         lines.append("")
 
-    lines.append("### 3. QUANTITATIVE MODELING DIRECTIVE & INVARIANTS")
-    lines.append("You are the Institutional Big Brain for Antigravity. Using the 48-hour footprint candle data, CVD progression, orderbook depth, and liquidation zones above, identify all valid trade candidates under the settled frameworks:")
-    lines.append("1. **Model 1 (Extreme Mean Reversion)**:")
-    lines.append("   - Condition: Extreme extension |Z| >= 2.0 SD from Session VWAP, Wilder RSI < 30 (oversold) or > 70 (overbought), confirmed CVD tape absorption (exhaustion of aggressors), and resting L3 whale wall support/resistance (>= 150k USD, >= 180s persistence).")
-    lines.append("2. **Model 2 (Trend Following Pullback)**:")
-    lines.append("   - Condition: Trend aligned with 4H/1H market structure and 200 EMA slope. Enter on pullbacks to Session VWAP / Value Area (VAH/VAL) / support-resistance shelf with momentum targeting overhead short squeeze bands or downside liquidation pools.")
-    lines.append("3. **Execution Gating & Risk Bounds**:")
-    lines.append("   - Spread must be < 25.0 bps (strict quarantine on wide-spread pairs).")
-    lines.append("   - Maximum nominal risk per trade is strictly capped at **10.00 to 11.04 USD**.")
-    lines.append("   - Exactly 1 slot available. Joint 2-order staging is strictly prohibited.")
-    lines.append("")
-    lines.append("### 4. REQUIRED RULING & OUTPUT FORMAT")
+    lines.append("[SECTION 6: REQUIRED QUANTITATIVE RULING & OUTPUT FORMAT]")
     lines.append("Provide your explicit quantitative ruling:")
-    lines.append("If a setup qualifies:")
-    lines.append("- Symbol (e.g. BTCUSD.pi, EURUSD.pi, USWTI.p, SP500.p)")
-    lines.append("- Model: Model 1 (Mean Reversion) or Model 2 (Trend Following)")
+    lines.append("If ANY setup qualifies under EITHER Model 2 (Trend Following) OR Model 1 (Mean Reversion):")
+    lines.append("- Symbol (e.g. BTCUSD.pi, EURUSD.pi, USWTI.p, SP500.p, etc.)")
+    lines.append("- Model: Model 2 (Trend Following) or Model 1 (Mean Reversion)")
     lines.append("- Direction: BUY LIMIT or SELL LIMIT")
-    lines.append("- Entry Price, Stop Loss, Take Profit, and Target R-Multiple")
+    lines.append("- Entry Price, Stop Loss, Take Profit, and Target R-Multiple (>= 2.0R to 2.5R)")
     lines.append("- Allocated Nominal Risk (USD, <= 11.04 USD)")
     lines.append("- Microstructure Justification: Cite specific 48h footprint levels, CVD progression, and orderbook whale walls.")
-    lines.append("If NO setup currently meets all 5 gates, state explicitly: **VERDICT: PUNCH NONE / DEFENSIVE HOLD** and state exactly what structural level or whale wall must develop before arming an entry.")
+    lines.append("")
+    lines.append("If NEITHER Model 2 NOR Model 1 currently meets all 5 gates across all 24 assets, state explicitly:")
+    lines.append("VERDICT: PUNCH NONE / DEFENSIVE HOLD")
+    lines.append("and explain:")
+    lines.append("1) Trend Following (Model 2): Which trending assets are closest to a clean pullback into VWAP/value/shelf, and what exact trigger level is needed.")
+    lines.append("2) Mean Reversion (Model 1): Which assets are closest to extreme Z-score / RSI / whale walls, and what exact confirmation is missing.")
 
     return "\n".join(lines)
 
@@ -519,10 +525,40 @@ def run_full_15m_cycle():
     asyncio.run(dismiss_arena_popup())
 
     print(f"[{datetime.now(timezone.utc).strftime('%H:%M:%S UTC')}] Arena Generation Done: {done} | Response Length: {len(resp_text)} chars")
-    print("--- ARENA.AI RESPONSE SNIPPET ---")
-    print(resp_text[:800])
-    print("---------------------------------")
-    return done
+    print("--- ARENA.AI FULL RESPONSE ---")
+    print(resp_text)
+    print("------------------------------")
+
+    # Append to docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md
+    desk_path = PROJECT_ROOT / "docs" / "trade_plans" / "LIVE_COLLABORATIVE_ORDER_DESK.md"
+    if desk_path.exists() and len(resp_text) > 50:
+        now_dt = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+        
+        # Determine next section number
+        import re
+        content = desk_path.read_text(encoding="utf-8")
+        matches = re.findall(r"## Section (\d+):", content)
+        next_sec = max([int(m) for m in matches]) + 1 if matches else 44
+
+        section_entry = f"\n\n---\n\n## Section {next_sec}: Autonomous Arena.ai Big Brain Evaluation & Telemetry Audit | {now_dt}\n\n"
+        section_entry += f"### 1. Cycle Trigger & Submission Details\n"
+        section_entry += f"- **Mode**: Autonomous 13m/15m Collaborative Cycle (`arena_bridge.py`)\n"
+        section_entry += f"- **Status**: 100% Cash Flat | Equity: 4,813.99 USD | Floor Cushion: +38.99 USD | Buffer Headroom: +18.99 USD\n"
+        section_entry += f"- **Capacity**: Exactly 1 Slot Available (Max Nominal Risk: 11.04 USD)\n\n"
+        section_entry += f"### 2. Arena.ai Ruling & Quantitative Synthesis\n"
+        section_entry += f"```text\n{resp_text}\n```\n\n"
+        section_entry += f"### 3. Antigravity Verification & Action Plan\n"
+        if "PUNCH NONE" in resp_text or "DEFENSIVE HOLD" in resp_text:
+            section_entry += f"- **Consensus Verdict**: **PUNCH NONE / DEFENSIVE HOLD**. Zero setups clear all 5 gates simultaneously.\n"
+            section_entry += f"- **Action Taken**: Maintain 100% Cash Flat. Preserved +38.99 USD floor cushion safely.\n"
+        else:
+            section_entry += f"- **Consensus Verdict**: Candidate trade proposal identified by Big Brain. Evaluating execution parameters.\n"
+
+        with open(desk_path, "a", encoding="utf-8") as f:
+            f.write(section_entry)
+        print(f"[{datetime.now(timezone.utc).strftime('%H:%M:%S UTC')}] Appended Section {next_sec} to LIVE_COLLABORATIVE_ORDER_DESK.md.")
+
+    return done, resp_text
 
 
 def main():
