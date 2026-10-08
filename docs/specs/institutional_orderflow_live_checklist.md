@@ -132,6 +132,10 @@ Manage profit targets dynamically based on orderbook liquidity distribution:
 
 ## ⏱️ SECTION 4: INVALIDATION, PENDING ORDER REVIEW & MARGIN GATING (User Mandate)
 
+### Rule 4.0: Mandatory Previous Conversation Context Reference (Zero Context Amnesia)
+- [ ] On EVERY decision step, the coordinator and all subagents MUST review the previous conversation history (`.agents/memory/session_chat_history.md`, past turns, transcript).
+- [ ] Zero action may be taken in isolation or in a vacuum: you must know previous trade actions, why an order was pruned or staged, operator mandates, and historical trajectory before proceeding.
+
 ### Rule 4.1: Pre-Order Free Margin & Capacity Gate
 - [ ] Before scanning for new opportunities or staging any limit order, verify:
   * Free Margin > 4,000.00 USD (strictly unencumbered).

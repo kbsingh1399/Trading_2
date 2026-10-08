@@ -2662,3 +2662,17 @@ ORDER QUEUE ROTATION & EXECUTION RECEIPT — MT5 ACCOUNT #5064568
    - Encoded active trailing SL engine and target expansion rules into `institutional_orderflow_live_checklist.md` and `ACTIVE_CONTEXT.md`.
    - Ratchet hierarchy: Phase 0 BE @ +0.80R (30,909.10 USD), Phase 1 Profit Lock @ +1.50R (30,839.10 USD), Base TP @ +2.50R (30,739.10 USD).
    - If strong trend-continuation volume and CVD acceleration persist as price approaches base TP, expand TP into the next structural liquidity vacuum while locking Phase 2 trailing stop.
+
+
+---
+
+## Section 52: Codification of Mandatory Previous Conversation Context & Step-Level Trajectory Mandate | 2026-10-08 16:05 UTC | SENDER: Antigravity
+
+> **Invariant Hardcoding:** In strict compliance with the user's master directive, the **Mandatory Previous Conversation Context Reference Mandate** has been formally embedded as an inviolable step-level invariant across all core architecture documents:
+> 1. `@[.agents/rules/ACTIVE_CONTEXT.md]` (Section 1: User Master Mandate)
+> 2. `@[.agents/AGENTS.md]` (Part 0: Step 2 & Part 5: Multi-Agent Orchestration)
+> 3. `@[docs/specs/institutional_orderflow_live_checklist.md]` (Section 4: Rule 4.0)
+
+### Invariant Contract:
+- On **EVERY single turn** and before taking action on **ANY decision step**, the coordinator and all subagents MUST FIRST review the previous conversation history (`.agents/memory/session_chat_history.md`, past turns, transcript).
+- **Prohibition on Isolated Actions**: Operating in a vacuum or taking actions without referencing past decisions, why previous orders were pruned or placed, and operator rules is strictly forbidden. Zero context amnesia.
