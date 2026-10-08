@@ -897,9 +897,9 @@ class InstitutionalTradingStation(QMainWindow):
         # Update MT5 Account State
         mt5 = data.get("mt5") or {}
         acc = mt5.get("account") or {}
-        eq = acc.get("equity", 4811.62)
-        bal = acc.get("balance", 4811.62)
-        f_margin = acc.get("margin_free", 4811.62)
+        eq = acc.get("equity", 4813.99)
+        bal = acc.get("balance", 4813.99)
+        f_margin = acc.get("margin_free", 4813.99)
         cushion = eq - 4775.00
         headroom = eq - 4795.00
         self.acc_val.setText(f"Equity: {eq:,.2f} USD | Free Margin: {f_margin:,.2f} USD | 0 Pos | 0 Orders")
@@ -911,7 +911,7 @@ class InstitutionalTradingStation(QMainWindow):
         for row, a in enumerate(self.assets):
             a_data = per_asset.get(a) or {}
             cat_name = a_data.get("category") or ASSET_CATEGORY_MAP.get(a, "OTHER")
-            mtf = a_data.get("mtf") or {}
+            mtf = a_data.get("mtf") or a_data.get("binance_mtf") or {}
             bf = a_data.get("binance_futures") or {}
             hl = a_data.get("hyperliquid") or {}
             mt5_q = mt5.get("quotes", {}).get(a) or {}
@@ -1051,7 +1051,7 @@ class InstitutionalTradingStation(QMainWindow):
         liqs = hd.get("liquidations") or {}
         l_size = liqs.get("total_long_size", 0.0)
         s_size = liqs.get("total_short_size", 0.0)
-        curr_px = l2.get("best_bid", 0.0)
+        curr_px = l2.get("best_bid") or curr_mt5_q.get("mid") or curr_mt5_q.get("bid") or 0.0
         ratio = (l_size / s_size) if s_size > 0 else 1.0
 
         bands = [b for b in liqs.get("bands", []) if b.get("amount", 0.0) > 0]

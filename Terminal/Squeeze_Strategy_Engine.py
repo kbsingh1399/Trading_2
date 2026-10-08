@@ -440,7 +440,7 @@ def calculate_structural_trade_plan(
     liquidations_hd: Optional[Dict[str, Any]],
     stops_hd: Optional[Dict[str, Any]],
     atr_14: float = 0.0,
-    capital_usd: float = 4811.62,
+    capital_usd: float = 4813.99,
     max_risk_usd: float = 11.04,
 ) -> Dict[str, Any]:
     """Step 5: Structural Take-Profit & Protective Stop Loss Trade Plan."""
@@ -549,7 +549,7 @@ def run_full_squeeze_strategy_pipeline(
     liquidations_hd: Optional[Dict[str, Any]] = None,
     stops_hd: Optional[Dict[str, Any]] = None,
     atr_14: float = 0.0,
-    capital_usd: float = 4811.62,
+    capital_usd: float = 4813.99,
     max_risk_usd: float = 11.04,
 ) -> Dict[str, Any]:
     """Execute the full 5-step institutional pipeline for an asset."""
