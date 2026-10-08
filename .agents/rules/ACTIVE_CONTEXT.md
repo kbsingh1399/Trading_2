@@ -44,23 +44,27 @@ trigger: always_on
     - Full Arena Audit Report: Archived in `docs/audits/institutional-quant-audit-2026-10-04.md` and `docs/audits/ARENA_ANTIGRAVITY_HANDSHAKE_COUNCIL_67.md`.
     - **Dynamic Conviction Risk Budget**: Flexible **10.00 to 20.00 USD** (0.20% to 0.40% on 5,000.00 USD capital) dynamically scaled by orderflow confluence, resting L3 whale presence, and macro alignment.
     - **Active Positions & Pending Orders (Live State)**:
-      * Current Status: **1 Open Position | 4 Pending Orders (5 Total Tickets) | Equity: ~4,850.77 USD | Balance: 4,829.79 USD | Free Margin: ~4,404.73 USD | Margin Used: 446.04 USD (90.8% Cash Reserves)**.
+      * Current Status: **0 Open Positions | 0 Pending Orders (0 Total Tickets) | Equity: 4,845.80 USD | Balance: 4,845.80 USD | Free Margin: 4,845.80 USD | Margin Used: 0.00 USD (100% Cash Reserves)**.
       * Active Positions:
-        - **Ticket #18706769 (ETHUSD.pi BUY 0.37 lots @ 2,411.00 USD | SL: 2,434.52 USD | TP: 2,484.50 USD | Risk: 0.00 USD | Current Mark: ~2,467.70 USD | Floating PnL: +20.98 USD / +1.90R | Status: PHASE 1 PROFIT LOCKED — +8.70 USD NET CASH PROFIT GUARANTEED, TRACKING BASE TP 2,484.50 USD, NEAR PHASE 2 ARMING >= 2,470.80 USD)**.
+        - **NONE (0 Open Positions | 100% Cash Flat)**.
       * Pending Orders:
-        - **Ticket #18713247 (NERUSD.p SELL LIMIT 1.0 lot @ 4.617 USD | SL: 4.744 USD | TP: 4.299 USD | Nominal Risk: 12.70 USD | Status: RESTING PASSIVELY ON MT5, Crypto Cluster)**.
-        - **Ticket #18713408 (USWTI.p BUY LIMIT 0.20 lots @ 91.720 USD | SL: 91.220 USD | TP: 93.000 USD | Nominal Risk: 10.00 USD | Status: RESTING PASSIVELY ON MT5, Energy Cluster, Model 1 Flush Re-Test)**.
-        - **Ticket #18713432 (SP500.p BUY LIMIT 0.10 lots @ 7,758.00 USD | SL: 7,748.00 USD | TP: 7,783.00 USD | Nominal Risk: 10.00 USD | Status: RESTING PASSIVELY ON MT5, Indices Cluster, Support Shelf)**.
-        - **Ticket #18713434 (XAUUSD.pi BUY LIMIT 0.01 lots @ 4,124.00 USD | SL: 4,114.00 USD | TP: 4,149.00 USD | Nominal Risk: 10.00 USD | Status: RESTING PASSIVELY ON MT5, Metals Cluster, Support Shelf)**.
+        - **NONE (Clean queue, Ticket #18713247 expired at 21:15:00 UTC candle close)**.
+      * Pruned / Cancelled / Expired Orders:
+        - **Ticket #18713247 (`NERUSD.p` SELL LIMIT 1.0 lot @ 4.617 USD): Expired at 21:15:00 UTC candle close per order expiration parameter**.
+        - **Ticket #18713408 (`USWTI.p` BUY LIMIT 0.20 @ 91.720 USD): Cancelled per 20:45 UTC peer review (no supporting EMA/VWAP shelf, drifted -0.56 ATR)**.
+        - **Ticket #18713432 (`SP500.p` BUY LIMIT 0.10 @ 7,758.00 USD): Cancelled per 20:45 UTC peer review (post-cash close illiquidity, bearish regime below VWAP)**.
+        - **Ticket #18713434 (`XAUUSD.pi` BUY LIMIT 0.01 @ 4,124.00 USD): Cancelled per 20:45 UTC peer review (stale -1.48 ATR, zero resting L2 whale backing)**.
       * Closed Orders Today:
-        - **Ticket #18710722 (`SOLUSD.p` SHORT 0.08 lots @ 107.72 USD): Closed via Emergency Shelf Cut at 108.87 USD (-9.20 USD net cash, 15m close breached 108.35 shelf; saved capital vs 109.10 hard stop, liberated Slot 2 capacity)**.
+        - **Ticket #18706769 (`ETHUSD.pi` BUY 0.37 lots @ 2,411.00 USD): Closed via Phase 2 Trailing Ratchet SL at 2,455.10 USD (+16.32 USD net cash profit banked into capital)**.
+        - **Ticket #18710722 (`SOLUSD.p` SHORT 0.08 lots @ 107.72 USD): Closed via Emergency Shelf Cut at 108.87 USD (-9.20 USD net cash, saved capital vs 109.10 hard stop)**.
         - Ticket #18703132 (`NAS100.p` SHORT 0.01 lots): **Closed via Take Profit at 30,739.10 USD (+25.00 USD net cash profit booked)**.
         - Ticket #18702099 on `BTCUSD.pi` pruned/removed at 21:20:00 UTC due to supporting whale wall migration.
-      * G-1 Hard Floor Defense: Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Floor Cushion: **+75.77 USD** (+55.77 USD above operating buffer).
-      * Stressed Post-Loss Simulation: ETH downside risk is 0.00 USD (locks +8.70 USD profit). Guaranteed equity floor post-loss is well protected. Abundant free margin (4,404.73 USD) backing passive limit deployment across orthogonal asset clusters.
-      * Capacity Sentry: **5 / 12 slots deployed (1 Filled + 4 Resting Limits; 7 slots VACANT)**. Available Free Margin: >4,400 USD.
+      * G-1 Hard Floor Defense: Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Floor Cushion: **+70.80 USD** (+50.80 USD above operating buffer).
+      * Stressed Post-Loss Simulation: Active position downside risk is 0.00 USD. Minimum guaranteed session equity: **4,845.80 USD** (+70.80 USD above hard floor, +50.80 USD above operating buffer; 100% compliant).
+      * Capacity Sentry: **0 / 12 slots deployed (12 slots VACANT)**. Available Free Margin: 4,845.80 USD (100% cash).
       * Disk Hygiene: Purged 2.50 GB of scratch git objects, stale tick buffers, and unneeded archives; C: free space expanded to 134.66 GB.
       * Closed Trades Today (Realized PnL):
+        - Ticket #18706769 (`ETHUSD.pi` closed at +16.32 USD profit via Phase 2 Trailing Ratchet SL at 2,455.10 USD)
         - Ticket #18710722 (`SOLUSD.p` closed -9.20 USD loss via emergency shelf cut at 108.87 USD)
         - Ticket #18703132 (`NAS100.p` closed at +25.00 USD profit via Take Profit at 30,739.10 USD)
         - Ticket #18686607 (`ETHUSD.pi` closed at +2.37 USD profit via market close at 2,533.70 USD)
@@ -69,8 +73,8 @@ trigger: always_on
         - Ticket #18644889 (`USDJPY.pi` closed at +1.82 USD profit via Phase 0 BE lock at 158.046 USD)
         - Ticket #18630694 (`BTCUSD.pi` closed -6.80 USD loss via SL at 82,700.00 USD)
         - Ticket #18644262 (`USWTI.p` closed -10.03 USD loss via SL at 90.113 USD)
-        - Net Realized Session PnL: **+16.91 USD** across 8 completed trades (initial capital 5,000.00 USD; 96.60% preserved).
-      * Desk Status: Ticket #18706769 active LONG on ETHUSD.pi (Phase 1 Profit Locked at 2,434.52 USD, +8.70 USD banked cash guaranteed, base TP at 2,484.50 USD); 4 active pending orders resting on MT5 across Crypto, Energy, Indices, Metals. Stage for 20:40 UTC collaborative prompt cycle.
+        - Net Realized Session PnL: **+33.23 USD** across 9 completed trades (initial capital 5,000.00 USD; 96.92% preserved; 6 wins / 3 losses = 66.7% win rate).
+      * Desk Status: 0 active positions; 0 pending orders; 12 slots vacant. Staging for 21:25 UTC collaborative prompt cycle.
 
 ## 3. Settled Mathematical & Strategy Invariants
 - **Institutional VWAP & Orderflow Confluence Framework (Strict Mandate)**:

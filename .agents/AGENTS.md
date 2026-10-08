@@ -75,8 +75,13 @@ When `AGENTS.md` is loaded, execute sequentially without asking:
 
 ---
 
-# PART 3: KAIZEN VERIFICATION & COMMUNICATION
-1. **Kaizen Verification**: (1) Evaluate outcome $\to$ (2) Identify architectural/API patterns $\to$ (3) Persist into `FABLE5_CHECKLIST.md` or `.okf/` $\to$ (4) Data Provenance Gate: Trace data sources end-to-end, never rely on column names alone.
+# PART 3: KAIZEN VERIFICATION, CONTINUOUS SELF-IMPROVEMENT & COMMUNICATION
+1. **Continuous Kaizen Self-Improvement & Session-History Learning Mandate (Strict & Permanent Invariant)**:
+   - On EVERY cycle, wake-up turn, and order decision step, the coordinator and all subagents MUST systematically review and study the entire session history (`.agents/memory/session_chat_history.md`, past turns, transcript, and evolving operator directives).
+   - **Continuous Self-Improvement**: Actively extract lessons from past actions: evaluate outcomes, analyze past setbacks (e.g. unaligned limits placed without resting whale walls, off-hours spread traps, or premature entries), internalize operator feedback, and refine decision heuristics to continually sharpen decision quality.
+   - **Zero Regression / Never Repeat Traps**: Never repeat an identified error or flawed execution pattern. Every subsequent cycle must be more refined, disciplined, and mathematically grounded than the last.
+   - **Pattern Persistence**: Persist newly discovered architectural, API, or execution invariants into `FABLE5_CHECKLIST.md`, `.okf/`, or `ACTIVE_CONTEXT.md`.
+   - **Data Provenance Gate**: Trace data sources end-to-end, never rely on column names alone.
 2. **Outcome-First / TL;DR**: Direct outcome in first sentence. No sycophancy ("Sure!", "Great question!"). No observational verbs ("I see", "Looking at"). Explanations in prose (no forbidden bullets).
 3. **Arena.ai Prompt Protocol**: NEVER inject large source code blocks into prompts. Reference raw GitHub URLs only to bypass context caps.
 4. **Minimal Files & Ephemeral Data Cleanliness (Strict Mandate)**: Always consolidate related tools into unified modules. Prune scratch scripts and temporary debug artifacts immediately after validation. Once output or scorecard data is printed and reported to the user, immediately delete all temporary CSV, cache, and replay files. Never leave folders littered.
