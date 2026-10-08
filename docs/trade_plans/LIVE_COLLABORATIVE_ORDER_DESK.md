@@ -3150,3 +3150,16 @@ ACTIVE POSITION SENTRY RECEIPT — MT5 ACCOUNT #5064568
 - **Worst case after stage A:** 4,838.49 - 11.00 = 4,827.49 USD (+32.49 over the 4,795.00 USD buffer). G-1 limit 31.07 USD.
 - **Ruling file:** `docs/trade_plans/ARENA_24_ASSET_DUAL_TRACK_RULING_20261008_1958UTC.md`. **Stage file:** `docs/trade_plans/ARENA_LIMIT_STAGES_20261008_1958.json`.
 - **Gating:** dry-run only. No `--execute`, no MT5 order placed. Desk executes.
+
+### 64-ADDENDUM-4 (20:10:11 UTC briefing; telemetry 20:10:06 UTC): BTC 81,800 retired · DOGE 0.0840 stays stage A · NEAR 4.617 expanded-only alternate B
+
+- **Telemetry 20:10:06 UTC:** balance 4,829.79 USD, equity 4,850.10 USD, margin 446.04 USD, free 4,404.06 USD. Capacity OPEN 1/2, 0 pending. Briefing §2 ("margin 0.00", "exactly ONE slot") and §4 (4,813.99 USD) are stale and not used.
+- **ETH #18706769 LONG 0.37 @ 2,411.00:** SL 2,434.52 (Phase-1 lock). Mark 2,465.90, floating +20.31 USD, telemetry R 2.33. **HOLD.** The Phase-2 rung is still unconfirmed; the desk should confirm the R basis.
+- **BTC 81,800 (19:58 alternate B): RETIRED.** Mid 81,830.5 is above the level, the 81,771 swing high is broken, and the ask band fell to 59k USD with a 30:1 bid-heavy book. Fails Track 2 depth.
+- **Stage A (primary, one order):** DOGUSD.p SELL LIMIT **0.0840** · SL **0.0851** · TP **0.0812** (2.55R) · 1.0 lot · risk **11.00 USD** (inside 11.04 cap) · EMA50 shelf · ask band 1.75M minimum over 12 receipts · imbalance -0.11 · expires 21:58:00 UTC · `validate_plan` PASS. Still valid at 20:10 (+0.17 ATR above mid).
+- **Alternate B (expanded-only, not staged):** NERUSD.p SELL LIMIT **4.617** · SL **4.744** · TP **4.299** (2.50R) · 1.0 lot · risk **12.70 USD** · EMA20 shelf · ask band 679k minimum over 12 receipts · needs the 15.00 desk cap.
+- **Watch only:** LTCUSD.pi SELL LIMIT 63.10 (EMA50): ask band 8/12 receipts at or above 150k, below the 12/12 standard. Not admitted.
+- **Model 1:** zero candidates. DJ30 (Z +2.12) fails the RSI gate and wick test; GBPUSD (Z +2.05) fails the RSI gate and 2 dp resolution.
+- **Worst case after stage A:** 4,838.49 - 11.00 = 4,827.49 USD (+32.49 over the 4,795.00 USD buffer). G-1 limit 31.07 USD.
+- **Ruling file:** `docs/trade_plans/ARENA_24_ASSET_DUAL_TRACK_RULING_20261008_2010UTC.md`. **Stage file:** `docs/trade_plans/ARENA_LIMIT_STAGES_20261008_2010.json`.
+- **Gating:** dry-run only. No `--execute`, no MT5 order placed. Desk executes.

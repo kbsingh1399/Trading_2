@@ -1,0 +1,79 @@
+{
+  "_note": "ARENA 20:10:11 council briefing (telemetry 20:10:06 UTC). Capacity OPEN 1/2, 0 pending, ETH only. ONE slot: stage A only. B is an expanded-only alternate, not to be staged alongside A. BTC 81,800 (19:58 B) RETIRED: mid 81,830.5 is above the level and the 81,771 swing high is broken; ask band fell to 59k with 30:1 bid-heavy book. LTC 63.10 (EMA50) watch-only: ask band 8/12 receipts >= 150k, below the 12/12 standard.",
+  "receipt": {
+    "telemetry_as_of_utc": "2026-10-08 20:10:06 UTC",
+    "validation_now_utc": "2026-10-08 20:10:06 UTC"
+  },
+  "ranking": [
+    "A DOGE 0.0840 (preferred cap 11.00)",
+    "B NEAR 4.617 (expanded-only 12.70)"
+  ],
+  "plans": [
+    {
+      "plan_version": "omni.trade_plan.v1",
+      "plan_id": "arena-20261008-2010-doge-m2-short",
+      "model": "Model 2 trend-following",
+      "direction": "SHORT",
+      "symbol": "DOGUSD.p",
+      "asset": "DOGUSD",
+      "limit_price": 0.084,
+      "sl": 0.0851,
+      "tp": 0.0812,
+      "volume": 1.0,
+      "atr": 0.0006,
+      "risk_usd": 11.0,
+      "sl_atr": 1.833,
+      "stressed_usd": 15.84,
+      "tp_r": 2.545,
+      "ttl_bars": 8,
+      "created_at_epoch": 1791490206.650006,
+      "expires_at_epoch": 1791496680.0,
+      "blackout_windows": [],
+      "max_friction_r": 0.35,
+      "tp_r_recomputed": 2.545,
+      "validation": "PASS",
+      "contract": {
+        "tick_size": 0.0001,
+        "min_lot": 1.0,
+        "step_lot": 1.0,
+        "contract_size": 10000.0
+      },
+      "label": "DOGE SELL LIMIT A (preferred cap 11.00, one slot)",
+      "comment": "ARENA: 20:10 scan (telemetry 20:10:06 UTC). DOGE mid 0.0839, ATR 0.0006. SELL LIMIT 0.0840 = +0.17 ATR above mid on EMA50 shelf (0.0840); EMA20 0.0825 below. 200 EMA slope -0.84% BEARISH. Ask band min 1.75M / 12 receipts (2.09M now); imbalance -0.11 (ask/bid 1.26x). Spread 250 bps exempt (passive; bid 0.0829 below entry). SL 0.0851 = 1.83 ATR; TP 0.0812 = 2.55R.",
+      "validated_at_epoch": 1791490206.650006
+    },
+    {
+      "plan_version": "omni.trade_plan.v1",
+      "plan_id": "arena-20261008-2010-near-m2-short",
+      "model": "Model 2 trend-following",
+      "direction": "SHORT",
+      "symbol": "NERUSD.p",
+      "asset": "NEAR",
+      "limit_price": 4.617,
+      "sl": 4.744,
+      "tp": 4.299,
+      "volume": 1.0,
+      "atr": 0.0841,
+      "risk_usd": 12.7,
+      "sl_atr": 1.51,
+      "stressed_usd": 18.29,
+      "tp_r": 2.504,
+      "ttl_bars": 8,
+      "created_at_epoch": 1791490206.650006,
+      "expires_at_epoch": 1791496680.0,
+      "blackout_windows": [],
+      "max_friction_r": 0.35,
+      "tp_r_recomputed": 2.504,
+      "validation": "PASS",
+      "contract": {
+        "tick_size": 0.001,
+        "min_lot": 1.0,
+        "step_lot": 1.0,
+        "contract_size": 100.0
+      },
+      "label": "NEAR SELL LIMIT B (expanded-only 12.70, alternate)",
+      "comment": "ARENA: 20:10 scan (telemetry 20:10:06 UTC). NEAR mid 4.5935, ATR 0.0841. SELL LIMIT 4.617 = +0.28 ATR above mid on EMA20 shelf (4.6114; EMA50 4.834 above). 200 EMA slope -1.39% BEARISH. Ask band min 679k / 12 receipts (699k now). Imbalance +0.07 (no ask-heavy edge). Spread 72 bps exempt (passive). SL 4.744 = 1.51 ATR; TP 4.299 = 2.50R. Expanded-only: needs 15.00 desk cap. Alternate only.",
+      "validated_at_epoch": 1791490206.650006
+    }
+  ]
+}
