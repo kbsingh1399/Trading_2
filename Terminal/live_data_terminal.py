@@ -487,12 +487,15 @@ def fetch_hyperdash_orderbook_and_analytics(coin: str) -> Dict[str, Any]:
         res["l2"] = l2
         px = l2.get("best_bid", 0.0)
         if px > 0:
+            # Broad search envelope (-35% to +35%) matching Hyperdash's wide multi-level landscape
+            min_p = round(px * 0.65, 2)
+            max_p = round(px * 1.35, 2)
             try:
-                res["liquidations"] = client.fetch_liquidations(coin, px * 0.85, px * 1.15)
+                res["liquidations"] = client.fetch_liquidations(coin, min_p, max_p)
             except Exception as e:
                 res["liquidations_error"] = str(e)
             try:
-                res["stops"] = client.fetch_stops(coin, px * 0.85, px * 1.15)
+                res["stops"] = client.fetch_stops(coin, min_p, max_p)
             except Exception as e:
                 res["stops_error"] = str(e)
     except Exception as exc:
@@ -875,30 +878,50 @@ def render_single_asset_deepdive(asset: str, data: Dict[str, Any], console: Cons
         valid_bands = [b for b in bands if b.get("amount", 0.0) > 0]
         max_amt = max([b.get("amount", 0.0) for b in valid_bands] + [1.0])
 
-        # Top 5 Short Squeeze (above price) + Top 5 Long Cascade (below price)
-        above = sorted([b for b in valid_bands if b.get("mid_px", 0.0) >= curr_px], key=lambda x: x.get("mid_px", 0.0), reverse=True)[:5]
-        below = sorted([b for b in valid_bands if b.get("mid_px", 0.0) < curr_px], key=lambda x: x.get("mid_px", 0.0), reverse=True)[:5]
+        # Sort above descending, below descending
+        above = sorted([b for b in valid_bands if b.get("mid_px", 0.0) >= curr_px], key=lambda x: x.get("mid_px", 0.0), reverse=True)[:25]
+        below = sorted([b for b in valid_bands if b.get("mid_px", 0.0) < curr_px], key=lambda x: x.get("mid_px", 0.0), reverse=True)[:25]
 
-        for b in above + below:
+        for b in above:
             mid = b.get("mid_px", 0.0)
             amt = b.get("amount", 0.0)
             dist = ((mid - curr_px) / curr_px * 100.0) if curr_px > 0 else 0.0
-            is_above = mid >= curr_px
-            liq_type = "[bright_red]SHORT SQUEEZE[/bright_red]" if is_above else "[bright_green]LONG CASCADE[/bright_green]"
-            bar_color = "bright_red" if is_above else "bright_green"
             bar_len = int((amt / max_amt) * 28)
             bar = "█" * max(1, bar_len)
             t_liq.add_row(
                 f"{b.get('min_px', 0.0):,.1f} - {b.get('max_px', 0.0):,.1f} USD",
                 f"{dist:+.1f}%",
-                liq_type,
-                f"[{bar_color}]{bar}[/{bar_color}]",
+                "[bright_red]SHORT SQUEEZE[/bright_red]",
+                f"[bright_red]{bar}[/bright_red]",
+                f"{amt:,.1f} {a}",
+            )
+
+        # Market Mid Separator
+        t_liq.add_row(
+            f"[bold yellow]── PRICE: ${curr_px:,.2f} ──[/bold yellow]",
+            "[bold yellow]0.0%[/bold yellow]",
+            "[bold yellow]MARKET MID[/bold yellow]",
+            "[dim yellow]────────────────────────────[/dim yellow]",
+            "[bold yellow]CURRENT MID[/bold yellow]",
+        )
+
+        for b in below:
+            mid = b.get("mid_px", 0.0)
+            amt = b.get("amount", 0.0)
+            dist = ((mid - curr_px) / curr_px * 100.0) if curr_px > 0 else 0.0
+            bar_len = int((amt / max_amt) * 28)
+            bar = "█" * max(1, bar_len)
+            t_liq.add_row(
+                f"{b.get('min_px', 0.0):,.1f} - {b.get('max_px', 0.0):,.1f} USD",
+                f"{dist:+.1f}%",
+                "[bright_green]LONG CASCADE[/bright_green]",
+                f"[bright_green]{bar}[/bright_green]",
                 f"{amt:,.1f} {a}",
             )
 
         long_size = liqs.get("total_long_size", 0.0)
         short_size = liqs.get("total_short_size", 0.0)
-        liq_sub = f"TOTAL LONG LIQUIDATION RISK: {long_size:,.1f} {a} (CASCADE RISK)  |  TOTAL SHORT LIQUIDATION RISK: {short_size:,.1f} {a} (SQUEEZE RISK)"
+        liq_sub = f"TOTAL LONG LIQUIDATION RISK: {long_size:,.1f} {a} (CASCADE RISK)  |  TOTAL SHORT LIQUIDATION RISK: {short_size:,.1f} {a} (SQUEEZE RISK) | LEVELS DISPLAYED: {len(above)+len(below)}"
         console.print(Panel(t_liq, subtitle=liq_sub, border_style="magenta", box=box.ROUNDED))
 
     # 6. STOP-LOSS TRIGGER POOLS & BREAKOUT CLUSTERS (HYPERDASH ANALYTICS)
@@ -915,29 +938,49 @@ def render_single_asset_deepdive(asset: str, data: Dict[str, Any], console: Cons
         valid_bands = [b for b in bands if b.get("amount", 0.0) > 0]
         max_amt = max([b.get("amount", 0.0) for b in valid_bands] + [1.0])
 
-        above = sorted([b for b in valid_bands if b.get("mid_px", 0.0) >= curr_px], key=lambda x: x.get("mid_px", 0.0), reverse=True)[:5]
-        below = sorted([b for b in valid_bands if b.get("mid_px", 0.0) < curr_px], key=lambda x: x.get("mid_px", 0.0), reverse=True)[:5]
+        above = sorted([b for b in valid_bands if b.get("mid_px", 0.0) >= curr_px], key=lambda x: x.get("mid_px", 0.0), reverse=True)[:25]
+        below = sorted([b for b in valid_bands if b.get("mid_px", 0.0) < curr_px], key=lambda x: x.get("mid_px", 0.0), reverse=True)[:25]
 
-        for b in above + below:
+        for b in above:
             mid = b.get("mid_px", 0.0)
             amt = b.get("amount", 0.0)
             dist = ((mid - curr_px) / curr_px * 100.0) if curr_px > 0 else 0.0
-            is_above = mid >= curr_px
-            side_badge = "[bright_cyan]BUY STOPS[/bright_cyan]" if is_above else "[bright_yellow]SELL STOPS[/bright_yellow]"
-            bar_color = "bright_cyan" if is_above else "bright_yellow"
             bar_len = int((amt / max_amt) * 28)
             bar = "█" * max(1, bar_len)
             t_stop.add_row(
                 f"{b.get('min_px', 0.0):,.1f} - {b.get('max_px', 0.0):,.1f} USD",
                 f"{dist:+.1f}%",
-                side_badge,
-                f"[{bar_color}]{bar}[/{bar_color}]",
+                "[bright_cyan]BUY STOPS[/bright_cyan]",
+                f"[bright_cyan]{bar}[/bright_cyan]",
+                f"{amt:,.1f} {a}",
+            )
+
+        # Market Mid Separator
+        t_stop.add_row(
+            f"[bold yellow]── PRICE: ${curr_px:,.2f} ──[/bold yellow]",
+            "[bold yellow]0.0%[/bold yellow]",
+            "[bold yellow]MARKET MID[/bold yellow]",
+            "[dim yellow]────────────────────────────[/dim yellow]",
+            "[bold yellow]CURRENT MID[/bold yellow]",
+        )
+
+        for b in below:
+            mid = b.get("mid_px", 0.0)
+            amt = b.get("amount", 0.0)
+            dist = ((mid - curr_px) / curr_px * 100.0) if curr_px > 0 else 0.0
+            bar_len = int((amt / max_amt) * 28)
+            bar = "█" * max(1, bar_len)
+            t_stop.add_row(
+                f"{b.get('min_px', 0.0):,.1f} - {b.get('max_px', 0.0):,.1f} USD",
+                f"{dist:+.1f}%",
+                "[bright_yellow]SELL STOPS[/bright_yellow]",
+                f"[bright_yellow]{bar}[/bright_yellow]",
                 f"{amt:,.1f} {a}",
             )
 
         buy_stops = stops.get("total_buy_size", 0.0)
         sell_stops = stops.get("total_sell_size", 0.0)
-        stop_sub = f"TOTAL BUY STOPS (BREAKOUT ACCELERATION): {buy_stops:,.1f} {a}  |  TOTAL SELL STOPS (BREAKDOWN ACCELERATION): {sell_stops:,.1f} {a}"
+        stop_sub = f"TOTAL BUY STOPS (BREAKOUT ACCELERATION): {buy_stops:,.1f} {a}  |  TOTAL SELL STOPS (BREAKDOWN ACCELERATION): {sell_stops:,.1f} {a} | LEVELS DISPLAYED: {len(above)+len(below)}"
         console.print(Panel(t_stop, subtitle=stop_sub, border_style="yellow", box=box.ROUNDED))
 
 

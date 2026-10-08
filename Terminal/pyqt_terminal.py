@@ -422,8 +422,8 @@ class InstitutionalTradingStation(QMainWindow):
 
         # Liqs Table
         self.liq_table = QTableWidget()
-        self.liq_table.setColumnCount(5)
-        self.liq_table.setHorizontalHeaderLabels(["Price Band (USD)", "Distance %", "Cascade Type", "Visual Density Bar", "Notional Amount"])
+        self.liq_table.setColumnCount(6)
+        self.liq_table.setHorizontalHeaderLabels(["Price Band (USD)", "Distance %", "Cascade Type", "Visual Density Bar", "Notional Amount", "Cumulative Risk"])
         self.liq_table.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
         layout.addWidget(self.liq_table)
 
@@ -444,8 +444,8 @@ class InstitutionalTradingStation(QMainWindow):
         layout.addLayout(cards_layout)
 
         self.stops_table = QTableWidget()
-        self.stops_table.setColumnCount(5)
-        self.stops_table.setHorizontalHeaderLabels(["Price Range (USD)", "Distance %", "Trigger Side", "Density Bar", "Volume"])
+        self.stops_table.setColumnCount(6)
+        self.stops_table.setHorizontalHeaderLabels(["Price Range (USD)", "Distance %", "Trigger Side", "Density Bar", "Stop Volume", "Cumulative Stops"])
         self.stops_table.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
         layout.addWidget(self.stops_table)
 
@@ -668,80 +668,190 @@ class InstitutionalTradingStation(QMainWindow):
         self.ratio_bar.setValue(bid_pct)
         self.ratio_bar.setFormat(f"Bids {bid_pct}% | {100 - bid_pct}% Asks")
 
-        # 3. Update Liquidations Sub-Tab
+        # 3. Update Liquidations Sub-Tab (All Levels with Cumulative Risk)
         liqs = hd.get("liquidations") or {}
         l_size = liqs.get("total_long_size", 0.0)
         s_size = liqs.get("total_short_size", 0.0)
         curr_px = l2.get("best_bid", 0.0)
-        self.liq_long_lbl.setText(f"Total Long Risk: {l_size:,.1f} {self.active_coin} (${l_size * curr_px / 1e6:,.1f}M)")
-        self.liq_short_lbl.setText(f"Total Short Risk: {s_size:,.1f} {self.active_coin} (${s_size * curr_px / 1e6:,.1f}M)")
         ratio = (l_size / s_size) if s_size > 0 else 1.0
-        self.liq_ratio_lbl.setText(f"Cascade Bias: {ratio:.2f}x ({'Heavy Long Cascade' if ratio > 1.2 else 'Heavy Short Squeeze' if ratio < 0.8 else 'Neutral'})")
 
         bands = [b for b in liqs.get("bands", []) if b.get("amount", 0.0) > 0]
         max_amt = max([b.get("amount", 0.0) for b in bands] + [1.0])
-        above = sorted([b for b in bands if b.get("mid_px", 0.0) >= curr_px], key=lambda x: x.get("mid_px", 0.0), reverse=True)[:8]
-        below = sorted([b for b in bands if b.get("mid_px", 0.0) < curr_px], key=lambda x: x.get("mid_px", 0.0), reverse=True)[:8]
-        all_bands = above + below
+        above = sorted([b for b in bands if b.get("mid_px", 0.0) >= curr_px], key=lambda x: x.get("mid_px", 0.0), reverse=True)
+        below = sorted([b for b in bands if b.get("mid_px", 0.0) < curr_px], key=lambda x: x.get("mid_px", 0.0), reverse=True)
 
-        self.liq_table.setRowCount(len(all_bands))
-        for r, b in enumerate(all_bands):
+        self.liq_long_lbl.setText(f"Total Long Risk: {l_size:,.1f} {self.active_coin} (${l_size * curr_px / 1e6:,.1f}M) | {len(below)} Levels Below")
+        self.liq_short_lbl.setText(f"Total Short Risk: {s_size:,.1f} {self.active_coin} (${s_size * curr_px / 1e6:,.1f}M) | {len(above)} Levels Above")
+        self.liq_ratio_lbl.setText(f"Cascade Bias: {ratio:.2f}x ({'Heavy Long Cascade' if ratio > 1.2 else 'Heavy Short Squeeze' if ratio < 0.8 else 'Neutral'}) | Total: {len(above)+len(below)} Levels")
+
+        # Compute cumulative amounts (starting from current market price outward)
+        cum_short = 0.0
+        cum_dict: Dict[float, float] = {}
+        for b in reversed(above):
+            cum_short += b.get("amount", 0.0)
+            cum_dict[b["mid_px"]] = cum_short
+
+        cum_long = 0.0
+        for b in below:
+            cum_long += b.get("amount", 0.0)
+            cum_dict[b["mid_px"]] = cum_long
+
+        total_rows = len(above) + 1 + len(below)
+        self.liq_table.setRowCount(total_rows)
+
+        row_idx = 0
+        for b in above:
             mid = b.get("mid_px", 0.0)
             amt = b.get("amount", 0.0)
             dist = ((mid - curr_px) / curr_px * 100.0) if curr_px > 0 else 0.0
-            is_above = mid >= curr_px
-            color = COLOR_RED if is_above else COLOR_GREEN
-            bar_len = int((amt / max_amt) * 20)
+            bar_len = int((amt / max_amt) * 22)
+            cum_val = cum_dict.get(mid, 0.0)
 
             i0 = QTableWidgetItem(f"${b.get('min_px', 0):,.1f} - ${b.get('max_px', 0):,.1f}")
             i1 = QTableWidgetItem(f"{dist:+.1f}%")
-            i2 = QTableWidgetItem("SHORT SQUEEZE" if is_above else "LONG CASCADE")
-            i2.setForeground(QBrush(QColor(color)))
+            i2 = QTableWidgetItem("SHORT SQUEEZE")
+            i2.setForeground(QBrush(QColor(COLOR_RED)))
             i3 = QTableWidgetItem("█" * max(1, bar_len))
-            i3.setForeground(QBrush(QColor(color)))
+            i3.setForeground(QBrush(QColor(COLOR_RED)))
             i4 = QTableWidgetItem(f"{amt:,.1f} {self.active_coin}")
+            i4.setFont(QFont("Segoe UI", 10, QFont.Weight.Bold))
+            i5 = QTableWidgetItem(f"{cum_val:,.1f} {self.active_coin} (${cum_val * curr_px / 1e6:,.1f}M)")
 
-            self.liq_table.setItem(r, 0, i0)
-            self.liq_table.setItem(r, 1, i1)
-            self.liq_table.setItem(r, 2, i2)
-            self.liq_table.setItem(r, 3, i3)
-            self.liq_table.setItem(r, 4, i4)
+            for c, it in enumerate([i0, i1, i2, i3, i4, i5]):
+                self.liq_table.setItem(row_idx, c, it)
+            row_idx += 1
 
-        # 4. Update Stops Sub-Tab
+        # Current Price Separator Row
+        sep0 = QTableWidgetItem(f"── CURRENT PRICE: ${curr_px:,.2f} ──")
+        sep0.setFont(QFont("Segoe UI", 10, QFont.Weight.Bold))
+        sep0.setForeground(QBrush(QColor(COLOR_YELLOW)))
+        sep1 = QTableWidgetItem("0.0%")
+        sep1.setForeground(QBrush(QColor(COLOR_YELLOW)))
+        sep2 = QTableWidgetItem("MARKET MID")
+        sep2.setForeground(QBrush(QColor(COLOR_YELLOW)))
+        sep3 = QTableWidgetItem("────────────────────")
+        sep3.setForeground(QBrush(QColor(COLOR_YELLOW)))
+        sep4 = QTableWidgetItem("LIVE SPOT")
+        sep4.setForeground(QBrush(QColor(COLOR_YELLOW)))
+        sep5 = QTableWidgetItem("-")
+        sep5.setForeground(QBrush(QColor(COLOR_YELLOW)))
+
+        for col, item in enumerate([sep0, sep1, sep2, sep3, sep4, sep5]):
+            item.setBackground(QBrush(QColor("#21262d")))
+            self.liq_table.setItem(row_idx, col, item)
+        row_idx += 1
+
+        for b in below:
+            mid = b.get("mid_px", 0.0)
+            amt = b.get("amount", 0.0)
+            dist = ((mid - curr_px) / curr_px * 100.0) if curr_px > 0 else 0.0
+            bar_len = int((amt / max_amt) * 22)
+            cum_val = cum_dict.get(mid, 0.0)
+
+            i0 = QTableWidgetItem(f"${b.get('min_px', 0):,.1f} - ${b.get('max_px', 0):,.1f}")
+            i1 = QTableWidgetItem(f"{dist:+.1f}%")
+            i2 = QTableWidgetItem("LONG CASCADE")
+            i2.setForeground(QBrush(QColor(COLOR_GREEN)))
+            i3 = QTableWidgetItem("█" * max(1, bar_len))
+            i3.setForeground(QBrush(QColor(COLOR_GREEN)))
+            i4 = QTableWidgetItem(f"{amt:,.1f} {self.active_coin}")
+            i4.setFont(QFont("Segoe UI", 10, QFont.Weight.Bold))
+            i5 = QTableWidgetItem(f"{cum_val:,.1f} {self.active_coin} (${cum_val * curr_px / 1e6:,.1f}M)")
+
+            for c, it in enumerate([i0, i1, i2, i3, i4, i5]):
+                self.liq_table.setItem(row_idx, c, it)
+            row_idx += 1
+
+        # 4. Update Stops Sub-Tab (All Levels with Cumulative Stops)
         stops = hd.get("stops") or {}
         b_stops = stops.get("total_buy_size", 0.0)
         s_stops = stops.get("total_sell_size", 0.0)
-        self.stop_buy_lbl.setText(f"Total Buy Stops: {b_stops:,.1f} {self.active_coin} (${b_stops * curr_px / 1e6:,.1f}M)")
-        self.stop_sell_lbl.setText(f"Total Sell Stops: {s_stops:,.1f} {self.active_coin} (${s_stops * curr_px / 1e6:,.1f}M)")
 
         s_bands = [b for b in stops.get("bands", []) if b.get("amount", 0.0) > 0]
         max_s_amt = max([b.get("amount", 0.0) for b in s_bands] + [1.0])
-        s_above = sorted([b for b in s_bands if b.get("mid_px", 0.0) >= curr_px], key=lambda x: x.get("mid_px", 0.0), reverse=True)[:8]
-        s_below = sorted([b for b in s_bands if b.get("mid_px", 0.0) < curr_px], key=lambda x: x.get("mid_px", 0.0), reverse=True)[:8]
-        all_s_bands = s_above + s_below
+        s_above = sorted([b for b in s_bands if b.get("mid_px", 0.0) >= curr_px], key=lambda x: x.get("mid_px", 0.0), reverse=True)
+        s_below = sorted([b for b in s_bands if b.get("mid_px", 0.0) < curr_px], key=lambda x: x.get("mid_px", 0.0), reverse=True)
 
-        self.stops_table.setRowCount(len(all_s_bands))
-        for r, b in enumerate(all_s_bands):
+        self.stop_buy_lbl.setText(f"Total Buy Stops: {b_stops:,.1f} {self.active_coin} (${b_stops * curr_px / 1e6:,.1f}M) | {len(s_above)} Levels Above")
+        self.stop_sell_lbl.setText(f"Total Sell Stops: {s_stops:,.1f} {self.active_coin} (${s_stops * curr_px / 1e6:,.1f}M) | {len(s_below)} Levels Below")
+
+        # Compute cumulative stops
+        cum_buys = 0.0
+        cum_stops_dict: Dict[float, float] = {}
+        for b in reversed(s_above):
+            cum_buys += b.get("amount", 0.0)
+            cum_stops_dict[b["mid_px"]] = cum_buys
+
+        cum_sells = 0.0
+        for b in s_below:
+            cum_sells += b.get("amount", 0.0)
+            cum_stops_dict[b["mid_px"]] = cum_sells
+
+        total_s_rows = len(s_above) + 1 + len(s_below)
+        self.stops_table.setRowCount(total_s_rows)
+
+        s_row_idx = 0
+        for b in s_above:
             mid = b.get("mid_px", 0.0)
             amt = b.get("amount", 0.0)
             dist = ((mid - curr_px) / curr_px * 100.0) if curr_px > 0 else 0.0
-            is_above = mid >= curr_px
-            color = COLOR_BLUE if is_above else COLOR_YELLOW
-            bar_len = int((amt / max_s_amt) * 20)
+            bar_len = int((amt / max_s_amt) * 22)
+            cum_val = cum_stops_dict.get(mid, 0.0)
 
             i0 = QTableWidgetItem(f"${b.get('min_px', 0):,.1f} - ${b.get('max_px', 0):,.1f}")
             i1 = QTableWidgetItem(f"{dist:+.1f}%")
-            i2 = QTableWidgetItem("BUY STOPS" if is_above else "SELL STOPS")
-            i2.setForeground(QBrush(QColor(color)))
+            i2 = QTableWidgetItem("BUY STOPS")
+            i2.setForeground(QBrush(QColor(COLOR_BLUE)))
             i3 = QTableWidgetItem("█" * max(1, bar_len))
-            i3.setForeground(QBrush(QColor(color)))
+            i3.setForeground(QBrush(QColor(COLOR_BLUE)))
             i4 = QTableWidgetItem(f"{amt:,.1f} {self.active_coin}")
+            i4.setFont(QFont("Segoe UI", 10, QFont.Weight.Bold))
+            i5 = QTableWidgetItem(f"{cum_val:,.1f} {self.active_coin} (${cum_val * curr_px / 1e6:,.1f}M)")
 
-            self.stops_table.setItem(r, 0, i0)
-            self.stops_table.setItem(r, 1, i1)
-            self.stops_table.setItem(r, 2, i2)
-            self.stops_table.setItem(r, 3, i3)
-            self.stops_table.setItem(r, 4, i4)
+            for c, it in enumerate([i0, i1, i2, i3, i4, i5]):
+                self.stops_table.setItem(s_row_idx, c, it)
+            s_row_idx += 1
+
+        # Current Price Separator Row for Stops
+        s_sep0 = QTableWidgetItem(f"── CURRENT PRICE: ${curr_px:,.2f} ──")
+        s_sep0.setFont(QFont("Segoe UI", 10, QFont.Weight.Bold))
+        s_sep0.setForeground(QBrush(QColor(COLOR_YELLOW)))
+        s_sep1 = QTableWidgetItem("0.0%")
+        s_sep1.setForeground(QBrush(QColor(COLOR_YELLOW)))
+        s_sep2 = QTableWidgetItem("MARKET MID")
+        s_sep2.setForeground(QBrush(QColor(COLOR_YELLOW)))
+        s_sep3 = QTableWidgetItem("────────────────────")
+        s_sep3.setForeground(QBrush(QColor(COLOR_YELLOW)))
+        s_sep4 = QTableWidgetItem("LIVE SPOT")
+        s_sep4.setForeground(QBrush(QColor(COLOR_YELLOW)))
+        s_sep5 = QTableWidgetItem("-")
+        s_sep5.setForeground(QBrush(QColor(COLOR_YELLOW)))
+
+        for col, item in enumerate([s_sep0, s_sep1, s_sep2, s_sep3, s_sep4, s_sep5]):
+            item.setBackground(QBrush(QColor("#21262d")))
+            self.stops_table.setItem(s_row_idx, col, item)
+        s_row_idx += 1
+
+        for b in s_below:
+            mid = b.get("mid_px", 0.0)
+            amt = b.get("amount", 0.0)
+            dist = ((mid - curr_px) / curr_px * 100.0) if curr_px > 0 else 0.0
+            bar_len = int((amt / max_s_amt) * 22)
+            cum_val = cum_stops_dict.get(mid, 0.0)
+
+            i0 = QTableWidgetItem(f"${b.get('min_px', 0):,.1f} - ${b.get('max_px', 0):,.1f}")
+            i1 = QTableWidgetItem(f"{dist:+.1f}%")
+            i2 = QTableWidgetItem("SELL STOPS")
+            i2.setForeground(QBrush(QColor(COLOR_YELLOW)))
+            i3 = QTableWidgetItem("█" * max(1, bar_len))
+            i3.setForeground(QBrush(QColor(COLOR_YELLOW)))
+            i4 = QTableWidgetItem(f"{amt:,.1f} {self.active_coin}")
+            i4.setFont(QFont("Segoe UI", 10, QFont.Weight.Bold))
+            i5 = QTableWidgetItem(f"{cum_val:,.1f} {self.active_coin} (${cum_val * curr_px / 1e6:,.1f}M)")
+
+            for c, it in enumerate([i0, i1, i2, i3, i4, i5]):
+                self.stops_table.setItem(s_row_idx, c, it)
+            s_row_idx += 1
 
         # 5. Update Multi-TF Orderflow Sub-Tab
         active_mtf = per_asset.get(self.active_coin, {}).get("mtf") or {}

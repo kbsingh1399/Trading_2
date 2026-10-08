@@ -171,23 +171,42 @@ class LiquidationsWidget(Static):
         bands = [b for b in liqs.get("bands", []) if b.get("amount", 0.0) > 0]
         max_amt = max([b.get("amount", 0.0) for b in bands] + [1.0])
 
-        above = sorted([b for b in bands if b.get("mid_px", 0.0) >= current_px], key=lambda x: x.get("mid_px", 0.0), reverse=True)[:8]
-        below = sorted([b for b in bands if b.get("mid_px", 0.0) < current_px], key=lambda x: x.get("mid_px", 0.0), reverse=True)[:8]
+        above = sorted([b for b in bands if b.get("mid_px", 0.0) >= current_px], key=lambda x: x.get("mid_px", 0.0), reverse=True)[:35]
+        below = sorted([b for b in bands if b.get("mid_px", 0.0) < current_px], key=lambda x: x.get("mid_px", 0.0), reverse=True)[:35]
 
-        for b in above + below:
+        for b in above:
             mid = b.get("mid_px", 0.0)
             amt = b.get("amount", 0.0)
             dist = ((mid - current_px) / current_px * 100.0) if current_px > 0 else 0.0
-            is_above = mid >= current_px
-            liq_type = "[bright_red]SHORT SQUEEZE[/bright_red]" if is_above else "[bright_green]LONG CASCADE[/bright_green]"
-            bar_color = "bright_red" if is_above else "bright_green"
             bar_len = int((amt / max_amt) * 26)
             bar = "█" * max(1, bar_len)
             table.add_row(
                 f"${b.get('min_px', 0.0):,.1f} - ${b.get('max_px', 0.0):,.1f}",
                 f"{dist:+.1f}%",
-                liq_type,
-                f"[{bar_color}]{bar}[/{bar_color}]",
+                "[bright_red]SHORT SQUEEZE[/bright_red]",
+                f"[bright_red]{bar}[/bright_red]",
+                f"{amt:,.1f} {coin}",
+            )
+
+        table.add_row(
+            f"[bold yellow]── SPOT: ${current_px:,.2f} ──[/bold yellow]",
+            "[bold yellow]0.0%[/bold yellow]",
+            "[bold yellow]MARKET MID[/bold yellow]",
+            "[dim yellow]────────────────────────[/dim yellow]",
+            "[bold yellow]CURRENT PRICE[/bold yellow]",
+        )
+
+        for b in below:
+            mid = b.get("mid_px", 0.0)
+            amt = b.get("amount", 0.0)
+            dist = ((mid - current_px) / current_px * 100.0) if current_px > 0 else 0.0
+            bar_len = int((amt / max_amt) * 26)
+            bar = "█" * max(1, bar_len)
+            table.add_row(
+                f"${b.get('min_px', 0.0):,.1f} - ${b.get('max_px', 0.0):,.1f}",
+                f"{dist:+.1f}%",
+                "[bright_green]LONG CASCADE[/bright_green]",
+                f"[bright_green]{bar}[/bright_green]",
                 f"{amt:,.1f} {coin}",
             )
 
@@ -195,7 +214,7 @@ class LiquidationsWidget(Static):
         content.add_column()
         content.add_row(Panel(summary_text, style="magenta", box=box.ROUNDED))
         content.add_row(table)
-        self.update(Panel(content, title=f"[bold magenta][LIQUIDATION HEATMAP - {coin}][/bold magenta]", border_style="magenta", box=box.ROUNDED))
+        self.update(Panel(content, title=f"[bold magenta][LIQUIDATION HEATMAP - {coin} ({len(above)+len(below)} LEVELS)][/bold magenta]", border_style="magenta", box=box.ROUNDED))
 
 
 class StopsWidget(Static):
@@ -231,23 +250,42 @@ class StopsWidget(Static):
         bands = [b for b in stops.get("bands", []) if b.get("amount", 0.0) > 0]
         max_amt = max([b.get("amount", 0.0) for b in bands] + [1.0])
 
-        above = sorted([b for b in bands if b.get("mid_px", 0.0) >= current_px], key=lambda x: x.get("mid_px", 0.0), reverse=True)[:8]
-        below = sorted([b for b in bands if b.get("mid_px", 0.0) < current_px], key=lambda x: x.get("mid_px", 0.0), reverse=True)[:8]
+        above = sorted([b for b in bands if b.get("mid_px", 0.0) >= current_px], key=lambda x: x.get("mid_px", 0.0), reverse=True)[:35]
+        below = sorted([b for b in bands if b.get("mid_px", 0.0) < current_px], key=lambda x: x.get("mid_px", 0.0), reverse=True)[:35]
 
-        for b in above + below:
+        for b in above:
             mid = b.get("mid_px", 0.0)
             amt = b.get("amount", 0.0)
             dist = ((mid - current_px) / current_px * 100.0) if current_px > 0 else 0.0
-            is_above = mid >= current_px
-            side_badge = "[bright_cyan]BUY STOPS[/bright_cyan]" if is_above else "[bright_yellow]SELL STOPS[/bright_yellow]"
-            bar_color = "bright_cyan" if is_above else "bright_yellow"
             bar_len = int((amt / max_amt) * 26)
             bar = "█" * max(1, bar_len)
             table.add_row(
                 f"${b.get('min_px', 0.0):,.1f} - ${b.get('max_px', 0.0):,.1f}",
                 f"{dist:+.1f}%",
-                side_badge,
-                f"[{bar_color}]{bar}[/{bar_color}]",
+                "[bright_cyan]BUY STOPS[/bright_cyan]",
+                f"[bright_cyan]{bar}[/bright_cyan]",
+                f"{amt:,.1f} {coin}",
+            )
+
+        table.add_row(
+            f"[bold yellow]── SPOT: ${current_px:,.2f} ──[/bold yellow]",
+            "[bold yellow]0.0%[/bold yellow]",
+            "[bold yellow]MARKET MID[/bold yellow]",
+            "[dim yellow]────────────────────────[/dim yellow]",
+            "[bold yellow]CURRENT PRICE[/bold yellow]",
+        )
+
+        for b in below:
+            mid = b.get("mid_px", 0.0)
+            amt = b.get("amount", 0.0)
+            dist = ((mid - current_px) / current_px * 100.0) if current_px > 0 else 0.0
+            bar_len = int((amt / max_amt) * 26)
+            bar = "█" * max(1, bar_len)
+            table.add_row(
+                f"${b.get('min_px', 0.0):,.1f} - ${b.get('max_px', 0.0):,.1f}",
+                f"{dist:+.1f}%",
+                "[bright_yellow]SELL STOPS[/bright_yellow]",
+                f"[bright_yellow]{bar}[/bright_yellow]",
                 f"{amt:,.1f} {coin}",
             )
 
