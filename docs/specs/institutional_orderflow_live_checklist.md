@@ -122,24 +122,37 @@ Manage profit targets dynamically based on orderbook liquidity distribution:
 - [ ] Base TP placed at `+2.00R to +2.50R` from entry.
 - [ ] Front-run opposing mega-whale walls by 1 to 2 ticks (e.g. for shorts, place TP above resting whale bids).
 
-### Stage 3.2: Liquidity Vacuum Extension Condition
-- [ ] **Evaluation Criteria**: If price approaches base TP and Hyperdash L2/L3 orderbook shows a **complete liquidity vacuum** beyond it (opposing resting depth drops to near-zero with projected liquidation bands sitting lower):
-  - [ ] **Action**: Extend TP into the next resting liquidity cluster (e.g. extending Silver TP from 60.650 to 59.800 USD).
-  - [ ] **Mandatory Prerequisite**: The Stop Loss MUST simultaneously be advanced into Phase 2 trailing lock (minimum +1.50R locked) before any TP extension is committed. Never extend TP while leaving capital unprotected!
+### Stage 3.2: Liquidity Vacuum & Trend-Continuation Extension Condition (User Mandate)
+- [ ] **Evaluation Criteria**: If price approaches base TP and orderbook / CVD indicates strong trend continuation momentum (higher-timeframe EMA slope accelerating, heavy directional taker CVD, and opposing resting depth drops to near-zero with projected liquidation bands sitting further):
+  - [ ] **Action**: Extend TP into the next structural liquidity cluster / vacuum (e.g. extending from +2.50R to +3.50R or higher).
+  - [ ] **Mandatory Trailing SL Lock Prerequisite**: The Stop Loss MUST simultaneously be trailed and locked behind the nearest structural orderflow shelf (minimum +1.50R profit locked). Never loosen or expose capital when extending targets!
+  - [ ] **Intelligent Trailing SL Engine**: Continually trail the stop behind the 15m 20 EMA / local swing highs (for shorts) or swing lows (for longs) to let winning trend-continuation runners compound while guaranteeing profit.
 
 ---
 
-## ⏱️ SECTION 4: INVALIDATION & STALE ORDER PURGE PROTOCOL
+## ⏱️ SECTION 4: INVALIDATION, PENDING ORDER REVIEW & MARGIN GATING (User Mandate)
 
-### Rule 4.1: 24-Bar Time Decay (Stagnant Positions)
+### Rule 4.1: Pre-Order Free Margin & Capacity Gate
+- [ ] Before scanning for new opportunities or staging any limit order, verify:
+  * Free Margin > 4,000.00 USD (strictly unencumbered).
+  * Current Equity defends the 4,775.00 USD hard floor and preserves >= +20.00 USD operating buffer.
+  * Vacant Risk Capacity Slot is available (maximum 1–2 concurrent risk slots active).
+
+### Rule 4.2: Continuous Pending Limit Order Review & Active Pruning Gate
+- [ ] Continuously review every resting limit order on EVERY candle cycle to verify if its structural thesis still holds:
+  * Has the supporting L2/L3 whale wall been pulled, thinned by > 50%, or migrated away with price? If YES -> **CANCEL/PRUNE IMMEDIATELY**.
+  * Has price drifted beyond 1.5x to 2.0x ATR away from the limit price without filling? If YES -> **CANCEL/PRUNE IMMEDIATELY**.
+  * Has taker CVD or candle geometry printed opposing momentum indicating adverse selection? If YES -> **CANCEL/PRUNE IMMEDIATELY**.
+  * Never leave stale or degraded limit orders resting on the book. Staging is active and dynamic.
+
+### Rule 4.3: Multi-Perspective Dialectic Council Clearance
+- [ ] Every candidate limit order must be evaluated across multiple perspectives:
+  * Local subagent swarm (`Orderflow Analyst`, `Position Manager`, `Macro Risk Analyst`).
+  * Arena.ai council briefing and ruling via Chrome CDP session (`Terminal/arena_bridge.py`).
+  * Only when all perspectives confirm edge, structural shelf support, and risk clearance is the limit order punched into MT5.
+
+### Rule 4.4: 24-Bar Time Decay (Stagnant Positions)
 - [ ] If an open trade fails to reach `+0.20R` gain within 24 bars (6 hours / 360 minutes), exit immediately at market. Eliminates dead-capital opportunity cost.
-
-### Rule 4.2: Staged Limit Order Invalidation
-- [ ] Cancel and re-evaluate any pending limit order if:
-  * The underlying L3 whale wall is cancelled or disappears for > 60 seconds.
-  * Price moves away by more than `1.5 * ATR` without filling.
-  * A Tier-1 macro blackout window activates.
-  * Portfolio unencumbered drawdown room decreases below the required budget.
 
 ---
 

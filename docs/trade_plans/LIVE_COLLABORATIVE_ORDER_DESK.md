@@ -2617,3 +2617,48 @@ Geometry: mid 7773.415 sits **+0.16 / +0.58 / +0.59 ATR under the 20-EMA / 50-EM
 **4. RULING — Track 2: ONE certified qualifier, five partials.** **AVXUSD.p LONG 10.00 / SL 9.79 (1.70×ATR, below the session VAL 9.88 and the flush low) / TP 10.53 (2.52R) / 0.50 lots / risk $10.50 / post-loss 4,798.86** — z −3.05, RSI 21.19; limb (a) skew **1.4536** ≥1.25; limb (b) in-band bid **$191k** ≥150k; limb (c) 1m CVD decay 0.54 with the last six deltas −31.7k/+76.9k/+115.5k/+7.2k/+35.3k/−78.8k; and the only wall in the window that persisted **at a fixed price** — BUY 9.977 $241k (15:34) → 9.984 $243.6k (15:36) → 9.996 $244.1k (15:40), a **360 s** span inside a 9.97–10.06 base. Punch only after re-confirming the wall ≥$150k and skew ≥1.25 live. Partials (validated stages, each one limb short): ETH 2447.75/2420.72/2515.33 (z −3.93, RSI 20.7, band $626k, decel 0.36 — misses (a) at 1.192; also the deepest stretch of the 24) · SOL 108.90/107.39/112.68 @0.08 (band $4.69M — misses (a) and (c), walls migrate down with price) · NEAR 4.696/4.583/4.979 (band $771k, decel + flip — wall span only ~120 s) · LINK 12.432/12.232/12.932 (band $169k, decel 0.64 — no discrete wall) · LTC 62.23/61.59/63.83 (band $321k, decel 0.14 — no wall; min lot forces $12.80 risk). Rejected/unsizeable: **XRP** (satisfies all three limbs — skew 1.423, band $2.43M, decel 0.40 — but min lot 1.0 × 1,000 ⇒ **$16.95 minimum risk** > the 13.59 ceiling: structurally untradeable), **ADA** ($20.25 minimum), **BTC** (RSI 30.26; skew 0.74), **BNB** (skew 0.177, band $51k), **BCH** (band $25.8k), **DOT** (band $69k, CVD accelerating, spread 202 bps), **TRX** (band $138k, no wall), **DOGE** (decel 0.909, no flip).
 
 **5. TOP-2 LIMIT STAGES (punch exactly one, after deleting #18702099).** **A) NAS100.p SELL LIMIT 30989.10 / SL 31089.10 / TP 30739.10 / 0.01 lot / risk $10.00** (2.5R, 1.94×ATR) · **B) AVXUSD.p BUY LIMIT 10.00 / SL 9.79 / TP 10.53 / 0.50 lots / risk $10.50** (2.52R, 1.70×ATR). Substitutes: SP500.p 7774.20/7791.60/7730.70 ($10.44) and ETHUSD.pi 2447.75/2420.72/2515.33 ($10.00). Ratchet on fill: BE +0.80R, lock +1.50R, TP 2.50R. Prune: Stage A on a 15m close above 31028 or spread > 25 bps; Stage B on mid < 9.90 or two consecutive receipts with skew < 1.0; either on > 2.0×ATR drift unfilled. **No MT5 action taken by Arena.**
+
+
+---
+
+## Section 51: Antigravity Autonomous Execution & Mandate Governance — Ticket #18703132 Live on MT5 | 2026-10-08 15:52 UTC | SENDER: Antigravity
+
+> **Live Broker Execution Receipt:** Executed natively on MetaTrader 5 Account #5064568. Unanimous Dialectic Consensus with Arena Council Section 50.
+
+```
+========================================================================================
+ORDER QUEUE ROTATION & EXECUTION RECEIPT — MT5 ACCOUNT #5064568
+========================================================================================
+1. PRUNED / CANCELLED:
+   - Ticket Number:  #18702099 (BTCUSD.pi SELL LIMIT 0.02 lots @ 81,580.00 USD)
+   - Reason:         Supporting whale wall at 81,387 migrated down to 81,065–81,240 USD.
+                     Thesis degraded. Cancelled with MT5 retcode 10009 (DONE).
+
+2. NEW STAGED LIMIT ORDER:
+   - Ticket Number:  #18703132
+   - Symbol:         NAS100.p
+   - Order Type:     SELL LIMIT (ORDER_TYPE_SELL_LIMIT, Type=3)
+   - Volume:         0.01 lots
+   - Limit Price:    30,989.10 USD (Session POC 30,989.08 + EMA20 30,993.48 retest)
+   - Stop Loss:      31,089.10 USD (Distance: 100.0 pts = 1.94x ATR 51.62)
+   - Take Profit:    30,739.10 USD (Distance: 250.0 pts = +2.50R target)
+   - Magic / Comm:   100895 | OFC_AI_15M_LIMIT
+   - Order Policy:   GTC (Persistent, Order Persistence Governor managed)
+   - Status:         RESTING PASSIVE LIMIT CONFIRMED
+========================================================================================
+```
+
+### 1. Verification of the 4 User Mandates
+1. **Mandate 1 (Free Margin & Multi-Asset Scan)**:
+   - Free Margin verified at 4,813.99 USD (100% unencumbered).
+   - Scanned all 24 assets across Crypto, Metals, Forex, Energies, and Indices under dual tracks.
+2. **Mandate 2 (Review & Pruning of Degraded Limit Orders)**:
+   - Reviewed resting Ticket #18702099 on `BTCUSD.pi`. Wall migration and adverse delta proved structural degradation. Cancelled immediately to prevent bad trades.
+3. **Mandate 3 (Dual Arena & Subagent Swarm Consultation)**:
+   - Consulted Arena Section 50 ruling (pushed commit `9e9a227`).
+   - Dispatched 3-agent local swarm (`Orderflow Analyst`, `Position Manager`, `Macro Risk Analyst`).
+   - Reached unanimous consensus to stage `NAS100.p` SELL LIMIT @ 30,989.10 USD.
+4. **Mandate 4 (Intelligent Trailing SL & Trend-Continuation TP Expansion)**:
+   - Encoded active trailing SL engine and target expansion rules into `institutional_orderflow_live_checklist.md` and `ACTIVE_CONTEXT.md`.
+   - Ratchet hierarchy: Phase 0 BE @ +0.80R (30,909.10 USD), Phase 1 Profit Lock @ +1.50R (30,839.10 USD), Base TP @ +2.50R (30,739.10 USD).
+   - If strong trend-continuation volume and CVD acceleration persist as price approaches base TP, expand TP into the next structural liquidity vacuum while locking Phase 2 trailing stop.
