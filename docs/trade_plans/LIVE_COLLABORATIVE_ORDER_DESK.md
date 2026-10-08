@@ -2311,3 +2311,44 @@ Next trigger events: ETH L3 wall materializing OR EURUSD drift to -2.0 SD.
    - Outcome: **Risk eliminated 100%, +2.37 USD captured, capital preserved at 4,813.99 USD**.
 
 ---
+
+## Section 42: Joint Council Orderflow & Risk Audit — 12:30 UTC Candle Close | Iteration 24 | 2026-10-08
+
+**Desk Action**: **STRICT PUNCH NONE. 100% CASH FLAT PRESERVED (EQUITY: 4,813.99 USD).**
+
+### 1. Live Book State & Capital Sentry (Verified Native MT5 IPC)
+* **Broker Connection**: Connected (MetaTrader 5 Account #5064568 | Blueberry Markets SVG-Live)
+* **Account Balance & Equity**: **4,813.99 USD** (100% Cash Flat | Free Margin: 4,813.99 USD)
+* **Open Positions**: 0 Active Positions
+* **Pending Orders**: 0 Resting Orders
+* **G-1 Floor Defense**:
+  - Hard Floor: **4,775.00 USD**
+  - Mandatory Operating Buffer: **>= +20.00 USD** (Threshold: 4,795.00 USD)
+  - Preserved Floor Cushion: **+38.99 USD** (4,813.99 - 4,775.00 USD)
+  - Usable Headroom Above Buffer: **+18.99 USD**
+  - Single Slot Risk Cap: **11.04 USD** max nominal risk (Stressed loss limit = 15.80 USD, post-loss equity = 4,798.19 USD > 4,795.00 USD)
+  - Multi-Order Staging: **Strictly Prohibited** (Joint stressed loss would violate operating buffer)
+
+### 2. Candidate Evaluation & Microstructure Diagnostics
+1. **Candidate D (`BTCUSD.pi` Mean-Reversion Long at 82,400–82,500 USD)**:
+   - **Quote**: 82,331.00 / 82,347.00 USD | Mid: 82,339.00 USD | Spread: 1.94 bps
+   - **Tape Analysis**: At the 12:30 UTC candle close, aggressive institutional taker dumping hit the tape with **-3.24M USD CVD delta** on 6.86M USD volume. Sellers actively drove price lower through the shelf.
+   - **Indicators**: Session VWAP Z = -1.72 SD (Fails Model 1 criterion |Z| >= 2.00 SD), RSI = 38.86 (not exhausted), 200 EMA slope = -0.175% (Bearish).
+   - **Orderbook Depth**: Top-20 Asks: 1.518M USD vs Top-20 Bids: 632k USD (Asks outweigh bids 2.4 to 1). L3 whale walls are completely empty (`[]`). Sampled L2 bids have 0.0s persistence.
+   - **Verdict**: **REJECTED (DO NOT PUNCH)**. Fails Gate 2 (active seller cascade, not absorption) and Gate 4 (zero resting whale walls). Catching this would be stepping into a falling knife.
+2. **Remote Standby Sell Limits (Candidates A, B, C)**:
+   - Candidate A (`BTCUSD.pi` Sell Limit @ 83,930.00 USD): Distance = 1,583.00 USD (6.03x ATR). Untriggered.
+   - Candidate B (`SOLUSD.p` Sell Limit @ 117.10 USD): Distance = 4.31 USD (9.58x ATR). Untriggered.
+   - Candidate C (`ETHUSD.pi` Sell Limit @ 2,606.50 USD): Distance = 73.60 USD (8.47x ATR). Untriggered.
+3. **Macro Forex, Metals, & Indices**:
+   - `EURUSD.pi` (1.1192): VWAP Z = +0.08 SD | RSI = 57.3. Normalizing near VWAP fair value (remote from 1.1145 -2.0 SD target).
+   - `USWTI.p` (93.74): VWAP Z = +1.28 SD | RSI = 71.8. Trend extension without top reversal or mean-reversion flush.
+   - `XAUUSD.pi` (4,122.45): VWAP Z = -0.36 SD. Consolidating at session equilibrium.
+   - `SP500.p` (7,768.40): Pre-market consolidation ahead of 13:30 UTC US cash open. Spreads pristine (< 0.40 bps).
+
+### 3. Joint Council Consensus & Action Plan
+* **Decision**: **STRICT PUNCH NONE**. Maintain 100% Cash Flat.
+* **Preservation**: The +38.99 USD floor cushion is fully protected. Headroom remains at +18.99 USD.
+* **Next Checkpoint**: Maintain quiet sentry. Prepare for the 12:44 / 12:59 UTC 15-minute candle cadence.
+
+---
