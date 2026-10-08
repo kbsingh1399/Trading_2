@@ -353,80 +353,234 @@ async def get_arena_tab_ws_url() -> Optional[str]:
     return None
 
 
+async def clear_arena_prompt_box(ws) -> bool:
+    """Explicitly focus the editor, select all (Ctrl+A), and delete/clear any existing prompt in the box."""
+    try:
+        # Step 1: Focus editor and clean TipTap & React fiber state
+        focus_and_clean_js = """
+        (() => {
+          const el = document.querySelector('.tiptap.ProseMirror');
+          if (el) el.focus();
+          let editor = null;
+          let p = el;
+          while (p) {
+            if (p.editor) { editor = p.editor; break; }
+            p = p.parentElement;
+          }
+          if (editor) {
+            editor.commands.clearContent();
+          }
+          const submitBtn = document.querySelector('button[aria-label="Send message"], button:has(svg.lucide-arrow-up), button:has(svg.lucide-arrow-right)');
+          if (submitBtn) {
+            const fiberKey = Object.keys(submitBtn).find(k => k.startsWith('__reactFiber'));
+            if (fiberKey) {
+              let curr = submitBtn[fiberKey];
+              while (curr) {
+                if (curr.memoizedProps?.onChange) {
+                  curr.memoizedProps.onChange('');
+                  break;
+                }
+                curr = curr.return;
+              }
+            }
+          }
+          return { focused: !!el };
+        })()
+        """
+        await ws.send(json.dumps({
+            "id": int(time.time() * 1000) % 1000000,
+            "method": "Runtime.evaluate",
+            "params": {"expression": focus_and_clean_js, "returnByValue": True}
+        }))
+        await ws.recv()
+
+        # Step 2: Dispatch Ctrl+A (Select All)
+        msg_id = int(time.time() * 1000) % 1000000
+        await ws.send(json.dumps({
+            "id": msg_id,
+            "method": "Input.dispatchKeyEvent",
+            "params": {
+                "type": "rawKeyDown",
+                "windowsVirtualKeyCode": 65,
+                "code": "KeyA",
+                "key": "a",
+                "modifiers": 2
+            }
+        }))
+        await ws.recv()
+        await ws.send(json.dumps({
+            "id": msg_id + 1,
+            "method": "Input.dispatchKeyEvent",
+            "params": {
+                "type": "keyUp",
+                "windowsVirtualKeyCode": 65,
+                "code": "KeyA",
+                "key": "a",
+                "modifiers": 2
+            }
+        }))
+        await ws.recv()
+
+        # Step 3: Dispatch Delete & Backspace
+        await ws.send(json.dumps({
+            "id": msg_id + 2,
+            "method": "Input.dispatchKeyEvent",
+            "params": {
+                "type": "rawKeyDown",
+                "windowsVirtualKeyCode": 46,
+                "code": "Delete",
+                "key": "Delete"
+            }
+        }))
+        await ws.recv()
+        await ws.send(json.dumps({
+            "id": msg_id + 3,
+            "method": "Input.dispatchKeyEvent",
+            "params": {
+                "type": "keyUp",
+                "windowsVirtualKeyCode": 46,
+                "code": "Delete",
+                "key": "Delete"
+            }
+        }))
+        await ws.recv()
+        await asyncio.sleep(0.05)
+        return True
+    except Exception as e:
+        print(f"Error in clear_arena_prompt_box: {e}", file=sys.stderr)
+        return False
+
+
 async def post_prompt_to_arena(prompt_text: str) -> bool:
-    """Inject the prompt into Arena's TipTap editor via React state and click submit."""
+    """Clear any existing prompt in the box (Ctrl+A then Delete), inject prompt, and hit enter."""
     ws_url = await get_arena_tab_ws_url()
     if not ws_url:
         print("ERROR: No active Arena tab found in Chrome at 127.0.0.1:9222", file=sys.stderr)
         return False
 
-    # JavaScript payload to set React state, set TipTap content, and click send
-    js_code = f"""
-    (async () => {{
-      const submitBtn = document.querySelector('button[aria-label="Send message"], button:has(svg.lucide-arrow-up), button:has(svg.lucide-arrow-right)');
-      if (!submitBtn) return {{ error: 'No submit button found' }};
-
-      const fiberKey = Object.keys(submitBtn).find(k => k.startsWith('__reactFiber'));
-      if (!fiberKey) return {{ error: 'No react fiber on submit button' }};
-
-      let curr = submitBtn[fiberKey];
-      let targetFiber = null;
-      while (curr) {{
-        if (curr.memoizedProps?.onSubmit && curr.memoizedProps?.onChange) {{
-          targetFiber = curr;
-          break;
-        }}
-        curr = curr.return;
-      }}
-      if (!targetFiber) return {{ error: 'Target fiber not found' }};
-
-      const promptText = {json.dumps(prompt_text)};
-      targetFiber.memoizedProps.onChange(promptText);
-
-      const el = document.querySelector('.tiptap.ProseMirror');
-      let editor = null;
-      let p = el;
-      while (p) {{
-        if (p.editor) {{ editor = p.editor; break; }};
-        p = p.parentElement;
-      }}
-      if (editor) {{
-        editor.commands.setContent(promptText);
-      }}
-
-      // Await React propagation and click submit
-      await new Promise(r => setTimeout(r, 200));
-      if (submitBtn && !submitBtn.disabled) {{
-        submitBtn.click();
-      }} else if (targetFiber.memoizedProps.onSubmit) {{
-        targetFiber.memoizedProps.onSubmit();
-      }}
-
-      return {{ success: true }};
-    }})()
-    """
-
     try:
         async with websockets.connect(ws_url, max_size=10_000_000) as ws:
-            msg = {
-                "id": int(time.time()),
+            # 1. MANDATORY CLEAR: Remove any previous prompt already in the box (Ctrl+A then Delete)
+            await clear_arena_prompt_box(ws)
+            await asyncio.sleep(0.1)
+
+            # 2. Inject the prompt into TipTap editor and update React state
+            js_set = f"""
+            (async () => {{
+              const submitBtn = document.querySelector('button[aria-label="Send message"], button:has(svg.lucide-arrow-up), button:has(svg.lucide-arrow-right)');
+              if (!submitBtn) return {{ error: 'No submit button found' }};
+
+              const fiberKey = Object.keys(submitBtn).find(k => k.startsWith('__reactFiber'));
+              if (!fiberKey) return {{ error: 'No react fiber on submit button' }};
+
+              let curr = submitBtn[fiberKey];
+              let targetFiber = null;
+              while (curr) {{
+                if (curr.memoizedProps?.onSubmit && curr.memoizedProps?.onChange) {{
+                  targetFiber = curr;
+                  break;
+                }}
+                curr = curr.return;
+              }}
+              if (!targetFiber) return {{ error: 'Target fiber not found' }};
+
+              const promptText = {json.dumps(prompt_text)};
+              targetFiber.memoizedProps.onChange(promptText);
+
+              const el = document.querySelector('.tiptap.ProseMirror');
+              let editor = null;
+              let p = el;
+              while (p) {{
+                if (p.editor) {{ editor = p.editor; break; }};
+                p = p.parentElement;
+              }}
+              if (editor) {{
+                editor.commands.setContent(promptText);
+              }}
+
+              return {{ success: true }};
+            }})()
+            """
+            msg_id = int(time.time() * 1000) % 1000000
+            await ws.send(json.dumps({
+                "id": msg_id,
                 "method": "Runtime.evaluate",
                 "params": {
-                    "expression": js_code,
+                    "expression": js_set,
                     "returnByValue": True,
                     "awaitPromise": True
                 }
-            }
-            await ws.send(json.dumps(msg))
+            }))
             resp_str = await ws.recv()
             resp = json.loads(resp_str)
             res_val = resp.get("result", {}).get("result", {}).get("value", {})
-            if res_val.get("success"):
-                print("Prompt posted successfully to Arena.ai!")
-                return True
-            else:
-                print(f"CDP evaluation returned: {res_val}", file=sys.stderr)
+            if not res_val.get("success"):
+                print(f"CDP prompt injection returned: {res_val}", file=sys.stderr)
                 return False
+
+            # Wait 200ms for React propagation
+            await asyncio.sleep(0.2)
+
+            # 3. Hit Enter via CDP key event
+            await ws.send(json.dumps({
+                "id": msg_id + 1,
+                "method": "Input.dispatchKeyEvent",
+                "params": {
+                    "type": "rawKeyDown",
+                    "windowsVirtualKeyCode": 13,
+                    "code": "Enter",
+                    "key": "Enter"
+                }
+            }))
+            await ws.recv()
+            await ws.send(json.dumps({
+                "id": msg_id + 2,
+                "method": "Input.dispatchKeyEvent",
+                "params": {
+                    "type": "keyUp",
+                    "windowsVirtualKeyCode": 13,
+                    "code": "Enter",
+                    "key": "Enter"
+                }
+            }))
+            await ws.recv()
+
+            # Failsafe submit click / onSubmit trigger
+            js_submit = """
+            (async () => {
+              const submitBtn = document.querySelector('button[aria-label="Send message"], button:has(svg.lucide-arrow-up), button:has(svg.lucide-arrow-right)');
+              if (submitBtn && !submitBtn.disabled) {
+                submitBtn.click();
+              } else if (submitBtn) {
+                const fiberKey = Object.keys(submitBtn).find(k => k.startsWith('__reactFiber'));
+                if (fiberKey) {
+                  let curr = submitBtn[fiberKey];
+                  while (curr) {
+                    if (curr.memoizedProps?.onSubmit) {
+                      curr.memoizedProps.onSubmit();
+                      break;
+                    }
+                    curr = curr.return;
+                  }
+                }
+              }
+              return { submitted: true };
+            })()
+            """
+            await ws.send(json.dumps({
+                "id": msg_id + 3,
+                "method": "Runtime.evaluate",
+                "params": {
+                    "expression": js_submit,
+                    "returnByValue": True,
+                    "awaitPromise": True
+                }
+            }))
+            await ws.recv()
+
+            await asyncio.sleep(0.3)
+            print("Prompt posted successfully to Arena.ai (box cleared first with Ctrl+A Delete, prompt set, Enter hit)!")
+            return True
     except Exception as e:
         print(f"Error posting prompt over CDP: {e}", file=sys.stderr)
         return False
@@ -598,10 +752,20 @@ def main():
     elif len(sys.argv) > 1 and sys.argv[1] == "dismiss-popup":
         success = asyncio.run(dismiss_arena_popup())
         print("Popup dismissed:", success)
+    elif len(sys.argv) > 1 and sys.argv[1] == "clear-box":
+        async def do_clear():
+            ws_url = await get_arena_tab_ws_url()
+            if ws_url:
+                async with websockets.connect(ws_url, max_size=10_000_000) as ws:
+                    await clear_arena_prompt_box(ws)
+                    print("Prompt box cleared successfully.")
+            else:
+                print("No Arena tab found.")
+        asyncio.run(do_clear())
     elif len(sys.argv) > 1 and sys.argv[1] == "cycle":
         run_full_15m_cycle()
     else:
-        print("Usage: python arena_bridge.py [prompt-only | post | check | dismiss-popup | cycle]")
+        print("Usage: python arena_bridge.py [prompt-only | post | check | clear-box | dismiss-popup | cycle]")
 
 
 if __name__ == "__main__":
