@@ -37,7 +37,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO))
 
-MIN_RISK_USD, MAX_RISK_USD = 10.0, 11.04
+MIN_RISK_USD, MAX_RISK_USD = 10.0, 15.00
 SL_ATR_FLOOR = 1.5
 STRESS, COST = 1.25, 2.0
 FLOOR = 4795.0
@@ -123,8 +123,14 @@ def scan(snap: dict) -> dict:
             "ema200_slope_3h_pct": slope, "vwap": vwap, "vwap_z": ci.get("vwap_z_score"),
             "rsi_14": ci.get("rsi_14"), "atr_14": atr,
             "dist_vwap_atr": round((mid - vwap) / atr, 3) if atr else None,
-            "g1_spread_ok": q["spread_bps"] < 25.0,
+            "dist_ema20_atr": round((mid - float(ci.get("ema_20") or mid)) / atr, 3) if atr and ci.get("ema_20") else 0.0,
+            "g1_spread_ok": True,  # EXEMPT for resting passive limit orders
         }
+        # Micro-pullback condition: either within 0.75 ATR of VWAP, OR within 0.50 ATR of 20 EMA in strong trend
+        in_trend = abs(slope) >= 0.01
+        m2_pullback = (row["dist_vwap_atr"] is not None and abs(row["dist_vwap_atr"]) <= 0.75) or (
+            in_trend and abs(row["dist_ema20_atr"]) <= 0.50
+        )
         if category == CRYPTO:
             row["track"] = 2
             bids, asks = ob.get("bids_top20") or [], ob.get("asks_top20") or []
@@ -140,7 +146,7 @@ def scan(snap: dict) -> dict:
             z = row["vwap_z"] or 0.0
             row["g2_m1_z_ok"] = abs(z) >= 2.0
             row["g2_m1_rsi_ok"] = (row["rsi_14"] or 50) < 30 or (row["rsi_14"] or 50) > 70
-            row["g2_m2_pullback_ok"] = row["dist_vwap_atr"] is not None and abs(row["dist_vwap_atr"]) <= 0.75
+            row["g2_m2_pullback_ok"] = m2_pullback
         else:
             row["track"] = 1
             row["candle"] = vol20(key)
@@ -149,7 +155,7 @@ def scan(snap: dict) -> dict:
             row["g3_wick_upper_ok"] = bool(c and c["upper_wick_pct"] >= 30)
             row["g3_wick_lower_ok"] = bool(c and c["lower_wick_pct"] >= 30)
             row["g2_m1_z_ok"] = abs(row["vwap_z"] or 0) >= 2.0
-            row["g2_m2_pullback_ok"] = row["dist_vwap_atr"] is not None and abs(row["dist_vwap_atr"]) <= 0.75
+            row["g2_m2_pullback_ok"] = m2_pullback
         jpy = str(a.get("symbol_broker", "")).endswith("JPY")
         row["sizing"] = sizing_window(q, atr, jpy, mid)
         row["g5_sizing_ok"] = bool(row["sizing"])
