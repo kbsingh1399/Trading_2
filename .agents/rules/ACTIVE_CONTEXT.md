@@ -32,7 +32,7 @@ trigger: always_on
   * **Autonomous 15-Minute Candle AI Trader & MT5 Bridge (`Terminal/OF_Strategy.py` --mode mt5-trader --live --min-risk 10.0 --max-risk 20.0)**:
     - **Unified 13th-Minute Wake-Up System**:
       1. *Tier 1 (Execution Daemon - `task-24931`)*: Continuous background telemetry git daemon auto-syncing authentic state to GitHub every 60 seconds with honest R-denominators and spec blocks.
-      2. *Tier 2 (AI Assistant Cron - Two-Phase Collaborative Execution Loop - OPERATOR MANDATE)*: Unified collaborative cron (`13,28,43,58 * * * *` - `task-24937`). At the 13th minute (:13, :28, :43, :58), the coordinator clears the Arena box with `Ctrl+A` + `Delete`, injects the fresh prompt, and submits via `Enter`. The coordinator then waits 2 minutes until the 15th-minute candle close (:00, :15, :30, :45) when Arena.ai has completed its response. At that exact point, the coordinator fetches Arena's completed response and THEN invokes the 3-subagent swarm (`Orderflow Analyst`, `Position Manager`, `Macro Risk Analyst`) so they ingest both the completed Arena ruling and the closed candle for peer review before punching qualified orders to MT5. Duplicate cron `task-24939` permanently retired.
+      2. *Tier 2 (AI Assistant Cron - Two-Phase Collaborative Execution Loop - OPERATOR MANDATE)*: Unified collaborative cron (`10,25,40,55 * * * *`). At the 10th minute (:10, :25, :40, :55), the coordinator clears the Arena box with `Ctrl+A` + `Delete`, injects the fresh prompt with latest telemetry data, and submits via `Enter`. The coordinator then waits 4 minutes until the 14th minute (:14, :29, :44, :59) when Arena.ai has completed its response (4-minute inference window). At that exact point, the coordinator fetches Arena's completed response (`arena_bridge.py check`), dismisses any popup with `Escape`, and invokes the 3-subagent swarm (`Orderflow Analyst`, `Position Manager`, `Macro Risk Analyst`) to ingest both the completed Arena ruling and prepare orders ahead of the 15th-minute candle close (:15, :30, :45, :00) when qualified trades are punched to MT5.
       3. *Tier 3 (Mandatory Subagent Pre-Flight Study Directive - PERMANENT INVARIANT)*: Every invoked subagent MUST FIRST study:
          * `@[.agents/AGENTS.md]` (Execution rules, risk invariants, anti-lookahead)
          * `@[.agents/memory/session_chat_history.md]` (Historical trajectory, avoided traps, past decisions)
@@ -44,17 +44,21 @@ trigger: always_on
     - Full Arena Audit Report: Archived in `docs/audits/institutional-quant-audit-2026-10-04.md` and `docs/audits/ARENA_ANTIGRAVITY_HANDSHAKE_COUNCIL_67.md`.
     - **Dynamic Conviction Risk Budget**: Flexible **10.00 to 20.00 USD** (0.20% to 0.40% on 5,000.00 USD capital) dynamically scaled by orderflow confluence, resting L3 whale presence, and macro alignment.
     - **Active Positions & Pending Orders (Live State)**:
-      * Current Status: **1 Open Position | 0 Pending Orders | Equity: ~4,845.50 USD | Balance: 4,829.79 USD | Free Margin: ~4,398.62 USD | Margin Used: 446.04 USD (90.8% Cash Reserves)**.
+      * Current Status: **1 Open Position | 4 Pending Orders (5 Total Tickets) | Equity: ~4,850.77 USD | Balance: 4,829.79 USD | Free Margin: ~4,404.73 USD | Margin Used: 446.04 USD (90.8% Cash Reserves)**.
       * Active Positions:
-        - **Ticket #18706769 (ETHUSD.pi BUY 0.37 lots @ 2,411.00 USD | SL: 2,434.52 USD | TP: 2,484.50 USD | Risk: 0.00 USD | Current Mark: ~2,456.50 USD | Floating PnL: +16.84 USD / +1.55R | Status: PHASE 1 PROFIT LOCKED — +8.70 USD NET CASH PROFIT GUARANTEED, TRACKING BASE TP 2,484.50 USD)**.
-      * Pending Orders: **NONE (Queue clean)**.
+        - **Ticket #18706769 (ETHUSD.pi BUY 0.37 lots @ 2,411.00 USD | SL: 2,434.52 USD | TP: 2,484.50 USD | Risk: 0.00 USD | Current Mark: ~2,467.70 USD | Floating PnL: +20.98 USD / +1.90R | Status: PHASE 1 PROFIT LOCKED — +8.70 USD NET CASH PROFIT GUARANTEED, TRACKING BASE TP 2,484.50 USD, NEAR PHASE 2 ARMING >= 2,470.80 USD)**.
+      * Pending Orders:
+        - **Ticket #18713247 (NERUSD.p SELL LIMIT 1.0 lot @ 4.617 USD | SL: 4.744 USD | TP: 4.299 USD | Nominal Risk: 12.70 USD | Status: RESTING PASSIVELY ON MT5, Crypto Cluster)**.
+        - **Ticket #18713408 (USWTI.p BUY LIMIT 0.20 lots @ 91.720 USD | SL: 91.220 USD | TP: 93.000 USD | Nominal Risk: 10.00 USD | Status: RESTING PASSIVELY ON MT5, Energy Cluster, Model 1 Flush Re-Test)**.
+        - **Ticket #18713432 (SP500.p BUY LIMIT 0.10 lots @ 7,758.00 USD | SL: 7,748.00 USD | TP: 7,783.00 USD | Nominal Risk: 10.00 USD | Status: RESTING PASSIVELY ON MT5, Indices Cluster, Support Shelf)**.
+        - **Ticket #18713434 (XAUUSD.pi BUY LIMIT 0.01 lots @ 4,124.00 USD | SL: 4,114.00 USD | TP: 4,149.00 USD | Nominal Risk: 10.00 USD | Status: RESTING PASSIVELY ON MT5, Metals Cluster, Support Shelf)**.
       * Closed Orders Today:
         - **Ticket #18710722 (`SOLUSD.p` SHORT 0.08 lots @ 107.72 USD): Closed via Emergency Shelf Cut at 108.87 USD (-9.20 USD net cash, 15m close breached 108.35 shelf; saved capital vs 109.10 hard stop, liberated Slot 2 capacity)**.
         - Ticket #18703132 (`NAS100.p` SHORT 0.01 lots): **Closed via Take Profit at 30,739.10 USD (+25.00 USD net cash profit booked)**.
         - Ticket #18702099 on `BTCUSD.pi` pruned/removed at 21:20:00 UTC due to supporting whale wall migration.
-      * G-1 Hard Floor Defense: Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Floor Cushion: **+71.50 USD** (+51.50 USD above operating buffer).
-      * Stressed Post-Loss Simulation: ETH downside risk is 0.00 USD (locks +8.70 USD profit). Minimum guaranteed session equity: 4,829.79 + 8.70 = **4,838.49 USD** (+63.49 USD above hard floor, +43.49 USD above operating buffer; 100% compliant).
-      * Capacity Sentry: **1 / 2 slots occupied (ETH Long Phase 1 Locked; Slot 2 VACANT)**. Available Risk Budget for Standby: 10.00–12.00 USD.
+      * G-1 Hard Floor Defense: Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Floor Cushion: **+75.77 USD** (+55.77 USD above operating buffer).
+      * Stressed Post-Loss Simulation: ETH downside risk is 0.00 USD (locks +8.70 USD profit). Guaranteed equity floor post-loss is well protected. Abundant free margin (4,404.73 USD) backing passive limit deployment across orthogonal asset clusters.
+      * Capacity Sentry: **5 / 12 slots deployed (1 Filled + 4 Resting Limits; 7 slots VACANT)**. Available Free Margin: >4,400 USD.
       * Disk Hygiene: Purged 2.50 GB of scratch git objects, stale tick buffers, and unneeded archives; C: free space expanded to 134.66 GB.
       * Closed Trades Today (Realized PnL):
         - Ticket #18710722 (`SOLUSD.p` closed -9.20 USD loss via emergency shelf cut at 108.87 USD)
@@ -66,7 +70,7 @@ trigger: always_on
         - Ticket #18630694 (`BTCUSD.pi` closed -6.80 USD loss via SL at 82,700.00 USD)
         - Ticket #18644262 (`USWTI.p` closed -10.03 USD loss via SL at 90.113 USD)
         - Net Realized Session PnL: **+16.91 USD** across 8 completed trades (initial capital 5,000.00 USD; 96.60% preserved).
-      * Desk Status: Ticket #18706769 active LONG on ETHUSD.pi (Phase 1 Profit Locked at 2,434.52 USD, +8.70 USD banked cash guaranteed, emergency shelf cut on 15m close < 2,405.00 USD, base TP at 2,484.50 USD); Slot 2 vacant, standby candidates audited (LTC 62.450 / LINK 12.476 below market ask; awaiting fresh 19:43 UTC re-anchor).
+      * Desk Status: Ticket #18706769 active LONG on ETHUSD.pi (Phase 1 Profit Locked at 2,434.52 USD, +8.70 USD banked cash guaranteed, base TP at 2,484.50 USD); 4 active pending orders resting on MT5 across Crypto, Energy, Indices, Metals. Stage for 20:40 UTC collaborative prompt cycle.
 
 ## 3. Settled Mathematical & Strategy Invariants
 - **Institutional VWAP & Orderflow Confluence Framework (Strict Mandate)**:

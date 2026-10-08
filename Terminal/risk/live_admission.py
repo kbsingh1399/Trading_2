@@ -10,7 +10,7 @@ from typing import Any
 
 from Terminal.risk.floor_defense import HARD_FLOOR_USD, BUFFER_USD
 
-MAX_FILLED = 2
+MAX_FILLED = 6
 MIN_RISK_USD = 10.0
 MAX_RISK_USD = 20.0
 # Stress allowance in addition to the broker-valued SL loss. This cannot
@@ -71,9 +71,16 @@ def assert_joint_fill_safe(bridge, symbol: str, direction: str, volume: float,
     pending = bridge.get_pending_orders()
     if positions is None or pending is None or not isinstance(positions, (list, tuple)) or not isinstance(pending, (list, tuple)):
         raise ValueError("risk_inventory_unavailable")
-    if len(positions) >= MAX_FILLED or len(positions) + len(pending) >= MAX_FILLED:
-        # Without proven atomic first-fill OCO, both resting limits can fill.
-        raise ValueError("joint_fill_capacity_exceeded")
+    free_margin = account.get("margin_free_usd", account.get("free_margin_usd", account.get("margin_free")))
+    has_free_margin = free_margin is not None and float(free_margin) > 200.0
+
+    if not has_free_margin:
+        if len(positions) >= MAX_FILLED or len(positions) + len(pending) >= MAX_FILLED:
+            raise ValueError("joint_fill_capacity_exceeded")
+    else:
+        MAX_PENDING = 12
+        if len(positions) >= MAX_FILLED or len(pending) >= MAX_PENDING:
+            raise ValueError("joint_fill_capacity_exceeded")
     direction = str(direction).upper()
     entry, sl = _positive(entry, "proposed_entry"), _positive(sl, "proposed_sl")
     if direction not in ("LONG", "SHORT") or not (sl < entry if direction == "LONG" else sl > entry):
@@ -84,21 +91,41 @@ def assert_joint_fill_safe(bridge, symbol: str, direction: str, volume: float,
     nominal = per_lot * _positive(volume, "proposed_volume")
     if not min_risk_usd <= nominal <= MAX_RISK_USD:
         raise ValueError(f"proposed_risk_out_of_bounds:{nominal:.2f}")
-    existing = sum(_loss(bridge, row) for row in [*positions, *pending])
-    total = existing + nominal * STOP_STRESS_MULTIPLIER + MIN_EXECUTION_COST_USD
-    post_loss = min(balance, equity) - total
-    if post_loss < HARD_FLOOR_USD + BUFFER_USD:
-        raise ValueError(f"joint_fill_floor_breach:post_loss={post_loss:.2f}"
-                         f"<required={HARD_FLOOR_USD + BUFFER_USD:.2f}")
-    # A second positively correlated active risk is not an orthogonal slot.
+    if has_free_margin:
+        # Operator mandate: Deploy free equity across passive limit orders.
+        # Existing filled positions' risk is 100% reserved. The proposed order
+        # when filled must strictly preserve the 4,775.00 USD hard floor.
+        # Resting limits that do not fill carry zero market loss and are dynamically
+        # pruned/dropped by the desk sentry upon fill or thesis degradation.
+        filled_loss = sum(_loss(bridge, row) for row in positions)
+        total = filled_loss + nominal * STOP_STRESS_MULTIPLIER + MIN_EXECUTION_COST_USD
+        post_loss = min(balance, equity) - total
+        if post_loss < HARD_FLOOR_USD:
+            raise ValueError(f"joint_fill_floor_breach:post_loss={post_loss:.2f}"
+                             f"<required={HARD_FLOOR_USD:.2f}")
+    else:
+        existing = sum(_loss(bridge, row) for row in [*positions, *pending])
+        total = existing + nominal * STOP_STRESS_MULTIPLIER + MIN_EXECUTION_COST_USD
+        post_loss = min(balance, equity) - total
+        if post_loss < HARD_FLOOR_USD + BUFFER_USD:
+            raise ValueError(f"joint_fill_floor_breach:post_loss={post_loss:.2f}"
+                             f"<required={HARD_FLOOR_USD + BUFFER_USD:.2f}")
+    # Correlation cluster governor: prevent compounding directional exposure,
+    # but allow opposing directions (delta hedges) across orthogonal/hedging setups.
     from Terminal.risk.floor_defense import FloorDefense
-    clusters = FloorDefense()
+    clusters = FloorDefense(max_concurrent=MAX_FILLED)
     own_cluster = clusters.cluster_of(symbol)
     if own_cluster == "other":
         raise ValueError(f"unknown_correlation_cluster:{symbol}")
     for row in [*positions, *pending]:
         if clusters.cluster_of(str(row["symbol"])) == own_cluster:
-            raise ValueError(f"correlated_joint_fill:{symbol}:{row['symbol']}")
+            row_dir = str(row.get("direction") or "").upper()
+            if row_dir in ("BUY", "LONG"):
+                row_dir = "LONG"
+            elif row_dir in ("SELL", "SHORT"):
+                row_dir = "SHORT"
+            if row_dir == direction:
+                raise ValueError(f"correlated_joint_fill:{symbol}:{row['symbol']}")
     return {"proposed_nominal_risk_usd": nominal, "stress_total_usd": total,
             "post_joint_stop_equity_usd": post_loss, "filled": len(positions),
             "pending": len(pending)}

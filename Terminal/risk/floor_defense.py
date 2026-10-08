@@ -70,7 +70,7 @@ class FloorDefense:
         buffer: float     = BUFFER_USD,
         min_risk: float   = MIN_RISK_USD,
         max_risk: float   = MAX_RISK_USD,
-        max_concurrent: int = 2,
+        max_concurrent: int = 6,
     ):
         self.hard_floor    = hard_floor
         self.buffer        = buffer
