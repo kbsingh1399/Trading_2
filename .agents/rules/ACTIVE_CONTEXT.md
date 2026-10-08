@@ -80,7 +80,7 @@ trigger: always_on
         - Ticket #18630694 (`BTCUSD.pi` closed -6.80 USD loss via SL at 82,700.00 USD)
         - Ticket #18644262 (`USWTI.p` closed -10.03 USD loss via SL at 90.113 USD)
         - Net Realized Session PnL: **+33.23 USD** across 9 completed trades (initial capital 5,000.00 USD; 96.92% preserved; 6 wins / 3 losses = 66.7% win rate).
-      * Desk Status: 0 active positions; 0 pending orders; 12 slots vacant. 21:55 / 22:00 UTC cycle unanimously ratified STAND ASIDE / 100% CASH FLAT (Dual-engine debate evaluated both Model 1 and Model 2; BTC micro-pullback rejected due to +1.14M buy CVD surge and lack of structural liquidation TP anchors; non-crypto CFDs in maintenance break; FX in rollover quarantine). Next twice-hourly collaborative cycle at 22:25:00 UTC (:25 prompt -> :29 Arena check -> 22:30 candle close).
+      * Desk Status: 0 active positions; 0 pending orders; 12 slots vacant. 22:25 / 22:30 UTC cycle unanimously ratified STAND ASIDE / 100% CASH FLAT (Dual-engine debate evaluated both Model 1 and Model 2; BTC 81,775 short limit candidate rejected due to unavailable exchange liquidation/stop TP anchors per Mandate 5; altcoins fail spread ceiling; FX rollover window completed with spreads normalized to 0.06-0.09 bps; equity preserved at 4,845.80 USD with +70.80 USD floor cushion and +33.23 USD net session cash profit banked). Next twice-hourly collaborative cycle at 22:55:00 UTC (:55 prompt -> :59 Arena check -> 23:00 candle close).
 
 ## 3. Settled Mathematical & Strategy Invariants
 - **Institutional VWAP & Orderflow Confluence Framework (Strict Mandate)**:
