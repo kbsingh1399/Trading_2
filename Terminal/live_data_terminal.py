@@ -57,11 +57,32 @@ if str(ROOT) not in sys.path:
 
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 
-# Supported Cross-Venue Crypto Assets
-DEFAULT_CRYPTO_ASSETS = ["BTC", "ETH", "SOL", "BNB", "XRP", "DOGE", "ADA", "LINK", "AVAX", "NEAR", "LTC", "BCH"]
-MACRO_ASSETS = ["SP500", "USWTI", "GOLD", "EURUSD", "USDJPY"]
+# Multi-Asset Universe Categories & Master Mappings
+UNIVERSE_CATEGORIES: Dict[str, List[str]] = {
+    "CRYPTO": ["BTC", "ETH", "SOL", "BNB", "XRP", "DOGE", "ADA", "LINK", "AVAX", "NEAR", "LTC", "BCH", "DOT", "TRX", "SUI", "APT"],
+    "METALS": ["GOLD", "SILVER"],
+    "FOREX": ["EURUSD", "GBPUSD", "USDJPY", "AUDUSD", "USDCAD", "USDCHF"],
+    "INDICES": ["SP500", "NAS100", "DJ30", "GER40"],
+    "COMMODITIES": ["USWTI"],
+}
 
-MT5_SYMBOL_MAP = {
+ALL_UNIVERSE_ASSETS: List[str] = []
+for _cat, _items in UNIVERSE_CATEGORIES.items():
+    ALL_UNIVERSE_ASSETS.extend(_items)
+
+DEFAULT_CRYPTO_ASSETS: List[str] = UNIVERSE_CATEGORIES["CRYPTO"]
+MACRO_ASSETS: List[str] = [
+    "SP500", "NAS100", "DJ30", "GER40",
+    "GOLD", "SILVER", "USWTI",
+    "EURUSD", "GBPUSD", "USDJPY", "AUDUSD", "USDCAD", "USDCHF"
+]
+
+ASSET_CATEGORY_MAP: Dict[str, str] = {
+    a: cat for cat, assets in UNIVERSE_CATEGORIES.items() for a in assets
+}
+
+MT5_SYMBOL_MAP: Dict[str, str] = {
+    # Crypto
     "BTC": "BTCUSD.pi",
     "ETH": "ETHUSD.pi",
     "SOL": "SOLUSD.p",
@@ -76,17 +97,25 @@ MT5_SYMBOL_MAP = {
     "BCH": "BCHUSD.p",
     "DOT": "DOTUSD.pi",
     "TRX": "TRXUSD.p",
+    # Metals
+    "GOLD": "XAUUSD.pi",
+    "SILVER": "XAGUSD.pi",
+    # Forex (.pi for Blueberry Raw Spread)
+    "EURUSD": "EURUSD.pi",
+    "GBPUSD": "GBPUSD.pi",
+    "USDJPY": "USDJPY.pi",
+    "AUDUSD": "AUDUSD.pi",
+    "USDCAD": "USDCAD.pi",
+    "USDCHF": "USDCHF.pi",
+    # Indices
     "SP500": "SP500.p",
     "NAS100": "NAS100.p",
     "DJ30": "DJ30.p",
     "GER40": "GER40.p",
-    "GOLD": "XAUUSD.pi",
-    "SILVER": "XAGUSD.pi",
+    # Commodities
     "USWTI": "USWTI.p",
-    "EURUSD": "EURUSD.pi",
-    "GBPUSD": "GBPUSD.pi",
-    "USDJPY": "USDJPY.pi",
 }
+
 
 KRAKEN_PAIR_MAP = {
     "BTC": "XBTUSD",
@@ -504,9 +533,59 @@ def fetch_hyperdash_orderbook_and_analytics(coin: str) -> Dict[str, Any]:
 
 
 def fetch_binance_mtf_orderflow(symbol: str) -> Dict[str, Any]:
-    """Fetch running candle orderflow (Volume, Buy/Sell, Delta) for 4H, 1H, and 15m."""
-    sym = f"{symbol.upper()}USDT"
-    res: Dict[str, Any] = {}
+    """Fetch running candle orderflow (Volume, Buy/Sell, Delta) for 4H, 1H, and 15m.
+    Automatically handles crypto via Binance Futures and non-crypto via MT5 broker bars."""
+    sym_clean = symbol.upper()
+    cat = ASSET_CATEGORY_MAP.get(sym_clean, "CRYPTO")
+
+    if cat != "CRYPTO":
+        res: Dict[str, Any] = {}
+        broker_sym = MT5_SYMBOL_MAP.get(sym_clean)
+        if broker_sym:
+            try:
+                from Terminal.MT5_Execution_Bridge import MT5ExecutionBridge
+                import MetaTrader5 as mt5
+                bridge = MT5ExecutionBridge(5064568)
+                tf_map = {
+                    "15m": getattr(mt5, "TIMEFRAME_M15", 15),
+                    "1h": getattr(mt5, "TIMEFRAME_H1", 60),
+                    "4h": getattr(mt5, "TIMEFRAME_H4", 240),
+                }
+                for tf_name, tf_val in tf_map.items():
+                    bars = bridge.get_recent_bars(broker_sym, count=3, timeframe=tf_val)
+                    if bars:
+                        b = bars[-1]
+                        o = float(b.get("open", 0))
+                        c = float(b.get("close", 0))
+                        h = float(b.get("high", 0))
+                        l = float(b.get("low", 0))
+                        v = float(b.get("volume", b.get("tick_volume", 0)))
+                        rng = h - l if h > l else 1.0
+                        dir_ratio = (c - o) / rng
+                        delta = v * dir_ratio * 0.5
+                        buy = max(0.0, (v + delta) / 2.0)
+                        sell = max(0.0, v - buy)
+                        chg_pct = ((c - o) / o * 100.0) if o > 0 else 0.0
+                        delta_pct = (delta / v * 100.0) if v > 0 else 0.0
+                        res[tf_name] = {
+                            "open": o,
+                            "high": h,
+                            "low": l,
+                            "close": c,
+                            "change_pct": round(chg_pct, 2),
+                            "volume": round(v, 2),
+                            "buy_volume": round(buy, 2),
+                            "sell_volume": round(sell, 2),
+                            "delta": round(delta, 2),
+                            "delta_pct": round(delta_pct, 2),
+                            "trades": int(b.get("tick_volume", 0)),
+                        }
+            except Exception as exc:
+                res["error"] = str(exc)
+        return res
+
+    sym = f"{sym_clean}USDT"
+    res = {}
     for tf in ["15m", "1h", "4h"]:
         try:
             url = f"https://fapi.binance.com/fapi/v1/klines?symbol={sym}&interval={tf}&limit=2"
@@ -526,12 +605,12 @@ def fetch_binance_mtf_orderflow(symbol: str) -> Dict[str, Any]:
                     "high": float(kl[2]),
                     "low": float(kl[3]),
                     "close": close_px,
-                    "change_pct": chg_pct,
+                    "change_pct": round(chg_pct, 2),
                     "volume": vol,
                     "buy_volume": buy,
                     "sell_volume": sell,
                     "delta": delta,
-                    "delta_pct": delta_pct,
+                    "delta_pct": round(delta_pct, 2),
                     "trades": int(kl[8]),
                 }
         except Exception as exc:
@@ -556,22 +635,24 @@ def aggregate_all_data(assets: List[str]) -> Dict[str, Any]:
         "per_asset": {},
     }
 
+    crypto_assets = [a for a in assets if ASSET_CATEGORY_MAP.get(a, "CRYPTO") == "CRYPTO"]
+
     # Parallel tasks
-    with ThreadPoolExecutor(max_workers=20) as executor:
-        future_mt5 = executor.submit(fetch_mt5_account_and_quotes, assets + MACRO_ASSETS)
+    with ThreadPoolExecutor(max_workers=24) as executor:
+        future_mt5 = executor.submit(fetch_mt5_account_and_quotes, list(set(assets + MACRO_ASSETS)))
         future_hl = executor.submit(fetch_hyperliquid_data)
         future_macro = executor.submit(fetch_macro_sentiment_data)
 
-        # Per-asset futures
-        futures_bin_fut = {a: executor.submit(fetch_binance_futures_data, a) for a in assets}
-        futures_bin_spot = {a: executor.submit(fetch_binance_spot_price, a) for a in assets}
-        futures_cb = {a: executor.submit(fetch_coinbase_spot_price, a) for a in assets}
-        futures_bybit = {a: executor.submit(fetch_bybit_ticker, a) for a in assets}
-        futures_okx = {a: executor.submit(fetch_okx_ticker, a) for a in assets}
-        futures_kraken = {a: executor.submit(fetch_kraken_ticker, a) for a in assets}
+        # Per-asset futures for crypto assets
+        futures_bin_fut = {a: executor.submit(fetch_binance_futures_data, a) for a in crypto_assets}
+        futures_bin_spot = {a: executor.submit(fetch_binance_spot_price, a) for a in crypto_assets}
+        futures_cb = {a: executor.submit(fetch_coinbase_spot_price, a) for a in crypto_assets}
+        futures_bybit = {a: executor.submit(fetch_bybit_ticker, a) for a in crypto_assets}
+        futures_okx = {a: executor.submit(fetch_okx_ticker, a) for a in crypto_assets}
+        futures_kraken = {a: executor.submit(fetch_kraken_ticker, a) for a in crypto_assets}
 
         # Extra single-asset institutional orderflow & Hyperdash deep-dive futures
-        futures_hd_extra = {a: executor.submit(fetch_hyperdash_orderbook_and_analytics, a) for a in assets} if len(assets) == 1 else {}
+        futures_hd_extra = {a: executor.submit(fetch_hyperdash_orderbook_and_analytics, a) for a in crypto_assets} if len(assets) == 1 else {}
         futures_mtf_extra = {a: executor.submit(fetch_binance_mtf_orderflow, a) for a in assets}
 
         # Resolve global
@@ -581,53 +662,78 @@ def aggregate_all_data(assets: List[str]) -> Dict[str, Any]:
 
         # Resolve per-asset
         for a in assets:
-            bf = futures_bin_fut[a].result()
-            bs = futures_bin_spot[a].result()
-            cb = futures_cb[a].result()
-            bb = futures_bybit[a].result()
-            okx = futures_okx[a].result()
-            krk = futures_kraken[a].result()
-            hd_analytics = futures_hd_extra[a].result() if a in futures_hd_extra else None
+            is_crypto = ASSET_CATEGORY_MAP.get(a, "CRYPTO") == "CRYPTO"
             mtf_orderflow = futures_mtf_extra[a].result() if a in futures_mtf_extra else None
 
-            # Cross-venue comparison computations
-            spot_cb = cb.get("spot_price")
-            spot_bn = bs.get("spot_price")
-            fut_bn = bf.get("futures_price")
-            hl_coin = results["hyperliquid"].get("coins", {}).get(a, {})
-            hl_mid = hl_coin.get("mid_price") or hl_coin.get("mark_price")
+            if is_crypto:
+                bf = futures_bin_fut[a].result()
+                bs = futures_bin_spot[a].result()
+                cb = futures_cb[a].result()
+                bb = futures_bybit[a].result()
+                okx = futures_okx[a].result()
+                krk = futures_kraken[a].result()
+                hd_analytics = futures_hd_extra[a].result() if a in futures_hd_extra else None
 
-            # Coinbase Premium
-            cb_premium_bps = None
-            if spot_cb and spot_bn and spot_bn > 0:
-                cb_premium_bps = round((spot_cb - spot_bn) / spot_bn * 1e4, 2)
+                # Cross-venue comparison computations
+                spot_cb = cb.get("spot_price")
+                spot_bn = bs.get("spot_price")
+                fut_bn = bf.get("futures_price")
+                hl_coin = results["hyperliquid"].get("coins", {}).get(a, {})
+                hl_mid = hl_coin.get("mid_price") or hl_coin.get("mark_price")
 
-            # Basis: Futures vs Spot
-            basis_bps = None
-            if fut_bn and spot_bn and spot_bn > 0:
-                basis_bps = round((fut_bn - spot_bn) / spot_bn * 1e4, 2)
+                # Coinbase Premium
+                cb_premium_bps = None
+                if spot_cb and spot_bn and spot_bn > 0:
+                    cb_premium_bps = round((spot_cb - spot_bn) / spot_bn * 1e4, 2)
 
-            # Cross-venue dispersion (max vs min %)
-            prices = [p for p in [fut_bn, spot_bn, spot_cb, hl_mid, bb.get("last_price"), okx.get("last_price"), krk.get("last_price")] if p]
-            dispersion_bps = None
-            if len(prices) >= 2:
-                p_min, p_max = min(prices), max(prices)
-                dispersion_bps = round((p_max - p_min) / p_min * 1e4, 2)
+                # Basis: Futures vs Spot
+                basis_bps = None
+                if fut_bn and spot_bn and spot_bn > 0:
+                    basis_bps = round((fut_bn - spot_bn) / spot_bn * 1e4, 2)
 
-            results["per_asset"][a] = {
-                "binance_futures": bf,
-                "binance_spot": bs,
-                "coinbase_spot": cb,
-                "bybit_linear": bb,
-                "okx_swap": okx,
-                "kraken_spot": krk,
-                "hyperliquid": hl_coin,
-                "hyperdash_analytics": hd_analytics,
-                "binance_mtf": mtf_orderflow,
-                "coinbase_premium_bps": cb_premium_bps,
-                "basis_futures_spot_bps": basis_bps,
-                "cross_venue_dispersion_bps": dispersion_bps,
-            }
+                # Cross-venue dispersion (max vs min %)
+                prices = [p for p in [fut_bn, spot_bn, spot_cb, hl_mid, bb.get("last_price"), okx.get("last_price"), krk.get("last_price")] if p]
+                dispersion_bps = None
+                if len(prices) >= 2:
+                    p_min, p_max = min(prices), max(prices)
+                    dispersion_bps = round((p_max - p_min) / p_min * 1e4, 2)
+
+                results["per_asset"][a] = {
+                    "category": "CRYPTO",
+                    "binance_futures": bf,
+                    "binance_spot": bs,
+                    "coinbase_spot": cb,
+                    "bybit_linear": bb,
+                    "okx_swap": okx,
+                    "kraken_spot": krk,
+                    "hyperliquid": hl_coin,
+                    "hyperdash_analytics": hd_analytics,
+                    "binance_mtf": mtf_orderflow,
+                    "coinbase_premium_bps": cb_premium_bps,
+                    "basis_futures_spot_bps": basis_bps,
+                    "cross_venue_dispersion_bps": dispersion_bps,
+                }
+            else:
+                cat_name = ASSET_CATEGORY_MAP.get(a, "OTHER")
+                mt5_quote = results["mt5"].get("quotes", {}).get(a, {})
+                mid_px = mt5_quote.get("mid", 0.0)
+                bf = {"source": "MT5 Broker", "asset": a, "futures_price": mid_px, "error": None}
+                bs = {"source": "MT5 Broker", "asset": a, "spot_price": mid_px, "error": None}
+                results["per_asset"][a] = {
+                    "category": cat_name,
+                    "binance_futures": bf,
+                    "binance_spot": bs,
+                    "coinbase_spot": {"source": "N/A", "spot_price": None},
+                    "bybit_linear": {"source": "N/A", "last_price": None},
+                    "okx_swap": {"source": "N/A", "last_price": None},
+                    "kraken_spot": {"source": "N/A", "last_price": None},
+                    "hyperliquid": {},
+                    "hyperdash_analytics": None,
+                    "binance_mtf": mtf_orderflow,
+                    "coinbase_premium_bps": None,
+                    "basis_futures_spot_bps": None,
+                    "cross_venue_dispersion_bps": None,
+                }
 
     results["elapsed_seconds"] = round(time.time() - start_t, 3)
     return results

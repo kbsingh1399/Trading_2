@@ -66,8 +66,12 @@ from PyQt6.QtWidgets import (
 )
 
 from Terminal.live_data_terminal import (
+    ALL_UNIVERSE_ASSETS,
+    ASSET_CATEGORY_MAP,
     DEFAULT_CRYPTO_ASSETS,
     MACRO_ASSETS,
+    MT5_SYMBOL_MAP,
+    UNIVERSE_CATEGORIES,
     fetch_binance_futures_data,
     fetch_binance_mtf_orderflow,
     fetch_binance_spot_price,
@@ -80,6 +84,7 @@ from Terminal.live_data_terminal import (
     fetch_mt5_account_and_quotes,
     fetch_okx_ticker,
 )
+from Terminal.Squeeze_Strategy_Engine import fetch_and_run_squeeze_pipeline
 
 # Dark Theme Colors
 COLOR_BG = "#0d1117"
@@ -102,10 +107,10 @@ class DataWorker(QThread):
     """Background high-speed parallel data harvester."""
     data_ready = pyqtSignal(dict)
 
-    def __init__(self, assets: List[str], active_coin: str = "BTC", interval: float = 2.0, parent: Optional[QObject] = None) -> None:
+    def __init__(self, assets: Optional[List[str]] = None, active_coin: str = "BTC", interval: float = 2.0, parent: Optional[QObject] = None) -> None:
         super().__init__(parent)
-        self.assets = assets
-        self.active_coin = active_coin
+        self.assets = assets or ALL_UNIVERSE_ASSETS
+        self.active_coin = active_coin.upper()
         self.interval = interval
         self.running = True
 
@@ -123,37 +128,58 @@ class DataWorker(QThread):
                 "hyperliquid": {},
                 "per_asset": {},
                 "active_analytics": {},
+                "squeeze_strategy": {},
             }
 
             try:
                 with ThreadPoolExecutor(max_workers=24) as executor:
                     # Global feeds
-                    fut_mt5 = executor.submit(fetch_mt5_account_and_quotes, self.assets + MACRO_ASSETS)
+                    fut_mt5 = executor.submit(fetch_mt5_account_and_quotes, list(set(self.assets + MACRO_ASSETS)))
                     fut_macro = executor.submit(fetch_macro_sentiment_data)
                     fut_hl = executor.submit(fetch_hyperliquid_data)
 
                     # Multi-Timeframe orderflow for all assets
                     fut_mtf = {a: executor.submit(fetch_binance_mtf_orderflow, a) for a in self.assets}
-                    fut_bin_fut = {a: executor.submit(fetch_binance_futures_data, a) for a in self.assets}
-                    fut_bin_spot = {a: executor.submit(fetch_binance_spot_price, a) for a in self.assets}
+                    crypto_assets = [a for a in self.assets if ASSET_CATEGORY_MAP.get(a, "CRYPTO") == "CRYPTO"]
+                    fut_bin_fut = {a: executor.submit(fetch_binance_futures_data, a) for a in crypto_assets}
+                    fut_bin_spot = {a: executor.submit(fetch_binance_spot_price, a) for a in crypto_assets}
 
-                    # Granular Hyperdash analytics for currently active asset
-                    fut_active_hd = executor.submit(fetch_hyperdash_orderbook_and_analytics, self.active_coin)
+                    # Granular Hyperdash analytics for currently active asset if crypto
+                    is_active_crypto = ASSET_CATEGORY_MAP.get(self.active_coin, "CRYPTO") == "CRYPTO"
+                    fut_active_hd = executor.submit(fetch_hyperdash_orderbook_and_analytics, self.active_coin) if is_active_crypto else None
+
+                    # Squeeze strategy pipeline for active asset
+                    fut_squeeze = executor.submit(fetch_and_run_squeeze_pipeline, self.active_coin)
 
                     # Collect results
                     snapshot["mt5"] = fut_mt5.result()
                     snapshot["macro"] = fut_macro.result()
                     snapshot["hyperliquid"] = fut_hl.result()
-                    snapshot["active_analytics"] = fut_active_hd.result()
+                    snapshot["active_analytics"] = fut_active_hd.result() if fut_active_hd else {}
+                    snapshot["squeeze_strategy"] = fut_squeeze.result()
 
                     for a in self.assets:
-                        hl_coin = snapshot["hyperliquid"].get("coins", {}).get(a, {})
-                        snapshot["per_asset"][a] = {
-                            "mtf": fut_mtf[a].result(),
-                            "binance_futures": fut_bin_fut[a].result(),
-                            "binance_spot": fut_bin_spot[a].result(),
-                            "hyperliquid": hl_coin,
-                        }
+                        is_crypto = ASSET_CATEGORY_MAP.get(a, "CRYPTO") == "CRYPTO"
+                        cat = ASSET_CATEGORY_MAP.get(a, "OTHER")
+                        if is_crypto:
+                            hl_coin = snapshot["hyperliquid"].get("coins", {}).get(a, {})
+                            snapshot["per_asset"][a] = {
+                                "category": "CRYPTO",
+                                "mtf": fut_mtf[a].result(),
+                                "binance_futures": fut_bin_fut[a].result() if a in fut_bin_fut else {},
+                                "binance_spot": fut_bin_spot[a].result() if a in fut_bin_spot else {},
+                                "hyperliquid": hl_coin,
+                            }
+                        else:
+                            mt5_q = snapshot["mt5"].get("quotes", {}).get(a, {})
+                            mid_px = mt5_q.get("mid", 0.0)
+                            snapshot["per_asset"][a] = {
+                                "category": cat,
+                                "mtf": fut_mtf[a].result(),
+                                "binance_futures": {"source": "MT5 Broker", "asset": a, "futures_price": mid_px, "error": None},
+                                "binance_spot": {"source": "MT5 Broker", "asset": a, "spot_price": mid_px, "error": None},
+                                "hyperliquid": {},
+                            }
 
                 snapshot["latency_ms"] = int((time.time() - t0) * 1000)
                 self.data_ready.emit(snapshot)
@@ -178,10 +204,13 @@ class InstitutionalTradingStation(QMainWindow):
     def __init__(self, initial_coin: str = "BTC") -> None:
         super().__init__()
         self.active_coin = initial_coin.upper()
-        self.assets = DEFAULT_CRYPTO_ASSETS
+        self.all_assets = ALL_UNIVERSE_ASSETS
+        self.current_category = "ALL"
+        self.assets = list(self.all_assets)
+        self.filter_btns: Dict[str, QPushButton] = {}
         self.prev_prices: Dict[str, float] = {}
 
-        self.setWindowTitle(f"HYPERDASH & QUANT ORDERFLOW WORKSTATION — 12-ASSET MATRIX")
+        self.setWindowTitle("HYPERDASH & QUANT ORDERFLOW WORKSTATION — MULTI-ASSET MATRIX (29 ASSETS)")
         self.resize(1650, 960)
         self.setStyleSheet(f"""
             QMainWindow {{
@@ -353,16 +382,39 @@ class InstitutionalTradingStation(QMainWindow):
         layout = QVBoxLayout(widget)
         layout.setContentsMargins(8, 8, 8, 8)
 
+        # Asset Class Filter Bar
+        filter_layout = QHBoxLayout()
+        filter_lbl = QLabel("ASSET CLASS:")
+        filter_lbl.setStyleSheet(f"font-weight: bold; color: {COLOR_BLUE}; font-size: 12px;")
+        filter_layout.addWidget(filter_lbl)
+
+        filters_meta = [
+            ("ALL", "ALL (29)"),
+            ("CRYPTO", "CRYPTO (16)"),
+            ("METALS_COMMODITIES", "METALS & COMMODITIES (3)"),
+            ("FOREX", "FOREX (6)"),
+            ("INDICES", "INDICES (4)"),
+        ]
+        for code, label in filters_meta:
+            btn = QPushButton(label)
+            btn.setStyleSheet(f"background-color: {COLOR_BLUE if code == 'ALL' else COLOR_BORDER}; color: #ffffff if code == 'ALL' else {COLOR_TEXT}; padding: 5px 12px; font-weight: bold; border-radius: 4px;")
+            btn.clicked.connect(lambda checked, c=code: self._set_category_filter(c))
+            filter_layout.addWidget(btn)
+            self.filter_btns[code] = btn
+
+        filter_layout.addStretch()
+        layout.addLayout(filter_layout)
+
         # Instruction Bar
-        instr = QLabel("💡 Live multi-parameter matrix for all 12 assets. Click any asset row to load its deep-dive tabs and orderbook.")
-        instr.setStyleSheet(f"color: {COLOR_YELLOW}; font-size: 12px; margin-bottom: 4px;")
+        instr = QLabel("💡 Live multi-parameter matrix across all 29 assets. Click any row to load its 5-step Squeeze Radar, Orderbook, and Deep-Dive analytics.")
+        instr.setStyleSheet(f"color: {COLOR_YELLOW}; font-size: 12px; margin-bottom: 4px; margin-top: 4px;")
         layout.addWidget(instr)
 
         # Master Table
         self.screener_table = QTableWidget()
-        self.screener_table.setColumnCount(14)
+        self.screener_table.setColumnCount(15)
         self.screener_table.setHorizontalHeaderLabels([
-            "Asset", "Mark Price", "24h Chg %", "15m Delta", "15m Imb %",
+            "Category", "Asset", "Live Price (USD)", "24h Chg %", "15m Delta", "15m Imb %",
             "1H Delta", "1H Imb %", "4H Delta", "4H Imb %",
             "Open Interest", "Funding APR", "L2 Imb Ratio", "MT5 Spread", "Orderflow Regime"
         ])
@@ -375,12 +427,36 @@ class InstitutionalTradingStation(QMainWindow):
         layout.addWidget(self.screener_table)
         return widget
 
+    def _set_category_filter(self, cat_code: str) -> None:
+        self.current_category = cat_code
+        if cat_code == "ALL":
+            self.assets = list(self.all_assets)
+        elif cat_code == "CRYPTO":
+            self.assets = list(UNIVERSE_CATEGORIES["CRYPTO"])
+        elif cat_code == "METALS_COMMODITIES":
+            self.assets = list(UNIVERSE_CATEGORIES["METALS"] + UNIVERSE_CATEGORIES["COMMODITIES"])
+        elif cat_code == "FOREX":
+            self.assets = list(UNIVERSE_CATEGORIES["FOREX"])
+        elif cat_code == "INDICES":
+            self.assets = list(UNIVERSE_CATEGORIES["INDICES"])
+
+        self.screener_table.setRowCount(len(self.assets))
+        for code, btn in self.filter_btns.items():
+            if code == cat_code:
+                btn.setStyleSheet(f"background-color: {COLOR_BLUE}; color: #ffffff; padding: 5px 12px; font-weight: bold; border-radius: 4px;")
+            else:
+                btn.setStyleSheet(f"background-color: {COLOR_BORDER}; color: {COLOR_TEXT}; padding: 5px 12px; font-weight: bold; border-radius: 4px;")
+
     def _create_deepdive_tab(self) -> QWidget:
         widget = QWidget()
         layout = QVBoxLayout(widget)
         layout.setContentsMargins(4, 4, 4, 4)
 
         self.deepdive_tabs = QTabWidget()
+
+        # Sub-tab 0: 4H Squeeze & Pullback Strategy Radar (User Blueprint Steps 1-5)
+        self.radar_tab = self._create_radar_subtab()
+        self.deepdive_tabs.addTab(self.radar_tab, "🎯 4H SQUEEZE & PULLBACK STRATEGY RADAR (BLUEPRINT 1-5)")
 
         # Sub-tab 1: Liquidations (Hyperdash)
         self.liqs_tab = self._create_liqs_subtab()
@@ -400,6 +476,138 @@ class InstitutionalTradingStation(QMainWindow):
 
         layout.addWidget(self.deepdive_tabs)
         return widget
+
+    def _create_radar_subtab(self) -> QWidget:
+        scroll = QScrollArea()
+        scroll.setWidgetResizable(True)
+        scroll.setStyleSheet("QScrollArea { border: none; background: transparent; }")
+
+        container = QWidget()
+        layout = QVBoxLayout(container)
+        layout.setContentsMargins(8, 8, 8, 8)
+        layout.setSpacing(10)
+
+        # -------------------------------------------------------------
+        # BOX 1: 4H TREND & SQUEEZE DIRECTIONAL BIAS (STEPS 1 & 3)
+        # -------------------------------------------------------------
+        box1 = QGroupBox("🎯 STEP 1 & 3: 4-HOUR TREND, CRITICAL ZONES & SQUEEZE DIRECTIONAL BIAS")
+        box1_layout = QGridLayout(box1)
+        box1_layout.setContentsMargins(10, 10, 10, 10)
+        box1_layout.setSpacing(8)
+
+        # Card 1: 4H Trend Direction
+        self.r_trend_lbl = QLabel("4H Trend: Loading...")
+        self.r_trend_lbl.setStyleSheet(f"font-size: 13px; font-weight: bold; color: {COLOR_YELLOW}; background: {COLOR_BG}; padding: 8px; border-radius: 4px;")
+        self.r_ema_lbl = QLabel("EMA 20 / 50: - / - | Slope: 0.0%")
+        self.r_ema_lbl.setStyleSheet(f"font-size: 11px; color: {COLOR_TEXT_DIM}; background: {COLOR_BG}; padding: 4px 8px; border-radius: 4px;")
+
+        # Card 2: 4H Critical Zones
+        self.r_zones_lbl = QLabel("Critical Zones: VWAP: - | VAH: - | VAL: - | Range: -")
+        self.r_zones_lbl.setStyleSheet(f"font-size: 12px; font-weight: bold; color: {COLOR_BLUE}; background: {COLOR_BG}; padding: 8px; border-radius: 4px;")
+        self.r_ob_zones_lbl = QLabel("Orderbook Depth at Zones: Bids at VAL: - USD | Asks at VAH: - USD")
+        self.r_ob_zones_lbl.setStyleSheet(f"font-size: 11px; color: {COLOR_TEXT_DIM}; background: {COLOR_BG}; padding: 4px 8px; border-radius: 4px;")
+
+        # Card 3: Squeeze Directional Bias
+        self.r_bias_lbl = QLabel("Directional Bias: STANDBY")
+        self.r_bias_lbl.setStyleSheet(f"font-size: 14px; font-weight: bold; color: {COLOR_YELLOW}; background: {COLOR_BG}; padding: 8px; border-radius: 4px; text-align: center;")
+        self.r_rationale_lbl = QLabel("Strategic Rationale: Awaiting 4H orderflow alignment...")
+        self.r_rationale_lbl.setStyleSheet(f"font-size: 11px; color: {COLOR_TEXT}; background: {COLOR_BG}; padding: 6px 8px; border-radius: 4px;")
+
+        # Card 4: Squeeze Liquidation Pools
+        self.r_pools_lbl = QLabel("Liquidation Pools: Downside Long: - USD | Overhead Short: - USD | Magnet: -")
+        self.r_pools_lbl.setStyleSheet(f"font-size: 12px; font-weight: bold; color: {COLOR_PURPLE}; background: {COLOR_BG}; padding: 8px; border-radius: 4px;")
+
+        box1_layout.addWidget(self.r_trend_lbl, 0, 0)
+        box1_layout.addWidget(self.r_ema_lbl, 1, 0)
+        box1_layout.addWidget(self.r_zones_lbl, 0, 1)
+        box1_layout.addWidget(self.r_ob_zones_lbl, 1, 1)
+        box1_layout.addWidget(self.r_bias_lbl, 2, 0)
+        box1_layout.addWidget(self.r_pools_lbl, 2, 1)
+        box1_layout.addWidget(self.r_rationale_lbl, 3, 0, 1, 2)
+
+        layout.addWidget(box1)
+
+        # -------------------------------------------------------------
+        # BOX 2: 4H CANDLE-TO-CANDLE CVD MOMENTUM TABLE (STEP 2)
+        # -------------------------------------------------------------
+        box2 = QGroupBox("📊 STEP 2: CANDLE-TO-CANDLE % CHANGE IN CVD (ORDERFLOW MOMENTUM & ACCELERATION)")
+        box2_layout = QVBoxLayout(box2)
+        box2_layout.setContentsMargins(10, 10, 10, 10)
+
+        self.r_cvd_sig_banner = QLabel("LATEST 4H CVD MOMENTUM SIGNAL: CALCULATING...")
+        self.r_cvd_sig_banner.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.r_cvd_sig_banner.setStyleSheet(f"background-color: #21262d; color: {COLOR_YELLOW}; font-weight: bold; padding: 6px; border-radius: 4px; font-size: 12px;")
+        box2_layout.addWidget(self.r_cvd_sig_banner)
+
+        self.r_cvd_table = QTableWidget()
+        self.r_cvd_table.setColumnCount(11)
+        self.r_cvd_table.setHorizontalHeaderLabels([
+            "Bar", "Open", "High", "Low", "Close",
+            "Volume", "Taker Buy", "Taker Sell", "Delta",
+            "dCVD/dt (% Chg)", "CVD Signal"
+        ])
+        self.r_cvd_table.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
+        self.r_cvd_table.setFixedHeight(220)
+        box2_layout.addWidget(self.r_cvd_table)
+
+        layout.addWidget(box2)
+
+        # -------------------------------------------------------------
+        # BOX 3: PULLBACK VS ORDERBOOK OVERLAP SCANNER (STEP 4)
+        # -------------------------------------------------------------
+        box3 = QGroupBox("🔍 STEP 4: PULLBACK TARGET VS LIVE ORDERBOOK & HYPERDASH STOPS OVERLAP")
+        box3_layout = QGridLayout(box3)
+        box3_layout.setContentsMargins(10, 10, 10, 10)
+        box3_layout.setSpacing(8)
+
+        self.r_pullback_target_lbl = QLabel("Pullback Target Level: - USD | Distance: - % (- ATR)")
+        self.r_pullback_target_lbl.setStyleSheet(f"font-size: 12px; font-weight: bold; color: {COLOR_BLUE}; background: {COLOR_BG}; padding: 8px; border-radius: 4px;")
+        self.r_whale_wall_lbl = QLabel("Resting Orderbook Whale Wall: None detected in zone")
+        self.r_whale_wall_lbl.setStyleSheet(f"font-size: 12px; font-weight: bold; color: {COLOR_YELLOW}; background: {COLOR_BG}; padding: 8px; border-radius: 4px;")
+        self.r_overlap_badge = QLabel("OVERLAP STATUS: AWAITING CONFLUENCE")
+        self.r_overlap_badge.setStyleSheet(f"font-size: 13px; font-weight: bold; color: {COLOR_TEXT_DIM}; background: {COLOR_BG}; padding: 8px; border-radius: 4px; text-align: center;")
+        self.r_overlapping_pool_lbl = QLabel("Overlapping Stops/Liqs: None")
+        self.r_overlapping_pool_lbl.setStyleSheet(f"font-size: 11px; color: {COLOR_TEXT_DIM}; background: {COLOR_BG}; padding: 8px; border-radius: 4px;")
+
+        box3_layout.addWidget(self.r_pullback_target_lbl, 0, 0)
+        box3_layout.addWidget(self.r_whale_wall_lbl, 0, 1)
+        box3_layout.addWidget(self.r_overlap_badge, 1, 0)
+        box3_layout.addWidget(self.r_overlapping_pool_lbl, 1, 1)
+
+        layout.addWidget(box3)
+
+        # -------------------------------------------------------------
+        # BOX 4: STRUCTURAL TRADE PLAN & RISK BUDGET (STEP 5)
+        # -------------------------------------------------------------
+        box4 = QGroupBox("💼 STEP 5: STRUCTURAL TAKE-PROFIT & PROTECTIVE STOP LOSS TRADE PLAN")
+        box4_layout = QGridLayout(box4)
+        box4_layout.setContentsMargins(10, 10, 10, 10)
+        box4_layout.setSpacing(8)
+
+        self.r_plan_action = QLabel("ACTION: STANDBY")
+        self.r_plan_action.setStyleSheet(f"font-size: 14px; font-weight: bold; color: {COLOR_BLUE}; background: {COLOR_BG}; padding: 8px; border-radius: 4px; text-align: center;")
+        self.r_plan_entry = QLabel("Entry Price: - USD")
+        self.r_plan_entry.setStyleSheet(f"font-size: 12px; font-weight: bold; color: {COLOR_GREEN}; background: {COLOR_BG}; padding: 8px; border-radius: 4px;")
+        self.r_plan_sl = QLabel("Stop Loss: - USD (Dist: -)")
+        self.r_plan_sl.setStyleSheet(f"font-size: 12px; font-weight: bold; color: {COLOR_RED}; background: {COLOR_BG}; padding: 8px; border-radius: 4px;")
+        self.r_plan_tp1 = QLabel("TP 1 (Major Liq): - USD (R:R: -)")
+        self.r_plan_tp1.setStyleSheet(f"font-size: 12px; font-weight: bold; color: {COLOR_GREEN}; background: {COLOR_BG}; padding: 8px; border-radius: 4px;")
+        self.r_plan_tp2 = QLabel("TP 2 (Outer Stops): - USD (R:R: -)")
+        self.r_plan_tp2.setStyleSheet(f"font-size: 12px; font-weight: bold; color: {COLOR_BLUE}; background: {COLOR_BG}; padding: 8px; border-radius: 4px;")
+        self.r_plan_risk = QLabel("Risk Budget: 11.04 USD (1 Slot Available) | Potential Profit TP1: - USD | TP2: - USD")
+        self.r_plan_risk.setStyleSheet(f"font-size: 12px; font-weight: bold; color: {COLOR_YELLOW}; background: {COLOR_BG}; padding: 8px; border-radius: 4px;")
+
+        box4_layout.addWidget(self.r_plan_action, 0, 0)
+        box4_layout.addWidget(self.r_plan_entry, 0, 1)
+        box4_layout.addWidget(self.r_plan_sl, 1, 0)
+        box4_layout.addWidget(self.r_plan_tp1, 1, 1)
+        box4_layout.addWidget(self.r_plan_tp2, 2, 0)
+        box4_layout.addWidget(self.r_plan_risk, 2, 1)
+
+        layout.addWidget(box4)
+
+        scroll.setWidget(container)
+        return scroll
 
     def _create_liqs_subtab(self) -> QWidget:
         widget = QWidget()
@@ -531,9 +739,155 @@ class InstitutionalTradingStation(QMainWindow):
             coin = self.assets[row]
             if coin != self.active_coin:
                 self.active_coin = coin
-                self.active_badge.setText(f"ACTIVE: {self.active_coin}-PERP")
+                cat = ASSET_CATEGORY_MAP.get(self.active_coin, "CRYPTO")
+                self.active_badge.setText(f"ACTIVE: {self.active_coin} ({cat})")
                 self.ob_header.setText(f"LEVEL 2 ORDERBOOK — {self.active_coin}")
                 self.worker.set_active_coin(self.active_coin)
+
+    def _update_radar_subtab(self, sq: Dict[str, Any]) -> None:
+        if not sq:
+            return
+
+        step1 = sq.get("step1_trend", {})
+        step2 = sq.get("step2_cvd", {})
+        step3 = sq.get("step3_squeeze_alignment", {})
+        step4 = sq.get("step4_pullback_overlap", {})
+        step5 = sq.get("step5_trade_plan", {})
+
+        # Step 1: Trend & Zones
+        trend = step1.get("trend_4h", "NEUTRAL")
+        trend_score = step1.get("trend_score", 0.0)
+        ema20 = step1.get("ema_20")
+        ema50 = step1.get("ema_50")
+        slope = step1.get("ema_slope_pct", 0.0)
+        zones = step1.get("critical_zones", {})
+        vwap = zones.get("vwap_4h", 0.0)
+        vah = zones.get("vah_4h", 0.0)
+        val = zones.get("val_4h", 0.0)
+        rng = zones.get("range_4h", 0.0)
+
+        t_color = COLOR_GREEN if trend == "BULLISH" else (COLOR_RED if trend == "BEARISH" else COLOR_YELLOW)
+        self.r_trend_lbl.setText(f"4H Trend: {trend} (Score: {trend_score:+.2f})")
+        self.r_trend_lbl.setStyleSheet(f"font-size: 13px; font-weight: bold; color: {t_color}; background: {COLOR_BG}; padding: 8px; border-radius: 4px;")
+        ema20_str = f"{ema20:,.2f}" if ema20 else "-"
+        ema50_str = f"{ema50:,.2f}" if ema50 else "-"
+        self.r_ema_lbl.setText(f"EMA 20: {ema20_str} | EMA 50: {ema50_str} | Slope: {slope:+.2f}%")
+        self.r_zones_lbl.setText(f"Critical Zones: VWAP: {vwap:,.2f} USD | VAH: {vah:,.2f} USD | VAL: {val:,.2f} USD | Range: {rng:,.2f} USD")
+
+        ob_zones = step1.get("orderbook_at_zones", {})
+        bids_val = ob_zones.get("bids_at_val_usd", 0.0)
+        asks_vah = ob_zones.get("asks_at_vah_usd", 0.0)
+        self.r_ob_zones_lbl.setText(f"Orderbook Depth at Zones: Bids near VAL: {bids_val:,.0f} USD | Asks near VAH: {asks_vah:,.0f} USD")
+
+        # Step 3: Squeeze Directional Bias
+        bias = step3.get("directional_bias", "STANDBY")
+        dominant = step3.get("dominant_liquidity_magnet", "NONE")
+        short_pool = step3.get("short_squeeze_overhead_usd", 0.0)
+        long_pool = step3.get("long_cascade_downside_usd", 0.0)
+        rationale = step3.get("strategic_rationale", "")
+
+        bias_color = COLOR_GREEN if "LONG" in bias else (COLOR_RED if "SHORT" in bias else COLOR_YELLOW)
+        self.r_bias_lbl.setText(f"Directional Bias: {bias}")
+        self.r_bias_lbl.setStyleSheet(f"font-size: 14px; font-weight: bold; color: {bias_color}; background: {COLOR_BG}; padding: 8px; border-radius: 4px; text-align: center;")
+        self.r_pools_lbl.setText(f"Liquidation Pools: Downside Long: {long_pool/1e6:,.1f}M USD | Overhead Short: {short_pool/1e6:,.1f}M USD | Magnet: {dominant}")
+        self.r_rationale_lbl.setText(f"Strategic Rationale: {rationale}")
+
+        # Step 2: CVD Table
+        cvd_hist = step2.get("history", [])
+        latest_sig = step2.get("latest_signal", "NEUTRAL")
+        self.r_cvd_sig_banner.setText(f"LATEST 4H CVD MOMENTUM SIGNAL: {latest_sig}")
+        sig_banner_color = COLOR_GREEN if "BULLISH" in latest_sig else (COLOR_RED if "BEARISH" in latest_sig else COLOR_YELLOW)
+        self.r_cvd_sig_banner.setStyleSheet(f"background-color: #21262d; color: {sig_banner_color}; font-weight: bold; padding: 6px; border-radius: 4px; font-size: 12px;")
+
+        self.r_cvd_table.setRowCount(len(cvd_hist))
+        for r_idx, b in enumerate(cvd_hist):
+            bar_num = b.get("bar_index", r_idx)
+            o = b.get("open", 0.0)
+            h = b.get("high", 0.0)
+            l = b.get("low", 0.0)
+            c = b.get("close", 0.0)
+            v = b.get("volume", 0.0)
+            buy_v = b.get("taker_buy", 0.0)
+            sell_v = b.get("taker_sell", 0.0)
+            delta = b.get("delta", 0.0)
+            pct_chg = b.get("candle_to_candle_pct", 0.0)
+            sig = b.get("signal", "NEUTRAL")
+
+            row_items = [
+                str(bar_num), f"{o:,.2f}", f"{h:,.2f}", f"{l:,.2f}", f"{c:,.2f}",
+                f"{v:,.1f}", f"{buy_v:,.1f}", f"{sell_v:,.1f}", f"{delta:+,.1f}",
+                f"{pct_chg:+.1f}%", sig
+            ]
+            for c_idx, val in enumerate(row_items):
+                item = QTableWidgetItem(val)
+                item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
+                if c_idx in (8, 9):
+                    if "+" in val:
+                        item.setForeground(QBrush(QColor(COLOR_GREEN)))
+                    elif "-" in val:
+                        item.setForeground(QBrush(QColor(COLOR_RED)))
+                elif c_idx == 10:
+                    item.setFont(QFont("Segoe UI", 10, QFont.Weight.Bold))
+                    if "BULLISH" in sig:
+                        item.setForeground(QBrush(QColor(COLOR_GREEN)))
+                    elif "BEARISH" in sig:
+                        item.setForeground(QBrush(QColor(COLOR_RED)))
+                    elif "ABSORPTION" in sig:
+                        item.setForeground(QBrush(QColor(COLOR_PURPLE)))
+                    elif "EXHAUSTION" in sig:
+                        item.setForeground(QBrush(QColor(COLOR_YELLOW)))
+                self.r_cvd_table.setItem(r_idx, c_idx, item)
+
+        # Step 4: Pullback Overlap Scanner
+        pb_px = step4.get("pullback_target_price", 0.0)
+        pb_dist_pct = step4.get("pullback_distance_pct", 0.0)
+        pb_dist_atr = step4.get("pullback_distance_atr", 0.0)
+        whale_wall = step4.get("resting_whale_wall")
+        overlap_conf = step4.get("overlap_confirmed", False)
+        badge = step4.get("confluence_badge", "AWAITING CONFLUENCE")
+
+        self.r_pullback_target_lbl.setText(f"Pullback Target Level: {pb_px:,.2f} USD | Dist: {pb_dist_pct:.2f}% ({pb_dist_atr:.2f}x ATR)")
+        if whale_wall:
+            self.r_whale_wall_lbl.setText(f"Resting Wall: {whale_wall.get('side')} {whale_wall.get('size'):,.2f} @ {whale_wall.get('price'):,.2f} ({whale_wall.get('total_usd')/1e3:,.0f}k USD)")
+            self.r_whale_wall_lbl.setStyleSheet(f"font-size: 12px; font-weight: bold; color: {COLOR_GREEN if whale_wall.get('side') == 'BID' else COLOR_RED}; background: {COLOR_BG}; padding: 8px; border-radius: 4px;")
+        else:
+            self.r_whale_wall_lbl.setText("Resting Wall: None >= 100k USD in zone")
+            self.r_whale_wall_lbl.setStyleSheet(f"font-size: 12px; color: {COLOR_TEXT_DIM}; background: {COLOR_BG}; padding: 8px; border-radius: 4px;")
+
+        badge_color = COLOR_GREEN if overlap_conf else COLOR_YELLOW
+        self.r_overlap_badge.setText(f"STATUS: {badge}")
+        self.r_overlap_badge.setStyleSheet(f"font-size: 13px; font-weight: bold; color: {badge_color}; background: {COLOR_BG}; padding: 8px; border-radius: 4px;")
+
+        m_stops = step4.get("overlapping_stops_pool")
+        m_liqs = step4.get("overlapping_liquidation_pool")
+        pool_str_parts = []
+        if m_stops:
+            pool_str_parts.append(f"Stops: {m_stops.get('total_usd')/1e3:,.0f}k USD @ {m_stops.get('price'):,.2f}")
+        if m_liqs:
+            pool_str_parts.append(f"Liqs: {m_liqs.get('total_usd')/1e3:,.0f}k USD @ {m_liqs.get('price'):,.2f}")
+        self.r_overlapping_pool_lbl.setText(f"Overlapping Pools in Pullback Pocket: {', '.join(pool_str_parts) if pool_str_parts else 'None'}")
+
+        # Step 5: Trade Plan
+        action = step5.get("action", "STANDBY")
+        direction = step5.get("direction", "NONE")
+        entry = step5.get("entry_price", 0.0)
+        sl = step5.get("stop_loss_price", 0.0)
+        tp1 = step5.get("take_profit_1", 0.0)
+        tp2 = step5.get("take_profit_2", 0.0)
+        rr1 = step5.get("risk_to_reward_1", 0.0)
+        rr2 = step5.get("risk_to_reward_2", 0.0)
+        risk_usd = step5.get("nominal_risk_usd", 11.04)
+        profit_tp1 = step5.get("potential_profit_tp1_usd", 0.0)
+        profit_tp2 = step5.get("potential_profit_tp2_usd", 0.0)
+
+        action_color = COLOR_GREEN if "STAGE" in action else COLOR_BLUE
+        self.r_plan_action.setText(f"ACTION: {action} ({direction})")
+        self.r_plan_action.setStyleSheet(f"font-size: 14px; font-weight: bold; color: {action_color}; background: {COLOR_BG}; padding: 8px; border-radius: 4px;")
+        self.r_plan_entry.setText(f"Entry Price: {entry:,.2f} USD")
+        self.r_plan_sl.setText(f"Stop Loss: {sl:,.2f} USD (Risk Dist: {abs(entry - sl):,.2f})")
+        self.r_plan_tp1.setText(f"TP 1 (Major Liq): {tp1:,.2f} USD (R:R: {rr1:.2f}R)")
+        self.r_plan_tp2.setText(f"TP 2 (Outer Stops): {tp2:,.2f} USD (R:R: {rr2:.2f}R)")
+        self.r_plan_risk.setText(f"Nominal Risk: {risk_usd:,.2f} USD | Potential Profit TP1: +{profit_tp1:,.2f} USD | TP2: +{profit_tp2:,.2f} USD")
 
     @pyqtSlot(dict)
     def _on_data_ready(self, data: Dict[str, Any]) -> None:
@@ -551,17 +905,19 @@ class InstitutionalTradingStation(QMainWindow):
         self.acc_val.setText(f"Equity: {eq:,.2f} USD | Free Margin: {f_margin:,.2f} USD | 0 Pos | 0 Orders")
         self.floor_val.setText(f"Floor: 4,775.00 USD | Cushion: +{cushion:,.2f} USD | Headroom: +{headroom:,.2f} USD (1 Slot)")
 
-        # 1. Update Master Screener Table (All 12 Assets)
+        # 1. Update Master Screener Table (Filtered Assets)
         per_asset = data.get("per_asset") or {}
+        self.screener_table.setRowCount(len(self.assets))
         for row, a in enumerate(self.assets):
             a_data = per_asset.get(a) or {}
+            cat_name = a_data.get("category") or ASSET_CATEGORY_MAP.get(a, "OTHER")
             mtf = a_data.get("mtf") or {}
             bf = a_data.get("binance_futures") or {}
             hl = a_data.get("hyperliquid") or {}
             mt5_q = mt5.get("quotes", {}).get(a) or {}
 
             # Price
-            px = bf.get("futures_price") or hl.get("mark_price") or 0.0
+            px = bf.get("futures_price") or hl.get("mark_price") or mt5_q.get("mid") or 0.0
             prev = self.prev_prices.get(a, px)
             self.prev_prices[a] = px
 
@@ -574,32 +930,37 @@ class InstitutionalTradingStation(QMainWindow):
             c1h = mtf.get("1h") or {}
             c4h = mtf.get("4h") or {}
 
-            d15_str = f"{c15.get('delta', 0):+,.1f}"
+            d15 = c15.get("delta", 0.0)
+            d15_str = f"{d15:+,.1f}" if d15 else "-"
             imb15 = c15.get("delta_pct", 0.0)
-            imb15_str = f"{imb15:+.1f}%"
+            imb15_str = f"{imb15:+.1f}%" if imb15 else "-"
 
-            d1h_str = f"{c1h.get('delta', 0):+,.1f}"
-            imb1h_str = f"{c1h.get('delta_pct', 0.0):+.1f}%"
+            d1h = c1h.get("delta", 0.0)
+            d1h_str = f"{d1h:+,.1f}" if d1h else "-"
+            imb1h = c1h.get("delta_pct", 0.0)
+            imb1h_str = f"{imb1h:+.1f}%" if imb1h else "-"
 
-            d4h_str = f"{c4h.get('delta', 0):+,.1f}"
-            imb4h_str = f"{c4h.get('delta_pct', 0.0):+.1f}%"
+            d4h = c4h.get("delta", 0.0)
+            d4h_str = f"{d4h:+,.1f}" if d4h else "-"
+            imb4h = c4h.get("delta_pct", 0.0)
+            imb4h_str = f"{imb4h:+.1f}%" if imb4h else "-"
 
             oi = bf.get("open_interest_usd") or ((hl.get("open_interest") or 0) * px)
-            oi_str = f"${oi / 1e6:,.1f}M" if oi else "-"
+            oi_str = f"{oi / 1e6:,.1f}M USD" if oi else "-"
 
             funding = hl.get("funding_annualized") or ((bf.get("last_funding_rate_bps") or 0) * 24 * 365 / 100)
             funding_str = f"{funding:+.2f}%" if funding else "-"
 
             imb_l2 = bf.get("book_imbalance", 0.0)
-            l2_str = f"{imb_l2:+.2f}"
+            l2_str = f"{imb_l2:+.2f}" if imb_l2 else "-"
 
             spread = mt5_q.get("spread_bps", 0.0)
-            spread_str = f"{spread:.1f} bps"
+            spread_str = f"{spread:.1f} bps" if spread else "-"
 
             bias = "BUY ABSORPTION" if imb15 > 5.0 else ("AGGRESSIVE SELLING" if imb15 < -5.0 else "NEUTRAL")
 
             items = [
-                a, f"${px:,.2f}", chg24_str, d15_str, imb15_str,
+                cat_name, a, f"{px:,.2f} USD", chg24_str, d15_str, imb15_str,
                 d1h_str, imb1h_str, d4h_str, imb4h_str,
                 oi_str, funding_str, l2_str, spread_str, bias
             ]
@@ -608,14 +969,18 @@ class InstitutionalTradingStation(QMainWindow):
                 item = QTableWidgetItem(val)
                 item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
                 if col == 0:
+                    item.setFont(QFont("Segoe UI", 10, QFont.Weight.Bold))
+                    cat_color = COLOR_PURPLE if val == "CRYPTO" else (COLOR_YELLOW if val == "METALS" else (COLOR_BLUE if val == "FOREX" else COLOR_GREEN))
+                    item.setForeground(QBrush(QColor(cat_color)))
+                elif col == 1:
                     item.setFont(QFont("Segoe UI", 11, QFont.Weight.Bold))
                     item.setForeground(QBrush(QColor(COLOR_YELLOW)))
-                elif col in (3, 4, 5, 6, 7, 8):
+                elif col in (4, 5, 6, 7, 8, 9):
                     if "+" in str(val):
                         item.setForeground(QBrush(QColor(COLOR_GREEN)))
                     elif "-" in str(val):
                         item.setForeground(QBrush(QColor(COLOR_RED)))
-                elif col == 13:
+                elif col == 14:
                     if bias == "BUY ABSORPTION":
                         item.setForeground(QBrush(QColor(COLOR_GREEN)))
                     elif bias == "AGGRESSIVE SELLING":
@@ -623,19 +988,33 @@ class InstitutionalTradingStation(QMainWindow):
 
                 self.screener_table.setItem(row, col, item)
 
-        # 2. Update Dedicated Level 2 Orderbook for Active Coin
+        # 2. Update Squeeze Strategy Radar Sub-Tab (User Blueprint 1-5)
+        self._update_radar_subtab(data.get("squeeze_strategy") or {})
+
+        # 3. Update Dedicated Level 2 Orderbook for Active Coin
         hd = data.get("active_analytics") or {}
         l2 = hd.get("l2") or {}
         bids = l2.get("bids", [])[:10]
         asks = list(reversed(l2.get("asks", [])[:10]))
+        curr_mt5_q = mt5.get("quotes", {}).get(self.active_coin) or {}
+
+        if not bids and not asks and curr_mt5_q:
+            b_px = curr_mt5_q.get("bid", 0.0)
+            a_px = curr_mt5_q.get("ask", 0.0)
+            spread_bps = curr_mt5_q.get("spread_bps", 0.0)
+            if b_px > 0 and a_px > 0:
+                bids = [{"price": b_px, "size": 1.0, "total_usd": b_px}]
+                asks = [{"price": a_px, "size": 1.0, "total_usd": a_px}]
+                l2 = {"spread": round(a_px - b_px, 4), "spread_bps": spread_bps, "bid_pct": 50.0}
+
         max_vol = max([x.get("total_usd", 1.0) for x in bids + asks] + [1.0])
 
         self.asks_table.setRowCount(len(asks))
         for r, a in enumerate(asks):
-            p_item = QTableWidgetItem(f"${a['price']:,.2f}")
+            p_item = QTableWidgetItem(f"{a['price']:,.2f} USD")
             p_item.setForeground(QBrush(QColor(COLOR_RED)))
             s_item = QTableWidgetItem(f"{a['size']:.3f}")
-            t_item = QTableWidgetItem(f"${a['total_usd']:,.0f}")
+            t_item = QTableWidgetItem(f"{a['total_usd']:,.0f} USD")
             bar_len = int((a['total_usd'] / max_vol) * 14)
             b_item = QTableWidgetItem("█" * max(1, bar_len))
             b_item.setForeground(QBrush(QColor(COLOR_RED)))
@@ -647,14 +1026,14 @@ class InstitutionalTradingStation(QMainWindow):
 
         spread = l2.get("spread", 0.0)
         spread_bps = l2.get("spread_bps", 0.0)
-        self.spread_banner.setText(f"SPREAD: ${spread:,.2f} ({spread_bps:.2f} bps)")
+        self.spread_banner.setText(f"SPREAD: {spread:,.2f} USD ({spread_bps:.2f} bps)")
 
         self.bids_table.setRowCount(len(bids))
         for r, b in enumerate(bids):
-            p_item = QTableWidgetItem(f"${b['price']:,.2f}")
+            p_item = QTableWidgetItem(f"{b['price']:,.2f} USD")
             p_item.setForeground(QBrush(QColor(COLOR_GREEN)))
             s_item = QTableWidgetItem(f"{b['size']:.3f}")
-            t_item = QTableWidgetItem(f"${b['total_usd']:,.0f}")
+            t_item = QTableWidgetItem(f"{b['total_usd']:,.0f} USD")
             bar_len = int((b['total_usd'] / max_vol) * 14)
             b_item = QTableWidgetItem("█" * max(1, bar_len))
             b_item.setForeground(QBrush(QColor(COLOR_GREEN)))
