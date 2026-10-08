@@ -1,0 +1,4912 @@
+{
+ "purpose": "Track-2 depth/wall persistence for the 16:28:56 UTC briefing (12 consecutive 1-minute receipts) + evidence for the live NAS100.p position review",
+ "source": "git telemetry receipts on arena/24eb818b-trading-2",
+ "assets": {
+  "SOL": [
+   {
+    "rev": "ea138dd",
+    "as_of_utc": "2026-10-08 16:19:37 UTC",
+    "mid": 108.745,
+    "z": -2.23,
+    "rsi": 17.91,
+    "atr": 0.8957,
+    "bid20_usd": 4801113.6,
+    "ask20_usd": 4527296.65,
+    "skew": 1.0605,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 108.84,
+      "usd": 210101,
+      "span_s": 60.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.83,
+      "usd": 231880,
+      "span_s": 60.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.81,
+      "usd": 213432,
+      "span_s": 60.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.8,
+      "usd": 473930,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.79,
+      "usd": 694978,
+      "span_s": 60.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.77,
+      "usd": 386398,
+      "span_s": 60.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.75,
+      "usd": 162846,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.74,
+      "usd": 338555,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.73,
+      "usd": 654623,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.72,
+      "usd": 200832,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.71,
+      "usd": 380183,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.92,
+      "usd": 201913,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.93,
+      "usd": 297639,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.94,
+      "usd": 172694,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.96,
+      "usd": 156727,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.97,
+      "usd": 237677,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.98,
+      "usd": 189879,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.99,
+      "usd": 731071,
+      "span_s": 60.0
+     },
+     {
+      "side": "SELL",
+      "price": 109.0,
+      "usd": 548033,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 109.03,
+      "usd": 323335,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 109.05,
+      "usd": 165806,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 109.06,
+      "usd": 272085,
+      "span_s": 60.0
+     },
+     {
+      "side": "SELL",
+      "price": 109.08,
+      "usd": 509748,
+      "span_s": 60.0
+     }
+    ]
+   },
+   {
+    "rev": "c08d9ae",
+    "as_of_utc": "2026-10-08 16:20:37 UTC",
+    "mid": 108.92,
+    "z": -2.15,
+    "rsi": 17.91,
+    "atr": 0.8957,
+    "bid20_usd": 4291379.91,
+    "ask20_usd": 4432690.83,
+    "skew": 0.9681,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 109.01,
+      "usd": 169271,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.99,
+      "usd": 167268,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.98,
+      "usd": 332560,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.96,
+      "usd": 172845,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.95,
+      "usd": 361786,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.91,
+      "usd": 363082,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.9,
+      "usd": 730955,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.89,
+      "usd": 218186,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.88,
+      "usd": 221802,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.87,
+      "usd": 159164,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.86,
+      "usd": 230601,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.85,
+      "usd": 226791,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.84,
+      "usd": 215428,
+      "span_s": 120.0
+     },
+     {
+      "side": "SELL",
+      "price": 109.07,
+      "usd": 189088,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 109.12,
+      "usd": 270313,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 109.13,
+      "usd": 228304,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 109.15,
+      "usd": 440664,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 109.16,
+      "usd": 884890,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 109.17,
+      "usd": 161562,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 109.18,
+      "usd": 446382,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 109.19,
+      "usd": 507010,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 109.2,
+      "usd": 156770,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 109.23,
+      "usd": 159251,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "0314cd7",
+    "as_of_utc": "2026-10-08 16:20:37 UTC",
+    "mid": 108.92,
+    "z": -2.15,
+    "rsi": 17.91,
+    "atr": 0.8957,
+    "bid20_usd": 4291379.91,
+    "ask20_usd": 4432690.83,
+    "skew": 0.9681,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 109.01,
+      "usd": 169271,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.99,
+      "usd": 167268,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.98,
+      "usd": 332560,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.96,
+      "usd": 172845,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.95,
+      "usd": 361786,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.91,
+      "usd": 363082,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.9,
+      "usd": 730955,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.89,
+      "usd": 218186,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.88,
+      "usd": 221802,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.87,
+      "usd": 159164,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.86,
+      "usd": 230601,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.85,
+      "usd": 226791,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.84,
+      "usd": 215428,
+      "span_s": 120.0
+     },
+     {
+      "side": "SELL",
+      "price": 109.07,
+      "usd": 189088,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 109.12,
+      "usd": 270313,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 109.13,
+      "usd": 228304,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 109.15,
+      "usd": 440664,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 109.16,
+      "usd": 884890,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 109.17,
+      "usd": 161562,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 109.18,
+      "usd": 446382,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 109.19,
+      "usd": 507010,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 109.2,
+      "usd": 156770,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 109.23,
+      "usd": 159251,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "40b4887",
+    "as_of_utc": "2026-10-08 16:24:37 UTC",
+    "mid": 108.74,
+    "z": -2.23,
+    "rsi": 17.91,
+    "atr": 0.8957,
+    "bid20_usd": 4960211.52,
+    "ask20_usd": 4198428.24,
+    "skew": 1.1814,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 108.75,
+      "usd": 150712,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.74,
+      "usd": 482748,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.73,
+      "usd": 220576,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.72,
+      "usd": 257304,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.71,
+      "usd": 334933,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.68,
+      "usd": 355529,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.66,
+      "usd": 224201,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.65,
+      "usd": 895176,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.63,
+      "usd": 333464,
+      "span_s": 120.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.61,
+      "usd": 290072,
+      "span_s": 60.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.59,
+      "usd": 175683,
+      "span_s": 180.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.58,
+      "usd": 503417,
+      "span_s": 180.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.85,
+      "usd": 422744,
+      "span_s": 120.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.88,
+      "usd": 469118,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.89,
+      "usd": 737666,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.9,
+      "usd": 333515,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.91,
+      "usd": 270758,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.92,
+      "usd": 194474,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.94,
+      "usd": 235207,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.96,
+      "usd": 343647,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "4acc368",
+    "as_of_utc": "2026-10-08 16:25:37 UTC",
+    "mid": 108.635,
+    "z": -2.28,
+    "rsi": 17.91,
+    "atr": 0.8957,
+    "bid20_usd": 5219822.91,
+    "ask20_usd": 4769703.97,
+    "skew": 1.0944,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 108.7,
+      "usd": 316866,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.66,
+      "usd": 158419,
+      "span_s": 60.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.65,
+      "usd": 307264,
+      "span_s": 60.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.62,
+      "usd": 243128,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.61,
+      "usd": 168940,
+      "span_s": 120.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.6,
+      "usd": 228377,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.59,
+      "usd": 894899,
+      "span_s": 240.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.58,
+      "usd": 162101,
+      "span_s": 240.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.56,
+      "usd": 334795,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.54,
+      "usd": 293496,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.53,
+      "usd": 869904,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.52,
+      "usd": 329572,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.51,
+      "usd": 217263,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.76,
+      "usd": 167717,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.77,
+      "usd": 395410,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.78,
+      "usd": 216905,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.79,
+      "usd": 171843,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.8,
+      "usd": 421288,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.81,
+      "usd": 872775,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.83,
+      "usd": 194395,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.84,
+      "usd": 277960,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.86,
+      "usd": 439385,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.88,
+      "usd": 280734,
+      "span_s": 60.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.9,
+      "usd": 279082,
+      "span_s": 60.0
+     }
+    ]
+   },
+   {
+    "rev": "af79e03",
+    "as_of_utc": "2026-10-08 16:26:37 UTC",
+    "mid": 108.835,
+    "z": -2.19,
+    "rsi": 17.91,
+    "atr": 0.8957,
+    "bid20_usd": 4323349.18,
+    "ask20_usd": 5166326.84,
+    "skew": 0.8368,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 108.83,
+      "usd": 357746,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.82,
+      "usd": 236864,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.81,
+      "usd": 165299,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.8,
+      "usd": 286147,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.79,
+      "usd": 225531,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.78,
+      "usd": 182486,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.77,
+      "usd": 267282,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.76,
+      "usd": 247875,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.75,
+      "usd": 748503,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.74,
+      "usd": 428944,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.73,
+      "usd": 160442,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.72,
+      "usd": 162119,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.71,
+      "usd": 200825,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.92,
+      "usd": 196474,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.93,
+      "usd": 160850,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.94,
+      "usd": 170125,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.95,
+      "usd": 498870,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.98,
+      "usd": 291326,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.99,
+      "usd": 172439,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 109.0,
+      "usd": 349280,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 109.01,
+      "usd": 940368,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 109.02,
+      "usd": 186457,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 109.03,
+      "usd": 249678,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 109.05,
+      "usd": 302508,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 109.07,
+      "usd": 179543,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 109.08,
+      "usd": 726771,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "f90c9b9",
+    "as_of_utc": "2026-10-08 16:27:37 UTC",
+    "mid": 108.665,
+    "z": -2.26,
+    "rsi": 17.91,
+    "atr": 0.8957,
+    "bid20_usd": 4049481.23,
+    "ask20_usd": 4732569.02,
+    "skew": 0.8557,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 108.62,
+      "usd": 369399,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.58,
+      "usd": 396331,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.57,
+      "usd": 850193,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.56,
+      "usd": 176769,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.54,
+      "usd": 206379,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.53,
+      "usd": 410469,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.52,
+      "usd": 204961,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.51,
+      "usd": 153201,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.5,
+      "usd": 193932,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.71,
+      "usd": 162515,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.72,
+      "usd": 384344,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.73,
+      "usd": 195901,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.74,
+      "usd": 267692,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.75,
+      "usd": 339524,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.76,
+      "usd": 200668,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.78,
+      "usd": 559298,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.8,
+      "usd": 203758,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.81,
+      "usd": 265131,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.82,
+      "usd": 223031,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.83,
+      "usd": 748525,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.84,
+      "usd": 300500,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.87,
+      "usd": 257945,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "53d775c",
+    "as_of_utc": "2026-10-08 16:28:37 UTC",
+    "mid": 108.645,
+    "z": -2.27,
+    "rsi": 17.91,
+    "atr": 0.8957,
+    "bid20_usd": 4838553.25,
+    "ask20_usd": 5074200.52,
+    "skew": 0.9536,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 108.68,
+      "usd": 161620,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.64,
+      "usd": 176765,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.62,
+      "usd": 329163,
+      "span_s": 60.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.58,
+      "usd": 481382,
+      "span_s": 60.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.57,
+      "usd": 966461,
+      "span_s": 60.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.55,
+      "usd": 160043,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.54,
+      "usd": 249988,
+      "span_s": 60.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.53,
+      "usd": 872729,
+      "span_s": 60.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.52,
+      "usd": 175777,
+      "span_s": 60.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.5,
+      "usd": 327372,
+      "span_s": 60.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.72,
+      "usd": 160893,
+      "span_s": 60.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.73,
+      "usd": 346098,
+      "span_s": 60.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.74,
+      "usd": 216554,
+      "span_s": 60.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.75,
+      "usd": 154171,
+      "span_s": 60.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.76,
+      "usd": 176597,
+      "span_s": 60.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.77,
+      "usd": 189749,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.78,
+      "usd": 363533,
+      "span_s": 60.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.79,
+      "usd": 278099,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.81,
+      "usd": 231514,
+      "span_s": 60.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.82,
+      "usd": 214570,
+      "span_s": 60.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.83,
+      "usd": 769385,
+      "span_s": 60.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.84,
+      "usd": 569616,
+      "span_s": 60.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.85,
+      "usd": 613590,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.87,
+      "usd": 301544,
+      "span_s": 60.0
+     }
+    ]
+   },
+   {
+    "rev": "05dbf50",
+    "as_of_utc": "2026-10-08 16:29:37 UTC",
+    "mid": 108.575,
+    "z": -2.16,
+    "rsi": 25.38,
+    "atr": 0.9118,
+    "bid20_usd": 5263132.29,
+    "ask20_usd": 5101198.12,
+    "skew": 1.0317,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 108.63,
+      "usd": 201022,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.62,
+      "usd": 359721,
+      "span_s": 120.1
+     },
+     {
+      "side": "BUY",
+      "price": 108.61,
+      "usd": 171683,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.6,
+      "usd": 208099,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.59,
+      "usd": 290802,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.58,
+      "usd": 278521,
+      "span_s": 120.1
+     },
+     {
+      "side": "BUY",
+      "price": 108.57,
+      "usd": 771877,
+      "span_s": 120.1
+     },
+     {
+      "side": "BUY",
+      "price": 108.56,
+      "usd": 253518,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.54,
+      "usd": 208081,
+      "span_s": 120.1
+     },
+     {
+      "side": "BUY",
+      "price": 108.53,
+      "usd": 418012,
+      "span_s": 120.1
+     },
+     {
+      "side": "BUY",
+      "price": 108.52,
+      "usd": 200276,
+      "span_s": 120.1
+     },
+     {
+      "side": "BUY",
+      "price": 108.5,
+      "usd": 343004,
+      "span_s": 120.1
+     },
+     {
+      "side": "BUY",
+      "price": 108.48,
+      "usd": 369677,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.47,
+      "usd": 646424,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.68,
+      "usd": 152075,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.69,
+      "usd": 284637,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.7,
+      "usd": 298652,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.73,
+      "usd": 265899,
+      "span_s": 120.1
+     },
+     {
+      "side": "SELL",
+      "price": 108.74,
+      "usd": 159273,
+      "span_s": 120.1
+     },
+     {
+      "side": "SELL",
+      "price": 108.75,
+      "usd": 713572,
+      "span_s": 120.1
+     },
+     {
+      "side": "SELL",
+      "price": 108.76,
+      "usd": 215134,
+      "span_s": 120.1
+     },
+     {
+      "side": "SELL",
+      "price": 108.79,
+      "usd": 520343,
+      "span_s": 60.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.8,
+      "usd": 282055,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.82,
+      "usd": 156345,
+      "span_s": 120.1
+     },
+     {
+      "side": "SELL",
+      "price": 108.83,
+      "usd": 172605,
+      "span_s": 120.1
+     },
+     {
+      "side": "SELL",
+      "price": 108.84,
+      "usd": 322316,
+      "span_s": 120.1
+     },
+     {
+      "side": "SELL",
+      "price": 108.85,
+      "usd": 182384,
+      "span_s": 60.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.86,
+      "usd": 767460,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "e3bb50f",
+    "as_of_utc": "2026-10-08 16:30:37 UTC",
+    "mid": 108.55,
+    "z": -2.17,
+    "rsi": 25.38,
+    "atr": 0.9118,
+    "bid20_usd": 4856263.42,
+    "ask20_usd": 4146996.81,
+    "skew": 1.171,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 108.54,
+      "usd": 226257,
+      "span_s": 180.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.5,
+      "usd": 324688,
+      "span_s": 180.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.49,
+      "usd": 223939,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.48,
+      "usd": 211744,
+      "span_s": 60.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.47,
+      "usd": 365696,
+      "span_s": 60.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.46,
+      "usd": 249092,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.44,
+      "usd": 247275,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.42,
+      "usd": 260212,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.41,
+      "usd": 452586,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.4,
+      "usd": 960630,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.38,
+      "usd": 157259,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.37,
+      "usd": 323271,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.58,
+      "usd": 156291,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.59,
+      "usd": 299337,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.6,
+      "usd": 204343,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.61,
+      "usd": 246772,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.62,
+      "usd": 272667,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.64,
+      "usd": 246102,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.66,
+      "usd": 232775,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.67,
+      "usd": 239108,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.68,
+      "usd": 704809,
+      "span_s": 60.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.69,
+      "usd": 307795,
+      "span_s": 60.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.72,
+      "usd": 245348,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.73,
+      "usd": 397410,
+      "span_s": 180.0
+     }
+    ]
+   },
+   {
+    "rev": "40951a5",
+    "as_of_utc": "2026-10-08 16:31:37 UTC",
+    "mid": 108.475,
+    "z": -2.21,
+    "rsi": 25.38,
+    "atr": 0.9118,
+    "bid20_usd": 4604056.63,
+    "ask20_usd": 5778249.53,
+    "skew": 0.7968,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 108.42,
+      "usd": 268954,
+      "span_s": 60.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.39,
+      "usd": 181952,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.38,
+      "usd": 195123,
+      "span_s": 60.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.37,
+      "usd": 310016,
+      "span_s": 60.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.36,
+      "usd": 186902,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.35,
+      "usd": 232086,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.34,
+      "usd": 309944,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.31,
+      "usd": 265773,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.29,
+      "usd": 227666,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.28,
+      "usd": 286733,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.27,
+      "usd": 153975,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.26,
+      "usd": 261988,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.25,
+      "usd": 865971,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.23,
+      "usd": 179045,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.45,
+      "usd": 218871,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.46,
+      "usd": 221175,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.47,
+      "usd": 174325,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.49,
+      "usd": 331337,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.5,
+      "usd": 292555,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.51,
+      "usd": 203629,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.52,
+      "usd": 717586,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.53,
+      "usd": 321197,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.55,
+      "usd": 249905,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.56,
+      "usd": 1031560,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.59,
+      "usd": 268128,
+      "span_s": 60.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.6,
+      "usd": 1040750,
+      "span_s": 60.0
+     }
+    ]
+   },
+   {
+    "rev": "e2f2d30",
+    "as_of_utc": "2026-10-08 16:32:37 UTC",
+    "mid": 108.57,
+    "z": -2.16,
+    "rsi": 25.38,
+    "atr": 0.9118,
+    "bid20_usd": 4528465.81,
+    "ask20_usd": 4717954.56,
+    "skew": 0.9598,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 108.5,
+      "usd": 250189,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.49,
+      "usd": 321644,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.46,
+      "usd": 322988,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.45,
+      "usd": 704163,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.44,
+      "usd": 231748,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.43,
+      "usd": 303278,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.4,
+      "usd": 170647,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.38,
+      "usd": 278430,
+      "span_s": 120.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.36,
+      "usd": 202457,
+      "span_s": 60.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.35,
+      "usd": 677841,
+      "span_s": 60.0
+     },
+     {
+      "side": "BUY",
+      "price": 108.34,
+      "usd": 222553,
+      "span_s": 60.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.54,
+      "usd": 247141,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.57,
+      "usd": 175115,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.58,
+      "usd": 409768,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.59,
+      "usd": 187420,
+      "span_s": 120.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.6,
+      "usd": 180202,
+      "span_s": 120.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.61,
+      "usd": 351795,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.62,
+      "usd": 154800,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.63,
+      "usd": 223861,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.64,
+      "usd": 342812,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.65,
+      "usd": 178467,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.66,
+      "usd": 221974,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.67,
+      "usd": 823715,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.68,
+      "usd": 157837,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.7,
+      "usd": 261414,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 108.73,
+      "usd": 220333,
+      "span_s": 0.0
+     }
+    ]
+   }
+  ],
+  "ETH": [
+   {
+    "rev": "ea138dd",
+    "as_of_utc": "2026-10-08 16:19:37 UTC",
+    "mid": 2430.65,
+    "z": -2.51,
+    "rsi": 14.93,
+    "atr": 19.2681,
+    "bid20_usd": 190425.71,
+    "ask20_usd": 560137.07,
+    "skew": 0.34,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 2433.56,
+      "usd": 185588,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 2433.57,
+      "usd": 381058,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "c08d9ae",
+    "as_of_utc": "2026-10-08 16:20:37 UTC",
+    "mid": 2435.35,
+    "z": -2.4,
+    "rsi": 14.93,
+    "atr": 19.2681,
+    "bid20_usd": 689279.2,
+    "ask20_usd": 305548.35,
+    "skew": 2.2559,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 2437.27,
+      "usd": 495017,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 2437.48,
+      "usd": 165868,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "0314cd7",
+    "as_of_utc": "2026-10-08 16:20:37 UTC",
+    "mid": 2435.35,
+    "z": -2.4,
+    "rsi": 14.93,
+    "atr": 19.2681,
+    "bid20_usd": 689279.2,
+    "ask20_usd": 305548.35,
+    "skew": 2.2559,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 2437.27,
+      "usd": 495017,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 2437.48,
+      "usd": 165868,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "40b4887",
+    "as_of_utc": "2026-10-08 16:24:37 UTC",
+    "mid": 2429.35,
+    "z": -2.54,
+    "rsi": 14.93,
+    "atr": 19.2681,
+    "bid20_usd": 217209.31,
+    "ask20_usd": 254890.95,
+    "skew": 0.8522,
+    "walls": []
+   },
+   {
+    "rev": "4acc368",
+    "as_of_utc": "2026-10-08 16:25:37 UTC",
+    "mid": 2426.8,
+    "z": -2.61,
+    "rsi": 14.93,
+    "atr": 19.2681,
+    "bid20_usd": 117487.39,
+    "ask20_usd": 342228.01,
+    "skew": 0.3433,
+    "walls": [
+     {
+      "side": "SELL",
+      "price": 2428.59,
+      "usd": 227770,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "af79e03",
+    "as_of_utc": "2026-10-08 16:26:37 UTC",
+    "mid": 2432.05,
+    "z": -2.48,
+    "rsi": 14.93,
+    "atr": 19.2681,
+    "bid20_usd": 306889.5,
+    "ask20_usd": 314240.35,
+    "skew": 0.9766,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 2433.01,
+      "usd": 206572,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 2433.02,
+      "usd": 220174,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "f90c9b9",
+    "as_of_utc": "2026-10-08 16:27:37 UTC",
+    "mid": 2429.6,
+    "z": -2.54,
+    "rsi": 14.93,
+    "atr": 19.2681,
+    "bid20_usd": 2752415.34,
+    "ask20_usd": 358219.3,
+    "skew": 7.6836,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 2430.07,
+      "usd": 203416,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 2430.06,
+      "usd": 2430485,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "53d775c",
+    "as_of_utc": "2026-10-08 16:28:37 UTC",
+    "mid": 2428.35,
+    "z": -2.57,
+    "rsi": 14.93,
+    "atr": 19.2681,
+    "bid20_usd": 91665.65,
+    "ask20_usd": 487149.04,
+    "skew": 0.1882,
+    "walls": [
+     {
+      "side": "SELL",
+      "price": 2428.98,
+      "usd": 361452,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "05dbf50",
+    "as_of_utc": "2026-10-08 16:29:37 UTC",
+    "mid": 2425.65,
+    "z": -2.35,
+    "rsi": 18.34,
+    "atr": 19.4275,
+    "bid20_usd": 205081.45,
+    "ask20_usd": 522243.85,
+    "skew": 0.3927,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 2427.68,
+      "usd": 174142,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 2427.69,
+      "usd": 350537,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "e3bb50f",
+    "as_of_utc": "2026-10-08 16:30:37 UTC",
+    "mid": 2426.4,
+    "z": -2.33,
+    "rsi": 18.34,
+    "atr": 19.4275,
+    "bid20_usd": 532203.73,
+    "ask20_usd": 221850.14,
+    "skew": 2.3989,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 2427.0,
+      "usd": 238191,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 2426.81,
+      "usd": 179836,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 2427.01,
+      "usd": 179533,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "40951a5",
+    "as_of_utc": "2026-10-08 16:31:37 UTC",
+    "mid": 2424.1,
+    "z": -2.38,
+    "rsi": 18.34,
+    "atr": 19.4275,
+    "bid20_usd": 581845.26,
+    "ask20_usd": 122246.3,
+    "skew": 4.7596,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 2423.72,
+      "usd": 451306,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "e2f2d30",
+    "as_of_utc": "2026-10-08 16:32:37 UTC",
+    "mid": 2426.75,
+    "z": -2.32,
+    "rsi": 18.34,
+    "atr": 19.4275,
+    "bid20_usd": 163888.01,
+    "ask20_usd": 339302.23,
+    "skew": 0.483,
+    "walls": [
+     {
+      "side": "SELL",
+      "price": 2426.92,
+      "usd": 197131,
+      "span_s": 0.0
+     }
+    ]
+   }
+  ],
+  "BTC": [
+   {
+    "rev": "ea138dd",
+    "as_of_utc": "2026-10-08 16:19:37 UTC",
+    "mid": 81223.0,
+    "z": -2.16,
+    "rsi": 27.01,
+    "atr": 431.6547,
+    "bid20_usd": 413658.24,
+    "ask20_usd": 453178.36,
+    "skew": 0.9128,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 81300.0,
+      "usd": 163250,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 81302.0,
+      "usd": 425860,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "c08d9ae",
+    "as_of_utc": "2026-10-08 16:20:37 UTC",
+    "mid": 81328.0,
+    "z": -1.98,
+    "rsi": 27.01,
+    "atr": 431.6547,
+    "bid20_usd": 299295.53,
+    "ask20_usd": 366678.66,
+    "skew": 0.8162,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 81374.7,
+      "usd": 263898,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 81374.8,
+      "usd": 287172,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "0314cd7",
+    "as_of_utc": "2026-10-08 16:20:37 UTC",
+    "mid": 81328.0,
+    "z": -1.98,
+    "rsi": 27.01,
+    "atr": 431.6547,
+    "bid20_usd": 299295.53,
+    "ask20_usd": 366678.66,
+    "skew": 0.8162,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 81374.7,
+      "usd": 263898,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 81374.8,
+      "usd": 287172,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "40b4887",
+    "as_of_utc": "2026-10-08 16:24:37 UTC",
+    "mid": 81288.5,
+    "z": -2.05,
+    "rsi": 27.01,
+    "atr": 431.6547,
+    "bid20_usd": 433373.06,
+    "ask20_usd": 492664.18,
+    "skew": 0.8797,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 81323.8,
+      "usd": 328223,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 81323.9,
+      "usd": 417761,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "4acc368",
+    "as_of_utc": "2026-10-08 16:25:37 UTC",
+    "mid": 81226.5,
+    "z": -2.16,
+    "rsi": 27.01,
+    "atr": 431.6547,
+    "bid20_usd": 116301.06,
+    "ask20_usd": 496414.91,
+    "skew": 0.2343,
+    "walls": [
+     {
+      "side": "SELL",
+      "price": 81272.8,
+      "usd": 464555,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "af79e03",
+    "as_of_utc": "2026-10-08 16:26:37 UTC",
+    "mid": 81324.5,
+    "z": -1.99,
+    "rsi": 27.01,
+    "atr": 431.6547,
+    "bid20_usd": 665032.56,
+    "ask20_usd": 325929.95,
+    "skew": 2.0404,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 81360.1,
+      "usd": 435439,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 81360.2,
+      "usd": 286713,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "f90c9b9",
+    "as_of_utc": "2026-10-08 16:27:37 UTC",
+    "mid": 81291.5,
+    "z": -2.05,
+    "rsi": 27.01,
+    "atr": 431.6547,
+    "bid20_usd": 2240320.6,
+    "ask20_usd": 59285.22,
+    "skew": 37.7889,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 81322.5,
+      "usd": 636755,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 81322.2,
+      "usd": 186716,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 81320.8,
+      "usd": 263561,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 81320.6,
+      "usd": 318939,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 81320.5,
+      "usd": 607545,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "53d775c",
+    "as_of_utc": "2026-10-08 16:28:37 UTC",
+    "mid": 81248.5,
+    "z": -2.12,
+    "rsi": 27.01,
+    "atr": 431.6547,
+    "bid20_usd": 293510.79,
+    "ask20_usd": 525740.77,
+    "skew": 0.5583,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 81282.6,
+      "usd": 269858,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 81282.7,
+      "usd": 396578,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "05dbf50",
+    "as_of_utc": "2026-10-08 16:29:37 UTC",
+    "mid": 81224.0,
+    "z": -2.01,
+    "rsi": 34.32,
+    "atr": 438.3222,
+    "bid20_usd": 511213.68,
+    "ask20_usd": 357283.55,
+    "skew": 1.4308,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 81274.5,
+      "usd": 406454,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 81274.6,
+      "usd": 340541,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "e3bb50f",
+    "as_of_utc": "2026-10-08 16:30:37 UTC",
+    "mid": 81198.5,
+    "z": -2.05,
+    "rsi": 34.32,
+    "atr": 438.3222,
+    "bid20_usd": 1532934.62,
+    "ask20_usd": 178603.43,
+    "skew": 8.5829,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 81219.9,
+      "usd": 988527,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 81218.4,
+      "usd": 349320,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "40951a5",
+    "as_of_utc": "2026-10-08 16:31:37 UTC",
+    "mid": 81139.0,
+    "z": -2.15,
+    "rsi": 34.32,
+    "atr": 438.3222,
+    "bid20_usd": 608854.63,
+    "ask20_usd": 125114.96,
+    "skew": 4.8664,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 81137.8,
+      "usd": 447962,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "e2f2d30",
+    "as_of_utc": "2026-10-08 16:32:37 UTC",
+    "mid": 81180.5,
+    "z": -2.08,
+    "rsi": 34.32,
+    "atr": 438.3222,
+    "bid20_usd": 201941.93,
+    "ask20_usd": 432960.73,
+    "skew": 0.4664,
+    "walls": [
+     {
+      "side": "SELL",
+      "price": 81200.1,
+      "usd": 307424,
+      "span_s": 0.0
+     }
+    ]
+   }
+  ],
+  "NEAR": [
+   {
+    "rev": "ea138dd",
+    "as_of_utc": "2026-10-08 16:19:37 UTC",
+    "mid": 4.71,
+    "z": -2.03,
+    "rsi": 21.25,
+    "atr": 0.0858,
+    "bid20_usd": 787961.43,
+    "ask20_usd": 723197.05,
+    "skew": 1.0896,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 4.712,
+      "usd": 167012,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 4.729,
+      "usd": 155650,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "c08d9ae",
+    "as_of_utc": "2026-10-08 16:20:37 UTC",
+    "mid": 4.7425,
+    "z": -1.9,
+    "rsi": 21.25,
+    "atr": 0.0858,
+    "bid20_usd": 703658.83,
+    "ask20_usd": 958907.25,
+    "skew": 0.7338,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 4.735,
+      "usd": 165791,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 4.754,
+      "usd": 191187,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "0314cd7",
+    "as_of_utc": "2026-10-08 16:20:37 UTC",
+    "mid": 4.7425,
+    "z": -1.9,
+    "rsi": 21.25,
+    "atr": 0.0858,
+    "bid20_usd": 703658.83,
+    "ask20_usd": 958907.25,
+    "skew": 0.7338,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 4.735,
+      "usd": 165791,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 4.754,
+      "usd": 191187,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "40b4887",
+    "as_of_utc": "2026-10-08 16:24:37 UTC",
+    "mid": 4.707,
+    "z": -2.04,
+    "rsi": 21.25,
+    "atr": 0.0858,
+    "bid20_usd": 929479.83,
+    "ask20_usd": 958339.36,
+    "skew": 0.9699,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 4.696,
+      "usd": 161913,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 4.715,
+      "usd": 171701,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "4acc368",
+    "as_of_utc": "2026-10-08 16:25:37 UTC",
+    "mid": 4.714,
+    "z": -2.01,
+    "rsi": 21.25,
+    "atr": 0.0858,
+    "bid20_usd": 948589.64,
+    "ask20_usd": 1055917.76,
+    "skew": 0.8984,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 4.705,
+      "usd": 188515,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 4.725,
+      "usd": 182612,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "af79e03",
+    "as_of_utc": "2026-10-08 16:26:37 UTC",
+    "mid": 4.7385,
+    "z": -1.91,
+    "rsi": 21.25,
+    "atr": 0.0858,
+    "bid20_usd": 931472.08,
+    "ask20_usd": 1037963.42,
+    "skew": 0.8974,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 4.723,
+      "usd": 162353,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 4.744,
+      "usd": 153226,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "f90c9b9",
+    "as_of_utc": "2026-10-08 16:27:37 UTC",
+    "mid": 4.73,
+    "z": -1.95,
+    "rsi": 21.25,
+    "atr": 0.0858,
+    "bid20_usd": 1038302.7,
+    "ask20_usd": 970883.05,
+    "skew": 1.0694,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 4.716,
+      "usd": 163386,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 4.712,
+      "usd": 153536,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 4.737,
+      "usd": 169978,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "53d775c",
+    "as_of_utc": "2026-10-08 16:28:37 UTC",
+    "mid": 4.738,
+    "z": -1.91,
+    "rsi": 21.25,
+    "atr": 0.0858,
+    "bid20_usd": 943337.76,
+    "ask20_usd": 944557.37,
+    "skew": 0.9987,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 4.722,
+      "usd": 164491,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 4.743,
+      "usd": 184968,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "05dbf50",
+    "as_of_utc": "2026-10-08 16:29:37 UTC",
+    "mid": 4.721,
+    "z": -1.85,
+    "rsi": 29.74,
+    "atr": 0.0877,
+    "bid20_usd": 1013357.82,
+    "ask20_usd": 1141952.68,
+    "skew": 0.8874,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 4.717,
+      "usd": 197289,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 4.734,
+      "usd": 179845,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "e3bb50f",
+    "as_of_utc": "2026-10-08 16:30:37 UTC",
+    "mid": 4.72,
+    "z": -1.86,
+    "rsi": 29.74,
+    "atr": 0.0877,
+    "bid20_usd": 1376405.67,
+    "ask20_usd": 982326.99,
+    "skew": 1.4012,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 4.704,
+      "usd": 165595,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 4.724,
+      "usd": 212155,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "40951a5",
+    "as_of_utc": "2026-10-08 16:31:37 UTC",
+    "mid": 4.713,
+    "z": -1.88,
+    "rsi": 29.74,
+    "atr": 0.0877,
+    "bid20_usd": 1176958.02,
+    "ask20_usd": 971198.57,
+    "skew": 1.2119,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 4.693,
+      "usd": 171008,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 4.72,
+      "usd": 150809,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "e2f2d30",
+    "as_of_utc": "2026-10-08 16:32:37 UTC",
+    "mid": 4.719,
+    "z": -1.86,
+    "rsi": 29.74,
+    "atr": 0.0877,
+    "bid20_usd": 1061573.87,
+    "ask20_usd": 958770.44,
+    "skew": 1.1072,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 4.701,
+      "usd": 172912,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 4.722,
+      "usd": 163391,
+      "span_s": 0.0
+     }
+    ]
+   }
+  ],
+  "XRP": [
+   {
+    "rev": "ea138dd",
+    "as_of_utc": "2026-10-08 16:19:37 UTC",
+    "mid": 1.3575,
+    "z": -1.68,
+    "rsi": 21.63,
+    "atr": 0.0128,
+    "bid20_usd": 1429976.27,
+    "ask20_usd": 1293529.44,
+    "skew": 1.1055,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 1.3574,
+      "usd": 185645,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 1.361,
+      "usd": 154038,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 1.3611,
+      "usd": 217266,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "c08d9ae",
+    "as_of_utc": "2026-10-08 16:20:37 UTC",
+    "mid": 1.3595,
+    "z": -1.6,
+    "rsi": 21.63,
+    "atr": 0.0128,
+    "bid20_usd": 1459155.74,
+    "ask20_usd": 3405808.67,
+    "skew": 0.4284,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 1.3579,
+      "usd": 259652,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 1.36,
+      "usd": 1850173,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 1.3606,
+      "usd": 182586,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 1.3613,
+      "usd": 241346,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "0314cd7",
+    "as_of_utc": "2026-10-08 16:20:37 UTC",
+    "mid": 1.3595,
+    "z": -1.6,
+    "rsi": 21.63,
+    "atr": 0.0128,
+    "bid20_usd": 1459155.74,
+    "ask20_usd": 3405808.67,
+    "skew": 0.4284,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 1.3579,
+      "usd": 259652,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 1.36,
+      "usd": 1850173,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 1.3606,
+      "usd": 182586,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 1.3613,
+      "usd": 241346,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "40b4887",
+    "as_of_utc": "2026-10-08 16:24:37 UTC",
+    "mid": 1.3545,
+    "z": -1.81,
+    "rsi": 21.63,
+    "atr": 0.0128,
+    "bid20_usd": 1674120.1,
+    "ask20_usd": 1486072.3,
+    "skew": 1.1265,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 1.3544,
+      "usd": 157809,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 1.3543,
+      "usd": 174987,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 1.3542,
+      "usd": 161872,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 1.3532,
+      "usd": 202270,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 1.3566,
+      "usd": 184559,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 1.3568,
+      "usd": 186168,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "4acc368",
+    "as_of_utc": "2026-10-08 16:25:37 UTC",
+    "mid": 1.353,
+    "z": -1.88,
+    "rsi": 21.63,
+    "atr": 0.0128,
+    "bid20_usd": 1895738.92,
+    "ask20_usd": 1568663.99,
+    "skew": 1.2085,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 1.352,
+      "usd": 200702,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 1.3519,
+      "usd": 265816,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 1.3542,
+      "usd": 198074,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "af79e03",
+    "as_of_utc": "2026-10-08 16:26:37 UTC",
+    "mid": 1.3555,
+    "z": -1.77,
+    "rsi": 21.63,
+    "atr": 0.0128,
+    "bid20_usd": 1618065.36,
+    "ask20_usd": 1675089.57,
+    "skew": 0.966,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 1.3553,
+      "usd": 157846,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 1.3551,
+      "usd": 157549,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 1.3572,
+      "usd": 271759,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "f90c9b9",
+    "as_of_utc": "2026-10-08 16:27:37 UTC",
+    "mid": 1.3545,
+    "z": -1.81,
+    "rsi": 21.63,
+    "atr": 0.0128,
+    "bid20_usd": 2009674.7,
+    "ask20_usd": 1843445.29,
+    "skew": 1.0902,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 1.3523,
+      "usd": 323539,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 1.3522,
+      "usd": 151726,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 1.3521,
+      "usd": 235478,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 1.3545,
+      "usd": 165818,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 1.3554,
+      "usd": 236434,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 1.3558,
+      "usd": 164363,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "53d775c",
+    "as_of_utc": "2026-10-08 16:28:37 UTC",
+    "mid": 1.3545,
+    "z": -1.81,
+    "rsi": 21.63,
+    "atr": 0.0128,
+    "bid20_usd": 1986249.68,
+    "ask20_usd": 1581191.8,
+    "skew": 1.2562,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 1.353,
+      "usd": 176418,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 1.3529,
+      "usd": 476984,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 1.3522,
+      "usd": 154027,
+      "span_s": 60.0
+     },
+     {
+      "side": "SELL",
+      "price": 1.355,
+      "usd": 191812,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 1.356,
+      "usd": 212712,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "05dbf50",
+    "as_of_utc": "2026-10-08 16:29:37 UTC",
+    "mid": 1.3535,
+    "z": -1.76,
+    "rsi": 29.39,
+    "atr": 0.013,
+    "bid20_usd": 1493207.13,
+    "ask20_usd": 1902628.63,
+    "skew": 0.7848,
+    "walls": [
+     {
+      "side": "SELL",
+      "price": 1.3556,
+      "usd": 432579,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "e3bb50f",
+    "as_of_utc": "2026-10-08 16:30:37 UTC",
+    "mid": 1.3535,
+    "z": -1.76,
+    "rsi": 29.39,
+    "atr": 0.013,
+    "bid20_usd": 1977417.99,
+    "ask20_usd": 1164429.1,
+    "skew": 1.6982,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 1.3515,
+      "usd": 170145,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 1.351,
+      "usd": 512899,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "40951a5",
+    "as_of_utc": "2026-10-08 16:31:37 UTC",
+    "mid": 1.3525,
+    "z": -1.8,
+    "rsi": 29.39,
+    "atr": 0.013,
+    "bid20_usd": 2278376.01,
+    "ask20_usd": 1692297.69,
+    "skew": 1.3463,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 1.3518,
+      "usd": 160270,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 1.3513,
+      "usd": 157324,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 1.3504,
+      "usd": 482710,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 1.3501,
+      "usd": 162221,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 1.3535,
+      "usd": 460713,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 1.3538,
+      "usd": 159779,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "e2f2d30",
+    "as_of_utc": "2026-10-08 16:32:37 UTC",
+    "mid": 1.3545,
+    "z": -1.71,
+    "rsi": 29.39,
+    "atr": 0.013,
+    "bid20_usd": 1787327.39,
+    "ask20_usd": 1976299.72,
+    "skew": 0.9044,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 1.3522,
+      "usd": 494139,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 1.3538,
+      "usd": 160659,
+      "span_s": 60.0
+     },
+     {
+      "side": "SELL",
+      "price": 1.3552,
+      "usd": 493373,
+      "span_s": 0.0
+     }
+    ]
+   }
+  ],
+  "ADA": [
+   {
+    "rev": "ea138dd",
+    "as_of_utc": "2026-10-08 16:19:37 UTC",
+    "mid": 0.2323,
+    "z": -1.73,
+    "rsi": 13.96,
+    "atr": 0.003,
+    "bid20_usd": 3043433.5,
+    "ask20_usd": 2993786.51,
+    "skew": 1.0166,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 0.2318,
+      "usd": 387657,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2317,
+      "usd": 152487,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2316,
+      "usd": 332492,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2309,
+      "usd": 156939,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2307,
+      "usd": 434772,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2329,
+      "usd": 488796,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2335,
+      "usd": 153520,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2338,
+      "usd": 353199,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2342,
+      "usd": 362510,
+      "span_s": 60.0
+     }
+    ]
+   },
+   {
+    "rev": "c08d9ae",
+    "as_of_utc": "2026-10-08 16:20:37 UTC",
+    "mid": 0.2327,
+    "z": -1.69,
+    "rsi": 13.96,
+    "atr": 0.003,
+    "bid20_usd": 3142149.33,
+    "ask20_usd": 2899704.57,
+    "skew": 1.0836,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 0.2322,
+      "usd": 394976,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2318,
+      "usd": 164737,
+      "span_s": 60.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2316,
+      "usd": 167928,
+      "span_s": 60.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2315,
+      "usd": 606056,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2312,
+      "usd": 170729,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2311,
+      "usd": 215027,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2332,
+      "usd": 197425,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2333,
+      "usd": 359961,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2339,
+      "usd": 151428,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.234,
+      "usd": 336244,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2344,
+      "usd": 333284,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2345,
+      "usd": 171413,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "0314cd7",
+    "as_of_utc": "2026-10-08 16:20:37 UTC",
+    "mid": 0.2327,
+    "z": -1.69,
+    "rsi": 13.96,
+    "atr": 0.003,
+    "bid20_usd": 3142149.33,
+    "ask20_usd": 2899704.57,
+    "skew": 1.0836,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 0.2322,
+      "usd": 394976,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2318,
+      "usd": 164737,
+      "span_s": 60.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2316,
+      "usd": 167928,
+      "span_s": 60.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2315,
+      "usd": 606056,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2312,
+      "usd": 170729,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2311,
+      "usd": 215027,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2332,
+      "usd": 197425,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2333,
+      "usd": 359961,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2339,
+      "usd": 151428,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.234,
+      "usd": 336244,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2344,
+      "usd": 333284,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2345,
+      "usd": 171413,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "40b4887",
+    "as_of_utc": "2026-10-08 16:24:37 UTC",
+    "mid": 0.2314,
+    "z": -1.84,
+    "rsi": 13.96,
+    "atr": 0.003,
+    "bid20_usd": 3382520.11,
+    "ask20_usd": 2978656.32,
+    "skew": 1.1356,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 0.2309,
+      "usd": 227185,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2308,
+      "usd": 362297,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2307,
+      "usd": 155212,
+      "span_s": 180.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2303,
+      "usd": 256642,
+      "span_s": 180.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2302,
+      "usd": 337634,
+      "span_s": 180.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2298,
+      "usd": 166120,
+      "span_s": 60.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2297,
+      "usd": 414673,
+      "span_s": 60.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2296,
+      "usd": 179782,
+      "span_s": 120.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2319,
+      "usd": 405800,
+      "span_s": 60.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2321,
+      "usd": 152783,
+      "span_s": 60.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2322,
+      "usd": 345532,
+      "span_s": 60.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2325,
+      "usd": 159549,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.233,
+      "usd": 351673,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "4acc368",
+    "as_of_utc": "2026-10-08 16:25:37 UTC",
+    "mid": 0.2314,
+    "z": -1.85,
+    "rsi": 13.96,
+    "atr": 0.003,
+    "bid20_usd": 3349154.98,
+    "ask20_usd": 3060300.24,
+    "skew": 1.0944,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 0.2309,
+      "usd": 199248,
+      "span_s": 60.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2308,
+      "usd": 440120,
+      "span_s": 60.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2305,
+      "usd": 183016,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2304,
+      "usd": 355043,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2303,
+      "usd": 200994,
+      "span_s": 240.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2298,
+      "usd": 396699,
+      "span_s": 120.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2297,
+      "usd": 159523,
+      "span_s": 120.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2319,
+      "usd": 203960,
+      "span_s": 120.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.232,
+      "usd": 153131,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2321,
+      "usd": 378086,
+      "span_s": 120.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2322,
+      "usd": 158117,
+      "span_s": 120.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2323,
+      "usd": 361260,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2328,
+      "usd": 351684,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "af79e03",
+    "as_of_utc": "2026-10-08 16:26:37 UTC",
+    "mid": 0.2319,
+    "z": -1.79,
+    "rsi": 13.96,
+    "atr": 0.003,
+    "bid20_usd": 3354795.45,
+    "ask20_usd": 2841953.62,
+    "skew": 1.1805,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 0.2313,
+      "usd": 263027,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2312,
+      "usd": 350793,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2309,
+      "usd": 214501,
+      "span_s": 120.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2308,
+      "usd": 376773,
+      "span_s": 120.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2307,
+      "usd": 197786,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2304,
+      "usd": 398071,
+      "span_s": 60.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2324,
+      "usd": 198526,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2325,
+      "usd": 373568,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2328,
+      "usd": 164862,
+      "span_s": 60.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2329,
+      "usd": 384894,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2331,
+      "usd": 340587,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2335,
+      "usd": 153106,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "f90c9b9",
+    "as_of_utc": "2026-10-08 16:27:37 UTC",
+    "mid": 0.2316,
+    "z": -1.83,
+    "rsi": 13.96,
+    "atr": 0.003,
+    "bid20_usd": 3621235.73,
+    "ask20_usd": 2946793.92,
+    "skew": 1.2289,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 0.231,
+      "usd": 157184,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2309,
+      "usd": 193584,
+      "span_s": 180.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2308,
+      "usd": 401552,
+      "span_s": 180.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2307,
+      "usd": 154301,
+      "span_s": 60.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2306,
+      "usd": 157115,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2305,
+      "usd": 330688,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2304,
+      "usd": 177504,
+      "span_s": 120.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2303,
+      "usd": 175953,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2299,
+      "usd": 337290,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2296,
+      "usd": 185141,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2294,
+      "usd": 351975,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2317,
+      "usd": 159107,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2318,
+      "usd": 379372,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2326,
+      "usd": 342259,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.233,
+      "usd": 162952,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2331,
+      "usd": 334066,
+      "span_s": 60.0
+     }
+    ]
+   },
+   {
+    "rev": "53d775c",
+    "as_of_utc": "2026-10-08 16:28:37 UTC",
+    "mid": 0.2316,
+    "z": -1.81,
+    "rsi": 13.96,
+    "atr": 0.003,
+    "bid20_usd": 3393453.04,
+    "ask20_usd": 2956167.9,
+    "skew": 1.1479,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 0.2313,
+      "usd": 151155,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2312,
+      "usd": 156111,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2311,
+      "usd": 190468,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.231,
+      "usd": 416588,
+      "span_s": 60.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2308,
+      "usd": 190895,
+      "span_s": 240.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2307,
+      "usd": 402333,
+      "span_s": 120.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2306,
+      "usd": 161758,
+      "span_s": 60.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2302,
+      "usd": 160209,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2301,
+      "usd": 379932,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.23,
+      "usd": 178734,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2319,
+      "usd": 160448,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.232,
+      "usd": 368566,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2325,
+      "usd": 159048,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2328,
+      "usd": 151700,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2329,
+      "usd": 329406,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.233,
+      "usd": 177373,
+      "span_s": 60.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2331,
+      "usd": 332046,
+      "span_s": 120.0
+     }
+    ]
+   },
+   {
+    "rev": "05dbf50",
+    "as_of_utc": "2026-10-08 16:29:37 UTC",
+    "mid": 0.2313,
+    "z": -1.74,
+    "rsi": 19.48,
+    "atr": 0.0031,
+    "bid20_usd": 3262736.01,
+    "ask20_usd": 3113112.01,
+    "skew": 1.0481,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 0.2309,
+      "usd": 201129,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2308,
+      "usd": 192635,
+      "span_s": 300.1
+     },
+     {
+      "side": "BUY",
+      "price": 0.2307,
+      "usd": 363444,
+      "span_s": 180.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2302,
+      "usd": 170004,
+      "span_s": 60.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2301,
+      "usd": 374244,
+      "span_s": 60.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2297,
+      "usd": 155417,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2296,
+      "usd": 470380,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2318,
+      "usd": 382052,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2319,
+      "usd": 163735,
+      "span_s": 60.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2326,
+      "usd": 324213,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2329,
+      "usd": 390916,
+      "span_s": 60.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2332,
+      "usd": 158431,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "e3bb50f",
+    "as_of_utc": "2026-10-08 16:30:37 UTC",
+    "mid": 0.2311,
+    "z": -1.75,
+    "rsi": 19.48,
+    "atr": 0.0031,
+    "bid20_usd": 3415289.16,
+    "ask20_usd": 2953502.02,
+    "skew": 1.1564,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 0.2306,
+      "usd": 170060,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2304,
+      "usd": 176212,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2303,
+      "usd": 360498,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.23,
+      "usd": 359995,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2299,
+      "usd": 192411,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2297,
+      "usd": 155575,
+      "span_s": 60.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2296,
+      "usd": 382283,
+      "span_s": 60.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2292,
+      "usd": 191619,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2315,
+      "usd": 172798,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2316,
+      "usd": 356536,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2317,
+      "usd": 154566,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2319,
+      "usd": 204851,
+      "span_s": 120.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.232,
+      "usd": 357792,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2329,
+      "usd": 366535,
+      "span_s": 120.0
+     }
+    ]
+   },
+   {
+    "rev": "40951a5",
+    "as_of_utc": "2026-10-08 16:31:37 UTC",
+    "mid": 0.2309,
+    "z": -1.78,
+    "rsi": 19.48,
+    "atr": 0.0031,
+    "bid20_usd": 3067670.21,
+    "ask20_usd": 3001867.99,
+    "skew": 1.0219,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 0.2302,
+      "usd": 177028,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.23,
+      "usd": 154941,
+      "span_s": 60.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2299,
+      "usd": 368397,
+      "span_s": 60.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2296,
+      "usd": 155806,
+      "span_s": 120.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2295,
+      "usd": 250125,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2294,
+      "usd": 345437,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2291,
+      "usd": 176523,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2288,
+      "usd": 290531,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2312,
+      "usd": 399891,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2316,
+      "usd": 366528,
+      "span_s": 60.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2319,
+      "usd": 175844,
+      "span_s": 180.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.232,
+      "usd": 409673,
+      "span_s": 60.0
+     }
+    ]
+   },
+   {
+    "rev": "e2f2d30",
+    "as_of_utc": "2026-10-08 16:32:37 UTC",
+    "mid": 0.2314,
+    "z": -1.72,
+    "rsi": 19.48,
+    "atr": 0.0031,
+    "bid20_usd": 3718742.23,
+    "ask20_usd": 2624620.64,
+    "skew": 1.4169,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 0.2308,
+      "usd": 199131,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2307,
+      "usd": 416435,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2305,
+      "usd": 161873,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2304,
+      "usd": 404035,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2301,
+      "usd": 209380,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.23,
+      "usd": 383231,
+      "span_s": 120.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2297,
+      "usd": 191558,
+      "span_s": 0.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2294,
+      "usd": 401182,
+      "span_s": 60.0
+     },
+     {
+      "side": "BUY",
+      "price": 0.2293,
+      "usd": 178926,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2317,
+      "usd": 164999,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2318,
+      "usd": 157485,
+      "span_s": 0.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2319,
+      "usd": 162854,
+      "span_s": 240.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.232,
+      "usd": 333297,
+      "span_s": 120.0
+     },
+     {
+      "side": "SELL",
+      "price": 0.2328,
+      "usd": 332801,
+      "span_s": 0.0
+     }
+    ]
+   }
+  ],
+  "AVAX": [
+   {
+    "rev": "ea138dd",
+    "as_of_utc": "2026-10-08 16:19:37 UTC",
+    "mid": 10.09,
+    "z": -1.73,
+    "rsi": 19.91,
+    "atr": 0.1302,
+    "bid20_usd": 177987.3,
+    "ask20_usd": 175532.92,
+    "skew": 1.014,
+    "walls": []
+   },
+   {
+    "rev": "c08d9ae",
+    "as_of_utc": "2026-10-08 16:20:37 UTC",
+    "mid": 10.11,
+    "z": -1.67,
+    "rsi": 19.91,
+    "atr": 0.1302,
+    "bid20_usd": 235665.44,
+    "ask20_usd": 184314.77,
+    "skew": 1.2786,
+    "walls": []
+   },
+   {
+    "rev": "0314cd7",
+    "as_of_utc": "2026-10-08 16:20:37 UTC",
+    "mid": 10.11,
+    "z": -1.67,
+    "rsi": 19.91,
+    "atr": 0.1302,
+    "bid20_usd": 235665.44,
+    "ask20_usd": 184314.77,
+    "skew": 1.2786,
+    "walls": []
+   },
+   {
+    "rev": "40b4887",
+    "as_of_utc": "2026-10-08 16:24:37 UTC",
+    "mid": 10.075,
+    "z": -1.77,
+    "rsi": 19.91,
+    "atr": 0.1302,
+    "bid20_usd": 200242.67,
+    "ask20_usd": 163891.53,
+    "skew": 1.2218,
+    "walls": []
+   },
+   {
+    "rev": "4acc368",
+    "as_of_utc": "2026-10-08 16:25:37 UTC",
+    "mid": 10.065,
+    "z": -1.8,
+    "rsi": 19.91,
+    "atr": 0.1302,
+    "bid20_usd": 475541.92,
+    "ask20_usd": 184388.63,
+    "skew": 2.579,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 10.045,
+      "usd": 248945,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "af79e03",
+    "as_of_utc": "2026-10-08 16:26:37 UTC",
+    "mid": 10.1,
+    "z": -1.7,
+    "rsi": 19.91,
+    "atr": 0.1302,
+    "bid20_usd": 179236.96,
+    "ask20_usd": 180797.41,
+    "skew": 0.9914,
+    "walls": []
+   },
+   {
+    "rev": "f90c9b9",
+    "as_of_utc": "2026-10-08 16:27:37 UTC",
+    "mid": 10.095,
+    "z": -1.71,
+    "rsi": 19.91,
+    "atr": 0.1302,
+    "bid20_usd": 189065.65,
+    "ask20_usd": 174647.27,
+    "skew": 1.0826,
+    "walls": []
+   },
+   {
+    "rev": "53d775c",
+    "as_of_utc": "2026-10-08 16:28:37 UTC",
+    "mid": 10.1,
+    "z": -1.7,
+    "rsi": 19.91,
+    "atr": 0.1302,
+    "bid20_usd": 463572.62,
+    "ask20_usd": 190046.25,
+    "skew": 2.4393,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 10.08,
+      "usd": 253472,
+      "span_s": 0.0
+     }
+    ]
+   },
+   {
+    "rev": "05dbf50",
+    "as_of_utc": "2026-10-08 16:29:37 UTC",
+    "mid": 10.085,
+    "z": -1.64,
+    "rsi": 27.68,
+    "atr": 0.1309,
+    "bid20_usd": 195826.7,
+    "ask20_usd": 152339.3,
+    "skew": 1.2855,
+    "walls": []
+   },
+   {
+    "rev": "e3bb50f",
+    "as_of_utc": "2026-10-08 16:30:37 UTC",
+    "mid": 10.08,
+    "z": -1.66,
+    "rsi": 27.68,
+    "atr": 0.1309,
+    "bid20_usd": 223645.14,
+    "ask20_usd": 167505.0,
+    "skew": 1.3352,
+    "walls": []
+   },
+   {
+    "rev": "40951a5",
+    "as_of_utc": "2026-10-08 16:31:37 UTC",
+    "mid": 10.07,
+    "z": -1.69,
+    "rsi": 27.68,
+    "atr": 0.1309,
+    "bid20_usd": 204800.92,
+    "ask20_usd": 139082.81,
+    "skew": 1.4725,
+    "walls": []
+   },
+   {
+    "rev": "e2f2d30",
+    "as_of_utc": "2026-10-08 16:32:37 UTC",
+    "mid": 10.085,
+    "z": -1.64,
+    "rsi": 27.68,
+    "atr": 0.1309,
+    "bid20_usd": 202666.8,
+    "ask20_usd": 180046.83,
+    "skew": 1.1256,
+    "walls": []
+   }
+  ],
+  "DOT": [
+   {
+    "rev": "ea138dd",
+    "as_of_utc": "2026-10-08 16:19:37 UTC",
+    "mid": 1.043,
+    "z": -1.56,
+    "rsi": 20.73,
+    "atr": 0.0145,
+    "bid20_usd": 84061.02,
+    "ask20_usd": 48538.09,
+    "skew": 1.7319,
+    "walls": []
+   },
+   {
+    "rev": "c08d9ae",
+    "as_of_utc": "2026-10-08 16:20:37 UTC",
+    "mid": 1.0445,
+    "z": -1.5,
+    "rsi": 20.73,
+    "atr": 0.0145,
+    "bid20_usd": 72225.64,
+    "ask20_usd": 64782.72,
+    "skew": 1.1149,
+    "walls": []
+   },
+   {
+    "rev": "0314cd7",
+    "as_of_utc": "2026-10-08 16:20:37 UTC",
+    "mid": 1.0445,
+    "z": -1.5,
+    "rsi": 20.73,
+    "atr": 0.0145,
+    "bid20_usd": 72225.64,
+    "ask20_usd": 64782.72,
+    "skew": 1.1149,
+    "walls": []
+   },
+   {
+    "rev": "40b4887",
+    "as_of_utc": "2026-10-08 16:24:37 UTC",
+    "mid": 1.0435,
+    "z": -1.54,
+    "rsi": 20.73,
+    "atr": 0.0145,
+    "bid20_usd": 113773.61,
+    "ask20_usd": 72356.08,
+    "skew": 1.5724,
+    "walls": []
+   },
+   {
+    "rev": "4acc368",
+    "as_of_utc": "2026-10-08 16:25:37 UTC",
+    "mid": 1.0435,
+    "z": -1.54,
+    "rsi": 20.73,
+    "atr": 0.0145,
+    "bid20_usd": 93143.16,
+    "ask20_usd": 61316.47,
+    "skew": 1.5191,
+    "walls": []
+   },
+   {
+    "rev": "af79e03",
+    "as_of_utc": "2026-10-08 16:26:37 UTC",
+    "mid": 1.0455,
+    "z": -1.46,
+    "rsi": 20.73,
+    "atr": 0.0145,
+    "bid20_usd": 89682.98,
+    "ask20_usd": 62544.83,
+    "skew": 1.4339,
+    "walls": []
+   },
+   {
+    "rev": "f90c9b9",
+    "as_of_utc": "2026-10-08 16:27:37 UTC",
+    "mid": 1.0445,
+    "z": -1.5,
+    "rsi": 20.73,
+    "atr": 0.0145,
+    "bid20_usd": 91469.91,
+    "ask20_usd": 79196.49,
+    "skew": 1.155,
+    "walls": []
+   },
+   {
+    "rev": "53d775c",
+    "as_of_utc": "2026-10-08 16:28:37 UTC",
+    "mid": 1.0445,
+    "z": -1.5,
+    "rsi": 20.73,
+    "atr": 0.0145,
+    "bid20_usd": 57661.17,
+    "ask20_usd": 125070.36,
+    "skew": 0.461,
+    "walls": []
+   },
+   {
+    "rev": "05dbf50",
+    "as_of_utc": "2026-10-08 16:29:37 UTC",
+    "mid": 1.0445,
+    "z": -1.4,
+    "rsi": 30.35,
+    "atr": 0.0146,
+    "bid20_usd": 74143.29,
+    "ask20_usd": 121523.63,
+    "skew": 0.6101,
+    "walls": []
+   },
+   {
+    "rev": "e3bb50f",
+    "as_of_utc": "2026-10-08 16:30:37 UTC",
+    "mid": 1.042,
+    "z": -1.49,
+    "rsi": 30.35,
+    "atr": 0.0146,
+    "bid20_usd": 88968.81,
+    "ask20_usd": 91598.41,
+    "skew": 0.9713,
+    "walls": []
+   },
+   {
+    "rev": "40951a5",
+    "as_of_utc": "2026-10-08 16:31:37 UTC",
+    "mid": 1.0405,
+    "z": -1.54,
+    "rsi": 30.35,
+    "atr": 0.0146,
+    "bid20_usd": 68393.12,
+    "ask20_usd": 108050.87,
+    "skew": 0.633,
+    "walls": []
+   },
+   {
+    "rev": "e2f2d30",
+    "as_of_utc": "2026-10-08 16:32:37 UTC",
+    "mid": 1.042,
+    "z": -1.49,
+    "rsi": 30.35,
+    "atr": 0.0146,
+    "bid20_usd": 97070.62,
+    "ask20_usd": 77653.69,
+    "skew": 1.25,
+    "walls": []
+   }
+  ],
+  "LINK": [
+   {
+    "rev": "ea138dd",
+    "as_of_utc": "2026-10-08 16:19:37 UTC",
+    "mid": 12.4555,
+    "z": -1.72,
+    "rsi": 20.49,
+    "atr": 0.1211,
+    "bid20_usd": 176059.83,
+    "ask20_usd": 156537.92,
+    "skew": 1.1247,
+    "walls": []
+   },
+   {
+    "rev": "c08d9ae",
+    "as_of_utc": "2026-10-08 16:20:37 UTC",
+    "mid": 12.4925,
+    "z": -1.59,
+    "rsi": 20.49,
+    "atr": 0.1211,
+    "bid20_usd": 188029.46,
+    "ask20_usd": 185353.99,
+    "skew": 1.0144,
+    "walls": []
+   },
+   {
+    "rev": "0314cd7",
+    "as_of_utc": "2026-10-08 16:20:37 UTC",
+    "mid": 12.4925,
+    "z": -1.59,
+    "rsi": 20.49,
+    "atr": 0.1211,
+    "bid20_usd": 188029.46,
+    "ask20_usd": 185353.99,
+    "skew": 1.0144,
+    "walls": []
+   },
+   {
+    "rev": "40b4887",
+    "as_of_utc": "2026-10-08 16:24:37 UTC",
+    "mid": 12.4395,
+    "z": -1.78,
+    "rsi": 20.49,
+    "atr": 0.1211,
+    "bid20_usd": 191445.94,
+    "ask20_usd": 162782.78,
+    "skew": 1.1761,
+    "walls": []
+   },
+   {
+    "rev": "4acc368",
+    "as_of_utc": "2026-10-08 16:25:37 UTC",
+    "mid": 12.432,
+    "z": -1.81,
+    "rsi": 20.49,
+    "atr": 0.1211,
+    "bid20_usd": 198899.38,
+    "ask20_usd": 167475.17,
+    "skew": 1.1876,
+    "walls": []
+   },
+   {
+    "rev": "af79e03",
+    "as_of_utc": "2026-10-08 16:26:37 UTC",
+    "mid": 12.4615,
+    "z": -1.7,
+    "rsi": 20.49,
+    "atr": 0.1211,
+    "bid20_usd": 172950.79,
+    "ask20_usd": 205662.2,
+    "skew": 0.8409,
+    "walls": []
+   },
+   {
+    "rev": "f90c9b9",
+    "as_of_utc": "2026-10-08 16:27:37 UTC",
+    "mid": 12.464,
+    "z": -1.69,
+    "rsi": 20.49,
+    "atr": 0.1211,
+    "bid20_usd": 180976.59,
+    "ask20_usd": 163833.49,
+    "skew": 1.1046,
+    "walls": []
+   },
+   {
+    "rev": "53d775c",
+    "as_of_utc": "2026-10-08 16:28:37 UTC",
+    "mid": 12.4715,
+    "z": -1.66,
+    "rsi": 20.49,
+    "atr": 0.1211,
+    "bid20_usd": 195416.64,
+    "ask20_usd": 149138.21,
+    "skew": 1.3103,
+    "walls": []
+   },
+   {
+    "rev": "05dbf50",
+    "as_of_utc": "2026-10-08 16:29:37 UTC",
+    "mid": 12.4585,
+    "z": -1.59,
+    "rsi": 29.1,
+    "atr": 0.1227,
+    "bid20_usd": 176534.33,
+    "ask20_usd": 176896.09,
+    "skew": 0.998,
+    "walls": []
+   },
+   {
+    "rev": "e3bb50f",
+    "as_of_utc": "2026-10-08 16:30:37 UTC",
+    "mid": 12.459,
+    "z": -1.58,
+    "rsi": 29.1,
+    "atr": 0.1227,
+    "bid20_usd": 222097.95,
+    "ask20_usd": 185264.17,
+    "skew": 1.1988,
+    "walls": []
+   },
+   {
+    "rev": "40951a5",
+    "as_of_utc": "2026-10-08 16:31:37 UTC",
+    "mid": 12.452,
+    "z": -1.61,
+    "rsi": 29.1,
+    "atr": 0.1227,
+    "bid20_usd": 222235.95,
+    "ask20_usd": 215063.29,
+    "skew": 1.0334,
+    "walls": []
+   },
+   {
+    "rev": "e2f2d30",
+    "as_of_utc": "2026-10-08 16:32:37 UTC",
+    "mid": 12.4715,
+    "z": -1.54,
+    "rsi": 29.1,
+    "atr": 0.1227,
+    "bid20_usd": 495024.21,
+    "ask20_usd": 169625.27,
+    "skew": 2.9183,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 12.442,
+      "usd": 269937,
+      "span_s": 0.0
+     }
+    ]
+   }
+  ],
+  "LTC": [
+   {
+    "rev": "ea138dd",
+    "as_of_utc": "2026-10-08 16:19:37 UTC",
+    "mid": 62.51,
+    "z": -1.31,
+    "rsi": 23.85,
+    "atr": 0.4843,
+    "bid20_usd": 348090.75,
+    "ask20_usd": 404577.9,
+    "skew": 0.8604,
+    "walls": []
+   },
+   {
+    "rev": "c08d9ae",
+    "as_of_utc": "2026-10-08 16:20:37 UTC",
+    "mid": 62.635,
+    "z": -1.19,
+    "rsi": 23.85,
+    "atr": 0.4843,
+    "bid20_usd": 379284.76,
+    "ask20_usd": 514232.43,
+    "skew": 0.7376,
+    "walls": []
+   },
+   {
+    "rev": "0314cd7",
+    "as_of_utc": "2026-10-08 16:20:37 UTC",
+    "mid": 62.635,
+    "z": -1.19,
+    "rsi": 23.85,
+    "atr": 0.4843,
+    "bid20_usd": 379284.76,
+    "ask20_usd": 514232.43,
+    "skew": 0.7376,
+    "walls": []
+   },
+   {
+    "rev": "40b4887",
+    "as_of_utc": "2026-10-08 16:24:37 UTC",
+    "mid": 62.57,
+    "z": -1.25,
+    "rsi": 23.85,
+    "atr": 0.4843,
+    "bid20_usd": 447869.64,
+    "ask20_usd": 437065.96,
+    "skew": 1.0247,
+    "walls": []
+   },
+   {
+    "rev": "4acc368",
+    "as_of_utc": "2026-10-08 16:25:37 UTC",
+    "mid": 62.54,
+    "z": -1.28,
+    "rsi": 23.85,
+    "atr": 0.4843,
+    "bid20_usd": 463706.13,
+    "ask20_usd": 507520.04,
+    "skew": 0.9137,
+    "walls": []
+   },
+   {
+    "rev": "af79e03",
+    "as_of_utc": "2026-10-08 16:26:37 UTC",
+    "mid": 62.6,
+    "z": -1.22,
+    "rsi": 23.85,
+    "atr": 0.4843,
+    "bid20_usd": 450689.92,
+    "ask20_usd": 492395.04,
+    "skew": 0.9153,
+    "walls": []
+   },
+   {
+    "rev": "f90c9b9",
+    "as_of_utc": "2026-10-08 16:27:37 UTC",
+    "mid": 62.5,
+    "z": -1.31,
+    "rsi": 23.85,
+    "atr": 0.4843,
+    "bid20_usd": 626934.29,
+    "ask20_usd": 428637.47,
+    "skew": 1.4626,
+    "walls": []
+   },
+   {
+    "rev": "53d775c",
+    "as_of_utc": "2026-10-08 16:28:37 UTC",
+    "mid": 62.435,
+    "z": -1.37,
+    "rsi": 23.85,
+    "atr": 0.4843,
+    "bid20_usd": 566385.87,
+    "ask20_usd": 501162.14,
+    "skew": 1.1301,
+    "walls": []
+   },
+   {
+    "rev": "05dbf50",
+    "as_of_utc": "2026-10-08 16:29:37 UTC",
+    "mid": 62.44,
+    "z": -1.28,
+    "rsi": 32.09,
+    "atr": 0.4972,
+    "bid20_usd": 433188.38,
+    "ask20_usd": 472478.69,
+    "skew": 0.9168,
+    "walls": []
+   },
+   {
+    "rev": "e3bb50f",
+    "as_of_utc": "2026-10-08 16:30:37 UTC",
+    "mid": 62.45,
+    "z": -1.28,
+    "rsi": 32.09,
+    "atr": 0.4972,
+    "bid20_usd": 428679.74,
+    "ask20_usd": 456077.07,
+    "skew": 0.9399,
+    "walls": []
+   },
+   {
+    "rev": "40951a5",
+    "as_of_utc": "2026-10-08 16:31:37 UTC",
+    "mid": 62.47,
+    "z": -1.26,
+    "rsi": 32.09,
+    "atr": 0.4972,
+    "bid20_usd": 538944.79,
+    "ask20_usd": 444688.11,
+    "skew": 1.212,
+    "walls": []
+   },
+   {
+    "rev": "e2f2d30",
+    "as_of_utc": "2026-10-08 16:32:37 UTC",
+    "mid": 62.515,
+    "z": -1.22,
+    "rsi": 32.09,
+    "atr": 0.4972,
+    "bid20_usd": 482228.95,
+    "ask20_usd": 446459.35,
+    "skew": 1.0801,
+    "walls": []
+   }
+  ]
+ }
+}
