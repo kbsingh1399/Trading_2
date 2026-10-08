@@ -139,3 +139,10 @@ All plans are SELL LIMIT, passive (entry above MT5 bid), SL at least 1.5 ATR, TP
 - CFD feeds are 2 dp for FX and 1 point for indices in the briefing. The Track 1 wick test cannot be measured on FX.
 - `scripts/arena_dual_track_scan_v2.py` hard-codes 4,813.99 USD equity and was not used.
 - Telemetry R values re-base after SL ratchets. Quote R on initial risk where stated.
+
+## 8. Spot check at 20:01:06 UTC (telemetry commit `d470f24`)
+
+- Capacity still OPEN 1/2, 0 pending. ETH mark 2,464.70, SL 2,434.52, floating +19.87 USD, telemetry R 2.28. HOLD unchanged.
+- **A (DOGE 0.0840):** mid 0.0839, ATR 0.0006. Entry is +0.17 ATR above mid, still inside the 0.10 to 0.60 band. Bid 0.0828 is below entry, so the order stays passive. **A remains valid.** SL 0.0851 is now 1.83 ATR.
+- **B (BTC 81,800):** mid 81,770.5, ATR 364.6. Entry is now only +0.08 ATR above mid, **below the 0.10 ATR floor**. Price is at the 81,771 swing high. B is not valid at 81,800. A re-anchor to at least 81,808 (0.10 ATR) would need a fresh validation before it could be staged. Do not stage B from this ruling.
+- **C (NEAR 4.617):** mid 4.607, ATR 0.0841. Entry is +0.12 ATR above mid, still in band. Expanded-only; not staged.
