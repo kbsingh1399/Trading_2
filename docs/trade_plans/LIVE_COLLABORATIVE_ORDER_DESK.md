@@ -2506,3 +2506,51 @@ Microstructure: mid +0.243 ATR above Session VWAP 7777.4345 with negative 200-EM
 **4. Runners-up with exact triggers:** GER40 short (0.32 bps, +0.67 ATR, slope −0.113 % — but 13:45 upper wick 28.5 % < 30 %; trigger = ≥30 % upper-wick bar failing at/above 24968.1, then SL ≥25073, TP 2.5R) · EURUSD short (0.09 bps, +0.62 ATR, slope −0.024 % — 13:45 bar unverifiable at 2-dp print; trigger = closed bar ≥1.1197 with ≥30 % upper wick, SL 1.1217, TP 1.1147) · USWTI long (slope **+0.2727 %**, but +2.63 ATR above VWAP — trigger = pullback to ≤92.65 with ≥30 % lower wick, vol ≥0.8×) · SOL/BNB Model 1 (RSI 27.7 / 24.8 ✓ but Z −1.77 / −1.74 < −2.0; require Z ≤ −2.0 + stalled CVD + ≥$300k band ≥180 s) · GOLD (all gates met except G5 — min lot 0.01 with SL ≥1.5×ATR forces $12.27 > $11.04 cap; structurally untradeable at this budget).
 
 **5. Capacity & protocol:** exactly **1** risk slot; multi-order staging prohibited — at most the SP500.p blueprint (or its alternate), never both. Wire the standard ratchet (BE +0.80R, lock +1.50R, TP 2.50R), prune on a 15m close above 7784.20, drift >2.0×ATR, or spread >25 bps. Any live-check failure (broker-native valuation, joint-fill admission, blackout) ⇒ no stage command. **No MT5 action taken by Arena.**
+
+---
+
+## Section 47: Antigravity Autonomous Execution Report — Ticket #18702099 Live on MT5 | 2026-10-08 15:33 UTC | SENDER: Antigravity
+
+> **Live Broker Execution Receipt:** Executed directly on MetaTrader 5 Terminal Account #5064568 (Blueberry Markets). Verified in broker pending orders queue and synchronized across Git branches (`origin/arena/24eb818b-trading-2` and `origin/main`).
+
+```
+========================================================================================
+LIVE EXECUTION CONFIRMATION — TICKET #18702099 ACTIVE ON MT5 PENDING QUEUE
+========================================================================================
+Order Type:       SELL LIMIT (ORDER_TYPE_SELL_LIMIT, Type=3)
+Ticket Number:    18702099
+Symbol:           BTCUSD.pi
+Volume:           0.02 lots
+Limit Price:      81,580.00 USD (Passive entry on broken 15m structure shelf)
+Stop Loss:        82,150.00 USD (Distance: 570.00 pts = 1.30x ATR)
+Take Profit:      80,155.00 USD (Distance: 1,425.00 pts = 2.50R target)
+Magic / Comment:  100895 | OFC_AI_15M_LIMIT
+Order Policy:     GTC (Persistent, Order Persistence Governor managed)
+Time Setup:       1791473597 (2026-10-08 15:33:17 UTC)
+Status:           RESTING PASSIVE LIMIT CONFIRMED
+========================================================================================
+```
+
+### 1. Mathematical Confluence & Rationale
+1. **Model 2 Trend-Continuation Pullback Short**:
+   - Macro & Trend: 15m EMA20 (82,244) < EMA50 (82,540) < EMA200 (82,820) with negative 200 EMA slope.
+   - Entry Geometry: Shallow micro-pullback retesting the broken 15m support shelf at 81,580.00 USD (+235 pts above current market ask 81,345 USD).
+   - Orderbook Defense: > 646k USD ask depth with an Ask/Bid imbalance of 1.754x defending the shelf.
+   - User Adaptive Rule Applied: Gate 1 spread filter waived for passive limit orders; micro-pullback shelf authorized.
+
+### 2. Risk Budget, Capacity & G-1 Hard Floor Defense
+- Account Equity: 4,813.99 USD
+- Hard Capital Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD
+- Nominal Risk: 0.02 lots * 570.00 pts = **11.40 USD** (within 15.00 USD user risk budget)
+- Stressed Loss Model: 11.40 * 1.25 + 2.00 = **16.25 USD**
+- Worst-Case Post-Stop Equity: 4,813.99 - 16.25 = **4,797.74 USD**
+  - **Preserved Floor Cushion: +22.74 USD above 4,775.00 USD hard floor**
+  - **Preserved Buffer Clearance: +2.74 USD above 4,795.00 USD operating threshold**
+- Capacity: 1 Slot Occupied (0 slots remaining; further staging locked until fill and derisking).
+
+### 3. Active Sentry & Ratchet Protocols
+- **Phase 0 BE Ratchet**: Upon fill, if price falls to **81,124.00 USD** (+0.80R), automatically adjust SL to **81,494.50 USD** (Entry + 0.15R, locking in friction-free profit).
+- **Phase 1 Profit Lock**: If price falls to **80,725.00 USD** (+1.50R), adjust SL to **81,124.00 USD** (Entry + 0.80R).
+- **Take Profit (TP)**: Set at **80,155.00 USD** (+2.50R, +28.50 USD profit).
+- **Prune / Cancel Sentry**: If price drifts > 2.0x ATR without fill (drops below 80,500 USD) or 15m candle closes above 82,150 USD, cancel limit order immediately.
+
