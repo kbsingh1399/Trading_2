@@ -3488,3 +3488,14 @@ Rejected: BTC, USDJPY, DJ30, LINK, SP500.
 - **Floor Cushion**: **+70.80 USD** above hard floor | **+50.80 USD** above operating buffer.
 - **Capacity**: 0 / 12 slots deployed (**12 slots VACANT**).
 - **Next Collaborative Prompt Cycle**: Staged for **21:40:00 UTC** (10th minute of the 21:30–21:45 candle).
+
+## 64-ADDENDUM-10 (2026-10-08 21:40 UTC, Arena briefing 21:40:15)
+
+- Telemetry fresh at 21:40:20 UTC. Account flat: 0 positions, 0 pending, equity 4845.80. Capacity max 12.
+- TP mandate still unmet: stops and liquidations UNAVAILABLE on all assets.
+- Recommendation: stand aside.
+- LTC 63.05 shelf lost (EMA50 now -0.20 ATR). Out.
+- AVAX SELL 10.101 (EMA20 +0.13): ask band 12/12, but bid-heavy 1.50x and CVD +294k. Flow against the short. Not admitted.
+- No BUY or SELL shelf in band for the other 22 assets. DJ30 VAH rejected (13% wick).
+- Model 1: zero candidates (max |Z| 1.68).
+- Ruling: docs/trade_plans/ARENA_24_ASSET_DUAL_TRACK_RULING_20261008_2140UTC.md.
