@@ -1,0 +1,402 @@
+{
+ "briefing": "2026-10-08 16:59:22 UTC",
+ "window": [
+  "18f7cab",
+  "1c561cd"
+ ],
+ "note": "position tape: #18703132 NAS100 short exit (TP 30,739.10 realised) and #18706769 ETHUSD.pi long fill at 16:56:55 + mark path",
+ "tape": [
+  {
+   "rev": "18f7cab",
+   "as_of": "2026-10-08 16:49:37 UTC",
+   "equity": 4830.7,
+   "balance": 4813.99,
+   "margin_used": 309.89,
+   "capacity": "OPEN (1/2 filled, 0 pending, free_margin=4520.81 USD)",
+   "nas_mid": 30842.76,
+   "nas_z": -2.26,
+   "eth_mid": 2421.15,
+   "eth_z": -2.24,
+   "eth_rsi": 18.86,
+   "positions": [
+    {
+     "ticket": 18703132,
+     "symbol": "NAS100.p",
+     "dir": "SHORT",
+     "vol": 0.01,
+     "open": 30989.1,
+     "cur": 30822.03,
+     "sl": 31089.1,
+     "tp": 30739.1,
+     "pnl": 16.71,
+     "r": 1.67,
+     "state": "PHASE_1_PROFIT_LOCKED"
+    }
+   ]
+  },
+  {
+   "rev": "c1b8f43",
+   "as_of": "2026-10-08 16:50:37 UTC",
+   "equity": 4832.67,
+   "balance": 4813.99,
+   "margin_used": 309.89,
+   "capacity": "OPEN (1/2 filled, 0 pending, free_margin=4522.78 USD)",
+   "nas_mid": 30797.7,
+   "nas_z": -2.82,
+   "eth_mid": 2419.35,
+   "eth_z": -2.28,
+   "eth_rsi": 18.86,
+   "positions": [
+    {
+     "ticket": 18703132,
+     "symbol": "NAS100.p",
+     "dir": "SHORT",
+     "vol": 0.01,
+     "open": 30989.1,
+     "cur": 30802.31,
+     "sl": 30909.1,
+     "tp": 30739.1,
+     "pnl": 18.68,
+     "r": 2.33,
+     "state": "PHASE_1_PROFIT_LOCKED"
+    }
+   ]
+  },
+  {
+   "rev": "12db36e",
+   "as_of": "2026-10-08 16:50:37 UTC",
+   "equity": 4832.67,
+   "balance": 4813.99,
+   "margin_used": 309.89,
+   "capacity": "OPEN (1/2 filled, 0 pending, free_margin=4522.78 USD)",
+   "nas_mid": 30797.7,
+   "nas_z": -2.82,
+   "eth_mid": 2419.35,
+   "eth_z": -2.28,
+   "eth_rsi": 18.86,
+   "positions": [
+    {
+     "ticket": 18703132,
+     "symbol": "NAS100.p",
+     "dir": "SHORT",
+     "vol": 0.01,
+     "open": 30989.1,
+     "cur": 30802.31,
+     "sl": 30909.1,
+     "tp": 30739.1,
+     "pnl": 18.68,
+     "r": 2.33,
+     "state": "PHASE_1_PROFIT_LOCKED"
+    }
+   ]
+  },
+  {
+   "rev": "555f70a",
+   "as_of": "2026-10-08 16:50:37 UTC",
+   "equity": 4832.67,
+   "balance": 4813.99,
+   "margin_used": 309.89,
+   "capacity": "OPEN (1/2 filled, 0 pending, free_margin=4522.78 USD)",
+   "nas_mid": 30797.7,
+   "nas_z": -2.82,
+   "eth_mid": 2419.35,
+   "eth_z": -2.28,
+   "eth_rsi": 18.86,
+   "positions": [
+    {
+     "ticket": 18703132,
+     "symbol": "NAS100.p",
+     "dir": "SHORT",
+     "vol": 0.01,
+     "open": 30989.1,
+     "cur": 30802.31,
+     "sl": 30909.1,
+     "tp": 30739.1,
+     "pnl": 18.68,
+     "r": 2.33,
+     "state": "PHASE_1_PROFIT_LOCKED"
+    }
+   ]
+  },
+  {
+   "rev": "6e538ed",
+   "as_of": "2026-10-08 16:51:37 UTC",
+   "equity": 4830.89,
+   "balance": 4813.99,
+   "margin_used": 309.89,
+   "capacity": "OPEN (1/2 filled, 0 pending, free_margin=4521.00 USD)",
+   "nas_mid": 30818.32,
+   "nas_z": -2.56,
+   "eth_mid": 2420.25,
+   "eth_z": -2.26,
+   "eth_rsi": 18.86,
+   "positions": [
+    {
+     "ticket": 18703132,
+     "symbol": "NAS100.p",
+     "dir": "SHORT",
+     "vol": 0.01,
+     "open": 30989.1,
+     "cur": 30820.15,
+     "sl": 30909.1,
+     "tp": 30739.1,
+     "pnl": 16.9,
+     "r": 2.11,
+     "state": "PHASE_1_PROFIT_LOCKED"
+    }
+   ]
+  },
+  {
+   "rev": "d65fc8c",
+   "as_of": "2026-10-08 16:52:37 UTC",
+   "equity": 4836.12,
+   "balance": 4813.99,
+   "margin_used": 309.89,
+   "capacity": "OPEN (1/2 filled, 0 pending, free_margin=4526.23 USD)",
+   "nas_mid": 30769.71,
+   "nas_z": -3.16,
+   "eth_mid": 2420.5,
+   "eth_z": -2.26,
+   "eth_rsi": 18.86,
+   "positions": [
+    {
+     "ticket": 18703132,
+     "symbol": "NAS100.p",
+     "dir": "SHORT",
+     "vol": 0.01,
+     "open": 30989.1,
+     "cur": 30767.78,
+     "sl": 30909.1,
+     "tp": 30739.1,
+     "pnl": 22.13,
+     "r": 2.77,
+     "state": "PHASE_1_PROFIT_LOCKED"
+    }
+   ]
+  },
+  {
+   "rev": "ae5aab9",
+   "as_of": "2026-10-08 16:53:37 UTC",
+   "equity": 4834.96,
+   "balance": 4813.99,
+   "margin_used": 309.89,
+   "capacity": "OPEN (1/2 filled, 1 pending, free_margin=4525.07 USD)",
+   "nas_mid": 30758.23,
+   "nas_z": -3.31,
+   "eth_mid": 2419.7,
+   "eth_z": -2.27,
+   "eth_rsi": 18.86,
+   "positions": [
+    {
+     "ticket": 18703132,
+     "symbol": "NAS100.p",
+     "dir": "SHORT",
+     "vol": 0.01,
+     "open": 30989.1,
+     "cur": 30779.4,
+     "sl": 30909.1,
+     "tp": 30739.1,
+     "pnl": 20.97,
+     "r": 2.62,
+     "state": "PHASE_1_PROFIT_LOCKED"
+    }
+   ]
+  },
+  {
+   "rev": "59a3d54",
+   "as_of": "2026-10-08 16:53:37 UTC",
+   "equity": 4834.96,
+   "balance": 4813.99,
+   "margin_used": 309.89,
+   "capacity": "OPEN (1/2 filled, 1 pending, free_margin=4525.07 USD)",
+   "nas_mid": 30758.23,
+   "nas_z": -3.31,
+   "eth_mid": 2419.7,
+   "eth_z": -2.27,
+   "eth_rsi": 18.86,
+   "positions": [
+    {
+     "ticket": 18703132,
+     "symbol": "NAS100.p",
+     "dir": "SHORT",
+     "vol": 0.01,
+     "open": 30989.1,
+     "cur": 30779.4,
+     "sl": 30909.1,
+     "tp": 30739.1,
+     "pnl": 20.97,
+     "r": 2.62,
+     "state": "PHASE_1_PROFIT_LOCKED"
+    }
+   ]
+  },
+  {
+   "rev": "cd1cffe",
+   "as_of": "2026-10-08 16:54:37 UTC",
+   "equity": 4835.22,
+   "balance": 4813.99,
+   "margin_used": 309.89,
+   "capacity": "OPEN (1/2 filled, 1 pending, free_margin=4525.33 USD)",
+   "nas_mid": 30781.82,
+   "nas_z": -3.01,
+   "eth_mid": 2421.45,
+   "eth_z": -2.24,
+   "eth_rsi": 18.86,
+   "positions": [
+    {
+     "ticket": 18703132,
+     "symbol": "NAS100.p",
+     "dir": "SHORT",
+     "vol": 0.01,
+     "open": 30989.1,
+     "cur": 30776.76,
+     "sl": 30909.1,
+     "tp": 30739.1,
+     "pnl": 21.23,
+     "r": 2.65,
+     "state": "PHASE_1_PROFIT_LOCKED"
+    }
+   ]
+  },
+  {
+   "rev": "259b82d",
+   "as_of": "2026-10-08 16:55:37 UTC",
+   "equity": 4835.16,
+   "balance": 4813.99,
+   "margin_used": 309.89,
+   "capacity": "OPEN (1/2 filled, 1 pending, free_margin=4525.27 USD)",
+   "nas_mid": 30782.16,
+   "nas_z": -3.01,
+   "eth_mid": 2418.55,
+   "eth_z": -2.3,
+   "eth_rsi": 18.86,
+   "positions": [
+    {
+     "ticket": 18703132,
+     "symbol": "NAS100.p",
+     "dir": "SHORT",
+     "vol": 0.01,
+     "open": 30989.1,
+     "cur": 30777.4,
+     "sl": 30909.1,
+     "tp": 30739.1,
+     "pnl": 21.17,
+     "r": 2.65,
+     "state": "PHASE_1_PROFIT_LOCKED"
+    }
+   ]
+  },
+  {
+   "rev": "b5b8b07",
+   "as_of": "2026-10-08 16:56:37 UTC",
+   "equity": 4838.25,
+   "balance": 4838.99,
+   "margin_used": 446.04,
+   "capacity": "OPEN (1/2 filled, 0 pending, free_margin=4392.21 USD)",
+   "nas_mid": 30741.57,
+   "nas_z": -3.51,
+   "eth_mid": 2411.3,
+   "eth_z": -2.45,
+   "eth_rsi": 18.86,
+   "positions": [
+    {
+     "ticket": 18706769,
+     "symbol": "ETHUSD.pi",
+     "dir": "LONG",
+     "vol": 0.37,
+     "open": 2411.0,
+     "cur": 2409.0,
+     "sl": 2381.6,
+     "tp": 2484.5,
+     "pnl": -0.74,
+     "r": -0.07,
+     "state": "PHASE_0_PENDING"
+    }
+   ]
+  },
+  {
+   "rev": "cf0807f",
+   "as_of": "2026-10-08 16:57:37 UTC",
+   "equity": 4839.03,
+   "balance": 4838.99,
+   "margin_used": 446.04,
+   "capacity": "OPEN (1/2 filled, 0 pending, free_margin=4392.99 USD)",
+   "nas_mid": 30738.82,
+   "nas_z": -3.55,
+   "eth_mid": 2413.55,
+   "eth_z": -2.4,
+   "eth_rsi": 18.86,
+   "positions": [
+    {
+     "ticket": 18706769,
+     "symbol": "ETHUSD.pi",
+     "dir": "LONG",
+     "vol": 0.37,
+     "open": 2411.0,
+     "cur": 2411.1,
+     "sl": 2381.6,
+     "tp": 2484.5,
+     "pnl": 0.04,
+     "r": 0.0,
+     "state": "PHASE_0_PENDING"
+    }
+   ]
+  },
+  {
+   "rev": "1dfc2ec",
+   "as_of": "2026-10-08 16:58:37 UTC",
+   "equity": 4839.58,
+   "balance": 4838.99,
+   "margin_used": 446.04,
+   "capacity": "OPEN (1/2 filled, 0 pending, free_margin=4393.54 USD)",
+   "nas_mid": 30761.07,
+   "nas_z": -3.27,
+   "eth_mid": 2414.3,
+   "eth_z": -2.39,
+   "eth_rsi": 18.86,
+   "positions": [
+    {
+     "ticket": 18706769,
+     "symbol": "ETHUSD.pi",
+     "dir": "LONG",
+     "vol": 0.37,
+     "open": 2411.0,
+     "cur": 2412.6,
+     "sl": 2381.6,
+     "tp": 2484.5,
+     "pnl": 0.59,
+     "r": 0.05,
+     "state": "PHASE_0_PENDING"
+    }
+   ]
+  },
+  {
+   "rev": "1c561cd",
+   "as_of": "2026-10-08 16:59:37 UTC",
+   "equity": 4839.4,
+   "balance": 4838.99,
+   "margin_used": 446.04,
+   "capacity": "OPEN (1/2 filled, 0 pending, free_margin=4393.36 USD)",
+   "nas_mid": 30740.82,
+   "nas_z": -3.07,
+   "eth_mid": 2412.7,
+   "eth_z": -2.2,
+   "eth_rsi": 16.83,
+   "positions": [
+    {
+     "ticket": 18706769,
+     "symbol": "ETHUSD.pi",
+     "dir": "LONG",
+     "vol": 0.37,
+     "open": 2411.0,
+     "cur": 2412.1,
+     "sl": 2381.6,
+     "tp": 2484.5,
+     "pnl": 0.41,
+     "r": 0.04,
+     "state": "PHASE_0_PENDING"
+    }
+   ]
+  }
+ ]
+}

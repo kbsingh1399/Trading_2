@@ -1,0 +1,159 @@
+{
+ "source": "briefing 2026-10-08 16:59:22 UTC Section-5 bars (16:15/16:30) + 20-bar avg from committed parquet (series ends 16:00)",
+ "bars": [
+  {
+   "symbol": "SP500.p",
+   "bar": "16:15",
+   "upper_wick_pct": 66.9,
+   "lower_wick_pct": 3.1,
+   "vol": 30008,
+   "avg20_to_1600": 15315.4,
+   "vol_ratio": 1.959,
+   "delta": -10115,
+   "range": 24.98
+  },
+  {
+   "symbol": "SP500.p",
+   "bar": "16:30",
+   "upper_wick_pct": 30.4,
+   "lower_wick_pct": 16.2,
+   "vol": 17677,
+   "avg20_to_1600": 15315.4,
+   "vol_ratio": 1.154,
+   "delta": -11944,
+   "range": 10.73
+  },
+  {
+   "symbol": "NAS100.p",
+   "bar": "16:15",
+   "upper_wick_pct": 51.0,
+   "lower_wick_pct": 7.5,
+   "vol": 53517,
+   "avg20_to_1600": 37580.5,
+   "vol_ratio": 1.424,
+   "delta": -1084,
+   "range": 118.52
+  },
+  {
+   "symbol": "NAS100.p",
+   "bar": "16:30",
+   "upper_wick_pct": 18.2,
+   "lower_wick_pct": 17.9,
+   "vol": 41827,
+   "avg20_to_1600": 37580.5,
+   "vol_ratio": 1.113,
+   "delta": -26870,
+   "range": 74.33
+  },
+  {
+   "symbol": "DJ30.p",
+   "bar": "16:15",
+   "upper_wick_pct": 78.0,
+   "lower_wick_pct": 2.8,
+   "vol": 4334,
+   "avg20_to_1600": 2818.3,
+   "vol_ratio": 1.538,
+   "delta": -2430,
+   "range": 193.5
+  },
+  {
+   "symbol": "DJ30.p",
+   "bar": "16:30",
+   "upper_wick_pct": 24.5,
+   "lower_wick_pct": 63.3,
+   "vol": 2942,
+   "avg20_to_1600": 2818.3,
+   "vol_ratio": 1.044,
+   "delta": 1503,
+   "range": 69.5
+  },
+  {
+   "symbol": "GER40.p",
+   "bar": "16:15",
+   "upper_wick_pct": 37.5,
+   "lower_wick_pct": 0.0,
+   "vol": 3051,
+   "avg20_to_1600": 1760.4,
+   "vol_ratio": 1.733,
+   "delta": 762,
+   "range": 111.95
+  },
+  {
+   "symbol": "GER40.p",
+   "bar": "16:30",
+   "upper_wick_pct": 26.0,
+   "lower_wick_pct": 61.0,
+   "vol": 2364,
+   "avg20_to_1600": 1760.4,
+   "vol_ratio": 1.343,
+   "delta": 522,
+   "range": 38.5
+  },
+  {
+   "symbol": "GOLD",
+   "bar": "16:15",
+   "upper_wick_pct": 64.2,
+   "lower_wick_pct": 11.8,
+   "vol": 13435,
+   "avg20_to_1600": 7744.6,
+   "vol_ratio": 1.735,
+   "delta": -3803,
+   "range": 23.74
+  },
+  {
+   "symbol": "GOLD",
+   "bar": "16:30",
+   "upper_wick_pct": 45.2,
+   "lower_wick_pct": 34.9,
+   "vol": 9477,
+   "avg20_to_1600": 7744.6,
+   "vol_ratio": 1.224,
+   "delta": 910,
+   "range": 7.5
+  },
+  {
+   "symbol": "SILVER",
+   "bar": "16:15",
+   "upper_wick_pct": 59.7,
+   "lower_wick_pct": 8.1,
+   "vol": 5751,
+   "avg20_to_1600": 3486.0,
+   "vol_ratio": 1.65,
+   "delta": -988,
+   "range": 0.62
+  },
+  {
+   "symbol": "SILVER",
+   "bar": "16:30",
+   "upper_wick_pct": 36.8,
+   "lower_wick_pct": 57.9,
+   "vol": 3356,
+   "avg20_to_1600": 3486.0,
+   "vol_ratio": 0.963,
+   "delta": 1070,
+   "range": 0.19
+  },
+  {
+   "symbol": "USWTI.p",
+   "bar": "16:15",
+   "upper_wick_pct": 1.8,
+   "lower_wick_pct": 33.2,
+   "vol": 4029,
+   "avg20_to_1600": 1598.5,
+   "vol_ratio": 2.521,
+   "delta": -1365,
+   "range": 2.17
+  },
+  {
+   "symbol": "USWTI.p",
+   "bar": "16:30",
+   "upper_wick_pct": 67.2,
+   "lower_wick_pct": 31.1,
+   "vol": 2526,
+   "avg20_to_1600": 1598.5,
+   "vol_ratio": 1.58,
+   "delta": -994,
+   "range": 0.61
+  }
+ ]
+}
