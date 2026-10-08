@@ -1,0 +1,92 @@
+{
+  "_note": "ARENA 20:25:08 council briefing (telemetry 20:25:06 UTC). CAPACITY 2/2 FROZEN: one filled (ETH #18706769) plus one pending (NERUSD.p SELL_LIMIT ticket 18713247 @ 4.617, placed 20:15:42 UTC). Zero new punches. Both plans below are STANDBY ONLY, to be punched only after a slot frees (ticket 18713247 deleted or filled-and-closed). DOGE 0.0840 (20:10 stage A) RETIRED: mid 0.0842 is above the level, EMA50 now below mid. NEAR 4.617 (ticket 18713247) KEEP per resting-order rule; stressed loss 18.29 USD exceeds the 15.80 stressed cap in briefing \u00a72; desk decision required.",
+  "receipt": {
+    "telemetry_as_of_utc": "2026-10-08 20:25:06 UTC",
+    "validation_now_utc": "2026-10-08 20:25:06 UTC"
+  },
+  "ranking": [
+    "A LTC 63.100 (preferred cap 10.50, standby)",
+    "B BTC 81,833 (preferred cap 10.74, standby)"
+  ],
+  "live_pending": [
+    {
+      "ticket": 18713247,
+      "symbol": "NERUSD.p",
+      "type": "SELL_LIMIT",
+      "volume": 1.0,
+      "price": 4.617,
+      "sl": 4.744,
+      "tp": 4.299,
+      "risk_usd": 12.7,
+      "stressed_usd": 18.29
+    }
+  ],
+  "plans": [
+    {
+      "plan_version": "omni.trade_plan.v1",
+      "plan_id": "arena-20261008-2025-ltc-m2-short",
+      "model": "Model 2 trend-following",
+      "direction": "SHORT",
+      "symbol": "LTCUSD.pi",
+      "asset": "LTCUSD",
+      "limit_price": 63.1,
+      "sl": 64.15,
+      "tp": 60.475,
+      "volume": 0.1,
+      "atr": 0.4159,
+      "risk_usd": 10.5,
+      "sl_atr": 2.525,
+      "stressed_usd": 15.12,
+      "tp_r": 2.5,
+      "ttl_bars": 8,
+      "created_at_epoch": 1791491106.678555,
+      "expires_at_epoch": 1791496680.0,
+      "blackout_windows": [],
+      "max_friction_r": 0.35,
+      "tp_r_recomputed": 2.5,
+      "validation": "PASS",
+      "contract": {
+        "tick_size": 0.001,
+        "min_lot": 0.1,
+        "step_lot": 0.1,
+        "contract_size": 100.0
+      },
+      "label": "LTC SELL LIMIT A (STANDBY: capacity 2/2 frozen)",
+      "comment": "ARENA: 20:25 scan (telemetry 20:25:06 UTC). LTC mid 62.85, ATR 0.4159. SELL LIMIT 63.10 = +0.57 ATR above mid on EMA50 shelf (63.085). 200 EMA slope -0.70% BEARISH; EMA20 62.32 below. Ask band min 264k / 12 receipts (476k now, passes 300k strict). Imbalance +0.12 (bid-heavy, noted). Spread 48 bps exempt (passive; bid 62.70 below entry). SL 64.15 = 2.52 ATR; TP 60.475 = 2.50R. Risk 10.50 USD (preferred cap). Standby only.",
+      "validated_at_epoch": 1791491106.678555
+    },
+    {
+      "plan_version": "omni.trade_plan.v1",
+      "plan_id": "arena-20261008-2025-btc-m2-short",
+      "model": "Model 2 trend-following",
+      "direction": "SHORT",
+      "symbol": "BTCUSD.pi",
+      "asset": "BTCUSD",
+      "limit_price": 81833.0,
+      "sl": 82370.0,
+      "tp": 80490.5,
+      "volume": 0.02,
+      "atr": 348.8461,
+      "risk_usd": 10.74,
+      "sl_atr": 1.539,
+      "stressed_usd": 15.47,
+      "tp_r": 2.5,
+      "ttl_bars": 8,
+      "created_at_epoch": 1791491106.678555,
+      "expires_at_epoch": 1791496680.0,
+      "blackout_windows": [],
+      "max_friction_r": 0.35,
+      "tp_r_recomputed": 2.5,
+      "validation": "PASS",
+      "contract": {
+        "tick_size": 0.01,
+        "min_lot": 0.01,
+        "step_lot": 0.01,
+        "contract_size": 1.0
+      },
+      "label": "BTC SELL LIMIT B (STANDBY: capacity 2/2 frozen)",
+      "comment": "ARENA: 20:25 scan (telemetry 20:25:06 UTC). BTC mid 81693.5, ATR 348.85. SELL LIMIT 81833 = +0.40 ATR above mid at the 20:00 rejection high (81,833). 200 EMA slope -0.29% BEARISH; EMA50 81881 above. Ask band min 233k / 12 receipts (659k now). Imbalance +0.04 (balanced). Spread 2 bps. SL 82370 = 1.54 ATR; TP 80490.5 = 2.50R. Risk 10.74 USD (preferred cap, 0.02 lot). Standby only.",
+      "validated_at_epoch": 1791491106.678555
+    }
+  ]
+}

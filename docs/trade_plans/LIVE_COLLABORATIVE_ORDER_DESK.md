@@ -3163,3 +3163,16 @@ ACTIVE POSITION SENTRY RECEIPT — MT5 ACCOUNT #5064568
 - **Worst case after stage A:** 4,838.49 - 11.00 = 4,827.49 USD (+32.49 over the 4,795.00 USD buffer). G-1 limit 31.07 USD.
 - **Ruling file:** `docs/trade_plans/ARENA_24_ASSET_DUAL_TRACK_RULING_20261008_2010UTC.md`. **Stage file:** `docs/trade_plans/ARENA_LIMIT_STAGES_20261008_2010.json`.
 - **Gating:** dry-run only. No `--execute`, no MT5 order placed. Desk executes.
+
+### 64-ADDENDUM-5 (20:25:08 UTC briefing; telemetry 20:25:06 UTC): CAPACITY 2/2 FROZEN · NEAR ticket 18713247 on book (KEEP, desk decision on sizing) · DOGE 0.0840 retired · LTC 63.10 and BTC 81,833 standby
+
+- **Capacity FROZEN 2/2:** 1 filled (ETH #18706769) + 1 pending (NERUSD.p SELL_LIMIT 1.0 @ 4.617, SL 4.744, TP 4.299, ticket 18713247, placed 20:15:42 UTC). The briefing's "one slot available" is stale. **Zero new punches.**
+- **Ticket 18713247 (NEAR):** matches the 20:10 alternate B exactly. It was not placed by this agent; it appears to have been placed from the stage file on the desk side. **Resting-order rule: KEEP** (ask band 718k USD, +0.47 ATR drift, below the 2.0 ATR trigger). **Desk decision required:** risk 12.70 USD is expanded-only (above 11.04), and stressed 18.29 USD exceeds the 15.80 cap in §2. DELETE if the desk enforces §2 strictly.
+- **ETH #18706769:** SL 2,434.52 (Phase-1 lock). Mark 2,465.00, floating +19.98 USD, telemetry R 2.30. **HOLD.**
+- **DOGE 0.0840 (20:10 stage A): RETIRED.** Mid 0.0842 is above the level; EMA50 has been crossed. Not placed.
+- **Standby A (LTC):** LTCUSD.pi SELL LIMIT **63.100** · SL **64.150** · TP **60.475** (2.50R) · 0.10 lot · risk **10.50 USD** · stressed 15.12 · EMA50 shelf · ask band 264k minimum over 12 receipts. Expires 21:58:00 UTC. `validate_plan` PASS. **Do not punch while capacity is 2/2.**
+- **Standby B (BTC):** BTCUSD.pi SELL LIMIT **81,833** · SL **82,370** · TP **80,490.5** (2.50R) · 0.02 lot · risk **10.74 USD** · stressed 15.47 · 20:00 rejection high · ask band 233k minimum over 12 receipts. Alternate only if A is blocked.
+- **Model 1:** zero candidates.
+- **Rejected:** LNK (EMA50 shelf in band, persistence not tested this cycle; watch), CFDs (NAS100, SILVER, USDJPY shelves untested; GOLD, DJ30, USWTI, FX outside Track 1 geometry).
+- **Ruling file:** `docs/trade_plans/ARENA_24_ASSET_DUAL_TRACK_RULING_20261008_2025UTC.md`. **Stage file:** `docs/trade_plans/ARENA_LIMIT_STAGES_20261008_2025_STANDBY.json`.
+- **Gating:** no MT5 order placed by this agent. No `--execute`. Desk executes.
