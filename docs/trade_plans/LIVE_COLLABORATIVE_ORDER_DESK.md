@@ -3086,3 +3086,18 @@ ACTIVE POSITION SENTRY RECEIPT — MT5 ACCOUNT #5064568
 - **Alternate B:** LNKUSD.p SELL LIMIT **12.476** · SL **12.746** · TP **11.801** (2.50R) · 0.40 lot · risk **10.80 USD** · ask band 220,866 USD · only if A is deleted.
 - **ETH #18706769:** mark 2,452.70, 2.40 USD below the Phase-1 arm 2,455.10. HOLD on SL 2,415.41. At >= 2,455.10 move SL to **2,434.52**. The `PHASE_1_PROFIT_LOCKED` label is still premature until the SL field moves.
 - **Worst case after stage A:** 4,831.42 - 10.50 = 4,820.92 USD (+25.92 over buffer). Files: `docs/trade_plans/ARENA_24_ASSET_DUAL_TRACK_RULING_20261008_1915UTC.md` §10, `docs/trade_plans/ARENA_LIMIT_STAGES_20261008_1923.json`.
+
+### 64-ADDENDUM-2 (19:43:28 UTC cycle): ETH SL locked at 2,434.52 · capacity OPEN 1/2 · stage A (LTC 62.600) staged for desk
+
+- **Telemetry 19:43:06 UTC (origin `84df80e`):** balance 4,829.79 USD, equity 4,847.74 USD, margin 446.04 USD, free margin 4,401.70 USD. Capacity OPEN 1/2, 0 pending. Briefing §2 ("100% cash flat", "exactly ONE slot") and §4 (4,813.99 USD capital) are stale and not used.
+- **ETH #18706769 LONG 0.37 @ 2,411.00:** SL 2,434.52 is live (Phase-1 lock, +8.70 USD locked). Mark 2,459.50, floating +17.95 USD (+1.65R on initial 29.40 USD risk). **HOLD.** Phase-2 proposal at >= 2,470.80 (+2.00R): SL to 2,455.10 (+1.50R), desk to confirm. Emergency cut 15m close < 2,405.00 unchanged.
+- **SOL #18710722:** closed at 19:23 (-9.20 USD). SOL 109.10 SELL re-entry rejected as churn.
+- **Resting orders:** none on the book. DELETE rule N/A.
+- **Stage A (primary, one order):** LTCUSD.pi SELL LIMIT **62.600** · SL **63.650** · TP **59.975** (2.50R) · 0.10 lot · risk **10.50 USD** (inside 11.04 preferred cap) · ask band 62.55-62.61 (12/12 receipts >= 386k) · expires 21:44:00 UTC · `validate_plan` PASS.
+- **Alternate B:** BTCUSD.pi SELL LIMIT **81,800** · SL **82,850** · TP **79,175** (2.50R) · 0.01 lot · risk **10.50 USD** · 12/12 receipts >= 228k · only if A is deleted under the resting-order rule.
+- **Expanded-only (15.00 cap):** NERUSD.p SELL LIMIT 4.585 (SL 4.725, TP 4.235, 1.0 lot, 14.00 USD); DOGUSD.p SELL LIMIT 0.0838 (SL 0.0850, TP 0.0808, 1.0 lot, 12.00 USD).
+- **Linked-stage retirement:** LINK 12.530 (C, preferred cap, 10.80 USD) is held in the stage file as an alternate, not staged. The 19:23 LTC 62.450 and LINK 12.476 stages are superseded.
+- **Model 1:** zero candidates.
+- **Worst case after stage A:** 4,838.49 - 10.50 = 4,827.99 USD (+32.99 over the 4,795.00 USD buffer). G-1 limit 31.07 USD; the 15.00 USD desk cap binds.
+- **Ruling file:** `docs/trade_plans/ARENA_24_ASSET_DUAL_TRACK_RULING_20261008_1943UTC.md`. **Stage file:** `docs/trade_plans/ARENA_LIMIT_STAGES_20261008_1943.json`.
+- **Gating:** stage A is dry-run only. No `--execute` and no MT5 order placed. Desk executes.
