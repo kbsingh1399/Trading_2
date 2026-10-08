@@ -44,19 +44,20 @@ trigger: always_on
     - Full Arena Audit Report: Archived in `docs/audits/institutional-quant-audit-2026-10-04.md` and `docs/audits/ARENA_ANTIGRAVITY_HANDSHAKE_COUNCIL_67.md`.
     - **Dynamic Conviction Risk Budget**: Flexible **10.00 to 20.00 USD** (0.20% to 0.40% on 5,000.00 USD capital) dynamically scaled by orderflow confluence, resting L3 whale presence, and macro alignment.
     - **Active Positions & Pending Orders (Live State)**:
-      * Current Status: **2 Open Positions | 0 Pending Orders | Equity: ~4,848.91 USD | Balance: 4,838.99 USD | Free Margin: ~4,396.21 USD | Margin Used: 446.04 USD**.
+      * Current Status: **1 Open Position | 0 Pending Orders | Equity: ~4,845.50 USD | Balance: 4,829.79 USD | Free Margin: ~4,398.62 USD | Margin Used: 446.04 USD (90.8% Cash Reserves)**.
       * Active Positions:
-        - **Ticket #18706769 (ETHUSD.pi BUY 0.37 lots @ 2,411.00 USD | SL: 2,415.41 USD | TP: 2,484.50 USD | Risk: 0.00 USD | Current Mark: 2,441.40 USD | Floating PnL: +11.25 USD / +1.03R | Status: PHASE 0 BE LOCKED — +1.63 USD NET PROFIT GUARANTEED)**.
-        - **Ticket #18710722 (SOLUSD.p SELL 0.08 lots @ 107.72 USD | SL: 109.10 USD | TP: 104.27 USD | Nominal Risk: 11.04 USD | Current Mark: 107.84 USD | Floating PnL: -0.96 USD / -0.08R | Status: ACTIVE — HOLDING RESISTANCE SHELF)**.
+        - **Ticket #18706769 (ETHUSD.pi BUY 0.37 lots @ 2,411.00 USD | SL: 2,415.41 USD | TP: 2,484.50 USD | Risk: 0.00 USD | Current Mark: 2,452.20 USD | Floating PnL: +15.24 USD / +1.40R | Status: PHASE 0 BE LOCKED — +1.63 USD NET PROFIT GUARANTEED, TRACKING PHASE 1 TRIGGER >= 2,455.10 USD)**.
       * Pending Orders: **NONE (Queue clean)**.
-      * Pruned/Closed Orders Today:
+      * Closed Orders Today:
+        - **Ticket #18710722 (`SOLUSD.p` SHORT 0.08 lots @ 107.72 USD): Closed via Emergency Shelf Cut at 108.87 USD (-9.20 USD net cash, 15m close breached 108.35 shelf; saved capital vs 109.10 hard stop, liberated Slot 2 capacity)**.
         - Ticket #18703132 (`NAS100.p` SHORT 0.01 lots): **Closed via Take Profit at 30,739.10 USD (+25.00 USD net cash profit booked)**.
         - Ticket #18702099 on `BTCUSD.pi` pruned/removed at 21:20:00 UTC due to supporting whale wall migration.
-      * G-1 Hard Floor Defense: Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Floor Cushion: **+73.91 USD** (+53.91 USD above operating buffer).
-      * Stressed Dual Stopout Simulation: ETH locked profit (+1.63 USD) + Stressed SOL loss (-15.80 USD) = Net -14.17 USD max loss. Worst-case post-loss equity: 4,838.99 - 14.17 = **4,824.82 USD** (+49.82 USD above hard floor, +29.82 USD above operating buffer; 100% compliant).
-      * Capacity Sentry: **2 / 2 slots occupied (ETH Long Phase 0 BE + SOL Short Active)**. Telemetry status: HARD ADMISSION FREEZE until an active position hits TP or closes.
+      * G-1 Hard Floor Defense: Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Floor Cushion: **+70.50 USD** (+50.50 USD above operating buffer).
+      * Stressed Post-Loss Simulation: ETH downside risk is 0.00 USD (locks +1.63 USD profit). Minimum guaranteed session equity: 4,829.79 + 1.63 = **4,831.42 USD** (+56.42 USD above hard floor, +36.42 USD above operating buffer; 100% compliant).
+      * Capacity Sentry: **1 / 2 slots occupied (ETH Long Phase 0 BE; Slot 2 VACANT)**. Available Risk Budget for Standby: 10.00–12.00 USD.
       * Disk Hygiene: Purged 2.50 GB of scratch git objects, stale tick buffers, and unneeded archives; C: free space expanded to 134.66 GB.
       * Closed Trades Today (Realized PnL):
+        - Ticket #18710722 (`SOLUSD.p` closed -9.20 USD loss via emergency shelf cut at 108.87 USD)
         - Ticket #18703132 (`NAS100.p` closed at +25.00 USD profit via Take Profit at 30,739.10 USD)
         - Ticket #18686607 (`ETHUSD.pi` closed at +2.37 USD profit via market close at 2,533.70 USD)
         - Ticket #18625151 (`USWTI.p` closed at +9.88 USD profit via SL profit lock at 91.720 USD)
@@ -64,8 +65,8 @@ trigger: always_on
         - Ticket #18644889 (`USDJPY.pi` closed at +1.82 USD profit via Phase 0 BE lock at 158.046 USD)
         - Ticket #18630694 (`BTCUSD.pi` closed -6.80 USD loss via SL at 82,700.00 USD)
         - Ticket #18644262 (`USWTI.p` closed -10.03 USD loss via SL at 90.113 USD)
-        - Net Realized Session PnL: **+26.11 USD** across 7 completed trades (initial capital 5,000.00 USD; 96.78% preserved).
-      * Desk Status: Ticket #18706769 active LONG position on ETHUSD.pi (monitoring Phase 0 BE ratchet at >= 2,434.52 USD, emergency shelf cut on 15m close < 2,405.00 USD, base TP at 2,484.50 USD); Ticket #18710722 resting SELL LIMIT on SOLUSD.p at 107.72 USD.
+        - Net Realized Session PnL: **+16.91 USD** across 8 completed trades (initial capital 5,000.00 USD; 96.60% preserved).
+      * Desk Status: Ticket #18706769 active LONG position on ETHUSD.pi (monitoring Phase 1 Profit Lock ratchet at >= 2,455.10 USD, emergency shelf cut on 15m close < 2,405.00 USD, base TP at 2,484.50 USD); Slot 2 vacant, standby candidates: LTC Sell Limit @ 62.330 USD, LINK Sell Limit @ 12.456 USD, DJ30 Sell Limit @ 51,171.48 USD.
 
 ## 3. Settled Mathematical & Strategy Invariants
 - **Institutional VWAP & Orderflow Confluence Framework (Strict Mandate)**:
