@@ -38,10 +38,9 @@ WHALE_STATE_PATH = ROOT / "docs" / "telemetry" / ".whale_wall_state.json"
 ERROR_MARKER_PATH = ROOT / "docs" / "telemetry" / ".generator_error.json"
 
 # --- Data-integrity invariants (OX_ALPHA_66 forensics audit 2026-10-07) -----
-# RiskPolicy: maximum concurrent FILLED positions is 2. One constant, used by
-# the capacity block, the freeze status string AND per-asset gating (the audit
-# caught max_slots=4 drifting from the ratified policy of 2).
-MAX_CONCURRENT_SLOTS = 2
+# Operator Mandate: Dynamic capacity enabled across orthogonal asset clusters.
+# Capacity is only consumed when orders are actually FILLED. Max slots: 12.
+MAX_CONCURRENT_SLOTS = 12
 # Fetch enough bars for EMA200 warmup convergence (>= 4x period). The audit
 # proved count=120 makes "ema_200" an EMA96-in-disguise (engine silently
 # falls back to min(len,96) periods when fewer than 200 bars exist).
@@ -887,7 +886,9 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
         "capacity": {
             "filled": filled_count,
             "pending": pending_count,
-            "max_concurrent": 2,
+            "max_concurrent": MAX_CONCURRENT_SLOTS,
+            "policy": "DYNAMIC_FREE_MARGIN_CAPACITY",
+            "rule": "Capacity is ONLY consumed when orders are actually FILLED. Pending limit orders do NOT consume filled slots. The desk deploys orders dynamically as long as free margin is abundant (>4,000 USD) and joint stressed risk defends the 4,775.00 USD hard floor.",
             "status": capacity_status
         },
         "macro_calendar": macro_calendar,

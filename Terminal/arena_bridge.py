@@ -172,6 +172,7 @@ def compute_volume_profile(df: pd.DataFrame, n_bins: int = 16) -> Dict[str, floa
 def build_48h_orderflow_prompt() -> str:
     """Build the comprehensive, self-contained 48-hour footprint and telemetry prompt for Arena.ai."""
     # 1. Load Telemetry Snapshot
+    # 1. Load Live Account & Telemetry State
     telemetry = {}
     if TELEMETRY_SNAPSHOT.exists():
         try:
@@ -181,10 +182,67 @@ def build_48h_orderflow_prompt() -> str:
             pass
 
     account = telemetry.get("account", {})
-    balance = account.get("balance_usd", 4813.99)
-    equity = account.get("equity_usd", 4813.99)
-    cushion = account.get("cushion_above_floor_usd", 38.99)
+    balance = float(account.get("balance_usd", 4829.79))
+    equity = float(account.get("equity_usd", 4851.98))
+    margin_used = float(account.get("margin_used_usd", 446.04))
+    margin_free = float(account.get("margin_free_usd", 4405.94))
+    cushion = equity - 4775.0
     assets_data = telemetry.get("assets_matrix_24", {})
+
+    # Attempt direct MT5 live state extraction
+    active_pos = []
+    pending_ord = []
+    try:
+        import MetaTrader5 as mt5
+        if mt5.initialize():
+            acc_info = mt5.account_info()
+            if acc_info:
+                balance = float(acc_info.balance)
+                equity = float(acc_info.equity)
+                margin_used = float(acc_info.margin)
+                margin_free = float(acc_info.margin_free)
+                cushion = equity - 4775.0
+
+            positions = mt5.positions_get()
+            if positions:
+                for p in positions:
+                    direction = "LONG" if p.type == 0 else "SHORT"
+                    r_mult = round((p.price_current - p.price_open) / max(abs(p.price_open - p.sl), 1e-6), 2) if p.sl else "N/A"
+                    active_pos.append({
+                        "ticket": p.ticket,
+                        "symbol": p.symbol,
+                        "type": direction,
+                        "volume": p.volume,
+                        "price_open": p.price_open,
+                        "price_current": p.price_current,
+                        "sl": p.sl,
+                        "tp": p.tp,
+                        "profit": round(p.profit, 2),
+                        "r_multiple": r_mult
+                    })
+
+            orders = mt5.orders_get()
+            if orders:
+                for o in orders:
+                    o_type = "BUY_LIMIT" if o.type == 2 else "SELL_LIMIT" if o.type == 3 else f"ORDER_{o.type}"
+                    dist = round(abs(o.price_open - o.price_current), 4)
+                    pending_ord.append({
+                        "ticket": o.ticket,
+                        "symbol": o.symbol,
+                        "type": o_type,
+                        "volume": o.volume_initial,
+                        "price_open": o.price_open,
+                        "price_current": o.price_current,
+                        "sl": o.sl,
+                        "tp": o.tp,
+                        "dist_pts": dist
+                    })
+            mt5.shutdown()
+    except Exception:
+        if not active_pos:
+            active_pos = telemetry.get("active_positions", [])
+        if not pending_ord:
+            pending_ord = telemetry.get("pending_orders", [])
 
     now_utc = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
 
@@ -204,17 +262,31 @@ def build_48h_orderflow_prompt() -> str:
     lines.append("- Active Risk Context & Rules (Raw URL):")
     lines.append("  https://raw.githubusercontent.com/kbsingh1399/Trading_2/arena/24eb818b-trading-2/.agents/rules/ACTIVE_CONTEXT.md")
     lines.append("")
-    lines.append("[SECTION 2: LIVE MT5 ACCOUNT STATE & BUFFER SENTRY]")
+    lines.append("[SECTION 2: LIVE MT5 ACCOUNT STATE & OPERATOR MANDATE ALIGNMENT]")
     lines.append(f"- Broker: MetaTrader 5 Account #5064568 (Blueberry Markets SVG-Live)")
-    lines.append(f"- Balance: {balance:.2f} USD | Equity: {equity:.2f} USD | Margin Used: 0.00 USD (100% Cash Flat)")
+    lines.append(f"- Balance: {balance:.2f} USD | Equity: {equity:.2f} USD | Margin Used: {margin_used:.2f} USD | Free Margin: {margin_free:.2f} USD ({margin_free/max(equity, 1.0)*100:.1f}% Cash Reserves)")
     lines.append(f"- G-1 Hard Floor Defense: Hard Floor = 4,775.00 USD | Preserved Cushion = +{cushion:.2f} USD")
     lines.append(f"- Mandatory Operating Buffer: >= +20.00 USD (Threshold: 4,795.00 USD | Headroom: +{equity - 4795.00:.2f} USD)")
-    lines.append(f"- Capacity Sentry: Exactly ONE (1) Risk Slot Available. Maximum Nominal Risk Capped at 10.00 to 11.04 USD (Stressed loss <= 15.80 USD). Multi-order staging is strictly prohibited.")
+    lines.append("")
+    lines.append("OPERATOR MANDATES & UNIFIED SYSTEM PROTOCOLS (MANDATORY ARENA COMPLIANCE):")
+    lines.append("1. DYNAMIC CAPACITY — NO ARTIFICIAL 2-ORDER CAP:")
+    lines.append("   - Capacity is ONLY consumed when orders are actually FILLED as live positions.")
+    lines.append("   - Pending limit orders are resting passive liquidity and do NOT consume filled position capacity.")
+    lines.append("   - The desk does NOT limit to 2 orders. Telemetry capacity is updated to max_concurrent=12.")
+    lines.append("   - Keep staging and punching high-confluence limit orders as long as free margin > 4,000 USD and joint stressed risk defends the 4,775.00 USD hard floor.")
+    lines.append("2. PASSIVE LIMIT ORDERS ONLY:")
+    lines.append("   - Any valid candidate staged MUST be an executable LIMIT ORDER (BUY LIMIT or SELL LIMIT) resting at a verified structural orderflow shelf or resting whale wall. Market orders crossing the spread are strictly prohibited.")
+    lines.append("3. CONTINUOUS ACTIVE SENTRY & PRUNING:")
+    lines.append("   - Unfilled resting limit orders are actively audited on every cycle. If orderbook depth/shelves remain intact and drift < 2.0x ATR, KEEP them. If thesis degrades, price drifts > 2.0x ATR, or whale wall thins > 50%, the desk immediately drops/cancels the order.")
+    lines.append("4. STRONG ORDERFLOW L2/L3 DECISION MAKING:")
+    lines.append("   - Decisions must NOT be random trend following or naive mean reversion. Must be strictly grounded in L2 depth, resting whale walls (>=150k USD, >=180s persistence), and CVD delta absorption.")
+    lines.append("5. TAKE PROFIT (TP) LOGICAL ANCHORING TO LIQUIDATIONS OR STOPS:")
+    lines.append("   - TP must NOT be placed at arbitrary static multiples into empty air. TP MUST anchor directly to the next structural liquidation cascade (Short Squeeze for Longs, Long Flush for Shorts) or stop-loss sweep cluster (Buy Stops for Longs, Sell Stops for Shorts).")
+    lines.append("6. CONTINUOUS KAIZEN SELF-IMPROVEMENT:")
+    lines.append("   - Every cycle builds on the entire session history, learning from past setbacks and operator feedback to eliminate repeat errors and sharpen execution.")
     lines.append("")
 
     # Audit Active Positions & Pending Orders
-    active_pos = telemetry.get("active_positions", [])
-    pending_ord = telemetry.get("pending_orders", [])
     lines.append("[SECTION 3: ACTIVE POSITIONS & RESTING ORDERS REVIEW]")
     if active_pos:
         lines.append(f"ACTIVE OPEN POSITIONS ({len(active_pos)}):")
@@ -245,7 +317,7 @@ def build_48h_orderflow_prompt() -> str:
     lines.append("2. MODEL 1 (EXTREME MEAN-REVERSION):")
     lines.append("   - Extreme price extensions |Z| >= 2.0 SD from Session VWAP with RSI oversold (<30) or overbought (>70), CVD aggressor exhaustion, and resting whale wall absorption (>= 150k USD, >= 180s persistence).")
     lines.append("")
-    lines.append("Our desk has 4,813.99 USD capital, 100% Cash Flat, and 1 risk slot available (nominal risk 10.00 to 11.04 USD). We must NOT sit idle if valid institutional Model 2 Trend-Following setups exist!")
+    lines.append(f"Our desk has {balance:.2f} USD capital, abundant free margin ({margin_free:.2f} USD), and capacity to stage valid passive limit orders. We must NOT sit idle if valid institutional setups exist!")
     lines.append("")
     lines.append("[SECTION 5: 24-ASSET MULTI-TIMEFRAME FOOTPRINT & ORDERFLOW RECONSTRUCTION]")
     lines.append("The sections below detail the trailing 48-hour market structure across all 24 assets (14 Crypto, 3 Metals & Commodities, 3 Forex, 4 Indices):")
@@ -314,25 +386,30 @@ def build_48h_orderflow_prompt() -> str:
     lines.append("   * Retest of prior 15m/1H broken structure / swing shelf")
     lines.append("   * Retest of Value Area High (VAH) or Value Area Low (VAL)")
     lines.append("   * Retest of Fair Value Gap (FVG) or high-volume profile node")
+    lines.append("4. TAKE PROFIT (TP) STRUCTURAL ANCHORING MANDATE (CRITICAL OPERATOR RULE):")
+    lines.append("   - TP must NOT be set to an arbitrary static mathematical distance. TP MUST be logically anchored to the next structural LIQUIDATION CASCADE POOL or STOP-LOSS SWEEP ZONE:")
+    lines.append("   - For LONGS: Anchor TP directly at or just inside the next overhead Short Squeeze Band (short_squeeze_band), Premium Buy-Stop Sweep (nearest_premium_stop_sweep), or overhead Ask Whale Wall. Price will violently accelerate into these forced buy orders, guaranteeing high-fill liquidity.")
+    lines.append("   - For SHORTS: Anchor TP directly at or just inside the next downside Long Flush Target (long_flush_target), Discount Sell-Stop Sweep (nearest_discount_stop_sweep), or resting Bid Whale Wall. Price will cascade into these forced market sells, guaranteeing clean exit liquidity.")
+    lines.append("   - NEVER place TP beyond the next major liquidation/stop cluster where opposing whale absorption will instantly reverse price.")
     lines.append("")
     lines.append("TRACK 1 (FOREX, COMMODITIES & INDICES - CFD FEEDS):")
     lines.append("- Geometry: Model 2 micro-pullback (0.10 to 0.60 ATR) to 20/50 EMA or VWAP in trend; OR Model 1 extreme stretch |Z| >= 2.0 SD.")
     lines.append("- CFD Orderflow & Microstructure: 15m bar volume >= 0.8x 20-bar avg, and candle rejection wick >= 30% of bar range at the shelf.")
-    lines.append("- Sizing: SL >= 1.50x ATR, TP >= 2.0R to 2.5R, Nominal Risk <= 15.00 USD (e.g. 10.00 to 14.50 USD).")
+    lines.append("- Sizing: SL >= 1.50x ATR, TP anchored to next structural stop sweep / liquidation pool (>= 2.0R to 2.5R), Nominal Risk <= 15.00 USD (e.g. 10.00 to 14.50 USD).")
     lines.append("")
     lines.append("TRACK 2 (CRYPTO PERPETUALS - BINANCE USDT-M FEEDS):")
     lines.append("- Geometry: Model 2 micro-pullback (0.10 to 0.60 ATR) to 20/50 EMA or VWAP in trend; OR Model 1 extreme stretch (|Z| >= 2.0 SD / RSI < 30 or > 70).")
     lines.append("- Crypto Depth & Flow: Top-20 depth imbalance >= 1.25x, OR clustered depth within +-0.50x ATR >= 150k-300k USD, OR 1m/5m taker CVD deceleration/exhaustion.")
-    lines.append("- Sizing: SL >= 1.50x ATR, TP >= 2.0R to 2.5R, Nominal Risk <= 15.00 USD.")
+    lines.append("- Sizing: SL >= 1.50x ATR, TP anchored to next reconstructed liquidation target (Long Flush for Shorts, Short Squeeze for Longs) or stop sweep, Nominal Risk <= 15.00 USD.")
     lines.append("")
     lines.append("OUTPUT FORMAT:")
     lines.append("Identify and output ALL viable candidates meeting Track 1 or Track 2 rules:")
     lines.append("- Symbol (e.g. BTCUSD.pi, BCHUSD.p, XRPUSD.pi, SP500.p, EURUSD.pi, USWTI.p, etc.)")
     lines.append("- Model: Model 2 (Trend Following) or Model 1 (Mean Reversion)")
     lines.append("- Direction: BUY LIMIT or SELL LIMIT")
-    lines.append("- Entry Price, Stop Loss, Take Profit, Target R-Multiple (>= 2.0R to 2.5R)")
+    lines.append("- Entry Price, Stop Loss, Take Profit (explicitly anchored to next liquidation or stop pool), Target R-Multiple (>= 2.0R to 2.5R)")
     lines.append("- Sizing: Exact lots giving nominal risk between 10.00 and 15.00 USD")
-    lines.append("- Microstructure Justification: Citing orderflow shelf, EMA/VWAP retest, volume, or CVD flow.")
+    lines.append("- Microstructure Justification: Citing orderflow shelf, EMA/VWAP retest, volume, CVD flow, and specific liquidation/stop target for TP.")
     lines.append("")
     lines.append("If no immediate entry is at current market, provide the top 2 LIMIT ORDER stages with exact limit prices ready to punch into MT5.")
     lines.append("")
