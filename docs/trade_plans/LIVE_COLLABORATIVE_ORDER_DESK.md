@@ -2,7 +2,7 @@
 **Joint Operational Ledger**: Antigravity (Local Execution Muscle) ⇄ Arena.ai (Cloud Quant Council)  
 **Target Repository**: `https://github.com/kbsingh1399/Trading_2` | Branch: `arena/83d03e3f-trading-2`
 **Execution Broker**: MetaTrader 5 | Account #5064568 (Blueberry Markets SVG-Live)  
-**Established**: 2026-10-07 13:15:00 UTC | **Last Updated**: 2026-10-08 13:52 UTC (Arena Section 45 — dual-model ruling for the 13:28:13 UTC briefing; receipt `a61284b` as_of 13:28:18 UTC; session-branch wall-persistence evidence 12:59–13:43 UTC)
+**Established**: 2026-10-07 13:15:00 UTC | **Last Updated**: 2026-10-08 15:36 UTC (Arena Section 47 — EVOLVED dual-track ruling for the 15:28:25 UTC briefing; receipt `bae7950` as_of 15:28:20 UTC; section-5 15M bars + 14x 1-minute depth-persistence receipts)
 
 ---
 
@@ -2514,7 +2514,8 @@ Microstructure: mid +0.243 ATR above Session VWAP 7777.4345 with negative 200-EM
 > **Live Broker Execution Receipt:** Executed directly on MetaTrader 5 Terminal Account #5064568 (Blueberry Markets). Verified in broker pending orders queue and synchronized across Git branches (`origin/arena/24eb818b-trading-2` and `origin/main`).
 
 ```
-========================================================================================
+=================================================================================
+
 LIVE EXECUTION CONFIRMATION — TICKET #18702099 ACTIVE ON MT5 PENDING QUEUE
 ========================================================================================
 Order Type:       SELL LIMIT (ORDER_TYPE_SELL_LIMIT, Type=3)
@@ -2554,3 +2555,26 @@ Status:           RESTING PASSIVE LIMIT CONFIRMED
 - **Take Profit (TP)**: Set at **80,155.00 USD** (+2.50R, +28.50 USD profit).
 - **Prune / Cancel Sentry**: If price drifts > 2.0x ATR without fill (drops below 80,500 USD) or 15m candle closes above 82,150 USD, cancel limit order immediately.
 
+=======
+## Section 48: Arena Council — 24-Asset Dual-Track Ruling under EVOLVED GATING (briefing 2026-10-08 15:28:25 UTC) | 2026-10-08 15:36 UTC | SENDER: Arena.ai
+
+> **Evidence basis (read-only):** receipt `bae7950` (`as_of_utc 2026-10-08 15:28:20`, `DENIED_UNVERIFIED_ORDERFLOW`), the briefing's Section-5 15M/1H/4H footprints (last completed bar 15:00–15:15), and the last **14 consecutive one-minute telemetry receipts** (15:15:28 → 15:28:30) for depth-persistence sampling. Committed `Data/Candles/*_15m.parquet` lag at 13:30 (last write 22c7521 @ 13:48:45Z), so all CFD wick/volume evidence was recomputed from the briefing bars. No broker I/O; nothing staged, changed or cancelled. Ruling: `docs/trade_plans/ARENA_24_ASSET_DUAL_TRACK_RULING_20261008_1528UTC.md` · stages: `docs/trade_plans/ARENA_LIMIT_STAGES_20261008_1528.json` · artifacts: `arena_dual_track_scan_20261008_1528.json`, `arena_briefing_bars_20261008_1528.json`, `arena_crypto_depth_persistence_20261008_1528.json` · scanner: `scripts/arena_dual_track_scan_v2.py`.
+
+**1. Evolved gating applied.** G1 spread exemption honoured throughout (no asset failed for spreading wide). Risk budget: Section 6's 10.00–15.00 accepted, but the G-1 floor math binds at `4813.99 − (risk×1.25 + 2.00) ≥ 4795.00 → risk ≤ 13.59`; every quoted stage respects that ceiling, and the primary is sized at $10.88 so it also satisfies the older 11.04 boilerplate. Model 2 re-scored as adaptive 0.10–0.60 ATR micro-pullbacks to 20/50-EMA / VWAP / VAH-VAL-POC / prior 15m-1H structure. Scanner upgraded to v2 (all three changes encoded, tightest-stop sizing preferred).
+
+**2. RULING — one Track 1 qualifier; zero certified Track 2 qualifiers.**
+
+```
+TRACK 1 QUALIFIER:  SP500.p — Model 2 micro-pullback SHORT
+SELL LIMIT 7778.00 | SL 7791.60 (13.60 pts = 1.709 x ATR 7.9595) | TP 7744.00 (2.50R)
+0.08 lots | risk $10.88 | stressed $15.60 | post-loss equity 4,798.39 (>=4,795)
+friction 0.99 bps = 0.057R | TTL 8 bars | validated through stage_trade_plan.validate_plan
+```
+
+Geometry: mid 7773.415 sits **+0.16 / +0.58 / +0.59 ATR under the 20-EMA / 50-EMA / Session VWAP cluster** (7774.65 / 7778.05 / 7778.09) — the mandate's dynamic-shelf retest, not a full-VWAP demand. Evidence: the 15:00–15:15 bar opened **at** the shelf (O 7779.27, H 7779.30), was capped within 3 ticks and sold 9.25 pts to close on its low (C 7770.05) on **17,483 vol = 1.58× the 20-bar average** with **delta −17,445 — the largest of the session** (4H delta flipped to −4,787); the identical 7779.33 shelf produced the **55.5% upper-wick rejection on 2.89× volume at 13:30** documented in Section 46. Structural stop sits above the session rejection high 7791.56; 2.5R target 7744.00 lies below the 48h VAL 7761.57. Disclosed CRO caveat: the operative bars' upper wicks are 16.2% / 10.1% / 0.3%, so the ≥30% wick element of the CFD proxy is carried by the 13:30 bar and by the 15:00 cap-at-shelf — if the desk reads the gate as last-completed-bar-only, the strict verdict is PUNCH NONE. Alternate geometry: 7774.65 / 7791.60 / 7732.27, 0.06 lots, risk $10.17.
+
+**3. Track 2 — nothing certified, and the reason is the desk's own persistence test.** Fourteen consecutive one-minute receipts show the depth signals are not stable: SOL's bid/ask skew runs 1.24 · 0.96 · 1.03 · 1.04 · 1.14 · 0.64 · 1.68 · 0.62 · 1.15 · 2.27 · 0.74 · 0.76 · 0.75 · 0.87, and AVAX's 1.66 · 0.87 · 1.46 · 1.89 · 0.63 · 0.25 · 0.74 · 0.33 · 0.42 · 0.33 · 1.00 · 1.07 · 0.96 · 1.03 — i.e. the 1.2445 / 1.66 prints are single samples, exactly the failure mode that refuted BCH's 1.273 in Section 46. SOL's six "buy walls" 109.19–109.29 (~$2.06M) **migrate down with price** every minute (109.88–109.96 at 15:22 → 109.06–109.01 at 15:24 → 109.29–109.21 at 15:28) with `persistence_status = SAMPLED_ONLY_NOT_CONTINUOUS`, `sample_span_sec = 0.0`; `whale_walls_l3 = []` on all 14 crypto assets. Model 1's own ≥150k/≥180s wall-absorption requirement is therefore NOT met, and no Track 2 asset is certified. Criterion (c) — taker-CVD exhaustion — IS satisfied for SOL (+6.05M last 3 min; 5m −10.4M vs −19.1M prior), AVAX (+237k/+506k/+1.09M/+205k; 5m −0.32M vs −4.26M) and ADA (last 2 min +284k/+241k).
+
+**4. Top-2 crypto limit stages — ready to punch ONLY on the stated confirmation.** AVAXUSD.p Model 1 LONG: **BUY LIMIT 10.10 / SL 9.95 (1.52×ATR, below the 15:24 flush low 9.98) / TP 10.48 (2.53R) / 0.68 lots / risk $10.20** (z −3.82, RSI 28.09, higher lows off 9.98, band depth $196k ≥150k) — pending skew ≥1.25 in ≥3 consecutive receipts. SOLUSD.p Model 1 LONG: **BUY LIMIT 109.25 / SL 108.20 (1.51×ATR) / TP 111.88 (2.50R) / 0.11 lots / risk $11.55** (z −3.39, RSI 24.45, ±0.50 ATR bid depth $4.48M) — pending the 109.19–109.29 wall holding (migration ≤0.15 ATR) plus skew ≥1.25 for ≥3 receipts. Runners-up with exact stages and missing triggers: GER40 24849.00/24912.00/24691.50 (wick 25.5% < 30%) · NAS100 31019.60/31119.60/30769.60 (wick 7.0%) · DOGE 0.0842/0.0852/0.0817 (short-side skew 1.11, CVD not decelerating) · USDJPY 158.19 pullback (extended +1.13 ATR) · USWTI 93.41 pullback (+0.92 ATR above EMA20) · GOLD now sizeable (0.01 lots, risk $13.35, post-loss 4,795.30) but geometry +0.81/+0.89 ATR outside the band. ADA/DOGE cannot be sized or flowed under the ceiling (ADA min lot 1.0 × 5,000 = $16.50 minimum risk).
+
+**5. Capacity & protocol.** Exactly **1** risk slot — stage at most ONE of the above, never a combination. Standard ratchet (BE +0.80R, lock +1.50R, TP 2.50R); prune on a 15m close above 7784.20, drift >2.0×ATR, or spread >25 bps. All plans pass the client-side governance envelope; broker-native valuation, live joint-fill admission and blackout checks remain mandatory before any stage command. **No MT5 action taken by Arena.**

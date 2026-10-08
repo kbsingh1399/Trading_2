@@ -1,0 +1,3049 @@
+{
+ "source": "14 consecutive one-minute telemetry receipts (15:15:28-15:28:30 UTC), git-committed",
+ "assets": {
+  "SOL": [
+   {
+    "rev": "bae7950",
+    "as_of": "15:28:20",
+    "mid": 109.245,
+    "bid20": 4480768.14,
+    "ask20": 3600357.91,
+    "skew": 1.2445,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 109.29,
+      "usd": 154526
+     },
+     {
+      "side": "BUY",
+      "price": 109.25,
+      "usd": 293854
+     },
+     {
+      "side": "BUY",
+      "price": 109.22,
+      "usd": 341101
+     },
+     {
+      "side": "BUY",
+      "price": 109.21,
+      "usd": 304553
+     },
+     {
+      "side": "BUY",
+      "price": 109.2,
+      "usd": 756564
+     },
+     {
+      "side": "BUY",
+      "price": 109.19,
+      "usd": 213186
+     },
+     {
+      "side": "BUY",
+      "price": 109.18,
+      "usd": 225551
+     },
+     {
+      "side": "BUY",
+      "price": 109.14,
+      "usd": 317926
+     },
+     {
+      "side": "BUY",
+      "price": 109.13,
+      "usd": 273020
+     },
+     {
+      "side": "BUY",
+      "price": 109.12,
+      "usd": 175654
+     },
+     {
+      "side": "BUY",
+      "price": 109.11,
+      "usd": 540734
+     },
+     {
+      "side": "SELL",
+      "price": 109.34,
+      "usd": 212509
+     },
+     {
+      "side": "SELL",
+      "price": 109.36,
+      "usd": 165432
+     },
+     {
+      "side": "SELL",
+      "price": 109.37,
+      "usd": 243714
+     },
+     {
+      "side": "SELL",
+      "price": 109.38,
+      "usd": 158054
+     },
+     {
+      "side": "SELL",
+      "price": 109.39,
+      "usd": 152156
+     },
+     {
+      "side": "SELL",
+      "price": 109.4,
+      "usd": 217011
+     },
+     {
+      "side": "SELL",
+      "price": 109.42,
+      "usd": 410283
+     },
+     {
+      "side": "SELL",
+      "price": 109.43,
+      "usd": 230307
+     },
+     {
+      "side": "SELL",
+      "price": 109.44,
+      "usd": 217107
+     },
+     {
+      "side": "SELL",
+      "price": 109.47,
+      "usd": 199672
+     },
+     {
+      "side": "SELL",
+      "price": 109.48,
+      "usd": 385440
+     },
+     {
+      "side": "SELL",
+      "price": 109.49,
+      "usd": 273510
+     }
+    ]
+   },
+   {
+    "rev": "fce8421",
+    "as_of": "15:27:20",
+    "mid": 109.45,
+    "bid20": 3770687.48,
+    "ask20": 3931298.99,
+    "skew": 0.9591,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 109.36,
+      "usd": 175693
+     },
+     {
+      "side": "BUY",
+      "price": 109.35,
+      "usd": 381764
+     },
+     {
+      "side": "BUY",
+      "price": 109.34,
+      "usd": 204554
+     },
+     {
+      "side": "BUY",
+      "price": 109.31,
+      "usd": 392746
+     },
+     {
+      "side": "BUY",
+      "price": 109.3,
+      "usd": 169393
+     },
+     {
+      "side": "BUY",
+      "price": 109.28,
+      "usd": 189039
+     },
+     {
+      "side": "BUY",
+      "price": 109.27,
+      "usd": 534391
+     },
+     {
+      "side": "BUY",
+      "price": 109.26,
+      "usd": 273116
+     },
+     {
+      "side": "BUY",
+      "price": 109.24,
+      "usd": 248802
+     },
+     {
+      "side": "BUY",
+      "price": 109.23,
+      "usd": 164903
+     },
+     {
+      "side": "SELL",
+      "price": 109.48,
+      "usd": 250313
+     },
+     {
+      "side": "SELL",
+      "price": 109.5,
+      "usd": 421221
+     },
+     {
+      "side": "SELL",
+      "price": 109.51,
+      "usd": 416692
+     },
+     {
+      "side": "SELL",
+      "price": 109.53,
+      "usd": 451108
+     },
+     {
+      "side": "SELL",
+      "price": 109.54,
+      "usd": 162313
+     },
+     {
+      "side": "SELL",
+      "price": 109.57,
+      "usd": 153717
+     },
+     {
+      "side": "SELL",
+      "price": 109.58,
+      "usd": 234681
+     },
+     {
+      "side": "SELL",
+      "price": 109.59,
+      "usd": 200560
+     },
+     {
+      "side": "SELL",
+      "price": 109.6,
+      "usd": 206359
+     },
+     {
+      "side": "SELL",
+      "price": 109.61,
+      "usd": 170270
+     },
+     {
+      "side": "SELL",
+      "price": 109.62,
+      "usd": 425526
+     }
+    ]
+   },
+   {
+    "rev": "f3939d9",
+    "as_of": "15:26:20",
+    "mid": 109.185,
+    "bid20": 3528218.2,
+    "ask20": 3427353.49,
+    "skew": 1.0294,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 109.16,
+      "usd": 336968
+     },
+     {
+      "side": "BUY",
+      "price": 109.15,
+      "usd": 184183
+     },
+     {
+      "side": "BUY",
+      "price": 109.13,
+      "usd": 262225
+     },
+     {
+      "side": "BUY",
+      "price": 109.1,
+      "usd": 327542
+     },
+     {
+      "side": "BUY",
+      "price": 109.07,
+      "usd": 434899
+     },
+     {
+      "side": "BUY",
+      "price": 109.06,
+      "usd": 322716
+     },
+     {
+      "side": "BUY",
+      "price": 109.03,
+      "usd": 264418
+     },
+     {
+      "side": "SELL",
+      "price": 109.28,
+      "usd": 224758
+     },
+     {
+      "side": "SELL",
+      "price": 109.29,
+      "usd": 256304
+     },
+     {
+      "side": "SELL",
+      "price": 109.33,
+      "usd": 375024
+     },
+     {
+      "side": "SELL",
+      "price": 109.34,
+      "usd": 301169
+     },
+     {
+      "side": "SELL",
+      "price": 109.39,
+      "usd": 278272
+     },
+     {
+      "side": "SELL",
+      "price": 109.4,
+      "usd": 153552
+     },
+     {
+      "side": "SELL",
+      "price": 109.41,
+      "usd": 512170
+     }
+    ]
+   },
+   {
+    "rev": "dae3003",
+    "as_of": "15:25:20",
+    "mid": 109.215,
+    "bid20": 3511706.27,
+    "ask20": 3367335.14,
+    "skew": 1.0429,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 109.24,
+      "usd": 238534
+     },
+     {
+      "side": "BUY",
+      "price": 109.23,
+      "usd": 185031
+     },
+     {
+      "side": "BUY",
+      "price": 109.21,
+      "usd": 212208
+     },
+     {
+      "side": "BUY",
+      "price": 109.17,
+      "usd": 295401
+     },
+     {
+      "side": "BUY",
+      "price": 109.16,
+      "usd": 422783
+     },
+     {
+      "side": "BUY",
+      "price": 109.13,
+      "usd": 245110
+     },
+     {
+      "side": "BUY",
+      "price": 109.12,
+      "usd": 187914
+     },
+     {
+      "side": "BUY",
+      "price": 109.11,
+      "usd": 505723
+     },
+     {
+      "side": "BUY",
+      "price": 109.1,
+      "usd": 517630
+     },
+     {
+      "side": "SELL",
+      "price": 109.33,
+      "usd": 266596
+     },
+     {
+      "side": "SELL",
+      "price": 109.34,
+      "usd": 195407
+     },
+     {
+      "side": "SELL",
+      "price": 109.35,
+      "usd": 268276
+     },
+     {
+      "side": "SELL",
+      "price": 109.36,
+      "usd": 329130
+     },
+     {
+      "side": "SELL",
+      "price": 109.38,
+      "usd": 253564
+     },
+     {
+      "side": "SELL",
+      "price": 109.39,
+      "usd": 201302
+     },
+     {
+      "side": "SELL",
+      "price": 109.42,
+      "usd": 282654
+     },
+     {
+      "side": "SELL",
+      "price": 109.46,
+      "usd": 322096
+     },
+     {
+      "side": "SELL",
+      "price": 109.47,
+      "usd": 269322
+     },
+     {
+      "side": "SELL",
+      "price": 109.49,
+      "usd": 221425
+     }
+    ]
+   },
+   {
+    "rev": "f8a66bd",
+    "as_of": "15:24:20",
+    "mid": 109.085,
+    "bid20": 3012119.81,
+    "ask20": 2640700.67,
+    "skew": 1.1407,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 109.06,
+      "usd": 168703
+     },
+     {
+      "side": "BUY",
+      "price": 109.04,
+      "usd": 209105
+     },
+     {
+      "side": "BUY",
+      "price": 109.01,
+      "usd": 200880
+     },
+     {
+      "side": "BUY",
+      "price": 108.98,
+      "usd": 196296
+     },
+     {
+      "side": "BUY",
+      "price": 108.96,
+      "usd": 207257
+     },
+     {
+      "side": "BUY",
+      "price": 108.95,
+      "usd": 427628
+     },
+     {
+      "side": "BUY",
+      "price": 108.92,
+      "usd": 223206
+     },
+     {
+      "side": "BUY",
+      "price": 108.91,
+      "usd": 193744
+     },
+     {
+      "side": "BUY",
+      "price": 108.9,
+      "usd": 350307
+     },
+     {
+      "side": "SELL",
+      "price": 109.13,
+      "usd": 167988
+     },
+     {
+      "side": "SELL",
+      "price": 109.16,
+      "usd": 157852
+     },
+     {
+      "side": "SELL",
+      "price": 109.17,
+      "usd": 286994
+     },
+     {
+      "side": "SELL",
+      "price": 109.2,
+      "usd": 281145
+     },
+     {
+      "side": "SELL",
+      "price": 109.25,
+      "usd": 227865
+     },
+     {
+      "side": "SELL",
+      "price": 109.29,
+      "usd": 344597
+     }
+    ]
+   },
+   {
+    "rev": "a62c4a5",
+    "as_of": "15:23:20",
+    "mid": 109.615,
+    "bid20": 1075371.06,
+    "ask20": 1694686.14,
+    "skew": 0.6346,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 109.36,
+      "usd": 236151
+     },
+     {
+      "side": "SELL",
+      "price": 109.59,
+      "usd": 150839
+     },
+     {
+      "side": "SELL",
+      "price": 109.61,
+      "usd": 284862
+     },
+     {
+      "side": "SELL",
+      "price": 109.66,
+      "usd": 182176
+     },
+     {
+      "side": "SELL",
+      "price": 109.67,
+      "usd": 239010
+     }
+    ]
+   },
+   {
+    "rev": "21d6916",
+    "as_of": "15:22:20",
+    "mid": 109.765,
+    "bid20": 6247189.32,
+    "ask20": 3721214.58,
+    "skew": 1.6788,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 110.04,
+      "usd": 233520
+     },
+     {
+      "side": "BUY",
+      "price": 110.02,
+      "usd": 203835
+     },
+     {
+      "side": "BUY",
+      "price": 110.01,
+      "usd": 1071618
+     },
+     {
+      "side": "BUY",
+      "price": 110.0,
+      "usd": 2026323
+     },
+     {
+      "side": "BUY",
+      "price": 109.96,
+      "usd": 325364
+     },
+     {
+      "side": "BUY",
+      "price": 109.94,
+      "usd": 384484
+     },
+     {
+      "side": "BUY",
+      "price": 109.93,
+      "usd": 277661
+     },
+     {
+      "side": "BUY",
+      "price": 109.88,
+      "usd": 377025
+     },
+     {
+      "side": "SELL",
+      "price": 110.14,
+      "usd": 314082
+     },
+     {
+      "side": "SELL",
+      "price": 110.15,
+      "usd": 196378
+     },
+     {
+      "side": "SELL",
+      "price": 110.16,
+      "usd": 248285
+     },
+     {
+      "side": "SELL",
+      "price": 110.17,
+      "usd": 253774
+     },
+     {
+      "side": "SELL",
+      "price": 110.19,
+      "usd": 204433
+     },
+     {
+      "side": "SELL",
+      "price": 110.2,
+      "usd": 313776
+     },
+     {
+      "side": "SELL",
+      "price": 110.21,
+      "usd": 189400
+     },
+     {
+      "side": "SELL",
+      "price": 110.22,
+      "usd": 160053
+     },
+     {
+      "side": "SELL",
+      "price": 110.23,
+      "usd": 339177
+     },
+     {
+      "side": "SELL",
+      "price": 110.24,
+      "usd": 373525
+     },
+     {
+      "side": "SELL",
+      "price": 110.26,
+      "usd": 311576
+     }
+    ]
+   },
+   {
+    "rev": "360a289",
+    "as_of": "15:21:20",
+    "mid": 110.425,
+    "bid20": 3096815.41,
+    "ask20": 5009255.48,
+    "skew": 0.6182,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 110.49,
+      "usd": 278939
+     },
+     {
+      "side": "BUY",
+      "price": 110.48,
+      "usd": 154796
+     },
+     {
+      "side": "BUY",
+      "price": 110.46,
+      "usd": 239304
+     },
+     {
+      "side": "BUY",
+      "price": 110.43,
+      "usd": 297622
+     },
+     {
+      "side": "BUY",
+      "price": 110.4,
+      "usd": 315448
+     },
+     {
+      "side": "BUY",
+      "price": 110.38,
+      "usd": 186888
+     },
+     {
+      "side": "BUY",
+      "price": 110.37,
+      "usd": 490524
+     },
+     {
+      "side": "BUY",
+      "price": 110.35,
+      "usd": 201954
+     },
+     {
+      "side": "SELL",
+      "price": 110.55,
+      "usd": 174682
+     },
+     {
+      "side": "SELL",
+      "price": 110.6,
+      "usd": 325762
+     },
+     {
+      "side": "SELL",
+      "price": 110.61,
+      "usd": 282959
+     },
+     {
+      "side": "SELL",
+      "price": 110.63,
+      "usd": 409193
+     },
+     {
+      "side": "SELL",
+      "price": 110.64,
+      "usd": 229547
+     },
+     {
+      "side": "SELL",
+      "price": 110.66,
+      "usd": 258144
+     },
+     {
+      "side": "SELL",
+      "price": 110.67,
+      "usd": 467583
+     },
+     {
+      "side": "SELL",
+      "price": 110.68,
+      "usd": 256804
+     },
+     {
+      "side": "SELL",
+      "price": 110.69,
+      "usd": 389614
+     },
+     {
+      "side": "SELL",
+      "price": 110.7,
+      "usd": 435554
+     },
+     {
+      "side": "SELL",
+      "price": 110.71,
+      "usd": 510356
+     },
+     {
+      "side": "SELL",
+      "price": 110.73,
+      "usd": 154839
+     },
+     {
+      "side": "SELL",
+      "price": 110.74,
+      "usd": 317015
+     }
+    ]
+   },
+   {
+    "rev": "46b02f3",
+    "as_of": "15:20:20",
+    "mid": 110.255,
+    "bid20": 4072509.49,
+    "ask20": 3556347.68,
+    "skew": 1.1451,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 110.28,
+      "usd": 209096
+     },
+     {
+      "side": "BUY",
+      "price": 110.25,
+      "usd": 289901
+     },
+     {
+      "side": "BUY",
+      "price": 110.24,
+      "usd": 153622
+     },
+     {
+      "side": "BUY",
+      "price": 110.23,
+      "usd": 178261
+     },
+     {
+      "side": "BUY",
+      "price": 110.22,
+      "usd": 845080
+     },
+     {
+      "side": "BUY",
+      "price": 110.21,
+      "usd": 235143
+     },
+     {
+      "side": "BUY",
+      "price": 110.2,
+      "usd": 224657
+     },
+     {
+      "side": "BUY",
+      "price": 110.19,
+      "usd": 242260
+     },
+     {
+      "side": "BUY",
+      "price": 110.18,
+      "usd": 155986
+     },
+     {
+      "side": "BUY",
+      "price": 110.15,
+      "usd": 284636
+     },
+     {
+      "side": "BUY",
+      "price": 110.14,
+      "usd": 436388
+     },
+     {
+      "side": "SELL",
+      "price": 110.38,
+      "usd": 177310
+     },
+     {
+      "side": "SELL",
+      "price": 110.4,
+      "usd": 169095
+     },
+     {
+      "side": "SELL",
+      "price": 110.41,
+      "usd": 202789
+     },
+     {
+      "side": "SELL",
+      "price": 110.42,
+      "usd": 359143
+     },
+     {
+      "side": "SELL",
+      "price": 110.44,
+      "usd": 328875
+     },
+     {
+      "side": "SELL",
+      "price": 110.45,
+      "usd": 378408
+     },
+     {
+      "side": "SELL",
+      "price": 110.46,
+      "usd": 156733
+     },
+     {
+      "side": "SELL",
+      "price": 110.48,
+      "usd": 166560
+     },
+     {
+      "side": "SELL",
+      "price": 110.49,
+      "usd": 365962
+     },
+     {
+      "side": "SELL",
+      "price": 110.52,
+      "usd": 274074
+     }
+    ]
+   },
+   {
+    "rev": "a9c9bac",
+    "as_of": "15:19:20",
+    "mid": 110.57,
+    "bid20": 9590602.33,
+    "ask20": 4232084.47,
+    "skew": 2.2662,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 110.65,
+      "usd": 232286
+     },
+     {
+      "side": "BUY",
+      "price": 110.64,
+      "usd": 264919
+     },
+     {
+      "side": "BUY",
+      "price": 110.61,
+      "usd": 203636
+     },
+     {
+      "side": "BUY",
+      "price": 110.6,
+      "usd": 366126
+     },
+     {
+      "side": "BUY",
+      "price": 110.58,
+      "usd": 206287
+     },
+     {
+      "side": "BUY",
+      "price": 110.57,
+      "usd": 266077
+     },
+     {
+      "side": "BUY",
+      "price": 110.54,
+      "usd": 415766
+     },
+     {
+      "side": "BUY",
+      "price": 110.52,
+      "usd": 362404
+     },
+     {
+      "side": "BUY",
+      "price": 110.51,
+      "usd": 1045608
+     },
+     {
+      "side": "BUY",
+      "price": 110.5,
+      "usd": 5361572
+     },
+     {
+      "side": "SELL",
+      "price": 110.68,
+      "usd": 241032
+     },
+     {
+      "side": "SELL",
+      "price": 110.72,
+      "usd": 201062
+     },
+     {
+      "side": "SELL",
+      "price": 110.74,
+      "usd": 513029
+     },
+     {
+      "side": "SELL",
+      "price": 110.75,
+      "usd": 184797
+     },
+     {
+      "side": "SELL",
+      "price": 110.76,
+      "usd": 219692
+     },
+     {
+      "side": "SELL",
+      "price": 110.77,
+      "usd": 582164
+     },
+     {
+      "side": "SELL",
+      "price": 110.8,
+      "usd": 271685
+     },
+     {
+      "side": "SELL",
+      "price": 110.82,
+      "usd": 278369
+     },
+     {
+      "side": "SELL",
+      "price": 110.84,
+      "usd": 258938
+     },
+     {
+      "side": "SELL",
+      "price": 110.85,
+      "usd": 305653
+     },
+     {
+      "side": "SELL",
+      "price": 110.87,
+      "usd": 174903
+     }
+    ]
+   },
+   {
+    "rev": "334219f",
+    "as_of": "15:18:20",
+    "mid": 110.785,
+    "bid20": 3479031.09,
+    "ask20": 4705894.64,
+    "skew": 0.7393,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 110.81,
+      "usd": 176209
+     },
+     {
+      "side": "BUY",
+      "price": 110.8,
+      "usd": 322760
+     },
+     {
+      "side": "BUY",
+      "price": 110.77,
+      "usd": 288847
+     },
+     {
+      "side": "BUY",
+      "price": 110.74,
+      "usd": 260189
+     },
+     {
+      "side": "BUY",
+      "price": 110.71,
+      "usd": 472639
+     },
+     {
+      "side": "BUY",
+      "price": 110.69,
+      "usd": 181130
+     },
+     {
+      "side": "BUY",
+      "price": 110.68,
+      "usd": 310700
+     },
+     {
+      "side": "BUY",
+      "price": 110.66,
+      "usd": 238825
+     },
+     {
+      "side": "SELL",
+      "price": 110.85,
+      "usd": 151592
+     },
+     {
+      "side": "SELL",
+      "price": 110.9,
+      "usd": 210263
+     },
+     {
+      "side": "SELL",
+      "price": 110.91,
+      "usd": 160059
+     },
+     {
+      "side": "SELL",
+      "price": 110.92,
+      "usd": 396675
+     },
+     {
+      "side": "SELL",
+      "price": 110.93,
+      "usd": 169987
+     },
+     {
+      "side": "SELL",
+      "price": 110.94,
+      "usd": 185728
+     },
+     {
+      "side": "SELL",
+      "price": 110.95,
+      "usd": 337660
+     },
+     {
+      "side": "SELL",
+      "price": 110.96,
+      "usd": 399980
+     },
+     {
+      "side": "SELL",
+      "price": 110.97,
+      "usd": 156804
+     },
+     {
+      "side": "SELL",
+      "price": 110.98,
+      "usd": 320616
+     },
+     {
+      "side": "SELL",
+      "price": 111.0,
+      "usd": 383029
+     },
+     {
+      "side": "SELL",
+      "price": 111.01,
+      "usd": 368545
+     },
+     {
+      "side": "SELL",
+      "price": 111.02,
+      "usd": 259239
+     },
+     {
+      "side": "SELL",
+      "price": 111.03,
+      "usd": 182338
+     },
+     {
+      "side": "SELL",
+      "price": 111.04,
+      "usd": 413089
+     }
+    ]
+   },
+   {
+    "rev": "15ae3e1",
+    "as_of": "15:17:20",
+    "mid": 110.775,
+    "bid20": 3315597.41,
+    "ask20": 4382024.53,
+    "skew": 0.7566,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 110.77,
+      "usd": 224504
+     },
+     {
+      "side": "BUY",
+      "price": 110.74,
+      "usd": 275576
+     },
+     {
+      "side": "BUY",
+      "price": 110.71,
+      "usd": 251760
+     },
+     {
+      "side": "BUY",
+      "price": 110.68,
+      "usd": 547631
+     },
+     {
+      "side": "BUY",
+      "price": 110.66,
+      "usd": 243695
+     },
+     {
+      "side": "BUY",
+      "price": 110.64,
+      "usd": 195620
+     },
+     {
+      "side": "SELL",
+      "price": 110.86,
+      "usd": 212100
+     },
+     {
+      "side": "SELL",
+      "price": 110.88,
+      "usd": 438085
+     },
+     {
+      "side": "SELL",
+      "price": 110.89,
+      "usd": 286489
+     },
+     {
+      "side": "SELL",
+      "price": 110.9,
+      "usd": 173279
+     },
+     {
+      "side": "SELL",
+      "price": 110.91,
+      "usd": 412784
+     },
+     {
+      "side": "SELL",
+      "price": 110.93,
+      "usd": 318569
+     },
+     {
+      "side": "SELL",
+      "price": 110.94,
+      "usd": 397386
+     },
+     {
+      "side": "SELL",
+      "price": 110.97,
+      "usd": 314942
+     },
+     {
+      "side": "SELL",
+      "price": 111.0,
+      "usd": 329964
+     },
+     {
+      "side": "SELL",
+      "price": 111.01,
+      "usd": 314043
+     }
+    ]
+   },
+   {
+    "rev": "8aad33e",
+    "as_of": "15:16:20",
+    "mid": 110.685,
+    "bid20": 4141362.02,
+    "ask20": 5505188.26,
+    "skew": 0.7523,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 110.66,
+      "usd": 166416
+     },
+     {
+      "side": "BUY",
+      "price": 110.65,
+      "usd": 292258
+     },
+     {
+      "side": "BUY",
+      "price": 110.62,
+      "usd": 346350
+     },
+     {
+      "side": "BUY",
+      "price": 110.6,
+      "usd": 169827
+     },
+     {
+      "side": "BUY",
+      "price": 110.59,
+      "usd": 255416
+     },
+     {
+      "side": "BUY",
+      "price": 110.58,
+      "usd": 479427
+     },
+     {
+      "side": "BUY",
+      "price": 110.57,
+      "usd": 184406
+     },
+     {
+      "side": "BUY",
+      "price": 110.56,
+      "usd": 218730
+     },
+     {
+      "side": "BUY",
+      "price": 110.55,
+      "usd": 258929
+     },
+     {
+      "side": "BUY",
+      "price": 110.54,
+      "usd": 162360
+     },
+     {
+      "side": "BUY",
+      "price": 110.53,
+      "usd": 237006
+     },
+     {
+      "side": "BUY",
+      "price": 110.52,
+      "usd": 158481
+     },
+     {
+      "side": "BUY",
+      "price": 110.51,
+      "usd": 211851
+     },
+     {
+      "side": "BUY",
+      "price": 110.5,
+      "usd": 478755
+     },
+     {
+      "side": "SELL",
+      "price": 110.7,
+      "usd": 234528
+     },
+     {
+      "side": "SELL",
+      "price": 110.71,
+      "usd": 175948
+     },
+     {
+      "side": "SELL",
+      "price": 110.72,
+      "usd": 175375
+     },
+     {
+      "side": "SELL",
+      "price": 110.73,
+      "usd": 300192
+     },
+     {
+      "side": "SELL",
+      "price": 110.74,
+      "usd": 885866
+     },
+     {
+      "side": "SELL",
+      "price": 110.75,
+      "usd": 272349
+     },
+     {
+      "side": "SELL",
+      "price": 110.76,
+      "usd": 323257
+     },
+     {
+      "side": "SELL",
+      "price": 110.77,
+      "usd": 547186
+     },
+     {
+      "side": "SELL",
+      "price": 110.78,
+      "usd": 171000
+     },
+     {
+      "side": "SELL",
+      "price": 110.79,
+      "usd": 328267
+     },
+     {
+      "side": "SELL",
+      "price": 110.8,
+      "usd": 400457
+     },
+     {
+      "side": "SELL",
+      "price": 110.81,
+      "usd": 219144
+     },
+     {
+      "side": "SELL",
+      "price": 110.82,
+      "usd": 166852
+     },
+     {
+      "side": "SELL",
+      "price": 110.83,
+      "usd": 312223
+     },
+     {
+      "side": "SELL",
+      "price": 110.85,
+      "usd": 152707
+     },
+     {
+      "side": "SELL",
+      "price": 110.86,
+      "usd": 236836
+     },
+     {
+      "side": "SELL",
+      "price": 110.89,
+      "usd": 231491
+     }
+    ]
+   },
+   {
+    "rev": "fe4cddc",
+    "as_of": "15:15:20",
+    "mid": 110.845,
+    "bid20": 3797123.14,
+    "ask20": 4354240.35,
+    "skew": 0.8721,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 110.88,
+      "usd": 219974
+     },
+     {
+      "side": "BUY",
+      "price": 110.86,
+      "usd": 197439
+     },
+     {
+      "side": "BUY",
+      "price": 110.85,
+      "usd": 345560
+     },
+     {
+      "side": "BUY",
+      "price": 110.83,
+      "usd": 167352
+     },
+     {
+      "side": "BUY",
+      "price": 110.82,
+      "usd": 444042
+     },
+     {
+      "side": "BUY",
+      "price": 110.79,
+      "usd": 248695
+     },
+     {
+      "side": "BUY",
+      "price": 110.76,
+      "usd": 242436
+     },
+     {
+      "side": "BUY",
+      "price": 110.75,
+      "usd": 158069
+     },
+     {
+      "side": "BUY",
+      "price": 110.74,
+      "usd": 150066
+     },
+     {
+      "side": "BUY",
+      "price": 110.73,
+      "usd": 197728
+     },
+     {
+      "side": "BUY",
+      "price": 110.72,
+      "usd": 524349
+     },
+     {
+      "side": "SELL",
+      "price": 110.95,
+      "usd": 157367
+     },
+     {
+      "side": "SELL",
+      "price": 110.96,
+      "usd": 183746
+     },
+     {
+      "side": "SELL",
+      "price": 110.97,
+      "usd": 229465
+     },
+     {
+      "side": "SELL",
+      "price": 110.98,
+      "usd": 158699
+     },
+     {
+      "side": "SELL",
+      "price": 110.99,
+      "usd": 414798
+     },
+     {
+      "side": "SELL",
+      "price": 111.0,
+      "usd": 403511
+     },
+     {
+      "side": "SELL",
+      "price": 111.01,
+      "usd": 193712
+     },
+     {
+      "side": "SELL",
+      "price": 111.02,
+      "usd": 333212
+     },
+     {
+      "side": "SELL",
+      "price": 111.03,
+      "usd": 174393
+     },
+     {
+      "side": "SELL",
+      "price": 111.04,
+      "usd": 308904
+     },
+     {
+      "side": "SELL",
+      "price": 111.05,
+      "usd": 623015
+     },
+     {
+      "side": "SELL",
+      "price": 111.08,
+      "usd": 284421
+     }
+    ]
+   }
+  ],
+  "AVAX": [
+   {
+    "rev": "bae7950",
+    "as_of": "15:28:20",
+    "mid": 10.105,
+    "bid20": 196125.15,
+    "ask20": 118150.69,
+    "skew": 1.66,
+    "walls": []
+   },
+   {
+    "rev": "fce8421",
+    "as_of": "15:27:20",
+    "mid": 10.13,
+    "bid20": 145614.31,
+    "ask20": 166876.97,
+    "skew": 0.8726,
+    "walls": []
+   },
+   {
+    "rev": "f3939d9",
+    "as_of": "15:26:20",
+    "mid": 10.115,
+    "bid20": 154256.35,
+    "ask20": 105543.27,
+    "skew": 1.4615,
+    "walls": []
+   },
+   {
+    "rev": "dae3003",
+    "as_of": "15:25:20",
+    "mid": 10.02,
+    "bid20": 215416.81,
+    "ask20": 113887.66,
+    "skew": 1.8915,
+    "walls": []
+   },
+   {
+    "rev": "f8a66bd",
+    "as_of": "15:24:20",
+    "mid": 9.98,
+    "bid20": 56189.64,
+    "ask20": 89756.97,
+    "skew": 0.626,
+    "walls": []
+   },
+   {
+    "rev": "a62c4a5",
+    "as_of": "15:23:20",
+    "mid": 10.04,
+    "bid20": 39441.4,
+    "ask20": 159032.91,
+    "skew": 0.248,
+    "walls": []
+   },
+   {
+    "rev": "21d6916",
+    "as_of": "15:22:20",
+    "mid": 10.035,
+    "bid20": 158921.57,
+    "ask20": 213855.13,
+    "skew": 0.7431,
+    "walls": []
+   },
+   {
+    "rev": "360a289",
+    "as_of": "15:21:20",
+    "mid": 10.12,
+    "bid20": 147703.33,
+    "ask20": 446537.78,
+    "skew": 0.3308,
+    "walls": [
+     {
+      "side": "SELL",
+      "price": 10.138,
+      "usd": 256775
+     }
+    ]
+   },
+   {
+    "rev": "46b02f3",
+    "as_of": "15:20:20",
+    "mid": 10.15,
+    "bid20": 190986.61,
+    "ask20": 451268.06,
+    "skew": 0.4232,
+    "walls": [
+     {
+      "side": "SELL",
+      "price": 10.163,
+      "usd": 249776
+     }
+    ]
+   },
+   {
+    "rev": "a9c9bac",
+    "as_of": "15:19:20",
+    "mid": 10.21,
+    "bid20": 145500.49,
+    "ask20": 438507.3,
+    "skew": 0.3318,
+    "walls": [
+     {
+      "side": "SELL",
+      "price": 10.224,
+      "usd": 248954
+     }
+    ]
+   },
+   {
+    "rev": "334219f",
+    "as_of": "15:18:20",
+    "mid": 10.24,
+    "bid20": 217305.13,
+    "ask20": 217185.76,
+    "skew": 1.0005,
+    "walls": []
+   },
+   {
+    "rev": "15ae3e1",
+    "as_of": "15:17:20",
+    "mid": 10.24,
+    "bid20": 258513.96,
+    "ask20": 241224.79,
+    "skew": 1.0717,
+    "walls": []
+   },
+   {
+    "rev": "8aad33e",
+    "as_of": "15:16:20",
+    "mid": 10.28,
+    "bid20": 204615.87,
+    "ask20": 212512.71,
+    "skew": 0.9628,
+    "walls": []
+   },
+   {
+    "rev": "fe4cddc",
+    "as_of": "15:15:20",
+    "mid": 10.31,
+    "bid20": 233887.66,
+    "ask20": 227880.09,
+    "skew": 1.0264,
+    "walls": []
+   }
+  ],
+  "ADA": [
+   {
+    "rev": "bae7950",
+    "as_of": "15:28:20",
+    "mid": 0.2358,
+    "bid20": 2468961.43,
+    "ask20": 2106326.79,
+    "skew": 1.1722,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 0.2352,
+      "usd": 328487
+     },
+     {
+      "side": "BUY",
+      "price": 0.2348,
+      "usd": 259085
+     },
+     {
+      "side": "BUY",
+      "price": 0.2344,
+      "usd": 159643
+     },
+     {
+      "side": "BUY",
+      "price": 0.2343,
+      "usd": 309619
+     },
+     {
+      "side": "SELL",
+      "price": 0.2364,
+      "usd": 341586
+     },
+     {
+      "side": "SELL",
+      "price": 0.2367,
+      "usd": 229351
+     },
+     {
+      "side": "SELL",
+      "price": 0.2377,
+      "usd": 249587
+     }
+    ]
+   },
+   {
+    "rev": "fce8421",
+    "as_of": "15:27:20",
+    "mid": 0.2358,
+    "bid20": 2208284.9,
+    "ask20": 2075306.8,
+    "skew": 1.0641,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 0.2349,
+      "usd": 323011
+     },
+     {
+      "side": "BUY",
+      "price": 0.2344,
+      "usd": 158371
+     },
+     {
+      "side": "BUY",
+      "price": 0.2343,
+      "usd": 268956
+     },
+     {
+      "side": "BUY",
+      "price": 0.234,
+      "usd": 155112
+     },
+     {
+      "side": "SELL",
+      "price": 0.2362,
+      "usd": 323038
+     },
+     {
+      "side": "SELL",
+      "price": 0.2367,
+      "usd": 274243
+     },
+     {
+      "side": "SELL",
+      "price": 0.2372,
+      "usd": 260628
+     },
+     {
+      "side": "SELL",
+      "price": 0.2376,
+      "usd": 237853
+     }
+    ]
+   },
+   {
+    "rev": "f3939d9",
+    "as_of": "15:26:20",
+    "mid": 0.2346,
+    "bid20": 2220369.73,
+    "ask20": 1872228.21,
+    "skew": 1.186,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 0.2339,
+      "usd": 324413
+     },
+     {
+      "side": "BUY",
+      "price": 0.2331,
+      "usd": 432744
+     },
+     {
+      "side": "SELL",
+      "price": 0.2352,
+      "usd": 351824
+     },
+     {
+      "side": "SELL",
+      "price": 0.2358,
+      "usd": 237345
+     },
+     {
+      "side": "SELL",
+      "price": 0.2362,
+      "usd": 240216
+     }
+    ]
+   },
+   {
+    "rev": "dae3003",
+    "as_of": "15:25:20",
+    "mid": 0.2347,
+    "bid20": 2278335.55,
+    "ask20": 1715646.61,
+    "skew": 1.328,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 0.2341,
+      "usd": 306436
+     },
+     {
+      "side": "BUY",
+      "price": 0.2337,
+      "usd": 236263
+     },
+     {
+      "side": "BUY",
+      "price": 0.233,
+      "usd": 270155
+     },
+     {
+      "side": "BUY",
+      "price": 0.2329,
+      "usd": 300764
+     },
+     {
+      "side": "SELL",
+      "price": 0.2354,
+      "usd": 301882
+     },
+     {
+      "side": "SELL",
+      "price": 0.2363,
+      "usd": 215733
+     }
+    ]
+   },
+   {
+    "rev": "f8a66bd",
+    "as_of": "15:24:20",
+    "mid": 0.2344,
+    "bid20": 1846124.89,
+    "ask20": 1454628.83,
+    "skew": 1.2691,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 0.2335,
+      "usd": 472173
+     },
+     {
+      "side": "BUY",
+      "price": 0.2323,
+      "usd": 238499
+     },
+     {
+      "side": "SELL",
+      "price": 0.235,
+      "usd": 282924
+     },
+     {
+      "side": "SELL",
+      "price": 0.2355,
+      "usd": 194022
+     },
+     {
+      "side": "SELL",
+      "price": 0.2359,
+      "usd": 216622
+     }
+    ]
+   },
+   {
+    "rev": "a62c4a5",
+    "as_of": "15:23:20",
+    "mid": 0.2358,
+    "bid20": 1173162.43,
+    "ask20": 1481258.07,
+    "skew": 0.792,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 0.2341,
+      "usd": 266651
+     },
+     {
+      "side": "BUY",
+      "price": 0.2336,
+      "usd": 190973
+     },
+     {
+      "side": "BUY",
+      "price": 0.2333,
+      "usd": 216107
+     },
+     {
+      "side": "SELL",
+      "price": 0.2357,
+      "usd": 277298
+     },
+     {
+      "side": "SELL",
+      "price": 0.236,
+      "usd": 185679
+     },
+     {
+      "side": "SELL",
+      "price": 0.2366,
+      "usd": 222878
+     },
+     {
+      "side": "SELL",
+      "price": 0.2368,
+      "usd": 210184
+     }
+    ]
+   },
+   {
+    "rev": "21d6916",
+    "as_of": "15:22:20",
+    "mid": 0.2364,
+    "bid20": 2571983.16,
+    "ask20": 2297488.26,
+    "skew": 1.1195,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 0.236,
+      "usd": 335017
+     },
+     {
+      "side": "BUY",
+      "price": 0.2357,
+      "usd": 408950
+     },
+     {
+      "side": "BUY",
+      "price": 0.2352,
+      "usd": 352377
+     },
+     {
+      "side": "BUY",
+      "price": 0.235,
+      "usd": 150416
+     },
+     {
+      "side": "SELL",
+      "price": 0.2375,
+      "usd": 334400
+     },
+     {
+      "side": "SELL",
+      "price": 0.238,
+      "usd": 335502
+     },
+     {
+      "side": "SELL",
+      "price": 0.2382,
+      "usd": 358855
+     }
+    ]
+   },
+   {
+    "rev": "360a289",
+    "as_of": "15:21:20",
+    "mid": 0.2389,
+    "bid20": 2382638.14,
+    "ask20": 2470912.8,
+    "skew": 0.9643,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 0.2383,
+      "usd": 330047
+     },
+     {
+      "side": "BUY",
+      "price": 0.2376,
+      "usd": 309267
+     },
+     {
+      "side": "BUY",
+      "price": 0.2372,
+      "usd": 155764
+     },
+     {
+      "side": "BUY",
+      "price": 0.2371,
+      "usd": 340706
+     },
+     {
+      "side": "SELL",
+      "price": 0.2396,
+      "usd": 361956
+     },
+     {
+      "side": "SELL",
+      "price": 0.24,
+      "usd": 157304
+     },
+     {
+      "side": "SELL",
+      "price": 0.2401,
+      "usd": 302028
+     },
+     {
+      "side": "SELL",
+      "price": 0.2406,
+      "usd": 331926
+     }
+    ]
+   },
+   {
+    "rev": "46b02f3",
+    "as_of": "15:20:20",
+    "mid": 0.2385,
+    "bid20": 2380035.38,
+    "ask20": 2281489.07,
+    "skew": 1.0432,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 0.2376,
+      "usd": 331325
+     },
+     {
+      "side": "BUY",
+      "price": 0.2374,
+      "usd": 162274
+     },
+     {
+      "side": "BUY",
+      "price": 0.2371,
+      "usd": 274667
+     },
+     {
+      "side": "BUY",
+      "price": 0.2367,
+      "usd": 182121
+     },
+     {
+      "side": "SELL",
+      "price": 0.2391,
+      "usd": 330715
+     },
+     {
+      "side": "SELL",
+      "price": 0.2393,
+      "usd": 298806
+     },
+     {
+      "side": "SELL",
+      "price": 0.2399,
+      "usd": 351619
+     }
+    ]
+   },
+   {
+    "rev": "a9c9bac",
+    "as_of": "15:19:20",
+    "mid": 0.2399,
+    "bid20": 2440013.88,
+    "ask20": 2580731.86,
+    "skew": 0.9455,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 0.2391,
+      "usd": 409270
+     },
+     {
+      "side": "BUY",
+      "price": 0.2388,
+      "usd": 189344
+     },
+     {
+      "side": "BUY",
+      "price": 0.2382,
+      "usd": 319491
+     },
+     {
+      "side": "BUY",
+      "price": 0.238,
+      "usd": 178644
+     },
+     {
+      "side": "SELL",
+      "price": 0.2402,
+      "usd": 159755
+     },
+     {
+      "side": "SELL",
+      "price": 0.2403,
+      "usd": 362644
+     },
+     {
+      "side": "SELL",
+      "price": 0.2408,
+      "usd": 368530
+     },
+     {
+      "side": "SELL",
+      "price": 0.2413,
+      "usd": 331580
+     }
+    ]
+   },
+   {
+    "rev": "334219f",
+    "as_of": "15:18:20",
+    "mid": 0.2406,
+    "bid20": 3097004.28,
+    "ask20": 2706834.43,
+    "skew": 1.1441,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 0.24,
+      "usd": 347983
+     },
+     {
+      "side": "BUY",
+      "price": 0.2396,
+      "usd": 183447
+     },
+     {
+      "side": "BUY",
+      "price": 0.2394,
+      "usd": 390909
+     },
+     {
+      "side": "BUY",
+      "price": 0.2391,
+      "usd": 187165
+     },
+     {
+      "side": "BUY",
+      "price": 0.2389,
+      "usd": 391222
+     },
+     {
+      "side": "BUY",
+      "price": 0.2388,
+      "usd": 178119
+     },
+     {
+      "side": "BUY",
+      "price": 0.2387,
+      "usd": 204397
+     },
+     {
+      "side": "SELL",
+      "price": 0.241,
+      "usd": 168392
+     },
+     {
+      "side": "SELL",
+      "price": 0.2411,
+      "usd": 335104
+     },
+     {
+      "side": "SELL",
+      "price": 0.2414,
+      "usd": 335457
+     },
+     {
+      "side": "SELL",
+      "price": 0.242,
+      "usd": 344792
+     },
+     {
+      "side": "SELL",
+      "price": 0.2426,
+      "usd": 157581
+     }
+    ]
+   },
+   {
+    "rev": "15ae3e1",
+    "as_of": "15:17:20",
+    "mid": 0.2402,
+    "bid20": 3768388.26,
+    "ask20": 2781558.72,
+    "skew": 1.3548,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 0.24,
+      "usd": 561920
+     },
+     {
+      "side": "BUY",
+      "price": 0.2396,
+      "usd": 254677
+     },
+     {
+      "side": "BUY",
+      "price": 0.2395,
+      "usd": 368025
+     },
+     {
+      "side": "BUY",
+      "price": 0.2392,
+      "usd": 322914
+     },
+     {
+      "side": "BUY",
+      "price": 0.2391,
+      "usd": 170539
+     },
+     {
+      "side": "BUY",
+      "price": 0.239,
+      "usd": 203228
+     },
+     {
+      "side": "BUY",
+      "price": 0.2388,
+      "usd": 180559
+     },
+     {
+      "side": "BUY",
+      "price": 0.2386,
+      "usd": 171432
+     },
+     {
+      "side": "BUY",
+      "price": 0.2385,
+      "usd": 172702
+     },
+     {
+      "side": "BUY",
+      "price": 0.2384,
+      "usd": 369991
+     },
+     {
+      "side": "SELL",
+      "price": 0.2406,
+      "usd": 172990
+     },
+     {
+      "side": "SELL",
+      "price": 0.2407,
+      "usd": 352303
+     },
+     {
+      "side": "SELL",
+      "price": 0.2414,
+      "usd": 325866
+     },
+     {
+      "side": "SELL",
+      "price": 0.242,
+      "usd": 352181
+     }
+    ]
+   },
+   {
+    "rev": "8aad33e",
+    "as_of": "15:16:20",
+    "mid": 0.2405,
+    "bid20": 3649356.88,
+    "ask20": 2586379.57,
+    "skew": 1.411,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 0.2401,
+      "usd": 189008
+     },
+     {
+      "side": "BUY",
+      "price": 0.24,
+      "usd": 599012
+     },
+     {
+      "side": "BUY",
+      "price": 0.2397,
+      "usd": 342814
+     },
+     {
+      "side": "BUY",
+      "price": 0.2396,
+      "usd": 186508
+     },
+     {
+      "side": "BUY",
+      "price": 0.2394,
+      "usd": 312637
+     },
+     {
+      "side": "BUY",
+      "price": 0.2392,
+      "usd": 153650
+     },
+     {
+      "side": "BUY",
+      "price": 0.2391,
+      "usd": 197123
+     },
+     {
+      "side": "BUY",
+      "price": 0.2387,
+      "usd": 237031
+     },
+     {
+      "side": "BUY",
+      "price": 0.2386,
+      "usd": 364762
+     },
+     {
+      "side": "SELL",
+      "price": 0.241,
+      "usd": 337845
+     },
+     {
+      "side": "SELL",
+      "price": 0.2418,
+      "usd": 328511
+     },
+     {
+      "side": "SELL",
+      "price": 0.242,
+      "usd": 358934
+     }
+    ]
+   },
+   {
+    "rev": "fe4cddc",
+    "as_of": "15:15:20",
+    "mid": 0.2407,
+    "bid20": 3711954.34,
+    "ask20": 2415987.03,
+    "skew": 1.5364,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 0.2401,
+      "usd": 152759
+     },
+     {
+      "side": "BUY",
+      "price": 0.24,
+      "usd": 648126
+     },
+     {
+      "side": "BUY",
+      "price": 0.2398,
+      "usd": 355483
+     },
+     {
+      "side": "BUY",
+      "price": 0.2396,
+      "usd": 239491
+     },
+     {
+      "side": "BUY",
+      "price": 0.2394,
+      "usd": 365441
+     },
+     {
+      "side": "BUY",
+      "price": 0.2391,
+      "usd": 208558
+     },
+     {
+      "side": "BUY",
+      "price": 0.2389,
+      "usd": 213202
+     },
+     {
+      "side": "BUY",
+      "price": 0.2388,
+      "usd": 432916
+     },
+     {
+      "side": "SELL",
+      "price": 0.241,
+      "usd": 340308
+     },
+     {
+      "side": "SELL",
+      "price": 0.2418,
+      "usd": 341829
+     }
+    ]
+   }
+  ],
+  "NEAR": [
+   {
+    "rev": "bae7950",
+    "as_of": "15:28:20",
+    "mid": 4.777,
+    "bid20": 687201.98,
+    "ask20": 571434.88,
+    "skew": 1.2026,
+    "walls": []
+   },
+   {
+    "rev": "fce8421",
+    "as_of": "15:27:20",
+    "mid": 4.7865,
+    "bid20": 793127.12,
+    "ask20": 805815.52,
+    "skew": 0.9843,
+    "walls": [
+     {
+      "side": "SELL",
+      "price": 4.801,
+      "usd": 190830
+     }
+    ]
+   },
+   {
+    "rev": "f3939d9",
+    "as_of": "15:26:20",
+    "mid": 4.7865,
+    "bid20": 589566.74,
+    "ask20": 791928.65,
+    "skew": 0.7445,
+    "walls": [
+     {
+      "side": "SELL",
+      "price": 4.801,
+      "usd": 160190
+     }
+    ]
+   },
+   {
+    "rev": "dae3003",
+    "as_of": "15:25:20",
+    "mid": 4.793,
+    "bid20": 1397390.47,
+    "ask20": 765825.82,
+    "skew": 1.8247,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 4.788,
+      "usd": 901705
+     },
+     {
+      "side": "SELL",
+      "price": 4.811,
+      "usd": 177805
+     }
+    ]
+   },
+   {
+    "rev": "f8a66bd",
+    "as_of": "15:24:20",
+    "mid": 4.786,
+    "bid20": 248281.93,
+    "ask20": 359643.27,
+    "skew": 0.6904,
+    "walls": []
+   },
+   {
+    "rev": "a62c4a5",
+    "as_of": "15:23:20",
+    "mid": 4.783,
+    "bid20": 197716.69,
+    "ask20": 691608.82,
+    "skew": 0.2859,
+    "walls": []
+   },
+   {
+    "rev": "21d6916",
+    "as_of": "15:22:20",
+    "mid": 4.758,
+    "bid20": 538369.38,
+    "ask20": 801373.13,
+    "skew": 0.6718,
+    "walls": []
+   },
+   {
+    "rev": "360a289",
+    "as_of": "15:21:20",
+    "mid": 4.76,
+    "bid20": 441966.89,
+    "ask20": 857994.82,
+    "skew": 0.5151,
+    "walls": [
+     {
+      "side": "SELL",
+      "price": 4.781,
+      "usd": 159150
+     }
+    ]
+   },
+   {
+    "rev": "46b02f3",
+    "as_of": "15:20:20",
+    "mid": 4.7425,
+    "bid20": 493323.31,
+    "ask20": 720325.73,
+    "skew": 0.6849,
+    "walls": []
+   },
+   {
+    "rev": "a9c9bac",
+    "as_of": "15:19:20",
+    "mid": 4.784,
+    "bid20": 550204.25,
+    "ask20": 1476226.63,
+    "skew": 0.3727,
+    "walls": [
+     {
+      "side": "SELL",
+      "price": 4.793,
+      "usd": 267152
+     }
+    ]
+   },
+   {
+    "rev": "334219f",
+    "as_of": "15:18:20",
+    "mid": 4.7675,
+    "bid20": 2317689.54,
+    "ask20": 970757.79,
+    "skew": 2.3875,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 4.76,
+      "usd": 315221
+     },
+     {
+      "side": "BUY",
+      "price": 4.759,
+      "usd": 1471126
+     },
+     {
+      "side": "SELL",
+      "price": 4.788,
+      "usd": 187809
+     }
+    ]
+   },
+   {
+    "rev": "15ae3e1",
+    "as_of": "15:17:20",
+    "mid": 4.756,
+    "bid20": 594608.74,
+    "ask20": 682317.35,
+    "skew": 0.8715,
+    "walls": []
+   },
+   {
+    "rev": "8aad33e",
+    "as_of": "15:16:20",
+    "mid": 4.765,
+    "bid20": 526181.72,
+    "ask20": 580798.86,
+    "skew": 0.906,
+    "walls": []
+   },
+   {
+    "rev": "fe4cddc",
+    "as_of": "15:15:20",
+    "mid": 4.86,
+    "bid20": 2041990.59,
+    "ask20": 1303153.6,
+    "skew": 1.567,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 4.855,
+      "usd": 274521
+     },
+     {
+      "side": "BUY",
+      "price": 4.851,
+      "usd": 164527
+     },
+     {
+      "side": "BUY",
+      "price": 4.85,
+      "usd": 330503
+     },
+     {
+      "side": "BUY",
+      "price": 4.849,
+      "usd": 414638
+     },
+     {
+      "side": "SELL",
+      "price": 4.876,
+      "usd": 363277
+     }
+    ]
+   }
+  ],
+  "BNB": [
+   {
+    "rev": "bae7950",
+    "as_of": "15:28:20",
+    "mid": 736.9,
+    "bid20": 23283.42,
+    "ask20": 248433.52,
+    "skew": 0.0937,
+    "walls": []
+   },
+   {
+    "rev": "fce8421",
+    "as_of": "15:27:20",
+    "mid": 737.35,
+    "bid20": 152935.79,
+    "ask20": 19063.21,
+    "skew": 8.0226,
+    "walls": []
+   },
+   {
+    "rev": "f3939d9",
+    "as_of": "15:26:20",
+    "mid": 736.65,
+    "bid20": 114301.32,
+    "ask20": 46738.04,
+    "skew": 2.4456,
+    "walls": []
+   },
+   {
+    "rev": "dae3003",
+    "as_of": "15:25:20",
+    "mid": 737.75,
+    "bid20": 100548.59,
+    "ask20": 88982.34,
+    "skew": 1.13,
+    "walls": []
+   },
+   {
+    "rev": "f8a66bd",
+    "as_of": "15:24:20",
+    "mid": 737.75,
+    "bid20": 92273.0,
+    "ask20": 166981.61,
+    "skew": 0.5526,
+    "walls": []
+   },
+   {
+    "rev": "a62c4a5",
+    "as_of": "15:23:20",
+    "mid": 739.1,
+    "bid20": 115977.17,
+    "ask20": 35280.54,
+    "skew": 3.2873,
+    "walls": []
+   },
+   {
+    "rev": "21d6916",
+    "as_of": "15:22:20",
+    "mid": 739.5,
+    "bid20": 63759.89,
+    "ask20": 103363.51,
+    "skew": 0.6169,
+    "walls": []
+   },
+   {
+    "rev": "360a289",
+    "as_of": "15:21:20",
+    "mid": 742.2,
+    "bid20": 92099.07,
+    "ask20": 106818.18,
+    "skew": 0.8622,
+    "walls": []
+   },
+   {
+    "rev": "46b02f3",
+    "as_of": "15:20:20",
+    "mid": 741.6,
+    "bid20": 119508.77,
+    "ask20": 117193.07,
+    "skew": 1.0198,
+    "walls": []
+   },
+   {
+    "rev": "a9c9bac",
+    "as_of": "15:19:20",
+    "mid": 743.7,
+    "bid20": 54274.02,
+    "ask20": 162391.61,
+    "skew": 0.3342,
+    "walls": []
+   },
+   {
+    "rev": "334219f",
+    "as_of": "15:18:20",
+    "mid": 745.8,
+    "bid20": 125483.72,
+    "ask20": 279176.47,
+    "skew": 0.4495,
+    "walls": []
+   },
+   {
+    "rev": "15ae3e1",
+    "as_of": "15:17:20",
+    "mid": 745.75,
+    "bid20": 118135.4,
+    "ask20": 145300.36,
+    "skew": 0.813,
+    "walls": []
+   },
+   {
+    "rev": "8aad33e",
+    "as_of": "15:16:20",
+    "mid": 746.35,
+    "bid20": 59081.32,
+    "ask20": 314521.72,
+    "skew": 0.1878,
+    "walls": []
+   },
+   {
+    "rev": "fe4cddc",
+    "as_of": "15:15:20",
+    "mid": 747.6,
+    "bid20": 59158.02,
+    "ask20": 253646.88,
+    "skew": 0.2332,
+    "walls": []
+   }
+  ],
+  "DOGE": [
+   {
+    "rev": "bae7950",
+    "as_of": "15:28:20",
+    "mid": 0.0839,
+    "bid20": 1336022.04,
+    "ask20": 1202326.27,
+    "skew": 1.1112,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 0.0837,
+      "usd": 167312
+     },
+     {
+      "side": "BUY",
+      "price": 0.0837,
+      "usd": 390419
+     },
+     {
+      "side": "SELL",
+      "price": 0.0841,
+      "usd": 471012
+     }
+    ]
+   },
+   {
+    "rev": "fce8421",
+    "as_of": "15:27:20",
+    "mid": 0.0839,
+    "bid20": 1078848.55,
+    "ask20": 1496482.06,
+    "skew": 0.7209,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 0.0837,
+      "usd": 393740
+     },
+     {
+      "side": "SELL",
+      "price": 0.084,
+      "usd": 197112
+     },
+     {
+      "side": "SELL",
+      "price": 0.0841,
+      "usd": 443504
+     },
+     {
+      "side": "SELL",
+      "price": 0.0841,
+      "usd": 226767
+     }
+    ]
+   },
+   {
+    "rev": "f3939d9",
+    "as_of": "15:26:20",
+    "mid": 0.0837,
+    "bid20": 474695.23,
+    "ask20": 1246544.64,
+    "skew": 0.3808,
+    "walls": [
+     {
+      "side": "SELL",
+      "price": 0.0838,
+      "usd": 381882
+     },
+     {
+      "side": "SELL",
+      "price": 0.0838,
+      "usd": 161364
+     },
+     {
+      "side": "SELL",
+      "price": 0.0839,
+      "usd": 182405
+     }
+    ]
+   },
+   {
+    "rev": "dae3003",
+    "as_of": "15:25:20",
+    "mid": 0.0837,
+    "bid20": 1223458.07,
+    "ask20": 924872.17,
+    "skew": 1.3228,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 0.0836,
+      "usd": 217684
+     },
+     {
+      "side": "BUY",
+      "price": 0.0835,
+      "usd": 432576
+     },
+     {
+      "side": "SELL",
+      "price": 0.0838,
+      "usd": 396304
+     }
+    ]
+   },
+   {
+    "rev": "f8a66bd",
+    "as_of": "15:24:20",
+    "mid": 0.0834,
+    "bid20": 851168.41,
+    "ask20": 456160.88,
+    "skew": 1.8659,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 0.0833,
+      "usd": 397186
+     }
+    ]
+   },
+   {
+    "rev": "a62c4a5",
+    "as_of": "15:23:20",
+    "mid": 0.0837,
+    "bid20": 179799.95,
+    "ask20": 302389.82,
+    "skew": 0.5946,
+    "walls": []
+   },
+   {
+    "rev": "21d6916",
+    "as_of": "15:22:20",
+    "mid": 0.0844,
+    "bid20": 1142379.42,
+    "ask20": 1192443.9,
+    "skew": 0.958,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 0.0843,
+      "usd": 411320
+     },
+     {
+      "side": "SELL",
+      "price": 0.0847,
+      "usd": 411424
+     }
+    ]
+   },
+   {
+    "rev": "360a289",
+    "as_of": "15:21:20",
+    "mid": 0.0851,
+    "bid20": 1159353.29,
+    "ask20": 1496221.43,
+    "skew": 0.7749,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 0.0849,
+      "usd": 156318
+     },
+     {
+      "side": "BUY",
+      "price": 0.0849,
+      "usd": 432443
+     },
+     {
+      "side": "SELL",
+      "price": 0.0852,
+      "usd": 398693
+     },
+     {
+      "side": "SELL",
+      "price": 0.0853,
+      "usd": 170075
+     }
+    ]
+   },
+   {
+    "rev": "46b02f3",
+    "as_of": "15:20:20",
+    "mid": 0.0849,
+    "bid20": 765508.34,
+    "ask20": 1094202.07,
+    "skew": 0.6996,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 0.0846,
+      "usd": 416220
+     },
+     {
+      "side": "SELL",
+      "price": 0.085,
+      "usd": 407530
+     }
+    ]
+   },
+   {
+    "rev": "a9c9bac",
+    "as_of": "15:19:20",
+    "mid": 0.0853,
+    "bid20": 1016366.45,
+    "ask20": 1358226.03,
+    "skew": 0.7483,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 0.0852,
+      "usd": 390625
+     },
+     {
+      "side": "SELL",
+      "price": 0.0855,
+      "usd": 387725
+     }
+    ]
+   },
+   {
+    "rev": "334219f",
+    "as_of": "15:18:20",
+    "mid": 0.0857,
+    "bid20": 1882637.54,
+    "ask20": 1555498.96,
+    "skew": 1.2103,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 0.0855,
+      "usd": 266049
+     },
+     {
+      "side": "BUY",
+      "price": 0.0855,
+      "usd": 543045
+     },
+     {
+      "side": "BUY",
+      "price": 0.0855,
+      "usd": 240323
+     },
+     {
+      "side": "SELL",
+      "price": 0.0858,
+      "usd": 157210
+     },
+     {
+      "side": "SELL",
+      "price": 0.0859,
+      "usd": 546869
+     }
+    ]
+   },
+   {
+    "rev": "15ae3e1",
+    "as_of": "15:17:20",
+    "mid": 0.0857,
+    "bid20": 1710736.11,
+    "ask20": 1139466.28,
+    "skew": 1.5013,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 0.0855,
+      "usd": 394210
+     },
+     {
+      "side": "BUY",
+      "price": 0.0855,
+      "usd": 257596
+     },
+     {
+      "side": "BUY",
+      "price": 0.0855,
+      "usd": 286025
+     },
+     {
+      "side": "SELL",
+      "price": 0.0859,
+      "usd": 153042
+     }
+    ]
+   },
+   {
+    "rev": "8aad33e",
+    "as_of": "15:16:20",
+    "mid": 0.0857,
+    "bid20": 1429230.97,
+    "ask20": 1386524.58,
+    "skew": 1.0308,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 0.0855,
+      "usd": 434292
+     },
+     {
+      "side": "BUY",
+      "price": 0.0855,
+      "usd": 244856
+     },
+     {
+      "side": "SELL",
+      "price": 0.0858,
+      "usd": 404901
+     }
+    ]
+   },
+   {
+    "rev": "fe4cddc",
+    "as_of": "15:15:20",
+    "mid": 0.0857,
+    "bid20": 1593840.05,
+    "ask20": 1733273.52,
+    "skew": 0.9196,
+    "walls": [
+     {
+      "side": "BUY",
+      "price": 0.0856,
+      "usd": 399607
+     },
+     {
+      "side": "BUY",
+      "price": 0.0856,
+      "usd": 164583
+     },
+     {
+      "side": "BUY",
+      "price": 0.0856,
+      "usd": 246999
+     },
+     {
+      "side": "SELL",
+      "price": 0.0859,
+      "usd": 517397
+     }
+    ]
+   }
+  ]
+ }
+}
