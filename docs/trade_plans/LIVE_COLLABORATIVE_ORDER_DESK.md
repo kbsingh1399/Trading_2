@@ -3176,3 +3176,17 @@ ACTIVE POSITION SENTRY RECEIPT — MT5 ACCOUNT #5064568
 - **Rejected:** LNK (EMA50 shelf in band, persistence not tested this cycle; watch), CFDs (NAS100, SILVER, USDJPY shelves untested; GOLD, DJ30, USWTI, FX outside Track 1 geometry).
 - **Ruling file:** `docs/trade_plans/ARENA_24_ASSET_DUAL_TRACK_RULING_20261008_2025UTC.md`. **Stage file:** `docs/trade_plans/ARENA_LIMIT_STAGES_20261008_2025_STANDBY.json`.
 - **Gating:** no MT5 order placed by this agent. No `--execute`. Desk executes.
+
+## 64-ADDENDUM-6 (2026-10-08 20:40 UTC, Arena briefing 20:40:10)
+
+- Telemetry 20:40:20 UTC: capacity 1 filled + 4 pending vs max 2. OVER CAP.
+- ADVISE DELETE (desk to action; agent cannot cancel MT5 orders):
+  - 18713408 USWTI.p BUY_LIMIT 0.2 @91.72. -0.56 ATR, no shelf, SL 1.19 ATR (below 1.5 floor). Placed 20:28:34, not in any ruling.
+  - 18713432 SP500.p BUY_LIMIT 0.1 @7758.0. -0.90 ATR, no shelf, SL 0.95 ATR. Placed 20:31:23, not in any ruling.
+  - 18713434 XAUUSD.pi BUY_LIMIT 0.01 @4124.0. -1.48 ATR, no shelf, SL 1.48 ATR. Placed 20:31:41, not in any ruling.
+- KEEP 18713247 NERUSD.p SELL_LIMIT 1.0 @4.617. Sizing flag: 12.70 nominal / 18.29 stressed, above cap. Desk decision.
+- ETH #18706769 HOLD (SL 2434.52, mark 2467.9, R 2.42).
+- Standby A LTC SELL LIMIT 63.10 (12/12). Admissible, frozen until capacity clears. Expires 21:58 UTC.
+- Standby B BTC 81,833 DOWNGRADED TO WATCH (11/12, one receipt at 115k).
+- Model 1: zero candidates.
+- Ruling: docs/trade_plans/ARENA_24_ASSET_DUAL_TRACK_RULING_20261008_2040UTC.md. Stage file: docs/trade_plans/ARENA_LIMIT_STAGES_20261008_2040_STANDBY.json.

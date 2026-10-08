@@ -1,0 +1,89 @@
+{
+  "_note": "ARENA 20:40:10 council briefing (telemetry 20:40:20 UTC). CAPACITY OVER CAP: 1 filled (ETH #18706769) + 4 pending. Max concurrent 2. Three pending orders placed 20:28-20:31 UTC (USWTI BUY 18713408, SP500 BUY 18713432, XAUUSD BUY 18713434) are NOT in any ruling and fail Track 1 geometry and the 1.5 ATR SL floor: advise DELETE. NEAR 18713247 KEEP per resting-order rule (desk sizing decision). Standby A only: LTC 63.10 is admissible but cannot be punched until capacity frees. BTC 81,833 standby downgraded to WATCH (ask band 11/12 receipts, one receipt at 115k).",
+  "receipt": {
+    "telemetry_as_of_utc": "2026-10-08 20:40:20 UTC",
+    "validation_now_utc": "2026-10-08 20:40:20 UTC"
+  },
+  "live_pending": [
+    {
+      "ticket": 18713247,
+      "symbol": "NERUSD.p",
+      "type": "SELL_LIMIT",
+      "volume": 1.0,
+      "price": 4.617,
+      "sl": 4.744,
+      "tp": 4.299,
+      "risk_usd": 12.7,
+      "stressed_usd": 18.29,
+      "advice": "KEEP (resting rule); desk sizing decision"
+    },
+    {
+      "ticket": 18713408,
+      "symbol": "USWTI.p",
+      "type": "BUY_LIMIT",
+      "volume": 0.2,
+      "price": 91.72,
+      "sl": 91.22,
+      "tp": 93.0,
+      "advice": "DELETE"
+    },
+    {
+      "ticket": 18713432,
+      "symbol": "SP500.p",
+      "type": "BUY_LIMIT",
+      "volume": 0.1,
+      "price": 7758.0,
+      "sl": 7748.0,
+      "tp": 7783.0,
+      "advice": "DELETE"
+    },
+    {
+      "ticket": 18713434,
+      "symbol": "XAUUSD.pi",
+      "type": "BUY_LIMIT",
+      "volume": 0.01,
+      "price": 4124.0,
+      "sl": 4114.0,
+      "tp": 4149.0,
+      "advice": "DELETE"
+    }
+  ],
+  "ranking": [
+    "A LTC 63.100 (preferred cap 10.50, standby, frozen)"
+  ],
+  "plans": [
+    {
+      "plan_version": "omni.trade_plan.v1",
+      "plan_id": "arena-20261008-2040-ltc-m2-short",
+      "model": "Model 2 trend-following",
+      "direction": "SHORT",
+      "symbol": "LTCUSD.pi",
+      "asset": "LTCUSD",
+      "limit_price": 63.1,
+      "sl": 64.15,
+      "tp": 60.475,
+      "volume": 0.1,
+      "atr": 0.3979,
+      "risk_usd": 10.5,
+      "sl_atr": 2.639,
+      "stressed_usd": 15.12,
+      "tp_r": 2.5,
+      "ttl_bars": 8,
+      "created_at_epoch": 1791492020.097102,
+      "expires_at_epoch": 1791496680.0,
+      "blackout_windows": [],
+      "max_friction_r": 0.35,
+      "tp_r_recomputed": 2.5,
+      "validation": "PASS",
+      "validated_at_epoch": 1791492020.097102,
+      "contract": {
+        "tick_size": 0.001,
+        "min_lot": 0.1,
+        "step_lot": 0.1,
+        "contract_size": 100.0
+      },
+      "label": "LTC SELL LIMIT A (STANDBY: capacity 2/2 frozen)",
+      "comment": "ARENA: 20:40 scan (telemetry 20:40:20 UTC). LTC mid 63.015, ATR 0.3979. SELL LIMIT 63.10 = +0.21 ATR above mid on EMA50 shelf (63.07). 200 EMA slope -0.67% BEARISH; EMA20 62.36 below. Ask band min 554k / 12 receipts (845k newest). Imbalance and spread: spread 48 bps exempt (passive; bid 62.70 below entry). SL 64.15 = 2.64 ATR; TP 60.475 = 2.50R. Risk 10.50 USD (preferred cap). Standby only."
+    }
+  ]
+}
