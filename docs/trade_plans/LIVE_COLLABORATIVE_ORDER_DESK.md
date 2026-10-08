@@ -2223,3 +2223,54 @@ The 5 background daemons confirm active (AST Watcher task-21640, Telemetry Sync 
 
 Next trigger events: ETH L3 wall materializing OR EURUSD drift to -2.0 SD.
 
+
+
+---
+
+## Section 40: Live Order Punched — Ticket #18686607 (ETHUSD.pi Model 1 Limit Long) | 12:00 UTC | 2026-10-08
+
+**Desk Action**: **ORDER STAGED NATIVELY INTO METATRADER 5 ACCOUNT #5064568**.
+
+### 1. Order Specification
+* **Ticket Number**: **#18686607**
+* **Symbol**: `ETHUSD.pi`
+* **Direction**: `BUY LIMIT` (Resting Passive Limit Bid)
+* **Volume / Lots**: **0.64 lots**
+* **Limit Entry Price**: **2,530.00 USD**
+* **Protective Stop Loss**: **2,514.00 USD** (16.00 USD stop distance)
+* **Take Profit Target**: **2,561.35 USD** (Session VWAP Retest)
+* **Order Comment**: `OFC_M1_ETH_SWEEP`
+* **Time In Force**: Persistent GTC (Enforced by Order Persistence Governor)
+* **Spread at Staging**: 11.4 bps (2.80 USD on Blueberry Markets)
+
+### 2. Multi-Pillar Quantitative Confluence & Orderflow Rationale
+1. **Model 1 Extreme Statistical Flush**:
+   - 15m VWAP Z-score: **-2.32 SD** (Exceeds the required |Z| >= 2.0 SD mean-reversion threshold).
+   - 15m Wilder RSI: **23.99** (Deep oversold exhaustion below 30.0).
+2. **Liquidation & Stop Sweep Geometry**:
+   - The prior 4H structural low was at 2,530.80 USD.
+   - Price plunged down to an extreme low of **2,523.60 USD**, triggering massive long stop liquidations.
+   - The subsequent 15m candle formed an immediate strong absorption wick from 2,523.60 back up to 2,534.90 USD (Volume: 2,500 ticks), followed by consecutive higher lows (2,525.10 and 2,527.20 USD).
+   - The resting limit at **2,530.00 USD** is positioned to catch a passive retest of the swept liquidity pool.
+3. **Binance Futures Live Orderbook Depth & Whale Bid Support**:
+   - Verified live Binance Futures L2 orderbook at entry:
+     * **Bid Wall 1**: 335.19 ETH (**850,189 USD**) at 2,536.47 USD.
+     * **Bid Wall 2**: 61.80 ETH (**156,748 USD**) at 2,536.30 USD.
+     * Top-15 Bid Depth: **1,108,425 USD** vs Top-15 Ask Depth: **74,716 USD** (Imbalance: **93.7% Bids / 6.3% Asks**).
+   - 5m Taker CVD indicates institutional absorption (+17.04M USD net buying into the flush).
+4. **G-1 Capital Floor Defense & Capacity Arithmetic**:
+   - Current Account Equity: **4,811.62 USD**.
+   - Stop Distance: 16.00 USD.
+   - Nominal Risk: `0.64 lots * 16.00 USD = 10.24 USD` (Strictly within the 10.00 to 11.04 USD budget).
+   - Stressed Loss Model (`1.25 * 10.24 + 2.00`): **14.80 USD**.
+   - Post-Loss Equity: `4,811.62 - 14.80 = 4,796.82 USD`.
+   - Mandatory Operating Buffer (+20 USD above 4,775.00 floor): **4,795.00 USD**.
+   - **Headroom Preserved**: **+1.82 USD** safely preserved above the buffer threshold.
+   - Broker Admission Preflight: MT5 `order_check` returned `retcode=0, comment='Done'`.
+5. **Exit & Ratchet Strategy**:
+   - Target 1 (TP): **2,561.35 USD** (+31.35 USD gain = **+1.96R / +20.06 USD net profit**).
+   - Target 2 (Extended / POC): 2,572.60 USD (+2.66R / +27.26 USD net profit).
+   - Microstructure Ratchet: Move stop to Phase 0 Break-Even (+0.35R = 2,535.60 USD) when gain reaches +0.80R (+12.80 USD to 2,542.80 USD). This drops risk to 0.00R and liberates the risk slot.
+   - Time Decay: Exit at market if price fails to reach +0.20R within 24 bars (6 hours).
+
+---
