@@ -33,12 +33,18 @@ trigger: always_on
     - **Unified 13th-Minute Wake-Up System**:
       1. *Tier 1 (Execution Daemon - `task-24931`)*: Continuous background telemetry git daemon auto-syncing authentic state to GitHub every 60 seconds with honest R-denominators and spec blocks.
       2. *Tier 2 (AI Assistant Cron - Two-Phase Collaborative Execution Loop - OPERATOR MANDATE)*: Unified collaborative cron (`10,25,40,55 * * * *`). At the 10th minute (:10, :25, :40, :55), the coordinator clears the Arena box with `Ctrl+A` + `Delete`, injects the fresh prompt with latest telemetry data, and submits via `Enter`. The coordinator then waits 4 minutes until the 14th minute (:14, :29, :44, :59) when Arena.ai has completed its response (4-minute inference window). At that exact point, the coordinator fetches Arena's completed response (`arena_bridge.py check`), dismisses any popup with `Escape`, and invokes the 3-subagent swarm (`Orderflow Analyst`, `Position Manager`, `Macro Risk Analyst`) to ingest both the completed Arena ruling and prepare orders ahead of the 15th-minute candle close (:15, :30, :45, :00) when qualified trades are punched to MT5.
-      3. *Tier 3 (Mandatory Subagent Pre-Flight Study Directive - PERMANENT INVARIANT)*: Every invoked subagent MUST FIRST study:
+      3. *Tier 3 (Mandatory Subagent Pre-Flight Study & Independent Research Mandate - OPERATOR INVARIANT)*: Every invoked subagent MUST FIRST study:
          * `@[.agents/AGENTS.md]` (Execution rules, risk invariants, anti-lookahead)
          * `@[.agents/memory/session_chat_history.md]` (Historical trajectory, avoided traps, past decisions)
          * `@[.agents/rules/ACTIVE_CONTEXT.md]` (Real-time account state, live orders, floor defense)
          * Query the AST knowledge graph via `python -m graphify query "<concept>"` or `/graphify` before proposing or analyzing any trade.
-      4. *Tier 4 (Continuous Blackboard Review & Trade Punch Mandate - USER DIRECTIVE)*: On EVERY wake-up cycle, coordinator and subagents MUST read and review `docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md`, engage in the dialectic quant debate with Arena.ai, render explicit verdicts, make suggestions, counter proposals, and punch high-confluence orders into MT5 without asking.
+         * **MANDATORY INDEPENDENT RESEARCH (OPERATOR MANDATE)**: Subagents are strictly FORBIDDEN from passively echoing Arena.ai's output. Alongside reviewing Arena's ruling, each subagent MUST execute its OWN independent empirical research:
+           - *Orderflow Analyst*: Pull live MT5 tick Bid/Ask quotes, calculate real spreads in bps, query Binance Futures L2 orderbook depth directly, calculate 1m/5m/15m taker CVD delta, locate actual liquidation bands and stop sweep clusters, and test whether Arena's candidates satisfy the 5-pillar confluence stack.
+           - *Position Manager*: Directly query MT5 account state (`mt5.account_info()`, `positions_get()`, `orders_get()`), calculate live floor cushion against the 4,775.00 USD hard floor and 4,795.00 USD operating buffer, run stressed post-loss simulations independently, check symbol-specific tick sizes and margin requirements, and audit whether proposed orders respect the dynamic capacity policy.
+           - *Macro Risk Analyst*: Directly inspect `Data/macro_calendar.json` for Tier-1 event proximity, audit the session progression (e.g. 21:30–22:30 UTC interbank FX rollover spread expansion), evaluate cross-asset correlation clusters, and determine whether macro conditions warrant entering or standing aside.
+      4. *Tier 4 (Continuous Blackboard Review & Trade Punch Mandate - USER DIRECTIVE)*: On EVERY wake-up cycle, coordinator and subagents MUST read and review `docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md`, engage in dialectic debate contrasting their independent research against Arena.ai's output, render explicit verdicts, make suggestions, counter proposals, and punch high-confluence orders into MT5 without asking.
+      5. *Tier 5 (4th Swarm Member: Continuous Forensic System & Chain Verification Auditor - OPERATOR DIRECTIVE)*:
+         * A dedicated 4th subagent (`Chain Verification Auditor`) continuously audits the entire execution chain, guarantees that ALL past issues and invariants raised in chat history remain active and unregressed, actively hunts for runtime/code/data anomalies across `Terminal/`, `Engine/`, and `Tests/`, and immediately fixes any discovered anomaly.
     - Connects directly via native IPC to MetaTrader 5 Account 5064568 (Blueberry Markets).
     - GitHub Commits `0b0aa14`, `13e2e2a`, `11a220e`, `9c1cb2d`, `bddcfd4`, `a03a3ed`: Merged Arena.ai quantitative governance, continuous orderflow scoring, decayed L3 evidence, Kaufman/Garman-Klass regime vetoes, BTC beta factor risk models, and verified 97/97 pytest suite passing.
     - Full Arena Audit Report: Archived in `docs/audits/institutional-quant-audit-2026-10-04.md` and `docs/audits/ARENA_ANTIGRAVITY_HANDSHAKE_COUNCIL_67.md`.
@@ -74,7 +80,7 @@ trigger: always_on
         - Ticket #18630694 (`BTCUSD.pi` closed -6.80 USD loss via SL at 82,700.00 USD)
         - Ticket #18644262 (`USWTI.p` closed -10.03 USD loss via SL at 90.113 USD)
         - Net Realized Session PnL: **+33.23 USD** across 9 completed trades (initial capital 5,000.00 USD; 96.92% preserved; 6 wins / 3 losses = 66.7% win rate).
-      * Desk Status: 0 active positions; 0 pending orders; 12 slots vacant. Staging for 21:25 UTC collaborative prompt cycle.
+      * Desk Status: 0 active positions; 0 pending orders; 12 slots vacant. 21:30 UTC cycle unanimously ratified STAND ASIDE (100% cash flat). Staging for 21:40 UTC collaborative prompt cycle (:40 prompt submission -> :44 Arena check -> :45 candle close execution).
 
 ## 3. Settled Mathematical & Strategy Invariants
 - **Institutional VWAP & Orderflow Confluence Framework (Strict Mandate)**:
