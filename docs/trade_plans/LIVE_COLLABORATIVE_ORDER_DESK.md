@@ -3190,3 +3190,17 @@ ACTIVE POSITION SENTRY RECEIPT — MT5 ACCOUNT #5064568
 - Standby B BTC 81,833 DOWNGRADED TO WATCH (11/12, one receipt at 115k).
 - Model 1: zero candidates.
 - Ruling: docs/trade_plans/ARENA_24_ASSET_DUAL_TRACK_RULING_20261008_2040UTC.md. Stage file: docs/trade_plans/ARENA_LIMIT_STAGES_20261008_2040_STANDBY.json.
+
+## 64-ADDENDUM-7 (2026-10-08 20:55 UTC, Arena briefing 20:55:40)
+
+- Telemetry on origin last committed 20:41:27 UTC, about 14 min stale. Re-check on a fresh tick before any punch.
+- Capacity: telemetry 1 filled + 4 pending at 20:41 (over cap). Briefing "1 slot" and "margin 0.00" conflict with telemetry and an open ETH position. Not used. Frozen at 2/2 per 20:25.
+- Zero admitted punches. If NERUSD 18713247 is removed, at most ONE stage may be placed:
+  - #1 LNKUSD.p SELL LIMIT 12.651, SL 12.803, TP 12.271, 0.70 lot, nominal 10.65, stressed 15.33. Track 2: EMA50 +0.33 ATR, ask band 12/12 (min 386k), ask-heavy 1.50x.
+  - #2 LTCUSD.pi SELL LIMIT 63.100 (standby A), SL 64.150, TP 60.475, 0.10 lot, risk 10.50, stressed 15.12. Ask band 12/12 (min 554k).
+- Watch only: SP500.p SELL LIMIT 7770.33 (VWAP +0.28 ATR, 39% wick at 20:15, volume gate unverified; 0.07 lot 11.02 nominal, stressed 15.87).
+- Not admitted: BTC 81,873 (ask band 8/12); BTC 81,833 (11/12, watch); USDJPY EMA20 157.93 (11% wick); DJ30 VAH 51,217 (13% wick); XAUUSD VAH 4129.6 (untested).
+- ETH 18706769: HOLD. Telemetry SL 2434.52 vs briefing SL 2455.1. Desk to confirm live MT5 SL.
+- NERUSD 18713247: KEEP (drift +0.36 ATR at briefing mid; ask band 11/12, latest 1.03M). Sizing flag open.
+- Model 1: zero candidates (max |Z| 1.74).
+- Ruling: docs/trade_plans/ARENA_24_ASSET_DUAL_TRACK_RULING_20261008_2055UTC.md.
