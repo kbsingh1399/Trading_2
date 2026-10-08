@@ -1,0 +1,309 @@
+{
+ "purpose": "Reconstruct the 16:17 macro thrust that filled Ticket #18703132 and its two-minute retrace (thrust vs accepted-reclaim test for the live NAS100.p short)",
+ "source": "consecutive 1-minute telemetry receipts on branch arena/24eb818b-trading-2",
+ "receipts": [
+  {
+   "rev": "495b1d3",
+   "as_of_utc": "2026-10-08 16:14:37 UTC",
+   "mids": {
+    "NAS100": 30947.41,
+    "SP500": 7772.965,
+    "GER40": 24833.05,
+    "DJ30": 51038.15,
+    "GOLD": 4111.92,
+    "SILVER": 58.716,
+    "USWTI": 93.641,
+    "EURUSD": 1.119,
+    "USDJPY": 158.2895,
+    "BTC": 80921.0,
+    "ETH": 2421.15,
+    "SOL": 107.955
+   },
+   "nas100": {
+    "z": -0.97,
+    "ema20": 30982.9973,
+    "ema50": 31011.254,
+    "atr": 51.1143
+   },
+   "positions": [],
+   "account": {
+    "login": 5064568,
+    "server": null,
+    "balance_usd": 4813.99,
+    "equity_usd": 4813.99,
+    "margin_used_usd": 0.0,
+    "margin_free_usd": 4813.99,
+    "margin_level_pct": 0.0,
+    "hard_floor_usd": 4775.0,
+    "cushion_above_floor_usd": 38.99
+   },
+   "capacity": {
+    "filled": 0,
+    "pending": 1,
+    "max_concurrent": 2,
+    "status": "OPEN (0/2 filled, 1 pending, free_margin=4813.99 USD)"
+   }
+  },
+  {
+   "rev": "a37591c",
+   "as_of_utc": "2026-10-08 16:15:37 UTC",
+   "mids": {
+    "NAS100": 30945.89,
+    "SP500": 7773.405,
+    "GER40": 24834.05,
+    "DJ30": 51040.1,
+    "GOLD": 4111.54,
+    "SILVER": 58.728,
+    "USWTI": 93.577,
+    "EURUSD": 1.1189,
+    "USDJPY": 158.2885,
+    "BTC": 80955.5,
+    "ETH": 2421.5,
+    "SOL": 108.015
+   },
+   "nas100": {
+    "z": -0.99,
+    "ema20": 30982.9973,
+    "ema50": 31011.254,
+    "atr": 51.1143
+   },
+   "positions": [],
+   "account": {
+    "login": 5064568,
+    "server": null,
+    "balance_usd": 4813.99,
+    "equity_usd": 4813.99,
+    "margin_used_usd": 0.0,
+    "margin_free_usd": 4813.99,
+    "margin_level_pct": 0.0,
+    "hard_floor_usd": 4775.0,
+    "cushion_above_floor_usd": 38.99
+   },
+   "capacity": {
+    "filled": 0,
+    "pending": 1,
+    "max_concurrent": 2,
+    "status": "OPEN (0/2 filled, 1 pending, free_margin=4813.99 USD)"
+   }
+  },
+  {
+   "rev": "f2966cb",
+   "as_of_utc": "2026-10-08 16:16:37 UTC",
+   "mids": {
+    "NAS100": 30944.52,
+    "SP500": 7773.145,
+    "GER40": 24834.05,
+    "DJ30": 51032.1,
+    "GOLD": 4109.32,
+    "SILVER": 58.667,
+    "USWTI": 93.651,
+    "EURUSD": 1.1188,
+    "USDJPY": 158.2935,
+    "BTC": 80859.5,
+    "ETH": 2417.5,
+    "SOL": 107.935
+   },
+   "nas100": {
+    "z": -1.0,
+    "ema20": 30982.9973,
+    "ema50": 31011.254,
+    "atr": 51.1143
+   },
+   "positions": [],
+   "account": {
+    "login": 5064568,
+    "server": null,
+    "balance_usd": 4813.99,
+    "equity_usd": 4813.99,
+    "margin_used_usd": 0.0,
+    "margin_free_usd": 4813.99,
+    "margin_level_pct": 0.0,
+    "hard_floor_usd": 4775.0,
+    "cushion_above_floor_usd": 38.99
+   },
+   "capacity": {
+    "filled": 0,
+    "pending": 1,
+    "max_concurrent": 2,
+    "status": "OPEN (0/2 filled, 1 pending, free_margin=4813.99 USD)"
+   }
+  },
+  {
+   "rev": "d84ace9",
+   "as_of_utc": "2026-10-08 16:17:37 UTC",
+   "mids": {
+    "NAS100": 31031.57,
+    "SP500": 7790.275,
+    "GER40": 24910.5,
+    "DJ30": 51166.15,
+    "GOLD": 4126.19,
+    "SILVER": 59.073,
+    "USWTI": 91.946,
+    "EURUSD": 1.1198,
+    "USDJPY": 158.1695,
+    "BTC": 81206.5,
+    "ETH": 2432.4,
+    "SOL": 108.53
+   },
+   "nas100": {
+    "z": 0.06,
+    "ema20": 30982.9973,
+    "ema50": 31011.254,
+    "atr": 51.1143
+   },
+   "positions": [
+    {
+     "ticket": 18703132,
+     "symbol": "NAS100.p",
+     "direction": "SHORT",
+     "volume": 0.01,
+     "price_open": 30989.1,
+     "price_current": 31040.75,
+     "sl": 31089.1,
+     "tp": 30739.1,
+     "profit_usd": -5.17,
+     "r_multiple": -0.52,
+     "r_multiple_basis": "live_sl_distance",
+     "r_multiple_initial_risk": null,
+     "ratchet_state": "PHASE_0_PENDING",
+     "time_open_utc": "2026-10-08 16:17:16 UTC"
+    }
+   ],
+   "account": {
+    "login": 5064568,
+    "server": null,
+    "balance_usd": 4813.99,
+    "equity_usd": 4808.82,
+    "margin_used_usd": 309.89,
+    "margin_free_usd": 4498.93,
+    "margin_level_pct": 1551.78,
+    "hard_floor_usd": 4775.0,
+    "cushion_above_floor_usd": 33.82
+   },
+   "capacity": {
+    "filled": 1,
+    "pending": 0,
+    "max_concurrent": 2,
+    "status": "OPEN (1/2 filled, 0 pending, free_margin=4498.93 USD)"
+   }
+  },
+  {
+   "rev": "fd32565",
+   "as_of_utc": "2026-10-08 16:18:37 UTC",
+   "mids": {
+    "NAS100": 31002.45,
+    "SP500": 7784.275,
+    "GER40": 24896.5,
+    "DJ30": 51112.15,
+    "GOLD": 4122.16,
+    "SILVER": 59.021,
+    "USWTI": 91.881,
+    "EURUSD": 1.1194,
+    "USDJPY": 158.218,
+    "BTC": 81321.5,
+    "ETH": 2435.8,
+    "SOL": 108.875
+   },
+   "nas100": {
+    "z": -0.3,
+    "ema20": 30982.9973,
+    "ema50": 31011.254,
+    "atr": 51.1143
+   },
+   "positions": [
+    {
+     "ticket": 18703132,
+     "symbol": "NAS100.p",
+     "direction": "SHORT",
+     "volume": 0.01,
+     "price_open": 30989.1,
+     "price_current": 31009.06,
+     "sl": 31089.1,
+     "tp": 30739.1,
+     "profit_usd": -2.0,
+     "r_multiple": -0.2,
+     "r_multiple_basis": "live_sl_distance",
+     "r_multiple_initial_risk": null,
+     "ratchet_state": "PHASE_0_PENDING",
+     "time_open_utc": "2026-10-08 16:17:16 UTC"
+    }
+   ],
+   "account": {
+    "login": 5064568,
+    "server": null,
+    "balance_usd": 4813.99,
+    "equity_usd": 4812.01,
+    "margin_used_usd": 309.89,
+    "margin_free_usd": 4502.12,
+    "margin_level_pct": 1552.81,
+    "hard_floor_usd": 4775.0,
+    "cushion_above_floor_usd": 37.01
+   },
+   "capacity": {
+    "filled": 1,
+    "pending": 0,
+    "max_concurrent": 2,
+    "status": "OPEN (1/2 filled, 0 pending, free_margin=4502.12 USD)"
+   }
+  },
+  {
+   "rev": "ea138dd",
+   "as_of_utc": "2026-10-08 16:19:37 UTC",
+   "mids": {
+    "NAS100": 30982.76,
+    "SP500": 7780.295,
+    "GER40": 24884.5,
+    "DJ30": 51091.65,
+    "GOLD": 4120.27,
+    "SILVER": 58.977,
+    "USWTI": 92.221,
+    "EURUSD": 1.1194,
+    "USDJPY": 158.23,
+    "BTC": 81223.0,
+    "ETH": 2430.65,
+    "SOL": 108.745
+   },
+   "nas100": {
+    "z": -0.54,
+    "ema20": 30982.9973,
+    "ema50": 31011.254,
+    "atr": 51.1143
+   },
+   "positions": [
+    {
+     "ticket": 18703132,
+     "symbol": "NAS100.p",
+     "direction": "SHORT",
+     "volume": 0.01,
+     "price_open": 30989.1,
+     "price_current": 30980.82,
+     "sl": 31089.1,
+     "tp": 30739.1,
+     "profit_usd": 0.83,
+     "r_multiple": 0.08,
+     "r_multiple_basis": "live_sl_distance",
+     "r_multiple_initial_risk": null,
+     "ratchet_state": "PHASE_0_PENDING",
+     "time_open_utc": "2026-10-08 16:17:16 UTC"
+    }
+   ],
+   "account": {
+    "login": 5064568,
+    "server": null,
+    "balance_usd": 4813.99,
+    "equity_usd": 4814.82,
+    "margin_used_usd": 309.89,
+    "margin_free_usd": 4504.93,
+    "margin_level_pct": 1553.72,
+    "hard_floor_usd": 4775.0,
+    "cushion_above_floor_usd": 39.82
+   },
+   "capacity": {
+    "filled": 1,
+    "pending": 0,
+    "max_concurrent": 2,
+    "status": "OPEN (1/2 filled, 0 pending, free_margin=4504.93 USD)"
+   }
+  }
+ ]
+}

@@ -1,0 +1,215 @@
+{
+ "source": "briefing 2026-10-08 16:13:45 UTC Section 5, 15M bars (15:15/15:30/15:45); avg20 from committed 15m parquet (last bar 13:30)",
+ "bars": [
+  {
+   "symbol": "SP500.p",
+   "bar": "15:15",
+   "upper_wick_pct": 30.2,
+   "lower_wick_pct": 36.6,
+   "vol": 16475,
+   "avg20": 11082.0,
+   "vol_ratio": 1.487,
+   "close_dir": "up"
+  },
+  {
+   "symbol": "SP500.p",
+   "bar": "15:30",
+   "upper_wick_pct": 16.6,
+   "lower_wick_pct": 59.0,
+   "vol": 14418,
+   "avg20": 11082.0,
+   "vol_ratio": 1.301,
+   "close_dir": "down"
+  },
+  {
+   "symbol": "SP500.p",
+   "bar": "15:45",
+   "upper_wick_pct": 40.9,
+   "lower_wick_pct": 32.5,
+   "vol": 11778,
+   "avg20": 11082.0,
+   "vol_ratio": 1.063,
+   "close_dir": "down"
+  },
+  {
+   "symbol": "NAS100.p",
+   "bar": "15:15",
+   "upper_wick_pct": 34.7,
+   "lower_wick_pct": 19.5,
+   "vol": 46737,
+   "avg20": 19525.2,
+   "vol_ratio": 2.394,
+   "close_dir": "up"
+  },
+  {
+   "symbol": "NAS100.p",
+   "bar": "15:30",
+   "upper_wick_pct": 8.4,
+   "lower_wick_pct": 40.0,
+   "vol": 43459,
+   "avg20": 19525.2,
+   "vol_ratio": 2.226,
+   "close_dir": "down"
+  },
+  {
+   "symbol": "NAS100.p",
+   "bar": "15:45",
+   "upper_wick_pct": 22.9,
+   "lower_wick_pct": 38.9,
+   "vol": 39480,
+   "avg20": 19525.2,
+   "vol_ratio": 2.022,
+   "close_dir": "down"
+  },
+  {
+   "symbol": "GER40.p",
+   "bar": "15:15",
+   "upper_wick_pct": 46.9,
+   "lower_wick_pct": 30.8,
+   "vol": 1839,
+   "avg20": 1829.8,
+   "vol_ratio": 1.005,
+   "close_dir": "down"
+  },
+  {
+   "symbol": "GER40.p",
+   "bar": "15:30",
+   "upper_wick_pct": 10.5,
+   "lower_wick_pct": 33.3,
+   "vol": 1811,
+   "avg20": 1829.8,
+   "vol_ratio": 0.99,
+   "close_dir": "down"
+  },
+  {
+   "symbol": "GER40.p",
+   "bar": "15:45",
+   "upper_wick_pct": 15.3,
+   "lower_wick_pct": 0.0,
+   "vol": 1311,
+   "avg20": 1829.8,
+   "vol_ratio": 0.716,
+   "close_dir": "up"
+  },
+  {
+   "symbol": "GOLD",
+   "bar": "15:15",
+   "upper_wick_pct": 22.7,
+   "lower_wick_pct": 57.7,
+   "vol": 6331,
+   "avg20": 6227.7,
+   "vol_ratio": 1.017,
+   "close_dir": "up"
+  },
+  {
+   "symbol": "GOLD",
+   "bar": "15:30",
+   "upper_wick_pct": 35.4,
+   "lower_wick_pct": 63.8,
+   "vol": 5705,
+   "avg20": 6227.7,
+   "vol_ratio": 0.916,
+   "close_dir": "up"
+  },
+  {
+   "symbol": "GOLD",
+   "bar": "15:45",
+   "upper_wick_pct": 14.6,
+   "lower_wick_pct": 17.5,
+   "vol": 5935,
+   "avg20": 6227.7,
+   "vol_ratio": 0.953,
+   "close_dir": "down"
+  },
+  {
+   "symbol": "USWTI.p",
+   "bar": "15:15",
+   "upper_wick_pct": 23.6,
+   "lower_wick_pct": 30.9,
+   "vol": 2118,
+   "avg20": 1306.5,
+   "vol_ratio": 1.621,
+   "close_dir": "down"
+  },
+  {
+   "symbol": "USWTI.p",
+   "bar": "15:30",
+   "upper_wick_pct": 38.5,
+   "lower_wick_pct": 20.5,
+   "vol": 1791,
+   "avg20": 1306.5,
+   "vol_ratio": 1.371,
+   "close_dir": "up"
+  },
+  {
+   "symbol": "USWTI.p",
+   "bar": "15:45",
+   "upper_wick_pct": 18.2,
+   "lower_wick_pct": 12.1,
+   "vol": 1423,
+   "avg20": 1306.5,
+   "vol_ratio": 1.089,
+   "close_dir": "down"
+  },
+  {
+   "symbol": "DJ30.p",
+   "bar": "15:15",
+   "upper_wick_pct": 24.7,
+   "lower_wick_pct": 28.4,
+   "vol": 2820,
+   "avg20": 2091.7,
+   "vol_ratio": 1.348,
+   "close_dir": "up"
+  },
+  {
+   "symbol": "DJ30.p",
+   "bar": "15:30",
+   "upper_wick_pct": 4.2,
+   "lower_wick_pct": 36.8,
+   "vol": 2504,
+   "avg20": 2091.7,
+   "vol_ratio": 1.197,
+   "close_dir": "up"
+  },
+  {
+   "symbol": "DJ30.p",
+   "bar": "15:45",
+   "upper_wick_pct": 22.9,
+   "lower_wick_pct": 59.4,
+   "vol": 2302,
+   "avg20": 2091.7,
+   "vol_ratio": 1.101,
+   "close_dir": "up"
+  },
+  {
+   "symbol": "SILVER",
+   "bar": "15:15",
+   "upper_wick_pct": 23.1,
+   "lower_wick_pct": 38.5,
+   "vol": 3450,
+   "avg20": 2843.2,
+   "vol_ratio": 1.213,
+   "close_dir": "up"
+  },
+  {
+   "symbol": "SILVER",
+   "bar": "15:30",
+   "upper_wick_pct": 33.3,
+   "lower_wick_pct": 20.0,
+   "vol": 2752,
+   "avg20": 2843.2,
+   "vol_ratio": 0.968,
+   "close_dir": "down"
+  },
+  {
+   "symbol": "SILVER",
+   "bar": "15:45",
+   "upper_wick_pct": 20.0,
+   "lower_wick_pct": 33.3,
+   "vol": 2555,
+   "avg20": 2843.2,
+   "vol_ratio": 0.899,
+   "close_dir": "down"
+  }
+ ]
+}
