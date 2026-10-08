@@ -2578,3 +2578,26 @@ Geometry: mid 7773.415 sits **+0.16 / +0.58 / +0.59 ATR under the 20-EMA / 50-EM
 **4. Top-2 crypto limit stages — ready to punch ONLY on the stated confirmation.** AVAXUSD.p Model 1 LONG: **BUY LIMIT 10.10 / SL 9.95 (1.52×ATR, below the 15:24 flush low 9.98) / TP 10.48 (2.53R) / 0.68 lots / risk $10.20** (z −3.82, RSI 28.09, higher lows off 9.98, band depth $196k ≥150k) — pending skew ≥1.25 in ≥3 consecutive receipts. SOLUSD.p Model 1 LONG: **BUY LIMIT 109.25 / SL 108.20 (1.51×ATR) / TP 111.88 (2.50R) / 0.11 lots / risk $11.55** (z −3.39, RSI 24.45, ±0.50 ATR bid depth $4.48M) — pending the 109.19–109.29 wall holding (migration ≤0.15 ATR) plus skew ≥1.25 for ≥3 receipts. Runners-up with exact stages and missing triggers: GER40 24849.00/24912.00/24691.50 (wick 25.5% < 30%) · NAS100 31019.60/31119.60/30769.60 (wick 7.0%) · DOGE 0.0842/0.0852/0.0817 (short-side skew 1.11, CVD not decelerating) · USDJPY 158.19 pullback (extended +1.13 ATR) · USWTI 93.41 pullback (+0.92 ATR above EMA20) · GOLD now sizeable (0.01 lots, risk $13.35, post-loss 4,795.30) but geometry +0.81/+0.89 ATR outside the band. ADA/DOGE cannot be sized or flowed under the ceiling (ADA min lot 1.0 × 5,000 = $16.50 minimum risk).
 
 **5. Capacity & protocol.** Exactly **1** risk slot — stage at most ONE of the above, never a combination. Standard ratchet (BE +0.80R, lock +1.50R, TP 2.50R); prune on a 15m close above 7784.20, drift >2.0×ATR, or spread >25 bps. All plans pass the client-side governance envelope; broker-native valuation, live joint-fill admission and blackout checks remain mandatory before any stage command. **No MT5 action taken by Arena.**
+
+---
+
+## Section 49: Arena Council — Resting-Order Review, Ticket #18702099 (BTCUSD.pi SELL LIMIT 81,580) | 2026-10-08 15:38 UTC | SENDER: Arena.ai
+
+> **VERDICT: DELETE** (recommend re-price before any re-stage). Reviewed read-only against receipts 15:33:20 → 15:35:21 UTC (`6ff7262` → `39ebdac`). No MT5 action taken by Arena.
+
+**1. Staging context.** Ticket #18702099 was staged 15:33:17 UTC with BTC mid 81,358.5 (receipt `6ff7262`, ATR 400.13): entry 81,580 sat **+0.55 ATR** above market — inside the evolved 0.10–0.60 ATR micro-pullback band at that moment. Two minutes later the market has run away from it.
+
+**2. Observed state (receipt `39ebdac`, 15:35:21 UTC, `pending_orders` = 1 active ticket, 0 fills).**
+
+| Check | Desk rule | Observed | Status |
+|---|---|---|---|
+| Price drift from entry | DELETE if > 2.0 × ATR | mid 81,028.5 → **−551.5 pts = −1.38 ATR** (delete line ≈ 80,780) | approaching, not yet |
+| Distance to the entry shelf | micro-pullback band 0.10–0.60 ATR | **1.38 ATR above market and widening** | **BREACHED** |
+| Stop distance | G5: SL ≥ 1.50 × ATR | 570 pts = **1.42 × ATR** (ATR 400.13 at 15:35; 1.30 × per the staging memo's ATR) | **BREACHED** |
+| Supporting wall at the entry shelf | DELETE if thinned > 50 % | 15:33 BUY wall **81,387.7 ($746k)** — now gone; live walls sit at **81,073.8–81,078.9**, i.e. the wall migrated 300+ pts down with price | **BREACHED (migrated/vanished)** |
+| Book above market | — | bid20 **$494k** vs ask20 **$2,458k** (skew 0.2008) with a **$2.31M sell stack at 81,077.4–81,078.9** | the fill needs a 551-pt rally *through* that stack |
+| Flow | — | last six 1m taker deltas **−31.3M, −5.2M, −1.9M, +10.0M, −3.8M, −5.5M**; mid making new lows | sellers still in control |
+
+**3. Why DELETE rather than KEEP.** The ticket is no longer the trade it was staged for: the shelf it targets is now 1.38 ATR above price (outside the micro-pullback band), its stop is inside the 1.50 × ATR floor, the wall that justified the entry has migrated down with price rather than held (the same non-absorption signature as Section 46's BCH refutation), and a fill would require chewing through ~$2.3M of stacked offers while the tape prints lower lows (81,408 → 81,358 → 81,215 → 81,028 in four minutes). Keeping it means a stale GTC that either never fills or fills into the exhaustion of the very move it is trying to join. **Delete now; the desk returns to 0/0 and the conservative baseline.**
+
+**4. If BTC exposure is still wanted (recommendation only — desk's own governance to execute).** Re-price onto the live shelf instead of the stale one: **SELL LIMIT 81,080 / SL 81,700 (620 pts = 1.55 × ATR) / TP 79,530 (2.50R) / 0.02 lots / risk $12.40 / stressed $17.50 → post-loss equity 4,796.49**. Entry sits on the stacked offers 81,077.4–81,078.9 (≈$2.31M, 0.13 ATR above mid) — within the micro-pullback band — and the stop clears the 1.50 × ATR floor. Caveat: the crypto depth series is still single-sample (`SAMPLED_ONLY_NOT_CONTINUOUS`, skew swung 13.15 → 1.29 → 0.20 across 15:33 → 15:35), so this re-price carries the same persistence risk; if it cannot be confirmed across ≥3 consecutive receipts, stand down and keep 0/0. Note also that Section 48's SP500.p short remains the council's highest-conviction stage — **stage at most one**.
