@@ -14,6 +14,7 @@ import pathlib
 import sys
 import time
 import urllib.request
+import uuid
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional, Tuple
@@ -30,6 +31,8 @@ from Terminal.MT5_Execution_Bridge import MT5ExecutionBridge
 from Terminal.Candle_Indicator_Engine import CandleIndicatorEngine
 from Terminal.Data_Factory.macro import FearGreedIndex, FarsideETFFlows
 from Terminal.Telemetry_Provenance import validate_observed_snapshot
+from Terminal.risk.live_admission import MAX_FILLED, STOP_STRESS_MULTIPLIER, MIN_EXECUTION_COST_USD, _loss
+from Terminal.risk.floor_defense import HARD_FLOOR_USD, BUFFER_USD
 
 TELEMETRY_PATH = ROOT / "docs" / "telemetry" / "live_snapshot_latest.json"
 TELEMETRY_PATH.parent.mkdir(parents=True, exist_ok=True)
@@ -38,9 +41,13 @@ WHALE_STATE_PATH = ROOT / "docs" / "telemetry" / ".whale_wall_state.json"
 ERROR_MARKER_PATH = ROOT / "docs" / "telemetry" / ".generator_error.json"
 
 # --- Data-integrity invariants (OX_ALPHA_66 forensics audit 2026-10-07) -----
-# Operator Mandate: Dynamic capacity enabled across orthogonal asset clusters.
-# Capacity is only consumed when orders are actually FILLED. Max slots: 12.
-MAX_CONCURRENT_SLOTS = 12
+# Every independently fillable pending reserves a canonical admission slot.
+MAX_CONCURRENT_SLOTS = MAX_FILLED
+HTF_FETCH_COUNT = 96
+HTF_MIN_COMPLETED = 35
+HTF_STRATEGY_MIN = 50  # EMA50 warmup and ER48's 49 observations.
+BROKER_HTF = {"1h": (16385, 3600), "4h": (16388, 14400)}
+MACRO_CALENDAR_PATH = ROOT / "Data" / "macro_calendar.json"
 # Fetch enough bars for EMA200 warmup convergence (>= 4x period). The audit
 # proved count=120 makes "ema_200" an EMA96-in-disguise (engine silently
 # falls back to min(len,96) periods when fewer than 200 bars exist).
@@ -91,13 +98,13 @@ def fetch_crypto_cvd_buckets(asset: str) -> Tuple[str, List[Dict[str, Any]]]:
 
 
 def fetch_crypto_htf_ohlcv(asset: str) -> Tuple[str, List[Dict], List[Dict]]:
-    """Fetch last 30x4H and 30xD1 OHLCV candles from Binance Futures."""
+    """Fetch independent Binance reference history, never broker HTF inputs."""
     bin_sym = f"{asset}USDT"
     bars_4h: List[Dict] = []
     bars_d1: List[Dict] = []
     for interval, target in [("4h", bars_4h), ("1d", bars_d1)]:
         try:
-            url = f"https://fapi.binance.com/fapi/v1/klines?symbol={bin_sym}&interval={interval}&limit=30"
+            url = f"https://fapi.binance.com/fapi/v1/klines?symbol={bin_sym}&interval={interval}&limit={HTF_FETCH_COUNT + 1}"
             req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
             with urllib.request.urlopen(req, timeout=5) as resp:
                 klines = json.loads(resp.read())
@@ -281,6 +288,149 @@ def compute_volume_profile(bars: List[Dict[str, Any]], num_bins: int = 50) -> Di
     }
 
 
+def completed_broker_bars(raw_bars, period: int, cutoff: float):
+    """Validate observed OHLCV; drop forming bars without inventing history."""
+    complete, invalid, forming = [], 0, 0
+    previous = None
+    if not isinstance(raw_bars, (list, tuple)):
+        return complete, 0, 0
+    for raw in raw_bars:
+        try:
+            stamp = float(raw["time"])
+            values = [float(raw[k]) for k in ("open", "high", "low", "close")]
+            volume = float(raw.get("real_volume") or raw.get("volume") or raw.get("tick_volume") or 0)
+            if (not all(math.isfinite(v) and v > 0 for v in [stamp, *values])
+                    or not math.isfinite(volume) or volume < 0
+                    or values[1] < max(values[0], values[2], values[3])
+                    or values[2] > min(values[0], values[1], values[3])
+                    or (previous is not None and stamp <= previous)):
+                raise ValueError("invalid OHLCV or timestamp order")
+            previous = stamp
+            if stamp + period > cutoff:
+                forming += 1
+                continue
+            complete.append({**raw, "time": stamp, "volume": volume})
+        except (TypeError, ValueError, KeyError, OverflowError):
+            invalid += 1
+    return complete, invalid, forming
+
+
+def broker_htf_history(bridge, symbol, cutoff: float, clock_verified: bool):
+    history, quality = {}, {}
+    for key, (timeframe, period) in BROKER_HTF.items():
+        error = None
+        try:
+            raw = bridge.get_recent_bars(symbol, count=HTF_FETCH_COUNT, timeframe=timeframe) if symbol else []
+        except Exception as exc:
+            raw, error = [], str(exc)
+        bars, invalid, forming = completed_broker_bars(raw, period, cutoff)
+        bars = bars[-HTF_FETCH_COUNT:]
+        last_close = bars[-1]["time"] + period if bars else None
+        age = cutoff - last_close if last_close is not None else None
+        status = ("INVALID_OBSERVATIONS" if invalid else "UNAVAILABLE" if not bars
+                  else "INSUFFICIENT_HISTORY" if len(bars) < HTF_STRATEGY_MIN else "READY")
+        freshness = ("UNVERIFIED_CLOCK" if not clock_verified else "FRESH" if age is not None and 0 <= age <= 2 * period
+                     else "STALE" if age is not None else "UNAVAILABLE")
+        history[key] = [{"ts": b["time"], "close_ts": b["time"] + period,
+                         **{k: b[k] for k in ("open", "high", "low", "close", "volume")},
+                         "volume_unit": "BROKER_REAL_VOLUME" if b.get("real_volume", 0) > 0 else "BROKER_TICK_VOLUME_PROXY"}
+                        for b in bars]
+        quality[key] = {"source": "MT5_BROKER_COMPLETED_BARS", "broker_symbol": symbol,
+                        "completed_count": len(bars), "required_minimum": HTF_MIN_COMPLETED,
+                        "strategy_minimum": HTF_STRATEGY_MIN, "target_count": HTF_FETCH_COUNT,
+                        "status": status, "freshness": freshness, "invalid_count": invalid,
+                        "forming_excluded_count": forming, "last_close_epoch": last_close,
+                        "age_seconds": age, "clock_verified": clock_verified, "error": error}
+    quality["entry_eligible"] = all(q["status"] == "READY" and q["freshness"] == "FRESH" for q in quality.values())
+    return history, quality
+
+
+def contingent_inventory_risk(bridge, positions, pending, balance, equity, margin_free):
+    tickets, errors, pending_margin = [], [], 0.0
+    for kind, rows in (("FILLED", positions), ("PENDING", pending)):
+        for row in rows:
+            try:
+                stressed = _loss(bridge, row)
+                nominal = (stressed - MIN_EXECUTION_COST_USD) / STOP_STRESS_MULTIPLIER
+                reserved_margin = None
+                if kind == "PENDING":
+                    estimate = bridge.estimate_order(row["symbol"], row["direction"], row["price_open"], row["sl"])
+                    reserved_margin = float(estimate["margin_per_lot"]) * float(row["volume"])
+                    if not math.isfinite(reserved_margin) or reserved_margin <= 0:
+                        raise ValueError("pending broker margin unavailable")
+                    pending_margin += reserved_margin
+                tickets.append({"ticket": row.get("ticket"), "kind": kind,
+                                "nominal_stop_loss_usd": nominal, "stressed_stop_loss_usd": stressed,
+                                "margin_on_fill_usd": reserved_margin, "status": "BROKER_VALUED"})
+            except Exception as exc:
+                errors.append(f"{kind} ticket {row.get('ticket')}: {exc}")
+                tickets.append({"ticket": row.get("ticket"), "kind": kind,
+                                "nominal_stop_loss_usd": None, "stressed_stop_loss_usd": None,
+                                "margin_on_fill_usd": None, "status": "UNAVAILABLE"})
+    total = sum(t["stressed_stop_loss_usd"] for t in tickets) if not errors else None
+    post_loss = min(balance, equity) - total if total is not None else None
+    return {"status": "UNAVAILABLE" if errors else "BROKER_VALUED", "source": "CANONICAL_LIVE_ADMISSION_BROKER_VALUATION",
+            "inventory_status": "OBSERVED", "tickets": tickets, "errors": errors,
+            "total_contingent_stress_usd": total, "post_joint_stop_equity_usd": post_loss,
+            "required_post_stop_equity_usd": HARD_FLOOR_USD + BUFFER_USD,
+            "floor_buffer_preserved": post_loss >= HARD_FLOOR_USD + BUFFER_USD if post_loss is not None else False,
+            "pending_margin_on_fill_usd": pending_margin if not errors else None,
+            "free_margin_after_pending_fills_usd": margin_free - pending_margin if not errors else None,
+            "stop_stress_multiplier": STOP_STRESS_MULTIPLIER, "execution_cost_per_ticket_usd": MIN_EXECUTION_COST_USD}
+
+
+def calendar_observation(now: float, calendar_path=None):
+    """Select the next/active verified high-impact window from the dated calendar."""
+    def stamp(value):
+        parsed = datetime.fromisoformat(str(value).replace("Z", "+00:00"))
+        if parsed.tzinfo is None:
+            raise ValueError("calendar timestamp has no timezone")
+        return parsed.timestamp()
+    def text_stamp(value):
+        return datetime.fromtimestamp(value, timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
+    try:
+        calendar = json.loads(pathlib.Path(calendar_path or MACRO_CALENDAR_PATH).read_text(encoding="utf-8"))
+        if calendar.get("schema") != "omni.calendar.v1" or calendar.get("required_series") != ["CPI", "NFP", "FOMC"]:
+            raise ValueError("calendar coverage unverified")
+        start, end = stamp(calendar["coverage_start"]), stamp(calendar["coverage_end"])
+        verified = stamp(calendar["verified_at"])
+        if not start <= now < end or verified > now + 60:
+            raise ValueError("outside verified calendar coverage")
+        events = calendar["events"]
+        if not isinstance(events, list) or not events:
+            raise ValueError("calendar events unavailable")
+        windows = []
+        for event in events:
+            if event.get("impact") != "HIGH":
+                continue
+            from Terminal.Macro_Calendar import event_window_utc
+            when, blackout_start, blackout_end = event_window_utc(event, 30, 30)
+            release, window_start, window_end = when.timestamp(), blackout_start.timestamp(), blackout_end.timestamp()
+            purge = stamp(event["purge_at_utc"]) if event.get("purge_at_utc") else window_start - 300
+            if (not event.get("name") or not str(event.get("source") or "").startswith("https://")
+                    or not start <= release < end or not purge <= window_start <= release <= window_end):
+                raise ValueError("calendar event provenance/window invalid")
+            if window_end > now:
+                windows.append((window_start, window_end, release, purge, event))
+        windows.sort(key=lambda w: (0 if w[0] <= now < w[1] else 1, w[0]))
+        result = {"calendar_status": "VERIFIED_COVERAGE", "calendar_source": "Data/macro_calendar.json",
+                  "verified_at": calendar["verified_at"], "coverage_start": calendar["coverage_start"],
+                  "coverage_end": calendar["coverage_end"], "blackout_active": False,
+                  "event": None, "event_release_utc": None, "event_source": None,
+                  "hard_blackout_window_utc": None, "purge_deadline_utc": None,
+                  "runway_hours_to_blackout": None}
+        if windows:
+            ws, we, release, purge, event = windows[0]
+            result.update(event=event["name"], event_release_utc=text_stamp(release), event_source=event["source"],
+                          hard_blackout_window_utc=[text_stamp(ws), text_stamp(we)], purge_deadline_utc=text_stamp(purge),
+                          runway_hours_to_blackout=round((ws - now) / 3600, 2), blackout_active=ws <= now < we)
+        return result
+    except (OSError, ValueError, KeyError, TypeError, OverflowError) as exc:
+        return {"calendar_status": "UNAVAILABLE", "blackout_active": True, "event": None,
+                "event_release_utc": None, "hard_blackout_window_utc": None,
+                "runway_hours_to_blackout": None, "error": str(exc)}
+
+
 def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                            whale_state_path: Any = None) -> Dict[str, Any]:
     """Master generation routine.
@@ -288,8 +438,8 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
     ``bridge`` / ``telemetry_path`` / ``whale_state_path`` are injectable for
     deterministic offline tests (Tests/Test_Telemetry_Data_Integrity.py).
     """
-    now_ts = datetime.now(timezone.utc).timestamp()
-    now_utc = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
+    now_ts = time.time()
+    now_utc = datetime.fromtimestamp(now_ts, timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
     out_path = pathlib.Path(telemetry_path) if telemetry_path else TELEMETRY_PATH
 
     # 1. Initialize MT5 Bridge — FAIL-CLOSED (audit finding C3): if the broker
@@ -300,13 +450,29 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
     # staleness) and abort.
     bridge = bridge or MT5ExecutionBridge(5064568)
     acc_summary = bridge.get_account_summary()
-    if not acc_summary.get("connected"):
-        reason = f"MT5 account summary unavailable: {acc_summary.get('error', 'unknown')}"
+    if not isinstance(acc_summary, dict) or not acc_summary.get("connected"):
+        reason = f"MT5 account summary unavailable: {acc_summary.get('error', 'unknown') if isinstance(acc_summary, dict) else 'unknown'}"
         _write_error_marker(reason)
         raise RuntimeError(f"FAIL_CLOSED: {reason}")
+    if hasattr(bridge, "broker_utc_now") and bridge.broker_utc_now() is None:
+        reference = bridge.resolve_symbol("BTC")
+        if reference:
+            for attempt in range(5):
+                bridge.get_symbol_price(reference)
+                if bridge.broker_utc_now() is not None:
+                    break
+                if attempt < 4:
+                    time.sleep(0.35)
+    trusted_start = bridge.broker_utc_now() if hasattr(bridge, "broker_utc_now") else None
+    if trusted_start is not None:
+        now_ts = trusted_start
+        now_utc = datetime.fromtimestamp(now_ts, timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
     try:
         open_positions = bridge.get_open_positions()
         pending_orders = bridge.get_pending_orders()
+        if (not isinstance(open_positions, (list, tuple)) or not isinstance(pending_orders, (list, tuple))
+                or any(not isinstance(row, dict) for row in [*open_positions, *pending_orders])):
+            raise ValueError("missing or invalid native inventory")
     except Exception as exc:
         reason = f"MT5 position/order inventory unavailable: {exc}"
         _write_error_marker(reason)
@@ -370,6 +536,7 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
         formatted_orders.append({
             "ticket": o.get("ticket"),
             "symbol": o.get("symbol"),
+            "direction": o.get("direction"),
             "type": "BUY_LIMIT" if o.get("type") == 2 else "SELL_LIMIT" if o.get("type") == 3 else str(o.get("type")),
             "volume": o.get("volume"),
             "price_open": o.get("price_open"),
@@ -387,20 +554,30 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
         margin_used = float(acc_summary["margin_usd"])
         margin_free = float(acc_summary["margin_free_usd"])
         margin_level = float(acc_summary["margin_level_pct"])
+        if acc_summary.get("currency") != "USD":
+            raise ValueError("account denomination unavailable or non-USD")
+        if not all(math.isfinite(v) for v in (equity_usd, balance_usd, margin_used, margin_free, margin_level)):
+            raise ValueError("non-finite account value")
+        if min(equity_usd, balance_usd) <= 0 or min(margin_used, margin_level) < 0:
+            raise ValueError("invalid account value")
     except (KeyError, TypeError, ValueError) as exc:
         reason = f"MT5 account summary incomplete: {exc}"
         _write_error_marker(reason)
         raise RuntimeError(f"FAIL_CLOSED: {reason}")
-    hard_floor = 4775.00
+    hard_floor = HARD_FLOOR_USD
     cushion = round(equity_usd - hard_floor, 2)
 
     filled_count = len(formatted_positions)
     pending_count = len(formatted_orders)
     max_slots = MAX_CONCURRENT_SLOTS
-    if filled_count >= max_slots:
-        capacity_status = f"HARD_ADMISSION_FREEZE ({filled_count}/{max_slots} filled, {pending_count} pending)"
-    else:
-        capacity_status = f"OPEN ({filled_count}/{max_slots} filled, {pending_count} pending, free_margin={margin_free:.2f} USD)"
+    joint_count = filled_count + pending_count
+    book_risk = contingent_inventory_risk(bridge, open_positions, pending_orders, balance_usd, equity_usd, margin_free)
+    capacity_open = (joint_count < max_slots and book_risk["floor_buffer_preserved"]
+                     and book_risk["free_margin_after_pending_fills_usd"] is not None
+                     and book_risk["free_margin_after_pending_fills_usd"] > 0)
+    capacity_status = (f"{'OPEN' if capacity_open else 'HARD_ADMISSION_FREEZE'} "
+                       f"({joint_count}/{max_slots} joint-fill slots, {filled_count} filled, {pending_count} pending, "
+                       f"free_margin={margin_free:.2f} USD)")
 
     # 2. Macro Intelligence
     fng_val = FearGreedIndex().value()
@@ -467,7 +644,7 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
         for asset, buckets in ex.map(fetch_crypto_cvd_buckets, CRYPTO_ASSETS):
             crypto_cvd[asset] = buckets
 
-        # NEW: HTF OHLCV (30x4H + 30xD1)
+        # Independent Binance reference history, venue separate from broker HTF.
         for asset, bars_4h, bars_d1 in ex.map(fetch_crypto_htf_ohlcv, CRYPTO_ASSETS):
             crypto_htf_4h[asset] = bars_4h
             crypto_htf_d1[asset] = bars_d1
@@ -480,21 +657,12 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
     live_cb_premium = compute_live_coinbase_premium_bps(crypto_prems)
 
     macro_calendar = {
-        "event": "US FOMC Meeting Minutes (High Impact)",
-        "fomc_release_utc": "2026-10-07 18:00:00 UTC",
-        "hard_blackout_window_utc": ["2026-10-07 17:00:00 UTC", "2026-10-07 18:30:00 UTC"],
-        "purge_deadline_utc": "2026-10-07 16:55:00 UTC",
+        **calendar_observation(now_ts),
         "fng_index": fng_val,
         "etf_net_flows": etf_flows_1d,
         "coinbase_premium_bps": live_cb_premium,
         "coinbase_premium_source": "COINBASE_SPOT_AND_BINANCE_SPOT_RECEIPT" if live_cb_premium is not None else "UNAVAILABLE",
-        "runway_hours_to_blackout": round((datetime(2026, 10, 7, 17, 0, 0, tzinfo=timezone.utc).timestamp() - now_ts) / 3600.0, 2)
     }
-    # Audit finding M2: the event window above is a declared constant, not a
-    # live calendar read. Once it is more than 24h in the past, flag it so a
-    # stale blackout claim can never pass silently.
-    if macro_calendar["runway_hours_to_blackout"] < -24.0:
-        macro_calendar["calendar_status"] = "STALE_REVIEW_REQUIRED"
 
     # Load previous whale wall state for persistence tracking
     prev_whale_state = load_whale_state(whale_state_path)
@@ -543,10 +711,19 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
         tick_epoch = float(quote.get("time_msc") or 0) / 1000 or None
         receipt_epoch = float(quote.get("receipt_time") or 0) or None
         local_receipt_age_s = round(now_ts_quote - receipt_epoch, 2) if receipt_epoch else None
-        broker_tick_age_s = round(now_ts_quote - tick_epoch, 2) if tick_epoch else None
-        quote_age_s = local_receipt_age_s if local_receipt_age_s is not None else broker_tick_age_s
+        # A fresh receipt is not a fresh broker tick. Shared calibrated clock
+        # ages frozen ticks monotonically and refuses unknown/outlier offsets.
+        broker_tick_age_s = quote.get("broker_tick_age")
+        quote_age_s = broker_tick_age_s
         quote_freshness = ("FRESH" if quote_age_s is not None and 0 <= quote_age_s <= 30
                            else "STALE" if quote_age_s is not None else "TIMESTAMP_UNAVAILABLE")
+
+        trusted_now = bridge.broker_utc_now() if hasattr(bridge, "broker_utc_now") else None
+        clock_verified = trusted_now is not None and math.isfinite(trusted_now)
+        # All assets share the generation's initial cutoff. A later request
+        # cannot introduce a candle that had not closed at that observation.
+        candle_cutoff = min(now_ts, trusted_now) if clock_verified else now_ts
+        htf_bars, htf_quality = broker_htf_history(bridge, broker_sym, candle_cutoff, clock_verified)
 
         # Fetch fresh 15m candles directly from live broker or fall back to parquet
         bars: List[Dict[str, Any]] = []
@@ -554,17 +731,13 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
         if bridge.initialized and broker_sym:
             raw_bars = bridge.get_recent_bars(broker_sym, count=BAR_FETCH_COUNT)
             if raw_bars:
-                bars = raw_bars
+                bars, bars_invalid, _ = completed_broker_bars(raw_bars, 900, candle_cutoff)
                 bars_source = "LIVE_BRIDGE"
                 try:
-                    df_bars = pd.DataFrame(raw_bars)
-                    # (audit: renamed from now_utc — this used to shadow the
-                    # top-level as_of string and corrupt payload["as_of_utc"])
-                    now_ts_fetch = datetime.now(timezone.utc).timestamp()
-                    t_last = float(raw_bars[-1].get("time", now_ts_fetch))
-                    diff = t_last - now_ts_fetch
-                    offset_sec = int(round(diff / 3600.0) * 3600) if (abs(diff) < 86400 * 3 and diff > 1800) else 0
-                    df_bars["utc_time"] = df_bars["time"] - offset_sec
+                    df_bars = pd.DataFrame(bars)
+                    # Bridge timestamps are already normalized; never infer
+                    # another timezone from the newest (possibly stale) bar.
+                    df_bars["utc_time"] = df_bars["time"]
                     df_bars["datetime_utc"] = pd.to_datetime(df_bars["utc_time"], unit="s", utc=True)
                     (CANDLE_DIR / f"{asset}_15m.parquet").parent.mkdir(parents=True, exist_ok=True)
                     df_bars.to_parquet(CANDLE_DIR / f"{asset}_15m.parquet", index=False)
@@ -576,7 +749,7 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
             if parquet_file.exists():
                 try:
                     df = pd.read_parquet(parquet_file)
-                    bars = df.to_dict("records")
+                    bars, bars_invalid, _ = completed_broker_bars(df.to_dict("records"), 900, candle_cutoff)
                     bars_source = "PARQUET_FALLBACK"
                 except Exception:
                     bars = []
@@ -585,7 +758,7 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
         # candles are hours old must never look identical to a live one.
         if bars:
             bars_last_close_epoch = float(bars[-1].get("time", 0.0)) + 900.0
-            indicator_age_min = round(max(0.0, (now_ts - bars_last_close_epoch) / 60.0), 1)
+            indicator_age_min = round((candle_cutoff - bars_last_close_epoch) / 60.0, 1)
             bars_last_close_utc = datetime.fromtimestamp(bars_last_close_epoch, tz=timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
         else:
             bars_last_close_epoch = None
@@ -847,7 +1020,10 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                 } if asset in CRYPTO_ASSETS else None
             ),
             "cvd_1m_buckets": crypto_cvd.get(asset, []) if asset in CRYPTO_ASSETS else None,
-            "htf_4h_ohlcv": crypto_htf_4h.get(asset, []) if asset in CRYPTO_ASSETS else None,
+            "htf_1h_ohlcv": htf_bars["1h"],
+            "htf_4h_ohlcv": htf_bars["4h"],
+            "htf_history": htf_quality,
+            "binance_htf_4h_ohlcv": crypto_htf_4h.get(asset, []) if asset in CRYPTO_ASSETS else None,
             "htf_d1_ohlcv": crypto_htf_d1.get(asset, []) if asset in CRYPTO_ASSETS else None,
             "funding_history_8x8h": crypto_funding_hist.get(asset, []) if asset in CRYPTO_ASSETS else None
         }
@@ -862,17 +1038,27 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
     save_whale_state(new_whale_state, whale_state_path)
 
     # Assemble master document
+    trusted_finish = bridge.broker_utc_now() if hasattr(bridge, "broker_utc_now") else None
+    snapshot_as_of = trusted_finish if trusted_finish is not None else time.time()
+    snapshot_utc = datetime.fromtimestamp(snapshot_as_of, timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
+    macro_calendar.update(calendar_observation(snapshot_as_of))
     payload = {
         "protocol": "omni.telemetry.v3.observed_only",
         "snapshot_status": "LIVE_OBSERVATION",
         "data_policy": "OBSERVED_OR_DERIVED_FROM_OBSERVED; unavailable fields never authorize trades",
-        "as_of_utc": now_utc,
-        "as_of_epoch": now_ts,
+        "as_of_utc": snapshot_utc,
+        "as_of_epoch": snapshot_as_of,
+        "generation_started_at_epoch": now_ts,
+        "candle_cutoff_epoch": now_ts,
+        "clock_basis": "CALIBRATED_BROKER_UTC" if trusted_finish is not None else "UNVERIFIED_HOST_CLOCK",
+        "generation_id": uuid.uuid4().hex,
         "generated_by": "MT5 bridge + public feeds; no broker execution performed here",
         "trade_authorization": "DENIED_UNVERIFIED_ORDERFLOW",
         "account": {
             "login": acc_summary.get("login"),
             "server": acc_summary.get("server"),
+            "currency": "USD",
+            "source": "NATIVE_MT5_ACCOUNT_INFO",
             "balance_usd": balance_usd,
             "equity_usd": equity_usd,
             "margin_used_usd": margin_used,
@@ -881,14 +1067,18 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
             "hard_floor_usd": hard_floor,
             "cushion_above_floor_usd": cushion
         },
+        "risk": book_risk,
         "active_positions": formatted_positions,
         "pending_orders": formatted_orders,
         "capacity": {
             "filled": filled_count,
             "pending": pending_count,
+            "used_joint_fill": joint_count,
+            "available": max(0, max_slots - joint_count) if capacity_open else 0,
+            "inventory_status": "OBSERVED",
             "max_concurrent": MAX_CONCURRENT_SLOTS,
-            "policy": "DYNAMIC_FREE_MARGIN_CAPACITY",
-            "rule": "Capacity is ONLY consumed when orders are actually FILLED. Pending limit orders do NOT consume filled slots. The desk deploys orders dynamically as long as free margin is abundant (>4,000 USD) and joint stressed risk defends the 4,775.00 USD hard floor.",
+            "policy": "JOINT_FILL_CAPACITY_AND_FLOOR_DEFENSE",
+            "rule": "Filled positions plus every independently fillable pending reserve at most 4 slots; broker-valued joint stressed stop loss must preserve the hard floor plus 20 USD. Unknown inventory, risk or margin freezes admission.",
             "status": capacity_status
         },
         "macro_calendar": macro_calendar,
@@ -903,7 +1093,14 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
     temp_path = out_path.with_suffix(".tmp")
     with open(temp_path, "w", encoding="utf-8") as f:
         json.dump(payload, f, indent=2, allow_nan=False)
-    temp_path.replace(out_path)
+    for _attempt in range(5):
+        try:
+            temp_path.replace(out_path)
+            break
+        except (PermissionError, OSError):
+            if _attempt == 4:
+                raise
+            time.sleep(0.1)
 
     print(f"[{now_utc}] Successfully exported observed-only telemetry snapshot v3 to {out_path}")
     print(f"  Account Equity: {equity_usd:.2f} USD | Hard Floor: {hard_floor:.2f} USD | Cushion: +{cushion:.2f} USD")
