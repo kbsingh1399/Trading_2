@@ -260,30 +260,49 @@ async def post_prompt_to_copilot_studio(prompt_text: str, ws_url: Optional[str] 
         await ws.recv()
         await asyncio.sleep(0.5)
 
-        # Step 4: Dispatch Enter key event to submit
+        # Step 4: Click Send Button or fallback to Enter key
+        submit_js = """
+        (() => {
+          const btn = document.querySelector('[data-testid="send-button"]') ||
+                      document.querySelector('button[aria-label="Send"]') ||
+                      document.querySelector('.fai-SendButton');
+          if (btn && !btn.disabled) {
+            btn.click();
+            return { clicked: true, method: "button_click" };
+          }
+          return { clicked: false, method: "none" };
+        })()
+        """
         await ws.send(json.dumps({
             "id": msg_id + 3,
-            "method": "Input.dispatchKeyEvent",
-            "params": {
-                "type": "rawKeyDown",
-                "windowsVirtualKeyCode": 13,
-                "code": "Enter",
-                "key": "Enter"
-            }
+            "method": "Runtime.evaluate",
+            "params": {"expression": submit_js, "returnByValue": True}
         }))
-        await ws.recv()
-
-        await ws.send(json.dumps({
-            "id": msg_id + 4,
-            "method": "Input.dispatchKeyEvent",
-            "params": {
-                "type": "keyUp",
-                "windowsVirtualKeyCode": 13,
-                "code": "Enter",
-                "key": "Enter"
-            }
-        }))
-        await ws.recv()
+        submit_res = json.loads(await ws.recv())
+        clicked = submit_res.get("result", {}).get("result", {}).get("value", {}).get("clicked", False)
+        if not clicked:
+            await ws.send(json.dumps({
+                "id": msg_id + 4,
+                "method": "Input.dispatchKeyEvent",
+                "params": {
+                    "type": "rawKeyDown",
+                    "windowsVirtualKeyCode": 13,
+                    "code": "Enter",
+                    "key": "Enter"
+                }
+            }))
+            await ws.recv()
+            await ws.send(json.dumps({
+                "id": msg_id + 5,
+                "method": "Input.dispatchKeyEvent",
+                "params": {
+                    "type": "keyUp",
+                    "windowsVirtualKeyCode": 13,
+                    "code": "Enter",
+                    "key": "Enter"
+                }
+            }))
+            await ws.recv()
         return True
 
 
@@ -303,19 +322,21 @@ async def check_copilot_studio_response(ws_url: Optional[str] = None) -> Tuple[b
           const stopBtn = document.querySelector('button[aria-label*="Stop"], button[title*="Stop"]');
           const isGenerating = !!stopBtn;
 
-          // Check if body ends with "Thinking"
           const bodyText = document.body.innerText;
-          const isThinking = bodyText.trim().endsWith("Thinking");
+          const isThinking = bodyText.trim().endsWith("Thinking") || bodyText.includes("Thinking...");
 
-          // Find the latest message bubble
-          const allBubbles = Array.from(document.querySelectorAll('[class*="___1frxvlh"], [class*="___1tekf1z"], [class*="___1muqv1l"]'));
-          const lastBubble = allBubbles.length > 0 ? allBubbles[allBubbles.length - 1] : null;
-          const lastText = lastBubble ? lastBubble.innerText : "";
+          // Find assistant response bubbles
+          const allBubbles = Array.from(document.querySelectorAll('[class*="___1tekf1z"]')).map(el => el.innerText || "").filter(t => t.length > 0);
+          
+          // Filter out error banners
+          const validBubbles = allBubbles.filter(t => !t.includes("blocked by content filtering"));
+          const lastValidText = validBubbles.length > 0 ? validBubbles[validBubbles.length - 1] : "";
 
           return {
             isGenerating: isGenerating || isThinking,
             bubblesCount: allBubbles.length,
-            lastText: lastText
+            validBubblesCount: validBubbles.length,
+            lastText: lastValidText
           };
         })()
         """

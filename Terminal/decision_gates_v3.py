@@ -196,18 +196,19 @@ def model1_checklist(ctx: dict) -> Verdict:
     v.metrics.update(z=z, dz4=dz4)
     # --- A1 regime + geometry
     v.require(ctx["regime"] == "MEAN_REVERT", "A1_regime_not_mean_revert")
-    v.require(-side * z >= 2.0, "A1_z_below_2")
-    v.require(-side * z <= 3.5, "A1_z_beyond_3p5_cascade_zone")
+    z_sweep = ctx.get("sweep_z", z)
+    v.metrics["z_sweep"] = z_sweep
+    v.require(-side * z_sweep >= 2.0, "A1_z_below_2")
+    v.require(-side * z_sweep <= 3.5, "A1_z_beyond_3p5_cascade_zone")
     v.require(ctx["session_bars"] >= 16, "A1_session_sigma_immature_lt16bars")
     v.require(sig_s >= 0.8 * atr, "A1_session_sigma_lt_0p8atr")
     v.require(abs(ctx["vwap_slope_sigma_per_bar"]) <= 0.05, "A1_vwap_sloped")
     v.require(-side * dz4 <= 0.75, "A1_z_still_accelerating")
     v.require(ctx["vol_ratio_4_96"] <= 2.0, "A1_vol_shock")
-    # --- A2 orderflow (crypto only; CFDs without tape fail closed)
+    # --- A2 orderflow (crypto only; CFDs without tape fail closed; no price-only bypass for Model 1)
     of = ctx.get("orderflow")
-    if of is None:
-        v.require(ctx.get("allow_price_only_variant", False), "A2_no_tape_fail_closed")
-    else:
+    v.require(of is not None, "A2_no_tape_fail_closed")
+    if of is not None:
         # divergence: second push's adverse CVD <= 70% of first push's
         leg1, leg2 = of["cvd_push1"], of["cvd_push2"]
         div = (abs(leg2) / abs(leg1)) if leg1 else 9.9
@@ -307,6 +308,7 @@ def model2_checklist(ctx: dict) -> Verdict:
     r = abs(entry - sl)
     v.require(r >= 1.5 * atr, "B6_stop_lt_1p5atr")
     obstacle = ctx.get("first_obstacle")          # swing high / ask wall >= 2M
+    v.require(obstacle is not None, "B6_first_obstacle_missing")
     if obstacle is not None:
         v.require(side * (obstacle - tp) >= 2 * ctx["tick"], "B6_tp_beyond_first_obstacle")
     rr = side * (tp - entry) / r if r > 0 else 0
@@ -327,6 +329,7 @@ def _net_ev(v: Verdict, ctx: dict, rr: float, min_rr: float) -> None:
     v.require(rr >= min_rr, f"EV_rr_below_{min_rr}")
     v.require(c <= 0.15, "EV_friction_gt_0p15R")
     p_lo = ctx.get("p_win_lower_bound")
+    v.require(p_lo is not None, "EV_p_win_lower_bound_missing")
     if p_lo is not None:
         v.metrics["ev_lower_r"] = p_lo * win - (1 - p_lo) * loss
         v.require(p_lo >= p_star + 0.03, "EV_lower_bound_below_breakeven")
@@ -357,7 +360,7 @@ def resting_order_invalidation(o: dict, m: dict):
         ev.append((HARD, "drift_gt_2atr"))
     if m["minutes_resting"] > o["ttl_minutes"]:
         ev.append((HARD, "ttl_diffusion_expired"))
-    if m["macro_blackout"] or m["spread_bps"] > 2.5 * m["spread_median_bps"]:
+    if m["macro_blackout"] or m["spread_bps"] > max(1.0, 2.5 * m["spread_median_bps"]):
         ev.append((HARD, "context_blackout_or_spread"))
     # orderflow (crypto; None = unobservable, adds nothing)
     w = m.get("wall_retained_frac")
@@ -382,12 +385,15 @@ def resting_order_invalidation(o: dict, m: dict):
     return "KEEP", soft
 
 
-def diffusion_ttl_minutes(dist_price: float, sigma_bar_price: float, bar_minutes: int = 15,
-                          mult: float = 2.0) -> float:
-    """Expected first-passage scale ~ (d/sigma)^2 bars; cancel after mult x."""
+def diffusion_ttl_minutes(dist_at_stage: float, sigma_bar_price: float, bar_minutes: int = 15,
+                          mult: float = 2.0, min_ttl_minutes: float = 15.0) -> float:
+    """Expected first-passage scale ~ (d/sigma)^2 bars; computed ONCE at order staging.
+    Do NOT recompute on live shrinking distance, as dist -> 0 near fill would shrink TTL to 0!
+    """
     if sigma_bar_price <= 0:
-        return 0.0
-    return mult * (dist_price / sigma_bar_price) ** 2 * bar_minutes
+        return min_ttl_minutes
+    ttl = mult * (dist_at_stage / sigma_bar_price) ** 2 * bar_minutes
+    return max(float(ttl), min_ttl_minutes)
 
 
 # ================================================ 6. hold / cut / breakeven

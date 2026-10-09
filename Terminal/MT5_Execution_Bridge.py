@@ -52,18 +52,20 @@ class MT5ExecutionBridge:
         self.initialized = False
         self._symbol_cache: Dict[str, str] = {}
         self._offset_cache: Dict[str, tuple] = {}
-        # MetaQuotes ticks are broker server time (EET/UTC+3, offset 10800s)
+        # Dynamic broker server time offset (auto-calibrates from live ticks, survives DST shifts)
         self.broker_utc_offset_sec: int = 10800
         self.broker_utc_offset_ms: int = 10800 * 1000
         self.ensure_connected()
 
-    def _normalize_tick_msc(self, raw_msc: int) -> int:
+    def _normalize_tick_msc(self, raw_msc: int, symbol: Optional[str] = None) -> int:
         if not raw_msc:
             return 0
         now_ms = time.time() * 1000
-        # If broker tick is ~3 hours ahead (EET server time), normalize to UTC
-        if raw_msc - now_ms > 3600 * 1000:
-            return int(raw_msc - self.broker_utc_offset_ms)
+        offset_sec = self._utc_offset_seconds(symbol)
+        offset_ms = offset_sec * 1000 if offset_sec != 0 else self.broker_utc_offset_ms
+        # If broker tick is significantly ahead (>45m), normalize to UTC using dynamic offset
+        if raw_msc - now_ms > 2700 * 1000:
+            return int(raw_msc - offset_ms)
         return int(raw_msc)
 
     def _utc_offset_seconds(self, symbol: Optional[str] = None) -> int:
@@ -71,26 +73,28 @@ class MT5ExecutionBridge:
 
         MT5 bar, position and order timestamps are broker *server* time. Ticks
         carry ``time_msc`` from the same clock, so a fresh tick gives us the
-        offset. Returning 0 when the server already runs UTC keeps behaviour
-        unchanged for UTC brokers. Cached 300s per symbol; failures are
-        treated as offset 0 (the historical behaviour).
+        offset. Returning dynamic offset measured live survives broker DST shifts
+        (e.g. GMT+3 EET to GMT+2 EET transition on Nov 1). Cached 300s per symbol.
         """
-        cached = self._offset_cache.get(symbol or "*")
+        probe_sym = symbol or "BTCUSD.pi"
+        cached = self._offset_cache.get(probe_sym)
         if cached and abs(time.time() - cached[1]) < 300:
             return cached[0]
         offset = 0
         try:
-            if symbol and MT5_AVAILABLE:
-                tick = mt5.symbol_info_tick(symbol)
+            if MT5_AVAILABLE:
+                tick = mt5.symbol_info_tick(probe_sym)
                 raw_msc = getattr(tick, "time_msc", 0) if tick else 0
                 if raw_msc:
-                    delta = raw_msc/1000.0 - time.time()
+                    delta = raw_msc / 1000.0 - time.time()
                     if abs(delta) > 2700:  # > 45 min out: a real TZ offset
-                        offset = int(round(delta/1800.0)*1800)
-                        offset = max(-14*3600, min(14*3600, offset))
+                        offset = int(round(delta / 1800.0) * 1800)
+                        offset = max(-14 * 3600, min(14 * 3600, offset))
+                        self.broker_utc_offset_sec = offset
+                        self.broker_utc_offset_ms = offset * 1000
         except Exception:
-            offset = 0
-        self._offset_cache[symbol or "*"] = (offset, time.time())
+            offset = self.broker_utc_offset_sec
+        self._offset_cache[probe_sym] = (offset, time.time())
         return offset
 
     def ensure_connected(self) -> bool:
@@ -657,7 +661,7 @@ class MT5ExecutionBridge:
         if normalized <= 0.0:
             return {"success": False, "error": "Requested volume is below broker minimum"}
         order_type = getattr(mt5, "ORDER_TYPE_BUY_LIMIT", 2) if is_long else getattr(mt5, "ORDER_TYPE_SELL_LIMIT", 3)
-        broker_now = max(int(getattr(tick, "time", 0)), int(time.time()) + self.broker_utc_offset_sec)
+        broker_now = max(int(getattr(tick, "time", 0)), int(time.time()) + self._utc_offset_seconds(symbol))
         request = {
             "action": mt5.TRADE_ACTION_PENDING,
             "symbol": symbol,
