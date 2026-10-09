@@ -52456,3 +52456,21 @@ Finally, unify live and replay ratchets before qualifying uplift; the current se
      - **Task 5**: Collaborative Cron (`task-30988`, `20,40,55 * * * *`, IsDaemon=true)
   6. Verified via `manage_task` list that all 5 processes are healthy and running concurrently.
 - **Verification**: All background tasks confirmed running; git working tree clean.
+
+---
+
+## Turn Log | Telemetry Daemon Hardening & Unhandled Loop Exception Insulation | 2026-10-10 01:00:30 UTC
+- **Incident & Forensic Diagnosis**:
+  * Telemetry daemon exited due to an unhandled Windows file replacement lock exception (`[WinError 5] Access is denied`) during atomic temp file moves.
+- **Surgical Hardening Applied**:
+  1. In `Terminal/Data_Factory/generate_telemetry_snapshot.py`, wrapped `temp_path.replace(out_path)` in an adaptive 5-attempt retry loop catching `(PermissionError, OSError)` with 100ms backoff.
+  2. In `Terminal/Data_Factory/autonomous_telemetry_git_daemon.py`, wrapped the outer iteration loop in a resilient `try ... except Exception as loop_err:` block so loop exceptions log full stack traces and sleep 5s rather than terminating the daemon process.
+  3. Integrated `Terminal/broker_clock.py` dynamic clock offset calibration.
+  4. Committed and pushed to `main` (`2da848b2`).
+  5. Relaunched daemon as `task-31081` (`IsDaemon=true`). Verified Iteration #1 generated clean telemetry (24/24 assets, 0/4 capacity, 4,896.55 USD equity, +121.55 USD cushion).
+- **Current Background Suite Status**:
+  * AST Watcher (`task-30980`): RUNNING
+  * Web2API on port 8081 (`task-30982`): RUNNING
+  * Heretic Engine on port 8083 (`task-30986`): RUNNING
+  * Hardened Telemetry Git Sync Daemon (`task-31081`): RUNNING
+  * Collaborative Cron (`20,40,55 * * * *`): ARMED
