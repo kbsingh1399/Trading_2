@@ -190,7 +190,36 @@ def build_copilot_studio_prompt() -> str:
     lines.append("   - Positive conservative Expected Value (EV): P(win) x Net Gain - P(loss) x Max Loss - Frictions > 0.")
     lines.append("   - If neither engine produces positive EV with confirmed L2 depth, emit an unconditional STAND ASIDE.")
     lines.append("")
-    lines.append("[SECTION 4: REQUIRED QUANTITATIVE DESK RULING]")
+    lines.append("[SECTION 4: LIVE 24-ASSET ORDERFLOW & MARKET STRUCTURE TELEMETRY]")
+    lines.append("Real-time telemetry across all 24 assets (Quotes, Spreads, VWAP Z-Scores, ATR, Orderbook Depths, Structural Bands):")
+    lines.append("")
+    snapshot_file = PROJECT_ROOT / "docs" / "telemetry" / "live_snapshot_latest.json"
+    if snapshot_file.exists():
+        try:
+            with open(snapshot_file, "r", encoding="utf-8") as f:
+                snap_data = json.load(f)
+            matrix = snap_data.get("assets_matrix_24", {})
+            for a_name, a_val in matrix.items():
+                sym = a_val.get("symbol_broker", a_name)
+                cat = a_val.get("category", "")
+                q = a_val.get("quotes", {})
+                mid = q.get("mid", 0.0)
+                spr = q.get("spread_bps", 0.0)
+                ind = a_val.get("causal_indicators", {})
+                z = ind.get("vwap_z_score", "N/A")
+                rsi = ind.get("rsi_14", "N/A")
+                atr = ind.get("atr_14", "N/A")
+                reg = ind.get("trend_regime", "N/A")
+                ob = a_val.get("orderbook_live_depth", {})
+                whales = ob.get("whale_walls_l3", [])
+                lines.append(f"- {a_name} ({sym} | {cat}): Mid={mid} | Spread={spr:.2f} bps | VWAP_Z={z} SD | RSI={rsi} | ATR={atr} | Regime={reg}")
+                if whales:
+                    w_parts = [f"{w.get('side')} {w.get('notional_usd')} USD @ {w.get('price')}" for w in whales[:2]]
+                    lines.append(f"  * L3 Whales: {', '.join(w_parts)}")
+        except Exception as te:
+            lines.append(f"Warning: Telemetry extraction fallback: {te}")
+    lines.append("")
+    lines.append("[SECTION 5: REQUIRED QUANTITATIVE DESK RULING]")
     lines.append("Provide your explicit quantitative ruling structured as:")
     lines.append("1. Existing Exposure Audit: Verdict on active tickets (HOLD, Ratchet, Resize, or Delete).")
     lines.append("2. Top 2 Candidate Orders (if any): Symbol, Direction, Entry Price, SL, TP, Lots, Risk USD, EV score.")
