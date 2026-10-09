@@ -89,6 +89,8 @@ def variance_ratio(closes, q: int = 4, n: Optional[int] = None):
     vr = varq / var1 if var1 > 0 else 1.0
     d2 = (x - mu) ** 2
     den = d2.sum() ** 2
+    if den <= 0:
+        return float(vr), 0.0
     phi = 0.0
     for j in range(1, q):
         delta = T * (d2[j:] * d2[:-j]).sum() / den

@@ -349,7 +349,7 @@ def build_candidate(row: dict, snap: dict) -> dict | None:
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--ref", default="origin/arena/24eb818b-trading-2")
+    ap.add_argument("--ref", default="origin/main")
     ap.add_argument("--snapshot-path", default="docs/telemetry/live_snapshot_latest.json")
     ap.add_argument("--json-out")
     args = ap.parse_args()

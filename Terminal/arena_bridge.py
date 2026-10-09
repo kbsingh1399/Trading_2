@@ -253,7 +253,7 @@ def build_48h_orderflow_prompt() -> str:
     lines.append("=" * 80)
     lines.append("")
     lines.append("[SECTION 1: REPOSITORY REFERENCES & MANDATORY HISTORICAL SESSION CONTEXT]")
-    lines.append("- Primary GitHub Repository: https://github.com/kbsingh1399/Trading_2 (Branch: main & arena/24eb818b-trading-2)")
+    lines.append("- Primary GitHub Repository: https://github.com/kbsingh1399/Trading_2 (Branch: main)")
     lines.append("")
     lines.append("🛑 MANDATORY OPERATOR DIRECTIVE FOR COUNCIL REVIEW:")
     lines.append("You MUST study and read the ENTIRE session chat history along with the core repository reference documents below BEFORE formulating rulings or analyzing setups:")

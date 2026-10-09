@@ -44,7 +44,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger("TelemetryGitDaemon")
 
-BRANCH_NAME = "arena/24eb818b-trading-2"
+BRANCH_NAME = "main"
 INTERVAL_SECONDS = 60
 
 
