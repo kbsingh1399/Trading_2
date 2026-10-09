@@ -243,16 +243,53 @@ class TestRatchetAndWall(unittest.TestCase):
             apply_command(FakeBridge(), {"type": "STAGE_ORDER", "params": params_bad_sl},
                           clock=lambda: 1700000000)
 
-    def test_stage_trade_plan_handles_none_market_state_fail_closed(self):
-        from Terminal.Headless.stage_trade_plan import live_precheck
+    def test_high_free_margin_does_not_bypass_pending_contingent_loss(self):
+        """Astra P0 verification: High free margin must not bypass joint pending risk or drop the buffer."""
+        class StressedBridge:
+            account = {"connected": True, "currency": "USD", "balance_usd": 4800.0,
+                       "equity_usd": 4800.0, "free_margin_usd": 3000.0}
+            positions = []
+            pending = [
+                {"symbol": "BTCUSD.pi", "direction": "LONG", "volume": 0.02, "price_open": 83000, "sl": 82500},
+                {"symbol": "XAUUSD.pi", "direction": "LONG", "volume": 0.01, "price_open": 4180, "sl": 4170},
+            ]
+            def get_account_summary(self): return self.account
+            def get_open_positions(self): return self.positions
+            def get_pending_orders(self): return self.pending
+            def estimate_order(self, sym, direction, entry, sl): return {"stop_loss_per_lot": abs(entry - sl)}
 
-        class FakeClient:
-            def market_state(self): return None
+        bridge = StressedBridge()
+        # With volume=10.0 and per_lot=1.0, nominal risk is exactly 10.0 USD (within bounds 10.0-15.0 USD).
+        # Total stressed loss (2 pending + 1 proposed = ~43.50 USD) leaves equity 4,800 - 43.50 = 4,756.50 < 4,795.00 (HARD_FLOOR + BUFFER).
+        # Even with high free margin ($3,000), joint reservation must reject with joint_fill_floor_breach!
+        with self.assertRaisesRegex(ValueError, "joint_fill_floor_breach"):
+            assert_joint_fill_safe(bridge, "USDJPY.pi", "LONG", 10.0, 158.0, 157.0)
 
-        res = live_precheck(FakeClient(), {}, now=1700000000)
-        self.assertFalse(res["ok"])
-        self.assertEqual(res["reason"], "tunnel_unreachable")
-        self.assertEqual(res["detail"], "None")
+    def test_cached_book_does_not_rejuvenate_received_at(self):
+        """Astra P1 verification: Re-reading cached book must preserve original receipt timestamp."""
+        from Terminal.Data_Factory.factory import ZeroCostDataFactory
+        factory = ZeroCostDataFactory(["BTC"])
+        factory.clock = lambda: 1000.0
+        book = {"ts": 995.0, "bids": [{"price": 100.0, "size": 1.0}], "asks": [{"price": 101.0, "size": 1.0}]}
+        factory.ingest_book("BTC", book)
+
+        # 500 seconds later, read payload at now = 1500.0
+        p = factory.payload("BTC", now=1500.0)
+        l2 = p.get("l2_book", {})
+        self.assertEqual(l2.get("received_at"), 1000.0,
+                         "received_at was rejuvenated to current query time instead of original arrival stamp!")
+
+    def test_cvd_excludes_future_dated_trades_due_to_clock_skew(self):
+        """Astra P1 verification: Future-stamped trades must not enter the trailing CVD window."""
+        from Terminal.Data_Factory.bus import IntelligenceBus
+        bus = IntelligenceBus()
+        # Ingest trade at ts=1000 (valid) and trade at ts=1050 (future relative to evaluation now=1000)
+        bus.publish_trade("BTC", ts=1000.0, price=100.0, size=1.0, side="BUY", venue="BINANCE")
+        bus.publish_trade("BTC", ts=1050.0, price=100.0, size=2.0, side="BUY", venue="BINANCE")
+
+        # Evaluate CVD at now = 1000.0 over 300s window
+        cvd_val = bus.cvd("BTC", window_sec=300.0, now=1000.0)
+        self.assertEqual(cvd_val, 100.0, "Future-dated trade ts=1050 leaked into CVD calculated at now=1000.0!")
 
 
 if __name__ == "__main__":

@@ -12,7 +12,7 @@ trigger: always_on
 - **CROSS-ACCOUNT RE-ENGAGEMENT & FULL NARRATIVE AUDIT (HYPERDASH / MULTI-ACCOUNT INVARIANT)**: Whenever the operator switches Gemini accounts and returns to the session chat, the agent MUST explicitly review all past session chat logs (`.agents/memory/session_chat_history.md`, transcript, and `ACTIVE_CONTEXT.md`) to establish total continuity of what we are trying to achieve, internalize all operator feedback, remember past setbacks, and preserve every nuance of the active quantitative mission before taking any action.
 - **100% LOCAL QUANTITATIVE DEVELOPMENT & EXECUTION**: All prompt-generation for external agents (Ox Alpha / Arena) is permanently terminated. All engineering, econometric feature integration, model training, backtesting, and 20 OOS window optimization are executed right here locally in this environment.
 - **MANDATORY BUY & HOLD BENCHMARKING**: ALWAYS compare strategy performance, equity curves, ROI, and drawdowns directly against the Buy and Hold benchmark (BTC Buy & Hold normalized to identical starting capital).
-- **MANDATORY EQUITY CURVE IMAGE SHARING**: Whenever reporting on backtest performance or equity curves, ALWAYS generate and share a visual chart image (`![caption](path)`) comparing Strategy Equity vs Buy & Hold and underwater drawdowns.
+- **ZERO-HESITATION AUTONOMOUS PUNCH MANDATE (STRICT OPERATOR DIRECTIVE)**: NEVER ask the operator for permission to stage or execute orders. Whenever ANY candidate candle prints an eligible structural setup supported by rigorous quantitative reasoning, mathematical logic, resting L2/L3 whale backing, and capital floor defense under Model 1 (Extreme Mean Reversion) or Model 2 (VWAP Trend Pullbacks), IMMEDIATELY punch the passive limit order live into MetaTrader 5 without hesitation and without asking. Zero hesitation, zero latency, 100% autonomous execution.
 - **ZERO SPURIOUS SCRATCH LITTER**: Clean up all intermediate debug scripts immediately after validation.
 
 ## 2. Active Mission & Quantitative Target
@@ -50,26 +50,27 @@ trigger: always_on
     - Full Arena Audit Report: Archived in `docs/audits/institutional-quant-audit-2026-10-04.md` and `docs/audits/ARENA_ANTIGRAVITY_HANDSHAKE_COUNCIL_67.md`.
     - **Dynamic Conviction Risk Budget**: Flexible **10.00 to 20.00 USD** (0.20% to 0.40% on 5,000.00 USD capital) dynamically scaled by orderflow confluence, resting L3 whale presence, and macro alignment.
     - **Active Positions & Pending Orders (Live State)**:
-      * Current Status: **0 Open Positions | 0 Pending Orders (0 Total Tickets) | Equity: 4,845.80 USD | Balance: 4,845.80 USD | Free Margin: 4,845.80 USD | Margin Used: 0.00 USD (100% Cash Reserves)**.
-      * Active Positions:
-        - **NONE (0 Open Positions | 100% Cash Flat)**.
-      * Pending Orders:
-        - **NONE (Clean queue, Ticket #18713247 expired at 21:15:00 UTC candle close)**.
-      * Pruned / Cancelled / Expired Orders:
-        - **Ticket #18713247 (`NERUSD.p` SELL LIMIT 1.0 lot @ 4.617 USD): Expired at 21:15:00 UTC candle close per order expiration parameter**.
-        - **Ticket #18713408 (`USWTI.p` BUY LIMIT 0.20 @ 91.720 USD): Cancelled per 20:45 UTC peer review (no supporting EMA/VWAP shelf, drifted -0.56 ATR)**.
-        - **Ticket #18713432 (`SP500.p` BUY LIMIT 0.10 @ 7,758.00 USD): Cancelled per 20:45 UTC peer review (post-cash close illiquidity, bearish regime below VWAP)**.
-        - **Ticket #18713434 (`XAUUSD.pi` BUY LIMIT 0.01 @ 4,124.00 USD): Cancelled per 20:45 UTC peer review (stale -1.48 ATR, zero resting L2 whale backing)**.
-      * Closed Orders Today:
-        - **Ticket #18706769 (`ETHUSD.pi` BUY 0.37 lots @ 2,411.00 USD): Closed via Phase 2 Trailing Ratchet SL at 2,455.10 USD (+16.32 USD net cash profit banked into capital)**.
-        - **Ticket #18710722 (`SOLUSD.p` SHORT 0.08 lots @ 107.72 USD): Closed via Emergency Shelf Cut at 108.87 USD (-9.20 USD net cash, saved capital vs 109.10 hard stop)**.
-        - Ticket #18703132 (`NAS100.p` SHORT 0.01 lots): **Closed via Take Profit at 30,739.10 USD (+25.00 USD net cash profit booked)**.
-        - Ticket #18702099 on `BTCUSD.pi` pruned/removed at 21:20:00 UTC due to supporting whale wall migration.
-      * G-1 Hard Floor Defense: Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Floor Cushion: **+70.80 USD** (+50.80 USD above operating buffer).
-      * Stressed Post-Loss Simulation: Active position downside risk is 0.00 USD. Minimum guaranteed session equity: **4,845.80 USD** (+70.80 USD above hard floor, +50.80 USD above operating buffer; 100% compliant).
-      * Capacity Sentry: **0 / 12 slots deployed (12 slots VACANT)**. Available Free Margin: 4,845.80 USD (100% cash).
-      * Disk Hygiene: Purged 2.50 GB of scratch git objects, stale tick buffers, and unneeded archives; C: free space expanded to 134.66 GB.
+      * Current Status: **0 Open Positions | 1 Active Pending Order (1 Total Ticket) | Equity: 4,896.55 USD | Balance: 4,896.55 USD | Free Margin: 4,896.55 USD | Margin Used: 0.00 USD (100% Cash Reserves)**.
+      * Active Positions (0) — **ALL 4 POSITION CAPACITY SLOTS LIBERATED & VACANT**:
+        - Zero active positions deployed. 4 slots available for high-confluence deployments.
+      * Active Pending Orders (1) — **STAGED LIVE AT ORTHOGONAL EMA SHELF**:
+        - **Ticket #18736422 (`USDJPY.pi` BUY LIMIT 0.12 lots @ 158.180 USD | SL: 158.040 | TP: 158.530 | Risk: 10.63 USD | Magic: 100895)**: Staged at 158.180 USD 15m EMA50 shelf. Spread: 0.06 bps. MTF trend 100% bullish; drift 0.95x ATR (< 2.0x ATR gate). SL is 1.87x ATR (0.140 pts); TP is +2.50R (+26.55 USD reward).
+      * Capacity Sentry: **0 / 4 filled positions deployed | 4 FILLED POSITION SLOTS LIBERATED & VACANT | 1 pending limit resting in FX | 11 slots vacant on desk**.
+      * G-1 Hard Floor Defense: Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Floor Cushion: **+121.55 USD** (+101.55 USD above operating buffer).
+      * Stressed Post-Loss Simulation & Absolute Immunity:
+        - Total Contingent Book Risk across all exposed tickets: `10.63 (USDJPY) =` **10.63 USD**.
+        - Stressed Worst-Case Equity: `4,896.55 - 10.63 =` **4,885.92 USD** (Unconditionally defends floor under stopout!).
+        - Safety Cushion Above 4,775.00 USD Hard Floor: **+110.92 USD** (5.5x mandatory >= 20.00 USD buffer).
+        - Safety Cushion Above 4,795.00 USD Operating Buffer: **+90.92 USD**.
       * Closed Trades Today (Realized PnL):
+        - Ticket #18740569 (`SP500.p` closed at **-13.00 USD loss** via Stop Loss at 7,778.50 USD, Deal #16962450, Order #18749312)
+        - Ticket #18734182 (`ETHUSD.pi` closed at **-11.90 USD loss** via Stop Loss at 2,477.50 USD, Deal #16961654, Order #18748507)
+        - Ticket #18734361 (`XAUUSD.pi` closed at **-13.70 USD loss** via Stop Loss at 4,175.80 USD, Deal #16957838, Order #18744533)
+        - Ticket #18734917 (`BTCUSD.pi` closed at **+24.00 USD cash profit** via Full Take Profit at 83,250.00 USD, Deal #16954370, Order #18740985)
+        - Ticket #18736423 (`USWTI.p` closed at **+0.70 USD cash profit** via Phase 0 BE Stop Loss at 91.555 USD, Order #18738998, Deal #16952451)
+        - Ticket #18723453 (`SP500.p` closed at **+34.00 USD cash profit** via Full Take Profit at 7,798.50 USD, Order #18734579)
+        - Ticket #18723454 (`GBPUSD.pi` closed at **+0.72 USD cash profit** via Phase 0 BE Stop Loss at 1.32391 USD, Order #18732065)
+        - Ticket #18723450 (`USWTI.p` closed at **+30.00 USD cash profit** via Take Profit at 92.000 USD, Deal #16944675)
         - Ticket #18706769 (`ETHUSD.pi` closed at +16.32 USD profit via Phase 2 Trailing Ratchet SL at 2,455.10 USD)
         - Ticket #18710722 (`SOLUSD.p` closed -9.20 USD loss via emergency shelf cut at 108.87 USD)
         - Ticket #18703132 (`NAS100.p` closed at +25.00 USD profit via Take Profit at 30,739.10 USD)
@@ -79,8 +80,9 @@ trigger: always_on
         - Ticket #18644889 (`USDJPY.pi` closed at +1.82 USD profit via Phase 0 BE lock at 158.046 USD)
         - Ticket #18630694 (`BTCUSD.pi` closed -6.80 USD loss via SL at 82,700.00 USD)
         - Ticket #18644262 (`USWTI.p` closed -10.03 USD loss via SL at 90.113 USD)
-        - Net Realized Session PnL: **+33.23 USD** across 9 completed trades (initial capital 5,000.00 USD; 96.92% preserved; 6 wins / 3 losses = 66.7% win rate).
-      * Desk Status: 0 active positions; 0 pending orders; 12 slots vacant. 03:55 / 04:00 UTC cycle (Iteration 13) unanimously ratified STAND ASIDE / 100% CASH FLAT (Dual-engine debate evaluated both Model 1 Mean Reversion [BTC Z+2.24 to +2.70, RSI 70.3 rejected due to aggressive +8.6M USD 5m taker CVD squeeze lifting asks with 0 absorption; USWTI rejected closing on session low] and Model 2 Trend Following [GBPUSD extended outside band at +1.18 ATR and lacks liquidation TP anchors per Mandate 5; GER40 25,014.86 sell limit fatally rejected below current Bid and European cash closed; DJ30/SP500 extended +4.9 to +6.5 ATR from VWAP]; equity preserved at 4,845.80 USD with +70.80 USD floor cushion and +33.23 USD net session cash profit banked). Next twice-hourly collaborative cycle at 04:25:00 UTC (:25 prompt -> :29 Arena check -> 04:30 candle close).
+        - Net Realized Session PnL: **+84.05 USD** across 17 completed trades (initial capital 5,000.00 USD; 97.93% preserved; 11 wins / 6 losses = 64.7% win rate).
+      * 360-Degree Forensic Verification Certification: [`Terminal/chain_verification_360.py`](file:///c:/Users/SIGMA/Documents/Trading_2/Terminal/chain_verification_360.py) reports `CERTIFIED_100_PERCENT_PRISTINE`. All 24 Parquet archives verified with 0 nulls and 100% strictly monotonic timestamps; causal anti-lookahead verified; broker feed ping 3.65 ms; Binance L2 depth monotonic; full pytest suite passing (405 passed, 0 failed). All P0 admission defects, P1 timestamp rejuvenation, P1 CVD future trade leak, and P1 certification fail-closed checks resolved and regression-tested.
+      * Current collaborative cycle: Cycle 33 stand-down completed. P0/P1 audit fixes verified. Ready for next cycle.
 
 ## 3. Settled Mathematical & Strategy Invariants
 - **Institutional VWAP & Orderflow Confluence Framework (Strict Mandate)**:

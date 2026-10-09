@@ -142,7 +142,7 @@ def test_bus_reads_are_sub_millisecond():
         bus.taker_flow("SOL", 60.0, now=NOW + 2000)
         bus.footprint("SOL", top_n=8)
     elapsed = time.perf_counter() - started
-    mean_ms = elapsed / queries * 1000.0
+    mean_ms = elapsed / (queries * 3) * 1000.0
     assert mean_ms < 1.0, f"mean bus query latency {mean_ms:.3f} ms exceeds 1 ms"
 
 

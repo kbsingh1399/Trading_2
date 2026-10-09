@@ -127,6 +127,9 @@ class ZeroCostDataFactory:
     def ingest_book(self, asset, book):
         if not book:
             return None
+        book = dict(book)
+        if "received_at" not in book:
+            book["received_at"] = self.clock()
         self.bus.publish_book(asset, book)
         self.stats["books"] += 1
         return book
@@ -235,9 +238,11 @@ class ZeroCostDataFactory:
             # Trader contract: l2_book carries a venue "timestamp" (epoch s or
             # ms; ``epoch()`` normalizes) plus a receipt stamp; the staleness
             # gate in Risk_Sizing_Engine fails closed on both.
+            # Preserve original source received_at; never rejuvenate cached books to now.
             book = dict(book)
             book.setdefault("timestamp", number(book.get("ts"), 0.0))
-            book["received_at"] = now
+            if "received_at" not in book:
+                book["received_at"] = number(book.get("timestamp"), 0.0)
         mid = self.bus.mid(asset)
         recent = self.bus.ticks(asset, limit=100)
         # Zero lookahead: a future-stamped venue tick (clock skew) never

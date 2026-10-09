@@ -1,0 +1,132 @@
+{
+  "captured_at_utc": "2026-10-09T14:24:23.006313+00:00",
+  "workspace": "C:\\Users\\SIGMA\\Documents\\Trading_2",
+  "scope": "READ_ONLY_ARCHITECTURE_AUDIT; no execution or service changes",
+  "sources": {
+    "docs/specs/ANTIGRAVITY_ARENA_THINKING_CHAIN_COUNCIL_PROTOCOL.md": {
+      "exists": true,
+      "sha256": "a714f29eda3edca794ff95a51042e1f57c73ff0c2423078a454a7b3053d671a8"
+    },
+    "Terminal/OF_Strategy.py": {
+      "exists": true,
+      "sha256": "1e3322e957909897a457ca70d40d523aefb48559cae2265ca7755792e5ff2bf9"
+    },
+    "Terminal/Omni_Trader.py": {
+      "exists": true,
+      "sha256": "08b308813b22795846809585859ef09ae77d68ac50d37e385276c8210af8fd26"
+    },
+    "Terminal/arena_bridge.py": {
+      "exists": true,
+      "sha256": "c7f01ca2d2012fcc57f01b37caa4b5d235bee7fc3df7f59032902ab4ba7369d2"
+    },
+    "Terminal/chain_verification_360.py": {
+      "exists": true,
+      "sha256": "b82b0c9b8dcc9d46301f4eb57e6f18b23acd48e28b290d432aec7fe75466ae3f"
+    },
+    "Terminal/Risk_Sizing_Engine.py": {
+      "exists": true,
+      "sha256": "3e0c84c585b02d38b6a3a33f33454bf57d909c74a123bf4c96616bcbc0826c74"
+    },
+    "Terminal/Uplift_Model.py": {
+      "exists": true,
+      "sha256": "eecf16e17cc881f8d21319cef87771b32938a34a2f3ff27ef0ee1977a70a2b6a"
+    },
+    "Terminal/risk/live_admission.py": {
+      "exists": true,
+      "sha256": "fad4aca37ce4014247ae8d61447a44ce74ff253da8f9bd9d34f4b92e707ec0c5"
+    },
+    "Terminal/risk/floor_defense.py": {
+      "exists": true,
+      "sha256": "c436b033d59bbd3ae276166438fd406d04528e7ae46c08e859505bd1c7868e61"
+    },
+    "Terminal/risk/ratchet_manager.py": {
+      "exists": true,
+      "sha256": "cd0167319cf0f2835a02b05c042054665f2d8f202815deca1d9b2316d8f0a28a"
+    },
+    "Terminal/Data_Factory/factory.py": {
+      "exists": true,
+      "sha256": "5768de8add37cfe6f907160508720aa9cf0a14f7883a13ef2cca7002409dcf2c"
+    },
+    "Terminal/Data_Factory/bus.py": {
+      "exists": true,
+      "sha256": "32f3a6d32b52afe84c3ccf77208e9bb35cd17c17776e1e7be422d2a51e3a2ea3"
+    },
+    "Data/macro_calendar.json": {
+      "exists": true,
+      "sha256": "9c6fd05cd9b737a4c23aca0389abd78e872a04d12dcf10f3270fefbf83ca1809"
+    },
+    "docs/telemetry/live_snapshot_latest.json": {
+      "exists": true,
+      "sha256": "cdccba39dbe329b4d6e1b48e0b1425daf3b94529a9d1909db66abee8e44e5523"
+    }
+  },
+  "telemetry_context": {
+    "protocol": "omni.telemetry.v3.observed_only",
+    "snapshot_status": "LIVE_OBSERVATION",
+    "data_policy": "OBSERVED_OR_DERIVED_FROM_OBSERVED; unavailable fields never authorize trades",
+    "as_of_utc": "2026-10-09 14:23:58 UTC",
+    "as_of_epoch": 1791555838.468415,
+    "generated_by": "MT5 bridge + public feeds; no broker execution performed here",
+    "trade_authorization": "DENIED_UNVERIFIED_ORDERFLOW",
+    "account": {
+      "login": 5064568,
+      "server": null,
+      "balance_usd": 4896.55,
+      "equity_usd": 4896.55,
+      "margin_used_usd": 0.0,
+      "margin_free_usd": 4896.55,
+      "margin_level_pct": 0.0,
+      "hard_floor_usd": 4775.0,
+      "cushion_above_floor_usd": 121.55
+    },
+    "active_positions": [],
+    "pending_orders": [
+      {
+        "ticket": 18736422,
+        "symbol": "USDJPY.pi",
+        "type": "BUY_LIMIT",
+        "volume": 0.12,
+        "price_open": 158.18,
+        "sl": 158.04,
+        "tp": 158.53,
+        "time_setup": 1791538454
+      }
+    ],
+    "capacity": {
+      "filled": 0,
+      "pending": 1,
+      "max_concurrent": 12,
+      "policy": "DYNAMIC_FREE_MARGIN_CAPACITY",
+      "rule": "Capacity is ONLY consumed when orders are actually FILLED. Pending limit orders do NOT consume filled slots. The desk deploys orders dynamically as long as free margin is abundant (>4,000 USD) and joint stressed risk defends the 4,775.00 USD hard floor.",
+      "status": "OPEN (0/12 filled, 1 pending, free_margin=4896.55 USD)"
+    },
+    "macro_calendar": {
+      "event": "US FOMC Meeting Minutes (High Impact)",
+      "fomc_release_utc": "2026-10-07 18:00:00 UTC",
+      "hard_blackout_window_utc": [
+        "2026-10-07 17:00:00 UTC",
+        "2026-10-07 18:30:00 UTC"
+      ],
+      "purge_deadline_utc": "2026-10-07 16:55:00 UTC",
+      "fng_index": {
+        "value": 59,
+        "classification": "Greed",
+        "as_of": 1791504000
+      },
+      "etf_net_flows": {
+        "BTC_net_usd_millions": null,
+        "BTC_report_date": "09 Oct 2026",
+        "BTC_report_status": "NOT_YET_REPORTED",
+        "ETH_net_usd_millions": null,
+        "ETH_report_date": "09 Oct 2026",
+        "ETH_report_status": "NOT_YET_REPORTED",
+        "data_source": "Farside Investors (live HTML scrape - verified authentic)"
+      },
+      "coinbase_premium_bps": -9.61,
+      "coinbase_premium_source": "COINBASE_SPOT_AND_BINANCE_SPOT_RECEIPT",
+      "runway_hours_to_blackout": -45.4,
+      "calendar_status": "STALE_REVIEW_REQUIRED"
+    }
+  },
+  "missing_requested_module": "Engine/forex_engine.py (primary and mirror absent)"
+}

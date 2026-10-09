@@ -10,9 +10,9 @@ from typing import Any
 
 from Terminal.risk.floor_defense import HARD_FLOOR_USD, BUFFER_USD
 
-MAX_FILLED = 6
+MAX_FILLED = 4
 MIN_RISK_USD = 10.0
-MAX_RISK_USD = 20.0
+MAX_RISK_USD = 15.0
 # Stress allowance in addition to the broker-valued SL loss. This cannot
 # guarantee a gap fill, but avoids the false $0-cost nominal-floor check.
 STOP_STRESS_MULTIPLIER = 1.25
@@ -82,45 +82,33 @@ def assert_joint_fill_safe(bridge, symbol: str, direction: str, volume: float,
     pending = bridge.get_pending_orders()
     if positions is None or pending is None or not isinstance(positions, (list, tuple)) or not isinstance(pending, (list, tuple)):
         raise ValueError("risk_inventory_unavailable")
-    free_margin = account.get("margin_free_usd", account.get("free_margin_usd", account.get("margin_free")))
-    has_free_margin = free_margin is not None and float(free_margin) > 200.0
 
-    if not has_free_margin:
-        if len(positions) >= MAX_FILLED or len(positions) + len(pending) >= MAX_FILLED:
-            raise ValueError("joint_fill_capacity_exceeded")
-    else:
-        MAX_PENDING = 12
-        if len(positions) >= MAX_FILLED or len(pending) >= MAX_PENDING:
-            raise ValueError("joint_fill_capacity_exceeded")
+    # Canonical Capacity Sentry: filled positions + pending orders cannot exceed MAX_FILLED
+    if len(positions) >= MAX_FILLED or len(positions) + len(pending) >= MAX_FILLED:
+        raise ValueError("joint_fill_capacity_exceeded")
+
     direction = str(direction).upper()
     entry, sl = _positive(entry, "proposed_entry"), _positive(sl, "proposed_sl")
     if direction not in ("LONG", "SHORT") or not (sl < entry if direction == "LONG" else sl > entry):
         raise ValueError("proposed_protective_stop_invalid")
     # Validate min/max on nominal broker stop loss, not stressed loss.
+    # When equity drops below 4,800 USD, enforce defensive 10.0 USD cap.
+    effective_max_risk = min(MAX_RISK_USD, 10.0) if min(balance, equity) < 4800.0 else MAX_RISK_USD
     per_lot = _positive(bridge.estimate_order(symbol, direction, entry, sl).get("stop_loss_per_lot"),
                         "proposed_broker_valuation")
     nominal = per_lot * _positive(volume, "proposed_volume")
-    if not min_risk_usd <= nominal <= MAX_RISK_USD:
+    if not min_risk_usd <= nominal <= effective_max_risk:
         raise ValueError(f"proposed_risk_out_of_bounds:{nominal:.2f}")
-    if has_free_margin:
-        # Operator mandate: Deploy free equity across passive limit orders.
-        # Existing filled positions' risk is 100% reserved. The proposed order
-        # when filled must strictly preserve the 4,775.00 USD hard floor.
-        # Resting limits that do not fill carry zero market loss and are dynamically
-        # pruned/dropped by the desk sentry upon fill or thesis degradation.
-        filled_loss = sum(_loss(bridge, row) for row in positions)
-        total = filled_loss + nominal * STOP_STRESS_MULTIPLIER + MIN_EXECUTION_COST_USD
-        post_loss = min(balance, equity) - total
-        if post_loss < HARD_FLOOR_USD:
-            raise ValueError(f"joint_fill_floor_breach:post_loss={post_loss:.2f}"
-                             f"<required={HARD_FLOOR_USD:.2f}")
-    else:
-        existing = sum(_loss(bridge, row) for row in [*positions, *pending])
-        total = existing + nominal * STOP_STRESS_MULTIPLIER + MIN_EXECUTION_COST_USD
-        post_loss = min(balance, equity) - total
-        if post_loss < HARD_FLOOR_USD + BUFFER_USD:
-            raise ValueError(f"joint_fill_floor_breach:post_loss={post_loss:.2f}"
-                             f"<required={HARD_FLOOR_USD + BUFFER_USD:.2f}")
+
+    # Canonical Joint Risk Floor Defense:
+    # Reserve every currently resting pending order's contingent loss alongside filled positions.
+    # Stressed worst-case equity under simultaneous stopout must strictly preserve HARD_FLOOR_USD + BUFFER_USD (4,795.00 USD).
+    existing = sum(_loss(bridge, row) for row in [*positions, *pending])
+    total = existing + nominal * STOP_STRESS_MULTIPLIER + MIN_EXECUTION_COST_USD
+    post_loss = min(balance, equity) - total
+    if post_loss < HARD_FLOOR_USD + BUFFER_USD:
+        raise ValueError(f"joint_fill_floor_breach:post_loss={post_loss:.2f}"
+                         f"<required={HARD_FLOOR_USD + BUFFER_USD:.2f}")
     # Correlation cluster governor: prevent compounding directional exposure,
     # but allow opposing directions (delta hedges) across orthogonal/hedging setups.
     from Terminal.risk.floor_defense import FloorDefense

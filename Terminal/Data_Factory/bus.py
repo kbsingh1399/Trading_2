@@ -184,7 +184,7 @@ class IntelligenceBus:
         now = float(number(now, time.time()))
         with state.book_lock:
             cut = now - float(window_sec)
-            return sum(usd for ts, usd in state.cvd if ts >= cut)
+            return sum(usd for ts, usd in state.cvd if cut <= ts <= now)
 
     def taker_flow(self, asset, window_sec=300.0, now=None):
         """(buy_usd, sell_usd) aggressive notional over the trailing window."""
@@ -196,7 +196,7 @@ class IntelligenceBus:
         buy = sell = 0.0
         with state.book_lock:
             for ts, usd in state.cvd:
-                if ts >= cut:
+                if cut <= ts <= now:
                     if usd > 0:
                         buy += usd
                     elif usd < 0:
