@@ -52269,3 +52269,21 @@ Finally, unify live and replay ratchets before qualifying uplift; the current se
   * Dispatched instruction: `"Run Round 3 on main (commit a2a9fd70). Please proceed with the full review of all 11 files."` (Success: True).
   * Claude Opus 5.5 is currently inspecting all 11 files on GitHub `main` and generating the comprehensive Round 3 Quantitative Audit Report.
   * Armed 180-second autonomous timer (`task-30213`) to harvest the completed ruling, append to `LIVE_COLLABORATIVE_ORDER_DESK.md`, and execute any required code updates.
+
+---
+
+## Turn Log | Full Decision Gates V3 Integration, Null-Safety Hardening & Live Replica Push | 2026-10-09 18:00:00 UTC
+- **Milestones Completed & Verified**:
+  1. **Decision Gates V3 Pipeline Fully Wired**:
+     - Integrated `evaluate_candidate_dg_v3` into candidate creation loop in `Terminal/Omni_Trader.py` (`evaluate_market`), attaching `candidate["dg_v3"]` and `features["dg_v3"]`, logging full gate diagnostics to `decisions.jsonl`, and enforcing veto gating when `DG_MODE == "enforce"`.
+     - Integrated `pre_send_gate` into `Omni_Trader._dispatch` immediately before staging limit orders in MT5, validating fresh tick age, dynamic broker server time offset, book spread vs hourly median, price drift, and decision age.
+  2. **Audit Findings & Microstructure Defects Resolved**:
+     - Patched zero-median spread bug in `pre_send_gate` (`allowed_spread = min(lim.max_spread_bps, max(1.0, lim.spread_vs_median * plan.get("spread_median_bps_this_hour", 1.0)))`) to protect raw spread accounts from false rejection.
+     - Hardened B3 shelf check and pivot extraction against `None` values in `Terminal/decision_gates_v3.py` and `Terminal/dg_context.py` to ensure complete fail-closed null safety.
+  3. **Pytest & 360-Degree Forensic Verification**:
+     - Executed full test suite: **415 passed, 1 skipped, 0 failed** in 25.62s.
+     - Ran 360-degree forensic verifier (`chain_verification_360.py`): Layer 1, Layer 2, Layer 3 certified `PASS` (`CERTIFIED_100_PERCENT_PRISTINE`).
+     - Verified MT5 account #5064568: Balance 4,896.55 USD, Equity 4,896.55 USD, Margin Used 0.00 USD (100% Cash Reserves), Hard floor cushion: **+121.55 USD** above 4,775.00 USD floor (+101.55 USD above operating buffer).
+  4. **Replica Parity & Git Synchronization**:
+     - Committed and pushed commit `07c6d579` to `https://github.com/kbsingh1399/Trading_2` branch `main`. Working tree 100% clean and synchronized.
+     - Active daemons verified: `gemini_web2api` (8081), `graphify watch`, `autonomous_telemetry_git_daemon.py`, and `heretic_daemon.py` (8083).
