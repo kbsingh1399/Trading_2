@@ -416,7 +416,12 @@ def run_full_copilot_cycle(wait_sec: int = 180):
     print(resp_text)
     print("-----------------------------------")
 
-    # Append to docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md
+    append_ruling_to_order_desk(resp_text)
+    return done
+
+
+def append_ruling_to_order_desk(resp_text: str) -> None:
+    """Append harvested Opus 5.5 response to LIVE_COLLABORATIVE_ORDER_DESK.md."""
     desk_path = PROJECT_ROOT / "docs" / "trade_plans" / "LIVE_COLLABORATIVE_ORDER_DESK.md"
     if desk_path.exists() and len(resp_text) > 50:
         now_dt = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
@@ -427,16 +432,15 @@ def run_full_copilot_cycle(wait_sec: int = 180):
 
         entry = f"\n\n---\n\n## Section {next_sec}: Autonomous Copilot Studio (Opus 5.5) Evaluation | {now_dt}\n\n"
         entry += f"### 1. Cycle Trigger & Context\n"
-        entry += f"- **Council Engine**: Microsoft Copilot Studio (Claude Opus 5.5 - Second Brain)\n"
-        entry += f"- **Pre-Flight Context Review**: Mandatory Session Chat & Thinking Chain Protocol V2.0\n\n"
+        entry += f"- **Council Engine**: Microsoft Copilot Studio (Claude Opus 5.5 - Chief Quantitative Strategist & Second Brain)\n"
+        entry += f"- **Pre-Flight Context Review**: Mandatory Session Chat & Thinking Chain Protocol V2.0 Hardened\n"
+        entry += f"- **Input Provenance**: Live 24-Asset Telemetry Snapshot & GitHub main\n\n"
         entry += f"### 2. Opus 5.5 Ruling & Quantitative Synthesis\n"
         entry += f"```text\n{resp_text}\n```\n\n"
 
         with open(desk_path, "a", encoding="utf-8") as f:
             f.write(entry)
         print(f"[{datetime.now(timezone.utc).strftime('%H:%M:%S UTC')}] Appended Section {next_sec} to LIVE_COLLABORATIVE_ORDER_DESK.md.")
-
-    return done
 
 
 if __name__ == "__main__":
@@ -462,6 +466,8 @@ if __name__ == "__main__":
         done, text = asyncio.run(check_copilot_studio_response())
         print(f"Done: {done} | Length: {len(text)}")
         print(text)
+        if done and text:
+            append_ruling_to_order_desk(text)
     elif args.cycle:
         run_full_copilot_cycle(wait_sec=args.wait)
     else:
