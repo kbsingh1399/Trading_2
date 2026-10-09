@@ -43,7 +43,13 @@ def atomic_json(path, value):
     temp = path.with_name(path.name+'.'+uuid.uuid4().hex+'.tmp')
     with temp.open('x', encoding='utf-8') as stream:
         json.dump(value, stream, allow_nan=False); stream.flush(); os.fsync(stream.fileno())
-    os.replace(temp, path)
+    for attempt in range(5):
+        try:
+            os.replace(temp, path)
+            break
+        except (PermissionError, OSError):
+            if attempt == 4: raise
+            time.sleep(0.05 * (attempt + 1))
 
 def feed_health(asset):
     try:

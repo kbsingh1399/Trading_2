@@ -238,7 +238,13 @@ class AI15mMT5Trader:
         with open(temporary, "w", encoding="utf-8") as stream:
             json.dump(self.state, stream, allow_nan=False, default=str)
             stream.flush(); os.fsync(stream.fileno())
-        os.replace(temporary, self.state_file)
+        for attempt in range(5):
+            try:
+                os.replace(temporary, self.state_file)
+                break
+            except (PermissionError, OSError):
+                if attempt == 4: raise
+                time.sleep(0.05 * (attempt + 1))
         try: self._last_state_mtime = self.state_file.stat().st_mtime
         except Exception: pass
 
