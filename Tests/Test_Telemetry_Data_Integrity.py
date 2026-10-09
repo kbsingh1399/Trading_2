@@ -46,6 +46,7 @@ class FakeConnectedBridge:
     def get_account_summary(self):
         return {
             "connected": True, "login": 5064568,
+            "currency": "USD",
             "balance_usd": 4813.44, "equity_usd": 4815.26,
             "margin_usd": 590.18, "margin_free_usd": 4225.08,
             "margin_level_pct": 815.9,
@@ -66,6 +67,9 @@ class FakeConnectedBridge:
     def get_pending_orders(self):
         return []
 
+    def estimate_order(self, symbol, direction, entry, sl):
+        return {"stop_loss_per_lot": abs(entry - sl), "margin_per_lot": 100}
+
     # -- symbols / quotes -------------------------------------------------
     def resolve_symbol(self, asset):
         return {"BTC": "BTCUSD.pi", "USWTI": "USWTI.p", "SP500": "SP500.p",
@@ -85,12 +89,13 @@ class FakeConnectedBridge:
 
     # -- bars ---------------------------------------------------------------
     def get_recent_bars(self, symbol, count=96, timeframe=None):
-        now = time.time()
+        period = {16385: 3600, 16388: 14400}.get(timeframe, 900)
+        now = int(time.time() // period) * period
         n = min(count, self.n_bars)
         bars = []
         base = 100.0
         for i in range(n):
-            t = now - (n - i) * 900.0
+            t = now - (n - i) * period
             c = base + (i % 7) * 0.25
             bars.append({
                 "time": t, "open": c - 0.1, "high": c + 0.3,
@@ -153,6 +158,18 @@ def _generate(tmp_path, bridge, farside_mode="placeholder"):
 
 
 # --------------------------------------------------------------------- tests
+def test_wrong_account_generation_preserves_previous_snapshot(offline):
+    bridge = FakeConnectedBridge()
+    original = bridge.get_account_summary
+    bridge.get_account_summary = lambda: original() | {"login": 123456}
+    out = offline / "telemetry" / "live_snapshot_latest.json"
+    out.parent.mkdir(parents=True)
+    out.write_text('{"previous": true}')
+    with pytest.raises(RuntimeError, match="identity/currency mismatch"):
+        gts.generate_full_snapshot(bridge=bridge, telemetry_path=out)
+    assert json.loads(out.read_text()) == {"previous": True}
+
+
 def test_fail_closed_on_mt5_loss_no_fabricated_account(offline):
     """C3: a disconnected bridge must abort with an error marker and must NOT
     overwrite the previous live snapshot (no fabricated equity, no empty
@@ -186,15 +203,78 @@ def test_no_fabricated_account_constants_in_output(offline):
         assert fabricated not in blob, f"fabricated constant leaked: {fabricated}"
 
 
-def test_capacity_freezes_at_two_slots(offline):
-    """Dynamic capacity: capacity must use MAX_CONCURRENT_SLOTS == 12 with DYNAMIC_FREE_MARGIN_CAPACITY."""
+def test_capacity_uses_canonical_four_joint_fill_slots(offline):
     payload, _ = _generate(offline, FakeConnectedBridge())
     cap = payload["capacity"]
-    assert cap["max_concurrent"] == 12
-    assert cap["policy"] == "DYNAMIC_FREE_MARGIN_CAPACITY"
+    assert cap["max_concurrent"] == 4
+    assert cap["policy"] == "JOINT_FILL_CAPACITY_AND_FLOOR_DEFENSE"
     assert cap["filled"] == 2 and cap["pending"] == 0
-    assert "2/12" in cap["status"]
+    assert cap["used_joint_fill"] == 2 and cap["available"] == 2
+    assert "2/4" in cap["status"]
     assert "OPEN" in cap["status"]
+
+
+def test_all_assets_have_actual_completed_broker_htf_history(offline):
+    payload, _ = _generate(offline, FakeConnectedBridge())
+    for row in payload["assets_matrix_24"].values():
+        for key, interval in (("1h", 3600), ("4h", 14400)):
+            bars = row[f"htf_{key}_ohlcv"]
+            quality = row["htf_history"][key]
+            assert len(bars) == quality["completed_count"] == 96
+            assert quality["source"] == "MT5_BROKER_COMPLETED_BARS"
+            assert quality["status"] == "READY"
+            assert quality["strategy_minimum"] >= 50
+            assert all(b["close_ts"] <= payload["as_of_epoch"] for b in bars)
+            assert all(b["close_ts"] == b["ts"] + interval for b in bars)
+            assert bars[-1]["close"] == 100 + (95 % 7) * 0.25
+
+
+def test_insufficient_htf_history_stays_insufficient_without_padding(offline):
+    payload, _ = _generate(offline, FakeConnectedBridge(n_bars=20))
+    row = payload["assets_matrix_24"]["SP500"]
+    assert len(row["htf_1h_ohlcv"]) == len(row["htf_4h_ohlcv"]) == 20
+    assert row["htf_history"]["1h"]["status"] == "INSUFFICIENT_HISTORY"
+    assert row["htf_history"]["4h"]["status"] == "INSUFFICIENT_HISTORY"
+    assert row["htf_history"]["entry_eligible"] is False
+
+
+@pytest.mark.parametrize("inventory", ["get_open_positions", "get_pending_orders"])
+def test_none_inventory_aborts_without_advertising_zero_capacity(offline, inventory):
+    bridge = FakeConnectedBridge()
+    setattr(bridge, inventory, lambda: None)
+    out = offline / "live_snapshot_latest.json"
+    out.write_text('{"sentinel": true}')
+    with pytest.raises(RuntimeError, match="inventory unavailable"):
+        gts.generate_full_snapshot(bridge=bridge, telemetry_path=out)
+    assert json.loads(out.read_text()) == {"sentinel": True}
+
+
+def test_pending_orders_reserve_joint_capacity_risk_and_margin(offline):
+    class PendingBridge(FakeConnectedBridge):
+        def get_pending_orders(self):
+            return [{"ticket": t, "symbol": "GBPUSD.pi", "direction": "LONG", "type": 2,
+                     "volume": 0.2, "price_open": 1.3, "sl": 1.2, "tp": 1.5}
+                    for t in (10, 11)]
+    payload, _ = _generate(offline, PendingBridge())
+    cap = payload["capacity"]
+    assert cap["used_joint_fill"] == 4 and cap["available"] == 0
+    assert "HARD_ADMISSION_FREEZE" in cap["status"]
+    risk = payload["risk"]
+    expected = (0.65 * 0.19 + 680 * 0.01 + 2 * 0.1 * 0.2) * 1.25 + 4 * 2
+    assert risk["total_contingent_stress_usd"] == pytest.approx(expected)
+    assert risk["pending_margin_on_fill_usd"] == 40
+    assert payload["account"]["margin_used_usd"] == 590.18
+
+
+def test_unknown_broker_stop_valuation_freezes_capacity_and_keeps_risk_null(offline):
+    class UnknownRisk(FakeConnectedBridge):
+        def estimate_order(self, *args):
+            raise ValueError("broker unavailable")
+    payload, _ = _generate(offline, UnknownRisk())
+    assert payload["risk"]["status"] == "UNAVAILABLE"
+    assert payload["risk"]["total_contingent_stress_usd"] is None
+    assert payload["capacity"]["available"] == 0
+    assert "HARD_ADMISSION_FREEZE" in payload["capacity"]["status"]
 
 
 def test_ema200_null_below_min_bars(offline):

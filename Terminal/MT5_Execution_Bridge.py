@@ -367,7 +367,7 @@ class MT5ExecutionBridge:
         return out
 
     def intent_filled(self, comment: str, prepared_at: float, magic: int = 100895) -> bool:
-        """Fill evidence for an intent: True iff an entry deal exists for it.
+        """False only for a broker-confirmed terminal order with no fills.
 
         Used by the reconciler to distinguish "limit order expired unfilled"
         from "limit order filled inside the inventory race window" without
@@ -378,7 +378,25 @@ class MT5ExecutionBridge:
         end = datetime.datetime.now(datetime.timezone.utc)
         deals = mt5.history_deals_get(start, end)
         if deals is None: raise RuntimeError("Intent deal-history query failed")
-        return any(d.comment == comment and d.magic == magic and d.entry in (0, 2) for d in deals)
+        if any(d.comment == comment and d.magic == magic and d.entry in (0, 2) for d in deals):
+            return True
+        if not hasattr(mt5, "history_orders_get"):
+            return True
+        history = mt5.history_orders_get(start, end)
+        if history is None:
+            raise RuntimeError("Intent order-history query failed")
+        matched = [order for order in history if order.comment == comment and order.magic == magic]
+        if not matched:
+            return True  # An empty history does not prove a lost send failed.
+        terminal = {getattr(mt5, "ORDER_STATE_CANCELED", 2), getattr(mt5, "ORDER_STATE_REJECTED", 5),
+                    getattr(mt5, "ORDER_STATE_EXPIRED", 6)}
+        for order in matched:
+            initial = float(getattr(order, "volume_initial", 0) or 0)
+            remaining = float(getattr(order, "volume_current", 0) or 0)
+            if (order.state not in terminal or initial <= 0 or not math.isfinite(initial)
+                    or not math.isfinite(remaining) or not math.isclose(initial, remaining, abs_tol=1e-8)):
+                return True
+        return False
 
     def estimate_order(self, symbol, direction, entry, sl):
         """Use the broker's CFD calculation mode, not an assumed pip multiplier."""
@@ -606,13 +624,16 @@ class MT5ExecutionBridge:
             if checked.retcode == getattr(mt5, "TRADE_RETCODE_INVALID_FILL", 10030): continue
             if checked.retcode not in (0, getattr(mt5, "TRADE_RETCODE_DONE", 10009)):
                 return {"success": False, "retcode": checked.retcode, "error": f"order_check rejected: {checked.comment}"}
+            age = self.tick_age_seconds(tick, symbol)
+            if age is None or age * 1000 > max_tick_age_ms:
+                return {"success": False, "uncertain": False, "error": "pre_send_quote_stale_or_clock_unverified"}
+            sampled_at = time.monotonic()
             try:
                 if entry_guard is not None:
                     entry_guard()
             except Exception as exc:
                 return {"success": False, "uncertain": False, "error": f"entry_guard_veto:{exc}"}
-            age = self.tick_age_seconds(tick, symbol)
-            if age is None or age * 1000 > max_tick_age_ms:
+            if (age + time.monotonic() - sampled_at) * 1000 > max_tick_age_ms:
                 return {"success": False, "uncertain": False, "error": "pre_send_quote_stale_or_clock_unverified"}
             result = mt5.order_send(request)
             sent = True
@@ -729,20 +750,29 @@ class MT5ExecutionBridge:
             checked = mt5.order_check(request)
             if checked is None or checked.retcode not in (0, getattr(mt5, "TRADE_RETCODE_DONE", 10009)):
                 return {"success": False, "retcode": getattr(checked, "retcode", None), "error": "pending_order_check_rejected:"+str(getattr(checked, "comment", mt5.last_error()))}
+        age = self.tick_age_seconds(tick, symbol)
+        if age is None or age > 2.0:
+            return {"success": False, "error": "pre_send_quote_stale_or_clock_unverified"}
+        sampled_at = time.monotonic()
         try:
             if entry_guard is not None:
                 entry_guard()
         except Exception as exc:
             return {"success": False, "uncertain": False, "error": f"entry_guard_veto:{exc}"}
-        age = self.tick_age_seconds(tick, symbol)
-        if age is None or age > 2.0:
+        if age + time.monotonic() - sampled_at > 2.0:
             return {"success": False, "error": "pre_send_quote_stale_or_clock_unverified"}
-        result = mt5.order_send(request)
+        try:
+            result = mt5.order_send(request)
+        except Exception as exc:
+            return {"success": False, "uncertain": True, "error": f"Limit acknowledgment unavailable: {exc}"}
         placed_codes = {getattr(mt5, "TRADE_RETCODE_DONE", 10009), getattr(mt5, "TRADE_RETCODE_PLACED", 10008)}
         if result is None or result.retcode not in placed_codes:
             retcode = result.retcode if result else "None"
             error = result.comment if result else str(mt5.last_error())
-            return {"success": False, "retcode": retcode, "error": f"Limit order rejected: {retcode} ({error})"}
+            uncertain = result is None or retcode in (
+                getattr(mt5, "TRADE_RETCODE_TIMEOUT", 10012), getattr(mt5, "TRADE_RETCODE_CONNECTION", 10031),
+                getattr(mt5, "TRADE_RETCODE_DONE_PARTIAL", 10010))
+            return {"success": False, "uncertain": uncertain, "retcode": retcode, "error": f"Limit submission unresolved or rejected: {retcode} ({error})"}
         logger.info("[LIMIT] MT5 limit staged: %s %s %s lots at %s (%s)", direction, normalized, symbol, price,
                     "GTC, governor-owned deadline" if persistent else f"expires in {expiration_seconds}s")
         return {"success": True, "ticket": getattr(result, "order", 0), "symbol": symbol, "direction": direction, "volume": normalized, "price": price, "sl": request["sl"], "tp": request["tp"],

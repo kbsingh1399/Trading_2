@@ -15,6 +15,7 @@ from pathlib import Path
 import time
 import numpy as np
 from Terminal.Risk_Sizing_Engine import number
+from Terminal.Asset_Universe import canonical_asset
 
 FEATURES = ("confluence", "quality", "l2_signal", "macro_score", "wall_imbalance",
             "aggressor_imbalance", "liquidation_delta", "sigma_h", "efficiency_ratio",
@@ -41,8 +42,12 @@ SESSION_HOURS = {"asia": (0, 7), "london": (7, 12), "ny_overlap": (12, 16), "us_
 def asset_class_of(asset):
     """Canonical asset class for ratchet conditioning."""
     a = str(asset).upper()
-    if a in ("GOLD", "SILVER"): return "COMMODITY"
-    if a in ("SP500",): return "INDEX"
+    if a in ("CRYPTO", "COMMODITY", "INDEX", "FOREX"):
+        return a
+    a = canonical_asset(a)
+    if a in ("GOLD", "SILVER", "USWTI"): return "COMMODITY"
+    if a in ("SP500", "NAS100", "DJ30", "GER40"): return "INDEX"
+    if a in ("EURUSD", "GBPUSD", "USDJPY"): return "FOREX"
     return "CRYPTO"
 
 def session_regime(now, asset_class="COMMODITY"):

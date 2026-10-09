@@ -20,7 +20,7 @@ from __future__ import annotations
 
 import json
 import logging
-from datetime import datetime, timezone, timedelta
+from datetime import datetime, timezone
 from pathlib import Path
 from types import SimpleNamespace
 from typing import Optional
@@ -100,20 +100,20 @@ class BlackoutGuard:
         now = dt or datetime.now(timezone.utc)
         if now.tzinfo is None:
             return True, "naive_datetime_not_utc"
+        try:
+            data = json.loads(_CALENDAR_JSON.read_text(encoding="utf-8"))
+            if "coverage_start" in data or "coverage_end" in data:
+                start = datetime.fromisoformat(str(data["coverage_start"]).replace("Z", "+00:00"))
+                end = datetime.fromisoformat(str(data["coverage_end"]).replace("Z", "+00:00"))
+                if start.tzinfo is None or end.tzinfo is None or not start <= now < end:
+                    return True, "macro_calendar_outside_verified_coverage"
+        except (OSError, KeyError, ValueError, TypeError) as exc:
+            return True, f"macro_calendar_unavailable:{exc}"
         for event in self._events:
             try:
-                def parse(value):
-                    return datetime.fromisoformat(value.replace("Z", "+00:00"))
-
-                event_dt = parse(event["time_utc"])
-                window_start = parse(event["blackout_start_utc"]) if event.get("blackout_start_utc") else event_dt - timedelta(minutes=_STATIC_BLACKOUT_MINUTES_PRE)
-                window_end = parse(event["blackout_end_utc"]) if event.get("blackout_end_utc") else event_dt + timedelta(minutes=_STATIC_BLACKOUT_MINUTES_POST)
-                # Pre-event purge is a separate operator task, but absolutely
-                # no replacement entry may be sent after its deadline.
-                if event.get("purge_at_utc"):
-                    window_start = min(window_start, parse(event["purge_at_utc"]))
-                if window_end <= window_start:
-                    raise ValueError("inverted blackout window")
+                from Terminal.Macro_Calendar import event_window_utc
+                event_dt, window_start, window_end = event_window_utc(
+                    event, _STATIC_BLACKOUT_MINUTES_PRE, _STATIC_BLACKOUT_MINUTES_POST)
                 if window_start <= now < window_end:
                     name = event.get("name", "MACRO_EVENT")
                     return True, f"{name} blackout: window {window_start:%H:%M}-{window_end:%H:%M} UTC"

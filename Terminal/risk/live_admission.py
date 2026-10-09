@@ -9,10 +9,9 @@ import math
 from typing import Any
 
 from Terminal.risk.floor_defense import HARD_FLOOR_USD, BUFFER_USD
+from Terminal.policy import MIN_RISK_USD, MAX_RISK_USD, MAX_CONCURRENT_POSITIONS
 
-MAX_FILLED = 4
-MIN_RISK_USD = 10.0
-MAX_RISK_USD = 15.0
+MAX_FILLED = MAX_CONCURRENT_POSITIONS
 # Stress allowance in addition to the broker-valued SL loss. This cannot
 # guarantee a gap fill, but avoids the false $0-cost nominal-floor check.
 STOP_STRESS_MULTIPLIER = 1.25

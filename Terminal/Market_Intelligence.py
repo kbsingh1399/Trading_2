@@ -237,10 +237,10 @@ class MarketIntelligenceEngine:
             self.calendar_error = None
             for event in events:
                 if event.get("impact") != "HIGH": continue
-                event_time = epoch(event.get("time_utc"))
-                if not event_time: raise ValueError("calendar event timestamp invalid")
-                delta = abs(now-event_time)/60
-                if delta <= self.blackout_minutes: return True, event["name"], delta
+                from Terminal.Macro_Calendar import event_window_utc
+                when, start, end = event_window_utc(event, self.blackout_minutes, self.blackout_minutes)
+                delta = abs(now-when.timestamp())/60
+                if start.timestamp() <= now < end.timestamp(): return True, event["name"], delta
             return False, "NO_EVENT", 999.0
         except (OSError, ValueError, KeyError, TypeError) as exc:
             self.calendar_error = str(exc)

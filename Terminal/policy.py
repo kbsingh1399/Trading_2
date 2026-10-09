@@ -21,3 +21,7 @@ MIN_FLOOR_CUSHION_USD = 20.00
 # Maximum concurrent filled positions
 MAX_CONCURRENT_POSITIONS = 4
 MAX_RESTING_LIMITS = 5
+
+# Actual completed-bar requirements shared by producer, regime gate and audit.
+HTF_MIN_COMPLETED = 35
+HTF_STRATEGY_MIN = 50

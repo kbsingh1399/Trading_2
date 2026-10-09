@@ -29,7 +29,16 @@ def ipc(monkeypatch, codes, check=0):
             TRADE_ACTION_DEAL=1,TRADE_ACTION_SLTP=6,ORDER_TIME_GTC=0,ORDER_FILLING_IOC=1,ORDER_FILLING_FOK=0,ORDER_FILLING_RETURN=2,
             TRADE_RETCODE_DONE=10009,TRADE_RETCODE_DONE_PARTIAL=10010,TRADE_RETCODE_INVALID_FILL=10030,TRADE_RETCODE_PLACED=10008)
     monkeypatch.setattr(module,"mt5",fake);monkeypatch.setattr(module,"MT5_AVAILABLE",True)
-    bridge=module.MT5ExecutionBridge();return bridge,fake,sends
+    bridge=module.MT5ExecutionBridge()
+    # This fake IPC explicitly emits UTC timestamps, unlike the configured
+    # Blueberry server-time default. Do not conflate clock and retry tests.
+    bridge.broker_utc_offset_sec = 0
+    bridge.broker_utc_offset_ms = 0
+    # Model two advancing observations before testing the send/retry path.
+    wall, mono = time.time(), time.monotonic()
+    bridge.broker_clock.tick_age_seconds(tick.time_msc-1000, symbol="BTCUSD", now=wall-1, monotonic_now=mono-1)
+    bridge.broker_clock.tick_age_seconds(tick.time_msc, symbol="BTCUSD", now=wall, monotonic_now=mono)
+    return bridge,fake,sends
 
 
 def test_pending_limit_rejects_broker_distance_without_sending(monkeypatch):
@@ -57,6 +66,72 @@ def test_timeout_or_ambiguous_send_is_not_retried(monkeypatch,code):
     bridge,_,sends=ipc(monkeypatch,[code,10009])
     result=bridge.execute_market_order("BTCUSD","LONG",.5,98,106)
     assert not result["success"] and result["uncertain"] and len(sends)==1
+
+
+@pytest.mark.parametrize("code", [None, 10012, 10031, 10010])
+def test_pending_ambiguous_ack_never_becomes_confirmed_rejection(monkeypatch, code):
+    bridge, _, sends = ipc(monkeypatch, [code])
+    result = bridge.stage_limit_order("BTCUSD", "LONG", .5, 99, 98, 106)
+    assert not result["success"] and result["uncertain"] and len(sends) == 1
+
+
+def test_pending_send_exception_is_uncertain(monkeypatch):
+    bridge, fake, sends = ipc(monkeypatch, [10009])
+    def send(request):
+        sends.append(request)
+        raise RuntimeError("lost acknowledgment after submission")
+    fake.order_send = send
+    result = bridge.stage_limit_order("BTCUSD", "LONG", .5, 99, 98, 106)
+    assert result["uncertain"] and len(sends) == 1
+
+@pytest.mark.parametrize("mode", ["limit", "market"])
+def test_entry_deadline_rechecked_after_broker_order_check(monkeypatch, mode):
+    bridge, fake, sends = ipc(monkeypatch, [10009])
+    checked = []
+    fake.order_check = lambda request: checked.append(request) or NS(retcode=0, comment="ok")
+    def expired():
+        assert checked
+        raise ValueError("execution_window_expired_or_clock_unverified")
+    result = (bridge.stage_limit_order("BTCUSD", "LONG", .5, 99, 98, 106, entry_guard=expired)
+              if mode == "limit" else bridge.execute_market_order("BTCUSD", "LONG", .5, 98, 106, entry_guard=expired))
+    assert not result["success"] and not result.get("uncertain") and not sends
+    assert result["error"].startswith("entry_guard_veto:")
+
+
+def test_invalid_fill_retry_checks_deadline_again(monkeypatch):
+    bridge, _, sends = ipc(monkeypatch, [10030, 10009])
+    def guard():
+        if sends:
+            raise ValueError("execution_window_expired_or_clock_unverified")
+    result = bridge.execute_market_order("BTCUSD", "LONG", .5, 98, 106, entry_guard=guard)
+    assert not result["success"] and not result.get("uncertain") and len(sends) == 1
+
+
+@pytest.mark.parametrize("mode", ["limit", "market"])
+def test_successful_slow_guard_cannot_send_an_aged_quote(monkeypatch, mode):
+    bridge, _, sends = ipc(monkeypatch, [10009])
+    elapsed = [0.0]
+    bridge.tick_age_seconds = lambda tick, symbol: 0.0
+    monkeypatch.setattr(module.time, "monotonic", lambda: elapsed[0])
+    def slow_guard():
+        elapsed[0] += 3.0
+    result = (bridge.stage_limit_order("BTCUSD", "LONG", .5, 99, 98, 106, entry_guard=slow_guard)
+              if mode == "limit" else bridge.execute_market_order("BTCUSD", "LONG", .5, 98, 106, entry_guard=slow_guard))
+    assert not result["success"] and not result.get("uncertain") and not sends
+    assert result["error"] == "pre_send_quote_stale_or_clock_unverified"
+
+
+@pytest.mark.parametrize("mode", ["limit", "market"])
+def test_quote_cannot_age_during_broker_check_then_send(monkeypatch, mode):
+    bridge, fake, sends = ipc(monkeypatch, [10009])
+    checked = []
+    fake.order_check = lambda request: checked.append(request) or NS(retcode=0, comment="ok")
+    bridge.tick_age_seconds = lambda tick, symbol: 3.0 if checked else 0.0
+    result = (bridge.stage_limit_order("BTCUSD", "LONG", .5, 99, 98, 106)
+              if mode == "limit" else bridge.execute_market_order("BTCUSD", "LONG", .5, 98, 106))
+    assert not result["success"] and not sends
+    assert result["error"] == "pre_send_quote_stale_or_clock_unverified"
+
 
 def test_only_invalid_fill_can_retry(monkeypatch):
     bridge,_,sends=ipc(monkeypatch,[10030,10009])
@@ -196,3 +271,13 @@ def test_live_api_uses_book_mid_and_explicit_unknown_cohorts(monkeypatch):
     assert result["price"]==100 and result["recent_trades"][0]["side"]=="UNKNOWN"
     assert result["cohort_summary"]["profit_traders_pct"] is None
     assert result["cohort_summary"]["total_traders"] is None  # missing report != zero traders
+
+
+
+@pytest.mark.parametrize("state,initial,remaining,uncertain", [(None, 1, 1, True), (6, 1, 1, False), (6, 1, .5, True), (4, 1, 0, True)])
+def test_empty_deal_history_cannot_prove_a_lost_submission_failed(monkeypatch, state, initial, remaining, uncertain):
+    bridge, fake, _ = ipc(monkeypatch, [10009])
+    fake.history_deals_get = lambda *args: []
+    fake.history_orders_get = lambda *args: ([] if state is None else [NS(comment="OMNI:lost", magic=100895,
+        state=state, volume_initial=initial, volume_current=remaining)])
+    assert bridge.intent_filled("OMNI:lost", time.time()-300) is uncertain

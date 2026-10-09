@@ -374,6 +374,36 @@ class AI15mMT5Trader:
         pending_tickets = {int(o.get("ticket", 0)) for o in pending}
         for key, intent in self.state["intents"].items():
             if intent["status"] not in ("PREPARED", "ACKNOWLEDGED", "UNCERTAIN", "STAGED_LIMIT", "ABANDONED"): continue
+            comment = intent.get("comment")
+            if not comment and intent["status"] != "STAGED_LIMIT":
+                intent["reconciliation_error"] = "intent_comment_missing"
+                continue
+            resting = [order for order in pending if comment and order.get("comment") == comment
+                       and int(order.get("magic", 0)) == MAGIC]
+            filled = [position for position in positions if comment and position.get("comment") == comment
+                      and int(position.get("magic", 0)) == MAGIC]
+            if len(resting) > 1:
+                raise ValueError("ambiguous_pending_reconciliation")
+            if resting and not filled and intent["status"] != "STAGED_LIMIT":
+                order = resting[0]
+                intent.update(status="STAGED_LIMIT", order_ticket=order["ticket"])
+                meta = intent["candidate"]
+                for field in ("price_open", "sl", "tp", "volume"):
+                    meta[field] = order[field]
+                if intent.get("persistent", self.persistent_limits) and key not in self.governor.orders:
+                    anchors = intent.get("anchors") or meta.get("entry_anchors") or []
+                    primary_span = max((number(anchor.get("persistence_sec")) for anchor in anchors), default=0.0)
+                    ttl = hazard_ttl(primary_span, ttl_min_sec=self.ttl_min_seconds, ttl_max_sec=self.ttl_max_seconds)
+                    # Reconciliation must not extend the original resting TTL.
+                    self.governor.register(key, asset=meta["asset"], symbol=meta["symbol"], direction=meta["direction"],
+                        order_ticket=order["ticket"], limit_price=order["price_open"], sl=order["sl"], tp=order["tp"],
+                        volume=order["volume"], anchors=anchors, atr=meta["atr"], ttl_sec=ttl,
+                        now=number(intent.get("prepared_at"), self.clock()), comment=intent["comment"],
+                        hurdle_r=meta.get("hurdle_r"), risk_usd=meta.get("risk_usd", 0),
+                        tick_size=meta.get("tick_size", .01), magic=MAGIC)
+                self._append("executions.jsonl", {"time": self.clock(), "event": "pending_intent_reconciled",
+                    "intent_id": key, "order_ticket": order["ticket"]})
+                continue
             # Aged unresolved intents deadlock all future entries
             # ("unresolved_execution_intent"). Only demote when the broker can
             # prove no fill ever happened; without history evidence the
@@ -385,7 +415,7 @@ class AI15mMT5Trader:
                     intent["status"] = "ABANDONED"
                     self._append("executions.jsonl", {"time": self.clock(), "event": "intent_aged_out",
                                                       "intent_id": key, "age": age})
-            matched = [p for p in positions if p.get("comment") == intent["comment"] and int(p.get("magic", 0)) == MAGIC]
+            matched = filled
             if matched:
                 if len(matched) != 1: raise ValueError("ambiguous_order_reconciliation")
                 p = matched[0]; intent["status"] = "RECONCILED"; intent["position_ticket"] = p["ticket"]
@@ -732,6 +762,10 @@ class AI15mMT5Trader:
             blocked, reason = BlackoutGuard.get().is_blocked(dt.datetime.fromtimestamp(now, dt.timezone.utc))
             if blocked:
                 raise ValueError("macro_blackout:"+reason)
+            final_now = self._cadence_now()
+            if final_now is None or not math.isfinite(final_now) or not (
+                    slot*900+840+self.cadence_second <= final_now < slot*900+898):
+                raise ValueError("execution_window_expired_or_clock_unverified")
 
     def evaluate_market(self, multi_data=None, macro=None, force=False):
         now = self.clock()
@@ -1090,6 +1124,13 @@ class AI15mMT5Trader:
                             if not decision or decision.get("action") != "SELECT":
                                 self._append("decisions.jsonl", {"time": self.clock(), "candidate_id": cand["candidate_id"], "event": "cognitive_abstention"})
                                 continue
+                        # Each candidate requires its own fresh quote and lot
+                        # specification after any asynchronous inference.
+                        try:
+                            quote = self._quote(cand_sym, entry=True)
+                        except (ValueError, RuntimeError) as exc:
+                            report["vetoes"][cand_asset] = str(exc)
+                            continue
                         if cand.get("entry_mode", self.entry_mode) == "limit":
                             if cand["direction"] == "LONG" and cand["price_open"] >= quote["ask"]:
                                 continue
@@ -1199,6 +1240,7 @@ class AI15mMT5Trader:
             entry_options = ({"entry_guard": lambda: self._assert_entry_window(slot)}
                              if isinstance(self.bridge, MT5ExecutionBridge) else {})
             if candidate.get("entry_mode", self.entry_mode) == "limit":
+                submitted = False
                 try:
                     # Order Persistence Governor (Incident A): S1 pullback
                     # limits rest as GTC orders under a dynamic, wall-survival
@@ -1207,6 +1249,7 @@ class AI15mMT5Trader:
                     # broker server-time DST quirks can never expire or keep
                     # an order alive by accident.
                     persistent = self.persistent_limits and not self.paper_mode
+                    intent["persistent"] = persistent
                     anchors = candidate.get("entry_anchors") or []
                     primary_span = max((number(a.get("persistence_sec")) for a in anchors), default=0.0)
                     ttl = hazard_ttl(primary_span, ttl_min_sec=self.ttl_min_seconds, ttl_max_sec=self.ttl_max_seconds)
@@ -1225,9 +1268,14 @@ class AI15mMT5Trader:
                                 "price": candidate["price_open"],
                                 "sl": candidate["sl"],
                                 "tp": candidate["tp"],
+                                "magic": MAGIC,
                                 "comment": comment,
+                                "deviation": 0,
                                 "type_filling": getattr(mt5, "ORDER_FILLING_RETURN", getattr(mt5, "ORDER_FILLING_IOC", 1)),
                                 "type_time": getattr(mt5, "ORDER_TIME_GTC", 0) if persistent else getattr(mt5, "ORDER_TIME_SPECIFIED", 0),
+                                "expiration": 0 if persistent else (
+                                    max(int(quote_now["time_msc"] / 1000), int(now_s))
+                                    + offset_sec + max(1, self.limit_expiration_seconds)),
                             }
                             plan_spec = {
                                 "server_now_ms": broker_now_ms,
@@ -1241,18 +1289,18 @@ class AI15mMT5Trader:
                             send_ok, send_reasons, send_chk = pre_send_gate(mt5, req_spec, plan_spec, now_ms=broker_now_ms,
                                 tick_age_seconds=getattr(self.bridge, "tick_age_seconds", None))
                             candidate["pre_send_gate"] = {"ok": send_ok, "reasons": send_reasons}
-                            if DG_MODE == "enforce" and not send_ok:
+                            if not send_ok:
                                 raise ValueError(f"pre_send_gate_veto:{'|'.join(send_reasons)}")
                         except Exception as pge:
-                            if DG_MODE == "enforce":
-                                raise
+                            raise ValueError(f"pre_send_gate_unavailable_or_veto:{pge}") from pge
                     self._assert_entry_window(slot)
+                    submitted = True
                     result = self.bridge.stage_limit_order(candidate["symbol"], candidate["direction"], candidate["volume"],
                                                            candidate["price_open"], candidate["sl"], candidate["tp"],
                                                            expiration_seconds=getattr(self, "limit_expiration_seconds", 3600),
                                                            persistent=persistent, comment=comment, magic=MAGIC,
                                                            max_spread_points=self.max_spread_points, passive_only=True, **entry_options)
-                    intent["status"] = "STAGED_LIMIT" if result.get("success") else "REJECTED"
+                    intent["status"] = "STAGED_LIMIT" if result.get("success") else "UNCERTAIN" if result.get("uncertain") else "REJECTED"
                     intent["order_ticket"] = result.get("ticket")
                     intent["expires_at"] = result.get("expires_at")
                     intent["anchors"] = anchors
@@ -1266,7 +1314,8 @@ class AI15mMT5Trader:
                                                hurdle_r=candidate.get("hurdle_r"), risk_usd=candidate.get("risk_usd", 0.0),
                                                tick_size=candidate.get("tick_size", 0.01), magic=MAGIC)
                 except Exception as exc:
-                    intent["status"] = "REJECTED"; result = {"success": False, "error": str(exc)}
+                    intent["status"] = "UNCERTAIN" if submitted else "REJECTED"
+                    result = {"success": False, "uncertain": submitted, "error": str(exc)}
             else:
                 try:
                     self._assert_entry_window(slot)

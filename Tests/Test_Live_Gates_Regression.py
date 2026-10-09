@@ -295,3 +295,15 @@ class TestRatchetAndWall(unittest.TestCase):
 if __name__ == "__main__":
     unittest.main()
 
+
+
+
+def test_native_admission_uses_shared_nominal_cap_instead_of_legacy_fifteen():
+    from Terminal.policy import MAX_RISK_USD
+    from Terminal.risk.live_admission import assert_joint_fill_safe
+    bridge = FakeBridge()
+    bridge.positions = []
+    bridge.pending = []
+    bridge.account = {"connected": True, "currency": "USD", "balance_usd": 5000, "equity_usd": 5000}
+    with __import__("pytest").raises(ValueError, match="proposed_risk_out_of_bounds"):
+        assert_joint_fill_safe(bridge, "BTCUSD", "LONG", MAX_RISK_USD+.25, 100, 99)

@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import json
 import math
+import os
 import pathlib
 import sys
 import time
@@ -44,8 +45,7 @@ ERROR_MARKER_PATH = ROOT / "docs" / "telemetry" / ".generator_error.json"
 # Every independently fillable pending reserves a canonical admission slot.
 MAX_CONCURRENT_SLOTS = MAX_FILLED
 HTF_FETCH_COUNT = 96
-HTF_MIN_COMPLETED = 35
-HTF_STRATEGY_MIN = 50  # EMA50 warmup and ER48's 49 observations.
+from Terminal.policy import HTF_MIN_COMPLETED, HTF_STRATEGY_MIN
 BROKER_HTF = {"1h": (16385, 3600), "4h": (16388, 14400)}
 MACRO_CALENDAR_PATH = ROOT / "Data" / "macro_calendar.json"
 # Fetch enough bars for EMA200 warmup convergence (>= 4x period). The audit
@@ -431,6 +431,26 @@ def calendar_observation(now: float, calendar_path=None):
                 "runway_hours_to_blackout": None, "error": str(exc)}
 
 
+def atomic_snapshot_write(out_path, payload):
+    """Replace only a complete generation, tolerating brief Windows read locks."""
+    out_path = pathlib.Path(out_path)
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    temp_path = out_path.with_name(f".{out_path.name}.{os.getpid()}.{uuid.uuid4().hex}.tmp")
+    try:
+        with temp_path.open("w", encoding="utf-8") as stream:
+            json.dump(payload, stream, indent=2, allow_nan=False)
+        for attempt in range(5):
+            try:
+                temp_path.replace(out_path)
+                return
+            except PermissionError:
+                if attempt == 4:
+                    raise
+                time.sleep(0.05 * (attempt + 1))
+    finally:
+        temp_path.unlink(missing_ok=True)
+
+
 def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                            whale_state_path: Any = None) -> Dict[str, Any]:
     """Master generation routine.
@@ -454,6 +474,8 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
         reason = f"MT5 account summary unavailable: {acc_summary.get('error', 'unknown') if isinstance(acc_summary, dict) else 'unknown'}"
         _write_error_marker(reason)
         raise RuntimeError(f"FAIL_CLOSED: {reason}")
+    if acc_summary.get("login") != 5064568 or acc_summary.get("currency") != "USD":
+        raise RuntimeError("FAIL_CLOSED: MT5 account identity/currency mismatch")
     if hasattr(bridge, "broker_utc_now") and bridge.broker_utc_now() is None:
         reference = bridge.resolve_symbol("BTC")
         if reference:
@@ -1085,22 +1107,14 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
         "assets_matrix_24": assets_matrix
     }
 
+    final_account = bridge.get_account_summary()
+    if (not isinstance(final_account, dict) or not final_account.get("connected")
+            or final_account.get("login") != 5064568 or final_account.get("currency") != "USD"):
+        raise RuntimeError("FAIL_CLOSED: MT5 account changed during telemetry generation")
     if not validate_observed_snapshot(payload):
         raise RuntimeError("FAIL_CLOSED: telemetry provenance validation failed")
 
-    # Write JSON atomically (to the injectable path for tests)
-    out_path.parent.mkdir(parents=True, exist_ok=True)
-    temp_path = out_path.with_suffix(".tmp")
-    with open(temp_path, "w", encoding="utf-8") as f:
-        json.dump(payload, f, indent=2, allow_nan=False)
-    for _attempt in range(5):
-        try:
-            temp_path.replace(out_path)
-            break
-        except (PermissionError, OSError):
-            if _attempt == 4:
-                raise
-            time.sleep(0.1)
+    atomic_snapshot_write(out_path, payload)
 
     print(f"[{now_utc}] Successfully exported observed-only telemetry snapshot v3 to {out_path}")
     print(f"  Account Equity: {equity_usd:.2f} USD | Hard Floor: {hard_floor:.2f} USD | Cushion: +{cushion:.2f} USD")

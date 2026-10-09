@@ -546,6 +546,93 @@ def test_parallel_multi_zone_limit_staging(tmp_path):
     assert b.pending[0]["price_open"] > 0
 
 
+def test_dispatch_refreshes_the_selected_asset_quote_not_the_last_loop_quote(tmp_path):
+    t, b = trader(tmp_path, paper=False)
+    original = b.get_symbol_price
+    seen = []
+    def quote(symbol):
+        seen.append(symbol)
+        data = original(symbol)
+        if symbol == b.resolve_symbol("ETH"):
+            data.update(bid=199, ask=201, contract_size=1)
+        return data
+    b.get_symbol_price = quote
+    macro = {"received_at": NOW, "sentiment_valid": True, "asset_scores": {"BTC": 1, "ETH": 1}}
+    report = t.evaluate_market({"BTC": payload(NOW, "BTC"), "ETH": payload(NOW, "ETH")}, macro)
+    assert b.resolve_symbol("ETH") in seen
+    assert seen[-1] == b.resolve_symbol("BTC")
+    assert report["decision"] == "ORDER_UNCERTAIN"
+    assert b.sent[0][0][0] == b.resolve_symbol("BTC")
+
+
+def test_uncertain_limit_reconciles_resting_ticket_without_extending_ttl(tmp_path):
+    t, b = trader(tmp_path, paper=False)
+    candidate = {"candidate_id": "lost-ack", "entry_mode": "limit", "asset": "BTC", "symbol": "BTCUSD",
+                 "direction": "LONG", "volume": .01, "price_open": 99, "sl": 98, "tp": 103, "atr": 1,
+                 "risk_usd": 10, "tick_size": .01}
+    b.stage_limit_order = lambda *args, **kwargs: {"success": False, "uncertain": True}
+    assert t._dispatch(candidate, int(NOW//900))["uncertain"]
+    key, intent = next(iter(t.state["intents"].items()))
+    assert intent["status"] == "UNCERTAIN"
+    b.pending = [{**candidate, "ticket": 12345, "magic": MAGIC, "comment": intent["comment"]}]
+    t._reconcile([], b.pending)
+    assert intent["status"] == "STAGED_LIMIT" and intent["order_ticket"] == 12345
+    assert t.governor.orders[key]["staged_at"] == intent["prepared_at"]
+    deadline = t.governor.orders[key]["deadline"]
+    t._reconcile([], b.pending)
+    assert t.governor.orders[key]["deadline"] == deadline
+
+
+@pytest.mark.parametrize("gate_exception", [False, True])
+def test_pre_send_execution_veto_is_binding_even_in_alpha_shadow_mode(tmp_path, monkeypatch, gate_exception):
+    import Terminal.Omni_Trader as module
+    t, b = trader(tmp_path, paper=False)
+    b._utc_offset_seconds = lambda symbol: 0
+    monkeypatch.setattr(module, "DG_MODE", "shadow")
+    monkeypatch.setattr(module, "mt5", SimpleNamespace())
+    def gate(*args, **kwargs):
+        if gate_exception:
+            raise RuntimeError("gate data missing")
+        return False, ["decision_stale"], None
+    monkeypatch.setattr(module, "pre_send_gate", gate)
+    candidate = {"candidate_id": "execution-veto", "entry_mode": "limit", "asset": "BTC", "symbol": "BTCUSD",
+                 "direction": "LONG", "volume": .01, "price_open": 99, "sl": 98, "tp": 103, "atr": 1}
+    result = t._dispatch(candidate, int(NOW//900))
+    assert not result["success"] and not result.get("uncertain") and not b.sent
+    assert next(iter(t.state["intents"].values()))["status"] == "REJECTED"
+
+
+@pytest.mark.parametrize("persistent", [False, True])
+def test_pending_precheck_includes_complete_broker_expiration(tmp_path, monkeypatch, persistent):
+    import Terminal.Omni_Trader as module
+    t, b = trader(tmp_path, paper=False)
+    t.persistent_limits = persistent
+    b._utc_offset_seconds = lambda symbol: 10800
+    b.tick_age_seconds = lambda tick, symbol: 0.0
+    checked = []
+    def order_check(req):
+        checked.append(req.copy())
+        specified_without_expiry = req["type_time"] == 2 and req.get("expiration", 0) <= NOW + 10800
+        return SimpleNamespace(retcode=10022 if specified_without_expiry else 0)
+    broker = SimpleNamespace(
+        ORDER_TYPE_BUY_LIMIT=2, ORDER_TYPE_SELL_LIMIT=3, ORDER_TIME_GTC=0, ORDER_TIME_SPECIFIED=2,
+        SYMBOL_TRADE_MODE_FULL=4,
+        symbol_info=lambda symbol: SimpleNamespace(trade_mode=4, point=.01, trade_stops_level=0,
+                                                   volume_min=.01, volume_step=.01),
+        symbol_info_tick=lambda symbol: SimpleNamespace(bid=99.99, ask=100.01, time_msc=(NOW+10800)*1000),
+        account_info=lambda: SimpleNamespace(trade_allowed=True),
+        terminal_info=lambda: SimpleNamespace(trade_allowed=True),
+        orders_get=lambda **kwargs: (), positions_get=lambda: (), order_check=order_check)
+    monkeypatch.setattr(module, "mt5", broker)
+    candidate = {"candidate_id": "expiry-check", "entry_mode": "limit", "asset": "BTC", "symbol": "BTCUSD",
+                 "direction": "LONG", "volume": .01, "price_open": 99, "sl": 98, "tp": 103, "atr": 1,
+                 "features": {"spread_bps": 2.0}}
+    result = t._dispatch(candidate, int(NOW//900))
+    assert result["success"] and len(checked) == 1, result
+    assert checked[0]["expiration"] == (0 if persistent else NOW + 10800 + t.limit_expiration_seconds)
+    assert checked[0]["magic"] == MAGIC
+
+
 def test_first_fill_oco_governor_cancels_remaining_limits(tmp_path):
     t, b = trader(tmp_path, paper=False)
     # Stage 2 pending orders
@@ -553,7 +640,7 @@ def test_first_fill_oco_governor_cancels_remaining_limits(tmp_path):
         {"ticket": 1001, "symbol": "BTCUSD", "direction": "LONG", "volume": 0.1, "price_open": 98.0, "sl": 95.0, "tp": 105.0, "magic": MAGIC},
         {"ticket": 1002, "symbol": "ETHUSD", "direction": "LONG", "volume": 1.0, "price_open": 98.0, "sl": 95.0, "tp": 105.0, "magic": MAGIC}
     ]
-    # Now simulate 2 open positions filling capacity
+    # Two fills plus two pending tickets fit the four-slot joint-fill cap.
     b.positions = [
         {"ticket": 2001, "symbol": "SOLUSD", "direction": "LONG", "price_open": 100, "sl": 95, "tp": 110, "volume": 0.5, "time": NOW, "magic": MAGIC},
         {"ticket": 2002, "symbol": "XRPUSD", "direction": "LONG", "price_open": 1.5, "sl": 1.4, "tp": 1.7, "volume": 10, "time": NOW, "magic": MAGIC}
@@ -561,9 +648,15 @@ def test_first_fill_oco_governor_cancels_remaining_limits(tmp_path):
     t.state["positions"]["2001"] = {"initial_r": 5, "asset": "SOL"}
     t.state["positions"]["2002"] = {"initial_r": 0.1, "asset": "XRP"}
     changes = t.manage_active_positions()
-    # OCO governor must cancel all pending orders when positions capacity (2) is filled
+    assert len(b.pending) == 2
+    # Four fills leave no contingent room for either pending ticket.
+    b.positions.extend([{**b.positions[0], "ticket": 2003, "symbol": "SP500"},
+                        {**b.positions[0], "ticket": 2004, "symbol": "GOLD"}])
+    t.state["positions"]["2003"] = {"initial_r": 5, "asset": "SP500"}
+    t.state["positions"]["2004"] = {"initial_r": 5, "asset": "GOLD"}
+    changes = t.manage_active_positions()
     assert len(b.pending) == 0
-    assert any(c.get("action") == "CANCEL" and c.get("reason") == "max_positions_reached_2" for c in changes)
+    assert any(c.get("action") == "CANCEL" and c.get("reason") == "max_contingent_tickets_reached_4" for c in changes)
 
 
 

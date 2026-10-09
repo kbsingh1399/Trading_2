@@ -34,6 +34,22 @@ from Terminal.Headless.swarm import (orderflow_analyst, position_manager,
 from Terminal.Headless.llm_contract import validate_consultation_response
 
 NOW = 1_760_000_000.0
+
+
+@pytest.fixture(autouse=True)
+def dated_offline_calendar(tmp_path, monkeypatch):
+    """Paper command tests must not depend on the changing production calendar."""
+    from datetime import datetime, timezone
+    from Terminal.risk import blackout_guard
+    def utc(epoch):
+        return datetime.fromtimestamp(epoch, timezone.utc).isoformat()
+    path = tmp_path / "calendar.json"
+    path.write_text(json.dumps({"coverage_start": utc(NOW - 86400),
+                               "coverage_end": utc(NOW + 4 * 86400),
+                               "events": [{"name": "CPI", "impact": "HIGH",
+                                           "time_utc": utc(NOW + 3 * 86400)}]}))
+    monkeypatch.setattr(blackout_guard, "_CALENDAR_JSON", path)
+    monkeypatch.setattr(blackout_guard.BlackoutGuard, "_instance", None)
 SECRET = "arena-test-secret-0x61"
 
 

@@ -508,7 +508,13 @@ def test_bridge_stages_persistent_gtc_limit(monkeypatch):
                            TRADE_RETCODE_DONE=10009, TRADE_RETCODE_PLACED=10008)
     monkeypatch.setattr(module, "mt5", fake)
     monkeypatch.setattr(module, "MT5_AVAILABLE", True)
+    monkeypatch.setattr(module.time, "time", lambda: NOW)
     bridge = module.MT5ExecutionBridge()
+    bridge.broker_utc_offset_sec = 0  # Fake IPC timestamps above are UTC.
+    bridge.broker_utc_offset_ms = 0
+    mono = module.time.monotonic()
+    bridge.broker_clock.tick_age_seconds(tick.time_msc-1000, symbol="SOLUSD.p", now=NOW-1, monotonic_now=mono-1)
+    bridge.broker_clock.tick_age_seconds(tick.time_msc, symbol="SOLUSD.p", now=NOW, monotonic_now=mono)
     result = bridge.stage_limit_order("SOLUSD.p", "LONG", 0.25, 99.90, 97.90, 104.00,
                                       persistent=True, passive_only=True)
     assert result["success"] and result["persistent"] and result["expires_at"] is None

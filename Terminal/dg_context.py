@@ -5,6 +5,8 @@ into the exact contract required by model1_checklist and model2_checklist.
 from __future__ import annotations
 
 import math
+from Terminal.policy import HTF_STRATEGY_MIN
+from Terminal.Asset_Universe import canonical_asset
 from typing import Dict, List, Optional, Tuple
 import numpy as np
 
@@ -20,6 +22,37 @@ from Terminal.decision_gates_v3 import (
 
 def _arr(x) -> np.ndarray:
     return np.asarray(x, dtype=float)
+
+
+def _session_vwap(bars, quote):
+    """Observed UTC-day VWAP; broker tick volume remains a volume proxy."""
+    try:
+        observed = float(quote["time_msc"]) / 1000.0
+        if not math.isfinite(observed) or observed <= 0:
+            return None, None, None, 0
+        opened = np.asarray([float(bar["time"]) for bar in bars])
+        if (not np.isfinite(opened).all() or np.any(np.diff(opened) <= 0)
+                or np.any(opened+900 > observed)):
+            return None, None, None, 0
+        rows = [bar for bar, stamp in zip(bars, opened)
+                if math.floor(observed/86400)*86400 <= stamp and stamp+900 <= observed]
+        if not rows:
+            return None, None, None, 0
+        volume = np.asarray([float(bar.get("volume") or bar.get("tick_volume") or 0) for bar in rows])
+        typical = np.asarray([(bar["high"]+bar["low"]+bar["close"])/3 for bar in rows])
+        if (not np.isfinite(volume).all() or not np.isfinite(typical).all()
+                or np.any(volume < 0) or volume.sum() <= 0):
+            return None, None, None, len(rows)
+        total = np.cumsum(volume)
+        path = np.divide(np.cumsum(volume*typical), total,
+                         out=np.full(len(rows), np.nan), where=total > 0)
+        vwap = float(path[-1])
+        sigma = float(np.sqrt(np.sum(volume*(typical-vwap)**2)/total[-1]))
+        slope = (float(path[-1]-path[-2])/sigma
+                 if sigma > 0 and len(path) > 1 and math.isfinite(path[-2]) else None)
+        return vwap, sigma, slope, len(rows)
+    except (KeyError, TypeError, ValueError, OverflowError):
+        return None, None, None, 0
 
 
 def build_dg_context(
@@ -72,8 +105,11 @@ def build_dg_context(
     spread = float(quote.get("ask", 0.0) - quote.get("bid", 0.0))
 
     # Session VWAP & Sigma
-    vwap = pivots.get("vwap") if pivots else None
-    vwap_sigma = pivots.get("vwap_sigma") if pivots else None
+    observed_vwap, observed_sigma, vwap_slope_sigma, session_count = _session_vwap(bars_15m, quote)
+    vwap, vwap_sigma = observed_vwap, observed_sigma
+    valid_session = vwap is not None and vwap > 0 and vwap_sigma is not None and vwap_sigma > 0 and vwap_slope_sigma is not None
+    if not valid_session:
+        missing.append("session_vwap_history_unavailable")
     if vwap is None or vwap <= 0:
         vwap = float(c[-1])
         vwap_sigma = atr
@@ -101,10 +137,7 @@ def build_dg_context(
 
     # Delta Z over 4 bars
     z_4ago = (c[-5] - vwap) / max(vwap_sigma, 1e-12) if len(c) >= 5 else current_z
-    dz4 = abs(current_z - z_4ago)
-
-    # VWAP slope
-    vwap_slope_sigma = 0.0  # Session VWAP slope per bar typically flat
+    dz4 = current_z - z_4ago
 
     # Volume ratio (last 4 vs last 96 bars)
     vol_4 = sum(v[-4:]) / 4.0 if len(v) >= 4 else 1.0
@@ -114,46 +147,37 @@ def build_dg_context(
     # Geometry for Model 2
     # Find recent swing pivot
     swing_window = min(24, len(c) - 1)
-    if side == 1:
-        impulse_start = max(0, len(c) - 1 - swing_window)
-        swing_idx = len(c) - 1 - int(np.argmax(h[-swing_window:]))
-        if swing_idx <= impulse_start:
-            swing_idx = min(len(c) - 2, impulse_start + 1)
-    else:
-        impulse_start = max(0, len(c) - 1 - swing_window)
-        swing_idx = len(c) - 1 - int(np.argmin(l[-swing_window:]))
-        if swing_idx <= impulse_start:
-            swing_idx = min(len(c) - 2, impulse_start + 1)
+    impulse_start = len(c) - 1 - swing_window
+    # The last candle is the proposed pullback, not an impulse pivot.
+    previous = h[impulse_start:-1] if side == 1 else l[impulse_start:-1]
+    swing_idx = impulse_start + int(np.argmax(previous) if side == 1 else np.argmin(previous))
 
     geo = pullback_geometry(h, l, c, direction, impulse_start=impulse_start,
                             swing_idx=swing_idx, sigma_bar=sigma_bar)
 
     # Structure intact
     if side == 1:
-        structure_intact = c[-1] >= min(l[-swing_window:])
+        structure_intact = c[-1] >= min(l[impulse_start:-1])
     else:
-        structure_intact = c[-1] <= max(h[-swing_window:])
+        structure_intact = c[-1] <= max(h[impulse_start:-1])
 
     # Shelf confluence
-    shelf_price = (pivots.get("vwap") if pivots and pivots.get("vwap") is not None else entry)
+    shelf_price = None
+    confluence = 0
     if pivots:
         candidates = [pivots.get("vwap"), pivots.get("P"), pivots.get("S1" if side == 1 else "R1"),
                       pivots.get("bull_fvg_ce" if side == 1 else "bear_fvg_ce")]
         valid_shelves = [s for s in candidates if s is not None and abs(entry - s) <= 0.35 * atr]
-        confluence = max(2, len(valid_shelves))
-    else:
-        confluence = 2
+        confluence = len(valid_shelves)
+        if valid_shelves:
+            shelf_price = min(valid_shelves, key=lambda level: abs(entry - level))
 
     # First obstacle
     first_obstacle = None
     if pivots:
         first_obstacle = pivots.get("swing_high" if side == 1 else "swing_low")
-    if first_obstacle is None:
-        first_obstacle = entry + 2.5 * atr if side == 1 else entry - 2.5 * atr
-    if side == 1 and first_obstacle <= entry:
-        first_obstacle = entry + 2.5 * atr
-    elif side != 1 and first_obstacle >= entry:
-        first_obstacle = entry - 2.5 * atr
+    if first_obstacle is not None and side * (first_obstacle - entry) <= 0:
+        first_obstacle = None
 
     # Costs and sizing
     risk_usd = float(sizing.get("risk_usd", 12.0)) if sizing else 12.0
@@ -162,46 +186,61 @@ def build_dg_context(
     # Orderflow tape extraction
     of_payload = payload.get("orderflow") if payload else None
     orderflow = None
-    allow_price_only = True  # Allowed for Model 2 CFDs
+    asset = canonical_asset(features.get("asset") or (payload or {}).get("coin") or symbol)
+    allow_price_only = asset in {"GOLD", "SILVER", "USWTI", "SP500", "NAS100", "DJ30", "GER40", "EURUSD", "GBPUSD", "USDJPY"}
 
     if of_payload and isinstance(of_payload, dict):
         cvd_data = of_payload.get("cvd_divergence", {})
-        if cvd_data:
+        try:
             orderflow = {
-                "cvd_push1": float(cvd_data.get("push1", -100.0 if side == 1 else 100.0)),
-                "cvd_push2": float(cvd_data.get("push2", -40.0 if side == 1 else 40.0)),
-                "aggr_usd_sweep": float(of_payload.get("aggressor_sweep_usd", 300_000.0)),
-                "aggr_usd_median_1m": float(of_payload.get("median_1m_flow_usd", 100_000.0)),
-                "lambda_sweep": float(of_payload.get("lambda_sweep", 0.001)),
-                "lambda_median_60m": float(of_payload.get("lambda_median", 0.005)),
-                "bars_cvd_turned": int(of_payload.get("bars_turned", 3)),
-                "pullback_cvd_share": float(of_payload.get("pullback_cvd_share", 0.35)),
-                "exhaustion_gate_ok": bool(of_payload.get("exhaustion_ok", True)),
-                "liq_burst_toward_entry": bool(of_payload.get("liq_burst", False)),
+                "cvd_push1": float(cvd_data["push1"]), "cvd_push2": float(cvd_data["push2"]),
+                "aggr_usd_sweep": float(of_payload["aggressor_sweep_usd"]),
+                "aggr_usd_median_1m": float(of_payload["median_1m_flow_usd"]),
+                "lambda_sweep": float(of_payload["lambda_sweep"]),
+                "lambda_median_60m": float(of_payload["lambda_median"]),
+                "bars_cvd_turned": float(of_payload["bars_turned"]),
+                "pullback_cvd_share": float(of_payload["pullback_cvd_share"]),
+                "exhaustion_gate_ok": of_payload["exhaustion_ok"],
+                "liq_burst_toward_entry": of_payload["liq_burst"],
             }
+            if (any(not math.isfinite(value) for value in orderflow.values())
+                    or any(type(orderflow[key]) is not bool for key in ("exhaustion_gate_ok", "liq_burst_toward_entry"))
+                    or not orderflow["bars_cvd_turned"].is_integer() or orderflow["bars_cvd_turned"] < 0
+                    or not 0 <= orderflow["pullback_cvd_share"] <= 1
+                    or any(orderflow[key] < 0 for key in ("aggr_usd_sweep", "aggr_usd_median_1m", "lambda_sweep", "lambda_median_60m"))):
+                orderflow = None
+        except (KeyError, TypeError, ValueError, AttributeError):
+            orderflow = None
+
+    p_win_lower = features.get("p_win_lower_bound")
+    if (features.get("p_win_lower_bound_calibrated") is not True or isinstance(p_win_lower, bool)
+            or not isinstance(p_win_lower, (int, float)) or not math.isfinite(p_win_lower)
+            or not 0 <= p_win_lower <= 1):
+        p_win_lower = None
 
     ctx = {
         "direction": direction,
         "regime": regime,
-        "vwap_z": current_z,
-        "sweep_z": sweep_z,
-        "vwap_z_change_4bars": dz4,
+        "vwap_z": current_z if valid_session else None,
+        "sweep_z": sweep_z if valid_session else None,
+        "vwap_z_change_4bars": dz4 if valid_session else None,
         "atr": atr,
-        "session_sigma": vwap_sigma,
-        "session_bars": max(16, len(c)),
+        "session_sigma": observed_sigma,
+        "session_bars": session_count,
+        "vwap_anchor_basis": "UTC_DAY",
         "vwap_slope_sigma_per_bar": vwap_slope_sigma,
         "vol_ratio_4_96": vol_ratio,
         "reclaim_close": reclaim_close,
         "entry": entry,
         "sl": sl,
         "tp": tp,
-        "vwap": vwap,
+        "vwap": observed_vwap,
         "sweep_extreme": sweep_extreme,
         "spread": spread,
         "tick": tick,
         "risk_usd": risk_usd,
         "round_trip_cost_usd": cost_usd,
-        "p_win_lower_bound": 0.58,  # Calibrated Wilson lower bound prior
+        "p_win_lower_bound": p_win_lower,
         "sigma_bar": sigma_bar,
         "geometry": geo,
         "structure_intact": structure_intact,
@@ -233,23 +272,27 @@ def evaluate_candidate_dg_v3(
 
     Returns dict with regime, stats, passed (bool), failures, and metrics.
     """
-    if bars_1h and bars_4h and len(bars_15m) >= 48 and len(bars_1h) >= 48 and len(bars_4h) >= 30:
+    if (bars_1h and bars_4h and len(bars_15m) >= 97
+            and len(bars_1h) >= HTF_STRATEGY_MIN and len(bars_4h) >= HTF_STRATEGY_MIN):
+        try:
+            as_of = float(quote["time_msc"])/1000
+            for history, period in ((bars_15m, 900), (bars_1h, 3600), (bars_4h, 14400)):
+                stamps = [float(bar["time"]) for bar in history]
+                if (not math.isfinite(as_of) or as_of <= 0
+                        or any(not math.isfinite(stamp) or stamp <= 0 or stamp+period > as_of for stamp in stamps)
+                        or any(right <= left for left, right in zip(stamps, stamps[1:]))):
+                    raise ValueError("noncausal history")
+        except (KeyError, TypeError, ValueError, OverflowError):
+            return {"regime": "UNDEFINED", "stats": {}, "passed": False,
+                    "failures": ["regime_history_time_invalid_or_noncausal"], "metrics": {}}
         c15 = [b["close"] for b in bars_15m]
         c1h = [b["close"] for b in bars_1h]
         c4h = [b["close"] for b in bars_4h]
         regime, rstats = classify_regime(c15, c1h, c4h)
     else:
-        # Fallback to trend indication from 200 EMA if HTF bars not ready
-        direction = features.get("direction", "LONG")
-        mid = float(quote.get("bid", 0.0) + quote.get("ask", 0.0)) / 2.0
-        ema200 = pivots.get("ema_200", mid) if pivots else mid
-        if direction == "LONG" and mid >= ema200:
-            regime = "TREND_UP"
-        elif direction == "SHORT" and mid <= ema200:
-            regime = "TREND_DOWN"
-        else:
-            regime = "UNDEFINED"
-        rstats = {"fallback": True}
+        return {"regime": "UNDEFINED", "stats": {"history_counts": {
+            "15m": len(bars_15m), "1h": len(bars_1h or []), "4h": len(bars_4h or [])}},
+            "passed": False, "failures": ["regime_history_insufficient"], "metrics": {}}
 
     ctx, missing = build_dg_context(
         features=features,

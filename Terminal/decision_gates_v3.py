@@ -258,7 +258,8 @@ def pullback_geometry(highs, lows, closes, direction, impulse_start: int, swing_
         a, ext = h[impulse_start], l[swing_idx]
     p = c[-1]
     leg = abs(ext - a)
-    retr = abs(ext - p) / leg if leg > 0 else 0.0
+    # A breakout beyond the impulse extreme is not a pullback.
+    retr = s * (ext - p) / leg if leg > 0 else 0.0
     n_imp = max(swing_idx - impulse_start, 1)
     n_pb = max(len(c) - 1 - swing_idx, 1)
     depth_sigma = abs(math.log(ext / p)) / (sigma_bar * math.sqrt(n_pb))
@@ -476,7 +477,7 @@ class SendLimits:
     max_decision_age_s: float = 90.0
 
 
-def pre_send_gate(mt5, req: dict, plan: dict, lim: SendLimits = SendLimits(), now_ms=None):
+def pre_send_gate(mt5, req: dict, plan: dict, lim: SendLimits = SendLimits(), now_ms=None, *, tick_age_seconds=None):
     """Run immediately before mt5.order_send(req). Returns (ok, reasons, check)."""
     r: List[str] = []
     sym = req["symbol"]
@@ -489,9 +490,19 @@ def pre_send_gate(mt5, req: dict, plan: dict, lim: SendLimits = SendLimits(), no
     if info.trade_mode != mt5.SYMBOL_TRADE_MODE_FULL:
         r.append("symbol_trade_mode_not_full")
     now_ms = now_ms if now_ms is not None else plan["server_now_ms"]
-    if now_ms - tick.time_msc > lim.max_tick_age_ms:
-        r.append(f"tick_stale_{now_ms - tick.time_msc}ms")
+    if tick_age_seconds is not None:
+        age = tick_age_seconds(tick, sym)
+        age_ms = None if age is None else age * 1000
+    else:
+        age_ms = now_ms - tick.time_msc
+    if age_ms is None or not math.isfinite(age_ms) or age_ms < 0:
+        r.append("tick_clock_unverified")
+    elif age_ms > lim.max_tick_age_ms:
+        r.append(f"tick_stale_{age_ms:.0f}ms")
     mid = 0.5 * (tick.bid + tick.ask)
+    if not 0 < tick.bid < tick.ask or not math.isfinite(mid):
+        return False, r + ["broker_quote_invalid"], None
+    spr_bps = (tick.ask - tick.bid) / mid * 10_000
     allowed_spread = min(lim.max_spread_bps, max(1.0, lim.spread_vs_median * plan.get("spread_median_bps_this_hour", 1.0)))
     if spr_bps > allowed_spread:
         r.append(f"spread_{spr_bps:.1f}bps")
@@ -514,7 +525,11 @@ def pre_send_gate(mt5, req: dict, plan: dict, lim: SendLimits = SendLimits(), no
     steps = round((vol - info.volume_min) / info.volume_step)
     if vol < info.volume_min or abs(info.volume_min + steps * info.volume_step - vol) > 1e-9:
         r.append("volume_not_on_step")
-    dup = [o for o in (mt5.orders_get(symbol=sym) or []) if o.comment == req.get("comment")]
+    orders = mt5.orders_get(symbol=sym)
+    positions = mt5.positions_get()
+    if orders is None or positions is None:
+        r.append("broker_inventory_unavailable")
+    dup = [o for o in (orders if orders is not None else []) if o.comment == req.get("comment")]
     if dup:
         r.append("duplicate_intent_resting")
     if plan.get("joint_fill_ok") is not True:

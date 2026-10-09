@@ -501,6 +501,22 @@ def test_asset_class_mapping():
     assert asset_class_of("SOL") == "CRYPTO"
 
 
+@pytest.mark.parametrize("asset", ["GOLD", "SILVER", "COMMODITY", "XAUUSD.pi", "USWTI"])
+def test_normalized_commodity_class_preserves_session_and_conditional_ratchet(asset):
+    from datetime import datetime, timezone
+    observed = datetime(2026, 10, 9, 10, 0, tzinfo=timezone.utc).timestamp()
+    cls = asset_class_of(asset)
+    assert cls == "COMMODITY" and asset_class_of(cls) == cls
+    assert session_regime(observed, cls) == "london"
+    assert ratchet_params(cls, session="london", gk_ratio=1, sleeve="trend") == ratchet_params("GOLD", session="london", gk_ratio=1, sleeve="trend")
+
+
+@pytest.mark.parametrize("asset", ["SP500", "NAS100", "DJ30", "GER40", "INDEX"])
+def test_index_class_survives_double_normalization(asset):
+    assert asset_class_of(asset) == "INDEX"
+    assert asset_class_of(asset_class_of(asset)) == "INDEX"
+
+
 def test_gk_vol_buckets():
     assert gk_vol_bucket(0.5) == "calm"
     assert gk_vol_bucket(0.75) == "normal"
@@ -749,8 +765,8 @@ def test_pending_drift_cancel_uses_max_6atr_or_3pct(tmp_path):
     assert "cancel_9002" in broker.closed          # |124-117| = 7 > 6*ATR and > 3% of mid
 
 
-def test_decoupled_capacity_gates_in_limit_mode(tmp_path):
-    # Limit mode: 3 staged limits with 0 fills must NOT trip the coupled cap.
+def test_four_contingent_ticket_capacity_in_limit_mode(tmp_path):
+    # Three real pendings leave one contingent slot available.
     t, broker = trader(tmp_path, entry_mode="limit", paper=False)
     broker.pending = [{"ticket": 1000 + i, "symbol": "SOLUSD"} for i in range(3)]
     t.state["intents"] = {f"k{i}": {"status": "STAGED_LIMIT", "order_ticket": 1000 + i,
@@ -758,28 +774,28 @@ def test_decoupled_capacity_gates_in_limit_mode(tmp_path):
                           for i in range(3)}
     report = t.evaluate_market({}, {"received_at": NOW, "sentiment_valid": True,
                                     "asset_scores": {"SOL": 1}})
-    assert report.get("reason") != "maximum_two_positions"
+    assert report.get("reason") != "maximum_four_contingent_tickets"
     assert report["vetoes"]["BTC"] == "signal_data_unavailable"   # ran past the gate
-    # Five resting limits saturate the decoupled staging cap.
+    # Four real pendings saturate joint-fill capacity.
     t.state["last_slot"] = 0
-    broker.pending = [{"ticket": 1000 + i, "symbol": "SOLUSD"} for i in range(5)]
+    broker.pending = [{"ticket": 1000 + i, "symbol": "SOLUSD"} for i in range(4)]
     t.state["intents"] = {f"k{i}": {"status": "STAGED_LIMIT", "order_ticket": 1000 + i,
                                     "candidate": {"asset": "SOL", "symbol": "SOLUSD"}}
-                          for i in range(5)}
+                          for i in range(4)}
     report = t.evaluate_market({}, {"received_at": NOW, "sentiment_valid": True,
                                     "asset_scores": {"SOL": 1}})
-    assert report["reason"] == "max_resting_limits_5"
+    assert report["reason"] == "maximum_four_contingent_tickets"
 
 
 def test_market_mode_keeps_the_coupled_commitment_cap(tmp_path):
     t, broker = trader(tmp_path, entry_mode="market", paper=False)
-    broker.pending = [{"ticket": 1000 + i, "symbol": "SOLUSD"} for i in range(2)]
+    broker.pending = [{"ticket": 1000 + i, "symbol": "SOLUSD"} for i in range(4)]
     t.state["intents"] = {f"k{i}": {"status": "STAGED_LIMIT", "order_ticket": 1000 + i,
                                     "candidate": {"asset": "SOL", "symbol": "SOLUSD"}}
-                          for i in range(2)}
+                          for i in range(4)}
     report = t.evaluate_market({}, {"received_at": NOW, "sentiment_valid": True,
                                     "asset_scores": {"SOL": 1}})
-    assert report["reason"] == "maximum_two_positions"
+    assert report["reason"] == "maximum_four_contingent_tickets"
 
 
 def test_run_loop_refreshes_bars_before_managing():

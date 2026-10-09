@@ -111,7 +111,8 @@ def load_successful_generation(generated_snapshot, *, clock=None):
                 or cap["filled"] != len(document["active_positions"])
                 or cap["pending"] != len(document["pending_orders"])
                 or cap["used_joint_fill"] != cap["filled"] + cap["pending"]
-                or document["account"].get("currency") != "USD"):
+                or document["account"].get("currency") != "USD"
+                or document["account"].get("login") != 5064568):
             raise ValueError("capacity/account provenance invalid")
         for entry in document["assets_matrix_24"].values():
             for key, period in (("1h", 3600), ("4h", 14400)):

@@ -1,6 +1,6 @@
 {
   "schema": "omni.calendar.v1",
-  "verified_at": "2026-10-05T07:55:01.545977+00:00",
+  "verified_at": "2026-10-09T18:59:59.042408+00:00",
   "coverage_start": "2026-10-01T00:00:00Z",
   "coverage_end": "2026-11-01T00:00:00Z",
   "required_series": [
@@ -13,13 +13,10 @@
       "name": "NFP",
       "time_utc": "2026-10-02T12:30:00Z",
       "impact": "HIGH",
-      "source": "https://www.bls.gov/schedule/2026/10_sched.htm"
-    },
-    {
-      "name": "CPI",
-      "time_utc": "2026-10-14T12:30:00Z",
-      "impact": "HIGH",
-      "source": "https://www.bls.gov/schedule/2026/10_sched.htm"
+      "source": "https://www.bls.gov/schedule/2026/10_sched.htm",
+      "currency": "USD",
+      "pre_blackout_m": 30,
+      "post_blackout_m": 30
     },
     {
       "name": "FOMC Minutes",
@@ -28,19 +25,171 @@
       "source": "https://www.federalreserve.gov/newsevents/2026-october.htm",
       "purge_at_utc": "2026-10-07T16:55:00Z",
       "blackout_start_utc": "2026-10-07T17:00:00Z",
-      "blackout_end_utc": "2026-10-07T18:35:00Z"
+      "blackout_end_utc": "2026-10-07T18:35:00Z",
+      "currency": "USD",
+      "pre_blackout_m": 30,
+      "post_blackout_m": 30
+    },
+    {
+      "name": "BoE Breeden Interview: Digital Assets",
+      "time_utc": "2026-10-12T09:30:00Z",
+      "impact": "HIGH",
+      "currency": "GBP",
+      "pre_blackout_m": 30,
+      "post_blackout_m": 30,
+      "source": "https://www.bankofengland.co.uk/events/upcoming-events"
+    },
+    {
+      "name": "BoE Greene Speech: IMF World Bank Meetings",
+      "time_utc": "2026-10-13T03:00:00Z",
+      "impact": "HIGH",
+      "currency": "GBP",
+      "pre_blackout_m": 30,
+      "post_blackout_m": 30,
+      "source": "https://www.bankofengland.co.uk/events/upcoming-events"
+    },
+    {
+      "name": "Fed Waller Discussion: AI",
+      "time_utc": "2026-10-13T07:45:00Z",
+      "impact": "HIGH",
+      "currency": "USD",
+      "pre_blackout_m": 30,
+      "post_blackout_m": 30,
+      "source": "https://www.federalreserve.gov/newsevents/2026-october.htm"
+    },
+    {
+      "name": "BoE Pill Citi Roundtable",
+      "time_utc": "2026-10-14T06:00:00Z",
+      "impact": "HIGH",
+      "currency": "GBP",
+      "pre_blackout_m": 30,
+      "post_blackout_m": 30,
+      "source": "https://www.bankofengland.co.uk/events/upcoming-events"
+    },
+    {
+      "name": "Fed Bowman Discussion: Supervision and Regulation",
+      "time_utc": "2026-10-14T09:40:00Z",
+      "impact": "HIGH",
+      "currency": "USD",
+      "pre_blackout_m": 30,
+      "post_blackout_m": 30,
+      "source": "https://www.federalreserve.gov/newsevents/2026-october.htm"
+    },
+    {
+      "name": "CPI",
+      "time_utc": "2026-10-14T12:30:00Z",
+      "impact": "HIGH",
+      "source": "https://www.bls.gov/schedule/2026/10_sched.htm",
+      "currency": "USD",
+      "pre_blackout_m": 30,
+      "post_blackout_m": 30
+    },
+    {
+      "name": "Fed Beige Book",
+      "time_utc": "2026-10-14T18:00:00Z",
+      "impact": "HIGH",
+      "currency": "USD",
+      "pre_blackout_m": 30,
+      "post_blackout_m": 30,
+      "source": "https://www.federalreserve.gov/newsevents/2026-october.htm"
+    },
+    {
+      "name": "Fed Bowman Speech: Bangkok Economic Festival",
+      "time_utc": "2026-10-15T02:55:00Z",
+      "impact": "HIGH",
+      "currency": "USD",
+      "pre_blackout_m": 30,
+      "post_blackout_m": 30,
+      "source": "https://www.federalreserve.gov/newsevents/2026-october.htm"
+    },
+    {
+      "name": "BoE Pill Global Macro Panel",
+      "time_utc": "2026-10-15T03:40:00Z",
+      "impact": "HIGH",
+      "currency": "GBP",
+      "pre_blackout_m": 30,
+      "post_blackout_m": 30,
+      "source": "https://www.bankofengland.co.uk/events/upcoming-events"
+    },
+    {
+      "name": "BoE Greene JP Morgan Investor Seminar",
+      "time_utc": "2026-10-15T06:45:00Z",
+      "impact": "HIGH",
+      "currency": "GBP",
+      "pre_blackout_m": 30,
+      "post_blackout_m": 30,
+      "source": "https://www.bankofengland.co.uk/events/upcoming-events"
+    },
+    {
+      "name": "PPI",
+      "time_utc": "2026-10-15T12:30:00Z",
+      "impact": "HIGH",
+      "currency": "USD",
+      "pre_blackout_m": 30,
+      "post_blackout_m": 30,
+      "source": "https://www.bls.gov/schedule/2026/10_sched.htm"
+    },
+    {
+      "name": "Retail Sales",
+      "time_utc": "2026-10-15T12:30:00Z",
+      "impact": "HIGH",
+      "currency": "USD",
+      "pre_blackout_m": 30,
+      "post_blackout_m": 30,
+      "source": "https://www.census.gov/retail/release_schedule.html"
+    },
+    {
+      "name": "BoE Governor Bailey Fireside Chat",
+      "time_utc": "2026-10-16T02:00:00Z",
+      "impact": "HIGH",
+      "currency": "GBP",
+      "pre_blackout_m": 30,
+      "post_blackout_m": 30,
+      "source": "https://www.bankofengland.co.uk/events/upcoming-events"
+    },
+    {
+      "name": "Fed Chair Warsh IMF Fireside Chat",
+      "time_utc": "2026-10-16T03:30:00Z",
+      "impact": "HIGH",
+      "currency": "USD",
+      "pre_blackout_m": 30,
+      "post_blackout_m": 30,
+      "source": "https://www.federalreserve.gov/newsevents/2026-october.htm"
+    },
+    {
+      "name": "US Industrial Production",
+      "time_utc": "2026-10-16T13:15:00Z",
+      "impact": "HIGH",
+      "currency": "USD",
+      "pre_blackout_m": 30,
+      "post_blackout_m": 30,
+      "source": "https://www.federalreserve.gov/newsevents/2026-october.htm"
     },
     {
       "name": "FOMC",
       "time_utc": "2026-10-28T18:00:00Z",
       "impact": "HIGH",
-      "source": "https://www.federalreserve.gov/newsevents/2026-october.htm"
+      "source": "https://www.federalreserve.gov/newsevents/2026-october.htm",
+      "currency": "USD",
+      "pre_blackout_m": 30,
+      "post_blackout_m": 30
     },
     {
       "name": "FOMC Press Conference",
       "time_utc": "2026-10-28T18:30:00Z",
       "impact": "HIGH",
-      "source": "https://www.federalreserve.gov/newsevents/2026-october.htm"
+      "source": "https://www.federalreserve.gov/newsevents/2026-october.htm",
+      "currency": "USD",
+      "pre_blackout_m": 30,
+      "post_blackout_m": 30
     }
+  ],
+  "supplemental_coverage_start": "2026-10-12T00:00:00Z",
+  "supplemental_coverage_end": "2026-10-19T00:00:00Z",
+  "verification_notes": [
+    "BLS and Federal Reserve times converted from America/New_York (EDT, UTC-4). Explicit BoE BST times converted from Europe/London (UTC+1).",
+    "Retail Sales is October 15, not October 16. Central-bank policy decisions: FOMC October 28 and BoE November 5, neither in October 12-18.",
+    "Central-bank communications receive conservative HIGH policy gating; this is not an empirical tier classification. Unpublished or timezone-ambiguous speech times are not fabricated.",
+    "Supplemental event dates were checked against linked official pages; automated core-series refresh preserves their dated windows."
   ]
 }
