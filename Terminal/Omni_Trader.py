@@ -30,6 +30,7 @@ from Terminal.Telemetry_Provenance import verified_wallet_block, verified_wallet
 from Terminal.policy import DG_MODE
 from Terminal.dg_context import evaluate_candidate_dg_v3
 from Terminal.decision_gates_v3 import pre_send_gate, SendLimits
+from Terminal.risk.live_admission import MAX_FILLED
 
 try:
     import MetaTrader5 as mt5
@@ -189,6 +190,7 @@ class AI15mMT5Trader:
         self.intel_pool = ThreadPoolExecutor(max_workers=1, thread_name_prefix="omni-macro")
         self.inference_pool = ThreadPoolExecutor(max_workers=1, thread_name_prefix="omni-inference")
         self.fetches, self.payloads, self.symbols, self.bars = {}, {}, {}, {}
+        self.bars_1h, self.bars_4h = {}, {}
         self.macro_future, self.macro = None, {}
         self.last_prefetch = self.last_bars = self.last_macro = -math.inf
         self._last_test_limit_purge = 0.0
@@ -275,6 +277,7 @@ class AI15mMT5Trader:
             if symbol:
                 self.symbols[asset] = symbol
                 self.bars[asset] = self.bridge.get_recent_bars(symbol, count=512)
+                self._refresh_higher_timeframes(asset, symbol, now)
         self.last_bars = now
         is_valid = False
         if self.covariance:
@@ -293,13 +296,36 @@ class AI15mMT5Trader:
         except (ValueError, OSError, ImportError) as exc:
             self.covariance_error = str(exc)
 
-    def _quote(self, symbol):
+    def _refresh_higher_timeframes(self, asset, symbol, now):
+        # MT5 supplies actual candles; aggregation/padding would invent history.
+        trusted_now = self.bridge.broker_utc_now(now=now) if hasattr(self.bridge, "broker_utc_now") else now
+        cutoff = min(now, trusted_now) if trusted_now is not None else now
+        for cache, name, duration in ((self.bars_1h, "TIMEFRAME_H1", 3600),
+                                      (self.bars_4h, "TIMEFRAME_H4", 14400)):
+            timeframe = getattr(mt5, name, None) if mt5 is not None else None
+            if timeframe is None:
+                cache[asset] = []
+                continue
+            try:
+                raw = self.bridge.get_recent_bars(symbol, count=96, timeframe=timeframe)
+            except (TypeError, ValueError, RuntimeError):
+                raw = []
+            completed = [b for b in raw if 0 < epoch(b.get("time")) and epoch(b.get("time")) + duration <= cutoff]
+            completed.sort(key=lambda b: epoch(b["time"]))
+            if len({epoch(b["time"]) for b in completed}) != len(completed):
+                completed = []
+            cache[asset] = completed[-96:]
+
+    def _quote(self, symbol, *, entry=True):
         quote = self.bridge.get_symbol_price(symbol)
         if not quote or not 0 < number(quote.get("bid")) < number(quote.get("ask")): raise ValueError("broker_quote_invalid")
-        age = self.clock()-epoch(quote.get("time_msc"))
+        age = quote.get("broker_tick_age") if "broker_tick_age" in quote else self.clock()-epoch(quote.get("time_msc"))
         max_skew = max(15.0, getattr(self.policy, "max_future_skew_sec", 15.0))
         max_age = max(15.0, getattr(self.policy, "max_book_age", 15.0))
-        if not -max_skew <= age <= max_age: raise ValueError("broker_quote_stale_or_future")
+        if age is None:
+            if entry: raise ValueError("broker_quote_clock_unverified")
+            age = self.clock()-epoch(quote.get("time_msc"))
+        if not (0 <= age <= max_age if entry else -max_skew <= age <= max_age): raise ValueError("broker_quote_stale_or_future")
         return quote
 
     def _own(self, position): return int(position.get("magic", 0)) == MAGIC or str(position.get("ticket")) in self.state["positions"]
@@ -308,6 +334,7 @@ class AI15mMT5Trader:
         # Read live inventory even in paper mode so disconnected IPC cannot masquerade as a healthy broker.
         actual = self.bridge.get_open_positions()
         pending = self.bridge.get_pending_orders()
+        if actual is None or pending is None: raise ValueError("broker_inventory_unavailable")
         if self.paper_mode: return copy.deepcopy(self.state["paper_positions"]), []
         return actual, pending
 
@@ -478,7 +505,7 @@ class AI15mMT5Trader:
             if self.clock() - number(metadata.get("close_requested_at", 0)) < 3.0:
                 return
         if self.paper_mode:
-            q = self._quote(position["symbol"]); sign = 1 if position["direction"] == "LONG" else -1
+            q = self._quote(position["symbol"], entry=False); sign = 1 if position["direction"] == "LONG" else -1
             px = q["bid"] if sign == 1 else q["ask"]
             pnl = sign*(px-position["price_open"])*position["volume"]*position["contract_size"]-position["residual_cost_usd"]
             self.state["paper_cash"] += pnl
@@ -526,7 +553,7 @@ class AI15mMT5Trader:
             if not self._own(p): continue
             key = str(p["ticket"]); meta = self.state["positions"].setdefault(key, {})
             try:
-                q = self._quote(p["symbol"])
+                q = self._quote(p["symbol"], entry=False)
                 entry = number(p["price_open"]); sign = 1 if p["direction"] == "LONG" else -1
                 initial_r = number(meta.get("initial_r", self.state.get("position_r_dist", {}).get(key)))
                 if initial_r <= 0 and sign*(entry-number(p.get("sl"))) > 0 and number(p.get("sl")) > 0:
@@ -582,15 +609,19 @@ class AI15mMT5Trader:
             except (ValueError, RuntimeError) as exc:
                 changes.append({"ticket": key, "error": str(exc)})
 
-        # First-Fill OCO Governor: If open positions reach capacity (2), purge all pending limit orders
-        if len(positions) >= 2 and pending:
-            for order in list(pending):
+        # Every pending order consumes a contingent slot just as a fill does.
+        if len(positions) + len(pending) > MAX_FILLED and pending:
+            excess = len(positions) + len(pending) - MAX_FILLED
+            for order in sorted(pending, key=lambda o: number(o.get("time_setup")), reverse=True):
+                if excess <= 0: break
                 oticket = int(order.get("ticket", 0))
                 if int(order.get("magic", 0)) == MAGIC or any(v.get("order_ticket") == oticket for v in self.state.get("intents", {}).values()):
                     res = self.bridge.cancel_pending_order(oticket)
-                    self._append("executions.jsonl", {"time": self.clock(), "event": "oco_capacity_cancel", "ticket": oticket, "reason": "max_positions_reached_2", "result": res})
-                    changes.append({"ticket": str(oticket), "action": "CANCEL", "reason": "max_positions_reached_2"})
-            pending = []
+                    self._append("executions.jsonl", {"time": self.clock(), "event": "oco_capacity_cancel", "ticket": oticket, "reason": "max_contingent_tickets_reached_4", "result": res})
+                    if res.get("success"):
+                        pending = [o for o in pending if int(o.get("ticket", 0)) != oticket]
+                        excess -= 1
+                        changes.append({"ticket": str(oticket), "action": "CANCEL", "reason": "max_contingent_tickets_reached_4"})
         elif len(positions) == 1 and pending:
             active_p = positions[0]
             active_asset = self.state["positions"].get(str(active_p["ticket"]), {}).get("asset", canonical_asset(active_p["symbol"]))
@@ -684,9 +715,32 @@ class AI15mMT5Trader:
                              "residual_cost_usd": number(meta.get("residual_cost_usd")), "atr": number(meta.get("atr"), initial_r*0.5)})
         return exposure, max(0, guard["drawdown_room"]-stop_reserve), enriched
 
+    def _cadence_now(self):
+        if not self.paper_mode and hasattr(self.bridge, "broker_utc_now"):
+            return self.bridge.broker_utc_now()
+        return self.clock()
+
+    def _assert_entry_window(self, slot):
+        if self.paper_mode:
+            return
+        now = self._cadence_now()
+        if now is None or not math.isfinite(now) or int(now//900) != slot or not (
+                840+self.cadence_second <= now-slot*900 < 898):
+            raise ValueError("execution_window_expired_or_clock_unverified")
+        if hasattr(self.bridge, "broker_utc_now"):
+            from Terminal.risk.blackout_guard import BlackoutGuard
+            blocked, reason = BlackoutGuard.get().is_blocked(dt.datetime.fromtimestamp(now, dt.timezone.utc))
+            if blocked:
+                raise ValueError("macro_blackout:"+reason)
+
     def evaluate_market(self, multi_data=None, macro=None, force=False):
-        now = self.clock(); slot = int(now//900); elapsed = now-slot*900
-        report = {"time": now, "slot": slot, "decision": "HOLD", "candidates": [], "vetoes": {}}
+        now = self.clock()
+        cadence_now = self._cadence_now()
+        report = {"time": now, "cadence_time": cadence_now, "decision": "HOLD", "candidates": [], "vetoes": {}}
+        if cadence_now is None or not math.isfinite(cadence_now):
+            return {**report, "slot": None, "reason": "broker_quote_clock_unverified"}
+        slot = int(cadence_now//900); elapsed = cadence_now-slot*900
+        report["slot"] = slot
         # force permits a research evaluation, never bypasses the live cadence.
         if not (840+self.cadence_second <= elapsed < 898) and not (force and self.paper_mode):
             return {**report, "reason": "outside_execution_window"}
@@ -711,15 +765,8 @@ class AI15mMT5Trader:
             self._save_state(); self._flatten(positions, pending, "hard_drawdown_stop")
             report.update(decision="HARD_DD_VETO", reason="sticky_drawdown_latch")
         elif blackout: report.update(decision="MACRO_VETO", reason=event)
-        elif self.entry_mode == "limit" and (len(positions) >= 2 or active_limits >= 5):
-            # Decoupled gates (production): 2 max FILLED, 5 max RESTING
-            # limits; the first-fill OCO governor purges pendings when
-            # positions reach capacity.
-            report.update(reason="max_filled_2" if len(positions) >= 2 else "max_resting_limits_5")
-        elif self.entry_mode != "limit" and len(positions) + active_limits >= 2:
-            # Market mode keeps the coupled commitment cap: an instant fill
-            # plus a resting limit is already two risk legs.
-            report.update(reason="maximum_two_positions")
+        elif len(positions) + len(pending) >= MAX_FILLED:
+            report.update(reason="maximum_four_contingent_tickets")
         elif any(i["status"] in ("PREPARED", "ACKNOWLEDGED", "UNCERTAIN") for i in self.state["intents"].values()):
             report.update(reason="unresolved_execution_intent")
         else:
@@ -733,7 +780,9 @@ class AI15mMT5Trader:
                     symbol = self.symbols.get(asset) or self.bridge.resolve_symbol(asset)
                     if not symbol or any(p["symbol"] == symbol for p in positions): continue
                     try:
-                        bars = self.bars.get(asset) or self.bridge.get_recent_bars(symbol, count=96)
+                        bars = self.bars.get(asset) or self.bridge.get_recent_bars(symbol, count=512)
+                        if asset not in self.bars_1h or asset not in self.bars_4h:
+                            self._refresh_higher_timeframes(asset, symbol, now)
                         features = self.flow.features(asset, payload, bars, macro, now)
                         if features.get("coverage_missing"):
                             raise ValueError("unobserved_corridor_veto:no_visible_depth_for_target_fuel")
@@ -937,8 +986,8 @@ class AI15mMT5Trader:
                             pivots=pivots,
                             quote=quote,
                             bars_15m=bars,
-                            bars_1h=None,
-                            bars_4h=None,
+                            bars_1h=self.bars_1h.get(asset),
+                            bars_4h=self.bars_4h.get(asset),
                             entry=entry,
                             sl=sl,
                             tp=tp,
@@ -971,12 +1020,7 @@ class AI15mMT5Trader:
                 candidates.sort(key=lambda c: c["features"]["confluence"]*c["features"]["quality"], reverse=True)
                 if candidates:
                     deadline = slot*900+898
-                    if self.entry_mode == "limit":
-                        # Decoupled staging cap: fill the resting-limit book to
-                        # 5; the first-fill OCO governor enforces the 2-fill cap.
-                        max_stageable = max(0, 5 - active_limits)
-                    else:
-                        max_stageable = max(0, 2 - len(positions) - len(pending))
+                    max_stageable = max(0, MAX_FILLED - len(positions) - len(pending))
                     staged_results = []
                     dispatched_candidates = []
 
@@ -1019,7 +1063,7 @@ class AI15mMT5Trader:
                             snapshot = self.cognitive.build_snapshot(cand["asset"], cand["symbol"], cand["features"]["signal_mid"], cand["features"],
                                                                      verified_wallet_l3(payload, now), [],  # unknown analytics are not exchange-reported liquidation orders
                                                                      {"score": cand["features"]["macro_score"], "blackout": False},
-                                                                     {"equity": guard["equity_usd"], "slots": 2 - len(positions) - len(staged_results)}, {},
+                                                                     {"equity": guard["equity_usd"], "slots": max(0, MAX_FILLED - len(positions) - len(pending) - len(staged_results))}, {},
                                                                      sealed=sealed)
                             cand["feature_digest"] = sealed["digest"]
                             snapshot["candidate"] = {"candidate_id": cand["candidate_id"], "direction": cand["direction"], "sizing": cand["sizing"],
@@ -1029,7 +1073,11 @@ class AI15mMT5Trader:
                             snapshot["whale_positions"] = (payload.get("whale_positions", []) if verified_wallet_block(payload, "observed_stops", now) else [])
                             snapshot["projected_liquidations"] = verified_wallet_block(payload, "projected_liquidations", now) or {}
                             snapshot["observed_stops"] = verified_wallet_block(payload, "observed_stops", now) or {}
-                            budget = max(0.1, min(6, deadline - self.clock()))
+                            remaining = deadline - (self._cadence_now() or deadline)
+                            if remaining <= 0:
+                                report["vetoes"][cand_asset] = "execution_window_expired_or_clock_unverified"
+                                continue
+                            budget = min(6, remaining)
                             future = self.inference_pool.submit(self.cognitive.evaluate_snapshot, snapshot, cand["direction"], budget_seconds=budget)
                             wall_deadline = time.monotonic() + budget
                             next_management = 0.0
@@ -1132,6 +1180,7 @@ class AI15mMT5Trader:
         return engine
 
     def _dispatch(self, candidate, slot):
+        self._assert_entry_window(slot)
         key = hashlib.sha256(f"{slot}:{candidate['candidate_id']}".encode()).hexdigest()[:20]
         comment = "OMNI:"+key
         if key in self.state["intents"]: raise ValueError("duplicate_execution_intent")
@@ -1147,6 +1196,8 @@ class AI15mMT5Trader:
             intent["status"] = "RECONCILED"
             result = {"success": True, "ticket": ticket, "paper": True, "volume": candidate["volume"], "price": candidate["price_open"]}
         else:
+            entry_options = ({"entry_guard": lambda: self._assert_entry_window(slot)}
+                             if isinstance(self.bridge, MT5ExecutionBridge) else {})
             if candidate.get("entry_mode", self.entry_mode) == "limit":
                 try:
                     # Order Persistence Governor (Incident A): S1 pullback
@@ -1187,18 +1238,20 @@ class AI15mMT5Trader:
                                 "joint_fill_ok": True,
                                 "blackout_active": False,
                             }
-                            send_ok, send_reasons, send_chk = pre_send_gate(mt5, req_spec, plan_spec, now_ms=broker_now_ms)
+                            send_ok, send_reasons, send_chk = pre_send_gate(mt5, req_spec, plan_spec, now_ms=broker_now_ms,
+                                tick_age_seconds=getattr(self.bridge, "tick_age_seconds", None))
                             candidate["pre_send_gate"] = {"ok": send_ok, "reasons": send_reasons}
                             if DG_MODE == "enforce" and not send_ok:
                                 raise ValueError(f"pre_send_gate_veto:{'|'.join(send_reasons)}")
                         except Exception as pge:
                             if DG_MODE == "enforce":
                                 raise
+                    self._assert_entry_window(slot)
                     result = self.bridge.stage_limit_order(candidate["symbol"], candidate["direction"], candidate["volume"],
                                                            candidate["price_open"], candidate["sl"], candidate["tp"],
                                                            expiration_seconds=getattr(self, "limit_expiration_seconds", 3600),
                                                            persistent=persistent, comment=comment, magic=MAGIC,
-                                                           max_spread_points=self.max_spread_points, passive_only=True)
+                                                           max_spread_points=self.max_spread_points, passive_only=True, **entry_options)
                     intent["status"] = "STAGED_LIMIT" if result.get("success") else "REJECTED"
                     intent["order_ticket"] = result.get("ticket")
                     intent["expires_at"] = result.get("expires_at")
@@ -1216,12 +1269,15 @@ class AI15mMT5Trader:
                     intent["status"] = "REJECTED"; result = {"success": False, "error": str(exc)}
             else:
                 try:
+                    self._assert_entry_window(slot)
                     result = self.bridge.execute_market_order(candidate["symbol"], candidate["direction"], candidate["volume"], candidate["sl"], candidate["tp"],
                                                               magic=MAGIC, comment=comment, max_spread_points=self.max_spread_points,
-                                                              deviation_points=0, max_tick_age_ms=2000)
+                                                              deviation_points=0, max_tick_age_ms=2000, **entry_options)
                     intent["status"] = "ACKNOWLEDGED" if result.get("success") else "UNCERTAIN" if result.get("uncertain") else "REJECTED"
                 except Exception as exc:
-                    intent["status"] = "UNCERTAIN"; result = {"success": False, "uncertain": True, "error": str(exc)}
+                    guard_veto = str(exc).startswith(("execution_window_expired_or_clock_unverified", "macro_blackout:"))
+                    intent["status"] = "REJECTED" if guard_veto else "UNCERTAIN"
+                    result = {"success": False, "uncertain": not guard_veto, "error": str(exc)}
         intent["result"] = result
         self._append("executions.jsonl", {"time": self.clock(), "event": "dispatch_result", "intent_id": key, "result": result})
         self._save_state()

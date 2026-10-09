@@ -15,9 +15,12 @@ import sys
 import time
 import datetime
 import logging
+import math
+import threading
 from typing import Dict, List, Any, Optional, Sequence
 from Terminal.Asset_Universe import broker_candidates
 from Terminal.Risk_Sizing_Engine import floor_volume
+from Terminal.broker_clock import BrokerClock
 
 # Install against MetaTrader5 itself, without importing a partially initialized
 # bridge from the guard. Refuse to load a trading bridge if installation fails.
@@ -52,6 +55,9 @@ class MT5ExecutionBridge:
         self.initialized = False
         self._symbol_cache: Dict[str, str] = {}
         self._offset_cache: Dict[str, tuple] = {}
+        self._broker_timezone_lock = threading.RLock()
+        self._timezone_probe = None
+        self.broker_clock = BrokerClock()
         # Dynamic broker server time offset (auto-calibrates from live ticks, survives DST shifts)
         self.broker_utc_offset_sec: int = 10800
         self.broker_utc_offset_ms: int = 10800 * 1000
@@ -60,42 +66,58 @@ class MT5ExecutionBridge:
     def _normalize_tick_msc(self, raw_msc: int, symbol: Optional[str] = None) -> int:
         if not raw_msc:
             return 0
-        now_ms = time.time() * 1000
         offset_sec = self._utc_offset_seconds(symbol)
-        offset_ms = offset_sec * 1000 if offset_sec != 0 else self.broker_utc_offset_ms
-        # If broker tick is significantly ahead (>45m), normalize to UTC using dynamic offset
-        if raw_msc - now_ms > 2700 * 1000:
-            return int(raw_msc - offset_ms)
-        return int(raw_msc)
+        # Every instrument shares the broker clock. A frozen candidate quote
+        # must never infer its own timezone or bypass normalization when old.
+        return int(raw_msc - offset_sec * 1000)
 
     def _utc_offset_seconds(self, symbol: Optional[str] = None) -> int:
-        """Best-effort broker-server-to-UTC offset, snapped to a 30-min grid.
+        """Confirm one server timezone from advancing BTC reference ticks.
 
-        MT5 bar, position and order timestamps are broker *server* time. Ticks
-        carry ``time_msc`` from the same clock, so a fresh tick gives us the
-        offset. Returning dynamic offset measured live survives broker DST shifts
-        (e.g. GMT+3 EET to GMT+2 EET transition on Nov 1). Cached 300s per symbol.
+        Keep the known Blueberry UTC+3 default until two reference observations
+        agree on a half-hour timezone and advance with monotonic elapsed time.
+        The remaining host skew must be within 60 seconds. Never infer this
+        offset from a candidate instrument that may be closed or frozen.
         """
-        probe_sym = symbol or "BTCUSD.pi"
-        cached = self._offset_cache.get(probe_sym)
-        if cached and abs(time.time() - cached[1]) < 300:
-            return cached[0]
-        offset = 0
-        try:
-            if MT5_AVAILABLE:
-                tick = mt5.symbol_info_tick(probe_sym)
-                raw_msc = getattr(tick, "time_msc", 0) if tick else 0
-                if raw_msc:
-                    delta = raw_msc / 1000.0 - time.time()
-                    if abs(delta) > 2700:  # > 45 min out: a real TZ offset
-                        offset = int(round(delta / 1800.0) * 1800)
-                        offset = max(-14 * 3600, min(14 * 3600, offset))
-                        self.broker_utc_offset_sec = offset
-                        self.broker_utc_offset_ms = offset * 1000
-        except Exception:
-            offset = self.broker_utc_offset_sec
-        self._offset_cache[probe_sym] = (offset, time.time())
-        return offset
+        lock = self.__dict__.setdefault("_broker_timezone_lock", threading.RLock())
+        with lock:
+            offset = getattr(self, "broker_utc_offset_sec", 10800)
+            try:
+                tick = mt5.symbol_info_tick("BTCUSD.pi") if MT5_AVAILABLE else None
+                stamp = float(getattr(tick, "time_msc", 0) or 0) / 1000.0
+                wall, mono = time.time(), time.monotonic()
+                if not all(math.isfinite(value) for value in (stamp, wall, mono)) or stamp <= 0:
+                    self._timezone_probe = None
+                    return offset
+                delta = stamp - wall
+                candidate = int(round(delta / 1800.0) * 1800)
+                if abs(candidate) > 14 * 3600 or abs(delta - candidate) > 60:
+                    self._timezone_probe = None
+                    return offset
+                previous = getattr(self, "_timezone_probe", None)
+                if previous is not None and stamp == previous[0]:
+                    return offset  # Repeated receipt cannot confirm a timezone.
+                self._timezone_probe = (stamp, mono, candidate)
+                if previous is not None:
+                    elapsed = mono - previous[1]
+                    if (stamp > previous[0] and elapsed > 0 and candidate == previous[2]
+                            and abs(stamp - previous[0] - elapsed) <= 2.0):
+                        self.broker_utc_offset_sec = candidate
+                        self.broker_utc_offset_ms = candidate * 1000
+                        offset = candidate  # UTC zero is a valid confirmed offset.
+            except (AttributeError, TypeError, ValueError, OverflowError):
+                self._timezone_probe = None
+            return offset
+
+    def tick_age_seconds(self, tick, symbol: str, now=None) -> Optional[float]:
+        if not hasattr(self, "broker_clock"):
+            self.broker_clock = BrokerClock()
+        raw_msc = getattr(tick, "time_msc", 0) or 0
+        utc_msc = self._normalize_tick_msc(raw_msc, symbol)
+        return self.broker_clock.tick_age_seconds(utc_msc, symbol=symbol, now=now)
+
+    def broker_utc_now(self, now=None) -> Optional[float]:
+        return self.broker_clock.utc_now(now=now) if hasattr(self, "broker_clock") else None
 
     def ensure_connected(self) -> bool:
         if not MT5_AVAILABLE:
@@ -179,7 +201,8 @@ class MT5ExecutionBridge:
             return None
 
         raw_msc = getattr(tick, "time_msc", 0) or 0
-        utc_msc = self._normalize_tick_msc(raw_msc)
+        tick_age = self.tick_age_seconds(tick, symbol)
+        utc_msc = self._normalize_tick_msc(raw_msc, symbol)
         return {
             "symbol": symbol,
             "bid": tick.bid,
@@ -194,6 +217,9 @@ class MT5ExecutionBridge:
             "step_lot": info.volume_step,
             "time_msc": utc_msc,
             "raw_time_msc": raw_msc,
+            "broker_tick_age": tick_age,
+            "broker_clock_offset_seconds": self.broker_clock.offset_seconds,
+            "broker_clock_status": self.broker_clock.status,
             "receipt_time": time.time(),
             "tick_size": getattr(info, "trade_tick_size", info.point),
             "stops_level": getattr(info, "trade_stops_level", 0),
@@ -431,8 +457,11 @@ class MT5ExecutionBridge:
         ) * point
         bid, ask = float(getattr(tick, "bid", 0.0) or 0.0), float(getattr(tick, "ask", 0.0) or 0.0)
         raw_msc = getattr(tick, "time_msc", 0) or 0
-        tick_utc_ms = self._normalize_tick_msc(raw_msc)
-        tick_age = time.time()*1000 - tick_utc_ms
+        tick_utc_ms = self._normalize_tick_msc(raw_msc, symbol)
+        calibrated_age = self.tick_age_seconds(tick, symbol)
+        # Protective stop updates retain their existing bounded fallback while
+        # new-entry clock calibration is still collecting advancing evidence.
+        tick_age = calibrated_age * 1000 if calibrated_age is not None else time.time()*1000 - tick_utc_ms
         if not -30000 <= tick_age <= 30000 or not 0 < bid < ask:
             return {"success": False, "error": f"Stale or invalid ratchet quote: age {tick_age:.0f}ms"}
         min_distance = max(min_distance, point)
@@ -492,6 +521,7 @@ class MT5ExecutionBridge:
         deviation_points: int = 20,
         max_tick_age_ms: int = 2_000,
         filling_types: Optional[Sequence[int]] = None,
+        entry_guard=None,
     ) -> Dict[str, Any]:
         """
         Executes a live market order on MT5.
@@ -520,9 +550,9 @@ class MT5ExecutionBridge:
             return {"success": False, "error": f"Spread guard: {spread_points:.1f} > {max_spread_points} points", "spread_points": spread_points}
         tick_time_msc = getattr(tick, "time_msc", 0) or 0
         if max_tick_age_ms > 0:
-            tick_utc_ms = self._normalize_tick_msc(tick_time_msc)
-            age_ms = int(time.time() * 1000 - tick_utc_ms)
-            if not tick_time_msc or not -30000 <= age_ms <= max_tick_age_ms:
+            age = self.tick_age_seconds(tick, symbol)
+            age_ms = None if age is None else int(age * 1000)
+            if age_ms is None or not 0 <= age_ms <= max_tick_age_ms:
                 return {"success": False, "error": f"Stale quote: {age_ms} ms", "age_ms": age_ms}
 
         clamped_vol = self._floor_volume(volume, sym_info.volume_step, sym_info.volume_min, sym_info.volume_max)
@@ -576,6 +606,14 @@ class MT5ExecutionBridge:
             if checked.retcode == getattr(mt5, "TRADE_RETCODE_INVALID_FILL", 10030): continue
             if checked.retcode not in (0, getattr(mt5, "TRADE_RETCODE_DONE", 10009)):
                 return {"success": False, "retcode": checked.retcode, "error": f"order_check rejected: {checked.comment}"}
+            try:
+                if entry_guard is not None:
+                    entry_guard()
+            except Exception as exc:
+                return {"success": False, "uncertain": False, "error": f"entry_guard_veto:{exc}"}
+            age = self.tick_age_seconds(tick, symbol)
+            if age is None or age * 1000 > max_tick_age_ms:
+                return {"success": False, "uncertain": False, "error": "pre_send_quote_stale_or_clock_unverified"}
             result = mt5.order_send(request)
             sent = True
             # Only INVALID_FILL proves no fill occurred and permits another send.
@@ -612,6 +650,7 @@ class MT5ExecutionBridge:
         persistent: bool = False,
         magic: int = 100895,
         comment: str = "OFC_AI_15M_LIMIT",
+        entry_guard=None,
     ) -> Dict[str, Any]:
         """Stage a limit order with an attached protective bracket.
 
@@ -657,6 +696,9 @@ class MT5ExecutionBridge:
             return {"success": False, "error": "pending_protective_bracket_invalid"}
         if min(abs(price-sl), abs(tp-price))+point*1e-6 < min_distance:
             return {"success": False, "retcode": 10016, "error": "pending_bracket_inside_broker_stops_level"}
+        tick_age = self.tick_age_seconds(tick, symbol)
+        if tick_age is None or tick_age > 2.0:
+            return {"success": False, "error": "pending_quote_clock_unverified_or_stale", "age_ms": None if tick_age is None else tick_age * 1000}
         normalized = self._floor_volume(volume, info.volume_step, info.volume_min, info.volume_max)
         if normalized <= 0.0:
             return {"success": False, "error": "Requested volume is below broker minimum"}
@@ -687,6 +729,14 @@ class MT5ExecutionBridge:
             checked = mt5.order_check(request)
             if checked is None or checked.retcode not in (0, getattr(mt5, "TRADE_RETCODE_DONE", 10009)):
                 return {"success": False, "retcode": getattr(checked, "retcode", None), "error": "pending_order_check_rejected:"+str(getattr(checked, "comment", mt5.last_error()))}
+        try:
+            if entry_guard is not None:
+                entry_guard()
+        except Exception as exc:
+            return {"success": False, "uncertain": False, "error": f"entry_guard_veto:{exc}"}
+        age = self.tick_age_seconds(tick, symbol)
+        if age is None or age > 2.0:
+            return {"success": False, "error": "pre_send_quote_stale_or_clock_unverified"}
         result = mt5.order_send(request)
         placed_codes = {getattr(mt5, "TRADE_RETCODE_DONE", 10009), getattr(mt5, "TRADE_RETCODE_PLACED", 10008)}
         if result is None or result.retcode not in placed_codes:
