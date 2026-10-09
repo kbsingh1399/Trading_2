@@ -52422,3 +52422,19 @@ Finally, unify live and replay ratchets before qualifying uplift; the current se
      - Run `pytest Tests/` and `python Terminal/chain_verification_360.py` to verify 0 regressions.
   3. Commit and push directly to `origin/main` on `https://github.com/kbsingh1399/Trading_2`.
 - **Git Push**: Committed as `d59c7e16` and pushed to `origin/main`.
+
+---
+
+## Turn Log | Arena.ai GitHub-Grounded Full-Chain Audit & Code Proposal Directive | 2026-10-10 00:25:30 UTC
+- **Operator Instruction**: Generate an institutional prompt for Arena.ai models with direct GitHub read access to review the entire quantitative trading pipeline, identify bottlenecks, critique strategy and microstructure logic, and provide exact, production-ready code replacement blocks so the user can bring their full responses back here for Antigravity to evaluate, test, and implement locally.
+- **Delivered Artifact**:
+  * Codified and published [`docs/prompts/ARENA_AI_FULL_CHAIN_AUDIT_PROMPT.md`](file:///c:/Users/SIGMA/Documents/Trading_2/docs/prompts/ARENA_AI_FULL_CHAIN_AUDIT_PROMPT.md).
+  * Direct GitHub URL: `https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/prompts/ARENA_AI_FULL_CHAIN_AUDIT_PROMPT.md` (Blob: `https://github.com/kbsingh1399/Trading_2/blob/main/docs/prompts/ARENA_AI_FULL_CHAIN_AUDIT_PROMPT.md`).
+- **Core Pillars Under Audit**:
+  1. Execution Gates & Microstructure Latency (`decision_gates_v3.py`, `Omni_Trader.py` - clock offset calibration).
+  2. Strategy Models & Alpha Generation (`Omni_Trader.py`, `OF_Strategy.py` - Model 1 Mean Reversion & Model 2 Trend Pullback geometry).
+  3. Dynamic Capacity & Capital Floor Defense (`live_admission.py` - Kelly, fractional volatility parity, floor cushion preservation).
+  4. Telemetry Multi-Timeframe Serialization (`autonomous_telemetry_git_daemon.py` - 1H/4H closes & metadata alignment).
+  5. Microstructure Piecewise Ratchets & Trade Lifecycle (Phase 0 BE at +0.8R, Phase 1 Profit Lock at +1.5R, +2.5R target).
+  6. Macro Economic Risk Gating (`Data/macro_calendar.json` - Tier-1 events through Oct 18, 2026).
+- **Git Push**: Committed as `9ffe2601` and pushed to `origin/main`.
