@@ -458,8 +458,18 @@ def audit_broker_execution_and_floor() -> Dict[str, Any]:
             # Risk calculation
             info = mt5.symbol_info(sym)
             contract = info.trade_contract_size if info else 1.0
-            
-            if p.type == mt5.ORDER_TYPE_BUY:
+            profit_calc = mt5.order_calc_profit(p.type, sym, vol, open_px, sl_px) if (hasattr(mt5, "order_calc_profit") and sl_px and sl_px > 0) else None
+            if profit_calc is not None:
+                p_val = float(profit_calc)
+                if p_val >= 0:
+                    locked_cash = p_val
+                    risk_cash = 0.0
+                    net_stopout_risk -= locked_cash
+                else:
+                    risk_cash = -p_val
+                    locked_cash = 0.0
+                    net_stopout_risk += risk_cash
+            elif p.type == mt5.ORDER_TYPE_BUY:
                 if sl_px > open_px:
                     # Locked in profit
                     locked_cash = (sl_px - open_px) * contract * vol
@@ -504,9 +514,14 @@ def audit_broker_execution_and_floor() -> Dict[str, Any]:
             contract = info.trade_contract_size if info else 1.0
             order_risk = 0.0
             if sl_px and sl_px > 0:
-                if o.type in (getattr(mt5, "ORDER_TYPE_BUY_LIMIT", 2), getattr(mt5, "ORDER_TYPE_BUY_STOP", 4)):
+                is_buy = o.type in (getattr(mt5, "ORDER_TYPE_BUY_LIMIT", 2), getattr(mt5, "ORDER_TYPE_BUY_STOP", 4))
+                calc_type = getattr(mt5, "ORDER_TYPE_BUY", 0) if is_buy else getattr(mt5, "ORDER_TYPE_SELL", 1)
+                p_calc = mt5.order_calc_profit(calc_type, sym, vol, open_px, sl_px) if hasattr(mt5, "order_calc_profit") else None
+                if p_calc is not None:
+                    order_risk = max(-float(p_calc), 0.0)
+                elif is_buy:
                     order_risk = max((open_px - sl_px) * contract * vol, 0.0)
-                elif o.type in (getattr(mt5, "ORDER_TYPE_SELL_LIMIT", 3), getattr(mt5, "ORDER_TYPE_SELL_STOP", 5)):
+                else:
                     order_risk = max((sl_px - open_px) * contract * vol, 0.0)
             net_stopout_risk += order_risk
             report["pending_orders"].append({

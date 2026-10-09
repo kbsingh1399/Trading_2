@@ -119,13 +119,23 @@ def assert_joint_fill_safe(bridge, symbol: str, direction: str, volume: float,
     if own_cluster == "forex" and is_forex_rollover_window():
         raise ValueError(f"forex_interbank_rollover_spread_quarantine:{symbol}:21:30_22:30_UTC")
     for row in [*positions, *pending]:
-        if clusters.cluster_of(str(row["symbol"])) == own_cluster:
+        row_sym = str(row["symbol"])
+        if clusters.cluster_of(row_sym) == own_cluster:
             row_dir = str(row.get("direction") or "").upper()
             if row_dir in ("BUY", "LONG"):
                 row_dir = "LONG"
             elif row_dir in ("SELL", "SHORT"):
                 row_dir = "SHORT"
-            if row_dir == direction:
+
+            # For forex, map to net USD exposure direction to avoid quote/base inversion
+            if own_cluster == "forex":
+                own_clean = symbol.upper().replace(".PI", "").replace(".P", "").replace("/", "")
+                row_clean = row_sym.upper().replace(".PI", "").replace(".P", "").replace("/", "")
+                own_usd = direction if own_clean.startswith("USD") else ("SHORT" if direction == "LONG" else "LONG")
+                row_usd = row_dir if row_clean.startswith("USD") else ("SHORT" if row_dir == "LONG" else "LONG")
+                if own_usd == row_usd:
+                    raise ValueError(f"correlated_joint_fill:{symbol}:{row['symbol']}")
+            elif row_dir == direction:
                 raise ValueError(f"correlated_joint_fill:{symbol}:{row['symbol']}")
     return {"proposed_nominal_risk_usd": nominal, "stress_total_usd": total,
             "post_joint_stop_equity_usd": post_loss, "filled": len(positions),

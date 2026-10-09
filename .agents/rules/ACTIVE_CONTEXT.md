@@ -13,6 +13,7 @@ trigger: always_on
 - **100% LOCAL QUANTITATIVE DEVELOPMENT & EXECUTION**: All prompt-generation for external agents (Ox Alpha / Arena) is permanently terminated. All engineering, econometric feature integration, model training, backtesting, and 20 OOS window optimization are executed right here locally in this environment.
 - **MANDATORY BUY & HOLD BENCHMARKING**: ALWAYS compare strategy performance, equity curves, ROI, and drawdowns directly against the Buy and Hold benchmark (BTC Buy & Hold normalized to identical starting capital).
 - **ZERO-HESITATION AUTONOMOUS PUNCH MANDATE (STRICT OPERATOR DIRECTIVE)**: NEVER ask the operator for permission to stage or execute orders. Whenever ANY candidate candle prints an eligible structural setup supported by rigorous quantitative reasoning, mathematical logic, resting L2/L3 whale backing, and capital floor defense under Model 1 (Extreme Mean Reversion) or Model 2 (VWAP Trend Pullbacks), IMMEDIATELY punch the passive limit order live into MetaTrader 5 without hesitation and without asking. Zero hesitation, zero latency, 100% autonomous execution.
+- **MANDATORY GITHUB REPOSITORY LINK IN ALL PROMPTS (STRICT OPERATOR DIRECTIVE)**: Every single prompt generated for external models (Microsoft Copilot Studio / Claude Opus 5.5, Arena.ai) or internal subagents MUST ALWAYS prominently include the full GitHub repository URL (`https://github.com/kbsingh1399/Trading_2`), active branch (`main`), commit HEAD, and direct raw URLs for all referenced files (`session_chat_history.md`, `ACTIVE_CONTEXT.md`, `ANTIGRAVITY_ARENA_THINKING_CHAIN_COUNCIL_PROTOCOL.md`, `decision_gates_v3.py`, `ROUND2_THINKING_CHAIN_AUDIT.md`). No external or council prompt may ever be generated without full GitHub links so external models can inspect the real codebase via GitHub API/web and maintain total continuity with local repository state.
 - **ZERO SPURIOUS SCRATCH LITTER**: Clean up all intermediate debug scripts immediately after validation.
 
 ## 2. Active Mission & Quantitative Target
@@ -50,18 +51,18 @@ trigger: always_on
     - Full Arena Audit Report: Archived in `docs/audits/institutional-quant-audit-2026-10-04.md` and `docs/audits/ARENA_ANTIGRAVITY_HANDSHAKE_COUNCIL_67.md`.
     - **Dynamic Conviction Risk Budget**: Flexible **10.00 to 20.00 USD** (0.20% to 0.40% on 5,000.00 USD capital) dynamically scaled by orderflow confluence, resting L3 whale presence, and macro alignment.
     - **Active Positions & Pending Orders (Live State)**:
-      * Current Status: **0 Open Positions | 1 Active Pending Order (1 Total Ticket) | Equity: 4,896.55 USD | Balance: 4,896.55 USD | Free Margin: 4,896.55 USD | Margin Used: 0.00 USD (100% Cash Reserves)**.
+      * Current Status: **0 Open Positions | 0 Active Pending Orders (0 Total Tickets) | Equity: 4,896.55 USD | Balance: 4,896.55 USD | Free Margin: 4,896.55 USD | Margin Used: 0.00 USD (100% Cash Reserves)**.
       * Active Positions (0) — **ALL 4 POSITION CAPACITY SLOTS LIBERATED & VACANT**:
         - Zero active positions deployed. 4 slots available for high-confluence deployments.
-      * Active Pending Orders (1) — **STAGED LIVE AT ORTHOGONAL EMA SHELF**:
-        - **Ticket #18736422 (`USDJPY.pi` BUY LIMIT 0.12 lots @ 158.180 USD | SL: 158.040 | TP: 158.530 | Risk: 10.63 USD | Magic: 100895)**: Staged at 158.180 USD 15m EMA50 shelf. Spread: 0.06 bps. MTF trend 100% bullish; drift 0.95x ATR (< 2.0x ATR gate). SL is 1.87x ATR (0.140 pts); TP is +2.50R (+26.55 USD reward).
-      * Capacity Sentry: **0 / 4 filled positions deployed | 4 FILLED POSITION SLOTS LIBERATED & VACANT | 1 pending limit resting in FX | 11 slots vacant on desk**.
+      * Active Pending Orders (0) — **QUEUE 100% CLEAN & LIBERATED**:
+        - Zero pending orders resting. All capacity slots free.
+      * Capacity Sentry: **0 / 4 filled positions deployed | 4 FILLED POSITION SLOTS LIBERATED & VACANT | 0 pending limits resting | 12 slots vacant on desk**.
       * G-1 Hard Floor Defense: Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Floor Cushion: **+121.55 USD** (+101.55 USD above operating buffer).
       * Stressed Post-Loss Simulation & Absolute Immunity:
-        - Total Contingent Book Risk across all exposed tickets: `10.63 (USDJPY) =` **10.63 USD**.
-        - Stressed Worst-Case Equity: `4,896.55 - 10.63 =` **4,885.92 USD** (Unconditionally defends floor under stopout!).
-        - Safety Cushion Above 4,775.00 USD Hard Floor: **+110.92 USD** (5.5x mandatory >= 20.00 USD buffer).
-        - Safety Cushion Above 4,795.00 USD Operating Buffer: **+90.92 USD**.
+        - Total Contingent Book Risk across all exposed tickets: **0.00 USD**.
+        - Stressed Worst-Case Equity: `4,896.55 - 0.00 =` **4,896.55 USD** (Unconditionally defends floor!).
+        - Safety Cushion Above 4,775.00 USD Hard Floor: **+121.55 USD** (6.0x mandatory >= 20.00 USD buffer).
+        - Safety Cushion Above 4,795.00 USD Operating Buffer: **+101.55 USD**.
       * Closed Trades Today (Realized PnL):
         - Ticket #18740569 (`SP500.p` closed at **-13.00 USD loss** via Stop Loss at 7,778.50 USD, Deal #16962450, Order #18749312)
         - Ticket #18734182 (`ETHUSD.pi` closed at **-11.90 USD loss** via Stop Loss at 2,477.50 USD, Deal #16961654, Order #18748507)

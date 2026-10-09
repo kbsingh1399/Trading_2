@@ -31,7 +31,7 @@ CLUSTER_MAP: dict[str, list[str]] = {
                 "LTCUSD.p", "LTCUSD.pi", "LINKUSD.p", "LNKUSD.p", "AVAXUSD.p",
                 "AVXUSD.p", "NEARUSD.p", "NERUSD.p", "TRXUSD.p", "BCHUSD.p"],
     "energy":  ["USWTI.p", "UKOIL.p"],
-    "indices": ["SP500.p", "NAS100.p", "UK100.p", "GER40.p", "JPN225.p"],
+    "indices": ["SP500.p", "NAS100.p", "UK100.p", "GER40.p", "JPN225.p", "DJ30.p", "US30.p"],
     "forex":   ["EURUSD.pi", "GBPUSD.pi", "USDJPY.pi", "AUDUSD.pi", "NZDUSD.pi",
                 "USDCAD.pi", "USDCHF.pi"],
     "metals":  ["XAUUSD.pi", "XAGUSD.pi"],
