@@ -52385,3 +52385,40 @@ Finally, unify live and replay ratchets before qualifying uplift; the current se
      - Empirical trade duration on 15m orderflow trend setups is 8 to 14 bars (2.0 to 3.5 hours) to reach +2.0R.
      - Staging a fresh trend trade now creates a severe time truncation defect: either forcing an arbitrary market close at 20:00 UTC (eating spread frictions) or carrying an unhedgeable weekend jump-gap risk against retail broker CFD stops that directly jeopardizes our pristine +121.55 USD capital cushion.
 - **Unified Conclusion**: Standing aside is not an omission; it is the mathematically required action of an institutional quant desk defending capital when location, risk-reward, and temporal horizons do not align.
+
+---
+
+## Turn Log | GPT Astra Pipeline & Branch Review Prompt Generated | 2026-10-10 00:06:50 UTC
+- **Milestone Completed**:
+  * Formulated and committed comprehensive directive for GPT Astra: [`docs/prompts/GPT_ASTRA_PIPELINE_AND_BRANCH_REVIEW_PROMPT.md`](file:///c:/Users/SIGMA/Documents/Trading_2/docs/prompts/GPT_ASTRA_PIPELINE_AND_BRANCH_REVIEW_PROMPT.md).
+  * Direct GitHub URL: `https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/prompts/GPT_ASTRA_PIPELINE_AND_BRANCH_REVIEW_PROMPT.md` (Blob: `https://github.com/kbsingh1399/Trading_2/blob/main/docs/prompts/GPT_ASTRA_PIPELINE_AND_BRANCH_REVIEW_PROMPT.md`).
+- **Scope of Directive**:
+  1. Full strategic narrative detailing the transition to Microsoft Copilot Studio (Claude Opus 5.5 - Chief Quantitative Strategist & Second Brain) and one-way read-only bridge architecture.
+  2. Live account state and risk metrics (4,896.55 USD balance, 100% cash flat, +121.55 USD cushion above 4,775.00 USD floor, +84.05 USD realized PnL banked today).
+  3. Actionable 6-point worklist for GPT Astra to review and fix in-place:
+     - Calibrate host machine clock drift vs broker server time in `decision_gates_v3.py` and `Omni_Trader.py`.
+     - Align telemetry snapshot capacity metadata to reflect the active 4-slot capacity governance.
+     - Serialize multi-timeframe bar depth (>= 35 1H and 4H closes) for all 24 assets in the telemetry daemon.
+     - Refresh forward economic calendar coverage in `Data/macro_calendar.json` for next week.
+     - Audit and sanitize remote git branches on `origin` to keep `main` authoritative.
+     - Run full pytest test suite and 360-degree forensic verification.
+- **Git State**: Committed and pushed as `cc6b5053` on `origin/main`. Working directory clean.
+
+---
+
+## Turn Log | Local GPT Astra Direct Filesystem & Push Directive | 2026-10-10 00:22:00 UTC
+- **Operator Instruction**: Rewrite the directive for GPT Astra under the assumption that Astra runs locally with direct read/write access to local files at `C:\Users\SIGMA\Documents\Trading_2`, and direct terminal access to run tests and push all commits directly to `main` on the canonical repository `https://github.com/kbsingh1399/Trading_2`.
+- **Delivered Artifact**:
+  * Codified and published [`docs/prompts/GPT_ASTRA_LOCAL_DIRECTIVE.md`](file:///c:/Users/SIGMA/Documents/Trading_2/docs/prompts/GPT_ASTRA_LOCAL_DIRECTIVE.md).
+  * Direct GitHub URL: `https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/prompts/GPT_ASTRA_LOCAL_DIRECTIVE.md` (Blob: `https://github.com/kbsingh1399/Trading_2/blob/main/docs/prompts/GPT_ASTRA_LOCAL_DIRECTIVE.md`).
+- **Core Directives for Local Astra**:
+  1. Direct in-place modifications to local files (no instructions or pseudo-code; actual edits directly in Python files and JSON datasets).
+  2. Implement the 6 required pipeline fixes:
+     - Calibrate host machine clock skew and tick age normalization in `Terminal/decision_gates_v3.py` & `Terminal/Omni_Trader.py`.
+     - Align telemetry snapshot capacity metadata to active 4-slot governance in `autonomous_telemetry_git_daemon.py`.
+     - Serialize >= 35 1H and 4H closes for all 24 assets in `autonomous_telemetry_git_daemon.py`.
+     - Extend `Data/macro_calendar.json` with next week's Tier-1 macro events through Oct 18, 2026.
+     - Audit and prune obsolete remote branches (`origin/arena/*`).
+     - Run `pytest Tests/` and `python Terminal/chain_verification_360.py` to verify 0 regressions.
+  3. Commit and push directly to `origin/main` on `https://github.com/kbsingh1399/Trading_2`.
+- **Git Push**: Committed as `d59c7e16` and pushed to `origin/main`.
