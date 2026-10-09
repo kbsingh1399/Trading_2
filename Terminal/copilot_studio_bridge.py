@@ -150,6 +150,8 @@ def build_copilot_studio_prompt() -> str:
     lines.append("5. Round 2 Thinking Chain Audit Report: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/reviews/ROUND2_THINKING_CHAIN_AUDIT.md")
     lines.append("6. Decision Gates V3 Reference Implementation: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Terminal/decision_gates_v3.py")
     lines.append("7. Master Agent Enforcement Rules: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agents/AGENTS.md")
+    lines.append("8. Live 24-Asset Telemetry Snapshot JSON (Pushed to GitHub every 60s): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/telemetry/live_snapshot_latest.json (Blob: https://github.com/kbsingh1399/Trading_2/blob/main/docs/telemetry/live_snapshot_latest.json)")
+    lines.append("9. Live Collaborative Order Desk Blackboard (Pushed to GitHub): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md")
     lines.append("")
     lines.append("[SECTION 1: LIVE MT5 ACCOUNT STATE & FLOOR DEFENSE]")
     lines.append(f"- Broker: MetaTrader 5 Account #5064568 (Blueberry Markets Demo Bridge)")
