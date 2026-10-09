@@ -2,6 +2,8 @@
 
 Repository: https://github.com/kbsingh1399/Trading_2, primary Windows checkout, branch main. Evidence was collected on October 9 UTC / October 10 Asia/Calcutta. This report distinguishes code validation from live trading certification.
 
+Published source release: [afa1b2d4](https://github.com/kbsingh1399/Trading_2/commit/afa1b2d48efe93650e6c2a4321c854e00b0dbd53), pushed directly to main. Subsequent documentation records the release and session evidence; unrelated live-data and desk-ledger changes remain outside the release.
+
 ## Implemented changes
 
 | Files | Result and reason |
@@ -74,7 +76,7 @@ The certificate CLI currently returns exit code zero even for a FAILED report; t
 
 Native account 5064568 was verified in USD: balance/equity/free margin 4896.55 USD, margin used 0, positions 0, pending orders 0, floor cushion 121.55 USD. The live generation at 2026-10-09 20:24:30 UTC exported 96 completed H1 and 96 completed H4 observations for all 24 assets; observation count alone does not establish freshness, as GER40 demonstrates. These observations are timestamped evidence, not a promise that the account remains unchanged. Earlier reported daily win rates or net realized totals were not independently certified here.
 
-Agent-tree synchronization succeeded: **10439 files on each side, 96 copied, zero byte mismatches and zero traversal/copy errors**. The graph watcher was temporarily stopped to obtain a consistent comparison; runtime-generated caches can change subsequently. Detailed output: logs/pipeline_parity_20261010.log.
+Final agent-tree synchronization succeeded: **10446 files on each side, 11 copied, zero byte mismatches and zero traversal/copy errors**, including the journal appended to both trees. The graph watcher was temporarily stopped to obtain a consistent comparison; runtime-generated caches can change subsequently. Detailed output: logs/pipeline_parity_final_20261010.log. The earlier pre-release comparison is retained in logs/pipeline_parity_20261010.log.
 
 ## Remote branch sanitation
 
