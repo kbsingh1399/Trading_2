@@ -287,9 +287,12 @@ def model2_checklist(ctx: dict) -> Verdict:
     v.metrics["exhaustion_count"] = sum(bool(x) for x in ex.values())
     v.require(v.metrics["exhaustion_count"] <= 1, "B2_exhaustion_rollover")
     # --- B3 shelf
-    shelf = ctx["shelf"]
-    v.require(abs(ctx["entry"] - shelf["price"]) <= 0.25 * atr, "B3_entry_not_at_shelf")
-    v.require(shelf["confluence"] >= 2, "B3_single_source_shelf")
+    shelf = ctx.get("shelf")
+    if not shelf or shelf.get("price") is None:
+        v.require(False, "B3_no_shelf_defined")
+    else:
+        v.require(abs(ctx["entry"] - shelf["price"]) <= 0.25 * atr, "B3_entry_not_at_shelf")
+        v.require(shelf.get("confluence", 0) >= 2, "B3_single_source_shelf")
     # --- B4 orderflow (crypto)
     of = ctx.get("orderflow")
     if of is None:
@@ -489,8 +492,8 @@ def pre_send_gate(mt5, req: dict, plan: dict, lim: SendLimits = SendLimits(), no
     if now_ms - tick.time_msc > lim.max_tick_age_ms:
         r.append(f"tick_stale_{now_ms - tick.time_msc}ms")
     mid = 0.5 * (tick.bid + tick.ask)
-    spr_bps = (tick.ask - tick.bid) / mid * 1e4
-    if spr_bps > min(lim.max_spread_bps, lim.spread_vs_median * plan["spread_median_bps_this_hour"]):
+    allowed_spread = min(lim.max_spread_bps, max(1.0, lim.spread_vs_median * plan.get("spread_median_bps_this_hour", 1.0)))
+    if spr_bps > allowed_spread:
         r.append(f"spread_{spr_bps:.1f}bps")
     r_price = abs(req["price"] - req["sl"])
     if (tick.ask - tick.bid) > lim.max_spread_frac_r * r_price:

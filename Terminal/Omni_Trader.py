@@ -27,6 +27,14 @@ from Terminal.Orderbook_Structure import (wall_clusters, hazard_ttl, structural_
 from Terminal.Order_Persistence_Governor import OrderPersistenceGovernor
 from Terminal.Deterministic_Features import FeatureSealer
 from Terminal.Telemetry_Provenance import verified_wallet_block, verified_wallet_l3
+from Terminal.policy import DG_MODE
+from Terminal.dg_context import evaluate_candidate_dg_v3
+from Terminal.decision_gates_v3 import pre_send_gate, SendLimits
+
+try:
+    import MetaTrader5 as mt5
+except ImportError:
+    mt5 = None
 
 ROOT = Path(__file__).resolve().parents[1]
 MAGIC = 100895
@@ -923,6 +931,25 @@ class AI15mMT5Trader:
                                      "tp_wall_price": exit_plan["wall_price"],
                                      "tp_wall_notional_usd": exit_plan["wall_notional_usd"],
                                      "entry_anchors": entry_anchors}
+                        dg_result = evaluate_candidate_dg_v3(
+                            features=features,
+                            payload=payload,
+                            pivots=pivots,
+                            quote=quote,
+                            bars_15m=bars,
+                            bars_1h=None,
+                            bars_4h=None,
+                            entry=entry,
+                            sl=sl,
+                            tp=tp,
+                            sizing=sizing,
+                            symbol=symbol,
+                        )
+                        candidate["dg_v3"] = dg_result
+                        features["dg_v3"] = dg_result
+                        if DG_MODE == "enforce" and not dg_result.get("passed"):
+                            reasons = "|".join(dg_result.get("failures", ["dg_v3_veto"]))
+                            raise ValueError(f"dg_v3_veto:{reasons}")
                         uplift_features = {**features, **sizing, "drawdown_room": room, "candidate_net_target_r": target_r-friction_r,
                                            "existing_floating_r": 0.0, "existing_age_bars": 0.0, "signed_correlation": 0.0}
                         if enriched:
@@ -939,7 +966,7 @@ class AI15mMT5Trader:
                             candidate["uplift"] = gate
                             if not gate["accepted"]: raise ValueError(gate["reason"])
                         candidates.append(candidate)
-                        report["candidates"].append({"asset": asset, "direction": candidate["direction"], "features": features, "sizing": sizing})
+                        report["candidates"].append({"asset": asset, "direction": candidate["direction"], "features": features, "sizing": sizing, "dg_v3": dg_result})
                     except (ValueError, KeyError, RuntimeError) as exc: report["vetoes"][asset] = str(exc)
                 candidates.sort(key=lambda c: c["features"]["confluence"]*c["features"]["quality"], reverse=True)
                 if candidates:
@@ -1132,6 +1159,41 @@ class AI15mMT5Trader:
                     anchors = candidate.get("entry_anchors") or []
                     primary_span = max((number(a.get("persistence_sec")) for a in anchors), default=0.0)
                     ttl = hazard_ttl(primary_span, ttl_min_sec=self.ttl_min_seconds, ttl_max_sec=self.ttl_max_seconds)
+                    if mt5 is not None and not self.paper_mode and hasattr(self.bridge, "_utc_offset_seconds"):
+                        try:
+                            now_s = self.clock()
+                            offset_sec = self.bridge._utc_offset_seconds(candidate["symbol"])
+                            broker_now_ms = int((now_s + offset_sec) * 1000)
+                            quote_now = self._quote(candidate["symbol"])
+                            mid_now = 0.5 * (quote_now["bid"] + quote_now["ask"])
+                            req_spec = {
+                                "action": getattr(mt5, "TRADE_ACTION_PENDING", 5),
+                                "symbol": candidate["symbol"],
+                                "volume": candidate["volume"],
+                                "type": getattr(mt5, "ORDER_TYPE_BUY_LIMIT", 2) if candidate["direction"] == "LONG" else getattr(mt5, "ORDER_TYPE_SELL_LIMIT", 3),
+                                "price": candidate["price_open"],
+                                "sl": candidate["sl"],
+                                "tp": candidate["tp"],
+                                "comment": comment,
+                                "type_filling": getattr(mt5, "ORDER_FILLING_RETURN", getattr(mt5, "ORDER_FILLING_IOC", 1)),
+                                "type_time": getattr(mt5, "ORDER_TIME_GTC", 0) if persistent else getattr(mt5, "ORDER_TIME_SPECIFIED", 0),
+                            }
+                            plan_spec = {
+                                "server_now_ms": broker_now_ms,
+                                "spread_median_bps_this_hour": candidate.get("features", {}).get("spread_bps", 1.0),
+                                "mid_at_decision": candidate.get("features", {}).get("signal_mid", mid_now),
+                                "atr": candidate.get("atr", 1.0),
+                                "decision_age_s": max(0.0, now_s - candidate.get("time", now_s)),
+                                "joint_fill_ok": True,
+                                "blackout_active": False,
+                            }
+                            send_ok, send_reasons, send_chk = pre_send_gate(mt5, req_spec, plan_spec, now_ms=broker_now_ms)
+                            candidate["pre_send_gate"] = {"ok": send_ok, "reasons": send_reasons}
+                            if DG_MODE == "enforce" and not send_ok:
+                                raise ValueError(f"pre_send_gate_veto:{'|'.join(send_reasons)}")
+                        except Exception as pge:
+                            if DG_MODE == "enforce":
+                                raise
                     result = self.bridge.stage_limit_order(candidate["symbol"], candidate["direction"], candidate["volume"],
                                                            candidate["price_open"], candidate["sl"], candidate["tp"],
                                                            expiration_seconds=getattr(self, "limit_expiration_seconds", 3600),
