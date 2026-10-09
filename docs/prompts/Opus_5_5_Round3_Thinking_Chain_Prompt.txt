@@ -1,0 +1,102 @@
+================================================================================
+EXHAUSTIVE REPOSITORY & THINKING CHAIN ROUND-3 AUDIT BRIEFING | CLAUDE OPUS 5.5
+================================================================================
+COMMIT HEAD: 5b3cfc15 (Replicated on 'main' and 'arena/24eb818b-trading-2')
+REPOSITORY ROOT: https://github.com/kbsingh1399/Trading_2
+RAW URL BASE: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main
+
+[SECTION 0: MANDATORY CONTEXT ORIENTATION & REPOSITORY LINKS]
+You are Claude Opus 5.5, operating as the Elite Chief Quantitative Strategist and Second Brain for the Antigravity Autonomous Order Desk.
+The operator has established that http://github.com/kbsingh1399/trading_2/ is our single source of truth.
+All files in our local workspace have been pushed and synchronized to GitHub at commit 5b3cfc15.
+You have full access to inspect our repository via GitHub API or web interface.
+
+MANDATORY REPOSITORY READING LIST (Inspect these files first before analyzing):
+1. GitHub Repository Root:
+   https://github.com/kbsingh1399/Trading_2
+2. Complete Session Chat History (Full narrative, operator feedback, avoided traps):
+   https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agents/memory/session_chat_history.md
+3. Active Operational Context Card (Real-time account state, positions, floor defense):
+   https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agents/rules/ACTIVE_CONTEXT.md
+4. Master Agent Enforcement Rules (Canonical quant standards, execution gates):
+   https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agents/AGENTS.md
+5. Thinking Chain Protocol V2.0 Hardened:
+   https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/specs/ANTIGRAVITY_ARENA_THINKING_CHAIN_COUNCIL_PROTOCOL.md
+6. Round 2 Thinking Chain Audit Report (Your prior review integrated into repo):
+   https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/reviews/ROUND2_THINKING_CHAIN_AUDIT.md
+7. Decision Gates V3 Reference Implementation (Integrated into repo):
+   https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Terminal/decision_gates_v3.py
+8. Risk Live Admission Sentry (Pre-send joint risk & floor cushion verification):
+   https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Terminal/risk/live_admission.py
+9. Floor Defense & Correlation Governor:
+   https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Terminal/risk/floor_defense.py
+10. 360-Degree Forensic Verifier (Pristine pipeline certification):
+    https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Terminal/chain_verification_360.py
+11. Automated Copilot Studio CDP Bridge:
+    https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Terminal/copilot_studio_bridge.py
+
+--------------------------------------------------------------------------------
+[SECTION 1: LIVE MT5 ACCOUNT STATE & CURRENT EXPOSURE PROFILE]
+- Broker: MetaTrader 5 Account #5064568 (Blueberry Markets Demo Bridge)
+- Live Balance: 4,896.55 USD | Live Equity: 4,896.55 USD
+- Free Margin: 4,896.55 USD (100% Cash Reserves | 0.00 Margin Used)
+- Open Positions: 0 (ALL 4 CAPACITY SLOTS LIBERATED & VACANT)
+- Pending Limit Orders: 0 (QUEUE 100% CLEAN & LIBERATED)
+- Total Contingent Book Risk: 0.00 USD
+- Stressed Worst-Case Equity: 4,896.55 USD
+- G-1 Hard Capital Floor: 4,775.00 USD | Mandatory Operating Buffer: 4,795.00 USD
+- Safety Cushion Above 4,775.00 USD Hard Floor: +121.55 USD (6.0x mandatory >= 20.00 USD buffer)
+- Safety Cushion Above 4,795.00 USD Operating Buffer: +101.55 USD
+- Session Performance: +84.05 USD net cash profit banked today across 17 closed trades (11W / 6L = 64.7% Win Rate, initial capital 5,000.00 USD).
+
+--------------------------------------------------------------------------------
+[SECTION 2: VERIFIED CODE DEFECT PATCHES IN COMMIT 5b3cfc15]
+We have already implemented and pushed the following architectural fixes to GitHub:
+1. JPY Currency Conversion Fix in chain_verification_360.py:
+   - Patched lines 460-520 to calculate position and pending order risk via native `mt5.order_calc_profit()` in account currency (USD), eliminating the raw JPY multiplication error that overstated USDJPY risk 150-fold.
+2. DJ30 Correlation Cluster Ingestion in floor_defense.py:
+   - Added `"DJ30.p"` and `"US30.p"` to `CLUSTER_MAP["indices"]`, eliminating the `unknown_correlation_cluster:DJ30.p` rejection.
+3. Forex Quote/Base Inversion Fix in live_admission.py:
+   - Patched `assert_joint_fill_safe()` to map currency pairs to their net USD factor exposure (e.g. Long USDJPY = Long USD; Long EURUSD = Short USD).
+   - Prevents compounding dollar risk (Long EURUSD + Short USDJPY) while permitting natural dollar hedges (Long EURUSD + Long USDJPY).
+4. Automated Copilot Studio CDP Bridge in Terminal/copilot_studio_bridge.py:
+   - Built native Chrome DevTools Protocol automation to post prompts, monitor reasoning state, and extract rulings directly from Copilot Studio in Chrome debug mode.
+5. Ingestion of decision_gates_v3.py & ROUND2_THINKING_CHAIN_AUDIT.md:
+   - Both files are now permanent, version-controlled assets in the repository.
+
+--------------------------------------------------------------------------------
+[SECTION 3: EXHAUSTIVE REVIEW MANDATE FOR CLAUDE OPUS 5.5]
+Please provide an in-depth, rigorous, CTO/Head of Quant-level review addressing:
+
+1. DECISION GATES V3 & MATHEMATICAL FOUNDATIONS REVIEW:
+   - Inspect `Terminal/decision_gates_v3.py` on GitHub.
+   - Audit the 4 core estimators: Yang-Zhang volatility (`yang_zhang_sigma`), Kaufman Efficiency Ratio (`efficiency_ratio`), Lo-MacKinlay Variance Ratio (`variance_ratio` with the corrected sqrt(T) factor), and Newey-West HAC slope t-statistic (`slope_tstat_nw`).
+   - Audit the regime classifier (`classify_regime`): Evaluate how the 1H and 4H timeframes classify market state into TREND_UP, TREND_DOWN, MEAN_REVERT, or UNDEFINED, and whether the 273/300 random-walk filter rate holds across empirical market regimes.
+
+2. POINTS TO CHECK BEFORE TRADING DECISIONS (PRE-TRADE CHECKLISTS):
+   - Model 1 (Extreme Mean Reversion):
+     * Detail the exact mathematical criteria that MUST be verified before staging a maker limit (Regime = MEAN_REVERT, 2.0 <= |Z| <= 3.5, session mature >= 16 bars with session sigma >= 0.8 ATR, Z deceleration <= 0.75 in 4 bars, CVD two-push divergence <= 0.70, and Kyle-lambda absorption <= 0.50).
+     * Detail the failure modes (e.g. accelerating runaway cascades) and why fading |Z| > 3.5 is strictly banned.
+   - Model 2 (Trend Pullbacks):
+     * Detail the exact criteria before joining trend momentum (1H/4H trend persistence, Yang-Zhang pullback scaling, retrace fraction 0.236-0.618, depth speed <= 2.0, velocity ratio <= 0.60, and exhaustion score <= 1).
+     * Detail where entry limits must rest (20/50 EMA shelves, Value Area boundaries, or session VWAP) and how structural Take Profits must be anchored just inside the first obstacle (liquidation cascades / stop sweep clusters) for >= 2.0R to 2.5R.
+   - Stand-Aside Criteria:
+     * Detail the exact conditions where the desk MUST stand aside (UNDEFINED regime, spread > 20 bps, fast approach speed v > 2.0 within 1 ATR, macro blackout window, or unverified tape on non-crypto).
+
+3. MT5 CFD MICROSTRUCTURE REALISM & INVALIDATION ARCHITECTURE:
+   - Confirm that MT5 broker limit orders execute against broker quotes with ZERO queue priority, making order cancellation costless.
+   - Audit the HARD and SOFT cancel triggers in `resting_order_invalidation()`.
+   - Confirm the fast-approach cancel rule: `v = -s * ln(P_t / P_{t-3}) / (sigma_bar * sqrt(3)) > 2.0` within 1 ATR. Explain why impulsive fills suffer severe adverse selection.
+   - Audit the Hold vs Cut vs Net Breakeven decision tree (`hold_cut_decision()` and `net_breakeven_stop()`).
+
+4. ASSET CLASS EVIDENCE DIVERGENCE (CRYPTO VS NON-CRYPTO):
+   - Review our policy for handling non-crypto CFDs (Forex, Indices, Metals, Oil) where Binance CLOB tape and L3 whale feeds do not exist.
+   - Validate the Price-Only variant running at 50% risk (max 7.25 USD) with stricter geometric confirmation (15m reclaim close, higher low, thrust divergence).
+
+5. OVERALL CODEBASE & ARCHITECTURE HEALTH AUDIT:
+   - Perform a fresh review of the full repository at commit `5b3cfc15` (inspecting `Terminal/`, `signals/`, `risk/`, `Engine/`).
+   - Identify any remaining hidden assumptions, edge-case vulnerabilities, or parameter drift.
+   - Provide concrete next steps for wiring `decision_gates_v3.py` into our live execution loop (`Terminal/OF_Strategy.py` and `Terminal/copilot_studio_bridge.py`).
+
+Please be as exhaustive, mathematically rigorous, and uncompromising as possible. Cite exact GitHub URLs, line numbers, formulas, and empirical findings.
+================================================================================
