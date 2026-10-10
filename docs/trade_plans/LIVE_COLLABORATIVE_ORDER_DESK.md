@@ -9220,5 +9220,37 @@ Arena completed the unified 4-step council audit across all 4 Mandates:
 - **Committed Risk**: **0.00 USD**.
 - **Floor Cushion**: **+121.55 USD** above 4,775.00 USD hard floor.
 
+---
+
+## SECTION 129: UNIFIED 4-STEP WAKE-UP COUNCIL AUDIT (12:51 UTC / 18:21 IST) · WHALE DATA VERIFIED IN PROD · STAND-ASIDE RATIFIED
+### 1. Arena.ai Multi-Persona Council Findings (Harvested Report)
+Arena completed the unified 4-step council audit across all 4 Mandates on the freshly bounced production snapshot:
+- **Production Proof of Microstructure Fix**:
+  * Arena verified that the generator restart was 100% successful and authentic:
+    - `L2 BUY 82772.1` (264k USD) & `SELL 82772.2` (949k USD, persist 60s) classified as `TOP_OF_BOOK` (`gate_g7_eligible: False`). Spurious certification at the touch is permanently defeated.
+    - L3 Universe: 995 walls evaluated $\rightarrow$ **961 GENUINE**, **33 MIRRORED_LEG**, **1 TOP_OF_BOOK**, and **768 Gate G-7 Eligible**.
+    - Genuine majors confirmed: SELL 83,947 @ 18.93M USD and BUY 81,713 @ 18.42M USD at `persist_s = 900.1s`, `presence = 1.000` (`PERSISTENT_VERIFIED`).
+- **Mandate 1 (Screening for New Candidates)**: **0 / 24 admissible**.
+  * 23 / 24 assets in `UNDEFINED` regime.
+  * 10 CFDs frozen at weekend bar age $\approx 48,900\text{s}$ (staleness guard firing correctly).
+  * `LINKUSD.pi`: Passes G-4 `MEAN_REVERT` ($vr_z = -1.793, er = 0.0363$) and A1 geometry ($Z = 2.27$, $\sigma \ge 0.8\text{ ATR}$), but fails on:
+    - Value location: Mid 12.9665 is $+3.80\text{ ATR}$ above VAH (premium extension, not a discount flush).
+    - Tape: `UNAVAILABLE_UNVERIFIED_ORDERFLOW` (fails closed).
+    - Spread: $65.55\text{ bps}$ ($3.3\times$ over $20\text{ bps}$ limit).
+    - Friction: $c = 1.3460\text{R}$ (would require an impossible $10.10\times\text{ ATR}$ stop).
+    - Whale backing: Nearest genuine wall BUY 12.935 is at $0.75\text{ ATR}$ (exceeds $0.25\text{ ATR}$ limit).
+  * `BTCUSD.pi`: Excellent friction ($c = 0.0998\text{R}$, spread $1.93\text{ bps}$), but binding regime is `UNDEFINED` and 4H metrics confirm an active downtrend ($t = -5.991, er = 0.2976$). Long pullbacks remain blocked per Gate G-4.
+- **Mandate 2 (Running Trades Audit)**: 0 active open positions on MT5. Ratchets standby.
+- **Mandate 3 (Resting Orders Sentry)**: 0 pending limit orders on MT5. Book flat, zero stale fill risk.
+- **Mandate 4 (Capacity & Floor Defense)**: 0/4 slots used. Joint worst-case risk: **0.00 USD**. Cushion: **+121.55 USD** above 4,775.00 USD hard floor (**+101.55 USD** above 4,795.00 USD buffer).
+- **Council Ruling**: **STAND ASIDE**. Book remains 100% flat in cash reserves.
+
+### 2. Live MT5 Account State
+- **Account**: Blueberry Markets SVG LLC (MetaTrader 5 Account #5064568).
+- **Balance & Equity**: **4,896.55 USD** (100% Cash Reserves | 0.00 USD Margin Exposure).
+- **Open Positions**: **0** | **Pending Orders**: **0**.
+- **Committed Risk**: **0.00 USD**.
+- **Floor Cushion**: **+121.55 USD** above 4,775.00 USD hard floor.
+
 
 
