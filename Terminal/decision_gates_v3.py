@@ -238,6 +238,23 @@ FRICTION_RELAXED_MIN_RR = 2.5
 FRICTION_RELAXED_MIN_EV_R = 0.15
 MAX_SPREAD_BPS_HARD = 20.0
 
+# ---- Target-horizon policy (Gate EV) -------------------------------------------
+# p_win_lower_bound is a Clopper-Pearson lower bound measured on one setup family.
+# It carries no information about how far THIS target sits, so the expectancy test
+# gets monotonically MORE permissive as the target recedes. Measured on live BTC at
+# 2026-10-10 22:21 UTC (mid 82,906 / ATR 104.33):
+#
+#   target    ATR     RR    p_breakeven   EV_lower    driftless barrier p
+#   83,062   1.50   1.00      0.5725       -0.32R          0.5000
+#   83,167   2.50   1.67      0.4345       -0.04R          0.3750
+#   83,428   5.00   3.33      0.2712       +0.66R          0.2308
+#   84,030  10.77   7.18      0.1452       +2.27R          0.1222
+#
+# The gate called the 10.77 ATR target its best trade while the driftless
+# probability of reaching it first was 12%. Refuse targets the calibration
+# horizon cannot support. This only ever withholds a trade; it never authorises one.
+MAX_TARGET_DIST_ATR = 4.0
+
 
 @dataclass
 class RegimeParams:
@@ -581,6 +598,19 @@ def _net_ev(v: Verdict, ctx: dict, rr: float, min_rr: float) -> None:
     win, loss = rr - c, 1 + c + s
     p_star = loss / (win + loss) if win > 0 else 1.0
     v.metrics.update(net_win_r=win, net_loss_r=loss, p_breakeven=p_star)
+    # --- Target horizon vs the calibration horizon ---------------------------
+    # Surface the driftless barrier-race probability for this exact geometry so the
+    # inversion above is visible in the metrics, then refuse targets that sit
+    # further out than the calibrated win rate can justify.
+    entry, sl, tp = ctx["entry"], ctx["sl"], ctx["tp"]
+    atr_v = ctx.get("atr")
+    r_pts = abs(entry - sl)
+    if _finite(atr_v) and atr_v > 0 and r_pts > 0:
+        reward_pts = abs(tp - entry)
+        v.metrics["dist_tp_atr"] = reward_pts / atr_v
+        v.metrics["p_barrier_driftless"] = p_hit_upper(0.0, -r_pts, reward_pts)
+        v.require(reward_pts / atr_v <= MAX_TARGET_DIST_ATR,
+                  "EV_target_beyond_calibrated_horizon")
     v.require(rr >= min_rr, f"EV_rr_below_{min_rr}")
     p_lo = ctx.get("p_win_lower_bound")
     v.require(p_lo is not None, "EV_p_win_lower_bound_missing")
