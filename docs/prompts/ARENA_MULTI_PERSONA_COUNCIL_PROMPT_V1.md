@@ -37,7 +37,12 @@ THE 5 SPECIALIST PERSONAS TO DISPATCH AND EMBODY:
 - Mandate:
   1. Inspect the live telemetry snapshot from GitHub (`docs/telemetry/live_snapshot_latest.json`).
   2. Audit live broker spreads across all 24 assets against the strict 20.00 bps institutional ceiling.
-  3. Audit Binance Futures L2/L3 orderbook depth: Verify resting whale walls >= 150k USD on bids and asks, top-20 total depth, and bid/ask liquidity ratios.
+  3. Audit Real On-Chain Microstructure from Hyperdash & Binance Across All 24 Assets:
+     - Level 3 Resting Whale Orders (`whale_walls_l3`): Verify on-chain Ethereum wallet addresses `0x...`, sides (BUY/SELL), prices, sizes, and notional USD >= 150k USD.
+     - Real Structural Stop Clusters (`structural_stop_clusters`): Inspect buy stop clusters above mid, sell stop clusters below mid, total buy/sell stop notionals in USD, band counts, and top whale stop addresses (`0x...`).
+     - Real Reconstructed Liquidations (`reconstructed_liquidations`): Inspect long cascade liquidation bands below, short squeeze liquidation bands above, total long/short liquidation notionals in USD, band counts, and top liquidation whale addresses (`0x...`).
+     - Real Level 2 Orderbook Depth (`orderbook_live_depth`): Verify top 20 bids, top 20 asks, total depth, book imbalance, and bid/ask skew ratio across crypto and traditional assets (SP500, GOLD, USWTI, EURUSD via HIP-3).
+     - Honesty Invariant: DJ30 and GER40 honestly report UNAVAILABLE (not traded on Hyperliquid DEX); verify zero synthetic fabrication.
   4. Calculate Relative Friction: Spread in USD / (1.5 * ATR_14). Enforce the rule that spread MUST NOT consume > 10.0% of structural stop distance.
   5. Audit VWAP Z-Scores under the 3-Tier Session Maturity Hierarchy:
      - Tier 1 (3 bars): Initial numerical calculation activation.
