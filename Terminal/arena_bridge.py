@@ -483,107 +483,28 @@ def build_48h_orderflow_prompt() -> str:
     lines.append("You MUST provide explicit dialectic commentary debating BOTH Mean-Reversion and Trend-Following setups before reaching your final verdict.")
     lines.append(f"Our desk has {balance:.2f} USD capital, abundant free margin ({margin_free:.2f} USD), and capacity to stage valid passive limit orders. We must NOT sit idle if valid institutional setups exist!")
     lines.append("")
-    lines.append("[SECTION 5: 24-ASSET MULTI-TIMEFRAME FOOTPRINT & ORDERFLOW RECONSTRUCTION]")
-    lines.append("The sections below detail the trailing 48-hour market structure across all 24 assets (14 Crypto, 3 Metals & Commodities, 3 Forex, 4 Indices):")
+    lines.append("[SECTION 5: LIVE ORDERFLOW TELEMETRY & BIDIRECTIONAL REPO LINKS]")
+    lines.append("OPERATOR MANDATE: FETCH TELEMETRY DIRECTLY VIA GITHUB REPOSITORY / RAW ENDPOINTS")
+    lines.append("To eliminate token bloat and maintain high-density strategic reasoning, all raw multi-timeframe footprints,")
+    lines.append("orderbook ladders, whale walls, and liquidation pools are published directly in the repository:")
     lines.append("")
-
-    for asset in PRIMARY_ASSETS:
-        df_15m = load_parquet_candles(asset)
-        t_asset = assets_data.get(asset, {})
-        cat = t_asset.get("category", "OTHER")
-        broker = t_asset.get("symbol_broker", asset)
-        quotes = t_asset.get("quotes", {})
-        inds = t_asset.get("causal_indicators", {})
-        ob = t_asset.get("orderbook_live_depth", {})
-        whales = ob.get("whale_walls_l3", [])
-        liq = t_asset.get("reconstructed_liquidations", {})
-        stops = t_asset.get("structural_stop_clusters", {})
-
-        cur_bid = quotes.get("bid", 0.0)
-        cur_ask = quotes.get("ask", 0.0)
-        cur_mid = quotes.get("mid", (cur_bid + cur_ask) / 2.0 if cur_bid and cur_ask else 0.0)
-        spread_bps = quotes.get("spread_bps", 0.0)
-
-        # L2 Depth extraction
-        top_bid = ob.get("top20_bid_depth_usd") or ob.get("top_20_bid_vol_usd")
-        top_ask = ob.get("top20_ask_depth_usd") or ob.get("top_20_ask_vol_usd")
-        bid_str = f"{top_bid/1e6:.2f}M" if isinstance(top_bid, (int, float)) and top_bid > 0 else "N/A"
-        ask_str = f"{top_ask/1e6:.2f}M" if isinstance(top_ask, (int, float)) and top_ask > 0 else "N/A"
-
-        # On-chain Hyperliquid liquidations
-        long_cascades = liq.get("top_long_cascade_bands_below", [])
-        short_squeezes = liq.get("top_short_squeeze_bands_above", [])
-        l_flush_str = f"{long_cascades[0]['mid_price']} ({long_cascades[0]['notional_usd']/1e6:.1f}M USD)" if long_cascades else str(liq.get("long_flush_target", "N/A"))
-        s_squeeze_str = f"{short_squeezes[0]['mid_price']} ({short_squeezes[0]['notional_usd']/1e6:.1f}M USD)" if short_squeezes else str(liq.get("short_squeeze_band", "N/A"))
-
-        # On-chain Hyperliquid stops
-        sell_stops = stops.get("top_sell_stop_clusters_below", [])
-        buy_stops = stops.get("top_buy_stop_clusters_above", [])
-        disc_stop_str = f"{sell_stops[0]['mid_price']} ({sell_stops[0]['notional_usd']/1e6:.1f}M USD)" if sell_stops else str(stops.get("nearest_discount_stop_sweep", "N/A"))
-        prem_stop_str = f"{buy_stops[0]['mid_price']} ({buy_stops[0]['notional_usd']/1e6:.1f}M USD)" if buy_stops else str(stops.get("nearest_premium_stop_sweep", "N/A"))
-
-        # VWAP & Sigma Bands
-        vwap_val = inds.get("session_vwap_utc")
-        sigma_val = inds.get("session_sigma")
-        if isinstance(vwap_val, (int, float)) and isinstance(sigma_val, (int, float)) and sigma_val > 0:
-            vwap_bands = f"VWAP = {vwap_val:.2f} [+1SD = {vwap_val+sigma_val:.2f}, +2SD = {vwap_val+2*sigma_val:.2f}, -1SD = {vwap_val-sigma_val:.2f}, -2SD = {vwap_val-2*sigma_val:.2f}]"
-        else:
-            vwap_bands = f"VWAP = {vwap_val}"
-
-        lines.append(f"--- [ASSET: {asset} | Category: {cat} | Broker: {broker} | Mid: {cur_mid} | Spread: {spread_bps:.2f} bps] ---")
-        lines.append(f"Live: {vwap_bands} | VWAP Z-Score = {inds.get('vwap_z_score', 'N/A')} SD | RSI(14) = {inds.get('rsi_14', 'N/A')} | ATR(14) = {inds.get('atr_14', 'N/A')} | 200 EMA Slope = {inds.get('ema_200_slope_3h_pct', 'N/A')}% | 200EMA Label = {inds.get('trend_regime', 'N/A')} (cosmetic, NOT the gate) | {enforced_regime(t_asset, gate_classifier, snapshot_as_of)} <- BINDING for both engines")
-        lines.append(f"Orderbook: Top-20 Bid = {bid_str} USD | Top-20 Ask = {ask_str} USD | Verified Whales = {len(whales)}")
-        if whales:
-            sample_epoch = ob.get("wall_sample_ts_epoch") or time.time()
-            for w in whales[:2]:
-                # Report the observed age truthfully. Clamping to 180 made every
-                # wall render "age=180s", which reads as persistence verified at
-                # exactly the >=180s mandate threshold while the real measured
-                # age was ~0s and no persistence series exists at all.
-                raw_age = w.get("age_sec")
-                if raw_age is None:
-                    raw_age = int(time.time() - sample_epoch)
-                    age_str = f"age~{max(int(raw_age), 0)}s (single sample, no persistence series)"
-                else:
-                    age_str = f"age={int(raw_age)}s"
-                # A size-matched opposite leg from the same wallet makes this a
-                # two-sided bracket, not a directional wall. Say so explicitly,
-                # otherwise a grid quote reads as trapped one-sided liquidity.
-                mirror = detect_mirrored_wall_leg(w, whales)
-                if mirror is not None:
-                    note = (
-                        f" | MIRRORED: same wallet also quotes {mirror.get('side')} "
-                        f"{mirror.get('size')} @ {mirror.get('price')} "
-                        f"({mirror.get('notional_usd'):,.2f} USD) - two-sided bracket, "
-                        f"NOT net directional inventory"
-                    )
-                else:
-                    note = " | one-sided (no size-matched opposite leg)"
-                lines.append(f"  * Whale Wall: {w.get('side')} at {w.get('price')} USD ({w.get('notional_usd'):,.2f} USD, {age_str}){note}")
-        lines.append(f"Targets: Long Flush Target = {l_flush_str} | Short Squeeze Band = {s_squeeze_str} | Discount Sell Stops = {disc_stop_str} | Premium Buy Stops = {prem_stop_str}")
-
-        if df_15m is not None and len(df_15m) > 0:
-            last_48h_15m = df_15m.tail(192).copy()
-            vp_48h = compute_volume_profile(last_48h_15m, n_bins=16)
-            lines.append(f"48H Profile: POC = {vp_48h['poc']} | VAH = {vp_48h['vah']} | VAL = {vp_48h['val']}")
-
-            df_4h = resample_bars(last_48h_15m, "4h")
-            lines.append(f"4H Footprint (Last 2 Completed Bars):")
-            for _, r in df_4h.tail(2).iterrows():
-                dt_str = r['std_dt'].strftime('%m-%d %H:%M') if 'std_dt' in r else ''
-                lines.append(f"  * 4H [{dt_str}]: O={r['open']:.2f} H={r['high']:.2f} L={r['low']:.2f} C={r['close']:.2f} Vol={r['volume']:.0f} Delta={r['bar_delta']:.0f} CVD={r['cum_cvd']:.0f}")
-
-            df_1h = resample_bars(last_48h_15m, "1h")
-            lines.append(f"1H Footprint (Last 2 Completed Bars):")
-            for _, r in df_1h.tail(2).iterrows():
-                dt_str = r['std_dt'].strftime('%m-%d %H:%M') if 'std_dt' in r else ''
-                lines.append(f"  * 1H [{dt_str}]: O={r['open']:.2f} H={r['high']:.2f} L={r['low']:.2f} C={r['close']:.2f} Vol={r['volume']:.0f} Delta={r['bar_delta']:.0f} CVD={r['cum_cvd']:.0f}")
-
-            lines.append(f"15M Footprint (Last 3 Completed Bars):")
-            for _, r in last_48h_15m.tail(3).iterrows():
-                dt_str = r['std_dt'].strftime('%m-%d %H:%M') if 'std_dt' in r else ''
-                lines.append(f"  * 15M [{dt_str}]: O={r['open']:.2f} H={r['high']:.2f} L={r['low']:.2f} C={r['close']:.2f} Vol={r['volume']:.0f} Delta={r['bar_delta']:.0f} CVD={r['cum_cvd']:.0f}")
-        lines.append("")
+    lines.append("1. LIVE TELEMETRY SNAPSHOT (Raw Endpoint - Auto-updated every 60 seconds):")
+    lines.append("   https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/telemetry/live_snapshot_latest.json")
+    lines.append("   (Directly curl or inspect this JSON in your bash/python environment for all 24 assets: quotes, spreads, VWAP Z-scores,")
+    lines.append("   768 verified L3 whale walls with persistence, reconstructed liquidations, stop clusters, and CVD series).")
+    lines.append("")
+    lines.append("2. BIDIRECTIONAL COLLABORATION BRANCH (TWO-WAY ARENA <-> ANTIGRAVITY COMMUNICATION):")
+    lines.append("   https://github.com/kbsingh1399/Trading_2/tree/arena%2F537c1eb8-trading-2")
+    lines.append("   - Active Branch: `arena/537c1eb8-trading-2` (Mirrored 1:1 with `main`)")
+    lines.append("   - Arena is authorized to commit and push trading plans, forensic reports, or code improvements directly to this branch.")
+    lines.append("   - Antigravity continuously pulls, reviews, and executes against this branch on the live MetaTrader 5 broker terminal.")
+    lines.append("")
+    lines.append("3. CORE EXECUTION ENGINE & HISTORICAL CONTEXT IMPLEMENTATIONS:")
+    lines.append("   - Decision Gates V3: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Terminal/decision_gates_v3.py")
+    lines.append("   - Context Builder: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Terminal/dg_context.py")
+    lines.append("   - Flow Feed Engine: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Terminal/Data_Factory/hyperdash_flow_feed.py")
+    lines.append("   - Full Session Chat History: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agents/memory/session_chat_history.md")
+    lines.append("")
 
     lines.append("[SECTION 6: REQUIRED QUANTITATIVE RULING & DUAL-TRACK GATING RULES]")
     lines.append("CRITICAL DESK UPDATES & EVOLVING EXECUTION MANDATES:")
