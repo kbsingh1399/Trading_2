@@ -108,21 +108,21 @@ trigger: always_on
 - **Dynamic Capacity & Risk Budget (Floor Defense)**:
   - Base Capital: 5,000.00 USD | Hard Equity Floor: 4,775.00 USD.
   - Risk Budget per Trade: 10.00 to 14.50 USD (0.20% to 0.29%).
-  - Expanded Concurrency: Concurrency expanded from 2 up to 4 concurrent positions across orthogonal asset clusters (Forex, Energy, Indices, Crypto), provided total joint worst-case stopout risk strictly preserves >= 20.00 USD cushion above the 4,775.00 USD floor at all times.
+  - Expanded Concurrency: Up to 4 contingent tickets across filled positions and pending orders combined. All pending fills reserve book risk; profit-side broker stops retain execution-cost reserves and still consume capacity. Native admission requires stressed post-stop equity >= 4,795.00 USD, using the 4,775.00 USD floor plus the 20.00 USD buffer. This is a modeled stress constraint, not immunity to unbounded gaps.
 - **Active Order Queue Sentry & Continuous Punch/Prune Protocol (Strict Mandate)**:
   - **Dynamic Pruning / Deletion**: Continuously audit all resting limit orders. If an order's structural thesis degrades (supporting whale wall pulled/thinned by >50%, price drifted beyond 2.0x ATR, or adverse regime break), **immediately delete/cancel the pending order** to unencumber capital and margin.
   - **Dynamic Punching on Confluence**: When an un-allocated asset prints extreme confluence under Model 1 (Extreme 2SD Mean Reversion) or Model 2 (VWAP Trend Pullbacks) with verified resting L2/L3 whale walls and sufficient floor cushion clearance, **immediately stage the limit order**.
   - **Running Position Sentry**: Continuously monitor floating entries (e.g. USWTI #18625151) for piecewise ratchets (Phase 0 BE lock @ +0.80R, Phase 1 Profit Lock @ +1.50R, target @ +2.50R, 24-bar time decay, and emergency shelf cuts).
-  - **Dynamic Risk Budget Recirculation**: Moving an active trade's stop to Phase 0 BE drops its allocated risk to 0.00R, immediately liberating risk budget to punch the next highest-confluence standby limit into vacant capacity (up to 4 concurrent positions).
+  - **Dynamic Risk Budget Recirculation**: A confirmed profit-side broker stop can release nominal stop-loss exposure, but native admission retains at least 2.00 USD execution-cost reserve per ticket. Filled and pending tickets continue consuming the four-ticket capacity; a BE label alone releases neither capacity nor broker-verified risk.
 - **Microstructure Piecewise Ratchet**:
-  - Phase 0 (BE Lock): At +0.70R to +0.80R gain, move stop to Entry +0.35R (clearing 41 bps friction with guaranteed profit).
+  - Phase 0 (BE Lock): At +0.70R to +0.80R gain, move stop to Entry +0.35R subject to broker distances and cost-aware qualification. Stop profit is modeled; gaps, commissions and slippage prevent a guaranteed realized profit claim.
   - Phase 1 (Profit Lock): At +1.50R gain, move stop to Entry +0.80R.
   - Target: +1.85R to +2.50R exit (structural liquidity target).
   - Time Decay: Exit at market if trade fails to gain +0.20R within 24 bars (6 hours).
 
 ## 4. Local Execution Protocol
 - **End-to-End Local Development**: All strategy logic, ML training, walk-forward simulations, and risk governance are implemented, tested, and optimized directly within the local python environment.
-- **Strict Anti-Lookahead Enforcement**: Entries booked at next bar open `opens[j+1]`, causal HTF `shift(1)` backward-as-of joins, and zero test-set tuning.
+ - **Strict Anti-Lookahead Enforcement**: Historical signal tests may book entry only on a subsequently observed bar or tick, such as `opens[j+1]`; never use the signal candle close as its fill. Live execution consumes completed HTF bars and stages passive limits against fresh quotes, then reconciles actual broker fills. Causal HTF `shift(1)` backward-as-of joins and zero test-set tuning remain mandatory.
 - **Zero Dollar Signs**: Strict prohibition on dollar symbols; always write USD.
 
 ## 5. Quantitative Knowledge Grounding & Minimal Token Reference Mandate

@@ -92,7 +92,7 @@ def test_win_probability_requires_explicit_calibrated_input(calibrated, probabil
 @pytest.mark.parametrize("direction,close,low,high", [("LONG", 95, 94, 99), ("SHORT", 110, 109, 111)])
 def test_new_structure_break_is_not_hidden_by_including_latest_candle(direction, close, low, high):
     args = context_fixture(direction=direction)
-    args["bars_15m"][-1].update(close=close, low=low, high=high)
+    args["bars_15m"][-1].update(open=close, close=close, low=low, high=high)
     ctx, _ = build_dg_context(**args)
     assert not ctx["structure_intact"]
 
@@ -141,3 +141,43 @@ def test_missing_timestamps_and_forming_bars_do_not_produce_session_evidence():
     args = context_fixture()
     args["bars_15m"][-1]["time"] = args["quote"]["time_msc"]/1000
     assert "session_vwap_history_unavailable" in build_dg_context(**args)[1]
+
+
+@pytest.mark.parametrize("field,value", [("high", None), ("low", float("nan")),
+                                        ("close", 0), ("open", "100"), ("volume", -1)])
+def test_malformed_bar_returns_failure_instead_of_throwing(field, value):
+    args = context_fixture()
+    args["bars_15m"][-1][field] = value
+    ctx, failures = build_dg_context(**args)
+    assert ctx == {} and failures
+
+
+@pytest.mark.parametrize("change", [{"wall_class": "MIRRORED_LEG"}, {"wall_class": "TOP_OF_BOOK"},
+                                    {"gate_g7_eligible": False}, {"persist_s": None},
+                                    {"presence_frac": None}, {"price": "bad"}])
+def test_wall_authenticity_and_measurements_cannot_be_bypassed(change):
+    wall = {"side": "BUY", "price": 99.9, "notional_usd": 200000,
+            "persist_s": 180, "presence_frac": .95, "wall_class": "GENUINE", "gate_g7_eligible": True}
+    wall.update(change)
+    ctx, _ = build_dg_context(**context_fixture(payload={"whale_walls_l3": [wall]}))
+    assert ctx["wall"] is None
+
+
+def test_measured_wall_is_mapped_without_fabricating_a_tape_baseline():
+    wall = {"side": "BUY", "price": 99.9, "notional_usd": 200000,
+            "persist_s": 180, "presence_frac": .95, "wall_class": "GENUINE", "gate_g7_eligible": True}
+    ctx, _ = build_dg_context(**context_fixture(payload={"whale_walls_l3": [wall]}))
+    assert ctx["wall"]["persist_s"] == 180
+    assert ctx["wall"]["presence_frac"] == .95
+    assert ctx["wall"]["median_1m_traded_usd"] is None
+
+
+def test_absent_inventory_and_context_are_failures():
+    result = evaluate_candidate_dg_v3({}, {}, None, {}, None)
+    assert not result["passed"] and result["failures"] == ["context_input_invalid"]
+
+
+@pytest.mark.parametrize("pivots", [{"vwap": []}, {"S1": {"price": 100}}, {"swing_high": {}}])
+def test_nested_values_in_scalar_pivot_fields_fail_closed(pivots):
+    ctx, failures = build_dg_context(**context_fixture(pivots=pivots))
+    assert not ctx and failures == ["pivot_invalid"]

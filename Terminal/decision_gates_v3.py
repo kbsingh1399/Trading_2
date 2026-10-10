@@ -21,6 +21,7 @@ shadow fills before promotion (see audit report, section 8).
 from __future__ import annotations
 
 import math
+from numbers import Real
 from dataclasses import dataclass, field
 from typing import Dict, List, Optional, Sequence
 
@@ -41,6 +42,100 @@ class Verdict:
 
 def _arr(x) -> np.ndarray:
     return np.asarray(x, dtype=float)
+
+
+def _finite(value) -> bool:
+    try:
+        return isinstance(value, Real) and not isinstance(value, (bool, np.bool_)) and math.isfinite(value)
+    except (OverflowError, ValueError):
+        return False
+
+
+def _fields_valid(v: Verdict, data, fields: str, *, positive: str = "",
+                  nonnegative: str = "", prefix: str = "") -> bool:
+    """Reject unknown operands before comparisons/division; never invent evidence."""
+    if not isinstance(data, dict):
+        v.require(False, f"data_invalid:{prefix or 'context'}")
+        return False
+    all_valid = True
+    for key in fields.split():
+        value = data.get(key)
+        valid = (_finite(value) and (key not in positive.split() or value > 0)
+                 and (key not in nonnegative.split() or value >= 0))
+        v.require(valid, f"data_invalid:{prefix}{key}")
+        all_valid = all_valid and valid
+    return bool(all_valid)
+
+
+def _admission_data_valid(v: Verdict, ctx, model: int) -> bool:
+    if not _fields_valid(v, ctx, "entry sl tp atr risk_usd round_trip_cost_usd",
+                         positive="entry sl tp atr risk_usd", nonnegative="round_trip_cost_usd"):
+        return False
+    v.require(ctx.get("direction") in ("LONG", "SHORT"), "data_invalid:direction")
+    v.require(ctx.get("regime") in ("TREND_UP", "TREND_DOWN", "MEAN_REVERT", "UNDEFINED", "RANGE", "CHOP"),
+              "data_invalid:regime")
+    for key in ("stop_slip_r", "spread", "spread_bps"):
+        if key in ctx:
+            _fields_valid(v, ctx, key, nonnegative=key)
+    p_lo = ctx.get("p_win_lower_bound")
+    if p_lo is not None:
+        v.require(_finite(p_lo) and 0 <= p_lo <= 1, "data_invalid:p_win_lower_bound")
+    if model == 1:
+        v.require(type(ctx.get("reclaim_close")) is bool, "data_invalid:reclaim_close")
+        _fields_valid(v, ctx, "vwap_z vwap_z_change_4bars session_sigma session_bars "
+                      "vwap_slope_sigma_per_bar vol_ratio_4_96 vwap sweep_extreme",
+                      positive="session_sigma vol_ratio_4_96 vwap sweep_extreme",
+                      nonnegative="session_bars")
+        if ctx.get("sweep_z") is not None:
+            _fields_valid(v, ctx, "sweep_z")
+    else:
+        _fields_valid(v, ctx, "sigma_bar tick", positive="sigma_bar tick")
+        for key in ("session_bars", "vwap_z"):
+            if key in ctx:
+                _fields_valid(v, ctx, key, nonnegative="session_bars")
+        _fields_valid(v, ctx.get("geometry"), "retrace depth_sigma velocity_ratio bars_pullback bars_impulse",
+                      nonnegative="depth_sigma velocity_ratio", positive="bars_pullback bars_impulse", prefix="geometry.")
+        v.require(type(ctx.get("structure_intact")) is bool, "data_invalid:structure_intact")
+        ex = ctx.get("exhaustion_flags")
+        if ex is not None:
+            v.require(isinstance(ex, dict) and all(type(value) is bool for value in ex.values()),
+                      "data_invalid:exhaustion_flags")
+        shelf = ctx.get("shelf")
+        if shelf is not None:
+            _fields_valid(v, shelf, "price confluence", positive="price", nonnegative="confluence", prefix="shelf.")
+        if ctx.get("first_obstacle") is not None:
+            _fields_valid(v, ctx, "first_obstacle", positive="first_obstacle")
+    of = ctx.get("orderflow")
+    if of is not None:
+        if model == 1:
+            _fields_valid(v, of, "cvd_push1 cvd_push2 aggr_usd_sweep aggr_usd_median_1m "
+                          "lambda_sweep lambda_median_60m bars_cvd_turned",
+                          positive="aggr_usd_median_1m lambda_median_60m",
+                          nonnegative="aggr_usd_sweep lambda_sweep bars_cvd_turned", prefix="orderflow.")
+            if isinstance(of, dict):
+                bars = of.get("bars_cvd_turned")
+                v.require(_finite(bars) and float(bars).is_integer(), "data_invalid:orderflow.bars_cvd_turned")
+        else:
+            _fields_valid(v, of, "pullback_cvd_share", nonnegative="pullback_cvd_share", prefix="orderflow.")
+            if isinstance(of, dict):
+                v.require(_finite(of.get("pullback_cvd_share")) and of["pullback_cvd_share"] <= 1,
+                          "data_invalid:orderflow.pullback_cvd_share")
+                for key in ("exhaustion_gate_ok", "liq_burst_toward_entry"):
+                    v.require(type(of.get(key)) is bool, f"data_invalid:orderflow.{key}")
+    wall = ctx.get("wall")
+    if wall is not None:
+        _fields_valid(v, wall, "usd persist_s presence_frac dist_from_entry_atr",
+                      nonnegative="usd persist_s presence_frac dist_from_entry_atr", prefix="wall.")
+        if isinstance(wall, dict):
+            v.require(_finite(wall.get("presence_frac")) and wall["presence_frac"] <= 1,
+                      "data_invalid:wall.presence_frac")
+        if model == 1:
+            _fields_valid(v, wall, "usd median_1m_traded_usd", nonnegative="usd median_1m_traded_usd", prefix="wall.")
+    fl = ctx.get("flush")
+    if model == 1 and fl is not None:
+        _fields_valid(v, fl, "peak_liq_1m median_liq_1m_24h last_liq_1m oi_change_5m_pct",
+                      positive="peak_liq_1m median_liq_1m_24h", nonnegative="last_liq_1m", prefix="flush.")
+    return v.passed
 
 
 # ============================================================ 1. estimators
@@ -159,6 +254,14 @@ class RegimeParams:
 
 
 def _tf_stats(closes, n, p: RegimeParams):
+    unknown = {"er": None, "vr": None, "vr_z": None, "t": None}
+    try:
+        c = _arr(closes)
+    except (TypeError, ValueError):
+        return unknown
+    if c.ndim != 1 or len(c) < n + 1 or not np.all(np.isfinite(c[-n - 1:])) or np.any(c[-n - 1:] <= 0):
+        return unknown
+    closes = c
     er = efficiency_ratio(closes, n)
     vr, vz = variance_ratio(closes, p.vr_q, n)
     t = slope_tstat_nw(closes, n)
@@ -189,7 +292,12 @@ def classify_regime(closes_15m, closes_1h, closes_4h, p: RegimeParams = RegimePa
     s1h = _tf_stats(closes_1h, p.n_1h, p)
     s4h = _tf_stats(closes_4h, p.n_4h, p)
     stats = {"15m": s15, "1h": s1h, "4h": s4h}
-    if last_close_epoch is not None and as_of_epoch is not None:
+    if last_close_epoch is not None or as_of_epoch is not None:
+        if (not _finite(last_close_epoch) or not _finite(as_of_epoch)
+                or not _finite(max_staleness_s) or max_staleness_s < 0):
+            stats["stale"] = True
+            stats["data_invalid"] = "bar_clock"
+            return "UNDEFINED", stats
         age_s = as_of_epoch - last_close_epoch
         stats["bar_age_s"] = float(age_s)
         stats["max_staleness_s"] = float(max_staleness_s)
@@ -197,8 +305,10 @@ def classify_regime(closes_15m, closes_1h, closes_4h, p: RegimeParams = RegimePa
             stats["stale"] = True
             return "UNDEFINED", stats
         stats["stale"] = False
-    if any(v is None for s in (s1h, s4h) for v in (s["er"], s["t"])):
+    if any(not _finite(value) for s in (s15, s1h, s4h) for value in s.values()):
+        stats["data_invalid"] = "regime_history_or_statistics"
         return "UNDEFINED", stats
+    closes_1h = _arr(closes_1h)
     for sign, name in ((1, "TREND_UP"), (-1, "TREND_DOWN")):
         votes = sum([
             sign * s1h["t"] > p.t_trend,
@@ -224,6 +334,8 @@ def htf_confirms_direction(stats_4h: dict, sign: int,
     using this to gate a counter-trend override refuses rather than guesses.
     """
     try:
+        if sign not in (-1, 1) or not _finite(stats_4h["t"]) or not _finite(stats_4h["er"]):
+            return True
         return bool(sign * float(stats_4h["t"]) > t_min and float(stats_4h["er"]) > er_min)
     except (KeyError, TypeError, ValueError):
         return True
@@ -244,6 +356,8 @@ def m1_range_override_ok(ctx: dict) -> bool:
     lambda_ratio <= 0.50 and bars_cvd_turned >= 3 and fails closed without
     tape; this relaxes only the regime label, never the orderflow proof.
     """
+    if not isinstance(ctx, dict):
+        return False
     ext = ctx.get("m1_range_override")
     if not isinstance(ext, dict):
         return False
@@ -251,7 +365,7 @@ def m1_range_override_ok(ctx: dict) -> bool:
         return False
     z_val = ctx.get("sweep_z") if ctx.get("sweep_z") is not None else ctx.get("vwap_z")
     try:
-        if z_val is None or abs(float(z_val)) < 2.0 - 1e-6:
+        if not _finite(z_val) or abs(z_val) < 2.0 - 1e-6:
             return False
     except (TypeError, ValueError):
         return False
@@ -271,6 +385,8 @@ def model1_checklist(ctx: dict) -> Verdict:
     trend saturates near Z~1.7), i.e. it selects cascades, not exhaustion.
     """
     v = Verdict(True)
+    if not _admission_data_valid(v, ctx, 1):
+        return v
     side = 1 if ctx["direction"] == "LONG" else -1
     session_bars = ctx.get("session_bars")
     v.require(session_bars is not None and session_bars >= 16, "A1_session_sigma_immature_lt16bars")
@@ -309,8 +425,9 @@ def model1_checklist(ctx: dict) -> Verdict:
         v.metrics["lambda_ratio"] = lam_ratio
         v.require(lam_ratio <= 0.50, "A2_impact_not_absorbed")
         v.require(of.get("bars_cvd_turned", 0) >= 3, "A2_cvd_not_turned_3x1m")
-    # --- A3 resting depth (informational on CFDs: other venue)
+    # --- A3 required resting depth backing
     wall = ctx.get("wall")
+    v.require(wall is not None, "A3_no_wall_fail_closed")
     if wall is not None:
         v.require(wall["usd"] >= max(150_000, 5 * wall.get("median_1m_traded_usd", 0.0)), "A3_wall_too_small_vs_flow")
         v.require(wall["persist_s"] >= 180 and wall.get("presence_frac", 1.0) >= 0.9, "A3_wall_not_persistent")
@@ -324,7 +441,8 @@ def model1_checklist(ctx: dict) -> Verdict:
     v.require(bool(ctx.get("reclaim_close")), "A4_no_close_back_inside_sweep")
     # --- A5 geometry & net expectancy
     entry, sl, tp = ctx["entry"], ctx["sl"], ctx["tp"]
-    r = abs(entry - sl)
+    r = side * (entry - sl)
+    v.require(r > 0 and side * (tp - entry) > 0, "A5_invalid_protective_bracket")
     v.require(side * (entry - ctx["sweep_extreme"]) > 0, "A5_entry_not_inside_sweep")
     v.require(side * (ctx["sweep_extreme"] - sl) >= 0.2 * (atr or 0.0) + ctx.get("spread", 0.0), "A5_stop_not_beyond_sweep_buffer")
     v.require(atr is not None and r >= 1.0 * atr - 1e-9, "A5_stop_lt_1atr")
@@ -339,7 +457,17 @@ def model1_checklist(ctx: dict) -> Verdict:
 def pullback_geometry(highs, lows, closes, direction, impulse_start: int, swing_idx: int,
                       sigma_bar: float):
     """Retrace fraction, depth in sigma units, velocity ratio pullback/impulse."""
-    h, l, c = map(_arr, (highs, lows, closes))
+    unknown = dict.fromkeys(("retrace", "depth_sigma", "velocity_ratio", "bars_pullback", "bars_impulse"))
+    try:
+        h, l, c = map(_arr, (highs, lows, closes))
+    except (TypeError, ValueError):
+        return unknown
+    if (direction not in ("LONG", "SHORT") or not _finite(sigma_bar) or sigma_bar <= 0
+            or any(a.ndim != 1 or not np.all(np.isfinite(a)) or np.any(a <= 0) for a in (h, l, c))
+            or len(h) != len(l) or len(h) != len(c)
+            or not isinstance(impulse_start, int) or not isinstance(swing_idx, int)
+            or not 0 <= impulse_start < swing_idx < len(c) - 1):
+        return unknown
     s = 1 if direction == "LONG" else -1
     if s == 1:
         a, ext = l[impulse_start], h[swing_idx]
@@ -351,7 +479,7 @@ def pullback_geometry(highs, lows, closes, direction, impulse_start: int, swing_
     retr = s * (ext - p) / leg if leg > 0 else 0.0
     n_imp = max(swing_idx - impulse_start, 1)
     n_pb = max(len(c) - 1 - swing_idx, 1)
-    sig_eff = max(float(sigma_bar), 1e-6)
+    sig_eff = float(sigma_bar)
     p_safe = max(p, 1e-9)
     ext_safe = max(ext, 1e-9)
     a_safe = max(a, 1e-9)
@@ -365,6 +493,8 @@ def pullback_geometry(highs, lows, closes, direction, impulse_start: int, swing_
 
 def model2_checklist(ctx: dict) -> Verdict:
     v = Verdict(True)
+    if not _admission_data_valid(v, ctx, 2):
+        return v
     side = 1 if ctx["direction"] == "LONG" else -1
     atr, sig = ctx["atr"], ctx["sigma_bar"]
     # --- B1 regime, session maturity & location
@@ -394,19 +524,22 @@ def model2_checklist(ctx: dict) -> Verdict:
     # --- B4 orderflow (crypto)
     of = ctx.get("orderflow")
     if of is None:
-        v.require(ctx.get("allow_price_only_variant", False), "B4_no_tape_fail_closed")
+        v.require(ctx.get("allow_price_only_variant") is True, "B4_no_tape_fail_closed")
     else:
         v.require(of["pullback_cvd_share"] <= 0.5, "B4_pullback_on_heavy_counter_aggression")
         v.require(of["exhaustion_gate_ok"], "B4_taker_delta_not_exhausted_at_shelf")
         v.require(not of["liq_burst_toward_entry"], "B4_liquidation_burst_into_shelf")
-    # --- B5 wall (informational)
+    # --- B5 required resting depth backing
     wall = ctx.get("wall")
+    v.require(wall is not None, "B5_no_wall_fail_closed")
     if wall is not None:
+        v.require(wall["usd"] >= 150_000, "B5_wall_too_small")
         v.require(wall["persist_s"] >= 180 and wall["presence_frac"] >= 0.9, "B5_wall_not_persistent")
         v.require(wall["dist_from_entry_atr"] <= 0.25, "B5_wall_not_behind_entry")
     # --- B6 target & net EV
     entry, sl, tp = ctx["entry"], ctx["sl"], ctx["tp"]
-    r = abs(entry - sl)
+    r = side * (entry - sl)
+    v.require(r > 0 and side * (tp - entry) > 0, "B6_invalid_protective_bracket")
     v.require(r >= 1.5 * atr - 1e-9, "B6_stop_lt_1p5atr")
     obstacle = ctx.get("first_obstacle")          # swing high / ask wall >= 2M
     v.require(obstacle is not None, "B6_first_obstacle_missing")
@@ -421,6 +554,9 @@ def model2_checklist(ctx: dict) -> Verdict:
 def _net_ev(v: Verdict, ctx: dict, rr: float, min_rr: float) -> None:
     """Net R-multiple after spread+commission and stop slippage, and the
     break-even win probability that the strategy's LOWER bound must beat."""
+    if not _fields_valid(v, ctx, "risk_usd round_trip_cost_usd", positive="risk_usd",
+                         nonnegative="round_trip_cost_usd"):
+        return
     risk_usd = ctx["risk_usd"]
     c = ctx["round_trip_cost_usd"] / risk_usd           # friction in R
     s = ctx.get("stop_slip_r", 0.10)                    # stop slippage in R
@@ -459,6 +595,24 @@ def resting_order_invalidation(o: dict, m: dict):
 
     On MT5 CFDs there is no queue to lose, so cancel cost ~ 0: bias to cancel.
     """
+    data = Verdict(True)
+    _fields_valid(data, o, "atr limit ttl_minutes", positive="atr limit ttl_minutes", prefix="order.")
+    _fields_valid(data, m, "sigma_bar mid ret_3bars_log minutes_resting spread_bps spread_median_bps",
+                  positive="sigma_bar mid", nonnegative="minutes_resting spread_bps spread_median_bps", prefix="market.")
+    if not isinstance(o, dict) or not isinstance(m, dict):
+        return "CANCEL", data.failures
+    data.require(o.get("direction") in ("LONG", "SHORT"), "data_invalid:order.direction")
+    data.require(isinstance(o.get("regime_at_stage"), str) and isinstance(m.get("regime"), str), "data_invalid:regime")
+    for key in ("new_counter_swing", "macro_blackout"):
+        data.require(type(m.get(key)) is bool, f"data_invalid:market.{key}")
+    for key in ("wall_retained_frac", "aggr_share_toward_5m", "lambda_ratio", "depth_near_limit_change",
+                "poc_migration_atr", "ref_basis_bps", "ref_basis_limit_bps"):
+        if m.get(key) is not None:
+            _fields_valid(data, m, key, prefix="market.")
+    if o.get("wall_is_primary_thesis") and m.get("wall_retained_frac") is None:
+        data.require(False, "primary_wall_unobservable")
+    if not data.passed:
+        return "CANCEL", data.failures
     s = 1 if o["direction"] == "LONG" else -1
     atr, sig = o["atr"], m["sigma_bar"]
     ev = []
@@ -606,22 +760,49 @@ class SendLimits:
 def pre_send_gate(mt5, req: dict, plan: dict, lim: SendLimits = SendLimits(), now_ms=None, *, tick_age_seconds=None):
     """Run immediately before mt5.order_send(req). Returns (ok, reasons, check)."""
     r: List[str] = []
+    data = Verdict(True)
+    _fields_valid(data, req, "price sl tp volume", positive="price sl tp volume", prefix="request.")
+    _fields_valid(data, plan, "mid_at_decision atr decision_age_s", positive="mid_at_decision atr",
+                  nonnegative="decision_age_s", prefix="plan.")
+    if isinstance(plan, dict) and "friction_relaxed" in plan:
+        data.require(type(plan["friction_relaxed"]) is bool, "data_invalid:plan.friction_relaxed")
+    if not isinstance(req, dict) or not isinstance(req.get("symbol"), str) or not req.get("symbol"):
+        data.require(False, "data_invalid:request.symbol")
+    if not data.passed:
+        return False, data.failures, None
+    buy_type = getattr(mt5, "ORDER_TYPE_BUY_LIMIT", 2)
+    sell_type = getattr(mt5, "ORDER_TYPE_SELL_LIMIT", 3)
+    if req.get("type") not in (buy_type, sell_type):
+        return False, ["passive_limit_type_required"], None
+    side = 1 if req["type"] == buy_type else -1
+    if side * (req["price"] - req["sl"]) <= 0 or side * (req["tp"] - req["price"]) <= 0:
+        return False, ["invalid_protective_bracket"], None
     sym = req["symbol"]
     info, tick, acct = mt5.symbol_info(sym), mt5.symbol_info_tick(sym), mt5.account_info()
     term = mt5.terminal_info()
     if not (info and tick and acct and term):
         return False, ["mt5_state_unavailable"], None
-    if not term.trade_allowed or not acct.trade_allowed:
+    for key in ("bid", "ask"):
+        if not _finite(getattr(tick, key, None)):
+            return False, ["broker_quote_invalid"], None
+    info_values = {key: getattr(info, key, None) for key in ("point", "trade_stops_level", "volume_min", "volume_step")}
+    if not _fields_valid(data, info_values, "point trade_stops_level volume_min volume_step",
+                         positive="point volume_min volume_step", nonnegative="trade_stops_level", prefix="broker."):
+        return False, data.failures, None
+    if not getattr(term, "trade_allowed", False) or not getattr(acct, "trade_allowed", False):
         r.append("autotrading_disabled")
-    if info.trade_mode != mt5.SYMBOL_TRADE_MODE_FULL:
+    if getattr(info, "trade_mode", None) != mt5.SYMBOL_TRADE_MODE_FULL:
         r.append("symbol_trade_mode_not_full")
     now_ms = now_ms if now_ms is not None else plan.get("server_now_ms")
     if tick_age_seconds is not None:
-        age = tick_age_seconds(tick, sym)
-        age_ms = None if age is None else age * 1000
+        try:
+            age = tick_age_seconds(tick, sym)
+        except (TypeError, ValueError, OverflowError):
+            age = None
+        age_ms = age * 1000 if _finite(age) else None
     else:
-        age_ms = (now_ms - tick.time_msc) if (now_ms is not None and getattr(tick, "time_msc", None) is not None) else None
-    if age_ms is None or not math.isfinite(age_ms) or age_ms < 0:
+        age_ms = (now_ms - tick.time_msc) if (_finite(now_ms) and _finite(getattr(tick, "time_msc", None))) else None
+    if not _finite(age_ms) or age_ms < 0:
         r.append("tick_clock_unverified")
     elif age_ms > lim.max_tick_age_ms:
         r.append(f"tick_stale_{age_ms:.0f}ms")
@@ -631,18 +812,16 @@ def pre_send_gate(mt5, req: dict, plan: dict, lim: SendLimits = SendLimits(), no
     spr_bps = (tick.ask - tick.bid) / mid * 10_000
     med_spr = plan.get("spread_median_bps_this_hour")
     if med_spr is not None:
-        try:
-            med_val = float(med_spr)
-            allowed_spread = min(lim.max_spread_bps, max(1.0, lim.spread_vs_median * med_val))
-        except (ValueError, TypeError):
-            allowed_spread = lim.max_spread_bps
+        if not _finite(med_spr) or med_spr < 0:
+            return False, r + ["spread_median_invalid"], None
+        allowed_spread = min(lim.max_spread_bps, max(1.0, lim.spread_vs_median * med_spr))
     else:
         allowed_spread = lim.max_spread_bps
     if spr_bps > allowed_spread:
         r.append(f"spread_{spr_bps:.1f}bps")
     r_price = abs(req["price"] - req["sl"])
     friction_cap_r = lim.max_spread_frac_r
-    if plan.get("friction_relaxed"):
+    if plan.get("friction_relaxed") is True:
         friction_cap_r = max(lim.max_spread_frac_r, lim.max_spread_frac_r_relaxed)
     if (tick.ask - tick.bid) > friction_cap_r * r_price:
         r.append("spread_gt_10pct_of_R")
@@ -659,6 +838,9 @@ def pre_send_gate(mt5, req: dict, plan: dict, lim: SendLimits = SendLimits(), no
     if abs(req["price"] - req["sl"]) < min_dist or abs(req["tp"] - req["price"]) < min_dist:
         r.append("sltp_inside_stops_level")
     vol = req["volume"]
+    volume_max = getattr(info, "volume_max", None)
+    if volume_max is not None and (not _finite(volume_max) or vol > volume_max):
+        r.append("volume_exceeds_broker_max")
     steps = round((vol - info.volume_min) / info.volume_step)
     if vol < info.volume_min or abs(info.volume_min + steps * info.volume_step - vol) > 1e-9:
         r.append("volume_not_on_step")

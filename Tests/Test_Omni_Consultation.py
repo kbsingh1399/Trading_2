@@ -787,15 +787,16 @@ def test_four_contingent_ticket_capacity_in_limit_mode(tmp_path):
     assert report["reason"] == "maximum_four_contingent_tickets"
 
 
-def test_market_mode_keeps_the_coupled_commitment_cap(tmp_path):
-    t, broker = trader(tmp_path, entry_mode="market", paper=False)
-    broker.pending = [{"ticket": 1000 + i, "symbol": "SOLUSD"} for i in range(4)]
-    t.state["intents"] = {f"k{i}": {"status": "STAGED_LIMIT", "order_ticket": 1000 + i,
-                                    "candidate": {"asset": "SOL", "symbol": "SOLUSD"}}
-                          for i in range(4)}
-    report = t.evaluate_market({}, {"received_at": NOW, "sentiment_valid": True,
-                                    "asset_scores": {"SOL": 1}})
-    assert report["reason"] == "maximum_four_contingent_tickets"
+def test_live_market_entry_configuration_is_rejected(tmp_path):
+    with pytest.raises(ValueError, match="live_entries_require_passive_limits"):
+        trader(tmp_path, entry_mode="market", paper=False)
+
+
+def test_live_dispatch_rejects_mutated_market_candidate_before_intent(tmp_path):
+    t, broker = trader(tmp_path, paper=False)
+    with pytest.raises(ValueError, match="live_entries_require_passive_limits"):
+        t._dispatch({"entry_mode": "market"}, int(NOW // 900))
+    assert not broker.sent and not t.state["intents"]
 
 
 def test_run_loop_refreshes_bars_before_managing():

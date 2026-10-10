@@ -26,6 +26,11 @@ def _arr(x) -> np.ndarray:
     return np.asarray(x, dtype=float)
 
 
+def _finite_number(value):
+    return (not isinstance(value, bool) and isinstance(value, (int, float))
+            and math.isfinite(value))
+
+
 def _session_vwap(bars, quote):
     """Observed UTC-day VWAP; broker tick volume remains a volume proxy."""
     try:
@@ -77,12 +82,42 @@ def build_dg_context(
     Returns (ctx, missing_fields).
     """
     missing = []
+    if (not isinstance(features, dict) or not isinstance(quote, dict)
+            or not isinstance(payload, dict) or (pivots is not None and not isinstance(pivots, dict))
+            or (sizing is not None and not isinstance(sizing, dict))):
+        return {}, ["context_input_invalid"]
     direction = str(features.get("direction", "LONG")).upper()
+    if direction not in {"LONG", "SHORT"}:
+        return {}, ["direction_invalid"]
     side = 1 if direction == "LONG" else -1
 
     if not bars_15m or len(bars_15m) < 16:
         missing.append("bars_15m_insufficient")
         return {}, missing
+
+    if any(not isinstance(b, dict) or any(not _finite_number(b.get(k)) or b[k] <= 0
+                                         for k in ("open", "high", "low", "close"))
+           or b["high"] < max(b["open"], b["close"], b["low"])
+           or b["low"] > min(b["open"], b["close"])
+           for b in bars_15m):
+        return {}, ["bars_15m_price_invalid"]
+    if (any(not _finite_number(quote.get(k)) or quote[k] <= 0 for k in ("bid", "ask"))
+            or quote["ask"] < quote["bid"]):
+        return {}, ["broker_quote_invalid"]
+    if any(not _finite_number(value) or value <= 0 for value in (entry, sl, tp)):
+        return {}, ["entry_bracket_invalid"]
+    if ("atr" in features and not _finite_number(features["atr"])):
+        return {}, ["atr_invalid"]
+    if sizing is None or any(not _finite_number(sizing.get(k)) or sizing[k] < 0
+                             for k in ("risk_usd", "friction_usd")) or sizing["risk_usd"] <= 0:
+        return {}, ["sizing_unavailable_or_invalid"]
+    for b in bars_15m:
+        volume = b.get("volume") if b.get("volume") is not None else b.get("tick_volume", 0)
+        if not _finite_number(volume) or volume < 0:
+            return {}, ["bars_15m_volume_invalid"]
+    scalar_pivots = ("vwap", "P", "S1", "R1", "bull_fvg_ce", "bear_fvg_ce", "swing_high", "swing_low")
+    if any((pivots or {}).get(key) is not None and not _finite_number(pivots[key]) for key in scalar_pivots):
+        return {}, ["pivot_invalid"]
 
     o = [b["open"] for b in bars_15m]
     h = [b["high"] for b in bars_15m]
@@ -103,6 +138,9 @@ def build_dg_context(
         sig_yz = float(rets[-32:].std(ddof=1)) if len(rets) >= 10 else 0.005
     sigma_bar = max(float(sig_yz), 1e-5)
 
+    if any(quote.get(k) is not None and (not _finite_number(quote[k]) or quote[k] < 0)
+           for k in ("tick_size", "point")):
+        return {}, ["broker_tick_size_invalid"]
     tick = max(float(quote.get("tick_size") or 0.0), float(quote.get("point") or 0.0001), 1e-6)
     spread = float(quote.get("ask", 0.0) - quote.get("bid", 0.0))
 
@@ -224,6 +262,7 @@ def build_dg_context(
     wall_ctx = None
     if payload and isinstance(payload, dict):
         ob = payload.get("orderbook_live_depth", {}) or payload.get("orderbook", {})
+        ob = ob if isinstance(ob, dict) else {}
         l3_walls = ob.get("whale_walls_l3") or payload.get("whale_walls_l3") or []
         l2_walls = ob.get("l2_wall_levels") or payload.get("l2_wall_levels") or []
         walls = (list(l3_walls) if isinstance(l3_walls, list) else []) + (list(l2_walls) if isinstance(l2_walls, list) else [])
@@ -232,6 +271,12 @@ def build_dg_context(
             eligible_walls = []
             for w in walls:
                 if not isinstance(w, dict):
+                    continue
+                # A sampled span alone is not measured wall survival. Honor the
+                # producer's authenticity veto rather than passing mirrored walls.
+                if (w.get("gate_g7_eligible") is not True or w.get("wall_class") != "GENUINE"
+                        or any(not _finite_number(w.get(k)) for k in
+                               ("price", "notional_usd", "persist_s", "presence_frac"))):
                     continue
                 w_side = str(w.get("side", "")).upper()
                 w_price = float(w.get("price") or 0.0)
@@ -243,14 +288,15 @@ def build_dg_context(
             if eligible_walls:
                 eligible_walls.sort(key=lambda x: (not x[1].get("gate_g7_eligible", False), x[0]))
                 best_dist_atr, best_w = eligible_walls[0]
-                flow_usd = (payload.get("orderflow", {}).get("median_1m_flow_usd", 25000.0)
-                            if payload.get("orderflow") else 25000.0)
+                flow_usd = (of_payload.get("median_1m_flow_usd") if isinstance(of_payload, dict) else None)
+                if not _finite_number(flow_usd) or flow_usd <= 0:
+                    flow_usd = None
                 wall_ctx = {
                     "usd": float(best_w.get("notional_usd") or 0.0),
-                    "persist_s": float(best_w.get("persist_s") or best_w.get("sample_span_sec") or 0.0),
-                    "presence_frac": float(best_w.get("presence_frac") or (1.0 if best_w.get("gate_g7_eligible") else 0.0)),
+                    "persist_s": float(best_w["persist_s"]),
+                    "presence_frac": float(best_w["presence_frac"]),
                     "dist_from_entry_atr": float(best_dist_atr),
-                    "median_1m_traded_usd": float(flow_usd),
+                    "median_1m_traded_usd": flow_usd,
                 }
 
     m1_override = features.get("m1_range_override") or (payload.get("m1_range_override") if isinstance(payload, dict) else None)
@@ -318,6 +364,9 @@ def evaluate_candidate_dg_v3(
     (quote_time - last_bar_close) stays near one bar period no matter how many
     hours the instrument has been shut, and the staleness guard never fires.
     """
+    if not isinstance(bars_15m, (list, tuple)) or not isinstance(quote, dict):
+        return {"regime": "UNDEFINED", "stats": {}, "passed": False,
+                "failures": ["context_input_invalid"], "metrics": {}}
     if (bars_1h and bars_4h and len(bars_15m) >= 97
             and len(bars_1h) >= HTF_STRATEGY_MIN and len(bars_4h) >= HTF_STRATEGY_MIN):
         try:
@@ -331,6 +380,10 @@ def evaluate_candidate_dg_v3(
         except (KeyError, TypeError, ValueError, OverflowError):
             return {"regime": "UNDEFINED", "stats": {}, "passed": False,
                     "failures": ["regime_history_time_invalid_or_noncausal"], "metrics": {}}
+        if any(not isinstance(b, dict) or not _finite_number(b.get("close")) or b["close"] <= 0
+               for history in (bars_15m, bars_1h, bars_4h) for b in history):
+            return {"regime": "UNDEFINED", "stats": {}, "passed": False,
+                    "failures": ["regime_history_price_invalid"], "metrics": {}}
         c15 = [b["close"] for b in bars_15m]
         c1h = [b["close"] for b in bars_1h]
         c4h = [b["close"] for b in bars_4h]
@@ -339,6 +392,9 @@ def evaluate_candidate_dg_v3(
         # check, but wrong for staleness: a closed market's quote is frozen at
         # the same instant as its last bar, so their difference stays ~900s and
         # a 10-hour-old history reads as fresh. Staleness needs a real clock.
+        if as_of_epoch is not None and (not _finite_number(as_of_epoch) or as_of_epoch <= 0):
+            return {"regime": "UNDEFINED", "stats": {}, "passed": False,
+                    "failures": ["as_of_epoch_invalid"], "metrics": {}}
         staleness_now = float(as_of_epoch) if as_of_epoch is not None else _time_mod.time()
         try:
             regime, rstats = classify_regime(
@@ -348,6 +404,9 @@ def evaluate_candidate_dg_v3(
             )
         except TypeError:
             regime, rstats = classify_regime(c15, c1h, c4h)
+        if rstats.get("stale") or rstats.get("data_invalid"):
+            return {"regime": regime, "stats": rstats, "passed": False,
+                    "failures": ["regime_history_stale_or_invalid"], "metrics": {}}
     else:
         return {"regime": "UNDEFINED", "stats": {"history_counts": {
             "15m": len(bars_15m), "1h": len(bars_1h or []), "4h": len(bars_4h or [])}},

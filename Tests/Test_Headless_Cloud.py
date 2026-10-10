@@ -621,8 +621,8 @@ def test_runtime_evaluate_candle_returns_the_microservice_contract():
 
 
 def test_full_stack_paper_bridge_trade_through_the_real_trader(tmp_path):
-    """Backend C is a true drop-in: the REAL Omni_Trader executes a T1 breakout
-    through PaperSimulatedBridge fills (no test broker double in sight)."""
+    """The real trader stages a passive T1 entry and the matching engine fills it
+    only when a later observed ask reaches the limit."""
     from Terminal.Omni_Trader import AI15mMT5Trader, MAGIC
     from Terminal.Asset_Universe import UNIVERSE
     from Terminal.Risk_Sizing_Engine import CovarianceGate
@@ -645,7 +645,7 @@ def test_full_stack_paper_bridge_trade_through_the_real_trader(tmp_path):
                             intel=OfflineIntel(),
                             cognitive=object(), cognitive_enabled=False,
                             uplift_path=tmp_path / "no_uplift",
-                            clock=lambda: slot, paper_mode=False, entry_mode="market",
+                            clock=lambda: slot, paper_mode=False, entry_mode="limit",
                             state_file=tmp_path / "state.json",
                             journal_dir=tmp_path / "journal")
     trader.symbols = {a: bridge.resolve_symbol(a) for a in UNIVERSE}
@@ -680,7 +680,11 @@ def test_full_stack_paper_bridge_trade_through_the_real_trader(tmp_path):
     result = trader.evaluate_market({"SOL": payload()}, {"received_at": slot,
                                                          "sentiment_valid": True,
                                                          "asset_scores": {"SOL": 1}})
-    assert result["decision"] == "ORDER_FILLED"
+    assert result["decision"] == "LIMIT_STAGED"
+    assert not bridge.get_open_positions()
+    pending = bridge.get_pending_orders()
+    assert len(pending) == 1 and pending[0]["price_open"] < 119.99
+    bridge.set_price("SOLUSD", pending[0]["price_open"]-.02, pending[0]["price_open"], ts=slot+1)
     positions = bridge.get_open_positions()
     assert len(positions) == 1
     position = positions[0]

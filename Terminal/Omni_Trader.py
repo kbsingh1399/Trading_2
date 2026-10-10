@@ -132,7 +132,7 @@ def compute_pivot_levels(bars, tick_size=0.01):
 class AI15mMT5Trader:
     def __init__(self, coin="SOL", host="http://localhost:8095", paper_mode=True,
                  risk_usd=10, min_risk_usd=10, max_risk_usd=45, cadence_minute=14,
-                 cadence_second=30, entry_mode="market", account_id=None,
+                 cadence_second=30, entry_mode="limit", account_id=None,
                  max_spread_points=None, state_file=None, allow_list=None, *,
                  bridge=None, intel=None, cognitive=None, covariance=None, uplift=None,
                  covariance_path=None, uplift_path=None, policy=None, clock=time.time,
@@ -143,6 +143,8 @@ class AI15mMT5Trader:
             raise ValueError("Entries must be scheduled in minute 14 before the candle close")
         if entry_mode not in ("market", "limit"):
             raise ValueError("entry_mode must be 'market' or 'limit'")
+        if not paper_mode and entry_mode != "limit":
+            raise ValueError("live_entries_require_passive_limits")
         self.entry_mode = entry_mode
         self.limit_expiration_seconds = int(limit_expiration_seconds)
         self.coin, self.host, self.paper_mode = canonical_asset(coin), host.rstrip("/"), paper_mode
@@ -866,13 +868,10 @@ class AI15mMT5Trader:
                         digits = int(quote.get("digits", 2))
                         atr = features["atr"]
                         pivots = compute_pivot_levels(bars, tick)
-                        # Sleeve decoupling (Incident C): S1 pullbacks rest
-                        # passively ahead of verified absorption walls; T1
-                        # breakouts enter aggressively into liquidity vacuums.
-                        # Classification is deterministic and cannot be
-                        # overridden by the cognitive layer.
+                        # Sleeve classification never overrides the configured
+                        # passive entry policy, including quiet-flow breakouts.
                         features["sleeve"] = classify_sleeve(features)
-                        effective_mode = "market" if features["sleeve"] == "T1_BREAKOUT" else self.entry_mode
+                        effective_mode = self.entry_mode
                         # Never anchor a limit/TP to anonymous Binance L2 or
                         # an unverified addressless "L3" row.
                         l3 = verified_wallet_l3(payload, now)
@@ -1232,6 +1231,10 @@ class AI15mMT5Trader:
         return engine
 
     def _dispatch(self, candidate, slot):
+        # Recheck at the submission boundary in case a candidate or runtime
+        # setting changed after selection. Protective market exits are separate.
+        if not self.paper_mode and candidate.get("entry_mode", self.entry_mode) != "limit":
+            raise ValueError("live_entries_require_passive_limits")
         self._assert_entry_window(slot)
         key = hashlib.sha256(f"{slot}:{candidate['candidate_id']}".encode()).hexdigest()[:20]
         comment = "OMNI:"+key

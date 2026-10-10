@@ -19,7 +19,15 @@ Provides structured signals for:
 from __future__ import annotations
 
 import json
+import hashlib
+import tempfile
+import threading
+from collections import Counter
+from contextlib import contextmanager
+from decimal import Decimal
+from pathlib import Path
 import logging
+import math
 import os
 import pathlib
 import sys
@@ -59,35 +67,138 @@ def _post_json(payload: dict, timeout: int = 4) -> Any:
         return None
 
 
-def atomic_persist_flows(records: List[Dict[str, Any]], json_target: Optional[Path] = None, parquet_target: Optional[Path] = None) -> bool:
-    """Atomically persist records to both JSON and Parquet using unique temp files."""
-    pid = os.getpid()
-    ts = int(time.time() * 1000)
-    target_json = json_target or FLOWS_JSON_PATH
-    target_parquet = parquet_target or FLOWS_PARQUET_PATH
-    tmp_json = target_json.with_name(f"{target_json.name}.tmp.{pid}.{ts}")
-    tmp_parquet = target_parquet.with_name(f"{target_parquet.name}.tmp.{pid}.{ts}")
+_PERSIST_LOCK = threading.RLock()
+
+
+@contextmanager
+def _flow_archive_lock(target: Path):
+    """Serialize cooperating writers, including the read/merge/replace operation."""
+    target.parent.mkdir(parents=True, exist_ok=True)
+    with _PERSIST_LOCK, target.with_name(target.name + ".lock").open("a+b") as lock:
+        if lock.seek(0, os.SEEK_END) == 0:
+            lock.write(b"0")
+            lock.flush()
+        deadline = time.monotonic() + 10.0
+        while True:
+            try:
+                lock.seek(0)
+                if os.name == "nt":
+                    import msvcrt
+                    msvcrt.locking(lock.fileno(), msvcrt.LK_NBLCK, 1)
+                else:
+                    import fcntl
+                    fcntl.flock(lock.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+                break
+            except OSError:
+                if time.monotonic() >= deadline:
+                    raise TimeoutError("Timed out waiting for flow archive writer")
+                time.sleep(0.05)
+        try:
+            yield
+        finally:
+            lock.seek(0)
+            if os.name == "nt":
+                msvcrt.locking(lock.fileno(), msvcrt.LK_UNLCK, 1)
+            else:
+                fcntl.flock(lock.fileno(), fcntl.LOCK_UN)
+
+
+def _persist_flows_unlocked(records, target_json, target_parquet):
+    temporary_paths = []
+    previous_parquet = None
+    parquet_replaced = False
     try:
-        # 1. Write temp JSON
-        tmp_json.write_text(json.dumps(records, indent=2, ensure_ascii=False), encoding="utf-8")
-        
-        # 2. Write temp Parquet
-        df = pd.DataFrame(records)
-        df.to_parquet(tmp_parquet, index=False)
-        
-        # 3. Replace both atomically
-        tmp_json.replace(target_json)
-        tmp_parquet.replace(target_parquet)
+        target_parquet.parent.mkdir(parents=True, exist_ok=True)
+        for target in (target_json, target_parquet):
+            fd, name = tempfile.mkstemp(prefix=target.name + ".tmp.", dir=target.parent)
+            os.close(fd)
+            temporary_paths.append(Path(name))
+        # Telegram and API IDs can have different input types. Both files use strings.
+        normalized = [dict(r, msg_id=str(r["msg_id"])) if r.get("msg_id") is not None else dict(r)
+                      for r in records]
+        temporary_paths[0].write_text(json.dumps(normalized, indent=2, ensure_ascii=False, allow_nan=False), encoding="utf-8")
+        pd.DataFrame(normalized).to_parquet(temporary_paths[1], index=False)
+        previous_parquet = target_parquet.read_bytes() if target_parquet.exists() else None
+        temporary_paths[1].replace(target_parquet)
+        parquet_replaced = True
+        temporary_paths[0].replace(target_json)
         return True
     except Exception as exc:
-        logger.warning("Could not atomically persist updated flow history: %s", exc)
-        for p in (tmp_json, tmp_parquet):
+        logger.warning("Could not persist updated flow history: %s", exc)
+        if parquet_replaced:
             try:
-                if p.exists():
-                    p.unlink()
-            except Exception:
-                pass
+                if previous_parquet is None:
+                    target_parquet.unlink()
+                else:
+                    temporary_paths[1].write_bytes(previous_parquet)
+                    temporary_paths[1].replace(target_parquet)
+            except OSError as rollback_exc:
+                logger.error("Could not restore previous Parquet generation: %s", rollback_exc)
         return False
+    finally:
+        for path in temporary_paths:
+            path.unlink(missing_ok=True)
+
+
+def atomic_persist_flows(records: List[Dict[str, Any]], json_target: Optional[Path] = None, parquet_target: Optional[Path] = None) -> bool:
+    """Replace each file atomically under a writer lock; JSON is the commit point.
+
+    Two paths cannot be replaced as one filesystem transaction. A process crash
+    between replacements can leave Parquet ahead of authoritative JSON.
+    """
+    target_json = json_target or FLOWS_JSON_PATH
+    target_parquet = parquet_target or FLOWS_PARQUET_PATH
+    try:
+        with _flow_archive_lock(target_json):
+            return _persist_flows_unlocked(records, target_json, target_parquet)
+    except OSError as exc:
+        logger.warning("Could not lock flow archive: %s", exc)
+        return False
+
+
+def _record_identity(record):
+    msg_id = record.get("msg_id")
+    if msg_id is None or not str(msg_id).strip():
+        return None
+    return (str(record.get("source") or "UNSPECIFIED"),
+            str(record.get("coin") or "UNKNOWN").upper(),
+            str(record.get("type") or "UNKNOWN"), str(msg_id))
+
+
+def _unique_records(records):
+    seen = set()
+    result = []
+    for record in records:
+        if not isinstance(record, dict):
+            continue
+        identity = _record_identity(record)
+        if identity is not None:
+            if identity in seen:
+                continue
+            seen.add(identity)
+        result.append(record)
+    return result
+
+
+def _fill_id(coin, fill, occurrences):
+    """Match observed payload multiplicity when a provider supplies no unique ID.
+
+    Indistinguishable fills entering/leaving a rolling response cannot be proven
+    distinct. Occurrence ranks preserve the maximum simultaneously visible count.
+    """
+    raw_tid = fill.get("tid")
+    if raw_tid is not None and str(raw_tid).strip() and str(raw_tid) != "None":
+        return str(raw_tid)
+    if fill.get("time") is None:
+        return None
+    fingerprint = json.dumps([
+        coin, int(fill["time"]), str(Decimal(str(fill["px"])).normalize()),
+        str(Decimal(str(fill["sz"])).normalize()), str(fill.get("side") or "").upper(),
+        fill.get("hash"), fill.get("users"),
+    ], separators=(",", ":"), sort_keys=True)
+    digest = hashlib.sha256(fingerprint.encode("utf-8")).hexdigest()
+    occurrences[digest] += 1
+    return f"FALLBACK_{digest}_{occurrences[digest]}"
 
 
 def load_raw_flow_history(raise_on_error: bool = False, json_path: Optional[Path] = None) -> List[Dict[str, Any]]:
@@ -101,7 +212,9 @@ def load_raw_flow_history(raise_on_error: bool = False, json_path: Optional[Path
         return []
     try:
         data = json.loads(target.read_text(encoding="utf-8"))
-        return data if isinstance(data, list) else []
+        if not isinstance(data, list) or any(not isinstance(r, dict) for r in data):
+            raise ValueError("Flow history must be a list of record objects")
+        return data
     except Exception as exc:
         logger.warning("Could not read flow history from %s: %s", target, exc)
         if raise_on_error:
@@ -122,7 +235,12 @@ def sync_live_api_flows(max_wallets_to_check: int = 8) -> int:
         logger.error("Aborting flow sync: could not safely read flow history: %s", exc)
         return 0
 
-    existing_ids = {str(r.get("msg_id", "")) for r in records if r.get("msg_id")}
+    existing_ids = {str(r["msg_id"]) for r in records
+                    if r.get("msg_id") is not None and r.get("source") == "HYPERLIQUID_L1_NATIVE_API"}
+    legacy_liquidation_ids = {str(r["msg_id"]) for r in records
+                              if r.get("msg_id") and r.get("type") == "LIQUIDATION"
+                              and r.get("source") == "HYPERLIQUID_L1_NATIVE_API"
+                              and not r.get("identity_basis")}
     new_events: List[Dict[str, Any]] = []
 
     # 1. Discover top active whale wallets from existing records
@@ -146,30 +264,34 @@ def sync_live_api_flows(max_wallets_to_check: int = 8) -> int:
             if not liq_fills:
                 continue
 
-            # Group liquidation sub-fills by second and coin to reconstruct the full event
-            grouped_by_event: Dict[str, List[dict]] = {}
-            for f in liq_fills:
-                t_raw = f.get("time")
-                t_sec = int(t_raw) // 1000 if t_raw is not None else int(time.time())
-                coin = str(f.get("coin", "UNKNOWN")).upper()
-                event_key = f"{addr}_{coin}_{t_sec}"
-                grouped_by_event.setdefault(event_key, []).append(f)
-
-            for event_key, group in grouped_by_event.items():
-                event_id = f"HL_LIQ_{event_key}"
+            # Each fill has its own identity; later sub-fills cannot disappear into an earlier second.
+            occurrences = Counter()
+            for fill in liq_fills:
+                if fill.get("time") is None:
+                    continue
+                coin = str(fill.get("coin", "UNKNOWN")).upper()
+                side_raw = str(fill.get("side") or "").upper()
+                try:
+                    avg_px = float(fill.get("px") or 0.0)
+                    tot_sz = float(fill.get("sz") or 0.0)
+                    t_sec = int(fill["time"]) // 1000
+                except (ValueError, TypeError, OverflowError):
+                    continue
+                # Legacy aggregate rows lack fill IDs; do not recount their covered seconds.
+                if f"HL_LIQ_{addr}_{coin}_{t_sec}" in legacy_liquidation_ids:
+                    continue
+                if side_raw not in ("B", "A") or not all(math.isfinite(x) and x > 0 for x in (avg_px, tot_sz)):
+                    continue
+                tid = _fill_id(coin, fill, occurrences)
+                if tid is None:
+                    continue
+                event_id = f"HL_LIQ_{addr}_{coin}_{tid}"
                 if event_id in existing_ids:
                     continue
-
-                coin = str(group[0].get("coin", "UNKNOWN")).upper()
-                tot_sz = sum(float(x.get("sz") or 0.0) for x in group)
-                if tot_sz <= 0:
-                    continue
-                avg_px = sum(float(x.get("px") or 0.0) * float(x.get("sz") or 0.0) for x in group) / tot_sz
                 tot_usd = tot_sz * avg_px
-                side_raw = str(group[0].get("side") or "").upper()
-                is_short = (side_raw == "B") # Short liquidated = buy to cover
-                t_raw = group[0].get("time")
-                t_sec = int(t_raw) // 1000 if t_raw is not None else int(time.time())
+                if not math.isfinite(tot_usd):
+                    continue
+                is_short = side_raw == "B"
 
                 record = {
                     "type": "LIQUIDATION",
@@ -188,7 +310,8 @@ def sync_live_api_flows(max_wallets_to_check: int = 8) -> int:
                     "timestamp_epoch": t_sec,
                     "time_label": datetime.fromtimestamp(t_sec, tz=timezone.utc).strftime("%H:%M"),
                     "date_heading": datetime.fromtimestamp(t_sec, tz=timezone.utc).strftime("%B %d"),
-                    "source": "HYPERLIQUID_L1_NATIVE_API"
+                    "source": "HYPERLIQUID_L1_NATIVE_API",
+                    "identity_basis": "NATIVE_TID" if not tid.startswith("FALLBACK_") else "PAYLOAD_MULTIPLICITY",
                 }
                 new_events.append(record)
                 existing_ids.add(event_id)
@@ -198,7 +321,7 @@ def sync_live_api_flows(max_wallets_to_check: int = 8) -> int:
     # 3. Check recent ticks for large whale executions (>= 50k USD) on primary crypto assets
     # Covers full Binance 11 perpetual universe + primary Hyperliquid perp liquidity
     core_assets = ["BTC", "ETH", "SOL", "NEAR", "DOGE", "XRP", "BNB", "ADA", "TRX", "LINK", "DOT", "LTC", "BCH"]
-    trade_seq = 0
+    fallback_occurrences = Counter()
     for coin in core_assets:
         try:
             trades = _post_json({"type": "recentTrades", "coin": coin}, timeout=2)
@@ -207,25 +330,25 @@ def sync_live_api_flows(max_wallets_to_check: int = 8) -> int:
             for tr in trades:
                 if not isinstance(tr, dict):
                     continue
-                trade_seq += 1
-                px = float(tr.get("px") or 0.0)
-                sz = float(tr.get("sz") or 0.0)
-                notional = px * sz
-                if notional < 50_000.0:
+                try:
+                    px = float(tr.get("px") or 0.0)
+                    sz = float(tr.get("sz") or 0.0)
+                    t_sec = int(tr["time"]) // 1000
+                except (ValueError, TypeError, OverflowError, KeyError):
                     continue
-                raw_tid = tr.get("tid")
-                t_raw = tr.get("time")
-                t_sec = int(t_raw) // 1000 if t_raw is not None else int(time.time())
+                notional = px * sz
+                if not all(math.isfinite(x) and x > 0 for x in (px, sz, notional)) or notional < 50_000.0:
+                    continue
                 side_char = str(tr.get("side") or "").upper()
+                if side_char not in ("B", "A"):
+                    continue
                 side = "BUY" if side_char == "B" else "SELL"
                 
-                # Robust collision-proof tid avoiding collision or None key collapse
-                if raw_tid is not None and str(raw_tid).strip() and str(raw_tid) != "None":
-                    tid = str(raw_tid)
-                else:
-                    t_ms = int(t_raw) if t_raw is not None else int(time.time() * 1000)
-                    tid = f"{t_ms}_{int(round(px * 1e2))}_{int(round(sz * 1e2))}_{side_char}_{trade_seq}"
-                
+                # Occurrence ranks preserve visible identical fills across overlapping polls.
+                tid = _fill_id(coin, tr, fallback_occurrences)
+                if tid is None:
+                    continue
+
                 event_id = f"HL_TRADE_{coin}_{tid}"
                 if event_id not in existing_ids:
                     users = tr.get("users", [])
@@ -248,25 +371,31 @@ def sync_live_api_flows(max_wallets_to_check: int = 8) -> int:
                         "timestamp_epoch": t_sec,
                         "time_label": datetime.fromtimestamp(t_sec, tz=timezone.utc).strftime("%H:%M"),
                         "date_heading": datetime.fromtimestamp(t_sec, tz=timezone.utc).strftime("%B %d"),
-                        "source": "HYPERLIQUID_L1_NATIVE_API"
+                        "source": "HYPERLIQUID_L1_NATIVE_API",
+                        "identity_basis": "NATIVE_TID" if not tid.startswith("FALLBACK_") else "PAYLOAD_MULTIPLICITY",
                     }
                     new_events.append(record)
                     existing_ids.add(event_id)
         except Exception as exc:
             logger.debug("Failed querying recentTrades for %s: %s", coin, exc)
 
-    # 4. If new events detected, persist updated history atomically with retention cap
-    if new_events:
-        all_records = records + new_events
-        # Maintain rolling retention cap of 10,000 records to prevent unbounded growth
-        if len(all_records) > 10000:
-            all_records = all_records[-10000:]
-        if atomic_persist_flows(all_records):
-            logger.info("Successfully appended %d new API flow events to history (total: %d)", len(new_events), len(all_records))
-        else:
-            logger.warning("Failed to atomically persist %d new flow events", len(new_events))
-
-    return len(new_events)
+    # Re-read inside the lock: another poll may have committed while API calls ran.
+    if not new_events:
+        return 0
+    try:
+        with _flow_archive_lock(FLOWS_JSON_PATH):
+            latest = load_raw_flow_history(raise_on_error=True)
+            latest_ids = {_record_identity(r) for r in latest}
+            appended = [r for r in new_events if _record_identity(r) not in latest_ids]
+            if not appended:
+                return 0
+            all_records = _unique_records(latest + appended)[-10000:]
+            if _persist_flows_unlocked(all_records, FLOWS_JSON_PATH, FLOWS_PARQUET_PATH):
+                logger.info("Successfully appended %d new API flow events", len(appended))
+                return len(appended)
+    except Exception as exc:
+        logger.warning("Failed to commit flow events: %s", exc)
+    return 0
 
 
 def get_hyperdash_flow_intelligence(max_recent_items: int = 50) -> Dict[str, Any]:
@@ -281,7 +410,7 @@ def get_hyperdash_flow_intelligence(max_recent_items: int = 50) -> Dict[str, Any
     except Exception as exc:
         logger.warning("Live API flow sync failed non-fatally: %s", exc)
 
-    records = load_raw_flow_history()
+    records = _unique_records(load_raw_flow_history())
     now_utc = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
 
     # Categorized buckets

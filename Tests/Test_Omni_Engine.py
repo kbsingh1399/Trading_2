@@ -239,6 +239,10 @@ def test_second_position_requires_qualified_uplift(tmp_path):
 
 def test_uncertain_execution_reserves_slot_without_retry(tmp_path):
     now=[NOW];t,b=trader(tmp_path,lambda:now[0],paper=False)
+    def uncertain_limit(*args, **kwargs):
+        b.sent.append(("limit", args, kwargs))
+        return {"success": False, "uncertain": True}
+    b.stage_limit_order = uncertain_limit
     macro={"received_at":NOW,"sentiment_valid":True,"asset_scores":{"BTC":1}}
     assert t.evaluate_market({"BTC":payload()},macro)["decision"]=="ORDER_UNCERTAIN"
     now[0]+=900
@@ -561,8 +565,9 @@ def test_dispatch_refreshes_the_selected_asset_quote_not_the_last_loop_quote(tmp
     report = t.evaluate_market({"BTC": payload(NOW, "BTC"), "ETH": payload(NOW, "ETH")}, macro)
     assert b.resolve_symbol("ETH") in seen
     assert seen[-1] == b.resolve_symbol("BTC")
-    assert report["decision"] == "ORDER_UNCERTAIN"
-    assert b.sent[0][0][0] == b.resolve_symbol("BTC")
+    assert report["decision"] == "LIMIT_STAGED"
+    assert b.sent[0][0] == "limit"
+    assert b.sent[0][1]["symbol"] == b.resolve_symbol("BTC")
 
 
 def test_uncertain_limit_reconciles_resting_ticket_without_extending_ttl(tmp_path):

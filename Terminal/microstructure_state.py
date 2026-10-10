@@ -99,6 +99,9 @@ def wall_persistence_record(prev_state: Dict[str, Any], new_state: Dict[str, Any
     `first_seen`, `run_start`, `persistence_status` and `first_seen_utc_epoch`,
     suitable for merging straight into a published wall record.
 
+    Repeated or backward observation timestamps never add samples or time.
+    These fields describe sampled recurrence, not continuous order identity.
+
     `persist_s` is measured from the start of the CURRENT UNBROKEN run. A gap
     longer than `gap_reset_s` restarts the run, so a wall that flickers cannot
     accumulate credit for time it was not on the book.
@@ -140,8 +143,15 @@ def wall_persistence_record(prev_state: Dict[str, Any], new_state: Dict[str, Any
             prev_first = prev_run = prev_last = now_ts
             prev_samples = 1
         gap = now_ts - prev_last
-        if gap <= effective_gap_reset:
-            # Unbroken run: extend it.
+        if gap <= 0:
+            # Cached/backward receipts preserve the measured run without adding evidence.
+            now_ts = prev_last
+            run_start = prev_run
+            first_seen = prev_first
+            samples = prev_samples
+            interval = float(prev.get("cycle_interval_s", interval))
+        elif gap <= effective_gap_reset:
+            # A new observation extends the sampled run.
             run_start = prev_run
             first_seen = prev_first
             samples = prev_samples + 1
@@ -158,7 +168,7 @@ def wall_persistence_record(prev_state: Dict[str, Any], new_state: Dict[str, Any
         samples = 1
 
     persist_s = max(0.0, now_ts - run_start)
-    exp = expected_samples(run_start, now_ts, cycle_interval_s)
+    exp = expected_samples(run_start, now_ts, interval)
     presence_frac = (samples / exp) if exp > 0 else 0.0
     presence_frac = max(0.0, min(1.0, presence_frac))
 
@@ -174,6 +184,7 @@ def wall_persistence_record(prev_state: Dict[str, Any], new_state: Dict[str, Any
         "run_start": run_start,
         "last_seen": now_ts,
         "samples": samples,
+        "cycle_interval_s": interval,
     }
     new_state[wall_key] = record
 

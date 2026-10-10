@@ -293,82 +293,9 @@ def enforced_regime(asset_data: Dict[str, Any], classify,
 
 
 def build_48h_orderflow_prompt() -> str:
-    """Build the comprehensive, self-contained 48-hour footprint and telemetry prompt for Arena.ai."""
-    # 1. Load Telemetry Snapshot
-    # 1. Load Live Account & Telemetry State
-    telemetry = {}
-    if TELEMETRY_SNAPSHOT.exists():
-        try:
-            with open(TELEMETRY_SNAPSHOT, "r", encoding="utf-8") as f:
-                telemetry = json.load(f)
-        except Exception:
-            pass
-
-    account = telemetry.get("account", {})
-    balance = float(account.get("balance_usd", 4829.79))
-    equity = float(account.get("equity_usd", 4851.98))
-    margin_used = float(account.get("margin_used_usd", 446.04))
-    margin_free = float(account.get("margin_free_usd", 4405.94))
-    cushion = equity - 4775.0
-    assets_data = telemetry.get("assets_matrix_24", {})
-    gate_classifier = _load_gate_classifier()
-    snapshot_as_of = telemetry.get("as_of_epoch")
-
-    # Attempt direct MT5 live state extraction
-    active_pos = []
-    pending_ord = []
-    try:
-        import MetaTrader5 as mt5
-        if mt5.initialize():
-            acc_info = mt5.account_info()
-            if acc_info:
-                balance = float(acc_info.balance)
-                equity = float(acc_info.equity)
-                margin_used = float(acc_info.margin)
-                margin_free = float(acc_info.margin_free)
-                cushion = equity - 4775.0
-
-            positions = mt5.positions_get()
-            if positions:
-                for p in positions:
-                    direction = "LONG" if p.type == 0 else "SHORT"
-                    r_mult = round((p.price_current - p.price_open) / max(abs(p.price_open - p.sl), 1e-6), 2) if p.sl else "N/A"
-                    active_pos.append({
-                        "ticket": p.ticket,
-                        "symbol": p.symbol,
-                        "type": direction,
-                        "volume": p.volume,
-                        "price_open": p.price_open,
-                        "price_current": p.price_current,
-                        "sl": p.sl,
-                        "tp": p.tp,
-                        "profit": round(p.profit, 2),
-                        "r_multiple": r_mult
-                    })
-
-            orders = mt5.orders_get()
-            if orders:
-                for o in orders:
-                    o_type = "BUY_LIMIT" if o.type == 2 else "SELL_LIMIT" if o.type == 3 else f"ORDER_{o.type}"
-                    dist = round(abs(o.price_open - o.price_current), 4)
-                    pending_ord.append({
-                        "ticket": o.ticket,
-                        "symbol": o.symbol,
-                        "type": o_type,
-                        "volume": o.volume_initial,
-                        "price_open": o.price_open,
-                        "price_current": o.price_current,
-                        "sl": o.sl,
-                        "tp": o.tp,
-                        "dist_pts": dist
-                    })
-            mt5.shutdown()
-    except Exception:
-        if not active_pos:
-            active_pos = telemetry.get("active_positions", [])
-        if not pending_ord:
-            pending_ord = telemetry.get("pending_orders", [])
-
+    """Build a lean council prompt that obtains observations from canonical links."""
+    # Account and market facts are obtained by the council from canonical raw
+    # telemetry. Never substitute historical balances or a partial MT5 query.
     now_utc = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
 
     lines = []
@@ -379,11 +306,11 @@ def build_48h_orderflow_prompt() -> str:
     lines.append("")
     lines.append("[SECTION 1: REPOSITORY REFERENCES & MANDATORY HISTORICAL SESSION CONTEXT]")
     lines.append("- Primary GitHub Repository: https://github.com/kbsingh1399/Trading_2 (Branches: main & arena/537c1eb8-trading-2)")
-    lines.append("  * Active Two-Way Branch (Read & Push): arena/537c1eb8-trading-2")
+    lines.append("  * Canonical source and telemetry: main. Commit review recommendations to arena/537c1eb8-trading-2; verify divergence before integration.")
     try:
         import subprocess
-        head_sha = subprocess.check_output(["git", "rev-parse", "--short", "HEAD"], text=True, cwd=str(PROJECT_ROOT)).strip()
-        lines.append(f"  * Production Commit HEAD: {head_sha} (All Arena audit recommendations live: A1 collision-proof nonce & L3 whale wall wiring verified)")
+        head_sha = subprocess.check_output(["git", "rev-parse", "--short", "HEAD"], text=True, cwd=str(PROJECT_ROOT), timeout=5).strip()
+        lines.append(f"  * Local source HEAD: {head_sha}; verify published main before citing deployed behavior.")
     except Exception:
         pass
     lines.append("")
@@ -406,13 +333,12 @@ def build_48h_orderflow_prompt() -> str:
     lines.append("  https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Terminal/decision_gates_v3.py")
     lines.append("- Live Telemetry Snapshot (Raw URL):")
     lines.append("  https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/telemetry/live_snapshot_latest.json")
-    lines.append("  *(Auto-committed and pushed to GitHub every 60 seconds by our autonomous telemetry background daemon)*")
+    lines.append("  *(Publisher attempts every 60 seconds; verify generation_id, LIVE_OBSERVATION status, source freshness and provenance before relying on this file. Stale or missing evidence means UNAVAILABLE.)*")
     lines.append("")
     lines.append("[SECTION 2: LIVE MT5 ACCOUNT STATE & OPERATOR MANDATE ALIGNMENT]")
-    lines.append(f"- Broker: MetaTrader 5 Account #5064568 (Blueberry Markets SVG-Live)")
-    lines.append(f"- Balance: {balance:.2f} USD | Equity: {equity:.2f} USD | Margin Used: {margin_used:.2f} USD | Free Margin: {margin_free:.2f} USD ({margin_free/max(equity, 1.0)*100:.1f}% Cash Reserves)")
-    lines.append(f"- G-1 Hard Floor Defense: Hard Floor = 4,775.00 USD | Preserved Cushion = +{cushion:.2f} USD")
-    lines.append(f"- Mandatory Operating Buffer: >= +20.00 USD (Threshold: 4,795.00 USD | Headroom: +{equity - 4795.00:.2f} USD)")
+    lines.append("- Fetch account, active_positions, pending_orders and capacity from the canonical main snapshot above. Confirm account #5064568, USD currency and observed inventory before any ruling.")
+    lines.append("- Do not infer flat inventory from a missing/failed broker query, historical desk entry or absent telemetry. Reject stale, unknown, mismatched or unverified observations.")
+    lines.append("- Hard floor: 4,775.00 USD; operating buffer: 4,795.00 USD. Compute cushion and simultaneous filled/pending stop risk from observed account state.")
     lines.append("")
     lines.append("OPERATOR MANDATES & UNIFIED SYSTEM PROTOCOLS (MANDATORY ARENA COMPLIANCE):")
     lines.append("0. MANDATORY COMPLETE SESSION CHAT HISTORY REVIEW:")
@@ -428,6 +354,8 @@ def build_48h_orderflow_prompt() -> str:
     lines.append("   - Unfilled resting limit orders are actively audited on every cycle. If orderbook depth/shelves remain intact and drift < 2.0x ATR, KEEP them. If thesis degrades, price drifts > 2.0x ATR, or whale wall thins > 50%, the desk immediately drops/cancels the order.")
     lines.append("4. STRONG ORDERFLOW L2/L3 DECISION MAKING:")
     lines.append("   - Decisions must NOT be random trend following or naive mean reversion. Must be strictly grounded in L2 depth, resting whale walls (>=150k USD, >=180s persistence), and CVD delta absorption.")
+    lines.append("   - Use observed persist_s and presence_frac; no persistence series means UNVERIFIED. Observation age never substitutes for wall persistence.")
+    lines.append("   - GENUINE L3 walls require gate_g7_eligible=true. MIRRORED_LEG and TOP_OF_BOOK are NOT net directional inventory and cannot satisfy whale backing.")
     lines.append("5. TAKE PROFIT (TP) LOGICAL ANCHORING TO LIQUIDATIONS OR STOPS:")
     lines.append("   - TP must NOT be placed at arbitrary static multiples into empty air. TP MUST anchor directly to the next structural liquidation cascade (Short Squeeze for Longs, Long Flush for Shorts) or stop-loss sweep cluster (Buy Stops for Longs, Sell Stops for Shorts).")
     lines.append("6. CONTINUOUS KAIZEN SELF-IMPROVEMENT:")
@@ -448,19 +376,7 @@ def build_48h_orderflow_prompt() -> str:
 
     # Audit Active Positions & Pending Orders
     lines.append("[SECTION 3: ACTIVE POSITIONS & RESTING ORDERS REVIEW]")
-    if active_pos:
-        lines.append(f"ACTIVE OPEN POSITIONS ({len(active_pos)}):")
-        for p in active_pos:
-            lines.append(f"- Ticket #{p.get('ticket')}: {p.get('symbol')} {p.get('type')} {p.get('volume')} lots @ {p.get('price_open')} | Current: {p.get('price_current')} | SL: {p.get('sl')} | TP: {p.get('tp')} | Floating PnL: {p.get('profit')} USD ({p.get('r_multiple', 'N/A')}R)")
-    else:
-        lines.append("- Active Open Positions: NONE (0 Open Positions | 100% Cash Flat)")
-
-    if pending_ord:
-        lines.append(f"RESTING PENDING LIMIT ORDERS ({len(pending_ord)}):")
-        for o in pending_ord:
-            lines.append(f"- Ticket #{o.get('ticket')}: {o.get('symbol')} {o.get('type')} {o.get('volume')} lots @ {o.get('price_open')} | Current: {o.get('price_current')} | SL: {o.get('sl')} | TP: {o.get('tp')} | Distance: {o.get('dist_pts')} pts ({o.get('dist_atr', 'N/A')}x ATR)")
-    else:
-        lines.append("- Resting Pending Limit Orders: NONE (Queue clean)")
+    lines.append("- Read actual filled positions and pending orders from the same validated snapshot generation. Report generation_id and as_of_utc with the inventory audit; treat unavailable inventory as a blocking defect.")
     lines.append("")
     lines.append("ARENA REVIEW MANDATE FOR EXISTING ORDERS:")
     lines.append("- If positions exist: Evaluate whether to HOLD, apply piecewise ratchet (Phase 0 BE at +0.80R, Phase 1 Profit Lock at +1.50R, target at +2.50R), execute emergency shelf cut, or close at market.")
@@ -470,6 +386,7 @@ def build_48h_orderflow_prompt() -> str:
     lines.append("Antigravity Trader and Big Brain Collaborative Directive:")
     lines.append("OPERATOR MANDATE ON DUAL-ENGINE STRATEGY DEBATE:")
     lines.append("You MUST actively evaluate and debate BOTH strategy families across ALL 24 assets on every cycle:")
+    lines.append("- The 200-EMA label is cosmetic, NOT the gate. decision_gates_v3.classify_regime and the enforced model-specific gates are BINDING for both engines; unavailable or stale inputs block admission.")
     lines.append("1. MODEL 1 (EXTREME MEAN-REVERSION - |Z| >= 2.0 SD):")
     lines.append("   - Applicable when price stretches to extremes (|Z| >= 2.0 SD from Session VWAP with RSI < 30 or > 70).")
     lines.append("   - Look for CVD aggressor exhaustion and resting whale wall absorption (>= 150k USD, >= 180s persistence) fading the stretch back toward VWAP.")
@@ -481,7 +398,7 @@ def build_48h_orderflow_prompt() -> str:
     lines.append("   - DO NOT dismiss candidates simply because |Z| < 2.0 SD! In-range |Z| is the prime signal to switch to Trend-Following.")
     lines.append("")
     lines.append("You MUST provide explicit dialectic commentary debating BOTH Mean-Reversion and Trend-Following setups before reaching your final verdict.")
-    lines.append(f"Our desk has {balance:.2f} USD capital, abundant free margin ({margin_free:.2f} USD), and capacity to stage valid passive limit orders. We must NOT sit idle if valid institutional setups exist!")
+    lines.append("Determine available capital, free margin and joint-fill capacity from verified observations; stage advice only when every execution gate passes.")
     lines.append("")
     lines.append("[SECTION 5: LIVE ORDERFLOW TELEMETRY & BIDIRECTIONAL REPO LINKS]")
     lines.append("OPERATOR MANDATE: FETCH TELEMETRY DIRECTLY VIA GITHUB REPOSITORY / RAW ENDPOINTS")
@@ -491,13 +408,13 @@ def build_48h_orderflow_prompt() -> str:
     lines.append("1. LIVE TELEMETRY SNAPSHOT (Raw Endpoint - Auto-updated every 60 seconds):")
     lines.append("   https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/telemetry/live_snapshot_latest.json")
     lines.append("   (Directly curl or inspect this JSON in your bash/python environment for all 24 assets: quotes, spreads, VWAP Z-scores,")
-    lines.append("   768 verified L3 whale walls with persistence, reconstructed liquidations, stop clusters, and CVD series).")
+    lines.append("   observed L3 whale walls with persistence, observed liquidation bands, stop clusters, and CVD series where available).")
     lines.append("")
     lines.append("2. BIDIRECTIONAL COLLABORATION BRANCH (TWO-WAY ARENA <-> ANTIGRAVITY COMMUNICATION):")
     lines.append("   https://github.com/kbsingh1399/Trading_2/tree/arena%2F537c1eb8-trading-2")
-    lines.append("   - Active Branch: `arena/537c1eb8-trading-2` (Mirrored 1:1 with `main`)")
+    lines.append("   - Review Branch: `arena/537c1eb8-trading-2`; canonical production source and raw telemetry remain `main`. Verify both refs rather than assuming parity.")
     lines.append("   - Arena is authorized to commit and push trading plans, forensic reports, or code improvements directly to this branch.")
-    lines.append("   - Antigravity continuously pulls, reviews, and executes against this branch on the live MetaTrader 5 broker terminal.")
+    lines.append("   - Branch recommendations require independent source, observation and execution-gate review before integration or broker action.")
     lines.append("")
     lines.append("3. CORE EXECUTION ENGINE & HISTORICAL CONTEXT IMPLEMENTATIONS:")
     lines.append("   - Decision Gates V3: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Terminal/decision_gates_v3.py")
@@ -509,33 +426,29 @@ def build_48h_orderflow_prompt() -> str:
     lines.append("[SECTION 6: REQUIRED QUANTITATIVE RULING & DUAL-TRACK GATING RULES]")
     lines.append("CRITICAL DESK UPDATES & EVOLVING EXECUTION MANDATES:")
     lines.append("1. FOCUS CAPITAL ON TIGHT-SPREAD CRYPTO MAJORS (HIGH NET EXPECTANCY):")
-    lines.append("   - Enforce the 20.00 bps spread ceiling to protect mathematical edge! Filter out wide-spread CFD crypto (DOGE, DOT, ADA, LTC, LINK).")
-    lines.append("   - Focus active order staging on the highest-expectancy, tight-spread perpetuals:")
-    lines.append("     * BTC (Spread = 1.81 bps, c = 0.083, Net EV = +0.3279R at 2.5R, deep Hyperliquid liquidity)")
-    lines.append("     * BNB (Spread = 6.68 bps, c = 0.368, tight spread, strong whale backing)")
-    lines.append("     * ETH (Spread = 11.64 bps, tight spread, 15m volume)")
-    lines.append("     * SOL (Spread = 21.8 bps) and XRP (Spread = 21.3 bps)")
+    lines.append("   - Enforce the 20.00 bps spread ceiling and relative-friction ceiling using actual broker Bid/Ask quotes. Rank all 24 assets from current verified observations.")
+    lines.append("   - Recompute Net EV from eligible empirical calibration and observed costs; historical spreads, rankings or win rates cannot certify an edge.")
     lines.append("2. INSTITUTIONAL VWAP-CENTRIC EXECUTION & MULTI-TIMEFRAME HARMONIZATION:")
     lines.append("   - VWAP IS THE GRAVITATIONAL ANCHOR: You MUST actively evaluate price location against Session VWAP and its +/-1SD and +/-2SD bands:")
     lines.append("   - MODEL 2 (TREND-FOLLOWING PULLBACK TO VWAP / VALUE AREA):")
     lines.append("     * When HTF (4H) is in a confirmed structural trend (e.g. 4H t-stat < -1.5, 4H ER > 0.25, or negative 200 EMA slope), the HTF trend is established as BEARISH.")
     lines.append("     * A pullback on 15m/1H up into Session VWAP, Value Area High (VAH), or 20/50 EMA shelf IS THE INSTITUTIONAL ENTRY.")
     lines.append("     * Do NOT demand that 1H be expanding downward during a pullback! The pullback is the pause before trend resumption.")
-    lines.append("     * If price pulls up to VWAP or VAH with resting Ask Whale resistance (e.g. BTC 83,862 USD 21.2M whale) and CVD buying exhaustion, this is an actionable SHORT limit order!")
+    lines.append("     * A pullback into VWAP or VAH requires verified resting Ask Whale resistance, CVD buying exhaustion and all trend gates before SHORT limit advice.")
     lines.append("   - MODEL 1 (EXTREME VWAP MEAN REVERSION - |Z| >= 2.0 SD):")
     lines.append("     * When price stretches to extreme |Z| >= 2.0 SD away from Session VWAP, look for absorption fading back toward VWAP.")
     lines.append("3. TAKE PROFIT (TP) LOGICALLY ANCHORED TO ON-CHAIN LIQUIDATION TARGETS & STOPS:")
     lines.append("   - Do NOT place TP into thin air. Anchor TP directly at the nearest real structural liquidation pool or stop sweep:")
-    lines.append("   - For SHORTS: Anchor TP at Downside Long Flush Target (e.g. BTC 78,050 USD [32.4M USD]) or Sell Stop Cluster (e.g. 81,550 USD [7.5M USD]).")
+    lines.append("   - For SHORTS: Anchor TP at an observed downside long liquidation band or sell stop cluster; report source and coverage.")
     lines.append("   - For LONGS: Anchor TP at Overhead Short Squeeze Band or Buy Stop Cluster.")
     lines.append("4. EXPANDED RISK BUDGET:")
-    lines.append("   - Maximum nominal risk cap is expanded to 15.00 USD (flexible range: 10.00 to 15.00 USD), preserving 100+ USD cushion above the 4,775.00 USD hard floor.")
+    lines.append("   - Nominal risk remains subject to current risk policy and observed joint-loss headroom. Never assume a 100+ USD cushion or allocate risk from a historical balance.")
     lines.append("")
     lines.append("OUTPUT FORMAT & DELIBERATION PROTOCOL:")
     lines.append("Part 1: INTENSIVE 4-PERSONA DELIBERATION & DIALECTIC DEBATE:")
     lines.append("  - Persona 1 (Orderflow Analyst): Evaluate live L2 depth, resting L3 whale walls (persist >= 180s), CVD taker delta, and on-chain liquidation cascades.")
-    lines.append("  - Persona 2 (Position Manager): Audit account equity (4,896.55 USD), floor defense (+121.55 USD cushion), capacity (0/4 open, 4 slots available), and stressed post-loss simulations.")
-    lines.append("  - Persona 3 (Macro Sentry): Audit weekend CFD freeze (Forex/Commodities/Indices frozen until Sunday open; Crypto actively trading 24/7).")
+    lines.append("  - Persona 2 (Position Manager): Audit observed account equity, floor defense, filled and pending inventory, joint-fill capacity, and stressed post-loss simulations.")
+    lines.append("  - Persona 3 (Macro Sentry): Verify broker market hours, quote freshness and Tier-1 calendar clearance; closed or stale CFD markets are unavailable.")
     lines.append("  - Persona 4 (Devil's Advocate & Execution Realist): Vigorously evaluate Model 2 VWAP pullbacks on tight-spread crypto majors (BTC, BNB, ETH) and Model 1 extremes. Synthesize a tradeable thesis if data supports it.")
     lines.append("Part 2: QUANTITATIVE DESK RULING:")
     lines.append("  - Active positions audit: HOLD, Ratchet SL, or Exit.")
@@ -916,7 +829,7 @@ def run_full_15m_cycle():
 
     # Append to docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md
     desk_path = PROJECT_ROOT / "docs" / "trade_plans" / "LIVE_COLLABORATIVE_ORDER_DESK.md"
-    if desk_path.exists() and len(resp_text) > 50:
+    if done and desk_path.exists() and len(resp_text) > 50:
         now_dt = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
         
         # Determine next section number
@@ -928,16 +841,14 @@ def run_full_15m_cycle():
         section_entry = f"\n\n---\n\n## Section {next_sec}: Autonomous Arena.ai Big Brain Evaluation & Telemetry Audit | {now_dt}\n\n"
         section_entry += f"### 1. Cycle Trigger & Submission Details\n"
         section_entry += f"- **Mode**: Autonomous 13m/15m Collaborative Cycle (`arena_bridge.py`)\n"
-        section_entry += f"- **Status**: 100% Cash Flat | Equity: 4,813.99 USD | Floor Cushion: +38.99 USD | Buffer Headroom: +18.99 USD\n"
-        section_entry += f"- **Capacity**: Exactly 1 Slot Available (Max Nominal Risk: 11.04 USD)\n\n"
+        section_entry += "- **Status**: Completed council response received. Account, inventory, capacity and execution remain unverified by this dispatcher.\n\n"
         section_entry += f"### 2. Arena.ai Ruling & Quantitative Synthesis\n"
         section_entry += f"```text\n{resp_text}\n```\n\n"
         section_entry += f"### 3. Antigravity Verification & Action Plan\n"
         if "PUNCH NONE" in resp_text or "DEFENSIVE HOLD" in resp_text:
-            section_entry += f"- **Consensus Verdict**: **PUNCH NONE / DEFENSIVE HOLD**. Zero setups clear all 5 gates simultaneously.\n"
-            section_entry += f"- **Action Taken**: Maintain 100% Cash Flat. Preserved +38.99 USD floor cushion safely.\n"
+            section_entry += "- **Council Advice**: **PUNCH NONE / DEFENSIVE HOLD**; independent gate and account verification required.\n"
         else:
-            section_entry += f"- **Consensus Verdict**: Candidate trade proposal identified by Big Brain. Evaluating execution parameters.\n"
+            section_entry += "- **Council Advice**: Review the response against observed data and execution gates before accepting any proposal.\n"
 
         with open(desk_path, "a", encoding="utf-8") as f:
             f.write(section_entry)

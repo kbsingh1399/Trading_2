@@ -326,9 +326,9 @@ def test_whale_wall_age_is_not_clamped_to_the_persistence_threshold():
     >=180s mandate threshold. That fabricates compliance with mandate 4 for
     every wall in the universe and can induce a punch on unverified data.
     """
-    src = (ROOT / "Terminal" / "arena_bridge.py").read_text()
-    assert "max(w_age, 180)" not in src
-    assert "no persistence series" in src
+    prompt = _load_arena_bridge().build_48h_orderflow_prompt()
+    assert "no persistence series means UNVERIFIED" in prompt
+    assert "Observation age never substitutes for wall persistence" in prompt
 
 
 # ------------------------------------------------ 4. mirrored whale walls
@@ -420,10 +420,10 @@ def test_mirror_detection_is_malformed_input_safe():
 
 
 def test_briefing_labels_mirrored_walls_as_brackets():
-    """The render must carry the bracket verdict, not just the raw wall."""
-    src = (ROOT / "Terminal" / "arena_bridge.py").read_text()
-    assert "detect_mirrored_wall_leg(w, whales)" in src
-    assert "NOT net directional inventory" in src
+    """A link prompt must preserve the mirrored-wall exclusion rule."""
+    prompt = _load_arena_bridge().build_48h_orderflow_prompt()
+    assert "MIRRORED_LEG" in prompt and "NOT net directional inventory" in prompt
+    assert "GENUINE L3 walls require gate_g7_eligible=true" in prompt
 
 
 # ------------------------------------- 5. enforced regime vs cosmetic label
@@ -508,10 +508,8 @@ def test_enforced_regime_degrades_without_raising():
 
 
 def test_briefing_marks_the_200ema_label_as_cosmetic():
-    """The render must name the binding gate, not imply the label is it."""
-    src = (ROOT / "Terminal" / "arena_bridge.py").read_text()
-    assert "cosmetic, NOT the gate" in src
-    assert "BINDING for both engines" in src
-    assert "enforced_regime(t_asset, gate_classifier, snapshot_as_of)" in src
-    # the old bare "Regime = <200EMA label>" framing must be gone
-    assert "| Regime = {inds.get('trend_regime'" not in src
+    """The link prompt names the binding regime gates for both models."""
+    prompt = _load_arena_bridge().build_48h_orderflow_prompt()
+    assert "cosmetic, NOT the gate" in prompt
+    assert "BINDING for both engines" in prompt
+    assert "decision_gates_v3.classify_regime" in prompt

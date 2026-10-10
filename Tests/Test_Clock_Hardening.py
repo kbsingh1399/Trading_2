@@ -91,7 +91,7 @@ def test_native_cadence_rejects_postclose_and_unverified_clock(tmp_path):
     assert not trading.state["intents"]
 
 
-@pytest.mark.parametrize("entry_mode", ["limit", "market"])
+@pytest.mark.parametrize("entry_mode", ["limit"])
 def test_expiring_window_after_intent_preparation_is_proven_rejection(tmp_path, monkeypatch, entry_mode):
     from Tests.Test_Omni_Engine import NOW, trader
     from Terminal.risk.blackout_guard import BlackoutGuard

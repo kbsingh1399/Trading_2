@@ -505,3 +505,102 @@ def test_persistence_alone_no_longer_certifies_gate_g7():
     assert wclass == WALL_TOP_OF_BOOK
     # This is the exact expression the generator now publishes.
     assert (pers["gate_g7_eligible"] and wclass == WALL_GENUINE) is False
+
+
+# Wallet receipts are distinct from telemetry generation clocks.
+def test_repeated_and_backward_wall_timestamps_do_not_add_evidence():
+    state = {}
+    for stamp in (1000.0, 1060.0, 1180.0):
+        before = wall_persistence_record(state, state, "wallet", stamp)
+    saved = dict(state["wallet"])
+    assert before["presence_frac"] == 0.75
+    for stamp in (1180.0, 1120.0, 1180.0):
+        after = wall_persistence_record(state, state, "wallet", stamp, cycle_interval_s=120.0)
+        assert state["wallet"] == saved
+        assert after["samples"] == 3
+        assert after["persist_s"] == 180.0
+        assert after["presence_frac"] == 0.75
+        assert after["gate_g7_eligible"] is False
+
+
+def _wallet_row(**changes):
+    return dict({"address": "0xaaa", "side": "BUY", "price": 100.0, "size": 2000.0,
+                 "notional_usd": 200000.0, "observed_at": 1000.0,
+                 "timestamp_basis": "RECEIPT_ONLY",
+                 "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
+                 "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT"}, **changes)
+
+
+def _map_wallet_rows(rows, state, as_of, interval=60.0):
+    from Terminal.Data_Factory.generate_telemetry_snapshot import sampled_wallet_whale_walls
+    return sampled_wallet_whale_walls(rows, {"bids": [{"price": 99.0}], "asks": [{"price": 101.0}]},
+                                     "BTC", 100.0, state, state, as_of, interval)
+
+
+def test_wallet_mapping_preserves_provider_provenance_and_source_receipt():
+    original = _wallet_row(provider_detail="retained")
+    state = {}
+    result = _map_wallet_rows([original], state, 1100.0)[0]
+    for field in ("observed_at", "timestamp_basis", "coverage", "source", "provider_detail"):
+        assert result[field] == original[field]
+    assert state["BTC_L3_0xaaa_BUY_100.0"]["last_seen"] == 1000.0
+    assert result["identity_kind"] == "WALLET_PRICE_LEVEL_NO_ORDER_ID"
+    assert result["persistence_basis"] == "SAMPLED_RECEIPT_RECURRENCE"
+    assert "samples" not in original
+
+
+def test_cached_wallet_reads_cannot_repair_missing_presence():
+    state = {}
+    for observed in (1000.0, 1060.0, 1180.0):
+        result = _map_wallet_rows([_wallet_row(observed_at=observed)], state, observed)[0]
+    before = dict(state["BTC_L3_0xaaa_BUY_100.0"])
+    for generation in (1240.0, 1300.0, 1360.0):
+        result = _map_wallet_rows([_wallet_row(observed_at=1180.0)], state, generation, interval=120.0)[0]
+        assert result["presence_frac"] == 0.75
+        assert result["samples"] == 3
+        assert result["persist_s"] == 180.0
+        assert result["gate_g7_eligible"] is False
+        assert state["BTC_L3_0xaaa_BUY_100.0"] == before
+
+
+def test_backward_wallet_receipt_does_not_rewind_or_extend_state():
+    state = {}
+    _map_wallet_rows([_wallet_row(observed_at=1000.0)], state, 1000.0)
+    _map_wallet_rows([_wallet_row(observed_at=1060.0)], state, 1060.0)
+    before = dict(state["BTC_L3_0xaaa_BUY_100.0"])
+    result = _map_wallet_rows([_wallet_row(observed_at=1020.0)], state, 1120.0)[0]
+    assert result["samples"] == 2 and result["persist_s"] == 60.0
+    assert state["BTC_L3_0xaaa_BUY_100.0"] == before
+
+
+@pytest.mark.parametrize("observed", [None, "bad", float("nan"), float("inf"), 0.0, 1100.0])
+def test_invalid_wallet_timestamp_has_no_persistence_evidence(observed):
+    state = {}
+    result = _map_wallet_rows([_wallet_row(observed_at=observed)], state, 1000.0)[0]
+    assert not state
+    assert result["persistence_status"] == "INVALID_OBSERVATION_TIMESTAMP"
+    assert result["gate_g7_eligible"] is False
+
+
+def test_matching_opposite_sizes_from_different_wallets_are_not_mirrors():
+    rows = [_wallet_row(), _wallet_row(address="0xbbb", side="SELL", price=100.01)]
+    result = _map_wallet_rows(rows, {}, 1000.0)
+    assert all(r["wall_class"] == "GENUINE" for r in result)
+
+
+def test_matching_opposite_sizes_from_same_wallet_are_mirrors():
+    rows = [_wallet_row(), _wallet_row(address="0xAAA", side="SELL", price=100.01)]
+    result = _map_wallet_rows(rows, {}, 1000.0)
+    assert all(r["wall_class"] == "MIRRORED_LEG" for r in result)
+    assert all(r["gate_g7_eligible"] is False for r in result)
+
+
+def test_wallet_recurrence_is_explicitly_sampled_without_order_identity():
+    state = {}
+    for observed in (1000.0, 1060.0, 1120.0, 1180.0):
+        result = _map_wallet_rows([_wallet_row(observed_at=observed)], state, observed)[0]
+    assert result["persistence_status"] == "SAMPLED_RECURRENCE_VERIFIED"
+    assert result["identity_kind"] == "WALLET_PRICE_LEVEL_NO_ORDER_ID"
+    assert result["persistence_basis"] == "SAMPLED_RECEIPT_RECURRENCE"
+    assert result["sample_span_sec"] == 180.0
+    assert result["samples"] == 4

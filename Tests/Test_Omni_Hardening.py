@@ -427,7 +427,7 @@ def test_s1_pullback_stages_passive_limit_and_front_runs_overhead_wall(tmp_path)
     assert pos["hurdle_r"] < 2.5                            # hurdle depressed by the wall
 
 
-def test_t1_breakout_routes_to_aggressive_market_entry(tmp_path):
+def test_t1_breakout_preserves_passive_limit_entry_mode(tmp_path):
     t, b = trader(tmp_path, mid=120.0, entry_mode="limit")
     trend_bars = bars(trend=0.2)      # efficiency ratio >= 0.35 with aligned tape
     t.bars = {a: trend_bars for a in UNIVERSE}
@@ -437,8 +437,8 @@ def test_t1_breakout_routes_to_aggressive_market_entry(tmp_path):
     assert result["decision"] == "PAPER_FILLED"
     pos = t.state["paper_positions"][0]
     assert pos["sleeve"] == "T1_BREAKOUT"
-    assert pos["entry_mode"] == "market"                   # aggressive entry despite --entry-mode limit
-    assert pos["price_open"] == pytest.approx(120.01)       # filled at the ask
+    assert pos["entry_mode"] == "limit"
+    assert pos["price_open"] < 119.99                     # rests below the bid
 
 
 # ================================= Execution-chain race fixes (F-02..F-04)

@@ -647,6 +647,72 @@ def atomic_snapshot_write(out_path, payload):
         temp_path.unlink(missing_ok=True)
 
 
+def sampled_wallet_whale_walls(rows, book, asset, mid, prev_state, new_state,
+                               as_of_epoch, cycle_interval_s):
+    """Map provider wallet snapshots and measure recurrence at original receipts."""
+    wallet_whales_l3 = []
+    for w in rows:
+        px = float(w.get("price") or 0.0)
+        sz = float(w.get("size") or 0.0)
+        notional = float(w.get("notional_usd") or (px * sz))
+        addr = str(w.get("address") or "")
+        if addr.startswith("0x") and px > 0 and sz > 0:
+            wallet_whales_l3.append({
+                **w,
+                "address": addr,
+                "side": w.get("side", "UNKNOWN"),
+                "price": round(px, 4),
+                "size": round(sz, 4),
+                "notional_usd": round(notional, 2),
+                "distance_pct": round((px - mid) / mid * 100.0, 2) if mid > 0 else 0.0,
+                "source": w.get("source") or "UNAVAILABLE",
+                "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
+                "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
+            })
+    wallet_whales_l3.sort(key=lambda x: x["notional_usd"], reverse=True)
+    top_wallet_whales_l3 = [w for w in wallet_whales_l3 if w["notional_usd"] >= 150_000.0 or w in wallet_whales_l3[:10]]
+
+    # Wallet/price recurrence is sampled receipt evidence. The provider has
+    # no order IDs, so elapsed sample time cannot prove continuous order life.
+    _l3_book = book or {}
+    _l3_bids = _l3_book.get("bids") or []
+    _l3_asks = _l3_book.get("asks") or []
+    _l3_best_bid = float(_l3_bids[0]["price"]) if _l3_bids else None
+    _l3_best_ask = float(_l3_asks[0]["price"]) if _l3_asks else None
+    for _w in top_wallet_whales_l3:
+        _side = str(_w.get("side") or "UNKNOWN").upper()
+        _opp = [(x["price"], x["notional_usd"]) for x in wallet_whales_l3
+                if str(x.get("side") or "").upper() != _side
+                and str(x.get("address") or "").lower() == _w["address"].lower()]
+        _key = f"{asset}_L3_{_w['address']}_{_side}_{_w['price']}"
+        try:
+            _observed_at = float(_w["observed_at"])
+        except (KeyError, TypeError, ValueError):
+            _observed_at = 0.0
+        if not math.isfinite(_observed_at) or not 0 < _observed_at <= as_of_epoch:
+            _w.update(persist_s=0.0, presence_frac=0.0, samples=0,
+                      persistence_status="INVALID_OBSERVATION_TIMESTAMP", gate_g7_eligible=False)
+            continue
+        _pers = wall_persistence_record(prev_state, new_state, _key,
+                                        _observed_at, cycle_interval_s=cycle_interval_s)
+        _wclass = classify_wall(_side, _w["price"], _w["notional_usd"],
+                                _l3_best_bid, _l3_best_ask, _opp)
+        _w["persist_s"] = _pers["persist_s"]
+        _w["presence_frac"] = _pers["presence_frac"]
+        _w["samples"] = _pers["samples"]
+        _w["sample_span_sec"] = _pers["persist_s"]
+        _w["persistence_status"] = (
+            "SAMPLED_RECURRENCE_VERIFIED" if _pers["gate_g7_eligible"]
+            else _pers["persistence_status"])
+        _w["wall_class"] = _wclass
+        _w["gate_g7_eligible"] = bool(
+            _pers["gate_g7_eligible"] and _wclass == WALL_GENUINE)
+        _w["first_seen_utc"] = datetime.fromtimestamp(
+            _pers["first_seen"], tz=timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
+
+    return top_wallet_whales_l3
+
+
 def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                            whale_state_path: Any = None) -> Dict[str, Any]:
     """Master generation routine.
@@ -1215,52 +1281,10 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
         # Level 3 Resting Wallet Orders (Whales with 0x addresses)
         # -----------------------------------------------------------------
         hd_l3 = hd_res.get("l3_orders", []) if hd_status == "SUCCESS" else []
-        wallet_whales_l3 = []
-        for w in hd_l3:
-            px = float(w.get("price") or 0.0)
-            sz = float(w.get("size") or 0.0)
-            notional = float(w.get("notional_usd") or (px * sz))
-            addr = str(w.get("address") or "")
-            if addr.startswith("0x") and px > 0 and sz > 0:
-                wallet_whales_l3.append({
-                    "address": addr,
-                    "side": w.get("side", "UNKNOWN"),
-                    "price": round(px, 4),
-                    "size": round(sz, 4),
-                    "notional_usd": round(notional, 2),
-                    "distance_pct": round((px - hd_mid) / hd_mid * 100.0, 2) if hd_mid > 0 else 0.0,
-                    "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT"
-                })
-        wallet_whales_l3.sort(key=lambda x: x["notional_usd"], reverse=True)
-        top_wallet_whales_l3 = [w for w in wallet_whales_l3 if w["notional_usd"] >= 150_000.0 or w in wallet_whales_l3[:10]]
-
-        # Persistence + authenticity for the on-chain wallet walls. These are the
-        # genuinely directional levels (identified 0x addresses), and Gate G-7's
-        # persist_s / presence_frac requirements were written against exactly this
-        # kind of resting order. Keyed per wallet so each address's unbroken run
-        # is measured on its own merits rather than pooled across wallets.
-        _l3_book = (hd_res.get("book") or {}) if hd_status == "SUCCESS" else {}
-        _l3_bids = _l3_book.get("bids") or []
-        _l3_asks = _l3_book.get("asks") or []
-        _l3_best_bid = float(_l3_bids[0]["price"]) if _l3_bids else None
-        _l3_best_ask = float(_l3_asks[0]["price"]) if _l3_asks else None
-        for _w in top_wallet_whales_l3:
-            _side = str(_w.get("side") or "UNKNOWN").upper()
-            _opp = [(x["price"], x["notional_usd"]) for x in wallet_whales_l3
-                    if str(x.get("side") or "").upper() != _side]
-            _key = f"{asset}_L3_{_w['address']}_{_side}_{_w['price']}"
-            _pers = wall_persistence_record(prev_whale_state, new_whale_state, _key,
-                                            now_ts, cycle_interval_s=_cycle_interval_s)
-            _wclass = classify_wall(_side, _w["price"], _w["notional_usd"],
-                                    _l3_best_bid, _l3_best_ask, _opp)
-            _w["persist_s"] = _pers["persist_s"]
-            _w["presence_frac"] = _pers["presence_frac"]
-            _w["persistence_status"] = _pers["persistence_status"]
-            _w["wall_class"] = _wclass
-            _w["gate_g7_eligible"] = bool(
-                _pers["gate_g7_eligible"] and _wclass == WALL_GENUINE)
-            _w["first_seen_utc"] = datetime.fromtimestamp(
-                _pers["first_seen"], tz=timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
+        top_wallet_whales_l3 = sampled_wallet_whale_walls(
+            hd_l3, (hd_res.get("book") or {}) if hd_status == "SUCCESS" else {},
+            asset, hd_mid, prev_whale_state, new_whale_state,
+            time.time(), _cycle_interval_s)
 
         # -----------------------------------------------------------------
         # Live L2 Orderbook Depth (Top 20 Bids and Top 20 Asks)

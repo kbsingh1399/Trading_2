@@ -131,6 +131,29 @@ def load_successful_generation(generated_snapshot, *, clock=None):
         return None
 
 
+def _verified_publication_revision(revision, remote_revision, generated_snapshot):
+    """Prove an immutable revision contains only unpushed telemetry changes."""
+    code, _, _ = run_cmd(["git", "merge-base", "--is-ancestor", remote_revision, revision])
+    if code:
+        return False
+    code, commits, _ = run_cmd(["git", "rev-list", "--parents", f"{remote_revision}..{revision}"])
+    if code:
+        return False
+    for row in commits.splitlines():
+        parts = row.split()
+        # A merge can import arbitrary operator work despite a clean final diff.
+        if len(parts) != 2:
+            return False
+        code, changed, _ = run_cmd(["git", "diff-tree", "--no-commit-id", "--name-only", "-r", parts[0]])
+        if code or changed.splitlines() != [SNAPSHOT_FILE]:
+            return False
+    code, contents, _ = run_cmd(["git", "show", f"{revision}:{SNAPSHOT_FILE}"])
+    try:
+        return code == 0 and json.loads(contents) == generated_snapshot
+    except (ValueError, TypeError):
+        return False
+
+
 def sync_git_cycle(generated_snapshot=None, *, clock=None):
     """Publish this successful cycle's snapshot alone to canonical main."""
     if load_successful_generation(generated_snapshot, clock=clock) is None:
@@ -167,7 +190,7 @@ def sync_git_cycle(generated_snapshot=None, *, clock=None):
         else:
             code_ahead, _, _ = run_cmd(["git", "merge-base", "--is-ancestor", f"origin/{BRANCH_NAME}", "HEAD"])
             if code_ahead == 0:
-                logger.info("Local main is ahead of origin/%s (unpushed telemetry commit present); proceeding to sync", BRANCH_NAME)
+                logger.info("Local main is ahead of origin/%s; unpushed commit contents require verification", BRANCH_NAME)
             else:
                 logger.warning("Telemetry publication deferred: local main has diverged from origin/%s", BRANCH_NAME)
                 return False
@@ -175,7 +198,10 @@ def sync_git_cycle(generated_snapshot=None, *, clock=None):
     if load_successful_generation(generated_snapshot, clock=clock) is None:
         return False
     code, modified, _ = run_cmd(["git", "status", "--porcelain", "--", SNAPSHOT_FILE])
-    if not code and modified:
+    if code:
+        logger.warning("Telemetry publication deferred: snapshot status unavailable")
+        return False
+    if modified:
         # --only excludes every foreign index entry even if it appears after the
         # initial staged-work check; no bare commit, directory add or auto-stash.
         now_str = generated_snapshot["as_of_utc"]
@@ -183,10 +209,21 @@ def sync_git_cycle(generated_snapshot=None, *, clock=None):
         if code:
             logger.warning("Telemetry commit failed: %s", err)
             return False
-    code, _, err = run_cmd(["git", "push", "origin", f"HEAD:{BRANCH_NAME}", f"HEAD:{ARENA_BRANCH}"])
+    code, publication_revision, _ = run_cmd(["git", "rev-parse", "HEAD"])
+    if code or not publication_revision or not _verified_publication_revision(
+            publication_revision, remote_rev, generated_snapshot):
+        logger.warning("REFUSING to publish mismatched snapshot or unpushed operator commits")
+        return False
+    if load_successful_generation(generated_snapshot, clock=clock) is None:
+        return False
+    # Never resolve HEAD during push: the operator may commit after verification.
+    code, _, err = run_cmd(["git", "push", "--atomic", "origin",
+                            f"{publication_revision}:{BRANCH_NAME}", f"{publication_revision}:{ARENA_BRANCH}"])
     if code:
         logger.warning("Dual-ref push failed (%s); attempting fallback push to main only", err)
-        code_main, _, err_main = run_cmd(["git", "push", "origin", f"HEAD:{BRANCH_NAME}"])
+        if load_successful_generation(generated_snapshot, clock=clock) is None:
+            return False
+        code_main, _, err_main = run_cmd(["git", "push", "origin", f"{publication_revision}:{BRANCH_NAME}"])
         if code_main:
             logger.warning("Telemetry push failed; retaining local commit for review: %s", err_main)
             return False
@@ -221,9 +258,9 @@ def main():
             snapshot = None
             try:
                 snapshot = gen_mod.generate_full_snapshot(bridge=bridge)
-                equity = snapshot.get("account", {}).get("equity_usd", 0.0)
-                cushion = snapshot.get("account", {}).get("cushion_above_floor_usd", 0.0)
-                pending = snapshot.get("capacity", {}).get("pending", 0)
+                equity = snapshot["account"]["equity_usd"]
+                cushion = snapshot["account"]["cushion_above_floor_usd"]
+                pending = snapshot["capacity"]["pending"]
                 logger.info(f"Telemetry generated. Equity: {equity:.2f} USD | Cushion: +{cushion:.2f} USD | Pending Orders: {pending}")
             except Exception as exc:
                 logger.error(f"Error during generate_full_snapshot: {exc}", exc_info=True)
