@@ -9157,4 +9157,39 @@ Pursuant to the Operator's **Zero-Hesitation Autonomous Punch Mandate**, with th
 - **Preserved Margin Above 4,795.00 USD Operating Buffer**: **+91.23 USD** (4.5x mandatory >= 20.00 USD buffer).
 - **Capacity Utilization**: **1 / 4 slots utilized** (3 vacant slots available across Commodities, Indices, and Forex).
 
+---
+
+## SECTION 127: ARENA MULTI-PERSONA COUNCIL AUDIT (STEPS 1, 2, 3) · TICKET #18762461 CANCELLED PER G-4 INVARIANT (12:00 UTC / 17:30 IST)
+### 1. Arena.ai Multi-Persona Forensic Findings
+Arena evaluated the desk state under the 4 council personas across all 3 Mandates:
+- **Mandate 1 (New Limit Order Candidates)**: **0 / 24 admissible**. LINK displayed an admissible `MEAN_REVERT` regime ($vr_z = -1.539$, $er = 0.0811$), but was disqualified by a prohibitive 65.71 bps broker spread ($c = 1.33\text{R}$). All other cryptos classified as `UNDEFINED`.
+- **Mandate 2 (Running Trades)**: 0 active positions floating. Margin used: 0.00 USD. Nothing to ratchet.
+- **Mandate 3 (Audit Resting Limit Order #18762461)**:
+  * **Verified Economics**: Arena verified that the economics and geometry of Ticket #18762461 were exceptionally high quality:
+    - Risk: 10.00 USD | R:R: 2.50 | Spread: 1.93 bps | Friction $c$: $0.0320\text{R}$ (clears strict $0.10\text{R}$ cap) | $EV_{\text{lower}}$ at $p=0.4197$: $\mathbf{+0.3789\text{R}}$ (positive net expectancy!).
+    - 83,900 USD ask wall target confirmed real (839k + 183k USD at 83,900; 21.8M USD above at 83,959 USD).
+  * **The Fatal Gate Failure (Gate G-4 Regime)**:
+    - `classify_regime(BTC)` returns `UNDEFINED`. The "BULLISH" tag in indicators was the cosmetic 200-EMA heuristic.
+    - Causal 4H higher-timeframe metrics: $t = -5.991$, $er = 0.2976$.
+    - `htf_confirms_direction(4h, -1 DOWN) = True` $\rightarrow$ **The 4H confirms an active downtrend!**
+    - Under Invariant G-4, entering a LONG pullback into a 4H-confirmed downtrend selects adverse cascade risk rather than continuation.
+  * **Whale Persistence Sentry**: Top-of-book depth (best bid/ask at 82,850.5 USD) was erroneously certified by the initial persistence tracker, while the 348 genuine on-chain Ethereum whale walls (`top_wallet_whales_l3`) were not yet wired into `microstructure_state.py`.
+- **Council Ruling**: **CANCEL TICKET #18762461 & STAND ASIDE FLAT**.
+
+### 2. Autonomous Execution & Account State
+- Pursuant to Council synthesis and strict fail-closed causal discipline, Antigravity immediately transmitted `TRADE_ACTION_REMOVE` to MetaTrader 5:
+  * **Order Ticket #18762461 CANCELLED CLEANLY** (`retcode: 10009`, `TRADE_RETCODE_DONE`).
+- **Live Account Status**:
+  * Balance & Equity: **4,896.55 USD** (100% Cash Reserves | 0.00 USD Margin Exposure).
+  * Open Positions: **0** | Pending Orders: **0**.
+  * Floor Cushion: **+121.55 USD** above 4,775.00 USD hard floor.
+  * Committed Risk: **0.00 USD**.
+
+### 3. Corrections Approved & Dispatched to Arena
+Arena was authorized and instructed to ship two targeted fixes on `arena/537c1eb8-trading-2`:
+1. Exclude top-of-book best bid/ask and mirrored MM depth from whale wall certification.
+2. Wire `wall_persistence_record` into `top_wallet_whales_l3` so the 348 authentic on-chain whale orders receive continuous unbroken run persistence tracking.
+10-minute dynamic sleep loop armed (Task ID `task-35044`).
+
+
 
