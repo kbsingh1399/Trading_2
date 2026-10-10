@@ -20,13 +20,33 @@ def validate_observed_snapshot(payload):
         if quote.get("quote_source") == "UNAVAILABLE" and any(quote.get(k) is not None for k in ("bid", "ask", "mid", "spread_bps")):
             return False
         book = entry.get("orderbook_live_depth") or {}
-        if book.get("whale_walls_l3"):
-            return False
+        walls_l3 = book.get("whale_walls_l3") or []
+        if walls_l3:
+            for w in walls_l3:
+                if not isinstance(w, dict):
+                    return False
+                addr = str(w.get("address", ""))
+                if not addr.startswith("0x") or float(w.get("price") or 0) <= 0 or float(w.get("size") or 0) <= 0:
+                    return False
         stops = entry.get("structural_stop_clusters") or {}
-        liqs = entry.get("reconstructed_liquidations") or {}
-        if stops.get("source") != "UNAVAILABLE" or stops.get("top_sell_stop_clusters_below") or stops.get("top_buy_stop_clusters_above"):
+        s_src = stops.get("source")
+        if s_src == "HYPERDASH_GRAPHQL_STOP_LEVELS":
+            if stops.get("coverage") != "REAL_HYPERLIQUID_ONCHAIN_STOPS":
+                return False
+        elif s_src == "UNAVAILABLE":
+            if stops.get("top_sell_stop_clusters_below") or stops.get("top_buy_stop_clusters_above"):
+                return False
+        else:
             return False
-        if liqs.get("source") not in ("UNAVAILABLE", "NOT_APPLICABLE") or liqs.get("top_long_cascade_bands_below") or liqs.get("top_short_squeeze_bands_above"):
+        liqs = entry.get("reconstructed_liquidations") or {}
+        l_src = liqs.get("source")
+        if l_src == "HYPERDASH_GRAPHQL_LIQUIDATION_LEVELS":
+            if liqs.get("coverage") != "REAL_HYPERLIQUID_POSITION_LIQUIDATIONS":
+                return False
+        elif l_src in ("UNAVAILABLE", "NOT_APPLICABLE"):
+            if liqs.get("top_long_cascade_bands_below") or liqs.get("top_short_squeeze_bands_above"):
+                return False
+        else:
             return False
         if (entry.get("pioneer_microstructure_eval") or {}).get("confluence_trade_setup") is not None:
             return False

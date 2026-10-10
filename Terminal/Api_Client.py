@@ -27,9 +27,10 @@ class HyperdashClient:
         self.asset_cache: Dict[str, Any] = {}
         self.universe: List[str] = []
         self.wallet_risk_cache = {}
+        self._graphql_cache: Dict[str, Tuple[float, Any]] = {}
         # Dedicated limiters: fast REST for live orderbook/trades, protected GraphQL for analytics
         self._hl_limiter = TokenBucket(rate=15.0, capacity=30.0)
-        self._graphql_limiter = TokenBucket(rate=1.5, capacity=3.0)
+        self._graphql_limiter = TokenBucket(rate=3.0, capacity=6.0)
 
     def _post_json(self, url: str, payload: dict) -> dict:
         if HD_GRAPHQL_URL in url:
@@ -43,17 +44,21 @@ class HyperdashClient:
                 with urllib.request.urlopen(req, timeout=self.timeout) as resp:
                     result = json.loads(resp.read().decode("utf-8"))
                     if isinstance(result, dict) and result.get("errors"):
+                        err_str = str(result["errors"])
+                        if ("RATE_LIMIT_EXCEEDED" in err_str or "Too many" in err_str or "429" in err_str) and attempt < 2:
+                            time.sleep(2.0 * (attempt + 1))
+                            continue
                         raise ValueError(f"GraphQL rejected request: {result['errors']}")
                     return result
             except urllib.error.HTTPError as e:
-                if e.code == 429 and attempt < 2:
-                    time.sleep(1.0 * (attempt + 1))
+                if (e.code == 429 or e.code == 503) and attempt < 2:
+                    time.sleep(2.0 * (attempt + 1))
                     continue
                 err_msg = e.read().decode("utf-8", errors="ignore")
                 raise RuntimeError(f"HTTP {e.code} Error from {url}: {err_msg}")
             except Exception as e:
-                if attempt < 2 and "timeout" in str(e).lower():
-                    time.sleep(0.5)
+                if attempt < 2 and ("timeout" in str(e).lower() or "reset" in str(e).lower() or "rate" in str(e).lower()):
+                    time.sleep(1.0)
                     continue
                 raise RuntimeError(f"Connection Error to {url}: {e}")
 
@@ -137,14 +142,18 @@ class HyperdashClient:
     def _resolve_coin(self, coin: str) -> str:
         if ":" in coin: return coin
         asset = canonical_asset(coin)
-        if asset in {"SP500", "NAS100", "DJ30", "GOLD", "SILVER"}:
-            cached = self.asset_cache.get(asset)
-            if not cached:
-                self.fetch_all_assets()
-                cached = self.asset_cache.get(asset)
-            if not cached or not cached.get("signal_market"):
-                raise ValueError(f"No observed HIP-3 market for {asset}")
-            return cached["signal_market"]
+        HIP3_MAP = {
+            "SP500": "xyz:SP500",
+            "NAS100": "xyz:XYZ100",
+            "GOLD": "xyz:GOLD",
+            "SILVER": "xyz:SILVER",
+            "USWTI": "xyz:CL",
+            "EURUSD": "xyz:EUR",
+            "GBPUSD": "xyz:GBP",
+            "USDJPY": "xyz:JPY",
+        }
+        if asset in HIP3_MAP:
+            return HIP3_MAP[asset]
         return asset
 
     def fetch_l2_book(self, coin: str) -> Dict[str, Any]:
@@ -195,6 +204,11 @@ class HyperdashClient:
         Powers the Hyperdash Level 3 orderbook overlay.
         """
         hl_coin = self._resolve_coin(coin)
+        cache_key = f"l3_{hl_coin}"
+        now_epoch = time.time()
+        if cache_key in self._graphql_cache and (now_epoch - self._graphql_cache[cache_key][0]) < 90.0:
+            return self._graphql_cache[cache_key][1]
+
         query = """
         query GetOrderbookSnapshotFiltered($market: String!, $minPrice: Float!, $maxPrice: Float!) {
           orderbookSnapshotFiltered(market: $market, minPrice: $minPrice, maxPrice: $maxPrice) {
@@ -209,39 +223,50 @@ class HyperdashClient:
         }
         """
         variables = {"market": hl_coin, "minPrice": float(min_price), "maxPrice": float(max_price)}
-        data = self._post_json(HD_GRAPHQL_URL, {"query": query, "variables": variables})
-        node = data.get("data") or {}
-        if "orderbookSnapshotFiltered" not in node or not isinstance(node["orderbookSnapshotFiltered"], list):
-            raise RuntimeError("Hyperdash orderbookSnapshotFiltered response unavailable")
-        orders_raw = node["orderbookSnapshotFiltered"]
+        try:
+            data = self._post_json(HD_GRAPHQL_URL, {"query": query, "variables": variables})
+            node = data.get("data") or {}
+            if "orderbookSnapshotFiltered" not in node or not isinstance(node["orderbookSnapshotFiltered"], list):
+                raise RuntimeError("Hyperdash orderbookSnapshotFiltered response unavailable")
+            orders_raw = node["orderbookSnapshotFiltered"]
 
-        orders = []
-        observed_at = time.time()
-        for o in orders_raw:
-            sub = o.get("order", {})
-            px = float(sub.get("limitPx", 0.0))
-            sz = float(sub.get("sz", 0.0))
-            if px <= 0 or sz <= 0 or not str(o.get("address", "")).startswith("0x") or sub.get("side") not in ("B", "A"):
-                continue
-            orders.append({
-                "address": o.get("address", ""),
-                "side": "BUY" if sub.get("side") == "B" else "SELL" if sub.get("side") == "A" else "UNKNOWN",
-                "price": px,
-                "size": sz,
-                "notional_usd": px * sz,
-                "observed_at": observed_at,
-                "timestamp_basis": "RECEIPT_ONLY",
-                "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
-                "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
-            })
+            orders = []
+            observed_at = time.time()
+            for o in orders_raw:
+                sub = o.get("order", {})
+                px = float(sub.get("limitPx", 0.0))
+                sz = float(sub.get("sz", 0.0))
+                if px <= 0 or sz <= 0 or not str(o.get("address", "")).startswith("0x") or sub.get("side") not in ("B", "A"):
+                    continue
+                orders.append({
+                    "address": o.get("address", ""),
+                    "side": "BUY" if sub.get("side") == "B" else "SELL" if sub.get("side") == "A" else "UNKNOWN",
+                    "price": px,
+                    "size": sz,
+                    "notional_usd": px * sz,
+                    "observed_at": observed_at,
+                    "timestamp_basis": "RECEIPT_ONLY",
+                    "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
+                    "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
+                })
 
-        # Sort by notional value descending (whales first)
-        orders.sort(key=lambda x: x["notional_usd"], reverse=True)
-        return orders
+            # Sort by notional value descending (whales first)
+            orders.sort(key=lambda x: x["notional_usd"], reverse=True)
+            self._graphql_cache[cache_key] = (now_epoch, orders)
+            return orders
+        except Exception:
+            if cache_key in self._graphql_cache:
+                return self._graphql_cache[cache_key][1]
+            raise
 
     def fetch_liquidations(self, coin: str, min_price: float, max_price: float, lookback_days: int = 3) -> Dict[str, Any]:
         """Fetch real-time liquidation clusters, totals, and top liquidation whale addresses."""
         hl_coin = self._resolve_coin(coin)
+        cache_key = f"liq_{hl_coin}"
+        now_epoch = time.time()
+        if cache_key in self._graphql_cache and (now_epoch - self._graphql_cache[cache_key][0]) < 90.0:
+            return self._graphql_cache[cache_key][1]
+
         query = """
         query GetLiquidationLevelsV2(
           $coin: String!
@@ -302,93 +327,105 @@ class HyperdashClient:
             "startTime": float(start_time),
             "endTime": float(now)
         }
-        data = self._post_json(HD_GRAPHQL_URL, {"query": query, "variables": variables})
-        res = (data.get("data") or {}).get("analytics") or {}
-        if "liquidationLevels" not in res or not isinstance(res["liquidationLevels"], dict):
-            raise RuntimeError("Hyperdash liquidationLevels response unavailable")
-        res = res["liquidationLevels"]
+        try:
+            data = self._post_json(HD_GRAPHQL_URL, {"query": query, "variables": variables})
+            res = (data.get("data") or {}).get("analytics") or {}
+            if "liquidationLevels" not in res or not isinstance(res["liquidationLevels"], dict):
+                raise RuntimeError("Hyperdash liquidationLevels response unavailable")
+            res = res["liquidationLevels"]
 
-        bands = []
-        time_series_by_candle: Dict[str, List[Dict[str, Any]]] = {}
-        candle_totals: Dict[str, float] = {}
+            bands = []
+            time_series_by_candle: Dict[str, List[Dict[str, Any]]] = {}
+            candle_totals: Dict[str, float] = {}
 
-        raw_bands = res.get("bands", [])
-        for b in raw_bands:
-            hist = b.get("historicalData", [])
-            if not hist or hist[-1].get("totalAmount") is None:
-                continue  # missing history is not an observed zero
-            latest_amt = float(hist[-1]["totalAmount"])
-            min_px = float(b.get("minPrice") or 0)
-            max_px = float(b.get("maxPrice") or 0)
-            if min_px <= 0 or max_px < min_px:
-                continue
-            mid_px = (min_px + max_px) / 2.0
-
-            bands.append({
-                "min_px": min_px,
-                "max_px": max_px,
-                "mid_px": mid_px,
-                "amount": latest_amt,
-                "observed_at": hist[-1].get("timestamp", 0) if hist else 0
-            })
-
-            # Index every historical candle point
-            # GraphQL timestamp is epoch seconds (int or str). Normalize to
-            # "YYYY-MM-DD HH:MM:SS" UTC to match fetch_candles() datetime keys.
-            for pt in hist:
-                raw_ts = pt.get("timestamp")
-                amt = float(pt.get("totalAmount", 0.0))
-                if raw_ts is None:
+            raw_bands = res.get("bands", [])
+            for b in raw_bands:
+                hist = b.get("historicalData", [])
+                if not hist or hist[-1].get("totalAmount") is None:
+                    continue  # missing history is not an observed zero
+                latest_amt = float(hist[-1]["totalAmount"])
+                min_px = float(b.get("minPrice") or 0)
+                max_px = float(b.get("maxPrice") or 0)
+                if min_px <= 0 or max_px < min_px:
                     continue
-                try:
-                    epoch_sec = int(float(raw_ts))
-                    ts = time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(epoch_sec))
-                except (ValueError, TypeError, OSError):
-                    ts = str(raw_ts)
-                if ts not in time_series_by_candle:
-                    time_series_by_candle[ts] = []
-                    candle_totals[ts] = 0.0
-                time_series_by_candle[ts].append({
+                mid_px = (min_px + max_px) / 2.0
+
+                bands.append({
                     "min_px": min_px,
                     "max_px": max_px,
                     "mid_px": mid_px,
-                    "amount": amt
+                    "amount": latest_amt,
+                    "observed_at": hist[-1].get("timestamp", 0) if hist else 0
                 })
-                candle_totals[ts] += amt
 
-        # Sort candle timestamps chronologically
-        sorted_timestamps = sorted(time_series_by_candle.keys())
-        latest_ts = sorted_timestamps[-1] if sorted_timestamps else None
-        current_candle_distribution = time_series_by_candle.get(latest_ts, []) if latest_ts else []
+                # Index every historical candle point
+                # GraphQL timestamp is epoch seconds (int or str). Normalize to
+                # "YYYY-MM-DD HH:MM:SS" UTC to match fetch_candles() datetime keys.
+                for pt in hist:
+                    raw_ts = pt.get("timestamp")
+                    amt = float(pt.get("totalAmount", 0.0))
+                    if raw_ts is None:
+                        continue
+                    try:
+                        epoch_sec = int(float(raw_ts))
+                        ts = time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(epoch_sec))
+                    except (ValueError, TypeError, OSError):
+                        ts = str(raw_ts)
+                    if ts not in time_series_by_candle:
+                        time_series_by_candle[ts] = []
+                        candle_totals[ts] = 0.0
+                    time_series_by_candle[ts].append({
+                        "min_px": min_px,
+                        "max_px": max_px,
+                        "mid_px": mid_px,
+                        "amount": amt
+                    })
+                    candle_totals[ts] += amt
 
-        return {
-            "coin": coin,
-            "current_price": res.get("currentPrice"),
-            "kind": "UNVERIFIED_BAND_LANDSCAPE",
-            "received_at": time.time(),
-            "band_size": res.get("bandSize"),
-            "source": "HYPERDASH_GRAPHQL_ANALYTICS_UNVERIFIED_METHODOLOGY",
-            "size_unit": "BASE_ASSET_REPORTED_UNVERIFIED",
-            "total_long_size": (res.get("totalLongLiquidations") or {}).get("size"),
-            "total_long_count": (res.get("totalLongLiquidations") or {}).get("count"),
-            "total_short_size": (res.get("totalShortLiquidations") or {}).get("size"),
-            "total_short_count": (res.get("totalShortLiquidations") or {}).get("count"),
-            "top_long_whales": res.get("topLongLiquidations", []),
-            "top_short_whales": res.get("topShortLiquidations", []),
-            "bands": bands,
-            "timestamps": sorted_timestamps,
-            "candle_snapshots": time_series_by_candle,
-            "candle_totals": candle_totals,
-            "current_candle": {
-                "timestamp": latest_ts,
-                "total_amount": candle_totals.get(latest_ts) if latest_ts else None,
-                "distribution": current_candle_distribution
+            # Sort candle timestamps chronologically
+            sorted_timestamps = sorted(time_series_by_candle.keys())
+            latest_ts = sorted_timestamps[-1] if sorted_timestamps else None
+            current_candle_distribution = time_series_by_candle.get(latest_ts, []) if latest_ts else []
+
+            out_res = {
+                "coin": coin,
+                "current_price": res.get("currentPrice"),
+                "kind": "UNVERIFIED_BAND_LANDSCAPE",
+                "received_at": time.time(),
+                "band_size": res.get("bandSize"),
+                "source": "HYPERDASH_GRAPHQL_ANALYTICS_UNVERIFIED_METHODOLOGY",
+                "size_unit": "BASE_ASSET_REPORTED_UNVERIFIED",
+                "total_long_size": (res.get("totalLongLiquidations") or {}).get("size"),
+                "total_long_count": (res.get("totalLongLiquidations") or {}).get("count"),
+                "total_short_size": (res.get("totalShortLiquidations") or {}).get("size"),
+                "total_short_count": (res.get("totalShortLiquidations") or {}).get("count"),
+                "top_long_whales": res.get("topLongLiquidations", []),
+                "top_short_whales": res.get("topShortLiquidations", []),
+                "bands": bands,
+                "timestamps": sorted_timestamps,
+                "candle_snapshots": time_series_by_candle,
+                "candle_totals": candle_totals,
+                "current_candle": {
+                    "timestamp": latest_ts,
+                    "total_amount": candle_totals.get(latest_ts) if latest_ts else None,
+                    "distribution": current_candle_distribution
+                }
             }
-        }
+            self._graphql_cache[cache_key] = (now_epoch, out_res)
+            return out_res
+        except Exception:
+            if cache_key in self._graphql_cache:
+                return self._graphql_cache[cache_key][1]
+            raise
 
     def fetch_stops(self, coin: str, min_price: float, max_price: float, lookback_days: int = 3) -> Dict[str, Any]:
         """Fetch live buy/sell stop orders, stop clusters, and top stop-loss whale addresses."""
         hl_coin = self._resolve_coin(coin)
+        cache_key = f"stop_{hl_coin}"
+        now_epoch = time.time()
+        if cache_key in self._graphql_cache and (now_epoch - self._graphql_cache[cache_key][0]) < 90.0:
+            return self._graphql_cache[cache_key][1]
+
         query = """
         query GetStopOrderLevelsV2(
           $coin: String!
@@ -447,88 +484,95 @@ class HyperdashClient:
             "startTime": float(start_time),
             "endTime": float(now)
         }
-        data = self._post_json(HD_GRAPHQL_URL, {"query": query, "variables": variables})
-        res = (data.get("data") or {}).get("analytics") or {}
-        if "stopOrderLevels" not in res or not isinstance(res["stopOrderLevels"], dict):
-            raise RuntimeError("Hyperdash stopOrderLevels response unavailable")
-        res = res["stopOrderLevels"]
+        try:
+            data = self._post_json(HD_GRAPHQL_URL, {"query": query, "variables": variables})
+            res = (data.get("data") or {}).get("analytics") or {}
+            if "stopOrderLevels" not in res or not isinstance(res["stopOrderLevels"], dict):
+                raise RuntimeError("Hyperdash stopOrderLevels response unavailable")
+            res = res["stopOrderLevels"]
 
-        bands = []
-        time_series_by_candle: Dict[str, List[Dict[str, Any]]] = {}
-        candle_totals: Dict[str, float] = {}
+            bands = []
+            time_series_by_candle: Dict[str, List[Dict[str, Any]]] = {}
+            candle_totals: Dict[str, float] = {}
 
-        raw_bands = res.get("bands", [])
-        for b in raw_bands:
-            hist = b.get("historicalData", [])
-            if not hist or hist[-1].get("totalAmount") is None:
-                continue  # missing history is not an observed zero
-            latest_amt = float(hist[-1]["totalAmount"])
-            min_px = float(b.get("minPrice") or 0)
-            max_px = float(b.get("maxPrice") or 0)
-            if min_px <= 0 or max_px < min_px:
-                continue
-            mid_px = (min_px + max_px) / 2.0
-
-            bands.append({
-                "min_px": min_px,
-                "max_px": max_px,
-                "mid_px": mid_px,
-                "amount": latest_amt
-            })
-
-            # Index every historical candle point
-            # GraphQL timestamp is epoch seconds (int or str). Normalize to
-            # "YYYY-MM-DD HH:MM:SS" UTC to match fetch_candles() datetime keys.
-            for pt in hist:
-                raw_ts = pt.get("timestamp")
-                amt = float(pt.get("totalAmount", 0.0))
-                if raw_ts is None:
+            raw_bands = res.get("bands", [])
+            for b in raw_bands:
+                hist = b.get("historicalData", [])
+                if not hist or hist[-1].get("totalAmount") is None:
+                    continue  # missing history is not an observed zero
+                latest_amt = float(hist[-1]["totalAmount"])
+                min_px = float(b.get("minPrice") or 0)
+                max_px = float(b.get("maxPrice") or 0)
+                if min_px <= 0 or max_px < min_px:
                     continue
-                try:
-                    epoch_sec = int(float(raw_ts))
-                    ts = time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(epoch_sec))
-                except (ValueError, TypeError, OSError):
-                    ts = str(raw_ts)
-                if ts not in time_series_by_candle:
-                    time_series_by_candle[ts] = []
-                    candle_totals[ts] = 0.0
-                time_series_by_candle[ts].append({
+                mid_px = (min_px + max_px) / 2.0
+
+                bands.append({
                     "min_px": min_px,
                     "max_px": max_px,
                     "mid_px": mid_px,
-                    "amount": amt
+                    "amount": latest_amt
                 })
-                candle_totals[ts] += amt
 
-        # Sort candle timestamps chronologically
-        sorted_timestamps = sorted(time_series_by_candle.keys())
-        latest_ts = sorted_timestamps[-1] if sorted_timestamps else None
-        current_candle_distribution = time_series_by_candle.get(latest_ts, []) if latest_ts else []
+                # Index every historical candle point
+                # GraphQL timestamp is epoch seconds (int or str). Normalize to
+                # "YYYY-MM-DD HH:MM:SS" UTC to match fetch_candles() datetime keys.
+                for pt in hist:
+                    raw_ts = pt.get("timestamp")
+                    amt = float(pt.get("totalAmount", 0.0))
+                    if raw_ts is None:
+                        continue
+                    try:
+                        epoch_sec = int(float(raw_ts))
+                        ts = time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(epoch_sec))
+                    except (ValueError, TypeError, OSError):
+                        ts = str(raw_ts)
+                    if ts not in time_series_by_candle:
+                        time_series_by_candle[ts] = []
+                        candle_totals[ts] = 0.0
+                    time_series_by_candle[ts].append({
+                        "min_px": min_px,
+                        "max_px": max_px,
+                        "mid_px": mid_px,
+                        "amount": amt
+                    })
+                    candle_totals[ts] += amt
 
-        return {
-            "coin": coin,
-            "current_price": res.get("currentPrice"),
-            "band_size": res.get("bandSize"),
-            "source": "HYPERDASH_GRAPHQL_ANALYTICS_UNVERIFIED_METHODOLOGY",
-            "size_unit": "BASE_ASSET_REPORTED_UNVERIFIED",
-            "total_buy_size": (res.get("totalBuyStops") or {}).get("size"),
-            "kind": "UNVERIFIED_STOP_LANDSCAPE",
-            "received_at": time.time(),
-            "total_buy_count": (res.get("totalBuyStops") or {}).get("count"),
-            "total_sell_size": (res.get("totalSellStops") or {}).get("size"),
-            "total_sell_count": (res.get("totalSellStops") or {}).get("count"),
-            "top_buy_whales": res.get("topBuyStops", []),
-            "top_sell_whales": res.get("topSellStops", []),
-            "bands": bands,
-            "timestamps": sorted_timestamps,
-            "candle_snapshots": time_series_by_candle,
-            "candle_totals": candle_totals,
-            "current_candle": {
-                "timestamp": latest_ts,
-                "total_amount": candle_totals.get(latest_ts) if latest_ts else None,
-                "distribution": current_candle_distribution
+            # Sort candle timestamps chronologically
+            sorted_timestamps = sorted(time_series_by_candle.keys())
+            latest_ts = sorted_timestamps[-1] if sorted_timestamps else None
+            current_candle_distribution = time_series_by_candle.get(latest_ts, []) if latest_ts else []
+
+            out_res = {
+                "coin": coin,
+                "current_price": res.get("currentPrice"),
+                "band_size": res.get("bandSize"),
+                "source": "HYPERDASH_GRAPHQL_ANALYTICS_UNVERIFIED_METHODOLOGY",
+                "size_unit": "BASE_ASSET_REPORTED_UNVERIFIED",
+                "total_buy_size": (res.get("totalBuyStops") or {}).get("size"),
+                "kind": "UNVERIFIED_STOP_LANDSCAPE",
+                "received_at": time.time(),
+                "total_buy_count": (res.get("totalBuyStops") or {}).get("count"),
+                "total_sell_size": (res.get("totalSellStops") or {}).get("size"),
+                "total_sell_count": (res.get("totalSellStops") or {}).get("count"),
+                "top_buy_whales": res.get("topBuyStops", []),
+                "top_sell_whales": res.get("topSellStops", []),
+                "bands": bands,
+                "timestamps": sorted_timestamps,
+                "candle_snapshots": time_series_by_candle,
+                "candle_totals": candle_totals,
+                "current_candle": {
+                    "timestamp": latest_ts,
+                    "total_amount": candle_totals.get(latest_ts) if latest_ts else None,
+                    "distribution": current_candle_distribution
+                }
             }
-        }
+            self._graphql_cache[cache_key] = (now_epoch, out_res)
+            return out_res
+        except Exception:
+            if cache_key in self._graphql_cache:
+                return self._graphql_cache[cache_key][1]
+            raise
 
     def fetch_top_traders(self, coin: str, limit: int = 20) -> List[Dict[str, Any]]:
         """Fetch top PnL positions and smart money wallets for the asset."""
