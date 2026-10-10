@@ -31,32 +31,33 @@ trigger: always_on
   * 18 Outright Passes across the 20 OOS regimes (2021-2026), 0 losing regimes across 5 full years (outliers W05 Terra-Luna and W08 FTX Collapse preserved in positive profit at +15.26 USD and +42.05 USD with max DD contained below 4.69%), and +11,290.24 USD Total Net Profit (+225.80% Net ROI on 5,000.00 USD capital) across 2,187 completed trades.
   * Master dual-model baseline `Engine/run_20_oos_dual_model.py` achieves 13 Outright Passes and +6,454.66 USD net PnL (+129.09% Net ROI).
   * **Autonomous 15-Minute Candle AI Trader & MT5 Bridge (`Terminal/OF_Strategy.py` --mode mt5-trader --live --min-risk 10.0 --max-risk 20.0)**:
-    - **Unified 13th-Minute Wake-Up System**:
-      1. *Tier 1 (Execution Daemon - `task-24931`)*: Continuous background telemetry git daemon auto-syncing authentic state to GitHub every 60 seconds with honest R-denominators and spec blocks.
-      2. *Tier 2 (AI Assistant Cron - Two-Phase Collaborative Execution Loop - OPERATOR MANDATE)*: Unified collaborative loop. At the trigger minute, the coordinator posts the fresh prompt to debug Chrome (Copilot Studio / Arena.ai). **MANDATORY 4-MINUTE INFERENCE TIMER AT ALL TIMES**: Immediately upon prompt injection, the coordinator MUST set a full 4-minute timer (240s) from injection time. All subagents MUST be killed / remain offline during these 4 minutes. Only after the 4 minutes have elapsed does the coordinator harvest the completed response (`copilot_studio_bridge.py --check` / `arena_bridge.py check`) and THEN dispatch the 4-subagent swarm (`Orderflow Analyst`, `Position Manager`, `Macro Risk Analyst`, `Chain Verification Auditor`) to conduct independent empirical research and evaluate their findings against the model's ruling.
-      3. *Tier 3 (Mandatory Subagent Pre-Flight Study & Independent Research Mandate - OPERATOR INVARIANT)*: Every invoked subagent MUST FIRST study:
-         * `@[.agents/AGENTS.md]` (Execution rules, risk invariants, anti-lookahead)
-         * `@[.agents/memory/session_chat_history.md]` (Historical trajectory, avoided traps, past decisions)
-         * `@[.agents/rules/ACTIVE_CONTEXT.md]` (Real-time account state, live orders, floor defense)
-         * Query the AST knowledge graph via `python -m graphify query "<concept>"` or `/graphify` before proposing or analyzing any trade.
-         * **MANDATORY INDEPENDENT RESEARCH (OPERATOR MANDATE)**: Subagents are strictly FORBIDDEN from passively echoing Arena.ai's output. Alongside reviewing Arena's ruling, each subagent MUST execute its OWN independent empirical research:
-           - *Orderflow Analyst*: Pull live MT5 tick Bid/Ask quotes, calculate real spreads in bps, query Binance Futures L2 orderbook depth directly, calculate 1m/5m/15m taker CVD delta, locate actual liquidation bands and stop sweep clusters, and test whether Arena's candidates satisfy the 5-pillar confluence stack.
-           - *Position Manager*: Directly query MT5 account state (`mt5.account_info()`, `positions_get()`, `orders_get()`), calculate live floor cushion against the 4,775.00 USD hard floor and 4,795.00 USD operating buffer, run stressed post-loss simulations independently, check symbol-specific tick sizes and margin requirements, and audit whether proposed orders respect the dynamic capacity policy.
-           - *Macro Risk Analyst*: Directly inspect `Data/macro_calendar.json` for Tier-1 event proximity, audit the session progression (e.g. 21:30–22:30 UTC interbank FX rollover spread expansion), evaluate cross-asset correlation clusters, and determine whether macro conditions warrant entering or standing aside.
-      4. *Tier 4 (Continuous Blackboard Review & Trade Punch Mandate - USER DIRECTIVE)*: On EVERY wake-up cycle, coordinator and subagents MUST read and review `docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md`, engage in dialectic debate contrasting their independent research against Arena.ai's output, render explicit verdicts, make suggestions, counter proposals, and punch high-confluence orders into MT5 without asking.
-      5. *Tier 5 (4th Swarm Member: Continuous Forensic System & Chain Verification Auditor - OPERATOR DIRECTIVE)*:
-         * A dedicated 4th subagent (`Chain Verification Auditor`) continuously audits the entire execution chain, guarantees that ALL past issues and invariants raised in chat history remain active and unregressed, actively hunts for runtime/code/data anomalies across `Terminal/`, `Engine/`, and `Tests/`, and immediately fixes any discovered anomaly.
+    - **Institutional Wake-Up & Collaborative Desk Protocol (STRICT OPERATOR SPECIFICATION)**:
+      1. *Step 1 (Multi-Persona Market Analysis Prompt to Arena.ai)*:
+         - Coordinator prompts Arena.ai in Chrome with multi-persona council (Orderflow & Microstructure Analyst, Structural Price Action Specialist, Liquidation & Stop Hunt Forensic, Macro Risk & Portfolio Governor) to analyze the latest live telemetry from `https://github.com/kbsingh1399/Trading_2/blob/arena/537c1eb8-trading-2/docs/telemetry/live_snapshot_latest.json`.
+         - Focus: Identify new candidate assets fitting trading criteria (Model 1 Extreme Mean Reversion $|Z| \ge 2.0\text{ SD}$ with absorption, Model 2 VWAP Trend-Continuation Pullbacks with resting L2/L3 whale backing) as potential candidates for limit orders.
+         - *Zero-Token Sleep Protocol*: Immediately after prompt injection, Antigravity MUST go to sleep for 10 minutes (`DurationSeconds=600`) with zero token burn while Arena conducts its analysis. After 10 minutes, Antigravity wakes up to check status; if Arena is still generating, dynamically set a +4 minute sub-timer (`DurationSeconds=240`) before re-checking.
+      2. *Step 2 (Audit Running Trades & Ratchet Management)*:
+         - Inspect all active open positions on MetaTrader 5 (`positions_get()`).
+         - Check if trades and metrics are in our favor.
+         - Check piecewise ratchets: trail SL to Phase 0 Break-Even at $+0.80\text{R}$ (guaranteeing profit and liberating risk to 0.00 USD), Phase 1 Profit Lock at $+1.50\text{R}$, Phase 2 Trailing Lock at $+2.00\text{R}$.
+         - Check if Take-Profit can be expanded into newly formed liquidation cascade bands, stop clusters, or orderbook liquidity vacuums based on fresh market intelligence.
+      3. *Step 3 (Audit Resting Limit Orders & Pruning Sentry)*:
+         - Audit all pending limit orders that are yet to be filled (e.g. `BTCUSD.pi` Ticket #18762461).
+         - Analyze whether the structural thesis still prevails:
+           * Has the supporting L2/L3 whale wall thinned or pulled by > 50%?
+           * Has spot price drifted beyond 2.0x ATR away from the limit level?
+           * Has the dominant trend regime broken or invalidated the thesis?
+           * If the thesis prevails, maintain the order on the book and wait for fill; if degraded, immediately prune/cancel.
+      4. *Position Capacity Policy (No Artificial Cap)*:
+         - We do not restrict ourselves to an artificial rigid position cap.
+         - Concurrency dynamically scales across orthogonal asset clusters (Crypto, Metals, Energy, Indices, Forex) provided that the total joint worst-case stopout risk unconditionally defends the 4,775.00 USD hard floor and 4,795.00 USD operating buffer ($\ge 20.00\text{ USD}$ cushion at all times).
+         - Positions reaching Phase 0 Break-Even immediately drop their committed risk to 0.00 USD, liberating capital and risk budget to stage new high-confluence limit orders without restriction.
     - Connects directly via native IPC to MetaTrader 5 Account 5064568 (Blueberry Markets).
-    - GitHub Commits `0b0aa14`, `13e2e2a`, `11a220e`, `9c1cb2d`, `bddcfd4`, `a03a3ed`: Merged Arena.ai quantitative governance, continuous orderflow scoring, decayed L3 evidence, Kaufman/Garman-Klass regime vetoes, BTC beta factor risk models, and verified 97/97 pytest suite passing.
-    - Full Arena Audit Report: Archived in `docs/audits/institutional-quant-audit-2026-10-04.md` and `docs/audits/ARENA_ANTIGRAVITY_HANDSHAKE_COUNCIL_67.md`.
-    - **Dynamic Conviction Risk Budget**: Flexible **10.00 to 20.00 USD** (0.20% to 0.40% on 5,000.00 USD capital) dynamically scaled by orderflow confluence, resting L3 whale presence, and macro alignment.
     - **Active Positions & Pending Orders (Live State)**:
       * Current Status: **0 Open Positions | 1 Active Pending Limit Order (1 Total Ticket) | Equity: 4,896.55 USD | Balance: 4,896.55 USD | Free Margin: 4,896.55 USD | Margin Used: 0.00 USD**.
-      * Active Positions (0) — **ALL 4 POSITION CAPACITY SLOTS LIBERATED & VACANT**:
-        - Zero active positions deployed. 4 slots available for high-confluence deployments.
-      * Active Pending Orders (1) — **BTC MODEL 2 VWAP PULLBACK LIMIT STAGED**:
-        - Ticket #18762114: `BTCUSD.pi` BUY LIMIT 0.02 lots @ 82,580.00 USD | SL: 82,080.00 USD | TP: 83,850.00 USD | Risk: 10.00 USD (0.02 lots x 500 pts).
-      * Capacity Sentry: **0 / 4 filled positions deployed | 1 pending limit resting | 3 slots vacant on desk**.
+      * Active Positions (0): Zero open positions deployed.
+      * Active Pending Orders (1) — **BTC MODEL 2 VWAP PULLBACK LIMIT RESTING ON BROKER**:
+        - Ticket #18762461: `BTCUSD.pi` BUY LIMIT 0.02 lots @ 82,630.00 USD | SL: 82,130.00 USD | TP: 83,880.00 USD | Risk: 10.00 USD (0.02 lots x 500 pts).
       * G-1 Hard Floor Defense: Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Floor Cushion: **+121.55 USD** (+101.55 USD above operating buffer).
       * Stressed Post-Loss Simulation & Absolute Immunity:
         - Total Contingent Book Risk across all exposed tickets: **10.30 USD** (10.00 USD SL + 0.30 USD friction).
