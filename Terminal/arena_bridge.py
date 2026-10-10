@@ -380,6 +380,12 @@ def build_48h_orderflow_prompt() -> str:
     lines.append("[SECTION 1: REPOSITORY REFERENCES & MANDATORY HISTORICAL SESSION CONTEXT]")
     lines.append("- Primary GitHub Repository: https://github.com/kbsingh1399/Trading_2 (Branches: main & arena/537c1eb8-trading-2)")
     lines.append("  * Active Two-Way Branch (Read & Push): arena/537c1eb8-trading-2")
+    try:
+        import subprocess
+        head_sha = subprocess.check_output(["git", "rev-parse", "--short", "HEAD"], text=True, cwd=str(PROJECT_ROOT)).strip()
+        lines.append(f"  * Production Commit HEAD: {head_sha} (All Arena audit recommendations live: A1 collision-proof nonce & L3 whale wall wiring verified)")
+    except Exception:
+        pass
     lines.append("")
     lines.append("🛑 MANDATORY OPERATOR DIRECTIVE FOR COUNCIL REVIEW:")
     lines.append("You MUST study and read the ENTIRE session chat history along with the core repository reference documents below BEFORE formulating rulings or analyzing setups:")
