@@ -338,3 +338,49 @@ def test_context_selects_the_nearest_eligible_wall_not_the_largest():
     wall = _build(walls, direction="LONG")["wall"]
     assert wall is not None
     assert wall["usd"] == 166_000.0
+
+
+# --------------------------------------------------------------------------- #
+# EV target horizon -- the calibrated win rate is geometry-blind
+# --------------------------------------------------------------------------- #
+
+def test_ev_refuses_a_target_beyond_the_calibrated_horizon():
+    """p_win_lower_bound carries no distance information, so the expectancy test
+    gets more permissive as the target recedes. A 10.77 ATR target must be
+    refused even though its raw RR is the best in the set.
+    """
+    entry, atr = 82_906.0, 104.3256
+    sl = entry - 1.5 * atr
+    tp = 84_030.0                      # named short-liquidation pool, 10.77 ATR out
+    v = dg.model2_checklist(_base_ctx(
+        atr=atr, entry=entry, sl=sl, tp=tp, sigma_bar=atr,
+        regime="TREND_UP", wall=_wall(), risk_usd=15.0, round_trip_cost_usd=1.53,
+    ))
+    assert "EV_target_beyond_calibrated_horizon" in v.failures
+    assert v.metrics["dist_tp_atr"] > 10.0
+    # the driftless barrier probability must be surfaced so the inversion is visible
+    assert 0.10 < v.metrics["p_barrier_driftless"] < 0.15
+
+
+def test_ev_accepts_a_target_inside_the_calibrated_horizon():
+    entry, atr = 82_906.0, 104.3256
+    sl = entry - 1.5 * atr
+    tp = entry + 2.5 * atr             # 2.5 ATR -- inside the 4.0 ATR policy bound
+    v = dg.model2_checklist(_base_ctx(
+        atr=atr, entry=entry, sl=sl, tp=tp, sigma_bar=atr,
+        regime="TREND_UP", wall=_wall(), risk_usd=15.0, round_trip_cost_usd=1.53,
+    ))
+    assert "EV_target_beyond_calibrated_horizon" not in v.failures
+    assert v.metrics["dist_tp_atr"] == pytest.approx(2.5, rel=1e-9)
+
+
+def test_ev_target_horizon_bound_is_four_atr():
+    assert dg.MAX_TARGET_DIST_ATR == 4.0
+    entry, atr = 100.0, 1.0
+    sl = entry - 1.5 * atr
+    # exactly at the bound: allowed
+    v = dg.model1_checklist(_base_ctx(atr=atr, entry=entry, sl=sl, tp=entry + 4.0 * atr))
+    assert "EV_target_beyond_calibrated_horizon" not in v.failures
+    # one tick past it: refused
+    v = dg.model1_checklist(_base_ctx(atr=atr, entry=entry, sl=sl, tp=entry + 4.01 * atr))
+    assert "EV_target_beyond_calibrated_horizon" in v.failures
