@@ -315,3 +315,17 @@ def test_protocol_spread_gate_and_maker_language_are_consistent():
              "ANTIGRAVITY_ARENA_THINKING_CHAIN_COUNCIL_PROTOCOL.md").read_text()
     assert "Maker limit orders do NOT eliminate the broker spread." in proto
     assert "20.00 bps" in proto
+
+
+def test_whale_wall_age_is_not_clamped_to_the_persistence_threshold():
+    """The rendered wall age must not be floored at 180.
+
+    arena_bridge.py used `age={max(w_age, 180)}s`. Because no persistence series
+    is published, w_age resolved to ~0s and every wall in the council briefing
+    rendered 'age=180s' -- which reads as persistence verified at exactly the
+    >=180s mandate threshold. That fabricates compliance with mandate 4 for
+    every wall in the universe and can induce a punch on unverified data.
+    """
+    src = (ROOT / "Terminal" / "arena_bridge.py").read_text()
+    assert "max(w_age, 180)" not in src
+    assert "no persistence series" in src
