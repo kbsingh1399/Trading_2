@@ -405,8 +405,17 @@ def build_48h_orderflow_prompt() -> str:
         if whales:
             sample_epoch = ob.get("wall_sample_ts_epoch") or time.time()
             for w in whales[:2]:
-                w_age = w.get("age_sec") if w.get("age_sec") is not None else int(time.time() - sample_epoch)
-                lines.append(f"  * Whale Wall: {w.get('side')} at {w.get('price')} USD ({w.get('notional_usd'):,.2f} USD, age={max(w_age, 180)}s)")
+                # Report the observed age truthfully. Clamping to 180 made every
+                # wall render "age=180s", which reads as persistence verified at
+                # exactly the >=180s mandate threshold while the real measured
+                # age was ~0s and no persistence series exists at all.
+                raw_age = w.get("age_sec")
+                if raw_age is None:
+                    raw_age = int(time.time() - sample_epoch)
+                    age_str = f"age~{max(int(raw_age), 0)}s (single sample, no persistence series)"
+                else:
+                    age_str = f"age={int(raw_age)}s"
+                lines.append(f"  * Whale Wall: {w.get('side')} at {w.get('price')} USD ({w.get('notional_usd'):,.2f} USD, {age_str})")
         lines.append(f"Targets: Long Flush Target = {l_flush_str} | Short Squeeze Band = {s_squeeze_str} | Discount Sell Stops = {disc_stop_str} | Premium Buy Stops = {prem_stop_str}")
 
         if df_15m is not None and len(df_15m) > 0:
