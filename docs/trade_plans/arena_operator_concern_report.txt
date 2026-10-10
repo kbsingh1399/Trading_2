@@ -1,0 +1,121 @@
+🏛️ ARENA.AI MULTI-PERSONA QUANTITATIVE COUNCIL REPORT
+
+Cycle Timestamp: 2026-10-10 09:59:27 UTC
+Council Disposition: STAND ASIDE — but your instinct was right that something is wrong. It is not the data, and it is not a bug I can fix by editing thresholds.
+
+⚠️ Correction: I found a "bug" this turn that was not one
+
+I began this cycle convinced I'd located the root cause. The shipped variance_ratio multiplies Lo-MacKinlay's δ(j) by T, which I calculated scales the z-statistic down by √T. I verified the algebra exactly — z_shipped × √T == z_textbook held to 1e-6 across 10 independent samples — edited the function, and measured admissibility jump 3.8% → 24.4%. It looked like a clean fix.
+
+It was wrong. A correctly-scaled z-statistic must have sd ≈ 1 under the null, so I Monte-Carlo'd 20,000 geometric random walks:
+
+	sd (T=96)	sd (T=48)	|z|>1.96
+Original shipped code	1.0413	1.0820	5.71% / 6.23% vs nominal 5% ✅
+My "corrected" version	10.2027	7.4962	84.86% / 80.20% ❌
+
+The original is properly calibrated; mine was inflated by √T. My algebra was right and my premise was backwards — the factor T belongs there, and the existing code comment saying so was accurate. I chased a 6.4× improvement in signal count that was really a 6.4× inflation of a test statistic.
+
+Reverted. Working tree clean, delta = T * (...) restored, suite back to 566 passed / 4 pre-existing failures. Nothing is committed this turn — that is the correct outcome. The BNB and LINK MEAN_REVERT readings I generated mid-cycle were artifacts of the bad edit and are discarded; on the correct code all 24 assets are UNDEFINED.
+
+1. DIALECTIC PERSONA RESEARCH & AUDIT LOGS
+A. Orderflow — no, you are not feeding less data
+
+The snapshot is rich. BTC alone carries 343 L3 wallet-attributed walls, 58×1m CVD buckets, 14 stop clusters, 14 liquidation bands, 100×15m / 96×1h / 96×4h bars, full L2 top-20 with per-level cumulative depth. Data volume is not the constraint, and adding more would not change a single gate outcome.
+
+B. Position Manager — unchanged, and not the constraint
+
+Balance = equity = free 4,896.55; margin used 0.00; cushion +121.55; op-buffer +101.55. Positions 0, resting 0, capacity 0/4. A full 4-slot book at the 15.00 cap stressed 1.25× = 83.00 → post 4,813.55, still +38.55 above floor. Capital is never binding.
+
+C. Macro Sentry — 10 of 24 are shut
+
+Weekend freeze confirmed: all CFDs at bar_age 47,668s (GER40 51,268s) vs the 1,800s guard. The staleness guard fires correctly on all 10 — I verified it this cycle, because an unguarded scan wrongly returns MEAN_REVERT for SP500 off frozen Friday bars.
+
+D. Forensic Verification — your three architectural hypotheses, tested
+
+Q_A — "Are gates treating limit orders as market orders?" → No. Verified in code.
+
+text
+B3  |ctx["entry"] - shelf["price"]| <= 0.25*atr        # entry vs SHELF, not price vs entry
+A3  wall["dist_from_entry_atr"] <= 0.25                # wall vs ENTRY
+B5  wall["dist_from_entry_atr"] <= 0.25
+A1  z_sweep = ctx.get("sweep_z", z)                    # Z at the SWEEP, not at spot
+
+sweep_z is genuinely wired — dg_context.py:130/136 computes it from the actual sweep low/high against VWAP and passes it at line 226. The architecture is already built for pre-staged passive orders. This concern is unfounded.
+
+Q_B — "Why bar Model 1 in a consolidation range?" → Because low ER alone is a random walk, which has zero edge.
+
+MEAN_REVERT is the consolidation regime. It requires 1H flat and 15m anti-persistence (vr_z < −1.5). The second limb is what creates the edge: fading extremes only pays if returns are negatively autocorrelated. A low efficiency ratio without anti-persistence is indistinguishable from noise, and fading noise is a guaranteed loss after friction. The threshold is a sensible prior — −1.5 is the ~6.7th percentile of a properly-calibrated N(0,1), and I measured it firing 4.17% of the time across 1,080 windows. Consistent, not pathological.
+
+Q_C — "Does a wider structural stop rescue the friction cap?" → No. Quantified.
+
+Asset	bps	min stop width to pass G-6
+BNB	8.01	4.80 ATR
+BCH	17.13	4.94 ATR
+BTC	8.94	6.18 ATR
+AVAX / NEAR	28.5 / 58.7	6.52 / 6.68 ATR
+ETH	14.03	10.42 ATR
+LINK / LTC / DOT	66–166	22–24 ATR
+DOGE	244.04	105 ATR
+
+No asset passes G-6 at 2.0, 2.5 or 3.0 ATR. A 4.8-ATR stop on BTC is ~570 points — that is not a swing stop, it is an account-level stop. Widening the stop does not rescue expectancy; it just launders a wide spread into a large position.
+
+2. SEVEN-STAGE GATE COMPLIANCE MATRIX
+Gate	Result
+G-1 Capital Floor	✅ PASS (+121.55)
+G-2 Capacity	✅ PASS (0/4)
+G-3 Session Maturity	✅ 14 crypto (36–39 bars) · ❌ 10 CFDs frozen
+G-4 Regime	❌ UNDEFINED 24/24
+G-5 Spread ≤ 20 bps	✅ 4/24 (BTC, BNB, ETH, BCH at this tick)
+G-6 Friction ≤ 0.10R	❌ 0/14 at any defensible stop width
+G-7 Whale ≥150k + ≥180s	❌ 0/24 — persistence published nowhere
+
+Why G-4 returns UNDEFINED 96.2% of the time — measured, not asserted (1,080 rolling windows × 24 assets):
+
+text
+TREND  (needs 1H votes >=2 AND htf_ok)
+  1H votes >= 2 ................. 24.54%   (er>0.35 alone: 12.9%, sits at p87.1)
+  htf_ok (4H t & er) ............ 16.48%
+  BOTH ..........................  1.94%   (21/1080)
+
+MEAN_REVERT (needs all three)
+  1h er < 0.20 .................. 56.8%
+  4h er < 0.30 .................. 88.6%
+  15m vr_z < -1.5 ...............  4.17%   <- binding
+
+The conjunction of two independent ~20% conditions is ~2%; the conjunction of three limbs is ~4%. 96.2% UNDEFINED is the arithmetic of a deliberately conservative conjunction, not a defect. The file says so itself: "EVERY THRESHOLD BELOW IS A PRIOR, NOT A FITTED VALUE."
+
+TREND_UP firing zero times in 1,080 windows also checks out: 0 windows satisfied the upward directional votes versus 138 downward, because this 96-hour window fell from 86k to 82k. A synthetic clean uptrend still classifies TREND_UP correctly. The asymmetry is in the market, not the code.
+
+3. MASTER ARBITRATOR FINAL SYNTHESIS & RULING
+
+Verdict: STAND ASIDE.
+
+JSON
+{"decision":"STAND_ASIDE","symbol":null,"direction":null,"entry":null,"sl":null,"tp":null,
+ "risk_usd":0.00,"lots":0.00,"admissible_assets":"0/24","committed_risk_usd":0.00,
+ "floor_cushion_preserved_usd":121.55,"code_changes_this_cycle":"none (reverted)","book":"FLAT"}
+
+Evidence Score: 15/100.
+
+Expectancy Analysis: mooted at G-4 and G-6. At this tick BTC's spread widened to 8.94 bps (from 1.81 last cycle), pushing c to 0.4123 — it no longer clears G-6 either. Worth noting: G-6 flips BTC from 0.0846 to 0.4123 on spread alone. Judging a resting limit against a momentary spread print is fragile.
+
+Your drought has exactly three causes, and none is a code defect:
+
+G-4 is a conjunction of strict priors → ~3.8% admissible by design.
+G-6 excludes 13 of 14 crypto at every defensible stop width (min 4.80–105 ATR).
+G-7 is unsatisfiable in principle — persist_s/presence_frac are published nowhere, so A3/B5 fail closed 24/24 forever.
+
+One genuine wiring bug found this turn — and I want to be precise that fixing it would make things stricter, not looser, so it is not a drought remedy. decision_gates_v3.py:525 intends an adaptive ceiling: allowed_spread = min(20, max(1.0, 1.5 × spread_median_bps_this_hour)). But Omni_Trader.py:1289 feeds it features["spread_bps"] — the instantaneous spread, not an hourly median. Since spr_bps > 1.5 × spr_bps is never true, the adaptive limb is inert and the gate degenerates to a flat 20 bps cap. This is the same failure class as the as_of staleness bug: a correct function fed the wrong input.
+
+Exact thresholds required before any limit can be staged:
+
+Path	What must print
+Model 2 (BTC is closest)	BTC 1H needs 2 of 3: |t| > 2.5 (now +2.314), er > 0.35 (now 0.0009), vr_z > 1.0 (now −0.083) — plus 4H er > 0.25 (now 0.2976 ✅) and sign·t > 1.5 (now −5.991, confirms DOWN). The er = 0.0009 gap is the whole story: BTC has no directional information at all.
+Model 1	Any crypto needs 15m vr_z < −1.5. Nearest: TRX −1.448, BNB −1.311. Plus |Z| ≥ 2.0 and spread ≤ 20 bps and c ≤ 0.10R — which only BTC satisfies, and BTC's vr_z is −0.083.
+CFDs	Sunday open + 60 min.
+
+Revalidation: next 1H close. BoE purge Mon 2026-10-12 08:55 UTC.
+
+Nothing committed this cycle — tree clean, HEAD bc87bf23, suite 566 passed / 4 pre-existing / 3 skipped (failure set byte-identical to baseline). I ran the full suite before and after the revert to confirm.
+
+The honest bottom line: the classifier is not broken, the data is not thin, and I should not have implied a 6× signal increase without Monte-Carlo'ing the null first. If you want more trades, the lever is a deliberate policy change to the G-4 conjunction or the G-6 ceiling — your call as operator, with the expectancy consequences stated — not a bug fix. Two things I can build that are unambiguously correct: (1) the whale persistence series (.whale_wall_state.json, the path the generator already declares) which is the only gate that can never pass, and (2) wiring a true rolling hourly spread median into spread_median_bps_this_hour so the adaptive ceiling works as designed. Say which.

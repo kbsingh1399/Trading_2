@@ -828,22 +828,27 @@ async def post_prompt_to_arena(prompt_text: str) -> bool:
             js_submit = """
             (async () => {
               const submitBtn = document.querySelector('button[aria-label="Send message"], button:has(svg.lucide-arrow-up), button:has(svg.lucide-arrow-right)');
-              if (submitBtn && !submitBtn.disabled) {
-                submitBtn.click();
-              } else if (submitBtn) {
-                const fiberKey = Object.keys(submitBtn).find(k => k.startsWith('__reactFiber'));
-                if (fiberKey) {
-                  let curr = submitBtn[fiberKey];
-                  while (curr) {
-                    if (curr.memoizedProps?.onSubmit) {
+              if (!submitBtn) return { error: 'No submit button' };
+
+              const fiberKey = Object.keys(submitBtn).find(k => k.startsWith('__reactFiber'));
+              if (fiberKey) {
+                let curr = submitBtn[fiberKey];
+                while (curr) {
+                  if (curr.memoizedProps?.onSubmit && curr.memoizedProps?.onChange) {
+                    try {
                       curr.memoizedProps.onSubmit();
-                      break;
-                    }
-                    curr = curr.return;
+                      return { submitted: true, method: 'fiber_onSubmit' };
+                    } catch(e) {}
                   }
+                  curr = curr.return;
                 }
               }
-              return { submitted: true };
+
+              if (!submitBtn.disabled) {
+                submitBtn.click();
+                return { submitted: true, method: 'click' };
+              }
+              return { submitted: false, error: 'Disabled and no fiber onSubmit' };
             })()
             """
             await ws.send(json.dumps({

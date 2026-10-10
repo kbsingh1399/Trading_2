@@ -1,0 +1,49 @@
+All four changes are built, tested, and pushed as e1a7640c. But I have to be straight with you about what they do and don't unlock.
+
+✅ Delivered
+
+Fix 1 — Whale persistence series. New module Terminal/microstructure_state.py (329 lines), wired into all 4 generator wall sites. Verified over 7 simulated cycles:
+
+Wall	Behaviour	Result
+BTC_SELL_83862	present every cycle	persist_s 120→180→240→300→360, presence 1.0 → PERSISTENT_VERIFIED at 180s ✅
+ETH_BUY_2461.8	flickers every other cycle	reaches 300s of span but presence 0.67 → correctly denied ✅
+SOL_SELL_111.7	vanishes at cycle 5	aged out by prune ✅
+
+Measured cycle interval: 60.0s (derived from inter-arrival gaps, not assumed).
+
+Fix 2 — Rolling hourly spread median. Omni_Trader now feeds a true trailing-hour median instead of the spot tick, so allowed = min(20, max(1.0, 1.5 × median)) finally does something. Falls back to spot only when no print exists yet.
+
+Policy 3a — G-6. Flat 0.15R, or 0.20R when the trade proves itself: RR ≥ 2.5 and ev_lower ≥ +0.15R at the Clopper-Pearson bound and spread ≤ 20 bps. SendLimits.max_spread_frac_r_relaxed = 0.20, honoured through the real pre_send_gate.
+
+Policy 3b — G-4. Model 1 may run in RANGE/CHOP/UNDEFINED at |Z| ≥ 2.0 with verified absorption — but I kept the cascade guard. The shipped rule barred Model 1 outside MEAN_REVERT because in a trend a stretched |Z| selects cascades, not exhaustion. That hazard is real, so m1_range_override_ok refuses whenever the 4H confirms a trend in the direction of the extension, and refuses on a missing flag. I did not re-derive absorption: A2 already enforces lambda_ratio ≤ 0.50 and bars_cvd_turned ≥ 3 and fails closed without tape.
+
+🐛 Two bugs I introduced and caught during implementation
+gap_reset_s = 30 was shorter than the 60s sampling interval — every observation looked like a gap, so persist_s could never accrue at all. Now max(30, 2.5 × interval). 2.5× (not 1.5×) is deliberate: at 1.5× one missed sample breaks the run, so presence_frac could only ever be 1.0 and the metric would never discriminate.
+Missing carry-forward — walls absent from one snapshot were dropped from state, so reappearance looked brand-new and every intermittent wall reset to persist_s=0. Caught by the cycle simulation, fixed with carry_forward_unseen.
+⚠️ Correction: my claim last turn was wrong, and it matters here
+
+I told you "A3/B5 fail closed 24/24, so G-7 can never pass." They don't fail — they're skipped. Both are guarded by if wall is not None, and dg_context.py never populates ctx["wall"]. Verified:
+
+text
+wall=None (production today)  -> A3_wall_not_persistent in failures? False
+wall present, persist_s=0     -> True
+wall present, persist_s=240   -> False
+
+So Fix 1 is necessary but not sufficient. The persistence numbers are now real and published (persist_s, presence_frac, gate_g7_eligible), but G-7 still isn't evaluated until ctx["wall"] is wired from the snapshot into dg_context. I did not do that — it needs a nearest-behind-entry wall selection rule (which side, which level, what "behind entry" means for a limit), and I'd rather get that decision from you than invent it.
+
+Same story for 3b: the regime limb is now unlocked, but live microstructure reads UNAVAILABLE_UNVERIFIED_ORDERFLOW / ADMISSION_FROZEN_UNVERIFIED_DATA on all crypto, so A2 fails closed and Model 1 still cannot run. dg_context does populate orderflow from payload["orderflow"] — the feed just isn't supplying it.
+
+Bottom line: no trade is unlocked this cycle. The drought's binding constraints are now two concrete wiring gaps — ctx["wall"] and the orderflow payload — not gate thresholds.
+
+Verification
+
+596 passed, 4 failed, 3 skipped. I diffed the failure set against a stashed baseline: byte-identical (baseline 566/4, mine 596/4), so zero regressions; the +30 delta is exactly my new test file. The 4 are pre-existing ImportError/provenance-artifact failures from the sandbox reset, unrelated to these files.
+
+Two test edits I should disclose rather than bury:
+
+Test_Telemetry_Data_Integrity asserted persistence_status == "SAMPLED_ONLY_NOT_CONTINUOUS" — it pinned the very placeholder you asked me to eliminate. Replaced with the real contract (status vocabulary + persist_s + presence_frac + gate_g7_eligible).
+Test_Omni_Engine needed spread_state_path isolation, because my spread history is a runtime file and was leaking between parametrised runs. Path is now injectable and the file is gitignored.
+
+Pushed to arena/537c1eb8-trading-2 as e1a7640c — 8 files, +928/−31, confirmed an ancestor of the remote tip.
+
+Next, if you want it: wire ctx["wall"] (I'd propose: nearest same-side wall behind the limit entry within 0.25 ATR, preferring gate_g7_eligible, else fail the gate rather than skip it) — that converts Fix 1 from a measurement into an enforced gate.

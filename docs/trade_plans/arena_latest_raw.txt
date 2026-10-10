@@ -1,0 +1,113 @@
+All six fixes verified upstream. Here is the ruling.
+
+🏛️ ARENA.AI MULTI-PERSONA QUANTITATIVE COUNCIL REPORT
+
+Cycle Timestamp: 2026-10-10 09:40:45 UTC (scan executed on the 09:26:06 snapshot)
+Council Disposition: STAND ASIDE / PUNCH NONE — 0 of 24 assets admissible under either engine
+
+Both prior fixes propagated into your prompt (the MIRRORED … NOT net directional inventory tags and age~40s (single sample, no persistence series)), and #18762114 is withdrawn — queue clean, book flat. This cycle I found a third prompt-integrity bug of the same class, and fixed it.
+
+1. DIALECTIC PERSONA RESEARCH & AUDIT LOGS
+A. Orderflow — your "tight-spread shortlist" mostly fails your own ceiling
+
+Your Section 6.1 names five candidates. Measured against the live book:
+
+Asset	Your claim	Live spread	G-5 (≤20 bps)	c = spread/1.5·ATR	G-6 (≤0.10R)	EV @2.5R
+BTC	1.81 bps	1.81	✅	0.0846	✅	+0.3263
+BNB	6.68 bps	8.00	✅	0.3197	❌	+0.0912
+ETH	11.64 bps	11.62	✅	0.5184	❌	−0.1075
+SOL	21.8 bps	23.65	❌	0.6768	❌	−0.2659
+XRP	21.3 bps	28.43	❌	0.7207	❌	−0.3098
+
+SOL and XRP exceed the 20.00 bps ceiling you yourself imposed this cycle, and your quoted spreads for both are understated. ETH passes the spread gate but fails relative friction and carries negative expectancy. BNB fails friction. You also omitted BCH (17.20 bps), the only other asset clearing G-5 — though it too fails G-6 at c = 0.3716.
+
+BTC is the only asset in the universe clearing both G-5 and G-6. The rest: DOGE c=7.0000, TRX 2.2222, DOT 1.6092, LINK 1.4456, LTC 1.3899, ADA 0.8750, XRP 0.7207, SOL 0.6768, NEAR 0.4333, AVAX 0.4255.
+
+BTC microstructure has reversed against longs since last cycle. Top-20 bid depth collapsed from 1,419,502 → 262,128 (−82%); imbalance flipped +0.4895 → −0.593; skew 2.918 → 0.256. CVD is cumulatively +12.0M but the last five 1m buckets total only +92,650 — buying momentum has stalled. Price sits at Z = +2.57, extended above VWAP.
+
+The liquidity gradient still points down: 82,150 (6.35M), 81,550 (9.78M), 81,650 (3.40M), 80,350 (4.10M) of sell stops below versus 83,050 (4.32M) and 83,550 (1.51M) above. top_short_squeeze_bands_above contains one band: 82,850 at 10,032 USD.
+
+Mirror rates confirm last cycle's finding is systemic, not BTC-specific: DOGE 100%, LINK 100%, SOL 95.8%, AVAX 91.7%, USWTI 90.9%, DOT 90%, ADA 90%, XRP 83.6%, BCH 80%, BTC 63.7%, ETH 60.7%. DJ30 and GER40 publish no walls at all.
+
+B. Position & Capital Floor — clean, nothing to audit
+
+Balance = equity = free margin 4,896.55; margin used 0.00. Floor cushion +121.55, operating buffer +101.55. Active positions 0, resting limits 0, tickets 0. Capacity filled 0 / pending 0 / available 4. At the 15.00 USD cap a full 4-slot book stressed 1.25× + exec = 83.00 → post 4,813.55 → +38.55 above floor. No HOLD, ratchet, or prune decisions exist this cycle. Capital is never the binding constraint.
+
+C. Macro & Structural Liquidity — weekend freeze confirmed, guard verified working
+
+Saturday. All 10 CFDs frozen at 10-09 20:30 UTC, session_bars 0, atr_14 null. BoE runway 47.3 h, blackout_active false.
+
+I verified the staleness guard end-to-end this cycle, because my raw scan initially returned MEAN_REVERT for SP500:
+
+text
+ASSET   no-guard     WITH guard   bar_age_s   stale
+SP500   MEAN_REVERT  UNDEFINED      45666.9   True
+BTC     UNDEFINED    UNDEFINED        666.9   False
+
+That MEAN_REVERT is a frozen Friday bar being read as a live regime — exactly the defect fixed in 1207d7d9. The fix is confirmed functioning in production. With the clock supplied, the tally is 24/24 UNDEFINED.
+
+D. Forensic Verification — the "Regime = BULLISH" line was never the gate
+
+This is the third bug, and it is the root cause of three consecutive false theses. The briefing rendered Regime = {causal_indicators.trend_regime}. That field is a 200-EMA heuristic. The gates read classify_regime():
+
+Python
+model1_checklist:  v.require(ctx["regime"] == "MEAN_REVERT", "A1_regime_not_mean_revert")
+model2_checklist:  v.require(ctx["regime"] == want, "B1_regime_mismatch")   # want ∈ {TREND_UP, TREND_DOWN}
+
+Your brief cited "Our causal indicators in assets_matrix_24 labeled BTC Regime = BULLISH" as evidence for a long. On the same snapshot the enforced gate returned UNDEFINED. The label was cosmetic; the gate was binding; the briefing only printed the label.
+
+Fixed in b7208337. The line now reads:
+
+text
+200EMA Label = BULLISH (cosmetic, NOT the gate) | enforced_gate=UNDEFINED(live) <- BINDING for both engines
+
+I threaded the staleness arguments deliberately. Without them SP500 renders MEAN_REVERT — so the naive fix would have advertised a tradeable regime for a shut market, which is worse than the label it replaced. Live render across the universe:
+
+text
+BTC/ETH/BNB/BCH        enforced_gate=UNDEFINED(live)                    vs labels BULLISH/BEARISH
+SP500/NAS100/GOLD/...  enforced_gate=UNDEFINED(STALE_BARS_age=45667s)   GER40 age=49267s
+
+BTC is on a knife-edge that argues for standing aside, not for punching. Its 4H efficiency ratio is 0.2976 — simultaneously > 0.25 (satisfying the TREND_DOWN HTF limb) and < 0.30 (satisfying the MEAN_REVERT 4H limb), by a margin of 0.0024. One 4H close flips which engine is even eligible. That is not a setup; it is a classification about to change.
+
+2. SEVEN-STAGE GATE COMPLIANCE MATRIX
+Gate	Result
+G-1 Capital Floor	✅ PASS (+121.55)
+G-2 Capacity	✅ PASS (0/4)
+G-3 Session Maturity	✅ 14 crypto (34–37 bars) · ❌ 10 CFDs frozen
+G-4 Regime	❌ UNDEFINED 24/24 — binding
+G-5 Spread ≤ 20 bps	✅ 4/24 (BTC, BNB, ETH, BCH)
+G-6 Friction ≤ 0.10R	✅ 1/24 (BTC only, c=0.0846)
+G-7 Whale ≥150k + ≥180s	❌ 0/24 — persistence published nowhere
+EV lower bound	✅ BTC +0.3263R @2.5R — mooted by G-4
+
+Mandate 7 explicitly satisfied — both engines were evaluated and both are exhausted:
+
+Engine	Universe	First assertion	Result
+Model 1 (|Z|≥2.0)	BTC 2.39, ETH 2.16, LINK 2.58, TRX 3.44, DOGE 4.19	regime == MEAN_REVERT	0/5 — all UNDEFINED
+Model 2 (|Z|<2.0)	remaining 19	regime ∈ {TREND_UP, TREND_DOWN}	0/19 — all UNDEFINED
+text
+BTC 1H votes 0/3 BOTH directions: t=+2.314 (need >2.5) | er=0.0009 (need >0.35) | vr_z=-0.792 (need >1.0)
+BTC 4H: t=-5.991, er=0.2976 -> htf_ok TRUE for TREND_DOWN, FALSE for TREND_UP
+BTC MEAN_REVERT: 1h er 0.0009<0.20 T | 4h er 0.2976<0.30 T | 15m vr_z -0.084<-1.5 FALSE
+BTC A1: bars 37>=16 T | sigma 84.4862 >= 0.8*ATR 94.5698 FALSE | |Z| 2.39>=2.0 T
+3. MASTER ARBITRATOR FINAL SYNTHESIS & RULING
+
+Verdict: STAND ASIDE / PUNCH NONE.
+
+JSON
+{"decision":"STAND_ASIDE","symbol":null,"direction":null,"entry":null,"sl":null,"tp":null,
+ "risk_usd":0.00,"lots":0.00,"committed_risk_usd":0.00,
+ "floor_cushion_preserved_usd":121.55,"broker_actions_performed":"none",
+ "book":"FLAT (0 filled / 0 pending)","admissible_assets":"0/24"}
+
+Mathematical rationale: classify_regime() returns UNDEFINED for 24/24 with the staleness guard engaged. model1_checklist requires MEAN_REVERT; model2_checklist requires TREND_UP/TREND_DOWN. Both fail their first assertion on every asset, before geometry, orderflow, whale backing or expectancy is ever evaluated. Standing aside is therefore permitted under your Mandate 7 — neither engine yields a structural setup.
+
+Evidence Score: 12/100 — regime 0/25 (24/24 UNDEFINED) · liquidity 4/25 (gradient down, 63.7% of BTC walls mirrored) · execution economics 8/25 (only BTC clears G-5+G-6; L2 bid depth −82%) · structural premise 0/25 (label mistaken for gate).
+
+Expectancy Analysis: BTC RR 2.50, c = 0.0846, s = 0.10R → EV_lower = +0.3263R; break-even p 0.3385 vs calibrated bound 0.4197 ✅. Every other asset is negative or fails friction. BTC is the only positive-expectancy instrument you hold — and it has no directional thesis.
+
+Execution Action: stage nothing. Watch BTC only.
+
+Revalidation: BTC needs two of three 1H votes — |t| > 2.5 (now 2.314, wrong sign for a short), er > 0.35 (now 0.0009), vr_z > 1.0 (now −0.792) — with 4H agreeing, which it already does for TREND_DOWN. The 1H efficiency ratio of 0.0009 is the widest gap; this is a market with no directional information at all. Also watch the 4H ER knife-edge at 0.2976 — a single close either side flips BTC between "HTF-confirmed downtrend" and "mean-revert eligible." Next 1H close; CFDs at Sunday open +60 min; BoE purge Mon 2026-10-12 08:55 UTC.
+
+Shipped this cycle —

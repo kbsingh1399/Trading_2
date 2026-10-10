@@ -35,6 +35,7 @@ from Terminal.Telemetry_Provenance import validate_observed_snapshot
 from Terminal.risk.live_admission import MAX_FILLED, STOP_STRESS_MULTIPLIER, MIN_EXECUTION_COST_USD, _loss
 from Terminal.risk.floor_defense import HARD_FLOOR_USD, BUFFER_USD
 from Terminal.Api_Client import HyperdashClient
+from Terminal.Data_Factory.hyperdash_flow_feed import get_hyperdash_flow_intelligence
 
 TELEMETRY_PATH = ROOT / "docs" / "telemetry" / "live_snapshot_latest.json"
 TELEMETRY_PATH.parent.mkdir(parents=True, exist_ok=True)
@@ -1654,6 +1655,7 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
         },
         **win_calibration,
         "macro_calendar": macro_calendar,
+        "hyperdash_flow_intelligence": get_hyperdash_flow_intelligence(),
         "assets_matrix_24": assets_matrix
     }
 

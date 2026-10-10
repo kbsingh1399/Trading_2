@@ -1,0 +1,41 @@
+Both corrections shipped as 332663cc on origin/arena/537c1eb8-trading-2 — 3 files, +250/−4, confirmed an ancestor of the remote tip.
+
+Correction A — top-of-book and mirrored legs excluded
+
+Two new pure predicates in microstructure_state.py:
+
+is_top_of_book — a BUY level is measured against the best bid, a SELL against the best ask. A level at the touch is excluded; one tick behind it is still resting depth. Fails safe to False on a missing or malformed book.
+is_mirrored_leg — a size-matched opposite order (ratio ≥ 0.8) within 0.05% of price is a two-sided bracket, not directional intent.
+
+classify_wall checks the touch first — a level at the touch can't be read as resting depth regardless of what sits opposite. Published walls now carry wall_class, and gate_g7_eligible requires WALL_GENUINE, so persistence alone no longer certifies anything.
+
+Replayed against the book as it stood when the bad rows were certified:
+
+text
+BEFORE   BUY  82850.5  719,971 -> PERSISTENT_VERIFIED  gate_g7_eligible=True
+         SELL 82850.6  377,384 -> PERSISTENT_VERIFIED  gate_g7_eligible=True   (both, at once)
+AFTER    BUY  82850.5  719,971 -> TOP_OF_BOOK          gate_g7_eligible=False
+         SELL 82850.6  377,384 -> TOP_OF_BOOK          gate_g7_eligible=False
+
+Genuine depth behind the touch (82832, 82800, 82891, 82920) still classifies GENUINE. One thing worth flagging: in the current snapshot the touch has moved to 82823.0/82823.1, so those same two prices now sit 27 pts behind price and correctly classify GENUINE. The classifier is applied at generation time against the then-current book, which is the right behaviour — I just want you to know the classification is time-relative, not a permanent label on a price.
+
+Correction B — L3 wallet walls wired
+
+The 348 on-chain 0x-addressed orders now get authentic unbroken-run persistence, keyed per wallet address so each address's run is measured on its own merits rather than pooled. _level_pairs normalises both book shapes (Binance REST ["price","size"] strings vs Hyperdash price/size/total_usd dicts) so the mirror test has one code path.
+
+Verification
+
+602 passed, 4 failed, 3 skipped. I diffed the failure set against a stashed baseline: byte-identical (baseline 596/4, mine 602/4), so zero regressions — the +6 delta is exactly my new tests. The 4 are the same pre-existing ImportError/provenance artifacts. Re-ran the suite after the rebase to confirm it held.
+
+Desk state confirmed from the fresh snapshot (12:09:05 UTC): pending_orders: 0, active_positions: 0, equity 4,896.55, margin 0.00. Your cancel landed clean and the book is flat.
+
+One thing still open — and I don't want you to over-read this fix
+
+gate_g7_eligible is now trustworthy data, but it is still not read by the decision checklists. dg_context.py never populates ctx["wall"], and A3/B5 are guarded by if wall is not None, so they remain skipped rather than enforced. I verified this directly last cycle:
+
+text
+wall=None (production today)  -> A3_wall_not_persistent in failures? False
+wall present, persist_s=0     -> True
+wall present, persist_s=240   -> False
+
+So the sequence is: Fix 1 made the measurement real → Correction A/B made it honest → the gate still doesn't consume it. Wiring ctx["wall"] is the last step, and it's a policy call I didn't want to make unilaterally: which side, which level, and what "behind entry within 0.25 ATR" means for a resting limit. My proposal stands — nearest same-side wall_class == GENUINE wall behind the entry within 0.25 ATR, preferring gate_g7_eligible, and fail the gate rather than skip it when none qualifies. Say the word and I'll ship it with tests.
