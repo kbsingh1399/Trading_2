@@ -169,6 +169,50 @@ def compute_volume_profile(df: pd.DataFrame, n_bins: int = 16) -> Dict[str, floa
     return {"poc": round(poc_px, 4), "vah": round(vah_px, 4), "val": round(val_px, 4)}
 
 
+def detect_mirrored_wall_leg(wall: Dict[str, Any], whales: List[Dict[str, Any]],
+                             tol: float = 0.05) -> Optional[Dict[str, Any]]:
+    """Return the size-matched opposite-side leg of a whale wall, if one exists.
+
+    HyperDash L3 wallet orderbooks routinely show the SAME address quoting both
+    sides of the market at (near) identical size -- a market-making grid or a
+    bracket, not directional inventory. Rendering the ask leg alone reads as
+    "21M USD sell wall overhead", which the operator then reasons about as a
+    trapped-short liquidation magnet. That inference is wrong: a sell wall that
+    is size-matched by an equal buy wall from the same wallet carries no net
+    directional information. This surfaces the mirror so the prompt cannot
+    present one leg of a bracket as a one-sided wall.
+    """
+    if not isinstance(wall, dict):
+        return None
+    side = wall.get("side")
+    if side not in ("BUY", "SELL"):
+        return None
+    addr = wall.get("address")
+    try:
+        size = float(wall.get("size") or 0.0)
+    except (TypeError, ValueError):
+        return None
+    if size <= 0:
+        return None
+    want = "SELL" if side == "BUY" else "BUY"
+    for other in whales or []:
+        if not isinstance(other, dict) or other is wall:
+            continue
+        if other.get("side") != want:
+            continue
+        if addr is not None and other.get("address") != addr:
+            continue
+        try:
+            osize = float(other.get("size") or 0.0)
+        except (TypeError, ValueError):
+            continue
+        if osize <= 0:
+            continue
+        if abs(osize - size) / size <= tol:
+            return other
+    return None
+
+
 def build_48h_orderflow_prompt() -> str:
     """Build the comprehensive, self-contained 48-hour footprint and telemetry prompt for Arena.ai."""
     # 1. Load Telemetry Snapshot
@@ -415,7 +459,20 @@ def build_48h_orderflow_prompt() -> str:
                     age_str = f"age~{max(int(raw_age), 0)}s (single sample, no persistence series)"
                 else:
                     age_str = f"age={int(raw_age)}s"
-                lines.append(f"  * Whale Wall: {w.get('side')} at {w.get('price')} USD ({w.get('notional_usd'):,.2f} USD, {age_str})")
+                # A size-matched opposite leg from the same wallet makes this a
+                # two-sided bracket, not a directional wall. Say so explicitly,
+                # otherwise a grid quote reads as trapped one-sided liquidity.
+                mirror = detect_mirrored_wall_leg(w, whales)
+                if mirror is not None:
+                    note = (
+                        f" | MIRRORED: same wallet also quotes {mirror.get('side')} "
+                        f"{mirror.get('size')} @ {mirror.get('price')} "
+                        f"({mirror.get('notional_usd'):,.2f} USD) - two-sided bracket, "
+                        f"NOT net directional inventory"
+                    )
+                else:
+                    note = " | one-sided (no size-matched opposite leg)"
+                lines.append(f"  * Whale Wall: {w.get('side')} at {w.get('price')} USD ({w.get('notional_usd'):,.2f} USD, {age_str}){note}")
         lines.append(f"Targets: Long Flush Target = {l_flush_str} | Short Squeeze Band = {s_squeeze_str} | Discount Sell Stops = {disc_stop_str} | Premium Buy Stops = {prem_stop_str}")
 
         if df_15m is not None and len(df_15m) > 0:

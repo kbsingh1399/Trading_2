@@ -329,3 +329,98 @@ def test_whale_wall_age_is_not_clamped_to_the_persistence_threshold():
     src = (ROOT / "Terminal" / "arena_bridge.py").read_text()
     assert "max(w_age, 180)" not in src
     assert "no persistence series" in src
+
+
+# ------------------------------------------------ 4. mirrored whale walls
+def _load_arena_bridge():
+    """Import arena_bridge with any absent transport dep stubbed out.
+
+    The module imports websockets at module level purely for the live feed
+    client; the pure helpers under test do not touch it. Stubbing keeps the
+    regression test runnable in environments without the websocket client
+    while still executing the real function body.
+    """
+    import types
+    for name in ("websockets",):
+        if name not in sys.modules:
+            try:
+                __import__(name)
+            except ImportError:
+                sys.modules[name] = types.ModuleType(name)
+    spec = importlib.util.spec_from_file_location(
+        "arena_bridge_under_test", ROOT / "Terminal" / "arena_bridge.py")
+    mod = importlib.util.module_from_spec(spec)
+    sys.modules["arena_bridge_under_test"] = mod
+    spec.loader.exec_module(mod)
+    return mod
+
+
+def _bracket_pair(size=252.4353):
+    """The real BTC L3 shape: one wallet, equal size, both sides."""
+    return [
+        {"address": "0xf5a523b1", "side": "SELL", "price": 83862.0,
+         "size": size, "notional_usd": 21169733.32},
+        {"address": "0xf5a523b1", "side": "BUY", "price": 81641.0,
+         "size": size, "notional_usd": 20609074.41},
+    ]
+
+
+def test_size_matched_opposite_leg_is_detected_as_a_bracket():
+    """A wall mirrored by an equal opposite leg must not read as directional.
+
+    Live BTC L3 shows wallet 0xf5a523b1 quoting SELL 252.4353 @ 83862 and
+    BUY 252.4353 @ 81641 -- identical size, both sides, straddling the market.
+    The council briefing rendered only the ask leg as "Whale Wall: SELL at
+    83862 (21,169,733.32 USD)", which the desk then reasoned about as a trapped
+    short-liquidation magnet. A sell wall size-matched by an equal buy wall
+    from the same wallet carries no net directional information.
+    """
+    ab = _load_arena_bridge()
+    walls = _bracket_pair()
+    mirror = ab.detect_mirrored_wall_leg(walls[0], walls)
+    assert mirror is not None
+    assert mirror["side"] == "BUY"
+    assert mirror["price"] == 81641.0
+
+
+def test_genuinely_one_sided_wall_is_not_flagged_as_a_bracket():
+    """The detector must not cry wolf on real one-sided inventory."""
+    ab = _load_arena_bridge()
+    walls = [
+        {"address": "0xaaaa", "side": "SELL", "price": 84000.0,
+         "size": 200.0, "notional_usd": 16800000.0},
+        {"address": "0xaaaa", "side": "BUY", "price": 82000.0,
+         "size": 12.0, "notional_usd": 984000.0},
+    ]
+    assert ab.detect_mirrored_wall_leg(walls[0], walls) is None
+
+
+def test_mirror_requires_the_same_wallet():
+    """An equal opposite size from a DIFFERENT wallet is not a bracket."""
+    ab = _load_arena_bridge()
+    walls = [
+        {"address": "0xaaaa", "side": "SELL", "price": 84000.0,
+         "size": 200.0, "notional_usd": 16800000.0},
+        {"address": "0xbbbb", "side": "BUY", "price": 82000.0,
+         "size": 200.0, "notional_usd": 16400000.0},
+    ]
+    assert ab.detect_mirrored_wall_leg(walls[0], walls) is None
+
+
+def test_mirror_detection_is_malformed_input_safe():
+    """Telemetry gaps must degrade to 'no mirror', never raise."""
+    ab = _load_arena_bridge()
+    f = ab.detect_mirrored_wall_leg
+    assert f(None, []) is None
+    assert f({"side": "SELL", "size": 1.0}, []) is None
+    assert f({"side": "HOLD", "size": 1.0}, []) is None
+    assert f({"side": "SELL", "size": 0}, []) is None
+    assert f({"side": "SELL", "size": "x"}, []) is None
+    assert f({"side": "SELL", "size": 1.0}, [None, {"side": "BUY"}]) is None
+
+
+def test_briefing_labels_mirrored_walls_as_brackets():
+    """The render must carry the bracket verdict, not just the raw wall."""
+    src = (ROOT / "Terminal" / "arena_bridge.py").read_text()
+    assert "detect_mirrored_wall_leg(w, whales)" in src
+    assert "NOT net directional inventory" in src
