@@ -106,7 +106,9 @@ def test_model1_checklist_with_valid_tape():
         "round_trip_cost_usd": 0.5,
         "p_win_lower_bound": 0.65,
         "wall": {"usd": 200000.0, "persist_s": 200.0, "presence_frac": 1.0,
-                 "dist_from_entry_atr": .1, "median_1m_traded_usd": 25000.0},
+                 "dist_from_entry_atr": .1, "median_1m_traded_usd": 25000.0,
+                 # dg_context always stamps these; G-7 rejects unlabelled walls.
+                 "wall_class": "GENUINE", "gate_g7_eligible": True},
         "orderflow": {
             "cvd_push1": -100.0,
             "cvd_push2": -40.0,
@@ -177,7 +179,9 @@ def test_model2_checklist_passes_with_obstacle():
         "round_trip_cost_usd": 0.6,
         "p_win_lower_bound": 0.60,
         "wall": {"usd": 200000.0, "persist_s": 200.0, "presence_frac": 1.0,
-                 "dist_from_entry_atr": .1, "median_1m_traded_usd": 25000.0},
+                 "dist_from_entry_atr": .1, "median_1m_traded_usd": 25000.0,
+                 # dg_context always stamps these; G-7 rejects unlabelled walls.
+                 "wall_class": "GENUINE", "gate_g7_eligible": True},
         "allow_price_only_variant": True,
     }
     v = model2_checklist(ctx)
@@ -230,7 +234,8 @@ def _valid_gate_context(model=2, direction="LONG"):
                exhaustion_flags=dict(vol_spike=False, long_wick=False),
                shelf=dict(price=100.0, confluence=3), allow_price_only_variant=True,
                wall=dict(usd=200000.0, persist_s=200.0, presence_frac=1.0,
-                         dist_from_entry_atr=.1, median_1m_traded_usd=25000.0))
+                         dist_from_entry_atr=.1, median_1m_traded_usd=25000.0,
+                         wall_class="GENUINE", gate_g7_eligible=True))
     if model == 1:
         ctx.update(regime="MEAN_REVERT", sl=100.0 - side * 12.0, tp=100.0 + side * 18.0,
                    vwap=100.0 + side * 20.0, sweep_extreme=100.0 - side * 5.0,

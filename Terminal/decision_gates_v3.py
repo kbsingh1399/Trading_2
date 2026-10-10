@@ -429,9 +429,20 @@ def model1_checklist(ctx: dict) -> Verdict:
     wall = ctx.get("wall")
     v.require(wall is not None, "A3_no_wall_fail_closed")
     if wall is not None:
+        # Defence in depth: dg_context filters non-eligible rows before selection,
+        # but the gate must not trust its caller. MIRRORED_LEG and TOP_OF_BOOK rows
+        # are bracket legs / touch prints -- not net directional inventory -- and can
+        # never satisfy whale backing regardless of size or persistence.
+        w_class = str(wall.get("wall_class") or "GENUINE").upper()
+        v.require(bool(wall.get("gate_g7_eligible", False)), "A3_wall_not_g7_eligible")
+        v.require(w_class == "GENUINE", "A3_wall_not_net_directional_inventory")
         v.require(wall["usd"] >= max(150_000, 5 * wall.get("median_1m_traded_usd", 0.0)), "A3_wall_too_small_vs_flow")
-        v.require(wall["persist_s"] >= 180 and wall.get("presence_frac", 1.0) >= 0.9, "A3_wall_not_persistent")
+        v.require(wall["persist_s"] >= 180 and wall.get("presence_frac", 0.0) >= 0.9, "A3_wall_not_persistent")
         v.require(wall.get("dist_from_entry_atr", 9.9) <= 0.25, "A3_wall_not_behind_entry")
+    else:
+        # Whale backing is knowable from this payload but nothing eligible rests
+        # behind the entry: fail closed rather than passing vacuously.
+        v.require(not ctx.get("wall_data_present", False), "A3_no_eligible_whale_wall_behind_entry")
     # --- A4 flush completed
     fl = ctx.get("flush")
     if fl is not None:
@@ -533,9 +544,16 @@ def model2_checklist(ctx: dict) -> Verdict:
     wall = ctx.get("wall")
     v.require(wall is not None, "B5_no_wall_fail_closed")
     if wall is not None:
-        v.require(wall["usd"] >= 150_000, "B5_wall_too_small")
-        v.require(wall["persist_s"] >= 180 and wall["presence_frac"] >= 0.9, "B5_wall_not_persistent")
-        v.require(wall["dist_from_entry_atr"] <= 0.25, "B5_wall_not_behind_entry")
+        # Same authenticity rule as A3: only GENUINE, G-7-eligible walls back a
+        # trend-following entry. Bracket legs cannot.
+        w_class = str(wall.get("wall_class") or "GENUINE").upper()
+        v.require(bool(wall.get("gate_g7_eligible", False)), "B5_wall_not_g7_eligible")
+        v.require(w_class == "GENUINE", "B5_wall_not_net_directional_inventory")
+        v.require(wall.get("usd", 0.0) >= 150_000, "B5_wall_too_small")
+        v.require(wall["persist_s"] >= 180 and wall.get("presence_frac", 0.0) >= 0.9, "B5_wall_not_persistent")
+        v.require(wall.get("dist_from_entry_atr", 9.9) <= 0.25, "B5_wall_not_behind_entry")
+    else:
+        v.require(not ctx.get("wall_data_present", False), "B5_no_eligible_whale_wall_behind_entry")
     # --- B6 target & net EV
     entry, sl, tp = ctx["entry"], ctx["sl"], ctx["tp"]
     r = side * (entry - sl)
