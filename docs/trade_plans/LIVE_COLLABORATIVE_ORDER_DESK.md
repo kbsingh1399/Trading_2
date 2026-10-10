@@ -9128,3 +9128,33 @@ Arena.ai conducted an exhaustive mathematical audit in response to the operator'
 - **Account Equity**: **4,896.55 USD** | Cushion: **+121.55 USD** above 4,775.00 USD hard floor.
 - **Committed Risk**: **0.00 USD**.
 
+---
+
+## SECTION 126: AUTONOMOUS MODEL 2 LIMIT ORDER EXECUTION · BTCUSD.pi PUNCHED LIVE (11:21 UTC / 16:51 IST)
+### 1. Order Execution & Broker Receipt (MetaTrader 5 Account 5064568)
+Pursuant to the Operator's **Zero-Hesitation Autonomous Punch Mandate**, with the codebase fully hardened and merged (`main` commit `863e0280`), Antigravity staged a passive institutional limit order on Blueberry Markets MT5:
+- **Broker Ticket**: `#18762461`
+- **Asset**: `BTC` (Broker Symbol: `BTCUSD.pi`)
+- **Order Type**: `ORDER_TYPE_BUY_LIMIT` (Type: 2)
+- **Volume**: **0.02 lots**
+- **Entry Price**: **82,630.00 USD** (staged at Session VWAP pullback zone; current mid: 82,741.00 USD)
+- **Stop Loss**: **82,130.00 USD** (500 pts / 1.00R stop anchored behind the 82,150.00 USD structural liquidity shelf)
+- **Take Profit**: **83,880.00 USD** (+1,250 pts / +2.50R, front-running the major ask wall cluster at 83,900.00 USD)
+- **Broker Retcode**: `10009` (`TRADE_RETCODE_DONE` - Request executed)
+- **Comment**: `OMNI M2 VWAP Pullback`
+
+### 2. Quantitative Confluence Stack
+1. **Pillar 1 (VWAP & SD Geometry)**: Price is in a confirmed `BULLISH` trend regime ($Z = +1.08$, 200-EMA slope positive). Limit entry rests at Session VWAP ($82,635.00\text{ USD}$), capturing mean reversion within the broader trend.
+2. **Pillar 2 (Microstructure Friction)**: Blueberry Markets spread is **1.93 bps**, easily satisfying Gate G-5 ($\le 20\text{ bps}$) and G-6 ($c = 0.032\text{R} \le 0.10\text{R}$).
+3. **Pillar 3 (Resting L2/L3 Whale Backing)**: Entry is defended by major bid depth support at $82,600$–$82,500\text{ USD}$.
+4. **Pillar 4 (Structural Target Magnet)**: Target at $83,880.00\text{ USD}$ front-runs 83,900 USD ask liquidity ($RR = 2.50$, net $EV \ge +0.15\text{R}$).
+
+### 3. Capital Floor Defense Math
+- **Committed Risk**: $0.02 \text{ lots} \times 500\text{ pts} = \mathbf{10.00\text{ USD}}$ ($\approx 10.32\text{ USD}$ with broker friction).
+- **Current Account Equity**: **4,896.55 USD**
+- **Worst-Case Post-Stopout Equity**: $4,896.55 - 10.32 = \mathbf{4,886.23\text{ USD}}$
+- **Preserved Floor Cushion Above 4,775.00 USD Hard Floor**: **+111.23 USD** (Unconditionally defends hard floor!).
+- **Preserved Margin Above 4,795.00 USD Operating Buffer**: **+91.23 USD** (4.5x mandatory >= 20.00 USD buffer).
+- **Capacity Utilization**: **1 / 4 slots utilized** (3 vacant slots available across Commodities, Indices, and Forex).
+
+
