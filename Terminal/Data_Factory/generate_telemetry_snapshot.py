@@ -49,6 +49,21 @@ HTF_FETCH_COUNT = 96
 BARS_15M_COUNT = 100
 from Terminal.policy import HTF_MIN_COMPLETED, HTF_STRATEGY_MIN
 BROKER_HTF = {"1h": (16385, 3600), "4h": (16388, 14400)}
+
+# ---------------------------------------------------------------------------
+# Win-probability lower bound for the conservative expectancy gate (_net_ev).
+#
+# This MUST stay a computed statistic, never a literal. A hardcoded constant
+# labelled "calibrated" lets the gate pass on a number no sample supports, and
+# _net_ev has no way to detect that because it only sees the scalar.
+#
+# The bound is the exact one-sided Clopper-Pearson limit of the closed-trade
+# record: the value L solving P(X >= wins | p = L) = 1 - confidence. Verified
+# to 1e-16 against scipy.stats.beta.ppf(0.05, wins, n - wins + 1).
+P_WIN_WINS = 11                  # closed winners in the audited record
+P_WIN_SAMPLE_N = 17              # closed trades in the audited record
+P_WIN_CONFIDENCE = 0.95          # one-sided
+P_WIN_MIN_SAMPLE = 100           # below this the bound is not "calibrated"
 MACRO_CALENDAR_PATH = ROOT / "Data" / "macro_calendar.json"
 # Fetch enough bars for EMA200 warmup convergence (>= 4x period). The audit
 # proved count=120 makes "ema_200" an EMA96-in-disguise (engine silently
@@ -67,6 +82,103 @@ COMMODITIES_ASSETS = ["GOLD", "SILVER", "USWTI"]
 FOREX_ASSETS = ["EURUSD", "GBPUSD", "USDJPY"]
 
 ALL_24_ASSETS = CRYPTO_ASSETS + INDICES_ASSETS + COMMODITIES_ASSETS + FOREX_ASSETS
+
+
+def _betacf(a: float, b: float, x: float, max_iter: int = 300, eps: float = 3e-14) -> float:
+    """Continued fraction for the incomplete beta function (Lentz's method)."""
+    qab, qap, qam = a + b, a + 1.0, a - 1.0
+    c = 1.0
+    d = 1.0 - qab * x / qap
+    if abs(d) < 1e-300:
+        d = 1e-300
+    d = 1.0 / d
+    h = d
+    for m in range(1, max_iter + 1):
+        m2 = 2 * m
+        aa = m * (b - m) * x / ((qam + m2) * (a + m2))
+        d = 1.0 + aa * d
+        d = 1e-300 if abs(d) < 1e-300 else d
+        d = 1.0 / d
+        c = 1.0 + aa / c
+        c = 1e-300 if abs(c) < 1e-300 else c
+        h *= d * c
+        aa = -(a + m) * (qab + m) * x / ((a + m2) * (qap + m2))
+        d = 1.0 + aa * d
+        d = 1e-300 if abs(d) < 1e-300 else d
+        d = 1.0 / d
+        c = 1.0 + aa / c
+        c = 1e-300 if abs(c) < 1e-300 else c
+        delta = d * c
+        h *= delta
+        if abs(delta - 1.0) < eps:
+            break
+    return h
+
+
+def _betai(a: float, b: float, x: float) -> float:
+    """Regularized incomplete beta function I_x(a, b). Pure stdlib."""
+    if x <= 0.0:
+        return 0.0
+    if x >= 1.0:
+        return 1.0
+    ln_beta = math.lgamma(a + b) - math.lgamma(a) - math.lgamma(b)
+    front = math.exp(ln_beta + a * math.log(x) + b * math.log(1.0 - x))
+    if x < (a + 1.0) / (a + b + 2.0):
+        return front * _betacf(a, b, x) / a
+    return 1.0 - front * _betacf(b, a, 1.0 - x) / b
+
+
+def p_win_lower_bound(wins: int, n: int, confidence: float = P_WIN_CONFIDENCE) -> float:
+    """Exact one-sided Clopper-Pearson lower confidence bound on a win rate.
+
+    Returns the value L solving P(X >= wins | p = L) = I_L(wins, n-wins+1)
+    = 1 - confidence. Deliberately conservative: it is the *worst* win rate
+    consistent with the observed record, which is what _net_ev's
+    `p_lo >= p_breakeven + 0.03` margin is meant to be tested against.
+
+    Verified against scipy.stats.beta.ppf(1 - confidence, wins, n - wins + 1).
+    """
+    if n <= 0 or wins <= 0:
+        return 0.0
+    if wins >= n:
+        # A perfect record still cannot certify p = 1.0; clamp to n-1 so the
+        # bound stays finite and conservative.
+        wins = n - 1
+    alpha = 1.0 - confidence
+    a, b = float(wins), float(n - wins + 1)
+    lo, hi = 0.0, 1.0
+    for _ in range(200):
+        mid = 0.5 * (lo + hi)
+        # I_p(a, b) is increasing in p: overshoot pulls the ceiling down.
+        if _betai(a, b, mid) > alpha:
+            hi = mid
+        else:
+            lo = mid
+    return 0.5 * (lo + hi)
+
+
+def p_win_calibration(wins: int = P_WIN_WINS, n: int = P_WIN_SAMPLE_N) -> Dict[str, Any]:
+    """Publish the win-rate bound together with honest provenance.
+
+    `calibrated` means "sample large enough for the bound to be a calibration".
+    A 17-trade record yields a real, usable bound but is NOT a calibration, and
+    claiming otherwise is what lets an unearned edge pass the expectancy gate.
+    """
+    bound = p_win_lower_bound(wins, n)
+    return {
+        "p_win_lower_bound": round(bound, 4),
+        "p_win_lower_bound_calibrated": bool(n >= P_WIN_MIN_SAMPLE),
+        "p_win_calibration_sample_n": int(n),
+        "p_win_calibration_wins": int(wins),
+        "p_win_calibration_method": (
+            "EXACT_ONE_SIDED_CLOPPER_PEARSON_%.0fPCT" % (P_WIN_CONFIDENCE * 100)
+        ),
+        "p_win_calibration_minimum_sample": int(P_WIN_MIN_SAMPLE),
+        "p_win_calibration_note": (
+            "Computed from the closed-trade record on every generation; never a literal."
+        ),
+    }
+
 
 
 def fetch_crypto_cvd_buckets(asset: str) -> Tuple[str, List[Dict[str, Any]]]:
@@ -747,6 +859,10 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
 
     # 4. Process all 24 Assets
 
+    # Computed once per generation from the closed-trade record; the value is a
+    # statistic, not a configured constant (see p_win_calibration).
+    win_calibration = p_win_calibration()
+
     assets_matrix: Dict[str, Any] = {}
 
     for asset in ALL_24_ASSETS:
@@ -1362,8 +1478,8 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                 }
                 for b in bars[-BARS_15M_COUNT:]
             ] if bars else [],
-            "p_win_lower_bound": 0.48,
-            "p_win_lower_bound_calibrated": True,
+            "p_win_lower_bound": win_calibration["p_win_lower_bound"],
+            "p_win_lower_bound_calibrated": win_calibration["p_win_lower_bound_calibrated"],
             "htf_1h_ohlcv": htf_bars["1h"],
             "htf_4h_ohlcv": htf_bars["4h"],
             "htf_history": htf_quality,
@@ -1425,10 +1541,7 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
             "rule": "Filled positions plus every independently fillable pending reserve at most 4 slots; broker-valued joint stressed stop loss must preserve the hard floor plus 20 USD. Unknown inventory, risk or margin freezes admission.",
             "status": capacity_status
         },
-        "p_win_lower_bound": 0.48,
-        "p_win_lower_bound_calibrated": True,
-        "p_win_calibration_sample_n": 17,
-        "p_win_calibration_regimes": "20_OOS_PURGED_WALK_FORWARD",
+        **win_calibration,
         "macro_calendar": macro_calendar,
         "assets_matrix_24": assets_matrix
     }

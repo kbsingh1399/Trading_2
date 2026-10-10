@@ -150,7 +150,10 @@ def _tf_stats(closes, n, p: RegimeParams):
     return {"er": er, "vr": vr, "vr_z": vz, "t": t}
 
 
-def classify_regime(closes_15m, closes_1h, closes_4h, p: RegimeParams = RegimeParams()):
+def classify_regime(closes_15m, closes_1h, closes_4h, p: RegimeParams = RegimeParams(),
+                    last_close_epoch: Optional[float] = None,
+                    as_of_epoch: Optional[float] = None,
+                    max_staleness_s: float = 1800.0):
     """Returns (regime, stats).
 
     TREND_UP / TREND_DOWN : HTF (4H and 1H) agree, 1H passes >=2 of 3 tests.
@@ -158,11 +161,27 @@ def classify_regime(closes_15m, closes_1h, closes_4h, p: RegimeParams = RegimePa
     UNDEFINED             : everything else -> BOTH ENGINES STAND ASIDE.
     The 15m is deliberately NOT required to trend: during a pullback it
     is counter-trend by construction.
+
+    STALENESS GUARD: if `last_close_epoch` and `as_of_epoch` are supplied and
+    the newest consumed bar closed more than `max_staleness_s` ago, the result
+    is forced to UNDEFINED. Rationale: the router is a pure function of price
+    series and is perfectly happy to classify a market that has since closed.
+    A weekend CFD still publishes its Friday bars, so without this guard a
+    frozen instrument can be returned as MEAN_REVERT and read as tradeable.
+    Default is two periods of the finest timeframe consumed (2 x 15m).
     """
     s15 = _tf_stats(closes_15m, p.n_15m, p)
     s1h = _tf_stats(closes_1h, p.n_1h, p)
     s4h = _tf_stats(closes_4h, p.n_4h, p)
     stats = {"15m": s15, "1h": s1h, "4h": s4h}
+    if last_close_epoch is not None and as_of_epoch is not None:
+        age_s = as_of_epoch - last_close_epoch
+        stats["bar_age_s"] = float(age_s)
+        stats["max_staleness_s"] = float(max_staleness_s)
+        if age_s > max_staleness_s:
+            stats["stale"] = True
+            return "UNDEFINED", stats
+        stats["stale"] = False
     if any(v is None for s in (s1h, s4h) for v in (s["er"], s["t"])):
         return "UNDEFINED", stats
     for sign, name in ((1, "TREND_UP"), (-1, "TREND_DOWN")):
