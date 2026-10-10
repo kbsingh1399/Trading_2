@@ -258,14 +258,36 @@ def build_dg_context(
             or not 0 <= p_win_lower <= 1):
         p_win_lower = None
 
-    # Resting whale wall backing (Gates A3 & B5)
+    # Resting whale wall backing (Gates A3 & B5).
+    #
+    # POLICY (operator mandate #4): GENUINE L3 walls require gate_g7_eligible=true.
+    # MIRRORED_LEG and TOP_OF_BOOK rows are bracket legs / touch prints, NOT net
+    # directional inventory, and can NEVER satisfy whale backing -- no matter how
+    # large or how long-lived they are. A 1.05M USD MIRRORED_LEG that has rested for
+    # 2,476s is still one wallet's hedged bracket, not a resting bid.
+    #
+    # Non-eligible rows are therefore filtered out *before* selection rather than
+    # merely deprioritised by the sort.
     wall_ctx = None
+    wall_data_present = False
     if payload and isinstance(payload, dict):
         ob = payload.get("orderbook_live_depth", {}) or payload.get("orderbook", {})
         ob = ob if isinstance(ob, dict) else {}
         l3_walls = ob.get("whale_walls_l3") or payload.get("whale_walls_l3") or []
         l2_walls = ob.get("l2_wall_levels") or payload.get("l2_wall_levels") or []
         walls = (list(l3_walls) if isinstance(l3_walls, list) else []) + (list(l2_walls) if isinstance(l2_walls, list) else [])
+        # A row only counts as G-7 eligible if it passes the same authenticity
+        # predicate used for selection below. L2 touch rows and un-classified rows
+        # carry no gate_g7_eligible key and are excluded, as are bracket legs and
+        # rows with non-finite measurements.
+        def _g7_eligible_row(w) -> bool:
+            return (isinstance(w, dict)
+                    and w.get("gate_g7_eligible") is True
+                    and w.get("wall_class") == "GENUINE"
+                    and all(_finite_number(w.get(k)) for k in
+                            ("price", "notional_usd", "persist_s", "presence_frac")))
+
+        wall_data_present = any(_g7_eligible_row(w) for w in walls)
         if walls:
             target_side = "BUY" if side == 1 else "SELL"
             eligible_walls = []
@@ -286,7 +308,7 @@ def build_dg_context(
                     if 0 <= dist_atr <= 0.25:
                         eligible_walls.append((dist_atr, w))
             if eligible_walls:
-                eligible_walls.sort(key=lambda x: (not x[1].get("gate_g7_eligible", False), x[0]))
+                eligible_walls.sort(key=lambda x: x[0])
                 best_dist_atr, best_w = eligible_walls[0]
                 flow_usd = (of_payload.get("median_1m_flow_usd") if isinstance(of_payload, dict) else None)
                 if not _finite_number(flow_usd) or flow_usd <= 0:
@@ -297,6 +319,10 @@ def build_dg_context(
                     "presence_frac": float(best_w["presence_frac"]),
                     "dist_from_entry_atr": float(best_dist_atr),
                     "median_1m_traded_usd": flow_usd,
+                    # Authenticity passthrough so A3/B5 can re-assert the producer's
+                    # veto as defence in depth rather than trusting this caller.
+                    "wall_class": str(best_w.get("wall_class") or "GENUINE"),
+                    "gate_g7_eligible": bool(best_w.get("gate_g7_eligible", False)),
                 }
 
     m1_override = features.get("m1_range_override") or (payload.get("m1_range_override") if isinstance(payload, dict) else None)
@@ -333,6 +359,10 @@ def build_dg_context(
         "allow_price_only_variant": allow_price_only,
         "orderflow": orderflow,
         "wall": wall_ctx,
+        # True when the payload carried at least one G-7 eligible wall somewhere in
+        # the book but none sat within 0.25 ATR behind this entry. Lets A3/B5 FAIL
+        # closed instead of vacuously skipping when whale backing is knowable.
+        "wall_data_present": wall_data_present,
         "m1_range_override": m1_override,
     }
 
