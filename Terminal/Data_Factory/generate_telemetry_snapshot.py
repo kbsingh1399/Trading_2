@@ -43,7 +43,9 @@ WHALE_STATE_PATH = ROOT / "docs" / "telemetry" / ".whale_wall_state.json"
 
 sys.path.insert(0, str(ROOT / "Terminal"))
 from microstructure_state import (  # noqa: E402
+    WALL_GENUINE,
     carry_forward_unseen,
+    classify_wall,
     estimate_cycle_interval,
     prune_wall_state,
     record_cycle_interval,
@@ -341,6 +343,30 @@ def _write_error_marker(reason: str) -> None:
         }, indent=2), encoding="utf-8")
     except Exception:
         pass
+
+
+def _level_pairs(levels) -> list:
+    """Normalise either book shape to [(price, notional_usd), ...].
+
+    Binance REST yields ["price", "size"] strings; Hyperdash yields dicts with
+    price/size/total_usd. The mirror test needs both, so normalise once here
+    rather than special-casing at every call site.
+    """
+    out = []
+    for lv in levels or ():
+        try:
+            if isinstance(lv, dict):
+                px = float(lv.get("price") or 0.0)
+                nt = float(lv.get("notional_usd") or lv.get("total_usd")
+                           or (px * float(lv.get("size") or 0.0)))
+            else:
+                px = float(lv[0])
+                nt = px * float(lv[1])
+            if px > 0 and nt > 0:
+                out.append((px, nt))
+        except (TypeError, ValueError, IndexError, KeyError):
+            continue
+    return out
 
 
 def load_whale_state(path: pathlib.Path = None) -> Dict[str, Any]:
@@ -1207,6 +1233,34 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
         wallet_whales_l3.sort(key=lambda x: x["notional_usd"], reverse=True)
         top_wallet_whales_l3 = [w for w in wallet_whales_l3 if w["notional_usd"] >= 150_000.0 or w in wallet_whales_l3[:10]]
 
+        # Persistence + authenticity for the on-chain wallet walls. These are the
+        # genuinely directional levels (identified 0x addresses), and Gate G-7's
+        # persist_s / presence_frac requirements were written against exactly this
+        # kind of resting order. Keyed per wallet so each address's unbroken run
+        # is measured on its own merits rather than pooled across wallets.
+        _l3_book = (hd_res.get("book") or {}) if hd_status == "SUCCESS" else {}
+        _l3_bids = _l3_book.get("bids") or []
+        _l3_asks = _l3_book.get("asks") or []
+        _l3_best_bid = float(_l3_bids[0]["price"]) if _l3_bids else None
+        _l3_best_ask = float(_l3_asks[0]["price"]) if _l3_asks else None
+        for _w in top_wallet_whales_l3:
+            _side = str(_w.get("side") or "UNKNOWN").upper()
+            _opp = [(x["price"], x["notional_usd"]) for x in wallet_whales_l3
+                    if str(x.get("side") or "").upper() != _side]
+            _key = f"{asset}_L3_{_w['address']}_{_side}_{_w['price']}"
+            _pers = wall_persistence_record(prev_whale_state, new_whale_state, _key,
+                                            now_ts, cycle_interval_s=_cycle_interval_s)
+            _wclass = classify_wall(_side, _w["price"], _w["notional_usd"],
+                                    _l3_best_bid, _l3_best_ask, _opp)
+            _w["persist_s"] = _pers["persist_s"]
+            _w["presence_frac"] = _pers["presence_frac"]
+            _w["persistence_status"] = _pers["persistence_status"]
+            _w["wall_class"] = _wclass
+            _w["gate_g7_eligible"] = bool(
+                _pers["gate_g7_eligible"] and _wclass == WALL_GENUINE)
+            _w["first_seen_utc"] = datetime.fromtimestamp(
+                _pers["first_seen"], tz=timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
+
         # -----------------------------------------------------------------
         # Live L2 Orderbook Depth (Top 20 Bids and Top 20 Asks)
         # -----------------------------------------------------------------
@@ -1231,6 +1285,13 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                     wall_key = f"{asset}_BUY_{round(p_lvl, 4)}"
                     pers = wall_persistence_record(prev_whale_state, new_whale_state, wall_key,
                                                      now_ts, cycle_interval_s=_cycle_interval_s)
+                    # A level at the touch is not resting depth, and a size-matched
+                    # opposite order at the same price is a bracket, not intent.
+                    # Neither earns Gate G-7 credit however long it has been seen.
+                    _wclass = classify_wall(
+                        "BUY", p_lvl, notional,
+                        float(raw_book["bids"][0][0]), float(raw_book["asks"][0][0]),
+                        _level_pairs(raw_book["asks"][:20]))
                     whale_walls.append({
                         "side": "BUY",
                         "price": round(p_lvl, 4),
@@ -1240,7 +1301,9 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                         "persist_s": pers["persist_s"],
                         "presence_frac": pers["presence_frac"],
                         "persistence_status": pers["persistence_status"],
-                        "gate_g7_eligible": pers["gate_g7_eligible"],
+                        "wall_class": _wclass,
+                        "gate_g7_eligible": bool(
+                            pers["gate_g7_eligible"] and _wclass == WALL_GENUINE),
                         "first_seen_utc": datetime.fromtimestamp(pers["first_seen"], tz=timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
                     })
 
@@ -1254,6 +1317,13 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                     wall_key = f"{asset}_SELL_{round(p_lvl, 4)}"
                     pers = wall_persistence_record(prev_whale_state, new_whale_state, wall_key,
                                                      now_ts, cycle_interval_s=_cycle_interval_s)
+                    # A level at the touch is not resting depth, and a size-matched
+                    # opposite order at the same price is a bracket, not intent.
+                    # Neither earns Gate G-7 credit however long it has been seen.
+                    _wclass = classify_wall(
+                        "SELL", p_lvl, notional,
+                        float(raw_book["bids"][0][0]), float(raw_book["asks"][0][0]),
+                        _level_pairs(raw_book["bids"][:20]))
                     whale_walls.append({
                         "side": "SELL",
                         "price": round(p_lvl, 4),
@@ -1263,7 +1333,9 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                         "persist_s": pers["persist_s"],
                         "presence_frac": pers["presence_frac"],
                         "persistence_status": pers["persistence_status"],
-                        "gate_g7_eligible": pers["gate_g7_eligible"],
+                        "wall_class": _wclass,
+                        "gate_g7_eligible": bool(
+                            pers["gate_g7_eligible"] and _wclass == WALL_GENUINE),
                         "first_seen_utc": datetime.fromtimestamp(pers["first_seen"], tz=timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
                     })
 
@@ -1304,6 +1376,11 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                     wall_key = f"{asset}_BUY_{round(p, 4)}"
                     pers = wall_persistence_record(prev_whale_state, new_whale_state, wall_key,
                                                      now_ts, cycle_interval_s=_cycle_interval_s)
+                    _wclass = classify_wall(
+                        "BUY", p, n,
+                        float(hd_bids_raw[0]["price"]) if hd_bids_raw else None,
+                        float(hd_asks_raw[0]["price"]) if hd_asks_raw else None,
+                        _level_pairs(hd_asks_raw[:20]))
                     whale_walls.append({
                         "side": "BUY",
                         "price": round(p, 4),
@@ -1313,7 +1390,9 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                         "persist_s": pers["persist_s"],
                         "presence_frac": pers["presence_frac"],
                         "persistence_status": pers["persistence_status"],
-                        "gate_g7_eligible": pers["gate_g7_eligible"],
+                        "wall_class": _wclass,
+                        "gate_g7_eligible": bool(
+                            pers["gate_g7_eligible"] and _wclass == WALL_GENUINE),
                         "first_seen_utc": datetime.fromtimestamp(pers["first_seen"], tz=timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
                     })
             a_top20 = []
@@ -1328,6 +1407,11 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                     wall_key = f"{asset}_SELL_{round(p, 4)}"
                     pers = wall_persistence_record(prev_whale_state, new_whale_state, wall_key,
                                                      now_ts, cycle_interval_s=_cycle_interval_s)
+                    _wclass = classify_wall(
+                        "SELL", p, n,
+                        float(hd_bids_raw[0]["price"]) if hd_bids_raw else None,
+                        float(hd_asks_raw[0]["price"]) if hd_asks_raw else None,
+                        _level_pairs(hd_bids_raw[:20]))
                     whale_walls.append({
                         "side": "SELL",
                         "price": round(p, 4),
@@ -1337,7 +1421,9 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                         "persist_s": pers["persist_s"],
                         "presence_frac": pers["presence_frac"],
                         "persistence_status": pers["persistence_status"],
-                        "gate_g7_eligible": pers["gate_g7_eligible"],
+                        "wall_class": _wclass,
+                        "gate_g7_eligible": bool(
+                            pers["gate_g7_eligible"] and _wclass == WALL_GENUINE),
                         "first_seen_utc": datetime.fromtimestamp(pers["first_seen"], tz=timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
                     })
             tot_b = hd_book.get("bid_volume_usd") or c_bid

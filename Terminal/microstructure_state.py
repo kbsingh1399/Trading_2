@@ -327,3 +327,87 @@ def observe_and_median_spread(symbol: str, bps: Optional[float], now_ts: float,
         history = record_spread_observation(history, symbol, now_ts, bps_f, window_s)
         save_json_state(history, state_path)
     return rolling_spread_median_bps(history, symbol, now_ts, window_s)
+
+
+# ------------------------------------------------------ wall authenticity class
+WALL_TOP_OF_BOOK = "TOP_OF_BOOK"
+WALL_MIRRORED_LEG = "MIRRORED_LEG"
+WALL_GENUINE = "GENUINE"
+
+# Price proximity as a fraction of the reference price. 1e-6 keeps this below
+# any instrument tick while still absorbing float rounding at 4 dp.
+_TOP_OF_BOOK_EPS_FRAC = 1e-6
+_MIRROR_PRICE_TOL_FRAC = 5e-4
+_MIRROR_RATIO_MIN = 0.8
+
+
+def is_top_of_book(side: str, price: float, best_bid: Optional[float],
+                   best_ask: Optional[float],
+                   eps_frac: float = _TOP_OF_BOOK_EPS_FRAC) -> bool:
+    """True when the level IS the touch rather than resting depth behind it.
+
+    A best-bid/best-ask print routinely exceeds the 150k whale threshold on
+    liquid instruments -- BTC's top of book carried 719,971 / 377,384 USD this
+    cycle -- so without this check ordinary top-of-book depth gets certified as
+    a whale wall, in BOTH directions at once, which makes the flag worthless as
+    evidence of directional commitment.
+    """
+    try:
+        px = abs(float(price))
+    except (TypeError, ValueError):
+        return False
+    if px <= 0:
+        return False
+    ref = best_ask if str(side).upper() == "SELL" else best_bid
+    try:
+        ref = abs(float(ref))
+    except (TypeError, ValueError):
+        return False
+    if ref <= 0:
+        return False
+    return abs(px - ref) <= eps_frac * ref
+
+
+def is_mirrored_leg(side: str, price: float, notional_usd: float,
+                    opposite_legs: Iterable[Tuple[float, float]],
+                    price_tol_frac: float = _MIRROR_PRICE_TOL_FRAC,
+                    ratio_min: float = _MIRROR_RATIO_MIN) -> bool:
+    """True when a size-matched opposite order sits at ~the same price.
+
+    Such a pair is a two-sided bracket, not directional intent -- it is the
+    shape a spoofed or hedged quote takes. Only the resting leg can be
+    cancelled, so treating either side as whale backing is unsafe.
+    """
+    try:
+        px, note = abs(float(price)), abs(float(notional_usd))
+    except (TypeError, ValueError):
+        return False
+    if px <= 0 or note <= 0:
+        return False
+    for op in opposite_legs or ():
+        try:
+            opx, onote = abs(float(op[0])), abs(float(op[1]))
+        except (TypeError, ValueError, IndexError):
+            continue
+        if opx <= 0 or onote <= 0:
+            continue
+        if abs(opx - px) > price_tol_frac * px:
+            continue
+        if min(note, onote) / max(note, onote) >= ratio_min:
+            return True
+    return False
+
+
+def classify_wall(side: str, price: float, notional_usd: float,
+                  best_bid: Optional[float], best_ask: Optional[float],
+                  opposite_legs: Iterable[Tuple[float, float]]) -> str:
+    """Return WALL_TOP_OF_BOOK | WALL_MIRRORED_LEG | WALL_GENUINE.
+
+    Top of book is checked first: a level at the touch cannot be read as
+    resting depth behind price regardless of what sits opposite it.
+    """
+    if is_top_of_book(side, price, best_bid, best_ask):
+        return WALL_TOP_OF_BOOK
+    if is_mirrored_leg(side, price, notional_usd, opposite_legs):
+        return WALL_MIRRORED_LEG
+    return WALL_GENUINE
