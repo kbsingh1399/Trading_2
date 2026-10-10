@@ -5,6 +5,7 @@ into the exact contract required by model1_checklist and model2_checklist.
 from __future__ import annotations
 
 import math
+import time as _time_mod
 from Terminal.policy import HTF_STRATEGY_MIN
 from Terminal.Asset_Universe import canonical_asset
 from typing import Dict, List, Optional, Tuple
@@ -267,10 +268,17 @@ def evaluate_candidate_dg_v3(
     tp: float = 0.0,
     sizing: Optional[dict] = None,
     symbol: str = "",
+    as_of_epoch: Optional[float] = None,
 ) -> Dict[str, any]:
     """Execute complete Decision Gates V3 evaluation on candidate.
 
     Returns dict with regime, stats, passed (bool), failures, and metrics.
+
+    `as_of_epoch` is the wall-clock reference used to judge bar staleness.
+    When omitted it defaults to time.time(). Do NOT substitute the quote
+    timestamp: quote["time_msc"] freezes along with a closed market, so
+    (quote_time - last_bar_close) stays near one bar period no matter how many
+    hours the instrument has been shut, and the staleness guard never fires.
     """
     if (bars_1h and bars_4h and len(bars_15m) >= 97
             and len(bars_1h) >= HTF_STRATEGY_MIN and len(bars_4h) >= HTF_STRATEGY_MIN):
@@ -289,11 +297,16 @@ def evaluate_candidate_dg_v3(
         c1h = [b["close"] for b in bars_1h]
         c4h = [b["close"] for b in bars_4h]
         last_close = float(bars_15m[-1]["time"]) + 900.0
+        # `as_of` above is the QUOTE timestamp and is correct for the causality
+        # check, but wrong for staleness: a closed market's quote is frozen at
+        # the same instant as its last bar, so their difference stays ~900s and
+        # a 10-hour-old history reads as fresh. Staleness needs a real clock.
+        staleness_now = float(as_of_epoch) if as_of_epoch is not None else _time_mod.time()
         try:
             regime, rstats = classify_regime(
                 c15, c1h, c4h,
                 last_close_epoch=last_close,
-                as_of_epoch=as_of,
+                as_of_epoch=staleness_now,
             )
         except TypeError:
             regime, rstats = classify_regime(c15, c1h, c4h)

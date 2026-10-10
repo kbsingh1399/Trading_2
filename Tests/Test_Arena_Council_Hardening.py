@@ -14,6 +14,7 @@ from __future__ import annotations
 import importlib.util
 import pathlib
 import sys
+import time as _time_mod
 
 import pytest
 
@@ -176,7 +177,8 @@ def test_evaluate_candidate_dg_v3_staleness_guard_wired():
     res_stale = evaluate_candidate_dg_v3(
         features=features, payload={}, pivots=None, quote=quote,
         bars_15m=bars_15m, bars_1h=bars_1h, bars_4h=bars_4h,
-        entry=100.0, sl=96.0, tp=108.0, sizing=sizing, symbol="SP500.p"
+        entry=100.0, sl=96.0, tp=108.0, sizing=sizing, symbol="SP500.p",
+        as_of_epoch=now,
     )
     assert res_stale["regime"] == "UNDEFINED"
     assert res_stale["stats"]["stale"] is True
@@ -203,8 +205,89 @@ def test_evaluate_candidate_dg_v3_staleness_guard_wired():
     res_fresh = evaluate_candidate_dg_v3(
         features=features, payload={}, pivots=None, quote=quote_fresh,
         bars_15m=bars_15m_fresh, bars_1h=bars_1h_fresh, bars_4h=bars_4h_fresh,
-        entry=100.0, sl=96.0, tp=108.0, sizing=sizing, symbol="BTCUSD.pi"
+        entry=100.0, sl=96.0, tp=108.0, sizing=sizing, symbol="BTCUSD.pi",
+        as_of_epoch=fresh_now,
     )
     assert res_fresh["stats"]["stale"] is False
     assert res_fresh["regime"] == "MEAN_REVERT"
+
+
+def test_staleness_survives_a_frozen_quote():
+    """Regression: the quote freezes WITH the market, so it cannot date the bars.
+
+    This is the real weekend-CFD failure mode. The earlier wiring derived the
+    staleness clock from quote["time_msc"], and the test for it paired OLD bars
+    with a FRESH quote -- a combination that cannot occur. In production both
+    freeze at the Friday close, so (quote_time - last_bar_close) stays ~900s,
+    the guard never fires, and a 10-hour-old history classifies as tradeable.
+    Reproduced from live SP500 telemetry: quote age 36,812s, bar age 37,712s,
+    yet quote-derived bar_age = 899s.
+    """
+    from Terminal.dg_context import evaluate_candidate_dg_v3
+
+    # Mirror the live SP500 geometry exactly: bars and quote frozen together.
+    last_bar_open = 1_791_577_800.0            # 2026-10-09 20:30 UTC
+    last_close = last_bar_open + 900.0         # 20:45 UTC
+    frozen_quote_epoch = last_close + 899.381  # quote froze just after the last bar
+    wall_clock_now = last_close + 37_711.9     # 10.5 hours later
+
+    def mk_bars(count, period, last_open, close_fn):
+        return [{"time": last_open - (count - 1 - i) * period, "open": 100.0,
+                 "high": 101.0, "low": 99.0, "close": close_fn(i), "volume": 1000}
+                for i in range(count)]
+
+    alt15 = lambda i: 100.0 + (1.0 if i % 2 else -1.0)
+    flat = lambda i: 100.0 + (0.01 if i % 2 else -0.01)
+    # Anchor HTF series so their newest bar CLOSES before the frozen quote;
+    # otherwise the pre-existing causality check rejects the history first.
+    bars_15m = mk_bars(100, 900, last_bar_open, alt15)
+    bars_1h = mk_bars(60, 3600, last_bar_open - 2 * 3600, flat)
+    bars_4h = mk_bars(60, 14400, last_bar_open - 2 * 14400, flat)
+    frozen_quote = {"bid": 100.0, "ask": 100.02, "point": 0.01, "tick_size": 0.01,
+                    "time_msc": frozen_quote_epoch * 1000}
+    features = {"direction": "LONG", "atr": 2.0}
+    sizing = {"risk_usd": 12.0, "friction_usd": 0.40}
+    kw = dict(features=features, payload={}, pivots=None, quote=frozen_quote,
+              bars_15m=bars_15m, bars_1h=bars_1h, bars_4h=bars_4h,
+              entry=100.0, sl=96.0, tp=108.0, sizing=sizing, symbol="SP500.p")
+
+    # A quote-derived clock would report ~899s and let this through.
+    assert (frozen_quote_epoch - last_close) < 1800.0
+
+    res = evaluate_candidate_dg_v3(as_of_epoch=wall_clock_now, **kw)
+    assert res["regime"] == "UNDEFINED"
+    assert res["stats"]["stale"] is True
+    assert res["stats"]["bar_age_s"] > 1800.0
+
+
+def test_default_staleness_clock_is_wall_time_not_quote_time():
+    """Omitting as_of_epoch must use time.time(), never quote["time_msc"]."""
+    from Terminal.dg_context import evaluate_candidate_dg_v3
+
+    now = _time_mod.time()
+    last_bar_open = now - 5 * 3600 - 900       # 5 hours stale
+    alt15 = lambda i: 100.0 + (1.0 if i % 2 else -1.0)
+    flat = lambda i: 100.0 + (0.01 if i % 2 else -0.01)
+    bars_15m = [{"time": last_bar_open - (99 - i) * 900, "open": 100.0, "high": 101.0,
+                 "low": 99.0, "close": alt15(i), "volume": 1000} for i in range(100)]
+    # HTF newest bars must close before the frozen quote or causality rejects them.
+    bars_1h = [{"time": last_bar_open - 2 * 3600 - (59 - i) * 3600, "open": 100.0,
+                "high": 100.1, "low": 99.9, "close": flat(i), "volume": 4000}
+               for i in range(60)]
+    bars_4h = [{"time": last_bar_open - 2 * 14400 - (59 - i) * 14400, "open": 100.0,
+                "high": 100.1, "low": 99.9, "close": flat(i), "volume": 16000}
+               for i in range(60)]
+    # Quote frozen alongside the bars -- the trap this test exists to catch.
+    quote = {"bid": 100.0, "ask": 100.02, "point": 0.01, "tick_size": 0.01,
+             "time_msc": (last_bar_open + 950.0) * 1000}
+
+    res = evaluate_candidate_dg_v3(
+        features={"direction": "LONG", "atr": 2.0}, payload={}, pivots=None, quote=quote,
+        bars_15m=bars_15m, bars_1h=bars_1h, bars_4h=bars_4h,
+        entry=100.0, sl=96.0, tp=108.0, sizing={"risk_usd": 12.0, "friction_usd": 0.40},
+        symbol="SP500.p",
+    )
+    assert res["regime"] == "UNDEFINED"
+    assert res["stats"]["stale"] is True
+    assert res["stats"]["bar_age_s"] > 1800.0
 
