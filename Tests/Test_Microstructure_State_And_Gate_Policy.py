@@ -429,3 +429,79 @@ def test_carry_forward_does_not_clobber_this_cycles_records():
                                 "first_seen": 1000.0, "samples": 2}}
     carry_forward_unseen(prev, new)
     assert new["BTC_SELL_83862.0"]["samples"] == 2
+
+
+# ------------------------------------- 5. wall authenticity (Corrections A/B)
+from Terminal.microstructure_state import (  # noqa: E402
+    WALL_GENUINE,
+    WALL_MIRRORED_LEG,
+    WALL_TOP_OF_BOOK,
+    classify_wall,
+    is_mirrored_leg,
+    is_top_of_book,
+)
+
+
+def test_top_of_book_is_recognised_on_its_own_side_only():
+    bb, ba = 82850.5, 82850.6
+    assert is_top_of_book("BUY", 82850.5, bb, ba) is True
+    assert is_top_of_book("SELL", 82850.6, bb, ba) is True
+    # A BUY level is measured against the best BID, not the best ask.
+    assert is_top_of_book("BUY", 82850.6, bb, ba) is False
+    assert is_top_of_book("SELL", 82850.5, bb, ba) is False
+    # One tick behind the touch is resting depth, not the touch.
+    assert is_top_of_book("BUY", 82850.4, bb, ba) is False
+
+
+def test_top_of_book_fails_safe_on_missing_or_bad_data():
+    """An unreadable book must not silently certify a wall."""
+    assert is_top_of_book("BUY", 82850.5, None, 82850.6) is False
+    assert is_top_of_book("BUY", 82850.5, "x", "y") is False
+    assert is_top_of_book("BUY", "x", 82850.5, 82850.6) is False
+    assert is_top_of_book("BUY", 0.0, 82850.5, 82850.6) is False
+
+
+def test_mirror_detection_uses_size_match_not_just_proximity():
+    assert is_mirrored_leg("BUY", 83000.0, 500000.0, [(83000.1, 480000.0)]) is True
+    # 52% ratio -- a real bracket asymmetry, not a mirror.
+    assert is_mirrored_leg("BUY", 83000.0, 500000.0, [(83000.1, 260000.0)]) is False
+    # Same size but far away in price is unrelated depth.
+    assert is_mirrored_leg("BUY", 83000.0, 500000.0, [(83500.0, 500000.0)]) is False
+
+
+def test_mirror_detection_fails_safe_on_junk():
+    assert is_mirrored_leg("BUY", 83000.0, 500000.0, []) is False
+    assert is_mirrored_leg("BUY", 83000.0, 500000.0, [("x", "y"), (0, 0)]) is False
+    assert is_mirrored_leg("BUY", 83000.0, 0.0, [(83000.0, 500000.0)]) is False
+    assert is_mirrored_leg("BUY", 83000.0, 500000.0, None) is False
+
+
+def test_classify_wall_checks_the_touch_before_the_mirror():
+    """A level AT the touch is top-of-book regardless of what sits opposite."""
+    bb, ba = 82850.5, 82850.6
+    assert classify_wall("BUY", 82850.5, 719970.84, bb, ba,
+                         [(82850.6, 719970.84)]) == WALL_TOP_OF_BOOK
+    assert classify_wall("BUY", 82832.0, 1004485.0, bb, ba,
+                         [(82832.1, 1004485.0)]) == WALL_MIRRORED_LEG
+    assert classify_wall("BUY", 82832.0, 1004485.0, bb, ba, []) == WALL_GENUINE
+
+
+def test_persistence_alone_no_longer_certifies_gate_g7():
+    """The regression being fixed: 180s on the book used to be sufficient.
+
+    BTC's best bid and best ask (719,971 / 377,384 USD) both cleared the 150k
+    threshold and were certified PERSISTENT_VERIFIED + gate_g7_eligible in
+    OPPOSITE directions at once, which made the flag worthless as evidence of
+    directional whale commitment. Authenticity must gate eligibility too.
+    """
+    state = {}
+    now = 1000.0
+    for _ in range(5):
+        pers = wall_persistence_record(state, state, "BTC_SELL_82850.6", now)
+        now += 60.0
+    assert pers["persistence_status"] == "PERSISTENT_VERIFIED"   # persistence is real
+    wclass = classify_wall("SELL", 82850.6, 377384.48, 82850.5, 82850.6,
+                           [(82850.5, 719970.84)])
+    assert wclass == WALL_TOP_OF_BOOK
+    # This is the exact expression the generator now publishes.
+    assert (pers["gate_g7_eligible"] and wclass == WALL_GENUINE) is False
