@@ -1033,6 +1033,7 @@ class AI15mMT5Trader:
                             tp=tp,
                             sizing=sizing,
                             symbol=symbol,
+                            as_of_epoch=now,
                         )
                         candidate["dg_v3"] = dg_result
                         features["dg_v3"] = dg_result
