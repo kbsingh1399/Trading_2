@@ -9,6 +9,7 @@ and evaluates Arena's recommendations against strict quantitative orderflow gate
 
 from __future__ import annotations
 import asyncio
+import importlib.util
 import json
 import os
 import sys
@@ -213,6 +214,84 @@ def detect_mirrored_wall_leg(wall: Dict[str, Any], whales: List[Dict[str, Any]],
     return None
 
 
+def _load_gate_classifier():
+    """Load classify_regime from decision_gates_v3.py by file path.
+
+    Resolved by path rather than package import so the briefing reports the
+    enforced regime however arena_bridge is invoked (as a script, via -m, or
+    imported). Returns None if the module cannot be loaded, in which case the
+    renderer says so explicitly instead of silently dropping the gate.
+    """
+    path = PROJECT_ROOT / "Terminal" / "decision_gates_v3.py"
+    try:
+        spec = importlib.util.spec_from_file_location("dg_v3_for_briefing", path)
+        mod = importlib.util.module_from_spec(spec)
+        sys.modules["dg_v3_for_briefing"] = mod
+        spec.loader.exec_module(mod)
+        return mod.classify_regime
+    except Exception:
+        return None
+
+
+def enforced_regime(asset_data: Dict[str, Any], classify,
+                    as_of_epoch: Optional[float] = None) -> str:
+    """Render the ENFORCED gate verdict next to the cosmetic 200-EMA label.
+
+    `causal_indicators.trend_regime` is a 200-EMA heuristic. It is NOT the gate.
+    `model1_checklist` requires regime == MEAN_REVERT and `model2_checklist`
+    requires regime in {TREND_UP, TREND_DOWN}, and both read `classify_regime()`.
+    Publishing only the heuristic label let the desk argue "Regime = BULLISH"
+    while the enforced gate returned UNDEFINED -- which mandates stand-aside for
+    BOTH engines. This surfaces the verdict the checklist will actually assert.
+
+    The staleness arguments are passed deliberately. Without them a weekend
+    CFD classifies as MEAN_REVERT straight off its frozen Friday bars, which
+    would advertise a tradeable regime for a market that is shut.
+    """
+    if classify is None:
+        return "enforced_gate=UNAVAILABLE(module_load_failed)"
+    if not isinstance(asset_data, dict):
+        return "enforced_gate=UNAVAILABLE(no_asset_data)"
+
+    def closes(key: str) -> List[float]:
+        out = []
+        for bar in asset_data.get(key) or []:
+            if isinstance(bar, dict) and bar.get("close") is not None:
+                try:
+                    out.append(float(bar["close"]))
+                except (TypeError, ValueError):
+                    continue
+        return out
+
+    c15 = closes("bars_15m_ohlcv")
+    c1h = closes("htf_1h_ohlcv")
+    c4h = closes("htf_4h_ohlcv")
+
+    kwargs: Dict[str, Any] = {}
+    if as_of_epoch is not None:
+        stamps = []
+        for key in ("bars_15m_ohlcv", "htf_1h_ohlcv", "htf_4h_ohlcv"):
+            for bar in asset_data.get(key) or []:
+                if isinstance(bar, dict) and bar.get("close_ts") is not None:
+                    try:
+                        stamps.append(float(bar["close_ts"]))
+                    except (TypeError, ValueError):
+                        continue
+        if stamps:
+            kwargs["last_close_epoch"] = max(stamps)
+            kwargs["as_of_epoch"] = float(as_of_epoch)
+    try:
+        verdict, stats = classify(c15, c1h, c4h, **kwargs)
+    except Exception as exc:
+        return f"enforced_gate=ERROR({type(exc).__name__})"
+    if stats.get("stale"):
+        age = stats.get("bar_age_s")
+        tag = f"STALE_BARS_age={age:.0f}s" if isinstance(age, (int, float)) else "STALE_BARS"
+    else:
+        tag = "live"
+    return f"enforced_gate={verdict}({tag})"
+
+
 def build_48h_orderflow_prompt() -> str:
     """Build the comprehensive, self-contained 48-hour footprint and telemetry prompt for Arena.ai."""
     # 1. Load Telemetry Snapshot
@@ -232,6 +311,8 @@ def build_48h_orderflow_prompt() -> str:
     margin_free = float(account.get("margin_free_usd", 4405.94))
     cushion = equity - 4775.0
     assets_data = telemetry.get("assets_matrix_24", {})
+    gate_classifier = _load_gate_classifier()
+    snapshot_as_of = telemetry.get("as_of_epoch")
 
     # Attempt direct MT5 live state extraction
     active_pos = []
@@ -444,7 +525,7 @@ def build_48h_orderflow_prompt() -> str:
             vwap_bands = f"VWAP = {vwap_val}"
 
         lines.append(f"--- [ASSET: {asset} | Category: {cat} | Broker: {broker} | Mid: {cur_mid} | Spread: {spread_bps:.2f} bps] ---")
-        lines.append(f"Live: {vwap_bands} | VWAP Z-Score = {inds.get('vwap_z_score', 'N/A')} SD | RSI(14) = {inds.get('rsi_14', 'N/A')} | ATR(14) = {inds.get('atr_14', 'N/A')} | 200 EMA Slope = {inds.get('ema_200_slope_3h_pct', 'N/A')}% | Regime = {inds.get('trend_regime', 'N/A')}")
+        lines.append(f"Live: {vwap_bands} | VWAP Z-Score = {inds.get('vwap_z_score', 'N/A')} SD | RSI(14) = {inds.get('rsi_14', 'N/A')} | ATR(14) = {inds.get('atr_14', 'N/A')} | 200 EMA Slope = {inds.get('ema_200_slope_3h_pct', 'N/A')}% | 200EMA Label = {inds.get('trend_regime', 'N/A')} (cosmetic, NOT the gate) | {enforced_regime(t_asset, gate_classifier, snapshot_as_of)} <- BINDING for both engines")
         lines.append(f"Orderbook: Top-20 Bid = {bid_str} USD | Top-20 Ask = {ask_str} USD | Verified Whales = {len(whales)}")
         if whales:
             sample_epoch = ob.get("wall_sample_ts_epoch") or time.time()
