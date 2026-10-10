@@ -9032,3 +9032,34 @@ Under the Zero-Hesitation Autonomous Punch Mandate (`ACTIVE_CONTEXT.md`), Antigr
 | **Defensible Net EV (p = 0.4197)** | **+0.461R** (Strictly positive expectancy) | > 0.00R | **PASS** |
 | **Desk Capacity** | **1 / 4 concurrent tickets** | Max 4 tickets | **PASS (3 slots available)** |
 
+
+
+---
+
+## SECTION 123: ARENA.AI QUANTITATIVE COUNCIL REPORT & COSMETIC REGIME INTEGRITY FIX (CYCLE 09:40 UTC)
+### 1. Arena Quantitative Council Rulings & Microstructure Evidence
+Arena.ai completed an exhaustive 24-asset market scan and committed `b7208337` to `origin/arena/537c1eb8-trading-2`:
+- **Council Disposition**: **STAND ASIDE / PUNCH NONE — 0 of 24 assets admissible under either engine**.
+- **Bug #3 Discovered & Fixed (Commit `b7208337`)**:
+  * Root Cause: `causal_indicators.trend_regime` in `assets_matrix_24` was a cosmetic 200-EMA heuristic. While it displayed `BULLISH` on BTC, the binding admission gate `classify_regime()` was returning `UNDEFINED`.
+  * The briefing previously rendered only the cosmetic label, leading the desk to falsely believe an uptrend was confirmed by the gates.
+  * Arena patched `Terminal/arena_bridge.py` to explicitly publish `enforced_gate=UNDEFINED(live) <- BINDING for both engines` alongside the cosmetic label, preventing false trend premises.
+  * Added 4 new regression tests to `Tests/Test_Arena_Council_Hardening.py` (28/28 tests passing).
+- **Execution Economics & Spread/Friction Breakdown**:
+  * BTC is the **only asset in the entire 24-asset universe** clearing both Gate G-5 (spread $\le 20\text{ bps}$, at 1.81 bps) and Gate G-6 (relative friction $c \le 0.10\text{R}$, at $c = 0.0846\text{R}$).
+  * Altcoins carry prohibitive friction that destroys expectancy: ETH ($c = 0.5184$), SOL ($c = 0.6768$), XRP ($c = 0.7207$), DOGE ($c = 7.0000$). All fail G-6 and yield negative net EV.
+  * BCH cleared G-5 (17.20 bps) but failed G-6 ($c = 0.3716$).
+- **Microstructure Reversal on BTC**:
+  * Top-20 bid depth collapsed by 82% from 1,419,502 $\rightarrow$ 262,128 USD. Book imbalance flipped from +0.4895 (bullish) to -0.593 (bearish book pressure).
+  * CVD delta buying momentum stalled (+12.0M cumulative, but only +92k USD over the last five 1m bars).
+  * Downside liquidity gradient: massive sell-stop clusters rest below price at 82,150 (6.35M USD), 81,550 (9.78M USD), and 81,650 (3.40M USD).
+  * 63.7% of BTC L3 walls and up to 100% of altcoin walls are mirrored MM grids.
+- **Dual-Engine Evaluation**:
+  * Model 1 ($|Z| \ge 2.0\text{ SD}$): BTC ($Z = +2.39$), ETH ($Z = +2.16$), LINK ($Z = +2.58$), TRX ($Z = +3.44$), DOGE ($Z = +4.19$) all fail because `regime != MEAN_REVERT` (all classify as `UNDEFINED`).
+  * Model 2 ($|Z| < 2.0\text{ SD}$): Remaining 19 assets all fail because `regime not in {TREND_UP, TREND_DOWN}` (all classify as `UNDEFINED`).
+
+### 2. Synthesized Ruling & Desk Status
+- **Final Verdict**: **STAND ASIDE / PUNCH NONE**.
+- **Committed Risk**: **0.00 USD**.
+- **Active Book**: **0 Open Positions | 0 Pending Orders (100% Cash Reserves)**.
+- **Capital & Floor Defense**: Equity: **4,896.55 USD** | Cushion: **+121.55 USD** above 4,775.00 USD hard floor (+101.55 USD above operating buffer; 100% floor immunity).
