@@ -1,0 +1,83 @@
+All Module C claims verified. Here is the ruling.
+
+🏛️ ARENA.AI MULTI-PERSONA PRODUCTION CODEBASE AUDIT
+
+Audit basis: HEAD 773a9bb1 (= origin/main = origin/arena/537c1eb8-trading-2) · snapshot 2026-10-10 19:32:20 UTC · commits f2484209, 4d381f57, 316c89dc all confirmed present
+
+Verification scorecard — I checked every claim rather than accepting it
+Claim	Verdict
+Test suite 100% pass	✅ VERIFIED — 606 passed, 3 skipped, 0 failed
+A1 collision-proof trade IDs	⚠️ PARTIAL — not collision-proof (proof below)
+A2 raise_on_error=True	✅ verified (line 91, raises at 104)
+A3 atomic persist	✅ verified — .tmp.{pid}.{ts} + Path.replace() (lines 66–78)
+A4 null safety	✅ verified — str(tr.get("side") or "").upper(), float(px or 0.0)
+A5 retention cap + universe	✅ verified — 10,000 cap; core_assets has 13 entries, not 11
+B1 maturity before sweep_z	✅ verified — session_bars >= 16 at line 11, z_sweep at line 20
+B2 sweep_z Catch-22 fix	✅ verified — line 252 uses sweep_z with vwap_z fallback
+B3 Model 2 |Z| < 2.0	✅ verified — line 376 B1_z_outside_model2_location_bound
+B4 float epsilons	✅ verified — -1e-9 / -1e-6 at lines 254, 287, 288, 330, 333, 376, 410
+B5 max(atr, 1e-6)	❌ NOT FOUND — zero occurrences; and zero ATR division sites exist to guard
+B6 asset-specific spread	✅ verified — lines 632–640 now fall back to max_spread_bps
+B7 exponent clamp	✅ verified — line 529, as max(-700.0, min(700.0, arg)) not np.clip
+C1 ancestor check	✅ verified — bidirectional, lines 161 + 168
+C2 dual-ref fallback	✅ verified — ARENA_BRANCH line 46
+C3 clock skew	✅ verified — -5.0 <= delta <= 180.0, line 109
+C4 GIT_TERMINAL_PROMPT=0	✅ verified — line 83
++84.05 USD / 17 trades today	❌ NOT CORROBORATED
+The one real defect: A1 is not collision-proof
+
+The shipped fallback is second-precision with no counter — no microseconds, no sequential nonce:
+
+Python
+tid = f"{t_sec}_{int(round(px * 1e2))}_{int(round(sz * 1e2))}_{side_char}"
+text
+fill A (t=1791631333, px 82955.00, sz 1.25, B) -> HL_TRADE_BTC_1791631333_8295500_125_B
+fill B (t=1791631333, px 82955.00, sz 1.25, B) -> HL_TRADE_BTC_1791631333_8295500_125_B
+COLLIDE? True   -> second fill silently dropped by the existing_ids dedupe
+
+Two fills 888 ms apart in the same second collapse to one key. This is a genuine improvement over _None (which erased every hash-less fill), so it is not a regression — but "micro-nonce … microsecond timestamps … sequential counter … collision-proof" describes code that isn't there. Fix is one line: keep a per-(coin,t_sec) counter, or use the raw millisecond t_raw instead of t_sec.
+
+B5 was not implemented, and is moot
+
+max(atr, 1e-6) appears nowhere. I also grepped every ATR division pattern (/ *atr, /atr, / *float(atr) and found zero — there is no ATR divisor in decision_gates_v3.py to divide by zero. So the claimed crash was never reachable. Harmless, but it should come off the changelog.
+
+1. Persona 1 — Orderflow & Microstructure
+
+hyperdash_flow_feed.py is architecturally sound apart from A1. The atomic write is correct and closes a real truncation window; raise_on_error genuinely prevents the 450-record wipeout; the 10k cap bounds growth. On the live snapshot, authenticity filtering is working: BTC's touch is classified TOP_OF_BOOK and correctly denied gate_g7_eligible, and across the universe mirrored legs are excluded from whale certification.
+
+2. Persona 2 — Structural Price Action
+
+The Model 1 / Model 2 boundary is now leak-free. Model 2 requires |Z| < 2.0 − 1e-6 (line 376); Model 1's override accepts sweep_z ≥ 2.0 − 1e-6 with vwap_z fallback (line 252). Because the override keys on the sweep Z rather than live Z, the Catch-22 is genuinely resolved: a rebound already returning inside the band still qualifies on the extension that caused it. The epsilons are consistently signed. Session maturity now gates before sweep_z, which fixes the NoneType crash.
+
+3. Persona 3 — Liquidation & Forensic
+
+No candidate is approaching a cascade band. BTC's nearest genuine walls sit at 0.17–0.23 ATR but with persist_s 0–60 against A3's 180s requirement — too young to constitute backing.
+
+4. Persona 4 — Macro & Portfolio Governor
+
+Floor defense holds: equity 4,896.55, margin 0.00, cushion +121.55, contingent book risk 0.00, stressed worst case 4,896.55. The +84.05 USD claim is not corroborated — balance is 4,896.55 in every snapshot today, the snapshot publishes no deal history, and 11W/6L is precisely the Clopper-Pearson basis for p_win_lower_bound:
+
+text
+Clopper-Pearson one-sided 95% lower bound, 11/17 = 0.4197  == published 0.4197
+
+That is the calibration sample, not profit banked today. Please don't let a calibration figure migrate into a performance claim.
+
+5. BINDING DESK RULING
+
+1. Codebase certification: CERTIFIED WITH TWO EXCEPTIONS. Not unconditional. 15 of 17 claimed fixes verified in source; 100% test pass rate independently reproduced. Exceptions: A1 is not collision-proof (silent fill loss, one-line fix) and B5 was never implemented (moot — no ATR divisor exists).
+
+2. Live execution action: STAND ASIDE.
+
+text
+TALLY: UNDEFINED 24/24   (first cycle with zero regime-eligible assets)
+Asset	Enforced gate	Blocking
+BTC	UNDEFINED	1h er 0.2442 > 0.20; vr_z −1.719 but only 1/3 votes; 4H confirms DOWN; c 0.1100R now over the strict 0.10
+ETH / SOL / BCH / LTC / TRX	UNDEFINED	G-4; spreads 11–47 bps; c 0.47–3.33R
+BNB / XRP / ADA / AVAX / NEAR / DOT / DOGE / LINK	UNDEFINED	G-4; DOGE/DOT/LINK c 1.5–7.0R
+10 CFDs	UNDEFINED*STALE	frozen, Sunday 22:00 UTC reopen
+
+Your own binding invariant applies: UNDEFINED → both models stand aside. trade_authorization independently reads DENIED_UNVERIFIED_ORDERFLOW, and A2 fails closed without tape. No limit order staged. Book flat, 0/4 capacity, contingent risk 0.00 USD, cushion +121.55 preserved.
+
+Revalidation: next 1H close for the 1h er/vr_z limbs; CFDs Sunday 22:00 UTC + 60 min.
+
+Two things I'd fix before calling this production-clean, both small: the A1 nonce, and wiring ctx["wall"] so A3/B5 are enforced rather than skipped — 768 eligible walls are published every 60 seconds and no checklist reads one. Happy to ship both with tests on arena/537c1eb8-trading-2.

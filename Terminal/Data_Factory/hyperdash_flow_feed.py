@@ -59,12 +59,14 @@ def _post_json(payload: dict, timeout: int = 4) -> Any:
         return None
 
 
-def atomic_persist_flows(records: List[Dict[str, Any]]) -> bool:
+def atomic_persist_flows(records: List[Dict[str, Any]], json_target: Optional[Path] = None, parquet_target: Optional[Path] = None) -> bool:
     """Atomically persist records to both JSON and Parquet using unique temp files."""
     pid = os.getpid()
     ts = int(time.time() * 1000)
-    tmp_json = FLOWS_JSON_PATH.with_name(f"{FLOWS_JSON_PATH.name}.tmp.{pid}.{ts}")
-    tmp_parquet = FLOWS_PARQUET_PATH.with_name(f"{FLOWS_PARQUET_PATH.name}.tmp.{pid}.{ts}")
+    target_json = json_target or FLOWS_JSON_PATH
+    target_parquet = parquet_target or FLOWS_PARQUET_PATH
+    tmp_json = target_json.with_name(f"{target_json.name}.tmp.{pid}.{ts}")
+    tmp_parquet = target_parquet.with_name(f"{target_parquet.name}.tmp.{pid}.{ts}")
     try:
         # 1. Write temp JSON
         tmp_json.write_text(json.dumps(records, indent=2, ensure_ascii=False), encoding="utf-8")
@@ -74,8 +76,8 @@ def atomic_persist_flows(records: List[Dict[str, Any]]) -> bool:
         df.to_parquet(tmp_parquet, index=False)
         
         # 3. Replace both atomically
-        tmp_json.replace(FLOWS_JSON_PATH)
-        tmp_parquet.replace(FLOWS_PARQUET_PATH)
+        tmp_json.replace(target_json)
+        tmp_parquet.replace(target_parquet)
         return True
     except Exception as exc:
         logger.warning("Could not atomically persist updated flow history: %s", exc)
@@ -88,19 +90,20 @@ def atomic_persist_flows(records: List[Dict[str, Any]]) -> bool:
         return False
 
 
-def load_raw_flow_history(raise_on_error: bool = False) -> List[Dict[str, Any]]:
+def load_raw_flow_history(raise_on_error: bool = False, json_path: Optional[Path] = None) -> List[Dict[str, Any]]:
     """Load historical flows archive safely.
     
     If raise_on_error is True, raises any disk/parse errors instead of silently
     returning [] to prevent accidental history truncation during sync.
     """
-    if not FLOWS_JSON_PATH.exists():
+    target = json_path or FLOWS_JSON_PATH
+    if not target.exists():
         return []
     try:
-        data = json.loads(FLOWS_JSON_PATH.read_text(encoding="utf-8"))
+        data = json.loads(target.read_text(encoding="utf-8"))
         return data if isinstance(data, list) else []
     except Exception as exc:
-        logger.warning("Could not read hyperdash_flows_history.json: %s", exc)
+        logger.warning("Could not read flow history from %s: %s", target, exc)
         if raise_on_error:
             raise
         return []
@@ -195,6 +198,7 @@ def sync_live_api_flows(max_wallets_to_check: int = 8) -> int:
     # 3. Check recent ticks for large whale executions (>= 50k USD) on primary crypto assets
     # Covers full Binance 11 perpetual universe + primary Hyperliquid perp liquidity
     core_assets = ["BTC", "ETH", "SOL", "NEAR", "DOGE", "XRP", "BNB", "ADA", "TRX", "LINK", "DOT", "LTC", "BCH"]
+    trade_seq = 0
     for coin in core_assets:
         try:
             trades = _post_json({"type": "recentTrades", "coin": coin}, timeout=2)
@@ -203,6 +207,7 @@ def sync_live_api_flows(max_wallets_to_check: int = 8) -> int:
             for tr in trades:
                 if not isinstance(tr, dict):
                     continue
+                trade_seq += 1
                 px = float(tr.get("px") or 0.0)
                 sz = float(tr.get("sz") or 0.0)
                 notional = px * sz
@@ -214,11 +219,12 @@ def sync_live_api_flows(max_wallets_to_check: int = 8) -> int:
                 side_char = str(tr.get("side") or "").upper()
                 side = "BUY" if side_char == "B" else "SELL"
                 
-                # Robust tid avoiding collision or None key collapse
+                # Robust collision-proof tid avoiding collision or None key collapse
                 if raw_tid is not None and str(raw_tid).strip() and str(raw_tid) != "None":
                     tid = str(raw_tid)
                 else:
-                    tid = f"{t_sec}_{int(round(px * 1e2))}_{int(round(sz * 1e2))}_{side_char}"
+                    t_ms = int(t_raw) if t_raw is not None else int(time.time() * 1000)
+                    tid = f"{t_ms}_{int(round(px * 1e2))}_{int(round(sz * 1e2))}_{side_char}_{trade_seq}"
                 
                 event_id = f"HL_TRADE_{coin}_{tid}"
                 if event_id not in existing_ids:

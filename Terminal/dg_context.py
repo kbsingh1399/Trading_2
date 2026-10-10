@@ -223,13 +223,11 @@ def build_dg_context(
     # Resting whale wall backing (Gates A3 & B5)
     wall_ctx = None
     if payload and isinstance(payload, dict):
-        walls = (
-            payload.get("orderbook_live_depth", {}).get("l2_wall_levels")
-            or payload.get("orderbook", {}).get("l2_wall_levels")
-            or payload.get("l2_wall_levels")
-            or []
-        )
-        if isinstance(walls, list) and walls:
+        ob = payload.get("orderbook_live_depth", {}) or payload.get("orderbook", {})
+        l3_walls = ob.get("whale_walls_l3") or payload.get("whale_walls_l3") or []
+        l2_walls = ob.get("l2_wall_levels") or payload.get("l2_wall_levels") or []
+        walls = (list(l3_walls) if isinstance(l3_walls, list) else []) + (list(l2_walls) if isinstance(l2_walls, list) else [])
+        if walls:
             target_side = "BUY" if side == 1 else "SELL"
             eligible_walls = []
             for w in walls:
