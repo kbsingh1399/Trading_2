@@ -27,6 +27,10 @@ import time
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
 
+import urllib.request
+import urllib.error
+import pandas as pd
+
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
@@ -34,7 +38,160 @@ if str(ROOT) not in sys.path:
 FLOWS_JSON_PATH = ROOT / "Data" / "Hyperdash_Flows" / "hyperdash_flows_history.json"
 FLOWS_PARQUET_PATH = ROOT / "Data" / "Hyperdash_Flows" / "hyperdash_flows_history.parquet"
 
+HL_INFO_URL = "https://api.hyperliquid.xyz/info"
+DEFAULT_HEADERS = {
+    "Content-Type": "application/json",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+}
+
 logger = logging.getLogger("HyperdashFlowFeed")
+
+
+def _post_json(payload: dict, timeout: int = 4) -> Any:
+    """Post JSON to Hyperliquid info endpoint with strict timeout."""
+    data_bytes = json.dumps(payload).encode("utf-8")
+    req = urllib.request.Request(HL_INFO_URL, data=data_bytes, headers=DEFAULT_HEADERS)
+    with urllib.request.urlopen(req, timeout=timeout) as resp:
+        return json.loads(resp.read().decode("utf-8"))
+
+
+def sync_live_api_flows(max_wallets_to_check: int = 8) -> int:
+    """Poll native Hyperliquid L1 API for new liquidations and whale fills.
+    
+    Appends newly discovered records into hyperdash_flows_history.json and .parquet.
+    Operates 100% headlessly via REST API without requiring Telegram or a browser.
+    Returns the count of newly appended events.
+    """
+    records = load_raw_flow_history()
+    existing_ids = {str(r.get("msg_id", "")) for r in records if r.get("msg_id")}
+    new_events: List[Dict[str, Any]] = []
+
+    # 1. Discover top active whale wallets from existing records
+    whale_wallets = []
+    for r in reversed(records):
+        addr = r.get("wallet_address")
+        if addr and addr.startswith("0x") and addr not in whale_wallets:
+            whale_wallets.append(addr)
+        if len(whale_wallets) >= max_wallets_to_check:
+            break
+
+    # 2. Check recent fills for liquidations across active whale wallets
+    for addr in whale_wallets:
+        try:
+            fills = _post_json({"type": "userFills", "user": addr}, timeout=3)
+            if not isinstance(fills, list):
+                continue
+            
+            # Filter for liquidation fills
+            liq_fills = [f for f in fills if f.get("liquidation")]
+            if not liq_fills:
+                continue
+
+            # Group liquidation sub-fills by second and coin to reconstruct the full event
+            grouped_by_event: Dict[str, List[dict]] = {}
+            for f in liq_fills:
+                t_sec = int(f.get("time", 0)) // 1000
+                coin = str(f.get("coin", "UNKNOWN")).upper()
+                event_key = f"{addr}_{coin}_{t_sec}"
+                grouped_by_event.setdefault(event_key, []).append(f)
+
+            for event_key, group in grouped_by_event.items():
+                event_id = f"HL_LIQ_{event_key}"
+                if event_id in existing_ids:
+                    continue
+
+                coin = str(group[0].get("coin", "UNKNOWN")).upper()
+                tot_sz = sum(float(x.get("sz", 0)) for x in group)
+                if tot_sz <= 0:
+                    continue
+                avg_px = sum(float(x.get("px", 0)) * float(x.get("sz", 0)) for x in group) / tot_sz
+                tot_usd = tot_sz * avg_px
+                side_raw = group[0].get("side", "")
+                is_short = (side_raw == "B") # Short liquidated = buy to cover
+                t_sec = int(group[0].get("time", 0)) // 1000
+
+                record = {
+                    "type": "LIQUIDATION",
+                    "coin": coin,
+                    "side": "SHORT_LIQUIDATED" if is_short else "LONG_LIQUIDATED",
+                    "market_impact": "BUY_PRESSURE" if is_short else "SELL_PRESSURE",
+                    "notional_usd": round(tot_usd, 2),
+                    "distance_pct": None,
+                    "duration_hours": None,
+                    "rate_usd_per_min": None,
+                    "price": round(avg_px, 4),
+                    "wallet_address": addr,
+                    "asset_slug": coin,
+                    "raw_text": f"#{coin} Liquidated {'Short' if is_short else 'Long'}: {tot_usd/1e3:.2f}K USD at {avg_px:.4f} USD [API]",
+                    "msg_id": event_id,
+                    "time_label": datetime.fromtimestamp(t_sec, tz=timezone.utc).strftime("%H:%M"),
+                    "date_heading": datetime.fromtimestamp(t_sec, tz=timezone.utc).strftime("%B %d"),
+                    "source": "HYPERLIQUID_L1_NATIVE_API"
+                }
+                new_events.append(record)
+                existing_ids.add(event_id)
+        except Exception as exc:
+            logger.debug("Failed querying userFills for %s: %s", addr, exc)
+
+    # 3. Check recent ticks for large whale executions (>= 50k USD) on primary crypto assets
+    core_assets = ["BTC", "ETH", "SOL", "NEAR", "DOGE", "XRP", "BNB"]
+    for coin in core_assets:
+        try:
+            trades = _post_json({"type": "recentTrades", "coin": coin}, timeout=2)
+            if not isinstance(trades, list):
+                continue
+            for tr in trades:
+                px = float(tr.get("px", 0))
+                sz = float(tr.get("sz", 0))
+                notional = px * sz
+                tid = str(tr.get("tid", tr.get("time", "")))
+                event_id = f"HL_TRADE_{coin}_{tid}"
+                if notional >= 50_000.0 and event_id not in existing_ids:
+                    t_sec = int(tr.get("time", 0)) // 1000
+                    side = "BUY" if tr.get("side") == "B" else "SELL"
+                    users = tr.get("users", [])
+                    user_addr = users[0] if users else None
+
+                    record = {
+                        "type": "WHALE_TRADE",
+                        "coin": coin,
+                        "side": side,
+                        "market_impact": "BUY_PRESSURE" if side == "BUY" else "SELL_PRESSURE",
+                        "notional_usd": round(notional, 2),
+                        "distance_pct": None,
+                        "duration_hours": None,
+                        "rate_usd_per_min": None,
+                        "price": round(px, 4),
+                        "wallet_address": user_addr,
+                        "asset_slug": coin,
+                        "raw_text": f"#{coin} Whale {side}: {notional/1e3:.2f}K USD at {px:.4f} USD [API]",
+                        "msg_id": event_id,
+                        "time_label": datetime.fromtimestamp(t_sec, tz=timezone.utc).strftime("%H:%M"),
+                        "date_heading": datetime.fromtimestamp(t_sec, tz=timezone.utc).strftime("%B %d"),
+                        "source": "HYPERLIQUID_L1_NATIVE_API"
+                    }
+                    new_events.append(record)
+                    existing_ids.add(event_id)
+        except Exception as exc:
+            logger.debug("Failed querying recentTrades for %s: %s", coin, exc)
+
+    # 4. If new events detected, persist updated history atomically
+    if new_events:
+        all_records = records + new_events
+        try:
+            # Atomic write JSON
+            tmp_json = FLOWS_JSON_PATH.with_suffix(".tmp")
+            tmp_json.write_text(json.dumps(all_records, indent=2, ensure_ascii=False), encoding="utf-8")
+            tmp_json.replace(FLOWS_JSON_PATH)
+
+            # Persist Parquet
+            df = pd.DataFrame(all_records)
+            df.to_parquet(FLOWS_PARQUET_PATH, index=False)
+            logger.info("Successfully appended %d new API flow events to history (total: %d)", len(new_events), len(all_records))
+        except Exception as exc:
+            logger.warning("Could not persist updated flow history: %s", exc)
+
+    return len(new_events)
 
 
 def load_raw_flow_history() -> List[Dict[str, Any]]:
@@ -55,6 +212,12 @@ def get_hyperdash_flow_intelligence(max_recent_items: int = 50) -> Dict[str, Any
     Designed for zero-latency injection into live_snapshot_latest.json and
     direct evaluation by AI models (Arena.ai / Opus 5.5) and local decision gates.
     """
+    # 1. Sync live events from native Hyperliquid API
+    try:
+        sync_live_api_flows()
+    except Exception as exc:
+        logger.warning("Live API flow sync failed non-fatally: %s", exc)
+
     records = load_raw_flow_history()
     now_utc = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
 
