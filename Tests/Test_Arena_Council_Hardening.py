@@ -291,3 +291,27 @@ def test_default_staleness_clock_is_wall_time_not_quote_time():
     assert res["stats"]["stale"] is True
     assert res["stats"]["bar_age_s"] > 1800.0
 
+
+
+def test_arena_bridge_does_not_reassert_the_spread_exemption_fallacy():
+    """The council prompt must not claim maker limits pay zero spread.
+
+    This fallacy was already eliminated once (session history: "maker limits do
+    not escape spread or commission. Imposed hard 20.00 bps maximum spread
+    gate"), and the protocol states it directly: "Maker limit orders do NOT
+    eliminate the broker spread." A Buy Limit fills on Ask and exits on Bid, so
+    the spread is paid round trip regardless of maker or taker entry. Leaving
+    the claim in the generated prompt makes the desk re-litigate it every cycle
+    and invites quarantined assets back in on a false premise.
+    """
+    src = (ROOT / "Terminal" / "arena_bridge.py").read_text()
+    assert "zero spread" not in src
+    assert "maker limits pay zero" not in src.lower()
+
+
+def test_protocol_spread_gate_and_maker_language_are_consistent():
+    """Protocol must keep both the maker-limit caveat and the 20 bps ceiling."""
+    proto = (ROOT / "docs" / "specs" /
+             "ANTIGRAVITY_ARENA_THINKING_CHAIN_COUNCIL_PROTOCOL.md").read_text()
+    assert "Maker limit orders do NOT eliminate the broker spread." in proto
+    assert "20.00 bps" in proto
