@@ -51,18 +51,18 @@ trigger: always_on
     - Full Arena Audit Report: Archived in `docs/audits/institutional-quant-audit-2026-10-04.md` and `docs/audits/ARENA_ANTIGRAVITY_HANDSHAKE_COUNCIL_67.md`.
     - **Dynamic Conviction Risk Budget**: Flexible **10.00 to 20.00 USD** (0.20% to 0.40% on 5,000.00 USD capital) dynamically scaled by orderflow confluence, resting L3 whale presence, and macro alignment.
     - **Active Positions & Pending Orders (Live State)**:
-      * Current Status: **0 Open Positions | 0 Active Pending Orders (0 Total Tickets) | Equity: 4,896.55 USD | Balance: 4,896.55 USD | Free Margin: 4,896.55 USD | Margin Used: 0.00 USD (100% Cash Reserves)**.
+      * Current Status: **0 Open Positions | 1 Active Pending Limit Order (1 Total Ticket) | Equity: 4,896.55 USD | Balance: 4,896.55 USD | Free Margin: 4,896.55 USD | Margin Used: 0.00 USD**.
       * Active Positions (0) — **ALL 4 POSITION CAPACITY SLOTS LIBERATED & VACANT**:
         - Zero active positions deployed. 4 slots available for high-confluence deployments.
-      * Active Pending Orders (0) — **QUEUE 100% CLEAN & LIBERATED**:
-        - Zero pending orders resting. All capacity slots free.
-      * Capacity Sentry: **0 / 4 filled positions deployed | 4 FILLED POSITION SLOTS LIBERATED & VACANT | 0 pending limits resting | 12 slots vacant on desk**.
+      * Active Pending Orders (1) — **BTC MODEL 2 VWAP PULLBACK LIMIT STAGED**:
+        - Ticket #18762114: `BTCUSD.pi` BUY LIMIT 0.02 lots @ 82,580.00 USD | SL: 82,080.00 USD | TP: 83,850.00 USD | Risk: 10.00 USD (0.02 lots x 500 pts).
+      * Capacity Sentry: **0 / 4 filled positions deployed | 1 pending limit resting | 3 slots vacant on desk**.
       * G-1 Hard Floor Defense: Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Floor Cushion: **+121.55 USD** (+101.55 USD above operating buffer).
       * Stressed Post-Loss Simulation & Absolute Immunity:
-        - Total Contingent Book Risk across all exposed tickets: **0.00 USD**.
-        - Stressed Worst-Case Equity: `4,896.55 - 0.00 =` **4,896.55 USD** (Unconditionally defends floor!).
-        - Safety Cushion Above 4,775.00 USD Hard Floor: **+121.55 USD** (6.0x mandatory >= 20.00 USD buffer).
-        - Safety Cushion Above 4,795.00 USD Operating Buffer: **+101.55 USD**.
+        - Total Contingent Book Risk across all exposed tickets: **10.30 USD** (10.00 USD SL + 0.30 USD friction).
+        - Stressed Worst-Case Equity: `4,896.55 - 10.30 =` **4,886.25 USD** (Unconditionally defends floor!).
+        - Safety Cushion Above 4,775.00 USD Hard Floor: **+111.25 USD** (5.5x mandatory >= 20.00 USD buffer).
+        - Safety Cushion Above 4,795.00 USD Operating Buffer: **+91.25 USD**.
       * Closed Trades Today (Realized PnL):
         - Ticket #18740569 (`SP500.p` closed at **-13.00 USD loss** via Stop Loss at 7,778.50 USD, Deal #16962450, Order #18749312)
         - Ticket #18734182 (`ETHUSD.pi` closed at **-11.90 USD loss** via Stop Loss at 2,477.50 USD, Deal #16961654, Order #18748507)
