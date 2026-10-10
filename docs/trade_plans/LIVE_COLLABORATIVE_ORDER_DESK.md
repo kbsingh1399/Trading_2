@@ -9313,3 +9313,40 @@ Arena completed the unified 4-step council audit across all 4 Mandates:
 
 
 
+
+
+---
+
+## SECTION 132: UNIFIED 4-STEP WAKE-UP COUNCIL AUDIT (17:09 UTC / 22:39 IST) — ARENA DISPOSITION: STAND ASIDE — BTC MEAN_REVERT WINDOW CLOSES — A5 SWEEP CONFLICT RESOLVED (SWEEP AGED OUT) — CAPITAL FLOOR DEFENSE INTACT
+### 1. Arena.ai Multi-Persona Council Findings (Harvested Report)
+Arena completed the unified 4-step council audit across all 4 Mandates:
+- **Council Disposition**: **STAND ASIDE — 0 of 24 admissible**.
+- **BTC Regime Evolution & Window Closure**:
+  * The `MEAN_REVERT` window that opened at 14:53 UTC officially closed by 17:09 UTC:
+    - 1h efficiency ratio broke from 0.0708 to 0.2908 (> 0.20 threshold).
+    - 15m variance ratio $vr_z$ broke from -1.508 to -1.260 (> -1.50 threshold).
+    - Model 1 $|Z|$ retraced from 2.33 to 1.94 (< 2.00 threshold).
+  * **Resolution of the A5 Sweep Extreme Conflict**:
+    - The prior session sweep high of 83,245.00 USD aged out of the rolling 100-bar 15m window.
+    - Session high updated to 83,004.00 USD (mid at 82,990 USD).
+    - A $1.0\times\text{ATR}$ stop (83,099.70 USD) now mathematically clears Gate A5 ($RR = 2.50$, friction $c = 0.1459\text{R}$, $p_{\text{breakeven}} = 0.3461$ vs bound 0.4197 — positive EV).
+    - Crucial finding: A5 and EV windows now overlap; however, BTC remains inadmissible because the macro regime flipped first.
+- **TRX Inadmissibility Analysis**:
+  * Sole asset in `MEAN_REVERT` ($|Z| = 3.29$, $\sigma \ge 0.8\text{ ATR}$), but fails on 4 independent grounds:
+    - G-5 broker spread: 30.22 bps (> 20.00 bps cap).
+    - G-6 friction: 3.3333R @ 1.5 ATR (would require a 25.0 ATR stop for $c \le 0.20\text{R}$).
+    - G-7 whale wall: nearest wall is 42,706 USD (below 150k USD floor) and 5.50 ATR away.
+    - A2 tape: `UNAVAILABLE` fail-closed desk-wide.
+- **Mandate 1 (Candidate Limit Orders)**: 0 candidates stageable.
+- **Mandate 2 (Running Trades Audit)**: 0 active open positions on MT5. Ratchets standby.
+- **Mandate 3 (Resting Orders Sentry)**: 0 pending limit orders on MT5. Book flat, zero stale fill risk. (Note: Had an order been resting from 14:53, Step 3 sentry would have pruned it due to regime invalidation).
+- **Mandate 4 (Capacity & Floor Defense)**: 0/4 slots used. Joint worst-case risk: **0.00 USD**. Cushion: **+121.55 USD** above 4,775.00 USD hard floor (**+101.55 USD** above 4,795.00 USD buffer).
+- **Evidence Score**: 22/100.
+- **Council Ruling**: **STAND ASIDE**. Book remains 100% flat in cash reserves.
+
+### 2. Live MT5 Account State
+- **Account**: Blueberry Markets SVG LLC (MetaTrader 5 Account #5064568).
+- **Balance & Equity**: **4,896.55 USD** (100% Cash Reserves | 0.00 USD Margin Exposure).
+- **Open Positions**: **0** | **Pending Orders**: **0**.
+- **Committed Risk**: **0.00 USD**.
+- **Floor Cushion**: **+121.55 USD** above 4,775.00 USD hard floor.

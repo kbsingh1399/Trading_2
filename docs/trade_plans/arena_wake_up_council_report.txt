@@ -1,0 +1,97 @@
+🏛️ ARENA.AI MULTI-PERSONA QUANTITATIVE COUNCIL REPORT
+
+Cycle Timestamp: 2026-10-10 17:09:00 UTC · HEAD 791975ee · snapshot verified on disk
+Council Disposition: STAND ASIDE — 0 of 24 admissible. BTC's MEAN_REVERT window opened at 14:53 and closed by 17:09. The structural conflict I flagged last cycle did resolve — the regime left first.
+
+1. DIALECTIC PERSONA RESEARCH & AUDIT LOGS
+A. Orderflow & Microstructure
+
+trade_authorization = DENIED_UNVERIFIED_ORDERFLOW, unchanged. pioneer_microstructure_eval.status is UNAVAILABLE_UNVERIFIED_ORDERFLOW on BTC and TRX alike, so A2 fails closed desk-wide. BTC's broker spread remains excellent at 1.93 bps; BNB tightened further to 6.68 bps. Authenticity filtering still live — BTC's touch is TOP_OF_BOOK and correctly ineligible.
+
+B. Position & Capital Floor
+
+active_positions: [], pending_orders: [], margin 0.00, equity 4,896.55, cushion +121.55 / +101.55. Capacity 0/0/4, OBSERVED. Joint worst-case stopout 0.00 USD.
+
+C. Macro & Structural Liquidity
+
+Blackout false, runway 39.85 h (BoE purge Mon 12 Oct 08:55 UTC). All 10 CFDs frozen ≈60,000s past the guard. BTC's 15m window rolled: session high 83,245 → 83,004, low unchanged at 82,174.
+
+D. Forensic Verification — the regime window closed
+text
+TALLY: 23 UNDEFINED · 1 MEAN_REVERT (TRX)     (10 of the 23 are *STALE CFDs)
+
+BTC lost MEAN_REVERT on two limbs simultaneously:
+
+Limb	14:53	17:09	Requirement	Now
+1h er	0.0708	0.2908	< 0.20	❌ broke
+4h er	0.2820	0.2188	< 0.30	✅
+15m vr_z	−1.508	−1.260	< −1.5	❌ broke
+A1 |Z|	2.33	1.94	≥ 2.0	❌ broke
+
+I need to correct one thing I said last cycle. I told you the A5/EV conflict was a "structural impossibility at current prices" that only a sweep-and-reclaim of 83,245 could reopen. The sweep didn't get reclaimed — it aged out of the 100-bar 15m window, and that resolved the conflict just as effectively: with the sweep extreme now 83,004 and mid 82,990, a 1.0-ATR stop (83,099.7) clears A5, giving RR 2.50, c 0.1459R, p_breakeven 0.3461 vs bound 0.4197 — positive EV. The overlap I said didn't exist now does. BTC is nonetheless inadmissible, because G-4 left first.
+
+That sequencing is the real finding: the G-4 classification moves faster than the structural conditions. A candidate blocked on A5 in one cycle can be clear on A5 two hours later and already ineligible on regime. Screening once and resting an order is not survivable at this cadence — which is precisely what your Step 3 pruning sentry exists for.
+
+2. SEVEN-STAGE GATE COMPLIANCE MATRIX
+Gate	Result
+G-1 Capital Floor	✅ PASS (+121.55, nothing exposed)
+G-2 Capacity	✅ PASS (0/4, OBSERVED)
+G-3 Session Maturity	✅ 14 crypto · ❌ 10 CFDs frozen
+G-4 Regime	❌ UNDEFINED 23/24 — only TRX MEAN_REVERT
+G-5 Spread ≤ 20 bps	✅ 3/14 (BTC 1.93, BNB 6.68, ETH 11.19)
+G-6 Friction	✅ BTC 0.0973R only
+G-7 Whale Backing	❌ not enforced (ctx["wall"] unwired)
+
+TRX, the sole regime-eligible asset, fails on four independent grounds:
+
+Limb	TRX	Verdict
+G-4 regime	MEAN_REVERT	✅
+A1 |Z| ∈ [2.0, 3.5]	3.29	✅
+A1 sigma ≥ 0.8·ATR	0.0002 vs 0.00016	✅
+G-5 spread	30.22 bps	❌ 1.5× over
+G-6 friction	3.3333R @1.5 ATR	❌ needs a 25.0 ATR stop for c ≤ 0.20R
+G-7 wall	nearest 5.50 ATR, 42,706 USD	❌ 22× too far and below the 150k A3 floor
+A2 tape	UNAVAILABLE	❌ fail closed
+
+A 25-ATR stop on TRX is not a stop, it's an account-level event.
+
+3. MASTER ARBITRATOR FINAL SYNTHESIS & RULING
+
+Verdict: STAND ASIDE. Stage nothing.
+
+JSON
+{"decision":"STAND_ASIDE","candidates_staged":0,"admissible_assets":"0/24",
+ "regime_eligible":["TRX"],
+ "closest_candidate":"BTC",
+ "closest_candidate_status":"REGIME_WINDOW_CLOSED_17:09_after_opening_14:53",
+ "structural_note":"A5/EV conflict RESOLVED (sweep 83245 aged out; 1.0-ATR stop now valid, EV positive) but G-4 exited first",
+ "closest_candidate_blockers":["G4_1h_er_0.2908_gt_0.20","G4_15m_vr_z_-1.260_gt_-1.5",
+   "A1_z_1.94_lt_2.0","A2_no_tape_fail_closed"],
+ "positions":0,"pending_orders":0,"committed_risk_usd":0.00,
+ "joint_worst_case_stopout_usd":0.00,"floor_cushion_usd":121.55,
+ "cushion_above_buffer_usd":101.55,"capacity_used":"0/4",
+ "desk_authorization":"DENIED_UNVERIFIED_ORDERFLOW",
+ "revalidation":"every 1H close; BTC re-screen on 1h er < 0.20 AND 15m vr_z < -1.5; CFDs Sunday open +60min"}
+
+Evidence Score: 22/100 — down from 31. The improvement last cycle was real but transient.
+
+Expectancy Analysis: no live candidate. For the record, BTC's now-valid geometry would compute EV_lower ≈ +0.26R at a 1.0-ATR stop — and it is not stageable, because the regime that justified the fade is gone. Quoting that number as actionable would be exactly the error the gate exists to prevent.
+
+Against your four steps:
+
+Step 1 — 0 candidates, no order parameters issued. TRX clears regime and A1 geometry but its spread requires a 25-ATR stop; its largest nearby genuine wall is 42,706 USD, below A3's 150k floor.
+Step 2 — active_positions: []. No ratchet engaged.
+Step 3 — pending_orders: []. Nothing stale can fill. Worth noting: had the 14:53 BTC setup been staged as a resting limit, it would now be a stale order resting on an invalidated regime — the exact failure mode this sentry guards.
+Step 4 — Compliant by construction: joint worst-case 0.00 USD, 0/4 capacity.
+
+What must print before anything stages:
+
+Path	Requirement	Nearest now
+BTC Model 1	1h er < 0.20 and 15m vr_z < −1.5 and |Z| ≥ 2.0	0.2908 / −1.260 / 1.94 — all three just missed
+BTC (structural)	A5 sweep buffer	✅ already satisfied — 1.0-ATR stop clears 83,004
+Any asset	live orderflow tape	UNAVAILABLE desk-wide
+CFDs	Sunday open + 60 min	frozen
+
+BTC is now one regime-flip away, and unlike last cycle its structure is sound: the sweep is behind it, friction is 1.93 bps, and the A5/EV windows overlap. The binding constraints have narrowed to the 1H efficiency ratio, the 15m variance ratio, and the tape.
+
+Still open: ctx["wall"] remains unwired, so A3/B5 are skipped rather than enforced. Given how fast the regime moves, this matters more now — a resting order's whale backing should be re-checked at the same cadence as its regime, and nothing in the decision path does that today. My proposal is unchanged: nearest same-side wall_class == GENUINE wall behind entry within 0.25 ATR, preferring gate_g7_eligible, failing rather than skipping when none qualifies. Say the word and I'll ship it with tests on arena/537c1eb8-trading-2.
