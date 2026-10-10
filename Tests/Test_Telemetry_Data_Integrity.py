@@ -351,7 +351,17 @@ def test_binance_observed_book_and_oi_remain_separate_from_mt5_and_wallet_l3(off
     assert book["binance_mid"] == 100.05 and book["venue"] in ("BINANCE_USDM_FUTURES", "BINANCE_USDM_FUTURES_AND_HYPERLIQUID")
     assert book["bids_top20"][0][2] == 200000.0
     assert book["whale_walls_l3"] == []
-    assert book["l2_wall_levels"][0]["persistence_status"] == "SAMPLED_ONLY_NOT_CONTINUOUS"
+    # persistence_status used to be the hardcoded placeholder
+    # "SAMPLED_ONLY_NOT_CONTINUOUS" -- a label asserting that persistence could
+    # not be measured. It is now derived from the rolling wall-state series, so
+    # assert the real contract instead: a genuine status from the measured
+    # vocabulary plus the two numbers Gate G-7 consumes.
+    lvl = book["l2_wall_levels"][0]
+    assert lvl["persistence_status"] in (
+        "SINGLE_SAMPLE", "INSUFFICIENT_PERSISTENCE", "PERSISTENT_VERIFIED")
+    assert lvl["persist_s"] >= 0.0
+    assert 0.0 <= lvl["presence_frac"] <= 1.0
+    assert isinstance(lvl["gate_g7_eligible"], bool)
     liq = btc["reconstructed_liquidations"]
     assert liq["binance_futures_open_interest_contracts"] == 123.5
     assert liq["open_interest_source"] == "BINANCE_FUTURES_PUBLIC_REST"

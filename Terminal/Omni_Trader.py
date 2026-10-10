@@ -30,6 +30,10 @@ from Terminal.Telemetry_Provenance import verified_wallet_block, verified_wallet
 from Terminal.policy import DG_MODE
 from Terminal.dg_context import evaluate_candidate_dg_v3
 from Terminal.decision_gates_v3 import pre_send_gate, SendLimits
+from Terminal.microstructure_state import (
+    SPREAD_STATE_FILENAME,
+    observe_and_median_spread,
+)
 from Terminal.risk.live_admission import MAX_FILLED
 
 try:
@@ -1284,9 +1288,23 @@ class AI15mMT5Trader:
                                     max(int(quote_now["time_msc"] / 1000), int(now_s))
                                     + offset_sec + max(1, self.limit_expiration_seconds)),
                             }
+                            _spread_spot_bps = candidate.get("features", {}).get("spread_bps", 1.0)
+                            _spread_median_bps = observe_and_median_spread(
+                                candidate["symbol"], _spread_spot_bps, now_s,
+                                getattr(self, "spread_state_path", None)
+                                or (ROOT / "Data" / SPREAD_STATE_FILENAME))
                             plan_spec = {
                                 "server_now_ms": broker_now_ms,
-                                "spread_median_bps_this_hour": candidate.get("features", {}).get("spread_bps", 1.0),
+                                # Feed the ROLLING HOURLY median, not the instantaneous
+                                # tick. pre_send_gate computes
+                                #   allowed = min(20, max(1.0, 1.5 * median_this_hour))
+                                # so passing the spot spread made the test "x > 1.5x",
+                                # which is never true -- the adaptive ceiling was inert
+                                # and silently degenerated to the flat 20 bps cap.
+                                "spread_median_bps_this_hour": (
+                                    _spread_median_bps if _spread_median_bps is not None
+                                    else _spread_spot_bps
+                                ),
                                 "mid_at_decision": candidate.get("features", {}).get("signal_mid", mid_now),
                                 "atr": candidate.get("atr", 1.0),
                                 "decision_age_s": max(0.0, now_s - candidate.get("time", now_s)),

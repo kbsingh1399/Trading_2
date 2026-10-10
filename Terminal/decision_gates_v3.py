@@ -129,6 +129,18 @@ def slope_tstat_nw(closes, n: int, lags: Optional[int] = None) -> Optional[float
 
 
 # ========================================================= 2. regime router
+# ---- Friction policy (Gate G-6) ------------------------------------------------
+# Flat cap. A trade may instead qualify on the relaxed cap when it proves
+# asymmetric reward geometry AND positive expectancy at the calibrated win-rate
+# lower bound -- otherwise widening the cap only launders a wide broker spread
+# into a larger position.
+FRICTION_BASE_MAX_R = 0.15
+FRICTION_RELAXED_MAX_R = 0.20
+FRICTION_RELAXED_MIN_RR = 2.5
+FRICTION_RELAXED_MIN_EV_R = 0.15
+MAX_SPREAD_BPS_HARD = 20.0
+
+
 @dataclass
 class RegimeParams:
     er_trend: float = 0.35
@@ -201,6 +213,53 @@ def classify_regime(closes_15m, closes_1h, closes_4h, p: RegimeParams = RegimePa
 
 
 # =================================================== 3. Checklist A (Model 1)
+def htf_confirms_direction(stats_4h: dict, sign: int,
+                           t_min: float = 1.5, er_min: float = 0.25) -> bool:
+    """True when the 4H confirms a trend in the given direction.
+
+    Fails CLOSED: unreadable stats are treated as 'confirmed', so a caller
+    using this to gate a counter-trend override refuses rather than guesses.
+    """
+    try:
+        return bool(sign * float(stats_4h["t"]) > t_min and float(stats_4h["er"]) > er_min)
+    except (KeyError, TypeError, ValueError):
+        return True
+
+
+def m1_range_override_ok(ctx: dict) -> bool:
+    """Allow Model 1 in a non-trending regime, never against an HTF trend.
+
+    Operator policy: at |Z| >= 2.0 with verified taker absorption, extreme mean
+    reversion is admissible in RANGE / CHOP / UNDEFINED consolidation. The
+    shipped rule barred Model 1 outside MEAN_REVERT because in a TREND a
+    stretched |Z| selects cascades rather than exhaustion. That hazard is real
+    and is preserved: the override is refused whenever the higher timeframe
+    confirms a trend in the direction of the extension (away from VWAP), which
+    is precisely the cascade configuration.
+
+    Absorption evidence is deliberately NOT re-derived here. A2 already requires
+    lambda_ratio <= 0.50 and bars_cvd_turned >= 3 and fails closed without
+    tape; this relaxes only the regime label, never the orderflow proof.
+    """
+    ext = ctx.get("m1_range_override")
+    if not isinstance(ext, dict):
+        return False
+    if ctx.get("regime") not in ("UNDEFINED", "RANGE", "CHOP"):
+        return False
+    z = ctx.get("vwap_z")
+    try:
+        if z is None or abs(float(z)) < 2.0:
+            return False
+    except (TypeError, ValueError):
+        return False
+    if ext.get("absorption_verified") is not True:
+        return False
+    # Must be explicitly False. Missing/None/True all refuse the override.
+    if ext.get("htf_adverse_trend") is not False:
+        return False
+    return True
+
+
 def model1_checklist(ctx: dict) -> Verdict:
     """Extreme mean reversion. ctx keys documented inline.
 
@@ -214,7 +273,9 @@ def model1_checklist(ctx: dict) -> Verdict:
     atr, sig_s = ctx["atr"], ctx["session_sigma"]
     v.metrics.update(z=z, dz4=dz4)
     # --- A1 regime + geometry
-    v.require(ctx["regime"] == "MEAN_REVERT", "A1_regime_not_mean_revert")
+    range_override = m1_range_override_ok(ctx)
+    v.metrics["m1_range_override_used"] = range_override
+    v.require(ctx["regime"] == "MEAN_REVERT" or range_override, "A1_regime_not_mean_revert")
     z_sweep = ctx.get("sweep_z", z)
     v.metrics["z_sweep"] = z_sweep
     v.require(-side * z_sweep >= 2.0, "A1_z_below_2")
@@ -350,12 +411,26 @@ def _net_ev(v: Verdict, ctx: dict, rr: float, min_rr: float) -> None:
     p_star = loss / (win + loss) if win > 0 else 1.0
     v.metrics.update(net_win_r=win, net_loss_r=loss, p_breakeven=p_star)
     v.require(rr >= min_rr, f"EV_rr_below_{min_rr}")
-    v.require(c <= 0.15, "EV_friction_gt_0p15R")
     p_lo = ctx.get("p_win_lower_bound")
     v.require(p_lo is not None, "EV_p_win_lower_bound_missing")
+    ev_lower = None
     if p_lo is not None:
-        v.metrics["ev_lower_r"] = p_lo * win - (1 - p_lo) * loss
+        ev_lower = p_lo * win - (1 - p_lo) * loss
+        v.metrics["ev_lower_r"] = ev_lower
         v.require(p_lo >= p_star + 0.03, "EV_lower_bound_below_breakeven")
+    # G-6 relative friction. Flat cap, or a relaxed cap when the trade proves
+    # itself: reward geometry >= 2.5R AND positive expectancy at the calibrated
+    # Clopper-Pearson lower bound AND spread inside the hard 20 bps ceiling.
+    spread_bps = ctx.get("spread_bps")
+    relaxed = (
+        rr >= FRICTION_RELAXED_MIN_RR
+        and ev_lower is not None
+        and ev_lower >= FRICTION_RELAXED_MIN_EV_R
+        and (spread_bps is None or spread_bps <= MAX_SPREAD_BPS_HARD)
+    )
+    cap = FRICTION_RELAXED_MAX_R if relaxed else FRICTION_BASE_MAX_R
+    v.metrics.update(friction_cap_r=cap, friction_relaxed=relaxed)
+    v.require(c <= cap, "EV_friction_gt_0p20R_relaxed" if relaxed else "EV_friction_gt_0p15R")
 
 
 # ============================================== 5. resting-order invalidation
@@ -492,6 +567,7 @@ class SendLimits:
     max_spread_bps: float = 20.0
     spread_vs_median: float = 1.5
     max_spread_frac_r: float = 0.10
+    max_spread_frac_r_relaxed: float = 0.20
     max_drift_atr: float = 0.25
     max_decision_age_s: float = 90.0
 
@@ -526,7 +602,10 @@ def pre_send_gate(mt5, req: dict, plan: dict, lim: SendLimits = SendLimits(), no
     if spr_bps > allowed_spread:
         r.append(f"spread_{spr_bps:.1f}bps")
     r_price = abs(req["price"] - req["sl"])
-    if (tick.ask - tick.bid) > lim.max_spread_frac_r * r_price:
+    friction_cap_r = lim.max_spread_frac_r
+    if plan.get("friction_relaxed"):
+        friction_cap_r = max(lim.max_spread_frac_r, lim.max_spread_frac_r_relaxed)
+    if (tick.ask - tick.bid) > friction_cap_r * r_price:
         r.append("spread_gt_10pct_of_R")
     if abs(mid - plan["mid_at_decision"]) > lim.max_drift_atr * plan["atr"]:
         r.append("drift_since_decision")
