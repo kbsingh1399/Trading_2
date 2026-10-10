@@ -43,6 +43,7 @@ logging.basicConfig(
 logger = logging.getLogger("TelemetryGitDaemon")
 
 BRANCH_NAME = "main"
+ARENA_BRANCH = "arena/537c1eb8-trading-2"
 CANONICAL_REMOTE = "https://github.com/kbsingh1399/Trading_2"
 SNAPSHOT_FILE = "docs/telemetry/live_snapshot_latest.json"
 INTERVAL_SECONDS = 60
@@ -176,11 +177,11 @@ def sync_git_cycle(generated_snapshot=None, *, clock=None):
     if code:
         logger.warning("Telemetry commit failed: %s", err)
         return False
-    code, _, err = run_cmd(["git", "push", "origin", "HEAD:main"])
+    code, _, err = run_cmd(["git", "push", "origin", f"HEAD:{BRANCH_NAME}", f"HEAD:{ARENA_BRANCH}"])
     if code:
         logger.warning("Telemetry push failed; retaining local commit for review: %s", err)
         return False
-    logger.info("Published this cycle's observed snapshot to canonical origin/main")
+    logger.info("Published this cycle's observed snapshot to origin/%s and origin/%s", BRANCH_NAME, ARENA_BRANCH)
     return True
 
 

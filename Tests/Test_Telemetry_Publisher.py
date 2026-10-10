@@ -112,17 +112,22 @@ def test_successful_cycle_commits_only_snapshot_and_pushes_main(generation, monk
     assert publisher.sync_git_cycle(generation[0]) is True
     commit = next(command for command in calls if command[1] == "commit")
     assert "--only" in commit and commit[-2:] == ["--", publisher.SNAPSHOT_FILE]
-    assert ["git", "push", "origin", "HEAD:main"] in calls
+    assert ["git", "push", "origin", f"HEAD:{publisher.BRANCH_NAME}", f"HEAD:{publisher.ARENA_BRANCH}"] in calls
     assert not any(command[1] in ("add", "stash", "rebase") for command in calls)
 
 
 def test_singleton_lock_failure_never_kills_a_recorded_pid(tmp_path, monkeypatch):
-    import msvcrt
+    import os
     path = tmp_path / "publisher.pid"
     path.write_text("1234")
     monkeypatch.setattr(publisher, "PID_FILE", path)
     monkeypatch.setattr(publisher, "_singleton_handle", None)
-    monkeypatch.setattr(msvcrt, "locking", lambda *args: (_ for _ in ()).throw(OSError("locked")))
+    if os.name == "nt":
+        import msvcrt
+        monkeypatch.setattr(msvcrt, "locking", lambda *args: (_ for _ in ()).throw(OSError("locked")))
+    else:
+        import fcntl
+        monkeypatch.setattr(fcntl, "flock", lambda *args: (_ for _ in ()).throw(OSError("locked")))
     monkeypatch.setattr(publisher.subprocess, "run", lambda *args, **kwargs: pytest.fail("must not invoke taskkill"))
     with pytest.raises(SystemExit, match="lock unavailable"):
         publisher.enforce_single_instance()

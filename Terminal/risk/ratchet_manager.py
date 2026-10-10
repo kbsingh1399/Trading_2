@@ -12,7 +12,7 @@ INCIDENT PREVENTION:
   their registered ratchet states, and firing SL modifications automatically.
 
 RATCHET SPEC (from ACTIVE_CONTEXT.md):
-  Phase 0 (BE Lock):    At +0.80R gain → move SL to entry (0 USD risk locked)
+  Phase 0 (BE Lock):    At +0.80R gain → move SL to entry + 0.15R (locking friction/spread, guaranteed profit)
   Phase 1 (Profit Lock):At +1.50R gain → move SL to entry + 0.80R gain
   Phase 2 (Trail):      At +2.00R gain → trail SL to entry + 1.50R
   Time Decay:           Exit at market if < +0.20R within 24 bars (6 hours)
@@ -33,7 +33,7 @@ logger = logging.getLogger("RatchetManager")
 
 class RatchetPhase(IntEnum):
     OPEN      = 0   # No ratchet fired yet
-    BE_LOCKED = 1   # Phase 0: SL at entry (0 USD risk)
+    BE_LOCKED = 1   # Phase 0: SL at entry + 0.15R (locking friction)
     PROFIT_1  = 2   # Phase 1: SL at entry + 0.80R
     TRAIL_2   = 3   # Phase 2: Trailing +1.50R
     CLOSED    = 9   # Position closed

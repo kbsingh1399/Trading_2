@@ -142,6 +142,8 @@ class HyperdashClient:
     def _resolve_coin(self, coin: str) -> str:
         if ":" in coin: return coin
         asset = canonical_asset(coin)
+        if asset in self.asset_cache and "signal_market" in self.asset_cache[asset]:
+            return self.asset_cache[asset]["signal_market"]
         HIP3_MAP = {
             "SP500": "xyz:SP500",
             "NAS100": "xyz:XYZ100",

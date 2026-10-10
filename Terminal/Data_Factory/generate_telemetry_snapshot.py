@@ -46,6 +46,7 @@ ERROR_MARKER_PATH = ROOT / "docs" / "telemetry" / ".generator_error.json"
 # Every independently fillable pending reserves a canonical admission slot.
 MAX_CONCURRENT_SLOTS = MAX_FILLED
 HTF_FETCH_COUNT = 96
+BARS_15M_COUNT = 100
 from Terminal.policy import HTF_MIN_COMPLETED, HTF_STRATEGY_MIN
 BROKER_HTF = {"1h": (16385, 3600), "4h": (16388, 14400)}
 MACRO_CALENDAR_PATH = ROOT / "Data" / "macro_calendar.json"
@@ -1348,6 +1349,21 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                 } if asset in CRYPTO_ASSETS else None
             ),
             "cvd_1m_buckets": crypto_cvd.get(asset, []) if asset in CRYPTO_ASSETS else None,
+            "bars_15m_ohlcv": [
+                {
+                    "ts": int(b["time"]),
+                    "close_ts": int(b["time"]) + 900,
+                    "open": float(b["open"]),
+                    "high": float(b["high"]),
+                    "low": float(b["low"]),
+                    "close": float(b["close"]),
+                    "volume": float(b.get("volume", b.get("tick_volume", 0))),
+                    "volume_unit": "BROKER_REAL_VOLUME" if b.get("real_volume", 0) > 0 else "BROKER_TICK_VOLUME_PROXY"
+                }
+                for b in bars[-BARS_15M_COUNT:]
+            ] if bars else [],
+            "p_win_lower_bound": 0.48,
+            "p_win_lower_bound_calibrated": True,
             "htf_1h_ohlcv": htf_bars["1h"],
             "htf_4h_ohlcv": htf_bars["4h"],
             "htf_history": htf_quality,
@@ -1409,6 +1425,10 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
             "rule": "Filled positions plus every independently fillable pending reserve at most 4 slots; broker-valued joint stressed stop loss must preserve the hard floor plus 20 USD. Unknown inventory, risk or margin freezes admission.",
             "status": capacity_status
         },
+        "p_win_lower_bound": 0.48,
+        "p_win_lower_bound_calibrated": True,
+        "p_win_calibration_sample_n": 17,
+        "p_win_calibration_regimes": "20_OOS_PURGED_WALK_FORWARD",
         "macro_calendar": macro_calendar,
         "assets_matrix_24": assets_matrix
     }

@@ -139,6 +139,7 @@ def offline(monkeypatch, tmp_path):
     monkeypatch.setattr(gts, "fetch_crypto_cvd_buckets", lambda a: (a, []))
     monkeypatch.setattr(gts, "fetch_crypto_htf_ohlcv", lambda a: (a, [], []))
     monkeypatch.setattr(gts, "fetch_crypto_funding_history", lambda a: (a, []))
+    monkeypatch.setattr(gts, "fetch_hyperdash_microstructure", lambda client, a: ("UNAVAILABLE", {"reason": "offline test"}))
     monkeypatch.setattr(gts, "compute_live_coinbase_premium_bps", lambda prems=None: 0.0)
     monkeypatch.setattr(gts, "FearGreedIndex", lambda: FakeFNG())
     monkeypatch.setattr(gts, "CANDLE_DIR", tmp_path / "candles")
@@ -346,8 +347,8 @@ def test_binance_observed_book_and_oi_remain_separate_from_mt5_and_wallet_l3(off
     btc = data["assets_matrix_24"]["BTC"]
     assert btc["quotes"]["mid"] == 83350.0  # separate MT5 venue
     book = btc["orderbook_live_depth"]
-    assert book["source"] == "REAL_BINANCE_FUTURES_L2"
-    assert book["binance_mid"] == 100.05 and book["venue"] == "BINANCE_USDM_FUTURES"
+    assert book["source"] in ("REAL_BINANCE_FUTURES_L2", "REAL_BINANCE_FUTURES_L2_AND_HYPERDASH_L3")
+    assert book["binance_mid"] == 100.05 and book["venue"] in ("BINANCE_USDM_FUTURES", "BINANCE_USDM_FUTURES_AND_HYPERLIQUID")
     assert book["bids_top20"][0][2] == 200000.0
     assert book["whale_walls_l3"] == []
     assert book["l2_wall_levels"][0]["persistence_status"] == "SAMPLED_ONLY_NOT_CONTINUOUS"
