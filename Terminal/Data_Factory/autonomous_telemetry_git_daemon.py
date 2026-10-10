@@ -77,15 +77,17 @@ def enforce_single_instance() -> None:
     _singleton_handle = handle
 
 
-def run_cmd(cmd: list[str], cwd: pathlib.Path = ROOT) -> tuple[int, str, str]:
+def run_cmd(cmd: list[str], cwd: pathlib.Path = ROOT, timeout: int = 45) -> tuple[int, str, str]:
     """Execute shell command cleanly and return code, stdout, stderr."""
     try:
+        env = {**os.environ, "GIT_TERMINAL_PROMPT": "0"}
         proc = subprocess.run(
             cmd,
             cwd=str(cwd),
             capture_output=True,
             text=True,
-            timeout=45
+            timeout=timeout,
+            env=env
         )
         return proc.returncode, proc.stdout.strip(), proc.stderr.strip()
     except subprocess.TimeoutExpired:
@@ -104,7 +106,7 @@ def load_successful_generation(generated_snapshot, *, clock=None):
                 or document != generated_snapshot or not validate_observed_snapshot(document)
                 or document.get("snapshot_status") != "LIVE_OBSERVATION"
                 or observed_now is None
-                or not 0 <= float(observed_now) - float(document["as_of_epoch"]) <= 180):
+                or not -5.0 <= float(observed_now) - float(document["as_of_epoch"]) <= 180.0):
             raise ValueError("missing, stale or mismatched successful generation")
         cap = document["capacity"]
         from Terminal.risk.live_admission import MAX_FILLED
@@ -120,7 +122,7 @@ def load_successful_generation(generated_snapshot, *, clock=None):
                 bars, quality = entry[f"htf_{key}_ohlcv"], entry["htf_history"][key]
                 if (quality["source"] != "MT5_BROKER_COMPLETED_BARS" or quality["completed_count"] != len(bars)
                         or any(float(b["close_ts"]) != float(b["ts"]) + period
-                               or float(b["close_ts"]) > float(document["as_of_epoch"]) for b in bars)
+                                or float(b["close_ts"]) > float(document["as_of_epoch"]) for b in bars)
                         or any(float(right["ts"]) <= float(left["ts"]) for left, right in zip(bars, bars[1:]))):
                     raise ValueError("completed broker HTF provenance invalid")
         return document
@@ -156,31 +158,40 @@ def sync_git_cycle(generated_snapshot=None, *, clock=None):
     if local_code or remote_code or not local_rev or not remote_rev:
         return False
     if local_rev != remote_rev:
-        code, _, _ = run_cmd(["git", "merge-base", "--is-ancestor", "HEAD", f"origin/{BRANCH_NAME}"])
-        if code:
-            logger.warning("Telemetry publication deferred: local main is ahead or diverged")
-            return False
-        code, _, err = run_cmd(["git", "merge", "--ff-only", f"origin/{BRANCH_NAME}"])
-        if code:
-            logger.warning("Safe fast-forward unavailable; preserving local work: %s", err)
-            return False
+        code_ancestor, _, _ = run_cmd(["git", "merge-base", "--is-ancestor", "HEAD", f"origin/{BRANCH_NAME}"])
+        if code_ancestor == 0:
+            code, _, err = run_cmd(["git", "merge", "--ff-only", f"origin/{BRANCH_NAME}"])
+            if code:
+                logger.warning("Safe fast-forward unavailable; preserving local work: %s", err)
+                return False
+        else:
+            code_ahead, _, _ = run_cmd(["git", "merge-base", "--is-ancestor", f"origin/{BRANCH_NAME}", "HEAD"])
+            if code_ahead == 0:
+                logger.info("Local main is ahead of origin/%s (unpushed telemetry commit present); proceeding to sync", BRANCH_NAME)
+            else:
+                logger.warning("Telemetry publication deferred: local main has diverged from origin/%s", BRANCH_NAME)
+                return False
     # A fast-forward or another writer may have replaced the generated file.
     if load_successful_generation(generated_snapshot, clock=clock) is None:
         return False
     code, modified, _ = run_cmd(["git", "status", "--porcelain", "--", SNAPSHOT_FILE])
-    if code or not modified:
-        return False
-    # --only excludes every foreign index entry even if it appears after the
-    # initial staged-work check; no bare commit, directory add or auto-stash.
-    now_str = generated_snapshot["as_of_utc"]
-    code, _, err = run_cmd(["git", "commit", "--only", "-m", f"telemetry: observed snapshot [as_of {now_str}]", "--", SNAPSHOT_FILE])
-    if code:
-        logger.warning("Telemetry commit failed: %s", err)
-        return False
+    if not code and modified:
+        # --only excludes every foreign index entry even if it appears after the
+        # initial staged-work check; no bare commit, directory add or auto-stash.
+        now_str = generated_snapshot["as_of_utc"]
+        code, _, err = run_cmd(["git", "commit", "--only", "-m", f"telemetry: observed snapshot [as_of {now_str}]", "--", SNAPSHOT_FILE])
+        if code:
+            logger.warning("Telemetry commit failed: %s", err)
+            return False
     code, _, err = run_cmd(["git", "push", "origin", f"HEAD:{BRANCH_NAME}", f"HEAD:{ARENA_BRANCH}"])
     if code:
-        logger.warning("Telemetry push failed; retaining local commit for review: %s", err)
-        return False
+        logger.warning("Dual-ref push failed (%s); attempting fallback push to main only", err)
+        code_main, _, err_main = run_cmd(["git", "push", "origin", f"HEAD:{BRANCH_NAME}"])
+        if code_main:
+            logger.warning("Telemetry push failed; retaining local commit for review: %s", err_main)
+            return False
+        logger.info("Published this cycle's observed snapshot to origin/%s (arena ref deferred)", BRANCH_NAME)
+        return True
     logger.info("Published this cycle's observed snapshot to origin/%s and origin/%s", BRANCH_NAME, ARENA_BRANCH)
     return True
 

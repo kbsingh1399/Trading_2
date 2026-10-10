@@ -74,7 +74,10 @@ def efficiency_ratio(closes, n: int) -> Optional[float]:
 
 def variance_ratio(closes, q: int = 4, n: Optional[int] = None):
     """Lo-MacKinlay VR(q) with heteroskedasticity-robust z* (M2)."""
-    lp = np.log(_arr(closes))
+    arr = _arr(closes)
+    if n is not None and len(arr) < n + 1:
+        return None, None
+    lp = np.log(arr)
     if n:
         lp = lp[-n - 1:]
     x = np.diff(lp)
@@ -190,7 +193,7 @@ def classify_regime(closes_15m, closes_1h, closes_4h, p: RegimeParams = RegimePa
         age_s = as_of_epoch - last_close_epoch
         stats["bar_age_s"] = float(age_s)
         stats["max_staleness_s"] = float(max_staleness_s)
-        if age_s > max_staleness_s:
+        if age_s < -5.0 or age_s > max_staleness_s:
             stats["stale"] = True
             return "UNDEFINED", stats
         stats["stale"] = False
@@ -246,9 +249,9 @@ def m1_range_override_ok(ctx: dict) -> bool:
         return False
     if ctx.get("regime") not in ("UNDEFINED", "RANGE", "CHOP"):
         return False
-    z = ctx.get("vwap_z")
+    z_val = ctx.get("sweep_z") if ctx.get("sweep_z") is not None else ctx.get("vwap_z")
     try:
-        if z is None or abs(float(z)) < 2.0:
+        if z_val is None or abs(float(z_val)) < 2.0 - 1e-6:
             return False
     except (TypeError, ValueError):
         return False
@@ -269,59 +272,65 @@ def model1_checklist(ctx: dict) -> Verdict:
     """
     v = Verdict(True)
     side = 1 if ctx["direction"] == "LONG" else -1
-    z, dz4 = ctx["vwap_z"], ctx["vwap_z_change_4bars"]
-    atr, sig_s = ctx["atr"], ctx["session_sigma"]
+    session_bars = ctx.get("session_bars")
+    v.require(session_bars is not None and session_bars >= 16, "A1_session_sigma_immature_lt16bars")
+
+    z, dz4 = ctx.get("vwap_z"), ctx.get("vwap_z_change_4bars")
+    atr, sig_s = ctx.get("atr"), ctx.get("session_sigma")
     v.metrics.update(z=z, dz4=dz4)
     # --- A1 regime + geometry
     range_override = m1_range_override_ok(ctx)
     v.metrics["m1_range_override_used"] = range_override
-    v.require(ctx["regime"] == "MEAN_REVERT" or range_override, "A1_regime_not_mean_revert")
-    z_sweep = ctx.get("sweep_z", z)
+    v.require(ctx.get("regime") == "MEAN_REVERT" or range_override, "A1_regime_not_mean_revert")
+    z_sweep = ctx.get("sweep_z") if ctx.get("sweep_z") is not None else z
     v.metrics["z_sweep"] = z_sweep
-    v.require(-side * z_sweep >= 2.0, "A1_z_below_2")
-    v.require(-side * z_sweep <= 3.5, "A1_z_beyond_3p5_cascade_zone")
-    v.require(ctx["session_bars"] >= 16, "A1_session_sigma_immature_lt16bars")
-    v.require(sig_s >= 0.8 * atr, "A1_session_sigma_lt_0p8atr")
-    v.require(abs(ctx["vwap_slope_sigma_per_bar"]) <= 0.05, "A1_vwap_sloped")
-    v.require(-side * dz4 <= 0.75, "A1_z_still_accelerating")
-    v.require(ctx["vol_ratio_4_96"] <= 2.0, "A1_vol_shock")
+    v.require(z_sweep is not None and -side * z_sweep >= 2.0 - 1e-6, "A1_z_below_2")
+    v.require(z_sweep is not None and -side * z_sweep <= 3.5 + 1e-6, "A1_z_beyond_3p5_cascade_zone")
+    v.require(sig_s is not None and atr is not None and sig_s >= 0.8 * atr, "A1_session_sigma_lt_0p8atr")
+    slope = ctx.get("vwap_slope_sigma_per_bar")
+    v.require(slope is not None and abs(slope) <= 0.05, "A1_vwap_sloped")
+    v.require(dz4 is not None and -side * dz4 <= 0.75, "A1_z_still_accelerating")
+    vol_ratio = ctx.get("vol_ratio_4_96")
+    v.require(vol_ratio is not None and vol_ratio <= 2.0, "A1_vol_shock")
     # --- A2 orderflow (crypto only; CFDs without tape fail closed; no price-only bypass for Model 1)
     of = ctx.get("orderflow")
     v.require(of is not None, "A2_no_tape_fail_closed")
     if of is not None:
         # divergence: second push's adverse CVD <= 70% of first push's
-        leg1, leg2 = of["cvd_push1"], of["cvd_push2"]
-        div = (abs(leg2) / abs(leg1)) if leg1 else 9.9
+        leg1, leg2 = of.get("cvd_push1"), of.get("cvd_push2")
+        div = (abs(leg2) / abs(leg1)) if (leg1 and leg2 is not None) else 9.9
         v.metrics["cvd_push_ratio"] = div
-        v.require(side * leg1 < 0 and div <= 0.70, "A2_no_cvd_divergence")
+        v.require(leg1 is not None and side * leg1 < 0 and div <= 0.70, "A2_no_cvd_divergence")
         # absorption: aggression present but impact per $ collapsed
-        v.require(of["aggr_usd_sweep"] >= 2.0 * of["aggr_usd_median_1m"], "A2_no_aggression_to_absorb")
-        lam_ratio = of["lambda_sweep"] / max(of["lambda_median_60m"], 1e-12)
+        aggr_sweep = of.get("aggr_usd_sweep", 0.0)
+        aggr_med = of.get("aggr_usd_median_1m", 1.0)
+        v.require(aggr_sweep >= 2.0 * aggr_med, "A2_no_aggression_to_absorb")
+        lam_ratio = of.get("lambda_sweep", 0.0) / max(of.get("lambda_median_60m", 1.0), 1e-12)
         v.metrics["lambda_ratio"] = lam_ratio
         v.require(lam_ratio <= 0.50, "A2_impact_not_absorbed")
-        v.require(of["bars_cvd_turned"] >= 3, "A2_cvd_not_turned_3x1m")
+        v.require(of.get("bars_cvd_turned", 0) >= 3, "A2_cvd_not_turned_3x1m")
     # --- A3 resting depth (informational on CFDs: other venue)
     wall = ctx.get("wall")
     if wall is not None:
-        v.require(wall["usd"] >= max(150_000, 5 * wall["median_1m_traded_usd"]), "A3_wall_too_small_vs_flow")
-        v.require(wall["persist_s"] >= 180 and wall["presence_frac"] >= 0.9, "A3_wall_not_persistent")
-        v.require(wall["dist_from_entry_atr"] <= 0.25, "A3_wall_not_behind_entry")
+        v.require(wall["usd"] >= max(150_000, 5 * wall.get("median_1m_traded_usd", 0.0)), "A3_wall_too_small_vs_flow")
+        v.require(wall["persist_s"] >= 180 and wall.get("presence_frac", 1.0) >= 0.9, "A3_wall_not_persistent")
+        v.require(wall.get("dist_from_entry_atr", 9.9) <= 0.25, "A3_wall_not_behind_entry")
     # --- A4 flush completed
     fl = ctx.get("flush")
     if fl is not None:
-        v.require(fl["peak_liq_1m"] >= 3 * fl["median_liq_1m_24h"], "A4_no_real_flush")
-        v.require(fl["last_liq_1m"] <= 0.2 * fl["peak_liq_1m"], "A4_flush_ongoing")
-        v.require(fl["oi_change_5m_pct"] >= -0.10, "A4_oi_still_falling")
-    v.require(ctx["reclaim_close"], "A4_no_close_back_inside_sweep")
+        v.require(fl.get("peak_liq_1m", 0.0) >= 3 * fl.get("median_liq_1m_24h", 1.0), "A4_no_real_flush")
+        v.require(fl.get("last_liq_1m", 0.0) <= 0.2 * fl.get("peak_liq_1m", 1.0), "A4_flush_ongoing")
+        v.require(fl.get("oi_change_5m_pct", -1.0) >= -0.10, "A4_oi_still_falling")
+    v.require(bool(ctx.get("reclaim_close")), "A4_no_close_back_inside_sweep")
     # --- A5 geometry & net expectancy
     entry, sl, tp = ctx["entry"], ctx["sl"], ctx["tp"]
     r = abs(entry - sl)
     v.require(side * (entry - ctx["sweep_extreme"]) > 0, "A5_entry_not_inside_sweep")
-    v.require(side * (ctx["sweep_extreme"] - sl) >= 0.2 * atr + ctx["spread"], "A5_stop_not_beyond_sweep_buffer")
-    v.require(r >= 1.0 * atr, "A5_stop_lt_1atr")
+    v.require(side * (ctx["sweep_extreme"] - sl) >= 0.2 * (atr or 0.0) + ctx.get("spread", 0.0), "A5_stop_not_beyond_sweep_buffer")
+    v.require(atr is not None and r >= 1.0 * atr - 1e-9, "A5_stop_lt_1atr")
     rr = side * (tp - entry) / r if r > 0 else 0
     v.metrics["rr_gross"] = rr
-    v.require(side * (ctx["vwap"] - tp) >= 0, "A5_tp_beyond_vwap")
+    v.require(ctx.get("vwap") is not None and side * (ctx["vwap"] - tp) >= -1e-9, "A5_tp_beyond_vwap")
     _net_ev(v, ctx, rr, min_rr=1.5)
     return v
 
@@ -342,9 +351,13 @@ def pullback_geometry(highs, lows, closes, direction, impulse_start: int, swing_
     retr = s * (ext - p) / leg if leg > 0 else 0.0
     n_imp = max(swing_idx - impulse_start, 1)
     n_pb = max(len(c) - 1 - swing_idx, 1)
-    depth_sigma = abs(math.log(ext / p)) / (sigma_bar * math.sqrt(n_pb))
-    v_imp = abs(math.log(ext / a)) / n_imp
-    v_pb = abs(math.log(ext / p)) / n_pb
+    sig_eff = max(float(sigma_bar), 1e-6)
+    p_safe = max(p, 1e-9)
+    ext_safe = max(ext, 1e-9)
+    a_safe = max(a, 1e-9)
+    depth_sigma = abs(math.log(ext_safe / p_safe)) / (sig_eff * math.sqrt(n_pb))
+    v_imp = abs(math.log(ext_safe / a_safe)) / n_imp
+    v_pb = abs(math.log(ext_safe / p_safe)) / n_pb
     return {"retrace": retr, "depth_sigma": depth_sigma,
             "velocity_ratio": v_pb / v_imp if v_imp > 0 else 9.9,
             "bars_pullback": n_pb, "bars_impulse": n_imp}
@@ -354,17 +367,21 @@ def model2_checklist(ctx: dict) -> Verdict:
     v = Verdict(True)
     side = 1 if ctx["direction"] == "LONG" else -1
     atr, sig = ctx["atr"], ctx["sigma_bar"]
-    # --- B1 regime
+    # --- B1 regime, session maturity & location
     want = "TREND_UP" if side == 1 else "TREND_DOWN"
     v.require(ctx["regime"] == want, "B1_regime_mismatch")
+    if "session_bars" in ctx and ctx["session_bars"] is not None:
+        v.require(ctx["session_bars"] >= 16, "B1_session_immature_lt16bars")
+    if "vwap_z" in ctx and ctx["vwap_z"] is not None:
+        v.require(abs(float(ctx["vwap_z"])) < 2.0 - 1e-6, "B1_z_outside_model2_location_bound")
     # --- B2 pullback geometry (true pullback vs exhaustion rollover)
     g = ctx["geometry"]
     v.metrics.update({f"geo_{k}": val for k, val in g.items()})
-    v.require(0.236 <= g["retrace"] <= 0.618, "B2_retrace_outside_0236_0618")
+    v.require(0.236 - 1e-5 <= g["retrace"] <= 0.618 + 1e-5, "B2_retrace_outside_0236_0618")
     v.require(g["depth_sigma"] <= 2.0, "B2_pullback_too_fast")
     v.require(g["velocity_ratio"] <= 0.60, "B2_pullback_velocity_ge_impulse")
     v.require(ctx["structure_intact"], "B2_15m_higher_low_broken")
-    ex = ctx["exhaustion_flags"]
+    ex = ctx.get("exhaustion_flags") or {}
     v.metrics["exhaustion_count"] = sum(bool(x) for x in ex.values())
     v.require(v.metrics["exhaustion_count"] <= 1, "B2_exhaustion_rollover")
     # --- B3 shelf
@@ -373,7 +390,7 @@ def model2_checklist(ctx: dict) -> Verdict:
         v.require(False, "B3_no_shelf_defined")
     else:
         v.require(abs(ctx["entry"] - shelf["price"]) <= 0.25 * atr, "B3_entry_not_at_shelf")
-        v.require(shelf.get("confluence", 0) >= 2, "B3_single_source_shelf")
+        v.require((shelf.get("confluence") or 0) >= 2, "B3_single_source_shelf")
     # --- B4 orderflow (crypto)
     of = ctx.get("orderflow")
     if of is None:
@@ -390,7 +407,7 @@ def model2_checklist(ctx: dict) -> Verdict:
     # --- B6 target & net EV
     entry, sl, tp = ctx["entry"], ctx["sl"], ctx["tp"]
     r = abs(entry - sl)
-    v.require(r >= 1.5 * atr, "B6_stop_lt_1p5atr")
+    v.require(r >= 1.5 * atr - 1e-9, "B6_stop_lt_1p5atr")
     obstacle = ctx.get("first_obstacle")          # swing high / ask wall >= 2M
     v.require(obstacle is not None, "B6_first_obstacle_missing")
     if obstacle is not None:
@@ -451,7 +468,8 @@ def resting_order_invalidation(o: dict, m: dict):
     if m["new_counter_swing"]:                       # LL for longs / HH for shorts
         ev.append((HARD, "counter_structure_formed_before_fill"))
     dist = s * (m["mid"] - o["limit"])               # >0 = price above buy limit
-    v_app = -s * m["ret_3bars_log"] / (sig * math.sqrt(3))
+    sig_eff = max(float(sig), 1e-6) if sig is not None else 1e-6
+    v_app = -s * m.get("ret_3bars_log", 0.0) / (sig_eff * math.sqrt(3))
     if 0 <= dist <= 1.0 * atr and v_app > 2.0:
         ev.append((HARD, f"fast_approach_{v_app:.2f}sigma"))
     if dist > 2.0 * atr:
@@ -474,7 +492,7 @@ def resting_order_invalidation(o: dict, m: dict):
         ev.append((SOFT, "depth_near_limit_thinned_50pct"))
     if m.get("poc_migration_atr") is not None and -s * m["poc_migration_atr"] >= 0.5:
         ev.append((SOFT, "value_migrating_through_limit"))
-    if m.get("ref_basis_bps") is not None and abs(m["ref_basis_bps"]) > m.get("ref_basis_limit_bps", 15):
+    if m.get("ref_basis_bps") is not None and abs(m["ref_basis_bps"]) > (m.get("ref_basis_limit_bps") or 15):
         ev.append((SOFT, "broker_reference_divergence"))
     hard = [r for k, r in ev if k == HARD]
     soft = [r for k, r in ev if k == SOFT]
@@ -497,10 +515,23 @@ def diffusion_ttl_minutes(dist_at_stage: float, sigma_bar_price: float, bar_minu
 # ================================================ 6. hold / cut / breakeven
 def p_hit_upper(x: float, lo: float, hi: float, mu: float = 0.0, sig: float = 1.0) -> float:
     """P(Brownian with drift mu, vol sig hits hi before lo) from x."""
+    if hi <= lo:
+        return 0.0
+    if x <= lo:
+        return 0.0
+    if x >= hi:
+        return 1.0
+    sig_eff = max(float(sig), 1e-6)
     if abs(mu) < 1e-12:
-        return (x - lo) / (hi - lo)
-    sfun = lambda y: math.exp(-2 * mu * y / sig ** 2)
-    return (sfun(x) - sfun(lo)) / (sfun(hi) - sfun(lo))
+        return float((x - lo) / (hi - lo))
+    def sfun(y: float) -> float:
+        arg = -2.0 * mu * y / (sig_eff ** 2)
+        return math.exp(max(-700.0, min(700.0, arg)))
+    den = sfun(hi) - sfun(lo)
+    if abs(den) < 1e-12:
+        return float((x - lo) / (hi - lo))
+    res = (sfun(x) - sfun(lo)) / den
+    return max(0.0, min(1.0, float(res)))
 
 
 def hold_cut_decision(st: dict):
@@ -584,12 +615,12 @@ def pre_send_gate(mt5, req: dict, plan: dict, lim: SendLimits = SendLimits(), no
         r.append("autotrading_disabled")
     if info.trade_mode != mt5.SYMBOL_TRADE_MODE_FULL:
         r.append("symbol_trade_mode_not_full")
-    now_ms = now_ms if now_ms is not None else plan["server_now_ms"]
+    now_ms = now_ms if now_ms is not None else plan.get("server_now_ms")
     if tick_age_seconds is not None:
         age = tick_age_seconds(tick, sym)
         age_ms = None if age is None else age * 1000
     else:
-        age_ms = now_ms - tick.time_msc
+        age_ms = (now_ms - tick.time_msc) if (now_ms is not None and getattr(tick, "time_msc", None) is not None) else None
     if age_ms is None or not math.isfinite(age_ms) or age_ms < 0:
         r.append("tick_clock_unverified")
     elif age_ms > lim.max_tick_age_ms:
@@ -598,7 +629,15 @@ def pre_send_gate(mt5, req: dict, plan: dict, lim: SendLimits = SendLimits(), no
     if not 0 < tick.bid < tick.ask or not math.isfinite(mid):
         return False, r + ["broker_quote_invalid"], None
     spr_bps = (tick.ask - tick.bid) / mid * 10_000
-    allowed_spread = min(lim.max_spread_bps, max(1.0, lim.spread_vs_median * plan.get("spread_median_bps_this_hour", 1.0)))
+    med_spr = plan.get("spread_median_bps_this_hour")
+    if med_spr is not None:
+        try:
+            med_val = float(med_spr)
+            allowed_spread = min(lim.max_spread_bps, max(1.0, lim.spread_vs_median * med_val))
+        except (ValueError, TypeError):
+            allowed_spread = lim.max_spread_bps
+    else:
+        allowed_spread = lim.max_spread_bps
     if spr_bps > allowed_spread:
         r.append(f"spread_{spr_bps:.1f}bps")
     r_price = abs(req["price"] - req["sl"])

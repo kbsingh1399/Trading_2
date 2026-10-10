@@ -48,11 +48,62 @@ logger = logging.getLogger("HyperdashFlowFeed")
 
 
 def _post_json(payload: dict, timeout: int = 4) -> Any:
-    """Post JSON to Hyperliquid info endpoint with strict timeout."""
-    data_bytes = json.dumps(payload).encode("utf-8")
-    req = urllib.request.Request(HL_INFO_URL, data=data_bytes, headers=DEFAULT_HEADERS)
-    with urllib.request.urlopen(req, timeout=timeout) as resp:
-        return json.loads(resp.read().decode("utf-8"))
+    """Post JSON to Hyperliquid info endpoint with strict timeout and safe error handling."""
+    try:
+        data_bytes = json.dumps(payload).encode("utf-8")
+        req = urllib.request.Request(HL_INFO_URL, data=data_bytes, headers=DEFAULT_HEADERS)
+        with urllib.request.urlopen(req, timeout=timeout) as resp:
+            return json.loads(resp.read().decode("utf-8"))
+    except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError, json.JSONDecodeError, OSError) as exc:
+        logger.debug("Hyperliquid POST failed for %s: %s", payload.get("type"), exc)
+        return None
+
+
+def atomic_persist_flows(records: List[Dict[str, Any]]) -> bool:
+    """Atomically persist records to both JSON and Parquet using unique temp files."""
+    pid = os.getpid()
+    ts = int(time.time() * 1000)
+    tmp_json = FLOWS_JSON_PATH.with_name(f"{FLOWS_JSON_PATH.name}.tmp.{pid}.{ts}")
+    tmp_parquet = FLOWS_PARQUET_PATH.with_name(f"{FLOWS_PARQUET_PATH.name}.tmp.{pid}.{ts}")
+    try:
+        # 1. Write temp JSON
+        tmp_json.write_text(json.dumps(records, indent=2, ensure_ascii=False), encoding="utf-8")
+        
+        # 2. Write temp Parquet
+        df = pd.DataFrame(records)
+        df.to_parquet(tmp_parquet, index=False)
+        
+        # 3. Replace both atomically
+        tmp_json.replace(FLOWS_JSON_PATH)
+        tmp_parquet.replace(FLOWS_PARQUET_PATH)
+        return True
+    except Exception as exc:
+        logger.warning("Could not atomically persist updated flow history: %s", exc)
+        for p in (tmp_json, tmp_parquet):
+            try:
+                if p.exists():
+                    p.unlink()
+            except Exception:
+                pass
+        return False
+
+
+def load_raw_flow_history(raise_on_error: bool = False) -> List[Dict[str, Any]]:
+    """Load historical flows archive safely.
+    
+    If raise_on_error is True, raises any disk/parse errors instead of silently
+    returning [] to prevent accidental history truncation during sync.
+    """
+    if not FLOWS_JSON_PATH.exists():
+        return []
+    try:
+        data = json.loads(FLOWS_JSON_PATH.read_text(encoding="utf-8"))
+        return data if isinstance(data, list) else []
+    except Exception as exc:
+        logger.warning("Could not read hyperdash_flows_history.json: %s", exc)
+        if raise_on_error:
+            raise
+        return []
 
 
 def sync_live_api_flows(max_wallets_to_check: int = 8) -> int:
@@ -62,7 +113,12 @@ def sync_live_api_flows(max_wallets_to_check: int = 8) -> int:
     Operates 100% headlessly via REST API without requiring Telegram or a browser.
     Returns the count of newly appended events.
     """
-    records = load_raw_flow_history()
+    try:
+        records = load_raw_flow_history(raise_on_error=True)
+    except Exception as exc:
+        logger.error("Aborting flow sync: could not safely read flow history: %s", exc)
+        return 0
+
     existing_ids = {str(r.get("msg_id", "")) for r in records if r.get("msg_id")}
     new_events: List[Dict[str, Any]] = []
 
@@ -70,7 +126,7 @@ def sync_live_api_flows(max_wallets_to_check: int = 8) -> int:
     whale_wallets = []
     for r in reversed(records):
         addr = r.get("wallet_address")
-        if addr and addr.startswith("0x") and addr not in whale_wallets:
+        if isinstance(addr, str) and addr.startswith("0x") and addr not in whale_wallets:
             whale_wallets.append(addr)
         if len(whale_wallets) >= max_wallets_to_check:
             break
@@ -83,14 +139,15 @@ def sync_live_api_flows(max_wallets_to_check: int = 8) -> int:
                 continue
             
             # Filter for liquidation fills
-            liq_fills = [f for f in fills if f.get("liquidation")]
+            liq_fills = [f for f in fills if isinstance(f, dict) and f.get("liquidation")]
             if not liq_fills:
                 continue
 
             # Group liquidation sub-fills by second and coin to reconstruct the full event
             grouped_by_event: Dict[str, List[dict]] = {}
             for f in liq_fills:
-                t_sec = int(f.get("time", 0)) // 1000
+                t_raw = f.get("time")
+                t_sec = int(t_raw) // 1000 if t_raw is not None else int(time.time())
                 coin = str(f.get("coin", "UNKNOWN")).upper()
                 event_key = f"{addr}_{coin}_{t_sec}"
                 grouped_by_event.setdefault(event_key, []).append(f)
@@ -101,14 +158,15 @@ def sync_live_api_flows(max_wallets_to_check: int = 8) -> int:
                     continue
 
                 coin = str(group[0].get("coin", "UNKNOWN")).upper()
-                tot_sz = sum(float(x.get("sz", 0)) for x in group)
+                tot_sz = sum(float(x.get("sz") or 0.0) for x in group)
                 if tot_sz <= 0:
                     continue
-                avg_px = sum(float(x.get("px", 0)) * float(x.get("sz", 0)) for x in group) / tot_sz
+                avg_px = sum(float(x.get("px") or 0.0) * float(x.get("sz") or 0.0) for x in group) / tot_sz
                 tot_usd = tot_sz * avg_px
-                side_raw = group[0].get("side", "")
+                side_raw = str(group[0].get("side") or "").upper()
                 is_short = (side_raw == "B") # Short liquidated = buy to cover
-                t_sec = int(group[0].get("time", 0)) // 1000
+                t_raw = group[0].get("time")
+                t_sec = int(t_raw) // 1000 if t_raw is not None else int(time.time())
 
                 record = {
                     "type": "LIQUIDATION",
@@ -124,6 +182,7 @@ def sync_live_api_flows(max_wallets_to_check: int = 8) -> int:
                     "asset_slug": coin,
                     "raw_text": f"#{coin} Liquidated {'Short' if is_short else 'Long'}: {tot_usd/1e3:.2f}K USD at {avg_px:.4f} USD [API]",
                     "msg_id": event_id,
+                    "timestamp_epoch": t_sec,
                     "time_label": datetime.fromtimestamp(t_sec, tz=timezone.utc).strftime("%H:%M"),
                     "date_heading": datetime.fromtimestamp(t_sec, tz=timezone.utc).strftime("%B %d"),
                     "source": "HYPERLIQUID_L1_NATIVE_API"
@@ -134,23 +193,37 @@ def sync_live_api_flows(max_wallets_to_check: int = 8) -> int:
             logger.debug("Failed querying userFills for %s: %s", addr, exc)
 
     # 3. Check recent ticks for large whale executions (>= 50k USD) on primary crypto assets
-    core_assets = ["BTC", "ETH", "SOL", "NEAR", "DOGE", "XRP", "BNB"]
+    # Covers full Binance 11 perpetual universe + primary Hyperliquid perp liquidity
+    core_assets = ["BTC", "ETH", "SOL", "NEAR", "DOGE", "XRP", "BNB", "ADA", "TRX", "LINK", "DOT", "LTC", "BCH"]
     for coin in core_assets:
         try:
             trades = _post_json({"type": "recentTrades", "coin": coin}, timeout=2)
             if not isinstance(trades, list):
                 continue
             for tr in trades:
-                px = float(tr.get("px", 0))
-                sz = float(tr.get("sz", 0))
+                if not isinstance(tr, dict):
+                    continue
+                px = float(tr.get("px") or 0.0)
+                sz = float(tr.get("sz") or 0.0)
                 notional = px * sz
-                tid = str(tr.get("tid", tr.get("time", "")))
+                if notional < 50_000.0:
+                    continue
+                raw_tid = tr.get("tid")
+                t_raw = tr.get("time")
+                t_sec = int(t_raw) // 1000 if t_raw is not None else int(time.time())
+                side_char = str(tr.get("side") or "").upper()
+                side = "BUY" if side_char == "B" else "SELL"
+                
+                # Robust tid avoiding collision or None key collapse
+                if raw_tid is not None and str(raw_tid).strip() and str(raw_tid) != "None":
+                    tid = str(raw_tid)
+                else:
+                    tid = f"{t_sec}_{int(round(px * 1e2))}_{int(round(sz * 1e2))}_{side_char}"
+                
                 event_id = f"HL_TRADE_{coin}_{tid}"
-                if notional >= 50_000.0 and event_id not in existing_ids:
-                    t_sec = int(tr.get("time", 0)) // 1000
-                    side = "BUY" if tr.get("side") == "B" else "SELL"
+                if event_id not in existing_ids:
                     users = tr.get("users", [])
-                    user_addr = users[0] if users else None
+                    user_addr = users[0] if users and isinstance(users, list) else None
 
                     record = {
                         "type": "WHALE_TRADE",
@@ -166,6 +239,7 @@ def sync_live_api_flows(max_wallets_to_check: int = 8) -> int:
                         "asset_slug": coin,
                         "raw_text": f"#{coin} Whale {side}: {notional/1e3:.2f}K USD at {px:.4f} USD [API]",
                         "msg_id": event_id,
+                        "timestamp_epoch": t_sec,
                         "time_label": datetime.fromtimestamp(t_sec, tz=timezone.utc).strftime("%H:%M"),
                         "date_heading": datetime.fromtimestamp(t_sec, tz=timezone.utc).strftime("%B %d"),
                         "source": "HYPERLIQUID_L1_NATIVE_API"
@@ -175,35 +249,18 @@ def sync_live_api_flows(max_wallets_to_check: int = 8) -> int:
         except Exception as exc:
             logger.debug("Failed querying recentTrades for %s: %s", coin, exc)
 
-    # 4. If new events detected, persist updated history atomically
+    # 4. If new events detected, persist updated history atomically with retention cap
     if new_events:
         all_records = records + new_events
-        try:
-            # Atomic write JSON
-            tmp_json = FLOWS_JSON_PATH.with_suffix(".tmp")
-            tmp_json.write_text(json.dumps(all_records, indent=2, ensure_ascii=False), encoding="utf-8")
-            tmp_json.replace(FLOWS_JSON_PATH)
-
-            # Persist Parquet
-            df = pd.DataFrame(all_records)
-            df.to_parquet(FLOWS_PARQUET_PATH, index=False)
+        # Maintain rolling retention cap of 10,000 records to prevent unbounded growth
+        if len(all_records) > 10000:
+            all_records = all_records[-10000:]
+        if atomic_persist_flows(all_records):
             logger.info("Successfully appended %d new API flow events to history (total: %d)", len(new_events), len(all_records))
-        except Exception as exc:
-            logger.warning("Could not persist updated flow history: %s", exc)
+        else:
+            logger.warning("Failed to atomically persist %d new flow events", len(new_events))
 
     return len(new_events)
-
-
-def load_raw_flow_history() -> List[Dict[str, Any]]:
-    """Load historical flows archive safely."""
-    if not FLOWS_JSON_PATH.exists():
-        return []
-    try:
-        data = json.loads(FLOWS_JSON_PATH.read_text(encoding="utf-8"))
-        return data if isinstance(data, list) else []
-    except Exception as exc:
-        logger.warning("Could not read hyperdash_flows_history.json: %s", exc)
-        return []
 
 
 def get_hyperdash_flow_intelligence(max_recent_items: int = 50) -> Dict[str, Any]:
@@ -243,10 +300,15 @@ def get_hyperdash_flow_intelligence(max_recent_items: int = 50) -> Dict[str, Any
     asset_aggregates: Dict[str, Dict[str, Any]] = {}
 
     for r in records:
-        rtype = r.get("type", "UNKNOWN")
-        coin = str(r.get("coin", "UNKNOWN")).upper()
-        notional = float(r.get("notional_usd") or 0.0)
-        side = r.get("side", "")
+        if not isinstance(r, dict):
+            continue
+        rtype = str(r.get("type") or "UNKNOWN")
+        coin = str(r.get("coin") or "UNKNOWN").upper()
+        try:
+            notional = float(r.get("notional_usd") or 0.0)
+        except (ValueError, TypeError):
+            notional = 0.0
+        side = str(r.get("side") or "").upper()
 
         # Per-asset breakdown tracking
         if coin not in asset_aggregates and coin != "UNKNOWN":
@@ -447,7 +509,7 @@ def get_hyperdash_flow_intelligence(max_recent_items: int = 50) -> Dict[str, Any
         "market_daily_summaries": market_summaries[-5:],
         "universe_asset_breakdown": {
             k: v for k, v in asset_aggregates.items()
-            if v["liquidations_usd"] > 0 or v["twap_notional_usd"] > 0 or v["whale_trades_usd"] > 0 or v["imminent_liqs_usd"] > 0
+            if v["liquidations_usd"] > 0 or v["twap_notional_usd"] > 0 or v["whale_trades_usd"] > 0 or v["imminent_liqs_usd"] > 0 or v.get("oi_surges_count", 0) > 0
         }
     }
 
