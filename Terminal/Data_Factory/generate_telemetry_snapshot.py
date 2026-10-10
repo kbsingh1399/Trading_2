@@ -40,6 +40,15 @@ TELEMETRY_PATH = ROOT / "docs" / "telemetry" / "live_snapshot_latest.json"
 TELEMETRY_PATH.parent.mkdir(parents=True, exist_ok=True)
 CANDLE_DIR = ROOT / "Data" / "Candles"
 WHALE_STATE_PATH = ROOT / "docs" / "telemetry" / ".whale_wall_state.json"
+
+sys.path.insert(0, str(ROOT / "Terminal"))
+from microstructure_state import (  # noqa: E402
+    carry_forward_unseen,
+    estimate_cycle_interval,
+    prune_wall_state,
+    record_cycle_interval,
+    wall_persistence_record,
+)
 ERROR_MARKER_PATH = ROOT / "docs" / "telemetry" / ".generator_error.json"
 
 # --- Data-integrity invariants (OX_ALPHA_66 forensics audit 2026-10-07) -----
@@ -856,6 +865,11 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
     # Load previous whale wall state for persistence tracking
     prev_whale_state = load_whale_state(whale_state_path)
     new_whale_state: Dict[str, Any] = {}
+    # The sampling period is measured from observed inter-arrival gaps rather
+    # than assumed, because presence_frac is observed/EXPECTED samples and a
+    # wrong denominator would silently skew every wall's persistence score.
+    _cycle_interval_s = estimate_cycle_interval(prev_whale_state)
+    record_cycle_interval(prev_whale_state, new_whale_state, now_ts)
 
     # 4. Process all 24 Assets
 
@@ -1215,17 +1229,19 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                 bids_top20.append([round(p_lvl, 4), round(sz_lvl, 4), round(notional, 2), round(cum_bid_usd, 2)])
                 if notional >= 150_000.0:
                     wall_key = f"{asset}_BUY_{round(p_lvl, 4)}"
-                    first_seen = prev_whale_state.get(wall_key, now_ts)
-                    new_whale_state[wall_key] = first_seen
-                    pers_sec = round(now_ts - first_seen, 1)
+                    pers = wall_persistence_record(prev_whale_state, new_whale_state, wall_key,
+                                                     now_ts, cycle_interval_s=_cycle_interval_s)
                     whale_walls.append({
                         "side": "BUY",
                         "price": round(p_lvl, 4),
                         "notional_usd": round(notional, 2),
                         "distance_pct": round((p_lvl - ((float(raw_book["bids"][0][0]) + float(raw_book["asks"][0][0])) / 2)) / ((float(raw_book["bids"][0][0]) + float(raw_book["asks"][0][0])) / 2) * 100.0, 2),
-                        "sample_span_sec": pers_sec,
-                        "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
-                        "first_seen_utc": datetime.fromtimestamp(first_seen, tz=timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
+                        "sample_span_sec": pers["persist_s"],
+                        "persist_s": pers["persist_s"],
+                        "presence_frac": pers["presence_frac"],
+                        "persistence_status": pers["persistence_status"],
+                        "gate_g7_eligible": pers["gate_g7_eligible"],
+                        "first_seen_utc": datetime.fromtimestamp(pers["first_seen"], tz=timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
                     })
 
             for p_str, sz_str in raw_book["asks"][:20]:
@@ -1236,17 +1252,19 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                 asks_top20.append([round(p_lvl, 4), round(sz_lvl, 4), round(notional, 2), round(cum_ask_usd, 2)])
                 if notional >= 150_000.0:
                     wall_key = f"{asset}_SELL_{round(p_lvl, 4)}"
-                    first_seen = prev_whale_state.get(wall_key, now_ts)
-                    new_whale_state[wall_key] = first_seen
-                    pers_sec = round(now_ts - first_seen, 1)
+                    pers = wall_persistence_record(prev_whale_state, new_whale_state, wall_key,
+                                                     now_ts, cycle_interval_s=_cycle_interval_s)
                     whale_walls.append({
                         "side": "SELL",
                         "price": round(p_lvl, 4),
                         "notional_usd": round(notional, 2),
                         "distance_pct": round((p_lvl - ((float(raw_book["bids"][0][0]) + float(raw_book["asks"][0][0])) / 2)) / ((float(raw_book["bids"][0][0]) + float(raw_book["asks"][0][0])) / 2) * 100.0, 2),
-                        "sample_span_sec": pers_sec,
-                        "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
-                        "first_seen_utc": datetime.fromtimestamp(first_seen, tz=timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
+                        "sample_span_sec": pers["persist_s"],
+                        "persist_s": pers["persist_s"],
+                        "presence_frac": pers["presence_frac"],
+                        "persistence_status": pers["persistence_status"],
+                        "gate_g7_eligible": pers["gate_g7_eligible"],
+                        "first_seen_utc": datetime.fromtimestamp(pers["first_seen"], tz=timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
                     })
 
             binance_mid = (float(raw_book["bids"][0][0]) + float(raw_book["asks"][0][0])) / 2
@@ -1284,17 +1302,19 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                 b_top20.append([round(p, 4), round(s, 4), round(n, 2), round(c_bid, 2)])
                 if n >= 150_000.0:
                     wall_key = f"{asset}_BUY_{round(p, 4)}"
-                    first_seen = prev_whale_state.get(wall_key, now_ts)
-                    new_whale_state[wall_key] = first_seen
-                    pers_sec = round(now_ts - first_seen, 1)
+                    pers = wall_persistence_record(prev_whale_state, new_whale_state, wall_key,
+                                                     now_ts, cycle_interval_s=_cycle_interval_s)
                     whale_walls.append({
                         "side": "BUY",
                         "price": round(p, 4),
                         "notional_usd": round(n, 2),
                         "distance_pct": round((p - hd_mid) / hd_mid * 100.0, 2) if hd_mid > 0 else 0.0,
-                        "sample_span_sec": pers_sec,
-                        "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
-                        "first_seen_utc": datetime.fromtimestamp(first_seen, tz=timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
+                        "sample_span_sec": pers["persist_s"],
+                        "persist_s": pers["persist_s"],
+                        "presence_frac": pers["presence_frac"],
+                        "persistence_status": pers["persistence_status"],
+                        "gate_g7_eligible": pers["gate_g7_eligible"],
+                        "first_seen_utc": datetime.fromtimestamp(pers["first_seen"], tz=timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
                     })
             a_top20 = []
             c_ask = 0.0
@@ -1306,17 +1326,19 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                 a_top20.append([round(p, 4), round(s, 4), round(n, 2), round(c_ask, 2)])
                 if n >= 150_000.0:
                     wall_key = f"{asset}_SELL_{round(p, 4)}"
-                    first_seen = prev_whale_state.get(wall_key, now_ts)
-                    new_whale_state[wall_key] = first_seen
-                    pers_sec = round(now_ts - first_seen, 1)
+                    pers = wall_persistence_record(prev_whale_state, new_whale_state, wall_key,
+                                                     now_ts, cycle_interval_s=_cycle_interval_s)
                     whale_walls.append({
                         "side": "SELL",
                         "price": round(p, 4),
                         "notional_usd": round(n, 2),
                         "distance_pct": round((p - hd_mid) / hd_mid * 100.0, 2) if hd_mid > 0 else 0.0,
-                        "sample_span_sec": pers_sec,
-                        "persistence_status": "SAMPLED_ONLY_NOT_CONTINUOUS",
-                        "first_seen_utc": datetime.fromtimestamp(first_seen, tz=timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
+                        "sample_span_sec": pers["persist_s"],
+                        "persist_s": pers["persist_s"],
+                        "presence_frac": pers["presence_frac"],
+                        "persistence_status": pers["persistence_status"],
+                        "gate_g7_eligible": pers["gate_g7_eligible"],
+                        "first_seen_utc": datetime.fromtimestamp(pers["first_seen"], tz=timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
                     })
             tot_b = hd_book.get("bid_volume_usd") or c_bid
             tot_a = hd_book.get("ask_volume_usd") or c_ask
@@ -1495,7 +1517,10 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
             assets_matrix[asset]["quotes"]["spread_caveat"] = "RAW_ZERO_SPREAD_COMMISSION_EXCLUDED"
 
     # Save whale wall state for persistence tracking across iterations
-    save_whale_state(new_whale_state, whale_state_path)
+    # Walls absent from this cycle's book must keep their record, or a gap can
+    # never be measured and every intermittent wall resets to persist_s=0.
+    carry_forward_unseen(prev_whale_state, new_whale_state)
+    save_whale_state(prune_wall_state(new_whale_state, now_ts), whale_state_path)
 
     # Assemble master document
     trusted_finish = bridge.broker_utc_now() if hasattr(bridge, "broker_utc_now") else None

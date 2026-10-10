@@ -607,6 +607,8 @@ def test_pending_precheck_includes_complete_broker_expiration(tmp_path, monkeypa
     import Terminal.Omni_Trader as module
     t, b = trader(tmp_path, paper=False)
     t.persistent_limits = persistent
+    # Runtime spread history must not leak between parametrised runs.
+    t.spread_state_path = tmp_path / ".spread_history_state.json"
     b._utc_offset_seconds = lambda symbol: 10800
     b.tick_age_seconds = lambda tick, symbol: 0.0
     checked = []
