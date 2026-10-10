@@ -384,3 +384,90 @@ def test_ev_target_horizon_bound_is_four_atr():
     # one tick past it: refused
     v = dg.model1_checklist(_base_ctx(atr=atr, entry=entry, sl=sl, tp=entry + 4.01 * atr))
     assert "EV_target_beyond_calibrated_horizon" in v.failures
+
+
+# --------------------------------------------------------------------------- #
+# Two-sided grid wallets -- the mirror test cannot see a ladder
+# --------------------------------------------------------------------------- #
+
+from microstructure_state import two_sided_grid_addresses  # noqa: E402
+
+
+def _grid_row(addr, side, price, notional=1_005_000.0, persist=420.0):
+    return {"address": addr, "side": side, "price": price, "notional_usd": notional,
+            "persist_s": persist, "presence_frac": 1.0,
+            "wall_class": "GENUINE", "gate_g7_eligible": True}
+
+
+def test_grid_wallet_quoting_both_sides_is_identified():
+    """The shape observed live on BTC at 23:53 UTC: one wallet laddering ~1.0M USD
+    down the bid and up the ask at different prices. No pair sits within the 0.05%
+    mirror tolerance, so every leg classifies GENUINE.
+    """
+    walls = [
+        _grid_row("0xgrid", "BUY", 82_847.0),
+        _grid_row("0xgrid", "BUY", 82_932.0, persist=180.0),
+        _grid_row("0xgrid", "SELL", 82_989.0, persist=300.0),
+        _grid_row("0xgrid", "SELL", 83_072.0),
+    ]
+    assert two_sided_grid_addresses(walls) == {"0xgrid"}
+
+
+def test_one_sided_wallet_is_not_a_grid():
+    walls = [
+        _grid_row("0xwhale", "BUY", 82_900.0, notional=500_000.0),
+        _grid_row("0xwhale", "BUY", 82_850.0, notional=500_000.0),
+        _grid_row("0xother", "SELL", 83_200.0),
+    ]
+    assert two_sided_grid_addresses(walls) == set()
+
+
+def test_grid_detection_ignores_ineligible_rows():
+    """A wallet whose only opposite-side row is a 0s single sample is not a grid."""
+    walls = [
+        _grid_row("0xw", "BUY", 82_900.0),
+        {"address": "0xw", "side": "SELL", "price": 83_100.0, "notional_usd": 1_000_000.0,
+         "persist_s": 0.0, "presence_frac": 1.0,
+         "wall_class": "GENUINE", "gate_g7_eligible": False},
+    ]
+    assert two_sided_grid_addresses(walls) == set()
+
+
+def test_grid_detection_needs_an_address():
+    walls = [_grid_row("", "BUY", 100.0), _grid_row("", "SELL", 101.0)]
+    assert two_sided_grid_addresses(walls) == set()
+
+
+def test_grid_detection_is_malformed_input_safe():
+    assert two_sided_grid_addresses([]) == set()
+    assert two_sided_grid_addresses(None) == set()
+    assert two_sided_grid_addresses([None, 5, "x", {}]) == set()
+    assert two_sided_grid_addresses([
+        {"address": "0xa", "side": "BUY", "price": 1.0, "notional_usd": "bad",
+         "persist_s": 400.0, "presence_frac": 1.0,
+         "wall_class": "GENUINE", "gate_g7_eligible": True},
+    ]) == set()
+
+
+def test_context_excludes_grid_legs_and_keeps_the_one_sided_whale():
+    """The live BTC case: 17 grid rows plus one genuinely directional 500k bid.
+    Only the 500k bid may back the position.
+    """
+    walls = [_grid_row("0xgrid", "BUY", 82_940.0 + i, notional=400_000.0, persist=300.0)
+             for i in range(6)]
+    walls += [_grid_row("0xgrid", "SELL", 83_050.0 + i, notional=400_000.0, persist=300.0)
+              for i in range(6)]
+    walls.append({"address": "0x90cc9850", "side": "BUY", "price": 82_990.0,
+                  "notional_usd": 500_000.0, "persist_s": 480.0, "presence_frac": 1.0,
+                  "wall_class": "GENUINE", "gate_g7_eligible": True})
+    wall = _build(walls, direction="LONG", entry=83_000.0)["wall"]
+    assert wall is not None
+    assert wall["usd"] == 500_000.0
+
+
+def test_context_reports_no_wall_when_only_grid_inventory_is_behind_entry():
+    walls = [_grid_row("0xgrid", "BUY", 82_990.0, notional=900_000.0, persist=600.0)]
+    walls += [_grid_row("0xgrid", "SELL", 83_050.0, notional=900_000.0, persist=600.0)]
+    ctx = _build(walls, direction="LONG", entry=83_000.0)
+    assert ctx["wall"] is None
+    assert ctx["wall_data_present"] is False

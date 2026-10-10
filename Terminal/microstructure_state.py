@@ -23,7 +23,7 @@ permissive answer, never a crash and never an invented measurement.
 from __future__ import annotations
 
 import statistics
-from typing import Any, Dict, Iterable, List, Optional, Tuple
+from typing import Any, Dict, Iterable, List, Optional, Set, Tuple
 
 # A wall that disappears for longer than this and reappears is a NEW
 # observation. Crediting the earlier sighting would fabricate continuity --
@@ -422,3 +422,53 @@ def classify_wall(side: str, price: float, notional_usd: float,
     if is_mirrored_leg(side, price, notional_usd, opposite_legs):
         return WALL_MIRRORED_LEG
     return WALL_GENUINE
+
+
+WALL_GRID_QUOTER = "TWO_SIDED_GRID"
+
+
+def two_sided_grid_addresses(walls: Iterable[Dict[str, Any]],
+                            min_notional_usd: float = 150_000.0,
+                            min_persist_s: float = G7_PERSIST_S,
+                            min_presence_frac: float = G7_PRESENCE_FRAC) -> Set[str]:
+    """Addresses resting G-7 qualifying size on BOTH sides of the same book.
+
+    ``is_mirrored_leg`` catches a same-price bracket (0.05% proximity). It cannot
+    catch a market-making GRID, where one wallet ladders roughly equal size down
+    the bid and up the ask at *different* prices. Every leg of such a grid is
+    classified WALL_GENUINE and flagged gate_g7_eligible, because no single pair
+    sits close enough in price to trip the mirror test.
+
+    Measured on the 2026-10-10 23:53:01 UTC snapshot: 81.3% of all G-7 qualifying
+    notional (378.2M of 465.2M USD across 777 rows) belonged to such wallets, and
+    17 of the 18 qualifying BTC bids within 0.25 ATR of mid were grid legs -- only
+    one 500k bid at 82,900 came from a genuinely one-sided wallet.
+
+    A wallet quoting both sides is supplying liquidity, not expressing a view.
+    Neither leg is net directional inventory, so neither can satisfy mandate #4's
+    whale-backing requirement.
+    """
+    sides: Dict[str, Set[str]] = {}
+    for w in walls or ():
+        if not isinstance(w, dict):
+            continue
+        addr = str(w.get("address") or "").strip()
+        if not addr:
+            continue
+        if w.get("gate_g7_eligible") is not True:
+            continue
+        if str(w.get("wall_class") or "") != WALL_GENUINE:
+            continue
+        try:
+            note = float(w.get("notional_usd") or 0.0)
+            persist = float(w.get("persist_s") or 0.0)
+            presence = float(w.get("presence_frac") or 0.0)
+        except (TypeError, ValueError):
+            continue
+        if note < min_notional_usd or persist < min_persist_s or presence < min_presence_frac:
+            continue
+        side = str(w.get("side") or "").upper()
+        if side not in ("BUY", "SELL"):
+            continue
+        sides.setdefault(addr, set()).add(side)
+    return {addr for addr, seen in sides.items() if len(seen) > 1}
