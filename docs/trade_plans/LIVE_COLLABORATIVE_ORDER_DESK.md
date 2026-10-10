@@ -9282,5 +9282,34 @@ Arena completed the unified 4-step council audit across all 4 Mandates:
 - **Committed Risk**: **0.00 USD**.
 - **Floor Cushion**: **+121.55 USD** above 4,775.00 USD hard floor.
 
+---
+
+## SECTION 131: UNIFIED 4-STEP WAKE-UP COUNCIL AUDIT (14:53 UTC / 20:23 IST) · BTC CLEARS G-4 · FIRST POSITIVE EV DISCOVERED (+0.2688R) · SWEEP BUFFER CONFLICT · STAND-ASIDE RATIFIED
+### 1. Arena.ai Multi-Persona Council Findings (Harvested Report)
+Arena completed the unified 4-step council audit across all 4 Mandates:
+- **Major Breakthrough on BTC**:
+  * `BTCUSD.pi` cleared Gate G-4 `MEAN_REVERT` for the first time this engagement ($15\text{m } vr_z = -1.508, 1\text{h } er = 0.0708, 4\text{h } er = 0.2820$).
+  * Passed A1 geometry ($|Z| = 2.33 \in [2.0, 3.5]$, $\sigma = 119.44 \ge 0.8\text{ ATR}$, session bars $= 59 \ge 35$).
+  * Passed G-5 spread ($1.93\text{ bps} \le 20\text{ bps}$) and G-6 friction ($c = 0.0961\text{R} \le 0.10\text{R}$).
+  * **First Positive Net Expected Value Found**: Calculated $+0.2688\text{R}$ Net EV at $1.0\times\text{ATR}$ stop distance ($RR = 2.50$, $EV_{\text{lower}} \ge +0.15\text{R}$). Evidence score reached 31/100 (highest of engagement).
+- **The Structural Geometry Conflict (A5 Sweep Buffer vs. Net EV Window)**:
+  * Fade target capped at VWAP ($82,676.93\text{ USD}$), fixing total reward at $278.1\text{ pts}$.
+  * Positive Net EV requires stop $\le 1.20\times\text{ATR}$ ($\le 133.2\text{ pts}$).
+  * However, Gate A5 requires placing the protective stop beyond the session sweep extreme high of $83,245.00\text{ USD}$ ($290\text{ pts}$ away from entry at $82,955$, requiring a $2.61\times\text{ATR}$ stop).
+  * At $2.61\times\text{ATR}$, $RR$ drops to $278.1 / 290 = 0.96$ (violates minimum $1.50\text{R}$).
+  * Because the two admissible mathematical windows do not overlap at current price geometry, staging this order would fail pre-send validation.
+  * Desk-wide tape remains `UNAVAILABLE_UNVERIFIED_ORDERFLOW`, and resting whale walls at $0.18\text{ ATR}$ ($82,975$, 779k USD) carry $persist_s \approx 60\text{s}$ (maturing toward $180\text{s}$).
+- **Mandate 2 (Running Trades Audit)**: 0 active open positions on MT5. Ratchets standby.
+- **Mandate 3 (Resting Orders Sentry)**: 0 pending limit orders on MT5. Book flat, zero stale fill risk.
+- **Mandate 4 (Capacity & Floor Defense)**: 0/4 slots used. Joint worst-case risk: **0.00 USD**. Cushion: **+121.55 USD** above 4,775.00 USD hard floor (**+101.55 USD** above 4,795.00 USD buffer).
+- **Council Ruling**: **STAND ASIDE**. Book remains 100% flat in cash reserves.
+
+### 2. Live MT5 Account State
+- **Account**: Blueberry Markets SVG LLC (MetaTrader 5 Account #5064568).
+- **Balance & Equity**: **4,896.55 USD** (100% Cash Reserves | 0.00 USD Margin Exposure).
+- **Open Positions**: **0** | **Pending Orders**: **0**.
+- **Committed Risk**: **0.00 USD**.
+- **Floor Cushion**: **+121.55 USD** above 4,775.00 USD hard floor.
+
 
 
