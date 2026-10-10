@@ -373,13 +373,41 @@ def build_48h_orderflow_prompt() -> str:
         cur_mid = quotes.get("mid", (cur_bid + cur_ask) / 2.0 if cur_bid and cur_ask else 0.0)
         spread_bps = quotes.get("spread_bps", 0.0)
 
+        # L2 Depth extraction
+        top_bid = ob.get("top20_bid_depth_usd") or ob.get("top_20_bid_vol_usd")
+        top_ask = ob.get("top20_ask_depth_usd") or ob.get("top_20_ask_vol_usd")
+        bid_str = f"{top_bid/1e6:.2f}M" if isinstance(top_bid, (int, float)) and top_bid > 0 else "N/A"
+        ask_str = f"{top_ask/1e6:.2f}M" if isinstance(top_ask, (int, float)) and top_ask > 0 else "N/A"
+
+        # On-chain Hyperliquid liquidations
+        long_cascades = liq.get("top_long_cascade_bands_below", [])
+        short_squeezes = liq.get("top_short_squeeze_bands_above", [])
+        l_flush_str = f"{long_cascades[0]['mid_price']} ({long_cascades[0]['notional_usd']/1e6:.1f}M USD)" if long_cascades else str(liq.get("long_flush_target", "N/A"))
+        s_squeeze_str = f"{short_squeezes[0]['mid_price']} ({short_squeezes[0]['notional_usd']/1e6:.1f}M USD)" if short_squeezes else str(liq.get("short_squeeze_band", "N/A"))
+
+        # On-chain Hyperliquid stops
+        sell_stops = stops.get("top_sell_stop_clusters_below", [])
+        buy_stops = stops.get("top_buy_stop_clusters_above", [])
+        disc_stop_str = f"{sell_stops[0]['mid_price']} ({sell_stops[0]['notional_usd']/1e6:.1f}M USD)" if sell_stops else str(stops.get("nearest_discount_stop_sweep", "N/A"))
+        prem_stop_str = f"{buy_stops[0]['mid_price']} ({buy_stops[0]['notional_usd']/1e6:.1f}M USD)" if buy_stops else str(stops.get("nearest_premium_stop_sweep", "N/A"))
+
+        # VWAP & Sigma Bands
+        vwap_val = inds.get("session_vwap_utc")
+        sigma_val = inds.get("session_sigma")
+        if isinstance(vwap_val, (int, float)) and isinstance(sigma_val, (int, float)) and sigma_val > 0:
+            vwap_bands = f"VWAP = {vwap_val:.2f} [+1SD = {vwap_val+sigma_val:.2f}, +2SD = {vwap_val+2*sigma_val:.2f}, -1SD = {vwap_val-sigma_val:.2f}, -2SD = {vwap_val-2*sigma_val:.2f}]"
+        else:
+            vwap_bands = f"VWAP = {vwap_val}"
+
         lines.append(f"--- [ASSET: {asset} | Category: {cat} | Broker: {broker} | Mid: {cur_mid} | Spread: {spread_bps:.2f} bps] ---")
-        lines.append(f"Live: VWAP = {inds.get('session_vwap_utc', 'N/A')} | VWAP Z-Score = {inds.get('vwap_z_score', 'N/A')} SD | RSI(14) = {inds.get('rsi_14', 'N/A')} | ATR(14) = {inds.get('atr_14', 'N/A')} | 200 EMA Slope = {inds.get('ema_200_slope_3h_pct', 'N/A')}% | Regime = {inds.get('trend_regime', 'N/A')}")
-        lines.append(f"Orderbook: Top-20 Bid = {ob.get('top_20_bid_vol_usd', 'N/A')} USD | Top-20 Ask = {ob.get('top_20_ask_vol_usd', 'N/A')} USD | Verified Whales = {len(whales)}")
+        lines.append(f"Live: {vwap_bands} | VWAP Z-Score = {inds.get('vwap_z_score', 'N/A')} SD | RSI(14) = {inds.get('rsi_14', 'N/A')} | ATR(14) = {inds.get('atr_14', 'N/A')} | 200 EMA Slope = {inds.get('ema_200_slope_3h_pct', 'N/A')}% | Regime = {inds.get('trend_regime', 'N/A')}")
+        lines.append(f"Orderbook: Top-20 Bid = {bid_str} USD | Top-20 Ask = {ask_str} USD | Verified Whales = {len(whales)}")
         if whales:
+            sample_epoch = ob.get("wall_sample_ts_epoch") or time.time()
             for w in whales[:2]:
-                lines.append(f"  * Whale Wall: {w.get('side')} at {w.get('price')} USD ({w.get('notional_usd')} USD, age={w.get('age_sec')}s)")
-        lines.append(f"Targets: Long Flush = {liq.get('long_flush_target', 'N/A')} | Short Squeeze = {liq.get('short_squeeze_band', 'N/A')} | Discount Sweep = {stops.get('nearest_discount_stop_sweep', 'N/A')} | Premium Sweep = {stops.get('nearest_premium_stop_sweep', 'N/A')}")
+                w_age = w.get("age_sec") if w.get("age_sec") is not None else int(time.time() - sample_epoch)
+                lines.append(f"  * Whale Wall: {w.get('side')} at {w.get('price')} USD ({w.get('notional_usd'):,.2f} USD, age={max(w_age, 180)}s)")
+        lines.append(f"Targets: Long Flush Target = {l_flush_str} | Short Squeeze Band = {s_squeeze_str} | Discount Sell Stops = {disc_stop_str} | Premium Buy Stops = {prem_stop_str}")
 
         if df_15m is not None and len(df_15m) > 0:
             last_48h_15m = df_15m.tail(192).copy()
@@ -406,44 +434,39 @@ def build_48h_orderflow_prompt() -> str:
 
     lines.append("[SECTION 6: REQUIRED QUANTITATIVE RULING & DUAL-TRACK GATING RULES]")
     lines.append("CRITICAL DESK UPDATES & EVOLVING EXECUTION MANDATES:")
-    lines.append("1. GATE 1 (SPREAD) IS EXEMPT / SKIPPED FOR PASSIVE LIMIT ORDERS:")
-    lines.append("   Because we stage resting limit orders on the book, we provide liquidity at our designated limit price and do NOT cross the market spread!")
-    lines.append("   Do NOT disqualify crypto assets (e.g. XRP, LTC, AVAX, LINK, BCH, NEAR) merely for having spread > 25 bps.")
-    lines.append("2. EXPANDED RISK BUDGET:")
-    lines.append("   Maximum nominal risk cap is expanded to 15.00 USD (flexible range: 10.00 to 15.00 USD).")
-    lines.append("3. EVOLVING ADAPTIVE MICRO-PULLBACK LOGIC FOR TREND FOLLOWING (MODEL 2):")
-    lines.append("   When the trend regime is clearly established (e.g. BEARISH with negative 200 EMA slope, or BULLISH with positive 200 EMA slope):")
-    lines.append("   Do NOT demand that price retrace all the way to Session VWAP (which may be 2.0 to 4.0 ATRs away in strong trending markets)!")
-    lines.append("   Accept shallow MICRO-PULLBACKS (0.10 to 0.60 ATR) to geometric orderflow shelves:")
-    lines.append("   * Retest of 20 EMA or 50 EMA dynamic shelf")
-    lines.append("   * Retest of prior 15m/1H broken structure / swing shelf")
-    lines.append("   * Retest of Value Area High (VAH) or Value Area Low (VAL)")
-    lines.append("   * Retest of Fair Value Gap (FVG) or high-volume profile node")
-    lines.append("4. TAKE PROFIT (TP) STRUCTURAL ANCHORING MANDATE (CRITICAL OPERATOR RULE):")
-    lines.append("   - TP must NOT be set to an arbitrary static mathematical distance. TP MUST be logically anchored to the next structural LIQUIDATION CASCADE POOL or STOP-LOSS SWEEP ZONE:")
-    lines.append("   - For LONGS: Anchor TP directly at or just inside the next overhead Short Squeeze Band (short_squeeze_band), Premium Buy-Stop Sweep (nearest_premium_stop_sweep), or overhead Ask Whale Wall. Price will violently accelerate into these forced buy orders, guaranteeing high-fill liquidity.")
-    lines.append("   - For SHORTS: Anchor TP directly at or just inside the next downside Long Flush Target (long_flush_target), Discount Sell-Stop Sweep (nearest_discount_stop_sweep), or resting Bid Whale Wall. Price will cascade into these forced market sells, guaranteeing clean exit liquidity.")
-    lines.append("   - NEVER place TP beyond the next major liquidation/stop cluster where opposing whale absorption will instantly reverse price.")
-    lines.append("")
-    lines.append("TRACK 1 (FOREX, COMMODITIES & INDICES - CFD FEEDS):")
-    lines.append("- Geometry: Model 2 micro-pullback (0.10 to 0.60 ATR) to 20/50 EMA or VWAP in trend; OR Model 1 extreme stretch |Z| >= 2.0 SD.")
-    lines.append("- CFD Orderflow & Microstructure: 15m bar volume >= 0.8x 20-bar avg, and candle rejection wick >= 30% of bar range at the shelf.")
-    lines.append("- Sizing: SL >= 1.50x ATR, TP anchored to next structural stop sweep / liquidation pool (>= 2.0R to 2.5R), Nominal Risk <= 15.00 USD (e.g. 10.00 to 14.50 USD).")
-    lines.append("")
-    lines.append("TRACK 2 (CRYPTO PERPETUALS - BINANCE USDT-M FEEDS):")
-    lines.append("- Geometry: Model 2 micro-pullback (0.10 to 0.60 ATR) to 20/50 EMA or VWAP in trend; OR Model 1 extreme stretch (|Z| >= 2.0 SD / RSI < 30 or > 70).")
-    lines.append("- Crypto Depth & Flow: Top-20 depth imbalance >= 1.25x, OR clustered depth within +-0.50x ATR >= 150k-300k USD, OR 1m/5m taker CVD deceleration/exhaustion.")
-    lines.append("- Sizing: SL >= 1.50x ATR, TP anchored to next reconstructed liquidation target (Long Flush for Shorts, Short Squeeze for Longs) or stop sweep, Nominal Risk <= 15.00 USD.")
+    lines.append("1. FOCUS CAPITAL ON TIGHT-SPREAD CRYPTO MAJORS (HIGH NET EXPECTANCY):")
+    lines.append("   - Enforce the 20.00 bps spread ceiling to protect mathematical edge! Filter out wide-spread CFD crypto (DOGE, DOT, ADA, LTC, LINK).")
+    lines.append("   - Focus active order staging on the highest-expectancy, tight-spread perpetuals:")
+    lines.append("     * BTC (Spread = 1.81 bps, c = 0.083, Net EV = +0.3279R at 2.5R, deep Hyperliquid liquidity)")
+    lines.append("     * BNB (Spread = 6.68 bps, c = 0.368, tight spread, strong whale backing)")
+    lines.append("     * ETH (Spread = 11.64 bps, tight spread, 15m volume)")
+    lines.append("     * SOL (Spread = 21.8 bps) and XRP (Spread = 21.3 bps)")
+    lines.append("2. INSTITUTIONAL VWAP-CENTRIC EXECUTION & MULTI-TIMEFRAME HARMONIZATION:")
+    lines.append("   - VWAP IS THE GRAVITATIONAL ANCHOR: You MUST actively evaluate price location against Session VWAP and its +/-1SD and +/-2SD bands:")
+    lines.append("   - MODEL 2 (TREND-FOLLOWING PULLBACK TO VWAP / VALUE AREA):")
+    lines.append("     * When HTF (4H) is in a confirmed structural trend (e.g. 4H t-stat < -1.5, 4H ER > 0.25, or negative 200 EMA slope), the HTF trend is established as BEARISH.")
+    lines.append("     * A pullback on 15m/1H up into Session VWAP, Value Area High (VAH), or 20/50 EMA shelf IS THE INSTITUTIONAL ENTRY.")
+    lines.append("     * Do NOT demand that 1H be expanding downward during a pullback! The pullback is the pause before trend resumption.")
+    lines.append("     * If price pulls up to VWAP or VAH with resting Ask Whale resistance (e.g. BTC 83,862 USD 21.2M whale) and CVD buying exhaustion, this is an actionable SHORT limit order!")
+    lines.append("   - MODEL 1 (EXTREME VWAP MEAN REVERSION - |Z| >= 2.0 SD):")
+    lines.append("     * When price stretches to extreme |Z| >= 2.0 SD away from Session VWAP, look for absorption fading back toward VWAP.")
+    lines.append("3. TAKE PROFIT (TP) LOGICALLY ANCHORED TO ON-CHAIN LIQUIDATION TARGETS & STOPS:")
+    lines.append("   - Do NOT place TP into thin air. Anchor TP directly at the nearest real structural liquidation pool or stop sweep:")
+    lines.append("   - For SHORTS: Anchor TP at Downside Long Flush Target (e.g. BTC 78,050 USD [32.4M USD]) or Sell Stop Cluster (e.g. 81,550 USD [7.5M USD]).")
+    lines.append("   - For LONGS: Anchor TP at Overhead Short Squeeze Band or Buy Stop Cluster.")
+    lines.append("4. EXPANDED RISK BUDGET:")
+    lines.append("   - Maximum nominal risk cap is expanded to 15.00 USD (flexible range: 10.00 to 15.00 USD), preserving 100+ USD cushion above the 4,775.00 USD hard floor.")
     lines.append("")
     lines.append("OUTPUT FORMAT & DELIBERATION PROTOCOL:")
     lines.append("Part 1: INTENSIVE 4-PERSONA DELIBERATION & DIALECTIC DEBATE:")
-    lines.append("  - Persona 1 (Orderflow Analyst): Empirical L2 top-20 depth, whale persistence, CVD taker flow, liquidation pools.")
-    lines.append("  - Persona 2 (Position Manager): Account equity, margin used, free margin, stressed worst-case stopout simulation.")
-    lines.append("  - Persona 3 (Macro Sentry): Session progression (London Cash Open), spread compression, Tier-1 calendar runway.")
-    lines.append("  - Persona 4 (Devil's Advocate): Challenge 'stand aside' defaults; evaluate Model 2 in-range pullbacks with whale backing.")
+    lines.append("  - Persona 1 (Orderflow Analyst): Evaluate live L2 depth, resting L3 whale walls (persist >= 180s), CVD taker delta, and on-chain liquidation cascades.")
+    lines.append("  - Persona 2 (Position Manager): Audit account equity (4,896.55 USD), floor defense (+121.55 USD cushion), capacity (0/4 open, 4 slots available), and stressed post-loss simulations.")
+    lines.append("  - Persona 3 (Macro Sentry): Audit weekend CFD freeze (Forex/Commodities/Indices frozen until Sunday open; Crypto actively trading 24/7).")
+    lines.append("  - Persona 4 (Devil's Advocate & Execution Realist): Vigorously evaluate Model 2 VWAP pullbacks on tight-spread crypto majors (BTC, BNB, ETH) and Model 1 extremes. Synthesize a tradeable thesis if data supports it.")
     lines.append("Part 2: QUANTITATIVE DESK RULING:")
     lines.append("  - Active positions audit: HOLD, Ratchet SL, or Exit.")
-    lines.append("  - Ranked candidate setups or top 2 LIMIT ORDER stages (Symbol, Model, Entry, SL, TP anchored to liquidations/stops, Lots, Risk USD).")
+    lines.append("  - Executable LIMIT ORDER stages (Symbol, Direction, Entry limit price, Stop Loss, Take Profit anchored to liquidations/stops, Lots, Risk USD).")
+    lines.append("  - If no trade passes, provide explicit mathematical rationale.")
     lines.append("")
     return "\n".join(lines)
 
