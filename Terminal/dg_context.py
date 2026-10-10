@@ -288,7 +288,15 @@ def evaluate_candidate_dg_v3(
         c15 = [b["close"] for b in bars_15m]
         c1h = [b["close"] for b in bars_1h]
         c4h = [b["close"] for b in bars_4h]
-        regime, rstats = classify_regime(c15, c1h, c4h)
+        last_close = float(bars_15m[-1]["time"]) + 900.0
+        try:
+            regime, rstats = classify_regime(
+                c15, c1h, c4h,
+                last_close_epoch=last_close,
+                as_of_epoch=as_of,
+            )
+        except TypeError:
+            regime, rstats = classify_regime(c15, c1h, c4h)
     else:
         return {"regime": "UNDEFINED", "stats": {"history_counts": {
             "15m": len(bars_15m), "1h": len(bars_1h or []), "4h": len(bars_4h or [])}},

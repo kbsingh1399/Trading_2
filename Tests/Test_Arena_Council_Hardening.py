@@ -147,3 +147,64 @@ def test_guard_overrides_a_regime_that_would_otherwise_be_tradeable():
                                 last_close_epoch=now - 34_816, as_of_epoch=now)
     assert fresh == "MEAN_REVERT"
     assert stale == "UNDEFINED" and st["stale"] is True
+
+
+def test_evaluate_candidate_dg_v3_staleness_guard_wired():
+    """Verify that evaluate_candidate_dg_v3 suppresses stale bars to UNDEFINED in live admission."""
+    from Terminal.dg_context import evaluate_candidate_dg_v3
+    now = 1_800_000_000.0
+    stale_bar_time = now - 34_816 - 900
+    bars_15m = [
+        {"time": stale_bar_time - (100 - i) * 900, "open": 100.0, "high": 101.0,
+         "low": 99.0, "close": 100.0 + (1.0 if i % 2 else -1.0), "volume": 1000}
+        for i in range(100)
+    ]
+    bars_1h = [
+        {"time": stale_bar_time - (60 - i) * 3600, "open": 100.0, "high": 100.1,
+         "low": 99.9, "close": 100.0 + (0.01 if i % 2 else -0.01), "volume": 4000}
+        for i in range(60)
+    ]
+    bars_4h = [
+        {"time": stale_bar_time - (60 - i) * 14400, "open": 100.0, "high": 100.1,
+         "low": 99.9, "close": 100.0 + (0.01 if i % 2 else -0.01), "volume": 16000}
+        for i in range(60)
+    ]
+    quote = {"bid": 100.0, "ask": 100.02, "point": 0.01, "tick_size": 0.01, "time_msc": now * 1000}
+    features = {"direction": "LONG", "atr": 2.0}
+    sizing = {"risk_usd": 12.0, "friction_usd": 0.40}
+
+    res_stale = evaluate_candidate_dg_v3(
+        features=features, payload={}, pivots=None, quote=quote,
+        bars_15m=bars_15m, bars_1h=bars_1h, bars_4h=bars_4h,
+        entry=100.0, sl=96.0, tp=108.0, sizing=sizing, symbol="SP500.p"
+    )
+    assert res_stale["regime"] == "UNDEFINED"
+    assert res_stale["stats"]["stale"] is True
+    assert res_stale["stats"]["bar_age_s"] > 1800.0
+
+    fresh_now = 1_800_000_000.0
+    fresh_bar_time = fresh_now - 300 - 900
+    bars_15m_fresh = [
+        {"time": fresh_bar_time - (100 - i) * 900, "open": 100.0, "high": 101.0,
+         "low": 99.0, "close": 100.0 + (1.0 if i % 2 else -1.0), "volume": 1000}
+        for i in range(100)
+    ]
+    bars_1h_fresh = [
+        {"time": fresh_bar_time - (60 - i) * 3600, "open": 100.0, "high": 100.1,
+         "low": 99.9, "close": 100.0 + (0.01 if i % 2 else -0.01), "volume": 4000}
+        for i in range(60)
+    ]
+    bars_4h_fresh = [
+        {"time": fresh_bar_time - (60 - i) * 14400, "open": 100.0, "high": 100.1,
+         "low": 99.9, "close": 100.0 + (0.01 if i % 2 else -0.01), "volume": 16000}
+        for i in range(60)
+    ]
+    quote_fresh = {"bid": 100.0, "ask": 100.02, "point": 0.01, "tick_size": 0.01, "time_msc": fresh_now * 1000}
+    res_fresh = evaluate_candidate_dg_v3(
+        features=features, payload={}, pivots=None, quote=quote_fresh,
+        bars_15m=bars_15m_fresh, bars_1h=bars_1h_fresh, bars_4h=bars_4h_fresh,
+        entry=100.0, sl=96.0, tp=108.0, sizing=sizing, symbol="BTCUSD.pi"
+    )
+    assert res_fresh["stats"]["stale"] is False
+    assert res_fresh["regime"] == "MEAN_REVERT"
+
