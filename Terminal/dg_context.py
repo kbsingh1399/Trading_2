@@ -17,6 +17,7 @@ from Terminal.decision_gates_v3 import (
     classify_regime,
     model1_checklist,
     model2_checklist,
+    m1_range_override_ok,
     Verdict,
 )
 
@@ -219,6 +220,43 @@ def build_dg_context(
             or not 0 <= p_win_lower <= 1):
         p_win_lower = None
 
+    # Resting whale wall backing (Gates A3 & B5)
+    wall_ctx = None
+    if payload and isinstance(payload, dict):
+        walls = (
+            payload.get("orderbook_live_depth", {}).get("l2_wall_levels")
+            or payload.get("orderbook", {}).get("l2_wall_levels")
+            or payload.get("l2_wall_levels")
+            or []
+        )
+        if isinstance(walls, list) and walls:
+            target_side = "BUY" if side == 1 else "SELL"
+            eligible_walls = []
+            for w in walls:
+                if not isinstance(w, dict):
+                    continue
+                w_side = str(w.get("side", "")).upper()
+                w_price = float(w.get("price") or 0.0)
+                if w_side == target_side and w_price > 0:
+                    dist_pts = side * (entry - w_price)
+                    dist_atr = dist_pts / max(atr, 1e-12)
+                    if 0 <= dist_atr <= 0.25:
+                        eligible_walls.append((dist_atr, w))
+            if eligible_walls:
+                eligible_walls.sort(key=lambda x: (not x[1].get("gate_g7_eligible", False), x[0]))
+                best_dist_atr, best_w = eligible_walls[0]
+                flow_usd = (payload.get("orderflow", {}).get("median_1m_flow_usd", 25000.0)
+                            if payload.get("orderflow") else 25000.0)
+                wall_ctx = {
+                    "usd": float(best_w.get("notional_usd") or 0.0),
+                    "persist_s": float(best_w.get("persist_s") or best_w.get("sample_span_sec") or 0.0),
+                    "presence_frac": float(best_w.get("presence_frac") or (1.0 if best_w.get("gate_g7_eligible") else 0.0)),
+                    "dist_from_entry_atr": float(best_dist_atr),
+                    "median_1m_traded_usd": float(flow_usd),
+                }
+
+    m1_override = features.get("m1_range_override") or (payload.get("m1_range_override") if isinstance(payload, dict) else None)
+
     ctx = {
         "direction": direction,
         "regime": regime,
@@ -250,6 +288,8 @@ def build_dg_context(
         "first_obstacle": first_obstacle,
         "allow_price_only_variant": allow_price_only,
         "orderflow": orderflow,
+        "wall": wall_ctx,
+        "m1_range_override": m1_override,
     }
 
     return ctx, missing
@@ -343,6 +383,8 @@ def evaluate_candidate_dg_v3(
     if regime.startswith("TREND"):
         verdict = model2_checklist(ctx)
     elif regime == "MEAN_REVERT":
+        verdict = model1_checklist(ctx)
+    elif abs(float(ctx.get("vwap_z") or 0.0)) >= 2.0 or m1_range_override_ok(ctx):
         verdict = model1_checklist(ctx)
     else:
         verdict = Verdict(passed=False, failures=["REGIME_UNDEFINED"])

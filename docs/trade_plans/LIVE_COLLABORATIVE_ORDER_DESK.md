@@ -9097,3 +9097,34 @@ Arena.ai conducted an exhaustive mathematical audit in response to the operator'
 - **Two Concrete Solutions Offered by Arena**:
   1. Build the rolling whale persistence series (`.whale_wall_state.json`) so genuine whale walls can officially pass Gate G-7.
   2. Wire a true rolling hourly spread median into `spread_median_bps_this_hour` in `Omni_Trader.py:1289` so the adaptive spread ceiling works as originally designed.
+
+---
+
+## SECTION 125: ARENA BUILD DELIVERY & DUAL-ENGINE GATE HARDENING RATIFICATION (CYCLE 10:45 UTC)
+### 1. Delivery & Bilateral Merge Verification (Commit `e1a7640c` $\rightarrow$ `main` `1ca25b4b`)
+- **Status**: **MERGED & CERTIFIED INTO MAIN**. Arena built, tested, and pushed commit `e1a7640c` on branch `origin/arena/537c1eb8-trading-2`. Antigravity merged it cleanly into `main` (commit `1ca25b4b`), pushed to `origin/main`, and executed full local regression verification (`pytest Tests/Test_Microstructure_State_And_Gate_Policy.py Tests/Test_Arena_Council_Hardening.py Tests/Test_Decision_Gates_v3.py Tests/Test_Omni_Engine.py -q`): **131 passed, 0 failed, 100% clean**.
+- **Four Institutional Systems Shipped**:
+  1. **Continuous Whale Persistence Series (`Terminal/microstructure_state.py`)**:
+     * Tracks continuous unbroken wall presence across cycles via `.whale_wall_state.json`.
+     * Evaluates `persist_s` (unbroken run duration), `presence_frac` (observed / expected samples), and inter-arrival cycle timing.
+     * Verified over 7 simulated cycles: authentic persistent walls achieve `PERSISTENT_VERIFIED` at $\ge 180\text{s}$, while flickering walls are denied attendance credit.
+  2. **Rolling Hourly Spread Median**:
+     * `Omni_Trader.py` now passes a true trailing-hour median into `pre_send_gate` instead of spot tick spread, restoring the adaptive spread ceiling ($\text{allowed} = \min(20, \max(1.0, 1.5 \times \text{median}))$) as intended.
+  3. **Policy 3a — Net EV Friction Gate (Gate G-6)**:
+     * Added `SendLimits.max_spread_frac_r_relaxed = 0.20` in `decision_gates_v3.py`.
+     * When a setup delivers high asymmetric expectancy ($RR \ge 2.5$, $EV_{\text{lower}} \ge +0.15\text{R}$ via Clopper-Pearson bound, spread $\le 20\text{ bps}$), friction cap relaxes to $0.20\text{R}$, preventing retail CFD spread penalty from blocking valid altcoin trends.
+  4. **Policy 3b — Decoupled Model 1 Mean Reversion (Gate G-4)**:
+     * Model 1 Extreme Mean Reversion is now mathematically permitted in `RANGE`, `CHOP`, and `UNDEFINED` consolidation at $|Z| \ge 2.0\text{ SD}$, provided $m1\_range\_override\_ok(ctx)$ confirms tape absorption ($A2$) and explicitly verifies that the higher timeframe does NOT have an adverse trend.
+
+### 2. Forensic Discovery: Two Remaining Wiring Gaps
+- Arena identified why trades were still not staging despite gate policy relaxation:
+  1. **`Terminal/dg_context.py` Hardcoded Bypass**:
+     * Lines 343–349 in `Terminal/dg_context.py` unconditionally rejected any candidate where `regime not in {TREND_UP, TREND_DOWN, MEAN_REVERT}` before `model1_checklist(ctx)` was ever called.
+  2. **`ctx["wall"]` Wiring Gap**:
+     * Gates A3 and B5 evaluate resting L2/L3 whale walls (`persist_s >= 180`, `presence_frac >= 0.90`), but `Terminal/dg_context.py` never extracted `wall` from `orderbook_live_depth["l2_wall_levels"]` into `ctx["wall"]`.
+
+### 3. Active Book & Capital Sentry
+- **Status**: **0 Open Positions | 0 Pending Orders (100% Cash)**.
+- **Account Equity**: **4,896.55 USD** | Cushion: **+121.55 USD** above 4,775.00 USD hard floor.
+- **Committed Risk**: **0.00 USD**.
+
