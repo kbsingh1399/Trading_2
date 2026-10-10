@@ -8962,3 +8962,38 @@ Final disposition: No direction, entry, SL, TP, or lots issued. Additional recom
   1. Continue monitoring 15-minute candle session progression toward bar 16 (04:00 UTC).
   2. Maintain 24/7 autonomous trader daemon (`task-31233`) armed for genuine regime breakouts or calibrated liquidity flushes.
   3. Maintain full collaborative cron cadence (`task-31239` at :20, :40, :55).
+
+
+---
+
+## SECTION 120: ARENA COUNCIL AUDIT & TWO-WAY HARDENING (CYCLE 07:20 UTC)
+### 1. Collaborative Dialectic Consensus & Cross-Model Arbitration
+- **Arena.ai Ruling & Two-Way Hardening (Commit 1207d7d9)**: **UNANIMOUS STAND ASIDE / PUNCH NONE**.
+  * **Critical Bug Identified by Arena**: When wiring the staleness guard in 9d43d83b, s_of was derived from quote['time_msc']/1000. In a closed market (e.g. weekend CFDs like SP500), the broker quote freezes at the exact same instant as the newest bar. As a result, quote_time - last_bar_close stayed near ~900s, preventing the staleness guard from firing on frozen markets!
+  * **Resolution in Commit 1207d7d9**: evaluate_candidate_dg_v3 was updated to accept s_of_epoch defaulting to wall-clock time (	ime.time()). In Terminal/Omni_Trader.py (Commit 3dceb67e), s_of_epoch=now is explicitly threaded using the calibrated broker UTC clock (CALIBRATED_BROKER_UTC).
+  * **Empirical Universe Verification (24/24 Assets)**:
+    - 10 Weekend CFDs (SP500, NAS100, DJ30, GER40, GOLD, SILVER, USWTI, EURUSD, GBPUSD, USDJPY) are correctly flagged with stale=True (bar age ~37,712s > 1,800s ceiling) and forced to UNDEFINED.
+    - 14 Crypto Perpetuals report fresh bars (age ~812s < 1,800s, stale=False), but classify as UNDEFINED under multi-timeframe efficiency ratio and variance ratio mathematics.
+    - Tradeable-Regime Assets: **0/24 (Zero false-positive admissions)**.
+- **Swarm Independent Empirical Research & Validation**:
+  * **Orderflow Analyst Empirical Audit**: Corroborates 100%. All 24 assets fail Gate G-4 (classify_regime == UNDEFINED). BTC has 80/100 confluence evidence, passes G-5 spread (1.81 bps), G-6 friction (c = 0.0870R), and G-7 whale walls (bid 263.8k / ask 1.73M USD), but remains strictly locked by Gate G-4. By settled desk invariant, when regime is UNDEFINED, **BOTH ENGINES (Model 1 & Model 2) MUST STAND ASIDE UNCONDITIONALLY**.
+  * **Position & Sentry Manager Verification**: Account Balance and Live Equity verified via native MT5 IPC at **4,896.55 USD** (100% Cash Reserves | 0.00 USD Margin Exposure). Hard Capital Floor (4,775.00 USD) defended with **+121.55 USD cushion** (+101.55 USD above operating buffer; 6.08x statutory buffer). 0 open positions, 0 resting orders. Stressed worst-case equity: **4,896.55 USD** (100% Floor Immunity). Capacity Sentry: 4 / 4 slots vacant.
+  * **Macro Risk Analyst Review**: Weekend CFD freeze strictly active across all 10 CFDs. 48.6 hours clear runway to BoE Breeden. Single-factor crypto beta concentration capped at 1 position.
+  * **Chain Verification Auditor Certification**: Pytest regression suite: **558 passed, 1 skipped, 0 failed** locally (558 passed, 3 skipped, 0 failed in Arena Linux container). 16/16 tests in Test_Arena_Council_Hardening.py passing cleanly.
+
+### 2. Settled Strategy Invariants & Gate Breakdown
+| Pillar / Gate | Strategy Requirement | Empirical Finding | Compliance Status |
+| :--- | :--- | :--- | :---: |
+| **G-1 Capital Floor Defense** | Preserve >= 20.00 USD cushion above 4,775.00 USD hard floor | Live equity 4,896.55 USD; floor cushion is **+121.55 USD** | **100% PASS** |
+| **G-2 Capacity Sentry** | Max 4 filled positions across orthogonal clusters | 0 / 4 positions deployed (4 slots 100% vacant) | **100% PASS** |
+| **G-3 Gate A1 Session Maturity** | Completed bars >= 16 & session_sigma >= 0.8 * ATR for Model 1 | Early session variance compression; Model 1 locked | **LOCKED** |
+| **G-4 Regime Classification** | TREND_UP / TREND_DOWN (Model 2) or MEAN_REVERT (Model 1) | 24/24 assets return UNDEFINED (10 CFDs stale, 14 crypto choppy) | **FAIL (STAND ASIDE)** |
+| **G-5 Microstructure Spread Ceiling** | Spread <= 20.00 bps | 11 cryptos exceed ceiling; BTC & ETH pass | **PARTIAL** |
+| **G-6 Relative Friction Ceiling** | Spread <= 10.0% of (1.5 * ATR) stop distance | BTC passes (c = 0.0870R); alts fail | **BTC PASS ONLY** |
+| **G-7 Resting L2 Whale Support** | Resting wall >= 150k USD persistent on execution side | BTC whale walls confirmed (bid 263.8k, ask 1.73M USD) | **BTC PASS** |
+
+### 3. Final Synthesized Decision & Next Phase Directives
+- **Decision**: **UNANIMOUS STAND ASIDE / PUNCH NONE**.
+- **Rationale**: 100% disciplined capital defense. Zero tradeable setups exist in the 24-asset universe. SP500 weekend CFD false-positive permanently eliminated.
+- **Committed Risk**: **0.00 USD**.
+- **Active Floor Cushion Preserved**: **+121.55 USD**.
