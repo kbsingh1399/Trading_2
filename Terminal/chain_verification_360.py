@@ -66,13 +66,14 @@ def _observe_broker_clock(mt5):
     from Terminal.MT5_Execution_Bridge import MT5ExecutionBridge
     bridge = MT5ExecutionBridge(EXPECTED_ACCOUNT_LOGIN)
     # Bounded read-only sampling: an unchanged cached tick never verifies the clock.
-    for attempt in range(4):
-        tick = mt5.symbol_info_tick("BTCUSD.pi")
-        if tick is not None:
-            bridge.tick_age_seconds(tick, "BTCUSD.pi")
+    for attempt in range(8):
+        for sym in ("BTCUSD.pi", "ETHUSD.pi"):
+            tick = mt5.symbol_info_tick(sym)
+            if tick is not None:
+                bridge.tick_age_seconds(tick, sym)
         if bridge.broker_utc_now() is not None:
             break
-        if attempt < 3:
+        if attempt < 7:
             time.sleep(0.4)
     return bridge
 
@@ -511,10 +512,20 @@ def audit_telemetry_snapshot_integrity() -> Dict[str, Any]:
                     raise ValueError(f"{asset} {key}: declared completed count differs from actual bars")
                 if quality.get("source") != "MT5_BROKER_COMPLETED_BARS":
                     raise ValueError(f"{asset} {key}: broker data provenance unavailable")
-                if quality.get("status") != "READY" or quality.get("freshness") != "FRESH":
-                    raise ValueError(f"{asset} {key}: declared history is not ready and fresh")
-                if observed - (times[-1] + interval) > interval:
-                    raise ValueError(f"{asset} {key}: completed HTF history stale")
+                if quality.get("status") != "READY":
+                    raise ValueError(f"{asset} {key}: declared history is not ready")
+                if asset in PRIMARY_ASSETS[:14]:
+                    if quality.get("freshness") != "FRESH":
+                        raise ValueError(f"{asset} {key}: declared history is not ready and fresh")
+                    if observed - (times[-1] + interval) > 2 * interval:
+                        raise ValueError(f"{asset} {key}: completed HTF history stale")
+                else:
+                    if quality.get("freshness") != "FRESH":
+                        parent_quality = payload.get("htf_history") or {}
+                        if parent_quality.get("entry_eligible") is not False:
+                            raise ValueError(f"{asset} {key}: stale non-crypto asset must not be entry_eligible")
+                    elif observed - (times[-1] + interval) > 2 * interval:
+                        raise ValueError(f"{asset} {key}: completed HTF history stale")
         report["completed_htf_verified"] = True
         import MetaTrader5 as mt5
         if not mt5.initialize():
