@@ -424,3 +424,94 @@ def test_briefing_labels_mirrored_walls_as_brackets():
     src = (ROOT / "Terminal" / "arena_bridge.py").read_text()
     assert "detect_mirrored_wall_leg(w, whales)" in src
     assert "NOT net directional inventory" in src
+
+
+# ------------------------------------- 5. enforced regime vs cosmetic label
+def _ramp(n, start=100.0, step=1.0):
+    import math
+    return [start + step * i + 0.05 * math.sin(i) for i in range(n)]
+
+
+def _ramp_asset(as_of_epoch, age_s=0.0):
+    """A frozen trending market: TREND_UP on the math, STALE on the clock."""
+    close_ts = as_of_epoch - age_s
+    return {
+        "causal_indicators": {"trend_regime": "BULLISH"},
+        "bars_15m_ohlcv": [{"close": v, "close_ts": close_ts} for v in _ramp(200)],
+        "htf_1h_ohlcv": [{"close": v, "close_ts": close_ts} for v in _ramp(120)],
+        "htf_4h_ohlcv": [{"close": v, "close_ts": close_ts} for v in _ramp(120)],
+    }
+
+
+def test_enforced_regime_exposes_the_cosmetic_label_divergence():
+    """The 200-EMA label must not be presented as the regime the gates enforce.
+
+    causal_indicators.trend_regime is a 200-EMA heuristic. model1_checklist
+    requires regime == MEAN_REVERT and model2_checklist requires regime in
+    {TREND_UP, TREND_DOWN}, both read from classify_regime(). Live BTC has
+    repeatedly carried trend_regime=BULLISH while the enforced gate returned
+    UNDEFINED, and the desk argued the long off the label. The briefing must
+    show the binding verdict alongside it.
+    """
+    ab = _load_arena_bridge()
+    cls = ab._load_gate_classifier()
+    assert cls is not None
+    asset = _ramp_asset(1_800_000_000.0, age_s=0.0)
+    out = ab.enforced_regime(asset, cls, 1_800_000_000.0)
+    # The math here is a clean uptrend, so the gate must agree with the label.
+    assert "enforced_gate=TREND_UP(live)" == out
+    # Now flip the path to a perfect alternation while leaving the label
+    # untouched: the 200-EMA still says BULLISH, but the enforced gate lands on
+    # the opposite engine. This is the divergence the briefing must expose.
+    flat = {
+        "causal_indicators": {"trend_regime": "BULLISH"},
+        "bars_15m_ohlcv": [{"close": 100.0 + (1.0 if i % 2 else -1.0), "close_ts": 1_800_000_000.0}
+                           for i in range(200)],
+        "htf_1h_ohlcv": [{"close": 100.0 + (1.0 if i % 2 else -1.0), "close_ts": 1_800_000_000.0}
+                         for i in range(120)],
+        "htf_4h_ohlcv": [{"close": 100.0 + (1.0 if i % 2 else -1.0), "close_ts": 1_800_000_000.0}
+                         for i in range(120)],
+    }
+    assert flat["causal_indicators"]["trend_regime"] == "BULLISH"
+    assert ab.enforced_regime(flat, cls, 1_800_000_000.0) == "enforced_gate=MEAN_REVERT(live)"
+
+
+def test_enforced_regime_threads_the_staleness_guard():
+    """A frozen trending market must not render as a tradeable regime.
+
+    Without as_of_epoch this exact series classifies TREND_UP. A weekend CFD
+    publishes its Friday bars, so dropping the clock would advertise a live
+    trend for a market that is shut -- the defect fixed in 1207d7d9.
+    """
+    ab = _load_arena_bridge()
+    cls = ab._load_gate_classifier()
+    now = 1_800_000_000.0
+    asset = _ramp_asset(now, age_s=45000.0)
+    assert ab.enforced_regime(asset, cls, None) == "enforced_gate=TREND_UP(live)"
+    guarded = ab.enforced_regime(asset, cls, now)
+    assert guarded == "enforced_gate=UNDEFINED(STALE_BARS_age=45000s)"
+
+
+def test_enforced_regime_degrades_without_raising():
+    """Telemetry gaps must render a string verdict, never crash the briefing."""
+    ab = _load_arena_bridge()
+    cls = ab._load_gate_classifier()
+    now = 1_800_000_000.0
+    assert ab.enforced_regime(_ramp_asset(now), None, now) == \
+        "enforced_gate=UNAVAILABLE(module_load_failed)"
+    assert ab.enforced_regime("not-a-dict", cls, now) == \
+        "enforced_gate=UNAVAILABLE(no_asset_data)"
+    assert ab.enforced_regime({}, cls, now) == "enforced_gate=UNDEFINED(live)"
+    junk = {"bars_15m_ohlcv": [{"close": "x"}, None, {"close_ts": "y"}],
+            "htf_1h_ohlcv": None, "htf_4h_ohlcv": []}
+    assert ab.enforced_regime(junk, cls, now) == "enforced_gate=UNDEFINED(live)"
+
+
+def test_briefing_marks_the_200ema_label_as_cosmetic():
+    """The render must name the binding gate, not imply the label is it."""
+    src = (ROOT / "Terminal" / "arena_bridge.py").read_text()
+    assert "cosmetic, NOT the gate" in src
+    assert "BINDING for both engines" in src
+    assert "enforced_regime(t_asset, gate_classifier, snapshot_as_of)" in src
+    # the old bare "Regime = <200EMA label>" framing must be gone
+    assert "| Regime = {inds.get('trend_regime'" not in src
