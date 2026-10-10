@@ -9252,5 +9252,35 @@ Arena completed the unified 4-step council audit across all 4 Mandates on the fr
 - **Committed Risk**: **0.00 USD**.
 - **Floor Cushion**: **+121.55 USD** above 4,775.00 USD hard floor.
 
+---
+
+## SECTION 130: UNIFIED 4-STEP WAKE-UP COUNCIL AUDIT (14:05 UTC / 19:35 IST) · REGIME LOOSENING (BNB/XRP/LINK) · STAND-ASIDE RATIFIED
+### 1. Arena.ai Multi-Persona Council Findings (Harvested Report)
+Arena completed the unified 4-step council audit across all 4 Mandates:
+- **Regime Picture Evolution**:
+  * Regime eligible assets expanded from 1 to 3: **`["BNB", "XRP", "LINK"]`** classified as `MEAN_REVERT`.
+  * Market is becoming more mean-reverting on 15m as 4H downtrend grinds sideways (BTC 4H $er$ fell $0.2976 \rightarrow 0.2820$).
+- **Mandate 1 (Screening for New Candidates)**: **0 / 24 admissible**.
+  * `BNBUSD.pi` (Closest Setup): Cleared G-4 `MEAN_REVERT` and G-5 spread ($8.01\text{ bps}$ vs $\le 20\text{ bps}$). Fails on:
+    - Extension: $Z = 0.94$ (needs $|Z| \ge 2.0\text{ SD}$, no extension to fade).
+    - Value location: $+6.12\text{ ATR}$ above VAH (premium extension, not a discount flush).
+    - Friction: $c = 0.4155\text{R}$ (needs $3.12\text{ ATR}$ stop).
+    - Whale backing: Nearest genuine wall at $1.44\text{ ATR}$ (needs $\le 0.25\text{ ATR}$).
+  * `XRPUSD.pi`: Genuine BUY walls at $0.13\text{ ATR}$ ($1.4022$, 218k USD) and $0.25\text{ ATR}$ ($1.4019$, 250k USD) satisfy A3's distance constraint. Fails on $Z = -0.02$ (no extreme to fade) and spread ($21.39\text{ bps}$).
+  * `LINKUSD.pi`: Clears A1 geometry ($Z = 2.56$), but fails on spread ($65.25\text{ bps}$) and friction ($c = 1.2134\text{R}$).
+  * `BTCUSD.pi`: Spread $1.81\text{ bps}$, but regime is `UNDEFINED` and 4H confirms active downtrend ($t = -5.381, er = 0.2820$).
+  * 10 CFDs: Frozen Friday bars (staleness guard firing correctly).
+- **Mandate 2 (Running Trades Audit)**: 0 active open positions on MT5. Ratchets standby.
+- **Mandate 3 (Resting Orders Sentry)**: 0 pending limit orders on MT5. Book flat, zero stale fill risk.
+- **Mandate 4 (Capacity & Floor Defense)**: 0/4 slots used. Joint worst-case risk: **0.00 USD**. Cushion: **+121.55 USD** above 4,775.00 USD hard floor (**+101.55 USD** above 4,795.00 USD buffer).
+- **Council Ruling**: **STAND ASIDE**. Book remains 100% flat in cash reserves.
+
+### 2. Live MT5 Account State
+- **Account**: Blueberry Markets SVG LLC (MetaTrader 5 Account #5064568).
+- **Balance & Equity**: **4,896.55 USD** (100% Cash Reserves | 0.00 USD Margin Exposure).
+- **Open Positions**: **0** | **Pending Orders**: **0**.
+- **Committed Risk**: **0.00 USD**.
+- **Floor Cushion**: **+121.55 USD** above 4,775.00 USD hard floor.
+
 
 
