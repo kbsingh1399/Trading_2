@@ -9191,5 +9191,34 @@ Arena was authorized and instructed to ship two targeted fixes on `arena/537c1eb
 2. Wire `wall_persistence_record` into `top_wallet_whales_l3` so the 348 authentic on-chain whale orders receive continuous unbroken run persistence tracking.
 10-minute dynamic sleep loop armed (Task ID `task-35044`).
 
+---
+
+## SECTION 128: UNIFIED 4-STEP WAKE-UP AUDIT · GENERATOR BOUNCE · STAND-ASIDE RATIFIED (12:30 UTC / 18:00 IST)
+### 1. Arena.ai Multi-Persona Council Findings (Harvested Report)
+Arena completed the unified 4-step council audit across all 4 Mandates:
+- **Mandate 1 (Screening for New Candidates)**: **0 / 24 admissible**.
+  * 23 / 24 assets in `UNDEFINED` regime.
+  * 10 CFDs frozen at weekend bar age $\approx 48,900\text{s}$ (staleness guard firing correctly).
+  * `LINKUSD.pi`: Classified `MEAN_REVERT`, but disqualified by $Z = 1.93$ (below $2.0\text{ SD}$), prohibitive spread ($65.69\text{ bps}$ vs $\le 20\text{ bps}$ limit), and excessive friction ($c = 1.3992\text{R}$).
+  * `BTCUSD.pi`: Geometry and friction are excellent ($c = 0.0320\text{R}$, spread $1.93\text{ bps}$, $RR = 2.50$, $EV_{\text{lower}} = +0.3789\text{R}$), but binding regime is `UNDEFINED` with causal 4H metrics confirming an active downtrend ($t = -5.991, er = 0.2976$). Long pullbacks remain blocked per Gate G-4.
+- **Mandate 2 (Running Trades Audit)**: 0 active open positions floating on MT5. Ratchets standby.
+- **Mandate 3 (Resting Orders Sentry)**: 0 pending limit orders resting on MT5. Ticket #18762461 cancellation confirmed on broker. No stale fills possible.
+- **Mandate 4 (Capacity & Floor Defense)**: 0/4 slots used. Joint worst-case stopout risk is **0.00 USD**. Live cushion is **+121.55 USD** above the 4,775.00 USD hard floor (**+101.55 USD** above the 4,795.00 USD operating buffer). Dynamic capacity policy satisfied.
+- **Council Ruling**: **STAND ASIDE**. Book remains 100% flat in cash reserves.
+
+### 2. Operational Generator Bounce & Microstructure Verification
+- **Issue Identified**: Arena identified that while commit `332663cc` (whale wall authenticity) was merged into `main`, the long-lived background telemetry daemon was still running pre-merge code in memory.
+- **Action Executed**: Terminated stale daemon process (PID 20008) and restarted fresh autonomous daemon (Task ID `task-35220`, PID 18740).
+- **Forensic Verification**: Freshly generated snapshot confirmed:
+  * Top-of-book best bid (`82809.9`) and best ask (`82810.0`) are now classified as `TOP_OF_BOOK` (`gate_g7_eligible: False`). Spurious two-sided certification is completely eliminated.
+  * 348 on-chain Ethereum whale wallet walls now track unbroken persistence per wallet address.
+
+### 3. Current Account State
+- **Account**: Blueberry Markets SVG LLC (MetaTrader 5 Account #5064568).
+- **Balance & Equity**: **4,896.55 USD** (100% Cash Reserves | 0.00 USD Margin Exposure).
+- **Open Positions**: **0** | **Pending Orders**: **0**.
+- **Committed Risk**: **0.00 USD**.
+- **Floor Cushion**: **+121.55 USD** above 4,775.00 USD hard floor.
+
 
 
