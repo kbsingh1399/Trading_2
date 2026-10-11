@@ -37,7 +37,10 @@ The three findings it encodes, all measured on generation ab5f242f (12:10 UTC):
 """
 from __future__ import annotations
 
+import json
 import math
+import pathlib
+import time
 from numbers import Real
 from typing import Any, Dict, Iterable, List, Mapping, Optional, Sequence, Tuple
 
@@ -273,7 +276,7 @@ def audit_wall_timestamps(
         out["assets_examined"] += 1
         if ob.get("whale_walls_l3") or ob.get("l2_wall_levels"):
             with_walls += 1
-        if ob.get("binance_mid_ts") is not None or ob.get("hyperdash_mid_ts") is not None:
+        if ob.get("binance_mid_ts") is not None or ob.get("hyperdash_mid_ts") is not None or ob.get("hyperliquid_mid_ts") is not None:
             have_field += 1
         ts = ob.get("wall_sample_ts_epoch")
         if _fin(ts):
@@ -365,6 +368,10 @@ def audit_venue_mid_independence(
     ob_key: str = "orderbook_live_depth",
     exact_zero_tol: float = 1e-12,
     suspect_inside_share: float = VENUE_MID_INSIDE_SHARE_SUSPECT,
+    liquid_spread_bps_cap: float = 20.0,
+    history_path: Optional[Any] = None,
+    min_rolling_sample: int = 30,
+    max_rolling_sample: int = 200,
 ) -> Dict[str, Any]:
     """Test whether a published venue mid is an independent observation.
 
@@ -391,6 +398,7 @@ def audit_venue_mid_independence(
     out: Dict[str, Any] = {
         "observations": 0, "inside_spread": 0, "exact_zero": 0,
         "inside_spread_share": None, "exact_zero_share": None,
+        "liquid_observations": 0, "liquid_inside_spread": 0, "liquid_inside_spread_share": None,
         "suspect": None, "near_threshold": None, "threshold_margin_assets": None,
         "verdict": "insufficient_data",
     }
@@ -399,7 +407,10 @@ def audit_venue_mid_independence(
     inside = 0
     exact = 0
     n = 0
-    for _sym, payload in assets.items():
+    liq_inside = 0
+    liq_n = 0
+    fresh_samples: List[Dict[str, Any]] = []
+    for sym, payload in assets.items():
         if not isinstance(payload, Mapping):
             continue
         q = payload.get("quotes")
@@ -411,17 +422,67 @@ def audit_venue_mid_independence(
         if not (_fin(bid) and _fin(ask) and _fin(vm)):
             continue
         n += 1
-        if float(bid) <= float(vm) <= float(ask):
+        is_inside = (float(bid) <= float(vm) <= float(ask))
+        is_exact = (_fin(mid) and abs(float(vm) - float(mid)) <= float(exact_zero_tol))
+        if is_inside:
             inside += 1
-        if _fin(mid) and abs(float(vm) - float(mid)) <= float(exact_zero_tol):
+        if is_exact:
             exact += 1
+        spr_bps = q.get("spread_bps")
+        if _fin(spr_bps) and float(spr_bps) <= float(liquid_spread_bps_cap):
+            liq_n += 1
+            if is_inside:
+                liq_inside += 1
+        fresh_samples.append({
+            "sym": str(sym),
+            "inside": bool(is_inside),
+            "exact": bool(is_exact),
+            "ts": time.time(),
+        })
+
     out["observations"] = n
     out["inside_spread"] = inside
     out["exact_zero"] = exact
+    out["liquid_observations"] = liq_n
+    out["liquid_inside_spread"] = liq_inside
+    if liq_n > 0:
+        out["liquid_inside_spread_share"] = liq_inside / liq_n
+
     if n == 0:
         return out
-    out["inside_spread_share"] = inside / n
-    out["exact_zero_share"] = exact / n
+
+    instant_inside_share = inside / n
+    instant_exact_share = exact / n
+    out["instantaneous_inside_spread_share"] = instant_inside_share
+    out["instantaneous_exact_zero_share"] = instant_exact_share
+    out["inside_spread_share"] = instant_inside_share
+    out["exact_zero_share"] = instant_exact_share
+
+    # Optional multi-cycle rolling buffer to resolve small-n discrete knife-edge
+    if history_path is not None:
+        try:
+            hp = pathlib.Path(history_path)
+            hist: List[Dict[str, Any]] = []
+            if hp.exists():
+                hist = json.loads(hp.read_text(encoding="utf-8"))
+            hist.extend(fresh_samples)
+            hist = hist[-int(max_rolling_sample):]
+            hp.parent.mkdir(parents=True, exist_ok=True)
+            hp.write_text(json.dumps(hist), encoding="utf-8")
+            if len(hist) >= int(min_rolling_sample):
+                r_inside = sum(1 for s in hist if s.get("inside"))
+                r_exact = sum(1 for s in hist if s.get("exact"))
+                r_n = len(hist)
+                out["rolling_observations"] = r_n
+                out["rolling_inside_spread"] = r_inside
+                out["rolling_inside_spread_share"] = r_inside / r_n
+                out["rolling_exact_zero_share"] = r_exact / r_n
+                # Use robust pooled statistics when minimum sample is met
+                out["inside_spread_share"] = r_inside / r_n
+                out["exact_zero_share"] = r_exact / r_n
+        except Exception:
+            pass
+
     suspect = out["inside_spread_share"] >= float(suspect_inside_share)
     out["suspect"] = suspect
     # The measured share sits at 10-12 of 14 (0.714-0.857) across every cycle
@@ -430,7 +491,7 @@ def audit_venue_mid_independence(
     # edge, which is not evidence of a state change. Say so explicitly.
     out["near_threshold"] = abs(out["inside_spread_share"] - float(suspect_inside_share)) <= 0.10
     out["threshold_margin_assets"] = (
-        (out["inside_spread_share"] - float(suspect_inside_share)) * n)
+        (out["inside_spread_share"] - float(suspect_inside_share)) * out["observations"])
     out["verdict"] = "broker_derived_suspect" if suspect else "consistent_with_independent_venue"
     return out
 
@@ -445,6 +506,8 @@ def g7_readiness(
     *,
     broker_ts_by_symbol: Optional[Mapping[str, float]] = None,
     max_skew_s: float = 5.0,
+    venue_mid_key: Optional[str] = None,
+    history_path: Optional[Any] = None,
 ) -> Dict[str, Any]:
     """One call answering: can Gate G-7 admit a wall right now, and if not, why?
 
@@ -488,9 +551,36 @@ def g7_readiness(
     walls = audit_wall_timestamps(
         assets, broker_ts_by_symbol=broker_ts_by_symbol, max_skew_s=max_skew_s
     )
-    venue = audit_venue_mid_independence(assets)
     cover = audit_wall_venue_coverage(assets)
     anchor = audit_basis_median_independence(assets)
+
+    # Determine which venue(s) to audit for mid independence.
+    # If caller specified venue_mid_key explicitly, respect that.
+    # Otherwise audit the host venue(s) where the G-7 walls actually sit.
+    wall_venues_total = cover.get("wall_venues_total") or {}
+    if venue_mid_key is not None:
+        venues_to_check = [("SPECIFIED", venue_mid_key)]
+    else:
+        active = [v for v in wall_venues_total.keys() if v in ("BINANCE", "HYPERLIQUID")]
+        if not active:
+            active = ["BINANCE"]
+        venues_to_check = [
+            (v, "hyperliquid_mid" if v == "HYPERLIQUID" else "binance_mid")
+            for v in active
+        ]
+
+    venue_reports: Dict[str, Any] = {}
+    venue_blockers: List[str] = []
+    for v_name, v_key in venues_to_check:
+        rep = audit_venue_mid_independence(
+            assets, venue_mid_key=v_key, history_path=history_path
+        )
+        venue_reports[v_name] = rep
+        if rep.get("suspect") is True:
+            venue_blockers.append("venue_mid:broker_derived_suspect")
+
+    primary_venue_name = venues_to_check[0][0]
+    venue = venue_reports[primary_venue_name]
 
     # Venue coverage is checked FIRST because it binds before the others. When a
     # wall's venue has no published mid, select_backing_wall refuses with
@@ -503,7 +593,9 @@ def g7_readiness(
         blockers.append("drift_breaker:b_hat_pinned_to_b_now")
     if walls.get("verdict") not in ("contemporaneous", "no_walls_published"):
         blockers.append(f"wall_timestamps:{walls.get('verdict')}")
-    if venue.get("suspect") is True:
+    if venue_blockers:
+        blockers.extend(venue_blockers)
+    elif venue.get("suspect") is True:
         blockers.append("venue_mid:broker_derived_suspect")
     ready = not blockers
 
@@ -536,6 +628,8 @@ def g7_readiness(
         "venue_mid_near_threshold": venue.get("near_threshold"),
         "exact_zero_share": venue.get("exact_zero_share"),
         "clock_fix_alone_would_open_gate": clock_only,
+        "venue_reports": venue_reports,
+        "wall_venues_audited": [v[0] for v in venues_to_check],
     }
     return out
 

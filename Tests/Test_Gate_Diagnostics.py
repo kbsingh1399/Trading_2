@@ -731,3 +731,46 @@ def test_lagging_crypto_quotes_do_not_contaminate_contemporaneous_skew():
     assert a["max_abs_skew_s"] == pytest.approx(0.1)
     assert a["verdict"] == "contemporaneous"
 
+
+def test_g7_readiness_audits_host_venue_of_published_walls():
+    """When walls sit on HYPERLIQUID, g7_readiness audits hyperliquid_mid rather than binance_mid."""
+    base = 1000.0
+    assets = {
+        "BTC": {
+            "quotes": {"bid": 80000.0, "ask": 80010.0, "mid": 80005.0, "broker_tick_age_s": 0.2, "spread_bps": 1.25},
+            "orderbook_live_depth": {
+                "wall_sample_ts_epoch": base,
+                "hyperliquid_mid_ts": base,
+                "hyperliquid_mid": 80020.0,  # Outside broker spread -> independent!
+                "binance_mid": 80005.0,      # Mock identical to broker mid
+                "venue_basis": {
+                    "HYPERLIQUID": {"mid": 80020.0, "basis_median": -20.0},
+                },
+                "whale_walls_l3": [
+                    {"price": 79900.0, "source": "HYPERLIQUID", "gate_g7_eligible": True, "wall_class": "GENUINE"}
+                ],
+            },
+        }
+    }
+    broker = {"BTC": base}
+    r = g7_readiness(assets, broker_ts_by_symbol=broker, max_skew_s=5.0)
+    assert r["ready"] is True
+    assert r["blockers"] == []
+    assert "HYPERLIQUID" in r["wall_venues_audited"]
+    assert r["venue_verdict"] == "consistent_with_independent_venue"
+
+
+def test_liquid_spread_filtering_isolates_tight_book_independence():
+    """Liquid crypto assets with tight spreads (<=20 bps) separate genuine cross-venue lead from retail markup."""
+    assets = {
+        "BTC": {"quotes": {"bid": 80000.0, "ask": 80016.0, "mid": 80008.0, "spread_bps": 2.0},
+                "orderbook_live_depth": {"binance_mid": 80030.0}},  # Outside spread
+        "DOGE": {"quotes": {"bid": 0.08, "ask": 0.10, "mid": 0.09, "spread_bps": 2222.0},
+                 "orderbook_live_depth": {"binance_mid": 0.09}},     # Inside spread due to 2222 bps markup
+    }
+    rep = audit_venue_mid_independence(assets, liquid_spread_bps_cap=20.0)
+    assert rep["observations"] == 2
+    assert rep["liquid_observations"] == 1
+    assert rep["liquid_inside_spread"] == 0
+    assert rep["liquid_inside_spread_share"] == 0.0
+
