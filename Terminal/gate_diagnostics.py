@@ -322,3 +322,85 @@ __all__ = [
     "regime_proximity",
     "spread_friction_r",
 ]
+
+
+# ==================================== 4. G-7 venue-mid independence
+
+#: Above this share of observations landing inside the broker's own bid/ask, a
+#: "venue" mid is more consistent with being derived from the broker quote than
+#: observed on another venue. Measured on 2026-10-11: 29% inside across 135
+#: pre-restart observations (96 of 135 outside) versus 92% inside across 65
+#: post-restart observations (5 of 65 outside).
+VENUE_MID_INSIDE_SHARE_SUSPECT = 0.80
+
+
+def audit_venue_mid_independence(
+    assets: Mapping[str, Any], *,
+    venue_mid_key: str = "binance_mid",
+    ob_key: str = "orderbook_live_depth",
+    exact_zero_tol: float = 1e-12,
+    suspect_inside_share: float = VENUE_MID_INSIDE_SHARE_SUSPECT,
+) -> Dict[str, Any]:
+    """Test whether a published venue mid is an independent observation.
+
+    A cross-venue basis gate is only as good as the two mids it differences.
+    If the "venue" mid is in fact derived from the broker quote, the basis is
+    zero by construction, its drift is zero by construction, and the gate passes
+    without ever having compared two venues. That is a silent un-gating: every
+    wall in the book becomes admissible on a number that carries no
+    cross-venue information.
+
+    Two independent signals, both distributional:
+
+    * ``inside_spread_share`` -- how often the venue mid lands within the
+      broker's own bid/ask. A real second venue, priced off its own order book,
+      crosses a 1-2 bps broker spread constantly. A derived value almost never
+      leaves it.
+    * ``exact_zero_share`` -- how often mid and venue mid are bit-identical.
+      Two venues agreeing exactly, repeatedly, is arithmetic identity rather
+      than coincidence.
+
+    Fails closed: with too few observations it reports ``insufficient_data``
+    rather than certifying independence.
+    """
+    out: Dict[str, Any] = {
+        "observations": 0, "inside_spread": 0, "exact_zero": 0,
+        "inside_spread_share": None, "exact_zero_share": None,
+        "suspect": None, "verdict": "insufficient_data",
+    }
+    if not isinstance(assets, Mapping) or not assets:
+        return out
+    inside = 0
+    exact = 0
+    n = 0
+    for _sym, payload in assets.items():
+        if not isinstance(payload, Mapping):
+            continue
+        q = payload.get("quotes")
+        ob = payload.get(ob_key)
+        if not (isinstance(q, Mapping) and isinstance(ob, Mapping)):
+            continue
+        bid, ask, vm = q.get("bid"), q.get("ask"), ob.get(venue_mid_key)
+        mid = q.get("mid")
+        if not (_fin(bid) and _fin(ask) and _fin(vm)):
+            continue
+        n += 1
+        if float(bid) <= float(vm) <= float(ask):
+            inside += 1
+        if _fin(mid) and abs(float(vm) - float(mid)) <= float(exact_zero_tol):
+            exact += 1
+    out["observations"] = n
+    out["inside_spread"] = inside
+    out["exact_zero"] = exact
+    if n == 0:
+        return out
+    out["inside_spread_share"] = inside / n
+    out["exact_zero_share"] = exact / n
+    suspect = out["inside_spread_share"] >= float(suspect_inside_share)
+    out["suspect"] = suspect
+    out["verdict"] = "broker_derived_suspect" if suspect else "consistent_with_independent_venue"
+    return out
+
+
+__all__.append("audit_venue_mid_independence")
+__all__.append("VENUE_MID_INSIDE_SHARE_SUSPECT")

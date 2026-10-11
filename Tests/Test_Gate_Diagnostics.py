@@ -13,6 +13,7 @@ from Terminal.gate_diagnostics import (
     G6_FRICTION_BASE_MAX_R,
     G6_FRICTION_RELAXED_MAX_R,
     atr_in_bps,
+    audit_venue_mid_independence,
     audit_wall_timestamps,
     friction_verdict,
     regime_proximity,
@@ -249,3 +250,54 @@ def test_assets_without_an_orderbook_are_skipped_not_counted():
     a = audit_wall_timestamps({"A": {"orderbook_live_depth": None}, "B": {}})
     assert a["assets_examined"] == 0
     assert a["verdict"] == "insufficient_data"
+
+
+# ==================================================== venue-mid independence
+
+def _venue_assets(n, vm_offset=0.0, spread=2.0, mid=100.0):
+    """n assets whose venue mid sits `vm_offset` from a mid of 100."""
+    return {f"S{i}": {"quotes": {"bid": mid - spread / 2, "ask": mid + spread / 2, "mid": mid},
+                      "orderbook_live_depth": {"binance_mid": mid + vm_offset}}
+            for i in range(n)}
+
+
+def test_independent_venue_crosses_the_broker_spread():
+    """Measured pre-restart: 96 of 135 observations sat OUTSIDE the spread."""
+    a = audit_venue_mid_independence(_venue_assets(20, vm_offset=5.0, spread=2.0))
+    assert a["observations"] == 20
+    assert a["inside_spread_share"] == 0.0
+    assert a["verdict"] == "consistent_with_independent_venue"
+    assert a["suspect"] is False
+
+
+def test_broker_derived_venue_mid_is_flagged():
+    """Measured post-restart: 60 of 65 observations sat INSIDE the spread."""
+    a = audit_venue_mid_independence(_venue_assets(20, vm_offset=0.0, spread=2.0))
+    assert a["inside_spread_share"] == 1.0
+    assert a["exact_zero_share"] == 1.0
+    assert a["verdict"] == "broker_derived_suspect"
+    assert a["suspect"] is True
+
+
+def test_exact_zero_basis_is_arithmetic_identity_not_agreement():
+    a = audit_venue_mid_independence(_venue_assets(5, vm_offset=0.0))
+    assert a["exact_zero"] == 5
+
+
+def test_partially_inside_share_is_judged_on_the_threshold():
+    # 15 of 20 inside = 0.75, below the 0.80 suspect threshold.
+    assets = _venue_assets(15, vm_offset=0.0, spread=2.0)
+    assets.update({f"O{i}": {"quotes": {"bid": 99.0, "ask": 101.0, "mid": 100.0},
+                             "orderbook_live_depth": {"binance_mid": 120.0}} for i in range(5)})
+    a = audit_venue_mid_independence(assets)
+    assert a["inside_spread_share"] == pytest.approx(0.75)
+    assert a["suspect"] is False
+
+
+@pytest.mark.parametrize("bad", [None, {}, [], "x",
+                                 {"A": {"quotes": None}},
+                                 {"A": {"quotes": {"bid": 1.0}}}])
+def test_independence_audit_fails_closed(bad):
+    a = audit_venue_mid_independence(bad)
+    assert a["verdict"] == "insufficient_data"
+    assert a["suspect"] is None, "must not certify independence without data"
