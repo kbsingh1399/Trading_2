@@ -257,19 +257,33 @@ def build_dg_context(
     vol_ratio = vol_4 / max(vol_96, 1e-6)
 
     # Geometry for Model 2
-    # Find recent swing pivot
-    swing_window = min(24, len(c) - 1)
-    impulse_start = len(c) - 1 - swing_window
-    # The last candle is the proposed pullback, not an impulse pivot.
-    previous = h[impulse_start:-1] if side == 1 else l[impulse_start:-1]
-    swing_idx = impulse_start + int(np.argmax(previous) if side == 1 else np.argmin(previous))
-    # D3: set impulse anchor to the extreme on far side of swing
-    seg = l[impulse_start:swing_idx] if side == 1 else h[impulse_start:swing_idx]
-    if len(seg) > 0:
-        impulse_start = impulse_start + int(np.argmin(seg) if side == 1 else np.argmax(seg))
+    pb_geo = payload.get("pullback_geometry") if isinstance(payload, dict) else {}
+    if isinstance(pb_geo, dict) and pb_geo.get("retrace") is not None and pb_geo.get("direction") == direction:
+        geo = {
+            "retrace": pb_geo["retrace"],
+            "depth_sigma": pb_geo["depth_sigma"],
+            "velocity_ratio": pb_geo["velocity_ratio"],
+            "bars_pullback": pb_geo["bars_pullback"],
+            "bars_impulse": pb_geo["bars_impulse"],
+        }
+    else:
+        # Find recent swing pivot
+        swing_window = min(24, len(c) - 1)
+        impulse_start = len(c) - 1 - swing_window
+        # The last candle is the proposed pullback, not an impulse pivot.
+        previous = h[impulse_start:-1] if side == 1 else l[impulse_start:-1]
+        swing_idx = impulse_start + int(np.argmax(previous) if side == 1 else np.argmin(previous))
+        # D3: set impulse anchor to the extreme on far side of swing
+        seg = l[impulse_start:swing_idx] if side == 1 else h[impulse_start:swing_idx]
+        if len(seg) > 0:
+            impulse_start = impulse_start + int(np.argmin(seg) if side == 1 else np.argmax(seg))
+        if impulse_start >= swing_idx and swing_idx > 0:
+            impulse_start = max(0, swing_idx - min(5, swing_idx))
+        if swing_idx >= len(c) - 1 and len(c) > 2:
+            swing_idx = len(c) - 2
 
-    geo = pullback_geometry(h, l, c, direction, impulse_start=impulse_start,
-                            swing_idx=swing_idx, sigma_bar=sigma_bar)
+        geo = pullback_geometry(h, l, c, direction, impulse_start=impulse_start,
+                                swing_idx=swing_idx, sigma_bar=sigma_bar)
 
     # Structure intact
     if side == 1:

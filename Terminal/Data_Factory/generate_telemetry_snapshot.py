@@ -1111,6 +1111,52 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
         # Volume profile
         vol_profile = compute_volume_profile(bars[-96:] if len(bars) >= 96 else bars) if bars_fresh else compute_volume_profile([])
 
+        # Model 2 Pullback Geometry (producer precomputation)
+        pullback_geo = {
+            "retrace": None,
+            "depth_sigma": None,
+            "velocity_ratio": None,
+            "bars_pullback": None,
+            "bars_impulse": None,
+            "source": "UNAVAILABLE"
+        }
+        if len(bars) >= 10:
+            try:
+                from Terminal.decision_gates_v3 import pullback_geometry
+                h_arr = [float(b.get("high") or 0.0) for b in bars]
+                l_arr = [float(b.get("low") or 0.0) for b in bars]
+                c_arr = [float(b.get("close") or 0.0) for b in bars]
+                _dir = "LONG" if (c_arr[-1] >= (session_vwap if session_vwap is not None else c_arr[-1])) else "SHORT"
+                _side = 1 if _dir == "LONG" else -1
+                _win = min(24, len(c_arr) - 1)
+                _imp_start = len(c_arr) - 1 - _win
+                _prev = h_arr[_imp_start:-1] if _side == 1 else l_arr[_imp_start:-1]
+                if len(_prev) > 0:
+                    _sw_idx = _imp_start + int(np.argmax(_prev) if _side == 1 else np.argmin(_prev))
+                    _seg = l_arr[_imp_start:_sw_idx] if _side == 1 else h_arr[_imp_start:_sw_idx]
+                    if len(_seg) > 0:
+                        _imp_start = _imp_start + int(np.argmin(_seg) if _side == 1 else np.argmax(_seg))
+                    if _imp_start >= _sw_idx and _sw_idx > 0:
+                        _imp_start = max(0, _sw_idx - min(5, _sw_idx))
+                    if _sw_idx >= len(c_arr) - 1 and len(c_arr) > 2:
+                        _sw_idx = len(c_arr) - 2
+                    if 0 <= _imp_start < _sw_idx < len(c_arr) - 1:
+                        _sig_b = float(atr) if (atr and atr > 0) else float(np.std(np.diff(c_arr[-20:])))
+                        if _sig_b > 0:
+                            _g = pullback_geometry(h_arr, l_arr, c_arr, _dir, impulse_start=_imp_start, swing_idx=_sw_idx, sigma_bar=_sig_b)
+                            if _g.get("retrace") is not None:
+                                pullback_geo = {
+                                    "direction": _dir,
+                                    "retrace": round(float(_g["retrace"]), 4),
+                                    "depth_sigma": round(float(_g["depth_sigma"]), 4),
+                                    "velocity_ratio": round(float(_g["velocity_ratio"]), 4),
+                                    "bars_pullback": int(_g["bars_pullback"]),
+                                    "bars_impulse": int(_g["bars_impulse"]),
+                                    "source": "PRODUCED_15M_BARS"
+                                }
+            except Exception:
+                pass
+
         # Neither MT5 bars nor Binance aggregate open interest reveal pending
         # stops or resting liquidation prices. Keep OI as a separate observed
         # metric; live stop/liq bands remain unavailable without a direct feed.
@@ -1649,6 +1695,7 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                 "indicator_age_min": indicator_age_min
             },
             "volume_profile": {**vol_profile, "volume_unit": "MT5_BROKER_BAR_VOLUME_OR_TICK_COUNT_NOT_EXCHANGE_BASE_ASSET_VOLUME"},
+            "pullback_geometry": pullback_geo,
             "structural_stop_clusters": stop_payload,
             "reconstructed_liquidations": liq_payload,
             "orderbook_live_depth": orderbook_payload,
