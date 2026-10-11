@@ -34,6 +34,16 @@ GAP_RESET_S = 30.0
 G7_PERSIST_S = 180.0
 G7_PRESENCE_FRAC = 0.9
 
+# Two-sidedness is judged on NOTIONAL PRESENCE, never on persistence. A wallet
+# bracing comparable size on both sides is supplying liquidity whether it posted
+# both legs an hour ago or ten seconds ago. Gating the bracket test on G-7
+# persistence lets a wallet escape classification merely because one leg is
+# fresh: the aged leg then reads as directional inventory. Measured on the
+# 2026-10-11 01:21:31 UTC snapshot, that loophole let 28 of 119 bracketed
+# wallets (23.5%) through, including the only G-7 "clean" BTC bid behind mid.
+BRACKET_RATIO_MIN = 0.5
+BRACKET_RATIO_MAX = 2.0
+
 # Reserved key holding cycle-timing metadata. Wall records are keyed
 # "{ASSET}_{SIDE}_{price}", so this can never collide.
 META_KEY = "__meta__"
@@ -430,34 +440,52 @@ WALL_GRID_QUOTER = "TWO_SIDED_GRID"
 def two_sided_grid_addresses(walls: Iterable[Dict[str, Any]],
                             min_notional_usd: float = 150_000.0,
                             min_persist_s: float = G7_PERSIST_S,
-                            min_presence_frac: float = G7_PRESENCE_FRAC) -> Set[str]:
-    """Addresses resting G-7 qualifying size on BOTH sides of the same book.
+                            min_presence_frac: float = G7_PRESENCE_FRAC,
+                            bracket_min_ratio: float = BRACKET_RATIO_MIN,
+                            bracket_max_ratio: float = BRACKET_RATIO_MAX) -> Set[str]:
+    """Addresses whose resting inventory is NOT net directional.
 
-    ``is_mirrored_leg`` catches a same-price bracket (0.05% proximity). It cannot
-    catch a market-making GRID, where one wallet ladders roughly equal size down
-    the bid and up the ask at *different* prices. Every leg of such a grid is
-    classified WALL_GENUINE and flagged gate_g7_eligible, because no single pair
-    sits close enough in price to trip the mirror test.
+    Two independent criteria, either of which disqualifies a wallet. The return
+    value is their union.
 
-    Measured on the 2026-10-10 23:53:01 UTC snapshot: 81.3% of all G-7 qualifying
-    notional (378.2M of 465.2M USD across 777 rows) belonged to such wallets, and
-    17 of the 18 qualifying BTC bids within 0.25 ATR of mid were grid legs -- only
-    one 500k bid at 82,900 came from a genuinely one-sided wallet.
+    (1) PERSISTENT GRID -- the wallet rests G-7 qualifying size (>= notional,
+        >= persist, >= presence) on BOTH sides. ``is_mirrored_leg`` catches a
+        same-price bracket (0.05% proximity) but not a market-making GRID, where
+        one wallet ladders roughly equal size down the bid and up the ask at
+        *different* prices; every leg of such a grid is classified WALL_GENUINE
+        and flagged gate_g7_eligible, because no single pair sits close enough
+        in price to trip the mirror test. Measured on the 2026-10-10 23:53:01
+        UTC snapshot: 81.3% of all G-7 qualifying notional (378.2M of 465.2M USD
+        across 777 rows) belonged to such wallets, and 17 of the 18 qualifying
+        BTC bids within 0.25 ATR of mid were grid legs.
+
+    (2) BRACKETED INVENTORY -- the wallet rests >= notional on BOTH sides at
+        comparable aggregate size, judged on raw notional with NO persistence
+        or presence requirement. This closes a loophole in criterion (1): if
+        one leg is freshly posted (persist 0-60s) the wallet fails the
+        persistence test, so it is not recognised as a grid, and its aged
+        opposite leg is then accepted as directional backing. Persistence is an
+        artefact of *when each leg happened to be first observed*, not of the
+        wallet's intent, so it must not gate the two-sidedness test. Measured on
+        the 2026-10-11 01:21:31 UTC snapshot this let 28 of 119 bracketed
+        wallets (23.5%) escape, including 0x95995f30 -- the sole G-7 "clean"
+        BTC bid behind mid (201,110 USD @ 82,920, persist 240s) while bracing
+        402,788 USD of asks against 402,290 USD of bids, a ratio of 1.0012.
 
     A wallet quoting both sides is supplying liquidity, not expressing a view.
     Neither leg is net directional inventory, so neither can satisfy mandate #4's
     whale-backing requirement.
     """
     sides: Dict[str, Set[str]] = {}
+    bracket: Dict[str, Dict[str, float]] = {}
     for w in walls or ():
         if not isinstance(w, dict):
             continue
         addr = str(w.get("address") or "").strip()
         if not addr:
             continue
-        if w.get("gate_g7_eligible") is not True:
-            continue
-        if str(w.get("wall_class") or "") != WALL_GENUINE:
+        side = str(w.get("side") or "").upper()
+        if side not in ("BUY", "SELL"):
             continue
         try:
             note = float(w.get("notional_usd") or 0.0)
@@ -465,10 +493,29 @@ def two_sided_grid_addresses(walls: Iterable[Dict[str, Any]],
             presence = float(w.get("presence_frac") or 0.0)
         except (TypeError, ValueError):
             continue
+
+        # Criterion (2): raw notional per side, every row regardless of class
+        # or persistence. MIRRORED_LEG rows are counted -- they are themselves
+        # evidence of two-sided quoting.
+        if note >= min_notional_usd:
+            agg = bracket.setdefault(addr, {"BUY": 0.0, "SELL": 0.0})
+            agg[side] += note
+
+        # Criterion (1): G-7 qualifying size on both sides.
+        if w.get("gate_g7_eligible") is not True:
+            continue
+        if str(w.get("wall_class") or "") != WALL_GENUINE:
+            continue
         if note < min_notional_usd or persist < min_persist_s or presence < min_presence_frac:
             continue
-        side = str(w.get("side") or "").upper()
-        if side not in ("BUY", "SELL"):
-            continue
         sides.setdefault(addr, set()).add(side)
-    return {addr for addr, seen in sides.items() if len(seen) > 1}
+
+    flagged = {addr for addr, seen in sides.items() if len(seen) > 1}
+    for addr, agg in bracket.items():
+        buy, sell = agg.get("BUY", 0.0), agg.get("SELL", 0.0)
+        if buy < min_notional_usd or sell < min_notional_usd:
+            continue
+        ratio = sell / buy
+        if bracket_min_ratio <= ratio <= bracket_max_ratio:
+            flagged.add(addr)
+    return flagged

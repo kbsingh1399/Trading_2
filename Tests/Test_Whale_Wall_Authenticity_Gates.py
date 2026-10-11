@@ -422,15 +422,99 @@ def test_one_sided_wallet_is_not_a_grid():
     assert two_sided_grid_addresses(walls) == set()
 
 
-def test_grid_detection_ignores_ineligible_rows():
-    """A wallet whose only opposite-side row is a 0s single sample is not a grid."""
+def test_bracket_with_fresh_opposite_leg_is_still_a_grid():
+    """REGRESSION for the loophole that let 0x95995f30 through at 01:21:31 UTC.
+
+    A 1.0M USD SELL leg is not a phantom because its persist_s happens to be 0.
+    Two-sidedness is judged on notional presence, never on persistence: how long
+    a leg has rested is an artefact of when the poller first saw it, not of the
+    wallet's intent. Gating the bracket test on G-7 persistence let 28 of 119
+    bracketed wallets (23.5%) escape classification matrix-wide, and the aged
+    leg of each was then accepted as directional backing.
+    """
     walls = [
         _grid_row("0xw", "BUY", 82_900.0),
         {"address": "0xw", "side": "SELL", "price": 83_100.0, "notional_usd": 1_000_000.0,
          "persist_s": 0.0, "presence_frac": 1.0,
          "wall_class": "GENUINE", "gate_g7_eligible": False},
     ]
+    assert two_sided_grid_addresses(walls) == {"0xw"}
+
+
+def test_live_0121_bracketed_wallet_is_not_directional_backing():
+    """The exact 0x95995f30 footprint from the 2026-10-11 01:21:31 UTC snapshot.
+
+    402,290 USD of bids against 402,788 USD of asks -- a ratio of 1.0012. Only
+    the 240s-persisted BUY leg cleared G-7; the 60s asks did not, so the wallet
+    escaped criterion (1) and its stale bid read as the sole clean wall behind
+    mid. Both legs must be rejected.
+    """
+    walls = [
+        {"address": "0x95995f30", "side": "BUY", "price": 82_920.0, "notional_usd": 201_110.0,
+         "persist_s": 240.0, "presence_frac": 1.0,
+         "wall_class": "GENUINE", "gate_g7_eligible": True},
+        {"address": "0x95995f30", "side": "BUY", "price": 82_949.0, "notional_usd": 201_180.0,
+         "persist_s": 240.0, "presence_frac": 1.0,
+         "wall_class": "MIRRORED_LEG", "gate_g7_eligible": False},
+        {"address": "0x95995f30", "side": "SELL", "price": 83_020.0, "notional_usd": 201_353.0,
+         "persist_s": 60.0, "presence_frac": 1.0,
+         "wall_class": "GENUINE", "gate_g7_eligible": False},
+        {"address": "0x95995f30", "side": "SELL", "price": 83_054.0, "notional_usd": 201_435.0,
+         "persist_s": 60.0, "presence_frac": 1.0,
+         "wall_class": "GENUINE", "gate_g7_eligible": False},
+    ]
+    assert two_sided_grid_addresses(walls) == {"0x95995f30"}
+    ctx = _build(walls, direction="LONG", entry=82_924.5)
+    assert ctx["wall"] is None
+    assert ctx["wall_data_present"] is False
+
+
+def test_asymmetric_hedge_below_bracket_band_is_not_criterion_two():
+    """A 200k bid against a 5.0M ask is not bracketed inventory (ratio 25x).
+
+    Criterion (2) requires comparable size. This wallet is only flagged when it
+    also satisfies criterion (1), i.e. G-7 persistence on both sides -- which it
+    does here, so it is caught, but by the persistent-grid test, not the band.
+    """
+    walls = [
+        _grid_row("0xh", "BUY", 82_900.0, notional=200_000.0, persist=420.0),
+        _grid_row("0xh", "SELL", 83_400.0, notional=5_000_000.0, persist=420.0),
+    ]
+    assert two_sided_grid_addresses(walls) == {"0xh"}
+    # Drop the persistence on the ask and criterion (1) no longer applies; the
+    # 25x ratio is outside the bracket band, so the bid stands as directional.
+    walls[1]["persist_s"] = 0.0
+    walls[1]["gate_g7_eligible"] = False
     assert two_sided_grid_addresses(walls) == set()
+
+
+def test_small_opposite_side_below_notional_floor_is_not_bracketed():
+    """A genuine directional whale may carry a sub-floor hedge."""
+    walls = [
+        _grid_row("0xd", "BUY", 82_900.0, notional=1_000_000.0),
+        {"address": "0xd", "side": "SELL", "price": 83_300.0, "notional_usd": 140_000.0,
+         "persist_s": 0.0, "presence_frac": 1.0,
+         "wall_class": "GENUINE", "gate_g7_eligible": False},
+    ]
+    assert two_sided_grid_addresses(walls) == set()
+
+
+def test_bracket_band_edges_are_inclusive():
+    at_min = [
+        _grid_row("0xa", "BUY", 82_900.0, notional=1_000_000.0, persist=0.0),
+        _grid_row("0xa", "SELL", 83_100.0, notional=500_000.0, persist=0.0),
+    ]
+    at_max = [
+        _grid_row("0xb", "BUY", 82_900.0, notional=500_000.0, persist=0.0),
+        _grid_row("0xb", "SELL", 83_100.0, notional=1_000_000.0, persist=0.0),
+    ]
+    assert two_sided_grid_addresses(at_min) == {"0xa"}
+    assert two_sided_grid_addresses(at_max) == {"0xb"}
+    just_outside = [
+        _grid_row("0xc", "BUY", 82_900.0, notional=1_000_000.0, persist=0.0),
+        _grid_row("0xc", "SELL", 83_100.0, notional=499_000.0, persist=0.0),
+    ]
+    assert two_sided_grid_addresses(just_outside) == set()
 
 
 def test_grid_detection_needs_an_address():
