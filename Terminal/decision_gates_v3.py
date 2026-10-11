@@ -255,6 +255,56 @@ MAX_SPREAD_BPS_HARD = 20.0
 # horizon cannot support. This only ever withholds a trade; it never authorises one.
 MAX_TARGET_DIST_ATR = 4.0
 
+# A target may only be anchored to a pool that could actually absorb the exit.
+# MAX_TARGET_DIST_ATR validates DISTANCE and nothing else, so a band that is
+# merely close would satisfy it: on 2026-10-11 03:24:33 UTC the first non-empty
+# top_short_squeeze_bands_above entry in ~13 cycles sat at 82,950.0, +1.209 ATR
+# and comfortably inside the horizon -- but carried 23,055.66 USD of notional,
+# 6.5x below the 150k G-7 wall floor. Anchoring a target there would be
+# anchoring it to nothing. Set at the same 150k used for G-7 whale backing so a
+# single size standard governs both the entry-side and exit-side liquidity.
+MIN_POOL_NOTIONAL_USD = 150_000.0
+
+
+def named_pool_inside_horizon(pools, entry, atr,
+                              max_dist_atr: float = MAX_TARGET_DIST_ATR,
+                              min_notional_usd: float = MIN_POOL_NOTIONAL_USD,
+                              side: str = "LONG"):
+    """Nearest pool that is BOTH inside the calibrated horizon AND large enough.
+
+    ``pools`` is an iterable of dicts carrying a price (``mid_price`` or
+    ``price``) and ``notional_usd``. For a LONG the target must sit above entry,
+    for a SHORT below it. Returns ``(price, notional_usd, dist_atr)`` for the
+    nearest qualifying pool, or ``None``.
+
+    Distance alone is not evidence of liquidity. This helper exists so a target
+    anchor can never be justified by a band that is close but immaterial.
+
+    NOTE: additive only. This is not yet wired into ``_net_ev`` or either
+    checklist -- doing so changes trade admission and needs operator sign-off.
+    """
+    if not _finite(entry) or not _finite(atr) or atr <= 0:
+        return None
+    if not _finite(max_dist_atr) or max_dist_atr <= 0:
+        return None
+    if not _finite(min_notional_usd) or min_notional_usd < 0:
+        return None
+    sign = 1.0 if str(side).upper() == "LONG" else -1.0
+    best = None
+    for p in pools or ():
+        if not isinstance(p, dict):
+            continue
+        px = p.get("mid_price", p.get("price"))
+        note = p.get("notional_usd")
+        if not _finite(px) or not _finite(note) or note < min_notional_usd:
+            continue
+        dist = sign * (float(px) - float(entry)) / float(atr)
+        if dist <= 0 or dist > max_dist_atr:
+            continue
+        if best is None or dist < best[2]:
+            best = (float(px), float(note), float(dist))
+    return best
+
 
 @dataclass
 class RegimeParams:
