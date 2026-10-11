@@ -656,3 +656,46 @@ def test_decisive_inside_share_is_not_flagged_as_knife_edge():
     assert r["inside_spread_share"] == 1.0
     assert r["suspect"] is True
     assert r["near_threshold"] is False
+
+
+def test_zero_wall_assets_do_not_falsely_fail_venue_coverage():
+    """An asset with 0 walls has no uncovered venues and must not fail coverage."""
+    a, _ = _readiness_assets(n=3, wall_venue="BINANCE")
+    # S2 has 0 walls (e.g. NEAR or weekend CFD)
+    a["S2"]["orderbook_live_depth"]["whale_walls_l3"] = []
+    c = audit_wall_venue_coverage(a)
+    assert c["g7_walls_total"] == 2  # 1 from S0, 1 from S1
+    assert c["per_asset"]["S2"]["covered"] is True
+    assert c["per_asset"]["S2"]["uncovered_venues"] == []
+    assert c["coverage_complete"] is True
+    assert c["verdict"] == "venue_mid_covered"
+
+
+def test_stale_closed_market_quotes_do_not_dominate_wall_timestamp_skew():
+    """Closed weekend CFDs with 40h-old ticks must not fail active wall timestamp skew."""
+    assets = {
+        "BTC": {
+            "quotes": {"quote_freshness": "FRESH", "broker_tick_age_s": 0.5},
+            "orderbook_live_depth": {
+                "wall_sample_ts_epoch": 1000.0,
+                "binance_mid_ts": 1000.0,
+                "whale_walls_l3": [{"price": 80000.0}],
+            },
+        },
+        "SP500": {
+            "quotes": {"quote_freshness": "STALE", "broker_tick_age_s": 150000.0},
+            "orderbook_live_depth": {
+                "wall_sample_ts_epoch": 1000.1,
+                "hyperdash_mid_ts": 1000.1,
+                "whale_walls_l3": [{"price": 5000.0}],
+            },
+        },
+    }
+    broker = {"BTC": 1001.0, "SP500": 1000.1 - 150000.0}
+    a = audit_wall_timestamps(assets, broker_ts_by_symbol=broker, max_skew_s=5.0)
+    assert "BTC" in a["skew_s"]
+    assert a["skew_ok"]["BTC"] is True
+    assert "SP500" not in a["skew_s"]
+    assert a["closed_market_assets"]["SP500"]["quote_freshness"] == "STALE"
+    assert a["max_abs_skew_s"] == pytest.approx(1.0)
+    assert a["verdict"] == "contemporaneous"

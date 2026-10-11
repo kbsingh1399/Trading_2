@@ -280,9 +280,21 @@ def audit_wall_timestamps(
             if broker_ts_by_symbol:
                 bts = broker_ts_by_symbol.get(sym)
                 if _fin(bts):
-                    sk = float(ts) - float(bts)
-                    out["skew_s"][sym] = sk
-                    out["skew_ok"][sym] = abs(sk) <= float(max_skew_s)
+                    quotes = payload.get("quotes") if isinstance(payload, Mapping) else None
+                    is_stale_quote = (
+                        isinstance(quotes, Mapping)
+                        and (quotes.get("quote_freshness") == "STALE"
+                             or (quotes.get("broker_tick_age_s") is not None and float(quotes["broker_tick_age_s"]) > 300.0))
+                    )
+                    if not is_stale_quote:
+                        sk = float(ts) - float(bts)
+                        out["skew_s"][sym] = sk
+                        out["skew_ok"][sym] = abs(sk) <= float(max_skew_s)
+                    else:
+                        out.setdefault("closed_market_assets", {})[sym] = {
+                            "broker_tick_age_s": quotes.get("broker_tick_age_s") if isinstance(quotes, Mapping) else None,
+                            "quote_freshness": quotes.get("quote_freshness") if isinstance(quotes, Mapping) else None,
+                        }
     out["assets_with_walls"] = with_walls
     out["distinct_wall_ts"] = len(set(wall_ts))
     out["missing_ts_fields"] = (with_walls > 0 and have_field == 0)
@@ -448,6 +460,18 @@ def g7_readiness(
       observation (``audit_venue_mid_independence``).
 
     """
+    if broker_ts_by_symbol is None and isinstance(assets, Mapping):
+        extracted_bts: Dict[str, float] = {}
+        for sym, a in assets.items():
+            if isinstance(a, Mapping):
+                q = a.get("quotes")
+                if isinstance(q, Mapping):
+                    msc = q.get("broker_tick_time_utc_msc")
+                    if isinstance(msc, (int, float)) and msc > 0:
+                        extracted_bts[sym] = float(msc) / 1000.0
+        if extracted_bts:
+            broker_ts_by_symbol = extracted_bts
+
     walls = audit_wall_timestamps(
         assets, broker_ts_by_symbol=broker_ts_by_symbol, max_skew_s=max_skew_s
     )
@@ -563,7 +587,8 @@ def audit_wall_venue_coverage(
             and not isinstance(q.get("mid"), bool)
         }
         uncovered = sorted(set(venues) - mids)
-        covered = bool(walls) and not uncovered
+        # An asset without G7 walls has no uncovered venues; an asset with walls is covered iff not uncovered.
+        covered = not bool(uncovered)
         covered_assets += covered
         per_asset[symbol] = {
             "g7_walls": len(walls),
@@ -577,7 +602,7 @@ def audit_wall_venue_coverage(
         "g7_walls_total": total_walls,
         "wall_venues_total": venue_counter,
         "covered_assets": covered_assets,
-        "coverage_complete": covered_assets == examined and examined > 0,
+        "coverage_complete": bool(covered_assets == examined and examined > 0 and total_walls > 0),
         "verdict": (
             "no_g7_walls_published" if total_walls == 0
             else "venue_mid_covered" if covered_assets == examined

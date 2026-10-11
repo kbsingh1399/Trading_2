@@ -920,7 +920,7 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
     crypto_funding_hist: Dict[str, List[Dict]] = {}
     hyperdash_results: Dict[str, Dict[str, Any]] = {}
 
-    hd_client = HyperdashClient(timeout=4)
+    hd_client = HyperdashClient(timeout=8)
     with ThreadPoolExecutor(max_workers=10) as hd_ex:
         hd_futures = list(hd_ex.map(lambda a: fetch_hyperdash_microstructure(hd_client, a), ALL_24_ASSETS))
         for a, res in hd_futures:
@@ -1029,6 +1029,13 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
 
         trusted_now = bridge.broker_utc_now() if hasattr(bridge, "broker_utc_now") else None
         clock_verified = trusted_now is not None and math.isfinite(trusted_now)
+        # Calibrated broker UTC epoch for contemporaneous wall sampling
+        # (avoids host clock skew against broker ticks).
+        sample_epoch = (
+            round(trusted_now, 3) if clock_verified
+            else (round(tick_epoch, 3) if tick_epoch is not None
+                  else (receipt_epoch or round(time.time(), 3)))
+        )
         # All assets share the generation's initial cutoff. A later request
         # cannot introduce a candle that had not closed at that observation.
         candle_cutoff = min(now_ts, trusted_now) if clock_verified else now_ts
@@ -1396,7 +1403,7 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                     _prev_basis_meta, asset, now_ts, b_now_obs)
             venue_basis_dict["BINANCE"] = {
                 "mid": round(binance_mid, 4),
-                "mid_ts": receipt_epoch or round(time.time(), 3),
+                "mid_ts": sample_epoch,
                 "basis_median": (round(basis_median, 8) if basis_median is not None else None),
             }
             if hd_status == "SUCCESS" and hd_mid and hd_mid > 0:
@@ -1408,7 +1415,7 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                         _prev_basis_meta, hl_key, now_ts, hd_b_obs)
                 venue_basis_dict["HYPERLIQUID"] = {
                     "mid": round(hd_mid, 4),
-                    "mid_ts": receipt_epoch or round(time.time(), 3),
+                    "mid_ts": sample_epoch,
                     "basis_median": (round(hd_basis_median, 8) if hd_basis_median is not None else None),
                 }
             orderbook_payload = {
@@ -1416,9 +1423,9 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                 "venue": "BINANCE_USDM_FUTURES_AND_HYPERLIQUID",
                 "aggregation": "BINANCE_AGGREGATED_L2_WITH_HYPERDASH_L3_WALLETS",
                 "binance_mid": round(binance_mid, 4),
-                "binance_mid_ts": receipt_epoch or round(time.time(), 3),
+                "binance_mid_ts": sample_epoch,
                 "hyperliquid_mid": round(hd_mid, 4) if (hd_status == "SUCCESS" and hd_mid and hd_mid > 0) else None,
-                "hyperliquid_mid_ts": receipt_epoch or round(time.time(), 3) if (hd_status == "SUCCESS" and hd_mid and hd_mid > 0) else None,
+                "hyperliquid_mid_ts": sample_epoch if (hd_status == "SUCCESS" and hd_mid and hd_mid > 0) else None,
                 "venue_basis": venue_basis_dict,
                 "basis_median": (round(basis_median, 8) if basis_median is not None else None),
                 "top20_bid_depth_usd": round(total_bid_depth, 2),
@@ -1430,7 +1437,7 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                 "whale_walls_l3": top_wallet_whales_l3,  # Real on-chain 0x addresses from Hyperdash!
                 "l2_wall_levels": whale_walls,
                 "wall_coverage": "REAL_HYPERDASH_WALLET_ATTRIBUTED_L3",
-                "wall_sample_ts_epoch": receipt_epoch or round(time.time(), 3)
+                "wall_sample_ts_epoch": sample_epoch
             }
         elif hd_status == "SUCCESS" and hd_res.get("book"):
             hd_book = hd_res["book"]
@@ -1514,13 +1521,13 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                 "venue": "HYPERLIQUID_HIP3_PERP_DEX",
                 "aggregation": "HYPERDASH_L2_DEPTH_AND_L3_WALLETS",
                 "hyperdash_mid": round(hd_mid, 4),
-                "hyperdash_mid_ts": receipt_epoch or round(time.time(), 3),
+                "hyperdash_mid_ts": sample_epoch,
                 "hyperliquid_mid": round(hd_mid, 4),
-                "hyperliquid_mid_ts": receipt_epoch or round(time.time(), 3),
+                "hyperliquid_mid_ts": sample_epoch,
                 "venue_basis": {
                     "HYPERLIQUID": {
                         "mid": round(hd_mid, 4),
-                        "mid_ts": receipt_epoch or round(time.time(), 3),
+                        "mid_ts": sample_epoch,
                         "basis_median": (round(hd_basis_median, 8) if hd_basis_median is not None else None),
                     }
                 },
@@ -1533,7 +1540,7 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                 "whale_walls_l3": top_wallet_whales_l3,  # Real on-chain 0x addresses!
                 "l2_wall_levels": whale_walls,
                 "wall_coverage": "REAL_HYPERDASH_WALLET_ATTRIBUTED_L3",
-                "wall_sample_ts_epoch": receipt_epoch or round(time.time(), 3)
+                "wall_sample_ts_epoch": sample_epoch
             }
         else:
             # NO SYNTHETIC DEPTH! Report real L1 only honestly
