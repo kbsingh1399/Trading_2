@@ -26,3 +26,7 @@
 | T-24 | Cycle 05:50 UTC harvest, commit 7a94e9c0 merge & prompt injection | COMPLETED | Merged commit 7a94e9c0 (323 tests green); 05:50 prompt injected; 4,896.55 USD equity defended |
 | T-25 | Cycle 06:20 UTC harvest, commit 1d2c42ce merge & prompt injection | COMPLETED | Merged commit 1d2c42ce (331 tests green); 06:20 prompt injected; 4,896.55 USD equity defended |
 | T-26 | Cycle 06:30 UTC wake-up & telemetry audit | COMPLETED | Live MT5 equity 4,896.55 USD (+121.55 USD cushion); 24/24 assets STAND ASIDE; Arena council processing |
+| T-27 | Cycle 06:50 UTC audit & BTC +2.54 SD Model 1 gate verification | COMPLETED | BTC Z=+2.54 SD gated closed by A1/A2/A3/A5; 24/24 STAND ASIDE; 4,896.55 USD defended |
+| T-28 | Merge Arena commit f73d32e9 & certify test suite | COMPLETED | Merged f73d32e9 (4 new tests); 335 / 335 tests passing; pinned cross-venue basis vs G-7 |
+| T-29 | Upgrade prompt generator & council protocols for exhaustive telemetry audit | COMPLETED | Enforced schema census, macro_orderflow_tilt, execution_specs, 20-level depth, stale scrape quarantine, cross-venue basis |
+

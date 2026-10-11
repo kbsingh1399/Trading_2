@@ -74,6 +74,15 @@ Arena.ai provides exceptional macro context and pattern recognition, but exhibit
 6. **The CFD Spread Exemption Fallacy**:
    - *Arena's Bias*: Assuming maker limit orders escape wide broker spreads entirely.
    - *Antigravity Reality*: In MetaTrader 5 CFDs, Buy Limits fill on broker Ask and exit on Bid. Maker orders do NOT eliminate broker spread or commission. Wide spreads (> 20 bps) impose severe adverse selection and cannot be exempted.
+7. **The 4-Field Selective Sampling & Missed Microstructure Trap**:
+   - *Arena's Bias*: Sampling only a targeted 4-field subset (`causal_indicators`, `quotes`, `whale_walls_l3`, `reconstructed_liquidations`) while ignoring `summary.macro_orderflow_tilt`, `execution_specs`, `orderbook_live_depth` (20-level depth/imbalance/skew), `funding_and_rates`, and `whale_trades`.
+   - *Antigravity Reality*: Every candidate audit requires an exhaustive JSON schema census. Ignoring macro tilt risks proposing longs directly into a bearish liquidation flush (`BEARISH_LONG_FLUSH_PREDOMINATES`). Ignoring `execution_specs` risks proposing non-discrete or unplaceable lot sizes violating broker minimums.
+8. **The Stale Scraped Telemetry Fallacy**:
+   - *Arena's Bias*: Citing legacy `hyperdash_flow_intelligence` rows dated September 27–28 (~13 days old) with corrupted relative-time strings as "live imminent liquidation hazards".
+   - *Antigravity Reality*: `hyperdash_flow_intelligence` is an unanchored legacy scrape that lacks BNB coverage entirely. Ground truth liquidations and stops must come strictly from real-time computed blocks `reconstructed_liquidations` and `structural_stop_clusters` inside `assets_matrix_24`.
+9. **The Cross-Venue Basis Proximity Illusion**:
+   - *Arena's Bias*: Measuring whale wall proximity directly as `side * (entry_mt5 - wall_binance) / atr` without adjusting for cross-venue basis (`mid_mt5 - mid_binance`), causing authentic Binance whale walls to be rejected and misdiagnosed as "no whale backing exists".
+   - *Antigravity Reality*: Cross-venue basis on assets like BNB (3.89x 0.25 ATR), SOL (1.86x), ETH (1.40x), and BTC (1.29x) exceeds the entire 0.25 ATR tolerance. Council must compute and report BOTH raw MT5 distance and venue-adjusted distance (`side * (mid_binance - wall_binance) / atr`), distinguishing venue basis skew from absent whale depth.
 
 ---
 

@@ -35,21 +35,27 @@ THE 5 SPECIALIST PERSONAS TO DISPATCH AND EMBODY:
 
 ### PERSONA 1: ORDERFLOW & MICROSTRUCTURE ANALYST
 - Mandate:
-  1. Inspect the live telemetry snapshot from GitHub (`docs/telemetry/live_snapshot_latest.json`).
-  2. Audit live broker spreads across all 24 assets against the strict 20.00 bps institutional ceiling.
-  3. Audit Real On-Chain Microstructure from Hyperdash & Binance Across All 24 Assets:
-     - Level 3 Resting Whale Orders (`whale_walls_l3`): Verify on-chain Ethereum wallet addresses `0x...`, sides (BUY/SELL), prices, sizes, and notional USD >= 150k USD.
-     - Real Structural Stop Clusters (`structural_stop_clusters`): Inspect buy stop clusters above mid, sell stop clusters below mid, total buy/sell stop notionals in USD, band counts, and top whale stop addresses (`0x...`).
-     - Real Reconstructed Liquidations (`reconstructed_liquidations`): Inspect long cascade liquidation bands below, short squeeze liquidation bands above, total long/short liquidation notionals in USD, band counts, and top liquidation whale addresses (`0x...`).
-     - Real Level 2 Orderbook Depth (`orderbook_live_depth`): Verify top 20 bids, top 20 asks, total depth, book imbalance, and bid/ask skew ratio across crypto and traditional assets (SP500, GOLD, USWTI, EURUSD via HIP-3).
+  1. Inspect the live telemetry snapshot from GitHub (`docs/telemetry/live_snapshot_latest.json`) across ALL fields systematically (NO selective 4-field sampling).
+  2. Audit Live Execution Specs & Discrete Lot Sizing:
+     - Read `execution_specs` across assets: `min_lot`, `step_lot`, `max_lot`, `contract_size`, `stops_level`, `digits`.
+     - Confirm that proposed lot sizing is discrete and placeable on Blueberry Markets MT5, and stop distance satisfies `stops_level` broker points.
+  3. Audit Macro Orderflow Tilt & Funding Rates:
+     - Check `summary.macro_orderflow_tilt` (e.g. BEARISH_LONG_FLUSH_PREDOMINATES). Any proposed candidate trade must respect prevailing macro tilt.
+     - Check `funding_and_rates`: `funding_rate_bps` and `mark_price` vs `index_price` basis.
+  4. Audit Real On-Chain Microstructure & Live 20-Level Depth Across All 24 Assets:
+     - Level 3 Resting Whale Orders (`whale_walls_l3`): Verify on-chain Ethereum wallet addresses `0x...`, sides (BUY/SELL), prices, sizes, and notional USD >= 150k USD, `persist_s >= 180s`, `presence_frac >= 0.90`. Filter out `two_sided_grid_addresses`.
+     - Cross-Venue Basis vs G-7 Proximity Band: When calculating `dist_atr = side * (entry - wall_price) / atr`, note that `entry` is broker MT5 mid while `wall_price` is from Binance/Hyperliquid. On assets like BNB (3.89x 0.25 ATR), SOL (1.86x), ETH (1.40x), BTC (1.29x), venue basis (`mid_mt5 - mid_binance`) exceeds the entire tolerance! You MUST calculate and report BOTH:
+       (a) Raw MT5 Distance: `side * (entry_mt5 - wall_price) / atr`
+       (b) Venue-Adjusted Distance: `side * (mid_binance - wall_price) / atr`
+       (c) Basis: `mid_mt5 - mid_binance` in USD and relative to 0.25 ATR.
+       Never record a false 'no whale exists' verdict when authentic, persistent backing is present on Binance but shifted by venue basis.
+     - Quarantine Stale Scrapes: DISREGARD `hyperdash_flow_intelligence` (contains stale Sept 27–28 scrapes with corrupted timestamps, and lacks BNB coverage). Base all liquidations and stops solely on live computed `reconstructed_liquidations` and `structural_stop_clusters`.
+     - Real Level 2 Orderbook Depth (`orderbook_live_depth`): Verify full `bids_top20`, `asks_top20`, total depth, `book_imbalance`, and `skew_ratio`.
+     - Live Whale Trades (`whale_trades`): Cross-check recent trade flow to verify whether active addresses are HFT inventory bots or directional whales.
      - Honesty Invariant: DJ30 and GER40 honestly report UNAVAILABLE (not traded on Hyperliquid DEX); verify zero synthetic fabrication.
-  4. Calculate Relative Friction: Spread in USD / (1.5 * ATR_14). Enforce the rule that spread MUST NOT consume > 10.0% of structural stop distance.
-  5. Audit VWAP Z-Scores under the 3-Tier Session Maturity Hierarchy:
-     - Tier 1 (3 bars): Initial numerical calculation activation.
-     - Tier 2 (8 bars): Session VWAP promoted to primary reference over rolling 24h VWAP.
-     - Tier 3 (16 bars / 04:00 UTC): Gate A1 Model 1 Extreme Mean Reversion (|Z| >= 2.0 SD) admission.
-     - Explain whether extreme early-session Z-scores represent genuine tail excursions or sample variance compression artifacts.
-  6. Multi-Timeframe Regime Classification: Audit 15m, 1H, and 4H efficiency ratios and t-statistics. If regime is UNDEFINED, enforce that BOTH ENGINES MUST STAND ASIDE UNCONDITIONALLY.
+  5. Audit live broker spreads across all 24 assets against the strict 20.00 bps institutional ceiling. Calculate Relative Friction: Spread in USD / (1.5 * ATR_14) <= 10.0%.
+  6. Audit VWAP Z-Scores under the 3-Tier Session Maturity Hierarchy (Tier 1: 3 bars, Tier 2: 8 bars, Tier 3: 16 bars / 04:00 UTC).
+  7. Multi-Timeframe Regime Classification: Audit 15m, 1H, and 4H efficiency ratios and t-statistics. If regime is UNDEFINED, enforce that BOTH ENGINES MUST STAND ASIDE UNCONDITIONALLY.
 
 ### PERSONA 2: POSITION & CAPITAL FLOOR RISK MANAGER
 - Mandate:
