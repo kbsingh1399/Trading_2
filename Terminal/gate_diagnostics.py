@@ -255,6 +255,7 @@ def audit_wall_timestamps(
         "assets_examined": 0, "assets_with_walls": 0, "distinct_wall_ts": 0,
         "shared_across_assets": None, "missing_ts_fields": None,
         "skew_s": {}, "skew_ok": {}, "max_abs_skew_s": None,
+        "lagging_quote_assets": {}, "closed_market_assets": {},
         "verdict": "insufficient_data",
     }
     if not isinstance(assets, Mapping) or not assets:
@@ -286,15 +287,25 @@ def audit_wall_timestamps(
                         and (quotes.get("quote_freshness") == "STALE"
                              or (quotes.get("broker_tick_age_s") is not None and float(quotes["broker_tick_age_s"]) > 300.0))
                     )
-                    if not is_stale_quote:
-                        sk = float(ts) - float(bts)
-                        out["skew_s"][sym] = sk
-                        out["skew_ok"][sym] = abs(sk) <= float(max_skew_s)
-                    else:
+                    if is_stale_quote:
                         out.setdefault("closed_market_assets", {})[sym] = {
                             "broker_tick_age_s": quotes.get("broker_tick_age_s") if isinstance(quotes, Mapping) else None,
                             "quote_freshness": quotes.get("quote_freshness") if isinstance(quotes, Mapping) else None,
                         }
+                    elif (
+                        isinstance(quotes, Mapping)
+                        and quotes.get("broker_tick_age_s") is not None
+                        and float(quotes["broker_tick_age_s"]) > float(max_skew_s)
+                    ):
+                        out.setdefault("lagging_quote_assets", {})[sym] = {
+                            "broker_tick_age_s": float(quotes["broker_tick_age_s"]),
+                            "skew_s": float(ts) - float(bts),
+                        }
+                        out["skew_ok"][sym] = False
+                    else:
+                        sk = float(ts) - float(bts)
+                        out["skew_s"][sym] = sk
+                        out["skew_ok"][sym] = abs(sk) <= float(max_skew_s)
     out["assets_with_walls"] = with_walls
     out["distinct_wall_ts"] = len(set(wall_ts))
     out["missing_ts_fields"] = (with_walls > 0 and have_field == 0)
@@ -317,6 +328,8 @@ def audit_wall_timestamps(
         out["verdict"] = "clock_skew_exceeds_allowance"
     elif out["assets_with_walls"] == 0:
         out["verdict"] = "no_walls_published"
+    elif not out["skew_s"] and out.get("lagging_quote_assets"):
+        out["verdict"] = "all_quotes_lagging"
     else:
         out["verdict"] = "contemporaneous"
     return out

@@ -699,3 +699,35 @@ def test_stale_closed_market_quotes_do_not_dominate_wall_timestamp_skew():
     assert a["closed_market_assets"]["SP500"]["quote_freshness"] == "STALE"
     assert a["max_abs_skew_s"] == pytest.approx(1.0)
     assert a["verdict"] == "contemporaneous"
+
+
+def test_lagging_crypto_quotes_do_not_contaminate_contemporaneous_skew():
+    """Assets with slow broker tick arrival (> max_skew_s) are quarantined from desk clock skew."""
+    assets = {
+        "BTC": {
+            "quotes": {"broker_tick_age_s": 0.45, "quote_freshness": "FRESH"},
+            "orderbook_live_depth": {
+                "wall_sample_ts_epoch": 1000.5,
+                "binance_mid_ts": 1000.5,
+                "whale_walls_l3": [{"price": 80000.0}],
+            },
+        },
+        "TRX": {
+            "quotes": {"broker_tick_age_s": 21.3, "quote_freshness": "FRESH"},
+            "orderbook_live_depth": {
+                "wall_sample_ts_epoch": 1000.52,
+                "binance_mid_ts": 1000.52,
+                "whale_walls_l3": [{"price": 0.3}],
+            },
+        },
+    }
+    broker = {"BTC": 1000.4, "TRX": 1000.52 - 21.3}
+    a = audit_wall_timestamps(assets, broker_ts_by_symbol=broker, max_skew_s=5.0)
+    assert "BTC" in a["skew_s"]
+    assert a["skew_ok"]["BTC"] is True
+    assert "TRX" not in a["skew_s"]
+    assert a["skew_ok"]["TRX"] is False
+    assert "TRX" in a["lagging_quote_assets"]
+    assert a["max_abs_skew_s"] == pytest.approx(0.1)
+    assert a["verdict"] == "contemporaneous"
+
