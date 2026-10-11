@@ -1,0 +1,59 @@
+TRADING DESK COUNCIL: STRUCTURED OPERATING PROMPT (CYCLE 13)
+
+PART A: REQUIRED READING & LATEST REPOSITORY AUDIT STATE
+Read each source below in full, line by line:
+1. Session history: .agents/memory/session_chat_history.md
+   Source: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agents/memory/session_chat_history.md
+   Confirm the latest consensus fixes applied from all 4 audits (Minimax 3, DeepSeek Flash, GPT Astra, Opus 5.5) under commit 50041a61.
+2. Active context and mission card: .agents/rules/ACTIVE_CONTEXT.md
+   Source: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agents/rules/ACTIVE_CONTEXT.md
+   Confirm the G-1 floor defense (+121.55 USD cushion above 4,775.00 USD hard floor, +101.55 USD above 4,795.00 USD operating buffer) and 0 open / 0 pending tickets (100% Cash).
+3. Live order desk: docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md
+   Source: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md
+4. Council protocol: docs/specs/ANTIGRAVITY_ARENA_THINKING_CHAIN_COUNCIL_PROTOCOL.md
+   Source: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/specs/ANTIGRAVITY_ARENA_THINKING_CHAIN_COUNCIL_PROTOCOL.md
+5. Decision gates & Hardening: Terminal/decision_gates_v3.py, Terminal/dg_hardening.py, Terminal/dg_context.py
+   Source: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Terminal/decision_gates_v3.py
+   Source: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Terminal/dg_hardening.py
+   Source: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Terminal/dg_context.py
+   Confirm:
+   - Two-tier trend router: STAT tier (4H confirm drift_tNW >= 1.0) and STRUCT tier (1H drift_tNW >= 1.5 & level_tNW >= 2.5 or 1H drift_tNW >= 2.0, 4H not opposing >= -1.0, risk capped at 10.00 USD).
+   - Dynamic wall band clamp: adaptive_wall_band_atr clamped in [0.25, 0.50] ATR.
+   - Friction gate: relaxed with EV_friction_gt_0pXXR, MAX_TARGET_DIST_ATR = 4.0, FRICTION_RELAXED_MIN_RR = 2.5, FRICTION_RELAXED_MIN_EV_R = 0.15, and 20 bps hard ceiling.
+   - Dynamic shelf confluence: fallback to VWAP, EMAs, and Volume Profile.
+6. Live telemetry: docs/telemetry/live_snapshot_latest.json
+   Branch arena/537c1eb8-trading-2: https://github.com/kbsingh1399/Trading_2/blob/arena/537c1eb8-trading-2/docs/telemetry/live_snapshot_latest.json
+   Raw main: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/telemetry/live_snapshot_latest.json
+   Perform complete schema audit across assets_matrix_24. Note that BTC, ETH, and NEAR currently print TREND_UP regimes under the STRUCT tier, while all 10 TradFi CFDs are closed for the weekend.
+
+PART B: ACCOUNT AND RISK BASELINE
+- Execution Mode: PASSIVE LIMIT ORDERS ONLY (no market orders).
+- Broker: Blueberry Markets SVG LLC, MetaTrader 5 account #5064568
+- Balance / Equity: 4,896.55 USD / 4,896.55 USD (100% Cash reserves).
+- Margin Used: 0.00 USD | Free Margin: 4,896.55 USD.
+- Hard Floor (G-1): 4,775.00 USD | Operating Buffer: 4,795.00 USD.
+- Live Cushion: +121.55 USD above floor, +101.55 USD above operating buffer.
+- Joint Stopout Stress Rule: Stressed equity across all open and pending tickets combined must unconditionally preserve >= 4,795.00 USD.
+- Capacity: 0/4 tickets used (4 slots available). Maximum risk per trade 10.00 USD on STRUCT tier.
+
+PART C: COUNCIL PERSONAS (REASONING MANDATE AT EVERY LEVEL)
+1. Orderflow & Microstructure Analyst: Audit CVD delta divergence, volume absorption, L2/L3 whale wall persistence, broker spread in bps (<= 20.00 bps), and friction relative to 1.5 ATR.
+2. Structural Price Action & Regime Specialist: Session VWAP, SD bands, 200 EMA slope, support/resistance shelves, and multi-timeframe regime classification.
+3. Liquidation & Stop Hunt Forensic: Reconstructed liquidation cascade bands, discount/premium stop sweep clusters, and resting liquidity magnets. Anchor TP to real pools.
+4. Macro Risk & Portfolio Governor: G-1 floor defense, orthogonal cluster diversification, positive net EV expectancy hurdle: EV_lower / R = p_lower * (RR - c) - (1 - p_lower) * (1 + c + s) > 0.
+
+PART D: TASKS
+Step 1: Screen for new limit order candidates
+- Evaluate 14 Crypto Perpetuals (BTC, ETH, SOL, BNB, XRP, ADA, DOGE, TRX, DOT, LINK, BCH, LTC, AVAX, NEAR) under both Model 1 (Extreme Mean Reversion |Z| >= 2.0 SD) and Model 2 (VWAP Trend Pullback |Z| < 2.0 SD in confirmed trend). Confirm 10 TradFi CFDs closed for weekend.
+- Specific focus: BTC, ETH, and NEAR which print TREND_UP under the STRUCT tier.
+- Option A' Cross-Venue Basis Accounting: Evaluate w_effective = wall_price + b_hat, venue-adjusted distance d_adj, and drift circuit breaker |b_now - b_hat| <= drift_tol.
+- For each viable setup, output exact trade specification: Asset, Order Type (BUY or SELL LIMIT), Volume (lots), Entry, Stop Loss, Take Profit, Risk (USD), R:R, and 5-pillar confluence.
+Step 2: Audit running trades and ratchets (Current: 0 open positions -> STANDBY).
+Step 3: Audit resting limit orders (Current: 0 pending orders -> STANDBY).
+Step 4: Capacity and capital floor governance: Confirm proposed risk reserves keep stressed equity >= 4,795.00 USD.
+
+PART E: OUTPUT FORMAT
+1. DOCUMENT INGESTION & GROUND TRUTH CITATION (listing all 6 sources with verified state and latest commit 50041a61).
+2. Council deliberation from all 4 personas with explicit mathematical reasoning.
+3. Option A' cross-venue basis evaluation table.
+4. Definitive Trade Decision: Exact Limit Order Table for execution, or explicit mathematical stand-aside justification across all 24 assets.

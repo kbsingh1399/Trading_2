@@ -1,0 +1,57 @@
+TRADING DESK COUNCIL: STRUCTURED OPERATING PROMPT (CYCLE 15 — 21:20 UTC)
+
+PART A: REQUIRED READING & LATEST REPOSITORY AUDIT STATE
+Read each source below in full, line by line:
+1. Session history: .agents/memory/session_chat_history.md
+   Source: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agents/memory/session_chat_history.md
+   Confirm Cycle 14 report ingested. Note that Arena's highest-value producer recommendation was immediately implemented in commits b5a6f63f and 7e890c50:
+   - pullback_geometry is now precomputed and published in generate_telemetry_snapshot.py and Terminal/dg_context.py.
+   - Verified on live BTC: retrace = 0.5194 (51.9% Fibonacci pullback), velocity_ratio = 0.438, bars_pullback = 13, bars_impulse = 11.
+   - All 15 data_invalid:geometry.* tokens eliminated desk-wide.
+2. Active context and mission card: .agents/rules/ACTIVE_CONTEXT.md
+   Source: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agents/rules/ACTIVE_CONTEXT.md
+   Confirm G-1 floor defense (+121.55 USD cushion above 4,775.00 USD hard floor, +101.55 USD above 4,795.00 USD operating buffer) and 0 open / 0 pending tickets (100% Cash).
+3. Live order desk: docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md
+   Source: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md
+4. Council protocol: docs/specs/ANTIGRAVITY_ARENA_THINKING_CHAIN_COUNCIL_PROTOCOL.md
+   Source: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/specs/ANTIGRAVITY_ARENA_THINKING_CHAIN_COUNCIL_PROTOCOL.md
+5. Decision gates & Hardening: Terminal/decision_gates_v3.py, Terminal/dg_hardening.py, Terminal/dg_context.py
+6. Live telemetry: docs/telemetry/live_snapshot_latest.json
+   Branch arena/537c1eb8-trading-2: https://github.com/kbsingh1399/Trading_2/blob/arena/537c1eb8-trading-2/docs/telemetry/live_snapshot_latest.json
+   Raw main: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/telemetry/live_snapshot_latest.json
+   Inspect generation be8065db94c44d129021dfc8dffab539 (21:20:01 UTC).
+   - Post-21:00 UTC hourly close price movement: BTC mid dipped to 83,307 (Z = +0.00, sitting precisely at Session VWAP!).
+   - BNB (750.55 mid, 6.66 bps) and NEAR (5.613 mid) print TREND_UP.
+   - Note early Sunday FX feed reactivation: EURUSD tick age 0.53s.
+
+PART B: ACCOUNT AND RISK BASELINE
+- Execution Mode: PASSIVE LIMIT ORDERS ONLY (no market orders).
+- Broker: Blueberry Markets SVG LLC, MetaTrader 5 account #5064568
+- Balance / Equity: 4,896.55 USD / 4,896.55 USD (100% Cash reserves).
+- Margin Used: 0.00 USD | Free Margin: 4,896.55 USD.
+- Hard Floor (G-1): 4,775.00 USD | Operating Buffer: 4,795.00 USD.
+- Live Cushion: +121.55 USD above floor, +101.55 USD above operating buffer.
+- Joint Stopout Stress Rule: Stressed equity across all open and pending tickets combined must unconditionally preserve >= 4,795.00 USD.
+- Capacity: 0/4 tickets used (4 slots available). Maximum risk per trade 10.00 USD on STRUCT tier.
+
+PART C: COUNCIL PERSONAS (REASONING MANDATE AT EVERY LEVEL)
+1. Orderflow & Microstructure Analyst: Audit CVD delta divergence, volume absorption, L2/L3 whale wall persistence, broker spread in bps (<= 20.00 bps), and friction relative to 1.5 ATR.
+2. Structural Price Action & Regime Specialist: Session VWAP, SD bands, 200 EMA slope, support/resistance shelves, and multi-timeframe regime classification.
+3. Liquidation & Stop Hunt Forensic: Reconstructed liquidation cascade bands, discount/premium stop sweep clusters, and resting liquidity magnets.
+4. Macro Risk & Portfolio Governor: G-1 floor defense, orthogonal cluster diversification, positive net EV expectancy hurdle: EV_lower / R = p_lower * (RR - c) - (1 - p_lower) * (1 + c + s) > 0.
+
+PART D: TASKS
+Step 1: Screen for new limit order candidates
+- Evaluate 14 Crypto Perpetuals under Model 1 (Extreme Mean Reversion |Z| >= 2.0 SD) and Model 2 (VWAP Trend Pullback |Z| < 2.0 SD in confirmed trend).
+- Audit BTC pullback to Session VWAP (Z = +0.00, 83,307 USD) and newly published pullback_geometry.
+- Option A' Cross-Venue Basis Accounting: Evaluate w_effective = wall_price + b_hat, venue-adjusted distance d_adj, and drift circuit breaker |b_now - b_hat| <= drift_tol.
+- For each viable setup, output exact trade specification: Asset, Order Type (BUY or SELL LIMIT), Volume (lots), Entry, Stop Loss, Take Profit, Risk (USD), R:R, and 5-pillar confluence.
+Step 2: Audit running trades and ratchets (Current: 0 open positions -> STANDBY).
+Step 3: Audit resting limit orders (Current: 0 pending orders -> STANDBY).
+Step 4: Capacity and capital floor governance: Confirm proposed risk reserves keep stressed equity >= 4,795.00 USD.
+
+PART E: OUTPUT FORMAT
+1. DOCUMENT INGESTION & GROUND TRUTH CITATION (listing all 6 sources with verified state).
+2. Council deliberation from all 4 personas with explicit mathematical reasoning.
+3. Option A' cross-venue basis evaluation table.
+4. Definitive Trade Decision: Exact Limit Order Table for execution, or explicit mathematical stand-aside justification across all 24 assets.
