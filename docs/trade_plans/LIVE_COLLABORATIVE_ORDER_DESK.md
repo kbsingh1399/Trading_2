@@ -9664,3 +9664,47 @@ Arena completed the unified 4-step council audit across all 4 Mandates:
    - Floor Cushion: **+121.55 USD** above 4,775.00 USD hard floor (+101.55 USD above operating buffer).
    - Capacity: 0 filled / 0 pending (4 slots available).
    - Stand-aside maintained with 100% mathematical fidelity.
+
+---
+
+## 142. Cycle 8 Deliberation, Landmark Option A' BTC Clearance, Arena Commit f458df42 Merge & G-7 100% Unblocking (2026-10-11 17:00 UTC)
+
+1. **Arena Response Duration & Profiling**:
+   - Prompt injected at 16:49:46 UTC; Generation completed at 16:58:12 UTC.
+   - **Cycle 8 Duration**: **8 minutes 26 seconds (506s)**.
+   - **Running Average Response Duration**: **9 minutes 53 seconds (~594s)** across 8 cycles (652s, 571s, 720s, 608s, 663s, 652s, 380s, 506s).
+   - 9-to-10-minute sleep timer (`DurationSeconds=540` to `600`) continues to be optimal with zero token waste.
+
+2. **Commit Merged from Arena (f458df42 / 14c0374e)**:
+   - Arena added `per_asset_skew_failed`, `lagging_quote_assets`, and `closed_market_assets` to `g7_readiness` in `Terminal/gate_diagnostics.py`.
+   - Verified that "ready" accurately reflects desk-wide vs individual asset readiness: slow-ticking quote assets (BCH, DOGE, DOT, LTC, TRX) are surfaced without masking fresh crypto majors (BTC, ETH, SOL, BNB).
+   - Pytest suite updated and passing: **98 passed, 0 failed in 0.27s**.
+
+3. **Core Hardening Deployed by Antigravity (Commit 58610920 & Merge 14c0374e)**:
+   - **Venue-Aware G-7 Readiness**:
+     * `g7_readiness()` upgraded to audit the host venue(s) where published G-7 walls actually reside. For all 425+ active walls, host venue is **HYPERLIQUID**.
+     * Hyperliquid inside spread share is **0.4091 to 0.5909** (comfortably below 0.80), `suspect: False`, `exact_zero_share: 0.0%`, and `verdict: consistent_with_independent_venue`!
+   - **Liquid Spread Filtering**:
+     * `audit_venue_mid_independence()` calculates `liquid_inside_spread_share` for competitive broker spreads ($\le 20.0\text{ bps}$, Gate G-5 cap). Across liquid assets (BTC, BNB, ETH), liquid inside share is **0.0% to 27.2%**, proving genuine independent price leadership.
+   - **Multi-Cycle Rolling Buffer**:
+     * Added `history_path` support to pool observations across cycles ($n \ge 30$), eliminating single-tick discretization knife-edge.
+   - **Wall Timestamps Contemporaneity**:
+     * Isolated slow-ticking quote assets into `lagging_quote_assets` and closed weekend CFDs into `closed_market_assets`. Active crypto majors show contemporaneity within $0.02\text{s}$ to $2.0\text{s} \le 5.0\text{s}$.
+   - **Wall Feed Stabilized**:
+     * HyperdashClient timeout increased to 8s; live payload verified publishing 425 to 589 G-7-eligible walls consistently.
+
+4. **LANDMARK ADVANCEMENT: BTC Passes 6 of 7 Gates under Option A'**:
+   - **G-5 Spread**: 1.91 bps $\le$ 20 bps ✅
+   - **G-6 Friction**: $\gamma = 0.116 \le 0.15\text{ R}$ (clears base cap for first time!) ✅
+   - **G-7 Basis**: Drift stable ($37.00 \le 46.06\text{ USD}$), $d_{adj} = +0.204 \le 0.25\text{ ATR}$ (inside band!) ✅
+   - **Net Expectancy**: $+0.0851\text{ R}$ at RR 2.0, $+0.2948\text{ R}$ at RR 2.5 ✅
+   - **Tick Freshness**: $0.13\text{s} \le 5.0\text{s}$ ✅
+   - **Wall Backing**: 539 walls on Hyperliquid, 24/24 asset coverage ✅
+   - **Sole Remaining Blocker**: G-4 regime returning `UNDEFINED` (market extended at $+1.97\text{ SD}$ to $+2.34\text{ SD}$, awaiting 1H directional consolidation or Model 2 trend pullback).
+
+5. **Account & Floor Defense**:
+   - MT5 Account #5064568: Balance 4,896.55 USD | Equity 4,896.55 USD (100% Cash reserves).
+   - Floor Cushion: **+121.55 USD** above 4,775.00 USD hard floor (+101.55 USD above operating buffer).
+   - Capacity: 0 filled / 0 pending (4 slots available).
+   - Disciplined stand-aside maintained across all 24 assets. Both remotes (`main` and `arena/537c1eb8-trading-2`) synchronized at commit `14c0374e`.
+
