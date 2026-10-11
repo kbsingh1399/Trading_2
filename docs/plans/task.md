@@ -31,4 +31,4 @@
 | T-29 | Upgrade prompt generator & council protocols for exhaustive telemetry audit | COMPLETED | Enforced schema census, macro_orderflow_tilt, execution_specs, 20-level depth, stale scrape quarantine, cross-venue basis |
 | T-30 | Enforce multi-document line-by-line reading mandate & Option A cross-venue basis debate | COMPLETED | Upgraded dispatch scripts, prompts, specs, and ACTIVE_CONTEXT; synced to both remotes |
 | T-31 | Harvest Arena output, merge commit 4ccd59e0 & certify Option A-prime | COMPLETED | Merged 4ccd59e0 (prompt dedup + factual fixes); 338/338 tests green; Option A-prime basis-drift formulated; Stand Aside confirmed |
-
+| T-32 | Implement Option A-prime in dg_context.py, add 4 verification tests & ratify static prompt V2.0 | COMPLETED | Option A-prime implemented in dg_context.py; 4 tests added to Test_Whale_Wall_Authenticity_Gates.py; 265/265 core tests passed; static prompt V2.0 ratified in ARENA_MULTI_PERSONA_COUNCIL_PROMPT_V1.md |

@@ -53440,3 +53440,29 @@ Finally, unify live and replay ratchets before qualifying uplift; the current se
   * Merged 4ccd59e0 cleanly into main under merge commit 6b678efc.
   * Test Suite Status: 338 / 338 tests passed in 4.23s (100% green).
   * Git Parity: Both origin/main and origin/arena/537c1eb8-trading-2 synchronized.
+
+
+### Turn [2026-10-11 08:30 UTC Option A-prime Implementation, 4 Mutation Tests & Static Council Prompt V2.0 Ratification]
+- **Option A-prime Cross-Venue Basis Architecture Implemented in `Terminal/dg_context.py`**:
+  * Implemented Arena.ai's ratified Option A-prime cross-venue basis translation architecture in `build_dg_context`:
+    - Reads `broker_mid` (from MT5 quote bid/ask or entry) and `binance_mid` (from orderbook depth).
+    - Computes instantaneous basis `b_now = broker_mid - binance_mid` and median basis `b_hat = ob.get("basis_median")` (with cold-start fallback `b_hat = b_now` when historical median is omitted).
+    - Enforces **Drift Circuit Breaker**: `abs(b_now - b_hat) <= max(0.25 * atr, 2.0 * tick_size)`.
+    - Enforces **Tick Quantization Guard**: `max(0.25 * atr, 2.0 * tick_size)` to prevent discrete tick jumps on micro-ATR assets (e.g. TRX).
+    - Translates genuine resting whale walls into MT5 execution space: `w_effective = w_price + b_hat`.
+    - Translates distance: `d_adj = side * (entry - w_effective) / atr`. Admits wall if `0 <= d_adj <= 0.25 ATR` and basis drift circuit breaker passes.
+    - Emits full forensic audit trail inside `wall_ctx`: `raw_wall_price`, `effective_wall_price`, `venue_basis_applied`, and `venue_basis_drift_ok`.
+- **4 Mutation-Verified Verification Tests Added in `Tests/Test_Whale_Wall_Authenticity_Gates.py`**:
+  * `test_option_a_prime_translates_wall_when_binance_mid_provided`: Validates that the ETH 07:08 wall is correctly admitted at 0.1024 ATR behind entry when `binance_mid` is present.
+  * `test_option_a_prime_circuit_breaker_trips_on_basis_drift`: Validates that when live broker basis jumps by > 0.25 ATR from median basis, the circuit breaker trips and suppresses the wall.
+  * `test_option_a_prime_tick_quantization_guard_protects_micro_atr`: Validates that TRX micro-ATR assets are protected against spurious false rejections from single-tick flutters.
+  * `test_option_a_prime_cold_start_fallback_when_basis_median_missing`: Validates seamless cold-start fallback when `basis_median` is not yet populated.
+  * Core Test Suite: **265 / 265 passed in 1.44s** (100% green). Full repository suite: **901 / 901 passed**.
+- **Static Council Operating Prompt V2.0 Ratified**:
+  * Standardized static prompt format in `docs/prompts/ARENA_MULTI_PERSONA_COUNCIL_PROMPT_V1.md` and `Terminal/dispatch_comprehensive_wake_up_prompt.py`.
+  * Explicit 24-Asset Universe Clarification:
+    - 14 Crypto Perpetuals (BTC, ETH, SOL, BNB, XRP, ADA, DOGE, TRX, DOT, LINK, BCH, LTC, AVAX, NEAR) -> 24/7 continuous trading; screened on every cycle.
+    - 10 Macro CFD Assets (4 Indices, 3 Commodities, 3 Forex) -> Broker market hours only (Weekend closed; standby on weekends, fully screened on weekdays).
+  * Enforced deep mathematical reasoning requirement across all 4 personas at every level.
+  * Preserved lean-prompt invariant (< 16,000 characters).
+  * Account State (#5064568): Balance 4,896.55 USD | Equity 4,896.55 USD (100% Cash, 0 open, 0 pending, capacity 0/4). Hard floor cushion: +121.55 USD above 4,775.00 USD hard floor.

@@ -334,6 +334,52 @@ def build_dg_context(
 
         wall_data_present = any(_g7_eligible_row(w) for w in walls)
         if walls:
+            # OPTION A' CROSS-VENUE BASIS TRANSLATION ARCHITECTURE:
+            # entry is in MT5 broker quote space; w_price is published in Binance/Hyperliquid space.
+            # On crypto perps (BNB, SOL, ETH, BTC), broker basis can exceed the 0.25 ATR band.
+            # We determine broker_mid and binance_mid, compute instantaneous basis b_now = broker_mid - binance_mid,
+            # and evaluate median basis b_hat over recent snapshots.
+            # Drift Circuit Breaker: |b_now - b_hat| <= max(0.25 * atr, 2.0 * tick).
+            # A stable basis offset translates cleanly; a jumping basis trips the circuit breaker and suppresses the wall.
+            # Tick Quantization Guard: max(0.25 * atr, 2.0 * tick) prevents false rejection on micro-ATR assets (e.g. TRX).
+            broker_mid = None
+            if isinstance(quote, dict) and _finite_number(quote.get("bid")) and _finite_number(quote.get("ask")):
+                q_bid, q_ask = float(quote["bid"]), float(quote["ask"])
+                if q_bid > 0 and q_ask > 0:
+                    broker_mid = (q_bid + q_ask) / 2.0
+            if broker_mid is None:
+                broker_mid = float(entry) if _finite_number(entry) and float(entry) > 0 else (float(c[-1]) if len(c) > 0 else None)
+
+            bn_mid_raw = ob.get("binance_mid") if isinstance(ob, dict) else None
+            if bn_mid_raw is None and isinstance(payload, dict):
+                bn_mid_raw = payload.get("binance_mid")
+
+            has_venue_basis = (_finite_number(bn_mid_raw) and float(bn_mid_raw) > 0 and broker_mid is not None)
+
+            if has_venue_basis:
+                bn_mid = float(bn_mid_raw)
+                b_now = broker_mid - bn_mid
+                b_hat_raw = ob.get("basis_median") if isinstance(ob, dict) else None
+                if b_hat_raw is None and isinstance(payload, dict):
+                    b_hat_raw = payload.get("basis_median")
+
+                if _finite_number(b_hat_raw):
+                    b_hat = float(b_hat_raw)
+                else:
+                    # Cold start fallback when basis median history is not yet populated
+                    b_hat = b_now
+
+                drift_tol = max(0.25 * atr, 2.0 * tick)
+                basis_drift = abs(b_now - b_hat)
+                basis_drift_ok = basis_drift <= drift_tol
+                venue_basis_applied = b_hat
+            else:
+                b_now = 0.0
+                b_hat = 0.0
+                basis_drift = 0.0
+                basis_drift_ok = True
+                venue_basis_applied = 0.0
+
             target_side = "BUY" if side == 1 else "SELL"
             eligible_walls = []
             for w in walls:
@@ -350,13 +396,14 @@ def build_dg_context(
                 w_side = str(w.get("side", "")).upper()
                 w_price = float(w.get("price") or 0.0)
                 if w_side == target_side and w_price > 0:
-                    dist_pts = side * (entry - w_price)
+                    w_effective = w_price + venue_basis_applied
+                    dist_pts = side * (entry - w_effective)
                     dist_atr = dist_pts / max(atr, 1e-12)
-                    if 0 <= dist_atr <= 0.25:
-                        eligible_walls.append((dist_atr, w))
+                    if basis_drift_ok and 0 <= dist_atr <= 0.25:
+                        eligible_walls.append((dist_atr, w, w_effective))
             if eligible_walls:
                 eligible_walls.sort(key=lambda x: x[0])
-                best_dist_atr, best_w = eligible_walls[0]
+                best_dist_atr, best_w, best_w_effective = eligible_walls[0]
                 flow_usd = (of_payload.get("median_1m_flow_usd") if isinstance(of_payload, dict) else None)
                 if not _finite_number(flow_usd) or flow_usd <= 0:
                     flow_usd = None
@@ -370,6 +417,11 @@ def build_dg_context(
                     # veto as defence in depth rather than trusting this caller.
                     "wall_class": str(best_w.get("wall_class") or "GENUINE"),
                     "gate_g7_eligible": bool(best_w.get("gate_g7_eligible", False)),
+                    # Option A' cross-venue basis accounting
+                    "raw_wall_price": float(best_w.get("price") or 0.0),
+                    "effective_wall_price": float(best_w_effective),
+                    "venue_basis_applied": float(venue_basis_applied),
+                    "venue_basis_drift_ok": bool(basis_drift_ok),
                 }
 
     m1_override = features.get("m1_range_override") or (payload.get("m1_range_override") if isinstance(payload, dict) else None)

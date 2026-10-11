@@ -820,3 +820,146 @@ def test_dg_context_measures_the_band_from_the_entry_not_from_the_wall_venue():
     assert from_venue["wall"] is not None
     assert from_venue["wall"]["usd"] == c["wall_usd"]
     assert from_venue["wall"]["dist_from_entry_atr"] == pytest.approx(0.1024, abs=1e-3)
+
+
+def test_option_a_prime_translates_wall_when_binance_mid_provided():
+    """Option A': When binance_mid is in orderbook_live_depth, the wall is translated
+    into MT5 space using the stable median basis, admitting the ETH 07:08 wall into the band."""
+    c = _ETH_0708
+    day_start = 1_791_648_000
+    quote = {"bid": c["mid_mt5"] - 0.6, "ask": c["mid_mt5"] + 0.6, "tick_size": 0.01,
+             "point": 0.01, "time_msc": (day_start + 40 * 900 + 9) * 1000}
+    bars = []
+    for i in range(40):
+        ts = day_start + i * 900
+        px = c["mid_mt5"] + (i % 5) * 0.4 - 0.8
+        bars.append({"open": px - 0.3, "high": px + 0.7, "low": px - 0.7, "close": px,
+                     "time": ts, "close_ts": ts + 900, "volume": 100.0 + i})
+    wall = {"address": "0xc2e859a2f4", "side": "BUY", "price": c["wall_price"],
+            "notional_usd": c["wall_usd"], "persist_s": c["persist_s"],
+            "presence_frac": c["presence_frac"], "wall_class": "GENUINE",
+            "gate_g7_eligible": True}
+    payload = {"orderbook_live_depth": {
+        "whale_walls_l3": [wall], "l2_wall_levels": [],
+        "binance_mid": c["mid_binance"],
+        "basis_median": c["mid_mt5"] - c["mid_binance"]
+    }}
+    common = dict(features={"direction": "LONG", "atr": c["atr"]}, payload=payload,
+                  pivots=None, quote=quote, bars_15m=bars,
+                  sl=c["mid_mt5"] - 1.5 * c["atr"], tp=c["mid_mt5"] + 1.5 * c["atr"],
+                  sizing={"risk_usd": 15.0, "friction_usd": 0.1},
+                  regime="MEAN_REVERT", symbol="ETH")
+    ctx, missing = dg_context.build_dg_context(entry=c["mid_mt5"], **common)
+    assert "session_vwap_history_unavailable" not in missing
+    assert ctx["wall"] is not None
+    assert ctx["wall"]["usd"] == c["wall_usd"]
+    assert ctx["wall"]["dist_from_entry_atr"] == pytest.approx(0.1024, abs=1e-3)
+    assert ctx["wall"]["raw_wall_price"] == c["wall_price"]
+    assert ctx["wall"]["effective_wall_price"] == pytest.approx(c["wall_price"] + (c["mid_mt5"] - c["mid_binance"]), abs=1e-3)
+    assert ctx["wall"]["venue_basis_drift_ok"] is True
+
+
+def test_option_a_prime_circuit_breaker_trips_on_basis_drift():
+    """Drift circuit breaker: If instantaneous basis deviates from median basis by > 0.25 ATR,
+    the basis dislocation trips the breaker and suppresses the wall."""
+    c = _ETH_0708
+    day_start = 1_791_648_000
+    # Create an instantaneous quote dislocated by 2.0 USD (> 0.25 * atr = 1.0136) from median basis
+    quote = {"bid": c["mid_mt5"] + 2.0 - 0.6, "ask": c["mid_mt5"] + 2.0 + 0.6, "tick_size": 0.01,
+             "point": 0.01, "time_msc": (day_start + 40 * 900 + 9) * 1000}
+    bars = []
+    for i in range(40):
+        ts = day_start + i * 900
+        px = c["mid_mt5"] + (i % 5) * 0.4 - 0.8
+        bars.append({"open": px - 0.3, "high": px + 0.7, "low": px - 0.7, "close": px,
+                     "time": ts, "close_ts": ts + 900, "volume": 100.0 + i})
+    wall = {"address": "0xc2e859a2f4", "side": "BUY", "price": c["wall_price"],
+            "notional_usd": c["wall_usd"], "persist_s": c["persist_s"],
+            "presence_frac": c["presence_frac"], "wall_class": "GENUINE",
+            "gate_g7_eligible": True}
+    payload = {"orderbook_live_depth": {
+        "whale_walls_l3": [wall], "l2_wall_levels": [],
+        "binance_mid": c["mid_binance"],
+        "basis_median": c["mid_mt5"] - c["mid_binance"]  # Median is normal, but live broker quote jumped by +2.0
+    }}
+    common = dict(features={"direction": "LONG", "atr": c["atr"]}, payload=payload,
+                  pivots=None, quote=quote, bars_15m=bars,
+                  sl=c["mid_mt5"] - 1.5 * c["atr"], tp=c["mid_mt5"] + 1.5 * c["atr"],
+                  sizing={"risk_usd": 15.0, "friction_usd": 0.1},
+                  regime="MEAN_REVERT", symbol="ETH")
+    ctx, _ = dg_context.build_dg_context(entry=c["mid_mt5"], **common)
+    assert ctx["wall"] is None, "Drift of 2.0 USD exceeds 0.25 * ATR (1.0136 USD) so circuit breaker must suppress wall"
+
+
+def test_option_a_prime_tick_quantization_guard_protects_micro_atr():
+    """Tick Quantization Guard: On micro-ATR assets (e.g. TRX), 0.25 * ATR is smaller than 2 ticks.
+    A single-tick flutter must not trip the circuit breaker."""
+    day_start = 1_791_648_000
+    atr = 0.0002
+    tick = 0.0001
+    # 0.25 * atr = 0.00005, which is only 0.5 ticks.
+    # Drift = 0.0001 (1 tick). Without the 2 * tick floor, it would trip (0.0001 > 0.00005).
+    # With max(0.25 * atr, 2.0 * tick) = 0.0002, 0.0001 passes safely!
+    mid_mt5 = 0.1500
+    mid_bn = 0.1502
+    median_basis = mid_mt5 - mid_bn  # -0.0002
+    # Live broker quote flutters by 1 tick (0.0001)
+    quote = {"bid": mid_mt5 + 0.0001 - 0.00005, "ask": mid_mt5 + 0.0001 + 0.00005,
+             "tick_size": tick, "point": tick,
+             "time_msc": (day_start + 40 * 900 + 9) * 1000}
+    bars = []
+    for i in range(40):
+        ts = day_start + i * 900
+        bars.append({"open": mid_mt5, "high": mid_mt5 + 0.0001, "low": mid_mt5 - 0.0001, "close": mid_mt5,
+                     "time": ts, "close_ts": ts + 900, "volume": 1000.0})
+    wall = {"address": "0xfeedbeef", "side": "BUY", "price": 0.15015,
+            "notional_usd": 200_000.0, "persist_s": 600.0,
+            "presence_frac": 1.0, "wall_class": "GENUINE",
+            "gate_g7_eligible": True}
+    payload = {"orderbook_live_depth": {
+        "whale_walls_l3": [wall], "l2_wall_levels": [],
+        "binance_mid": mid_bn,
+        "basis_median": median_basis
+    }}
+    common = dict(features={"direction": "LONG", "atr": atr}, payload=payload,
+                  pivots=None, quote=quote, bars_15m=bars,
+                  sl=mid_mt5 - 1.5 * atr, tp=mid_mt5 + 1.5 * atr,
+                  sizing={"risk_usd": 15.0, "friction_usd": 0.01},
+                  regime="MEAN_REVERT", symbol="TRX")
+    ctx, _ = dg_context.build_dg_context(entry=mid_mt5, **common)
+    assert ctx["wall"] is not None
+    assert ctx["wall"]["venue_basis_drift_ok"] is True
+
+
+def test_option_a_prime_cold_start_fallback_when_basis_median_missing():
+    """Cold-start fallback: When basis_median is omitted, b_hat defaults to b_now (drift = 0.0),
+    safely translating the wall."""
+    c = _ETH_0708
+    day_start = 1_791_648_000
+    quote = {"bid": c["mid_mt5"] - 0.6, "ask": c["mid_mt5"] + 0.6, "tick_size": 0.01,
+             "point": 0.01, "time_msc": (day_start + 40 * 900 + 9) * 1000}
+    bars = []
+    for i in range(40):
+        ts = day_start + i * 900
+        px = c["mid_mt5"] + (i % 5) * 0.4 - 0.8
+        bars.append({"open": px - 0.3, "high": px + 0.7, "low": px - 0.7, "close": px,
+                     "time": ts, "close_ts": ts + 900, "volume": 100.0 + i})
+    wall = {"address": "0xc2e859a2f4", "side": "BUY", "price": c["wall_price"],
+            "notional_usd": c["wall_usd"], "persist_s": c["persist_s"],
+            "presence_frac": c["presence_frac"], "wall_class": "GENUINE",
+            "gate_g7_eligible": True}
+    # Notice: basis_median is NOT provided here (cold start)
+    payload = {"orderbook_live_depth": {
+        "whale_walls_l3": [wall], "l2_wall_levels": [],
+        "binance_mid": c["mid_binance"]
+    }}
+    common = dict(features={"direction": "LONG", "atr": c["atr"]}, payload=payload,
+                  pivots=None, quote=quote, bars_15m=bars,
+                  sl=c["mid_mt5"] - 1.5 * c["atr"], tp=c["mid_mt5"] + 1.5 * c["atr"],
+                  sizing={"risk_usd": 15.0, "friction_usd": 0.1},
+                  regime="MEAN_REVERT", symbol="ETH")
+    ctx, _ = dg_context.build_dg_context(entry=c["mid_mt5"], **common)
+    assert ctx["wall"] is not None
+    assert ctx["wall"]["venue_basis_drift_ok"] is True
+    assert ctx["wall"]["dist_from_entry_atr"] == pytest.approx(0.1024, abs=1e-3)
+
