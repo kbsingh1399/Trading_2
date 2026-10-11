@@ -366,7 +366,8 @@ def audit_venue_mid_independence(
     out: Dict[str, Any] = {
         "observations": 0, "inside_spread": 0, "exact_zero": 0,
         "inside_spread_share": None, "exact_zero_share": None,
-        "suspect": None, "verdict": "insufficient_data",
+        "suspect": None, "near_threshold": None, "threshold_margin_assets": None,
+        "verdict": "insufficient_data",
     }
     if not isinstance(assets, Mapping) or not assets:
         return out
@@ -398,6 +399,13 @@ def audit_venue_mid_independence(
     out["exact_zero_share"] = exact / n
     suspect = out["inside_spread_share"] >= float(suspect_inside_share)
     out["suspect"] = suspect
+    # The measured share sits at 10-12 of 14 (0.714-0.857) across every cycle
+    # observed 2026-10-11 15:34-15:53, i.e. it straddles the 0.80 threshold. A
+    # binary verdict there flips cycle to cycle on one asset crossing the spread
+    # edge, which is not evidence of a state change. Say so explicitly.
+    out["near_threshold"] = abs(out["inside_spread_share"] - float(suspect_inside_share)) <= 0.10
+    out["threshold_margin_assets"] = (
+        (out["inside_spread_share"] - float(suspect_inside_share)) * n)
     out["verdict"] = "broker_derived_suspect" if suspect else "consistent_with_independent_venue"
     return out
 
@@ -488,6 +496,7 @@ def g7_readiness(
         "venue_verdict": venue.get("verdict"),
         "max_abs_skew_s": walls.get("max_abs_skew_s"),
         "inside_spread_share": venue.get("inside_spread_share"),
+        "venue_mid_near_threshold": venue.get("near_threshold"),
         "exact_zero_share": venue.get("exact_zero_share"),
         "clock_fix_alone_would_open_gate": clock_only,
     }

@@ -621,3 +621,38 @@ def test_cold_start_does_not_mask_a_pinned_venue():
     assert r["per_venue"]["HYPERLIQUID"]["pinned_share"] == 1.0
     assert r["breaker_inert"] is True
     assert r["verdict"] == "b_hat_pinned_to_b_now"
+
+
+def test_inside_share_straddling_the_threshold_is_flagged_not_asserted():
+    """10/14 = 0.714 and 12/14 = 0.857 straddle 0.80.
+
+    A binary verdict flips on one asset crossing the spread edge, which is not
+    evidence of a state change. The measurement must say it is knife-edge.
+    """
+    def mk(n_in, n=14):
+        a = {}
+        for i in range(n):
+            inside = i < n_in
+            a[f"S{i}"] = {"quotes": {"bid": 99.0, "ask": 101.0, "mid": 100.0},
+                          "orderbook_live_depth": {"binance_mid": 100.0 if inside else 300.0}}
+        return a
+    low = audit_venue_mid_independence(mk(10))
+    high = audit_venue_mid_independence(mk(12))
+    assert low["inside_spread_share"] < 0.80 and low["suspect"] is False
+    assert high["inside_spread_share"] >= 0.80 and high["suspect"] is True
+    # Both are within 0.10 of the threshold, so both are knife-edge.
+    assert low["near_threshold"] is True
+    assert high["near_threshold"] is True
+    # The verdict flip is 2 assets wide -- the margin must show that.
+    assert (high["threshold_margin_assets"] - low["threshold_margin_assets"]) == pytest.approx(2.0)
+
+
+def test_decisive_inside_share_is_not_flagged_as_knife_edge():
+    a = {}
+    for i in range(14):
+        a[f"S{i}"] = {"quotes": {"bid": 99.0, "ask": 101.0, "mid": 100.0},
+                      "orderbook_live_depth": {"binance_mid": 100.0}}
+    r = audit_venue_mid_independence(a)
+    assert r["inside_spread_share"] == 1.0
+    assert r["suspect"] is True
+    assert r["near_threshold"] is False
