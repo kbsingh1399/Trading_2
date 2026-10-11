@@ -53411,3 +53411,14 @@ Finally, unify live and replay ratchets before qualifying uplift; the current se
   * Merged Arena commit f73d32e9 and pushed 914361c7 to origin/main and origin/arena/537c1eb8-trading-2 in 100% bidirectional parity.
   * Test Suite Status: 335 / 335 tests passed (100% green).
   * Account State (#5064568): Balance 4,896.55 USD | Equity 4,896.55 USD (100% Cash, 0 open, 0 pending, capacity 0/4). Floor cushion: +121.55 USD above 4,775.00 USD hard floor (+101.55 USD above 4,795.00 USD buffer).
+
+### Turn [2026-10-11 07:38 UTC Operator Multi-Document Directive & Arena Prompt Dispatch]
+- **Operator Directives Implemented**:
+  * Directive 1: Ratified Option A (Basis-Adjusted with Dislocation Guard) as the mathematically sound standard for retail CFD crypto trading, soliciting Arena Council consensus.
+  * Directive 2: Enforced that ALL referenced documents (.agents/memory/session_chat_history.md, .agents/rules/ACTIVE_CONTEXT.md, docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md, docs/specs/ANTIGRAVITY_ARENA_THINKING_CHAIN_COUNCIL_PROTOCOL.md, Terminal/decision_gates_v3.py, docs/telemetry/live_snapshot_latest.json) MUST be read line by line on each prompt before reaching any conclusion, with a mandatory citation header.
+- **Codebase & Spec Updates (Commit d7fe26c6)**:
+  * Updated Terminal/dispatch_comprehensive_wake_up_prompt.py and Terminal/arena_bridge.py with the multi-document line-by-line reading mandate and Option A debate.
+  * Updated docs/prompts/ARENA_MULTI_PERSONA_COUNCIL_PROMPT_V1.md and .agents/rules/ACTIVE_CONTEXT.md.
+  * Dispatched updated unified prompt into Arena.ai (Stop button active, Arena currently deliberating).
+  * Bidirectional Git Parity: Both origin/main and origin/arena/537c1eb8-trading-2 synchronized at d7fe26c6.
+  * Test Suite: 335 / 335 passed (100% green).
