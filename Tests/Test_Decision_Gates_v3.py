@@ -401,3 +401,109 @@ def test_unobservable_resting_risk_or_volatility_cancels(ctx, key):
     (order if ctx == "order" else market)[key] = float("nan")
     verdict, reasons = resting_order_invalidation(order, market)
     assert verdict == "CANCEL" and reasons
+
+
+# ---------------------------------------------------------------------------
+# Session-maturity guards. Regression coverage for the live 2026-10-11 02:21 UTC
+# state: BTC classified MEAN_REVERT by classify_regime() while its session VWAP
+# was only 9 bars old. Until this point NO test pinned A1_session_sigma_*, even
+# though those two lines are the only thing standing between a MEAN_REVERT
+# regime with |Z| >= 2.0 and a live counter-trend ticket.
+# ---------------------------------------------------------------------------
+
+def _m1_ctx(**over):
+    """Model 1 ctx matching the BTC 02:21:41 UTC telemetry, SHORT side."""
+    ctx = {
+        "direction": "SHORT",
+        "regime": "MEAN_REVERT",
+        "entry": 82_969.0,
+        "sl": 83_147.7,          # 1.5 ATR above
+        "tp": 82_611.6,
+        "atr": 119.11,
+        "risk_usd": 15.0,
+        "round_trip_cost_usd": 16.0,
+        "reclaim_close": True,
+        "vwap_z": 2.47,
+        "sweep_z": 2.60,
+        "vwap_z_change_4bars": 0.5,
+        "session_sigma": 28.94,   # 0.243 ATR -- far below the 0.8 ATR floor
+        "session_bars": 9,        # below the 16-bar maturity floor
+        "vwap_slope_sigma_per_bar": 0.01,
+        "vol_ratio_4_96": 1.2,
+        "vwap": 82_897.66,
+        "sweep_extreme": 83_050.0,
+        "p_win_lower_bound": 0.42,
+    }
+    ctx.update(over)
+    return ctx
+
+
+def test_immature_session_short_circuits_before_a1_is_reached():
+    """The live shape: VWAP inputs unresolved, so admission fails closed first.
+
+    build_dg_context returns session_vwap_history_unavailable at session_bars=9,
+    leaving every VWAP-derived field None. The checklist must stop there and
+    never evaluate A1 -- an empty A1 failure list here would mean A1 PASSED,
+    which is the misreading this test exists to prevent.
+    """
+    ctx = _m1_ctx(vwap_z=None, sweep_z=None, vwap_z_change_4bars=None,
+                  session_sigma=None, vwap_slope_sigma_per_bar=None, vwap=None)
+    v = model1_checklist(ctx)
+    assert not v.passed
+    assert "data_invalid:session_sigma" in v.failures
+    assert not any(f.startswith("A1_") for f in v.failures), \
+        "A1 must not be evaluated once admission has failed closed"
+
+
+def test_maturity_guards_fire_even_with_fully_valid_vwap_inputs():
+    """Both A1 maturity guards are independent of admission validation.
+
+    Supplying every field admission asks for must still produce exactly the two
+    session-maturity rejections -- proving the block is the maturity floor and
+    not a data-quality artefact.
+    """
+    v = model1_checklist(_m1_ctx())
+    assert not v.passed
+    assert "A1_session_sigma_immature_lt16bars" in v.failures
+    assert "A1_session_sigma_lt_0p8atr" in v.failures
+    assert not any(f.startswith("data_invalid") for f in v.failures), \
+        "admission should be clean; only maturity should reject"
+
+
+def test_mean_revert_regime_limb_is_satisfied_when_regime_flips():
+    """MEAN_REVERT satisfies A1's regime limb -- the block is maturity, not G-4.
+
+    On 2026-10-11 02:00-02:25 UTC classify_regime() returned MEAN_REVERT for BTC
+    for 26 consecutive snapshots while |Z| rose past 2.0. Model 1 is admissible
+    only in MEAN_REVERT, so the regime gate opened while G-3 stayed shut.
+    """
+    v = model1_checklist(_m1_ctx())
+    assert "A1_regime_not_mean_revert" not in v.failures
+    assert "A1_z_below_2" not in v.failures          # SHORT at Z +2.60 clears 2.0
+    assert "A1_z_beyond_3p5_cascade_zone" not in v.failures
+    # Flip the regime and the same context must now be rejected on regime too.
+    v2 = model1_checklist(_m1_ctx(regime="TREND_UP"))
+    assert "A1_regime_not_mean_revert" in v2.failures
+
+
+def test_z_above_3p5_is_rejected_even_in_mean_revert():
+    """Z climbed to 3.23 by 02:25 UTC; the cascade ceiling must hold.
+
+    Beyond 3.5 SD the move is a liquidation cascade, not exhaustion, so Model 1
+    must stand down even though every maturity limb would otherwise pass.
+    """
+    v = model1_checklist(_m1_ctx(session_bars=20, session_sigma=120.0,
+                                vwap_z=3.80, sweep_z=3.80))
+    assert "A1_z_beyond_3p5_cascade_zone" in v.failures
+    assert "A1_session_sigma_immature_lt16bars" not in v.failures
+    assert "A1_session_sigma_lt_0p8atr" not in v.failures
+
+
+def test_session_sigma_floor_is_scaled_to_atr_not_absolute():
+    """The 0.8 ATR floor is relative, so it must move with volatility."""
+    # Same absolute sigma, double the ATR -> now insufficient.
+    assert "A1_session_sigma_lt_0p8atr" in model1_checklist(
+        _m1_ctx(session_bars=20, atr=119.11, session_sigma=80.0)).failures
+    # Comfortably above 0.8 ATR -> the guard clears.
+    assert "A1_session_sigma_lt_0p8atr" not in model1_checklist(
+        _m1_ctx(session_bars=20, atr=119.11, session_sigma=100.0)).failures
