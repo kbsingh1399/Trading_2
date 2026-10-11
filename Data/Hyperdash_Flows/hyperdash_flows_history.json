@@ -19986,5 +19986,24 @@
     "time_label": "09:15",
     "date_heading": "October 11",
     "source": "HYPERLIQUID_L1_NATIVE_API"
+  },
+  {
+    "type": "WHALE_TRADE",
+    "coin": "BTC",
+    "side": "SELL",
+    "market_impact": "SELL_PRESSURE",
+    "notional_usd": 68611.12,
+    "distance_pct": null,
+    "duration_hours": null,
+    "rate_usd_per_min": null,
+    "price": 83000.0,
+    "wallet_address": "0xfd66e330954b1d33772a78a70874cc2600754eec",
+    "asset_slug": "BTC",
+    "raw_text": "#BTC Whale SELL: 68.61K USD at 83000.0000 USD [API]",
+    "msg_id": "HL_TRADE_BTC_271814627302091",
+    "timestamp_epoch": 1791710244,
+    "time_label": "09:17",
+    "date_heading": "October 11",
+    "source": "HYPERLIQUID_L1_NATIVE_API"
   }
 ]
