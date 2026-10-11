@@ -415,47 +415,167 @@ def g7_readiness(
 ) -> Dict[str, Any]:
     """One call answering: can Gate G-7 admit a wall right now, and if not, why?
 
-    G-7 has two independent preconditions and they fail in opposite directions,
-    which is what makes them dangerous together:
+    G-7 has three preconditions and they bind in a specific order:
+
+    1. the venue a wall sits on must have a published mid
+       (``audit_wall_venue_coverage``) -- this one binds first, and when it fails
+       nothing downstream is ever reached;
+    2. the wall stamp must be contemporaneous with the broker quote
+       (``audit_wall_timestamps``);
+    3. the venue mid it is differenced against must be an independent
+       observation (``audit_venue_mid_independence``).
+
+    Measured 2026-10-11 gen 46055c42: all 734 G-7-eligible GENUINE walls resolve
+    to HYPERLIQUID while only BINANCE mids are published, so (1) fails for 24 of
+    24 assets and ``select_backing_wall`` returns ``venue_basis_mid_unavailable``
+    (92 rejections on BTC alone). (2) and (3) also fail, but they are downstream
+    of a refusal that happens first.
 
     * the wall stamp must be contemporaneous with the broker quote
       (``audit_wall_timestamps``), and
     * the venue mid it is differenced against must be an independent
       observation (``audit_venue_mid_independence``).
 
-    Measured 2026-10-11: the clock skew still fails at -35.36 s on BTC, while
-    the venue mid has become broker-derived (13 of 14 inside the broker spread).
-    The basis is therefore ~0 and *stable*, so ``translate_wall_distance`` would
-    ADMIT a BTC wall at d_adj = +0.1510 -- the skew is the only thing still
-    refusing it. Repair the clock alone and G-7 opens on a basis that was never
-    measured across two venues. This function exists so that ordering is visible
-    before anyone makes that repair.
     """
     walls = audit_wall_timestamps(
         assets, broker_ts_by_symbol=broker_ts_by_symbol, max_skew_s=max_skew_s
     )
     venue = audit_venue_mid_independence(assets)
+    cover = audit_wall_venue_coverage(assets)
+
+    # Venue coverage is checked FIRST because it binds before the others. When a
+    # wall's venue has no published mid, select_backing_wall refuses with
+    # venue_basis_mid_unavailable and never reaches a clock or drift check, so
+    # repairing the clock admits nothing.
     blockers: List[str] = []
+    if cover.get("verdict") == "wall_venue_mid_missing":
+        blockers.append("venue_coverage:wall_venue_mid_missing")
     if walls.get("verdict") not in ("contemporaneous", "no_walls_published"):
         blockers.append(f"wall_timestamps:{walls.get('verdict')}")
     if venue.get("suspect") is True:
         blockers.append("venue_mid:broker_derived_suspect")
     ready = not blockers
+
+    # A clock repair opens the gate only if it is the sole remaining blocker and
+    # the venue mid it would differ against is both present and independent.
+    clock_only = (
+        blockers == ["wall_timestamps:clock_skew_exceeds_allowance"]
+        and cover.get("coverage_complete") is True
+        and venue.get("suspect") is not True
+    )
     out: Dict[str, Any] = {
         "ready": ready,
         "blockers": blockers,
+        # The blocker that actually refuses the wall in production, in bind order.
+        "binding_blocker": blockers[0] if blockers else None,
+        "venue_coverage_verdict": cover.get("verdict"),
+        "g7_walls_total": cover.get("g7_walls_total"),
+        "wall_venues_total": cover.get("wall_venues_total"),
+        "covered_assets": cover.get("covered_assets"),
         "wall_verdict": walls.get("verdict"),
         "venue_verdict": venue.get("verdict"),
         "max_abs_skew_s": walls.get("max_abs_skew_s"),
         "inside_spread_share": venue.get("inside_spread_share"),
         "exact_zero_share": venue.get("exact_zero_share"),
-        # True when fixing the clock alone would open the gate on a derived basis.
-        "clock_fix_alone_would_open_gate": (
-            venue.get("suspect") is True
-            and walls.get("verdict") == "clock_skew_exceeds_allowance"
-        ),
+        "clock_fix_alone_would_open_gate": clock_only,
     }
     return out
 
 
 __all__.append("g7_readiness")
+
+# ==================================== 6. wall venue coverage (the true G-7 blocker)
+
+def audit_wall_venue_coverage(
+    assets: Mapping[str, Any],
+    *,
+    ob_key: str = "orderbook_live_depth",
+    default_venue: str = "BINANCE",
+) -> Dict[str, Any]:
+    """Do the assets publish a mid for the venue their walls actually sit on?
+
+    ``select_backing_wall`` resolves each wall's venue, then looks that venue up
+    in ``venue_quotes``. When the lookup misses it calls ``basis_drift_decision``
+    with ``venue_mid=None``, which returns ``venue_basis_mid_unavailable`` --
+    and because some *other* venue has a mid, ``any_venue_mids`` is True, so the
+    ``native_basis`` escape hatch is not taken either. The wall is refused before
+    any clock or drift check runs.
+
+    Measured 2026-10-11 gen 46055c42: all 734 G-7-eligible GENUINE walls in the
+    universe resolve to HYPERLIQUID, while only BINANCE mids are published, and
+    ``venue_basis`` is absent everywhere. Coverage is 0 of 24.
+    """
+    per_asset: Dict[str, Any] = {}
+    total_walls = 0
+    covered_assets = 0
+    examined = 0
+    venue_counter: Dict[str, int] = {}
+    for symbol, asset in (assets or {}).items():
+        if not isinstance(asset, dict):
+            continue
+        examined += 1
+        ob = asset.get(ob_key)
+        ob = ob if isinstance(ob, dict) else {}
+        walls = [
+            w for w in (ob.get("whale_walls_l3") or [])
+            if isinstance(w, dict)
+            and w.get("gate_g7_eligible") is True
+            and w.get("wall_class") == "GENUINE"
+        ]
+        venues: Dict[str, int] = {}
+        for w in walls:
+            raw = str(w.get("venue") or w.get("source") or "").upper()
+            if "HYPER" in raw:
+                venue = "HYPERLIQUID"
+            elif "BINANCE" in raw:
+                venue = "BINANCE"
+            elif "MT5" in raw or "NATIVE" in raw:
+                venue = "NATIVE"
+            else:
+                venue = str(default_venue).upper()
+            venues[venue] = venues.get(venue, 0) + 1
+            venue_counter[venue] = venue_counter.get(venue, 0) + 1
+        total_walls += len(walls)
+        mids = {
+            v for v, q in _venue_mids(ob, asset).items()
+            if isinstance(q, dict) and isinstance(q.get("mid"), (int, float))
+            and not isinstance(q.get("mid"), bool)
+        }
+        uncovered = sorted(set(venues) - mids)
+        covered = bool(walls) and not uncovered
+        covered_assets += covered
+        per_asset[symbol] = {
+            "g7_walls": len(walls),
+            "wall_venues": venues,
+            "venues_with_mid": sorted(mids),
+            "uncovered_venues": uncovered,
+            "covered": covered,
+        }
+    return {
+        "assets_examined": examined,
+        "g7_walls_total": total_walls,
+        "wall_venues_total": venue_counter,
+        "covered_assets": covered_assets,
+        "coverage_complete": covered_assets == examined and examined > 0,
+        "verdict": (
+            "no_g7_walls_published" if total_walls == 0
+            else "venue_mid_covered" if covered_assets == examined
+            else "wall_venue_mid_missing"
+        ),
+        "per_asset": per_asset,
+    }
+
+
+def _venue_mids(ob: Mapping[str, Any], asset: Mapping[str, Any]) -> Dict[str, Any]:
+    out: Dict[str, Any] = {}
+    vb = ob.get("venue_basis")
+    if isinstance(vb, dict):
+        for venue, q in vb.items():
+            if isinstance(q, dict):
+                out[str(venue).upper()] = {"mid": q.get("mid")}
+    if "BINANCE" not in out and ob.get("binance_mid") is not None:
+        out["BINANCE"] = {"mid": ob.get("binance_mid")}
+    return out
+
+
+__all__.append("audit_wall_venue_coverage")

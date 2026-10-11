@@ -17,6 +17,7 @@ from Terminal.gate_diagnostics import (
     audit_wall_timestamps,
     friction_verdict,
     g7_readiness,
+    audit_wall_venue_coverage,
     regime_proximity,
     spread_friction_r,
 )
@@ -306,30 +307,37 @@ def test_independence_audit_fails_closed(bad):
 
 # ==================================================== composite G-7 readiness
 
-def _readiness_assets(skew_ok=True, venue_independent=True, n=4):
-    """4 assets; toggle the two independent G-7 preconditions separately."""
+def _readiness_assets(skew_ok=True, venue_independent=True, wall_venue="BINANCE",
+                      drop_venue_mid=False, n=4):
+    """4 assets; toggle each independent G-7 precondition separately.
+
+    Timestamps are distinct per asset in both the passing and failing case: the
+    real failure signature is per-asset stamps that all lag, not one shared stamp.
+    """
     base = 1000.0
     out = {}
     for i in range(n):
-        # Distinct per asset in both cases: the real failure signature is
-        # per-asset stamps that all lag, not one shared stamp.
         wts = base + i if skew_ok else base + i - 30.0
         vm = 200.0 if venue_independent else 100.0     # 100.0 == broker mid
-        out[f"S{i}"] = {
-            "quotes": {"bid": 99.0, "ask": 101.0, "mid": 100.0},
-            "orderbook_live_depth": {
-                "wall_sample_ts_epoch": wts, "binance_mid_ts": wts,
-                "binance_mid": vm, "whale_walls_l3": [{"price": 1.0}]},
+        ob = {
+            "wall_sample_ts_epoch": wts, "binance_mid_ts": wts,
+            "whale_walls_l3": [{"price": 1.0, "source": wall_venue,
+                                "gate_g7_eligible": True, "wall_class": "GENUINE"}],
         }
+        if not drop_venue_mid:
+            ob["binance_mid"] = vm
+        out[f"S{i}"] = {"quotes": {"bid": 99.0, "ask": 101.0, "mid": 100.0},
+                        "orderbook_live_depth": ob}
     broker = {f"S{i}": base + i for i in range(n)}
     return out, broker
 
 
-def test_both_preconditions_met_reports_ready():
+def test_all_three_preconditions_met_reports_ready():
     a, b = _readiness_assets(skew_ok=True, venue_independent=True)
     r = g7_readiness(a, broker_ts_by_symbol=b, max_skew_s=5.0)
     assert r["ready"] is True
     assert r["blockers"] == []
+    assert r["binding_blocker"] is None
     assert r["clock_fix_alone_would_open_gate"] is False
 
 
@@ -337,8 +345,9 @@ def test_clock_skew_alone_blocks():
     a, b = _readiness_assets(skew_ok=False, venue_independent=True)
     r = g7_readiness(a, broker_ts_by_symbol=b, max_skew_s=5.0)
     assert r["ready"] is False
-    assert any(x.startswith("wall_timestamps:") for x in r["blockers"])
-    assert r["clock_fix_alone_would_open_gate"] is False
+    assert r["binding_blocker"] == "wall_timestamps:clock_skew_exceeds_allowance"
+    # Only blocker left, coverage complete, mid independent -> a repair would open it.
+    assert r["clock_fix_alone_would_open_gate"] is True
 
 
 def test_broker_derived_venue_mid_blocks_independently():
@@ -346,19 +355,87 @@ def test_broker_derived_venue_mid_blocks_independently():
     r = g7_readiness(a, broker_ts_by_symbol=b, max_skew_s=5.0)
     assert r["ready"] is False
     assert "venue_mid:broker_derived_suspect" in r["blockers"]
+    assert r["clock_fix_alone_would_open_gate"] is False
 
 
-def test_flags_the_dangerous_interaction():
-    """Skew failing WHILE the venue mid is derived == a clock fix opens the gate."""
+def test_missing_venue_mid_binds_first():
+    """A wall on a venue with no published mid binds before clock and drift."""
+    a, b = _readiness_assets(skew_ok=True, venue_independent=True,
+                             wall_venue="HYPERLIQUID")
+    r = g7_readiness(a, broker_ts_by_symbol=b, max_skew_s=5.0)
+    assert r["ready"] is False
+    assert r["binding_blocker"] == "venue_coverage:wall_venue_mid_missing"
+    assert r["blockers"][0].startswith("venue_coverage:")
+    assert r["clock_fix_alone_would_open_gate"] is False
+
+
+def test_clock_and_derived_mid_together_do_not_open_on_clock_fix():
+    """Two blockers means a clock repair still leaves the gate shut."""
     a, b = _readiness_assets(skew_ok=False, venue_independent=False)
     r = g7_readiness(a, broker_ts_by_symbol=b, max_skew_s=5.0)
     assert r["ready"] is False
     assert len(r["blockers"]) == 2
-    assert r["clock_fix_alone_would_open_gate"] is True
+    assert r["clock_fix_alone_would_open_gate"] is False
+
+
+def test_dropped_venue_mid_is_a_coverage_gap():
+    a, b = _readiness_assets(drop_venue_mid=True)
+    r = g7_readiness(a, broker_ts_by_symbol=b, max_skew_s=5.0)
+    assert r["venue_coverage_verdict"] == "wall_venue_mid_missing"
+    assert r["ready"] is False
+
+
+def test_venue_coverage_counts_walls_and_venues():
+    a, _ = _readiness_assets(wall_venue="HYPERLIQUID")
+    c = audit_wall_venue_coverage(a)
+    assert c["g7_walls_total"] == 4
+    assert c["wall_venues_total"] == {"HYPERLIQUID": 4}
+    assert c["covered_assets"] == 0
+    assert c["verdict"] == "wall_venue_mid_missing"
+    assert c["per_asset"]["S0"]["uncovered_venues"] == ["HYPERLIQUID"]
+
+
+def test_venue_coverage_complete_when_venue_matches():
+    a, _ = _readiness_assets(wall_venue="BINANCE")
+    c = audit_wall_venue_coverage(a)
+    assert c["coverage_complete"] is True
+    assert c["verdict"] == "venue_mid_covered"
+    assert c["per_asset"]["S0"]["venues_with_mid"] == ["BINANCE"]
+
+
+def test_venue_coverage_reads_the_venue_basis_block():
+    a, _ = _readiness_assets(wall_venue="HYPERLIQUID")
+    a["S0"]["orderbook_live_depth"]["venue_basis"] = {
+        "HYPERLIQUID": {"mid": 100.5, "mid_ts": 1.0, "basis_median": 0.0}}
+    c = audit_wall_venue_coverage(a)
+    assert c["per_asset"]["S0"]["covered"] is True
+    assert c["per_asset"]["S1"]["covered"] is False
+
+
+def test_venue_coverage_ignores_non_g7_walls():
+    a, _ = _readiness_assets()
+    a["S0"]["orderbook_live_depth"]["whale_walls_l3"] = [
+        {"price": 1.0, "source": "HYPERLIQUID", "gate_g7_eligible": False},
+        {"price": 2.0, "source": "HYPERLIQUID", "wall_class": "MIRRORED_LEG"},
+    ]
+    c = audit_wall_venue_coverage(a)
+    assert c["per_asset"]["S0"]["g7_walls"] == 0
 
 
 @pytest.mark.parametrize("bad", [None, {}, []])
-def test_readiness_fails_closed(bad):
+def test_coverage_and_readiness_fail_closed(bad):
+    c = audit_wall_venue_coverage(bad)
+    assert c["coverage_complete"] is False
+    assert c["verdict"] == "no_g7_walls_published"
     r = g7_readiness(bad)
     assert r["ready"] is False
     assert r["clock_fix_alone_would_open_gate"] is False
+
+
+@pytest.mark.parametrize("n", [0, 1, 5, 23])
+def test_coverage_never_crashes_on_odd_asset_counts(n):
+    a, _ = _readiness_assets(n=max(n, 1))
+    if n == 0:
+        a = {}
+    c = audit_wall_venue_coverage(a)
+    assert c["assets_examined"] == n
