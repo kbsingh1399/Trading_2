@@ -53567,3 +53567,21 @@ Finally, unify live and replay ratchets before qualifying uplift; the current se
    - Account in 100% Cash reserves at 4,896.55 USD, cushion +121.55 USD above 4,775.00 USD hard floor. 0 positions, 0 pending orders.
 3. **Cycle 13 Scheduled**:
    - Scheduling next autonomous cycle for Minute :20 (19:20 UTC, ~14 minutes away).
+
+
+---
+
+### Turn 147: Decision Gate Pipeline Forensic Audit & Cycle 13 Autonomous Wakeup | 2026-10-11 19:25 UTC
+- **User Request**: Comprehensive review of decision gate pipeline and recent chat concerns regarding why zero trade signals have fired across 12 cycles despite open crypto markets; evaluation of whether gates are overly strict; validation of user heuristic (price above VWAP = long bias, and vice versa); and instructions to improve pipeline and branches for actionable trading signals.
+- **Empirical Diagnostics**:
+  1. Ran `scan_council.py` on live telemetry generation `ad338669a65f4e688dafed73b5e4a11d` (as of 19:20 UTC).
+  2. Identified primary deadlock: G-4 `classify_regime` returned `UNDEFINED` across all 24 assets.
+  3. Extracted live BTC multi-timeframe stats: 15m ER=0.161, VR_Z=+0.776, t=+3.77; 1H ER=0.294, VR_Z=-2.602, t=+5.33; 4H ER=0.182, VR_Z=+0.489, t=-1.25.
+  4. Traced why `classify_regime` fails: 4H Newey-West t-stat is -1.25 (counter-trend due to multi-day consolidation) and 1H ER=0.294 fails the 0.35 threshold. Model 2 (trend pullbacks) is immediately locked out with `REGIME_UNDEFINED` without evaluating the checklist. Model 1 is locked out because BTC |Z| = +0.89 (< 2.0 SD).
+  5. Traced secondary deadlocks: G-6 friction gate fails all 13 altcoins (spread 9-242 bps vs 0.15R cap; only BTC passes at 0.10R); G-7 0.25 ATR whale wall band is razor-thin (50 USD on BTC); TP anchor 2.25-4.0 ATR window is perishable.
+  6. Validated user heuristic: telemetry `causal_indicators.trend_regime` ALREADY marks BTC and 12 altcoins as `"BULLISH"` using Price > 200 EMA and positive slope. Proposed dual-path regime classifier to unlock Model 2.
+- **Autonomous Operations**:
+  1. Dispatched Cycle 13 Operating Briefing to Arena.ai in Chrome DevTools via direct CDP WebSocket (`ws://127.0.0.1:9222/devtools/page/C45393E32E0052FF390B89049CBA76B9`).
+  2. Prompt verified successfully submitted (box cleared, prompt set, submitted).
+  3. Armed 9-minute sleep timer (`task-43558`) for 19:29 UTC to harvest Arena deliberation.
+  4. Verified all 244 unit tests passing green.
