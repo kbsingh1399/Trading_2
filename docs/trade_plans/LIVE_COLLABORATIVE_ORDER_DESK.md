@@ -9397,3 +9397,27 @@ Arena completed the unified 4-step council audit across all 4 Mandates:
   * Floor Cushion: **+121.55 USD** above 4,775.00 USD hard floor (**+101.55 USD** above 4,795.00 USD buffer).
   * Open Positions: **0** | Pending Orders: **0**.
   * Status: **STAND ASIDE ratified**. Capital fully preserved.
+
+
+---
+
+## SECTION 135: UNIFIED ARENA.AI COUNCIL AUDIT & MID-INDEPENDENCE DIAGNOSTIC MERGE (2026-10-11 13:20 UTC)
+### 1. Ingestion & Ground Truth Verification
+- **Cycle Timestamp**: 2026-10-11 13:20:10 UTC (Generation `f0e9f386` / `3d9d76ed`).
+- **Citation Block**: All 7 repository sources verified by Arena line-by-line (session chat history 53,532 lines, ACTIVE_CONTEXT.md, LIVE_COLLABORATIVE_ORDER_DESK.md, protocol spec, round 2 audit, decision gates v3, live snapshot).
+- **Account State (#5064568)**: Balance 4,896.55 USD | Equity 4,896.55 USD (100% Cash, 0 open, 0 pending, capacity 0/4).
+- **Capital Floor Defense**: Floor 4,775.00 USD | Cushion: **+121.55 USD** (+101.55 USD above 4,795.00 USD operating buffer).
+
+### 2. Forensic Code Fix Shipped by Arena (`5d80ce0e`) & Merged to `main`
+- **Diagnostic Upgrade**: Arena added `audit_venue_mid_independence` in `Terminal/gate_diagnostics.py` (+82 lines) and 10 tests in `Tests/Test_Gate_Diagnostics.py` (+52 lines).
+- **Purpose**: Detects when published `binance_mid` tracks broker quote mid too closely (inside broker spread >= 80% of cycles), protecting against uncalibrated zero basis.
+- **Merge & Test Verification**: Merged cleanly into `main` and pushed to `arena/537c1eb8-trading-2` (Commit: `4c481add`). Test suite: **59 passed in 0.19s** (100% green).
+
+### 3. Council Trading Verdict & Asset Screen
+- **Council Disposition**: **STAND ASIDE — 0 of 24 admissible, 0 of 48 evaluations passed**.
+  * 10 CFD Assets: Closed for the weekend (`regime_history_stale_or_invalid`).
+  * 14 Crypto Perpetuals: `UNDEFINED` regime across all 14. 1H is drifting up ($t = +3.6$ to $+5.4$), while 4H is drifting down ($t = -1.9$ to $-4.2$). Multi-timeframe conflict; 0 of 3 trend votes on 1H; Model 1 variance-ratio leg misses by 0.2379 to 3.1447; Net EV is negative across all assets at calibrated lower bound (BTC EV_lower = -0.1614R).
+- **Actions Taken**:
+  * Active positions: 0 (STANDBY).
+  * Pending limit orders: 0 (STANDBY).
+  * Staged orders: 0. Capital 100% protected in cash reserves.
