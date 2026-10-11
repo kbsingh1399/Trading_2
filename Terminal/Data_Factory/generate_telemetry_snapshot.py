@@ -44,12 +44,15 @@ WHALE_STATE_PATH = ROOT / "docs" / "telemetry" / ".whale_wall_state.json"
 
 sys.path.insert(0, str(ROOT / "Terminal"))
 from microstructure_state import (  # noqa: E402
+    META_KEY,
     WALL_GENUINE,
     carry_forward_unseen,
     classify_wall,
     estimate_cycle_interval,
     prune_wall_state,
+    record_basis_observation,
     record_cycle_interval,
+    rolling_basis_median,
     wall_persistence_record,
 )
 ERROR_MARKER_PATH = ROOT / "docs" / "telemetry" / ".generator_error.json"
@@ -963,6 +966,12 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
     # wrong denominator would silently skew every wall's persistence score.
     _cycle_interval_s = estimate_cycle_interval(prev_whale_state)
     record_cycle_interval(prev_whale_state, new_whale_state, now_ts)
+    # Cross-venue basis history for Option A'. Carried in META alongside the
+    # cycle-timing series so prune_wall_state preserves it and no extra state
+    # file is needed. `new_whale_state[META_KEY]` was just created above by
+    # record_cycle_interval; we mutate that same dict as assets are processed.
+    _prev_basis_meta = dict((prev_whale_state or {}).get(META_KEY) or {})
+    _basis_meta = dict(new_whale_state.get(META_KEY) or {})
 
     # 4. Process all 24 Assets
 
@@ -1369,11 +1378,27 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
             total_ask_depth = cum_ask_usd
             book_imbalance = round((total_bid_depth - total_ask_depth) / max(total_bid_depth + total_ask_depth, 1.0), 4)
             skew_ratio = round(total_bid_depth / max(total_ask_depth, 1.0), 4)
+
+            # Option A' cross-venue basis median. dg_context translates a Binance
+            # wall price into MT5 space with w_effective = wall_price + b_hat and
+            # trips its drift breaker on |b_now - b_hat|. Without a published
+            # b_hat the gate falls back to b_hat = b_now, drift is identically
+            # 0.0, and the breaker can never trip -- so the translation would run
+            # unguarded off a single stale book print. The median is read BEFORE
+            # this cycle's print is appended, so the reading being tested stays
+            # independent of the anchor it is compared against.
+            basis_median = None
+            if quote_valid and bid_price > 0 and ask_price > 0 and binance_mid > 0:
+                b_now_obs = ((bid_price + ask_price) / 2.0) - binance_mid
+                basis_median = rolling_basis_median(_prev_basis_meta, asset, now_ts)
+                _prev_basis_meta = record_basis_observation(
+                    _prev_basis_meta, asset, now_ts, b_now_obs)
             orderbook_payload = {
                 "source": "REAL_BINANCE_FUTURES_L2_AND_HYPERDASH_L3",
                 "venue": "BINANCE_USDM_FUTURES_AND_HYPERLIQUID",
                 "aggregation": "BINANCE_AGGREGATED_L2_WITH_HYPERDASH_L3_WALLETS",
                 "binance_mid": round(binance_mid, 4),
+                "basis_median": (round(basis_median, 8) if basis_median is not None else None),
                 "top20_bid_depth_usd": round(total_bid_depth, 2),
                 "top20_ask_depth_usd": round(total_ask_depth, 2),
                 "book_imbalance": book_imbalance,
@@ -1631,6 +1656,13 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
     # Walls absent from this cycle's book must keep their record, or a gap can
     # never be measured and every intermittent wall resets to persist_s=0.
     carry_forward_unseen(prev_whale_state, new_whale_state)
+    # Fold this generation's basis prints into META so the next cycle's median is
+    # independent of the reading it anchors. Written after the asset loop and
+    # before prune_wall_state, which preserves META_KEY verbatim.
+    if _prev_basis_meta.get("basis_history"):
+        _meta_out = dict(new_whale_state.get(META_KEY) or {})
+        _meta_out["basis_history"] = _prev_basis_meta["basis_history"]
+        new_whale_state[META_KEY] = _meta_out
     save_whale_state(prune_wall_state(new_whale_state, now_ts), whale_state_path)
 
     # Assemble master document
