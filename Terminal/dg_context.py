@@ -447,9 +447,15 @@ def evaluate_candidate_dg_v3(
     if (bars_1h and bars_4h and len(bars_15m) >= 97
             and len(bars_1h) >= HTF_STRATEGY_MIN and len(bars_4h) >= HTF_STRATEGY_MIN):
         try:
-            as_of = float(quote["time_msc"])/1000
+            tick_msc = _quote_tick_msc(quote)
+            if tick_msc is None:
+                raise ValueError("quote tick time unavailable")
+            as_of = tick_msc / 1000.0
             for history, period in ((bars_15m, 900), (bars_1h, 3600), (bars_4h, 14400)):
-                stamps = [float(bar["time"]) for bar in history]
+                raw_stamps = [_bar_open_ts(bar) for bar in history]
+                if any(s is None for s in raw_stamps):
+                    raise ValueError("bar open timestamp unavailable")
+                stamps = [float(s) for s in raw_stamps]
                 if (not math.isfinite(as_of) or as_of <= 0
                         or any(not math.isfinite(stamp) or stamp <= 0 or stamp+period > as_of for stamp in stamps)
                         or any(right <= left for left, right in zip(stamps, stamps[1:]))):
@@ -464,7 +470,8 @@ def evaluate_candidate_dg_v3(
         c15 = [b["close"] for b in bars_15m]
         c1h = [b["close"] for b in bars_1h]
         c4h = [b["close"] for b in bars_4h]
-        last_close = float(bars_15m[-1]["time"]) + 900.0
+        last_b15_ts = _bar_open_ts(bars_15m[-1])
+        last_close = (float(last_b15_ts) + 900.0) if last_b15_ts is not None else 0.0
         # `as_of` above is the QUOTE timestamp and is correct for the causality
         # check, but wrong for staleness: a closed market's quote is frozen at
         # the same instant as its last bar, so their difference stays ~900s and

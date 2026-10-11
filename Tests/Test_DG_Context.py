@@ -264,3 +264,35 @@ def test_build_dg_context_accepts_a_published_telemetry_snapshot_shape():
     assert "session_vwap_history_unavailable" not in missing
     assert ctx["vwap"] > 0 and ctx["session_sigma"] > 0
     assert ctx["session_bars"] == n
+
+
+def test_evaluate_candidate_dg_v3_accepts_telemetry_snapshot_keys():
+    """evaluate_candidate_dg_v3 must accept broker_tick_time_utc_msc and ts keys."""
+    from Terminal.dg_context import evaluate_candidate_dg_v3
+    from Terminal.policy import HTF_STRATEGY_MIN
+    n = 100
+    day_start = 1791568000
+    bars_15m = _alias_bars(n=n, day_start=day_start, key="ts")
+    bars_1h = _alias_bars(n=HTF_STRATEGY_MIN + 5, day_start=day_start, key="ts")
+    bars_4h = _alias_bars(n=HTF_STRATEGY_MIN + 5, day_start=day_start, key="ts")
+    observed = day_start + n * 900
+    quote = {"bid": 100.9, "ask": 101.1, "point": 0.01, "tick_size": 0.01,
+             "broker_tick_time_utc_msc": observed * 1000}
+    res = evaluate_candidate_dg_v3(
+        features={"direction": "LONG", "atr": 2.0},
+        payload={},
+        pivots=None,
+        quote=quote,
+        bars_15m=bars_15m,
+        bars_1h=bars_1h,
+        bars_4h=bars_4h,
+        entry=100.0,
+        sl=96.0,
+        tp=108.0,
+        sizing={"risk_usd": 12.0, "friction_usd": 0.40},
+        symbol="TEST.p",
+        as_of_epoch=observed,
+    )
+    assert res["failures"] != ["regime_history_time_invalid_or_noncausal"]
+    assert res["regime"] != "UNDEFINED"
+
