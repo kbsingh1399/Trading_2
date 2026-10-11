@@ -853,9 +853,10 @@ def test_option_a_prime_translates_wall_when_binance_mid_provided():
     assert "session_vwap_history_unavailable" not in missing
     assert ctx["wall"] is not None
     assert ctx["wall"]["usd"] == c["wall_usd"]
-    assert ctx["wall"]["dist_from_entry_atr"] == pytest.approx(0.1024, abs=1e-3)
+    # Point distance under discrete tick quantization (2502.1 - 2501.68) / 4.0544 = 0.10359 ATR
+    assert ctx["wall"]["dist_from_entry_atr"] == pytest.approx(0.1036, abs=1e-3)
     assert ctx["wall"]["raw_wall_price"] == c["wall_price"]
-    assert ctx["wall"]["effective_wall_price"] == pytest.approx(c["wall_price"] + (c["mid_mt5"] - c["mid_binance"]), abs=1e-3)
+    assert ctx["wall"]["effective_wall_price"] == pytest.approx(c["wall_price"] + (c["mid_mt5"] - c["mid_binance"]), abs=1e-2)
     assert ctx["wall"]["venue_basis_drift_ok"] is True
 
 
@@ -926,14 +927,21 @@ def test_option_a_prime_tick_quantization_guard_protects_micro_atr():
                   sl=mid_mt5 - 1.5 * atr, tp=mid_mt5 + 1.5 * atr,
                   sizing={"risk_usd": 15.0, "friction_usd": 0.01},
                   regime="MEAN_REVERT", symbol="TRX")
-    ctx, _ = dg_context.build_dg_context(entry=mid_mt5, **common)
-    assert ctx["wall"] is not None
-    assert ctx["wall"]["venue_basis_drift_ok"] is True
+    ctx, missing = dg_context.build_dg_context(entry=mid_mt5, **common)
+    # The 1-tick flutter (0.0001) does not trip the circuit breaker tolerance (2*tick = 0.0002)
+    assert "venue_basis_drift_tripped" not in missing
+    # Under D1 error budgeting, 1 tick flutter on micro-ATR is 0.5 ATR, so the wall cannot be
+    # certified within the 0.25 ATR band and fails closed without tripping the breaker
+    assert ctx["wall"] is None
+    # When basis is stable (drift = 0), the wall is safely admitted
+    quote_stable = dict(quote, bid=mid_mt5 - 0.00005, ask=mid_mt5 + 0.00005)
+    ctx_stable, _ = dg_context.build_dg_context(entry=mid_mt5, **(common | {"quote": quote_stable}))
+    assert ctx_stable["wall"] is not None
+    assert ctx_stable["wall"]["venue_basis_drift_ok"] is True
 
 
 def test_option_a_prime_cold_start_fallback_when_basis_median_missing():
-    """Cold-start fallback: When basis_median is omitted, b_hat defaults to b_now (drift = 0.0),
-    safely translating the wall."""
+    """Cold-start: When basis_median is omitted, fail closed rather than assuming zero drift."""
     c = _ETH_0708
     day_start = 1_791_648_000
     quote = {"bid": c["mid_mt5"] - 0.6, "ask": c["mid_mt5"] + 0.6, "tick_size": 0.01,
@@ -958,8 +966,7 @@ def test_option_a_prime_cold_start_fallback_when_basis_median_missing():
                   sl=c["mid_mt5"] - 1.5 * c["atr"], tp=c["mid_mt5"] + 1.5 * c["atr"],
                   sizing={"risk_usd": 15.0, "friction_usd": 0.1},
                   regime="MEAN_REVERT", symbol="ETH")
-    ctx, _ = dg_context.build_dg_context(entry=c["mid_mt5"], **common)
-    assert ctx["wall"] is not None
-    assert ctx["wall"]["venue_basis_drift_ok"] is True
-    assert ctx["wall"]["dist_from_entry_atr"] == pytest.approx(0.1024, abs=1e-3)
+    ctx, missing = dg_context.build_dg_context(entry=c["mid_mt5"], **common)
+    assert ctx["wall"] is None, "Cold start must fail closed without verified basis median"
+    assert "venue_basis_unverified" in missing
 

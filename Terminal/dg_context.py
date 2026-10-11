@@ -68,6 +68,17 @@ def _bar_open_ts(bar):
     raise KeyError("time")
 
 
+def _safe_bar_open_ts(bar):
+    """Safe bar open epoch returning float or None without throwing."""
+    if not isinstance(bar, dict):
+        return None
+    for key in ("time", "ts"):
+        value = bar.get(key)
+        if _finite_number(value):
+            return float(value)
+    return None
+
+
 def _session_vwap(bars, quote):
     """Observed UTC-day VWAP; broker tick volume remains a volume proxy."""
     try:
@@ -204,17 +215,37 @@ def build_dg_context(
         sweep_low = min(l[-recent_k:])
         sweep_extreme = sweep_low
         sweep_z = (sweep_low - vwap) / max(vwap_sigma, 1e-12)
-        reclaim_close = c[-1] > sweep_low
     else:
         # Short: extreme squeeze high
         sweep_high = max(h[-recent_k:])
         sweep_extreme = sweep_high
         sweep_z = (sweep_high - vwap) / max(vwap_sigma, 1e-12)
-        reclaim_close = c[-1] < sweep_high
 
-    # Delta Z over 4 bars
-    z_4ago = (c[-5] - vwap) / max(vwap_sigma, 1e-12) if len(c) >= 5 else current_z
-    dz4 = current_z - z_4ago
+    from Terminal.dg_hardening import causal_dz4, reclaim_close_strict
+    # Strict A4 reclaim: bar must have pierced 2.0 SD band and closed back inside
+    reclaim_close = reclaim_close_strict(bars_15m, side, vwap, vwap_sigma, z_band=2.0)
+    if not reclaim_close and len(c) > 0:
+        # Legacy fallback if bars lack high/low pierce history but satisfy basic reclaim
+        if (side == 1 and c[-1] > sweep_low) or (side == -1 and c[-1] < sweep_high):
+            # Only allow fallback if sweep actually exceeded 2.0 SD
+            if abs(sweep_z) >= 2.0 - 1e-6:
+                reclaim_close = True
+
+    # Causal dz4 over session bars (P1-2)
+    _session_rows = []
+    _tick_msc = None
+    if isinstance(quote, dict):
+        try:
+            _tick_msc = _quote_tick_msc(quote)
+        except (KeyError, TypeError, ValueError):
+            _tick_msc = None
+    if _finite_number(_tick_msc):
+        _day_start = math.floor(float(_tick_msc) / 1000.0 / 86400.0) * 86400.0
+        for b in bars_15m:
+            bts = _safe_bar_open_ts(b)
+            if bts is not None and bts >= _day_start:
+                _session_rows.append(b)
+    dz4 = causal_dz4(_session_rows, min_bars=5) if len(_session_rows) >= 5 else None
 
     # Volume ratio (last 4 vs last 96 bars)
     vol_4 = sum(v[-4:]) / 4.0 if len(v) >= 4 else 1.0
@@ -228,6 +259,10 @@ def build_dg_context(
     # The last candle is the proposed pullback, not an impulse pivot.
     previous = h[impulse_start:-1] if side == 1 else l[impulse_start:-1]
     swing_idx = impulse_start + int(np.argmax(previous) if side == 1 else np.argmin(previous))
+    # D3: set impulse anchor to the extreme on far side of swing
+    seg = l[impulse_start:swing_idx] if side == 1 else h[impulse_start:swing_idx]
+    if len(seg) > 0:
+        impulse_start = impulse_start + int(np.argmin(seg) if side == 1 else np.argmax(seg))
 
     geo = pullback_geometry(h, l, c, direction, impulse_start=impulse_start,
                             swing_idx=swing_idx, sigma_bar=sigma_bar)
@@ -334,14 +369,7 @@ def build_dg_context(
 
         wall_data_present = any(_g7_eligible_row(w) for w in walls)
         if walls:
-            # OPTION A' CROSS-VENUE BASIS TRANSLATION ARCHITECTURE:
-            # entry is in MT5 broker quote space; w_price is published in Binance/Hyperliquid space.
-            # On crypto perps (BNB, SOL, ETH, BTC), broker basis can exceed the 0.25 ATR band.
-            # We determine broker_mid and binance_mid, compute instantaneous basis b_now = broker_mid - binance_mid,
-            # and evaluate median basis b_hat over recent snapshots.
-            # Drift Circuit Breaker: |b_now - b_hat| <= max(0.25 * atr, 2.0 * tick).
-            # A stable basis offset translates cleanly; a jumping basis trips the circuit breaker and suppresses the wall.
-            # Tick Quantization Guard: max(0.25 * atr, 2.0 * tick) prevents false rejection on micro-ATR assets (e.g. TRX).
+            from Terminal.dg_hardening import select_backing_wall, venue_quotes_from_orderbook
             broker_mid = None
             if isinstance(quote, dict) and _finite_number(quote.get("bid")) and _finite_number(quote.get("ask")):
                 q_bid, q_ask = float(quote["bid"]), float(quote["ask"])
@@ -349,82 +377,31 @@ def build_dg_context(
                     broker_mid = (q_bid + q_ask) / 2.0
             if broker_mid is None:
                 broker_mid = float(entry) if _finite_number(entry) and float(entry) > 0 else (float(c[-1]) if len(c) > 0 else None)
+            broker_ts = None
+            try:
+                broker_ts = float(_quote_tick_msc(quote)) / 1000.0
+            except (KeyError, TypeError, ValueError):
+                broker_ts = None
+            flow_usd = of_payload.get("median_1m_flow_usd") if isinstance(of_payload, dict) else None
+            vq = venue_quotes_from_orderbook(ob, payload)
+            require_clk = broker_ts is not None and any(q.get("ts") is not None for q in vq.values())
+            wall_ctx, wall_diag = select_backing_wall(
+                walls, entry=float(entry), side=side, atr=atr, tick=tick,
+                broker_mid=broker_mid, broker_ts=broker_ts,
+                venue_quotes=vq,
+                grid_addrs=grid_addrs, flow_usd=flow_usd,
+                require_clock=require_clk
+            )
+            if wall_ctx is None and any(k.startswith("venue_basis") for k in wall_diag.get("rejections", {})):
+                missing.append("venue_basis_unverified")
 
-            bn_mid_raw = ob.get("binance_mid") if isinstance(ob, dict) else None
-            if bn_mid_raw is None and isinstance(payload, dict):
-                bn_mid_raw = payload.get("binance_mid")
-
-            has_venue_basis = (_finite_number(bn_mid_raw) and float(bn_mid_raw) > 0 and broker_mid is not None)
-
-            if has_venue_basis:
-                bn_mid = float(bn_mid_raw)
-                b_now = broker_mid - bn_mid
-                b_hat_raw = ob.get("basis_median") if isinstance(ob, dict) else None
-                if b_hat_raw is None and isinstance(payload, dict):
-                    b_hat_raw = payload.get("basis_median")
-
-                if _finite_number(b_hat_raw):
-                    b_hat = float(b_hat_raw)
-                else:
-                    # Cold start fallback when basis median history is not yet populated
-                    b_hat = b_now
-
-                drift_tol = max(0.25 * atr, 2.0 * tick)
-                basis_drift = abs(b_now - b_hat)
-                basis_drift_ok = basis_drift <= drift_tol
-                venue_basis_applied = b_hat
-            else:
-                b_now = 0.0
-                b_hat = 0.0
-                basis_drift = 0.0
-                basis_drift_ok = True
-                venue_basis_applied = 0.0
-
-            target_side = "BUY" if side == 1 else "SELL"
-            eligible_walls = []
-            for w in walls:
-                if not isinstance(w, dict):
-                    continue
-                if str(w.get("address") or "").strip() in grid_addrs:
-                    continue
-                # A sampled span alone is not measured wall survival. Honor the
-                # producer's authenticity veto rather than passing mirrored walls.
-                if (w.get("gate_g7_eligible") is not True or w.get("wall_class") != "GENUINE"
-                        or any(not _finite_number(w.get(k)) for k in
-                               ("price", "notional_usd", "persist_s", "presence_frac"))):
-                    continue
-                w_side = str(w.get("side", "")).upper()
-                w_price = float(w.get("price") or 0.0)
-                if w_side == target_side and w_price > 0:
-                    w_effective = w_price + venue_basis_applied
-                    dist_pts = side * (entry - w_effective)
-                    dist_atr = dist_pts / max(atr, 1e-12)
-                    if basis_drift_ok and 0 <= dist_atr <= 0.25:
-                        eligible_walls.append((dist_atr, w, w_effective))
-            if eligible_walls:
-                eligible_walls.sort(key=lambda x: x[0])
-                best_dist_atr, best_w, best_w_effective = eligible_walls[0]
-                flow_usd = (of_payload.get("median_1m_flow_usd") if isinstance(of_payload, dict) else None)
-                if not _finite_number(flow_usd) or flow_usd <= 0:
-                    flow_usd = None
-                wall_ctx = {
-                    "usd": float(best_w.get("notional_usd") or 0.0),
-                    "persist_s": float(best_w["persist_s"]),
-                    "presence_frac": float(best_w["presence_frac"]),
-                    "dist_from_entry_atr": float(best_dist_atr),
-                    "median_1m_traded_usd": flow_usd,
-                    # Authenticity passthrough so A3/B5 can re-assert the producer's
-                    # veto as defence in depth rather than trusting this caller.
-                    "wall_class": str(best_w.get("wall_class") or "GENUINE"),
-                    "gate_g7_eligible": bool(best_w.get("gate_g7_eligible", False)),
-                    # Option A' cross-venue basis accounting
-                    "raw_wall_price": float(best_w.get("price") or 0.0),
-                    "effective_wall_price": float(best_w_effective),
-                    "venue_basis_applied": float(venue_basis_applied),
-                    "venue_basis_drift_ok": bool(basis_drift_ok),
-                }
-
-    m1_override = features.get("m1_range_override") or (payload.get("m1_range_override") if isinstance(payload, dict) else None)
+    from Terminal.dg_hardening import derive_m1_range_override
+    m1_override = derive_m1_range_override(
+        features.get("m1_range_override") or (payload.get("m1_range_override") if isinstance(payload, dict) else None),
+        (features.get("regime_stats") or {}).get("4h"),
+        direction,
+        orderflow_present=orderflow is not None
+    )
 
     ctx = {
         "direction": direction,
@@ -548,8 +525,10 @@ def evaluate_candidate_dg_v3(
             "15m": len(bars_15m), "1h": len(bars_1h or []), "4h": len(bars_4h or [])}},
             "passed": False, "failures": ["regime_history_insufficient"], "metrics": {}}
 
+    features_augmented = dict(features)
+    features_augmented["regime_stats"] = rstats
     ctx, missing = build_dg_context(
-        features=features,
+        features=features_augmented,
         payload=payload,
         pivots=pivots,
         quote=quote,
@@ -576,8 +555,6 @@ def evaluate_candidate_dg_v3(
     if regime.startswith("TREND"):
         verdict = model2_checklist(ctx)
     elif regime == "MEAN_REVERT":
-        verdict = model1_checklist(ctx)
-    elif abs(float(ctx.get("vwap_z") or 0.0)) >= 2.0 or m1_range_override_ok(ctx):
         verdict = model1_checklist(ctx)
     else:
         verdict = Verdict(passed=False, failures=["REGIME_UNDEFINED"])

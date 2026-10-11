@@ -128,7 +128,17 @@ def test_session_maturity_and_vwap_slope_are_measured_from_current_utc_day():
     assert ctx["session_bars"] == 3
     assert ctx["vwap_slope_sigma_per_bar"] > 0
     assert ctx["vwap_anchor_basis"] == "UTC_DAY"
-    assert ctx["vwap_z_change_4bars"] == pytest.approx((args["bars_15m"][-1]["close"]-args["bars_15m"][-5]["close"])/ctx["session_sigma"])
+    # Causal dz4 requires >= 5 session bars; 3-bar session fails closed (P1-2)
+    assert ctx["vwap_z_change_4bars"] is None
+
+
+def test_session_dz4_computed_causally_when_session_has_sufficient_bars():
+    day = (1791576000//86400)*86400
+    args = context_fixture(count=180, now=day+20*900)
+    ctx, missing = build_dg_context(**args)
+    assert not missing
+    assert ctx["session_bars"] == 20
+    assert ctx["vwap_z_change_4bars"] is not None
 
 
 def test_missing_timestamps_and_forming_bars_do_not_produce_session_evidence():
