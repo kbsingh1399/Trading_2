@@ -716,3 +716,117 @@ def test_at_the_live_0350_state_both_directions_are_independently_blocked():
     assert "A1_z_still_accelerating" not in short_.failures
     assert "A1_z_below_2" in short_.failures
     assert not long_.passed and not short_.passed
+
+
+# ---------------------------------------------------------------------------
+# A5 vs A1: the target anchor is measured from ENTRY, the trigger from the
+# RECLAIMED SWEEP. Verified live on generation 90174a2ec7414f1996e97b6b2f7b6e54
+# (2026-10-11 04:50:33 UTC): BTC sweep_z = -2.7007 (LONG) / +2.3230 (SHORT) so
+# both directions clear A1_z_below_2, while ctx["vwap_z"] is only +0.4500 and the
+# publisher's vwap_z_score only +0.61. A1 is therefore satisfiable by an extension
+# that has ALREADY been reclaimed -- and A5 then refuses to trade it, because a
+# mean-reversion target may not run past VWAP. These tests pin that asymmetry so a
+# future refactor cannot silently make A1 and A5 disagree about which price is the
+# extension.
+# ---------------------------------------------------------------------------
+
+_LIVE_0450 = dict(entry=82_910.5, atr=132.8556, vwap=82_861.72205265639,
+                  session_bars=19, session_sigma=80.6175,
+                  vwap_slope_sigma_per_bar=-0.0018045616603178103,
+                  vwap_z=0.45000084074022156, vwap_z_change_4bars=0.2729,
+                  vol_ratio_4_96=1.5022)
+
+
+def test_a1_z_limbs_read_the_reclaimed_sweep_extreme_not_the_live_extension():
+    """At 04:50 both directions clear the Z limbs off sweep_z while vwap_z is 0.45."""
+    long_ = model1_checklist(_m1_ctx(direction="LONG", sweep_z=-2.7006794462510153,
+                                     sweep_extreme=82_644.0, **_LIVE_0450))
+    short_ = model1_checklist(_m1_ctx(direction="SHORT", sweep_z=2.3230430585972166,
+                                      sweep_extreme=83_049.0, **_LIVE_0450))
+    for v in (long_, short_):
+        assert "A1_z_below_2" not in v.failures
+        assert "A1_z_beyond_3p5_cascade_zone" not in v.failures
+    # The live session-VWAP extension alone would never reach the trigger.
+    assert abs(_LIVE_0450["vwap_z"]) < 2.0
+
+
+def test_the_live_0450_a1_is_reduced_to_the_sigma_limb_alone():
+    """Nine cycles of A1 rejections narrowed to exactly one failing limb.
+
+    04:20 UTC failed A1_session_sigma_lt_0p8atr, A1_vwap_sloped (-0.19218) and
+    A1_z_still_accelerating. By 04:50 the slope had flattened to -0.0018 and dz4
+    to +0.2729, leaving the sigma floor (80.6175 vs 106.2845) as the only A1
+    rejection. Pin this so a regression in the slope/acceleration limbs is caught
+    by a change in this list rather than by a silent trade.
+    """
+    long_ = model1_checklist(_m1_ctx(direction="LONG", sweep_z=-2.7006794462510153,
+                                     sweep_extreme=82_644.0, **_LIVE_0450))
+    assert [f for f in long_.failures if f.startswith("A1_")] == ["A1_session_sigma_lt_0p8atr"]
+    assert _LIVE_0450["session_sigma"] < 0.8 * _LIVE_0450["atr"]
+    assert 0.8 * _LIVE_0450["atr"] - _LIVE_0450["session_sigma"] == pytest.approx(25.6670, abs=1e-3)
+
+
+def test_clearing_the_sigma_limb_alone_does_not_admit_a_trade():
+    """The sigma floor is the last A1 limb, not the binding constraint.
+
+    Counterfactual verified against the live 04:50 payload: lifting session_sigma
+    to 0.8*ATR + 1 empties the A1 list, yet A2 (no tape), A3 (no eligible whale
+    wall behind entry) and A5/EV all still reject. A desk waiting on session
+    maturity alone is waiting on the wrong limb.
+    """
+    # Live 04:50 sizing: 15.00 USD risk on a 1.5 ATR (199.2834) stop, so the
+    # round-trip spread cost is 15.0 USD * 15.0/199.2834 = 1.1290 USD = 0.0753 R.
+    ctx = _m1_ctx(direction="LONG", sweep_z=-2.7006794462510153, sweep_extreme=82_644.0,
+                  wall=None, orderflow=None, p_win_lower_bound=None,
+                  round_trip_cost_usd=1.12904536955913, **_LIVE_0450)
+    ctx["sl"] = ctx["entry"] - 1.5 * ctx["atr"]
+    ctx["tp"] = ctx["entry"] + 2.5 * 1.5 * ctx["atr"]
+    assert [f for f in model1_checklist(ctx).failures if f.startswith("A1_")] == \
+        ["A1_session_sigma_lt_0p8atr"]
+    lifted = dict(ctx, session_sigma=0.8 * ctx["atr"] + 1.0)
+    remaining = model1_checklist(lifted).failures
+    assert not any(f.startswith("A1_") for f in remaining)
+    # wall/orderflow are None, so both fail CLOSED rather than vacuously skipping.
+    for expected in ("A2_no_tape_fail_closed", "A3_no_wall_fail_closed",
+                     "A5_tp_beyond_vwap", "EV_p_win_lower_bound_missing"):
+        assert expected in remaining, expected
+    # Correctly sized friction is well inside the 0.15 R cap -- it is not what
+    # stops this trade, and the test must not imply otherwise.
+    assert "EV_friction_gt_0p15R" not in remaining
+
+
+def test_a_mean_reversion_long_is_geometrically_locked_out_while_price_sits_above_vwap():
+    """A5_tp_beyond_vwap and A5_invalid_protective_bracket are jointly unsatisfiable.
+
+    The bracket limb needs side*(tp - entry) > 0, the anchor limb needs
+    side*(vwap - tp) >= 0. With entry > vwap a LONG therefore needs
+    tp > entry > vwap >= tp. No TP exists. This is a structural lock, not a
+    calibration miss, and it holds for every TP the desk could stage.
+    """
+    entry, vwap = _LIVE_0450["entry"], _LIVE_0450["vwap"]
+    assert entry > vwap
+    for tp in (entry + 1.0, entry + 100.0, vwap + (entry - vwap) / 2, entry + 10_000.0):
+        v = model1_checklist(_m1_ctx(direction="LONG", tp=tp, sweep_z=-2.7006794462510153,
+                                     sweep_extreme=82_644.0, **_LIVE_0450))
+        assert "A5_tp_beyond_vwap" in v.failures, tp
+
+
+def test_a_vwap_anchored_short_cannot_reach_min_rr_at_the_live_0450_offset():
+    """Max R for a VWAP-anchored reversion is |entry - vwap| / (1.5 * ATR).
+
+    Live 04:50: 48.7779 / 199.2834 = 0.2448 R against a 1.5 minimum. Reaching
+    1.5 needs |entry - vwap| >= 2.25 * ATR = 298.93 USD; the live offset is short
+    by 250.15 USD (1.88 ATR). The SHORT is the only direction A5 leaves open, and
+    it has no room to pay for its own stop.
+    """
+    entry, vwap, atr = _LIVE_0450["entry"], _LIVE_0450["vwap"], _LIVE_0450["atr"]
+    stop = 1.5 * atr
+    max_rr = abs(entry - vwap) / stop
+    assert max_rr == pytest.approx(0.2448, abs=1e-4)
+    assert max_rr < 1.5
+    assert 1.5 * stop - abs(entry - vwap) == pytest.approx(250.15, abs=0.05)
+    v = model1_checklist(_m1_ctx(direction="SHORT", tp=vwap, sl=entry + stop,
+                                 sweep_z=2.3230430585972166, sweep_extreme=83_049.0,
+                                 **_LIVE_0450))
+    assert "EV_rr_below_1.5" in v.failures
+    assert "A5_tp_beyond_vwap" not in v.failures
