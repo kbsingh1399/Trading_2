@@ -53422,3 +53422,21 @@ Finally, unify live and replay ratchets before qualifying uplift; the current se
   * Dispatched updated unified prompt into Arena.ai (Stop button active, Arena currently deliberating).
   * Bidirectional Git Parity: Both origin/main and origin/arena/537c1eb8-trading-2 synchronized at d7fe26c6.
   * Test Suite: 335 / 335 passed (100% green).
+
+### Turn [2026-10-11 08:15 UTC Arena Output Harvest, Commit 4ccd59e0 Merge & Option A-prime Formulation]
+- **Arena Output Analysis & Key Findings**:
+  * Arena responded to the unified multi-document prompt and delivered a rigorous analysis of Option A vs Option B across 11 consecutive snapshots.
+  * Why Option B is a Category Error: d = s*(E - W)/ATR compares an MT5 broker price directly to a Binance price without accounting for the basis.
+  * Why Option A with a 0.50 ATR Level Breaker Fails: Testing |b| rejects BNB (which has a large but extremely stable basis, sd = 0.0538) while accepting TRX (which has an untranslatable tick quantisation jump of 0.50 ATR due to tick_size 0.0001 vs ATR 0.0002).
+  * Arena's Superior Formulation (Option A-prime):
+    - Translate the wall: d_adj = s * (E - W - b_hat) / ATR where b_hat = median(b) over recent snapshots.
+    - Break on DRIFT, not level: admit iff 0 <= d_adj <= 0.25 AND |b_now - b_hat| <= 0.25 * ATR.
+    - A stable offset translates cleanly; a jumping basis does not.
+  * Trade Ruling: STAND ASIDE across all 24 assets. Score: 35/100. 10 weekend assets closed; crypto in non-trending chop.
+  * Account State (#5064568): Balance 4,896.55 USD | Equity 4,896.55 USD (100% Cash, 0 open, 0 pending, capacity 0/4). Hard floor cushion: +121.55 USD.
+- **Git Parity & Lean-Prompt Invariant Restoration (Commit 4ccd59e0 & Merge 6b678efc)**:
+  * Arena refactored build_48h_orderflow_prompt() to eliminate duplicated URL listings and persona rosters, restoring prompt length to 15,977 chars (< 16,000 char lean limit in Test_Arena_Bridge.py).
+  * Factual Fixes: Clarified that macro_orderflow_tilt was an unanchored hyperdash_flow_intelligence aggregate, and replaced static basis numbers with live calculation instructions.
+  * Merged 4ccd59e0 cleanly into main under merge commit 6b678efc.
+  * Test Suite Status: 338 / 338 tests passed in 4.23s (100% green).
+  * Git Parity: Both origin/main and origin/arena/537c1eb8-trading-2 synchronized.

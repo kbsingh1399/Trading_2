@@ -30,4 +30,5 @@
 | T-28 | Merge Arena commit f73d32e9 & certify test suite | COMPLETED | Merged f73d32e9 (4 new tests); 335 / 335 tests passing; pinned cross-venue basis vs G-7 |
 | T-29 | Upgrade prompt generator & council protocols for exhaustive telemetry audit | COMPLETED | Enforced schema census, macro_orderflow_tilt, execution_specs, 20-level depth, stale scrape quarantine, cross-venue basis |
 | T-30 | Enforce multi-document line-by-line reading mandate & Option A cross-venue basis debate | COMPLETED | Upgraded dispatch scripts, prompts, specs, and ACTIVE_CONTEXT; synced to both remotes |
+| T-31 | Harvest Arena output, merge commit 4ccd59e0 & certify Option A-prime | COMPLETED | Merged 4ccd59e0 (prompt dedup + factual fixes); 338/338 tests green; Option A-prime basis-drift formulated; Stand Aside confirmed |
 
