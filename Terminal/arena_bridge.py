@@ -32,6 +32,8 @@ if sys.platform == "win32":
         pass
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
 CANDLES_DIR = PROJECT_ROOT / "Data" / "Candles"
 TELEMETRY_SNAPSHOT = PROJECT_ROOT / "docs" / "telemetry" / "live_snapshot_latest.json"
 
@@ -293,7 +295,13 @@ def enforced_regime(asset_data: Dict[str, Any], classify,
 
 
 def build_48h_orderflow_prompt() -> str:
-    """Build a lean council prompt that obtains observations from canonical links."""
+    """Build canonical council prompt strictly following TRADING DESK COUNCIL: STRUCTURED OPERATING PROMPT."""
+    try:
+        from Terminal.dispatch_comprehensive_wake_up_prompt import build_prompt as build_council_structured_prompt
+        return build_council_structured_prompt()
+    except Exception as exc:
+        print(f"Warning: Falling back to internal prompt builder due to {exc}", file=sys.stderr)
+
     # Account and market facts are obtained by the council from canonical raw
     # telemetry. Never substitute historical balances or a partial MT5 query.
     now_utc = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
