@@ -987,3 +987,101 @@ def test_the_first_qualified_exit_anchor_of_the_session_sits_below_vwap_and_is_u
                                  regime="MEAN_REVERT", sweep_z=1.3014087855604763,
                                  sweep_extreme=82_969.0, **_LIVE_0520))
     assert "A5_tp_beyond_vwap" in v.failures
+
+
+# ---------------------------------------------------------------------------
+# Generation 372c3b6eb5ad42d6b9014559f70845ce (2026-10-11 05:50:09 UTC).
+#
+# Three cycles of convergence, verified from the snapshots:
+#   cycle   ATR       0.8*ATR    sigma     sigma shortfall   offset    1.6*ATR shortfall
+#   04:50   132.8556  106.2845   80.6175   25.6670           48.7779   163.7911
+#   05:20   124.3500   99.4800   79.6159   19.8641          105.1128    93.8472
+#   05:50   120.9956   96.7965   80.3485   16.4480          105.2317    88.3613
+#
+# The sigma shortfall is closing ~4.6 USD per cycle while the offset shortfall is
+# closing ~5 USD per cycle from a much larger base. At the live offset the two A1
+# limbs are mutually exclusive: sigma >= 0.8*ATR forces |vwap_z| to 1.0871, below
+# the 2.0 trigger. A1 stays alive only because it reads sweep_z, not vwap_z -- at
+# the floor sigma, sweep_z is still -2.3531. Which Z the trigger reads therefore
+# decides whether session maturation retires the setup or preserves it.
+# ---------------------------------------------------------------------------
+
+_LIVE_0550 = dict(atr=120.9956, entry=82_977.0, vwap=82_871.76827280433,
+                  session_sigma=80.34849785747018, session_bars=23,
+                  vwap_slope_sigma_per_bar=0.0346365134303889,
+                  vwap_z=1.3594744159304195, vwap_z_change_4bars=1.0330000213225308,
+                  vol_ratio_4_96=0.6956680596469594, reclaim_close=True)
+_SWEEP_LONG_0550 = 82_644.0
+_SWEEP_SHORT_0550 = 83_005.0
+
+
+def test_the_live_0550_a1_sigma_and_z_limbs_are_mutually_exclusive_on_mid_price():
+    """sigma >= 0.8*ATR forces |vwap_z| below the 2.0 trigger at this offset."""
+    offset = _LIVE_0550["entry"] - _LIVE_0550["vwap"]
+    floor = 0.8 * _LIVE_0550["atr"]
+    assert offset == pytest.approx(105.2317, abs=1e-3)
+    assert floor - _LIVE_0550["session_sigma"] == pytest.approx(16.4480, abs=1e-3)
+    # The coupling: sigma >= 0.8*ATR AND |Z| >= 2.0 together need 1.6*ATR of offset.
+    assert 1.6 * _LIVE_0550["atr"] - offset == pytest.approx(88.3613, abs=1e-3)
+    # At the floor sigma the mid-referenced Z collapses below the trigger.
+    assert offset / floor == pytest.approx(1.0871, abs=1e-4)
+
+
+def test_maturing_sigma_preserves_the_trigger_only_because_a1_reads_sweep_z():
+    """At the floor sigma, sweep_z is -2.3531 (passes) while vwap_z is +1.0871 (fails).
+
+    This is the operative consequence of the sweep-vs-mid asymmetry pinned at
+    04:50: session maturation would retire a vwap_z-triggered Model 1 but leaves a
+    sweep_z-triggered one alive. The choice of reference is the whole difference.
+    """
+    floor = 0.8 * _LIVE_0550["atr"]
+    sweep_z_at_floor = (_SWEEP_LONG_0550 - _LIVE_0550["vwap"]) / floor
+    vwap_z_at_floor = (_LIVE_0550["entry"] - _LIVE_0550["vwap"]) / floor
+    assert sweep_z_at_floor == pytest.approx(-2.3531, abs=1e-4)
+    assert vwap_z_at_floor == pytest.approx(1.0871, abs=1e-4)
+    assert abs(sweep_z_at_floor) >= 2.0
+    assert abs(vwap_z_at_floor) < 2.0
+
+
+def test_the_sigma_shortfall_is_closing_faster_than_the_offset_shortfall():
+    """The three-cycle convergence series, verified from the published snapshots."""
+    series = [  # (atr, sigma, offset)
+        (132.8556, 80.6175, 48.7779),
+        (124.3500, 79.6159, 105.1128),
+        (120.9956, 80.3485, 105.2317),
+    ]
+    sig_short = [0.8 * atr - sig for atr, sig, _ in series]
+    off_short = [1.6 * atr - off for atr, _, off in series]
+    assert sig_short == pytest.approx([25.6670, 19.8641, 16.4480], abs=1e-3)
+    assert off_short == pytest.approx([163.7911, 93.8472, 88.3613], abs=1e-3)
+    # Sigma is nearly home; the offset that the coupling actually requires is not.
+    assert sig_short[-1] / sig_short[0] == pytest.approx(0.6408, abs=1e-3)
+    assert off_short[-1] / off_short[0] == pytest.approx(0.5395, abs=1e-3)
+    assert off_short[-1] > 5 * sig_short[-1]
+
+
+def test_the_live_0550_short_gained_a_sweep_high_but_lost_two_a1_limbs_instead():
+    """The blocking limb rotates every cycle; the count never reaches zero.
+
+    At 05:20 the SHORT failed A5_entry_not_inside_sweep (sweep_extreme 82,969.0 sat
+    1.5 USD BELOW mid). By 05:50 sweep_extreme is 83,005.0, above mid, so that limb
+    clears -- and A1_z_below_2 (sweep_z +1.6582) plus A1_z_still_accelerating
+    (dz4 +1.0330) reject instead. Clearing one limb is not progress toward a trade.
+    """
+    stop = 1.5 * _LIVE_0550["atr"]
+    ctx = dict(_LIVE_0550, direction="SHORT", regime="MEAN_REVERT",
+               sweep_z=1.6581732172766934, sweep_extreme=_SWEEP_SHORT_0550,
+               sl=_LIVE_0550["entry"] + stop, tp=_LIVE_0550["entry"] - stop,
+               risk_usd=15.0, round_trip_cost_usd=16.0 * (15.0 / stop),
+               wall=None, orderflow=None, p_win_lower_bound=None,
+               tick=0.01, spread=16.0, sigma_bar=0.0012, structure_intact=True,
+               exhaustion_flags={"vol_spike": False, "long_wick": False},
+               geometry={"retrace": 0.5, "depth_sigma": 1.0, "velocity_ratio": 1.0,
+                         "bars_pullback": 4, "bars_impulse": 8},
+               shelf={"price": None, "confluence": 0}, first_obstacle=None,
+               allow_price_only_variant=False, m1_range_override=None)
+    v = model1_checklist(ctx)
+    assert "A5_entry_not_inside_sweep" not in v.failures
+    assert "A1_z_below_2" in v.failures
+    assert "A1_z_still_accelerating" in v.failures
+    assert not v.passed
