@@ -9421,3 +9421,41 @@ Arena completed the unified 4-step council audit across all 4 Mandates:
   * Active positions: 0 (STANDBY).
   * Pending limit orders: 0 (STANDBY).
   * Staged orders: 0. Capital 100% protected in cash reserves.
+
+
+---
+
+## SECTION 136: CANONICAL PROMPT CYCLE 2 AUDIT & RESPONSE TIME PROFILING (2026-10-11 14:00 UTC)
+### 1. Ingestion, Response Time & Ground Truth Verification
+- **Cycle Timing Profile**:
+  * Prompt Injected: 2026-10-11 13:40:38 UTC.
+  * Generation Complete: 2026-10-11 13:50:09 UTC.
+  * **Measured Response Time**: **9m 31s (571s)**.
+  * **Rolling Average Response Time**: **10m 12s (~612s)** across completed cycles.
+  * Zero-Token Sleep Efficiency: 10m sleep timer successfully conserved 100% of tokens during generation.
+- **Citation Block**: All 7 repository sources verified by Arena line-by-line (session history, ACTIVE_CONTEXT.md, LIVE_COLLABORATIVE_ORDER_DESK.md, protocol spec, round 2 audit, decision gates v3, live snapshot gen 375a213a / 8bea3eda).
+- **Account State (#5064568)**: Balance 4,896.55 USD | Equity 4,896.55 USD (100% Cash reserves, 0 open positions, 0 pending orders, capacity 0/4).
+- **Capital Floor Defense**: Floor 4,775.00 USD | Operating buffer: 4,795.00 USD | Cushion: **+121.55 USD** (+101.55 USD above operating buffer). Total contingent stress: 0.00 USD.
+
+### 2. Council Deliberation & Key Microstructure Findings
+- **TP-Geometry Barrier (Pillar 3)**:
+  * Reconstructed liquidations inside the MAX_TARGET_DIST_ATR (4.0 ATR) horizon are only retail dust: BTC .87 (+0.005 ATR), ETH ,817.74 (+0.884 ATR), failing the ,000 USD institutional minimum.
+  * Massive institutional pools sit outside the horizon: BTC buy-stop .4M at +9.10 ATR, ETH buy-stop .2M at +12.07 ATR.
+  * BNB has qualifying pools ( at +0.193 ATR), but they are too close to entry, yielding an inadequate R:R of 0.129 (far below min_rr 1.5).
+- **Regime Classification (Pillar 2)**:
+  * 24 of 24 assets return UNDEFINED.
+  * Multi-timeframe conflict on crypto: 1H drifting up (t = +3.6 to +5.4) while 4H drifts down (t = -1.9 to -4.2). 1H casts 0 of 3 trend votes. Counter-trend chop within higher timeframe down-trend.
+- **Calibrated Net EV Hurdle (Pillar 4)**:
+  * Under exact Clopper-Pearson lower bound (n=17, 11 wins, p_lower = 0.4197), BTC turns **EV-positive at RR >= 1.8907** (+0.0459R at RR 2.0, +0.2557R at RR 2.5), clearing the relaxed 0.20R friction cap.
+  * Self-consistent positive-expectancy configurations exist for BTC when structural breakout occurs.
+
+### 3. Full Test Suite & Branch Synchronization
+- **Regression Suite**: All 4 previously reported prompt assertion discrepancies in Test_Arena_Bridge.py and Test_Arena_Council_Hardening.py have been resolved.
+- **Full Test Results**: **1,041 passed, 1 skipped, 0 failed (100% green)** in 171.73s.
+- **Git HEAD**: Synchronized across main and rena/537c1eb8-trading-2.
+
+### 4. Council Trading Disposition
+- **Verdict**: **STAND ASIDE across all 24 assets**.
+  * 10 CFD Assets: Closed for the weekend.
+  * 14 Crypto Perpetuals: G-4 regime UNDEFINED, G-7 clock skew / basis validation, and TP geometry horizon barriers prevent admission.
+- **Active Orders & Capital**: 0 positions, 0 pending orders. 100% cash preserved.
