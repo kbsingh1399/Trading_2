@@ -9362,3 +9362,38 @@ Arena completed the unified 4-step council audit across all 4 Mandates:
   - **Tick Quantization Guard**: Protects micro-ATR assets (e.g. TRX) from spurious false rejection.
 - **Verification**: 4 unit tests passing in `Tests/Test_Whale_Wall_Authenticity_Gates.py`. Full suite 897 passed, 1 skipped, 0 failed.
 - **Live Inventory**: 100% Cash Reserves (4,896.55 USD). 0 open positions, 0 resting pending orders. Capital cushion: **+121.55 USD** above 4,775.00 USD hard floor. All gates active and verified.
+
+---
+
+## SECTION 134: UNIFIED ARENA.AI COUNCIL AUDIT & BASIS_MEDIAN PRODUCER MERGE (2026-10-11 08:59:55 UTC)
+### 1. Arena.ai Multi-Persona Council Ingestion & Document Verification
+- **Cycle Timestamp**: 2026-10-11 08:59:55 UTC (Generation `cbfee46936a6`).
+- **Citation Block Verification**:
+  * `.agents/memory/session_chat_history.md`: 53,468 lines, latest turn 08:30 UTC cited.
+  * `.agents/rules/ACTIVE_CONTEXT.md`: Cushion +121.55 USD, 4-ticket cap, floor 4,775.00 USD verified.
+  * `docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md`: Section 133 cited.
+  * `docs/specs/ANTIGRAVITY_ARENA_THINKING_CHAIN_COUNCIL_PROTOCOL.md`: Traps 7, 8, 9 verified.
+  * `docs/reviews/ROUND2_THINKING_CHAIN_AUDIT.md`: 310 lines verified, truncation finding confirmed 100% resolved.
+  * `Terminal/decision_gates_v3.py` & `Terminal/dg_context.py`: Verified in source.
+  * `docs/telemetry/live_snapshot_latest.json`: 26 top-level keys × 24 assets audited.
+
+### 2. Forensic Code Fix Shipped by Arena (`dd9cfddc`) & Merged to `main`
+- **Producer Gap Identified**: In the Option A′ consumer (`Terminal/dg_context.py`), `b_hat` reads `orderbook_live_depth.basis_median`. However, no telemetry producer was emitting `basis_median`, causing the consumer to always default to `b_hat = b_now` (drift 0.0).
+- **Arena Fix**:
+  * Implemented `record_basis_observation()` and `rolling_basis_median()` in `Terminal/microstructure_state.py`.
+  * Integrated median calculation and publication into `Terminal/Data_Factory/generate_telemetry_snapshot.py`.
+  * Added 9 tests in `Tests/Test_Microstructure_State_And_Gate_Policy.py` (including integration and drift dislocation tests).
+  * Committed and pushed to `arena/537c1eb8-trading-2` as commit `dd9cfddc`.
+- **Merge & Test Verification**: Merged cleanly into `main`. Core test suite: **278 passed in 2.04s**. Full test suite: **908 passed, 3 skipped**.
+
+### 3. Council Trading Verdict & Asset Screen
+- **Council Disposition**: **STAND ASIDE — 0 of 24 admissible, 0 of 48 evaluations passed**.
+  * 10 CFD Assets (Indices, Commodities, Forex): Closed for the weekend (`regime_history_stale_or_invalid`).
+  * 14 Crypto Perpetuals:
+    - G-5 Spread Veto (> 20.0 bps): SOL (21.03 bps), BCH (20.90 bps), XRP (21.53 bps), TRX (24.24 bps), AVAX (29.08 bps), LTC (47.14 bps), NEAR (56.97 bps), LINK (66.86 bps), ADA (84.90 bps), DOT (169.97 bps), DOGE (246.05 bps).
+    - Remaining Crypto Majors (BTC, ETH, BNB): Spreads acceptable (1.93 bps, 11.21 bps, 8.04 bps), but all classify as `UNDEFINED` (no statistical trend or mean-reversion edge) and lack resting whale backing within 0.25 ATR under Option A′.
+- **Capital & Floor Health**:
+  * Balance / Equity: **4,896.55 USD** (100% Cash Reserves | 0.00 USD Margin Exposure).
+  * Floor Cushion: **+121.55 USD** above 4,775.00 USD hard floor (**+101.55 USD** above 4,795.00 USD buffer).
+  * Open Positions: **0** | Pending Orders: **0**.
+  * Status: **STAND ASIDE ratified**. Capital fully preserved.
