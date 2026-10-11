@@ -622,6 +622,8 @@ def audit_basis_median_independence(
     total = 0
     pinned = 0
     per_venue: Dict[str, Dict[str, int]] = {}
+    cold_start: Dict[str, Dict[str, int]] = {}
+    cold_total = 0
     for symbol, asset in (assets or {}).items():
         if not isinstance(asset, dict):
             continue
@@ -642,7 +644,18 @@ def audit_basis_median_independence(
                 continue
             v_mid = block.get("mid")
             b_hat = block.get("basis_median")
-            if not (_is_num(v_mid) and _is_num(b_hat)):
+            if not _is_num(v_mid):
+                continue
+            # A null anchor is not a defect: rolling_basis_median returns None
+            # until BASIS_MIN_SAMPLES prior prints exist, and basis_drift_decision
+            # reads that as venue_basis_cold_start. Tracking it separately is how
+            # a daemon restart is confirmed -- the expected sequence after a
+            # restart is null, null, ... then a median that diverges from b_now.
+            if not _is_num(b_hat):
+                key = str(venue).upper()
+                cold = cold_start.setdefault(key, {"observations": 0})
+                cold["observations"] += 1
+                cold_total += 1
                 continue
             b_now = float(broker_mid) - float(v_mid)
             diff = abs(b_now - float(b_hat))
@@ -682,6 +695,8 @@ def audit_basis_median_independence(
     return {
         "assets_examined": examined,
         "observations": total,
+        "cold_start_observations": cold_total,
+        "cold_start": cold_start,
         "pinned_to_b_now": pinned,
         "pinned_share": (pinned / total) if total else 0.0,
         "per_venue": venue_verdicts,
@@ -689,7 +704,8 @@ def audit_basis_median_independence(
         "any_venue_inert": bool(inert_venues),
         "breaker_inert": bool(inert_venues),
         "verdict": (
-            "insufficient_data" if total == 0
+            "insufficient_data" if (total == 0 and cold_total == 0)
+            else "cold_start_no_anchor_yet" if total == 0
             else "b_hat_pinned_to_b_now" if inert_venues
             else "b_hat_independent"
         ),

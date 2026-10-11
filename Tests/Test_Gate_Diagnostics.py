@@ -581,3 +581,43 @@ def test_mixed_venue_inertia_reaches_g7_readiness():
     assert r["inert_venues"] == ["HYPERLIQUID"]
     assert r["ready"] is False
     assert r["clock_fix_alone_would_open_gate"] is False
+
+
+def test_cold_start_null_anchor_is_tracked_not_conflated_with_pinned():
+    """rolling_basis_median returns None until min_samples prints exist.
+
+    A null anchor is correct behaviour after a restart, not the pinned defect.
+    Conflating them would make a healthy restart look broken.
+    """
+    a = _anchor_assets(b_hat_pinned=True, n=3)
+    for s in a:
+        a[s]["orderbook_live_depth"]["venue_basis"]["HYPERLIQUID"]["basis_median"] = None
+    r = audit_basis_median_independence(a)
+    assert r["observations"] == 0
+    assert r["cold_start_observations"] == 3
+    assert r["cold_start"]["HYPERLIQUID"]["observations"] == 3
+    assert r["pinned_to_b_now"] == 0
+    assert r["breaker_inert"] is False
+    assert r["verdict"] == "cold_start_no_anchor_yet"
+
+
+def test_warmup_transition_from_cold_to_independent():
+    a = _anchor_assets(b_hat_pinned=False, n=3)
+    a["S0"]["orderbook_live_depth"]["venue_basis"]["HYPERLIQUID"]["basis_median"] = None
+    a["S1"]["orderbook_live_depth"]["venue_basis"]["HYPERLIQUID"]["basis_median"] = None
+    r = audit_basis_median_independence(a)
+    assert r["cold_start_observations"] == 2
+    assert r["observations"] == 1
+    assert r["verdict"] == "b_hat_independent"
+    assert r["per_venue"]["HYPERLIQUID"]["pinned_share"] == 0.0
+
+
+def test_cold_start_does_not_mask_a_pinned_venue():
+    a = _anchor_assets(b_hat_pinned=True, n=4)
+    a["S0"]["orderbook_live_depth"]["venue_basis"]["HYPERLIQUID"]["basis_median"] = None
+    r = audit_basis_median_independence(a)
+    assert r["cold_start_observations"] == 1
+    assert r["observations"] == 3
+    assert r["per_venue"]["HYPERLIQUID"]["pinned_share"] == 1.0
+    assert r["breaker_inert"] is True
+    assert r["verdict"] == "b_hat_pinned_to_b_now"
