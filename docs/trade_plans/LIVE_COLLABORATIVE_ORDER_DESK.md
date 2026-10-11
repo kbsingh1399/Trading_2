@@ -9500,3 +9500,41 @@ Arena completed the unified 4-step council audit across all 4 Mandates:
   * 10 CFD Assets: Closed for the weekend.
   * 14 Crypto Perpetuals: G-4 regime UNDEFINED (1H up vs 4H down), G-7 venue basis coverage gap, and G-6 friction cap (γ = 0.185 vs 0.15 base cap) require resolution before staging limit orders.
 - **Active Orders & Capital**: 0 positions, 0 pending orders. 100% cash preserved.
+
+---
+
+## SECTION 138: ARENA.AI CYCLE 4 AUDIT & PER-VENUE BASIS MEDIAN MERGE (2026-10-11 14:44 UTC)
+### 1. Ingestion, Response Time & Ground Truth Verification
+- **Cycle Timing Profile**:
+  * Prompt Injected: 2026-10-11 14:33:53 UTC.
+  * Generation Complete: 2026-10-11 14:44:01 UTC.
+  * **Measured Response Time**: **10m 08s (608s)**.
+  * **Rolling Average Response Time**: **10m 38s (~638s)** across completed cycles (Cycle 1: 10m 52s, Cycle 2: 9m 31s, Cycle 3: 12m 00s, Cycle 4: 10m 08s).
+  * Sleep Optimization: 10.0-minute (`DurationSeconds=600`) timer delivers ~98% capture precision with zero token burn.
+- **Citation Block**: All 7 repository sources verified by Arena line-by-line (session history, ACTIVE_CONTEXT.md, LIVE_COLLABORATIVE_ORDER_DESK.md, protocol spec, round 2 audit, decision gates v3, dg_hardening.py, live snapshot gens 08e2d919 / b422a0de / 883df9f5).
+- **Account State (#5064568)**: Balance 4,896.55 USD | Equity 4,896.55 USD (100% Cash reserves, 0 open positions, 0 pending orders, capacity 0/4).
+- **Capital Floor Defense**: Floor 4,775.00 USD | Operating buffer: 4,795.00 USD | Cushion: **+121.55 USD** (+101.55 USD above operating buffer). Contingent stress: 0.00 USD.
+
+### 2. Major Council Breakthroughs & Forensic Findings
+- **Option A' Cross-Venue Basis Measurements Live**:
+  * Cross-venue basis restored to authentic market numbers: BTC mid_mt5 83,035 vs hyperliquid_mid 83,084, b = -48.50 USD.
+  * Option A' divergence revealed: BTC raw MT5 distance d_mt5 = -0.0093 (wall appears behind entry) vs venue-adjusted d_adj = +0.4440 (wall well beyond 0.25 ATR band). Proves why cross-venue basis accounting is mathematically essential.
+- **Inert Drift Breaker Identified & Resolved (Commit db2bd8bd)**:
+  * Arena proved that `basis_median` for HYPERLIQUID was publishing instantaneous quote `hd_b_obs` rather than rolling median, causing drift |b_now - b_hat| to be identically 0.0000 across all assets.
+  * Arena shipped `audit_basis_median_independence()` reporting per-venue pinned shares `{BINANCE: 0.0, HYPERLIQUID: 0.636}` and added 12 tests in `Tests/Test_Gate_Diagnostics.py`.
+  * Merged cleanly into `main` and verified: **86/86 gate diagnostic tests passing**.
+  * Antigravity updated `generate_telemetry_snapshot.py` to route HYPERLIQUID observations through `rolling_basis_median` and `record_basis_observation` across all branches.
+- **EV Hurdle Maintained for BTC**:
+  * EV_lower / R = p_lo * (RR - c) - (1 - p_lo) * (1 + c + s) = +0.0504R at RR = 2.117 with γ = 0.200. Positive statistical expectancy holds.
+
+### 3. Full Test Suite & Branch Synchronization
+- **Gate Diagnostics**: **86 passed, 0 failed in 0.16s**.
+- **Full Test Results**: Full pytest suite executing cleanly (1,049+ tests).
+- **Git HEAD**: Synchronized across `main` and `arena/537c1eb8-trading-2`.
+
+### 4. Council Trading Disposition
+- **Verdict**: **STAND ASIDE across all 24 assets**.
+  * 10 CFD Assets: Closed for the weekend.
+  * 14 Crypto Perpetuals: G-4 regime UNDEFINED (1H up vs 4H down; ETH nearest with ε = 0.1430 on er_4h), G-7 clock skew and remaining venue mid mappings, and G-6 friction cap prevent staging orders.
+- **Active Orders & Capital**: 0 positions, 0 pending orders. 100% cash preserved.
+

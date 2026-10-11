@@ -1400,11 +1400,16 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                 "basis_median": (round(basis_median, 8) if basis_median is not None else None),
             }
             if hd_status == "SUCCESS" and hd_mid and hd_mid > 0:
+                hl_key = f"{asset}:HYPERLIQUID"
                 hd_b_obs = ((bid_price + ask_price) / 2.0) - hd_mid if (quote_valid and bid_price > 0 and ask_price > 0) else None
+                hd_basis_median = rolling_basis_median(_prev_basis_meta, hl_key, now_ts)
+                if hd_b_obs is not None:
+                    _prev_basis_meta = record_basis_observation(
+                        _prev_basis_meta, hl_key, now_ts, hd_b_obs)
                 venue_basis_dict["HYPERLIQUID"] = {
                     "mid": round(hd_mid, 4),
                     "mid_ts": receipt_epoch or round(time.time(), 3),
-                    "basis_median": round(hd_b_obs, 8) if hd_b_obs is not None else None,
+                    "basis_median": (round(hd_basis_median, 8) if hd_basis_median is not None else None),
                 }
             orderbook_payload = {
                 "source": "REAL_BINANCE_FUTURES_L2_AND_HYPERDASH_L3",
@@ -1498,7 +1503,12 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
             imb = round((tot_b - tot_a) / max(tot_b + tot_a, 1.0), 4) if (tot_b + tot_a) > 0 else 0.0
             skew = round(tot_b / max(tot_a, 1.0), 4) if tot_a > 0 else 1.0
 
+            hl_key = f"{asset}:HYPERLIQUID"
             hd_basis_obs = ((bid_price + ask_price) / 2.0) - hd_mid if (quote_valid and bid_price > 0 and ask_price > 0) else None
+            hd_basis_median = rolling_basis_median(_prev_basis_meta, hl_key, now_ts)
+            if hd_basis_obs is not None:
+                _prev_basis_meta = record_basis_observation(
+                    _prev_basis_meta, hl_key, now_ts, hd_basis_obs)
             orderbook_payload = {
                 "source": "REAL_HYPERDASH_HIP3_L2_AND_L3",
                 "venue": "HYPERLIQUID_HIP3_PERP_DEX",
@@ -1511,7 +1521,7 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                     "HYPERLIQUID": {
                         "mid": round(hd_mid, 4),
                         "mid_ts": receipt_epoch or round(time.time(), 3),
-                        "basis_median": round(hd_basis_obs, 8) if hd_basis_obs is not None else None,
+                        "basis_median": (round(hd_basis_median, 8) if hd_basis_median is not None else None),
                     }
                 },
                 "top20_bid_depth_usd": round(tot_b, 2),
