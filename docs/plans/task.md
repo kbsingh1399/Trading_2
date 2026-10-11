@@ -29,4 +29,5 @@
 | T-27 | Cycle 06:50 UTC audit & BTC +2.54 SD Model 1 gate verification | COMPLETED | BTC Z=+2.54 SD gated closed by A1/A2/A3/A5; 24/24 STAND ASIDE; 4,896.55 USD defended |
 | T-28 | Merge Arena commit f73d32e9 & certify test suite | COMPLETED | Merged f73d32e9 (4 new tests); 335 / 335 tests passing; pinned cross-venue basis vs G-7 |
 | T-29 | Upgrade prompt generator & council protocols for exhaustive telemetry audit | COMPLETED | Enforced schema census, macro_orderflow_tilt, execution_specs, 20-level depth, stale scrape quarantine, cross-venue basis |
+| T-30 | Enforce multi-document line-by-line reading mandate & Option A cross-venue basis debate | COMPLETED | Upgraded dispatch scripts, prompts, specs, and ACTIVE_CONTEXT; synced to both remotes |
 

@@ -29,6 +29,10 @@ You MUST NOT evaluate this setup in a vacuum or provide a generic superficial su
 6. Decision Gates V3 Reference Implementation:
    https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Terminal/decision_gates_v3.py
 
+🛑 MANDATORY LINE-BY-LINE MULTI-DOCUMENT INGESTION PROTOCOL:
+OPERATOR MANDATE: In addition to reading the live telemetry snapshot line by line across all fields, you are STRICTLY REQUIRED to read LINE BY LINE ALL 6 REFERENCED REPOSITORY DOCUMENTS above before reaching any conclusion.
+Your response MUST begin with a "DOCUMENT INGESTION & GROUND TRUTH CITATION" block explicitly citing the verified timestamp and state of EACH document (e.g. latest turn in `session_chat_history.md`, live floor cushion in `ACTIVE_CONTEXT.md`, generation_id in `live_snapshot_latest.json`). Any conclusion reached without reading all documents line by line is a fatal defect.
+
 --------------------------------------------------------------------------------
 THE 5 SPECIALIST PERSONAS TO DISPATCH AND EMBODY:
 --------------------------------------------------------------------------------
