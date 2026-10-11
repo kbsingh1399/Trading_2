@@ -774,3 +774,65 @@ def test_liquid_spread_filtering_isolates_tight_book_independence():
     assert rep["liquid_inside_spread"] == 0
     assert rep["liquid_inside_spread_share"] == 0.0
 
+
+
+def test_ready_must_not_imply_desk_wide_when_some_assets_still_lag():
+    """max_abs_skew_s only covers fresh-quote assets.
+
+    An aggregate 'contemporaneous' verdict can coexist with individual assets
+    that fail their own skew test, because a stale quote age is excluded from the
+    clock measurement. 'ready' must not read as desk-wide when that happens.
+    """
+    a = {}
+    # Two assets with fresh broker quotes -> contribute to max_abs_skew_s.
+    for i, sym in enumerate(("BTC", "ETH")):
+        a[sym] = {
+            "quotes": {"bid": 99.0, "ask": 101.0, "mid": 100.0,
+                       "broker_tick_age_s": 1.0},
+            "orderbook_live_depth": {
+                "wall_sample_ts_epoch": 1001.0 + i, "binance_mid_ts": 1001.0 + i,
+                "binance_mid": 300.0,
+                "whale_walls_l3": [{"price": 1.0, "source": "HYPERLIQUID",
+                                    "gate_g7_eligible": True, "wall_class": "GENUINE"}],
+                "venue_basis": {"HYPERLIQUID": {"mid": 90.0 + i, "basis_median": 5.0}},
+            },
+        }
+    # One asset whose broker quote itself lags -> excluded, skew_ok False.
+    a["TRX"] = {
+        "quotes": {"bid": 99.0, "ask": 101.0, "mid": 100.0,
+                   "broker_tick_age_s": 18.0},
+        "orderbook_live_depth": {
+            "wall_sample_ts_epoch": 1001.0, "binance_mid_ts": 1001.0,
+            "binance_mid": 300.0,
+            "whale_walls_l3": [{"price": 1.0, "source": "HYPERLIQUID",
+                                "gate_g7_eligible": True, "wall_class": "GENUINE"}],
+            "venue_basis": {"HYPERLIQUID": {"mid": 90.0, "basis_median": 5.0}},
+        },
+    }
+    broker = {"BTC": 1001.0, "ETH": 1002.0, "TRX": 1001.0}
+    r = g7_readiness(a, broker_ts_by_symbol=broker, max_skew_s=5.0)
+    assert r["wall_verdict"] == "contemporaneous"          # aggregate passes
+    assert r["per_asset_skew_failed"] == ["TRX"]           # but not desk-wide
+    assert "TRX" in r["lagging_quote_assets"]
+    assert any(x.startswith("wall_timestamps:per_asset_skew_failed:") for x in r["blockers"])
+    assert r["ready"] is False
+
+
+def test_all_assets_fresh_reports_ready_with_no_skew_failures():
+    a = {}
+    for i, sym in enumerate(("BTC", "ETH")):
+        a[sym] = {
+            "quotes": {"bid": 99.0, "ask": 101.0, "mid": 100.0,
+                       "broker_tick_age_s": 1.0},
+            "orderbook_live_depth": {
+                "wall_sample_ts_epoch": 1001.0 + i, "binance_mid_ts": 1001.0 + i,
+                "binance_mid": 300.0,
+                "whale_walls_l3": [{"price": 1.0, "source": "HYPERLIQUID",
+                                    "gate_g7_eligible": True, "wall_class": "GENUINE"}],
+                "venue_basis": {"HYPERLIQUID": {"mid": 90.0 + i, "basis_median": 5.0}},
+            },
+        }
+    r = g7_readiness(a, broker_ts_by_symbol={"BTC": 1001.0, "ETH": 1002.0}, max_skew_s=5.0)
+    assert r["per_asset_skew_failed"] == []
+    assert r["lagging_quote_assets"] == []
+    assert r["ready"] is True

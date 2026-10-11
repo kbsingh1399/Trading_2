@@ -593,6 +593,19 @@ def g7_readiness(
         blockers.append("drift_breaker:b_hat_pinned_to_b_now")
     if walls.get("verdict") not in ("contemporaneous", "no_walls_published"):
         blockers.append(f"wall_timestamps:{walls.get('verdict')}")
+    # audit_wall_timestamps computes max_abs_skew_s only over assets whose broker
+    # quote is itself fresh; assets whose quote lags are recorded with
+    # skew_ok[sym] = False and excluded, because a stale quote age is not a clock
+    # disagreement. That exclusion is sound for the aggregate, but the aggregate
+    # verdict then reads "contemporaneous" even when individual assets still fail
+    # their own skew test -- and "ready" must not imply desk-wide.
+    skew_failed = sorted(
+        k for k, ok in (walls.get("skew_ok") or {}).items() if ok is False
+    )
+    # Only supplement a PASSING aggregate. When the aggregate already fails, that
+    # blocker is reported and adding this one would double-count the same defect.
+    if skew_failed and walls.get("verdict") == "contemporaneous":
+        blockers.append(f"wall_timestamps:per_asset_skew_failed:{','.join(skew_failed)}")
     if venue_blockers:
         blockers.extend(venue_blockers)
     elif venue.get("suspect") is True:
@@ -624,6 +637,10 @@ def g7_readiness(
         "wall_verdict": walls.get("verdict"),
         "venue_verdict": venue.get("verdict"),
         "max_abs_skew_s": walls.get("max_abs_skew_s"),
+        # Assets excluded from max_abs_skew_s because their own broker quote lags.
+        "per_asset_skew_failed": skew_failed,
+        "lagging_quote_assets": sorted(walls.get("lagging_quote_assets") or {}),
+        "closed_market_assets": sorted(walls.get("closed_market_assets") or {}),
         "inside_spread_share": venue.get("inside_spread_share"),
         "venue_mid_near_threshold": venue.get("near_threshold"),
         "exact_zero_share": venue.get("exact_zero_share"),
