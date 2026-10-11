@@ -53397,3 +53397,17 @@ Finally, unify live and replay ratchets before qualifying uplift; the current se
   * MT5 (#5064568): Balance 4,896.55 USD | Equity 4,896.55 USD (100% Cash, 0 positions, 0 orders, capacity 0/4). Floor cushion: +121.55 USD above 4,775.00 USD hard floor (+101.55 USD above 4,795.00 USD buffer).
   * Stand Aside Binding: In-range BTC price (82,891.0 USD, Z = +0.35 SD, offset 29.13 USD << 212.55 USD floor) and lack of G-7 whale walls bind stand-aside across all 24 assets.
   * Next cycle: Standing cadence cron `task-36935` armed for 04:50:00 UTC (~6 minutes away).
+
+### Turn [2026-10-11 07:25 UTC Operator Prompt Audit: Arena Line-by-Line Census & Council Protocol Upgrades]
+- **Operator Insight & Arena Forensic Discovery**:
+  * Operator challenged Arena: 'I hope you are reading each and every line ... and then making decision for trading candidates.'
+  * Arena's admission: Conceded it was only reading a targeted 4-field subset (causal_indicators, quotes, whale_walls_l3, reconstructed_liquidations) and had never opened 12 top-level structures and ~11 asset-level fields.
+  * Point 1 (Cross-Venue Basis vs G-7 Proximity Band): build_dg_context measures dist_atr = side * (entry - wall_price) / atr where entry is MT5 broker mid and wall_price is Binance USDM Futures / Hyperliquid. On 6 of 14 cryptos, the basis exceeds the entire 0.25 ATR tolerance (BNB 3.89x, SOL 1.86x, ETH 1.40x, BTC 1.29x). This suppressed authentic, persistent walls on ETH () and SOL (). Shipped as commit f73d32e9 with 4 characterization tests (Tests/Test_Whale_Wall_Authenticity_Gates.py 37 -> 41).
+  * Point 2 (Stale Scrape Quarantine): Arena uncovered that hyperdash_flow_intelligence was citing Sept 27-28 scrape rows (~13 days old) with corrupted relative-time strings, and lacked BNB coverage.
+  * Point 3 (Critical Unopened Fields): Discovered summary.macro_orderflow_tilt (e.g. BEARISH_LONG_FLUSH_PREDOMINATES, adverse to longs), execution_specs (discrete lot rounding, stops_level), orderbook_live_depth (full 20-level depth, imbalance, skew), funding_and_rates, and whale_trades.
+- **Council Prompt & Protocol Upgrades (Commit 914361c7)**:
+  * Upgraded Terminal/dispatch_comprehensive_wake_up_prompt.py, Terminal/arena_bridge.py, docs/prompts/ARENA_MULTI_PERSONA_COUNCIL_PROMPT_V1.md, docs/specs/ANTIGRAVITY_ARENA_THINKING_CHAIN_COUNCIL_PROTOCOL.md, and .agents/rules/ACTIVE_CONTEXT.md.
+  * Enforced: (1) Exhaustive JSON schema census across all fields, (2) Mandatory macro tilt and execution specs check, (3) Disregard/quarantine of stale hyperdash_flow_intelligence, (4) Dual-reference cross-venue basis reporting (raw MT5 distance + venue-adjusted distance).
+  * Merged Arena commit f73d32e9 and pushed 914361c7 to origin/main and origin/arena/537c1eb8-trading-2 in 100% bidirectional parity.
+  * Test Suite Status: 335 / 335 tests passed (100% green).
+  * Account State (#5064568): Balance 4,896.55 USD | Equity 4,896.55 USD (100% Cash, 0 open, 0 pending, capacity 0/4). Floor cushion: +121.55 USD above 4,775.00 USD hard floor (+101.55 USD above 4,795.00 USD buffer).
