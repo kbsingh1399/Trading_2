@@ -325,7 +325,28 @@ def build_dg_context(
             orderflow = None
 
     p_win_lower = features.get("p_win_lower_bound")
-    if (features.get("p_win_lower_bound_calibrated") is not True or isinstance(p_win_lower, bool)
+    if p_win_lower is None and isinstance(payload, dict):
+        p_win_lower = payload.get("p_win_lower_bound")
+
+    p_win_cal = features.get("p_win_lower_bound_calibrated")
+    if p_win_cal is None and isinstance(payload, dict):
+        p_win_cal = payload.get("p_win_lower_bound_calibrated")
+
+    sample_n = features.get("p_win_calibration_sample_n")
+    if sample_n is None and isinstance(payload, dict):
+        sample_n = payload.get("p_win_calibration_sample_n")
+
+    # Admissible if explicitly calibrated (e.g. n >= 100) OR supported by an audited
+    # closed-trade sample with n >= 15 where exact Clopper-Pearson conservative penalty is applied.
+    has_audited_sample = (
+        isinstance(sample_n, (int, float))
+        and not isinstance(sample_n, bool)
+        and math.isfinite(sample_n)
+        and sample_n >= 15
+    )
+    calibrated_admissible = (p_win_cal is True) or has_audited_sample
+
+    if (not calibrated_admissible or isinstance(p_win_lower, bool)
             or not isinstance(p_win_lower, (int, float)) or not math.isfinite(p_win_lower)
             or not 0 <= p_win_lower <= 1):
         p_win_lower = None
@@ -554,7 +575,7 @@ def evaluate_candidate_dg_v3(
 
     if regime.startswith("TREND"):
         verdict = model2_checklist(ctx)
-    elif regime == "MEAN_REVERT":
+    elif regime == "MEAN_REVERT" or m1_range_override_ok(ctx):
         verdict = model1_checklist(ctx)
     else:
         verdict = Verdict(passed=False, failures=["REGIME_UNDEFINED"])

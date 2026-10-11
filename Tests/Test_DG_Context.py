@@ -306,3 +306,24 @@ def test_evaluate_candidate_dg_v3_accepts_telemetry_snapshot_keys():
     assert res["failures"] != ["regime_history_time_invalid_or_noncausal"]
     assert res["regime"] != "UNDEFINED"
 
+
+def test_audited_sample_admits_clopper_pearson_lower_bound():
+    """An audited sample n >= 15 admits the exact Clopper-Pearson bound even if n < 100."""
+    payload_audited = {
+        "p_win_lower_bound": 0.4197,
+        "p_win_lower_bound_calibrated": False,
+        "p_win_calibration_sample_n": 17,
+    }
+    ctx, _ = build_dg_context(**context_fixture(payload=payload_audited))
+    assert ctx["p_win_lower_bound"] == 0.4197
+
+    # But an insufficient sample (< 15) without calibration remains blocked
+    payload_small = {
+        "p_win_lower_bound": 0.4197,
+        "p_win_lower_bound_calibrated": False,
+        "p_win_calibration_sample_n": 10,
+    }
+    ctx_small, _ = build_dg_context(**context_fixture(payload=payload_small))
+    assert ctx_small["p_win_lower_bound"] is None
+
+
