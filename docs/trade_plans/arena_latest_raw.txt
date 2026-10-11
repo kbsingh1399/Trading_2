@@ -1,113 +1,168 @@
-All six fixes verified upstream. Here is the ruling.
-
 🏛️ ARENA.AI MULTI-PERSONA QUANTITATIVE COUNCIL REPORT
 
-Cycle Timestamp: 2026-10-10 09:40:45 UTC (scan executed on the 09:26:06 snapshot)
-Council Disposition: STAND ASIDE / PUNCH NONE — 0 of 24 assets admissible under either engine
+Cycle Timestamp: 2026-10-11 08:59:55 UTC (generation cbfee46936a6) · Sunday
+Council Disposition: STAND ASIDE — 0 of 24 admissible, 0 of 48 evaluations passed. Option A′ verified as genuinely implemented; one dead-wired component found, fixed, and pushed.
 
-Both prior fixes propagated into your prompt (the MIRRORED … NOT net directional inventory tags and age~40s (single sample, no persistence series)), and #18762114 is withdrawn — queue clean, book flat. This cycle I found a third prompt-integrity bug of the same class, and fixed it.
+⚠️ CORRECTION — MY FIRST CLAIM THIS TURN WAS FALSE
 
-1. DIALECTIC PERSONA RESEARCH & AUDIT LOGS
-A. Orderflow — your "tight-spread shortlist" mostly fails your own ceiling
+I opened this turn stating "Option A′ is NOT in Terminal/dg_context.py." That was wrong. My grep ran against stale HEAD 4ccd59e, before I had fast-forwarded. After git merge --ff-only to 253911d, the implementation is plainly there at dg_context.py L337–422, added by commit 5fc29da "feat: implement Option A-prime cross-venue basis architecture and ratify static council prompt V2.0". The operator's brief was accurate and my assertion was not. What follows is verified against the synced tree.
 
-Your Section 6.1 names five candidates. Measured against the live book:
+What I did find is different, and it is real — see §D.
 
-Asset	Your claim	Live spread	G-5 (≤20 bps)	c = spread/1.5·ATR	G-6 (≤0.10R)	EV @2.5R
-BTC	1.81 bps	1.81	✅	0.0846	✅	+0.3263
-BNB	6.68 bps	8.00	✅	0.3197	❌	+0.0912
-ETH	11.64 bps	11.62	✅	0.5184	❌	−0.1075
-SOL	21.8 bps	23.65	❌	0.6768	❌	−0.2659
-XRP	21.3 bps	28.43	❌	0.7207	❌	−0.3098
+1. DOCUMENT INGESTION & GROUND TRUTH CITATION
 
-SOL and XRP exceed the 20.00 bps ceiling you yourself imposed this cycle, and your quoted spreads for both are understated. ETH passes the spread gate but fails relative friction and carries negative expectancy. BNB fails friction. You also omitted BCH (17.20 bps), the only other asset clearing G-5 — though it too fails G-6 at c = 0.3716.
+Local HEAD advanced 4ccd59e → dd9cfdd during this turn. All seven sources read.
 
-BTC is the only asset in the universe clearing both G-5 and G-6. The rest: DOGE c=7.0000, TRX 2.2222, DOT 1.6092, LINK 1.4456, LTC 1.3899, ADA 0.8750, XRP 0.7207, SOL 0.6768, NEAR 0.4333, AVAX 0.4255.
+#	File	Verified state
+1	.agents/memory/session_chat_history.md	53,468 lines / last commit 5fc29da. Newest turn: ### Turn [2026-10-11 08:30 UTC Option A-prime Implementation, 4 Mutation Tests & Static Council Prompt V2.0 Ratification] (prior: 08:15 UTC "Arena Output Harvest, Commit 4ccd59e0 Merge & Option A-prime Formulation").
+2	.agents/rules/ACTIVE_CONTEXT.md	140 lines / d7fe26c. Mission card, G-1 cushion +121.55 USD, 4-ticket capacity, risk 10.00–14.50 USD.
+3	docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md	9,364 lines / cfea184. Newest: SECTION 133 "RATIFICATION OF OPTION A′ CROSS-VENUE BASIS TRANSLATION & LIVE AUDIT (2026-10-11)", recording the formulas, 4 unit tests, 897 passed, 0 positions, +121.55 USD.
+4	docs/specs/ANTIGRAVITY_ARENA_THINKING_CHAIN_COUNCIL_PROTOCOL.md	262 lines / 914361c. 9 Heuristic Trap Rebuttals confirmed; Traps 7/8/9 are 4-Field Sampling, Stale Scrape, Cross-Venue Basis.
+5	docs/reviews/ROUND2_THINKING_CHAIN_AUDIT.md	310 lines / cfea184 — restored. Last turn I reported this file truncated at line 184 mid-A3 with §9 missing. It now runs A3→A5, Checklist B (B1–B6), §4 pruning, §5 lifecycle, §6 pre-send, §7 toxicity, §8 target-horizon, §9 test evidence. My truncation finding is resolved.
+6	Terminal/decision_gates_v3.py (988 L) + Terminal/dg_context.py (591 L, was 539)	classify_regime L338, model1_checklist L447, model2_checklist L572, _net_ev L639. Option A′ translation verified at dg_context.py L337–422.
+7	docs/telemetry/live_snapshot_latest.json	gen cbfee46936a6, 08:59:55 UTC. 26 top-level keys × 24 assets × 20 fields, full census run.
+2. COUNCIL DELIBERATION
+Persona 1 — Orderflow & Microstructure Analyst
 
-BTC microstructure has reversed against longs since last cycle. Top-20 bid depth collapsed from 1,419,502 → 262,128 (−82%); imbalance flipped +0.4895 → −0.593; skew 2.918 → 0.256. CVD is cumulatively +12.0M but the last five 1m buckets total only +92,650 — buying momentum has stalled. Price sits at Z = +2.57, extended above VWAP.
+G-5 spread ceiling (≤20.00 bps): 13 pass / 11 fail. Pass: BTC 1.93, GER40 0.32, DJ30 0.39, NAS100 0.46, GOLD 0.74, SP500 1.11, USWTI 3.24, GBPUSD 3.02, BNB 8.04, EURUSD 7.86, USDJPY 8.72, SILVER 12.17, ETH 11.21. Fail: SOL 21.03, BCH 20.90, XRP 21.53, TRX 24.24, AVAX 29.08, LTC 47.14, NEAR 56.97, LINK 66.86, ADA 84.90, DOT 169.97, DOGE 246.05.
 
-The liquidity gradient still points down: 82,150 (6.35M), 81,550 (9.78M), 81,650 (3.40M), 80,350 (4.10M) of sell stops below versus 83,050 (4.32M) and 83,550 (1.51M) above. top_short_squeeze_bands_above contains one band: 82,850 at 10,032 USD.
+G-3 tick freshness: all 14 crypto fail the mandated <5.0 s. BTC is nearest at 5.44 s; BNB 42.05, DOT 54.43, AVAX 54.07, XRP 50.19, TRX 38.64. None breach the Protocol §4 hard veto of >60 s, but none satisfy the brief's <5.0 s bar either.
 
-Mirror rates confirm last cycle's finding is systemic, not BTC-specific: DOGE 100%, LINK 100%, SOL 95.8%, AVAX 91.7%, USWTI 90.9%, DOT 90%, ADA 90%, XRP 83.6%, BCH 80%, BTC 63.7%, ETH 60.7%. DJ30 and GER40 publish no walls at all.
+book_imbalance as a directional tilt (live, not the quarantined scrape aggregate). Ratio (1+imb)/(1−imb) against the Pillar-3 requirement of ≥1.25× favouring direction:
 
-B. Position & Capital Floor — clean, nothing to audit
+Favours SHORT: BTC 0.3579, ETH 0.3406, BNB 0.2788, USWTI 0.3010, EURUSD 0.4697, USDJPY 0.5632, GOLD 0.6700, SP500 0.6633
+Favours LONG: SOL 1.1459, ADA 1.1207, DOGE 1.1162, DOT 2.2602, LINK 2.0030, BCH 1.1743, LTC 1.1207, AVAX 1.1075, NEAR 1.2989, GBPUSD 2.2427, SILVER 1.3272, NAS100 1.0246
+BTC's book favours SHORT at 0.3579 while its trend_regime label reads BULLISH — ROUND2 defect D10 (ema_200_slope ≥ 0 → BULLISH, no chop state). The label is cosmetic; classify_regime is binding.
 
-Balance = equity = free margin 4,896.55; margin used 0.00. Floor cushion +121.55, operating buffer +101.55. Active positions 0, resting limits 0, tickets 0. Capacity filled 0 / pending 0 / available 4. At the 15.00 USD cap a full 4-slot book stressed 1.25× + exec = 83.00 → post 4,813.55 → +38.55 above floor. No HOLD, ratchet, or prune decisions exist this cycle. Capital is never the binding constraint.
+A2 fails closed desk-wide. orderflow is absent from every ctx I built; model1_checklist hard-requires it with no price-only bypass. Model 1 cannot pass end-to-end regardless of regime.
 
-C. Macro & Structural Liquidity — weekend freeze confirmed, guard verified working
+Persona 2 — Structural Price Action & Regime Specialist
 
-Saturday. All 10 CFDs frozen at 10-09 20:30 UTC, session_bars 0, atr_14 null. BoE runway 47.3 h, blackout_active false.
+24/24 UNDEFINED. Binding limb per asset:
 
-I verified the staleness guard end-to-end this cycle, because my raw scan initially returned MEAN_REVERT for SP500:
+sym	ER 1h	ER 4h	VRz 15m	binding deficit
+BTC	0.0707 ✓	0.2692 ✓	−1.0634	VRz short of −1.5 by 0.4366 (was 0.1418 at 07:37 — retreating)
+ETH	0.0213 ✓	0.4051 ✗	−1.4396	ER_4h over 0.30 by 0.1051
+SOL	0.0821 ✓	0.4282 ✗	−0.1554	ER_4h
+BNB	0.0576 ✓	0.2469 ✓	+0.3093	VRz short by 1.8093
+BCH	0.0722 ✓	0.4628 ✗	−1.0837	ER_4h
+LTC	0.0551 ✓	0.4396 ✗	+0.8638	ER_4h
+SP500	0.0340 ✓	0.2723 ✓	−1.6336 ✓	stale only — bar_age 130,495 s
+
+A1 sigma floor, σ ≥ 0.8·ATR:
+
+ETH fails by 0.000200 — σ 3.430900 vs 0.8·ATR 3.431760. A two-hundred-thousandth. One tick of dispersion flips it.
+BTC fails by 0.102624 (σ 87.8794 vs 100.8114).
+DOGE passes at ratio 1.5000 and Z = +3.40 — the only |Z| ≥ 2.0 in the universe, and it is G-5 vetoed at 246.05 bps.
+
+SP500 remains the load-bearing case. Its statistics satisfy MEAN_REVERT on all three limbs; only the staleness guard blocks it. At 130,495 s (36.2 h) that guard is the sole thing preventing a mean-reversion entry into a market shut since Friday 20:59:59 UTC.
+
+Full sweep through the production path evaluate_candidate_dg_v3, 24 assets × 2 directions: PASSED: 0 of 48. 14 crypto → REGIME_UNDEFINED; 10 CFDs → regime_history_stale_or_invalid.
+
+Persona 3 — Liquidation & Stop Hunt Forensic
+
+Ground truth from the live blocks only (reconstructed_liquidations, structural_stop_clusters), never hyperdash_flow_intelligence. Against MAX_TARGET_DIST_ATR = 4.0 and MIN_POOL_NOTIONAL_USD = 150,000 (ROUND2 §8):
+
+No named BTC pool sits inside the calibrated horizon. Nearest long anchor BUY_STOPS 83,550 (+4.95 ATR, $14.0M); nearest short anchor SELL_STOPS 82,250 (−5.55 ATR, $6.1M). Every candidate anchor is beyond 4.0 ATR, so EV_target_beyond_calibrated_horizon rejects any TP formed from them. named_pool_inside_horizon remains unwired into _net_ev.
+
+Persona 4 — Macro Risk & Portfolio Governor
+text
+account: balance 4896.55  equity 4896.55  cushion +121.55  floor 4775.00
+capacity: 0/4 joint-fill slots, 0 filled, 0 pending, free_margin 4896.55
+risk: post_joint_stop 4896.55  required 4795.00  contingent 0.00
+trade_authorization: DENIED_UNVERIFIED_ORDERFLOW
+macro: BoE Breeden Interview 2026-10-12 09:30 UTC  blackout=False  runway 24.00 h
+       purge_deadline 2026-10-12 08:55:00 UTC
+p_win_lower_bound 0.4197  calibrated=False  n=17  min_sample=100
+
+G-1 PASS — cushion is 6.08× the ≥20.00 USD requirement. G-2 PASS — 0/4.
+
+The EV gate cannot be evaluated at all. p_win_lower_bound_calibrated = False because n = 17 against a 100-trade minimum, so dg_context nulls it and _net_ev fails EV_p_win_lower_bound_missing. There is no win probability the desk may legally use. 83 more closed trades are required before expectancy becomes computable — this blocks every candidate independently of regime, walls, or geometry.
+
+Steps 2, 3, 4
+Step 2 — running trades: 0 positions. Ratchets (Phase 0 @ +0.80R, Phase 1 @ +1.50R, Phase 2 @ +2.00R) on invariant standby.
+Step 3 — resting orders: 0 pending. Nothing to prune; zero stale-fill risk.
+Step 4 — capacity 0/4, joint contingent risk 0.00 USD, stressed equity 4,896.55 vs 4,795.00 required. Risk recirculation not engaged (no positions). Note: the brief says "NO ARTIFICIAL RIGID POSITION CAP" while ACTIVE_CONTEXT.md §3, Protocol Gate 2 and capacity.max_concurrent all specify 4. I enforced 4.
+3. OPTION A′ CROSS-VENUE BASIS EVALUATION TABLE
+
+Verified against the live code path. b_hat below is the median of the last 12 published snapshots — what the producer will emit once warm (see §D for why it emits nothing today).
+
+sym	b_now	b_hat	drift	drift_tol	tol/ATR	drift/ATR	breaker	walls B → A′
+BTC	−37.3500	−33.7000	3.6500	31.5036	0.2500	+0.0290	OK	1 ($150,151) → 0
+ETH	−1.3650	−1.5650	0.2000	1.0724	0.2500	+0.0466	OK	1 ($4,995,000) → 0
+SOL	−0.1100	−0.1125	0.0025	0.0609	0.2500	+0.0103	OK	3 ($1,244,238) → 1 ($356,379)
+BNB	−0.9850	−0.9800	0.0050	0.2334	0.2500	+0.0054	OK	0 → 0
+XRP	−0.0006	−0.0003	0.0002	0.0020	0.7692	+0.0962	OK	0 → 0
+DOGE	+0.0000	+0.0000	0.0000	0.0002	1.0000	+0.0000	OK	1 ($154,002) → 1
+TRX	+0.0000	+0.0000	0.0000	0.0002	1.0000	+0.0000	OK	0 → 0
+DOT	−0.0006	−0.0005	0.0001	0.0020	0.4082	+0.0204	OK	0 → 0
+AVAX	−0.0055	−0.0055	0.0000	0.0200	0.7547	+0.0000	OK	0 → 0
+ADA/LINK/BCH/LTC/NEAR	—	—	—	—	0.2500	≤0.0263	OK	0 → 0
+
+Three findings from this table:
+
+The basis is stable right now. With a genuine b_hat, drift/ATR ranges 0.0000–0.1250, all inside tolerance. The breaker does not trip, and the translation is legitimate. This vindicates the design.
+
+Option A′ is materially stricter than Option B on this snapshot, rejecting the $4,995,000 ETH bid and 2 of 3 SOL walls. The basis is negative (MT5 below Binance), so translation moves walls down, pushing them further behind a long entry and out of the band. ETH's wall sits at d_adj = +0.4674 vs d_raw = +0.0932.
+
+The Tick Quantization Guard is very wide. max(0.25·ATR, 2·tick) yields tolerances of 1.00 ATR on DOGE and TRX, 0.7692 on XRP, 0.7547 on AVAX, 0.4082 on DOT — because on those assets 0.25 ATR is smaller than two ticks (TRX: 0.25·ATR = 0.00005 vs tick 0.0001). The guard prevents false rejection as intended, but on those five assets the drift breaker is effectively disarmed. Worth a second look once basis_median is warm and there is real data to test against.
+
+Decisive point for admission: every wall surviving Option A′ sits on an asset that fails G-5 — SOL 21.03 bps, DOGE 246.05 bps. G-7 contributes nothing usable after G-5.
+
+D. THE REAL DEFECT — AND THE FIX I SHIPPED
+
+Option A′'s drift circuit breaker was unreachable on live telemetry.
+
+The gate reads b_hat from orderbook_live_depth.basis_median. No producer ever wrote that key — I measured it present in 0 of 24 assets. So dg_context always took its cold-start branch, b_hat = b_now, giving:
 
 text
-ASSET   no-guard     WITH guard   bar_age_s   stale
-SP500   MEAN_REVERT  UNDEFINED      45666.9   True
-BTC     UNDEFINED    UNDEFINED        666.9   False
+basis_drift = |b_now − b_hat| = |b_now − b_now| = 0.0
+basis_drift_ok = (0.0 <= drift_tol)  →  True, unconditionally
 
-That MEAN_REVERT is a frozen Friday bar being read as a live regime — exactly the defect fixed in 1207d7d9. The fix is confirmed functioning in production. With the clock supplied, the tally is 24/24 UNDEFINED.
+The translation ran unguarded, absorbing a single book print 28.1 s older than the broker tick, with no dislocation check ever able to fire.
 
-D. Forensic Verification — the "Regime = BULLISH" line was never the gate
+The four Option A′ unit tests could not catch this: each supplies its own synthetic basis_median, so all four pass while the producer publishes nothing. No integration test asserted the two halves connect.
 
-This is the third bug, and it is the root cause of three consecutive false theses. The briefing rendered Regime = {causal_indicators.trend_regime}. That field is a 200-EMA heuristic. The gates read classify_regime():
+Fixed and pushed as dd9cfdd:
 
-Python
-model1_checklist:  v.require(ctx["regime"] == "MEAN_REVERT", "A1_regime_not_mean_revert")
-model2_checklist:  v.require(ctx["regime"] == want, "B1_regime_mismatch")   # want ∈ {TREND_UP, TREND_DOWN}
+microstructure_state.py: record_basis_observation / rolling_basis_median, mirroring the existing spread-median pair. The median is taken over prior prints only — including the reading under test would collapse drift back to 0.0. Requires 5 prior samples, returns None rather than a fabricated 0.0 when cold, accepts negative and zero (unlike the spread series), rejects non-finite. History lives in META under BASIS_HISTORY_KEY, so prune_wall_state preserves it with no extra state file.
+generate_telemetry_snapshot.py: reads the median before appending this cycle's print, publishes basis_median, folds history into META before save.
+9 tests, including an integration test driving the real build_dg_context with a producer-built median, asserting admission on a calm basis and suppression on a 6.0 USD dislocation.
 
-Your brief cited "Our causal indicators in assets_matrix_24 labeled BTC Regime = BULLISH" as evidence for a long. On the same snapshot the enforced gate returned UNDEFINED. The label was cosmetic; the gate was binding; the briefing only printed the label.
+Mutation-verified: forcing dg_context to ignore the published median fails that test.
 
-Fixed in b7208337. The line now reads:
+Verification: python -m pytest Tests/ -q → 908 passed, 3 skipped (was 899), confirmed at pushed HEAD dd9cfdd. The changed paths — rolling_basis_median, record_basis_observation, the producer's basis_median publish, and build_dg_context's breaker branch — are all executed by those tests.
 
-text
-200EMA Label = BULLISH (cosmetic, NOT the gate) | enforced_gate=UNDEFINED(live) <- BINDING for both engines
+basis_median will populate after 5 daemon cycles (~5 min); until then the gate correctly reports cold start.
 
-I threaded the staleness arguments deliberately. Without them SP500 renders MEAN_REVERT — so the naive fix would have advertised a tradeable regime for a shut market, which is worse than the label it replaced. Live render across the universe:
+4. TRADE TABLE
 
-text
-BTC/ETH/BNB/BCH        enforced_gate=UNDEFINED(live)                    vs labels BULLISH/BEARISH
-SP500/NAS100/GOLD/...  enforced_gate=UNDEFINED(STALE_BARS_age=45667s)   GER40 age=49267s
+No qualifying candidates. Zero orders staged.
 
-BTC is on a knife-edge that argues for standing aside, not for punching. Its 4H efficiency ratio is 0.2976 — simultaneously > 0.25 (satisfying the TREND_DOWN HTF limb) and < 0.30 (satisfying the MEAN_REVERT 4H limb), by a margin of 0.0024. One 4H close flips which engine is even eligible. That is not a setup; it is a classification about to change.
+Gate	Verdict	Binding fact
+G-1 Capital Floor	✅ PASS	cushion +121.55 USD = 6.08× requirement
+G-2 Capacity	✅ PASS	0/4 slots, contingent risk 0.00 USD
+G-3 Session Maturity	❌ FAIL	14/14 crypto tick age ≥5.44 s; 10 CFDs at 129,595 s, 0 bars
+G-4 Regime	❌ FAIL	UNDEFINED × 24
+G-5 Spread ≤20 bps	❌ FAIL	11 of 24 fail; SOL 21.03, DOGE 246.05
+G-6 Relative Friction	⚠️ BLOCKED	EV_p_win_lower_bound_missing, n=17/100
+G-7 Whale Backing (Option A′)	❌ FAIL	2 walls survive, both on G-5-vetoed assets
 
-2. SEVEN-STAGE GATE COMPLIANCE MATRIX
-Gate	Result
-G-1 Capital Floor	✅ PASS (+121.55)
-G-2 Capacity	✅ PASS (0/4)
-G-3 Session Maturity	✅ 14 crypto (34–37 bars) · ❌ 10 CFDs frozen
-G-4 Regime	❌ UNDEFINED 24/24 — binding
-G-5 Spread ≤ 20 bps	✅ 4/24 (BTC, BNB, ETH, BCH)
-G-6 Friction ≤ 0.10R	✅ 1/24 (BTC only, c=0.0846)
-G-7 Whale ≥150k + ≥180s	❌ 0/24 — persistence published nowhere
-EV lower bound	✅ BTC +0.3263R @2.5R — mooted by G-4
+Mathematical stand-aside justification, in order of bindingness:
 
-Mandate 7 explicitly satisfied — both engines were evaluated and both are exhausted:
+Regime is UNDEFINED on all 24. Standing invariant: both engines stand aside.
+The EV gate is unevaluable. p_win_lower_bound_calibrated = False at n=17 of 100. No candidate can clear EV_lower/R > 0 because no p_lower exists.
+A2 fails closed desk-wide — no orderflow payload, so Model 1 cannot complete.
+No admissible TP anchor — every named BTC pool is beyond MAX_TARGET_DIST_ATR = 4.0.
+G-7 yields nothing usable — the two walls surviving Option A′ are on SOL and DOGE, both G-5 vetoed.
 
-Engine	Universe	First assertion	Result
-Model 1 (|Z|≥2.0)	BTC 2.39, ETH 2.16, LINK 2.58, TRX 3.44, DOGE 4.19	regime == MEAN_REVERT	0/5 — all UNDEFINED
-Model 2 (|Z|<2.0)	remaining 19	regime ∈ {TREND_UP, TREND_DOWN}	0/19 — all UNDEFINED
-text
-BTC 1H votes 0/3 BOTH directions: t=+2.314 (need >2.5) | er=0.0009 (need >0.35) | vr_z=-0.792 (need >1.0)
-BTC 4H: t=-5.991, er=0.2976 -> htf_ok TRUE for TREND_DOWN, FALSE for TREND_UP
-BTC MEAN_REVERT: 1h er 0.0009<0.20 T | 4h er 0.2976<0.30 T | 15m vr_z -0.084<-1.5 FALSE
-BTC A1: bars 37>=16 T | sigma 84.4862 >= 0.8*ATR 94.5698 FALSE | |Z| 2.39>=2.0 T
-3. MASTER ARBITRATOR FINAL SYNTHESIS & RULING
+Evidence Score: 35/100 (Provenance 0/20, Structural Thesis 0/20, Conditional EV 0/20, Floor & Capacity 20/20, Execution Hygiene 10/10, Macro & Timing 5/10), with hard vetoes firing independently of score.
 
-Verdict: STAND ASIDE / PUNCH NONE.
+Next revalidation:
 
-JSON
-{"decision":"STAND_ASIDE","symbol":null,"direction":null,"entry":null,"sl":null,"tp":null,
- "risk_usd":0.00,"lots":0.00,"committed_risk_usd":0.00,
- "floor_cushion_preserved_usd":121.55,"broker_actions_performed":"none",
- "book":"FLAT (0 filled / 0 pending)","admissible_assets":"0/24"}
+Sunday 22:00 UTC + 60 min — CFD reopen. SP500's statistics already satisfy MEAN_REVERT (ER 1h 0.0340, ER 4h 0.2723, VRz 15m −1.6336); the staleness guard is the only thing blocking it. Highest-value checkpoint on the board.
+Every 1H close — BTC VRz 15m must fall 0.4366 to reach −1.5 (and is currently retreating, not approaching). ETH σ/ATR is 0.7998 — 0.000200 under the A1 floor.
+2026-10-12 08:55 UTC — BoE purge, then blackout 09:00–10:00 UTC.
+Structural — 83 more closed trades before p_win_lower_bound calibrates.
 
-Mathematical rationale: classify_regime() returns UNDEFINED for 24/24 with the staleness guard engaged. model1_checklist requires MEAN_REVERT; model2_checklist requires TREND_UP/TREND_DOWN. Both fail their first assertion on every asset, before geometry, orderflow, whale backing or expectancy is ever evaluated. Standing aside is therefore permitted under your Mandate 7 — neither engine yields a structural setup.
-
-Evidence Score: 12/100 — regime 0/25 (24/24 UNDEFINED) · liquidity 4/25 (gradient down, 63.7% of BTC walls mirrored) · execution economics 8/25 (only BTC clears G-5+G-6; L2 bid depth −82%) · structural premise 0/25 (label mistaken for gate).
-
-Expectancy Analysis: BTC RR 2.50, c = 0.0846, s = 0.10R → EV_lower = +0.3263R; break-even p 0.3385 vs calibrated bound 0.4197 ✅. Every other asset is negative or fails friction. BTC is the only positive-expectancy instrument you hold — and it has no directional thesis.
-
-Execution Action: stage nothing. Watch BTC only.
-
-Revalidation: BTC needs two of three 1H votes — |t| > 2.5 (now 2.314, wrong sign for a short), er > 0.35 (now 0.0009), vr_z > 1.0 (now −0.792) — with 4H agreeing, which it already does for TREND_DOWN. The 1H efficiency ratio of 0.0009 is the widest gap; this is a market with no directional information at all. Also watch the 4H ER knife-edge at 0.2976 — a single close either side flips BTC between "HTF-confirmed downtrend" and "mean-revert eligible." Next 1H close; CFDs at Sunday open +60 min; BoE purge Mon 2026-10-12 08:55 UTC.
-
-Shipped this cycle —
+One item for operator decision: the Tick Quantization Guard disarms the drift breaker on 5 assets (DOGE, TRX at 1.00 ATR tolerance; XRP 0.77; AVAX 0.75; DOT 0.41) because 0.25 ATR is sub-tick there. That is the intended trade-off for micro-ATR names, but on those assets the wall band itself (0.25 ATR = 0.5 tick on TRX) is finer than the quote grid can resolve — so G-7 proximity is arguably unmeasurable rather than merely uncertain. Worth deciding whether G-7 should simply decline to evaluate below a minimum ATR/tick ratio.
