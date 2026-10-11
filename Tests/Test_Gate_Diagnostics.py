@@ -16,6 +16,7 @@ from Terminal.gate_diagnostics import (
     audit_venue_mid_independence,
     audit_wall_timestamps,
     friction_verdict,
+    g7_readiness,
     regime_proximity,
     spread_friction_r,
 )
@@ -301,3 +302,63 @@ def test_independence_audit_fails_closed(bad):
     a = audit_venue_mid_independence(bad)
     assert a["verdict"] == "insufficient_data"
     assert a["suspect"] is None, "must not certify independence without data"
+
+
+# ==================================================== composite G-7 readiness
+
+def _readiness_assets(skew_ok=True, venue_independent=True, n=4):
+    """4 assets; toggle the two independent G-7 preconditions separately."""
+    base = 1000.0
+    out = {}
+    for i in range(n):
+        # Distinct per asset in both cases: the real failure signature is
+        # per-asset stamps that all lag, not one shared stamp.
+        wts = base + i if skew_ok else base + i - 30.0
+        vm = 200.0 if venue_independent else 100.0     # 100.0 == broker mid
+        out[f"S{i}"] = {
+            "quotes": {"bid": 99.0, "ask": 101.0, "mid": 100.0},
+            "orderbook_live_depth": {
+                "wall_sample_ts_epoch": wts, "binance_mid_ts": wts,
+                "binance_mid": vm, "whale_walls_l3": [{"price": 1.0}]},
+        }
+    broker = {f"S{i}": base + i for i in range(n)}
+    return out, broker
+
+
+def test_both_preconditions_met_reports_ready():
+    a, b = _readiness_assets(skew_ok=True, venue_independent=True)
+    r = g7_readiness(a, broker_ts_by_symbol=b, max_skew_s=5.0)
+    assert r["ready"] is True
+    assert r["blockers"] == []
+    assert r["clock_fix_alone_would_open_gate"] is False
+
+
+def test_clock_skew_alone_blocks():
+    a, b = _readiness_assets(skew_ok=False, venue_independent=True)
+    r = g7_readiness(a, broker_ts_by_symbol=b, max_skew_s=5.0)
+    assert r["ready"] is False
+    assert any(x.startswith("wall_timestamps:") for x in r["blockers"])
+    assert r["clock_fix_alone_would_open_gate"] is False
+
+
+def test_broker_derived_venue_mid_blocks_independently():
+    a, b = _readiness_assets(skew_ok=True, venue_independent=False)
+    r = g7_readiness(a, broker_ts_by_symbol=b, max_skew_s=5.0)
+    assert r["ready"] is False
+    assert "venue_mid:broker_derived_suspect" in r["blockers"]
+
+
+def test_flags_the_dangerous_interaction():
+    """Skew failing WHILE the venue mid is derived == a clock fix opens the gate."""
+    a, b = _readiness_assets(skew_ok=False, venue_independent=False)
+    r = g7_readiness(a, broker_ts_by_symbol=b, max_skew_s=5.0)
+    assert r["ready"] is False
+    assert len(r["blockers"]) == 2
+    assert r["clock_fix_alone_would_open_gate"] is True
+
+
+@pytest.mark.parametrize("bad", [None, {}, []])
+def test_readiness_fails_closed(bad):
+    r = g7_readiness(bad)
+    assert r["ready"] is False
+    assert r["clock_fix_alone_would_open_gate"] is False

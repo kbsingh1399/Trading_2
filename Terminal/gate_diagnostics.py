@@ -404,3 +404,58 @@ def audit_venue_mid_independence(
 
 __all__.append("audit_venue_mid_independence")
 __all__.append("VENUE_MID_INSIDE_SHARE_SUSPECT")
+
+# ==================================== 5. composite G-7 readiness
+
+def g7_readiness(
+    assets: Mapping[str, Any],
+    *,
+    broker_ts_by_symbol: Optional[Mapping[str, float]] = None,
+    max_skew_s: float = 5.0,
+) -> Dict[str, Any]:
+    """One call answering: can Gate G-7 admit a wall right now, and if not, why?
+
+    G-7 has two independent preconditions and they fail in opposite directions,
+    which is what makes them dangerous together:
+
+    * the wall stamp must be contemporaneous with the broker quote
+      (``audit_wall_timestamps``), and
+    * the venue mid it is differenced against must be an independent
+      observation (``audit_venue_mid_independence``).
+
+    Measured 2026-10-11: the clock skew still fails at -35.36 s on BTC, while
+    the venue mid has become broker-derived (13 of 14 inside the broker spread).
+    The basis is therefore ~0 and *stable*, so ``translate_wall_distance`` would
+    ADMIT a BTC wall at d_adj = +0.1510 -- the skew is the only thing still
+    refusing it. Repair the clock alone and G-7 opens on a basis that was never
+    measured across two venues. This function exists so that ordering is visible
+    before anyone makes that repair.
+    """
+    walls = audit_wall_timestamps(
+        assets, broker_ts_by_symbol=broker_ts_by_symbol, max_skew_s=max_skew_s
+    )
+    venue = audit_venue_mid_independence(assets)
+    blockers: List[str] = []
+    if walls.get("verdict") not in ("contemporaneous", "no_walls_published"):
+        blockers.append(f"wall_timestamps:{walls.get('verdict')}")
+    if venue.get("suspect") is True:
+        blockers.append("venue_mid:broker_derived_suspect")
+    ready = not blockers
+    out: Dict[str, Any] = {
+        "ready": ready,
+        "blockers": blockers,
+        "wall_verdict": walls.get("verdict"),
+        "venue_verdict": venue.get("verdict"),
+        "max_abs_skew_s": walls.get("max_abs_skew_s"),
+        "inside_spread_share": venue.get("inside_spread_share"),
+        "exact_zero_share": venue.get("exact_zero_share"),
+        # True when fixing the clock alone would open the gate on a derived basis.
+        "clock_fix_alone_would_open_gate": (
+            venue.get("suspect") is True
+            and walls.get("verdict") == "clock_skew_exceeds_allowance"
+        ),
+    }
+    return out
+
+
+__all__.append("g7_readiness")
