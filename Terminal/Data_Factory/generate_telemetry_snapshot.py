@@ -155,11 +155,10 @@ def p_win_lower_bound(wins: int, n: int, confidence: float = P_WIN_CONFIDENCE) -
     """
     if n <= 0 or wins <= 0:
         return 0.0
-    if wins >= n:
-        # A perfect record still cannot certify p = 1.0; clamp to n-1 so the
-        # bound stays finite and conservative.
-        wins = n - 1
     alpha = 1.0 - confidence
+    if wins >= n:
+        # Exact one-sided Clopper-Pearson lower bound when wins == n: alpha ** (1/n)
+        return float(alpha ** (1.0 / n))
     a, b = float(wins), float(n - wins + 1)
     lo, hi = 0.0, 1.0
     for _ in range(200):
@@ -385,11 +384,14 @@ def load_whale_state(path: pathlib.Path = None) -> Dict[str, Any]:
 
 
 def save_whale_state(state: Dict[str, Any], path: pathlib.Path = None) -> None:
-    """Save whale wall state for next iteration's persistence tracking."""
+    """Save whale wall state atomically for next iteration's persistence tracking."""
     try:
         p = pathlib.Path(path or WHALE_STATE_PATH)
         p.parent.mkdir(parents=True, exist_ok=True)
-        p.write_text(json.dumps(state), encoding="utf-8")
+        tmp = p.with_suffix(".tmp")
+        tmp.write_text(json.dumps(state), encoding="utf-8")
+        import os
+        os.replace(str(tmp), str(p))
     except Exception:
         pass
 

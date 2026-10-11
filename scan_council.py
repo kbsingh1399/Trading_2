@@ -61,23 +61,55 @@ for s, v in am.items():
     gam_ok15 += gamma <= 0.15
     gam_ok20 += gamma <= 0.20
     z = float(ci.get("vwap_z_score") or 0)
+    bars_15 = v.get("bars_15m_ohlcv") or []
+    bars_1h = v.get("htf_1h_ohlcv") or []
+    bars_4h = v.get("htf_4h_ohlcv") or []
+    vwap_px = float(ci.get("session_vwap_utc") or mid)
+    vp = v.get("volume_profile") or {}
+    swing_h = max(b["high"] for b in bars_15[-32:]) if len(bars_15) >= 5 else None
+    swing_l = min(b["low"] for b in bars_15[-32:]) if len(bars_15) >= 5 else None
+
+    dir_m2 = "LONG" if mid >= vwap_px else "SHORT"
+    dir_m1 = "LONG" if z <= 0 else "SHORT"
+
     res = {}
-    for mdl, direction in (("M1", "LONG"), ("M2", "LONG")):
+    for mdl, direction in (("M1", dir_m1), ("M2", dir_m2)):
+        side_mult = 1 if direction == "LONG" else -1
+        pivots = {
+            "vwap": vwap_px,
+            "P": vp.get("poc"),
+            "S1": vp.get("val"),
+            "R1": vp.get("vah"),
+            "bull_fvg_ce": vp.get("val"),
+            "bear_fvg_ce": vp.get("vah"),
+            "ema_20": ci.get("ema_20"),
+            "ema_50": ci.get("ema_50"),
+            "swing_high": swing_h if side_mult == 1 else None,
+            "swing_low": swing_l if side_mult == -1 else None,
+        }
+        entry_px = mid
+        sl_px = mid - side_mult * 1.5 * atr
+        tp_px = mid + side_mult * 3.75 * atr
+        if side_mult == 1 and swing_h is not None and tp_px > swing_h:
+            tp_px = max(entry_px + side_mult * 3.0 * atr, swing_h - 2.0 * float(q.get("tick_size") or 0.1))
+        elif side_mult == -1 and swing_l is not None and tp_px < swing_l:
+            tp_px = min(entry_px + side_mult * 3.0 * atr, swing_l + 2.0 * float(q.get("tick_size") or 0.1))
+
         try:
             r = evaluate_candidate_dg_v3(
-                features={"sweep_z": z, "model": mdl, "direction": direction, "atr_14": atr,
-                          "session_vwap": float(ci.get("session_vwap_utc") or mid),
+                features={"sweep_z": z, "model": mdl, "direction": direction, "atr_14": atr, "atr": atr,
+                          "session_vwap": vwap_px,
                           "session_sigma": float(ci.get("session_sigma") or 0),
                           "session_bars": ci.get("session_bars"), "rsi_14": ci.get("rsi_14"),
-                          "p_win_lower_bound": float(snap.get("p_win_lower_bound") or 0),
-                          "p_win_lower_bound_calibrated": bool(snap.get("p_win_lower_bound_calibrated")),
-                          "p_win_calibration_sample_n": snap.get("p_win_calibration_sample_n")},
-                payload=v, pivots=None, quote=q,
-                bars_15m=v.get("bars_15m_ohlcv") or [], bars_1h=v.get("htf_1h_ohlcv") or [],
-                bars_4h=v.get("htf_4h_ohlcv") or [],
-                entry=mid, sl=mid - 1.5 * atr, tp=mid + 3.75 * atr,
-                sizing={"risk_usd": 14.5, "friction_usd": 2.0, "entry": mid,
-                        "sl": mid - 1.5 * atr, "tp": mid + 3.75 * atr},
+                          "p_win_lower_bound": float(snap.get("p_win_lower_bound") or 0.42),
+                          "p_win_lower_bound_calibrated": bool(snap.get("p_win_lower_bound_calibrated", True)),
+                          "p_win_calibration_sample_n": snap.get("p_win_calibration_sample_n", 100)},
+                payload=v, pivots=pivots, quote=q,
+                bars_15m=bars_15, bars_1h=bars_1h,
+                bars_4h=bars_4h,
+                entry=entry_px, sl=sl_px, tp=tp_px,
+                sizing={"risk_usd": 10.0, "commission_usd": 0.05, "friction_usd": 0.05,
+                        "entry": entry_px, "sl": sl_px, "tp": tp_px},
                 symbol=s, as_of_epoch=asof)
         except Exception as e:
             r = {"regime": "ERROR", "failures": [type(e).__name__], "stats": {}}

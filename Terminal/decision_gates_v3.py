@@ -130,7 +130,9 @@ def _admission_data_valid(v: Verdict, ctx, model: int) -> bool:
             v.require(_finite(wall.get("presence_frac")) and wall["presence_frac"] <= 1,
                       "data_invalid:wall.presence_frac")
         if model == 1:
-            _fields_valid(v, wall, "usd median_1m_traded_usd", nonnegative="usd median_1m_traded_usd", prefix="wall.")
+            _fields_valid(v, wall, "usd", nonnegative="usd", prefix="wall.")
+            if wall.get("median_1m_traded_usd") is not None:
+                _fields_valid(v, wall, "median_1m_traded_usd", nonnegative="median_1m_traded_usd", prefix="wall.")
     fl = ctx.get("flush")
     if model == 1 and fl is not None:
         _fields_valid(v, fl, "peak_liq_1m median_liq_1m_24h last_liq_1m oi_change_5m_pct",
@@ -237,6 +239,7 @@ FRICTION_RELAXED_MAX_R = 0.20
 FRICTION_RELAXED_MIN_RR = 2.5
 FRICTION_RELAXED_MIN_EV_R = 0.15
 MAX_SPREAD_BPS_HARD = 20.0
+MAX_WALL_DIST_ATR = 0.40
 
 # ---- Target-horizon policy (Gate EV) -------------------------------------------
 # p_win_lower_bound is a Clopper-Pearson lower bound measured on one setup family.
@@ -318,10 +321,14 @@ class RegimeParams:
     n_15m: int = 96
     n_1h: int = 48
     n_4h: int = 30
+    drift_t_1h_min: float = 2.0      # null P(|t|>2) ~ 7.4% at n=48
+    er_1h_min_v4: float = 0.20       # null median ER(48) ~ 0.12
+    drift_t_4h_veto: float = -1.0    # only a CONTRARY 4H drift vetoes
+    drift_t_4h_confirm: float = 1.0  # 4H agreeing -> STAT tier
 
 
 def _tf_stats(closes, n, p: RegimeParams):
-    unknown = {"er": None, "vr": None, "vr_z": None, "t": None}
+    unknown = {"er": None, "vr": None, "vr_z": None, "t": None, "drift_t": None}
     try:
         c = _arr(closes)
     except (TypeError, ValueError):
@@ -332,33 +339,28 @@ def _tf_stats(closes, n, p: RegimeParams):
     er = efficiency_ratio(closes, n)
     vr, vz = variance_ratio(closes, p.vr_q, n)
     t = slope_tstat_nw(closes, n)
-    return {"er": er, "vr": vr, "vr_z": vz, "t": t}
+    from Terminal.dg_hardening import drift_tstat_nw
+    drift_t = drift_tstat_nw(closes, n)
+    return {"er": er, "vr": vr, "vr_z": vz, "t": t, "drift_t": drift_t}
 
 
 def classify_regime(closes_15m, closes_1h, closes_4h, p: RegimeParams = RegimeParams(),
                     last_close_epoch: Optional[float] = None,
                     as_of_epoch: Optional[float] = None,
-                    max_staleness_s: float = 1800.0):
+                    max_staleness_s: float = 1800.0,
+                    structural_sign: Optional[int] = None):
     """Returns (regime, stats).
 
-    TREND_UP / TREND_DOWN : HTF (4H and 1H) agree, 1H passes >=2 of 3 tests.
-    MEAN_REVERT           : 1H flat AND 15m anti-persistent.
-    UNDEFINED             : everything else -> BOTH ENGINES STAND ASIDE.
-    The 15m is deliberately NOT required to trend: during a pullback it
-    is counter-trend by construction.
-
-    STALENESS GUARD: if `last_close_epoch` and `as_of_epoch` are supplied and
-    the newest consumed bar closed more than `max_staleness_s` ago, the result
-    is forced to UNDEFINED. Rationale: the router is a pure function of price
-    series and is perfectly happy to classify a market that has since closed.
-    A weekend CFD still publishes its Friday bars, so without this guard a
-    frozen instrument can be returned as MEAN_REVERT and read as tradeable.
-    Default is two periods of the finest timeframe consumed (2 x 15m).
+    Two-tier trend router:
+      STAT tier: 1H drift t >= 2.0, ER >= 0.20, and 4H drift t >= 1.0 (confirming).
+      STRUCT tier: 1H drift t >= 2.0, ER >= 0.20, 4H drift t >= -1.0 (not opposed),
+                   and structural_sign agrees (price on correct side of VWAP & 200 EMA).
     """
     s15 = _tf_stats(closes_15m, p.n_15m, p)
     s1h = _tf_stats(closes_1h, p.n_1h, p)
     s4h = _tf_stats(closes_4h, p.n_4h, p)
-    stats = {"15m": s15, "1h": s1h, "4h": s4h}
+    stats = {"15m": s15, "1h": s1h, "4h": s4h, "trend_tier": None,
+             "structural_sign": structural_sign}
     if last_close_epoch is not None or as_of_epoch is not None:
         if (not _finite(last_close_epoch) or not _finite(as_of_epoch)
                 or not _finite(max_staleness_s) or max_staleness_s < 0):
@@ -376,6 +378,24 @@ def classify_regime(closes_15m, closes_1h, closes_4h, p: RegimeParams = RegimePa
         stats["data_invalid"] = "regime_history_or_statistics"
         return "UNDEFINED", stats
     closes_1h = _arr(closes_1h)
+
+    # 1. Dual-tier trend router (HAC returns drift + structural tie-break)
+    if structural_sign not in (-1, 0, 1):
+        structural_sign = None
+    for sign, name in ((1, "TREND_UP"), (-1, "TREND_DOWN")):
+        d1 = sign * s1h["drift_t"] if s1h.get("drift_t") is not None else None
+        d4 = sign * s4h["drift_t"] if s4h.get("drift_t") is not None else None
+        if d1 is not None and d4 is not None and (s1h["er"] or 0) >= p.er_1h_min_v4 and d4 >= p.drift_t_4h_veto:
+            if d1 >= p.drift_t_1h_min and d4 >= p.drift_t_4h_confirm:
+                stats["trend_tier"] = "STAT"
+                return name, stats
+            t1 = sign * s1h["t"] if s1h.get("t") is not None else None
+            h1_trend_ok = (d1 >= p.drift_t_1h_min) or (d1 >= 1.5 and t1 is not None and t1 >= p.t_trend)
+            if h1_trend_ok and structural_sign == sign:
+                stats["trend_tier"] = "STRUCT"
+                return name, stats
+
+    # 2. Legacy 3-vote statistical check
     for sign, name in ((1, "TREND_UP"), (-1, "TREND_DOWN")):
         votes = sum([
             sign * s1h["t"] > p.t_trend,
@@ -384,12 +404,37 @@ def classify_regime(closes_15m, closes_1h, closes_4h, p: RegimeParams = RegimePa
         ])
         htf_ok = sign * s4h["t"] > 1.5 and s4h["er"] > 0.25
         if votes >= 2 and htf_ok:
+            stats["trend_tier"] = "STAT"
             return name, stats
-    # No slope t-stat here: on an I(1) price level it is spuriously large.
+
+    # 3. Mean reversion
     if (s1h["er"] < p.er_mr and (s4h["er"] if s4h["er"] is not None else 1.0) < 0.30
             and s15["vr_z"] is not None and s15["vr_z"] < p.vr_z_mr):
         return "MEAN_REVERT", stats
     return "UNDEFINED", stats
+
+
+# G-6: target-relative friction budgeting with 20 bps hard ceiling
+FRICTION_REWARD_SHARE_MAX = 0.10
+FRICTION_ABS_MAX_R = 0.25
+
+
+def friction_gate(c_r: float, rr: float, ev_lower: Optional[float], spread_bps: Optional[float]) -> tuple[bool, float, str]:
+    """G-6: one spread per round trip, budgeted against reward, hard ceiling fail-closed."""
+    if _finite(spread_bps) and spread_bps > MAX_SPREAD_BPS_HARD:
+        return False, FRICTION_BASE_MAX_R, "EV_spread_gt_20bps_hard"
+    relaxed = (_finite(ev_lower) and ev_lower >= FRICTION_RELAXED_MIN_EV_R
+               and _finite(rr) and rr >= FRICTION_RELAXED_MIN_RR)
+    cap = FRICTION_RELAXED_MAX_R if relaxed else FRICTION_BASE_MAX_R
+    reason = "ok" if c_r <= cap else f"EV_friction_gt_{cap:.2f}R".replace(".", "p")
+    return c_r <= cap, cap, reason
+
+
+# G-7: wall must sit in the first third of the risk distance, clamped [0.25, 0.50] ATR
+def wall_band_atr(stop_dist_atr: float) -> float:
+    if not _finite(stop_dist_atr) or stop_dist_atr <= 0:
+        return 0.40
+    return float(min(0.50, max(0.25, stop_dist_atr / 3.0)))
 
 
 # =================================================== 3. Checklist A (Model 1)
@@ -406,6 +451,98 @@ def htf_confirms_direction(stats_4h: dict, sign: int,
         return bool(sign * float(stats_4h["t"]) > t_min and float(stats_4h["er"]) > er_min)
     except (KeyError, TypeError, ValueError):
         return True
+
+
+def intraday_regime_candidate(
+    regime: str,
+    stats: dict,
+    closes_15m,
+    closes_1h,
+    *,
+    vwap: Optional[float] = None,
+    session_bars: Optional[int] = None,
+    ema200: Optional[float] = None,
+    ema200_slope: Optional[float] = None,
+) -> tuple[str, str]:
+    """Research candidate only; never an order authorization.
+
+    Returns (regime, source).
+    Preserves existing non-UNDEFINED regimes as ('STATISTICAL').
+    When statistical regime is UNDEFINED (due to 4H multi-day consolidation or flatness),
+    evaluates intraday structural trend alignment:
+      - Valid session bars >= 16 and valid session VWAP
+      - Price above VWAP (for LONG) or below VWAP (for SHORT)
+      - Price above 15m 200 EMA (or 50 EMA) with non-opposing slope
+      - 1H trend alignment (1H slope t-stat or 1H EMA20)
+      - 4H higher timeframe does NOT strongly oppose in reverse direction
+    """
+    if (
+        not isinstance(stats, dict)
+        or stats.get("stale") is not False
+        or stats.get("data_invalid")
+    ):
+        return "UNDEFINED", "DATA_INVALID_OR_STALE"
+
+    if regime != "UNDEFINED":
+        return regime, "STATISTICAL"
+
+    if (
+        not _finite(vwap) or vwap <= 0
+        or not _finite(session_bars) or session_bars < 16
+    ):
+        return "UNDEFINED", "SESSION_UNAVAILABLE"
+
+    try:
+        c15, c1 = _arr(closes_15m), _arr(closes_1h)
+    except (TypeError, ValueError, OverflowError):
+        return "UNDEFINED", "STRUCTURAL_HISTORY_INVALID"
+
+    if (
+        c15.ndim != 1 or c1.ndim != 1
+        or len(c15) < 80 or len(c1) < 20
+        or not np.isfinite(c15).all()
+        or not np.isfinite(c1).all()
+        or np.any(c15 <= 0) or np.any(c1 <= 0)
+    ):
+        return "UNDEFINED", "STRUCTURAL_HISTORY_INVALID"
+
+    def ema_path(values, period):
+        out = np.empty(len(values), dtype=float)
+        out[0] = values[0]
+        alpha = 2.0 / (period + 1.0)
+        for i in range(1, len(values)):
+            out[i] = alpha * values[i] + (1.0 - alpha) * out[i - 1]
+        return out
+
+    if _finite(ema200) and float(ema200) > 0:
+        e15_last = float(ema200)
+        e15_slope_val = float(ema200_slope or 0.0)
+    else:
+        p15 = min(len(c15) - 1, 200)
+        e15 = ema_path(c15, p15)
+        e15_last = e15[-1]
+        lb15 = min(13, len(e15) - 1)
+        e15_slope_val = (e15[-1] - e15[-lb15]) if lb15 > 0 else 0.0
+
+    p1 = min(len(c1) - 1, 20)
+    e1 = ema_path(c1, p1)
+    lb1 = min(4, len(e1) - 1)
+    e1_slope_val = (e1[-1] - e1[-lb1]) if lb1 > 0 else 0.0
+
+    s1h_t = stats.get("1h", {}).get("t") if isinstance(stats.get("1h"), dict) else None
+
+    for side, name in ((1, "TREND_UP"), (-1, "TREND_DOWN")):
+        vwap_ok = side * (c15[-1] - vwap) > 0
+        e15_ok = side * (c15[-1] - e15_last) > 0
+        slope_ok = side * e15_slope_val >= 0
+        h1_ok = (side * (c1[-1] - e1[-1]) > 0 and side * e1_slope_val >= 0) or (_finite(s1h_t) and side * s1h_t > 1.8)
+
+        structural = vwap_ok and e15_ok and slope_ok and h1_ok
+
+        if structural and not htf_confirms_direction(stats.get("4h"), -side):
+            return name, "M2_STRUCTURAL_V1"
+
+    return "UNDEFINED", "NO_ALIGNED_STRUCTURAL_TREND"
 
 
 def m1_range_override_ok(ctx: dict) -> bool:
@@ -505,7 +642,7 @@ def model1_checklist(ctx: dict) -> Verdict:
         v.require(w_class == "GENUINE", "A3_wall_not_net_directional_inventory")
         v.require(wall["usd"] >= max(150_000, 5 * wall.get("median_1m_traded_usd", 0.0)), "A3_wall_too_small_vs_flow")
         v.require(wall["persist_s"] >= 180 and wall.get("presence_frac", 0.0) >= 0.9, "A3_wall_not_persistent")
-        v.require(wall.get("dist_from_entry_atr", 9.9) <= 0.25, "A3_wall_not_behind_entry")
+        v.require(wall.get("dist_from_entry_atr", 9.9) <= ctx.get("wall_band_atr", MAX_WALL_DIST_ATR), "A3_wall_not_behind_entry")
     else:
         # Whale backing is knowable from this payload but nothing eligible rests
         # behind the entry: fail closed rather than passing vacuously.
@@ -578,6 +715,8 @@ def model2_checklist(ctx: dict) -> Verdict:
     # --- B1 regime, session maturity & location
     want = "TREND_UP" if side == 1 else "TREND_DOWN"
     v.require(ctx["regime"] == want, "B1_regime_mismatch")
+    if ctx.get("trend_tier") == "STRUCT":
+        v.require(ctx["risk_usd"] <= 10.0 + 1e-9, "B1_struct_tier_risk_gt_10usd")
     if "session_bars" in ctx and ctx["session_bars"] is not None:
         v.require(ctx["session_bars"] >= 16, "B1_session_immature_lt16bars")
     if "vwap_z" in ctx and ctx["vwap_z"] is not None:
@@ -618,7 +757,7 @@ def model2_checklist(ctx: dict) -> Verdict:
         v.require(w_class == "GENUINE", "B5_wall_not_net_directional_inventory")
         v.require(wall.get("usd", 0.0) >= 150_000, "B5_wall_too_small")
         v.require(wall["persist_s"] >= 180 and wall.get("presence_frac", 0.0) >= 0.9, "B5_wall_not_persistent")
-        v.require(wall.get("dist_from_entry_atr", 9.9) <= 0.25, "B5_wall_not_behind_entry")
+        v.require(wall.get("dist_from_entry_atr", 9.9) <= ctx.get("wall_band_atr", MAX_WALL_DIST_ATR), "B5_wall_not_behind_entry")
     else:
         v.require(not ctx.get("wall_data_present", False), "B5_no_eligible_whale_wall_behind_entry")
     # --- B6 target & net EV
@@ -673,15 +812,9 @@ def _net_ev(v: Verdict, ctx: dict, rr: float, min_rr: float) -> None:
     # itself: reward geometry >= 2.5R AND positive expectancy at the calibrated
     # Clopper-Pearson lower bound AND spread inside the hard 20 bps ceiling.
     spread_bps = ctx.get("spread_bps")
-    relaxed = (
-        rr >= FRICTION_RELAXED_MIN_RR
-        and ev_lower is not None
-        and ev_lower >= FRICTION_RELAXED_MIN_EV_R
-        and (spread_bps is None or spread_bps <= MAX_SPREAD_BPS_HARD)
-    )
-    cap = FRICTION_RELAXED_MAX_R if relaxed else FRICTION_BASE_MAX_R
-    v.metrics.update(friction_cap_r=cap, friction_relaxed=relaxed)
-    v.require(c <= cap, "EV_friction_gt_0p20R_relaxed" if relaxed else "EV_friction_gt_0p15R")
+    ok, cap, why = friction_gate(c, rr, ev_lower, spread_bps)
+    v.metrics.update(friction_cap_r=cap, friction_relaxed=cap > FRICTION_BASE_MAX_R)
+    v.require(ok, why)
 
 
 # ============================================== 5. resting-order invalidation

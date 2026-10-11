@@ -149,6 +149,19 @@ def resolve_wall_venue(row: Mapping[str, Any], default_venue: str = "BINANCE") -
     return str(default_venue).upper()
 
 
+def adaptive_wall_band_atr(atr: Any, tick: Any, stop_atr: float = 1.5) -> float:
+    """Institutional envelope-aware adaptive wall band.
+    band_atr = clamp( max(0.35, 6.0 * tick / atr), 0.20, min(0.55, stop_atr - 0.70) )
+    """
+    if not (_fin(atr) and float(atr) > 0):
+        return 0.40
+    t = float(tick) if _fin(tick) and float(tick) > 0 else 0.0
+    floor = max(0.20, (6.0 * t) / float(atr))
+    band = max(0.35, floor)
+    envelope = max(0.20, float(stop_atr) - 0.70)
+    return float(min(band, 0.55, envelope))
+
+
 def venue_quotes_from_orderbook(ob: Any, payload: Any = None) -> Dict[str, Dict[str, Any]]:
     """Read per-venue basis blocks; fall back to legacy single-venue keys."""
     ob = ob if isinstance(ob, dict) else {}
@@ -171,7 +184,7 @@ def venue_quotes_from_orderbook(ob: Any, payload: Any = None) -> Dict[str, Dict[
             return value if value is not None else payload.get(key)
         out["BINANCE"] = {
             "mid": pick("binance_mid"),
-            "ts": pick("binance_mid_ts") if pick("binance_mid_ts") is not None else pick("wall_sample_ts_epoch"),
+            "ts": pick("binance_mid_ts"),
             "b_hat": pick("basis_median"),
             "b_hat_long": pick("basis_median_long"),
             "samples": pick("basis_samples"),
@@ -186,7 +199,7 @@ def select_backing_wall(
     grid_addrs: Iterable[str] = frozenset(),
     flow_usd: Any = None,
     default_venue: str = "BINANCE",
-    band_atr: float = WALL_BAND_ATR,
+    band_atr: float = 0.40,
     require_clock: bool = True
 ) -> Tuple[Optional[Dict[str, Any]], Dict[str, Any]]:
     """Drop-in replacement for the inline Option A' block in build_dg_context."""
@@ -220,7 +233,7 @@ def select_backing_wall(
         venue = resolve_wall_venue(w, default_venue)
         if venue not in decisions:
             q = (venue_quotes or {}).get(venue) or {}
-            if not any_venue_mids and q.get("mid") is None:
+            if (not any_venue_mids and q.get("mid") is None) or venue == "NATIVE":
                 # Native broker book: wall prices published in native broker space
                 tol = max(BASIS_TOL_FLOOR_TICKS * float(tick), BASIS_TOL_CAP_ATR * float(atr))
                 decisions[venue] = BasisDecision(True, "native_basis", b_now=0.0, b_hat=0.0, drift=0.0, tol=tol, sigma_b=0.0, skew_s=0.0)

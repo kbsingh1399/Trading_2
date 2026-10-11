@@ -173,8 +173,12 @@ def build_dg_context(
     c = [b["close"] for b in bars_15m]
     v = [float(b.get("volume") or b.get("tick_volume") or 0.0) for b in bars_15m]
 
-    atr = float(features.get("atr", 0.0))
-    if atr <= 0.0:
+    atr_input = features.get("atr") if features.get("atr") is not None else features.get("atr_14")
+    if atr_input is not None:
+        if not _finite_number(atr_input) or float(atr_input) <= 0:
+            return {}, ["atr_invalid"]
+        atr = float(atr_input)
+    else:
         highs, lows, closes = map(_arr, (h[-15:], l[-15:], c[-15:]))
         tr = np.maximum(highs[1:] - lows[1:], np.maximum(abs(highs[1:] - closes[:-1]), abs(lows[1:] - closes[:-1])))
         atr = float(tr.mean()) if len(tr) > 0 else 1.0
@@ -276,24 +280,57 @@ def build_dg_context(
     # Shelf confluence
     shelf_price = None
     confluence = 0
+    candidates = []
     if pivots:
-        candidates = [pivots.get("vwap"), pivots.get("P"), pivots.get("S1" if side == 1 else "R1"),
-                      pivots.get("bull_fvg_ce" if side == 1 else "bear_fvg_ce")]
-        valid_shelves = [s for s in candidates if s is not None and abs(entry - s) <= 0.35 * atr]
-        confluence = len(valid_shelves)
-        if valid_shelves:
-            shelf_price = min(valid_shelves, key=lambda level: abs(entry - level))
+        candidates.extend([
+            pivots.get("vwap"), pivots.get("P"), pivots.get("S1" if side == 1 else "R1"),
+            pivots.get("bull_fvg_ce" if side == 1 else "bear_fvg_ce"),
+            pivots.get("ema_20"), pivots.get("ema_50"),
+            pivots.get("val" if side == 1 else "vah"), pivots.get("poc"),
+        ])
+    ci = features.get("causal_indicators") or (payload.get("causal_indicators") if isinstance(payload, dict) else {}) or {}
+    candidates.extend([
+        observed_vwap,
+        ci.get("session_vwap_utc"),
+        ci.get("ema_20"),
+        ci.get("ema_50"),
+    ])
+    if payload and isinstance(payload, dict):
+        vp = payload.get("volume_profile")
+        if isinstance(vp, dict):
+            candidates.extend([
+                vp.get("val" if side == 1 else "vah"),
+                vp.get("poc"),
+            ])
+    clean_candidates = [float(s) for s in candidates if s is not None and _finite_number(s) and float(s) > 0]
+    distinct_shelves = []
+    for cand in clean_candidates:
+        if not any(abs(cand - prev) < max(0.01 * atr, 1e-4) for prev in distinct_shelves):
+            distinct_shelves.append(cand)
+    valid_shelves = [s for s in distinct_shelves if abs(entry - s) <= 0.35 * atr]
+    confluence = len(valid_shelves)
+    if valid_shelves:
+        shelf_price = min(valid_shelves, key=lambda level: abs(entry - level))
 
     # First obstacle
     first_obstacle = None
     if pivots:
         first_obstacle = pivots.get("swing_high" if side == 1 else "swing_low")
+    if first_obstacle is None and isinstance(ci, dict):
+        first_obstacle = ci.get("swing_high" if side == 1 else "swing_low")
     if first_obstacle is not None and side * (first_obstacle - entry) <= 0:
         first_obstacle = None
 
     # Costs and sizing
     risk_usd = float(sizing.get("risk_usd", 12.0)) if sizing else 12.0
     cost_usd = float(sizing.get("friction_usd", 0.50)) if sizing else 0.50
+    mid_px = (float(quote["bid"]) + float(quote["ask"])) / 2.0 if (_finite_number(quote.get("bid")) and _finite_number(quote.get("ask"))) else float(entry)
+    spread_bps = (spread / mid_px * 1e4) if (mid_px > 0 and _finite_number(spread)) else 0.0
+    stop_dist = abs(float(entry) - float(sl))
+    spread_cost_usd = (risk_usd * spread / stop_dist) if (stop_dist > 0 and _finite_number(spread)) else cost_usd
+    cost_usd = max(cost_usd, spread_cost_usd + float((sizing or {}).get("commission_usd", 0.0)))
+    from Terminal.decision_gates_v3 import wall_band_atr
+    band = wall_band_atr(stop_dist / atr if (atr > 0 and _finite_number(atr)) else float("nan"))
 
     # Orderflow tape extraction
     of_payload = payload.get("orderflow") if payload else None
@@ -323,6 +360,37 @@ def build_dg_context(
                 orderflow = None
         except (KeyError, TypeError, ValueError, AttributeError):
             orderflow = None
+    elif payload and isinstance(payload, dict) and payload.get("cvd_1m_buckets"):
+        buckets = payload.get("cvd_1m_buckets") or []
+        if isinstance(buckets, list) and len(buckets) >= 15:
+            try:
+                deltas = [float(b.get("delta", 0.0)) for b in buckets if isinstance(b, dict)]
+                last_15 = deltas[-15:]
+                recent_5 = deltas[-5:]
+                tot_abs = sum(abs(d) for d in last_15) or 1.0
+                counter_aggr = sum(d for d in last_15 if (side == 1 and d < 0) or (side == -1 and d > 0))
+                share = abs(counter_aggr) / tot_abs
+                share = min(1.0, max(0.0, share))
+                turned = 0
+                for d in reversed(recent_5):
+                    if (side == 1 and d > 0) or (side == -1 and d < 0):
+                        turned += 1
+                    else:
+                        break
+                orderflow = {
+                    "cvd_push1": float(sum(deltas[:len(deltas)//2])),
+                    "cvd_push2": float(sum(deltas[len(deltas)//2:])),
+                    "aggr_usd_sweep": 0.0,
+                    "aggr_usd_median_1m": 0.0,
+                    "lambda_sweep": 1.0,
+                    "lambda_median_60m": 1.0,
+                    "bars_cvd_turned": float(turned),
+                    "pullback_cvd_share": float(share),
+                    "exhaustion_gate_ok": True,
+                    "liq_burst_toward_entry": False,
+                }
+            except Exception:
+                orderflow = None
 
     p_win_lower = features.get("p_win_lower_bound")
     if p_win_lower is None and isinstance(payload, dict):
@@ -411,7 +479,8 @@ def build_dg_context(
                 broker_mid=broker_mid, broker_ts=broker_ts,
                 venue_quotes=vq,
                 grid_addrs=grid_addrs, flow_usd=flow_usd,
-                require_clock=require_clk
+                require_clock=require_clk,
+                band_atr=band,
             )
             if wall_ctx is None and any(k.startswith("venue_basis") for k in wall_diag.get("rejections", {})):
                 missing.append("venue_basis_unverified")
@@ -443,6 +512,9 @@ def build_dg_context(
         "vwap": observed_vwap,
         "sweep_extreme": sweep_extreme,
         "spread": spread,
+        "spread_bps": spread_bps,
+        "wall_band_atr": band,
+        "trend_tier": (features.get("regime_stats") or {}).get("trend_tier"),
         "tick": tick,
         "risk_usd": risk_usd,
         "round_trip_cost_usd": cost_usd,
@@ -530,11 +602,36 @@ def evaluate_candidate_dg_v3(
             return {"regime": "UNDEFINED", "stats": {}, "passed": False,
                     "failures": ["as_of_epoch_invalid"], "metrics": {}}
         staleness_now = float(as_of_epoch) if as_of_epoch is not None else _time_mod.time()
+        ci = (payload or {}).get("causal_indicators") or (features or {}).get("causal_indicators") or {}
+        struct_sign = None
+        try:
+            bid_v = quote.get("bid")
+            ask_v = quote.get("ask")
+            mid_q = (float(bid_v) + float(ask_v)) / 2.0 if (_finite_number(bid_v) and _finite_number(ask_v)) else float(c15[-1])
+            vw = ci.get("session_vwap_utc")
+            tr = ci.get("trend_regime")
+            if _finite_number(vw) and vw > 0:
+                if tr == "BULLISH" and mid_q > vw:
+                    struct_sign = 1
+                elif tr == "BEARISH" and mid_q < vw:
+                    struct_sign = -1
+                elif len(c15) > 0:
+                    e200 = ci.get("ema_200")
+                    e200_slope = ci.get("ema_200_slope")
+                    if _finite_number(e200) and e200 > 0:
+                        if mid_q > vw and mid_q > e200 and (_finite_number(e200_slope) and e200_slope >= 0):
+                            struct_sign = 1
+                        elif mid_q < vw and mid_q < e200 and (_finite_number(e200_slope) and e200_slope <= 0):
+                            struct_sign = -1
+        except (KeyError, TypeError, ValueError):
+            struct_sign = None
+
         try:
             regime, rstats = classify_regime(
                 c15, c1h, c4h,
                 last_close_epoch=last_close,
                 as_of_epoch=staleness_now,
+                structural_sign=struct_sign,
             )
         except TypeError:
             regime, rstats = classify_regime(c15, c1h, c4h)
