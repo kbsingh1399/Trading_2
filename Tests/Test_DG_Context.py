@@ -181,3 +181,86 @@ def test_absent_inventory_and_context_are_failures():
 def test_nested_values_in_scalar_pivot_fields_fail_closed(pivots):
     ctx, failures = build_dg_context(**context_fixture(pivots=pivots))
     assert not ctx and failures == ["pivot_invalid"]
+
+
+# ---------------------------------------------------------------------------
+# Telemetry key aliases. The live MT5 path supplies quote["time_msc"] and
+# bar["time"]. The emitted snapshot renames them to broker_tick_time_utc_msc and
+# ts (Data_Factory/generate_telemetry_snapshot.py:1547), so every published
+# snapshot returned session_vwap_history_unavailable -- at bar 0 and at bar 17
+# alike. That was a key mismatch, not session immaturity, and it is why Model 1
+# never reached A1 across a whole session of council cycles.
+# ---------------------------------------------------------------------------
+
+def _alias_bars(n=20, day_start=1791568000, key="time"):
+    bars = []
+    for i in range(n):
+        close = 100.0 + 0.3 * i
+        bars.append({key: day_start + i * 900, "open": close - 0.1,
+                     "high": close + 0.5, "low": close - 0.5,
+                     "close": close, "volume": 1000 + 10 * i})
+    return bars
+
+
+def _alias_quote(day_start=1791568000, n=20, key="time_msc"):
+    observed = day_start + n * 900
+    return {"bid": 100.9, "ask": 101.1, "point": 0.01, "tick_size": 0.01,
+            key: observed * 1000}
+
+
+def test_session_vwap_is_identical_under_telemetry_key_aliases():
+    from Terminal.dg_context import _session_vwap
+    canonical = _session_vwap(_alias_bars(key="time"), _alias_quote(key="time_msc"))
+    aliased = _session_vwap(_alias_bars(key="ts"),
+                            _alias_quote(key="broker_tick_time_utc_msc"))
+    assert canonical[0] is not None, "canonical form must produce a session VWAP"
+    assert aliased == canonical
+
+
+def test_telemetry_only_payload_produces_a_session_instead_of_failing_closed():
+    from Terminal.dg_context import _session_vwap
+    vwap, sigma, slope, rows = _session_vwap(
+        _alias_bars(key="ts"), _alias_quote(key="broker_tick_time_utc_msc"))
+    assert vwap is not None and vwap > 0
+    assert sigma is not None and sigma > 0
+    assert slope is not None
+    assert rows == 20
+
+
+def test_session_vwap_prefers_time_msc_when_both_keys_are_present():
+    from Terminal.dg_context import _session_vwap
+    bars = _alias_bars(key="time")
+    both = _alias_quote(key="time_msc")
+    both["broker_tick_time_utc_msc"] = 1  # absurd value that must be ignored
+    assert _session_vwap(bars, both) == _session_vwap(bars, _alias_quote(key="time_msc"))
+
+
+@pytest.mark.parametrize("quote", [None, 5, "x", {}, {"time_msc": None},
+                                   {"broker_tick_time_utc_msc": None}])
+def test_session_vwap_fails_closed_without_a_usable_tick_clock(quote):
+    from Terminal.dg_context import _session_vwap
+    assert _session_vwap(_alias_bars(), quote) == (None, None, None, 0)
+
+
+@pytest.mark.parametrize("bar", [None, 5, "x", {}, {"time": None, "ts": None}])
+def test_session_vwap_fails_closed_on_bars_without_a_timestamp(bar):
+    from Terminal.dg_context import _session_vwap
+    bars = _alias_bars()
+    bars[-1] = bar
+    assert _session_vwap(bars, _alias_quote()) == (None, None, None, 0)
+
+
+def test_build_dg_context_accepts_a_published_telemetry_snapshot_shape():
+    """End-to-end: telemetry-shaped keys must not yield session_vwap_history_unavailable."""
+    n = 20
+    day_start = 1791568000
+    bars = _alias_bars(n=n, day_start=day_start, key="ts")
+    quote = {"bid": 100.9, "ask": 101.1, "point": 0.01, "tick_size": 0.01,
+             "broker_tick_time_utc_msc": (day_start + n * 900) * 1000}
+    ctx, missing = build_dg_context(
+        features={"direction": "LONG", "atr": 2.0}, payload={}, pivots=None,
+        quote=quote, bars_15m=bars, entry=100.0, sl=96.0, tp=108.0,
+        sizing={"risk_usd": 12.0, "friction_usd": 0.40}, regime="MEAN_REVERT")
+    assert "session_vwap_history_unavailable" not in missing
+    assert ctx["vwap"] > 0 and ctx["session_sigma"] > 0
+    assert ctx["session_bars"] == n

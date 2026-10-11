@@ -40,13 +40,41 @@ def _finite_number(value):
             and math.isfinite(value))
 
 
+def _quote_tick_msc(quote):
+    """Broker tick time in ms, under whichever key the caller uses.
+
+    The live MT5 path supplies ``time_msc`` directly. The emitted telemetry
+    snapshot renames it to ``broker_tick_time_utc_msc``
+    (Data_Factory/generate_telemetry_snapshot.py), which left every published
+    snapshot unable to build a session VWAP here.
+    """
+    if not isinstance(quote, dict):
+        raise TypeError("quote")
+    for key in ("time_msc", "broker_tick_time_utc_msc"):
+        value = quote.get(key)
+        if value is not None:
+            return value
+    raise KeyError("time_msc")
+
+
+def _bar_open_ts(bar):
+    """Bar open epoch. Live bars use ``time``; emitted telemetry uses ``ts``."""
+    if not isinstance(bar, dict):
+        raise TypeError("bar")
+    for key in ("time", "ts"):
+        value = bar.get(key)
+        if value is not None:
+            return value
+    raise KeyError("time")
+
+
 def _session_vwap(bars, quote):
     """Observed UTC-day VWAP; broker tick volume remains a volume proxy."""
     try:
-        observed = float(quote["time_msc"]) / 1000.0
+        observed = float(_quote_tick_msc(quote)) / 1000.0
         if not math.isfinite(observed) or observed <= 0:
             return None, None, None, 0
-        opened = np.asarray([float(bar["time"]) for bar in bars])
+        opened = np.asarray([float(_bar_open_ts(bar)) for bar in bars])
         if (not np.isfinite(opened).all() or np.any(np.diff(opened) <= 0)
                 or np.any(opened+900 > observed)):
             return None, None, None, 0
