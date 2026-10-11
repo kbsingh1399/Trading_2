@@ -507,3 +507,68 @@ def test_session_sigma_floor_is_scaled_to_atr_not_absolute():
     # Comfortably above 0.8 ATR -> the guard clears.
     assert "A1_session_sigma_lt_0p8atr" not in model1_checklist(
         _m1_ctx(session_bars=20, atr=119.11, session_sigma=100.0)).failures
+
+
+# ---------------------------------------------------------------------------
+# A1's sigma and Z limbs are COUPLED, not independent. The snapshot publishes
+# vwap_z = (price - session_vwap) / session_sigma, so requiring BOTH
+# sigma >= 0.8*ATR and |Z| >= 2.0 implies |price - VWAP| >= 1.6*ATR. Nothing in
+# the code or the tests stated that floor, and it is the real reason Model 1
+# cannot fire: on 2026-10-11 02:51 UTC the offset was 99.04 USD (0.83 ATR)
+# against a 190.56 USD floor. Growing sigma towards maturity *lowers* Z at a
+# fixed offset, so maturation alone moves the setup further from admissible.
+# ---------------------------------------------------------------------------
+
+def test_a1_sigma_and_z_limbs_imply_a_1p6_atr_vwap_distance_floor():
+    """At sigma exactly 0.8*ATR, the Z floor of 2.0 equals 1.6 ATR of offset."""
+    atr = 119.10
+    sigma_floor = 0.8 * atr            # 95.28
+    offset_at_2sd = 2.0 * sigma_floor  # 190.56 == 1.6 * atr
+    assert offset_at_2sd == pytest.approx(1.6 * atr)
+
+    # Exactly at the coupled floor -> the Z limb clears by construction.
+    v = model1_checklist(_m1_ctx(session_bars=20, atr=atr, session_sigma=sigma_floor,
+                                vwap_z=2.0, sweep_z=2.0))
+    assert "A1_session_sigma_lt_0p8atr" not in v.failures
+    assert "A1_z_below_2" not in v.failures
+
+    # A hair inside it -> maturity is satisfied but the Z limb is not.
+    v2 = model1_checklist(_m1_ctx(session_bars=20, atr=atr, session_sigma=sigma_floor,
+                                  vwap_z=1.875, sweep_z=1.875))
+    assert "A1_session_sigma_lt_0p8atr" not in v2.failures
+    assert "A1_z_below_2" in v2.failures
+
+
+def test_sigma_maturation_alone_cannot_open_model1_at_a_short_offset():
+    """The live 02:51 UTC offset: maturing sigma pushes Z below the trigger.
+
+    offset 99.04 USD at 0.83 ATR. Once sigma reaches the required 95.28, the same
+    offset yields Z = 1.04, so the maturity limb and the trigger limb trade off
+    against each other. A desk waiting for session_bars to hit 16 without price
+    extending is waiting for a setup that retires itself.
+    """
+    atr, offset = 119.10, 99.04
+    assert offset / atr == pytest.approx(0.8316, abs=1e-4)
+    z_once_mature = offset / (0.8 * atr)
+    assert z_once_mature == pytest.approx(1.0395, abs=1e-4)
+
+    v = model1_checklist(_m1_ctx(session_bars=20, atr=atr, session_sigma=0.8 * atr,
+                                 vwap_z=z_once_mature, sweep_z=z_once_mature))
+    assert "A1_session_sigma_lt_0p8atr" not in v.failures, "maturity limb should clear"
+    assert "A1_z_below_2" in v.failures, "trigger limb must still reject"
+
+
+def test_model1_needs_both_a_mature_session_and_an_extended_price():
+    """Neither limb alone is sufficient; the admissible region is their product."""
+    atr = 119.10
+    # Immature session but a violent extension -> still rejected on maturity.
+    v1 = model1_checklist(_m1_ctx(session_bars=9, atr=atr, session_sigma=30.0,
+                                  vwap_z=6.0, sweep_z=3.0))
+    assert "A1_session_sigma_immature_lt16bars" in v1.failures
+    # Mature session, extended price, sigma commensurate -> both limbs clear.
+    v2 = model1_checklist(_m1_ctx(session_bars=20, atr=atr, session_sigma=0.8 * atr,
+                                  vwap_z=2.4, sweep_z=2.4))
+    assert "A1_session_sigma_immature_lt16bars" not in v2.failures
+    assert "A1_session_sigma_lt_0p8atr" not in v2.failures
+    assert "A1_z_below_2" not in v2.failures
+    assert "A1_z_beyond_3p5_cascade_zone" not in v2.failures
