@@ -52838,3 +52838,562 @@ Finally, unify live and replay ratchets before qualifying uplift; the current se
 - **Autonomous Sentry State**:
   * Account 100% flat (4,896.55 USD equity, +121.55 USD floor cushion, 0 exposure).
   * All 6 background daemons active and healthy.
+
+### Turn [2026-10-10 21:30 UTC Cycle Audit]
+- **Autonomous Wakeup & 9-Minute Review**:
+  * Evaluated 21:20 UTC candle close and completed 9-minute extraction loop at 21:30 UTC.
+  * Account: 4,896.55 USD equity (100% cash, 0 open positions, 0 pending orders, +121.55 USD cushion above 4,775.00 USD hard floor).
+  * Bidirectional Git Bridge: Arena's commit `cdd80302` merged and verified across `main` and `arena/537c1eb8-trading-2`. Full suite passed (158/158 on wall/gate tests, 824 hermetic tests green).
+  * Arena.ai Evaluation:
+    - G-7 Whale Wall Authenticity Gate passed for the first time: detected authentic 2.497M USD bid at 82,964.0 USD holding for 116 minutes.
+    - Fatal blocker detected: Risk-Reward 0.487 (TP anchor at 83,050 USD is only 71 points away, while minimum 1.5 ATR stop is 145.7 points). Expected Value = -0.376 R.
+    - Stand Aside confirmed: entering into negative EV would have violated quantitative invariants.
+  * Next cycle: standing cron at minute :50 (21:50 UTC).
+
+### Turn [2026-10-10 21:50 UTC Cycle Dispatch]
+- **Autonomous Wakeup & Dispatch**:
+  * Evaluated 21:50 UTC candle close. Account: 4,896.55 USD equity (100% cash, 0 open positions, 0 pending orders, +121.55 USD cushion above 4,775.00 USD hard floor).
+  * Observed Snapshot: `docs/telemetry/live_snapshot_latest.json` (as of 21:50:39 UTC). BTC mid 82,997.0 USD, spread 1.93 bps, regime `MEAN_REVERT`.
+  * Arena.ai Briefing: Injected 21:50 UTC briefing into Arena session with canonical GitHub links (`arena/537c1eb8-trading-2` and `main`). Instructed Arena to re-check the 2.50M USD whale bid at 82,964 USD and overhead squeeze band liquidity geometry.
+  * Dispatched 9-minute verification timer (`task-37215`) to wake up at ~21:59 UTC for Chrome ruling extraction and gate verification.
+
+### Turn [2026-10-10 22:01 UTC Cycle Extraction & Audit]
+- **9-Minute Evaluation & 22:00 1H Close Audit**:
+  * Extracted Arena.ai 21:50 evaluation via Chrome DevTools:
+    - Re-check of 2.50M USD bid at 82,964 USD confirmed it was thinned by 59.7% within 30 minutes, validating Mandate #3's 50% thinning rule.
+    - Squeeze band geometry: ATR expanded from 97.14 to 100.86, stop floor moved to 83,147.3 USD, reward/risk = 0.687, lower-bound EV = -0.2918 R. Trade denied.
+    - Code diffs: None. Test suite: 158/158 passed.
+  * 22:00 1H Candle Close:
+    - BTC 1H close printed at 82,954.0 USD, transitioning regime to `UNDEFINED`.
+    - All 24 assets now in `UNDEFINED` (cryptos in HTF conflict, CFDs closed). Stand aside mathematically enforced.
+  * MT5 Account: 4,896.55 USD equity (100% cash, 0 open positions, 0 orders, +121.55 USD cushion above 4,775.00 USD hard floor).
+  * Next cycle: standing cron at minute :20 (`22:20:00 UTC`).
+
+### Turn [2026-10-10 22:20 UTC Cycle Dispatch]
+- **Autonomous Wakeup & Dispatch**:
+  * Evaluated 22:20 UTC candle close. Account: 4,896.55 USD equity (100% cash, 0 open positions, 0 pending orders, +121.55 USD cushion above 4,775.00 USD hard floor).
+  * Observed Snapshot: `docs/telemetry/live_snapshot_latest.json` (as of 22:20:37 UTC). BTC mid 82,917.0 USD, spread 1.93 bps, regime `UNDEFINED`.
+  * Arena.ai Briefing: Injected 22:20 UTC briefing into Arena session with canonical GitHub links (`arena/537c1eb8-trading-2` and `main`). Instructed Arena to audit the 22:20 UTC close and evaluate if any 5-pillar confluence or extreme mean reversion has triggered across the 24 assets.
+  * Dispatched 9-minute verification timer (`task-37259`) to wake up at ~22:29 UTC for Chrome ruling extraction and gate verification.
+
+### Turn [2026-10-10 22:31 UTC Cycle Extraction & Code Integration]
+- **9-Minute Evaluation & Code Integration**:
+  * Arena.ai Evaluation (22:20 UTC cycle):
+    - Defect found and fixed by Arena in `Terminal/decision_gates_v3.py` (`_net_ev`): `p_win_lower_bound` was treated as a scalar regardless of target distance, falsely inflating distant targets to positive EV. Arena capped `MAX_TARGET_DIST_ATR = 4.0` with driftless barrier metrics. Commit `999b629c` pushed to `origin/arena/537c1eb8-trading-2`.
+    - Local desk cleanly merged `999b629c` into `main`. Pytest suite passed: **161 passed in 0.80s** (all 22 EV horizon/whale tests green).
+    - Pushed merged `main` to GitHub (`fd9401a0`).
+  * Market Status:
+    - BTC in `UNDEFINED` (votes 1/3 both ways, $Z = 0.81$).
+    - Bid wall decayed from 2.5M -> 1.63M -> 500k USD.
+    - All 24 assets `UNDEFINED` or closed.
+  * MT5 Account: 4,896.55 USD equity (100% cash, 0 open positions, 0 orders, +121.55 USD cushion above 4,775.00 USD hard floor).
+  * Next cycle: standing cron at minute :50 (`22:50:00 UTC`).
+
+### Turn [2026-10-10 22:50 UTC Cycle Dispatch]
+- **Autonomous Wakeup & Dispatch**:
+  * Evaluated 22:50 UTC candle close. Account: 4,896.55 USD equity (100% cash, 0 open positions, 0 pending orders, +121.55 USD cushion above 4,775.00 USD hard floor).
+  * Observed Snapshot: `docs/telemetry/live_snapshot_latest.json` (as of 22:50:47 UTC). BTC mid 82,876.0 USD (drifted lower from 82,917 USD), spread 1.93 bps, regime `UNDEFINED`.
+  * Arena.ai Briefing: Injected 22:50 UTC briefing into Arena session with canonical GitHub links (`arena/537c1eb8-trading-2` and `main`). Notified Arena that commit `999b629c` is merged into `main` and all 161 tests pass. Instructed Arena to audit the 22:50 close heading into the 23:00 UTC hourly close under the new 4.0 ATR horizon cap.
+  * Dispatched 9-minute verification timer (`task-37310`) to wake up at ~22:59 UTC for Chrome ruling extraction and gate verification.
+
+### Turn [2026-10-10 23:01 UTC Cycle Extraction & Audit]
+- **9-Minute Evaluation & 23:00 1H Close Audit**:
+  * Arena.ai Evaluation (22:50 UTC cycle):
+    - Tested new 4.0 ATR horizon cap: Nearest long pool at 84,030.75 USD (10.17 ATR away) and nearest short pool at 82,050 USD (8.08 ATR away) were both marked `OUTSIDE` and rejected, eliminating low-probability fantasy barriers.
+    - G-7 backing: 0 genuine walls within 0.25 ATR of price. The old 2.5M USD bid wall is completely gone.
+    - All 24 assets blocked (XRP fails A1/G5/G6, TRX fails G4/G5/G6, DOGE fails G4/G5/G6).
+    - Code diffs: None. Test suite: 161 passed locally matches Arena's 161 passed.
+  * 23:00 1H Candle Close:
+    - BTC closed at 83,008.0 USD, remaining in `UNDEFINED`.
+    - ETH (2505.5), SOL (110.19), BNB (750.3) all remain in `UNDEFINED`.
+    - CFDs remain closed over the weekend. Standing aside mathematically confirmed.
+  * MT5 Account: 4,896.55 USD equity (100% cash, 0 open positions, 0 orders, +121.55 USD cushion above 4,775.00 USD hard floor).
+  * Next cycle: standing cron at minute :20 (`23:20:00 UTC`).
+
+### Turn [2026-10-10 23:20 UTC Cycle Dispatch]
+- **Autonomous Wakeup & Dispatch**:
+  * Evaluated 23:20 UTC candle close. Account: 4,896.55 USD equity (100% cash, 0 open positions, 0 pending orders, +121.55 USD cushion above 4,775.00 USD hard floor).
+  * Observed Snapshot: `docs/telemetry/live_snapshot_latest.json` (as of 23:20:55 UTC). BTC mid 82,975.5 USD, spread 1.81 bps, regime `UNDEFINED`.
+  * Market Context: All 14 cryptos currently in `UNDEFINED` consolidation regime; 10 CFDs closed over weekend (`UNDEFINED*STALE`). 24/24 assets in stand-aside state.
+  * Arena.ai Briefing: Injected 23:20 UTC briefing into Arena session with canonical GitHub links (`arena/537c1eb8-trading-2` and `main`). Instructed Arena to audit the 23:20 close for structural breakout or mean-reversion extremes.
+  * Dispatched 9-minute verification timer (`task-37354`) to wake up at ~23:29 UTC for Chrome ruling extraction and gate verification.
+
+### Turn [2026-10-10 23:31 UTC Cycle Extraction & 23:30 Close Audit]
+- **9-Minute Evaluation & 23:30 15m Close Audit**:
+  * Arena.ai Evaluation (23:20 UTC cycle):
+    - G-7 Whale Backing Recovered on BTC: 23 qualifying BUY walls behind mid (largest 1,005,879 USD, persistence 840s, two distinct wallets 0x3947... and 0xaf9f... at 82,947 USD). ETH has 9 walls. Sell side has 0 walls across all assets.
+    - G-4 Regime: BTC remains in UNDEFINED (1H votes: 1/3 up, 0/3 down; 4H trend slope t-statistic -4.02, falling; HTF conflict).
+    - EV Horizon: Nearest named pool is at 84,030.6 USD (24.9M USD), which is 8.82 ATR away. The new 4.0 ATR horizon window is 82,484.6 to 83,449.4 USD. The pool is OUTSIDE the window, and there are 0 squeeze bands inside. The trade has no reachable target within the horizon.
+    - Code diffs: None. Remote branch arena/537c1eb8-trading-2 is byte-identical to main at 4fe81f7. Full test suite: 161 passed in 0.65s (all 827 passed in full suite).
+    - Ruling: STAND ASIDE across all 24 assets.
+  * 23:30 15m Candle Close:
+    - BTC closed at 82,975.0 USD, ATR 122.27, spread 1.93 bps, regime UNDEFINED.
+    - All 14 cryptos confirmed in UNDEFINED consolidation regime; 10 CFDs closed over weekend.
+    - Standing aside mathematically enforced across all 24 assets.
+  * MT5 Account: 4,896.55 USD equity (100% cash, 0 open positions, 0 orders, +121.55 USD cushion above 4,775.00 USD hard floor).
+  * Next cycle: standing cron at minute :50 (23:50:00 UTC).
+
+### Turn [2026-10-10 23:50 UTC Cycle Dispatch]
+- **Autonomous Wakeup & Dispatch**:
+  * Evaluated 23:50 UTC candle close (10 minutes prior to 00:00 UTC hourly close). Account: 4,896.55 USD equity (100% cash, 0 open positions, 0 pending orders, +121.55 USD cushion above 4,775.00 USD hard floor).
+  * Observed Snapshot: docs/telemetry/live_snapshot_latest.json (as of 23:50:01 UTC). BTC mid 82,957.0 USD, spread 6.03 bps, regime UNDEFINED.
+  * Orderbook & Whale Walls: Verified genuine G-7 eligible bid wall at 82,933 USD (1,005,709 USD, persist 180s, address 0xaf9f...). SELL side has 0 eligible walls (all single-sample mirrored legs).
+  * Target Liquidity Geometry: 4.0 ATR horizon window [82,484.6 .. 83,449.4 USD] contains 0 short squeeze bands. Nearest overhead pool at 84,030.6 USD is 8.82 ATR away (OUTSIDE).
+  * Market Context: All 14 cryptos currently in UNDEFINED consolidation regime; 10 CFDs closed over weekend (UNDEFINED*STALE). 24/24 assets in stand-aside state.
+  * Arena.ai Briefing: Closed review panel, focused tiptap ProseMirror editor, and injected 23:50 UTC briefing into Arena session with canonical GitHub links (arena/537c1eb8-trading-2 and main). Arena confirmed generating (isGenerating: true).
+  * Dispatched 9-minute verification timer (task-37511) to wake up at ~23:59 UTC for Chrome ruling extraction and gate verification heading into the 00:00 UTC hourly transition.
+
+### Turn [2026-10-11 00:04 UTC Cycle Extraction & Code Integration]
+- **9-Minute Evaluation & Code Integration**:
+  * Arena.ai Evaluation (23:50 UTC cycle):
+    - Defect Discovery: Discovered that 89.1% of notional (4.10M USD across 17 rows) of previously credited G-7 walls were two-sided market-making grids, not directional whale inventory. Existing `is_mirrored_leg` only checked same-price brackets (0.05%), failing to catch multi-price grid ladders.
+    - Code Shipped: Arena built and pushed commit `91ffffcb` (`two_sided_grid_addresses()` in `microstructure_state.py`, wired into `dg_context.py` selection and `wall_data_present` guards, with 7 new unit tests).
+    - Grid Removal Impact: Matrix-wide, only 1 genuine directional wall survives (BTC 500k USD at 82,900 USD, 0.245 ATR, persist 480.1s). ETH and SOL clean walls dropped to 0.
+    - Spread Spike Guard: Transient 6.03 bps spread at 23:50:57 UTC was accurately caught and rejected by the `pre_send_gate` relative-spread ceiling (2.90 bps allowed vs median), proving the execution guard works under real market spikes.
+    - Ruling: STAND ASIDE across all 24 assets.
+  * Local Integration & Regression Testing:
+    - Cleanly merged commit `91ffffcb` into `main`.
+    - Pytest: **168 passed in 0.92s** across `Test_Whale_Wall_Authenticity_Gates.py` and `Test_Decision_Gates_v3.py`.
+    - Pushed merged `main` to GitHub (`f826dc6c`).
+  * 00:00 UTC Major Hourly/Daily Candle Close Audit:
+    - BTC closed at 82,918.5 USD, spread 1.81 bps, VWAP Z = +0.83 SD, regime UNDEFINED.
+    - All 14 cryptos confirmed in UNDEFINED consolidation; 10 CFDs closed over weekend.
+    - Standing aside mathematically enforced across all 24 assets.
+  * MT5 Account: 4,896.55 USD equity (100% cash, 0 open positions, 0 orders, +121.55 USD cushion above 4,775.00 USD hard floor).
+  * Next cycle: standing cron at minute :20 (00:20:00 UTC).
+
+### Turn [2026-10-11 00:20 UTC Cycle Dispatch]
+- **Autonomous Wakeup & Dispatch**:
+  * Evaluated 00:20 UTC candle close (post-daily rollover). Account: 4,896.55 USD equity (100% cash, 0 open positions, 0 pending orders, +121.55 USD cushion above 4,775.00 USD hard floor).
+  * Observed Snapshot: docs/telemetry/live_snapshot_latest.json (as of 00:21:06 UTC, generation 7e3ae44a...). BTC mid 82,901.0 USD, spread 1.93 bps, ATR 122.55 USD, regime UNDEFINED.
+  * Session Rollover & Gate G-3: 00:00 UTC daily session boundary reset printed session_bars = 0, activating Gate G-3 session maturity safeguard across all crypto perps.
+  * Orderbook & Whale Walls: Under the newly deployed grid exclusion filter (two_sided_grid_addresses), 21 two-sided grid addresses were identified and filtered out. 7 clean, genuine BUY walls within 0.25 ATR survived (clustering between 82,872 and 82,931 USD; sizes 500k to 1.0M USD, persist >= 180s, one-sided wallets). Clean SELL walls: 0.
+  * Target Liquidity Geometry: 4.0 ATR horizon window [82,410.8 .. 83,391.2 USD] contains 0 short squeeze bands. Nearest overhead liquidation pool at 84,030.6 USD is +9.22 ATR away (OUTSIDE).
+  * Market Context: All 13 remaining cryptos in UNDEFINED consolidation; TRX printed MEAN_REVERT but fails G-5 (spread 24.21 bps > 20.0 bps ceiling) and G-6. 10 CFDs closed over weekend (UNDEFINED*STALE). 24/24 assets in stand-aside state.
+  * Arena.ai Briefing: Closed review panel, focused tiptap ProseMirror editor, and injected 00:20 UTC briefing into Arena session with canonical GitHub links (arena/537c1eb8-trading-2 and main at f826dc6c). Arena confirmed generating (isGenerating: true).
+  * Dispatched 9-minute verification timer (task-37586) to wake up at ~00:29 UTC for Chrome ruling extraction and gate verification.
+### Turn [2026-10-11 00:30 UTC Cycle & 9-Minute Arena Extraction]
+- **Arena.ai Evaluation & Extraction (00:20 UTC Briefing)**:
+  * Ruling Extracted: `trade_authorization: DENIED_UNVERIFIED_ORDERFLOW`, `code_changes_this_cycle: none`, suite: `834 passed / 3 skipped / 0 failed`.
+  * Quantitative Discovery - Whale Wall Retention (16.7%): Arena analyzed 12 consecutive committed snapshots via `git show` running `two_sided_grid_addresses()`, finding that only 16.7% of qualifying one-sided walls persist across consecutive 60-second snapshots. Clean-wall passes operate closer to high-turnover algorithmic pulses than sustained directional accumulation. Mandated tracking wall retention across consecutive snapshots in future briefings.
+  * Session Maturity Clock (Gate G-3): Rollover at 00:00 UTC produced `session_bars = 0`, zeroing out session VWAP, VWAP Z, and session sigma until sufficient sample depth accumulates.
+  * EV Horizon: Nearest liquidation pool at 84,030.6 USD sits at +9.20 ATR (far outside the 4.0 ATR horizon cap).
+  * Suite Parity: Pytest verified locally: 168 passed in 0.58s across `Test_Whale_Wall_Authenticity_Gates.py` and `Test_Decision_Gates_v3.py`.
+- **00:30 UTC Live Matrix Audit (Generation `1d7a14c8...`)**:
+  * MT5 Account (#5064568): Balance 4,896.55 USD | Equity 4,896.55 USD (100% Cash, 0 positions, 0 pending orders).
+  * Capital Cushion: +121.55 USD above 4,775.00 USD hard floor (+101.55 USD above 4,795.00 USD operating buffer).
+  * 14 Crypto Perpetuals: All 14 assets fail closed under Gate G-3 session maturity (`session_bars = 0`), with alt spreads wide (DOGE 245 bps, DOT 167 bps, ADA 85 bps, LINK 66 bps, NEAR 59 bps, LTC 47 bps, AVAX 39 bps, TRX 24 bps, SOL 22 bps, XRP 21 bps) exceeding Gate G-5 friction limit (20.0 bps ceiling). BTC spread tight at 1.93 bps, mid 82,883.0 USD.
+  * 10 Blueberry CFDs: Indices, commodities, and FX closed over weekend (STAND ASIDE).
+  * Decision Gates: 24/24 assets confirm mathematical and architectural STAND ASIDE.
+  * Arena UI State: Closed review panel; tiptap ProseMirror editor cleared and armed for the 00:50 UTC scheduled cycle.
+  * Next cycle: standing cron at minute :50 (00:50:00 UTC).
+
+### Turn [2026-10-11 00:50 UTC Pre-Hourly Close Cycle Dispatch]
+- **00:50 UTC Live Telemetry & Microstructure Audit (Generation `32810a1e...`)**:
+  * MT5 Account (#5064568): Balance 4,896.55 USD | Equity 4,896.55 USD (100% Cash, 0 open positions, 0 pending orders).
+  * Capital Cushion: +121.55 USD above 4,775.00 USD hard floor (+101.55 USD above 4,795.00 USD operating buffer).
+  * BTC Spot/Perp: Mid 82,912.5 USD, spread 1.81 bps, ATR(14) 121.94 USD, RSI 43.27, trend regime BULLISH (EMA 20 = 82,934.09, EMA 50 = 82,899.86, EMA 200 = 82,776.38).
+  * Session Rollover Progression: `session_bars = 3` (3 of 16 bars toward G-3 maturity). Session VWAP populated at 82,885.12 USD, VWAP Z = +1.25 SD.
+  * Model 1: Fails G-4 (|Z| = 1.25 SD < 2.0 SD extreme threshold).
+  * Model 2: Price has not pulled back to the EMA 50 / VWAP shelf (82,885–82,900 USD).
+  * Liquidity Geometry: 4.0 ATR horizon cap [82,424.7 .. 83,400.3 USD] contains zero short squeeze bands. Nearest overhead pool at 84,030.3 USD is +9.17 ATR away (OUTSIDE). Nearest long cascade below at 82,050.0 USD is -7.07 ATR away (OUTSIDE).
+  * Orderbook Filtration: 414 raw walls -> 18 two-sided grid addresses filtered -> 168 clean walls (71 BUY / 97 SELL). Wall retention across snapshots tracked at ~16.7%.
+  * 24-Asset Matrix: 14 cryptos fail G-3 / G-5; 10 CFDs closed over weekend. Unconditional matrix-wide STAND ASIDE enforced.
+- **Arena.ai Briefing Injection**:
+  * Formulated and injected the 00:50 UTC pre-hourly close briefing into Arena session with canonical GitHub references (branch `main` at `f826dc6c`, branch `arena/537c1eb8-trading-2`).
+  * Prompt confirmed accepted and posted in Arena conversation.
+  * Scheduled dynamic 9-minute verification timer (`task-37734`, 540s) to wake up at ~00:59/01:00 UTC to extract Arena's ruling and audit the major 01:00 UTC hourly close.
+
+### Turn [2026-10-11 01:00 UTC Major Hourly Close Cycle & Council Extraction]
+- **Arena.ai Evaluation & Extraction (00:50 UTC Briefing)**:
+  * Ruling Extracted: `decision: STAND_ASIDE`, `candidates_staged: 0`, `orders_punched: 0`, `admissible_assets: 0/24`, `suite: 834 passed / 3 skipped / 0 failed`. Unconditional concurrence with desk recommendation.
+  * Three Defense Layers Validated: Verified that spurious early-session Z-scores (e.g. DOT 12.69, DOGE 10.17, TRX 5.44) caused by 7.4x sigma compression (21.92 vs 163 USD) are triply defended: (1) admission `data_invalid:session_sigma` short-circuits before A1; (2) A1 line 13 enforces `session_bars >= 16`; (3) A1 line 26 enforces `sigma >= 0.8 * ATR`.
+  * Wall Position Gate (G-7): Confirmed that while raw non-grid walls exist in the book (87 qualifying under >=150k USD, >=180s, >=0.9 presence), 0 clean walls sit behind price within 0.25 ATR on either side to back an entry.
+  * Git Remote Parity: Code changes this cycle: none. Remote branch and local `main` identical at HEAD `f826dc6c`. Gate suite: 168 passed in 0.86s locally.
+- **01:00 UTC Major Hourly Close Live Audit (Generation `2a8fab16...`)**:
+  * Account State (#5064568): Balance 4,896.55 USD | Equity 4,896.55 USD (100% Cash, 0 positions, 0 orders).
+  * Capital Cushion: +121.55 USD above 4,775.00 USD hard floor (+101.55 USD above 4,795.00 USD operating buffer).
+  * BTC Hourly Close: Mid 82,871.0 USD, spread 1.93 bps, ATR(14) 121.30 USD. 1 full hour post-rollover complete (`session_bars = 4`). Session VWAP 82,881.18 USD, Sigma 20.94 USD, VWAP Z = -0.49 SD.
+  * Regime & Gates: Gate G-3 strictly fails closed (`session_bars = 4` < 16 bars needed; `sigma` 20.94 < 0.8 * ATR 97.04 USD). Gate G-4 fails (classify_regime is UNDEFINED). EV horizon fails (overhead pool at 84,030.3 USD is +9.56 ATR away, outside 4.0 ATR cap).
+  * 24-Asset Matrix: 14 cryptos fail G-3/G-5; 10 CFDs closed over weekend. Unconditional matrix-wide STAND ASIDE enforced.
+  * Next cycle: standing cron at minute :20 (01:20:00 UTC).
+
+### Turn [2026-10-11 01:20 UTC Cycle Dispatch]
+- **01:20 UTC Live Telemetry & Microstructure Audit (Generation `6c3b61cf...`)**:
+  * MT5 Account (#5064568): Balance 4,896.55 USD | Equity 4,896.55 USD (100% Cash, 0 open positions, 0 pending orders).
+  * Capital Cushion: +121.55 USD above 4,775.00 USD hard floor (+101.55 USD above 4,795.00 USD operating buffer).
+  * BTC Spot/Perp: Mid 82,924.5 USD, spread 1.81 bps, ATR(14) 123.56 USD, RSI 46.48.
+  * Session Rollover Progression: `session_bars = 5` (5 of 16 bars toward G-3 maturity).
+  * Session VWAP = 82,875.64 USD, Session Sigma = 21.16 USD (compressed 7.7x vs pre-rollover 163 USD).
+  * Spurious Z Phenomenon (+2.31 SD): Tiny 48.9 USD move above VWAP produces Z = +2.31 SD. Verified that three independent defense layers block execution: (1) admission `data_invalid:session_sigma`, (2) A1 line 13 `A1_session_sigma_immature_lt16bars`, (3) A1 line 26 `A1_session_sigma_lt_0p8atr`.
+  * Strategy Model Status: Model 1 blocked by G-4 (`classify_regime` is UNDEFINED) and noise Z; Model 2 does not buy +2.31 SD overbought extensions without pullback to EMA 50 / VWAP shelf.
+  * Liquidity Geometry: 4.0 ATR horizon cap [82,430.3 .. 83,418.7 USD] contains zero short squeeze bands. Nearest overhead whale pool sits at 91,813.9 USD (+71.94 ATR away, OUTSIDE).
+  * Orderbook Filtration: 410+ raw walls -> 25 two-sided grid addresses filtered -> 168 clean walls (8 clean BUY walls within 0.25 ATR, 0 clean SELL walls).
+  * 24-Asset Matrix: 14 cryptos fail G-3/G-5; 10 CFDs closed over weekend. Unconditional matrix-wide STAND ASIDE enforced.
+- **Arena.ai Briefing Injection**:
+  * Formulated and injected the 01:20 UTC briefing into Arena session with canonical GitHub references (branch `main` at `f826dc6c`, branch `arena/537c1eb8-trading-2`).
+  * Prompt confirmed accepted and posted in Arena conversation.
+  * Scheduled dynamic 9-minute verification timer (`task-37794`, 540s) to wake up at ~01:29/01:30 UTC to extract Arena's ruling and audit the 01:30 UTC candle close.
+
+### Turn [2026-10-11 01:30 UTC Candle Close Audit & Dynamic Timer Extension]
+- **01:30 UTC 15m Candle Close Telemetry Audit (Generation `4422eb65...`)**:
+  * MT5 Account (#5064568): Balance 4,896.55 USD | Equity 4,896.55 USD (100% Cash, 0 positions, 0 orders).
+  * Capital Cushion: +121.55 USD above 4,775.00 USD hard floor (+101.55 USD above 4,795.00 USD operating buffer).
+  * BTC Candle Close: Mid 82,948.5 USD, spread 1.81 bps, ATR(14) 120.59 USD, RSI 50.74, trend heuristic BULLISH (EMA 20 = 82,927.30, EMA 50 = 82,900.67, EMA 200 = 82,780.05).
+  * Session Rollover Clock: `session_bars = 6` (6 of 16 bars toward G-3 maturity). Session VWAP 82,882.00 USD, Session Sigma 23.73 USD, VWAP Z = +2.80 SD.
+  * Spurious Z Re-Verification: Price move of +66.5 USD over VWAP divided by compressed sigma (23.73 USD) yields an artificial +2.80 SD reading. Blocked by admission `data_invalid:session_sigma`, `A1_session_sigma_immature_lt16bars` (session_bars = 6 < 16), and `A1_session_sigma_lt_0p8atr` (sigma 23.73 < 0.8 * ATR 96.47 USD).
+  * Orderbook Filtration: 167 clean walls (21 grid wallets filtered), 7 clean BUY walls within 0.25 ATR, 0 clean SELL walls.
+  * Liquidity Geometry: Nearest short liquidation whale sits at 91,813.9 USD (+73.52 ATR away, outside 4.0 ATR horizon cap).
+  * 24-Asset Matrix: 14 cryptos fail G-3/G-5; 10 CFDs closed over weekend. Unconditional matrix-wide STAND ASIDE enforced.
+- **Arena.ai Session State & Dynamic Timer**:
+  * Arena actively generating 01:20 UTC briefing response (text length 746k+ characters, isGenerating: true).
+  * Scheduled dynamic +5 minute timer (`task-37819`, 300s) to monitor completion, extract ruling, and audit git parity upon finish.
+
+### Turn [2026-10-11 01:38 UTC Arena 01:20 Ruling Extraction & Code Merge]
+- **Arena.ai Ruling Extracted (01:20 UTC Briefing)**:
+  * Ruling: `decision: STAND_ASIDE`, `candidates_staged: 0`, `orders_punched: 0`, `admissible_assets: 0/24`. Unconditional concurrence with desk recommendation.
+  * Code Upgrade Shipped & Merged (Commit `7e3caf1` -> Merged at `8f56cd86`):
+    - Defect Identified: `two_sided_grid_addresses()` in `Terminal/microstructure_state.py` previously demanded G-7 persistence (>= 180s) on *both* sides to flag a wallet as a grid. If a wallet had an aged leg on one side and a fresh leg (0-60s) on the other, it escaped classification (escape rate was 23.5%, or 28 of 119 bracketed wallets), allowing its aged opposite leg to masquerade as directional whale backing (e.g. wallet `0x95995f30` with 201k BUY at 82,920 and 201k SELL at 83,020).
+    - Architectural Fix: Added Criterion 2 in `two_sided_grid_addresses()`: raw notional per side (>= 150k USD on both BUY and SELL) within ratio band [0.5, 2.0], regardless of leg persistence. Return value is the union of both criteria.
+    - Escape rate dropped from 23.5% to **0.0%** (0 of 119). Clean BTC bids behind mid dropped from 1 to 0.
+    - Tests Added: 4 new unit tests in `Tests/Test_Whale_Wall_Authenticity_Gates.py`, asserting that bracketed wallets with fresh opposite legs are strictly flagged.
+    - Suite Parity: Pytest verified: **172 passed in 0.91s** across whale wall gates and decision gates (838 passed full suite).
+    - Git Merge: Merged commit `7e3caf1` into `main` and pushed to GitHub at `8f56cd86`.
+  * Liquidity Geometry Clarification:
+    - `top_short_liquidation_whales` is sorted by notional descending. 91,813.9 USD (66.2M USD) is the largest pool, while the nearest overhead pool remains at 84,030.01 USD (+8.95 ATR away, outside 4.0 ATR horizon).
+  * Wall Evanescence:
+    - Wall `0x95995f30` (201k USD) at 01:21:31 evaporated 63 seconds later at 01:22:34 (100% thinning), proving that without the bracket filter, it would have breached Mandate #3 thinning prune within one minute.
+- **Account & Risk State**:
+  * Balance 4,896.55 USD | Equity 4,896.55 USD (100% Cash, 0 positions, 0 orders).
+  * Capital Cushion: +121.55 USD above 4,775.00 USD hard floor (+101.55 USD above 4,795.00 USD operating buffer).
+  * Next cycle: standing cron at minute :50 (01:50:00 UTC).
+
+### Turn [2026-10-11 01:50 UTC Pre-02:00 Close Cycle Dispatch]
+- **01:50 UTC Live Telemetry & Microstructure Audit (Generation `51eeefd7...`)**:
+  * MT5 Account (#5064568): Balance 4,896.55 USD | Equity 4,896.55 USD (100% Cash, 0 positions, 0 orders).
+  * Capital Cushion: +121.55 USD above 4,775.00 USD hard floor (+101.55 USD above 4,795.00 USD operating buffer).
+  * BTC Spot/Perp: Mid 82,950.0 USD, spread 1.93 bps, ATR(14) 120.91 USD, RSI 50.22.
+  * Session Rollover Progress: `session_bars = 7` (7 of 16 bars toward G-3 maturity).
+  * Session VWAP = 82,890.67 USD, Session Sigma = 28.83 USD, VWAP Z = +2.06 SD.
+  * Production Verification of Criterion 2: 33 two-sided grid addresses filtered on BTC (including 0x95995f30 bracket). Clean walls total 113.
+  * Gate G-7 Whale Backing: 0 clean BUY walls, 0 clean SELL walls behind mid within 0.25 ATR. Complete absence of directional whale backing.
+  * Liquidity Geometry: Verified distance-sorted nearest overhead whale pool is `0xf15d4172` at 84,030.01 USD (+8.93 ATR away, outside 4.0 ATR horizon cap). 0 squeeze bands inside horizon.
+  * 24-Asset Matrix: 14 cryptos fail G-3/G-4/G-5/G-7; 10 CFDs closed over weekend. Unconditional matrix-wide STAND ASIDE enforced.
+- **Arena.ai Briefing Injection**:
+  * Formulated and injected the 01:50 UTC pre-02:00 close briefing into Arena session with canonical GitHub references (branch `main` at `8f56cd86`, branch `arena/537c1eb8-trading-2` at `7e3caf1`).
+  * Prompt confirmed accepted and posted in Arena conversation.
+  * Scheduled dynamic 9-minute verification timer (`task-37879`, 540s) to wake up at ~01:59/02:00 UTC to extract Arena's ruling and audit the 02:00 UTC major hourly close.
+
+### Turn [2026-10-11 02:02 UTC Arena 01:50 Extraction & 02:00 Major Hourly Close Audit]
+- **Arena.ai Ruling Extracted (01:50 UTC Briefing)**:
+  * Decision: STAND_ASIDE — 0 of 24 assets. Concurred unconditionally with desk recommendation.
+  * Integration Verified: Confirmed commit 7e3caf1 merged into main (8f56cd86 / eb5f9aa) with 172 passed across gate tests and 838 passed across full suite. Clean git tree, origin/main == origin/arena/537c1eb8-trading-2.
+  * Telemetry Verification: 20 of 20 numerical claims verified exact against canonical telemetry state.
+  * Empirical Proof of Criterion 2: Over 30 consecutive snapshots (01:25 - 01:52 UTC), pre-fix filter showed 8 false backing events from bracketed two-sided grid legs; corrected filter showed 0 false events (100% elimination of bracketed grid legs).
+  * Sigma Maturation Discovery (Quantitative Insight): Arena projected that while Gate G-3 session maturity will pass at ~04:00 UTC (session_bars >= 16), Model 1 line 422 (A1_session_sigma_lt_0p8atr) requires session_sigma >= 0.8 * ATR (~94.6 - 96.7 USD on BTC). At current growth rate (+3.84 sigma/bar), sigma at bar 16 will reach approximately 63.5 USD, which remains 34% below the 0.8 * ATR requirement. Model 1 will thus remain appropriately gated until genuine volatility expansion occurs.
+  * Code Changes This Cycle: None (tree in full parity, test suite green).
+- **02:00 UTC Major Hourly Close Telemetry & Microstructure Audit (Generation `a24e01afb3d441f4...`)**:
+  * MT5 Account (#5064568): Balance 4,896.55 USD | Equity 4,896.55 USD (100% Cash, 0 positions, 0 orders).
+  * Capital Cushion: +121.55 USD above 4,775.00 USD hard floor (+101.55 USD above 4,795.00 USD operating buffer).
+  * BTC Candle Close: Mid 82,932.5 USD, Bid 82,925.0 USD, Ask 82,940.0 USD, Spread 1.81 bps (spread price 15.0 USD), ATR(14) 118.27 USD, RSI 52.08.
+  * Session Rollover Progress: `session_bars = 8` (8 of 16 bars toward G-3 maturity).
+  * Session VWAP = 82,895.35 USD, Session Sigma = 29.44 USD, VWAP Z = +1.26 SD. Sigma / ATR ratio = 0.2489 (fails Model 1 line 422 >= 0.800 requirement).
+  * Multi-Timeframe Regime Gate: classify_regime() strictly returns UNDEFINED across all 24 assets.
+  * Orderbook Filtration: 35 two-sided grid addresses filtered on BTC (including 0x95995f30 bracket).
+  * Gate G-7 Whale Backing: 0 clean BUY walls, 0 clean SELL walls behind mid within 0.25 ATR (29.57 USD). Absence of directional whale backing confirmed for the 4th consecutive cycle.
+  * Liquidity Geometry: Nearest cascade band below is 81,950.0 USD (-8.24 ATR away); nearest overhead whale pool is 0xf15d4172 at 84,028.99 USD (+9.33 ATR away). Both sit well outside the 4.0 ATR horizon [82,451.92 .. 83,398.08 USD]. Top short squeeze bands above remains empty ([]).
+  * 24-Asset Matrix Compliance:
+    - 11 crypto alts fail G-5 (DOGE 244.61 bps, DOT 159.11 bps, ADA 84.46 bps, LINK 66.07 bps, NEAR 60.39 bps, LTC 47.13 bps, AVAX 38.68 bps, TRX 27.24 bps, SOL 24.58 bps, XRP 21.44 bps, BCH 20.87 bps).
+    - 10 CFDs closed over weekend (session_bars = 0, quote age frozen).
+    - 3 cryptos passing G-5 (BTC 1.81 bps, ETH 11.56 bps, BNB 8.02 bps) fail G-3 (session_bars = 8 < 16), G-4 (regime UNDEFINED), and G-7 (0 whale backing).
+  * Matrix-Wide Ruling: STAND ASIDE — 0 of 24 assets admissible. Zero orders punched.
+  * Pytest Verification: 172 passed in 0.60s across Test_Whale_Wall_Authenticity_Gates.py and Test_Decision_Gates_v3.py.
+  * Next cycle: standing cron at minute :20 (02:20:00 UTC).
+
+### Turn [2026-10-11 02:20 UTC Cycle Dispatch & Arena Injection]
+- **02:20 UTC Live Telemetry & Microstructure Audit (Generation `d63c30a4bf2f44b7...`)**:
+  * MT5 Account (#5064568): Balance 4,896.55 USD | Equity 4,896.55 USD (100% Cash, 0 positions, 0 pending orders, capacity 0/4).
+  * Capital Cushion: +121.55 USD above 4,775.00 USD hard floor (+101.55 USD above 4,795.00 USD operating buffer). Joint worst-case risk = 0.00 USD.
+  * BTC Spot/Perp: Mid 82,969.0 USD, Bid 82,961.0 USD, Ask 82,977.0 USD, Spread 1.93 bps (16.0 USD), ATR(14) 119.11 USD, RSI 53.02.
+  * Session Rollover Progress: `session_bars = 9` (bar 9 of 16 toward G-3 maturity).
+  * Session VWAP = 82,897.66 USD, Session Sigma = 28.94 USD, VWAP Z = +2.47 SD.
+  * 0.8 * ATR = 95.29 USD, Sigma / ATR ratio = 0.2429 (fails Model 1 line 422 >= 0.800 requirement).
+  * Spurious Z Re-Verification: Price tick of +36.5 USD over mid (82,932.5 -> 82,969.0) pushed Z from +1.26 to +2.47 SD solely on compressed sigma (28.94 USD). Blocked by admission data_invalid:session_sigma, A1 line 409 (9 < 16), and A1 line 422 (28.94 < 95.29 USD).
+  * Orderbook Filtration (Criterion 1 & Criterion 2 Active): 475 raw L3 rows, 33 two-sided grid addresses filtered. Clean directional walls behind mid within 0.25 ATR (29.78 USD): 0 BUY, 0 SELL (Gate G-7 fails closed).
+  * Liquidity Geometry: 4.0 ATR horizon window = [82,492.56 .. 83,445.44 USD]. Nearest cascade band below = 81,950.0 USD (-8.56 ATR away); nearest overhead whale pool = 0xf15d4172 @ 84,028.99 USD (+8.90 ATR away). Both outside 4.0 ATR horizon. Top short squeeze bands above remains empty ([]).
+  * 24-Asset Matrix Compliance:
+    - 11 crypto alts fail G-5 (DOGE 244.33, DOT 159.49, ADA 88.39, LINK 66.94, NEAR 60.17, LTC 47.11, AVAX 38.76, XRP 28.57, SOL 27.31, TRX 27.25, BCH 23.90 bps).
+    - 10 CFDs closed over weekend (session_bars = 0, quote age frozen).
+    - 3 cryptos passing G-5 (BTC 1.93, ETH 11.17, BNB 8.02 bps) fail G-3 (session_bars = 9 < 16), G-4 (regime UNDEFINED), and G-7 (0 whale backing).
+  * Matrix-Wide Ruling: STAND ASIDE — 0 of 24 assets admissible. Zero orders punched.
+  * Pytest Verification: 172 passed in 0.68s across Test_Whale_Wall_Authenticity_Gates.py and Test_Decision_Gates_v3.py. Full tree clean and in parity.
+- **Arena.ai Session Injection**:
+  * Handled modal dismissal ("Keep working") on Arena UI to activate TipTap ProseMirror contenteditable container.
+  * Injected 02:20 UTC council briefing with full GitHub repository pointers (branch main at ba8a7a99, branch arena/537c1eb8-trading-2).
+  * Verified submission and active generation (hasStopBtn: true, isGenerating: true).
+  * Scheduled dynamic 9-minute verification timer (`task-38076`, 540s) to wake up at ~02:29 UTC to extract Arena's ruling and verify git commits.
+  * Purged all temporary scratch files immediately.
+
+### Turn [2026-10-11 02:30 UTC Candle Close Audit]
+- **02:30 UTC Live Telemetry & Microstructure Audit (Generation `4d867c2706c74f90...`)**:
+  * MT5 Account (#5064568): Balance 4,896.55 USD | Equity 4,896.55 USD (100% Cash, 0 positions, 0 pending orders, capacity 0/4).
+  * Capital Cushion: +121.55 USD above 4,775.00 USD hard floor (+101.55 USD above 4,795.00 USD operating buffer). Contingent risk = 0.00 USD.
+  * BTC Spot/Perp: Mid 82,974.5 USD, Bid 82,967.0 USD, Ask 82,982.0 USD, Spread 1.81 bps (15.0 USD), ATR(14) 119.03 USD, RSI(14) 54.40.
+  * Session Rollover Progress: `session_bars = 10` (bar 10 of 16 toward G-3 maturity).
+  * Session VWAP = 82,902.44 USD, Session Sigma = 30.89 USD, VWAP Z = +2.33 SD.
+  * 0.8 * ATR = 95.22 USD, Sigma / ATR ratio = 0.2595 (fails Model 1 line 422 >= 0.800 requirement).
+  * Sigma Maturation Tracking: Sigma expanded +1.95 USD over bar 10 (28.94 -> 30.89 USD). The slow growth confirms Arena's insight that at bar 16 sigma will likely remain well below the 0.8 * ATR requirement, keeping Model 1 strictly defended.
+  * Orderbook Filtration (Criterion 1 & Criterion 2 Active): 464 raw L3 rows, 34 two-sided grid addresses filtered. Clean directional walls behind mid within 0.25 ATR (29.76 USD): 0 BUY, 0 SELL (Gate G-7 fails closed).
+  * Liquidity Geometry: 4.0 ATR horizon window = [82,498.38 .. 83,450.62 USD]. Nearest cascade band below = 81,950.0 USD (-8.61 ATR away); nearest overhead whale pool = 0xf15d4172 @ 84,028.99 USD (+8.86 ATR away). Both outside 4.0 ATR horizon. Top short squeeze bands above remains empty ([]).
+  * 24-Asset Matrix Compliance:
+    - 11 crypto alts fail G-5 (spread > 20.00 bps).
+    - 10 CFDs closed over weekend.
+    - 3 cryptos passing G-5 (BTC, ETH, BNB) fail G-3 (session_bars = 10 < 16), G-4 (regime UNDEFINED), and G-7 (0 whale backing).
+  * Matrix-Wide Ruling: STAND ASIDE — 0 of 24 assets admissible. Zero orders punched.
+  * Pytest Verification: 172 passed in 0.96s across Test_Whale_Wall_Authenticity_Gates.py and Test_Decision_Gates_v3.py.
+  * Arena Status: 02:20 UTC prompt generation actively in progress in Chromium. Dynamic timer `task-38076` active to harvest ruling at ~02:34 UTC.
+### Turn [2026-10-11 02:38 UTC Arena 02:20 Extraction & Test Suite Upgrade Integration]
+- **Arena.ai Ruling Extracted (02:20 UTC Briefing)**:
+  * Decision: STAND_ASIDE — 0 of 24 assets. Concurred with desk recommendation, with critical quantitative corrections.
+  * Material Regime Discovery: classify_regime() on BTC returned MEAN_REVERT across 26 consecutive snapshots (1h er 0.1868 < er_mr 0.20, 4h er 0.2934 < 0.30, 15m vr_z -1.6365 < -1.5). For the first time this session, Model 1's regime gate (G-4) opened, meaning G-3 session maturity is the binding gate rather than G-4.
+  * Competing Clocks Dynamic: Arena identified that the Model 1 window will likely expire on the Z ceiling (3.5 SD cap) long before the session floor opens at ~04:00 UTC (bar 16), because a mere ~8-14 USD further price tick reaches 3.5 SD on the compressed ~29-31 USD sigma denominator.
+  * Codebase Upgrade Shipped (Commit `ddd1e18b` -> Merged into `main` at `fb91f433`):
+    - Gap Identified: No test in Tests/ pinned `A1_session_sigma_immature_lt16bars`, `A1_session_sigma_lt_0p8atr`, or `data_invalid:session_sigma`. Those two lines were the only guards preventing a MEAN_REVERT regime with |Z| >= 2.0 from triggering an unhedged live counter-trend ticket during an immature session.
+    - Tests Added: 5 new comprehensive unit tests in `Tests/Test_Decision_Gates_v3.py` pinning both session-maturity guards, validating admission short-circuits, independent firing with valid VWAP inputs, relative 0.8 ATR floor calculation, and Z >= 3.5 cascade boundary rejection.
+    - Verified by mutation testing: neutering both guards failed 2 of the 5 new tests.
+    - Test Suite Parity: Pytest verified locally: **177 passed in 0.65s** (up from 172). Full tree synchronized with origin/main.
+- **Live Account & Risk State (02:38 UTC Telemetry Gen `f65584ff65ab42af...`)**:
+  * Balance: 4,896.55 USD | Equity: 4,896.55 USD (100% Cash, 0 positions, 0 orders).
+  * Floor Cushion: +121.55 USD above 4,775.00 USD hard floor (+101.55 USD above 4,795.00 USD operating buffer). Contingent risk = 0.00 USD.
+  * BTC: Mid 82,996.5 USD, spread 1.81 bps, ATR 119.03 USD, RSI 54.40, session_bars = 10, session_vwap = 82,902.44 USD, session_sigma = 30.89 USD, VWAP Z = +3.05 SD.
+  * G-7 Whale Backing: 0 clean BUY walls, 0 clean SELL walls behind mid within 0.25 ATR (30 grid addresses filtered).
+  * Liquidity Geometry: Nearest cascade band below = 81,950.0 USD (-8.79 ATR); nearest overhead whale = 0xf15d4172 @ 84,028.99 USD (+8.67 ATR). Both outside 4.0 ATR horizon [82,520.38 .. 83,472.62 USD]. Top short squeeze bands empty ([]).
+  * Matrix-Wide Ruling: STAND ASIDE — 0 of 24 assets admissible. Zero orders punched.
+  * Next cycle: Standing cron at minute :50 (02:50:00 UTC).
+### Turn [2026-10-11 02:50 UTC Cycle Dispatch & Arena Injection]
+- **02:50 UTC Live Telemetry & Microstructure Audit (Generation `9834a9147a824ee0...`)**:
+  * MT5 Account (#5064568): Balance 4,896.55 USD | Equity 4,896.55 USD (100% Cash, 0 positions, 0 pending orders, capacity 0/4).
+  * Capital Cushion: +121.55 USD above 4,775.00 USD hard floor (+101.55 USD above 4,795.00 USD operating buffer). Contingent risk = 0.00 USD.
+  * BTC Spot/Perp: Mid 83,015.0 USD, Bid 83,007.0 USD, Ask 83,023.0 USD, Spread 1.93 bps (16.0 USD), ATR(14) 119.10 USD, RSI 62.96.
+  * Session Rollover Progress: `session_bars = 11` (bar 11 of 16 toward G-3 maturity).
+  * Session VWAP = 82,915.96 USD, Session Sigma = 46.46 USD (expanded from 30.89 USD as BTC pushed above 83,000 USD).
+  * VWAP Z: +2.13 SD (compressed from +3.05 down to +2.13 SD due to sigma denominator expansion).
+  * 0.8 * ATR = 95.28 USD, Sigma / ATR ratio = 0.3901 (fails Model 1 line 422 >= 0.800 requirement).
+  * Multi-Timeframe Regime Gate (G-4): Verified classify_regime() = MEAN_REVERT (15m ER 0.1364, VR Z -1.7016; 1h ER 0.1868; 4h ER 0.2934). G-4 regime gate is open for Model 1.
+  * Orderbook Filtration (Criterion 1 & Criterion 2 Active): 451 raw L3 rows, 32 two-sided grid addresses filtered. Clean directional walls behind mid within 0.25 ATR (29.77 USD): 0 BUY, 0 SELL (Gate G-7 fails closed).
+  * Liquidity Geometry: 4.0 ATR horizon window = [82,538.60 .. 83,491.40 USD]. Nearest cascade band below = 81,950.0 USD (-8.94 ATR); nearest overhead whale pool = 0xf15d4172 @ 84,028.99 USD (+8.51 ATR). Both outside 4.0 ATR horizon. Top short squeeze bands above remains empty ([]).
+  * 24-Asset Matrix Compliance:
+    - 10 crypto alts fail G-5 (DOGE 244.61, DOT 159.87, ADA 88.14, LINK 65.45, NEAR 58.50, LTC 47.13, AVAX 29.03, XRP 28.57, SOL 26.39, TRX 24.23 bps). BCH compressed to 17.26 bps and passes G-5.
+    - 10 CFDs closed over weekend (session_bars = 0, quote age frozen).
+    - 4 cryptos passing G-5 (BTC 1.93, BCH 17.26, ETH 11.16, BNB 8.02 bps) fail G-3 (session_bars = 11 < 16), G-7 (0 whale backing), and EV horizon.
+  * Matrix-Wide Ruling: STAND ASIDE — 0 of 24 assets admissible. Zero orders punched.
+  * Pytest Verification: 177 passed in 0.84s across Test_Whale_Wall_Authenticity_Gates.py and Test_Decision_Gates_v3.py. Full tree clean and in parity.
+- **Arena.ai Session Injection**:
+  * Injected 02:50 UTC council briefing into Arena via TipTap ProseMirror container with full GitHub pointers (commit bf4786ce, merge commit fb91f433, and remote branch arena/537c1eb8-trading-2).
+  * Confirmed prompt submission and active generation (hasStopBtn: true, isGenerating: true).
+  * Scheduled dynamic 9-minute verification timer (`task-38184`, 540s) to wake up at ~02:59/03:00 UTC to extract Arena's ruling and audit the 03:00 UTC major hourly close.
+  * Purged all temporary scratch files immediately.
+### Turn [2026-10-11 03:06 UTC Arena 02:50 Extraction & 03:00 Major Hourly Close Audit]
+- **Arena.ai Ruling Extracted (02:50 UTC Briefing)**:
+  * Decision: STAND_ASIDE — 0 of 24 assets. Concurred with desk recommendation.
+  * Quantitative Discovery (Coupled Sigma-Z Invariant):
+    - Arena proved that since `vwap_z = (price - session_vwap) / session_sigma`, A1's simultaneous requirement of `session_sigma >= 0.8 * ATR` and `|Z| >= 2.0` establishes an exact joint invariant floor:
+      `|price - session_vwap| = |Z| * session_sigma >= 2.0 * 0.8 * ATR = 1.6 * ATR` (~186.78 - 190.56 USD on BTC).
+    - Consequence: Maturation alone does NOT open Model 1 if price drifts sideways or nears VWAP. Growing sigma lowers Z at a fixed price offset, so if price stays near VWAP, Z drops far below 2.0 SD (e.g. at 03:00 UTC, |mid - VWAP| = 35.48 USD caused Z to collapse from +2.13 down to +0.69 SD).
+  * Code Upgrade Shipped & Merged (Commit `55e57e65` -> Merged into `main` at `b27c32e2`):
+    - Pinned the 1.6 * ATR coupled floor with 3 new unit tests in `Tests/Test_Decision_Gates_v3.py`.
+    - Local Test Suite: **180 passed in 0.86s** (up from 177) across `Test_Whale_Wall_Authenticity_Gates.py` and `Test_Decision_Gates_v3.py`.
+    - Working tree synchronized with `origin/main` at `b27c32e2`.
+- **03:00 UTC Major Hourly Close Telemetry & Microstructure Audit (Generation `b3624521af8f486e...`)**:
+  * MT5 Account (#5064568): Balance 4,896.55 USD | Equity 4,896.55 USD (100% Cash, 0 positions, 0 orders, capacity 0/4).
+  * Floor Cushion: +121.55 USD above 4,775.00 USD hard floor (+101.55 USD above 4,795.00 USD operating buffer). Contingent risk = 0.00 USD.
+  * BTC Candle Close: Mid 82,961.0 USD, Bid 82,953.0 USD, Ask 82,969.0 USD, Spread 1.93 bps (16.0 USD), ATR(14) 116.73 USD, RSI 56.40.
+  * Session Rollover Progress: `session_bars = 12` (completed 3 full hours since rollover).
+  * Session VWAP = 82,925.52 USD, Session Sigma = 51.36 USD, VWAP Z = +0.69 SD (Z trigger collapsed from +2.13 to +0.69 SD as price moved toward VWAP).
+  * Offset from VWAP = 35.48 USD vs 1.6 * ATR Floor = 186.78 USD (151.30 USD shortfall below coupled threshold).
+  * Multi-Timeframe Regime Gate: classify_regime() = MEAN_REVERT (15m VR Z -1.7748, 1h ER 0.1729, 4h ER 0.2934).
+  * Gate G-7 Whale Backing: 0 clean BUY walls, 0 clean SELL walls behind mid within 0.25 ATR (29.18 USD). 33 two-sided grid addresses filtered out.
+  * Liquidity Geometry: Nearest cascade band below = 81,950.0 USD (-8.66 ATR away); nearest overhead whale = 0xf15d4172 @ 84,028.12 USD (+9.14 ATR away). Both outside 4.0 ATR horizon [82,494.06 .. 83,427.94 USD]. Top short squeeze bands above remains empty ([]).
+  * 24-Asset Matrix Compliance:
+    - 11 crypto alts fail G-5 (spread > 20.00 bps).
+    - 10 CFDs closed over weekend.
+    - 3 cryptos passing G-5 (BTC 1.93, BNB 6.69, ETH 11.57 bps) fail G-3 (session_bars = 12 < 16), G-7 (0 whale backing), and EV horizon.
+  * Matrix-Wide Ruling: STAND ASIDE — 0 of 24 assets admissible. Zero orders punched.
+  * Pytest Verification: 180 passed in 0.86s across gate test suites. Full tree clean and in parity.
+  * Next cycle: Standing cadence cron at minute :20 (03:20:00 UTC).
+### Turn [2026-10-11 03:25 UTC Cycle Briefing & Arena.ai Council Injection]
+- **03:25 UTC Live Telemetry & Microstructure Audit (Generation `528c8f0ead474463a868c5c35da6a0e7`)**:
+  * MT5 Account (#5064568): Balance 4,896.55 USD | Equity 4,896.55 USD (100% Cash, 0 positions, 0 orders, capacity 0/4).
+  * Floor Cushion: +121.55 USD above 4,775.00 USD hard floor (+101.55 USD above 4,795.00 USD operating buffer). Contingent risk = 0.00 USD.
+  * BTC Spot/Perp: Mid 82,800.0 USD, Bid 82,792.0 USD, Ask 82,808.0 USD, Spread 1.93 bps (16.0 USD), ATR(14) 124.11 USD, RSI 43.41.
+  * Session Rollover Progress: `session_bars = 13` (bar 13 of 16 toward G-3 maturity).
+  * Session VWAP = 82,920.18 USD, Session Sigma = 49.18 USD, VWAP Z = -2.44 SD (price dropped -120.18 USD below VWAP).
+  * Coupled Invariant & Gate G-3 Quantitative Derivation:
+    - Offset from VWAP = 120.18 USD vs 1.6 * ATR Floor = 198.58 USD (78.40 USD shortfall).
+    - Even though Z = -2.44 SD crosses the -2.0 SD threshold, Z is stretched solely because session sigma (49.18 USD) is compressed (only 0.396 * ATR). Price displacement is only ~0.97 ATR from VWAP, failing the required >= 1.6 ATR genuine displacement.
+    - Gate G-3 fails closed on session maturity: `session_bars = 13 < 16` (pinned by `A1_session_sigma_immature_lt16bars`).
+    - Gate G-3 fails closed on sigma expansion: `session_sigma = 49.18 < 0.8 * ATR (99.29 USD)` (pinned by `A1_session_sigma_lt_0p8atr`).
+  * Multi-Timeframe Regime Gate (G-4): classify_regime() = BULLISH (1h ER 0.1868, 4h ER 0.2934, 15m VR Z -1.6365).
+  * Gate G-7 Whale Backing: 0 clean BUY walls, 0 clean SELL walls behind mid within 0.25 ATR (31.03 USD). 30 grid wallets filtered.
+  * Hyperdash / Liquidations: Long liq volume 42.59M USD vs short 16.99M USD (2.51 ratio). Long imminent liquidation hazard cluster at 82,547 - 82,639 USD (10.8M USD whale at risk of cascade).
+  * 24-Asset Matrix Compliance:
+    - 11 crypto alts fail G-5 (spread > 20.00 bps).
+    - 10 CFDs closed over weekend.
+    - 3 cryptos passing G-5 (BTC 1.93, BNB 6.69, ETH 11.57 bps) fail G-3, G-7, and coupled invariant.
+  * Matrix-Wide Ruling: STAND ASIDE — 0 of 24 assets admissible. Zero orders punched.
+  * Pytest Verification: 180 passed in 0.73s across Test_Whale_Wall_Authenticity_Gates.py and Test_Decision_Gates_v3.py.
+- **Arena.ai Session Injection**:
+  * Injected 03:25 UTC council briefing into Arena via TipTap ProseMirror with canonical repo pointers (commit b27c32e2, remote branch arena/537c1eb8-trading-2).
+  * Confirmed prompt submission and active generation (`hasStopBtn: true`).
+  * Dynamic 9-minute verification timer scheduled (`DurationSeconds=540`, waking up at ~03:36 UTC) to extract Arena's ruling and audit fresh telemetry.
+### Turn [2026-10-11 03:30 UTC Cron Wake-Up, Arena Commit 3b39e298 Integration & 03:30 Candle Audit]
+- **Scheduled Cadence Wake-Up (task-36935 Iteration 21 at 03:30:00 UTC)**:
+  * MT5 Account (#5064568): Balance 4,896.55 USD | Equity 4,896.55 USD (100% Cash, 0 positions, 0 orders, capacity 0/4).
+  * Capital Cushion: +121.55 USD above 4,775.00 USD hard floor (+101.55 USD above 4,795.00 USD operating buffer). Contingent risk = 0.00 USD.
+- **Arena.ai Quantitative Discovery & Commit `3b39e298` Integration**:
+  * Remote Git Fetch: Pulled commit `3b39e298` from `origin/arena/537c1eb8-trading-2`.
+  * Quantitative Discovery (Exit Target Anchor Sizing Invariant):
+    - Arena proved that `MAX_TARGET_DIST_ATR` only checked distance, not pool notional.
+    - Squeeze band printed at 82,950.0 USD had only 23,055.66 USD notional (6.5x below the G-7 150k whale wall floor). Anchoring a target there is anchoring to retail dust.
+    - Added `MIN_POOL_NOTIONAL_USD = 150_000.0` and `named_pool_inside_horizon(pools, entry, atr, side=)` in `Terminal/decision_gates_v3.py` with 7 new unit tests in `Tests/Test_Decision_Gates_v3.py`.
+    - Merged into `main` (Merge commit `eb5ab889`), pushed to `origin/main`.
+    - Local Test Suite: **187 passed in 1.14s** (up from 180).
+- **03:30 UTC Live Telemetry & Microstructure Audit (Generation `deb450ade1b54eb393f80193107173cd`)**:
+  * BTC Spot/Perp: Mid 82,845.0 USD, Spread 1.93 bps, ATR(14) 127.75 USD, RSI 39.16.
+  * Session Rollover Progress: `session_bars = 14` (bar 14 of 16 toward 04:00 UTC maturity).
+  * Session VWAP = 82,905.57 USD, Session Sigma = 58.155 USD, VWAP Z = -1.04 SD (Z crushed from -2.44 to -1.04 SD as price recovered to 82,845 USD and sigma expanded).
+  * Coupled Floor Invariant: Price offset = 60.57 USD vs 1.6 * ATR floor = 204.40 USD (143.83 USD shortfall).
+  * Gates: G-3 fails closed (`session_bars = 14 < 16`, `session_sigma = 58.155 < 102.20 USD`), G-7 fails closed (0 whale backing).
+  * Matrix-Wide Ruling: STAND ASIDE — 0 of 24 assets admissible. Zero orders staged.
+  * Dynamic timer `task-38350` remains armed (~03:37 UTC expiry) to extract Arena's completed chat report.
+### Turn [2026-10-11 03:38 UTC Arena 03:25 Extraction, Modal Handling & Live Telemetry Verification]
+- **Arena.ai Ruling Extracted (03:25 UTC Briefing)**:
+  * Decision: STAND_ASIDE — 0 of 24 assets. Unanimous mathematical concurrence.
+  * Quantitative Audit & Invariant Ratification:
+    - Arena mathematically verified our coupled sigma-Z derivation: `|price - VWAP| = 120.18 USD` vs `1.6 * ATR = 198.58 USD` (78.40 USD shortfall). Recomputed Z identity: `(82,800.0 - 82,920.18) / 49.18 = -2.4437 == -2.44`.
+    - Retracted initial flag on liquidation volume: Confirmed our `42.59M` long, `16.99M` short, and `2.51` ratio from `hyperdash_flow_intelligence.summary` are 100% exact.
+    - Confirmed imminent liquidation hazard cluster at `82,547.96` and `82,639.83 USD`.
+  * Code Upgrade & Parity:
+    - Commit `3b39e298` merged into `main` at `eb5ab889`. Test suite: **187 passed in 1.14s**.
+    - Formalized `MIN_POOL_NOTIONAL_USD = 150_000.0` to prevent anchoring exits to sub-institutional liquidity (e.g. 23k squeeze band at 82,950 USD).
+- **Arena UI Interaction**:
+  * Clicked "Keep working" button on post-turn feedback modal. Textarea unblocked and editor confirmed ready for next cycle.
+- **03:38 UTC Live Telemetry Audit (Generation `92a42c7f732848099b65a389def284ac`)**:
+  * MT5 Account (#5064568): Balance 4,896.55 USD | Equity 4,896.55 USD (100% Cash, 0 positions, 0 orders, capacity 0/4).
+  * Capital Cushion: +121.55 USD above 4,775.00 USD hard floor (+101.55 USD above 4,795.00 USD operating buffer). Contingent risk = 0.00 USD.
+  * BTC Price Action: Surged from 82,800 USD back up to mid 82,923.0 USD (above VWAP).
+  * VWAP Z-Score: Crushed from -2.44 SD -> -1.04 SD -> +0.30 SD! Proving that the earlier -2.44 SD was temporary sigma compression, and price mean-reverted immediately before session maturity.
+  * Gate G-3: `session_bars = 14 < 16`.
+  * Gate G-7: 0 clean BUY/SELL whale walls within 0.25 ATR.
+  * Matrix-Wide Ruling: STAND ASIDE across 24 assets. Zero orders staged.
+  * Next cycle: Standing cadence cron `task-36935` at 03:50:00 UTC (pre-04:00 UTC milestone).
+### Turn [2026-10-11 03:50 UTC Pre-04:00 Close Cycle Briefing & Arena Injection]
+- **03:50 UTC Live Telemetry & Microstructure Audit (Generation `949f0b62e9234e57bf092d7e616f1213`)**:
+  * MT5 Account (#5064568): Balance 4,896.55 USD | Equity 4,896.55 USD (100% Cash, 0 positions, 0 orders, capacity 0/4).
+  * Floor Cushion: +121.55 USD above 4,775.00 USD hard floor (+101.55 USD above 4,795.00 USD operating buffer). Contingent risk = 0.00 USD.
+  * BTC Spot/Perp: Mid 82,807.0 USD, Bid 82,799.0 USD, Ask 82,815.0 USD, Spread 1.93 bps (16.0 USD), ATR(14) 127.05 USD, RSI 44.64.
+  * Session Rollover Progress: `session_bars = 15` (bar 15 of 16! 1 bar remaining before 04:00 UTC Gate G-3 maturity milestone).
+  * Session VWAP = 82,902.71 USD, Session Sigma = 56.12 USD, VWAP Z = -1.71 SD (price offset = -95.71 USD below VWAP).
+  * 04:00 UTC Milestone Pre-Flight Setup & Coupled Invariant Analysis:
+    - Offset from VWAP = 95.71 USD vs 1.6 * ATR Floor = 203.28 USD (107.57 USD shortfall).
+    - Session Sigma = 56.12 USD vs 0.8 * ATR Floor = 101.64 USD (45.52 USD shortfall).
+    - Even when bar 16 closes at 04:00 UTC satisfying G-3's bar counter, Model 1 CANNOT execute unless price violently displaces >= 203.28 USD from VWAP (below 82,699.43 or above 83,105.99 USD) and sigma expands above 101.64 USD with qualifying >=150k one-sided whale wall within 0.25 ATR.
+  * Liquidity Anchor Audit (`named_pool_inside_horizon` from commit `3b39e298`):
+    - Top squeeze band above at 82,950.0 USD carries 23,053.43 USD notional (rejected: 23k < 150k `MIN_POOL_NOTIONAL_USD`).
+    - Nearest cascade bands below: 81,950.0 USD (-7.50 ATR, outside 4.0 ATR horizon).
+    - Nearest overhead pool: 84,028.99 USD (+8.80 ATR, outside 4.0 ATR horizon).
+    - Zero qualifying exit target anchors exist inside horizon.
+  * Gate G-7 Microstructure: 0 clean BUY/SELL whale walls behind mid within 0.25 ATR (31.76 USD).
+  * 24-Asset Matrix Compliance: STAND ASIDE across all 24 assets. Zero orders staged.
+- **Arena.ai Session Injection**:
+  * Injected 03:50 UTC council briefing into Arena via TipTap ProseMirror with canonical repo pointers (commit eb5ab889, remote branch arena/537c1eb8-trading-2).
+  * Confirmed prompt submission and active generation (`hasStopBtn: true`).
+  * Dynamic 9-minute verification timer armed (`task-38442`, 540s) to wake up at ~03:59/04:00 UTC to harvest Arena's ruling and audit the 04:00 UTC major hourly close.
+### Turn [2026-10-11 04:05 UTC Major Hourly Close, Gate G-3 Milestone & Arena Commit 5e70453 Integration]
+- **Arena.ai Ruling Extracted (03:50 UTC Briefing)**:
+  * Decision: STAND_ASIDE — 0 of 24 assets. Unanimous mathematical concurrence.
+  * Quantitative Discovery & Breakthrough Guard (`A1_z_still_accelerating`):
+    - Arena identified that at 03:52 UTC, |Z| had spiked to 2.13 SD, which a naive "MEAN_REVERT + |Z| >= 2.0" rule would have treated as a setup.
+    - However, `dz4 = (close[-1] - close[-5]) / session_sigma = -2.7976`. For a long, `-side * dz4 = +2.7976 >> 0.75`, rejecting the trade by 3.7x.
+    - Price had dropped 157 USD over four 15m bars (2.80 sigma). That is a **falling knife**, not an exhaustion.
+    - Discovered test gap: `A1_z_still_accelerating` had zero test coverage in the rejecting direction.
+    - Shipped commit `5e70453`: Added 4 unit tests pinning the falling-knife rejection, sign conventions, boundary limits, and mutation resilience.
+  * Code Merge & Parity:
+    - Merged commit `5e70453` into `main` at `2081667b`, pushed to `origin/main`.
+    - Local Test Suite: **191 passed in 1.06s** across `Test_Whale_Wall_Authenticity_Gates.py` and `Test_Decision_Gates_v3.py`.
+- **04:00 UTC Major Hourly Close Telemetry & Milestone Audit (Generation `84a29513e3c44f009d72f4c682b3b1df`)**:
+  * MT5 Account (#5064568): Balance 4,896.55 USD | Equity 4,896.55 USD (100% Cash, 0 positions, 0 orders, capacity 0/4).
+  * Capital Cushion: +121.55 USD above 4,775.00 USD hard floor (+101.55 USD above 4,795.00 USD operating buffer). Contingent risk = 0.00 USD.
+  * BTC Spot/Perp: Mid 82,765.0 USD, Spread 1.93 bps, ATR(14) 134.76 USD, RSI 33.43.
+  * **Gate G-3 Milestone**: `session_bars = 16`! Bar counter formally passes for the first time today.
+  * **Comprehensive Invariant Audit at G-3 Milestone**:
+    - Sigma Floor: `session_sigma = 74.74 USD < 0.8 * ATR = 107.81 USD` (33.06 USD shortfall). Fails closed.
+    - Coupled Floor: `|price - VWAP| = 115.54 USD < 1.6 * ATR = 215.62 USD` (100.08 USD shortfall). Fails closed.
+    - Z-Score: Z = -1.55 SD (|Z| < 2.0 SD). Trigger retired / inactive.
+    - Acceleration Guard (`A1_z_still_accelerating`): `dz4 = -3.6658` (`-side * dz4 = 3.6658 >> 0.75`). Overwhelmingly rejects knife-fall.
+    - Exit Target Anchor (`named_pool_inside_horizon`): 23k squeeze band rejected on size; cascade bands outside 4.0 ATR horizon.
+    - Gate G-7: 0 clean BUY/SELL whale walls within 0.25 ATR.
+  * Matrix-Wide Ruling: STAND ASIDE across all 24 assets. Zero orders staged.
+  * Next cycle: Standing cadence cron `task-36935` at 04:20:00 UTC.
+### Turn [2026-10-11 04:20 UTC Cycle Briefing & Arena Injection]
+- **04:20 UTC Live Telemetry & Microstructure Audit (Generation `479cd48560ab49eb9149b8e3d5dfaff9`)**:
+  * MT5 Account (#5064568): Balance 4,896.55 USD | Equity 4,896.55 USD (100% Cash, 0 positions, 0 orders, capacity 0/4).
+  * Floor Cushion: +121.55 USD above 4,775.00 USD hard floor (+101.55 USD above 4,795.00 USD operating buffer). Contingent risk = 0.00 USD.
+  * BTC Spot/Perp: Mid 82,798.0 USD, Bid 82,790.0 USD, Ask 82,806.0 USD, Spread 1.93 bps (16.0 USD), ATR(14) 136.06 USD, RSI 39.97.
+  * Session Rollover Progress: `session_bars = 17` (well inside mature session territory, G-3 bar counter >= 16 satisfied).
+  * Session VWAP = 82,864.54 USD, Session Sigma = 83.24 USD, VWAP Z = -0.80 SD (price offset = -66.54 USD below VWAP).
+  * Mature Session Z-Compression Dynamics:
+    - As session matured from bar 13 to bar 17, session sigma expanded from 49.18 to 83.24 USD, and session VWAP drifted down to 82,864.54 USD.
+    - With price consolidated around 82,800 USD, VWAP Z steadily compressed: -2.44 SD -> -1.71 SD -> -1.55 SD -> -0.80 SD.
+    - Offset from VWAP = 66.54 USD vs 1.6 * ATR Floor = 217.70 USD (151.16 USD shortfall).
+    - Session Sigma = 83.24 USD vs 0.8 * ATR Floor = 108.85 USD (25.61 USD shortfall).
+    - Acceleration Momentum: `dz4 = -1.1773` (`-side * dz4 = 1.1773 > 0.75 limit`).
+  * Liquidity Anchor Audit (`named_pool_inside_horizon`):
+    - Top squeeze band above at 82,950.0 USD carries 23,051.20 USD notional (rejected: 23k < 150k floor).
+    - Zero qualifying exit target anchors exist inside horizon.
+  * Gate G-7 Microstructure: 0 clean BUY/SELL whale walls behind mid within 0.25 ATR (34.02 USD).
+  * 24-Asset Matrix Compliance: STAND ASIDE across all 24 assets. Zero orders staged.
+- **Arena.ai Session Injection**:
+  * Injected 04:20 UTC council briefing into Arena via TipTap ProseMirror with canonical repo pointers (commit 2081667b, remote branch arena/537c1eb8-trading-2).
+  * Confirmed prompt submission and active generation (`hasStopBtn: true`).
+  * Dynamic 9-minute verification timer armed (`task-38505`, 540s) to wake up at ~04:29/04:30 UTC to harvest Arena's ruling and audit fresh telemetry.
+### Turn [2026-10-11 04:35 UTC Arena Commit 6bc238f2 Integration & Live dg_context Milestone]
+- **Arena.ai Quantitative Discovery & Commit `6bc238f2` Integration**:
+  * Quantitative Breakthrough (Snapshot Key Aliases in `_session_vwap`):
+    - Arena solved the long-standing `session_vwap_history_unavailable` issue: `_session_vwap()` in `Terminal/dg_context.py` read `quote["time_msc"]` and `bar["time"]`, but `generate_telemetry_snapshot.py` renamed them to `broker_tick_time_utc_msc` and `ts`.
+    - Added `_quote_tick_msc()` and `_bar_open_ts()` to resolve telemetry aliases seamlessly while preserving production priority.
+    - Shipped commit `6bc238f2` with 15 new unit tests in `Tests/Test_DG_Context.py`.
+    - Merged into `main` and pushed to `origin/main` at `498e5267`.
+    - Local Test Suite: **235 passed in 2.47s** across `Test_DG_Context.py`, `Test_Whale_Wall_Authenticity_Gates.py`, and `Test_Decision_Gates_v3.py`.
+- **First Live Execution of `build_dg_context` on Real Published Telemetry**:
+  * Ran `build_dg_context` and `model1_checklist` live against Generation `5d9b71a8f2f44c89903d3e1c9e2502f6`:
+    - `missing: []` (ZERO missing fields!).
+    - `session_bars = 18`, `session_sigma = 82.74 USD`, `vwap_z = -0.55 SD` (recomputed live from 15m bars).
+    - `model1_checklist` executed substantively and failed closed on 8 real gates (`A1_session_sigma_lt_0p8atr`, `A2_no_tape_fail_closed`, `A3_no_wall_fail_closed`, `A3_no_eligible_whale_wall_behind_entry`, `A5_stop_not_beyond_sweep_buffer`, `A5_tp_beyond_vwap`, `EV_rr_below_1.5`, `EV_p_win_lower_bound_missing`) rather than aborting on `data_invalid`.
+- **04:30 UTC Telemetry Audit (Generation `5d9b71a8f2f44c89903d3e1c9e2502f6`)**:
+  * MT5 Account (#5064568): Balance 4,896.55 USD | Equity 4,896.55 USD (100% Cash, 0 positions, 0 orders, capacity 0/4).
+  * Capital Cushion: +121.55 USD above 4,775.00 USD hard floor (+101.55 USD above 4,795.00 USD operating buffer). Contingent risk = 0.00 USD.
+  * BTC Spot/Perp: Mid 82,880.0 USD, Spread 1.93 bps, ATR(14) 132.84 USD, RSI 43.25.
+  * Session Bars: `session_bars = 18`. Session VWAP = 82,861.87 USD, Session Sigma = 82.74 USD, VWAP Z = +0.22 SD.
+  * Offset from VWAP = 18.13 USD vs 1.6 * ATR floor = 212.55 USD (194.42 USD shortfall).
+  * Sigma = 82.74 USD vs 0.8 * ATR floor = 106.28 USD (23.54 USD shortfall).
+  * Microstructure: 0 clean BUY/SELL whale walls within 0.25 ATR.
+  * Matrix-Wide Ruling: STAND ASIDE across all 24 assets. Zero orders staged.
+  * Next cycle: Standing cadence cron `task-36935` at 04:50:00 UTC.
+### Turn [2026-10-11 04:42 UTC Subagent Audit Synthesis & evaluate_candidate_dg_v3 Snapshot Key Hardening]
+- **evaluate_candidate_dg_v3 Snapshot Key Alias Hardening (Commit `13e1749d`)**:
+  * Root Cause Forensics: While `build_dg_context` was previously updated with `_quote_tick_msc()` and `_bar_open_ts()`, `evaluate_candidate_dg_v3` at lines 449-470 still accessed raw keys `quote["time_msc"]` and `bar["time"]`. When evaluated against serialized telemetry snapshots, this raised a `KeyError`, causing it to fail closed with `regime_history_time_invalid_or_noncausal`.
+  * Implementation: Patched `evaluate_candidate_dg_v3` to use `_quote_tick_msc()` and `_bar_open_ts()` for all causality, sequence, and staleness checks.
+  * Live Verification on Production Telemetry (Gen `cca835e7db66468ba6ef3c17b5989b05`):
+    - Multi-timeframe regime classified cleanly: `regime: MEAN_REVERT` (15m ER = 0.0664, 1h ER = 0.0672, 4h ER = 0.2934, bar_age = 584s, stale = false).
+    - Fully executed through `model1_checklist` with exact metrics (`z: -0.554 SD`, `dz4: -0.169`, `z_sweep: -2.633 SD`, `rr_gross: 2.0`, `net_win_r: 1.95R`, `net_loss_r: 1.15R`).
+  * Regression Testing: Added `test_evaluate_candidate_dg_v3_accepts_telemetry_snapshot_keys` to `Tests/Test_DG_Context.py`. **203 tests passed in 0.98s**.
+  * Git Parity: Committed as `13e1749d` and pushed to both `origin/main` and `origin/arena/537c1eb8-trading-2`.
+- **Tri-Subagent Forensic Code Review Synthesis**:
+  * Subagent `b7f01afa` (`Terminal/decision_gates_v3.py`): Audit completed across floating point tolerances, division-by-zero safeguards (`pullback_geometry`), and session maturity invariants.
+  * Subagent `998dfb49` (`Terminal/Data_Factory/autonomous_telemetry_git_daemon.py`): Confirmed daemon health (PID 16548 actively publishing every 60s, iteration #553 published at 04:37:07 UTC) and documented git ancestor edge cases.
+  * Subagent `23767f51` (`Terminal/Data_Factory/hyperdash_flow_feed.py`): Uncovered potential read-modify-write lost update risks and documented rolling-window recommendations for all-time cumulative volume metrics.
+- **Account & Market Status**:
+  * MT5 (#5064568): Balance 4,896.55 USD | Equity 4,896.55 USD (100% Cash, 0 positions, 0 orders, capacity 0/4). Floor cushion: +121.55 USD above 4,775.00 USD hard floor (+101.55 USD above 4,795.00 USD buffer).
+  * Stand Aside Binding: In-range BTC price (82,891.0 USD, Z = +0.35 SD, offset 29.13 USD << 212.55 USD floor) and lack of G-7 whale walls bind stand-aside across all 24 assets.
+  * Next cycle: Standing cadence cron `task-36935` armed for 04:50:00 UTC (~6 minutes away).
