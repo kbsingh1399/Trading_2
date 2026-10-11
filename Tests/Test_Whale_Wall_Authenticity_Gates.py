@@ -708,3 +708,115 @@ def test_dg_context_excludes_the_live_0550_grid_book_end_to_end():
     assert "session_vwap_history_unavailable" not in missing
     assert ctx["wall"] is None, "a two-sided grid must never satisfy whale backing"
     assert ctx["wall_data_present"] is False
+
+
+# --------------------------------------------------------------------------- #
+# CROSS-VENUE BASIS vs THE G-7 PROXIMITY BAND -- characterisation, not a fix.
+#
+# build_dg_context measures the A3/B5 "behind entry within 0.25 ATR" band as
+#     dist_atr = side * (entry - wall_price) / atr
+# where `entry` is the MT5 broker mid (the price the ticket would actually fill
+# at) and `wall_price` comes from BINANCE_USDM_FUTURES_AND_HYPERLIQUID L2/L3. The
+# two venues are not the same price, and no basis adjustment is applied.
+#
+# Measured on generation 326d64d5e10d4ea6881e62d172ab399b (2026-10-11 07:08:23
+# UTC), basis expressed in units of the 0.25 ATR band it has to fit inside:
+#     BTC -1.29x   ETH -1.40x   BNB -3.89x   SOL -1.86x
+# stable across consecutive snapshots (07:07:21 UTC: -1.18x / -1.45x / -4.07x /
+# -1.95x). On six of fourteen crypto assets the cross-venue basis is LARGER than
+# the entire G-7 proximity tolerance.
+#
+# Two live walls are suppressed by it right now:
+#   ETH 0xc2e859a2f4 @ 2503.10, 250,310 USD, persist 960.1s, presence 1.000
+#       -0.2466 ATR vs the MT5 mid (out) | +0.1024 ATR vs the Binance mid (in)
+#   SOL L2 @ 109.66, 427,126 USD, persist 1140.1s, presence 1.000
+#       -0.2754 ATR vs the MT5 mid (out) | +0.1907 ATR vs the Binance mid (in)
+#
+# NOT FIXED HERE. Moving the reference or basis-adjusting the wall price changes
+# trade admission, which needs operator sign-off. These tests pin the behaviour
+# that ships today so the discrepancy cannot move silently, and so whichever way
+# the operator decides, the change is a visible, deliberate diff.
+# --------------------------------------------------------------------------- #
+
+_ETH_0708 = dict(mid_mt5=2_502.10, mid_binance=2_503.515, atr=4.0544,
+                 wall_price=2_503.10, wall_usd=250_310.0,
+                 persist_s=960.1, presence_frac=1.0)
+_SOL_0708 = dict(mid_mt5=109.595, mid_binance=109.705, atr=0.236,
+                 wall_price=109.66, wall_usd=427_126.0,
+                 persist_s=1_140.1, presence_frac=1.0)
+
+
+def _band_position(case, ref_key):
+    return (case[ref_key] - case["wall_price"]) / case["atr"]
+
+
+def test_the_cross_venue_basis_exceeds_the_g7_tolerance_band_on_the_live_book():
+    """On six of fourteen crypto assets the basis is bigger than the whole band."""
+    for name, case, expect in (("ETH", _ETH_0708, -1.40), ("SOL", _SOL_0708, -1.86)):
+        basis_atr = (case["mid_mt5"] - case["mid_binance"]) / (0.25 * case["atr"])
+        assert basis_atr == pytest.approx(expect, abs=0.02), name
+        assert abs(basis_atr) > 1.0, f"{name}: basis exceeds the 0.25 ATR tolerance"
+
+
+def test_a_genuine_wall_is_suppressed_by_the_venue_basis_not_by_its_own_quality():
+    """Both walls pass every authenticity test; only the reference price rejects them."""
+    for case in (_ETH_0708, _SOL_0708):
+        assert case["wall_usd"] >= dg.MIN_POOL_NOTIONAL_USD
+        assert case["persist_s"] >= dg.G7_PERSIST_S if hasattr(dg, "G7_PERSIST_S") else case["persist_s"] >= 180.0
+        assert case["presence_frac"] >= 0.9
+        d_mt5 = _band_position(case, "mid_mt5")
+        d_bn = _band_position(case, "mid_binance")
+        assert not (0 <= d_mt5 <= 0.25), "shipped behaviour: measured from the MT5 mid, out of band"
+        assert 0 <= d_bn <= 0.25, "venue-consistent: measured from the Binance mid, in band"
+
+
+def test_the_eth_0708_wall_flips_g7_purely_on_which_venue_the_band_is_centred_on():
+    """Same wall, same book, two references, two different gate outcomes."""
+    d_mt5 = _band_position(_ETH_0708, "mid_mt5")
+    d_bn = _band_position(_ETH_0708, "mid_binance")
+    assert d_mt5 == pytest.approx(-0.2466, abs=1e-3)
+    assert d_bn == pytest.approx(0.1024, abs=1e-3)
+    # The wall is ABOVE the MT5 mid, so against an MT5-priced long entry it is not
+    # "behind" at all -- yet against the venue that published it, it is.
+    assert d_mt5 < 0 < d_bn
+
+
+def test_dg_context_measures_the_band_from_the_entry_not_from_the_wall_venue():
+    """End-to-end: the shipped seam uses `entry`, so a wall priced above the MT5
+    entry is out of band for a LONG even though it sits inside the band measured
+    from the venue that published it.
+
+    This is the ETH 07:08:23 UTC shape -- wall at 2503.10 against an MT5 entry of
+    2502.10 on a 4.0544 ATR, band 1.0136 USD. It exercises build_dg_context rather
+    than re-deriving the arithmetic, so moving the reference or basis-adjusting the
+    wall price is a visible diff against a real code path.
+    """
+    c = _ETH_0708
+    day_start = 1_791_648_000
+    quote = {"bid": c["mid_mt5"] - 0.6, "ask": c["mid_mt5"] + 0.6, "tick_size": 0.01,
+             "point": 0.01, "time_msc": (day_start + 40 * 900 + 9) * 1000}
+    bars = []
+    for i in range(40):
+        ts = day_start + i * 900
+        px = c["mid_mt5"] + (i % 5) * 0.4 - 0.8
+        bars.append({"open": px - 0.3, "high": px + 0.7, "low": px - 0.7, "close": px,
+                     "time": ts, "close_ts": ts + 900, "volume": 100.0 + i})
+    wall = {"address": "0xc2e859a2f4", "side": "BUY", "price": c["wall_price"],
+            "notional_usd": c["wall_usd"], "persist_s": c["persist_s"],
+            "presence_frac": c["presence_frac"], "wall_class": "GENUINE",
+            "gate_g7_eligible": True}
+    payload = {"orderbook_live_depth": {"whale_walls_l3": [wall], "l2_wall_levels": []}}
+    common = dict(features={"direction": "LONG", "atr": c["atr"]}, payload=payload,
+                  pivots=None, quote=quote, bars_15m=bars,
+                  sl=c["mid_mt5"] - 1.5 * c["atr"], tp=c["mid_mt5"] + 1.5 * c["atr"],
+                  sizing={"risk_usd": 15.0, "friction_usd": 0.1},
+                  regime="MEAN_REVERT", symbol="ETH")
+    from_entry, missing = dg_context.build_dg_context(entry=c["mid_mt5"], **common)
+    assert "session_vwap_history_unavailable" not in missing
+    assert from_entry["wall"] is None, \
+        "wall sits above the entry, so it is not behind a LONG -- shipped behaviour"
+    # The same wall, same book, entry moved to the venue that published it: in band.
+    from_venue, _ = dg_context.build_dg_context(entry=c["mid_binance"], **common)
+    assert from_venue["wall"] is not None
+    assert from_venue["wall"]["usd"] == c["wall_usd"]
+    assert from_venue["wall"]["dist_from_entry_atr"] == pytest.approx(0.1024, abs=1e-3)
