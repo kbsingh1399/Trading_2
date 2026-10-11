@@ -53585,3 +53585,47 @@ Finally, unify live and replay ratchets before qualifying uplift; the current se
   2. Prompt verified successfully submitted (box cleared, prompt set, submitted).
   3. Armed 9-minute sleep timer (`task-43558`) for 19:29 UTC to harvest Arena deliberation.
   4. Verified all 244 unit tests passing green.
+
+
+---
+
+### [2026-10-12 01:45 UTC] External Audit Reconciliation & 13-Cycle Deadlock Resolution
+- **User Prompt**: "following is opus 5.5 output...check if it make sense and logical too : C:\Users\SIGMA\Downloads\Opus_5.5.txt", "Apply all the fixes raised if they are genione and don't ask me...just everything."
+- **Audit Findings**: Opus 5.5, Minimax 3, DeepSeek Flash, and GPT Astra reached unanimous consensus on three interlocking layers:
+  1. Diagnostic vs. execution friction mismatch (spread cost now dynamically computed as risk_usd * spread / stop_dist with 20 bps hard ceiling).
+  2. Spurious log-level slope t-statistic replaced with HAC return drift t-stat (`drift_tstat_nw`), enabling a two-tier trend router (STAT tier requiring confirming 4H, STRUCT tier admitting 1H trend with VWAP + 200 EMA slope alignment, capped at 10.00 USD risk).
+  3. Scanner plumbing defect resolved (shelf candidates derived from VWAP/EMAs/Volume Profile, real observed pivots and swing highs/lows supplied by scanner).
+  4. Dynamic wall band `wall_band_atr(stop_dist / atr) = clamp(stop_dist / 3, 0.25, 0.50)` ATR wired through `select_backing_wall`.
+  5. Exact Clopper-Pearson lower bound `alpha ** (1/n)` applied when `wins >= n`.
+  6. Atomic `save_whale_state` implemented via tempfile and `os.replace`.
+- **Validation**:
+  - Live scanner resolves BTC (`TREND_UP`), ETH (`TREND_UP`), NEAR (`TREND_UP`), eliminating the 0/24 UNDEFINED deadlock.
+  - Test suites: 244 core decision gate tests 100% green; 1,065+ repository tests passing.
+  - AST knowledge graph fully updated (403/403 files, 100%).
+  - Commit `50041a61` synchronized across `main` and `arena/537c1eb8-trading-2`.
+  - Capital floor preserved: Balance 4,896.55 USD, cushion +121.55 USD above 4,775.00 USD floor.
+
+---
+
+### [2026-10-12 02:05 UTC] Cycle 13 Deliberation Harvest & Architectural Consensus
+- **User Prompt**: "hit esc first and then prmpt", "try now to prompt...sorry earlier we logged out in arena.ai"
+- **Actions Taken**:
+  1. Dismissed review panel in Arena.ai using Escape key.
+  2. Injected Cycle 13 Structured Council Operating Briefing referencing commit `50041a61`, two-tier trend router, `adaptive_wall_band_atr`, relaxed friction constants, and latest live telemetry snapshot.
+  3. Submitted prompt and executed 9-minute zero-token sleep protocol.
+- **Arena.ai Multi-Persona Ruling (Cycle 13)**:
+  1. **Disposition**: STAND ASIDE (0 tickets punched on #5064568).
+  2. **Major Breakthrough Verified**: The 5-cycle `UNDEFINED` streak is definitively broken. Arena called `classify_regime` directly and confirmed `TREND_UP / STRUCT` for BTC (1H drift_t +1.752, 1H t +5.391), ETH (1H drift_t +1.621, 1H t +4.103), and NEAR (1H drift_t +2.058, 1H t +4.555).
+  3. **BTC Gate Status (6 of 9 Gates Passing)**:
+     - G-1 Floor Defense: PASS (4,896.55 USD, cushion +121.55 USD above floor).
+     - G-2 Capacity: PASS (0/4 used).
+     - G-3 Freshness: PASS (0.82s < 5.0s).
+     - G-4 Regime: PASS (TREND_UP / STRUCT tier).
+     - G-5 Spread: PASS (1.79 bps <= 20.0 bps).
+     - G-6 Relative Friction: PASS (gamma = 0.1089 R <= 0.15 R).
+     - G-7 Verified Whale Wall: PASS (12 walls in band, best BUY 83,601 USD, $381,403 notional, persist 1,018.9s, d_adj +0.2103 ATR).
+     - EV Expectancy: PASS (+0.0921 R at RR 2.0).
+     - **TP Anchor: SOLE BLOCKER**. The nearest in-horizon pool is the 83,850 USD short-squeeze band at +1.401 ATR (RR 0.934 vs 1.5 min_rr). BTC requires an admissible >=150k pool in the 84,006–84,326 window (2.25–4.0 ATR) to stage an executable limit order.
+  4. **ETH & NEAR**: ETH has 0/51 walls in band, gamma 0.585 > 0.15, and 4H drift_t -0.919 (0.081 above veto). NEAR passes TP anchor (5.895 USD, +3.736 ATR, RR 2.491) but fails spread (60.07 bps) and gamma (0.730).
+  5. **10 TradFi CFDs**: Quarantined closed for weekend until Sunday 22:00 UTC.
+  6. **Git Parity**: Arena pushed commit `10af3023` to `origin/arena/537c1eb8-trading-2` with `docs/trade_plans/ARENA_COUNCIL_REPORT_20261011_2030Z.md`. Local repo merged and pushed to `origin/main` (`6e570523`).
