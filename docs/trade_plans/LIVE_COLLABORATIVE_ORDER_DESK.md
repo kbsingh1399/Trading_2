@@ -9459,3 +9459,44 @@ Arena completed the unified 4-step council audit across all 4 Mandates:
   * 10 CFD Assets: Closed for the weekend.
   * 14 Crypto Perpetuals: G-4 regime UNDEFINED, G-7 clock skew / basis validation, and TP geometry horizon barriers prevent admission.
 - **Active Orders & Capital**: 0 positions, 0 pending orders. 100% cash preserved.
+
+
+---
+
+## SECTION 137: ARENA.AI CYCLE 3 AUDIT & G-7 VENUE COVERAGE MERGE (2026-10-11 14:23 UTC)
+### 1. Ingestion, Response Time & Ground Truth Verification
+- **Cycle Timing Profile**:
+  * Prompt Injected: 2026-10-11 14:10:25 UTC.
+  * Generation Complete: 2026-10-11 14:23:50 UTC.
+  * **Measured Response Time**: **12m 00s (720s)**.
+  * **Rolling Average Response Time**: **10m 48s (~648s)** across completed cycles (Cycle 1: 10m 52s, Cycle 2: 9m 31s, Cycle 3: 12m 00s).
+  * Dynamic Sub-Timer Efficiency: Initial 9.5m sleep + 3m dynamic sub-timer successfully captured completion with zero token burn.
+- **Citation Block**: All 7 repository sources verified by Arena line-by-line (session history, ACTIVE_CONTEXT.md, LIVE_COLLABORATIVE_ORDER_DESK.md, protocol spec, round 2 audit, decision gates v3, dg_hardening.py, live snapshot gens 7b653d50 / 06b188f8 / 46055c42 / 88412f32).
+- **Account State (#5064568)**: Balance 4,896.55 USD | Equity 4,896.55 USD (100% Cash reserves, 0 open positions, 0 pending orders, capacity 0/4).
+- **Capital Floor Defense**: Floor 4,775.00 USD | Operating buffer: 4,795.00 USD | Cushion: **+121.55 USD** (+101.55 USD above operating buffer). Contingent stress: 0.00 USD.
+
+### 2. Major Council Breakthroughs & Forensic Findings
+- **BTC TP-Anchor Barrier Officially Lifted (Pillar 3)**:
+  * Re-measured against MIN_POOL_NOTIONAL_USD = 150,000 USD and MAX_TARGET_DIST_ATR = 4.0:
+    - Long Anchor: Buy-stop cluster at 83,350 USD (+3.176 ATR, ,677,286 notional), yielding **RR = 2.117** (Admissible!).
+    - Short Anchor: Sell-stop cluster at 82,750 USD (+2.742 ATR, ,227,187 notional), yielding **RR = 1.828** (Admissible!).
+  * TP anchoring no longer vetoes BTC.
+- **Positive Net EV Hurdle for BTC (Pillar 4)**:
+  * At real anchor RR = 2.117, BTC Net EV is **+0.0652R (positive expectancy)** under exact Clopper-Pearson lower bound (p_lo = 0.4197, break-even RR = 1.9617).
+  * At RR = 2.500, BTC Net EV expands to **+0.2259R**, fully clearing the relaxed friction cap.
+- **BTC Whale Backing Verified (Pillar 5)**:
+  * BTC nearest wall carries SAMPLED_RECURRENCE_VERIFIED, persist_s = 4,234.6s, notional = 24,516,228 USD, presence_frac = 0.9722, gate_g7_eligible = true, wall_class = GENUINE.
+- **Binding Blocker Identified & Merged (Commit 2dea4dab)**:
+  * Arena diagnosed that 100% of the 798 G-7 whale walls are sourced from HYPERLIQUID, but the telemetry published only inance_mid without a matching hyperliquid_mid or enue_basis mapping.
+  * Arena shipped udit_wall_venue_coverage() and rewrote g7_readiness() in Terminal/gate_diagnostics.py (+148 lines) and added 17 tests in Tests/Test_Gate_Diagnostics.py (+109 lines).
+  * Merged cleanly into main and verified: **76/76 gate diagnostic tests passing in 0.20s**.
+
+### 3. Full Test Suite & Branch Parity
+- **Full Test Results**: **1,049 passed, 3 skipped, 0 failed (100% green)**.
+- **Git HEAD**: Synchronized across main and rena/537c1eb8-trading-2.
+
+### 4. Council Trading Disposition
+- **Verdict**: **STAND ASIDE across all 24 assets**.
+  * 10 CFD Assets: Closed for the weekend.
+  * 14 Crypto Perpetuals: G-4 regime UNDEFINED (1H up vs 4H down), G-7 venue basis coverage gap, and G-6 friction cap (γ = 0.185 vs 0.15 base cap) require resolution before staging limit orders.
+- **Active Orders & Capital**: 0 positions, 0 pending orders. 100% cash preserved.

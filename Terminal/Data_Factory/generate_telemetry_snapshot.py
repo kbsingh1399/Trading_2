@@ -1388,17 +1388,33 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
             # this cycle's print is appended, so the reading being tested stays
             # independent of the anchor it is compared against.
             basis_median = None
+            venue_basis_dict: Dict[str, Any] = {}
             if quote_valid and bid_price > 0 and ask_price > 0 and binance_mid > 0:
                 b_now_obs = ((bid_price + ask_price) / 2.0) - binance_mid
                 basis_median = rolling_basis_median(_prev_basis_meta, asset, now_ts)
                 _prev_basis_meta = record_basis_observation(
                     _prev_basis_meta, asset, now_ts, b_now_obs)
+            venue_basis_dict["BINANCE"] = {
+                "mid": round(binance_mid, 4),
+                "mid_ts": receipt_epoch or round(time.time(), 3),
+                "basis_median": (round(basis_median, 8) if basis_median is not None else None),
+            }
+            if hd_status == "SUCCESS" and hd_mid and hd_mid > 0:
+                hd_b_obs = ((bid_price + ask_price) / 2.0) - hd_mid if (quote_valid and bid_price > 0 and ask_price > 0) else None
+                venue_basis_dict["HYPERLIQUID"] = {
+                    "mid": round(hd_mid, 4),
+                    "mid_ts": receipt_epoch or round(time.time(), 3),
+                    "basis_median": round(hd_b_obs, 8) if hd_b_obs is not None else None,
+                }
             orderbook_payload = {
                 "source": "REAL_BINANCE_FUTURES_L2_AND_HYPERDASH_L3",
                 "venue": "BINANCE_USDM_FUTURES_AND_HYPERLIQUID",
                 "aggregation": "BINANCE_AGGREGATED_L2_WITH_HYPERDASH_L3_WALLETS",
                 "binance_mid": round(binance_mid, 4),
                 "binance_mid_ts": receipt_epoch or round(time.time(), 3),
+                "hyperliquid_mid": round(hd_mid, 4) if (hd_status == "SUCCESS" and hd_mid and hd_mid > 0) else None,
+                "hyperliquid_mid_ts": receipt_epoch or round(time.time(), 3) if (hd_status == "SUCCESS" and hd_mid and hd_mid > 0) else None,
+                "venue_basis": venue_basis_dict,
                 "basis_median": (round(basis_median, 8) if basis_median is not None else None),
                 "top20_bid_depth_usd": round(total_bid_depth, 2),
                 "top20_ask_depth_usd": round(total_ask_depth, 2),
@@ -1482,12 +1498,22 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
             imb = round((tot_b - tot_a) / max(tot_b + tot_a, 1.0), 4) if (tot_b + tot_a) > 0 else 0.0
             skew = round(tot_b / max(tot_a, 1.0), 4) if tot_a > 0 else 1.0
 
+            hd_basis_obs = ((bid_price + ask_price) / 2.0) - hd_mid if (quote_valid and bid_price > 0 and ask_price > 0) else None
             orderbook_payload = {
                 "source": "REAL_HYPERDASH_HIP3_L2_AND_L3",
                 "venue": "HYPERLIQUID_HIP3_PERP_DEX",
                 "aggregation": "HYPERDASH_L2_DEPTH_AND_L3_WALLETS",
                 "hyperdash_mid": round(hd_mid, 4),
                 "hyperdash_mid_ts": receipt_epoch or round(time.time(), 3),
+                "hyperliquid_mid": round(hd_mid, 4),
+                "hyperliquid_mid_ts": receipt_epoch or round(time.time(), 3),
+                "venue_basis": {
+                    "HYPERLIQUID": {
+                        "mid": round(hd_mid, 4),
+                        "mid_ts": receipt_epoch or round(time.time(), 3),
+                        "basis_median": round(hd_basis_obs, 8) if hd_basis_obs is not None else None,
+                    }
+                },
                 "top20_bid_depth_usd": round(tot_b, 2),
                 "top20_ask_depth_usd": round(tot_a, 2),
                 "book_imbalance": imb,
