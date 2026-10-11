@@ -1,0 +1,65 @@
+# 🏛️ ARENA.AI MULTI-PERSONA QUANTITATIVE COUNCIL BRIEFING — CYCLE 17 (22:20 UTC)
+
+**Canonical GitHub Repository:** `https://github.com/kbsingh1399/Trading_2`  
+**Active Working Branch:** `arena/537c1eb8-trading-2`  
+**Current HEAD Commit:** `fcd0d72d` (Synchronized on `main` and `arena/537c1eb8-trading-2`)  
+**Live Telemetry Pointer:** `https://raw.githubusercontent.com/kbsingh1399/Trading_2/arena/537c1eb8-trading-2/docs/telemetry/live_snapshot_latest.json`  
+**Snapshot Generation ID:** `1e69a3830cc4414d96e7f02da11dc491` (as of 2026-10-11 22:20:12 UTC)
+
+---
+
+### 1. Ingestion of Prior Cycle & Methodological Ratification
+
+1. **Cycle 16 Report Formally Ingested (`ARENA_COUNCIL_REPORT_20261011_2150Z.md`, Commit `ac99b5b4`)**:
+   - Merged commit `ac99b5b4` and synchronized across `main` and `origin/arena/537c1eb8-trading-2` (commit `fcd0d72d`).
+   - **Expectancy & Friction Analysis Ratified**: The council's decisive finding is acknowledged in full: with relative friction $\gamma = 0.1483\text{ R}$, the Clopper-Pearson break-even hurdle expanded to $R:R = 1.8743$. At the available 83,850 USD pool ($R:R = 1.518$), lower-bound expectancy was mathematically negative ($\text{EV}_{\text{lower}} / R = -0.1495$). Standing aside preserved capital from entering a negative-expectancy posture.
+   - **All Prior Fixes Formally Reconciled**: Council confirmed all three fixes true: `pullback_geometry` live 24/24, `impulse_start` fix verified, and Option A' drift circuit breaker reset for BTC.
+
+---
+
+### 2. Live Market Developments for Cycle 17 (22:20 UTC)
+
+1. **TradFi CFD Interbank Reopen (22:00 UTC Active)**:
+   - All 10 TradFi CFDs (Forex, Metals, Energies, Indices) are now streaming live, sub-second MT5 quotes:
+     * EURUSD: Spread 0.09 bps, $\gamma = 0.027\text{ R}$, tick age 1.21s
+     * GBPUSD: Spread 0.15 bps, $\gamma = 0.053\text{ R}$, tick age 0.94s
+     * USDJPY: Spread 0.06 bps, $\gamma = 0.020\text{ R}$, tick age 10.56s
+     * GOLD: Spread 0.29 bps, $\gamma = 0.032\text{ R}$, tick age 0.10s
+     * SP500: Spread 0.43 bps, $\gamma = 0.081\text{ R}$, tick age 0.27s (classified `MEAN_REVERT`)
+     * NAS100: Spread 0.39 bps, $\gamma = 0.047\text{ R}$, tick age 1.20s
+   - Assets inside $\gamma \le 0.15\text{ R}$ expanded from 6 to **8 of 24** (and $\le 0.20\text{ R}$ to **10 of 24**).
+   - Note on Session Maturity: As the Sunday 22:00 UTC session just commenced, CFD session VWAP requires historical bar maturation before trade admission.
+
+2. **BTC Orderflow & Liquidity Shift**:
+   - Mid price pushed up to 83,526 USD (above Session VWAP 83,313 USD, $Z = +0.56$).
+   - Spread tightened from 2.52 bps back to **1.80 bps**, dropping relative friction $\gamma$ to **0.102 R** (restoring 32% headroom inside the 0.15 R cap).
+   - **Target Compression**: Because BTC rose, the 83,850 USD short-squeeze pool now sits only $+1.712\text{ ATR}$ from spot, compressing its $R:R$ to **1.141** (well below the 1.50 min_rr requirement).
+
+---
+
+### 3. Live Account State & Capital Floor Defense (MT5 #5064568)
+
+- **Balance**: 4,896.55 USD | **Equity**: 4,896.55 USD | **Margin**: 0.00 USD (100% Cash Reserves)
+- **G-1 Hard Floor**: 4,775.00 USD | **Operating Buffer**: 4,795.00 USD
+- **Live Floor Cushion**: **+121.55 USD** (+101.55 USD above buffer; 6.1x mandatory 20.00 USD minimum)
+- **Active Tickets**: 0 open positions, 0 resting orders (Capacity: 0/4 used, 4 slots available)
+
+---
+
+### 4. Multi-Persona Council Mandate for Cycle 17
+
+Execute independent quantitative evaluations across the 4 personas:
+1. **Orderflow & Microstructure Analyst**:
+   - Audit the reopening spreads and friction across the 10 TradFi CFDs vs. the 14 Crypto assets.
+   - Evaluate BTC L2/L3 whale backing and Option A' cross-venue basis stability.
+2. **Structural Price Action Specialist**:
+   - Evaluate multi-timeframe drift and regime classification across Crypto and reopening CFDs.
+   - Audit SP500's `MEAN_REVERT` classification and session maturity gating.
+3. **Liquidation & Stop Hunt Forensic**:
+   - Audit the overhead liquidity landscape for BTC: With 83,850 USD compressed to $R:R = 1.141$, are there higher qualifying pools ($\ge 150\text{k USD}$, $\le 4.0\text{ ATR}$, $R:R \ge 1.50$)?
+   - Audit NEAR, BNB, and reopened CFD stop sweep clusters.
+4. **Macro Risk & Portfolio Governor**:
+   - Enforce joint stressed floor defense ($\ge 4,795.00\text{ USD}$) and STRUCT-tier 10.00 USD risk cap.
+   - Evaluate lower-bound expectancy with updated $\gamma = 0.102\text{ R}$ on BTC.
+
+Declare your trade ruling (STAND ASIDE vs. STAGE LIMIT ORDER), commit your report to `docs/trade_plans/ARENA_COUNCIL_REPORT_20261011_2220Z.md`, and push to branch `arena/537c1eb8-trading-2`.
