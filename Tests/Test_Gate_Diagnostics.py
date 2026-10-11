@@ -18,6 +18,7 @@ from Terminal.gate_diagnostics import (
     friction_verdict,
     g7_readiness,
     audit_wall_venue_coverage,
+    audit_basis_median_independence,
     regime_proximity,
     spread_friction_r,
 )
@@ -439,3 +440,144 @@ def test_coverage_never_crashes_on_odd_asset_counts(n):
         a = {}
     c = audit_wall_venue_coverage(a)
     assert c["assets_examined"] == n
+
+
+# ==================================== basis_median independence (drift breaker)
+
+def _anchor_assets(b_hat_pinned=True, n=3):
+    """b_hat either pinned to this cycle's b_now, or offset like a real median."""
+    out = {}
+    for i in range(n):
+        mid = 100.0 + i
+        v_mid = 90.0 + i
+        b_now = mid - v_mid                      # 10.0
+        b_hat = b_now if b_hat_pinned else b_now + 5.0
+        out[f"S{i}"] = {
+            "quotes": {"bid": mid - 1.0, "ask": mid + 1.0, "mid": mid},
+            "orderbook_live_depth": {
+                "binance_mid": v_mid,
+                "venue_basis": {"HYPERLIQUID": {"mid": v_mid, "mid_ts": 1.0,
+                                                "basis_median": b_hat}},
+            },
+        }
+    return out
+
+
+def test_pinned_b_hat_detected_as_inert_breaker():
+    r = audit_basis_median_independence(_anchor_assets(b_hat_pinned=True))
+    assert r["observations"] == 3
+    assert r["pinned_to_b_now"] == 3
+    assert r["pinned_share"] == 1.0
+    assert r["breaker_inert"] is True
+    assert r["verdict"] == "b_hat_pinned_to_b_now"
+
+
+def test_independent_b_hat_passes():
+    r = audit_basis_median_independence(_anchor_assets(b_hat_pinned=False))
+    assert r["pinned_to_b_now"] == 0
+    assert r["breaker_inert"] is False
+    assert r["verdict"] == "b_hat_independent"
+    assert r["per_asset"]["S0"]["HYPERLIQUID"]["abs_diff"] == 5.0
+
+
+def test_pinned_share_is_measured_not_assumed():
+    a = _anchor_assets(b_hat_pinned=True, n=4)
+    a["S3"]["orderbook_live_depth"]["venue_basis"]["HYPERLIQUID"]["basis_median"] = 99.0
+    r = audit_basis_median_independence(a)
+    assert r["pinned_share"] == 0.75
+    assert r["breaker_inert"] is False          # below the 0.80 suspect threshold
+
+
+def test_inert_breaker_blocks_g7_and_disables_the_clock_shortcut():
+    a = _anchor_assets(b_hat_pinned=True)
+    broker = {f"S{i}": 1000.0 + i for i in range(3)}
+    for i, s in enumerate(a):
+        a[s]["orderbook_live_depth"]["wall_sample_ts_epoch"] = 1000.0 + i
+        a[s]["orderbook_live_depth"]["binance_mid_ts"] = 1000.0 + i
+        a[s]["orderbook_live_depth"]["whale_walls_l3"] = [
+            {"price": 1.0, "source": "HYPERLIQUID",
+             "gate_g7_eligible": True, "wall_class": "GENUINE"}]
+    r = g7_readiness(a, broker_ts_by_symbol=broker, max_skew_s=5.0)
+    assert "drift_breaker:b_hat_pinned_to_b_now" in r["blockers"]
+    assert r["ready"] is False
+    # Even with the clock clean, an inert breaker means a repair admits nothing safe.
+    assert r["clock_fix_alone_would_open_gate"] is False
+
+
+@pytest.mark.parametrize("bad", [None, {}, []])
+def test_anchor_audit_fails_closed(bad):
+    r = audit_basis_median_independence(bad)
+    assert r["observations"] == 0
+    assert r["breaker_inert"] is False
+    assert r["verdict"] == "insufficient_data"
+
+
+def test_anchor_audit_skips_assets_without_a_broker_mid():
+    a = _anchor_assets(b_hat_pinned=True, n=2)
+    del a["S1"]["quotes"]["mid"]
+    r = audit_basis_median_independence(a)
+    assert r["assets_examined"] == 2
+    assert r["observations"] == 1
+    assert list(r["per_asset"]) == ["S0"]
+
+
+def test_mixed_venues_are_not_blended_into_a_healthy_verdict():
+    """The regression this detector was rewritten for.
+
+    Every HYPERLIQUID anchor pinned and every BINANCE anchor independent blends
+    to a share near 0.5, which a single aggregate threshold reads as healthy --
+    while the breaker is in fact inert for every wall, because every G-7 wall
+    resolves to HYPERLIQUID.
+    """
+    a = {}
+    for i in range(3):
+        mid = 100.0 + i
+        v_mid = 90.0 + i
+        a[f"S{i}"] = {
+            "quotes": {"bid": mid - 1.0, "ask": mid + 1.0, "mid": mid},
+            "orderbook_live_depth": {
+                "venue_basis": {
+                    # pinned exactly to this cycle's b_now
+                    "HYPERLIQUID": {"mid": v_mid, "basis_median": mid - v_mid},
+                    # offset like a genuine rolling median
+                    "BINANCE": {"mid": v_mid, "basis_median": (mid - v_mid) + 5.0},
+                },
+            },
+        }
+    r = audit_basis_median_independence(a)
+    assert r["observations"] == 6
+    assert r["pinned_to_b_now"] == 3
+    assert r["pinned_share"] == 0.5                    # the misleading blend
+    assert r["per_venue"]["HYPERLIQUID"]["pinned_share"] == 1.0
+    assert r["per_venue"]["HYPERLIQUID"]["inert"] is True
+    assert r["per_venue"]["BINANCE"]["pinned_share"] == 0.0
+    assert r["per_venue"]["BINANCE"]["inert"] is False
+    assert r["inert_venues"] == ["HYPERLIQUID"]
+    assert r["breaker_inert"] is True
+    assert r["verdict"] == "b_hat_pinned_to_b_now"
+
+
+def test_mixed_venue_inertia_reaches_g7_readiness():
+    a = {}
+    for i in range(3):
+        mid = 100.0 + i
+        v_mid = 90.0 + i
+        a[f"S{i}"] = {
+            "quotes": {"bid": mid - 1.0, "ask": mid + 1.0, "mid": mid},
+            "orderbook_live_depth": {
+                "wall_sample_ts_epoch": 1000.0 + i, "binance_mid_ts": 1000.0 + i,
+                "binance_mid": 200.0,                       # independent, outside spread
+                "whale_walls_l3": [{"price": 1.0, "source": "HYPERLIQUID",
+                                    "gate_g7_eligible": True, "wall_class": "GENUINE"}],
+                "venue_basis": {
+                    "HYPERLIQUID": {"mid": v_mid, "basis_median": mid - v_mid},
+                    "BINANCE": {"mid": v_mid, "basis_median": (mid - v_mid) + 5.0},
+                },
+            },
+        }
+    broker = {f"S{i}": 1000.0 + i for i in range(3)}
+    r = g7_readiness(a, broker_ts_by_symbol=broker, max_skew_s=5.0)
+    assert "drift_breaker:b_hat_pinned_to_b_now" in r["blockers"]
+    assert r["inert_venues"] == ["HYPERLIQUID"]
+    assert r["ready"] is False
+    assert r["clock_fix_alone_would_open_gate"] is False

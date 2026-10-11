@@ -417,6 +417,9 @@ def g7_readiness(
 
     G-7 has three preconditions and they bind in a specific order:
 
+    0. the published basis_median must be an independent anchor rather than the
+       same cycle's own b_now, or the drift breaker is inert
+       (``audit_basis_median_independence``);
     1. the venue a wall sits on must have a published mid
        (``audit_wall_venue_coverage``) -- this one binds first, and when it fails
        nothing downstream is ever reached;
@@ -442,6 +445,7 @@ def g7_readiness(
     )
     venue = audit_venue_mid_independence(assets)
     cover = audit_wall_venue_coverage(assets)
+    anchor = audit_basis_median_independence(assets)
 
     # Venue coverage is checked FIRST because it binds before the others. When a
     # wall's venue has no published mid, select_backing_wall refuses with
@@ -450,6 +454,8 @@ def g7_readiness(
     blockers: List[str] = []
     if cover.get("verdict") == "wall_venue_mid_missing":
         blockers.append("venue_coverage:wall_venue_mid_missing")
+    if anchor.get("breaker_inert") is True:
+        blockers.append("drift_breaker:b_hat_pinned_to_b_now")
     if walls.get("verdict") not in ("contemporaneous", "no_walls_published"):
         blockers.append(f"wall_timestamps:{walls.get('verdict')}")
     if venue.get("suspect") is True:
@@ -462,6 +468,7 @@ def g7_readiness(
         blockers == ["wall_timestamps:clock_skew_exceeds_allowance"]
         and cover.get("coverage_complete") is True
         and venue.get("suspect") is not True
+        and anchor.get("breaker_inert") is not True
     )
     out: Dict[str, Any] = {
         "ready": ready,
@@ -472,6 +479,11 @@ def g7_readiness(
         "g7_walls_total": cover.get("g7_walls_total"),
         "wall_venues_total": cover.get("wall_venues_total"),
         "covered_assets": cover.get("covered_assets"),
+        "drift_breaker_verdict": anchor.get("verdict"),
+        "inert_venues": anchor.get("inert_venues"),
+        "per_venue_pinned_share": {
+            k: v.get("pinned_share") for k, v in (anchor.get("per_venue") or {}).items()
+        },
         "wall_verdict": walls.get("verdict"),
         "venue_verdict": venue.get("verdict"),
         "max_abs_skew_s": walls.get("max_abs_skew_s"),
@@ -579,3 +591,114 @@ def _venue_mids(ob: Mapping[str, Any], asset: Mapping[str, Any]) -> Dict[str, An
 
 
 __all__.append("audit_wall_venue_coverage")
+
+# ==================================== 7. is the drift breaker actually live?
+
+def audit_basis_median_independence(
+    assets: Mapping[str, Any],
+    *,
+    ob_key: str = "orderbook_live_depth",
+    exact_tol: float = 1e-9,
+) -> Dict[str, Any]:
+    """Is ``basis_median`` an independent anchor, or just this cycle's own b_now?
+
+    ``basis_drift_decision`` compares the live basis against a published
+    ``basis_median`` and trips when they diverge. If the publisher writes the
+    *current* observation into that field, then b_hat == b_now by construction,
+    drift is identically zero, and the circuit breaker can never fire. The
+    shipped code guards the ``b_hat is None`` cold-start case explicitly --
+    "Legacy fallback b_hat = b_now makes drift identically 0: breaker inert" --
+    but a publisher that writes b_now straight through is finite, so it passes
+    that guard and silently disables the breaker.
+
+    Measured 2026-10-11 across gens 14:34:15 / 14:35:38 / 14:36:32: the
+    HYPERLIQUID ``basis_median`` equals that cycle's b_now to the cent in every
+    generation (diff +0.0000), while BINANCE's differs by -47.79 / -2.65 /
+    -11.45 -- a genuine rolling median. Every G-7 wall resolves to HYPERLIQUID,
+    so the breaker is inert for the entire wall population.
+    """
+    per_asset: Dict[str, Any] = {}
+    examined = 0
+    total = 0
+    pinned = 0
+    per_venue: Dict[str, Dict[str, int]] = {}
+    for symbol, asset in (assets or {}).items():
+        if not isinstance(asset, dict):
+            continue
+        examined += 1
+        ob = asset.get(ob_key)
+        ob = ob if isinstance(ob, dict) else {}
+        quote = asset.get("quotes")
+        quote = quote if isinstance(quote, dict) else {}
+        broker_mid = quote.get("mid")
+        if not _is_num(broker_mid):
+            continue
+        vb = ob.get("venue_basis")
+        if not isinstance(vb, dict):
+            continue
+        venues: Dict[str, Any] = {}
+        for venue, block in vb.items():
+            if not isinstance(block, dict):
+                continue
+            v_mid = block.get("mid")
+            b_hat = block.get("basis_median")
+            if not (_is_num(v_mid) and _is_num(b_hat)):
+                continue
+            b_now = float(broker_mid) - float(v_mid)
+            diff = abs(b_now - float(b_hat))
+            same = diff <= exact_tol
+            total += 1
+            pinned += same
+            key = str(venue).upper()
+            slot = per_venue.setdefault(key, {"observations": 0, "pinned": 0})
+            slot["observations"] += 1
+            slot["pinned"] += int(same)
+            venues[key] = {
+                "b_now": b_now, "b_hat": float(b_hat),
+                "abs_diff": diff, "equals_b_now": same,
+            }
+        if venues:
+            per_asset[symbol] = venues
+
+    # Per venue, because an aggregate share across venues hides the case that
+    # matters. Measured 2026-10-11 gen 2d60461f: all 14 HYPERLIQUID observations
+    # are pinned (|diff| exactly 0) while all BINANCE ones are independent, so
+    # the blended share is only 0.389 and reports a healthy breaker -- while the
+    # breaker is in fact inert for every single wall, since every G-7 wall
+    # resolves to HYPERLIQUID.
+    venue_verdicts: Dict[str, Any] = {}
+    inert_venues: List[str] = []
+    for key, slot in sorted(per_venue.items()):
+        share = (slot["pinned"] / slot["observations"]) if slot["observations"] else 0.0
+        inert = share >= VENUE_MID_INSIDE_SHARE_SUSPECT
+        if inert:
+            inert_venues.append(key)
+        venue_verdicts[key] = {
+            "observations": slot["observations"],
+            "pinned": slot["pinned"],
+            "pinned_share": share,
+            "inert": inert,
+        }
+    return {
+        "assets_examined": examined,
+        "observations": total,
+        "pinned_to_b_now": pinned,
+        "pinned_share": (pinned / total) if total else 0.0,
+        "per_venue": venue_verdicts,
+        "inert_venues": inert_venues,
+        "any_venue_inert": bool(inert_venues),
+        "breaker_inert": bool(inert_venues),
+        "verdict": (
+            "insufficient_data" if total == 0
+            else "b_hat_pinned_to_b_now" if inert_venues
+            else "b_hat_independent"
+        ),
+        "per_asset": per_asset,
+    }
+
+
+def _is_num(x: Any) -> bool:
+    return isinstance(x, (int, float)) and not isinstance(x, bool)
+
+
+__all__.append("audit_basis_median_independence")
