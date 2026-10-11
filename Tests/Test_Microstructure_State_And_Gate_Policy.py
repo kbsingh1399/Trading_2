@@ -26,13 +26,19 @@ from Terminal.decision_gates_v3 import (  # noqa: E402
     pre_send_gate,
 )
 from Terminal.microstructure_state import (  # noqa: E402
+    BASIS_HISTORY_KEY,
+    BASIS_MIN_SAMPLES,
+    BASIS_WINDOW_S,
+    META_KEY,
     carry_forward_unseen,
     estimate_cycle_interval,
     expected_samples,
     observe_and_median_spread,
     prune_wall_state,
+    record_basis_observation,
     record_cycle_interval,
     record_spread_observation,
+    rolling_basis_median,
     rolling_spread_median_bps,
     wall_persistence_record,
 )
@@ -604,3 +610,156 @@ def test_wallet_recurrence_is_explicitly_sampled_without_order_identity():
     assert result["persistence_basis"] == "SAMPLED_RECEIPT_RECURRENCE"
     assert result["sample_span_sec"] == 180.0
     assert result["samples"] == 4
+
+
+# ------------------------------------- 8. cross-venue basis median (Option A')
+# Query time for the basis fixtures. BASIS_WINDOW_S is 1800s and the helper
+# spaces prints 60s apart from _BASIS_T0, so _BASIS_NOW sits comfortably inside
+# the rolling window for any fixture shorter than 30 prints.
+_BASIS_T0 = 1000.0
+_BASIS_NOW = 1300.0
+
+
+def _basis_meta(prints, asset="ETH", start=_BASIS_T0, step=60.0):
+    """Build a META dict holding `prints` prior basis observations."""
+    meta = {}
+    for i, b in enumerate(prints):
+        meta = record_basis_observation(meta, asset, start + i * step, b)
+    return meta
+
+
+def test_basis_median_is_none_until_enough_prior_prints_exist():
+    """Cold start must yield None, never a fabricated 0.0.
+
+    dg_context reads a missing basis_median as cold start and falls back to
+    b_hat = b_now. Inventing 0.0 here would anchor the drift breaker to a
+    number that was never observed.
+    """
+    assert rolling_basis_median({}, "ETH", _BASIS_NOW) is None
+    meta = _basis_meta([-1.60] * (BASIS_MIN_SAMPLES - 1))
+    assert rolling_basis_median(meta, "ETH", _BASIS_NOW) is None
+
+
+def test_basis_median_publishes_once_the_minimum_sample_is_reached():
+    meta = _basis_meta([-1.60] * BASIS_MIN_SAMPLES)
+    assert rolling_basis_median(meta, "ETH", _BASIS_NOW) == -1.60
+
+
+def test_basis_median_accepts_negative_and_zero_values():
+    """Unlike the spread series, a basis legitimately crosses zero.
+
+    The spread recorder filters `bps > 0`; applying that here would silently
+    discard every print on an asset trading at or above its venue reference.
+    """
+    meta = _basis_meta([-0.5, 0.0, 0.5, -0.5, 0.0])
+    assert rolling_basis_median(meta, "ETH", _BASIS_NOW) == 0.0
+
+
+def test_basis_median_rejects_non_finite_observations():
+    meta = _basis_meta([-1.60] * BASIS_MIN_SAMPLES)
+    for bad in (float("nan"), float("inf"), float("-inf")):
+        out = record_basis_observation(meta, "ETH", _BASIS_NOW, bad)
+        assert rolling_basis_median(out, "ETH", _BASIS_NOW) == -1.60, \
+            "a non-finite print must not enter the median"
+
+
+def test_basis_median_ignores_prints_outside_the_rolling_window():
+    """A stale anchor would defeat the breaker after a long venue dislocation."""
+    meta = {}
+    old = 1000.0
+    for i in range(BASIS_MIN_SAMPLES):
+        meta = record_basis_observation(meta, "ETH", old + i * 60.0, -1.60)
+    far_future = old + BASIS_WINDOW_S + 3600.0
+    assert rolling_basis_median(meta, "ETH", far_future) is None
+
+
+def test_basis_median_is_anchored_to_prior_prints_so_drift_is_detectable():
+    """The whole point: the current reading must be able to depart from b_hat.
+
+    If the median included the reading under test, drift would collapse to 0.0
+    and the circuit breaker could never trip.
+    """
+    meta = _basis_meta([-1.60, -1.61, -1.59, -1.60, -1.62])
+    b_hat = rolling_basis_median(meta, "ETH", _BASIS_NOW)
+    assert b_hat == pytest.approx(-1.60)
+    b_now = -5.0
+    drift = abs(b_now - b_hat)
+    assert drift == pytest.approx(3.40)
+    assert drift > 0.25, "a 3.40 USD dislocation must exceed a 0.25 ATR tolerance"
+
+
+def test_basis_history_lives_under_meta_and_survives_state_pruning():
+    """prune_wall_state must not drop the basis series between generations."""
+    meta = _basis_meta([-1.60] * BASIS_MIN_SAMPLES)
+    state = {META_KEY: meta, "ETH_BUY_2497.5": {"last_seen": 1000.0}}
+    pruned = prune_wall_state(state, now_ts=1000.0)
+    assert BASIS_HISTORY_KEY in pruned[META_KEY]
+    assert rolling_basis_median(pruned[META_KEY], "ETH", _BASIS_NOW) == -1.60
+
+
+def test_basis_history_is_trimmed_to_the_sample_cap():
+    meta = {}
+    for i in range(200):
+        meta = record_basis_observation(meta, "ETH", 1000.0 + i, -1.60, window_s=1e9)
+    from Terminal.microstructure_state import BASIS_MAX_SAMPLES
+    assert len(meta[BASIS_HISTORY_KEY]["ETH"]) == BASIS_MAX_SAMPLES
+
+
+def test_published_basis_median_lets_the_dg_context_breaker_trip():
+    """Integration: a producer-published median makes the gate's breaker live.
+
+    This is the regression the unit tests could not catch. Every existing
+    Option A' test supplies its own synthetic basis_median, so all of them pass
+    while the producer publishes nothing and drift is identically 0.0 on live
+    telemetry. Feeding the gate a median built by the producer's own helper
+    proves the two halves connect.
+    """
+    from Terminal import dg_context
+
+    day_start = 1_791_648_000
+    mid_mt5, mid_bn, atr = 2497.90, 2499.505, 4.2897
+    # Five prior prints clustered near -1.60, exactly as the daemon would emit.
+    # Spaced 60s apart and ending 60s before the quote under test, so they sit
+    # inside the 1800s rolling window.
+    quote_ts = day_start + 40 * 900
+    meta = _basis_meta([-1.605, -1.600, -1.610, -1.602, -1.608], asset="ETH",
+                       start=quote_ts - 300.0)
+    b_hat = rolling_basis_median(meta, "ETH", quote_ts)
+    assert b_hat is not None, "producer helper must yield a usable median"
+
+    # Priced so the TRANSLATED wall lands inside the 0.25 ATR band:
+    # entry - b_hat = 2499.505 (the Binance mid), 0.25*atr = 1.0724, so any
+    # wall in [2498.4326, 2499.505] satisfies 0 <= d_adj <= 0.25.
+    wall = {"address": "0xc2e859a2f4", "side": "BUY", "price": 2499.00,
+            "notional_usd": 4_995_000.0, "persist_s": 480.0, "presence_frac": 1.0,
+            "wall_class": "GENUINE", "gate_g7_eligible": True}
+    bars = []
+    for i in range(40):
+        ts = day_start + i * 900
+        px = mid_mt5 + (i % 5) * 0.4 - 0.8
+        bars.append({"open": px - 0.3, "high": px + 0.7, "low": px - 0.7, "close": px,
+                     "time": ts, "close_ts": ts + 900, "volume": 100.0 + i})
+
+    def run(broker_jump, median):
+        quote = {"bid": mid_mt5 + broker_jump - 0.6, "ask": mid_mt5 + broker_jump + 0.6,
+                 "tick_size": 0.01, "point": 0.01,
+                 "time_msc": (day_start + 40 * 900 + 9) * 1000}
+        payload = {"orderbook_live_depth": {
+            "whale_walls_l3": [wall], "l2_wall_levels": [],
+            "binance_mid": mid_bn, "basis_median": median}}
+        ctx, _ = dg_context.build_dg_context(
+            features={"direction": "LONG", "atr": atr}, payload=payload, pivots=None,
+            quote=quote, bars_15m=bars, entry=mid_mt5 + broker_jump,
+            sl=mid_mt5 - 1.5 * atr, tp=mid_mt5 + 1.5 * atr,
+            sizing={"risk_usd": 15.0, "friction_usd": 0.1},
+            regime="MEAN_REVERT", symbol="ETH")
+        return ctx.get("wall")
+
+    # Calm basis: b_now ~= b_hat, drift ~0, wall admitted under the translation.
+    calm = run(0.0, b_hat)
+    assert calm is not None, "a stable basis must still admit the wall"
+    assert calm["venue_basis_drift_ok"] is True
+
+    # Dislocated basis: b_now departs b_hat by 6.0 USD >> 0.25*ATR = 1.0724.
+    shocked = run(6.0, b_hat)
+    assert shocked is None, "the drift breaker must suppress the wall on dislocation"

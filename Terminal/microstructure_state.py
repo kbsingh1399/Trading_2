@@ -91,6 +91,74 @@ def estimate_cycle_interval(state: Dict[str, Any],
         return float(default)
 
 
+# ---------------------------------------------- cross-venue basis median (Option A')
+# Option A' translates a Binance/Hyperliquid wall price into MT5 quote space using
+# a median basis b_hat, then trips a drift breaker when the instantaneous basis
+# b_now departs from b_hat. That only works if b_hat is an INDEPENDENT estimate:
+# if the producer never publishes one, dg_context falls back to b_hat = b_now,
+# drift is identically 0.0, and the breaker can never trip. The translation then
+# runs unguarded, absorbing a single stale basis print without validation.
+#
+# These helpers give the producer that independent estimate. The median is taken
+# over PRIOR observations only -- call rolling_basis_median BEFORE recording the
+# current print, so the current reading is free to drift away from it.
+BASIS_HISTORY_KEY = "basis_history"
+BASIS_WINDOW_S = 1800.0
+BASIS_MIN_SAMPLES = 5
+BASIS_MAX_SAMPLES = 60
+
+
+def record_basis_observation(meta: Optional[Dict[str, Any]], asset: str, ts: float,
+                             basis: float, window_s: float = BASIS_WINDOW_S) -> Dict[str, Any]:
+    """Append a cross-venue basis print (mid_broker - mid_venue) to META. Returns new META.
+
+    Unlike the spread series a basis may legitimately be negative, zero, or
+    positive, so no sign filter is applied -- only finiteness.
+    """
+    out = dict(meta or {})
+    key = str(asset)
+    series = [(float(t), float(b)) for t, b in (out.get(BASIS_HISTORY_KEY, {}).get(key) or [])
+              if isinstance(t, (int, float)) and isinstance(b, (int, float))]
+    try:
+        ts_f, basis_f = float(ts), float(basis)
+    except (TypeError, ValueError):
+        out.setdefault(BASIS_HISTORY_KEY, {})[key] = series
+        return out
+    if not (ts_f > 0) or basis_f != basis_f or abs(basis_f) == float("inf"):
+        out.setdefault(BASIS_HISTORY_KEY, {})[key] = series
+        return out
+    series.append((ts_f, basis_f))
+    cutoff = ts_f - float(window_s)
+    series = [(t, b) for t, b in series if t >= cutoff][-BASIS_MAX_SAMPLES:]
+    hist = dict(out.get(BASIS_HISTORY_KEY) or {})
+    hist[key] = series
+    out[BASIS_HISTORY_KEY] = hist
+    return out
+
+
+def rolling_basis_median(meta: Optional[Dict[str, Any]], asset: str, now_ts: float,
+                         window_s: float = BASIS_WINDOW_S,
+                         min_samples: int = BASIS_MIN_SAMPLES) -> Optional[float]:
+    """Median cross-venue basis over the trailing window, or None when cold.
+
+    Returns None rather than a fabricated 0.0: dg_context treats a missing median
+    as cold start, and inventing one here would anchor the drift breaker to a
+    number that was never observed. Requires `min_samples` PRIOR prints so the
+    median is independent of the reading currently being tested against it.
+    """
+    series = ((meta or {}).get(BASIS_HISTORY_KEY) or {}).get(str(asset)) or []
+    cutoff = float(now_ts) - float(window_s)
+    vals = [float(b) for t, b in series
+            if isinstance(t, (int, float)) and isinstance(b, (int, float))
+            and float(t) >= cutoff and float(b) == float(b) and abs(float(b)) != float("inf")]
+    if len(vals) < int(min_samples):
+        return None
+    try:
+        return float(statistics.median(vals))
+    except statistics.StatisticsError:
+        return None
+
+
 # ------------------------------------------------------------- wall persistence
 def expected_samples(run_start: float, now_ts: float, cycle_interval_s: float) -> int:
     """How many samples SHOULD have been collected across an unbroken run."""
