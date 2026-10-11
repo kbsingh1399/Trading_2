@@ -830,3 +830,160 @@ def test_a_vwap_anchored_short_cannot_reach_min_rr_at_the_live_0450_offset():
                                  **_LIVE_0450))
     assert "EV_rr_below_1.5" in v.failures
     assert "A5_tp_beyond_vwap" not in v.failures
+
+
+# ---------------------------------------------------------------------------
+# Generation 1eb3a3ff37e94205851e05d218eb92af (2026-10-11 05:20:51 UTC).
+#
+# MEAN_REVERT is the ONLY regime that admits Model 1, and it requires
+# 15m vr_z < vr_z_mr. On the 05:00 bar the live 15m vr_z was
+# -1.499972800508274 -- a deficit of 2.72e-05, i.e. 27 parts per million, from
+# the -1.5 threshold. On the 05:15 bar it was -1.4970742598814974, a deficit of
+# 2.93e-03. Two consecutive bars missed the sole gateway to Model 1 by less than
+# three thousandths of a sigma-unit, while 1h ER (0.1377 vs 0.20) and 4h ER
+# (0.2692 vs 0.30) both passed. A hard binary admission gate sitting on a
+# continuous estimator is a coin flip at this precision. These tests pin the live
+# numbers so the boundary cannot move silently, and so any future hysteresis
+# proposal is measured against a recorded event rather than a recollection.
+#
+# NOTE: no gate behaviour is changed here. RegimeParams.vr_z_mr stays -1.5.
+# ---------------------------------------------------------------------------
+
+_LIVE_0520_C15 = [
+    82620.0, 82627.0, 82604.0, 82718.0, 82772.0, 82694.0, 82710.0, 82798.0, 82669.0,
+    82591.0, 82561.0, 82677.0, 82725.0, 82785.31, 82772.51, 82753.7, 82797.3, 82804.0,
+    82821.0, 82806.0, 82793.0, 82759.0, 82687.0, 82734.0, 82777.0, 82730.0, 82730.0,
+    82832.0, 82790.0, 82786.0, 82781.0, 82783.0, 82732.0, 82736.0, 82779.0, 82715.0,
+    82754.0, 82711.0, 82873.0, 82942.0, 82906.0, 82887.0, 82900.0, 82955.0, 82954.0,
+    82944.0, 82916.0, 82961.0, 82936.0, 82979.0, 82958.0, 83040.0, 83022.0, 82959.0,
+    82928.0, 82937.0, 82947.0, 82933.0, 82954.0, 82993.0, 82994.0, 82967.0, 82947.0,
+    82990.0, 82958.0, 82916.0, 82970.0, 83002.0, 82954.0, 82940.0, 82953.0, 82967.0,
+    83008.0, 82958.0, 82959.0, 82926.0, 82891.0, 82935.0, 82869.0, 82876.0, 82886.0,
+    82900.0, 82933.0, 82929.0, 82943.0, 82950.0, 82960.0, 83033.0, 82991.0, 82879.0,
+    82830.0, 82876.0, 82717.0, 82781.0, 82816.0, 82898.0, 82916.0
+]
+
+_LIVE_0520_C1H = [
+    82165.0, 82272.0, 82502.5, 82559.5, 82611.5, 82585.5, 82476.0, 83164.5, 82950.5,
+    82542.0, 82954.0, 82793.5, 82661.5, 82641.5, 82366.5, 82240.0, 82413.0, 82465.0,
+    82548.0, 82540.0, 82479.0, 82615.0, 82556.0, 82514.0, 82620.0, 82772.0, 82669.0,
+    82725.0, 82797.3, 82793.0, 82777.0, 82790.0, 82732.0, 82754.0, 82906.0, 82954.0,
+    82936.0, 83022.0, 82947.0, 82994.0, 82958.0, 82954.0, 83008.0, 82891.0, 82886.0,
+    82943.0, 82991.0, 82717.0, 82916.0
+]
+
+_LIVE_0520_C4H = [
+    85603.0, 86001.5, 86184.0, 85581.5, 85593.0, 85525.0, 84076.0, 83912.5, 83452.0,
+    83329.5, 83396.0, 83315.0, 82582.0, 82806.5, 82244.0, 80865.5, 81760.0, 81721.0,
+    82165.0, 82611.5, 82950.5, 82661.5, 82413.0, 82479.0, 82620.0, 82797.3, 82732.0,
+    82936.0, 82958.0, 82886.0, 82916.0
+]
+
+
+_LIVE_0520_TF = dict(last_close_epoch=1_791_695_700.0, as_of_epoch=1_791_695_701.0)
+
+
+def test_the_live_0520_regime_missed_mean_revert_by_27_parts_per_million():
+    """The 05:00-bar vr_z was -1.4999728: UNDEFINED by 2.72e-05."""
+    regime, stats = classify_regime(_LIVE_0520_C15, _LIVE_0520_C1H, _LIVE_0520_C4H,
+                                    **_LIVE_0520_TF)
+    vr_z = stats["15m"]["vr_z"]
+    assert vr_z == pytest.approx(-1.499972800508274, abs=1e-12)
+    assert RegimeParams().vr_z_mr == -1.5
+    assert vr_z - (-1.5) == pytest.approx(2.71995e-05, abs=1e-9)
+    assert regime == "UNDEFINED"
+    # The other two MEAN_REVERT limbs passed comfortably -- vr_z was the sole
+    # discriminator, so the whole Model 1 gateway turned on 27 ppm.
+    assert stats["1h"]["er"] < RegimeParams().er_mr
+    assert stats["4h"]["er"] < 0.30
+    assert not stats["stale"]
+
+
+def test_a_27ppm_shift_in_the_vr_z_threshold_flips_the_only_admissible_regime():
+    """Same series, threshold moved by less than the live deficit -> MEAN_REVERT.
+
+    This is the sensitivity statement: nothing about the market changed, only the
+    fourth decimal place of a policy constant.
+    """
+    tight = classify_regime(_LIVE_0520_C15, _LIVE_0520_C1H, _LIVE_0520_C4H,
+                            **_LIVE_0520_TF)[0]
+    relaxed = classify_regime(_LIVE_0520_C15, _LIVE_0520_C1H, _LIVE_0520_C4H,
+                              p=RegimeParams(vr_z_mr=-1.4999), **_LIVE_0520_TF)[0]
+    assert tight == "UNDEFINED"
+    assert relaxed == "MEAN_REVERT"
+
+
+def test_the_0515_bar_missed_by_2p9_thousandths_and_the_miss_is_stable_within_a_bar():
+    """The next bar's vr_z was -1.4970743, and it is frozen until the next close.
+
+    The 15m stats only recompute on a bar close, so all fourteen snapshots from
+    05:15:52 to 05:28:50 UTC carried the identical value. A boundary miss here is
+    not intra-bar noise -- it is a fixed verdict for fifteen minutes, re-drawn at
+    the next close.
+    """
+    assert -1.4970742598814974 - (-1.5) == pytest.approx(2.9257401e-03, abs=1e-9)
+    assert abs(-1.4970742598814974) < 1.5
+
+
+# ---------------------------------------------------------------------------
+# A5 geometry at 05:20: BOTH directions are now locked out, for mirror-image
+# reasons. At 04:50 only the LONG was (entry above VWAP). By 05:20 the SHORT is
+# locked too: A5_entry_not_inside_sweep needs entry < sweep_extreme (82,969.0)
+# while RR 1.5 against a 1.5 ATR stop with the target capped at VWAP needs
+# entry >= vwap + 1.5*stop = 83,145.17. Those are 176.17 USD apart.
+# ---------------------------------------------------------------------------
+
+_LIVE_0520 = dict(entry=82_970.5, atr=124.35, vwap=82_865.38716080518,
+                  session_bars=21, session_sigma=79.61590573571561,
+                  vwap_slope_sigma_per_bar=0.02985934395632176,
+                  vwap_z=0.9120393534911577, vwap_z_change_4bars=1.9719677688671946,
+                  vol_ratio_4_96=0.7294142582471651, reclaim_close=True)
+
+
+def test_at_the_live_0520_state_both_directions_are_geometrically_locked_by_a5():
+    """LONG: no TP satisfies tp > entry and tp <= vwap. SHORT: no entry satisfies
+    entry < sweep_extreme and entry >= vwap + 1.5*stop."""
+    entry, vwap, atr = _LIVE_0520["entry"], _LIVE_0520["vwap"], _LIVE_0520["atr"]
+    stop = 1.5 * atr
+    assert entry > vwap
+    for tp in (entry + 1.0, vwap + (entry - vwap) / 2, entry + 10_000.0):
+        v = model1_checklist(_m1_ctx(direction="LONG", tp=tp, sl=entry - stop,
+                                     regime="MEAN_REVERT", sweep_z=-2.780690099037219,
+                                     sweep_extreme=82_644.0, **_LIVE_0520))
+        assert "A5_tp_beyond_vwap" in v.failures, tp
+    # SHORT: the two A5/EV requirements on entry are mutually exclusive.
+    max_entry_for_sweep = 82_969.0
+    min_entry_for_rr = vwap + 1.5 * stop
+    assert min_entry_for_rr == pytest.approx(83_145.17, abs=0.05)
+    assert min_entry_for_rr - max_entry_for_sweep == pytest.approx(176.17, abs=0.05)
+    v = model1_checklist(_m1_ctx(direction="SHORT", tp=vwap, sl=entry + stop,
+                                 regime="MEAN_REVERT", sweep_z=1.3014087855604763,
+                                 sweep_extreme=82_969.0, **_LIVE_0520))
+    assert "A5_entry_not_inside_sweep" in v.failures
+    assert "EV_rr_below_1.5" in v.failures
+    assert "A5_tp_beyond_vwap" not in v.failures
+
+
+def test_the_first_qualified_exit_anchor_of_the_session_sits_below_vwap_and_is_unusable():
+    """A sell-stop cluster at 82,750.0 finally qualifies -- and A5 refuses it.
+
+    named_pool_inside_horizon returned its first non-None result of the session:
+    (82750.0, 7060213.45 USD, 1.7732 ATR). It clears both the 4.0 ATR horizon and
+    the 150k size floor. But 82,750.0 < VWAP 82,865.39, so a SHORT targeting it
+    runs past the mean and A5_tp_beyond_vwap rejects it. A reachable, named,
+    sized pool is not automatically a legal target.
+    """
+    pools = [{"min_price": 82_700.0, "max_price": 82_800.0, "mid_price": 82_750.0,
+              "size": 84.85, "notional_usd": 7_060_213.45, "distance_pct": -0.27}]
+    anchor = named_pool_inside_horizon(pools, side="SHORT",
+                                       entry=_LIVE_0520["entry"], atr=_LIVE_0520["atr"])
+    assert anchor is not None
+    price, notional, dist = anchor
+    assert price == 82_750.0
+    assert notional >= MIN_POOL_NOTIONAL_USD
+    assert dist == pytest.approx(1.7732, abs=1e-3)
+    v = model1_checklist(_m1_ctx(direction="SHORT", tp=price,
+                                 sl=_LIVE_0520["entry"] + 1.5 * _LIVE_0520["atr"],
+                                 regime="MEAN_REVERT", sweep_z=1.3014087855604763,
+                                 sweep_extreme=82_969.0, **_LIVE_0520))
+    assert "A5_tp_beyond_vwap" in v.failures
