@@ -17,6 +17,11 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from Terminal.arena_bridge import post_prompt_to_arena, dismiss_arena_popup
+from Terminal.telemetry_ingest import (
+    StaleDataError,
+    get_fresh_snapshot,
+    make_git_refresh,
+)
 
 def get_live_broker_state():
     positions = []
@@ -68,13 +73,36 @@ def get_live_broker_state():
             mt5.shutdown()
     except Exception as e:
         print(f"Warning: Could not fetch live MT5 state directly ({e}). Falling back to snapshot.")
+        # This fallback fires precisely when the broker link is down, so it is
+        # the one path that MUST NOT trust an arbitrarily old file for equity
+        # and balance. Route it through the staleness gate: a stale fallback is
+        # worse than no fallback, because it silently misstates the capital
+        # floor that G-1 is computed from.
         snap_path = ROOT / "docs" / "telemetry" / "live_snapshot_latest.json"
         if snap_path.exists():
-            snap = json.loads(snap_path.read_text(encoding="utf-8"))
-            acc = snap.get("account", {})
-            equity = acc.get("equity_usd", 4896.55)
-            balance = acc.get("balance_usd", 4896.55)
-            margin = acc.get("margin_usd", 0.0)
+            try:
+                # One pull only (no cadence retry): this is a fallback inside a
+                # prompt build, so it must not block for a minute. If the pull
+                # does not land inside the budget, refuse rather than report a
+                # stale capital floor.
+                snap = get_fresh_snapshot(
+                    str(snap_path), refresh=make_git_refresh(repo_root=str(ROOT))
+                )
+            except StaleDataError as stale:
+                print(
+                    f"Warning: MT5 snapshot fallback refused as stale "
+                    f"({stale.reason}: {stale.diagnostics.get('age_s')}s vs "
+                    f"{stale.diagnostics.get('max_age_s')}s budget). "
+                    f"Capital figures left at their last known values."
+                )
+            else:
+                acc = snap.get("account", {})
+                equity = acc.get("equity_usd", 4896.55)
+                balance = acc.get("balance_usd", 4896.55)
+                # The snapshot publishes `margin_used_usd`; `margin_usd` does not
+                # exist in it. Reading the wrong key silently returned 0.0, which
+                # overstates the cushion above the hard floor. Accept either.
+                margin = acc.get("margin_used_usd", acc.get("margin_usd", 0.0))
 
     return {
         "equity": equity,

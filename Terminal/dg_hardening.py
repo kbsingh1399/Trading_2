@@ -29,7 +29,7 @@ WALL_BAND_ATR = 0.25
 BASIS_TOL_CAP_ATR = 0.25       # never looser than the wall band itself
 BASIS_TOL_FLOOR_TICKS = 2.0     # quantization floor for micro-ATR assets
 BASIS_SIGMA_K = 4.0             # ~4 robust sigmas of basis noise
-BASIS_MAX_CLOCK_SKEW_S = 2.0    # broker-mid vs venue-mid timestamp skew
+BASIS_MAX_CLOCK_SKEW_S = 5.0    # broker-mid vs venue-mid timestamp skew (allows small network jitter)
 BASIS_MIN_SCALE_SAMPLES = 10
 
 
@@ -171,7 +171,7 @@ def venue_quotes_from_orderbook(ob: Any, payload: Any = None) -> Dict[str, Dict[
             return value if value is not None else payload.get(key)
         out["BINANCE"] = {
             "mid": pick("binance_mid"),
-            "ts": pick("binance_mid_ts"),
+            "ts": pick("binance_mid_ts") if pick("binance_mid_ts") is not None else pick("wall_sample_ts_epoch"),
             "b_hat": pick("basis_median"),
             "b_hat_long": pick("basis_median_long"),
             "samples": pick("basis_samples"),

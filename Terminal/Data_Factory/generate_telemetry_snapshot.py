@@ -1398,6 +1398,7 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                 "venue": "BINANCE_USDM_FUTURES_AND_HYPERLIQUID",
                 "aggregation": "BINANCE_AGGREGATED_L2_WITH_HYPERDASH_L3_WALLETS",
                 "binance_mid": round(binance_mid, 4),
+                "binance_mid_ts": receipt_epoch or round(time.time(), 3),
                 "basis_median": (round(basis_median, 8) if basis_median is not None else None),
                 "top20_bid_depth_usd": round(total_bid_depth, 2),
                 "top20_ask_depth_usd": round(total_ask_depth, 2),
@@ -1408,7 +1409,7 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                 "whale_walls_l3": top_wallet_whales_l3,  # Real on-chain 0x addresses from Hyperdash!
                 "l2_wall_levels": whale_walls,
                 "wall_coverage": "REAL_HYPERDASH_WALLET_ATTRIBUTED_L3",
-                "wall_sample_ts_epoch": now_ts
+                "wall_sample_ts_epoch": receipt_epoch or round(time.time(), 3)
             }
         elif hd_status == "SUCCESS" and hd_res.get("book"):
             hd_book = hd_res["book"]
@@ -1486,6 +1487,7 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                 "venue": "HYPERLIQUID_HIP3_PERP_DEX",
                 "aggregation": "HYPERDASH_L2_DEPTH_AND_L3_WALLETS",
                 "hyperdash_mid": round(hd_mid, 4),
+                "hyperdash_mid_ts": receipt_epoch or round(time.time(), 3),
                 "top20_bid_depth_usd": round(tot_b, 2),
                 "top20_ask_depth_usd": round(tot_a, 2),
                 "book_imbalance": imb,
@@ -1495,7 +1497,7 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                 "whale_walls_l3": top_wallet_whales_l3,  # Real on-chain 0x addresses!
                 "l2_wall_levels": whale_walls,
                 "wall_coverage": "REAL_HYPERDASH_WALLET_ATTRIBUTED_L3",
-                "wall_sample_ts_epoch": now_ts
+                "wall_sample_ts_epoch": receipt_epoch or round(time.time(), 3)
             }
         else:
             # NO SYNTHETIC DEPTH! Report real L1 only honestly
