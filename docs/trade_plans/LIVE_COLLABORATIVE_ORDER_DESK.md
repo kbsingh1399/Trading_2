@@ -9538,3 +9538,51 @@ Arena completed the unified 4-step council audit across all 4 Mandates:
   * 14 Crypto Perpetuals: G-4 regime UNDEFINED (1H up vs 4H down; ETH nearest with ε = 0.1430 on er_4h), G-7 clock skew and remaining venue mid mappings, and G-6 friction cap prevent staging orders.
 - **Active Orders & Capital**: 0 positions, 0 pending orders. 100% cash preserved.
 
+---
+
+## SECTION 139: ARENA.AI CYCLE 5 AUDIT & COLD START BASIS ANCHOR MERGE (2026-10-11 15:04 UTC)
+### 1. Ingestion, Response Time & Ground Truth Verification
+- **Cycle Timing Profile**:
+  * Prompt Injected: 2026-10-11 14:53:05 UTC.
+  * Generation Complete: 2026-10-11 15:04:08 UTC.
+  * **Measured Response Time**: **11m 03s (663s)**.
+  * **Response Output Length**: **13,959 characters**.
+  * **Rolling Average Response Time**: **10m 43s (~643s)** across completed cycles:
+    - Cycle 1: 10m 52s (652s)
+    - Cycle 2: 9m 31s (571s)
+    - Cycle 3: 12m 00s (720s)
+    - Cycle 4: 10m 08s (608s)
+    - Cycle 5: 11m 03s (663s)
+  * Optimal Timer Precision: 10.0-minute (`DurationSeconds=600`) sleep timer reliably wakes Antigravity within ~60 seconds of completion with zero token burn.
+- **Citation Block**: All 7 repository sources verified by Arena line-by-line (session history, ACTIVE_CONTEXT.md, LIVE_COLLABORATIVE_ORDER_DESK.md, protocol spec, round 2 audit, decision gates v3, dg_hardening.py, live snapshot gens fd415c4a / b790c742 / 4f701919).
+- **Account State (#5064568)**: Balance 4,896.55 USD | Equity 4,896.55 USD (100% Cash reserves, 0 open positions, 0 pending orders, capacity 0/4).
+- **Capital Floor Defense**: Floor 4,775.00 USD | Operating buffer: 4,795.00 USD | Cushion: **+121.55 USD** (+101.55 USD above operating buffer). Contingent stress: 0.00 USD.
+
+### 2. Major Council Breakthroughs & Forensic Findings
+- **Cold Start vs. Pinned Basis Anchor Disambiguation (Commit 156324f4)**:
+  * Arena verified that commit `d5f03846` correctly wired `rolling_basis_median` and `record_basis_observation` for HYPERLIQUID.
+  * Arena proved that a freshly started daemon will publish `basis_median: null` for the first ~5 cycles (`BASIS_MIN_SAMPLES = 5`), which previously looked identical to a missing anchor.
+  * Arena shipped commit `156324f4` adding tracking for cold-start per venue and the `cold_start_no_anchor_yet` verdict in `Terminal/gate_diagnostics.py` (+20 lines) and 3 new tests in `Tests/Test_Gate_Diagnostics.py`.
+  * Merged cleanly into `main` and verified: **89/89 gate diagnostic tests passing in 0.29s**.
+- **Wall Venue Coverage Metric Expansion**:
+  * Wall-venue coverage expanded dramatically from 8 to **21 of 24 assets** covered.
+  * G-7 eligible genuine walls returned to 756 walls.
+  * Exact zero share down to 0.0714, with Binance mid independence holding at `consistent_with_independent_venue`.
+- **Option A' Cross-Venue Dispersion Ground Truth**:
+  * BTC measured at mid_mt5 83,057 vs HL mid 83,094 (b = -36.50 USD). Raw MT5 distance d_mt5 = +0.0269 vs venue-adjusted d_adj = +0.3541.
+  * SOL measured at mid_mt5 109.58 vs HL mid 109.72 (b = -0.14 USD). Raw MT5 distance d_mt5 = -0.0878 (false absence) vs venue-adjusted d_adj = +0.5265.
+- **EV Hurdle Maintained**:
+  * At BTC γ = 0.180, break-even RR = 1.9625. At anchor RR = 2.117, EV = +0.0708R (positive expectancy holds).
+
+### 3. Full Test Suite & Branch Synchronization
+- **Gate Diagnostics**: **89 passed, 0 failed in 0.29s**.
+- **Full Test Results**: **1,061 passed, 1 skipped, 0 failed (100% green)** in 144.03s.
+- **Git HEAD**: Synchronized across `main` and `arena/537c1eb8-trading-2`.
+
+### 4. Council Trading Disposition
+- **Verdict**: **STAND ASIDE across all 24 assets**.
+  * 10 CFD Assets: Closed for the weekend.
+  * 14 Crypto Perpetuals: G-4 regime UNDEFINED (1H up vs 4H down; ETH nearest with ε = 0.1666 on er_4h), G-7 clock skew and remaining 3 venue mappings, and G-6 friction cap (γ = 0.180 vs 0.15 base cap) require resolution before staging limit orders.
+- **Active Orders & Capital**: 0 positions, 0 pending orders. 100% cash preserved.
+
+
