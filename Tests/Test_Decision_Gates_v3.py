@@ -648,3 +648,71 @@ def test_pool_selector_is_malformed_input_safe():
     assert named_pool_inside_horizon([{"mid_price": 82_950.0, "notional_usd": 1e6}],
                                      82_800.0, 124.11, min_notional_usd=float("nan"),
                                      side="LONG") is None
+
+
+# ---------------------------------------------------------------------------
+# A1_z_still_accelerating. Every pre-existing test supplied a vwap_z_change_4bars
+# that PASSED this guard, so the rejecting direction was never covered -- even
+# though it is the one that matters. Measured live at 2026-10-11 03:50:37 UTC,
+# dz4 = (82,876.0 - 83,033.0) / 56.1188 = -2.7976, i.e. price had fallen 2.80
+# session-sigma over four 15m bars while |Z| was crossing back above 2.0. The
+# trigger looked live; the acceleration guard is what stops the desk buying it.
+# ---------------------------------------------------------------------------
+
+def test_z_acceleration_guard_rejects_the_live_falling_knife():
+    """The measured 03:50 UTC pattern: trigger satisfied, acceleration fatal."""
+    v = model1_checklist(_m1_ctx(direction="LONG", session_bars=20,
+                                 atr=127.05, session_sigma=56.12,
+                                 vwap_z=-1.71, sweep_z=-2.13,
+                                 vwap_z_change_4bars=-2.7976))
+    # LONG needs -side*z = +2.13 >= 2.0, so the trigger itself clears...
+    assert "A1_z_below_2" not in v.failures
+    assert "A1_z_beyond_3p5_cascade_zone" not in v.failures
+    # ...but Z is still driving into the extreme, which is the reject.
+    assert "A1_z_still_accelerating" in v.failures
+
+
+def test_z_acceleration_guard_is_signed_by_direction():
+    """The same dz4 is fatal for one side and acceptable for the other."""
+    # dz4 = +1.2 (Z rising): fatal for a SHORT chasing up, fine for a LONG.
+    up = dict(vwap_z_change_4bars=1.2)
+    assert "A1_z_still_accelerating" in model1_checklist(
+        _m1_ctx(direction="SHORT", session_bars=20, session_sigma=100.0, atr=100.0,
+                vwap_z=2.4, sweep_z=2.4, **up)).failures
+    assert "A1_z_still_accelerating" not in model1_checklist(
+        _m1_ctx(direction="LONG", session_bars=20, session_sigma=100.0, atr=100.0,
+                vwap_z=-2.4, sweep_z=-2.4, **up)).failures
+    # Mirrored: dz4 = -1.2 is fatal for the LONG, fine for the SHORT.
+    down = dict(vwap_z_change_4bars=-1.2)
+    assert "A1_z_still_accelerating" in model1_checklist(
+        _m1_ctx(direction="LONG", session_bars=20, session_sigma=100.0, atr=100.0,
+                vwap_z=-2.4, sweep_z=-2.4, **down)).failures
+    assert "A1_z_still_accelerating" not in model1_checklist(
+        _m1_ctx(direction="SHORT", session_bars=20, session_sigma=100.0, atr=100.0,
+                vwap_z=2.4, sweep_z=2.4, **down)).failures
+
+
+def test_z_acceleration_guard_boundary_is_0p75_in_sigma_units():
+    for side, dz4, expect in (("LONG", -0.75, False), ("LONG", -0.7501, True),
+                              ("SHORT", 0.75, False), ("SHORT", 0.7501, True)):
+        z = -2.4 if side == "LONG" else 2.4
+        v = model1_checklist(_m1_ctx(direction=side, session_bars=20,
+                                     session_sigma=100.0, atr=100.0,
+                                     vwap_z=z, sweep_z=z, vwap_z_change_4bars=dz4))
+        assert ("A1_z_still_accelerating" in v.failures) is expect, (side, dz4)
+
+
+def test_at_the_live_0350_state_both_directions_are_independently_blocked():
+    """Neither side is a hair away -- each is stopped by a different limb.
+
+    LONG: trigger clears at |Z| 2.13 but dz4 = -2.7976 rejects on acceleration.
+    SHORT: dz4 is acceptable, but -side*z = -1.71 never reaches the 2.0 floor.
+    """
+    live = dict(session_bars=20, atr=127.05, session_sigma=56.12,
+                vwap_z_change_4bars=-2.7976)
+    long_ = model1_checklist(_m1_ctx(direction="LONG", vwap_z=-1.71, sweep_z=-2.13, **live))
+    short_ = model1_checklist(_m1_ctx(direction="SHORT", vwap_z=-1.71, sweep_z=-2.13, **live))
+    assert "A1_z_still_accelerating" in long_.failures
+    assert "A1_z_still_accelerating" not in short_.failures
+    assert "A1_z_below_2" in short_.failures
+    assert not long_.passed and not short_.passed
