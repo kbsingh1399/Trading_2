@@ -23,6 +23,8 @@ from Terminal.decision_gates_v3 import (
     htf_confirms_direction,
     m1_range_override_ok,
     pullback_geometry,
+    named_pool_inside_horizon,
+    MIN_POOL_NOTIONAL_USD,
 )
 
 
@@ -572,3 +574,77 @@ def test_model1_needs_both_a_mature_session_and_an_extended_price():
     assert "A1_session_sigma_lt_0p8atr" not in v2.failures
     assert "A1_z_below_2" not in v2.failures
     assert "A1_z_beyond_3p5_cascade_zone" not in v2.failures
+
+
+# ---------------------------------------------------------------------------
+# A target anchor must be backed by real liquidity, not merely be close.
+# MAX_TARGET_DIST_ATR validates distance only. On 2026-10-11 03:24:33 UTC the
+# first non-empty top_short_squeeze_bands_above entry in ~13 cycles appeared at
+# 82,950.0, +1.209 ATR from mid 82,800.0 -- inside the horizon -- carrying just
+# 23,055.66 USD. Distance would have accepted it; size must not.
+# ---------------------------------------------------------------------------
+
+_LIVE_0324 = dict(entry=82_800.0, atr=124.11)
+
+
+def test_tiny_band_inside_horizon_is_not_a_valid_target_anchor():
+    """The live 03:24 UTC band: inside the 4.0 ATR window, but only 23k USD."""
+    pools = [{"min_price": 82_900.0, "max_price": 83_000.0, "mid_price": 82_950.0,
+              "size": 0.2782, "notional_usd": 23_055.66, "distance_pct": 0.11}]
+    assert named_pool_inside_horizon(pools, side="LONG", **_LIVE_0324) is None
+
+
+def test_pool_size_floor_matches_the_g7_wall_standard():
+    assert MIN_POOL_NOTIONAL_USD == 150_000.0
+
+
+def test_sufficient_pool_inside_horizon_is_returned_with_distance():
+    pools = [{"mid_price": 82_950.0, "notional_usd": 23_055.66},   # too small
+             {"mid_price": 82_941.96, "notional_usd": 900_000.0}]  # POC-sized
+    got = named_pool_inside_horizon(pools, side="LONG", **_LIVE_0324)
+    assert got is not None
+    price, note, dist = got
+    assert price == pytest.approx(82_941.96)
+    assert note == pytest.approx(900_000.0)
+    assert dist == pytest.approx((82_941.96 - 82_800.0) / 124.11, abs=1e-6)
+    assert 0 < dist <= 4.0
+
+
+def test_pool_beyond_the_horizon_is_rejected_even_when_large():
+    """The standing 84,028.99 overhead pool is 8.51 ATR out -- size cannot save it."""
+    pools = [{"price": 84_028.99, "notional_usd": 24_946_160.0}]
+    assert named_pool_inside_horizon(pools, side="LONG", **_LIVE_0324) is None
+
+
+def test_nearest_qualifying_pool_wins_regardless_of_list_order():
+    pools = [{"mid_price": 83_200.0, "notional_usd": 500_000.0},   # +3.22 ATR
+             {"mid_price": 82_950.0, "notional_usd": 400_000.0}]   # +1.21 ATR
+    got = named_pool_inside_horizon(pools, side="LONG", **_LIVE_0324)
+    assert got[0] == pytest.approx(82_950.0)
+
+
+def test_short_side_looks_below_entry_and_ignores_pools_above():
+    pools = [{"mid_price": 82_950.0, "notional_usd": 900_000.0},   # wrong side
+             {"mid_price": 82_600.0, "notional_usd": 900_000.0}]   # -1.61 ATR
+    got = named_pool_inside_horizon(pools, side="SHORT", **_LIVE_0324)
+    assert got is not None and got[0] == pytest.approx(82_600.0)
+    assert got[2] == pytest.approx((82_800.0 - 82_600.0) / 124.11, abs=1e-6)
+
+
+def test_pool_selector_is_malformed_input_safe():
+    assert named_pool_inside_horizon(None, side="LONG", **_LIVE_0324) is None
+    assert named_pool_inside_horizon([], side="LONG", **_LIVE_0324) is None
+    assert named_pool_inside_horizon([None, 5, "x", {}], side="LONG", **_LIVE_0324) is None
+    assert named_pool_inside_horizon([{"mid_price": None, "notional_usd": 1e6}],
+                                     side="LONG", **_LIVE_0324) is None
+    assert named_pool_inside_horizon([{"mid_price": 82_950.0, "notional_usd": None}],
+                                     side="LONG", **_LIVE_0324) is None
+    assert named_pool_inside_horizon([{"mid_price": 82_950.0, "notional_usd": 1e6}],
+                                     82_800.0, 0.0, side="LONG") is None
+    assert named_pool_inside_horizon([{"mid_price": 82_950.0, "notional_usd": 1e6}],
+                                     float("nan"), 124.11, side="LONG") is None
+    assert named_pool_inside_horizon([{"mid_price": 82_950.0, "notional_usd": 1e6}],
+                                     82_800.0, 124.11, max_dist_atr=0.0, side="LONG") is None
+    assert named_pool_inside_horizon([{"mid_price": 82_950.0, "notional_usd": 1e6}],
+                                     82_800.0, 124.11, min_notional_usd=float("nan"),
+                                     side="LONG") is None
