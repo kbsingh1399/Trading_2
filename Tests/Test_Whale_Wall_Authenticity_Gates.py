@@ -555,3 +555,156 @@ def test_context_reports_no_wall_when_only_grid_inventory_is_behind_entry():
     ctx = _build(walls, direction="LONG", entry=83_000.0)
     assert ctx["wall"] is None
     assert ctx["wall_data_present"] is False
+
+
+# --------------------------------------------------------------------------- #
+# Live counterfactual validation of the two-sided grid filter, measured on
+# production telemetry rather than a synthetic fixture.
+#
+# BTC, generation 372c3b6eb5ad42d6b9014559f70845ce (2026-10-11 05:50:09 UTC),
+# mid 82,977.0, ATR 120.9956, 0.25 ATR band [82,946.75, 83,007.25]:
+#
+#   WITHOUT two_sided_grid_addresses: 20 BUY legs from 6 wallets, aggregate
+#   5,597,913 USD, all gate_g7_eligible=True, all wall_class=GENUINE, persist
+#   360-1,760s, presence_frac 1.000. The best sits at 82,977.00 -- exactly at
+#   mid, dist 0.0000 ATR -- 373,383 USD, persist 1,279.9s.
+#   WITH the filter: 0 legs, 0.00 USD.
+#
+# Every one of the 20 passes every authenticity test the producer applies. Only
+# two-sidedness rejects them. Absent commit 91ffffc, G-7 would have PASSED on BTC
+# this cycle on a market-making grid.
+#
+# Wallet 0xecb63caa47 illustrates the lag: at 05:20:51 it was BUY-only (13 legs,
+# 150,152.09-150,156.46 USD, $152-156 above MIN_POOL_NOTIONAL_USD) and escaped the
+# grid filter, refused only by the producer's MIRRORED_LEG / gate_g7_eligible=false
+# veto. By 05:50:09 it had posted 4 SELL legs at 83,071-83,081 and the grid filter
+# caught it. Neither layer alone covers both observations.
+# --------------------------------------------------------------------------- #
+
+_GRID_0550 = "0xcf3f419d08"
+_LADDER_0550 = "0xecb63caa47"
+
+# (address, side, price, notional_usd, persist_s, presence_frac, class, eligible)
+_LIVE_0550_ROWS = [
+    (_GRID_0550,   "BUY",  82_977.00,   373_383.0, 1279.9, 1.000, "GENUINE",      True),
+    (_LADDER_0550, "BUY",  82_976.00,   150_155.0, 1760.0, 1.000, "GENUINE",      True),
+    (_GRID_0550,   "BUY",  82_972.00,   196_553.0, 1519.9, 1.000, "GENUINE",      True),
+    (_GRID_0550,   "BUY",  82_971.00,   373_356.0, 1279.9, 1.000, "GENUINE",      True),
+    (_LADDER_0550, "BUY",  82_971.00,   150_158.0,  780.0, 1.000, "GENUINE",      True),
+    (_LADDER_0550, "BUY",  82_969.00,   150_157.0,  780.0, 1.000, "GENUINE",      True),
+    (_GRID_0550,   "BUY",  82_967.00,   196_541.0, 1279.9, 1.000, "GENUINE",      True),
+    (_LADDER_0550, "BUY",  82_967.00,   150_158.0,  780.0, 1.000, "GENUINE",      True),
+    (_GRID_0550,   "BUY",  82_966.00,   373_334.0, 1640.0, 1.000, "GENUINE",      True),
+    (_LADDER_0550, "BUY",  82_963.00,   150_157.0,  720.0, 1.000, "GENUINE",      True),
+    (_LADDER_0550, "SELL", 83_071.00,   150_160.0, 1399.9, 1.000, "GENUINE",      True),
+    (_LADDER_0550, "SELL", 83_075.00,   150_161.0, 1579.9, 0.963, "GENUINE",      True),
+    (_LADDER_0550, "SELL", 83_077.00,   150_160.0, 1340.0, 1.000, "GENUINE",      True),
+    (_LADDER_0550, "SELL", 83_081.00,   150_160.0, 1080.0, 1.000, "GENUINE",      True),
+    (_GRID_0550,   "SELL", 83_050.00,   373_400.0, 1279.9, 1.000, "GENUINE",      True),
+]
+
+_MID_0550 = 82_977.0
+_ATR_0550 = 120.9956
+
+
+def _rows_0550():
+    return [{"address": a, "side": s, "price": p, "notional_usd": n,
+             "persist_s": ps, "presence_frac": pf, "wall_class": c,
+             "gate_g7_eligible": e}
+            for a, s, p, n, ps, pf, c, e in _LIVE_0550_ROWS]
+
+
+def _behind_mid_0550(walls, apply_grid):
+    grid = two_sided_grid_addresses(walls) if apply_grid else set()
+    out = []
+    for w in walls:
+        if str(w["address"]).strip() in grid:
+            continue
+        if w["gate_g7_eligible"] is not True or w["wall_class"] != "GENUINE":
+            continue
+        if w["notional_usd"] < 150_000.0 or w["persist_s"] < 180.0 or w["presence_frac"] < 0.9:
+            continue
+        dist = (_MID_0550 - w["price"]) / _ATR_0550
+        if 0 <= dist <= 0.25:
+            out.append((dist, w))
+    out.sort(key=lambda x: x[0])
+    return out
+
+
+def test_without_the_grid_filter_the_live_0550_book_would_have_passed_g7():
+    """20 legs / 5.6M USD qualified on the real book; the grid filter zeroes it."""
+    walls = _rows_0550()
+    unfiltered = _behind_mid_0550(walls, apply_grid=False)
+    filtered = _behind_mid_0550(walls, apply_grid=True)
+    assert len(unfiltered) >= 9
+    assert sum(w["notional_usd"] for _, w in unfiltered) > 1_000_000.0
+    # The best leg sits exactly at mid with 21 minutes of persistence.
+    best_dist, best = unfiltered[0]
+    assert best["price"] == 82_977.00
+    assert best_dist == pytest.approx(0.0, abs=1e-9)
+    assert best["notional_usd"] == 373_383.0
+    assert best["persist_s"] == 1279.9
+    # Every one of them passes the producer's own authenticity tests.
+    assert all(w["gate_g7_eligible"] is True and w["wall_class"] == "GENUINE"
+               for _, w in unfiltered)
+    assert filtered == []
+
+
+def test_the_ladder_wallet_was_one_sided_at_0520_and_two_sided_by_0550():
+    """The escape and the catch, one cycle apart, from the same wallet."""
+    buys_only = [{"address": _LADDER_0550, "side": "BUY", "price": p,
+                  "notional_usd": 150_155.0, "persist_s": ps, "presence_frac": 1.0,
+                  "wall_class": "GENUINE", "gate_g7_eligible": True}
+                 for p, ps in ((82_963.0, 720.0), (82_967.0, 780.0), (82_969.0, 780.0),
+                               (82_971.0, 780.0), (82_976.0, 1760.0))]
+    assert two_sided_grid_addresses(buys_only) == set(), \
+        "a one-sided ladder is invisible to the grid filter by construction"
+    revealed = buys_only + [{"address": _LADDER_0550, "side": "SELL", "price": p,
+                             "notional_usd": 150_160.0, "persist_s": ps,
+                             "presence_frac": 1.0, "wall_class": "GENUINE",
+                             "gate_g7_eligible": True}
+                            for p, ps in ((83_071.0, 1399.9), (83_077.0, 1340.0),
+                                          (83_081.0, 1080.0))]
+    assert two_sided_grid_addresses(revealed) == {_LADDER_0550}
+
+
+def test_a_freshly_posted_leg_still_cannot_launder_an_aged_opposite_leg():
+    """Criterion (2): two-sidedness is judged without any persistence requirement.
+
+    The live ladder posts legs at persist_s 0 / 60 / 120 alongside aged ones. If
+    persistence gated the two-sidedness test, a fresh leg would hide the wallet and
+    its aged opposite leg would be read as directional backing.
+    """
+    walls = [{"address": _LADDER_0550, "side": "BUY", "price": 82_970.0,
+              "notional_usd": 400_000.0, "persist_s": 1200.0, "presence_frac": 1.0,
+              "wall_class": "GENUINE", "gate_g7_eligible": True},
+             {"address": _LADDER_0550, "side": "SELL", "price": 83_060.0,
+              "notional_usd": 400_000.0, "persist_s": 0.0, "presence_frac": 1.0,
+              "wall_class": "GENUINE", "gate_g7_eligible": False}]
+    assert two_sided_grid_addresses(walls) == {_LADDER_0550}
+
+
+def test_dg_context_excludes_the_live_0550_grid_book_end_to_end():
+    """The real payload shape must yield ctx["wall"] is None and wall_data_present False."""
+    day_start = 1_791_648_000  # 2026-10-11 00:00 UTC, same UTC day as the quote
+    # The quote must post-date every bar close: _session_vwap rejects any history
+    # whose bar has not yet closed at the observation instant.
+    quote = {"bid": _MID_0550 - 8.0, "ask": _MID_0550 + 8.0, "tick_size": 0.01,
+             "point": 0.01, "time_msc": (day_start + 40 * 900 + 9) * 1000}
+    bars = []
+    for i in range(40):
+        ts = day_start + i * 900
+        c = _MID_0550 + (i % 5) * 6.0 - 12.0
+        bars.append({"open": c - 4.0, "high": c + 9.0, "low": c - 9.0, "close": c,
+                     "time": ts, "close_ts": ts + 900, "volume": 100.0 + i})
+    payload = {"orderbook_live_depth": {"whale_walls_l3": _rows_0550(),
+                                        "l2_wall_levels": []}}
+    ctx, missing = dg_context.build_dg_context(
+        features={"direction": "LONG", "atr": _ATR_0550}, payload=payload,
+        pivots=None, quote=quote, bars_15m=bars, entry=_MID_0550,
+        sl=_MID_0550 - 1.5 * _ATR_0550, tp=_MID_0550 + 1.5 * _ATR_0550,
+        sizing={"risk_usd": 15.0, "friction_usd": 1.2},
+        regime="MEAN_REVERT", symbol="BTC")
+    assert "session_vwap_history_unavailable" not in missing
+    assert ctx["wall"] is None, "a two-sided grid must never satisfy whale backing"
+    assert ctx["wall_data_present"] is False
