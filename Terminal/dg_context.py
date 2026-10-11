@@ -256,6 +256,10 @@ def build_dg_context(
     vol_96 = sum(v[-96:]) / min(96, len(v)) if v else 1.0
     vol_ratio = vol_4 / max(vol_96, 1e-6)
 
+    # Swing window and impulse anchor
+    swing_window = min(24, len(c) - 1)
+    impulse_start = max(0, len(c) - 1 - swing_window)
+
     # Geometry for Model 2
     pb_geo = payload.get("pullback_geometry") if isinstance(payload, dict) else {}
     if isinstance(pb_geo, dict) and pb_geo.get("retrace") is not None and pb_geo.get("direction") == direction:
@@ -266,10 +270,11 @@ def build_dg_context(
             "bars_pullback": pb_geo["bars_pullback"],
             "bars_impulse": pb_geo["bars_impulse"],
         }
+        total_bars = int(pb_geo.get("bars_pullback", 0) + pb_geo.get("bars_impulse", 0))
+        if total_bars > 0 and len(c) > total_bars:
+            impulse_start = max(0, len(c) - 1 - total_bars)
     else:
         # Find recent swing pivot
-        swing_window = min(24, len(c) - 1)
-        impulse_start = len(c) - 1 - swing_window
         # The last candle is the proposed pullback, not an impulse pivot.
         previous = h[impulse_start:-1] if side == 1 else l[impulse_start:-1]
         swing_idx = impulse_start + int(np.argmax(previous) if side == 1 else np.argmin(previous))
@@ -286,10 +291,13 @@ def build_dg_context(
                                 swing_idx=swing_idx, sigma_bar=sigma_bar)
 
     # Structure intact
-    if side == 1:
-        structure_intact = c[-1] >= min(l[impulse_start:-1])
+    if len(c) > 1 and impulse_start < len(c) - 1:
+        if side == 1:
+            structure_intact = c[-1] >= min(l[impulse_start:-1])
+        else:
+            structure_intact = c[-1] <= max(h[impulse_start:-1])
     else:
-        structure_intact = c[-1] <= max(h[impulse_start:-1])
+        structure_intact = True
 
     # Shelf confluence
     shelf_price = None
