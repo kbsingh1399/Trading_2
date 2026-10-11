@@ -21,6 +21,15 @@ from Terminal.decision_gates_v3 import (
     Verdict,
 )
 
+try:  # pragma: no cover - import shim for standalone invocation
+    from Terminal.microstructure_state import two_sided_grid_addresses
+except Exception:  # pragma: no cover
+    try:
+        from microstructure_state import two_sided_grid_addresses
+    except Exception:
+        def two_sided_grid_addresses(walls, **_kw):
+            return set()
+
 
 def _arr(x) -> np.ndarray:
     return np.asarray(x, dtype=float)
@@ -280,10 +289,18 @@ def build_dg_context(
         # predicate used for selection below. L2 touch rows and un-classified rows
         # carry no gate_g7_eligible key and are excluded, as are bracket legs and
         # rows with non-finite measurements.
+        # Wallets laddering size on BOTH sides are market-making grids, not whales.
+        # is_mirrored_leg only catches same-price brackets (0.05% proximity); a grid
+        # spreads its legs across many prices and so classifies every leg GENUINE.
+        # On the 2026-10-10 23:53 UTC snapshot that was 81.3% of qualifying notional,
+        # and 17 of the 18 qualifying BTC bids within 0.25 ATR of mid.
+        grid_addrs = two_sided_grid_addresses(walls)
+
         def _g7_eligible_row(w) -> bool:
             return (isinstance(w, dict)
                     and w.get("gate_g7_eligible") is True
                     and w.get("wall_class") == "GENUINE"
+                    and str(w.get("address") or "").strip() not in grid_addrs
                     and all(_finite_number(w.get(k)) for k in
                             ("price", "notional_usd", "persist_s", "presence_frac")))
 
@@ -293,6 +310,8 @@ def build_dg_context(
             eligible_walls = []
             for w in walls:
                 if not isinstance(w, dict):
+                    continue
+                if str(w.get("address") or "").strip() in grid_addrs:
                     continue
                 # A sampled span alone is not measured wall survival. Honor the
                 # producer's authenticity veto rather than passing mirrored walls.
