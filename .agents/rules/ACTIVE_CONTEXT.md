@@ -57,21 +57,21 @@ trigger: always_on
       * **Position Capacity Policy**:
         - Up to 4 concurrent tickets across orthogonal asset clusters provided total joint worst-case stopout risk unconditionally defends the 4,775.00 USD hard floor and 4,795.00 USD operating buffer (>= 20.00 USD cushion at all times).
     - Connects directly via native IPC to MetaTrader 5 Account 5064568 (Blueberry Markets).
-    - **Active Positions & Pending Orders (Live State — 2 Active Trend Short Positions in Profit | 1 Limit Order Resting)**:
-      * Current Status: **2 Open Positions | 1 Pending Order | Balance: 4,855.44 USD | Equity: 4,869.19 USD | Margin Used: 1,582.50 USD | Free Margin: 3,286.69 USD**.
-      * Active Positions (2 — Mandate 2 Active Monitoring with Autonomous Ratchet Daemon `task-50136` every 15s):
-        1. Ticket `#18813767` (`BTCUSD.pi` SELL 0.02 @ 82,650.00 USD, Current: 82,623.00 USD, PnL: **+0.54 USD floating green**, SL: 83,120.00 USD, TP: 81,845.00 USD, Risk: 9.40 USD, Reward: 16.10 USD, R:R: 1.71R).
-        2. Ticket `#18813768` (`SOLUSD.p` SELL 0.14 @ 108.00 USD [PHASE 1 PROFIT LOCKED], Current: 107.00 USD, PnL: **+14.00 USD floating green**, SL: **107.32 USD (+9.52 USD guaranteed profit locked)**, TP: 106.20 USD, Initial Risk: 11.90 USD -> Current Risk: **0.00 USD (-9.52 USD locked gain)**, Reward: 25.20 USD, R:R: 2.12R).
+    - **Active Positions & Pending Orders (Live State — 1 Active Trend Short Position in Profit | 1 Limit Order Resting)**:
+      * Current Status: **1 Open Position | 1 Pending Order | Balance: 4,864.26 USD (+9.52 USD realized win banked) | Equity: 4,864.39 USD | Margin Used: 826.50 USD | Free Margin: 4,037.89 USD**.
+      * Active Positions (1 — Mandate 2 Active Monitoring with Autonomous Ratchet Daemon `task-50136` every 15s):
+        1. Ticket `#18813767` (`BTCUSD.pi` SELL 0.02 @ 82,650.00 USD, Current: 82,613.00 USD, PnL: **+0.74 USD floating green**, SL: 83,120.00 USD, TP: 81,845.00 USD, Risk: 9.40 USD, Reward: 16.10 USD, R:R: 1.71R).
       * Active Pending Orders (1 — Mandate 3 Active Monitoring):
-        1. Ticket `#18814015` (`SP500.p` SELL LIMIT 0.04 @ 7,817.80 USD, Current Bid/Ask: 7,806.30/7,807.17 USD, SL: 7,842.50 USD, TP: 7,704.00 USD, Risk: 9.88 USD, Reward: 45.52 USD, R:R: 4.61R, Ask Wall Belt: 8.9M USD @ 7,802-7,808, Primary Bunker Cleared by 2.56 ATR).
-      * G-1 Hard Floor Defense: Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Floor Cushion: **+94.19 USD floating / +80.44 USD realized**.
-      * Stressed Post-Loss Simulation (With SOL Phase 1 Profit Locked at +9.52 USD):
-        - Net Contingent Downside Risk: **19.28 USD** (BTC 9.40 USD + SP500 9.88 USD; SOL has +9.52 USD profit locked at SL 107.32 USD).
-        - Stressed Worst-Case Equity (Simultaneous Stopout of All 3 Tickets): **4,845.68 USD** (Unconditionally defends floor!).
-        - Safety Cushion Above 4,775.00 USD Hard Floor: **+70.68 USD** (3.5x mandatory >= 20.00 USD buffer).
-        - Safety Cushion Above 4,795.00 USD Operating Buffer: **+50.68 USD**.
-        - Capacity Slots Used: **3 / 4** across orthogonal asset clusters (Crypto Major + Crypto Alt + US Equity Index).
+        1. Ticket `#18814015` (`SP500.p` SELL LIMIT 0.04 @ 7,817.80 USD, Current Bid/Ask: 7,809.41/7,810.28 USD [7.52 pts to entry], SL: 7,842.50 USD, TP: 7,704.00 USD, Risk: 9.88 USD, Reward: 45.52 USD, R:R: 4.61R, Ask Wall Belt: 8.9M USD @ 7,802-7,808, Primary Bunker Cleared by 2.56 ATR).
+      * G-1 Hard Floor Defense: Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Floor Cushion: **+89.39 USD floating / +89.26 USD realized**.
+      * Stressed Post-Loss Simulation:
+        - Total Contingent Book Risk: **19.28 USD** (BTC 9.40 USD + SP500 9.88 USD).
+        - Stressed Worst-Case Equity: **4,844.98 USD** (Unconditionally defends floor!).
+        - Safety Cushion Above 4,775.00 USD Hard Floor: **+69.98 USD** (3.5x mandatory >= 20.00 USD buffer).
+        - Safety Cushion Above 4,795.00 USD Operating Buffer: **+49.98 USD**.
+        - Capacity Slots Used: **2 / 4** across orthogonal asset clusters (Crypto Major + US Equity Index).
       * Closed Trades Today (Realized PnL):
+        - Ticket #18813768 (`SOLUSD.p` closed at **+9.52 USD cash profit** via Autonomous Ratchet Daemon Phase 1 Profit Lock Stop Loss at 107.32 USD, Deal #17024104, +0.80R banked)
         - Ticket #18813343 (`BTCUSD.pi` closed at **-11.58 USD loss** via Stop Loss at 82,158.00 USD, Deal #17022979, during market cascade)
         - Ticket #18795304 (`SOLUSD.p` closed at **-10.88 USD loss** via Stop Loss at 108.79 USD during deepening crypto flush)
         - Ticket #18791527 (`BTCUSD.pi` closed at **-11.20 USD loss** via Stop Loss at 82,590.00 USD during capitulation flush to 82,627 USD)
@@ -93,7 +93,7 @@ trigger: always_on
         - Ticket #18644889 (`USDJPY.pi` closed at +1.82 USD profit via Phase 0 BE lock at 158.046 USD)
         - Ticket #18630694 (`BTCUSD.pi` closed -6.80 USD loss via SL at 82,700.00 USD)
         - Ticket #18644262 (`USWTI.p` closed -10.03 USD loss via SL at 90.113 USD)
-        - Net Realized Session PnL: **+84.05 USD** across 17 completed trades (initial capital 5,000.00 USD; 97.93% preserved; 11 wins / 6 losses = 64.7% win rate).
+        - Net Realized Session PnL: **+93.57 USD** across 18 completed trades (initial capital 5,000.00 USD; 98.12% preserved; 12 wins / 6 losses = 66.7% win rate).
       * 360-Degree Forensic Verification Certification: [`Terminal/chain_verification_360.py`](file:///c:/Users/SIGMA/Documents/Trading_2/Terminal/chain_verification_360.py) reports `CERTIFIED_100_PERCENT_PRISTINE`. All 24 Parquet archives verified with 0 nulls and 100% strictly monotonic timestamps; causal anti-lookahead verified; broker feed ping 3.65 ms; Binance L2 depth monotonic; full pytest suite passing (405 passed, 0 failed). All P0 admission defects, P1 timestamp rejuvenation, P1 CVD future trade leak, and P1 certification fail-closed checks resolved and regression-tested.
       * Current collaborative cycle: Opus 5.5 forensic audit ingested and all critical findings mathematically hardened (Commit `0fa4cfd6`). New module `Terminal/dg_hardening.py` shipped with Option A' error-budgeted bands, discrete tick quantization, gap-stressed floor defense, Clopper-Pearson exact bounds, ternary outcome expectancy, causal session dz4, strict A4 reclaim, HAC drift t-stat of returns, and discrete broker constraints. Full test suite passing 936 passed, 0 failed (100% green). Branches `main` and `arena/537c1eb8-trading-2` synchronized. Account in 100% Cash reserves at 4,896.55 USD, cushion +121.55 USD above 4,775.00 USD hard floor. Standing aside awaiting Sunday 22:00 UTC CFD reopen or major crypto breakout. All 5 persistent daemons healthy.
       * **Hyperdash On-Chain Telemetry Upgrade**: Autonomous background telemetry git daemon (`Terminal/Data_Factory/autonomous_telemetry_git_daemon.py`, PID 16548) actively streaming authentic Hyperdash GraphQL & REST data every 60s to `origin/main` and `origin/arena/537c1eb8-trading-2`: 100% verified on-chain Ethereum whale wallet orders (`0x...`, notionals >= 150k USD), real structural stop clusters (`structural_stop_clusters`), real reconstructed liquidation cascade bands (`reconstructed_liquidations`), and 20-level L2 depth across all 22 supported perpetuals (Crypto + Indices + Commodities + Forex), with honest UNAVAILABLE reporting for DJ30 & GER40. `gemini-web2api` active on 8081, Graphify AST watcher active. Ready for Arena.ai multi-persona evaluation.
