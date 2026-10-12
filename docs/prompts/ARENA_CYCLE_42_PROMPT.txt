@@ -1,0 +1,95 @@
+TRADING DESK COUNCIL: CYCLE 42 PURE TELEMETRY & PLAYBOOK ANALYSIS PROMPT
+MANDATE: 100% DIRECT LINE-BY-LINE ANALYSIS OF docs/telemetry/live_snapshot_latest.json (ZERO DECISION GATES)
+
+PART A: REQUIRED READING (complete before analysis)
+Read the following repository sources in full:
+
+1. Live Telemetry Matrix (Primary Ground Truth): docs/telemetry/live_snapshot_latest.json
+   Latest Generation: e2ed591870d341cc8d9bc5403f2edbaf (2026-10-12 13:10:45 UTC)
+   Upstream: https://github.com/kbsingh1399/Trading_2/blob/arena/537c1eb8-trading-2/docs/telemetry/live_snapshot_latest.json
+   Raw: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/telemetry/live_snapshot_latest.json
+   Inspect all 24 assets in assets_matrix_24 and all telemetry blocks: quotes (MT5 spread_bps & mid), execution_specs, causal_indicators (Session VWAP, Z-score, RSI, ATR, EMA 20/50/200, POC/VAH/VAL), orderbook_live_depth (20-level L2 depth & imbalance), whale_walls_l3 (0x... wallet addresses, sizes, persistence_s >= 180s), structural_stop_clusters (nearest_sell_stop_clusters_below, nearest_buy_stop_clusters_above, top_*), reconstructed_liquidations (nearest_long_cascade_bands_below, nearest_short_squeeze_bands_above, top_*), venue_basis, and cvd_1m_buckets (5m/15m/30m sums).
+
+2. Live Trade Decision Playbook: docs/specs/TRADE_DECISION_PLAYBOOK.md
+   Source: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/specs/TRADE_DECISION_PLAYBOOK.md
+   Apply the Parameter Coincidence Matrix (Entry Shelf + SL Liquidity Bunker outside min_price/max_price + TP Liquidity Magnet front-run by 5-10 bps + Psychological Round Numbers), Dual-Venue Division of Labor (Spreads/Quotes from MT5; Orderbook/Whales/Liquidations/Stops from Hyperdash & Binance), and the 7-Point Pre-Trade Checklist.
+
+3. Live Order Desk & Session Context:
+   • docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md (https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md)
+   • .agents/rules/ACTIVE_CONTEXT.md (https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agents/rules/ACTIVE_CONTEXT.md)
+   • .agents/memory/session_chat_history.md (https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agents/memory/session_chat_history.md)
+
+PART B: ACCOUNT AND RISK BASELINE
+• Execution Mode: PASSIVE LIMIT ORDERS ONLY (no market orders).
+• Broker: Blueberry Markets SVG LLC, MetaTrader 5 account #5064568
+• Balance / Equity: 4874.18 USD / 4873.38 USD
+• Margin used: 440.60 USD
+• Hard floor: 4,775.00 USD | Operating buffer: 4,795.00 USD
+• Live cushion: +98.38 USD above hard floor (+78.38 USD above operating buffer)
+• Risk per trade: 10.00 to 14.50 USD (0.20% to 0.29% of capital). Up to 4 concurrent tickets across orthogonal asset clusters provided joint worst-case post-stop equity >= 4,795.00 USD.
+
+PART C: STRICT OPERATOR MANDATE — PURE TELEMETRY REASONING (NO DECISION GATES)
+1. DO NOT RUN OR CITE decision_gates_v3.py OR LEGACY GATE TOKENS:
+   • Programmatic gate scripts (decision_gates_v3.py, A1-A5, B1-B6, G-4, G-6, MAX_TARGET_DIST_ATR = 4.0, A2_no_tape_fail_closed) are RETIRED from trade selection.
+   • Do NOT disqualify TradFi CFDs (SP500, NAS100, EURUSD, USDJPY, XAUUSD, USWTI) just because cvd_1m_buckets is 0; evaluate them using their MT5 spreads, VWAP Z-scores, EMA/VP shelves, Hyperliquid L2 orderbook imbalance, L3 whale wallet orders (0x...), structural stop clusters, and liquidation bands.
+2. MULTI-PARAMETER COINCIDENCE & BOUNDARY PRECISION (per docs/specs/TRADE_DECISION_PLAYBOOK.md):
+   • Entry Level: Must sit AT or BELOW the sell-stop sweep midpoint (for Longs) or AT or ABOVE the buy-stop sweep midpoint (for Shorts), directly backed by resting L3 whale wallet orders (0x..., persistence_s >= 180s), adjusted onto the MT5 price grid via venue_basis.
+   • Stop Loss (Liquidity Bunker): Must sit 0.25x-0.50x ATR OUTSIDE min_price (for Longs) or max_price (for Shorts) of the governing liquidation cascade band and stop cluster — NEVER measured from mid_price and NEVER placed inside the [min_price, max_price] band.
+   • Take Profit (Liquidity Magnet): Must front-run the opposing buy-stop / short-squeeze magnet (or sell-stop / long-cascade magnet) by 5-10 bps.
+
+PART D: COUNCIL PERSONAS
+1. Orderflow & Microstructure Analyst: MT5 spread_bps, L2 20-level depth & imbalance, L3 on-chain wallet orders (0x..., persistence_s >= 180s), and multi-window 1m CVD (5m, 15m, 30m).
+2. Structural Price Action Specialist: Session VWAP & SD bands (Z-score), Volume Profile (POC/VAH/VAL), 20/50/200 EMA hierarchy, and psychological round numbers.
+3. Liquidation & Stop Hunt Forensic: Reconstructed liquidation cascade bands (nearest_* and top_*), stop clusters, SL bunker placement outside min_price/max_price, and TP magnet front-running.
+4. Macro Risk & Portfolio Governor: Capital floor defense (4,775.00 USD hard floor / 4,795.00 USD buffer), discrete lot sizing (execution_specs), and net expectancy.
+
+PART E: MANDATORY 3-PILLAR DESK EVALUATION (STRICT OPERATOR MANDATE)
+
+MANDATE 1 — LOOK FOR NEW TRADING OPPORTUNITIES ACROSS ALL 24 MUTUAL UNIVERSE ASSETS (CRYPTO, METALS, ENERGY, FOREX & INDICES):
+Analyze all 24 assets in assets_matrix_24 line-by-line from docs/telemetry/live_snapshot_latest.json (covering all Cryptos, Metals GOLD/XAUUSD.pi & SILVER/XAGUSD.pi, Energy USWTI.p, Forex EURUSD.pi/GBPUSD.pi/USDJPY.pi, and Indices SP500.p/NAS100.p/DJ30.p/GER40.p) to identify any new high-confluence Model 1 (|Z| >= 2.0 SD Mean Reversion) or Model 2 (Trend Pullback to VWAP/VAL/VAH/EMA) limit order setups. Live 24-asset mutual universe matrix:
+• BTC (BTCUSD.pi | CRYPTO): Mid 82581.5 | Spread 1.82 bps | Z = -3.14 SD | RSI 23.91 | Trend BEARISH | L2 Imb -0.7958 | 15m CVD +2113177 USD | L3 Whales (tot/elig>=180s): 325/93 | Nearest Stops (below/above): 10/10 | Nearest Liq (long/short): 10/10
+• ETH (ETHUSD.pi | CRYPTO): Mid 2525.9 | Spread 11.09 bps | Z = -2.09 SD | RSI 28.41 | Trend RANGE_BOUND | L2 Imb -0.618 | 15m CVD -1685112 USD | L3 Whales (tot/elig>=180s): 176/79 | Nearest Stops (below/above): 10/10 | Nearest Liq (long/short): 10/2
+• SOL (SOLUSD.p | CRYPTO): Mid 110.085 | Spread 20.89 bps | Z = -2.05 SD | RSI 26.64 | Trend RANGE_BOUND | L2 Imb -0.0866 | 15m CVD +308264 USD | L3 Whales (tot/elig>=180s): 95/56 | Nearest Stops (below/above): 10/10 | Nearest Liq (long/short): 10/1
+• BNB (BNBUSD.p | CRYPTO): Mid 746.65 | Spread 9.38 bps | Z = -2.09 SD | RSI 37.0 | Trend BEARISH | L2 Imb -0.5562 | 15m CVD -240522 USD | L3 Whales (tot/elig>=180s): 10/4 | Nearest Stops (below/above): 10/10 | Nearest Liq (long/short): 10/4
+• XRP (XRPUSD.pi | CRYPTO): Mid 1.3875 | Spread 21.62 bps | Z = -2.61 SD | RSI 31.74 | Trend BEARISH | L2 Imb 0.007 | 15m CVD +45074 USD | L3 Whales (tot/elig>=180s): 55/26 | Nearest Stops (below/above): 10/10 | Nearest Liq (long/short): 10/1
+• ADA (ADAUSD.p | CRYPTO): Mid 0.2477 | Spread 88.82 bps | Z = -1.56 SD | RSI 35.62 | Trend RANGE_BOUND | L2 Imb -0.0262 | 15m CVD -85064 USD | L3 Whales (tot/elig>=180s): 10/4 | Nearest Stops (below/above): 10/10 | Nearest Liq (long/short): 10/6
+• DOGE (DOGUSD.p | CRYPTO): Mid 0.0861 | Spread 244.04 bps | Z = 0.15 SD | RSI 31.92 | Trend BULLISH | L2 Imb 0.1485 | 15m CVD -474 USD | L3 Whales (tot/elig>=180s): 18/11 | Nearest Stops (below/above): 10/10 | Nearest Liq (long/short): 10/6
+• TRX (TRXUSD.p | CRYPTO): Mid 0.3313 | Spread 33.2 bps | Z = 0.73 SD | RSI 47.12 | Trend BULLISH | L2 Imb 0.2038 | 15m CVD -24558 USD | L3 Whales (tot/elig>=180s): 10/8 | Nearest Stops (below/above): 10/10 | Nearest Liq (long/short): 10/1
+• DOT (DOTUSD.pi | CRYPTO): Mid 1.2655 | Spread 165.94 bps | Z = 1.94 SD | RSI 54.9 | Trend BULLISH | L2 Imb 0.1287 | 15m CVD +43672 USD | L3 Whales (tot/elig>=180s): 10/1 | Nearest Stops (below/above): 10/10 | Nearest Liq (long/short): 10/1
+• LINK (LNKUSD.p | CRYPTO): Mid 13.152 | Spread 65.39 bps | Z = -2.61 SD | RSI 33.0 | Trend BULLISH | L2 Imb -0.1645 | 15m CVD -213224 USD | L3 Whales (tot/elig>=180s): 10/6 | Nearest Stops (below/above): 10/10 | Nearest Liq (long/short): 10/0
+• BCH (BCHUSD.p | CRYPTO): Mid 278.25 | Spread 20.84 bps | Z = -2.56 SD | RSI 26.66 | Trend BEARISH | L2 Imb 0.0127 | 15m CVD -66159 USD | L3 Whales (tot/elig>=180s): 10/4 | Nearest Stops (below/above): 10/10 | Nearest Liq (long/short): 10/5
+• LTC (LTCUSD.pi | CRYPTO): Mid 64.2 | Spread 46.73 bps | Z = -1.73 SD | RSI 28.77 | Trend RANGE_BOUND | L2 Imb 0.0972 | 15m CVD +8702 USD | L3 Whales (tot/elig>=180s): 10/5 | Nearest Stops (below/above): 10/10 | Nearest Liq (long/short): 10/6
+• AVAX (AVXUSD.p | CRYPTO): Mid 10.85 | Spread 36.87 bps | Z = -1.88 SD | RSI 38.1 | Trend BULLISH | L2 Imb 0.0227 | 15m CVD -22288 USD | L3 Whales (tot/elig>=180s): 12/3 | Nearest Stops (below/above): 10/10 | Nearest Liq (long/short): 10/1
+• NEAR (NERUSD.p | CRYPTO): Mid 5.6335 | Spread 58.58 bps | Z = -2.14 SD | RSI 32.15 | Trend BULLISH | L2 Imb -0.0604 | 15m CVD -58009 USD | L3 Whales (tot/elig>=180s): 20/6 | Nearest Stops (below/above): 10/10 | Nearest Liq (long/short): 10/10
+• SP500 (SP500.p | INDICES): Mid 7816.25 | Spread 0.38 bps | Z = -1.16 SD | RSI 40.68 | Trend BULLISH | L2 Imb -0.2884 | 15m CVD +0 USD | L3 Whales (tot/elig>=180s): 107/79 | Nearest Stops (below/above): 10/10 | Nearest Liq (long/short): 10/2
+• NAS100 (NAS100.p | INDICES): Mid 30850.4 | Spread 0.34 bps | Z = -1.18 SD | RSI 43.86 | Trend BEARISH | L2 Imb -0.0898 | 15m CVD +0 USD | L3 Whales (tot/elig>=180s): 98/69 | Nearest Stops (below/above): 10/10 | Nearest Liq (long/short): 10/1
+• DJ30 (DJ30.p | INDICES): Mid 51670.15 | Spread 0.23 bps | Z = -1.64 SD | RSI 41.79 | Trend BULLISH | L2 Imb None | 15m CVD +0 USD | L3 Whales (tot/elig>=180s): 0/0 | Nearest Stops (below/above): 0/0 | Nearest Liq (long/short): 0/0
+• GER40 (GER40.p | INDICES): Mid 25254.35 | Spread 0.32 bps | Z = 0.46 SD | RSI 50.46 | Trend BULLISH | L2 Imb None | 15m CVD +0 USD | L3 Whales (tot/elig>=180s): 0/0 | Nearest Stops (below/above): 0/0 | Nearest Liq (long/short): 0/0
+• GOLD (XAUUSD.pi | COMMODITIES): Mid 4172.085 | Spread 0.17 bps | Z = -1.19 SD | RSI 34.77 | Trend BEARISH | L2 Imb -0.1866 | 15m CVD +0 USD | L3 Whales (tot/elig>=180s): 59/17 | Nearest Stops (below/above): 10/10 | Nearest Liq (long/short): 10/4
+• SILVER (XAGUSD.pi | COMMODITIES): Mid 60.689 | Spread 5.93 bps | Z = -0.95 SD | RSI 40.94 | Trend BULLISH | L2 Imb 0.3816 | 15m CVD +0 USD | L3 Whales (tot/elig>=180s): 48/11 | Nearest Stops (below/above): 10/10 | Nearest Liq (long/short): 10/7
+• USWTI (USWTI.p | COMMODITIES): Mid 94.123 | Spread 5.74 bps | Z = 1.8 SD | RSI 73.52 | Trend BULLISH | L2 Imb -0.5716 | 15m CVD +0 USD | L3 Whales (tot/elig>=180s): 35/1 | Nearest Stops (below/above): 10/10 | Nearest Liq (long/short): 10/0
+• EURUSD (EURUSD.pi | FOREX): Mid 1.1179 | Spread 0.09 bps | Z = -1.54 SD | RSI 38.02 | Trend BEARISH | L2 Imb 0.0349 | 15m CVD +0 USD | L3 Whales (tot/elig>=180s): 13/13 | Nearest Stops (below/above): 9/10 | Nearest Liq (long/short): 10/0
+• GBPUSD (GBPUSD.pi | FOREX): Mid 1.3234 | Spread 0.08 bps | Z = -1.02 SD | RSI 44.77 | Trend RANGE_BOUND | L2 Imb 0.0094 | 15m CVD +0 USD | L3 Whales (tot/elig>=180s): 10/8 | Nearest Stops (below/above): 4/6 | Nearest Liq (long/short): 10/2
+• USDJPY (USDJPY.pi | FOREX): Mid 158.6375 | Spread 0.06 bps | Z = 1.68 SD | RSI 71.37 | Trend BULLISH | L2 Imb -0.3027 | 15m CVD +0 USD | L3 Whales (tot/elig>=180s): 35/22 | Nearest Stops (below/above): 10/10 | Nearest Liq (long/short): 10/0
+For every qualifying new opportunity across Crypto, Metals, Energy, Forex, or Indices, specify: MT5 symbol, BUY/SELL LIMIT, exact lot size, Entry price, SL (0.25-0.50 ATR outside min_price/max_price of bunker), TP (front-running magnet by 5-10 bps), USD risk, R:R, and complete telemetry coincidence proof.
+
+MANDATE 2 — LOOK FOR ACTIVE / RUNNING TRADES (LOGICAL TP OR SL MODIFICATION BASED ON LATEST DATA):
+• Current Active Running Trades on MT5: 1 open position(s):
+  - Ticket #18795304: SOLUSD.p BUY 0.08 lots @ Entry 110.15 USD | Current: 110.05 USD (-0.07R) | Floating PnL: -0.80 USD | Current SL: 108.79 USD | Current TP: 113.4 USD
+• For each running trade above, evaluate logically based on the latest data snapshot whether SL or TP modification is required:
+  1. Piecewise Ratchet Check: Has the trade reached +0.70R/+0.80R (Phase 0 BE lock to +0.35R), +1.50R (Phase 1 Profit Lock to +0.80R), or +2.00R (Phase 2 Trailing Lock)?
+  2. Live Microstructure & Bunker/Magnet Shift: Have new stop clusters, liquidation bands, or L3 whale walls formed in live_snapshot_latest.json that logically require tightening SL behind a newly formed structural bunker or adjusting TP to front-run a closer/stronger liquidity magnet? Or has the supporting structural shelf broken requiring an emergency exit?
+
+MANDATE 3 — AUDIT UNFILLED LIMIT ORDERS (VIABLE TO WAIT vs. SLIGHT MODIFICATION vs. DELETE):
+• Current Unfilled Limit Orders on MT5: 0 pending orders.
+
+STEP 4 — PORTFOLIO CAPACITY & CAPITAL FLOOR GOVERNANCE:
+• Verify that all kept/modified running trades + kept/modified resting limit orders + any newly proposed limit orders keep joint worst-case post-stop equity >= 4,795.00 USD (>= 20.00 USD cushion above the 4,775.00 USD hard floor).
+
+PART F: REQUIRED OUTPUT FORMAT & BILATERAL LEDGER PUSH
+1. TELEMETRY & PLAYBOOK INGESTION CITATION (confirming generation_id, as_of_utc, and Playbook compliance)
+2. MANDATE 1 REPORT: Line-by-Line Screening of 24 Assets for New Trading Opportunities
+3. MANDATE 2 REPORT: Active / Running Trades Audit (Logical TP/SL Modifications Based on Latest Snapshot)
+4. MANDATE 3 REPORT: Unfilled Limit Orders Audit (Ticket-by-Ticket Verdict: WAIT TO FILL AS-IS vs. MODIFY ENTRY/SL/TP vs. DELETE)
+5. ACTIONABLE EXECUTION SUMMARY TABLE (Ticket/Action, Symbol, Side, Lots, Entry, SL Bunker, TP Magnet, Risk USD, R:R, Quantitative Rationale)
+6. BILATERAL LEDGER SYNC: Append your complete Cycle Council Report and Actionable Execution Table to docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md and commit/push to branch arena/537c1eb8-trading-2 (while Antigravity merges and syncs to main).

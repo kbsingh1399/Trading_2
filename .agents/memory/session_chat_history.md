@@ -54559,3 +54559,16 @@ Finally, unify live and replay ratchets before qualifying uplift; the current se
   3. **Mandate 3 — Unfilled Limit Orders**: `0` pending orders (`[]`).
   4. **Mandate 1 — 24-Asset Mutual Universe Screen**: `0` new tickets. Verified that BTC at `82,627.50` sits above `43.06M USD` of un-swept sell-stops/long cascades between `82,200` and `82,600` (`17.30M USD` cascade at `82,300–82,400`), while the main seasoned whale bid walls (`14.74M USD` at `82,188.7` MT5-adj and `59.66M USD` at `81,950.7` MT5-adj) rest below `82,200`.
   5. **Bilateral Ledger Sync (`b791b8b` -> `9b1d010e`)**: Merged Arena's signed Cycle 41 commit (`b791b8b`) into `main` and pushed to `origin/main` and `origin/arena/537c1eb8-trading-2`.
+
+
+---
+
+## Turn [2026-10-12 13:37 UTC] — Cycle 42 -> Cycle 42B Autonomous Cron Execution, Verification & Playbook Hardening (`Commit 7f53c562`)
+- **Action Taken**:
+  1. **Cycle 42 Execution (`13:10–13:21 UTC`)**: Dispatched `docs/prompts/ARENA_CYCLE_42_PROMPT.txt` across all 24 mutual universe assets. Upgraded `Terminal/arena_completion_daemon.py` (`probe_arena_state`) to filter `.prose` elements to non-empty elements (`nonEmptyProses`) so trailing empty placeholder `.prose` divs during streaming never mask assistant output.
+  2. **Cycle 42 Independent Audit & Cycle 42B Same-Cycle Re-Prompt (`13:29–13:37 UTC`)**:
+     - Ratified Mandate 2 (`SOLUSD.p #18795304 HOLD AS-IS` at `110.15`, `SL 108.79`, `TP 113.40`; do not tighten into the expanded `21.95M USD` `[109.00, 110.00]` stop band while anchor L3 walls aged to `1,441.5s` and `1,502.6s` with positive 5m/15m CVD) and Mandate 3 (`0` pending orders).
+     - Challenged Mandate 1 (`ETHUSD.pi BUY LIMIT 1.06 lots @ 2,495.00 USD`, `SL 2,485.50`, `TP 2,573.00`) on 4 verified flaws: (1) Entry `2,495.00` sat `3.37 ATR` below mid (`2,524.55`), violating the `<= 2.0 ATR` proximity bound and encumbering `1,322.35 USD` (`29.8%` of free margin); (2) 5m/15m/30m CVD were all deeply negative (`-877.8k / -2.13M / -2.46M USD`); (3) `[2,490, 2,500]` held `51.76M USD` forced fuel vs. `13.23M USD` L3 bid wall (`3.91:1` overwhelm ratio), and drained within 11 minutes; (4) Reward was quoted unscaled (`78.00` vs. lot-scaled `82.68 USD`).
+     - Injected `docs/prompts/ARENA_CYCLE_42B_FEEDBACK_PROMPT.txt`; woke up via `arena_completion_daemon.py --wait` (`task-48401`). Arena withdrew `ETHUSD.pi` in full (`docs/trade_plans/ARENA_CYCLE_42B_RAW.md`) and pushed signed ledger commit `7f53c562` to `docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md`.
+  3. **Playbook Hardening (`docs/specs/TRADE_DECISION_PLAYBOOK.md`)**:
+     - Codified the 3 amendments surfaced by Cycle 42B directly into `§3.A`, `§3.B`, `§4`, and `§5`: (a) `<= 2.0 ATR` Entry Proximity Rule for both Mandate 1 new proposals and Mandate 3 resting orders; (b) Forced-Fuel vs. Resting L3 Defense Overwhelm Ratio cap (`<= 2.0:1`); (c) `>= 3` consecutive generation confirmation for fast-ticking orderflow fields (`book_imbalance`, `cvd_1m_buckets`, `whale_walls_l3`).

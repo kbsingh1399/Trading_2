@@ -1,0 +1,38 @@
+# ⚡ CYCLE 42B — PART 2 SAME-CYCLE LOGICAL VERIFICATION & CORRECTIVE RE-PROMPT
+
+## 1. CANONICAL GITHUB REPOSITORY & TELEMETRY LINKS
+- **Repository Root**: `https://github.com/kbsingh1399/Trading_2`
+- **Active Branches**: `main` & `arena/537c1eb8-trading-2`
+- **Live Telemetry Snapshot (Raw)**: `https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/telemetry/live_snapshot_latest.json`
+- **Trade Decision Playbook (Raw)**: `https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/specs/TRADE_DECISION_PLAYBOOK.md`
+- **Live Collaborative Order Desk (Raw)**: `https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md`
+
+---
+
+## 2. ANTIGRAVITY INDEPENDENT AUDIT OF ARENA CYCLE 42 (`b3c92948`)
+
+Your Cycle 42 **Mandate 2** analysis on **`SOLUSD.p` (`Ticket #18795304`)** (`HOLD AS-IS`, do not tighten SL into the expanded `21.95M USD` `[109.00, 110.00]` sell-stop band while anchor L3 bid walls aged to `1,441.5s` and `1,502.6s` with positive 5m/15m CVD `+39.9k / +335.4k USD`) and **Mandate 3** (`pending_orders = []`) are **100% verified and ratified**.
+
+However, under the Operator's **2-Step Wake-Up Verification Protocol**, our independent audit identified **4 disqualifying logical and mathematical flaws** in your **Mandate 1** proposal to stage **`ETHUSD.pi` `BUY LIMIT 1.06 lots @ 2,495.00 USD` (`SL: 2,485.50 USD`, `TP: 2,573.00 USD`)**:
+
+### Flaw 1 — Playbook §4 Entry Proximity Violation (`3.31–3.37 ATR` Away vs. `<= 2.0 ATR` Cap) & Internal Self-Contradiction
+- At `ETHUSD.pi` mid = `2,524.75–2,525.30 USD` and `ATR_14 = 8.9846 USD`, your proposed `Entry = 2,495.00 USD` sits **`29.75–30.30 USD` (`3.31–3.37 ATR`) below current mid**.
+- Under `docs/specs/TRADE_DECISION_PLAYBOOK.md` §4 (`Entry Proximity Rule`), passive limit orders must sit within **`<= 2.0 ATR`** of current mid (`<= 17.97 USD` distance, i.e., `>= 2,507.33 USD`) so we never encumber margin (`1,322.35 USD` verified via `mt5.order_calc_margin`) on deep-fish orders that require a `> 3.3 ATR` crash just to reach entry.
+- In Section 4 of your own Cycle 42 report, you rightly rejected `SOL SHORT` (`4.51 ATR above mid`), `ETH SHORT` (`4.86 ATR above mid`), and `SP500 LONG` (`5.65 ATR below mid`) as spurious because they sit `> 2.0 ATR` from mid — yet you failed to apply that exact `<= 2.0 ATR` proximity bound to `ETH LONG` (`3.31–3.37 ATR` below mid).
+
+### Flaw 2 — Playbook §1 & §2 Orderflow & L2 Book Absorption Failure (`book_imbalance = -0.9688` + Negative 5m/15m/30m CVD)
+- Playbook §1 (`Model 1: Extreme Standard Deviation Flushes`) explicitly requires **confirmed 15m/30m CVD selling exhaustion / positive absorption** and supportive L2 depth.
+- On `ETHUSD.pi`, **all three CVD windows are deeply negative** (`5m = -877,846 USD`, `15m = -2,129,136 USD`, `30m = -2,456,165 USD`) AND `orderbook_live_depth.book_imbalance = -0.9688` (`top20_bid_depth_usd = 7,374.57 USD` vs. `top20_ask_depth_usd = 465,316.85 USD` — a `63:1` ask-heavy L2 book).
+
+### Flaw 3 — Forced-Selling Fuel (`51.76M USD`) Exceeds the Single L3 Bid Wall (`13.23M USD`) by `3.91x`
+- Inside `[2,490.0, 2,500.0]`, the reconstructed long-liquidation cascade (`44.22M USD`) plus sell-stop cluster (`7.54M USD`) totals **`51.76M USD` of forced market-sell fuel** (plus `11.16M USD` at `[2,500, 2,510]` above it), whereas the single eligible L3 bid wall (`0xab5e...` at `2,497.90` HL / `2,495.70` MT5-adj) is `13.23M USD` — a `3.91:1` forced-selling overwhelm ratio, with an un-swept `10.99M USD` cascade sitting below your `2,485.50 USD` stop at `[2,460, 2,470]`.
+
+### Flaw 4 — Lot-Scaled Cash Reward & Margin Verification Note
+- For `1.06 lots` (`contract_size = 1.0`), `mt5.order_calc_profit(ORDER_TYPE_BUY, 'ETHUSD.pi', 1.06, 2495.00, 2573.00)` is **`+82.68 USD`** (`1.06 * 78.00`), whereas your table reported unscaled `78.00 USD` alongside lot-scaled risk `10.07 USD` (`1.06 * 9.50`). Also, for your note in Section 5, `mt5.order_calc_margin(ORDER_TYPE_BUY, 'ETHUSD.pi', 1.06, 2495.00)` is verified on MT5 at exact **`1,322.35 USD`** (`50%` margin requirement).
+
+---
+
+## 3. MANDATORY CYCLE 42B ACTION
+1. Re-verify the 4 points above against `docs/telemetry/live_snapshot_latest.json` and `docs/specs/TRADE_DECISION_PLAYBOOK.md`.
+2. **Withdraw the `ETHUSD.pi` `BUY LIMIT @ 2,495.00` order** so the desk remains at **`0` new orders** under Mandate 1 while holding **`SOLUSD.p #18795304` AS-IS** under Mandate 2 (`pending_orders = []` under Mandate 3) and keeping correlated crypto exposure capped while `SOLUSD.p` weathers the `[109.00, 110.00]` scissors test.
+3. Append your signed **Cycle 42B** corrective addendum to `docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md` and commit/push to `origin/arena/537c1eb8-trading-2`.

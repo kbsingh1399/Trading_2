@@ -173,24 +173,31 @@ Trading decisions must never rely on a single parameter in isolation. High-proba
 1. **Model 1: Extreme Mean Reversion (`|Z| >= 2.0 SD`)**
    - The setup occurs at statistical extremes where price has flushed 2.0 to 3.5 SD away from Session VWAP.
    - Entry is placed as a **passive limit order** resting directly at a structural support shelf (e.g. daily low, prior day VAH/VAL) coinciding with a **persistent L2/L3 bid whale wall**.
-   - CVD confirmation: Aggressive selling delta must show deceleration or positive divergence.
+   - CVD confirmation: Aggressive selling delta must show deceleration or positive divergence across 5m/15m/30m windows.
 
 2. **Model 2: VWAP Trend-Continuation Pullback (`|Z| < 2.0 SD`)**
    - The setup occurs in a confirmed directional regime (price > 200 EMA with positive slope, or higher-timeframe trend alignment).
    - Entry is placed as a **passive limit order** resting at a pullback zone: Session VWAP, Value Area Low (VAL), or the 20/50 EMA shelf.
    - Crucial check: Must be backed by resting L2/L3 whale bids within 0.25 - 0.50 ATR of the limit price.
 
+3. **Entry Proximity & Margin Efficiency Rule (`<= 2.0 ATR` Bound for Mandate 1 & Mandate 3)**
+   - Every proposed **Mandate 1** new passive limit order AND every **Mandate 3** resting limit order must sit within **`<= 2.0 ATR_14`** of the current MT5 mid price (`|Entry - Mid| <= 2.0 * ATR_14`).
+   - Never encumber free margin on deep-fish limit orders (`> 2.0 ATR` away) that require a multi-ATR crash or spike just to reach entry.
+
 ### B. Constructing the Stop Loss (SL) — The Liquidity Bunker Principle
 - **The Core Mistake to Avoid (Front-Running Trap & Midpoint Trap):**
   * Retail traders place stop losses at obvious support levels, swing lows, or inside liquidation bands.
   * Market makers and institutional sweep algorithms intentionally drive price through these clusters to trigger stops and engineer exit liquidity.
   * *Lesson from Session History (Ticket #18785248 BTC & Cycle 39 SOL Audit):* Placing an SL in front of or directly inside a high-density stop/liquidation band (such as subtracting 0.5 ATR from `mid_price` instead of `min_price`) results in the SL sitting inside the sweep zone.
-- **The Institutional SL Rule (`min_price` / `max_price` Boundary Rule):**
+- **The Institutional SL Rule (`min_price` / `max_price` Boundary Rule & Forced-Fuel Overwhelm Ratio):**
   * Identify the major downside **reconstructed liquidation cascade band** and the primary **sell-stop cluster** (using both `top_*` and `nearest_*` lists in `live_snapshot_latest.json`).
   * **Measure Buffer from the Outer Band Edge (`min_price` for Longs, `max_price` for Shorts) — NEVER from `mid_price`:**
-    - For a **Long**: `SL <= band.min_price - (0.50 * ATR_14)`
-    - For a **Short**: `SL >= band.max_price + (0.50 * ATR_14)`
-  * Size the position volume strictly via `mt5.order_calc_profit` / `execution_specs` so that single-ticket risk equals $10.00 - $14.50 USD (0.20% - 0.29% account risk), defending the $4,775.00 USD hard floor.
+    - For a **Long**: `SL <= band.min_price - (0.25 to 0.50 * ATR_14)`
+    - For a **Short**: `SL >= band.max_price + (0.25 to 0.50 * ATR_14)`
+  * **Forced-Fuel vs. Resting L3 Defense Overwhelm Ratio (`<= 2.0:1` Cap):**
+    - Compare total forced selling/buying fuel inside the governing `[min_price, max_price]` band (`reconstructed_liquidations` + `structural_stop_clusters` notional) against the total resting eligible (`persist_s >= 180s`) L3 whale wall defense protecting the entry/stop zone.
+    - If forced fuel exceeds resting L3 whale defense by **`> 2.0:1`** (e.g., Cycle 42 ETH `[2,490, 2,500]` had `51.76M USD` forced fuel vs. `13.23M USD` L3 bid wall = `3.91:1`), **reject the setup regardless of R:R**.
+  * Size the position volume strictly via `mt5.order_calc_profit` / `execution_specs` so that single-ticket risk equals $10.00 - $14.50 USD (0.20% - 0.29% account risk), defending the $4,775.00 USD hard floor, and always report lot-scaled cash risk and lot-scaled cash reward consistently.
 
 ### C. Constructing the Take Profit (TP) — The Liquidity Magnet Principle
 - **Why Liquidations and Stops Act as Magnets:**
@@ -210,7 +217,8 @@ The following table documents real historical outcomes and forensic audits from 
 
 | Ticket / Asset | Outcome | Root Cause Analysis | Invariant Rule Extracted |
 |---|---|---|---|
-| **#18791527 BTC Limit** | FILLED & Running (`83,150` \| `SL 82,590` \| `TP 84,300`) | Modified SL from `82,650` to `82,590` (`0.51 ATR` below `min_price = 82,700` of the $32.24M cascade band) and TP from `84,400` to `84,300` (exact `max_price = 84,300` edge of the $6.10M buy-stop cluster at `84,200–84,300`, 106.50 USD below the $21.09M L3 Ask wall). | **Gold Standard Model 2 Setup:** Measure SL buffer from `min_price` (not `mid_price`) and keep TP inside/at `max_price` of the buy-stop magnet. |
+| **Cycle 42/42B ETH Audit** | Withdrawn `ETHUSD.pi BUY LIMIT @ 2,495.00` (`commit 7f53c562`) | Arena Cycle 42 proposed `ETHUSD.pi BUY LIMIT 1.06 lots @ 2,495.00` (`SL 2,485.50`, `TP 2,573.00`). Independent verification (`Cycle 42B`) proved 4 flaws: (1) Entry `2,495.00` sat `3.37 ATR` below mid (`2,524.55`), violating the `<= 2.0 ATR` proximity bound and encumbering `1,322.35 USD` (`29.8%` of free margin); (2) 5m/15m/30m CVD were all deeply negative (`-877.8k / -2.13M / -2.46M USD`); (3) `[2,490, 2,500]` held `51.76M USD` of forced liquidation + stop fuel against a single `13.23M USD` L3 bid wall (`3.91:1` overwhelm ratio), and the zone drained within 11 minutes; (4) Reward was quoted unscaled (`78.00` instead of lot-scaled `82.68 USD`). | **Three Permanent Rules (`§3.A`, `§3.B`, `§5`):** (1) Enforce `<= 2.0 ATR` entry proximity on both Mandate 1 new proposals and Mandate 3 resting orders; (2) Reject any bunker where forced fuel exceeds eligible L3 defense by `> 2.0:1`; (3) Confirm fast-ticking orderflow fields (`book_imbalance`, `cvd_1m_buckets`, `whale_walls_l3`) across `>= 3` consecutive generations and never override negative 5m/15m/30m CVD. |
+| **#18791527 BTC Limit** | FILLED & Stopped Out (`-11.20 USD` at `82,590`) | Modified SL from `82,650` to `82,590` (`0.51 ATR` below `min_price = 82,700` of the $32.24M cascade band) and TP from `84,400` to `84,300` (exact `max_price = 84,300` edge of the $6.10M buy-stop cluster at `84,200–84,300`, 106.50 USD below the $21.09M L3 Ask wall). Stopped out at `-11.20 USD` (`-1.00R`) during market-wide flush to `82,590`. | **Gold Standard Model 2 Setup & Exact Risk Control:** Measure SL buffer from `min_price` (not `mid_price`), keep TP inside/at `max_price` of the buy-stop magnet, and size exact lot risk via `mt5.order_calc_profit`. |
 | **Cycle 40/40B BTC TP Audit** | Rejected `84,340` TP Raise -> Kept `84,300` | In Cycle 40, Arena proposed raising `#18791527` TP from `84,300` to `84,340` to front-run a $21.09M L3 SELL wall at `84,401–84,406` after the `84,350` buy-stop cluster was pulled. Independent verification caught that `84,340` sat 40 USD *above* `max_price = 84,300` of the $6.10M buy-stop cluster (`84,200–84,300`) in a 600-pt zero-fuel gap right beneath a $21.09M Ask barrier. Arena withdrew `84,340` in Cycle 40B (`commit d55fd2d6`). | **Forced Magnets vs. Passive Barriers:** Buy-stops are forced market-buys (magnets that propel price and supply exit liquidity); L3 SELL walls are passive supply barriers that cap price. Never raise a Long TP above `max_price` of the last buy-stop magnet into an un-fueled gap toward an L3 Ask wall. |
 | **Cycle 39 SOL Audit** | Rejected `110.80` Entry / `109.30` SL -> Staged `#18795304` @ `110.15` | Arena proposed `BUY LIMIT @ 110.80` (`SL 109.30`). Independent verification revealed: (1) `109.30` subtracted `0.5 ATR` (`0.20 USD`) from `mid_price = 109.50`, leaving the SL *inside* the `109.00–110.00` ($8.59M stop + $4.02M liq) band; (2) `110.80` sat inside the MT5 spread (`110.77/111.00`), *above* a $2.72M sell-stop cluster at `110.50` and *above* $7.50M of L3 whale bids at `110.23–110.40` while 5m CVD was `-371k USD`. | **Two Permanent Rules:** (1) Always measure SL buffer from `min_price`/`max_price`, never `mid_price`; (2) Never place a Long Limit *above* an immediate nearby sell-stop sweep cluster when the main L3 whale bid wall sits *below* that stop cluster and 1m CVD is negative. |
 | **#18785248 BTC Long** | -11.17 USD Loss | Entry was valid, but SL was placed at 83,472 USD—directly inside an intraday sell-stop sweep band. Price wicked down, triggered the stop, and immediately rebounded. | **Never place SL in front of resting stop clusters.** Always position the stop behind the complete liquidation zone with ATR buffer. |
@@ -225,14 +233,15 @@ The following table documents real historical outcomes and forensic audits from 
 
 Before any order is staged or punched into MetaTrader 5, the desk conducts this rapid 7-point evaluation:
 
-1. **Spread & Friction Check:**
+1. **Spread, Friction & Entry Proximity (`<= 2.0 ATR`) Check:**
    - [ ] Is `quotes.spread_bps` <= 25.0 bps (Crypto) or <= 5.0 bps (TradFi CFDs)?
+   - [ ] Is the proposed passive limit `Entry` within **`<= 2.0 * ATR_14`** of current MT5 mid price (both for Mandate 1 new proposals and Mandate 3 resting orders)?
    - *If NO: Discard immediately.*
 
-2. **Floor Cushion & Risk Budget Defense:**
+2. **Floor Cushion, Margin Encumbrance & Risk Budget Defense:**
    - [ ] Is `risk.floor_cushion_usd` >= $20.00 USD?
    - [ ] Does `risk.stressed_equity_usd` remain >= $4,795.00 USD after this order?
-   - [ ] Is single-trade risk verified via `mt5.order_calc_profit` strictly between $10.00 and $14.50 USD (0.20% - 0.29%)?
+   - [ ] Is single-trade risk verified via `mt5.order_calc_profit` strictly between $10.00 and $14.50 USD (0.20% - 0.29%), with both Risk and Reward reported in lot-scaled USD alongside `mt5.order_calc_margin`?
    - *If NO: Reject order to defend capital.*
 
 3. **Macro Catalyst Runway:**
@@ -244,14 +253,15 @@ Before any order is staged or punched into MetaTrader 5, the desk conducts this 
    - [ ] Is setup **Model 1** (Extreme Mean Reversion, `|Z| >= 2.0 SD`) or **Model 2** (Trend Pullback, `|Z| < 2.0 SD` with price & 200 EMA slope aligned)?
    - [ ] Is there structural alignment (200 EMA slope, Session VWAP location, or Value Area boundary)?
 
-5. **L2/L3 Orderbook, Persistent Whale Backing (`persist_s >= 180s`) & Stop-Sweep Clearance:**
+5. **L2/L3 Orderbook, Persistent Whale Backing (`persist_s >= 180s`), Multi-Gen Stability & Stop-Sweep Clearance:**
    - [ ] For Longs: Is there a **persistent** resting bid wall or wallet-attributed L3 bid (`0x...`, `persist_s >= 180s` / `gate_g7_eligible == True` — never anchor on transient `persist_s == 0` prints) within 0.5 ATR below entry (basis-adjusted via `venue_basis`)?
    - [ ] For Shorts: Is there a **persistent** resting ask wall or wallet-attributed L3 ask (`0x...`, `persist_s >= 180s`) within 0.5 ATR above entry?
-   - [ ] **Stop-Sweep Clearance & 15m–30m CVD Window:** Make sure your entry does NOT sit inside or just above an un-swept sell-stop cluster (`min_price` to `max_price`), and evaluate cumulative 1m CVD flow over a **15-minute to 30-minute window (`15–30 buckets`)** alongside the latest 5 buckets so single-minute spikes do not flip the directional tape reading.
+   - [ ] **Multi-Generation Orderflow Confirmation & 5m/15m/30m CVD Alignment:** Verify `whale_walls_l3`, `cvd_1m_buckets` (5m/15m/30m cumulative windows), and `book_imbalance` stability across `>= 3` consecutive generations, and never recommend a trade against deeply negative (for Longs) or deeply positive (for Shorts) 5m/15m/30m CVD.
 
-6. **Liquidation & Stop Cluster Coincidence (SL & TP Construction):**
-   - [ ] **SL Placement (`min_price` / `max_price` edge):** Is the Stop Loss positioned at least `0.50 ATR` below `min_price` (for Longs) or above `max_price` (for Shorts) of the liquidation/stop band — NEVER measured from `mid_price`?
-   - [ ] **TP Placement (5–10 bps front-run):** Is the Take Profit targeted directly inside or 5–10 bps in front of the opposing short-squeeze band or stop cluster?
+6. **Liquidation & Stop Cluster Coincidence (SL Bunker, Overwhelm Ratio & TP Magnet):**
+   - [ ] **SL Placement (`min_price` / `max_price` edge):** Is the Stop Loss positioned at least `0.25–0.50 ATR` below `min_price` (for Longs) or above `max_price` (for Shorts) of the liquidation/stop band — NEVER measured from `mid_price`?
+   - [ ] **Forced-Fuel Overwhelm Ratio (`<= 2.0:1`):** Is the total forced liquidation + stop cluster notional inside `[min_price, max_price]` `<= 2.0x` the resting eligible (`>= 180s`) L3 whale wall defense?
+   - [ ] **TP Placement (5–10 bps front-run):** Is the Take Profit targeted directly inside or 5–10 bps in front of the opposing short-squeeze band or stop cluster (with real notional `>= 0.50M USD`)?
    - [ ] **Risk/Reward:** Is the projected RR >= 2.0R?
 
 7. **Execution Integrity:**

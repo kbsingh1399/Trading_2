@@ -63,10 +63,12 @@ async def probe_arena_state() -> dict:
     js = """(() => {
         const btnStop = document.querySelector('button[aria-label*="Stop"], button[title*="Stop"]');
         const isGenerating = Boolean(btnStop);
-        const proses = Array.from(document.querySelectorAll('.prose'));
-        const proseCount = proses.length;
-        const lastProse = proseCount > 0 ? proses[proseCount - 1] : null;
+        const allProses = Array.from(document.querySelectorAll('.prose'));
+        const proseCount = allProses.length;
+        const nonEmptyProses = allProses.filter(e => (e.innerText || '').trim().length > 0);
+        const lastProse = nonEmptyProses.length > 0 ? nonEmptyProses[nonEmptyProses.length - 1] : null;
         const lastText = lastProse ? (lastProse.innerText || '').trim() : '';
+        const recentSnippets = nonEmptyProses.slice(-3).map(e => (e.innerText || '').trim().slice(0, 220));
 
         let turnEl = lastProse;
         for (let i = 0; i < 4 && turnEl && turnEl.parentElement; i++) {
@@ -83,8 +85,10 @@ async def probe_arena_state() -> dict:
             connected: true,
             isGenerating,
             proseCount,
+            nonEmptyProseCount: nonEmptyProses.length,
             lastLen: lastText.length,
             lastText,
+            recentSnippets,
             hasCopyButton,
             hasDurationFooter,
             hasYesNoBanner
