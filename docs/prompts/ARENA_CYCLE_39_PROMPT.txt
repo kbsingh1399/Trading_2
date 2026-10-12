@@ -1,0 +1,74 @@
+TRADING DESK COUNCIL: CYCLE 39 PURE TELEMETRY & PLAYBOOK ANALYSIS PROMPT
+MANDATE: 100% DIRECT LINE-BY-LINE ANALYSIS OF docs/telemetry/live_snapshot_latest.json (ZERO DECISION GATES)
+
+PART A: REQUIRED READING (complete before analysis)
+Read the following repository sources in full:
+
+1. Live Telemetry Matrix (Primary Ground Truth): docs/telemetry/live_snapshot_latest.json
+   Latest Generation: 3a6f9a5dbc974980bb6bac7b9ad57b6f (2026-10-12 11:37:02 UTC)
+   Upstream: https://github.com/kbsingh1399/Trading_2/blob/arena/537c1eb8-trading-2/docs/telemetry/live_snapshot_latest.json
+   Raw: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/telemetry/live_snapshot_latest.json
+   Inspect all 24 assets in assets_matrix_24 and all telemetry blocks: quotes (MT5 spread_bps & mid), execution_specs, causal_indicators (Session VWAP, Z-score, RSI, ATR, EMA 20/50/200, POC/VAH/VAL), orderbook_live_depth (20-level L2 depth & imbalance), whale_walls_l3 (0x... wallet addresses, sizes, distances), structural_stop_clusters (top_sell_stop_clusters_below, top_buy_stop_clusters_above), reconstructed_liquidations (top_long_cascade_bands_below, top_short_squeeze_bands_above), venue_basis, and cvd_1m_buckets.
+
+2. Live Trade Decision Playbook: docs/specs/TRADE_DECISION_PLAYBOOK.md
+   Source: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/specs/TRADE_DECISION_PLAYBOOK.md
+   Apply the Parameter Coincidence Matrix (Entry Shelf + SL Liquidity Bunker + TP Liquidity Magnet + Psychological Round Numbers), Dual-Venue Division of Labor (Spreads/Quotes from MT5; Orderbook/Whales/Liquidations/Stops from Hyperdash & Binance), and the 7-Point Pre-Trade Checklist.
+
+3. Live Order Desk & Session Context:
+   • docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md (https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md)
+   • .agents/rules/ACTIVE_CONTEXT.md (https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agents/rules/ACTIVE_CONTEXT.md)
+   • .agents/memory/session_chat_history.md (https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agents/memory/session_chat_history.md)
+
+PART B: ACCOUNT AND RISK BASELINE
+• Execution Mode: PASSIVE LIMIT ORDERS ONLY (no market orders).
+• Broker: Blueberry Markets SVG LLC, MetaTrader 5 account #5064568
+• Balance / Equity: 4885.38 USD / 4885.38 USD
+• Margin used: 0.00 USD
+• Hard floor: 4,775.00 USD | Operating buffer: 4,795.00 USD
+• Live cushion: +110.38 USD above hard floor (+90.38 USD above operating buffer)
+• Risk per trade: 10.00 to 14.50 USD (0.20% to 0.29% of capital). Up to 4 concurrent tickets across orthogonal asset clusters provided joint worst-case post-stop equity >= 4,795.00 USD.
+
+PART C: STRICT OPERATOR MANDATE — PURE TELEMETRY REASONING (NO DECISION GATES)
+1. DO NOT RUN OR CITE decision_gates_v3.py OR LEGACY GATE TOKENS:
+   • Programmatic gate scripts (decision_gates_v3.py, A1-A5, B1-B6, G-4, G-6, MAX_TARGET_DIST_ATR = 4.0, A2_no_tape_fail_closed) are RETIRED from trade selection.
+   • Do NOT disqualify TradFi CFDs (SP500, NAS100, EURUSD, USDJPY, XAUUSD, USWTI) just because cvd_1m_buckets is 0; evaluate them using their MT5 spreads, VWAP Z-scores, EMA/VP shelves, Hyperliquid L2 orderbook imbalance, L3 whale wallet orders (0x...), structural stop clusters, and liquidation bands.
+   • Do NOT disqualify setups using an arbitrary 4.0 ATR target cap if structural levels (Session VWAP, POC, VAH/VAL, EMA shelves, overhead buy-stop clusters, or psychological round numbers) provide logical targets with >= 1.8R to 2.5R reward.
+2. MULTI-PARAMETER COINCIDENCE DEBATE (per docs/specs/TRADE_DECISION_PLAYBOOK.md):
+   • Entry Level: Where a structural level (Session VWAP, VAL/VAH, POC, 20/50/200 EMA, or >= 2.0 SD band) coincides with resting L2 depth and L3 whale wallet orders (0x...), adjusted onto the MT5 price grid via venue_basis.
+   • Stop Loss (Liquidity Bunker): Placed safely BEHIND the nearest major reconstructed liquidation cascade band and sell-stop/buy-stop cluster with a 0.25x-0.50x ATR buffer, never inside the sweep zone.
+   • Take Profit (Liquidity Magnet): Placed directly INTO (or slightly front-running) opposing short-squeeze / long-liquidation bands, stop clusters, Session VWAP/POC, and psychological round numbers.
+
+PART D: COUNCIL PERSONAS
+1. Orderflow & Microstructure Analyst: MT5 spread_bps, L2 20-level depth & imbalance, L3 on-chain wallet orders (0x...), and crypto CVD taker absorption.
+2. Structural Price Action Specialist: Session VWAP & SD bands (Z-score), Volume Profile (POC/VAH/VAL), 20/50/200 EMA hierarchy, and psychological round numbers.
+3. Liquidation & Stop Hunt Forensic: Reconstructed liquidation cascade bands, stop clusters, SL bunker placement, and TP magnet front-running.
+4. Macro Risk & Portfolio Governor: Capital floor defense (4,775.00 USD hard floor / 4,795.00 USD buffer), discrete lot sizing (execution_specs), and net expectancy.
+
+PART E: TASKS
+Step 1: Pure Telemetry Analysis of docs/telemetry/live_snapshot_latest.json across all 24 assets
+Analyze all 24 assets line by line directly from docs/telemetry/live_snapshot_latest.json. Pay special attention to:
+• SP500 (): Mid 7814.22 | Spread 0.38 bps | Z = -1.93 SD | RSI 35.53 | Trend BULLISH | L2 Imbalance None | L3 Whales: 0 | Stops (below/above): 10/10 | Liq Bands (long/short): 10/2
+• NAS100 (): Mid 30830.82 | Spread 0.34 bps | Z = -1.91 SD | RSI 37.68 | Trend BEARISH | L2 Imbalance None | L3 Whales: 0 | Stops (below/above): 10/10 | Liq Bands (long/short): 10/2
+• EURUSD (): Mid 1.1176 | Spread 0.09 bps | Z = -2.26 SD | RSI 21.75 | Trend BEARISH | L2 Imbalance None | L3 Whales: 0 | Stops (below/above): 9/10 | Liq Bands (long/short): 10/0
+• USDJPY (): Mid 158.6295 | Spread 0.19 bps | Z = 2.03 SD | RSI 74.47 | Trend BULLISH | L2 Imbalance None | L3 Whales: 0 | Stops (below/above): 10/10 | Liq Bands (long/short): 10/0
+• BTC (): Mid 83343.0 | Spread 1.92 bps | Z = -1.53 SD | RSI 41.21 | Trend BULLISH | L2 Imbalance None | L3 Whales: 0 | Stops (below/above): 10/10 | Liq Bands (long/short): 10/3
+• ETH (): Mid 2545.45 | Spread 11.39 bps | Z = -0.6 SD | RSI 43.08 | Trend BULLISH | L2 Imbalance None | L3 Whales: 0 | Stops (below/above): 10/10 | Liq Bands (long/short): 10/1
+• SOL (): Mid 110.97 | Spread 21.63 bps | Z = -1.23 SD | RSI 39.6 | Trend BULLISH | L2 Imbalance None | L3 Whales: 0 | Stops (below/above): 10/10 | Liq Bands (long/short): 10/2
+For every qualifying setup (Mean Reversion or Trend Following), provide exact MT5 symbol, BUY/SELL LIMIT, volume (lots), Entry price, SL (behind bunker), TP (front-running magnet), USD risk, R:R, and the exact coincidence of parameters from live_snapshot_latest.json.
+
+Step 2: Audit running trades and ratchets
+• Current open positions on MT5: 0 (Flat, 100% Cash reserves).
+
+Step 3: Audit resting limit orders
+• Current pending orders on MT5: 1 active order(s):
+  - Ticket #18791527: BTCUSD.pi BUY_LIMIT 0.02 lots @ 83150.0 USD | Spot: 83332.0 USD | SL: 82650.0 USD | TP: 84400.0 USD
+• Evaluate Ticket #18791527 purely under the Playbook: Spot is above the 200 EMA, limit is at 83,150 USD, SL is at 82,650 USD below the 82,700-82,800 liquidation cascade band, and overhead buy-stop clusters sit at 84,250-84,350 USD. Should we maintain as-is, or adjust TP to 84,250-84,340 USD to front-run the buy-stop clusters?
+
+Step 4: Capacity and capital floor governance
+• Verify that all active + proposed limit orders keep stressed post-stop equity >= 4,795.00 USD (>= 20.00 USD cushion above the 4,775.00 USD hard floor).
+
+PART F: OUTPUT FORMAT
+1. TELEMETRY & PLAYBOOK INGESTION CITATION (confirming generation_id, generated_at_utc, and Playbook rules)
+2. Line-by-Line Multi-Parameter Debate across all 24 assets (focusing on SP500, NAS100, EURUSD, USDJPY, BTC, ETH, SOL, XAUUSD without any legacy gate vetoes)
+3. Resting Order Audit on Ticket #18791527 (including whether to front-run the 84,250-84,350 USD buy-stop magnet)
+4. Actionable Limit Order Table (Symbol, Side, Lots, Entry, SL Bunker, TP Magnet, Risk USD, R:R, Parameter Coincidence Rationale)

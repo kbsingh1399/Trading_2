@@ -1261,8 +1261,12 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                 elif mid_b > hd_mid:
                     buy_stop_bands.append(entry_b)
 
-            sell_stop_bands.sort(key=lambda x: x["size"], reverse=True)
-            buy_stop_bands.sort(key=lambda x: x["size"], reverse=True)
+            nearest_sell_stops = sorted(sell_stop_bands, key=lambda x: abs(x["mid_price"] - hd_mid))[:10]
+            nearest_buy_stops = sorted(buy_stop_bands, key=lambda x: abs(x["mid_price"] - hd_mid))[:10]
+            sell_stop_bands = [x for x in sell_stop_bands if x["notional_usd"] <= 500_000_000]
+            buy_stop_bands = [x for x in buy_stop_bands if x["notional_usd"] <= 500_000_000]
+            sell_stop_bands.sort(key=lambda x: (abs(x["distance_pct"]) <= 5.0, x["size"]), reverse=True)
+            buy_stop_bands.sort(key=lambda x: (abs(x["distance_pct"]) <= 5.0, x["size"]), reverse=True)
 
             top_buy_whale_stops = []
             for w in top_buy_raw[:10]:
@@ -1299,6 +1303,8 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                 "total_sell_stops_count": total_sell_count,
                 "top_sell_stop_clusters_below": sell_stop_bands[:10],
                 "top_buy_stop_clusters_above": buy_stop_bands[:10],
+                "nearest_sell_stop_clusters_below": nearest_sell_stops,
+                "nearest_buy_stop_clusters_above": nearest_buy_stops,
                 "top_buy_whale_stops": top_buy_whale_stops,
                 "top_sell_whale_stops": top_sell_whale_stops,
                 "band_count": len(raw_stop_bands),
@@ -1310,6 +1316,7 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                 "amount_semantics": "UNAVAILABLE",
                 "total_sell_stops_usd": None, "total_buy_stops_usd": None,
                 "top_sell_stop_clusters_below": [], "top_buy_stop_clusters_above": [],
+                "nearest_sell_stop_clusters_below": [], "nearest_buy_stop_clusters_above": [],
                 "reason": hd_res.get("reason", "No verified exchange stop-order feed")
             }
 
@@ -1347,8 +1354,10 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                 elif mid_b > hd_mid:
                     short_liq_bands.append(entry_b)
 
-            long_liq_bands.sort(key=lambda x: x["size"], reverse=True)
-            short_liq_bands.sort(key=lambda x: x["size"], reverse=True)
+            nearest_long_liqs = sorted(long_liq_bands, key=lambda x: abs(x["mid_price"] - hd_mid))[:10]
+            nearest_short_liqs = sorted(short_liq_bands, key=lambda x: abs(x["mid_price"] - hd_mid))[:10]
+            long_liq_bands.sort(key=lambda x: (abs(x["distance_pct"]) <= 5.0, x["size"]), reverse=True)
+            short_liq_bands.sort(key=lambda x: (abs(x["distance_pct"]) <= 5.0, x["size"]), reverse=True)
 
             top_long_liq_whales = []
             for w in top_long_raw[:10]:
@@ -1382,6 +1391,8 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                 "total_short_liquidations_count": total_short_count,
                 "top_long_cascade_bands_below": long_liq_bands[:10],
                 "top_short_squeeze_bands_above": short_liq_bands[:10],
+                "nearest_long_cascade_bands_below": nearest_long_liqs,
+                "nearest_short_squeeze_bands_above": nearest_short_liqs,
                 "top_long_liquidation_whales": top_long_liq_whales,
                 "top_short_liquidation_whales": top_short_liq_whales,
                 "band_count": len(raw_liq_bands),

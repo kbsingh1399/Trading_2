@@ -1,0 +1,52 @@
+TRADING DESK COUNCIL: CYCLE 39B BIDIRECTIONAL VERIFICATION & CORRECTIVE FEEDBACK PROMPT
+MANDATE: REVIEW ANTIGRAVITY'S INDEPENDENT AUDIT OF CYCLE 39, CORRECT SOLUSD.p MICROSTRUCTURE ERRORS, AND INSPECT NEW NEAREST_* INTRADAY CLUSTERS
+
+PART A: UPDATED REPOSITORY SOURCES (SYNCED TO MAIN & ARENA BRANCH)
+1. Live Trade Decision Playbook (Updated with min_price/max_price Boundary Rule & SOL Audit Lesson):
+   Source: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/specs/TRADE_DECISION_PLAYBOOK.md
+2. Active Operational Context (Updated with Ticket #18791527 live modification & Feedback Loop Mandate):
+   Source: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agents/rules/ACTIVE_CONTEXT.md
+3. Live Telemetry Matrix (Upgraded with nearest_sell_stop_clusters_below, nearest_buy_stop_clusters_above, nearest_long_cascade_bands_below, nearest_short_squeeze_bands_above, and >500M USD glitch filter):
+   Upstream: https://github.com/kbsingh1399/Trading_2/blob/arena/537c1eb8-trading-2/docs/telemetry/live_snapshot_latest.json
+   Raw: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/telemetry/live_snapshot_latest.json
+
+PART B: ANTIGRAVITY INDEPENDENT VERIFICATION OF YOUR CYCLE 39 OUTPUT
+
+1. APPROVED & EXECUTED LIVE ON MT5 — Ticket #18791527 (BTCUSD.pi BUY LIMIT 0.02 lots @ 83,150.00):
+   • Your Cycle 39 audit of Ticket #18791527 was 100% mathematically sound:
+     - Moving SL from 82,650.00 to 82,590.00 places the stop 110.00 USD (0.512 ATR) below min_price = 82,700.00 of the 32.24M USD long liquidation cascade band (82,700–82,800).
+     - Moving TP from 84,400.00 to 84,300.00 front-runs the 7.04M USD buy-stop cluster at 84,350.00 by 5.9 bps after absorbing the 6.18M USD cluster at 84,250.00.
+     - Verified via mt5.order_calc_profit: Risk = -11.20 USD, Reward = +23.00 USD, R:R = 2.0536.
+   • Action Taken: Ticket #18791527 has been modified live on MetaTrader 5 (Retcode 10009: Entry 83,150.00 | SL 82,590.00 | TP 84,300.00).
+
+2. TWO MICROSTRUCTURE MISTAKES CAUGHT IN YOUR CYCLE 39 SOLUSD.p PROPOSAL (BUY LIMIT 0.07 lots @ 110.80 | SL 109.30 | TP 114.40):
+   Upon independent verification of docs/telemetry/live_snapshot_latest.json and live MT5 quotes, our desk caught two critical errors in your SOLUSD.p setup that blocked execution:
+
+   • MISTAKE #1 (The SL Midpoint Trap — SL 109.30 sits INSIDE the 109.00–110.00 liquidation band):
+     - On BTC, you correctly measured the 0.50 ATR SL buffer below min_price = 82,700.00 (the lower edge of the 82,700–82,800 band).
+     - On SOL, the 8.59M USD sell-stop cluster and 4.02M USD long liquidation cascade span min_price = 109.00 to max_price = 110.00 (mid_price = 109.50).
+     - You subtracted 0.50 ATR (0.20 USD) from mid_price = 109.50 to get SL = 109.30. Because the bucket width is 1.00 USD, 109.30 sits 0.30 USD ABOVE min_price = 109.00 — directly INSIDE the liquidation cascade band!
+     - Rule Codified in Playbook §3B: Always measure the >= 0.50 ATR SL buffer from min_price (for Longs) or max_price (for Shorts), NEVER from mid_price. For SOL, 0.50 ATR below min_price = 109.00 requires SL <= 108.80.
+
+   • MISTAKE #2 (Entry 110.80 sits inside the MT5 spread, ABOVE the 2.72M USD sell-stop sweep band at 110.50, and ABOVE the 7.50M USD L3 whale bid wall at 110.23–110.40):
+     - Live MT5 quotes on SOLUSD.p are Bid = 110.77 / Ask = 111.00 (spread = 20.74 bps). Placing a BUY LIMIT at 110.80 puts the order inside the current Bid-Ask spread (above Bid = 110.77) while the last 5 minutes of 1m CVD buckets show -371,062 USD of net taker selling (-9k, -213k, -68k, -64k, -15k USD).
+     - Directly below 110.80 sits an un-swept 2.72M USD sell-stop cluster at 110.00–111.00 (mid 110.50).
+     - And where do the largest L3 whale bids (0x...) actually sit on SOL? They sit BELOW 110.50:
+       * 110.48 ($0.70M whale bid)
+       * 110.40 ($2.54M whale bid)
+       * 110.23 ($4.96M whale bid)
+       * 110.19 ($0.97M whale bid)
+       Adjusted for Hyperliquid-to-MT5 basis (basis_median = -0.12 USD), the $2.54M and $4.96M ($7.50M combined) whale wall sits at 110.11–110.28 on MT5!
+     - Rule Codified in Playbook §5.5: Never stage a Long Limit above an immediate nearby sell-stop sweep cluster when the primary L3 whale bid walls sit below that stop cluster and 1m CVD is actively negative.
+
+3. TELEMETRY UPGRADE DELIVERED FOR YOUR DATA-INTEGRITY FLAG (SP500 7,755 Glitch & Nearest Intraday Bands):
+   • You rightly flagged that SP500's 7,755 sell-stop row published a corrupted $11.76B outlier, and that sorting bands globally by size across ±50% hid nearby intraday bands on SP500, NAS100, and GOLD.
+   • We immediately patched Terminal/Data_Factory/generate_telemetry_snapshot.py:
+     1. Filtered out >500M USD corrupted outlier stop clusters.
+     2. Prioritized bands within ±5% of spot in top_sell_stop_clusters_below / top_buy_stop_clusters_above / top_long_cascade_bands_below / top_short_squeeze_bands_above.
+     3. Added explicit proximity-sorted lists: nearest_sell_stop_clusters_below, nearest_buy_stop_clusters_above, nearest_long_cascade_bands_below, and nearest_short_squeeze_bands_above (for example, SP500 has real intraday stop bands at 7,805 [$451k], 7,795 [$351k], 7,835 [$135k], and GOLD has real intraday stop/liq bands at 4,165 [$693k], 4,155 [$283k], and 4,145 [$353k]).
+
+PART C: TASKS FOR CYCLE 39B
+1. Acknowledge and verify the two SOLUSD.p corrections (measuring SL from min_price = 109.00 -> SL <= 108.80, and anchoring Entry at the 110.25–110.35 whale bid wall below the 110.50 stop sweep). Re-calculate the corrected SOLUSD.p limit order parameters (Entry, SL <= 108.80, TP front-running 114.50 or 113.50, discrete lots for $10.00–$14.50 risk, and R:R). Does the corrected SOLUSD.p setup pass the Playbook (>= 2.0R)?
+2. Pull the newly synced docs/telemetry/live_snapshot_latest.json and inspect the newly exposed nearest_* intraday stop and liquidation bands on SP500, NAS100, GOLD, and ETH. Do any of them form a complete Playbook setup now that intraday bands are visible, or should they remain on Stand Aside?
+3. Output the updated Actionable Limit Order Table.

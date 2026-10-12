@@ -181,39 +181,41 @@ Trading decisions must never rely on a single parameter in isolation. High-proba
    - Crucial check: Must be backed by resting L2/L3 whale bids within 0.25 - 0.50 ATR of the limit price.
 
 ### B. Constructing the Stop Loss (SL) — The Liquidity Bunker Principle
-- **The Core Mistake to Avoid (Front-Running Trap):**
-  * Retail traders place stop losses at obvious support levels or swing lows.
+- **The Core Mistake to Avoid (Front-Running Trap & Midpoint Trap):**
+  * Retail traders place stop losses at obvious support levels, swing lows, or inside liquidation bands.
   * Market makers and institutional sweep algorithms intentionally drive price through these clusters to trigger stops and engineer exit liquidity.
-  * *Lesson from Session History (Ticket #18785248 BTC):* Placing an SL in front of or directly inside a high-density stop cluster results in being swept before the true market reversal.
-- **The Institutional SL Rule:**
-  * Identify the major downside **reconstructed liquidation cascade band** and the primary **sell-stop cluster**.
-  * Place the SL **behind** this entire liquidation pool (at least 0.5 - 1.0 ATR below the lowest liquidation band).
-  * This ensures that if the market executes a liquidity sweep, your position survives the flush and catches the sharp recovery.
-  * Size the position volume strictly so that `volume * (entry - SL)` equals $10.00 - $14.50 USD (0.20% - 0.29% account risk), defending the $4,775.00 USD hard floor.
+  * *Lesson from Session History (Ticket #18785248 BTC & Cycle 39 SOL Audit):* Placing an SL in front of or directly inside a high-density stop/liquidation band (such as subtracting 0.5 ATR from `mid_price` instead of `min_price`) results in the SL sitting inside the sweep zone.
+- **The Institutional SL Rule (`min_price` / `max_price` Boundary Rule):**
+  * Identify the major downside **reconstructed liquidation cascade band** and the primary **sell-stop cluster** (using both `top_*` and `nearest_*` lists in `live_snapshot_latest.json`).
+  * **Measure Buffer from the Outer Band Edge (`min_price` for Longs, `max_price` for Shorts) — NEVER from `mid_price`:**
+    - For a **Long**: `SL <= band.min_price - (0.50 * ATR_14)`
+    - For a **Short**: `SL >= band.max_price + (0.50 * ATR_14)`
+  * Size the position volume strictly via `mt5.order_calc_profit` / `execution_specs` so that single-ticket risk equals $10.00 - $14.50 USD (0.20% - 0.29% account risk), defending the $4,775.00 USD hard floor.
 
 ### C. Constructing the Take Profit (TP) — The Liquidity Magnet Principle
 - **Why Liquidations and Stops Act as Magnets:**
   * In an upward move, short positions have buy-stops resting above key swing highs, and overleveraged shorts face forced liquidation in discrete bands.
   * Price is naturally drawn to these pools because institutional traders require that liquidity to offload long positions without slipping the market.
 - **The Institutional TP Rule:**
-  * Identify the nearest major **short squeeze liquidation band** or high-density **buy-stop cluster** (e.g. >= 5M USD notional).
-  * Target your Take Profit **directly inside or just before (5-10 bps front-run)** this cluster.
+  * Identify the nearest major **short squeeze liquidation band** or high-density **buy-stop cluster** (using both `top_*` and `nearest_*` lists).
+  * Target your Take Profit **directly inside or slightly front-running (5-10 bps before)** this cluster — never *above* the cluster (for Longs) or *below* the cluster (for Shorts), which would require price to fully clear the entire wall to fill your exit.
   * Verify that the target provides at least a **2.0R to 2.5R Risk-to-Reward ratio** relative to the entry and SL.
-  * Align with psychological round numbers (e.g., target 84,400 USD just below the major 84,500 USD round number and 84,450 USD short squeeze band).
+  * *Worked Example (Ticket #18791527 BTCUSD.pi):* With buy-stop clusters at `84,250 USD` ($6.18M) and `84,350 USD` ($7.04M), setting TP at **`84,300 USD`** front-runs the larger $7.04M cluster at `84,350 USD` by 5.9 bps after absorbing the $6.18M cluster at `84,250 USD`, locking in 2.05R ($23.00 reward on $11.20 risk).
 
 ---
 
 ## 4. Empirical Lessons Learned from Session Chat History
 
-The following table documents real historical outcomes from our active trading desk, extracting permanent rules:
+The following table documents real historical outcomes and forensic audits from our active trading desk, extracting permanent rules:
 
 | Ticket / Asset | Outcome | Root Cause Analysis | Invariant Rule Extracted |
 |---|---|---|---|
-| **#18791527 BTC Limit** | LIVE Resting | Staged BUY LIMIT at 83,150 USD backed by 200 EMA & 5.9M USD stop shelf; SL at 82,650 USD safely behind 32.4M USD liquidation cascade pool; TP at 84,400 USD targeting 7.8M USD buy-stop pool. | **Gold Standard Model 2 Setup:** Strict passive limit order anchored on structural support with SL in the liquidation bunker and TP at the liquidity magnet. |
+| **#18791527 BTC Limit** | LIVE Resting (`83,150` \| `SL 82,590` \| `TP 84,300`) | Modified SL from `82,650` to `82,590` (`0.51 ATR` below `min_price = 82,700` of the $32.24M cascade band) and TP from `84,400` to `84,300` (front-running the $7.04M buy-stop cluster at `84,350` by 5.9 bps). | **Gold Standard Model 2 Setup:** Measure SL buffer from `min_price` (not `mid_price`) and front-run the overhead stop cluster by 5–10 bps rather than placing TP above it. |
+| **Cycle 39 SOL Audit** | Rejected `110.80` Entry / `109.30` SL | Arena proposed `BUY LIMIT @ 110.80` (`SL 109.30`). Independent verification revealed: (1) `109.30` subtracted `0.5 ATR` (`0.20 USD`) from `mid_price = 109.50`, leaving the SL *inside* the `109.00–110.00` ($8.59M stop + $4.02M liq) band; (2) `110.80` sat inside the MT5 spread (`110.77/111.00`), *above* a $2.72M sell-stop cluster at `110.50` and *above* $7.50M of L3 whale bids at `110.23–110.40` while 5m CVD was `-371k USD`. | **Two Permanent Rules:** (1) Always measure SL buffer from `min_price`/`max_price`, never `mid_price`; (2) Never place a Long Limit *above* an immediate nearby sell-stop sweep cluster when the main L3 whale bid wall sits *below* that stop cluster and 1m CVD is negative. |
 | **#18785248 BTC Long** | -11.17 USD Loss | Entry was valid, but SL was placed at 83,472 USD—directly inside an intraday sell-stop sweep band. Price wicked down, triggered the stop, and immediately rebounded. | **Never place SL in front of resting stop clusters.** Always position the stop behind the complete liquidation zone with ATR buffer. |
 | **#18734917 BTC Long** | +24.00 USD Profit | Bought pullback to 82,600 USD; TP placed at 83,250 USD directly into an overhead short-squeeze band. Price exploded into the band and filled TP cleanly. | **Liquidity magnets deliver clean fills.** Targeting known short squeeze bands yields rapid TP execution with zero slippage. |
 | **#18740569 SP500 Long** | -13.00 USD Loss | High index volatility during NY cash open; tight stop within 1.0 ATR was clipped during inter-venue basis rebalancing. | **TradFi CFD volatility requires wider ATR spacing.** Always use at least 1.5 ATR stop distance for equity indices during active sessions. |
-| **#18723453 SP500 Long** | +34.00 USD Profit | Model 1 extreme flush entry at Z = -2.4 SD; held through mean reversion to Session VWAP and POC. | **Extreme Z-score flushes (|Z| >= 2.0 SD) have massive edge** when entering with passive limit orders at structural exhaustion. |
+| **#18723453 SP500 Long** | +34.00 USD Profit | Model 1 extreme flush entry at Z = -2.4 SD; held through mean reversion to Session VWAP and POC. | **Extreme Z-score flushes (\|Z\| >= 2.0 SD) have massive edge** when entering with passive limit orders at structural exhaustion. |
 | **Retail Altcoins** | Banned | Altcoins like DOGE, DOT, ADA, LINK exhibit spreads of 30 to 240 bps on MT5 broker feeds. | **Strict Friction Gate:** Never trade instruments with spread > 25 bps. Confine intraday trading to institutional assets (BTC, ETH, SOL, BNB, Indices, Metals, Major FX). |
 
 ---
@@ -229,7 +231,7 @@ Before any order is staged or punched into MetaTrader 5, the desk conducts this 
 2. **Floor Cushion & Risk Budget Defense:**
    - [ ] Is `risk.floor_cushion_usd` >= $20.00 USD?
    - [ ] Does `risk.stressed_equity_usd` remain >= $4,795.00 USD after this order?
-   - [ ] Is single-trade risk capped strictly between $10.00 and $14.50 USD (0.20% - 0.29%)?
+   - [ ] Is single-trade risk verified via `mt5.order_calc_profit` strictly between $10.00 and $14.50 USD (0.20% - 0.29%)?
    - *If NO: Reject order to defend capital.*
 
 3. **Macro Catalyst Runway:**
@@ -238,29 +240,30 @@ Before any order is staged or punched into MetaTrader 5, the desk conducts this 
    - *If NO: Stand aside until catalyst passes.*
 
 4. **Regime & Strategic Setup Identification:**
-   - [ ] Is setup **Model 1** (Extreme Mean Reversion, `|Z| >= 2.0 SD`) or **Model 2** (Trend Pullback, `|Z| < 2.0 SD`)?
+   - [ ] Is setup **Model 1** (Extreme Mean Reversion, `|Z| >= 2.0 SD`) or **Model 2** (Trend Pullback, `|Z| < 2.0 SD` with price & 200 EMA slope aligned)?
    - [ ] Is there structural alignment (200 EMA slope, Session VWAP location, or Value Area boundary)?
 
-5. **L2/L3 Orderbook & Whale Backing:**
-   - [ ] For Longs: Is there a persistent resting bid wall or wallet-attributed L3 bid within 0.5 ATR below entry?
-   - [ ] For Shorts: Is there a persistent resting ask wall or wallet-attributed L3 ask within 0.5 ATR above entry?
-   - [ ] Does CVD taker delta confirm exhaustion (decelerating adverse flow)?
+5. **L2/L3 Orderbook, Whale Backing & Stop-Sweep Clearance:**
+   - [ ] For Longs: Is there a persistent resting bid wall or wallet-attributed L3 bid (`0x...`) within 0.5 ATR below entry (basis-adjusted via `venue_basis`)?
+   - [ ] For Shorts: Is there a persistent resting ask wall or wallet-attributed L3 ask (`0x...`) within 0.5 ATR above entry?
+   - [ ] **Stop-Sweep Clearance:** Make sure your entry does NOT sit just above an un-swept sell-stop cluster when the largest L3 whale bids sit *below* that stop cluster and 1m CVD is actively negative.
 
 6. **Liquidation & Stop Cluster Coincidence (SL & TP Construction):**
-   - [ ] **SL Placement:** Is the proposed Stop Loss positioned safely **behind** the nearest major liquidation cascade band and sell/buy stop cluster?
-   - [ ] **TP Placement:** Is the proposed Take Profit targeted directly **into** an overhead short-squeeze band or high-density stop cluster?
-   - [ ] **Risk/Reward:** Is the projected RR >= 2.0R (preferably 2.5R+)?
+   - [ ] **SL Placement (`min_price` / `max_price` edge):** Is the Stop Loss positioned at least `0.50 ATR` below `min_price` (for Longs) or above `max_price` (for Shorts) of the liquidation/stop band — NEVER measured from `mid_price`?
+   - [ ] **TP Placement (5–10 bps front-run):** Is the Take Profit targeted directly inside or 5–10 bps in front of the opposing short-squeeze band or stop cluster?
+   - [ ] **Risk/Reward:** Is the projected RR >= 2.0R?
 
 7. **Execution Integrity:**
-   - [ ] Is the order a **PASSIVE LIMIT ORDER** resting strictly below ask (for buys) or above bid (for sells)?
+   - [ ] Is the order a **PASSIVE LIMIT ORDER** resting strictly outside the Bid-Ask spread (below Bid for buys or at a true pullback level, above Ask for sells)?
    - [ ] Has broker clock calibration completed (`BrokerClock` tick age fresh)?
    - *If ALL YES: Punch the order autonomously without hesitation.*
 
 ---
 
-## 6. Document Governance & Continuous Improvement
+## 6. Document Governance, Independent Verification & Immediate Arena Feedback Loop
 
-This document is governed by the Kaizen protocol. Whenever a live trade resolves (profit or loss), or new microstructure insights are uncovered:
-- Update Section 4 with the trade ticket, outcome, and new lessons.
-- Refine Section 3 parameters and threshold heuristics.
-- Ensure bidirectional synchronization across `main` and `arena/537c1eb8-trading-2`.
+This document is governed by the Kaizen protocol and is always-on via `.agents/rules/ACTIVE_CONTEXT.md`:
+1. **Mandatory Independent Logical Verification**: Whenever Arena.ai produces an output, Antigravity independently verifies every price level, `min_price`/`max_price` band edge, L3 whale wall location, CVD flow, and `mt5.order_calc_profit` figure against `docs/telemetry/live_snapshot_latest.json` and live MT5.
+2. **Immediate Corrective Feedback to Arena.ai**: If Arena.ai makes any calculation or microstructure mistake, Antigravity immediately dispatches the exact error and telemetry proof back to Arena.ai right after reading its output.
+3. **Continuous Persistence**: Every operator feedback point and trade outcome is immediately persisted into this Playbook and `.agents/rules/ACTIVE_CONTEXT.md`, and synchronized across `main` and `arena/537c1eb8-trading-2`.
+
