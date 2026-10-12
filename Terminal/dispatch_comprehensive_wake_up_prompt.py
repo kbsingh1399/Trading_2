@@ -157,7 +157,7 @@ def build_prompt(cycle_num: int = 40) -> str:
     lines.append("")
     lines.append("1. Live Telemetry Matrix (Primary Ground Truth): docs/telemetry/live_snapshot_latest.json")
     lines.append(f"   Latest Generation: {gen_id} ({gen_ts})")
-    lines.append("   Upstream: https://github.com/kbsingh1399/Trading_2/blob/arena/537c1eb8-trading-2/docs/telemetry/live_snapshot_latest.json")
+    lines.append("   Upstream: https://github.com/kbsingh1399/Trading_2/blob/arena/5c05910e-trading-2/docs/telemetry/live_snapshot_latest.json")
     lines.append("   Raw: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/telemetry/live_snapshot_latest.json")
     lines.append("   Inspect all 24 assets in assets_matrix_24 and all telemetry blocks: quotes (MT5 spread_bps & mid), execution_specs, causal_indicators (Session VWAP, Z-score, RSI, ATR, EMA 20/50/200, POC/VAH/VAL), orderbook_live_depth (20-level L2 depth & imbalance), whale_walls_l3 (0x... wallet addresses, sizes, persistence_s >= 180s), structural_stop_clusters (nearest_sell_stop_clusters_below, nearest_buy_stop_clusters_above, top_*), reconstructed_liquidations (nearest_long_cascade_bands_below, nearest_short_squeeze_bands_above, top_*), venue_basis, and cvd_1m_buckets (5m/15m/30m sums).")
     lines.append("")
@@ -175,6 +175,7 @@ def build_prompt(cycle_num: int = 40) -> str:
     lines.append("• Broker: Blueberry Markets SVG LLC, MetaTrader 5 account #5064568")
     lines.append(f"• Balance / Equity: {balance:.2f} USD / {equity:.2f} USD")
     lines.append(f"• Margin used: {margin:.2f} USD")
+    lines.append("• Recent Realized Wins Banked Tonight (+25.62 USD Gross / +24.83 USD Net Balance Gain): Ticket #18813768 (SOLUSD.p SELL 0.14 @ 108.00 -> Closed @ 107.32 via Phase 1 Profit Lock for +9.52 USD) & Ticket #18813767 (BTCUSD.pi SELL 0.02 @ 82,650.00 -> Closed @ 81,845.00 Full Take Profit for +16.10 USD). Crypto, Metals, Energy, and Forex clusters are now 100% unencumbered!")
     lines.append("• Hard floor: 4,775.00 USD | Operating buffer: 4,795.00 USD")
     lines.append(f"• Live cushion: +{cushion:.2f} USD above hard floor (+{buffer_cushion:.2f} USD above operating buffer)")
     lines.append("• Risk per trade: 7.50 to 14.50 USD (adaptive risk envelope, 0.15% to 0.29% of capital). Allows high-conviction 0.01 lot trend setups ($8.50-$9.50) without rigid floor disqualification. Up to 4 concurrent tickets across orthogonal asset clusters provided joint worst-case post-stop equity >= 4,795.00 USD.")
@@ -299,7 +300,7 @@ def build_prompt(cycle_num: int = 40) -> str:
     lines.append("3. MANDATE 2 REPORT: Active / Running Trades Audit (Logical TP/SL Modifications Based on Latest Snapshot)")
     lines.append("4. MANDATE 3 REPORT: Unfilled Limit Orders Audit (Ticket-by-Ticket Verdict: WAIT TO FILL AS-IS vs. MODIFY ENTRY/SL/TP vs. DELETE)")
     lines.append("5. ACTIONABLE EXECUTION SUMMARY TABLE (Ticket/Action, Symbol, Side, Lots, Entry, SL Bunker, TP Magnet, Risk USD, R:R, Quantitative Rationale)")
-    lines.append("6. BILATERAL LEDGER SYNC: Append your complete Cycle Council Report and Actionable Execution Table to docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md and commit/push to branch arena/537c1eb8-trading-2 (while Antigravity merges and syncs to main).")
+    lines.append("6. BILATERAL LEDGER SYNC: Append your complete Cycle Council Report and Actionable Execution Table to docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md and commit/push to branch arena/5c05910e-trading-2 (while Antigravity merges and syncs to main).")
 
     return "\n".join(lines)
 
