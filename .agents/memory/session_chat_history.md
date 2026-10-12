@@ -54395,3 +54395,21 @@ Finally, unify live and replay ratchets before qualifying uplift; the current se
   * Balance: 4,896.55 USD | Equity: 4,892.15 USD | Floating: -4.40 USD
   * Capital Floor Defense: Stressed worst-case equity is 4,880.59 USD, preserving +105.59 USD cushion above 4,775.00 USD hard floor.
 - Arena Status: Actively generating Cycle 33 Council Report. Sub-timer `task-46813` armed for +5 minutes (expires ~08:13 UTC / 13:43 IST).
+
+## Turn Checkpoint: 2026-10-12 08:18 UTC (Cycle 33 Harvested, 95/100 Record Score, 4 New Unit Tests Green & Ticket #18785248 Closed via SL)
+- Arena Cycle 33 Report Harvested: Commit `91b635b7` merged into `main` (`f52359f9`) and pushed to `arena/537c1eb8-trading-2`. Council awarded 95/100 Evidence Score (Session Record!).
+- Council Findings & Forensic Verification:
+  * Order fill verified at limit price 83,845.00 USD at 08:00:13 UTC.
+  * Breach 1 (STRUCT Risk Cap): Sized 0.03 lots (11.17 USD) vs STRUCT cap of 10.00 USD (due to discrete lot quantization tension between MIN_RISK_USD=10.0 in stage_trade_plan and 10.0 max in B1).
+  * Breach 2 (ATR expansion): Fixed stop at 83,472.55 drifted from 1.5000 ATR to 1.4955 ATR as live ATR expanded from 248.30 to 249.05.
+  * Structural Liquidity Mapping: Council flagged that Stop Loss at 83,472.55 sat 22.45 USD directly in front of the session's 7.18M USD sell pool at 83,450.00.
+  * Council retired the 5-cycle B2/G-4 anti-correlation claim as an artifact of short-window sampling.
+- Test Hardening Shipped (Commit `534bc175`):
+  * Added 4 dedicated unit tests in `Tests/Test_Decision_Gates_v3.py` covering entry_z preference in B1, relaxed velocity ratio in B2, allow_trend_continuation_target in B6, and allow_price_only_variant in B4.
+  * Suite verified: 239/239 passed (100% green in 0.78s).
+- MT5 Trade Closure:
+  * Ticket #18785248 closed at protective Stop Loss 83,472.55 (Deal #16997164) as price swept into the 83,450.00 liquidity pool.
+  * Realized PnL: -11.17 USD (-0.228% risk).
+  * Current Account: Balance = 4,885.38 USD | Equity = 4,885.38 USD | Margin Used = 0.00 USD | 100% Cash reserves.
+  * Floor Defense: Floor cushion stands at +110.38 USD above 4,775.00 USD hard floor (+90.38 USD above 4,795.00 USD operating buffer). Floor unconditionally defended.
+
