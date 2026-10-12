@@ -57,19 +57,19 @@ trigger: always_on
       * **Position Capacity Policy**:
         - Up to 4 concurrent tickets across orthogonal asset clusters provided total joint worst-case stopout risk unconditionally defends the 4,775.00 USD hard floor and 4,795.00 USD operating buffer (>= 20.00 USD cushion at all times).
     - Connects directly via native IPC to MetaTrader 5 Account 5064568 (Blueberry Markets).
-    - **Active Positions & Pending Orders (Live State — 2 Active Trend Short Positions | 1 Limit Order Resting)**:
-      * Current Status: **2 Open Positions | 1 Pending Order | Balance: 4,855.44 USD | Equity: 4,852.12 USD | Margin Used: 1,582.50 USD | Free Margin: 3,269.62 USD**.
+    - **Active Positions & Pending Orders (Live State — 2 Active Trend Short Positions in Profit | 1 Limit Order Resting)**:
+      * Current Status: **2 Open Positions | 1 Pending Order | Balance: 4,855.44 USD | Equity: 4,869.19 USD | Margin Used: 1,582.50 USD | Free Margin: 3,286.69 USD**.
       * Active Positions (2 — Mandate 2 Active Monitoring with Autonomous Ratchet Daemon `task-50136` every 15s):
-        1. Ticket `#18813767` (`BTCUSD.pi` SELL 0.02 @ 82,650.00 USD, SL: 83,120.00 USD, TP: 81,845.00 USD, Risk: 9.40 USD, Reward: 16.10 USD, R:R: 1.71R).
-        2. Ticket `#18813768` (`SOLUSD.p` SELL 0.14 @ 108.00 USD [FILLED], SL: 108.85 USD, TP: 106.20 USD, Risk: 11.90 USD, Reward: 25.20 USD, R:R: 2.12R).
+        1. Ticket `#18813767` (`BTCUSD.pi` SELL 0.02 @ 82,650.00 USD, Current: 82,623.00 USD, PnL: **+0.54 USD floating green**, SL: 83,120.00 USD, TP: 81,845.00 USD, Risk: 9.40 USD, Reward: 16.10 USD, R:R: 1.71R).
+        2. Ticket `#18813768` (`SOLUSD.p` SELL 0.14 @ 108.00 USD [PHASE 1 PROFIT LOCKED], Current: 107.00 USD, PnL: **+14.00 USD floating green**, SL: **107.32 USD (+9.52 USD guaranteed profit locked)**, TP: 106.20 USD, Initial Risk: 11.90 USD -> Current Risk: **0.00 USD (-9.52 USD locked gain)**, Reward: 25.20 USD, R:R: 2.12R).
       * Active Pending Orders (1 — Mandate 3 Active Monitoring):
-        1. Ticket `#18814015` (`SP500.p` SELL LIMIT 0.04 @ 7,817.80 USD, Current Bid/Ask: 7,803.20/7,803.45 USD, SL: 7,842.50 USD, TP: 7,704.00 USD, Risk: 9.88 USD, Reward: 45.52 USD, R:R: 4.61R, Ask Wall Belt: 8.9M USD @ 7,802-7,808, Primary Bunker Cleared by 2.56 ATR).
-      * G-1 Hard Floor Defense: Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Floor Cushion: **+77.12 USD floating / +80.44 USD realized**.
-      * Stressed Post-Loss Simulation:
-        - Total Contingent Book Risk: **31.18 USD** (BTC 9.40 USD + SOL 11.90 USD + SP500 9.88 USD).
-        - Stressed Worst-Case Equity: **4,824.26 USD** (Unconditionally defends floor!).
-        - Safety Cushion Above 4,775.00 USD Hard Floor: **+49.26 USD** (nearly 2.5x mandatory >= 20.00 USD buffer).
-        - Safety Cushion Above 4,795.00 USD Operating Buffer: **+29.26 USD**.
+        1. Ticket `#18814015` (`SP500.p` SELL LIMIT 0.04 @ 7,817.80 USD, Current Bid/Ask: 7,806.30/7,807.17 USD, SL: 7,842.50 USD, TP: 7,704.00 USD, Risk: 9.88 USD, Reward: 45.52 USD, R:R: 4.61R, Ask Wall Belt: 8.9M USD @ 7,802-7,808, Primary Bunker Cleared by 2.56 ATR).
+      * G-1 Hard Floor Defense: Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Floor Cushion: **+94.19 USD floating / +80.44 USD realized**.
+      * Stressed Post-Loss Simulation (With SOL Phase 1 Profit Locked at +9.52 USD):
+        - Net Contingent Downside Risk: **19.28 USD** (BTC 9.40 USD + SP500 9.88 USD; SOL has +9.52 USD profit locked at SL 107.32 USD).
+        - Stressed Worst-Case Equity (Simultaneous Stopout of All 3 Tickets): **4,845.68 USD** (Unconditionally defends floor!).
+        - Safety Cushion Above 4,775.00 USD Hard Floor: **+70.68 USD** (3.5x mandatory >= 20.00 USD buffer).
+        - Safety Cushion Above 4,795.00 USD Operating Buffer: **+50.68 USD**.
         - Capacity Slots Used: **3 / 4** across orthogonal asset clusters (Crypto Major + Crypto Alt + US Equity Index).
       * Closed Trades Today (Realized PnL):
         - Ticket #18813343 (`BTCUSD.pi` closed at **-11.58 USD loss** via Stop Loss at 82,158.00 USD, Deal #17022979, during market cascade)

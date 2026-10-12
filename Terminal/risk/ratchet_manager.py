@@ -165,7 +165,7 @@ class RatchetManager:
                 state.phase = RatchetPhase.BE_LOCKED
                 state.last_modified = time.time()
                 logger.info(
-                    "[RATCHET Phase 0] Ticket %d %s: +%.2fR >= +0.80R → SL %.2f→%.2f (BE+0.15R locked)",
+                    "[RATCHET Phase 0] Ticket %d %s: +%.2fR >= +0.80R -> SL %.2f->%.2f (BE+0.15R locked)",
                     ticket, state.symbol, gain_r, state.initial_sl, new_sl,
                 )
                 return {"action": "phase_0_be", "phase_new": state.phase,
@@ -181,7 +181,7 @@ class RatchetManager:
                 state.phase = RatchetPhase.PROFIT_1
                 state.last_modified = time.time()
                 logger.info(
-                    "[RATCHET Phase 1] Ticket %d %s: +%.2fR >= +1.50R → SL→%.2f (0.80R locked)",
+                    "[RATCHET Phase 1] Ticket %d %s: +%.2fR >= +1.50R -> SL->%.2f (0.80R locked)",
                     ticket, state.symbol, gain_r, new_sl,
                 )
                 return {"action": "phase_1_profit", "phase_new": state.phase,
@@ -197,7 +197,7 @@ class RatchetManager:
                 state.phase = RatchetPhase.TRAIL_2
                 state.last_modified = time.time()
                 logger.info(
-                    "[RATCHET Phase 2] Ticket %d %s: +%.2fR >= +2.00R → SL→%.2f (1.50R trail)",
+                    "[RATCHET Phase 2] Ticket %d %s: +%.2fR >= +2.00R -> SL->%.2f (1.50R trail)",
                     ticket, state.symbol, gain_r, new_sl,
                 )
                 return {"action": "phase_2_trail", "phase_new": state.phase,
@@ -210,7 +210,7 @@ class RatchetManager:
                 and state.age_bars() >= _TIME_DECAY_BARS
                 and gain_r < _TIME_DECAY_MIN_R):
             logger.warning(
-                "[TIME DECAY] Ticket %d %s: %d bars old, gain only +%.2fR < +0.20R → market close",
+                "[TIME DECAY] Ticket %d %s: %d bars old, gain only +%.2fR < +0.20R -> market close",
                 ticket, state.symbol, int(state.age_bars()), gain_r,
             )
             if self._close_at_market(state):
