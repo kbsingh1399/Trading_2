@@ -211,6 +211,7 @@ def build_dg_context(
     # Z-scores
     mid = float(c[-1])
     current_z = (mid - vwap) / max(vwap_sigma, 1e-12)
+    entry_z = (float(entry) - vwap) / max(vwap_sigma, 1e-12) if (_finite_number(entry) and float(entry) > 0) else current_z
 
     # Sweep Z over recent 8 bars
     recent_k = min(8, len(c))
@@ -359,6 +360,8 @@ def build_dg_context(
     orderflow = None
     asset = canonical_asset(features.get("asset") or (payload or {}).get("coin") or symbol)
     allow_price_only = asset in {"GOLD", "SILVER", "USWTI", "SP500", "NAS100", "DJ30", "GER40", "EURUSD", "GBPUSD", "USDJPY"}
+    if bool(features.get("allow_price_only_variant", False)) or bool((payload or {}).get("allow_price_only_variant", False)):
+        allow_price_only = True
 
     if of_payload and isinstance(of_payload, dict):
         cvd_data = of_payload.get("cvd_divergence", {})
@@ -519,6 +522,7 @@ def build_dg_context(
         "direction": direction,
         "regime": regime,
         "vwap_z": current_z if valid_session else None,
+        "entry_z": entry_z if valid_session else None,
         "sweep_z": sweep_z if valid_session else None,
         "vwap_z_change_4bars": dz4 if valid_session else None,
         "atr": atr,
@@ -548,6 +552,7 @@ def build_dg_context(
         "shelf": {"price": shelf_price, "confluence": confluence},
         "first_obstacle": first_obstacle,
         "allow_price_only_variant": allow_price_only,
+        "allow_trend_continuation_target": bool(features.get("allow_trend_continuation_target", False)) or bool((payload or {}).get("allow_trend_continuation_target", False)),
         "orderflow": orderflow,
         "wall": wall_ctx,
         # True when the payload carried at least one G-7 eligible wall somewhere in

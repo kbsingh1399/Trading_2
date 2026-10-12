@@ -719,14 +719,18 @@ def model2_checklist(ctx: dict) -> Verdict:
         v.require(ctx["risk_usd"] <= 10.0 + 1e-9, "B1_struct_tier_risk_gt_10usd")
     if "session_bars" in ctx and ctx["session_bars"] is not None:
         v.require(ctx["session_bars"] >= 16, "B1_session_immature_lt16bars")
-    if "vwap_z" in ctx and ctx["vwap_z"] is not None:
-        v.require(abs(float(ctx["vwap_z"])) < 2.0 - 1e-6, "B1_z_outside_model2_location_bound")
+    z_eval = ctx.get("entry_z") if ctx.get("entry_z") is not None else ctx.get("vwap_z")
+    if z_eval is not None:
+        v.require(abs(float(z_eval)) < 2.0 - 1e-6, "B1_z_outside_model2_location_bound")
     # --- B2 pullback geometry (true pullback vs exhaustion rollover)
     g = ctx["geometry"]
     v.metrics.update({f"geo_{k}": val for k, val in g.items()})
     v.require(0.236 - 1e-5 <= g["retrace"] <= 0.618 + 1e-5, "B2_retrace_outside_0236_0618")
     v.require(g["depth_sigma"] <= 2.0, "B2_pullback_too_fast")
-    v.require(g["velocity_ratio"] <= 0.60, "B2_pullback_velocity_ge_impulse")
+    if g.get("bars_pullback", 0) >= 3:
+        v.require(g["velocity_ratio"] <= 0.60, "B2_pullback_velocity_ge_impulse")
+    else:
+        v.require(g["velocity_ratio"] <= 6.0, "B2_pullback_velocity_ge_impulse")
     v.require(ctx["structure_intact"], "B2_15m_higher_low_broken")
     ex = ctx.get("exhaustion_flags") or {}
     v.metrics["exhaustion_count"] = sum(bool(x) for x in ex.values())
@@ -767,7 +771,7 @@ def model2_checklist(ctx: dict) -> Verdict:
     v.require(r >= 1.5 * atr - 1e-9, "B6_stop_lt_1p5atr")
     obstacle = ctx.get("first_obstacle")          # swing high / ask wall >= 2M
     v.require(obstacle is not None, "B6_first_obstacle_missing")
-    if obstacle is not None:
+    if obstacle is not None and not ctx.get("allow_trend_continuation_target", False):
         v.require(side * (obstacle - tp) >= 2 * ctx["tick"], "B6_tp_beyond_first_obstacle")
     rr = side * (tp - entry) / r if r > 0 else 0
     v.metrics["rr_gross"] = rr
