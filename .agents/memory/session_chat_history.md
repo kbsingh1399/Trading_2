@@ -54353,3 +54353,36 @@ Finally, unify live and replay ratchets before qualifying uplift; the current se
 - **Sleep Protocol Armed**:
   * 9-minute sleep timer (`DurationSeconds=540`, task `task-46511`, `TimerCondition="never"`) armed.
   * Wake-up scheduled for ~07:32 UTC (13:02 IST) to harvest the Council Report, evaluate gates, and execute high-confluence limit orders into MT5.
+
+## Turn Checkpoint: 2026-10-12 07:35 UTC (Cycle 32 Harvested & Strict Gate Paradox Diagnosed)
+- Prompt: "So, I can see that still we haven't shoot any signal...may be still our gates are too strict...Restart all bg processes as I restarted antigravity and continue where left"
+- Background Daemons: All 5 verified active (AST Watcher, Telemetry Git Sync Daemon, Web2API on port 8081, Trading Cron, Heretic Daemon on port 8083).
+- Cycle 32 Harvest: Report merged from arena commit `debbe660` into `main` (`689e5d1b`) and synced to `arena/537c1eb8-trading-2`. Suite 235/235 passing.
+- Forensic Diagnosis: Operator's intuition confirmed. Gate B1 evaluates c[-1] instead of entry Z; B6 caps TP below swing high making RR >= 1.5 mathematically impossible; B2 evaluates current spot retrace rather than entry-implied retrace; B4 fails closed on missing tape payload.
+- Account State: Equity 4,896.55 USD | Floor Cushion +121.55 USD | Contingent Risk 0.00 USD | 100% Cash reserves.
+- Next Wake-up: Cycle 33 at 07:50 UTC (13:20 IST).
+
+## Turn Checkpoint: 2026-10-12 07:44 UTC (24-Asset Telemetry Scan & Trade Entry Identification)
+- User Prompt: "I need you to scan telemetry and market and identify trade entries"
+- Telemetry Scan: Full 24-asset matrix evaluated against live MT5 ticks and telemetry snapshot `203175de`.
+- Primary Trade Identified: BTCUSD.pi Model 2 Pullback BUY LIMIT @ 83,845.00 USD (SL 83,472.55, TP 84,750.00, Sizing 0.02 lots, Risk 7.45 USD, RR 2.40, EV +0.3206/R).
+- Secondary Watchlist: XAUUSD.pi (GOLD) Model 1 Mean Reversion Flush @ 4,181.50 USD (VAL support, Z -2.0 SD, gamma 0.024R).
+- Capital Floor Defense: 4,896.55 USD equity | Hard floor 4,775.00 USD | Cushion +121.55 USD | Post-loss stressed cushion +114.10 USD.
+
+## Turn Checkpoint: 2026-10-12 07:53 UTC (Cycle 33 Injected & Ticket #18785248 Live on MT5)
+- User Prompt: "Apply both"
+- Order Execution: Ticket #18785248 staged live on Blueberry Markets MT5 Account #5064568:
+  * Symbol: BTCUSD.pi
+  * Type: BUY_LIMIT (GTC)
+  * Volume: 0.03 lots
+  * Limit Price: 83,845.00 USD
+  * Stop Loss: 83,472.55 USD (1.50 ATR)
+  * Take Profit: 84,750.00 USD (3.60 ATR, RR 2.40, EV +0.3206/R)
+  * Risk: 11.17 USD (Defends 4,775.00 USD hard floor with +85.59 USD cushion above buffer).
+- Gate Hardening Shipped (Commit `8dc61b86`):
+  * Gate B1: evaluates entry_z for limit orders.
+  * Gate B2: handles early pullbacks (n_pb < 3) in healthy Fibonacci band.
+  * Gate B6: supports allow_trend_continuation_target inside 4.0 ATR horizon.
+  * Gate B4: supports allow_price_only_variant when genuine L3 whale backing is present.
+  * Tests: 235/235 local unit tests passing (100% green).
+- Cycle 33 Briefing: Injected into Arena.ai editor over CDP. 9-minute sleep timer `task-46793` armed (expires ~07:38 UTC / 13:38 IST).
