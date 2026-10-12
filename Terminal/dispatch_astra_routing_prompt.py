@@ -136,10 +136,18 @@ Screen every asset in docs/telemetry/live_snapshot_latest.json (streaming live w
 MANDATE 2: AUDIT ACTIVE / RUNNING TRADES (0 OPEN POSITIONS)
 - Current open positions on MT5: 0 (100% Cash Reserves). Earlier SP500.p BUY was ratcheted to BE+ lock and safely closed at +3.72 USD profit. Confirm desk status.
 
-MANDATE 3: AUDIT PENDING LIMIT ORDERS (0 RESTING ORDERS — 100% CASH RESERVES)
-- Current pending limit orders on MT5: 0 (Ticket #18812244 was CANCELLED/REMOVED live on MT5 at 18:30 UTC per triple proof: 2.81 ATR drift beyond 2.0 reachability bound, POC migrated to 30,992.79 putting SL inside buy-stop sweep band, and empty repair feasible set).
-- Desk capacity: 4/4 slots fully available (0 filled, 0 pending, 100% Cash Reserves at 4,867.02 USD with +92.02 USD floor cushion).
-- Evaluate if conditions for re-arming NAS100 short (mid >= 30,673.10 AND [30,800–30,900] fuel thinned >= 50% AND POC <= 30,810) or any new candidate limit order are met.
+MANDATE 3: ADVERSARIAL AUDIT OF UNFILLED PENDING LIMIT ORDERS (2 ACTIVE TICKETS)
+- Ticket 1 (#18813342): SP500.p BUY LIMIT 0.24 lots @ 7,796.10 USD | SL: 7,791.90 USD | TP: 7,817.80 USD
+  * Thesis: Model 1 Mean Reversion Long (Z = -1.78 SD oversold stretch), resting directly on 199,993 USD L3 whale bid wall @ 7,796.10. Stop placed 4.20 pts below entry, clearing bunker with 0.40 ATR buffer. Target front-runs Session VWAP by 0.05 ATR.
+  * Risk: 10.08 USD (0.21% equity) | Reward: 52.08 USD | R:R: 5.17R.
+- Ticket 2 (#18813343): BTCUSD.pi BUY LIMIT 0.06 lots @ 82,351.00 USD | SL: 82,158.00 USD | TP: 83,250.00 USD
+  * Thesis: Value Area Low Support Long, resting directly on a massive 600,745 USD L3 whale bid wall @ 82,351.00 USD. Stop placed 193 pts below entry, clearing the 82,200 sweep low with 0.82 ATR buffer. Target front-runs Session VWAP (83,277 USD) by 27 pts.
+  * Risk: 11.58 USD (0.24% equity) | Reward: 53.94 USD | R:R: 4.66R.
+- Joint Stressed Post-Loss Floor Defense: 4,835.95 USD (+60.95 USD cushion above 4,775.00 USD hard floor, +40.95 USD above operating buffer).
+- Audit each ticket under 13 Parameters & 5 Anti-Trap Invariants:
+  (A) VIABLE, WAIT AS-IS: Resting whale walls intact, distance <= 2.0 ATR, floor cushion preserved, SL outside sweep zone.
+  (B) SLIGHT MODIFICATION REQUIRED: If magnet or bunker edges shifted.
+  (C) DELETE / CANCEL IMMEDIATELY: If defense thinned > 50% or thesis broke.
 
 ================================================================================
 DELIBERATION & DESK REPORT OUTPUT
