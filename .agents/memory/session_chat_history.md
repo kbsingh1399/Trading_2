@@ -53664,3 +53664,314 @@ Finally, unify live and replay ratchets before qualifying uplift; the current se
   - Hard Floor Defense: 4,775.00 USD hard floor | Cushion: +121.55 USD (6.0x mandatory 20.00 USD buffer).
   - Capacity: 0 open positions | 0 pending orders | 4 slots available.
   - Daemons: All 5 background daemons active and healthy. Recurring cron `task-44250` set for next cycle at minute :50 UTC.
+
+---
+
+### [2026-10-12 03:40 UTC] Cycle 16 Deliberation Harvest, EV Hurdle Ingestion & Fix Verification
+- **Wakeup & Harvesting**:
+  1. 9-minute sleep timer `task-44620` expired at 22:07:34 UTC.
+  2. Arena completed deliberation and pushed commit `ac99b5b4` (`docs/trade_plans/ARENA_COUNCIL_REPORT_20261011_2150Z.md`).
+  3. Merged into local branch and pushed to `origin/main` and `origin/arena/537c1eb8-trading-2` (commit `e8ea749d`).
+- **Arena.ai Ruling & Findings (Cycle 16)**:
+  1. **Disposition**: 🛑 STAND ASIDE (0 tickets punched on #5064568).
+  2. **All Three Cycle-15 Fixes Formally Verified True by Arena**:
+     - `pullback_geometry` verified present across 24/24 assets in live snapshot (BTC values: retrace 0.6276, depth_sigma 0.0, velocity_ratio 0.3131, bars_pullback 16, bars_impulse 8, source PRODUCED_15M_BARS). Arena formally withdrew its prior unverified note.
+     - `impulse_start` `UnboundLocalError` fix verified in `Terminal/dg_context.py:261` (assigned unconditionally before branch).
+     - Option A' drift circuit breaker verified cleared for BTC (drift 25.00 <= 47.26 tolerance, b_now back to -67.00 USD).
+     - Both cited commit hashes resolved (`7d29a305` and `459b961c`).
+  3. **BTC Gate Status (6 of 9 Passing)**:
+     - G-1 Floor: PASS (4,896.55 USD, cushion +121.55 USD above 4,775.00 USD floor).
+     - G-2 Capacity: PASS (0/4 used).
+     - G-3 Freshness: PASS (0.34s).
+     - G-4 Regime: Knife-edge FAIL (1H drift_t = +1.457 vs 1.50 threshold, 2.9% short; structural_sign = +1 and t1 = +5.653 both clear).
+     - G-5 Spread: PASS (2.52 bps <= 20.0 bps).
+     - G-6 Friction: PASS (gamma = 0.1483 R <= 0.15 R, 1.13% headroom).
+     - G-7 Whale Wall: PASS (183 genuine, 22 in band, 20 BUY, binding wall 83,461 USD with $260,267 notional at d_adj +0.0026).
+  4. **Decisive Architectural Blocker — Negative Lower-Bound Expectancy**:
+     - As spread widened slightly (1.92 -> 2.52 bps), relative friction gamma rose from 0.1089 to 0.1483 R.
+     - Under Clopper-Pearson lower bound (p_lower = 0.4197, 11/17 wins), the break-even R:R rose to 1.8743.
+     - The only available TP pool in horizon is 83,850 USD (+2.278 ATR, $14.65M notional), yielding R:R = 1.518.
+     - At R:R = 1.518, `EV_lower/R = -0.1495` (negative expectancy). Friction consumed the edge.
+     - Furthermore, Model 2 requires R:R >= 2.0 (where EV would be +0.0528 R), and Model 1 requires |Z| >= 2.0 SD (BTC is Z = +0.29).
+  5. **Other Assets**:
+     - ETH remains excluded on 4H drift t veto (-1.027 < -1.0).
+     - BNB in TREND_UP but 0/10 walls in band, gamma 0.642 > 0.15 R.
+     - NEAR in TREND_UP with admissible TP (RR 1.707) but spread 62.64 bps > 20.0 bps cap and 0/3 walls in band.
+     - CFDs stalled at 14 stale tokens awaiting Sunday 22:00 UTC reopen.
+- **Current Desk State**:
+  - Capital: Balance 4,896.55 USD | Equity 4,896.55 USD | Margin 0.00 USD (100% Cash reserves).
+  - Cushion: +121.55 USD above 4,775.00 USD hard floor (6.1x mandatory 20.00 USD buffer).
+  - Fleet Health: All 5 background daemons running normally. Dismissed Chrome review panel via Escape key. Ready for next cycle.
+
+---
+
+### [2026-10-12 04:00 UTC] Cycle 17 Deliberation Harvest, CFD Reopening & B2 Retrace Constraint Ingestion
+- **Wakeup & Harvest Details**:
+  1. Arena completed deliberation and pushed commit `3269c4b0` (`docs/trade_plans/ARENA_COUNCIL_REPORT_20261011_2220Z.md`).
+  2. Merged into local branch and pushed to `origin/main` and `origin/arena/537c1eb8-trading-2` (commit `c078bcd0`).
+- **Arena.ai Ruling & Findings (Cycle 17)**:
+  1. **Disposition**: 🛑 STAND ASIDE (0 tickets punched on #5064568).
+  2. **TradFi CFD Reopening Transforms Friction Landscape**:
+     - 10 TradFi CFDs streaming live sub-second quotes.
+     - Assets inside gamma <= 0.15 R expanded to **9 of 24** (and <= 0.20 R to 10 of 24): USDJPY (0.06 bps / 0.020 R), EURUSD (0.09 bps / 0.027 R), GOLD (0.29 bps / 0.032 R), DJ30 (0.25 bps / 0.040 R), NAS100 (0.39 bps / 0.047 R), SP500 (0.43 bps / 0.0811 R), GER40 (0.67 bps / 0.102 R), GBPUSD (0.30 bps / 0.106 R), BTC (1.91 bps / 0.1087 R).
+  3. **SP500 Classifies as MEAN_REVERT**:
+     - First non-UNDEFINED, non-TREND regime in session history (4H drift_t = +1.086, 1H ER = 0.037).
+     - Gated closed due to session immaturity: `session_bars = 0` vs. 16-bar requirement, `session_vwap_utc = None`, Z unmeasurable, 0/72 walls in band. Earliest eligibility is ~02:00 UTC Monday (4 hours of bar accumulation).
+  4. **BTC Recovers 3 Gates (8 of 9 Passing)**:
+     - Friction recovered: gamma fell 0.1483 -> 0.1087 R (spread tightened 2.52 -> 1.91 bps), dropping break-even RR from 1.8743 to 1.7806.
+     - New $4.78M buy-stop cluster at 84,250 USD entered the window at +3.541 ATR with RR = 2.361.
+     - At RR = 2.361, `EV_lower/R = +0.2439` (positive expectancy!). Both TP anchor and EV are healthy simultaneously for the first time.
+     - **Binding Blockers**:
+       * G-4 Regime: 1H drift_t dropped from 1.457 to 1.221 (now 18.6% short of the 1.50 STRUCT threshold).
+       * B2 Retrace: 1.0984 (exceeds 0.618 by 0.4804; price retraced more than the entire impulse, indicating a reversal in progress rather than a pullback).
+  5. **Whale Backing & Option A' Stability**:
+     - BTC Option A' drift is benign for three consecutive cycles (25.00 -> 7.00 vs. 48.93 tolerance), confirming transient nature of Cycle 15 trip.
+     - Binding wall BUY 83,548 USD ($389,934 notional at d_adj +0.2989 ATR) is young (persisted 180.9s, just over 180s floor).
+  6. **Other Assets**:
+     - NEAR in TREND_UP with admissible TP (RR 1.756) but spread 60.97 bps (3x cap), gamma 0.759, 0/2 walls in band.
+     - BNB regressed to UNDEFINED.
+- **Current Desk State**:
+  - Capital: Balance 4,896.55 USD | Equity 4,896.55 USD | Margin 0.00 USD (100% Cash reserves).
+  - Cushion: +121.55 USD above 4,775.00 USD hard floor (6.1x mandatory 20.00 USD buffer).
+  - Standing aside; all 5 daemons healthy; ready for Cycle 18.
+
+
+---
+
+### Turn Checkpoint — Cycle 18 Briefing Injected & Prompting Loop Watchdog Active
+- **Timestamp**: 2026-10-11 22:39:30 UTC / 2026-10-12 04:09:30 IST
+- **User Prompt**: "again you stopped without next wake up for prompting...set a cron job to check if prompting is working propely"
+- **Actions Taken**:
+  1. Inspected Arena UI via CDP: verified user is logged in, `.tiptap.ProseMirror` is ready and focused.
+  2. Generated Cycle 18 council briefing (`docs/prompts/ARENA_CYCLE_18_PROMPT.txt`) referencing fresh telemetry snapshot `bcb23fe9ea1e434486b29cd5cf3d1afc` (22:37:20 UTC) and synchronized commit HEAD `4ba0d4a1`.
+  3. Injected prompt into Arena ProseMirror, simulated input event, clicked Send message button.
+  4. Verified active generation in Arena: `isGenerating: true`, `hasStopBtn: true`.
+  5. Armed 9-minute sleep timer (`task-44856`, 540s) for automatic harvest wake-up at ~22:48 UTC.
+  6. Verified persistent recurring trading cron (`task-44250`, schedule `0,20,50 * * * *`, `IsDaemon: true`) is armed with next iteration at 04:20:00+05:30 (22:50 UTC).
+  7. Confirmed all 5 mandatory background tasks active and healthy. Account state: 4,896.55 USD (100% Cash), floor cushion +121.55 USD.
+
+
+---
+
+### Turn Checkpoint — Cycle 18 Harvest Ratified & Cycle 19 Injected (22:50 UTC)
+- **Timestamp**: 2026-10-11 22:51:50 UTC / 2026-10-12 04:21:50 IST
+- **Cycle 18 Harvest Summary**:
+  - Arena pushed commit `d3a41188` (`docs/trade_plans/ARENA_COUNCIL_REPORT_20261011_2240Z.md`).
+  - Merged commit into `main` and pushed across `main` and `arena/537c1eb8-trading-2` (Commit HEAD: `3a2ec5b0`).
+  - **Council Ruling**: Unanimous STAND ASIDE, 0 tickets punched on #5064568.
+  - **BTC Multi-Gate Status**: Passed 8 of 9 gates. G-4 (1H drift_t at +1.221 vs 1.50) and B2 retrace (1.0745 vs 0.618) remain sole blockers pending the 23:00 UTC hourly close. Wall backing seasoned (14 walls in band, binding BUY 83,609 persist 239.9s).
+  - **TradFi CFD Reopening**: Split by session maturity identified. FX pairs accumulating bars while indices/commodities show `session_bars = 0`. GOLD showed strongest statistics on desk (1H drift_t +1.702, t +12.577, gamma 0.0271 R) awaiting Session VWAP.
+- **Cycle 19 Ingestion & Prompting**:
+  - Generated Cycle 19 briefing (`docs/prompts/ARENA_CYCLE_19_PROMPT.txt`) referencing fresh telemetry snapshot `d1c671d600ca425f920c7b2b4db918ac` and commit HEAD `d257a355`.
+  - Injected prompt into Arena ProseMirror, simulated input event, clicked Send message button.
+  - Verified active generation: `isGenerating: true`, `hasStopBtn: true`.
+  - Armed 9-minute sleep timer (540s) for automatic harvest wake-up at ~23:00 UTC right at the crucial 1H candle roll.
+  - Persistent recurring trading cron (`task-44250`, schedule `0,20,50 * * * *`, `IsDaemon: true`) active with next trigger at 04:50 IST (23:20 UTC).
+  - Account State: 4,896.55 USD (100% Cash), +121.55 USD cushion above 4,775.00 USD hard floor.
+
+
+---
+
+### Turn Checkpoint — Cycle 19 Harvest Ratified & Post-23:00 UTC Scan (23:04 UTC)
+- **Timestamp**: 2026-10-11 23:04:30 UTC / 2026-10-12 04:34:30 IST
+- **Cycle 19 Harvest Summary**:
+  - Arena pushed commit `58aaccf1` (`docs/trade_plans/ARENA_COUNCIL_REPORT_20261011_2300Z.md`).
+  - Merged into `main` and synchronized across `main` and `arena/537c1eb8-trading-2` (Commit HEAD: `e6b50a9f`).
+  - **Council Ruling**: Unanimous STAND ASIDE (0 tickets punched on #5064568).
+  - **BTC Multi-Gate Status**: Passed 8 of 9 gates. G-4 (1H drift_t pinned at +1.221 vs 1.50) sole gate blocker; B2 retrace improved for 3rd cycle (1.0984 -> 1.0745 -> 0.9981). Wall backing deepest of session (29 walls in band, 15 BUY, persist 538.6s / 9.0 min). TP anchor at 84,250 USD (+3.595 ATR, $4.79M notional, R:R = 2.397) yields +0.2857 R EV.
+  - **Critical Downside Structure**: $100.6M sell-stop cluster sits 1.146 ATR below BTC at 83,350 USD (21x overhead anchor).
+  - **GOLD Structural Analysis**: Drift formally passed STRUCT test (1H drift_t = +1.702 >= 1.5, t = +12.577 >= 2.5), but `structural_sign = None` (mid below VWAP, above 200 EMA) blocked regime certification; Option A' drift tripped (1.65 vs tol 1.20); 3 of 16 bars.
+  - **CFD Maturation**: 7 CFDs advanced 0 -> 3 bars with Session VWAPs populated; FX advanced 6 -> 7 bars; crypto 91 bars.
+  - **Post-23:00 UTC Live Scan (gen `8323ebd74b264682b1be437e0c06763b`)**: SP500 re-classified `MEAN_REVERT` (Z = -0.41, gamma = 0.089 R, spread 0.43 bps); NEAR `TREND_UP`; BTC mid 83,621 USD (Z = +0.81 SD); GOLD gamma 0.029 R (Z = -1.13 SD).
+  - **Account State**: 4,896.55 USD (100% Cash), +121.55 USD cushion above 4,775.00 USD hard floor.
+  - **Next Wake-Up Armed**: One-shot timer (540s) set for 23:14 UTC (15m candle close preparation) alongside persistent trading cron (`task-44250`, next iteration at 23:20 UTC).
+
+
+---
+
+### Turn Checkpoint — Cycle 20 Injected & 23:15 UTC Regime Expansion Audit (23:15 UTC)
+- **Timestamp**: 2026-10-11 23:15:30 UTC / 2026-10-12 04:45:30 IST
+- **Pre-Flight Market Scan (gen `c472d456fb7c43f6a46c9ad30e17c861`)**:
+  - Universe expanded to **3 defined regimes**:
+    * **GOLD**: Transitioned to `TREND_UP` (mid 4,190.8 USD > Session VWAP, Z = +0.68 SD, `structural_sign = +1`, gamma = 0.035 R, spread 0.29 bps).
+    * **SP500**: Pushed into extreme flush at Z = +3.51 SD, certified as `MEAN_REVERT` (gamma = 0.089 R, spread 0.43 bps).
+    * **NEAR**: Certified as `TREND_UP` (Z = +1.53 SD, spread 58.20 bps).
+  - BTC post-23:00 UTC hourly roll: mid 83,628 USD, ATR 183.86 USD, spread 1.79 bps, gamma 0.109 R, Z = +0.82 SD.
+- **Cycle 20 Briefing Injection**:
+  - Compiled [`docs/prompts/ARENA_CYCLE_20_PROMPT.txt`](file:///c:/Users/SIGMA/Documents/Trading_2/docs/prompts/ARENA_CYCLE_20_PROMPT.txt) and injected into Arena.ai's ProseMirror editor.
+  - Generation verified active (`isGenerating: true`, `hasStopBtn: true`).
+  - Armed 9-minute sleep timer (`DurationSeconds=540`) for automatic harvest wake-up at ~23:24 UTC.
+  - Persistent recurring trading cron (`task-44250`, schedule `0,20,50 * * * *`, `IsDaemon: true`) remains active, scheduled next at 23:20 UTC.
+  - Account state: 4,896.55 USD (100% Cash reserves), floor cushion +121.55 USD above 4,775.00 USD hard floor.
+
+
+---
+
+### Turn Checkpoint — Cycle 20 Harvest Ratified & Synchronized (23:32 UTC)
+- **Timestamp**: 2026-10-11 23:32:00 UTC / 2026-10-12 05:02:00 IST
+- **Cycle 20 Council Harvest Summary**:
+  - Arena pushed commit `ec54c7ac` (`docs/trade_plans/ARENA_COUNCIL_REPORT_20261011_2320Z.md`, 655 lines).
+  - Merged and synchronized across `main` and `origin/arena/537c1eb8-trading-2` (Commit HEAD: `297a0815`).
+  - **Council Ruling**: Unanimous STAND ASIDE (0 tickets punched on #5064568). Evidence score: 79/100.
+  - **GOLD Transition & Architectural Resolution**:
+    * Spot pushed above Session VWAP (Z = +1.03 SD), resolving `structural_sign = None -> +1`.
+    * STRUCT tier fired on elite 1H drift t-stat of +11.844 (t = +11.844, ER = 0.288), certifying `TREND_UP`.
+    * Option A' basis drift cleared (0.66 vs 1.1993 tol).
+    * Execution blocked on 4 counts: 0 eligible walls in-band, retrace overshot to 0.6865 (> 0.618), 5 of 16 session bars, and nearest overhead buy-stop at +39.86 ATR (far beyond 4.0 ATR max target limit).
+  - **BTC 23:00 UTC Roll Non-Event & Downside Topology**:
+    * 1H drift t-stat moved only +1.221 -> +1.280 (still below 1.50 STRUCT floor).
+    * Retrace stalled and reversed: 0.9981 -> 1.0112 (> 0.618).
+    * In-band walls collapsed 29 -> 1 (BUY 83,546, $157k, persist 3,377s).
+    * Downside risk asymmetry: $100.84M sell-stop cluster sits at -1.3035 ATR (inside 1.5-ATR stop distance) with 19.2x the notional of the overhead 84,250 target ($5.25M at +3.59 ATR).
+  - **Expectancy Disqualifications**: SP500 EV_lower/R = -0.0802 R; NEAR EV_lower/R = -0.4008 R (break-even RR 3.3889 > best RR 2.434 due to 58 bps spread / gamma = 0.784 R).
+  - **Account State**: 4,896.55 USD (100% Cash reserves), floor cushion +121.55 USD above 4,775.00 USD hard floor.
+  - **Next Wake-Up Armed**: Standing trading cron (`task-44250`) scheduled for iteration 10 at 05:20 IST (23:50 UTC) for Cycle 21 deliberation, supplemented by a 720s timer for the 23:45 candle close.
+
+
+---
+
+### Turn Checkpoint — Cycle 21 Injected & GOLD Surge Monitoring (23:46 UTC)
+- **Timestamp**: 2026-10-11 23:46:30 UTC / 2026-10-12 05:16:30 IST
+- **Pre-Flight Live Scan (gen `d8b726b39f5b427a9a1fcdc82f2ee445`)**:
+  - **GOLD**: Rallied sharply in `TREND_UP` to 4,197.1 USD, lifting Z to +2.34 SD above Session VWAP. Spread compressed to 0.17 bps, yielding gamma = 0.019 R (lowest friction in the entire 24-asset universe).
+  - **SP500**: Holds extended `MEAN_REVERT` flush at Z = +2.84 SD (gamma = 0.088 R, spread 0.43 bps).
+  - **NEAR**: Holds `TREND_UP` at Z = +1.61 SD (spread 57.86 bps, gamma = 0.793 R).
+  - **BTC**: Mid 83,619 USD, ATR 180.75 USD, spread 1.91 bps, gamma = 0.118 R, Z = +0.78 SD.
+  - 8 assets inside gamma <= 0.15 R: GOLD (0.019 R), EURUSD (0.034 R), USDJPY (0.040 R), DJ30 (0.043 R), NAS100 (0.050 R), SP500 (0.088 R), BTC (0.118 R), GBPUSD (0.134 R).
+- **Cycle 21 Briefing Injection**:
+  - Compiled [`docs/prompts/ARENA_CYCLE_21_PROMPT.txt`](file:///c:/Users/SIGMA/Documents/Trading_2/docs/prompts/ARENA_CYCLE_21_PROMPT.txt) with commit HEAD `4d313104` and live telemetry pointer `d8b726b39f5b427a9a1fcdc82f2ee445`.
+  - Injected into Arena.ai's ProseMirror editor; generation verified active (`isGenerating: true`, `hasStopBtn: true`).
+  - Armed 9-minute sleep timer (`DurationSeconds=540`) for automatic harvest wake-up at ~23:55 UTC.
+  - Persistent recurring trading cron (`task-44250`, schedule `0,20,50 * * * *`, `IsDaemon: true`) active in background with iteration 10 scheduled at 23:50 UTC.
+  - Account State: 4,896.55 USD (100% Cash reserves), floor cushion +121.55 USD above 4,775.00 USD hard floor.
+
+
+---
+
+### Turn Checkpoint — Cycle 21 Harvest & Cycle 22 Injected (00:05 UTC — 00:00 UTC Roll Audit)
+- **Timestamp**: 2026-10-12 00:05:00 UTC / 2026-10-12 05:35:00 IST
+- **Cycle 21 Harvest Summary (`ARENA_COUNCIL_REPORT_20261011_2350Z.md`, Commit `68e162e4`)**:
+  - Merged commit `68e162e4` into `main` (commit `f6b15f14`) and pushed to `arena/537c1eb8-trading-2`.
+  - Unanimous STAND ASIDE ratified; Cash reserves 100% at 4,896.55 USD, defending +121.55 USD floor cushion. Evidence score: 82/100.
+  - GOLD B2 Retrace normalized to 0.3041 (inside 0.236-0.618 band), clearing B2 for first time this session. Blocked on B5 (0 in-band walls) and B6 (nearest overhead take-profit anchor sits at +39.0 ATR).
+  - BTC In-Band Buy Walls recovered 1 -> 18. Downside $100.83M sell-stop magnet at 83,350 USD sits at -1.4422 ATR (96.1% of stop distance, 19.2x asymmetry).
+  - Staleness guard isolated: 1H bar close clock exceeds 1,800s during HH:30-HH:59. Evaluators route via 15m bar clock anchors.
+- **Pre-Flight Live Scan Post-00:00 UTC Roll (gen `4a7ef807d250475eb4a2180cd6ba492f`)**:
+  - **Daily Session VWAP Rollover**: Daily roll resets session VWAP and session bars across all 24 assets.
+  - **GOLD**: Spot at 4,190.9 USD sits at Z = -0.25 SD (Session VWAP at 4,191.78 USD, session_bars = 8). 1H drift t-stat remains elite at +1.558 (t = +11.073), but structural_sign temporarily reset to None with spot below Session VWAP. Spread: 0.29 bps, gamma = 0.032 R.
+  - **SP500**: Spot at 7,827.1 USD, Z = +0.68 SD, maintaining `MEAN_REVERT` classification (er_4h = +0.0120, gamma = 0.090 R).
+  - **BTC 00:00 UTC Hourly Close Results**: BTC closed the 00:00 UTC hourly bar. 1H drift t-stat moved +1.280 -> +1.439 (t = +7.097), approaching 1.50 STRUCT floor but remaining just below threshold (+1.439 < 1.50). Mid: 83,690 USD, ATR: 175.40 USD, spread: 1.91 bps, gamma = 0.122 R, Z = +0.96 SD. Downside $100.93M sell-stop cluster at 83,350 USD remains active at -0.46% (-0.97 ATR).
+  - **Universe Friction & Regimes**: 2 defined regimes (NEAR `TREND_UP`, SP500 `MEAN_REVERT`). 22 assets `UNDEFINED`. 8 assets inside gamma <= 0.15 R: GOLD (0.032 R), GBPUSD (0.028 R), NAS100 (0.051 R), USDJPY (0.060 R), DJ30 (0.061 R), SP500 (0.090 R), BTC (0.122 R), EURUSD (0.134 R).
+- **Cycle 22 Briefing Injection**:
+  - Compiled and committed `docs/prompts/ARENA_CYCLE_22_PROMPT.txt` (commit `d99b37f0`), synchronized on `main` and `arena/537c1eb8-trading-2`.
+  - Injected into Arena.ai's ProseMirror editor; generation verified active (`isGenerating: true`, `hasStopBtn: true`).
+  - Arming 9-minute sleep timer (`DurationSeconds=540`, `TimerCondition="never"`) for automatic harvest wake-up at ~00:15 UTC.
+  - Persistent recurring trading cron (`task-44250`, schedule `0,20,50 * * * *`, `IsDaemon: true`) active in background with iteration 11 scheduled at 00:20 UTC.
+  - Account State: 4,896.55 USD (100% Cash reserves), floor cushion +121.55 USD above 4,775.00 USD hard floor.
+
+
+---
+
+### Turn Checkpoint — Cycle 22 Harvest & Ruling Ingested (00:22 UTC)
+- **Timestamp**: 2026-10-12 00:22:00 UTC / 2026-10-12 05:52:00 IST
+- **Cycle 22 Council Harvest Summary (`ARENA_COUNCIL_REPORT_20261012_0010Z.md`, Commit `de1617ad`)**:
+  - Merged commit `de1617ad` into `main` (commit `1d410657`) and synchronized across both branches.
+  - **Unanimous STAND ASIDE Ratified**: 0 tickets staged, 0 resting orders. Cash reserves 100% at 4,896.55 USD, defending the +121.55 USD floor cushion above 4,775.00 USD. Evidence score: 84/100.
+  - **Regimes Analysis**: Three regimes defined during Cycle 22: GOLD (`TREND_UP`), SP500 (`MEAN_REVERT`), NEAR (`TREND_UP`).
+  - **GOLD Structural State & Blockers**:
+    * Spot at 4,197.33 USD sits 5.27 USD above Session VWAP (4,191.78 USD), confirming `structural_sign = +1` and triggering the STRUCT tier on elite 1H drift t-stat of +1.558 (t = +11.073).
+    * B2 retrace passed for the second consecutive cycle (0.3345).
+    * Execution blocked on three counts: Gate B5 (0 eligible walls in-band inside ±1.76 USD), Gate B6 (nearest overhead take-profit anchor sits at +37.34 ATR, far exceeding the 4.0 ATR horizon limit), and Gate B1 (session maturity at 8 of 16 bars).
+  - **BTC 00:00 UTC Hourly Roll Results**:
+    * Delivered the largest drift gain of the session: 1H drift t-stat jumped from +1.280 to **+1.439** (t = +7.097), leaving only a **0.061 gap** to the 1.50 STRUCT floor. The 01:00 UTC hourly close is the next key revalidation point.
+    * Execution blocked: Retrace = 1.0204 (> 0.618 ceiling); Downside 101.10M USD sell-stop cluster at 83,350 USD sitting at -1.7104 ATR (20.6x notional asymmetry vs overhead targets, 2.00x distance ratio).
+  - **Post-Midnight Session VWAP Dead Window Isolated**:
+    * For the first 15 minutes of every UTC day (00:00–00:15 UTC), `dg_context._session_vwap` filters bars to current UTC day, finding zero closed bars and causing `session_vwap_history_unavailable` to fire across all 24 assets. Reopens once the 00:00–00:15 bar lands.
+  - **Positive Lower-Bound Expectancy Emergence**:
+    * Two candidates carry positive lower-bound expectancy for the first time: BTC 84,250 anchor (EV_lower/R = +0.2046 R at RR 2.317) and SP500 7,845 anchor (EV_lower/R = +0.1048 R at RR 1.942).
+- **MT5 Account State (#5064568)**:
+  - Balance: 4,896.55 USD | Equity: 4,896.55 USD | Margin: 0.00 USD (100% Cash reserves).
+  - Floor: 4,775.00 USD | Cushion: +121.55 USD | Operating Buffer: 4,795.00 USD (+101.55 USD).
+  - Capacity: 0/4 used (4 slots available).
+- **Next Revalidation Point**:
+  - Cycle 23 preparation leading up to the 01:00 UTC hourly close to re-evaluate BTC's 1H drift t-stat (+1.439 vs 1.50 STRUCT floor).
+  - Standing recurring trading cron (`task-44250`) scheduled for iteration 12 at 00:30 UTC / 06:00 IST.
+
+
+---
+
+### Turn Checkpoint — Cycle 23 Injected & 01:00 UTC Hourly Close Approach (00:52 UTC)
+- **Timestamp**: 2026-10-12 00:52:00 UTC / 2026-10-12 06:22:00 IST
+- **Pre-Flight Live Scan (gen `d4617b8f7c8d424491c7b4ca0606e4c3` @ 00:51:33 UTC)**:
+  - **Dead Window Permanently Closed**: `session_vwap_history_unavailable` count is 0. Normal model gating resumed across all 24 universe assets.
+  - **Active Regimes (3/24)**: GOLD (`TREND_UP`), NEAR (`TREND_UP`), SP500 (`MEAN_REVERT`). 21 assets `UNDEFINED`.
+  - **BTC 01:00 UTC Approach**:
+    * Mid pushed up to 83,830 USD (ATR = 180.21 USD, spread = 1.91 bps, gamma = 0.118 R).
+    * Z-score lifted to +2.38 SD above Session VWAP.
+    * 1H drift t-stat sits at +1.439 (only 0.061 below the 1.50 STRUCT floor) with the 01:00 UTC hourly close occurring in 8 minutes.
+  - **GOLD Momentum**:
+    * Spot at 4,206.3 USD | ATR: 6.4032 USD | Spread: 0.24 bps | gamma = 0.021 R (ultra-low friction).
+    * Z = +0.65 SD above Session VWAP, 1H drift t-stat = +1.558 (t = +11.073).
+    * Retrace ratio overshot to 0.724 (outside 0.236-0.618 band); 0 resting walls in-band.
+  - **Universe Friction**: 9 assets inside gamma <= 0.15 R (GOLD 0.021 R, GBPUSD 0.028 R, NAS100 0.053 R, DJ30 0.058 R, GER40 0.061 R, USDJPY 0.075 R, SP500 0.096 R, EURUSD 0.101 R, BTC 0.118 R).
+- **Cycle 23 Briefing Injection**:
+  - Review modal successfully dismissed; TipTap editor cleared and refreshed.
+  - Dispatched [`docs/prompts/ARENA_CYCLE_23_PROMPT.txt`](file:///c:/Users/SIGMA/Documents/Trading_2/docs/prompts/ARENA_CYCLE_23_PROMPT.txt) (HEAD `29f72a25`).
+  - Active generation verified (`isGenerating: true`, `hasStopBtn: true`).
+  - Arming 9-minute sleep timer (`DurationSeconds=540`, `TimerCondition="never"`) targeting ~01:01 UTC wake-up directly post-01:00 UTC hourly bar close.
+  - Account State: 4,896.55 USD (100% Cash reserves), floor cushion +121.55 USD above 4,775.00 USD hard floor.
+
+
+---
+
+### Turn Checkpoint — Cycle 23 Harvest & 01:00 UTC Roll Breakthrough (01:04 UTC)
+- **Timestamp**: 2026-10-12 01:04:00 UTC / 2026-10-12 06:34:00 IST
+- **Cycle 23 Council Harvest Summary (`ARENA_COUNCIL_REPORT_20261012_0040Z.md`, Commit `2ab06ba6`)**:
+  - Merged commit `2ab06ba6` into `main` (commit `da2d9183`) and synchronized across both branches.
+  - **Unanimous STAND ASIDE Ratified**: 0 tickets staged, 0 resting orders. Cash reserves 100% at 4,896.55 USD, defending the +121.55 USD floor cushion above 4,775.00 USD. Evidence score: 81/100.
+  - **Dead Window Permanently Closed**: Council verified `_session_vwap` returns a valid slope for 24 of 24 assets, confirming the post-midnight dead window is 100% resolved.
+  - **Universal `session_bars` Reset to 3**: Council revealed that at the 00:00 UTC rollover, all four asset categories (crypto, FX, indices, commodities) reset to 3 bars. Gate `B1_session_immature_lt16bars` binds across all assets until ~04:00 UTC, and 3-bar sigma artifacts inflated raw Z-scores temporarily.
+  - **BTC Pre-Roll Metrics**: Retrace was measured at 0.6308 (0.0128 above 0.618 ceiling); downside 101.3M USD magnet receded to -2.5470 ATR (169.8% of stop distance), relaxing the downside filter. Expectancy turned negative (-0.0718 R) as spot rose toward the 84,250 anchor.
+  - **Universal Wall Absence**: G-7 audit recorded 0 in-band resting walls across all 7 audited assets.
+- **01:00 UTC Hourly Close Breakthrough (`scan_council.py` @ 01:02 UTC)**:
+  - **BTC 1H Drift Surpassed Floor**: 1H drift t-stat advanced from +1.439 to **+1.687** (t = +7.537), officially crossing the 1.50 STRUCT floor!
+  - **BTC Regime Certified**: BTC regime upgraded from `UNDEFINED` to **`TREND_UP`** via STRUCT tier!
+  - **Universe Regimes (4/24)**: BTC (`TREND_UP`), GOLD (`TREND_UP`), NEAR (`TREND_UP`), SP500 (`MEAN_REVERT`).
+  - **BTC Execution Blockers**: Spot pushed to 83,893 USD in an active impulse (pullback retrace = 0.0317 < 0.236); `session_bars = 4` (< 16 bars); 0 resting walls currently in-band inside +/- 0.35 ATR.
+- **MT5 Account State (#5064568)**:
+  - Balance: 4,896.55 USD | Equity: 4,896.55 USD | Margin: 0.00 USD (100% Cash reserves).
+  - Floor: 4,775.00 USD | Cushion: +121.55 USD | Operating Buffer: 4,795.00 USD (+101.55 USD).
+  - Capacity: 0/4 used (4 slots open).
+- **Next Revalidation Point**:
+  - Cycle 24 preparation for the 01:20 UTC / 06:50 IST candle wake-up to track BTC's post-breakthrough pullback geometry and wall accumulation.
+
+---
+
+### Turn Checkpoint — Cycle 24 Injected & BTC TREND_UP Pullback Sentry (01:26 UTC)
+- **Timestamp**: 2026-10-12 01:26:00 UTC / 2026-10-12 06:56:00 IST
+- **Pre-Flight Live Scan (gen `d764526a927747ea85cf5054e6422ec3` @ 01:23:31 UTC)**:
+  - **Account State (Blueberry Markets MT5 #5064568)**:
+    * Balance: 4,896.55 USD | Equity: 4,896.55 USD | Margin: 0.00 USD (100% Cash reserves).
+    * G-1 Hard Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD.
+    * Live Floor Cushion: **+121.55 USD** (+101.55 USD above buffer; 6.08x mandatory 20.00 USD minimum).
+    * Active Positions: 0 | Pending Orders: 0 (Capacity: 0/4 used, 4 slots open).
+  - **4 Active Regimes in Universe (4/24)**:
+    * **BTC**: Mid = 83,844 USD | ATR = 190.35 USD | Spread = 1.91 bps | gamma = 0.112 R | Z = +1.37 SD | Regime = **`TREND_UP`** (1H drift t-stat = +1.687 > 1.50 STRUCT floor).
+    * **GOLD**: Mid = 4,210.8 USD | ATR = 6.81 USD | Spread = 0.28 bps | gamma = 0.023 R | Z = +1.51 SD | Regime = **`TREND_UP`**.
+    * **NEAR**: Mid = 5.90 USD | ATR = 0.0625 USD | Spread = 61.02 bps | gamma = 0.768 R | Z = +1.39 SD | Regime = **`TREND_UP`**.
+    * **SP500**: Spot = 7,830.2 USD | ATR = 4.67 USD | Spread = 0.43 bps | gamma = 0.096 R | Z = +1.48 SD | Regime = **`MEAN_REVERT`**.
+  - **Universe Friction**: 9 assets inside gamma <= 0.15 R (USDJPY 0.019 R, GOLD 0.023 R, GBPUSD 0.028 R, EURUSD 0.034 R, NAS100 0.048 R, DJ30 0.056 R, GER40 0.057 R, SP500 0.096 R, BTC 0.112 R).
+  - **BTC Sentry Geometry**:
+    * Spot high of session at 83,893 USD. Currently consolidating / pulling back at 83,844 USD.
+    * Value Area shelf: VAH at 83,652 USD, POC at 83,578 USD, Session VWAP at 83,580 USD.
+    * Downside 101.3M USD sell-stop cluster at 83,350 USD receded to -2.5470 ATR, relaxing the downside filter.
+    * Sentry focus: Pullback retrace into [0.236, 0.618] shelf and resting L2/L3 bid whale wall replenishment inside +/- 0.35 ATR (+/- 66.6 USD).
+- **Cycle 24 Briefing Formulation & Dispatch**:
+  - Review panel dismissed ("Keep working" clicked), TipTap editor cleared.
+  - Written [`docs/prompts/ARENA_CYCLE_24_PROMPT.txt`](file:///c:/Users/SIGMA/Documents/Trading_2/docs/prompts/ARENA_CYCLE_24_PROMPT.txt) and committed as `c616bccb`.
+  - Synchronized across `main` and `arena/537c1eb8-trading-2`.
+  - Dispatched prompt via CDP (`Terminal.arena_bridge.post_prompt_to_arena`).
+  - Active generation verified on Arena tab (`isGenerating: true`, stop square button active).
+- **Arming 9-Minute Sleep Protocol**:
+  - Scheduled 9-minute sleep timer (`DurationSeconds=540`, `TimerCondition="never"`).
+  - Wake-up target: ~01:35 UTC (07:05 IST) to harvest Cycle 24 Council Report from `arena/537c1eb8-trading-2`, merge commit, evaluate gates, and execute limit orders if confluence criteria are satisfied.
