@@ -9885,3 +9885,19 @@ Arena completed the unified 4-step council audit across all 4 Mandates:
    - Unified 4-Step prompt configured to instruct Arena to directly review `docs/telemetry/live_snapshot_latest.json` for candidates.
    - Integrated live broker state reporting: live MT5 balance, equity, open positions, and pending orders dynamically injected into prompt.
    - Fixed `TradeOrder` volume and price extraction attributes in `dispatch_comprehensive_wake_up_prompt.py`.
+
+---
+
+### [2026-10-12 12:25:00 UTC] Cycles 38, 39, 39B & 40: Pure Telemetry Playbook Transition, Independent Verification Loop, BTC Fill & SOL Limit Staging
+1. **Pure Telemetry Mandate Enforced Across Full 24-Asset Mutual Universe**:
+   - All references to `decision_gates_v3.py` and legacy gate tokens (`A1-A5`, `B1-B6`, `G-4`, `G-6`, `MAX_TARGET_DIST_ATR = 4.0`) permanently retired from trade selection and prompts.
+   - All evaluations governed 100% by `docs/telemetry/live_snapshot_latest.json` and `docs/specs/TRADE_DECISION_PLAYBOOK.md` across all 24 mutual universe assets (`14 Cryptos + 2 Metals [GOLD/XAUUSD.pi, SILVER/XAGUSD.pi] + 1 Energy [USWTI.p] + 3 Forex [EURUSD.pi, GBPUSD.pi, USDJPY.pi] + 4 Indices [SP500.p, NAS100.p, DJ30.p, GER40.p]`).
+2. **Cycle 39 & 39B Independent Verification & Corrective Feedback Loop**:
+   - **Ticket `#18791527` (`BTCUSD.pi` `0.02 lots @ 83,150.00 USD`)**: Modified SL from `82,650.00` to **`82,590.00 USD`** (`0.51 ATR` below `min_price = 82,700.00` of the `32.13M USD` long liquidation cascade band) and TP from `84,400.00` to **`84,300.00 USD`** (front-running the `84,350.00 USD` `7.04M USD` buy-stop cluster by `5.9 bps`, locking in `2.05R` / `11.20 USD` risk). **Subsequently FILLED at `83,150.00 USD` and now running as an Active Open Position under Mandate 2!**
+   - **Ticket `#18795304` (`SOLUSD.p` `BUY LIMIT 0.08 lots @ 110.15 USD`)**: After catching Arena Cycle 39's initial `mid_price` SL error (`109.30` inside the `109.00-110.00` band) and `110.80` entry above the `110.50` sell-stop cluster, dispatched Cycle 39B corrective prompt. Arena rectified the setup in Cycle 39B (`docs/trade_plans/ARENA_CYCLE_39B_RAW.md`), and Antigravity staged **Ticket `#18795304`**: `BUY LIMIT 0.08 lots @ 110.15 USD | SL: 108.79 USD` (`0.51 ATR` below `min_price = 109.00`) `| TP: 113.40 USD` (front-running `113.50` `1.67M USD` buy-stop cluster by `8.8 bps`, `Risk: 10.88 USD`, `Reward: +26.00 USD`, `R:R = 2.39R`).
+3. **3-Mandate Arena Prompting & 2-Step Antigravity Wake-Up Protocol Codified (`Commit 2fe47c0b`)**:
+   - **Mandate 1**: Scan all 24 mutual universe assets (Crypto, Metals, Energy, Forex, Indices) for new trading opportunities.
+   - **Mandate 2**: Audit Active / Running Trades (`#18791527 BTCUSD.pi`) for logical TP/SL modifications based on latest data.
+   - **Mandate 3**: Audit Unfilled Limit Orders (`#18795304 SOLUSD.p`) for viability to wait & fill as-is vs. slight modification vs. deletion.
+   - **Always-On Completion Daemon (`Terminal/arena_completion_daemon.py`)**: Detects `Copy` button or `Was this task successful?` (`Yes`/`No`) banner via Chrome CDP and immediately wakes Antigravity up (`--wait`) to verify Arena's logic and re-prompt in Part B of the same cycle (`Cycle NB`) if any flaw is detected.
+   - **Recurring Cron Schedule Armed (`0,20,40 * * * *`)**: Autonomous wake-up at the `0th`, `20th`, and `40th` minute of every hour.
