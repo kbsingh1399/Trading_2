@@ -54421,3 +54421,20 @@ Finally, unify live and replay ratchets before qualifying uplift; the current se
 - Active Sleep Timer: 9-minute sleep timer `task-46983` armed (expires ~08:31:29 UTC / 14:01:29 IST) for zero-token evaluation wait.
 
 
+
+## Turn Checkpoint: 2026-10-12 09:31 UTC (Cycle 36 Quant Upgradation Dispatched & 9-Minute Autonomous Timer Armed)
+- Operator Mandate: Quant Desk Upgradation & Mutual Exclusivity Regime Paradox Resolution across both Model 1 (Extreme Mean Reversion) and Model 2 (VWAP Trend Pullbacks).
+- Root Cause Addressed:
+  * Model 2 Pullback Paradox: Pullbacks to Session VWAP or 20/50 EMA lower ER below 0.20, triggering B1_regime_mismatch and vetoing valid pullbacks.
+  * Model 1 Climax Paradox: Statistical flushes (|Z| >= 2.0 to 3.5 SD) generate directional variance (vr_z > 0), conflicting with A1's requirement for docile chop (vr_z < -1.5).
+  * TradFi Tape Paradox: CFD brokers lack crypto taker tape, blocking TradFi CFDs under Model 1 fail-closed.
+- The 4 Target Upgrades Dispatched to Arena.ai for Critique & Code Ratification:
+  1. Upgrade 1 (Regime Hysteresis): 6-bar trend memory preserving TREND_UP/TREND_DOWN during healthy pullbacks.
+  2. Upgrade 2 (Autonomous Climax Flush Regime): Statistical extremes (|Z| >= 2.0 to 3.5 SD) at structural shelves qualify as valid mean-reversion setups.
+  3. Upgrade 3 (TradFi CFD Price-Only Variant for Model 1): Enable allow_price_only_variant=true when confirmed by rejection wicks (>= 40%) and volume expansion.
+  4. Upgrade 4 (Structural Trend Realism): HTF EMA200 alignment and session VWAP slope valid when drift t-stat is between 1.2 and 1.8.
+- Action & Git Status:
+  * Prompt injected into Arena.ai editor over CDP.
+  * Commits synchronized on `main` and `arena/537c1eb8-trading-2` (HEAD: `e1259b21`).
+  * 9-Minute Autonomous Timer `task-47446` armed (DurationSeconds=540).
+  * Account State: Balance: 4,885.38 USD | Equity: 4,885.38 USD | 0 Positions | 0 Orders | Cushion: +110.38 USD above 4,775.00 USD hard floor.

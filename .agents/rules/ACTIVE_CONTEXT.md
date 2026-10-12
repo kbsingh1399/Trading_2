@@ -61,17 +61,17 @@ trigger: always_on
          - Positions reaching Phase 0 Break-Even immediately drop their committed risk to 0.00 USD, liberating capital and risk budget to stage new high-confluence limit orders without restriction.
     - Connects directly via native IPC to MetaTrader 5 Account 5064568 (Blueberry Markets).
     - **Active Positions & Pending Orders (Live State)**:
-      * Current Status: **1 Open Position | 0 Pending Orders | Equity: 4,892.15 USD | Balance: 4,896.55 USD | Free Margin: 3,634.47 USD**.
-      * Active Positions (1):
-        - Ticket #18785248 (`BTCUSD.pi` BUY 0.03 lots @ 83,845.00 USD | SL: 83,472.55 USD | TP: 84,750.00 USD | Risk: 11.17 USD | Floating: -4.40 USD).
+      * Current Status: **0 Open Positions | 0 Pending Orders | Equity: 4,885.38 USD | Balance: 4,885.38 USD | Free Margin: 4,885.38 USD**.
+      * Active Positions (0): Standby / 100% Cash reserves.
       * Active Pending Orders (0): Zero resting pending orders on broker.
-      * G-1 Hard Floor Defense: Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Floor Cushion: **+117.15 USD** (+97.15 USD above operating buffer).
-      * Stressed Post-Loss Simulation & Absolute Immunity:
-        - Total Contingent Book Risk across all exposed tickets: **11.17 USD** (15.96 USD stressed with execution buffer).
-        - Stressed Worst-Case Equity: **4,880.59 USD** (Unconditionally defends floor!).
-        - Safety Cushion Above 4,775.00 USD Hard Floor: **+105.59 USD** (5.28x mandatory >= 20.00 USD buffer).
-        - Safety Cushion Above 4,795.00 USD Operating Buffer: **+85.59 USD**.
+      * G-1 Hard Floor Defense: Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Floor Cushion: **+110.38 USD** (+90.38 USD above operating buffer).
+      * Stressed Post-Loss Simulation:
+        - Total Contingent Book Risk across exposed tickets: **0.00 USD**.
+        - Stressed Worst-Case Equity: **4,885.38 USD** (Unconditionally defends floor!).
+        - Safety Cushion Above 4,775.00 USD Hard Floor: **+110.38 USD** (5.5x mandatory >= 20.00 USD buffer).
+        - Safety Cushion Above 4,795.00 USD Operating Buffer: **+90.38 USD**.
       * Closed Trades Today (Realized PnL):
+        - Ticket #18785248 (`BTCUSD.pi` closed at **-11.17 USD loss** via Stop Loss at 83,472.55 USD, Deal #16997164, Order #18785248)
         - Ticket #18740569 (`SP500.p` closed at **-13.00 USD loss** via Stop Loss at 7,778.50 USD, Deal #16962450, Order #18749312)
         - Ticket #18734182 (`ETHUSD.pi` closed at **-11.90 USD loss** via Stop Loss at 2,477.50 USD, Deal #16961654, Order #18748507)
         - Ticket #18734361 (`XAUUSD.pi` closed at **-13.70 USD loss** via Stop Loss at 4,175.80 USD, Deal #16957838, Order #18744533)
