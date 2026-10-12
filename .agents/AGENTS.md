@@ -30,13 +30,14 @@ When `AGENTS.md` is loaded, execute sequentially without asking:
 5. **DeepSeek Harness**: Local verification loop: `python .agents/scripts/deepseek_harness_runner.py` (or `pnpm --dir deepseek-harness run dsh`).
 6. **Hardware Health**: If RAM > 85% or CPU throttles: `powershell -ExecutionPolicy Bypass -File .agents/scripts/free_ram.ps1`.
 7. **Dual-Repo Parity**: Byte-for-byte parity across `.agents`: `python .agents/scripts/verify_and_sync_agents.py`.
-8. **Always-On Background Pentad-Daemon & Gemini Web2API (Endogen Architecture)**:
-   Verify and guarantee that ALL 5 mandatory persistent background tasks are running by default in the Antigravity task runner:
-   - **Task 1 (AST Knowledge Graph Watcher)**: `python -m graphify watch .` (`IsDaemon=true`).
+8. **Always-On Background Hexad-Daemon & Gemini Web2API (Endogen Architecture)**:
+   Verify and guarantee that ALL 6 mandatory persistent background tasks are running by default in the Antigravity task runner:
+   - **Task 1 (AST Knowledge Graph Watcher)**: `python Terminal/run_graphify_watcher.py` (`IsDaemon=true`).
    - **Task 2 (Telemetry Git Sync Daemon)**: `python Terminal/Data_Factory/autonomous_telemetry_git_daemon.py` (`IsDaemon=true`, pushes to GitHub every 60s).
    - **Task 3 (Web2API Council Daemon - Endogen Architecture)**: `python gemini_web2api.py` on port 8081 (Cwd: `C:\Users\SIGMA\Documents\Trading\gemini-web2api`, `IsDaemon=true`, Endogen architecture: `https://github.com/Endogen/web2api`, Auth: `Bearer sk-gemini`).
    - **Task 4 (Tier 2 Autonomous Swarm Cron)**: `schedule` Cron (`29,59 * * * *` or `14,29,44,59 * * * *`) dispatching 3-subagent swarms at every 15m candle close.
    - **Task 5 (Heretic Engine Daemon - p-e-w/heretic)**: `python Terminal/Data_Factory/heretic_daemon.py` on port 8083 (`IsDaemon=true`, repo: `https://github.com/p-e-w/heretic`, status: `Data/heretic_daemon_status.json`).
+   - **Task 6 (Arena.ai Completion & Instant Wakeup Daemon)**: `python Terminal/arena_completion_daemon.py --daemon` (`IsDaemon=true`, monitors Chrome CDP for the `Copy` button `button[aria-label="Copy"]` or `Was this task successful?` `Yes`/`No` banner on Arena.ai, auto-harvests `docs/trade_plans/ARENA_LATEST_RAW.md`, and pairs with `python Terminal/arena_completion_daemon.py --wait` (`IsDaemon=false`) to immediately wake Antigravity up the instant Arena finishes).
 
 ---
 

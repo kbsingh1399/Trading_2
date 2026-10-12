@@ -32,10 +32,12 @@ trigger: always_on
 - **Production State**: 
   * **Autonomous 15-Minute Candle AI Trader & MT5 Bridge (`Terminal/OF_Strategy.py` --mode mt5-trader --live --min-risk 10.0 --max-risk 20.0)**:
     - **Institutional Wake-Up & Collaborative Desk Protocol (STRICT OPERATOR SPECIFICATION)**:
-      1. *Step 1 (Pure Telemetry Multi-Persona Analysis Prompt to Arena.ai)*:
+      1. *Step 1 (Pure Telemetry Multi-Persona Analysis Prompt to Arena.ai + Instant Completion Wakeup Daemon)*:
          - Coordinator prompts Arena.ai in Chrome with the 4-persona council to analyze the latest live telemetry directly from `docs/telemetry/live_snapshot_latest.json` and `docs/specs/TRADE_DECISION_PLAYBOOK.md` (zero `decision_gates_v3.py` references).
-         - Must systematically audit: `quotes` (MT5 spread_bps & mid), `execution_specs` (contract_size, min_lot, step_lot), `causal_indicators` (Session VWAP, Z-score, RSI, ATR, EMA 20/50/200), `volume_profile` (POC/VAH/VAL), `orderbook_live_depth` (20-level depth, book_imbalance, `whale_walls_l3`, `l2_wall_levels`, `venue_basis`), `structural_stop_clusters` (`top_*` and `nearest_*`), `reconstructed_liquidations` (`top_*` and `nearest_*`), and `cvd_1m_buckets`.
-         - Immediately after Arena outputs, Antigravity independently verifies every figure and level against live MT5 and `live_snapshot_latest.json`. If Arena made any calculation or microstructure error, Antigravity immediately sends the mistake back to Arena.ai for correction.
+         - **Always-On Arena Completion & Instant Wakeup Daemon (`Terminal/arena_completion_daemon.py`)**:
+           * Persistent Daemon (`python Terminal/arena_completion_daemon.py --daemon`, `IsDaemon=true`) runs continuously in the background watching Chrome CDP for the `Copy` button (`button[aria-label="Copy"]`) or the `Was this task successful?` (`Yes` / `No` / `Keep working`) banner on the latest response turn.
+           * Instant Reactive Wakeup (`python Terminal/arena_completion_daemon.py --wait`, `IsDaemon=false`): Launched immediately after every prompt injection into Arena.ai. The exact second the `Copy` button or `Yes`/`No` banner appears (and no `Stop` button is active), it saves `docs/trade_plans/ARENA_LATEST_RAW.md` and exits `0`, immediately waking Antigravity up with zero timer delay.
+         - Immediately upon wakeup, Antigravity independently verifies every figure and level against live MT5 and `live_snapshot_latest.json`. If Arena made any calculation or microstructure error, Antigravity immediately sends the mistake back to Arena.ai for correction.
       2. *Step 2 (Audit Running Trades & Ratchet Management)*:
          - Inspect all active open positions on MetaTrader 5 (`positions_get()`).
          - Trail SL to Phase 0 Break-Even at +0.80R, Phase 1 Profit Lock at +1.50R, Phase 2 Trailing Lock at +2.00R, and align TP with opposing stop/liquidation magnets.
@@ -45,15 +47,17 @@ trigger: always_on
          - Up to 4 concurrent tickets across orthogonal asset clusters provided total joint worst-case stopout risk unconditionally defends the 4,775.00 USD hard floor and 4,795.00 USD operating buffer (>= 20.00 USD cushion at all times).
     - Connects directly via native IPC to MetaTrader 5 Account 5064568 (Blueberry Markets).
     - **Active Positions & Pending Orders (Live State)**:
-      * Current Status: **0 Open Positions | 1 Pending Order | Equity: 4,885.38 USD | Balance: 4,885.38 USD | Free Margin: 4,885.38 USD**.
+      * Current Status: **0 Open Positions | 2 Pending Orders | Equity: 4,885.38 USD | Balance: 4,885.38 USD | Free Margin: 4,885.38 USD**.
       * Active Positions (0): Standby / Flat.
-      * Active Pending Orders (1): Ticket #18791527 (`BTCUSD.pi` BUY LIMIT 0.02 lots @ 83,150.00 USD | SL: 82,590.00 USD [0.51 ATR below 82,700 cascade min_price] | TP: 84,300.00 USD [front-running 84,350 $7.04M buy-stop cluster by 5.9 bps] | Risk: 11.20 USD / 0.23% | Reward: +23.00 USD | RR: 2.05 | Comment: `OFC_AI_BTC_M2_LIMIT`).
+      * Active Pending Orders (2):
+        1. Ticket #18791527 (`BTCUSD.pi` BUY LIMIT 0.02 lots @ 83,150.00 USD | SL: 82,590.00 USD [0.51 ATR below 82,700 cascade min_price] | TP: 84,300.00 USD [front-running 84,350 $7.04M buy-stop cluster by 5.9 bps] | Risk: 11.20 USD / 0.23% | Reward: +23.00 USD | RR: 2.05 | Comment: `OFC_AI_BTC_M2_LIMIT`).
+        2. Ticket #18795304 (`SOLUSD.p` BUY LIMIT 0.08 lots @ 110.15 USD [basis-adjusted $2.54M whale bid below 110.50 sweep mid, backed by $11.32M persistent L3 whale stack at 109.29–109.73] | SL: 108.79 USD [0.51 ATR below 109.00 cascade min_price] | TP: 113.40 USD [front-running 113.50 $1.65M buy-stop cluster by 8.8 bps] | Risk: 10.88 USD / 0.22% | Reward: +26.00 USD | RR: 2.39 | Comment: `OFC_AI_SOL_M2_LIMIT`).
       * G-1 Hard Floor Defense: Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Floor Cushion: **+110.38 USD** (+90.38 USD above operating buffer).
       * Stressed Post-Loss Simulation:
-        - Total Contingent Book Risk across exposed tickets: **11.20 USD**.
-        - Stressed Worst-Case Equity: **4,874.18 USD** (Unconditionally defends floor!).
-        - Safety Cushion Above 4,775.00 USD Hard Floor: **+99.18 USD** (5.0x mandatory >= 20.00 USD buffer).
-        - Safety Cushion Above 4,795.00 USD Operating Buffer: **+79.18 USD**.
+        - Total Contingent Book Risk across exposed tickets: **22.08 USD** (11.20 USD BTC + 10.88 USD SOL).
+        - Stressed Worst-Case Equity: **4,863.30 USD** (Unconditionally defends floor!).
+        - Safety Cushion Above 4,775.00 USD Hard Floor: **+88.30 USD** (4.4x mandatory >= 20.00 USD buffer).
+        - Safety Cushion Above 4,795.00 USD Operating Buffer: **+68.30 USD**.
       * Closed Trades Today (Realized PnL):
         - Ticket #18785248 (`BTCUSD.pi` closed at **-11.17 USD loss** via Stop Loss at 83,472.55 USD, Deal #16997164, Order #18785248)
         - Ticket #18740569 (`SP500.p` closed at **-13.00 USD loss** via Stop Loss at 7,778.50 USD, Deal #16962450, Order #18749312)

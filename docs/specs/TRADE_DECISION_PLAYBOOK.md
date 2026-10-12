@@ -243,10 +243,10 @@ Before any order is staged or punched into MetaTrader 5, the desk conducts this 
    - [ ] Is setup **Model 1** (Extreme Mean Reversion, `|Z| >= 2.0 SD`) or **Model 2** (Trend Pullback, `|Z| < 2.0 SD` with price & 200 EMA slope aligned)?
    - [ ] Is there structural alignment (200 EMA slope, Session VWAP location, or Value Area boundary)?
 
-5. **L2/L3 Orderbook, Whale Backing & Stop-Sweep Clearance:**
-   - [ ] For Longs: Is there a persistent resting bid wall or wallet-attributed L3 bid (`0x...`) within 0.5 ATR below entry (basis-adjusted via `venue_basis`)?
-   - [ ] For Shorts: Is there a persistent resting ask wall or wallet-attributed L3 ask (`0x...`) within 0.5 ATR above entry?
-   - [ ] **Stop-Sweep Clearance:** Make sure your entry does NOT sit just above an un-swept sell-stop cluster when the largest L3 whale bids sit *below* that stop cluster and 1m CVD is actively negative.
+5. **L2/L3 Orderbook, Persistent Whale Backing (`persist_s >= 180s`) & Stop-Sweep Clearance:**
+   - [ ] For Longs: Is there a **persistent** resting bid wall or wallet-attributed L3 bid (`0x...`, `persist_s >= 180s` / `gate_g7_eligible == True` — never anchor on transient `persist_s == 0` prints) within 0.5 ATR below entry (basis-adjusted via `venue_basis`)?
+   - [ ] For Shorts: Is there a **persistent** resting ask wall or wallet-attributed L3 ask (`0x...`, `persist_s >= 180s`) within 0.5 ATR above entry?
+   - [ ] **Stop-Sweep Clearance & 15m–30m CVD Window:** Make sure your entry does NOT sit inside or just above an un-swept sell-stop cluster (`min_price` to `max_price`), and evaluate cumulative 1m CVD flow over a **15-minute to 30-minute window (`15–30 buckets`)** alongside the latest 5 buckets so single-minute spikes do not flip the directional tape reading.
 
 6. **Liquidation & Stop Cluster Coincidence (SL & TP Construction):**
    - [ ] **SL Placement (`min_price` / `max_price` edge):** Is the Stop Loss positioned at least `0.50 ATR` below `min_price` (for Longs) or above `max_price` (for Shorts) of the liquidation/stop band — NEVER measured from `mid_price`?

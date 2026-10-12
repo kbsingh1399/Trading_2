@@ -241,10 +241,9 @@ def main():
     logger.info(f"Target Branch: {BRANCH_NAME} | Cadence: Every {INTERVAL_SECONDS}s | PID: {os.getpid()}")
     logger.info("=====================================================================")
 
+    import importlib
     from Terminal.MT5_Execution_Bridge import MT5ExecutionBridge
     from Terminal.Data_Factory import generate_telemetry_snapshot as gen_mod
-    # Keep confirmed clock evidence across cycles; cold deployment requires a
-    # process restart rather than reloading unverified source during dispatch.
     bridge = MT5ExecutionBridge(5064568)
     iteration = 0
     while True:
@@ -254,9 +253,10 @@ def main():
             now_str = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
             logger.info(f"--- Iteration #{iteration} [{now_str}] ---")
 
-            # Step 1: Generate fresh observations using this process's pinned code.
+            # Step 1: Reload generator module so code updates take effect automatically, then generate fresh observations.
             snapshot = None
             try:
+                importlib.reload(gen_mod)
                 snapshot = gen_mod.generate_full_snapshot(bridge=bridge)
                 equity = snapshot["account"]["equity_usd"]
                 cushion = snapshot["account"]["cushion_above_floor_usd"]
