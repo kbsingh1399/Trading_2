@@ -1,83 +1,40 @@
-# 🏛️ ANTIGRAVITY x ARENA.AI LIVE STRATEGY COUNCIL BRIEFING
-**As-Of UTC:** 2026-10-12 08:31:16 UTC · **Broker Account:** #5064568 (Blueberry Markets)
+=== ANTIGRAVITY x ARENA.AI LIVE STRATEGY COUNCIL BRIEFING ===
+As-Of UTC: 2026-10-12 08:33:24 UTC | Broker Account: #5064568 (Blueberry Markets)
 
----
+--- [1. LIVE ACCOUNT & CAPITAL FLOOR STATUS] ---
+• Equity: 4885.38 USD | Balance: 4885.38 USD | Hard Floor: 4,775.00 USD | Cushion: +110.38 USD
+• Open Positions: 0 | Resting Orders: 0 | Available Slots: 4/4 | Mode: 100% Cash Reserves
 
-## 1. Live Account & Capital Floor Status
+--- [2. RECENT BTC EXECUTION POST-MORTEM] ---
+• Ticket #18785248 (BTCUSD.pi Long): Filled 83,845.00 -> Closed via Stop Loss at 83,472.55 USD (Loss: -11.17 USD / -0.228% risk).
+• Sweep Cause: Spot swept down to 83,452.50 USD into the $7.18M sell pool at 83,450.00 USD. Placing the stop at 83,472.55 sat 22.45 USD directly in front of resting cluster liquidity, acting as a sweep magnet.
+• Quantization Lesson: Sized 0.03 lots (11.17 USD) vs STRUCT cap 10.00 USD due to MIN_RISK_USD=10.0 grid lock. Discrete lot sizing down to 0.02 lots (7.45 USD) is now recognized and permitted.
+• Floor Defense: Live equity preserved at 4885.38 USD (+110.38 USD cushion above hard floor). Capital floor defended.
 
-| Metric | Value | Constraint / Target | Status |
-|---|---|---|---|
-| **Equity / Balance** | **4885.38 USD** / 4885.38 USD | Base Capital: 5,000.00 USD | 100% Cash Reserves |
-| **Hard Floor (G-1)** | 4,775.00 USD | Operating Buffer: 4,795.00 USD | Defended |
-| **Floor Cushion** | **+110.38 USD** | Mandatory Cushion >= +20.00 USD | ✅ 5.5x Required Buffer |
-| **Margin Used / Free** | 0.00 USD / 4885.38 USD | Free Margin: 100% | ✅ Zero Exposure |
-| **Active Positions** | 0 filled | Maximum Concurrent: 4 | ✅ 4 Slots Available |
-| **Pending Orders** | 0 resting | Passive Limits Only | ✅ Queue Clear |
+--- [3. MANDATORY REFERENCE DOCUMENTS] ---
+Open response with DOCUMENT INGESTION & GROUND TRUTH CITATION citing timestamps:
+1. Session History: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agents/memory/session_chat_history.md
+2. Active Context: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agents/rules/ACTIVE_CONTEXT.md
+3. Order Desk: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md
+4. Council Protocol: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/specs/ANTIGRAVITY_ARENA_THINKING_CHAIN_COUNCIL_PROTOCOL.md
+5. Round 2 Audit: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/reviews/ROUND2_THINKING_CHAIN_AUDIT.md
+6. Gate Implementation: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Terminal/decision_gates_v3.py
+7. Live Telemetry: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/telemetry/live_snapshot_latest.json
 
----
+--- [4. MULTI-PERSONA STRATEGIC MANDATE] ---
+1. Orderflow & Microstructure Analyst: Live CVD series, volume absorption, resting L2/L3 whale depth (>=150k USD, persist>=180s, gate_g7_eligible=true), spread <= 20.0 bps, gamma <= 10.0%.
+2. Structural Price Action & Regime Specialist: Session VWAP, SD bands, Fair Value Gaps, and classify_regime (15m, 1h, 4h). Strict dialectic: Model 1 (|Z| >= 2.0 SD flush) vs Model 2 (|Z| < 2.0 SD trend pullback). If UNDEFINED, stand aside.
+3. Liquidation & Stop Hunt Forensic: Reconstructed liquidation cascade bands, discount/premium stop sweep clusters. Never place stops in front of large liquidity pools without buffer.
+4. Macro Risk & Portfolio Governor: G-1 floor defense (stressed equity >= 4,795.00 USD), positive EV expectancy: EV_lower/R = p_lower*(RR - c) - (1 - p_lower)*(1 + c + s) > 0.
 
-## 2. Recent Trade Execution & Forensic Post-Mortem
+--- [5. SPECIFIC TASKS FOR THIS CYCLE] ---
+1. Screen full 24-asset universe: 14 Crypto (24/7), 4 Indices, 3 Commodities, 3 Forex. Focus on BTC (support test at 83,450) and GOLD (Z = -2.15 SD).
+2. Option A' Basis: d_adj = side * (entry_mt5 - wall_price - b_hat) / atr with drift tolerance |b_now - b_hat| <= max(0.25*atr, 2*tick).
+3. Actionable Ruling: If qualifying setup exists, specify Symbol, Direction, Limit Price, SL, TP, Volume, Risk USD, RR. If none, provide explicit mathematical stand-aside proof across all 24 assets.
 
-- **Ticket #18785248 (`BTCUSD.pi` Long)**:
-  * Entry: 83,845.00 USD (Filled 08:00:13 UTC)
-  * Stop Loss: 83,472.55 USD · Take Profit: 84,750.00 USD · Volume: 0.03 lots
-  * Outcome: **Closed via Stop Loss at 83,472.55 USD** (Deal #16997164 @ 08:15:51 UTC, Loss: -11.17 USD / -0.228% risk).
-  * **Liquidity Sweep Post-Mortem**: Spot swept down to 83,452.50 USD into the major 83,450.00 USD sell pool ($7.18M notional). As identified in Cycle 33, placing a stop 22.45 USD directly in front of resting cluster liquidity created a high-probability sweep magnet.
-  * **Quantization Sizing Trap**: Sizing was 0.03 lots (11.17 USD risk) instead of 0.02 lots (7.45 USD risk) because `MIN_RISK_USD` was strictly 10.00 USD. For `STRUCT` tier, discrete lot sizing down to 0.02 lots (7.45 USD) is now recognized and permitted.
-  * **Floor Integrity**: Account equity stands at 4,885.38 USD, preserving +110.38 USD above 4,775.00 USD floor (+90.38 USD above operating buffer). Zero solvency threat.
-
----
-
-## 3. Mandatory Reference Documents (Line-by-Line Ingestion)
-
-Ingest each source below in full before formulating conclusions. Open your response with a `DOCUMENT INGESTION & GROUND TRUTH CITATION` block citing latest timestamps:
-1. **Session History**: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agents/memory/session_chat_history.md
-2. **Active Context**: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agents/rules/ACTIVE_CONTEXT.md
-3. **Order Desk**: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md
-4. **Council Protocol**: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/specs/ANTIGRAVITY_ARENA_THINKING_CHAIN_COUNCIL_PROTOCOL.md
-5. **Round 2 Audit**: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/reviews/ROUND2_THINKING_CHAIN_AUDIT.md
-6. **Gate Implementation**: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Terminal/decision_gates_v3.py (and `Terminal/dg_context.py`)
-7. **Live Telemetry Snapshot**: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/telemetry/live_snapshot_latest.json
-
----
-
-## 4. Multi-Persona Strategic Mandate
-
-1. **Orderflow & Microstructure Analyst**:
-   - Live taker CVD series (`cvd_1m_buckets`), volume absorption, and resting L2/L3 orderbook depth.
-   - Genuine whale wall backing (>= 150k USD, persist >= 180s, `gate_g7_eligible=true`, not a mirrored leg).
-   - Broker spread (<= 20.0 bps) and relative friction gamma (<= 10.0% of 1.5 ATR).
-2. **Structural Price Action & Regime Specialist**:
-   - Session VWAP and SD bands, Fair Value Gaps, and multi-timeframe regime (`classify_regime` on 15m, 1h, 4h).
-   - Strict dual-engine dialectic: Debate **Model 1** (|Z| >= 2.0 SD flush + absorption) vs **Model 2** (|Z| < 2.0 SD trend pullback). If regime is `UNDEFINED`, standing aside is mandatory.
-3. **Liquidation & Stop Hunt Forensic**:
-   - Real-time reconstructed liquidation bands and discount/premium stop clusters from live snapshot blocks.
-   - Protect stops: Never place stops immediately in front of large resting pools without buffer.
-4. **Macro Risk & Portfolio Governor**:
-   - Hard floor defense (worst-case stressed equity >= 4,795.00 USD at all times).
-   - Positive net EV expectancy hurdle: `EV_lower / R = p_lower * (RR - c) - (1 - p_lower) * (1 + c + s) > 0`.
-
----
-
-## 5. Specific Tasks for This Cycle
-
-1. **Screen 24-Asset Universe**:
-   - Cluster 1: 14 Crypto Perpetuals (BTC, ETH, SOL, BNB, XRP, ADA, DOGE, TRX, DOT, LINK, BCH, LTC, AVAX, NEAR).
-   - Cluster 2: 4 Equity Indices (SP500, NAS100, DJ30, GER40).
-   - Cluster 3: 3 Commodities (GOLD, SILVER, USWTI).
-   - Cluster 4: 3 Forex Pairs (EURUSD, GBPUSD, USDJPY).
-   - Focus on BTC (re-evaluating at 83,450 support) and GOLD (stretched at -2.15 SD).
-2. **Option A' Cross-Venue Basis**:
-   - Evaluate `d_adj = side * (entry_mt5 - wall_price - b_hat) / atr` with drift tolerance `|b_now - b_hat| <= max(0.25*atr, 2*tick)`.
-3. **Actionable Rulings**:
-   - If an institutional setup satisfies all 5 confluence pillars, specify: Symbol, Direction, Limit Price, SL, TP, Volume, Risk USD, and RR.
-   - If no qualifying setup exists, provide explicit mathematical stand-aside justification across all candidates.
-
----
-
-## 6. Required Output Structure
-1. `DOCUMENT INGESTION & GROUND TRUTH CITATION` (7 files verified with timestamps)
-2. `DIALECTIC PERSONA RESEARCH & AUDIT LOGS` (Orderflow, Structural, Liquidation, Macro)
-3. `OPTION A' CROSS-VENUE BASIS TABLE`
-4. `SEVEN-STAGE GATE COMPLIANCE MATRIX`
-5. `MASTER ARBITRATOR FINAL SYNTHESIS & RULING` (Evidence Score, Trade Proposal or Stand-Aside Decision)
+--- [6. REQUIRED OUTPUT STRUCTURE] ---
+1. DOCUMENT INGESTION & GROUND TRUTH CITATION (7 files verified with timestamps)
+2. DIALECTIC PERSONA RESEARCH & AUDIT LOGS (Orderflow, Structural, Liquidation, Macro)
+3. OPTION A' CROSS-VENUE BASIS TABLE
+4. SEVEN-STAGE GATE COMPLIANCE MATRIX
+5. MASTER ARBITRATOR FINAL SYNTHESIS & RULING (Evidence Score, Trade Proposal or Stand-Aside Decision)
