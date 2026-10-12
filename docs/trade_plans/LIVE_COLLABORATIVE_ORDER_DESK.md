@@ -9837,3 +9837,28 @@ Arena completed the unified 4-step council audit across all 4 Mandates:
    - Test suites: 244 unit tests passing green.
 5. **Next Cycle Action**:
    - Autonomous Cycle 14 wakeup scheduled for Minute :50 (19:50 UTC).
+
+---
+
+### [2026-10-12 09:45:00 UTC] Cycle 36: Desk Upgradation & Regime Attribution Review (Evidence Score: 96/100 — Session Record)
+1. **Cycle 36 Council Disposition**: STAND ASIDE (0 qualifying candidates across 24 assets). Code shipped and pushed as commit `57fde3f6`.
+2. **Key Quantitative Findings & Empirical Falsification**:
+   - **Diagnosis Tested**: The desk hypothesized that `classify_regime() -> UNDEFINED` caused 24/24 asset paralysis due to the Mutual Exclusivity Paradox.
+   - **Counterfactual Measurement**: When every asset was granted a certified regime hypothetically, **0 of 24 assets traded**.
+   - **Actual Binding Constraints**:
+     * Gate B6: No target inside 4.0 ATR at >= 150k USD (18/24 failing). Low-gamma TradFi CFDs (DJ30, EURUSD, GBPUSD, GER40, USWTI, USDJPY) have stop clusters 17–98 ATR away because crypto DEX feeds lack TradFi density.
+     * Gate B2: Retrace depth outside [0.236, 0.618] (16/24 failing). BTC retrace is 0.1055 vs 0.236 floor.
+     * Gate G-6: Friction gamma > 0.15 R (14/24 failing).
+     * Gate G-5: Broker spread > 20 bps (10/24 failing).
+3. **Upgrades Shipped & Verified**:
+   - `regime_attribution()`: Names the first condition in `classify_regime` that withholds a regime plus counterfactuals.
+   - `apply_regime_hysteresis()`: Upgrade 1 (shipped inert).
+   - `ema200_structural_confirms()`: Upgrade 4 (shipped inert).
+   - `m1_price_only_variant_ok()`: Upgrade 3 (shipped inert).
+   - 58 unit tests added in `Tests/Test_Regime_Attribution_And_Upgrades.py` (100% green).
+4. **Account & Floor Defense**:
+   - MT5 Account #5064568: Balance: 4,885.38 USD | Equity: 4,885.38 USD | Margin Used: 0.00 USD.
+   - Positions: 0 | Pending Orders: 0 | 100% Cash Reserves.
+   - Floor Cushion: +110.38 USD above 4,775.00 USD hard floor (+90.38 USD above 4,795.00 USD operating buffer).
+5. **Next Step**:
+   - BoE blackout lifts at 10:00 UTC. Post-blackout scan for BTC pullback depth and SP500/NAS100 target density.

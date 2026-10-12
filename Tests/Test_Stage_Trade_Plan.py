@@ -426,8 +426,10 @@ def test_purge_expired_cancels_only_stale_tickets(tmp_path):
                          "plan_id": "A"}]
 
 
-def test_cli_main_validate_dry_run(tmp_path):
+def test_cli_main_validate_dry_run(tmp_path, monkeypatch):
     import time as _time
+    import Terminal.risk.blackout_guard as _bg
+    monkeypatch.setattr(_bg, "is_in_blackout", lambda *args, **kwargs: (False, "test_clean"))
     doc_path = tmp_path / "plan.json"
     # The CLI resolves `now` from the wall clock, so the plan's validity
     # window must be built relative to the real current time (a hardcoded
