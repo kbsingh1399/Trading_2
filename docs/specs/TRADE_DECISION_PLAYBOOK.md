@@ -19,6 +19,15 @@ Rather than filtering out assets via isolated threshold checks (e.g. an arbitrar
 4. **Structural Stop Clusters** (Dense retail/bot stop-loss clusters acting as price magnets or sweep barriers)
 5. **Live L2 Orderbook Depth & CVD Taker Absorption** (Bid/ask imbalance, persistent book walls, 1m taker CVD delta exhaustion)
 
+### 1.1 Dual-Venue Hybrid Architecture (Crucial Core Concept)
+- **Spread & Quotes from MT5 (`quotes`)**: MT5 (Blueberry Markets Account #5064568) is our actual financial execution venue. All order placement, fills, slippage, and broker transaction costs occur on MT5. Therefore, broker spread (`spread_bps`), top-of-book bid/ask/mid, tick size, min lot, and stops level MUST be queried directly from MT5 ticks. An asset may be tight on Binance or Hyperliquid, but if the MT5 CFD spread is wide (e.g. 80 bps on retail alts), trading it incurs lethal negative drag.
+- **Orderbook Depth, Whale Walls & Liquidations from Hyperdash / Binance (`orderbook_live_depth`, `structural_stop_clusters`, `reconstructed_liquidations`)**: MT5 CFD brokers only provide synthetic L1/L2 pricing and do not reveal real institutional orderflow or whale wallet identities. In contrast, Hyperdash exposes:
+  1. Real Hyperliquid L1 blockchain on-chain orderbook with verified wallet addresses (`0x...`), resting sizes, and persistent walls.
+  2. Aggregated Binance USDT-M Futures L2 depth (top 20 bid/ask ladder and imbalance).
+  3. Reconstructed liquidation cascade bands across open positions.
+  4. Real structural stop clusters and institutional TWAPs.
+- **Cross-Venue Basis Mapping (`venue_basis`)**: The telemetry pipeline calculates the live price basis between MT5 mid and Hyperdash/Binance mid (`basis_median = mid_mt5 - mid_binance`). This aligns on-chain whale walls, stop clusters, and liquidation levels directly onto the broker's tick grid.
+
 ---
 
 ## 2. Complete Inventory of Consolidated Telemetry Parameters
@@ -26,74 +35,108 @@ Rather than filtering out assets via isolated threshold checks (e.g. an arbitrar
 The table below catalogs every parameter consolidated in `docs/telemetry/live_snapshot_latest.json`, detailing its source, interpretation, and strategic contribution to trade construction.
 
 ### A. Global Risk & Portfolio Level (`account`, `risk`, `capacity`)
-| Parameter | Description | Decision Role |
-|---|---|---|
-| `account.balance` / `equity` | Live MT5 balance and equity in USD | Sets absolute baseline for risk sizing and cushion calculation |
-| `account.margin_free` | Available margin for staging new limit orders | Validates leverage headroom (must maintain > 4,000 USD free margin) |
-| `risk.hard_floor_usd` | Absolute capital floor ($4,775.00 USD) | Unconditional stop; no sequence of trades may ever risk breaching this floor |
-| `risk.operating_buffer_usd`| Operating buffer ($4,795.00 USD) | Target minimum equity under worst-case stopout ($20.00 USD buffer above floor) |
-| `risk.floor_cushion_usd` | Equity minus Hard Floor | Sizing governor; determines whether new tickets can be staged |
-| `risk.stressed_equity_usd` | Equity if ALL active positions and pending orders hit SL | Gating condition; must be >= $4,795.00 USD before staging any new order |
-| `capacity.available_slots` | Remaining concurrency slots (up to 4 tickets) | Prevents portfolio over-concentration across correlated instruments |
+| Parameter | Exact Data Source | Description | Decision Role |
+|---|---|---|---|
+| `account.balance` / `equity` | `NATIVE_MT5_ACCOUNT_INFO` (`mt5.account_info()`) | Live MT5 balance and equity in USD | Sets absolute baseline for risk sizing and cushion calculation |
+| `account.margin_free` | `NATIVE_MT5_ACCOUNT_INFO` (`mt5.account_info()`) | Available margin for staging new limit orders | Validates leverage headroom (must maintain > 4,000 USD free margin) |
+| `account.margin_level_pct` | `NATIVE_MT5_ACCOUNT_INFO` (`mt5.account_info()`) | Broker margin utilization health | Circuit breaker if margin level falls towards broker margin call |
+| `risk.hard_floor_usd` | Institutional Invariant (`AGENTS.md`) | Absolute capital floor ($4,775.00 USD) | Unconditional stop; no sequence of trades may ever risk breaching this floor |
+| `risk.operating_buffer_usd`| Institutional Invariant (`AGENTS.md`) | Operating buffer ($4,795.00 USD) | Target minimum equity under worst-case stopout ($20.00 USD buffer above floor) |
+| `risk.floor_cushion_usd` | `live_admission.py` (Calculated) | Equity minus Hard Floor ($110.38 USD) | Sizing governor; determines whether new tickets can be staged |
+| `risk.stressed_equity_usd` | `live_admission.py` (Modeled) | Equity if ALL active positions and pending orders hit SL | Gating condition; must be >= $4,795.00 USD before staging any new order |
+| `risk.total_contingent_stress_usd`| `live_admission.py` (Modeled) | Sum of worst-case dollar losses across open/pending orders | Reserves capital for resting limit orders |
+| `capacity.available_slots` | Antigravity Risk Engine (Calculated) | Remaining concurrency slots (up to 4 tickets) | Prevents portfolio over-concentration across correlated instruments |
 
 ### B. Macro Calendar & Event Proximity (`macro_calendar`)
-| Parameter | Description | Decision Role |
-|---|---|---|
-| `blackout_active` | Boolean flag for active Tier-1 news release | Hard trading freeze; no orders placed during high-volatility spikes |
-| `runway_hours_to_blackout`| Time remaining until next Tier-1 catalyst | Sizing & duration filter; trades must have sufficient runway to resolve |
-| `fng_index.value` | Fear and Greed Index (0-100) | Sentiment indicator; extreme fear (< 25) or greed (> 75) indicates crowding |
-| `etf_net_flows.BTC_net_usd_millions` | Net daily institutional ETF inflow/outflow | Macro tailwind/headwind confirming multi-day directional bias |
+| Parameter | Exact Data Source | Description | Decision Role |
+|---|---|---|---|
+| `blackout_active` | `Data/macro_calendar.json` | Boolean flag for active Tier-1 news release | Hard trading freeze; no orders placed during high-volatility spikes |
+| `runway_hours_to_blackout`| `Data/macro_calendar.json` | Time remaining until next Tier-1 catalyst | Sizing & duration filter; trades must have sufficient runway to resolve |
+| `event` / `event_release_utc` | Official Central Bank Schedules (BoE, Fed, ECB) | Upcoming high-impact release name & timestamp | Identifies upcoming market-wide volatility drivers |
+| `fng_index.value` | Alternative.me API (Live Ingest) | Fear and Greed Index (0-100) | Sentiment indicator; extreme fear (< 25) or greed (> 75) indicates crowding |
+| `etf_net_flows.BTC_net_usd_millions` | Farside Investors (Live Web Scrape) | Net daily institutional spot ETF flows | Macro tailwind/headwind confirming multi-day directional bias |
 
 ### C. Cross-Universe Institutional Flow (`hyperdash_flow_intelligence`)
-| Parameter | Description | Decision Role |
-|---|---|---|
-| `active_institutional_twaps` | Large algorithmic execution orders running over hours | Identifies persistent structural buying/selling pressure from funds |
-| `imminent_liquidation_hazards` | Large positions within 2-5% of liquidation price | Identifies high-probability price magnets ready to trigger cascades |
-| `recent_confirmed_liquidations`| Liquidations executed in the past 1-6 hours | Confirms whether a cascade has already exhausted or is just beginning |
-| `whale_trades` | Live on-chain trade prints >= 100k USD with wallet addresses | Confirms authentic institutional accumulation or distribution |
-| `open_interest_surges` | Net changes in derivative positioning | Distinguishes aggressive new positioning from mere short-covering |
+| Parameter | Exact Data Source | Description | Decision Role |
+|---|---|---|---|
+| `active_institutional_twaps` | Hyperliquid L1 DEX Blockchain (Hyperdash Stream) | Large algorithmic execution orders running over hours | Identifies persistent structural buying/selling pressure from funds |
+| `imminent_liquidation_hazards` | Hyperliquid L1 DEX Blockchain (Hyperdash Stream) | Large positions within 2-5% of liquidation price | Identifies high-probability price magnets ready to trigger cascades |
+| `recent_confirmed_liquidations`| Hyperliquid L1 DEX Blockchain (Hyperdash Stream) | Liquidations executed in the past 1-6 hours | Confirms whether a cascade has already exhausted or is just beginning |
+| `whale_trades` | Hyperliquid L1 DEX Blockchain (Hyperdash Stream) | Live on-chain trade prints >= 100k USD with wallet addresses | Confirms authentic institutional accumulation or distribution |
+| `open_interest_surges` | Hyperliquid L1 DEX Blockchain (Hyperdash Stream) | Net changes in derivative positioning | Distinguishes aggressive new positioning from mere short-covering |
+| `volume_surges` | Hyperliquid L1 DEX Blockchain (Hyperdash Stream) | Spikes in turnover above 24h baseline | Confirms volume breakout vs low-liquidity drift |
 
 ### D. Per-Asset Market Telemetry (`assets_matrix_24.<SYMBOL>`)
 
-#### 1. Execution & Broker Quotes (`quotes`)
-- `bid`, `ask`, `mid`: Real-time broker top-of-book pricing.
-- `spread_bps`: Bid-ask spread in basis points. **Rule: Must be <= 25.0 bps for Crypto, <= 5.0 bps for TradFi CFDs.** Retail altcoins with spreads > 30 bps (e.g. DOGE, DOT, ADA) are strictly excluded from intraday limit orders.
-- `tick_size`, `min_lot`, `step_lot`: Broker contract specs for exact lot quantization and risk sizing.
+#### 1. Execution & Broker Quotes (`quotes` & `execution_specs`)
+| Parameter | Exact Data Source | Description | Decision Role |
+|---|---|---|---|
+| `bid`, `ask`, `mid` | `MT5_L1_TICK` (`mt5.symbol_info_tick()`) | Real-time broker top-of-book pricing | Base price grid for passive limit placement |
+| `spread_bps` | `MT5_L1_TICK` (`mt5.symbol_info_tick()`) | Broker spread in basis points | **Friction Gate:** <= 25 bps for Crypto, <= 5 bps for TradFi CFDs |
+| `quote_freshness` / `broker_tick_age_s` | `MT5_L1_TICK` & `BrokerClock` | Age of latest broker tick | Staleness filter; must be fresh (< 10s) |
+| `tick_size`, `point`, `digits` | `BROKER_MT5_SYMBOL_INFO` (`mt5.symbol_info()`) | Price quantization parameters | Exact limit order price snapping |
+| `min_lot`, `step_lot`, `max_lot` | `BROKER_MT5_SYMBOL_INFO` (`mt5.symbol_info()`) | Broker discrete volume rules | Exact risk sizing calculation ($10.00 - $14.50 USD) |
+| `stops_level` | `BROKER_MT5_SYMBOL_INFO` (`mt5.symbol_info()`) | Minimum broker distance for pending orders | Ensures limit and stop orders are placeable |
 
 #### 2. Causal Indicators & Regime (`causal_indicators`)
-- `session_vwap_utc`: The volume-weighted benchmark price reset at 00:00 UTC. The foundational gravitational axis.
-- `vwap_z_score`: Standardized distance of current price from Session VWAP.
-  * `|Z| >= 2.0 SD`: Model 1 Extreme Mean Reversion territory.
-  * `|Z| < 2.0 SD (0.2 to 1.7 SD)`: Model 2 Trend Pullback territory.
-- `session_sigma`: Current volatility standard deviation of the session.
-- `atr_14`: 14-period Average True Range. Defines minimum stop distance and order spacing.
-- `ema_20`, `ema_50`, `ema_200`: Moving average hierarchy defining trend structure, dynamic support/resistance, and pullback boundaries.
-- `rsi_14`: Relative Strength Index. Identifies momentum divergence and tape exhaustion (< 35 oversold, > 65 overbought).
+| Parameter | Exact Data Source | Description | Decision Role |
+|---|---|---|---|
+| `session_vwap_utc` | `LIVE_BRIDGE` (00:00 UTC Causal Reset) | Volume-weighted average price of session | Central gravitational equilibrium axis |
+| `vwap_z_score` | `LIVE_BRIDGE` (Calculated) | Standardized distance from Session VWAP | Model 1 Extreme (|Z| >= 2.0 SD) vs Model 2 Pullback (|Z| < 2.0 SD) |
+| `session_sigma` | `LIVE_BRIDGE` (Calculated) | Session standard deviation volatility scalar | Volatility-adjusted band width |
+| `atr_14` / `atr_pct` | `LIVE_BRIDGE` (14-period Wilder ATR) | Average True Range in dollars and % | Stop-loss distance and order spacing anchor |
+| `ema_20`, `ema_50`, `ema_200` | `LIVE_BRIDGE` (800 completed 15m bars) | Exponential moving average hierarchy | Dynamic support/resistance and trend definition |
+| `ema_200_slope_3h_pct` | `LIVE_BRIDGE` (Calculated) | 3-hour slope of 200 EMA | Directional trend persistence confirmation |
+| `rsi_14` | `LIVE_BRIDGE` (14-period RSI) | Relative Strength Index | Momentum divergence and exhaustion (< 35 oversold, > 65 overbought) |
+| `trend_regime` | `decision_gates_v3.py` (`classify_regime()`) | Categorical regime label | `BULLISH`, `BEARISH`, `RANGE_BOUND`, or `UNDEFINED` |
 
 #### 3. Volume Profile & Auction Geometry (`volume_profile`)
-- `poc` (Point of Control): Price level with highest traded volume of the session. Primary mean-reversion magnet.
-- `vah` / `val` (Value Area High / Low): The boundaries containing 70% of the day's auction volume. Pullbacks to VAL in uptrends or VAH in downtrends offer structural entry locations.
+| Parameter | Exact Data Source | Description | Decision Role |
+|---|---|---|---|
+| `poc` | `DERIVED_FROM_MT5_BAR_VOLUME` | Point of Control (highest volume price) | Primary mean-reversion magnet |
+| `vah` / `val` | `DERIVED_FROM_MT5_BAR_VOLUME` | Value Area High / Low (70% volume range) | Structural auction boundaries for pullbacks and breakout targets |
+| `total_volume` | `DERIVED_FROM_MT5_BAR_VOLUME` | Aggregate session tick volume | Auction participation gauge |
 
 #### 4. Structural Stop Clusters (`structural_stop_clusters`)
-- `total_buy_stops_usd` / `total_sell_stops_usd`: Aggregate capital waiting in stop-loss orders.
-- `top_buy_stop_clusters_above`: Price levels where short traders have placed stops. **Primary Take-Profit targets for Longs; sweep targets for reversal shorts.**
-- `top_sell_stop_clusters_below`: Price levels where long traders have placed stops. **Primary Take-Profit targets for Shorts; sweep targets for reversal longs.**
-- `top_buy_whale_stops` / `top_sell_whale_stops`: Specific wallet-identified stop orders with massive single-ticket notionals.
+| Parameter | Exact Data Source | Description | Decision Role |
+|---|---|---|---|
+| `total_buy_stops_usd` / `total_sell_stops_usd` | `HYPERDASH_GRAPHQL_STOP_LEVELS` (Hyperliquid) | Aggregate resting stop-loss capital | Market liquidity pool sizing |
+| `top_buy_stop_clusters_above` | `HYPERDASH_GRAPHQL_STOP_LEVELS` (Hyperliquid) | Dense buy-stop clusters above market | **Take Profit targets for Longs; sweep zones for reversal shorts** |
+| `top_sell_stop_clusters_below` | `HYPERDASH_GRAPHQL_STOP_LEVELS` (Hyperliquid) | Dense sell-stop clusters below market | **Take Profit targets for Shorts; sweep zones for reversal longs** |
+| `top_buy_whale_stops` / `top_sell_whale_stops` | `HYPERDASH_GRAPHQL_STOP_LEVELS` (Hyperliquid) | Wallet-identified institutional stop orders | High-impact sweep and exhaustion markers |
 
 #### 5. Reconstructed Liquidation Bands (`reconstructed_liquidations`)
-- `top_long_cascade_bands_below`: Price zones where overleveraged longs face forced liquidation. Acting as major downward cascade cascades during selloffs, or deep exhaustion support once swept.
-- `top_short_squeeze_bands_above`: Price zones where overleveraged shorts face forced liquidation. Acting as upward squeeze magnets and rocket fuel for rallies.
-- `binance_futures_open_interest_contracts`: Derivative positioning depth.
+| Parameter | Exact Data Source | Description | Decision Role |
+|---|---|---|---|
+| `total_long_liquidations_usd` / `total_short_liquidations_usd` | `HYPERDASH_GRAPHQL_LIQUIDATION_LEVELS` | Aggregate potential liquidation capital | Systemic cascade risk / fuel gauge |
+| `top_long_cascade_bands_below` | `HYPERDASH_GRAPHQL_LIQUIDATION_LEVELS` | Major long liquidation cascade bands | **Stop Loss shelter (bunker behind these); sweep exhaustion entry** |
+| `top_short_squeeze_bands_above` | `HYPERDASH_GRAPHQL_LIQUIDATION_LEVELS` | Major short squeeze liquidation bands | **Take Profit targets (liquidity magnets) for long positions** |
+| `top_long_liquidation_whales` / `top_short_liquidation_whales` | `HYPERDASH_GRAPHQL_LIQUIDATION_LEVELS` | Individual whale liquidation trigger levels | Discrete catastrophic cascade triggers |
+| `binance_futures_open_interest_contracts` | `BINANCE_FUTURES_OPEN_INTEREST` | Open interest across Binance perpetuals | Structural leverage density in derivatives |
 
 #### 6. Orderbook Depth & Persistent Walls (`orderbook_live_depth`)
-- `top20_bid_depth_usd` / `top20_ask_depth_usd`: Aggregate resting liquidity in the top 20 L2 levels.
-- `book_imbalance` & `skew_ratio`: Bid-to-ask liquidity ratio. Positive imbalance indicates resting bid backing; negative indicates resting ask overhead.
-- `whale_walls_l3`: Individual on-chain wallet orders (`0x...`) with size and price.
-- `l2_wall_levels`: Persistent resting walls tracked across time (`persist_s`, `presence_frac`). Confirms genuine resting orders vs spoofing.
+| Parameter | Exact Data Source | Description | Decision Role |
+|---|---|---|---|
+| `binance_mid` / `hyperliquid_mid` | `BINANCE_USDM_FUTURES` & `HYPERLIQUID_L1` | Top-of-book mid price on crypto exchanges | External reference price for basis calculation |
+| `venue_basis` & `basis_median` | Live Telemetry Pipeline (Calculated) | MT5 mid minus Binance/Hyperliquid mid | Shifts on-chain walls/stops onto MT5 broker grid |
+| `top20_bid_depth_usd` / `top20_ask_depth_usd` | `REAL_BINANCE_FUTURES_L2` (Aggregated Depth) | Cumulative dollar depth in top 20 levels | Passive order absorption capacity |
+| `book_imbalance` & `skew_ratio` | `REAL_BINANCE_FUTURES_L2` (Calculated) | Bid vs ask liquidity ratio (-1.0 to +1.0) | Real-time orderbook skew supporting direction |
+| `bids_top20` / `asks_top20` | `REAL_BINANCE_FUTURES_L2` (20-level ladder) | Price, size, notional, and cumulative depth | Visualizes resting liquidity shelves |
+| `whale_walls_l3` | `REAL_HYPERDASH_WALLET_ATTRIBUTED_L3` | Array of on-chain wallet orders (`0x...`) | Verified resting institutional liquidity backing |
+| `l2_wall_levels` | Live Telemetry Daemon (Time-series persistence) | Persistent resting walls (`persist_s`, `presence_frac`) | Filters out algorithmic spoofing; confirms genuine resting orders |
 
 #### 7. Cumulative Volume Delta Buckets (`cvd_1m_buckets`)
-- `taker_buy_usd` vs `taker_sell_usd`: Aggressive market order flow.
-- `cvd_delta_usd`: Net aggressive delta per 1m candle. Identifies absorption (e.g. price dropping into a level while aggressive selling delta weakens or turns positive).
+| Parameter | Exact Data Source | Description | Decision Role |
+|---|---|---|---|
+| `taker_buy_usd` / `taker_sell_usd` | `BINANCE_FUTURES_AGG_TRADES` | Aggressive market buy vs market sell volume | Measures aggressive market participant aggression |
+| `cvd_delta_usd` | `BINANCE_FUTURES_AGG_TRADES` (Calculated) | Net taker buy minus sell dollar delta | Identifies tape absorption (e.g. selling into resting bids) |
+
+#### 8. Multi-Timeframe OHLCV Data
+| Parameter | Exact Data Source | Description | Decision Role |
+|---|---|---|---|
+| `bars_15m_ohlcv` | `MT5_BROKER_COMPLETED_BARS` | Completed 15m candles with OHLCV | Primary trading timeframe structure |
+| `htf_1h_ohlcv` / `htf_4h_ohlcv` | `MT5_BROKER_COMPLETED_BARS` | Higher timeframe completed bars | Macro trend alignment and key swing levels |
+| `binance_htf_4h_ohlcv` | `BINANCE_FUTURES_PUBLIC_REST` | Binance USDT-M 4h bars | Exchange volume and price action parity check |
 
 ---
 
