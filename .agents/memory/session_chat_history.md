@@ -54438,3 +54438,21 @@ Finally, unify live and replay ratchets before qualifying uplift; the current se
   * Commits synchronized on `main` and `arena/537c1eb8-trading-2` (HEAD: `e1259b21`).
   * 9-Minute Autonomous Timer `task-47446` armed (DurationSeconds=540).
   * Account State: Balance: 4,885.38 USD | Equity: 4,885.38 USD | 0 Positions | 0 Orders | Cushion: +110.38 USD above 4,775.00 USD hard floor.
+
+## Turn Checkpoint: 2026-10-12 09:56 UTC (Cycle 36 Harvested, 96/100 Record Score, Commit 57fde3f6 Merged, Full Test Suite 1,135 Passed / 0 Failed Green)
+- Arena Cycle 36 Harvested: Text extracted to `docs/trade_plans/ARENA_CYCLE_36_RAW.md` (15,004 chars, Evidence Score: 96/100 — Session Record).
+- Key Quantitative Insights & Counterfactuals:
+  * The hypothesized regime paradox was empirically falsified by two independent tests. Granting every asset a certified regime hypothetically yields 0/24 trades.
+  * Real binding constraints: Gate B6 (target density / no stop clusters inside 4.0 ATR on CFDs) and Gate B2 (retrace depth outside [0.236, 0.618] on BTC).
+  * 4 Upgrades shipped in commit `57fde3f6`: `regime_attribution()`, `apply_regime_hysteresis()`, `ema200_structural_confirms()`, `m1_price_only_variant_ok()`, and 58 new tests.
+- Antigravity Integration & Test Hardening:
+  * Merged commit `57fde3f6` into `main`.
+  * Fixed prompt string assertions in `Terminal/dispatch_comprehensive_wake_up_prompt.py`.
+  * Isolated wall-clock macro blackout in `Tests/Test_Stage_Trade_Plan.py`.
+  * Full pytest suite verified: **1,135 passed, 1 skipped, 0 failed (100% green in 137s)**!
+  * Commit `ced14da7` pushed to both `main` and `arena/537c1eb8-trading-2`.
+  * `docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md` ledger updated with Cycle 36.
+- Macro & Desk Status:
+  * BoE blackout expires at 10:00 UTC (in ~3 minutes).
+  * Account State: Balance: 4,885.38 USD | Equity: 4,885.38 USD | Margin Used: 0.00 USD | 100% Cash reserves.
+  * Hard Floor: 4,775.00 USD | Cushion: +110.38 USD (unconditionally defended).
