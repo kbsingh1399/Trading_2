@@ -49,16 +49,16 @@ trigger: always_on
       * **Position Capacity Policy**:
         - Up to 4 concurrent tickets across orthogonal asset clusters provided total joint worst-case stopout risk unconditionally defends the 4,775.00 USD hard floor and 4,795.00 USD operating buffer (>= 20.00 USD cushion at all times).
     - Connects directly via native IPC to MetaTrader 5 Account 5064568 (Blueberry Markets).
-    - **Active Positions & Pending Orders (Live State — Cycle 44 Verified `Commit 5dcbbecd`)**:
-      * Current Status: **0 Open Positions | 0 Pending Orders (100% Cash Reserves) | Balance: 4,863.30 USD | Equity: 4,863.30 USD | Margin Used: 0.00 USD | Free Margin: 4,863.30 USD | Cron: `0,20,40 * * * *` (`task-48267`)**.
-      * Active Positions (0 — Mandate 2 Monitoring): None (`SOLUSD.p` Ticket #18795304 stopped out at `108.79 USD` for `-10.88 USD` / `-1.00R`).
-      * Active Pending Orders (0 — Mandate 3 Monitoring): None (`0` pending orders; `4 of 4` capacity slots open; monitoring `BTCUSD.pi` Model 1 Long @ `82,250` upon `5m CVD` deceleration across `>= 3` generations).
-      * G-1 Hard Floor Defense: Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Floor Cushion: **+88.30 USD realized / +88.30 USD floating**.
+    - **Active Positions & Pending Orders (Live State — Astra Cycle Ingested `Commit 04242b70`)**:
+      * Current Status: **0 Open Positions | 1 Pending Order | Balance: 4,867.02 USD | Equity: 4,867.02 USD | Margin Used: 0.00 USD | Free Margin: 4,867.02 USD**.
+      * Active Positions (0 — Mandate 2 Monitoring): None (100% Cash Reserves). Earlier SP500.p BUY ratcheted to BE+ lock and safely banked +3.72 USD profit.
+      * Active Pending Orders (1 — Mandate 3 Monitoring): Ticket `#18812244` (`NAS100.p SELL LIMIT 0.01 @ 30,750.00 USD`, SL: `30,862.00 USD` [POC + 0.361 ATR, hardened Invariant 1 defense], TP: `30,522.90 USD` [front-running 30,547.43 low by 8.03 bps], Risk: `11.20 USD`, R:R: `2.03R`).
+      * G-1 Hard Floor Defense: Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Floor Cushion: **+92.02 USD floating / +92.02 USD realized**.
       * Stressed Post-Loss Simulation:
-        - Total Contingent Book Risk across exposed tickets: **0.00 USD** (`100% Cash Reserves`).
-        - Stressed Worst-Case Equity: **4,863.30 USD** (Unconditionally defends floor!).
-        - Safety Cushion Above 4,775.00 USD Hard Floor: **+88.30 USD** (4.4x mandatory >= 20.00 USD buffer).
-        - Safety Cushion Above 4,795.00 USD Operating Buffer: **+68.30 USD**.
+        - Total Contingent Book Risk: **11.20 USD** (Stress buffer: 11.20 * 1.25 + 2.00 = 16.00 USD).
+        - Stressed Worst-Case Equity: **4,851.02 USD** (Unconditionally defends floor!).
+        - Safety Cushion Above 4,775.00 USD Hard Floor: **+76.02 USD** (3.8x mandatory >= 20.00 USD buffer).
+        - Safety Cushion Above 4,795.00 USD Operating Buffer: **+56.02 USD**.
       * Closed Trades Today (Realized PnL):
         - Ticket #18795304 (`SOLUSD.p` closed at **-10.88 USD loss** via Stop Loss at 108.79 USD during deepening crypto flush)
         - Ticket #18791527 (`BTCUSD.pi` closed at **-11.20 USD loss** via Stop Loss at 82,590.00 USD during capitulation flush to 82,627 USD)
