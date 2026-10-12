@@ -54084,3 +54084,33 @@ Finally, unify live and replay ratchets before qualifying uplift; the current se
 - **Arming 9-Minute Sleep Protocol**:
   - Scheduled 9-minute sleep timer (`DurationSeconds=540`, `TimerCondition="never"`).
   - Wake-up target: ~02:32 UTC (08:02 IST) to harvest Cycle 26 Council Report from `arena/537c1eb8-trading-2`, merge commit, evaluate gates, and execute limit orders if confluence criteria are satisfied.
+
+---
+
+### Turn Checkpoint — Cycle 26 Council Harvest & Liquidity Pool Re-Mapping (02:35 UTC)
+- **Timestamp**: 2026-10-12 02:35:00 UTC / 2026-10-12 08:05:00 IST
+- **Cycle 26 Harvest Summary (`ARENA_COUNCIL_REPORT_20261012_0240Z.md`, Commit `576ef458`)**:
+  - Merged commit `576ef458` into `main` (commit `59886528`) and synchronized across `main` and `arena/537c1eb8-trading-2`.
+  - **Unanimous STAND ASIDE Ratified**: 0 tickets staged, 0 resting orders. Cash reserves 100% at 4,896.55 USD, defending the +121.55 USD floor cushion above 4,775.00 USD. Evidence score: **88 / 100** (Session high; 1,071 unit/integration tests passing, 3 skipped, 0 failed).
+  - **Key Finding 1 — BTC Alternating Qualification Invariant**:
+    * Spot mid (83,740.50 USD) rose above Session VWAP (83,686.00 USD) by 54.50 USD (0.266 ATR) and above 200 EMA (83,138.21 USD), successfully restoring `structural_sign = +1`.
+    * However, the 02:00 UTC hourly candle close cut BTC's 1H drift t-stat from +1.687 down to **+1.194** (below the 1.50 STRUCT floor).
+    * Across twenty-six cycles, BTC's two STRUCT requirements (drift >= 1.5 and structural sign = +1) have been satisfied one at a time, never concurrently. Regime remains `UNDEFINED`.
+  - **Key Finding 2 — Structural Deletion of 84,250 TP Anchor**:
+    * An exhaustive census of BTC buy-stop clusters above spot revealed that 84,250 was completely consumed or cancelled during the flush/rebound (0 clusters at that price).
+    * All 10 remaining clusters sit beyond the 4.0 ATR ceiling (nearest is 84,950 at +5.8993 ATR). BTC currently has no admissible target and no computable expectancy.
+  - **Key Finding 3 — Massive $18.07M Institutional Bid at 83,202 USD**:
+    * Resting demand reinforced: a new **$18,070,672 bid appeared at 83,202 USD**, expanding the support pocket (83,150–83,260 USD) to **$20,859,473** across three eligible walls.
+    * The original 83,209 USD wall grew to **8,896s (148 minutes) persistence across 138 samples**.
+    * Six fresh in-band BUY walls migrated higher to 83,806–83,833 USD behind spot.
+  - **Key Finding 4 — GOLD Flawless Performance**:
+    * Spot at 4,212.2 USD | Spread at 0.17 bps | Relative friction at **gamma = 0.013 R** (all-time session low).
+    * Retains certified `TREND_UP` (drift +1.939, t = +10.578), but blocked by B2 retrace (0.1132 < 0.236), 0 in-band walls (0/14), and nearest buy-stop cluster at 4,385 (+22.90 ATR).
+  - **Key Finding 5 — Perfect Risk Defense**:
+    * Cash reserves at 4,896.55 USD defended the capital floor perfectly through both a 323 USD drop and a 448 USD surge.
+- **MT5 Account State (#5064568)**:
+  - Balance / Equity: **4,896.55 USD** (100% Cash reserves).
+  - G-1 Hard Floor: 4,775.00 USD | Cushion: **+121.55 USD** | Operating Buffer: 4,795.00 USD (+101.55 USD).
+  - Open Positions: 0 | Resting Orders: 0 | Capacity: 0/4 used (4 slots open).
+- **Next Revalidation Point**:
+  - Ongoing sentry via recurring trading cron (task-44250) leading into Cycle 27 (02:50 UTC).
