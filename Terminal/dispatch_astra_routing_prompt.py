@@ -37,7 +37,7 @@ def build_astra_orchestration_prompt() -> str:
     snap_gen = "unknown"
     equity = 4867.02
     cushion = 92.02
-    pending_count = 1
+    pending_count = 0
     if SNAPSHOT_PATH.exists():
         try:
             d = json.loads(SNAPSHOT_PATH.read_text(encoding="utf-8"))
@@ -91,16 +91,17 @@ Do NOT constrain yourself to narrow or simplistic formulas. Whether formulating 
    - PERMIT Crypto spreads up to 35 bps whenever the expected target move is >= 5x the spread (Target bps >= 5 * Spread bps).
    - Maintain the tight <= 5 bps ceiling on TradFi CFDs (Indices, Commodities, Forex).
 2. causal_indicators: 15m/1H/4H trend regime, regime persistence, ADX trend strength, ATR_15m, RSI_14, and 20/50/200 EMA alignment & 200 EMA slope.
-3. vwap: Session VWAP, +1SD/+2SD/+3SD and -1SD/-2SD/-3SD bands, VWAP Z-score, and distance in ATR to VWAP.
-4. volume_profile: Session POC (Point of Control), VAH (Value Area High), VAL (Value Area Low), High Volume Nodes (HVN support/resistance), and Low Volume Nodes (LVN vacuum zones).
-5. cvd_1m_buckets & cvd_15m_delta / cvd_30m_delta: 1m taker CVD trajectory, cumulative volume delta, CVD slope, and CVD absorption/exhaustion ratio (verifying delta deceleration before entry).
-6. orderbook_live_depth: 20-level L2 live bid/ask depth in USD (top20_bid_depth_usd, top20_ask_depth_usd), and depth imbalance ratio.
-7. whale_walls_l3: Hyperdash verified on-chain Ethereum whale wallet orders (0x... addresses, notionals in USD, price levels, and temporal persistence >= 180s). Live generation 1a7d9d57 provides hundreds of real whale walls (338 BTC, 104 SOL, 191 ETH, 105 NAS100).
-8. reconstructed_liquidations: Reconstructed liquidation cascade bands (top_bands, nearest_below, nearest_above, estimated liquidation volume in USD).
-9. structural_stop_clusters: Structural stop sweep pools (nearest_sell_stop_clusters, nearest_buy_stop_clusters, intensity, range [min_price, max_price]).
-10. macro_calendar: Tier-1 macroeconomic event proximity, broker trading session hours, and interbank rollover spread expansion.
-11. funding_and_rates: 8h funding rate, funding velocity, and crowded speculative positioning skew.
-12. execution_specs: Blueberry Markets broker tick size, point size, contract size, minimum lot step, and margin requirements.
+3. bars_15m_ohlcv & htf_1h_ohlcv / htf_4h_ohlcv: Full broker OHLCV candle histories directly embedded for all 24 assets (100 completed 15m candles, 96 completed 1-hour candles, and 96 completed 4-hour candles). Review the exact sequence of open, high, low, close, and volume to track candle momentum, swing highs/lows, rejection wicks, and market structure over the past 24 hours to 16 days!
+4. vwap: Session VWAP, +1SD/+2SD/+3SD and -1SD/-2SD/-3SD bands, VWAP Z-score, and distance in ATR to VWAP.
+5. volume_profile: Session POC (Point of Control), VAH (Value Area High), VAL (Value Area Low), High Volume Nodes (HVN support/resistance), and Low Volume Nodes (LVN vacuum zones).
+6. cvd_1m_buckets & cvd_15m_delta / cvd_30m_delta: 1m taker CVD trajectory, cumulative volume delta, CVD slope, and CVD absorption/exhaustion ratio (verifying delta deceleration before entry).
+7. orderbook_live_depth: 20-level L2 live bid/ask depth in USD (top20_bid_depth_usd, top20_ask_depth_usd), and depth imbalance ratio.
+8. whale_walls_l3: Hyperdash verified on-chain Ethereum whale wallet orders (0x... addresses, notionals in USD, price levels, and temporal persistence >= 180s). Streaming live with hundreds of real whale walls (338 BTC, 104 SOL, 191 ETH, 105 NAS100).
+9. reconstructed_liquidations: Reconstructed liquidation cascade bands (top_bands, nearest_below, nearest_above, estimated liquidation volume in USD).
+10. structural_stop_clusters: Structural stop sweep pools (nearest_sell_stop_clusters, nearest_buy_stop_clusters, intensity, range [min_price, max_price]).
+11. macro_calendar: Tier-1 macroeconomic event proximity, broker trading session hours, and interbank rollover spread expansion.
+12. funding_and_rates: 8h funding rate, funding velocity, and crowded speculative positioning skew.
+13. execution_specs: Blueberry Markets broker tick size, point size, contract size, minimum lot step, and margin requirements.
 
 ================================================================================
 PART C: FORENSIC POST-MORTEM OF RECENT LOSING TRADES (LESSONS & AVOIDED TRAPS)
@@ -135,19 +136,10 @@ Screen every asset in docs/telemetry/live_snapshot_latest.json (streaming live w
 MANDATE 2: AUDIT ACTIVE / RUNNING TRADES (0 OPEN POSITIONS)
 - Current open positions on MT5: 0 (100% Cash Reserves). Earlier SP500.p BUY was ratcheted to BE+ lock and safely closed at +3.72 USD profit. Confirm desk status.
 
-MANDATE 3: ADVERSARIAL AUDIT OF UNFILLED PENDING LIMIT ORDER
-- Ticket: #18812244
-- Symbol: NAS100.p
-- Direction: SELL LIMIT 0.01 lots
-- Entry: 30,750.00 USD (Structural short pullback to resistance shelf)
-- Stop Loss: 30,862.00 USD (Modified live on MT5: positioned at POC 30,846.05 + 0.361 ATR buffer, fully clearing both Session VWAP 30,830.65 and Volume POC 30,846.05 to satisfy Invariant 1)
-- Take Profit: 30,522.90 USD (Front-running 30,547.43 swing low by 8.03 bps into downside liquidation pool)
-- Nominal Risk: 11.20 USD (within 10.00 - 14.50 USD budget, 0.23% of equity) | R:R: 2.03R
-- Stressed Post-Loss Floor Defense: 4,851.02 USD (+76.02 USD cushion above 4,775.00 USD floor, +56.02 USD above 4,795.00 USD buffer)
-- Audit Criteria under 12 Parameters & 5 Anti-Trap Invariants:
-  (A) VIABLE, WAIT AS-IS: Resting L3 whale sell walls (over 5M USD defense), overwhelm ratio < 0.10:1, distance from mid <= 2.0 ATR, floor cushion preserved, SL outside POC/VWAP sweep zone (clearing POC by 0.361 ATR).
-  (B) SLIGHT MODIFICATION REQUIRED: If magnet or bunker edges shifted.
-  (C) DELETE / CANCEL IMMEDIATELY: If defense thinned > 50% or thesis broke.
+MANDATE 3: AUDIT PENDING LIMIT ORDERS (0 RESTING ORDERS — 100% CASH RESERVES)
+- Current pending limit orders on MT5: 0 (Ticket #18812244 was CANCELLED/REMOVED live on MT5 at 18:30 UTC per triple proof: 2.81 ATR drift beyond 2.0 reachability bound, POC migrated to 30,992.79 putting SL inside buy-stop sweep band, and empty repair feasible set).
+- Desk capacity: 4/4 slots fully available (0 filled, 0 pending, 100% Cash Reserves at 4,867.02 USD with +92.02 USD floor cushion).
+- Evaluate if conditions for re-arming NAS100 short (mid >= 30,673.10 AND [30,800–30,900] fuel thinned >= 50% AND POC <= 30,810) or any new candidate limit order are met.
 
 ================================================================================
 DELIBERATION & DESK REPORT OUTPUT
