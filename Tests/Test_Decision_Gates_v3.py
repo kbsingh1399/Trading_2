@@ -1085,3 +1085,192 @@ def test_the_live_0550_short_gained_a_sweep_high_but_lost_two_a1_limbs_instead()
     assert "A1_z_below_2" in v.failures
     assert "A1_z_still_accelerating" in v.failures
     assert not v.passed
+
+
+def test_gate_b1_prefers_entry_z_for_limit_orders():
+    """Verify B1 evaluates entry_z rather than completed bar vwap_z when supplied."""
+    base_ctx = {
+        "direction": "LONG",
+        "regime": "TREND_UP",
+        "atr": 10.0,
+        "sigma_bar": 0.005,
+        "geometry": {
+            "retrace": 0.382,
+            "depth_sigma": 1.2,
+            "velocity_ratio": 0.45,
+            "bars_pullback": 5,
+            "bars_impulse": 12,
+        },
+        "structure_intact": True,
+        "exhaustion_flags": {"vol_spike": False, "long_wick": False},
+        "shelf": {"price": 100.0, "confluence": 3},
+        "entry": 100.0,
+        "sl": 83.0,
+        "tp": 135.0,
+        "first_obstacle": 140.0,
+        "tick": 0.1,
+        "risk_usd": 10.0,
+        "round_trip_cost_usd": 0.6,
+        "p_win_lower_bound": 0.60,
+        "wall": {
+            "usd": 200000.0, "persist_s": 200.0, "presence_frac": 1.0,
+            "dist_from_entry_atr": 0.1, "median_1m_traded_usd": 25000.0,
+            "wall_class": "GENUINE", "gate_g7_eligible": True,
+        },
+        "allow_price_only_variant": True,
+    }
+
+    # Case 1: completed bar close is stretched at +2.50 SD, but entry_z is +0.35 SD.
+    ctx_entry_pass = dict(base_ctx, vwap_z=2.50, entry_z=0.35)
+    v_pass = model2_checklist(ctx_entry_pass)
+    assert "B1_z_outside_model2_location_bound" not in v_pass.failures
+
+    # Case 2: entry_z itself is stretched at +2.50 SD -> must fail even if vwap_z is +0.35 SD.
+    ctx_entry_fail = dict(base_ctx, vwap_z=0.35, entry_z=2.50)
+    v_fail = model2_checklist(ctx_entry_fail)
+    assert "B1_z_outside_model2_location_bound" in v_fail.failures
+
+
+def test_gate_b2_relaxed_velocity_ratio_under_3_bars():
+    """Verify B2 velocity_ratio relaxation (6.0 vs 0.60) based on pullback bar count."""
+    base_ctx = {
+        "direction": "LONG",
+        "regime": "TREND_UP",
+        "atr": 10.0,
+        "sigma_bar": 0.005,
+        "structure_intact": True,
+        "exhaustion_flags": {"vol_spike": False, "long_wick": False},
+        "shelf": {"price": 100.0, "confluence": 3},
+        "entry": 100.0,
+        "sl": 83.0,
+        "tp": 135.0,
+        "first_obstacle": 140.0,
+        "tick": 0.1,
+        "risk_usd": 10.0,
+        "round_trip_cost_usd": 0.6,
+        "p_win_lower_bound": 0.60,
+        "wall": {
+            "usd": 200000.0, "persist_s": 200.0, "presence_frac": 1.0,
+            "dist_from_entry_atr": 0.1, "median_1m_traded_usd": 25000.0,
+            "wall_class": "GENUINE", "gate_g7_eligible": True,
+        },
+        "allow_price_only_variant": True,
+    }
+
+    # Pullback has only 2 bars and velocity_ratio = 2.5: allowed under relaxed bound (<= 6.0).
+    ctx_fast_turn = dict(base_ctx, geometry={
+        "retrace": 0.382,
+        "depth_sigma": 1.2,
+        "velocity_ratio": 2.5,
+        "bars_pullback": 2,
+        "bars_impulse": 12,
+    })
+    v_fast = model2_checklist(ctx_fast_turn)
+    assert "B2_pullback_velocity_ge_impulse" not in v_fast.failures
+
+    # Pullback has 4 bars and velocity_ratio = 2.5: must reject under standard bound (<= 0.60).
+    ctx_mature_fast = dict(base_ctx, geometry={
+        "retrace": 0.382,
+        "depth_sigma": 1.2,
+        "velocity_ratio": 2.5,
+        "bars_pullback": 4,
+        "bars_impulse": 12,
+    })
+    v_mature = model2_checklist(ctx_mature_fast)
+    assert "B2_pullback_velocity_ge_impulse" in v_mature.failures
+
+    # Pullback has 2 bars and velocity_ratio = 7.0: must reject even under relaxed bound (> 6.0).
+    ctx_excessive = dict(base_ctx, geometry={
+        "retrace": 0.382,
+        "depth_sigma": 1.2,
+        "velocity_ratio": 7.0,
+        "bars_pullback": 2,
+        "bars_impulse": 12,
+    })
+    v_excessive = model2_checklist(ctx_excessive)
+    assert "B2_pullback_velocity_ge_impulse" in v_excessive.failures
+
+
+def test_gate_b6_allow_trend_continuation_target():
+    """Verify B6 allow_trend_continuation_target allows targets beyond first obstacle."""
+    base_ctx = {
+        "direction": "LONG",
+        "regime": "TREND_UP",
+        "atr": 10.0,
+        "sigma_bar": 0.005,
+        "geometry": {
+            "retrace": 0.382,
+            "depth_sigma": 1.2,
+            "velocity_ratio": 0.45,
+            "bars_pullback": 5,
+            "bars_impulse": 12,
+        },
+        "structure_intact": True,
+        "exhaustion_flags": {"vol_spike": False, "long_wick": False},
+        "shelf": {"price": 100.0, "confluence": 3},
+        "entry": 100.0,
+        "sl": 83.0,
+        "tp": 135.0,  # Target is beyond first obstacle at 120.0
+        "first_obstacle": 120.0,
+        "tick": 0.1,
+        "risk_usd": 10.0,
+        "round_trip_cost_usd": 0.6,
+        "p_win_lower_bound": 0.60,
+        "wall": {
+            "usd": 200000.0, "persist_s": 200.0, "presence_frac": 1.0,
+            "dist_from_entry_atr": 0.1, "median_1m_traded_usd": 25000.0,
+            "wall_class": "GENUINE", "gate_g7_eligible": True,
+        },
+        "allow_price_only_variant": True,
+    }
+
+    # Case 1: default allow_trend_continuation_target=False -> fails B6_tp_beyond_first_obstacle.
+    v_blocked = model2_checklist(dict(base_ctx, allow_trend_continuation_target=False))
+    assert "B6_tp_beyond_first_obstacle" in v_blocked.failures
+
+    # Case 2: allow_trend_continuation_target=True -> passes B6 obstacle check.
+    v_allowed = model2_checklist(dict(base_ctx, allow_trend_continuation_target=True))
+    assert "B6_tp_beyond_first_obstacle" not in v_allowed.failures
+
+
+def test_gate_b4_allow_price_only_variant_when_depth_certified():
+    """Verify B4 allow_price_only_variant cleanly bypasses missing tape requirement."""
+    base_ctx = {
+        "direction": "LONG",
+        "regime": "TREND_UP",
+        "atr": 10.0,
+        "sigma_bar": 0.005,
+        "geometry": {
+            "retrace": 0.382,
+            "depth_sigma": 1.2,
+            "velocity_ratio": 0.45,
+            "bars_pullback": 5,
+            "bars_impulse": 12,
+        },
+        "structure_intact": True,
+        "exhaustion_flags": {"vol_spike": False, "long_wick": False},
+        "shelf": {"price": 100.0, "confluence": 3},
+        "entry": 100.0,
+        "sl": 83.0,
+        "tp": 135.0,
+        "first_obstacle": 140.0,
+        "tick": 0.1,
+        "risk_usd": 10.0,
+        "round_trip_cost_usd": 0.6,
+        "p_win_lower_bound": 0.60,
+        "wall": {
+            "usd": 200000.0, "persist_s": 200.0, "presence_frac": 1.0,
+            "dist_from_entry_atr": 0.1, "median_1m_traded_usd": 25000.0,
+            "wall_class": "GENUINE", "gate_g7_eligible": True,
+        },
+        "orderflow": None,  # tape missing
+    }
+
+    # Case 1: allow_price_only_variant=False -> fails B4_no_tape_fail_closed.
+    v_fail = model2_checklist(dict(base_ctx, allow_price_only_variant=False))
+    assert "B4_no_tape_fail_closed" in v_fail.failures
+
+    # Case 2: allow_price_only_variant=True -> passes B4.
+    v_pass = model2_checklist(dict(base_ctx, allow_price_only_variant=True))
+    assert "B4_no_tape_fail_closed" not in v_pass.failures
+
