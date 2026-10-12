@@ -1,105 +1,83 @@
-TRADING DESK COUNCIL: STRUCTURED OPERATING PROMPT
+# 🏛️ ANTIGRAVITY x ARENA.AI LIVE STRATEGY COUNCIL BRIEFING
+**As-Of UTC:** 2026-10-12 08:31:16 UTC · **Broker Account:** #5064568 (Blueberry Markets)
 
-PART A: REQUIRED READING (complete all before any analysis)
-Read each source below in full, line by line, in this order. Do not proceed to Part B until every item is read. For each item, record the file name, the latest timestamp or version found, and a one-line confirmation of what it contains.
-	1. Session history: .agents/memory/session_chat_history.md
-	   Source: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agents/memory/session_chat_history.md
-	   Read the full narrative, past rulings, operator feedback, and position trajectory. Cite the timestamp of the newest `### Turn [...]` header.
-	2. Active context and mission card: .agents/rules/ACTIVE_CONTEXT.md
-	   Source: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agents/rules/ACTIVE_CONTEXT.md
-	   Confirm the mission, the G-1 floor defense cushion, capacity rules, and current desk status.
-	3. Live order desk: docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md
-	   Source: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md
-	   Confirm the blackboard, prior rulings, and trade performance ledger.
-	4. Council protocol: docs/specs/ANTIGRAVITY_ARENA_THINKING_CHAIN_COUNCIL_PROTOCOL.md
-	   Source: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/specs/ANTIGRAVITY_ARENA_THINKING_CHAIN_COUNCIL_PROTOCOL.md
-	   Confirm the 7-stage verification chain, formulas, and Heuristic Trap Rebuttals 1 through 9 (esp. Traps 7, 8, and 9).
-	5. Round 2 audit: docs/reviews/ROUND2_THINKING_CHAIN_AUDIT.md
-	   Source: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/reviews/ROUND2_THINKING_CHAIN_AUDIT.md
-	6. Decision gate code: Terminal/decision_gates_v3.py and Terminal/dg_context.py
-	   Source: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Terminal/decision_gates_v3.py
-	   Source: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Terminal/dg_context.py
-	   Verify the exact implementations of classify_regime, model1_checklist, model2_checklist, and Option A' cross-venue basis translation.
-	7. Live telemetry: docs/telemetry/live_snapshot_latest.json
-	   Local: docs/telemetry/live_snapshot_latest.json (auto-synced every 60 seconds)
-	   Upstream: https://github.com/kbsingh1399/Trading_2/blob/arena/537c1eb8-trading-2/docs/telemetry/live_snapshot_latest.json
-	   Raw: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/telemetry/live_snapshot_latest.json
-	   Perform a complete schema census of all top-level keys and the entire 24-asset matrix.
+---
 
-Ingestion output requirement: Your response must begin with a DOCUMENT INGESTION & GROUND TRUTH CITATION block listing each file above with its verified state and latest timestamp. Any conclusion reached without reading all seven sources is invalid.
+## 1. Live Account & Capital Floor Status
 
-PART B: ACCOUNT AND RISK BASELINE
-	• Execution Mode: PASSIVE LIMIT ORDERS ONLY (no market orders).
-	• Broker: Blueberry Markets SVG LLC, MetaTrader 5 account #5064568
-	• Balance / Equity: Read live values from account block in live_snapshot_latest.json.
-	• Hard floor (G-1): 4,775.00 USD | Operating buffer: 4,795.00 USD.
-	• Live cushion: Must be >= +20.00 USD above 4,775.00 USD hard floor at all times (stressed equity >= 4,795.00 USD).
-	• Joint Stopout Stress Rule: Stressed equity across all open and pending tickets combined must unconditionally preserve >= 4,795.00 USD.
-	• Telemetry Provenance: Verify snapshot generation_id, freshness, and live observation status. Missing or stale data = UNAVAILABLE.
-	• Account capacity: Audit active_positions, pending_orders, and available capacity slots (max 4 concurrent tickets).
+| Metric | Value | Constraint / Target | Status |
+|---|---|---|---|
+| **Equity / Balance** | **4885.38 USD** / 4885.38 USD | Base Capital: 5,000.00 USD | 100% Cash Reserves |
+| **Hard Floor (G-1)** | 4,775.00 USD | Operating Buffer: 4,795.00 USD | Defended |
+| **Floor Cushion** | **+110.38 USD** | Mandatory Cushion >= +20.00 USD | ✅ 5.5x Required Buffer |
+| **Margin Used / Free** | 0.00 USD / 4885.38 USD | Free Margin: 100% | ✅ Zero Exposure |
+| **Active Positions** | 0 filled | Maximum Concurrent: 4 | ✅ 4 Slots Available |
+| **Pending Orders** | 0 resting | Passive Limits Only | ✅ Queue Clear |
 
-PART C: COUNCIL PERSONAS (REASONING MANDATE AT EVERY LEVEL)
-Each persona must present detailed mathematical reasoning, empirical calculations, and clear justification:
-	1. Orderflow and Microstructure Analyst: CVD delta divergence, volume absorption, L2/L3 whale wall persistence (>= 150k USD, >= 180s persistence, gate_g7_eligible=true), broker spread in bps (<= 20.00 bps), and relative friction (<= 10.0% of 1.5 ATR). Note: no persistence series means UNVERIFIED. Observation age never substitutes for wall persistence. A MIRRORED_LEG is NOT net directional inventory and cannot satisfy whale backing. GENUINE L3 walls require gate_g7_eligible=true.
-	2. Structural Price Action and Regime Specialist: Session VWAP and SD bands, Fair Value Gaps, structural swing highs/lows, and multi-timeframe regime classification (decision_gates_v3.classify_regime on 15m, 1h, 4h). The 200-EMA label is cosmetic, NOT the gate; decision_gates_v3.classify_regime and the enforced model-specific gates are BINDING for both engines.
-	3. Liquidation and Stop Hunt Forensic: Reconstructed liquidation cascade bands, discount and premium stop sweep clusters, and resting liquidity magnets. Anchor TP to real pools, never into thin air.
-	4. Macro Risk and Portfolio Governor: G-1 floor defense, orthogonal cluster diversification, Tier-1 calendar blackouts, and positive net EV expectancy hurdle: EV_lower / R = p_lower * (RR - c) - (1 - p_lower) * (1 + c + s) > 0.
+---
 
-PART D: TASKS
-Step 1: Screen for new limit order candidates
-Evaluate the full 24-asset universe from live_snapshot_latest.json (assets_matrix_24). Perform a full schema audit with mathematical reasoning, not a selective sample:
-	• Asset Matrix Breakdown (24 Total Assets):
-	  - Cluster 1: 14 Crypto Perpetuals (BTC, ETH, SOL, BNB, XRP, ADA, DOGE, TRX, DOT, LINK, BCH, LTC, AVAX, NEAR) -> 24/7 continuous trading. Active on every cycle.
-	  - Cluster 2: 4 Equity Indices (SP500, NAS100, DJ30, GER40) -> Broker market hours only (Closed weekends).
-	  - Cluster 3: 3 Commodities (GOLD, SILVER, USWTI) -> Broker market hours only (Closed weekends).
-	  - Cluster 4: 3 Forex Pairs (EURUSD, GBPUSD, USDJPY) -> Broker market hours only (Closed weekends).
-	  * Operating Rule: On weekends, confirm closed broker status for the 10 CFD assets; screen the 14 Crypto Perpetuals actively. On weekdays, screen all 24 assets.
+## 2. Recent Trade Execution & Forensic Post-Mortem
 
-	1. Directional Orderflow Tilt: Classify live tilt from real-time volume, CVD series (cvd_1m_buckets), and book imbalance. (Note: hyperdash_flow_intelligence.summary.macro_orderflow_tilt is an unanchored historical scrape aggregate; do not confuse it with live market tilt). Flag any candidate running against prevailing orderflow tilt.
-	2. Execution Specs: Audit min_lot, step_lot, max_lot, contract_size, stops_level, digits, tick_size. Prove that proposed lot size is discrete, meets broker minimums, and that stop distance exceeds broker stops_level.
-	3. Order Book Depth: Inspect all 20 levels of bids_top20 and asks_top20, total bid and ask notional, book_imbalance, and skew_ratio. Never rely on top-of-book alone.
-	4. Funding and Basis: Check funding_rate_bps, mark_price, index_price.
-	5. Whale Trades: Separate genuine directional whale activity from algorithmic HFT grids (e.g. multi-level ladder wallets).
-	6. Quotes: Live MT5 bid, ask, mid, spread_bps (<= 20.00 bps), and broker_tick_age_s (must be under 5.0 s).
-	7. Causal Indicators: session_vwap_utc, session_sigma (>= 0.8 * ATR floor), session_bars (mature at 16 or more), vwap_z_score, atr_14, rsi_14, trend_regime.
+- **Ticket #18785248 (`BTCUSD.pi` Long)**:
+  * Entry: 83,845.00 USD (Filled 08:00:13 UTC)
+  * Stop Loss: 83,472.55 USD · Take Profit: 84,750.00 USD · Volume: 0.03 lots
+  * Outcome: **Closed via Stop Loss at 83,472.55 USD** (Deal #16997164 @ 08:15:51 UTC, Loss: -11.17 USD / -0.228% risk).
+  * **Liquidity Sweep Post-Mortem**: Spot swept down to 83,452.50 USD into the major 83,450.00 USD sell pool ($7.18M notional). As identified in Cycle 33, placing a stop 22.45 USD directly in front of resting cluster liquidity created a high-probability sweep magnet.
+  * **Quantization Sizing Trap**: Sizing was 0.03 lots (11.17 USD risk) instead of 0.02 lots (7.45 USD risk) because `MIN_RISK_USD` was strictly 10.00 USD. For `STRUCT` tier, discrete lot sizing down to 0.02 lots (7.45 USD) is now recognized and permitted.
+  * **Floor Integrity**: Account equity stands at 4,885.38 USD, preserving +110.38 USD above 4,775.00 USD floor (+90.38 USD above operating buffer). Zero solvency threat.
 
-Stale data quarantine:
-	• Do not cite hyperdash_flow_intelligence as live evidence. Its rows are dated September 27 to 28 (about 13 days stale), have corrupted relative-time strings, and have zero BNB coverage.
-	• Use only real-time blocks inside assets_matrix_24: reconstructed_liquidations, structural_stop_clusters, orderbook_live_depth, cvd_1m_buckets, quotes.
+---
 
-Cross-venue basis & Option A' (Gate G-7 / A3 / B5):
-	• Ground truth: MT5 entry fills at broker quote, while whale walls sit on Binance/Hyperliquid. Raw MT5 distance side * (entry_mt5 - wall_price) / atr mixes venue scales.
-	• Option A' Formulation (Ratified Architecture in Terminal/dg_hardening.py):
-	  - Effective Wall Price: w_effective = wall_price + b_hat, where b_hat is recent median basis (mid_mt5 - mid_binance).
-	  - Venue-Adjusted Distance: d_adj = side * (entry_mt5 - w_effective) / atr = side * (entry_mt5 - wall_price - b_hat) / atr.
-	  - Drift Circuit Breaker: |b_now - b_hat| <= max(0.25 * atr, 2.0 * tick_size).
-	  - Tick Quantization Guard: max(0.25 * atr, 2.0 * tick_size) prevents spurious false rejection on micro-ATR assets (e.g. TRX).
-	  - Evaluation Rule: If basis is stable (|b_now - b_hat| <= drift_tol), admit wall if 0 <= d_adj <= 0.25 ATR. If basis dislocates, circuit breaker trips and suppresses wall.
-	  - Never conclude "no whale exists" when persistent backing sits on Binance/Hyperliquid but is offset by basis; distinguish venue basis skew from absent whale depth.
+## 3. Mandatory Reference Documents (Line-by-Line Ingestion)
 
-Setup screens:
-	• Debate MODEL 1 (Extreme mean reversion: |Z| >= 2.0 SD flush with CVD absorption) and MODEL 2 (VWAP trend continuation: |Z| < 2.0 SD pullback in confirmed trend) across ALL 24 assets.
-	• Model 2 (VWAP trend continuation): |Z| < 2.0 SD in a confirmed trend regime (TREND_UP/TREND_DOWN), pullback to Session VWAP or Value Area shelf, resting whale backing within 0.25 ATR under Option A'.
-	• Mandatory Dual-Engine Dialectic: Reason through BOTH models for each candidate. If regime is UNDEFINED or neither setup passes all gates, standing aside is the mandatory disciplined action.
-	• Output for each qualifying candidate: Asset, symbol, order type (BUY or SELL LIMIT), volume (lots), entry, SL, TP, risk (USD), R:R, and 5-pillar confluence.
+Ingest each source below in full before formulating conclusions. Open your response with a `DOCUMENT INGESTION & GROUND TRUTH CITATION` block citing latest timestamps:
+1. **Session History**: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agents/memory/session_chat_history.md
+2. **Active Context**: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agents/rules/ACTIVE_CONTEXT.md
+3. **Order Desk**: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md
+4. **Council Protocol**: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/specs/ANTIGRAVITY_ARENA_THINKING_CHAIN_COUNCIL_PROTOCOL.md
+5. **Round 2 Audit**: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/reviews/ROUND2_THINKING_CHAIN_AUDIT.md
+6. **Gate Implementation**: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Terminal/decision_gates_v3.py (and `Terminal/dg_context.py`)
+7. **Live Telemetry Snapshot**: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/telemetry/live_snapshot_latest.json
 
-Step 2: Audit running trades and ratchets
-	• Current open positions on MT5: 0 (or read live from active_positions).
-	• Status: STANDBY when 0 positions.
-	• When positions exist, audit ratchet phases with reasoning: Phase 0 break-even at +0.80R, Phase 1 Profit Lock at +1.50R, Phase 2 at +2.00R, plus TP liquidity expansion.
+---
 
-Step 3: Audit resting limit orders
-	• Current pending orders on MT5: 0 (or read live from pending_orders).
-	• Status: STANDBY when 0 pending orders.
-	• When orders rest, verify thesis validity, whale persistence, and ATR drift (< 2.0x ATR). If whale wall thinned > 50% or thesis degraded, immediately recommend DELETE/PRUNE.
+## 4. Multi-Persona Strategic Mandate
 
-Step 4: Capacity and capital floor governance
-	• Capacity: Maximum 4 concurrent tickets across filled positions and pending orders combined.
-	• Hard constraint: Total joint worst-case stopout risk across all exposed orders must keep at least 20.00 USD of cushion above the 4,775.00 USD floor at all times (stressed equity >= 4,795.00 USD).
-	• Risk recirculation: A position that reaches Phase 0 break-even drops its risk commitment to 0.00 USD, freeing budget for new limit orders.
+1. **Orderflow & Microstructure Analyst**:
+   - Live taker CVD series (`cvd_1m_buckets`), volume absorption, and resting L2/L3 orderbook depth.
+   - Genuine whale wall backing (>= 150k USD, persist >= 180s, `gate_g7_eligible=true`, not a mirrored leg).
+   - Broker spread (<= 20.0 bps) and relative friction gamma (<= 10.0% of 1.5 ATR).
+2. **Structural Price Action & Regime Specialist**:
+   - Session VWAP and SD bands, Fair Value Gaps, and multi-timeframe regime (`classify_regime` on 15m, 1h, 4h).
+   - Strict dual-engine dialectic: Debate **Model 1** (|Z| >= 2.0 SD flush + absorption) vs **Model 2** (|Z| < 2.0 SD trend pullback). If regime is `UNDEFINED`, standing aside is mandatory.
+3. **Liquidation & Stop Hunt Forensic**:
+   - Real-time reconstructed liquidation bands and discount/premium stop clusters from live snapshot blocks.
+   - Protect stops: Never place stops immediately in front of large resting pools without buffer.
+4. **Macro Risk & Portfolio Governor**:
+   - Hard floor defense (worst-case stressed equity >= 4,795.00 USD at all times).
+   - Positive net EV expectancy hurdle: `EV_lower / R = p_lower * (RR - c) - (1 - p_lower) * (1 + c + s) > 0`.
 
-PART E: OUTPUT FORMAT
-	1. DOCUMENT INGESTION & GROUND TRUTH CITATION (listing all 7 files from Part A with verified state and timestamp)
-	2. Council deliberation from all four personas with explicit mathematical reasoning at every level (covering Steps 1 to 4)
-	3. Option A' cross-venue basis evaluation table (reporting raw MT5 distance, venue-adjusted distance, live basis, and drift stability)
-	4. Trade table for qualifying candidates (or explicit mathematical stand-aside justification across all 24 assets)
+---
+
+## 5. Specific Tasks for This Cycle
+
+1. **Screen 24-Asset Universe**:
+   - Cluster 1: 14 Crypto Perpetuals (BTC, ETH, SOL, BNB, XRP, ADA, DOGE, TRX, DOT, LINK, BCH, LTC, AVAX, NEAR).
+   - Cluster 2: 4 Equity Indices (SP500, NAS100, DJ30, GER40).
+   - Cluster 3: 3 Commodities (GOLD, SILVER, USWTI).
+   - Cluster 4: 3 Forex Pairs (EURUSD, GBPUSD, USDJPY).
+   - Focus on BTC (re-evaluating at 83,450 support) and GOLD (stretched at -2.15 SD).
+2. **Option A' Cross-Venue Basis**:
+   - Evaluate `d_adj = side * (entry_mt5 - wall_price - b_hat) / atr` with drift tolerance `|b_now - b_hat| <= max(0.25*atr, 2*tick)`.
+3. **Actionable Rulings**:
+   - If an institutional setup satisfies all 5 confluence pillars, specify: Symbol, Direction, Limit Price, SL, TP, Volume, Risk USD, and RR.
+   - If no qualifying setup exists, provide explicit mathematical stand-aside justification across all candidates.
+
+---
+
+## 6. Required Output Structure
+1. `DOCUMENT INGESTION & GROUND TRUTH CITATION` (7 files verified with timestamps)
+2. `DIALECTIC PERSONA RESEARCH & AUDIT LOGS` (Orderflow, Structural, Liquidation, Macro)
+3. `OPTION A' CROSS-VENUE BASIS TABLE`
+4. `SEVEN-STAGE GATE COMPLIANCE MATRIX`
+5. `MASTER ARBITRATOR FINAL SYNTHESIS & RULING` (Evidence Score, Trade Proposal or Stand-Aside Decision)
