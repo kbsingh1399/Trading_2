@@ -260,10 +260,21 @@ Before any order is staged or punched into MetaTrader 5, the desk conducts this 
 
 ---
 
-## 6. Document Governance, Independent Verification & Immediate Arena Feedback Loop
+## 6. Document Governance, 3-Mandate Arena Prompting & 2-Step Antigravity Wake-Up Verification Loop
 
 This document is governed by the Kaizen protocol and is always-on via `.agents/rules/ACTIVE_CONTEXT.md`:
-1. **Mandatory Independent Logical Verification**: Whenever Arena.ai produces an output, Antigravity independently verifies every price level, `min_price`/`max_price` band edge, L3 whale wall location, CVD flow, and `mt5.order_calc_profit` figure against `docs/telemetry/live_snapshot_latest.json` and live MT5.
-2. **Immediate Corrective Feedback to Arena.ai**: If Arena.ai makes any calculation or microstructure mistake, Antigravity immediately dispatches the exact error and telemetry proof back to Arena.ai right after reading its output.
+
+### A. Prompting to Arena.ai — 3 Mandatory Points Considered in Every Cycle (`Terminal/dispatch_comprehensive_wake_up_prompt.py`)
+1. **Mandate 1 — Look for New Trading Opportunities**: Screen all 24 assets in `docs/telemetry/live_snapshot_latest.json` line-by-line under this Playbook to identify high-confluence Model 1 (`|Z| >= 2.0 SD` Mean Reversion) or Model 2 (Trend Pullback to VWAP/VAL/VAH/EMA) passive limit order candidates backed by seasoned (`>= 180s`) L3 whale walls, positive L2/CVD absorption, SL outside `min_price`/`max_price` of the bunker, and TP front-running the opposing magnet by 5–10 bps.
+2. **Mandate 2 — Look for Active / Running Trades (Logical TP or SL Modification Based on Data)**: Inspect every open MT5 position (`positions_get()`) and check whether TP or SL modification is logically required based on the latest data snapshot (Piecewise Ratchets at `+0.80R` / `+1.50R` / `+2.00R`, tightening SL behind newly formed structural bunkers, adjusting TP to front-run shifted liquidity magnets, or emergency exit if the supporting shelf broke).
+3. **Mandate 3 — Look for Unfilled Limit Orders (Wait & Fill vs. Slight Modification vs. Delete)**: Inspect every unfilled pending limit order on MT5 (`orders_get()`) against the latest data snapshot and classify each order with full quantitative reasoning into:
+   - **(A) Viable & Wait to be Filled As-Is**: Thesis valid, distance `<= 2.0 ATR`, supporting `>= 180s` whale walls intact, 5m/15m/30m CVD & L2 depth absorbing, SL outside `min_price`/`max_price`, and TP front-running magnet by 5–10 bps.
+   - **(B) Slight Modification Required**: Thesis valid, but shifted whale walls, stop clusters (`nearest_*`), or liquidation band boundaries (`min_price`/`max_price`) require modifying Entry, SL, or TP.
+   - **(C) Delete / Cancel Immediately**: Thesis invalidated (supporting whale walls pulled/thinned `> 50%`, price drifted `> 2.0 ATR` away, or adverse regime break).
+
+### B. Antigravity Wake-Up to Check Arena.ai Output — 2 Mandatory Steps (`Terminal/arena_completion_daemon.py`)
+1. **Step 1 — Use Logical & Quantitative Reasoning to Verify Arena.ai Outputs**: Immediately upon instant daemon wakeup (`Copy` button or `Was this task successful?` `Yes`/`No` banner detected), Antigravity independently verifies every claim, price level, `min_price`/`max_price` bunker edge, `>= 180s` whale wall persistence, 15m/30m CVD flow, and `mt5.order_calc_profit` figure across all 3 mandates against `docs/telemetry/live_snapshot_latest.json` and live MT5.
+2. **Step 2 — Same-Cycle Part-B Re-Prompt on Any Logic Flaw (`Cycle NB`)**: If ANY logic does not match the data or if there is ANY flaw in Arena.ai's output, Antigravity immediately re-prompts Arena.ai as **Part 2 of the same cycle (`Cycle NB`)** with the exact telemetry proof and waits via `arena_completion_daemon.py --wait` for Arena's corrected output before executing changes on MT5.
 3. **Continuous Persistence**: Every operator feedback point and trade outcome is immediately persisted into this Playbook and `.agents/rules/ACTIVE_CONTEXT.md`, and synchronized across `main` and `arena/537c1eb8-trading-2`.
+
 

@@ -115,7 +115,19 @@ def get_live_broker_state():
         "orders": orders
     }
 
-def build_prompt() -> str:
+def _resolve_asset_key(mt5_symbol: str, assets: dict) -> str:
+    clean = mt5_symbol.replace(".pi", "").replace(".p", "").replace("USD", "")
+    if mt5_symbol.replace(".pi", "").replace(".p", "") in assets:
+        return mt5_symbol.replace(".pi", "").replace(".p", "")
+    if clean in assets:
+        return clean
+    for k, v in assets.items():
+        if v.get("mt5_symbol") == mt5_symbol:
+            return k
+    return clean
+
+
+def build_prompt(cycle_num: int = 40) -> str:
     broker = get_live_broker_state()
     equity = broker["equity"]
     balance = broker["balance"]
@@ -137,7 +149,7 @@ def build_prompt() -> str:
     gen_ts = snap_data.get("as_of_utc", "latest")
 
     lines = []
-    lines.append("TRADING DESK COUNCIL: CYCLE 39 PURE TELEMETRY & PLAYBOOK ANALYSIS PROMPT")
+    lines.append(f"TRADING DESK COUNCIL: CYCLE {cycle_num} PURE TELEMETRY & PLAYBOOK ANALYSIS PROMPT")
     lines.append("MANDATE: 100% DIRECT LINE-BY-LINE ANALYSIS OF docs/telemetry/live_snapshot_latest.json (ZERO DECISION GATES)")
     lines.append("")
     lines.append("PART A: REQUIRED READING (complete before analysis)")
@@ -147,11 +159,11 @@ def build_prompt() -> str:
     lines.append(f"   Latest Generation: {gen_id} ({gen_ts})")
     lines.append("   Upstream: https://github.com/kbsingh1399/Trading_2/blob/arena/537c1eb8-trading-2/docs/telemetry/live_snapshot_latest.json")
     lines.append("   Raw: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/telemetry/live_snapshot_latest.json")
-    lines.append("   Inspect all 24 assets in assets_matrix_24 and all telemetry blocks: quotes (MT5 spread_bps & mid), execution_specs, causal_indicators (Session VWAP, Z-score, RSI, ATR, EMA 20/50/200, POC/VAH/VAL), orderbook_live_depth (20-level L2 depth & imbalance), whale_walls_l3 (0x... wallet addresses, sizes, distances), structural_stop_clusters (top_sell_stop_clusters_below, top_buy_stop_clusters_above), reconstructed_liquidations (top_long_cascade_bands_below, top_short_squeeze_bands_above), venue_basis, and cvd_1m_buckets.")
+    lines.append("   Inspect all 24 assets in assets_matrix_24 and all telemetry blocks: quotes (MT5 spread_bps & mid), execution_specs, causal_indicators (Session VWAP, Z-score, RSI, ATR, EMA 20/50/200, POC/VAH/VAL), orderbook_live_depth (20-level L2 depth & imbalance), whale_walls_l3 (0x... wallet addresses, sizes, persistence_s >= 180s), structural_stop_clusters (nearest_sell_stop_clusters_below, nearest_buy_stop_clusters_above, top_*), reconstructed_liquidations (nearest_long_cascade_bands_below, nearest_short_squeeze_bands_above, top_*), venue_basis, and cvd_1m_buckets (5m/15m/30m sums).")
     lines.append("")
     lines.append("2. Live Trade Decision Playbook: docs/specs/TRADE_DECISION_PLAYBOOK.md")
     lines.append("   Source: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/specs/TRADE_DECISION_PLAYBOOK.md")
-    lines.append("   Apply the Parameter Coincidence Matrix (Entry Shelf + SL Liquidity Bunker + TP Liquidity Magnet + Psychological Round Numbers), Dual-Venue Division of Labor (Spreads/Quotes from MT5; Orderbook/Whales/Liquidations/Stops from Hyperdash & Binance), and the 7-Point Pre-Trade Checklist.")
+    lines.append("   Apply the Parameter Coincidence Matrix (Entry Shelf + SL Liquidity Bunker outside min_price/max_price + TP Liquidity Magnet front-run by 5-10 bps + Psychological Round Numbers), Dual-Venue Division of Labor (Spreads/Quotes from MT5; Orderbook/Whales/Liquidations/Stops from Hyperdash & Binance), and the 7-Point Pre-Trade Checklist.")
     lines.append("")
     lines.append("3. Live Order Desk & Session Context:")
     lines.append("   • docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md (https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md)")
@@ -171,82 +183,124 @@ def build_prompt() -> str:
     lines.append("1. DO NOT RUN OR CITE decision_gates_v3.py OR LEGACY GATE TOKENS:")
     lines.append("   • Programmatic gate scripts (decision_gates_v3.py, A1-A5, B1-B6, G-4, G-6, MAX_TARGET_DIST_ATR = 4.0, A2_no_tape_fail_closed) are RETIRED from trade selection.")
     lines.append("   • Do NOT disqualify TradFi CFDs (SP500, NAS100, EURUSD, USDJPY, XAUUSD, USWTI) just because cvd_1m_buckets is 0; evaluate them using their MT5 spreads, VWAP Z-scores, EMA/VP shelves, Hyperliquid L2 orderbook imbalance, L3 whale wallet orders (0x...), structural stop clusters, and liquidation bands.")
-    lines.append("   • Do NOT disqualify setups using an arbitrary 4.0 ATR target cap if structural levels (Session VWAP, POC, VAH/VAL, EMA shelves, overhead buy-stop clusters, or psychological round numbers) provide logical targets with >= 1.8R to 2.5R reward.")
-    lines.append("2. MULTI-PARAMETER COINCIDENCE DEBATE (per docs/specs/TRADE_DECISION_PLAYBOOK.md):")
-    lines.append("   • Entry Level: Where a structural level (Session VWAP, VAL/VAH, POC, 20/50/200 EMA, or >= 2.0 SD band) coincides with resting L2 depth and L3 whale wallet orders (0x...), adjusted onto the MT5 price grid via venue_basis.")
-    lines.append("   • Stop Loss (Liquidity Bunker): Placed safely BEHIND the nearest major reconstructed liquidation cascade band and sell-stop/buy-stop cluster with a 0.25x-0.50x ATR buffer, never inside the sweep zone.")
-    lines.append("   • Take Profit (Liquidity Magnet): Placed directly INTO (or slightly front-running) opposing short-squeeze / long-liquidation bands, stop clusters, Session VWAP/POC, and psychological round numbers.")
+    lines.append("2. MULTI-PARAMETER COINCIDENCE & BOUNDARY PRECISION (per docs/specs/TRADE_DECISION_PLAYBOOK.md):")
+    lines.append("   • Entry Level: Must sit AT or BELOW the sell-stop sweep midpoint (for Longs) or AT or ABOVE the buy-stop sweep midpoint (for Shorts), directly backed by resting L3 whale wallet orders (0x..., persistence_s >= 180s), adjusted onto the MT5 price grid via venue_basis.")
+    lines.append("   • Stop Loss (Liquidity Bunker): Must sit 0.25x-0.50x ATR OUTSIDE min_price (for Longs) or max_price (for Shorts) of the governing liquidation cascade band and stop cluster — NEVER measured from mid_price and NEVER placed inside the [min_price, max_price] band.")
+    lines.append("   • Take Profit (Liquidity Magnet): Must front-run the opposing buy-stop / short-squeeze magnet (or sell-stop / long-cascade magnet) by 5-10 bps.")
     lines.append("")
     lines.append("PART D: COUNCIL PERSONAS")
-    lines.append("1. Orderflow & Microstructure Analyst: MT5 spread_bps, L2 20-level depth & imbalance, L3 on-chain wallet orders (0x...), and crypto CVD taker absorption.")
+    lines.append("1. Orderflow & Microstructure Analyst: MT5 spread_bps, L2 20-level depth & imbalance, L3 on-chain wallet orders (0x..., persistence_s >= 180s), and multi-window 1m CVD (5m, 15m, 30m).")
     lines.append("2. Structural Price Action Specialist: Session VWAP & SD bands (Z-score), Volume Profile (POC/VAH/VAL), 20/50/200 EMA hierarchy, and psychological round numbers.")
-    lines.append("3. Liquidation & Stop Hunt Forensic: Reconstructed liquidation cascade bands, stop clusters, SL bunker placement, and TP magnet front-running.")
+    lines.append("3. Liquidation & Stop Hunt Forensic: Reconstructed liquidation cascade bands (nearest_* and top_*), stop clusters, SL bunker placement outside min_price/max_price, and TP magnet front-running.")
     lines.append("4. Macro Risk & Portfolio Governor: Capital floor defense (4,775.00 USD hard floor / 4,795.00 USD buffer), discrete lot sizing (execution_specs), and net expectancy.")
     lines.append("")
-    lines.append("PART E: TASKS")
-    lines.append("Step 1: Pure Telemetry Analysis of docs/telemetry/live_snapshot_latest.json across all 24 assets")
-    lines.append("Analyze all 24 assets line by line directly from docs/telemetry/live_snapshot_latest.json. Pay special attention to:")
-    for sym_key in ["SP500", "NAS100", "EURUSD", "USDJPY", "BTC", "ETH", "SOL", "XAUUSD"]:
-        a = assets.get(sym_key, {})
-        if not a:
+    lines.append("PART E: MANDATORY 3-PILLAR DESK EVALUATION (STRICT OPERATOR MANDATE)")
+    lines.append("")
+    lines.append("MANDATE 1 — LOOK FOR NEW TRADING OPPORTUNITIES ACROSS ALL 24 MUTUAL UNIVERSE ASSETS (CRYPTO, METALS, ENERGY, FOREX & INDICES):")
+    lines.append("Analyze all 24 assets in assets_matrix_24 line-by-line from docs/telemetry/live_snapshot_latest.json (covering all Cryptos, Metals GOLD/XAUUSD.pi & SILVER/XAGUSD.pi, Energy USWTI.p, Forex EURUSD.pi/GBPUSD.pi/USDJPY.pi, and Indices SP500.p/NAS100.p/DJ30.p/GER40.p) to identify any new high-confluence Model 1 (|Z| >= 2.0 SD Mean Reversion) or Model 2 (Trend Pullback to VWAP/VAL/VAH/EMA) limit order setups. Live 24-asset mutual universe matrix:")
+    for sym_key, a in assets.items():
+        if not isinstance(a, dict):
             continue
         q = a.get("quotes", {})
         ci = a.get("causal_indicators", {})
         ob = a.get("orderbook_live_depth", {})
-        w3 = a.get("whale_walls_l3", [])
+        w3 = ob.get("whale_walls_l3") or []
+        elig_w3 = [w for w in w3 if w.get("gate_g7_eligible") or (w.get("persist_s") or 0) >= 180]
         sc = a.get("structural_stop_clusters", {})
         rl = a.get("reconstructed_liquidations", {})
+        cvd_buckets = a.get("cvd_1m_buckets") or []
+        cvd_15m = sum(float(b.get("cvd_delta_usd") or b.get("delta_usd") or 0.0) for b in cvd_buckets[-15:]) if cvd_buckets else 0.0
         lines.append(
-            f"• {sym_key} ({a.get('asset_class', '')}): Mid {q.get('mid')} | Spread {q.get('spread_bps')} bps | "
+            f"• {sym_key} ({a.get('symbol_broker', '')} | {a.get('category', '')}): Mid {q.get('mid')} | Spread {q.get('spread_bps')} bps | "
             f"Z = {ci.get('vwap_z_score')} SD | RSI {ci.get('rsi_14')} | Trend {ci.get('trend_regime')} | "
-            f"L2 Imbalance {ob.get('imbalance')} | L3 Whales: {len(w3)} | "
-            f"Stops (below/above): {len(sc.get('top_sell_stop_clusters_below', []))}/{len(sc.get('top_buy_stop_clusters_above', []))} | "
-            f"Liq Bands (long/short): {len(rl.get('top_long_cascade_bands_below', []))}/{len(rl.get('top_short_squeeze_bands_above', []))}"
+            f"L2 Imb {ob.get('book_imbalance')} | 15m CVD {cvd_15m:+.0f} USD | L3 Whales (tot/elig>=180s): {len(w3)}/{len(elig_w3)} | "
+            f"Nearest Stops (below/above): {len(sc.get('nearest_sell_stop_clusters_below', []))}/{len(sc.get('nearest_buy_stop_clusters_above', []))} | "
+            f"Nearest Liq (long/short): {len(rl.get('nearest_long_cascade_bands_below', []))}/{len(rl.get('nearest_short_squeeze_bands_above', []))}"
         )
-    lines.append("For every qualifying setup (Mean Reversion or Trend Following), provide exact MT5 symbol, BUY/SELL LIMIT, volume (lots), Entry price, SL (behind bunker), TP (front-running magnet), USD risk, R:R, and the exact coincidence of parameters from live_snapshot_latest.json.")
+    lines.append("For every qualifying new opportunity across Crypto, Metals, Energy, Forex, or Indices, specify: MT5 symbol, BUY/SELL LIMIT, exact lot size, Entry price, SL (0.25-0.50 ATR outside min_price/max_price of bunker), TP (front-running magnet by 5-10 bps), USD risk, R:R, and complete telemetry coincidence proof.")
     lines.append("")
-    lines.append("Step 2: Audit running trades and ratchets")
+    lines.append("MANDATE 2 — LOOK FOR ACTIVE / RUNNING TRADES (LOGICAL TP OR SL MODIFICATION BASED ON LATEST DATA):")
     if positions:
-        lines.append(f"• Current open positions on MT5: {len(positions)} active position(s):")
+        lines.append(f"• Current Active Running Trades on MT5: {len(positions)} open position(s):")
         for p in positions:
-            lines.append(f"  - Ticket #{p['ticket']}: {p['symbol']} {p['type']} {p['volume']} lots @ {p['price_open']} USD | Current: {p['price_current']} USD | Floating: {p['profit_usd']:+.2f} USD | SL: {p['sl']} USD | TP: {p['tp']} USD")
+            ak = _resolve_asset_key(p["symbol"], assets)
+            a_info = assets.get(ak, {})
+            atr = a_info.get("causal_indicators", {}).get("atr_14") or 1.0
+            r_dist = abs(p["price_open"] - p["sl"]) if p["sl"] else atr
+            curr_r = ((p["price_current"] - p["price_open"]) / r_dist) if p["type"] == "BUY" and r_dist > 0 else (((p["price_open"] - p["price_current"]) / r_dist) if r_dist > 0 else 0.0)
+            lines.append(
+                f"  - Ticket #{p['ticket']}: {p['symbol']} {p['type']} {p['volume']} lots @ Entry {p['price_open']} USD | "
+                f"Current: {p['price_current']} USD ({curr_r:+.2f}R) | Floating PnL: {p['profit_usd']:+.2f} USD | "
+                f"Current SL: {p['sl']} USD | Current TP: {p['tp']} USD"
+            )
+        lines.append("• For each running trade above, evaluate logically based on the latest data snapshot whether SL or TP modification is required:")
+        lines.append("  1. Piecewise Ratchet Check: Has the trade reached +0.70R/+0.80R (Phase 0 BE lock to +0.35R), +1.50R (Phase 1 Profit Lock to +0.80R), or +2.00R (Phase 2 Trailing Lock)?")
+        lines.append("  2. Live Microstructure & Bunker/Magnet Shift: Have new stop clusters, liquidation bands, or L3 whale walls formed in live_snapshot_latest.json that logically require tightening SL behind a newly formed structural bunker or adjusting TP to front-run a closer/stronger liquidity magnet? Or has the supporting structural shelf broken requiring an emergency exit?")
     else:
-        lines.append("• Current open positions on MT5: 0 (Flat, 100% Cash reserves).")
+        lines.append("• Current Active Running Trades on MT5: 0 open positions (Flat / 100% Cash reserves). Confirm that no open-position ratchets are needed right now.")
     lines.append("")
-    lines.append("Step 3: Audit resting limit orders")
+    lines.append("MANDATE 3 — AUDIT UNFILLED LIMIT ORDERS (VIABLE TO WAIT vs. SLIGHT MODIFICATION vs. DELETE):")
     if orders:
-        lines.append(f"• Current pending orders on MT5: {len(orders)} active order(s):")
+        lines.append(f"• Current Unfilled Limit Orders on MT5: {len(orders)} pending order(s):")
         for o in orders:
-            lines.append(f"  - Ticket #{o['ticket']}: {o['symbol']} {o['type']} {o['volume']} lots @ {o['price_open']} USD | Spot: {o['price_current']} USD | SL: {o['sl']} USD | TP: {o['tp']} USD")
-        lines.append("• Evaluate Ticket #18791527 purely under the Playbook: Spot is above the 200 EMA, limit is at 83,150 USD, SL is at 82,650 USD below the 82,700-82,800 liquidation cascade band, and overhead buy-stop clusters sit at 84,250-84,350 USD. Should we maintain as-is, or adjust TP to 84,250-84,340 USD to front-run the buy-stop clusters?")
+            ak = _resolve_asset_key(o["symbol"], assets)
+            a_info = assets.get(ak, {})
+            ci = a_info.get("causal_indicators", {})
+            atr = ci.get("atr_14") or 1.0
+            dist_atr = abs(o["price_current"] - o["price_open"]) / atr if atr else 0.0
+            lines.append(
+                f"  - Ticket #{o['ticket']}: {o['symbol']} {o['type']} {o['volume']} lots @ Entry {o['price_open']} USD | "
+                f"Live Mid: {o['price_current']} USD (Distance: {dist_atr:.2f} ATR, ATR_14={atr}) | "
+                f"Current SL: {o['sl']} USD | Current TP: {o['tp']} USD | Trend: {ci.get('trend_regime')} | Z: {ci.get('vwap_z_score')} SD"
+            )
+        lines.append("• For EACH unfilled limit order listed above, perform a complete logical & quantitative audit against the latest live_snapshot_latest.json and explicitly classify it into one of three decisions:")
+        lines.append("  (A) VIABLE — WAIT TO BE FILLED AS-IS: Confirm that distance to entry is <= 2.0 ATR, supporting L3 whale walls (persistence_s >= 180s) remain intact, 5m/15m/30m CVD and L2 imbalance support absorption, SL sits safely 0.25x-0.50x ATR outside min_price/max_price of the governing bunker, and TP front-runs the opposing buy-stop/sell-stop magnet by 5-10 bps.")
+        lines.append("  (B) SLIGHT MODIFICATION REQUIRED (MODIFY ENTRY / SL / TP): If the thesis remains valid but live whale walls, stop clusters (nearest_*), or liquidation band boundaries (min_price/max_price) have shifted in the latest snapshot, specify the exact modified Entry, SL, and/or TP levels and why.")
+        lines.append("  (C) DELETE / CANCEL IMMEDIATELY: If the structural thesis has degraded (e.g., supporting whale walls pulled/thinned >50%, price drifted >2.0 ATR away, regime invalidated, or unabsorbed aggressive selling/buying broke the shelf), recommend immediate deletion to free capacity.")
     else:
-        lines.append("• Current pending orders on MT5: 0.")
+        lines.append("• Current Unfilled Limit Orders on MT5: 0 pending orders.")
     lines.append("")
-    lines.append("Step 4: Capacity and capital floor governance")
-    lines.append("• Verify that all active + proposed limit orders keep stressed post-stop equity >= 4,795.00 USD (>= 20.00 USD cushion above the 4,775.00 USD hard floor).")
+    lines.append("STEP 4 — PORTFOLIO CAPACITY & CAPITAL FLOOR GOVERNANCE:")
+    lines.append("• Verify that all kept/modified running trades + kept/modified resting limit orders + any newly proposed limit orders keep joint worst-case post-stop equity >= 4,795.00 USD (>= 20.00 USD cushion above the 4,775.00 USD hard floor).")
     lines.append("")
-    lines.append("PART F: OUTPUT FORMAT")
-    lines.append("1. TELEMETRY & PLAYBOOK INGESTION CITATION (confirming generation_id, generated_at_utc, and Playbook rules)")
-    lines.append("2. Line-by-Line Multi-Parameter Debate across all 24 assets (focusing on SP500, NAS100, EURUSD, USDJPY, BTC, ETH, SOL, XAUUSD without any legacy gate vetoes)")
-    lines.append("3. Resting Order Audit on Ticket #18791527 (including whether to front-run the 84,250-84,350 USD buy-stop magnet)")
-    lines.append("4. Actionable Limit Order Table (Symbol, Side, Lots, Entry, SL Bunker, TP Magnet, Risk USD, R:R, Parameter Coincidence Rationale)")
+    lines.append("PART F: REQUIRED OUTPUT FORMAT")
+    lines.append("1. TELEMETRY & PLAYBOOK INGESTION CITATION (confirming generation_id, as_of_utc, and Playbook compliance)")
+    lines.append("2. MANDATE 1 REPORT: Line-by-Line Screening of 24 Assets for New Trading Opportunities")
+    lines.append("3. MANDATE 2 REPORT: Active / Running Trades Audit (Logical TP/SL Modifications Based on Latest Snapshot)")
+    lines.append("4. MANDATE 3 REPORT: Unfilled Limit Orders Audit (Ticket-by-Ticket Verdict: WAIT TO FILL AS-IS vs. MODIFY ENTRY/SL/TP vs. DELETE)")
+    lines.append("5. ACTIONABLE EXECUTION SUMMARY TABLE (Ticket/Action, Symbol, Side, Lots, Entry, SL Bunker, TP Magnet, Risk USD, R:R, Quantitative Rationale)")
 
     return "\n".join(lines)
 
+
 async def main():
-    prompt = build_prompt()
-    prompt_file = ROOT / "docs" / "prompts" / "ARENA_CYCLE_39_PROMPT.txt"
-    prompt_file.parent.mkdir(parents=True, exist_ok=True)
-    prompt_file.write_text(prompt, encoding="utf-8")
-    print(f"Generated unified prompt: {len(prompt)} characters written to {prompt_file}")
-    
+    import argparse
+    parser = argparse.ArgumentParser(description="Dispatch 3-Mandate Pure Telemetry Prompt to Arena.ai")
+    parser.add_argument("--cycle", type=int, default=40, help="Cycle number")
+    parser.add_argument("--reprompt-file", type=str, default="", help="Optional Part-B corrective reprompt file path")
+    args = parser.parse_args()
+
+    if args.reprompt_file:
+        p_path = pathlib.Path(args.reprompt_file)
+        if not p_path.is_absolute():
+            p_path = ROOT / p_path
+        prompt = p_path.read_text(encoding="utf-8")
+        print(f"Loaded Part-B corrective reprompt ({len(prompt)} chars) from {p_path}")
+    else:
+        prompt = build_prompt(cycle_num=args.cycle)
+        prompt_file = ROOT / "docs" / "prompts" / f"ARENA_CYCLE_{args.cycle}_PROMPT.txt"
+        prompt_file.parent.mkdir(parents=True, exist_ok=True)
+        prompt_file.write_text(prompt, encoding="utf-8")
+        print(f"Generated Cycle {args.cycle} 3-Mandate prompt: {len(prompt)} characters written to {prompt_file}")
+
     await dismiss_arena_popup()
     ok = await post_prompt_to_arena(prompt)
     if ok:
-        print("SUCCESS: Unified Cycle 39 Pure Telemetry Council Prompt injected into Arena.ai!")
+        print(f"SUCCESS: Prompt injected into Arena.ai! Run `python Terminal/arena_completion_daemon.py --wait` to wake up on completion.")
     else:
         print("ERROR: Failed to inject prompt into Arena.ai", file=sys.stderr)
         sys.exit(1)
 
 if __name__ == "__main__":
     asyncio.run(main())
+
