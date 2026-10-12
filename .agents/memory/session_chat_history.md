@@ -54326,3 +54326,30 @@ Finally, unify live and replay ratchets before qualifying uplift; the current se
   * **Downside Magnet Shift**: Spot rally moved the 101.4M USD pool at 83,350 USD to -3.085 ATR (205.7% of stop distance), turning it from a sweep threat into a deep support reference.
 - **Unanimous STAND ASIDE Ratified**: 0 tickets, 0 resting orders. 100% Cash defense preserved.
 - **Next Revalidation Window (Cycle 32, ~07:35 UTC)**: Tracking whether BTC retraces into [0.236, 0.618] toward Session VWAP / VAH shelf while `TREND_UP` persists, whether Z cools below +2.0 SD, and whether seasoned L3 bid depth forms.
+
+---
+
+### Turn Checkpoint: 2026-10-12 07:23 UTC (Cycle 32 Briefing & Injection)
+- **Account State (Blueberry Markets MT5 #5064568)**:
+  * Balance: 4,896.55 USD | Equity: 4,896.55 USD | Free Margin: 4,896.55 USD | Margin: 0.00 USD (100% Cash reserves).
+  * G-1 Hard Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD.
+  * Live Floor Cushion: +121.55 USD (+101.55 USD above buffer; 6.08x mandatory 20.00 USD minimum).
+  * Open Positions: 0 | Resting Orders: 0 | Capacity: 0/4 used (4 slots open).
+  * Total Contingent Book Risk: 0.00 USD (complete floor defense intact).
+- **Cycle 32 Briefing Formulated & Dispatched**:
+  * Formulated lean prompt [`docs/prompts/ARENA_CYCLE_32_PROMPT.txt`](file:///c:/Users/SIGMA/Documents/Trading_2/docs/prompts/ARENA_CYCLE_32_PROMPT.txt) incorporating latest snapshot `66d0c8cff4734c569b3f372ced3612d5` (07:20:21 UTC).
+  * Committed as `ced3a3d0` and synchronized across `origin/main` and `origin/arena/537c1eb8-trading-2`.
+- **Live Telemetry & Market Developments**:
+  * `session_bars = 29`: Gate B1 permanently retired.
+  * `BTC` Trend Retained & Location Bound Satisfied: 1H drift t-stat remains strong at +1.685 (`TREND_UP` / STRUCT tier held for second consecutive cycle). Spot at 84,082.0 USD; Z-score cooled down from +2.55 SD to **+1.72 SD**, satisfying Gate B1 location bound (`|Z| < 2.0 SD`).
+  * Pullback Initiation & Shelves: 1st bar of pullback printed (`bars_pullback = 1`, `bars_impulse = 20`, retrace = 0.0109). Confluence shelves sit at VAH (83,847.20 USD, -0.95 ATR), 20 EMA (83,841.18 USD, -0.97 ATR), and Session VWAP (83,773.51 USD, -1.24 ATR).
+  * Seasoned Whale Depth Surge: Seasoned L3 walls (persistence >= 180s) surged from 0 to **160 seasoned walls** on book.
+  * Friction gamma pristine at **0.0685 R** (spread 2.02 bps vs ATR 248.3 USD).
+  * Overhead buy stops: 84,950 USD ($8.13M, +3.50 ATR), 85,050 USD ($5.48M), 85,450 USD ($8.49M).
+  * `ETH`: `TREND_UP` retained (`1h_drift_t = +1.838`), but gamma elevated at 0.3370 R.
+- **CDP Injection & Verification**:
+  * Injected prompt via `Terminal.arena_bridge` into Arena.ai editor; verified `hasStopBtn: True` (actively generating).
+  * Scratch script `scratch/inject_c32.py` purged immediately after execution.
+- **Sleep Protocol Armed**:
+  * 9-minute sleep timer (`DurationSeconds=540`, task `task-46511`, `TimerCondition="never"`) armed.
+  * Wake-up scheduled for ~07:32 UTC (13:02 IST) to harvest the Council Report, evaluate gates, and execute high-confluence limit orders into MT5.
