@@ -54236,3 +54236,26 @@ Finally, unify live and replay ratchets before qualifying uplift; the current se
   * Lean pointer-driven briefing compiled and saved to `docs/prompts/ARENA_CYCLE_31_PROMPT.txt`.
   * Committed as `9917846f` and synchronized across `origin/main` and `origin/arena/537c1eb8-trading-2`.
   * Arena.ai Chrome tab inspected via CDP: Editor clean, responsive, and ready for 04:50 UTC injection.
+
+---
+
+### Turn Checkpoint: 2026-10-12 06:45 UTC (Antigravity Restart & Daemon Revival)
+- **Account State (Blueberry Markets MT5 #5064568)**:
+  * Balance: 4,896.55 USD | Equity: 4,896.55 USD | Free Margin: 4,896.55 USD | Margin: 0.00 USD (100% Cash reserves).
+  * G-1 Hard Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD.
+  * Live Floor Cushion: +121.55 USD (+101.55 USD above buffer; 6.08x mandatory 20.00 USD minimum).
+  * Open Positions: 0 | Resting Orders: 0 | Capacity: 0/4 used (4 slots open).
+  * Contingent Book Risk: 0.00 USD (complete capital immunity intact).
+- **Daemon Revival & Pentad Verification**:
+  * Task 1 (AST Watcher): `task-46291` running (`python Terminal/run_graphify_watcher.py`).
+  * Task 2 (Telemetry Sync Daemon): `task-46293` running (PID 11320, publishing every 60s).
+  * Task 3 (Web2API Council Daemon): `task-46297` running on port 8081.
+  * Task 4 (Trading Swarm Cron): `task-46299` running on `0,20,50 * * * *`.
+  * Task 5 (Heretic Engine Daemon): `task-46301` running on port 8083.
+  * Ports 8081 and 8083 verified listening via netstat.
+- **Fresh Telemetry & Quantitative Audit (Snapshot `80efcf3e` @ 06:44:40 UTC)**:
+  * Universal Maturity: `session_bars = 26` (Gate B1 permanently retired).
+  * Regime Census: Total Defined Regimes = 2 (`ETH: TREND_UP`, `SP500: MEAN_REVERT`).
+  * ETH: Certified `TREND_UP` with 1H drift t-stat +1.597 (> 1.50) and sign +1. Blocked by broker spread friction (gamma = 0.372 R > 0.15 R).
+  * BTC: Spot 83,900.5 USD (+1.0 SD from VWAP 83,742.79 USD, above 200 EMA 83,233.88 USD). 1H drift t-stat increased to +1.358 (only 0.142 below 1.50). Friction gamma pristine at 0.0692 R.
+  * Gate Strictness Diagnostic: Surfaced exact sensitivity bottlenecks preventing trade dispatch (1.50 1H drift floor in consolidation shelves, 0.00 ATR sign zero-tolerance on VWAP, 0.618 retrace ceiling).
