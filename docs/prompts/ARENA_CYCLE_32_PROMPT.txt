@@ -1,0 +1,89 @@
+# 🏛️ ARENA.AI MULTI-PERSONA QUANTITATIVE COUNCIL BRIEFING — CYCLE 32 (07:20–07:25 UTC)
+
+**Canonical GitHub Repository:** `https://github.com/kbsingh1399/Trading_2`  
+**Active Working Branch:** `arena/537c1eb8-trading-2`  
+**Live Telemetry Pointer:** `https://raw.githubusercontent.com/kbsingh1399/Trading_2/arena/537c1eb8-trading-2/docs/telemetry/live_snapshot_latest.json`  
+**Snapshot Generation ID:** `66d0c8cff4734c569b3f372ced3612d5` (as of 2026-10-12 07:20:21 UTC)
+
+---
+
+### 1. Ingestion of Prior Cycle & Methodological Ratification
+
+1. **Cycle 31 Report Formally Ingested (`ARENA_COUNCIL_REPORT_20261012_0710Z.md`, Commit `e4b2d808` merged in `c10e2b00`)**:
+   - Merged commit `e4b2d808` cleanly into `main` (commit `c10e2b00`) and synchronized across `main` and `arena/537c1eb8-trading-2`.
+   - **Stand Aside Ratified**: Council's unanimous stand-aside disposition is acknowledged and ratified. Cash reserves remain 100% at 4,896.55 USD, defending the +121.55 USD floor cushion above 4,775.00 USD. Evidence score: **session all-time record 93 / 100** (1,071 unit/integration tests passing, 3 skipped, 0 failed; local test suite 235 passed).
+   - **Ratification of Key Council Findings & Breakthrough Rules**:
+     * **BTC & ETH Certified `TREND_UP` (STRUCT Tier)**: Acknowledged the historic concurrent satisfaction of both STRUCT conditions for BTC (1H drift t-stat +1.685, t = +9.906, `structural_sign = +1`, 4H drift -0.020). The 7-cycle alternation rule is officially retired.
+     * **Core Invariant Ratified ("A Certified Trend Is Not An Entry")**: Fully ratified the Council's distinction that Model 2 is a pullback model requiring entry at a confluence shelf on retracement, not buying extended moves at Z = +2.55 SD with zero retrace. The short-circuit on `data_invalid:shelf.price` was verified as correct protective behavior.
+     * **Withdrawal of Magnet Claim**: Ratified the withdrawal of the directional magnet thesis following the spot rally to 84,113 USD (magnet moved to -3.085 ATR, acting as a deep support reference rather than an active sweep threat).
+     * **Admissible BTC Anchors & Expectancy**: Ratified the validation of two admissible anchors inside 4.0 ATR: 84,950 USD ($8.28M, RR = 2.256, `EV_lower = +0.2225/R`) and 85,050 USD ($5.48M, RR = 2.526, session-record `EV_lower = +0.3358/R`).
+     * **ETH Disqualification**: Ratified ETH's rejection on friction gamma (0.460 R vs 0.15 R base / 0.20 R relaxed ceiling).
+
+---
+
+### 2. Live Market Developments for Cycle 32 (07:20 UTC — Pullback Initiation & Z-Cooling)
+
+1. **Session Maturity at 29 Bars**:
+   - `session_bars = 29` across all categories. Gate B1 remains permanently retired.
+
+2. **BTC Trend Retained & Location Bound Satisfied (Z Cooled to +1.72 SD)**:
+   - BTC retains **`TREND_UP` (STRUCT Tier)** for the second consecutive cycle (`1h_drift_t = +1.685`).
+   - Spot mid at **84,082.0 USD** has cooled from +2.55 SD down to **+1.72 SD** above Session VWAP (83,773.51 USD) and well above 200 EMA (83,258.67 USD).
+   - **Gate B1 Location Bound (`|Z| < 2.0 SD`) NOW PASSES!**
+   - Friction gamma remains pristine at **0.0685 R** (spread 2.02 bps / 17.0 USD vs ATR 248.3 USD, well inside the 0.15 R ceiling).
+
+3. **Pullback Initiation & Confluence Shelf Architecture**:
+   - The first bar of pullback has printed (`bars_pullback = 1`, `bars_impulse = 20`, retrace = 0.0109).
+   - **Confluence Shelves Below Spot**:
+     * Value Area High (VAH): **83,847.20 USD** (-0.946 ATR from spot).
+     * 20 EMA: **83,841.18 USD** (-0.970 ATR from spot).
+     * Session VWAP: **83,773.51 USD** (-1.242 ATR from spot).
+     * 50 EMA: **83,691.82 USD** (-1.571 ATR from spot).
+   - Sentry on whether staging a passive limit order at the **VAH / EMA20 shelf cluster (83,845 USD)** or the **Session VWAP (83,775 USD)** satisfies the 5-pillar confluence stack.
+
+4. **Massive Rebound in Seasoned L3 Orderbook Depth**:
+   - Seasoned whale walls (persistence >= 180s) rebounded dramatically from 0 walls in Cycle 31 to **160 seasoned walls on book**!
+   - Dense resting bid support has established physical backing beneath spot.
+
+5. **Overhead Liquidity Anchors Persist**:
+   - 84,950 USD buy-stop anchor: **$8,130,561 USD notional** at +0.97% distance (+3.50 ATR, well inside 4.0 ATR ceiling).
+   - 85,050 USD buy-stop anchor: $5.48M USD notional.
+   - 85,450 USD buy-stop anchor: $8.49M USD notional.
+
+6. **ETH Sentry**:
+   - `TREND_UP` retained (`1h_drift_t = +1.838`), but broker spread friction remains elevated at gamma = **0.3370 R** (exceeding the 0.20 R relaxed ceiling).
+
+---
+
+### 3. Live Account State & Capital Floor Defense (MT5 #5064568)
+
+- **Balance**: 4,896.55 USD | **Equity**: 4,896.55 USD | **Margin**: 0.00 USD (100% Cash Reserves)
+- **G-1 Hard Floor**: 4,775.00 USD | **Operating Buffer**: 4,795.00 USD
+- **Live Floor Cushion**: **+121.55 USD** (+101.55 USD above buffer; 6.08x mandatory 20.00 USD minimum)
+- **Active Tickets**: 0 open positions, 0 resting orders (Capacity: 0/4 used, 4 slots available)
+- **STRUCT Risk Constraint**: In STRUCT tier, risk is strictly capped at **10.00 USD (0.204% of equity)** per ticket. Total contingent book risk = 0.00 USD. Complete floor immunity intact.
+
+---
+
+### 4. Multi-Persona Council Mandate for Cycle 32
+
+Execute independent quantitative evaluations across the 4 personas:
+1. **Orderflow & Microstructure Analyst**:
+   - Audit the 160 seasoned L3 walls and assess whether genuine resting bid depth backs the VAH/EMA20 shelf cluster (83,845 USD) and Session VWAP (83,775 USD).
+   - Verify Gate G-7 compliance against the seasoned subset.
+2. **Structural Price Action Specialist**:
+   - Audit BTC's pullback progression: evaluate whether staging a passive limit order at the confluence shelf (83,845 USD) or Session VWAP (83,775 USD) satisfies Model 2 criteria.
+   - Re-evaluate Gate B1 location bound now that Z-score has cooled to +1.72 SD (< 2.0 SD).
+3. **Liquidation & Stop Hunt Forensic**:
+   - Audit overhead buy-stop anchors at 84,950 USD ($8.13M) and 85,050 USD ($5.48M), computing refreshed risk-reward and lower-bound expectancy from the candidate limit entry price.
+4. **Macro Risk & Portfolio Governor**:
+   - Verify Gate B1 status (`session_bars = 29` >= 16 bars) and enforce the 10.00 USD STRUCT risk cap and 4,775.00 USD hard equity floor unconditionally.
+
+---
+
+### 5. Deliverable & Execution Requirement
+
+1. Formulate the comprehensive Cycle 32 Council Report with explicit mathematical metrics for all active candidates.
+2. Write and commit the report directly to `docs/trade_plans/ARENA_COUNCIL_REPORT_20261012_0740Z.md`.
+3. Push the commit to `https://github.com/kbsingh1399/Trading_2` on branch `arena/537c1eb8-trading-2`.
+4. If any setup satisfies all 5 confluence pillars under Model 1 or Model 2, state the exact passive limit order parameters (Symbol, Side, Limit Price, Stop Loss, Take Profit, Lots, Risk USD). Otherwise, declare unanimous STAND ASIDE.
