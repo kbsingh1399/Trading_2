@@ -9957,3 +9957,62 @@ Arena completed the unified 4-step council audit across all 4 Mandates:
 7. **OPEN ITEM CARRIED FORWARD (unchecked, stated once, not used as a veto):** whether the order-staging path still enforces the retired `MAX_TARGET_DIST_ATR = 4.0`. `SOL`'s TP sits `8.05 ATR` from entry and `BTC`'s `5.31 ATR`; both would be refused at submission if the stager were unpatched. That `#18791527` filled and `#18795304` rests is strong evidence the stager *is* patched, but Arena has not read the current staging code and marks this **unverified** rather than asserting it.
 
 **— Signed, Arena.ai Multi-Persona Quantitative Council · Cycle 40B · 2026-10-12 12:36:00 UTC · generation `a356c3ddb0c24259874b6e2d623b267c`**
+
+---
+
+### [2026-10-12 13:01:00 UTC] Cycle 41: Arena.ai Signed Ledger Entry — BTC `#18791527` Confirmed STOPPED OUT (−11.20 USD), SOL `#18795304` HOLD, Zero New Tickets, Wall-Feed Cold-Start Caught
+
+**Telemetry Citation:** final probe `generation_id = 870cf820bc374e76810aec8cb3b4eca0` | `as_of_utc = 2026-10-12 12:59:45 UTC` | also polled `900b621d` (12:51:44), `23bdaf56` (12:52:41 — **COLD**), `8fb27c82` (12:57:44) | 24/24 assets | Playbook §3.A / §3.B / §3.C / §4 / §5 applied | **zero decision-gate scripts executed, zero gate tokens cited.**
+
+1. **🔴 TICKET `#18791527` (`BTCUSD.pi` `LONG 0.02 @ 83,150.00 | SL 82,590.00 | TP 84,300.00`) — STOPPED OUT FOR `−11.20 USD`.**
+   - The ticket is absent from `active_positions`. Three corroborating facts confirm a stop-out rather than a manual close:
+     - **Balance delta is exactly `−11.20 USD`** (`4,885.38 → 4,874.18`) — precisely the full stop risk (`560 pts × 0.02 lots × contract_size 1.0`).
+     - **Margin used fell `831.50 → 440.60 USD`**, releasing the BTC reservation and leaving only SOL's.
+     - BTC has continued lower to `82,676.50`, i.e. **below the `82,590.00` stop**, on `Z = −3.18 SD` and `RSI = 25.51`.
+   - **The snapshot publishes no closed-deal block** (`trade_authorization` is the only history-adjacent key), so this is a strongly corroborated inference from three independent figures, not a direct read of a deal record.
+   - **The entire Cycle 40 / 40B TP deliberation is therefore moot.** The `84,300` vs `84,340` question never became live: price never approached either level. **The `2.0536R` thesis lost `1.00R`.**
+   - **Forensic note for the Playbook:** the SL was correctly placed **`110.00 USD` below `min_price = 82,700`** of the `82,700–82,800` cascade — `0.5076 ATR` at the `ATR_14 = 216.70` in force when it was set, and `0.4502 ATR` at today's widened `ATR_14 = 244.36`. **Both readings sit inside the `0.25–0.50×` specification, so the placement was compliant on either basis — *and it still lost.*** The band that has since reformed at that level now publishes as a **`$31.90M` short-squeeze band at `82,750` and a `$17.13M` buy-stop cluster at `82,750`**, i.e. the liquidity the stop was placed behind has inverted into overhead supply. **A correctly-placed bunker is not a guarantee; it is only the best available location.**
+2. **✅ MANDATE 2 — TICKET `#18795304` (`SOLUSD.p` `LONG 0.08 @ 110.15`): HOLD. NO MODIFICATION.**
+   - Live: `price_current 109.96`, `profit_usd −1.52`, `r_multiple −0.14`, `ratchet_state PHASE_0_PENDING`, opened `12:36:46 UTC`.
+   - **Ratchet — NOT triggered.** Phase 0 requires `+0.70R`; the position is `0.84R` short.
+   - **SL `108.79` — KEEP.** Buffer `109.00 − 108.79 = 0.21 = **0.4833 ATR**` (ATR has widened `0.4036 → 0.4345`). Note this now sits **inside** Part C's `0.25–0.50×` specification, whereas at Cycle 40 it measured `0.5203` and marginally exceeded it. **The ATR widening, not any order change, brought it into spec.**
+   - **Governing bunker intact:** `109.0–110.0` stop cluster **`$8.63M`** (Cycle 40B `$8.67M`) and cascade **`$3.13M`** (`$3.15M`).
+   - **TP `113.40` — KEEP.** Front-runs the `113.50` buy-stop magnet by **`8.81 bps`**; `R:R 2.3897`.
+   - **⚠️ ARENA SELF-CORRECTION — a wall "collapse" that did not happen.** At `12:51:44` Arena measured only **`$4.78M`** of eligible L3 bid inside the stop range and concluded the `$6.55M` and `$3.40M` anchor walls had been pulled. **That reading was taken during a wall-feed cold-start and understated the stack.** Re-measured on a warm generation (`12:59:45`): **23 eligible walls totalling `$9.75M`**, led by **`$3.40M @ 109.08` (`persist 240.2s`)** and **`$1.74M @ 109.63` (`persist 301.2s`)**. Against Cycle 40B's `$13.35M` this is a real but modest **−26.97%**, not a −64% collapse. **No exit is warranted on wall attrition.**
+   - Flow supports holding: `15m CVD +343,930`, L2 bid-weighted at `+0.153` imbalance, `RSI 28.66`, `Z −2.20`.
+3. **⚠️ OPERATIONAL WARNING LOGGED — L3 WALL FEED COLD-START REPRODUCED.** At `generation 23bdaf56` (`12:52:41`) **every one of the 24 assets reported zero eligible L3 walls**, including BTC (which the desk matrix shows at `148` eligible). Re-polling six consecutive generations returned `329 / 378 / 378 / 362 / 374 / 429` eligible walls. **A single-generation wall reading of zero is a feed artefact, never a market fact.** Arena now polls until the feed is warm before drawing any wall-based conclusion.
+4. **✅ MANDATE 1 — ZERO NEW TICKETS ACROSS ALL 24 MUTUAL UNIVERSE ASSETS.**
+   - **§4 Friction Gate / named-universe eliminations:** `DOGE 244.33` / `DOT 158.73` / `ADA 88.75` / `LINK 65.21` / **`NEAR 62.13`** / `LTC 46.73` / `AVAX 36.70` / `TRX 33.20` / `XRP 21.61`* bps. `BCH` (`20.81 bps`) clears the spread cap but sits outside the named institutional universe and fails on merits (largest eligible wall `$0.06M`).
+   - **Seven heuristic "PASS" results caught and rejected as artifacts before reporting** — the same discipline that caught four in Cycle 40:
+
+     | Asset | Heuristic R:R | Why spurious |
+     |---|---|---|
+     | `ETH` LONG | 159.77 | Entry `2,495.80` sits **below the bunker's own `min_price` of `2,500`**, forcing the SL `0.36` above entry — negative-risk nonsense |
+     | `USDJPY` LONG | 5.84 | Entry bid **`62.00 ATR`** below mid — unreachable |
+     | `GBPUSD` SHORT | 12.14 | Entry ask **`38.44 ATR`** above mid — unreachable |
+     | `SILVER` SHORT | 5.98 | Downside magnet only **`$0.03M`** — not a magnet |
+     | `SOL` SHORT | 3.43 | Entry **`4.30 ATR`** above mid — unreachable |
+     | `EURUSD` LONG | 3.31 | Entry bid **`30.65 ATR`** below mid — unreachable |
+     | `SOL` LONG | 2.39 | Entry **`3.75 ATR`** below mid *and* magnet only `$0.14M` |
+
+   - **`BTC` — the most extreme reading in the matrix (`Z −3.18`, `RSI 25.51`) still yields no setup, in either direction.** The eligible L3 bid stack is enormous but **too far from any shelf**: `$59.66M @ 81,979` (`2.85 ATR` below mid), `$20.52M @ 81,721`, `$14.74M @ 82,217` (`1.88 ATR`), `$10.44M @ 82,031`. **Every published sell-stop and cascade band lies between `82,300` and `82,650` — above the nearest whale bid.** No entry can simultaneously touch a stop shelf and a persistent wallet wall, which is exactly what §3.A requires. Structurally, price sits **below VAL `83,440`, POC `83,778`, Session VWAP `83,622`, and EMA20/50/200 (`83,359 / 83,506 / 83,290`)** with `EMA200 slope −0.0008%` and `trend_regime BEARISH`. **A long here is a knife-catch against every structural limb.**
+   - **`USWTI` — the only in-universe `|Z| ≥ 2.0` extension (`Z +2.03`, `RSI 73.51`) — has no liquidity structure at all.** Buy-stop clusters above: `$0.08M / $0.00M / $0.00M / $0.03M`. Squeeze bands: `$0.04M / $0.01M`. Sell-stop magnets below: `$0.08M / $0.03M / $0.01M / $0.00M`. Largest eligible ask `$0.32M`. **This is a thin-market extension, not a tradeable squeeze.**
+   - **`DJ30` and `GER40` publish zero eligible walls, zero stop clusters and zero liquidation bands** — no microstructure exists to build on.
+   - **Cycle 40's unifying finding holds and has intensified: excellent bunkers, empty magnets.** Broad crypto `15m CVD` is `BTC +4,405,681` (swinging violently — `−780,892` at 12:51, `+768,227` at 12:52, `+4,405,681` at 12:57, i.e. **not a stable signal**), `ETH −2,456,816 → −173,859`, `BNB −798,989 → −16,048`. `RSI` is sub-`35` on eight assets simultaneously. **This is capitulation, not accumulation, and no overhead magnet is large enough to pay `2.0R` against any compliant bunker.**
+5. **MANDATE 3 — NO UNFILLED LIMIT ORDERS.** `pending_orders = []`. Nothing to audit. Capacity `1 of 4` slots.
+6. **PORTFOLIO CAPACITY & CAPITAL FLOOR GOVERNANCE**:
+   - MT5 Account #5064568: Balance **`4,874.18 USD`** | Equity **`4,875.22 USD`** | Margin used **`440.60 USD`** | Free margin `4,434.62 USD` | Margin level `1,106.50%`.
+   - Active **1** (`#18795304`) | Pending **0** | **Capacity 1 of 4.**
+   - Joint worst-case risk **`10.88 USD`** (SOL only) → stressed post-stop equity **`4,863.30 USD`** = **`+68.30 USD`** above the `4,795.00 USD` operating buffer and **`+88.30 USD`** above the `4,775.00 USD` hard floor. ✅
+   - **Session P&L: `−11.20 USD` realised (BTC `#18791527`), `−1.52 USD` floating (SOL `#18795304`).** Balance is `11.20 USD` below the Cycle 40 baseline and remains `88.30 USD` above the hard floor. **The floor has not been threatened.**
+7. **CYCLE 41 ACTIONABLE EXECUTION SUMMARY TABLE (FINAL, SIGNED)**:
+
+   | # | Ticket / Action | Symbol | Side | Lots | Entry | SL Bunker | TP Magnet | Risk | R:R | Quantitative Rationale |
+   |---|---|---|---|---|---|---|---|---|---|---|
+   | 1 | **`#18791527` — CLOSED AT SL** | `BTCUSD.pi` | LONG | 0.02 | 83,150.00 | 82,590.00 *(hit)* | 84,300.00 *(never reached)* | **−11.20 USD** | **−1.00R** | SL was correctly placed `110.00 USD` (`0.4502 ATR` at today's `ATR_14 244.36`) below `min_price 82,700`; the cascade it sat behind has since inverted into a `$31.90M` squeeze band and `$17.13M` buy-stop cluster at `82,750`. Correct placement, losing outcome. |
+   | 2 | **`#18795304` — HOLD, NO CHANGE** | `SOLUSD.p` | LONG | 0.08 | 110.15 | **108.79** | **113.40** | **10.88 USD** | **2.3897** | `−0.14R`, ratchet not triggered. SL buffer `0.4833 ATR` below `min_price 109.00` (now inside the `0.25–0.50×` spec). Bunker intact at `$8.63M` stop + `$3.13M` cascade. `$9.75M` eligible bid wall across 23 orders inside the stop range. TP front-runs `113.50` by `8.81 bps`. `15m CVD +343,930`, L2 `+0.153`. |
+   | — | **NEW TICKETS** | — | — | — | — | — | — | — | **NONE.** 9 banned by §4 friction/universe; 15 fail §3.A wall-to-shelf coincidence, bunker→magnet R:R, or §3.A.2 trend alignment. |
+
+8. **RECOMMENDED PLAYBOOK ADDITION (§4 Empirical Lessons):** *"`#18791527` BTC Long, `−11.20 USD` loss. Entry, SL (`110.00 USD` below `min_price`, `0.45-0.51 ATR` across the ATR range observed) and TP (`5.9 bps` front-run) were all textbook-compliant and the trade still lost `1.00R`. **Rule: a compliant bunker reduces stop-hunt probability; it does not confer directional edge.** When `trend_regime` is `BEARISH` with price below VAL/POC/VWAP/EMA200 simultaneously, a Model 2 pullback long has no trend limb to rely on and should be sized at the floor or skipped."*
+
+**— Signed, Arena.ai Multi-Persona Quantitative Council · Cycle 41 · 2026-10-12 13:01:00 UTC · generation `870cf820bc374e76810aec8cb3b4eca0`**
