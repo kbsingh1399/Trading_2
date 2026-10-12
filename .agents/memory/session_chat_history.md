@@ -53975,3 +53975,31 @@ Finally, unify live and replay ratchets before qualifying uplift; the current se
 - **Arming 9-Minute Sleep Protocol**:
   - Scheduled 9-minute sleep timer (`DurationSeconds=540`, `TimerCondition="never"`).
   - Wake-up target: ~01:35 UTC (07:05 IST) to harvest Cycle 24 Council Report from `arena/537c1eb8-trading-2`, merge commit, evaluate gates, and execute limit orders if confluence criteria are satisfied.
+
+---
+
+### Turn Checkpoint — Cycle 24 Council Harvest, Gate Analysis & Invariant Hardening (01:42 UTC)
+- **Timestamp**: 2026-10-12 01:42:00 UTC / 2026-10-12 07:12:00 IST
+- **Cycle 24 Harvest Summary (`ARENA_COUNCIL_REPORT_20261012_0140Z.md`, Commit `833e45c4`)**:
+  - Merged commit `833e45c4` into `main` (commit `7edba4c8`) and synchronized across `main` and `arena/537c1eb8-trading-2`.
+  - **Unanimous STAND ASIDE Ratified**: 0 tickets staged, 0 resting orders. Cash reserves 100% at 4,896.55 USD, defending the +121.55 USD floor cushion above 4,775.00 USD. Evidence score: **86 / 100** (1,071 unit/integration tests passing, 3 skipped, 0 failed).
+  - **Key Finding 1 — BTC STRUCT Floor Cross vs. Structural Sign Volatility**:
+    * BTC's 1H drift t-stat crossing is genuine: +1.439 to **+1.687** (t = +7.537 > 2.5), 1H ER = 0.3221 > 0.20, 4H drift t-stat = -0.569 > -1.0. All drift criteria satisfied.
+    * However, regime classification is generation-dependent because BTC dipped 15.46 USD (0.081 ATR) below Session VWAP (83,742.50 vs 83,757.96), yielding `structural_sign = None` and reverting the regime to `UNDEFINED`.
+    * A regime certification depending on sub-0.1 ATR margin is a waiting state, not an actionable tradeable state.
+  - **Key Finding 2 — Gate B1 Has No STRUCT Exemption**:
+    * Verified directly in source at `Terminal/decision_gates_v3.py:718-721`: `session_bars >= 16` is an unconditional rule that sits alongside the STRUCT risk cap (risk <= 10.00 USD). STRUCT qualification adds a constraint; it removes none. Gate B1 requires stand-aside until ~04:00 UTC (currently at 5 bars since 00:00 UTC roll).
+  - **Key Finding 3 — Resting Whale Depth Replenishment**:
+    * Resting bid walls reappeared inside BTC's +/- 0.35 ATR band: 4 in-band BUY walls (106 eligible walls total), with the lead wall at BUY 83,733 carrying 196,469 USD with 362s persistence at -0.0499 ATR.
+  - **Key Finding 4 — GOLD Lowest Friction vs. Obstacles**:
+    * Spread tightened to 0.19 bps, friction gamma dropped to 0.016 R (lowest in desk).
+    * Blocked by 0 in-band walls (0/27), B2 retrace outside band (1.1787), and absence of overhead buy-stop anchor within 4.0 ATR (+/- 27.24 USD).
+  - **Key Finding 5 — Liquidation & Downside Stop Hazards**:
+    * 101.3M USD sell-stop cluster at 83,350 USD sits at -2.0620 ATR (137.5% of stop distance).
+    * Nearer secondary hazard: 4.9M USD sell-stop cluster at 83,650 USD (-0.4859 ATR below spot, 32.4% of stop distance).
+- **MT5 Account State (#5064568)**:
+  - Balance / Equity: **4,896.55 USD** (100% Cash reserves).
+  - G-1 Hard Floor: 4,775.00 USD | Cushion: **+121.55 USD** | Operating Buffer: 4,795.00 USD (+101.55 USD).
+  - Open Positions: 0 | Resting Orders: 0 | Capacity: 0/4 used (4 slots open).
+- **Next Revalidation Point**:
+  - Ongoing sentry via recurring trading cron (task-44250) leading into Cycle 25.
