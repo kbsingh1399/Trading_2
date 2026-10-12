@@ -195,6 +195,13 @@ bunker ceiling migrated above its stop.
 | 4 | Mandate 3 note | — | (A) irony | Record for the playbook | Defense $13.80M > 5M and overwhelm 0.037:1 < 0.10 are now certified — the thesis improved while the order died on reachability |
 | 5 | Re-arm gate | NAS100 short | conditional | New ticket only if: mid ≥ 30,673.10 AND [30,800–30,900] fuel thins ≥ 50% AND POC ≲ 30,810; else stand down at **2026-10-13 02:25 UTC** purge | candidate bracket: 30,750.00 / 30,823.5 / 30,522.90 / 0.02 lots (re-verify grid at re-arm) |
 
+### Addendum — generation 6bb7effb @ 18:28:21 UTC (post-report delta)
+
+A fresher generation landed after the analysis. All three (C) proofs **strengthen**: mid 30,646.60
+(drift now **2.767 ATR**; threshold 30,675.26), POC unmoved at 30,992.79, [30,800–30,900] band
+intact at $326,019 (SL 30,862 still inside it), ticket unchanged. No re-arm condition is closer
+to being met (mid is falling away from 30,673.10, not toward it). The (C) ruling stands.
+
 **Bottom line:** with the full L3/stop/liquidation stack finally live and persistence-certified,
 the honest screen still returns nothing to punch — every surviving setup dies on a discrete
 execution-spec or flow-anchor proof, and the one live ticket must be cancelled on a threefold
