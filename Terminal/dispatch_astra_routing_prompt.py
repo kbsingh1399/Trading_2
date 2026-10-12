@@ -126,7 +126,7 @@ PART D: THE THREE CANONICAL OPERATOR MANDATES
 ================================================================================
 
 MANDATE 1: SCREEN ALL 24 TELEMETRY ASSETS FOR NEW OPPORTUNITIES
-Screen every asset in docs/telemetry/live_snapshot_latest.json (Generation 1a7d9d57 with hundreds of verified L3 whale orders, real stop clusters, and liquidation cascade bands) line-by-line:
+Screen every asset in docs/telemetry/live_snapshot_latest.json (streaming live with hundreds of verified L3 whale orders, real stop clusters, and liquidation cascade bands) line-by-line:
 - Apply the Dynamic Expectancy Friction Rule (permitting Crypto spreads up to 35 bps when expected target >= 5x spread). Do NOT arbitrarily ban SOL, BCH, AVAX, or XRP solely on spread!
 - Synthesize Model 1 Extreme Mean Reversion (|Z| >= 2.0 SD to 3.5 SD with tape exhaustion and stop sweep absorption) OR Model 2 Trend Following (pullbacks to VWAP/VAL/VAH/EMA shelves in direction of dominant HTF trend toward opposing liquidity magnets).
 - Verify entry against all 5 Anti-Trap Invariants from Part C.
@@ -140,12 +140,12 @@ MANDATE 3: ADVERSARIAL AUDIT OF UNFILLED PENDING LIMIT ORDER
 - Symbol: NAS100.p
 - Direction: SELL LIMIT 0.01 lots
 - Entry: 30,750.00 USD (Structural short pullback to resistance shelf)
-- Stop Loss: 30,852.80 USD (Tick-snapped, safely positioned beyond Session VWAP 30,830.65 and Volume POC 30,846.05)
+- Stop Loss: 30,862.00 USD (Modified live on MT5: positioned at POC 30,846.05 + 0.361 ATR buffer, fully clearing both Session VWAP 30,830.65 and Volume POC 30,846.05 to satisfy Invariant 1)
 - Take Profit: 30,522.90 USD (Front-running 30,547.43 swing low by 8.03 bps into downside liquidation pool)
-- Nominal Risk: 10.28 USD (within 10.00 - 14.50 USD budget, 0.21% of equity) | R:R: 2.21R
-- Stressed Post-Loss Floor Defense: 4,852.17 USD (+77.17 USD cushion above 4,775.00 USD floor, +57.17 USD above 4,795.00 USD buffer)
+- Nominal Risk: 11.20 USD (within 10.00 - 14.50 USD budget, 0.23% of equity) | R:R: 2.03R
+- Stressed Post-Loss Floor Defense: 4,851.02 USD (+76.02 USD cushion above 4,775.00 USD floor, +56.02 USD above 4,795.00 USD buffer)
 - Audit Criteria under 12 Parameters & 5 Anti-Trap Invariants:
-  (A) VIABLE, WAIT AS-IS: Resting L3 whale sell walls (over 5M USD defense), overwhelm ratio < 0.10:1, distance from mid <= 2.0 ATR, floor cushion preserved, SL outside POC/VWAP sweep zone.
+  (A) VIABLE, WAIT AS-IS: Resting L3 whale sell walls (over 5M USD defense), overwhelm ratio < 0.10:1, distance from mid <= 2.0 ATR, floor cushion preserved, SL outside POC/VWAP sweep zone (clearing POC by 0.361 ATR).
   (B) SLIGHT MODIFICATION REQUIRED: If magnet or bunker edges shifted.
   (C) DELETE / CANCEL IMMEDIATELY: If defense thinned > 50% or thesis broke.
 
