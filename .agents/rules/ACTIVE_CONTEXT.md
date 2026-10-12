@@ -25,6 +25,14 @@ trigger: always_on
 - **BIDIRECTIONAL GIT INTERACTION & TWO-WAY ARENA COLLABORATION MANDATE (STRICT OPERATOR DIRECTIVE)**: Both `main` (`https://github.com/kbsingh1399/Trading_2`) and `arena/537c1eb8-trading-2` (`https://github.com/kbsingh1399/Trading_2/tree/arena%2F537c1eb8-trading-2`) MUST be constantly synchronized and kept up to date on every commit and telemetry push.
 - **FULL-PARAMETER TELEMETRY SYNTHESIS MANDATE (ZERO ARTIFICIAL CONSTRAINTS - STRICT OPERATOR DIRECTIVE)**: Prompts sent to Arena.ai or council models must NEVER artificially limit the model to narrow, dogmatic checklists. Empower the model to evaluate both Mean Reversion and Trend Following opportunities by cross-verifying ALL 12 parameters in `docs/telemetry/live_snapshot_latest.json` (MT5 Bid/Ask spreads, causal regimes, VWAP SD bands, volume profile POC/VAH/VAL, 1m/15m/30m CVD taker flow & absorption, 20-level L2 depth, L3 on-chain Ethereum whale orders `0x...`, reconstructed liquidation cascade bands, structural stop clusters, macro calendar, funding velocity, and execution specs).
 - **MANDATORY LOSING TRADE AUTOPSY & 5 ANTI-TRAP INVARIANTS IN ALL FUTURE PROMPTS (STRICT OPERATOR DIRECTIVE)**: Every future prompt generated for Arena.ai, Z.ai, or subagents MUST explicitly detail the autopsy of recent stopped-out trades (`SOLUSD.p #18806752`, `BTCUSD.pi #18798018`, `BTCUSD.pi #18786372`, `SP500.p #18749312`, `ETHUSD.pi #18748507`, `XAUUSD.pi #18744533`) and enforce the 5 Anti-Trap Invariants: (1) SL placed safely outside `[min_price, max_price]` with >= 0.35–0.50 ATR buffer; (2) Confirmed CVD delta deceleration/absorption before long entry (never catch falling knives); (3) Never place entry limits directly above un-swept opposing stop clusters; (4) Supporting whale walls must show verified persistence >= 180s; (5) Multi-timeframe trend alignment must be respected.
+- **TREND-FIRST HTF HIERARCHY & MULTI-DIMENSIONAL CONFLUENCE (STRICT OPERATOR DIRECTIVE)**:
+  * **Ban on VWAP-Band Tunnel Vision**: Never stick dogmatically to VWAP standard deviation bands alone or fall into the retail trap of dip-buying falling knives in strong downtrends.
+  * **HTF Trend Hierarchy (1H/4H EMAs + Footprint + CVD + Whales)**: Always evaluate the Higher Timeframe Trend Hierarchy (1H/4H EMA alignments, 15m structural slopes) supported by the complete multi-dimensional data stack:
+    1. *Regime Alignment*: If Price < EMA20 < EMA50 < EMA200 on 1H/4H (Bearish regime), Model 1 dip-buying Longs are strictly FORBIDDEN. All priority shifts to staging Model 2 Trend Pullback SHORTS at overhead resistance shelves.
+    2. *CVD Flow as Trend Momentum*: Massive negative taker CVD (-1M to -3M USD) confirms aggressive seller domination. Never buy against it; use it as confirmation to short intraday rallies.
+    3. *Model 2 Pullback Short Protocol*: In a bear trend, never chase breakdowns at the lows. Wait for relief rallies into the EMA20/EMA50/VAH shelves backed by resting L2/L3 Ask Whale Walls (e.g. 7.79M USD Ask @ 82,670 on BTC) to defend stops.
+    4. *Adaptive Risk Envelope (7.50 to 14.50 USD)*: Never discard a pristine 2.0R+ trend setup because 0.01 lot produces 8.50-9.50 USD risk (below an arbitrary 10.00 USD floor). An 8.50 USD risk on 0.01 lot is 0.17% equity risk and is fully authorized.
+    5. *Broker Ticker Mapping*: Remember that Avalanche is mapped to `AVXUSD.p` on Blueberry Markets (Contract Size 100, min lot 0.01, digits 2).
 - **ZERO SPURIOUS SCRATCH LITTER**: Clean up all intermediate debug scripts immediately after validation.
 
 ## 2. Active Mission & Quantitative Target
@@ -49,19 +57,22 @@ trigger: always_on
       * **Position Capacity Policy**:
         - Up to 4 concurrent tickets across orthogonal asset clusters provided total joint worst-case stopout risk unconditionally defends the 4,775.00 USD hard floor and 4,795.00 USD operating buffer (>= 20.00 USD cushion at all times).
     - Connects directly via native IPC to MetaTrader 5 Account 5064568 (Blueberry Markets).
-    - **Active Positions & Pending Orders (Live State — 2 Confluence Limits Resting)**:
-      * Current Status: **0 Open Positions | 2 Pending Orders | Balance: 4,867.02 USD | Equity: 4,867.02 USD | Margin Used: 0.00 USD | Free Margin: 4,867.02 USD**.
-      * Active Positions (0 — Mandate 2 Monitoring): None (100% Cash Reserves). Earlier SP500.p BUY ratcheted to BE+ lock and safely banked +3.72 USD profit.
-      * Active Pending Orders (2 — Mandate 3 Monitoring):
-        1. Ticket `#18813342` (`SP500.p BUY LIMIT 0.24 @ 7,796.10 USD`, SL: `7,791.90 USD`, TP: `7,817.80 USD`, Risk: `10.08 USD`, R:R: `5.17R`, Whale: `199,993 USD` bid @ 7,796.10).
-        2. Ticket `#18813343` (`BTCUSD.pi BUY LIMIT 0.06 @ 82,351.00 USD`, SL: `82,158.00 USD`, TP: `83,250.00 USD`, Risk: `11.58 USD`, R:R: `4.66R`, Whale: `600,745 USD` bid @ 82,351.00).
-      * G-1 Hard Floor Defense: Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Floor Cushion: **+92.02 USD floating / +92.02 USD realized**.
+    - **Active Positions & Pending Orders (Live State — 2 Active Trend Short Positions | 1 Limit Order Resting)**:
+      * Current Status: **2 Open Positions | 1 Pending Order | Balance: 4,855.44 USD | Equity: 4,852.12 USD | Margin Used: 1,582.50 USD | Free Margin: 3,269.62 USD**.
+      * Active Positions (2 — Mandate 2 Active Monitoring with Autonomous Ratchet Daemon `task-50136` every 15s):
+        1. Ticket `#18813767` (`BTCUSD.pi` SELL 0.02 @ 82,650.00 USD, SL: 83,120.00 USD, TP: 81,800.00 USD, Risk: 9.40 USD, Reward: 17.00 USD, R:R: 1.81R).
+        2. Ticket `#18813768` (`SOLUSD.p` SELL 0.14 @ 108.00 USD [FILLED], SL: 108.85 USD, TP: 106.20 USD, Risk: 11.90 USD, Reward: 25.20 USD, R:R: 2.12R).
+      * Active Pending Orders (1 — Mandate 3 Active Monitoring):
+        1. Ticket `#18814015` (`SP500.p` SELL LIMIT 0.04 @ 7,817.80 USD, Current Bid/Ask: 7,803.20/7,803.45 USD, SL: 7,842.50 USD, TP: 7,704.00 USD, Risk: 9.88 USD, Reward: 45.52 USD, R:R: 4.61R, Ask Wall Belt: 8.9M USD @ 7,802-7,808, Primary Bunker Cleared by 2.56 ATR).
+      * G-1 Hard Floor Defense: Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Floor Cushion: **+77.12 USD floating / +80.44 USD realized**.
       * Stressed Post-Loss Simulation:
-        - Total Contingent Book Risk: **21.66 USD** (Stress buffer: 21.66 * 1.25 + 4.00 = 31.07 USD).
-        - Stressed Worst-Case Equity: **4,835.95 USD** (Unconditionally defends floor!).
-        - Safety Cushion Above 4,775.00 USD Hard Floor: **+60.95 USD** (3.0x mandatory >= 20.00 USD buffer).
-        - Safety Cushion Above 4,795.00 USD Operating Buffer: **+40.95 USD**.
+        - Total Contingent Book Risk: **31.18 USD** (BTC 9.40 USD + SOL 11.90 USD + SP500 9.88 USD).
+        - Stressed Worst-Case Equity: **4,824.26 USD** (Unconditionally defends floor!).
+        - Safety Cushion Above 4,775.00 USD Hard Floor: **+49.26 USD** (nearly 2.5x mandatory >= 20.00 USD buffer).
+        - Safety Cushion Above 4,795.00 USD Operating Buffer: **+29.26 USD**.
+        - Capacity Slots Used: **3 / 4** across orthogonal asset clusters (Crypto Major + Crypto Alt + US Equity Index).
       * Closed Trades Today (Realized PnL):
+        - Ticket #18813343 (`BTCUSD.pi` closed at **-11.58 USD loss** via Stop Loss at 82,158.00 USD, Deal #17022979, during market cascade)
         - Ticket #18795304 (`SOLUSD.p` closed at **-10.88 USD loss** via Stop Loss at 108.79 USD during deepening crypto flush)
         - Ticket #18791527 (`BTCUSD.pi` closed at **-11.20 USD loss** via Stop Loss at 82,590.00 USD during capitulation flush to 82,627 USD)
         - Ticket #18785248 (`BTCUSD.pi` closed at **-11.17 USD loss** via Stop Loss at 83,472.55 USD, Deal #16997164, Order #18785248)
