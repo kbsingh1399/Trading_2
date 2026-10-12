@@ -54536,3 +54536,26 @@ Finally, unify live and replay ratchets before qualifying uplift; the current se
   2. Harvested and verified Arena.ai's Cycle 39B response (`docs/trade_plans/ARENA_CYCLE_39B_RAW.md`), where Arena accepted the `SOL` `min_price` SL correction (`SL <= 108.80 -> 108.79`) and re-anchored `SOL` Entry at `110.15` (basis-adjusted `$2.54M` wall below the `110.50` sweep mid, backed by `$11.32M` of persistent L3 whale bids at `109.29–109.73`).
   3. Verified `SOLUSD.p` `BUY LIMIT 0.08 lots @ 110.15 | SL 108.79 | TP 113.40` via `mt5.order_calc_profit` (`Risk = -10.88 USD`, `Reward = +26.00 USD`, `R:R = 2.3897R`, joint stressed equity `4,863.30 USD`) and staged live on MT5 (`Ticket #18795304`, Retcode `10009`).
   4. Terminated stale telemetry daemon PID `15504`, added `importlib.reload(gen_mod)` to `autonomous_telemetry_git_daemon.py`, and relaunched `task-48148` so `nearest_*` intraday bands and the `>500M USD` outlier filter are live.
+
+---
+### [2026-10-12 18:10 IST / 12:40 UTC] Turn: 3-Mandate Arena Protocol, 24-Asset Mutual Universe Scan, Cycle 40/40B Verification & `0,20,40 * * * *` Cron Armed
+- **User Mandates Codified & Executed**:
+  1. **3-Mandate Arena Prompting (`Terminal/dispatch_comprehensive_wake_up_prompt.py`)**:
+     - Mandate 1: Screen all 24 mutual universe assets (`14 Cryptos + 2 Metals [GOLD/XAUUSD.pi, SILVER/XAGUSD.pi] + 1 Energy [USWTI.p] + 3 Forex [EURUSD.pi, GBPUSD.pi, USDJPY.pi] + 4 Indices [SP500.p, NAS100.p, DJ30.p, GER40.p]`) for new trading opportunities.
+     - Mandate 2: Audit Active / Running Trades (`#18791527 BTCUSD.pi` filled at `83,150.00 USD`) for logical TP/SL modification based on latest data.
+     - Mandate 3: Audit Unfilled Limit Orders (`#18795304 SOLUSD.p` resting at `110.15 USD`) for (A) Wait to Fill As-Is, (B) Slight Modification, or (C) Delete.
+     - Part F Item 6: Bilateral GitHub push to `docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md`.
+  2. **2-Step Antigravity Wake-Up Verification & Cycle 40 -> Cycle 40B Loop**:
+     - Instant completion daemon (`Terminal/arena_completion_daemon.py --wait`) woke Antigravity up the exact second Cycle 40 completed (`docs/trade_plans/ARENA_CYCLE_40_RAW.md`).
+     - Independent verification caught that Arena's Cycle 40 proposal to raise `BTCUSD.pi` (`#18791527`) TP from `84,300` to `84,340` inverted Playbook §3.C by treating a `21.09M USD` L3 SELL wall at `84,401–84,406` as a magnet rather than a resistance barrier, placing TP 40 USD *above* `max_price = 84,300.0` of the `6.10M USD` buy-stop cluster (`84,200–84,300`) in a 600-point un-fueled gap.
+     - Dispatched Cycle 40B (`docs/prompts/ARENA_CYCLE_40B_FEEDBACK_PROMPT.txt`); instant daemon woke Antigravity up on Cycle 40B completion (`docs/trade_plans/ARENA_CYCLE_40B_RAW.md`). Arena withdrew `84,340` in full, confirmed `TP = 84,300.00 USD` (`2.0536R`) and `SOLUSD.p` `#18795304` `HOLD AS-IS`, and pushed signed ledger commit `d55fd2d6` to `docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md`, which Antigravity merged and synced to `main` and `arena/537c1eb8-trading-2` (`Commit 51599694`).
+  3. **Recurring Cron Job Scheduled (`task-48267`)**: Armed at `0,20,40 * * * *` (0th, 20th, and 40th minute of every hour).
+
+---
+### [2026-10-12 18:36 IST / 13:06 UTC] Turn: Cycle 41 Autonomous Cron Execution, Instant Wake-Up Verification & Ledger Sync (`b791b8b` -> `9b1d010e`)
+- **Cycle 41 Results Verified**:
+  1. **BTC `#18791527` Stopped Out at `-11.20 USD`**: Balance moved from `4,885.38 USD` to `4,874.18 USD` (`-1.00R` at `SL = 82,590.00 USD`) as BTC flushed to `82,627.50 USD` (`Z = -3.00 SD`, `RSI = 23.91`).
+  2. **Mandate 2 — Active Running Trade `SOLUSD.p` (`#18795304` `BUY 0.08 lots @ 110.15 USD`)**: Filled at `110.15 USD` (trading at `110.10–110.215 USD`, floating `-0.40 USD` / `-0.04R`). Verified `HOLD AS-IS` (`SL = 108.79 USD` is `0.4833 ATR` below `min_price = 109.00` of the `8.63M USD` stop + `3.13M USD` cascade bunker, backed by `9.75M USD` across `23` eligible L3 whale bids, `+343.9k USD` 15m CVD, and `+0.153` L2 imbalance; `TP = 113.40 USD` front-runs `113.50` by `8.81 bps`).
+  3. **Mandate 3 — Unfilled Limit Orders**: `0` pending orders (`[]`).
+  4. **Mandate 1 — 24-Asset Mutual Universe Screen**: `0` new tickets. Verified that BTC at `82,627.50` sits above `43.06M USD` of un-swept sell-stops/long cascades between `82,200` and `82,600` (`17.30M USD` cascade at `82,300–82,400`), while the main seasoned whale bid walls (`14.74M USD` at `82,188.7` MT5-adj and `59.66M USD` at `81,950.7` MT5-adj) rest below `82,200`.
+  5. **Bilateral Ledger Sync (`b791b8b` -> `9b1d010e`)**: Merged Arena's signed Cycle 41 commit (`b791b8b`) into `main` and pushed to `origin/main` and `origin/arena/537c1eb8-trading-2`.

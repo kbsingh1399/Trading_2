@@ -48,19 +48,19 @@ trigger: always_on
       * **Position Capacity Policy**:
         - Up to 4 concurrent tickets across orthogonal asset clusters provided total joint worst-case stopout risk unconditionally defends the 4,775.00 USD hard floor and 4,795.00 USD operating buffer (>= 20.00 USD cushion at all times).
     - Connects directly via native IPC to MetaTrader 5 Account 5064568 (Blueberry Markets).
-    - **Active Positions & Pending Orders (Live State)**:
-      * Current Status: **0 Open Positions | 2 Pending Orders | Equity: 4,885.38 USD | Balance: 4,885.38 USD | Free Margin: 4,885.38 USD**.
-      * Active Positions (0): Standby / Flat.
-      * Active Pending Orders (2):
-        1. Ticket #18791527 (`BTCUSD.pi` BUY LIMIT 0.02 lots @ 83,150.00 USD | SL: 82,590.00 USD [0.51 ATR below 82,700 cascade min_price] | TP: 84,300.00 USD [front-running 84,350 $7.04M buy-stop cluster by 5.9 bps] | Risk: 11.20 USD / 0.23% | Reward: +23.00 USD | RR: 2.05 | Comment: `OFC_AI_BTC_M2_LIMIT`).
-        2. Ticket #18795304 (`SOLUSD.p` BUY LIMIT 0.08 lots @ 110.15 USD [basis-adjusted $2.54M whale bid below 110.50 sweep mid, backed by $11.32M persistent L3 whale stack at 109.29–109.73] | SL: 108.79 USD [0.51 ATR below 109.00 cascade min_price] | TP: 113.40 USD [front-running 113.50 $1.65M buy-stop cluster by 8.8 bps] | Risk: 10.88 USD / 0.22% | Reward: +26.00 USD | RR: 2.39 | Comment: `OFC_AI_SOL_M2_LIMIT`).
-      * G-1 Hard Floor Defense: Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Floor Cushion: **+110.38 USD** (+90.38 USD above operating buffer).
+    - **Active Positions & Pending Orders (Live State — Cycle 41 Verified `Commit 9b1d010e`)**:
+      * Current Status: **1 Open Position | 0 Pending Orders | Balance: 4,874.18 USD | Equity: ~4,873.78 USD | Margin Used: 440.60 USD | Free Margin: ~4,433.18 USD | Cron: `0,20,40 * * * *` (`task-48267`)**.
+      * Active Positions (1 — Mandate 2 Monitoring):
+        1. Ticket #18795304 (`SOLUSD.p` BUY 0.08 lots @ 110.15 USD [FILLED] | SL: 108.79 USD [0.48 ATR below 109.00 cascade min_price, backed by $9.75M across 23 eligible L3 whale bids including $3.40M @ 109.08 & $1.74M @ 109.63 and +$343.9k 15m CVD] | TP: 113.40 USD [front-running 113.50 $1.67M buy-stop cluster by 8.81 bps] | Risk: 10.88 USD / 0.22% | Reward: +26.00 USD | RR: 2.39 | Comment: `OFC_AI_SOL_M2_LIMIT`).
+      * Active Pending Orders (0 — Mandate 3 Monitoring): None (`0` pending orders).
+      * G-1 Hard Floor Defense: Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Floor Cushion: **+99.18 USD realized / +98.78 USD floating**.
       * Stressed Post-Loss Simulation:
-        - Total Contingent Book Risk across exposed tickets: **22.08 USD** (11.20 USD BTC + 10.88 USD SOL).
+        - Total Contingent Book Risk across exposed tickets: **10.88 USD** (`SOLUSD.p` #18795304).
         - Stressed Worst-Case Equity: **4,863.30 USD** (Unconditionally defends floor!).
         - Safety Cushion Above 4,775.00 USD Hard Floor: **+88.30 USD** (4.4x mandatory >= 20.00 USD buffer).
         - Safety Cushion Above 4,795.00 USD Operating Buffer: **+68.30 USD**.
       * Closed Trades Today (Realized PnL):
+        - Ticket #18791527 (`BTCUSD.pi` closed at **-11.20 USD loss** via Stop Loss at 82,590.00 USD during capitulation flush to 82,627 USD)
         - Ticket #18785248 (`BTCUSD.pi` closed at **-11.17 USD loss** via Stop Loss at 83,472.55 USD, Deal #16997164, Order #18785248)
         - Ticket #18740569 (`SP500.p` closed at **-13.00 USD loss** via Stop Loss at 7,778.50 USD, Deal #16962450, Order #18749312)
         - Ticket #18734182 (`ETHUSD.pi` closed at **-11.90 USD loss** via Stop Loss at 2,477.50 USD, Deal #16961654, Order #18748507)
