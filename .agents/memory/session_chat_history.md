@@ -54193,3 +54193,46 @@ Finally, unify live and replay ratchets before qualifying uplift; the current se
   * NEAR pulled back to 5.822 USD (Z = -0.46 SD, testing sign retention).
 - **CDP Injection**: Prompt posted to Arena.ai via Chrome DevTools Protocol; verified `hasStopBtn: true`, confirming Arena is actively generating Cycle 30.
 - **Sleep Protocol Armed**: 9-minute sleep timer (`DurationSeconds=540`, `TimerCondition="never"`, task `task-46106`) armed to ensure zero token burn during Council deliberations.
+
+
+---
+
+### Turn Checkpoint: 2026-10-12 04:33 UTC (Cycle 30 Harvest & Synthesis)
+- **Account State (MT5 #5064568)**: Balance 4,896.55 USD, Equity 4,896.55 USD, Margin 0.00 USD (100% Cash reserves). Cushion: +121.55 USD above 4,775.00 USD hard floor (+101.55 USD above 4,795.00 USD operating buffer). 0 open positions, 0 resting orders.
+- **Cycle 30 Council Report Harvested**: Commit `650f691a` merged cleanly into `main` (`86cf5a3f`) and synchronized across `main` and `arena/537c1eb8-trading-2`. Report: `docs/trade_plans/ARENA_COUNCIL_REPORT_20261012_0440Z.md` (555 lines). Evidence score: **90 / 100** (1,071 unit tests passing, 3 skipped, 0 failed).
+- **Core Findings & Methodological Breakthroughs**:
+  * **Zero Regimes Universe-Wide (`regimes defined: 0 of 24`)**: SP500 lost `MEAN_REVERT` on a 0.111 shortfall in 15m variance ratio (`vr_z_15m = -1.3891` vs -1.5 threshold); NEAR lost `TREND_UP` as mid slipped 0.0146 USD below VWAP. M1 failure census collapsed to just two tokens: `REGIME_UNDEFINED` (34) and `venue_basis_unverified` (14).
+  * **Microstructure Counting Gap (68 Raw vs 4 G-7 Eligible Walls)**: Raw L3 orderbook holds 68 walls around spot, but Gate G-7 only counts seasoned, genuine walls with persistence >= 180s (3–4 eligible walls, led by BUY 83,461 USD with 107 min persistence across 105 samples). New rule: report both raw and eligible depth. Depth without 180s persistence is unseasoned noise, not tradeable depth.
+  * **Anchor Shift to 84,050 USD**: 84,250 USD was consumed; a new admissible anchor formed at 84,050 USD with 5,708,791 USD notional (+2.91 ATR, RR = 1.943). BTC lower-bound expectancy remains positive at `EV_lower = +0.0731/R`.
+  * **Corridor Between Two Sell Pools**: New 7.04M USD sell pool at 83,450 USD (36.50 USD below spot); primary 101.05M USD pool at 83,350 USD (now 47.1% of stop distance, 5th consecutive cycle of monotone approach).
+  * **BTC Retrace B2 Passes for First Time**: Retrace cooled to 0.3867 (inside [0.236, 0.618]).
+- **Unanimous STAND ASIDE Ratified**: 0 tickets, 0 resting orders. 100% Cash defense preserved.
+- **Next Revalidation Window (Cycle 31, ~05:05 UTC — 05:00 Roll)**: Tracking whether any asset restores a regime (SP500 VR, NEAR VWAP reclaim), BTC 1H drift test at the 05:00 close, 84,050 USD anchor survival, and sell-pool sweep dynamics.
+
+---
+
+### Turn Checkpoint: 2026-10-12 04:40 UTC (Context Renewal & Cycle 31 Pre-Flight Stage)
+- **Account State (Blueberry Markets MT5 #5064568)**:
+  * Balance: 4,896.55 USD | Equity: 4,896.55 USD | Free Margin: 4,896.55 USD | Margin: 0.00 USD (100% Cash reserves).
+  * G-1 Hard Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD.
+  * Live Floor Cushion: +121.55 USD (+101.55 USD above buffer; 6.08x mandatory 20.00 USD minimum).
+  * Open Positions: 0 | Resting Orders: 0 | Capacity: 0/4 used (4 slots open).
+  * Total Contingent Book Risk: 0.00 USD (complete capital floor immunity preserved).
+- **Core Session State & Verification Diagnostics**:
+  * All 5 persistent daemons verified active and healthy:
+    1. AST Knowledge Graph Watcher (Task-41978)
+    2. Telemetry Git Sync Daemon (Task-44480, PID 16548, streaming every 60s)
+    3. Web2API Council Daemon (port 8081 listening)
+    4. Trading Swarm Cron (Task-44250, schedule 0,20,50 * * * *)
+    5. Heretic Engine Daemon (Task-41982, port 8083 listening)
+  * Git Parity: Branches `main` and `arena/537c1eb8-trading-2` synchronized at HEAD commit `9917846f`.
+  * Test Suite: Core decision gates suite passing 235/235 tests in 0.65s (100% green).
+- **Live Market Developments Leading to 05:00 UTC Roll**:
+  * Universal Maturity: `session_bars = 18` across the universe. Gate B1 remains permanently retired.
+  * NEAR Restores `TREND_UP`: Mid crossed back above Session VWAP (5.837 USD) and EMA 200 (`structural_sign = +1`); 1H drift t-stat passes at +1.856 (t = +5.821 > 1.50); ER = 0.2527. NEAR is currently the sole defined regime in the universe.
+  * SP500 Mean Reversion Tightening: `vr_z_15m` tightened from -1.3891 to -1.4223, now only 0.078 away from the -1.50 threshold to restore `MEAN_REVERT`.
+  * BTC Setup Convergence: Spot mid at 83,733 USD, resting above Session VWAP (83,666.46 USD) and EMA 200 (83,178.29 USD) with `structural_sign = +1`. 1H drift t-stat sits at +1.188 (+0.312 below the 1.50 STRUCT floor), with the upcoming 05:00 UTC hourly close serving as the primary test for drift restoration. Retrace remains healthy in [0.236, 0.618]; 84,050 USD buy-stop anchor ($5.71M) persists with positive lower-bound expectancy (`EV_lower = +0.0731/R`); seasoned BUY wall at 83,461 USD holds with >110 minutes persistence.
+- **Cycle 31 Dispatch Staging**:
+  * Lean pointer-driven briefing compiled and saved to `docs/prompts/ARENA_CYCLE_31_PROMPT.txt`.
+  * Committed as `9917846f` and synchronized across `origin/main` and `origin/arena/537c1eb8-trading-2`.
+  * Arena.ai Chrome tab inspected via CDP: Editor clean, responsive, and ready for 04:50 UTC injection.
