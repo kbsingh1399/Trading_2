@@ -9901,3 +9901,59 @@ Arena completed the unified 4-step council audit across all 4 Mandates:
    - **Mandate 3**: Audit Unfilled Limit Orders (`#18795304 SOLUSD.p`) for viability to wait & fill as-is vs. slight modification vs. deletion.
    - **Always-On Completion Daemon (`Terminal/arena_completion_daemon.py`)**: Detects `Copy` button or `Was this task successful?` (`Yes`/`No`) banner via Chrome CDP and immediately wakes Antigravity up (`--wait`) to verify Arena's logic and re-prompt in Part B of the same cycle (`Cycle NB`) if any flaw is detected.
    - **Recurring Cron Schedule Armed (`0,20,40 * * * *`)**: Autonomous wake-up at the `0th`, `20th`, and `40th` minute of every hour.
+
+---
+
+### [2026-10-12 12:36:00 UTC] Cycle 40B: Arena.ai Signed Ledger Entry — Mandate 2 TP Recommendation WITHDRAWN, `#18791527` TP Confirmed at `84,300.00` (Antigravity Verification Upheld)
+
+**Telemetry Citation:** `generation_id = a356c3ddb0c24259874b6e2d623b267c` | `as_of_utc = 2026-10-12 12:34:35 UTC` | 24/24 assets | Playbook §3.A / §3.B / §3.C / §4 / §5 applied | **zero decision-gate scripts executed, zero gate tokens cited.**
+
+1. **🔴 ARENA.AI SELF-CORRECTION — Mandate 2 TP Recommendation `84,300 → 84,340` IS WITHDRAWN IN FULL**:
+   - In Cycle 40 Mandate 2, Arena recommended raising `#18791527` TP to `84,340.00` on the rationale of "front-running the `21.09M USD` L3 SELL wall at `84,401.25` MT5-adj by `7.26 bps`."
+   - **Antigravity's Independent Verification Auditor correctly identified this as a §3.C inversion, and live telemetry confirms it decisively.** Measured overhead buy-stop clusters in the `84,000–85,000` zone: `84,050` (`min 84,000 / max 84,100`, `1.49M USD`) → **`84,250` (`min 84,200 / max 84,300`, `6.10M USD`)** → **`84,950` (`min 84,900 / max 85,000`, `5.07M USD`)**. **There is no buy-stop or short-squeeze cluster anywhere between `84,300` and `84,900` — a 600-point un-fueled gap, exactly as the auditor stated.**
+   - **The Logical Error:** Playbook §3.C distinguishes *forced* liquidity from *passive* liquidity. A **buy-stop cluster is forced market-buy fuel** — when triggered it *propels* price and supplies the exit liquidity a Long needs. An **L3 SELL wall is passive resting supply** — it *absorbs* buying and *caps* price. Arena treated a `21.09M USD` ceiling as though it were a magnet, and placed the Long exit `40 USD` above `max_price = 84,300.0` of the last fuel pocket, inside a dead zone directly beneath that ceiling. **A sell wall is a level to exit below, never a level to exit into.**
+   - **Compounding structure Arena under-weighted:** an additional `1.84M USD` L3 SELL wall rests at **`84,153.50` MT5-adj (`persist_s = 3,631.7`, `presence 0.97`)** — *below* the `84,250` cluster. Price must absorb that wall before the buy-stop band can even begin to trigger, which further argues against demanding a full `84,200–84,300` clearance.
+2. **✅ MANDATE 2 FINAL RULING — `#18791527` (`BTCUSD.pi` `LONG 0.02 @ 83,150.00`): KEEP TP AT `84,300.00`. NO MODIFICATION REQUIRED.**
+   - `84,300.00` sits at the **exact `max_price` upper edge** of the `6.10M USD` buy-stop magnet — *at* the boundary, not above it, therefore §3.C compliant.
+   - It rests **`106.50 USD` below the `21.09M USD` Ask wall at `84,406.50` MT5-adj**, so the wall *protects* the exit rather than competing with it.
+   - **Candidate arithmetic (entry `83,150`, SL `82,590`, risk `560`):**
+
+     | TP | Reward | R:R | §3.C position | Verdict |
+     |---|---|---|---|---|
+     | `84,340` | 1,190 | 2.1250 | **40 above `max_price`, un-fueled dead zone** | ❌ **WITHDRAWN** |
+     | **`84,300`** | **1,150** | **2.0536** | **exact `max_price` upper edge of the `6.10M USD` magnet** | ✅ **CONFIRMED — KEEP** |
+     | `84,280` | 1,130 | 2.0179 | inside cluster | ⚪ compliant but only 0.9% above the 2.0R floor |
+     | `84,270` | 1,120 | 2.0000 | inside cluster | ⚪ exactly at the floor |
+     | `84,250` | 1,100 | 1.9643 | cluster midpoint | ❌ fails 2.0R |
+     | `84,240` | 1,090 | 1.9464 | inside cluster | ❌ fails 2.0R |
+
+   - **`84,300` was selected over `84,280`** because it is the maximum §3.C-compliant level, carries `2.6%` headroom above the `2.0R` floor versus `0.9%`, and is **already resting on MT5 — so the ruling requires zero broker action and carries zero modification risk.**
+   - **Stop Loss `82,590.00` — KEEP, unchanged.** Buffer `82,700.00 − 82,590.00 = 110.00 = 0.5076 ATR` (ATR `216.70`) outside `min_price` of the governing `82,700–82,800` cascade. Tightening is structurally impossible: every candidate level lands inside the `8.73M / 6.99M / 12.12M / 17.22M / 4.17M USD` stop-cluster stack.
+   - **Piecewise ratchet — NOT triggered.** `r_multiple = −0.28` (`price_current 82,993.00`, `profit_usd −3.14`), `ratchet_state = PHASE_0_PENDING`. Phase 0 requires `+0.70R`; the position is `0.98R` short. **No BE lock, no ratchet action.**
+   - **Thesis intact and strengthening:** `18.63M USD` of eligible L3 bid wall rests inside the stop range (`4.16M` + `4.15M USD` at `82,948.25`, both `persist_s = 3,672`; `2.78M` at `82,923.25`; `7.54M` at `82,734.25`), with 30m CVD `+3,207,356 USD`.
+3. **✅ MANDATE 3 RATIFIED — `#18795304` (`SOLUSD.p` `BUY LIMIT 0.08 @ 110.15`): `(A) VIABLE — WAIT TO BE FILLED AS-IS`. Unchanged, no modification.**
+   - All five criteria re-verified: distance to fill `1.12–1.34 ATR` (≤ 2.0); SL buffer `109.00 − 108.79 = 0.21 = 0.52 ATR` outside `min_price = 109.00`; TP `113.40` front-runs the `113.50` (`1.67M USD`) buy-stop magnet by **`8.81 bps`**; L2 bid-weighted; 30m CVD positive.
+   - **L3 bid stack intact and growing** — `6.55M USD @ 109.11 MT5-adj (persist_s 1,101.8)` and `3.40M USD @ 109.59 MT5-adj (persist_s 562.2)`, corroborating Antigravity's independent read. Persistence on both walls has *increased* since Cycle 40 (`725s → 1,101.8s` and `185s → 562.2s`).
+   - **Arena methodological self-flag:** Arena's first Cycle 40 pass reported SOL's largest eligible bid as only `0.20M USD` and nearly concluded the whale support had collapsed. **That was a filter artifact, not a market event** — the screen was windowed to "within 1.5 ATR below mid," which excludes `109.11` and `109.59`. Removing the window revealed both walls fully intact. **This is the same error class as the Cycle 39 `mid_price` SL mistake: measuring the right quantity over the wrong domain.**
+4. **✅ MANDATE 1 RATIFIED — ZERO NEW TICKETS ACROSS ALL 24 MUTUAL UNIVERSE ASSETS.**
+   - **`nearest_*` intraday clusters and the `>500M USD` outlier filter verified LIVE** (`grep -c "nearest_" → 92`; SP500's corrupt `11.76 bn USD` row eliminated; intraday bands `7,805 [0.87M]`, `7,795 [0.35M]`, `7,785 [0.37M]` now published).
+   - **§4 Friction Gate eliminations:** `DOGE 252.87` / `DOT 165.94` / `ADA 84.05` / `LINK 67.19` / **`NEAR 60.23`** / `LTC 46.51` / `AVAX 36.60` / `XRP 28.65` / `TRX 27.14` bps — all above the `25 bps` cap; `NEAR` and `XRP` additionally outside the named institutional universe.
+   - **`NEAR` was the sharpest loss** — `Z −2.64`, `RSI 34.98`, CVD positive on all three windows (`+62,513 / +266,136 / +397,829`), three eligible bids. Banned solely on friction: `60.23 bps` is `2.4×` the cap, consuming ~21% of a 1 ATR move round-trip.
+   - **Four heuristic artifacts caught and rejected by Arena before reporting:** `EURUSD` (RR `3.33` — entry bid `30 ATR` below mid, unreachable), `USDJPY` (RR `5.86` — entry bid `61 ATR` below mid), `ETH` (RR `31.87` — entry bid *below* the bunker's own `min_price`, placing the SL above entry: negative-risk nonsense), `XRP` (RR `2.48` — entry `4.2 ATR` below mid + outside §4 universe).
+   - **Unifying finding across all 24 assets: the bunkers are excellent and the magnets are empty.** Every asset screened carries genuine multi-million-dollar liquidity *below* price and sub-`1M USD` scraps *above* it. **This is a market that has been sold into, not one coiled to rise.** Under a `2.0R` floor that combination is untradeable, and no entry refinement fixes a missing target.
+5. **PORTFOLIO CAPACITY & CAPITAL FLOOR GOVERNANCE**:
+   - MT5 Account #5064568: Balance **`4,885.38 USD`** | Equity **`4,882.24 USD`** | Margin used **`831.50 USD`** | Free margin `4,050.74 USD` | Margin level `587.16%`.
+   - Active positions: **1** (`#18791527`) | Pending orders: **1** (`#18795304`) | **Capacity 2 of 4 slots.**
+   - Joint worst-case risk `11.20 + 10.88 = **22.08 USD**` → stressed post-stop equity **`4,860.16 USD`** = **`+65.16 USD`** above the `4,795.00 USD` operating buffer and **`+85.16 USD`** above the `4,775.00 USD` hard floor. ✅
+   - **⚠️ Orthogonality caveat:** both tickets are crypto and therefore **not** in orthogonal clusters. `22.08 USD` against a `107.24 USD` cushion is comfortable, but a third crypto ticket must not be staged without recomputing this sum — and no TradFi asset currently offers a compliant setup to diversify into.
+6. **CYCLE 40 / 40B ACTIONABLE EXECUTION SUMMARY TABLE (FINAL, SIGNED)**:
+
+   | # | Ticket / Action | Symbol | Side | Lots | Entry | SL Bunker | TP Magnet | Risk | R:R | Quantitative Rationale |
+   |---|---|---|---|---|---|---|---|---|---|---|
+   | 1 | **`#18791527` — NO CHANGE** (TP mod **withdrawn**) | `BTCUSD.pi` | LONG | 0.02 | 83,150.00 *(filled)* | **82,590.00** | **84,300.00** | **11.20 USD** | **2.0536** | TP at exact `max_price` of the `6.10M USD` `84,200–84,300` buy-stop magnet, `106.50` below the `21.09M USD` Ask wall at `84,406.50`. SL `0.5076 ATR` below `min_price 82,700` of the cascade; `18.63M USD` seasoned bid wall + `+3.21M` 30m CVD inside the stop range. Ratchet not triggered (`−0.28R`). |
+   | 2 | **`#18795304` — HOLD AS-IS** | `SOLUSD.p` | BUY LIMIT | 0.08 | 110.15 | **108.79** | **113.40** | **10.88 USD** | **2.3897** | `1.12–1.34 ATR` to fill; `13.35M USD` eligible bid wall (largest `6.55M @ 109.11`, `persist 1,101.8s`); SL `0.52 ATR` below `min_price 109.00`; TP front-runs `113.50` by `8.81 bps`. |
+   | — | **NEW TICKETS** | — | — | — | — | — | — | — | **NONE.** 9 assets banned by §4 friction/universe; 15 fail bunker→magnet R:R or §3.A.2 trend alignment. |
+
+7. **OPEN ITEM CARRIED FORWARD (unchecked, stated once, not used as a veto):** whether the order-staging path still enforces the retired `MAX_TARGET_DIST_ATR = 4.0`. `SOL`'s TP sits `8.05 ATR` from entry and `BTC`'s `5.31 ATR`; both would be refused at submission if the stager were unpatched. That `#18791527` filled and `#18795304` rests is strong evidence the stager *is* patched, but Arena has not read the current staging code and marks this **unverified** rather than asserting it.
+
+**— Signed, Arena.ai Multi-Persona Quantitative Council · Cycle 40B · 2026-10-12 12:36:00 UTC · generation `a356c3ddb0c24259874b6e2d623b267c`**
