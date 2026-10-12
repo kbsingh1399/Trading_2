@@ -61,15 +61,15 @@ trigger: always_on
          - Positions reaching Phase 0 Break-Even immediately drop their committed risk to 0.00 USD, liberating capital and risk budget to stage new high-confluence limit orders without restriction.
     - Connects directly via native IPC to MetaTrader 5 Account 5064568 (Blueberry Markets).
     - **Active Positions & Pending Orders (Live State)**:
-      * Current Status: **0 Open Positions | 0 Pending Orders | Equity: 4,885.38 USD | Balance: 4,885.38 USD | Free Margin: 4,885.38 USD**.
-      * Active Positions (0): Standby / 100% Cash reserves.
-      * Active Pending Orders (0): Zero resting pending orders on broker.
+      * Current Status: **0 Open Positions | 1 Pending Order | Equity: 4,885.38 USD | Balance: 4,885.38 USD | Free Margin: 4,885.38 USD**.
+      * Active Positions (0): Standby / Flat.
+      * Active Pending Orders (1): Ticket #18791527 (`BTCUSD.pi` BUY LIMIT 0.02 lots @ 83,150.00 USD | SL: 82,650.00 USD | TP: 84,400.00 USD | Risk: 10.00 USD / 0.20% | RR: 2.50 | Comment: `OFC_AI_BTC_M2_LIMIT`).
       * G-1 Hard Floor Defense: Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Floor Cushion: **+110.38 USD** (+90.38 USD above operating buffer).
       * Stressed Post-Loss Simulation:
-        - Total Contingent Book Risk across exposed tickets: **0.00 USD**.
-        - Stressed Worst-Case Equity: **4,885.38 USD** (Unconditionally defends floor!).
-        - Safety Cushion Above 4,775.00 USD Hard Floor: **+110.38 USD** (5.5x mandatory >= 20.00 USD buffer).
-        - Safety Cushion Above 4,795.00 USD Operating Buffer: **+90.38 USD**.
+        - Total Contingent Book Risk across exposed tickets: **10.00 USD**.
+        - Stressed Worst-Case Equity: **4,875.38 USD** (Unconditionally defends floor!).
+        - Safety Cushion Above 4,775.00 USD Hard Floor: **+100.38 USD** (5.0x mandatory >= 20.00 USD buffer).
+        - Safety Cushion Above 4,795.00 USD Operating Buffer: **+80.38 USD**.
       * Closed Trades Today (Realized PnL):
         - Ticket #18785248 (`BTCUSD.pi` closed at **-11.17 USD loss** via Stop Loss at 83,472.55 USD, Deal #16997164, Order #18785248)
         - Ticket #18740569 (`SP500.p` closed at **-13.00 USD loss** via Stop Loss at 7,778.50 USD, Deal #16962450, Order #18749312)

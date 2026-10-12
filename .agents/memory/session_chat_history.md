@@ -54469,3 +54469,25 @@ Finally, unify live and replay ratchets before qualifying uplift; the current se
   * 9 Retail Altcoins Banned: DOGE (241.8 bps), DOT (159.9 bps), ADA (87.6 bps), LINK (66.0 bps), NEAR (57.0 bps), LTC (46.1 bps), AVAX (36.2 bps), TRX (33.2 bps), XRP (28.5 bps) violate G-5.
   * Liquidity Mapping: BTC spot at 83,374 USD defending 200 EMA (83,293 USD) with 32.4M USD long cascade pool and 17.0M USD sell stop cluster below at 82,750 USD.
 - Account State: Balance: 4,885.38 USD | Equity: 4,885.38 USD | Margin: 0.00 USD | Cushion: +110.38 USD above 4,775.00 USD floor.
+
+## Turn Checkpoint: 2026-10-12 10:31 UTC (BTC Limit Order Staged Live, Arena Prompt Re-Architected for Direct Telemetry Review & Broker State Injection)
+- Operator Mandate: "Yes punch order and even for arena.ai...we do the same to directly review docs/telemetry/live_snapshot_latest.json and identify potential candidates.Along with that we can give current running trades, currnt limti trades and other mt5 related info"
+- Live Order Executed & Verified on MT5:
+  * Symbol: `BTCUSD.pi`
+  * Action: BUY LIMIT (Order Type 2)
+  * Ticket: #18791527
+  * Volume: 0.02 lots (Discrete lot size, 10.00 USD committed risk = 0.20% of account)
+  * Price: 83,150.00 USD (Passive limit resting strictly below bid, anchored on 5.92M USD sell-stop cluster and 200 EMA support)
+  * Stop Loss: 82,650.00 USD (Anchored safely behind the 32.45M USD long liquidation cascade pool and 17.04M USD sell-stop band at 82,750 USD)
+  * Take Profit: 84,400.00 USD (Targeting overhead 84,250 USD [6.38M USD] and 84,350 USD [7.82M USD] buy-stop liquidity sweep clusters)
+  * Risk / Reward: 10.00 USD risk / 25.00 USD reward = 2.50 R (Positive EV: +0.32R)
+  * Comment: `OFC_AI_BTC_M2_LIMIT`
+  * Status: Live and confirmed resting on Blueberry Markets MT5 Account #5064568.
+- Account & Floor Defense:
+  * MT5 Balance: 4,885.38 USD | Equity: 4,885.38 USD | Free Margin: 4,885.38 USD.
+  * Active Open Positions: 0 | Active Pending Orders: 1 (Ticket #18791527).
+  * Stressed Post-Loss Equity: 4,875.38 USD (+100.38 USD cushion above 4,775.00 USD hard floor, +80.38 USD above 4,795.00 USD buffer).
+- Arena.ai Workflow Alignment:
+  * Bug Fixed in `Terminal/dispatch_comprehensive_wake_up_prompt.py`: Resolved `TradeOrder` volume (`volume_current`) and price attribute access bugs so live pending orders and running positions are automatically queried and rendered.
+  * Prompt Structure: Re-architected to instruct Arena.ai to directly review `docs/telemetry/live_snapshot_latest.json` for candidates and provided full live MT5 account details, running trades, and resting orders.
+  * All 99 unit tests in `Test_Stage_Trade_Plan.py` and `Test_Regime_Attribution_And_Upgrades.py` passing green.

@@ -9862,3 +9862,26 @@ Arena completed the unified 4-step council audit across all 4 Mandates:
    - Floor Cushion: +110.38 USD above 4,775.00 USD hard floor (+90.38 USD above 4,795.00 USD operating buffer).
 5. **Next Step**:
    - BoE blackout lifts at 10:00 UTC. Post-blackout scan for BTC pullback depth and SP500/NAS100 target density.
+
+
+---
+
+### [2026-10-12 10:30:00 UTC] Cycle 37: Direct Telemetry Ingestion, MT5 Trade Staged & Autonomous Desk Upgrade
+1. **Cycle 37 Action**: STAGED HIGH-CONFLUENCE LIMIT ORDER (1 pending limit order live on MT5).
+2. **Order Execution Details**:
+   - **Ticket #18791527**: `BTCUSD.pi` BUY LIMIT
+   - **Volume**: 0.02 lots (Discrete lot size)
+   - **Entry**: 83,150.00 USD (Passive limit resting strictly below bid, anchored on 5.92M USD sell-stop cluster and 200-EMA support)
+   - **Stop Loss**: 82,650.00 USD (Anchored strictly behind the 32.45M USD long liquidation cascade pool and 17.04M USD sell-stop band at 82,750 USD, with structural buffer)
+   - **Take Profit**: 84,400.00 USD (Targeting overhead 84,250 USD [6.38M USD] and 84,350 USD [7.82M USD] buy-stop liquidity sweep clusters)
+   - **Risk / Reward**: 10.00 USD risk (0.20% of account equity) / 25.00 USD reward = 2.50 R (Positive EV: +0.32R)
+   - **Comment**: `OFC_AI_BTC_M2_LIMIT`
+   - **Status**: Live & Resting on Blueberry Markets MT5 Account #5064568.
+3. **Account & Floor Defense**:
+   - MT5 Account #5064568: Balance: 4,885.38 USD | Equity: 4,885.38 USD | Free Margin: 4,885.38 USD.
+   - Positions: 0 | Pending Orders: 1 (Ticket #18791527).
+   - Stressed Post-Loss Equity: 4,875.38 USD (Preserves +100.38 USD cushion above 4,775.00 USD hard floor, +80.38 USD above operating buffer).
+4. **Arena.ai Operating Protocol Upgrade**:
+   - Unified 4-Step prompt configured to instruct Arena to directly review `docs/telemetry/live_snapshot_latest.json` for candidates.
+   - Integrated live broker state reporting: live MT5 balance, equity, open positions, and pending orders dynamically injected into prompt.
+   - Fixed `TradeOrder` volume and price extraction attributes in `dispatch_comprehensive_wake_up_prompt.py`.

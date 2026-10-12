@@ -59,13 +59,16 @@ def get_live_broker_state():
             if raw_orders:
                 for o in raw_orders:
                     order_type_str = "BUY_LIMIT" if o.type == 2 else ("SELL_LIMIT" if o.type == 3 else str(o.type))
+                    vol = getattr(o, "volume_current", getattr(o, "volume_initial", getattr(o, "volume", 0.0)))
+                    t_sym = mt5.symbol_info_tick(o.symbol)
+                    p_curr = ((t_sym.bid + t_sym.ask) / 2.0) if t_sym else o.price_open
                     orders.append({
                         "ticket": o.ticket,
                         "symbol": o.symbol,
                         "type": order_type_str,
-                        "volume": o.volume,
+                        "volume": vol,
                         "price_open": o.price_open,
-                        "price_current": o.price_current,
+                        "price_current": p_curr,
                         "sl": o.sl,
                         "tp": o.tp,
                         "comment": o.comment
