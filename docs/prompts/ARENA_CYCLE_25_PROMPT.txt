@@ -1,0 +1,84 @@
+# 🏛️ ARENA.AI MULTI-PERSONA QUANTITATIVE COUNCIL BRIEFING — CYCLE 25 (01:50–01:55 UTC)
+
+**Canonical GitHub Repository:** `https://github.com/kbsingh1399/Trading_2`  
+**Active Working Branch:** `arena/537c1eb8-trading-2`  
+**Current HEAD Commit:** `ae776a67` (Synchronized on `main` and `arena/537c1eb8-trading-2`)  
+**Live Telemetry Pointer:** `https://raw.githubusercontent.com/kbsingh1399/Trading_2/arena/537c1eb8-trading-2/docs/telemetry/live_snapshot_latest.json`  
+**Snapshot Generation ID:** `961d2380441d42b19a790b92da472c70` (as of 2026-10-12 01:51:18 UTC)
+
+---
+
+### 1. Ingestion of Prior Cycle & Methodological Ratification
+
+1. **Cycle 24 Report Formally Ingested (`ARENA_COUNCIL_REPORT_20261012_0140Z.md`, Commit `833e45c4` merged in `7edba4c8`)**:
+   - Merged commit `833e45c4` cleanly into `main` (commit `7edba4c8`) and synchronized across `main` and `arena/537c1eb8-trading-2`.
+   - **Stand Aside Ratified**: Council's unanimous stand-aside disposition is acknowledged and ratified. Cash reserves remain 100% at 4,896.55 USD, defending the +121.55 USD floor cushion above 4,775.00 USD. Evidence score upgraded to **86 / 100** (1,071 unit/integration tests passing, 3 skipped, 0 failed).
+   - **Ratification of Core Insights**:
+     * **Structural Sign Volatility**: Council's observation that BTC crossed the STRUCT floor (+1.687 > 1.50, t = +7.537) but suffered generation-dependent regime reversion due to a 15.46 USD (0.081 ATR) dip below Session VWAP (`structural_sign = None`) is fully ratified. An elite drift without confirmed structural sign is a waiting state, not an actionable entry.
+     * **Gate B1 Has No STRUCT Exemption**: Council's source verification of `Terminal/decision_gates_v3.py:718-721` is accepted: `session_bars >= 16` is unconditional and binds across all 24 assets until ~04:00 UTC.
+     * **Resting Whale Recovery**: 4 in-band BUY walls recovered inside BTC's +/- 0.35 ATR band (led by BUY 83,733 carrying $196,469).
+     * **Downside Stop Magnet Accounting**: Primary 101.3M USD cluster at 83,350 USD (-2.0620 ATR) and secondary 4.9M USD cluster at 83,650 USD (-0.4859 ATR) formally cataloged.
+
+---
+
+### 2. Live Market Developments for Cycle 25 (01:50 UTC — Extreme Downward Flush on BTC)
+
+1. **BTC Liquidation Flush Down to 83,411 USD (Z = -4.11 SD)**:
+   - BTC suffered a sharp liquidation cascade, flushing from 83,742 USD down to **83,411 USD** (ATR = 196.29 USD, spread = 1.92 bps, gamma = 0.109 R).
+   - Z-score plunged to **-4.11 SD** below Session VWAP (entering extreme liquidation territory).
+   - **Sweep of the 83,650 USD Sell-Stop Cluster**:
+     * The $4.9M sell-stop cluster at 83,650 USD was completely swept and breached during this candle.
+   - **Direct Approach to Primary 101.3M USD Magnet**:
+     * Spot is now only ~61 USD (~0.31 ATR) above the massive 101.3M USD sell-stop pool at 83,350 USD.
+   - **Active Model 1 Gating**:
+     * Gate `A1_z_beyond_3p5_cascade_zone` fires (Z = -4.11 SD < -3.5 SD ceiling, indicating an active cascade in flight where knife-catching is strictly barred).
+     * Gate `A1_z_still_accelerating` fires, requiring confirmed tape absorption before any Model 1 mean-reversion order can be admitted.
+
+2. **SP500 Approaches Extreme Mean Reversion Ceiling (+3.53 SD)**:
+   - Spot pushed to 7,832.1 USD | ATR: 4.71 USD | Spread: 0.43 bps | gamma = 0.095 R.
+   - Z-score expanded to **+3.53 SD** | Regime: **`MEAN_REVERT`**.
+   - Audit required: Assess whether SP500 tape exhibits buying exhaustion or triggers `A1_z_beyond_3p5_cascade_zone`.
+
+3. **GOLD Momentum & Low Friction**:
+   - Spot at 4,206.8 USD | ATR: 7.37 USD | Spread: 0.29 bps | gamma = 0.022 R | Z = +0.19 SD.
+   - Regime: **`TREND_UP`** (STRUCT tier).
+
+4. **Universe Friction Census**:
+   - 9 assets inside gamma <= 0.15 R: USDJPY (0.019 R), GOLD (0.022 R), GBPUSD (0.028 R), EURUSD (0.034 R), NAS100 (0.046 R), DJ30 (0.058 R), GER40 (0.058 R), SP500 (0.095 R), BTC (0.109 R).
+
+---
+
+### 3. Live Account State & Capital Floor Defense (MT5 #5064568)
+
+- **Balance**: 4,896.55 USD | **Equity**: 4,896.55 USD | **Margin**: 0.00 USD (100% Cash Reserves)
+- **G-1 Hard Floor**: 4,775.00 USD | **Operating Buffer**: 4,795.00 USD
+- **Live Floor Cushion**: **+121.55 USD** (+101.55 USD above buffer; 6.08x mandatory 20.00 USD minimum)
+- **Active Tickets**: 0 open positions, 0 resting orders (Capacity: 0/4 used, 4 slots available)
+- **Stressed Post-Loss Simulation**: Total contingent book risk = 0.00 USD. Capital floor defense remains fully immune.
+
+---
+
+### 4. Multi-Persona Council Mandate for Cycle 25
+
+Execute independent quantitative evaluations across the 4 personas:
+1. **Orderflow & Microstructure Analyst**:
+   - Audit orderbook absorption and taker CVD during the BTC flush to 83,411 USD.
+   - Inspect resting L2/L3 bid whale depth around 83,350 USD to verify whether resting institutional bids are absorbing or cancelling.
+2. **Structural Price Action Specialist**:
+   - Evaluate Model 1 Mean Reversion criteria on BTC (Z = -4.11 SD) vs. Model 1 cascade circuit breaker `A1_z_beyond_3p5_cascade_zone`.
+   - Evaluate SP500 (Z = +3.53 SD) under Model 1 Mean Reversion rules.
+3. **Liquidation & Stop Hunt Forensic**:
+   - Track execution around the 101.3M USD sell-stop cluster at 83,350 USD.
+   - Audit whether the sweep of 83,650 USD has resolved local stop hunts or if the 83,350 USD cluster remains the primary liquidity magnet.
+4. **Macro Risk & Portfolio Governor**:
+   - Enforce cascade-zone rules: forbid catching falling knives during active acceleration (`A1_z_beyond_3p5_cascade_zone`).
+   - Reaffirm Gate B1 maturity status (`session_bars = 7` < 16 bars) and defend the 4,775.00 USD hard equity floor.
+
+---
+
+### 5. Deliverable & Execution Requirement
+
+1. Formulate the comprehensive Cycle 25 Council Report with explicit mathematical metrics for all active candidates.
+2. Write and commit the report directly to `docs/trade_plans/ARENA_COUNCIL_REPORT_20261012_0210Z.md`.
+3. Push the commit to `https://github.com/kbsingh1399/Trading_2` on branch `arena/537c1eb8-trading-2`.
+4. If any setup satisfies all 5 confluence pillars under Model 1 or Model 2, state the exact passive limit order parameters (Symbol, Side, Limit Price, Stop Loss, Take Profit, Lots, Risk USD). Otherwise, declare unanimous STAND ASIDE.
