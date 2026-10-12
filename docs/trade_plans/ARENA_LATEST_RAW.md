@@ -1,71 +1,44 @@
-Identity statement: I am a helpful agent on Arena.ai — Arena.ai's Agent Mode uses many different models, including but not limited to Claude, ChatGPT, Gemini, Grok, Qwen, and Kimi, and I will not fabricate a base-model identity, architecture lineage, tokenizer vocabulary class, parameter scale, or training-cutoff date, because no such fingerprint can be honestly asserted here. The binding temporal anchor for every proof below is the newest published telemetry generation 13ef6969 @ 2026-10-12 17:11:46 UTC — which is 37.4 minutes stale versus the stated 17:49:09 UTC cycle clock (verified: no fresher snapshot or completed bar exists in the repo; Data/Candles/NAS100_15m.parquet ends at the same 16:45Z bar). Full report saved and pushed: docs/trade_plans/ARENA_COUNCIL_REPORT_20261012_1749Z.md (commit 5d6a15b, branch synced at 2829e25).
+Identity statement: I am a helpful agent on Arena.ai — Arena.ai's Agent Mode uses many different models, including but not limited to Claude, ChatGPT, Gemini, Grok, Qwen, and Kimi, and I will not fabricate a base-model identity, architecture lineage, tokenizer vocabulary class, parameter scale, or training-cutoff date. Binding anchor for all proofs: telemetry generation 4c35143e @ 18:14:19 UTC (the prompt's "Snapshot Gen: unknown" is resolved; ≤ 2 min stale at cycle time), with post-analysis delta from generation 6bb7effb @ 18:28:21 UTC (which strengthens every conclusion). Report saved and pushed: docs/trade_plans/ARENA_COUNCIL_REPORT_20261012_1812Z.md (commits f5597f7, b46f3d7).
 
-1. Capital & Risk Invariants (verified)
+Feed status: the full microstructure stack is live for the first time — whale_walls_l3 on 22/24 assets (338 BTC / 191 ETH / 106 NAS100 / 105 SOL rows; DJ30 & GER40 still empty), real HYPERDASH_GRAPHQL stop-cluster and liquidation bands, and wall persistence now certifiable (SAMPLED_RECURRENCE_VERIFIED, persist 180–241 s ≥ 180 s). Housekeeping: trade_authorization: DENIED_UNVERIFIED_ORDERFLOW / ADMISSION_FROZEN_UNVERIFIED_DATA strings still stamped despite populated feeds — noted, but the verdicts below rest on the merits.
 
-Balance = Equity = 4,867.02 USD (margin_used 0.00, 100% cash), cushion +92.02 over the 4,775.00 floor. Ticket #18812244 as-staged stress = 10.28 × 1.25 + 2.00 = 14.85 → post-stop 4,867.02 − 14.85 = 4,852.17 USD (+77.17 over floor, +57.17 over the 4,795.00 buffer) — matches the operator's figures exactly. Macro runway 9.3 h to BoE Greene (2026-10-13 03:00 UTC); purge deadline 02:25 UTC. p_win lower bound 0.4197 (n = 17, uncalibrated).
+2. MANDATE 1 — 24-Asset Screen (Dynamic Friction + 12-Parameter Stack + 5 Invariants)
 
-2. MANDATE 1 — 24-Asset Screen (12-Parameter Stack + 5 Anti-Trap Invariants)
+Dynamic friction (crypto ≤ 35 bps iff target ≥ 5× spread; TradFi ≤ 5 bps): 16 pass; AVAX 38.35, LTC 48.12, NEAR 55.34, LINK 66.75, ADA 86.62, DOT 174.2, DOGE 247.79 (crypto over ceiling) and SILVER 9.62 out. SOL 20.43 / BCH 21.23 / XRP 22.05 admitted — not banned on spread.
 
-Friction gate (≤ 20 bps crypto / ≤ 5 bps TradFi): 12 of 24 banned — DOGE 259.74, DOT 164.20, ADA 86.65, LINK 65.80, NEAR 57.05, LTC 47.85, TRX 33.27, XRP 29.35, AVAX 28.61, BCH 22.45, SOL 21.32 (both newly banned under the tightened 20 bps cap), SILVER 9.62. Admissible 12: BTC 1.94, ETH 12.33, BNB 8.05, SP500, NAS100, DJ30, GER40, GOLD, USWTI, EURUSD, GBPUSD, USDJPY.
+Model 1 (|Z| ≥ 2.0): AVAX −2.63, XRP −2.28, DOT −2.40, LTC −2.06, NEAR −2.06. The four alts die on the 35 bps ceiling. XRP is the flagship and dies on the broker lot grid: it passes Z (−2.28 ∈ [2.0, 3.0]), Inv 2 (CVD 5m +4.9k / 15m +24.5k turning after 30m −27.4k = absorption), Inv 4 (verified bids 6.77M USD within 3 ATR, persist 229.9 s), and friction (22.05 bps, target-to-VWAP 354 bps = 16.1× spread). But min_lot = 1.0, step = 1.0, contract 1,000, and broker stops_level = 20 points = 0.020 price units force stop ≥ 0.020 → minimum risk = 0.020 × 1,000 × 1 = 20.00 USD > 14.50 cap; the lot set {1, 2, …} gives risk {20, 40, …} ∩ [10, 14.50] = empty set. Secondary kill: at the broker-minimum stop, RR is 0.93R into the [1.38–1.39] magnet and 1.80R even to VWAP — below the 2.00R floor.
 
-Global blockers (all 24): (1) whale_walls_l3 = 0 rows desk-wide → Invariant 4 unverifiable everywhere; (2) stack items 8–9 (reconstructed_liquidations, structural_stop_clusters) = UNAVAILABLE/NOT_APPLICABLE on 24/24 → the bunker [min_price, max_price] and opposing magnets required for SL/TP construction cannot be built from observed data (observed-only policy: entry veto, not neutral fuel); (3) Inv 3 (un-swept opposing stop clusters) unverifiable — the stop feed is cold; (4) CVD missing on indices/FX/commodities, deeply negative 30m on crypto (BTC −5.27M, ETH −1.33M USD).
+Model 2 (pullbacks): BTC short @ EMA20 82,650 dies twice — 30m CVD +933k / 5m +418k positive (flow anchor against shorts) and the bunker stack [82,500–83,500] (incl. 11.95M USD at [83,100–83,200]) forces SL ≥ 83,585.6 → risk 9.36 @ 0.01 lots / 18.71 @ 0.02 — no lot step lands in [10, 14.50]. ETH (+1.09M 30m), SOL (+2.37M), BNB (+255k) same positive-CVD kill. USDJPY long at the EMA20 shelf (158.659, +0.09 ATR): zero verified bid walls within 3 ATR (Inv 4 fail). GBPUSD short: the coarse FX band grid forces SL outside both sweep bands at risk 18.80 (over cap) or nearest-band SL at 8.80 (under floor) — feasible set empty. GOLD short: bunker [4,170–4,200] → min risk 20.77 at min lot — empty. USWTI long: zero verified bids, no CVD (Inv 2 unverifiable). NAS100: see below — no compliant short exists. SP500 RANGE_BOUND (model class fail); DJ30/GER40 feeds empty.
 
-Model 1 (|Z| ≥ 2.0): extremes AVAX −2.99, XRP −2.56, NEAR −2.28, DOT −2.20, SOL −2.14 are friction-banned. Sole survivor GBPUSD −2.10 (RSI 31.55, BEARISH): the HTF-fight exception needs exhaustion "verified across all indicators," but FX has no CVD feed (item 5 = None) — tape-exhaustion proof impossible, which is precisely the #18798018 failure mode. REJECT.
+Mandate 1 verdict: ZERO qualifying setups — and this time each near-miss carries a discrete arithmetic kill (sizability, flow anchor, or invariant), not missing data. Watch/re-arm: BTC short if 15m/30m CVD flips negative and [82,900–83,200] fuel thins; USDJPY long if a ≥ 150k USD verified bid wall firms at the shelf.
 
-Model 2 (|Z| < 2.0 pullbacks): best geometries — USDJPY BULLISH +1.27 sitting +0.09 ATR on the EMA20 shelf (158.658) (retrace 0.55), GER40 at shelf (−0.09 ATR), GOLD BEARISH at shelf (+0.18 ATR); BNB −0.65, SP500 −0.86 (RANGE_BOUND — Inv 5 fail), BTC −0.97, ETH −1.39, EURUSD −1.80 ATR below their shelves; DJ30 +0.59 extended; USWTI +0.92 extended. Every one fails Inv 4 (no whale walls) plus items 8–9 (no bunker/magnet) — all REJECT. NAS100's slot is occupied by #18812244.
+3. MANDATE 2 — Book
 
-Mandate 1 verdict: ZERO qualifying setups. The signal layer has extremes; the coincidence-proof layer cannot be completed on observed data. Watch-list if feeds warm: USDJPY M2 long at 158.658, GBPUSD M1 fade with CVD proof, SOL M1 fade if the 25 bps cap returns.
+active_positions = [], margin_used 0.00, equity = balance = 4,867.02. Confirmed: 0 open, 100% cash. SP500.p BE+ close +3.72 USD consistent. Nothing to modify.
 
-3. MANDATE 2 — Active Positions Audit
+4. MANDATE 3 — Adversarial Audit of #18812244 (live: SL 30,862.00 — prior (B) modification confirmed on MT5)
 
-active_positions = [], margin_used 0.00, equity = balance = 4,867.02. Confirmed: 0 open, 100% cash. SP500.p BUY (BE+ ratchet) closed +3.72 USD as reported; nothing running, nothing to modify.
+Broker-valued arithmetic re-verified exact: risk 11.20, RR 2.0277, stressed 16.00, post-stop 4,851.02. Ticket staged 17:35:14 UTC. The (A) scorecard:
 
-4. MANDATE 3 — Adversarial Audit of #18812244 (NAS100.p SELL LIMIT 0.01 @ 30,750.00)
+(A) conjunct	Finding (gen 4c35143e / 6bb7effb)	Verdict
+L3 sell walls > 5M defense	in-range SELL (≤ 30,862) = 13,800,472 USD, 33 wallet walls, verified persist 228 s	✅ CERTIFIED (was uncertifiable last cycle)
+Overwhelm < 0.10:1	forced-buy fuel [30,700–30,900] = 511k USD vs 13.80M defense = 0.037:1	✅ CERTIFIED
+Distance ≤ 2.0 ATR	mid 30,657.33 → 2.410 ATR (18:28Z: 2.767 ATR); breach threshold 30,673.10	❌ FAIL
+Floor cushion	4,851.02 ≥ 4,795.00	✅
+SL outside POC/VWAP sweep zone	POC migrated 30,846.05 → 30,992.79 (SL now 3.45 ATR below POC; the 0.361-ATR clearance is gone); SL 30,862 sits inside the [30,800–30,900] buy-stop sweep band (326,136 USD)	❌ FAIL — Invariant 1 categorical (the #18806752 SOL trap)
 
-Provenance: #18812244 exists only on MT5 (the published snapshot still lists the superseded #18810549 @ 0.02 lots) — operator-asserted state, audited against the 17:11:46Z evidence with drift flags.
+Repair infeasibility (why (B) is exhausted): at min_lot 0.01, any bunker-clearing SL yields risk ≥ 17.92 USD (band-stack edge 30,900 + 0.35 ATR, entry at the proximity limit 30,734) or ≥ 27.20 USD (POC + 0.35 ATR) — both above the 14.50 cap; the lot-step set never intersects [10.00, 14.50]. No parameter nudge exists.
 
-A. Internal arithmetic — every claim re-verified (contract_size 10.0):
+Verdict: (C) DELETE / CANCEL IMMEDIATELY on three independently sufficient proofs: (1) price drifted 2.41 ATR (now 2.77 ATR) beyond the 2.0 ATR reachability bound — the tripwire armed last cycle ("cancel if mid < 30,661.54") has fired; (2) the stop is inside a live sweep band after the POC migration (Invariant 1 categorical violation); (3) the feasible repair set is empty. The irony to record: defense and overwhelm — the two conjuncts previously uncertifiable — are now certified excellent (13.80M USD, 0.037:1); the ticket dies on reachability and the migrated bunker edge, not on thesis quality.
 
-Claim	Recomputation	Status
-Risk 10.28 USD	102.80 pts × 10.0 × 0.01 = 10.28	exact
-R:R 2.21R	227.10 / 102.80 = 2.2091	exact
-Post-loss 4,852.17	10.28 × 1.25 + 2.00 = 14.85 → 4,852.17	exact
-Entry ≤ 2.0 ATR	(30,750.00 − 30,671.51) / 44.231 = 1.775 ATR	conditional — breach if mid < 30,661.54 (only 9.97 pts of headroom vs 37.4 min unobserved drift)
-TP front-run	(30,547.43 − 30,522.90) / 30,547.43 = 8.03 bps of the observed 96-bar 1h low	exact
-Index stop ≥ 1.5 ATR	2.324 ATR	pass
-
-B. (A) conjuncts: L3 whale sell walls > 5M — UNCERTIFIABLE (whale_walls_l3 = []; anonymous L2 ask ladder 4,245,517 USD spans only 30,685–30,705 and never reaches entry/SL; policy: L2 rows are not wallet orders). Overwhelm < 0.10:1 — NOT COMPUTABLE (fuel feeds UNAVAILABLE). Distance ≤ 2.0 ATR — pass, conditional. Floor cushion — pass. SL outside POC/VWAP zone — literally yes (30,852.80 > POC 30,846.05 > VWAP 30,830.65).
-
-C. Anti-Trap Invariant 1 — the decisive defect. The (A) criterion names the sweep zone "POC/VWAP"; its outer edge is POC 30,846.05. Staged SL buffers:
-
-vs VWAP 30,830.65: 22.15 pts = 0.501 ATR ✓
-vs POC 30,846.05: 6.75 pts = 0.153 ATR ✗ — 0.197 ATR below the hardened 0.35 ATR minimum.
-
-This is the Cycle 39 error class one level up: the buffer was measured from the VWAP axis instead of the zone's true outer edge. A routine VWAP→POC continuation (0.35 ATR) tags the stop at −1.00R. Inv 2 N/A (short, trend-joining; no CVD feed on indices). Inv 3 satisfied by design (the ticket sells into the buy-stop sweep — #18791527 gold-standard geometry — which is exactly why the SL must clear POC). Inv 4 UNCERTIFIABLE. Inv 5 PASS (BEARISH regime, EMA20 30,728.18 < EMA50 30,803.73 < EMA200 30,896.76, slope −0.0883 %/3h, 1h closes 30,971→30,650, pullback_geometry SHORT, |Z| 1.26 < 2.0).
-
-D. Verdict: (B) SLIGHT MODIFICATION REQUIRED. (A) cannot be certified (two conjuncts unverifiable + Inv-1 buffer fail); (C) does not fire (no affirmative > 50% thinning — missing ≠ zero; thesis and magnet intact at the 4-session low 30,547.43); (B) fires on the bunker-edge buffer defect.
-
-E. Exact modification (observed fields only):
-
-Parameter	As staged	Modified	Proof
-Entry / TP / Lots	30,750.00 / 30,522.90 / 0.01	keep all three	geometry and magnet re-verified
-SL	30,852.80	30,862.00	POC + 0.361 ATR (∈ [0.35, 0.50]); 0.709 ATR above VWAP
-Risk	10.28	11.20 USD	112.00 × 10.0 × 0.01; ∈ [10.00, 14.50]
-R:R	2.21R	2.03R	227.10 / 112.00 (RR ≥ 2.0 ceiling: SL ≤ 30,863.55)
-Stressed / post-stop	14.85 / 4,852.17	16.00 / 4,851.02	+76.02 floor, +56.02 buffer
-Stop distance	2.324 ATR	2.532 ATR	≥ 1.5 ATR index rule
-EV @ p ≥ 0.4197	+3.57	+3.03 USD	uncalibrated p_win
-
-Discrete window: Invariant 1 [POC + 0.35 ATR, POC + 0.50 ATR] = [30,861.53, 30,868.17] ∩ RR ≥ 2.0 (SL ≤ 30,863.55) = [30,861.53, 30,863.55]; 30,862.00 maximizes clearance from both boundaries.
-
-F. Standing (C) tripwires: cancel if fresh mid < 30,661.54 (proximity > 2.0 ATR — the 37.4-min staleness makes this the first check on the next tick readback); cancel on certified in-range defense thinning > 50%; post-fill, a 15m/1h close above 30,862.00 without rejection = thesis break; purge unfilled at 2026-10-13 02:25 UTC; ratchets +0.80R / +1.50R / +2.00R if filled.
+Re-arm gate (all required): mid ≥ 30,673.10 (price returning to reach) AND [30,800–30,900] fuel thinned ≥ 50% AND POC back ≲ 30,810 → then a new bracket (30,750.00 entry / ~30,823.5 SL / 30,522.90 TP / 0.02 lots, re-verified on the live grid). Otherwise stand down at the 2026-10-13 02:25 UTC purge.
 
 Actionable Execution Summary Table
 #	Mandate	Object	Verdict	Action	Key Numbers
-1	Mandate 1	All 24 assets	NO QUALIFYING SETUPS	Stage nothing; watch USDJPY (M2 @ 158.658), GBPUSD (M1 w/ CVD proof), SOL (if 25 bps cap returns)	12 friction-banned (SOL 21.32, BCH 22.45 newly out); L3 walls 0/24; bunker/magnet feeds UNAVAILABLE 24/24; Inv 3 unverifiable
+1	Mandate 1	All 24 assets	ZERO QUALIFYING	Stage nothing; watch BTC-short (needs negative 15m/30m CVD + [82,900–83,200] fuel thinning) and USDJPY-long (needs verified bid at 158.659 shelf)	XRP M1: min risk 20.00 > 14.50 on lot grid, RR < 2.0; BTC M2: risk 9.36/18.71 (no step) + CVD +933k; 8 friction-banned; DJ30/GER40 feeds empty
 2	Mandate 2	Book	FLAT CONFIRMED	No action	0 open; margin_used 0.00; equity = 4,867.02; SP500.p +3.72 USD consistent
-3	Mandate 3	#18812244 NAS100.p SELL LIMIT	(B) MODIFY	SL 30,852.80 → 30,862.00; keep Entry 30,750.00, TP 30,522.90, 0.01 lots	Risk 11.20 USD; R:R 2.03R; post-stop 4,851.02 ≥ 4,795; Inv-1 window [30,861.53, 30,863.55]; buffer above POC 0.361 ATR; TP 8.03 bps of observed 30,547.43 low
-4	Tripwires	#18812244	(C) armed	Cancel if fresh mid < 30,661.54, or certified defense thinning > 50%, or post-fill close > 30,862.00	37.4 min telemetry staleness — first action on next tick readback
-5	Housekeeping	#18812244	Purge timer	Cancel if unfilled by 2026-10-13 02:25 UTC	BoE Greene 03:00 UTC; runway 9.3 h
+3	Mandate 3	#18812244 NAS100.p SELL LIMIT	(C) DELETE NOW	Cancel on MT5 immediately	Drift 2.410 ATR → 2.767 ATR (threshold 30,673.10; tripwire fired); SL 30,862 inside [30,800–30,900] band (326k USD); POC at 30,992.79; min repair risk 17.92 > 14.50
+4	Mandate 3 note	—	record	Playbook addendum	Defense 13.80M USD > 5M and overwhelm 0.037:1 now certified — thesis improved while the order died on reachability
+5	Re-arm gate	NAS100 short	conditional	New ticket only if mid ≥ 30,673.10 AND [30,800–30,900] fuel thins ≥ 50% AND POC ≲ 30,810; else stand down at 2026-10-13 02:25 UTC	candidate: 30,750.00 / 30,823.5 / 30,522.90 / 0.02 lots, re-verified at re-arm
 
-Bottom line: the re-staged ticket is internally exact, trend-aligned, and its target is confirmed on observed structure — but its stop clears the named POC/VWAP sweep zone's outer edge (POC 30,846.05) by only 0.153 ATR against the 0.35 ATR Invariant 1 minimum. One-parameter fix: stop to 30,862.00 (risk 11.20 USD, 2.03R, post-stop 4,851.02 ≥ 4,795.00). No new admissions while the L3 and stop/liquidation feeds remain cold.
+Bottom line: with the full L3/stop/liquidation stack live and persistence-certified, the rigorous screen still returns nothing to punch — every candidate dies on a discrete sizability or flow-anchor proof — and the one live ticket must be cancelled on a threefold proof (deepening 2.77 ATR drift, an in-band stop after the POC migration, and an empty repair feasible set). Delete #18812244 now, hold 100% cash (post-stop floor defense 4,851.02 ≥ 4,795.00 regardless), and re-arm only through the stated gate before the 02:25 UTC purge.
