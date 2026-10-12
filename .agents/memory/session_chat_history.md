@@ -54029,3 +54029,31 @@ Finally, unify live and replay ratchets before qualifying uplift; the current se
 - **Arming 9-Minute Sleep Protocol**:
   - Scheduled 9-minute sleep timer (`DurationSeconds=540`, `TimerCondition="never"`).
   - Wake-up target: ~02:03 UTC (07:33 IST) to harvest Cycle 25 Council Report from `arena/537c1eb8-trading-2`, merge commit, evaluate gates, and execute limit orders if confluence criteria are satisfied.
+
+---
+
+### Turn Checkpoint — Cycle 25 Council Harvest & Cascade Breaker Ingestion (02:07 UTC)
+- **Timestamp**: 2026-10-12 02:07:00 UTC / 2026-10-12 07:37:00 IST
+- **Cycle 25 Harvest Summary (`ARENA_COUNCIL_REPORT_20261012_0210Z.md`, Commit `199c6810`)**:
+  - Merged commit `199c6810` into `main` (commit `84de9385`) and synchronized across `main` and `arena/537c1eb8-trading-2`.
+  - **Unanimous STAND ASIDE Ratified**: 0 tickets staged, 0 resting orders. Cash reserves 100% at 4,896.55 USD, defending the +121.55 USD floor cushion above 4,775.00 USD. Evidence score: **87 / 100** (session high; 1,071 unit/integration tests passing, 3 skipped, 0 failed).
+  - **Key Finding 1 — Cascade Circuit Breaker Verified in Source & Firing Live**:
+    * Gates `A1_z_beyond_3p5_cascade_zone` (`decision_gates_v3.py:608`) and `A1_z_still_accelerating` (`:612`) verified in source.
+    * BTC mid plunged to 83,419.50 USD with Z at -4.00 SD, tripping the cascade ceiling. DOGE (+6.50 SD) and TRX (+4.61 SD) also in active cascade. Knife-catching is strictly barred.
+  - **Key Finding 2 — Institutional Bids Absorbing at 83,209 USD**:
+    * Answering the orderflow mandate: resting institutional bids are absorbing, not cancelling.
+    * 24 G-7 eligible walls sit within 1.0 ATR of the 83,350 pool, led by **BUY 83,209 carrying $1,506,645 with 7,120s (119 minutes) of continuous persistence across 111 samples (0.93 presence fraction)**.
+    * Conversely, resting sell-side walls above (83,523–83,539 USD) are transient (~181s persistence, 4 samples).
+  - **Key Finding 3 — BTC Loss of TP Anchor**:
+    * Compounding spot drop and ATR growth (196.29 USD) pushed the 84,250 USD anchor out to **+4.2309 ATR**, exceeding `MAX_TARGET_DIST_ATR = 4.0`. BTC now has no admissible target and no computable expectancy.
+  - **Key Finding 4 — SP500 & GOLD Metrics**:
+    * SP500 measured at Z = +1.69 SD (not +3.53 SD), passing the cascade gate with positive expectancy (+0.1287/R), but blocked by session maturity (`session_bars = 7` < 16) and 0 in-band walls (0/67).
+    * GOLD set a new session low for relative friction at gamma = 0.014 R (0.19 bps spread), remaining the sole certified trend (`TREND_UP`), but blocked by B2 retrace (1.0207), 0 in-band walls (0/14), and no TP anchor within 4.0 ATR.
+  - **Key Finding 5 — Perfect Risk Defense**:
+    * The 323 USD flush on BTC produced exactly 0.00 USD loss on the account. 100% Cash reserves at 4,896.55 USD defended the capital floor perfectly.
+- **MT5 Account State (#5064568)**:
+  - Balance / Equity: **4,896.55 USD** (100% Cash reserves).
+  - G-1 Hard Floor: 4,775.00 USD | Cushion: **+121.55 USD** | Operating Buffer: 4,795.00 USD (+101.55 USD).
+  - Open Positions: 0 | Resting Orders: 0 | Capacity: 0/4 used (4 slots open).
+- **Next Revalidation Point**:
+  - Ongoing sentry via recurring trading cron (task-44250) leading into Cycle 26 (02:20 UTC).
