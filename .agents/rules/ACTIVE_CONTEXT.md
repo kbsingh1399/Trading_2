@@ -60,7 +60,7 @@ trigger: always_on
     - **Active Positions & Pending Orders (Live State — 2 Active Trend Short Positions | 1 Limit Order Resting)**:
       * Current Status: **2 Open Positions | 1 Pending Order | Balance: 4,855.44 USD | Equity: 4,852.12 USD | Margin Used: 1,582.50 USD | Free Margin: 3,269.62 USD**.
       * Active Positions (2 — Mandate 2 Active Monitoring with Autonomous Ratchet Daemon `task-50136` every 15s):
-        1. Ticket `#18813767` (`BTCUSD.pi` SELL 0.02 @ 82,650.00 USD, SL: 83,120.00 USD, TP: 81,800.00 USD, Risk: 9.40 USD, Reward: 17.00 USD, R:R: 1.81R).
+        1. Ticket `#18813767` (`BTCUSD.pi` SELL 0.02 @ 82,650.00 USD, SL: 83,120.00 USD, TP: 81,845.00 USD, Risk: 9.40 USD, Reward: 16.10 USD, R:R: 1.71R).
         2. Ticket `#18813768` (`SOLUSD.p` SELL 0.14 @ 108.00 USD [FILLED], SL: 108.85 USD, TP: 106.20 USD, Risk: 11.90 USD, Reward: 25.20 USD, R:R: 2.12R).
       * Active Pending Orders (1 — Mandate 3 Active Monitoring):
         1. Ticket `#18814015` (`SP500.p` SELL LIMIT 0.04 @ 7,817.80 USD, Current Bid/Ask: 7,803.20/7,803.45 USD, SL: 7,842.50 USD, TP: 7,704.00 USD, Risk: 9.88 USD, Reward: 45.52 USD, R:R: 4.61R, Ask Wall Belt: 8.9M USD @ 7,802-7,808, Primary Bunker Cleared by 2.56 ATR).
