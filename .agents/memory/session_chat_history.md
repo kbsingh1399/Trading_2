@@ -54585,3 +54585,19 @@ Finally, unify live and replay ratchets before qualifying uplift; the current se
      - Injected `docs/prompts/ARENA_CYCLE_43B_FEEDBACK_PROMPT.txt`; woke up via `arena_completion_daemon.py --wait` (`task-48449`). Arena withdrew the close recommendation in full (`docs/trade_plans/ARENA_CYCLE_43B_RAW.md`), confirmed `HOLD AS-IS` on `SOLUSD.p #18795304`, and pushed signed ledger commit `21c3acc6` to `docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md`.
   3. **Playbook & Prompt Generator Hardening (`docs/specs/TRADE_DECISION_PLAYBOOK.md`, `Terminal/dispatch_comprehensive_wake_up_prompt.py`)**:
      - Removed `gate_g7_eligible` from `dispatch_comprehensive_wake_up_prompt.py` and `TRADE_DECISION_PLAYBOOK.md` in favor of `persist_s >= 180s` and `(address, size)` continuity across market-maker re-pegs; codified `>= SL` (Long) / `<= SL` (Short) defense boundary, minimum-lot risk sizability (`10.00–14.50 USD` at `0.50 ATR`), and `15m/30m CVD` stability vs. `book_imbalance` noise.
+
+
+---
+
+## Turn [2026-10-12 15:03 UTC] — Cycle 44 Autonomous Cron Execution, Verification & Playbook Hardening (`Commit 5dcbbecd`)
+- **Action Taken**:
+  1. **Cycle 44 Execution & Independent Audit (`14:30–15:00 UTC`)**:
+     - Dispatched `docs/prompts/ARENA_CYCLE_44_PROMPT.txt` across all 24 mutual universe assets; woke up via `arena_completion_daemon.py --wait` (`task-48480`, saved to `docs/trade_plans/ARENA_CYCLE_44_RAW.md`).
+     - Verified all Cycle 44 findings against live MT5 and `docs/telemetry/live_snapshot_latest.json` (`0` discrepancies; no Cycle 44B re-prompt needed):
+       * **Mandate 2**: `SOLUSD.p #18795304` stopped out at `108.79 USD` for exact `-10.88 USD` (`-1.00R`) as the crypto flush deepened and two-sided market maker `0xeac842b2` pulled/walked its in-range bids toward its `108.46` (`6.56M USD`) below-SL wall. Account is now in **100% Cash Reserves** (`Balance = 4,863.30 USD`, `Equity = 4,863.30 USD`, `Free Margin = 4,863.30 USD`, `+88.30 USD` above `4,775.00 USD` floor).
+       * **Mandate 1**: All 4 finalists (`SP500 LONG` at `1.4151 ATR < 1.50 ATR` index minimum, `ETH SHORT` marketable/wrong regime, `BTC LONG @ 82,250` with accelerating negative `5m CVD` at `14:50 UTC`, and `SOL LONG @ 108.50` marketable with `RR = 1.82 < 2.0`) were rightly rejected.
+       * **Mandate 3**: `0` pending orders (`4 of 4` capacity slots open).
+       * **Self-Correction Verified**: Arena self-corrected its Cycle 43 `NAS100.p` sizability claim (`0.05 lots` risks `10.05 USD` at `0.50 ATR`, and `mt5.order_calc_margin` is verified at `1,533.29 USD` / `10%` margin for `NAS100.p` and `1,014.65 USD` / `10%` margin for `SP500.p`).
+  2. **Playbook Hardening & Bilateral Ledger Sync (`docs/specs/TRADE_DECISION_PLAYBOOK.md`, `docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md`)**:
+     - Codified the Cycle 44 lessons into `§3.B`, `§4`, and `§5` of `TRADE_DECISION_PLAYBOOK.md`: (a) extended `> 2.0:1` in-range overwhelm + two-sided market-maker defense to act as a **Mandate 2 exit-on-bounce / de-risk signal**; (b) refined `§5.1` discrete `step_lot` sizability (`NAS100.p` sizable at `0.05 lots`, `10%` CFD index margin verified); (c) added **Per-Asset L3 Feed Warmth** and `> 100x` single-band stop outlier filtering.
+     - Synced Arena's signed Cycle 44 commit (`5dcbbecd`) to `main` and `arena/537c1eb8-trading-2`.

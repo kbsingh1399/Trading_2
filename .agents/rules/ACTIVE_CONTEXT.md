@@ -48,18 +48,18 @@ trigger: always_on
       * **Position Capacity Policy**:
         - Up to 4 concurrent tickets across orthogonal asset clusters provided total joint worst-case stopout risk unconditionally defends the 4,775.00 USD hard floor and 4,795.00 USD operating buffer (>= 20.00 USD cushion at all times).
     - Connects directly via native IPC to MetaTrader 5 Account 5064568 (Blueberry Markets).
-    - **Active Positions & Pending Orders (Live State — Cycle 43 / 43B Verified `Commit 21c3acc6`)**:
-      * Current Status: **1 Open Position | 0 Pending Orders | Balance: 4,874.18 USD | Equity: ~4,868.34 USD | Margin Used: 440.60 USD | Free Margin: ~4,427.74 USD | Cron: `0,20,40 * * * *` (`task-48267`)**.
-      * Active Positions (1 — Mandate 2 Monitoring):
-        1. Ticket #18795304 (`SOLUSD.p` BUY 0.08 lots @ 110.15 USD [FILLED] | SL: 108.79 USD [0.47 ATR below 109.00 cascade min_price, backed by $9.30M of in-range `>= 180s` L3 whale bids at/above SL including `0xeac842b2` $3.40M @ 109.22 MT5 (`350s`) + $1.74M @ 109.48 MT5 (`181s`) and `0x5323b922` $3.22M–$3.76M across 18–21 walls (`1,910s–2,291s`), while the `109.00–110.00` sell-stop band shrank `-22.3%` from $22.05M to $17.13M; premature Cycle 43 close withdrawn in Cycle 43B] | TP: 113.40 USD [front-running 113.50 $1.67M buy-stop cluster by 8.81 bps] | Risk: 10.88 USD / 0.22% | Reward: +26.00 USD | RR: 2.39 | Comment: `OFC_AI_SOL_M2_LIMIT`).
-      * Active Pending Orders (0 — Mandate 3 Monitoring): None (`0` pending orders; `NAS100.p` excluded on minimum-lot risk sizability `$2.01 < $10.00` at `0.50 ATR`).
-      * G-1 Hard Floor Defense: Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Floor Cushion: **+99.18 USD realized / +93.34 USD floating**.
+    - **Active Positions & Pending Orders (Live State — Cycle 44 Verified `Commit 5dcbbecd`)**:
+      * Current Status: **0 Open Positions | 0 Pending Orders (100% Cash Reserves) | Balance: 4,863.30 USD | Equity: 4,863.30 USD | Margin Used: 0.00 USD | Free Margin: 4,863.30 USD | Cron: `0,20,40 * * * *` (`task-48267`)**.
+      * Active Positions (0 — Mandate 2 Monitoring): None (`SOLUSD.p` Ticket #18795304 stopped out at `108.79 USD` for `-10.88 USD` / `-1.00R`).
+      * Active Pending Orders (0 — Mandate 3 Monitoring): None (`0` pending orders; `4 of 4` capacity slots open; monitoring `BTCUSD.pi` Model 1 Long @ `82,250` upon `5m CVD` deceleration across `>= 3` generations).
+      * G-1 Hard Floor Defense: Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Floor Cushion: **+88.30 USD realized / +88.30 USD floating**.
       * Stressed Post-Loss Simulation:
-        - Total Contingent Book Risk across exposed tickets: **10.88 USD** (`SOLUSD.p` #18795304).
+        - Total Contingent Book Risk across exposed tickets: **0.00 USD** (`100% Cash Reserves`).
         - Stressed Worst-Case Equity: **4,863.30 USD** (Unconditionally defends floor!).
         - Safety Cushion Above 4,775.00 USD Hard Floor: **+88.30 USD** (4.4x mandatory >= 20.00 USD buffer).
         - Safety Cushion Above 4,795.00 USD Operating Buffer: **+68.30 USD**.
       * Closed Trades Today (Realized PnL):
+        - Ticket #18795304 (`SOLUSD.p` closed at **-10.88 USD loss** via Stop Loss at 108.79 USD during deepening crypto flush)
         - Ticket #18791527 (`BTCUSD.pi` closed at **-11.20 USD loss** via Stop Loss at 82,590.00 USD during capitulation flush to 82,627 USD)
         - Ticket #18785248 (`BTCUSD.pi` closed at **-11.17 USD loss** via Stop Loss at 83,472.55 USD, Deal #16997164, Order #18785248)
         - Ticket #18740569 (`SP500.p` closed at **-13.00 USD loss** via Stop Loss at 7,778.50 USD, Deal #16962450, Order #18749312)

@@ -10297,3 +10297,79 @@ Arena completed the unified 4-step council audit across all 4 Mandates:
 9. **MANDATE 1 AND MANDATE 3 STAND UNCHANGED** — the audit ratified both. **Zero new orders.** `NAS100.p` remains permanently excluded on sizability (`$2.01` at `min_lot` with a `0.50 ATR` stop, versus a `$10.00` floor). `pending_orders = []`.
 
 **— Signed, Arena.ai Multi-Persona Quantitative Council · Cycle 43B · 2026-10-12 14:18:00 UTC · generation `e0b29f21` (14:16:48 UTC)**
+
+---
+
+### [2026-10-12 14:51:00 UTC] Cycle 44: Arena.ai Signed Ledger Entry — **`SOLUSD.p #18795304` STOPPED OUT AT `−$10.88` (−1.00R); DESK FLAT. MANDATE 1 ZERO ORDERS (4 candidates each rejected on a verified ground). ARENA SELF-CORRECTS ITS OWN CYCLE 43 `NAS100` SIZABILITY FINDING, WHICH IS NOW MIS-CODIFIED IN PLAYBOOK §5.1.**
+
+**Telemetry Citation:** seventeen generations polled `6ab8244a` (14:32:13) → `412c7667` → `71bedaf2` → `9427c6f2` → `dffd8b1e` → `2e841473` → `ab4f06a2` → `70cad1f6` → `0703605c` → `2eb41f57` → `2883452e` → `ceb435c6` → `c28a7bd9` → `833b1825` → `ade03524` → **`e22636e0` (14:50:42 UTC)** | 24/24 assets, all blocks | Playbook §3.A / §3.B / §3.C / §4 / §5.1–§5.7 / §6 | **zero decision-gate scripts executed; no `gate_g7_eligible` filter applied anywhere (Cycle 43B rule 2); all wall continuity keyed on `(address, size)` (rule 1).**
+
+**DISPOSITION: 🔴 MANDATE 1 — ZERO new orders. MANDATE 2 — `#18795304` CLOSED BY STOP at `−$10.88`; no running trades remain. MANDATE 3 — `pending_orders = []`.**
+
+1. **🔴 MANDATE 2 — `SOLUSD.p #18795304` HAS BEEN STOPPED OUT. THE POSITION NO LONGER EXISTS.**
+   - **Verified from `account` at generation `833b1825` (14:47:35 UTC):** `balance_usd 4,874.18 → 4,863.30`, `margin_used_usd 440.60 → 0.00`, **`active_positions = []`**. The `−$10.88` balance delta equals the briefed risk exactly: **`−1.00R`**.
+   - **The trigger:** SOL mid fell through the `108.79` stop across three generations — `108.795` (14:43:33) → `108.810` (14:44:33) → **`108.630`** (14:45:34). By `e22636e0` mid is `108.3450` with `bid 108.32 / ask 108.55`.
+   - **The structural picture inverted as price left the band.** The `[109.00, 110.00]` cluster that dominated Cycles 42–43B is no longer in `nearest_sell_stop_clusters_below` at all; the nearest are now `108.5 ($4.00M)`, `107.5 ($4.15M)`, `106.5 ($1.72M)` with cascades `108.5 ($0.57M)`, `107.5 ($2.30M)`, `106.5 ($1.25M)`. **The stop range `[108.79, 110.15]` now holds ZERO BUY walls of any persistence — not because the feed dropped, but because price has vacated the range entirely.**
+   - **⚠️ HONEST ACCOUNTING OF THE CYCLE 43 → 43B SEQUENCE.** In Cycle 43 Arena recommended closing near flat at `+$0.24`. In Cycle 43B Arena withdrew that on verified evidence — the `0xeac842b2` anchors genuinely were in the book at 14:13–14:16 — and confirmed HOLD. **The position then realised `−$10.88`.** **Both statements are true and Arena does not reconcile them in its own favour:** the 43B factual correction was right (the "walls gone" claim was demonstrably false), *and* the Cycle 43 close would have left the desk **`$11.12` better off**. **The three residual-risk cautions Arena recorded in 43B were all borne out** — overwhelm `2.13:1` above the `2:1` benchmark, *"no cushion between the SL and the `$6.56M` wall below it"*, and *"a market maker quoting both sides can pull its bid as readily as its ask."* **The methodological correction and the adverse outcome are independent facts; the lesson is that a correct method does not guarantee a profitable trade, and that a marginal `2.13:1` overwhelm reading should have been treated as a reason to de-risk rather than to hold.**
+   - **Session realised P&L: `−$22.08`** (`#18791527` BTC `−11.20` + `#18795304` SOL `−10.88`).
+2. **🔴 MANDATE 1 — ZERO NEW ORDERS. FOUR CANDIDATES REACHED THE FINAL STAGE AND EACH FAILED ON A SPECIFIC, INDEPENDENTLY VERIFIED GROUND.**
+
+   | # | Candidate | Model | Fatal flaw (verified) |
+   |---|---|---|---|
+   | 1 | **`SP500.p` BUY LIMIT `0.13` @ `7,805.00`** SL `7,797.2682` TP `7,824.10` RR `2.48` risk `$10.05` | Model 2 (BULLISH, Z `−1.53`) | **Stop distance `7.7318 = 1.4151 ATR` breaches the §4 index rule** *"Always use at least 1.5 ATR stop distance for equity indices during active sessions"* (lesson `#18740569`, `−13.00 USD`). Shortfall `0.0849 ATR`. **Widening is impossible without breaking another rule:** reaching `1.5 ATR` needs entry `7,805.4636`, which sits *above* the `7,805.00` sell-stop sweep midpoint (§3.A.1 violation); the next bunker down `[7,780, 7,790]` puts entry `3.94 ATR` from mid (§3.A.3 `<= 2.0 ATR` violation). **Everything else passed** — proximity `0.2764 ATR` ✅, buffer exactly `0.50 ATR` outside `min_price 7,800.00` ✅, overwhelm `0.83:1` ✅, magnet `$0.77M` ✅, passive (entry below bid `7,806.39`) ✅, sizability `0.13` lots → `$10.05` ✅. |
+   | 2 | **`ETHUSD.pi` SELL @ `2,535.00`** RR `2.24` overwhelm `0.06:1` | none | **THREE independent failures.** (a) **Wrong direction** — `Z −2.18` means price is `2.18 SD` *below* VWAP, so mean reversion is a **LONG**; a short here is neither Model 1 nor Model 2. (b) **`trend_regime RANGE_BOUND`** → Model 2 pullback side is *neither*. (c) **Not passive** — entry `2,535.00` sits `21.20` above bid `2,513.80`, so it is a marketable limit, violating §5.7. |
+   | 3 | **`BTCUSD.pi` BUY LIMIT `0.06` @ `82,250.00`** SL `82,053.15` TP `82,738.19` RR `2.48` risk `$11.81` | Model 1 (Z `−2.19`) | **CVD selling is ACCELERATING, not decelerating.** Per-minute rates: **`5m −344,537` → `15m −235,333` → `30m −40,195`**. The `30m` window implies the *prior* 15 minutes were **`+2,324,147` positive**, so flow reversed sharply *into* selling. §3.A.1 requires *"Aggressive selling delta must show deceleration or positive divergence across 5m/15m/30m windows"* — **this is the opposite.** All structural limbs passed: buffer exactly `0.50 ATR` outside `min_price 82,200.00` ✅, proximity `0.6402 ATR` ✅, **overwhelm `0.37:1` (defence `$30.35M` vs fuel `$11.31M`)** ✅, magnet `$0.71M` ✅, passive (below bid `82,430`) ✅, `0.06` lots → `$11.81` ✅. **Structure was the strongest of the cycle; the tape vetoed it.** |
+   | 4 | **`SOLUSD.p` BUY LIMIT @ `108.50`** RR `1.82` overwhelm `1.96:1` | Model 1 (Z `−2.85`) | **Two failures.** (a) **`RR 1.82 < 2.0`** (§3.C requires `2.0R–2.5R`). (b) **Not passive** — entry `108.50` is `0.18` *above* bid `108.32`. Note `RSI 20.59` and `Z −2.85` are the most extreme in the universe, and CVD *is* decelerating (`5m −35,577` vs `15m −381,579`), but **an entry that cannot be rested passively is not a playbook trade.** |
+
+   - **Rejected before the final stage:** `BNB`, `GOLD`, `NAS100` (no magnet `>= $0.50M` on the entry side within `2.0 ATR`); `GOLD SHORT` and `NAS100 SHORT` additionally `UNSIZABLE`; `ADA 85.56` / `DOGE 244.90` / `DOT 158.73` / `LINK 66.31` / `NEAR 58.81` / `LTC 47.06` / `TRX 33.23` / `XRP 28.86` / `AVAX 27.74` / `BCH` bps banned by the `25.0 bps` crypto cap; **`SILVER 5.95` and `USWTI 4.98→5.30` bps sit at the `5.0 bps` TradFi cap** and must be re-measured before any proposal.
+   - **`DJ30` `Z +2.56`** is the largest |Z| in the universe but publishes **zero walls, zero stop clusters, zero liquidation bands and `book_imbalance = None`** — no bunker and no magnet can be constructed. **Rejected on absence of structural telemetry, not on `cvd_1m_buckets = 0`.**
+   - **`|Z|` is itself volatile and must be polled:** BTC read `−2.02 → −2.08 → −1.95 → −1.86 → −2.19 → −2.32`; NAS100 `−1.99 → −1.93 → −1.89 → −1.99 → −1.89 → −1.76`; SP500 `−1.97 → −1.86 → −1.94 → −1.80 → −1.53 → −1.66`. **No asset holds `|Z| >= 2.0` for four consecutive generations except SOL**, which fails on R:R and passivity.
+3. **🔴 ARENA SELF-CORRECTION — THE CYCLE 43 `NAS100` "UNSIZABLE" FINDING WAS WRONG, AND IT IS NOW MIS-CODIFIED IN PLAYBOOK §5.1.**
+   - **Cycle 43 asserted:** *"`NAS100.p` cannot be sized into the desk's `$10.00–$14.50` risk band with a §3.B-compliant stop… At the minimum lot, a compliant stop risks `$2.01`."* **That tested only `lot == min_lot` and then generalised.**
+   - **The correct test — which §5.1 itself specifies as *"at `>= min_lot`"* — is whether any multiple of `step_lot` falls inside the feasible lot interval `[10/(D·contract_size), 14.5/(D·contract_size)]`.** At Cycle 43's own `ATR 40.1827`:
+     - `0.50 ATR` stop → `D = 20.091` → feasible `[0.0498, 0.0722]` → **`0.05` lots valid, risk `0.05 × 20.091 × 10 = $10.0457`** ✅
+     - `0.25 ATR` stop → `D = 10.046` → feasible `[0.0995, 0.1443]` → **`0.10` lots valid, risk `$10.05`** ✅
+   - **`NAS100.p` IS sizable. It is not excluded on sizability, and Cycle 43's "permanently excluded" claim is withdrawn.** At Cycle 44's `ATR 47.6382–48.0543`, `0.05` lots at a `0.50 ATR` stop risks `$12.01`.
+   - **⚠️ PLAYBOOK CORRECTION REQUESTED.** §5.1 currently reads *"rejecting instruments like `NAS100.p` when `min_lot = 0.01` at a compliant stop risks only `2.01 USD`."* **That example is built on Arena's flawed reasoning and should be replaced with:** *"Reject only when NO multiple of `step_lot` at or above `min_lot` lands inside `[10/(D·contract_size), 14.5/(D·contract_size)]` for any compliant `D` in `[0.25, 0.50] × ATR`. A low `min_lot` never makes an instrument unsizable — it makes it finer-grained."*
+   - **The genuine unverified constraint on index CFDs is MARGIN, not minimum-lot risk.** `0.05` lots of `NAS100.p` carries `0.05 × 10 × 30,665.70 = $15,332.85` of notional. **`mt5.order_calc_margin` has never executed in this sandbox, and the observed `0.5000` margin ratio is verified only for `SOLUSD.p` and `ETHUSD.pi`. The NAS100 margin requirement is UNCHECKED and must be confirmed broker-side before any NAS100 ticket is staged.** NAS100 was in any case rejected this cycle for want of a `>= $0.50M` magnet.
+4. **🔴 DATA-INTEGRITY FINDING — `SP500.p` PUBLISHES A `$5,871.41M` SELL-STOP BAND, A `~13,000×` OUTLIER.**
+   - At `nearest_sell_stop_clusters_below`, the band `min 7,750.0 / max 7,760.0 / mid 7,755.0` publishes `notional_usd = 5,871,410,000` with `size 752,113.343`, while its ten siblings publish `$0.035M – $1.177M`. **Reproduced across two generations** (`5,868.252M` at `ab4f06a2`, `5,871.410M` at `ade03524`), so it is a persistent publisher defect rather than a transient.
+   - **Impact on this cycle: it manufactured a false `SP500 SHORT` pass with `RR 6.35` at generation `2e841473`.** Arena's scanner consumed it as a `$5.87B` magnet. **Any consumer of `structural_stop_clusters` must apply a sanity bound before using `notional_usd` in an overwhelm ratio or a TP selection.**
+   - **Recommended fix:** clamp or flag cluster notionals exceeding a per-asset median multiple (e.g. `> 50×` the median of the published list) at `Terminal/Data_Factory/generate_telemetry_snapshot.py`.
+5. **🟡 FEED FINDING — WALL PUBLICATION DROPS OUT PER-ASSET, NOT GLOBALLY.** Across generations `ab4f06a2 → 2eb41f57`, `persist_s >= 180` counts read:
+
+   | Asset | 14:39:23 | 14:40:36 | 14:41:34 | 14:42:34 |
+   |---|---|---|---|---|
+   | BTC | **0** | 61 (`$145.19M`) | 63 (`$127.50M`) | 62 (`$127.34M`) |
+   | ETH | **0** | 34 (`$18.93M`) | 28 (`$13.92M`) | 28 (`$13.92M`) |
+   | NAS100 | 53 (`$20.25M`) | **0** | 53 (`$20.25M`) | 54 (`$20.45M`) |
+   | SP500 | **0** | **0** | **0** | **0** |
+   | GOLD | **0** | **0** | **0** | **0** |
+   | SOL | **0** | **0** | **0** | **0** |
+
+   - **A global cold-start test (`total eligible > 50`) would have passed on every one of these generations** — NAS100 alone carried 53–54. **The Cycle 41 warmth heuristic is insufficient: warmth must be tested PER ASSET before any wall-derived conclusion about that asset.** Arena applied this and correctly declined to conclude that SP500 or GOLD walls had "vanished."
+   - **SOL's later zero (`14:43–14:45`, with `101–108` total walls and `33–46` persistent) is a genuine structural fact, not a dropout** — price had vacated the range.
+6. **MANDATE 3 — `pending_orders = []`.** Nothing to audit.
+7. **STEP 4 — PORTFOLIO CAPACITY & CAPITAL FLOOR GOVERNANCE (desk is flat)**:
+
+   | Item | Value |
+   |---|---|
+   | Balance / Equity | **`4,863.30` / `4,863.30`** |
+   | Margin used / free | **`0.00` / `4,863.30`** |
+   | Active / Pending / Proposed | **0 / 0 / 0** |
+   | Joint worst-case risk | **`$0.00`** |
+   | Post-stop equity | **`4,863.30`** — `+68.30` above the `4,795.00` buffer, **`+88.30` above the `4,775.00` hard floor** ✅ **PASS** |
+   | Concurrent-ticket capacity | **4 of 4 free** (`4 × $14.50 = $58.00` → `4,805.30 >= 4,795.00` ✅) |
+
+8. **CYCLE 44 ACTIONABLE EXECUTION SUMMARY (FINAL, SIGNED)**:
+
+   | # | Ticket / Action | Symbol | Side | Lots | Entry | SL Bunker | TP Magnet | Risk USD | R:R | Quantitative Rationale |
+   |---|---|---|---|---|---|---|---|---|---|---|
+   | 1 | **`#18795304` — ⛔ CLOSED BY STOP (no action available)** | SOLUSD.p | LONG | 0.08 | 110.15 | 108.79 | 113.40 | **`−$10.88` realised** | `−1.00R` | Mid printed `108.630` at `c28a7bd9` (14:45:34), below the `108.79` stop. Balance `4,874.18 → 4,863.30`; margin `440.60 → 0.00`; `active_positions = []`. |
+   | 2 | **NEW ORDERS** | — | — | — | — | — | — | — | **NONE** | **SP500** stop `1.4151 ATR` < §4's `1.5 ATR` index minimum, unfixable without breaching §3.A.1 or §3.A.3. **ETH** wrong direction for MR + `RANGE_BOUND` + non-passive. **BTC** CVD accelerating (`5m −344.5k/min` vs `15m −235.3k/min` vs `30m −40.2k/min`), violating §3.A.1 despite the cycle's best structure (`0.37:1`). **SOL** `RR 1.82 < 2.0` + non-passive. |
+   | 3 | **PLAYBOOK §5.1 CORRECTION REQUESTED** | — | — | — | — | — | — | — | — | Replace the `NAS100.p` `$2.01` example. `NAS100.p` is sizable at `0.05` lots / `0.50 ATR` → `$10.0457`. **Unsizability exists only when no `step_lot` multiple lands in the feasible interval.** |
+   | 4 | **TELEMETRY DEFECT REPORTED** | SP500.p | — | — | — | — | — | — | — | `[7,750, 7,760]` sell-stop band publishes `$5,871.41M` against siblings of `$0.035M–$1.177M`. Persistent across two generations. Manufactured a false `RR 6.35` pass. |
+
+9. **NEXT REVALIDATION POINT:** the crypto flush is deepening (`SOL Z −2.85 RSI 20.59`, `BTC Z −2.32`, `ETH Z −2.17`) while selling *accelerates* rather than decelerates. **The Model 1 long thesis on BTC becomes stageable the moment the `5m` CVD rate turns less negative than the `15m` rate** — the structure (`overwhelm 0.37:1`, `0.50 ATR` buffer outside `min_price 82,200`, `$0.71M` magnet) already satisfies every §3 limb. **Re-poll within 15 minutes and re-test the deceleration condition across `>= 3` generations before staging.**
+
+**— Signed, Arena.ai Multi-Persona Quantitative Council · Cycle 44 · 2026-10-12 14:51:00 UTC · generation `e22636e01c114c59850320963a6aee94` (14:50:42 UTC)**
