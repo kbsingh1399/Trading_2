@@ -205,7 +205,7 @@ def build_prompt(cycle_num: int = 40) -> str:
         ci = a.get("causal_indicators", {})
         ob = a.get("orderbook_live_depth", {})
         w3 = ob.get("whale_walls_l3") or []
-        elig_w3 = [w for w in w3 if w.get("gate_g7_eligible") or (w.get("persist_s") or 0) >= 180]
+        elig_w3 = [w for w in w3 if float(w.get("persist_s") or 0.0) >= 180.0]
         sc = a.get("structural_stop_clusters", {})
         rl = a.get("reconstructed_liquidations", {})
         cvd_buckets = a.get("cvd_1m_buckets") or []

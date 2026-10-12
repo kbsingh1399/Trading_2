@@ -10234,3 +10234,66 @@ Arena completed the unified 4-step council audit across all 4 Mandates:
 7. **RECOMMENDED PLAYBOOK AMENDMENT (Cycle 43) — INSTRUMENT SIZABILITY:** *"Before proposing any ticket, verify the instrument can carry the desk's risk band with a §3.B-compliant stop: `risk_at_min_lot = (0.50 × ATR) × contract_size × min_lot` must fall within `$10.00–$14.50`. If it does not, the instrument is excluded outright regardless of setup quality. `NAS100.p` (`contract_size 10`, `min_lot 0.01`, `ATR ≈ 40`) risks only `$2.01` and is therefore permanently excluded at current volatility."*
 
 **— Signed, Arena.ai Multi-Persona Quantitative Council · Cycle 43 · 2026-10-12 14:03:00 UTC · generation `0ecd2ee1` (14:02:03 UTC)**
+
+---
+
+### [2026-10-12 14:18:00 UTC] Cycle 43B: Arena.ai Signed Corrective Addendum — **CLOSE RECOMMENDATION ON `SOLUSD.p #18795304` WITHDRAWN. HOLD AS-IS CONFIRMED.** Arena's Cycle 43 Mandate 2 Rested on a False Factual Claim and a Retired Gate Flag
+
+**Telemetry Citation:** five consecutive generations `7a93d1e1` (14:10:46) → `2b37fdac` (14:11:48) → `7eed471f` (14:13:48) → `89e4fe03` (14:14:48) → `b048b5cd` (14:15:50) → **`e0b29f21` (14:16:48 UTC)** | 24/24 assets | Playbook §3.A / §3.B / §3.C / §4 | **zero decision-gate scripts executed.**
+
+**DISPOSITION: 🔴 THE CYCLE 43 MARKET-CLOSE RECOMMENDATION IS WITHDRAWN. `SOLUSD.p #18795304` → HOLD AS-IS (`Entry 110.15` / `SL 108.79` / `TP 113.40`).**
+
+1. **ARENA'S THREE ERRORS IN CYCLE 43 MANDATE 2 — ALL THREE ACCEPTED, ALL THREE REPRODUCED AND CONFIRMED.**
+   - **❌ Error 1 — "Both anchors are gone from the book entirely" was FALSE.** Wallet **`0xeac842b2214cfece3f0d288293da19f408d91ede`** is present in **all five generations** with **byte-identical sizes**:
+
+     | Continuity key `(address, size)` | Notional | Price (MT5) | `persist_s` across 5 gens | Status |
+     |---|---|---|---|---|
+     | `0xeac842b2` · **60,349 SOL** | **`$6,555,122.50`** | `108.4625–108.4675` | `1366 → 1427 → 1487 → 1547s` | **⚠️ BELOW the `108.79` SL** |
+     | `0xeac842b2` · **31,124 SOL** | **`$3,404,355.15`** | `109.2225–109.2400` | `169 → 229 → 290 → 350s` | **inside stop range ✅** |
+     | `0xeac842b2` · **15,899 SOL** | **`$1,743,160.88`** | `109.4825–109.4875` | `0 → 60 → 121 → 181s` | **inside stop range ✅** |
+
+     The prices drift ~`$0.0025` per generation while the sizes never move. **`identity_kind = WALLET_PRICE_LEVEL_NO_ORDER_ID`, keyed by exact `(address, price)`** — so a re-peg resets `persist_s` on the new key even though the wallet and its order never left. **This is precisely the mechanism the audit described, and it is now confirmed in the data, not merely asserted.** The wallet never withdrew; it re-quoted.
+   - **❌ Error 2 — Arena's search was structurally defective.** Cycle 43 tested `abs(price − 109.09) < 0.06` and `abs(price − 109.64) < 0.06`. The wallet had re-pegged to `109.2225` and `109.4825`, and the `$6.56M` anchor sat at `108.4625`. **A price-keyed lookup with a six-cent tolerance cannot survive a market maker that re-pegs every cycle.** The correct continuity key is **`(address, size)`**, not `(address, price)`.
+   - **❌ Error 3 — Arena filtered on `gate_g7_eligible`, which is not the operator's criterion.** The operator's Part C requires resting L3 wallets with **`persist_s ≥ 180`** and nothing else. The flag is set in **`Terminal/Data_Factory/generate_telemetry_snapshot.py:773`** as `bool(_pers["gate_g7_eligible"] and _wclass == WALL_GENUINE)`, and its persistence limb requires **`presence_frac ≥ 0.90`**. That single legacy boolean **threw away `0x5323b92268`'s 18–21 walls worth `$3.22M–$3.76M` at `persist_s = 1,910s–2,291s` (32–38 minutes)** purely because their `presence_frac` sits at `0.8611–0.8919` — one to four points under the threshold. **Arena filtered on a retired decision-gate artifact while the operator's mandate had retired it.**
+2. **THE CORRECTED OVERWHELM MEASUREMENT — defence was understated by a factor of `28.9×`, and the trend runs the opposite way to Cycle 43's claim.**
+
+   | Generation | Defence (`persist_s ≥ 180`, **no** g7 filter) | Fuel (`stop + cascade`) | **Overwhelm** |
+   |---|---|---|---|
+   | `7eed471f` 14:13:48 | `$5.20M` | `$19.83M` | `3.81:1` |
+   | `89e4fe03` 14:14:48 | `$7.98M` | `$19.81M` | `2.48:1` |
+   | `b048b5cd` 14:15:50 | `$7.64M` | `$19.81M` | `2.59:1` |
+   | **`e0b29f21` 14:16:48** | **`$9.30M`** | **`$19.81M`** | **`2.13:1`** |
+
+   - **Cycle 43 reported defence of `$0.18M–$5.33M` and overwhelm of `4.67:1` to `138.4:1`.** The true floor is **`$5.20M`** — Cycle 43's `$0.18M` reading understated it by **`28.89×`**, and the `138.4:1` figure was an artifact of the retired flag, not a measurement.
+   - **The `[109.00, 110.00]` band shrank from `$22.05M` to `$17.13M` (`−22.31%`)** with the cascade at `$2.74M`, giving total forced fuel **`$19.83M`** — confirmed exactly as the audit reported. **Fuel is falling while defence is rising.** Cycle 43 claimed defence was collapsing against rock-stable fuel; **both halves of that sentence were backwards.**
+3. **WHERE THE AUDIT OVERSTATES — `1.69:1` IS NOT THE CORRECT RATIO, AND THE DIFFERENCE IS DECISION-RELEVANT.**
+   - The audit credits `0xeac842b2` with an **`$11.70M`** live BUY stack (`6.56 + 3.40 + 1.74`). **That figure is arithmetically correct as a statement about the wallet and is confirmed to the cent (`$11,702,638.53`). But `$6,555,122.50` of it rests at MT5 `108.4625`, which is `0.3275` BELOW the `108.79` stop-loss.**
+   - **A resting bid below a long's stop cannot defend that long.** The SL triggers at `108.79` first; the `$6.56M` only engages afterwards, on someone else's fill. **Defence for *this ticket* is `$5.15M` from `0xeac842b2`, not `$11.70M`.**
+   - **Counting the below-stop wall yields `19.81 / 11.70 = 1.69:1` — a clean pass under the `2:1` benchmark.** The honest figure, restricted to bids at or above the SL, is **`19.81 / 9.30 = 2.13:1`**. **The audit's framing is the difference between a pass and a marginal fail, so it matters.**
+4. **WHY HOLD AS-IS IS NEVERTHELESS THE CORRECT RULING — and it does not depend on the overwhelm ratio at all.**
+   - **The `2:1` bound was proposed in Cycle 42B amendment (b) as a *setup-rejection* test:** *"A ratio above `2:1` means the wall is unlikely to hold and **the setup must be rejected** regardless of R:R."* **That governs whether to stage a NEW Mandate 1 ticket. It says nothing about exiting an open position.** Applying it as an exit trigger in Cycle 43 was a **category error** — Arena imported a staging rule into a Mandate 2 audit.
+   - **Every structural limb of the ticket is compliant and unchanged:** SL buffer `0.4718 ATR` outside `min_price 109.00` ✅ (§3.B) · TP front-run `8.81 bps` into the `$1.47M` `113.0–114.0` magnet ✅ (§3.C) · `R:R 2.3897` ✅ · risk `$10.88` inside the `$10.00–$14.50` band ✅.
+   - **The position is at `+0.02R` (`+$0.24`).** Closing at flat forfeits a `2.39:1` R:R into rising defence and falling fuel, to avoid a stop that is `0.4718 ATR` outside a `$17.13M` band that is **shrinking**.
+   - **The Cycle 42B exit trigger has NOT fired.** It required *either anchor wall below `180s` persistence*. Both in-range anchors now read `350s` and `181s`. **Arena's Cycle 43 claim that they were absent was the sole basis for the close, and that claim was false.**
+5. **⚠️ RESIDUAL RISK, STATED PLAINLY — HOLD IS NOT THE SAME AS "NO RISK."**
+   - **The overwhelm ratio is `2.13:1`, still marginally above the `2:1` benchmark** on the strictest defensible measure. **The ticket is held on structure and R:R, not on wall superiority.**
+   - **`$6.56M` sits below the SL, not behind it.** If the cascade reaches `108.79` the stop fires before that liquidity can absorb anything. **There is no cushion between the SL and the wall.**
+   - **`0xeac842b2` is two-sided**: the same wallet holds **`$11.99M` of SELL** at `110.69 / 110.84 / 112.11`. **It is a market maker quoting both sides, not a directional defender.** Its bid can be pulled as readily as its ask.
+   - **`presence_frac` on both in-range anchors is `0.75–0.83`, not `≥ 0.90`.** They are recurrent but not continuously present. The `gate_g7_eligible = False` on them is wrong to *filter* on, but the underlying presence data is a genuine caution, not noise.
+6. **REVISED PLAYBOOK AMENDMENT (Cycle 43B, superseding 42B(b) and 43):**
+   - **(b′) Overwhelm ratio** — *applies to Mandate 1 setup rejection only, never as a Mandate 2 exit trigger.* Defence = resting L3 bid **at or above the proposed/actual SL**, `persist_s ≥ 180`, aggregated by **`(address, size)`** continuity so a re-peg does not reset it. Fuel = cascade + opposing stop cluster inside `[min_price, max_price]`.
+   - **(c′) `gate_g7_eligible` must never be used as a filter.** It is a legacy `decision_gates_v3` artifact wired into the telemetry publisher at `generate_telemetry_snapshot.py:773` and it imposes a `presence_frac ≥ 0.90` condition the operator's mandate does not contain. **Evaluate `persist_s ≥ 180` directly.**
+   - **(d) Wall lookups must key on `(address, size)`, never on `(address, price)` with a tolerance.** `identity_kind = WALLET_PRICE_LEVEL_NO_ORDER_ID` guarantees that a re-pegging maker will defeat any price-keyed continuity test.
+7. **PRICE BASIS NOTE (to prevent recurrence):** the audit quotes **raw Hyperliquid venue prices**; this desk quotes **MT5-adjusted prices** (`MT5 = raw + basis_median`, `basis_median ≈ −0.14` this cycle). `raw 108.61 = MT5 108.4625`; `raw 109.38 = MT5 109.2400`. **Both readings were correct in their own basis; Arena should have stated its basis explicitly before declaring a wall absent.**
+8. **PORTFOLIO (unchanged from Cycle 43 brief, restated on the corrected ruling)**:
+
+   | Item | Value |
+   |---|---|
+   | Active / Pending / Proposed | **1 / 0 / 0** |
+   | Equity / Balance | `4,874.42` / `4,874.18` |
+   | `#18795304` worst case | `−$10.88` → stressed equity `4,863.54` (`+68.54` buffer / **`+88.54` floor**) ✅ |
+   | Joint post-stop equity ≥ `4,795.00` | **PASS** |
+
+9. **MANDATE 1 AND MANDATE 3 STAND UNCHANGED** — the audit ratified both. **Zero new orders.** `NAS100.p` remains permanently excluded on sizability (`$2.01` at `min_lot` with a `0.50 ATR` stop, versus a `$10.00` floor). `pending_orders = []`.
+
+**— Signed, Arena.ai Multi-Persona Quantitative Council · Cycle 43B · 2026-10-12 14:18:00 UTC · generation `e0b29f21` (14:16:48 UTC)**
