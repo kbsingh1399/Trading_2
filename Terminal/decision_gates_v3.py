@@ -327,6 +327,133 @@ class RegimeParams:
     drift_t_4h_confirm: float = 1.0  # 4H agreeing -> STAT tier
 
 
+# ============================================================
+# Proposed desk upgrades 1/3/4 -- REVIEWED, IMPLEMENTED, INERT BY DEFAULT.
+#
+# The Council was asked to ratify four upgrades intended to cure a diagnosed
+# "gating paralysis where 24/24 assets are vetoed by classify_regime". That
+# diagnosis was tested before any of this was wired in, and it did not survive:
+#
+#   * On gen db858db2 (2026-10-12 09:33 UTC) the ER floor was the FIRST binding
+#     leg on 21 of 24 assets -- but all 21 independently failed
+#     drift_t_1h >= 2.0, so relaxing ER to zero admitted ZERO assets.
+#   * Granting every asset a certified regime and re-running the full candidate
+#     screen produced 0 of 24 tradeable candidates. What actually binds is
+#     B6 (no target inside 4.0 ATR at >= $150k: 18/24), B2 (retrace outside
+#     [0.236, 0.618]: 16/24) and G-6 (gamma > 0.15: 14/24) -- not G-4.
+#
+# These helpers therefore ship as reviewed, tested formulations that are NOT
+# reachable from the live routing path. Enabling one is a deliberate policy
+# decision that should be taken with the measurement above in front of you, not
+# a default. Upgrade 2 already exists in this file as `m1_range_override_ok`
+# and is gated by `ALLOW_M1_RANGE_OVERRIDE = False` in dg_hardening, annotated
+# "ratified mandate: UNDEFINED -> stand aside"; the Council did not flip it.
+# ============================================================
+
+ALLOW_REGIME_HYSTERESIS = False          # Upgrade 1
+REGIME_HYSTERESIS_BARS = 6
+ALLOW_EMA200_STRUCTURAL_FALLBACK = False  # Upgrade 4
+EMA200_DRIFT_T_LO = 1.2
+EMA200_DRIFT_T_HI = 1.8
+ALLOW_M1_PRICE_ONLY_VARIANT = False       # Upgrade 3
+M1_WICK_REJECTION_MIN = 0.40
+M1_VOLUME_EXPANSION_MIN = 1.5
+
+
+def apply_regime_hysteresis(regime: str, prior_regime: Optional[str], *,
+                            swing_intact: Optional[bool],
+                            bars_since_certified: Optional[int] = None) -> str:
+    """Upgrade 1: retain a certified trend across a healthy retrace.
+
+    Rationale as proposed: a pullback toward session VWAP or the 20/50 EMA
+    depresses the 1H efficiency ratio, and because both trend tiers require
+    `er_1h >= 0.20` the pullback that Model 2 exists to trade destroys the label
+    that authorises Model 2. The paradox is real in principle.
+
+    Measured effect on 2026-10-12: none. The 21 ER-bound assets also had
+    drift_t_1h between -0.55 and +1.19 against a 2.0 floor, so they fail the
+    drift test with or without the ER floor. Hysteresis on ER would not have
+    certified a single one of them.
+
+    Retains `prior_regime` only when ALL of: the flag is on, the prior label was
+    a trend, the swing points are intact, the memory window has not expired, and
+    the current label is UNDEFINED. A contrary trend or MEAN_REVERT always wins.
+    """
+    if not ALLOW_REGIME_HYSTERESIS:
+        return regime
+    if regime != "UNDEFINED" or prior_regime not in ("TREND_UP", "TREND_DOWN"):
+        return regime
+    if swing_intact is not True:
+        return regime
+    if bars_since_certified is None or bars_since_certified > REGIME_HYSTERESIS_BARS:
+        return regime
+    return prior_regime
+
+
+def ema200_structural_confirms(mid: Optional[float], ema200: Optional[float],
+                              ema200_slope: Optional[float],
+                              drift_t_1h: Optional[float], direction: int) -> bool:
+    """Upgrade 4: HTF EMA200 alignment as a structural trend tie-break.
+
+    Admits `direction` when price is on the correct side of a correctly-sloped
+    200 EMA and the 1H HAC drift t-stat sits in the weak-evidence band
+    [1.2, 1.8] -- too small for the 2.0 STAT/STRUCT floor, too large to ignore.
+
+    Measured effect on 2026-10-12: exactly 2 of 24 assets sit in the band with
+    EMA200 alignment (DJ30 drift_t 1.654, ETH drift_t 1.225). Both then fail
+    downstream -- DJ30 on B6 (no target inside 4.0 ATR) and ETH on G-6
+    (gamma 0.488) with negative EV. Four further assets (GBPUSD 1.073, LTC
+    1.178, NEAR 1.166, SILVER 1.187) sit just below the 1.2 floor, so the band
+    edge is doing a lot of work on very little separation.
+
+    Fails closed on any missing or non-finite input.
+    """
+    if not ALLOW_EMA200_STRUCTURAL_FALLBACK or direction not in (-1, 1):
+        return False
+    if not all(_finite(x) for x in (mid, ema200, ema200_slope, drift_t_1h)):
+        return False
+    if not (EMA200_DRIFT_T_LO <= direction * float(drift_t_1h) <= EMA200_DRIFT_T_HI):
+        return False
+    if direction == 1:
+        return bool(float(mid) > float(ema200) and float(ema200_slope) > 0.0)
+    return bool(float(mid) < float(ema200) and float(ema200_slope) < 0.0)
+
+
+def m1_price_only_variant_ok(ctx: dict) -> bool:
+    """Upgrade 3: price-only evidence for Model 1 on tape-less TradFi CFDs.
+
+    Gate A2 (`A2_no_tape_fail_closed`) has no bypass, while B4 in Model 2 does
+    (`allow_price_only_variant`). The asymmetry is deliberate -- the shipped
+    comment reads "crypto only; CFDs without tape fail closed; no price-only
+    bypass for Model 1" -- and the Council preserved it.
+
+    The reason is definitional, not bureaucratic: Model 1 IS absorption. A2
+    requires `lambda_ratio <= 0.50` and `bars_cvd_turned >= 3`, i.e. proof that
+    aggression arrived and price refused to move. A rejection wick and a volume
+    spike cannot distinguish exhaustion from the first leg of a continuation,
+    which is the exact error Model 1 exists to avoid. Model 2 tolerates the
+    bypass because trend continuation has an independent structural thesis;
+    a mean-reversion entry with no tape has none.
+
+    If this is ever enabled, the substitute evidence must be BOTH a deep
+    rejection wick (>= 40% of bar range closing back inside) AND volume
+    expansion (>= 1.5x the 20-bar median). One without the other is noise.
+    """
+    if not ALLOW_M1_PRICE_ONLY_VARIANT or not isinstance(ctx, dict):
+        return False
+    if ctx.get("orderflow") is not None:
+        return False                      # real tape present -> A2 governs
+    if ctx.get("allow_price_only_variant") is not True:
+        return False
+    wick = ctx.get("rejection_wick_ratio")
+    vol = ctx.get("volume_expansion_ratio")
+    if not (_finite(wick) and float(wick) >= M1_WICK_REJECTION_MIN):
+        return False
+    if not (_finite(vol) and float(vol) >= M1_VOLUME_EXPANSION_MIN):
+        return False
+    return True
+
+
 def _tf_stats(closes, n, p: RegimeParams):
     unknown = {"er": None, "vr": None, "vr_z": None, "t": None, "drift_t": None}
     try:
@@ -412,6 +539,86 @@ def classify_regime(closes_15m, closes_1h, closes_4h, p: RegimeParams = RegimePa
             and s15["vr_z"] is not None and s15["vr_z"] < p.vr_z_mr):
         return "MEAN_REVERT", stats
     return "UNDEFINED", stats
+
+
+def regime_attribution(closes_15m, closes_1h, closes_4h, p: RegimeParams = RegimeParams(),
+                      structural_sign: Optional[int] = None) -> dict:
+    """Name the FIRST condition in `classify_regime` that withholds a regime.
+
+    Diagnostic only -- this function never authorises anything and never changes
+    a routing decision. It exists because "22 of 24 assets are UNDEFINED" is not
+    actionable, whereas "21 of 24 are withheld by the 1H ER floor and relaxing it
+    admits none of them" is.
+
+    The Council measured exactly that on 2026-10-12 (gen `db858db2`): the ER floor
+    was the *first* binding leg on 21 of 24 assets, but every one of those 21
+    independently failed `drift_t_1h >= 2.0`, so removing the ER floor entirely
+    admitted ZERO assets. Attributing the paralysis to ER would have been wrong,
+    and acting on it would have loosened a risk gate for no gain. Always read
+    `binding_leg` together with `would_admit_if_relaxed` before proposing a
+    threshold change.
+
+    Returns a dict of the measured statistics, the binding leg, and the list of
+    single-parameter relaxations that would on their own flip the label.
+    """
+    s15 = _tf_stats(closes_15m, p.n_15m, p)
+    s1h = _tf_stats(closes_1h, p.n_1h, p)
+    s4h = _tf_stats(closes_4h, p.n_4h, p)
+    out = {
+        "er_1h": s1h["er"], "er_1h_min": p.er_1h_min_v4,
+        "drift_t_1h": s1h["drift_t"], "drift_t_1h_min": p.drift_t_1h_min,
+        "slope_t_1h": s1h["t"], "t_trend": p.t_trend,
+        "drift_t_4h": s4h["drift_t"], "drift_t_4h_veto": p.drift_t_4h_veto,
+        "drift_t_4h_confirm": p.drift_t_4h_confirm,
+        "vr_z_15m": s15["vr_z"], "vr_z_mr": p.vr_z_mr,
+        "er_4h": s4h["er"], "er_mr": p.er_mr,
+        "structural_sign": structural_sign,
+        "binding_leg": None, "would_admit_if_relaxed": [],
+    }
+    sign = structural_sign if structural_sign in (-1, 1) else None
+    out["structural_sign"] = sign
+    er1, d1, d4, t1 = s1h["er"], s1h["drift_t"], s4h["drift_t"], s1h["t"]
+    if not all(_finite(x) for x in (er1, d1, d4)):
+        out["binding_leg"] = "data_invalid:regime_history_or_statistics"
+        return out
+
+    def _trend_ok(direction: int, *, er_floor: float, d1_floor: float) -> bool:
+        """Replicates the dual-tier router for one direction under given floors."""
+        a1 = direction * d1
+        a4 = direction * d4
+        if er1 < er_floor or a4 < p.drift_t_4h_veto:
+            return False
+        if a1 >= d1_floor and a4 >= p.drift_t_4h_confirm:
+            return True                                   # STAT tier
+        st = direction * t1 if _finite(t1) else None
+        h1 = (a1 >= d1_floor) or (a1 >= 1.5 and st is not None and st >= p.t_trend)
+        return bool(h1 and sign == direction)             # STRUCT tier
+
+    for direction in (1, -1):
+        if _trend_ok(direction, er_floor=p.er_1h_min_v4, d1_floor=p.drift_t_1h_min):
+            out["binding_leg"] = None
+            return out
+
+    # Nothing certified. Walk the router's own order to name the first failure.
+    if er1 < p.er_1h_min_v4:
+        out["binding_leg"] = "er_1h_below_floor"
+    elif max(d1, -d1) < p.drift_t_1h_min and not (
+            max(d1, -d1) >= 1.5 and _finite(t1) and max(t1, -t1) >= p.t_trend):
+        out["binding_leg"] = "drift_t_1h_below_min"
+    elif sign is None:
+        out["binding_leg"] = "structural_sign_undetermined"
+    else:
+        out["binding_leg"] = "structural_sign_disagrees"
+
+    # Counterfactuals: does relaxing ONE floor, on its own, admit a regime?
+    if any(_trend_ok(d, er_floor=0.0, d1_floor=p.drift_t_1h_min) for d in (1, -1)):
+        out["would_admit_if_relaxed"].append("er_1h_floor")
+    if any(_trend_ok(d, er_floor=p.er_1h_min_v4, d1_floor=1.2) for d in (1, -1)):
+        out["would_admit_if_relaxed"].append("drift_t_1h_floor_to_1p2")
+    if (s15["vr_z"] is not None and er1 < p.er_mr
+            and (s4h["er"] if s4h["er"] is not None else 1.0) < 0.30):
+        out["would_admit_if_relaxed"].append("vr_z_mr")
+    return out
 
 
 # G-6: target-relative friction budgeting with 20 bps hard ceiling
