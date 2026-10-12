@@ -235,10 +235,13 @@ The following table documents real historical outcomes and forensic audits from 
 
 Before any order is staged or punched into MetaTrader 5, the desk conducts this rapid 7-point evaluation:
 
-1. **Spread, Friction, Entry Proximity (`<= 2.0 ATR`) & Discrete Lot-Step Sizability Check:**
-   - [ ] Is `quotes.spread_bps` <= 25.0 bps (Crypto) or <= 5.0 bps (TradFi CFDs)?
+1. **Relative Spread & Friction Approach, Entry Proximity (`<= 2.0 ATR`) & Discrete Lot-Step Sizability:**
+   - [ ] **Relative Spread & Friction Approach (Eliminating Rigid Binary Caps):**
+     * **Friction-to-Payoff Ratio:** Is `Spread_pts / Target_Distance_pts <= 15.0%` (i.e. Expected Target Move is `>= 6.5x` the broker spread)?
+     * **Friction-to-Volatility Ratio:** Is `Spread_pts / ATR_14 <= 0.18` (Spread is `<= 18%` of 15m ATR)?
+     * **Nominal Ceilings:** Absolute spread must remain `<= 35.0 bps` on high-beta Crypto (allowing SOL ~21 bps, BCH ~22 bps, AVAX ~28 bps, XRP ~29 bps when targeting >= 200–400 bps moves) and `<= 5.0 bps` on TradFi CFDs (Indices, Commodities, Forex). Untradable meme instruments (e.g. DOGE > 250 bps, DOT > 160 bps) where spread exceeds volatility remain strictly disqualified.
    - [ ] Is the proposed passive limit `Entry` within **`<= 2.0 * ATR_14`** of current MT5 mid price (both for Mandate 1 new proposals and Mandate 3 resting orders)?
-   - [ ] **Discrete Lot-Step Risk Sizability (`step_lot` Multiple in `[10.00, 14.50] USD`):** Does there exist at least one discrete `step_lot` multiple `>= min_lot` such that `risk_usd = stop_dist * contract_size * lots` lands inside `[10.00, 14.50] USD` at a `§3.B` & `§4`-compliant stop distance (e.g., `NAS100.p` at `0.05 lots` risks `10.05 USD` with `1,533.29 USD` / `10%` margin; `SP500.p` at `0.13 lots` requires `1,014.65 USD` / `10%` margin and `>= 1.5 ATR` index stop spacing)?
+   - [ ] **Discrete Lot-Step Risk Sizability (`step_lot` Multiple in `[10.00, 14.50] USD`):** Does there exist at least one discrete `step_lot` multiple `>= min_lot` such that `risk_usd = stop_dist * contract_size * lots` lands inside `[10.00, 14.50] USD` at a `§3.B` & `§4`-compliant stop distance?
    - *If NO: Discard immediately.*
 
 2. **Floor Cushion, Margin Encumbrance & Risk Budget Defense:**

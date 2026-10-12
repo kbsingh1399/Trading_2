@@ -43,7 +43,7 @@ logging.basicConfig(
 logger = logging.getLogger("TelemetryGitDaemon")
 
 BRANCH_NAME = "main"
-ARENA_BRANCH = "arena/537c1eb8-trading-2"
+ARENA_BRANCH = "arena/5c05910e-trading-2"
 CANONICAL_REMOTE = "https://github.com/kbsingh1399/Trading_2"
 SNAPSHOT_FILE = "docs/telemetry/live_snapshot_latest.json"
 INTERVAL_SECONDS = 60
@@ -274,6 +274,12 @@ def main():
 
             # Memory cleanup
             gc.collect()
+            if os.name == "nt":
+                try:
+                    import ctypes
+                    ctypes.windll.psapi.EmptyWorkingSet(ctypes.windll.kernel32.GetCurrentProcess())
+                except Exception:
+                    pass
 
             elapsed = time.time() - t_start
             sleep_time = max(5.0, INTERVAL_SECONDS - elapsed)
