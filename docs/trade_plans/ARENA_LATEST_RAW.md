@@ -1,137 +1,137 @@
-All verified. Here is the Council's response.
+Both audits complete. Writing the cycle-3 report:<tool_call><function=write_file><parameter=path>/home/user/Trading_2/docs/trade_plans/ARENA_COUNCIL_REPORT_20261012_1839Z.md</parameter><parameter=content# ARENA COUNCIL REPORT — Discrete Orderflow Verification Audit
 
-🏛️ ARENA.AI QUANTITATIVE COUNCIL — CYCLE 39B · BIDIRECTIONAL VERIFICATION
+Timestamp: 2026-10-12 18:39:24 UTC (Cycle 3) — Account: 8655576
+Generation basis: fd04513f (snapshot commit 2026-10-12 18:40:23 UTC — within 59 s of cycle clock)
+Scope: Three-Mandate Multi-Asset Discrete Orderflow, Liquidity Pool & Invariant-Friction Audit
+Runtime verdicts: All programmatic decision-gate tokens retired. Every conclusion is a computed structural, mathematical, statistical, or execution-lattice microstructure proof.
+1. Executive Summary
 
-Cycle Timestamp: 2026-10-12 11:55:12 UTC · gen 4082fd6e26d4441dae69fd43ac13cb68
-Disposition: ✅ Mistake #1 accepted in full — my error. Mistake #2 accepted in substance, three of four numeric supports corrected. SOL re-staged and passes. nearest_* is committed but not live.
+Account State: FLAT — 0 open positions, equity 4,867.02 USD = balance. Cycle 2's net-short SP500.p scalp (#18806752) is closed (+3.72 USD per the cycle-3 header). Stressed joint post-stop of the two pending orders = 4,835.95 USD — hard floor 4,775.00 USD preserved with 60.95 USD surplus.
 
-1. VERIFICATION OF THE ANTIGRAVITY AUDIT
-✅ BTC #18791527 — confirmed modified live, exactly as recommended
-JSON
-{"ticket": 18791527, "symbol": "BTCUSD.pi", "type": "BUY_LIMIT", "volume": 0.02,
- "price_open": 83150.0, "sl": 82590.0, "tp": 84300.0}
+Mandate 1 — Discrete Multi-Asset Screening: The deepest Model 1 extreme on the 24-asset grid is AVAXUSD.pi at Z = -2.92 with its spread relaxing to 29.03 bps (first time under the 35 bps crypto band). A full bracket exists on the ladder (verified 836 s whale bid at 10.163; RR 2.08 to POC), but the 5-minute CVD window is -68,137 USD with the tape still accelerating negative into the fade — the exact #18798018 falling-knife mode. ZERO qualifying trades this cycle. One conditional standby (AVAX) with a hard two-condition re-arm.
 
-Risk 11.20 · Reward 23.00 · R:R 2.0536 — matches my arithmetic to four decimals.
+Mandate 2 — Flat Confirmation: OPEN_0 — margin used 0.00, no exposure.
 
-🔴 MISTAKE #1 — FULLY CONFIRMED. This was my error.
+Mandate 3 — Live Pending Audit (two tickets, both staged 2026-10-12 18:38:16 UTC): Both tickets terminate at (C) DELETE — IMMEDIATE PURGE on falsified anchors, not on arithmetic:
 
-Measured on live telemetry:
+#18813342 SP500.p BUY LIMIT — its "199,993 USD whale bid wall" exists at 7,796.3 but with SINGLE_SAMPLE / 0.0 s observed persistence (Invariant 4 fail); its "0.40 ATR bunker buffer" is measured against the wrong edge — the SL sits 1.9 pts INSIDE the [7,790–7,800] sell-stop band (Invariant 1 categorical fail); the entry is inside the same un-swept pool (Invariant 3 fail); and "Model 1" is misclassified — |Z| = 1.74 < 2.0 while regime is BEARISH (Invariant 5 fail). The one honest number in the ticket — RR 5.17R — is an artifact of the invalid stop.
+#18813343 BTCUSD.pi BUY LIMIT — no 600,745 USD wall exists at 82,351 (nearest, 625,782–986,508 USD, all INSUFFICIENT_PERSISTENCE at 58.8 s); "Value Area Low support" is falsified (VAL = 82,797.9; entry is 1.97 ATR below VAL); "0.82 ATR buffer below the 82,200 sweep low" is a buffer-from-entry conflation (true buffer 0.19 ATR); the SL is inside the [82,100–82,200] 5.38M USD sell-stop band (Invariant 1 categorical fail); and 5m/15m CVD are -144,921 / -936,750 USD into a long (Invariant 2 fail).
 
-SOL band	min_price	max_price	mid_price	notional
-Sell-stop cluster	109.00	110.00	109.50	$8.58M
-Long cascade	109.00	110.00	109.50	$4.02M
+Deleting both keeps equity at 4,867.02 USD and capacity 0/4.
 
-My SL of 109.30 sat 0.30 USD inside that band. I subtracted 0.50 × ATR from mid_price = 109.50. The audit is exactly right.
+2. Mandate 1 — Discrete Multi-Asset Screening (Generation fd04513f)
+2.A Dynamic Friction Rule (crypto ≤ 35 bps iff target ≥ 5x spread; TradFi ≤ 5 bps)
 
-The aggravating detail, which I should state plainly: I applied the rule correctly on BTC and incorrectly on SOL, in the same response. On BTC I wrote "0.512 ATR below the cascade band's lower edge" and used min_price = 82,700. On SOL I used mid_price. That inconsistency — not the arithmetic — is the real defect. A rule applied to one asset and not the next is worse than a rule not known, because it looks like rigour.
+TradFi band (≤ 5 bps): PASS — GOLD 0.65, SP500.p 0.86, NAS100.p 0.87, US500 1.02, SILVER 2.38, USWTI 3.19, DJ30 4.32. FAIL — GER40 7.53, UK100 23.28, XAUUSD 8.48, XAGUSD 11.20.
 
-Correct: SL ≤ 109.00 − (0.50 × 0.4079) = 108.796 → SL 108.79. The audit's ≤ 108.80 is confirmed.
+Crypto band (≤ 35 bps): PASS — AVAX 29.03 (relaxed from 36.55), SOL 2.03, ETH 1.53, BTC 1.27, BCH 12.37, LTC 33.03 (relaxed from 48.16). FAIL — ADA 87.01, DOGE 247.79, DOT 173.48, LINK 66.06, NEAR 56.96.
 
-⚠️ MISTAKE #2 — accepted in substance; three of four numeric supports do not reproduce
+Remaining matrix (16 of 24 pass the friction screen; all Z values from the generated causal_indicators):
 
-Confirmed:
+Symbol	Mid	Spr bps	ATR_14	Z	Regime	dEMA20 ATR	dVWAP ATR	RSI	Verdict
+SP500.p	7,800.03	0.86	4.938	-1.74	BEARISH	-0.42	-0.28	40.5	Reject — |Z| < 2.0 (M1), slope -0.085 too weak (M2), Inv 5
+US500	7,818.36	1.02	5.020	-1.75	BEARISH	-0.41	-0.31	40.4	Reject — same class as SP500.p
+NAS100.p	30,642.91	0.87	35.97	-1.21	BEARISH	-0.22	-0.15	43.3	Reject — |Z| < 2.0; lot grid dead (min risk 35.97 USD/0.01 lot at 1.5 ATR)
+US500.c	7,822.06	12.15	5.013	-1.82	BEARISH	-0.42	-0.33	41.9	Reject — friction 12.15 > 5 bps
+DJ30	54,414.33	4.32	58.14	-0.64	BULLISH	-0.01	-0.01	50.2	Reject — |Z| < 1.0; lot grid dead (min risk 58 USD/0.01 lot)
+GER40	26,208.75	7.53	40.18	+1.40	BULLISH	+0.02	+0.14	53.3	Reject — friction 7.53 > 5 bps
+UK100	11,303.42	23.28	18.62	+1.19	BULLISH	+0.09	+0.16	53.7	Reject — friction 23.28 > 5 bps
+GOLD	4,134.77	0.65	17.19	+0.38	BEARISH	+0.04	-0.06	52.0	Reject — M2 candidate dies: verified BUY within ±3 ATR = 0 (Inv 4 fail)
+XAUUSD	4,134.76	8.48	17.65	+0.36	BEARISH	+0.02	-0.06	51.8	Reject — friction 8.48 > 5 bps
+SILVER	51.202	2.38	0.316	+0.05	BEARISH	+0.03	-0.07	53.6	Reject — flat tape
+XAGUSD	51.180	11.20	0.323	-0.09	BEARISH	+0.02	-0.08	51.6	Reject — friction 11.20 > 5 bps
+USWTI	94.174	3.19	0.343	+0.96	BULLISH	-0.02	+0.40	56.8	Reject — M2 pullback at EMA20 but verified BUY within ±3 ATR = 0 (Inv 4 fail)
+BTCUSD.pi	82,374	1.27	226.6	-1.63	BEARISH	+1.01	-0.64	51.2	Reject — M2 short candidate dies on lot grid (band bunker 82,200→83,500 forces 823 pt stop; min risk 49.28 USD/0.01 lot)
+ETHUSD.pi	2,737.8	1.53	7.876	-1.37	BEARISH	+1.24	-0.58	51.8	Reject — same lot-grid class (stop ≥ 455 pts → min risk 22.78 USD/0.01)
+SOLUSD.pi	127.31	2.03	0.471	-1.58	BEARISH	+1.14	-0.57	52.6	Reject — |Z| < 2.0; 15m +30m CVD both positive (short fade lacks Inv 2 support)
+XRPUSD.pi	1.5832	22.08	0.0070	-2.28	BEARISH	+0.39	-0.30	44.6	Reject — Model 1 extreme passes friction (target to VWAP = 23.3x spread) but lot grid dead: min_lot 1.0, stops_level 20 pts → min risk 20.00 USD > 14.50 USD cap
+AVAXUSD.pi	10.335	29.03	0.0706	-2.92	BEARISH	+2.00	-6.14	21.1	Conditional standby — Inv 2 fail this cycle (5m CVD -68,137 USD, accelerating negative). Full bracket in 2.C.
+ADAUSD.pi	0.1613	87.01	0.0013	-1.21	BEARISH	+0.59	-1.10	48.6	Reject — friction 87.01 > 35 bps
+DOGEUSD.pi	0.0633	247.79	0.0006	-1.71	BEARISH	+0.96	-2.31	44.0	Reject — friction 247.79 > 35 bps
+DOTUSD.pi	0.4442	173.48	0.0026	-1.82	BEARISH	+0.70	-1.33	46.3	Reject — friction 173.48 > 35 bps
+LINKUSD.pi	8.171	66.06	0.0455	-1.68	BEARISH	+1.04	-1.42	47.5	Reject — friction 66.06 > 35 bps
+LTCUSD.pi	53.803	33.03	0.322	-2.00	BEARISH	+1.01	-0.84	50.2	Reject — Model 1 extreme on the friction boundary (target/VWAP = 7.7x ✓) but valuation metric unavailable (portfolio_ab_metrics failed generation) so the 5x target rule is UNVERIFIED; conservative exclusion
+BCHUSD.pi	356.59	12.37	2.155	-1.71	BEARISH	+1.42	-0.45	50.8	Reject — |Z| < 2.0
+NEARUSD.pi	1.1752	56.96	0.0065	-1.56	BEARISH	+0.95	-1.73	49.7	Reject — friction 56.96 > 35 bps
+2.B Model 2 pullback candidates — invariant triage
 
-The $2.72M sell-stop band 110.00–111.00 (mid 110.50) is real, and my entry 110.80 sat inside it, not merely above it. That is a worse placement than the audit described, and the correction stands.
-basis_median = −0.12 — confirmed exactly.
+Only four assets are BULLISH (DJ30, GER40, UK100, USDJPY) and only USDJPY is at its EMA20 shelf. Three candidates reached wall-verification:
 
-Does not reproduce on current data:
+USDJPY BUY at 158.667 (dEMA20 +0.21 ATR — price at shelf 158.660): verified bid walls within ±3 ATR of the shelf = 0.00 USD (nearest verified BUY is at 156.64, 55.8 ATR below). Invariant 4 fail — the shelf has no temporal whale support. Reject.
+USWTI BUY at 94.17 (dEMA20 -0.02 ATR — price ON the shelf): verified bid walls within ±3 ATR = 0.00 USD (the entire verified book is 5.83M USD of SELL walls stacked at 94.06–94.08 — an overhead resistance shelf, not support). Invariant 4 fail. Reject.
+GOLD BUY at 4,134.8 (dEMA20 +0.04 ATR): verified bid walls within ±3 ATR = 0.00 USD (verified SELL walls 1.77M USD overhead). Invariant 4 fail. Reject.
+2.C The AVAX conditional standby (Model 1 fade, Z = -2.92)
 
-Audit claim	Measured at gen 773e626c / 4082fd6e
-Bid 110.77 / Ask 111.00 / 20.74 bps	Bid 110.66 / Ask 110.88 / 19.86 bps; mid 110.825
-5-min CVD −371,062 USD	−20,120 USD (+23,994 · −46,968 · −29,099 · −21,287 · +53,240) — the last bucket is strongly positive
-$4.96M whale bid at 110.23	$4.96M at 109.85 (MT5-adj 109.73)
-$2.54M whale bid at 110.40	$2.54M at 110.27 (MT5-adj 110.15)
-combined wall "at 110.11–110.28 on MT5"	109.73–110.15 — the two are 1.03 ATR apart, not adjacent
+The discretized bracket that survives arithmetic and friction — presented as a re-arm study, NOT a staged ticket:
 
-And a finding the audit did not surface, which changes the entry anchor. Sorted by notional with persistence:
+Entry zone: 10.163 (on the verified whale bid: 962,211 USD, persist 836.8 s — 13.9x the local per-minute tape; second verified bid 500,747 USD at 10.237, persist 774.5 s).
+Bunker walk (Invariant 1, exclusive of the outlier-free band grid): sell-stop + cascade pools below are [10.2–10.3] 83.5k, [10.1–10.2] 148.7k, [10.0–10.1] 41.7k, [9.9–10.0] 85.7k, [9.8–9.9] 75.1k, then a second shelf [9.5–9.7] 529k combined. A bunker-cleared stop must sit below 9.80 by 0.35 ATR → 9.77 (and would need re-walking below [9.5–9.6] 315k if that shelf is the governing one at re-arm).
+Lot grid: contract 100, step 0.01, stops_level 20 pts = 0.20 (satisfied). At SL 9.77: stop 0.393, lots 0.36 → risk 14.15 USD (in band 10.00–14.50).
+TP: POC 10.9886 front-run at 10.98 (Session POC is a sanctioned Model 1 magnet); reward 0.817; RR 2.08 ≥ 2.00; target 804 bps = 27.7x the 29.03 bps spread (friction rule satisfied).
+The single blocking invariant (2 — CVD absorption): 5m = -68,137 USD (last five 1m buckets: -3,858 / -57,476 / -6,288 / -5,793 / +5,278), 15m = +17,854, 30m = -54,219. The tape is accelerating negative into the fade with only one positive minute. This is the #18798018 falling-knife mode exactly.
+Re-arm conditions (all three, measured live): (i) 5m CVD non-negative across three consecutive generations while price holds 10.16–10.24; (ii) the two whale bids still SAMPLED_RECURRENCE_VERIFIED with combined notional ≥ 800k USD; (iii) SL re-walked against the [9.5–9.7] shelf at re-arm time.
+3. Mandate 2 — Flat Confirmation (Mandatory)
 
-Price	Notional	persist_s	gate_g7_eligible	MT5-adj
-109.41	$6.36M	1,693 s (28 min)	True	109.29
-109.85	$4.96M	253 s	True	109.73
-110.27	$2.54M	0 s	False	110.15
-110.30	$0.69M	0 s	False	110.18
+Confirmed OPEN_0 at generation fd04513f: open_positions = [], margin_used = 0.00, equity = balance = 4,867.02 USD. The header's SELL position (Cycle 2 ticket #18806752) is closed — realized delta +3.72 USD (net_pnl_total), balance 4,867.02 = 4,863.30 + 3.72. No open-ticket alerts; no monitoring flags.
 
-The audit anchors the corrected entry at "the 110.25–110.35 whale bid wall" — but both walls there have persist_s = 0 and fail eligibility. They are not persistent resting walls under Checklist #5. The genuinely seasoned support is $11.32M at 109.41/109.85 — inside the cascade band, and unmentioned in the audit.
+4. Mandate 3 — Live Pending Ticket Audit
 
-So Mistake #2's conclusion is right and its anchor is wrong. The corrected entry should sit above the cascade, with the persistent walls beneath it as the support stack — not on a zero-persistence print.
+Capacity: OPEN (0/4 open + 2 pending, free margin 4,867.02 USD). Both tickets staged 2026-10-12 18:38:16 UTC (0-lifetime at snapshot). Note: the accounts summary header reports "Pending: 0" while risk_account_state.json carries two broker-valued active tickets (10.08 and 11.58 USD) with margin_on_fill 1,871.06 + 2,470.53 — the two tickets below are live per the broker-valued risk block; the header count is a display lag.
 
-⚠️ The telemetry upgrade is committed but not live
+Joint stressed post-stop (both fill, both stop): 4,867.02 - 10.08 - 11.58 = 4,835.95 USD ≥ 4,795.00 ✓ floor preserved (surplus 40.95 above the stressed bound, 60.95 above the hard floor).
 
-The patch is in the generator at 6fda314:
+Ticket 1 — #18813342 — SP500.p BUY LIMIT 0.24 @ 7,796.10 / SL 7,791.90 / TP 7,817.80
 
-text
-1264:  nearest_sell_stops = sorted(sell_stop_bands, key=lambda x: abs(x["mid_price"] - hd_mid))[:10]
-1266:  sell_stop_bands = [x for x in sell_stop_bands if x["notional_usd"] <= 500_000_000]
-1306:  "nearest_sell_stop_clusters_below": nearest_sell_stops,
-1357:  nearest_long_liqs = sorted(long_liq_bands, key=lambda x: abs(x["mid_price"] - hd_mid))[:10]
+Claimed: risk 10.08 USD, "Model 1 Z -1.78", "resting directly on 199,993 USD L3 whale bid wall at 7,796.10", "SL 7,791.90 clears the 7,790.00 sweep bunker's outer edge with 0.40 ATR buffer", "TP 7,817.80 targets session VWAP 7,818.11", RR 5.17R.
 
-But the published snapshot has none of it:
+Verified arithmetic (broker-consistent): 0.24 lots x 4.20 points x 10.00 = 10.08 USD ✓; reward 21.70 x 10 x 0.24 = 52.08 USD ✓; RR = 5.17R ✓. TP 0.063 ATR below VWAP 7,818.11 ✓ (front-run verified).
 
-Check	Result
-grep -c "nearest_" on the live snapshot	0 occurrences
-Per-asset key count	23 — unchanged
-SP500 7,755 row	still $11,758.67M — the 500M filter has not run
-SP500 7,805 / 7,795 / 7,835	NOT in the published top_* lists
-GOLD 4,165	present ($0.69M) · 4,155 and 4,145 NOT present
+Discrete proofs of failure:
 
-🔴 The resident telemetry publisher has not reloaded the patched generator. Snapshots at 11:52, 11:53 and 11:55 — all published after 6fda314 — still carry the old schema and the corrupt outlier. The publisher process needs a restart. Until then Task 2 cannot be performed as specified, and I have answered it from the existing top_* lists instead.
+Invariant 4 (wall persistence) — falsified on the ticket's own anchor. The claimed wall exists but is a SINGLE_SAMPLE: BUY, 7,796.3, notional 199,990.69 USD, persist_s = 0.0, samples = 1, first seen 2026-10-12 18:39:59 UTC. Zero seconds of observed persistence cannot qualify against the ≥ 180 s persistence floor. (Ironically, stronger anchors exist 1–6 pts away — 1,040,977 USD at 7,795.3 persist 236.3 s and 1,992,347 USD at 7,789.9 persist 1,800.2 s — but the ticket is not built on those.)
+Invariant 1 (categorical) — SL inside the sweep band. The sell-stop cluster [7,790–7,800] carries 506,234 USD and the cascade band [7,790–7,800] adds 5,498 USD. SL 7,791.90 lies INSIDE the band. The claimed "0.40 ATR buffer" is measured from the band max (7,800), not the outer edge min (7,790): true buffer below min_price = 7,791.90 - 7,790.00 = +1.90 pts INSIDE — negative clearance. A compliant stop must be ≤ 7,790.00 - 0.35 x 4.938 = 7,778.28.
+Invariant 3 (un-swept pool) — entry inside the same pool. Entry 7,796.10 sits INSIDE the un-swept [7,790–7,800] 506k stop cluster with the [7,770–7,790] 813k cluster directly beneath: the sweep-through sequence fills the entry then continues into 813k of fuel before any bounce. The #18786372/#18806752 trap class — verified repeatedly this session.
+Invariant 5 / model-class — "Model 1" misclassified. |Z| = 1.74 (ticket says -1.78; causal_indicators say -1.74) < 2.0. The regime is BEARISH (15m). 1h closes 7,813.9 → 7,802.6 and 4h closes 7,835.6 → 7,800.9 — declining across both higher timeframes. Fading the intraday trend at |Z| < 2.0 has no license in the playbook (the 2.0–3.0 exhaustion exception is unavailable).
+Index stop-distance rule (playbook 4): 4.20 points = 0.85 ATR < the 1.50 ATR index minimum. The broker-legal stop is also structurally undersized.
+RR collapse under compliance: with SL at the first compliant price (7,778.28) and TP held at 7,817.80, RR falls to (7,817.80 - 7,796.10)/(7,796.10 - 7,778.28) = 1.22R < 2.00. The 5.17R headline is manufactured by parking the SL inside the bunker.
 
-2. TASK 1 — CORRECTED SOLUSD.p
+Repair class: not a modification — a different trade. Even an Inv 1/3-compliant rebuild (entry ≤ 7,778 or lower, SL ≤ 7,763.28, 0.06 lots, TP 7,817.80, RR ~2.0 at risk 12.76 USD) remains Inv 5-blocked at |Z| 1.74 in a BEARISH regime and would still fail the 1.5 ATR index-stop rule. No repair without a genuine |Z| ≥ 2.0 exhaustion print.
 
-Yes — the corrected setup passes the Playbook at ≥ 2.0R.
+Verdict: (C) DELETE — IMMEDIATE PURGE. (Weight of evidence: four independent invariant failures + one rule-class failure + RR artifact.)
 
-Governing bunker: the 109.00–110.00 band ($8.58M stop + $4.02M cascade). SL ≤ 109.00 − 0.5 × 0.4079 = 108.796 → SL 108.79.
+Ticket 2 — #18813343 — BTCUSD.pi BUY LIMIT 0.06 @ 82,351.00 / SL 82,158.00 / TP 83,250.00
 
-Entry	SL	TP	risk/unit	reward	R:R	Lots	Risk	Front-run	Verdict
-110.30 (audit anchor)	108.79	113.40	1.51	3.10	2.0530	0.07	$10.57	8.8 bps	✅ passes
-110.15 ✅	108.79	113.40	1.36	3.25	2.3897	0.08	$10.88	8.8 bps	✅ RECOMMENDED
-110.15	108.79	114.40	1.36	4.25	3.1250	0.08	$10.88	8.7 bps	✅
-109.85 (persistent wall)	108.79	113.40	1.06	3.55	3.3491	0.10	$10.60	8.8 bps	⚠️ entry inside cascade
+Claimed: risk 11.58 USD, "Model 1 Value Area Low Support Long", "resting directly on 600,745 USD L3 whale bid wall at 82,351", "SL 82,158.00 clears the 82,200 sweep bunker's outer edge with 0.82 ATR buffer", "TP 83,250 targets the VWAP magnet 83,277", RR 4.66R.
 
-Why 110.15 rather than the audit's 110.30:
+Verified arithmetic: 0.06 x 193 x 1.00 = 11.58 USD ✓; reward 899 x 0.06 = 53.94 USD ✓; RR 4.66R ✓. VWAP is 83,269.12 (ticket's 83,277 is stale by 8 pts — immaterial to the outcome).
 
-110.15 is the basis-adjusted level of the $2.54M wall (110.27 − 0.12), so it honours the audit's intent while using the corrected price.
-It sits below the 110.50 sweep mid, satisfying the codified §5.5 rule.
-It sits above the persistent $11.32M support stack ($4.96M at 109.73 MT5-adj, $6.36M at 109.29), which then acts as first support between entry and stop.
-R:R improves to 2.3897 from 2.0530 — more margin above the 2.0 floor.
-Risk $10.88 sits inside the $10.00–$14.50 band; contract_size = 100, min_lot/step_lot = 0.01, so 0.08 is discrete and valid.
+Discrete proofs of failure:
 
-Structure: entry above the cascade → $11.32M of persistent wallet bids inside it → stop 0.50 ATR below its min_price. TP 113.40 front-runs the $1.65M cluster at 113.50 by 8.8 bps, inside the playbook's 5–10 bps spec.
+Anchor falsified — "Value Area Low support" does not exist. VAL = 82,797.9. The entry 82,351 is 446.9 pts = 1.97 ATR BELOW VAL. This is not a VAL retest; it is a long into the discount void beneath value.
+Invariant 4 — the wall claim does not match the book. No 600,745 USD bid exists at 82,351. The nearest rows: 986,508 USD at 82,346; 799,620 USD at 82,352; 785,443 USD at 82,336; 625,782 USD at 82,353 — ALL carry persistence_status INSUFFICIENT_PERSISTENCE at 58.8 s. None is notional-equal to the claim; all fail the 180 s floor. The #18748507 ETHUSD "insufficient temporal persistence" failure mode — exactly.
+Invariant 1 (categorical) — SL inside the sweep band. The sell-stop cluster [82,100–82,200] carries 5,381,852 USD (cascade band 933,712 USD beneath). SL 82,158 is INSIDE it. The claimed "0.82 ATR buffer" equals 193/235 ≈ 0.82 — the TOTAL stop distance measured from entry (the Cycle 3 buffer-conflation error). True buffer below the band edge 82,200: 82,158 - 82,200 = -42 pts = -0.19 ATR — the SL is 0.19 ATR ABOVE the outer edge, inside the bunker. Compliant stop: ≤ 82,200 - 0.35 x 226.6 = 82,120.7 (and ≤ 82,020.7 at 0.50 ATR).
+Invariant 3 — entry inside the un-swept pool. Entry 82,351 is inside [82,300–82,400] (6,060,221 USD) with [82,200–82,300] (4,253,418 USD) directly beneath — 10.3M USD of un-swept sell-side fuel between entry and any stop that clears the bands.
+Invariant 2 — long into accelerating negative delta. CVD 5m = -144,921 USD, 15m = -936,750 USD (30m +484,999 — the only positive window). Sellers hold the 5m/15m anchor; staging a long here is catching the falling knife (#18798018 doctrine, which this ticket's own comment text quotes while violating).
 
-Two residual cautions, stated rather than buried:
+Repair class: the honest rebuild is a different trade class — a deep Model 1 fade nearer the verified 50.0M USD bid at 81,777 (persist 1,797.1 s) / [81,900–82,000] 9.9M USD cascade zone, with SL ≤ 81,700 - 0.35 x 226.6 = 81,620.7 (below the [81,700–81,800] 9.11M sell-stop band) and entry ≤ 81,800 to clear Invariant 3 — but that wall sits INSIDE the [81,700–81,800] band itself, so the re-arm must re-walk the bunker at fill time, and Invariant 2 requires 5m CVD absorption first. Not executable this cycle.
 
-The CVD limb of Mistake #2 no longer holds — the last five buckets net −20,120, with the most recent at +53,240. If the rule is "no long while 1m CVD is actively negative," SOL currently qualifies rather than failing. The trade is being staged on structure, not on the CVD condition that originally blocked it.
-No SOL magnet reaches the playbook's ≥ $5M threshold ($1.11M / $1.65M / $3.40M). TP 113.40 is the best available, not an ideal one.
-3. TASK 2 — SP500, NAS100, GOLD, ETH
+Verdict: (C) DELETE — IMMEDIATE PURGE. (Weight of evidence: both thesis anchors falsified — VAL mislabel + wall-notional/persistence mismatch — plus two categorical sweep-band violations and a negative-delta long.)
 
-nearest_* is unavailable, so this is answered from the published top_* lists, re-sorted by distance.
+4.C Post-Action Account State (discrete)
+Orders: 0 open, 0 pending after purge. Open tickets: 0/4.
+Equity stays 4,867.02 USD. Stressed joint post-stop 4,835.95 USD ≥ 4,795.00 ✓ (surplus 40.95).
+No partial fills, no orphaned SLs, no trigger collisions to repair.
+5. Macro Locks & Capacity (fd04513f)
+macro_blackout_active: False; next high-impact event: BoE Gov Greene Speaks, 2026-10-13 03:00 UTC (8.32 h out; execution window far clear).
+liquidity_purge_window: next 2026-10-13 02:25 UTC, runway 7.74 h (non-binding in-vacuum).
+Capacity: OPEN — 0/4 open + 2 pending (purged this cycle), free margin 4,867.02 USD.
+Feed self-check: gen 0xfdcda112d5 (fd04513f-suffixed), observability_validated True, stream_consistency True, catalog integrity bool true (heterogeneous_presence bool false — known L3-catalog heterogeneity, consistent with DJ30/GER40 empty books).
+6. Actionable Execution Summary Table
+Seq	Symbol	Side	Entry	Stop Loss	Take Profit	Lots	Risk (USD)	RR	Mandate / Verdict
+1	SP500.p (#18813342)	—	—	—	—	—	—	—	Mandate 3 — (C) DELETE — IMMEDIATE PURGE: claimed wall SINGLE_SAMPLE persist 0.0 s (Inv 4); SL + entry inside [7,790–7,800] 506k sweep band (Inv 1/3); "Model 1" at |Z| 1.74 < 2.0 in BEARISH regime (Inv 5); index stop 0.85 ATR < 1.5 ATR rule
+2	BTCUSD.pi (#18813343)	—	—	—	—	—	—	—	Mandate 3 — (C) DELETE — IMMEDIATE PURGE: "VAL support" falsified (VAL 82,797.9; entry 1.97 ATR below); claimed 600,745 wall absent, neighbors 58.8 s INSUFFICIENT (Inv 4); SL inside [82,100–82,200] 5.38M band (Inv 1); CVD 5m/15m -144.9k/-936.8k into a long (Inv 2)
+3	ALL 24 ASSETS	—	—	—	—	—	—	—	Mandate 1 — 0 qualifying; nearest miss AVAXUSD.pi Z -2.92 bracket (entry 10.163 / SL 9.77 / TP 10.98 / 0.36 lots / 14.15 USD / RR 2.08) held as CONDITIONAL STANDBY pending 5m CVD absorption across 3 generations
+4	ACCOUNT	—	—	—	—	—	—	—	Mandate 2 — FLAT (OPEN_0); after purge equity 4,867.02 USD; stressed 4,835.95 ≥ 4,795 ✓; capacity 0/4
 
-Asset	mid	Nearest SL bunker	Nearest TP magnet	Ruling
-SP500	7,816.27	sell 7,755 at −14.95 ATR (the corrupt $11.76 bn row); cascade 7,735 at −19.83 ATR	buy 7,845 $0.79M at +7.01 ATR	🔴 Stand aside. No intraday bunker or magnet. The named 7,805/7,795/7,835 are not published.
-NAS100	30,839.6	sell 30,650 $0.36M at −5.71 ATR; cascade 30,050 at −23.78 ATR	buy 30,950 $0.57M at +3.33 ATR; 31,050 $2.68M at +6.34 ATR	🔴 Stand aside — withdrawn from my Cycle 39 table. Price 30,839.6 is below an EMA200 of 30,936.2 with slope −0.037 %, failing Playbook §3A.2's trend-alignment limb.
-GOLD	4,167.95	sell 4,165 $0.69M, min_price 4,160, at −0.89 ATR ✅ a genuine intraday bunker	buy cluster +45.67 ATR; squeeze bands 4,175/4,185/4,195 all ≤ $0.02M	🔴 Stand aside — bunker without a magnet. There is nowhere to take profit.
-ETH	2,543.25	cascade 2,500–2,510, $52.18M → SL ≤ 2,500 − 4.088 = 2,495.91	buy 2,575 $3.51M (+3.88 ATR); 2,585 $10.43M (+5.11 ATR)	🔴 Stand aside — arithmetically unfixable. Entry 2,531 → risk/unit 35.09. TP 2,583 → reward 52 → R:R 1.4820. TP 2,573 → 1.1970. Both fail 2.0.
-
-ETH is the instructive one. The $52.18M cascade is a superb bunker — and that is precisely why the trade cannot be taken. A stop that must clear a $52M forced-liquidation band is 4.6 ATR wide, and no magnet within reach pays 2.0R against it. Good defence and adequate reward are mutually exclusive here.
-
-4. UPDATED ACTIONABLE LIMIT ORDER TABLE
-#	Symbol	Side	Lots	Entry	SL (bunker)	TP (magnet)	Risk	R:R	Status
-1	BTCUSD.pi	BUY LIMIT	0.02	83,150.0	82,590	84,300	$11.20	2.0536	✅ LIVE — verified in pending_orders
-2	SOLUSD.pi	BUY LIMIT	0.08	110.15	108.79	113.40	$10.88	2.3897	🆕 Corrected — cleared for staging
-—	NAS100	—	—	—	—	—	—	—	❌ Withdrawn (below falling EMA200)
-—	SP500 / GOLD / ETH	—	—	—	—	—	—	—	❌ Stand aside
-text
-Joint worst-case risk     = 11.20 + 10.88        =  $22.08
-Stressed post-stop equity = 4,885.38 − 22.08     =  $4,863.30   ✅ ≥ 4,795.00
-Cushion above hard floor  = 4,863.30 − 4,775.00  =  +$88.30     ✅ ≥ 20.00
-Capacity                  = 2 of 4 slots used    ✅
-
-Cluster note: BTC and SOL are both crypto, so these are not fully orthogonal. The joint figure above is the worst case if both stop together; at $22.08 against a $110.38 cushion it is comfortably inside tolerance, but the desk should not add a third crypto ticket without re-running this sum.
-
-5. TWO ITEMS FOR THE OPERATOR
-🔴 Restart the telemetry publisher. 6fda314 is committed and correct, but three generations published after it still lack nearest_* and still carry SP500's $11.76 bn outlier. The >500M filter and the proximity sorting are not reaching the snapshot, so the data-integrity flag I raised at Cycle 39 is still open in the live feed.
-The playbook's §5.5 rule needs one refinement. As written it bars a long "when 1m CVD is actively negative." SOL's CVD has flipped to −20,120 over five buckets with the latest at +53,240 — so the rule that blocked the trade at 11:39 does not block it at 11:55. A CVD condition measured over five 1-minute buckets is too short a window to gate on; it changed sign inside one cycle. Consider a 15- or 30-bucket window, or an explicit "net over N buckets" definition.
-
-What I ran and what came back: rebuilt .venv (workspace re-created again); read the updated Playbook §3B and §4 verbatim, confirming the min_price/max_price rule at lines 188–192 and 252 and the Cycle 39 SOL audit entry at line 214; verified the BTC modification live in pending_orders; pulled min_price/max_price for every SOL, ETH and GOLD band; sorted SOL's L3 bids by notional with persist_s and gate_g7_eligible, which is what exposed the zero-persistence walls; summed the last five cvd_delta_usd buckets; grep -c "nearest_" → 0; confirmed the generator patch at 6fda314 lines 1264–1267 / 1306–1307 / 1357–1358; and computed every R:R and lot size arithmetically. No decision-gate script was run.
-
-What I got wrong at Cycle 39, stated without qualification: I measured SOL's stop buffer from mid_price after measuring BTC's from min_price, in the same response, and I anchored SOL's entry to a shelf while letting a nearby small bid satisfy the whale-backing check instead of asking where the large walls actually sat. Both errors are now corrected in the table above, and both are the kind that a single consistent checklist pass would have caught.
+Report compiled from deterministic snapshot fd04513f. Operator Final Action Authority: Execution Tier 0 RETRY or Tier 1 ISOLATED PARALLEL SCALP brackets only, with full parameter preservation.
+</parameter></function></tool_call>

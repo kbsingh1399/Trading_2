@@ -595,8 +595,56 @@ async def clear_arena_prompt_box(ws) -> bool:
         return False
 
 
+def format_prompt_for_tiptap_html(md: str) -> str:
+    """
+    Converts plain text/markdown prompts into structured HTML nodes
+    that TipTap ProseMirror natively parses into headings, bullet lists,
+    and distinct paragraphs, preventing unformatted single-paragraph collapse.
+    """
+    lines = md.split('\n')
+    html_parts = []
+    in_list = False
+    
+    for line in lines:
+        stripped = line.strip()
+        if not stripped:
+            if in_list:
+                html_parts.append('</ul>')
+                in_list = False
+            continue
+        
+        # Heading 1, 2, 3 or PART X / MANDATE X / STEP X
+        if stripped.startswith('# '):
+            if in_list:
+                html_parts.append('</ul>')
+                in_list = False
+            html_parts.append(f'<h2><strong>{stripped[2:]}</strong></h2>')
+        elif stripped.startswith('## ') or stripped.startswith('### ') or stripped.startswith('PART ') or stripped.startswith('MANDATE ') or stripped.startswith('STEP ') or stripped.startswith('TRADING DESK'):
+            if in_list:
+                html_parts.append('</ul>')
+                in_list = False
+            title = stripped.lstrip('#').strip()
+            html_parts.append(f'<h3><strong>{title}</strong></h3>')
+        # Bullets
+        elif stripped.startswith('• ') or stripped.startswith('- ') or stripped.startswith('* '):
+            if not in_list:
+                html_parts.append('<ul>')
+                in_list = True
+            item_text = stripped[2:]
+            html_parts.append(f'<li><p>{item_text}</p></li>')
+        else:
+            if in_list:
+                html_parts.append('</ul>')
+                in_list = False
+            html_parts.append(f'<p>{stripped}</p>')
+            
+    if in_list:
+        html_parts.append('</ul>')
+    return ''.join(html_parts)
+
+
 async def post_prompt_to_arena(prompt_text: str) -> bool:
-    """Clear any existing prompt in the box (Ctrl+A then Delete), inject prompt, and hit enter."""
+    """Clear any existing prompt in the box (Ctrl+A then Delete), inject prompt with rich HTML formatting, and hit enter."""
     ws_url = await get_arena_tab_ws_url()
     if not ws_url:
         print("ERROR: No active Arena tab found in Chrome at 127.0.0.1:9222", file=sys.stderr)
@@ -608,7 +656,9 @@ async def post_prompt_to_arena(prompt_text: str) -> bool:
             await clear_arena_prompt_box(ws)
             await asyncio.sleep(0.1)
 
-            # 2. Inject the prompt into TipTap editor and update React state
+            prompt_html = format_prompt_for_tiptap_html(prompt_text)
+
+            # 2. Inject structured HTML into TipTap editor and update React state
             js_set = f"""
             (async () => {{
               const submitBtn = document.querySelector('button[aria-label="Send message"], button:has(svg.lucide-arrow-up), button:has(svg.lucide-arrow-right)');
@@ -629,6 +679,7 @@ async def post_prompt_to_arena(prompt_text: str) -> bool:
               if (!targetFiber) return {{ error: 'Target fiber not found' }};
 
               const promptText = {json.dumps(prompt_text)};
+              const promptHtml = {json.dumps(prompt_html)};
               targetFiber.memoizedProps.onChange(promptText);
 
               const el = document.querySelector('.tiptap.ProseMirror');
@@ -639,7 +690,7 @@ async def post_prompt_to_arena(prompt_text: str) -> bool:
                 p = p.parentElement;
               }}
               if (editor) {{
-                editor.commands.setContent(promptText);
+                editor.commands.setContent(promptHtml);
               }}
 
               return {{ success: true }};

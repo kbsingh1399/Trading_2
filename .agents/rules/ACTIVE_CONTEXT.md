@@ -23,7 +23,8 @@ trigger: always_on
 - **PERMANENT FEEDBACK DOCUMENTATION MANDATE (ALWAYS-ON REFERENCE)**: Every operator feedback point, microstructure lesson, and verification rule shared in chat MUST be immediately persisted into `.agents/rules/ACTIVE_CONTEXT.md` (auto-loaded on every turn) and `docs/specs/TRADE_DECISION_PLAYBOOK.md`.
 - **MANDATORY GITHUB REPOSITORY LINK IN ALL PROMPTS (STRICT OPERATOR DIRECTIVE)**: Every single prompt generated for external models (Arena.ai) or internal subagents MUST prominently include the full GitHub repository URL (`https://github.com/kbsingh1399/Trading_2`), active branch (`main` and `arena/537c1eb8-trading-2`), and direct raw URLs for `docs/telemetry/live_snapshot_latest.json`, `docs/specs/TRADE_DECISION_PLAYBOOK.md`, `docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md`, `.agents/rules/ACTIVE_CONTEXT.md`, and `.agents/memory/session_chat_history.md`.
 - **BIDIRECTIONAL GIT INTERACTION & TWO-WAY ARENA COLLABORATION MANDATE (STRICT OPERATOR DIRECTIVE)**: Both `main` (`https://github.com/kbsingh1399/Trading_2`) and `arena/537c1eb8-trading-2` (`https://github.com/kbsingh1399/Trading_2/tree/arena%2F537c1eb8-trading-2`) MUST be constantly synchronized and kept up to date on every commit and telemetry push.
-- **LEAN PROMPT & LINK-DRIVEN TELEMETRY MANDATE (ZERO RAW DATA BLOAT - STRICT OPERATOR DIRECTIVE)**: Prompts sent to Arena.ai MUST be lean, instruction-dense, and pointer-driven via direct GitHub raw URLs.
+- **FULL-PARAMETER TELEMETRY SYNTHESIS MANDATE (ZERO ARTIFICIAL CONSTRAINTS - STRICT OPERATOR DIRECTIVE)**: Prompts sent to Arena.ai or council models must NEVER artificially limit the model to narrow, dogmatic checklists. Empower the model to evaluate both Mean Reversion and Trend Following opportunities by cross-verifying ALL 12 parameters in `docs/telemetry/live_snapshot_latest.json` (MT5 Bid/Ask spreads, causal regimes, VWAP SD bands, volume profile POC/VAH/VAL, 1m/15m/30m CVD taker flow & absorption, 20-level L2 depth, L3 on-chain Ethereum whale orders `0x...`, reconstructed liquidation cascade bands, structural stop clusters, macro calendar, funding velocity, and execution specs).
+- **MANDATORY LOSING TRADE AUTOPSY & 5 ANTI-TRAP INVARIANTS IN ALL FUTURE PROMPTS (STRICT OPERATOR DIRECTIVE)**: Every future prompt generated for Arena.ai, Z.ai, or subagents MUST explicitly detail the autopsy of recent stopped-out trades (`SOLUSD.p #18806752`, `BTCUSD.pi #18798018`, `BTCUSD.pi #18786372`, `SP500.p #18749312`, `ETHUSD.pi #18748507`, `XAUUSD.pi #18744533`) and enforce the 5 Anti-Trap Invariants: (1) SL placed safely outside `[min_price, max_price]` with >= 0.35–0.50 ATR buffer; (2) Confirmed CVD delta deceleration/absorption before long entry (never catch falling knives); (3) Never place entry limits directly above un-swept opposing stop clusters; (4) Supporting whale walls must show verified persistence >= 180s; (5) Multi-timeframe trend alignment must be respected.
 - **ZERO SPURIOUS SCRATCH LITTER**: Clean up all intermediate debug scripts immediately after validation.
 
 ## 2. Active Mission & Quantitative Target
@@ -48,16 +49,18 @@ trigger: always_on
       * **Position Capacity Policy**:
         - Up to 4 concurrent tickets across orthogonal asset clusters provided total joint worst-case stopout risk unconditionally defends the 4,775.00 USD hard floor and 4,795.00 USD operating buffer (>= 20.00 USD cushion at all times).
     - Connects directly via native IPC to MetaTrader 5 Account 5064568 (Blueberry Markets).
-    - **Active Positions & Pending Orders (Live State — Cycle 44 Verified `Commit 5dcbbecd`)**:
-      * Current Status: **0 Open Positions | 0 Pending Orders (100% Cash Reserves) | Balance: 4,863.30 USD | Equity: 4,863.30 USD | Margin Used: 0.00 USD | Free Margin: 4,863.30 USD | Cron: `0,20,40 * * * *` (`task-48267`)**.
-      * Active Positions (0 — Mandate 2 Monitoring): None (`SOLUSD.p` Ticket #18795304 stopped out at `108.79 USD` for `-10.88 USD` / `-1.00R`).
-      * Active Pending Orders (0 — Mandate 3 Monitoring): None (`0` pending orders; `4 of 4` capacity slots open; monitoring `BTCUSD.pi` Model 1 Long @ `82,250` upon `5m CVD` deceleration across `>= 3` generations).
-      * G-1 Hard Floor Defense: Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Floor Cushion: **+88.30 USD realized / +88.30 USD floating**.
+    - **Active Positions & Pending Orders (Live State — 2 Confluence Limits Resting)**:
+      * Current Status: **0 Open Positions | 2 Pending Orders | Balance: 4,867.02 USD | Equity: 4,867.02 USD | Margin Used: 0.00 USD | Free Margin: 4,867.02 USD**.
+      * Active Positions (0 — Mandate 2 Monitoring): None (100% Cash Reserves). Earlier SP500.p BUY ratcheted to BE+ lock and safely banked +3.72 USD profit.
+      * Active Pending Orders (2 — Mandate 3 Monitoring):
+        1. Ticket `#18813342` (`SP500.p BUY LIMIT 0.24 @ 7,796.10 USD`, SL: `7,791.90 USD`, TP: `7,817.80 USD`, Risk: `10.08 USD`, R:R: `5.17R`, Whale: `199,993 USD` bid @ 7,796.10).
+        2. Ticket `#18813343` (`BTCUSD.pi BUY LIMIT 0.06 @ 82,351.00 USD`, SL: `82,158.00 USD`, TP: `83,250.00 USD`, Risk: `11.58 USD`, R:R: `4.66R`, Whale: `600,745 USD` bid @ 82,351.00).
+      * G-1 Hard Floor Defense: Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Floor Cushion: **+92.02 USD floating / +92.02 USD realized**.
       * Stressed Post-Loss Simulation:
-        - Total Contingent Book Risk across exposed tickets: **0.00 USD** (`100% Cash Reserves`).
-        - Stressed Worst-Case Equity: **4,863.30 USD** (Unconditionally defends floor!).
-        - Safety Cushion Above 4,775.00 USD Hard Floor: **+88.30 USD** (4.4x mandatory >= 20.00 USD buffer).
-        - Safety Cushion Above 4,795.00 USD Operating Buffer: **+68.30 USD**.
+        - Total Contingent Book Risk: **21.66 USD** (Stress buffer: 21.66 * 1.25 + 4.00 = 31.07 USD).
+        - Stressed Worst-Case Equity: **4,835.95 USD** (Unconditionally defends floor!).
+        - Safety Cushion Above 4,775.00 USD Hard Floor: **+60.95 USD** (3.0x mandatory >= 20.00 USD buffer).
+        - Safety Cushion Above 4,795.00 USD Operating Buffer: **+40.95 USD**.
       * Closed Trades Today (Realized PnL):
         - Ticket #18795304 (`SOLUSD.p` closed at **-10.88 USD loss** via Stop Loss at 108.79 USD during deepening crypto flush)
         - Ticket #18791527 (`BTCUSD.pi` closed at **-11.20 USD loss** via Stop Loss at 82,590.00 USD during capitulation flush to 82,627 USD)

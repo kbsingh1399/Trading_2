@@ -1890,10 +1890,13 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
 
     atomic_snapshot_write(out_path, payload)
 
-    print(f"[{now_utc}] Successfully exported observed-only telemetry snapshot v3 to {out_path}")
-    print(f"  Account Equity: {equity_usd:.2f} USD | Hard Floor: {hard_floor:.2f} USD | Cushion: +{cushion:.2f} USD")
-    print(f"  Active Positions: {filled_count} | Pending Orders: {pending_count} | Capacity: {capacity_status}")
-    print(f"  Assets Exported: {len(assets_matrix)} / 24 assets; Real Hyperdash L2/L3 wallets, stops & liquidation bands integrated across all supported assets.")
+    try:
+        print(f"[{now_utc}] Successfully exported observed-only telemetry snapshot v3 to {out_path}")
+        print(f"  Account Equity: {equity_usd:.2f} USD | Hard Floor: {hard_floor:.2f} USD | Cushion: +{cushion:.2f} USD")
+        print(f"  Active Positions: {filled_count} | Pending Orders: {pending_count} | Capacity: {capacity_status}")
+        print(f"  Assets Exported: {len(assets_matrix)} / 24 assets; Real Hyperdash L2/L3 wallets, stops & liquidation bands integrated across all supported assets.")
+    except Exception:
+        pass
     return payload
 
 
