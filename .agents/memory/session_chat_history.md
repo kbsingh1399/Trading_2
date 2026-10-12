@@ -54503,3 +54503,27 @@ Finally, unify live and replay ratchets before qualifying uplift; the current se
   * MT5 Equity: 4,885.38 USD | Hard Floor: 4,775.00 USD | Cushion: +110.38 USD.
   * Active Orders: 1 Pending Order (Ticket #18791527 BTC BUY LIMIT 0.02 lots @ 83,150.00 USD | SL: 82,650.00 USD | TP: 84,400.00 USD).
   * Market Scanning: SP500 (Z=-2.07 SD flush with +0.15 bid absorption), NAS100 (Z=-2.10 SD), EURUSD (Z=-2.20 SD oversold RSI 29.1), USDJPY (Z=+2.27 SD overbought RSI 79.0).
+
+
+### Turn Checkpoint — 2026-10-12 17:06 IST (Cycle 38 Harvested & Cycle 39 Pure Telemetry Prompt Dispatched)
+- **User Prompt**: "Continue where left as I just switched antigravity account and read arena.ai output of last prompt"
+- **Actions Executed**:
+  1. Relaunched all 5 mandatory persistent background daemons (`task-47950` AST Watcher, `task-47951` Telemetry Sync, `task-47952` Web2API, `task-47953` Candle Cron, `task-47954` Heretic Daemon).
+  2. Harvested the full 13,846-character Cycle 38 Arena.ai response to `docs/trade_plans/ARENA_CYCLE_38_RAW.md`.
+  3. Removed all legacy gate protocol references (`decision_gates_v3.py`, `ANTIGRAVITY_ARENA_THINKING_CHAIN_COUNCIL_PROTOCOL.md`, `ROUND2_THINKING_CHAIN_AUDIT.md`, `MAX_TARGET_DIST_ATR = 4.0`, `A2_no_tape_fail_closed`) from `Terminal/dispatch_comprehensive_wake_up_prompt.py` and injected the purified Cycle 39 Pure Telemetry & Playbook Prompt into Arena.ai.
+
+
+### Turn Checkpoint — 2026-10-12 17:20 IST (Cycle 39 Audited, BTC #18791527 Modified, SOL Mistakes Sent Back to Arena)
+- **User Prompts**:
+  - "arena.ai just output and I think output format is good may be because of prompt..."
+  - "After reading arena.ai...ensure you your logival reasoning to verfify output of arena.ai"
+  - "document all such points I share as a feedback and shold be always on refer"
+  - "if arena.ai did mistake then share it back to arena.ai right after reading it's output"
+- **Actions Executed**:
+  1. Harvested Arena.ai's Cycle 39 output (`docs/trade_plans/ARENA_CYCLE_39_RAW.md`, 13,059 chars) and independently verified every calculation and microstructure claim against `docs/telemetry/live_snapshot_latest.json` and `mt5.order_calc_profit`.
+  2. Verified and executed Arena's recommendation #1 on MT5: modified `BTCUSD.pi` Ticket `#18791527` (`BUY LIMIT 0.02 lots @ 83,150.00`) to `SL = 82,590.00` (`0.51 ATR` below `min_price = 82,700.00` of the $32.24M cascade band) and `TP = 84,300.00` (front-running the $7.04M buy-stop cluster at `84,350.00` by 5.9 bps; Risk `11.20 USD`, Reward `+23.00 USD`, `R:R = 2.05R`, Retcode `10009`).
+  3. Caught two microstructure mistakes in Arena's `SOLUSD.p` proposal (`BUY LIMIT 0.07 lots @ 110.80 | SL 109.30 | TP 114.40`):
+     - **Mistake 1 (SL Midpoint Trap)**: Subtracting `0.50 ATR` (`0.20 USD`) from `mid_price = 109.50` placed `SL = 109.30` *inside* the `109.00–110.00` liquidation band (`min_price = 109.00`).
+     - **Mistake 2 (Entry Above Un-Swept Stop Cluster & Whale Wall)**: `110.80` sits inside the live MT5 spread (`110.77/111.00`), *above* a $2.72M sell-stop cluster at `110.50` and *above* $7.50M of L3 whale bids at `110.23–110.40` while 5m CVD is `-371k USD`.
+  4. Upgraded `Terminal/Data_Factory/generate_telemetry_snapshot.py` to filter `>500M USD` outlier glitches and expose `nearest_*` intraday stop/liquidation clusters.
+  5. Documented all operator feedback permanently in `.agents/rules/ACTIVE_CONTEXT.md` (always-on) and `docs/specs/TRADE_DECISION_PLAYBOOK.md`, and dispatched `docs/prompts/ARENA_CYCLE_39B_FEEDBACK_PROMPT.txt` back to Arena.ai (`task-48112`).
