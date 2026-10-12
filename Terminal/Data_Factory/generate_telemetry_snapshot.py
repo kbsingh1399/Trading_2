@@ -196,32 +196,40 @@ def p_win_calibration(wins: int = P_WIN_WINS, n: int = P_WIN_SAMPLE_N) -> Dict[s
 
 
 def fetch_crypto_cvd_buckets(asset: str) -> Tuple[str, List[Dict[str, Any]]]:
-    """Fetch trailing 60x1min aggregated taker buy/sell volume from Binance Futures aggTrades proxy (klines 1m)."""
+    """Fetch trailing 60x1min aggregated taker buy/sell volume from Binance Spot proxy (klines 1m)."""
     bin_sym = f"{asset}USDT"
     buckets: List[Dict[str, Any]] = []
-    try:
-        url = f"https://fapi.binance.com/fapi/v1/klines?symbol={bin_sym}&interval=1m&limit=60"
-        req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-        with urllib.request.urlopen(req, timeout=5) as resp:
-            klines = json.loads(resp.read())
-        for k in klines:
-            ts_ms, o, h, l, c, vol, close_ts, quote_vol, trades, taker_buy_vol, taker_buy_quote, _ = k
-            if int(close_ts) > time.time() * 1000:
-                continue  # forming minute is not a completed CVD bucket
-            total_vol = float(quote_vol)
-            taker_buy = float(taker_buy_quote)
-            taker_sell = total_vol - taker_buy
-            cvd_delta = taker_buy - taker_sell
-            buckets.append({
-                "ts": int(ts_ms) // 1000,
-                "total_vol_usd": round(total_vol, 2),
-                "taker_buy_usd": round(taker_buy, 2),
-                "taker_sell_usd": round(taker_sell, 2),
-                "cvd_delta_usd": round(cvd_delta, 2),
-                "trades": int(trades)
-            })
-    except Exception:
-        pass
+    urls = [
+        f"https://data-api.binance.vision/api/v3/klines?symbol={bin_sym}&interval=1m&limit=60",
+        f"https://api.binance.com/api/v3/klines?symbol={bin_sym}&interval=1m&limit=60",
+        f"https://fapi.binance.com/fapi/v1/klines?symbol={bin_sym}&interval=1m&limit=60"
+    ]
+    for url in urls:
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+            with urllib.request.urlopen(req, timeout=4) as resp:
+                klines = json.loads(resp.read())
+            now_ms = time.time() * 1000
+            for k in klines:
+                close_ts = int(k[6])
+                if close_ts > now_ms:
+                    continue  # forming minute is not a completed CVD bucket
+                quote_vol = float(k[7])
+                taker_buy = float(k[10])
+                taker_sell = quote_vol - taker_buy
+                cvd_delta = taker_buy - taker_sell
+                buckets.append({
+                    "ts": int(k[0]) // 1000,
+                    "total_vol_usd": round(quote_vol, 2),
+                    "taker_buy_usd": round(taker_buy, 2),
+                    "taker_sell_usd": round(taker_sell, 2),
+                    "cvd_delta_usd": round(cvd_delta, 2),
+                    "trades": int(k[8])
+                })
+            if buckets:
+                break
+        except Exception:
+            continue
     return asset, buckets
 
 
@@ -231,42 +239,67 @@ def fetch_crypto_htf_ohlcv(asset: str) -> Tuple[str, List[Dict], List[Dict]]:
     bars_4h: List[Dict] = []
     bars_d1: List[Dict] = []
     for interval, target in [("4h", bars_4h), ("1d", bars_d1)]:
-        try:
-            url = f"https://fapi.binance.com/fapi/v1/klines?symbol={bin_sym}&interval={interval}&limit={HTF_FETCH_COUNT + 1}"
-            req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-            with urllib.request.urlopen(req, timeout=5) as resp:
-                klines = json.loads(resp.read())
-            for k in klines:
-                if int(k[6]) > time.time() * 1000:
-                    continue  # do not mix the forming 4h/D1 bar with completed bars
-                target.append({
-                    "ts": int(k[0]) // 1000,
-                    "open": float(k[1]), "high": float(k[2]),
-                    "low": float(k[3]), "close": float(k[4]),
-                    "volume_usd": round(float(k[7]), 2)
-                })
-        except Exception:
-            pass
+        urls = [
+            f"https://data-api.binance.vision/api/v3/klines?symbol={bin_sym}&interval={interval}&limit={HTF_FETCH_COUNT + 1}",
+            f"https://api.binance.com/api/v3/klines?symbol={bin_sym}&interval={interval}&limit={HTF_FETCH_COUNT + 1}",
+            f"https://fapi.binance.com/fapi/v1/klines?symbol={bin_sym}&interval={interval}&limit={HTF_FETCH_COUNT + 1}"
+        ]
+        for url in urls:
+            try:
+                req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+                with urllib.request.urlopen(req, timeout=4) as resp:
+                    klines = json.loads(resp.read())
+                now_ms = time.time() * 1000
+                for k in klines:
+                    if int(k[6]) > now_ms:
+                        continue  # do not mix forming bar
+                    target.append({
+                        "ts": int(k[0]) // 1000,
+                        "open": float(k[1]), "high": float(k[2]),
+                        "low": float(k[3]), "close": float(k[4]),
+                        "volume_usd": round(float(k[7]), 2)
+                    })
+                if target:
+                    break
+            except Exception:
+                continue
     return asset, bars_4h, bars_d1
 
 
 def fetch_crypto_funding_history(asset: str) -> Tuple[str, List[Dict]]:
-    """Fetch last 8x8h funding rate prints from Binance Futures."""
+    """Fetch last 8x8h funding rate prints from Bybit linear with fallback to Binance Futures."""
     bin_sym = f"{asset}USDT"
     rates: List[Dict] = []
+    # 1. Primary: Bybit linear funding history
     try:
-        url = f"https://fapi.binance.com/fapi/v1/fundingRate?symbol={bin_sym}&limit=8"
+        url = f"https://api.bybit.com/v5/market/funding/history?category=linear&symbol={bin_sym}&limit=8"
         req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-        with urllib.request.urlopen(req, timeout=5) as resp:
+        with urllib.request.urlopen(req, timeout=3.5) as resp:
             data = json.loads(resp.read())
-        for r in data:
-            rates.append({
-                "ts": int(r["fundingTime"]) // 1000,
-                "rate_bps": round(float(r["fundingRate"]) * 1e4, 4),
-                "mark_price": round(float(r["markPrice"]), 4) if r.get("markPrice") is not None else None
-            })
+            items = data.get("result", {}).get("list", [])
+            for r in items:
+                rates.append({
+                    "ts": int(r["fundingRateTimestamp"]) // 1000,
+                    "rate_bps": round(float(r["fundingRate"]) * 1e4, 4),
+                    "mark_price": None
+                })
     except Exception:
         pass
+    # 2. Fallback: Binance Futures
+    if not rates:
+        try:
+            url = f"https://fapi.binance.com/fapi/v1/fundingRate?symbol={bin_sym}&limit=8"
+            req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+            with urllib.request.urlopen(req, timeout=3.5) as resp:
+                data = json.loads(resp.read())
+            for r in data:
+                rates.append({
+                    "ts": int(r["fundingTime"]) // 1000,
+                    "rate_bps": round(float(r["fundingRate"]) * 1e4, 4),
+                    "mark_price": round(float(r["markPrice"]), 4) if r.get("markPrice") is not None else None
+                })
+        except Exception:
+            pass
     return asset, rates
 
 
@@ -397,38 +430,65 @@ def save_whale_state(state: Dict[str, Any], path: pathlib.Path = None) -> None:
 
 
 def fetch_crypto_depth_and_oi(asset: str) -> Tuple[str, Dict[str, Any], Dict[str, Any], Dict[str, Any]]:
-    """Fetch live top 20 L2 depth, open interest, and premium/funding data from Binance Futures public REST."""
+    """Fetch live top 20 L2 depth from Binance Vision and open interest/funding from Bybit linear."""
     bin_sym = f"{asset}USDT"
     depth_data: Dict[str, Any] = {}
     oi_data: Dict[str, Any] = {}
     premium_data: Dict[str, Any] = {}
 
     # Depth (top 20)
-    try:
-        url = f"https://fapi.binance.com/fapi/v1/depth?symbol={bin_sym}&limit=20"
-        req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-        with urllib.request.urlopen(req, timeout=3.5) as resp:
-            depth_data = json.loads(resp.read())
-    except Exception as exc:
-        depth_data = {"error": str(exc)}
+    for depth_url in [
+        f"https://data-api.binance.vision/api/v3/depth?symbol={bin_sym}&limit=20",
+        f"https://api.binance.com/api/v3/depth?symbol={bin_sym}&limit=20",
+        f"https://fapi.binance.com/fapi/v1/depth?symbol={bin_sym}&limit=20"
+    ]:
+        try:
+            req = urllib.request.Request(depth_url, headers={"User-Agent": USER_AGENT})
+            with urllib.request.urlopen(req, timeout=3.5) as resp:
+                depth_data = json.loads(resp.read())
+            if "bids" in depth_data and "asks" in depth_data:
+                break
+        except Exception as exc:
+            depth_data = {"error": str(exc)}
 
-    # Open Interest
+    # Open Interest & Premium/Funding (Bybit linear primary, Binance Futures fallback)
     try:
-        url = f"https://fapi.binance.com/fapi/v1/openInterest?symbol={bin_sym}"
-        req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+        bb_url = f"https://api.bybit.com/v5/market/tickers?category=linear&symbol={bin_sym}"
+        req = urllib.request.Request(bb_url, headers={"User-Agent": USER_AGENT})
         with urllib.request.urlopen(req, timeout=3.5) as resp:
-            oi_data = json.loads(resp.read())
+            bb_res = json.loads(resp.read())
+            bb_ticker = bb_res.get("result", {}).get("list", [{}])[0]
+            if bb_ticker:
+                oi_data = {
+                    "openInterest": float(bb_ticker.get("openInterest") or 0.0),
+                    "symbol": bin_sym
+                }
+                premium_data = {
+                    "lastFundingRate": float(bb_ticker.get("fundingRate") or 0.0),
+                    "markPrice": float(bb_ticker.get("markPrice") or 0.0),
+                    "indexPrice": float(bb_ticker.get("indexPrice") or 0.0),
+                    "symbol": bin_sym
+                }
     except Exception as exc:
-        oi_data = {"error": str(exc)}
+        pass
 
-    # Funding & Premium Index
-    try:
-        url = f"https://fapi.binance.com/fapi/v1/premiumIndex?symbol={bin_sym}"
-        req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-        with urllib.request.urlopen(req, timeout=3.5) as resp:
-            premium_data = json.loads(resp.read())
-    except Exception as exc:
-        premium_data = {"error": str(exc)}
+    if not oi_data or "openInterest" not in oi_data:
+        try:
+            url = f"https://fapi.binance.com/fapi/v1/openInterest?symbol={bin_sym}"
+            req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+            with urllib.request.urlopen(req, timeout=3.5) as resp:
+                oi_data = json.loads(resp.read())
+        except Exception as exc:
+            oi_data = {"error": str(exc)}
+
+    if not premium_data or "lastFundingRate" not in premium_data:
+        try:
+            url = f"https://fapi.binance.com/fapi/v1/premiumIndex?symbol={bin_sym}"
+            req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+            with urllib.request.urlopen(req, timeout=3.5) as resp:
+                premium_data = json.loads(resp.read())
+        except Exception as exc:
+            premium_data = {"error": str(exc)}
 
     return asset, depth_data, oi_data, premium_data
 
