@@ -54601,3 +54601,36 @@ Finally, unify live and replay ratchets before qualifying uplift; the current se
   2. **Playbook Hardening & Bilateral Ledger Sync (`docs/specs/TRADE_DECISION_PLAYBOOK.md`, `docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md`)**:
      - Codified the Cycle 44 lessons into `§3.B`, `§4`, and `§5` of `TRADE_DECISION_PLAYBOOK.md`: (a) extended `> 2.0:1` in-range overwhelm + two-sided market-maker defense to act as a **Mandate 2 exit-on-bounce / de-risk signal**; (b) refined `§5.1` discrete `step_lot` sizability (`NAS100.p` sizable at `0.05 lots`, `10%` CFD index margin verified); (c) added **Per-Asset L3 Feed Warmth** and `> 100x` single-band stop outlier filtering.
      - Synced Arena's signed Cycle 44 commit (`5dcbbecd`) to `main` and `arena/537c1eb8-trading-2`.
+
+---
+### Turn Record: 2026-10-12 22:36 UTC
+**User:** Arena.ai agent mode have latest AI models in market like fable astra etc. But we cannot directly use them. Is there any hack the orchestretor in arena.ai will directly points us to fable 5 or astra.
+**Antigravity Summary:**
+1. Provided detailed architectural analysis of Arena.ai's double-blind Agent mode vs Direct Chat mode.
+2. Delivered 4 concrete hacks to steer the Arena.ai orchestrator to Anthropic Fable 5 or OpenAI GPT-6 Astra:
+   - Hack 1: Meta-Prompt Classifier Steering using formal specification / epistemic verification headers for Fable 5, and discrete optimization / symbolic math lemmas for Astra.
+   - Hack 2: Turn-1 Fingerprint & Session Lottery Re-Roll — probing model identity on step 1, discarding baseline sessions, and pinning the container URL once Fable/Astra is allocated.
+   - Hack 3: Workspace & connector complexity priming (attaching GitHub repos + multi-file workspaces raises benchmark difficulty score).
+   - Hack 4: Direct Chat mode fallback (`arena.ai/direct`) for explicit, unblinded dropdown selection.
+3. Successfully engineered and deployed `Terminal/unified_background_supervisor.py` consolidating Gemini Web2API (Port 8081), Graphify AST watcher (PollingObserver), and Telemetry Git Sync into a single RAM-optimized Python process with Win32 `EmptyWorkingSet` memory trimming, killing redundant separate daemons.
+4. Synchronized Cycle 47 from both Arena.ai (`ARENA_LATEST_RAW.md`, 3.8 KB) and Z.ai (`ZAI_LATEST_RAW.md`, 8.8 KB), confirming mutual agreement to maintain the `NAS100.p #18810549` pending order as-is and stand aside on new entries, preserving capital floor cushion at +92.02 USD above 4,775.00 USD hard floor.
+---
+
+---
+### Turn Record: 2026-10-12 22:48 UTC
+**User:** why the hell so many python process running / I had opened a new agentic ai session. You may start GPT Astra orchestrate routing...
+**Antigravity Diagnosis & Action:**
+1. Forensic Process Breakdown of the 10 Python Processes (962.2 MB Total):
+   - Python #1 (521.7 MB): `graphify watch` had triggered a full AST re-extraction and NetworkX community clustering over all 448 code files because telemetry was modifying files every 60s.
+   - Python #2 (303.1 MB): Telemetry generator importing Pandas, PyArrow, NumPy, MT5, Hyperdash, and 24 Parquet archives.
+   - Python #3-#5 (66.5 MB, 54.4 MB, 16.4 MB): MCP servers (`code_review_graph`, `markitdown`) and git child processes.
+   - Python Install Manager (5 instances, 0.1 MB each): Windows 11 App Execution Alias (`WindowsApps\python.exe`) launching shim wrappers whenever child subprocesses were invoked via generic `python`.
+2. Resolution Applied:
+   - Permanently disabled continuous `graphify watch` in background to prevent redundant 500 MB AST rebuild loops on telemetry file touches.
+   - Pinned Python execution directly to `sys.executable` to bypass WindowsApps shims.
+3. GPT Astra Orchestration Routing:
+   - Generated and injected specialized frontier mathematical optimization & combinatorial microstructure prompt into new Arena agent tab (`arena.ai/agent/`).
+   - Arena allocated brand new agent session: `https://arena.ai/agent/01a1311e-fda5-7fa9-9b2b-a0f35c05910e` on branch `arena/5c05910e-trading-2`.
+   - Agent is actively exploring repository and running bash analysis.
+   - Reactive watcher `Terminal/arena_completion_daemon.py --wait` (`task-49215`) armed to wake Antigravity the exact moment Arena finishes.
+---
