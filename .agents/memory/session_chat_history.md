@@ -54259,3 +54259,27 @@ Finally, unify live and replay ratchets before qualifying uplift; the current se
   * ETH: Certified `TREND_UP` with 1H drift t-stat +1.597 (> 1.50) and sign +1. Blocked by broker spread friction (gamma = 0.372 R > 0.15 R).
   * BTC: Spot 83,900.5 USD (+1.0 SD from VWAP 83,742.79 USD, above 200 EMA 83,233.88 USD). 1H drift t-stat increased to +1.358 (only 0.142 below 1.50). Friction gamma pristine at 0.0692 R.
   * Gate Strictness Diagnostic: Surfaced exact sensitivity bottlenecks preventing trade dispatch (1.50 1H drift floor in consolidation shelves, 0.00 ATR sign zero-tolerance on VWAP, 0.618 retrace ceiling).
+
+---
+
+### Turn Checkpoint: 2026-10-12 06:55 UTC (Cycle 31 Briefing & Injection)
+- **Account State (Blueberry Markets MT5 #5064568)**:
+  * Balance: 4,896.55 USD | Equity: 4,896.55 USD | Free Margin: 4,896.55 USD | Margin: 0.00 USD (100% Cash reserves).
+  * G-1 Hard Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD.
+  * Live Floor Cushion: +121.55 USD (+101.55 USD above buffer; 6.08x mandatory 20.00 USD minimum).
+  * Open Positions: 0 | Resting Orders: 0 | Capacity: 0/4 used (4 slots open).
+  * Total Contingent Book Risk: 0.00 USD (complete capital immunity intact).
+- **Cycle 31 Briefing Formulated & Dispatched**:
+  * Formulated lean prompt [`docs/prompts/ARENA_CYCLE_31_PROMPT.txt`](file:///c:/Users/SIGMA/Documents/Trading_2/docs/prompts/ARENA_CYCLE_31_PROMPT.txt) incorporating latest snapshot `163cb1b662d04112b78f76dfa92c4168` (06:50:16 UTC).
+  * Committed as `bc39e152` and synchronized across `origin/main` and `origin/arena/537c1eb8-trading-2`.
+- **Live Telemetry & Market Developments**:
+  * `session_bars = 27`: Gate B1 permanently retired.
+  * `ETH` Certified `TREND_UP`: 1H drift t-stat reached +1.597 (> 1.50 STRUCT floor) with `structural_sign = +1`, Z = +1.53 SD. Friction gamma = 0.3505 R (spread 3.10 USD / 12.1 bps).
+  * `BTC` Approaching `TREND_UP`: Spot at 83,920.5 USD (+1.12 SD above Session VWAP 83,746.09 USD and 200 EMA 83,240.25 USD). 1H drift t-stat climbed to +1.358 (only 0.142 below 1.50). Friction gamma = 0.0682 R (pristine). 316 L3 walls on book. Overhead buy stops at 84,950 USD ($8.26M) and 85,050 USD ($7.59M).
+  * `SP500`: 15m variance ratio z-score hit -1.634, certifying `MEAN_REVERT`.
+- **CDP Injection & Verification**:
+  * Injected prompt via `Terminal.arena_bridge` into Arena.ai editor; verified `hasStopBtn: True` (actively generating).
+  * Scratch script `scratch/inject_c31.py` purged immediately after execution.
+- **Sleep Protocol Armed**:
+  * 9-minute sleep timer (`DurationSeconds=540`, `task-46403`, `TimerCondition="never"`) armed.
+  * Wake-up scheduled for ~07:04 UTC (12:34 IST) to harvest the Council Report, evaluate gates, and execute high-confluence limit orders into MT5.
