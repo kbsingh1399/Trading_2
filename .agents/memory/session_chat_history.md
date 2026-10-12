@@ -54491,3 +54491,15 @@ Finally, unify live and replay ratchets before qualifying uplift; the current se
   * Bug Fixed in `Terminal/dispatch_comprehensive_wake_up_prompt.py`: Resolved `TradeOrder` volume (`volume_current`) and price attribute access bugs so live pending orders and running positions are automatically queried and rendered.
   * Prompt Structure: Re-architected to instruct Arena.ai to directly review `docs/telemetry/live_snapshot_latest.json` for candidates and provided full live MT5 account details, running trades, and resting orders.
   * All 99 unit tests in `Test_Stage_Trade_Plan.py` and `Test_Regime_Attribution_And_Upgrades.py` passing green.
+
+## Turn Checkpoint: 2026-10-12 10:44 UTC (Living Trade Decision Playbook Created & Consolidated Multi-Parameter Coincidence Shift)
+- Operator Mandate: Transition from rigid binary gate blocking to multi-parameter coincidence analysis reviewing docs/telemetry/live_snapshot_latest.json line by line. Establish living checklist document detailing parameter interactions (psychological levels, liquidation bands, stop clusters, L2/L3 whale walls, CVD absorption) for Entry, SL, and TP construction.
+- Document Shipped: docs/specs/TRADE_DECISION_PLAYBOOK.md committed and synchronized to both main and rena/537c1eb8-trading-2 (Commit: d8651636).
+- Parameter Coincidence Architecture:
+  * Entry: Formed where structural shelves (20/50/200 EMA, VAL/VAH) coincide with persistent L2/L3 resting whale walls and CVD absorption.
+  * Stop Loss (Liquidity Bunker): Placed safely behind major reconstructed liquidation cascades and sell-stop clusters with ATR buffer, eliminating the retail front-running sweep trap (Ticket #18785248 lesson).
+  * Take Profit (Liquidity Magnet): Targeted directly into overhead short-squeeze bands and buy-stop clusters, front-running psychological round numbers.
+- Live Account & Market Census:
+  * MT5 Equity: 4,885.38 USD | Hard Floor: 4,775.00 USD | Cushion: +110.38 USD.
+  * Active Orders: 1 Pending Order (Ticket #18791527 BTC BUY LIMIT 0.02 lots @ 83,150.00 USD | SL: 82,650.00 USD | TP: 84,400.00 USD).
+  * Market Scanning: SP500 (Z=-2.07 SD flush with +0.15 bid absorption), NAS100 (Z=-2.10 SD), EURUSD (Z=-2.20 SD oversold RSI 29.1), USDJPY (Z=+2.27 SD overbought RSI 79.0).
