@@ -247,7 +247,7 @@ Before any order is staged or punched into MetaTrader 5, the desk conducts this 
 2. **Floor Cushion, Margin Encumbrance & Risk Budget Defense:**
    - [ ] Is `risk.floor_cushion_usd` >= $20.00 USD?
    - [ ] Does `risk.stressed_equity_usd` remain >= $4,795.00 USD after this order?
-   - [ ] Is single-trade risk verified via `mt5.order_calc_profit` strictly between $10.00 and $14.50 USD (0.20% - 0.29%), with both Risk and Reward reported in lot-scaled USD alongside `mt5.order_calc_margin`?
+   - [ ] Is single-trade risk verified via `mt5.order_calc_profit` within the adaptive envelope of **$7.50 to $14.50 USD** (0.15% - 0.29% equity), allowing high-conviction 0.01 lot trend setups ($8.50-$9.50) without rigid floor disqualification, with both Risk and Reward reported in lot-scaled USD alongside `mt5.order_calc_margin`?
    - *If NO: Reject order to defend capital.*
 
 3. **Macro Catalyst Runway:**
@@ -255,9 +255,13 @@ Before any order is staged or punched into MetaTrader 5, the desk conducts this 
    - [ ] Is `macro_calendar.runway_hours_to_blackout` >= 2.0 hours?
    - *If NO: Stand aside until catalyst passes.*
 
-4. **Regime & Strategic Setup Identification:**
-   - [ ] Is setup **Model 1** (Extreme Mean Reversion, `|Z| >= 2.0 SD`) or **Model 2** (Trend Pullback, `|Z| < 2.0 SD` with price & 200 EMA slope aligned)?
-   - [ ] Is there structural alignment (200 EMA slope, Session VWAP location, or Value Area boundary)?
+4. **Regime & Higher-Timeframe (HTF) Trend Hierarchy Gate (Strict Invariant):**
+   - [ ] **HTF Alignment Check (1H & 4H OHLCV + 20/50/200 EMAs):**
+     * **Bearish HTF Regime (Price < EMA20 < EMA50 on 1H/4H, declining closes):** **Model 1 Dip-Buying Longs are FORBIDDEN.** Do NOT catch falling knives even if `|Z| >= 2.0 SD` or RSI < 30. All priority is locked onto **Model 2 Trend Pullback SHORTS**.
+     * **Bullish HTF Regime (Price > EMA20 > EMA50 on 1H/4H, rising closes):** **Model 1 Top-Fading Shorts are FORBIDDEN.** Do NOT short into strong buying momentum. All priority is locked onto **Model 2 Trend Pullback LONGS**.
+     * **Range-Bound / Rotational Regime (Flat EMAs, oscillating VWAP):** Both Model 1 Mean Reversion (|Z| >= 2.0 SD) and Value Area Boundary Reversals (buying VAL, shorting VAH) are active.
+   - [ ] **Model 2 Pullback Short Qualification:** For Bearish regimes, wait for an intraday relief rally into the EMA20/EMA50/VAH shelf backed by resting **L2/L3 Ask Whale Walls** overhead to defend the Stop Loss.
+   - [ ] **Broker Ticker Mapping:** Remember that Avalanche is mapped to `AVXUSD.p` on Blueberry Markets MT5 (contract size 100.0, volume min 0.01).
 
 5. **Per-Asset L3 Whale Warmth, `(address, size)` Continuity & 15m/30m CVD Alignment:**
    - [ ] **Per-Asset Feed Warmth:** Verify that the target asset's own `whale_walls_l3` feed is warm across consecutive generations (since L3 snapshots can drop out per-asset even when the global 24-asset total is `> 50`).
