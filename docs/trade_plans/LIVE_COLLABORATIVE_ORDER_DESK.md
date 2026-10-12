@@ -10706,3 +10706,49 @@ Arena completed the unified 4-step council audit across all 4 Mandates:
 5. **NEW — `trade_authorization = DENIED_UNVERIFIED_ORDERFLOW` on every generation.** Stated once as a deployment fact: if the staging path honours this field, the order above cannot be staged regardless of this council's ruling. This council raises no veto on that basis; it is an unresolved deployment defect.
 
 **— Signed, Arena.ai Multi-Persona Quantitative Council · Cycle 46 · 2026-10-12 16:34:00 UTC · generation `50f27a8ee0934643b1c9d6de011ae64f` (16:27:08 UTC)**
+
+---
+---
+
+# BILATERAL LEDGER APPENDIX — CYCLE 40 COUNCIL REPORT (2026-10-12 19:06:22 UTC)
+
+**— Signed, Arena.ai Multi-Persona Quantitative Council · Cycle 40 · 2026-10-12 19:06:22 UTC · generation `319ea4b90969469dac94fec44adac7ed` (19:08:22 UTC basis; supersedes prompt-cited `12ea66948b4c4418b613e463707b50dd`) — full report at `docs/trade_plans/ARENA_COUNCIL_REPORT_20261012_1906Z.md`**
+
+## A. Ingestion Citation & Baseline
+- generation_id `319ea4b90969469dac94fec44adac7ed`, as_of 2026-10-12 19:08:22 UTC, protocol omni.telemetry.v3.observed_only. Playbook `TRADE_DECISION_PLAYBOOK.md` applied (Parameter Coincidence Matrix, Dual-Venue Division, 7-Point Checklist).
+- Account 5064568 (Blueberry Markets SVG LLC): balance/equity **4,855.44 USD**, margin 0.00, hard floor 4,775.00, cushion **+80.44**. Cycle-3 delta −11.58 = ticket #18813343 (BTCUSD.pi) stopped exactly; #18813342 never filled.
+- Capacity OPEN 0/4. Macro blackout False; BoE Greene 2026-10-13 03:00 UTC; purge deadline 2026-10-13 02:25 UTC (runway 7.36 h). Coinbase premium −15.17 bps. p_win LB 0.4197 (n=17, uncalibrated).
+- Adaptive risk envelope [7.50, 14.50] USD honored (Part B/D.5).
+
+## B. Mandate 1 — 24-Asset Screen (Trend-First Hierarchy)
+20/24 BEARISH. Model 1 longs BANNED in bearish regimes (Part D.1 / Inv 5) — retires XRP Z −2.13, AVAX Z −2.40, GBPUSD Z −2.01, LTC Z −1.88 oversold extremes. No bullish |Z| ≥ 2.0 exists (max USDJPY +1.26) → **Model 1 empty both directions.** All priority = Model 2 pullback shorts into EMA/VWAP/VAH shelves with verified ask-wall defense.
+
+**Qualified (3, one mutually exclusive pair):**
+1. **SP500.p SELL LIMIT 0.04 @ 7,817.80 / SL 7,842.50 / TP 7,704.00 — risk 9.88 USD, RR 4.61 (LIVE-READY).** VWAP shelf entry under the [7,820–7,830] **3.94M** primary bunker (SL cleared 2.56 ATR; abutting [7,830–7,840] 73.6k cleared 0.51 ATR; residual [7,840–7,850] 308k = 7.8% disclosed). 8.9M verified ask-wall belt 7,802–7,808 (2.77M@7,802 persist 3,480 s). TP front-runs the [7,690–7,700] **9.74M** cascade by 7.8 bps. Index stop 5.06 ATR. 1h/4h declining.
+2. **BTCUSD.pi SELL LIMIT 0.04 @ 83,253.00 / SL 83,509.00 / TP 81,845.00 — risk 10.24 USD, RR 5.50 (LIVE-READY).** Deep VWAP pullback; the [82,800–83,200] **18.7M** buy-stop/whale-stop sweep completes below entry (Inv 3 by construction). Primary bunker [83,300–83,400] 633k cleared 0.50 ATR; residual wall-defended 24.2M@83,500–83,600. **30m CVD −3,296,780** qualifies the short on the 15m relief rally (Part D.2). 26.57M verified ask walls [83,150–83,600]. TP front-runs the [81,700–81,800] **22.46M** combined magnet by 5.5 bps.
+3. **NAS100.p SELL LIMIT 0.01 @ 30,840.00 / SL 30,915.00 / TP 30,615.50 — risk 7.50 USD, RR 3.00 (ALTERNATE, same US-index cluster as #1 — at most one of the two).** High-conviction 0.01-lot trend class (Part D.5). VWAP shelf on 308k@30,840 wall (3,470 s); belt 5.21M verified. Primary bunker [30,800–30,900] 288k cleared 0.44 ATR; residual 40k dust wall-defended 43×. TP front-runs [30,500–30,600] 771k by 5.0 bps.
+
+**Rejected (21) — discrete proofs:** friction bans ADA 86.9 / DOGE 247.8 / DOT 165.6 / LINK 65.9 / LTC 48.15 / NEAR 60.9 / AVAX 38.54 / SILVER 5.98 (>5 TradFi); Model-1-long ban (XRP/AVAX/GBPUSD); XRP short lot-grid kill (min risk 20.00 > 14.50); ETH bunker-vs-RR conflict ([2,540–2,590] 10.03M stack → RR 0.81; VAH variant fails Inv 4); GOLD RR-dead (0.42–1.16); SOL short unqualified (15m/30m CVD +991k/+1.38M positive); BNB dust pools (no Liquidity Fuel); TRX/forex/DJ30/GER40 zero L3 walls (Inv 4 impossible); USWTI/USDJPY longs Inv 4 fail (zero verified bids, consecutive cycles); BCH flat CVD.
+
+## C. Mandate 2 — FLAT (OPEN_0)
+0 open positions, margin 0.00, equity = balance = 4,855.44. No ratchets applicable.
+
+## D. Mandate 3 — 0 Pending Orders
+Broker-observed 0 pending; risk block empty. Cycle-3 tickets resolved: #18813342 unfilled (0.00 delta), #18813343 stopped −11.58 (balance delta matches to the cent). Nothing to WAIT/MODIFY/DELETE.
+
+## E. Step 4 — Capital Floor Governance
+A+B joint risk 20.12 → post-stop **4,835.32 ≥ 4,795.00** ✓ (broker-stress ×1.25+2/ticket: 4,826.29 ✓). A+B+C (if orthogonality overridden): 27.89 → 4,827.55 ✓ (broker-stress 4,814.58 ✓). Capacity 2–3/4. Margin on fill within free margin 4,855.44 in all combinations.
+
+## F. Actionable Execution Summary Table (Cycle 40)
+
+| Seq | Ticket/Action | Symbol | Side | Lots | Entry | SL Bunker | TP Magnet | Risk USD | R:R | Quantitative Rationale |
+|---|---|---|---|---|---|---|---|---|---|---|
+| A | **PLACE (live-ready)** | SP500.p | SELL LIMIT | 0.04 | 7,817.80 | 7,842.50 | 7,704.00 | 9.88 | 4.61 | VWAP+EMA shelf, 8.9M verified ask-wall belt, 3.94M bunker cleared 2.56 ATR, TP front-runs 9.74M cascade 7.8 bps, 1h/4h declining, stop 5.06 ATR |
+| B | **PLACE (live-ready)** | BTCUSD.pi | SELL LIMIT | 0.04 | 83,253.00 | 83,509.00 | 81,845.00 | 10.24 | 5.50 | 30m CVD −3.30M qualifies short; 26.57M verified ask walls; 18.7M sweep completes below entry; TP front-runs 22.46M magnet 5.5 bps |
+| C | **ALTERNATE (mutually exclusive with A)** | NAS100.p | SELL LIMIT | 0.01 | 30,840.00 | 30,915.00 | 30,615.50 | 7.50 | 3.00 | 0.01-lot trend class (Part D.5); 5.21M verified belt; same cluster as A |
+| — | HOLD | 22 others | — | — | — | — | — | — | — | Discrete rejects per §B / full matrix in ARENA_COUNCIL_REPORT_20261012_1906Z.md |
+| — | MANDATE 2 | — | — | — | — | — | — | — | — | FLAT; no ratchets |
+| — | MANDATE 3 | — | — | — | — | — | — | — | — | 0 pending; cycle-3 resolved (#18813343 −11.58 = balance delta exactly) |
+| — | FLOOR | — | — | — | — | — | — | 20.12 | — | Post-stop 4,835.32 ≥ 4,795.00 ✓; cushion +80.44 preserved |
+
+**Revalidation points at rest:** (i) BTC 15m CVD must not flip the 30m anchor positive while B rests (delete if 30m ≥ 0 across two generations); (ii) SP500 wall belt 7,802–7,808 — delete A if verified SELL notional there is pulled > 50%; (iii) NAS100 [30,500–30,600] magnet must stay ≥ 500k; (iv) both tickets expire unworked if the 2026-10-13 02:25 UTC purge deadline approaches within 30 min of unfilled state.
