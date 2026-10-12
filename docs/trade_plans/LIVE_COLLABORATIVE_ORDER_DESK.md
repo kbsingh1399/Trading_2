@@ -10752,3 +10752,43 @@ A+B joint risk 20.12 → post-stop **4,835.32 ≥ 4,795.00** ✓ (broker-stress 
 | — | FLOOR | — | — | — | — | — | — | 20.12 | — | Post-stop 4,835.32 ≥ 4,795.00 ✓; cushion +80.44 preserved |
 
 **Revalidation points at rest:** (i) BTC 15m CVD must not flip the 30m anchor positive while B rests (delete if 30m ≥ 0 across two generations); (ii) SP500 wall belt 7,802–7,808 — delete A if verified SELL notional there is pulled > 50%; (iii) NAS100 [30,500–30,600] magnet must stay ≥ 500k; (iv) both tickets expire unworked if the 2026-10-13 02:25 UTC purge deadline approaches within 30 min of unfilled state.
+
+---
+---
+
+# BILATERAL LEDGER APPENDIX — CYCLE 41 COUNCIL REPORT (2026-10-12 23:35:07 UTC)
+
+**— Signed, Arena.ai Multi-Persona Quantitative Council · Cycle 41 · 2026-10-12 23:35:07 UTC · generation `1ad899178a8b4f099ff46a01c407b2b9` (23:38:05 UTC basis; supersedes prompt-cited `29e4ee79`) — full report at `docs/trade_plans/ARENA_COUNCIL_REPORT_20261012_2335Z.md`**
+
+## A. Ingestion Citation & Baseline
+- generation_id `1ad899178a8b4f099ff46a01c407b2b9`, as_of 2026-10-12 23:38:05 UTC, observed-only protocol. Playbook Parameter Coincidence Matrix + Dual-Venue Division + 7-Point Checklist applied.
+- Account 5064568: balance/equity **4,880.27 USD**, margin 0.00, cushion **+105.27**. Tonight's banked wins verified in the delta (4,855.44 → 4,880.27 = +24.83 net): **#18813767** BTCUSD.pi SELL 0.02 @ 82,650 → 81,845.00 full TP **+16.10** (ran the Cycle-40 magnet level); **#18813768** SOLUSD.p SELL 0.14 @ 108.00 → 107.32 Phase-1 lock **+9.52**.
+- Capacity OPEN 1/4 (1 pending). Macro: BoE Greene 2026-10-13 03:00 UTC; **liquidity purge 2026-10-13 02:25 UTC (runway 2.87 h — binding)**. p_win LB 0.4197 (n=17).
+
+## B. Mandate 1 — 24-Asset Screen (Trend-First)
+20 BEARISH / 2 RANGE_BOUND / 4 BULLISH. Deepened cascade (ETH Z −3.11, BNB −2.78, NEAR −2.52). Every |Z| ≥ 2.0 extreme sits in BEARISH → **Model 1 longs BANNED**; no bullish extremes → **Model 1 empty**. One qualifying Model 2 pullback short:
+
+**TICKET A — NAS100.p SELL LIMIT 0.01 @ 30,840.0 / SL 30,915.0 / TP 30,618.0 — risk 7.50 USD, RR 2.96 (LIVE-READY).** Entry on the 308,400 USD wall (persist **19,653 s**) in the VWAP shelf belt (30,750–30,950 = 6.6M+ verified). SL 0.58 ATR outside [30,800–30,900] 253k primary bunker; 90k whisker residual wall-defended **23×** (2.09M @ 30,900–30,950). TP front-runs [30,500–30,600] 801k magnet by 7.0 bps. 4h declining; index stop 2.90 ATR; friction 0.40 bps; Part D.5 0.01-lot trend class. Fill-likelihood flagged: 9.3 ATR deep pullback — armed overnight, re-validate at purge.
+
+**Discrete rejects:** BTC short — bunker walk returns RR 1.32–1.45 at every compliant construction (primary [82,700–82,800] 1.27M vs nearest magnet [81,700–81,800] 27.3M); ETH short — RR 0.60 (12M stack above shelf) + **zero verified walls [2,520–2,600]** Inv 4 fail despite maximal short-CVD (−3.3M/−4.7M/−3.2M); SOL — CVD positive 15m/30m (covering); BNB/TRX — dust pools + TRX lot-grid kill (min risk 20.00); SP500 — RANGE_BOUND (no trend); friction ×7 (ADA 90.0 / DOGE 255.6 / DOT 169.5 / LINK 68.0 / LTC 49.1 / NEAR 67.6 / SILVER 5.96); Inv-4 impossibilities (USWTI/USDJPY/DJ30/GER40/forex/BCH zero verified bids); XRP lot grid.
+
+## C. Mandate 2 — FLAT (OPEN_0)
+0 open, margin 0.00, equity 4,880.27. Winners fully banked; no ratchets.
+
+## D. Mandate 3 — #18814015 SP500.p SELL LIMIT 0.04 @ 7,817.80 / 7,842.50 / 7,704.00 → **(C) DELETE — CANCEL IMMEDIATELY**
+Two explicit operator-criterion triggers: (1) **price drifted 4.33 ATR > 2.0** (entry distance; ATR compressed 4.879→3.692, purge in 2.87 h); (2) **regime invalidated** — BEARISH → RANGE_BOUND with 1h closes rising 7,798→7,809 (a fill now = upward range breakout through POC 7,829.7/VAH 7,835.8, not a bearish relief rally). Supporting: wall belt rebuilt young (183–246 s, −31% notional); SL residual [7,840–7,850] grew to 821k (20% of bunker). Structure that survived — VWAP shelf 7,817.0, bunker [7,820–7,830] 4.05M, magnet [7,690–7,700] 9.74M — documented for re-arm when: regime BEARISH + VWAP ≥ 7,810 + bunker ≥ 3.0M + belt ≥ 5.0M (≥ 2 walls ≥ 1,000 s). (B) modification rejected: re-anchoring ≤ 2 ATR abandons the VWAP coincidence and sells below value in a range; the VAH range-short variant returns honest RR 1.22 — a different trade.
+
+## E. Step 4 — Capital Floor Governance
+Post-swap: 1 ticket (NAS100 7.50 USD) → post-stop **4,872.77 ≥ 4,795.00** ✓ (broker-stress 4,868.89 ✓). Capacity 1/4. Margin on fill ≈ 3,084 within free 4,880.27. Purge re-validation mandatory at 02:25 UTC.
+
+## F. Actionable Execution Summary Table (Cycle 41)
+
+| Seq | Ticket/Action | Symbol | Side | Lots | Entry | SL Bunker | TP Magnet | Risk USD | R:R | Quantitative Rationale |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | **(C) DELETE — CANCEL** | SP500.p (#18814015) | — | — | — | — | — | — | — | Drift 4.33 ATR > 2.0 + regime BEARISH→RANGE_BOUND (thesis invalidated); purge 2.87 h; belt rebuilt young (−31%, 183–246 s) |
+| 2 | **PLACE (live-ready overnight)** | NAS100.p | SELL LIMIT | 0.01 | 30,840.0 | 30,915.0 | 30,618.0 | 7.50 | 2.96 | 19,653-s wall entry in VWAP belt 6.6M; SL 0.58 ATR outside 253k primary (90k whisker 23× wall-defended); TP front-runs 801k magnet 7.0 bps; 4h declining; stop 2.90 ATR |
+| 3 | HOLD | 23 others | — | — | — | — | — | — | — | Discrete rejects §B (BTC RR 1.32–1.45; ETH RR 0.60 + Inv 4; SOL CVD; BNB/TRX structure; SP500 regime; friction ×7; Inv-4 kills ×6) |
+| 4 | MANDATE 2 | — | — | — | — | — | — | — | — | FLAT; wins banked (#18813767 +16.10, #18813768 +9.52) |
+| 5 | FLOOR | — | — | — | — | — | — | 7.50 | — | Post-stop 4,872.77 ≥ 4,795.00 ✓; cushion +105.27 preserved |
+
+**Revalidation triggers for Ticket 2 at/after the 2026-10-13 02:25 UTC purge:** (i) [30,500–30,600] magnet ≥ 500k; (ii) SELL walls 30,840–30,930 retain ≥ 1.0M verified with ≥ 1 wall ≥ 1,000 s; (iii) regime BEARISH; (iv) primary bunker [30,800–30,900] ≥ 150k. Any failure → cancel and re-arm at the next open.
