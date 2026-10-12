@@ -51,7 +51,14 @@ def build_astra_orchestration_prompt() -> str:
     prompt = f"""[BENCHMARK EVALUATION: FRONTIER DISCRETE OPTIMIZATION, COMBINATORIAL MICROSTRUCTURE & MARKOV ARBITRAGE]
 ROUTING TARGET: ASTRA-MAX REASONING CLASS (GPT-6 ASTRA / TIER-1 FORMAL MATHEMATICAL ENGINE)
 
-CANONICAL WORKSPACE: https://github.com/kbsingh1399/Trading_2 (branch: main)
+CANONICAL WORKSPACE: https://github.com/kbsingh1399/Trading_2
+ACTIVE BRANCHES: main (production) and arena/5c05910e-trading-2 (container active sync)
+DIRECT REPO LINKS:
+- Telemetry: https://raw.githubusercontent.com/kbsingh1399/Trading_2/arena/5c05910e-trading-2/docs/telemetry/live_snapshot_latest.json
+- Playbook: https://raw.githubusercontent.com/kbsingh1399/Trading_2/arena/5c05910e-trading-2/docs/specs/TRADE_DECISION_PLAYBOOK.md
+- Desk State: https://raw.githubusercontent.com/kbsingh1399/Trading_2/arena/5c05910e-trading-2/docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md
+- Active Context: https://raw.githubusercontent.com/kbsingh1399/Trading_2/arena/5c05910e-trading-2/.agents/rules/ACTIVE_CONTEXT.md
+
 LOCAL TIME / SNAPSHOT AS-OF: {now_utc} (Snapshot Gen: {snap_gen})
 ACCOUNT CONTEXT: Balance: {equity:.2f} USD | Equity: {equity:.2f} USD | Hard Floor: 4,775.00 USD | Cushion: +{cushion:.2f} USD | Open: 0 | Pending: {pending_count}
 
@@ -88,13 +95,14 @@ MANDATE 2: AUDIT ACTIVE / RUNNING TRADES (0 OPEN POSITIONS)
 - Current open positions on MT5: 0 (100% Cash Reserves). Earlier SP500.p BUY was ratcheted to BE+ lock and safely closed at +3.72 USD profit. Confirm desk status.
 
 MANDATE 3: ADVERSARIAL AUDIT OF UNFILLED PENDING LIMIT ORDER
-- Ticket: #18810549
+- Ticket: #18812244
 - Symbol: NAS100.p
-- Direction: SELL LIMIT 0.02 lots
-- Entry: 30,750.00 USD (Midpoint of [30,700, 30,800] buy stop sweep band)
-- Stop Loss: 30,822.20 USD (0.49 ATR outside max_price 30,800)
-- Take Profit: 30,522.90 USD (Front-running 30,550 liquidation cascade magnet by 8.87 bps)
-- Nominal Risk: 14.44 USD | R:R: 3.15R
+- Direction: SELL LIMIT 0.01 lots
+- Entry: 30,750.00 USD (Structural short pullback to resistance shelf)
+- Stop Loss: 30,852.80 USD (Tick-snapped, safely positioned beyond Session VWAP 30,830.65 and Volume POC 30,846.05)
+- Take Profit: 30,522.90 USD (Front-running 30,547.43 swing low by 8.03 bps into downside liquidation pool)
+- Nominal Risk: 10.28 USD (within 10.00 - 14.50 USD budget, 0.21% of equity) | R:R: 2.21R
+- Stressed Post-Loss Floor Defense: 4,852.17 USD (+77.17 USD cushion above 4,775.00 USD floor, +57.17 USD above 4,795.00 USD buffer)
 - Audit Criteria:
   (A) VIABLE, WAIT AS-IS: Resting L3 whale sell walls (over 5M USD defense), overwhelm ratio < 0.10:1, distance from mid <= 2.0 ATR, floor cushion preserved.
   (B) SLIGHT MODIFICATION REQUIRED: If magnet or bunker edges shifted.
@@ -130,8 +138,23 @@ async def dispatch_prompt():
         escaped_html = json.dumps(html_content)
 
         print("Injecting rich HTML prompt into TipTap ProseMirror...")
+        escaped_prompt_text = json.dumps(prompt_text)
         set_content_js = f"""
         (() => {{
+            const submitBtn = document.querySelector('button[aria-label="Send message"], button:has(svg.lucide-arrow-up), button:has(svg.lucide-arrow-right)');
+            if (submitBtn) {{
+                const fiberKey = Object.keys(submitBtn).find(k => k.startsWith('__reactFiber'));
+                if (fiberKey) {{
+                    let curr = submitBtn[fiberKey];
+                    while (curr) {{
+                        if (curr.memoizedProps?.onSubmit && curr.memoizedProps?.onChange) {{
+                            curr.memoizedProps.onChange({escaped_prompt_text});
+                            break;
+                        }}
+                        curr = curr.return;
+                    }}
+                }}
+            }}
             const el = document.querySelector('.tiptap.ProseMirror');
             if (!el) return {{ error: 'No ProseMirror element found' }};
             el.focus();
