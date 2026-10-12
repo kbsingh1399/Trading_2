@@ -54003,3 +54003,29 @@ Finally, unify live and replay ratchets before qualifying uplift; the current se
   - Open Positions: 0 | Resting Orders: 0 | Capacity: 0/4 used (4 slots open).
 - **Next Revalidation Point**:
   - Ongoing sentry via recurring trading cron (task-44250) leading into Cycle 25.
+
+---
+
+### Turn Checkpoint — Cycle 25 Injected & BTC -4.11 SD Flush Sentry (01:54 UTC)
+- **Timestamp**: 2026-10-12 01:54:00 UTC / 2026-10-12 07:24:00 IST
+- **Pre-Flight Live Scan (gen `961d2380441d42b19a790b92da472c70` @ 01:51:18 UTC)**:
+  - **Account State (Blueberry Markets MT5 #5064568)**:
+    * Balance: 4,896.55 USD | Equity: 4,896.55 USD | Margin: 0.00 USD (100% Cash reserves).
+    * G-1 Hard Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD.
+    * Live Floor Cushion: **+121.55 USD** (+101.55 USD above buffer; 6.08x mandatory 20.00 USD minimum).
+    * Active Positions: 0 | Pending Orders: 0 (Capacity: 0/4 used, 4 slots open).
+  - **Market Dynamics & Extreme Events**:
+    * **BTC Liquidation Flush**: Spot plunged from 83,742 USD down to **83,411 USD** (ATR = 196.29 USD, spread = 1.92 bps, gamma = 0.109 R). Z-score collapsed to **-4.11 SD** below Session VWAP.
+    * **Stop Sweeps & Hazards**: The secondary 4.9M USD sell-stop cluster at 83,650 USD has been fully swept. Spot is now within ~61 USD (~0.31 ATR) of the massive 101.3M USD sell-stop pool at 83,350 USD.
+    * **Active Gating Tokens**: Gate `A1_z_beyond_3p5_cascade_zone` fires (Z = -4.11 SD < -3.5 SD, active cascade in flight, knife-catching barred); Gate `A1_z_still_accelerating` fires; Gate `A1_session_sigma_immature_lt16bars` binds.
+    * **SP500 Mean Reversion Extreme**: Spot at 7,832.1 USD | ATR: 4.71 USD | Spread: 0.43 bps | gamma = 0.095 R | Z-score = **+3.53 SD** | Regime: `MEAN_REVERT`.
+    * **GOLD**: Spot at 4,206.8 USD | ATR: 7.37 USD | Spread: 0.29 bps | gamma = 0.022 R | Z = +0.19 SD | Regime: `TREND_UP`.
+    * **Universe Friction**: 9 assets inside gamma <= 0.15 R (USDJPY 0.019 R, GOLD 0.022 R, GBPUSD 0.028 R, EURUSD 0.034 R, NAS100 0.046 R, DJ30 0.058 R, GER40 0.058 R, SP500 0.095 R, BTC 0.109 R).
+- **Cycle 25 Council Briefing Dispatch**:
+  - Review panel dismissed ("Keep working" clicked), TipTap editor cleared.
+  - Prompt formulated in [`docs/prompts/ARENA_CYCLE_25_PROMPT.txt`](file:///c:/Users/SIGMA/Documents/Trading_2/docs/prompts/ARENA_CYCLE_25_PROMPT.txt).
+  - Committed as `d6e13a23` and pushed to both `origin/main` and `origin/arena/537c1eb8-trading-2`.
+  - Injected into Arena.ai via Chrome DevTools Protocol; submitted and confirmed actively generating (`isGenerating: true`, `hasStopBtn: true`).
+- **Arming 9-Minute Sleep Protocol**:
+  - Scheduled 9-minute sleep timer (`DurationSeconds=540`, `TimerCondition="never"`).
+  - Wake-up target: ~02:03 UTC (07:33 IST) to harvest Cycle 25 Council Report from `arena/537c1eb8-trading-2`, merge commit, evaluate gates, and execute limit orders if confluence criteria are satisfied.
