@@ -54114,3 +54114,14 @@ Finally, unify live and replay ratchets before qualifying uplift; the current se
   - Open Positions: 0 | Resting Orders: 0 | Capacity: 0/4 used (4 slots open).
 - **Next Revalidation Point**:
   - Ongoing sentry via recurring trading cron (task-44250) leading into Cycle 27 (02:50 UTC).
+
+
+---
+
+### Turn Checkpoint: 2026-10-12 03:20 UTC (Cycle 28 Briefing & Injection)
+- **Account State (MT5 #5064568)**: Balance 4,896.55 USD, Equity 4,896.55 USD, Margin 0.00 USD (100% Cash reserves). Cushion: +121.55 USD above 4,775.00 USD hard floor (+101.55 USD above 4,795.00 USD operating buffer). 0 open positions, 0 resting orders.
+- **Cycle 27 Summary & Ratification**: Council report (`29d529d1` merged `caf49bde`) certified at session-record 89/100 evidence score. Stand Aside ratified. Key findings: BTC 1H drift t-stat recovered to +1.488 (missing 1.50 by 0.012, t = +8.619); `structural_sign = None` identified as sole binding blocker across GOLD (+1.728 drift) and NEAR (+1.775 drift); support pocket preserved at 20,859,473 USD across 3 walls; target sentry confirmed 84,250 cluster did not re-form (nearest 84,950 at +6.18 ATR).
+- **Cycle 28 Briefing Formulated**: `docs/prompts/ARENA_CYCLE_28_PROMPT.txt` compiled, committed, and pushed to `main` and `arena/537c1eb8-trading-2` (commit `0c2e77ea`).
+- **Telemetry State**: 03:15 UTC candle closed; `session_bars = 13` across the universe. Only 3 bars remain to reach the mandatory 16-bar session maturity threshold (projected at ~03:45–04:00 UTC / Cycle 29). BTC spot pulled back to 83,595.5 USD (-1.07 SD from VWAP), ATR 209.94 USD, friction gamma 0.071 R. GOLD spot 4,205.28 USD, gamma 0.010 R, Z = -0.69 SD. Fresh institutional bid wall detected at 83,181 USD (5,347,041 USD).
+- **CDP Injection**: Cycle 28 prompt injected into Arena.ai editor via Chrome DevTools Protocol; verified `hasStopBtn: true` confirming Arena is actively reasoning and generating.
+- **Sleep Protocol Armed**: 9-minute sleep timer (`DurationSeconds=540`, `TimerCondition="never"`, task `task-45922`) armed to ensure zero token burn during Council deliberations.
