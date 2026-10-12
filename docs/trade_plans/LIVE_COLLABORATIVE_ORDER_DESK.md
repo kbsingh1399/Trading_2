@@ -10149,3 +10149,88 @@ Arena completed the unified 4-step council audit across all 4 Mandates:
     - **(c) Require multi-generation confirmation for volatile feeds.** Add to §1/§2: *"`book_imbalance`, `cvd_1m_buckets` and `whale_walls_l3` counts must be confirmed across `>= 3` consecutive generations before gating a trade. Single-generation readings of these three fields have been observed to flip sign or drop to zero within one refresh interval."*
 
 **— Signed, Arena.ai Multi-Persona Quantitative Council · Cycle 42B · 2026-10-12 13:33:00 UTC · generation `ac1877c104284ba7a40f48a92460eacd`**
+
+---
+
+### [2026-10-12 14:03:00 UTC] Cycle 43: Arena.ai Signed Ledger Entry — SOL `#18795304` CLOSE RECOMMENDED (Arena's Own 42B Trigger Has Fired), NAS100 Proven UNSIZABLE, `book_imbalance` Proven Unusable as a Single-Generation Gate
+
+**Telemetry Citation:** nine generations polled `7440ef18` → `6ea7b1fa` → `db3e0ced` → `a5123330` → `a34d1139` → `4d214fae` → `2d16a4c6` → `593ac745` → `02ec8dbb` → `fbced446` → **`0ecd2ee1` (14:02:03 UTC)** | **wall-feed verified WARM on every generation used (200 / 201 / 223 / 284 / 309 eligible)** | 24/24 assets | Playbook §3.A / §3.B / §3.C / §4 / §5 / §6.B | **zero decision-gate scripts executed.**
+
+**DISPOSITION: 🔴 MANDATE 1 — ZERO new orders. MANDATE 2 — `SOLUSD.p #18795304` → CLOSE NEAR FLAT (reversing Arena's own HOLD from Cycles 42 and 42B). MANDATE 3 — `pending_orders = []`.**
+
+1. **🔴 MANDATE 2 — `#18795304` (`SOLUSD.p` `LONG 0.08 @ 110.15`): CLOSE AT MARKET / ON THE BOUNCE. This reverses Arena's HOLD of Cycles 42 and 42B, because the review trigger Arena itself set in 42B has now fired.**
+   - **Cycle 42B stated the trigger verbatim:** *"exit-on-bounce if either anchor wall falls below `180s` persistence, or the band exceeds `$30M`."*
+   - **Both anchors are gone from the book entirely** — a stronger condition than "below 180 s." Verified directly: the `$3.40M @ 109.09` and `$1.74M @ 109.64` wallets return **`NOT PRESENT IN BOOK`** at any price within `0.06 USD`.
+   - **Defence collapse, measured across five consecutive WARM generations:**
+
+     | Metric | C40B | C41 | C42 | **C43 (5 gens)** |
+     |---|---|---|---|---|
+     | Eligible L3 bid inside stop range | `$13.35M` | `$9.75M` | `$8.13M` | **`$0.18M` – `$5.33M`** (oscillating) |
+     | Wall count | 23 | 13 | 13 | **1 – 3** |
+     | `109.0–110.0` stop band | `$8.67M` | `$8.63M` | `$21.95M` | **`$21.99M` – `$22.05M`** (rock-stable) |
+     | Cascade | — | `$3.13M` | `$2.89M` | **`$2.74M` – `$2.91M`** (stable) |
+     | **Overwhelm ratio** | 0.65:1 | — | 3.05:1 | **`4.67:1` best / `138.4:1` worst** |
+
+   - **The 42B overwhelm amendment has fired decisively.** Amendment (b) as Arena wrote it: *"A ratio above `2:1` means the wall is unlikely to hold and the setup must be rejected regardless of R:R."* **SOL is at `4.67:1` on its best reading and `138.4:1` on its worst. Both exceed the threshold by multiples.**
+   - **Crucially, the fuel side is not volatile.** Across five generations the `[109.0, 110.0]` band published `$21.99M / $22.01M / $22.03M / $22.01M / $22.05M` and the cascade `$2.90M / $2.90M / $2.90M / $2.91M / $2.74M`. **The instability is entirely on the defence side — the walls are leaving, not flickering.**
+   - **This was checked for a cold-start first, per the Cycle 41 lesson.** An initial reading at `13:56:48` returned **zero** in-range walls. Arena re-polled five generations rather than acting on it; the feed read WARM (`200–309` eligible) on every one, and the stack settled at `$5.33M` across three wallets — **better than the zero, far worse than Cycle 42's `$8.13M`.** The conclusion is a real collapse, not a feed artefact.
+   - **Why CLOSE and not TIGHTEN:** there is no structural level between `108.79` and `109.00` to tighten into, and tightening toward `109.00` would place the stop **inside the `$22.0M` band** — precisely the `#18785248` error (`−11.17 USD`) that §4 records. **The only two coherent choices are hold at `108.79` with `$0.18–5.33M` of defence against `$24.91M` of fuel, or exit.**
+   - **Why now is the exit:** live `price_current 110.18`, `profit_usd +0.24`, `r_multiple +0.02`. **The position is flat. This is the bounce the 42B trigger specified.** Closing realises approximately **`+$0.24`** and retires **`$10.88`** of downside.
+   - **Remaining spec compliance is irrelevant to the decision** — SL buffer `0.4718 ATR` outside `min_price 109.00` ✅, TP front-run `8.81 bps` ✅, `R:R 2.3897` ✅. **A structurally compliant ticket with no defence behind it is still an unprotected ticket.** `trend_regime BEARISH`, `EMA200 slope −0.0288%` (worsened from `−0.0021%` at Cycle 42), price below VAL `110.64`, POC `111.26` and VWAP `111.33`.
+2. **🔴 MANDATE 1 — ZERO NEW ORDERS. `NAS100` was the only in-universe `|Z| ≥ 2.0` candidate and it is not merely weak — it is UNSIZABLE.**
+   - **The sizability proof (this is decisive and independent of any view on direction):**
+
+     | Parameter | Value |
+     |---|---|
+     | `ATR_14` | `40.1827` |
+     | `contract_size` / `min_lot` / `step_lot` | `10.0` / `0.01` / `0.01` |
+     | §3.B-compliant stop distance (`0.50 × ATR`) | `20.09` pts |
+     | **Risk at `min_lot` with a compliant stop** | **`20.09 × 10 × 0.01 = $2.01`** — **below the `$10.00` floor** |
+     | Risk at `0.25 × ATR` | `$1.00` |
+     | Stop distance needed to reach `$10.00` at `min_lot` | **`100.00` pts = `2.4886 ATR`** |
+     | **Excess over the `0.50 ATR` cap** | **`4.98×`** |
+
+   - **`NAS100.p` cannot be sized into the desk's `$10.00–$14.50` risk band with a §3.B-compliant stop.** At the minimum lot, a compliant stop risks `$2.01`; reaching the `$10.00` floor requires a stop `4.98×` wider than the cap permits. **This is a structural exclusion, not a judgement call, and it applies to every future NAS100 proposal.**
+   - **Three further independent disqualifiers:** (i) `Z` decayed from `−2.22` to `−1.83` **within one generation** — the Model 1 `|Z| ≥ 2.0` threshold is no longer met; (ii) every eligible bid wall inside the `2.0 ATR` window sits at `30,687.03` with `persist_s = 183.0` — **three seconds over the threshold, not seasoned**; (iii) the overhead magnets are `$0.043M / $0.799M / $0.106M` and the bunkers `$0.140M / $0.004M`. **Empty on both sides.**
+   - **§4 friction / universe:** `DOGE 256.41` · `DOT 166.47` · `ADA 88.85` · `LINK 65.29` · `NEAR 58.64` · `LTC 46.85` · `AVAX 36.76` · `TRX 30.19` · `XRP 28.82` bps banned. `BCH 20.84` clears the cap but is outside the named universe.
+   - **All 24 assets now sit at `|Z| < 2.0` except NAS100**, which is unsizable. **BTC has recovered to `Z −1.67` with `15m CVD +5.81M → +6.58M` positive across four generations and `RSI 28.83`; ETH to `Z −0.97`, `trend BULLISH`.** The flush that dominated Cycles 40–42 is draining, but **no asset presents entry, bunker and magnet coincidence simultaneously.**
+3. **🟢 MANDATE 1 — THE 42B THREE-GENERATION STANDARD WAS APPLIED, AND IT PRODUCED A MEASURABLE RESULT.** Arena polled four consecutive generations and tabulated the volatile fields:
+
+   | Asset | `book_imbalance` across 4 generations | Verdict |
+   |---|---|---|
+   | BTC | `−0.423 → +0.750 → −0.849 → +0.942` | **SIGN-FLIP ×3** |
+   | ETH | `−0.922 → +0.244 → −0.777 → −0.541` | SIGN-FLIP |
+   | GOLD | `+0.044 → −0.085 → −0.172 → −0.332` | SIGN-FLIP |
+   | SILVER | `−0.401 → +0.021 → −0.211 → +0.054` | SIGN-FLIP ×3 |
+   | USWTI | `+0.099 → −0.168 → −0.134 → −0.348` | SIGN-FLIP |
+   | NAS100 / EURUSD / SOL / BNB | all flip | SIGN-FLIP |
+   | SP500 | `+0.276 → +0.244 → +0.371 → +0.174` | stable |
+   | USDJPY | `−0.292 → −0.290 → −0.207 → −0.229` | stable |
+
+   - **`book_imbalance` flipped sign in 9 of 11 assets inside four minutes.** **Arena's conclusion, stated plainly: `book_imbalance` should not gate any trade at all, on any number of generations.** It is not a slow signal that needs smoothing — it is noise at this refresh rate.
+   - **⚠️ This refines the 42B recommendation, which was too broad.** By contrast, **15m CVD was stable on 10 of 11 assets**: BTC held `+5.81M → +6.58M → +6.58M → +6.25M` (positive throughout), ETH held negative throughout, BNB held positive. **Only SOL's 5m window flipped (`−65,308 → +40,358 → +68,640 → +68,980`).**
+   - **Corrected amendment (c): the multi-generation requirement should apply to the 5m CVD window and to `whale_walls_l3` counts — not to the 15m/30m CVD windows, which are already stable, and not to `book_imbalance`, which should be dropped as a gating input entirely.**
+   - **Wall-count volatility re-confirmed:** total eligible walls read `267 → 361 → 402 → 274` across four generations — a `1.5×` swing while staying WARM throughout. **Even a "warm" reading must not be treated as a precise count.**
+4. **MANDATE 3 — `pending_orders = []`.** Nothing to audit.
+5. **PORTFOLIO CAPACITY & CAPITAL FLOOR GOVERNANCE**:
+
+   | Item | If SOL held | **If SOL closed (recommended)** |
+   |---|---|---|
+   | Active / Pending / Proposed | 1 / 0 / 0 | **0 / 0 / 0** |
+   | Joint worst-case risk | `$10.88` | **`$0.00`** |
+   | Equity | `4,874.42` | `4,874.42` |
+   | Stressed post-stop equity | `4,863.54` (`+68.54` buffer / `+88.54` floor) | **`4,874.42` (`+79.42` buffer / `+99.42` floor)** |
+   | Margin encumbered | `$440.60` | **`$0.00`** |
+   | Correlated crypto exposure | 1 ticket | **zero** |
+
+   - **Closing SOL restores the cushion from `+88.54` to `+99.42` above the hard floor and releases all `440.60` of margin.** Session realised P&L to date: `−11.20` (BTC `#18791527`).
+6. **CYCLE 43 ACTIONABLE EXECUTION SUMMARY (FINAL, SIGNED)**:
+
+   | # | Ticket / Action | Symbol | Side | Lots | Entry | SL | TP | Risk | R:R | Quantitative Rationale |
+   |---|---|---|---|---|---|---|---|---|---|---|
+   | 1 | **`#18795304` — 🔴 CLOSE AT MARKET** | `SOLUSD.p` | LONG → flat | 0.08 | 110.15 | 108.79 | 113.40 | **realise ≈ `+0.24`** | — | **Arena's own 42B review trigger has fired.** Both anchor wallets (`$3.40M @ 109.09`, `$1.74M @ 109.64`) are absent from the book. Defence fell from `$13.35M` to `$0.18–5.33M` across five WARM generations while fuel held rock-stable at `$24.73–24.95M` → **overwhelm `4.67:1` to `138.4:1` against a `2:1` reject threshold.** Position is flat at `+0.02R`: this is the bounce the trigger specified. No structural level exists between `108.79` and `109.00` to tighten into. |
+   | 2 | **NEW ORDERS** | — | — | — | — | — | — | — | **NONE** | **NAS100 is unsizable:** a `0.50 ATR` compliant stop risks `$2.01` at `min_lot`, and reaching the `$10.00` floor needs a stop `4.98×` the cap. Plus `Z` decayed below `2.0`, walls at `183.0s`, magnets `$0.04–0.80M`. All other 23 assets fail §4 or coincidence. |
+
+7. **RECOMMENDED PLAYBOOK AMENDMENT (Cycle 43) — INSTRUMENT SIZABILITY:** *"Before proposing any ticket, verify the instrument can carry the desk's risk band with a §3.B-compliant stop: `risk_at_min_lot = (0.50 × ATR) × contract_size × min_lot` must fall within `$10.00–$14.50`. If it does not, the instrument is excluded outright regardless of setup quality. `NAS100.p` (`contract_size 10`, `min_lot 0.01`, `ATR ≈ 40`) risks only `$2.01` and is therefore permanently excluded at current volatility."*
+
+**— Signed, Arena.ai Multi-Persona Quantitative Council · Cycle 43 · 2026-10-12 14:03:00 UTC · generation `0ecd2ee1` (14:02:03 UTC)**
