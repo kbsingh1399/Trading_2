@@ -85,13 +85,17 @@ You must adhere to:
 PART B: MANDATORY FULL-PARAMETER TELEMETRY SYNTHESIS (DO NOT ARTIFICIALLY LIMIT)
 ================================================================================
 Do NOT constrain yourself to narrow or simplistic formulas. Whether formulating a MEAN REVERSION thesis (fading exhausted structural overextensions back to fair value/VWAP) OR a TREND FOLLOWING thesis (joining dominant HTF momentum on pullbacks to value shelves toward opposing liquidity pools), you MUST evaluate and cross-verify every candidate setup against the COMPLETE parameter suite published in docs/telemetry/live_snapshot_latest.json:
-1. quotes: Live MT5 Bid/Ask spread in bps (spread_bps <= 20 bps for Crypto, <= 5 bps for TradFi). Reject wide-spread or off-hours friction traps.
+1. quotes: Live MT5 Bid/Ask spread in bps:
+   - DYNAMIC EXPECTANCY FRICTION RULE (REMOVAL OF RIGID BINARY SPREAD TRAPS): Do NOT disqualify crypto assets (such as SOL 20.4 bps, BCH 22.4 bps, AVAX 28.7 bps, XRP 29.4 bps) simply because their spread is slightly above 20 bps!
+   - On high-beta Crypto setups (especially Model 1 Extreme Mean Reversion with |Z| >= 2.0 to 3.0 SD), an expected price bounce back toward Session VWAP or Value Area Low offers a target expansion of +200 to +500 bps. A spread of 20 to 30 bps is only 5% to 10% of the target profit.
+   - PERMIT Crypto spreads up to 35 bps whenever the expected target move is >= 5x the spread (Target bps >= 5 * Spread bps).
+   - Maintain the tight <= 5 bps ceiling on TradFi CFDs (Indices, Commodities, Forex).
 2. causal_indicators: 15m/1H/4H trend regime, regime persistence, ADX trend strength, ATR_15m, RSI_14, and 20/50/200 EMA alignment & 200 EMA slope.
 3. vwap: Session VWAP, +1SD/+2SD/+3SD and -1SD/-2SD/-3SD bands, VWAP Z-score, and distance in ATR to VWAP.
 4. volume_profile: Session POC (Point of Control), VAH (Value Area High), VAL (Value Area Low), High Volume Nodes (HVN support/resistance), and Low Volume Nodes (LVN vacuum zones).
 5. cvd_1m_buckets & cvd_15m_delta / cvd_30m_delta: 1m taker CVD trajectory, cumulative volume delta, CVD slope, and CVD absorption/exhaustion ratio (verifying delta deceleration before entry).
 6. orderbook_live_depth: 20-level L2 live bid/ask depth in USD (top20_bid_depth_usd, top20_ask_depth_usd), and depth imbalance ratio.
-7. whale_walls_l3: Hyperdash verified on-chain Ethereum whale wallet orders (0x... addresses, notionals in USD, price levels, and temporal persistence >= 180s).
+7. whale_walls_l3: Hyperdash verified on-chain Ethereum whale wallet orders (0x... addresses, notionals in USD, price levels, and temporal persistence >= 180s). Live generation 1a7d9d57 provides hundreds of real whale walls (338 BTC, 104 SOL, 191 ETH, 105 NAS100).
 8. reconstructed_liquidations: Reconstructed liquidation cascade bands (top_bands, nearest_below, nearest_above, estimated liquidation volume in USD).
 9. structural_stop_clusters: Structural stop sweep pools (nearest_sell_stop_clusters, nearest_buy_stop_clusters, intensity, range [min_price, max_price]).
 10. macro_calendar: Tier-1 macroeconomic event proximity, broker trading session hours, and interbank rollover spread expansion.
@@ -122,8 +126,9 @@ PART D: THE THREE CANONICAL OPERATOR MANDATES
 ================================================================================
 
 MANDATE 1: SCREEN ALL 24 TELEMETRY ASSETS FOR NEW OPPORTUNITIES
-Screen every asset in docs/telemetry/live_snapshot_latest.json line-by-line using the 12-parameter stack:
-- Synthesize Mean Reversion (extreme dislocation |Z| >= 2.0 SD with tape exhaustion) OR Trend Following (pullbacks to VWAP/VAL/VAH/EMA shelves in direction of dominant HTF trend toward opposing liquidity magnets).
+Screen every asset in docs/telemetry/live_snapshot_latest.json (Generation 1a7d9d57 with hundreds of verified L3 whale orders, real stop clusters, and liquidation cascade bands) line-by-line:
+- Apply the Dynamic Expectancy Friction Rule (permitting Crypto spreads up to 35 bps when expected target >= 5x spread). Do NOT arbitrarily ban SOL, BCH, AVAX, or XRP solely on spread!
+- Synthesize Model 1 Extreme Mean Reversion (|Z| >= 2.0 SD to 3.5 SD with tape exhaustion and stop sweep absorption) OR Model 2 Trend Following (pullbacks to VWAP/VAL/VAH/EMA shelves in direction of dominant HTF trend toward opposing liquidity magnets).
 - Verify entry against all 5 Anti-Trap Invariants from Part C.
 - Provide exact Symbol, Direction, Entry limit, SL (outside bunker [min_price, max_price] with 0.35-0.50 ATR buffer), TP (front-running opposing magnet by 5-10 bps), Lots, and Risk USD (10.00-14.50 USD). Minimum R:R >= 2.00R. If no setup qualifies, provide mathematical rationale.
 
