@@ -1,0 +1,76 @@
+# 🏛️ ARENA.AI MULTI-PERSONA QUANTITATIVE COUNCIL BRIEFING — CYCLE 21 (23:45–23:50 UTC)
+
+**Canonical GitHub Repository:** `https://github.com/kbsingh1399/Trading_2`  
+**Active Working Branch:** `arena/537c1eb8-trading-2`  
+**Current HEAD Commit:** `4d313104` (Synchronized on `main` and `arena/537c1eb8-trading-2`)  
+**Live Telemetry Pointer:** `https://raw.githubusercontent.com/kbsingh1399/Trading_2/arena/537c1eb8-trading-2/docs/telemetry/live_snapshot_latest.json`  
+**Snapshot Generation ID:** `d8b726b39f5b427a9a1fcdc82f2ee445` (as of 2026-10-11 23:45:00 UTC)
+
+---
+
+### 1. Ingestion of Prior Cycle & Methodological Ratification
+
+1. **Cycle 20 Report Formally Ingested (`ARENA_COUNCIL_REPORT_20261011_2320Z.md`, Commit `ec54c7ac`)**:
+   - Merged commit `ec54c7ac` and synchronized across `main` and `origin/arena/537c1eb8-trading-2` (HEAD `297a0815`).
+   - **Stand Aside Ratified**: Council's unanimous stand-aside disposition is acknowledged. Cash reserves remain 100% at 4,896.55 USD, defending the +121.55 USD floor cushion. Evidence score: 79/100.
+   - **Operational Rule on Structural Sign Ratified**: Council's insight that an elite drift with `structural_sign = None` is an expectant waiting state (resolving when price crosses Session VWAP) rather than a router defect is ratified as standard desk operating methodology.
+   - **Downside Risk Magnet Invariant**: The structural hazard posed by the $100.84M sell-stop cluster at 83,350 USD (−1.3035 ATR below BTC spot, sitting at 87% of stop distance with 19.2x the notional of the overhead target) is formally codified as a mandatory downside filter for BTC long entries.
+   - **Dual-Clock Contract Acknowledged**: The requirement that callers must supply both `as_of_epoch` and `last_close_epoch` to avoid failing closed into `data_invalid: bar_clock` is noted.
+
+---
+
+### 2. Live Market Developments for Cycle 21 (23:45 UTC)
+
+1. **GOLD Surges in `TREND_UP` with Elite Friction**:
+   - Spot price rallied from 4,190.8 USD to **4,197.1 USD**, lifting Z to **$+2.34\text{ SD}$** above Session VWAP.
+   - Spread tightened to **0.17 bps**, driving relative friction to **$\gamma = 0.019\text{ R}$** — the absolute lowest friction across all 24 assets.
+   - Audit whether GOLD's pullback geometry has normalized from the previous 0.6865 overshoot and whether any newly formed overhead take-profit anchors have entered within the 4.0 ATR horizon.
+
+2. **SP500 Holds Extended `MEAN_REVERT` Posture**:
+   - Spot at 7,830 USD, maintaining $Z = +2.84\text{ SD}$ above Session VWAP.
+   - Spread remains 0.43 bps, $\gamma = 0.088\text{ R}$.
+   - Audit bar accumulation toward session maturity (`session_bars` vs. 16-bar threshold) and evaluate whether lower-bound expectancy remains negative.
+
+3. **BTC Orderflow & Liquidity Structure**:
+   - Mid price: 83,619 USD | ATR: 180.75 USD | Spread: 1.91 bps | $\gamma = 0.118\text{ R}$
+   - Z-score: $+0.78\text{ SD}$ above Session VWAP.
+   - Audit whether the in-band wall count has recovered from the previous collapse (1 wall in Cycle 20) and whether the $100.84M sell-stop cluster at 83,350 USD remains active.
+
+4. **Universe Friction & Regimes Overview**:
+   - 3 defined regimes: GOLD (`TREND_UP`), SP500 (`MEAN_REVERT`), NEAR (`TREND_UP`, spread 57.86 bps).
+   - 8 assets inside $\gamma \le 0.15\text{ R}$: GOLD (0.019 R), EURUSD (0.034 R), USDJPY (0.040 R), DJ30 (0.043 R), NAS100 (0.050 R), SP500 (0.088 R), BTC (0.118 R), GBPUSD (0.134 R).
+
+---
+
+### 3. Live Account State & Capital Floor Defense (MT5 #5064568)
+
+- **Balance**: 4,896.55 USD | **Equity**: 4,896.55 USD | **Margin**: 0.00 USD (100% Cash Reserves)
+- **G-1 Hard Floor**: 4,775.00 USD | **Operating Buffer**: 4,795.00 USD
+- **Live Floor Cushion**: **+121.55 USD** (+101.55 USD above buffer; 6.1x mandatory 20.00 USD minimum)
+- **Active Tickets**: 0 open positions, 0 resting orders (Capacity: 0/4 used, 4 slots available)
+
+---
+
+### 4. Multi-Persona Council Mandate for Cycle 21
+
+Execute independent quantitative evaluations across the 4 personas:
+1. **Orderflow & Microstructure Analyst**:
+   - Audit orderbook depth and relative friction across GOLD (0.019 R), SP500 (0.088 R), and BTC (0.118 R).
+   - Verify Option A' cross-venue basis stability for crypto candidates and TradFi CFDs.
+2. **Structural Price Action Specialist**:
+   - Evaluate GOLD's acceleration to $+2.34\text{ SD}$ in `TREND_UP` and SP500's $+2.84\text{ SD}$ `MEAN_REVERT` posture.
+   - Audit pullback geometry (B2 retrace and velocity) across active candidates.
+3. **Liquidation & Stop Hunt Forensic**:
+   - Re-audit overhead take-profit anchors vs. downside stop clusters for BTC, GOLD, and SP500.
+   - Check if any new liquidation cascade pools have formed within the 4.0 ATR horizon on GOLD.
+4. **Macro Risk & Portfolio Governor**:
+   - Defend the 4,775.00 USD floor, evaluate stressed risk capacity, and ratify whether any setup satisfies all 9 decision gates or if STAND ASIDE remains mathematically mandatory.
+
+---
+
+### 5. Deliverable & Execution Requirement
+
+1. Formulate the comprehensive Cycle 21 Council Report with explicit mathematical metrics for all active candidates.
+2. Write and commit the report directly to `docs/trade_plans/ARENA_COUNCIL_REPORT_20261011_2350Z.md`.
+3. Push the commit to `https://github.com/kbsingh1399/Trading_2` on branch `arena/537c1eb8-trading-2`.
+4. If any setup satisfies all 5 confluence pillars under Model 1 or Model 2, state the exact passive limit order parameters (Symbol, Side, Limit Price, Stop Loss, Take Profit, Lots, Risk USD). Otherwise, declare unanimous STAND ASIDE.
