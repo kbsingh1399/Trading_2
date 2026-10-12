@@ -1,0 +1,81 @@
+# 🏛️ ARENA.AI MULTI-PERSONA QUANTITATIVE COUNCIL BRIEFING — CYCLE 30 (04:20–04:25 UTC)
+
+**Canonical GitHub Repository:** `https://github.com/kbsingh1399/Trading_2`  
+**Active Working Branch:** `arena/537c1eb8-trading-2`  
+**Current HEAD Commit:** `693136d8` (Synchronized on `main` and `arena/537c1eb8-trading-2`)  
+**Live Telemetry Pointer:** `https://raw.githubusercontent.com/kbsingh1399/Trading_2/arena/537c1eb8-trading-2/docs/telemetry/live_snapshot_latest.json`  
+**Snapshot Generation ID:** `693f72c06bf14e24b1753241364ef70f` (as of 2026-10-12 04:21:45 UTC)
+
+---
+
+### 1. Ingestion of Prior Cycle & Methodological Ratification
+
+1. **Cycle 29 Report Formally Ingested (`ARENA_COUNCIL_REPORT_20261012_0410Z.md`, Commit `191722c2` merged in `3a7fb760`)**:
+   - Merged commit `191722c2` cleanly into `main` (commit `3a7fb760`) and synchronized across `main` and `arena/537c1eb8-trading-2`.
+   - **Stand Aside Ratified**: Council's unanimous stand-aside disposition is acknowledged and ratified. Cash reserves remain 100% at 4,896.55 USD, defending the +121.55 USD floor cushion above 4,775.00 USD. Evidence score: **session all-time record 91 / 100** (1,071 unit/integration tests passing, 3 skipped, 0 failed).
+   - **Ratification of Key Council Milestones & Structural Shifts**:
+     * **Gate B1 Permanently Cleared (`session_bars = 16`)**: Verified that both maturity tokens (`B1_session_immature_lt16bars` and `A1_session_sigma_immature_lt16bars`) are officially absent across all categories. The standing constraint "no ticket possible on maturity grounds" is officially retired for this session.
+     * **NEAR Certified `TREND_UP` (STRUCT Tier)**: Acknowledged NEAR's certification (1H drift +1.856, sign +1, retrace 0.3306). Ratified the council's refusal on execution economics: friction gamma = 0.757 R (58 bps), zero in-band walls, and RR = 1.002 leading to negative lower-bound expectancy (`EV_lower = -0.9808/R`).
+     * **BTC Convergence to 10 of 12 Gates**: Acknowledged BTC's surge to 31 in-band walls (all BUY, 0 SELL, session record high), anchor survival at 84,250 USD (RR = 2.498), and session-record lower-bound expectancy (`EV_lower = +0.3041/R`). Ratified refusal on G-4 (04:00 roll cut drift to +1.188; mid below VWAP) and B2 (retrace 0.6751, 0.057 above ceiling).
+     * **Four-Cycle Monotone Magnet Approach**: Recognized that spot has fallen monotonically toward the 100.87M USD pool at 83,350 USD (127.0% -> 94.2% -> 74.3% -> 58.6% of stop distance).
+
+---
+
+### 2. Live Market Developments for Cycle 30 (04:20 UTC — Flush into Sell-Stop Magnet)
+
+1. **Session Maturity at 17 Bars**:
+   - `session_bars = 17` across all categories. Gate B1 remains permanently cleared.
+
+2. **BTC Drops to Z = -2.22 SD — Only 66.5 USD Above the $101.02M Sell-Stop Magnet**:
+   - Spot has dropped to **83,416.5 USD** (Session VWAP: **83,672.65 USD** | EMA200: 83,171.57 USD).
+   - Z-score: **-2.22 SD** (enters Model 1 Extreme Standard Deviation flush zone |Z| >= 2.0 SD).
+   - ATR: **193.34 USD** | Spread: **1.80 bps** | Friction gamma: **0.078 R** (well inside the 0.15 R limit).
+   - **Sell-Stop Magnet at 83,350 USD**: Current notional is **$101,022,471 USD** at -0.21% distance. Spot is only **66.5 USD (0.344 ATR, 22.9% of a 1.5-ATR stop)** above the pool! The 5th cycle of monotone approach brings spot directly to the sweep threshold.
+   - **In-Band L3 Walls Jump to 60**: Total 304 L3 walls. Around spot (83,416.5 +/- 68 USD), **60 walls sit in band**! Dense resting buy depth sits right above the pool: BUY 83,408 ($1.05M), BUY 83,419 ($1.0M), BUY 83,396 ($967k).
+   - **Overhead Take-Profit Anchor Downshift**: A fresh buy-stop cluster has formed at **84,050.0 USD with $5,707,082 USD notional** at only 0.62% distance (+3.28 ATR from spot), well inside the 4.0 ATR ceiling! In addition, 84,950 ($7.61M) and 85,050 ($7.28M) persist.
+
+3. **GOLD Drops to Z = -2.50 SD**:
+   - Spot at **4,199.11 USD** | Session VWAP: **4,206.64 USD** | Z-score: **-2.50 SD** (extended flush below VWAP).
+   - ATR: **6.53 USD** | Spread: **0.17 bps** | Friction gamma: **0.011 R** (record low).
+
+4. **USDJPY Extended at Z = +2.66 SD**:
+   - Spot at **158.265** | Session VWAP: 158.163 | Z-score: **+2.66 SD** | gamma = **0.076 R**.
+
+5. **NEAR Lapses Below VWAP**:
+   - Spot pulled back to **5.822 USD** (Session VWAP 5.8372 USD), Z = -0.46 SD. Sentry on whether `structural_sign` reverted from +1 to `None`.
+
+---
+
+### 3. Live Account State & Capital Floor Defense (MT5 #5064568)
+
+- **Balance**: 4,896.55 USD | **Equity**: 4,896.55 USD | **Margin**: 0.00 USD (100% Cash Reserves)
+- **G-1 Hard Floor**: 4,775.00 USD | **Operating Buffer**: 4,795.00 USD
+- **Live Floor Cushion**: **+121.55 USD** (+101.55 USD above buffer; 6.08x mandatory 20.00 USD minimum)
+- **Active Tickets**: 0 open positions, 0 resting orders (Capacity: 0/4 used, 4 slots available)
+- **Total contingent book risk**: 0.00 USD. Complete floor immunity intact.
+
+---
+
+### 4. Multi-Persona Council Mandate for Cycle 30
+
+Execute independent quantitative evaluations across the 4 personas:
+1. **Orderflow & Microstructure Analyst**:
+   - Audit orderbook depth as BTC spot reaches 83,416.5 USD (66.5 USD above the $101.02M magnet at 83,350 USD); inspect the 60 in-band walls and determine if institutional bids are absorbing the cascade.
+   - Re-audit relative friction gamma across the universe (GOLD 0.011 R, USDJPY 0.076 R, BTC 0.078 R).
+2. **Structural Price Action Specialist**:
+   - Evaluate Model 1 Extreme Mean Reversion conditions on BTC (Z = -2.22 SD) and GOLD (Z = -2.50 SD).
+   - Audit whether NEAR has lost its `TREND_UP` certification due to pulling back 0.015 USD below VWAP.
+3. **Liquidation & Stop Hunt Forensic**:
+   - Re-evaluate downside sweep dynamics: is the 83,350 USD pool about to be swept, and where does post-sweep resting depth sit?
+   - Evaluate the newly formed 84,050 USD buy-stop anchor ($5.71M, +3.28 ATR) and compute risk-reward and lower-bound expectancy.
+4. **Macro Risk & Portfolio Governor**:
+   - Confirm Gate B1 status (`session_bars = 17` >= 16 bars) and defend the 4,775.00 USD hard equity floor unconditionally.
+
+---
+
+### 5. Deliverable & Execution Requirement
+
+1. Formulate the comprehensive Cycle 30 Council Report with explicit mathematical metrics for all active candidates.
+2. Write and commit the report directly to `docs/trade_plans/ARENA_COUNCIL_REPORT_20261012_0440Z.md`.
+3. Push the commit to `https://github.com/kbsingh1399/Trading_2` on branch `arena/537c1eb8-trading-2`.
+4. If any setup satisfies all 5 confluence pillars under Model 1 or Model 2, state the exact passive limit order parameters (Symbol, Side, Limit Price, Stop Loss, Take Profit, Lots, Risk USD). Otherwise, declare unanimous STAND ASIDE.
