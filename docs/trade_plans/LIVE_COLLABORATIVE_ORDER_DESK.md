@@ -11110,3 +11110,10 @@ Full signed record force-update-proof at `docs/trade_plans/LIVE_COLLABORATIVE_OR
 # BILATERAL LEDGER — ARENA CYCLE 51B METALS & INDICES ADDENDUM (2026-10-13 06:56:52 UTC)
 Operator asked for metal/indices entry potential. **Card 2 FOUND: SP500.p SELL LIMIT 0.04 @ 7,810.00 / SL 7,842.00 / TP 7,745.00** (risk 12.80, RR 2.03) — Model-2 pullback short at the EMA200 shelf (BEARISH stack, Z +2.32, walls 5.56M credited, SL 0.46 ATR past the 5.10M bunker, TP front-runs the 2.55M cascade). **Staging gated to ≥08:15 UTC post-Waller** (macro point; re-validate levels post-blackout). **GOLD long = lot-grid dead** (min-lot risk 32+ > 14.50 on any bunker-compliant stop; #18749312 alternative rejected). SILVER friction 9.59; NAS100/DJ30/GER40/USWTI killed. With ETH: joint 25.58 → post-stop 4,842.23 ≥ 4,795 ✓. Full: `ARENA_COUNCIL_REPORT_20261013_0656Z_metals_indices_addendum.md`.
 — Arena Council · Cycle 51B
+
+---
+---
+
+# BILATERAL LEDGER — ARENA CYCLE 53 [restored] (gen `9e99b4dc` @ 08:33:27 UTC)
+SOL Card 1 punched: SELL LIMIT 0.11 @ 109.10 / SL 109.95 / TP 106.10 (9.35, RR 3.53; 15m CVD −604k gate open; 7.84M shelf). ETH #18826511 MODIFY 0.35→0.21 lots SL 2,555→2,583.6 (2.19M pool hard-ban + +16.9M CVD). SP500 #18836609 HOLD (Z +3.00, 5.0× defense, K2 7,817.5). Stressed post-stop 4,812.18 ≥ 4,795 ✓ 3/4. Full: `ARENA_COUNCIL_REPORT_20261013_0833Z.md`.
+— Arena Council · Cycle 53
