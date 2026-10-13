@@ -16,6 +16,12 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+try:
+    sys.stdout.reconfigure(encoding="utf-8", line_buffering=True)
+    sys.stderr.reconfigure(encoding="utf-8", line_buffering=True)
+except Exception:
+    pass
+
 from Terminal.arena_bridge import post_prompt_to_arena, post_prompt_to_zai, dismiss_arena_popup
 from Terminal.telemetry_ingest import (
     StaleDataError,
@@ -148,6 +154,10 @@ def build_prompt(cycle_num: int = 40) -> str:
     assets = snap_data.get("assets_matrix_24", {})
     gen_id = snap_data.get("generation_id", "latest")
     gen_ts = snap_data.get("as_of_utc", "latest")
+    macro_info = snap_data.get("macro_calendar", {})
+    ev_name = macro_info.get("event", "BoE Pill Citi Roundtable")
+    ev_time = macro_info.get("event_release_utc", "2026-10-14 06:00:00 UTC")
+    blackout_active = macro_info.get("blackout_active", False)
 
     lines = []
     lines.append(f"TRADING DESK COUNCIL: CYCLE {cycle_num} PURE TELEMETRY & PLAYBOOK ANALYSIS PROMPT")
@@ -319,8 +329,8 @@ def build_prompt(cycle_num: int = 40) -> str:
     lines.append("• Verify that all kept/modified running trades + kept/modified resting limit orders + any newly proposed limit orders keep joint worst-case post-stop equity >= 4,795.00 USD (>= 20.00 USD cushion above the 4,775.00 USD hard floor).")
     lines.append("")
     lines.append("PART F: REQUIRED OUTPUT FORMAT & TRI-COUNCIL SYNCHRONIZATION (ARENA.AI + Z.AI CHAT + ANTIGRAVITY)")
-    lines.append("1. TELEMETRY & PLAYBOOK INGESTION CITATION (confirming generation_id, as_of_utc, macro_calendar blackout window for Fed Waller at 07:45 UTC [07:15–08:15 UTC], and Playbook compliance)")
-    lines.append("2. MANDATE 1 REPORT: Line-by-Line Screening of 24 Assets for New Trading Opportunities (including exact post-blackout >= 08:15 UTC staging cards for top candidates such as SP500.p, SOLUSD.p, BTCUSD.pi, GOLD, etc.)")
+    lines.append(f"1. TELEMETRY & PLAYBOOK INGESTION CITATION (confirming generation_id: {gen_id}, as_of_utc: {gen_ts}, macro event: {ev_name} at {ev_time} [blackout_active={blackout_active}], and Playbook compliance)")
+    lines.append("2. MANDATE 1 REPORT: Line-by-Line Screening of 24 Assets for New Trading Opportunities (Dual-Engine evaluation: Model 1 Mean Reversion + Model 2 Trend Pullbacks; incorporating liquidation cascades and stop clusters as attraction points / liquidity magnets)")
     lines.append("3. MANDATE 2 REPORT: Active / Running Trades Audit (Logical TP/SL Modifications Based on Latest Snapshot)")
     lines.append("4. MANDATE 3 REPORT: Unfilled Limit Orders Audit (Ticket-by-Ticket Verdict: WAIT TO FILL AS-IS vs. MODIFY ENTRY/SL/TP vs. DELETE)")
     lines.append("5. ACTIONABLE EXECUTION SUMMARY TABLE (Ticket/Action, Symbol, Side, Lots, Entry, SL Bunker, TP Magnet, Risk USD, R:R, Quantitative Rationale)")
