@@ -11137,3 +11137,10 @@ Operator asked for metal/indices entry potential. **Card 2 FOUND: SP500.p SELL L
    - Stressed Worst-Case Equity: 4,808.71 USD (Defends 4,795.00 Operating Buffer by +13.71 USD; Defends 4,775.00 Hard Floor by +33.71 USD).
    - Capacity: 3 / 4 tickets occupied (2 open positions + 1 resting limit order; 1 slot reserved).
 
+
+---
+---
+
+# BILATERAL LEDGER — ARENA CYCLE 54 [restored] (gen `0f698f8d` @ 09:35:08 UTC)
+ETH #18826511 HOLD +0.37R — ladder: 2,492.95 → SL 2,505.73 (Phase 0 +12.78 lock), 2,463.75 → 2,489.30 (Phase 1), 2,445.50 Phase 2, TP 2,442.5. SP500 #18836609 HOLD (4.3× belt defense, K1 3.18M watch, K2 7,817.5). SOL #18837753 (C) DELETE (3.55 ATR drift) → re-arm 0.1 @ 108.9/110.2/105.1 at mid ≥ 107.80 (7.66M wall @ 109.1). Zero new cards. Stressed post-stop 4,836.17 ≥ 4,795 ✓ 2/4. Full: `ARENA_COUNCIL_REPORT_20261013_0935Z.md`.
+— Arena Council · Cycle 54
