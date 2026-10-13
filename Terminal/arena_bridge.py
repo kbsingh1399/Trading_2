@@ -37,7 +37,7 @@ if str(PROJECT_ROOT) not in sys.path:
 CANDLES_DIR = PROJECT_ROOT / "Data" / "Candles"
 TELEMETRY_SNAPSHOT = PROJECT_ROOT / "docs" / "telemetry" / "live_snapshot_latest.json"
 
-CDP_HTTP_URL = "http://127.0.0.1:9222"
+CDP_HTTP_URL = "http://localhost:9222"
 
 PRIMARY_ASSETS = [
     # 14 Institutional Binance Perpetuals (Crypto)
@@ -536,7 +536,10 @@ async def clear_arena_prompt_box(ws) -> bool:
             "method": "Runtime.evaluate",
             "params": {"expression": focus_and_clean_js, "returnByValue": True}
         }))
-        await ws.recv()
+        try:
+            await asyncio.wait_for(ws.recv(), timeout=3.0)
+        except Exception:
+            pass
 
         # Step 2: Dispatch Ctrl+A (Select All)
         msg_id = int(time.time() * 1000) % 1000000
@@ -551,7 +554,10 @@ async def clear_arena_prompt_box(ws) -> bool:
                 "modifiers": 2
             }
         }))
-        await ws.recv()
+        try:
+            await asyncio.wait_for(ws.recv(), timeout=3.0)
+        except Exception:
+            pass
         await ws.send(json.dumps({
             "id": msg_id + 1,
             "method": "Input.dispatchKeyEvent",
@@ -563,7 +569,10 @@ async def clear_arena_prompt_box(ws) -> bool:
                 "modifiers": 2
             }
         }))
-        await ws.recv()
+        try:
+            await asyncio.wait_for(ws.recv(), timeout=3.0)
+        except Exception:
+            pass
 
         # Step 3: Dispatch Delete & Backspace
         await ws.send(json.dumps({
@@ -576,7 +585,10 @@ async def clear_arena_prompt_box(ws) -> bool:
                 "key": "Delete"
             }
         }))
-        await ws.recv()
+        try:
+            await asyncio.wait_for(ws.recv(), timeout=3.0)
+        except Exception:
+            pass
         await ws.send(json.dumps({
             "id": msg_id + 3,
             "method": "Input.dispatchKeyEvent",
@@ -587,7 +599,10 @@ async def clear_arena_prompt_box(ws) -> bool:
                 "key": "Delete"
             }
         }))
-        await ws.recv()
+        try:
+            await asyncio.wait_for(ws.recv(), timeout=3.0)
+        except Exception:
+            pass
         await asyncio.sleep(0.05)
         return True
     except Exception as e:
@@ -595,26 +610,83 @@ async def clear_arena_prompt_box(ws) -> bool:
         return False
 
 
+def format_prompt_for_tiptap_html(md: str) -> str:
+    """
+    Converts plain text/markdown prompts into structured HTML nodes
+    that TipTap ProseMirror natively parses into headings, bullet lists,
+    and distinct paragraphs, preventing unformatted single-paragraph collapse.
+    """
+    lines = md.split('\n')
+    html_parts = []
+    in_list = False
+    
+    for line in lines:
+        stripped = line.strip()
+        if not stripped:
+            if in_list:
+                html_parts.append('</ul>')
+                in_list = False
+            continue
+        
+        # Heading 1, 2, 3 or PART X / MANDATE X / STEP X
+        if stripped.startswith('# '):
+            if in_list:
+                html_parts.append('</ul>')
+                in_list = False
+            html_parts.append(f'<h2><strong>{stripped[2:]}</strong></h2>')
+        elif stripped.startswith('## ') or stripped.startswith('### ') or stripped.startswith('PART ') or stripped.startswith('MANDATE ') or stripped.startswith('STEP ') or stripped.startswith('TRADING DESK'):
+            if in_list:
+                html_parts.append('</ul>')
+                in_list = False
+            title = stripped.lstrip('#').strip()
+            html_parts.append(f'<h3><strong>{title}</strong></h3>')
+        # Bullets
+        elif stripped.startswith('• ') or stripped.startswith('- ') or stripped.startswith('* '):
+            if not in_list:
+                html_parts.append('<ul>')
+                in_list = True
+            item_text = stripped[2:]
+            html_parts.append(f'<li><p>{item_text}</p></li>')
+        else:
+            if in_list:
+                html_parts.append('</ul>')
+                in_list = False
+            html_parts.append(f'<p>{stripped}</p>')
+            
+    if in_list:
+        html_parts.append('</ul>')
+    return ''.join(html_parts)
+
+
 async def post_prompt_to_arena(prompt_text: str) -> bool:
-    """Clear any existing prompt in the box (Ctrl+A then Delete), inject prompt, and hit enter."""
+    """Clear any existing prompt in the box (Ctrl+A then Delete), inject prompt with rich HTML formatting, and hit enter."""
     ws_url = await get_arena_tab_ws_url()
     if not ws_url:
-        print("ERROR: No active Arena tab found in Chrome at 127.0.0.1:9222", file=sys.stderr)
+        print("ERROR: No active Arena tab found in Chrome at localhost:9222", file=sys.stderr)
         return False
 
     try:
-        async with websockets.connect(ws_url, max_size=10_000_000) as ws:
+        async with websockets.connect(ws_url, max_size=20_000_000) as ws:
+            # 0. Bring tab to front to unthrottle execution
+            await ws.send(json.dumps({"id": 100, "method": "Page.bringToFront"}))
+            try:
+                await asyncio.wait_for(ws.recv(), timeout=3.0)
+            except Exception:
+                pass
+
             # 1. MANDATORY CLEAR: Remove any previous prompt already in the box (Ctrl+A then Delete)
             await clear_arena_prompt_box(ws)
             await asyncio.sleep(0.1)
 
-            # 2. Inject the prompt into TipTap editor and update React state
+            prompt_html = format_prompt_for_tiptap_html(prompt_text)
+
+            # 2. Inject structured HTML into TipTap editor and update React state
             js_set = f"""
             (async () => {{
               const submitBtn = document.querySelector('button[aria-label="Send message"], button:has(svg.lucide-arrow-up), button:has(svg.lucide-arrow-right)');
               if (!submitBtn) return {{ error: 'No submit button found' }};
 
-              const fiberKey = Object.keys(submitBtn).find(k => k.startsWith('__reactFiber'));
+              const fiberKey = Object.getOwnPropertyNames(submitBtn).find(k => k.startsWith('__reactFiber')) || Object.keys(submitBtn).find(k => k.startsWith('__reactFiber'));
               if (!fiberKey) return {{ error: 'No react fiber on submit button' }};
 
               let curr = submitBtn[fiberKey];
@@ -629,6 +701,7 @@ async def post_prompt_to_arena(prompt_text: str) -> bool:
               if (!targetFiber) return {{ error: 'Target fiber not found' }};
 
               const promptText = {json.dumps(prompt_text)};
+              const promptHtml = {json.dumps(prompt_html)};
               targetFiber.memoizedProps.onChange(promptText);
 
               const el = document.querySelector('.tiptap.ProseMirror');
@@ -639,7 +712,7 @@ async def post_prompt_to_arena(prompt_text: str) -> bool:
                 p = p.parentElement;
               }}
               if (editor) {{
-                editor.commands.setContent(promptText);
+                editor.commands.setContent(promptHtml);
               }}
 
               return {{ success: true }};
@@ -655,9 +728,17 @@ async def post_prompt_to_arena(prompt_text: str) -> bool:
                     "awaitPromise": True
                 }
             }))
-            resp_str = await ws.recv()
-            resp = json.loads(resp_str)
-            res_val = resp.get("result", {}).get("result", {}).get("value", {})
+            res_val = {}
+            for _ in range(10):
+                try:
+                    resp_str = await asyncio.wait_for(ws.recv(), timeout=5.0)
+                    resp = json.loads(resp_str)
+                    if resp.get("id") == msg_id:
+                        res_val = resp.get("result", {}).get("result", {}).get("value", {})
+                        break
+                except Exception:
+                    break
+
             if not res_val.get("success"):
                 print(f"CDP prompt injection returned: {res_val}", file=sys.stderr)
                 return False
@@ -692,8 +773,15 @@ async def post_prompt_to_arena(prompt_text: str) -> bool:
             # Failsafe submit click / onSubmit trigger
             js_submit = """
             (async () => {
+              const el = document.querySelector('.tiptap.ProseMirror');
+              if (el) el.focus();
               const submitBtn = document.querySelector('button[aria-label="Send message"], button:has(svg.lucide-arrow-up), button:has(svg.lucide-arrow-right)');
               if (!submitBtn) return { error: 'No submit button' };
+
+              if (!submitBtn.disabled) {
+                submitBtn.click();
+                return { submitted: true, method: 'click' };
+              }
 
               const fiberKey = Object.keys(submitBtn).find(k => k.startsWith('__reactFiber'));
               if (fiberKey) {
@@ -709,10 +797,6 @@ async def post_prompt_to_arena(prompt_text: str) -> bool:
                 }
               }
 
-              if (!submitBtn.disabled) {
-                submitBtn.click();
-                return { submitted: true, method: 'click' };
-              }
               return { submitted: false, error: 'Disabled and no fiber onSubmit' };
             })()
             """
@@ -736,12 +820,35 @@ async def post_prompt_to_arena(prompt_text: str) -> bool:
 
 
 async def dismiss_arena_popup() -> bool:
-    """Send Escape key via CDP to dismiss any 'Was this task successful?' modal popup."""
+    """Send Escape key via CDP and click 'Close review panel' / 'Yes' / 'Keep working' to dismiss any review panel on Arena.ai."""
     ws_url = await get_arena_tab_ws_url()
     if not ws_url:
         return False
     try:
         async with websockets.connect(ws_url, max_size=10_000_000) as ws:
+            # 1. Click review panel close or dismissal button via DOM
+            js_dismiss = """
+            (() => {
+                const closeBtn = document.querySelector('button[aria-label="Close review panel"]');
+                if (closeBtn) { closeBtn.click(); return { clicked: 'close review panel' }; }
+                const yesBtn = Array.from(document.querySelectorAll('button')).find(b => (b.innerText || '').trim() === 'Yes');
+                if (yesBtn) { yesBtn.click(); return { clicked: 'Yes' }; }
+                const keepBtn = Array.from(document.querySelectorAll('button')).find(b => (b.innerText || '').trim() === 'Keep working');
+                if (keepBtn) { keepBtn.click(); return { clicked: 'Keep working' }; }
+                return { clicked: false };
+            })()
+            """
+            await ws.send(json.dumps({
+                "id": 1,
+                "method": "Runtime.evaluate",
+                "params": {"expression": js_dismiss, "returnByValue": True}
+            }))
+            try:
+                await asyncio.wait_for(ws.recv(), timeout=2.0)
+            except Exception:
+                pass
+
+            # 2. Also dispatch Escape key as failsafe
             msg_down = {
                 "id": int(time.time()),
                 "method": "Input.dispatchKeyEvent",
@@ -753,7 +860,10 @@ async def dismiss_arena_popup() -> bool:
                 }
             }
             await ws.send(json.dumps(msg_down))
-            await ws.recv()
+            try:
+                await asyncio.wait_for(ws.recv(), timeout=2.0)
+            except Exception:
+                pass
             msg_up = {
                 "id": int(time.time()) + 1,
                 "method": "Input.dispatchKeyEvent",
@@ -765,10 +875,64 @@ async def dismiss_arena_popup() -> bool:
                 }
             }
             await ws.send(json.dumps(msg_up))
-            await ws.recv()
+            try:
+                await asyncio.wait_for(ws.recv(), timeout=2.0)
+            except Exception:
+                pass
             return True
     except Exception as e:
         print(f"Error dismissing popup: {e}", file=sys.stderr)
+        return False
+
+
+async def dismiss_zai_popup() -> bool:
+    """Send Escape key via CDP and execute DOM close to dismiss any high-traffic 'switch model' modal popup on Z.ai."""
+    ws_url = await get_zai_tab_ws_url()
+    if not ws_url:
+        return False
+    try:
+        async with websockets.connect(ws_url, max_size=10_000_000) as ws:
+            msg_id = int(time.time() * 1000) % 1000000
+            for ktype, vk in [("rawKeyDown", 27), ("keyUp", 27)]:
+                await ws.send(json.dumps({
+                    "id": msg_id,
+                    "method": "Input.dispatchKeyEvent",
+                    "params": {
+                        "type": ktype,
+                        "windowsVirtualKeyCode": vk,
+                        "code": "Escape",
+                        "key": "Escape"
+                    }
+                }))
+                msg_id += 1
+                try:
+                    await asyncio.wait_for(ws.recv(), timeout=2.0)
+                except Exception:
+                    pass
+            js_close = """
+            (() => {
+              const modal = document.querySelector('div[role="dialog"], .modal, [class*="dialog"], [class*="popup"], [class*="modal"]');
+              if (modal) {
+                window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', code: 'Escape', keyCode: 27, which: 27, bubbles: true }));
+                window.dispatchEvent(new KeyboardEvent('keyup', { key: 'Escape', code: 'Escape', keyCode: 27, which: 27, bubbles: true }));
+                const closeBtn = modal.querySelector('button[aria-label*="close" i], button.close, button[title*="close" i], button:has(svg.lucide-x)');
+                if (closeBtn) closeBtn.click();
+              }
+              return true;
+            })()
+            """
+            await ws.send(json.dumps({
+                "id": msg_id,
+                "method": "Runtime.evaluate",
+                "params": {"expression": js_close, "returnByValue": True}
+            }))
+            try:
+                await asyncio.wait_for(ws.recv(), timeout=2.0)
+            except Exception:
+                pass
+            return True
+    except Exception as e:
+        print(f"Error dismissing Z.ai popup: {e}", file=sys.stderr)
         return False
 
 
@@ -799,8 +963,9 @@ async def check_arena_response() -> Tuple[bool, str]:
 
     try:
         async with websockets.connect(ws_url, max_size=10_000_000) as ws:
+            msg_id = int(time.time() * 1000) % 1000000
             msg = {
-                "id": int(time.time()),
+                "id": msg_id,
                 "method": "Runtime.evaluate",
                 "params": {
                     "expression": js_code,
@@ -809,9 +974,16 @@ async def check_arena_response() -> Tuple[bool, str]:
                 }
             }
             await ws.send(json.dumps(msg))
-            resp_str = await ws.recv()
-            resp = json.loads(resp_str)
-            val = resp.get("result", {}).get("result", {}).get("value", {})
+            val = {}
+            for _ in range(6):
+                try:
+                    resp_str = await asyncio.wait_for(ws.recv(), timeout=3.0)
+                    resp = json.loads(resp_str)
+                    if resp.get("id") == msg_id:
+                        val = resp.get("result", {}).get("result", {}).get("value", {})
+                        break
+                except Exception:
+                    break
             is_gen = val.get("isGenerating", False)
             text = val.get("lastText", "")
             return not is_gen and len(text) > 50, text
@@ -882,6 +1054,739 @@ def run_full_15m_cycle():
     return done, resp_text
 
 
+async def get_zai_tab_ws_url() -> Optional[str]:
+    """Find the Z.ai Chat tab via Chrome remote debugging JSON endpoint."""
+    try:
+        req = urllib.request.Request(f"{CDP_HTTP_URL}/json")
+        with urllib.request.urlopen(req, timeout=3) as resp:
+            tabs = json.loads(resp.read().decode("utf-8"))
+        for t in tabs:
+            if t.get("type") == "page" and "chat.z.ai" in t.get("url", ""):
+                return t.get("webSocketDebuggerUrl")
+    except Exception as e:
+        print(f"Error fetching Chrome tabs for Z.ai: {e}", file=sys.stderr)
+    return None
+
+
+async def inspect_zai_dom() -> Dict[str, Any]:
+    """Inspect the Z.ai Chat tab DOM structure and extract current conversation text."""
+    ws_url = await get_zai_tab_ws_url()
+    if not ws_url:
+        return {"error": "No active Z.ai tab found on port 9222"}
+    js_code = """
+    (() => {
+      const inputs = Array.from(document.querySelectorAll('textarea, [contenteditable="true"], input[type="text"]')).map(el => ({
+        tag: el.tagName,
+        id: el.id,
+        className: el.className,
+        placeholder: el.getAttribute('placeholder') || el.getAttribute('aria-label') || '',
+        valueLen: (el.value || el.innerText || '').length
+      }));
+      const buttons = Array.from(document.querySelectorAll('button')).map(b => ({
+        id: b.id,
+        text: (b.innerText || '').trim().slice(0, 40),
+        aria: b.getAttribute('aria-label') || '',
+        title: b.getAttribute('title') || '',
+        type: b.getAttribute('type') || '',
+        disabled: b.disabled,
+        className: (b.className || '').slice(0, 80)
+      }));
+      const msgContainers = Array.from(document.querySelectorAll('.prose, .markdown-prose, [class*="markdown"], [class*="message-content"], [id^="message-"]')).map(el => ({
+        tag: el.tagName,
+        id: el.id,
+        className: (el.className || '').slice(0, 80),
+        textLen: (el.innerText || '').trim().length,
+        textPreview: (el.innerText || '').trim().slice(0, 400)
+      })).filter(m => m.textLen > 20);
+      const allMessageDivs = Array.from(document.querySelectorAll('[id^="message-"]')).map(el => ({
+        id: el.id,
+        className: (el.className || '').slice(0, 80),
+        textLen: (el.innerText || '').trim().length,
+        textPreview: (el.innerText || '').trim().slice(0, 300),
+        htmlPreview: (el.innerHTML || '').trim().slice(0, 1500)
+      }));
+      const ta = document.querySelector('textarea#chat-input') || document.querySelector('textarea');
+      const formEl = ta ? (ta.closest('form') || (ta.parentElement && ta.parentElement.parentElement && ta.parentElement.parentElement.parentElement)) : null;
+      const chatInputButtons = formEl ? Array.from(formEl.querySelectorAll('button')).map(b => ({
+        id: b.id,
+        text: (b.innerText || '').trim(),
+        aria: b.getAttribute('aria-label') || '',
+        title: b.getAttribute('title') || '',
+        className: b.className || '',
+        html: b.outerHTML.slice(0, 400)
+      })) : [];
+      return {
+        title: document.title,
+        url: location.href,
+        inputs,
+        chatInputButtons,
+        buttons: buttons.slice(-30),
+        msgCount: msgContainers.length,
+        allMessageDivs: allMessageDivs.slice(-6),
+        msgContainers: msgContainers.slice(-6),
+        lastFullText: msgContainers.length > 0 ? (Array.from(document.querySelectorAll('.prose, .markdown-prose, [class*="markdown"], [class*="message-content"], [id^="message-"]')).filter(e => (e.innerText || '').trim().length > 20).pop().innerText || '') : (document.body ? document.body.innerText.slice(-4000) : '')
+      };
+    })()
+    """
+    async with websockets.connect(ws_url, max_size=20_000_000) as ws:
+        await ws.send(json.dumps({
+            "id": int(time.time()),
+            "method": "Runtime.evaluate",
+            "params": {"expression": js_code, "returnByValue": True, "awaitPromise": True}
+        }))
+        resp = json.loads(await ws.recv())
+        return resp.get("result", {}).get("result", {}).get("value", {})
+
+
+async def post_prompt_to_zai(prompt_text: str) -> bool:
+    """Inject prompt into Z.ai Chat (textarea#chat-input) via CDP Input.insertText and click button#send-message-button."""
+    ws_url = await get_zai_tab_ws_url()
+    if not ws_url:
+        print("WARNING: No active Z.ai Chat tab found in Chrome at 127.0.0.1:9222", file=sys.stderr)
+        return False
+
+    try:
+        async with websockets.connect(ws_url, max_size=20_000_000) as ws:
+            # 0. Bring tab to front to unthrottle execution
+            await ws.send(json.dumps({"id": 99, "method": "Page.bringToFront"}))
+            try:
+                await asyncio.wait_for(ws.recv(), timeout=3.0)
+            except Exception:
+                pass
+
+            msg_id = int(time.time() * 1000) % 1000000
+            # Step 1: If a previous Z.ai generation is hung (Stop button active instead of #send-message-button), click Stop first, then focus and clear textarea#chat-input
+            js_focus = """
+            (async () => {
+              const sendBtn = document.querySelector('button#send-message-button');
+              if (!sendBtn) {
+                const stopSquare = document.querySelector('button span.size-3.rounded-xs, button[aria-label*="Stop"], button[title*="Stop"]');
+                const stopBtn = stopSquare ? (stopSquare.closest('button') || stopSquare) : null;
+                if (stopBtn) {
+                  stopBtn.click();
+                  await new Promise(r => setTimeout(r, 700));
+                }
+              }
+              const ta = document.querySelector('textarea#chat-input') || document.querySelector('textarea');
+              if (!ta) return { error: 'No textarea#chat-input found on Z.ai' };
+              ta.focus();
+              const nativeSetter = Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype, 'value')?.set;
+              if (nativeSetter) {
+                nativeSetter.call(ta, '');
+              } else {
+                ta.value = '';
+              }
+              ta.dispatchEvent(new InputEvent('input', { bubbles: true, data: '', inputType: 'deleteContentBackward' }));
+              return { focused: true };
+            })()
+            """
+            await ws.send(json.dumps({
+                "id": msg_id,
+                "method": "Runtime.evaluate",
+                "params": {"expression": js_focus, "returnByValue": True, "awaitPromise": True}
+            }))
+            try:
+                r1_str = await asyncio.wait_for(ws.recv(), timeout=5.0)
+                r1 = json.loads(r1_str)
+                v1 = r1.get("result", {}).get("result", {}).get("value", {})
+                if v1.get("error"):
+                    print(f"Z.ai focus error: {v1}", file=sys.stderr)
+                    return False
+            except Exception as e:
+                print(f"Z.ai focus recv timeout/error: {e}", file=sys.stderr)
+
+            # Step 2: Insert text via CDP Input.insertText so Svelte updates reactive state
+            await ws.send(json.dumps({
+                "id": msg_id + 1,
+                "method": "Input.insertText",
+                "params": {"text": prompt_text}
+            }))
+            try:
+                await asyncio.wait_for(ws.recv(), timeout=5.0)
+            except Exception:
+                pass
+            await asyncio.sleep(0.35)
+
+            # Step 3: Verify value and click button#send-message-button with Esc/Retry resilience
+            # Operator Invariant: Under high traffic, Z.ai pops up a "switch model" modal.
+            # When that popup comes: hit Escape to dismiss the modal, wait 350ms, and hit Send again (2-3 attempts).
+            registered = False
+            for retry in range(4):
+                js_send = f"""
+                (async () => {{
+                  const curTa = document.querySelector('textarea#chat-input') || document.querySelector('textarea');
+                  // If textarea is already emptied, prompt was accepted and registered!
+                  if (curTa && curTa.value.length === 0) {{
+                    return {{ registered: true, remainingLen: 0 }};
+                  }}
+
+                  // Check if high-traffic "switch model" modal/popup is visible:
+                  const modal = document.querySelector('div[role="dialog"], .modal, [class*="dialog"], [class*="popup"], [class*="modal"]');
+                  if (modal) {{
+                    window.dispatchEvent(new KeyboardEvent('keydown', {{ key: 'Escape', code: 'Escape', keyCode: 27, which: 27, bubbles: true }}));
+                    window.dispatchEvent(new KeyboardEvent('keyup', {{ key: 'Escape', code: 'Escape', keyCode: 27, which: 27, bubbles: true }}));
+                    const closeBtn = modal.querySelector('button[aria-label*="close" i], button.close, button[title*="close" i], button:has(svg.lucide-x)');
+                    if (closeBtn) closeBtn.click();
+                    await new Promise(r => setTimeout(r, 350));
+                  }}
+
+                  // Re-ensure textarea value is intact if lost
+                  if (curTa && (!curTa.value || curTa.value.length < 20)) {{
+                    const nativeSetter = Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype, 'value')?.set;
+                    if (nativeSetter) nativeSetter.call(curTa, {json.dumps(prompt_text)});
+                    else curTa.value = {json.dumps(prompt_text)};
+                    curTa.dispatchEvent(new InputEvent('input', {{ bubbles: true, data: {json.dumps(prompt_text[:64])}, inputType: 'insertText' }}));
+                    curTa.dispatchEvent(new Event('change', {{ bubbles: true }}));
+                    await new Promise(r => setTimeout(r, 200));
+                  }}
+
+                  const sendBtn = document.querySelector('button#send-message-button') || document.querySelector('button.sendMessageButton') || document.querySelector('button[type="submit"]');
+                  if (sendBtn && !sendBtn.disabled) {{
+                    sendBtn.click();
+                    await new Promise(r => setTimeout(r, 450));
+                  }}
+
+                  const checkTa = document.querySelector('textarea#chat-input') || document.querySelector('textarea');
+                  const isEmptied = checkTa ? checkTa.value.length === 0 : false;
+                  return {{
+                    registered: isEmptied,
+                    remainingLen: checkTa ? checkTa.value.length : -1,
+                    hadModal: !!modal
+                  }};
+                }})()
+                """
+                await ws.send(json.dumps({
+                    "id": msg_id + 10 + retry * 4,
+                    "method": "Runtime.evaluate",
+                    "params": {"expression": js_send, "returnByValue": True, "awaitPromise": True}
+                }))
+                val = {}
+                try:
+                    resp_str = await asyncio.wait_for(ws.recv(), timeout=8.0)
+                    resp = json.loads(resp_str)
+                    val = resp.get("result", {}).get("result", {}).get("value", {})
+                except Exception as e:
+                    print(f"Z.ai send attempt {retry+1} error: {e}", file=sys.stderr)
+
+                if val.get("registered"):
+                    print(f"Prompt posted successfully to Z.ai Chat (click_send_verified, attempt {retry+1})!")
+                    registered = True
+                    break
+
+                # If still not emptied, hit CDP Escape to dismiss any high-traffic popup and retry
+                print(f"Z.ai traffic popup / un-registered prompt (remaining={val.get('remainingLen')}, hadModal={val.get('hadModal')}) - hitting Esc and retrying send button...", file=sys.stderr)
+                for ktype, vk in [("rawKeyDown", 27), ("keyUp", 27)]:
+                    await ws.send(json.dumps({
+                        "id": msg_id + 100 + retry * 4,
+                        "method": "Input.dispatchKeyEvent",
+                        "params": {"type": ktype, "windowsVirtualKeyCode": vk, "code": "Escape", "key": "Escape"}
+                    }))
+                    try:
+                        await asyncio.wait_for(ws.recv(), timeout=2.0)
+                    except Exception:
+                        pass
+                await asyncio.sleep(0.4)
+
+            if not registered:
+                # Failsafe: dispatch Enter key via CDP
+                await ws.send(json.dumps({
+                    "id": msg_id + 99,
+                    "method": "Input.dispatchKeyEvent",
+                    "params": {"type": "rawKeyDown", "windowsVirtualKeyCode": 13, "code": "Enter", "key": "Enter"}
+                }))
+                try:
+                    await asyncio.wait_for(ws.recv(), timeout=2.0)
+                except Exception:
+                    pass
+                await ws.send(json.dumps({
+                    "id": msg_id + 100,
+                    "method": "Input.dispatchKeyEvent",
+                    "params": {"type": "keyUp", "windowsVirtualKeyCode": 13, "code": "Enter", "key": "Enter"}
+                }))
+                try:
+                    await asyncio.wait_for(ws.recv(), timeout=2.0)
+                except Exception:
+                    pass
+            return True
+    except Exception as e:
+        print(f"Error posting prompt to Z.ai over CDP: {e}", file=sys.stderr)
+        return False
+
+
+async def check_zai_response() -> Tuple[bool, str]:
+    """Check if Z.ai Chat has finished generating and extract BOTH the chat response AND any attached output file / workspace preview."""
+    ws_url = await get_zai_tab_ws_url()
+    if not ws_url:
+        return False, "No active Z.ai tab"
+
+    js_code = """
+    (async () => {
+      const stopBtn = document.querySelector('button[aria-label*="Stop"], button[title*="Stop"], button.stop-button');
+      const stopSquare = document.querySelector('button span.size-3.rounded-xs');
+      const sendBtn = document.querySelector('button#send-message-button');
+      const isGenerating = Boolean(stopBtn) || Boolean(stopSquare) || !sendBtn;
+
+      const allChatMsgs = Array.from(document.querySelectorAll('.chat-assistant.markdown-prose'));
+      const lastChatEl = allChatMsgs.length > 0 ? allChatMsgs[allChatMsgs.length - 1] : null;
+      const chatText = lastChatEl ? (lastChatEl.innerText || '').trim() : '';
+
+      let workspaceFileName = '';
+      let workspaceFileText = '';
+
+      if (!isGenerating && lastChatEl) {
+        const outer = lastChatEl.parentElement && lastChatEl.parentElement.parentElement ? lastChatEl.parentElement.parentElement : lastChatEl;
+        const wroteBtns = Array.from(outer.querySelectorAll('button')).filter(b => (b.innerText || '').includes('Wrote'));
+        for (const wb of wroteBtns) {
+          const container = wb.parentElement && wb.parentElement.parentElement ? wb.parentElement.parentElement : wb.parentElement;
+          if (container && !container.querySelector('.ToolCallTraceList')) {
+            wb.click();
+            await new Promise(r => setTimeout(r, 300));
+          }
+        }
+        const createBtns = Array.from(outer.querySelectorAll('.ToolCallTraceList button, button')).filter(b => (b.innerText || '').includes('Create File') && (b.innerText || '').includes('.md'));
+        if (createBtns.length > 0) {
+          const latestCreateBtn = createBtns[createBtns.length - 1];
+          const rawLabel = (latestCreateBtn.innerText || '').trim();
+          const match = rawLabel.match(/([A-Za-z0-9_.-]+\\.md)/);
+          const targetFile = match ? match[1] : '';
+          const curHeader = Array.from(document.querySelectorAll('.text-sm.flex-1.truncate.line-clamp-1')).map(e => (e.innerText || '').trim()).find(t => t.endsWith('.md')) || '';
+          if (targetFile && curHeader !== targetFile) {
+            latestCreateBtn.click();
+            await new Promise(r => setTimeout(r, 500));
+          }
+          if (targetFile) workspaceFileName = targetFile;
+        }
+        if (!workspaceFileName) {
+          const curHeader = Array.from(document.querySelectorAll('.text-sm.flex-1.truncate.line-clamp-1')).map(e => (e.innerText || '').trim()).find(t => t.endsWith('.md')) || '';
+          if (curHeader) workspaceFileName = curHeader;
+        }
+        const cm = document.querySelector('.cm-content');
+        if (cm && cm.cmView) {
+          let v = cm.cmView;
+          while (v && !v.state && v.parent) v = v.parent;
+          if (v && v.view && v.view.state) workspaceFileText = v.view.state.doc.toString();
+          else if (v && v.state) workspaceFileText = v.state.doc.toString();
+        }
+        if (!workspaceFileText) {
+          const wsProse = document.querySelector('.workspaceContent .markdown-prose, .workspace .markdown-prose, .workspaceContent pre');
+          if (wsProse) {
+            workspaceFileText = (wsProse.innerText || '').trim();
+          }
+        }
+      }
+
+      return {
+        isGenerating,
+        proseCount: allChatMsgs.length,
+        chatText,
+        workspaceFileName,
+        workspaceFileLen: workspaceFileText.length,
+        workspaceFileText
+      };
+    })()
+    """
+    try:
+        async with websockets.connect(ws_url, max_size=50_000_000) as ws:
+            await ws.send(json.dumps({
+                "id": int(time.time()),
+                "method": "Runtime.evaluate",
+                "params": {"expression": js_code, "returnByValue": True, "awaitPromise": True}
+            }))
+            resp = json.loads(await ws.recv())
+            val = resp.get("result", {}).get("result", {}).get("value", {})
+            is_gen = val.get("isGenerating", False)
+            chat_text = val.get("chatText", "")
+            ws_name = (val.get("workspaceFileName") or "").strip()
+            ws_text = val.get("workspaceFileText", "")
+
+            combined = chat_text
+            if ws_text:
+                combined += f"\n\n================================================================================\n"
+                combined += f"Z.AI ATTACHED OUTPUT FILE: {ws_name} ({len(ws_text)} chars)\n"
+                combined += f"================================================================================\n\n"
+                combined += ws_text
+                attach_path = PROJECT_ROOT / "docs" / "trade_plans" / "ZAI_LATEST_ATTACHMENT.md"
+                attach_path.parent.mkdir(parents=True, exist_ok=True)
+                attach_path.write_text(ws_text, encoding="utf-8")
+                if ws_name and ws_name.endswith(".md") and "/" not in ws_name and "\\" not in ws_name:
+                    named_path = PROJECT_ROOT / "docs" / "trade_plans" / ws_name
+                    named_path.write_text(ws_text, encoding="utf-8")
+
+            raw_path = PROJECT_ROOT / "docs" / "trade_plans" / "ZAI_LATEST_RAW.md"
+            if combined:
+                raw_path.parent.mkdir(parents=True, exist_ok=True)
+                raw_path.write_text(combined, encoding="utf-8")
+
+            return (not is_gen and len(chat_text) > 100), combined
+    except Exception as e:
+        return False, str(e)
+
+
+
+async def inspect_zai_files() -> Dict[str, Any]:
+    """Inspect file cards, download/preview buttons, and workspace panel on Z.ai Chat."""
+    ws_url = await get_zai_tab_ws_url()
+    if not ws_url:
+        return {"error": "No active Z.ai tab"}
+    js_code = """
+    (async () => {
+      // Find all file cards / download buttons / preview buttons
+      const dlBtns = Array.from(document.querySelectorAll('button[title="Download file"], button[title="Open in Workspace"], a[download], [class*="file"], [class*="artifact"], [class*="workspace"]'));
+      const btnDetails = dlBtns.slice(-20).map(el => ({
+        tag: el.tagName,
+        title: el.getAttribute('title') || '',
+        text: (el.innerText || '').trim().slice(0, 100),
+        href: el.getAttribute('href') || '',
+        className: (el.className || '').slice(0, 80),
+        parentText: el.parentElement ? (el.parentElement.innerText || '').trim().slice(0, 200) : '',
+        grandParentHtml: el.parentElement && el.parentElement.parentElement ? el.parentElement.parentElement.outerHTML.slice(0, 600) : ''
+      }));
+
+      // Click the latest "Preview" / "Open in Workspace" button if present to open the file content in the DOM!
+      const previewBtns = Array.from(document.querySelectorAll('button[title="Open in Workspace"]'));
+      let clickedPreview = false;
+      if (previewBtns.length > 0) {
+        previewBtns[previewBtns.length - 1].click();
+        clickedPreview = true;
+        await new Promise(r => setTimeout(r, 800));
+      }
+
+      // Check if a workspace / preview drawer opened in the DOM
+      const allProses = Array.from(document.querySelectorAll('.markdown-prose, .prose, pre, code, [class*="preview"], [class*="workspace"], [class*="editor"]')).map(el => ({
+        tag: el.tagName,
+        className: (el.className || '').slice(0, 80),
+        len: (el.innerText || '').trim().length,
+        preview: (el.innerText || '').trim().slice(0, 300)
+      })).filter(x => x.len > 200);
+
+      return {
+        clickedPreview,
+        previewBtnCount: previewBtns.length,
+        btnDetails,
+        largeBlocks: allProses.slice(-10)
+      };
+    })()
+    """
+    async with websockets.connect(ws_url, max_size=50_000_000) as ws:
+        await ws.send(json.dumps({
+            "id": int(time.time()),
+            "method": "Runtime.evaluate",
+            "params": {"expression": js_code, "returnByValue": True, "awaitPromise": True}
+        }))
+        resp = json.loads(await ws.recv())
+        return resp.get("result", {}).get("result", {}).get("value", {})
+
+
+async def get_all_copilot_tabs() -> List[Dict[str, Any]]:
+    """Find all active Copilot Studio preview tabs via Chrome remote debugging JSON endpoint."""
+    results = []
+    try:
+        req = urllib.request.Request(f"{CDP_HTTP_URL}/json")
+        with urllib.request.urlopen(req, timeout=3) as resp:
+            tabs = json.loads(resp.read().decode("utf-8"))
+        for t in tabs:
+            if t.get("type") == "page" and "copilotstudio.microsoft.com" in t.get("url", ""):
+                url = t.get("url", "")
+                agent_id = ""
+                name = "Copilot Studio"
+                if "3e9246b9" in url:
+                    agent_id = "3e9246b9"
+                    name = "GPT Astra"
+                elif "98cead10" in url:
+                    agent_id = "98cead10"
+                    name = "Opus 5.5"
+                results.append({
+                    "id": t.get("id"),
+                    "title": t.get("title", ""),
+                    "url": url,
+                    "agent_id": agent_id,
+                    "name": name,
+                    "ws_url": t.get("webSocketDebuggerUrl")
+                })
+    except Exception as e:
+        print(f"Error fetching Chrome tabs for Copilot Studio: {e}", file=sys.stderr)
+    return results
+
+
+async def get_copilot_tab_ws_url(target: str = "first") -> Optional[str]:
+    """Find Copilot Studio tab via Chrome remote debugging JSON endpoint."""
+    tabs = await get_all_copilot_tabs()
+    if not tabs:
+        return None
+    if target == "first" or target == "all":
+        return tabs[0]["ws_url"]
+    for t in tabs:
+        if target.lower() in t["name"].lower() or target in t["agent_id"]:
+            return t["ws_url"]
+    return tabs[0]["ws_url"]
+
+
+async def post_prompt_to_single_copilot(tab_info: Dict[str, Any], prompt_text: str) -> bool:
+    """Inject prompt and attach 4 authentic context files to a specific Copilot Studio tab."""
+    ws_url = tab_info.get("ws_url")
+    tab_name = tab_info.get("name", "Copilot")
+    if not ws_url:
+        print(f"[{tab_name}] No WebSocket URL found", file=sys.stderr)
+        return False
+
+    try:
+        async with websockets.connect(ws_url, max_size=50_000_000) as ws:
+            # 0. Bring tab to front so Chrome unthrottles its execution
+            await ws.send(json.dumps({"id": 1, "method": "Page.bringToFront"}))
+            try:
+                await asyncio.wait_for(ws.recv(), timeout=3.0)
+            except Exception:
+                pass
+            await asyncio.sleep(0.5)
+
+            # Ensure preview pane is open
+            js_preview = """
+            (() => {
+                const inputEl = document.querySelector('[role="textbox"], .fai-EditorInput__input');
+                if (!inputEl) {
+                    const previewBtn = Array.from(document.querySelectorAll('button')).find(b => (b.innerText || '').trim() === 'Preview');
+                    if (previewBtn) {
+                        previewBtn.click();
+                        return { clickedPreview: true };
+                    }
+                }
+                return { clickedPreview: false, hasInput: Boolean(inputEl) };
+            })()
+            """
+            await ws.send(json.dumps({
+                "id": 2,
+                "method": "Runtime.evaluate",
+                "params": {"expression": js_preview, "returnByValue": True, "awaitPromise": True}
+            }))
+            await ws.recv()
+            await asyncio.sleep(0.5)
+
+            msg_id = int(time.time() * 1000) % 1000000
+
+            # Step 1: Attach all 4 authentic context files via CDP DOM.setFileInputFiles
+            try:
+                files_to_attach = [
+                    str((PROJECT_ROOT / "docs" / "telemetry" / "live_snapshot_latest.json").resolve()),
+                    str((PROJECT_ROOT / "docs" / "specs" / "TRADE_DECISION_PLAYBOOK.md").resolve()),
+                    str((PROJECT_ROOT / "docs" / "trade_plans" / "LIVE_COLLABORATIVE_ORDER_DESK.md").resolve()),
+                    str((PROJECT_ROOT / ".agents" / "rules" / "ACTIVE_CONTEXT.md").resolve()),
+                ]
+                existing_files = [f for f in files_to_attach if Path(f).exists()]
+                if existing_files:
+                    await ws.send(json.dumps({
+                        "id": msg_id,
+                        "method": "Runtime.evaluate",
+                        "params": {"expression": 'document.querySelector("input[data-testid=\\"file-input\\"]")', "returnByValue": False}
+                    }))
+                    eval_res = json.loads(await ws.recv())
+                    obj_id = eval_res.get("result", {}).get("result", {}).get("objectId")
+                    if obj_id:
+                        await ws.send(json.dumps({
+                            "id": msg_id + 1,
+                            "method": "DOM.setFileInputFiles",
+                            "params": {"files": existing_files, "objectId": obj_id}
+                        }))
+                        await ws.recv()
+                        await ws.send(json.dumps({
+                            "id": msg_id + 2,
+                            "method": "Runtime.evaluate",
+                            "params": {
+                                "expression": '(() => { const el = document.querySelector("input[data-testid=\\"file-input\\"]"); if (el) { el.dispatchEvent(new Event("change", { bubbles: true })); el.dispatchEvent(new Event("input", { bubbles: true })); } })()'
+                            }
+                        }))
+                        await ws.recv()
+                        await asyncio.sleep(0.6)
+                        print(f"[{tab_name}] Attached {len(existing_files)} authentic files directly via CDP!")
+            except Exception as e_att:
+                print(f"[{tab_name}] Warning: Could not attach files: {e_att}", file=sys.stderr)
+
+            # Step 2: Focus input and clear
+            js_focus = """
+            (() => {
+                const el = document.querySelector('[role="textbox"], .fai-EditorInput__input');
+                if (!el) return { error: "No input element on Copilot Studio" };
+                el.focus();
+                const range = document.createRange();
+                range.selectNodeContents(el);
+                const sel = window.getSelection();
+                sel.removeAllRanges();
+                sel.addRange(range);
+                return { focused: true };
+            })()
+            """
+            await ws.send(json.dumps({
+                "id": msg_id + 3,
+                "method": "Runtime.evaluate",
+                "params": {"expression": js_focus, "returnByValue": True, "awaitPromise": True}
+            }))
+            await ws.recv()
+
+            for ktype, vk in [("rawKeyDown", 8), ("keyUp", 8)]:
+                await ws.send(json.dumps({
+                    "id": msg_id + 4,
+                    "method": "Input.dispatchKeyEvent",
+                    "params": {"type": ktype, "windowsVirtualKeyCode": vk, "code": "Backspace", "key": "Backspace"}
+                }))
+                await ws.recv()
+            await asyncio.sleep(0.2)
+
+            # Step 3: Insert text via CDP Input.insertText
+            await ws.send(json.dumps({
+                "id": msg_id + 5,
+                "method": "Input.insertText",
+                "params": {"text": prompt_text}
+            }))
+            await ws.recv()
+            await asyncio.sleep(0.4)
+
+            # Step 4: Click button[aria-label="Send"] or hit Enter
+            js_send = """
+            (() => {
+                const sendBtn = document.querySelector('button[aria-label="Send"], button[title="Send"]');
+                if (sendBtn && !sendBtn.disabled) {
+                    sendBtn.click();
+                    return { clicked: true };
+                }
+                return { clicked: false, sendBtnFound: Boolean(sendBtn) };
+            })()
+            """
+            await ws.send(json.dumps({
+                "id": msg_id + 6,
+                "method": "Runtime.evaluate",
+                "params": {"expression": js_send, "returnByValue": True, "awaitPromise": True}
+            }))
+            resp_str = await ws.recv()
+            resp = json.loads(resp_str)
+            res_val = resp.get("result", {}).get("result", {}).get("value", {})
+
+            if not res_val.get("clicked"):
+                for ktype, vk in [("rawKeyDown", 13), ("keyUp", 13)]:
+                    await ws.send(json.dumps({
+                        "id": msg_id + 7,
+                        "method": "Input.dispatchKeyEvent",
+                        "params": {"type": ktype, "windowsVirtualKeyCode": vk, "code": "Enter", "key": "Enter"}
+                    }))
+                    await ws.recv()
+
+            print(f"[{tab_name}] Prompt posted successfully to Copilot Studio with attached files!")
+            return True
+    except Exception as e:
+        print(f"[{tab_name}] Error posting prompt: {e}", file=sys.stderr)
+        return False
+
+
+async def post_prompt_to_copilot(prompt_text: str, target: str = "all") -> bool:
+    """Inject prompt and attach context files into Copilot Studio tabs via CDP."""
+    copilot_tabs = await get_all_copilot_tabs()
+    if not copilot_tabs:
+        print("WARNING: No active Copilot Studio tabs found on port 9222", file=sys.stderr)
+        return False
+
+    success_count = 0
+    for tab in copilot_tabs:
+        if target != "all" and target.lower() not in tab["name"].lower() and target not in tab["agent_id"]:
+            continue
+        print(f"Dispatching to Copilot tab: {tab['name']} ({tab['agent_id']})...")
+        ok = await post_prompt_to_single_copilot(tab, prompt_text)
+        if ok:
+            success_count += 1
+        await asyncio.sleep(1.0)
+
+    return success_count > 0
+
+
+async def check_copilot_response() -> Tuple[bool, str]:
+    """Check if all Copilot Studio tabs have finished generating and extract assistant responses."""
+    copilot_tabs = await get_all_copilot_tabs()
+    if not copilot_tabs:
+        return False, "No active Copilot Studio tabs found"
+
+    all_done = True
+    summaries = []
+
+    for tab in copilot_tabs:
+        ws_url = tab.get("ws_url")
+        tab_name = tab.get("name", "Copilot")
+        agent_id = tab.get("agent_id", "")
+        if not ws_url:
+            continue
+
+        try:
+            async with websockets.connect(ws_url, max_size=50_000_000) as ws:
+                await ws.send(json.dumps({"id": 1, "method": "Page.bringToFront"}))
+                try:
+                    await asyncio.wait_for(ws.recv(), timeout=2.0)
+                except Exception:
+                    pass
+                await asyncio.sleep(0.3)
+
+                js_code = """
+                (() => {
+                    const stopBtn = Boolean(document.querySelector('button[aria-label="Stop"], button[title="Stop"]'));
+                    const typing = Boolean(document.querySelector('[class*="typing"], [class*="thinking"], [class*="streaming"], .webchat__typing-indicator'));
+                    const isGenerating = stopBtn || typing;
+
+                    const allElements = Array.from(document.querySelectorAll('div, span, p'));
+                    const matches = [];
+                    for (const el of allElements) {
+                        const txt = (el.innerText || '').trim();
+                        if ((txt.includes("The snapshot confirms") || txt.includes("audit the attached snapshot") || txt.includes("Mandate 1") || txt.includes("MANDATE 1") || txt.includes("MANDATE 2") || txt.includes("TRADING DESK COUNCIL")) && txt.length > 200 && !txt.startsWith("TRADING DESK COUNCIL: CYCLE 60") && !txt.startsWith("TRADING DESK COUNCIL: CYCLE 61")) {
+                            matches.push(txt);
+                        }
+                    }
+                    const longest = matches.length > 0 ? matches.reduce((a, b) => a.length > b.length ? a : b) : "";
+
+                    return {
+                        isGenerating,
+                        textLen: longest.length,
+                        latestText: longest
+                    };
+                })()
+                """
+                call_id = int(time.time() * 1000) % 1000000
+                await ws.send(json.dumps({
+                    "id": call_id,
+                    "method": "Runtime.evaluate",
+                    "params": {"expression": js_code, "returnByValue": True, "awaitPromise": True}
+                }))
+                val = {}
+                for _ in range(6):
+                    try:
+                        resp_raw = await asyncio.wait_for(ws.recv(), timeout=3.0)
+                        resp = json.loads(resp_raw)
+                        if resp.get("id") == call_id:
+                            val = resp.get("result", {}).get("result", {}).get("value", {})
+                            break
+                    except Exception:
+                        break
+                is_gen = val.get("isGenerating", False)
+                text = val.get("latestText", "")
+
+                if is_gen or len(text) < 100:
+                    all_done = False
+
+                if agent_id == "98cead10":  # Opus 5.5
+                    raw_path = PROJECT_ROOT / "docs" / "trade_plans" / "COPILOT_OPUS_LATEST_RAW.md"
+                    if text and len(text) > 100:
+                        raw_path.parent.mkdir(parents=True, exist_ok=True)
+                        raw_path.write_text(text, encoding="utf-8")
+                        (PROJECT_ROOT / "docs" / "trade_plans" / "COPILOT_LATEST_RAW.md").write_text(text, encoding="utf-8")
+                    summaries.append(f"[{tab_name}] is_gen={is_gen}, len={len(text)} -> COPILOT_OPUS_LATEST_RAW.md")
+                elif agent_id == "3e9246b9":  # GPT Astra
+                    raw_path = PROJECT_ROOT / "docs" / "trade_plans" / "COPILOT_ASTRA_LATEST_RAW.md"
+                    if text and len(text) > 100:
+                        raw_path.parent.mkdir(parents=True, exist_ok=True)
+                        raw_path.write_text(text, encoding="utf-8")
+                    summaries.append(f"[{tab_name}] is_gen={is_gen}, len={len(text)} -> COPILOT_ASTRA_LATEST_RAW.md")
+                else:
+                    summaries.append(f"[{tab_name}] is_gen={is_gen}, len={len(text)}")
+        except Exception as e:
+            all_done = False
+            summaries.append(f"[{tab_name}] error: {e}")
+
+    return all_done, "\n".join(summaries)
+
+
 def main():
     if len(sys.argv) > 1 and sys.argv[1] == "prompt-only":
         p = build_48h_orderflow_prompt()
@@ -896,6 +1801,18 @@ def main():
         done, text = asyncio.run(check_arena_response())
         asyncio.run(dismiss_arena_popup())
         print(f"Done: {done}\nText Length: {len(text)}\nResponse:\n{text}")
+    elif len(sys.argv) > 1 and sys.argv[1] == "check-zai":
+        done, text = asyncio.run(check_zai_response())
+        print(f"Z.ai Done: {done}\nText Length: {len(text)}\nResponse:\n{text}")
+    elif len(sys.argv) > 1 and sys.argv[1] == "check-copilot":
+        done, text = asyncio.run(check_copilot_response())
+        print(f"Copilot Done: {done}\nText Length: {len(text)}\nResponse:\n{text}")
+    elif len(sys.argv) > 1 and sys.argv[1] == "inspect-zai":
+        info = asyncio.run(inspect_zai_dom())
+        print(json.dumps(info, indent=2))
+    elif len(sys.argv) > 1 and sys.argv[1] == "inspect-zai-files":
+        info = asyncio.run(inspect_zai_files())
+        print(json.dumps(info, indent=2))
     elif len(sys.argv) > 1 and sys.argv[1] == "dismiss-popup":
         success = asyncio.run(dismiss_arena_popup())
         print("Popup dismissed:", success)
@@ -912,8 +1829,11 @@ def main():
     elif len(sys.argv) > 1 and sys.argv[1] == "cycle":
         run_full_15m_cycle()
     else:
-        print("Usage: python arena_bridge.py [prompt-only | post | check | clear-box | dismiss-popup | cycle]")
+        print("Usage: python arena_bridge.py [prompt-only | post | check | check-zai | inspect-zai | inspect-zai-files | clear-box | dismiss-popup | cycle]")
 
 
 if __name__ == "__main__":
     main()
+
+
+

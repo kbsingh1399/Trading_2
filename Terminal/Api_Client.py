@@ -21,13 +21,39 @@ DEFAULT_HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 }
 
+_SHARED_GRAPHQL_CACHE: Dict[str, Any] = globals().get("_SHARED_GRAPHQL_CACHE", {})
+_L3_CALL_TIMESTAMPS: List[float] = globals().get("_L3_CALL_TIMESTAMPS", [])
+_L3_DISK_CACHE_PATH = pathlib.Path(__file__).resolve().parents[1] / "docs" / "telemetry" / ".hyperdash_l3_cache.json"
+
+if _L3_DISK_CACHE_PATH.exists():
+    try:
+        _loaded = json.loads(_L3_DISK_CACHE_PATH.read_text(encoding="utf-8"))
+        if isinstance(_loaded, dict):
+            for _k, _v in _loaded.items():
+                if _k not in _SHARED_GRAPHQL_CACHE and isinstance(_v, list) and len(_v) == 2:
+                    _SHARED_GRAPHQL_CACHE[_k] = (float(_v[0]), _v[1])
+    except Exception:
+        pass
+
+
+def _persist_l3_disk_cache() -> None:
+    try:
+        l3_only = {k: [ts, val] for k, (ts, val) in _SHARED_GRAPHQL_CACHE.items() if k.startswith("l3_")}
+        _L3_DISK_CACHE_PATH.parent.mkdir(parents=True, exist_ok=True)
+        tmp = _L3_DISK_CACHE_PATH.with_suffix(".tmp")
+        tmp.write_text(json.dumps(l3_only), encoding="utf-8")
+        tmp.replace(_L3_DISK_CACHE_PATH)
+    except Exception:
+        pass
+
+
 class HyperdashClient:
     def __init__(self, timeout: int = 10):
         self.timeout = timeout
         self.asset_cache: Dict[str, Any] = {}
         self.universe: List[str] = []
         self.wallet_risk_cache = {}
-        self._graphql_cache: Dict[str, Tuple[float, Any]] = {}
+        self._graphql_cache: Dict[str, Any] = _SHARED_GRAPHQL_CACHE
         # Dedicated limiters: fast REST for live orderbook/trades, protected GraphQL for analytics
         self._hl_limiter = TokenBucket(rate=15.0, capacity=30.0)
         self._graphql_limiter = TokenBucket(rate=3.0, capacity=6.0)
@@ -45,20 +71,31 @@ class HyperdashClient:
                     result = json.loads(resp.read().decode("utf-8"))
                     if isinstance(result, dict) and result.get("errors"):
                         err_str = str(result["errors"])
-                        if ("RATE_LIMIT_EXCEEDED" in err_str or "Too many" in err_str or "429" in err_str) and attempt < 2:
-                            time.sleep(2.0 * (attempt + 1))
+                        if (
+                            "RATE_LIMIT_EXCEEDED" in err_str
+                            or "Too many" in err_str
+                            or "429" in err_str
+                            or "INTERNAL_SERVER_ERROR" in err_str
+                            or "Internal server error" in err_str
+                        ) and attempt < 2:
+                            time.sleep(0.8 * (attempt + 1))
                             continue
                         raise ValueError(f"GraphQL rejected request: {result['errors']}")
                     return result
             except urllib.error.HTTPError as e:
-                if (e.code == 429 or e.code == 503) and attempt < 2:
-                    time.sleep(2.0 * (attempt + 1))
+                if (e.code == 429 or e.code >= 500) and attempt < 2:
+                    time.sleep(1.0 * (attempt + 1))
                     continue
                 err_msg = e.read().decode("utf-8", errors="ignore")
                 raise RuntimeError(f"HTTP {e.code} Error from {url}: {err_msg}")
             except Exception as e:
-                if attempt < 2 and ("timeout" in str(e).lower() or "reset" in str(e).lower() or "rate" in str(e).lower()):
-                    time.sleep(1.0)
+                if attempt < 2 and (
+                    "timeout" in str(e).lower()
+                    or "reset" in str(e).lower()
+                    or "rate" in str(e).lower()
+                    or "internal_server_error" in str(e).lower()
+                ):
+                    time.sleep(0.8 * (attempt + 1))
                     continue
                 raise RuntimeError(f"Connection Error to {url}: {e}")
 
@@ -208,8 +245,19 @@ class HyperdashClient:
         hl_coin = self._resolve_coin(coin)
         cache_key = f"l3_{hl_coin}"
         now_epoch = time.time()
-        if cache_key in self._graphql_cache and (now_epoch - self._graphql_cache[cache_key][0]) < 90.0:
-            return self._graphql_cache[cache_key][1]
+        if cache_key in self._graphql_cache and (now_epoch - self._graphql_cache[cache_key][0]) < 20.0:
+            return [{**o, "observed_at": now_epoch} for o in self._graphql_cache[cache_key][1]]
+
+        # Hyperdash orderbookSnapshotFiltered enforces an 8 req / 30s rate limit.
+        # Keep at most 7 network calls per 32s window; if the window is full, serve
+        # the cached snapshot this cycle and refresh on the next cycle.
+        _L3_CALL_TIMESTAMPS[:] = [t for t in _L3_CALL_TIMESTAMPS if (now_epoch - t) < 32.0]
+        if len(_L3_CALL_TIMESTAMPS) >= 7:
+            if cache_key in self._graphql_cache:
+                cached_ts, cached_orders = self._graphql_cache[cache_key]
+                if (now_epoch - cached_ts) <= 900.0:
+                    return [{**o, "observed_at": now_epoch} for o in cached_orders]
+            return []
 
         query = """
         query GetOrderbookSnapshotFiltered($market: String!, $minPrice: Float!, $maxPrice: Float!) {
@@ -226,6 +274,7 @@ class HyperdashClient:
         """
         variables = {"market": hl_coin, "minPrice": float(min_price), "maxPrice": float(max_price)}
         try:
+            _L3_CALL_TIMESTAMPS.append(time.time())
             data = self._post_json(HD_GRAPHQL_URL, {"query": query, "variables": variables})
             node = data.get("data") or {}
             if "orderbookSnapshotFiltered" not in node or not isinstance(node["orderbookSnapshotFiltered"], list):
@@ -254,11 +303,16 @@ class HyperdashClient:
 
             # Sort by notional value descending (whales first)
             orders.sort(key=lambda x: x["notional_usd"], reverse=True)
-            self._graphql_cache[cache_key] = (now_epoch, orders)
+            self._graphql_cache[cache_key] = (observed_at, orders)
+            _persist_l3_disk_cache()
             return orders
         except Exception:
             if cache_key in self._graphql_cache:
-                return self._graphql_cache[cache_key][1]
+                cached_ts, cached_orders = self._graphql_cache[cache_key]
+                if (time.time() - cached_ts) <= 600.0:
+                    now_obs = time.time()
+                    return [{**o, "observed_at": now_obs} for o in cached_orders]
+                return cached_orders
             raise
 
     def fetch_liquidations(self, coin: str, min_price: float, max_price: float, lookback_days: int = 3) -> Dict[str, Any]:

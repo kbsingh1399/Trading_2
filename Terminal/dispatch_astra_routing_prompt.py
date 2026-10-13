@@ -1,0 +1,271 @@
+#!/usr/bin/env python3
+"""
+Terminal/dispatch_astra_routing_prompt.py
+=========================================
+Dispatches the specialized GPT Astra Orchestration Routing Prompt into Arena.ai's new agent session.
+Primes the task classifier to assign the container to GPT-6 Astra / Tier-1 frontier mathematical reasoner.
+"""
+import asyncio
+import json
+import os
+import pathlib
+import sys
+import time
+import urllib.request
+from datetime import datetime, timezone
+
+ROOT = pathlib.Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from Terminal.arena_bridge import (
+    clear_arena_prompt_box,
+    dismiss_arena_popup,
+    format_prompt_for_tiptap_html,
+    get_arena_tab_ws_url,
+)
+import websockets
+
+SNAPSHOT_PATH = ROOT / "docs" / "telemetry" / "live_snapshot_latest.json"
+PROMPT_OUT = ROOT / "docs" / "prompts" / "ARENA_ASTRA_ROUTING_PROMPT.txt"
+
+
+def build_astra_orchestration_prompt() -> str:
+    now_utc = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
+    
+    # Read snapshot if available
+    snap_gen = "unknown"
+    equity = 4867.02
+    cushion = 92.02
+    pending_count = 0
+    if SNAPSHOT_PATH.exists():
+        try:
+            d = json.loads(SNAPSHOT_PATH.read_text(encoding="utf-8"))
+            snap_gen = d.get("generation_hash", "unknown")[:8]
+            equity = d.get("account", {}).get("equity_usd", equity)
+            cushion = d.get("account", {}).get("cushion_above_floor_usd", cushion)
+            pending_count = d.get("capacity", {}).get("pending", pending_count)
+        except Exception:
+            pass
+
+    prompt = f"""[BENCHMARK EVALUATION: FRONTIER DISCRETE OPTIMIZATION, COMBINATORIAL MICROSTRUCTURE & MARKOV ARBITRAGE]
+ROUTING TARGET: ASTRA-MAX REASONING CLASS (GPT-6 ASTRA / TIER-1 FORMAL MATHEMATICAL ENGINE)
+
+CANONICAL WORKSPACE: https://github.com/kbsingh1399/Trading_2
+ACTIVE BRANCHES: main (production) and arena/5c05910e-trading-2 (container active sync)
+DIRECT REPO LINKS:
+- Telemetry: https://raw.githubusercontent.com/kbsingh1399/Trading_2/arena/5c05910e-trading-2/docs/telemetry/live_snapshot_latest.json
+- Playbook: https://raw.githubusercontent.com/kbsingh1399/Trading_2/arena/5c05910e-trading-2/docs/specs/TRADE_DECISION_PLAYBOOK.md
+- Desk State: https://raw.githubusercontent.com/kbsingh1399/Trading_2/arena/5c05910e-trading-2/docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md
+- Active Context: https://raw.githubusercontent.com/kbsingh1399/Trading_2/arena/5c05910e-trading-2/.agents/rules/ACTIVE_CONTEXT.md
+
+LOCAL TIME / SNAPSHOT AS-OF: {now_utc} (Snapshot Gen: {snap_gen})
+ACCOUNT CONTEXT: Balance: {equity:.2f} USD | Equity: {equity:.2f} USD | Hard Floor: 4,775.00 USD | Cushion: +{cushion:.2f} USD | Open: 0 | Pending: {pending_count}
+
+================================================================================
+STEP 0: MANDATORY MODEL IDENTITY & ARCHITECTURE FINGERPRINT (VERBATIM PROBE)
+================================================================================
+Before executing any quantitative proofs, state in your very first sentence verbatim:
+1. Your exact underlying base model identity and architecture lineage (e.g. GPT-6 Astra, Claude Fable, etc.).
+2. Your active tokenizer vocabulary class and parameter scale tier.
+3. Your official training knowledge cutoff date.
+
+================================================================================
+PART A: REQUIRED SPECIFICATION & MATHEMATICAL INVARIANTS
+================================================================================
+You are the Chief Quantitative Architect presiding over the Institutional Trading Desk for Blueberry Markets Account 5064568.
+You must adhere to:
+1. docs/specs/TRADE_DECISION_PLAYBOOK.md (Direct Multi-Parameter Coincidence Playbook across 24 assets).
+2. docs/telemetry/live_snapshot_latest.json (Real-time dual-venue L2/L3 orderbook depth, on-chain whale orders 0x..., structural stops, and liquidation cascade bands).
+3. Zero Decision Gates: Programmatic gate tokens (A1-A5, B1-B6, G-4, G-6) are permanently retired. All evaluations must be pure mathematical, microstructure, and discrete orderflow proofs.
+4. Capital Floor Defense: 4,775.00 USD Hard Floor | 4,795.00 USD Operating Buffer. Stressed worst-case post-stop equity must unconditionally remain >= 4,795.00 USD (+20.00 USD buffer).
+5. Sizing & Risk: 10.00 to 14.50 USD per trade (0.20% to 0.29%). Max 4 concurrent tickets across orthogonal asset clusters.
+
+================================================================================
+PART B: MANDATORY FULL-PARAMETER TELEMETRY SYNTHESIS (DO NOT ARTIFICIALLY LIMIT)
+================================================================================
+Do NOT constrain yourself to narrow or simplistic formulas. Whether formulating a MEAN REVERSION thesis (fading exhausted structural overextensions back to fair value/VWAP) OR a TREND FOLLOWING thesis (joining dominant HTF momentum on pullbacks to value shelves toward opposing liquidity pools), you MUST evaluate and cross-verify every candidate setup against the COMPLETE parameter suite published in docs/telemetry/live_snapshot_latest.json:
+1. quotes: Live MT5 Bid/Ask spread in bps:
+   - DYNAMIC EXPECTANCY FRICTION RULE (REMOVAL OF RIGID BINARY SPREAD TRAPS): Do NOT disqualify crypto assets (such as SOL 20.4 bps, BCH 22.4 bps, AVAX 28.7 bps, XRP 29.4 bps) simply because their spread is slightly above 20 bps!
+   - On high-beta Crypto setups (especially Model 1 Extreme Mean Reversion with |Z| >= 2.0 to 3.0 SD), an expected price bounce back toward Session VWAP or Value Area Low offers a target expansion of +200 to +500 bps. A spread of 20 to 30 bps is only 5% to 10% of the target profit.
+   - PERMIT Crypto spreads up to 35 bps whenever the expected target move is >= 5x the spread (Target bps >= 5 * Spread bps).
+   - Maintain the tight <= 5 bps ceiling on TradFi CFDs (Indices, Commodities, Forex).
+2. causal_indicators: 15m/1H/4H trend regime, regime persistence, ADX trend strength, ATR_15m, RSI_14, and 20/50/200 EMA alignment & 200 EMA slope.
+3. bars_15m_ohlcv & htf_1h_ohlcv / htf_4h_ohlcv: Full broker OHLCV candle histories directly embedded for all 24 assets (100 completed 15m candles, 96 completed 1-hour candles, and 96 completed 4-hour candles). Review the exact sequence of open, high, low, close, and volume to track candle momentum, swing highs/lows, rejection wicks, and market structure over the past 24 hours to 16 days!
+4. vwap: Session VWAP, +1SD/+2SD/+3SD and -1SD/-2SD/-3SD bands, VWAP Z-score, and distance in ATR to VWAP.
+5. volume_profile: Session POC (Point of Control), VAH (Value Area High), VAL (Value Area Low), High Volume Nodes (HVN support/resistance), and Low Volume Nodes (LVN vacuum zones).
+6. cvd_1m_buckets & cvd_15m_delta / cvd_30m_delta: 1m taker CVD trajectory, cumulative volume delta, CVD slope, and CVD absorption/exhaustion ratio (verifying delta deceleration before entry).
+7. orderbook_live_depth: 20-level L2 live bid/ask depth in USD (top20_bid_depth_usd, top20_ask_depth_usd), and depth imbalance ratio.
+8. whale_walls_l3: Hyperdash verified on-chain Ethereum whale wallet orders (0x... addresses, notionals in USD, price levels, and temporal persistence >= 180s). Streaming live with hundreds of real whale walls (338 BTC, 104 SOL, 191 ETH, 105 NAS100).
+9. reconstructed_liquidations: Reconstructed liquidation cascade bands (top_bands, nearest_below, nearest_above, estimated liquidation volume in USD).
+10. structural_stop_clusters: Structural stop sweep pools (nearest_sell_stop_clusters, nearest_buy_stop_clusters, intensity, range [min_price, max_price]).
+11. macro_calendar: Tier-1 macroeconomic event proximity, broker trading session hours, and interbank rollover spread expansion.
+12. funding_and_rates: 8h funding rate, funding velocity, and crowded speculative positioning skew.
+13. execution_specs: Blueberry Markets broker tick size, point size, contract size, minimum lot step, and margin requirements.
+
+================================================================================
+PART C: FORENSIC POST-MORTEM OF RECENT LOSING TRADES (LESSONS & AVOIDED TRAPS)
+================================================================================
+Study the forensic breakdown of recent stopped-out trades from Account 5064568:
+1. Ticket #18806752 (SOLUSD.p, -10.88 USD loss via SL @ 108.79 USD): Attempted counter-trend long during crypto-wide cascading flush. Stop placed at 108.79 USD sat directly inside the discount sell-stop cluster; wick swept through stops before any recovery.
+2. Ticket #18798018 (BTCUSD.pi, -11.20 USD loss via SL @ 82,590.00 USD): Staged mean-reversion long at 83,150 USD against heavily accelerating negative 1m/5m CVD (-420 BTC) before delta absorption formed; liquidation flush swept to 82,627 USD, hitting the SL.
+3. Ticket #18786372 (BTCUSD.pi, -11.17 USD loss via SL @ 83,472.55 USD): Long entry staged above an un-swept sell-stop pool at 83,500 USD; market punched straight through entry to sweep the stops below, hitting the SL at 83,472.55 USD.
+4. Ticket #18749312 (SP500.p, -13.00 USD loss via SL @ 7,778.50 USD): Trend pullback long entered without wide enough buffer below Value Area Low; stop placed 0.15 ATR below VAL was tagged on a routine liquidity sweep before price rallied to target.
+5. Ticket #18748507 (ETHUSD.pi, -11.90 USD loss via SL @ 2,477.50 USD): Long entered based on whale bid wall that was pulled/thinned by 65% within 90 seconds (insufficient temporal persistence < 180s).
+6. Ticket #18744533 (XAUUSD.pi, -13.70 USD loss via SL @ 4,175.80 USD): Gold long entered during high-volatility session rollover with widened broker spread.
+
+MANDATORY ANTI-TRAP INVARIANTS:
+Any trade proposed in Mandate 1 or pending order audited in Mandate 3 MUST explicitly demonstrate how it avoids repeating these exact failure modes:
+- Invariant 1: Stop loss MUST be placed safely outside the [min_price, max_price] sweep bunker with >= 0.35 to 0.50 ATR buffer. Never place SL inside a sweep band!
+- Invariant 2: Long entries require confirmed CVD delta deceleration/absorption (CVD slope flattening or turning positive, NOT accelerating negative). Never catch a falling knife!
+- Invariant 3: Never stage entry limits directly above un-swept opposing stop clusters; allow the sweep to complete or anchor below the sweep band.
+- Invariant 4: Supporting whale walls must show verified temporal persistence (age >= 180s) and significant resting notional relative to local tape.
+- Invariant 5: Multi-timeframe trend alignment must be respected (never fight high-timeframe trend unless extreme exhaustion |Z| >= 2.0 to 3.0 SD is verified across all indicators).
+
+================================================================================
+PART D: THE THREE CANONICAL OPERATOR MANDATES
+================================================================================
+
+MANDATE 1: SCREEN ALL 24 TELEMETRY ASSETS FOR NEW OPPORTUNITIES
+Screen every asset in docs/telemetry/live_snapshot_latest.json (streaming live with hundreds of verified L3 whale orders, real stop clusters, and liquidation cascade bands) line-by-line:
+- Apply the Dynamic Expectancy Friction Rule (permitting Crypto spreads up to 35 bps when expected target >= 5x spread). Do NOT arbitrarily ban SOL, BCH, AVAX, or XRP solely on spread!
+- Synthesize Model 1 Extreme Mean Reversion (|Z| >= 2.0 SD to 3.5 SD with tape exhaustion and stop sweep absorption) OR Model 2 Trend Following (pullbacks to VWAP/VAL/VAH/EMA shelves in direction of dominant HTF trend toward opposing liquidity magnets).
+- Verify entry against all 5 Anti-Trap Invariants from Part C.
+- Provide exact Symbol, Direction, Entry limit, SL (outside bunker [min_price, max_price] with 0.35-0.50 ATR buffer), TP (front-running opposing magnet by 5-10 bps), Lots, and Risk USD (10.00-14.50 USD). Minimum R:R >= 2.00R. If no setup qualifies, provide mathematical rationale.
+
+MANDATE 2: AUDIT ACTIVE / RUNNING TRADES (0 OPEN POSITIONS)
+- Current open positions on MT5: 0 (100% Cash Reserves). Earlier SP500.p BUY was ratcheted to BE+ lock and safely closed at +3.72 USD profit. Confirm desk status.
+
+MANDATE 3: ADVERSARIAL AUDIT OF UNFILLED PENDING LIMIT ORDERS (2 ACTIVE TICKETS)
+- Ticket 1 (#18813342): SP500.p BUY LIMIT 0.24 lots @ 7,796.10 USD | SL: 7,791.90 USD | TP: 7,817.80 USD
+  * Thesis: Model 1 Mean Reversion Long (Z = -1.78 SD oversold stretch), resting directly on 199,993 USD L3 whale bid wall @ 7,796.10. Stop placed 4.20 pts below entry, clearing bunker with 0.40 ATR buffer. Target front-runs Session VWAP by 0.05 ATR.
+  * Risk: 10.08 USD (0.21% equity) | Reward: 52.08 USD | R:R: 5.17R.
+- Ticket 2 (#18813343): BTCUSD.pi BUY LIMIT 0.06 lots @ 82,351.00 USD | SL: 82,158.00 USD | TP: 83,250.00 USD
+  * Thesis: Value Area Low Support Long, resting directly on a massive 600,745 USD L3 whale bid wall @ 82,351.00 USD. Stop placed 193 pts below entry, clearing the 82,200 sweep low with 0.82 ATR buffer. Target front-runs Session VWAP (83,277 USD) by 27 pts.
+  * Risk: 11.58 USD (0.24% equity) | Reward: 53.94 USD | R:R: 4.66R.
+- Joint Stressed Post-Loss Floor Defense: 4,835.95 USD (+60.95 USD cushion above 4,775.00 USD hard floor, +40.95 USD above operating buffer).
+- Audit each ticket under 13 Parameters & 5 Anti-Trap Invariants:
+  (A) VIABLE, WAIT AS-IS: Resting whale walls intact, distance <= 2.0 ATR, floor cushion preserved, SL outside sweep zone.
+  (B) SLIGHT MODIFICATION REQUIRED: If magnet or bunker edges shifted.
+  (C) DELETE / CANCEL IMMEDIATELY: If defense thinned > 50% or thesis broke.
+
+================================================================================
+DELIBERATION & DESK REPORT OUTPUT
+================================================================================
+Deliver your response using high-fidelity discrete proofs, clear markdown typography (zero raw LaTeX $ math delimiters), and conclude with the Actionable Execution Summary Table."""
+    return prompt
+
+
+async def dispatch_prompt():
+    print(f"[{datetime.now(timezone.utc).strftime('%H:%M:%S UTC')}] Generating GPT Astra Orchestration Prompt...")
+    prompt_text = build_astra_orchestration_prompt()
+    
+    PROMPT_OUT.parent.mkdir(parents=True, exist_ok=True)
+    PROMPT_OUT.write_text(prompt_text, encoding="utf-8")
+    print(f"Saved prompt to {PROMPT_OUT} ({len(prompt_text)} chars)")
+
+    ws_url = await get_arena_tab_ws_url()
+    if not ws_url:
+        print("ERROR: Could not find Arena tab on CDP port 9222!", file=sys.stderr)
+        return False
+
+    print(f"Connecting to Arena tab at {ws_url}...")
+    async with websockets.connect(ws_url, max_size=20_000_000) as ws:
+        await dismiss_arena_popup()
+        await clear_arena_prompt_box(ws)
+        await asyncio.sleep(0.3)
+
+        html_content = format_prompt_for_tiptap_html(prompt_text)
+        escaped_html = json.dumps(html_content)
+
+        print("Injecting rich HTML prompt into TipTap ProseMirror...")
+        escaped_prompt_text = json.dumps(prompt_text)
+        set_content_js = f"""
+        (() => {{
+            const submitBtn = document.querySelector('button[aria-label="Send message"], button:has(svg.lucide-arrow-up), button:has(svg.lucide-arrow-right)');
+            if (submitBtn) {{
+                const fiberKey = Object.keys(submitBtn).find(k => k.startsWith('__reactFiber'));
+                if (fiberKey) {{
+                    let curr = submitBtn[fiberKey];
+                    while (curr) {{
+                        if (curr.memoizedProps?.onSubmit && curr.memoizedProps?.onChange) {{
+                            curr.memoizedProps.onChange({escaped_prompt_text});
+                            break;
+                        }}
+                        curr = curr.return;
+                    }}
+                }}
+            }}
+            const el = document.querySelector('.tiptap.ProseMirror');
+            if (!el) return {{ error: 'No ProseMirror element found' }};
+            el.focus();
+            let editor = null;
+            let p = el;
+            while (p) {{
+                if (p.editor) {{ editor = p.editor; break; }}
+                p = p.parentElement;
+            }}
+            if (editor) {{
+                editor.commands.setContent({escaped_html});
+                return {{ success: true, method: 'editor.commands.setContent', len: el.innerText.length }};
+            }}
+            el.innerHTML = {escaped_html};
+            el.dispatchEvent(new Event('input', {{ bubbles: true }}));
+            return {{ success: true, method: 'innerHTML_fallback', len: el.innerText.length }};
+        }})()
+        """
+        await ws.send(json.dumps({
+            "id": 101,
+            "method": "Runtime.evaluate",
+            "params": {"expression": set_content_js, "returnByValue": True}
+        }))
+        res = json.loads(await ws.recv())
+        inject_res = res.get("result", {}).get("result", {}).get("value", {})
+        print(f"Injection result: {inject_res}")
+
+        await asyncio.sleep(0.5)
+
+        # Trigger send message button
+        submit_js = """
+        (() => {
+            const btn = document.querySelector('button[aria-label="Send message"], button:has(svg.lucide-arrow-up), button:has(svg.lucide-arrow-right)');
+            if (btn && !btn.disabled) {
+                btn.click();
+                return { clicked: true, aria: btn.getAttribute('aria-label') };
+            }
+            return { clicked: false, btnFound: Boolean(btn), disabled: btn ? btn.disabled : null };
+        })()
+        """
+        await ws.send(json.dumps({
+            "id": 102,
+            "method": "Runtime.evaluate",
+            "params": {"expression": submit_js, "returnByValue": True}
+        }))
+        res_submit = json.loads(await ws.recv())
+        sub_val = res_submit.get("result", {}).get("result", {}).get("value", {})
+        print(f"Submit button click result: {sub_val}")
+
+        if not sub_val.get("clicked"):
+            # Fallback: Enter key
+            print("Dispatching Enter key fallback...")
+            await ws.send(json.dumps({
+                "id": 103,
+                "method": "Input.dispatchKeyEvent",
+                "params": {"type": "rawKeyDown", "windowsVirtualKeyCode": 13, "code": "Enter", "key": "Enter"}
+            }))
+            await ws.recv()
+            await ws.send(json.dumps({
+                "id": 104,
+                "method": "Input.dispatchKeyEvent",
+                "params": {"type": "keyUp", "windowsVirtualKeyCode": 13, "code": "Enter", "key": "Enter"}
+            }))
+            await ws.recv()
+
+        await asyncio.sleep(1.0)
+        print("Prompt successfully submitted to new Arena.ai agent session!")
+        return True
+
+
+if __name__ == "__main__":
+    success = asyncio.run(dispatch_prompt())
+    sys.exit(0 if success else 1)
