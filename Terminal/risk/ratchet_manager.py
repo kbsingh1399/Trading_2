@@ -246,7 +246,7 @@ class RatchetManager:
                 if live is None:
                     # Position closed externally
                     state.phase = RatchetPhase.CLOSED
-                    logger.info("Ticket %d %s closed externally — unregistering.", ticket, state.symbol)
+                    logger.info("Ticket %d %s closed externally -- unregistering.", ticket, state.symbol)
                     self.unregister(ticket)
                     continue
                 current_price = float(live.price_current)

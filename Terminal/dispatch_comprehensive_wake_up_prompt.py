@@ -16,12 +16,13 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from Terminal.arena_bridge import post_prompt_to_arena, dismiss_arena_popup
+from Terminal.arena_bridge import post_prompt_to_arena, post_prompt_to_zai, dismiss_arena_popup
 from Terminal.telemetry_ingest import (
     StaleDataError,
     get_fresh_snapshot,
     make_git_refresh,
 )
+
 
 def get_live_broker_state():
     positions = []
@@ -294,22 +295,26 @@ def build_prompt(cycle_num: int = 40) -> str:
     lines.append("STEP 4 — PORTFOLIO CAPACITY & CAPITAL FLOOR GOVERNANCE:")
     lines.append("• Verify that all kept/modified running trades + kept/modified resting limit orders + any newly proposed limit orders keep joint worst-case post-stop equity >= 4,795.00 USD (>= 20.00 USD cushion above the 4,775.00 USD hard floor).")
     lines.append("")
-    lines.append("PART F: REQUIRED OUTPUT FORMAT & BILATERAL LEDGER PUSH")
-    lines.append("1. TELEMETRY & PLAYBOOK INGESTION CITATION (confirming generation_id, as_of_utc, and Playbook compliance)")
-    lines.append("2. MANDATE 1 REPORT: Line-by-Line Screening of 24 Assets for New Trading Opportunities")
+    lines.append("PART F: REQUIRED OUTPUT FORMAT & TRI-COUNCIL SYNCHRONIZATION (ARENA.AI + Z.AI CHAT + ANTIGRAVITY)")
+    lines.append("1. TELEMETRY & PLAYBOOK INGESTION CITATION (confirming generation_id, as_of_utc, macro_calendar blackout transition at 03:30:00 UTC, and Playbook compliance)")
+    lines.append("2. MANDATE 1 REPORT: Line-by-Line Screening of 24 Assets for New Trading Opportunities (including exact post-blackout 03:30:00 UTC staging cards for top candidates such as ETHUSD.pi, SOLUSD.p, BTCUSD.pi, XAUUSD.pi, USWTI.p)")
     lines.append("3. MANDATE 2 REPORT: Active / Running Trades Audit (Logical TP/SL Modifications Based on Latest Snapshot)")
     lines.append("4. MANDATE 3 REPORT: Unfilled Limit Orders Audit (Ticket-by-Ticket Verdict: WAIT TO FILL AS-IS vs. MODIFY ENTRY/SL/TP vs. DELETE)")
     lines.append("5. ACTIONABLE EXECUTION SUMMARY TABLE (Ticket/Action, Symbol, Side, Lots, Entry, SL Bunker, TP Magnet, Risk USD, R:R, Quantitative Rationale)")
-    lines.append("6. BILATERAL LEDGER SYNC: Append your complete Cycle Council Report and Actionable Execution Table to docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md and commit/push to branch arena/5c05910e-trading-2 (while Antigravity merges and syncs to main).")
+    lines.append("6. COUNCIL SYNC PROTOCOL:")
+    lines.append("   • If running on Arena.ai (Two-Way Git Access): Append your complete Cycle Council Report and Actionable Execution Table to docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md and commit/push to branch arena/5c05910e-trading-2.")
+    lines.append("   • If running on Z.ai Chat (One-Way Read-Only Access): Fetch the raw GitHub URLs above to verify the latest telemetry snapshot, and print your complete 3-Mandate Council Report and Actionable Execution Summary Table directly in your chat response (do not attempt git push; Antigravity harvests your response directly from the Z.ai DOM to cross-verify Arena.ai + Z.ai Chat + Antigravity).")
 
     return "\n".join(lines)
 
 
 async def main():
     import argparse
-    parser = argparse.ArgumentParser(description="Dispatch 3-Mandate Pure Telemetry Prompt to Arena.ai")
+    parser = argparse.ArgumentParser(description="Dispatch 3-Mandate Pure Telemetry Prompt to Arena.ai and Z.ai Chat")
     parser.add_argument("--cycle", type=int, default=40, help="Cycle number")
     parser.add_argument("--reprompt-file", type=str, default="", help="Optional Part-B corrective reprompt file path")
+    parser.add_argument("--arena-only", action="store_true", help="Send only to Arena.ai")
+    parser.add_argument("--zai-only", action="store_true", help="Send only to Z.ai Chat")
     args = parser.parse_args()
 
     if args.reprompt_file:
@@ -325,14 +330,22 @@ async def main():
         prompt_file.write_text(prompt, encoding="utf-8")
         print(f"Generated Cycle {args.cycle} 3-Mandate prompt: {len(prompt)} characters written to {prompt_file}")
 
-    await dismiss_arena_popup()
-    ok = await post_prompt_to_arena(prompt)
-    if ok:
-        print(f"SUCCESS: Prompt injected into Arena.ai! Run `python Terminal/arena_completion_daemon.py --wait` to wake up on completion.")
+    ok_arena = False
+    ok_zai = False
+
+    if not args.zai_only:
+        await dismiss_arena_popup()
+        ok_arena = await post_prompt_to_arena(prompt)
+    if not args.arena_only:
+        ok_zai = await post_prompt_to_zai(prompt)
+
+    if ok_arena or ok_zai:
+        print(f"SUCCESS: Prompt injected (Arena.ai={ok_arena}, Z.ai Chat={ok_zai})! Run `python Terminal/arena_completion_daemon.py --wait` to wake up on completion.")
     else:
-        print("ERROR: Failed to inject prompt into Arena.ai", file=sys.stderr)
+        print("ERROR: Failed to inject prompt into Arena.ai and Z.ai Chat", file=sys.stderr)
         sys.exit(1)
 
 if __name__ == "__main__":
     asyncio.run(main())
+
 
