@@ -99,3 +99,13 @@ Fed blackout CLEARED (next BoE Pill 10-14 06:00, runway 20.9h). **SOL Card 1 PUN
 - Portfolio post-delete: stressed 35.97 → post-stop **4,836.17 ≥ 4,795** ✓ 2/4 slots (re-arm variant 4,817.92 ✓ 3/4).
 
 — Arena Council · Cycle 54 · full file `ARENA_COUNCIL_REPORT_20261013_0935Z.md`
+
+---
+
+# BILATERAL LEDGER — ARENA CYCLE 55 (gen `4ba7e2f0` @ 2026-10-13 10:25:17 UTC) [restored post-merge]
+- **#18826511 ETH SHORT 0.35 @ 2,518.50 (+0.31R) → HOLD + ladder armed.** Phase 0 @ 2,492.95 print → SL 2,555.0 → 2,505.73 (locks +0.35R = +4.47 USD; exits the [2,550–2,560] 2.10M-pool defect as profit lock). Phase 1 @ 2,463.75 → SL 2,489.30 (+0.80R = 10.22 USD). Phase 2 @ 2,445.50 trail. TP 2,442.5 = +2.08R = +26.60 USD. CVD −145k/−822k/−1,166k (5/15/30m) confirms. 21.95M credited asks ≤ SL (10.4× the pool). Stall disclosure UPGRADED: 42.63M credited bids [2,477–2,510] (24 walls) vs 24.87M cascade [2,470–2,480]. Emergency: 15m close > 2,548 + CVD > +500k. Time-decay +0.20R by 14:30:06 PASSING at +0.31R.
+- **#18836609 SP500 SHORT 0.04 @ 7,810.0 (−0.04R) → HOLD.** K1 belt [7,805–7,835] credited RECOVERED to 3,306,492 (4 asks; exit < 1.88M). SL 7,842 = 0.50 ATR past [7,820–7,840] 5.09M bunker; overwhelm 5.09/4.11 = 1.24:1 ≤ 2.0. K2: 15m close > 7,817.5 exits (fresh 1.039M @ 7,817.3 + 0.725M @ 7,811.8 walls posted ON the K2 line). Time-decay 14:30:06.
+- **#18839885 NAS100 SELL_LIMIT 0.02 @ 30,580/30,620/30,420 (operator-staged 09:48:53) → (C) DELETE.** SL 30,620 inside [30,600–30,700] 0.55M buy-stop pool at 0.93× credited defense (whisker rule needs 3×) = #18825384 exact repeat; stop 1.17 ATR < 1.5 index floor. In-place (B) (SL 30,715 / 0.01 lots) tested → RR 1.19 < 2.00 rejected. **RE-ARM: SELL_LIMIT 0.02 @ 30,650 / SL 30,715 / TP 30,420 on mid ≥ 30,600** (risk 13.00, RR 3.54, stop 1.91 ATR, SL 0.44 ATR past bunker fused with VAH 30,712, 6.6× whisker defense 1.58M ≤ SL, TP inside 1.33M magnet + 6.5 bps in front of 30,400 round). Re-verify clause if the 30,618/30,639 wall stack consumes or re-pegs pre-fill.
+- SOL re-arm GATED (mid 106.65 < 107.80; 15m CVD +1.82M ≫ +300k); wall re-peg logged 109.1 → 108.5 (0xeac842b2 7.65M, 2,294s) → trigger re-based to ≥ 108.5. BTC deep-flush dormant (CVD −1.88M/15m). Mandate 1: 0 new cards (24-asset dual-engine screen; GOLD lot-grid dead, USWTI 6.04M bid floor, indices/fx/alt kills per report).
+- Portfolio: post_joint 4,819.84 (current) → 4,822.32 with re-arm worst-case ≥ 4,795 ✓. Capacity 3/4 → 2/4 after delete → 3/4 at re-arm fill. Full: `ARENA_COUNCIL_REPORT_20261013_1025Z.md`.
+— Arena Council · Cycle 55

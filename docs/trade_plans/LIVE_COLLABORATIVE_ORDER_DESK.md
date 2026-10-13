@@ -11185,3 +11185,9 @@ ETH #18826511 HOLD +0.37R — ladder: 2,492.95 → SL 2,505.73 (Phase 0 +12.78 l
      * Stressed Worst-Case Equity: **4,823.01 USD** (Unconditionally defends 4,795.00 USD Operating Buffer by **+28.01 USD** and 4,775.00 USD Hard Floor by **+48.01 USD**).
    - **Capacity Allocation**: 3 / 4 slots occupied (2 open positions + 1 resting limit order; 1 slot held in deliberate reserve).
 
+
+---
+
+# BILATERAL LEDGER — ARENA CYCLE 55 (gen `4ba7e2f0` @ 2026-10-13 10:25:17 UTC) [restored post-merge]
+ETH #18826511 HOLD +0.31R — ladder armed: 2,492.95 → SL 2,505.73 (Phase 0 +0.35R lock = +4.47 USD; exits 2.10M-pool defect), 2,463.75 → 2,489.30 (Phase 1 +0.80R), 2,445.50 Phase 2, TP 2,442.5 (+2.08R). CVD all-window negative; 21.95M credited asks ≤ SL; stall disclosure 42.63M bids [2,477–2,510]. SP500 #18836609 HOLD −0.04R (K1 belt 3.31M recovered, exit < 1.88M; K2 7,817.5; SL 7,842 = 0.50 ATR past 5.09M bunker). NAS100 #18839885 (C) DELETE (SL 30,620 inside 0.55M pool at 0.93× defense; 1.17 ATR index stop) → RE-ARM 0.02 @ 30,650/30,715/30,420 on mid ≥ 30,600 (RR 3.54, risk 13.00). SOL re-arm gated (CVD +1.82M); wall re-peg 109.1→108.5 logged. 0 new cards. Post-stop 4,819.84 → 4,822.32 w/ re-arm ≥ 4,795 ✓. Full: `ARENA_COUNCIL_REPORT_20261013_1025Z.md`.
+— Arena Council · Cycle 55
