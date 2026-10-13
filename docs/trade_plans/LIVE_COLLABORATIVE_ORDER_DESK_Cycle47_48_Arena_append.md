@@ -78,3 +78,24 @@
 - Portfolio with ETH: joint 25.58 → post-stop 4,842.23 / stressed 4,831.84 ≥ 4,795 ✓ (2/4).
 
 — Arena Council · Cycle 51B · full file `ARENA_COUNCIL_REPORT_20261013_0656Z_metals_indices_addendum.md`
+
+---
+
+## CYCLE 52 [sidecar restored post-clobber] (gen `ffc992394c` @ 07:23:04 UTC) — BLACKOUT-CYCLE
+Fed Waller 07:45; blackout [07:15–08:15] active. (B) MODIFY #18826511 recommended: 0.35→0.21 lots, SL 2,555→2,583.6 (grown [2,550–2,560] 2.09M ≥1M pool = #18825384 hard-ban), TP 2,442.5 kept (risk 13.67). Card 2 SP500 re-validated: SELL LIMIT 0.04 @ 7,810 / SL 7,842 / TP 7,745 (risk 12.80, RR 2.03, EV +3.48) → stage ≥08:15 post-Waller. SOL Watch-Card 1 suspended (15m CVD +250k). BTC deep-flush watch (82,480/82,375/83,292) conditional. GOLD lot-grid dead (corridor [4,120–4,180] 2.56M). Portfolio stressed post-stop 4,826.37 ≥ 4,795 ✓. Full: `ARENA_COUNCIL_REPORT_20261013_0723Z.md`.
+
+---
+
+## CYCLE 53 [sidecar restored post-clobber] (gen `9e99b4dc` @ 2026-10-13 08:33:27 UTC) — POST-BLACKOUT
+Fed blackout CLEARED (next BoE Pill 10-14 06:00, runway 20.9h). **SOL Card 1 PUNCHED: SELL LIMIT 0.11 @ 109.10 / SL 109.95 / TP 106.10 (risk 9.35, RR 3.53)** — gates (a) 08:33 ✓ (b) 15m CVD −603,577 ✓ (c) shelf 7.84M credited on relocated walls (108.94: 2.32M/180s + 109.49: 4.57M/2,898s; literal 109.07/109.3 gates 370k/407k — migration disclosed), SL 504k whisker 13.7× defended, ≥108.92 rule ✓. **(B) MODIFY #18826511 ETH: 0.35→0.21 lots, SL 2,555→2,583.6, TP 2,442.5** — [2,550–2,560] grew to 2.19M (hard-ban persists) + CVD flipped +12.88M/+14.44M/+16.86M; new SL 0.35 ATR past [2,570–2,580] 3.31M edge, behind 35M fortress stack, 124× whisker defense, risk 13.67/19.23. **(A) HOLD #18836609 SP500 0.04 @ 7,810** (filled 08:30:06): Z +3.00 premium, belt relocated up (credited 3.75M, −26% vs K1 −50% watch), SL 7,842 5.0× defended, K2 updated 7,817.5, time-decay 14:30:06. Kills: USDJPY Z −2.59 (Inv-5 + RR 0.65), NAS100 RR 0.28, GBPUSD 16.20 min-lot, GOLD 0 credited, +15. Portfolio stressed post-stop 4,812.18 ≥ 4,795 ✓ 3/4 slots. Full: `ARENA_COUNCIL_REPORT_20261013_0833Z.md`.
+
+---
+
+## CYCLE 54 — RATCHET LADDER + PRUNING CYCLE (gen `0f698f8dfbd44a8ca6a6905f77474cc0` @ 2026-10-13 09:35:08 UTC)
+- **#18826511 ETH SHORT 0.35 @ 2,518.5: HOLD at +0.37R (+4.73)** — pre-committed ladder: **Phase 0 @ 2,492.95 (+0.70R) → SL 2,555.0 → 2,505.73** (locks +12.78; also exits the 2,555-inside-2.12M-pool defect into a profit lock); Phase 1 @ 2,463.75 (+1.50R) → SL 2,489.30; Phase 2 @ 2,445.50 (+2.00R) trail; TP 2,442.5 = +2.09R ([2,430–2,440] 4.59M+5.69M; 24.74M cascade en route; 11.96M bid @ 2,477 stall-risk disclosed). Time-decay passed (+0.37R > +0.20R). Fortresses descended to 2,544.7/2,528.5 (22.45M credited ≤ SL). Emergency: 15m close > 2,548 + CVD > +500k → exit.
+- **#18836609 SP500 SHORT 0.04 @ 7,810: HOLD** — belt [7,820–7,840] 5.07M cleared by SL 7,842 (0.43 ATR), 746k whisker at **4.3×** (3.18M credited); K1 shelf-erosion watch (5.09→3.75→3.55→3.18M, exit < 1.88M); K2 15m close > 7,817.5; time-decay 14:30:06.
+- **#18837753 SOL SELL_LIMIT 0.1 @ 108.9/110.2/105.1: (C) DELETE** — distance **3.55 ATR** > 2.0 = Dynamic-Pruning standing rule (margin 544.50 + slot freed). Thesis VALID (BEARISH, CVD −490k/15m, **7.66M @ 109.1 verified 1,228 s** = strongest SOL ask of session, SL defense 11.5×) → **RE-ARM identical spec at mid ≥ 107.80** with 109.1 wall ≥ 500k + 15m CVD ≤ +300k.
+- Mandate 1: ZERO new cards (24/24 arithmetic kills: GOLD lot-grid corridor 2.56M + 0 credited bids; USWTI 6.04M bid floor → RR 1.37; USDJPY/NAS100/FX corridor RR; retail friction; Inv-2/4/5). BTC deep-flush watch dormant (Inv-2 armed against the −8.21M 30m CVD).
+- Portfolio post-delete: stressed 35.97 → post-stop **4,836.17 ≥ 4,795** ✓ 2/4 slots (re-arm variant 4,817.92 ✓ 3/4).
+
+— Arena Council · Cycle 54 · full file `ARENA_COUNCIL_REPORT_20261013_0935Z.md`
