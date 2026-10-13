@@ -145,20 +145,21 @@ async def probe_zai_state() -> dict:
         let workspaceFileName = '';
         let workspaceFileText = '';
         if (!isGenerating && lastProse) {
-            const localPreviewBtns = Array.from(lastProse.parentElement?.parentElement?.querySelectorAll('button[title="Open in Workspace"]') || []);
-            const allPreviewBtns = localPreviewBtns.length > 0 ? localPreviewBtns : Array.from(document.querySelectorAll('button[title="Open in Workspace"]'));
-            if (allPreviewBtns.length > 0) {
-                allPreviewBtns[allPreviewBtns.length - 1].click();
-                await new Promise(r => setTimeout(r, 400));
+            let wsProse = document.querySelector('.workspaceContent .markdown-prose, .workspace .markdown-prose, .workspaceContent pre');
+            if (!wsProse) {
+                const localPreviewBtns = Array.from(lastProse.parentElement?.parentElement?.querySelectorAll('button[title="Open in Workspace"]') || []);
+                const allPreviewBtns = localPreviewBtns.length > 0 ? localPreviewBtns : Array.from(document.querySelectorAll('button[title="Open in Workspace"]'));
+                if (allPreviewBtns.length > 0) {
+                    allPreviewBtns[allPreviewBtns.length - 1].click();
+                    await new Promise(r => setTimeout(r, 450));
+                }
             }
             const tabButtons = Array.from(document.querySelectorAll('.workspace [role="tab"], .workspace button[data-tabs-trigger], [role="tablist"] button, [role="tablist"] [role="tab"]'));
             if (tabButtons.length > 0) {
                 const targetTab = tabButtons[0];
-                targetTab.click();
-                await new Promise(r => setTimeout(r, 300));
                 workspaceFileName = (targetTab.innerText || '').trim();
             }
-            const wsProse = document.querySelector('.workspaceContent .markdown-prose, .workspace .markdown-prose, .workspaceContent pre');
+            wsProse = document.querySelector('.workspaceContent .markdown-prose, .workspace .markdown-prose, .workspaceContent pre');
             if (wsProse) {
                 workspaceFileText = (wsProse.innerText || '').trim();
             } else {
@@ -235,15 +236,19 @@ def save_zai_completion_artifacts(state: dict) -> None:
         ZAI_LATEST_RAW_FILE.write_text(text, encoding="utf-8")
 
     ws_text = state.get("workspaceFileText") or ""
+    ws_name = (state.get("workspaceFileName") or "").strip()
     if ws_text:
         zai_attachment_file.write_text(ws_text, encoding="utf-8")
+        if ws_name and ws_name.endswith(".md") and "/" not in ws_name and "\\" not in ws_name:
+            named_file = ZAI_LATEST_RAW_FILE.parent / ws_name
+            named_file.write_text(ws_text, encoding="utf-8")
 
     payload = {
         "completed_at_utc": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC"),
         "completed_at_epoch": time.time(),
         "prose_count": state.get("proseCount", 0),
         "text_length": state.get("lastLen", 0),
-        "workspace_file_name": state.get("workspaceFileName", ""),
+        "workspace_file_name": ws_name,
         "workspace_file_length": state.get("workspaceFileLen", 0),
         "text_hash": state.get("textHash", ""),
         "is_generating": state.get("isGenerating", False),
