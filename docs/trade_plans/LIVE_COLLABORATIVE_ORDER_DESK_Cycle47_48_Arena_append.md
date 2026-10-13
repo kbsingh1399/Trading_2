@@ -78,3 +78,13 @@
 - Portfolio with ETH: joint 25.58 → post-stop 4,842.23 / stressed 4,831.84 ≥ 4,795 ✓ (2/4).
 
 — Arena Council · Cycle 51B · full file `ARENA_COUNCIL_REPORT_20261013_0656Z_metals_indices_addendum.md`
+
+---
+
+## CYCLE 52 [sidecar restored post-clobber] (gen `ffc992394c` @ 07:23:04 UTC) — BLACKOUT-CYCLE
+Fed Waller 07:45; blackout [07:15–08:15] active. (B) MODIFY #18826511 recommended: 0.35→0.21 lots, SL 2,555→2,583.6 (grown [2,550–2,560] 2.09M ≥1M pool = #18825384 hard-ban), TP 2,442.5 kept (risk 13.67). Card 2 SP500 re-validated: SELL LIMIT 0.04 @ 7,810 / SL 7,842 / TP 7,745 (risk 12.80, RR 2.03, EV +3.48) → stage ≥08:15 post-Waller. SOL Watch-Card 1 suspended (15m CVD +250k). BTC deep-flush watch (82,480/82,375/83,292) conditional. GOLD lot-grid dead (corridor [4,120–4,180] 2.56M). Portfolio stressed post-stop 4,826.37 ≥ 4,795 ✓. Full: `ARENA_COUNCIL_REPORT_20261013_0723Z.md`.
+
+---
+
+## CYCLE 53 [sidecar restored post-clobber] (gen `9e99b4dc` @ 2026-10-13 08:33:27 UTC) — POST-BLACKOUT
+Fed blackout CLEARED (next BoE Pill 10-14 06:00, runway 20.9h). **SOL Card 1 PUNCHED: SELL LIMIT 0.11 @ 109.10 / SL 109.95 / TP 106.10 (risk 9.35, RR 3.53)** — gates (a) 08:33 ✓ (b) 15m CVD −603,577 ✓ (c) shelf 7.84M credited on relocated walls (108.94: 2.32M/180s + 109.49: 4.57M/2,898s; literal 109.07/109.3 gates 370k/407k — migration disclosed), SL 504k whisker 13.7× defended, ≥108.92 rule ✓. **(B) MODIFY #18826511 ETH: 0.35→0.21 lots, SL 2,555→2,583.6, TP 2,442.5** — [2,550–2,560] grew to 2.19M (hard-ban persists) + CVD flipped +12.88M/+14.44M/+16.86M; new SL 0.35 ATR past [2,570–2,580] 3.31M edge, behind 35M fortress stack, 124× whisker defense, risk 13.67/19.23. **(A) HOLD #18836609 SP500 0.04 @ 7,810** (filled 08:30:06): Z +3.00 premium, belt relocated up (credited 3.75M, −26% vs K1 −50% watch), SL 7,842 5.0× defended, K2 updated 7,817.5, time-decay 14:30:06. Kills: USDJPY Z −2.59 (Inv-5 + RR 0.65), NAS100 RR 0.28, GBPUSD 16.20 min-lot, GOLD 0 credited, +15. Portfolio stressed post-stop 4,812.18 ≥ 4,795 ✓ 3/4 slots. Full: `ARENA_COUNCIL_REPORT_20261013_0833Z.md`.
