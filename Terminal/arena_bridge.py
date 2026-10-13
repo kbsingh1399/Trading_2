@@ -1047,7 +1047,7 @@ async def post_prompt_to_zai(prompt_text: str) -> bool:
             await ws.recv()
             await asyncio.sleep(0.35)
 
-            # Step 3: Verify value and click button#send-message-button
+            # Step 3: Verify value and click button#send-message-button in a verification loop until textarea is emptied
             js_send = f"""
             (async () => {{
               const ta = document.querySelector('textarea#chat-input') || document.querySelector('textarea');
@@ -1057,14 +1057,27 @@ async def post_prompt_to_zai(prompt_text: str) -> bool:
                 else ta.value = {json.dumps(prompt_text)};
                 ta.dispatchEvent(new InputEvent('input', {{ bubbles: true, data: {json.dumps(prompt_text[:64])}, inputType: 'insertText' }}));
                 ta.dispatchEvent(new Event('change', {{ bubbles: true }}));
-                await new Promise(r => setTimeout(r, 250));
+                await new Promise(r => setTimeout(r, 300));
               }}
-              const sendBtn = document.querySelector('button#send-message-button') || document.querySelector('button.sendMessageButton') || document.querySelector('button[type="submit"]');
-              if (sendBtn && !sendBtn.disabled) {{
-                sendBtn.click();
-                return {{ success: true, method: 'click_send_button' }};
+              for (let attempt = 0; attempt < 6; attempt++) {{
+                const curTa = document.querySelector('textarea#chat-input') || document.querySelector('textarea');
+                if (curTa && curTa.value.length === 0) {{
+                  return {{ success: true, method: 'click_send_button_verified', attempts: attempt }};
+                }}
+                const sendBtn = document.querySelector('button#send-message-button') || document.querySelector('button.sendMessageButton') || document.querySelector('button[type="submit"]');
+                if (sendBtn && !sendBtn.disabled) {{
+                  sendBtn.click();
+                }}
+                await new Promise(r => setTimeout(r, 400));
               }}
-              return {{ success: true, method: 'enter_fallback', btnDisabled: sendBtn ? sendBtn.disabled : null }};
+              const finalTa = document.querySelector('textarea#chat-input') || document.querySelector('textarea');
+              const sendBtn = document.querySelector('button#send-message-button');
+              return {{
+                success: finalTa ? finalTa.value.length === 0 : true,
+                method: (finalTa && finalTa.value.length === 0) ? 'click_send_button_verified' : 'enter_fallback',
+                remainingLen: finalTa ? finalTa.value.length : -1,
+                btnDisabled: sendBtn ? sendBtn.disabled : null
+              }};
             }})()
             """
             await ws.send(json.dumps({
@@ -1114,29 +1127,43 @@ async def check_zai_response() -> Tuple[bool, str]:
       let workspaceFileText = '';
 
       if (!isGenerating && lastChatEl) {
-        let wsProse = document.querySelector('.workspaceContent .markdown-prose, .workspace .markdown-prose, .workspaceContent pre');
-        if (!wsProse) {
-          const localPreviewBtns = Array.from(lastChatEl.parentElement?.parentElement?.querySelectorAll('button[title="Open in Workspace"]') || []);
-          const allPreviewBtns = localPreviewBtns.length > 0 ? localPreviewBtns : Array.from(document.querySelectorAll('button[title="Open in Workspace"]'));
-          if (allPreviewBtns.length > 0) {
-            allPreviewBtns[allPreviewBtns.length - 1].click();
-            await new Promise(r => setTimeout(r, 600));
+        const outer = lastChatEl.parentElement && lastChatEl.parentElement.parentElement ? lastChatEl.parentElement.parentElement : lastChatEl;
+        const wroteBtns = Array.from(outer.querySelectorAll('button')).filter(b => (b.innerText || '').includes('Wrote'));
+        for (const wb of wroteBtns) {
+          const container = wb.parentElement && wb.parentElement.parentElement ? wb.parentElement.parentElement : wb.parentElement;
+          if (container && !container.querySelector('.ToolCallTraceList')) {
+            wb.click();
+            await new Promise(r => setTimeout(r, 300));
           }
         }
-
-        const tabButtons = Array.from(document.querySelectorAll('.workspace [role="tab"], .workspace button[data-tabs-trigger], [role="tablist"] button, [role="tablist"] [role="tab"]'));
-        if (tabButtons.length > 0) {
-          const targetTab = tabButtons[0];
-          workspaceFileName = (targetTab.innerText || '').trim();
+        const createBtns = Array.from(outer.querySelectorAll('.ToolCallTraceList button, button')).filter(b => (b.innerText || '').includes('Create File') && (b.innerText || '').includes('.md'));
+        if (createBtns.length > 0) {
+          const latestCreateBtn = createBtns[createBtns.length - 1];
+          const rawLabel = (latestCreateBtn.innerText || '').trim();
+          const match = rawLabel.match(/([A-Za-z0-9_.-]+\.md)/);
+          const targetFile = match ? match[1] : '';
+          const curHeader = Array.from(document.querySelectorAll('.text-sm.flex-1.truncate.line-clamp-1')).map(e => (e.innerText || '').trim()).find(t => t.endsWith('.md')) || '';
+          if (targetFile && curHeader !== targetFile) {
+            latestCreateBtn.click();
+            await new Promise(r => setTimeout(r, 500));
+          }
+          if (targetFile) workspaceFileName = targetFile;
         }
-
-        wsProse = document.querySelector('.workspaceContent .markdown-prose, .workspace .markdown-prose, .workspaceContent pre');
-        if (wsProse) {
-          workspaceFileText = (wsProse.innerText || '').trim();
-        } else {
-          const wsIframe = document.querySelector('iframe.workspacePreview');
-          if (wsIframe && wsIframe.contentDocument && wsIframe.contentDocument.body) {
-            workspaceFileText = (wsIframe.contentDocument.body.innerText || '').trim();
+        if (!workspaceFileName) {
+          const curHeader = Array.from(document.querySelectorAll('.text-sm.flex-1.truncate.line-clamp-1')).map(e => (e.innerText || '').trim()).find(t => t.endsWith('.md')) || '';
+          if (curHeader) workspaceFileName = curHeader;
+        }
+        const cm = document.querySelector('.cm-content');
+        if (cm && cm.cmView) {
+          let v = cm.cmView;
+          while (v && !v.state && v.parent) v = v.parent;
+          if (v && v.view && v.view.state) workspaceFileText = v.view.state.doc.toString();
+          else if (v && v.state) workspaceFileText = v.state.doc.toString();
+        }
+        if (!workspaceFileText) {
+          const wsProse = document.querySelector('.workspaceContent .markdown-prose, .workspace .markdown-prose, .workspaceContent pre');
+          if (wsProse) {
+            workspaceFileText = (wsProse.innerText || '').trim();
           }
         }
       }
