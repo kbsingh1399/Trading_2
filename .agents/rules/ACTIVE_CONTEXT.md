@@ -61,19 +61,20 @@ trigger: always_on
       * **Position Capacity Policy**:
         - Up to 4 concurrent tickets across orthogonal asset clusters provided total joint worst-case stopout risk unconditionally defends the 4,775.00 USD hard floor and 4,795.00 USD operating buffer (>= 20.00 USD cushion at all times).
     - Connects directly via native IPC to MetaTrader 5 Account 5064568 (Blueberry Markets).
-    - **Active Positions & Pending Orders (Live State — 0 Open Positions [100% Realized Cash] | 0 Limit Orders Resting)**:
-      * Current Status: **0 Open Positions | 0 Pending Orders | Balance: 4,880.27 USD (+16.10 USD BTC Full TP + +9.52 USD SOL Profit Lock banked) | Equity: 4,880.27 USD | Margin Used: 0.00 USD | Free Margin: 4,880.27 USD**.
+    - **Active Positions & Pending Orders (Live State — 0 Open Positions [100% Realized Cash] | 2 Limit Orders Resting)**:
+      * Current Status: **0 Open Positions | 2 Pending Orders (`#18825384` `SOLUSD.p`, `#18825385` `ETHUSD.pi`) | Balance: 4,880.27 USD (+16.10 USD BTC Full TP + +9.52 USD SOL Profit Lock banked) | Equity: 4,880.27 USD | Margin Used: 0.00 USD | Free Margin: 4,880.27 USD**.
       * Active Positions (0 — All open positions closed in realized profit; Autonomous Ratchet Daemon `task-50510` on standby every 15s):
         - None (100% Realized Cash Reserves).
-      * Active Pending Orders (0 — Ticket `#18817374` `NAS100.p` cancelled at `01:27 UTC` per Cycle 42 Mandate 3 `(C) DELETE` ruling after `[30,700-30,800]` buy-stop cluster surged 14.5x to `2.11M USD` around `SL = 30,723.00 USD`, supporting Ask walls pulled 86%, and live price drifted `3.23-4.08 ATR > 2.0 ATR` ahead of the `02:25 UTC` pre-event liquidity purge):
-        - None (100% unencumbered going into `02:25 UTC` purge and `03:00 UTC` BoE MPC Member Greene speech).
+      * Active Pending Orders (2 — Staged in Cycle 45 after post-BoE blackout cleared and 5m/15m CVD flipped negative across SOL and ETH):
+        - **Ticket `#18825384` (`SOLUSD.p` `SELL_LIMIT 0.13 lots` @ `107.70 USD` | `SL: 108.55 USD` | `TP: 103.58 USD`)**: Model 2 Trend Pullback Short (`0.50 ATR` above live mid `107.30`), front-running `8.83M USD` of verified persistent L3 Ask Whale Walls (`>= 180s`: `1.86M @ 107.94 [243s]`, `3.65M @ 108.22 [846s]`, `642k @ 108.33 [730s]`, `619k @ 108.40 [846s]`, `220k @ 108.47 [1030s]` -> Overwhelm `0.036:1`, defence `27.7x` fuel), SL `+0.69 ATR` outside `[107.00–108.00]`, TP `+7.5 bps` front-run of `103.50` long cascade through `11.25M USD` `[106–107]` sell-stop pool. `Nominal Risk = 11.05 USD` | `Reward = 53.56 USD` | `R:R = 4.85R`.
+        - **Ticket `#18825385` (`ETHUSD.pi` `SELL_LIMIT 0.65 lots` @ `2,518.50 USD` | `SL: 2,535.50 USD` | `TP: 2,457.46 USD`)**: Model 2 Trend Pullback Short (`0.95 ATR` above live mid `2,504.55`, above `EMA200 = 2,510.21`), front-running `8.01M USD` of verified persistent L3 Ask Whale Walls (`>= 180s`: `5.70M @ 2,519.40 [845s]`, `781k @ 2,516.70 [658s]`, `773k @ 2,525.40 [419s]`, `280k @ 2,520.00 [4421s]`, `268k @ 2,519.10 [6101s]`, `209k @ 2,515.00 [6101s]` -> Overwhelm `0.236:1`, defence `4.24x` fuel), SL `+0.37 ATR` outside `[2,520–2,530]` `max_price = 2,530.00` and behind `Session POC = 2,525.38` + `803k @ 2,530.70 [966s]`, TP `+10 bps` front-run of `5.62M USD` `[2,450–2,460]` long cascade. `Nominal Risk = 11.05 USD` | `Reward = 39.68 USD` | `R:R = 3.59R`.
       * G-1 Hard Floor Defense: Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Floor Cushion: **+105.27 USD realized cash cushion**.
       * Stressed Post-Loss Simulation:
-        - Total Contingent Book Risk: **0.00 USD** (`0` open positions, `0` pending orders).
-        - Stressed Worst-Case Equity: **4,880.27 USD** (Unconditionally defends floor!).
-        - Safety Cushion Above 4,775.00 USD Hard Floor: **+105.27 USD** (over 5.2x mandatory >= 20.00 USD buffer).
-        - Safety Cushion Above 4,795.00 USD Operating Buffer: **+85.27 USD**.
-        - Capacity Slots Used: **0 / 4** (`100%` unencumbered).
+        - Total Contingent Book Risk: **22.10 USD nominal (`31.63 USD` stressed at `1.25x + 2.00 USD/ticket`)** across `2` pending orders.
+        - Stressed Worst-Case Equity: **4,848.64 USD** (`4,858.17 USD` unstressed — unconditionally defends floor!).
+        - Safety Cushion Above 4,775.00 USD Hard Floor: **+73.64 USD stressed (`+83.17 USD` unstressed)**.
+        - Safety Cushion Above 4,795.00 USD Operating Buffer: **+53.64 USD stressed (`+63.17 USD` unstressed)**.
+        - Capacity Slots Used: **2 / 4** (`2` slots available in reserve).
       * Closed Trades Today (Realized PnL):
         - Ticket #18813767 (`BTCUSD.pi` closed at **+16.10 USD cash profit** via Full Take Profit at 81,845.00 USD, Deal #17024690, +1.71R banked after Phase 0 BE Lock at 82,579.50 USD)
         - Ticket #18813768 (`SOLUSD.p` closed at **+9.52 USD cash profit** via Autonomous Ratchet Daemon Phase 1 Profit Lock Stop Loss at 107.32 USD, Deal #17024104, +0.80R banked)
