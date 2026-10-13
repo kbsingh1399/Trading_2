@@ -10915,3 +10915,30 @@ Cycle-42 deletion executed; book clean at the purge deadline. Nothing to WAIT/MO
 | **Secondary Short (`SOLUSD.p`)** | `SELL LIMIT 0.08 @ 109.77` (`VAH`) / `SL 111.28` / `TP 102.10` (`Risk 12.08 USD`, `5.08R`). Kill-switch: `5m CVD < 0` at arm. | `SELL LIMIT 0.14 @ 107.50` (`[107–108]` midpoint) / `SL 108.28` / `TP 103.58` (`Risk 10.86 USD`, `5.06R`). | **Live squeeze verification**: At `03:34 UTC`, `SOLUSD.p` surged to `107.46 / 107.71` (`Z = +2.17 SD`) with **all 3 CVD windows positive (`5m +1.10M / 15m +673k / 30m +272k USD`)**. Arena's kill-switch (`5m CVD < 0`) is triggered; wait for `5m CVD` to flip negative before arming. |
 | **Tertiary Short (`BTCUSD.pi`)** | `SELL LIMIT 0.03 @ 83,350.00` (`VAH`) / `SL 83,761.70` / `TP 82,450.00` (`Risk 12.35 USD`, `2.19R`). Gate: `5m CVD <= 0` & `[83,600–83,700] < 1M`. | Watch-only (`Z = +1.38 < 1.50` at `03:22 UTC`). | **Live squeeze verification**: `BTCUSD.pi` surged to `83,225.00 USD` (`Z = +2.12 SD`, `0.39 ATR` below Arena's `83,350.00` VAH shelf!), with `5m CVD = +2.01M USD` while `15m/30m CVD` remain negative (`-1.62M / -2.03M USD`). Standing ready to arm as soon as `5m CVD` turns negative at the `83,350–83,600` shelf! |
 | **Mandates 2 & 3 / Capital Floor** | `0` open, `0` pending; `4,880.27 USD` (`+105.27 USD` cushion). | `0` open, `0` pending; `4,880.27 USD` (`+105.27 USD` cushion). | **100% Realized Cash (`4,880.27 USD`)** preserved untouched through the `03:30–03:34 UTC` post-BoE stop squeeze. |
+
+---
+---
+
+# BILATERAL LEDGER APPENDIX — CYCLE 45 COUNCIL REPORT (2026-10-13 03:38:27 UTC)
+
+**— Signed, Arena.ai Multi-Persona Quantitative Council · Cycle 45 · generation `a24aaab93f2d4b65aefc4eff2b901e60` (as_of 2026-10-13 03:39:43 UTC) — full report at `docs/trade_plans/ARENA_COUNCIL_REPORT_20261013_0338Z.md`**
+
+## A. Ingestion & Baseline
+- gen `a24aaab9` @ 03:39:43 UTC. Account 5064568: **4,880.27 USD**, cushion +105.27, 0 open / 0 pending. Capacity 0/4.
+- **Blackout transition CONFIRMED: `blackout_active = False`** — BoE window closed 03:30:00 UTC. Next block: Fed Waller 07:45 UTC (blackout 07:15–08:15, **purge 07:10**). Clean execution window 03:40–07:10 (~3.5 h).
+- **Second flow reversal of the night:** BTC 5m +5.20M / 15m +6.43M (regime → RANGE_BOUND); ETH 5m −18k / 15m +2.22M (last3 −635k); SOL 5m −44k (last3 −276k); BCH the only both-windows-negative name (−58k/−26k).
+
+## B. Mandate 1 — Staging Cards (arm now; hard expiry 07:05 UTC)
+
+| Seq | Action | Symbol | Side | Lots | Entry | SL Bunker | TP Magnet | Risk USD | R:R | Notes |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | **CARD 1 — ARM NOW** | ETHUSD.pi | SELL LIMIT | 0.25 | 2,544.3 (VAH) | 2,587.0 (double-clear past [2,560–2,580] 8.75M + 0.50 ATR) | 2,442.0 (front-run [2,430–2,440] 13.73M ~8 bps) | 10.68 | 2.40 | **11.13M verified fortress @ 2,544.6 (362 s) on the entry**; CVD last3 −635k (gate: 5m non-positive at arm); BEARISH |
+| 2 | CARD 3 — ARM (gates) | SOLUSD.p | SELL LIMIT | 0.08 | 109.77 (VAH) | 111.28 ([109–111] 621k + 0.35 ATR) | 102.10 (front-run [100–102] 14.52M ~10 bps) | 12.08 | 5.08 | Gates: 5m CVD negative at arm (−44k now); ≥ 300k SELL walls 109.5–111.3 verified |
+| 3 | **CARD 2 — KILLED** | BTCUSD.pi | — | — | — | — | — | — | — | 5m CVD +5.20M + regime RANGE_BOUND — two hard gates fail. Re-arm on BEARISH + negative CVD |
+| — | HOLD | 21 others | — | — | — | — | — | — | — | BCH CVD-qualified but dust pools + 0 walls; GOLD RR-dead ×4; USWTI ×7; NAS100 lot-grid; friction ×7; lot-grid ×2 |
+
+**Concurrency:** Cards 1+3 = crypto-major cluster. Primary Card 1; both armed = 22.76 → post-stop 4,857.51 ≥ 4,795.00 ✓ (broker-stress 4,849.57 ✓).
+
+## C. Mandate 2 — FLAT (OPEN_0). No ratchets.
+## D. Mandate 3 — 0 pending (cycle-44 cards were never broker-staged). Nothing to audit.
+## E. Floor — 4,880.27 ≥ 4,795.00 ✓; card stress pre-verified. **07:05 UTC = cancel-all for unfilled cards** (07:10 purge hard expiry; Fed Waller blackout 07:15–08:15 repeats the cycle-43 protocol).
