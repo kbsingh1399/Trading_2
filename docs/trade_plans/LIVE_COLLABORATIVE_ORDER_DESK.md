@@ -10792,3 +10792,22 @@ Post-swap: 1 ticket (NAS100 7.50 USD) → post-stop **4,872.77 ≥ 4,795.00** �
 | 5 | FLOOR | — | — | — | — | — | — | 7.50 | — | Post-stop 4,872.77 ≥ 4,795.00 ✓; cushion +105.27 preserved |
 
 **Revalidation triggers for Ticket 2 at/after the 2026-10-13 02:25 UTC purge:** (i) [30,500–30,600] magnet ≥ 500k; (ii) SELL walls 30,840–30,930 retain ≥ 1.0M verified with ≥ 1 wall ≥ 1,000 s; (iii) regime BEARISH; (iv) primary bunker [30,800–30,900] ≥ 150k. Any failure → cancel and re-arm at the next open.
+
+---
+---
+
+# BILATERAL LEDGER APPENDIX — CYCLE 41B (CORRECTIVE RE-ANCHOR, 2026-10-12 23:54 UTC basis)
+
+**— Signed, Arena.ai Multi-Persona Quantitative Council · Cycle 41B · generation `b588650bf75b43eba4f382eab288f7c0` (as_of 2026-10-12 23:54:05 UTC)**
+
+**Operator actions verified:** #18814015 (SP500.p) removed on MT5 (retcode 10009) per the ratified Cycle-41 (C) verdict — note the 23:54:05 snapshot still lists it as pending (1-generation lag; broker state governs: 4,880.27 USD, 0 open, 0 pending post-removal). Both Cycle-41 discrepancies on the NAS100.p 30,840 proposal CONFIRMED: (1) TP 30,618 sits above live price 30,587 with [30,500–30,600] 793.5k being swept now — magnet consumed before any 10-ATR fill; (2) 10.22-ATR entry contradicts the 2.0-ATR proximity bar enforced on #18814015 (self-contradiction owned; the deep-pullback "live-ready" label was wrong).
+
+**Near-shelf RE-ANCHOR — RATIFIED (audited against gen b588650b):** live NAS100 30,587.0 / ATR 25.49 / Z −1.53 / BEARISH. Shelf verified: EMA20 30,649.02, POC 30,662.38, EMA50 30,707.48 (operator figures exact). Bunker [30,600–30,700] 474,965 buy-stops ✓. WALL-PULL DISCLOSURE: operator's 30,635 (1.15M) + 30,652 (332k) shelf walls are NOT verified at 23:54:05 (pulled/lapsed since the ~23:47 read); verified defense = 419,978 @ 30,641 (1,142 s) + 387,226 @ 30,674 (961 s) + fortress 1,043,800 @ 30,700 (**20,615 s**) + 509,365 @ 30,702 (1,201 s) + SL-zone 1,075,749 @ 30,722 (1,983 s).
+
+| Seq | Ticket/Action | Symbol | Side | Lots | Entry | SL Bunker | TP Magnet | Risk USD | R:R | Verdict |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | **PLACE (punch-in verified)** | NAS100.p | SELL LIMIT | 0.01 | **30,640.0** | **30,715.0** (0.59 ATR outside [30,600–30,700] max 30,700; 145k whisker wall-defended 19× by 2.78M @ 30,700–30,753) | **30,415.0** (inside [30,400–30,500] 451k at lower edge = 5 bps front-run of 30,400 / [30,300–30,400] 289k block) | **7.50** | **3.00** | Entry 2.08 ATR from live mid ✓; stop 75.00 pts = 2.94 ATR ≥ 1.5 ✓; friction 0.40 bps; Inv 1–5 walked (belt 420k@30,641 entry anchor; fortress 20,615 s; sweep [30,500–30,600] completes below entry) |
+| 1a | Accepted variant | NAS100.p | SELL LIMIT | 0.01 | 30,648.0 (EMA20 30,649.02) | 30,723.0 (0.90 ATR outside bunker; 1 pt above the 1.08M @ 30,722 wall) | 30,415.0 | 7.50 | 3.11 | EMA20-coincide alternative; identical risk band |
+| 1b | NOT recommended | NAS100.p | SELL LIMIT | 0.01 | 30,698.0 | 30,773.0 | 30,415.0 | 7.50 | 3.77 | Higher RR but: fill requires slicing the full verified belt (walls hold → never fills); fortress-pull fill = #18748507 worst-local-fill class; Inv-3-mirror marginal at bunker top |
+
+Kill/re-arm at punch-in: if the 30,641 wall (419,978) has pulled → move entry to 30,674.0 (387,226 @ 961 s) or hold; if [30,400–30,500] < 350k → re-walk TP to 30,455.0 (conservative, 2.47R); purge re-validation 02:25 UTC unchanged. Post-stop 4,872.77 ≥ 4,795.00 ✓ (broker-stress 4,868.89 ✓). Alternative <2.5 ATR sweep of all 24: no better compliant candidate (BTC E20 +2.22 ATR but bunker-walk RR ≤ 1.45; SP500 RANGE_BOUND; SOL CVD unqualified; TRX/XRP lot-grid dead; friction/Inv-4 kills elsewhere).
