@@ -10834,3 +10834,37 @@ Kill/re-arm at punch-in: if the 30,641 wall (419,978) has pulled → move entry 
    - **`USWTI.p` & `USDJPY.pi`**: `USWTI` (`Z = -3.41`, `BULLISH`, spread `4.94 bps`) and `USDJPY` (`Z = -3.63`, `RANGE_BOUND`) lack verified (`>= 180s`) Bid Whale Walls within `[92.5, 95.3]` / `[158.1, 158.7]` (Anti-Trap Invariant 4 fail).
 4. **Capital Floor & Event Governance**:
    - **Balance & Equity**: `4,880.27 USD` (`100%` Realized Cash) | **Cushion Above `4,775.00 USD` Hard Floor**: **`+105.27 USD`** (`+85.27 USD` above `4,795.00 USD` Operating Buffer) | **Capacity**: `0 / 4` going into the `02:25 UTC` pre-event liquidity purge and `03:00 UTC` BoE MPC Member Greene speech.
+
+---
+---
+
+# BILATERAL LEDGER APPENDIX — CYCLE 43 COUNCIL REPORT (2026-10-13 02:14:02 UTC)
+
+**— Signed, Arena.ai Multi-Persona Quantitative Council · Cycle 43 · generation `9d2cc0c0c4ec48ab83187e22227bdb63` (as_of 2026-10-13 02:21:33 UTC; supersedes prompt-cited `7171bbc7`) — full report at `docs/trade_plans/ARENA_COUNCIL_REPORT_20261013_0214Z.md`**
+
+## A. Ingestion & Baseline
+- gen `9d2cc0c0` @ 2026-10-13 02:21:33 UTC. Account 5064568: **4,880.27 USD**, cushion **+105.27**, 0 open / **0 pending** (Cycle-42 (C) delete of #18817374 executed — ratified). Capacity 0/4.
+- **MACRO LOCKDOWN (dispositive):** purge **02:25 UTC** (runway 0.14 h at basis) + **hard blackout 02:30–03:30 UTC** + BoE Greene 03:00 UTC. No order may rest across the block; **desk holds flat through 03:30 UTC** by macro governance.
+
+## B. Mandate 1 — 24-Asset Screen (Trend-First)
+Overnight relief rally ran: all crypto extended above VWAP (Z +2.2…+4.9), RSI 43–61, HTF still BEARISH. Model-1 longs banned (Inv 5); the fade nominations die on three independent bars: (a) **Part D.2 short qualifier unmet** — 5m/15m CVD positive on every friction-passing candidate (BTC +760k/+7.0M, ETH +816k/+4.8M, SOL +273k/+1.9M); the only negative-CVD print is DOGE (−40k/−18k) which is friction-banned at 252.9 bps; (b) **Inv 4 wall-wipe** — 0 verified walls within [−1 ATR, +4 ATR] of BTC/ETH/GOLD shelves (alts 0/0 eligible); (c) GOLD/ETH honest-magnet RR ≤ 1.05. **0 qualifying.** Lattice flags: BTC [82,500–82,600] **18.03M** sell-stops 60 pts below mid with zero squeeze bands above; ETH [2,370–2,380] **40.97M** cascade + [2,400–2,410] 18.08M below — extreme downside-fuel asymmetry awaiting the CVD turn.
+
+## C. Mandate 2 — FLAT (OPEN_0)
+0 open, margin 0.00, equity 4,880.27. No ratchets.
+
+## D. Mandate 3 — 0 Pending
+Cycle-42 deletion executed; book clean at the purge deadline. Nothing to WAIT/MODIFY/DELETE.
+
+## E. Step 4 — Floor & Event Governance
+0 tickets → post-stop 4,880.27 ≥ 4,795.00 ✓. If Re-arm Card A arms post-blackout: risk 11.68 → 4,868.59 ✓ (broker-stress 4,863.67 ✓).
+
+## F. Actionable Execution Summary Table (Cycle 43)
+
+| Seq | Action | Symbol | Side | Lots | Entry | SL Bunker | TP Magnet | Risk USD | R:R | Rationale |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | **HOLD — MACRO LOCKDOWN** | ALL | — | — | — | — | — | — | — | Purge 02:25 + blackout 02:30–03:30 + BoE 03:00; nothing rests across the block |
+| 2 | HOLD | 24 assets | — | — | — | — | — | — | — | 0 qualifying (CVD-qualifier unmet; Inv 4 wall-wipe; GOLD/ETH RR-dead) |
+| 3 | **RE-ARM CARD A (03:30+ UTC)** | BTCUSD.pi | SELL LIMIT | 0.04 | 83,381.0 (VAH shelf) | 83,673.0 ([83,400–83,500] 1.64M + 0.50 ATR) | 82,660.0 (front-run [82,500–82,600] 18.03M ~10 bps) | 11.68 | 2.47 | Gates: 5m CVD negative ×2 reads; ≥ 500k verified ask walls 83,300–83,700; magnet ≥ 10M; BEARISH. Re-walk all prices post-BoE |
+| 4 | FLOOR | — | — | — | — | — | — | 0.00 | — | 4,880.27 ≥ 4,795.00 ✓; flat through the BoE block |
+
+**Post-blackout protocol:** re-walk the full lattice at the first generation after 03:30 UTC (BoE re-prices all bands). Priority: (1) Card A gates; (2) DOGE short if spreads < 35 bps (genuine negative-CVD qualifier); (3) USWTI long if |Z| ≥ 2 returns + CVD feed + ≥ 300k bid wall; (4) NAS100 short if ATR ≤ 28 + compliant bunker.
