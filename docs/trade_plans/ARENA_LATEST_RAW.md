@@ -1,48 +1,47 @@
-ARENA COUNCIL — CYCLE 42 · Pure Telemetry & Playbook Analysis
+ARENA COUNCIL — CYCLE 43 · Pure Telemetry & Playbook Analysis
 
-Clock 2026-10-13 01:08:41 UTC · Account 5064568 · Trend-First enforced · Zero decision-gate tokens
-Basis: gen 0170e8b0 @ 01:13:34 UTC (5 min after the prompt-cited 13dd5c2c; ledger synced eb2657a, branch arena/5c05910e-trading-2 for the Antigravity merge.)
+Clock 2026-10-13 02:14:02 UTC · Account 5064568 · Trend-First enforced · Zero decision-gate tokens
+Basis: gen 9d2cc0c0 @ 02:21:33 UTC (7 min after the prompt-cited 7171bbc7; ledger synced 1ae9b78 on arena/5c05910e-trading-2.)
 
 1 · Telemetry & Playbook Ingestion Citation
-generation_id 0170e8b04e384f4998d8faf11920373f · as_of 2026-10-13 01:13:34 UTC · observed-only protocol · Parameter Coincidence Matrix + Dual-Venue Division + 7-Point Checklist applied.
-Baseline verified: balance/equity 4,880.27 USD, margin 0.00, cushion +105.27. Risk block: 1 pending (#18817374, nominal 7.50 / stressed 11.375), post-stop 4,868.895, floor preserved. Capacity 1/4. p_win LB 0.4197 (n=17).
-Macro: BoE Greene 03:00 UTC (1.77 h); liquidity purge 02:25 UTC (1.27 h — imminent).
-Vol-regime flag: NAS100 ATR 25.49 → 35.92 (+41%); crypto 15m CVD whipsawed to massive positive absorption (BTC +7.45M / SOL +3.61M / ETH +2.40M). Degenerate-σ artifacts flagged: TRX Z +12.24, EURUSD +11.48, GBPUSD +13.82 (σ collapse — NOT signals; the BTC/ETH/BNB Z-positives with RSI 9.7–22.9 are VWAP-collapse artifacts too).
+generation_id 9d2cc0c0c4ec48ab83187e22227bdb63 · as_of 2026-10-13 02:21:33 UTC · observed-only protocol · Parameter Coincidence Matrix + Dual-Venue Division + 7-Point Checklist applied.
+Baseline verified: balance/equity 4,880.27 USD, margin 0.00, cushion +105.27. 0 open / 0 pending — the Cycle-42 (C) delete of #18817374 was executed on the broker (verdict ratified). Capacity 0/4. p_win LB 0.4197 (n=17).
+⚠️ MACRO LOCKDOWN — dispositive for this cycle: liquidity purge 02:25 UTC (runway 0.14 h at basis) · hard blackout window 02:30–03:30 UTC · BoE Greene Speech 03:00 UTC inside it. No order may be staged that can survive the purge or rest into the blackout — the desk holds flat through 03:30 UTC by macro governance, independent of every asset-level verdict below.
 2 · Mandate 1 — 24-Asset Line-by-Line Screen
 
-0 qualifying. The only non-banned |Z| ≥ 2.0 extremes are long-side and die on the same invariant pair:
+The overnight relief rally ran — every crypto is extended above VWAP (Z +2.2…+4.9, RSI recovered to 43–61) while all HTF regimes stay BEARISH. Model 1 longs remain banned (Inv 5); the overbought-fade / pullback-short nominations die on three independent bars:
 
-USWTI Z −3.41 (BULLISH) — closest miss of the cycle. Friction relaxed 5.15 → 4.94 ✓ compliant and the Model-1 dip-buy geometry is textbook (2.53 ATR below EMA20 in a rising-EMA200 regime, RSI 41.9, calm 0.23% tape) — but Inv 2 is unverifiable (energy carries no CVD stream; unavailable never authorizes a long) and Inv 4 fails (verified bid walls near 93.12 = 0, fifth consecutive cycle). Not staged.
-USDJPY Z −3.63 (RANGE_BOUND at VAL 158.36) — same pair: no CVD stream (Inv 2) + zero verified bids (Inv 4).
+Part D.2 short qualifier unmet. Shorts on relief rallies require negative CVD — the flow is still positive: BTC 5m +760k / 15m +7.0M, ETH 5m +816k / 15m +4.8M (last five 1m buckets all positive — accelerating), SOL +273k / +1.9M. The only negative-CVD print on the entire board is DOGE (−40k/−18k) — friction-banned at 252.9 bps. The turn has not printed.
+Inv 4 wall-wipe (universe-wide). 0 verified walls within [−1 ATR, +4 ATR] of the BTC, ETH, and GOLD shelves (alts 0/0 eligible). No shelf in the universe has whale defense this cycle.
+Honest-magnet RR dead on the only shelf-arrived candidates: GOLD (at the EMA20/50/VWAP cluster 4,162–4,169, Z +1.97) → RR ≈ 0.55–1.04 on the [4,120–4,130] 1.02M magnet; ETH → RR ≤ 1.05.
 
-Everything else: crypto shorts are unqualified by Part D.2 (the 15m CVD is +2.4M to +7.5M absorption — shorting into it is the #18798018 mirror) and longs are banned (BEARISH); DJ30 Z +4.20 / GER40 +3.14 overbought fades die on trend-first + zero L3; DOGE's genuine −2.26M 30m CVD short is choked by 257 bps; friction bans ×6; TRX/XRP lot-grid dead (min risk 20.00 > 14.50); SP500's wall belt evaporated. NAS100 new brackets are lot-grid dead: the relocated bunker [30,700–30,800] 2,108,254 forces SL ≥ 30,812.6 → min risk 20.89 USD > 14.50 cap at 0.01 lots.
+Also closed: USWTI's cycle-42 near-miss decayed (|Z| 1.71 < 2.0); NAS100 lot-grid still dead (ATR expanded to 39.47); SP500's extreme decayed to Z −1.64; AVAX friction 38.9 > 35; friction bans ×7 total. Lattice flags worth carrying: BTC [82,500–82,600] 18.03M sell-stops 60 pts below mid with zero squeeze bands above; ETH [2,370–2,380] 40.97M cascade + [2,400–2,410] 18.08M below — extreme downside-fuel asymmetry parked under a CVD-positive rally. When the flow turns, that fuel is the trade.
 
+RE-ARM CARD A — BTCUSD.pi Model-2 pullback short (arm at/after 03:30 UTC only):
+
+SELL LIMIT 0.04 @ 83,381.0 (session VAH 83,380.57 shelf — the only shelf still overhead after the rally cleared EMA20/50/POC) / SL 83,673.0 ([83,400–83,500] 1,642,433 bunker max + 0.50 ATR) / TP 82,660.0 (front-runs the [82,500–82,600] 18,031,865 magnet by ~10 bps) — risk 11.68 USD, RR 2.47.
+Gates (ALL required): ① 5m CVD negative on two consecutive reads (currently +760k — NOT met); ② ≥ 500k verified ask walls at 83,300–83,700 with ≥ 1 wall ≥ 180 s (currently 0 — NOT met); ③ magnet ≥ 10M; ④ regime BEARISH. Re-walk every price on the first post-BoE generation — the event re-prices all bands.
 3 · Mandate 2 — Active/Running Trades
 
-FLAT / OPEN_0 confirmed — 0 open, margin 0.00, equity 4,880.27. No ratchets. Tonight's wins stay banked.
+FLAT / OPEN_0 confirmed — 0 open, margin 0.00, equity 4,880.27. No ratchets.
 
-4 · Mandate 3 — #18817374 NAS100.p SELL 0.01 @ 30,648 / SL 30,723 / TP 30,455 → (C) DELETE — CANCEL IMMEDIATELY
+4 · Mandate 3 — Unfilled Limit Orders
 
-The lattice moved under the ticket while it rested. Four independent grounds:
-
-Inv 1 CATEGORICAL FAIL — the SL is now inside a sweep band. The buy-stop primary above the shelf grew 14.5× (145,023 → 2,108,254) and relocated to [30,700–30,800]. SL 30,723.0 sits inside it (23 pts past min_price). At staging it was 0.59 ATR outside the old [30,600–30,700] primary; the band rebuilt around it. Repair is arithmetically impossible: SL ≥ 30,812.6 → stop 208.9 pts → risk 20.89 USD at 0.01 lots = above the 14.50 envelope cap (lot-grid kill).
-Walls pulled ≈ 86% (explicit (C) trigger). The 41B defense stack (419,978 @ 30,641 / 387,226 @ 30,674 / 1,043,800 @ 30,700 / 20,615-s fortress / 509,365 @ 30,702 / 1,075,749 @ 30,722 = 3.44M) is down to 256k @ 30,687 (529 s) — the 5.8-hour fortress wall pulled entirely (the #18748507 class at scale). Inv 4 dead.
-Drift 3.23 ATR > 2.0 (explicit (C) trigger) — same proximity doctrine that deleted #18814015 at 4.33 ATR; ATR itself expanded +41%.
-TP magnet drained and near consumption — [30,400–30,500] thinned 451,043 → 264,697 (−41%) with live mid only 31.8 pts above: one flush leg sweeps the magnet before any rally can fill the entry (the Cycle-41 Discrepancy-1 mode).
-
-(A) fails proximity. (B) is infeasible: a proximity-restored entry vs the new bunker is lot-grid dead, and honest TPs give RR ≤ 1.64 < 2.00. Only the BEARISH regime survived — it cannot carry an Inv-1-categorical SL.
+0 pending orders. The Cycle-42 deletion was executed; the book is clean at the purge deadline by construction. Nothing to WAIT / MODIFY / DELETE.
 
 5 · Actionable Execution Summary Table
 Seq	Ticket/Action	Symbol	Side	Lots	Entry	SL Bunker	TP Magnet	Risk USD	R:R	Quantitative Rationale
-1	(C) DELETE — CANCEL	NAS100.p (#18817374)	—	—	—	—	—	—	—	Mandate 3 — SL 30,723 inside relocated [30,700–30,800] 2,108,254 bunker (Inv 1 categorical); walls −86% incl. the 20,615-s fortress (Inv 4); drift 3.23 ATR > 2.0; magnet −41% and 31.8 pts from consumption. Repair lot-grid dead (min risk 20.89 > 14.50)
-2	HOLD	All 24	—	—	—	—	—	—	—	Mandate 1 — 0 qualifying. USWTI Model-1 long (Z −3.41, friction 4.94 ✓) fails Inv 2 (no CVD stream) + Inv 4 (0 bids, 5th cycle); USDJPY Z −3.63 same pair; crypto shorts unqualified (+2.4M…+7.5M absorption), longs banned; NAS100 short lot-grid dead; DOGE 257 bps
-3	MANDATE 2	—	—	—	—	—	—	—	—	FLAT (OPEN_0); wins banked (#18813767 +16.10, #18813768 +9.52)
-4	FLOOR GOVERNOR	—	—	—	—	—	—	0.00	—	Post-delete: 0 tickets, post-stop 4,880.27 ≥ 4,795.00 ✓ (+105.27 cushion)
+1	HOLD — MACRO LOCKDOWN	ALL	—	—	—	—	—	—	—	Purge 02:25 + hard blackout 02:30–03:30 + BoE Greene 03:00; nothing rests across the block
+2	HOLD	All 24	—	—	—	—	—	—	—	0 qualifying: CVD-turn unmet (shorts) / Model-1 longs banned (Inv 5) / wall-wipe (Inv 4) / GOLD+ETH RR ≤ 1.05
+3	RE-ARM CARD A (03:30+)	BTCUSD.pi	SELL LIMIT	0.04	83,381.0	83,673.0	82,660.0	11.68	2.47	VAH-shelf entry; [83,400–83,500] 1.64M bunker + 0.50 ATR; TP front-runs the 18.03M sell-stop magnet; arm only on all 4 gates
+4	MANDATE 2	—	—	—	—	—	—	—	—	FLAT (OPEN_0)
+5	MANDATE 3	—	—	—	—	—	—	—	—	0 pending (cycle-42 delete executed)
+6	FLOOR GOVERNOR	—	—	—	—	—	—	0.00	—	4,880.27 ≥ 4,795.00 ✓; Card A stress pre-verified (4,868.59 / broker-stress 4,863.67 ✓)
 
-Desk posture: flat and unencumbered into the 02:25 UTC purge and 03:00 UTC BoE Greene — the correct position after a vol expansion + wall-pull cascade. Re-arm queue for the next liquid session: (1) USWTI long IF a CVD-equivalent absorption feed is published AND a ≥ 300k verified bid wall appears near 93.12; (2) NAS100 Model-2 short IF ATR ≤ 28 and [30,700–30,800] drops below 600k (restores lot-grid feasibility); (3) DOGE short IF spreads relax below 35 bps with the −2M-class 30m CVD intact.
+Post-blackout protocol (first generation after 03:30 UTC): re-walk the full lattice, then in priority: (1) Card A gates; (2) DOGE short if spreads < 35 bps (its negative-CVD qualifier is genuine); (3) USWTI long if |Z| ≥ 2 returns + a CVD-equivalent feed + ≥ 300k verified bid wall; (4) NAS100 short if ATR ≤ 28 with a compliant bunker.
 
 6 · Bilateral Ledger Sync
 
-Full Cycle-42 report + table appended to docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md (BILATERAL LEDGER APPENDIX — CYCLE 42), proofs at docs/trade_plans/ARENA_COUNCIL_REPORT_20261013_0108Z.md, committed fa96a15, pushed eb2657a to arena/5c05910e-trading-2 for the Antigravity merge to main.
+Full Cycle-43 report + table appended to docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md, proofs at docs/trade_plans/ARENA_COUNCIL_REPORT_20261013_0214Z.md, committed fcf6344, pushed 1ae9b78 for the Antigravity merge.
 
-Note on this cycle's judgment: this is the second ticket the lattice has invalidated under us (walls pulled, bands relocated). The doctrine that matters here is the one from #18748507 — a resting order is a hypothesis about a lattice, and when the lattice moves, the hypothesis dies with it. Deleting #18817374 keeps the +105.27 cushion and the flat posture going into the BoE window.
+The discipline this cycle is the trade: two consecutive lattices have invalidated resting orders, the L3 wall structure is wiped, the flow hasn't turned, and a BoE speech lands inside the blackout window. Flat at 4,880.27 with +105.27 cushion, armed with one gated card, is the maximum-conviction position the data supports.
