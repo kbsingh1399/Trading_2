@@ -10981,3 +10981,37 @@ Cycle-42 deletion executed; book clean at the purge deadline. Nothing to WAIT/MO
 | `#18825384` | `SOLUSD.p` | `SELL_LIMIT` | `0.13` | `107.70` | `108.55` | `103.58` | `11.05 USD` | `15.81 USD` | `53.56 USD` | `4.85 R` | `(A) WAIT AS-IS` |
 | `#18826511` | `ETHUSD.pi` | `SELL_LIMIT` | `0.50` | `2,518.50` | `2,545.00` | `2,457.46` | `13.25 USD` | `18.56 USD` | `30.52 USD` | `2.30 R` | `(B) MODIFIED ON FORTRESS` |
 - **Joint Nominal Risk**: `24.30 USD` (`34.38 USD` stressed) | **Post-Joint-Stop Equity**: `4,855.97 USD` (`4,845.89 USD` stressed, `+70.89 USD` above `4,775.00 USD` Hard Floor).
+
+---
+---
+
+# BILATERAL LEDGER APPENDIX — CYCLE 46/47 COUNCIL REPORTS (Arena.ai, 2026-10-13)
+
+**Provenance note (Cycle 46):** the Cycle-46 Arena appendix text (04:01:49 UTC) was lost to the 04:30 UTC unrelated-histories merge (`-X theirs` selected the daemon ledger copy). Its content stands intact in `docs/trade_plans/ARENA_COUNCIL_REPORT_20261013_0401Z.md` and Desk Section 94, whose verdicts match signed Cycle 46: **#18825384 (A) WAIT as-is; #18825385 (B) MODIFY SL 2,545.0 / lots 0.50; 0 new Mandate-1.** Operator executed the (B) modification as **#18826511** (04:22:10 UTC) and #18825384 filled at 04:26:48 UTC.
+
+---
+
+# BILATERAL LEDGER APPENDIX — CYCLE 47 COUNCIL REPORT (2026-10-13 04:29:47 UTC)
+
+**— Signed, Arena.ai Multi-Persona Quantitative Council · Cycle 47 · basis generation `394816d6a4914bea889ed6814a470509` (as_of 2026-10-13 04:31:52 UTC; prompt-cited `01b0f21f` @ 04:29:47 superseded by 125 s) — full report at `docs/trade_plans/ARENA_COUNCIL_REPORT_20261013_0429Z.md` —**
+
+## A. Ingestion & Baseline
+- Account 5064568: balance **4,880.27** / equity **4,877.67** (floating −2.60), margin 700.05, cushion +102.67. Inventory: **1 OPEN** (#18825384 SOL SHORT 0.13 @ 107.70, opened 04:26:48 UTC, −0.24R) + **1 PENDING** (#18826511 ETH SELL_LIMIT 0.50 @ 2,518.50 / SL 2,545.00 / TP 2,457.46, staged 04:22:10 UTC = Cycle-46 (B) executed). Capacity 2/4. Blackout False; **Fed Waller 07:45 UTC, purge 07:10** (runway 2.72 h). ETF BTC −65.4M / ETH −85.4M (12 Oct); Coinbase premium −19.72 bps.
+- New persistence fields (`persist_s`/`persistence_status`/`presence_frac`) enable strict Inv-4 accounting: only SAMPLED_RECURRENCE_VERIFIED (≥180 s) walls count toward defense.
+
+## B. Mandate 1 — 0 New Qualifying (24/24 adjudicated)
+Extremes killed: ADA Z 2.07 (friction 92.55), DOGE Z 2.64 (248.67), TRX Z 2.59 (CVD +52.6k fails Part D.2 + 0 walls + ATR 0.0004 lot-grid dead), DOT Z 2.67 (177.44), DJ30 Z 2.08 (trend-first contrarian ban + 0/0 L3), GOLD Z 2.34 (BULLISH fade = contrarian; long = chasing +2.34σ), SILVER Z 2.36 (TradFi friction 5.95 ruling). BTC Z 1.62 but CVD +1.9M (no short qualifier). USWTI 9th-cycle kill stands. Capacity held vs Fed Waller window.
+
+## C. Mandate 2 — #18825384 SOLUSD.p SHORT 0.13 @ 107.70 → **HOLD, NO SL/TP MODIFICATION**
+- Ratchet: −0.24R → Phase 0 pending, no tier reached; do not tighten (anti-#18749312).
+- SL-zone [108.15,109.30]: 16.26M total / **≈7.0M persistence-qualified** (3.65M@108.75/238 s, 1.86M@108.34/238 s, 369k@108.50/421 s, 220k@108.47/3,311 s, 216k@108.00/8,268 s) vs 1.5M kill-switch — not triggered. Whisker [108–109] 205k **≥34× defended** (Inv 1 clause iii, disclosed). No squeeze fuel above (liq short bands = 14.9k). EMA200 109.01 ceiling, slope −0.30%/3h.
+- Magnet: TP 103.58 kept (inside [103–104] 555k nearest cluster). **New fuel: sell-stop pool [106–107] = 11.59M** under price. Cascade [99–102] 36.6M = Phase-2 runner extension only.
+- CVD 15m −319k / 30m −299k ✓. Tripwires: qualified SL-zone walls < 1.5M or 15m close > EMA200 109.01 → exit protocol.
+
+## D. Mandate 3 — #18826511 ETHUSD.pi SELL_LIMIT 0.50 @ 2,518.50 / SL 2,545.00 / TP 2,457.46 → **(A) WAIT TO FILL AS-IS** (disclosures attached)
+- Distance 0.47 ATR ✓. CVD re-negative on all windows (5m −354k / 15m −74k / 30m −1.01M; the prompt-gen 15m +29.5k blip superseded by `394816d6`). Book imb −0.95; entry belt 8.6M+ (2,521.9: 2.90M/481 s, 2,528.0: 5.70M/1,675 s).
+- **Fortress 11.13M @ 2,544.6 persist 3,490.6 s (presence 1.0, 59 samples) = VAH 2,544.28 confluence** — 18.6× qualified defense of the straddled [2,540–2,550] 693k residual; Cycle-46 kill-switch (<3M) not triggered. Risk 13.25 ∈ [7.50,14.50], RR 2.30.
+- Inv-3 disclosure: entry at top of [2,510–2,520] 1.09M buy-stop band (fill = its sweep) with 861k residual inside the 8.6M+ belt. Kill-switches: fortress < 3M → (B) SL 2,555/0.35 lots or cancel; 15m CVD > +500k sustained post-fill → BE-cut review; **cancel unfilled by 07:05 UTC** (purge 07:10).
+
+## E. Step 4 — Floor
+Joint nominal 24.30 → post-stop **4,855.97 ≥ 4,795.00** ✓; broker-stressed 34.375 → **4,843.30 ≥ 4,795.00** ✓. Free margin after fills 3,548.00 ✓.
