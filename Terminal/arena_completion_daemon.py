@@ -137,7 +137,8 @@ async def probe_zai_state() -> dict:
         const stopBtn = document.querySelector('button[aria-label*="Stop"], button[title*="Stop"], button.stop-button');
         const stopSquare = document.querySelector('button span.size-3.rounded-xs');
         const sendBtn = document.querySelector('button#send-message-button');
-        const isGenerating = Boolean(stopBtn) || Boolean(stopSquare) || !sendBtn;
+        const thinkingBtn = Array.from(document.querySelectorAll('button')).find(b => (b.innerText || '').includes('Thinking'));
+        const isGenerating = Boolean(stopBtn) || Boolean(stopSquare) || !sendBtn || Boolean(thinkingBtn);
         const allChatMsgs = Array.from(document.querySelectorAll('.chat-assistant.markdown-prose'));
         const proseCount = allChatMsgs.length;
         const lastProse = proseCount > 0 ? allChatMsgs[proseCount - 1] : null;

@@ -187,10 +187,12 @@ def build_prompt(cycle_num: int = 40) -> str:
     lines.append("• Broker: Blueberry Markets SVG LLC, MetaTrader 5 account #5064568")
     lines.append(f"• Balance / Equity: {balance:.2f} USD / {equity:.2f} USD")
     lines.append(f"• Margin used: {margin:.2f} USD")
-    lines.append("• Recent Realized Wins Banked Tonight (+25.62 USD Gross / +24.83 USD Net Balance Gain): Ticket #18813768 (SOLUSD.p SELL 0.14 @ 108.00 -> Closed @ 107.32 via Phase 1 Profit Lock for +9.52 USD) & Ticket #18813767 (BTCUSD.pi SELL 0.02 @ 82,650.00 -> Closed @ 81,845.00 Full Take Profit for +16.10 USD). Crypto, Metals, Energy, and Forex clusters are now 100% unencumbered!")
+    lines.append("• Realized Deals Banked Today: Ticket #18826511 (ETHUSD.pi SHORT -> +1.92 USD profit banked via Profit Lock at 2,513.02), Ticket #18813768 (SOLUSD.p SHORT -> +9.52 USD profit banked via Phase 1 Lock), Ticket #18813767 (BTCUSD.pi SHORT -> +16.10 USD full TP).")
     lines.append("• Hard floor: 4,775.00 USD | Operating buffer: 4,795.00 USD")
     lines.append(f"• Live cushion: +{cushion:.2f} USD above hard floor (+{buffer_cushion:.2f} USD above operating buffer)")
-    lines.append("• Risk per trade: 7.50 to 14.50 USD (adaptive risk envelope, 0.15% to 0.29% of capital). Allows high-conviction 0.01 lot trend setups ($8.50-$9.50) without rigid floor disqualification. Up to 4 concurrent tickets across orthogonal asset clusters provided joint worst-case post-stop equity >= 4,795.00 USD.")
+    lines.append("• Risk per trade: 7.50 to 14.50 USD (adaptive risk envelope, 0.15% to 0.29% of capital).")
+    lines.append("• Stressed Loss Formula (Astra Invariant): Stressed Loss = 1.25 * nominal_risk + 2.00 USD/ticket. Requirement: min(balance, equity) - sum(all open & pending stressed risks) >= 4,795.00 USD.")
+    lines.append("• Rigorous Capacity Ceiling: With SP500 open (18.00 USD stress), capacity permits: max 2 new tickets at 14.50 USD risk (stress 20.13 USD each, leaving 4,811.48 USD >= 4,795.00 USD), or max 3 new tickets at <= 10.50 USD risk each (stress 15.13 USD each, leaving 4,806.34 USD >= 4,795.00 USD). Staging 3 tickets at 14.50 USD is mathematically rejected as it leaves 4,791.35 USD (< 4,795.00 USD buffer).")
     lines.append("")
     lines.append("PART C: ACTIVE REPOSITORIES & DATA PROVENANCE")
     lines.append("• Canonical Workspace: https://github.com/kbsingh1399/Trading_2")
@@ -215,6 +217,7 @@ def build_prompt(cycle_num: int = 40) -> str:
     lines.append("  11. macro_calendar: Tier-1 macroeconomic event proximity.")
     lines.append("  12. execution_specs: Blueberry Markets broker tick size, point size, contract size, and margin requirements.")
     lines.append("  13. Hyperdash Liquidation Cascade & Stop Bands as Attraction Points & Magnets: Dense liquidation cascade bands (reconstructed_liquidations) and structural stop clusters (structural_stop_clusters) act as primary gravitational attraction points (liquidity magnets). Combined with psychological round numbers, resting L2/L3 whale walls, and VWAP/EMA shelves, position Take Profit targets to front-run these attraction magnets by 5–10 bps, while ensuring Stop Loss is sheltered behind resting whale walls safely outside opposing sweep bands.")
+    lines.append("  14. Cross-Venue Basis Mapping & Broker Spread Risk: Telemetry orderbooks, whale walls, and liquidation bands are denominated in Binance/Hyperliquid perpetual futures prices, while execution occurs on Blueberry Markets OTC CFDs via MT5. Inspect venue_basis (MT5 mid minus perp mid) before finalizing entries, front-running targets (5-10 bps), and stop loss buffers. Ensure broker spread markups or wicks cannot prematurely tag stops bunkered in perp space.")
     lines.append("")
     lines.append("PART E: KAIZEN CONTINUOUS SELF-IMPROVEMENT LOOP & COMPLETE LOSING-TRADE AUTOPSY LEDGER")
     lines.append("Study the forensic breakdown of all recent stopped-out trades from Account 5064568. The Council must actively learn from each:")
@@ -242,6 +245,7 @@ def build_prompt(cycle_num: int = 40) -> str:
     lines.append("2. Structural Price Action Specialist: Session VWAP & SD bands (Z-score), Volume Profile (POC/VAH/VAL), 20/50/200 EMA hierarchy, and psychological round numbers.")
     lines.append("3. Liquidation & Stop Hunt Forensic: Reconstructed liquidation cascade bands (nearest_* and top_*), stop clusters, SL bunker placement outside min_price/max_price, and TP magnet front-running.")
     lines.append("4. Macro Risk & Portfolio Governor: Capital floor defense (4,775.00 USD hard floor / 4,795.00 USD buffer), discrete lot sizing (execution_specs), and net expectancy.")
+    lines.append("5. Adversarial Pre-Mortem Red Team (Falsification & Autopsy Invalidator): Default baseline is NO TRADE / STAND ASIDE. For any proposed candidate, assume it was entered and stopped out; formulate the exact fatal flaw (opposing CVD momentum, un-swept opposing stop pool, broker CFD basis spike, or wall pull on approach). Certify clearance ONLY if no fatal flaw exists.")
     lines.append("")
     lines.append("PART G: MANDATORY 3-PILLAR DESK EVALUATION (STRICT OPERATOR MANDATE)")
     lines.append("")
@@ -262,8 +266,13 @@ def build_prompt(cycle_num: int = 40) -> str:
         elig_w3 = [w for w in w3 if float(w.get("persist_s") or 0.0) >= 180.0]
         sc = a.get("structural_stop_clusters", {})
         rl = a.get("reconstructed_liquidations", {})
-        cvd_buckets = a.get("cvd_1m_buckets") or []
-        cvd_15m = sum(float(b.get("cvd_delta_usd") or b.get("delta_usd") or 0.0) for b in cvd_buckets[-15:]) if cvd_buckets else 0.0
+        cvd_buckets = a.get("cvd_1m_buckets")
+        if cvd_buckets is not None and isinstance(cvd_buckets, list) and len(cvd_buckets) > 0:
+            cvd_15m = sum(float(b.get("cvd_delta_usd") or b.get("delta_usd") or 0.0) for b in cvd_buckets[-15:])
+            cvd_str = f"15m CVD {cvd_15m:+.0f} USD"
+        else:
+            cvd_str = "15m CVD UNAVAILABLE (CFD L1)"
+
         # Exact nearest stops attraction & bunker bands
         s_below = sc.get('nearest_sell_stop_clusters_below', [])
         s_above = sc.get('nearest_buy_stop_clusters_above', [])
@@ -279,7 +288,7 @@ def build_prompt(cycle_num: int = 40) -> str:
         lines.append(
             f"• {sym_key} ({a.get('symbol_broker', '')} | {a.get('category', '')}): Mid {q.get('mid')} | Spread {q.get('spread_bps')} bps | "
             f"Z = {ci.get('vwap_z_score')} SD | RSI {ci.get('rsi_14')} | Trend {ci.get('trend_regime')} | "
-            f"L2 Imb {ob.get('book_imbalance')} | 15m CVD {cvd_15m:+.0f} USD | L3 Whales (tot/elig>=180s): {len(w3)}/{len(elig_w3)} | "
+            f"L2 Imb {ob.get('book_imbalance')} | {cvd_str} | L3 Whales (tot/elig>=180s): {len(w3)}/{len(elig_w3)} | "
             f"Stops Below/Above: {s_b_str} / {s_a_str} | "
             f"Liq Below/Above (Attraction Bands): {l_b_str} / {l_a_str}"
         )
@@ -287,20 +296,36 @@ def build_prompt(cycle_num: int = 40) -> str:
     lines.append("")
     lines.append("MANDATE 2 — LOOK FOR ACTIVE / RUNNING TRADES (LOGICAL TP OR SL MODIFICATION BASED ON LATEST DATA):")
     if positions:
+        # Load immutable initial risk ledger if present to avoid dynamic R-multiple inflation
+        initial_risk_ledger = {}
+        risk_file = ROOT / "Data" / "initial_position_risk.json"
+        if risk_file.exists():
+            try:
+                with open(risk_file, "r", encoding="utf-8") as rf:
+                    initial_risk_ledger = json.load(rf)
+            except Exception:
+                pass
+
         lines.append(f"• Current Active Running Trades on MT5: {len(positions)} open position(s):")
         for p in positions:
             ak = _resolve_asset_key(p["symbol"], assets)
             a_info = assets.get(ak, {})
             atr = a_info.get("causal_indicators", {}).get("atr_14") or 1.0
-            r_dist = abs(p["price_open"] - p["sl"]) if p["sl"] else atr
-            curr_r = ((p["price_current"] - p["price_open"]) / r_dist) if p["type"] == "BUY" and r_dist > 0 else (((p["price_open"] - p["price_current"]) / r_dist) if r_dist > 0 else 0.0)
+            t_str = str(p["ticket"])
+            if t_str in initial_risk_ledger:
+                r0 = float(initial_risk_ledger[t_str].get("r0") or 0.0)
+            else:
+                r0 = abs(p["price_open"] - p["sl"]) if p["sl"] else atr
+            if r0 <= 0:
+                r0 = atr
+            curr_r0 = ((p["price_current"] - p["price_open"]) / r0) if p["type"] == "BUY" else ((p["price_open"] - p["price_current"]) / r0)
             lines.append(
                 f"  - Ticket #{p['ticket']}: {p['symbol']} {p['type']} {p['volume']} lots @ Entry {p['price_open']} USD | "
-                f"Current: {p['price_current']} USD ({curr_r:+.2f}R) | Floating PnL: {p['profit_usd']:+.2f} USD | "
+                f"Current: {p['price_current']} USD ({curr_r0:+.2f}R0 progress, Initial R0={r0:.2f} pts) | Floating PnL: {p['profit_usd']:+.2f} USD | "
                 f"Current SL: {p['sl']} USD | Current TP: {p['tp']} USD"
             )
         lines.append("• For each running trade above, evaluate logically based on the latest data snapshot whether SL or TP modification is required:")
-        lines.append("  1. Piecewise Ratchet Check: Has the trade reached +0.70R/+0.80R (Phase 0 BE lock to +0.35R), +1.50R (Phase 1 Profit Lock to +0.80R), or +2.00R (Phase 2 Trailing Lock)?")
+        lines.append("  1. Piecewise Ratchet Check (Measured against Initial R0): Has the trade reached +0.70R0/+0.80R0 (Phase 0 BE lock to +0.35R0), +1.50R0 (Phase 1 Profit Lock to +0.80R0), or +2.00R0 (Phase 2 Trailing Lock)? Note: Never recalculate R using current ratcheted SL distance—always measure against frozen initial R0 to prevent R-inflation.")
         lines.append("  2. Live Microstructure & Bunker/Magnet Shift: Have new stop clusters, liquidation bands, or L3 whale walls formed in live_snapshot_latest.json that logically require tightening SL behind a newly formed structural bunker or adjusting TP to front-run a closer/stronger liquidity magnet? Or has the supporting structural shelf broken requiring an emergency exit?")
     else:
         lines.append("• Current Active Running Trades on MT5: 0 open positions (Flat / 100% Cash reserves). Confirm that no open-position ratchets are needed right now.")
@@ -326,8 +351,16 @@ def build_prompt(cycle_num: int = 40) -> str:
     else:
         lines.append("• Current Unfilled Limit Orders on MT5: 0 pending orders.")
     lines.append("")
-    lines.append("STEP 4 — PORTFOLIO CAPACITY & CAPITAL FLOOR GOVERNANCE:")
-    lines.append("• Verify that all kept/modified running trades + kept/modified resting limit orders + any newly proposed limit orders keep joint worst-case post-stop equity >= 4,795.00 USD (>= 20.00 USD cushion above the 4,775.00 USD hard floor).")
+    lines.append("STEP 4 — PORTFOLIO CAPACITY & CAPITAL FLOOR GOVERNANCE (ASTRA/OPUS RIGOR):")
+    lines.append("• Stress Formula: Stressed Loss = 1.25 * nominal_risk + 2.00 USD/ticket (covering adverse gap, spread widening, and slippage).")
+    lines.append(f"• Account Balance: {balance:.2f} USD | Equity: {equity:.2f} USD | Hard Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD.")
+    lines.append("• Open Position Stress: Ticket #18836609 (SP500.p) nominal risk 12.80 USD stresses to 18.00 USD.")
+    lines.append(f"• Available Stress Budget to 4,795.00 USD Buffer: {min(balance, equity) - 4795.0 - 18.0:.2f} USD.")
+    lines.append("• Strict Portfolio Capacity Rules:")
+    lines.append("  - Maximum 2 new tickets if nominal risk is 14.50 USD (stressed: 2 * 20.125 = 40.25 USD <= available budget).")
+    lines.append("  - Maximum 3 new tickets ONLY IF nominal risk <= 10.50 USD per ticket (stressed: 3 * 15.125 = 45.38 USD <= available budget).")
+    lines.append("  - 3 tickets at 14.50 USD is mathematically BANNED (3 * 20.125 = 60.38 USD stress would breach the 4,795.00 USD operating buffer).")
+    lines.append("• Joint Worst-Case Post-Stop Equity MUST remain unconditionally >= 4,795.00 USD (>= 20.00 USD cushion above 4,775.00 USD hard floor).")
     lines.append("")
     lines.append("PART F: REQUIRED OUTPUT FORMAT & TRI-COUNCIL SYNCHRONIZATION (ARENA.AI + Z.AI CHAT + ANTIGRAVITY)")
     lines.append(f"1. TELEMETRY & PLAYBOOK INGESTION CITATION (confirming generation_id: {gen_id}, as_of_utc: {gen_ts}, macro event: {ev_name} at {ev_time} [blackout_active={blackout_active}], and Playbook compliance)")

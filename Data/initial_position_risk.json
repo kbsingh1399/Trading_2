@@ -1,0 +1,27 @@
+{
+  "18836609": {
+    "symbol": "SP500.p",
+    "type": "SELL",
+    "volume": 0.04,
+    "price_open": 7810.0,
+    "initial_sl": 7842.0,
+    "r0": 32.0,
+    "tp": 7745.0,
+    "staged_at_utc": "2026-10-13 08:16:00 UTC",
+    "nominal_risk_usd": 12.8,
+    "stressed_risk_usd": 18.0
+  },
+  "18826511": {
+    "symbol": "ETHUSD.pi",
+    "type": "SELL",
+    "volume": 0.35,
+    "price_open": 2518.5,
+    "initial_sl": 2555.0,
+    "r0": 36.5,
+    "tp": 2481.5,
+    "staged_at_utc": "2026-10-13 05:09:44 UTC",
+    "nominal_risk_usd": 12.78,
+    "stressed_risk_usd": 17.98,
+    "status": "CLOSED_PROFIT_LOCK"
+  }
+}
