@@ -17443,15 +17443,15 @@
           },
           {
             "address": "0xe668c4300f51344d8e6cee6294cb9cd1fb5fb5ca",
-            "price": 2570.0,
-            "size": 1100.0,
-            "notional_usd": 2827000.0
-          },
-          {
-            "address": "0xe668c4300f51344d8e6cee6294cb9cd1fb5fb5ca",
             "price": 2350.0,
             "size": 1100.0,
             "notional_usd": 2585000.0
+          },
+          {
+            "address": "0xe668c4300f51344d8e6cee6294cb9cd1fb5fb5ca",
+            "price": 2570.0,
+            "size": 1100.0,
+            "notional_usd": 2827000.0
           }
         ],
         "top_sell_whale_stops": [
@@ -17462,13 +17462,13 @@
             "notional_usd": 6904091.42
           },
           {
-            "address": "0xbb34960afec64f3f1cc78b0c9c342c4657021696",
+            "address": "0xc619b01f1a4f894c5e83338c42f98dcb82b710f5",
             "price": 2300.0,
             "size": 2000.0,
             "notional_usd": 4600000.0
           },
           {
-            "address": "0xc619b01f1a4f894c5e83338c42f98dcb82b710f5",
+            "address": "0xbb34960afec64f3f1cc78b0c9c342c4657021696",
             "price": 2300.0,
             "size": 2000.0,
             "notional_usd": 4600000.0
@@ -19828,7 +19828,7 @@
             "first_seen_utc": "2026-10-13 23:51:38 UTC"
           },
           {
-            "address": "0x2ac4641985412e7436d57585faad13d04717746e",
+            "address": "0x7b7f72a28fe109fa703eeed7984f2a8a68fedee2",
             "side": "BUY",
             "price": 2493.2,
             "size": 124.4151,
@@ -28283,7 +28283,7 @@
             "sample_span_sec": 2857.5,
             "persistence_status": "INSUFFICIENT_PERSISTENCE",
             "wall_class": "GENUINE",
-            "gate_g7_eligible": false,
+            "gate_g7_eligible": true,
             "first_seen_utc": "2026-10-13 23:04:03 UTC"
           },
           {
@@ -28305,7 +28305,7 @@
             "sample_span_sec": 2857.5,
             "persistence_status": "INSUFFICIENT_PERSISTENCE",
             "wall_class": "GENUINE",
-            "gate_g7_eligible": false,
+            "gate_g7_eligible": true,
             "first_seen_utc": "2026-10-13 23:04:03 UTC"
           },
           {
@@ -28569,7 +28569,7 @@
             "sample_span_sec": 2857.5,
             "persistence_status": "INSUFFICIENT_PERSISTENCE",
             "wall_class": "GENUINE",
-            "gate_g7_eligible": false,
+            "gate_g7_eligible": true,
             "first_seen_utc": "2026-10-13 23:04:03 UTC"
           },
           {
@@ -29471,7 +29471,7 @@
             "sample_span_sec": 2857.5,
             "persistence_status": "INSUFFICIENT_PERSISTENCE",
             "wall_class": "GENUINE",
-            "gate_g7_eligible": false,
+            "gate_g7_eligible": true,
             "first_seen_utc": "2026-10-13 23:04:03 UTC"
           },
           {
@@ -30281,7 +30281,7 @@
         "weekly_vwap": 107.6493,
         "source": "MT5_COMPLETED_15M_BARS"
       },
-      "trapped_traders_signal": "TRAPPED_BUYERS_ABOVE",
+      "trapped_traders_signal": "BALANCED",
       "bars_15m_ohlcv": [
         {
           "ts": 1791845100,
@@ -36652,7 +36652,7 @@
         "weekly_vwap": 741.9928,
         "source": "MT5_COMPLETED_15M_BARS"
       },
-      "trapped_traders_signal": "TRAPPED_BUYERS_ABOVE",
+      "trapped_traders_signal": "BALANCED",
       "bars_15m_ohlcv": [
         {
           "ts": 1791845100,
@@ -61045,7 +61045,7 @@
         "weekly_vwap": 0.3291,
         "source": "MT5_COMPLETED_15M_BARS"
       },
-      "trapped_traders_signal": "BALANCED",
+      "trapped_traders_signal": "TRAPPED_BUYERS_ABOVE",
       "bars_15m_ohlcv": [
         {
           "ts": 1791841500,
@@ -67130,7 +67130,7 @@
         "weekly_vwap": 1.196,
         "source": "MT5_COMPLETED_15M_BARS"
       },
-      "trapped_traders_signal": "TRAPPED_BUYERS_ABOVE",
+      "trapped_traders_signal": "BALANCED",
       "bars_15m_ohlcv": [
         {
           "ts": 1791845100,
@@ -96329,6 +96329,64 @@
             "distance_pct": 0.17
           },
           {
+            "min_price": 5.02,
+            "max_price": 5.03,
+            "mid_price": 5.025,
+            "size": 1261.7,
+            "notional_usd": 6379.85,
+            "distance_pct": -0.62
+          },
+          {
+            "min_price": 5.01,
+            "max_price": 5.02,
+            "mid_price": 5.015,
+            "size": 2420.8,
+            "notional_usd": 12240.9,
+            "distance_pct": -0.82
+          },
+          {
+            "min_price": 5.0,
+            "max_price": 5.01,
+            "mid_price": 5.005,
+            "size": 97249.9,
+            "notional_usd": 491748.98,
+            "distance_pct": -1.02
+          },
+          {
+            "min_price": 4.99,
+            "max_price": 5.0,
+            "mid_price": 4.995,
+            "size": 5560.6,
+            "notional_usd": 28117.45,
+            "distance_pct": -1.22
+          },
+          {
+            "min_price": 4.98,
+            "max_price": 4.99,
+            "mid_price": 4.985,
+            "size": 13060.7,
+            "notional_usd": 66042.08,
+            "distance_pct": -1.41
+          },
+          {
+            "min_price": 4.97,
+            "max_price": 4.98,
+            "mid_price": 4.975,
+            "size": 9134.4,
+            "notional_usd": 46188.55,
+            "distance_pct": -1.61
+          },
+          {
+            "min_price": 4.96,
+            "max_price": 4.97,
+            "mid_price": 4.965,
+            "size": 33193.7,
+            "notional_usd": 167845.6,
+            "distance_pct": -1.81
+          }
+        ],
+        "nearest_buy_stop_clusters_above": [
+          {
             "min_price": 5.06,
             "max_price": 5.07,
             "mid_price": 5.065,
@@ -96812,10 +96870,10 @@
             "notional_usd": 657238.02
           },
           {
-            "address": "0x905393f6c29aa218f52dd8a4ec8933c0bf71b56e",
-            "price": 4.0422,
-            "size": 118354.8,
-            "notional_usd": 478417.86
+            "address": "0x1f938808970327b006ab6cd513a9a9ea69cd8cf5",
+            "price": 4.5527,
+            "size": 102936.7,
+            "notional_usd": 468642.73
           }
         ],
         "top_short_liquidation_whales": [],
@@ -103247,7 +103305,7 @@
             "timestamp_basis": "RECEIPT_ONLY",
             "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
             "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
-            "distance_pct": -0.11,
+            "distance_pct": -0.12,
             "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
             "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
             "persist_s": 61.9,
@@ -103697,7 +103755,7 @@
             "persistence_status": "SAMPLED_RECURRENCE_VERIFIED",
             "wall_class": "GENUINE",
             "gate_g7_eligible": true,
-            "first_seen_utc": "2026-10-13 19:16:29 UTC"
+            "first_seen_utc": "2026-10-13 22:56:42 UTC"
           },
           {
             "address": "0x5a209e55c592687bb3f105f2f645c09238612d1b",
@@ -103872,7 +103930,7 @@
             "sample_span_sec": 2856.0,
             "persistence_status": "INSUFFICIENT_PERSISTENCE",
             "wall_class": "GENUINE",
-            "gate_g7_eligible": false,
+            "gate_g7_eligible": true,
             "first_seen_utc": "2026-10-13 23:04:04 UTC"
           },
           {
@@ -104237,7 +104295,7 @@
             "timestamp_basis": "RECEIPT_ONLY",
             "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
             "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
-            "distance_pct": 0.14,
+            "distance_pct": 0.15,
             "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
             "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
             "persist_s": 61.9,
@@ -112009,7 +112067,7 @@
         "weekly_vwap": 30632.8091,
         "source": "MT5_COMPLETED_15M_BARS"
       },
-      "trapped_traders_signal": "TRAPPED_BUYERS_ABOVE",
+      "trapped_traders_signal": "BALANCED",
       "bars_15m_ohlcv": [
         {
           "ts": 1791837900,
@@ -115127,7 +115185,7 @@
         "weekly_vwap": 51875.0245,
         "source": "MT5_COMPLETED_15M_BARS"
       },
-      "trapped_traders_signal": "BALANCED",
+      "trapped_traders_signal": "TRAPPED_BUYERS_ABOVE",
       "bars_15m_ohlcv": [
         {
           "ts": 1791837900,
@@ -118245,7 +118303,7 @@
         "weekly_vwap": 25279.3904,
         "source": "MT5_COMPLETED_15M_BARS"
       },
-      "trapped_traders_signal": "TRAPPED_SELLERS_BELOW",
+      "trapped_traders_signal": "BALANCED",
       "bars_15m_ohlcv": [
         {
           "ts": 1791837900,
@@ -121948,7 +122006,7 @@
             "notional_usd": 2520247.94
           }
         ],
-        "band_count": 167,
+        "band_count": 166,
         "binance_futures_open_interest_contracts": null,
         "as_of_epoch": 1791935495.4567542
       },
@@ -122842,7 +122900,7 @@
             "timestamp_basis": "RECEIPT_ONLY",
             "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
             "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
-            "distance_pct": 0.09,
+            "distance_pct": 0.27,
             "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
             "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
             "persist_s": 499.1,
@@ -123326,7 +123384,7 @@
             "timestamp_basis": "RECEIPT_ONLY",
             "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
             "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
-            "distance_pct": -0.05,
+            "distance_pct": -0.03,
             "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
             "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
             "persist_s": 61.5,
@@ -123348,7 +123406,7 @@
             "timestamp_basis": "RECEIPT_ONLY",
             "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
             "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
-            "distance_pct": -0.05,
+            "distance_pct": -0.04,
             "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
             "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
             "persist_s": 61.5,
@@ -123502,7 +123560,7 @@
             "timestamp_basis": "RECEIPT_ONLY",
             "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
             "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
-            "distance_pct": 0.44,
+            "distance_pct": 0.45,
             "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
             "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
             "persist_s": 1040.0,
@@ -123568,7 +123626,7 @@
             "timestamp_basis": "RECEIPT_ONLY",
             "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
             "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
-            "distance_pct": -0.46,
+            "distance_pct": -0.45,
             "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
             "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
             "persist_s": 1040.0,
@@ -123625,7 +123683,7 @@
             "sample_span_sec": 120.0,
             "persist_s": 120.0,
             "presence_frac": 1.0,
-            "persistence_status": "INSUFFICIENT_PERSISTENCE",
+            "persistence_status": "SINGLE_SAMPLE",
             "wall_class": "GENUINE",
             "gate_g7_eligible": false,
             "first_seen_utc": "2026-10-13 23:49:35 UTC"
@@ -127805,7 +127863,7 @@
             "timestamp_basis": "RECEIPT_ONLY",
             "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
             "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
-            "distance_pct": -0.63,
+            "distance_pct": -0.64,
             "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
             "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
             "persist_s": 234.9,
@@ -128214,7 +128272,7 @@
             "first_seen_utc": "2026-10-13 23:33:20 UTC"
           },
           {
-            "address": "0xce975678a14f17a15c946b95704744cd7c677e78",
+            "address": "0xfc667adba8d4837586078f4fdcdc29804337ca06",
             "side": "SELL",
             "price": 59.092,
             "size": 4985.59,
@@ -128236,7 +128294,29 @@
             "first_seen_utc": "2026-10-13 23:10:45 UTC"
           },
           {
-            "address": "0xce975678a14f17a15c946b95704744cd7c677e78",
+            "address": "0xa52507fc8e3f14c686b965e6b660267e86a6e1bd",
+            "side": "BUY",
+            "price": 57.948,
+            "size": 5979.49,
+            "notional_usd": 346499.49,
+            "observed_at": 1791934821.924067,
+            "timestamp_basis": "RECEIPT_ONLY",
+            "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
+            "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
+            "distance_pct": -1.8,
+            "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
+            "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
+            "persist_s": 1259.3,
+            "presence_frac": 1.0,
+            "samples": 22,
+            "sample_span_sec": 1259.3,
+            "persistence_status": "SAMPLED_RECURRENCE_VERIFIED",
+            "wall_class": "GENUINE",
+            "gate_g7_eligible": true,
+            "first_seen_utc": "2026-10-13 23:19:22 UTC"
+          },
+          {
+            "address": "0x354bcb431a332079950d2ce3a4698745e0f66425",
             "side": "SELL",
             "price": 59.08,
             "size": 4985.59,
@@ -133722,7 +133802,7 @@
             "first_seen_utc": "2026-10-13 23:41:22 UTC"
           },
           {
-            "address": "0x354bcb431a332079950d2ce3a4698745e0f66425",
+            "address": "0xce975678a14f17a15c946b95704744cd7c677e78",
             "side": "SELL",
             "price": 93.857,
             "size": 1598.255,
@@ -141180,25 +141260,17 @@
         "coverage": "REAL_HYPERLIQUID_ONCHAIN_STOPS",
         "venue": "HYPERLIQUID_PERP_DEX",
         "amount_semantics": "BASE_ASSET_AND_NOTIONAL_USD",
-        "total_buy_stops_usd": 742209.53,
+        "total_buy_stops_usd": 742181.53,
         "total_buy_stops_count": 11,
-        "total_sell_stops_usd": 116670.65,
+        "total_sell_stops_usd": 116666.25,
         "total_sell_stops_count": 22,
         "top_sell_stop_clusters_below": [
-          {
-            "min_price": 1.32,
-            "max_price": 1.33,
-            "mid_price": 1.325,
-            "size": 155162.0,
-            "notional_usd": 205597.41,
-            "distance_pct": -0.0
-          },
           {
             "min_price": 1.26,
             "max_price": 1.27,
             "mid_price": 1.265,
             "size": 149321.0,
-            "notional_usd": 197857.79,
+            "notional_usd": 197850.32,
             "distance_pct": -4.53
           },
           {
@@ -141206,7 +141278,7 @@
             "max_price": 1.29,
             "mid_price": 1.285,
             "size": 149321.0,
-            "notional_usd": 197857.79,
+            "notional_usd": 197850.32,
             "distance_pct": -3.02
           },
           {
@@ -141214,23 +141286,23 @@
             "max_price": 1.32,
             "mid_price": 1.315,
             "size": 16278.0,
-            "notional_usd": 21569.16,
-            "distance_pct": -0.76
+            "notional_usd": 21568.35,
+            "distance_pct": -0.75
           },
           {
             "min_price": 1.29,
             "max_price": 1.3,
             "mid_price": 1.295,
             "size": 7551.0,
-            "notional_usd": 10005.45,
-            "distance_pct": -2.27
+            "notional_usd": 10005.07,
+            "distance_pct": -2.26
           },
           {
             "min_price": 1.3,
             "max_price": 1.31,
             "mid_price": 1.305,
             "size": 106.0,
-            "notional_usd": 140.46,
+            "notional_usd": 140.45,
             "distance_pct": -1.51
           },
           {
@@ -141238,7 +141310,7 @@
             "max_price": 1.2,
             "mid_price": 1.195,
             "size": 223.0,
-            "notional_usd": 295.49,
+            "notional_usd": 295.47,
             "distance_pct": -9.81
           }
         ],
@@ -141248,15 +141320,23 @@
             "max_price": 1.34,
             "mid_price": 1.335,
             "size": 249021.0,
-            "notional_usd": 329965.28,
+            "notional_usd": 329952.83,
             "distance_pct": 0.75
+          },
+          {
+            "min_price": 1.32,
+            "max_price": 1.33,
+            "mid_price": 1.325,
+            "size": 155162.0,
+            "notional_usd": 205589.65,
+            "distance_pct": 0.0
           },
           {
             "min_price": 1.35,
             "max_price": 1.36,
             "mid_price": 1.355,
             "size": 51622.0,
-            "notional_usd": 68401.73,
+            "notional_usd": 68399.15,
             "distance_pct": 2.26
           },
           {
@@ -141264,15 +141344,15 @@
             "max_price": 1.37,
             "mid_price": 1.365,
             "size": 16316.0,
-            "notional_usd": 21619.52,
-            "distance_pct": 3.01
+            "notional_usd": 21618.7,
+            "distance_pct": 3.02
           },
           {
             "min_price": 1.34,
             "max_price": 1.35,
             "mid_price": 1.345,
             "size": 2399.0,
-            "notional_usd": 3178.79,
+            "notional_usd": 3178.67,
             "distance_pct": 1.51
           },
           {
@@ -141280,33 +141360,25 @@
             "max_price": 1.39,
             "mid_price": 1.385,
             "size": 188.0,
-            "notional_usd": 249.11,
-            "distance_pct": 4.52
+            "notional_usd": 249.1,
+            "distance_pct": 4.53
           }
         ],
         "nearest_sell_stop_clusters_below": [
-          {
-            "min_price": 1.32,
-            "max_price": 1.33,
-            "mid_price": 1.325,
-            "size": 155162.0,
-            "notional_usd": 205597.41,
-            "distance_pct": -0.0
-          },
           {
             "min_price": 1.31,
             "max_price": 1.32,
             "mid_price": 1.315,
             "size": 16278.0,
-            "notional_usd": 21569.16,
-            "distance_pct": -0.76
+            "notional_usd": 21568.35,
+            "distance_pct": -0.75
           },
           {
             "min_price": 1.3,
             "max_price": 1.31,
             "mid_price": 1.305,
             "size": 106.0,
-            "notional_usd": 140.46,
+            "notional_usd": 140.45,
             "distance_pct": -1.51
           },
           {
@@ -141314,15 +141386,15 @@
             "max_price": 1.3,
             "mid_price": 1.295,
             "size": 7551.0,
-            "notional_usd": 10005.45,
-            "distance_pct": -2.27
+            "notional_usd": 10005.07,
+            "distance_pct": -2.26
           },
           {
             "min_price": 1.28,
             "max_price": 1.29,
             "mid_price": 1.285,
             "size": 149321.0,
-            "notional_usd": 197857.79,
+            "notional_usd": 197850.32,
             "distance_pct": -3.02
           },
           {
@@ -141330,7 +141402,7 @@
             "max_price": 1.27,
             "mid_price": 1.265,
             "size": 149321.0,
-            "notional_usd": 197857.79,
+            "notional_usd": 197850.32,
             "distance_pct": -4.53
           },
           {
@@ -141338,17 +141410,25 @@
             "max_price": 1.2,
             "mid_price": 1.195,
             "size": 223.0,
-            "notional_usd": 295.49,
+            "notional_usd": 295.47,
             "distance_pct": -9.81
           }
         ],
         "nearest_buy_stop_clusters_above": [
           {
+            "min_price": 1.32,
+            "max_price": 1.33,
+            "mid_price": 1.325,
+            "size": 155162.0,
+            "notional_usd": 205589.65,
+            "distance_pct": 0.0
+          },
+          {
             "min_price": 1.33,
             "max_price": 1.34,
             "mid_price": 1.335,
             "size": 249021.0,
-            "notional_usd": 329965.28,
+            "notional_usd": 329952.83,
             "distance_pct": 0.75
           },
           {
@@ -141356,7 +141436,7 @@
             "max_price": 1.35,
             "mid_price": 1.345,
             "size": 2399.0,
-            "notional_usd": 3178.79,
+            "notional_usd": 3178.67,
             "distance_pct": 1.51
           },
           {
@@ -141364,7 +141444,7 @@
             "max_price": 1.36,
             "mid_price": 1.355,
             "size": 51622.0,
-            "notional_usd": 68401.73,
+            "notional_usd": 68399.15,
             "distance_pct": 2.26
           },
           {
@@ -141372,16 +141452,16 @@
             "max_price": 1.37,
             "mid_price": 1.365,
             "size": 16316.0,
-            "notional_usd": 21619.52,
-            "distance_pct": 3.01
+            "notional_usd": 21618.7,
+            "distance_pct": 3.02
           },
           {
             "min_price": 1.38,
             "max_price": 1.39,
             "mid_price": 1.385,
             "size": 188.0,
-            "notional_usd": 249.11,
-            "distance_pct": 4.52
+            "notional_usd": 249.1,
+            "distance_pct": 4.53
           }
         ],
         "top_buy_whale_stops": [
@@ -141437,9 +141517,9 @@
         "source": "HYPERDASH_GRAPHQL_LIQUIDATION_LEVELS",
         "coverage": "REAL_HYPERLIQUID_POSITION_LIQUIDATIONS",
         "venue": "HYPERLIQUID_PERP_DEX",
-        "total_long_liquidations_usd": 531215.2,
+        "total_long_liquidations_usd": 531195.15,
         "total_long_liquidations_count": 52,
-        "total_short_liquidations_usd": 533096.77,
+        "total_short_liquidations_usd": 533076.65,
         "total_short_liquidations_count": 20,
         "top_long_cascade_bands_below": [
           {
@@ -141447,23 +141527,23 @@
             "max_price": 1.32,
             "mid_price": 1.315,
             "size": 93945.0,
-            "notional_usd": 124481.82,
-            "distance_pct": -0.76
+            "notional_usd": 124477.12,
+            "distance_pct": -0.75
           },
           {
             "min_price": 1.29,
             "max_price": 1.3,
             "mid_price": 1.295,
             "size": 86082.0,
-            "notional_usd": 114062.95,
-            "distance_pct": -2.27
+            "notional_usd": 114058.65,
+            "distance_pct": -2.26
           },
           {
             "min_price": 1.3,
             "max_price": 1.31,
             "mid_price": 1.305,
             "size": 58596.0,
-            "notional_usd": 77642.63,
+            "notional_usd": 77639.7,
             "distance_pct": -1.51
           },
           {
@@ -141471,7 +141551,7 @@
             "max_price": 1.27,
             "mid_price": 1.265,
             "size": 29129.0,
-            "notional_usd": 38597.38,
+            "notional_usd": 38595.92,
             "distance_pct": -4.53
           },
           {
@@ -141479,31 +141559,23 @@
             "max_price": 1.29,
             "mid_price": 1.285,
             "size": 4103.0,
-            "notional_usd": 5436.68,
+            "notional_usd": 5436.47,
             "distance_pct": -3.02
-          },
-          {
-            "min_price": 1.32,
-            "max_price": 1.33,
-            "mid_price": 1.325,
-            "size": 3845.0,
-            "notional_usd": 5094.82,
-            "distance_pct": -0.0
           },
           {
             "min_price": 1.27,
             "max_price": 1.28,
             "mid_price": 1.275,
             "size": 3702.0,
-            "notional_usd": 4905.34,
-            "distance_pct": -3.78
+            "notional_usd": 4905.15,
+            "distance_pct": -3.77
           },
           {
             "min_price": 1.11,
             "max_price": 1.12,
             "mid_price": 1.115,
             "size": 34913.0,
-            "notional_usd": 46261.47,
+            "notional_usd": 46259.72,
             "distance_pct": -15.85
           },
           {
@@ -141511,7 +141583,7 @@
             "max_price": 1.1,
             "mid_price": 1.095,
             "size": 30318.0,
-            "notional_usd": 40172.87,
+            "notional_usd": 40171.35,
             "distance_pct": -17.36
           },
           {
@@ -141519,34 +141591,43 @@
             "max_price": 1.22,
             "mid_price": 1.215,
             "size": 29947.0,
-            "notional_usd": 39681.27,
-            "distance_pct": -8.31
+            "notional_usd": 39679.78,
+            "distance_pct": -8.3
+          },
+          {
+            "min_price": 1.25,
+            "max_price": 1.26,
+            "mid_price": 1.255,
+            "size": 22201.0,
+            "notional_usd": 29416.33,
+            "distance_pct": -5.28
           }
         ],
-        "top_short_squeeze_bands_above": [],
-        "nearest_long_cascade_bands_below": [
+        "top_short_squeeze_bands_above": [
           {
             "min_price": 1.32,
             "max_price": 1.33,
             "mid_price": 1.325,
             "size": 3845.0,
-            "notional_usd": 5094.82,
-            "distance_pct": -0.0
-          },
+            "notional_usd": 5094.62,
+            "distance_pct": 0.0
+          }
+        ],
+        "nearest_long_cascade_bands_below": [
           {
             "min_price": 1.31,
             "max_price": 1.32,
             "mid_price": 1.315,
             "size": 93945.0,
-            "notional_usd": 124481.82,
-            "distance_pct": -0.76
+            "notional_usd": 124477.12,
+            "distance_pct": -0.75
           },
           {
             "min_price": 1.3,
             "max_price": 1.31,
             "mid_price": 1.305,
             "size": 58596.0,
-            "notional_usd": 77642.63,
+            "notional_usd": 77639.7,
             "distance_pct": -1.51
           },
           {
@@ -141554,15 +141635,15 @@
             "max_price": 1.3,
             "mid_price": 1.295,
             "size": 86082.0,
-            "notional_usd": 114062.95,
-            "distance_pct": -2.27
+            "notional_usd": 114058.65,
+            "distance_pct": -2.26
           },
           {
             "min_price": 1.28,
             "max_price": 1.29,
             "mid_price": 1.285,
             "size": 4103.0,
-            "notional_usd": 5436.68,
+            "notional_usd": 5436.47,
             "distance_pct": -3.02
           },
           {
@@ -141570,15 +141651,15 @@
             "max_price": 1.28,
             "mid_price": 1.275,
             "size": 3702.0,
-            "notional_usd": 4905.34,
-            "distance_pct": -3.78
+            "notional_usd": 4905.15,
+            "distance_pct": -3.77
           },
           {
             "min_price": 1.26,
             "max_price": 1.27,
             "mid_price": 1.265,
             "size": 29129.0,
-            "notional_usd": 38597.38,
+            "notional_usd": 38595.92,
             "distance_pct": -4.53
           },
           {
@@ -141586,15 +141667,15 @@
             "max_price": 1.26,
             "mid_price": 1.255,
             "size": 22201.0,
-            "notional_usd": 29417.44,
-            "distance_pct": -5.29
+            "notional_usd": 29416.33,
+            "distance_pct": -5.28
           },
           {
             "min_price": 1.24,
             "max_price": 1.25,
             "mid_price": 1.245,
             "size": 404.0,
-            "notional_usd": 535.32,
+            "notional_usd": 535.3,
             "distance_pct": -6.04
           },
           {
@@ -141602,11 +141683,28 @@
             "max_price": 1.23,
             "mid_price": 1.225,
             "size": 181.0,
-            "notional_usd": 239.83,
+            "notional_usd": 239.82,
             "distance_pct": -7.55
+          },
+          {
+            "min_price": 1.21,
+            "max_price": 1.22,
+            "mid_price": 1.215,
+            "size": 29947.0,
+            "notional_usd": 39679.78,
+            "distance_pct": -8.3
           }
         ],
-        "nearest_short_squeeze_bands_above": [],
+        "nearest_short_squeeze_bands_above": [
+          {
+            "min_price": 1.32,
+            "max_price": 1.33,
+            "mid_price": 1.325,
+            "size": 3845.0,
+            "notional_usd": 5094.62,
+            "distance_pct": 0.0
+          }
+        ],
         "top_long_liquidation_whales": [
           {
             "address": "0x846e88b1c06b6b6b5694ae64b207a157e6fb389c",
@@ -141987,7 +142085,7 @@
             "timestamp_basis": "RECEIPT_ONLY",
             "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
             "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
-            "distance_pct": -0.76,
+            "distance_pct": -0.75,
             "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
             "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
             "persist_s": 16516.8,
@@ -142031,7 +142129,7 @@
             "timestamp_basis": "RECEIPT_ONLY",
             "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
             "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
-            "distance_pct": 1.11,
+            "distance_pct": 1.12,
             "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
             "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
             "persist_s": 16516.8,
@@ -146196,7 +146294,7 @@
             "timestamp_basis": "RECEIPT_ONLY",
             "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
             "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
-            "distance_pct": 0.03,
+            "distance_pct": 0.04,
             "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
             "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
             "persist_s": 61.9,

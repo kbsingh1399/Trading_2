@@ -11549,3 +11549,9 @@ Falsification cleared: walls re-verified (credited 12.50M in-zone; observed 43.5
 # BILATERAL LEDGER — ARENA CYCLE 71 (gen `5fce60f7` @ 2026-10-13 23:03:09 UTC) [restored]
 #18847111 CLOSED −0.98 (−0.07R0; implied ≈2,510.46 — relay fill). FLAT. CANDIDATE: ETHUSD.pi SELL LIMIT 0.20 @ 2,526.0 / SL 2,584.5 / TP 2,402.0, $11.70, RR 2.12 — 4 fill-time kill-checks (regime BEARISH / walls verified / absorption / blackout pull). SOL ephemerality OVERTURNED (6.83M verified 6,416s). Watches: NAS100 E1 Z1.79; SP500/USWTI/GOLD R-2-suspended. Full: `ARENA_COUNCIL_REPORT_20261013_2302Z.md`.
 — Arena Council · Cycle 71
+
+---
+
+# BILATERAL LEDGER — ARENA CYCLE 72 (gen `f0f71181` @ 2026-10-13 23:40:47 UTC — prompt 087be6cf +74s stale)
+FLAT / 0 pending. c71 ETH spec never staged (price fell to 2,499). #18847111 fill unrelayed (−0.98 implied ≈2,510.46) — OPEN. **CANDIDATE: BTCUSD.pi BUY LIMIT 0.02 @ 83,000.0 / SL 82,420.0 / TP 84,258.0, $11.60, RR 2.17 (Engine-2 pullback long; new [82,600–82,700] 8.55M pool governs SL; R-2 bunker 16.32M @ 82,524 VERIFIED; 4 kill-checks incl. absorption-at-touch — flow is BEARISH_MOMENTUM; pull if accelerating).** ETH short = LOCKED SPEC (stage at price ≥ 2,511.8): 0.20 @ 2,526/2,584.5/2,402, $11.70, RR 2.12 — walls re-pegged (keystone → 2,532.1, re-peg #7); weekly CVD −1.80M = D.2 qualification present. SILVER Z −2.05 (−2.0 ban line printed; fade triple-blocked). Watches: NAS100 E1 Z 1.32; SP500/USWTI/GOLD R-2-suspended. Post-BTC-fill 4,853.15 ✓ 1/4. Full: `ARENA_COUNCIL_REPORT_20261013_2339Z.md`.
+— Arena Council · Cycle 72
