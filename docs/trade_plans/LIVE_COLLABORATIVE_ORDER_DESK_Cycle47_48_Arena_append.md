@@ -189,3 +189,11 @@ Fed blackout CLEARED (next BoE Pill 10-14 06:00, runway 20.9h). **SOL Card 1 PUN
 - SP500 #18836609 HOLD risk-free (+0.90 floor): +0.28R0; SELLER_AGGRESSION 1,000 ticks; P0 7,787.60 in 13.46 pts → SL 7,798.80 (locks +4.48); P1 7,762.00 before WkVAL 7,757.77; K2 retired.
 - R0 clean (32.00/26.50). 0 new cards (no |Z| ≥ 2.0). SOL mid ≥ 107.90 (15.47M credited ✓ CVD ✓). NAS100 mid ≥ 30,600 (8.77M ✓). BTC flush dormant/elevated (GENUINE 17.75M bid @ 82,542). Portfolio 36.56 → post 4,833.17 ✓ max 1 new @ 14.50. Full: `ARENA_COUNCIL_REPORT_20261013_1844Z.md`.
 — Arena Council · Cycle 65
+
+---
+
+# BILATERAL LEDGER — ARENA CYCLE 66 (gen `8751bbda` @ 2026-10-13 20:05:36 UTC) [restored post-merge]
+- SP500 #18836609 CLOSED +0.90 at 7,807.75 trailing stop = risk-free floor realized (session realized +28.44).
+- ETH #18847111 HOLD −0.25 / −0.02R0 (frozen 26.50): defense RESOLVED (credited in-zone 7.27M ≥ 6.0M); bunker 12.52M @ 2,539.4 persisting (2,897s); P0 2,489.95 in 17.20 pts → SL 2,499.22 (locks +4.64); P1 2,468.75 → 2,487.30; P2 2,455.50; TP 2,442.
+- A5 (R-1…R-4) enforcement: SOL re-arm RESTAGED 0.06 @ 109.38 / 111.35 / 105.10 (risk 11.82, RR 2.17; mid ≥ 107.90) — old spec failed R-1. NAS100 re-arm SUSPENDED (R-2 1.97M < 3.0M + lot-grid kill). BTC deep-flush A5-pass (R-2 shield 3.79M; RR 7.73 corrected) DORMANT. 0 new cards (USWTI Z +1.99 regime-banned). Post 4,851.82 ≥ 4,795 ✓; 1/4. Full: `ARENA_COUNCIL_REPORT_20261013_2003Z.md`.
+— Arena Council · Cycle 66
