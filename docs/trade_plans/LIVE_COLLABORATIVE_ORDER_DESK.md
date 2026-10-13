@@ -11537,3 +11537,9 @@ ETH #18847111 HOLD +1.00 (+0.08R0 frozen 26.5): defense fortress 19.91M credited
 # BILATERAL LEDGER — ARENA CYCLE 69 (gen `cc0aea54` @ 2026-10-13 21:44:04 UTC) [restored]
 Telemetry restart 21:15:59 (9 names INSUFFICIENT_HISTORY; wall demotions = window reset, not pulls). ETH #18847111 HOLD −1.80 (−0.14R0 frozen 26.5): defense fired on artifact — physical ~17.7M in-zone + keystone re-peg #5 12.89M @ 2,542.4; falsification: next cycle credited < 1.0M AND observed < 8.0M → A4 trim. P0 2,489.95 → SL 2,499.22 on print; TP 2,442. SOL pending verify (6.83M @ 108.65) + mid ≥ 107.90. NAS100 DATA-HOLD. BTC flush conditional (2.50M shield). 0 new cards. Post 4,850.14 ✓ 1/4. Full: `ARENA_COUNCIL_REPORT_20261013_2137Z.md`.
 — Arena Council · Cycle 69
+
+---
+
+# BILATERAL LEDGER — ARENA CYCLE 70 (gen `e005aedd` @ 2026-10-13 22:23:47 UTC) [restored]
+Falsification cleared: walls re-verified (credited 12.50M in-zone; observed 43.52M; keystone re-peg #6 @ 2,544.1). ETH #18847111 HOLD −0.30 (−0.02R0 frozen 26.5): P0 2,489.95 → SL 2,499.22 on print; TP 2,442; armed rules stand. NAS100 WATCHLIST (Z +1.85 → legal Engine-1 short at 2.0 + exhaustion). SOL SUSPENDED (ephemeral shield). BTC flush conditional (2.50M). 0 new cards. Post 4,851.64 ✓ 1/4. Full: `ARENA_COUNCIL_REPORT_20261013_2223Z.md`.
+— Arena Council · Cycle 70
