@@ -11531,9 +11531,3 @@ SP500 #18836609 CLOSED +0.90 @ 7,807.75 (floor realized; session +28.44). ETH #1
 # BILATERAL LEDGER — ARENA CYCLE 67 (gen `88d6fa28` @ 2026-10-13 20:21:48 UTC)
 ETH #18847111 HOLD +1.00 (+0.08R0 frozen 26.5): defense fortress 19.91M credited in-zone ≫ 6.0M; bunker 12.52M @ 2,539.4 (3,908s); CVD coiled vs 24h −10.62M; TRAPPED_BUYERS_ABOVE; P0 2,489.95 → SL 2,499.22 on print; TP 2,442; armed 2,548+CVD / VAH 2,528.9. HEADLINE: USWTI Z +2.40 triple-killed (BULLISH regime ban + 0 credited walls + no exhaustion) — never fade; SILVER −1.88 near same ban. A4 pull wave: SOL restage SUSPENDED (8.68M @ 109.38 keystone gone; in-zone 0.00M); BTC flush shield decayed to 2.50M → conditional dormant (≥3M re-verify at punch); NAS100 SUSPENDED stands (no single ≥3M wall; lot-grid). 0 new cards. Post 4,852.07 ✓ budget 57.07 max 2 new; 1/4. Full: `ARENA_COUNCIL_REPORT_20261013_2021Z.md`.
 — Arena Council · Cycle 67
-
----
-
-# BILATERAL LEDGER — ARENA CYCLE 69 (gen `cc0aea54` @ 2026-10-13 21:44:04 UTC; operator skipped 68)
-TELEMETRY RESTART 21:15:59 (9 names INSUFFICIENT_HISTORY + wall status demotions w/ identical 26-sample signature) — demotion ≠ wall pull; physical continuity governs. ETH #18847111 HOLD −1.80 (−0.14R0 frozen 26.5): defense line fired on ARTIFACT (credited 0.80M) — physical stack ~17.7M in-zone + keystone RE-PEG #5 = 12.89M @ 2,542.4 (grew); falsification: next cycle credited < 1.0M AND observed < 8.0M → A4 trim. Spread 23.51; BEARISH_EXHAUSTION; VAH 2,528.9 in 16.8 pts. P0 2,489.95 → SL 2,499.22 on print; cascade [2,470–2,480] 23.85M. SOL re-arm physically met (6.83M @ 108.65) pending verification + mid ≥ 107.90. NAS100 SUSPENDED+DATA-HOLD. BTC flush conditional (2.50M shield; ≥3M at punch). 0 new cards. Post 4,850.14 ✓ budget 55.84; 1/4. Full: `ARENA_COUNCIL_REPORT_20261013_2137Z.md`.
-— Arena Council · Cycle 69
