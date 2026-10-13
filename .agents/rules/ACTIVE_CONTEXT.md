@@ -62,7 +62,7 @@ trigger: always_on
       * Active Positions (0 — All open positions closed in realized profit; Autonomous Ratchet Daemon `task-50136` on standby every 15s):
         - None (100% Realized Cash Reserves).
       * Active Pending Orders (1 — Mandate 3 Active Monitoring):
-        1. Ticket `#18817374` (`NAS100.p` SELL LIMIT 0.01 @ 30,648.00 USD, Current Bid/Ask: 30,554.21/30,555.43 USD [93.18 pts / 2.96 ATR to entry], SL: 30,723.00 USD [0.73 ATR outside `[30,600-30,700]` 312k buy-stop bunker & above EMA50 30,697.49], TP: 30,415.00 USD [front-running `30,400.00` by 5 bps inside `[30,400-30,500]` 464.9k USD + `[30,300-30,400]` 298.7k USD un-swept downside cascade], Risk: 7.50 USD, Reward: 23.30 USD, R:R: 3.11R, Ask Wall Defense: 1.58M USD @ 30,650.00-30,654.00 USD + EMA20 30,636.03 USD).
+        1. Ticket `#18817374` (`NAS100.p` SELL LIMIT 0.01 @ 30,648.00 USD, Current Bid/Ask: 30,542.71/30,543.93 USD [104.07 pts / 3.16 ATR to entry], SL: 30,723.00 USD [0.70 ATR outside `[30,600-30,700]` 312k buy-stop bunker & above EMA50 30,691.84], TP: 30,455.00 USD [front-running `30,448.00` 1.75M USD verified Bid Whale Wall inside `[30,400-30,500]` 465.0k USD un-swept downside cascade], Risk: 7.50 USD, Reward: 19.30 USD, R:R: 2.57R, Ask Wall Defense: 1.58M USD @ 30,650.00-30,654.00 USD [483s verified] + EMA20 30,628.17 USD).
       * G-1 Hard Floor Defense: Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Floor Cushion: **+105.27 USD realized cash cushion**.
       * Stressed Post-Loss Simulation:
         - Total Contingent Book Risk: **7.50 USD** (`NAS100.p` 0.01 lot `7.50 USD`).
