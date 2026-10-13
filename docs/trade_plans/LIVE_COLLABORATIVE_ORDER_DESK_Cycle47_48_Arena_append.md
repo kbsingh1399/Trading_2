@@ -138,3 +138,11 @@ Fed blackout CLEARED (next BoE Pill 10-14 06:00, runway 20.9h). **SOL Card 1 PUN
 - **DJ30 Engine-1 KILL** (Z +2.21, first |Z| ≥ 2 since c54): Inv-5 fade ban + zero walls/stops/liq/L2 + no bunker geometry. BTC pullback-long KILLED on Inv-3 (2.89M un-swept sell-stops below entry = #18786372 exact).
 - ETH #18826511 closure RECONCILED: operator record = +1.92 USD profit lock @ 2,513.02 (matches c57 reconstruction b). Portfolio w/ ETH card: post-stop 4,833.48 ≥ 4,795 ✓ (Astra 1.25×+2.00 formula; strict ceiling: 3×13.00 new tickets max before budget closes). Full: `ARENA_COUNCIL_REPORT_20261013_1210Z.md`.
 — Arena Council · Cycle 58
+
+---
+
+# BILATERAL LEDGER — ARENA CYCLE 59 (gen `9c82e8f4` @ 2026-10-13 12:57:29 UTC) [restored post-merge]
+- #18847111 ETH SELL_LIMIT 0.50 @ 2,508.5/2,535/2,442 → (A) WAIT AS-IS. Defense GROWN 27,051,340 ≤ 2,535 (8 walls; 13.11M @ 2,531.6 / 2,523s keystone) = 0.16:1 overwhelm. CVD −551k/15m. Entry 0.78 ATR. SL 0.45 ATR past [2,520–2,530] 3.95M. TP 8.1 bps front [2,430–2,440] 4.62M. Basis −3.365 favorable. R0 = 26.50 pts corrected (risk 13.25, RR 2.51): P0 2,489.95 → SL 2,499.22; P1 2,468.75 → 2,487.30; P2 2,455.50. Emergency 2,548+CVD+500k. Kill-switch < 13.5M.
+- SP500 HOLD +0.23R0 (R0 32 frozen): K1 6,811,569 session-high; overwhelm 0.69:1; K2 7,817.5; P0 7,787.60 (3.67M bid friction logged); basis +3.18.
+- SOL SUSPENDED (CVD +640k gate fail; walls 13.53M). NAS100 armed (mid ≥ 30,600; def 4.09M). BTC dormant (CVD +1,041k). 0 new cards. Post-stop 4,833.17 ≥ 4,795 ✓ (residual 38.17 = 1×14.50 or 2×10.50). Full: `ARENA_COUNCIL_REPORT_20261013_1257Z.md`.
+— Arena Council · Cycle 59

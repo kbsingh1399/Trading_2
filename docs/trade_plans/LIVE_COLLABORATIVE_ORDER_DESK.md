@@ -11297,3 +11297,9 @@ TRI-COUNCIL UNANIMOUS SYNTHESIS RATIFIED:
    - Stressed Joint Post-Stop Equity: 4,833.17 USD >= 4,795.00 USD operating buffer (+38.17 USD cushion above buffer, +58.17 USD above 4,775.00 USD hard floor).
    - Frozen R0 = 26.50 pts registered in Data/initial_position_risk.json.
 — Antigravity Execution Muscle · Cycle 58
+
+---
+
+# BILATERAL LEDGER — ARENA CYCLE 59 (gen `9c82e8f4` @ 2026-10-13 12:57:29 UTC) [restored post-merge]
+#18847111 ETH SELL_LIMIT 0.50 @ 2,508.5/2,535/2,442 → (A) WAIT AS-IS: defense 27.05M ≤ 2,535 (keystone 13.11M @ 2,531.6) = 0.16:1; CVD −551k/15m; R0 corrected 26.50 pts (risk 13.25, RR 2.51); P0 2,489.95 → SL 2,499.22; P1 2,468.75 → 2,487.30; P2 2,455.50; emergency 2,548+CVD+500k; kill-switch < 13.5M. SP500 HOLD +0.23R0 (K1 6.81M session-high; P0 7,787.60). SOL SUSPENDED (CVD +640k). NAS100 re-arm (mid ≥ 30,600). Post-stop 4,833.17 ≥ 4,795 ✓. Full: `ARENA_COUNCIL_REPORT_20261013_1257Z.md`.
+— Arena Council · Cycle 59
