@@ -11035,6 +11035,15 @@ Full signed record force-update-proof at `docs/trade_plans/LIVE_COLLABORATIVE_OR
 
 ---
 
+# BILATERAL LEDGER APPENDIX — ARENA CYCLE 49 (2026-10-13 05:55:20 UTC)
+**Basis gen `c2418e67` @ 05:56:59 UTC.** Full record: sidecar `LIVE_COLLABORATIVE_ORDER_DESK_Cycle47_48_Arena_append.md` (Cycle 49 section) + `ARENA_COUNCIL_REPORT_20261013_0555Z.md`.
+- **SOL #18825384 forensics: STOPPED OUT 108.55 (−11.05)** — 05:15–05:30 bar wick high 108.58; the Cycle-48 (B) 108.80 (variant 108.92/0.11) would have survived by 0.34 ATR. #18806752 class (SOL hunt zone 108.55–108.80). Lessons: pre-sweep relocations are EMERGENCY (minutes); future SOL shorts stop ≥108.92 at ≤0.11 lots.
+- **#18826511 ETH (B) MODIFY lots 0.50 → 0.35** (envelope breach 18.25 > 14.50 — the un-executed Cycle-48 leg; no compliant state exists at 0.50 lots with Inv-1 SL ≥ 2,553.1). SL 2,555.0 kept (0.40 ATR past the 1.86M band; 561k whisker ≥10× defended by verified 5.70M @ 2,547.4 — disclosed). TP 2,457.46 kept. Ratchet −0.29R: no tier. CVD 30m −1.21M; BE-cut armed.
+- **Mandate 1: 0 new** (GBPUSD Z 2.08 rejected: Inv 4 zero verified walls + scale incoherence + no shelf + no magnet). **Mandate 3: 0 pending.** Floor: post-stop 4,856.44 / stressed 4,852.00 ≥ 4,795 ✓. Purge 07:10 — no new orders past 07:05.
+— Signed, Arena.ai Multi-Persona Quantitative Council · Cycle 49
+
+---
+
 ## Section 119: Cycle 49 Tri-Council Synthesis | 2026-10-13 06:20 UTC
 
 ### Arena.ai (Cycle 49) — Key Rulings
@@ -11044,10 +11053,10 @@ Full signed record force-update-proof at `docs/trade_plans/LIVE_COLLABORATIVE_OR
 - **SOL Autopsy**: SL 108.55 undefended after whale wall relocation. Binding doctrine: SOL shorts SL >= 108.92, <= 0.11 lots, wall relocation = emergency exit.
 
 ### Z.ai Chat (Cycle 49) — Key Additions
-- Defence RESTORED: 0xab5e6f39 .70M @ 2547.4 persist_s 2,063s (34 min, 11x improvement). Total 9 walls .42M.
+- Defence RESTORED: 0xab5e6f39 $5.70M @ 2547.4 persist_s 2,063s (34 min, 11x improvement). Total 9 walls $9.42M.
 - Overwhelm 0.39:1 (defence 2.54x fuel) — IMPROVED 1.8x from Cycle 48.
-- L2 imbalance -0.60 (EXTREME ask pressure). 15m CVD - (seller domination). Z declining 1.78->1.57.
-- TP 2444.50 agreed (5 bps front-run of .85M cascade @ 2445, R:R 2.03R).
+- L2 imbalance -0.60 (EXTREME ask pressure). 15m CVD -$742K (seller domination). Z declining 1.78->1.57.
+- TP 2444.50 agreed (5 bps front-run of $1.85M cascade @ 2445, R:R 2.03R).
 - SP500 top post-blackout candidate: Z=1.53, 85 eligible walls, R:R 9.04R.
 
 ### Antigravity Independent Verification & Execution
@@ -11056,3 +11065,4 @@ Full signed record force-update-proof at `docs/trade_plans/LIVE_COLLABORATIVE_OR
 - Current: #18826511 0.35L SHORT @ 2518.50, SL 2555.00, TP 2444.50, floating -2.87 USD.
 - Risk: 12.78 USD. R:R: 2.03R. Floor cushion: +92.81 USD.
 - Watch: anchor 0xab5e6f39 @ 2547.4 persist_s >= 180s. If pulled -> tighten SL to 2534.81 immediately.
+
