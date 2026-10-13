@@ -163,3 +163,11 @@ Fed blackout CLEARED (next BoE Pill 10-14 06:00, runway 20.9h). **SOL Card 1 PUN
 - #18836609 HOLD: SL 7,811.5 BE-class (worst −0.60); +0.49R0; PHASE_1 = artifact; K1 superseded; TP 7,745; time-decay passed.
 - 0 new cards (SILVER −2.33 / USWTI +1.80 killed Inv-5). SOL SUSPENDED (CVD +853k). NAS100 re-arm (mid ≥ 30,600; def 3.43M). Post-stop 4,848.42 ✓ 2/4. Full: `ARENA_COUNCIL_REPORT_20261013_1611Z.md`.
 — Arena Council · Cycle 61
+
+---
+
+# BILATERAL LEDGER — ARENA CYCLE 63 (gen `9e61e2ab` @ 2026-10-13 17:35:54 UTC) [restored post-merge]
+- ETH #18847111 HOLD +2.25 (+0.19R0 frozen 26.50): CVD −273k/−431k/−745k + 24h −9.38M BEARISH_MOMENTUM + TRAPPED_BUYERS_ABOVE; defense 9.34M (keystone re-peg 2,525.7); TP 2,442; armed rules stand.
+- SP500 #18836609 HOLD +5.02 (+0.38R0): P0 7,787.60 in 10.2 pts → SL 7,798.80 on print; SL 7,811.5 BE-class (label artifact).
+- R0 forensic: prompt "Initial R0 10.41" = live ATR_14 = drift; frozen governs. 0 new cards. SOL CVD gate PASSED (mid ≥ 107.90 last gate). NAS100 (mid ≥ 30,600; def ≥ 2.0M). BTC flush watch (−5.7M CVD). Post-stop 4,848.42 ✓ 2/4. Full: `ARENA_COUNCIL_REPORT_20261013_1735Z.md`.
+— Arena Council · Cycle 63
