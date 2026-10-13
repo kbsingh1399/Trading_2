@@ -10811,3 +10811,26 @@ Post-swap: 1 ticket (NAS100 7.50 USD) → post-stop **4,872.77 ≥ 4,795.00** �
 | 1b | NOT recommended | NAS100.p | SELL LIMIT | 0.01 | 30,698.0 | 30,773.0 | 30,415.0 | 7.50 | 3.77 | Higher RR but: fill requires slicing the full verified belt (walls hold → never fills); fortress-pull fill = #18748507 worst-local-fill class; Inv-3-mirror marginal at bunker top |
 
 Kill/re-arm at punch-in: if the 30,641 wall (419,978) has pulled → move entry to 30,674.0 (387,226 @ 961 s) or hold; if [30,400–30,500] < 350k → re-walk TP to 30,455.0 (conservative, 2.47R); purge re-validation 02:25 UTC unchanged. Post-stop 4,872.77 ≥ 4,795.00 ✓ (broker-stress 4,868.89 ✓). Alternative <2.5 ATR sweep of all 24: no better compliant candidate (BTC E20 +2.22 ATR but bunker-walk RR ≤ 1.45; SP500 RANGE_BOUND; SOL CVD unqualified; TRX/XRP lot-grid dead; friction/Inv-4 kills elsewhere).
+
+
+---
+---
+
+# BILATERAL LEDGER APPENDIX — CYCLE 42 COUNCIL REPORT & EXECUTION RECONCILIATION (2026-10-13 01:29 UTC)
+
+**— Signed, Arena.ai Multi-Persona Quantitative Council (Cycle 42, generation `0170e8b04e384f4998d8faf11920373f`, `docs/trade_plans/ARENA_COUNCIL_REPORT_20261013_0108Z.md`) ⇄ Antigravity Local Execution Muscle (`Account #5064568`, Blueberry Markets SVG LLC)**
+
+## A. Phase 3 Independent Quantitative Verification & MT5 Execution (`#18817374 NAS100.p` Deleted)
+1. **Mandate 3 (`#18817374 NAS100.p SELL LIMIT 0.01 @ 30,648.00 / SL 30,723.00 / TP 30,455.00`) — VERIFIED & EXECUTED (`(C) DELETE — CANCEL IMMEDIATELY`)**:
+   - **Anti-Trap Invariant 1 Categorical Fail**: The `[30,700.00–30,800.00]` buy-stop cluster above the shelf expanded 14.5x from `145.0k USD` to **`2,108,254 USD`**, placing `SL = 30,723.00 USD` directly inside the sweep band (`23 pts` above `min_price = 30,700.00`, `77 pts` below `max_price = 30,800.00`). Moving `SL` above `30,800.00 + 0.35 ATR = 30,812.60 USD` requires a `>= 208.9 pt` stop distance (`20.89 USD` cash risk at `0.01` lot, exceeding the `14.50 USD` cap).
+   - **Anti-Trap Invariant 4 Wall Pull**: Supporting verified (`>= 180s`) Ask Whale Walls across `[30,640–30,722]` thinned ~86% (including the `20,615s` fortress at `30,700` pulled).
+   - **Proximity & Downside Magnet**: Live `NAS100.p` (`30,493.57–30,531.82 USD`, `ATR_14 = 35.92–37.88`) drifted `3.23–4.08 ATR > 2.0 ATR` below `30,648.00 USD`, while `[30,400–30,500]` sell stops thinned from `465k USD` to `96.9k–264.7k USD` and a `1.31M USD` (`184.7s` verified) Bid Whale Wall formed at `30,479.00 USD` above `TP = 30,455.00 USD`.
+   - **MT5 Execution**: Executed `TRADE_ACTION_REMOVE` on `#18817374` (`retcode=10009 Request executed`).
+2. **Mandate 2 (Active Running Trades)**:
+   - `0` open positions (`FLAT / OPEN_0`). Tonight's wins remain 100% banked in cash (`#18813767 BTCUSD.pi +16.10 USD` Full TP, `#18813768 SOLUSD.p +9.52 USD` Phase 1 Profit Lock).
+3. **Mandate 1 (24-Asset Screen & Post-Delete Audit at `01:30 UTC`)**:
+   - **Crypto (`BTC, ETH, SOL, BNB, XRP`)**: Strongly positive `15m CVD` (`BTC +5.65M to +7.45M USD`, `SOL +643k to +3.61M USD`) reflects short-covering absorption after the cascade, disqualifying shorts under Anti-Trap Invariant 2; on `ETH`, where `15m CVD` briefly turned negative (`-531.9k USD`), `3.43M USD` (`2,435.00 USD`) and `6.65M USD` (`2,426.80 USD`) verified Bid Whale Walls block the runway to `[2,400–2,410]`.
+   - **`SP500.p`**: Opposing `1.76M USD` (`907s` verified) Bid Whale Wall at `MT5 ~7,791.77 USD` compresses pullback short `R:R` to `0.95R < 2.0R`.
+   - **`USWTI.p` & `USDJPY.pi`**: `USWTI` (`Z = -3.41`, `BULLISH`, spread `4.94 bps`) and `USDJPY` (`Z = -3.63`, `RANGE_BOUND`) lack verified (`>= 180s`) Bid Whale Walls within `[92.5, 95.3]` / `[158.1, 158.7]` (Anti-Trap Invariant 4 fail).
+4. **Capital Floor & Event Governance**:
+   - **Balance & Equity**: `4,880.27 USD` (`100%` Realized Cash) | **Cushion Above `4,775.00 USD` Hard Floor**: **`+105.27 USD`** (`+85.27 USD` above `4,795.00 USD` Operating Buffer) | **Capacity**: `0 / 4` going into the `02:25 UTC` pre-event liquidity purge and `03:00 UTC` BoE MPC Member Greene speech.

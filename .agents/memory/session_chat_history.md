@@ -54971,3 +54971,35 @@ also..shall we modify sl tp of running btc trade as per arena.ai?
 - **Mandate 1 Universe Audit (`00:30 UTC` Candle Close)**:
   - Audited `GOLD` (`XAUUSD.pi`, `4,164.29 USD`, `BEARISH`): nearest verified (`>= 180s`) Ask Whale Walls sit at `4,183.50–4,184.00 USD` (`4.25 ATR` away) with zero verified Ask Whale Walls at `EMA20` (`4,169.27 USD`); rejected under Anti-Trap Invariant 4.
   - Audited `BTC`, `ETH`, `SOL`, `BNB`: continuing post-cascade extension (`BTC 81,342`, `ETH 2,420.6`, `SOL 103.81`, `BNB 725.8`). Standing aside from chasing lows; awaiting relief bounce toward `EMA20`/Ask Whale shelves.
+
+
+### Turn — 2026-10-13 01:10 UTC (Autonomous Cron Wake-Up — Iterations 20–21, Hyperdash L3 Rate-Window Hardening, & Cycle 42 Dispatch)
+- **Trigger**: Automatic 20-minute cron wakeup (`task-49601`, Iterations 20–21).
+- **Chain Verification Auditor Fix (`d87abc00` — Hyperdash `orderbookSnapshotFiltered` Rate-Window & Disk Cache)**:
+  - Diagnosed why `whale_walls_l3` intermittently dropped to `0` on later assets (`NAS100`, `GOLD`, `SP500`) when all 22 Hyperdash assets were queried in a single burst: Hyperdash enforces an `8 requests / 30s` rate limit on `orderbookSnapshotFiltered` (`RATE_LIMIT_EXCEEDED`, `retryAfter: 24–25s`).
+  - Hardened [`Terminal/Api_Client.py`](file:///c:/Users/SIGMA/Documents/Trading_2/Terminal/Api_Client.py) and [`Terminal/Data_Factory/generate_telemetry_snapshot.py`](file:///c:/Users/SIGMA/Documents/Trading_2/Terminal/Data_Factory/generate_telemetry_snapshot.py) with a strict `7 calls / 32s` sliding window, oldest-first priority cohort rotation (prioritizing the 12 core low-spread tradeable assets), `INTERNAL_SERVER_ERROR` retry backoff, and disk-backed L3 cache persistence (`docs/telemetry/.hyperdash_l3_cache.json`).
+  - Verified on `2026-10-13 01:07:56 UTC` snapshot: all 10 major assets simultaneously report full verified (`>= 180s`) L3 whale walls (`NAS100: 38`, `GOLD: 21`, `SP500: 39`, `USWTI: 13`, `BTC: 135`, `ETH: 30`, `SOL: 37`, `EURUSD: 13`, `GBPUSD: 7`, `USDJPY: 35`) and full stop clusters.
+- **Cycle 42 Dispatched to Arena.ai ([`docs/prompts/ARENA_CYCLE_42_PROMPT.txt`](file:///c:/Users/SIGMA/Documents/Trading_2/docs/prompts/ARENA_CYCLE_42_PROMPT.txt))**:
+  - Dispatched the 3-Mandate Cycle 42 prompt (`18,795` chars) to Arena.ai to evaluate:
+    1. **Mandate 3 (`#18817374 NAS100.p SELL LIMIT 0.01 @ 30,648.00`)**: Live `NAS100.p` flushed to `30,508.82 USD` (`3.87 ATR` below `30,648.00`), while `15m EMA20` lowered to `30,603.75 USD` with a verified `1.07M USD` (`238.9s`) Ask Whale Wall at `30,607.0` (`MT5 ~30,597.07 USD`).
+    2. **Mandate 1 (`GOLD` / `XAUUSD.pi` & `BTC` / `BTCUSD.pi` Relief Bounces)**: `GOLD` (`BEARISH`, `mid = 4,163.65 USD`) bounced within `0.75 ATR` of `EMA20` (`4,167.45 USD`) and `1.34 ATR` of `EMA50` (`4,170.43 USD`) backed by verified (`238.4s`) Ask Whale Walls at `4,171.50` (`333k USD`) and `4,178.50` (`801.9k USD`) above a `1.15M USD` `[4,140–4,160]` downside sell-stop + long-liquidation cascade; `BTC` (`BEARISH`, `mid = 81,514.50 USD`) bounced within `1.49 ATR` of `EMA20` (`82,015.53 USD`).
+  - Armed `arena_completion_daemon.py --wait` for instant wakeup upon Cycle 42 completion.
+
+### Turn — 2026-10-13 01:31 UTC (Cycle 42 Phase 3 Verification, Mandate 3 Deletion of #18817374 NAS100.p, & Iteration 22 Desk Audit)
+- **Trigger**: Instant reactive wakeup (`task-50654`, `exit code 0`) upon Arena.ai Cycle 42 completion (`docs/trade_plans/ARENA_COUNCIL_REPORT_20261013_0108Z.md`, commit `eb2657a4`) + Iteration 22 cron wakeup (`01:30 UTC`).
+- **Phase 3 Independent Quantitative Verification of Arena.ai Cycle 42**:
+  1. **Mandate 3 (`#18817374 NAS100.p SELL LIMIT 0.01 @ 30,648.00 / SL 30,723.00 / TP 30,455.00`) — VERIFIED & EXECUTED (`(C) DELETE`)**:
+     - Independently verified all four degradation grounds against live telemetry (`docs/telemetry/live_snapshot_latest.json`):
+       * **Anti-Trap Invariant 1 Categorical Fail**: `[30,700.00–30,800.00]` buy-stop cluster grew 14.5x to **`2,108,254 USD`**, placing `SL = 30,723.00 USD` directly inside the sweep band (`23 pts` above `min_price = 30,700.00`), while moving `SL` above `30,800.00 + 0.35 ATR = 30,812.60 USD` requires `>= 20.89 USD` risk at `0.01` lot (`> 14.50 USD` cap).
+       * **Anti-Trap Invariant 4 Wall Pull**: Supporting verified (`>= 180s`) Ask Whale Walls across `[30,640–30,722]` thinned ~86% (including the `20,615s` fortress at `30,700` pulled).
+       * **Drift > 2.0 ATR**: Live `NAS100.p` (`30,493.57–30,531.82 USD`, `ATR_14 = 35.92–37.88`) drifted `3.23–4.08 ATR` below `30,648.00 USD`.
+       * **Downside Magnet Blocked**: `[30,400–30,500]` sell stops thinned to `96.9k–264.7k USD` while a `1.31M USD` (`184.7s` verified) Bid Whale Wall formed at `30,479.00 USD` above `TP = 30,455.00 USD`.
+     - Executed `TRADE_ACTION_REMOVE` on `#18817374` (`retcode=10009 Request executed`).
+  2. **Mandate 2 (Active Running Trades)**:
+     - `0` open positions (`100%` Realized Cash at `4,880.27 USD`; `+16.10 USD` BTC Full TP and `+9.52 USD` SOL Phase 1 Profit Lock banked).
+  3. **Mandate 1 (24-Asset Screen & Iteration 22 Audit at `01:30 UTC`)**:
+     - Verified `0` qualifying setups across all 24 assets: `BTC` (`CVD15m = +5.65M to +7.45M USD`) and `SOL` (`CVD15m = +643k to +3.61M USD`) exhibit strong positive short-covering CVD absorption; `ETH` has `3.43M USD` (`2,435.00 USD`) and `6.65M USD` (`2,426.80 USD`) verified Bid Whale Walls blocking the downside magnet; `SP500` has a `1.76M USD` (`907s` verified) Bid Whale Wall at `MT5 ~7,791.77 USD` compressing `R:R` to `0.95R < 2.0R`; `USWTI` (`Z = -3.41`, `BULLISH`) and `USDJPY` (`Z = -3.63`, `RANGE_BOUND`) have `0` verified (`>= 180s`) Bid Whale Walls in their entry zones.
+- **Live MT5 Account State (`#5064568`)**:
+  - Balance: `4,880.27 USD` | Equity: `4,880.27 USD` | Open Positions: `0` | Pending Orders: `0` | Hard Floor Cushion: **`+105.27 USD`** (`100%` unencumbered going into `02:25 UTC` pre-event purge and `03:00 UTC` BoE MPC Member Greene speech).
+
+
