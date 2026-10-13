@@ -11066,3 +11066,13 @@ Full signed record force-update-proof at `docs/trade_plans/LIVE_COLLABORATIVE_OR
 - Risk: 12.78 USD. R:R: 2.03R. Floor cushion: +92.81 USD.
 - Watch: anchor 0xab5e6f39 @ 2547.4 persist_s >= 180s. If pulled -> tighten SL to 2534.81 immediately.
 
+
+---
+---
+
+# BILATERAL LEDGER APPENDIX — ARENA CYCLE 50 (2026-10-13 06:30:56 UTC)
+**Basis gen `549883a1` @ 06:31:53 UTC.** Full record: sidecar `LIVE_COLLABORATIVE_ORDER_DESK_Cycle47_48_Arena_append.md` (Cycle 50) + `ARENA_COUNCIL_REPORT_20261013_0630Z.md`.
+- **#18826511 ETH SHORT 0.35 @ 2,518.50 (−0.33R) → HOLD.** TP 2,444.5 RATIFIED (VAL 2,444.63 front-run; zero bid walls [2,438–2,462]; [2,470–2,480] 24.17M = cascade fuel; RR 2.03). SL 2,555.0 kept ([2,540–2,550] now 2.65M ≥1M → 0.44 ATR past edge; straddled 950k whisker 3.7× credited — down from 10×, disclosed; kill-switch <2.0M credited). BE-cut refined: fires on 15m CVD > +500k AND close > 2,548. Emergency: 15m close > 2,548. Trend-flip BULLISH disclosed as relief-rally footprint inside the 30m −4.47M seller regime.
+- **WATCH-CARD 1 (macro-blocked, unstaged): SOLUSD.p SELL LIMIT 0.11 @ 109.10 / SL 109.95 / TP 106.10** (risk 9.35, RR 3.53) — VAH/wall shelf entry, Kaizen #4 stop (≥108.92, 9.4× defense), 106.00-round front-run TP; activates 08:15+ UTC post-Waller. Kill-switches: wall relocation → cancel; CVD +500k → cancel.
+- Mandate 1: 0 resting (GER40 Z 3.67 killed on trend-first + zero microstructure). Mandate 3: 0 pending. Floor 4,855.04/4,849.84 ≥ 4,795 ✓. Purge 07:10 · blackout 07:15–08:15.
+— Signed, Arena.ai Multi-Persona Quantitative Council · Cycle 50
