@@ -848,6 +848,57 @@ async def dismiss_arena_popup() -> bool:
         return False
 
 
+async def dismiss_zai_popup() -> bool:
+    """Send Escape key via CDP and execute DOM close to dismiss any high-traffic 'switch model' modal popup on Z.ai."""
+    ws_url = await get_zai_tab_ws_url()
+    if not ws_url:
+        return False
+    try:
+        async with websockets.connect(ws_url, max_size=10_000_000) as ws:
+            msg_id = int(time.time() * 1000) % 1000000
+            for ktype, vk in [("rawKeyDown", 27), ("keyUp", 27)]:
+                await ws.send(json.dumps({
+                    "id": msg_id,
+                    "method": "Input.dispatchKeyEvent",
+                    "params": {
+                        "type": ktype,
+                        "windowsVirtualKeyCode": vk,
+                        "code": "Escape",
+                        "key": "Escape"
+                    }
+                }))
+                msg_id += 1
+                try:
+                    await asyncio.wait_for(ws.recv(), timeout=2.0)
+                except Exception:
+                    pass
+            js_close = """
+            (() => {
+              const modal = document.querySelector('div[role="dialog"], .modal, [class*="dialog"], [class*="popup"], [class*="modal"]');
+              if (modal) {
+                window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', code: 'Escape', keyCode: 27, which: 27, bubbles: true }));
+                window.dispatchEvent(new KeyboardEvent('keyup', { key: 'Escape', code: 'Escape', keyCode: 27, which: 27, bubbles: true }));
+                const closeBtn = modal.querySelector('button[aria-label*="close" i], button.close, button[title*="close" i], button:has(svg.lucide-x)');
+                if (closeBtn) closeBtn.click();
+              }
+              return true;
+            })()
+            """
+            await ws.send(json.dumps({
+                "id": msg_id,
+                "method": "Runtime.evaluate",
+                "params": {"expression": js_close, "returnByValue": True}
+            }))
+            try:
+                await asyncio.wait_for(ws.recv(), timeout=2.0)
+            except Exception:
+                pass
+            return True
+    except Exception as e:
+        print(f"Error dismissing Z.ai popup: {e}", file=sys.stderr)
+        return False
+
+
 async def check_arena_response() -> Tuple[bool, str]:
     """Check if Arena has completed responding and extract the full response text."""
     await dismiss_arena_popup()
@@ -1111,55 +1162,90 @@ async def post_prompt_to_zai(prompt_text: str) -> bool:
                 pass
             await asyncio.sleep(0.35)
 
-            # Step 3: Verify value and click button#send-message-button in a verification loop until textarea is emptied
-            js_send = f"""
-            (async () => {{
-              const ta = document.querySelector('textarea#chat-input') || document.querySelector('textarea');
-              if (ta && (!ta.value || ta.value.length < 20)) {{
-                const nativeSetter = Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype, 'value')?.set;
-                if (nativeSetter) nativeSetter.call(ta, {json.dumps(prompt_text)});
-                else ta.value = {json.dumps(prompt_text)};
-                ta.dispatchEvent(new InputEvent('input', {{ bubbles: true, data: {json.dumps(prompt_text[:64])}, inputType: 'insertText' }}));
-                ta.dispatchEvent(new Event('change', {{ bubbles: true }}));
-                await new Promise(r => setTimeout(r, 300));
-              }}
-              for (let attempt = 0; attempt < 6; attempt++) {{
-                const curTa = document.querySelector('textarea#chat-input') || document.querySelector('textarea');
-                if (curTa && curTa.value.length === 0) {{
-                  return {{ success: true, method: 'click_send_button_verified', attempts: attempt }};
-                }}
-                const sendBtn = document.querySelector('button#send-message-button') || document.querySelector('button.sendMessageButton') || document.querySelector('button[type="submit"]');
-                if (sendBtn && !sendBtn.disabled) {{
-                  sendBtn.click();
-                }}
-                await new Promise(r => setTimeout(r, 400));
-              }}
-              const finalTa = document.querySelector('textarea#chat-input') || document.querySelector('textarea');
-              const sendBtn = document.querySelector('button#send-message-button');
-              return {{
-                success: finalTa ? finalTa.value.length === 0 : true,
-                method: (finalTa && finalTa.value.length === 0) ? 'click_send_button_verified' : 'enter_fallback',
-                remainingLen: finalTa ? finalTa.value.length : -1,
-                btnDisabled: sendBtn ? sendBtn.disabled : null
-              }};
-            }})()
-            """
-            await ws.send(json.dumps({
-                "id": msg_id + 2,
-                "method": "Runtime.evaluate",
-                "params": {"expression": js_send, "returnByValue": True, "awaitPromise": True}
-            }))
-            val = {}
-            try:
-                resp_str = await asyncio.wait_for(ws.recv(), timeout=8.0)
-                resp = json.loads(resp_str)
-                val = resp.get("result", {}).get("result", {}).get("value", {})
-            except Exception as e:
-                print(f"Z.ai send recv timeout/error: {e}", file=sys.stderr)
+            # Step 3: Verify value and click button#send-message-button with Esc/Retry resilience
+            # Operator Invariant: Under high traffic, Z.ai pops up a "switch model" modal.
+            # When that popup comes: hit Escape to dismiss the modal, wait 350ms, and hit Send again (2-3 attempts).
+            registered = False
+            for retry in range(4):
+                js_send = f"""
+                (async () => {{
+                  const curTa = document.querySelector('textarea#chat-input') || document.querySelector('textarea');
+                  // If textarea is already emptied, prompt was accepted and registered!
+                  if (curTa && curTa.value.length === 0) {{
+                    return {{ registered: true, remainingLen: 0 }};
+                  }}
 
-            if val.get("method") == "enter_fallback":
+                  // Check if high-traffic "switch model" modal/popup is visible:
+                  const modal = document.querySelector('div[role="dialog"], .modal, [class*="dialog"], [class*="popup"], [class*="modal"]');
+                  if (modal) {{
+                    window.dispatchEvent(new KeyboardEvent('keydown', {{ key: 'Escape', code: 'Escape', keyCode: 27, which: 27, bubbles: true }}));
+                    window.dispatchEvent(new KeyboardEvent('keyup', {{ key: 'Escape', code: 'Escape', keyCode: 27, which: 27, bubbles: true }}));
+                    const closeBtn = modal.querySelector('button[aria-label*="close" i], button.close, button[title*="close" i], button:has(svg.lucide-x)');
+                    if (closeBtn) closeBtn.click();
+                    await new Promise(r => setTimeout(r, 350));
+                  }}
+
+                  // Re-ensure textarea value is intact if lost
+                  if (curTa && (!curTa.value || curTa.value.length < 20)) {{
+                    const nativeSetter = Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype, 'value')?.set;
+                    if (nativeSetter) nativeSetter.call(curTa, {json.dumps(prompt_text)});
+                    else curTa.value = {json.dumps(prompt_text)};
+                    curTa.dispatchEvent(new InputEvent('input', {{ bubbles: true, data: {json.dumps(prompt_text[:64])}, inputType: 'insertText' }}));
+                    curTa.dispatchEvent(new Event('change', {{ bubbles: true }}));
+                    await new Promise(r => setTimeout(r, 200));
+                  }}
+
+                  const sendBtn = document.querySelector('button#send-message-button') || document.querySelector('button.sendMessageButton') || document.querySelector('button[type="submit"]');
+                  if (sendBtn && !sendBtn.disabled) {{
+                    sendBtn.click();
+                    await new Promise(r => setTimeout(r, 450));
+                  }}
+
+                  const checkTa = document.querySelector('textarea#chat-input') || document.querySelector('textarea');
+                  const isEmptied = checkTa ? checkTa.value.length === 0 : false;
+                  return {{
+                    registered: isEmptied,
+                    remainingLen: checkTa ? checkTa.value.length : -1,
+                    hadModal: !!modal
+                  }};
+                }})()
+                """
                 await ws.send(json.dumps({
-                    "id": msg_id + 3,
+                    "id": msg_id + 10 + retry * 4,
+                    "method": "Runtime.evaluate",
+                    "params": {"expression": js_send, "returnByValue": True, "awaitPromise": True}
+                }))
+                val = {}
+                try:
+                    resp_str = await asyncio.wait_for(ws.recv(), timeout=8.0)
+                    resp = json.loads(resp_str)
+                    val = resp.get("result", {}).get("result", {}).get("value", {})
+                except Exception as e:
+                    print(f"Z.ai send attempt {retry+1} error: {e}", file=sys.stderr)
+
+                if val.get("registered"):
+                    print(f"Prompt posted successfully to Z.ai Chat (click_send_verified, attempt {retry+1})!")
+                    registered = True
+                    break
+
+                # If still not emptied, hit CDP Escape to dismiss any high-traffic popup and retry
+                print(f"Z.ai traffic popup / un-registered prompt (remaining={val.get('remainingLen')}, hadModal={val.get('hadModal')}) - hitting Esc and retrying send button...", file=sys.stderr)
+                for ktype, vk in [("rawKeyDown", 27), ("keyUp", 27)]:
+                    await ws.send(json.dumps({
+                        "id": msg_id + 100 + retry * 4,
+                        "method": "Input.dispatchKeyEvent",
+                        "params": {"type": ktype, "windowsVirtualKeyCode": vk, "code": "Escape", "key": "Escape"}
+                    }))
+                    try:
+                        await asyncio.wait_for(ws.recv(), timeout=2.0)
+                    except Exception:
+                        pass
+                await asyncio.sleep(0.4)
+
+            if not registered:
+                # Failsafe: dispatch Enter key via CDP
+                await ws.send(json.dumps({
+                    "id": msg_id + 99,
                     "method": "Input.dispatchKeyEvent",
                     "params": {"type": "rawKeyDown", "windowsVirtualKeyCode": 13, "code": "Enter", "key": "Enter"}
                 }))
@@ -1168,7 +1254,7 @@ async def post_prompt_to_zai(prompt_text: str) -> bool:
                 except Exception:
                     pass
                 await ws.send(json.dumps({
-                    "id": msg_id + 4,
+                    "id": msg_id + 100,
                     "method": "Input.dispatchKeyEvent",
                     "params": {"type": "keyUp", "windowsVirtualKeyCode": 13, "code": "Enter", "key": "Enter"}
                 }))
@@ -1176,7 +1262,6 @@ async def post_prompt_to_zai(prompt_text: str) -> bool:
                     await asyncio.wait_for(ws.recv(), timeout=2.0)
                 except Exception:
                     pass
-            print(f"Prompt posted successfully to Z.ai Chat ({val.get('method')})!")
             return True
     except Exception as e:
         print(f"Error posting prompt to Z.ai over CDP: {e}", file=sys.stderr)

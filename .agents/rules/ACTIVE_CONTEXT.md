@@ -33,6 +33,7 @@ trigger: always_on
     3. *Model 2 Pullback Short Protocol*: In a bear trend, never chase breakdowns at the lows. Wait for relief rallies into the EMA20/EMA50/VAH shelves backed by resting L2/L3 Ask Whale Walls (e.g. 7.79M USD Ask @ 82,670 on BTC) to defend stops.
     4. *Adaptive Risk Envelope (7.50 to 14.50 USD)*: Never discard a pristine 2.0R+ trend setup because 0.01 lot produces 8.50-9.50 USD risk (below an arbitrary 10.00 USD floor). An 8.50 USD risk on 0.01 lot is 0.17% equity risk and is fully authorized.
     5. *Broker Ticker Mapping*: Remember that Avalanche is mapped to `AVXUSD.p` on Blueberry Markets (Contract Size 100, min lot 0.01, digits 2).
+- **Z.AI HIGH-TRAFFIC MODEL-SWITCH POPUP RESILIENCE MANDATE (STRICT OPERATOR DIRECTIVE)**: Under peak traffic, Z.ai Chat may pop up a modal dialog asking to switch models rather than registering the prompt. When this occurs, NEVER switch models or abort; execute Escape (via CDP key event and DOM dispatch) to dismiss the modal, wait 350ms, and click the send button again. Repeating this 2 to 3 times forces Z.ai to register the prompt and begin generation.
 - **ZERO SPURIOUS SCRATCH LITTER**: Clean up all intermediate debug scripts immediately after validation.
 
 ## 2. Active Mission & Quantitative Target
