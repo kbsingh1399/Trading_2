@@ -1140,7 +1140,7 @@ async def check_zai_response() -> Tuple[bool, str]:
         if (createBtns.length > 0) {
           const latestCreateBtn = createBtns[createBtns.length - 1];
           const rawLabel = (latestCreateBtn.innerText || '').trim();
-          const match = rawLabel.match(/([A-Za-z0-9_.-]+\.md)/);
+          const match = rawLabel.match(/([A-Za-z0-9_.-]+\\.md)/);
           const targetFile = match ? match[1] : '';
           const curHeader = Array.from(document.querySelectorAll('.text-sm.flex-1.truncate.line-clamp-1')).map(e => (e.innerText || '').trim()).find(t => t.endsWith('.md')) || '';
           if (targetFile && curHeader !== targetFile) {

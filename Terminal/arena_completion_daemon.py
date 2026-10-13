@@ -158,7 +158,7 @@ async def probe_zai_state() -> dict:
             if (createBtns.length > 0) {
                 const latestCreateBtn = createBtns[createBtns.length - 1];
                 const rawLabel = (latestCreateBtn.innerText || '').trim();
-                const match = rawLabel.match(/([A-Za-z0-9_.-]+\.md)/);
+                const match = rawLabel.match(/([A-Za-z0-9_.-]+\\.md)/);
                 const targetFile = match ? match[1] : '';
                 const curHeader = Array.from(document.querySelectorAll('.text-sm.flex-1.truncate.line-clamp-1')).map(e => (e.innerText || '').trim()).find(t => t.endsWith('.md')) || '';
                 if (targetFile && curHeader !== targetFile) {
@@ -370,8 +370,8 @@ async def run_wait_for_completion(poll_interval: float = 2.0, timeout_s: float =
                                 flush=True,
                             )
 
-        # Wake up when BOTH are done (or if Z.ai never started generating within 60s, or exceeded 420s grace timeout)
-        zai_grace_limit = 420.0 if saw_zai_generating else 60.0
+        # Wake up when BOTH are done (or if Z.ai never started generating within 60s, or exceeded 720s grace timeout)
+        zai_grace_limit = 720.0 if saw_zai_generating else 60.0
         if arena_done and (zai_done or (time.time() - arena_done_ts) >= zai_grace_limit):
             if zai_active and not zai_done:
                 zstate = await probe_zai_state()

@@ -61,20 +61,21 @@ trigger: always_on
       * **Position Capacity Policy**:
         - Up to 4 concurrent tickets across orthogonal asset clusters provided total joint worst-case stopout risk unconditionally defends the 4,775.00 USD hard floor and 4,795.00 USD operating buffer (>= 20.00 USD cushion at all times).
     - Connects directly via native IPC to MetaTrader 5 Account 5064568 (Blueberry Markets).
-    - **Active Positions & Pending Orders (Live State — 1 Open Position | 1 Limit Order Resting)**:
-      * Current Status: **1 Open Position (`#18825384` `SOLUSD.p` `SHORT 0.13 lots` @ `107.70 USD`) | 1 Pending Order (`#18826511` `ETHUSD.pi` `SELL_LIMIT 0.50 lots` @ `2,518.50 USD`) | Balance: 4,880.27 USD (+16.10 USD BTC Full TP + +9.52 USD SOL Profit Lock banked) | Equity: ~4,874.68 USD | Margin Used: 700.05 USD | Free Margin: ~4,174.63 USD**.
-      * Active Positions (1 — Monitored every 15s by Autonomous Ratchet Daemon `task-50510` for Phase 0 BE @ `105.90` / Phase 1 Profit Lock @ `104.33` / Phase 2 Trailing @ `103.58`):
-        - **Ticket `#18825384` (`SOLUSD.p` `SHORT 0.13 lots` @ `107.70 USD` | `SL: 108.55 USD` | `TP: 103.58 USD`)**: Filled at `04:26:48 UTC`. Audited in Cycle 47 (`ARENA_COUNCIL_REPORT_20261013_0429Z.md` §3) as **`HOLD, NO MODIFICATION`**. `SL = 108.55 USD` sits behind `16.26M USD` total (`~7.0M+ USD` recurrence-verified `>= 180s`: `3.65M @ 108.80 [720s]`, `1.86M @ 108.39 [720s]`, `642k @ 108.96 [1,380s]`, `619k @ 108.96 [1,380s]`, `369k @ 108.77 [1,020s]`, `7.13M @ 109.74 [1,380s]` -> `>= 34x` wall defence over `[108–109]` `200k` buy-stop whisker), targeting the `11.61M USD` `[106.00–107.00]` sell-stop cascade down to `103.58 USD` (`+7.5 bps` front-run of `103.50` long cascade). `Nominal Risk = 11.05 USD` | `Reward = 53.56 USD` | `R:R = 4.85R`.
-      * Active Pending Orders (1 — Audited in Cycle 46/47 across `LIVE_COLLABORATIVE_ORDER_DESK_Cycle45_append.md` / `Cycle46_append.md` [Z.ai Chat], `ARENA_COUNCIL_REPORT_20261013_0429Z.md` [Arena.ai], and Antigravity):
-        - **Ticket `#18826511` (`ETHUSD.pi` `SELL_LIMIT 0.50 lots` @ `2,518.50 USD` | `SL: 2,545.00 USD` | `TP: 2,457.46 USD`)**: Confirmed **`(A) VIABLE — WAIT TO FILL AS-IS`** in Cycle 47 (`ARENA_COUNCIL_REPORT_20261013_0429Z.md` §4). Entry `2,518.50 USD` sits right above current MT5 mid `2,515.25–2,516.75 USD` (`0.14–0.47 ATR` away) with negative L2 book imbalance (`-0.69`), while `SL = 2,545.00 USD` sits behind `5.70M @ 2,534.50 [1,381s]`, `803k @ 2,538.00 [1,981s]`, `773k @ 2,538.50 [1,381s]`, and `0xab5e6f39`'s **`11.13M USD` Ask Whale fortress at `2,544.60 USD` (`4,990s` persistence at Session VAH `2,544.28`, `18.6x` verified wall defence)**, and `TP = 2,457.46 USD` front-runs the `[2,450–2,460]` long cascade by `10 bps`. `Nominal Risk = 13.25 USD` | `Reward = 30.52 USD` | `R:R = 2.30R`.
-      * G-1 Hard Floor Defense: Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Floor Cushion: **+99.68 USD live equity cushion (`+105.27 USD` balance cushion)**.
+    - **Active Positions & Pending Orders (Live State — 1 Open Position | 0 Limit Orders Resting)**:
+      * Current Status: **1 Open Position (`#18826511` `ETHUSD.pi` `SHORT 0.50 lots` @ `2,518.50 USD`, `SL = 2,555.00 USD`, `TP = 2,457.46 USD`) | 0 Pending Orders | Balance: 4,869.22 USD | Equity: ~4,864.12 USD | Margin Used: 629.63 USD | Free Margin: ~4,234.49 USD**.
+      * Active Positions (1 — Monitored every 15s by Autonomous Ratchet Daemon `task-50510` for Phase 0 BE / Phase 1 Profit Lock / Phase 2 Trailing):
+        - **Ticket `#18826511` (`ETHUSD.pi` `SHORT 0.50 lots` @ `2,518.50 USD` | `SL: 2,555.00 USD` | `TP: 2,457.46 USD`)**: Filled at `05:09:44 UTC` (`Deal #17036614`). Modified in Cycle 48 (`ARENA_COUNCIL_REPORT_20261013_0512Z.md` §4, `retcode=10009`) from `SL = 2,545.00 USD` -> **`SL = 2,555.00 USD`** (`+0.40 ATR` past `2,550.00`, the outer edge of the newly expanded `1.85M USD` `[2,540–2,550]` buy-stop squeeze band, and sheltered behind `12.9M USD` of recurrence-verified Ask Whale walls including `0xab5e6f39`'s **`11.13M USD` Ask Whale fortress at `2,544.60 USD` [`5,913s` persistence]** and `1.28M USD @ 2,550.00 [3,866s]`), with `TP = 2,457.46 USD` front-running the `16.9M USD` `[2,450–2,470]` long cascade by `10 bps`. `Nominal Risk = 18.25 USD` | `Reward = 30.52 USD`.
+      * Active Pending Orders (0):
+        - None (`3` capacity slots available in reserve ahead of `07:10 UTC` Fed Waller pre-event purge).
+      * G-1 Hard Floor Defense: Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Floor Cushion: **+89.12 USD live equity cushion (`+94.22 USD` balance cushion)**.
       * Stressed Post-Loss Simulation:
-        - Total Book Risk: **24.30 USD nominal (`34.38 USD` stressed at `1.25x + 2.00 USD/ticket`)** across `1` open position + `1` pending order.
-        - Stressed Worst-Case Equity: **4,845.89 USD** (`4,855.97 USD` unstressed — unconditionally defends floor!).
-        - Safety Cushion Above 4,775.00 USD Hard Floor: **+70.89 USD stressed (`+80.97 USD` unstressed)**.
-        - Safety Cushion Above 4,795.00 USD Operating Buffer: **+50.89 USD stressed (`+60.97 USD` unstressed)**.
-        - Capacity Slots Used: **2 / 4** (`2` slots available in reserve).
+        - Total Book Risk: **18.25 USD nominal (`24.81 USD` stressed at `1.25x + 2.00 USD/ticket`)** across `1` open position.
+        - Stressed Worst-Case Equity: **4,844.41 USD** (`4,850.97 USD` unstressed — unconditionally defends floor!).
+        - Safety Cushion Above 4,775.00 USD Hard Floor: **+69.41 USD stressed (`+75.97 USD` unstressed)**.
+        - Safety Cushion Above 4,795.00 USD Operating Buffer: **+49.41 USD stressed (`+55.97 USD` unstressed)**.
+        - Capacity Slots Used: **1 / 4** (`3` slots available in reserve).
       * Closed Trades Today (Realized PnL):
+        - Ticket #18825384 (`SOLUSD.p` closed at **-11.05 USD loss** via Stop Loss at 108.55 USD after `108.34 / 108.75` Ask Whale walls relocated above 108.55 to 108.68 / 109.22)
         - Ticket #18813767 (`BTCUSD.pi` closed at **+16.10 USD cash profit** via Full Take Profit at 81,845.00 USD, Deal #17024690, +1.71R banked after Phase 0 BE Lock at 82,579.50 USD)
         - Ticket #18813768 (`SOLUSD.p` closed at **+9.52 USD cash profit** via Autonomous Ratchet Daemon Phase 1 Profit Lock Stop Loss at 107.32 USD, Deal #17024104, +0.80R banked)
         - Ticket #18813343 (`BTCUSD.pi` closed at **-11.58 USD loss** via Stop Loss at 82,158.00 USD, Deal #17022979, during market cascade)
