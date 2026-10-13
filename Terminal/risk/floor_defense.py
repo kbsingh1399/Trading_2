@@ -21,7 +21,7 @@ logger = logging.getLogger("FloorDefense")
 
 HARD_FLOOR_USD    = 4_775.00
 BUFFER_USD        =    20.00
-MIN_RISK_USD      =    10.00
+MIN_RISK_USD      =     7.50
 MAX_RISK_USD      =    20.00
 
 # Cluster map for correlation governor
