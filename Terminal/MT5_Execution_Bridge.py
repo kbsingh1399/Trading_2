@@ -238,6 +238,20 @@ class MT5ExecutionBridge:
             "currency_profit": getattr(info, "currency_profit", None)
         }
 
+    def get_recent_ticks(self, symbol: str, count: int = 1000) -> List[Any]:
+        """Fetch recent ticks for synthetic orderflow and tick-direction calculation."""
+        if not MT5_AVAILABLE or not self.ensure_connected():
+            return []
+        try:
+            sym_tick = mt5.symbol_info_tick(symbol)
+            if not sym_tick:
+                return []
+            t_from = sym_tick.time - 900
+            ticks = mt5.copy_ticks_from(symbol, t_from, max(10, int(count)), mt5.COPY_TICKS_ALL)
+            return list(ticks) if ticks is not None else []
+        except Exception:
+            return []
+
     def get_recent_bars(self, symbol: str, count: int = 96, timeframe: Any = None) -> List[Dict[str, Any]]:
         """Return completed MT5 bars for the local regime classifier.
 

@@ -17,7 +17,7 @@ import time
 import urllib.request
 import uuid
 from concurrent.futures import ThreadPoolExecutor
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from typing import Any, Dict, List, Optional, Tuple
 
 import numpy as np
@@ -231,6 +231,343 @@ def fetch_crypto_cvd_buckets(asset: str) -> Tuple[str, List[Dict[str, Any]]]:
         except Exception:
             continue
     return asset, buckets
+
+
+def compute_multi_horizon_cvd_metrics(bars_15m: List[Dict[str, Any]], now_ts: float) -> Dict[str, Any]:
+    """Calculate multi-horizon Cumulative Volume Delta (CVD) metrics and divergence classification.
+    
+    Horizons:
+    - session_cvd_usd: from today's 00:00:00 UTC
+    - weekly_cvd_usd: from Monday 00:00:00 UTC
+    - cvd_24h_usd: trailing 24 hours (96 15m bars)
+    - bar_delta_15m_usd: delta of latest completed 15m bar
+    - divergence: BULLISH_ABSORPTION, BEARISH_EXHAUSTION, BULLISH_MOMENTUM, BEARISH_MOMENTUM, or NEUTRAL
+    """
+    if not bars_15m:
+        return {
+            "session_cvd_usd": 0.0,
+            "weekly_cvd_usd": 0.0,
+            "cvd_24h_usd": 0.0,
+            "bar_delta_15m_usd": 0.0,
+            "divergence": "UNAVAILABLE",
+            "bars_count": 0
+        }
+
+    dt_now = datetime.fromtimestamp(now_ts, timezone.utc)
+    midnight_utc = dt_now.replace(hour=0, minute=0, second=0, microsecond=0).timestamp()
+    monday_utc = (dt_now - timedelta(days=dt_now.weekday())).replace(hour=0, minute=0, second=0, microsecond=0).timestamp()
+
+    session_deltas: List[float] = []
+    weekly_deltas: List[float] = []
+    trailing_24h_deltas: List[float] = []
+
+    for b in bars_15m:
+        ts = float(b.get("ts", b.get("time", 0)))
+        delta = float(b.get("delta", b.get("cvd_delta_usd", 0.0)))
+        if delta == 0.0:
+            q_vol = float(b.get("quote_vol", b.get("total_vol_usd", 0.0)))
+            t_buy = float(b.get("taker_buy", b.get("taker_buy_usd", 0.0)))
+            if q_vol > 0:
+                delta = t_buy - (q_vol - t_buy)
+
+        if ts >= midnight_utc:
+            session_deltas.append(delta)
+        if ts >= monday_utc:
+            weekly_deltas.append(delta)
+        trailing_24h_deltas.append(delta)
+
+    session_cvd = round(float(sum(session_deltas)), 2)
+    weekly_cvd = round(float(sum(weekly_deltas)), 2)
+    cvd_24h = round(float(sum(trailing_24h_deltas[-96:])), 2)
+    last_bar_delta = round(float(trailing_24h_deltas[-1] if trailing_24h_deltas else 0.0), 2)
+
+    lookback = min(16, len(bars_15m))
+    divergence = "NEUTRAL"
+    if lookback >= 4:
+        sub_bars = bars_15m[-lookback:]
+        p_start = float(sub_bars[0].get("close", sub_bars[0].get("open", 0.0)))
+        p_end = float(sub_bars[-1].get("close", 0.0))
+        price_diff = p_end - p_start
+        delta_sum = sum(float(b.get("delta", b.get("cvd_delta_usd", 0.0))) for b in sub_bars)
+        if delta_sum == 0.0:
+            delta_sum = sum(
+                float(b.get("taker_buy", b.get("taker_buy_usd", 0.0))) - 
+                (float(b.get("quote_vol", b.get("total_vol_usd", 0.0))) - float(b.get("taker_buy", b.get("taker_buy_usd", 0.0))))
+                for b in sub_bars
+            )
+
+        if price_diff < 0 and delta_sum > 0:
+            divergence = "BULLISH_ABSORPTION"
+        elif price_diff > 0 and delta_sum < 0:
+            divergence = "BEARISH_EXHAUSTION"
+        elif price_diff > 0 and delta_sum > 0:
+            divergence = "BULLISH_MOMENTUM"
+        elif price_diff < 0 and delta_sum < 0:
+            divergence = "BEARISH_MOMENTUM"
+
+    return {
+        "session_cvd_usd": session_cvd,
+        "weekly_cvd_usd": weekly_cvd,
+        "cvd_24h_usd": cvd_24h,
+        "bar_delta_15m_usd": last_bar_delta,
+        "divergence": divergence,
+        "bars_count": len(bars_15m)
+    }
+
+
+def fetch_crypto_multi_horizon_cvd(asset: str) -> Tuple[str, Dict[str, Any]]:
+    """Fetch trailing 192x15m Binance klines and compute multi-horizon CVD metrics."""
+    bin_sym = f"{asset}USDT"
+    bars_15m: List[Dict[str, Any]] = []
+    urls = [
+        f"https://data-api.binance.vision/api/v3/klines?symbol={bin_sym}&interval=15m&limit=192",
+        f"https://api.binance.com/api/v3/klines?symbol={bin_sym}&interval=15m&limit=192",
+        f"https://fapi.binance.com/fapi/v1/klines?symbol={bin_sym}&interval=15m&limit=192"
+    ]
+    for url in urls:
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+            with urllib.request.urlopen(req, timeout=4) as resp:
+                klines = json.loads(resp.read())
+            now_ms = time.time() * 1000
+            for k in klines:
+                close_ts = int(k[6])
+                if close_ts > now_ms:
+                    continue
+                quote_vol = float(k[7])
+                taker_buy = float(k[10])
+                bars_15m.append({
+                    "ts": int(k[0]) // 1000,
+                    "open": float(k[1]), "high": float(k[2]), "low": float(k[3]), "close": float(k[4]),
+                    "quote_vol": quote_vol,
+                    "taker_buy": taker_buy,
+                    "delta": round(taker_buy - (quote_vol - taker_buy), 2)
+                })
+            if bars_15m:
+                break
+        except Exception:
+            continue
+    metrics = compute_multi_horizon_cvd_metrics(bars_15m, time.time())
+    return asset, metrics
+
+
+def compute_tradfi_tick_orderflow(ticks: List[Any], now_ts: float) -> Dict[str, Any]:
+    """Calculate synthetic orderflow and OFI from MT5 tick feed using Lee-Ready tick aggressor rule."""
+    if not ticks:
+        return {
+            "status": "UNAVAILABLE",
+            "tick_count_analyzed": 0,
+            "session_tick_cvd": 0.0,
+            "15m_tick_cvd": 0.0,
+            "5m_tick_cvd": 0.0,
+            "flow_bias": "NEUTRAL",
+            "order_flow_imbalance_ofi": 0.0,
+            "source": "MT5_L1_TICK_STREAM"
+        }
+
+    parsed_ticks = []
+    for t in ticks:
+        if hasattr(t, "dtype") and getattr(t, "dtype", None) is not None and hasattr(t.dtype, "names") and t.dtype.names:
+            t_time = float(t['time'])
+            bid = float(t['bid'])
+            ask = float(t['ask'])
+            last = float(t['last'])
+            v_raw = t['volume_real'] if 'volume_real' in t.dtype.names and float(t['volume_real']) > 0 else (t['volume'] if 'volume' in t.dtype.names and float(t['volume']) > 0 else 1.0)
+            vol = float(v_raw) if float(v_raw) > 0 else 1.0
+        elif isinstance(t, dict):
+            t_time = float(t.get("time", 0))
+            bid = float(t.get("bid", 0.0))
+            ask = float(t.get("ask", 0.0))
+            last = float(t.get("last", 0.0))
+            v_raw = t.get("volume_real") or t.get("volume") or 1.0
+            vol = float(v_raw) if float(v_raw) > 0 else 1.0
+        elif isinstance(t, (tuple, list)):
+            t_time = float(t[0])
+            bid = float(t[1])
+            ask = float(t[2])
+            last = float(t[3])
+            vol = float(t[4]) if len(t) > 4 and float(t[4]) > 0 else 1.0
+        else:
+            t_time = float(getattr(t, "time", 0))
+            bid = float(getattr(t, "bid", 0.0))
+            ask = float(getattr(t, "ask", 0.0))
+            last = float(getattr(t, "last", 0.0))
+            v_raw = getattr(t, "volume_real", 0) or getattr(t, "volume", 0)
+            vol = float(v_raw) if float(v_raw) > 0 else 1.0
+        parsed_ticks.append((t_time, bid, ask, last, vol))
+
+    if not parsed_ticks:
+        return {
+            "status": "UNAVAILABLE",
+            "tick_count_analyzed": 0,
+            "session_tick_cvd": 0.0,
+            "15m_tick_cvd": 0.0,
+            "5m_tick_cvd": 0.0,
+            "flow_bias": "NEUTRAL",
+            "order_flow_imbalance_ofi": 0.0,
+            "source": "MT5_L1_TICK_STREAM"
+        }
+
+    t_max = max(pt[0] for pt in parsed_ticks)
+    dt_now = datetime.fromtimestamp(t_max, timezone.utc)
+    midnight_utc = dt_now.replace(hour=0, minute=0, second=0, microsecond=0).timestamp()
+    t_15m_ago = t_max - 900
+    t_5m_ago = t_max - 300
+
+    session_deltas: List[float] = []
+    deltas_15m: List[float] = []
+    deltas_5m: List[float] = []
+    bid_changes: List[int] = []
+    ask_changes: List[int] = []
+
+    prev_mid: Optional[float] = None
+    prev_bid: Optional[float] = None
+    prev_ask: Optional[float] = None
+    prev_sign: int = 0
+
+    for t_time, bid, ask, last, vol in parsed_ticks:
+        mid = (bid + ask) / 2.0 if (bid > 0 and ask > 0) else last
+        if mid <= 0:
+            continue
+
+        sign = 0
+        if last > 0 and prev_mid is not None:
+            if last > prev_mid:
+                sign = 1
+            elif last < prev_mid:
+                sign = -1
+            else:
+                sign = prev_sign
+        elif prev_bid is not None and prev_ask is not None:
+            if bid > prev_bid or ask > prev_ask:
+                sign = 1
+            elif bid < prev_bid or ask < prev_ask:
+                sign = -1
+            else:
+                sign = 0
+        else:
+            sign = 0
+
+        prev_sign = sign
+        signed_tick_vol = sign * vol
+
+        if t_time >= midnight_utc:
+            session_deltas.append(signed_tick_vol)
+        if t_time >= t_15m_ago:
+            deltas_15m.append(signed_tick_vol)
+        if t_time >= t_5m_ago:
+            deltas_5m.append(signed_tick_vol)
+
+        if prev_bid is not None and prev_ask is not None:
+            bid_changes.append(1 if bid > prev_bid else (-1 if bid < prev_bid else 0))
+            ask_changes.append(-1 if ask > prev_ask else (1 if ask < prev_ask else 0))
+
+        prev_mid = mid
+        prev_bid = bid
+        prev_ask = ask
+
+    sess_cvd = round(float(sum(session_deltas)), 2)
+    c15_cvd = round(float(sum(deltas_15m)), 2)
+    c5_cvd = round(float(sum(deltas_5m)), 2)
+
+    total_quote_updates = len(bid_changes)
+    if total_quote_updates > 0:
+        ofi_raw = (sum(bid_changes) + sum(ask_changes)) / float(total_quote_updates)
+        ofi = round(float(np.clip(ofi_raw, -1.0, 1.0)), 3)
+    else:
+        ofi = 0.0
+
+    if c15_cvd > 5:
+        flow_bias = "BUYER_AGGRESSION"
+    elif c15_cvd < -5:
+        flow_bias = "SELLER_AGGRESSION"
+    else:
+        flow_bias = "NEUTRAL"
+
+    return {
+        "status": "CALCULATED_FROM_MT5_TICKS",
+        "tick_count_analyzed": len(parsed_ticks),
+        "session_tick_cvd": sess_cvd,
+        "15m_tick_cvd": c15_cvd,
+        "5m_tick_cvd": c5_cvd,
+        "flow_bias": flow_bias,
+        "order_flow_imbalance_ofi": ofi,
+        "source": "MT5_L1_TICK_STREAM"
+    }
+
+
+def compute_htf_auction_profiles(bars: List[Dict[str, Any]], now_ts: float) -> Dict[str, Any]:
+    """Compute Prior Day and Prior Week POC, VAH, VAL, and Weekly Developing VWAP."""
+    if not bars:
+        return {
+            "prior_day_poc": None, "prior_day_vah": None, "prior_day_val": None,
+            "prior_week_poc": None, "prior_week_vah": None, "prior_week_val": None,
+            "weekly_vwap": None, "source": "UNAVAILABLE_NO_BARS"
+        }
+
+    if len(bars) >= 192:
+        day_bars = bars[-192:-96]
+    elif len(bars) >= 96:
+        day_bars = bars[:48]
+    else:
+        day_bars = bars[:max(1, len(bars)//2)]
+
+    week_bars = bars[-672:] if len(bars) >= 672 else bars
+
+    day_profile = compute_volume_profile(day_bars)
+    week_profile = compute_volume_profile(week_bars)
+
+    dt_now = datetime.fromtimestamp(now_ts, timezone.utc)
+    monday_utc = (dt_now - timedelta(days=dt_now.weekday())).replace(hour=0, minute=0, second=0, microsecond=0).timestamp()
+
+    w_bars = [b for b in bars if float(b.get("time", b.get("ts", 0))) >= monday_utc]
+    if not w_bars:
+        w_bars = bars[-96:]
+
+    w_vols = [float(b.get("volume", b.get("real_volume", b.get("tick_volume", 0.0)))) for b in w_bars]
+    w_mids = [(float(b.get("high", 0.0)) + float(b.get("low", 0.0))) / 2.0 for b in w_bars]
+    total_w_vol = sum(w_vols)
+
+    if total_w_vol > 0 and w_mids:
+        weekly_vwap = round(float(sum(m * v for m, v in zip(w_mids, w_vols)) / total_w_vol), 4)
+    else:
+        weekly_vwap = None
+
+    return {
+        "prior_day_poc": day_profile.get("poc"),
+        "prior_day_vah": day_profile.get("vah"),
+        "prior_day_val": day_profile.get("val"),
+        "prior_week_poc": week_profile.get("poc"),
+        "prior_week_vah": week_profile.get("vah"),
+        "prior_week_val": week_profile.get("val"),
+        "weekly_vwap": weekly_vwap,
+        "source": "MT5_COMPLETED_15M_BARS"
+    }
+
+
+def detect_trapped_traders(
+    poc_price: Optional[float],
+    poc_delta: Optional[float],
+    current_price: Optional[float],
+    low_price: Optional[float],
+    high_price: Optional[float]
+) -> str:
+    """Classify trapped buyer / trapped seller liquidity absorption."""
+    if any(x is None for x in (poc_price, poc_delta, current_price, low_price, high_price)):
+        return "BALANCED"
+    rng = float(high_price - low_price)
+    if rng <= 0:
+        return "BALANCED"
+
+    is_upper_third = poc_price >= (low_price + 0.65 * rng)
+    is_lower_third = poc_price <= (low_price + 0.35 * rng)
+
+    if is_upper_third and poc_delta > 0 and current_price < poc_price:
+        return "TRAPPED_BUYERS_ABOVE"
+    if is_lower_third and poc_delta < 0 and current_price > poc_price:
+        return "TRAPPED_SELLERS_BELOW"
+
+    return "BALANCED"
 
 
 def fetch_crypto_htf_ohlcv(asset: str) -> Tuple[str, List[Dict], List[Dict]]:
@@ -977,6 +1314,7 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
     crypto_ois: Dict[str, Dict[str, Any]] = {}
     crypto_prems: Dict[str, Dict[str, Any]] = {}
     crypto_cvd: Dict[str, List[Dict]] = {}
+    crypto_multi_cvd: Dict[str, Dict[str, Any]] = {}
     crypto_htf_4h: Dict[str, List[Dict]] = {}
     crypto_htf_d1: Dict[str, List[Dict]] = {}
     crypto_funding_hist: Dict[str, List[Dict]] = {}
@@ -1008,6 +1346,10 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
         # NEW: CVD buckets (60x1min)
         for asset, buckets in ex.map(fetch_crypto_cvd_buckets, CRYPTO_ASSETS):
             crypto_cvd[asset] = buckets
+
+        # NEW: Multi-horizon CVD (session, weekly, 24h, divergence)
+        for asset, m_metrics in ex.map(fetch_crypto_multi_horizon_cvd, CRYPTO_ASSETS):
+            crypto_multi_cvd[asset] = m_metrics
 
         # Independent Binance reference history, venue separate from broker HTF.
         for asset, bars_4h, bars_d1 in ex.map(fetch_crypto_htf_ohlcv, CRYPTO_ASSETS):
@@ -1728,6 +2070,31 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
             pioneer_reason = "No observed stop/liquidation bands or cross-venue execution validation; no trade authorization"
         confluence_trade_setup = None
 
+        # Multi-horizon CVD and TradFi synthetic orderflow computation
+        is_crypto = asset in CRYPTO_ASSETS
+        if is_crypto:
+            multi_horizon_cvd = crypto_multi_cvd.get(asset) or compute_multi_horizon_cvd_metrics([], now_ts)
+            tradfi_orderflow = {
+                "status": "CRYPTO_USES_BINANCE_TAKER_CVD",
+                "session_tick_cvd": multi_horizon_cvd.get("session_cvd_usd"),
+                "flow_bias": multi_horizon_cvd.get("divergence")
+            }
+        else:
+            ticks = bridge.get_recent_ticks(broker_sym, count=1000) if (bridge.initialized and broker_sym and hasattr(bridge, "get_recent_ticks")) else []
+            tradfi_orderflow = compute_tradfi_tick_orderflow(ticks, now_ts)
+            multi_horizon_cvd = {
+                "status": "TRADFI_USES_MT5_TICK_CVD",
+                "session_cvd_usd": tradfi_orderflow.get("session_tick_cvd"),
+                "divergence": tradfi_orderflow.get("flow_bias")
+            }
+
+        htf_auction_profiles = compute_htf_auction_profiles(bars, candle_cutoff)
+        poc_ref = htf_auction_profiles.get("prior_day_poc") or (vol_profile.get("poc") if isinstance(vol_profile, dict) else None)
+        poc_delta_ref = multi_horizon_cvd.get("bar_delta_15m_usd") if is_crypto else tradfi_orderflow.get("15m_tick_cvd")
+        recent_low = min(float(b.get("low", 0.0)) for b in bars[-16:]) if bars else None
+        recent_high = max(float(b.get("high", 0.0)) for b in bars[-16:]) if bars else None
+        trapped_traders_signal = detect_trapped_traders(poc_ref, poc_delta_ref, mid_price, recent_low, recent_high)
+
         assets_matrix[asset] = {
             "symbol_broker": broker_sym or asset,
             "category": "CRYPTO" if asset in CRYPTO_ASSETS else ("INDICES" if asset in INDICES_ASSETS else ("COMMODITIES" if asset in COMMODITIES_ASSETS else "FOREX")),
@@ -1797,6 +2164,10 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                 } if asset in CRYPTO_ASSETS else None
             ),
             "cvd_1m_buckets": crypto_cvd.get(asset, []) if asset in CRYPTO_ASSETS else None,
+            "multi_horizon_cvd": multi_horizon_cvd,
+            "tradfi_orderflow": tradfi_orderflow,
+            "htf_auction_profiles": htf_auction_profiles,
+            "trapped_traders_signal": trapped_traders_signal,
             "bars_15m_ohlcv": [
                 {
                     "ts": int(b["time"]),

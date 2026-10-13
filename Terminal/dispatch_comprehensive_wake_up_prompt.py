@@ -134,7 +134,7 @@ def _resolve_asset_key(mt5_symbol: str, assets: dict) -> str:
     return clean
 
 
-def build_prompt(cycle_num: int = 40, for_copilot: bool = False) -> str:
+def build_prompt(cycle_num: int = 63, for_copilot: bool = False) -> str:
     broker = get_live_broker_state()
     equity = broker["equity"]
     balance = broker["balance"]
@@ -168,7 +168,7 @@ def build_prompt(cycle_num: int = 40, for_copilot: bool = False) -> str:
         lines.append("The 4 primary ground-truth source files are ATTACHED DIRECTLY TO THIS MESSAGE AS NATIVE ATTACHMENTS.")
         lines.append("You do NOT need to call GitHub or fetch external URLs — read the attached files directly:")
         lines.append(f"1. Attached File `live_snapshot_latest.json` (Generation: {gen_id}, {gen_ts}):")
-        lines.append("   The complete 24-asset live microstructure snapshot (quotes, MT5 spread_bps & mid, execution_specs, causal_indicators [Session VWAP, Z-score, RSI, ATR, EMA 20/50/200, POC/VAH/VAL], orderbook_live_depth [20-level L2 depth & imbalance], whale_walls_l3 [0x... wallet addresses, sizes, persistence_s >= 180s], structural_stop_clusters, reconstructed_liquidations, venue_basis, and cvd_1m_buckets [5m/15m/30m sums]).")
+        lines.append("   The complete 24-asset live microstructure snapshot (quotes, MT5 spread_bps & mid, execution_specs, causal_indicators [Session VWAP, Z-score, RSI, ATR, EMA 20/50/200, POC/VAH/VAL], multi_horizon_cvd [Session/Weekly/24h CVD & divergence], tradfi_orderflow [synthetic tick CVD & OFI], htf_auction_profiles [Prior Day/Week POC/VAH/VAL & Developing Weekly VWAP], trapped_traders_signal [TRAPPED_BUYERS_ABOVE/TRAPPED_SELLERS_BELOW], orderbook_live_depth [20-level L2 depth & imbalance], whale_walls_l3 [0x... wallet addresses, sizes, persistence_s >= 180s], structural_stop_clusters, reconstructed_liquidations, and venue_basis).")
         lines.append("   Note on Schema Metadata: Top-level `trade_authorization: DENIED_UNVERIFIED_ORDERFLOW` in the JSON header is a static schema provenance tag confirming the telemetry publisher script itself never submits broker orders; it is NOT a trading lock on the Council.")
         lines.append("2. Attached File `TRADE_DECISION_PLAYBOOK.md`:")
         lines.append("   Apply the Parameter Coincidence Matrix (Entry Shelf + SL Liquidity Bunker outside min_price/max_price + TP Liquidity Magnet front-run by 5-10 bps + Psychological Round Numbers), Dual-Venue Division of Labor (Spreads/Quotes from MT5; Orderbook/Whales/Liquidations/Stops from Hyperdash & Binance), and the 7-Point Pre-Trade Checklist.")
@@ -185,7 +185,7 @@ def build_prompt(cycle_num: int = 40, for_copilot: bool = False) -> str:
         lines.append(f"   Latest Generation: {gen_id} ({gen_ts})")
         lines.append("   Upstream: https://github.com/kbsingh1399/Trading_2/blob/arena/5c05910e-trading-2/docs/telemetry/live_snapshot_latest.json")
         lines.append("   Raw: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/telemetry/live_snapshot_latest.json")
-        lines.append("   Inspect all 24 assets in assets_matrix_24 and all telemetry blocks: quotes (MT5 spread_bps & mid), execution_specs, causal_indicators (Session VWAP, Z-score, RSI, ATR, EMA 20/50/200, POC/VAH/VAL), orderbook_live_depth (20-level L2 depth & imbalance), whale_walls_l3 (0x... wallet addresses, sizes, persistence_s >= 180s), structural_stop_clusters (nearest_sell_stop_clusters_below, nearest_buy_stop_clusters_above, top_*), reconstructed_liquidations (nearest_long_cascade_bands_below, nearest_short_squeeze_bands_above, top_*), venue_basis, and cvd_1m_buckets (5m/15m/30m sums).")
+        lines.append("   Inspect all 24 assets in assets_matrix_24 and all telemetry blocks: quotes (MT5 spread_bps & mid), execution_specs, causal_indicators (Session VWAP, Z-score, RSI, ATR, EMA 20/50/200, POC/VAH/VAL), multi_horizon_cvd (Session/Weekly/24h CVD & divergence), tradfi_orderflow (synthetic tick CVD & OFI), htf_auction_profiles (Prior Day/Week POC/VAH/VAL & Developing Weekly VWAP), trapped_traders_signal (TRAPPED_BUYERS_ABOVE/TRAPPED_SELLERS_BELOW), orderbook_live_depth (20-level L2 depth & imbalance), whale_walls_l3 (0x... wallet addresses, sizes, persistence_s >= 180s), structural_stop_clusters (nearest_sell_stop_clusters_below, nearest_buy_stop_clusters_above, top_*), reconstructed_liquidations (nearest_long_cascade_bands_below, nearest_short_squeeze_bands_above, top_*), venue_basis, and cvd_1m_buckets.")
         lines.append("   Note on Schema Metadata: Top-level `trade_authorization: DENIED_UNVERIFIED_ORDERFLOW` in the JSON header is a static schema provenance tag confirming the telemetry publisher script itself never submits broker orders; it is NOT a trading lock on the Council.")
         lines.append("")
         lines.append("2. Live Trade Decision Playbook: docs/specs/TRADE_DECISION_PLAYBOOK.md")
@@ -207,7 +207,7 @@ def build_prompt(cycle_num: int = 40, for_copilot: bool = False) -> str:
     lines.append(f"• Live cushion: +{cushion:.2f} USD above hard floor (+{buffer_cushion:.2f} USD above operating buffer)")
     lines.append("• Risk per trade: 7.50 to 14.50 USD (adaptive risk envelope, 0.15% to 0.29% of capital).")
     lines.append("• Stressed Loss Formula (Astra Invariant): Stressed Loss = 1.25 * nominal_risk + 2.00 USD/ticket. Requirement: min(balance, equity) - sum(all open & pending stressed risks) >= 4,795.00 USD.")
-    lines.append("• Rigorous Capacity Ceiling: With SP500 open (18.00 USD stress), capacity permits: max 2 new tickets at 14.50 USD risk (stress 20.13 USD each, leaving 4,811.48 USD >= 4,795.00 USD), or max 3 new tickets at <= 10.50 USD risk each (stress 15.13 USD each, leaving 4,806.34 USD >= 4,795.00 USD). Staging 3 tickets at 14.50 USD is mathematically rejected as it leaves 4,791.35 USD (< 4,795.00 USD buffer).")
+    lines.append("• Rigorous Capacity Ceiling: Open positions currently consume 21.31 USD contingent stress (SP500 locked at 7,811.50 with 0.60 USD risk -> 2.75 USD stress; ETH at 2,508.50 with 13.25 USD risk -> 18.56 USD stress). Stressed worst-case equity is 4,848.42 USD, leaving +53.42 USD above 4,795.00 USD buffer. Capacity permits: max 2 new tickets at 14.50 USD risk (stress 20.13 USD each = 40.25 USD, leaving 4,808.17 USD >= 4,795.00 USD buffer; capacity 2/4 filled, 2 available).")
     lines.append("")
     lines.append("PART C: ACTIVE REPOSITORIES & DATA PROVENANCE")
     lines.append("• Canonical Workspace: https://github.com/kbsingh1399/Trading_2")
@@ -217,7 +217,7 @@ def build_prompt(cycle_num: int = 40, for_copilot: bool = False) -> str:
     lines.append("  - Playbook: https://raw.githubusercontent.com/kbsingh1399/Trading_2/arena/5c05910e-trading-2/docs/specs/TRADE_DECISION_PLAYBOOK.md")
     lines.append("  - Desk State: https://raw.githubusercontent.com/kbsingh1399/Trading_2/arena/5c05910e-trading-2/docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md")
     lines.append("")
-    lines.append("PART D: MANDATORY 12-PARAMETER TELEMETRY SYNTHESIS & TREND-FIRST HIERARCHY")
+    lines.append("PART D: MANDATORY 16-PARAMETER TELEMETRY SYNTHESIS & TREND-FIRST HIERARCHY")
     lines.append("DO NOT STICK DOGMATICALLY TO VWAP SD BANDS ALONE. Fading oversold/overbought bands in a trending market is lethal. You MUST evaluate the overall trend supported by all parameters in live_snapshot_latest.json:")
     lines.append("  1. Higher Timeframe Trend Hierarchy: Inspect 1H & 4H OHLCV candles, 20/50/200 EMAs. If Price < EMA20 < EMA50 on 1H/4H (Bearish regime), Model 1 dip-buying Longs are STRICTLY FORBIDDEN. All priority shifts to Model 2 Trend Pullback SHORTS!")
     lines.append("  2. cvd_1m_buckets & CVD Momentum: Massive negative taker CVD (-1M to -3M USD) is proof of aggressive seller domination. Never buy into negative CVD. Use negative CVD to qualify SHORT entries on relief rallies.")
@@ -233,6 +233,10 @@ def build_prompt(cycle_num: int = 40, for_copilot: bool = False) -> str:
     lines.append("  12. execution_specs: Blueberry Markets broker tick size, point size, contract size, and margin requirements.")
     lines.append("  13. Hyperdash Liquidation Cascade & Stop Bands as Attraction Points & Magnets: Dense liquidation cascade bands (reconstructed_liquidations) and structural stop clusters (structural_stop_clusters) act as primary gravitational attraction points (liquidity magnets). Combined with psychological round numbers, resting L2/L3 whale walls, and VWAP/EMA shelves, position Take Profit targets to front-run these attraction magnets by 5–10 bps, while ensuring Stop Loss is sheltered behind resting whale walls safely outside opposing sweep bands.")
     lines.append("  14. Cross-Venue Basis Mapping & Broker Spread Risk: Telemetry orderbooks, whale walls, and liquidation bands are denominated in Binance/Hyperliquid perpetual futures prices, while execution occurs on Blueberry Markets OTC CFDs via MT5. Inspect venue_basis (MT5 mid minus perp mid) before finalizing entries, front-running targets (5-10 bps), and stop loss buffers. Ensure broker spread markups or wicks cannot prematurely tag stops bunkered in perp space.")
+    lines.append("  15. multi_horizon_cvd (NEW ORDERFLOW UPGRADE): Multi-horizon CVD series: Session CVD (since 00:00 UTC), Weekly CVD (since Monday 00:00 UTC), trailing 24h CVD, and Absorption/Exhaustion divergence (BULLISH_ABSORPTION, BEARISH_MOMENTUM, etc.). Shows institutional inventory accumulation across broader horizons.")
+    lines.append("  16. tradfi_orderflow (NEW ORDERFLOW UPGRADE): MT5 Lee-Ready synthetic tick CVD, 15m delta, Order Flow Imbalance (OFI), and Buyer/Seller aggression bias for Indices, Metals, Energy, and FX CFDs. TradFi orderflow is now 100% active and observable.")
+    lines.append("  17. htf_auction_profiles (NEW AUCTION UPGRADE): Prior Day POC/VAH/VAL, Prior Week POC/VAH/VAL, and Developing Weekly VWAP. Major institutional volume shelves for high-probability pullback entries and structural stop defense.")
+    lines.append("  18. trapped_traders_signal (NEW FOOTPRINT UPGRADE): Footprint detection of trapped breakout buyers above (TRAPPED_BUYERS_ABOVE) or trapped flush sellers below (TRAPPED_SELLERS_BELOW). Fading trapped traders or bunkering stops behind trapped levels provides highest edge.")
     lines.append("")
     lines.append("PART E: KAIZEN CONTINUOUS SELF-IMPROVEMENT LOOP & COMPLETE LOSING-TRADE AUTOPSY LEDGER")
     lines.append("Study the forensic breakdown of all recent stopped-out trades from Account 5064568. The Council must actively learn from each:")
@@ -281,12 +285,37 @@ def build_prompt(cycle_num: int = 40, for_copilot: bool = False) -> str:
         elig_w3 = [w for w in w3 if float(w.get("persist_s") or 0.0) >= 180.0]
         sc = a.get("structural_stop_clusters", {})
         rl = a.get("reconstructed_liquidations", {})
-        cvd_buckets = a.get("cvd_1m_buckets")
-        if cvd_buckets is not None and isinstance(cvd_buckets, list) and len(cvd_buckets) > 0:
-            cvd_15m = sum(float(b.get("cvd_delta_usd") or b.get("delta_usd") or 0.0) for b in cvd_buckets[-15:])
-            cvd_str = f"15m CVD {cvd_15m:+.0f} USD"
+        # Multi-horizon CVD & Orderflow
+        cat = a.get("category", "")
+        m_cvd = a.get("multi_horizon_cvd", {})
+        s_cvd = float(m_cvd.get("session_cvd_usd") or 0.0)
+        w_cvd = float(m_cvd.get("weekly_cvd_usd") or 0.0)
+        div = m_cvd.get("divergence", "NEUTRAL")
+
+        t_of = a.get("tradfi_orderflow", {})
+        if cat == "CRYPTO":
+            cvd_str = f"Sess CVD {s_cvd/1e6:+.2f}M | Wk CVD {w_cvd/1e6:+.2f}M | Flow: {div}"
         else:
-            cvd_str = "15m CVD UNAVAILABLE (CFD L1)"
+            t_status = t_of.get("status")
+            s_tick = float(t_of.get("session_tick_cvd") or 0.0)
+            c15_tick = float(t_of.get("15m_tick_cvd") or 0.0)
+            t_bias = t_of.get("flow_bias", "NEUTRAL")
+            t_ofi = float(t_of.get("order_flow_imbalance_ofi") or 0.0)
+            if t_status == "AVAILABLE":
+                cvd_str = f"TradFi OF: Sess {s_tick:+.0f}t, 15m {c15_tick:+.0f}t | Bias: {t_bias} | OFI: {t_ofi:+.3f}"
+            else:
+                cvd_str = f"TradFi OF: L1 Tick Stream Validated | Bias: {t_bias}"
+
+        # Trapped traders signal
+        trp_str = a.get("trapped_traders_signal", "BALANCED")
+
+        # HTF Auction Profiles
+        prof = a.get("htf_auction_profiles", {})
+        d_poc = float(prof.get("prior_day_poc") or 0.0)
+        d_vah = float(prof.get("prior_day_vah") or 0.0)
+        d_val = float(prof.get("prior_day_val") or 0.0)
+        w_vwap = float(prof.get("weekly_vwap") or 0.0)
+        prof_str = f"PriorDay POC {d_poc:.2f} [VAH {d_vah:.2f} / VAL {d_val:.2f}] | WkVWAP {w_vwap:.2f}"
 
         # Exact nearest stops attraction & bunker bands
         s_below = sc.get('nearest_sell_stop_clusters_below', [])
@@ -303,7 +332,8 @@ def build_prompt(cycle_num: int = 40, for_copilot: bool = False) -> str:
         lines.append(
             f"• {sym_key} ({a.get('symbol_broker', '')} | {a.get('category', '')}): Mid {q.get('mid')} | Spread {q.get('spread_bps')} bps | "
             f"Z = {ci.get('vwap_z_score')} SD | RSI {ci.get('rsi_14')} | Trend {ci.get('trend_regime')} | "
-            f"L2 Imb {ob.get('book_imbalance')} | {cvd_str} | L3 Whales (tot/elig>=180s): {len(w3)}/{len(elig_w3)} | "
+            f"L2 Imb {ob.get('book_imbalance')} | {cvd_str} | Trapped: {trp_str} | {prof_str} | "
+            f"L3 Whales (tot/elig>=180s): {len(w3)}/{len(elig_w3)} | "
             f"Stops Below/Above: {s_b_str} / {s_a_str} | "
             f"Liq Below/Above (Attraction Bands): {l_b_str} / {l_a_str}"
         )
@@ -369,12 +399,35 @@ def build_prompt(cycle_num: int = 40, for_copilot: bool = False) -> str:
     lines.append("STEP 4 — PORTFOLIO CAPACITY & CAPITAL FLOOR GOVERNANCE (ASTRA/OPUS RIGOR):")
     lines.append("• Stress Formula: Stressed Loss = 1.25 * nominal_risk + 2.00 USD/ticket (covering adverse gap, spread widening, and slippage).")
     lines.append(f"• Account Balance: {balance:.2f} USD | Equity: {equity:.2f} USD | Hard Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD.")
-    lines.append("• Open Position Stress: Ticket #18836609 (SP500.p) nominal risk 12.80 USD stresses to 18.00 USD.")
-    lines.append(f"• Available Stress Budget to 4,795.00 USD Buffer: {min(balance, equity) - 4795.0 - 18.0:.2f} USD.")
+    # Calculate stressed loss per open position
+    pos_stress_lines = []
+    tot_contingent_stress = 0.0
+    snap_risk_tickets = snap_data.get("risk", {}).get("tickets", [])
+    for p in positions:
+        ak = _resolve_asset_key(p["symbol"], assets)
+        a_info = assets.get(ak, {})
+        matched_t = next((t for t in snap_risk_tickets if t.get("ticket") == p["ticket"]), None)
+        if matched_t and matched_t.get("stressed_stop_loss_usd") is not None:
+            nom = float(matched_t.get("nominal_stop_loss_usd", 0.0))
+            stress = float(matched_t.get("stressed_stop_loss_usd", 0.0))
+        else:
+            sl_dist = abs(p["price_open"] - p["sl"]) if p["sl"] else 0.0
+            c_size = a_info.get("execution_specs", {}).get("contract_size", 1.0)
+            nom = sl_dist * p["volume"] * c_size
+            stress = 1.25 * nom + 2.0
+        pos_stress_lines.append(f"Ticket #{p['ticket']} ({p['symbol']}) nominal {nom:.2f} USD -> stressed {stress:.2f} USD")
+        tot_contingent_stress += stress
+
+    if pos_stress_lines:
+        lines.append(f"• Open Position Stress: {', '.join(pos_stress_lines)} (Total Contingent Stress: {tot_contingent_stress:.2f} USD).")
+    else:
+        lines.append("• Open Position Stress: 0.00 USD (Flat / 100% Cash reserves).")
+
+    avail_budget = max(0.0, min(balance, equity) - 4795.0 - tot_contingent_stress)
+    lines.append(f"• Available Stress Budget to 4,795.00 USD Buffer: {avail_budget:.2f} USD.")
     lines.append("• Strict Portfolio Capacity Rules:")
-    lines.append("  - Maximum 2 new tickets if nominal risk is 14.50 USD (stressed: 2 * 20.125 = 40.25 USD <= available budget).")
-    lines.append("  - Maximum 3 new tickets ONLY IF nominal risk <= 10.50 USD per ticket (stressed: 3 * 15.125 = 45.38 USD <= available budget).")
-    lines.append("  - 3 tickets at 14.50 USD is mathematically BANNED (3 * 20.125 = 60.38 USD stress would breach the 4,795.00 USD operating buffer).")
+    lines.append(f"  - Active positions currently using {len(positions)} / 4 capacity slots ({max(0, 4 - len(positions))} available).")
+    lines.append(f"  - Max new tickets permitted: up to {min(max(0, 4 - len(positions)), 2)} new tickets at 14.50 USD risk (stress 20.13 USD each = 40.25 USD <= available budget).")
     lines.append("• Joint Worst-Case Post-Stop Equity MUST remain unconditionally >= 4,795.00 USD (>= 20.00 USD cushion above 4,775.00 USD hard floor).")
     lines.append("")
     lines.append("PART F: REQUIRED OUTPUT FORMAT & TRI-COUNCIL SYNCHRONIZATION (ARENA.AI + Z.AI CHAT + ANTIGRAVITY)")
@@ -399,7 +452,7 @@ def build_prompt(cycle_num: int = 40, for_copilot: bool = False) -> str:
 async def main():
     import argparse
     parser = argparse.ArgumentParser(description="Dispatch 3-Mandate Pure Telemetry Prompt to Arena.ai, Z.ai Chat, and Copilot Studio")
-    parser.add_argument("--cycle", type=int, default=40, help="Cycle number")
+    parser.add_argument("--cycle", type=int, default=63, help="Cycle number")
     parser.add_argument("--reprompt-file", type=str, default="", help="Optional Part-B corrective reprompt file path")
     parser.add_argument("--arena-only", action="store_true", help="Send only to Arena.ai")
     parser.add_argument("--zai-only", action="store_true", help="Send only to Z.ai Chat")

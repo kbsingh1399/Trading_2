@@ -131,7 +131,36 @@ The table below catalogs every parameter consolidated in `docs/telemetry/live_sn
 | `taker_buy_usd` / `taker_sell_usd` | `BINANCE_FUTURES_AGG_TRADES` | Aggressive market buy vs market sell volume | Measures aggressive market participant aggression |
 | `cvd_delta_usd` | `BINANCE_FUTURES_AGG_TRADES` (Calculated) | Net taker buy minus sell dollar delta | Identifies tape absorption (e.g. selling into resting bids) |
 
-#### 8. Multi-Timeframe OHLCV Data
+#### 8. Multi-Horizon CVD & Divergence (`multi_horizon_cvd`)
+| Parameter | Exact Data Source | Description | Decision Role |
+|---|---|---|---|
+| `session_cvd_usd` | `BINANCE_KLINES_15M` (00:00 UTC Reset) | Cumulative Volume Delta since midnight UTC | Confirms session intraday institutional inventory bias |
+| `weekly_cvd_usd` | `BINANCE_KLINES_15M` (Monday 00:00 UTC) | Cumulative Volume Delta since start of week | Confirms swing/multi-day institutional accumulation/distribution |
+| `cvd_24h_usd` | `BINANCE_KLINES_15M` (Trailing 96 bars) | Trailing 24-hour aggregate taker volume delta | Normalizes rolling market pressure independent of session reset |
+| `bar_delta_15m_usd` | `BINANCE_KLINES_15M` (Latest closed bar) | Net taker volume delta of most recent 15m candle | Immediate tape momentum confirmation on candle close |
+| `divergence` | `BINANCE_KLINES_15M` (Calculated) | `BULLISH_ABSORPTION`, `BEARISH_EXHAUSTION`, `BULLISH_MOMENTUM`, `BEARISH_MOMENTUM`, or `NEUTRAL` | **Core Divergence Signal:** Detects aggressive volume absorption against price direction |
+
+#### 9. TradFi Synthetic Order Flow & OFI (`tradfi_orderflow`)
+| Parameter | Exact Data Source | Description | Decision Role |
+|---|---|---|---|
+| `session_tick_cvd` | `MT5_L1_TICK_STREAM` (Lee-Ready Rule) | Aggressor tick CVD signed by quote direction | Eliminates the TradFi orderflow void across SP500, NAS100, Gold, Oil |
+| `15m_tick_cvd` / `5m_tick_cvd` | `MT5_L1_TICK_STREAM` (Lee-Ready Rule) | Trailing 15m and 5m aggressor tick CVD | Fast intraday tick momentum and buyer/seller dominance |
+| `order_flow_imbalance_ofi` | `MT5_L1_TICK_STREAM` (Cont et al. 2014) | Order Flow Imbalance normalized (-1.0 to +1.0) | Top-of-book bid/ask queue balance shift |
+| `flow_bias` | `MT5_L1_TICK_STREAM` (Calculated) | `BUYER_AGGRESSION`, `SELLER_AGGRESSION`, or `NEUTRAL` | Confirms whether TradFi market orders are lifting offers or hitting bids |
+
+#### 10. Multi-Timeframe Anchored Value Areas (`htf_auction_profiles`)
+| Parameter | Exact Data Source | Description | Decision Role |
+|---|---|---|---|
+| `prior_day_poc` / `vah` / `val` | `MT5_COMPLETED_15M_BARS` (Yesterday) | Prior Day Point of Control and Value Area (70%) | Institutional auction boundaries; prior day VAL/VAH act as major support/resistance |
+| `prior_week_poc` / `vah` / `val` | `MT5_COMPLETED_15M_BARS` (Past week) | Prior Week Point of Control and Value Area (70%) | Major macro structural shelves; retests of prior week POC are prime entry triggers |
+| `weekly_vwap` | `MT5_COMPLETED_15M_BARS` (Developing) | Developing Volume Weighted Average Price from Monday | Higher-timeframe equilibrium axis for trend following pullbacks |
+
+#### 11. Footprint POC Trapped Trader Detection (`trapped_traders_signal`)
+| Parameter | Exact Data Source | Description | Decision Role |
+|---|---|---|---|
+| `trapped_traders_signal` | Footprint Auction Analysis (Calculated) | `TRAPPED_BUYERS_ABOVE`, `TRAPPED_SELLERS_BELOW`, or `BALANCED` | **Exhaustion Trigger:** Detects trapped breakout traders absorbed by resting institutional limits |
+
+#### 12. Multi-Timeframe OHLCV Data
 | Parameter | Exact Data Source | Description | Decision Role |
 |---|---|---|---|
 | `bars_15m_ohlcv` | `MT5_BROKER_COMPLETED_BARS` | Completed 15m candles with OHLCV | Primary trading timeframe structure |

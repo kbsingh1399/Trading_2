@@ -163,13 +163,3 @@ Fed blackout CLEARED (next BoE Pill 10-14 06:00, runway 20.9h). **SOL Card 1 PUN
 - #18836609 HOLD: SL 7,811.5 BE-class (worst −0.60); +0.49R0; PHASE_1 = artifact; K1 superseded; TP 7,745; time-decay passed.
 - 0 new cards (SILVER −2.33 / USWTI +1.80 killed Inv-5). SOL SUSPENDED (CVD +853k). NAS100 re-arm (mid ≥ 30,600; def 3.43M). Post-stop 4,848.42 ✓ 2/4. Full: `ARENA_COUNCIL_REPORT_20261013_1611Z.md`.
 — Arena Council · Cycle 61
-
----
-
-# BILATERAL LEDGER — ARENA CYCLE 63 (gen `9e61e2ab` @ 2026-10-13 17:35:54 UTC)
-- **Both legs GREEN → both HOLD.** #18847111 ETH SHORT 0.50 @ 2,508.5: +2.25 USD / +0.19R0 (frozen R0 26.50; P0 2,489.95 unfired). New-block confluence QUALIFIES the short: CVD −273k/−431k/−745k (5/15/30m) + multi_horizon 24h CVD −9,381,469 (BEARISH_MOMENTUM) + **TRAPPED_BUYERS_ABOVE** (we fade exactly those 2,505–2,530 trapped buyers). Defense eased 13.98M → 9,341,954 ≤ 2,535 (keystone 6.76M RE-PEGGED 2,532.9 → 2,525.7, 1,515s — Invariant-4 re-eval logged; −33% thinning vs 6.0M kill line; overwhelm 0.23:1). SL 2,535 = 0.48 ATR past [2,520–2,530] 0.77M (band top, disclosed). TP 2,442 unchanged ([2,470–2,480] 23.84M closer magnet fails RR 0.98). Armed: 2,548+CVD+500k exit · VAH 2,528.9 re-adj · defense < 6.0M review.
-- #18836609 SP500 SHORT 0.04 @ 7,810: +5.02 USD / +0.38R0 (R0 32 frozen). P0 7,787.60 in 10.2 pts (2.38M @ 7,787.7 friction = lock-not-run-through); on print → SL 7,798.80 (+4.48). P1 7,762.00 sequenced BEFORE WkVAL 7,757.77 bounce zone (stall risk disclosed; lock protects). HTF: price below prior-VAL 7,809.51 + WkVWAP 7,807.52 = bearish acceptance ✓. SL 7,811.5 BE-class untouched (PHASE_1 label = artifact, standing warning). TP 7,745. Basis +1.59.
-- **R0 FORENSIC: prompt's "Initial R0 = 10.41" = live ATR_14 (10.4056) exactly = R-inflation drift (same class as live_sl_distance artifact). Frozen ladders govern (P0 fires at 2,489.95, NOT 2,501.21).**
-- Mandate 1: **0 new cards** (XRP/AVAX/LINK/BNB/DOGE/NEAR zero credited walls despite eligible counts; SILVER −1.99 / USWTI +1.67 fades banned Inv-5). **SOL re-arm CVD gate PASSED (−177k ≤ +300k, first in 5 cycles) — armed on mid ≥ 107.90 ONLY** (spec 0.1 @ 108.9/110.2/105.1; [110–111] 0.84M whisker straddle at 20× defense disclosed). NAS100 re-arm (mid ≥ 30,600; defense 2.18M easing — re-verify ≥ 2.0M at punch). BTC deep-flush DORMANT but cascade signature developing (CVD −5.7M/15m) — activates on [82,500–82,600] sweep + Inv-2 absorption only.
-- Portfolio: post_joint 4,848.42 ≥ 4,795 ✓ (contingent 21.3125); budget 53.42; capacity 2/4. Full: `ARENA_COUNCIL_REPORT_20261013_1735Z.md`.
-— Arena Council · Cycle 63
