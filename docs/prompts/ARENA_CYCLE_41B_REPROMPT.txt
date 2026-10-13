@@ -1,0 +1,38 @@
+TRADING DESK COUNCIL: CYCLE 41B (SAME-CYCLE PART-2 CORRECTIVE RE-PROMPT & NEAR-SHELF RE-ANCHOR)
+
+1. MANDATE 3 EXECUTION CONFIRMED ON MT5:
+   • We independently verified and ratified your Mandate 3 (C) DELETE ruling on Ticket #18814015 (SP500.p SELL LIMIT 0.04 @ 7,817.80 USD).
+   • Executed `TRADE_ACTION_REMOVE` on MetaTrader 5 (`retcode=10009 Request executed`).
+   • Account #5064568 is now 100% unencumbered: Balance = 4,880.27 USD | Equity = 4,880.27 USD | Open Positions = 0 | Pending Orders = 0 | Cushion = +105.27 USD above 4,775.00 USD hard floor.
+
+2. INDEPENDENT AUDIT OF YOUR MANDATE 1 TICKET A (`NAS100.p SELL LIMIT 0.01 @ 30,840.0 / SL 30,915.0 / TP 30,618.0`):
+   While your Cycle 41 report was compiling, live `NAS100.p` flushed to `30,579.34 / 30,580.56 USD` (`ATR_14 = 25.49`, `Z = -1.58 SD`, `BEARISH`). This created two concrete mathematical discrepancies in your `30,840.0` proposal that require immediate Cycle 41B rectification:
+   • DISCREPANCY 1 — TP `30,618.0` IS ALREADY SWEPT (SITS +38.66 PTS ABOVE LIVE MARKET PRICE `30,579.34`):
+     - Live `NAS100.p` (`30,579.34 USD`) has already broken below `30,618.00 USD` and entered the `[30,500–30,600]` (`793.3k USD` sell-stop) band. You cannot place a Short Take Profit at `30,618.00 USD` when the market is already trading at `30,579.34 USD` and sweeping `[30,500–30,600]` right now.
+     - The next un-swept downside liquidity magnets below `30,579.34 USD` are `[30,400–30,500]` (`282,405 USD` sell stops + `168,520 USD` long liquidations = `450,925 USD` combined), `[30,300–30,400]` (`89,486 USD` sell stops + `199,172 USD` long liquidations = `288,658 USD`), and `[30,100–30,200]` (`172,433 USD` sell stops + `716,185 USD` long liquidations = `888,618 USD`).
+   • DISCREPANCY 2 — `10.22 ATR` ENTRY DISTANCE SELF-CONTRADICTION (`30,840.0` vs `30,579.34`):
+     - In Mandate 3, you rightly cancelled `SP500.p #18814015` because `4.33 ATR > 2.0 ATR` fails the proximity rule with the `02:25 UTC` BoE Greene purge `< 2.5 hours` away.
+     - Yet `30,840.00 USD` on `NAS100.p` is `260.66 pts = 10.22 ATR` above live price (`30,579.34 USD`), which has near-zero fill probability before `02:25 UTC`.
+
+3. CYCLE 41B DIRECTIVE — VERIFY & RATIFY THE NEAR-SHELF `NAS100.p` MODEL 2 PULLBACK SHORT (OR ALTERNATIVE `< 2.5 ATR` CANDIDATE):
+   Inspect the latest `docs/telemetry/live_snapshot_latest.json` (`https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/telemetry/live_snapshot_latest.json`) and audit the much closer overhead `NAS100.p` shelf (`2.38 ATR` from live price):
+   • Overhead Structural Shelf (`30,635.00–30,662.38 USD`):
+     - 15m `EMA20 = 30,649.02 USD` (`2.73 ATR`) | Session `POC = 30,662.38 USD` (`3.26 ATR`)
+     - Verified Genuine L3 Ask Whale Belt (`persist_s >= 180s`):
+       * `30,635.00 USD`: `949,103 USD` (`244s`) + `199,789 USD` (`244s`) = `1,148,892 USD`
+       * `30,641.00 USD`: `419,978 USD` (`1,386s` = 23.1 min verified persistence)
+       * `30,652.00 USD`: `331,652 USD` (`244s`)
+       * Total local Ask Whale shelf (`30,635–30,652`): `1,900,522 USD`
+   • Governing SL Bunker & Fortress Wall (`[30,600–30,700]`):
+     - Buy-stop cluster `[30,600.0, 30,700.0]` (`474,841 USD`, `max_price = 30,700.00 USD`).
+     - Directly capping `max_price = 30,700.00 USD` sits the institutional Ask Whale Fortress:
+       * `30,700.00 USD`: `1,043,800 USD` (`20,858s` = 5.8 hours verified persistence!)
+       * `30,702.00 USD`: `509,365 USD` (`1,445s` verified persistence)
+       * 15m `EMA50 = 30,707.48 USD`
+   • Candidate Near-Shelf Parameters to Audit:
+     - `NAS100.p SELL LIMIT 0.01 @ 30,640.00 USD` (or `30,648.00 USD` at `EMA20`)
+     - `SL = 30,715.00 USD` (`75.00 pts = 2.94 ATR` stop; sits `15.00 pts = 0.59 ATR` safely outside `max_price = 30,700.00 USD` of the `[30,600–30,700]` `474.8k USD` buy-stop bunker AND behind both the `30,700–30,702` `1.55M USD` whale fortress and `EMA50 = 30,707.48 USD`!)
+     - `TP = 30,415.00 USD` (front-running `30,400.00` by `5 bps` inside `[30,400–30,500]` `450.9k USD` + `[30,300–30,400]` `288.7k USD` un-swept downside cascade) or `TP = 30,455.00 USD` (`2.47R`).
+     - `Risk = 7.50 USD` (`75.00 pts` on `0.01 lot`) | `Reward = 22.50 USD` (`3.00R` at `30,415.00`) or `18.50 USD` (`2.47R` at `30,455.00`).
+
+Please audit this near-shelf `NAS100.p` construction (and check whether `[30,600–30,700]` `474.8k USD` requires entering at `30,698.00 USD` right in front of the `30,700.00` `1.04M USD` `20,858s` wall with `SL = 30,773.00` or if `30,640.00–30,648.00` with `SL = 30,715.00` is optimal) and return your concise Cycle 41B Actionable Execution Table so we can immediately punch the verified order into MetaTrader 5.

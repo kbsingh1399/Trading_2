@@ -23,21 +23,17 @@ Read each source below in full, line by line, in this order. Do not proceed to P
 5. Round 2 audit: docs/reviews/ROUND2_THINKING_CHAIN_AUDIT.md
    Source: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/reviews/ROUND2_THINKING_CHAIN_AUDIT.md
 
-6. Decision gate code: Terminal/decision_gates_v3.py and Terminal/dg_context.py
-   Source: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Terminal/decision_gates_v3.py
-   Verify the exact implementations of classify_regime, model1_checklist, and model2_checklist.
-
-7. Live Trade Decision Playbook: docs/specs/TRADE_DECISION_PLAYBOOK.md
+6. Live Trade Decision Playbook: docs/specs/TRADE_DECISION_PLAYBOOK.md
    Source: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/specs/TRADE_DECISION_PLAYBOOK.md
    Confirm the Parameter Coincidence Matrix, the Dual-Venue Division of Labor, and the 7-Point Live Pre-Trade Checklist.
 
-8. Live telemetry: docs/telemetry/live_snapshot_latest.json
+7. Live telemetry: docs/telemetry/live_snapshot_latest.json
    Local: docs/telemetry/live_snapshot_latest.json (synced every 60 seconds)
    Upstream: https://github.com/kbsingh1399/Trading_2/blob/arena/537c1eb8-trading-2/docs/telemetry/live_snapshot_latest.json
    Raw: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/telemetry/live_snapshot_latest.json
    Perform a complete schema census of all top-level keys across ALL 24 assets in the matrix.
 
-Ingestion output requirement: Your response must begin with a DOCUMENT INGESTION & GROUND TRUTH CITATION block listing each file above with its verified state and latest timestamp. Any conclusion reached without reading all eight sources is invalid.
+Ingestion output requirement: Your response must begin with a DOCUMENT INGESTION & GROUND TRUTH CITATION block listing each file above with its verified state and latest timestamp. Any conclusion reached without reading all seven sources is invalid.
 
 PART B: ACCOUNT AND RISK BASELINE
 • Execution Mode: PASSIVE LIMIT ORDERS ONLY (no market orders).
@@ -85,7 +81,7 @@ Step 2: Audit running trades and ratchets
 
 Step 3: Audit resting limit orders
 • Current pending orders on MT5: 1 active order(s):
-  - Ticket #18791527: BTCUSD.pi BUY_LIMIT 0.02 lots @ 83150.0 USD | Spot: 83413.5 USD | SL: 82650.0 USD | TP: 84400.0 USD
+  - Ticket #18791527: BTCUSD.pi BUY_LIMIT 0.02 lots @ 83150.0 USD | Spot: 83376.0 USD | SL: 82650.0 USD | TP: 84400.0 USD
 • Audit resting order thesis: Spot at 83,398 USD is defending the 200 EMA (83,294 USD). Order is placed at 83,150 USD to catch a wick pullback. SL at 82,650 USD sits safely behind the 32.45M USD long liquidation cascade pool and 17.04M USD sell-stop cluster at 82,750 USD. TP at 84,400 USD targets the 7.82M USD buy-stop pool. Does thesis prevail? (Maintain order on the book).
 
 Step 4: Capacity and capital floor governance
