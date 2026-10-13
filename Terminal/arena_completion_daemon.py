@@ -29,7 +29,7 @@ import websockets
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 CDP_URL = "http://127.0.0.1:9222/json"
-ARENA_AGENT_ID = "01a12432-7fb8-7f7b-82fa-b2cf537c1eb8"
+ARENA_AGENT_ID = "01a1311e-fda5-7fa9-9b2b-a0f35c05910e"
 STATUS_FILE = ROOT / "Data" / "arena_completion_status.json"
 LATEST_RAW_FILE = ROOT / "docs" / "trade_plans" / "ARENA_LATEST_RAW.md"
 
