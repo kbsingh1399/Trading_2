@@ -3062,7 +3062,31 @@
             "distance_pct": -1.19
           }
         ],
-        "nearest_short_squeeze_bands_above": [
+        "top_short_squeeze_bands_above": [
+          {
+            "min_price": 83800.0,
+            "max_price": 83900.0,
+            "mid_price": 83850.0,
+            "size": 0.5746,
+            "notional_usd": 47772.09,
+            "distance_pct": 0.86
+          },
+          {
+            "min_price": 84000.0,
+            "max_price": 84100.0,
+            "mid_price": 84050.0,
+            "size": 0.1284,
+            "notional_usd": 10670.06,
+            "distance_pct": 1.1
+          },
+          {
+            "min_price": 83100.0,
+            "max_price": 83200.0,
+            "mid_price": 83150.0,
+            "size": 0.016,
+            "notional_usd": 1327.63,
+            "distance_pct": 0.02
+          },
           {
             "min_price": 83200.0,
             "max_price": 83300.0,
@@ -7769,7 +7793,7 @@
             "first_seen_utc": "2026-10-13 19:55:00 UTC"
           },
           {
-            "address": "0x95995f302ad58138d791ce49f9f3b1274e80c60a",
+            "address": "0x621c5551678189b9a6c94d929924c225ff1d63ab",
             "side": "SELL",
             "price": 83280.0,
             "size": 2.396,
@@ -7923,7 +7947,7 @@
             "first_seen_utc": "2026-10-13 19:53:57 UTC"
           },
           {
-            "address": "0x95995f302ad58138d791ce49f9f3b1274e80c60a",
+            "address": "0x7b7f72a28fe109fa703eeed7984f2a8a68fedee2",
             "side": "BUY",
             "price": 83168.0,
             "size": 2.396,
@@ -11443,7 +11467,7 @@
             "first_seen_utc": "2026-10-13 19:53:57 UTC"
           },
           {
-            "address": "0xecb63caa47c7c4e77f60f1ce858cf28dc2b82b00",
+            "address": "0x0ba58d3e7ea392de7c0f9b50f9baf488a35397a6",
             "side": "SELL",
             "price": 83277.0,
             "size": 1.8033,
@@ -11465,7 +11489,7 @@
             "first_seen_utc": "2026-10-13 19:53:57 UTC"
           },
           {
-            "address": "0xecb63caa47c7c4e77f60f1ce858cf28dc2b82b00",
+            "address": "0x7b7f72a28fe109fa703eeed7984f2a8a68fedee2",
             "side": "SELL",
             "price": 83277.0,
             "size": 1.8033,
@@ -11487,7 +11511,7 @@
             "first_seen_utc": "2026-10-13 19:53:57 UTC"
           },
           {
-            "address": "0xecb63caa47c7c4e77f60f1ce858cf28dc2b82b00",
+            "address": "0x7b7f72a28fe109fa703eeed7984f2a8a68fedee2",
             "side": "SELL",
             "price": 83283.0,
             "size": 1.8032,
@@ -17215,6 +17239,14 @@
         ],
         "nearest_buy_stop_clusters_above": [
           {
+            "min_price": 2500.0,
+            "max_price": 2510.0,
+            "mid_price": 2505.0,
+            "size": 495.6231,
+            "notional_usd": 1240519.84,
+            "distance_pct": 0.08
+          },
+          {
             "min_price": 2510.0,
             "max_price": 2520.0,
             "mid_price": 2515.0,
@@ -20212,8 +20244,8 @@
           },
           {
             "address": "0xfc27136e42af1732ddc9ce2605ea9bff1b959d9d",
-            "side": "BUY",
-            "price": 2496.0,
+            "side": "SELL",
+            "price": 2510.4,
             "size": 65.0,
             "notional_usd": 162240.0,
             "observed_at": 1791921359.2405329,
@@ -20402,6 +20434,7 @@
             "first_seen_utc": "2026-10-13 19:55:53 UTC"
           }
         ],
+        "l2_wall_levels": [],
         "wall_coverage": "REAL_HYPERDASH_WALLET_ATTRIBUTED_L3",
         "wall_sample_ts_epoch": 1791921371.004
       },
@@ -27118,7 +27151,7 @@
             "first_seen_utc": "2026-10-13 19:53:58 UTC"
           },
           {
-            "address": "0x7b7f72a28fe109fa703eeed7984f2a8a68fedee2",
+            "address": "0x71d0e11ebb6150cebe20cf62f798be1a50108c26",
             "side": "SELL",
             "price": 107.81,
             "size": 3456.86,
@@ -27903,6 +27936,29 @@
             "first_seen_utc": "2026-10-13 19:53:53 UTC"
           },
           {
+            "address": "0xeac842b2214cfece3f0d288293da19f408d91ede",
+            "side": "SELL",
+            "price": 108.59,
+            "size": 41437.6,
+            "notional_usd": 4499708.98,
+            "observed_at": 1791917152.5805206,
+            "timestamp_basis": "RECEIPT_ONLY",
+            "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
+            "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
+            "distance_pct": 0.76,
+            "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
+            "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
+            "persist_s": 1881.9,
+            "presence_frac": 0.9688,
+            "samples": 31,
+            "sample_span_sec": 1881.9,
+            "persistence_status": "SAMPLED_RECURRENCE_VERIFIED",
+            "wall_class": "GENUINE",
+            "gate_g7_eligible": true,
+            "first_seen_utc": "2026-10-13 18:14:30 UTC"
+          },
+          {
+            "address": "0xeac842b2214cfece3f0d288293da19f408d91ede",
             "side": "BUY",
             "price": 107.39,
             "notional_usd": 154274.0,
@@ -33385,6 +33441,14 @@
           }
         ],
         "nearest_buy_stop_clusters_above": [
+          {
+            "min_price": 741.0,
+            "max_price": 742.0,
+            "mid_price": 741.5,
+            "size": 0.669,
+            "notional_usd": 495.72,
+            "distance_pct": 0.07
+          },
           {
             "min_price": 742.0,
             "max_price": 743.0,
@@ -70347,6 +70411,14 @@
         "total_short_liquidations_count": 783,
         "top_long_cascade_bands_below": [
           {
+            "min_price": 12.2,
+            "max_price": 12.3,
+            "mid_price": 12.25,
+            "size": 3674.3,
+            "notional_usd": 47339.68,
+            "distance_pct": -4.92
+          },
+          {
             "min_price": 12.6,
             "max_price": 12.7,
             "mid_price": 12.65,
@@ -83108,7 +83180,7 @@
       "pioneer_microstructure_eval": {
         "status": "UNAVAILABLE_UNVERIFIED_ORDERFLOW",
         "swept_session_low": false,
-        "swept_session_high": false,
+        "swept_session_high": true,
         "reasoning": "No observed stop/liquidation bands or cross-venue execution validation; no trade authorization",
         "confluence_trade_setup": null,
         "portfolio_gating": "ADMISSION_FROZEN_UNVERIFIED_DATA"
@@ -100706,6 +100778,14 @@
         ],
         "nearest_buy_stop_clusters_above": [
           {
+            "min_price": 7790.0,
+            "max_price": 7800.0,
+            "mid_price": 7795.0,
+            "size": 0.402,
+            "notional_usd": 3132.77,
+            "distance_pct": 0.03
+          },
+          {
             "min_price": 7800.0,
             "max_price": 7810.0,
             "mid_price": 7805.0,
@@ -103410,7 +103490,7 @@
             "first_seen_utc": "2026-10-13 19:55:57 UTC"
           },
           {
-            "address": "0x6921352064dc79139dad8b5b7ed2c982ce0fda21",
+            "address": "0xfc667adba8d4837586078f4fdcdc29804337ca06",
             "side": "SELL",
             "price": 7950.0,
             "size": 20.0,
@@ -109949,6 +110029,28 @@
             "wall_class": "GENUINE",
             "gate_g7_eligible": true,
             "first_seen_utc": "2026-10-13 19:16:40 UTC"
+          },
+          {
+            "address": "0xfc667adba8d4837586078f4fdcdc29804337ca06",
+            "side": "SELL",
+            "price": 30510.0,
+            "size": 5.0482,
+            "notional_usd": 154020.58,
+            "observed_at": 1791914625.5972664,
+            "timestamp_basis": "RECEIPT_ONLY",
+            "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
+            "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
+            "distance_pct": 0.01,
+            "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
+            "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
+            "persist_s": 0.0,
+            "presence_frac": 1.0,
+            "samples": 1,
+            "sample_span_sec": 0.0,
+            "persistence_status": "SINGLE_SAMPLE",
+            "wall_class": "MIRRORED_LEG",
+            "gate_g7_eligible": false,
+            "first_seen_utc": "2026-10-13 18:03:45 UTC"
           },
           {
             "address": "0x57d2174150cd858d46748dd9e443640c0c7e456c",
@@ -125107,6 +125209,14 @@
         ],
         "top_buy_stop_clusters_above": [
           {
+            "min_price": 59.2,
+            "max_price": 59.3,
+            "mid_price": 59.25,
+            "size": 4402.25,
+            "notional_usd": 260060.72,
+            "distance_pct": 0.3
+          },
+          {
             "min_price": 60.6,
             "max_price": 60.7,
             "mid_price": 60.65,
@@ -125656,6 +125766,22 @@
         ],
         "nearest_short_squeeze_bands_above": [
           {
+            "min_price": 59.1,
+            "max_price": 59.2,
+            "mid_price": 59.15,
+            "size": 3.04,
+            "notional_usd": 179.59,
+            "distance_pct": 0.13
+          },
+          {
+            "min_price": 59.2,
+            "max_price": 59.3,
+            "mid_price": 59.25,
+            "size": 5.17,
+            "notional_usd": 305.42,
+            "distance_pct": 0.3
+          },
+          {
             "min_price": 59.3,
             "max_price": 59.4,
             "mid_price": 59.35,
@@ -125776,7 +125902,7 @@
             "notional_usd": 758411.82
           }
         ],
-        "band_count": 236,
+        "band_count": 235,
         "binance_futures_open_interest_contracts": null,
         "as_of_epoch": 1791921353.8429863
       },
@@ -139785,7 +139911,7 @@
             "timestamp_basis": "RECEIPT_ONLY",
             "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
             "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
-            "distance_pct": 0.08,
+            "distance_pct": 0.07,
             "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
             "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
             "persist_s": 60.2,
@@ -143865,6 +143991,12 @@
             484024.74
           ],
           [
+            158.31,
+            67.9,
+            10749.25,
+            13123.75
+          ],
+          [
             158.32,
             31.58,
             4999.75,
@@ -144513,7 +144645,7 @@
             "first_seen_utc": "2026-10-13 19:53:58 UTC"
           },
           {
-            "address": "0xba5d7773e629b51003388044d1fe29dc2e4e9386",
+            "address": "0x58d67e9ead334f713676d262c1524b87b1268086",
             "side": "SELL",
             "price": 159.89,
             "size": 1125.77,
