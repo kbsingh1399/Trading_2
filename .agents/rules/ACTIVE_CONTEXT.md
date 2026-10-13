@@ -57,19 +57,19 @@ trigger: always_on
       * **Position Capacity Policy**:
         - Up to 4 concurrent tickets across orthogonal asset clusters provided total joint worst-case stopout risk unconditionally defends the 4,775.00 USD hard floor and 4,795.00 USD operating buffer (>= 20.00 USD cushion at all times).
     - Connects directly via native IPC to MetaTrader 5 Account 5064568 (Blueberry Markets).
-    - **Active Positions & Pending Orders (Live State — 0 Open Positions [100% Realized Cash] | 1 Limit Order Resting)**:
-      * Current Status: **0 Open Positions | 1 Pending Order | Balance: 4,880.27 USD (+16.10 USD BTC Full TP + +9.52 USD SOL Profit Lock banked) | Equity: 4,880.27 USD | Margin Used: 0.00 USD | Free Margin: 4,880.27 USD**.
+    - **Active Positions & Pending Orders (Live State — 0 Open Positions [100% Realized Cash] | 0 Pending Orders [Cycle 41B Near-Shelf Re-Anchor In Progress])**:
+      * Current Status: **0 Open Positions | 0 Pending Orders | Balance: 4,880.27 USD (+16.10 USD BTC Full TP + +9.52 USD SOL Profit Lock banked) | Equity: 4,880.27 USD | Margin Used: 0.00 USD | Free Margin: 4,880.27 USD**.
       * Active Positions (0 — All open positions closed in realized profit; Autonomous Ratchet Daemon `task-50136` on standby every 15s):
         - None (100% Realized Cash Reserves).
-      * Active Pending Orders (1 — Mandate 3 Active Monitoring):
-        1. Ticket `#18814015` (`SP500.p` SELL LIMIT 0.04 @ 7,817.80 USD, Current Bid/Ask: 7,804.40/7,804.66 USD [13.14 pts to entry], SL: 7,842.50 USD, TP: 7,704.00 USD, Risk: 9.88 USD, Reward: 45.52 USD, R:R: 4.61R, Ask Wall Belt: 8.9M USD @ 7,802-7,808, Primary Bunker Cleared by 2.56 ATR).
+      * Active Pending Orders (0 — Ticket `#18814015 SP500.p` deleted via `TRADE_ACTION_REMOVE` [`retcode=10009`] per Cycle 41 Mandate 3 `(C) DELETE` due to `4.50 ATR > 2.0 ATR` drift and `BEARISH -> RANGE_BOUND` regime flip; Cycle 41B corrective re-prompt dispatched to Arena.ai for `NAS100.p` near-shelf `30,640.00 USD` Model 2 Pullback Short):
+        - None (0.00 USD contingent risk while awaiting Cycle 41B confirmation).
       * G-1 Hard Floor Defense: Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Floor Cushion: **+105.27 USD realized cash cushion**.
       * Stressed Post-Loss Simulation:
-        - Total Contingent Book Risk: **9.88 USD** (SP500 9.88 USD).
-        - Stressed Worst-Case Equity: **4,870.39 USD** (Unconditionally defends floor!).
-        - Safety Cushion Above 4,775.00 USD Hard Floor: **+95.39 USD** (nearly 5.0x mandatory >= 20.00 USD buffer).
-        - Safety Cushion Above 4,795.00 USD Operating Buffer: **+75.39 USD**.
-        - Capacity Slots Used: **1 / 4** (US Equity Index).
+        - Total Contingent Book Risk: **0.00 USD** (`7.50 USD` proposed on `NAS100.p` `0.01` lot in Cycle 41B -> `4,872.77 USD` stressed equity).
+        - Stressed Worst-Case Equity: **4,880.27 USD** (`4,872.77 USD` with `NAS100.p` `7.50 USD` risk — unconditionally defends floor!).
+        - Safety Cushion Above 4,775.00 USD Hard Floor: **+105.27 USD** (`+97.77 USD` stressed — nearly 5.0x mandatory >= 20.00 USD buffer).
+        - Safety Cushion Above 4,795.00 USD Operating Buffer: **+85.27 USD** (`+77.77 USD` stressed).
+        - Capacity Slots Used: **0 / 4** (All 4 orthogonal clusters open!).
       * Closed Trades Today (Realized PnL):
         - Ticket #18813767 (`BTCUSD.pi` closed at **+16.10 USD cash profit** via Full Take Profit at 81,845.00 USD, Deal #17024690, +1.71R banked after Phase 0 BE Lock at 82,579.50 USD)
         - Ticket #18813768 (`SOLUSD.p` closed at **+9.52 USD cash profit** via Autonomous Ratchet Daemon Phase 1 Profit Lock Stop Loss at 107.32 USD, Deal #17024104, +0.80R banked)

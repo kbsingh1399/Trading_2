@@ -79,7 +79,8 @@ async def probe_arena_state() -> dict:
         const hasDurationFooter = /\\d+[ms]\\s*\\|\\s*(just now|\\d+[smh]\\s+ago)/i.test(turnFooter);
 
         const bodyText = document.body ? (document.body.innerText || '') : '';
-        const hasYesNoBanner = bodyText.includes('Was this task successful?');
+        const hasKeepWorkingBtn = Array.from(document.querySelectorAll('button')).some(b => (b.innerText || '').trim() === 'Keep working');
+        const hasYesNoBanner = bodyText.includes('Was this task successful?') || hasKeepWorkingBtn;
 
         return {
             connected: true,
@@ -136,7 +137,7 @@ def save_completion_artifacts(state: dict) -> None:
     STATUS_FILE.write_text(json.dumps(payload, indent=2), encoding="utf-8")
 
 
-async def run_wait_for_completion(poll_interval: float = 2.0, timeout_s: float = 1200.0) -> int:
+async def run_wait_for_completion(poll_interval: float = 2.0, timeout_s: float = 1800.0) -> int:
     start_ts = time.time()
     initial = await probe_arena_state()
     initial_hash = initial.get("textHash", "")
@@ -255,7 +256,7 @@ def main() -> None:
     parser.add_argument("--daemon", action="store_true", help="Run as a persistent always-on daemon")
     parser.add_argument("--wait", action="store_true", help="Wait for current/next Arena response to finish and exit 0 to wake up agent")
     parser.add_argument("--poll-interval", type=float, default=2.0, help="Polling interval in seconds")
-    parser.add_argument("--timeout", type=float, default=1200.0, help="Timeout in seconds for --wait mode")
+    parser.add_argument("--timeout", type=float, default=1800.0, help="Timeout in seconds for --wait mode")
     args = parser.parse_args()
 
     if args.daemon:
