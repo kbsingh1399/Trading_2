@@ -1,0 +1,6 @@
+{
+  "ts_utc": "2026-10-13 06:38:22 UTC",
+  "ts_epoch": 1791873502.375475,
+  "fatal": true,
+  "reason": "MT5 account summary unavailable: MT5 not connected"
+}
