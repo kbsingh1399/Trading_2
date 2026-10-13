@@ -10961,27 +10961,23 @@ Cycle-42 deletion executed; book clean at the purge deadline. Nothing to WAIT/MO
 | **3. `BTCUSD.pi` Short** | **KILLED**: `Regime = RANGE_BOUND`, `5m CVD +5.20M USD`. | **REJECTED**: `Overwhelm 11.31:1` (`6.23M` buy-stop fuel vs `551k` defence). | **UNANIMOUS REJECT**: All 3 council members reject `BTCUSD.pi` until `BEARISH` regime and whale defence return. |
 | **4. Capital Floor & Capacity** | `4,880.27 USD` (`+105.27 USD` cushion); 2 tickets authorized (`07:05 UTC` unfilled expiry). | `4,880.27 USD` (`+105.27 USD` cushion); stressed simulation verified. | **2 / 4 Slots Active (`#18825384` + `#18825385`)**: Total nominal risk = `22.10 USD` (`11.05 + 11.05`) -> Unstressed post-stop equity = **`4,858.17 USD`** (`+83.17 USD` above `4,775.00` floor). Stressed risk (`1.25x + 4.00`) = `31.63 USD` -> Stressed post-stop equity = **`4,848.64 USD`** (`+73.64 USD` above `4,775.00` floor, `+53.64 USD` above `4,795.00` buffer). |
 
+
 ---
----
 
-# BILATERAL LEDGER APPENDIX — CYCLE 46 COUNCIL REPORT (2026-10-13 04:01:49 UTC)
+## Section 94: Cycle 45/46 Tri-Council Synthesis (`LIVE_COLLABORATIVE_ORDER_DESK_Cycle45_append.md` + `ARENA_COUNCIL_REPORT_20261013_0401Z.md` + Antigravity) | 2026-10-13 04:25 UTC
 
-**— Signed, Arena.ai Multi-Persona Quantitative Council · Cycle 46 · generation `db68bf5490cb40ae88b1b9690d5d32aa` (as_of 2026-10-13 04:02:39 UTC) — full report at `docs/trade_plans/ARENA_COUNCIL_REPORT_20261013_0401Z.md`**
+### 1. Full Synthesis of Z.ai Chat (`LIVE_COLLABORATIVE_ORDER_DESK_Cycle45_append.md`), Arena.ai (`ARENA_COUNCIL_REPORT_20261013_0401Z.md`), and Antigravity
+- **`SOLUSD.p` (`Ticket #18825384`, `SELL_LIMIT 0.13 lots` @ `107.70 USD`, `SL = 108.55 USD`, `TP = 103.58 USD`) — `(A) VIABLE — WAIT TO FILL AS-IS`**:
+  - **Z.ai Chat (`LIVE_COLLABORATIVE_ORDER_DESK_Cycle45_append.md`, §2.4)**: Designated `SOLUSD.p` `SELL_LIMIT 0.13 lots` (`TP = 103.58 USD`) as the `#1 PRIMARY POST-BLACKOUT STAGING CARD`, citing `36` eligible persistent Ask Whale Walls (`>= 180s`), Overwhelm `0.054:1` (`18.6x` defence over fuel), and the `11.23M USD` `[106–107]` sell-stop cascade pool below.
+  - **Arena.ai (`ARENA_COUNCIL_REPORT_20261013_0401Z.md`, §4.1)**: Audited live Ticket `#18825384` and ruled **`(A) VIABLE — WAIT TO FILL AS-IS`** (`0.29 ATR` distance, `5m CVD = -83.2k`, `15m CVD = -583.0k`, `5.98M USD` verified Ask Whale defence providing `40x` wall cover over `[108–109]`, `Risk = 11.05 USD`, `R:R = 4.85R`).
+- **`ETHUSD.pi` (`Ticket #18826511`, modified from `#18825385`, `SELL_LIMIT 0.50 lots` @ `2,518.50 USD`, `SL = 2,545.00 USD`, `TP = 2,457.46 USD`) — `(B) MODIFY EXECUTED`**:
+  - **Z.ai Chat (`LIVE_COLLABORATIVE_ORDER_DESK_Cycle45_append.md`, §2.3)**: Demonstrated in its 3-variant table (`Variant A2 / B / C`) that placing the Stop Loss below `2,540.00 USD` leaves the stop inside the `[2,530–2,540]` (`2.89M USD`) buy-stop fuel (`Variant B` fails Overwhelm at `2.05:1`), whereas placing `SL` at `2,545.00–2,546.90 USD` puts `0xab5e6f39`'s **`11.13M USD` Ask Whale fortress at `2,544.60 USD` (`persist_s = 1,750s`)** directly between Entry and Stop Loss (`Overwhelm = 0.36:1`).
+  - **Arena.ai (`ARENA_COUNCIL_REPORT_20261013_0401Z.md`, §4.2)**: Audited live Ticket `#18825385` and ruled **`(B) MODIFY — SL: 2,535.50 -> 2,545.00 USD, Lots: 0.65 -> 0.50 lots (Entry 2,518.50 & TP 2,457.46 unchanged)`**, confirming `5m CVD = -859.1k`, `15m CVD = -1.54M`, `10.89M USD` Ask Whale belt at entry (`5.70M @ 2,519.40 [1,388s]`), and `11.0x` wall defence behind the `11.13M USD @ 2,544.60` fortress (`Nominal Risk = 13.25 USD`, `Reward = 30.52 USD`, `R:R = 2.30R`).
+  - **Antigravity Execution**: Executed `(B) MODIFY` on MetaTrader 5 (`#18825385` -> `#18826511`, `retcode=10009`).
 
-## A. Ingestion & Baseline
-- gen `db68bf54` @ 04:02:39 UTC. Account 5064568: **4,880.27 USD**, cushion +105.27, 0 open / **2 pending** (#18825384 SOL 0.13 @ 107.7; #18825385 ETH 0.65 @ 2,518.5 — both staged 03:56:11 UTC). Post-joint-stop 4,848.65 floor ✓. Capacity 2/4.
-- Blackout False (BoE closed 03:30). Fed Waller 07:45 UTC (purge 07:10). Flow: ETH CVD 5m −859k/15m −1.54M ✓✓, SOL −83k/−583k ✓ (both windows negative on both staged names — Part D.2 satisfied).
-
-## B. Mandate 1 — 0 New Qualifying
-The two staged tickets occupy the qualified Model-2 short class. GOLD flipped BULLISH Z +2.55 (overbought fade = trend-first contrarian); SILVER friction 5.95; DJ30/GER40 zero L3 + trend-first; DOGE friction 248.7; BCH dust pools (cycle-45 kill stands); USWTI ×8 (no extreme + Inv 2/4); NAS100 lot-grid; friction ×6; lot-grid ×2.
-
-## C. Mandate 2 — FLAT (OPEN_0). No ratchets.
-## D. Mandate 3 — Ticket-by-Ticket Verdicts
-
-| Seq | Action | Symbol | Side | Lots | Entry | SL Bunker | TP Magnet | Risk USD | R:R | Rationale |
-|---|---|---|---|---|---|---|---|---|---|---|
-| 1 | **#18825384 (A) WAIT — as-is** | SOLUSD.p | SELL LIMIT | 0.13 | 107.70 | 108.55 (0.72 ATR outside [107–108] 170k; [108–109] 148k whisker **wall-defended 40×** — 5.98M @ 108.17–108.71) | 103.58 (inside [103–104] 530k) | 11.05 | 4.85 | Proximity 0.29 ATR; CVD ✓; 32-wall belt at entry; stop 1.11 ATR. Kill-switch: SL-zone walls < 1.5M → (B) SL 109.27 / 0.07 lots |
-| 2 | **#18825385 (B) MODIFY** | ETHUSD.pi | SELL LIMIT | **0.50** | 2,518.50 | **2,545.00** (0.35 ATR past [2,530–2,540] 2.89M; residual 1.09M **wall-defended 11.0×** — 11.91M @ 2,535–2,562 incl. 11.13M/1,750-s fortress @ 2,544.6) | 2,457.46 (inside [2,450–2,460] **16.66M** cascade) | 13.25 | 2.30 | As-staged SL straddled 2.89M at 0.28× defense (Inv 1 fail — #18817374 class). CVD ✓✓; entry in 10.89M belt; proximity 0.85 ATR. Kill-switch: fortress < 3M → SL 2,555/0.35 lots or cancel |
-
-## E. Step 4 — Floor
-Joint 24.30 → post-stop **4,855.97 ≥ 4,795.00** ✓ (broker-stress 4,845.89 ✓). **07:05 UTC cancel-all if unfilled** (07:10 purge; Fed Waller blackout 07:15–08:15).
+### 2. Live Book Summary & Capital Floor Defense
+| Ticket | Symbol | Type | Lots | Entry | SL | TP | Nominal Risk | Stressed Risk | Reward | R:R | Verdict |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| `#18825384` | `SOLUSD.p` | `SELL_LIMIT` | `0.13` | `107.70` | `108.55` | `103.58` | `11.05 USD` | `15.81 USD` | `53.56 USD` | `4.85 R` | `(A) WAIT AS-IS` |
+| `#18826511` | `ETHUSD.pi` | `SELL_LIMIT` | `0.50` | `2,518.50` | `2,545.00` | `2,457.46` | `13.25 USD` | `18.56 USD` | `30.52 USD` | `2.30 R` | `(B) MODIFIED ON FORTRESS` |
+- **Joint Nominal Risk**: `24.30 USD` (`34.38 USD` stressed) | **Post-Joint-Stop Equity**: `4,855.97 USD` (`4,845.89 USD` stressed, `+70.89 USD` above `4,775.00 USD` Hard Floor).

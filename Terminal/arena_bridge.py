@@ -1002,7 +1002,7 @@ async def inspect_zai_dom() -> Dict[str, Any]:
 
 
 async def post_prompt_to_zai(prompt_text: str) -> bool:
-    """Inject prompt into Z.ai Chat (textarea#chat-input) and click button#send-message-button."""
+    """Inject prompt into Z.ai Chat (textarea#chat-input) via CDP Input.insertText and click button#send-message-button."""
     ws_url = await get_zai_tab_ws_url()
     if not ws_url:
         print("WARNING: No active Z.ai Chat tab found in Chrome at 127.0.0.1:9222", file=sys.stderr)
@@ -1010,20 +1010,55 @@ async def post_prompt_to_zai(prompt_text: str) -> bool:
 
     try:
         async with websockets.connect(ws_url, max_size=20_000_000) as ws:
-            js_inject = f"""
-            (async () => {{
+            msg_id = int(time.time() * 1000) % 1000000
+            # Step 1: Focus textarea#chat-input and clear any existing value
+            js_focus = """
+            (() => {
               const ta = document.querySelector('textarea#chat-input') || document.querySelector('textarea');
-              if (!ta) return {{ error: 'No textarea#chat-input found on Z.ai' }};
+              if (!ta) return { error: 'No textarea#chat-input found on Z.ai' };
               ta.focus();
               const nativeSetter = Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype, 'value')?.set;
-              if (nativeSetter) {{
-                nativeSetter.call(ta, {json.dumps(prompt_text)});
-              }} else {{
-                ta.value = {json.dumps(prompt_text)};
+              if (nativeSetter) {
+                nativeSetter.call(ta, '');
+              } else {
+                ta.value = '';
+              }
+              ta.dispatchEvent(new InputEvent('input', { bubbles: true, data: '', inputType: 'deleteContentBackward' }));
+              return { focused: true };
+            })()
+            """
+            await ws.send(json.dumps({
+                "id": msg_id,
+                "method": "Runtime.evaluate",
+                "params": {"expression": js_focus, "returnByValue": True}
+            }))
+            r1 = json.loads(await ws.recv())
+            v1 = r1.get("result", {}).get("result", {}).get("value", {})
+            if v1.get("error"):
+                print(f"Z.ai focus error: {v1}", file=sys.stderr)
+                return False
+
+            # Step 2: Insert text via CDP Input.insertText so Svelte updates reactive state
+            await ws.send(json.dumps({
+                "id": msg_id + 1,
+                "method": "Input.insertText",
+                "params": {"text": prompt_text}
+            }))
+            await ws.recv()
+            await asyncio.sleep(0.35)
+
+            # Step 3: Verify value and click button#send-message-button
+            js_send = f"""
+            (async () => {{
+              const ta = document.querySelector('textarea#chat-input') || document.querySelector('textarea');
+              if (ta && (!ta.value || ta.value.length < 20)) {{
+                const nativeSetter = Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype, 'value')?.set;
+                if (nativeSetter) nativeSetter.call(ta, {json.dumps(prompt_text)});
+                else ta.value = {json.dumps(prompt_text)};
+                ta.dispatchEvent(new InputEvent('input', {{ bubbles: true, data: {json.dumps(prompt_text[:64])}, inputType: 'insertText' }}));
+                ta.dispatchEvent(new Event('change', {{ bubbles: true }}));
+                await new Promise(r => setTimeout(r, 250));
               }}
-              ta.dispatchEvent(new InputEvent('input', {{ bubbles: true, data: {json.dumps(prompt_text[:64])}, inputType: 'insertText' }}));
-              ta.dispatchEvent(new Event('change', {{ bubbles: true }}));
-              await new Promise(r => setTimeout(r, 250));
               const sendBtn = document.querySelector('button#send-message-button') || document.querySelector('button.sendMessageButton') || document.querySelector('button[type="submit"]');
               if (sendBtn && !sendBtn.disabled) {{
                 sendBtn.click();
@@ -1032,26 +1067,22 @@ async def post_prompt_to_zai(prompt_text: str) -> bool:
               return {{ success: true, method: 'enter_fallback', btnDisabled: sendBtn ? sendBtn.disabled : null }};
             }})()
             """
-            msg_id = int(time.time() * 1000) % 1000000
             await ws.send(json.dumps({
-                "id": msg_id,
+                "id": msg_id + 2,
                 "method": "Runtime.evaluate",
-                "params": {"expression": js_inject, "returnByValue": True, "awaitPromise": True}
+                "params": {"expression": js_send, "returnByValue": True, "awaitPromise": True}
             }))
             resp = json.loads(await ws.recv())
             val = resp.get("result", {}).get("result", {}).get("value", {})
-            if val.get("error"):
-                print(f"Z.ai injection error: {val}", file=sys.stderr)
-                return False
             if val.get("method") == "enter_fallback":
                 await ws.send(json.dumps({
-                    "id": msg_id + 1,
+                    "id": msg_id + 3,
                     "method": "Input.dispatchKeyEvent",
                     "params": {"type": "rawKeyDown", "windowsVirtualKeyCode": 13, "code": "Enter", "key": "Enter"}
                 }))
                 await ws.recv()
                 await ws.send(json.dumps({
-                    "id": msg_id + 2,
+                    "id": msg_id + 4,
                     "method": "Input.dispatchKeyEvent",
                     "params": {"type": "keyUp", "windowsVirtualKeyCode": 13, "code": "Enter", "key": "Enter"}
                 }))
@@ -1083,25 +1114,23 @@ async def check_zai_response() -> Tuple[bool, str]:
       let workspaceFileText = '';
 
       if (!isGenerating && lastChatEl) {
-        // Look for "Open in Workspace" button inside the latest assistant turn (or globally)
-        const localPreviewBtns = Array.from(lastChatEl.parentElement?.parentElement?.querySelectorAll('button[title="Open in Workspace"]') || []);
-        const allPreviewBtns = localPreviewBtns.length > 0 ? localPreviewBtns : Array.from(document.querySelectorAll('button[title="Open in Workspace"]'));
-        if (allPreviewBtns.length > 0) {
-          allPreviewBtns[allPreviewBtns.length - 1].click();
-          await new Promise(r => setTimeout(r, 600));
+        let wsProse = document.querySelector('.workspaceContent .markdown-prose, .workspace .markdown-prose, .workspaceContent pre');
+        if (!wsProse) {
+          const localPreviewBtns = Array.from(lastChatEl.parentElement?.parentElement?.querySelectorAll('button[title="Open in Workspace"]') || []);
+          const allPreviewBtns = localPreviewBtns.length > 0 ? localPreviewBtns : Array.from(document.querySelectorAll('button[title="Open in Workspace"]'));
+          if (allPreviewBtns.length > 0) {
+            allPreviewBtns[allPreviewBtns.length - 1].click();
+            await new Promise(r => setTimeout(r, 600));
+          }
         }
 
-        // In the workspace tablist, click the first/newest deliverable tab (e.g. LIVE_COLLABORATIVE_ORDER_DESK_Cycle44_append.md)
         const tabButtons = Array.from(document.querySelectorAll('.workspace [role="tab"], .workspace button[data-tabs-trigger], [role="tablist"] button, [role="tablist"] [role="tab"]'));
         if (tabButtons.length > 0) {
-          // Prefer tab matching Cycle44 or first tab in the list
           const targetTab = tabButtons[0];
-          targetTab.click();
-          await new Promise(r => setTimeout(r, 500));
           workspaceFileName = (targetTab.innerText || '').trim();
         }
 
-        const wsProse = document.querySelector('.workspaceContent .markdown-prose, .workspace .markdown-prose, .workspaceContent pre');
+        wsProse = document.querySelector('.workspaceContent .markdown-prose, .workspace .markdown-prose, .workspaceContent pre');
         if (wsProse) {
           workspaceFileText = (wsProse.innerText || '').trim();
         } else {
@@ -1133,7 +1162,7 @@ async def check_zai_response() -> Tuple[bool, str]:
             val = resp.get("result", {}).get("result", {}).get("value", {})
             is_gen = val.get("isGenerating", False)
             chat_text = val.get("chatText", "")
-            ws_name = val.get("workspaceFileName", "")
+            ws_name = (val.get("workspaceFileName") or "").strip()
             ws_text = val.get("workspaceFileText", "")
 
             combined = chat_text
@@ -1145,6 +1174,9 @@ async def check_zai_response() -> Tuple[bool, str]:
                 attach_path = PROJECT_ROOT / "docs" / "trade_plans" / "ZAI_LATEST_ATTACHMENT.md"
                 attach_path.parent.mkdir(parents=True, exist_ok=True)
                 attach_path.write_text(ws_text, encoding="utf-8")
+                if ws_name and ws_name.endswith(".md") and "/" not in ws_name and "\\" not in ws_name:
+                    named_path = PROJECT_ROOT / "docs" / "trade_plans" / ws_name
+                    named_path.write_text(ws_text, encoding="utf-8")
 
             raw_path = PROJECT_ROOT / "docs" / "trade_plans" / "ZAI_LATEST_RAW.md"
             if combined:
