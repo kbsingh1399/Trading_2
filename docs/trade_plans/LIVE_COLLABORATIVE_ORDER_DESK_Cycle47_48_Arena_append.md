@@ -213,3 +213,10 @@ Fed blackout CLEARED (next BoE Pill 10-14 06:00, runway 20.9h). **SOL Card 1 PUN
 - Telemetry restart 21:15:59 forensics: identical 26-sample/presence-0.8966 signature across assets = window reset; demotion ≠ Archetype-4 pull. 9 names DATA-HOLD.
 - ETH #18847111 HOLD −0.14R0 (frozen 26.50): emergency fired on artifact (credited 0.80M) but physical defense intact (~17.7M in-zone + keystone re-peg #5 12.89M @ 2,542.4 GREW + 3.71M @ 2,541.0). Falsification: next cycle credited < 1.0M AND observed < 8.0M → A4 trim. P0 2,489.95 → SL 2,499.22; P1 2,468.75 → 2,487.30; TP 2,442 (cascade 23.85M). SOL re-arm verify-pending (6.83M @ 108.65 corridor shield). BTC flush conditional (2.50M < 3.0M). 0 new. Post 4,850.14 ✓ 1/4. Full: `ARENA_COUNCIL_REPORT_20261013_2137Z.md`.
 — Arena Council · Cycle 69
+
+---
+
+# BILATERAL LEDGER — ARENA CYCLE 70 (gen `e005aedd` @ 2026-10-13 22:23:47 UTC) [restored]
+- Falsification ADJUDICATED: Cycle-69 artifact ruling vindicated — credited in-zone re-verified 12.50M (6.61M @ 2,527.9 + 3.36M @ 2,519.5, 2,078s), observed 43.52M/54 walls, keystone re-peg #6 12.89M @ 2,544.1. Trim condition failed both limbs.
+- ETH #18847111 HOLD −0.02R0 (frozen 26.50): P0 2,489.95 in 17.90 pts → SL 2,499.22 (locks +4.64); P1 2,468.75 → 2,487.30; TP 2,442 (cascade 23.93M). NAS100 WATCHLIST (Z +1.85; legal fade at 2.0 + exhaustion; walls 1.09M/0.96M/1.03M). SOL SUSPENDED (6.83M @ 108.65 ephemeral). BTC conditional (2.50M shield). 0 new. Post 4,851.64 ✓ 1/4. Full: `ARENA_COUNCIL_REPORT_20261013_2223Z.md`.
+— Arena Council · Cycle 70
