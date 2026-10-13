@@ -10868,3 +10868,32 @@ Cycle-42 deletion executed; book clean at the purge deadline. Nothing to WAIT/MO
 | 4 | FLOOR | — | — | — | — | — | — | 0.00 | — | 4,880.27 ≥ 4,795.00 ✓; flat through the BoE block |
 
 **Post-blackout protocol:** re-walk the full lattice at the first generation after 03:30 UTC (BoE re-prices all bands). Priority: (1) Card A gates; (2) DOGE short if spreads < 35 bps (genuine negative-CVD qualifier); (3) USWTI long if |Z| ≥ 2 returns + CVD feed + ≥ 300k bid wall; (4) NAS100 short if ATR ≤ 28 + compliant bunker.
+
+---
+---
+
+# BILATERAL LEDGER APPENDIX — CYCLE 44 COUNCIL REPORT (2026-10-13 03:21:39 UTC)
+
+**— Signed, Arena.ai Multi-Persona Quantitative Council · Cycle 44 · generation `41e8b1eeb0a945d183c9ef70661fe0b3` (as_of 2026-10-13 03:23:43 UTC) — full report at `docs/trade_plans/ARENA_COUNCIL_REPORT_20261013_0321Z.md`**
+
+## A. Ingestion & Baseline
+- gen `41e8b1ee` @ 03:23:43 UTC. Account 5064568: **4,880.27 USD**, cushion +105.27, 0 open / 0 pending (clean through the BoE blackout per cycle-43 governance). Capacity 0/4.
+- **Blackout transition 03:30:00 UTC** (window 02:30–03:30; BoE Greene printed 03:00 inside it; blackout_active True at basis, ends ~6 min after). **All cards arm post-03:30 only.**
+- **HEADLINE — the CVD turn:** BTC 5m **−3.35M** / 15m **−3.72M** (buckets −1.61M/−1.47M); ETH 5m −598k / 15m **−1.99M** (last six 1m all negative). L3 walls recovered (BTC 77/ETH 69/SOL 85 eligible). Part D.2 short qualifier now satisfied.
+
+## B. Mandate 1 — Post-Blackout Staging Cards (03:30+ UTC, gates re-verified at arm)
+
+| Seq | Action | Symbol | Side | Lots | Entry | SL Bunker | TP Magnet | Risk USD | R:R | Gates / Notes |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | **CARD 1 ARM-READY** | ETHUSD.pi | SELL LIMIT | 0.35 | 2,544.3 (VAH) | 2,577.0 ([2,560–2,570] 6.46M + 0.50 ATR) | 2,442.0 (front-run [2,430–2,440] 13.67M ~8 bps) | 11.45 | 3.13 | Gates: CVD 5m non-positive; ≥ 500k SELL walls 2,540–2,570; magnet ≥ 8M; BEARISH. Double-clear SL to 2,587.0 if [2,570–2,580] ≥ 1M |
+| 2 | CARD 2 CONDITIONAL | BTCUSD.pi | SELL LIMIT | 0.03 | 83,350.0 (VAH) | 83,761.7 ([83,400–83,600] 5.42M + 0.50 ATR) | 82,450.0 (front-run [82,300–82,400] 4.57M ~6 bps) | 12.35 | 2.19 | **Kill-switch: [83,600–83,700] (5.16M now) must thin < 1M** else SL 83,861.7 → RR 1.76 → kill. Strongest CVD turn (−3.35M/−3.72M) |
+| 3 | CARD 3 ARM-READY (CVD gate) | SOLUSD.p | SELL LIMIT | 0.08 | 109.77 (VAH) | 111.28 ([109–111] 618k + 0.35 ATR) | 102.10 (front-run [100–102] 14.06M ~10 bps) | 12.08 | 5.08 | **Kill-switch: 5m CVD must print negative** (currently +246k mixed). [106–107] 11.17M in-sweep band correctly excluded as dying magnet |
+| — | HOLD | XAUUSD.pi | — | — | — | — | — | — | — | Range-top fade RR-dead 3rd cycle (0.83/1.63) |
+| — | HOLD | USWTI.p | — | — | — | — | — | — | — | Inv 2 unverifiable + Inv 4 zero bids — 6th cycle |
+| — | HOLD | 18 others | — | — | — | — | — | — | — | Friction ×7, lot-grid ×2, CVD-unqualified ×3, zero-L3 ×4, \|Z\|<2 ×2 |
+
+**Concurrency:** all three cards = crypto-major cluster (correlated fill). Primary Card 1; arm ≤ 1 alternate alongside. All-three joint risk 35.88 → post-stop 4,844.39 ≥ 4,795.00 ✓ (broker-stress 4,829.42 ✓) — floor passes, correlation flagged.
+
+## C. Mandate 2 — FLAT (OPEN_0). No ratchets.
+## D. Mandate 3 — 0 pending. Clean through the blackout. Nothing to audit.
+## E. Floor — 0 tickets → 4,880.27 ≥ 4,795.00 ✓; card stress pre-verified above.
