@@ -16,12 +16,19 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from Terminal.arena_bridge import post_prompt_to_arena, dismiss_arena_popup
+try:
+    sys.stdout.reconfigure(encoding="utf-8", line_buffering=True)
+    sys.stderr.reconfigure(encoding="utf-8", line_buffering=True)
+except Exception:
+    pass
+
+from Terminal.arena_bridge import post_prompt_to_arena, post_prompt_to_zai, dismiss_arena_popup
 from Terminal.telemetry_ingest import (
     StaleDataError,
     get_fresh_snapshot,
     make_git_refresh,
 )
+
 
 def get_live_broker_state():
     positions = []
@@ -147,6 +154,10 @@ def build_prompt(cycle_num: int = 40) -> str:
     assets = snap_data.get("assets_matrix_24", {})
     gen_id = snap_data.get("generation_id", "latest")
     gen_ts = snap_data.get("as_of_utc", "latest")
+    macro_info = snap_data.get("macro_calendar", {})
+    ev_name = macro_info.get("event", "BoE Pill Citi Roundtable")
+    ev_time = macro_info.get("event_release_utc", "2026-10-14 06:00:00 UTC")
+    blackout_active = macro_info.get("blackout_active", False)
 
     lines = []
     lines.append(f"TRADING DESK COUNCIL: CYCLE {cycle_num} PURE TELEMETRY & PLAYBOOK ANALYSIS PROMPT")
@@ -157,9 +168,10 @@ def build_prompt(cycle_num: int = 40) -> str:
     lines.append("")
     lines.append("1. Live Telemetry Matrix (Primary Ground Truth): docs/telemetry/live_snapshot_latest.json")
     lines.append(f"   Latest Generation: {gen_id} ({gen_ts})")
-    lines.append("   Upstream: https://github.com/kbsingh1399/Trading_2/blob/arena/537c1eb8-trading-2/docs/telemetry/live_snapshot_latest.json")
+    lines.append("   Upstream: https://github.com/kbsingh1399/Trading_2/blob/arena/5c05910e-trading-2/docs/telemetry/live_snapshot_latest.json")
     lines.append("   Raw: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/telemetry/live_snapshot_latest.json")
     lines.append("   Inspect all 24 assets in assets_matrix_24 and all telemetry blocks: quotes (MT5 spread_bps & mid), execution_specs, causal_indicators (Session VWAP, Z-score, RSI, ATR, EMA 20/50/200, POC/VAH/VAL), orderbook_live_depth (20-level L2 depth & imbalance), whale_walls_l3 (0x... wallet addresses, sizes, persistence_s >= 180s), structural_stop_clusters (nearest_sell_stop_clusters_below, nearest_buy_stop_clusters_above, top_*), reconstructed_liquidations (nearest_long_cascade_bands_below, nearest_short_squeeze_bands_above, top_*), venue_basis, and cvd_1m_buckets (5m/15m/30m sums).")
+    lines.append("   Note on Schema Metadata: Top-level `trade_authorization: DENIED_UNVERIFIED_ORDERFLOW` in the JSON header is a static schema provenance tag confirming the telemetry publisher script itself never submits broker orders; it is NOT a trading lock on the Council.")
     lines.append("")
     lines.append("2. Live Trade Decision Playbook: docs/specs/TRADE_DECISION_PLAYBOOK.md")
     lines.append("   Source: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/specs/TRADE_DECISION_PLAYBOOK.md")
@@ -175,29 +187,75 @@ def build_prompt(cycle_num: int = 40) -> str:
     lines.append("• Broker: Blueberry Markets SVG LLC, MetaTrader 5 account #5064568")
     lines.append(f"• Balance / Equity: {balance:.2f} USD / {equity:.2f} USD")
     lines.append(f"• Margin used: {margin:.2f} USD")
+    lines.append("• Realized Deals Banked Today: Ticket #18826511 (ETHUSD.pi SHORT -> +1.92 USD profit banked via Profit Lock at 2,513.02), Ticket #18813768 (SOLUSD.p SHORT -> +9.52 USD profit banked via Phase 1 Lock), Ticket #18813767 (BTCUSD.pi SHORT -> +16.10 USD full TP).")
     lines.append("• Hard floor: 4,775.00 USD | Operating buffer: 4,795.00 USD")
     lines.append(f"• Live cushion: +{cushion:.2f} USD above hard floor (+{buffer_cushion:.2f} USD above operating buffer)")
-    lines.append("• Risk per trade: 10.00 to 14.50 USD (0.20% to 0.29% of capital). Up to 4 concurrent tickets across orthogonal asset clusters provided joint worst-case post-stop equity >= 4,795.00 USD.")
+    lines.append("• Risk per trade: 7.50 to 14.50 USD (adaptive risk envelope, 0.15% to 0.29% of capital).")
+    lines.append("• Stressed Loss Formula (Astra Invariant): Stressed Loss = 1.25 * nominal_risk + 2.00 USD/ticket. Requirement: min(balance, equity) - sum(all open & pending stressed risks) >= 4,795.00 USD.")
+    lines.append("• Rigorous Capacity Ceiling: With SP500 open (18.00 USD stress), capacity permits: max 2 new tickets at 14.50 USD risk (stress 20.13 USD each, leaving 4,811.48 USD >= 4,795.00 USD), or max 3 new tickets at <= 10.50 USD risk each (stress 15.13 USD each, leaving 4,806.34 USD >= 4,795.00 USD). Staging 3 tickets at 14.50 USD is mathematically rejected as it leaves 4,791.35 USD (< 4,795.00 USD buffer).")
     lines.append("")
-    lines.append("PART C: STRICT OPERATOR MANDATE — PURE TELEMETRY REASONING (NO DECISION GATES)")
-    lines.append("1. DO NOT RUN OR CITE decision_gates_v3.py OR LEGACY GATE TOKENS:")
-    lines.append("   • Programmatic gate scripts (decision_gates_v3.py, A1-A5, B1-B6, G-4, G-6, MAX_TARGET_DIST_ATR = 4.0, A2_no_tape_fail_closed) are RETIRED from trade selection.")
-    lines.append("   • Do NOT disqualify TradFi CFDs (SP500, NAS100, EURUSD, USDJPY, XAUUSD, USWTI) just because cvd_1m_buckets is 0; evaluate them using their MT5 spreads, VWAP Z-scores, EMA/VP shelves, Hyperliquid L2 orderbook imbalance, L3 whale wallet orders (0x...), structural stop clusters, and liquidation bands.")
-    lines.append("2. MULTI-PARAMETER COINCIDENCE & BOUNDARY PRECISION (per docs/specs/TRADE_DECISION_PLAYBOOK.md):")
-    lines.append("   • Entry Level: Must sit AT or BELOW the sell-stop sweep midpoint (for Longs) or AT or ABOVE the buy-stop sweep midpoint (for Shorts), directly backed by resting L3 whale wallet orders (0x..., persistence_s >= 180s), adjusted onto the MT5 price grid via venue_basis.")
-    lines.append("   • Stop Loss (Liquidity Bunker): Must sit 0.25x-0.50x ATR OUTSIDE min_price (for Longs) or max_price (for Shorts) of the governing liquidation cascade band and stop cluster — NEVER measured from mid_price and NEVER placed inside the [min_price, max_price] band.")
-    lines.append("   • Take Profit (Liquidity Magnet): Must front-run the opposing buy-stop / short-squeeze magnet (or sell-stop / long-cascade magnet) by 5-10 bps.")
+    lines.append("PART C: ACTIVE REPOSITORIES & DATA PROVENANCE")
+    lines.append("• Canonical Workspace: https://github.com/kbsingh1399/Trading_2")
+    lines.append("• Active Branches: main (production) and arena/5c05910e-trading-2 (container active sync)")
+    lines.append("• Direct Raw URLs:")
+    lines.append("  - Telemetry: https://raw.githubusercontent.com/kbsingh1399/Trading_2/arena/5c05910e-trading-2/docs/telemetry/live_snapshot_latest.json")
+    lines.append("  - Playbook: https://raw.githubusercontent.com/kbsingh1399/Trading_2/arena/5c05910e-trading-2/docs/specs/TRADE_DECISION_PLAYBOOK.md")
+    lines.append("  - Desk State: https://raw.githubusercontent.com/kbsingh1399/Trading_2/arena/5c05910e-trading-2/docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md")
     lines.append("")
-    lines.append("PART D: COUNCIL PERSONAS")
+    lines.append("PART D: MANDATORY 12-PARAMETER TELEMETRY SYNTHESIS & TREND-FIRST HIERARCHY")
+    lines.append("DO NOT STICK DOGMATICALLY TO VWAP SD BANDS ALONE. Fading oversold/overbought bands in a trending market is lethal. You MUST evaluate the overall trend supported by all parameters in live_snapshot_latest.json:")
+    lines.append("  1. Higher Timeframe Trend Hierarchy: Inspect 1H & 4H OHLCV candles, 20/50/200 EMAs. If Price < EMA20 < EMA50 on 1H/4H (Bearish regime), Model 1 dip-buying Longs are STRICTLY FORBIDDEN. All priority shifts to Model 2 Trend Pullback SHORTS!")
+    lines.append("  2. cvd_1m_buckets & CVD Momentum: Massive negative taker CVD (-1M to -3M USD) is proof of aggressive seller domination. Never buy into negative CVD. Use negative CVD to qualify SHORT entries on relief rallies.")
+    lines.append("  3. Model 2 Pullback Short Protocol: In a downtrend, patiently wait for pullbacks up into the EMA20/EMA50/VAH shelves where heavy Ask Whale Walls are resting to defend the Stop Loss.")
+    lines.append("  4. Broker Ticker Mapping: Avalanche (AVAX) is tradeable on Blueberry Markets MT5 as AVXUSD.p (trade contract size 100.0, volume min 0.01, digits 2).")
+    lines.append("  5. Adaptive Risk Envelope: Acceptable risk is [7.50, 14.50 USD]. Do not reject high-conviction 0.01 lot trend shorts risking 8.50 to 9.50 USD over arbitrary floor bureaucracy.")
+    lines.append("  6. quotes: Live MT5 Bid/Ask spread in bps (spread_bps <= 35 bps Crypto, <= 5 bps TradFi).")
+    lines.append("  7. vwap & volume_profile: Session POC, VAH, VAL, and High/Low Volume Nodes.")
+    lines.append("  8. orderbook_live_depth & whale_walls_l3: Hyperdash verified on-chain Ethereum whale wallet orders (0x... addresses, notionals in USD, price levels, and temporal persistence >= 180s).")
+    lines.append("  9. reconstructed_liquidations: Reconstructed liquidation cascade bands.")
+    lines.append("  10. structural_stop_clusters: Structural stop sweep pools.")
+    lines.append("  11. macro_calendar: Tier-1 macroeconomic event proximity.")
+    lines.append("  12. execution_specs: Blueberry Markets broker tick size, point size, contract size, and margin requirements.")
+    lines.append("  13. Hyperdash Liquidation Cascade & Stop Bands as Attraction Points & Magnets: Dense liquidation cascade bands (reconstructed_liquidations) and structural stop clusters (structural_stop_clusters) act as primary gravitational attraction points (liquidity magnets). Combined with psychological round numbers, resting L2/L3 whale walls, and VWAP/EMA shelves, position Take Profit targets to front-run these attraction magnets by 5–10 bps, while ensuring Stop Loss is sheltered behind resting whale walls safely outside opposing sweep bands.")
+    lines.append("  14. Cross-Venue Basis Mapping & Broker Spread Risk: Telemetry orderbooks, whale walls, and liquidation bands are denominated in Binance/Hyperliquid perpetual futures prices, while execution occurs on Blueberry Markets OTC CFDs via MT5. Inspect venue_basis (MT5 mid minus perp mid) before finalizing entries, front-running targets (5-10 bps), and stop loss buffers. Ensure broker spread markups or wicks cannot prematurely tag stops bunkered in perp space.")
+    lines.append("")
+    lines.append("PART E: KAIZEN CONTINUOUS SELF-IMPROVEMENT LOOP & COMPLETE LOSING-TRADE AUTOPSY LEDGER")
+    lines.append("Study the forensic breakdown of all recent stopped-out trades from Account 5064568. The Council must actively learn from each:")
+    lines.append("  • Ticket #18825384 (SOLUSD.p, -11.05 USD loss via SL @ 108.55 USD) [FRESH LOSS]: Ask Whale walls (1.86M & 3.65M) relocated from 108.34/108.75 upwards to 108.68/109.22, leaving 108.55 undefended except by a thin 184K wall inside the active [107.5-108.5] buy-stop sweep band. Price wicked to 108.58 and took the stop before dropping back to 107.79. Lessons: (1) Wall relocation pre-sweep is an EMERGENCY; (2) Stops must NEVER sit inside an un-swept stop pool; (3) Wall defence requires >= 500k USD with >= 180s persistence; (4) Future SOL shorts require SL >= 108.92 at <= 0.11 lots.")
+    lines.append("  • Ticket #18813343 (BTCUSD.pi, -11.58 USD loss via SL @ 82,158.00 USD): Long entered at 82,351 USD against -3.07M USD negative taker CVD during a market cascade; swept stop in [82,100-82,200] band before bouncing.")
+    lines.append("  • Ticket #18806752 (SOLUSD.p, -10.88 USD loss via SL @ 108.79 USD): Attempted counter-trend long during crypto-wide cascading flush. Stop placed at 108.79 USD sat directly inside the discount sell-stop cluster; wick swept through stops before any recovery.")
+    lines.append("  • Ticket #18798018 (BTCUSD.pi, -11.20 USD loss via SL @ 82,590.00 USD): Staged mean-reversion long at 83,150 USD against heavily accelerating negative 1m/5m CVD (-420 BTC) before delta absorption formed; liquidation flush swept to 82,627 USD, hitting the SL.")
+    lines.append("  • Ticket #18786372 (BTCUSD.pi, -11.17 USD loss via SL @ 83,472.55 USD): Long entry staged above an un-swept sell-stop pool at 83,500 USD; market punched straight through entry to sweep the stops below, hitting the SL at 83,472.55 USD.")
+    lines.append("  • Ticket #18749312 (SP500.p, -13.00 USD loss via SL @ 7,778.50 USD): Trend pullback long entered without wide enough buffer below Value Area Low; stop placed 0.15 ATR below VAL was tagged on a routine liquidity sweep before price rallied to target.")
+    lines.append("  • Ticket #18748507 (ETHUSD.pi, -11.90 USD loss via SL @ 2,477.50 USD): Long entered based on whale bid wall that was pulled/thinned by 65% within 90 seconds (insufficient temporal persistence < 180s).")
+    lines.append("  • Ticket #18744533 (XAUUSD.pi, -13.70 USD loss via SL @ 4,175.80 USD): Model 1 long against adverse momentum without multi-timeframe trend alignment.")
+    lines.append("")
+    lines.append("MANDATORY KAIZEN CONTINUOUS SELF-IMPROVEMENT MANDATE:")
+    lines.append("Arena.ai, Z.ai Chat, and Antigravity operate as a self-improving quantitative system. On every turn:")
+    lines.append("  1. Zero Regression: The Council is strictly FORBIDDEN from repeating any of the 8 traps above. Every proposed action must explicitly state how it defends against them.")
+    lines.append("  2. Invariant 1: Stop loss MUST sit safely outside [min_price, max_price] of the governing sweep cluster with >= 0.35 to 0.50 ATR structural buffer. Never place SL inside a sweep band!")
+    lines.append("  3. Invariant 2: Long entries require confirmed CVD delta deceleration/absorption. Never catch a falling knife with negative taker momentum!")
+    lines.append("  4. Invariant 3: Never stage entry limits directly above un-swept opposing stop clusters; allow the sweep to complete or anchor below the sweep band.")
+    lines.append("  5. Invariant 4: Supporting whale walls must show verified temporal persistence (>= 180s) and substantial notional (>= 500k USD). If a wall relocates, re-evaluate or trim immediately.")
+    lines.append("  6. Invariant 5: Multi-timeframe trend alignment MUST be respected. In a Bearish HTF regime, Model 1 longs are BANNED; prioritize Model 2 Trend Pullback Shorts!")
+    lines.append("  7. Dynamic Lot Sizing: When wider structural stop buffers are required to clear liquidation bands (e.g. ETH SL moved to 2,555.00), DOWNSIZE lot size immediately (e.g. 0.50 -> 0.35 lots in Cycle 49) so risk remains strictly within the [7.50, 14.50 USD] ceiling.")
+    lines.append("")
+    lines.append("PART F: COUNCIL PERSONAS & DELIBERATION")
     lines.append("1. Orderflow & Microstructure Analyst: MT5 spread_bps, L2 20-level depth & imbalance, L3 on-chain wallet orders (0x..., persistence_s >= 180s), and multi-window 1m CVD (5m, 15m, 30m).")
     lines.append("2. Structural Price Action Specialist: Session VWAP & SD bands (Z-score), Volume Profile (POC/VAH/VAL), 20/50/200 EMA hierarchy, and psychological round numbers.")
     lines.append("3. Liquidation & Stop Hunt Forensic: Reconstructed liquidation cascade bands (nearest_* and top_*), stop clusters, SL bunker placement outside min_price/max_price, and TP magnet front-running.")
     lines.append("4. Macro Risk & Portfolio Governor: Capital floor defense (4,775.00 USD hard floor / 4,795.00 USD buffer), discrete lot sizing (execution_specs), and net expectancy.")
+    lines.append("5. Adversarial Pre-Mortem Red Team (Falsification & Autopsy Invalidator): Default baseline is NO TRADE / STAND ASIDE. For any proposed candidate, assume it was entered and stopped out; formulate the exact fatal flaw (opposing CVD momentum, un-swept opposing stop pool, broker CFD basis spike, or wall pull on approach). Certify clearance ONLY if no fatal flaw exists.")
     lines.append("")
-    lines.append("PART E: MANDATORY 3-PILLAR DESK EVALUATION (STRICT OPERATOR MANDATE)")
+    lines.append("PART G: MANDATORY 3-PILLAR DESK EVALUATION (STRICT OPERATOR MANDATE)")
     lines.append("")
-    lines.append("MANDATE 1 — LOOK FOR NEW TRADING OPPORTUNITIES ACROSS ALL 24 MUTUAL UNIVERSE ASSETS (CRYPTO, METALS, ENERGY, FOREX & INDICES):")
-    lines.append("Analyze all 24 assets in assets_matrix_24 line-by-line from docs/telemetry/live_snapshot_latest.json (covering all Cryptos, Metals GOLD/XAUUSD.pi & SILVER/XAGUSD.pi, Energy USWTI.p, Forex EURUSD.pi/GBPUSD.pi/USDJPY.pi, and Indices SP500.p/NAS100.p/DJ30.p/GER40.p) to identify any new high-confluence Model 1 (|Z| >= 2.0 SD Mean Reversion) or Model 2 (Trend Pullback to VWAP/VAL/VAH/EMA) limit order setups. Live 24-asset mutual universe matrix:")
+    lines.append("MANDATE 1 — DUAL-ENGINE SEARCH ACROSS ALL 24 ASSETS (MEAN REVERSION + TREND PULLBACKS):")
+    lines.append("Analyze all 24 assets in assets_matrix_24 line-by-line from docs/telemetry/live_snapshot_latest.json (covering all Cryptos, Metals GOLD/XAUUSD.pi & SILVER/XAGUSD.pi, Energy USWTI.p, Forex EURUSD.pi/GBPUSD.pi/USDJPY.pi, and Indices SP500.p/NAS100.p/DJ30.p/GER40.p).")
+    lines.append("CRITICAL MANDATE: DO NOT EVALUATE ASSETS PURELY AS MODEL-1 FADES! YOU MUST EVALUATE BOTH ENGINES SYSTEMATICALLY FOR EACH ASSET:")
+    lines.append("  • ENGINE 1 — EXTREME MEAN REVERSION (|Z| >= 2.0 SD): For assets at extreme statistical stretch (|Z| >= 2.0 SD to 3.5 SD), look for counter-trend mean reversion flushes ONLY if confirmed by tape exhaustion, delta absorption, and multi-layer whale backing (remember Invariant 5: Model 1 longs are strictly BANNED in Bearish HTF regimes).")
+    lines.append("  • ENGINE 2 — TREND FOLLOWING PULLBACKS (|Z| can be within 0.2 to 1.8 SD!): DO NOT DISCARD AN ASSET MERELY BECAUSE |Z| < 2.0 SD! In trending regimes (BULLISH or BEARISH), evaluate whether the asset is pulling back into key structural shelves (20 EMA, 50 EMA, 200 EMA, Session VWAP, VAH/VAL) IN THE DIRECTION OF THE DOMINANT TREND! Examples: SP500 pullback short to 200 EMA / wall-belt at 7,810; SOL pullback short to VAH / 2.32M wall at 109.10; GOLD pullback long to EMA stack. Look for pullback exhaustion (low pullback velocity, resting L2/L3 Ask/Bid walls defending the stop) and stage passive limit orders.")
+    lines.append("  • LIQUIDATION & STOP ATTRACTION MAGNET CONFLUENCE: In both engines, systematically factor in reconstructed liquidation cascade bands and structural stop sweep pools as gravitational attraction points (liquidity magnets). Price is drawn toward these high-density liquidity concentrations to trigger cascades; Take Profit targets should strategically front-run these attraction points by 5–10 bps, while Stop Losses must be anchored behind resting whale walls outside opposing sweep bands.")
+    lines.append("Live 24-asset mutual universe matrix:")
     for sym_key, a in assets.items():
         if not isinstance(a, dict):
             continue
@@ -208,33 +266,66 @@ def build_prompt(cycle_num: int = 40) -> str:
         elig_w3 = [w for w in w3 if float(w.get("persist_s") or 0.0) >= 180.0]
         sc = a.get("structural_stop_clusters", {})
         rl = a.get("reconstructed_liquidations", {})
-        cvd_buckets = a.get("cvd_1m_buckets") or []
-        cvd_15m = sum(float(b.get("cvd_delta_usd") or b.get("delta_usd") or 0.0) for b in cvd_buckets[-15:]) if cvd_buckets else 0.0
+        cvd_buckets = a.get("cvd_1m_buckets")
+        if cvd_buckets is not None and isinstance(cvd_buckets, list) and len(cvd_buckets) > 0:
+            cvd_15m = sum(float(b.get("cvd_delta_usd") or b.get("delta_usd") or 0.0) for b in cvd_buckets[-15:])
+            cvd_str = f"15m CVD {cvd_15m:+.0f} USD"
+        else:
+            cvd_str = "15m CVD UNAVAILABLE (CFD L1)"
+
+        # Exact nearest stops attraction & bunker bands
+        s_below = sc.get('nearest_sell_stop_clusters_below', [])
+        s_above = sc.get('nearest_buy_stop_clusters_above', [])
+        s_b_str = f"[{s_below[0].get('min_price', 0):.1f}-{s_below[0].get('max_price', 0):.1f} ${s_below[0].get('notional_usd', 0)/1e6:.2f}M]" if s_below else "none"
+        s_a_str = f"[{s_above[0].get('min_price', 0):.1f}-{s_above[0].get('max_price', 0):.1f} ${s_above[0].get('notional_usd', 0)/1e6:.2f}M]" if s_above else "none"
+
+        # Exact nearest liquidation cascade attraction bands
+        l_below = rl.get('nearest_long_cascade_bands_below', [])
+        l_above = rl.get('nearest_short_squeeze_bands_above', [])
+        l_b_str = f"[{l_below[0].get('min_price', 0):.1f}-{l_below[0].get('max_price', 0):.1f} ${l_below[0].get('notional_usd', 0)/1e6:.2f}M]" if l_below else "none"
+        l_a_str = f"[{l_above[0].get('min_price', 0):.1f}-{l_above[0].get('max_price', 0):.1f} ${l_above[0].get('notional_usd', 0)/1e6:.2f}M]" if l_above else "none"
+
         lines.append(
             f"• {sym_key} ({a.get('symbol_broker', '')} | {a.get('category', '')}): Mid {q.get('mid')} | Spread {q.get('spread_bps')} bps | "
             f"Z = {ci.get('vwap_z_score')} SD | RSI {ci.get('rsi_14')} | Trend {ci.get('trend_regime')} | "
-            f"L2 Imb {ob.get('book_imbalance')} | 15m CVD {cvd_15m:+.0f} USD | L3 Whales (tot/elig>=180s): {len(w3)}/{len(elig_w3)} | "
-            f"Nearest Stops (below/above): {len(sc.get('nearest_sell_stop_clusters_below', []))}/{len(sc.get('nearest_buy_stop_clusters_above', []))} | "
-            f"Nearest Liq (long/short): {len(rl.get('nearest_long_cascade_bands_below', []))}/{len(rl.get('nearest_short_squeeze_bands_above', []))}"
+            f"L2 Imb {ob.get('book_imbalance')} | {cvd_str} | L3 Whales (tot/elig>=180s): {len(w3)}/{len(elig_w3)} | "
+            f"Stops Below/Above: {s_b_str} / {s_a_str} | "
+            f"Liq Below/Above (Attraction Bands): {l_b_str} / {l_a_str}"
         )
     lines.append("For every qualifying new opportunity across Crypto, Metals, Energy, Forex, or Indices, specify: MT5 symbol, BUY/SELL LIMIT, exact lot size, Entry price, SL (0.25-0.50 ATR outside min_price/max_price of bunker), TP (front-running magnet by 5-10 bps), USD risk, R:R, and complete telemetry coincidence proof.")
     lines.append("")
     lines.append("MANDATE 2 — LOOK FOR ACTIVE / RUNNING TRADES (LOGICAL TP OR SL MODIFICATION BASED ON LATEST DATA):")
     if positions:
+        # Load immutable initial risk ledger if present to avoid dynamic R-multiple inflation
+        initial_risk_ledger = {}
+        risk_file = ROOT / "Data" / "initial_position_risk.json"
+        if risk_file.exists():
+            try:
+                with open(risk_file, "r", encoding="utf-8") as rf:
+                    initial_risk_ledger = json.load(rf)
+            except Exception:
+                pass
+
         lines.append(f"• Current Active Running Trades on MT5: {len(positions)} open position(s):")
         for p in positions:
             ak = _resolve_asset_key(p["symbol"], assets)
             a_info = assets.get(ak, {})
             atr = a_info.get("causal_indicators", {}).get("atr_14") or 1.0
-            r_dist = abs(p["price_open"] - p["sl"]) if p["sl"] else atr
-            curr_r = ((p["price_current"] - p["price_open"]) / r_dist) if p["type"] == "BUY" and r_dist > 0 else (((p["price_open"] - p["price_current"]) / r_dist) if r_dist > 0 else 0.0)
+            t_str = str(p["ticket"])
+            if t_str in initial_risk_ledger:
+                r0 = float(initial_risk_ledger[t_str].get("r0") or 0.0)
+            else:
+                r0 = abs(p["price_open"] - p["sl"]) if p["sl"] else atr
+            if r0 <= 0:
+                r0 = atr
+            curr_r0 = ((p["price_current"] - p["price_open"]) / r0) if p["type"] == "BUY" else ((p["price_open"] - p["price_current"]) / r0)
             lines.append(
                 f"  - Ticket #{p['ticket']}: {p['symbol']} {p['type']} {p['volume']} lots @ Entry {p['price_open']} USD | "
-                f"Current: {p['price_current']} USD ({curr_r:+.2f}R) | Floating PnL: {p['profit_usd']:+.2f} USD | "
+                f"Current: {p['price_current']} USD ({curr_r0:+.2f}R0 progress, Initial R0={r0:.2f} pts) | Floating PnL: {p['profit_usd']:+.2f} USD | "
                 f"Current SL: {p['sl']} USD | Current TP: {p['tp']} USD"
             )
         lines.append("• For each running trade above, evaluate logically based on the latest data snapshot whether SL or TP modification is required:")
-        lines.append("  1. Piecewise Ratchet Check: Has the trade reached +0.70R/+0.80R (Phase 0 BE lock to +0.35R), +1.50R (Phase 1 Profit Lock to +0.80R), or +2.00R (Phase 2 Trailing Lock)?")
+        lines.append("  1. Piecewise Ratchet Check (Measured against Initial R0): Has the trade reached +0.70R0/+0.80R0 (Phase 0 BE lock to +0.35R0), +1.50R0 (Phase 1 Profit Lock to +0.80R0), or +2.00R0 (Phase 2 Trailing Lock)? Note: Never recalculate R using current ratcheted SL distance—always measure against frozen initial R0 to prevent R-inflation.")
         lines.append("  2. Live Microstructure & Bunker/Magnet Shift: Have new stop clusters, liquidation bands, or L3 whale walls formed in live_snapshot_latest.json that logically require tightening SL behind a newly formed structural bunker or adjusting TP to front-run a closer/stronger liquidity magnet? Or has the supporting structural shelf broken requiring an emergency exit?")
     else:
         lines.append("• Current Active Running Trades on MT5: 0 open positions (Flat / 100% Cash reserves). Confirm that no open-position ratchets are needed right now.")
@@ -260,25 +351,37 @@ def build_prompt(cycle_num: int = 40) -> str:
     else:
         lines.append("• Current Unfilled Limit Orders on MT5: 0 pending orders.")
     lines.append("")
-    lines.append("STEP 4 — PORTFOLIO CAPACITY & CAPITAL FLOOR GOVERNANCE:")
-    lines.append("• Verify that all kept/modified running trades + kept/modified resting limit orders + any newly proposed limit orders keep joint worst-case post-stop equity >= 4,795.00 USD (>= 20.00 USD cushion above the 4,775.00 USD hard floor).")
+    lines.append("STEP 4 — PORTFOLIO CAPACITY & CAPITAL FLOOR GOVERNANCE (ASTRA/OPUS RIGOR):")
+    lines.append("• Stress Formula: Stressed Loss = 1.25 * nominal_risk + 2.00 USD/ticket (covering adverse gap, spread widening, and slippage).")
+    lines.append(f"• Account Balance: {balance:.2f} USD | Equity: {equity:.2f} USD | Hard Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD.")
+    lines.append("• Open Position Stress: Ticket #18836609 (SP500.p) nominal risk 12.80 USD stresses to 18.00 USD.")
+    lines.append(f"• Available Stress Budget to 4,795.00 USD Buffer: {min(balance, equity) - 4795.0 - 18.0:.2f} USD.")
+    lines.append("• Strict Portfolio Capacity Rules:")
+    lines.append("  - Maximum 2 new tickets if nominal risk is 14.50 USD (stressed: 2 * 20.125 = 40.25 USD <= available budget).")
+    lines.append("  - Maximum 3 new tickets ONLY IF nominal risk <= 10.50 USD per ticket (stressed: 3 * 15.125 = 45.38 USD <= available budget).")
+    lines.append("  - 3 tickets at 14.50 USD is mathematically BANNED (3 * 20.125 = 60.38 USD stress would breach the 4,795.00 USD operating buffer).")
+    lines.append("• Joint Worst-Case Post-Stop Equity MUST remain unconditionally >= 4,795.00 USD (>= 20.00 USD cushion above 4,775.00 USD hard floor).")
     lines.append("")
-    lines.append("PART F: REQUIRED OUTPUT FORMAT & BILATERAL LEDGER PUSH")
-    lines.append("1. TELEMETRY & PLAYBOOK INGESTION CITATION (confirming generation_id, as_of_utc, and Playbook compliance)")
-    lines.append("2. MANDATE 1 REPORT: Line-by-Line Screening of 24 Assets for New Trading Opportunities")
+    lines.append("PART F: REQUIRED OUTPUT FORMAT & TRI-COUNCIL SYNCHRONIZATION (ARENA.AI + Z.AI CHAT + ANTIGRAVITY)")
+    lines.append(f"1. TELEMETRY & PLAYBOOK INGESTION CITATION (confirming generation_id: {gen_id}, as_of_utc: {gen_ts}, macro event: {ev_name} at {ev_time} [blackout_active={blackout_active}], and Playbook compliance)")
+    lines.append("2. MANDATE 1 REPORT: Line-by-Line Screening of 24 Assets for New Trading Opportunities (Dual-Engine evaluation: Model 1 Mean Reversion + Model 2 Trend Pullbacks; incorporating liquidation cascades and stop clusters as attraction points / liquidity magnets)")
     lines.append("3. MANDATE 2 REPORT: Active / Running Trades Audit (Logical TP/SL Modifications Based on Latest Snapshot)")
     lines.append("4. MANDATE 3 REPORT: Unfilled Limit Orders Audit (Ticket-by-Ticket Verdict: WAIT TO FILL AS-IS vs. MODIFY ENTRY/SL/TP vs. DELETE)")
     lines.append("5. ACTIONABLE EXECUTION SUMMARY TABLE (Ticket/Action, Symbol, Side, Lots, Entry, SL Bunker, TP Magnet, Risk USD, R:R, Quantitative Rationale)")
-    lines.append("6. BILATERAL LEDGER SYNC: Append your complete Cycle Council Report and Actionable Execution Table to docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md and commit/push to branch arena/537c1eb8-trading-2 (while Antigravity merges and syncs to main).")
+    lines.append("6. COUNCIL SYNC PROTOCOL:")
+    lines.append("   • If running on Arena.ai (Two-Way Git Access): Append your complete Cycle Council Report and Actionable Execution Table to docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md and commit/push to branch arena/5c05910e-trading-2.")
+    lines.append("   • If running on Z.ai Chat (One-Way Read-Only Access): Fetch the raw GitHub URLs above to verify the latest telemetry snapshot, and print your complete 3-Mandate Council Report and Actionable Execution Summary Table directly in your chat response (do not attempt git push; Antigravity harvests your response directly from the Z.ai DOM to cross-verify Arena.ai + Z.ai Chat + Antigravity).")
 
     return "\n".join(lines)
 
 
 async def main():
     import argparse
-    parser = argparse.ArgumentParser(description="Dispatch 3-Mandate Pure Telemetry Prompt to Arena.ai")
+    parser = argparse.ArgumentParser(description="Dispatch 3-Mandate Pure Telemetry Prompt to Arena.ai and Z.ai Chat")
     parser.add_argument("--cycle", type=int, default=40, help="Cycle number")
     parser.add_argument("--reprompt-file", type=str, default="", help="Optional Part-B corrective reprompt file path")
+    parser.add_argument("--arena-only", action="store_true", help="Send only to Arena.ai")
+    parser.add_argument("--zai-only", action="store_true", help="Send only to Z.ai Chat")
     args = parser.parse_args()
 
     if args.reprompt_file:
@@ -294,14 +397,22 @@ async def main():
         prompt_file.write_text(prompt, encoding="utf-8")
         print(f"Generated Cycle {args.cycle} 3-Mandate prompt: {len(prompt)} characters written to {prompt_file}")
 
-    await dismiss_arena_popup()
-    ok = await post_prompt_to_arena(prompt)
-    if ok:
-        print(f"SUCCESS: Prompt injected into Arena.ai! Run `python Terminal/arena_completion_daemon.py --wait` to wake up on completion.")
+    ok_arena = False
+    ok_zai = False
+
+    if not args.zai_only:
+        await dismiss_arena_popup()
+        ok_arena = await post_prompt_to_arena(prompt)
+    if not args.arena_only:
+        ok_zai = await post_prompt_to_zai(prompt)
+
+    if ok_arena or ok_zai:
+        print(f"SUCCESS: Prompt injected (Arena.ai={ok_arena}, Z.ai Chat={ok_zai})! Run `python Terminal/arena_completion_daemon.py --wait` to wake up on completion.")
     else:
-        print("ERROR: Failed to inject prompt into Arena.ai", file=sys.stderr)
+        print("ERROR: Failed to inject prompt into Arena.ai and Z.ai Chat", file=sys.stderr)
         sys.exit(1)
 
 if __name__ == "__main__":
     asyncio.run(main())
+
 
