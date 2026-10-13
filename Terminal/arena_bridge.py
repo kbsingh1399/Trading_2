@@ -728,9 +728,17 @@ async def post_prompt_to_arena(prompt_text: str) -> bool:
                     "awaitPromise": True
                 }
             }))
-            resp_str = await ws.recv()
-            resp = json.loads(resp_str)
-            res_val = resp.get("result", {}).get("result", {}).get("value", {})
+            res_val = {}
+            for _ in range(10):
+                try:
+                    resp_str = await asyncio.wait_for(ws.recv(), timeout=5.0)
+                    resp = json.loads(resp_str)
+                    if resp.get("id") == msg_id:
+                        res_val = resp.get("result", {}).get("result", {}).get("value", {})
+                        break
+                except Exception:
+                    break
+
             if not res_val.get("success"):
                 print(f"CDP prompt injection returned: {res_val}", file=sys.stderr)
                 return False
@@ -812,12 +820,35 @@ async def post_prompt_to_arena(prompt_text: str) -> bool:
 
 
 async def dismiss_arena_popup() -> bool:
-    """Send Escape key via CDP to dismiss any 'Was this task successful?' modal popup."""
+    """Send Escape key via CDP and click 'Close review panel' / 'Yes' / 'Keep working' to dismiss any review panel on Arena.ai."""
     ws_url = await get_arena_tab_ws_url()
     if not ws_url:
         return False
     try:
         async with websockets.connect(ws_url, max_size=10_000_000) as ws:
+            # 1. Click review panel close or dismissal button via DOM
+            js_dismiss = """
+            (() => {
+                const closeBtn = document.querySelector('button[aria-label="Close review panel"]');
+                if (closeBtn) { closeBtn.click(); return { clicked: 'close review panel' }; }
+                const yesBtn = Array.from(document.querySelectorAll('button')).find(b => (b.innerText || '').trim() === 'Yes');
+                if (yesBtn) { yesBtn.click(); return { clicked: 'Yes' }; }
+                const keepBtn = Array.from(document.querySelectorAll('button')).find(b => (b.innerText || '').trim() === 'Keep working');
+                if (keepBtn) { keepBtn.click(); return { clicked: 'Keep working' }; }
+                return { clicked: false };
+            })()
+            """
+            await ws.send(json.dumps({
+                "id": 1,
+                "method": "Runtime.evaluate",
+                "params": {"expression": js_dismiss, "returnByValue": True}
+            }))
+            try:
+                await asyncio.wait_for(ws.recv(), timeout=2.0)
+            except Exception:
+                pass
+
+            # 2. Also dispatch Escape key as failsafe
             msg_down = {
                 "id": int(time.time()),
                 "method": "Input.dispatchKeyEvent",
@@ -829,7 +860,10 @@ async def dismiss_arena_popup() -> bool:
                 }
             }
             await ws.send(json.dumps(msg_down))
-            await ws.recv()
+            try:
+                await asyncio.wait_for(ws.recv(), timeout=2.0)
+            except Exception:
+                pass
             msg_up = {
                 "id": int(time.time()) + 1,
                 "method": "Input.dispatchKeyEvent",
@@ -841,7 +875,10 @@ async def dismiss_arena_popup() -> bool:
                 }
             }
             await ws.send(json.dumps(msg_up))
-            await ws.recv()
+            try:
+                await asyncio.wait_for(ws.recv(), timeout=2.0)
+            except Exception:
+                pass
             return True
     except Exception as e:
         print(f"Error dismissing popup: {e}", file=sys.stderr)
@@ -926,8 +963,9 @@ async def check_arena_response() -> Tuple[bool, str]:
 
     try:
         async with websockets.connect(ws_url, max_size=10_000_000) as ws:
+            msg_id = int(time.time() * 1000) % 1000000
             msg = {
-                "id": int(time.time()),
+                "id": msg_id,
                 "method": "Runtime.evaluate",
                 "params": {
                     "expression": js_code,
@@ -936,9 +974,16 @@ async def check_arena_response() -> Tuple[bool, str]:
                 }
             }
             await ws.send(json.dumps(msg))
-            resp_str = await ws.recv()
-            resp = json.loads(resp_str)
-            val = resp.get("result", {}).get("result", {}).get("value", {})
+            val = {}
+            for _ in range(6):
+                try:
+                    resp_str = await asyncio.wait_for(ws.recv(), timeout=3.0)
+                    resp = json.loads(resp_str)
+                    if resp.get("id") == msg_id:
+                        val = resp.get("result", {}).get("result", {}).get("value", {})
+                        break
+                except Exception:
+                    break
             is_gen = val.get("isGenerating", False)
             text = val.get("lastText", "")
             return not is_gen and len(text) > 50, text
@@ -1432,39 +1477,93 @@ async def inspect_zai_files() -> Dict[str, Any]:
         return resp.get("result", {}).get("result", {}).get("value", {})
 
 
-async def get_copilot_tab_ws_url() -> Optional[str]:
-    """Find Copilot Studio tab via Chrome remote debugging JSON endpoint."""
+async def get_all_copilot_tabs() -> List[Dict[str, Any]]:
+    """Find all active Copilot Studio preview tabs via Chrome remote debugging JSON endpoint."""
+    results = []
     try:
         req = urllib.request.Request(f"{CDP_HTTP_URL}/json")
         with urllib.request.urlopen(req, timeout=3) as resp:
             tabs = json.loads(resp.read().decode("utf-8"))
         for t in tabs:
             if t.get("type") == "page" and "copilotstudio.microsoft.com" in t.get("url", ""):
-                return t.get("webSocketDebuggerUrl")
+                url = t.get("url", "")
+                agent_id = ""
+                name = "Copilot Studio"
+                if "3e9246b9" in url:
+                    agent_id = "3e9246b9"
+                    name = "GPT Astra"
+                elif "98cead10" in url:
+                    agent_id = "98cead10"
+                    name = "Opus 5.5"
+                results.append({
+                    "id": t.get("id"),
+                    "title": t.get("title", ""),
+                    "url": url,
+                    "agent_id": agent_id,
+                    "name": name,
+                    "ws_url": t.get("webSocketDebuggerUrl")
+                })
     except Exception as e:
         print(f"Error fetching Chrome tabs for Copilot Studio: {e}", file=sys.stderr)
-    return None
+    return results
 
 
-async def post_prompt_to_copilot(prompt_text: str) -> bool:
-    """Inject prompt into Copilot Studio ([role='textbox']) via CDP, attach context files, and click Send button."""
-    ws_url = await get_copilot_tab_ws_url()
+async def get_copilot_tab_ws_url(target: str = "first") -> Optional[str]:
+    """Find Copilot Studio tab via Chrome remote debugging JSON endpoint."""
+    tabs = await get_all_copilot_tabs()
+    if not tabs:
+        return None
+    if target == "first" or target == "all":
+        return tabs[0]["ws_url"]
+    for t in tabs:
+        if target.lower() in t["name"].lower() or target in t["agent_id"]:
+            return t["ws_url"]
+    return tabs[0]["ws_url"]
+
+
+async def post_prompt_to_single_copilot(tab_info: Dict[str, Any], prompt_text: str) -> bool:
+    """Inject prompt and attach 4 authentic context files to a specific Copilot Studio tab."""
+    ws_url = tab_info.get("ws_url")
+    tab_name = tab_info.get("name", "Copilot")
     if not ws_url:
-        print("WARNING: No active Copilot Studio tab found on port 9222", file=sys.stderr)
+        print(f"[{tab_name}] No WebSocket URL found", file=sys.stderr)
         return False
 
     try:
         async with websockets.connect(ws_url, max_size=50_000_000) as ws:
-            # 0. Bring tab to front to unthrottle execution
+            # 0. Bring tab to front so Chrome unthrottles its execution
             await ws.send(json.dumps({"id": 1, "method": "Page.bringToFront"}))
             try:
                 await asyncio.wait_for(ws.recv(), timeout=3.0)
             except Exception:
                 pass
+            await asyncio.sleep(0.5)
+
+            # Ensure preview pane is open
+            js_preview = """
+            (() => {
+                const inputEl = document.querySelector('[role="textbox"], .fai-EditorInput__input');
+                if (!inputEl) {
+                    const previewBtn = Array.from(document.querySelectorAll('button')).find(b => (b.innerText || '').trim() === 'Preview');
+                    if (previewBtn) {
+                        previewBtn.click();
+                        return { clickedPreview: true };
+                    }
+                }
+                return { clickedPreview: false, hasInput: Boolean(inputEl) };
+            })()
+            """
+            await ws.send(json.dumps({
+                "id": 2,
+                "method": "Runtime.evaluate",
+                "params": {"expression": js_preview, "returnByValue": True, "awaitPromise": True}
+            }))
+            await ws.recv()
+            await asyncio.sleep(0.5)
 
             msg_id = int(time.time() * 1000) % 1000000
 
-            # Step 1: Attach relevant context files directly via CDP
+            # Step 1: Attach all 4 authentic context files via CDP DOM.setFileInputFiles
             try:
                 files_to_attach = [
                     str((PROJECT_ROOT / "docs" / "telemetry" / "live_snapshot_latest.json").resolve()),
@@ -1474,7 +1573,6 @@ async def post_prompt_to_copilot(prompt_text: str) -> bool:
                 ]
                 existing_files = [f for f in files_to_attach if Path(f).exists()]
                 if existing_files:
-                    # Find file input RemoteObject
                     await ws.send(json.dumps({
                         "id": msg_id,
                         "method": "Runtime.evaluate",
@@ -1489,7 +1587,6 @@ async def post_prompt_to_copilot(prompt_text: str) -> bool:
                             "params": {"files": existing_files, "objectId": obj_id}
                         }))
                         await ws.recv()
-                        # Dispatch change event
                         await ws.send(json.dumps({
                             "id": msg_id + 2,
                             "method": "Runtime.evaluate",
@@ -1498,12 +1595,12 @@ async def post_prompt_to_copilot(prompt_text: str) -> bool:
                             }
                         }))
                         await ws.recv()
-                        await asyncio.sleep(0.5)
-                        print(f"Attached {len(existing_files)} files to Copilot Studio directly!")
+                        await asyncio.sleep(0.6)
+                        print(f"[{tab_name}] Attached {len(existing_files)} authentic files directly via CDP!")
             except Exception as e_att:
-                print(f"Warning: Could not attach files to Copilot Studio: {e_att}", file=sys.stderr)
+                print(f"[{tab_name}] Warning: Could not attach files: {e_att}", file=sys.stderr)
 
-            # Step 2: Focus input and select all to clear
+            # Step 2: Focus input and clear
             js_focus = """
             (() => {
                 const el = document.querySelector('[role="textbox"], .fai-EditorInput__input');
@@ -1524,7 +1621,6 @@ async def post_prompt_to_copilot(prompt_text: str) -> bool:
             }))
             await ws.recv()
 
-            # Hit Backspace via CDP to clear
             for ktype, vk in [("rawKeyDown", 8), ("keyUp", 8)]:
                 await ws.send(json.dumps({
                     "id": msg_id + 4,
@@ -1564,7 +1660,6 @@ async def post_prompt_to_copilot(prompt_text: str) -> bool:
             res_val = resp.get("result", {}).get("result", {}).get("value", {})
 
             if not res_val.get("clicked"):
-                # Failsafe: dispatch Enter key
                 for ktype, vk in [("rawKeyDown", 13), ("keyUp", 13)]:
                     await ws.send(json.dumps({
                         "id": msg_id + 7,
@@ -1573,63 +1668,123 @@ async def post_prompt_to_copilot(prompt_text: str) -> bool:
                     }))
                     await ws.recv()
 
-            print("Prompt posted successfully to Copilot Studio with attached files!")
+            print(f"[{tab_name}] Prompt posted successfully to Copilot Studio with attached files!")
             return True
     except Exception as e:
-        print(f"Error posting prompt to Copilot Studio: {e}", file=sys.stderr)
+        print(f"[{tab_name}] Error posting prompt: {e}", file=sys.stderr)
         return False
 
 
+async def post_prompt_to_copilot(prompt_text: str, target: str = "all") -> bool:
+    """Inject prompt and attach context files into Copilot Studio tabs via CDP."""
+    copilot_tabs = await get_all_copilot_tabs()
+    if not copilot_tabs:
+        print("WARNING: No active Copilot Studio tabs found on port 9222", file=sys.stderr)
+        return False
+
+    success_count = 0
+    for tab in copilot_tabs:
+        if target != "all" and target.lower() not in tab["name"].lower() and target not in tab["agent_id"]:
+            continue
+        print(f"Dispatching to Copilot tab: {tab['name']} ({tab['agent_id']})...")
+        ok = await post_prompt_to_single_copilot(tab, prompt_text)
+        if ok:
+            success_count += 1
+        await asyncio.sleep(1.0)
+
+    return success_count > 0
+
+
 async def check_copilot_response() -> Tuple[bool, str]:
-    """Check if Copilot Studio has finished generating and extract the latest assistant response."""
-    ws_url = await get_copilot_tab_ws_url()
-    if not ws_url:
-        return False, "No active Copilot Studio tab"
+    """Check if all Copilot Studio tabs have finished generating and extract assistant responses."""
+    copilot_tabs = await get_all_copilot_tabs()
+    if not copilot_tabs:
+        return False, "No active Copilot Studio tabs found"
 
-    try:
-        async with websockets.connect(ws_url, max_size=50_000_000) as ws:
-            js_code = """
-            (() => {
-                const stopBtn = Boolean(document.querySelector('button[aria-label="Stop"], button[title="Stop"]'));
-                const typing = Boolean(document.querySelector('[class*="typing"], [class*="thinking"], [class*="streaming"], .webchat__typing-indicator'));
-                const isGenerating = stopBtn || typing;
+    all_done = True
+    summaries = []
 
-                // Look for assistant text in the preview chat pane
-                const allElements = Array.from(document.querySelectorAll('div, span, p'));
-                const matches = [];
-                for (const el of allElements) {
-                    const txt = (el.innerText || '').trim();
-                    if ((txt.includes("The snapshot confirms") || txt.includes("audit the attached snapshot")) && txt.length > 200 && !txt.includes("TRADING DESK COUNCIL: CYCLE 60")) {
-                        matches.push(txt);
+    for tab in copilot_tabs:
+        ws_url = tab.get("ws_url")
+        tab_name = tab.get("name", "Copilot")
+        agent_id = tab.get("agent_id", "")
+        if not ws_url:
+            continue
+
+        try:
+            async with websockets.connect(ws_url, max_size=50_000_000) as ws:
+                await ws.send(json.dumps({"id": 1, "method": "Page.bringToFront"}))
+                try:
+                    await asyncio.wait_for(ws.recv(), timeout=2.0)
+                except Exception:
+                    pass
+                await asyncio.sleep(0.3)
+
+                js_code = """
+                (() => {
+                    const stopBtn = Boolean(document.querySelector('button[aria-label="Stop"], button[title="Stop"]'));
+                    const typing = Boolean(document.querySelector('[class*="typing"], [class*="thinking"], [class*="streaming"], .webchat__typing-indicator'));
+                    const isGenerating = stopBtn || typing;
+
+                    const allElements = Array.from(document.querySelectorAll('div, span, p'));
+                    const matches = [];
+                    for (const el of allElements) {
+                        const txt = (el.innerText || '').trim();
+                        if ((txt.includes("The snapshot confirms") || txt.includes("audit the attached snapshot") || txt.includes("Mandate 1") || txt.includes("MANDATE 1") || txt.includes("MANDATE 2") || txt.includes("TRADING DESK COUNCIL")) && txt.length > 200 && !txt.startsWith("TRADING DESK COUNCIL: CYCLE 60") && !txt.startsWith("TRADING DESK COUNCIL: CYCLE 61")) {
+                            matches.push(txt);
+                        }
                     }
-                }
-                const longest = matches.length > 0 ? matches.reduce((a, b) => a.length > b.length ? a : b) : "";
+                    const longest = matches.length > 0 ? matches.reduce((a, b) => a.length > b.length ? a : b) : "";
 
-                return {
-                    isGenerating,
-                    textLen: longest.length,
-                    latestText: longest
-                };
-            })()
-            """
-            await ws.send(json.dumps({
-                "id": int(time.time()),
-                "method": "Runtime.evaluate",
-                "params": {"expression": js_code, "returnByValue": True, "awaitPromise": True}
-            }))
-            resp = json.loads(await ws.recv())
-            val = resp.get("result", {}).get("result", {}).get("value", {})
-            is_gen = val.get("isGenerating", False)
-            text = val.get("latestText", "")
+                    return {
+                        isGenerating,
+                        textLen: longest.length,
+                        latestText: longest
+                    };
+                })()
+                """
+                call_id = int(time.time() * 1000) % 1000000
+                await ws.send(json.dumps({
+                    "id": call_id,
+                    "method": "Runtime.evaluate",
+                    "params": {"expression": js_code, "returnByValue": True, "awaitPromise": True}
+                }))
+                val = {}
+                for _ in range(6):
+                    try:
+                        resp_raw = await asyncio.wait_for(ws.recv(), timeout=3.0)
+                        resp = json.loads(resp_raw)
+                        if resp.get("id") == call_id:
+                            val = resp.get("result", {}).get("result", {}).get("value", {})
+                            break
+                    except Exception:
+                        break
+                is_gen = val.get("isGenerating", False)
+                text = val.get("latestText", "")
 
-            raw_path = PROJECT_ROOT / "docs" / "trade_plans" / "COPILOT_LATEST_RAW.md"
-            if text and len(text) > 100:
-                raw_path.parent.mkdir(parents=True, exist_ok=True)
-                raw_path.write_text(text, encoding="utf-8")
+                if is_gen or len(text) < 100:
+                    all_done = False
 
-            return (not is_gen and len(text) > 100), text
-    except Exception as e:
-        return False, str(e)
+                if agent_id == "98cead10":  # Opus 5.5
+                    raw_path = PROJECT_ROOT / "docs" / "trade_plans" / "COPILOT_OPUS_LATEST_RAW.md"
+                    if text and len(text) > 100:
+                        raw_path.parent.mkdir(parents=True, exist_ok=True)
+                        raw_path.write_text(text, encoding="utf-8")
+                        (PROJECT_ROOT / "docs" / "trade_plans" / "COPILOT_LATEST_RAW.md").write_text(text, encoding="utf-8")
+                    summaries.append(f"[{tab_name}] is_gen={is_gen}, len={len(text)} -> COPILOT_OPUS_LATEST_RAW.md")
+                elif agent_id == "3e9246b9":  # GPT Astra
+                    raw_path = PROJECT_ROOT / "docs" / "trade_plans" / "COPILOT_ASTRA_LATEST_RAW.md"
+                    if text and len(text) > 100:
+                        raw_path.parent.mkdir(parents=True, exist_ok=True)
+                        raw_path.write_text(text, encoding="utf-8")
+                    summaries.append(f"[{tab_name}] is_gen={is_gen}, len={len(text)} -> COPILOT_ASTRA_LATEST_RAW.md")
+                else:
+                    summaries.append(f"[{tab_name}] is_gen={is_gen}, len={len(text)}")
+        except Exception as e:
+            all_done = False
+            summaries.append(f"[{tab_name}] error: {e}")
+
+    return all_done, "\n".join(summaries)
 
 
 def main():
