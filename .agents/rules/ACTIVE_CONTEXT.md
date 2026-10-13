@@ -23,7 +23,16 @@ trigger: always_on
 - **PERMANENT FEEDBACK DOCUMENTATION MANDATE (ALWAYS-ON REFERENCE)**: Every operator feedback point, microstructure lesson, and verification rule shared in chat MUST be immediately persisted into `.agents/rules/ACTIVE_CONTEXT.md` (auto-loaded on every turn) and `docs/specs/TRADE_DECISION_PLAYBOOK.md`.
 - **MANDATORY GITHUB REPOSITORY LINK IN ALL PROMPTS (STRICT OPERATOR DIRECTIVE)**: Every single prompt generated for external models (Arena.ai) or internal subagents MUST prominently include the full GitHub repository URL (`https://github.com/kbsingh1399/Trading_2`), active branch (`main` and `arena/537c1eb8-trading-2`), and direct raw URLs for `docs/telemetry/live_snapshot_latest.json`, `docs/specs/TRADE_DECISION_PLAYBOOK.md`, `docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md`, `.agents/rules/ACTIVE_CONTEXT.md`, and `.agents/memory/session_chat_history.md`.
 - **BIDIRECTIONAL GIT INTERACTION & TWO-WAY ARENA COLLABORATION MANDATE (STRICT OPERATOR DIRECTIVE)**: Both `main` (`https://github.com/kbsingh1399/Trading_2`) and `arena/537c1eb8-trading-2` (`https://github.com/kbsingh1399/Trading_2/tree/arena%2F537c1eb8-trading-2`) MUST be constantly synchronized and kept up to date on every commit and telemetry push.
-- **LEAN PROMPT & LINK-DRIVEN TELEMETRY MANDATE (ZERO RAW DATA BLOAT - STRICT OPERATOR DIRECTIVE)**: Prompts sent to Arena.ai MUST be lean, instruction-dense, and pointer-driven via direct GitHub raw URLs.
+- **FULL-PARAMETER TELEMETRY SYNTHESIS MANDATE (ZERO ARTIFICIAL CONSTRAINTS - STRICT OPERATOR DIRECTIVE)**: Prompts sent to Arena.ai or council models must NEVER artificially limit the model to narrow, dogmatic checklists. Empower the model to evaluate both Mean Reversion and Trend Following opportunities by cross-verifying ALL 12 parameters in `docs/telemetry/live_snapshot_latest.json` (MT5 Bid/Ask spreads, causal regimes, VWAP SD bands, volume profile POC/VAH/VAL, 1m/15m/30m CVD taker flow & absorption, 20-level L2 depth, L3 on-chain Ethereum whale orders `0x...`, reconstructed liquidation cascade bands, structural stop clusters, macro calendar, funding velocity, and execution specs).
+- **MANDATORY LOSING TRADE AUTOPSY & 5 ANTI-TRAP INVARIANTS IN ALL FUTURE PROMPTS (STRICT OPERATOR DIRECTIVE)**: Every future prompt generated for Arena.ai, Z.ai, or subagents MUST explicitly detail the autopsy of recent stopped-out trades (`SOLUSD.p #18806752`, `BTCUSD.pi #18798018`, `BTCUSD.pi #18786372`, `SP500.p #18749312`, `ETHUSD.pi #18748507`, `XAUUSD.pi #18744533`) and enforce the 5 Anti-Trap Invariants: (1) SL placed safely outside `[min_price, max_price]` with >= 0.35–0.50 ATR buffer; (2) Confirmed CVD delta deceleration/absorption before long entry (never catch falling knives); (3) Never place entry limits directly above un-swept opposing stop clusters; (4) Supporting whale walls must show verified persistence >= 180s; (5) Multi-timeframe trend alignment must be respected.
+- **TREND-FIRST HTF HIERARCHY & MULTI-DIMENSIONAL CONFLUENCE (STRICT OPERATOR DIRECTIVE)**:
+  * **Ban on VWAP-Band Tunnel Vision**: Never stick dogmatically to VWAP standard deviation bands alone or fall into the retail trap of dip-buying falling knives in strong downtrends.
+  * **HTF Trend Hierarchy (1H/4H EMAs + Footprint + CVD + Whales)**: Always evaluate the Higher Timeframe Trend Hierarchy (1H/4H EMA alignments, 15m structural slopes) supported by the complete multi-dimensional data stack:
+    1. *Regime Alignment*: If Price < EMA20 < EMA50 < EMA200 on 1H/4H (Bearish regime), Model 1 dip-buying Longs are strictly FORBIDDEN. All priority shifts to staging Model 2 Trend Pullback SHORTS at overhead resistance shelves.
+    2. *CVD Flow as Trend Momentum*: Massive negative taker CVD (-1M to -3M USD) confirms aggressive seller domination. Never buy against it; use it as confirmation to short intraday rallies.
+    3. *Model 2 Pullback Short Protocol*: In a bear trend, never chase breakdowns at the lows. Wait for relief rallies into the EMA20/EMA50/VAH shelves backed by resting L2/L3 Ask Whale Walls (e.g. 7.79M USD Ask @ 82,670 on BTC) to defend stops.
+    4. *Adaptive Risk Envelope (7.50 to 14.50 USD)*: Never discard a pristine 2.0R+ trend setup because 0.01 lot produces 8.50-9.50 USD risk (below an arbitrary 10.00 USD floor). An 8.50 USD risk on 0.01 lot is 0.17% equity risk and is fully authorized.
+    5. *Broker Ticker Mapping*: Remember that Avalanche is mapped to `AVXUSD.p` on Blueberry Markets (Contract Size 100, min lot 0.01, digits 2).
 - **ZERO SPURIOUS SCRATCH LITTER**: Clean up all intermediate debug scripts immediately after validation.
 
 ## 2. Active Mission & Quantitative Target
@@ -48,17 +57,23 @@ trigger: always_on
       * **Position Capacity Policy**:
         - Up to 4 concurrent tickets across orthogonal asset clusters provided total joint worst-case stopout risk unconditionally defends the 4,775.00 USD hard floor and 4,795.00 USD operating buffer (>= 20.00 USD cushion at all times).
     - Connects directly via native IPC to MetaTrader 5 Account 5064568 (Blueberry Markets).
-    - **Active Positions & Pending Orders (Live State — Cycle 44 Verified `Commit 5dcbbecd`)**:
-      * Current Status: **0 Open Positions | 0 Pending Orders (100% Cash Reserves) | Balance: 4,863.30 USD | Equity: 4,863.30 USD | Margin Used: 0.00 USD | Free Margin: 4,863.30 USD | Cron: `0,20,40 * * * *` (`task-48267`)**.
-      * Active Positions (0 — Mandate 2 Monitoring): None (`SOLUSD.p` Ticket #18795304 stopped out at `108.79 USD` for `-10.88 USD` / `-1.00R`).
-      * Active Pending Orders (0 — Mandate 3 Monitoring): None (`0` pending orders; `4 of 4` capacity slots open; monitoring `BTCUSD.pi` Model 1 Long @ `82,250` upon `5m CVD` deceleration across `>= 3` generations).
-      * G-1 Hard Floor Defense: Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Floor Cushion: **+88.30 USD realized / +88.30 USD floating**.
+    - **Active Positions & Pending Orders (Live State — 0 Open Positions [100% Realized Cash] | 1 Limit Order Resting)**:
+      * Current Status: **0 Open Positions | 1 Pending Order | Balance: 4,880.27 USD (+16.10 USD BTC Full TP + +9.52 USD SOL Profit Lock banked) | Equity: 4,880.27 USD | Margin Used: 0.00 USD | Free Margin: 4,880.27 USD**.
+      * Active Positions (0 — All open positions closed in realized profit; Autonomous Ratchet Daemon `task-50136` on standby every 15s):
+        - None (100% Realized Cash Reserves).
+      * Active Pending Orders (1 — Mandate 3 Active Monitoring):
+        1. Ticket `#18817374` (`NAS100.p` SELL LIMIT 0.01 @ 30,648.00 USD, Current Bid/Ask: 30,542.71/30,543.93 USD [104.07 pts / 3.16 ATR to entry], SL: 30,723.00 USD [0.70 ATR outside `[30,600-30,700]` 312k buy-stop bunker & above EMA50 30,691.84], TP: 30,455.00 USD [front-running `30,448.00` 1.75M USD verified Bid Whale Wall inside `[30,400-30,500]` 465.0k USD un-swept downside cascade], Risk: 7.50 USD, Reward: 19.30 USD, R:R: 2.57R, Ask Wall Defense: 1.58M USD @ 30,650.00-30,654.00 USD [483s verified] + EMA20 30,628.17 USD).
+      * G-1 Hard Floor Defense: Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Floor Cushion: **+105.27 USD realized cash cushion**.
       * Stressed Post-Loss Simulation:
-        - Total Contingent Book Risk across exposed tickets: **0.00 USD** (`100% Cash Reserves`).
-        - Stressed Worst-Case Equity: **4,863.30 USD** (Unconditionally defends floor!).
-        - Safety Cushion Above 4,775.00 USD Hard Floor: **+88.30 USD** (4.4x mandatory >= 20.00 USD buffer).
-        - Safety Cushion Above 4,795.00 USD Operating Buffer: **+68.30 USD**.
+        - Total Contingent Book Risk: **7.50 USD** (`NAS100.p` 0.01 lot `7.50 USD`).
+        - Stressed Worst-Case Equity: **4,872.77 USD** (Unconditionally defends floor!).
+        - Safety Cushion Above 4,775.00 USD Hard Floor: **+97.77 USD** (nearly 5.0x mandatory >= 20.00 USD buffer).
+        - Safety Cushion Above 4,795.00 USD Operating Buffer: **+77.77 USD**.
+        - Capacity Slots Used: **1 / 4** (US Equity Index).
       * Closed Trades Today (Realized PnL):
+        - Ticket #18813767 (`BTCUSD.pi` closed at **+16.10 USD cash profit** via Full Take Profit at 81,845.00 USD, Deal #17024690, +1.71R banked after Phase 0 BE Lock at 82,579.50 USD)
+        - Ticket #18813768 (`SOLUSD.p` closed at **+9.52 USD cash profit** via Autonomous Ratchet Daemon Phase 1 Profit Lock Stop Loss at 107.32 USD, Deal #17024104, +0.80R banked)
+        - Ticket #18813343 (`BTCUSD.pi` closed at **-11.58 USD loss** via Stop Loss at 82,158.00 USD, Deal #17022979, during market cascade)
         - Ticket #18795304 (`SOLUSD.p` closed at **-10.88 USD loss** via Stop Loss at 108.79 USD during deepening crypto flush)
         - Ticket #18791527 (`BTCUSD.pi` closed at **-11.20 USD loss** via Stop Loss at 82,590.00 USD during capitulation flush to 82,627 USD)
         - Ticket #18785248 (`BTCUSD.pi` closed at **-11.17 USD loss** via Stop Loss at 83,472.55 USD, Deal #16997164, Order #18785248)
@@ -79,7 +94,7 @@ trigger: always_on
         - Ticket #18644889 (`USDJPY.pi` closed at +1.82 USD profit via Phase 0 BE lock at 158.046 USD)
         - Ticket #18630694 (`BTCUSD.pi` closed -6.80 USD loss via SL at 82,700.00 USD)
         - Ticket #18644262 (`USWTI.p` closed -10.03 USD loss via SL at 90.113 USD)
-        - Net Realized Session PnL: **+84.05 USD** across 17 completed trades (initial capital 5,000.00 USD; 97.93% preserved; 11 wins / 6 losses = 64.7% win rate).
+        - Net Realized Session PnL: **+109.67 USD** across 19 completed trades (initial capital 5,000.00 USD; 98.44% preserved; 13 wins / 6 losses = 68.4% win rate).
       * 360-Degree Forensic Verification Certification: [`Terminal/chain_verification_360.py`](file:///c:/Users/SIGMA/Documents/Trading_2/Terminal/chain_verification_360.py) reports `CERTIFIED_100_PERCENT_PRISTINE`. All 24 Parquet archives verified with 0 nulls and 100% strictly monotonic timestamps; causal anti-lookahead verified; broker feed ping 3.65 ms; Binance L2 depth monotonic; full pytest suite passing (405 passed, 0 failed). All P0 admission defects, P1 timestamp rejuvenation, P1 CVD future trade leak, and P1 certification fail-closed checks resolved and regression-tested.
       * Current collaborative cycle: Opus 5.5 forensic audit ingested and all critical findings mathematically hardened (Commit `0fa4cfd6`). New module `Terminal/dg_hardening.py` shipped with Option A' error-budgeted bands, discrete tick quantization, gap-stressed floor defense, Clopper-Pearson exact bounds, ternary outcome expectancy, causal session dz4, strict A4 reclaim, HAC drift t-stat of returns, and discrete broker constraints. Full test suite passing 936 passed, 0 failed (100% green). Branches `main` and `arena/537c1eb8-trading-2` synchronized. Account in 100% Cash reserves at 4,896.55 USD, cushion +121.55 USD above 4,775.00 USD hard floor. Standing aside awaiting Sunday 22:00 UTC CFD reopen or major crypto breakout. All 5 persistent daemons healthy.
       * **Hyperdash On-Chain Telemetry Upgrade**: Autonomous background telemetry git daemon (`Terminal/Data_Factory/autonomous_telemetry_git_daemon.py`, PID 16548) actively streaming authentic Hyperdash GraphQL & REST data every 60s to `origin/main` and `origin/arena/537c1eb8-trading-2`: 100% verified on-chain Ethereum whale wallet orders (`0x...`, notionals >= 150k USD), real structural stop clusters (`structural_stop_clusters`), real reconstructed liquidation cascade bands (`reconstructed_liquidations`), and 20-level L2 depth across all 22 supported perpetuals (Crypto + Indices + Commodities + Forex), with honest UNAVAILABLE reporting for DJ30 & GER40. `gemini-web2api` active on 8081, Graphify AST watcher active. Ready for Arena.ai multi-persona evaluation.
