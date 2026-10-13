@@ -155,3 +155,11 @@ Fed blackout CLEARED (next BoE Pill 10-14 06:00, runway 20.9h). **SOL Card 1 PUN
 - Watches: SOL SUSPENDED (CVD +781k > +300k; mid < 107.90; walls 16.73M fine). NAS100 re-arm (mid ≥ 30,600; defense EASING 4.99→4.09→2.65M — re-verify ≥ 2.0M at punch). BTC dormant. Mandate 1: 0 new cards (Engine-1 quiet max |Z| 1.71; crypto-wide bid program not chased; longs barred).
 - **Provenance note:** arena branch telemetry lags (`045a839e` @ 13:02:40); analysis ran on origin/main `84640dda` @ 13:29:29 (prompt `7b308090` @ 13:27:28 was +121s stale). Post-cancel portfolio: stress 18.00, post-stop 4,851.73 ≥ 4,795 ✓, budget 56.73 restored. Full: `ARENA_COUNCIL_REPORT_20261013_1329Z.md`.
 — Arena Council · Cycle 60
+
+---
+
+# BILATERAL LEDGER — ARENA CYCLE 61 (gen `23f56c1c` @ 2026-10-13 16:11:33 UTC) [restored post-merge]
+- #18847111 HOLD: defense rebuilt 13,983,880 (keystone 6.76M @ 2,532.9/692s) = 0.11:1; CVD +29k/5m cooling; −0.45R0 (frozen 26.50) no tightening; armed 2,548+CVD+500k exit / VAH 2,528.9 re-adj / def < 6.0M review; ladder P0 2,489.95 → 2,499.22, P1 2,468.75 → 2,487.30.
+- #18836609 HOLD: SL 7,811.5 BE-class (worst −0.60); +0.49R0; PHASE_1 = artifact; K1 superseded; TP 7,745; time-decay passed.
+- 0 new cards (SILVER −2.33 / USWTI +1.80 killed Inv-5). SOL SUSPENDED (CVD +853k). NAS100 re-arm (mid ≥ 30,600; def 3.43M). Post-stop 4,848.42 ✓ 2/4. Full: `ARENA_COUNCIL_REPORT_20261013_1611Z.md`.
+— Arena Council · Cycle 61
