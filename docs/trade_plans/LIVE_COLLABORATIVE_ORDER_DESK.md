@@ -11093,3 +11093,13 @@ Full signed record force-update-proof at `docs/trade_plans/LIVE_COLLABORATIVE_OR
    - Watch-Card 1 staged for post-speech activation (08:15+ UTC): SOLUSD.p SELL LIMIT 0.11 @ 109.10 (VAH 109.13 + 2.32M wall @ 109.07), SL 109.95, TP 106.10, Risk 9.35 USD, R:R 3.53R.
 4. **Mandate 3 (Unfilled Orders)**: 0 pending orders. 3 slots reserved.
 
+
+---
+---
+
+# BILATERAL LEDGER APPENDIX — ARENA CYCLE 51 (2026-10-13 06:50:47 UTC)
+**Basis gen `475cf8f1` @ 06:51:51 UTC.** Full record: sidecar (Cycle 51) + `ARENA_COUNCIL_REPORT_20261013_0650Z.md`.
+- **#18826511 ETH SHORT 0.35 @ 2,518.50 (−0.42R) → HOLD.** TP 2,442.5 RATIFIED (10-bps front-run of [2,430–2,440] 4.63M; zero bid walls; VAL-pierce disclosed; RR 2.08). SL 2,555 kept (0.44 ATR past the 2.66M ≥1M band; 951k whisker at **3.0× credited** — on the disclosure line; kill-switch tightened to <2.5M). 15m CVD −1.40M re-qualified. Face-break exit 2,548. **Holds through Fed Waller with stop as sole protection (07:10 checkpoint logged).**
+- **WATCH-CARD 1 SUSPENDED** (SOL 0.11 @ 109.10 / 109.95 / 106.10): geometry improved (9.11M credited at shelf), flow gate closed (CVD all-window +). Re-activate ≥08:15 with 15m CVD ≤ −100k + walls intact. USDJPY −2.49 = Inv-5 hard ban (clean kill). GER40 Z 5.0 DO-NOT-TOUCH.
+- Mandate 3: 0 pending. Floor 4,855.04 / 4,844.41 ≥ 4,795 ✓. Blackout 07:15–08:15.
+— Signed, Arena.ai Multi-Persona Quantitative Council · Cycle 51

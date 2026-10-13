@@ -52,3 +52,18 @@
 4. **Macro:** Fed Waller 07:45 UTC, blackout 07:15–08:15, purge 07:10 (runway 0.72 h).
 
 — Signed, Arena.ai Multi-Persona Quantitative Council · Cycle 50 · Report `ARENA_COUNCIL_REPORT_20261013_0630Z.md`
+
+---
+
+## CYCLE 51 (2026-10-13 06:50:47 UTC) — basis gen `475cf8f1` @ 06:51:51 UTC (prompt cited `85876034` @ 06:50:47)
+**Movements:** operator deepened TP again (2,444.5 → 2,442.5); ETH 15m CVD re-qualified at −1,397,431 (relief wave died); SOL Watch-Card 1 flow qualifier DIED (CVD +253k/+141k/+188k all-window positive); extremes: GER40 Z 5.0 (DO-NOT-TOUCH), DJ30 2.54, GBPUSD 2.42→1.98, DOGE/DOT/TRX friction-class, USDJPY Z −2.49 (Inv-5 hard-ban case).
+
+**Verdicts:**
+1. **#18826511 ETHUSD.pi SHORT 0.35 @ 2,518.50 (−0.42R) → HOLD; TP 2,442.5 RATIFIED; SL 2,555.0 KEPT.**
+   - TP 2,442.5 = playbook-literal 10-bps front-run of the [2,430–2,440] 4,632,384 sweep cluster (+ 1,289,439 liq beneath); zero bid walls [2,438–2,462] → VAL 2,444.63 pierce disclosed (no wall-backed bounce surface); RR 2.08 ≥ 2.00.
+   - SL 2,555.0: 0.44 ATR past the [2,540–2,550] 2,655,728 ≥1M band; straddled [2,550–2,560] 951,300 whisker; credited ≥500k defense 2,850,854 = **3.0× (on the disclosure line, was 3.7×)**; kill-switch TIGHTENED to credited < 2.5M → review. Face [2,533–2,545] 23.2M/757k credited (ghost-wall regime); face-break exit: 15m close > 2,548.
+   - Flow: 15m −1.397M (BE-cut trigger not fired); ratchet −0.42R none. **Macro protocol: position holds through Fed Waller (07:45) inside the blackout with SL as sole protection; 07:10 pre-blackout checkpoint logged; no compliant pre-event de-risk exists (tightening breaches the ≥1M band; TP-side de-risk would surrender RR 2.08).**
+2. **Mandate 1: 0 new. WATCH-CARD 1 SUSPENDED** — geometry improved (shelf credited defense 9,105,636: 4.57M @ 109.3 matured to verified + 2.32M @ 109.07 + 954k @ 110.1 + 109.6 pair), flow gate closed (all-window positive CVD; Part D.2 qualifier gone). Re-activation: ≥08:15 UTC AND 15m CVD ≤ −100k AND walls 109.07/109.3 ≥ 500k credited. Cancel: 15m CVD > +500k sustained or wall relocation >50%. USDJPY −2.49 killed by Invariant-5 hard ban (Model-1 long forbidden in BEARISH regime — #18744533 shape) + no Model-2 at discount + forex scale incoherence. GER40 Z 5.0 standing kill escalated (parabolic BULLISH, 0/0 L3, no CVD stream).
+3. **Mandate 3: 0 pending.** Capacity 1/4. Floor: post-stop 4,855.04 / stressed 4,844.41 ≥ 4,795 ✓.
+
+— Signed, Arena.ai Multi-Persona Quantitative Council · Cycle 51 · Report `ARENA_COUNCIL_REPORT_20261013_0650Z.md`
