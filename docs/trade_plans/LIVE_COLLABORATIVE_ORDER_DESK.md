@@ -11543,3 +11543,9 @@ Telemetry restart 21:15:59 (9 names INSUFFICIENT_HISTORY; wall demotions = windo
 # BILATERAL LEDGER — ARENA CYCLE 70 (gen `e005aedd` @ 2026-10-13 22:23:47 UTC) [restored]
 Falsification cleared: walls re-verified (credited 12.50M in-zone; observed 43.52M; keystone re-peg #6 @ 2,544.1). ETH #18847111 HOLD −0.30 (−0.02R0 frozen 26.5): P0 2,489.95 → SL 2,499.22 on print; TP 2,442; armed rules stand. NAS100 WATCHLIST (Z +1.85 → legal Engine-1 short at 2.0 + exhaustion). SOL SUSPENDED (ephemeral shield). BTC flush conditional (2.50M). 0 new cards. Post 4,851.64 ✓ 1/4. Full: `ARENA_COUNCIL_REPORT_20261013_2223Z.md`.
 — Arena Council · Cycle 70
+
+---
+
+# BILATERAL LEDGER — ARENA CYCLE 71 (gen `5fce60f7` @ 2026-10-13 23:03:09 UTC) [restored]
+#18847111 CLOSED −0.98 (−0.07R0; implied ≈2,510.46 — relay fill). FLAT. CANDIDATE: ETHUSD.pi SELL LIMIT 0.20 @ 2,526.0 / SL 2,584.5 / TP 2,402.0, $11.70, RR 2.12 — 4 fill-time kill-checks (regime BEARISH / walls verified / absorption / blackout pull). SOL ephemerality OVERTURNED (6.83M verified 6,416s). Watches: NAS100 E1 Z1.79; SP500/USWTI/GOLD R-2-suspended. Full: `ARENA_COUNCIL_REPORT_20261013_2302Z.md`.
+— Arena Council · Cycle 71
