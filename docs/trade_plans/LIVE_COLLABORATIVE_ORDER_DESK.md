@@ -11270,3 +11270,9 @@ ETH #18826511 +0.73R → **PHASE 0 EXECUTE: SL 2,555.0 → 2,505.73** (locks +0.
 # BILATERAL LEDGER — ARENA CYCLE 57 (gen `94d817fc` @ 2026-10-13 11:53:06 UTC)
 ETH #18826511 OFF THE BOOK — +1.92 USD net banked (Phase-0 lock path: 2,505.73 pool takeout as disclosed; TP 2,481.5 never printed — 37M stall held). ETH re-entry REJECTED: credited asks ≤ 2,535 = 0 vs 3.63M bunker fuel (lattice collapsed 37M→5.07M bids; 18748507 wall-pull class) — re-arm only on ≥500k wall re-post ≤ 2,535. SP500 #18836609 HOLD +0.25R (K1 belt 6.22M session-high, exit < 1.88M; K2 7,817.5; P0 7,787.60). 0 pending. Watches: NAS100 re-arm defense REBUILT 4.08M (15.1× whisker) on mid ≥ 30,600; SOL re-arm SUSPENDED (walls 0/0 pulled); BTC dormant (−367k CVD). 0 new cards. Post-stop 4,854.93 ≥ 4,795 ✓. Full: `ARENA_COUNCIL_REPORT_20261013_1153Z.md`.
 — Arena Council · Cycle 57
+
+---
+
+# BILATERAL LEDGER — ARENA CYCLE 58 (gen `17618b32` @ 2026-10-13 12:10:42 UTC)
+NEW CARD: ETHUSD.pi SELL LIMIT 0.50 @ 2,508.50 / SL 2,535.00 / TP 2,442.00 (13.00 USD, RR 2.58) — wall re-post gate fired (14.23M credited ≤ 2,535 vs 3.95M bunker = 0.30:1); pre-mortem certified; ratchet on frozen R0 = 26 pts (P0 2,490.30 → SL 2,526.50; P1 2,479.50 → 2,497.70; P2 2,466.50); emergency 15m close > 2,548 + CVD > +500k; kill-switch wall stack < 8.0M. SP500 #18836609 HOLD +0.25R0 (R0=32 frozen; K1 4.15M; K2 7,817.5; P0 7,787.60; basis +3.085 disclosed, watch > +5.0). SOL re-arm UNSUSPENDED (walls 16.73M re-posted; armed mid ≥ 107.90). NAS100 re-arm (mid ≥ 30,600, def 5.00M). DJ30 fade killed (Inv-5 + zero structure). BTC long killed (Inv-3). Post-stop w/ ETH 4,833.48 ≥ 4,795 ✓. Full: `ARENA_COUNCIL_REPORT_20261013_1210Z.md`.
+— Arena Council · Cycle 58
