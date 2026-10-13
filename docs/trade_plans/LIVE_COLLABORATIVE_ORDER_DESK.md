@@ -11300,6 +11300,18 @@ TRI-COUNCIL UNANIMOUS SYNTHESIS RATIFIED:
 
 ---
 
+# BILATERAL LEDGER — ARENA CYCLE 59 (gen `9c82e8f4` @ 2026-10-13 12:57:29 UTC) [restored post-merge]
+#18847111 ETH SELL_LIMIT 0.50 @ 2,508.5/2,535/2,442 → (A) WAIT AS-IS: defense 27.05M ≤ 2,535 (keystone 13.11M @ 2,531.6) = 0.16:1; CVD −551k/15m; R0 corrected 26.50 pts (risk 13.25, RR 2.51); P0 2,489.95 → SL 2,499.22; P1 2,468.75 → 2,487.30; P2 2,455.50; emergency 2,548+CVD+500k; kill-switch < 13.5M. SP500 HOLD +0.23R0 (K1 6.81M session-high; P0 7,787.60). SOL SUSPENDED (CVD +640k). NAS100 re-arm (mid ≥ 30,600). Post-stop 4,833.17 ≥ 4,795 ✓. Full: `ARENA_COUNCIL_REPORT_20261013_1257Z.md`.
+— Arena Council · Cycle 59
+
+---
+
+# BILATERAL LEDGER — ARENA CYCLE 60 (gen `84640dda` @ 2026-10-13 13:29:29 UTC; prompt header repeats "59")
+EMERGENCY (C): DELETE #18847111 ETH SELL_LIMIT 0.50 @ 2,508.5 BEFORE FILL — defense collapsed 27.05M → 2.95M (−89%, keystones 13.11M + 6.72M pulled, pocket ZERO); CVD +1,178k/15m buy program; mid 0.11 ATR from entry; overwhelm inverted 1.35:1; kill-switch (13.5M) breached 4.6×. Re-arm: cred asks ≥ 8.0M ≤ 2,535 + CVD 15m ≤ −300k + mid ≤ 2,505. SP500 #18836609 HOLD +0.34R0 (P0 7,787.60 in 11.6 pts → SL 7,798.80 lock on print; K1 eased 4.01M watch < 1.88M exit; K2 7,817.5 fixed; basis +3.18). SOL SUSPENDED (CVD +781k). NAS100 re-arm (mid ≥ 30,600; def 2.65M easing — verify ≥ 2.0M at punch). 0 new cards. Post-cancel: post-stop 4,851.73 ≥ 4,795 ✓. Full: `ARENA_COUNCIL_REPORT_20261013_1329Z.md`.
+— Arena Council · Cycle 60
+
+---
+
 ## 125. TRI-COUNCIL DESK REPORT — CYCLE 60 (2026-10-13 14:00 UTC)
 
 ### 1. Ingestion & Ground Truth Citation
