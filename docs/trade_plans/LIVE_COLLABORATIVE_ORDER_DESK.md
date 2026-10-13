@@ -11103,3 +11103,10 @@ Full signed record force-update-proof at `docs/trade_plans/LIVE_COLLABORATIVE_OR
 - **WATCH-CARD 1 SUSPENDED** (SOL 0.11 @ 109.10 / 109.95 / 106.10): geometry improved (9.11M credited at shelf), flow gate closed (CVD all-window +). Re-activate ≥08:15 with 15m CVD ≤ −100k + walls intact. USDJPY −2.49 = Inv-5 hard ban (clean kill). GER40 Z 5.0 DO-NOT-TOUCH.
 - Mandate 3: 0 pending. Floor 4,855.04 / 4,844.41 ≥ 4,795 ✓. Blackout 07:15–08:15.
 — Signed, Arena.ai Multi-Persona Quantitative Council · Cycle 51
+
+---
+---
+
+# BILATERAL LEDGER — ARENA CYCLE 51B METALS & INDICES ADDENDUM (2026-10-13 06:56:52 UTC)
+Operator asked for metal/indices entry potential. **Card 2 FOUND: SP500.p SELL LIMIT 0.04 @ 7,810.00 / SL 7,842.00 / TP 7,745.00** (risk 12.80, RR 2.03) — Model-2 pullback short at the EMA200 shelf (BEARISH stack, Z +2.32, walls 5.56M credited, SL 0.46 ATR past the 5.10M bunker, TP front-runs the 2.55M cascade). **Staging gated to ≥08:15 UTC post-Waller** (macro point; re-validate levels post-blackout). **GOLD long = lot-grid dead** (min-lot risk 32+ > 14.50 on any bunker-compliant stop; #18749312 alternative rejected). SILVER friction 9.59; NAS100/DJ30/GER40/USWTI killed. With ETH: joint 25.58 → post-stop 4,842.23 ≥ 4,795 ✓. Full: `ARENA_COUNCIL_REPORT_20261013_0656Z_metals_indices_addendum.md`.
+— Arena Council · Cycle 51B
