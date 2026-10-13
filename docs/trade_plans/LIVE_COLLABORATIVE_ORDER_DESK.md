@@ -10996,3 +10996,21 @@ Cycle-42 deletion executed; book clean at the purge deadline. Nothing to WAIT/MO
   - **Mandate 3 (`#18826511` `ETHUSD.pi` `SELL_LIMIT 0.50 lots @ 2,518.50 / SL 2,545.00 / TP 2,457.46`)**: Ruled **`(A) VIABLE — WAIT TO FILL AS-IS`** (`SL = 2,545.00 USD` sits behind `0xab5e6f39`'s `11.13M USD @ 2,544.60 [4,990s]` VAH fortress providing `18.6x` verified wall defence).
 - **Z.ai Chat Cycle 47 Submission**:
   - Confirmed `textarea#chat-input` on `chat.z.ai` was submitted (`CLICK: CLICKED, AFTER: {'taLen': 0}`) and hardened `post_prompt_to_zai` in `Terminal/arena_bridge.py` with a 6-attempt verification loop until `textarea#chat-input` length reaches `0`.
+
+---
+---
+
+# BILATERAL LEDGER APPENDIX — ARENA CYCLE 47/48 (2026-10-13) [restored after force-update merge]
+
+Full signed record force-update-proof at `docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK_Cycle47_48_Arena_append.md`. Summaries:
+
+## Cycle 47 (gen `394816d6` @ 04:31:52 UTC)
+#18825384 HOLD; #18826511 (A) WAIT AS-IS (fortress 11.13M/3,491 s at VAH, 18.6×); Mandate 1: 0 new. Report `ARENA_COUNCIL_REPORT_20261013_0429Z.md`.
+
+## Cycle 48 (gen `88167182728943869c186bd9acfe74c7` @ 05:12:11 UTC)
+- **#18825384 SOLUSD.p SHORT 0.13 @ 107.70 (−0.69R) → (B) MODIFY SL 108.55 → 108.80** — walls relocated above the stop (pre-sweep signature); stop moves into the re-formed shelf (≈2.96M qualified below stop, ~12× whisker defense, disclosed); risk 14.30 (envelope ceiling), RR 3.75; TP 103.58 kept. Operator variant: close 0.02 lots → SL 108.92 / 0.11 (risk 13.42, full 0.35-ATR clearance).
+- **#18826511 ETHUSD.pi SHORT 0.50 @ 2,518.50 (filled 05:09:44, −0.06R) → (B) MODIFY SL 2,545.0 → 2,555.0, lots 0.50 → 0.35** — Trigger 1: [2,540–2,550] band grew to 1.85M ≥1M (hard Inv-1: SL inside band); 2,555 = 0.40 ATR past edge, straddled ≈1.05M defended ≥12× by 12.9M fortress-cluster (11.13M @ 2,544.6 persist 5,913 s). Trigger 2: CVD tripwire (15m +884k post-fill burst, decelerating). Risk 12.78, RR 1.67 (EV +1.55 @ LB). Fallback: HOLD 2,545/0.50 + BE-cut armed.
+- **Mandate 1: 0 new** (all |Z|≥2 extremes killed on friction/lot-grid/CVD/trend-first — full table in report §2).
+- **Floor:** post-stop 4,853.19 / stressed 4,841.91 ≥ 4,795.00 ✓. Capacity 2/4. **No new orders past 07:05 UTC (Fed Waller purge 07:10).**
+
+— Signed, Arena.ai Multi-Persona Quantitative Council · Cycle 48 · Report `ARENA_COUNCIL_REPORT_20261013_0512Z.md`
