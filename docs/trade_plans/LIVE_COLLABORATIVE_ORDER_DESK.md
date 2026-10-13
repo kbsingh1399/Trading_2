@@ -11031,3 +11031,13 @@ Full signed record force-update-proof at `docs/trade_plans/LIVE_COLLABORATIVE_OR
 - **Live MT5 Modification Executed on `ETHUSD.pi` (`Ticket #18826511` `SL: 2,545.00 -> 2,555.00 USD`, `retcode = 10009`)**:
   - Per Arena.ai Cycle 48 (§4), the `[2,540–2,550]` buy-stop squeeze band expanded from `693k` -> **`1,851,938 USD` (`>= 1M USD` hard Invariant-1 threshold)**, placing the old `SL = 2,545.00 USD` inside `[2,540–2,550]`.
   - Moved `SL` on `Ticket #18826511` (`ETHUSD.pi` `SHORT 0.50 lots @ 2,518.50 USD`) from `2,545.00 USD` to **`2,555.00 USD`** (`+0.40 ATR` past `2,550.00`, defended `>= 12x` by `12.9M USD` of recurrence-verified Ask Whale walls including `0xab5e6f39`'s `11.13M USD @ 2,544.60 [5,913s]` and `1.28M USD @ 2,550.00 [3,866s]`), keeping `TP = 2,457.46 USD` (`Nominal Risk = 18.25 USD`, `Stressed Risk = 24.81 USD`, Post-Stop Equity = `4,850.97 USD` nominal / `4,844.41 USD` stressed = **`+69.41 USD` above `4,775.00 USD` Hard Floor**).
+
+---
+---
+
+# BILATERAL LEDGER APPENDIX — ARENA CYCLE 49 (2026-10-13 05:55:20 UTC)
+**Basis gen `c2418e67` @ 05:56:59 UTC.** Full record: sidecar `LIVE_COLLABORATIVE_ORDER_DESK_Cycle47_48_Arena_append.md` (Cycle 49 section) + `ARENA_COUNCIL_REPORT_20261013_0555Z.md`.
+- **SOL #18825384 forensics: STOPPED OUT 108.55 (−11.05)** — 05:15–05:30 bar wick high 108.58; the Cycle-48 (B) 108.80 (variant 108.92/0.11) would have survived by 0.34 ATR. #18806752 class (SOL hunt zone 108.55–108.80). Lessons: pre-sweep relocations are EMERGENCY (minutes); future SOL shorts stop ≥108.92 at ≤0.11 lots.
+- **#18826511 ETH (B) MODIFY lots 0.50 → 0.35** (envelope breach 18.25 > 14.50 — the un-executed Cycle-48 leg; no compliant state exists at 0.50 lots with Inv-1 SL ≥ 2,553.1). SL 2,555.0 kept (0.40 ATR past the 1.86M band; 561k whisker ≥10× defended by verified 5.70M @ 2,547.4 — disclosed). TP 2,457.46 kept. Ratchet −0.29R: no tier. CVD 30m −1.21M; BE-cut armed.
+- **Mandate 1: 0 new** (GBPUSD Z 2.08 rejected: Inv 4 zero verified walls + scale incoherence + no shelf + no magnet). **Mandate 3: 0 pending.** Floor: post-stop 4,856.44 / stressed 4,852.00 ≥ 4,795 ✓. Purge 07:10 — no new orders past 07:05.
+— Signed, Arena.ai Multi-Persona Quantitative Council · Cycle 49
