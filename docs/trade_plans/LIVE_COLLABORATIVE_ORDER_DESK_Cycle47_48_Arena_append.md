@@ -67,3 +67,14 @@
 3. **Mandate 3: 0 pending.** Capacity 1/4. Floor: post-stop 4,855.04 / stressed 4,844.41 ≥ 4,795 ✓.
 
 — Signed, Arena.ai Multi-Persona Quantitative Council · Cycle 51 · Report `ARENA_COUNCIL_REPORT_20261013_0650Z.md`
+
+---
+
+## CYCLE 51B — METALS & INDICES SPECIAL ADDENDUM (operator question; gen `699a2ae7` @ 06:56:52 UTC)
+**Q: "Isn't there any other entry potential from metal or indices?" A: YES — Card 2 found (SP500 Model-2 pullback short); GOLD geometry live but lot-grid dead.**
+
+- **CARD 2 — SP500.p SELL LIMIT 0.04 @ 7,810.00 / SL 7,842.00 / TP 7,745.00** (risk 12.80, RR 2.03, EV +3.48 @ LB): BEARISH stack (price kissed EMA200 7,802.89 from below), Z +2.32, friction 1.06 bps, pullback velocity 0.0183 (exhaustion), shelf walls 5.56M credited (2.0M @ 7,824.1/1,035 s anchor), SL 0.46 ATR past the [7,820–7,840] 5.10M ≥1M bunker edge (whisker [7,840–7,850] 743k ~7.5× defended, disclosed), TP 7-bps front-run of [7,730–7,740] 2.55M cascade. **Macro gate: stage ≥ 08:15 UTC post-Waller (re-validate levels on the first post-blackout gen); pre-event staging = operator override only.** Kill-switches: bunker thin >50% → cancel; 15m holds above 7,812 → cancel.
+- **GOLD long: lot-grid dead** — compliant SL ≤ 4,148 (0.35–0.50 ATR past the [4,150–4,160] 708k bunker) = 32+ pt stop = min-lot risk 32.00–33.00 > 14.50 ceiling; the only envelope-feasible stop (4,165.5) is the #18749312 error. Kills: SILVER friction 9.59; NAS100 no premium (Z −0.39); DJ30/GER40 chases with 0 walls (GER40 Z 5.54 DO-NOT-TOUCH); USWTI zero ≥500k credited walls.
+- Portfolio with ETH: joint 25.58 → post-stop 4,842.23 / stressed 4,831.84 ≥ 4,795 ✓ (2/4).
+
+— Arena Council · Cycle 51B · full file `ARENA_COUNCIL_REPORT_20261013_0656Z_metals_indices_addendum.md`
