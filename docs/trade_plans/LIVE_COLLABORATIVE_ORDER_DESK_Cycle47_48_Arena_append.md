@@ -35,3 +35,20 @@
 4. **Floor:** post-stop 4,856.44 modified / 4,850.97 as-is; stressed 4,852.00 / 4,839.06 ≥ 4,795 ✓.
 
 — Signed, Arena.ai Multi-Persona Quantitative Council · Cycle 49 · Report `ARENA_COUNCIL_REPORT_20261013_0555Z.md`
+
+---
+
+## CYCLE 50 (2026-10-13 06:30:56 UTC) — basis gen `549883a1` @ 06:31:53 UTC (prompt cited `3f71ef09` @ 06:30:56)
+**Kaizen status:** operator Part E now carries the 8-trap ledger + 7 mandates (incl. Dynamic Lot Sizing #7 ratifying the 0.50→0.35 trim). Execution confirmed: #18826511 = 0.35 lots (broker nominal 12.775 ✓ envelope-restored; balance 4,867.81 = −1.41 realized on the trimmed 0.15) and TP deepened 2,457.46 → 2,444.5.
+
+**Verdicts:**
+1. **#18826511 ETHUSD.pi SHORT 0.35 @ 2,518.50 (−0.33R) → HOLD; TP 2,444.5 RATIFIED; SL 2,555.0 KEPT.**
+   - TP ratified: VAL 2,444.63 front-run ~5 bps + inside [2,440–2,450] 1.85M + zero bid walls [2,438–2,462] + [2,470–2,480] 24.17M block is cascade fuel (not bounce surface); RR restored 2.03 ≥ 2.00 house bar.
+   - SL kept: [2,540–2,550] grew to 2.65M ≥1M (hard ban on SL inside); 2,555 = 0.44 ATR past edge ✓; straddled [2,550–2,560] 950k whisker (5% under the 1M line — disclosed) defended ≈3.7× credited (down from 10×: face re-formed mostly unverified — 36.3M total / 2.60M credited; old 11.13M @ 2,544.6 anchor replaced by 7.89M @ 2,546.5 presence-flagged). Kill-switch: credited ≥500k/≥180s walls in [2,545,2,560] < 2.0M → SL/emergency review (currently 2.61M — armed).
+   - BE-cut review (15m CVD +850k > +500k tripwire): ADJUDICATED, NOT EXECUTED — 30m −4.47M is a four-minute block-cascade; the +850k is a decelerating relief buyback (+288k → −21k → −37k). Refined trigger: BE-cut (TP → 2,518.5) fires on 15m CVD > +500k AND 15m close > 2,548 (flow + structure must agree). Emergency exit: 15m close above 2,548.
+   - Adverse-signal disclosure: trend_regime flipped BULLISH, RSI 72.1, price above all EMAs, EMA200 slope +0.026%/3h — relief-rally footprint inside the seller regime; thesis survives below 2,548.
+2. **Mandate 1: 0 resting cards. WATCH-CARD 1 carried (macro-blocked): SOLUSD.p SELL LIMIT 0.11 @ 109.10 / SL 109.95 / TP 106.10** (risk 9.35, RR 3.53, EV +7.84 @ LB). Proof: entry = VAH 109.13 + verified wall 2.32M @ 109.07/387 s shelf; SL = Kaizen #4 (≥108.92, 1.87 ATR clear of the 108.55–108.80 hunt zone) with 9.4× credited defense of the 380k whisker (disclosed); TP = 10-bps front-run of 106.00 round + [106–107] 11.74M block far edge; Part D.2 short qualifier (30m −424k). Kill-switches: 109.07 wall relocation >50% → cancel; CVD +500k 15m → cancel. **Activation 08:15+ UTC post-Waller** (7-Point Checklist macro proximity fails pre-speech). Other kills: GER40 Z 3.67 (trend-first contrarian + 0/0 L3 + no CVD), DOT/DOGE/TRX friction-or-CVD, GBPUSD mean-reverted to 0.81.
+3. **Mandate 3: 0 pending.** Capacity 1/4. Floor: post-stop 4,855.04 / stressed 4,849.84 ≥ 4,795 ✓ (with watch-card: 4,845.68 / 4,837.66 ✓).
+4. **Macro:** Fed Waller 07:45 UTC, blackout 07:15–08:15, purge 07:10 (runway 0.72 h).
+
+— Signed, Arena.ai Multi-Persona Quantitative Council · Cycle 50 · Report `ARENA_COUNCIL_REPORT_20261013_0630Z.md`
