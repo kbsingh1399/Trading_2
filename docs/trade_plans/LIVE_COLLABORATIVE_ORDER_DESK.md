@@ -10811,34 +10811,3 @@ Post-swap: 1 ticket (NAS100 7.50 USD) → post-stop **4,872.77 ≥ 4,795.00** �
 | 1b | NOT recommended | NAS100.p | SELL LIMIT | 0.01 | 30,698.0 | 30,773.0 | 30,415.0 | 7.50 | 3.77 | Higher RR but: fill requires slicing the full verified belt (walls hold → never fills); fortress-pull fill = #18748507 worst-local-fill class; Inv-3-mirror marginal at bunker top |
 
 Kill/re-arm at punch-in: if the 30,641 wall (419,978) has pulled → move entry to 30,674.0 (387,226 @ 961 s) or hold; if [30,400–30,500] < 350k → re-walk TP to 30,455.0 (conservative, 2.47R); purge re-validation 02:25 UTC unchanged. Post-stop 4,872.77 ≥ 4,795.00 ✓ (broker-stress 4,868.89 ✓). Alternative <2.5 ATR sweep of all 24: no better compliant candidate (BTC E20 +2.22 ATR but bunker-walk RR ≤ 1.45; SP500 RANGE_BOUND; SOL CVD unqualified; TRX/XRP lot-grid dead; friction/Inv-4 kills elsewhere).
-
----
----
-
-# BILATERAL LEDGER APPENDIX — CYCLE 42 COUNCIL REPORT (2026-10-13 01:08:41 UTC)
-
-**— Signed, Arena.ai Multi-Persona Quantitative Council · Cycle 42 · generation `0170e8b04e384f4998d8faf11920373f` (as_of 2026-10-13 01:13:34 UTC) — full report at `docs/trade_plans/ARENA_COUNCIL_REPORT_20261013_0108Z.md`**
-
-## A. Ingestion & Baseline
-- gen `0170e8b0` @ 2026-10-13 01:13:34 UTC (supersedes prompt-cited `13dd5c2c` @ 01:08:41). Account 5064568: 4,880.27 USD, cushion +105.27, 0 open / 1 pending (#18817374). Macro: purge 02:25 UTC (**1.27 h**), BoE Greene 03:00 UTC (1.77 h). Vol flag: NAS100 ATR 25.49→**35.92** (+41%); crypto 15m CVD whipsawed to **+2.4M…+7.5M absorption**. Degenerate-σ: TRX Z +12.24 / EURUSD +11.48 / GBPUSD +13.82 = artifacts, not signals.
-
-## B. Mandate 1 — 24-Asset Screen (Trend-First)
-**0 qualifying.** Non-banned Model-1 extremes both die on the same pair: **USWTI Z −3.41 (BULLISH, friction 4.94 now compliant)** — Inv 2 unverifiable (no CVD stream; unavailable ≠ authorization) + Inv 4 (0 verified bids near 93.12, 5th cycle); **USDJPY Z −3.63 (RANGE_BOUND at VAL 158.36)** — Inv 2 + Inv 4 (0 verified bids in window). Crypto: shorts unqualified (15m CVD absorption BTC +7.45M / SOL +3.61M / ETH +2.40M — the #18798018 mirror), longs banned (BEARISH). DJ30 Z +4.20 / GER40 +3.14 fades: trend-first + zero L3. DOGE short (30m CVD −2.26M genuine) blocked by 257 bps. **NAS100 new short lot-grid dead:** bunker [30,700–30,800] **2,108,254** → SL ≥ 30,812.6 → min risk 20.89 > 14.50 at 0.01 lots.
-
-## C. Mandate 2 — FLAT (OPEN_0)
-0 open, margin 0.00, equity 4,880.27. Wins banked. No ratchets.
-
-## D. Mandate 3 — #18817374 NAS100.p SELL 0.01 @ 30,648 / 30,723 / 30,455 → **(C) DELETE — CANCEL IMMEDIATELY**
-The lattice moved under the ticket. Four grounds: (1) **Inv 1 CATEGORICAL — SL 30,723 now INSIDE [30,700–30,800] 2,108,254** (buy-stop primary grew 14.5× and relocated; was 0.59 ATR outside the old [30,600–30,700] at staging). (2) Walls pulled ≈ **86%** — the 20,615-s fortress @ 30,700 and the full 3.44M belt are gone (only 256k @ 30,687/529 s remains): explicit (C) trigger + Inv 4 dead. (3) Drift **3.23 ATR > 2.0** (ATR +41%): explicit (C) trigger. (4) TP magnet [30,400–30,500] drained 451k→265k (−41%), 31.8 pts from live price = one flush leg from consumption (Cycle-41 Discrepancy-1 mode). (A) fails proximity; (B) infeasible — proximity-restored entry vs the new bunker = min risk 20.89 = lot-grid dead, and honest TPs give RR ≤ 1.64 < 2.00. Only the BEARISH regime survived, and it cannot carry an Inv-1-categorical SL.
-
-## E. Step 4 — Floor Governance
-Post-delete: 0 tickets, post-stop 4,880.27 ≥ 4,795.00 ✓. Flat and unencumbered into the 02:25 UTC purge + 03:00 UTC BoE Greene — correct posture after the vol expansion + wall-pull cascade.
-
-## F. Actionable Execution Summary Table (Cycle 42)
-
-| Seq | Ticket/Action | Symbol | Side | Lots | Entry | SL Bunker | TP Magnet | Risk USD | R:R | Rationale |
-|---|---|---|---|---|---|---|---|---|---|---|
-| 1 | **(C) DELETE — CANCEL** | NAS100.p (#18817374) | — | — | — | — | — | — | — | SL inside relocated [30,700–30,800] 2.11M bunker (Inv 1 categorical); walls −86% incl. fortress (Inv 4); drift 3.23 ATR; magnet −41%. Repair lot-grid dead |
-| 2 | HOLD | All 24 | — | — | — | — | — | — | — | 0 qualifying (§B). Re-arm queue: USWTI long (CVD feed + ≥300k bid wall), NAS100 short (ATR ≤ 28 + bunker < 600k), DOGE short (spread < 35 bps) |
-| 3 | MANDATE 2 | — | — | — | — | — | — | — | — | FLAT; wins banked |
-| 4 | FLOOR | — | — | — | — | — | — | 0.00 | — | 0 tickets; 4,880.27 ≥ 4,795.00 ✓; flat into purge + BoE |

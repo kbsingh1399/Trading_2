@@ -743,8 +743,15 @@ async def post_prompt_to_arena(prompt_text: str) -> bool:
             # Failsafe submit click / onSubmit trigger
             js_submit = """
             (async () => {
+              const el = document.querySelector('.tiptap.ProseMirror');
+              if (el) el.focus();
               const submitBtn = document.querySelector('button[aria-label="Send message"], button:has(svg.lucide-arrow-up), button:has(svg.lucide-arrow-right)');
               if (!submitBtn) return { error: 'No submit button' };
+
+              if (!submitBtn.disabled) {
+                submitBtn.click();
+                return { submitted: true, method: 'click' };
+              }
 
               const fiberKey = Object.keys(submitBtn).find(k => k.startsWith('__reactFiber'));
               if (fiberKey) {
@@ -760,10 +767,6 @@ async def post_prompt_to_arena(prompt_text: str) -> bool:
                 }
               }
 
-              if (!submitBtn.disabled) {
-                submitBtn.click();
-                return { submitted: true, method: 'click' };
-              }
               return { submitted: false, error: 'Disabled and no fiber onSubmit' };
             })()
             """

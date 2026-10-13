@@ -243,6 +243,7 @@ def main():
 
     import importlib
     from Terminal.MT5_Execution_Bridge import MT5ExecutionBridge
+    from Terminal import Api_Client as api_mod
     from Terminal.Data_Factory import generate_telemetry_snapshot as gen_mod
     bridge = MT5ExecutionBridge(5064568)
     iteration = 0
@@ -256,6 +257,7 @@ def main():
             # Step 1: Reload generator module so code updates take effect automatically, then generate fresh observations.
             snapshot = None
             try:
+                importlib.reload(api_mod)
                 importlib.reload(gen_mod)
                 snapshot = gen_mod.generate_full_snapshot(bridge=bridge)
                 equity = snapshot["account"]["equity_usd"]
