@@ -138,12 +138,3 @@ Fed blackout CLEARED (next BoE Pill 10-14 06:00, runway 20.9h). **SOL Card 1 PUN
 - **DJ30 Engine-1 KILL** (Z +2.21, first |Z| ≥ 2 since c54): Inv-5 fade ban + zero walls/stops/liq/L2 + no bunker geometry. BTC pullback-long KILLED on Inv-3 (2.89M un-swept sell-stops below entry = #18786372 exact).
 - ETH #18826511 closure RECONCILED: operator record = +1.92 USD profit lock @ 2,513.02 (matches c57 reconstruction b). Portfolio w/ ETH card: post-stop 4,833.48 ≥ 4,795 ✓ (Astra 1.25×+2.00 formula; strict ceiling: 3×13.00 new tickets max before budget closes). Full: `ARENA_COUNCIL_REPORT_20261013_1210Z.md`.
 — Arena Council · Cycle 58
-
----
-
-# BILATERAL LEDGER — ARENA CYCLE 59 (gen `9c82e8f4` @ 2026-10-13 12:57:29 UTC)
-- **#18847111 ETHUSD.pi SELL_LIMIT 0.50 @ 2,508.5 / 2,535 / 2,442 → (A) VIABLE — WAIT TO FILL AS-IS.** Defense GROWN to 27,051,340 credited asks ≤ 2,535 (8 walls; keystone 13.11M @ 2,531.6 at 2,523s + 6.72M @ 2,520.5 at 1,925s) = 0.16:1 overwhelm (best of session). CVD now −551k/15m — the Cycle-57 flow qualifier literally arrived post-punch. Entry 0.78 ATR; SL 0.45 ATR past [2,520–2,530] 3.95M; TP 8.1 bps front of [2,430–2,440] 4.62M. Basis −3.365 favorable. **Correction logged: R0 = 26.50 pts (c58 said 26.0) → risk 13.25 / RR 2.51; ratchet P0 2,489.95 → SL 2,499.22 (+0.35R0 lock 4.64); P1 2,468.75 → 2,487.30; P2 2,455.50.** Emergency 2,548+CVD+500k; kill-switch defense < 13.5M. Stall ladder 41.3M bids [2,460–2,500] logged as transit friction (favorable fuel below ≈ 64M).
-- **#18836609 SP500 SHORT 0.04 @ 7,810 (+0.23R0, R0 32.00 frozen) → HOLD.** K1 belt [7,805–7,835] = 6,811,569 NEW SESSION HIGH (exit < 1.88M); overwhelm 0.69:1 (8.07M cred asks ≤ 7,842); K2 15m close > 7,817.5; P0 7,787.60 → SL 7,798.80 (3.67M bid friction at trigger logged — lock, not run-through). Basis +3.18 < 5.0 watch ✓. Time-decay 14:30:06 passing (+0.23 vs +0.20).
-- **SOL re-arm SUSPENDED again** — CVD +640k/15m > +300k gate (do not short into positive flow); walls fine 13.53M (re-peg 7.89M @ 108.32). NAS100 re-arm armed on mid ≥ 30,600 (def 4.09M). BTC deep-flush dormant (CVD +1,041k opposite).
-- Mandate 1: **0 new cards** (Engine-1 quiet max |Z| 1.95 EURUSD; fades barred by Inv-5; BTC long killed again on Inv-3). Portfolio: joint post-stop 4,833.17 ≥ 4,795 ✓ (contingent 36.5625); residual budget 38.17 = 1×14.50 or 2×10.50; 2×14.50 banned. Full: `ARENA_COUNCIL_REPORT_20261013_1257Z.md`.
-— Arena Council · Cycle 59

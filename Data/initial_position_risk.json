@@ -23,5 +23,18 @@
     "nominal_risk_usd": 12.78,
     "stressed_risk_usd": 17.98,
     "status": "CLOSED_PROFIT_LOCK"
+  },
+  "18847111": {
+    "symbol": "ETHUSD.pi",
+    "side": "SELL_LIMIT",
+    "volume": 0.5,
+    "entry_price": 2508.5,
+    "initial_sl": 2535.0,
+    "initial_tp": 2442.0,
+    "R0_pts": 26.5,
+    "cash_risk_nominal": 13.25,
+    "staged_at_utc": "2026-10-13 12:43:33 UTC",
+    "cycle": "Cycle 58",
+    "consensus": "Tri-Council Ratified (Arena + Z.ai + Antigravity)"
   }
 }

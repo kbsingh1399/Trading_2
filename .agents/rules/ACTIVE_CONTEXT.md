@@ -33,6 +33,7 @@ trigger: always_on
     3. *Model 2 Pullback Short Protocol*: In a bear trend, never chase breakdowns at the lows. Wait for relief rallies into the EMA20/EMA50/VAH shelves backed by resting L2/L3 Ask Whale Walls (e.g. 7.79M USD Ask @ 82,670 on BTC) to defend stops.
     4. *Adaptive Risk Envelope (7.50 to 14.50 USD)*: Never discard a pristine 2.0R+ trend setup because 0.01 lot produces 8.50-9.50 USD risk (below an arbitrary 10.00 USD floor). An 8.50 USD risk on 0.01 lot is 0.17% equity risk and is fully authorized.
     5. *Broker Ticker Mapping*: Remember that Avalanche is mapped to `AVXUSD.p` on Blueberry Markets (Contract Size 100, min lot 0.01, digits 2).
+- **Z.AI HIGH-TRAFFIC MODEL-SWITCH POPUP RESILIENCE MANDATE (STRICT OPERATOR DIRECTIVE)**: Under peak traffic, Z.ai Chat may pop up a modal dialog asking to switch models rather than registering the prompt. When this occurs, NEVER switch models or abort; execute Escape (via CDP key event and DOM dispatch) to dismiss the modal, wait 350ms, and click the send button again. Repeating this 2 to 3 times forces Z.ai to register the prompt and begin generation.
 - **ZERO SPURIOUS SCRATCH LITTER**: Clean up all intermediate debug scripts immediately after validation.
 
 ## 2. Active Mission & Quantitative Target
@@ -61,19 +62,19 @@ trigger: always_on
       * **Position Capacity Policy**:
         - Up to 4 concurrent tickets across orthogonal asset clusters provided total joint worst-case stopout risk unconditionally defends the 4,775.00 USD hard floor and 4,795.00 USD operating buffer (>= 20.00 USD cushion at all times).
     - Connects directly via native IPC to MetaTrader 5 Account 5064568 (Blueberry Markets).
-    - **Active Positions & Pending Orders (Live State — 1 Open Position | 0 Limit Orders Resting)**:
-      * Current Status: **1 Open Position (`#18836609` `SP500.p` `SHORT 0.04 lots` @ `7,810.00 USD`, `SL = 7,842.00 USD`, `TP = 7,745.00 USD`) | 0 Pending Orders | Balance: 4,869.73 USD | Equity: ~4,872.15 USD | Margin Free: ~4,559.75 USD**.
+    - **Active Positions & Pending Orders (Live State — 1 Open Position | 1 Limit Order Resting)**:
+      * Current Status: **1 Open Position (`#18836609` `SP500.p` `SHORT 0.04 lots` @ `7,810.00 USD`, `SL = 7,842.00 USD`, `TP = 7,745.00 USD`) | 1 Pending Order (`#18847111` `ETHUSD.pi` `SELL LIMIT 0.50 lots` @ `2,508.50 USD`, `SL = 2,535.00 USD`, `TP = 2,442.00 USD`) | Balance: 4,869.73 USD | Equity: ~4,872.25 USD | Margin Free: ~4,559.85 USD**.
       * Active Positions (1 — Monitored every 15s by Autonomous Ratchet Daemon for Phase 0 BE / Phase 1 Profit Lock / Phase 2 Trailing):
-        - **Ticket `#18836609` (`SP500.p` `SHORT 0.04 lots` @ `7,810.00 USD` | `SL: 7,842.00 USD` | `TP: 7,745.00 USD`)**: Staged post-blackout at `08:16 UTC` and filled cleanly (`Deal #17041793`). Model-2 Trend Pullback short into the 4.39M USD ask wall belt core (`7,805–7,835`). SL sits 0.45 ATR outside the 7,840 bunker ceiling. TP front-runs the 2.55M USD cascade block by 7 bps. Nominal Risk: `12.80 USD` (Stressed: `18.00 USD`). Current floating profit: `+2.42 USD / +0.23R`. Phase 0 BE trigger armed at `7,787.60 USD`.
-      * Active Pending Orders (0):
-        - None (`3` capacity slots available in reserve).
-      * G-1 Hard Floor Defense: Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Floor Cushion: **+97.15 USD live equity cushion (`+94.73 USD` balance cushion)**.
+        - **Ticket `#18836609` (`SP500.p` `SHORT 0.04 lots` @ `7,810.00 USD` | `SL: 7,842.00 USD` | `TP: 7,745.00 USD`)**: Staged post-blackout at `08:16 UTC` and filled cleanly (`Deal #17041793`). Model-2 Trend Pullback short into the 4.39M USD ask wall belt core (`7,805–7,835`). SL sits 0.45 ATR outside the 7,840 bunker ceiling. TP front-runs the 2.55M USD cascade block by 7 bps. Nominal Risk: `12.80 USD` (Stressed: `18.00 USD`). Current floating profit: `+2.53 USD / +0.24R0`. Phase 0 BE trigger armed at `7,787.60 USD`.
+      * Active Pending Orders (1 — Tri-Council Ratified Cycle 58 Staging):
+        - **Ticket `#18847111` (`ETHUSD.pi` `SELL LIMIT 0.50 lots` @ `2,508.50 USD` | `SL: 2,535.00 USD` | `TP: 2,442.00 USD`)**: Staged at `12:43 UTC`. Model-2 Trend Pullback short into 8.6M+ USD resting Ask wall belt (`2,508.10` 1.19M, `2,508.30` 2.25M, `2,511.90` 3.00M, `2,512.20` 3.42M). SL sits 5.0 pts (0.43 ATR) outside the `[2,520–2,530]` stop cluster ceiling, sheltered behind 28.5M+ USD cumulative Ask walls up to `2,531.60` (13.11M wall). Nominal Risk: `13.25 USD` (Stressed: `18.56 USD`). Frozen `R0 = 26.50 pts`. Autonomous Ratchet armed (P0 BE lock at `2,489.95 USD` / +0.70R0).
+      * G-1 Hard Floor Defense: Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Floor Cushion: **+97.25 USD live equity cushion (`+94.73 USD` balance cushion)**.
       * Stressed Post-Loss Simulation:
-        - Total Book Risk: **12.80 USD nominal (`18.00 USD` stressed at `1.25x + 2.00 USD/ticket`)** across `1` open position.
-        - Stressed Worst-Case Equity: **4,854.15 USD** (`4,856.93 USD` unstressed — unconditionally defends floor!).
-        - Safety Cushion Above 4,775.00 USD Hard Floor: **+79.15 USD stressed (`+81.93 USD` unstressed)**.
-        - Safety Cushion Above 4,795.00 USD Operating Buffer: **+59.15 USD stressed (`+61.93 USD` unstressed)**.
-        - Capacity Slots Used: **1 / 4** (`3` slots available in reserve).
+        - Total Book Risk: **26.05 USD nominal (`36.56 USD` stressed at `1.25x + 2.00 USD/ticket`)** across `2` tickets (1 open + 1 pending).
+        - Stressed Worst-Case Equity: **4,833.17 USD** (`4,843.68 USD` unstressed — unconditionally defends floor!).
+        - Safety Cushion Above 4,775.00 USD Hard Floor: **+58.17 USD stressed (`+68.68 USD` unstressed)**.
+        - Safety Cushion Above 4,795.00 USD Operating Buffer: **+38.17 USD stressed (`+48.68 USD` unstressed)**.
+        - Capacity Slots Used: **2 / 4** (`2` slots available in reserve).
       * Closed Trades Today (Realized PnL):
         - Ticket #18826511 (`ETHUSD.pi` closed at **+1.92 USD cash profit** via Stop Loss profit lock at 2,513.02 USD, Deal #17050770, net +0.51 USD after C49 partial resize)
         - Ticket #18825384 (`SOLUSD.p` closed at **-11.05 USD loss** via Stop Loss at 108.55 USD after `108.34 / 108.75` Ask Whale walls relocated above 108.55 to 108.68 / 109.22)
