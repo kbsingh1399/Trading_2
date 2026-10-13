@@ -43,7 +43,7 @@ logging.basicConfig(
 logger = logging.getLogger("TelemetryGitDaemon")
 
 BRANCH_NAME = "main"
-ARENA_BRANCH = "arena/537c1eb8-trading-2"
+ARENA_BRANCH = "arena/5c05910e-trading-2"
 CANONICAL_REMOTE = "https://github.com/kbsingh1399/Trading_2"
 SNAPSHOT_FILE = "docs/telemetry/live_snapshot_latest.json"
 INTERVAL_SECONDS = 60
@@ -228,6 +228,15 @@ def sync_git_cycle(generated_snapshot=None, *, clock=None):
             logger.warning("Telemetry push failed; retaining local commit for review: %s", err_main)
             return False
         logger.info("Published this cycle's observed snapshot to origin/%s (arena ref deferred)", BRANCH_NAME)
+        # Immediately resolve the diverged arena branch by fetching and merging
+        run_cmd(["git", "fetch", "origin", ARENA_BRANCH])
+        m_code, _, _ = run_cmd(["git", "merge", f"origin/{ARENA_BRANCH}", "-m", "daemon: auto-merge arena branch ref"])
+        if m_code == 0:
+            run_cmd(["git", "push", "origin", f"HEAD:{ARENA_BRANCH}"])
+            run_cmd(["git", "push", "origin", f"HEAD:{BRANCH_NAME}"])
+            logger.info("Auto-synchronized origin/%s after merge", ARENA_BRANCH)
+        else:
+            run_cmd(["git", "merge", "--abort"])
         return True
     logger.info("Published this cycle's observed snapshot to origin/%s and origin/%s", BRANCH_NAME, ARENA_BRANCH)
     return True
@@ -243,6 +252,7 @@ def main():
 
     import importlib
     from Terminal.MT5_Execution_Bridge import MT5ExecutionBridge
+    from Terminal import Api_Client as api_mod
     from Terminal.Data_Factory import generate_telemetry_snapshot as gen_mod
     bridge = MT5ExecutionBridge(5064568)
     iteration = 0
@@ -256,6 +266,7 @@ def main():
             # Step 1: Reload generator module so code updates take effect automatically, then generate fresh observations.
             snapshot = None
             try:
+                importlib.reload(api_mod)
                 importlib.reload(gen_mod)
                 snapshot = gen_mod.generate_full_snapshot(bridge=bridge)
                 equity = snapshot["account"]["equity_usd"]
@@ -274,6 +285,12 @@ def main():
 
             # Memory cleanup
             gc.collect()
+            if os.name == "nt":
+                try:
+                    import ctypes
+                    ctypes.windll.psapi.EmptyWorkingSet(ctypes.windll.kernel32.GetCurrentProcess())
+                except Exception:
+                    pass
 
             elapsed = time.time() - t_start
             sleep_time = max(5.0, INTERVAL_SECONDS - elapsed)

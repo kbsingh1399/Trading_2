@@ -131,7 +131,36 @@ The table below catalogs every parameter consolidated in `docs/telemetry/live_sn
 | `taker_buy_usd` / `taker_sell_usd` | `BINANCE_FUTURES_AGG_TRADES` | Aggressive market buy vs market sell volume | Measures aggressive market participant aggression |
 | `cvd_delta_usd` | `BINANCE_FUTURES_AGG_TRADES` (Calculated) | Net taker buy minus sell dollar delta | Identifies tape absorption (e.g. selling into resting bids) |
 
-#### 8. Multi-Timeframe OHLCV Data
+#### 8. Multi-Horizon CVD & Divergence (`multi_horizon_cvd`)
+| Parameter | Exact Data Source | Description | Decision Role |
+|---|---|---|---|
+| `session_cvd_usd` | `BINANCE_KLINES_15M` (00:00 UTC Reset) | Cumulative Volume Delta since midnight UTC | Confirms session intraday institutional inventory bias |
+| `weekly_cvd_usd` | `BINANCE_KLINES_15M` (Monday 00:00 UTC) | Cumulative Volume Delta since start of week | Confirms swing/multi-day institutional accumulation/distribution |
+| `cvd_24h_usd` | `BINANCE_KLINES_15M` (Trailing 96 bars) | Trailing 24-hour aggregate taker volume delta | Normalizes rolling market pressure independent of session reset |
+| `bar_delta_15m_usd` | `BINANCE_KLINES_15M` (Latest closed bar) | Net taker volume delta of most recent 15m candle | Immediate tape momentum confirmation on candle close |
+| `divergence` | `BINANCE_KLINES_15M` (Calculated) | `BULLISH_ABSORPTION`, `BEARISH_EXHAUSTION`, `BULLISH_MOMENTUM`, `BEARISH_MOMENTUM`, or `NEUTRAL` | **Core Divergence Signal:** Detects aggressive volume absorption against price direction |
+
+#### 9. TradFi Synthetic Order Flow & OFI (`tradfi_orderflow`)
+| Parameter | Exact Data Source | Description | Decision Role |
+|---|---|---|---|
+| `session_tick_cvd` | `MT5_L1_TICK_STREAM` (Lee-Ready Rule) | Aggressor tick CVD signed by quote direction | Eliminates the TradFi orderflow void across SP500, NAS100, Gold, Oil |
+| `15m_tick_cvd` / `5m_tick_cvd` | `MT5_L1_TICK_STREAM` (Lee-Ready Rule) | Trailing 15m and 5m aggressor tick CVD | Fast intraday tick momentum and buyer/seller dominance |
+| `order_flow_imbalance_ofi` | `MT5_L1_TICK_STREAM` (Cont et al. 2014) | Order Flow Imbalance normalized (-1.0 to +1.0) | Top-of-book bid/ask queue balance shift |
+| `flow_bias` | `MT5_L1_TICK_STREAM` (Calculated) | `BUYER_AGGRESSION`, `SELLER_AGGRESSION`, or `NEUTRAL` | Confirms whether TradFi market orders are lifting offers or hitting bids |
+
+#### 10. Multi-Timeframe Anchored Value Areas (`htf_auction_profiles`)
+| Parameter | Exact Data Source | Description | Decision Role |
+|---|---|---|---|
+| `prior_day_poc` / `vah` / `val` | `MT5_COMPLETED_15M_BARS` (Yesterday) | Prior Day Point of Control and Value Area (70%) | Institutional auction boundaries; prior day VAL/VAH act as major support/resistance |
+| `prior_week_poc` / `vah` / `val` | `MT5_COMPLETED_15M_BARS` (Past week) | Prior Week Point of Control and Value Area (70%) | Major macro structural shelves; retests of prior week POC are prime entry triggers |
+| `weekly_vwap` | `MT5_COMPLETED_15M_BARS` (Developing) | Developing Volume Weighted Average Price from Monday | Higher-timeframe equilibrium axis for trend following pullbacks |
+
+#### 11. Footprint POC Trapped Trader Detection (`trapped_traders_signal`)
+| Parameter | Exact Data Source | Description | Decision Role |
+|---|---|---|---|
+| `trapped_traders_signal` | Footprint Auction Analysis (Calculated) | `TRAPPED_BUYERS_ABOVE`, `TRAPPED_SELLERS_BELOW`, or `BALANCED` | **Exhaustion Trigger:** Detects trapped breakout traders absorbed by resting institutional limits |
+
+#### 12. Multi-Timeframe OHLCV Data
 | Parameter | Exact Data Source | Description | Decision Role |
 |---|---|---|---|
 | `bars_15m_ohlcv` | `MT5_BROKER_COMPLETED_BARS` | Completed 15m candles with OHLCV | Primary trading timeframe structure |
@@ -235,16 +264,19 @@ The following table documents real historical outcomes and forensic audits from 
 
 Before any order is staged or punched into MetaTrader 5, the desk conducts this rapid 7-point evaluation:
 
-1. **Spread, Friction, Entry Proximity (`<= 2.0 ATR`) & Discrete Lot-Step Sizability Check:**
-   - [ ] Is `quotes.spread_bps` <= 25.0 bps (Crypto) or <= 5.0 bps (TradFi CFDs)?
+1. **Relative Spread & Friction Approach, Entry Proximity (`<= 2.0 ATR`) & Discrete Lot-Step Sizability:**
+   - [ ] **Relative Spread & Friction Approach (Eliminating Rigid Binary Caps):**
+     * **Friction-to-Payoff Ratio:** Is `Spread_pts / Target_Distance_pts <= 15.0%` (i.e. Expected Target Move is `>= 6.5x` the broker spread)?
+     * **Friction-to-Volatility Ratio:** Is `Spread_pts / ATR_14 <= 0.18` (Spread is `<= 18%` of 15m ATR)?
+     * **Nominal Ceilings:** Absolute spread must remain `<= 35.0 bps` on high-beta Crypto (allowing SOL ~21 bps, BCH ~22 bps, AVAX ~28 bps, XRP ~29 bps when targeting >= 200–400 bps moves) and `<= 5.0 bps` on TradFi CFDs (Indices, Commodities, Forex). Untradable meme instruments (e.g. DOGE > 250 bps, DOT > 160 bps) where spread exceeds volatility remain strictly disqualified.
    - [ ] Is the proposed passive limit `Entry` within **`<= 2.0 * ATR_14`** of current MT5 mid price (both for Mandate 1 new proposals and Mandate 3 resting orders)?
-   - [ ] **Discrete Lot-Step Risk Sizability (`step_lot` Multiple in `[10.00, 14.50] USD`):** Does there exist at least one discrete `step_lot` multiple `>= min_lot` such that `risk_usd = stop_dist * contract_size * lots` lands inside `[10.00, 14.50] USD` at a `§3.B` & `§4`-compliant stop distance (e.g., `NAS100.p` at `0.05 lots` risks `10.05 USD` with `1,533.29 USD` / `10%` margin; `SP500.p` at `0.13 lots` requires `1,014.65 USD` / `10%` margin and `>= 1.5 ATR` index stop spacing)?
+   - [ ] **Discrete Lot-Step Risk Sizability (`step_lot` Multiple in `[10.00, 14.50] USD`):** Does there exist at least one discrete `step_lot` multiple `>= min_lot` such that `risk_usd = stop_dist * contract_size * lots` lands inside `[10.00, 14.50] USD` at a `§3.B` & `§4`-compliant stop distance?
    - *If NO: Discard immediately.*
 
 2. **Floor Cushion, Margin Encumbrance & Risk Budget Defense:**
    - [ ] Is `risk.floor_cushion_usd` >= $20.00 USD?
    - [ ] Does `risk.stressed_equity_usd` remain >= $4,795.00 USD after this order?
-   - [ ] Is single-trade risk verified via `mt5.order_calc_profit` strictly between $10.00 and $14.50 USD (0.20% - 0.29%), with both Risk and Reward reported in lot-scaled USD alongside `mt5.order_calc_margin`?
+   - [ ] Is single-trade risk verified via `mt5.order_calc_profit` within the adaptive envelope of **$7.50 to $14.50 USD** (0.15% - 0.29% equity), allowing high-conviction 0.01 lot trend setups ($8.50-$9.50) without rigid floor disqualification, with both Risk and Reward reported in lot-scaled USD alongside `mt5.order_calc_margin`?
    - *If NO: Reject order to defend capital.*
 
 3. **Macro Catalyst Runway:**
@@ -252,9 +284,13 @@ Before any order is staged or punched into MetaTrader 5, the desk conducts this 
    - [ ] Is `macro_calendar.runway_hours_to_blackout` >= 2.0 hours?
    - *If NO: Stand aside until catalyst passes.*
 
-4. **Regime & Strategic Setup Identification:**
-   - [ ] Is setup **Model 1** (Extreme Mean Reversion, `|Z| >= 2.0 SD`) or **Model 2** (Trend Pullback, `|Z| < 2.0 SD` with price & 200 EMA slope aligned)?
-   - [ ] Is there structural alignment (200 EMA slope, Session VWAP location, or Value Area boundary)?
+4. **Regime & Higher-Timeframe (HTF) Trend Hierarchy Gate (Strict Invariant):**
+   - [ ] **HTF Alignment Check (1H & 4H OHLCV + 20/50/200 EMAs):**
+     * **Bearish HTF Regime (Price < EMA20 < EMA50 on 1H/4H, declining closes):** **Model 1 Dip-Buying Longs are FORBIDDEN.** Do NOT catch falling knives even if `|Z| >= 2.0 SD` or RSI < 30. All priority is locked onto **Model 2 Trend Pullback SHORTS**.
+     * **Bullish HTF Regime (Price > EMA20 > EMA50 on 1H/4H, rising closes):** **Model 1 Top-Fading Shorts are FORBIDDEN.** Do NOT short into strong buying momentum. All priority is locked onto **Model 2 Trend Pullback LONGS**.
+     * **Range-Bound / Rotational Regime (Flat EMAs, oscillating VWAP):** Both Model 1 Mean Reversion (|Z| >= 2.0 SD) and Value Area Boundary Reversals (buying VAL, shorting VAH) are active.
+   - [ ] **Model 2 Pullback Short Qualification:** For Bearish regimes, wait for an intraday relief rally into the EMA20/EMA50/VAH shelf backed by resting **L2/L3 Ask Whale Walls** overhead to defend the Stop Loss.
+   - [ ] **Broker Ticker Mapping:** Remember that Avalanche is mapped to `AVXUSD.p` on Blueberry Markets MT5 (contract size 100.0, volume min 0.01).
 
 5. **Per-Asset L3 Whale Warmth, `(address, size)` Continuity & 15m/30m CVD Alignment:**
    - [ ] **Per-Asset Feed Warmth:** Verify that the target asset's own `whale_walls_l3` feed is warm across consecutive generations (since L3 snapshots can drop out per-asset even when the global 24-asset total is `> 50`).
