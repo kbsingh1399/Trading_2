@@ -213,13 +213,3 @@ Fed blackout CLEARED (next BoE Pill 10-14 06:00, runway 20.9h). **SOL Card 1 PUN
 - Telemetry restart 21:15:59 forensics: identical 26-sample/presence-0.8966 signature across assets = window reset; demotion ≠ Archetype-4 pull. 9 names DATA-HOLD.
 - ETH #18847111 HOLD −0.14R0 (frozen 26.50): emergency fired on artifact (credited 0.80M) but physical defense intact (~17.7M in-zone + keystone re-peg #5 12.89M @ 2,542.4 GREW + 3.71M @ 2,541.0). Falsification: next cycle credited < 1.0M AND observed < 8.0M → A4 trim. P0 2,489.95 → SL 2,499.22; P1 2,468.75 → 2,487.30; TP 2,442 (cascade 23.85M). SOL re-arm verify-pending (6.83M @ 108.65 corridor shield). BTC flush conditional (2.50M < 3.0M). 0 new. Post 4,850.14 ✓ 1/4. Full: `ARENA_COUNCIL_REPORT_20261013_2137Z.md`.
 — Arena Council · Cycle 69
-
----
-
-# BILATERAL LEDGER — ARENA CYCLE 70 (gen `e005aedd` @ 2026-10-13 22:23:47 UTC — exact prompt match)
-- **★ FALSIFICATION ADJUDICATED — Cycle-69 artifact ruling VINDICATED.** Trim condition (credited < 1.0M AND observed < 8.0M) failed on both limbs by >12×/5×: **credited in-zone 12.50M** (6.61M @ 2,527.9 + 3.36M @ 2,519.5 both RE-VERIFIED at 2,078s) / **observed 43.52M across 54 walls**. Keystone re-peg #6: 12.89M @ 2,542.4 → **2,544.1**. Spread normalized 23.51 → 11.56. Standing rule confirmed: window-restart demotion ≠ A4 pull.
-- **#18847111 ETH SHORT 0.50 @ 2,508.5 → HOLD** (−0.30 / −0.02R0 frozen 26.50). Defense 12.50M credited ≫ 6.0M kill line. BEARISH stack intact (price < EMA200 2,509.2); micro-buyers on the grind (30m +0.95M) vs 24h −8.37M; TRAPPED_BUYERS_ABOVE. VAH 2,528.9 re-adj 18 pts overhead. P0 2,489.95 in 17.90 pts → SL 2,499.22 on print (locks +4.64); P1 2,468.75 → 2,487.30; P2 2,455.50. TP corridor: [2,470–2,480] cascade **23.93M**.
-- **Mandate 1: 0 candidates + NAS100 upgraded to WATCHLIST** — Z +1.85 BEARISH, 0.15 from the session's first LEGAL Engine-1 short (BEARISH HTF permits shorts; wall backing 1.09M+0.96M+1.03M credited). Missing piece: tape exhaustion (SELLER_AGGRESSION ≠ exhaustion). SILVER Z −1.80 near the absolute-ban line. 9 DATA-HOLD names recovered to valid regimes.
-- Watch ledger: SOL SUSPENDED with ephemerality evidence (6.83M @ 108.65 = 4,057s observed, never verifies = A4 profile). NAS100 pullback card SUSPENDED (R-2 1.09M max single). BTC flush conditional (shield 2.50M @ 82,444 11,227s; keystones re-pegged 16.32M @ 82,750 / 17.81M @ 82,213; ≥3M shield at punch).
-- Portfolio: post_joint **4,851.64 ≥ 4,795** ✓; budget 56.54 (max 2 new @ 14.50); 1/4. R0 clean (26.50, 5th cycle). Macro: BoE Pill 2026-10-14 06:00 UTC. Full: `ARENA_COUNCIL_REPORT_20261013_2223Z.md`.
-— Arena Council · Cycle 70
