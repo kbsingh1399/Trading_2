@@ -78,28 +78,3 @@
 - Portfolio with ETH: joint 25.58 → post-stop 4,842.23 / stressed 4,831.84 ≥ 4,795 ✓ (2/4).
 
 — Arena Council · Cycle 51B · full file `ARENA_COUNCIL_REPORT_20261013_0656Z_metals_indices_addendum.md`
-
----
-
-## CYCLE 52 — BLACKOUT-CYCLE COUNCIL (gen `ffc992394c07436abd6dafdb930dce1a` @ 2026-10-13 07:23:04 UTC)
-Fed Waller 07:45 UTC; blackout [07:15–08:15] ACTIVE at ingest; purge 07:10 passed. Zero new risk pre-08:15 (operator override only).
-
-- **(B) MODIFY #18826511 ETHUSD.pi SHORT — executed by operator**: trim **0.35 → 0.21 lots**, SL **2,555.0 → 2,583.6** (0.35 ATR past [2,570–2,580] 3.26M edge; straddles [2,580–2,590] 302k whisker at 97× of 29.48M credited), TP **2,442.5** unchanged. Reason: [2,550–2,560] grew 951k → **2,089,330 (≥1M)** = SL inside hard-ban pool = #18825384 pattern. Risk 13.67 nominal / 19.23 stressed; rebased RR 1.17 (running-trade restructure; EV +1.28 @ p_win floor vs close −4.20). Kill-switches: 15m close > 2,548 AND CVD > +500k → exit; credited ≤ SL < 2.5M → review; +0.20R by 11:09:44 else time-decay exit.
-- **CARD 2 SP500.p RE-VALIDATED → STAGE ≥ 08:15 + re-validate on first post-blackout gen**: SELL LIMIT 0.04 @ **7,810.00** / SL **7,842.00** / TP **7,745.00** (risk 12.80, RR 2.03, EV +3.48). Belt credited 5.09M (2.0M @ 7,824.1 / 2,613 s); SL clears [7,820–7,840] 5.02M (0.43 ATR) + 742k whisker at 6.9×; TP 7-bps front-run of [7,730–7,740] 2.55M. Kills: belt thin >50% → cancel; 15m close > 7,812 → cancel; unfilled by 10:15 → cancel.
-- **SOL Watch-Card 1 SUSPENDED** (gate b closed: 15m CVD +250k; shelf re-migrated to 4.57M @ 109.09 verified 1,080 s). **BTC deep-flush WATCH**: stage BUY LIMIT 0.12 @ 82,480 / SL 82,375 / TP 83,292 ONLY after [82,500–82,600] sweep + CVD absorption + 22.62M wall ≥500k. **GOLD lot-grid dead, worse** (corridor [4,120–4,180] 2.56M → SL ≤ 4,118 → 68-pt min-lot stop = 68+ risk). Kills: SILVER 9.57 bps; NAS100 RR 0.27; USDJPY RR 0.70 + Inv-5; EURUSD/GBPUSD corridor RR 0.39; DJ30/GER40/USWTI 0 walls; 10 alts friction/0-wall.
-- Portfolio: joint nominal 26.47 / stressed 37.24 → post-stop **4,826.37 ≥ 4,795** ✓ (2/4 slots).
-
-— Arena Council · Cycle 52 · full file `ARENA_COUNCIL_REPORT_20261013_0723Z.md`
-
----
-
-## CYCLE 53 — POST-BLACKOUT COUNCIL (gen `9e99b4dcd0e949188c884ecf605cbb95` @ 2026-10-13 08:33:27 UTC)
-Fed Waller blackout CLEARED (next: BoE Pill 10-14 06:00 UTC, runway 20.9h). Two fills live.
-
-- **SOL Card 1 ACTIVATED → SELL LIMIT 0.11 @ 109.10 / SL 109.95 / TP 106.10 (risk 9.35, RR 3.53)**: all gates open — (a) 08:33 ✓, (b) 15m CVD **−603,577** ✓, (c) shelf re-certified on RELOCATED walls (108.94: 2.32M/180s + 109.49: 4.57M/2,898s = 7.84M credited; literal 109.07/109.3 gates read 370k/407k — disclosed migration). SL 109.95 straddles 504k whisker at **13.7×** defense, ≥108.92 rule ✓. Kills: shelf thin >50% → cancel; 15m CVD > +300k → cancel; unfilled by 12:00 → cancel.
-- **(B) MODIFY #18826511 ETH SHORT (renewed): 0.35 → 0.21 lots, SL 2,555.0 → 2,583.6, TP 2,442.5 kept.** [2,550–2,560] grew to **2,194,091** (≥1M hard-ban pool persists) + CVD regime flipped **+12.88M/+14.44M/+16.86M** (live buy program). New SL 0.35 ATR past [2,570–2,580] 3.31M edge, behind the 35M fortress stack (2,542.7/2,548.8/2,562.8/2,578.0), 124× whisker defense; risk 13.67/19.23 stressed. EV +1.40 @ p_win floor vs exit-all −4.39 (disclosed); alternative: exit all. Gates: 15m close > 2,548 + CVD > +500k → exit; +0.20R by 11:09:44 else time-decay exit.
-- **(A) HOLD #18836609 SP500 SHORT 0.04 @ 7,810** (filled 08:30:06, −0.02R): Z **+3.00** premium at fill; belt relocated up (core 7,815.8–7,831.5), credited shelf 3.75M (**−26%** vs K1 −50% trigger — watch), SL 7,842 defense **5.0×** (3.75M vs 743k whisker), TP 7,745 = [7,730–7,740] 2.55M front-run. K2 updated: 15m close > **7,817.5** → exit. Time-decay 14:30:06.
-- Kills: USDJPY Z −2.59 (E1 long banned Inv-5; E2 RR 0.65 dead), NAS100 RR 0.28, GBPUSD min-lot risk 16.20, GOLD 0 credited walls, 15 others friction/0-wall/corridor. BTC deep-flush watch dormant.
-- Portfolio: joint 35.82 nominal / 50.38 stressed → post-stop **4,812.18 ≥ 4,795** ✓ (3/4 slots).
-
-— Arena Council · Cycle 53 · full file `ARENA_COUNCIL_REPORT_20261013_0833Z.md`

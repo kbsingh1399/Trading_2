@@ -11110,17 +11110,3 @@ Full signed record force-update-proof at `docs/trade_plans/LIVE_COLLABORATIVE_OR
 # BILATERAL LEDGER — ARENA CYCLE 51B METALS & INDICES ADDENDUM (2026-10-13 06:56:52 UTC)
 Operator asked for metal/indices entry potential. **Card 2 FOUND: SP500.p SELL LIMIT 0.04 @ 7,810.00 / SL 7,842.00 / TP 7,745.00** (risk 12.80, RR 2.03) — Model-2 pullback short at the EMA200 shelf (BEARISH stack, Z +2.32, walls 5.56M credited, SL 0.46 ATR past the 5.10M bunker, TP front-runs the 2.55M cascade). **Staging gated to ≥08:15 UTC post-Waller** (macro point; re-validate levels post-blackout). **GOLD long = lot-grid dead** (min-lot risk 32+ > 14.50 on any bunker-compliant stop; #18749312 alternative rejected). SILVER friction 9.59; NAS100/DJ30/GER40/USWTI killed. With ETH: joint 25.58 → post-stop 4,842.23 ≥ 4,795 ✓. Full: `ARENA_COUNCIL_REPORT_20261013_0656Z_metals_indices_addendum.md`.
 — Arena Council · Cycle 51B
-
----
----
-
-# BILATERAL LEDGER — ARENA CYCLE 52 (2026-10-13 07:23:04 UTC, gen `ffc992394c`)
-**Blackout-cycle (Fed Waller 07:45, window [07:15–08:15]).** (1) **#18826511 ETH SHORT MODIFY: 0.35 → 0.21 lots, SL 2,555.0 → 2,583.6, TP 2,442.5 kept** — the [2,550–2,560] band grew to 2.09M ≥1M (hard-ban pool inside old SL = #18825384 pattern); new SL 0.35 ATR past [2,570–2,580] 3.26M, defense 29.48M credited (97×), risk 13.67/19.23 stressed. (2) **SP500 Card 2 re-validated → stage ≥08:15 post-Waller: SELL LIMIT 0.04 @ 7,810 / SL 7,842 / TP 7,745** (risk 12.80, RR 2.03, EV +3.48; belt 5.09M credited). (3) SOL Watch-Card 1 SUSPENDED (15m CVD +250k). (4) BTC deep-flush watch (82,480/82,375/83,292) on sweep+absorption trigger. (5) GOLD lot-grid dead (corridor grew to 2.56M). Portfolio stressed post-stop 4,826.37 ≥ 4,795 ✓ 2/4 slots. Full: `ARENA_COUNCIL_REPORT_20261013_0723Z.md`.
-— Arena Council · Cycle 52
-
----
----
-
-# BILATERAL LEDGER — ARENA CYCLE 53 (2026-10-13 08:33:27 UTC, gen `9e99b4dc`)
-**Post-blackout.** (1) **SOL Card 1 PUNCHED: SELL LIMIT 0.11 @ 109.10 / SL 109.95 / TP 106.10** (risk 9.35, RR 3.53) — flow gate open (15m CVD −604k), shelf 7.84M credited on relocated walls (13.7× stop defense). (2) **#18826511 ETH MODIFY: 0.35 → 0.21 lots, SL 2,555 → 2,583.6, TP 2,442.5** — grown 2.19M pool hard-ban + +16.9M CVD flow trim; new SL behind 35M fortress stack (124× whisker). (3) **#18836609 SP500 HOLD**: Z +3.00 premium, belt defense 5.0×, K2 updated to 7,817.5 (belt relocated up). Portfolio stressed post-stop **4,812.18 ≥ 4,795** ✓ 3/4 slots. Kills: USDJPY/NAS100/GBPUSD/GOLD + 15 others. Full: `ARENA_COUNCIL_REPORT_20261013_0833Z.md`.
-— Arena Council · Cycle 53
