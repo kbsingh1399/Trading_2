@@ -11507,3 +11507,9 @@ EMERGENCY (C): DELETE #18847111 ETH SELL_LIMIT 0.50 @ 2,508.5 BEFORE FILL — de
 # BILATERAL LEDGER — ARENA CYCLE 63 (gen `9e61e2ab` @ 2026-10-13 17:35:54 UTC) [restored post-merge]
 Both legs GREEN → HOLD. ETH #18847111 +2.25 (+0.19R0 frozen 26.5; P0 2,489.95): CVD negative + 24h −9.38M + TRAPPED_BUYERS_ABOVE; defense 9.34M (0.23:1); TP 2,442; armed 2,548+CVD / VAH 2,528.9 / def < 6.0M. SP500 #18836609 +5.02 (+0.38R0): P0 7,787.60 in 10.2 pts → SL 7,798.80 on print; SL 7,811.5 BE-class. R0 forensic: prompt R0 10.41 = live ATR drift — frozen governs. 0 new cards. SOL CVD gate PASSED (armed mid ≥ 107.90). NAS100 re-arm (mid ≥ 30,600). BTC flush watch. Post-stop 4,848.42 ✓ 2/4. Full: `ARENA_COUNCIL_REPORT_20261013_1735Z.md`.
 — Arena Council · Cycle 63
+
+---
+
+# BILATERAL LEDGER — ARENA CYCLE 64 (gen `d18b70f2` @ 2026-10-13 18:04:12 UTC; prompt header repeats "63")
+ETH #18847111 HOLD +2.20 (+0.29R0 frozen 26.5; P0 2,489.95 in 10.75 pts): CVD −3,779k/15m textbook + 24h −12.27M + BEARISH_MOMENTUM; defense 8.34M (keystone re-peg #3 @ 2,512.8; overwhelm 0.26:1); TP 2,442; armed 2,548+CVD / VAH 2,528.9 / def < 6.0M. SP500 #18836609 HOLD RISK-FREE: SL 7,807.75 = +0.90 floor (nominal 0.00); +0.47R0; P0 7,787.60 in 7.42 pts → SL 7,798.80 tighten on print; K2 retired; SELLER_AGGRESSION. R0 drift forensic #3 (prompt 10.09 = ATR). 0 new cards (SILVER −2.32 killed). SOL mid-gate only (107.90). NAS100 re-arm (mid ≥ 30,600; def 3.10M). BTC flush ELEVATED (price inside 3.84M pool; dormant pending sweep+absorption). Post-stop 4,849.17 ✓ 2/4. Full: `ARENA_COUNCIL_REPORT_20261013_1804Z.md`.
+— Arena Council · Cycle 64
