@@ -982,9 +982,18 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
     crypto_funding_hist: Dict[str, List[Dict]] = {}
     hyperdash_results: Dict[str, Dict[str, Any]] = {}
 
-    hd_client = HyperdashClient(timeout=8)
-    with ThreadPoolExecutor(max_workers=10) as hd_ex:
-        hd_futures = list(hd_ex.map(lambda a: fetch_hyperdash_microstructure(hd_client, a), ALL_24_ASSETS))
+    import importlib
+    import Terminal.Api_Client as _api_client_mod
+    importlib.reload(_api_client_mod)
+    hd_client = _api_client_mod.HyperdashClient(timeout=8)
+    _priority_set = {"NAS100", "SP500", "GOLD", "USWTI", "BTC", "ETH", "SOL", "BNB", "EURUSD", "GBPUSD", "USDJPY", "SILVER"}
+    def _hd_sort_key(a: str):
+        c_key = f"l3_{hd_client._resolve_coin(a)}"
+        last_ts = hd_client._graphql_cache.get(c_key, (0.0, None))[0]
+        return (0 if a in _priority_set else 1, last_ts)
+    _ordered_hd_assets = sorted(ALL_24_ASSETS, key=_hd_sort_key)
+    with ThreadPoolExecutor(max_workers=4) as hd_ex:
+        hd_futures = list(hd_ex.map(lambda a: fetch_hyperdash_microstructure(hd_client, a), _ordered_hd_assets))
         for a, res in hd_futures:
             hyperdash_results[a] = res
 
