@@ -11513,9 +11513,3 @@ Both legs GREEN → HOLD. ETH #18847111 +2.25 (+0.19R0 frozen 26.5; P0 2,489.95)
 # BILATERAL LEDGER — ARENA CYCLE 64 (gen `d18b70f2` @ 2026-10-13 18:04:12 UTC; prompt header repeats "63")
 ETH #18847111 HOLD +2.20 (+0.29R0 frozen 26.5; P0 2,489.95 in 10.75 pts): CVD −3,779k/15m textbook + 24h −12.27M + BEARISH_MOMENTUM; defense 8.34M (keystone re-peg #3 @ 2,512.8; overwhelm 0.26:1); TP 2,442; armed 2,548+CVD / VAH 2,528.9 / def < 6.0M. SP500 #18836609 HOLD RISK-FREE: SL 7,807.75 = +0.90 floor (nominal 0.00); +0.47R0; P0 7,787.60 in 7.42 pts → SL 7,798.80 tighten on print; K2 retired; SELLER_AGGRESSION. R0 drift forensic #3 (prompt 10.09 = ATR). 0 new cards (SILVER −2.32 killed). SOL mid-gate only (107.90). NAS100 re-arm (mid ≥ 30,600; def 3.10M). BTC flush ELEVATED (price inside 3.84M pool; dormant pending sweep+absorption). Post-stop 4,849.17 ✓ 2/4. Full: `ARENA_COUNCIL_REPORT_20261013_1804Z.md`.
 — Arena Council · Cycle 64
-
----
-
-# BILATERAL LEDGER — ARENA CYCLE 65 (gen `f46b5905` @ 2026-10-13 18:46:10 UTC; prompt header repeats "64")
-ETH #18847111 HOLD +2.80 (+0.21R0 frozen 26.5): EMERGENCY REVIEW CLEARED — credited in-zone defense 0.77M fired the <6.0M line but bunker re-peg #4 = GENUINE 12.52M @ 2,539.4 (1,880s) above stop + 19M fresh asks in-zone; flow stalled (15m CVD −0.05M); BEARISH stack intact; hard-exit/VAH not armed. SL-in-front-of-bunker geometry disclosed; alt SL 2,543.5/0.35 lots = operator call. Ladder: P0 2,489.95 (12.95 pts) → SL 2,499.22. SP500 #18836609 HOLD risk-free (+0.90 floor): +0.28R0; SELLER_AGGRESSION; P0 7,787.60 in 13.46 pts → SL 7,798.80 on print; K2 retired. R0 clean (32.00/26.50). 0 new cards (no |Z| ≥ 2.0). SOL mid ≥ 107.90 · NAS100 mid ≥ 30,600 · BTC flush dormant (17.75M bid @ 82,542 new). Post 4,833.17 ✓ max 1 new @ 14.50; 2/4. Full: `ARENA_COUNCIL_REPORT_20261013_1844Z.md`.
-— Arena Council · Cycle 65
