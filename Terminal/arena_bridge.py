@@ -1432,6 +1432,206 @@ async def inspect_zai_files() -> Dict[str, Any]:
         return resp.get("result", {}).get("result", {}).get("value", {})
 
 
+async def get_copilot_tab_ws_url() -> Optional[str]:
+    """Find Copilot Studio tab via Chrome remote debugging JSON endpoint."""
+    try:
+        req = urllib.request.Request(f"{CDP_HTTP_URL}/json")
+        with urllib.request.urlopen(req, timeout=3) as resp:
+            tabs = json.loads(resp.read().decode("utf-8"))
+        for t in tabs:
+            if t.get("type") == "page" and "copilotstudio.microsoft.com" in t.get("url", ""):
+                return t.get("webSocketDebuggerUrl")
+    except Exception as e:
+        print(f"Error fetching Chrome tabs for Copilot Studio: {e}", file=sys.stderr)
+    return None
+
+
+async def post_prompt_to_copilot(prompt_text: str) -> bool:
+    """Inject prompt into Copilot Studio ([role='textbox']) via CDP, attach context files, and click Send button."""
+    ws_url = await get_copilot_tab_ws_url()
+    if not ws_url:
+        print("WARNING: No active Copilot Studio tab found on port 9222", file=sys.stderr)
+        return False
+
+    try:
+        async with websockets.connect(ws_url, max_size=50_000_000) as ws:
+            # 0. Bring tab to front to unthrottle execution
+            await ws.send(json.dumps({"id": 1, "method": "Page.bringToFront"}))
+            try:
+                await asyncio.wait_for(ws.recv(), timeout=3.0)
+            except Exception:
+                pass
+
+            msg_id = int(time.time() * 1000) % 1000000
+
+            # Step 1: Attach relevant context files directly via CDP
+            try:
+                files_to_attach = [
+                    str((PROJECT_ROOT / "docs" / "telemetry" / "live_snapshot_latest.json").resolve()),
+                    str((PROJECT_ROOT / "docs" / "specs" / "TRADE_DECISION_PLAYBOOK.md").resolve()),
+                    str((PROJECT_ROOT / "docs" / "trade_plans" / "LIVE_COLLABORATIVE_ORDER_DESK.md").resolve()),
+                    str((PROJECT_ROOT / ".agents" / "rules" / "ACTIVE_CONTEXT.md").resolve()),
+                ]
+                existing_files = [f for f in files_to_attach if Path(f).exists()]
+                if existing_files:
+                    # Find file input RemoteObject
+                    await ws.send(json.dumps({
+                        "id": msg_id,
+                        "method": "Runtime.evaluate",
+                        "params": {"expression": 'document.querySelector("input[data-testid=\\"file-input\\"]")', "returnByValue": False}
+                    }))
+                    eval_res = json.loads(await ws.recv())
+                    obj_id = eval_res.get("result", {}).get("result", {}).get("objectId")
+                    if obj_id:
+                        await ws.send(json.dumps({
+                            "id": msg_id + 1,
+                            "method": "DOM.setFileInputFiles",
+                            "params": {"files": existing_files, "objectId": obj_id}
+                        }))
+                        await ws.recv()
+                        # Dispatch change event
+                        await ws.send(json.dumps({
+                            "id": msg_id + 2,
+                            "method": "Runtime.evaluate",
+                            "params": {
+                                "expression": '(() => { const el = document.querySelector("input[data-testid=\\"file-input\\"]"); if (el) { el.dispatchEvent(new Event("change", { bubbles: true })); el.dispatchEvent(new Event("input", { bubbles: true })); } })()'
+                            }
+                        }))
+                        await ws.recv()
+                        await asyncio.sleep(0.5)
+                        print(f"Attached {len(existing_files)} files to Copilot Studio directly!")
+            except Exception as e_att:
+                print(f"Warning: Could not attach files to Copilot Studio: {e_att}", file=sys.stderr)
+
+            # Step 2: Focus input and select all to clear
+            js_focus = """
+            (() => {
+                const el = document.querySelector('[role="textbox"], .fai-EditorInput__input');
+                if (!el) return { error: "No input element on Copilot Studio" };
+                el.focus();
+                const range = document.createRange();
+                range.selectNodeContents(el);
+                const sel = window.getSelection();
+                sel.removeAllRanges();
+                sel.addRange(range);
+                return { focused: true };
+            })()
+            """
+            await ws.send(json.dumps({
+                "id": msg_id + 3,
+                "method": "Runtime.evaluate",
+                "params": {"expression": js_focus, "returnByValue": True, "awaitPromise": True}
+            }))
+            await ws.recv()
+
+            # Hit Backspace via CDP to clear
+            for ktype, vk in [("rawKeyDown", 8), ("keyUp", 8)]:
+                await ws.send(json.dumps({
+                    "id": msg_id + 4,
+                    "method": "Input.dispatchKeyEvent",
+                    "params": {"type": ktype, "windowsVirtualKeyCode": vk, "code": "Backspace", "key": "Backspace"}
+                }))
+                await ws.recv()
+            await asyncio.sleep(0.2)
+
+            # Step 3: Insert text via CDP Input.insertText
+            await ws.send(json.dumps({
+                "id": msg_id + 5,
+                "method": "Input.insertText",
+                "params": {"text": prompt_text}
+            }))
+            await ws.recv()
+            await asyncio.sleep(0.4)
+
+            # Step 4: Click button[aria-label="Send"] or hit Enter
+            js_send = """
+            (() => {
+                const sendBtn = document.querySelector('button[aria-label="Send"], button[title="Send"]');
+                if (sendBtn && !sendBtn.disabled) {
+                    sendBtn.click();
+                    return { clicked: true };
+                }
+                return { clicked: false, sendBtnFound: Boolean(sendBtn) };
+            })()
+            """
+            await ws.send(json.dumps({
+                "id": msg_id + 6,
+                "method": "Runtime.evaluate",
+                "params": {"expression": js_send, "returnByValue": True, "awaitPromise": True}
+            }))
+            resp_str = await ws.recv()
+            resp = json.loads(resp_str)
+            res_val = resp.get("result", {}).get("result", {}).get("value", {})
+
+            if not res_val.get("clicked"):
+                # Failsafe: dispatch Enter key
+                for ktype, vk in [("rawKeyDown", 13), ("keyUp", 13)]:
+                    await ws.send(json.dumps({
+                        "id": msg_id + 7,
+                        "method": "Input.dispatchKeyEvent",
+                        "params": {"type": ktype, "windowsVirtualKeyCode": vk, "code": "Enter", "key": "Enter"}
+                    }))
+                    await ws.recv()
+
+            print("Prompt posted successfully to Copilot Studio with attached files!")
+            return True
+    except Exception as e:
+        print(f"Error posting prompt to Copilot Studio: {e}", file=sys.stderr)
+        return False
+
+
+async def check_copilot_response() -> Tuple[bool, str]:
+    """Check if Copilot Studio has finished generating and extract the latest assistant response."""
+    ws_url = await get_copilot_tab_ws_url()
+    if not ws_url:
+        return False, "No active Copilot Studio tab"
+
+    try:
+        async with websockets.connect(ws_url, max_size=50_000_000) as ws:
+            js_code = """
+            (() => {
+                const stopBtn = Boolean(document.querySelector('button[aria-label="Stop"], button[title="Stop"]'));
+                const typing = Boolean(document.querySelector('[class*="typing"], [class*="thinking"], [class*="streaming"], .webchat__typing-indicator'));
+                const isGenerating = stopBtn || typing;
+
+                // Look for assistant text in the preview chat pane
+                const allElements = Array.from(document.querySelectorAll('div, span, p'));
+                const matches = [];
+                for (const el of allElements) {
+                    const txt = (el.innerText || '').trim();
+                    if ((txt.includes("The snapshot confirms") || txt.includes("audit the attached snapshot")) && txt.length > 200 && !txt.includes("TRADING DESK COUNCIL: CYCLE 60")) {
+                        matches.push(txt);
+                    }
+                }
+                const longest = matches.length > 0 ? matches.reduce((a, b) => a.length > b.length ? a : b) : "";
+
+                return {
+                    isGenerating,
+                    textLen: longest.length,
+                    latestText: longest
+                };
+            })()
+            """
+            await ws.send(json.dumps({
+                "id": int(time.time()),
+                "method": "Runtime.evaluate",
+                "params": {"expression": js_code, "returnByValue": True, "awaitPromise": True}
+            }))
+            resp = json.loads(await ws.recv())
+            val = resp.get("result", {}).get("result", {}).get("value", {})
+            is_gen = val.get("isGenerating", False)
+            text = val.get("latestText", "")
+
+            raw_path = PROJECT_ROOT / "docs" / "trade_plans" / "COPILOT_LATEST_RAW.md"
+            if text and len(text) > 100:
+                raw_path.parent.mkdir(parents=True, exist_ok=True)
+                raw_path.write_text(text, encoding="utf-8")
+
+            return (not is_gen and len(text) > 100), text
+    except Exception as e:
+        return False, str(e)
+
+
 def main():
     if len(sys.argv) > 1 and sys.argv[1] == "prompt-only":
         p = build_48h_orderflow_prompt()
@@ -1449,6 +1649,9 @@ def main():
     elif len(sys.argv) > 1 and sys.argv[1] == "check-zai":
         done, text = asyncio.run(check_zai_response())
         print(f"Z.ai Done: {done}\nText Length: {len(text)}\nResponse:\n{text}")
+    elif len(sys.argv) > 1 and sys.argv[1] == "check-copilot":
+        done, text = asyncio.run(check_copilot_response())
+        print(f"Copilot Done: {done}\nText Length: {len(text)}\nResponse:\n{text}")
     elif len(sys.argv) > 1 and sys.argv[1] == "inspect-zai":
         info = asyncio.run(inspect_zai_dom())
         print(json.dumps(info, indent=2))
