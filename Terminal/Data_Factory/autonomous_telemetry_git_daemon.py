@@ -228,6 +228,15 @@ def sync_git_cycle(generated_snapshot=None, *, clock=None):
             logger.warning("Telemetry push failed; retaining local commit for review: %s", err_main)
             return False
         logger.info("Published this cycle's observed snapshot to origin/%s (arena ref deferred)", BRANCH_NAME)
+        # Immediately resolve the diverged arena branch by fetching and merging
+        run_cmd(["git", "fetch", "origin", ARENA_BRANCH])
+        m_code, _, _ = run_cmd(["git", "merge", f"origin/{ARENA_BRANCH}", "-m", "daemon: auto-merge arena branch ref"])
+        if m_code == 0:
+            run_cmd(["git", "push", "origin", f"HEAD:{ARENA_BRANCH}"])
+            run_cmd(["git", "push", "origin", f"HEAD:{BRANCH_NAME}"])
+            logger.info("Auto-synchronized origin/%s after merge", ARENA_BRANCH)
+        else:
+            run_cmd(["git", "merge", "--abort"])
         return True
     logger.info("Published this cycle's observed snapshot to origin/%s and origin/%s", BRANCH_NAME, ARENA_BRANCH)
     return True

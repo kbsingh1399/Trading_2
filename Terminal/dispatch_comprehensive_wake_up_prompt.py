@@ -234,8 +234,12 @@ def build_prompt(cycle_num: int = 40) -> str:
     lines.append("")
     lines.append("PART G: MANDATORY 3-PILLAR DESK EVALUATION (STRICT OPERATOR MANDATE)")
     lines.append("")
-    lines.append("MANDATE 1 — LOOK FOR NEW TRADING OPPORTUNITIES ACROSS ALL 24 MUTUAL UNIVERSE ASSETS (CRYPTO, METALS, ENERGY, FOREX & INDICES):")
-    lines.append("Analyze all 24 assets in assets_matrix_24 line-by-line from docs/telemetry/live_snapshot_latest.json (covering all Cryptos, Metals GOLD/XAUUSD.pi & SILVER/XAGUSD.pi, Energy USWTI.p, Forex EURUSD.pi/GBPUSD.pi/USDJPY.pi, and Indices SP500.p/NAS100.p/DJ30.p/GER40.p) to identify any new high-confluence Model 1 (|Z| >= 2.0 SD Mean Reversion) or Model 2 (Trend Pullback to VWAP/VAL/VAH/EMA) limit order setups. Live 24-asset mutual universe matrix:")
+    lines.append("MANDATE 1 — DUAL-ENGINE SEARCH ACROSS ALL 24 ASSETS (MEAN REVERSION + TREND PULLBACKS):")
+    lines.append("Analyze all 24 assets in assets_matrix_24 line-by-line from docs/telemetry/live_snapshot_latest.json (covering all Cryptos, Metals GOLD/XAUUSD.pi & SILVER/XAGUSD.pi, Energy USWTI.p, Forex EURUSD.pi/GBPUSD.pi/USDJPY.pi, and Indices SP500.p/NAS100.p/DJ30.p/GER40.p).")
+    lines.append("CRITICAL MANDATE: DO NOT EVALUATE ASSETS PURELY AS MODEL-1 FADES! YOU MUST EVALUATE BOTH ENGINES SYSTEMATICALLY FOR EACH ASSET:")
+    lines.append("  • ENGINE 1 — EXTREME MEAN REVERSION (|Z| >= 2.0 SD): For assets at extreme statistical stretch (|Z| >= 2.0 SD to 3.5 SD), look for counter-trend mean reversion flushes ONLY if confirmed by tape exhaustion, delta absorption, and multi-layer whale backing (remember Invariant 5: Model 1 longs are strictly BANNED in Bearish HTF regimes).")
+    lines.append("  • ENGINE 2 — TREND FOLLOWING PULLBACKS (|Z| can be within 0.2 to 1.8 SD!): DO NOT DISCARD AN ASSET MERELY BECAUSE |Z| < 2.0 SD! In trending regimes (BULLISH or BEARISH), evaluate whether the asset is pulling back into key structural shelves (20 EMA, 50 EMA, 200 EMA, Session VWAP, VAH/VAL) IN THE DIRECTION OF THE DOMINANT TREND! Examples: SP500 pullback short to 200 EMA / wall-belt at 7,810; SOL pullback short to VAH / 2.32M wall at 109.10; GOLD pullback long to EMA stack. Look for pullback exhaustion (low pullback velocity, resting L2/L3 Ask/Bid walls defending the stop) and stage passive limit orders.")
+    lines.append("Live 24-asset mutual universe matrix:")
     for sym_key, a in assets.items():
         if not isinstance(a, dict):
             continue
