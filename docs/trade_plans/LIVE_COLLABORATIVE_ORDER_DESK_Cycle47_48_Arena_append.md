@@ -220,3 +220,11 @@ Fed blackout CLEARED (next BoE Pill 10-14 06:00, runway 20.9h). **SOL Card 1 PUN
 - Falsification ADJUDICATED: Cycle-69 artifact ruling vindicated — credited in-zone re-verified 12.50M (6.61M @ 2,527.9 + 3.36M @ 2,519.5, 2,078s), observed 43.52M/54 walls, keystone re-peg #6 12.89M @ 2,544.1. Trim condition failed both limbs.
 - ETH #18847111 HOLD −0.02R0 (frozen 26.50): P0 2,489.95 in 17.90 pts → SL 2,499.22 (locks +4.64); P1 2,468.75 → 2,487.30; TP 2,442 (cascade 23.93M). NAS100 WATCHLIST (Z +1.85; legal fade at 2.0 + exhaustion; walls 1.09M/0.96M/1.03M). SOL SUSPENDED (6.83M @ 108.65 ephemeral). BTC conditional (2.50M shield). 0 new. Post 4,851.64 ✓ 1/4. Full: `ARENA_COUNCIL_REPORT_20261013_2223Z.md`.
 — Arena Council · Cycle 70
+
+---
+
+# BILATERAL LEDGER — ARENA CYCLE 71 (gen `5fce60f7` @ 2026-10-13 23:03:09 UTC) [restored]
+- #18847111 CLOSED −0.98 (−0.07R0 frozen $13.25; implied ≈2,510.46); FLAT; session +27.46. SOL ephemerality verdict OVERTURNED (6.83M @ 108.65 VERIFIED 6,416s, pres 0.917).
+- CANDIDATE: ETHUSD.pi SELL LIMIT 0.20 @ 2,526.0 / SL 2,584.5 / TP 2,402.0 — $11.70 risk, RR 2.12, frozen R0 $11.70. Entry shelf PD POC 2,525.75 + wall 6.61M @ 2,527.9 + VAH 2,528.9; SL 0.45 ATR above ALL buy-stop bands; R-2 12.89M keystone @ 2,544.1; TP front-runs [2,400–2,410] 20.90M. Fill-time kill-checks ×4. Ratchet preview: P0 +0.70R → 2,505.50; P1 +1.50R → 2,479.20; P2 +2.00R.
+- Watches: NAS100 E1 (Z 1.79→2.0 + exhaustion), SP500 E2 long (R-2 2.00M<3M), USWTI E2 long (R-2 zero), GOLD E2 short (R-2 0.80M), SOL long (mid<107.90 + BEARISH bars it), BTC E2 long (RR ≤1.60). 0 pending. Post-with-card 4,853.02 ✓. Full: `ARENA_COUNCIL_REPORT_20261013_2302Z.md`.
+— Arena Council · Cycle 71
