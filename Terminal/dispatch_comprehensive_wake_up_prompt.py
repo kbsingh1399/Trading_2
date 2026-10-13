@@ -204,6 +204,7 @@ def build_prompt(cycle_num: int = 40) -> str:
     lines.append("  10. structural_stop_clusters: Structural stop sweep pools.")
     lines.append("  11. macro_calendar: Tier-1 macroeconomic event proximity.")
     lines.append("  12. execution_specs: Blueberry Markets broker tick size, point size, contract size, and margin requirements.")
+    lines.append("  13. Hyperdash Liquidation Cascade & Stop Bands as Attraction Points & Magnets: Dense liquidation cascade bands (reconstructed_liquidations) and structural stop clusters (structural_stop_clusters) act as primary gravitational attraction points (liquidity magnets). Combined with psychological round numbers, resting L2/L3 whale walls, and VWAP/EMA shelves, position Take Profit targets to front-run these attraction magnets by 5–10 bps, while ensuring Stop Loss is sheltered behind resting whale walls safely outside opposing sweep bands.")
     lines.append("")
     lines.append("PART E: KAIZEN CONTINUOUS SELF-IMPROVEMENT LOOP & COMPLETE LOSING-TRADE AUTOPSY LEDGER")
     lines.append("Study the forensic breakdown of all recent stopped-out trades from Account 5064568. The Council must actively learn from each:")
@@ -252,12 +253,24 @@ def build_prompt(cycle_num: int = 40) -> str:
         rl = a.get("reconstructed_liquidations", {})
         cvd_buckets = a.get("cvd_1m_buckets") or []
         cvd_15m = sum(float(b.get("cvd_delta_usd") or b.get("delta_usd") or 0.0) for b in cvd_buckets[-15:]) if cvd_buckets else 0.0
+        # Exact nearest stops attraction & bunker bands
+        s_below = sc.get('nearest_sell_stop_clusters_below', [])
+        s_above = sc.get('nearest_buy_stop_clusters_above', [])
+        s_b_str = f"[{s_below[0].get('min_price', 0):.1f}-{s_below[0].get('max_price', 0):.1f} ${s_below[0].get('notional_usd', 0)/1e6:.2f}M]" if s_below else "none"
+        s_a_str = f"[{s_above[0].get('min_price', 0):.1f}-{s_above[0].get('max_price', 0):.1f} ${s_above[0].get('notional_usd', 0)/1e6:.2f}M]" if s_above else "none"
+
+        # Exact nearest liquidation cascade attraction bands
+        l_below = rl.get('nearest_long_cascade_bands_below', [])
+        l_above = rl.get('nearest_short_squeeze_bands_above', [])
+        l_b_str = f"[{l_below[0].get('min_price', 0):.1f}-{l_below[0].get('max_price', 0):.1f} ${l_below[0].get('notional_usd', 0)/1e6:.2f}M]" if l_below else "none"
+        l_a_str = f"[{l_above[0].get('min_price', 0):.1f}-{l_above[0].get('max_price', 0):.1f} ${l_above[0].get('notional_usd', 0)/1e6:.2f}M]" if l_above else "none"
+
         lines.append(
             f"• {sym_key} ({a.get('symbol_broker', '')} | {a.get('category', '')}): Mid {q.get('mid')} | Spread {q.get('spread_bps')} bps | "
             f"Z = {ci.get('vwap_z_score')} SD | RSI {ci.get('rsi_14')} | Trend {ci.get('trend_regime')} | "
             f"L2 Imb {ob.get('book_imbalance')} | 15m CVD {cvd_15m:+.0f} USD | L3 Whales (tot/elig>=180s): {len(w3)}/{len(elig_w3)} | "
-            f"Nearest Stops (below/above): {len(sc.get('nearest_sell_stop_clusters_below', []))}/{len(sc.get('nearest_buy_stop_clusters_above', []))} | "
-            f"Nearest Liq (long/short): {len(rl.get('nearest_long_cascade_bands_below', []))}/{len(rl.get('nearest_short_squeeze_bands_above', []))}"
+            f"Stops Below/Above: {s_b_str} / {s_a_str} | "
+            f"Liq Below/Above (Attraction Bands): {l_b_str} / {l_a_str}"
         )
     lines.append("For every qualifying new opportunity across Crypto, Metals, Energy, Forex, or Indices, specify: MT5 symbol, BUY/SELL LIMIT, exact lot size, Entry price, SL (0.25-0.50 ATR outside min_price/max_price of bunker), TP (front-running magnet by 5-10 bps), USD risk, R:R, and complete telemetry coincidence proof.")
     lines.append("")
