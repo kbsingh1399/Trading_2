@@ -37,7 +37,7 @@ if str(PROJECT_ROOT) not in sys.path:
 CANDLES_DIR = PROJECT_ROOT / "Data" / "Candles"
 TELEMETRY_SNAPSHOT = PROJECT_ROOT / "docs" / "telemetry" / "live_snapshot_latest.json"
 
-CDP_HTTP_URL = "http://127.0.0.1:9222"
+CDP_HTTP_URL = "http://localhost:9222"
 
 PRIMARY_ASSETS = [
     # 14 Institutional Binance Perpetuals (Crypto)
@@ -536,7 +536,10 @@ async def clear_arena_prompt_box(ws) -> bool:
             "method": "Runtime.evaluate",
             "params": {"expression": focus_and_clean_js, "returnByValue": True}
         }))
-        await ws.recv()
+        try:
+            await asyncio.wait_for(ws.recv(), timeout=3.0)
+        except Exception:
+            pass
 
         # Step 2: Dispatch Ctrl+A (Select All)
         msg_id = int(time.time() * 1000) % 1000000
@@ -551,7 +554,10 @@ async def clear_arena_prompt_box(ws) -> bool:
                 "modifiers": 2
             }
         }))
-        await ws.recv()
+        try:
+            await asyncio.wait_for(ws.recv(), timeout=3.0)
+        except Exception:
+            pass
         await ws.send(json.dumps({
             "id": msg_id + 1,
             "method": "Input.dispatchKeyEvent",
@@ -563,7 +569,10 @@ async def clear_arena_prompt_box(ws) -> bool:
                 "modifiers": 2
             }
         }))
-        await ws.recv()
+        try:
+            await asyncio.wait_for(ws.recv(), timeout=3.0)
+        except Exception:
+            pass
 
         # Step 3: Dispatch Delete & Backspace
         await ws.send(json.dumps({
@@ -576,7 +585,10 @@ async def clear_arena_prompt_box(ws) -> bool:
                 "key": "Delete"
             }
         }))
-        await ws.recv()
+        try:
+            await asyncio.wait_for(ws.recv(), timeout=3.0)
+        except Exception:
+            pass
         await ws.send(json.dumps({
             "id": msg_id + 3,
             "method": "Input.dispatchKeyEvent",
@@ -587,7 +599,10 @@ async def clear_arena_prompt_box(ws) -> bool:
                 "key": "Delete"
             }
         }))
-        await ws.recv()
+        try:
+            await asyncio.wait_for(ws.recv(), timeout=3.0)
+        except Exception:
+            pass
         await asyncio.sleep(0.05)
         return True
     except Exception as e:
@@ -647,11 +662,18 @@ async def post_prompt_to_arena(prompt_text: str) -> bool:
     """Clear any existing prompt in the box (Ctrl+A then Delete), inject prompt with rich HTML formatting, and hit enter."""
     ws_url = await get_arena_tab_ws_url()
     if not ws_url:
-        print("ERROR: No active Arena tab found in Chrome at 127.0.0.1:9222", file=sys.stderr)
+        print("ERROR: No active Arena tab found in Chrome at localhost:9222", file=sys.stderr)
         return False
 
     try:
-        async with websockets.connect(ws_url, max_size=10_000_000) as ws:
+        async with websockets.connect(ws_url, max_size=20_000_000) as ws:
+            # 0. Bring tab to front to unthrottle execution
+            await ws.send(json.dumps({"id": 100, "method": "Page.bringToFront"}))
+            try:
+                await asyncio.wait_for(ws.recv(), timeout=3.0)
+            except Exception:
+                pass
+
             # 1. MANDATORY CLEAR: Remove any previous prompt already in the box (Ctrl+A then Delete)
             await clear_arena_prompt_box(ws)
             await asyncio.sleep(0.1)
@@ -664,7 +686,7 @@ async def post_prompt_to_arena(prompt_text: str) -> bool:
               const submitBtn = document.querySelector('button[aria-label="Send message"], button:has(svg.lucide-arrow-up), button:has(svg.lucide-arrow-right)');
               if (!submitBtn) return {{ error: 'No submit button found' }};
 
-              const fiberKey = Object.keys(submitBtn).find(k => k.startsWith('__reactFiber'));
+              const fiberKey = Object.getOwnPropertyNames(submitBtn).find(k => k.startsWith('__reactFiber')) || Object.keys(submitBtn).find(k => k.startsWith('__reactFiber'));
               if (!fiberKey) return {{ error: 'No react fiber on submit button' }};
 
               let curr = submitBtn[fiberKey];
@@ -1029,6 +1051,13 @@ async def post_prompt_to_zai(prompt_text: str) -> bool:
 
     try:
         async with websockets.connect(ws_url, max_size=20_000_000) as ws:
+            # 0. Bring tab to front to unthrottle execution
+            await ws.send(json.dumps({"id": 99, "method": "Page.bringToFront"}))
+            try:
+                await asyncio.wait_for(ws.recv(), timeout=3.0)
+            except Exception:
+                pass
+
             msg_id = int(time.time() * 1000) % 1000000
             # Step 1: If a previous Z.ai generation is hung (Stop button active instead of #send-message-button), click Stop first, then focus and clear textarea#chat-input
             js_focus = """
@@ -1060,11 +1089,15 @@ async def post_prompt_to_zai(prompt_text: str) -> bool:
                 "method": "Runtime.evaluate",
                 "params": {"expression": js_focus, "returnByValue": True, "awaitPromise": True}
             }))
-            r1 = json.loads(await ws.recv())
-            v1 = r1.get("result", {}).get("result", {}).get("value", {})
-            if v1.get("error"):
-                print(f"Z.ai focus error: {v1}", file=sys.stderr)
-                return False
+            try:
+                r1_str = await asyncio.wait_for(ws.recv(), timeout=5.0)
+                r1 = json.loads(r1_str)
+                v1 = r1.get("result", {}).get("result", {}).get("value", {})
+                if v1.get("error"):
+                    print(f"Z.ai focus error: {v1}", file=sys.stderr)
+                    return False
+            except Exception as e:
+                print(f"Z.ai focus recv timeout/error: {e}", file=sys.stderr)
 
             # Step 2: Insert text via CDP Input.insertText so Svelte updates reactive state
             await ws.send(json.dumps({
@@ -1072,7 +1105,10 @@ async def post_prompt_to_zai(prompt_text: str) -> bool:
                 "method": "Input.insertText",
                 "params": {"text": prompt_text}
             }))
-            await ws.recv()
+            try:
+                await asyncio.wait_for(ws.recv(), timeout=5.0)
+            except Exception:
+                pass
             await asyncio.sleep(0.35)
 
             # Step 3: Verify value and click button#send-message-button in a verification loop until textarea is emptied
@@ -1113,21 +1149,33 @@ async def post_prompt_to_zai(prompt_text: str) -> bool:
                 "method": "Runtime.evaluate",
                 "params": {"expression": js_send, "returnByValue": True, "awaitPromise": True}
             }))
-            resp = json.loads(await ws.recv())
-            val = resp.get("result", {}).get("result", {}).get("value", {})
+            val = {}
+            try:
+                resp_str = await asyncio.wait_for(ws.recv(), timeout=8.0)
+                resp = json.loads(resp_str)
+                val = resp.get("result", {}).get("result", {}).get("value", {})
+            except Exception as e:
+                print(f"Z.ai send recv timeout/error: {e}", file=sys.stderr)
+
             if val.get("method") == "enter_fallback":
                 await ws.send(json.dumps({
                     "id": msg_id + 3,
                     "method": "Input.dispatchKeyEvent",
                     "params": {"type": "rawKeyDown", "windowsVirtualKeyCode": 13, "code": "Enter", "key": "Enter"}
                 }))
-                await ws.recv()
+                try:
+                    await asyncio.wait_for(ws.recv(), timeout=2.0)
+                except Exception:
+                    pass
                 await ws.send(json.dumps({
                     "id": msg_id + 4,
                     "method": "Input.dispatchKeyEvent",
                     "params": {"type": "keyUp", "windowsVirtualKeyCode": 13, "code": "Enter", "key": "Enter"}
                 }))
-                await ws.recv()
+                try:
+                    await asyncio.wait_for(ws.recv(), timeout=2.0)
+                except Exception:
+                    pass
             print(f"Prompt posted successfully to Z.ai Chat ({val.get('method')})!")
             return True
     except Exception as e:
