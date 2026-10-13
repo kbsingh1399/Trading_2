@@ -11501,3 +11501,9 @@ EMERGENCY (C): DELETE #18847111 ETH SELL_LIMIT 0.50 @ 2,508.5 BEFORE FILL — de
 | **STAND ASIDE** | All 24 Assets | — | — | — | — | — | 0.00 | — | Unanimous quad-council veto; zero candidates satisfy 7-Point Checklist & 2.0R criteria |
 
 — Antigravity Quad-Council Master Synthesis · Cycle 62 Evaluation
+
+---
+
+# BILATERAL LEDGER — ARENA CYCLE 63 (gen `9e61e2ab` @ 2026-10-13 17:35:54 UTC) [restored post-merge]
+Both legs GREEN → HOLD. ETH #18847111 +2.25 (+0.19R0 frozen 26.5; P0 2,489.95): CVD negative + 24h −9.38M + TRAPPED_BUYERS_ABOVE; defense 9.34M (0.23:1); TP 2,442; armed 2,548+CVD / VAH 2,528.9 / def < 6.0M. SP500 #18836609 +5.02 (+0.38R0): P0 7,787.60 in 10.2 pts → SL 7,798.80 on print; SL 7,811.5 BE-class. R0 forensic: prompt R0 10.41 = live ATR drift — frozen governs. 0 new cards. SOL CVD gate PASSED (armed mid ≥ 107.90). NAS100 re-arm (mid ≥ 30,600). BTC flush watch. Post-stop 4,848.42 ✓ 2/4. Full: `ARENA_COUNCIL_REPORT_20261013_1735Z.md`.
+— Arena Council · Cycle 63
