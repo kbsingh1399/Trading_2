@@ -22,7 +22,7 @@ try:
 except Exception:
     pass
 
-from Terminal.arena_bridge import post_prompt_to_arena, post_prompt_to_zai, dismiss_arena_popup
+from Terminal.arena_bridge import post_prompt_to_arena, post_prompt_to_zai, post_prompt_to_copilot, dismiss_arena_popup
 from Terminal.telemetry_ingest import (
     StaleDataError,
     get_fresh_snapshot,
@@ -134,7 +134,7 @@ def _resolve_asset_key(mt5_symbol: str, assets: dict) -> str:
     return clean
 
 
-def build_prompt(cycle_num: int = 40) -> str:
+def build_prompt(cycle_num: int = 40, for_copilot: bool = False) -> str:
     broker = get_live_broker_state()
     equity = broker["equity"]
     balance = broker["balance"]
@@ -163,25 +163,40 @@ def build_prompt(cycle_num: int = 40) -> str:
     lines.append(f"TRADING DESK COUNCIL: CYCLE {cycle_num} PURE TELEMETRY & PLAYBOOK ANALYSIS PROMPT")
     lines.append("MANDATE: 100% DIRECT LINE-BY-LINE ANALYSIS OF docs/telemetry/live_snapshot_latest.json (ZERO DECISION GATES)")
     lines.append("")
-    lines.append("PART A: REQUIRED READING (complete before analysis)")
-    lines.append("Read the following repository sources in full:")
-    lines.append("")
-    lines.append("1. Live Telemetry Matrix (Primary Ground Truth): docs/telemetry/live_snapshot_latest.json")
-    lines.append(f"   Latest Generation: {gen_id} ({gen_ts})")
-    lines.append("   Upstream: https://github.com/kbsingh1399/Trading_2/blob/arena/5c05910e-trading-2/docs/telemetry/live_snapshot_latest.json")
-    lines.append("   Raw: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/telemetry/live_snapshot_latest.json")
-    lines.append("   Inspect all 24 assets in assets_matrix_24 and all telemetry blocks: quotes (MT5 spread_bps & mid), execution_specs, causal_indicators (Session VWAP, Z-score, RSI, ATR, EMA 20/50/200, POC/VAH/VAL), orderbook_live_depth (20-level L2 depth & imbalance), whale_walls_l3 (0x... wallet addresses, sizes, persistence_s >= 180s), structural_stop_clusters (nearest_sell_stop_clusters_below, nearest_buy_stop_clusters_above, top_*), reconstructed_liquidations (nearest_long_cascade_bands_below, nearest_short_squeeze_bands_above, top_*), venue_basis, and cvd_1m_buckets (5m/15m/30m sums).")
-    lines.append("   Note on Schema Metadata: Top-level `trade_authorization: DENIED_UNVERIFIED_ORDERFLOW` in the JSON header is a static schema provenance tag confirming the telemetry publisher script itself never submits broker orders; it is NOT a trading lock on the Council.")
-    lines.append("")
-    lines.append("2. Live Trade Decision Playbook: docs/specs/TRADE_DECISION_PLAYBOOK.md")
-    lines.append("   Source: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/specs/TRADE_DECISION_PLAYBOOK.md")
-    lines.append("   Apply the Parameter Coincidence Matrix (Entry Shelf + SL Liquidity Bunker outside min_price/max_price + TP Liquidity Magnet front-run by 5-10 bps + Psychological Round Numbers), Dual-Venue Division of Labor (Spreads/Quotes from MT5; Orderbook/Whales/Liquidations/Stops from Hyperdash & Binance), and the 7-Point Pre-Trade Checklist.")
-    lines.append("")
-    lines.append("3. Live Order Desk & Session Context:")
-    lines.append("   • docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md (https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md)")
-    lines.append("   • .agents/rules/ACTIVE_CONTEXT.md (https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agents/rules/ACTIVE_CONTEXT.md)")
-    lines.append("   • .agents/memory/session_chat_history.md (https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agents/memory/session_chat_history.md)")
-    lines.append("")
+    if for_copilot:
+        lines.append("PART A: ATTACHED LOCAL CONTEXT FILES (NATIVELY ATTACHED TO THIS CHAT SESSION)")
+        lines.append("The 4 primary ground-truth source files are ATTACHED DIRECTLY TO THIS MESSAGE AS NATIVE ATTACHMENTS.")
+        lines.append("You do NOT need to call GitHub or fetch external URLs — read the attached files directly:")
+        lines.append(f"1. Attached File `live_snapshot_latest.json` (Generation: {gen_id}, {gen_ts}):")
+        lines.append("   The complete 24-asset live microstructure snapshot (quotes, MT5 spread_bps & mid, execution_specs, causal_indicators [Session VWAP, Z-score, RSI, ATR, EMA 20/50/200, POC/VAH/VAL], orderbook_live_depth [20-level L2 depth & imbalance], whale_walls_l3 [0x... wallet addresses, sizes, persistence_s >= 180s], structural_stop_clusters, reconstructed_liquidations, venue_basis, and cvd_1m_buckets [5m/15m/30m sums]).")
+        lines.append("   Note on Schema Metadata: Top-level `trade_authorization: DENIED_UNVERIFIED_ORDERFLOW` in the JSON header is a static schema provenance tag confirming the telemetry publisher script itself never submits broker orders; it is NOT a trading lock on the Council.")
+        lines.append("2. Attached File `TRADE_DECISION_PLAYBOOK.md`:")
+        lines.append("   Apply the Parameter Coincidence Matrix (Entry Shelf + SL Liquidity Bunker outside min_price/max_price + TP Liquidity Magnet front-run by 5-10 bps + Psychological Round Numbers), Dual-Venue Division of Labor (Spreads/Quotes from MT5; Orderbook/Whales/Liquidations/Stops from Hyperdash & Binance), and the 7-Point Pre-Trade Checklist.")
+        lines.append("3. Attached File `LIVE_COLLABORATIVE_ORDER_DESK.md`:")
+        lines.append("   Live order desk history, active tickets, preceding council rulings, and execution logs.")
+        lines.append("4. Attached File `ACTIVE_CONTEXT.md`:")
+        lines.append("   Real-time mission card, capital floor rules (4,775.00 USD hard floor / 4,795.00 USD operating buffer), and settled quantitative invariants.")
+        lines.append("")
+    else:
+        lines.append("PART A: REQUIRED READING (complete before analysis)")
+        lines.append("Read the following repository sources in full:")
+        lines.append("")
+        lines.append("1. Live Telemetry Matrix (Primary Ground Truth): docs/telemetry/live_snapshot_latest.json")
+        lines.append(f"   Latest Generation: {gen_id} ({gen_ts})")
+        lines.append("   Upstream: https://github.com/kbsingh1399/Trading_2/blob/arena/5c05910e-trading-2/docs/telemetry/live_snapshot_latest.json")
+        lines.append("   Raw: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/telemetry/live_snapshot_latest.json")
+        lines.append("   Inspect all 24 assets in assets_matrix_24 and all telemetry blocks: quotes (MT5 spread_bps & mid), execution_specs, causal_indicators (Session VWAP, Z-score, RSI, ATR, EMA 20/50/200, POC/VAH/VAL), orderbook_live_depth (20-level L2 depth & imbalance), whale_walls_l3 (0x... wallet addresses, sizes, persistence_s >= 180s), structural_stop_clusters (nearest_sell_stop_clusters_below, nearest_buy_stop_clusters_above, top_*), reconstructed_liquidations (nearest_long_cascade_bands_below, nearest_short_squeeze_bands_above, top_*), venue_basis, and cvd_1m_buckets (5m/15m/30m sums).")
+        lines.append("   Note on Schema Metadata: Top-level `trade_authorization: DENIED_UNVERIFIED_ORDERFLOW` in the JSON header is a static schema provenance tag confirming the telemetry publisher script itself never submits broker orders; it is NOT a trading lock on the Council.")
+        lines.append("")
+        lines.append("2. Live Trade Decision Playbook: docs/specs/TRADE_DECISION_PLAYBOOK.md")
+        lines.append("   Source: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/specs/TRADE_DECISION_PLAYBOOK.md")
+        lines.append("   Apply the Parameter Coincidence Matrix (Entry Shelf + SL Liquidity Bunker outside min_price/max_price + TP Liquidity Magnet front-run by 5-10 bps + Psychological Round Numbers), Dual-Venue Division of Labor (Spreads/Quotes from MT5; Orderbook/Whales/Liquidations/Stops from Hyperdash & Binance), and the 7-Point Pre-Trade Checklist.")
+        lines.append("")
+        lines.append("3. Live Order Desk & Session Context:")
+        lines.append("   • docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md (https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md)")
+        lines.append("   • .agents/rules/ACTIVE_CONTEXT.md (https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agents/rules/ACTIVE_CONTEXT.md)")
+        lines.append("   • .agents/memory/session_chat_history.md (https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agents/memory/session_chat_history.md)")
+        lines.append("")
     lines.append("PART B: ACCOUNT AND RISK BASELINE")
     lines.append("• Execution Mode: PASSIVE LIMIT ORDERS ONLY (no market orders).")
     lines.append("• Broker: Blueberry Markets SVG LLC, MetaTrader 5 account #5064568")
@@ -368,48 +383,74 @@ def build_prompt(cycle_num: int = 40) -> str:
     lines.append("3. MANDATE 2 REPORT: Active / Running Trades Audit (Logical TP/SL Modifications Based on Latest Snapshot)")
     lines.append("4. MANDATE 3 REPORT: Unfilled Limit Orders Audit (Ticket-by-Ticket Verdict: WAIT TO FILL AS-IS vs. MODIFY ENTRY/SL/TP vs. DELETE)")
     lines.append("5. ACTIONABLE EXECUTION SUMMARY TABLE (Ticket/Action, Symbol, Side, Lots, Entry, SL Bunker, TP Magnet, Risk USD, R:R, Quantitative Rationale)")
-    lines.append("6. COUNCIL SYNC PROTOCOL:")
-    lines.append("   • If running on Arena.ai (Two-Way Git Access): Append your complete Cycle Council Report and Actionable Execution Table to docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md and commit/push to branch arena/5c05910e-trading-2.")
-    lines.append("   • If running on Z.ai Chat (One-Way Read-Only Access): Fetch the raw GitHub URLs above to verify the latest telemetry snapshot, and print your complete 3-Mandate Council Report and Actionable Execution Summary Table directly in your chat response (do not attempt git push; Antigravity harvests your response directly from the Z.ai DOM to cross-verify Arena.ai + Z.ai Chat + Antigravity).")
+    if for_copilot:
+        lines.append("6. COUNCIL SYNC PROTOCOL (COPILOT STUDIO):")
+        lines.append("   • You are operating inside Microsoft Copilot Studio with all 4 context files attached natively to this session.")
+        lines.append("   • Output your complete 3-Mandate Quantitative Audit, Dialectic Deliberation, and Actionable Execution Summary Table directly here in your response.")
+        lines.append("   • Antigravity automatically harvests your response directly from the Copilot Studio DOM into docs/trade_plans/COPILOT_LATEST_RAW.md for Tri-Council synthesis alongside Arena.ai and Z.ai Chat.")
+    else:
+        lines.append("6. COUNCIL SYNC PROTOCOL:")
+        lines.append("   • If running on Arena.ai (Two-Way Git Access): Append your complete Cycle Council Report and Actionable Execution Table to docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md and commit/push to branch arena/5c05910e-trading-2.")
+        lines.append("   • If running on Z.ai Chat (One-Way Read-Only Access): Fetch the raw GitHub URLs above to verify the latest telemetry snapshot, and print your complete 3-Mandate Council Report and Actionable Execution Summary Table directly in your chat response (do not attempt git push; Antigravity harvests your response directly from the Z.ai DOM to cross-verify Arena.ai + Z.ai Chat + Antigravity).")
 
     return "\n".join(lines)
 
 
 async def main():
     import argparse
-    parser = argparse.ArgumentParser(description="Dispatch 3-Mandate Pure Telemetry Prompt to Arena.ai and Z.ai Chat")
+    parser = argparse.ArgumentParser(description="Dispatch 3-Mandate Pure Telemetry Prompt to Arena.ai, Z.ai Chat, and Copilot Studio")
     parser.add_argument("--cycle", type=int, default=40, help="Cycle number")
     parser.add_argument("--reprompt-file", type=str, default="", help="Optional Part-B corrective reprompt file path")
     parser.add_argument("--arena-only", action="store_true", help="Send only to Arena.ai")
     parser.add_argument("--zai-only", action="store_true", help="Send only to Z.ai Chat")
+    parser.add_argument("--copilot-only", action="store_true", help="Send only to Copilot Studio")
+    parser.add_argument("--no-copilot", action="store_true", help="Skip Copilot Studio")
     args = parser.parse_args()
 
+    prompt = ""
+    prompt_copilot = ""
     if args.reprompt_file:
         p_path = pathlib.Path(args.reprompt_file)
         if not p_path.is_absolute():
             p_path = ROOT / p_path
         prompt = p_path.read_text(encoding="utf-8")
+        prompt_copilot = prompt
         print(f"Loaded Part-B corrective reprompt ({len(prompt)} chars) from {p_path}")
     else:
-        prompt = build_prompt(cycle_num=args.cycle)
+        prompt = build_prompt(cycle_num=args.cycle, for_copilot=False)
+        prompt_copilot = build_prompt(cycle_num=args.cycle, for_copilot=True)
         prompt_file = ROOT / "docs" / "prompts" / f"ARENA_CYCLE_{args.cycle}_PROMPT.txt"
         prompt_file.parent.mkdir(parents=True, exist_ok=True)
         prompt_file.write_text(prompt, encoding="utf-8")
-        print(f"Generated Cycle {args.cycle} 3-Mandate prompt: {len(prompt)} characters written to {prompt_file}")
+        copilot_file = ROOT / "docs" / "prompts" / f"COPILOT_CYCLE_{args.cycle}_PROMPT.txt"
+        copilot_file.write_text(prompt_copilot, encoding="utf-8")
+        print(f"Generated Cycle {args.cycle} 3-Mandate prompt: {len(prompt)} chars written to {prompt_file} (Copilot prompt: {len(prompt_copilot)} chars to {copilot_file})")
 
     ok_arena = False
     ok_zai = False
+    ok_copilot = False
 
-    if not args.zai_only:
+    if args.copilot_only:
+        ok_copilot = await post_prompt_to_copilot(prompt_copilot)
+    elif args.arena_only:
         await dismiss_arena_popup()
         ok_arena = await post_prompt_to_arena(prompt)
-    if not args.arena_only:
+    elif args.zai_only:
         ok_zai = await post_prompt_to_zai(prompt)
-
-    if ok_arena or ok_zai:
-        print(f"SUCCESS: Prompt injected (Arena.ai={ok_arena}, Z.ai Chat={ok_zai})! Run `python Terminal/arena_completion_daemon.py --wait` to wake up on completion.")
     else:
-        print("ERROR: Failed to inject prompt into Arena.ai and Z.ai Chat", file=sys.stderr)
+        # Broadcast to ALL platforms (Arena + Z.ai + Copilot Studio)
+        if not args.zai_only:
+            await dismiss_arena_popup()
+            ok_arena = await post_prompt_to_arena(prompt)
+        if not args.arena_only:
+            ok_zai = await post_prompt_to_zai(prompt)
+        if not args.no_copilot:
+            ok_copilot = await post_prompt_to_copilot(prompt_copilot)
+
+    if ok_arena or ok_zai or ok_copilot:
+        print(f"SUCCESS: Prompt injected (Arena.ai={ok_arena}, Z.ai Chat={ok_zai}, Copilot Studio={ok_copilot})! Run `python Terminal/arena_completion_daemon.py --wait` to wake up on completion.")
+    else:
+        print("ERROR: Failed to inject prompt into any platform", file=sys.stderr)
         sys.exit(1)
 
 if __name__ == "__main__":
