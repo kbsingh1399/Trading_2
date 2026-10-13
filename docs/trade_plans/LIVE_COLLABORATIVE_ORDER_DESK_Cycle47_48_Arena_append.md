@@ -146,3 +146,12 @@ Fed blackout CLEARED (next BoE Pill 10-14 06:00, runway 20.9h). **SOL Card 1 PUN
 - SP500 HOLD +0.23R0 (R0 32 frozen): K1 6,811,569 session-high; overwhelm 0.69:1; K2 7,817.5; P0 7,787.60 (3.67M bid friction logged); basis +3.18.
 - SOL SUSPENDED (CVD +640k gate fail; walls 13.53M). NAS100 armed (mid ≥ 30,600; def 4.09M). BTC dormant (CVD +1,041k). 0 new cards. Post-stop 4,833.17 ≥ 4,795 ✓ (residual 38.17 = 1×14.50 or 2×10.50). Full: `ARENA_COUNCIL_REPORT_20261013_1257Z.md`.
 — Arena Council · Cycle 59
+
+---
+
+# BILATERAL LEDGER — ARENA CYCLE 60 (gen `84640dda` @ 2026-10-13 13:29:29 UTC; prompt header repeats "59")
+- **EMERGENCY (C): DELETE #18847111 ETHUSD.pi SELL_LIMIT 0.50 @ 2,508.5 BEFORE FILL.** Defense COLLAPSED 27,051,340 → 2,947,124 (−89% in 32 min): keystones 13.11M @ 2,531.6 (2,523s) + 6.72M @ 2,520.5 (1,925s) PULLED; entry pocket [2,505–2,515] = ZERO. CVD flipped −551k → **+1,178k/15m** (market-wide buy program); mid 2,507.25 = 0.11 ATR from entry; price overran the EMA20/50 shelf. Overwhelm INVERTED 1.35:1 (3.98M bunker fuel vs 2.95M defense). Kill-switch (defense < 13.5M) breached 4.6×. Trap #18825384/#18748507 class — Invariant-4 emergency. **Re-arm standing condition: cred asks total ≥ 8.0M re-post ≤ 2,535 + 15m CVD ≤ −300k + mid ≤ 2,505.**
+- **#18836609 SP500 SHORT 0.04 @ 7,810 (+0.34R0, R0 32.00 frozen) → HOLD.** P0 +0.70R0 @ 7,787.60 is 11.64 pts away (2.4 ATR) — on print: SL → 7,798.80 (locks +4.48). K1 belt EASED 6.81M → 4,008,638 (watch vs 1.88M exit line); bunker 5.57M, overwhelm 1.21:1; K2 fixed 7,817.5 (VAH dropped to 7,806.43 — level NOT re-tightened per Cycle-56 convention); [7,787–7,790] = 3.66M bid friction at the trigger = lock-not-run-through posture; basis +3.18 ✓. Time-decay 14:30:06 passing at +0.34R0.
+- Watches: SOL SUSPENDED (CVD +781k > +300k; mid < 107.90; walls 16.73M fine). NAS100 re-arm (mid ≥ 30,600; defense EASING 4.99→4.09→2.65M — re-verify ≥ 2.0M at punch). BTC dormant. Mandate 1: 0 new cards (Engine-1 quiet max |Z| 1.71; crypto-wide bid program not chased; longs barred).
+- **Provenance note:** arena branch telemetry lags (`045a839e` @ 13:02:40); analysis ran on origin/main `84640dda` @ 13:29:29 (prompt `7b308090` @ 13:27:28 was +121s stale). Post-cancel portfolio: stress 18.00, post-stop 4,851.73 ≥ 4,795 ✓, budget 56.73 restored. Full: `ARENA_COUNCIL_REPORT_20261013_1329Z.md`.
+— Arena Council · Cycle 60
