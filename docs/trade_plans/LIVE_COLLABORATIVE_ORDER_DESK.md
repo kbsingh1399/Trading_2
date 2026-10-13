@@ -10996,3 +10996,38 @@ Cycle-42 deletion executed; book clean at the purge deadline. Nothing to WAIT/MO
   - **Mandate 3 (`#18826511` `ETHUSD.pi` `SELL_LIMIT 0.50 lots @ 2,518.50 / SL 2,545.00 / TP 2,457.46`)**: Ruled **`(A) VIABLE — WAIT TO FILL AS-IS`** (`SL = 2,545.00 USD` sits behind `0xab5e6f39`'s `11.13M USD @ 2,544.60 [4,990s]` VAH fortress providing `18.6x` verified wall defence).
 - **Z.ai Chat Cycle 47 Submission**:
   - Confirmed `textarea#chat-input` on `chat.z.ai` was submitted (`CLICK: CLICKED, AFTER: {'taLen': 0}`) and hardened `post_prompt_to_zai` in `Terminal/arena_bridge.py` with a 6-attempt verification loop until `textarea#chat-input` length reaches `0`.
+
+---
+---
+
+# BILATERAL LEDGER APPENDIX — ARENA CYCLE 47/48 (2026-10-13) [restored after force-update merge]
+
+Full signed record force-update-proof at `docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK_Cycle47_48_Arena_append.md`. Summaries:
+
+## Cycle 47 (gen `394816d6` @ 04:31:52 UTC)
+#18825384 HOLD; #18826511 (A) WAIT AS-IS (fortress 11.13M/3,491 s at VAH, 18.6×); Mandate 1: 0 new. Report `ARENA_COUNCIL_REPORT_20261013_0429Z.md`.
+
+## Cycle 48 (gen `88167182728943869c186bd9acfe74c7` @ 05:12:11 UTC)
+- **#18825384 SOLUSD.p SHORT 0.13 @ 107.70 (−0.69R) → (B) MODIFY SL 108.55 → 108.80** — walls relocated above the stop (pre-sweep signature); stop moves into the re-formed shelf (≈2.96M qualified below stop, ~12× whisker defense, disclosed); risk 14.30 (envelope ceiling), RR 3.75; TP 103.58 kept. Operator variant: close 0.02 lots → SL 108.92 / 0.11 (risk 13.42, full 0.35-ATR clearance).
+- **#18826511 ETHUSD.pi SHORT 0.50 @ 2,518.50 (filled 05:09:44, −0.06R) → (B) MODIFY SL 2,545.0 → 2,555.0, lots 0.50 → 0.35** — Trigger 1: [2,540–2,550] band grew to 1.85M ≥1M (hard Inv-1: SL inside band); 2,555 = 0.40 ATR past edge, straddled ≈1.05M defended ≥12× by 12.9M fortress-cluster (11.13M @ 2,544.6 persist 5,913 s). Trigger 2: CVD tripwire (15m +884k post-fill burst, decelerating). Risk 12.78, RR 1.67 (EV +1.55 @ LB). Fallback: HOLD 2,545/0.50 + BE-cut armed.
+- **Mandate 1: 0 new** (all |Z|≥2 extremes killed on friction/lot-grid/CVD/trend-first — full table in report §2).
+- **Floor:** post-stop 4,853.19 / stressed 4,841.91 ≥ 4,795.00 ✓. Capacity 2/4. **No new orders past 07:05 UTC (Fed Waller purge 07:10).**
+
+— Signed, Arena.ai Multi-Persona Quantitative Council · Cycle 48 · Report `ARENA_COUNCIL_REPORT_20261013_0512Z.md`
+
+---
+
+## Section 96: Cycle 47 & Cycle 48 Tri-Council Synthesis (`LIVE_COLLABORATIVE_ORDER_DESK_Cycle47_append.md` + `ARENA_COUNCIL_REPORT_20261013_0512Z.md` + `ETHUSD.pi` `#18826511` SL Modification to `2,555.00 USD`) | 2026-10-13 05:31 UTC
+
+### 1. Full Extraction & Reading of Z.ai Chat Cycle 47 (`LIVE_COLLABORATIVE_ORDER_DESK_Cycle47_append.md`)
+- Extracted all **348 lines (`31,249 bytes`)** of `docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK_Cycle47_append.md` from Z.ai Chat's CodeMirror 6 state:
+  - **Mandate 1**: `0` new orders staged (`NO NEW ORDERS STAGED THIS CYCLE`).
+  - **Mandate 2 (`SOLUSD.p` `#18825384`)**: Confirmed `ratchet_state = PHASE_0_PENDING` and `Overwhelm = 0.0399:1` (`25x` wall defence vs fuel).
+  - **Mandate 3 (`ETHUSD.pi` `#18826511`)**: Confirmed `Overwhelm = 0.0661:1` (`23.53M USD` across 12 SELL walls vs `1.55M USD` fuel = `15x` defence, anchored by `0xab5e6f39`'s `11.13M USD @ 2,544.60`).
+
+### 2. Cycle 48 Arena.ai Report (`ARENA_COUNCIL_REPORT_20261013_0512Z.md`) & Live MT5 Execution
+- **Live Fill on `ETHUSD.pi` (`Ticket #18826511`)**: Filled at `05:09:44 UTC` (`Deal #17036614`, `SHORT 0.50 lots @ 2,518.50 USD`).
+- **Pre-Sweep Wall Relocation on `SOLUSD.p` (`Ticket #18825384`)**: Arena.ai Cycle 48 (§3) identified that `SOL`'s `108.34` (`1.86M`) and `108.75` (`3.65M`) Ask Whale walls pulled/relocated above `108.55` (`1.86M @ 108.68`, `3.65M @ 109.22`), leaving `108.55` naked; `SOLUSD.p` subsequently swept `108.55` (`-11.05 USD`, Balance = `4,869.22 USD`).
+- **Live MT5 Modification Executed on `ETHUSD.pi` (`Ticket #18826511` `SL: 2,545.00 -> 2,555.00 USD`, `retcode = 10009`)**:
+  - Per Arena.ai Cycle 48 (§4), the `[2,540–2,550]` buy-stop squeeze band expanded from `693k` -> **`1,851,938 USD` (`>= 1M USD` hard Invariant-1 threshold)**, placing the old `SL = 2,545.00 USD` inside `[2,540–2,550]`.
+  - Moved `SL` on `Ticket #18826511` (`ETHUSD.pi` `SHORT 0.50 lots @ 2,518.50 USD`) from `2,545.00 USD` to **`2,555.00 USD`** (`+0.40 ATR` past `2,550.00`, defended `>= 12x` by `12.9M USD` of recurrence-verified Ask Whale walls including `0xab5e6f39`'s `11.13M USD @ 2,544.60 [5,913s]` and `1.28M USD @ 2,550.00 [3,866s]`), keeping `TP = 2,457.46 USD` (`Nominal Risk = 18.25 USD`, `Stressed Risk = 24.81 USD`, Post-Stop Equity = `4,850.97 USD` nominal / `4,844.41 USD` stressed = **`+69.41 USD` above `4,775.00 USD` Hard Floor**).
