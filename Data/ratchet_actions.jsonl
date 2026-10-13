@@ -1,0 +1,3 @@
+{"timestamp_utc": "2026-10-12T21:45:36.406473+00:00", "ticket": 18813768, "action": "phase_0_be", "phase_new": 1, "sl_new": 107.8725, "r_gain": 0.871}
+{"timestamp_utc": "2026-10-12T21:47:06.557524+00:00", "ticket": 18813768, "action": "phase_1_profit", "phase_new": 2, "sl_new": 107.32000000000001, "r_gain": 1.518}
+{"timestamp_utc": "2026-10-12T22:57:22.138796+00:00", "ticket": 18813767, "action": "phase_0_be", "phase_new": 1, "sl_new": 82579.5, "r_gain": 0.823}

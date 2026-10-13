@@ -980,12 +980,31 @@ async def inspect_zai_dom() -> Dict[str, Any]:
         textLen: (el.innerText || '').trim().length,
         textPreview: (el.innerText || '').trim().slice(0, 400)
       })).filter(m => m.textLen > 20);
+      const allMessageDivs = Array.from(document.querySelectorAll('[id^="message-"]')).map(el => ({
+        id: el.id,
+        className: (el.className || '').slice(0, 80),
+        textLen: (el.innerText || '').trim().length,
+        textPreview: (el.innerText || '').trim().slice(0, 300),
+        htmlPreview: (el.innerHTML || '').trim().slice(0, 1500)
+      }));
+      const ta = document.querySelector('textarea#chat-input') || document.querySelector('textarea');
+      const formEl = ta ? (ta.closest('form') || (ta.parentElement && ta.parentElement.parentElement && ta.parentElement.parentElement.parentElement)) : null;
+      const chatInputButtons = formEl ? Array.from(formEl.querySelectorAll('button')).map(b => ({
+        id: b.id,
+        text: (b.innerText || '').trim(),
+        aria: b.getAttribute('aria-label') || '',
+        title: b.getAttribute('title') || '',
+        className: b.className || '',
+        html: b.outerHTML.slice(0, 400)
+      })) : [];
       return {
         title: document.title,
         url: location.href,
         inputs,
+        chatInputButtons,
         buttons: buttons.slice(-30),
         msgCount: msgContainers.length,
+        allMessageDivs: allMessageDivs.slice(-6),
         msgContainers: msgContainers.slice(-6),
         lastFullText: msgContainers.length > 0 ? (Array.from(document.querySelectorAll('.prose, .markdown-prose, [class*="markdown"], [class*="message-content"], [id^="message-"]')).filter(e => (e.innerText || '').trim().length > 20).pop().innerText || '') : (document.body ? document.body.innerText.slice(-4000) : '')
       };
@@ -1011,9 +1030,18 @@ async def post_prompt_to_zai(prompt_text: str) -> bool:
     try:
         async with websockets.connect(ws_url, max_size=20_000_000) as ws:
             msg_id = int(time.time() * 1000) % 1000000
-            # Step 1: Focus textarea#chat-input and clear any existing value
+            # Step 1: If a previous Z.ai generation is hung (Stop button active instead of #send-message-button), click Stop first, then focus and clear textarea#chat-input
             js_focus = """
-            (() => {
+            (async () => {
+              const sendBtn = document.querySelector('button#send-message-button');
+              if (!sendBtn) {
+                const stopSquare = document.querySelector('button span.size-3.rounded-xs, button[aria-label*="Stop"], button[title*="Stop"]');
+                const stopBtn = stopSquare ? (stopSquare.closest('button') || stopSquare) : null;
+                if (stopBtn) {
+                  stopBtn.click();
+                  await new Promise(r => setTimeout(r, 700));
+                }
+              }
               const ta = document.querySelector('textarea#chat-input') || document.querySelector('textarea');
               if (!ta) return { error: 'No textarea#chat-input found on Z.ai' };
               ta.focus();
@@ -1030,7 +1058,7 @@ async def post_prompt_to_zai(prompt_text: str) -> bool:
             await ws.send(json.dumps({
                 "id": msg_id,
                 "method": "Runtime.evaluate",
-                "params": {"expression": js_focus, "returnByValue": True}
+                "params": {"expression": js_focus, "returnByValue": True, "awaitPromise": True}
             }))
             r1 = json.loads(await ws.recv())
             v1 = r1.get("result", {}).get("result", {}).get("value", {})
@@ -1116,11 +1144,12 @@ async def check_zai_response() -> Tuple[bool, str]:
     js_code = """
     (async () => {
       const stopBtn = document.querySelector('button[aria-label*="Stop"], button[title*="Stop"], button.stop-button');
+      const stopSquare = document.querySelector('button span.size-3.rounded-xs');
       const sendBtn = document.querySelector('button#send-message-button');
-      const isGenerating = Boolean(stopBtn) || !sendBtn;
+      const isGenerating = Boolean(stopBtn) || Boolean(stopSquare) || !sendBtn;
 
-      const chatMsgs = Array.from(document.querySelectorAll('.chat-assistant.markdown-prose')).filter(e => (e.innerText || '').trim().length > 20);
-      const lastChatEl = chatMsgs.length > 0 ? chatMsgs[chatMsgs.length - 1] : null;
+      const allChatMsgs = Array.from(document.querySelectorAll('.chat-assistant.markdown-prose'));
+      const lastChatEl = allChatMsgs.length > 0 ? allChatMsgs[allChatMsgs.length - 1] : null;
       const chatText = lastChatEl ? (lastChatEl.innerText || '').trim() : '';
 
       let workspaceFileName = '';
@@ -1170,7 +1199,7 @@ async def check_zai_response() -> Tuple[bool, str]:
 
       return {
         isGenerating,
-        proseCount: chatMsgs.length,
+        proseCount: allChatMsgs.length,
         chatText,
         workspaceFileName,
         workspaceFileLen: workspaceFileText.length,

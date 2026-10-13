@@ -1,40 +1,37 @@
-ARENA COUNCIL — CYCLE 46 · Pure Telemetry & Playbook Analysis
+ARENA COUNCIL — CYCLE 49 · Pure Telemetry & Playbook Analysis
 
-Clock 2026-10-13 04:01:49 UTC · Account 5064568 · Trend-First enforced · Zero decision-gate tokens
-Basis: gen db68bf54 @ 04:02:39 UTC (50 s after the prompt-cited 37ff8dfb). Schema note accepted — trade_authorization is publisher provenance, not a Council lock. Arena sync: pushed 21f76d4.
+Clock 2026-10-13 05:55:20 UTC · Account 5064568 · Trend-First enforced · Zero decision-gate tokens
+Basis: gen c2418e67 @ 05:56:59 UTC (prompt-cited b5c6ea6f @ 05:55:20 — deltas immaterial). Arena sync: pushed eadad5e.
 
 1 · Telemetry & Playbook Ingestion Citation
-generation_id db68bf5490cb40ae88b1b9690d5d32aa · as_of 2026-10-13 04:02:39 UTC · observed-only protocol · Parameter Coincidence Matrix + Dual-Venue Division + 7-Point Checklist applied.
-Blackout transition confirmed: blackout_active = False (BoE window closed 03:30:00 UTC). Next block: Fed Waller 07:45 UTC (purge 07:10 — ~3 h runway).
-Baseline verified: 4,880.27 USD, cushion +105.27, 0 open / 2 pending (both staged 03:56:11 UTC, broker-valued 11.05 nominal each), post-joint-stop 4,848.65, floor ✓. Capacity 2/4.
-Flow (the night's third turn): ETH 5m −859k / 15m −1.54M and SOL 5m −83k / 15m −583k — both windows negative on both staged names: the Part D.2 short qualifier is fully satisfied.
+Two events define this cycle. First: SOL #18825384 is gone — stopped at 108.55 for −11.05 (balance arithmetic exact: 4,880.27 → 4,869.22). Second: ETH is running SL 2,555.0 with 0.50 lots — the stop leg of the Cycle-48 (B) landed, the lot leg did not, so the live ticket risks 18.25 USD against a 14.50 ceiling (broker-confirmed nominal_stop_loss_usd = 18.25).
+Equity 4,863.87 (floating −5.35), cushion +88.87, capacity 1/4, 0 pending. Post-stop 4,839.06 ≥ 4,795 ✓. Fed Waller 07:45 UTC — purge 07:10 (runway 1.3 h). All 5 invariants walked per ticket; walls judged only on SAMPLED_RECURRENCE_VERIFIED status.
 2 · Mandate 1 — 24-Asset Screen: 0 New Qualifying
 
-The two live tickets already occupy the qualified Model-2 pullback-short class. Everything else: GOLD flipped BULLISH at Z +2.55 (an overbought fade is trend-first contrarian; the long is chasing at RSI 68.4); SILVER friction 5.95; DJ30/GER40 zero-L3 + trend-first; DOGE friction 248.7 (its negative-CVD short remains unchokable); BCH dust pools (cycle-45 kill stands); USWTI 8th cycle (no extreme + Inv 2/4 pair); NAS100 lot-grid dead (ATR 40.0); friction ×6; lot-grid ×2 (XRP/TRX).
+One genuine candidate surfaced and died under full adjudication: GBPUSD at Z +2.08 (the session's first forex Model-1) — friction 0.08 bps is perfect and then the matrix collapses: all 10 L3 walls carry INSUFFICIENT_PERSISTENCE (Inv 4 wholesale fail), the ATR scale (2.0 pips) implies a 1.4–2.0-pip "compliant" stop against 100-pip band granularity (the #18749312 tight-buffer trap at 50× severity), entry 1.3225 sits below POC with no shelf, and the nearest magnet is 250+ pips away (no 5–10 bps front-run at envelope-feasible risk). Rejected. The rest are repeat kills: ADA 2.01 (87.7 bps), DOGE 2.41 (247.5), TRX 2.48 (+71k CVD, lot-grid), DOT 2.31 (175), LINK 2.04 (65.4). Three slots stay reserved through the Waller window.
 
-3 · Mandate 2 — Active/Running Trades
+3 · Mandate 2 — Running-Trade Audit + SOL Forensic
+#18826511 ETHUSD.pi SHORT 0.50 @ 2,518.50 (−0.29R) → (B) MODIFY: lots 0.50 → 0.35 (the un-executed Cycle-48 leg)
+The envelope math is absolute: at 0.50 lots, every Inv-1-compliant stop (≥ 2,553.1 = 0.25 ATR past the [2,540–2,550] 1.86M ≥1M band edge) costs ≥ 17.33 USD risk. The maximum envelope-compliant stop at 0.50 lots is 2,547.5 — inside the banned band. No compliant state exists at 0.50 lots. Close 0.15 lots → risk 12.78, RR 1.67 (EV +1.55 at the calibrated p_win LB — the positive-expectancy clause).
+SL 2,555.0 kept — refresh confirms it's the right level: the straddled [2,550–2,560] residual thinned to 561k (whisker) and is defended ≥10× by the verified 5.70M @ 2,547.4 face (1,780 s, presence 0.90). Disclosure: the 11.13M fortress anchor at 2,544.6 withdrew; the face re-formed as a distributed verified stack (24.08M total / 9.01M qualified across [2,536–2,548]). TP 2,457.46 kept ([2,460–2,470] 16.99M cascade, ~10 bps front-run). Ratchet −0.29R: no tier. CVD 30m −1.21M (the fill-burst washed out; BE-cut stays armed at +500k 15m).
+Fallback: if the partial close is refused, the 0.50/2,555 state survives as a documented envelope exception (post-stop 4,850.97 ≥ 4,795 ✓) — but it must be recorded as an exception, not a compliant state.
+SOL Post-Mortem — the prediction was right and the clock was wrong
 
-FLAT / OPEN_0 confirmed — 0 open, margin 0.00, equity 4,880.27. No ratchets.
+The 05:15–05:30 bar wicked 108.58, took the un-modified 108.55 stop, and fell to 107.79 within the hour. The Cycle-48 recommendation (SL 108.80; variant 108.92/0.11 lots) would have survived by 0.34 ATR — the thesis (BEARISH, 11.68M fuel at [106–107], 36.7M cascade) remains intact. This is the #18806752 class verbatim: the SOLUSD.p hunt zone is 108.55–108.80, sweep before recovery. Binding lessons: (i) wall-relocation pre-sweep is an EMERGENCY — minutes, not cycles; (ii) future SOL shorts stop at ≥ 108.92 (shelf + 0.35 ATR) at ≤ 0.11 lots; (iii) never again let the envelope ceiling buy a compromise buffer — take the lot-trim variant.
 
-4 · Mandate 3 — Ticket-by-Ticket Audit
-#18825384 — SOLUSD.p SELL LIMIT 0.13 @ 107.70 / SL 108.55 / TP 103.58 → (A) VIABLE — WAIT TO FILL AS-IS (whisker disclosed)
-Proximity 0.29 ATR ✓ · CVD 5m −83k / 15m −583k ✓ · entry sits inside a 32-wall verified ask belt (persists 1,506–1,869 s) · stop 1.11 ATR (noise-clear) · risk 11.05 ✓ · RR 4.85.
-Inv 1 with disclosure: SL 108.55 is 0.72 ATR outside [107–108] 170k ✓ but straddles the [108–109] 148k whisker — which is wall-defended 40× (5,982,723 verified within [108.17, 108.71], incl. 3.65M @ 108.22 / 1,385 s). Clause (iii) decisively satisfied — the Model-2 textbook ("ask whale walls defending the Stop Loss"). TP 103.58 is "directly inside" the nearest cluster [103–104] (530k combined), runner extension to the [101–102]/[100–101] 14.1M block.
-Kill-switch: if the SL-zone walls thin below 1.5M → strict (B): SL 109.27 / lots 0.07 / risk 10.99 / RR 2.62.
-#18825385 — ETHUSD.pi SELL LIMIT 0.65 @ 2,518.50 / SL 2,535.50 / TP 2,457.46 → (B) MODIFY — SL 2,545.00, lots 0.50 (entry & TP unchanged)
-The thesis is the strongest of the night: CVD 5m −859k / 15m −1.54M ✓✓, proximity 0.85 ATR ✓, entry inside a 10.89M verified wall belt (5.70M @ 2,519.4 / 1,388 s; 2.90M @ 2,517.3), TP 2,457.46 sitting inside the [2,450–2,460] 16.66M cascade block (22.2M with [2,460–2,470]).
-The one defect (the #18817374 class): as-staged SL 2,535.5 clears the named [2,520–2,530] 946k pool by 0.39 ATR but sits inside [2,530–2,540] = 2,890,052 with only 0.28× wall defense (1.57M at 2,525–2,531) — Inv 1 fail on a ≥1M band.
-Modification: SL → 2,545.00 (0.35 ATR past the 2.89M band; the straddled [2,540–2,550] 1.09M residual is wall-defended 11.0× — 11.91M verified in [2,535, 2,562], anchored by the 11.13M / 1,750-s fortress at 2,544.6 = the strongest clause-(iii) case recorded). Lots 0.65 → 0.50 (the 36.5-pt compliant stop at 0.65 would risk 17.23 > 14.50; at 0.50: risk 13.25 ✓, reward 30.52, RR 2.30 ✓).
-Kill-switch: if the fortress thins below 3M → SL 2,555.0 / 0.35 lots (risk 12.78, RR 1.67 — fortress-contingent) or cancel.
+4 · Mandate 3 — Unfilled Limit Order Audit
+
+0 pending orders — audit set empty. 3 capacity slots reserved; no new tickets past 07:05 (purge 07:10).
+
 5 · Actionable Execution Summary Table
-Seq	Ticket/Action	Symbol	Side	Lots	Entry	SL Bunker	TP Magnet	Risk USD	R:R	Quantitative Rationale
-1	#18825384 (A) WAIT — as-is	SOLUSD.p	SELL LIMIT	0.13	107.70	108.55 (whisker [108–109] 148k 40× wall-defended — 5.98M @ 108.17–108.71)	103.58 (inside [103–104] 530k)	11.05	4.85	Proximity 0.29 ATR; CVD −83k/−583k; 32-wall entry belt (1,506–1,869 s); stop 1.11 ATR
-2	#18825385 (B) MODIFY	ETHUSD.pi	SELL LIMIT	0.50	2,518.50	2,545.00 (0.35 ATR past [2,530–2,540] 2.89M; residual 1.09M 11.0× wall-defended by the 11.13M/1,750-s fortress)	2,457.46 (inside [2,450–2,460] 16.66M cascade)	13.25	2.30	As-staged SL failed Inv 1 (0.28× defense); modification lands on the fortress. CVD −859k/−1.54M; entry in 10.89M belt; proximity 0.85 ATR
-3	HOLD	22 others	—	—	—	—	—	—	—	Mandate 1: 0 new qualifying (§2)
-4	MANDATE 2	—	—	—	—	—	—	—	—	FLAT (OPEN_0)
-5	FLOOR GOVERNOR	—	—	—	—	—	—	24.30	—	Post-stop 4,855.97 ≥ 4,795.00 ✓ (broker-stress 4,845.89 ✓); 07:05 UTC cancel-all if unfilled
+Ticket/Action	Symbol	Side	Lots	Entry	SL Bunker	TP Magnet	Risk USD	R:R	Quantitative Rationale
+#18826511 (B) MODIFY lots	ETHUSD.pi	SHORT	0.50 → 0.35	2,518.50 (open, −0.29R)	2,555.0 kept (0.40 ATR past the 1.86M band; 561k whisker ≥10× defended by verified 5.70M @ 2,547.4)	2,457.46 kept ([2,460–2,470] 16.99M)	18.25 → 12.78	1.67 (EV +1.55 @ LB)	No compliant state at 0.50 lots. Fallback: documented exception (floor ✓)
+RATCHET	#18826511	—	—	—	—	—	—	—	−0.29R: Phase 0 pending, no lock
+MANDATE 1	23 others	—	—	—	—	—	—	—	0 qualifying; GBPUSD 2.08 adjudicated & rejected
+MANDATE 3	—	—	—	—	—	—	—	—	0 pending
+FLOOR GOVERNOR	—	—	—	—	—	—	12.78 post-mod	—	Post-stop 4,856.44 / stressed 4,852.00 ≥ 4,795.00 ✓ · purge 07:10
 6 · Council Sync Protocol (Arena.ai path)
 
-Full Cycle-46 report + table appended to docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md, committed and pushed to arena/5c05910e-trading-2 (21f76d4) for the Antigravity merge. Report archived at docs/trade_plans/ARENA_COUNCIL_REPORT_20261013_0401Z.md.
+Cycle-49 report + table appended to LIVE_COLLABORATIVE_ORDER_DESK.md and to the force-update-proof sidecar (LIVE_COLLABORATIVE_ORDER_DESK_Cycle47_48_Arena_append.md, Cycle 49 section), committed and pushed to arena/5c05910e-trading-2 (eadad5e) for the Antigravity merge. Report at docs/trade_plans/ARENA_COUNCIL_REPORT_20261013_0555Z.md.
 
-Both tickets pass on thesis and flow — one is simply parking its stop in the wrong band. The fix is nine and a half points of SL and fifteen hundredths of a lot: the difference between a stop inside a 2.89M sweep band and a stop on an 11.13M fortress.
+The desk has exactly one executable instruction this cycle: fifteen hundredths of a lot. Everything else — the stop that survived, the magnet that waits, the floor that holds — is already in place. The SOL autopsy closed a loop the Cycle-48 analysis opened within minutes: the walls moved, the wick came, and the difference between the trade that died and the trade that would have lived is twenty-two cents of stop and fifteen hundredths of a lot. Both fixes are now standing doctrine.

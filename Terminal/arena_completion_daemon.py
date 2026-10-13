@@ -135,11 +135,12 @@ async def probe_zai_state() -> dict:
 
     js = """(async () => {
         const stopBtn = document.querySelector('button[aria-label*="Stop"], button[title*="Stop"], button.stop-button');
+        const stopSquare = document.querySelector('button span.size-3.rounded-xs');
         const sendBtn = document.querySelector('button#send-message-button');
-        const isGenerating = Boolean(stopBtn) || !sendBtn;
-        const chatMsgs = Array.from(document.querySelectorAll('.chat-assistant.markdown-prose')).filter(e => (e.innerText || '').trim().length > 20);
-        const proseCount = chatMsgs.length;
-        const lastProse = proseCount > 0 ? chatMsgs[proseCount - 1] : null;
+        const isGenerating = Boolean(stopBtn) || Boolean(stopSquare) || !sendBtn;
+        const allChatMsgs = Array.from(document.querySelectorAll('.chat-assistant.markdown-prose'));
+        const proseCount = allChatMsgs.length;
+        const lastProse = proseCount > 0 ? allChatMsgs[proseCount - 1] : null;
         const chatText = lastProse ? (lastProse.innerText || '').trim() : '';
 
         let workspaceFileName = '';

@@ -62,17 +62,17 @@ trigger: always_on
         - Up to 4 concurrent tickets across orthogonal asset clusters provided total joint worst-case stopout risk unconditionally defends the 4,775.00 USD hard floor and 4,795.00 USD operating buffer (>= 20.00 USD cushion at all times).
     - Connects directly via native IPC to MetaTrader 5 Account 5064568 (Blueberry Markets).
     - **Active Positions & Pending Orders (Live State — 1 Open Position | 0 Limit Orders Resting)**:
-      * Current Status: **1 Open Position (`#18826511` `ETHUSD.pi` `SHORT 0.50 lots` @ `2,518.50 USD`, `SL = 2,555.00 USD`, `TP = 2,457.46 USD`) | 0 Pending Orders | Balance: 4,869.22 USD | Equity: ~4,864.12 USD | Margin Used: 629.63 USD | Free Margin: ~4,234.49 USD**.
-      * Active Positions (1 — Monitored every 15s by Autonomous Ratchet Daemon `task-50510` for Phase 0 BE / Phase 1 Profit Lock / Phase 2 Trailing):
-        - **Ticket `#18826511` (`ETHUSD.pi` `SHORT 0.50 lots` @ `2,518.50 USD` | `SL: 2,555.00 USD` | `TP: 2,457.46 USD`)**: Filled at `05:09:44 UTC` (`Deal #17036614`). Modified in Cycle 48 (`ARENA_COUNCIL_REPORT_20261013_0512Z.md` §4, `retcode=10009`) from `SL = 2,545.00 USD` -> **`SL = 2,555.00 USD`** (`+0.40 ATR` past `2,550.00`, the outer edge of the newly expanded `1.85M USD` `[2,540–2,550]` buy-stop squeeze band, and sheltered behind `12.9M USD` of recurrence-verified Ask Whale walls including `0xab5e6f39`'s **`11.13M USD` Ask Whale fortress at `2,544.60 USD` [`5,913s` persistence]** and `1.28M USD @ 2,550.00 [3,866s]`), with `TP = 2,457.46 USD` front-running the `16.9M USD` `[2,450–2,470]` long cascade by `10 bps`. `Nominal Risk = 18.25 USD` | `Reward = 30.52 USD`.
+      * Current Status: **1 Open Position (`#18826511` `ETHUSD.pi` `SHORT 0.35 lots` @ `2,518.50 USD`, `SL = 2,555.00 USD`, `TP = 2,444.50 USD`) | 0 Pending Orders | Balance: 4,867.81 USD | Equity: ~4,864.00 USD | Margin Used: ~440.74 USD | Free Margin: ~4,423.22 USD**.
+      * Active Positions (1 — Monitored every 15s by Autonomous Ratchet Daemon for Phase 0 BE / Phase 1 Profit Lock / Phase 2 Trailing):
+        - **Ticket `#18826511` (`ETHUSD.pi` `SHORT 0.35 lots` @ `2,518.50 USD` | `SL: 2,555.00 USD` | `TP: 2,444.50 USD`)**: Filled at `05:09:44 UTC` (`Deal #17036614`). In Cycle 49, partially closed 0.15 lots (`Deal #17039158` @ `2,527.90 USD`, `retcode=10009`) to resize position from 0.50 -> 0.35 lots, strictly containing risk within the `<= 14.50 USD` ceiling (`Nominal Risk = 12.78 USD` | `Stressed Risk = 17.98 USD`). Stop kept at `2,555.00 USD` (`+0.40 ATR` past `2,550.00`, defended by `5.70M USD` anchor `0xab5e6f39` @ `2,547.4` [persist_s > 2,000s] + `1.28M USD` @ `2,550.00`). TP adjusted from `2,457.46` -> `2,444.50 USD` (`retcode=10009`) to front-run the `1.85M USD` cascade at `2,445` by 5 bps, unlocking `2.03R` reward-to-risk.
       * Active Pending Orders (0):
         - None (`3` capacity slots available in reserve ahead of `07:10 UTC` Fed Waller pre-event purge).
-      * G-1 Hard Floor Defense: Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Floor Cushion: **+89.12 USD live equity cushion (`+94.22 USD` balance cushion)**.
+      * G-1 Hard Floor Defense: Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Floor Cushion: **+89.00 USD live equity cushion (`+92.81 USD` balance cushion)**.
       * Stressed Post-Loss Simulation:
-        - Total Book Risk: **18.25 USD nominal (`24.81 USD` stressed at `1.25x + 2.00 USD/ticket`)** across `1` open position.
-        - Stressed Worst-Case Equity: **4,844.41 USD** (`4,850.97 USD` unstressed — unconditionally defends floor!).
-        - Safety Cushion Above 4,775.00 USD Hard Floor: **+69.41 USD stressed (`+75.97 USD` unstressed)**.
-        - Safety Cushion Above 4,795.00 USD Operating Buffer: **+49.41 USD stressed (`+55.97 USD` unstressed)**.
+        - Total Book Risk: **12.78 USD nominal (`17.98 USD` stressed at `1.25x + 2.00 USD/ticket`)** across `1` open position.
+        - Stressed Worst-Case Equity: **4,849.83 USD** (`4,855.03 USD` unstressed — unconditionally defends floor!).
+        - Safety Cushion Above 4,775.00 USD Hard Floor: **+74.83 USD stressed (`+80.03 USD` unstressed)**.
+        - Safety Cushion Above 4,795.00 USD Operating Buffer: **+54.83 USD stressed (`+60.03 USD` unstressed)**.
         - Capacity Slots Used: **1 / 4** (`3` slots available in reserve).
       * Closed Trades Today (Realized PnL):
         - Ticket #18825384 (`SOLUSD.p` closed at **-11.05 USD loss** via Stop Loss at 108.55 USD after `108.34 / 108.75` Ask Whale walls relocated above 108.55 to 108.68 / 109.22)
