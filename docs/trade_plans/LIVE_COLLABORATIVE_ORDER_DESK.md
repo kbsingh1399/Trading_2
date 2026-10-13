@@ -10915,3 +10915,48 @@ Cycle-42 deletion executed; book clean at the purge deadline. Nothing to WAIT/MO
 | **Secondary Short (`SOLUSD.p`)** | `SELL LIMIT 0.08 @ 109.77` (`VAH`) / `SL 111.28` / `TP 102.10` (`Risk 12.08 USD`, `5.08R`). Kill-switch: `5m CVD < 0` at arm. | `SELL LIMIT 0.14 @ 107.50` (`[107–108]` midpoint) / `SL 108.28` / `TP 103.58` (`Risk 10.86 USD`, `5.06R`). | **Live squeeze verification**: At `03:34 UTC`, `SOLUSD.p` surged to `107.46 / 107.71` (`Z = +2.17 SD`) with **all 3 CVD windows positive (`5m +1.10M / 15m +673k / 30m +272k USD`)**. Arena's kill-switch (`5m CVD < 0`) is triggered; wait for `5m CVD` to flip negative before arming. |
 | **Tertiary Short (`BTCUSD.pi`)** | `SELL LIMIT 0.03 @ 83,350.00` (`VAH`) / `SL 83,761.70` / `TP 82,450.00` (`Risk 12.35 USD`, `2.19R`). Gate: `5m CVD <= 0` & `[83,600–83,700] < 1M`. | Watch-only (`Z = +1.38 < 1.50` at `03:22 UTC`). | **Live squeeze verification**: `BTCUSD.pi` surged to `83,225.00 USD` (`Z = +2.12 SD`, `0.39 ATR` below Arena's `83,350.00` VAH shelf!), with `5m CVD = +2.01M USD` while `15m/30m CVD` remain negative (`-1.62M / -2.03M USD`). Standing ready to arm as soon as `5m CVD` turns negative at the `83,350–83,600` shelf! |
 | **Mandates 2 & 3 / Capital Floor** | `0` open, `0` pending; `4,880.27 USD` (`+105.27 USD` cushion). | `0` open, `0` pending; `4,880.27 USD` (`+105.27 USD` cushion). | **100% Realized Cash (`4,880.27 USD`)** preserved untouched through the `03:30–03:34 UTC` post-BoE stop squeeze. |
+
+---
+---
+
+# BILATERAL LEDGER APPENDIX — CYCLE 45 COUNCIL REPORT (2026-10-13 03:38:27 UTC)
+
+**— Signed, Arena.ai Multi-Persona Quantitative Council · Cycle 45 · generation `a24aaab93f2d4b65aefc4eff2b901e60` (as_of 2026-10-13 03:39:43 UTC) — full report at `docs/trade_plans/ARENA_COUNCIL_REPORT_20261013_0338Z.md`**
+
+## A. Ingestion & Baseline
+- gen `a24aaab9` @ 03:39:43 UTC. Account 5064568: **4,880.27 USD**, cushion +105.27, 0 open / 0 pending. Capacity 0/4.
+- **Blackout transition CONFIRMED: `blackout_active = False`** — BoE window closed 03:30:00 UTC. Next block: Fed Waller 07:45 UTC (blackout 07:15–08:15, **purge 07:10**). Clean execution window 03:40–07:10 (~3.5 h).
+- **Second flow reversal of the night:** BTC 5m +5.20M / 15m +6.43M (regime → RANGE_BOUND); ETH 5m −18k / 15m +2.22M (last3 −635k); SOL 5m −44k (last3 −276k); BCH the only both-windows-negative name (−58k/−26k).
+
+## B. Mandate 1 — Staging Cards (arm now; hard expiry 07:05 UTC)
+
+| Seq | Action | Symbol | Side | Lots | Entry | SL Bunker | TP Magnet | Risk USD | R:R | Notes |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | **CARD 1 — ARM NOW** | ETHUSD.pi | SELL LIMIT | 0.25 | 2,544.3 (VAH) | 2,587.0 (double-clear past [2,560–2,580] 8.75M + 0.50 ATR) | 2,442.0 (front-run [2,430–2,440] 13.73M ~8 bps) | 10.68 | 2.40 | **11.13M verified fortress @ 2,544.6 (362 s) on the entry**; CVD last3 −635k (gate: 5m non-positive at arm); BEARISH |
+| 2 | CARD 3 — ARM (gates) | SOLUSD.p | SELL LIMIT | 0.08 | 109.77 (VAH) | 111.28 ([109–111] 621k + 0.35 ATR) | 102.10 (front-run [100–102] 14.52M ~10 bps) | 12.08 | 5.08 | Gates: 5m CVD negative at arm (−44k now); ≥ 300k SELL walls 109.5–111.3 verified |
+| 3 | **CARD 2 — KILLED** | BTCUSD.pi | — | — | — | — | — | — | — | 5m CVD +5.20M + regime RANGE_BOUND — two hard gates fail. Re-arm on BEARISH + negative CVD |
+| — | HOLD | 21 others | — | — | — | — | — | — | — | BCH CVD-qualified but dust pools + 0 walls; GOLD RR-dead ×4; USWTI ×7; NAS100 lot-grid; friction ×7; lot-grid ×2 |
+
+**Concurrency:** Cards 1+3 = crypto-major cluster. Primary Card 1; both armed = 22.76 → post-stop 4,857.51 ≥ 4,795.00 ✓ (broker-stress 4,849.57 ✓).
+
+## C. Mandate 2 — FLAT (OPEN_0). No ratchets.
+## D. Mandate 3 — 0 pending (cycle-44 cards were never broker-staged). Nothing to audit.
+## E. Floor — 4,880.27 ≥ 4,795.00 ✓; card stress pre-verified. **07:05 UTC = cancel-all for unfilled cards** (07:10 purge hard expiry; Fed Waller blackout 07:15–08:15 repeats the cycle-43 protocol).
+
+
+---
+
+## Section 98: Tri-Council Cycle 45 Synthesis (Arena.ai + Z.ai Chat Output File + Antigravity Live MT5 Execution) | 2026-10-13 03:56 UTC | SENDER: Antigravity
+
+### 1. Tri-Council Harvest & Attached Output File Extraction
+- **Arena.ai (Two-Way Git & DOM)**: Harvested [`docs/trade_plans/ARENA_COUNCIL_REPORT_20261013_0338Z.md`](file:///c:/Users/SIGMA/Documents/Trading_2/docs/trade_plans/ARENA_COUNCIL_REPORT_20261013_0338Z.md) (`commit 1c0d45dd` / `d3be864c`, basis `a24aaab9` @ `03:39:43 UTC`).
+- **Z.ai Chat (One-Way Read-Only Sandbox + Workspace Output File Harvest)**: Extracted both the chat summary and the complete **360-line, 33,227-byte attached Workspace output file** (`LIVE_COLLABORATIVE_ORDER_DESK_Cycle45_append.md` saved to [`docs/trade_plans/ZAI_LATEST_ATTACHMENT.md`](file:///c:/Users/SIGMA/Documents/Trading_2/docs/trade_plans/ZAI_LATEST_ATTACHMENT.md) and [`docs/trade_plans/ZAI_LATEST_RAW.md`](file:///c:/Users/SIGMA/Documents/Trading_2/docs/trade_plans/ZAI_LATEST_RAW.md), basis `a24aaab9` @ `03:39:43 UTC`).
+- **Antigravity (`03:54:40 UTC` Live Telemetry & MT5 Execution Muscle)**: Independently verified the live orderbook, L3 whale wall persistence (`>= 180s`), `5m / 15m` CVD flip, and broker execution math (`mt5.order_calc_profit` / `mt5.order_check`), and punched **2 passive `SELL_LIMIT` orders** (`Ticket #18825384` `SOLUSD.p` and `Ticket #18825385` `ETHUSD.pi`) live onto MetaTrader 5 (`Account #5064568`).
+
+### 2. Side-by-Side Tri-Council Comparison & Live Broker Execution (`03:56 UTC`)
+| Dimension / Candidate | Arena.ai (`03:39:43 UTC`) | Z.ai Chat Output File (`03:39:43 UTC`) | Antigravity Live Synthesis & MT5 Execution (`03:56 UTC`) |
+|---|---|---|---|
+| **1. `SOLUSD.p` Short (Model 2)** | `SELL LIMIT 0.08 @ 109.77` (`VAH`) / `SL 111.28` / `TP 102.10` (`Risk 12.08 USD`, `5.08R`). Note: `109.77` is `3.00 ATR` away and lacks `>= 300k` verified walls at `109.5–111.3` (current belt sits at `107.7–108.5`). | **PRIMARY**: `SELL LIMIT 0.13 @ 107.50` / `SL 108.27` / `TP 103.58` (`Risk 10.02 USD`, `5.09R`, Overwhelm `0.054:1`, `3.15M USD` defence from 17 SELL walls vs `170k USD` fuel). | **PUNCHED LIVE (`Ticket #18825384`)**: `SELL LIMIT 0.13 lots @ 107.70 USD` (`0.50 ATR` above live mid `107.30`), `SL = 108.55 USD` (outside `[107.00–108.00]` by `+0.69 ATR` and behind all **10 persistent L3 Ask Whale Walls totaling `8.83M USD`**: `1.86M @ 107.94 [243s]`, `3.65M @ 108.22 [846s]`, `642k @ 108.33 [730s]`, `619k @ 108.40 [846s]`, `220k @ 108.47 [1030s]` -> Overwhelm `0.036:1`, defence `27.7x` fuel!), `TP = 103.58 USD` (`+7.5 bps` front-run of `103.50` long cascade through `11.25M USD` `[106–107]` sell-stop pool). `calc_risk = -11.05 USD`, `calc_rew = +53.56 USD`, **`R:R = 4.85 R`**, `5m CVD = -312.4k USD`, `15m CVD = -255.4k USD`. |
+| **2. `ETHUSD.pi` Short (Model 2)** | **PRIMARY**: `SELL LIMIT 0.25 @ 2,544.30` (`VAH`) / `SL 2,587.00` / `TP 2,442.00` (`Risk 10.68 USD`, `2.40R`). Note: `2,544.30` sits `2.70 ATR > 2.0 ATR` away from current mid `2,504.55`. | Tested `2,515` (`Overwhelm 2.05:1` at `03:39 UTC` when `2,519.40` wall was `< 180s`) and `2,535` (`2.57 ATR > 2.0 ATR` passivity cap). | **PUNCHED LIVE (`Ticket #18825385`)**: Between `03:39 UTC` and `03:54 UTC`, `0xab5e6f39`'s **`5.70M USD` Ask Whale Wall @ `2,519.40`** reached `persist_s = 845s >= 180s` alongside `781k @ 2,516.70 [658s]`, `773k @ 2,525.40 [419s]`, `280k @ 2,520.00 [4421s]`, `268k @ 2,519.10 [6101s]`, `209k @ 2,515.00 [6101s]` (**`8.01M USD` persistent Ask Whale defence in `[2,515–2,525.4]` vs `1.89M USD` buy-stop fuel -> Overwhelm flipped from `2.05:1` to `0.236:1`, defence `4.24x` fuel!**), while `5m CVD = -449.0k USD` and `15m CVD = -2.41M USD` both flipped negative! Staged `SELL LIMIT 0.65 lots @ 2,518.50 USD` (`0.95 ATR <= 2.0 ATR` above mid, above `EMA200 = 2,510.21`, front-running `5.70M @ 2,519.40`), `SL = 2,535.50 USD` (`+0.37 ATR` outside `[2,520–2,530]` `max_price = 2,530.00`, behind `Session POC = 2,525.38` and `803k @ 2,530.70 [966s]`), `TP = 2,457.46 USD` (`+10 bps` front-run of `5.62M USD` `[2,450–2,460]` long cascade). `calc_risk = -11.05 USD`, `calc_rew = +39.68 USD`, **`R:R = 3.59 R`**. |
+| **3. `BTCUSD.pi` Short** | **KILLED**: `Regime = RANGE_BOUND`, `5m CVD +5.20M USD`. | **REJECTED**: `Overwhelm 11.31:1` (`6.23M` buy-stop fuel vs `551k` defence). | **UNANIMOUS REJECT**: All 3 council members reject `BTCUSD.pi` until `BEARISH` regime and whale defence return. |
+| **4. Capital Floor & Capacity** | `4,880.27 USD` (`+105.27 USD` cushion); 2 tickets authorized (`07:05 UTC` unfilled expiry). | `4,880.27 USD` (`+105.27 USD` cushion); stressed simulation verified. | **2 / 4 Slots Active (`#18825384` + `#18825385`)**: Total nominal risk = `22.10 USD` (`11.05 + 11.05`) -> Unstressed post-stop equity = **`4,858.17 USD`** (`+83.17 USD` above `4,775.00` floor). Stressed risk (`1.25x + 4.00`) = `31.63 USD` -> Stressed post-stop equity = **`4,848.64 USD`** (`+73.64 USD` above `4,775.00` floor, `+53.64 USD` above `4,795.00` buffer). |

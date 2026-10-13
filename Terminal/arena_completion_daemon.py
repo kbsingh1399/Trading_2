@@ -228,19 +228,27 @@ def save_completion_artifacts(state: dict) -> None:
 def save_zai_completion_artifacts(state: dict) -> None:
     ZAI_STATUS_FILE.parent.mkdir(parents=True, exist_ok=True)
     ZAI_LATEST_RAW_FILE.parent.mkdir(parents=True, exist_ok=True)
+    zai_attachment_file = ZAI_LATEST_RAW_FILE.parent / "ZAI_LATEST_ATTACHMENT.md"
 
     text = state.get("lastText") or ""
     if text:
         ZAI_LATEST_RAW_FILE.write_text(text, encoding="utf-8")
+
+    ws_text = state.get("workspaceFileText") or ""
+    if ws_text:
+        zai_attachment_file.write_text(ws_text, encoding="utf-8")
 
     payload = {
         "completed_at_utc": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC"),
         "completed_at_epoch": time.time(),
         "prose_count": state.get("proseCount", 0),
         "text_length": state.get("lastLen", 0),
+        "workspace_file_name": state.get("workspaceFileName", ""),
+        "workspace_file_length": state.get("workspaceFileLen", 0),
         "text_hash": state.get("textHash", ""),
         "is_generating": state.get("isGenerating", False),
         "latest_raw_path": str(ZAI_LATEST_RAW_FILE),
+        "latest_attachment_path": str(zai_attachment_file) if ws_text else "",
     }
     ZAI_STATUS_FILE.write_text(json.dumps(payload, indent=2), encoding="utf-8")
 
@@ -314,7 +322,7 @@ async def run_wait_for_completion(poll_interval: float = 2.0, timeout_s: float =
                         last_seen_hash = curr_hash
                         stable_ready_ticks = 0
 
-        # 2. Check Z.ai Chat (One-Way DOM Harvest)
+        # 2. Check Z.ai Chat (One-Way DOM Harvest + Attached Workspace Deliverable)
         if zai_active and not zai_done:
             zstate = await probe_zai_state()
             if zstate.get("connected"):
@@ -337,12 +345,13 @@ async def run_wait_for_completion(poll_interval: float = 2.0, timeout_s: float =
                             save_zai_completion_artifacts(zstate)
                             zai_done = True
                             print(
-                                f"\n🔔 Z.AI CHAT RESPONSE COMPLETE (len={z_len}, hash={z_hash}) -> saved {ZAI_LATEST_RAW_FILE.name}",
+                                f"\n🔔 Z.AI CHAT RESPONSE COMPLETE (len={z_len}, ws_file={zstate.get('workspaceFileName')}, ws_len={zstate.get('workspaceFileLen')}, hash={z_hash}) -> saved {ZAI_LATEST_RAW_FILE.name}",
                                 flush=True,
                             )
 
-        # Wake up when both are done, OR when Arena is done and 90s grace period for Z.ai has elapsed
-        if arena_done and (zai_done or (time.time() - arena_done_ts) >= 90.0):
+        # Wake up when BOTH are done (or if Z.ai never started generating within 60s, or exceeded 420s grace timeout)
+        zai_grace_limit = 420.0 if saw_zai_generating else 60.0
+        if arena_done and (zai_done or (time.time() - arena_done_ts) >= zai_grace_limit):
             if zai_active and not zai_done:
                 zstate = await probe_zai_state()
                 if zstate.get("connected") and zstate.get("lastLen", 0) > 100:
