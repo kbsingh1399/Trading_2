@@ -197,3 +197,12 @@ Fed blackout CLEARED (next BoE Pill 10-14 06:00, runway 20.9h). **SOL Card 1 PUN
 - ETH #18847111 HOLD −0.25 / −0.02R0 (frozen 26.50): defense RESOLVED (credited in-zone 7.27M ≥ 6.0M); bunker 12.52M @ 2,539.4 persisting (2,897s); P0 2,489.95 in 17.20 pts → SL 2,499.22 (locks +4.64); P1 2,468.75 → 2,487.30; P2 2,455.50; TP 2,442.
 - A5 (R-1…R-4) enforcement: SOL re-arm RESTAGED 0.06 @ 109.38 / 111.35 / 105.10 (risk 11.82, RR 2.17; mid ≥ 107.90) — old spec failed R-1. NAS100 re-arm SUSPENDED (R-2 1.97M < 3.0M + lot-grid kill). BTC deep-flush A5-pass (R-2 shield 3.79M; RR 7.73 corrected) DORMANT. 0 new cards (USWTI Z +1.99 regime-banned). Post 4,851.82 ≥ 4,795 ✓; 1/4. Full: `ARENA_COUNCIL_REPORT_20261013_2003Z.md`.
 — Arena Council · Cycle 66
+
+---
+
+# BILATERAL LEDGER — ARENA CYCLE 67 (gen `88d6fa28` @ 2026-10-13 20:21:48 UTC)
+- **#18847111 ETH SHORT 0.50 @ 2,508.5 → HOLD.** +1.00 / +0.08R0 (frozen 26.50; prompt +0.09R0). Defense fortress: **credited in-zone 19.91M** (6.42M @ 2,524.8 GENUINE 2,484s + 3.00M @ 2,518.0 verified + tiers) ≫ 6.0M kill line; bunker 12.52M @ 2,539.4 (3,908s). CVD coiled (5m/15m ~0) vs 24h −10.62M BEARISH_MOMENTUM; TRAPPED_BUYERS_ABOVE overhead. P0 2,489.95 → SL 2,499.22 on print (locks +4.64); P1 2,468.75 → 2,487.30; P2 2,455.50. TP axis [2,470–2,480] 18.25M. Armed: 2,548+CVD+500k / VAH 2,528.9 / def < 6.0M (green).
+- **HEADLINE: USWTI Z +2.40 — session's first true |Z| ≥ 2.0 — TRIPLE-KILLED:** Engine-1 short banned in BULLISH HTF (absolute) + **0 credited walls** (A4) + no tape exhaustion (BUYER_AGGRESSION +42). Never faded. SILVER Z −1.88 approaching the same regime ban at −2.0.
+- **A4 wall-pull wave (2 events):** SOL restage (0.06 @ 109.38/111.35/105.10) **SUSPENDED — the 8.68M @ 109.38 keystone pulled** (in-zone credited 0.00M; R-2/R-3 gone); BTC deep-flush shield decayed 3.79M → **2.50M** (card DORMANT/CONDITIONAL — ≥3M shield re-verify MANDATORY at punch). NAS100 SUSPENSION STANDS (corridor 4.76M aggregate but max single wall 1.08M < R-2's 3.0M; lot-grid kill persists).
+- Mandate 1: **0 new cards.** R0 clean (26.50, third cycle). Portfolio: contingent 18.56 → post_joint **4,852.07 ≥ 4,795** ✓; budget 57.07 (max 2 new @ 14.50); 1/4. Macro: BoE Pill 2026-10-14 06:00 UTC. Full: `ARENA_COUNCIL_REPORT_20261013_2021Z.md`.
+— Arena Council · Cycle 67

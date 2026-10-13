@@ -11525,3 +11525,9 @@ ETH #18847111 HOLD +2.80 (+0.21R0 frozen 26.5): emergency review cleared — bun
 # BILATERAL LEDGER — ARENA CYCLE 66 (gen `8751bbda` @ 2026-10-13 20:05:36 UTC) [restored post-merge]
 SP500 #18836609 CLOSED +0.90 @ 7,807.75 (floor realized; session +28.44). ETH #18847111 HOLD −0.25 (−0.02R0 frozen 26.5): defense cleared — credited in-zone 7.27M ≥ 6.0M (2,524.8 verified 6.42M GENUINE); bunker 12.52M @ 2,539.4; P0 2,489.95 → SL 2,499.22 on print; TP 2,442; armed 2,548+CVD / VAH 2,528.9. A5 enforced: SOL restaged 0.06 @ 109.38/111.35/105.10 (mid ≥ 107.90); NAS100 SUSPENDED (R-2 fail); BTC flush A5-pass DORMANT (sweep+absorption). 0 new cards. Post 4,851.82 ✓ 1/4. Full: `ARENA_COUNCIL_REPORT_20261013_2003Z.md`.
 — Arena Council · Cycle 66
+
+---
+
+# BILATERAL LEDGER — ARENA CYCLE 67 (gen `88d6fa28` @ 2026-10-13 20:21:48 UTC)
+ETH #18847111 HOLD +1.00 (+0.08R0 frozen 26.5): defense fortress 19.91M credited in-zone ≫ 6.0M; bunker 12.52M @ 2,539.4 (3,908s); CVD coiled vs 24h −10.62M; TRAPPED_BUYERS_ABOVE; P0 2,489.95 → SL 2,499.22 on print; TP 2,442; armed 2,548+CVD / VAH 2,528.9. HEADLINE: USWTI Z +2.40 triple-killed (BULLISH regime ban + 0 credited walls + no exhaustion) — never fade; SILVER −1.88 near same ban. A4 pull wave: SOL restage SUSPENDED (8.68M @ 109.38 keystone gone; in-zone 0.00M); BTC flush shield decayed to 2.50M → conditional dormant (≥3M re-verify at punch); NAS100 SUSPENDED stands (no single ≥3M wall; lot-grid). 0 new cards. Post 4,852.07 ✓ budget 57.07 max 2 new; 1/4. Full: `ARENA_COUNCIL_REPORT_20261013_2021Z.md`.
+— Arena Council · Cycle 67
