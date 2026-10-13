@@ -189,13 +189,3 @@ Fed blackout CLEARED (next BoE Pill 10-14 06:00, runway 20.9h). **SOL Card 1 PUN
 - SP500 #18836609 HOLD risk-free (+0.90 floor): +0.28R0; SELLER_AGGRESSION 1,000 ticks; P0 7,787.60 in 13.46 pts → SL 7,798.80 (locks +4.48); P1 7,762.00 before WkVAL 7,757.77; K2 retired.
 - R0 clean (32.00/26.50). 0 new cards (no |Z| ≥ 2.0). SOL mid ≥ 107.90 (15.47M credited ✓ CVD ✓). NAS100 mid ≥ 30,600 (8.77M ✓). BTC flush dormant/elevated (GENUINE 17.75M bid @ 82,542). Portfolio 36.56 → post 4,833.17 ✓ max 1 new @ 14.50. Full: `ARENA_COUNCIL_REPORT_20261013_1844Z.md`.
 — Arena Council · Cycle 65
-
----
-
-# BILATERAL LEDGER — ARENA CYCLE 66 (gen `8751bbda` @ 2026-10-13 20:05:36 UTC; prior "CYCLE 65" prompt interrupted)
-- **BOOK EVENT: #18836609 SP500 CLOSED +0.90 at 7,807.75 trailing stop = the guaranteed floor realized.** Session realized: ETH +1.92 · SOL +9.52 · BTC +16.10 · SP500 +0.90 = **+28.44**.
-- **#18847111 ETH SHORT 0.50 @ 2,508.5 → HOLD.** −0.25 / −0.02R0 (frozen 26.50). **Defense line RESOLVED GREEN: 2,524.8 wall VERIFIED (6.42M, 1,473s, GENUINE) → credited in-zone 7.27M ≥ 6.0M kill line.** Bunker 12.52M @ 2,539.4 persisting (2,897s). SL-in-front disclosure stands (live spec binding). Flow: 5m/15m CVD slightly + vs 30m −0.68M / 24h −9.25M BEARISH_MOMENTUM; EMA stack bearish; P0 2,489.95 in 17.20 pts → SL 2,499.22 on print (locks +4.64); P1 2,468.75 → 2,487.30; P2 2,455.50. TP axis [2,470–2,480] 18.27M.
-- **ARCHETYPE 5 (R-1…R-4) enforced on watch cards:** SOL re-arm **(B) RESTAGED 0.06 @ 109.38 / 111.35 / 105.10** (old 0.10/108.9/110.2 failed R-1 — SL inside [110–111]; new spec passes R-1 0.51 ATR, R-2 8.68M @ 109.38, R-3 anchor, R-4 risk 11.82; mid ≥ 107.90). NAS100 re-arm **(C) SUSPENDED** (R-2 fail 1.97M < 3.0M; compliant SL kills lot grid) — re-arm only on ≥3M credited corridor wall. BTC deep-flush A5-**PASSES** at spec (R-2 shield 3.79M credited in [82,375,82,480]; RR corrected 7.73) — DORMANT pending [82,500–82,600] sweep + Inv-2. USWTI Z +1.99 = nearest extreme, Engine-1 short BANNED in BULLISH HTF; pullback-to-94.45 watch only.
-- **Mandate 1: 0 new cards.** No |Z| ≥ 2.0; all sub-extremes dead (friction / lot grid / no walls / regime).
-- Portfolio: contingent 18.56 → post_joint **4,851.82 ≥ 4,795** ✓; budget 57.02 (max 2 new @ 14.50); **1/4 capacity**. Macro: BoE Pill 2026-10-14 06:00 UTC. Full: `ARENA_COUNCIL_REPORT_20261013_2003Z.md`.
-— Arena Council · Cycle 66

@@ -11519,9 +11519,3 @@ ETH #18847111 HOLD +2.20 (+0.29R0 frozen 26.5; P0 2,489.95 in 10.75 pts): CVD �
 # BILATERAL LEDGER — ARENA CYCLE 65 (gen `f46b5905` @ 2026-10-13 18:46:10 UTC) [restored post-merge]
 ETH #18847111 HOLD +2.80 (+0.21R0 frozen 26.5): emergency review cleared — bunker re-peg #4 GENUINE 12.52M @ 2,539.4 (1,880s) above stop; credited in-zone 0.77M disclosed; flow stalled (15m CVD −0.05M); P0 2,489.95 → SL 2,499.22 on print; alt SL 2,543.5/0.35 lots = operator call. SP500 #18836609 HOLD risk-free (+0.90 floor); +0.28R0; P0 7,787.60 → SL 7,798.80 on print; K2 retired. R0 clean 32.00/26.50. 0 new cards. SOL ≥ 107.90 · NAS100 ≥ 30,600 · BTC flush dormant (17.75M bid @ 82,542). Post 4,833.17 ✓ max 1 new; 2/4. Full: `ARENA_COUNCIL_REPORT_20261013_1844Z.md`.
 — Arena Council · Cycle 65
-
----
-
-# BILATERAL LEDGER — ARENA CYCLE 66 (gen `8751bbda` @ 2026-10-13 20:05:36 UTC; prior "CYCLE 65" prompt interrupted)
-SP500 #18836609 CLOSED +0.90 @ 7,807.75 trailing stop = floor realized (session realized +28.44). ETH #18847111 HOLD −0.25 (−0.02R0 frozen 26.5): defense RESOLVED GREEN — 2,524.8 wall verified 6.42M GENUINE → credited in-zone 7.27M ≥ 6.0M; bunker 12.52M @ 2,539.4 (2,897s); P0 2,489.95 in 17.20 pts → SL 2,499.22 on print; TP 2,442; armed 2,548+CVD / VAH 2,528.9. A5 (R-1…R-4) enforced: SOL re-arm RESTAGED 0.06 @ 109.38/111.35/105.10 (risk 11.82, RR 2.17; mid ≥ 107.90); NAS100 re-arm SUSPENDED (R-2 1.97M < 3.0M + lot-grid kill); BTC flush A5-pass (3.79M shield; RR 7.73 corrected) DORMANT on sweep+absorption. 0 new cards (USWTI Z +1.99 regime-banned). Post 4,851.82 ✓ budget 57.02 max 2 new; 1/4. Full: `ARENA_COUNCIL_REPORT_20261013_2003Z.md`.
-— Arena Council · Cycle 66
