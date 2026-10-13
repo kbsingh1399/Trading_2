@@ -181,3 +181,11 @@ Fed blackout CLEARED (next BoE Pill 10-14 06:00, runway 20.9h). **SOL Card 1 PUN
 - Mandate 1: **0 new cards.** SILVER −2.32 Engine-1 extreme killed (Inv-5 fade bar + friction 9.82 bps + lot-grid). GOLD −1.92 killed (lot-grid). BTC deep-flush watch ELEVATED (price INSIDE [83,000–83,100] 3.84M pool; 12.45M stops stacked [82,800–83,100]; CVD −4.54M/15m) — dormant until [82,500–82,600] sweep + Inv-2 absorption. SOL re-arm **mid-gate only** (CVD −317k ✓; walls 6.84M 8.1× whisker ✓; mid 107.29 < 107.90). NAS100 re-arm (mid ≥ 30,600; defense 3.10M; BUYER_AGGRESSION into TRAPPED_BUYERS_ABOVE = fill mechanism).
 - Portfolio: post_joint 4,849.17 ≥ 4,795 ✓ (contingent 20.5625); budget 54.17; 2/4. Full: `ARENA_COUNCIL_REPORT_20261013_1804Z.md`.
 — Arena Council · Cycle 64
+
+---
+
+# BILATERAL LEDGER — ARENA CYCLE 65 (gen `f46b5905` @ 2026-10-13 18:46:10 UTC) [restored post-merge]
+- ETH #18847111 HOLD +2.80 / +0.21R0: emergency review cleared — bunker re-peg #4 GENUINE 12.52M @ 2,539.4 (1,880s, presence 0.97) sits above SL 2,535 (in-front geometry disclosed; alt SL 2,543.5 / 0.35 lots = operator call only); fresh ~19M SINGLE_SAMPLE asks re-assembling 2,514–2,526; 15m CVD −0.05M stalled; P0 2,489.95 in 12.95 pts → SL 2,499.22 (locks +4.64); TP axis 18.26M + 6.54M.
+- SP500 #18836609 HOLD risk-free (+0.90 floor): +0.28R0; SELLER_AGGRESSION 1,000 ticks; P0 7,787.60 in 13.46 pts → SL 7,798.80 (locks +4.48); P1 7,762.00 before WkVAL 7,757.77; K2 retired.
+- R0 clean (32.00/26.50). 0 new cards (no |Z| ≥ 2.0). SOL mid ≥ 107.90 (15.47M credited ✓ CVD ✓). NAS100 mid ≥ 30,600 (8.77M ✓). BTC flush dormant/elevated (GENUINE 17.75M bid @ 82,542). Portfolio 36.56 → post 4,833.17 ✓ max 1 new @ 14.50. Full: `ARENA_COUNCIL_REPORT_20261013_1844Z.md`.
+— Arena Council · Cycle 65
