@@ -145,27 +145,43 @@ async def probe_zai_state() -> dict:
         let workspaceFileName = '';
         let workspaceFileText = '';
         if (!isGenerating && lastProse) {
-            let wsProse = document.querySelector('.workspaceContent .markdown-prose, .workspace .markdown-prose, .workspaceContent pre');
-            if (!wsProse) {
-                const localPreviewBtns = Array.from(lastProse.parentElement?.parentElement?.querySelectorAll('button[title="Open in Workspace"]') || []);
-                const allPreviewBtns = localPreviewBtns.length > 0 ? localPreviewBtns : Array.from(document.querySelectorAll('button[title="Open in Workspace"]'));
-                if (allPreviewBtns.length > 0) {
-                    allPreviewBtns[allPreviewBtns.length - 1].click();
-                    await new Promise(r => setTimeout(r, 450));
+            const outer = lastProse.parentElement && lastProse.parentElement.parentElement ? lastProse.parentElement.parentElement : lastProse;
+            const wroteBtns = Array.from(outer.querySelectorAll('button')).filter(b => (b.innerText || '').includes('Wrote'));
+            for (const wb of wroteBtns) {
+                const container = wb.parentElement && wb.parentElement.parentElement ? wb.parentElement.parentElement : wb.parentElement;
+                if (container && !container.querySelector('.ToolCallTraceList')) {
+                    wb.click();
+                    await new Promise(r => setTimeout(r, 300));
                 }
             }
-            const tabButtons = Array.from(document.querySelectorAll('.workspace [role="tab"], .workspace button[data-tabs-trigger], [role="tablist"] button, [role="tablist"] [role="tab"]'));
-            if (tabButtons.length > 0) {
-                const targetTab = tabButtons[0];
-                workspaceFileName = (targetTab.innerText || '').trim();
+            const createBtns = Array.from(outer.querySelectorAll('.ToolCallTraceList button, button')).filter(b => (b.innerText || '').includes('Create File') && (b.innerText || '').includes('.md'));
+            if (createBtns.length > 0) {
+                const latestCreateBtn = createBtns[createBtns.length - 1];
+                const rawLabel = (latestCreateBtn.innerText || '').trim();
+                const match = rawLabel.match(/([A-Za-z0-9_.-]+\.md)/);
+                const targetFile = match ? match[1] : '';
+                const curHeader = Array.from(document.querySelectorAll('.text-sm.flex-1.truncate.line-clamp-1')).map(e => (e.innerText || '').trim()).find(t => t.endsWith('.md')) || '';
+                if (targetFile && curHeader !== targetFile) {
+                    latestCreateBtn.click();
+                    await new Promise(r => setTimeout(r, 500));
+                }
+                if (targetFile) workspaceFileName = targetFile;
             }
-            wsProse = document.querySelector('.workspaceContent .markdown-prose, .workspace .markdown-prose, .workspaceContent pre');
-            if (wsProse) {
-                workspaceFileText = (wsProse.innerText || '').trim();
-            } else {
-                const wsIframe = document.querySelector('iframe.workspacePreview');
-                if (wsIframe && wsIframe.contentDocument && wsIframe.contentDocument.body) {
-                    workspaceFileText = (wsIframe.contentDocument.body.innerText || '').trim();
+            if (!workspaceFileName) {
+                const curHeader = Array.from(document.querySelectorAll('.text-sm.flex-1.truncate.line-clamp-1')).map(e => (e.innerText || '').trim()).find(t => t.endsWith('.md')) || '';
+                if (curHeader) workspaceFileName = curHeader;
+            }
+            const cm = document.querySelector('.cm-content');
+            if (cm && cm.cmView) {
+                let v = cm.cmView;
+                while (v && !v.state && v.parent) v = v.parent;
+                if (v && v.view && v.view.state) workspaceFileText = v.view.state.doc.toString();
+                else if (v && v.state) workspaceFileText = v.state.doc.toString();
+            }
+            if (!workspaceFileText) {
+                const wsProse = document.querySelector('.workspaceContent .markdown-prose, .workspace .markdown-prose, .workspaceContent pre');
+                if (wsProse) {
+                    workspaceFileText = (wsProse.innerText || '').trim();
                 }
             }
         }
