@@ -310,6 +310,37 @@ def test_persistence_needs_180s_or_ledger_continuity():
     assert "PERSISTENCE_UNVERIFIED" not in _codes(ev2)
 
 
+def test_range_bound_regime_gates_discretionary_cards():
+    """Operator rule: when trend_regime is RANGE_BOUND neither engine applies — a
+    discretionary card in noise is a forced trade (fatal), while a posture card may record
+    the state without being struck down."""
+    asset = _asset(regime="RANGE_BOUND")
+    ev = at.evaluate_card(_card(), _snap(asset), {})
+    assert "REGIME_GATED_STAND_ASIDE" in _codes(ev)
+    assert ev.fatal()
+    watch = at.Card(id="w1", action="WATCH", asset="SYNTH",
+                    meta={"condition": "armed test trigger", "invalidation": "n/a"})
+    ev2 = at.evaluate_card(watch, _snap(asset), {})
+    assert "REGIME_GATED_STAND_ASIDE" in _codes(ev2)
+    assert not ev2.fatal()
+
+
+def test_jpy_quote_currency_converts_risk_to_usd():
+    """A USDJPY point is JPY, not USD: risk/stress must be converted at the live rate or the
+    engine overstates a JPY ticket's risk by ~158x and fabricates FLOOR_BREACH verdicts."""
+    asset = _asset(symbol="USDJPY.pi", mid=150.0, atr=0.1, spread_price=0.003, spread_bps=0.2,
+                   contract=100000.0, min_lot=0.01)
+    ev = at.evaluate_card(_card(entry=150.5, sl=151.5, tp=149.0, lots=0.01), _snap(asset), {})
+    assert ev.metrics["usd_factor"] == pytest.approx(1.0 / 150.0)
+    assert ev.metrics["risk_usd"] == pytest.approx(1000.0 / 150.0, rel=1e-6)
+    assert ev.metrics["reward_usd"] == pytest.approx(1500.0 / 150.0, rel=1e-6)
+    # R-multiples are currency-invariant
+    assert ev.metrics["rr_gross"] == pytest.approx(1.5, rel=1e-6)
+    # a USD-quoted book keeps factor 1.0
+    ev2 = at.evaluate_card(_card(), _snap(_asset()), {})
+    assert ev2.metrics.get("usd_factor") in (None, 1.0)
+
+
 def test_unverified_regime_blocks_any_trade_card():
     asset = _asset(regime="INSUFFICIENT_HISTORY")
     ev = at.evaluate_card(_card(), _snap(asset), {})

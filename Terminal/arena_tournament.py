@@ -251,6 +251,22 @@ def _asset_class(symbol: str) -> str:
     return "CRYPTO_ALT"
 
 
+def _usd_factor(symbol: str, mid: Optional[float]) -> float:
+    """Convert quote-currency P&L into account currency (USD).
+
+    Everything on this book is USD-quoted except the JPY crosses: for `USDJPY.pi` a
+    one-point move on 100,000 units is 100,000 **JPY**, not 100,000 USD. Without the
+    conversion the engine overstates the risk of a JPY ticket by the FX rate itself
+    (~158x live) and fabricates FLOOR_BREACH verdicts. R-multiples are unaffected
+    (risk and reward scale together); USD risk, stress and floor math are not.
+    """
+    core = symbol.upper().split(".")[0]                        # drop the broker suffix (.pi / .p)
+    core = "".join(ch for ch in core if ch.isalpha())          # keep the letters only (SP500 -> SP)
+    if mid and core.endswith("JPY"):
+        return 1.0 / float(mid)
+    return 1.0
+
+
 def _bins(raw: Optional[List[Dict[str, Any]]]) -> List[Tuple[float, float, float]]:
     out = []
     for c in raw or []:
@@ -426,6 +442,7 @@ def evaluate_card(card: Card, snap: Dict[str, Any],
     spread_bps = float(q.get("spread_bps") or 0.0)
     contract = float(es.get("contract_size") or 1.0)
     min_lot = float(es.get("min_lot") or 0.01)
+    usd_factor = _usd_factor(symbol, mid)
 
     ev.metrics.update({
         "symbol": symbol, "asset_class": cls, "mid": mid, "atr_14": atr,
@@ -438,6 +455,13 @@ def evaluate_card(card: Card, snap: Dict[str, Any],
         ev.add("REGIME_UNVERIFIED", "FATAL" if card.action in TRADE_ACTIONS else "INFO", "A2",
                f"trend_regime={regime!r}: neither engine can be certified on this snapshot",
                regime=regime)
+    elif regime == "RANGE_BOUND":
+        # Operator rule: in non-trending noise neither engine applies and the mathematically
+        # correct action is stand aside. A discretionary card in range-bound conditions is a
+        # forced trade, so it fails the gate; a posture card (WATCH / STAND_ASIDE) may record
+        # the state.
+        ev.add("REGIME_GATED_STAND_ASIDE", "FATAL" if card.action in TRADE_ACTIONS else "INFO", "A2",
+               "trend_regime=RANGE_BOUND: neither engine applies in non-trending noise", regime=regime)
     if atr in (None, 0):
         ev.add("ATR_UNAVAILABLE", "FATAL" if card.action in TRADE_ACTIONS else "INFO", "A3",
                "ATR(14) unavailable; stop distance, buffers and friction ratios are undefined")
@@ -455,7 +479,7 @@ def evaluate_card(card: Card, snap: Dict[str, Any],
         if ratio > SPREAD_ATR_MAX:
             ev.add("SPREAD_OVER_ATR", "MAJOR", "A7",
                    f"spread/ATR {ratio:.3f} exceeds {SPREAD_ATR_MAX}", ratio=ratio)
-    min_lot_cash = spread_price * contract * min_lot
+    min_lot_cash = spread_price * contract * min_lot * usd_factor
     ev.metrics["min_lot_spread_cash_usd"] = min_lot_cash
     if min_lot_cash > FRICTION_MAX * RISK_MAX_USD:
         ev.add("MIN_LOT_FRICTION", "MAJOR", "A7",
@@ -478,12 +502,13 @@ def evaluate_card(card: Card, snap: Dict[str, Any],
             return ev
 
         stop_pts = abs(sl - entry)
-        risk_usd = stop_pts * contract * lots
-        reward_usd = abs(entry - tp) * contract * lots
+        risk_usd = stop_pts * contract * lots * usd_factor
+        reward_usd = abs(entry - tp) * contract * lots * usd_factor
         rr = (reward_usd / risk_usd) if risk_usd else 0.0
         ev.metrics.update({"side": side, "entry": entry, "sl": sl, "tp": tp, "lots": lots,
                            "stop_points": stop_pts, "risk_usd": risk_usd,
-                           "reward_usd": reward_usd, "rr_gross": rr})
+                           "reward_usd": reward_usd, "rr_gross": rr,
+                           "usd_factor": usd_factor})
         rr_min = RR_MIN_BY_ASSET.get(symbol, RR_MIN)
         ev.metrics["rr_min_required"] = rr_min
 

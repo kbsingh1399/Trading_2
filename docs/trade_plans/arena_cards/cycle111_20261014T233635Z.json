@@ -1,0 +1,462 @@
+{
+ "cycle": 111,
+ "as_of_utc": "2026-10-14 23:36:35 UTC",
+ "generation_id": "92182f87cfd347e79d2e5e20c1f8689b",
+ "supersedes_generation": "6b10209eed194700b3c816024a6106f7",
+ "card_semantics": "STAGE = actionable ticket candidate; WATCH = armed forward trigger; STAGE_BATCH = capacity strawman; STAND_ASIDE = council posture card whose universe is re-probed card-by-card.",
+ "desk_state_note": "Desk flat: 0 active positions, 0 pending orders, 0/4 joint-fill slots used.",
+ "cards": [
+  {
+   "id": "btc_straddle_ladder_short",
+   "action": "STAGE",
+   "asset": "BTC",
+   "side": "SHORT",
+   "entry": 81939.12,
+   "sl": 82689.75,
+   "tp": 80180.1,
+   "lots": 0.01,
+   "engine": 2,
+   "thesis": "Engine 2 short at the perimeter. Mid 81,453 sits INSIDE the $79.08M sell-stop ladder [80,500-81,500], so no front-runnable exit exists below; the nearest front-runnable pool (79,800-80,100, +$31.65M) is 5.1 ATR away against a 3.5-ATR horizon. Stop must clear the $30.37M buy-stop belt [81,500-82,600].",
+   "meta": {
+    "derivation": "entry=mid+1.95ATR; SL=82,600+0.36ATR; TP=80,100 front-run 10 bps (5.1 ATR \u2014 outside horizon)",
+    "nominal_risk_usd": 7.51
+   }
+  },
+  {
+   "id": "btc_ladder_top_long",
+   "action": "STAGE",
+   "asset": "BTC",
+   "side": "LONG",
+   "entry": 80966.88,
+   "sl": 79311.5,
+   "tp": 81438.88,
+   "lots": 0.01,
+   "engine": 2,
+   "thesis": "Mirror probe: an Engine 1 long fade is banned outright in a verified BEARISH HTF regime (archetype 2), and the $106.99M in-range fuel below mid overwhelms the $37.27M verified defence 3.74:1.",
+   "meta": {
+    "derivation": "entry=mid-1.95ATR; SL=deepest reachable budget; TP=buy-stop front-run",
+    "nominal_risk_usd": 16.55,
+    "allow_out_of_envelope": true
+   }
+  },
+  {
+   "id": "eth_shelf_short",
+   "action": "STAGE",
+   "asset": "ETH",
+   "side": "SHORT",
+   "entry": 2435.4,
+   "sl": 2533.83,
+   "tp": 2422.42,
+   "lots": 0.11,
+   "engine": 2,
+   "thesis": "Engine 2 shelf short. The [2,310-2,420] sell-stop ladder carries $1,711.24M and contains mid 2,414.65; the ceiling on this asset is <=0.6R against a 2.20R mandate. A 0.35-ATR stop under the belt edge is impossible \u2014 the belt is the tape.",
+   "meta": {
+    "derivation": "entry=mid+1.95ATR; SL=2,530+0.36ATR; TP=2,420 front-run 10 bps",
+    "nominal_risk_usd": 10.83
+   }
+  },
+  {
+   "id": "eth_shelf_long",
+   "action": "STAGE",
+   "asset": "ETH",
+   "side": "LONG",
+   "entry": 2393.9,
+   "sl": 2296.22,
+   "tp": 2418.18,
+   "lots": 0.11,
+   "engine": 2,
+   "thesis": "Mirror probe: long into a bearish HTF with $1,860M of forced fuel below = archetypes 2+6.",
+   "meta": {
+    "derivation": "entry=mid-1.95ATR; SL=deepest reachable budget; TP=buy-stop front-run",
+    "nominal_risk_usd": 10.74
+   }
+  },
+  {
+   "id": "sol_repair_short",
+   "action": "STAGE",
+   "asset": "SOL",
+   "side": "SHORT",
+   "entry": 105.2,
+   "sl": 114.19,
+   "tp": 104.1,
+   "lots": 0.01,
+   "engine": 2,
+   "thesis": "The cleanest engine-2 short in the book still pays 0.12R: the only reachable front-runnable pool sits directly under mid, and the $16.90M buy-stop belt [104-114] forces a 9.3-ATR stop.",
+   "meta": {
+    "derivation": "entry=mid+1.95ATR; SL=114.19; TP=104.00 front-run 10 bps",
+    "nominal_risk_usd": 8.99
+   }
+  },
+  {
+   "id": "sp500_core_short",
+   "action": "STAGE",
+   "asset": "SP500",
+   "side": "SHORT",
+   "entry": 7719.32,
+   "sl": 7813.33,
+   "tp": 7687.68,
+   "lots": 0.01,
+   "engine": 2,
+   "thesis": "Index short into the $817.3M buy-stop belt [7,700-7,810]. The exit pool [7,630-7,680] is 0.34R away; archetype 4 (ephemeral fuel) is not the issue here \u2014 geometry is.",
+   "meta": {
+    "derivation": "entry=mid+1.95ATR; SL=7,813.33; TP=7,680 front-run 10 bps",
+    "nominal_risk_usd": 9.4
+   }
+  },
+  {
+   "id": "nas100_momentum_short",
+   "action": "STAGE",
+   "asset": "NAS100",
+   "side": "SHORT",
+   "entry": 29852.35,
+   "sl": 30922.37,
+   "tp": 29729.7,
+   "lots": 0.01,
+   "engine": 1,
+   "thesis": "Most extreme z in the book (z=-2.05) with RSI 19.5 \u2014 an Engine 1 exhaustion candidate that dies on affordability: min lot risk 107.00 USD against a 14.50 envelope (contract 10 x 2,970 index points).",
+   "meta": {
+    "derivation": "entry=mid+1.95ATR; SL=30,922.37 (clear [28,800-29,800] seller belt + [28,700-29,700] cascade); TP=29,700 front-run",
+    "nominal_risk_usd": 107.0,
+    "allow_out_of_envelope": true
+   }
+  },
+  {
+   "id": "gold_minlot_floor_probe",
+   "action": "STAGE",
+   "asset": "GOLD",
+   "side": "SHORT",
+   "entry": 4114.95,
+   "sl": 4212.33,
+   "tp": 4084.08,
+   "lots": 0.01,
+   "engine": 2,
+   "thesis": "Gold's sell-stop belt [3,980-4,100] carries $15.49M and contains nothing front-runnable inside the horizon; the min lot (0.01 on contract 100) risks 97.38 USD for a 3.6-ATR stop \u2014 6.7x the envelope.",
+   "meta": {
+    "derivation": "entry=mid+1.95ATR; SL=4,212.33; TP=4,080 front-run 10 bps",
+    "nominal_risk_usd": 97.38,
+    "allow_out_of_envelope": true
+   }
+  },
+  {
+   "id": "near_friction_probe",
+   "action": "STAGE",
+   "asset": "NEAR",
+   "side": "SHORT",
+   "entry": 4.95076,
+   "sl": 5.03516,
+   "tp": 4.76357,
+   "lots": 1.0,
+   "engine": 2,
+   "thesis": "The only >=2.0R geometry in the book (2.22R) and it is unusable: at the 1.42 lot needed to hold risk at 11.98 USD the 63.69 bps spread burns 36.73% of the risk budget against a 15% ceiling.",
+   "meta": {
+    "derivation": "engine screen best: entry 4.95076 / SL 5.03516 / TP 4.76357",
+    "nominal_risk_usd": 8.44
+   }
+  },
+  {
+   "id": "usdjpy_quote_currency_probe",
+   "action": "STAGE",
+   "asset": "USDJPY",
+   "side": "SHORT",
+   "entry": 158.23015,
+   "sl": 167.03298,
+   "tp": 158.1185,
+   "lots": 0.01,
+   "engine": 2,
+   "thesis": "Quote-currency probe. The short fades into the [148-158] long-cascade band ($9.93M) that contains mid 158.05, and the structural stop is 8.8 price units = 8,800 pips: at 0.01 lots that is 55.70 USD of risk once the JPY quote is converted to USD. Structurally unaffordable, not merely mis-scaled.",
+   "meta": {
+    "derivation": "engine screen best: entry 158.23015 / SL 167.03298 / TP 158.11850",
+    "nominal_risk_usd": 55.7,
+    "allow_out_of_envelope": true
+   }
+  },
+  {
+   "id": "eurusd_range_gate_probe",
+   "action": "STAGE",
+   "asset": "EURUSD",
+   "side": "SHORT",
+   "entry": 1.11947,
+   "sl": 1.11866,
+   "tp": 1.1165,
+   "lots": 0.14,
+   "engine": 2,
+   "thesis": "RANGE_BOUND regime (z=+0.85, RSI 77): neither engine applies in non-trending noise, so the card must be struck down by the regime gate before geometry. Also no reachable front-runnable pool exists (buy stops start at 1.1200).",
+   "meta": {
+    "derivation": "entry=mid+1.95ATR; SL=entry+0.60ATR; TP=mid-3.0ATR",
+    "nominal_risk_usd": 11.34
+   }
+  },
+  {
+   "id": "ger40_empty_book_probe",
+   "action": "STAGE",
+   "asset": "GER40",
+   "side": "SHORT",
+   "entry": 25248.79,
+   "sl": 25273.86,
+   "tp": 25124.69,
+   "lots": 0.04,
+   "engine": 1,
+   "thesis": "Engine 1 exhaustion probe (z=-2.07, RSI 35.2) on a book with ZERO stop clusters and ZERO liquidation bands \u2014 there is no structure to fade against.",
+   "meta": {
+    "derivation": "entry=mid+1.95ATR; SL=entry+1.0ATR; TP=mid-3.0ATR",
+    "nominal_risk_usd": 10.03
+   }
+  },
+  {
+   "id": "desk_batch_4x_max_risk",
+   "action": "STAGE_BATCH",
+   "asset": "BTC",
+   "side": "SHORT",
+   "entry": null,
+   "sl": null,
+   "tp": null,
+   "lots": null,
+   "engine": 2,
+   "thesis": "Capacity strawman: four max-envelope tickets would prove the joint floor boundary empirically (4 x 20.13 = 80.50 stressed against a 64.55 budget). Included so the bracket contains the boundary case, not to propose it.",
+   "meta": {
+    "strawman": true,
+    "members": [
+     "btc_straddle_ladder_short",
+     "eth_shelf_short",
+     "sp500_core_short",
+     "sol_repair_short"
+    ],
+    "joint_stressed_usd": 80.5,
+    "budget_usd": 64.55
+   }
+  },
+  {
+   "id": "btc_armed_post_ladder_short",
+   "action": "WATCH",
+   "asset": "BTC",
+   "side": null,
+   "entry": null,
+   "sl": null,
+   "tp": null,
+   "lots": null,
+   "engine": 2,
+   "thesis": "Forward posture only. The seller ladder [80,500-81,500] is the wall that blocks every exit; a decisive break below 80,400 would clear it and re-open a front-runnable path to the 79,800-80,100 pool.",
+   "meta": {
+    "condition": "15m close < 80,400 with session CVD < 0 (ladder vacated)",
+    "invalidation": "15m close > 82,600 (reclaim above the buy-stop belt top)",
+    "armed_levels": {
+     "trigger": 80400.0,
+     "invalidation": 82600.0,
+     "cvd_gate_usd": 0.0
+    }
+   }
+  },
+  {
+   "id": "desk_stand_aside_cycle111",
+   "action": "STAND_ASIDE",
+   "asset": null,
+   "side": null,
+   "entry": null,
+   "sl": null,
+   "tp": null,
+   "lots": null,
+   "engine": null,
+   "thesis": "Every candidate in the universe carries at least one fatal gate failure on generation 92182f87cfd347e79d2e5e20c1f8689b (2026-10-14 23:36:35 UTC); 0 of 24 assets clear the dual engine. Re-proves itself by re-running each member card.",
+   "meta": {
+    "universe": [
+     {
+      "id": "btc_straddle_ladder_short",
+      "action": "STAGE",
+      "asset": "BTC",
+      "side": "SHORT",
+      "entry": 81939.12,
+      "sl": 82689.75,
+      "tp": 80180.1,
+      "lots": 0.01,
+      "engine": 2,
+      "thesis": "Engine 2 short at the perimeter. Mid 81,453 sits INSIDE the $79.08M sell-stop ladder [80,500-81,500], so no front-runnable exit exists below; the nearest front-runnable pool (79,800-80,100, +$31.65M) is 5.1 ATR away against a 3.5-ATR horizon. Stop must clear the $30.37M buy-stop belt [81,500-82,600].",
+      "meta": {
+       "derivation": "entry=mid+1.95ATR; SL=82,600+0.36ATR; TP=80,100 front-run 10 bps (5.1 ATR \u2014 outside horizon)",
+       "nominal_risk_usd": 7.51
+      }
+     },
+     {
+      "id": "btc_ladder_top_long",
+      "action": "STAGE",
+      "asset": "BTC",
+      "side": "LONG",
+      "entry": 80966.88,
+      "sl": 79311.5,
+      "tp": 81438.88,
+      "lots": 0.01,
+      "engine": 2,
+      "thesis": "Mirror probe: an Engine 1 long fade is banned outright in a verified BEARISH HTF regime (archetype 2), and the $106.99M in-range fuel below mid overwhelms the $37.27M verified defence 3.74:1.",
+      "meta": {
+       "derivation": "entry=mid-1.95ATR; SL=deepest reachable budget; TP=buy-stop front-run",
+       "nominal_risk_usd": 16.55,
+       "allow_out_of_envelope": true
+      }
+     },
+     {
+      "id": "eth_shelf_short",
+      "action": "STAGE",
+      "asset": "ETH",
+      "side": "SHORT",
+      "entry": 2435.4,
+      "sl": 2533.83,
+      "tp": 2422.42,
+      "lots": 0.11,
+      "engine": 2,
+      "thesis": "Engine 2 shelf short. The [2,310-2,420] sell-stop ladder carries $1,711.24M and contains mid 2,414.65; the ceiling on this asset is <=0.6R against a 2.20R mandate. A 0.35-ATR stop under the belt edge is impossible \u2014 the belt is the tape.",
+      "meta": {
+       "derivation": "entry=mid+1.95ATR; SL=2,530+0.36ATR; TP=2,420 front-run 10 bps",
+       "nominal_risk_usd": 10.83
+      }
+     },
+     {
+      "id": "eth_shelf_long",
+      "action": "STAGE",
+      "asset": "ETH",
+      "side": "LONG",
+      "entry": 2393.9,
+      "sl": 2296.22,
+      "tp": 2418.18,
+      "lots": 0.11,
+      "engine": 2,
+      "thesis": "Mirror probe: long into a bearish HTF with $1,860M of forced fuel below = archetypes 2+6.",
+      "meta": {
+       "derivation": "entry=mid-1.95ATR; SL=deepest reachable budget; TP=buy-stop front-run",
+       "nominal_risk_usd": 10.74
+      }
+     },
+     {
+      "id": "sol_repair_short",
+      "action": "STAGE",
+      "asset": "SOL",
+      "side": "SHORT",
+      "entry": 105.2,
+      "sl": 114.19,
+      "tp": 104.1,
+      "lots": 0.01,
+      "engine": 2,
+      "thesis": "The cleanest engine-2 short in the book still pays 0.12R: the only reachable front-runnable pool sits directly under mid, and the $16.90M buy-stop belt [104-114] forces a 9.3-ATR stop.",
+      "meta": {
+       "derivation": "entry=mid+1.95ATR; SL=114.19; TP=104.00 front-run 10 bps",
+       "nominal_risk_usd": 8.99
+      }
+     },
+     {
+      "id": "sp500_core_short",
+      "action": "STAGE",
+      "asset": "SP500",
+      "side": "SHORT",
+      "entry": 7719.32,
+      "sl": 7813.33,
+      "tp": 7687.68,
+      "lots": 0.01,
+      "engine": 2,
+      "thesis": "Index short into the $817.3M buy-stop belt [7,700-7,810]. The exit pool [7,630-7,680] is 0.34R away; archetype 4 (ephemeral fuel) is not the issue here \u2014 geometry is.",
+      "meta": {
+       "derivation": "entry=mid+1.95ATR; SL=7,813.33; TP=7,680 front-run 10 bps",
+       "nominal_risk_usd": 9.4
+      }
+     },
+     {
+      "id": "nas100_momentum_short",
+      "action": "STAGE",
+      "asset": "NAS100",
+      "side": "SHORT",
+      "entry": 29852.35,
+      "sl": 30922.37,
+      "tp": 29729.7,
+      "lots": 0.01,
+      "engine": 1,
+      "thesis": "Most extreme z in the book (z=-2.05) with RSI 19.5 \u2014 an Engine 1 exhaustion candidate that dies on affordability: min lot risk 107.00 USD against a 14.50 envelope (contract 10 x 2,970 index points).",
+      "meta": {
+       "derivation": "entry=mid+1.95ATR; SL=30,922.37 (clear [28,800-29,800] seller belt + [28,700-29,700] cascade); TP=29,700 front-run",
+       "nominal_risk_usd": 107.0,
+       "allow_out_of_envelope": true
+      }
+     },
+     {
+      "id": "gold_minlot_floor_probe",
+      "action": "STAGE",
+      "asset": "GOLD",
+      "side": "SHORT",
+      "entry": 4114.95,
+      "sl": 4212.33,
+      "tp": 4084.08,
+      "lots": 0.01,
+      "engine": 2,
+      "thesis": "Gold's sell-stop belt [3,980-4,100] carries $15.49M and contains nothing front-runnable inside the horizon; the min lot (0.01 on contract 100) risks 97.38 USD for a 3.6-ATR stop \u2014 6.7x the envelope.",
+      "meta": {
+       "derivation": "entry=mid+1.95ATR; SL=4,212.33; TP=4,080 front-run 10 bps",
+       "nominal_risk_usd": 97.38,
+       "allow_out_of_envelope": true
+      }
+     },
+     {
+      "id": "near_friction_probe",
+      "action": "STAGE",
+      "asset": "NEAR",
+      "side": "SHORT",
+      "entry": 4.95076,
+      "sl": 5.03516,
+      "tp": 4.76357,
+      "lots": 1.0,
+      "engine": 2,
+      "thesis": "The only >=2.0R geometry in the book (2.22R) and it is unusable: at the 1.42 lot needed to hold risk at 11.98 USD the 63.69 bps spread burns 36.73% of the risk budget against a 15% ceiling.",
+      "meta": {
+       "derivation": "engine screen best: entry 4.95076 / SL 5.03516 / TP 4.76357",
+       "nominal_risk_usd": 8.44
+      }
+     },
+     {
+      "id": "usdjpy_quote_currency_probe",
+      "action": "STAGE",
+      "asset": "USDJPY",
+      "side": "SHORT",
+      "entry": 158.23015,
+      "sl": 167.03298,
+      "tp": 158.1185,
+      "lots": 0.01,
+      "engine": 2,
+      "thesis": "Quote-currency probe. The short fades into the [148-158] long-cascade band ($9.93M) that contains mid 158.05, and the structural stop is 8.8 price units = 8,800 pips: at 0.01 lots that is 55.70 USD of risk once the JPY quote is converted to USD. Structurally unaffordable, not merely mis-scaled.",
+      "meta": {
+       "derivation": "engine screen best: entry 158.23015 / SL 167.03298 / TP 158.11850",
+       "nominal_risk_usd": 55.7,
+       "allow_out_of_envelope": true
+      }
+     },
+     {
+      "id": "eurusd_range_gate_probe",
+      "action": "STAGE",
+      "asset": "EURUSD",
+      "side": "SHORT",
+      "entry": 1.11947,
+      "sl": 1.11866,
+      "tp": 1.1165,
+      "lots": 0.14,
+      "engine": 2,
+      "thesis": "RANGE_BOUND regime (z=+0.85, RSI 77): neither engine applies in non-trending noise, so the card must be struck down by the regime gate before geometry. Also no reachable front-runnable pool exists (buy stops start at 1.1200).",
+      "meta": {
+       "derivation": "entry=mid+1.95ATR; SL=entry+0.60ATR; TP=mid-3.0ATR",
+       "nominal_risk_usd": 11.34
+      }
+     },
+     {
+      "id": "ger40_empty_book_probe",
+      "action": "STAGE",
+      "asset": "GER40",
+      "side": "SHORT",
+      "entry": 25248.79,
+      "sl": 25273.86,
+      "tp": 25124.69,
+      "lots": 0.04,
+      "engine": 1,
+      "thesis": "Engine 1 exhaustion probe (z=-2.07, RSI 35.2) on a book with ZERO stop clusters and ZERO liquidation bands \u2014 there is no structure to fade against.",
+      "meta": {
+       "derivation": "entry=mid+1.95ATR; SL=entry+1.0ATR; TP=mid-3.0ATR",
+       "nominal_risk_usd": 10.03
+      }
+     }
+    ]
+   }
+  }
+ ]
+}
