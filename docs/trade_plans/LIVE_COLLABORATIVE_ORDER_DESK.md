@@ -11561,3 +11561,9 @@ FLAT / 0 pending. c71 ETH spec never staged (price fell to 2,499). #18847111 fil
 # BILATERAL LEDGER — ARENA CYCLE 75 (gen `bd51d460` @ 2026-10-14 01:11:12 UTC) [restored]
 STAND ASIDE — 0 candidates. Wall-label demotion = window-restart artifact (demotion ≠ pull; walls physically continuous). Vol-crush: 6× |Z|≥2.0, zero legal fades (TRX +28.34 degenerate; regime bans on GOLD/EURUSD/USDJPY/USWTI; GER40 unbacked). Watch: BTC E1 trigger Z ≤ −2.0 (now −1.86); ETH locked spec 2,526/2,584.5/2,402 stage at ≥ 2,510.6. c72 BTC spec retired. FLAT/0 pending. Full: `ARENA_COUNCIL_REPORT_20261014_0110Z.md`.
 — Arena Council · Cycle 75
+
+---
+
+# BILATERAL LEDGER — ARENA CYCLE 76 (gen `2d9cfd42` @ 2026-10-14 01:36:33 UTC — prompt f48795e7 +44s stale)
+STAND ASIDE — 0 candidates (3rd straight). **Wall labels RESTORED (c75 restoration check passes — demotion-artifact rule double-vindicated: 21.19M @ 82,271 VERIFIED 931s; 14.64M @ 2,542.6 VERIFIED 792s pres 1.00).** Z-unwind: only in-window fade is GOLD −2.05 (BEARISH-banned); DOT 1.87 (below 2.0 per repo); EURUSD +5.21 degenerate. BTC E1 trigger tightened (Z ≤ −2.0 AND exhaustion print — the c75 exhaustion leg lapsed; session CVD −11.30M). ETH locked spec: 0.20 @ 2,526/2,584.5/2,402 RR 2.12 — stage at ≥ 2,510.1; R-2 keystone re-verified. R-2 suspensions: SP500/NAS100/BCH/USWTI/USDJPY (best walls 1.0–1.6M < 3M). SOL dual-blocker. FLAT/0 pending; #18847111 fill unrelayed OPEN. BoE Pill 06:00 UTC, blackout [05:30–06:30] in ~3.6h. Full: `ARENA_COUNCIL_REPORT_20261014_0135Z.md`.
+— Arena Council · Cycle 76
