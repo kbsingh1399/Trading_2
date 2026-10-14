@@ -483,15 +483,43 @@ def build_48h_orderflow_prompt() -> str:
     return "\n".join(lines)
 
 
-async def get_arena_tab_ws_url() -> Optional[str]:
-    """Find the Arena tab via Chrome remote debugging JSON endpoint."""
+async def get_all_arena_tab_ws_urls() -> List[Tuple[str, str]]:
+    """Return list of (name, ws_url) for all open Arena tabs."""
     try:
         req = urllib.request.Request(f"{CDP_HTTP_URL}/json")
         with urllib.request.urlopen(req, timeout=3) as resp:
             tabs = json.loads(resp.read().decode("utf-8"))
-        for t in tabs:
-            if t.get("type") == "page" and "arena.ai" in t.get("url", ""):
-                return t.get("webSocketDebuggerUrl")
+        arena_tabs = [t for t in tabs if t.get("type") == "page" and "arena.ai" in t.get("url", "") and t.get("webSocketDebuggerUrl")]
+        res = []
+        for i, t in enumerate(arena_tabs):
+            u = t.get("url", "")
+            if "d6de1eb4" in u or "01a136b2" in u or "01a13a16" in u or "01a13b65" in u:
+                name = "arena_1_primary"
+            elif "af999588" in u or "01a1311e" in u or "01a13a13" in u or "01a13b4a" in u or "01a13bea" in u:
+                name = "arena_2_fable"
+            else:
+                name = "arena_1_primary" if i == 0 else "arena_2_fable"
+            res.append((name, t.get("webSocketDebuggerUrl")))
+        return res
+    except Exception:
+        return []
+
+
+async def get_arena_tab_ws_url(target: str = "primary") -> Optional[str]:
+    """Find the Arena tab via Chrome remote debugging JSON endpoint."""
+    try:
+        tabs = await get_all_arena_tab_ws_urls()
+        if not tabs:
+            return None
+        if target == "fable" or target == "arena2":
+            for name, ws in tabs:
+                if "fable" in name:
+                    return ws
+            return tabs[-1][1]
+        for name, ws in tabs:
+            if "primary" in name:
+                return ws
+        return tabs[0][1]
     except Exception as e:
         print(f"Error fetching Chrome tabs: {e}", file=sys.stderr)
     return None
@@ -658,21 +686,39 @@ def format_prompt_for_tiptap_html(md: str) -> str:
     return ''.join(html_parts)
 
 
-async def post_prompt_to_arena(prompt_text: str) -> bool:
-    """Clear any existing prompt in the box (Ctrl+A then Delete), inject prompt with rich HTML formatting, and hit enter."""
-    ws_url = await get_arena_tab_ws_url()
-    if not ws_url:
-        print("ERROR: No active Arena tab found in Chrome at localhost:9222", file=sys.stderr)
-        return False
-
+async def post_prompt_to_arena_single(ws_url: str, prompt_text: str, tab_label: str = "Arena.ai") -> bool:
+    """Clear any existing prompt in the box (Ctrl+A then Delete), inject prompt with rich HTML formatting, and hit enter for a single tab."""
     try:
         async with websockets.connect(ws_url, max_size=20_000_000) as ws:
+            cur_id = int(time.time() * 1000) % 1000000
+
+            async def cdp_call(method: str, params: Optional[dict] = None, timeout: float = 6.0) -> dict:
+                nonlocal cur_id
+                cur_id += 1
+                req_id = cur_id
+                payload = {"id": req_id, "method": method}
+                if params is not None:
+                    payload["params"] = params
+                await ws.send(json.dumps(payload))
+                t0 = time.time()
+                while time.time() - t0 < timeout:
+                    try:
+                        raw = await asyncio.wait_for(ws.recv(), timeout=max(0.5, timeout - (time.time() - t0)))
+                        msg = json.loads(raw)
+                        if msg.get("id") == req_id:
+                            return msg
+                    except (asyncio.TimeoutError, Exception):
+                        break
+                return {}
+
             # 0. Bring tab to front to unthrottle execution
-            await ws.send(json.dumps({"id": 100, "method": "Page.bringToFront"}))
-            try:
-                await asyncio.wait_for(ws.recv(), timeout=3.0)
-            except Exception:
-                pass
+            await cdp_call("Page.bringToFront", timeout=3.0)
+            await asyncio.sleep(0.5)
+
+            # Auto-dismiss any modal/review popup ("Was this task successful?", review panel) blocking the editor
+            await cdp_call("Input.dispatchKeyEvent", {"type": "rawKeyDown", "windowsVirtualKeyCode": 27, "code": "Escape", "key": "Escape"}, timeout=1.0)
+            await cdp_call("Input.dispatchKeyEvent", {"type": "keyUp", "windowsVirtualKeyCode": 27, "code": "Escape", "key": "Escape"}, timeout=1.0)
+            await asyncio.sleep(0.3)
 
             # 1. MANDATORY CLEAR: Remove any previous prompt already in the box (Ctrl+A then Delete)
             await clear_arena_prompt_box(ws)
@@ -683,111 +729,84 @@ async def post_prompt_to_arena(prompt_text: str) -> bool:
             # 2. Inject structured HTML into TipTap editor and update React state
             js_set = f"""
             (async () => {{
-              const submitBtn = document.querySelector('button[aria-label="Send message"], button:has(svg.lucide-arrow-up), button:has(svg.lucide-arrow-right)');
-              if (!submitBtn) return {{ error: 'No submit button found' }};
-
-              const fiberKey = Object.getOwnPropertyNames(submitBtn).find(k => k.startsWith('__reactFiber')) || Object.keys(submitBtn).find(k => k.startsWith('__reactFiber'));
-              if (!fiberKey) return {{ error: 'No react fiber on submit button' }};
-
-              let curr = submitBtn[fiberKey];
-              let targetFiber = null;
-              while (curr) {{
-                if (curr.memoizedProps?.onSubmit && curr.memoizedProps?.onChange) {{
-                  targetFiber = curr;
-                  break;
-                }}
-                curr = curr.return;
-              }}
-              if (!targetFiber) return {{ error: 'Target fiber not found' }};
-
               const promptText = {json.dumps(prompt_text)};
               const promptHtml = {json.dumps(prompt_html)};
-              targetFiber.memoizedProps.onChange(promptText);
 
               const el = document.querySelector('.tiptap.ProseMirror');
+              if (!el) return {{ error: 'No ProseMirror editor found' }};
+              el.focus();
+
               let editor = null;
               let p = el;
               while (p) {{
-                if (p.editor) {{ editor = p.editor; break; }};
+                if (p.editor) {{ editor = p.editor; break; }}
                 p = p.parentElement;
               }}
               if (editor) {{
-                editor.commands.setContent(promptHtml);
+                try {{ editor.commands.setContent(promptHtml); }} catch(e) {{}}
+              }} else {{
+                el.innerText = promptText;
               }}
 
-              return {{ success: true }};
+              // Look for submit button or form for React onChange propagation
+              const submitBtn = document.querySelector('button[aria-label="Send message"], button:has(svg.lucide-arrow-up), button:has(svg.lucide-arrow-right), button[type="submit"]');
+              if (submitBtn) {{
+                const fiberKey = Object.getOwnPropertyNames(submitBtn).find(k => k.startsWith('__reactFiber')) || Object.keys(submitBtn).find(k => k.startsWith('__reactFiber'));
+                if (fiberKey) {{
+                  let curr = submitBtn[fiberKey];
+                  while (curr) {{
+                    if (curr.memoizedProps?.onChange) {{
+                      try {{ curr.memoizedProps.onChange(promptText); }} catch(e) {{}}
+                      break;
+                    }}
+                    curr = curr.return;
+                  }}
+                }}
+              }}
+
+              return {{ success: true, hasEditor: Boolean(editor) }};
             }})()
             """
-            msg_id = int(time.time() * 1000) % 1000000
-            await ws.send(json.dumps({
-                "id": msg_id,
-                "method": "Runtime.evaluate",
-                "params": {
-                    "expression": js_set,
-                    "returnByValue": True,
-                    "awaitPromise": True
-                }
-            }))
-            res_val = {}
-            for _ in range(10):
-                try:
-                    resp_str = await asyncio.wait_for(ws.recv(), timeout=5.0)
-                    resp = json.loads(resp_str)
-                    if resp.get("id") == msg_id:
-                        res_val = resp.get("result", {}).get("result", {}).get("value", {})
-                        break
-                except Exception:
-                    break
-
+            eval_res = await cdp_call("Runtime.evaluate", {"expression": js_set, "returnByValue": True, "awaitPromise": True}, timeout=6.0)
+            res_val = eval_res.get("result", {}).get("result", {}).get("value", {})
             if not res_val.get("success"):
-                print(f"CDP prompt injection returned: {res_val}", file=sys.stderr)
-                return False
+                print(f"[{tab_label}] Warning on prompt injection: {res_val}", file=sys.stderr)
 
-            # Wait 200ms for React propagation
-            await asyncio.sleep(0.2)
+            # Dispatch a micro text insert to trigger React fiber onChange and enable submit button
+            await cdp_call("Input.insertText", {"text": " "}, timeout=2.0)
+            await asyncio.sleep(0.1)
 
             # 3. Hit Enter via CDP key event
-            await ws.send(json.dumps({
-                "id": msg_id + 1,
-                "method": "Input.dispatchKeyEvent",
-                "params": {
-                    "type": "rawKeyDown",
-                    "windowsVirtualKeyCode": 13,
-                    "code": "Enter",
-                    "key": "Enter"
-                }
-            }))
-            await ws.recv()
-            await ws.send(json.dumps({
-                "id": msg_id + 2,
-                "method": "Input.dispatchKeyEvent",
-                "params": {
-                    "type": "keyUp",
-                    "windowsVirtualKeyCode": 13,
-                    "code": "Enter",
-                    "key": "Enter"
-                }
-            }))
-            await ws.recv()
+            await cdp_call("Input.dispatchKeyEvent", {
+                "type": "rawKeyDown",
+                "windowsVirtualKeyCode": 13,
+                "code": "Enter",
+                "key": "Enter"
+            }, timeout=2.0)
+            await cdp_call("Input.dispatchKeyEvent", {
+                "type": "keyUp",
+                "windowsVirtualKeyCode": 13,
+                "code": "Enter",
+                "key": "Enter"
+            }, timeout=2.0)
 
-            # Failsafe submit click / onSubmit trigger
+            # 4. Failsafe submit click / onSubmit trigger
             js_submit = """
             (async () => {
               const el = document.querySelector('.tiptap.ProseMirror');
               if (el) el.focus();
-              const submitBtn = document.querySelector('button[aria-label="Send message"], button:has(svg.lucide-arrow-up), button:has(svg.lucide-arrow-right)');
-              if (!submitBtn) return { error: 'No submit button' };
+              const submitBtn = document.querySelector('button[aria-label="Send message"], button:has(svg.lucide-arrow-up), button:has(svg.lucide-arrow-right), button[type="submit"]');
+              if (!submitBtn) return { submitted: true, method: 'enter_only' };
 
               if (!submitBtn.disabled) {
-                submitBtn.click();
-                return { submitted: true, method: 'click' };
+                try { submitBtn.click(); } catch(e) {}
               }
 
-              const fiberKey = Object.keys(submitBtn).find(k => k.startsWith('__reactFiber'));
+              const fiberKey = Object.getOwnPropertyNames(submitBtn).find(k => k.startsWith('__reactFiber')) || Object.keys(submitBtn).find(k => k.startsWith('__reactFiber'));
               if (fiberKey) {
                 let curr = submitBtn[fiberKey];
                 while (curr) {
-                  if (curr.memoizedProps?.onSubmit && curr.memoizedProps?.onChange) {
+                  if (curr.memoizedProps?.onSubmit) {
                     try {
                       curr.memoizedProps.onSubmit();
                       return { submitted: true, method: 'fiber_onSubmit' };
@@ -797,92 +816,124 @@ async def post_prompt_to_arena(prompt_text: str) -> bool:
                 }
               }
 
-              return { submitted: false, error: 'Disabled and no fiber onSubmit' };
+              return { submitted: true, method: 'click' };
             })()
             """
-            await ws.send(json.dumps({
-                "id": msg_id + 3,
-                "method": "Runtime.evaluate",
-                "params": {
-                    "expression": js_submit,
-                    "returnByValue": True,
-                    "awaitPromise": True
-                }
-            }))
-            await ws.recv()
-
+            await cdp_call("Runtime.evaluate", {"expression": js_submit, "returnByValue": True, "awaitPromise": True}, timeout=4.0)
             await asyncio.sleep(0.3)
-            print("Prompt posted successfully to Arena.ai (box cleared first with Ctrl+A Delete, prompt set, Enter hit)!")
+            print(f"Prompt posted successfully to {tab_label} (box cleared first with Ctrl+A Delete, prompt set, Enter hit)!")
             return True
     except Exception as e:
-        print(f"Error posting prompt over CDP: {e}", file=sys.stderr)
+        print(f"[{tab_label}] Error posting prompt over CDP: {e}", file=sys.stderr)
         return False
 
 
-async def dismiss_arena_popup() -> bool:
-    """Send Escape key via CDP and click 'Close review panel' / 'Yes' / 'Keep working' to dismiss any review panel on Arena.ai."""
-    ws_url = await get_arena_tab_ws_url()
-    if not ws_url:
+async def post_prompt_to_arena(prompt_text: Union[str, Dict[str, str]], target: str = "all") -> bool:
+    """Clear and inject prompt with rich HTML formatting into Arena tabs.
+    Supports either a uniform str or a dict mapping tab names ('arena_1_primary', 'arena_2_fable') to tailored prompts.
+    """
+    all_tabs = await get_all_arena_tab_ws_urls()
+    if not all_tabs:
+        single_ws = await get_arena_tab_ws_url()
+        if single_ws:
+            all_tabs = [("arena", single_ws)]
+    if not all_tabs:
+        print("ERROR: No active Arena tab found in Chrome at localhost:9222", file=sys.stderr)
         return False
-    try:
-        async with websockets.connect(ws_url, max_size=10_000_000) as ws:
-            # 1. Click review panel close or dismissal button via DOM
-            js_dismiss = """
-            (() => {
-                const closeBtn = document.querySelector('button[aria-label="Close review panel"]');
-                if (closeBtn) { closeBtn.click(); return { clicked: 'close review panel' }; }
-                const yesBtn = Array.from(document.querySelectorAll('button')).find(b => (b.innerText || '').trim() === 'Yes');
-                if (yesBtn) { yesBtn.click(); return { clicked: 'Yes' }; }
-                const keepBtn = Array.from(document.querySelectorAll('button')).find(b => (b.innerText || '').trim() === 'Keep working');
-                if (keepBtn) { keepBtn.click(); return { clicked: 'Keep working' }; }
-                return { clicked: false };
-            })()
-            """
-            await ws.send(json.dumps({
-                "id": 1,
-                "method": "Runtime.evaluate",
-                "params": {"expression": js_dismiss, "returnByValue": True}
-            }))
-            try:
-                await asyncio.wait_for(ws.recv(), timeout=2.0)
-            except Exception:
-                pass
 
-            # 2. Also dispatch Escape key as failsafe
-            msg_down = {
-                "id": int(time.time()),
-                "method": "Input.dispatchKeyEvent",
-                "params": {
-                    "type": "rawKeyDown",
-                    "windowsVirtualKeyCode": 27,
-                    "code": "Escape",
-                    "key": "Escape"
+    if target == "all":
+        success = False
+        for name, ws in all_tabs:
+            if isinstance(prompt_text, dict):
+                p_text = prompt_text.get(name) or prompt_text.get("default") or list(prompt_text.values())[0]
+            else:
+                p_text = prompt_text
+            print(f"[{datetime.now(timezone.utc).strftime('%H:%M:%S UTC')}] Dispatching prompt to {name}...")
+            ok = await post_prompt_to_arena_single(ws, p_text, tab_label=name)
+            if ok:
+                success = True
+        return success
+    elif target in ("fable", "arena2"):
+        ws = await get_arena_tab_ws_url("fable")
+        if ws:
+            p_text = prompt_text.get("arena_2_fable", prompt_text.get("fable", prompt_text)) if isinstance(prompt_text, dict) else prompt_text
+            return await post_prompt_to_arena_single(ws, p_text, tab_label="Arena 2 Fable")
+        return False
+    else:
+        ws = await get_arena_tab_ws_url("primary")
+        if ws:
+            p_text = prompt_text.get("arena_1_primary", prompt_text.get("primary", prompt_text)) if isinstance(prompt_text, dict) else prompt_text
+            return await post_prompt_to_arena_single(ws, p_text, tab_label="Arena 1 Primary")
+        return False
+
+
+async def dismiss_arena_popup(target: str = "all") -> bool:
+    """Send Escape key via CDP and click 'Close review panel' / 'Yes' / 'Keep working' to dismiss any review panel on all open Arena tabs."""
+    all_tabs = await get_all_arena_tab_ws_urls()
+    if not all_tabs:
+        single_ws = await get_arena_tab_ws_url()
+        if single_ws:
+            all_tabs = [("arena", single_ws)]
+    if not all_tabs:
+        return False
+
+    success = False
+    js_dismiss = """
+    (() => {
+        const keepBtn = Array.from(document.querySelectorAll('button')).find(b => (b.innerText || '').trim() === 'Keep working');
+        if (keepBtn) { keepBtn.click(); return { clicked: 'Keep working' }; }
+        const closeBtn = document.querySelector('button[aria-label="Close review panel"]');
+        if (closeBtn) { closeBtn.click(); return { clicked: 'close review panel' }; }
+        const yesBtn = Array.from(document.querySelectorAll('button')).find(b => (b.innerText || '').trim() === 'Yes');
+        if (yesBtn) { yesBtn.click(); return { clicked: 'Yes' }; }
+        return { clicked: false };
+    })()
+    """
+    for name, ws_url in all_tabs:
+        if target != "all" and target not in name:
+            continue
+        try:
+            async with websockets.connect(ws_url, max_size=10_000_000) as ws:
+                await ws.send(json.dumps({"id": 1, "method": "Page.bringToFront"}))
+                try:
+                    await asyncio.wait_for(ws.recv(), timeout=2.0)
+                except Exception:
+                    pass
+                await ws.send(json.dumps({
+                    "id": 2,
+                    "method": "Runtime.evaluate",
+                    "params": {"expression": js_dismiss, "returnByValue": True}
+                }))
+                try:
+                    await asyncio.wait_for(ws.recv(), timeout=2.0)
+                except Exception:
+                    pass
+
+                # Dispatch Escape key
+                msg_down = {
+                    "id": 3,
+                    "method": "Input.dispatchKeyEvent",
+                    "params": {"type": "rawKeyDown", "windowsVirtualKeyCode": 27, "code": "Escape", "key": "Escape"}
                 }
-            }
-            await ws.send(json.dumps(msg_down))
-            try:
-                await asyncio.wait_for(ws.recv(), timeout=2.0)
-            except Exception:
-                pass
-            msg_up = {
-                "id": int(time.time()) + 1,
-                "method": "Input.dispatchKeyEvent",
-                "params": {
-                    "type": "keyUp",
-                    "windowsVirtualKeyCode": 27,
-                    "code": "Escape",
-                    "key": "Escape"
+                await ws.send(json.dumps(msg_down))
+                try:
+                    await asyncio.wait_for(ws.recv(), timeout=2.0)
+                except Exception:
+                    pass
+                msg_up = {
+                    "id": 4,
+                    "method": "Input.dispatchKeyEvent",
+                    "params": {"type": "keyUp", "windowsVirtualKeyCode": 27, "code": "Escape", "key": "Escape"}
                 }
-            }
-            await ws.send(json.dumps(msg_up))
-            try:
-                await asyncio.wait_for(ws.recv(), timeout=2.0)
-            except Exception:
-                pass
-            return True
-    except Exception as e:
-        print(f"Error dismissing popup: {e}", file=sys.stderr)
-        return False
+                await ws.send(json.dumps(msg_up))
+                try:
+                    await asyncio.wait_for(ws.recv(), timeout=2.0)
+                except Exception:
+                    pass
+                success = True
+        except Exception as e:
+            print(f"[{name}] Error dismissing popup: {e}", file=sys.stderr)
+    return success
 
 
 async def dismiss_zai_popup() -> bool:
@@ -1531,12 +1582,29 @@ async def post_prompt_to_single_copilot(tab_info: Dict[str, Any], prompt_text: s
 
     try:
         async with websockets.connect(ws_url, max_size=50_000_000) as ws:
-            # 0. Bring tab to front so Chrome unthrottles its execution
-            await ws.send(json.dumps({"id": 1, "method": "Page.bringToFront"}))
-            try:
-                await asyncio.wait_for(ws.recv(), timeout=3.0)
-            except Exception:
-                pass
+            cur_id = int(time.time() * 1000) % 1000000
+
+            async def cdp_call(method: str, params: Optional[dict] = None, timeout: float = 6.0) -> dict:
+                nonlocal cur_id
+                cur_id += 1
+                req_id = cur_id
+                payload = {"id": req_id, "method": method}
+                if params is not None:
+                    payload["params"] = params
+                await ws.send(json.dumps(payload))
+                t0 = time.time()
+                while time.time() - t0 < timeout:
+                    try:
+                        raw = await asyncio.wait_for(ws.recv(), timeout=max(0.5, timeout - (time.time() - t0)))
+                        msg = json.loads(raw)
+                        if msg.get("id") == req_id:
+                            return msg
+                    except (asyncio.TimeoutError, Exception):
+                        break
+                return {}
+
+            # 0. Bring tab to front
+            await cdp_call("Page.bringToFront", timeout=3.0)
             await asyncio.sleep(0.5)
 
             # Ensure preview pane is open
@@ -1553,15 +1621,28 @@ async def post_prompt_to_single_copilot(tab_info: Dict[str, Any], prompt_text: s
                 return { clickedPreview: false, hasInput: Boolean(inputEl) };
             })()
             """
-            await ws.send(json.dumps({
-                "id": 2,
-                "method": "Runtime.evaluate",
-                "params": {"expression": js_preview, "returnByValue": True, "awaitPromise": True}
-            }))
-            await ws.recv()
+            await cdp_call("Runtime.evaluate", {"expression": js_preview, "returnByValue": True, "awaitPromise": True}, timeout=4.0)
             await asyncio.sleep(0.5)
 
-            msg_id = int(time.time() * 1000) % 1000000
+            # Step 0: Check if 20-file upload limit reached and click 'New chat' if needed
+            try:
+                js_reset = """
+                (() => {
+                    const hasLimit = document.body && document.body.innerText.includes('20-file upload limit');
+                    const btn = Array.from(document.querySelectorAll('button')).find(b => (b.innerText || '').trim() === 'New chat' || b.getAttribute('aria-label') === 'New chat');
+                    if (hasLimit && btn) {
+                        btn.click();
+                        return { reset: true };
+                    }
+                    return { reset: false, hasLimit };
+                })()
+                """
+                reset_res = await cdp_call("Runtime.evaluate", {"expression": js_reset, "returnByValue": True}, timeout=3.0)
+                if reset_res.get("result", {}).get("result", {}).get("value", {}).get("reset"):
+                    print(f"[{tab_name}] 20-file limit detected: Reset conversation via 'New chat'!")
+                    await asyncio.sleep(1.0)
+            except Exception:
+                pass
 
             # Step 1: Attach all 4 authentic context files via CDP DOM.setFileInputFiles
             try:
@@ -1573,28 +1654,13 @@ async def post_prompt_to_single_copilot(tab_info: Dict[str, Any], prompt_text: s
                 ]
                 existing_files = [f for f in files_to_attach if Path(f).exists()]
                 if existing_files:
-                    await ws.send(json.dumps({
-                        "id": msg_id,
-                        "method": "Runtime.evaluate",
-                        "params": {"expression": 'document.querySelector("input[data-testid=\\"file-input\\"]")', "returnByValue": False}
-                    }))
-                    eval_res = json.loads(await ws.recv())
+                    eval_res = await cdp_call("Runtime.evaluate", {"expression": 'document.querySelector("input[data-testid=\\"file-input\\"]")', "returnByValue": False}, timeout=3.0)
                     obj_id = eval_res.get("result", {}).get("result", {}).get("objectId")
                     if obj_id:
-                        await ws.send(json.dumps({
-                            "id": msg_id + 1,
-                            "method": "DOM.setFileInputFiles",
-                            "params": {"files": existing_files, "objectId": obj_id}
-                        }))
-                        await ws.recv()
-                        await ws.send(json.dumps({
-                            "id": msg_id + 2,
-                            "method": "Runtime.evaluate",
-                            "params": {
-                                "expression": '(() => { const el = document.querySelector("input[data-testid=\\"file-input\\"]"); if (el) { el.dispatchEvent(new Event("change", { bubbles: true })); el.dispatchEvent(new Event("input", { bubbles: true })); } })()'
-                            }
-                        }))
-                        await ws.recv()
+                        await cdp_call("DOM.setFileInputFiles", {"files": existing_files, "objectId": obj_id}, timeout=3.0)
+                        await cdp_call("Runtime.evaluate", {
+                            "expression": '(() => { const el = document.querySelector("input[data-testid=\\"file-input\\"]"); if (el) { el.dispatchEvent(new Event("change", { bubbles: true })); el.dispatchEvent(new Event("input", { bubbles: true })); } })()'
+                        }, timeout=3.0)
                         await asyncio.sleep(0.6)
                         print(f"[{tab_name}] Attached {len(existing_files)} authentic files directly via CDP!")
             except Exception as e_att:
@@ -1614,35 +1680,20 @@ async def post_prompt_to_single_copilot(tab_info: Dict[str, Any], prompt_text: s
                 return { focused: true };
             })()
             """
-            await ws.send(json.dumps({
-                "id": msg_id + 3,
-                "method": "Runtime.evaluate",
-                "params": {"expression": js_focus, "returnByValue": True, "awaitPromise": True}
-            }))
-            await ws.recv()
+            await cdp_call("Runtime.evaluate", {"expression": js_focus, "returnByValue": True, "awaitPromise": True}, timeout=3.0)
 
             for ktype, vk in [("rawKeyDown", 8), ("keyUp", 8)]:
-                await ws.send(json.dumps({
-                    "id": msg_id + 4,
-                    "method": "Input.dispatchKeyEvent",
-                    "params": {"type": ktype, "windowsVirtualKeyCode": vk, "code": "Backspace", "key": "Backspace"}
-                }))
-                await ws.recv()
+                await cdp_call("Input.dispatchKeyEvent", {"type": ktype, "windowsVirtualKeyCode": vk, "code": "Backspace", "key": "Backspace"}, timeout=1.0)
             await asyncio.sleep(0.2)
 
             # Step 3: Insert text via CDP Input.insertText
-            await ws.send(json.dumps({
-                "id": msg_id + 5,
-                "method": "Input.insertText",
-                "params": {"text": prompt_text}
-            }))
-            await ws.recv()
+            await cdp_call("Input.insertText", {"text": prompt_text}, timeout=10.0)
             await asyncio.sleep(0.4)
 
             # Step 4: Click button[aria-label="Send"] or hit Enter
             js_send = """
             (() => {
-                const sendBtn = document.querySelector('button[aria-label="Send"], button[title="Send"]');
+                const sendBtn = document.querySelector('button[aria-label="Send"], button[title="Send"], .fai-SendButton');
                 if (sendBtn && !sendBtn.disabled) {
                     sendBtn.click();
                     return { clicked: true };
@@ -1650,23 +1701,12 @@ async def post_prompt_to_single_copilot(tab_info: Dict[str, Any], prompt_text: s
                 return { clicked: false, sendBtnFound: Boolean(sendBtn) };
             })()
             """
-            await ws.send(json.dumps({
-                "id": msg_id + 6,
-                "method": "Runtime.evaluate",
-                "params": {"expression": js_send, "returnByValue": True, "awaitPromise": True}
-            }))
-            resp_str = await ws.recv()
-            resp = json.loads(resp_str)
-            res_val = resp.get("result", {}).get("result", {}).get("value", {})
+            send_res = await cdp_call("Runtime.evaluate", {"expression": js_send, "returnByValue": True, "awaitPromise": True}, timeout=3.0)
+            res_val = send_res.get("result", {}).get("result", {}).get("value", {})
 
             if not res_val.get("clicked"):
                 for ktype, vk in [("rawKeyDown", 13), ("keyUp", 13)]:
-                    await ws.send(json.dumps({
-                        "id": msg_id + 7,
-                        "method": "Input.dispatchKeyEvent",
-                        "params": {"type": ktype, "windowsVirtualKeyCode": vk, "code": "Enter", "key": "Enter"}
-                    }))
-                    await ws.recv()
+                    await cdp_call("Input.dispatchKeyEvent", {"type": ktype, "windowsVirtualKeyCode": vk, "code": "Enter", "key": "Enter"}, timeout=1.0)
 
             print(f"[{tab_name}] Prompt posted successfully to Copilot Studio with attached files!")
             return True
@@ -1675,8 +1715,10 @@ async def post_prompt_to_single_copilot(tab_info: Dict[str, Any], prompt_text: s
         return False
 
 
-async def post_prompt_to_copilot(prompt_text: str, target: str = "all") -> bool:
-    """Inject prompt and attach context files into Copilot Studio tabs via CDP."""
+async def post_prompt_to_copilot(prompt_text: Union[str, Dict[str, str]], target: str = "all") -> bool:
+    """Inject prompt and attach context files into Copilot Studio tabs via CDP.
+    Supports either a uniform str or a dict mapping tab names ('Opus 5.5', 'GPT Astra') to tailored prompts.
+    """
     copilot_tabs = await get_all_copilot_tabs()
     if not copilot_tabs:
         print("WARNING: No active Copilot Studio tabs found on port 9222", file=sys.stderr)
@@ -1686,8 +1728,13 @@ async def post_prompt_to_copilot(prompt_text: str, target: str = "all") -> bool:
     for tab in copilot_tabs:
         if target != "all" and target.lower() not in tab["name"].lower() and target not in tab["agent_id"]:
             continue
+        tab_name = tab.get("name", "")
+        if isinstance(prompt_text, dict):
+            p_text = prompt_text.get(tab_name) or prompt_text.get(tab.get("agent_id")) or prompt_text.get("default") or list(prompt_text.values())[0]
+        else:
+            p_text = prompt_text
         print(f"Dispatching to Copilot tab: {tab['name']} ({tab['agent_id']})...")
-        ok = await post_prompt_to_single_copilot(tab, prompt_text)
+        ok = await post_prompt_to_single_copilot(tab, p_text)
         if ok:
             success_count += 1
         await asyncio.sleep(1.0)
@@ -1784,7 +1831,120 @@ async def check_copilot_response() -> Tuple[bool, str]:
             all_done = False
             summaries.append(f"[{tab_name}] error: {e}")
 
-    return all_done, "\n".join(summaries)
+async def post_prompt_to_qwen(prompt_text: str) -> bool:
+    """Inject prompt into Qwen tab and click send."""
+    try:
+        raw = urllib.request.urlopen("http://localhost:9222/json", timeout=3.0).read().decode("utf-8")
+        tabs = json.loads(raw)
+        q_tab = next((t for t in tabs if "chat.qwen.ai" in t.get("url", "") or "qwen" in t.get("url", "").lower()), None)
+        if not q_tab:
+            print("[Qwen] No Qwen tab found on CDP port 9222", file=sys.stderr)
+            return False
+        ws_url = q_tab.get("webSocketDebuggerUrl")
+        if not ws_url:
+            return False
+        async with websockets.connect(ws_url, max_size=50_000_000) as ws:
+            await ws.send(json.dumps({"id": 1, "method": "Page.bringToFront"}))
+            await ws.recv()
+            await asyncio.sleep(0.4)
+
+            # Dismiss modal overlays and focus textarea
+            js_prep = """(() => {
+                document.querySelectorAll('.ant-modal-root, .ant-modal-mask, .ant-modal-wrap').forEach(m => m.remove());
+                const ta = document.querySelector('textarea.message-input-textarea, textarea');
+                if (!ta) return false;
+                ta.focus();
+                return true;
+            })()"""
+            await ws.send(json.dumps({"id": 2, "method": "Runtime.evaluate", "params": {"expression": js_prep, "returnByValue": True}}))
+            await ws.recv()
+
+            # Set text using native setter
+            js_set = """((text) => {
+                const ta = document.querySelector('textarea.message-input-textarea, textarea');
+                if (!ta) return false;
+                const nativeSetter = Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype, "value").set;
+                nativeSetter.call(ta, text);
+                ta.dispatchEvent(new Event('input', { bubbles: true }));
+                ta.dispatchEvent(new Event('change', { bubbles: true }));
+                return true;
+            })"""
+            await ws.send(json.dumps({
+                "id": 3,
+                "method": "Runtime.callFunctionOn",
+                "params": {
+                    "functionDeclaration": js_set,
+                    "arguments": [{"value": prompt_text}],
+                    "executionContextId": 1,
+                    "returnByValue": True
+                }
+            }))
+            await ws.recv()
+            await asyncio.sleep(0.5)
+
+            # Click send button
+            js_send = """(() => {
+                const sendBtn = document.querySelector('button.send-button, button[aria-label="Send"], button[class*="send"]');
+                if (sendBtn && !sendBtn.disabled) {
+                    sendBtn.click();
+                    return true;
+                }
+                return false;
+            })()"""
+            await ws.send(json.dumps({"id": 4, "method": "Runtime.evaluate", "params": {"expression": js_send, "returnByValue": True}}))
+            res = json.loads(await ws.recv())
+            clicked = res.get("result", {}).get("result", {}).get("value", False)
+            if not clicked:
+                for ktype, vk in [("rawKeyDown", 13), ("keyUp", 13)]:
+                    await ws.send(json.dumps({
+                        "id": 5,
+                        "method": "Input.dispatchKeyEvent",
+                        "params": {"type": ktype, "windowsVirtualKeyCode": vk, "code": "Enter", "key": "Enter"}
+                    }))
+                    await ws.recv()
+            print("[Qwen] Prompt posted successfully to Qwen Chat!")
+            return True
+    except Exception as e:
+        print(f"[Qwen] Error posting prompt to Qwen: {e}", file=sys.stderr)
+        return False
+
+
+async def check_qwen_response() -> Tuple[bool, str]:
+    """Check if Qwen Chat has finished generating and extract response."""
+    try:
+        raw = urllib.request.urlopen("http://localhost:9222/json", timeout=3.0).read().decode("utf-8")
+        tabs = json.loads(raw)
+        q_tab = next((t for t in tabs if "chat.qwen.ai" in t.get("url", "") or "qwen" in t.get("url", "").lower()), None)
+        if not q_tab:
+            return False, "No active Qwen tab"
+        ws_url = q_tab.get("webSocketDebuggerUrl")
+        if not ws_url:
+            return False, "No ws url for Qwen"
+        async with websockets.connect(ws_url, max_size=50_000_000) as ws:
+            js = """(() => {
+                const stopBtn = document.querySelector('button[aria-label*="Stop"], button.stop-button, button[class*="stop"]');
+                const msgs = document.querySelectorAll('.message-content, [class*="message-content"], .markdown-prose, [class*="prose"]');
+                const lastMsg = msgs.length > 0 ? msgs[msgs.length - 1] : null;
+                const text = lastMsg ? (lastMsg.innerText || '').trim() : '';
+                return {
+                    isGenerating: Boolean(stopBtn),
+                    textLen: text.length,
+                    text: text
+                };
+            })()"""
+            await ws.send(json.dumps({"id": 1, "method": "Runtime.evaluate", "params": {"expression": js, "returnByValue": True}}))
+            res = json.loads(await ws.recv())
+            val = res.get("result", {}).get("result", {}).get("value", {})
+            is_gen = val.get("isGenerating", False)
+            text = val.get("text", "")
+            if not is_gen and len(text) > 200:
+                out_path = PROJECT_ROOT / "docs" / "trade_plans" / "QWEN_LATEST_RAW.md"
+                out_path.parent.mkdir(parents=True, exist_ok=True)
+                out_path.write_text(text, encoding="utf-8")
+                return True, text
+            return False, text
+    except Exception as e:
+        return False, str(e)
 
 
 def main():

@@ -108,7 +108,7 @@ async def harvest_all(cycle: int = None):
     for p in pages:
         url = p.get("url", "")
         if "arena.ai" in url:
-            is_fable = ("01a13a13" in url or "af999588" in url or "01a13b4a" in url or "e2edd108" in url)
+            is_fable = ("01a13a13" in url or "af999588" in url or "01a13b4a" in url or "e2edd108" in url or "01a13bea" in url)
             name = "FABLE" if is_fable else "ASTRA"
             print(f"Harvesting Arena {name} ({url})...")
             full_arena = await harvest_tab_full(p["webSocketDebuggerUrl"], is_gemini=False)
