@@ -637,19 +637,29 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
     lines.append("5. ACTIONABLE EXECUTION SUMMARY TABLE:")
     lines.append("   | Action | Symbol | Side | Lots | Entry | SL Bunker | TP Magnet | Risk USD | R:R | Engine | Archetype Defense | Rationale |")
     lines.append("   If no actions: output table with single row: | STAND ASIDE | — | — | — | — | — | — | — | — | — | — | [Reason] |")
+    lines.append("7. ARENA SKILL IMPLEMENTATION & ADAPTATION MANDATE (https://github.com/Jakeschincariol/arena-skill):")
+    lines.append("   • The canonical 'arena-skill' tournament evaluation framework has been installed into this repository at `.agent/skills/arena/` (https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agent/skills/arena/SKILL.md).")
+    lines.append("   • If operating in an environment with bash/git access, install/confirm it via: `git clone https://github.com/Jakeschincariol/arena-skill.git ~/.claude/skills/arena` (or read `.agent/skills/arena/SKILL.md`).")
+    lines.append("   • You MUST ALWAYS apply this arena tournament methodology to pit competing trade hypotheses against each other across the 5 personas and written rubric (`.agent/skills/arena/rubric.md`) before issuing any final trade verdict.")
+    lines.append("8. DEDICATED DESK METHODOLOGY & MODEL IMPROVEMENT RECOMMENDATIONS:")
+    lines.append("   • The operator requests your strategic recommendations on how we can improve our quantitative methodology and models for better decision-making:")
+    lines.append("     a) Quantitative Features: How can we refine our CVD/OFI indicators or orderbook decay tracking to detect genuine accumulation earlier?")
+    lines.append("     b) Model 1 & 2 Execution: What specific rules or regime calibrations will unlock payable >= 2.0R setups without forcing wide multi-day swing targets, while strictly defending the 4,775.00 USD capital floor?")
+    lines.append("     c) Asset Selection: How can we further optimize our calibrated multi-asset universe under the 15% friction rule?")
+    lines.append("")
     if for_copilot:
         agent_label = "CLAUDE OPUS 5.5" if is_copilot_opus else "GPT ASTRA"
-        lines.append(f"6. COUNCIL SYNC PROTOCOL (COPILOT STUDIO - {agent_label}):")
+        lines.append(f"9. COUNCIL SYNC PROTOCOL (COPILOT STUDIO - {agent_label}):")
         lines.append("   • You are operating inside Microsoft Copilot Studio with all 4 context files attached natively to this session.")
         lines.append("   • Output your complete 3-Mandate Quantitative Audit, Dialectic Deliberation, and Actionable Execution Summary Table directly here in your response.")
         lines.append("   • Antigravity automatically harvests your response directly from the Copilot Studio DOM into docs/trade_plans/COPILOT_OPUS_LATEST_RAW.md / COPILOT_ASTRA_LATEST_RAW.md for Quad-Council synthesis.")
     elif is_fable:
-        lines.append("6. COUNCIL SYNC PROTOCOL (ARENA.AI TAB 2 - CLAUDE FABLE ORCHESTRATOR):")
+        lines.append("9. COUNCIL SYNC PROTOCOL (ARENA.AI TAB 2 - CLAUDE FABLE ORCHESTRATOR):")
         lines.append("   • Output your complete 3-Mandate Council Report, Dialectic Deliberation, and Actionable Execution Table directly here in your markdown response.")
         lines.append("   • CRITICAL DIRECTIVE: DO NOT execute `git push origin arena/e3d7cc98-trading-2` attempting to push 1.6 GB git packfiles! That times out in sandbox mode.")
         lines.append("   • Write your findings locally to docs/trade_plans/ARENA_COUNCIL_REPORT_*.md or append to docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md, but present your entire analytical proof directly in markdown in this chat response!")
     else:
-        lines.append("6. COUNCIL SYNC PROTOCOL (ARENA.AI TAB 1 - GPT ASTRA):")
+        lines.append("9. COUNCIL SYNC PROTOCOL (ARENA.AI TAB 1 - GPT ASTRA):")
         lines.append("   • Output your complete 3-Mandate Council Report, Dialectic Deliberation, and Actionable Execution Table in your response.")
         lines.append("   • Push your council report to your active branch `arena/5c05910e-trading-2` and append to docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md.")
 
