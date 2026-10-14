@@ -56694,3 +56694,46 @@ Fixed all three issues with 100% verification:
      - Cycle state 104 persisted in `Data/cycle_state.json`.
      - Prompts archived in `docs/prompts/ARENA_CYCLE_104_ASTRA_PROMPT.txt`, `ARENA_CYCLE_104_FABLE_PROMPT.txt`, `GEMINI_CYCLE_104_ARGON_PROMPT.txt`.
      - All temporary inspection files immediately purged per Zero Scratch Litter Policy.
+
+
+---
+
+## Turn: Cycle 105 & 106 - Standard Prompt Dumping Engine & Multi-Agent Status Inspection
+- **User Directive**: Abolish writing ad-hoc scripts; establish a permanent, standardized prompt dumping and status inspection process; save tokens.
+- **Implemented Upgrades**:
+  1. Standardized `Terminal/dispatch_tri_council.py`:
+     - `--dump`: Dumps prompts directly to `docs/prompts/ARENA_CYCLE_{cycle}_ASTRA_PROMPT.txt`, `docs/prompts/ARENA_CYCLE_{cycle}_FABLE_PROMPT.txt`, and `docs/prompts/GEMINI_CYCLE_{cycle}_ARGON_PROMPT.txt`. Prints concise summaries with character lengths and raw GitHub links on `main`. Zero raw prompt bloat in chat.
+     - `--status`: Inspects Chrome CDP port 9222 live state with non-blocking timeouts (`open_timeout=3s`, `wait_for=2.5s`).
+     - `--submit [tab]`: Clipboard paste (`Ctrl+V`) and ProseMirror/React fiber update with Enter submission.
+     - `--dispatch`: Full automated cycle.
+  2. Tab ID Correction: Mapped `01a13bea` to Claude Fable in `dispatch_tri_council.py`, `arena_bridge.py`, and `harvest_tri_council.py`.
+  3. Cleaned Scratch Litter: Deleted temporary test scripts (`scratch/check_status.py`, `scratch/inspect_tabs.py`).
+  4. Live Council State:
+     - Astra, Fable, and Argon are all actively computing Cycle 105 responses.
+     - Astra ruling: STAND ASIDE ratified (0 candidates, 6 research watches, 18 no setup).
+
+### Turn 106: Standardized Tri-Council CLI & Status Inspection
+- **Action**: Unified all council operations into single canonical tool Terminal/dispatch_tri_council.py with zero scratch scripts.
+- **Commands Available**:
+  - python Terminal/dispatch_tri_council.py --status: Live non-blocking CDP status inspection for Astra, Fable, and Argon.
+  - python Terminal/dispatch_tri_council.py --dump --cycle N: Writes prompts directly to docs/prompts/ with concise GitHub raw links.
+  - python Terminal/dispatch_tri_council.py --submit [astra|fable|argon|all]: TipTap ProseMirror clipboard paste and submit.
+  - python Terminal/dispatch_tri_council.py --dispatch --cycle N: End-to-end autonomous cycle.
+- **Live MT5 State**: Balance: 4,859.55 USD | Equity: 4,859.55 USD | Positions: 0 | Orders: 0 | Live Floor Cushion: +84.55 USD above 4,775.00 USD hard floor.
+- **Tri-Council Live State**: All 3 models (Astra, Fable, Argon) actively generating responses. System RAM pruned to 73.2%.
+
+### Turn 107: Cycle 105 Council Audit & RAM Optimization
+- **RAM Optimization**: Pruned duplicate and zombie background processes via .agents/scripts/free_ram.ps1. System RAM optimized to 73.3% (1.96 GB free).
+- **Council Audit (Cycle 105)**:
+  - **GPT Astra (Arena Tab 1)**: COMPLETED. Ruling: STAND ASIDE (0 candidates, 6 research watches, 18 no setup). Proved L3 persistence history discontinuity (max recorded duration 141.0s vs 180s threshold).
+  - **Gemini Argon (Tab 3)**: COMPLETED. Harvested to docs/trade_plans/ARGON_LATEST_RAW.md (51.8 KB). Ruling: 100% UNANIMOUS STAND ASIDE across all 24 assets. Proved SP500/NAS100 relief bounce short attempts risk Archetype #2 Stop-on-Stop sweep with gross R:R < 1.37R.
+  - **Claude Fable (Arena Tab 2)**: Actively computing response.
+- **MT5 Live Account**: Balance: 4,859.55 USD | Equity: 4,859.55 USD | Positions: 0 | Orders: 0 | Floor Cushion: +84.55 USD above 4,775.00 USD hard floor.
+
+### Turn 108: Complete Tri-Council Harvest & Synthesis (Cycle 105)
+- **Status of All 3 Models**:
+  - **GPT Astra (Arena Tab 1)**: COMPLETED. STAND ASIDE (0 candidates, 6 watches, 18 no setup). Proved persistence history discontinuity (141.0s vs 180s).
+  - **Claude Fable (Arena Tab 2)**: COMPLETED. Harvested to docs/trade_plans/ARENA_FABLE_LATEST_RAW.md (45.1 KB). Ruling: STAND ASIDE (0 candidates, 5 watchlist, 19 no setup). Uncovered two-sided market-maker wall skew (BTC 75.9%, SP500 90.7% two-sided notional) and proved contiguous 10-pt bins cap reachable payoffs to 0.82R-1.30R against heavy resting bid stacks.
+  - **Gemini Argon (Tab 3)**: COMPLETED. Harvested to docs/trade_plans/ARGON_LATEST_RAW.md (51.2 KB). Ruling: 100% UNANIMOUS STAND ASIDE across all 24 assets. Proved SP500/NAS100 relief bounce shorts risk Archetype #2 Stop-on-Stop sweep into 0.42M buy-stops.
+- **Consensus**: 100% UNANIMOUS STAND ASIDE across Astra, Fable, and Argon. Zero forced trades.
+- **MT5 Live Account**: Balance: 4,859.55 USD | Equity: 4,859.55 USD | Positions: 0 | Orders: 0 | Live Floor Cushion: +84.55 USD above 4,775.00 USD hard floor.

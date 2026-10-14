@@ -65,7 +65,7 @@ def _find_arena_fable_ws_url() -> str | None:
         tabs = json.loads(raw)
         for t in tabs:
             u = t.get("url", "")
-            if ("01a13b4a" in u or "01a1311e" in u or "01a13a13" in u or "af999588" in u) and t.get("webSocketDebuggerUrl"):
+            if ("01a13bea" in u or "01a13b4a" in u or "01a1311e" in u or "01a13a13" in u or "af999588" in u) and t.get("webSocketDebuggerUrl"):
                 return t["webSocketDebuggerUrl"]
     except Exception:
         return None

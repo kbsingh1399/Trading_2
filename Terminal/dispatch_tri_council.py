@@ -190,7 +190,7 @@ async def query_cdp_status() -> Dict[str, Any]:
             continue
 
         try:
-            async with websockets.connect(ws_url, max_size=10 * 1024 * 1024) as ws:
+            async with websockets.connect(ws_url, max_size=10 * 1024 * 1024, open_timeout=3) as ws:
                 if tab_id == "argon":
                     expr = """(() => {
                         const stopBtn = document.querySelector('button[aria-label*="Stop" i], .stop-button');
@@ -210,15 +210,14 @@ async def query_cdp_status() -> Dict[str, Any]:
                     })()"""
                 else:
                     expr = """(() => {
-                        const stopBtn = document.querySelector('button[aria-label="Stop" i], button[data-testid="stop-button"]');
-                        const sendBtn = document.querySelector('button[aria-label="Send message" i], button[aria-label="Send" i], button[type="submit"]');
+                        const stopBtn = document.querySelector('button[aria-label*="Stop" i], button[data-testid*="stop-button" i], button[title*="Stop" i]');
+                        const sendBtn = document.querySelector('button[aria-label*="Send message" i], button[aria-label*="Send" i], button[type="submit"]');
                         const tipTap = document.querySelector('div.tiptap[contenteditable="true"]');
-                        const allText = document.body.innerText;
-                        const isThinking = allText.includes('Thinking') || allText.includes('Thought for') || allText.includes('Generating');
                         const msgs = document.querySelectorAll('.prose:not(.tiptap)');
                         const lastMsg = msgs.length > 0 ? msgs[msgs.length - 1].innerText.slice(0, 200) : '';
+                        const isGenerating = !!stopBtn;
                         return {
-                            isGenerating: !!stopBtn || isThinking,
+                            isGenerating: isGenerating,
                             hasStopBtn: !!stopBtn,
                             boxChars: tipTap ? tipTap.innerText.length : 0,
                             sendDisabled: sendBtn ? sendBtn.disabled : null,
@@ -226,8 +225,13 @@ async def query_cdp_status() -> Dict[str, Any]:
                         };
                     })()"""
 
-                await ws.send(json.dumps({"id": 1, "method": "Runtime.evaluate", "params": {"expression": expr, "returnByValue": True}}))
-                res = json.loads(await ws.recv()).get("result", {}).get("result", {}).get("value", {})
+                call_id = int(time.time() * 1000) % 1000000
+                await ws.send(json.dumps({"id": call_id, "method": "Runtime.evaluate", "params": {"expression": expr, "returnByValue": True}}))
+                try:
+                    res_raw = await asyncio.wait_for(ws.recv(), timeout=2.5)
+                    res = json.loads(res_raw).get("result", {}).get("result", {}).get("value", {})
+                except Exception:
+                    res = {"isGenerating": True, "boxChars": 0, "lastSnippet": "Tab busy / computing..."}
                 res["url"] = url
                 res["title"] = p.get("title", "")
                 status_data[tab_id] = res
