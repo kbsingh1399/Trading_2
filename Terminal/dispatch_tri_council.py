@@ -196,40 +196,44 @@ async def dispatch_all_three(cycle: int = None) -> bool:
 ================================================================================
 PART CP: TRI-COUNCIL PEER AUDIT & CROSS-POLLINATION (FABLE & ARGON REVIEW)
 ================================================================================
-Your peers Claude Fable and Gemini Argon completed deep audits of Cycle 102:
+Your peers Claude Fable and Gemini Argon completed deep audits of Cycle 103:
 1. 100% Unanimous Consensus Ratified (STAND ASIDE):
-   - All three models (Astra, Fable, Argon) agreed unanimously: STAND ASIDE across all 24 assets. Zero forced trades.
-   - 11 altcoins remain excluded under the 15% dynamic spread friction cap. 100% priority is focused on the Clean-Friction Universe.
-2. SP500 & NAS100 Adjacent-Band Stop & Flush Mechanics:
-   - SP500: Price flushed to 7,720 USD (Z = -1.94 SD, RSI 17.62). 3.06M USD of un-swept buy-stops sit overhead in [7,720, 7,730]. Shorting below 7,730 violates Anti-Trap #3. Buffering stops outside the 7,740-7,750 band places SL at 7,756.98 directly inside the adjacent [7,750.9, 7,760.9] buy-stop cluster. Watch for relief bounce after 7,720-7,730 is swept.
-   - NAS100: Trades at 30,005.45 USD on Blueberry Markets MT5 (Z = -2.20 SD, RSI 19.09, Bearish trend). [30,000, 30,100] holds 1.76M USD (1.62M buy-stops + 0.14M liqs) overhead squeeze fuel. Shorting below 30,100 violates Anti-Trap #3. Resistance shelf sits at 30,180–30,317 USD L3 Ask walls.
+   - All three models (Astra, Fable, Argon) agreed unanimously on Cycle 103: STAND ASIDE across all 24 assets. Zero forced trades.
+   - Direct Raw GitHub Access Verified: Gemini Argon tested and confirmed full direct access to raw.githubusercontent.com/kbsingh1399/Trading_2/main/... files! All three models now operate directly on authentic raw main-branch repository links.
+2. SP500 & NAS100 Microstructure & Chronology Audit:
+   - SP500: Reached 7,731.76 traversing the old 7,730 edge, but fell back to 7,707. An alternative 1.572M Ask wall appeared at 7,716.94 (mapped), but [7,710, 7,720] has 5.04M USD of un-swept squeeze fuel (3.26M stops + 1.78M liqs). Stop placement at 7,725 falls inside the adjacent [7,719.64, 7,729.64] band, and large buy walls sit at 7,700.8 (5.65M) and 7,696.6 (13.47M), limiting downside R:R to ~1.37R gross.
+   - NAS100: Recovered a 1.079M USD Ask wall at 30,041.865 (538s duration), but price is at 29,966; needs a relief bounce into that wall. Nearby targets offer only 0.58R gross without an extended flush.
 3. Crypto Majors (BTC & ETH):
-   - ETH: 6.73M USD L3 Ask wall at 2,449.50, but [2,450, 2,460] holds 7.40M USD squeeze fuel (requiring SL >= 2,466), while 15.0M+ USD of L3 BUY walls at 2,414–2,421.6 block required >= 2.2R net payoff (only 1.59R available).
-   - BTC: 5m/15m/30m CVD turned positive (+2.88M 15m, +4.41M 30m); relief rally in progress; do not fade prematurely until tape deceleration.
-4. Capital State:
+   - BTC & ETH: Completed 5m/15m/30m CVD deltas turned negative again (-945k 15m on BTC, -2.14M 15m on ETH), confirming persistent seller dominance. Fading this flow with dip-buying longs is strictly banned. But pullback shorts need an entry into the 82,061 / 2,446–2,448 resistance shelves.
+4. Commodities & Forex:
+   - USWTI: Bullish trend, but velocity accelerated to 3.01 and primary 1.45M bid wall is 2.41 ATR below at 95.07. Wait for a deeper retracement.
+   - USDJPY: Testing 15m EMA50 (158.60) at low Z (+0.26 SD) with positive tick flow, but lacks a >=0.50M bid wall.
+5. Capital State:
    - MT5 Balance: 4,859.55 USD | Equity: 4,859.55 USD | Free Margin: 4,859.55 USD (+84.55 USD above 4,775.00 USD hard floor, +64.55 USD above operating buffer). All 4 capacity slots are 100% open!
 TASK FOR ASTRA:
-Audit the fresh Cycle 103 telemetry across the Clean-Friction Universe. Check if SP500 or NAS100 relief rallies have swept overhead stops and reached seasoned Ask whale walls (>= 1.0M USD) for Model 2 Pullback Shorts, or if BTC/ETH have printed clear tape absorption.
+Audit the fresh Cycle 104 telemetry across the Clean-Friction Universe. Check if relief bounces on SP500 or NAS100 have tapped seasoned Ask walls with >= 2.0R downside payoff, or if USWTI/USDJPY have retested structural support with seasoned bid backing.
 """
 
     cp_fable = """
 ================================================================================
 PART CP: TRI-COUNCIL PEER AUDIT & CROSS-POLLINATION (ASTRA & ARGON REVIEW)
 ================================================================================
-Your peers GPT_Astra and Gemini Argon completed deep audits of Cycle 102:
+Your peers GPT_Astra and Gemini Argon completed deep audits of Cycle 103:
 1. 100% Unanimous Consensus Ratified (STAND ASIDE):
    - Both Astra and Argon reached identical conclusions: STAND ASIDE across all 24 assets. Zero forced trades.
-   - 11 altcoins remain excluded under the 15% dynamic spread friction cap. 100% priority is focused on the Clean-Friction Universe.
-2. SP500 & NAS100 Adjacent-Band Stop & Flush Mechanics:
-   - SP500: Price flushed to 7,720 USD (Z = -1.94 SD, RSI 17.62). 3.06M USD of un-swept buy-stops sit overhead in [7,720, 7,730]. Shorting below 7,730 violates Anti-Trap #3. Buffering stops outside 7,740-7,750 places SL at 7,756.98 inside the adjacent [7,750.9, 7,760.9] buy-stop cluster. Watch for relief bounce after 7,720-7,730 is swept.
-   - NAS100: Trades at 30,005.45 USD on Blueberry Markets MT5 (Z = -2.20 SD, RSI 19.09, Bearish trend). [30,000, 30,100] holds 1.76M USD (1.62M buy-stops + 0.14M liqs) overhead squeeze fuel. Resistance shelf sits at 30,180–30,317 USD L3 Ask walls.
+   - Direct Raw GitHub Access Verified: Gemini Argon tested and confirmed full direct access to raw.githubusercontent.com/kbsingh1399/Trading_2/main/... files! All three models now operate directly on authentic raw main-branch repository links.
+2. SP500 & NAS100 Microstructure & Chronology Audit:
+   - SP500: High reached 7,731.76 traversing the old 7,730 level, but fell back to 7,707. An alternative 1.572M Ask wall appeared at 7,716.94 (mapped), but [7,710, 7,720] has 5.04M USD of un-swept squeeze fuel (3.26M stops + 1.78M liqs). Stop placement at 7,725 falls inside the adjacent [7,719.64, 7,729.64] band, and large buy walls sit at 7,700.8 (5.65M) and 7,696.6 (13.47M), limiting downside R:R to ~1.37R gross.
+   - NAS100: Recovered a 1.079M USD Ask wall at 30,041.865 (538s duration), but price is at 29,966; needs a relief bounce into that wall. Nearby targets offer only 0.58R gross without an extended flush.
 3. Crypto Majors (BTC & ETH):
-   - ETH: 6.73M USD L3 Ask wall at 2,449.50, but [2,450, 2,460] holds 7.40M USD squeeze fuel (requiring SL >= 2,466), while 15.0M+ USD of L3 BUY walls at 2,414–2,421.6 block required >= 2.2R net payoff.
-   - BTC: 5m/15m/30m CVD turned positive (+2.88M 15m, +4.41M 30m); relief rally in progress; do not fade prematurely until tape deceleration.
-4. Capital State:
+   - BTC & ETH: Completed 5m/15m/30m CVD deltas turned negative again (-945k 15m on BTC, -2.14M 15m on ETH), confirming persistent seller dominance. Fading this flow with dip-buying longs is strictly banned. But pullback shorts need an entry into the 82,061 / 2,446–2,448 resistance shelves.
+4. Commodities & Forex:
+   - USWTI: Bullish trend, but velocity accelerated to 3.01 and primary 1.45M bid wall is 2.41 ATR below at 95.07. Wait for a deeper retracement.
+   - USDJPY: Testing 15m EMA50 (158.60) at low Z (+0.26 SD) with positive tick flow, but lacks a >=0.50M bid wall.
+5. Capital State:
    - MT5 Balance: 4,859.55 USD | Equity: 4,859.55 USD | Free Margin: 4,859.55 USD (+84.55 USD above 4,775.00 USD hard floor, +64.55 USD above operating buffer). All 4 capacity slots are 100% open!
 TASK FOR FABLE:
-Examine the fresh Cycle 103 orderbook depth, basis-mapped liquidation bands, and resting whale walls. Deliver your definitive ruling on whether any Clean-Friction asset meets the 5-pillar confluence stack for immediate execution.
+Examine the fresh Cycle 104 orderbook depth, basis-mapped liquidation bands, and resting whale walls. Deliver your definitive ruling on whether any Clean-Friction asset meets the 5-pillar confluence stack for immediate execution.
 """
 
     prompt_arena_1 = prompt_arena_1_base + "\n" + cp_astra
@@ -245,11 +249,12 @@ ROUTING TARGET: GOOGLE GEMINI (ARGON MODE - ZERO TOKEN AUXILIARY COUNCIL)
 CANONICAL WORKSPACE: https://github.com/kbsingh1399/Trading_2
 ACTIVE BRANCH: main (CANONICAL UPSTREAM SOURCE OF TRUTH — ALL MODELS ROUTE TO MAIN)
 
-I have directly attached all 4 canonical ground-truth repository files to this session above:
-1. docs/telemetry/live_snapshot_latest.json
-2. docs/specs/TRADE_DECISION_PLAYBOOK.md
-3. docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md
-4. .agents/rules/ACTIVE_CONTEXT.md
+DIRECT RAW GITHUB UPSTREAM LINKS (Verbatim Access - Public Main Branch):
+1. Telemetry: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/telemetry/live_snapshot_latest.json
+2. Slim Telemetry: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/telemetry/live_snapshot_gemini.json
+3. Playbook: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/specs/TRADE_DECISION_PLAYBOOK.md
+4. Desk State: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md
+5. Active Context: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agents/rules/ACTIVE_CONTEXT.md
 
 OPERATOR MANDATE:
 Review our live book, positions, resting walls, and telemetry data structure across all 24 assets to maximize profitability and trade edge while defending the 4,775.00 USD hard floor.
@@ -258,17 +263,19 @@ MACRO BLACKOUT ENFORCEMENT IS PERMANENTLY REMOVED AND DISABLED. Never halt tradi
 ================================================================================
 PART CP: TRI-COUNCIL DIALECTIC SYNTHESIS (ASTRA & FABLE FINDINGS REVIEW)
 ================================================================================
-Both Astra and Fable have submitted their Cycle 102 reports:
+Both Astra and Fable have submitted their Cycle 103 reports:
 1. 100% Unanimous Consensus Ratified (STAND ASIDE):
-   - All three models (Astra, Fable, Argon) agreed unanimously on Cycle 102: STAND ASIDE across all 24 assets. Zero forced trades.
+   - All three models (Astra, Fable, Argon) agreed unanimously on Cycle 103: STAND ASIDE across all 24 assets. Zero forced trades.
    - 11 altcoins remain excluded under the 15% dynamic spread friction cap. 100% priority is focused on the Clean-Friction Universe.
-2. SP500 & NAS100 Adjacent-Band Stop & Flush Mechanics:
-   - SP500: Price flushed to 7,720 USD (Z = -1.94 SD, RSI 17.62). 3.06M USD of un-swept buy-stops sit overhead in [7,720, 7,730]. Shorting below 7,730 violates Anti-Trap #3. Buffering stops outside the 7,740-7,750 band places SL at 7,756.98 directly inside the adjacent [7,750.9, 7,760.9] buy-stop cluster. Watch for relief bounce after 7,720-7,730 is swept.
-   - NAS100: Trades at 30,005.45 USD on Blueberry Markets MT5 (Z = -2.20 SD, RSI 19.09, Bearish trend). [30,000, 30,100] holds 1.76M USD (1.62M buy-stops + 0.14M liqs) overhead squeeze fuel. Resistance shelf sits at 30,180–30,317 USD L3 Ask walls.
+2. SP500 & NAS100 Microstructure & Chronology Audit:
+   - SP500: Reached 7,731.76 traversing the old 7,730 edge, but fell back to 7,707. An alternative 1.572M Ask wall appeared at 7,716.94 (mapped), but [7,710, 7,720] has 5.04M USD of un-swept squeeze fuel (3.26M stops + 1.78M liqs). Stop placement at 7,725 falls inside the adjacent [7,719.64, 7,729.64] band, and large buy walls sit at 7,700.8 (5.65M) and 7,696.6 (13.47M), limiting downside R:R to ~1.37R gross.
+   - NAS100: Recovered a 1.079M USD Ask wall at 30,041.865 (538s duration), but price is at 29,966; needs a relief bounce into that wall. Nearby targets offer only 0.58R gross without an extended flush.
 3. Crypto Majors (BTC & ETH):
-   - ETH: 6.73M USD L3 Ask wall at 2,449.50, but [2,450, 2,460] holds 7.40M USD squeeze fuel (requiring SL >= 2,466), while 15.0M+ USD of L3 BUY walls at 2,414–2,421.6 block required >= 2.2R net payoff.
-   - BTC: 5m/15m/30m CVD turned positive (+2.88M 15m, +4.41M 30m); relief rally in progress; do not fade prematurely until tape deceleration.
-4. Capital State:
+   - BTC & ETH: Completed 5m/15m/30m CVD deltas turned negative again (-945k 15m on BTC, -2.14M 15m on ETH), confirming persistent seller dominance. Fading this flow with dip-buying longs is strictly banned. But pullback shorts need an entry into the 82,061 / 2,446–2,448 resistance shelves.
+4. Commodities & Forex:
+   - USWTI: Bullish trend, but velocity accelerated to 3.01 and primary 1.45M bid wall is 2.41 ATR below at 95.07. Wait for a deeper retracement.
+   - USDJPY: Testing 15m EMA50 (158.60) at low Z (+0.26 SD) with positive tick flow, but lacks a >=0.50M bid wall.
+5. Capital State:
    - MT5 Balance: 4,859.55 USD | Equity: 4,859.55 USD | Free Margin: 4,859.55 USD (+84.55 USD above 4,775.00 USD hard floor, +64.55 USD above operating buffer). All 4 capacity slots are 100% open!
 TASK FOR ARGON:
 Synthesize peer findings with your deep reasoning engine. Deliver the definitive verdict on high-confluence Model 1 and Model 2 setups across the Clean-Friction Universe without any macro blackout restrictions.
@@ -320,7 +327,7 @@ Synthesize peer findings with your deep reasoning engine. Deliver the definitive
     print(f"Arena.ai dispatch result: {ok_arena}")
 
     # 3. Dispatch to Google Gemini Argon
-    ok_argon = await dispatch_gemini_argon(prompt_argon, attach_files=True)
+    ok_argon = await dispatch_gemini_argon(prompt_argon, attach_files=False)
     print(f"Gemini Argon dispatch result: {ok_argon}")
 
     if ok_arena or ok_argon:

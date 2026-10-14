@@ -44,10 +44,11 @@ def _load_cycle_num() -> int:
 def _save_cycle_num(cycle: int) -> None:
     """Persist cycle number after successful dispatch."""
     CYCLE_STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
-    CYCLE_STATE_FILE.write_text(
-        json.dumps({"last_cycle": cycle, "dispatched_utc": time.strftime("%Y-%m-%d %H:%M:%S UTC", time.gmtime())}),
-        encoding="utf-8",
-    )
+    try:
+        with open(CYCLE_STATE_FILE, "w", encoding="utf-8") as f:
+            json.dump({"last_cycle": cycle, "dispatched_utc": time.strftime("%Y-%m-%d %H:%M:%S UTC", time.gmtime())}, f)
+    except Exception as e:
+        print(f"Warning saving cycle state: {e}")
 
 # ── Initial Risk Ledger ─────────────────────────────────────────────────────
 def _load_initial_risk_ledger() -> dict:
