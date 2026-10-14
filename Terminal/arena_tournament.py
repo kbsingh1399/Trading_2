@@ -82,7 +82,10 @@ FRICTION_MAX_ETH = 0.15              # same rule; ETH is charged the live spread
 SPREAD_ATR_MAX = 0.18                # playbook section 5.1
 SPREAD_BPS_MAX = {"CRYPTO": 35.0, "TRADFI": 5.0}
 RR_MIN = 2.00
-RR_MIN_BY_ASSET: Dict[str, float] = {}   # desk floor is a flat 2.0R; extend only by mandate
+# Playbook 7.4 graduates the two friction-heaviest admitted instruments to a higher
+# target: ETHUSD.pi (Grade B, spread ~12 bps) requires >= 2.2R and SOLUSD.p (Grade B-,
+# spread ~21 bps) requires >= 2.5R. Every other asset keeps the flat 2.0R desk floor.
+RR_MIN_BY_ASSET: Dict[str, float] = {"ETHUSD.pi": 2.20, "SOLUSD.p": 2.50}
 MAGNET_MATERIAL_USD = 500_000.0      # playbook section 5.6 "real notional"
 FRONT_RUN_BPS_LOW = 5.0
 FRONT_RUN_BPS_HIGH = 10.0
@@ -674,11 +677,22 @@ def evaluate_card(card: Card, snap: Dict[str, Any],
 
         # ---- take profit front-run + reachability
         if magnets:
+            # Contiguous magnet bins are one ladder, not independent pools. Front-running the
+            # near edge of an INTERIOR bin parks the TP inside the neighbouring bin of the same
+            # ladder — a TP the engine's own TP_INSIDE_MAGNET gate then rejects, which used to
+            # inflate `max_achievable_rr` on every asset whose stops/cascades are binned
+            # adjacently. Merge the ladder first, then front-run its near edge.
+            ladder = []
+            for lo, hi, n in sorted(magnets):
+                if ladder and lo <= ladder[-1][1] + 1e-9:
+                    ladder[-1] = (ladder[-1][0], max(ladder[-1][1], hi), ladder[-1][2] + n)
+                else:
+                    ladder.append((lo, hi, n))
             if side == "SHORT":
-                cand = [(lo, hi, n, _front_run(hi, "SHORT", FRONT_RUN_BPS_HIGH)) for lo, hi, n in magnets if hi < mid]
+                cand = [(lo, hi, n, _front_run(hi, "SHORT", FRONT_RUN_BPS_HIGH)) for lo, hi, n in ladder if hi < mid]
                 cand.sort(key=lambda c: -c[3])
             else:
-                cand = [(lo, hi, n, _front_run(lo, "LONG", FRONT_RUN_BPS_HIGH)) for lo, hi, n in magnets if lo > mid]
+                cand = [(lo, hi, n, _front_run(lo, "LONG", FRONT_RUN_BPS_HIGH)) for lo, hi, n in ladder if lo > mid]
                 cand.sort(key=lambda c: c[3])
             horizon = (float(atr) * TARGET_HORIZON_ATR) if atr else None
             # Fail closed: without an ATR there is no way to certify that a pool is reachable,
@@ -687,6 +701,15 @@ def evaluate_card(card: Card, snap: Dict[str, Any],
             ev.metrics["magnets_considered"] = [[c[0], c[1], c[2], round(c[3], 4)] for c in cand[:6]]
             ev.metrics["magnets_reachable"] = [[c[0], c[1], c[2], round(c[3], 4), round(abs(entry - c[3]), 2)]
                                                for c in reachable[:6]]
+            straddle = [(lo, hi, n) for lo, hi, n in ladder if lo <= mid <= hi]
+            if straddle:
+                s_lo, s_hi, s_n = max(straddle, key=lambda b: b[2])
+                ev.add("PRICE_INSIDE_MAGNET_LADDER", "MINOR", "A6",
+                       f"mid {mid} sits inside the "
+                       f"{'sell-stop/long-cascade' if side == 'SHORT' else 'buy-stop/squeeze'} "
+                       f"ladder [{s_lo}, {s_hi}] carrying {s_n/1e6:.3f}M USD: no front-runnable TP "
+                       f"exists inside the ladder, the exit must clear its near edge",
+                       ladder=[s_lo, s_hi], ladder_usd=s_n)
             if not reachable:
                 ev.add("NO_REACHABLE_MAGNET", "FATAL", "A6",
                        f"no magnet within {TARGET_HORIZON_ATR} ATR of mid ({mid}) to front-run; "
@@ -721,6 +744,27 @@ def evaluate_card(card: Card, snap: Dict[str, Any],
                             anchor = max(beyond, key=lambda r: r[1])[0] if beyond else None
                     if anchor is None:
                         anchor = entry
+                    # Convergence: a stop derived from `anchor` must not land inside a FURTHER
+                    # belt, nor inside the buffer band immediately in front of one. Clearing the
+                    # first cluster by 0.35 ATR can park the stop inside a second cluster sitting
+                    # just beyond it (live XAGUSD.pi case), which is the archetype-1 error wearing
+                    # a compliant mask. Walk the anchor outward, bounded, until the derived stop
+                    # sits in free space with a full buffer to the next cluster.
+                    buf = SL_BUFFER_ATR_MIN * float(atr)
+                    for _ in range(12):
+                        if side == "SHORT":
+                            stop_try = anchor + buf
+                            offending = [r for r in runs
+                                         if (r[0] <= stop_try <= r[1]) or (stop_try < r[0] <= stop_try + buf)]
+                            next_anchor = max((r[1] for r in offending), default=None)
+                        else:
+                            stop_try = anchor - buf
+                            offending = [r for r in runs
+                                         if (r[0] <= stop_try <= r[1]) or (stop_try - buf <= r[1] < stop_try)]
+                            next_anchor = min((r[0] for r in offending), default=None)
+                        if next_anchor is None or next_anchor == anchor:
+                            break
+                        anchor = next_anchor
                     min_stop_pts = abs(anchor - entry) + SL_BUFFER_ATR_MIN * float(atr)
                     if min_stop_pts > 0:
                         max_rr = best_r / min_stop_pts

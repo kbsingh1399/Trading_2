@@ -1,0 +1,336 @@
+{
+ "cycle": 110,
+ "as_of_utc": "2026-10-14 23:00:45 UTC",
+ "generation_id": "6a96f85bd4af40bb80306742add1e822",
+ "supersedes_generation": "f9286408c3e24884ac0bd85af53c4fb5 (Cycle 109 ruling)",
+ "card_semantics": "STAGE cards carry their own levels; HOLD/DELETE/MODIFY carry the levels of the order they act upon in meta.evaluates and are audited through an internal STAGE probe, so a resting limit faces the identical gate set as a fresh one.",
+ "desk_state_note": "Screened generation 6a96f85bd4af40bb80306742add1e822 (2026-10-14 23:00:45 UTC): 0 positions, 0 pending, 4/4 joint-fill slots free, balance = equity 4,859.55 USD, cushion +64.55 USD.",
+ "cards": [
+  {
+   "id": "btc_ladder_straddle_short",
+   "action": "STAGE",
+   "asset": "BTC",
+   "side": "SHORT",
+   "entry": 82055.49,
+   "sl": 82690.83,
+   "tp": 81681.6,
+   "lots": 0.02,
+   "engine": 2,
+   "thesis": "Engine 2 short at the perimeter. Kills on geometry: mid sits INSIDE the $94.59M sell-stop ladder [80,500-81,600], so no front-runnable exit exists; the contiguous $41.04M buy-stop belt [81,600-82,600] forces a 2.6-ATR stop.",
+   "meta": {
+    "derivation": "entry = mid + 1.95 ATR; SL = 82,600 belt top + 0.36 ATR; TP = ladder top 81,600 front-run 10 bps"
+   }
+  },
+  {
+   "id": "btc_ladder_top_long",
+   "action": "STAGE",
+   "asset": "BTC",
+   "side": "LONG",
+   "entry": 81071.51,
+   "sl": 80410.43,
+   "tp": 81938.5,
+   "lots": 0.02,
+   "engine": 2,
+   "thesis": "Mirror probe: the long side is banned outright in a verified BEARISH HTF regime.",
+   "meta": {
+    "derivation": "entry = mid - 1.95 ATR; SL = deepest reachable budget; TP = buy-stop front-run"
+   }
+  },
+  {
+   "id": "eth_straddle_short",
+   "action": "STAGE",
+   "asset": "ETH",
+   "side": "SHORT",
+   "entry": 2438.13,
+   "sl": 2534.01,
+   "tp": 2422.42,
+   "lots": 0.11,
+   "engine": 2,
+   "thesis": "ETH mirror of BTC: mid sits inside the $101.87M sell-stop ladder [2,320-2,420] and the buy-stop belt [2,420-2,530] is contiguous, so both the exit and the stop are gated.",
+   "meta": {
+    "derivation": "entry = mid + 1.95 ATR; SL = 2,530 belt top + 0.36 ATR; TP = ladder near edge 2,420 front-run"
+   }
+  },
+  {
+   "id": "sol_repair_short",
+   "action": "STAGE",
+   "asset": "SOL",
+   "side": "SHORT",
+   "entry": 105.51,
+   "sl": 114.2,
+   "tp": 104.078,
+   "lots": 0.01,
+   "engine": 2,
+   "thesis": "Rebuild of the cancelled ticket: compliant stop clearing the [104,114] $15.38M belt by 0.36 ATR, exit front-running the [93,104] $67.3M ladder. Ceiling 0.28R, overwhelm 2.47:1.",
+   "meta": {
+    "derivation": "[93.0, 104.0, 6711262.96]"
+   }
+  },
+  {
+   "id": "sp500_core_short",
+   "action": "STAGE",
+   "asset": "SP500",
+   "side": "SHORT",
+   "entry": 7723.22,
+   "sl": 7813.51,
+   "tp": 7685.76,
+   "lots": 0.01,
+   "engine": 2,
+   "thesis": "TradFi friction champion (0.44 bps). Unpayable anyway: the [7,700-7,810] index cluster belt forces a 90-point stop against a 37-point reachable reward (0.41R).",
+   "meta": {
+    "derivation": "screen best-perimeter geometry"
+   }
+  },
+  {
+   "id": "near_friction_probe",
+   "action": "STAGE",
+   "asset": "NEAR",
+   "side": "SHORT",
+   "entry": 4.9584,
+   "sl": 5.0355,
+   "tp": 4.7636,
+   "lots": 1.0,
+   "engine": 2,
+   "thesis": "The only >=2.0R geometry in the 24-asset screen (2.53R) dies on the 15% dynamic friction rule: spread 0.032 USD / 0.077 stop = 41.5% of risk. Banned-instrument list confirmed.",
+   "meta": {
+    "derivation": "screen best-perimeter geometry"
+   }
+  },
+  {
+   "id": "ger40_engine1_long",
+   "action": "STAGE",
+   "asset": "GER40",
+   "side": "LONG",
+   "entry": 25195.36,
+   "sl": 25171.23,
+   "tp": 25243.61,
+   "lots": 0.04,
+   "engine": 1,
+   "thesis": "Engine 1 mean-reversion probe (the only |Z| >= 2.0 on the book, Z = -2.07): banned in a BEARISH regime and structurally empty - zero L3 walls, zero stop clusters, zero magnets.",
+   "meta": {
+    "derivation": "deep-shelf anchor entry below mid"
+   }
+  },
+  {
+   "id": "trx_bullish_regime_long",
+   "action": "STAGE",
+   "asset": "TRX",
+   "side": "LONG",
+   "entry": 0.33195,
+   "sl": 0.33174,
+   "tp": 0.33246,
+   "lots": 5.0,
+   "engine": 2,
+   "thesis": "The book's only BULLISH regime (TRX). No wall >= 180s and no magnet >= 0.50M USD on the long side, and the min-lot spread cash is 9.00 USD - friction gate blocks it.",
+   "meta": {
+    "derivation": "pullback entry to mid - 0.5 ATR"
+   }
+  },
+  {
+   "id": "uswti_bullish_regime_long",
+   "action": "STAGE",
+   "asset": "USWTI",
+   "side": "LONG",
+   "entry": 94.778,
+   "sl": 94.461,
+   "tp": 95.388,
+   "lots": 0.33,
+   "engine": 2,
+   "thesis": "Second BULLISH regime asset. No material magnet within the 3.5-ATR horizon on the long side (largest buy-stop run above is 0.07M USD) - no reachable exit.",
+   "meta": {
+    "derivation": "pullback entry to mid - 0.5 ATR"
+   }
+  },
+  {
+   "id": "gold_minlot_floor_probe",
+   "action": "STAGE",
+   "asset": "GOLD",
+   "side": "SHORT",
+   "entry": 4119.88,
+   "sl": 4212.42,
+   "tp": 4083.06,
+   "lots": 0.01,
+   "engine": 2,
+   "thesis": "Best raw TradFi geometry of the metals (0.39R ceiling) dies on lot granularity: the min lot 0.01 sizes a 92.54 USD risk against the 14.50 USD envelope (FLOOR_BREACH).",
+   "meta": {
+    "derivation": "screen best-perimeter geometry",
+    "allow_out_of_envelope": true
+   }
+  },
+  {
+   "id": "dj30_empty_book_probe",
+   "action": "STAGE",
+   "asset": "DJ30",
+   "side": "SHORT",
+   "entry": 51731.1,
+   "sl": 51845.96,
+   "tp": 51509.8,
+   "lots": 0.1,
+   "engine": 2,
+   "thesis": "DJ30 is the cleanest structural void: zero walls >= 180s, zero stop clusters, zero cascade bands, zero magnets - both engines have nothing to trade.",
+   "meta": {
+    "allow_out_of_envelope": true,
+    "derivation": "perimeter entry"
+   }
+  },
+  {
+   "id": "desk_batch_4x_max_risk",
+   "action": "STAGE_BATCH",
+   "asset": "BTC",
+   "side": "SHORT",
+   "entry": 82055.49,
+   "sl": 82690.83,
+   "tp": 81681.6,
+   "lots": 0.022,
+   "batch_count": 4,
+   "engine": 2,
+   "thesis": "Floor-governance strawman: fill all 4 free slots at max risk (4 x 20.13 = 80.50 USD stress) against a 64.55 USD budget. Shows the exact boundary: 3 tickets fit, 4 breach.",
+   "meta": {
+    "strawman": true
+   }
+  },
+  {
+   "id": "sol_ticket_18925879_reaudit",
+   "action": "DELETE",
+   "asset": "SOL",
+   "target_ticket": 18925879,
+   "engine": 2,
+   "thesis": "Part CP re-audit of the cancelled ticket's exact levels (SELL LIMIT 0.10 @ 104.90 / SL 105.75 / TP 103.10) against the newest generation: if the desk re-staged it, it would fail the same gates.",
+   "meta": {
+    "evaluates": {
+     "asset": "SOL",
+     "side": "SHORT",
+     "entry": 104.9,
+     "sl": 105.75,
+     "tp": 103.1,
+     "lots": 0.1
+    },
+    "audit_generation": "6a96f85bd4af40bb80306742add1e822 (2026-10-14 23:00:45 UTC)"
+   }
+  },
+  {
+   "id": "btc_armed_post_sweep_short",
+   "action": "WATCH",
+   "asset": "BTC",
+   "engine": 1,
+   "thesis": "Armed posture, not an order: mid is pinned inside the $94.59M sell-stop ladder while $41.04M of buy-stop fuel sits overhead [81,600-82,600] behind a $22.83M verified wall at 82,868. If that fuel is swept and price closes back inside, the overhead hazard is consumed and a post-sweep short can be derived with a realised-high stop.",
+   "meta": {
+    "condition": "BTCUSD.pi prints a 15m high >= 82,620 (through the [81,600-82,600] belt top) AND closes back below 82,450 while session CVD stays negative",
+    "invalidation": "15m close above 83,300, or session CVD flipping above +25M USD",
+    "armed_levels": {
+     "side": "SHORT",
+     "note": "SL re-derived from the realised sweep high + 0.36 ATR against the $25.0M buy wall at 81,196; TP must clear the ladder near edge 81,600 (front-run), never sit inside [80,500-81,600]"
+    }
+   }
+  },
+  {
+   "id": "desk_stand_aside_cycle110",
+   "action": "STAND_ASIDE",
+   "thesis": "No new ticket: Engine 1 triggers nowhere usable (GER40 is the only |Z| >= 2.0 and is counter-trend with an empty book), Engine 2 geometry is unpayable or blocked on all 24 assets (BTC/ETH are pinned inside six-figure liquidation ladders; NEAR prints 2.53R but pays 41.5% friction), and the 4 free slots stay unspent.",
+   "meta": {
+    "universe": [
+     {
+      "id": "probe_btc_short",
+      "action": "STAGE",
+      "asset": "BTC",
+      "side": "SHORT",
+      "entry": 82055.49,
+      "sl": 82690.83,
+      "tp": 81681.6,
+      "lots": 0.02
+     },
+     {
+      "id": "probe_eth_short",
+      "action": "STAGE",
+      "asset": "ETH",
+      "side": "SHORT",
+      "entry": 2438.13,
+      "sl": 2534.01,
+      "tp": 2422.42,
+      "lots": 0.11
+     },
+     {
+      "id": "probe_sol_short",
+      "action": "STAGE",
+      "asset": "SOL",
+      "side": "SHORT",
+      "entry": 105.51,
+      "sl": 114.2,
+      "tp": 104.078,
+      "lots": 0.01
+     },
+     {
+      "id": "probe_sp500_short",
+      "action": "STAGE",
+      "asset": "SP500",
+      "side": "SHORT",
+      "entry": 7723.22,
+      "sl": 7813.51,
+      "tp": 7685.76,
+      "lots": 0.01
+     },
+     {
+      "id": "probe_near_short",
+      "action": "STAGE",
+      "asset": "NEAR",
+      "side": "SHORT",
+      "entry": 4.9584,
+      "sl": 5.0355,
+      "tp": 4.7636,
+      "lots": 1.0
+     },
+     {
+      "id": "probe_gold_short",
+      "action": "STAGE",
+      "asset": "GOLD",
+      "side": "SHORT",
+      "entry": 4119.88,
+      "sl": 4212.42,
+      "tp": 4083.06,
+      "lots": 0.01
+     },
+     {
+      "id": "probe_ger40_long",
+      "action": "STAGE",
+      "asset": "GER40",
+      "side": "LONG",
+      "entry": 25195.36,
+      "sl": 25171.23,
+      "tp": 25243.61,
+      "lots": 0.04
+     },
+     {
+      "id": "probe_trx_long",
+      "action": "STAGE",
+      "asset": "TRX",
+      "side": "LONG",
+      "entry": 0.33195,
+      "sl": 0.33174,
+      "tp": 0.33246,
+      "lots": 5.0
+     },
+     {
+      "id": "probe_uswti_long",
+      "action": "STAGE",
+      "asset": "USWTI",
+      "side": "LONG",
+      "entry": 94.778,
+      "sl": 94.461,
+      "tp": 95.388,
+      "lots": 0.33
+     },
+     {
+      "id": "probe_dj30_short",
+      "action": "STAGE",
+      "asset": "DJ30",
+      "side": "SHORT",
+      "entry": 51731.1,
+      "sl": 51845.96,
+      "tp": 51509.8,
+      "lots": 0.01
+     }
+    ]
+   }
+  }
+ ]
+}

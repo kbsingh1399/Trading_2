@@ -247,6 +247,25 @@ def test_tp_seven_bps_outside_the_magnet_edge_is_a_clean_front_run():
     assert ev.metrics["tp_front_run_bps"] == pytest.approx(7.5, abs=0.05)
 
 
+def test_magnet_ladders_are_merged_before_the_tp_front_run():
+    """Regression (Cycle 110): contiguous magnet bins are one ladder. Front-running an
+    INTERIOR bin parks the TP inside the neighbouring bin of the same ladder — a TP the
+    engine's own TP_INSIDE_MAGNET gate rejects — and used to inflate asset ceilings."""
+    ladder = [_bin(96.0, 97.0, 3_000_000), _bin(97.0, 98.0, 3_000_000), _bin(98.0, 99.0, 3_000_000)]
+    asset = _asset(sell_stops=ladder)
+    ev = at.evaluate_card(_card(entry=105.0, sl=112.0, tp=99.099), _snap(asset), {})
+    # the front-run is taken from the ladder's near edge (99.0), never an interior bin
+    assert ev.metrics["best_reachable_tp"] == pytest.approx(99.0 * 1.0010, abs=1e-6)
+    assert "TP_INSIDE_MAGNET" not in _codes(ev)
+    assert ev.metrics["tp_front_run_bps"] == pytest.approx(10.0, abs=0.05)
+
+    # when mid sits INSIDE the ladder there is no front-runnable exit at all
+    inside = _asset(mid=98.5, sell_stops=ladder)
+    ev2 = at.evaluate_card(_card(entry=103.0, sl=110.0, tp=101.0), _snap(inside), {})
+    assert "PRICE_INSIDE_MAGNET_LADDER" in _codes(ev2)
+    assert "NO_REACHABLE_MAGNET" in _codes(ev2)
+
+
 def test_unpayable_geometry_is_fatal():
     asset = _asset(sell_stops=[_bin(96.0, 97.0, 3_000_000)])
     # wide stop (9.5) against a 3 point reachable reward
@@ -445,6 +464,50 @@ def test_tournament_is_deterministic_for_the_same_inputs(tmp_path):
     assert r1["cards_sha256"] == r2["cards_sha256"]
 
 
+def test_min_compliant_stop_walks_past_a_second_belt():
+    """Regression (live XAGUSD.pi geometry): clearing the first cluster by 0.35 ATR can
+    park the minimum compliant stop inside a second cluster just beyond it. The asset-level
+    anchor must walk outward until the derived stop sits in free space."""
+    magnet = _bin(98.0, 99.0, 3_000_000)
+    stacked = _asset(atr=1.0, sell_stops=[magnet],
+                     buy_stops=[_bin(113.0, 114.0, 5_000_000), _bin(114.3, 115.6, 5_000_000)])
+    ev = at.evaluate_card(_card(entry=110.0, sl=116.0, tp=99.07), _snap(stacked), {})
+    assert ev.metrics["min_compliant_stop_anchor"] == pytest.approx(115.6)
+    assert ev.metrics["min_compliant_stop_points"] == pytest.approx(5.6 + 0.35)
+
+    # a near-miss cluster whose near edge sits inside the buffer band is part of the same
+    # sweep complex and must still be cleared
+    nearmiss = _asset(atr=1.0, sell_stops=[magnet],
+                      buy_stops=[_bin(113.0, 114.0, 5_000_000), _bin(114.5, 115.6, 5_000_000)])
+    ev3 = at.evaluate_card(_card(entry=110.0, sl=116.0, tp=99.07), _snap(nearmiss), {})
+    assert ev3.metrics["min_compliant_stop_anchor"] == pytest.approx(115.6)
+    assert ev3.metrics["min_compliant_stop_points"] == pytest.approx(5.6 + 0.35)
+
+    # the same geometry without the second belt anchors on the first belt's edge
+    single = _asset(atr=1.0, sell_stops=[magnet], buy_stops=[_bin(113.0, 114.0, 5_000_000)])
+    ev2 = at.evaluate_card(_card(entry=110.0, sl=116.0, tp=99.07), _snap(single), {})
+    assert ev2.metrics["min_compliant_stop_anchor"] == pytest.approx(114.0)
+    assert ev2.metrics["min_compliant_stop_points"] == pytest.approx(4.0 + 0.35)
+
+    # a cluster far beyond the buffer does NOT extend the anchor
+    faraway = _asset(atr=1.0, sell_stops=[magnet],
+                     buy_stops=[_bin(113.0, 114.0, 5_000_000), _bin(117.0, 118.0, 5_000_000)])
+    ev4 = at.evaluate_card(_card(entry=110.0, sl=116.0, tp=99.07), _snap(faraway), {})
+    assert ev4.metrics["min_compliant_stop_anchor"] == pytest.approx(114.0)
+
+
+def test_eth_and_sol_carry_the_mandated_higher_rr_floors():
+    """Playbook 7.4: ETHUSD.pi (Grade B friction) requires >= 2.2R and SOLUSD.p
+    (Grade B-) requires >= 2.5R; every other asset keeps the flat 2.0R floor."""
+    assert at.RR_MIN_BY_ASSET == {"ETHUSD.pi": 2.20, "SOLUSD.p": 2.50}
+    ev_eth = at.evaluate_card(_card(), _snap(_asset(symbol="ETHUSD.pi")), {})
+    assert ev_eth.metrics["rr_min_required"] == pytest.approx(2.20)
+    ev_sol = at.evaluate_card(_card(), _snap(_asset(symbol="SOLUSD.p")), {})
+    assert ev_sol.metrics["rr_min_required"] == pytest.approx(2.50)
+    ev_btc = at.evaluate_card(_card(), _snap(_asset(symbol="BTCUSD.pi")), {})
+    assert ev_btc.metrics["rr_min_required"] == pytest.approx(2.00)
+
+
 # --------------------------------------------------------------------------
 # live snapshot (documented council expectations)
 # --------------------------------------------------------------------------
@@ -476,8 +539,11 @@ def test_cycle106_tournament_reproduces_the_reported_rulings():
     assert {"ENTRY_TOO_FAR", "FRICTION_BUDGET", "SL_INSIDE_SWEEP"} <= set(delete["metrics"]["delete_justification"])
 
     # the asset-level ceiling: no card on the three instrumented assets can pay 2.0R
-    # against the minimum compliant stop in this generation
-    assert entries["btc_stage_82190_argon"]["metrics"]["max_achievable_rr"] == pytest.approx(1.88, abs=0.02)
+    # against the minimum compliant stop in this generation. Cycle 110 revised BTC down
+    # from the 1.88R first reported: that figure front-ran an INTERIOR bin of a contiguous
+    # magnet ladder, parking the TP inside the next bin (a TP_INSIDE_MAGNET the engine's own
+    # gate rejects). Ladder-merged, the honest ceiling is ~0.73R.
+    assert entries["btc_stage_82190_argon"]["metrics"]["max_achievable_rr"] == pytest.approx(0.729, abs=0.02)
     assert entries["eth_hold_18925596"]["metrics"]["max_achievable_rr"] < 0.60
     assert entries["sp500_stage_short_7738"]["metrics"]["max_achievable_rr"] < 0.70
 
