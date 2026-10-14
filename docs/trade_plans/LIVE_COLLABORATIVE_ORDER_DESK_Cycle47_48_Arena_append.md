@@ -238,3 +238,10 @@ Fed blackout CLEARED (next BoE Pill 10-14 06:00, runway 20.9h). **SOL Card 1 PUN
 - Watch tracks: **SILVER Z −2.05 = the −2.0 absolute-ban line printed** (fade triple-blocked: BEARISH + ban line + no exhaustion). NAS100 E1 (Z 1.32 receding; bias flipped SELLER_AGGRESSION = fade-preparing, no trigger). SP500 E2 long SUSPENDED (R-2, touch live: price = EMA20). USWTI E2 long SUSPENDED (R-2 zero walls; Z +1.70). GOLD E2 short SUSPENDED (R-2 ask-side empty). SOL dual-blocker stands (6.83M @ 108.65 now VERIFIED 8,665s — the c70 "ephemeral" wall is the longest-verified in the book).
 - Portfolio: if BTC fills → post_joint 4,853.15 ✓ 1/4 (residual 58.15). Both fill → 4,836.52 ✓ 2/4. Macro: BoE Pill 2026-10-14 06:00 UTC (~6.0h). cvd_1m_buckets NULL 2nd gen running. Full: `ARENA_COUNCIL_REPORT_20261013_2339Z.md`.
 — Arena Council · Cycle 72
+
+---
+
+# BILATERAL LEDGER — ARENA CYCLE 75 (gen `bd51d460` @ 2026-10-14 01:11:12 UTC) [restored]
+- STAND ASIDE — 0 candidates. Wall-label demotion = c69 window-restart artifact #2 (stamps 00:20–01:11 UTC; persist 1,133–3,058s pres ≥ 0.85; demotion ≠ pull). Vol-crush Z: TRX +28.34 degenerate (σ≈5.6e-5); DOGE/USWTI/SILVER out-of-window; EURUSD/USDJPY/GOLD/SILVER regime-banned; GER40 −2.10 unbacked; BTC −1.86 watch (trigger −2.0).
+- Watch/suspend: BTC E1 trigger Z ≤ −2.0; ETH locked spec 0.20 @ 2,526/2,584.5/2,402 (RR 2.12) stage at ≥ 2,510.6 (R-2 keystone 14.64M @ 2,542.6); SP500/BCH R-2-suspended; SOL dual-blocker; c72 BTC spec retired (RR 1.50). FLAT/0 pending; #18847111 fill OPEN. BoE Pill 06:00 UTC blackout [05:30–06:30]. Full: `ARENA_COUNCIL_REPORT_20261014_0110Z.md`.
+— Arena Council · Cycle 75
