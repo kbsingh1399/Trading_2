@@ -11,7 +11,7 @@ This is an as-of analysis, not a streaming market assessment. An expired snapsho
 ### Exact source recovered and distinguished from newer data
 
 - Requested telemetry: **generation `d6da745fa2054555ac2b8cccfbdc8dd8`, as of 2026-10-14 11:00:24 UTC**, recovered through GitHub's API from commit [`49aa55fdb434bbf92a8e4923249c69ea5495c0a6`](https://github.com/kbsingh1399/Trading_2/blob/49aa55fdb434bbf92a8e4923249c69ea5495c0a6/docs/telemetry/live_snapshot_latest.json). SHA-256: `e04cd120c2ef23b5fb0093e16dbfdda9a6d2e1bfec3c9bb4cd74a3a88995f2f6`. Size: 4,319,988 bytes; 149,300 text lines.
-- The checked-out telemetry is **a different generation**, `417a67595077407c9609c4c0531f52fb`, at **11:05:27 UTC**, from base commit `3ee602ad4b69d01ea39d3a68ba8b7a440d87ab24`. It is not overwritten or silently substituted into the Cycle 92 matrix.
+- The initially checked-out telemetry was **a different generation**, `417a67595077407c9609c4c0531f52fb`, at **11:05:27 UTC**, from base commit `3ee602ad4b69d01ea39d3a68ba8b7a440d87ab24`. It is not overwritten or silently substituted into the Cycle 92 matrix.
 - Playbook: [`docs/specs/TRADE_DECISION_PLAYBOOK.md`](https://github.com/kbsingh1399/Trading_2/blob/3ee602ad4b69d01ea39d3a68ba8b7a440d87ab24/docs/specs/TRADE_DECISION_PLAYBOOK.md), including §§3, 5, 7.1–7.4. Context: [ACTIVE_CONTEXT](https://github.com/kbsingh1399/Trading_2/blob/3ee602ad4b69d01ea39d3a68ba8b7a440d87ab24/.agents/rules/ACTIVE_CONTEXT.md), [session history](https://github.com/kbsingh1399/Trading_2/blob/3ee602ad4b69d01ea39d3a68ba8b7a440d87ab24/.agents/memory/session_chat_history.md), and [order desk](https://github.com/kbsingh1399/Trading_2/blob/3ee602ad4b69d01ea39d3a68ba8b7a440d87ab24/docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md).
 - The requested `arena/5c05910e-trading-2` desk was separately retrieved at remote commit `18902133bf4397b2dc821ed703fb3e061ca26783`; its bytes match the local pre-append desk. This session writes/pushes **only `arena/d6de1eb4-trading-2`**. No branch switch, main push, other-tab dispatch, or cross-branch synchronization is implied.
 - Supplemental initial-risk ledger [`Data/initial_position_risk.json`](https://github.com/kbsingh1399/Trading_2/blob/3ee602ad4b69d01ea39d3a68ba8b7a440d87ab24/Data/initial_position_risk.json) confirms BTC's original SL 82,213 and frozen R0 1,010.
@@ -732,3 +732,7 @@ The full audit ledger is `CYCLE92_ASTRA_EVIDENCE.json`. Its derived calculations
 | `.agents/memory/session_chat_history.md` | 3617333 | `0c9411d88dc108103b839e49e8c5f18f1c5f5ff54f4f13b1e4675263080dddd2` |
 | `.agent/skills/arena/SKILL.md` | 19011 | `c06f9828566485d5bd6507150f454d6f37d49c2b02e5308b8f744a4a046bdf39` |
 | `.agent/skills/arena/rubric.md` | 3717 | `3296801e01035f3ad8dc2b57f0c47d84d296bbc716bf8b36bdb02b426c2735a5` |
+
+### Publication-time synchronization note
+
+The first push was rejected because the session branch advanced remotely. A non-destructive merge preserved the incoming telemetry (11:18:01 UTC) and the other council report `ARENA_COUNCIL_REPORT_20261014_1100Z.md`. Both complete desk appendices are retained. That newer telemetry and the other council verdict were not substituted into this exact-generation analysis, and their arrival is not independent validation of this report.
