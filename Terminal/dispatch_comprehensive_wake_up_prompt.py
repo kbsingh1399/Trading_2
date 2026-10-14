@@ -26,7 +26,6 @@ from Terminal.arena_bridge import post_prompt_to_arena, post_prompt_to_copilot, 
 from Terminal.telemetry_ingest import (
     StaleDataError,
     get_fresh_snapshot,
-    make_git_refresh,
 )
 
 # ── Cycle State ──────────────────────────────────────────────────────────────
@@ -142,16 +141,9 @@ def get_live_broker_state():
         snap_path = ROOT / "docs" / "telemetry" / "live_snapshot_latest.json"
         if snap_path.exists():
             try:
-                snap = get_fresh_snapshot(
-                    str(snap_path), refresh=make_git_refresh(repo_root=str(ROOT))
-                )
-            except StaleDataError as stale:
-                print(
-                    f"Warning: MT5 snapshot fallback refused as stale "
-                    f"({stale.reason}: {stale.diagnostics.get('age_s')}s vs "
-                    f"{stale.diagnostics.get('max_age_s')}s budget). "
-                    f"Capital figures left at their last known values."
-                )
+                snap = json.loads(snap_path.read_text(encoding="utf-8"))
+            except Exception as read_err:
+                print(f"Warning: Could not read local snapshot ({read_err}).")
             else:
                 acc = snap.get("account", {})
                 equity = acc.get("equity_usd", 4896.55)
@@ -217,16 +209,20 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
     if is_arena_astra:
         lines.append("ROUTING TARGET: GPT_ASTRA (ARENA PRIMARY WORKSPACE - TAB 1)")
         lines.append("CANONICAL WORKSPACE: https://github.com/kbsingh1399/Trading_2")
-        lines.append("ACTIVE BRANCH: arena/5c05910e-trading-2 (https://github.com/kbsingh1399/Trading_2/tree/arena/5c05910e-trading-2)")
+        lines.append("ACTIVE BRANCH: main (https://github.com/kbsingh1399/Trading_2/tree/main)")
     elif is_fable:
         lines.append("ROUTING TARGET: CLAUDE FABLE 5.1 / MYTHOS-CLASS FRONTIER REASONING ENGINE (ANTHROPIC FABLE ORCHESTRATOR - TAB 2)")
         lines.append("CANONICAL WORKSPACE: https://github.com/kbsingh1399/Trading_2")
-        lines.append("ACTIVE BRANCH: arena/e3d7cc98-trading-2 (https://github.com/kbsingh1399/Trading_2/tree/arena/e3d7cc98-trading-2)")
+        lines.append("ACTIVE BRANCH: main (https://github.com/kbsingh1399/Trading_2/tree/main)")
     elif is_copilot_opus:
         lines.append("ROUTING TARGET: CLAUDE OPUS 5.5 (MICROSOFT COPILOT STUDIO - TAB 1)")
+        lines.append("CANONICAL WORKSPACE: https://github.com/kbsingh1399/Trading_2")
+        lines.append("ACTIVE BRANCH: main (https://github.com/kbsingh1399/Trading_2/tree/main)")
         lines.append("ROLE: LEAD FORENSIC QUANTITATIVE STRATEGIST & MICROSTRUCTURE ARCHITECT")
     elif is_copilot_astra:
         lines.append("ROUTING TARGET: GPT ASTRA (MICROSOFT COPILOT STUDIO - TAB 2)")
+        lines.append("CANONICAL WORKSPACE: https://github.com/kbsingh1399/Trading_2")
+        lines.append("ACTIVE BRANCH: main (https://github.com/kbsingh1399/Trading_2/tree/main)")
         lines.append("ROLE: CAPITAL FLOOR SENTRY & MULTI-CLUSTER STRESSED RISK AUDITOR")
     lines.append("MANDATE: 100% DIRECT LINE-BY-LINE ANALYSIS OF docs/telemetry/live_snapshot_latest.json (ZERO DECISION GATES)")
     lines.append("")
@@ -248,12 +244,11 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
         lines.append("")
     elif is_fable:
         lines.append("PART A: REQUIRED READING (complete before analysis)")
-        lines.append("Read the following repository sources in full:")
+        lines.append("Read the following repository sources in full (strictly from canonical main branch):")
         lines.append("")
         lines.append("1. Live Telemetry Matrix (Primary Ground Truth): docs/telemetry/live_snapshot_latest.json")
         lines.append(f"   Latest Generation: {gen_id} ({gen_ts})")
         lines.append("   Upstream Main: https://github.com/kbsingh1399/Trading_2/blob/main/docs/telemetry/live_snapshot_latest.json")
-        lines.append("   Upstream Branch: https://github.com/kbsingh1399/Trading_2/blob/arena/e3d7cc98-trading-2/docs/telemetry/live_snapshot_latest.json")
         lines.append("   Raw: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/telemetry/live_snapshot_latest.json")
         lines.append("   Inspect all 24 assets in assets_matrix_24 and all telemetry blocks.")
         lines.append("2. Live Trade Decision Playbook: docs/specs/TRADE_DECISION_PLAYBOOK.md")
@@ -265,18 +260,17 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
         lines.append("")
     else:  # arena_astra
         lines.append("PART A: REQUIRED READING (complete before analysis)")
-        lines.append("Read the following repository sources in full:")
+        lines.append("Read the following repository sources in full (strictly from canonical main branch):")
         lines.append("")
         lines.append("1. Live Telemetry Matrix (Primary Ground Truth): docs/telemetry/live_snapshot_latest.json")
         lines.append(f"   Latest Generation: {gen_id} ({gen_ts})")
         lines.append("   Upstream Main: https://github.com/kbsingh1399/Trading_2/blob/main/docs/telemetry/live_snapshot_latest.json")
-        lines.append("   Upstream Branch: https://github.com/kbsingh1399/Trading_2/blob/arena/5c05910e-trading-2/docs/telemetry/live_snapshot_latest.json")
         lines.append("   Raw: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/telemetry/live_snapshot_latest.json")
         lines.append("   Inspect all 24 assets in assets_matrix_24 and all telemetry blocks.")
         lines.append("2. Live Trade Decision Playbook: docs/specs/TRADE_DECISION_PLAYBOOK.md")
         lines.append("   Source: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/specs/TRADE_DECISION_PLAYBOOK.md")
         lines.append("3. Live Order Desk & Session Context:")
-        lines.append("   • docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md (https://raw.githubusercontent.com/kbsingh1399/Trading_2/arena/5c05910e-trading-2/docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md)")
+        lines.append("   • docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md (https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md)")
         lines.append("   • .agents/rules/ACTIVE_CONTEXT.md (https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agents/rules/ACTIVE_CONTEXT.md)")
         lines.append("   • .agents/memory/session_chat_history.md (https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agents/memory/session_chat_history.md)")
         lines.append("")
@@ -338,13 +332,13 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
     lines.append("")
 
     # ── PART C: ACTIVE REPOSITORIES ─────────────────────────────────────────
-    lines.append("PART C: ACTIVE REPOSITORIES & DATA PROVENANCE")
+    lines.append("PART C: ACTIVE REPOSITORIES & DATA PROVENANCE (MAIN BRANCH SOURCE OF TRUTH)")
     lines.append("• Canonical Workspace: https://github.com/kbsingh1399/Trading_2")
-    lines.append("• Active Branches: main (production) and arena/5c05910e-trading-2 (container active sync)")
-    lines.append("• Direct Raw URLs:")
-    lines.append("  - Telemetry: https://raw.githubusercontent.com/kbsingh1399/Trading_2/arena/5c05910e-trading-2/docs/telemetry/live_snapshot_latest.json")
-    lines.append("  - Playbook: https://raw.githubusercontent.com/kbsingh1399/Trading_2/arena/5c05910e-trading-2/docs/specs/TRADE_DECISION_PLAYBOOK.md")
-    lines.append("  - Desk State: https://raw.githubusercontent.com/kbsingh1399/Trading_2/arena/5c05910e-trading-2/docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md")
+    lines.append("• Active Branch: main (CANONICAL UPSTREAM SOURCE OF TRUTH — ALL MODELS ROUTE TO MAIN)")
+    lines.append("• Direct Raw URLs (Strictly from main branch):")
+    lines.append("  - Telemetry: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/telemetry/live_snapshot_latest.json")
+    lines.append("  - Playbook: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/specs/TRADE_DECISION_PLAYBOOK.md")
+    lines.append("  - Desk State: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md")
     lines.append("")
 
     # ── PART D: ANALYTICAL FRAMEWORK ────────────────────────────────────────
@@ -641,11 +635,17 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
     lines.append("   • The canonical 'arena-skill' tournament evaluation framework has been installed into this repository at `.agent/skills/arena/` (https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agent/skills/arena/SKILL.md).")
     lines.append("   • If operating in an environment with bash/git access, install/confirm it via: `git clone https://github.com/Jakeschincariol/arena-skill.git ~/.claude/skills/arena` (or read `.agent/skills/arena/SKILL.md`).")
     lines.append("   • You MUST ALWAYS apply this arena tournament methodology to pit competing trade hypotheses against each other across the 5 personas and written rubric (`.agent/skills/arena/rubric.md`) before issuing any final trade verdict.")
-    lines.append("8. DEDICATED DESK METHODOLOGY & MODEL IMPROVEMENT RECOMMENDATIONS:")
-    lines.append("   • The operator requests your strategic recommendations on how we can improve our quantitative methodology and models for better decision-making:")
-    lines.append("     a) Quantitative Features: How can we refine our CVD/OFI indicators or orderbook decay tracking to detect genuine accumulation earlier?")
-    lines.append("     b) Model 1 & 2 Execution: What specific rules or regime calibrations will unlock payable >= 2.0R setups without forcing wide multi-day swing targets, while strictly defending the 4,775.00 USD capital floor?")
-    lines.append("     c) Asset Selection: How can we further optimize our calibrated multi-asset universe under the 15% friction rule?")
+    lines.append("8. INSTITUTIONAL QUANTITATIVE TELEMETRY AUDIT & PROFITABILITY ENHANCEMENT MANDATE:")
+    lines.append("   • The operator specifically mandates a comprehensive, institutional quantitative review of our telemetry data structure (`docs/telemetry/live_snapshot_latest.json`) to maximize trading profitability, edge, and execution efficiency while defending the 4,775.00 USD hard floor:")
+    lines.append("     a) Telemetry Data Structure & Microstructure Schema Audit:")
+    lines.append("        - Critically review the JSON schema in live_snapshot_latest.json (`assets_matrix_24`, `orderbook_live_depth`, `structural_stop_clusters`, `reconstructed_liquidations`, `whale_walls_l3`, `footprint_trapped_traders`).")
+    lines.append("        - What exact fields, features, or microstructural indicators are missing or suboptimal? Propose concrete mathematical additions: e.g. multi-level Order Flow Imbalance (OFI), Micro-price drift vs. Mid, Queue-position decay rate, Taker aggressor ratio over 1m/5m/15m/30m, and Footprint delta absorption scores.")
+    lines.append("     b) Calibrating Model 1 & Model 2 for Payable >= 2.0R Setups:")
+    lines.append("        - Both models frequently report 0 candidates due to strict 2.0R geometry or wide swing targets. How can we mathematically construct payable 2.0R - 2.5R setups that capture intraday liquidity sweeps without requiring multi-day 10 ATR excursions?")
+    lines.append("        - How should the SL bunker buffer (currently 0.35 - 0.50 ATR beyond outer bunker edge) and TP magnet front-run (5 - 10 bps) be dynamically calibrated based on live volatility surface and book depth?")
+    lines.append("     c) Expanding Profitable Trade Frequency & Zero Macro Blackout Halts:")
+    lines.append("        - OPERATOR DIRECTIVE: Macro blackout enforcement is PERMANENTLY REMOVED AND DISABLED. Never halt trading, purge positions, or disqualify candidates due to macro events, CPI, FOMC, or news runway. Evaluate and trade setups continuously across all market conditions.")
+    lines.append("        - How can we optimize execution on Blueberry Markets MT5 CFDs under the 15% dynamic friction rule to capture maximum net alpha?")
     lines.append("")
     if for_copilot:
         agent_label = "CLAUDE OPUS 5.5" if is_copilot_opus else "GPT ASTRA"
@@ -656,12 +656,13 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
     elif is_fable:
         lines.append("9. COUNCIL SYNC PROTOCOL (ARENA.AI TAB 2 - CLAUDE FABLE ORCHESTRATOR):")
         lines.append("   • Output your complete 3-Mandate Council Report, Dialectic Deliberation, and Actionable Execution Table directly here in your markdown response.")
-        lines.append("   • CRITICAL DIRECTIVE: DO NOT execute `git push origin arena/e3d7cc98-trading-2` attempting to push 1.6 GB git packfiles! That times out in sandbox mode.")
-        lines.append("   • Write your findings locally to docs/trade_plans/ARENA_COUNCIL_REPORT_*.md or append to docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md, but present your entire analytical proof directly in markdown in this chat response!")
+        lines.append("   • All repository sources and context are strictly anchored to canonical `main` branch.")
+        lines.append("   • Write your findings locally to docs/trade_plans/ARENA_COUNCIL_REPORT_*.md or append to docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md, and present your entire analytical proof directly in markdown in this chat response!")
     else:
         lines.append("9. COUNCIL SYNC PROTOCOL (ARENA.AI TAB 1 - GPT ASTRA):")
         lines.append("   • Output your complete 3-Mandate Council Report, Dialectic Deliberation, and Actionable Execution Table in your response.")
-        lines.append("   • Push your council report to your active branch `arena/5c05910e-trading-2` and append to docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md.")
+        lines.append("   • All repository sources and context are strictly anchored to canonical `main` branch.")
+        lines.append("   • Append your council report to docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md on main.")
 
     return "\n".join(lines)
 
