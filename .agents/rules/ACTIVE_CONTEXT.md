@@ -62,15 +62,15 @@ trigger: always_on
       * **Position Capacity Policy**:
         - Up to 4 concurrent tickets across orthogonal asset clusters provided total joint worst-case stopout risk unconditionally defends the 4,775.00 USD hard floor and 4,795.00 USD operating buffer (>= 20.00 USD cushion at all times).
     - Connects directly via native IPC to MetaTrader 5 Account 5064568 (Blueberry Markets).
-    - **Active Positions & Pending Orders (Live State — 0 Open Positions | 2 Staged Pending Orders)**:
-      * Current Status: **0 Open Positions | 2 Pending Orders | Balance: 4,869.65 USD | Equity: 4,869.65 USD | Margin Free: 4,869.65 USD**.
-      * Active Positions (0): No active positions open. Autonomous Ratchet Daemon (`task-58355`) standing by.
-      * Staged Pending Orders (2):
-        - **Ticket #18892038 (`BTCUSD.pi` BUY LIMIT)**: 0.01 lots @ 83,223.00 USD | SL: 82,213.00 USD (-10.10 USD risk) | TP: 85,243.00 USD (+20.20 USD reward, 2.00R) | Current Ask: ~83,473 USD (250 pts / ~0.30% distance) | Defended by 82,469 USD buy whale wall.
-        - **Ticket #18892059 (`SP500.p` BUY LIMIT)**: 0.04 lots @ 7,811.00 USD | SL: 7,788.00 USD (-9.20 USD risk) | TP: 7,857.00 USD (+18.40 USD reward, 2.00R) | Current Ask: ~7,820 USD (9 pts / ~0.12% distance) | Defended by 7,809.1 and 7,792.6 USD buy whale walls.
-      * G-1 Hard Floor Defense: Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Floor Cushion: **+94.65 USD live equity cushion (+74.65 USD above operating buffer)**.
+    - **Active Positions & Pending Orders (Live State — 1 Open Position | 1 Staged Pending Order)**:
+      * Current Status: **1 Open Position | 1 Pending Order | Balance: 4,869.65 USD | Equity: 4,869.18 USD | Margin Free: ~4,840.00 USD**.
+      * Active Positions (1):
+        - **Ticket #18892038 (`BTCUSD.pi` BUY / LONG)**: 0.01 lots filled @ 83,223.00 USD | SL: 82,213.00 USD (-10.10 USD risk) | TP: 84,320.00 USD (+10.97 USD reward, 1.09R front-running 25.55M stop cluster) | Defended by 21.13M whale wall @ 82,469 USD | Monitored by Autonomous Ratchet Daemon (`task-58355`).
+      * Staged Pending Orders (1):
+        - **Ticket #18892059 (`SP500.p` BUY LIMIT)**: 0.04 lots @ 7,811.00 USD | SL: 7,788.00 USD (-9.20 USD risk) | TP: 7,857.00 USD (+18.40 USD reward, 2.00R) | Current Ask: ~7,821 USD (10 pts / ~0.13% distance) | Defended by 7,809.1 and 7,791.8 USD buy whale walls.
+      * G-1 Hard Floor Defense: Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Floor Cushion: **+94.18 USD live equity cushion (+74.18 USD above operating buffer)**.
       * Stressed Post-Loss Simulation:
-        - Total Book Risk: **19.30 USD nominal / 28.13 USD joint stressed** across both resting limit tickets.
+        - Total Book Risk: **19.30 USD nominal / 28.13 USD joint stressed** across open and resting tickets.
         - Stressed Worst-Case Equity: **4,841.52 USD** (unconditionally defends 4,775.00 USD hard floor!).
         - Safety Cushion Above 4,775.00 USD Hard Floor: **+66.52 USD**.
         - Safety Cushion Above 4,795.00 USD Operating Buffer: **+46.52 USD**.
