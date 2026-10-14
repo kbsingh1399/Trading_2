@@ -510,31 +510,32 @@ def evaluate_card(card: Card, snap: Dict[str, Any],
                        f"nominal risk {risk_usd:.2f} USD outside [{RISK_MIN_USD}, {RISK_MAX_USD}]",
                        risk_usd=risk_usd)
 
-        # ---- hazard geometry: purchase-side for shorts, sale-side for longs
+        # ---- hazard geometry -------------------------------------------------
+        # A SHORT's hazard is the purchase-side (BUY) stop cluster above plus the
+        # short-squeeze fuel above it; its reward magnets are the SELL-stop clusters and
+        # long cascades below. A LONG is the exact mirror image. Getting this orientation
+        # wrong is what makes a "defended" stop land inside the sweep that hunts it.
+        buy_above = _merge_sources(_bins(sc.get("nearest_buy_stop_clusters_above")),
+                                   _bins(sc.get("top_buy_stop_clusters_above")))
+        squeeze_above = _dedupe(_bins(rl.get("nearest_short_squeeze_bands_above")) +
+                                _bins(rl.get("top_short_squeeze_bands_above")))
+        sell_below = _merge_sources(_bins(sc.get("nearest_sell_stop_clusters_below")),
+                                    _bins(sc.get("top_sell_stop_clusters_below")))
+        cascade_below = _dedupe(_bins(rl.get("nearest_long_cascade_bands_below")) +
+                                _bins(rl.get("top_long_cascade_bands_below")))
+
         if side == "SHORT":
-            purchase = _merge_sources(_bins(sc.get("nearest_buy_stop_clusters_above")),
-                                      _bins(sc.get("top_buy_stop_clusters_above")))
-            squeeze = _bins(rl.get("nearest_short_squeeze_bands_above")) + \
-                _bins(rl.get("top_short_squeeze_bands_above"))
-            magnets = _merge_sources(_bins(sc.get("nearest_sell_stop_clusters_below")),
-                                     _bins(sc.get("top_sell_stop_clusters_below")),
-                                     _bins(rl.get("nearest_long_cascade_bands_below")),
-                                     _bins(rl.get("top_long_cascade_bands_below")))
-            magnets = [(lo, hi, n) for lo, hi, n in magnets if n >= MAGNET_MATERIAL_USD]
+            hazard = _dedupe(buy_above + squeeze_above)
+            entry_fuel = buy_above
+            magnets = _merge_sources(sell_below, cascade_below)
             magnets.sort(key=lambda b: -b[1])
         else:
-            purchase = _merge_sources(_bins(sc.get("nearest_buy_stop_clusters_above")),
-                                      _bins(sc.get("top_buy_stop_clusters_above")),
-                                      _bins(rl.get("nearest_short_squeeze_bands_above")),
-                                      _bins(rl.get("top_short_squeeze_bands_above")))
-            magnets = _merge_sources(_bins(sc.get("nearest_sell_stop_clusters_below")),
-                                     _bins(sc.get("top_sell_stop_clusters_below")),
-                                     _bins(rl.get("nearest_long_cascade_bands_below")),
-                                     _bins(rl.get("top_long_cascade_bands_below")))
-            magnets = [(lo, hi, n) for lo, hi, n in magnets if n >= MAGNET_MATERIAL_USD]
+            hazard = _dedupe(sell_below + cascade_below)
+            entry_fuel = sell_below
+            magnets = _merge_sources(buy_above, squeeze_above)
             magnets.sort(key=lambda b: b[0])
+        magnets = [(lo, hi, n) for lo, hi, n in magnets if n >= MAGNET_MATERIAL_USD]
 
-        hazard = _dedupe(purchase + squeeze)
         runs = _runs(hazard)
         ev.metrics["hazard_runs"] = [[lo, hi, round(sum(m[2] for m in mem), 2)] for lo, hi, mem in runs][:10]
 
@@ -612,7 +613,9 @@ def evaluate_card(card: Card, snap: Dict[str, Any],
             side_ok = (w.get("side") == ("SELL" if side == "SHORT" else "BUY"))
             if not side_ok:
                 continue
-            inside = (px <= sl) if side == "SHORT" else (px >= sl)
+            # Gate R-2: the wall must stand BETWEEN the entry and the stop. A wall beyond the
+            # stop cannot absorb anything before the stop is touched, so it is not shelter.
+            inside = (entry < px <= sl) if side == "SHORT" else (sl <= px < entry)
             if not inside:
                 continue
             persist = float(w.get("persist_s") or 0.0)
@@ -653,7 +656,16 @@ def evaluate_card(card: Card, snap: Dict[str, Any],
                        purchase_side=(side == "SHORT"), best=best)
 
         # ---- forced-fuel overwhelm ratio (playbook 3.B)
-        fuel = ev.metrics.get("hazard_union_usd") or 0.0
+        # Fuel is the hazard notional the stop must actually survive: the bins standing
+        # between the entry and the stop. (A belt that contains the SL is already fatal on
+        # its own; this keeps the ratio honest when the SL correctly sits outside it.)
+        if side == "SHORT":
+            fuel_bins = [b for b in hazard if b[1] > entry and b[0] <= sl]
+        else:
+            fuel_bins = [b for b in hazard if b[0] < entry and b[1] >= sl]
+        fuel = sum(b[2] for b in fuel_bins)
+        ev.metrics["corridor_fuel_usd"] = fuel
+        ev.metrics["corridor_fuel_bins"] = [[b[0], b[1], b[2]] for b in fuel_bins]
         ev.metrics["overwhelm_ratio"] = (fuel / defense) if defense else None
         if defense and fuel / defense > 2.0:
             ev.add("OVERWHELM_RATIO", "FATAL", "A5",
@@ -732,10 +744,13 @@ def evaluate_card(card: Card, snap: Dict[str, Any],
                        f"TP {tp} sits INSIDE the magnet pool [{b[0]}, {b[1]}] carrying {b[2]/1e6:.3f}M USD "
                        f"instead of front-running it", magnet=[b[0], b[1]], magnet_usd=b[2])
             elif magnets:
-                pool = [b for b in magnets if (b[1] < tp) if side == "SHORT"] if side == "SHORT" else \
-                       [b for b in magnets if b[0] > tp]
-                if pool:
-                    b = max(pool, key=lambda x: x[1]) if side == "SHORT" else min(pool, key=lambda x: x[0])
+                if side == "SHORT":
+                    pool = [b for b in magnets if b[1] < tp]
+                    b = max(pool, key=lambda x: x[1]) if pool else None
+                else:
+                    pool = [b for b in magnets if b[0] > tp]
+                    b = min(pool, key=lambda x: x[0]) if pool else None
+                if b is not None:
                     edge = b[1] if side == "SHORT" else b[0]
                     off_bps = abs(tp - edge) / edge * 10_000.0
                     ev.metrics["tp_front_run_bps"] = abs(off_bps)

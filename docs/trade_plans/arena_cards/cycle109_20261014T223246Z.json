@@ -1,0 +1,182 @@
+{
+  "cycle": 109,
+  "as_of_utc": "2026-10-14 22:32:46 UTC",
+  "generation_id": "f9286408c3e24884ac0bd85af53c4fb5",
+  "supersedes_generation": "c74503df3d29434c9ca2ac5f3d61c647 (2026-10-14 22:30:40 UTC, cited in the prompt)",
+  "card_semantics": "STAGE cards carry their own levels; HOLD/DELETE/MODIFY carry the levels of the order they act upon in meta.evaluates and are audited through an internal STAGE probe, so a resting limit faces the identical gate set as a fresh one.",
+  "desk_state_note": "0 positions, 0 pending orders, 4/4 joint-fill slots free. Ticket #18925879 (SOLUSD.p SELL LIMIT 0.10 @ 104.90) is gone: it is present in every generation from 21:40 to 22:29:55 and absent from the 22:30:40 generation onward, with balance unchanged at 4859.55 USD - cancelled, not filled. It is audited below on its last observable generation (56bcff13, 22:29:55).",
+  "cards": [
+    {
+      "id": "btc_perimeter_short_exact",
+      "action": "STAGE",
+      "asset": "BTC",
+      "side": "SHORT",
+      "entry": 82044.08,
+      "sl": 82685.68,
+      "tp": 80720.0,
+      "lots": 0.02,
+      "engine": 2,
+      "thesis": "The single most favourable card on the book: Model 2 short at the extreme mid + 2.0 ATR perimeter (8,2044.08), stop clearing the 41.04M USD 81,600-82,600 belt by 0.35 ATR, TP front-running the deepest reachable sell-stop pool. Tests whether BTC's 2.001R ceiling is real and reachable.",
+      "meta": {"derivation": "SL = belt max 82600 + 0.35 x ATR(244.79); TP = 80700 x (1 + 7.5 bps)"}
+    },
+    {
+      "id": "btc_perimeter_short_robust",
+      "action": "STAGE",
+      "asset": "BTC",
+      "side": "SHORT",
+      "entry": 82044.0,
+      "sl": 82722.0,
+      "tp": 80720.0,
+      "lots": 0.02,
+      "engine": 2,
+      "thesis": "Robustness probe: identical but with a 0.50 ATR bunker clearance instead of the 0.35 ATR minimum. If the payable window only exists at the 0.35 ATR boundary, this card must fail - that is what makes the previous card a knife-edge rather than a setup.",
+      "meta": {"derivation": "SL = belt max 82600 + 0.50 x ATR(244.79)"}
+    },
+    {
+      "id": "btc_deep_tp_extension",
+      "action": "STAGE",
+      "asset": "BTC",
+      "side": "SHORT",
+      "entry": 82044.0,
+      "sl": 82685.0,
+      "tp": 79959.93,
+      "lots": 0.02,
+      "engine": 2,
+      "thesis": "Horizon-sensitivity probe: what if the 3.5 ATR reachability horizon is relaxed and the 79600-79700 pool (17.21M) is targeted? Tests whether widening the horizon manufactures payable geometry.",
+      "meta": {"derivation": "TP = 79700 x (1 + 7.5 bps), ~9.6 ATR below mid"}
+    },
+    {
+      "id": "eth_repair_short",
+      "action": "STAGE",
+      "asset": "ETH",
+      "side": "SHORT",
+      "entry": 2439.0,
+      "sl": 2534.0,
+      "tp": 2411.81,
+      "lots": 0.01,
+      "engine": 2,
+      "thesis": "ETH Model 2 short with a compliant bunker and a true front-run of the 42.27M USD 2400-2410 pool; tests whether ETH's 0.61R ceiling can be escaped with a deeper target.",
+      "meta": {"derivation": "entry = mid + 1.98 ATR; SL = belt max 2530 + 0.35 x ATR(11.11); TP = 2410 x (1 + 7.5 bps)"}
+    },
+    {
+      "id": "sol_short_repair",
+      "action": "STAGE",
+      "asset": "SOL",
+      "side": "SHORT",
+      "entry": 105.58,
+      "sl": 115.18,
+      "tp": 101.08,
+      "lots": 0.20,
+      "engine": 2,
+      "thesis": "SOL Model 2 short with the stop correctly outside the 105-115 belt and the TP front-running the 47.22M USD 100-101 pool; tests whether the recently-deleted ticket's thesis was salvageable at any size.",
+      "meta": {"derivation": "entry = mid + 2.0 ATR; SL = belt max 115 + 0.35 x ATR(0.526); lots 0.20 -> risk 19.2 pts x 100 x 0.2 = 19.2 USD (envelope probe)"}
+    },
+    {
+      "id": "sol_ticket_18925879_postmortem",
+      "action": "DELETE",
+      "asset": "SOL",
+      "target_ticket": 18925879,
+      "engine": 2,
+      "thesis": "Confirms the desk's cancellation of ticket #18925879 (SELL LIMIT 0.10 @ 104.90 / SL 105.75 / TP 103.10) by auditing it on its last observable generation. A DELETE ruling is only certified if the probe shows at least one fatal gate failure.",
+      "meta": {
+        "evaluates": {"asset": "SOL", "side": "SHORT", "entry": 104.90, "sl": 105.75, "tp": 103.10, "lots": 0.10},
+        "audit_generation": "56bcff13c585496dadb3ad5d49433418 (2026-10-14 22:29:55 UTC)"
+      }
+    },
+    {
+      "id": "ger40_engine1_meanreversion",
+      "action": "STAGE",
+      "asset": "GER40",
+      "side": "LONG",
+      "entry": 25204.9,
+      "sl": 25150.0,
+      "tp": 25300.0,
+      "lots": 0.01,
+      "engine": 1,
+      "thesis": "GER40 is the only asset in the matrix with |Z| >= 2.0 (Z = -2.14), so it is the sole Engine 1 trigger on the board. Mean reversion from an extreme statistical dislocation is a LONG here; this card tests it against the trend-first hierarchy, the whale-backing requirement and the absence of any magnet.",
+      "meta": {"derivation": "entry at mid; SL below; TP above"}
+    },
+    {
+      "id": "near_short_friction_probe",
+      "action": "STAGE",
+      "asset": "NEAR",
+      "side": "SHORT",
+      "entry": 4.96,
+      "sl": 5.036,
+      "tp": 4.7508,
+      "lots": 1.0,
+      "engine": 2,
+      "thesis": "NEAR screens as the highest raw R:R on the book (2.78R) but is on the operator's banned list at 62% friction. This card exists to prove the ban arithmetically rather than by assertion.",
+      "meta": {"derivation": "entry = mid + 2.0 ATR; SL = belt max 5.02 + 0.35 x ATR(0.0448); TP = 4.76 x (1 + 7.5 bps)"}
+    },
+    {
+      "id": "trx_long_bullish_regime",
+      "action": "STAGE",
+      "asset": "TRX",
+      "side": "LONG",
+      "entry": 0.3322,
+      "sl": 0.3290,
+      "tp": 0.3360,
+      "lots": 1.0,
+      "engine": 2,
+      "thesis": "TRX is one of only two BULLISH regimes on the board (with USWTI), so it is the only place a Model 2 long is even permitted. Tests whether the long side of the book offers anything today.",
+      "meta": {"derivation": "entry at mid; stop below the shelf; target above"}
+    },
+    {
+      "id": "sp500_core_short",
+      "action": "STAGE",
+      "asset": "SP500",
+      "side": "SHORT",
+      "entry": 7723.22,
+      "sl": 7813.5,
+      "tp": 7655.74,
+      "lots": 0.01,
+      "engine": 2,
+      "thesis": "SP500 is the desk's core index with the tightest friction (0.44 bps); tests whether the 18.4B USD stop-cluster belt above the entry can be survived at any target.",
+      "meta": {"derivation": "entry = mid + 2.0 ATR; SL = belt max 7810 + 0.35 x ATR(9.95); TP = 7650 x (1 + 7.5 bps)"}
+    },
+    {
+      "id": "desk_batch_3x_max_risk",
+      "action": "STAGE_BATCH",
+      "asset": "BTC",
+      "side": "SHORT",
+      "entry": 82100.0,
+      "sl": 82722.0,
+      "tp": 80720.0,
+      "lots": 0.01,
+      "batch_count": 3,
+      "engine": 2,
+      "thesis": "Strawman: fill all three capacity tickets the briefing says are available, since the book is flat with 4/4 slots free and 64.55 USD of stress budget.",
+      "meta": {"strawman": true}
+    },
+    {
+      "id": "btc_armed_post_sweep_short",
+      "action": "WATCH",
+      "asset": "BTC",
+      "engine": 1,
+      "thesis": "The correct BTC posture: do not fade 41M USD of intact squeeze fuel. Arm a post-sweep short - if price punches the 22.83M USD verified sell wall at 82,868 (persist 4512s) and closes back below 82,700, the belt is consumed and the short becomes payable against the 25.0M USD buy wall at 81,196.",
+      "meta": {
+        "condition": "BTCUSD.pi prints a 15m high >= 82880 AND closes back below 82700 while session CVD stays negative",
+        "invalidation": "15m close above 83300, or session CVD flipping above +25M USD",
+        "armed_levels": {"side": "SHORT", "note": "levels provisional until the sweep prints; SL re-derived from the realised sweep high + 0.35 ATR"}
+      }
+    },
+    {
+      "id": "desk_stand_aside_cycle109",
+      "action": "STAND_ASIDE",
+      "thesis": "No new ticket: Engine 1 triggers nowhere (the one |Z| >= 2.0 asset is counter-trend, unwalled and unmagnetised), Engine 2 geometry is unpayable on every asset (BTC ceiling 1.97R, ETH 0.61R, SOL 0.19R), and the SOL ticket's cancellation is confirmed correct.",
+      "meta": {
+        "universe": [
+          {"id": "probe_btc_exact", "action": "STAGE", "asset": "BTC", "side": "SHORT", "entry": 82044.0, "sl": 82685.0, "tp": 80720.0, "lots": 0.02},
+          {"id": "probe_btc_robust", "action": "STAGE", "asset": "BTC", "side": "SHORT", "entry": 82044.0, "sl": 82722.0, "tp": 80720.0, "lots": 0.02},
+          {"id": "probe_eth", "action": "STAGE", "asset": "ETH", "side": "SHORT", "entry": 2439.0, "sl": 2534.0, "tp": 2411.81, "lots": 0.01},
+          {"id": "probe_sol", "action": "STAGE", "asset": "SOL", "side": "SHORT", "entry": 105.58, "sl": 115.18, "tp": 101.08, "lots": 0.20},
+          {"id": "probe_near", "action": "STAGE", "asset": "NEAR", "side": "SHORT", "entry": 4.96, "sl": 5.036, "tp": 4.7508, "lots": 1.0},
+          {"id": "probe_trx", "action": "STAGE", "asset": "TRX", "side": "LONG", "entry": 0.3322, "sl": 0.329, "tp": 0.336, "lots": 1.0},
+          {"id": "probe_sp500", "action": "STAGE", "asset": "SP500", "side": "SHORT", "entry": 7723.22, "sl": 7813.5, "tp": 7655.74, "lots": 0.01},
+          {"id": "probe_ger40", "action": "STAGE", "asset": "GER40", "side": "LONG", "entry": 25204.9, "sl": 25150.0, "tp": 25300.0, "lots": 0.01}
+        ]
+      }
+    }
+  ]
+}

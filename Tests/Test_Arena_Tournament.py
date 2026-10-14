@@ -164,6 +164,56 @@ def test_entry_parked_inside_unswept_purchase_side_fuel_is_flagged():
 
 
 # --------------------------------------------------------------------------
+# long-side orientation (the mirror image of the short doctrine)
+# --------------------------------------------------------------------------
+def test_long_hazard_is_the_sell_stop_belt_below_the_entry():
+    """Regression: a LONG's sweep hazard is the SELL-stop cluster below, not the buy
+    stops above. The first version of the engine crashed here (undefined `squeeze`)."""
+    asset = _asset(regime="BULLISH", sell_stops=[_bin(88.0, 89.0, 5_000_000)],
+                   buy_stops=[_bin(95.0, 96.0, 3_000_000)])
+    ev = at.evaluate_card(_card(side="LONG", entry=90.0, sl=88.5, tp=95.9), _snap(asset), {})
+    assert "SL_INSIDE_SWEEP" in _codes(ev)
+    f = next(f for f in ev.findings if f.code == "SL_INSIDE_SWEEP")
+    assert f.purchase_side is False
+    assert f.values["union"] == [88.0, 89.0]
+    assert ev.fatal()
+
+
+def test_long_stop_clearing_the_lower_belt_is_accepted():
+    asset = _asset(regime="BULLISH", sell_stops=[_bin(88.0, 89.0, 5_000_000)],
+                   buy_stops=[_bin(95.0, 96.0, 3_000_000)])
+    ev = at.evaluate_card(_card(side="LONG", entry=90.0, sl=84.0, tp=95.93, lots=2.0),
+                          _snap(asset), {})
+    assert "SL_INSIDE_SWEEP" not in _codes(ev)
+    assert ev.metrics["sl_clearance_atr"] == pytest.approx(0.4)
+
+
+def test_long_reward_magnets_are_the_buy_stops_above():
+    asset = _asset(regime="BULLISH", sell_stops=[_bin(88.0, 89.0, 5_000_000)],
+                   buy_stops=[_bin(95.0, 96.0, 3_000_000)])
+    ev = at.evaluate_card(_card(side="LONG", entry=90.0, sl=84.0, tp=94.93, lots=2.0),
+                          _snap(asset), {})
+    assert ev.metrics["tp_governing_magnet"][0:2] == [95.0, 96.0]
+    assert ev.metrics["tp_front_run_bps"] == pytest.approx(7.4, abs=0.6)
+    assert "TP_INSIDE_MAGNET" not in _codes(ev)
+
+
+def test_long_against_a_bearish_regime_is_fatal():
+    asset = _asset(regime="BEARISH", sell_stops=[_bin(88.0, 89.0, 5_000_000)])
+    ev = at.evaluate_card(_card(side="LONG", entry=90.0, sl=84.0, tp=95.9, lots=2.0),
+                          _snap(asset), {})
+    assert "COUNTER_TREND" in _codes(ev)
+
+
+def test_long_against_negative_cvd_is_flagged():
+    asset = _asset(regime="BULLISH", sell_stops=[_bin(88.0, 89.0, 5_000_000)],
+                   session_cvd=-5_000_000.0)
+    ev = at.evaluate_card(_card(side="LONG", entry=90.0, sl=84.0, tp=95.9, lots=2.0),
+                          _snap(asset), {})
+    assert "COUNTER_CVD" in _codes(ev)
+
+
+# --------------------------------------------------------------------------
 # friction, proximity, geometry
 # --------------------------------------------------------------------------
 def test_fifteen_percent_friction_ceiling_is_fatal():
@@ -211,6 +261,21 @@ def test_bunker_wall_must_meet_the_asset_class_threshold():
     asset = _asset(walls=walls, buy_stops=[_bin(113.0, 114.0, 5_000_000)])
     ev = at.evaluate_card(_card(sl=114.5), _snap(asset), {})
     assert "BUNKER_WALL_THIN" in _codes(ev)
+
+
+def test_wall_beyond_the_stop_is_not_shelter():
+    """Gate R-2: only walls in the entry..SL corridor count. A verified wall above the stop
+    cannot absorb momentum before the stop is touched."""
+    walls_above_stop = [{"side": "SELL", "price": 120.0, "notional_usd": 9_000_000.0,
+                         "persist_s": 900.0, "address": "0xfar", "wall_class": "MM"}]
+    asset = _asset(buy_stops=[_bin(113.0, 114.0, 5_000_000)], walls=walls_above_stop)
+    ev = at.evaluate_card(_card(sl=114.5), _snap(asset), {})
+    assert "NO_BUNKER_WALL" in _codes(ev)
+    # the same wall moved into the corridor shelters the trade
+    walls_in_corridor = [dict(walls_above_stop[0], price=113.5)]
+    asset2 = _asset(buy_stops=[_bin(113.0, 114.0, 5_000_000)], walls=walls_in_corridor)
+    ev2 = at.evaluate_card(_card(sl=114.5), _snap(asset2), {})
+    assert "NO_BUNKER_WALL" not in _codes(ev2)
 
 
 def test_persistence_needs_180s_or_ledger_continuity():
