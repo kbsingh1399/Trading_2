@@ -179,10 +179,10 @@ Stressed loss per ticket = 1.25 × nominal risk + 2.00 USD (playbook §7.4 stres
 | Sizing scenario | Nominal risk | Stress per ticket | Joint stress | Post-stop equity | Floor verdict |
 |---|---|---|---|---|---|
 | 1 × max envelope (14.5) | 14.50 | 20.12 | 20.12 | 4,839.43 | **OK** (+44.43 above buffer) |
-| 2 × max envelope (14.5) | 29.00 | 20.12 | 40.25 | 4,819.30 | **OK** (+24.30 above buffer) |
-| 3 × max envelope (14.5) | 43.50 | 20.12 | 60.38 | 4,799.18 | **OK** (+4.18 above buffer) |
-| 4 × max envelope (14.5) | 58.00 | 20.12 | 80.50 | 4,779.05 | **BREACH** (15.95 below buffer) |
-| Best-sized STAGE probe of this cycle (`nas100_momentum_short`) | 107.00 | 135.75 | 135.75 | 4,723.80 | OK for stress — fatal for geometry |
+| 2 × max envelope (14.5) | 29.00 | 20.12 | 40.24 | 4,819.31 | **OK** (+24.31 above buffer) |
+| 3 × max envelope (14.5) | 43.50 | 20.12 | 60.36 | 4,799.19 | **OK** (+4.19 above buffer) |
+| 4 × max envelope (14.5) | 58.00 | 20.12 | 80.48 | 4,779.07 | **BREACH** (15.93 below buffer) |
+| Largest STAGE probe of this cycle (`nas100_momentum_short` — rejected on floor math before geometry) | 107.00 | 135.75 | 135.75 | 4,723.80 | **BREACH** (71.20 below buffer) |
 
 Three max-envelope tickets fit the buffer; four do not. The `desk_batch_4x_max_risk` strawman walked the bracket to prove the boundary empirically instead of asserting it; zero tickets were staged, so the boundary was never approached.
 
