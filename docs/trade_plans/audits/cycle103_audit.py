@@ -80,18 +80,19 @@ def contains(price, bands, basis):
     return [b for b in bands if b['min_price'] + basis <= price <= b['max_price'] + basis]
 
 
-def extract(source):
+def extract(source, *, expected_generation=GENERATION, snapshot_commit=SNAPSHOT_COMMIT,
+            context_commit=CONTEXT_COMMIT, include_cycle103_geometry=True):
     source = Path(source)
     manifest = {}
     for p in PATHS:
         raw = (source / p).read_bytes()
-        manifest[p] = {'commit': SNAPSHOT_COMMIT if p.endswith('.json') else CONTEXT_COMMIT,
+        manifest[p] = {'commit': snapshot_commit if p.endswith('.json') else context_commit,
                        'bytes': len(raw), 'lines': len(raw.splitlines()),
                        'sha256': hashlib.sha256(raw).hexdigest()}
     d = json.loads((source / PATHS[0]).read_bytes())
-    if d['generation_id'] != GENERATION:
+    if d['generation_id'] != expected_generation:
         raise ValueError('Wrong Cycle 103 generation')
-    result = {'generation': GENERATION, 'manifest': manifest, 'tree': inventory(d),
+    result = {'generation': expected_generation, 'manifest': manifest, 'tree': inventory(d),
               'root': {k: compact(v) for k, v in d.items() if k != 'assets_matrix_24'},
               'assets': {}}
     end = int(d['as_of_epoch'] // 60) * 60
@@ -143,23 +144,24 @@ def extract(source):
         if s in ('EURUSD', 'GBPUSD'):
             e['serialized_min_lot_spread_usd'] = None  # Both lose broker-native precision.
         result['assets'][s] = e
-    geometry = {}
-    # Counterexamples only. These are NOT executable order cards.
-    for s, raw_entry, raw_edge in [('BTC', 82127., 82200.), ('ETH', 2459.3, 2460.),
-                                    ('SP500', 7717.3, 7720.), ('NAS100', 30060., 30100.)]:
-        a = result['assets'][s]; blocks = a['source_blocks']; basis = a['basis']['median']
-        entry = raw_entry + basis
-        stop = raw_edge + basis + .5 * blocks['causal_indicators']['atr_14'] + blocks['quotes']['spread_price'] / 2
-        band_rows = a['bands']['structural_stop_clusters']['nearest_buy_stop_clusters_above']
-        geometry[s] = {'hypothetical_entry': entry, 'hypothetical_stop': stop,
-                       'distance': stop - entry, 'friction_fraction': blocks['quotes']['spread_price'] / (stop - entry),
-                       'stop_contained_raw_intervals': contains(stop, band_rows, basis)}
-    a = result['assets']['USWTI']; basis = a['basis']['median']; blocks = a['source_blocks']
-    stop = 93.8 + basis - .5 * blocks['causal_indicators']['atr_14'] - blocks['quotes']['spread_price'] / 2
-    geometry['USWTI'] = {'hypothetical_ema50_entry': blocks['causal_indicators']['ema_50'],
-                         'hypothetical_stop': stop, 'primary_bid_mapped': 93.58 + basis,
-                         'stop_contained_raw_intervals': contains(stop, a['bands']['structural_stop_clusters']['nearest_sell_stop_clusters_below'], basis)}
-    result['geometry_counterexamples'] = geometry
+    if include_cycle103_geometry:
+        geometry = {}
+        # Counterexamples only. These are NOT executable order cards.
+        for s, raw_entry, raw_edge in [('BTC', 82127., 82200.), ('ETH', 2459.3, 2460.),
+                                        ('SP500', 7717.3, 7720.), ('NAS100', 30060., 30100.)]:
+            a = result['assets'][s]; blocks = a['source_blocks']; basis = a['basis']['median']
+            entry = raw_entry + basis
+            stop = raw_edge + basis + .5 * blocks['causal_indicators']['atr_14'] + blocks['quotes']['spread_price'] / 2
+            band_rows = a['bands']['structural_stop_clusters']['nearest_buy_stop_clusters_above']
+            geometry[s] = {'hypothetical_entry': entry, 'hypothetical_stop': stop,
+                           'distance': stop - entry, 'friction_fraction': blocks['quotes']['spread_price'] / (stop - entry),
+                           'stop_contained_raw_intervals': contains(stop, band_rows, basis)}
+        a = result['assets']['USWTI']; basis = a['basis']['median']; blocks = a['source_blocks']
+        stop = 93.8 + basis - .5 * blocks['causal_indicators']['atr_14'] - blocks['quotes']['spread_price'] / 2
+        geometry['USWTI'] = {'hypothetical_ema50_entry': blocks['causal_indicators']['ema_50'],
+                             'hypothetical_stop': stop, 'primary_bid_mapped': 93.58 + basis,
+                             'stop_contained_raw_intervals': contains(stop, a['bands']['structural_stop_clusters']['nearest_sell_stop_clusters_below'], basis)}
+        result['geometry_counterexamples'] = geometry
     result['risk_math'] = {str(n): str(Decimal('4859.55') - n * (Decimal('1.25') * Decimal('14.50') + Decimal('2'))) for n in (0, 3, 4)}
     result['global_flow_seconds_after_root'] = d['hyperdash_flow_intelligence']['as_of_epoch'] - d['as_of_epoch']
     return result
