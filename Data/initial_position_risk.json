@@ -9,7 +9,10 @@
     "tp": 7745.0,
     "staged_at_utc": "2026-10-13 08:16:00 UTC",
     "nominal_risk_usd": 12.8,
-    "stressed_risk_usd": 18.0
+    "stressed_risk_usd": 18.0,
+    "status": "CLOSED_PROFIT_LOCK",
+    "closed_price": 7807.75,
+    "profit_usd": 0.9
   },
   "18826511": {
     "symbol": "ETHUSD.pi",
@@ -36,5 +39,37 @@
     "staged_at_utc": "2026-10-13 12:43:33 UTC",
     "cycle": "Cycle 58",
     "consensus": "Tri-Council Ratified (Arena + Z.ai + Antigravity)"
+  },
+  "18885364": {
+    "symbol": "BTCUSD.pi",
+    "type": "BUY_LIMIT",
+    "volume": 0.07,
+    "price_open": 83095.0,
+    "initial_sl": 82939.0,
+    "r0": 156.0,
+    "tp": 83795.0,
+    "staged_at_utc": "2026-10-14 06:30:09 UTC",
+    "nominal_risk_usd": 10.92,
+    "stressed_risk_usd": 15.65,
+    "status": "CANCELLED_BY_COUNCIL",
+    "cycle": "Cycle 79",
+    "thesis": "Model 2 Trend Pullback to post-sweep pocket defended by 7.35M USD resting wall at 83,012",
+    "cancelled_at_utc": "2026-10-14 06:42:51 UTC",
+    "cancel_reason": "Archetype 1 (SL inside [82900, 83000] 3.42M stop band) and Archetype 3 (insufficient buffer below 82948 wall)"
+  },
+  "18892038": {
+    "symbol": "BTCUSD.pi",
+    "type": "BUY",
+    "volume": 0.01,
+    "price_open": 83223.0,
+    "initial_sl": 82213.0,
+    "r0": 1010.0,
+    "tp": 84320.0,
+    "staged_at_utc": "2026-10-14 09:24:43 UTC",
+    "nominal_risk_usd": 10.10,
+    "stressed_risk_usd": 14.63,
+    "status": "OPEN",
+    "cycle": "Cycle 88",
+    "thesis": "Model 2 Trend Pullback LONG into post-sweep liquidity zone defended by 35.9M USD L3 whale wall cluster at 82,303 - 82,615 USD with TP front-running 84,350 USD buy stop pool"
   }
 }

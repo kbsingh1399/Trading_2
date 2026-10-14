@@ -65,7 +65,7 @@ async def wait_for_argon():
                             
                             RAW_FILE.parent.mkdir(parents=True, exist_ok=True)
                             RAW_FILE.write_text(full_text, encoding="utf-8")
-                            print(f"\n🔔 GOOGLE GEMINI ARGON GENERATION COMPLETE ({len(full_text)} chars) -> Saved to {RAW_FILE.name}!", flush=True)
+                            print(f"\n[ArgonWatcher] GOOGLE GEMINI ARGON GENERATION COMPLETE ({len(full_text)} chars) -> Saved to {RAW_FILE.name}!", flush=True)
                             return 0
                     elif curr_len > 1000:
                         last_len = curr_len
