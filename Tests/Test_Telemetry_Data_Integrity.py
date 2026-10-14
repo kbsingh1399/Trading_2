@@ -70,6 +70,9 @@ class FakeConnectedBridge:
     def estimate_order(self, symbol, direction, entry, sl):
         return {"stop_loss_per_lot": abs(entry - sl), "margin_per_lot": 100}
 
+    def get_recent_ticks(self, symbol, count=1000):
+        return []
+
     # -- symbols / quotes -------------------------------------------------
     def resolve_symbol(self, asset):
         return {"BTC": "BTCUSD.pi", "USWTI": "USWTI.p", "SP500": "SP500.p",
@@ -137,6 +140,7 @@ def offline(monkeypatch, tmp_path):
     """Remove every network dependency and repo-path side effect."""
     monkeypatch.setattr(gts, "fetch_crypto_depth_and_oi", lambda a: (a, {}, {}, {}))
     monkeypatch.setattr(gts, "fetch_crypto_cvd_buckets", lambda a: (a, []))
+    monkeypatch.setattr(gts, "fetch_crypto_multi_horizon_cvd", lambda a: (a, {}))
     monkeypatch.setattr(gts, "fetch_crypto_htf_ohlcv", lambda a: (a, [], []))
     monkeypatch.setattr(gts, "fetch_crypto_funding_history", lambda a: (a, []))
     monkeypatch.setattr(gts, "fetch_hyperdash_microstructure", lambda client, a: ("UNAVAILABLE", {"reason": "offline test"}))
