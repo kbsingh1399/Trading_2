@@ -328,4 +328,72 @@ This document is governed by the Kaizen protocol and is always-on via `.agents/r
 2. **Step 2 — Same-Cycle Part-B Re-Prompt on Any Logic Flaw (`Cycle NB`)**: If ANY logic does not match the data or if there is ANY flaw in Arena.ai's output, Antigravity immediately re-prompts Arena.ai as **Part 2 of the same cycle (`Cycle NB`)** with the exact telemetry proof and waits via `arena_completion_daemon.py --wait` for Arena's corrected output before executing changes on MT5.
 3. **Continuous Persistence**: Every operator feedback point and trade outcome is immediately persisted into this Playbook and `.agents/rules/ACTIVE_CONTEXT.md`, and synchronized across `main` and `arena/537c1eb8-trading-2`.
 
+---
+
+## 7. Tri-Council Methodology Audit & Settled Invariants (October 2026 Review)
+
+Following an empirical forensic audit and 1,044-trade intrabar replay by Arena Tab 1 (GPT Astra) and Tab 2 (Claude Fable), the desk's execution methodology has been upgraded with three permanent invariants:
+
+### 7.1 Retest Breathing Room & Dynamic Running Trailing Stop (Ratchet Patch)
+- **The Empirical Reality:** 86.7% of entries that touch `+0.80R0` gain experience a routine orderflow retest back through the entry shelf, and 59.2% of those proceed to reach `>= +2.00R0`. Moving SL to `Entry + 0.15R0` at +0.80R0 choked 31.3% of trades into micro-scratches (+0.70 to +1.92 USD) and destroyed 69% of strategy expectancy.
+- **Ratified Ladder (`Terminal/risk/ratchet_manager.py`):**
+  * **Phase 0 (Risk Reduction Buffer):** Triggered at **`+1.25R0`** gain -> moves SL to **`Entry - 0.25R0`** (cuts downside risk by 75% from -1.0R to -0.25R, leaving a generous 0.25R breathing buffer for entry retests).
+  * **Phase 1 (Profit Lock):** Triggered at **`+1.65R0`** gain -> moves SL to **`Entry + 0.80R0`** (locks in guaranteed profit).
+  * **Phase 2 (Dynamic Running Trail):** Triggered at **`>= +2.00R0`** gain -> continuously trails SL at **`Peak MFE - 0.75R0`** (or behind the last 5 completed 15m bars' swing extreme minus 0.50 ATR). Monotonic only; updates whenever candidate SL improves by `>= 0.10R0`.
+  * **Immutable Frozen Initial R0:** Initial SL and R0 are permanently loaded from `Data/initial_position_risk.json` and never overwritten by tightened broker stops during restarts.
+
+### 7.2 Universe Specialization & Attention Tiers
+- **Tier A Core (Primary Execution Focus):**
+  1. `SP500.p`: Spread = 0.44 bps, Friction/ATR = 0.070, Net `E[R] = +0.499` (Top institutional performer).
+  2. `BTCUSD.pi`: Spread = 1.80 bps, Friction/ATR = 0.070, Net `E[R] = +0.424` (Deep resting whale depth).
+  3. `NAS100.p`: Spread = 0.40 bps, Friction/ATR = 0.033, Net `E[R] = +0.242` (Tightest spread on MT5).
+- **Tier B Conditional (Selective Session Staging):**
+  4. `USWTI.p`: Retained for active London/NY energy sessions (+3.0R winner on record).
+  5. `ETHUSD.pi`: Conditional only when broker spread `<= 8.0 bps` and TP offers `>= 6.5x` spread.
+- **Banned Instruments (Negative Friction Drag):**
+  - `SOLUSD.p`: 21.5 bps spread consumes 0.38R in friction, producing negative net expectancy (`-0.378 E[R]`).
+  - 10 Altcoins (`ADA`, `DOGE`, `TRX`, `DOT`, `LINK`, `BCH`, `LTC`, `AVAX`, `NEAR`): Spreads 30 to 250 bps make passive edge statistically impossible.
+
+### 7.3 Decoupling Model 1 vs. Model 2 (Eliminating Stand-Aside Paralysis)
+- **Model 2 Trend Following Pullbacks:**
+  * **NO extreme |Z| requirement.** (Requiring |Z| >= 2.0 SD during strong trends was the sole cause of 20-cycle stand-aside paralysis).
+  * **Entry Trigger:** Price rallies/pulls back into 15m/1H EMA20/EMA50 or Session VWAP/VAH shelf in the direction of the 1H/4H trend (Price < EMA20 < EMA50 for shorts; Price > EMA20 > EMA50 for longs).
+  * **Backing:** Must be defended by verified resting L2/L3 whale walls above entry for shorts (or below entry for longs), calibrated by asset class.
+  * **CVD Confirmation:** Negative session CVD for shorts / positive session CVD for longs.
+- **Model 1 Extreme Mean Reversion:**
+  * Active ONLY in rotational/range-bound regimes (flat EMAs, oscillating VWAP). Strictly FORBIDDEN during strong 1H/4H trends (never catch falling knives).
+  * Requires absolute `|Z| >= 2.0 to 3.5 SD`, completed liquidity sweep, and confirmed CVD deceleration/absorption.
+
+### 7.4 Asset-Class-Specific Whale Wall Calibration & 15% Dynamic Friction Rule
+Following live MetaTrader 5 broker tick audit and cross-venue microstructure research, the desk has upgraded universal gates into calibrated asset-class standards:
+
+1. **Asset-Class Whale Wall Thresholds (Gate R-2 Calibration)**:
+   - **Crypto Major (`BTCUSD.pi`, `ETHUSD.pi`)**: Requires `>= 5.0M USD` single or clustered resting L2/L3 whale walls.
+   - **TradFi Equity Indices (`SP500.p`, `NAS100.p`, `DJ30.p`, `GER40.p`)**: Requires `>= 1.0M USD` primary defending wall (scaled to CFD contract size; removes the artificial 3M block that paralyzed index setups).
+   - **Commodities (`XAUUSD.pi`, `USWTI.p`)**: Requires `>= 0.75M USD` primary defending wall.
+   - **Major FX (`EURUSD.pi`, `GBPUSD.pi`, `USDJPY.pi`)**: Requires `>= 0.50M USD` primary defending wall.
+
+2. **The 15% Dynamic Spread Friction Rule (Replaces Static Altcoin Bans)**:
+   - Rather than an arbitrary token ban, an asset is admitted IF AND ONLY IF:
+     `Spread Friction % = (Spread_Cost_USD_per_lot * Lots) / Total_Trade_Risk_Budget <= 15.0%`
+   - **Active Universe Admitted Under Rule**:
+     * `SP500.p` (1.06 bps = 0.08 USD friction = 0.8% of risk) -> Grade A+
+     * `NAS100.p` (0.41 bps = 0.10 USD friction = 1.0% of risk) -> Grade A+
+     * `XAUUSD.pi` (0.28 bps = 0.12 USD friction = 1.2% of risk) -> Grade A+
+     * `BTCUSD.pi` (2.03 bps = 0.17 USD friction = 1.7% of risk) -> Grade A
+     * `DJ30.p` (0.27 bps = 0.15 USD friction = 1.5% of risk) -> Grade A
+     * `GER40.p` (0.43 bps = 0.20 USD friction = 2.0% of risk) -> Grade A
+     * `USWTI.p` (3.17 bps = 0.35 USD friction = 3.5% of risk) -> Grade A-
+     * `Major FX` (0.08 bps = 0.05 USD friction = 0.5% of risk) -> Grade A+
+     * `ETHUSD.pi` (12.0 bps = 0.81 USD friction = 8.1% of risk) -> Grade B (requires >= 2.2R target)
+     * `SOLUSD.p` (21.5 bps = 1.38 USD friction = 13.8% of risk) -> Grade B- (requires >= 2.5R target)
+   - **Banned Instruments (Friction > 15%)**: `DOGE` (210% of risk), `DOT` (122% of risk), `ADA` (89% of risk), `LINK` (68% of risk), `NEAR` (62% of risk). These are mathematically lethal on MT5 CFDs.
+
+3. **Spread-Compensated Geometry (`R-1` and `R-3`)**:
+   - Limit entry placed deeper into support pocket by half-spread.
+   - Stop loss placed outside structural bunker with `>= 0.35 ATR` buffer + half-spread.
+   - Take profit target front-running opposing liquidity magnet by 5–10 bps - half-spread.
+   - Net realized reward after friction must be `>= 2.0R`.
+
+
 
