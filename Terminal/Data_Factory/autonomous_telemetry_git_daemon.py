@@ -46,9 +46,10 @@ BRANCH_NAME = "main"
 ASTRA_BRANCH = "arena/d6de1eb4-trading-2"
 FABLE_BRANCH = "arena/af999588-trading-2"
 ACTIVE_ARENA_BRANCH = "arena/7a89a384-trading-2"
+ACTIVE_ARENA_SESSION = "arena/186525a3-trading-2"
 LEGACY_ARENA_1 = "arena/5c05910e-trading-2"
 LEGACY_ARENA_2 = "arena/e3d7cc98-trading-2"
-TARGET_BRANCHES = [BRANCH_NAME, ACTIVE_ARENA_BRANCH, ASTRA_BRANCH, FABLE_BRANCH, LEGACY_ARENA_1, LEGACY_ARENA_2]
+TARGET_BRANCHES = [BRANCH_NAME, ACTIVE_ARENA_SESSION, ACTIVE_ARENA_BRANCH, ASTRA_BRANCH, FABLE_BRANCH, LEGACY_ARENA_1, LEGACY_ARENA_2]
 CANONICAL_REMOTE = "https://github.com/kbsingh1399/Trading_2"
 SNAPSHOT_FILE = "docs/telemetry/live_snapshot_latest.json"
 INTERVAL_SECONDS = 60
@@ -301,6 +302,20 @@ def main():
                     ctypes.windll.psapi.EmptyWorkingSet(ctypes.windll.kernel32.GetCurrentProcess())
                 except Exception:
                     pass
+
+            # Periodic System-Wide RAM Optimization every 5 cycles (~5 minutes)
+            if iteration % 5 == 0:
+                try:
+                    free_ram_script = ROOT / ".agents" / "scripts" / "free_ram.ps1"
+                    if free_ram_script.exists():
+                        subprocess.run(
+                            ["powershell", "-ExecutionPolicy", "Bypass", "-File", str(free_ram_script)],
+                            capture_output=True,
+                            timeout=30
+                        )
+                        logger.info("Autonomous System-Wide RAM Optimization executed via free_ram.ps1")
+                except Exception as free_err:
+                    logger.warning(f"Error invoking free_ram.ps1: {free_err}")
 
             elapsed = time.time() - t_start
             sleep_time = max(5.0, INTERVAL_SECONDS - elapsed)
