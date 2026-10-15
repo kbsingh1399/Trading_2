@@ -1,146 +1,345 @@
 {
-  "as_of_utc": "2026-10-15 12:01:51 UTC",
-  "source": "Arkham Intelligence (arkm.com via Chrome CDP)",
-  "status": "LIVE_STREAMING",
-  "market_flow_sentiment": "NET_DISTRIBUTION",
-  "metrics": {
-    "total_transfers_monitored": 24,
-    "exchange_inflow_alerts": 4,
-    "exchange_outflow_alerts": 0,
-    "sample_volume_usd": 1540.54
+  "as_of_utc": "2026-10-15 12:35:12 UTC",
+  "source": "Arkham Intelligence Live Harvester (arkm.com via Chrome CDP)",
+  "feed_status": "STREAMING_ACTIVE",
+  "market_flow_sentiment": "NEUTRAL_BALANCED_FLOW",
+  "aggregate_metrics": {
+    "total_transfers_monitored": 23,
+    "exchange_inflow_events": 0,
+    "exchange_outflow_events": 0,
+    "market_maker_events": 0,
+    "large_whale_alerts_count": 0,
+    "total_inflow_volume_usd": 0,
+    "total_outflow_volume_usd": 0,
+    "net_flow_usd": 0
+  },
+  "asset_breakdown": {
+    "BTC": {
+      "inflow_usd": 0.0,
+      "outflow_usd": 0.0,
+      "tx_count": 0
+    },
+    "ETH": {
+      "inflow_usd": 0.0,
+      "outflow_usd": 0.0,
+      "tx_count": 0
+    },
+    "SOL": {
+      "inflow_usd": 0.0,
+      "outflow_usd": 0.0,
+      "tx_count": 0
+    },
+    "USDT": {
+      "inflow_usd": 0.0,
+      "outflow_usd": 0.0,
+      "tx_count": 0
+    },
+    "USDC": {
+      "inflow_usd": 0.0,
+      "outflow_usd": 0.0,
+      "tx_count": 0
+    },
+    "OTHER": {
+      "inflow_usd": 0.0,
+      "outflow_usd": 0.0,
+      "tx_count": 0
+    }
   },
   "trending_institutional_entities": [
     {
-      "text": "City of Roswell | $14,116.90 | 2.76% | LARGEST HOLDING | BTC | (0.17) | ACTIVE WALLETS | 1",
-      "href": "https://arkm.com/explorer/entity/city-of-roswell"
+      "name": "MEXC",
+      "holdings_usd": "$4,677,532,976.04",
+      "change_pct_24h": "1.76%",
+      "largest_holding": "USDT (1.59B)",
+      "active_wallets": "11,239,557",
+      "entity_url": "https://arkm.com/explorer/entity/mexc"
     },
     {
-      "text": "Aave | $16,564,995,932.00 | 3.86% | LARGEST HOLDING | WEETH | (1.43M) | ACTIVE WALLETS | 2,184",
-      "href": "https://arkm.com/explorer/entity/aave"
+      "name": "Drift Protocol",
+      "holdings_usd": "$285,614,618.03",
+      "change_pct_24h": "4.81%",
+      "largest_holding": "SOL (2.79M)",
+      "active_wallets": "54,801",
+      "entity_url": "https://arkm.com/explorer/entity/drift-protocol"
     },
     {
-      "text": "German Government | $52.03 | 2.74% | LARGEST HOLDING | BTC | (0) | ACTIVE WALLETS | 8",
-      "href": "https://arkm.com/explorer/entity/germany"
+      "name": "Kraken",
+      "holdings_usd": "$21,121,637,106.35",
+      "change_pct_24h": "3.81%",
+      "largest_holding": "BTC (166.63K)",
+      "active_wallets": "7,480,499",
+      "entity_url": "https://arkm.com/explorer/entity/kraken"
     },
     {
-      "text": "Twenty One Capital | $3,524,649,211.05 | 2.85% | LARGEST HOLDING | BTC | (43.51K) | ACTIVE WALLETS | 15",
-      "href": "https://arkm.com/explorer/entity/twenty-one-capital"
-    },
-    {
-      "text": "Polymarket",
-      "href": "https://arkm.com/explorer/entity/polymarket"
-    },
-    {
-      "text": "Polymarket",
-      "href": "https://arkm.com/explorer/entity/polymarket"
-    },
-    {
-      "text": "Polymarket",
-      "href": "https://arkm.com/explorer/entity/polymarket"
-    },
-    {
-      "text": "Polymarket",
-      "href": "https://arkm.com/explorer/entity/polymarket"
-    },
-    {
-      "text": "@viiniijunior",
-      "href": "https://arkm.com/explorer/entity/viiniijunior"
-    },
-    {
-      "text": "Polymarket",
-      "href": "https://arkm.com/explorer/entity/polymarket"
+      "name": "Vitalik Buterin",
+      "holdings_usd": "$533,444,702.87",
+      "change_pct_24h": "5.81%",
+      "largest_holding": "ETH (224.34K)",
+      "active_wallets": "10",
+      "entity_url": "https://arkm.com/explorer/entity/vitalik-buterin"
     }
   ],
+  "whale_alerts": [],
   "recent_classified_transfers": [
     {
-      "raw": "FROM | TO | VALUE | TOKEN | USD",
-      "tx_link": "",
-      "usd_value": 0.0,
-      "classification": "INTERNAL_TRANSFER"
+      "time": "Now",
+      "tx_hash": "0xafb070c32feb61d67a1f3152965f703c0929c079e220729cfb65ea3d8e155152",
+      "tx_url": "https://arkm.com/explorer/tx/0xafb070c32feb61d67a1f3152965f703c0929c079e220729cfb65ea3d8e155152",
+      "from_entity": "Now",
+      "from_type": "WALLET",
+      "to_entity": "Uniswap",
+      "to_type": "DEX_PROTOCOL",
+      "token": "UNKNOWN",
+      "amount": 0.0,
+      "usd_value": 602.13,
+      "flow_classification": "INTERNAL_TRANSFER"
     },
     {
-      "raw": "Now | Polymarket Deposit Wallet | (0xD17) | CTFExchange | (0xE11) | 5.004 | PUSD | $5",
-      "tx_link": "https://arkm.com/explorer/tx/0x19083b824d86d9a8bec0ac9fb45a54f8141479b8861008bc12c6ca0370ae80f8",
-      "usd_value": 5.0,
-      "classification": "EXCHANGE_INFLOW (SELL_PRESSURE)"
+      "time": "Now",
+      "tx_hash": "0xc674cc217492630c9dd29dcb4f588d7866c48036c5fa6f6f4b992bf757f74996",
+      "tx_url": "https://arkm.com/explorer/tx/0xc674cc217492630c9dd29dcb4f588d7866c48036c5fa6f6f4b992bf757f74996",
+      "from_entity": "Now",
+      "from_type": "WALLET",
+      "to_entity": "Relay.link",
+      "to_type": "WALLET",
+      "token": "SOL",
+      "amount": 0.0,
+      "usd_value": 70.0,
+      "flow_classification": "INTERNAL_TRANSFER"
     },
     {
-      "raw": "Now | Polymarket | : | SingleOwnerMSCA (Proxy) | (0xC41) | Polymarket | : | CtfCollateralAdapter | (0xADa) | 6.037 | USDC | $6.04",
-      "tx_link": "https://arkm.com/explorer/tx/0x19083b824d86d9a8bec0ac9fb45a54f8141479b8861008bc12c6ca0370ae80f8",
-      "usd_value": 6.04,
-      "classification": "INTERNAL_TRANSFER"
+      "time": "Now",
+      "tx_hash": "0x0f14b5dac921bb542593d8af31506e72d808e622d515d20e5ceffcbe93822b77",
+      "tx_url": "https://arkm.com/explorer/tx/0x0f14b5dac921bb542593d8af31506e72d808e622d515d20e5ceffcbe93822b77",
+      "from_entity": "Now",
+      "from_type": "WALLET",
+      "to_entity": "Velodrome Finance",
+      "to_type": "WALLET",
+      "token": "USDC",
+      "amount": 2.533,
+      "usd_value": 2.53,
+      "flow_classification": "INTERNAL_TRANSFER"
     },
     {
-      "raw": "Now | \"dddd123ab\" Polymarket Account | (0xe81) | CTFExchange | (0xE11) | 4.9 | PUSD | $4.9",
-      "tx_link": "https://arkm.com/explorer/tx/0x1e98c41557efd729592ca2c00eec3b12ae9e38f7b5f7a2756a277e07b510d095",
-      "usd_value": 4.9,
-      "classification": "INTERNAL_TRANSFER"
+      "time": "Now",
+      "tx_hash": "0x16e5f7e05359e3e37c8efcc2ee9c96b249a8f2c9b777fba00eab07a71cc0a5cc",
+      "tx_url": "https://arkm.com/explorer/tx/0x16e5f7e05359e3e37c8efcc2ee9c96b249a8f2c9b777fba00eab07a71cc0a5cc",
+      "from_entity": "Now",
+      "from_type": "WALLET",
+      "to_entity": "Velodrome Finance",
+      "to_type": "WALLET",
+      "token": "USDC",
+      "amount": 743.634,
+      "usd_value": 743.63,
+      "flow_classification": "INTERNAL_TRANSFER"
     },
     {
-      "raw": "Now | \"dddd111dd\" Polymarket Account | (0x568) | CTFExchange | (0xE11) | 2.612 | PUSD | $2.61",
-      "tx_link": "https://arkm.com/explorer/tx/0x1e98c41557efd729592ca2c00eec3b12ae9e38f7b5f7a2756a277e07b510d095",
-      "usd_value": 2.61,
-      "classification": "INTERNAL_TRANSFER"
+      "time": "Now",
+      "tx_hash": "0x19bae84b2916f1cc85675b57771d7292c689e9539421e82dfebe8fc21da7e117",
+      "tx_url": "https://arkm.com/explorer/tx/0x19bae84b2916f1cc85675b57771d7292c689e9539421e82dfebe8fc21da7e117",
+      "from_entity": "Now",
+      "from_type": "WALLET",
+      "to_entity": "0x7A05FfEC63a936F61653221d0f56E11b868C8D5b",
+      "to_type": "WALLET",
+      "token": "USDC",
+      "amount": 1.367,
+      "usd_value": 1.37,
+      "flow_classification": "INTERNAL_TRANSFER"
     },
     {
-      "raw": "Now | Polymarket | : | Polymarket USD (PUSD) | (0xC01) | Null Address | (0x000) | 1.538 | PUSD | $1.54",
-      "tx_link": "https://arkm.com/explorer/tx/0x34b30c2ef3c20cab92be4a47699b3db7dffbf43d876bad77be9c7cc1a0c26848",
-      "usd_value": 1.54,
-      "classification": "INTERNAL_TRANSFER"
+      "time": "Now",
+      "tx_hash": "0x19bae84b2916f1cc85675b57771d7292c689e9539421e82dfebe8fc21da7e117",
+      "tx_url": "https://arkm.com/explorer/tx/0x19bae84b2916f1cc85675b57771d7292c689e9539421e82dfebe8fc21da7e117",
+      "from_entity": "Now",
+      "from_type": "WALLET",
+      "to_entity": "0x07F7D089d3Fba0eFf25980a2e38a5477C2B09d64",
+      "to_type": "WALLET",
+      "token": "USDC",
+      "amount": 1.367,
+      "usd_value": 1.37,
+      "flow_classification": "INTERNAL_TRANSFER"
     },
     {
-      "raw": "Now | CTFExchange | (0xE11) | Polymarket | : | Polymarket USD (PUSD) | (0xC01) | 20 | PUSD | $20",
-      "tx_link": "https://arkm.com/explorer/tx/0x3bf832e73e143c1cf3ffd621f6999f6bed2689570b0f5b4eff59208f992c3011",
-      "usd_value": 20.0,
-      "classification": "INTERNAL_TRANSFER"
+      "time": "Now",
+      "tx_hash": "0x19bae84b2916f1cc85675b57771d7292c689e9539421e82dfebe8fc21da7e117",
+      "tx_url": "https://arkm.com/explorer/tx/0x19bae84b2916f1cc85675b57771d7292c689e9539421e82dfebe8fc21da7e117",
+      "from_entity": "Now",
+      "from_type": "WALLET",
+      "to_entity": "0x7A05FfEC63a936F61653221d0f56E11b868C8D5b",
+      "to_type": "WALLET",
+      "token": "USDC",
+      "amount": 10.0,
+      "usd_value": 10.0,
+      "flow_classification": "INTERNAL_TRANSFER"
     },
     {
-      "raw": "Now | \"Hermann2017\" Polymarket Account | (0xcd0) | @viiniijunior | : | \"vinii\" Polymarket Account | (0x1Ee) | 9.87 | PUSD | $9.87",
-      "tx_link": "https://arkm.com/explorer/tx/0x3cb5fb22a5b8a1e7f55ee5f205bda04a524ff7eb95062fa13949e16bc4c39fa6",
-      "usd_value": 9.87,
-      "classification": "INTERNAL_TRANSFER"
+      "time": "Now",
+      "tx_hash": "0x19bae84b2916f1cc85675b57771d7292c689e9539421e82dfebe8fc21da7e117",
+      "tx_url": "https://arkm.com/explorer/tx/0x19bae84b2916f1cc85675b57771d7292c689e9539421e82dfebe8fc21da7e117",
+      "from_entity": "Now",
+      "from_type": "WALLET",
+      "to_entity": "0x07F7D089d3Fba0eFf25980a2e38a5477C2B09d64",
+      "to_type": "WALLET",
+      "token": "UNKNOWN",
+      "amount": 0.0,
+      "usd_value": 4.89,
+      "flow_classification": "INTERNAL_TRANSFER"
     },
     {
-      "raw": "Now | \"UpTheBlues\" Polymarket Account | (0x2a6) | CTFExchange | (0xE11) | 311.998 | PUSD | $312",
-      "tx_link": "https://arkm.com/explorer/tx/0x49799a4a2740d0294598091bdefec62c3a3dada3fad630ffc1931bb14520f26d",
-      "usd_value": 312.0,
-      "classification": "INTERNAL_TRANSFER"
+      "time": "Now",
+      "tx_hash": "0x32b9465ea90f7c9a9f0ca340ad36e1e4ee87d6b5b33a8a2b4b4bc8d3166364df",
+      "tx_url": "https://arkm.com/explorer/tx/0x32b9465ea90f7c9a9f0ca340ad36e1e4ee87d6b5b33a8a2b4b4bc8d3166364df",
+      "from_entity": "Now",
+      "from_type": "WALLET",
+      "to_entity": "Velodrome Finance",
+      "to_type": "WALLET",
+      "token": "WETH",
+      "amount": 2.826,
+      "usd_value": 6.68,
+      "flow_classification": "INTERNAL_TRANSFER"
     },
     {
-      "raw": "Now | CTFExchange | (0xE11) | Polymarket | : | Polymarket USD (PUSD) | (0xC01) | 227.6 | PUSD | $227.6",
-      "tx_link": "https://arkm.com/explorer/tx/0x49799a4a2740d0294598091bdefec62c3a3dada3fad630ffc1931bb14520f26d",
-      "usd_value": 227.6,
-      "classification": "INTERNAL_TRANSFER"
+      "time": "Now",
+      "tx_hash": "0x67708f9d12742a7ef6f4c81d9a3a70258e4e5299733db32ef5657d9a102b4076",
+      "tx_url": "https://arkm.com/explorer/tx/0x67708f9d12742a7ef6f4c81d9a3a70258e4e5299733db32ef5657d9a102b4076",
+      "from_entity": "Now",
+      "from_type": "WALLET",
+      "to_entity": "0xF1b41a86d82D9b93f1d88DB14F98d33505887C76",
+      "to_type": "WALLET",
+      "token": "WETH",
+      "amount": 5.681,
+      "usd_value": 13.44,
+      "flow_classification": "INTERNAL_TRANSFER"
     },
     {
-      "raw": "Now | Courtyard.io | : | Orderbook | (0x5E4) | 0xE56EF64823b95062b3958F92241ba01001Da18CE | 31.89 | USDC | $31.89",
-      "tx_link": "https://arkm.com/explorer/tx/0x56918fee7eeee7e3fb1808f193d7c0aee89c18a3d660b510f19f937a077c39a8",
-      "usd_value": 31.89,
-      "classification": "INTERNAL_TRANSFER"
+      "time": "Now",
+      "tx_hash": "0x67708f9d12742a7ef6f4c81d9a3a70258e4e5299733db32ef5657d9a102b4076",
+      "tx_url": "https://arkm.com/explorer/tx/0x67708f9d12742a7ef6f4c81d9a3a70258e4e5299733db32ef5657d9a102b4076",
+      "from_entity": "Now",
+      "from_type": "WALLET",
+      "to_entity": "0xF1b41a86d82D9b93f1d88DB14F98d33505887C76",
+      "to_type": "WALLET",
+      "token": "USDC",
+      "amount": 17.275,
+      "usd_value": 17.27,
+      "flow_classification": "INTERNAL_TRANSFER"
     },
     {
-      "raw": "Now | Bybit Deposit | (0x6D8) | Bybit | : | Hot Wallet | (0x134) | 52 | USDT0 | $52",
-      "tx_link": "https://arkm.com/explorer/tx/0x6e823470392b5cd138fd41a530f57a8a5f955e2f392acabbda31e9a33ca6afaa",
-      "usd_value": 52.0,
-      "classification": "EXCHANGE_INFLOW (SELL_PRESSURE)"
+      "time": "Now",
+      "tx_hash": "0xac7a7ab04f7bc0721716a6b85f4a1db55896b5cc6567b573639943c72debf42b",
+      "tx_url": "https://arkm.com/explorer/tx/0xac7a7ab04f7bc0721716a6b85f4a1db55896b5cc6567b573639943c72debf42b",
+      "from_entity": "Now",
+      "from_type": "WALLET",
+      "to_entity": "Velodrome Finance",
+      "to_type": "WALLET",
+      "token": "USDC",
+      "amount": 172.44,
+      "usd_value": 172.44,
+      "flow_classification": "INTERNAL_TRANSFER"
     },
     {
-      "raw": "Now | 0x41c17d8E1FEe246fA45BEa0872299115a13A9fbB | 0x3068aaa8E7E07693CF3066dD15F174F7afC30C40 | 40 | USDC | $40",
-      "tx_link": "https://arkm.com/explorer/tx/0x74c75be44a357b6f5aeda6c75e8afe4db8bef92cdc0f3f3b62ec5a0c2fb99b0e",
-      "usd_value": 40.0,
-      "classification": "INTERNAL_TRANSFER"
+      "time": "Now",
+      "tx_hash": "0xbd50d51b4ee0b71e1d99d97cccdf2904a4595a2c8703a9e966e7c64d1e7d978d",
+      "tx_url": "https://arkm.com/explorer/tx/0xbd50d51b4ee0b71e1d99d97cccdf2904a4595a2c8703a9e966e7c64d1e7d978d",
+      "from_entity": "Now",
+      "from_type": "WALLET",
+      "to_entity": "0xDB49Dc858FEa0D474A2e4Bf2164a224b672d8118",
+      "to_type": "WALLET",
+      "token": "USDC",
+      "amount": 743.634,
+      "usd_value": 743.63,
+      "flow_classification": "INTERNAL_TRANSFER"
     },
     {
-      "raw": "Now | Polymarket Deposit Wallet | (0xeCa) | CTFExchange | (0xE11) | 40.455 | PUSD | $40.45",
-      "tx_link": "https://arkm.com/explorer/tx/0x7dd6bbdfc60374270c96b7175377c02d0a2cbd5ad9fbd0679f8bb71e485f487a",
-      "usd_value": 40.45,
-      "classification": "EXCHANGE_INFLOW (SELL_PRESSURE)"
+      "time": "Now",
+      "tx_hash": "0xbd50d51b4ee0b71e1d99d97cccdf2904a4595a2c8703a9e966e7c64d1e7d978d",
+      "tx_url": "https://arkm.com/explorer/tx/0xbd50d51b4ee0b71e1d99d97cccdf2904a4595a2c8703a9e966e7c64d1e7d978d",
+      "from_entity": "Now",
+      "from_type": "WALLET",
+      "to_entity": "0xDB49Dc858FEa0D474A2e4Bf2164a224b672d8118",
+      "to_type": "WALLET",
+      "token": "UNKNOWN",
+      "amount": 0.0,
+      "usd_value": 486.16,
+      "flow_classification": "INTERNAL_TRANSFER"
     },
     {
-      "raw": "Now | CTFExchange | (0xE11) | Polymarket | : | Polymarket USD (PUSD) | (0xC01) | 45.455 | PUSD | $45.45",
-      "tx_link": "https://arkm.com/explorer/tx/0x7dd6bbdfc60374270c96b7175377c02d0a2cbd5ad9fbd0679f8bb71e485f487a",
-      "usd_value": 45.45,
-      "classification": "INTERNAL_TRANSFER"
+      "time": "Now",
+      "tx_hash": "0xbd50d51b4ee0b71e1d99d97cccdf2904a4595a2c8703a9e966e7c64d1e7d978d",
+      "tx_url": "https://arkm.com/explorer/tx/0xbd50d51b4ee0b71e1d99d97cccdf2904a4595a2c8703a9e966e7c64d1e7d978d",
+      "from_entity": "Now",
+      "from_type": "WALLET",
+      "to_entity": "0x00c19C3321989ade2c1214f8d4285aAD4240EEDc",
+      "to_type": "WALLET",
+      "token": "UNKNOWN",
+      "amount": 0.0,
+      "usd_value": 122.36,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "Now",
+      "tx_hash": "0xd9f7dfc2702df655df994fa533ec650f194ee9e68ed91d060a488902a4007617",
+      "tx_url": "https://arkm.com/explorer/tx/0xd9f7dfc2702df655df994fa533ec650f194ee9e68ed91d060a488902a4007617",
+      "from_entity": "Now",
+      "from_type": "WALLET",
+      "to_entity": "0x07F7D089d3Fba0eFf25980a2e38a5477C2B09d64",
+      "to_type": "WALLET",
+      "token": "UNKNOWN",
+      "amount": 0.0,
+      "usd_value": 5.24,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "Now",
+      "tx_hash": "0xd9f7dfc2702df655df994fa533ec650f194ee9e68ed91d060a488902a4007617",
+      "tx_url": "https://arkm.com/explorer/tx/0xd9f7dfc2702df655df994fa533ec650f194ee9e68ed91d060a488902a4007617",
+      "from_entity": "Now",
+      "from_type": "WALLET",
+      "to_entity": "Velodrome Finance",
+      "to_type": "WALLET",
+      "token": "USDC",
+      "amount": 10.0,
+      "usd_value": 10.0,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "Now",
+      "tx_hash": "0xd9f7dfc2702df655df994fa533ec650f194ee9e68ed91d060a488902a4007617",
+      "tx_url": "https://arkm.com/explorer/tx/0xd9f7dfc2702df655df994fa533ec650f194ee9e68ed91d060a488902a4007617",
+      "from_entity": "Now",
+      "from_type": "WALLET",
+      "to_entity": "Velodrome Finance",
+      "to_type": "WALLET",
+      "token": "UNKNOWN",
+      "amount": 0.0,
+      "usd_value": 4.89,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "Now",
+      "tx_hash": "0xd9f7dfc2702df655df994fa533ec650f194ee9e68ed91d060a488902a4007617",
+      "tx_url": "https://arkm.com/explorer/tx/0xd9f7dfc2702df655df994fa533ec650f194ee9e68ed91d060a488902a4007617",
+      "from_entity": "Now",
+      "from_type": "WALLET",
+      "to_entity": "0x07F7D089d3Fba0eFf25980a2e38a5477C2B09d64",
+      "to_type": "WALLET",
+      "token": "USDC",
+      "amount": 10.0,
+      "usd_value": 10.0,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "Now",
+      "tx_hash": "0xd9f7dfc2702df655df994fa533ec650f194ee9e68ed91d060a488902a4007617",
+      "tx_url": "https://arkm.com/explorer/tx/0xd9f7dfc2702df655df994fa533ec650f194ee9e68ed91d060a488902a4007617",
+      "from_entity": "Now",
+      "from_type": "WALLET",
+      "to_entity": "0x07F7D089d3Fba0eFf25980a2e38a5477C2B09d64",
+      "to_type": "WALLET",
+      "token": "UNKNOWN",
+      "amount": 0.0,
+      "usd_value": 4.89,
+      "flow_classification": "INTERNAL_TRANSFER"
     }
   ]
 }

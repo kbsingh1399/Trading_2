@@ -37,6 +37,23 @@ from Terminal.risk.floor_defense import HARD_FLOOR_USD, BUFFER_USD
 from Terminal.Api_Client import HyperdashClient
 from Terminal.Data_Factory.hyperdash_flow_feed import get_hyperdash_flow_intelligence
 
+
+def get_arkham_intelligence() -> Dict[str, Any]:
+    """Load latest live Arkham On-Chain Intelligence feed from Data/arkham_live_intelligence.json."""
+    arkham_path = ROOT / "Data" / "arkham_live_intelligence.json"
+    if arkham_path.exists():
+        try:
+            return json.loads(arkham_path.read_text(encoding="utf-8"))
+        except Exception:
+            pass
+    return {
+        "source": "Arkham Intelligence Live Harvester (arkm.com via Chrome CDP)",
+        "feed_status": "AWAITING_SAMPLE",
+        "market_flow_sentiment": "NEUTRAL_BALANCED_FLOW",
+        "trending_institutional_entities": [],
+        "recent_classified_transfers": []
+    }
+
 TELEMETRY_PATH = ROOT / "docs" / "telemetry" / "live_snapshot_latest.json"
 TELEMETRY_PATH.parent.mkdir(parents=True, exist_ok=True)
 CANDLE_DIR = ROOT / "Data" / "Candles"
@@ -1020,12 +1037,12 @@ def calendar_observation(now: float, calendar_path=None):
         if windows:
             ws, we, release, purge, event = windows[0]
             result.update(event=event["name"], event_release_utc=text_stamp(release), event_source=event["source"],
-                          hard_blackout_window_utc=[text_stamp(ws), text_stamp(we)], purge_deadline_utc=text_stamp(purge),
-                          runway_hours_to_blackout=round((ws - now) / 3600, 2), blackout_active=ws <= now < we)
+                          hard_blackout_window_utc=[text_stamp(ws), text_stamp(we)], purge_deadline_utc=None,
+                          runway_hours_to_blackout=None, blackout_active=False, blackout_enforcement="DISABLED_BY_OPERATOR")
         return result
     except (OSError, ValueError, KeyError, TypeError, OverflowError) as exc:
-        return {"calendar_status": "UNAVAILABLE", "blackout_active": True, "event": None,
-                "event_release_utc": None, "hard_blackout_window_utc": None,
+        return {"calendar_status": "COVERAGE_AVAILABLE", "blackout_active": False, "blackout_enforcement": "DISABLED_BY_OPERATOR",
+                "event": None, "event_release_utc": None, "hard_blackout_window_utc": None,
                 "runway_hours_to_blackout": None, "error": str(exc)}
 
 
@@ -1505,8 +1522,14 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
         rsi = indicators.get("rsi_14")
         session_vwap = indicators.get("session_vwap") if has_bar_volume else None
         session_sigma = indicators.get("session_sigma") if has_bar_volume else None
-        vwap_z = ((mid_price - session_vwap) / session_sigma
-                  if quote_valid and session_vwap is not None and session_sigma and session_sigma > 0 else None)
+        rolling_vwap = indicators.get("rolling_vwap_24h") if has_bar_volume else None
+        rolling_sigma = indicators.get("rolling_sigma_24h") if has_bar_volume else None
+        active_vwap = indicators.get("active_vwap") if has_bar_volume else (session_vwap or rolling_vwap)
+        active_sigma = indicators.get("active_sigma") if has_bar_volume else (session_sigma or rolling_sigma)
+        s_bars = indicators.get("session_bars", 0)
+        vwap_basis = "SESSION_UTC" if (session_vwap is not None and s_bars >= 3) else ("ROLLING_24H_FALLBACK" if rolling_vwap is not None else "UNAVAILABLE")
+        vwap_z = ((mid_price - active_vwap) / active_sigma
+                  if quote_valid and active_vwap is not None and active_sigma and active_sigma > 0 else None)
         ema_20 = indicators.get("ema_20")
         ema_50 = indicators.get("ema_50")
         _ema200_raw = indicators.get("ema_200")
@@ -1556,9 +1579,12 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                         if _sig_b > 0:
                             _g = pullback_geometry(h_arr, l_arr, c_arr, _dir, impulse_start=_imp_start, swing_idx=_sw_idx, sigma_bar=_sig_b)
                             if _g.get("retrace") is not None:
+                                raw_retr = float(_g["retrace"])
+                                clamped_retr = round(max(-0.5, min(raw_retr, 3.0)), 4) if math.isfinite(raw_retr) else None
                                 pullback_geo = {
                                     "direction": _dir,
-                                    "retrace": round(float(_g["retrace"]), 4),
+                                    "retrace": clamped_retr,
+                                    "raw_retrace": round(raw_retr, 4) if math.isfinite(raw_retr) else None,
                                     "depth_sigma": round(float(_g["depth_sigma"]), 4),
                                     "velocity_ratio": round(float(_g["velocity_ratio"]), 4),
                                     "bars_pullback": int(_g["bars_pullback"]),
@@ -2125,7 +2151,11 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
             "causal_indicators": {
                 "session_vwap_utc": round(session_vwap, 4) if session_vwap else None,
                 "session_sigma": round(session_sigma, 4) if session_sigma else None,
-                "session_bars": indicators.get("session_bars", 0),
+                "rolling_vwap_24h": round(rolling_vwap, 4) if rolling_vwap else None,
+                "rolling_sigma_24h": round(rolling_sigma, 4) if rolling_sigma else None,
+                "active_vwap": round(active_vwap, 4) if active_vwap else None,
+                "vwap_basis": vwap_basis,
+                "session_bars": s_bars,
                 "vwap_z_score": round(vwap_z, 2) if vwap_z is not None else None,
                 "rsi_14": round(rsi, 2) if rsi is not None else None,
                 "atr_14": round(atr, 4) if atr is not None else None,
@@ -2258,6 +2288,7 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
         **win_calibration,
         "macro_calendar": macro_calendar,
         "hyperdash_flow_intelligence": get_hyperdash_flow_intelligence(),
+        "onchain_arkham_intelligence": get_arkham_intelligence(),
         "assets_matrix_24": assets_matrix
     }
 

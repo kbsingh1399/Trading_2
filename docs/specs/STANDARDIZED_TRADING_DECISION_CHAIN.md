@@ -166,11 +166,23 @@ Every candidate setup must achieve simultaneous confluence across the multi-pill
 3. **Multi-Horizon CVD Directional Taker Flow**:
    - Inspect 1m, 15m, Session, and Weekly cumulative volume delta.
    - Strong alignment: Massive negative CVD (-10M to -100M+ USD) confirms short dominance; massive positive CVD confirms buyer aggression.
-4. **Arkham Intelligence On-Chain Institutional Forensics**:
-   - Monitor live institutional wallet flows:
-     * **Net Inflow to Exchanges**: Institutional sell pressure / distribution $\to$ Bearish confirmation.
-     * **Net Outflow from Exchanges**: Institutional accumulation / cold storage transfer $\to$ Bullish confirmation.
-     * **Whale Transfers**: Large stablecoin mints/inflows or whale deposits flag impending volatility spikes.
+4. **Arkham Intelligence On-Chain Institutional Forensics (`onchain_arkham_intelligence`)**:
+   - Telemetry directly embeds the live Arkham on-chain feed harvested via Chrome CDP into `docs/telemetry/live_snapshot_latest.json`, granting all downstream agents (Arena, Copilot Studio, Ox Alpha) full on-chain visibility via Git without requiring browser access.
+   - **Data Schema & Core Fields**:
+     * `market_flow_sentiment`: Global macro flow tag (`NET_ACCUMULATION (BULLISH_FLOW)`, `NET_DISTRIBUTION (BEARISH_FLOW)`, or `NEUTRAL_BALANCED_FLOW`).
+     * `aggregate_metrics`:
+       - `total_transfers_monitored`: Sample transfer volume.
+       - `exchange_inflow_events` & `total_inflow_volume_usd`: Institutional deposits to CEXs (Binance, OKX, Bybit, Coinbase, Kraken, etc.). Direct proxy for impending sell pressure / dumping.
+       - `exchange_outflow_events` & `total_outflow_volume_usd`: Institutional withdrawals from CEXs to cold storage / self-custody. Direct proxy for spot accumulation.
+       - `net_flow_usd`: Calculated as `total_outflow_volume_usd - total_inflow_volume_usd`. Positive = Net Accumulation; Negative = Net Distribution.
+       - `market_maker_events`: Flow to/from top liquidity providers (Wintermute, Jump, GSR, Cumberland, FalconX, DWF Labs).
+     * `asset_breakdown`: Per-asset flow mapping for `BTC`, `ETH`, `SOL`, `USDT`, and `USDC` (`inflow_usd`, `outflow_usd`, `tx_count`, and `sentiment`). Also mapped into `assets_matrix_24[symbol].arkham_onchain`.
+     * `trending_institutional_entities`: Live balances, 24h change, largest asset, and active wallet counts for tracked institutions (e.g. MicroStrategy, Kraken, MEXC, Drift Protocol, Vitalik Buterin, Purpose Bitcoin ETF).
+     * `whale_alerts`: Real-time transaction alerts for individual on-chain transfers $\ge 50,000\text{ USD}$ with counterparty deanonymization (`from_entity`, `to_entity`, `token`, `usd_value`, `tx_hash`).
+   - **Decision Rules for Arkham On-Chain Flow**:
+     * *Long Confirmation*: `market_flow_sentiment == NET_ACCUMULATION` AND `asset_breakdown[asset].outflow_usd > inflow_usd`. Confirms smart money spot absorption.
+     * *Short Confirmation*: `market_flow_sentiment == NET_DISTRIBUTION` AND `asset_breakdown[asset].inflow_usd > outflow_usd`. Confirms institutional exchange deposits / inventory dumping.
+     * *Stablecoin Mint / Whale Inflow Alert*: Significant USDT/USDC deposits from Treasury/Whales to CEXs flag imminent liquidity surges. Do not stage limit orders against the incoming flow.
 
 ---
 
