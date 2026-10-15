@@ -46,13 +46,13 @@ trigger: always_on
   * Models must never disqualify candidate trades based on macro runway or blackout windows.
 - **THE 8-STEP AUTONOMOUS WAKE-UP CHECKLIST (MANDATORY EXECUTION SEQUENCE ON EVERY WAKE-UP)**:
   1. *Step 1 — System Health & RAM Optimization*: Run `powershell -ExecutionPolicy Bypass -File .agents/scripts/free_ram.ps1` to clear RAM, prune zombie processes, and optimize CPU latency.
-  2. *Step 2 — Tri-Council Output Harvesting*: Run `Terminal/harvest_tri_council.py` to extract outputs from all 3 tabs (Arena Astra, Arena Fable, Gemini Argon).
-  3. *Step 3 — MT5 Account & Capital Floor Defense Audit*: Query `mt5.account_info()` to verify Balance, Equity, and Free Margin. Confirm live equity cushion against the 4,775.00 USD hard floor and 4,795.00 USD operating buffer. Run stressed post-loss simulations.
-  4. *Step 4 — Active Positions Management & Ratchet Tracking*: Audit running positions on MT5. Check progress against frozen initial R0 thresholds: Phase 0 Risk Cut (-0.25R0 lock) at +1.25R0, Phase 1 Profit Lock (+0.80R0 lock) at +1.65R0, Phase 2 Continuous Trailing Ratchet at >= +2.00R0. Audit structural liquidation/stop bunkers.
-  5. *Step 5 — Pending Orders Audit*: Check all pending limit orders on MT5 (`mt5.orders_get()`). Validate distance <= 2.0 ATR, supporting whale walls intact, and determine if orders should wait, modify, or cancel.
-  6. *Step 6 — New Trade Opportunity Screening & Autonomous Punch*: Cross-verify unanimous Model 1 (|Z| >= 2.0 SD Mean Reversion) or Model 2 (Trend Pullback) setups across all 24 assets in `live_snapshot_latest.json`. If a setup satisfies confluence, resting whale backing, and <15% spread friction, punch the passive limit order into MT5 immediately without hesitation and without asking.
-  7. *Step 7 — Dialectic Cross-Pollination Re-Prompt*: Inject next cycle's tailored prompts with peer findings (Fable + Argon points to Astra; Astra + Argon points to Fable; Astra + Fable points to Argon) into all 3 tabs via `Terminal/dispatch_tri_council.py`.
-  8. *Step 8 — Turn-Ending Session Record & Silent Sleep*: Append the complete turn record to `.agents/memory/session_chat_history.md` in both repositories, arm the next wake-up sentry, and enter silent standby.
+  2. *Step 2 — MT5 Account & Capital Floor Defense Audit*: Query `mt5.account_info()` to verify Balance, Equity, and Free Margin. Confirm live equity cushion against the 4,775.00 USD hard floor and 4,795.00 USD operating buffer. Audit open positions (`positions_get()`) and pending orders (`orders_get()`).
+  3. *Step 3 — Mandatory Dynamic Council Prompt Dispatch to Arena.ai*: Run `python Terminal/dispatch_comprehensive_wake_up_prompt.py --arena-only` to dynamically construct and inject the comprehensive prompt into Arena.ai Tab 1 (`1DDA41D92DB7E67C7C4BB36C962835C4`) reflecting exact live positions, orders, and telemetry.
+  4. *Step 4 — Council Output Harvesting*: Wait and harvest Arena.ai's completed output into `docs/trade_plans/ARENA_LATEST_RAW.md` via `Terminal/arena_completion_daemon.py` or CDP websocket.
+  5. *Step 5 — Tri-Council Forensic Analysis & Cross-Verification*: Dynamically study Arena.ai's output, cross-verifying its reasoning, levels, bunkers, and recommendations against live MT5 quotes and `docs/telemetry/live_snapshot_latest.json`.
+  6. *Step 6 — Autonomous Execution & Ratchet Actions on MT5*: Autonomously execute trailing ratchet adjustments, order modifications, or punch ratified trade opportunities into MetaTrader 5 without hesitation and without asking.
+  7. *Step 7 — Dual-Repo Git & Telemetry Parity Sync*: Synchronize commits across `main` and `arena/7a89a384-trading-2` via `autonomous_telemetry_git_daemon.py`.
+  8. *Step 8 — Turn-Ending Session Record & Sentry Arming*: Append the complete turn record to `.agents/memory/session_chat_history.md` in both repositories, arm the 20-minute sentry timer (`schedule`), and enter silent standby.
 - **ARENA ACTIVE BRANCHES & DUAL-BRANCH TELEMETRY SYNC (STRICT OPERATOR DIRECTIVE)**:
   * Current active Arena.ai branch is `arena/7a89a384-trading-2` (alongside Astra `arena/d6de1eb4-trading-2`, Fable `arena/af999588-trading-2`, and `arena/5c05910e-trading-2`). All branches are created on origin and continuously updated by `autonomous_telemetry_git_daemon.py` every 60s alongside `main`.
 - **ARENA AUTO-RECOVERY DAEMON (ZERO-TOKEN RECOVERY MANDATE)**:
@@ -96,21 +96,19 @@ trigger: always_on
       * **Position Capacity Policy**:
         - Up to 4 concurrent tickets across orthogonal asset clusters provided total joint worst-case stopout risk unconditionally defends the 4,775.00 USD hard floor and 4,795.00 USD operating buffer (>= 20.00 USD cushion at all times).
     - Connects directly via native IPC to MetaTrader 5 Account 5064568 (Blueberry Markets).
-    - **Active Positions & Pending Orders (Live State — 0 Open Positions | 3 Staged Pending Orders)**:
-      * Current Status: **0 Open Positions | 3 Pending Orders | Balance: 4,859.55 USD | Equity: 4,859.55 USD | Margin Free: 4,859.55 USD**.
-      * Active Positions (0):
-        - None currently open. Full risk capacity available.
-      * Staged Pending Orders (3):
-        - **Ticket #18954801 (`BTCUSD.pi` SELL LIMIT)**: 0.04 lots @ 81,280.00 USD | SL: 81,560.00 USD (-11.20 USD risk) | TP: 80,440.00 USD (+33.60 USD reward, 3.00R) | Current Price: ~80,950.00 USD | Defended by 25.38M USD Ask whale wall (81,959.00 USD) & 13.28M wall (81,438.00 USD) | Spread: 1.85 bps.
-        - **Ticket #18954803 (`XAUUSD.pi` BUY LIMIT)**: 0.01 lots @ 4,140.00 USD | SL: 4,128.50 USD (-11.50 USD risk) | TP: 4,168.00 USD (+28.00 USD reward, 2.43R) | Current Price: ~4,150.80 USD | Defended by 1.05M USD Bid whale wall (4,120.60 USD) & sits below 4,130-4,140 cascade band | Spread: 0.17 bps.
-        - **Ticket #18956325 (`ETHUSD.pi` SELL LIMIT)**: 0.61 lots @ 2,377.00 USD | SL: 2,395.00 USD (-10.98 USD risk) | TP: 2,340.00 USD (+22.57 USD reward, 2.06R) | Current Price: ~2,364.50 USD | Defended by 14.69M USD Ask whale wall (2,392.70 USD, 611s persist) & 7.53M wall (2,377.50 USD) | Spread: 12.68 bps.
-      * G-1 Hard Floor Defense: Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Floor Cushion: **+84.55 USD live equity cushion (+64.55 USD above operating buffer)**.
+    - **Active Positions & Pending Orders (Live State — 2 Open Positions | 0 Pending Orders)**:
+      * Current Status: **2 Open Positions | 0 Pending Orders | Balance: 4,837.48 USD | Equity: ~4,860.00 USD | Free Margin: 3,671.58 USD**.
+      * Active Positions (2):
+        - **Ticket #18969343 (`SP500.p` SELL 0.10 lots @ 7,738.50 USD)**: Current Price: ~7,725.00 USD (+13.50 USD floating profit, +0.73R0 progress) | SL: 7,757.00 USD | TP: 7,634.00 USD (+104.50 USD target, 5.64R) | Defended by 6.28M USD Ask whale wall (7,741.00 USD) & 6.29M wall (7,758.00 USD, 3155s persist).
+        - **Ticket #18970131 (`XAUUSD.pi` BUY 0.01 lots @ 4,145.00 USD)**: Current Price: ~4,155.00 USD (+10.00 USD floating profit, +1.00R0 progress) | SL: 4,151.40 USD (Ratcheted in profit by Phase 0 Risk Cut!) | TP: 4,167.50 USD (+22.50 USD target, 3.25R) | Defended by 1.23M USD Bid whale wall (4,134.80 USD).
+      * Staged Pending Orders (0): None currently pending.
+      * G-1 Hard Floor Defense: Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Floor Cushion: **+85.00 USD live equity cushion (+65.00 USD above operating buffer)**.
       * Stressed Post-Loss Simulation:
-        - Total Staged Risk: **33.68 USD nominal / joint worst-case** across all 3 resting tickets.
-        - Stressed Worst-Case Equity: **4,825.87 USD** (unconditionally defends 4,775.00 USD hard floor by +50.87 USD!).
-        - Safety Cushion Above 4,775.00 USD Hard Floor: **+50.87 USD**.
-        - Safety Cushion Above 4,795.00 USD Operating Buffer: **+30.87 USD**.
-        - Capacity Slots Used: **3 / 4** (1 slot available in reserve).
+        - Total Contingent Open Risk: 0.00 USD nominal (Gold SL at 4,151.40 locks in +6.40 USD minimum profit; SP500 worst-case risk 18.50 USD). Joint worst-case stressed risk: ~23.12 USD.
+        - Stressed Worst-Case Equity: **4,836.88 USD** (unconditionally defends 4,775.00 USD hard floor by +61.88 USD!).
+        - Safety Cushion Above 4,775.00 USD Hard Floor: **+61.88 USD**.
+        - Safety Cushion Above 4,795.00 USD Operating Buffer: **+41.88 USD**.
+        - Capacity Slots Used: **2 / 4** (2 slots available in reserve).
       * Sentry & Cron State:
         - 20-minute cron job permanently **STOPPED** per operator command.
         - Operational loop governed directly by Antigravity under active `/goal`.
