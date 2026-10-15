@@ -49,6 +49,14 @@ flowchart TD
    - Simulates adversarial multi-agent debate (Orderflow Specialist vs Macro Risk Officer vs Forensic Position Auditor). Tests edge cases: *What if the whale pulls? What if the market blows through the cascade?*
 8. **`/verify` (Ex-Ante Pre-Execution Gate & Boundary Verification)**:
    - Mathematical proof before dispatch. Verifies cash risk calculations against `mt5.order_calc_profit`, checks hard floor cushion (>= 4,775 USD), verifies passive limit posture, and validates SL/TP placement.
+9. **`/risk-engine` (Stressed Multi-Ticket Floor Defense Simulator)**:
+   - Computes worst-case stressed equity across all open and staged tickets: $\text{Stressed Equity} = \text{Equity} - \sum (\text{Risk}_i \times 1.25) \ge 4,775.00\text{ USD}$.
+10. **`/execution-sim` (Microstructure Execution & Friction Compensation)**:
+    - Models half-spread offset ($\text{Entry} = \text{Shelf} - \text{half\_spread}$ for longs, $\text{Shelf} + \text{half\_spread}$ for shorts), verifies `ORDER_FILLING_IOC` with automatic failover to `RETURN` and `FOK`.
+11. **`/onchain-forensics` (Arkham Institutional Deanonymization)**:
+    - Parses live `onchain_arkham_intelligence`, calculates net flow velocity ($\text{Outflow} - \text{Inflow}$), flags institutional CEX deposits, and attributes wallet flows to specific assets.
+12. **`/market-microstructure` (Orderbook Replenishment & Spoof Detection)**:
+    - Analyzes L2 replenishment velocity $d(\text{depth})/dt$, calculates book imbalance ratios, and filters out phantom/ephemeral orders using presence fraction ($\ge 0.85$) and minimum persistence ($\ge 180\text{s}$).
 
 ---
 
@@ -159,10 +167,15 @@ Every candidate setup must achieve simultaneous confluence across the multi-pill
      $$\text{Imbalance} = \frac{\text{Bid Depth} - \text{Ask Depth}}{\text{Bid Depth} + \text{Ask Depth}}$$
    - For Longs: Bid Depth > Ask Depth (Imbalance $> +0.25$).
    - For Shorts: Ask Depth > Bid Depth (Imbalance $< -0.25$).
-2. **L3 Attributed Whale Wall Backing**:
+2. **L3 Attributed Whale Wall Backing & Anti-Spoof Persistence Gate**:
    - Order must be shielded by genuine on-chain/L3 whale orders (`0x...`).
-   - **Persistence Requirement**: Whale wall must have verified persistence $\ge 180\text{ seconds}$ (Class `GENUINE`, Gate G7 eligible).
-   - Minimum Notional: $\ge 5,000,000\text{ USD}$ for BTC/ETH; $\ge 1,000,000\text{ USD}$ for large altcoins/TradFi.
+   - **Strict Persistence Contract (Non-Bypassable)**:
+     * `persistence_status == "SAMPLED_RECURRENCE_VERIFIED"`
+     * `persist_s >= 180.0\text{ seconds}`
+     * `presence_frac >= 0.85`
+     * `gate_g7_eligible == True`
+     * **Reject All Unverified Walls**: Any wall showing `persist_s == 0.0` or `SINGLE_SAMPLE` is classified as potential spoof liquidity and rejected fail-closed.
+   - Minimum Notional: $\ge 5,000,000\text{ USD}$ for BTC/ETH; $\ge 1,000,000\text{ USD}$ for TradFi (Gold, Indices, Oil); $\ge 500,000\text{ USD}$ for FX and Altcoins.
 3. **Multi-Horizon CVD Directional Taker Flow**:
    - Inspect 1m, 15m, Session, and Weekly cumulative volume delta.
    - Strong alignment: Massive negative CVD (-10M to -100M+ USD) confirms short dominance; massive positive CVD confirms buyer aggression.
@@ -187,38 +200,50 @@ Every candidate setup must achieve simultaneous confluence across the multi-pill
 ---
 
 ### STEP 7: Liquidation & Stop Magnet Dynamics (Absorption vs. Blow-Through)
-*Active Skills: `@[brainstorm]`, `@[data-analyst]`*
+*Active Skills: `@[brainstorm]`, `@[data-analyst]`, `@[market-microstructure]`*
 
 Reconstructed liquidation bands and dense structural stop clusters serve two critical functions:
 
 ```
-        DEFENSIVE USE                             OFFENSIVE USE
-┌───────────────────────────┐             ┌───────────────────────────┐
-│ Place SL safely outside   │             │ Use opposing liquidation  │
-│ [min_price, max_price]    │             │ band / stop cluster as    │
-│ with >= 0.35-0.50 ATR     │             │ high-probability TARGET   │
-│ buffer. Bunker protects   │             │ MAGNET. Ride the cascade! │
-│ the position from wicks.  │             │ Front-run by 5-10 bps.    │
-└───────────────────────────┘             └───────────────────────────┘
+        DEFENSIVE USE (BUNKER)                    OFFENSIVE USE (MAGNET)
+┌───────────────────────────────────────┐ ┌───────────────────────────────────────┐
+│ Place SL strictly outside outer       │ │ Use opposing liquidation band /       │
+│ boundary [min_price, max_price] with  │ │ stop cluster as high-probability      │
+│ >= 0.50 ATR + half_spread buffer.     │ │ TARGET MAGNET. Ride cascade momentum! │
+│ Defends position against wick flushes.│ │ Front-run target by 5-10 bps.         │
+└───────────────────────────────────────┘ └───────────────────────────────────────┘
 ```
 
-#### Absorption vs. Trend Blow-Through Forensics:
-When price approaches a major liquidation band or stop cluster, **never blindly assume an automatic mean-reversion reversal**. The market often violently consumes all resting liquidity and continues running. The desk differentiates between absorption and blow-through using 4 forensic criteria:
+#### 1. Significant Notional Filter (Eliminating Ladder Noise):
+To resolve the "continuous ladder impossibility" where every 10 points contains tiny orders:
+- **Significant Clusters**: Only clusters meeting institutional notional thresholds count as valid defensive bunkers or offensive TP magnets:
+  * **BTC & ETH**: $\ge 5,000,000\text{ USD}$ (Intraday micro-clusters $\ge 1,000,000\text{ USD}$)
+  * **TradFi CFDs (Gold, SP500, NAS100, USWTI)**: $\ge 1,000,000\text{ USD}$
+  * **Forex & Altcoins**: $\ge 500,000\text{ USD}$
+- **Noise Filter**: All clusters $< 50,000\text{ USD}$ are classified as retail noise and ignored for bunker clearance.
 
-| Forensic Factor | Reversal / Absorption Signal | Trend Blow-Through Signal |
+#### 2. Canonical Mathematical Bunker Formula (Non-Ambiguous):
+Stop Losses must NEVER be measured from `mid_price`. They are strictly calculated from the outer boundary:
+$$\text{SL}_{\text{short}} = \max(\text{max\_price}_{\text{nearest\_buy\_stops}}, \text{max\_price}_{\text{short\_squeeze\_band}}, \text{price}_{\text{defending\_ask\_wall}}) + 0.50 \times \text{ATR} + \text{half\_spread}$$
+$$\text{SL}_{\text{long}} = \min(\text{min\_price}_{\text{nearest\_sell\_stops}}, \text{min\_price}_{\text{long\_cascade\_band}}, \text{price}_{\text{defending\_bid\_wall}}) - 0.50 \times \text{ATR} - \text{half\_spread}$$
+
+#### 3. Quantified Absorption vs. Trend Blow-Through Forensics:
+When price approaches a significant cascade band, differentiate between absorption and continuation using 4 empirical metrics:
+
+| Metric | Absorption / Reversal Protocol | Trend Blow-Through Protocol |
 |:---|:---|:---|
-| **1. CVD Delta Velocity** | CVD decelerates, diverges, or reverses sharply as the band is tapped | CVD accelerates exponentially through the level (aggressive market orders keep hammering) |
-| **2. L2 Book Replenishment** | Opposing limit orders replenish instantaneously after execution (whale absorption) | Orderbook is hollowed out; depth vanishes and spreads widen |
-| **3. Arkham On-Chain Net Flow** | Large wallet transfers counter-trade the move (smart money taking the other side) | Institutional wallets continue pouring liquidity in the direction of the cascade |
-| **4. Structural Location** | Band sits at an extreme multi-day auction boundary (+2.5 SD, major HTF support) | Band sits in the middle of a fresh HTF breakout with open space beyond |
+| **1. CVD Acceleration** | CVD second derivative $d^2(\text{CVD})/dt^2 < 0$ and $15\text{m}$ delta decelerating $> 30\%$ | CVD accelerates exponentially through the band ($d^2(\text{CVD})/dt^2 > 0$) |
+| **2. L2 Book Replenishment** | Opposing depth replenishes $\ge 80\%$ within 2 seconds of the sweep | Orderbook remains hollowed out ($< 30\%$ replenishment); depth vanishes |
+| **3. Arkham Net Flow** | Net on-chain flow shows counter-trend divergence $> 500,000\text{ USD}$ in trailing 1h | Institutional wallet flow continues aggressively in direction of cascade |
+| **4. Structural Auction Location** | Band sits at statistical extreme ($|Z| \ge 2.5\text{ SD}$, HTF POC/VAH/VAL shelf) | Band sits in the middle of a fresh HTF breakout channel with open space |
 
-- **If Absorption Confirmed**: Eligible for counter-trend fade (Model 1) with tight bunker stop.
-- **If Blow-Through Confirmed**: Strictly trade in the direction of the breakout (Model 2), riding momentum into the *next* distal cascade band.
+- **If Absorption Confirmed**: Trade Model 1 counter-trend mean reversion with tight bunker SL.
+- **If Blow-Through Confirmed**: Trade Model 2 pro-trend continuation, riding momentum into the *next* distal cascade band.
 
 ---
 
 ### STEP 8: Mathematical Risk Budget & Capital Floor Gate
-*Active Skills: `@[quant-analyst]`, `@[clean-code]`*
+*Active Skills: `@[quant-analyst]`, `@[risk-engine]`, `@[clean-code]`*
 
 Every staged order must undergo strict broker-specific contract sizing and capital defense auditing:
 
@@ -229,12 +254,13 @@ Every staged order must undergo strict broker-specific contract sizing and capit
 2. **Tiered Adaptive Risk Envelope**:
    - **Tier 1 (Crypto, Gold, FX)**: Base Risk **10.00 USD to 14.50 USD** (0.20% to 0.30% of 4,859 USD equity).
    - **Tier 2 (High-ATR TradFi Indices - SP500, NAS100)**: Authorized up to **16.00 USD to 22.00 USD** when a pristine 3.0R+ setup requires wider ATR stop buffering.
-3. **Stressed Post-Loss Floor Defense (Unconditional Invariant)**:
-   - Sum total staged risk across all pending orders and active positions:
+3. **Stressed Multi-Ticket Floor Defense (Unconditional Invariant)**:
+   - Stressed post-loss simulation across all active positions and staged pending orders:
      $$\text{Total Staged Risk} = \sum_{i} \text{Risk}_i$$
-     $$\text{Stressed Equity} = \text{Current Equity} - \text{Total Staged Risk} \ge 4,775.00\text{ USD}$$
+     $$\text{Stressed Equity} = \text{Current Equity} - \sum_{i} (\text{Risk}_i \times 1.25) \ge 4,775.00\text{ USD}$$
    - Under no circumstances may an order be staged if Stressed Equity violates the 4,775.00 USD hard floor.
-4. **Max Concurrent Capacity**: Strictly limited to a maximum of **2 active running positions** across the entire desk.
+4. **Unified Dynamic Position Capacity**:
+   - Up to **4 concurrent positions** across orthogonal asset clusters, provided joint stressed risk maintains a minimum $+20.00\text{ USD}$ operating buffer above the 4,775.00 USD hard floor.
 
 ---
 
