@@ -20733,3 +20733,1674 @@ Increase frequency by continuously ranking qualified cards on fill-conditional e
 Companion evidence retains all24source-block inventories, structural/depth/profile/spec/funding/CVD data, HTF diagnostics, coverage, classifications, interval containment, risk calculations, source manifest and rubric arithmetic. Computational PASS means calculations match the pinned snapshot—not that all data defects are fixed or a trade is authorized.
 
 Only this report, its evidence ledger and an append-only desk entry are published. Prior entries and local-only Cycle93 files are preserved. No live order, ratchet, cancellation, production patch, independent agent dispatch, backtest result or external AI-service repair is claimed.
+
+
+---
+
+# Cycle 102 — telemetry, playbook and adversarial council report
+
+## 1. Ruling, source citation and scope
+
+**0 CANDIDATES / 7 WATCHLIST / 17 NO SETUP. STAND ASIDE: no immediate passive order is certified.** Research watchlist: BTC, ETH, SP500, NAS100, GOLD, USWTI and USDJPY. A watchlist is not an order queue. Neither engine currently triggers a fully supported setup.
+
+### Exact-generation provenance
+
+- Requested generation **`8d668c7da4b24231853ca804213fad68`**, **2026-10-14 16:34:28 UTC**, recovered and verified at [immutable telemetry commit `30b7b0dfc5dcda9e4ed3ccce62956fe19c507ff3`](https://github.com/kbsingh1399/Trading_2/blob/30b7b0dfc5dcda9e4ed3ccce62956fe19c507ff3/docs/telemetry/live_snapshot_latest.json).
+- Exact source: 4,427,427 bytes, 151,904 lines; SHA-256 **`b1a0068d61babe0a9e799efbf9263e2e4b09a0af2a541a81fa57d42477d034ae`**.
+- The checkout's `live_snapshot_latest.json` is **newer**, generation `d87c3297bf83460b90fe2594a3cabf1a`, **17:10:44 UTC**, at `c1f8ffed2766b34c88fcd6ef638e662b9881bbf4`. It was not overwritten or silently substituted. Cycle 102 is a historical snapshot analysis, not a certification of current executable quotes.
+- Exact snapshot: account **5064568**, USD account, balance/equity/free margin **4,859.55 USD**, used margin **0**, **0 active positions**, **0 pending orders**. Broker server is null; the legal broker identity comes from the operator, not an independently verified server receipt.
+- Calendar reports **Fed Beige Book at 2026-10-14 18:00:00 UTC**, `blackout_active=false`, `blackout_enforcement=DISABLED_BY_OPERATOR`; runway and purge deadline are null. This is a telemetry citation, not independent calendar verification. **No event halt, blackout rejection, purge or news-runway condition is applied.**
+- Publication uses the session-fixed branch **`arena/66c9be42-trading-2`**, not the requested different branch. No broker execution or runtime policy change was performed.
+
+### Ingestion and limitations
+
+The complete JSON was parsed and **all 136,143 nodes** recursively traversed; every block across all 24 assets was inventoried. All OHLCV rows were checked for monotonic timestamps, valid OHLC ordering and explicit closes beyond cutoff; no such violations were found. Crypto 5/15/30-minute windows were checked for exact minute coverage rather than blindly taking the last N records. The evidence ledger retains source blocks, array hashes, wall diagnostics, candle diagnostics and reproducible calculations.
+
+The playbook, active context, skill and rubric were reviewed; the complete multi-megabyte desk and session archives were machine-ingested/indexed, with relevant loss, policy, inventory and latest-session passages examined. **This is not a claim of manually interpreting every sentence of those archives or all 151,904 JSON lines.** Full machine traversal does not turn missing/ambiguous data into verification. Source hashes and pre-append archive manifests are in [the evidence ledger](audits/CYCLE_102_EVIDENCE.json).
+
+Repository references at the checkout commit:
+- [Playbook](https://github.com/kbsingh1399/Trading_2/blob/c1f8ffed2766b34c88fcd6ef638e662b9881bbf4/docs/specs/TRADE_DECISION_PLAYBOOK.md), especially §§3, 7.1, 7.3 and 7.4.
+- [Order desk](https://github.com/kbsingh1399/Trading_2/blob/c1f8ffed2766b34c88fcd6ef638e662b9881bbf4/docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md).
+- [Active context](https://github.com/kbsingh1399/Trading_2/blob/c1f8ffed2766b34c88fcd6ef638e662b9881bbf4/.agents/rules/ACTIVE_CONTEXT.md) and [session history](https://github.com/kbsingh1399/Trading_2/blob/c1f8ffed2766b34c88fcd6ef638e662b9881bbf4/.agents/memory/session_chat_history.md).
+- [Arena skill](https://github.com/kbsingh1399/Trading_2/blob/c1f8ffed2766b34c88fcd6ef638e662b9881bbf4/.agent/skills/arena/SKILL.md) and [rubric](https://github.com/kbsingh1399/Trading_2/blob/c1f8ffed2766b34c88fcd6ef638e662b9881bbf4/.agent/skills/arena/rubric.md).
+
+### Explicit policy reconciliation
+
+The current operator request supersedes conflicting older prose: risk **7.50–14.50 USD**, independently assessed Engine 2 at low Z, nominal spread ceilings **35 bps crypto / 5 bps TradFi**, actual cash friction **<=15%**, and **RANGE_BOUND/UNDEFINED stand-aside for both engines**. The old range-only Engine 1 description is therefore not adopted for this report. Engine 1 still requires the correct signed extreme, exhaustion and trend-compatible direction. A negative extreme is not a mean-reversion short signal.
+
+For Engine 2, retain the stronger **0.50–0.75 ATR structural clearance** requirement, not the conflicting generic 0.35-ATR minimum. Check every known relevant interval after translation, including adjacent bands; do not use the nearest midpoint. Retain the playbook's 2-ATR entry proximity constraint. Indices also have a historical 1.5-ATR total stop-distance requirement; contradictory versions should be consolidated before production changes.
+
+Whale thresholds used: crypto 5M, indices 1M primary, commodities 0.75M primary, FX 0.50M primary, with recorded duration >=180 seconds and correct-side placement between entry and stop. Crypto clustering may be evaluated at a coherent price shelf, not by summing every distant wallet. SOL does not qualify merely because its 4.909M ask almost reaches 5M. No producer authorization string, retired eligibility boolean or gate module supplies the analytical verdict. The source's `DENIED_UNVERIFIED_ORDERFLOW` is disclosed, not used to skip analysis.
+
+## 2. Material telemetry findings
+
+### Trend, flow and time integrity
+
+1. All assets have 96 completed 1H and 4H bars. Independent EMA20/50 estimates use a recursive first-close seed. They diagnose price/EMA ordering, **not a fully warmed 1H/4H EMA200**. The supplied EMA200 uses 800 **15-minute** bars. Exact HTF 20/50/200 confirmation remains incomplete.
+2. Most assets have bearish H1/H4 20/50 ordering. Exceptions matter: SP500, DJ30, GBPUSD, TRX and NEAR have **mixed H4** ordering; GER40 is range-bound with mixed H1/bullish H4; oil and USDJPY have bullish H1/H4.
+3. Session CVD is not immediate momentum. BTC session/weekly/24h CVD is **−92.516M / −74.406M / −138.001M USD**, yet its last completed 15m delta is **+3.920M USD** and all three granular trailing windows are positive. A statement that BTC is presently under universally negative fast CVD would be false.
+4. The complete crypto windows end **16:34:00 UTC**, before root time. BTC's last 5m delta slows from **+1.204M** in the preceding non-overlapping five minutes to **+28,349 USD**; ETH reverses from **+737,654** to **−264,041 USD**. That supports testing rally exhaustion, not asserting a completed shelf rejection or long absorption.
+5. TradFi flow is **signed broker ticks**, not exchange aggressor USD. SP500 −51, NAS100 −39, GOLD −81 and oil −8 are the supplied 15m values. Oil 5m is +3; USDJPY 5m/15m is −20/−24. Most windows reuse the same 1,000-tick sample; elapsed coverage is unspecified. The `session_cvd_usd` field improperly contains tick units for these assets.
+6. The global Hyperdash block is timestamped **16:34:33 UTC**, approximately **5.02 seconds after** the root snapshot. Its arrays were audited but are not strictly contemporaneously available evidence at 16:34:28. It reports 10,000 tracked alerts, 9,281 liquidations, balanced two-sided flow, no active TWAPs and no imminent alerts; empty lists do not establish absence of risk.
+7. Fear/greed 62, Coinbase premium −13.66 bps, funding histories, exchange daily/4h bars and open-interest levels are context, not shelf-touch evidence. ETF flow values are null/NOT_YET_REPORTED, not zero. Exchange funding is not MT5 CFD financing. Trap labels are not footprint-level proof.
+
+Completed granular CVD, USD:
+
+| Asset | 5m | 15m | 30m |
+|---|---:|---:|---:|
+| BTC | +28,349.23 | +2,883,479.86 | +4,414,900.74 |
+| ETH | −264,040.78 | +956,087.86 | +647,734.63 |
+| SOL | +110,847.92 | +254,357.99 | +875,649.22 |
+| BNB | +133,589.37 | +59,038.32 | −115,217.89 |
+| XRP | +153,644.13 | +497,182.77 | +1,660,871.68 |
+| ADA | +31,010.60 | +24,612.03 | +28,659.81 |
+| DOGE | −1,181,045.50 | −761,886.64 | −735,149.80 |
+| TRX | +152,187.98 | +163,178.72 | +420,712.66 |
+| DOT | +10,881.83 | −132.28 | −21,018.97 |
+| LINK | +2,107.94 | −43,453.56 | −218,678.42 |
+| BCH | +1,153.79 | +16,011.30 | +25,657.80 |
+| LTC | +4,310.45 | +23,110.56 | +92,694.89 |
+| AVAX | −18,516.18 | −78,570.98 | +253,933.79 |
+| NEAR | +381,530.43 | +309,958.81 | +45,687.75 |
+
+### Wall and cross-venue evidence
+
+There are **1,117 wallet-price observations**, of which **387 have persist_s>=180**. There are 64 L2 wall records, only **one** with that duration. These are explicitly `WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3`, `RECEIPT_ONLY`, `SAMPLED_RECEIPT_RECURRENCE`. Large walls frequently have only three samples and presence fraction 0.75; GOLD's large bid has 0.60. Count-duration qualification is not continuous order-ID persistence or a promise that liquidity will remain. This conclusion comes from raw fields, not the retired boolean/status veto.
+
+**All source-specific basis_median values are null.** Available instantaneous MT5-minus-Hyperliquid differences are estimates, not validated rolling mappings:
+
+| Asset | Spot basis estimate | Consequence |
+|---|---:|---|
+| BTC | −36.50 | Binance basis is different (−56.685); do not use it for Hyperliquid walls. |
+| ETH | +0.10 | Small current difference does not prove stable basis. |
+| SP500 | +0.925 | Wall/stop coordinates need broker translation. |
+| NAS100 | −18.05 | Material versus local resistance placement. |
+| GOLD | −2.545 | Significant versus a narrow stop buffer. |
+| USWTI | +1.4295 | Approximately 3.77 ATR; raw 93.58 bid maps near 95.0095, not 93.58 MT5. |
+| USDJPY | +0.0705 | Approximately 0.70 ATR. |
+
+DJ30/GER40 have no usable external wall/band coverage. Source-specific timestamps and basis residual distributions are needed before exact executable levels can be certified.
+
+## 3. Mandate 1 — separate engines across all 24 assets
+
+EMA shelves below are supplied **15m EMA20 / EMA50**. H1/H4 ordering is separately calculated as described above. E1 = extreme mean reversion; E2 = trend pullback. **No asset was discarded from E2 because its Z-score is small.** All E2 rows also inherit the basis/HTF-EMA200 limitations; asset-specific reasons are stated instead of repeating a blanket rejection.
+
+| Asset / MT5 symbol | Engine 1 verdict | Engine 2 verdict, shelf and evidence | Final |
+|---|---|---|---|
+| BTC / BTCUSD.pi | Z −1.84: not extreme; bearish H1/H4 also forbids a dip-buy. | Bear/bear; shelves 82,192.2421 / 82,729.4723. EMA20 is 1.49 ATR above mid. Recorded 13.633M ask at 82,277 maps near 82,240.5, 300.4s; viable research shelf, not a touched-and-held rejection. Velocity 1.064 and positive 15/30m CVD oppose immediate short certification. | WATCHLIST |
+| ETH / ETHUSD.pi | Z −1.38: not extreme; bearish long banned. | Bear/bear; 2,449.4204 / 2,473.2854. EMA20 1.21 ATR away; 6.730M ask at 2,449.5, 301.2s, maps 2,449.6. Velocity 0.204 is constructive; 5m turns negative but 15/30m stay positive. Adjacent-band stop containment and nearby reward geometry fail the tested card. | WATCHLIST |
+| SOL / SOLUSD.p | Z −1.41: not extreme; no countertrend long. | Bear/bear; 104.7494 / 105.7516. Velocity 0.1827, EMA20 0.97 ATR away; RSI 38.86 is a level, not proof of a turn. Session and fast CVD positive. Largest duration-qualified ask 4.909M is below 5M; no demonstrated qualifying local cluster/held rejection. | NO SETUP |
+| BNB / BNBUSD.p | Z −2.17 qualifies statistically, but the implied mean-reversion long violates bearish H1/H4. | Bear/bear; 733.5648 / 737.4003, EMA20 1.87 ATR away. Fast buying +133.6k, largest seasoned ask 1.122M, below crypto shield requirement. No held shelf. | NO SETUP |
+| XRP / XRPUSD.pi | Z −1.61: not extreme; BULLISH_ABSORPTION label cannot override bearish HTF. | Bear/bear; 1.3415 / 1.3537; buyers dominate all three windows, no L3 wall. Minimum-lot spread 4.00 USD already exceeds 15% of maximum risk. | NO SETUP |
+| ADA / ADAUSD.p | Z −1.08: not extreme. | Bear/bear; 0.2285 / 0.2311; proximity to EMA20 (0.24 ATR) explicitly considered. No wall, 92.09 bps, 10.50 USD minimum spread; positive fast flow. | NO SETUP |
+| DOGE / DOGUSD.p | Z −0.42: not extreme. | Bear/bear; 0.0817 / 0.0825. Mid is above EMA20, so rally location is considered rather than skipped. Negative flow supports shorts, but no >=180s wall, 255.32 bps and 21.00 USD minimum spread defeat execution. | NO SETUP |
+| TRX / TRXUSD.p | Z +1.15: not extreme; bullish-regime short fade forbidden. | Bull/mixed H4; EMA20 and POC 0.3326, EMA50 0.3319. Constructive positive flow, but zero duration-qualified L3 defense and 9.00 USD minimum spread. | NO SETUP |
+| DOT / DOTUSD.pi | Z −0.48: not extreme. | Bear/bear; 1.1206 / 1.1311; current mid lies between shelves. No seasoned wall, 186.09 bps and explicit current ban. The quoted historical 122% friction is not a newly computed result. | NO SETUP |
+| LINK / LNKUSD.p | Z −1.28: not extreme. | Bear/bear; 12.5202 / 12.6772, EMA20 0.73 ATR away. Negative 15/30m flow merits research, but no seasoned wall and 68.24 bps exceed policy; current explicit ban retained. | NO SETUP |
+| BCH / BCHUSD.p | Z −1.52: not extreme. | Bear/bear; 270.9474 / 273.7170, prior-day POC 270.88 approximately. EMA20 0.82 ATR away and low velocity 0.3837 considered; no seasoned shield and all fast windows positive. Not rejected solely by an unproven universal altcoin ban. | NO SETUP |
+| LTC / LTCUSD.pi | Z −1.26: not extreme. | Bear/bear; 59.5840 / 60.3844. No L3 observations, positive fast CVD, 50.71 bps; minimum-lot spread 3.00 USD is 20.69% of maximum risk. | NO SETUP |
+| AVAX / AVXUSD.p | Z −1.37: not extreme. | Bear/bear; 9.9249 / 10.0514. Mixed 5/15 versus 30m flow, no seasoned shield, 40.53 bps. Correct mapping: AVXUSD.p, contract 100, min/step 0.01, digits 2. | NO SETUP |
+| NEAR / NERUSD.p | Z −1.38: not extreme. | Bear/mixed H4; 4.9284 / 4.9836, EMA20 only 0.29 ATR away. Velocity 1.0567, positive fast buying, no walls, 59.09 bps and 2.90 USD minimum spread. | NO SETUP |
+| SP500 / SP500.p | Z −1.94: not extreme; current bearish label/H1 rules out the old range-fade long. | Bear/mixed H4. EMA shelves 7,759.8837 / 7,785.6746, EMA20 3.46 ATR away. Nearer asks 7,727.8 (2.012M) and 7,741.4 (6.276M), 303.6s, are examined as alternative L3 shelves. No verified held rally; shallow card fails geometry/adjacent-band clearance. | WATCHLIST |
+| NAS100 / NAS100.p | Z −2.20 meets threshold but a bearish H1/H4 dip-buy is banned. | Bear/bear; 30,254.8638 / 30,398.4420, EMA20 3.30 ATR away. Large 1.079M/1.051M asks are only 110s old; largest >=180s ask is 0.960M, below 1M primary. No shelf touch/rejection. | WATCHLIST |
+| DJ30 / DJ30.p | Z −1.84: not extreme. | Bear/mixed H4; 51,653.0342 / 51,719.4018, EMA20 1.60 ATR away. Quiet velocity 0.006 and seller ticks cannot replace absent external L2/L3, stop bands and liquidation coverage. | NO SETUP |
+| GER40 / GER40.p | Z −1.94; RANGE_BOUND prohibits E1 under current instruction, independently below 2. | RANGE_BOUND prohibits E2; shelves 25,335.6229 / 25,346.7108, prior-day POC 25,255.41 considered. Missing external defense; do not force a trend from mixed/bull HTF. | NO SETUP |
+| GOLD / XAUUSD.pi | Z −1.40: not extreme; bearish long banned. | Bear/bear; 4,100.0180 / 4,122.2151, POC 4,099.5908. EMA20 1.78 ATR away; velocity 1.2505 is not a slow confirmed pullback. Largest seasoned ask 0.621M <0.75M. Ask 4,120 (1.050M) is only 101s old; a large bid is wrong-side short defense. | WATCHLIST |
+| SILVER / XAGUSD.pi | Z −1.80: not extreme; bearish dip-buy not authorized by RSI 18.15. | Bear/bear; 56.6511 / 57.6247, EMA20 3.39 ATR away. Buyer ticks +97, zero seasoned L3, 10.42 bps >5; minimum spread 2.90 USD also fails 15% of maximum risk. | NO SETUP |
+| USWTI / USWTI.p | Z +0.90: not extreme; no bullish-trend short fade. | Bull/bull; 95.3772 / 95.1917, velocity 0.1426, RSI 54.26. Raw 93.58 bid (1.450M, 301.3s) maps near 95.0095; low-Z long is genuinely investigated. Negative 15m tick flow, unverified shelf hold, adjacent-band stop collision and no >=0.50M overhead forced magnet prevent certification. | WATCHLIST |
+| EURUSD / EURUSD.pi | Z −1.01: not extreme; bearish long banned. | Bear/bear; 1.1137 / 1.1163; nearer POC 1.1124 also assessed. Largest seasoned ask 0.200M <0.50M; +16/+22 15m/5m buyer ticks oppose immediate short. Serialized zero spread conflicts with 0.09 bps. | NO SETUP |
+| GBPUSD / GBPUSD.pi | Z −1.50: not extreme. | Bear/mixed H4; 1.3183 / 1.3218, EMA20 2.92 ATR away. No seasoned L3, buyer ticks, and zero-price-spread/0.30-bps inconsistency. | NO SETUP |
+| USDJPY / USDJPY.pi | Z +0.59: not extreme; bullish-regime short fade banned. | Bull/bull; 158.7389 / 158.5876, POC 158.4558. Price has crossed below EMA20; quiet velocity 0.1077 and RSI 50.79 do not prove a shelf hold. Largest seasoned bid 0.200M <0.50M; 1.608M wall is an ask at 160.8. Negative fast ticks and broad 158–159 stop bin prevent a protected long. | WATCHLIST |
+
+### Priority geometry falsification — calculations, NOT order cards
+
+**SP500:** Current mid 7,720.675, ATR 11.3402. EMA20 is 3.46 ATR away, so its own pullback order is outside the playbook's 2-ATR proximity constraint. The nearer primary ask 7,741.4 maps to **7,742.325**, only **1.91 ATR** away. This alternative is not skipped. But a short entered near there must clear the mapped 7,740–7,750 band: upper edge **7,750.925**. Adding 0.5 ATR and half-spread gives **7,756.9801**, which is **inside the adjacent mapped [7,750.925, 7,760.925] buy-stop interval**. It also leaves only 14.6551 points of nominal distance, below the historical index 1.5-ATR total-distance requirement (17.0103). The nearer downside 7,710–7,720 cascade maps to upper edge 7,720.925; a 5-bps front-run is 7,724.7855, just 17.5395 points from the hypothetical entry. Gross R is about **1.20**, before costs, on an already invalid stop. Reaching for 7,640–7,650 ignores nearer pools and does not repair containment. No immediate SP500 order.
+
+**ETH:** ATR 13.773; the recorded 6.730M ask maps near **2,449.60**. Governing short-squeeze [2,450, 2,460] translates to [2,450.1, 2,460.1]. A 0.5-ATR plus half-spread buffer yields **2,468.5365**, still **inside adjacent [2,460.1, 2,470.1] buy-stop band**. The larger 13.136M ask maps to 2,468.7, just beyond this illustrative stop: it cannot be credited as shielding that stop. Front-running the nearer 2,420–2,430 cascade at 2,431.315 gives only about **0.97R gross**. Even the deeper 2,400–2,410 band front-run near 2,411.305 gives about **2.02R gross**, below the ETH 2.2R net objective; intermediate liquidity still matters. The 3.10-point spread divided by 18.9365-point hypothetical risk is **16.37%**, above 15%. No ETH order; widening/downsizing cannot fix missing net geometry by itself.
+
+**USWTI:** This is a real low-Z Engine 2 search. Bullish H1/H4, EMA50 **95.1917**, and the raw **93.58 / 1.450M / 301.3s** bid map near **95.0095**, about 1.56 ATR below current mid. But the nearby raw [93.7, 93.8] sell-stop interval maps [95.1295, 95.2295]. A stop 0.5 ATR plus half-spread below its lower edge is **94.9251**, which falls inside another observed mapped sell-stop interval **[94.8295, 94.9295]**. Its visual buffer does not pass the all-band rule. No recorded overhead short-squeeze band exists, and the supplied top buy-stop bands contain no >=0.50M target. A synthetic far-away TP would not establish payable 2R. No oil order despite improved 5m ticks and valid class-sized bid.
+
+**USDJPY:** A 158–159 interval is about **9.87 ATR wide** before translation; it overlaps current price rather than being strictly below it. Treating its midpoint as precise stop geography manufactures an undersized bunker. Bid 158.53 has only 111.5s; duration-qualified bids peak at 0.200M. The 160.8 ask does not defend a long. No order.
+
+These calculations deliberately use instantaneous basis only for falsification. They are idealized coordinates, not broker-checked Entry/SL/TP instructions, and have no authorized lot size. A complete hypothetical card must be retested against all translated intervals, spread sides, margin and profit receipts; none is presented as actionable.
+
+## 4. Mandate 2 — running positions and frozen initial R0
+
+**Exact snapshot active_positions=[]; no running-position TP/SL ratchet is needed.** The newer 17:10:44 checkout also reports no open positions. No direct MT5 connection was made, so this is confirmation of recorded inventories, not a fresh terminal query.
+
+The listed historical gains total **28.44 USD gross** (0.90 + 1.92 + 9.52 + 16.10); they are not added to the already observed balance. The snapshot does not contain their full closed-deal ledger, commissions or swap receipts; no new net-profit reconciliation is claimed. Stale active-context references to ETH #18847111 do not supersede the exact empty position array.
+
+For future positions, use immutable initial entry/SL/R0 from `Data/initial_position_risk.json`, not a tightened stop as the denominator. Playbook §7.1's newer ladder is +1.25R0 -> −0.25R0 risk, +1.65R0 -> +0.80R0 lock, >=2R0 -> monotonic MFE−0.75R0 trail or structural alternative. None is activated here. Stops/profit locks are not guaranteed realized fills.
+
+## 5. Mandate 3 — unfilled limits
+
+**Exact snapshot pending_orders=[]; no tickets to WAIT, MODIFY or DELETE.** The newer checkout also reports an empty queue. No watchlist is converted to a pending order, and no historical card is resurrected. Nothing was cancelled or modified.
+
+## 6. Portfolio capacity and actionable execution summary
+
+Use `min(balance,equity) − Σ(1.25 × nominal_risk + 2.00)` across all independently fillable tickets.
+
+| Scenario | Contingent stress USD | Modeled post-stop equity USD | Buffer headroom USD |
+|---|---:|---:|---:|
+| Current flat book | 0 | 4,859.55 | 64.55 |
+| Three hypothetical tickets at 14.50 risk | 60.375 | 4,799.175 | 4.175 |
+| Four hypothetical tickets at 14.50 risk | 80.500 | 4,779.050 | −15.950 |
+
+**20.125 USD**, not prematurely rounded 20.12, is the exact maximum-risk ticket stress. Four physical slots are available, but only three maximum-risk tickets satisfy the operating buffer. The prompt's 4,859.55 worst-case equity is correct for the flat book, not for a hypothetical three-ticket filled book. Four equal risks would mathematically need to be <=11.31 USD before margin/correlation constraints; **the operator's explicit maximum of three new tickets is retained**, not silently expanded.
+
+No new exposure is recommended. Modeled equity remains **4,859.55 USD**, **84.55** above the hard floor and **64.55** above the operating buffer. The stress formula is a planning envelope, **not unconditional immunity to gaps, stop slippage, dislocations or broker failure**. No strategy can certify that stronger guarantee from these fields.
+
+| Action | Symbol | Side | Lots | Entry | SL Bunker | TP Magnet | Risk USD | R:R | Engine | Archetype Defense | Rationale |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| STAND ASIDE | — | — | — | — | — | — | — | — | — | — | No verified held shelf with correct-side durable defense, translated all-band clearance and payable net reward; no macro veto used. |
+
+## 7. Five-persona dialectic and arena-rubric adaptation
+
+The canonical skill and rubric are installed. This environment has **no independent-agent dispatch facility**. Therefore the following is an explicitly **single-agent, five-perspective adaptation**, not a claimed 100-agent tournament, independent judge verdict or peer-model consensus. Full canonical tournament execution remains unperformed. The adaptation uses competing hypotheses, falsification, revision and the exact rubric weights: correctness 30, completeness 25, specificity 15, robustness 20, clarity 10. Scores below are subjective task-quality assessments, not calibrated win probabilities.
+
+### Independently framed perspectives
+
+1. **Orderflow/microstructure advocate — ETH short:** The 6.730M ask, 301.2s recurrence, negative 5m delta and quiet velocity are more promising than oversold longs. **Challenge:** 15/30m delta remains positive, presence is only 0.75 with three samples, the wallet quotes both sides, and a shelf rejection is not observed. **Revision:** retain ETH for research only; do not call receipt recurrence full L3 or use a large bid as short defense.
+2. **Structural specialist — SP500 pullback short:** Bearish 15m/H1 and multiple asks justify evaluating a nearer L3 shelf instead of discarding the asset because EMA20 is distant. **Challenge:** H4 ordering is mixed; 7,742.325 is not a demonstrated touch/hold, and nearby reward is too small. **Revision:** monitor a verified rejection rather than activating an old 7,764–7,771 buy thesis.
+3. **Liquidation forensic — stop-first reconstruction:** Start from unioned, deduplicated bands, then place the stop outside the outer edge and check the next band. **Challenge to ETH/SP/oil:** their apparently buffered stops land in adjacent intervals. **Revision:** reject these geometries, not the entire Engine 2 concept. Raw triggers and adaptive bins are needed to determine whether enormous continuous display belts reflect real dense sweeps.
+4. **Macro/portfolio governor — oil long:** Low-Z bullish continuation, quiet velocity and a 1.450M bid are legitimate positives; news time is not a veto. **Challenge:** no payable >=0.50M overhead magnet, adverse 15m tick flow, unstable basis evidence and invalid stop. **Revision:** keep cash now; rank future verified fills by net expected return per risk/margin-time, not available slots.
+5. **Adversarial red team — current stand-aside:** Assume each proposal stopped out. ETH/SP/oil reproduce archetypes 1/3/5 through adjacent-band containment; NAS/gold/JPY risk archetype 4 through wrong-age or wrong-side defense; bearish oversold longs reproduce archetype 2. **Counter-challenge:** a blanket stale-data label would ignore genuine low-Z opportunities. **Revision:** preserve the seven explicit watches and quantified activation deficiencies; no permanent asset-wide refusal.
+
+### Adapted tournament record
+
+Score order: correctness / completeness / specificity / robustness / clarity, each 0–10. Weighted total is `(30C + 25Co + 15S + 20R + 10Cl)/10`. The fatal rule outranks the total.
+
+| Hypothesis | Scores | Weighted /100 | Standing attack / outcome |
+|---|---|---:|---|
+| Immediate BNB/NAS100 mean-reversion dip-buy | 2/5/6/1/7 | 36.5 | Fatal: against bearish HTF; the signed extreme does not authorize a fade. |
+| Immediate ETH shelf short | 5/6/8/2/8 | 54.0 | Fatal: stop containment, friction >15%, no net 2.2R to tested magnets. |
+| Immediate SP500 nearby-wall short | 5/6/8/2/8 | 54.0 | Fatal: adjacent-band stop; nearby gross reward ~1.20R. |
+| Immediate oil deep-shelf long | 6/6/8/3/8 | 59.0 | Fatal: adjacent-band stop and missing payable overhead magnet. |
+| Stand aside now; retain seven explicit research watches | 9/8/9/9/9 | 87.5 | Adapted winner. Does not invent fills, margins, continuous L3 or independent agents. Limitations disclosed. |
+
+These are audit scores, not tournament-tool output. NAS/gold/JPY alternatives were considered in the matrix and defeated by side/age/threshold/geography defects; they do not become candidates because another proposal loses.
+
+### Five-archetype defense and loss-ledger correction
+
+- **A1: sweep-band containment.** ETH, SP500 and oil examples explicitly test adjacent intervals, not only the first edge.
+- **A2: countertrend entry.** No BNB/NAS100/other bearish dip-buy; negative session CVD is not treated as fast exhaustion, nor positive flow as permission to disregard HTF.
+- **A3: insufficient structural clearance.** Do not narrow stops to force 2R; require structural and volatility clearance before sizing.
+- **A4: ephemeral/wrong-side defense.** Record age, sample count, presence, wallet two-sidedness and placement between entry and stop. Do not credit a young 1M ask or a distant bid as a short bunker.
+- **A5: retracement overshoot.** Keep Engine 2's stronger 0.50–0.75 ATR shelf clearance, deeper anchor and proportional lot downsizing; downsizing cannot make a structurally invalid stop valid.
+
+The prompt names five archetypes despite saying four. Also, **108.55 is above 108.50**, not literally inside [107.5,108.5]. SOL #18825384's stated stop was only 0.05 above that edge, with relocated asks; inadequate clearance/withdrawn defense is the defensible lesson. No historical numeric containment error is repeated, and no guarantee of zero future losses is made.
+
+## 8. Institutional schema audit and concrete enhancements
+
+### P0 — correctness before more signals
+
+| Observed problem | Concrete fields / validation to add |
+|---|---|
+| Mixed root/component clocks; later global flow block | `event_ts`, `receipt_ts`, `available_at`, `source_clock_offset_ms`, `max_component_age_ms`, `generation_finalized_at`; enforce causal `available_at <= decision_cutoff`. Keep late data out of historical decisions. |
+| Every source-specific basis median null | Per instrument/venue `basis_samples`, `window_start/end`, `median`, `mad`, `q01/q99`, `paired_tick_skew_ms`, `hedge_ratio`, `residual_sigma`, contract/expiry mapping. For residual e = broker_mid − mapped_external_mid, use side-specific adverse quantiles rather than a single instantaneous offset. |
+| EUR/GBP lose native precision | Integer `bid_ticks`, `ask_ticks`, `tick_size`, exact decimal strings and broker `digits`. Assert `(ask_ticks−bid_ticks)*tick_size` agrees with spread and bps within rounding bounds. Zero serialized spread is unknown here, not free execution. |
+| Tick CVD mislabeled USD; 1,000 ticks may not span session | `flow_unit`, `window_start/end`, `first/last_tick`, `coverage_ratio`, signed-tick versus trade-notional flags; true reset boundaries and missing-window states. Never compare a tick count to a 1M USD threshold. |
+| 96 HTF bars but request requires EMA200 | Persist independently warmed 1H/4H EMA20/50/200, counts, seed, bar source, completion cutoff and slopes. Do not relabel 15m EMA200 as HTF. |
+| Sampled wallet-price recurrence called L3 | Explicit `order_id_available=false`, wallet/price identity, first/last seen, samples, missing-sample duration, cancellation/reprice history, notional retained fraction, two-sided exposure and cross-generation continuity. Keep receipt recurrence distinct from order lifetime. |
+| Display bins overlap price and adjacent bins invalidate stops | Retain raw stop/liquidation triggers, bin construction, contributor IDs, side, venue and notional reference price. Distinguish strictly-below, overlaps-mid and strictly-above. Deduplicate top/nearest copies and overlapping positions before fuel ratios. |
+| No executable risk or margin receipts | Add profit/tick-value currencies, tick-value profit/loss, calculation mode, conversion quote, leverage/margin tiers, freeze level, commissions/swap, `order_calc_profit`, `order_calc_margin`, `order_check` timestamp/result. Contract size alone is not universal USD risk, notably USDJPY. |
+
+### P1 — microstructure features with explicit mathematics
+
+1. **Multi-level event OFI:** for level k, accumulate price-aware bid additions/removals minus ask additions/removals over a window, then normalize by time-weighted depth: `OFI_K = Σ_k w_k Σ_t ΔQ_k,t / (ε + Σ_k w_k mean_depth_k)`. Match price levels through updates; naive rank-to-rank size changes confuse repricing with new liquidity. Store sequence gaps, resets and 1/5/15/30m coverage. Static book imbalance is not OFI.
+2. **Microprice and drift:** `microprice = (ask*bid_size + bid*ask_size)/(bid_size+ask_size)`. Publish `(microprice−mid)/tick_size`, 1s/5s/30s drift and forward realized markout for validation. Denominator zero means unavailable. External microprice is not the OTC broker's matching queue.
+3. **Taker aggression:** `buy_ratio_h = buy_notional_h/(buy_notional_h+sell_notional_h)` and `normalized_delta_h = 2*buy_ratio_h−1`; retain raw volume and complete coverage for h=1/5/15/30m. Compare non-overlapping delta rates and their slopes; cumulative sign alone cannot establish exhaustion.
+4. **Absorption score:** measure signed aggressive flow at a price bin, normalized price displacement, replenishment and subsequent reclaim/hold. A possible research score is `z(opposing_aggressive_notional) − z(abs(price_change)/ATR) + z(replenishment_ratio)`, conditional on directional shelf hold. Fit scales causally; no score replaces observed price-level volume.
+5. **Queue decay/cancellation hazard:** where actual order events exist, estimate `lambda_cancel = −log(retained_notional_fraction)/Δt`, replenishment and survival by queue age. Add cancel/execute attribution and queue-ahead volume. On MT5 CFDs, exact exchange queue position is **not observable**: publish a labeled OTC passive-fill proxy, not invented queue rank.
+6. **Sweep/retest state:** `shelf_price`, `shelf_timeframe`, `touch_ts`, penetration in ATR, hold duration, completed closes, reclaim side, RSI trajectory and pullback velocity trajectory. Current single RSI and `velocity_ratio` are insufficient to establish low-velocity turning behavior.
+7. **Liquidity path and fuel:** cumulative executable-side depth to stop/target, voids, replenishment, unique forced-fuel contributors and in-range correct-side defense. Store `fuel_defense_ratio` with deduplication and source confidence; no silent removal of a large genuine band merely because it is inconvenient.
+8. **Calibration:** `p_win_lower_bound=0.4197` is flagged uncalibrated with **17 trades / 11 wins**, versus minimum sample 100. It is not an asset/engine-specific probability. Add fill-conditional outcomes, non-fill/cancel history, hold time, MAE/MFE, spread/basis regimes and out-of-sample intervals.
+
+## 9. Payable 2.0–2.5R construction and continuous execution research
+
+### Net geometry and discrete sizing
+
+Let D be valid entry-to-stop distance, G the reachable entry-to-front-run-target distance, V the broker-valued USD sensitivity per price unit per lot, and L the lot size. Nominal risk is approximately `L*V*D`; use native broker valuation where the payoff/conversion is nonlinear. Net ratio is:
+
+`R_net = (broker_gain_at_TP − additional_win_cost) / (broker_loss_at_SL + additional_loss_cost)`.
+
+**Do not double-count spread** already represented in executable-side entry/exit prices. Model commissions, swaps, adverse selection and stop slippage separately. Under a mid-price research convention, explicitly include full modeled round-trip friction; keep the convention consistent.
+
+Choose the first economically material opposing magnet/barrier, then solve valid geometry, then enumerate discrete lots. A screening approximation is `L = step * floor(R_budget / (V*D*step))`; check min/max, actual broker loss in [7.50,14.50], margin, cost and portfolio stress afterwards. Never round lots upward to force the minimum risk. If no discrete lot works, there is no card.
+
+For a linear instrument, `spread_cash/nominal_risk = spread_price/D`: **downsizing alone does not improve the friction percentage**. Widening stops may reduce friction ratio but simultaneously reduces R:R. Choose a deeper valid entry after a documented sweep/reclaim, not a tighter stop or a fictitious distant target. A 1.0–1.2 ATR valid risk can support 2.0–3.0 ATR gross reward before costs; no universal 10-ATR target is necessary, but a nearby genuine magnet must exist. ETH needs >=2.2R net and SOL >=2.5R under the current preference; targets cannot be manufactured to meet those numbers.
+
+### Dynamic buffer and target proposals — not production changes
+
+- Research `buffer = max(policy_ATR_floor, conditional_sweep_overshoot_quantile, jointly_estimated_adverse_basis_spread_latency_allowance)`, all in broker price units and anchored to the **outer edge**. If components are modeled separately, combine conservatively without assuming independence; use a joint tail model when supported by data. For Engine 2 do not reduce below the current 0.50–0.75 ATR protection to boost fills. Recheck containment against every other band after tick rounding.
+- Estimate overshoot distributions by asset, regime, session, volatility and spread state. Calibrate out of sample against stop frequency, net expectancy and tail loss, not in-sample win rate alone.
+- For current policy, set front-run distance within **5–10 bps**, selected from depth depletion/replenishment and fill-conditional markouts. For a short approaching a lower band from above, front-run its near upper edge; for a long approaching an upper band from below, front-run its near lower edge, then map to the correct broker trigger side. A fixed bps distance can be economically too large for FX; changing that policy needs a separately validated proposal, not a silent exception.
+- Use a validated conditional reachability/time-to-target distribution. Do not skip a closer opposing pool just to print 2.5R. Quantify `P(TP before SL | actual passive fill)` rather than the probability conditional only on signal appearance.
+
+### Friction and peer-audit corrections
+
+The earlier claim that **all 11 altcoins** are mathematically untradeable from account size alone is **not proved by this snapshot**. Minimum-lot spread cost floors do prove infeasibility for XRP 4.00, ADA 10.50, DOGE 21.00, TRX 9.00, LTC 3.00 and NEAR 2.90 USD against a 2.175 USD maximum permitted spread budget (15% of 14.50). Silver also fails at 2.90 USD. Conversely BNB minimum spread is 0.005 USD, DOT 0.21, LINK 0.85, BCH 0.481, AVAX 0.04 and SOL 0.23: those figures alone do not establish universal cash-friction failure. Several still violate nominal spread policy, the explicit ban, wall backing or structure. The quoted historical friction percentages are not constants.
+
+The clean-friction universe deserves priority, not automatic admission. SP500/NAS100/GOLD minimum spreads are 0.077/0.116/0.09 USD; actual chosen lot size can multiply those costs. EUR/GBP exact cash spread cannot be recovered from the rounded quote alone. USDJPY minimum spread cost is about 0.00630 USD using current JPY-to-USD conversion, pending native verification.
+
+The old Cycle 95/96 SP500 range-bound thesis is superseded by this bearish snapshot, and the old NAS100 24,550–24,620 shelf is incompatible with the current 30,005.45 mid. Those historical levels must not become orders.
+
+### Increasing frequency without macro halts
+
+Continuously scan both engines and rank valid proposals by fill-conditional expected net USD per stressed-risk and margin-time unit. Refresh on completed shelf retests and substantive wall/basis changes rather than only a coarse periodic prompt. Apply no calendar exclusion, event purge or runway veto. Measured spread, depth, slippage and basis can still make a trade uneconomic at any time; price-based rejection is not a disguised calendar halt.
+
+Backtest next-observation passive fills with bid/ask paths, partial fills, cancellation latency, actual commissions/swaps, adverse markouts, moving walls and joint fills. Use walk-forward splits with embargo and no future-bar/basis leakage; report fill rate, net expectancy, uncertainty, correlated tail loss, turnover and capital usage. More fills are useful only when net expectancy and floor modeling improve. No backtest or profitability improvement is claimed as completed here.
+
+## 10. Newer snapshot note and verification
+
+The separately inspected checkout generation at 17:10:44 still shows **0 positions / 0 pending**. Its Z-scores have changed: BTC −1.37, ETH −0.95, SP500 −1.73, NAS100 −1.84, GOLD −1.34, oil +1.73 and USDJPY +0.81. These values are not spliced into Cycle 102's calculations. This report does **not** certify staging at that later time; a new all-field review is needed for a new verdict.
+
+Reproduction:
+
+```bash
+# Obtain the exact telemetry blob from the immutable commit via GitHub API or git.
+python docs/trade_plans/audits/cycle102_audit.py /path/to/exact_snapshot.json /path/to/evidence.json
+```
+
+The extractor refuses a different generation, visits all nodes, checks 24-asset coverage, checks complete crypto windows and verifies exact Decimal stress arithmetic. The pre-append context hashes intentionally refer to the desk before this report is appended. Only the report, its evidence/extractor and an append-only desk entry are publication changes. No telemetry source, trading policy, broker order, ratchet or production strategy code is modified.
+
+
+---
+
+# Cycle 103 — canonical-main telemetry and dual-engine council report
+
+## 1. Verdict, ingestion and source provenance
+
+**STAND ASIDE: 0 CANDIDATES / 7 WATCHLIST / 17 NO SETUP.** Research watches: BTC, ETH, SP500, NAS100, GOLD, USWTI and USDJPY. Neither engine has a fully supported executable setup. No watch is a pending order.
+
+**The evidence changed, even though the final action did not.** BTC/ETH fast CVD is now negative; source-specific basis medians have recovered; NAS100 now has a duration-qualified >=1M ask; SP500/NAS100 candles crossed the old price zones under a retrospective basis comparison. None of those observations establishes a contemporaneous wall-held sweep/rejection with a valid stop and payable net target.
+
+### Canonical main receipts
+
+- Exact generation **`9143e31d1f174e18b547aec55b927787`**, **2026-10-14 17:37:44 UTC**, retrieved from main history at [commit `7b001cb761276a0590416f3a64f0f545dfca4b5a`](https://github.com/kbsingh1399/Trading_2/blob/7b001cb761276a0590416f3a64f0f545dfca4b5a/docs/telemetry/live_snapshot_latest.json).
+- Telemetry SHA-256 **`baa5e3d82d560d7abcca1fff201dfcf60e09a6058dd0d958eae2eb10483cc656`**; **4,457,651 bytes / 152,526 lines / 136,742 recursively visited JSON nodes**.
+- Context retrieved afresh from canonical main at **`4c42cb1dbb9ebb80021297e22255f18374f26b4a`**, whose commit time is 17:48:10 UTC. This later context version is disclosed, not presented as available at the earlier decision timestamp. Market calculations use only the pinned requested snapshot.
+- Main-sourced [playbook](https://github.com/kbsingh1399/Trading_2/blob/4c42cb1dbb9ebb80021297e22255f18374f26b4a/docs/specs/TRADE_DECISION_PLAYBOOK.md), [desk](https://github.com/kbsingh1399/Trading_2/blob/4c42cb1dbb9ebb80021297e22255f18374f26b4a/docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md), [active context](https://github.com/kbsingh1399/Trading_2/blob/4c42cb1dbb9ebb80021297e22255f18374f26b4a/.agents/rules/ACTIVE_CONTEXT.md), [session history](https://github.com/kbsingh1399/Trading_2/blob/4c42cb1dbb9ebb80021297e22255f18374f26b4a/.agents/memory/session_chat_history.md), [arena skill](https://github.com/kbsingh1399/Trading_2/blob/4c42cb1dbb9ebb80021297e22255f18374f26b4a/.agent/skills/arena/SKILL.md), and [rubric](https://github.com/kbsingh1399/Trading_2/blob/4c42cb1dbb9ebb80021297e22255f18374f26b4a/.agent/skills/arena/rubric.md) are hashed in the companion ledger. The playbook, skill and active-context bytes are unchanged from the previously reviewed checkout versions. Main's desk does not contain this session's Cycle 102 append; that local publication is not substituted for the main source.
+- Calendar reports **Fed Beige Book, 2026-10-14 18:00:00 UTC**, **blackout_active=false**, **blackout_enforcement=DISABLED_BY_OPERATOR**. The stored 17:30–18:30 window is descriptive only. **No calendar halt, purge, news-runway rejection or event-based veto is applied**, even though the snapshot is within that stored window. Official calendar accuracy was not independently verified.
+- Exact inventory: account **5064568**, balance/equity/free margin **4,859.55 USD**, used margin **0**, **0 active / 0 pending**, observed risk **0**. Broker server is null; broker legal identity is operator-supplied.
+
+### What was and was not read/verified
+
+All telemetry blocks and every array were parsed and traversed. All OHLCV records were checked for chronological ordering, valid OHLC containment and explicit closes after cutoff; no such violations were found. Complete 1/5/15/30-minute crypto windows were checked using timestamps. Large arrays are hashed and summarized in the evidence file rather than duplicated as a second raw archive.
+
+The full main-sourced text archives were ingested/indexed; playbook/context/skill/rubric rules and relevant inventory, loss and recent-session passages were reviewed. This **does not claim manual semantic interpretation of every historical sentence or every one of 152,526 JSON lines**. The machine traversal is exhaustive; the written synthesis is selective and explicit about unavailable proof. No direct MT5 terminal query, independent peer dispatch or execution occurred.
+
+Publication must remain on session branch **`arena/66c9be42-trading-2`**. Main is the analytical source, not the working branch. The report is appended locally without deleting Cycle 102 or older entries; a pull request can carry that append to main. **Main must not be described as updated before integration is confirmed.**
+
+### Rule precedence and playbook compliance
+
+Current operator instructions supersede contradictory historical text: risk **7.50–14.50 USD**, passive limits only, 35/5-bps nominal crypto/TradFi ceilings, actual cash friction <=15%, no macro veto, and stand aside for RANGE_BOUND/UNDEFINED. Engine 2 never inherits Engine 1's extreme-Z requirement. Engine 1 requires the correct signed extreme and exhaustion in an allowed HTF direction, not merely a negative Z-score.
+
+For Engine 2, keep the stronger **0.50–0.75 ATR shelf clearance** and the requirement to remain outside **every known relevant band**, including the adjacent one after translation. Do not revert to the generic 0.35-ATR minimum. Retain the playbook's <=2-ATR entry proximity and historical index >=1.5-ATR total stop-distance requirement. Resolve these version conflicts in one authoritative policy document before altering runtime behavior.
+
+Required primary wall sizes: crypto 5M, indices 1M, commodities 0.75M, FX 0.50M, duration >=180s, correct side and placement between entry and stop. Coherent local crypto clusters can be examined; arbitrary summation of distant or duplicate walls cannot establish a shield. No retired gate boolean, classifier output or `DENIED_UNVERIFIED_ORDERFLOW` token substitutes for direct analysis.
+
+## 2. Direct answer to the peer-audit task
+
+### SP500: old price zone traversed; current held-wall setup not established
+
+Completed broker candles show **7,731.04** high during 16:30–16:45 and **7,731.76** during 17:00–17:15, followed by 17:15–17:30 low/close **7,706.24 / 7,707.93**. Current mid is **7,710.685**.
+
+Those highs exceed the old raw 7,730 edge and its Cycle 102 spot-mapped edge 7,730.925. This is **price-path evidence consistent with a sweep**, not evidence that the particular Hyperliquid stops executed: no event-time basis series, stop-ID execution/depletion receipts or synchronized exchange path is supplied. A lower notional or shifted bin does not prove liquidation rather than cancellation or relocation.
+
+Current Hyperliquid median basis is **−0.36**. Old large ask 7,741.4 maps to **7,741.04**, above the observed rally high; it was not reached in the supplied post-Cycle-102 completed candles. The newer **1.572M ask at raw 7,717.3**, mapped **7,716.94**, has **400.1s / 7 samples / 0.875 presence**, but **first_seen_utc=17:30:39**, after the last completed 15m candle. Crediting it as defense of the 17:00 rally would be look-ahead.
+
+Fresh [7,710,7,720] overhead fuel is **3.262M stops + 1.777M squeeze = 5.040M USD**. The opportunity is not cleared merely because an earlier, different overhead zone was traversed. Seller ticks −35 support bearish direction, but H4 EMA20/50 ordering remains mixed and the current stop geometry fails below.
+
+### NAS100: >=1M seasoned ask recovered; contemporaneous touch not demonstrated
+
+The 17:00–17:15 broker high is **30,087.62**, below the literal raw 30,100 level but above its current median-mapped edge **30,081.865**. Therefore **“30,100 was not swept” cannot be asserted by comparing raw exchange prices directly with MT5 candles**. Conversely, the current median cannot certify the historical exchange sweep. Classification: **provisional mapped traversal, actual stop execution unverified**.
+
+The primary ask is now **1.079M at raw 30,060**, median-mapped **30,041.865**, with **538.3s / 9 samples / 0.90 presence**. This meets the stated size/duration threshold and improves on Cycle 102. But it was first seen **17:28:20**. The 17:15–17:30 candle's entire high is only **30,024.99**, below that mapped wall; the earlier rally cannot validate this newly observed wall. The forming 17:30 candle is not provided as completed evidence.
+
+EMA20 is **30,178.841**, **2.83 ATR** from current mid. Current raw 30,248 and 30,361 asks are each >1M but only **130.3s** old, not current seasoned replacements for the old peer shelf. Buyer ticks +19 and positive L2 imbalance +0.1929 also oppose claiming an already confirmed bearish shelf rejection. The nearer duration-qualified wall is evaluated, not skipped, but its stop and reward geometry fail.
+
+### BTC/ETH: bearish tape returned, not confirmed buying absorption
+
+All crypto windows below are complete and end **17:37:00 UTC**, before root publication:
+
+| Asset | 5m delta USD | 15m delta USD | 30m delta USD | Previous non-overlapping 5m USD |
+|---|---:|---:|---:|---:|
+| BTC | −532,024.97 | −945,138.62 | −2,851,681.65 | +2,084,201.36 |
+| ETH | −772,537.47 | −2,143,694.19 | −4,568,393.52 | −285,961.57 |
+| SOL | +82,583.10 | +324,050.79 | +209,001.78 | +126,546.18 |
+
+BTC has reversed from the positive fast-flow regime cited in Cycle 102. Its recent closes decline **81,914.5 → 81,852.5 → 81,793.5**, and current mid is 81,720.5. ETH closes decline **2,444.7 → 2,440.8 → 2,435.7**; its recent five-minute selling is greater than in the preceding five minutes. Neither pattern proves selling absorbed at a held bid shelf.
+
+These observations **improve the directional case for future pullback shorts**, not mean-reversion longs. BTC/ETH remain bearish H1/H4. BTC RSI 38.20 and ETH RSI 40.54 do not establish a held turn by themselves. Negative CVD is not automatically a short entry either: the protected shelf and net geometry must still exist.
+
+BTC's nearest large ask is raw **82,127 / 6.931M / 762.9s**, mapping **82,061** using Hyperliquid median −66. Its first observation is 17:24:34, whereas the prior broker rally topped at **81,999.5**. Another **13.627M** ask maps **82,281**, duration 186.3s. Both are potentially relevant future relief shelves, not observed completed touches.
+
+ETH's **6.733M** ask moved to raw **2,459.3**, median-mapped **2,457.4**, duration **315.3s**, first seen **17:31:58**. The earlier broker high **2,449.2** does not touch that shelf. A smaller **3.423M** ask maps **2,446.4**, close to EMA20, but is not a 5M primary. Multiple observations belong to the same two-sided wallet and should not be described as independent institutional conviction.
+
+## 3. All telemetry blocks: material changes and limitations
+
+- **Basis recovered:** source-specific medians exist for **22/24** assets; DJ30/GER40 still lack external coverage. Hyperliquid median/spot estimates are BTC **−66 / −77**, ETH **−1.90 / −1.60**, SP500 **−0.36 / −1.165**, NAS100 **−18.135 / −18.12**, GOLD **−3.4725 / −3.015**, oil **+1.49125 / +1.5305**, USDJPY **+0.0825 / +0.0825**. Use Hyperliquid mapping for Hyperliquid bands/walls; BTC's Binance median −90.825 is not interchangeable. Sampling window, paired-quote skew and residual-tail uncertainty remain missing.
+- **Persistence improved:** **1,147 L3 observations / 596 duration>=180s**; **386** carry `SAMPLED_RECURRENCE_VERIFIED`. These are still `WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3`, not continuous order-ID lifetimes. The raw duration/sample/presence evidence is credited; no eligibility-status veto is applied. There are **64 L2 wall records / 10 duration>=180s**.
+- **Duplicate wall signatures:** excess identical wallet/side/price/size/notional records: SP500 3, NAS100 1, SILVER 1, USDJPY 3. They may be duplicates or separate indistinguishable orders; do not count them as independent backing without IDs.
+- **HTF:** 96 completed candles each for H1/H4. Recursive first-close-seeded EMA20/50 diagnostics are explicit estimates; a warmed HTF EMA200 is still not verified. The supplied 800-bar EMA200 remains 15m. GBPUSD is now bear/bear; GER40's producer label changed from RANGE_BOUND to BEARISH, but H1 remains mixed and H4 bullish by completed-close EMA20/50 ordering. Do not keep a stale range-bound exclusion or pretend GER40 has aligned bearish HTF.
+- **Quotes:** EURUSD now has bid/ask 1.1139/1.1140 but spread_price 0 and 0.27 bps; GBPUSD has 1.3171/1.3172, spread_price 0.0001 and 0.46 bps. Rounded displayed spreads imply about 0.90/0.76 bps, respectively. GBP is no longer serialized as zero, but both still lose native five-digit precision. Exact cash friction is not certified.
+- **TradFi flow:** signed MT5 ticks, not USD aggressor volume. SP500 −35, NAS100 +19, GOLD −39, oil +33, EUR +10, GBP +35 and JPY +16 are supplied 15m values. Oil 5m +11, EUR −4, GBP +16, JPY +9. Reuse of a 1,000-tick sample lacks true elapsed-window coverage; `session_cvd_usd` is a unit mismatch for these assets.
+- **Global flow time:** Hyperdash block at 17:37:50 is **5.301 seconds after** root time. It reports balanced two-sided flow, 9,251 liquidations, 89.659M liquidation volume and no active TWAPs/imminent alerts. Its later availability is excluded from strict 17:37:44 causal trade proof; empty lists do not prove absence of hazards.
+- **Other blocks:** funding/mark/index and funding history are exchange context, not CFD financing. Exchange daily/4h arrays without explicit close_ts cannot be certified completed solely by the explicit-close test. Session/weekly/24h CVD and auction profiles were retained; developing profiles can revise, and MT5 volume is a tick-volume proxy, not exchange contract volume. Trapped labels are not observed footprint absorption; no price-bin bid/ask footprint is supplied. Fear/greed 62 and Coinbase premium −12.32 bps are context. ETF flows remain NOT_YET_REPORTED/null, not zero.
+- **Calibration:** p_win lower bound 0.4197, **17 trades / 11 wins**, calibrated=false, minimum sample 100. No asset/engine-specific win probability or new positive expectancy is established.
+
+## 4. Mandate 1 — independent engines across all 24 assets
+
+Shelves are supplied **15m EMA20 / EMA50** unless stated otherwise; H1/H4 ordering is separately assessed. Every row evaluates Engine 2 irrespective of Engine 1's Z threshold. Common missing HTF EMA200, event-level basis and broker risk/margin receipts remain limitations, not reasons to skip individual analysis.
+
+| Asset / MT5 symbol | Engine 1: mean reversion | Engine 2: trend pullback | Final |
+|---|---|---|---|
+| BTC / BTCUSD.pi | Z −1.61: not extreme; bearish dip-buy also prohibited. | Bear/bear; shelves 82,079.9388 / 82,599.9995. Negative 5/15/30m supports shorts; duration-qualified asks map 82,061 and 82,281. No completed held touch; tested stop enters another band. | WATCHLIST |
+| ETH / ETHUSD.pi | Z −1.22: not extreme; no bearish-regime long. | Bear/bear; 2,446.4301 / 2,468.4402. Velocity 0.1717, negative tape and 2,457.4 mapped 6.733M ask improve research. Wall is newly observed; deeper-card stop/friction fail. | WATCHLIST |
+| SOL / SOLUSD.p | Z −0.79: not extreme; bullish-absorption label does not authorize a bearish-HTF long. | Bear/bear; 104.7349 / 105.5968. Mid 104.795 is near EMA20, RSI 46.53 and velocity 0.2834 are explicitly credited. Positive session and all fast CVD oppose short confirmation; largest aged ask 4.909M <5M, no verified coherent >=5M local cluster. | NO SETUP |
+| BNB / BNBUSD.p | Z −1.95: below 2, unlike Cycle 102; no dip-buy. | Bear/bear; 732.5024 / 736.3642. Negative fast flow and velocity 0.3608 supportive, but largest aged ask 1.122M <5M and no held structural defense. | NO SETUP |
+| XRP / XRPUSD.pi | Z −1.23: not extreme. | Bear/bear; 1.3388 / 1.3507. No L3 observations; positive 5/15/30m flow. Minimum-lot spread 3 USD >2.175 maximum friction allowance. | NO SETUP |
+| ADA / ADAUSD.p | Z −0.62: not extreme. | Bear/bear; 0.2286 / 0.2307. Price between shelves, RSI 47.77 and negative flow considered. No wall; 91.48 bps and 10.50 USD minimum spread. | NO SETUP |
+| DOGE / DOGUSD.p | Z −0.36: not extreme. | Bear/bear; 0.0817 / 0.0823. Near EMA50 with low velocity 0.1191, but mixed fast windows, zero walls, 255.32 bps and 21 USD minimum spread. | NO SETUP |
+| TRX / TRXUSD.p | Z +1.65: not extreme; no bullish-regime short fade. | Bull/mixed H4; 0.3330 / 0.3322, POC 0.3327. EMA20 2.50 ATR away; RSI 66.17 and negative 5/15m are not a held support retest. No L3; minimum spread 10 USD. | NO SETUP |
+| DOT / DOTUSD.pi | Z +0.28: no E1 short extreme despite positive sign. | Bear/bear; 1.1216 / 1.1300, POC 1.1502. Rally above EMA50 is considered, not skipped for low Z. Positive fast buying, no L3, 184.29 bps and explicit current exclusion. | NO SETUP |
+| LINK / LNKUSD.p | Z −0.97: not extreme. | Bear/bear; 12.5107 / 12.6499. Mid only 0.05 ATR from EMA20; negative 15/30m but positive 5m, no walls and 67.96 bps. | NO SETUP |
+| BCH / BCHUSD.p | Z −1.28: not extreme. | Bear/bear; 270.8153 / 273.2517; prior-day POC ~271.50. Quiet 0.2992 velocity, but mixed fast flow and no L3. Not rejected solely by a universal altcoin-friction claim. | NO SETUP |
+| LTC / LTCUSD.pi | Z −0.73: not extreme. | Bear/bear; 59.5772 / 60.2625. Mid above EMA20, RSI 46.92 considered. Positive fast CVD, no wall, 50.26 bps and 3 USD minimum spread. | NO SETUP |
+| AVAX / AVXUSD.p | Z −1.09: not extreme. | Bear/bear; 9.9179 / 10.0296, EMA20 0.18 ATR away. Negative 5/15/30m and velocity 0.2181 supportive; 30.29 bps passes nominal cap, but zero L3 and no held protected shelf. Correct contract 100, min/step 0.01, digits 2. | NO SETUP |
+| NEAR / NERUSD.p | Z −2.02 meets extreme threshold, but bearish label/H1 and unabsorbed negative flow do not support a long; H4 mixed, no wall. | Bear/mixed; 4.9062 / 4.9658. Velocity 0.1137 and negative tape cannot replace defense; 68.22 bps and 3.30 USD minimum spread. | NO SETUP |
+| SP500 / SP500.p | Z −1.89: not extreme; no oversold long against current bearish state. | Bear/mixed H4; 7,746.7904 / 7,776.0689, EMA20 3.10 ATR away. Nearer 7,716.94 mapped ask evaluated. Old zone traversed provisionally; new wall first appears after last completed bar. Fresh squeeze fuel and invalid adjacent-band stop. | WATCHLIST |
+| NAS100 / NAS100.p | Z −1.97: below 2 now, independently no bearish-HTF dip-buy. | Bear/bear; 30,178.8410 / 30,343.5603. Qualified 1.079M ask maps 30,041.865, but chronology does not establish held touch. Buyer ticks and tested gross R ~0.58 prevent certification. | WATCHLIST |
+| DJ30 / DJ30.p | Z −1.95: below threshold. | Bear/mixed H4; 51,599.7054 / 51,685.9072. EMA20 1.69 ATR away; seller ticks, but no external L2/L3 or stop/liquidation coverage. | NO SETUP |
+| GER40 / GER40.p | Z −2.31 meets threshold, but no exhaustion/backing; bearish producer label conflicts with mixed H1/bullish H4. No aligned E1 is established. | Producer BEARISH, not RANGE_BOUND now. 25,313.2719 / 25,335.1838; prior-day POC ~25,240.34. Mixed/bull HTF, neutral ticks and absent external defense prohibit a certified trend short. | NO SETUP |
+| GOLD / XAUUSD.pi | Z −1.07: not extreme; bearish long prohibited. | Bear/bear; 4,094.4312 / 4,116.4202, POC 4,099.5908. EMA20 only 0.75 ATR away; velocity 0.48 and seller ticks constructive. Largest seasoned ask 0.612M <0.75M; 1.051M ask is single-sample. | WATCHLIST |
+| SILVER / XAGUSD.pi | Z −1.59: not extreme. | Bear/bear; 56.3145 / 57.3299. Velocity 1.474, buyer ticks; only two aged walls, primary ask 0.565M <0.75M. 10.41 bps and 2.90 USD minimum spread. | NO SETUP |
+| USWTI / USWTI.p | Z +1.58: not extreme; no bullish-trend short fade. | Bull/bull; 95.5464 / 95.2955, POC 95.4852. Buyer ticks improved, but velocity 3.0114 is no longer slow. Primary bid maps 95.07125, 2.41 ATR away; EMA50 card's buffered stop remains above this shield and inside another band. | WATCHLIST |
+| EURUSD / EURUSD.pi | Z −0.42: not extreme. | Bear/bear; 1.1134 / 1.1158. Price rallied through EMA20, RSI 47.53; no demonstrated bearish rejection. Largest aged ask 0.200M <0.50M, buyer-biased ticks and rounded-spread inconsistency. | NO SETUP |
+| GBPUSD / GBPUSD.pi | Z −0.90: not extreme. | Now bear/bear; 1.3175 / 1.3209, EMA20 0.36 ATR away. Quiet velocity 0.3076, but buyer ticks +35/+16; seven aged L3 records peak near 0.099M and are distant. Native quote precision still unresolved. | NO SETUP |
+| USDJPY / USDJPY.pi | Z +0.26: not extreme; no bullish-regime short fade. | Bull/bull; 158.7205 / 158.6022. Mid 158.6025 is genuinely at EMA50, low velocity 0.1246 and buyer ticks supportive. Last close 158.576 was below shelf; no held reclaim, no >=0.50M bid and broad overlapping stop bands. | WATCHLIST |
+
+## 5. Fresh geometry tests — no executable cards
+
+These calculations use source-specific Hyperliquid **median basis**, not Cycle 102's missing medians or today's Binance offset. They deliberately falsify idealized mid-coordinate hypotheses; exact executable-side levels, tick rounding and broker receipts would still be needed. No lot size is authorized for a failed card.
+
+| Hypothesis | Research entry coordinate | Illustrative buffered stop | Collision after translation | Consequence |
+|---|---:|---:|---|---|
+| BTC short at 6.931M ask | 82,061 | 82,296.4228 | Inside mapped raw [82,300,82,400] = [82,234,82,334] | Fails all-band clearance despite 6.80% distance-based friction. |
+| ETH short at 6.733M ask | 2,457.4 | 2,466.2743 | Inside mapped [2,460,2,470] = [2,458.1,2,468.1] | Fails clearance; 3.1/8.8743 = 34.93% friction. |
+| SP500 short at new 1.572M ask | 7,716.94 | 7,725.8503 | Inside mapped [7,720,7,730] = [7,719.64,7,729.64] | Fails clearance and index 1.5-ATR total-distance standard. |
+| NAS100 short at 1.079M ask | 30,041.865 | 30,119.98475 | Inside mapped [30,100,30,200] = [30,081.865,30,181.865] | Fails clearance; first material target yields only ~0.58R gross. |
+| Oil long near EMA50 | 95.2955 | 95.09075 | Inside mapped [93.5,93.6] = [94.99125,95.09125] | Stop is also above primary bid 95.07125, which cannot defend it before triggering. |
+
+Construction: short stops clear the governing upper edge by 0.5 ATR plus half-spread; oil clears the raw 93.8 lower edge similarly. **Passing a buffer relative to one band is not passing the complete interval test.** Raising Engine 2 protection toward 0.75 ATR or widening further requires rechecking all intervals and resizing; no narrow invalid card is rescued by lot changes.
+
+- **ETH payoff improved but still fails:** front-running raw [2,420,2,430] at its median-mapped upper edge by 5 bps gives **2,429.31405**, approximately **3.16R gross** from the deeper 2,457.4 entry. Do not repeat Cycle 102's old low-R claim. That attractive ratio uses an invalid tight stop and **34.93% friction**. Larger 13.134M ask maps 2,467, just beyond the tested stop, so it cannot shield it. Nominal ratio alone is not payable net 2.2R.
+- **SP500 payoff requires crossing major passive bids:** a 5-bps front-run of the 7,680–7,690 pool gives **7,693.48482**, about **2.63R gross**, but the path crosses bids mapped **7,700.84 / 5.647M** and **7,696.64 / 13.474M**, with no proof they will be consumed. Front-running the first of those barriers gives only about **1.37R gross**. Under a 1.5-ATR total distance, a stop at 7,734.4159 lands in another known band. There is no certified geometry.
+- **SP500 fuel defense is not automatically overwhelmed:** deduplicated duration-qualified asks between the tested entry and stop total approximately **3.732M**. Current governing fuel is 5.040M, about **1.35:1**, below the playbook's 2:1 cap on these observations. The rejection is chronology/stop/path geometry, not an invented overwhelm failure.
+- **NAS100:** mapped upper edge of the material [29,900,30,000] sell-stop pool is **29,981.865**; 5-bps front-run **29,996.85593** gives **0.576R gross**. Going deeper skips a nearer pool and does not fix the invalid stop.
+- **Oil:** buyer ticks are welcome, but primary-wall entry is **2.406 ATR** below mid, beyond the 2-ATR proximity standard. The nearer POC/EMA50 alternatives were examined. No overhead squeeze band exists and no top buy-stop band reaches 0.50M, so a far-away 2R TP is not supported.
+- **USDJPY:** a raw [158,159] bin is about **9.88 ATR wide** and overlaps the mid after mapping. It is not a precise strictly-below shelf. The 1.608M wall is an ask at 160.8, not long defense; the biggest aged bid is only about 0.200M and distant.
+
+## 6. Mandates 2 and 3 — inventory and frozen initial R0
+
+**Mandate 2: active_positions=[]; no running TP/SL modification or ratchet is required in the exact snapshot.** This is recorded MT5 bridge inventory, not a new direct terminal query. Historical active-context positions do not override it. Keep immutable initial entry/SL/R0 for any future positions; do not rebase R0 to a tightened stop. The newer playbook §7.1 ladder (+1.25R0 risk reduction, +1.65R0 profit-side lock, >=2R0 monotonic trail) is not activated on an empty book.
+
+**Mandate 3: pending_orders=[]; no tickets to WAIT, MODIFY or DELETE.** No old index or crypto watchcard is resurrected. Zero broker orders, ratchets, cancellations or market executions were performed.
+
+The four operator-listed historical gains sum to **28.44 USD gross**. They are already reflected in the account baseline and are not added again. The snapshot lacks their full closed-deal/commission/swap receipts; no new net ledger reconciliation is claimed. Stops and profit-side locks do not guarantee realized fills.
+
+## 7. Portfolio capacity and actionable execution table
+
+`min(balance,equity) − Σ(1.25 × nominal_risk + 2.00)` must preserve the modeled 4,795 USD buffer across every independently fillable ticket.
+
+| Scenario | Stress USD | Modeled post-stop equity USD | Headroom above 4,795 USD |
+|---|---:|---:|---:|
+| Actual flat book | 0 | 4,859.55 | 64.55 |
+| Three hypothetical 14.50-risk tickets | 60.375 | 4,799.175 | 4.175 |
+| Four hypothetical 14.50-risk tickets | 80.500 | 4,779.050 | −15.950 |
+
+Exact per-ticket stress is **20.125**, not a prematurely rounded 20.12. Four physical slots remain available, but the explicit three-new-ticket cap is retained. Four equal risks would need to be <=11.31 before other constraints; this mathematical observation does not authorize expanding the cap. Current cushion remains **84.55 USD above hard floor / 64.55 above operating buffer**.
+
+This is a stress model, not an unconditional guarantee against unbounded gaps, slippage or broker failure. Exact future lots require broker-valued P/L, conversion and margin; contract size alone is not sufficient for every instrument, particularly USDJPY.
+
+| Action | Symbol | Side | Lots | Entry | SL Bunker | TP Magnet | Risk USD | R:R | Engine | Archetype Defense | Rationale |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| STAND ASIDE | — | — | — | — | — | — | — | — | — | — | No contemporaneously verified held wall/shelf with all-band-safe stop and payable net target. No macro veto; zero open or pending tickets. |
+
+## 8. Five-perspective dialectic and arena-rubric adaptation
+
+The canonical main skill/rubric are confirmed. No independent-agent dispatch tool exists in this environment. This is therefore a **single-agent five-perspective adaptation**, not a claimed independent-agent tournament, independent judge or verified Fable/Argon consensus. Peer views in the prompt are treated as supplied hypotheses to test. Full canonical multi-agent tournament execution remains unperformed.
+
+1. **Orderflow/microstructure advocate — BTC/ETH shorts:** all fast windows now agree with bearish HTF; ETH's 6.733M ask has six samples and presence 1.0. **Attack:** negative flow does not establish held selling absorption at the proposed shelf; walls were repriced/newly observed, and ETH's old 2,449.5 primary cannot be reused. **Revision:** promote directional research, not executable orders.
+2. **Structural advocate — NAS100 shelf rejection:** a qualifying 1.079M ask now exists and the mapped old squeeze edge was crossed. **Attack:** first_seen 17:28:20 postdates the 17:00 rally; later candle high is below that mapped wall. **Revision:** distinguish historical price traversal from contemporaneous defense; wait for a newly observed retest/rejection.
+3. **Liquidation forensic — SP500 post-sweep short:** the old 7,720–7,730 zone was traversed on the broker path. **Attack:** fresh 5.040M fuel now occupies [7,710,7,720], a buffered stop enters the next band, and large bids intervene before the target. **Revision:** do not assume an old swept zone permanently removes today's squeeze risk.
+4. **Portfolio/macro governor — oil or USDJPY long:** buyer ticks improved; USDJPY is actually at EMA50 and oil remains bullish. **Attack:** oil velocity 3.0114, remote primary bid and failed stop; JPY no class-sized bid or held reclaim. **Revision:** keep both low-Z hypotheses under observation, without any calendar exclusion.
+5. **Red team — current stand-aside:** assume each illustrative card stops out. Adjacent-band containment defeats BTC/ETH/SP/NAS/oil; young/wrong-side walls defeat alternatives; low-Z location alone does not fix the failures. **Counterattack:** blanket unchanged-data rejection would ignore the basis/persistence recovery. **Revision:** credit every improvement and retain explicit watches with activation deficiencies.
+
+Adapted rubric: correctness 30, completeness 25, specificity 15, robustness 20, clarity 10. Scores are subjective audit-quality judgments, not probabilities. Vector order C/Co/S/R/Cl. Weighted total `(30C+25Co+15S+20R+10Cl)/10`; the fatal rule overrides totals.
+
+| Hypothesis | Vector | Total /100 | Standing attack |
+|---|---|---:|---|
+| Immediate BTC/ETH absorption long | 2/5/6/1/7 | 36.5 | Fatal: adverse HTF and negative unabsorbed tape; Z not extreme. |
+| Immediate SP500 post-sweep short | 6/7/8/2/8 | 59.5 | Fatal: chronology, adjacent-band stop, obstructed target path. |
+| Immediate NAS100 current-wall short | 6/7/8/2/8 | 59.5 | Fatal: wall seen after rally, invalid stop, 0.58R nearby gross geometry. |
+| Immediate deep ETH short | 6/7/8/2/8 | 59.5 | Fatal: superficially 3.16R but invalid stop and 34.93% friction. |
+| Immediate oil/JPY long | 5/6/7/2/8 | 52.5 | Fatal: oil shield/stop failure; JPY lacks primary and held reclaim. |
+| Stand aside now with seven specific research watches | 9/8/9/9/9 | 87.5 | Adapted winner; source/timing and independent-agent limitations disclosed. |
+
+### Five loss-archetype defenses
+
+- **A1, sweep-band stop:** all five numerical counterexamples are checked against adjacent bands, not only their first edge.
+- **A2, countertrend entry:** no bearish BTC/ETH dip-buy; do not infer buying absorption from a low RSI or a positive book imbalance.
+- **A3, inadequate clearance:** never narrow structural stops to make gross R look attractive; the stronger Engine 2 protection remains in force.
+- **A4, ephemeral defense:** persist first_seen, sample gaps, retained size, correct side and actual presence during touch. A later wall cannot defend an earlier candle.
+- **A5, pullback overshoot:** deeper entry and wider valid protection precede lot downsizing. Downsizing cannot cure interval containment or absence of a shield.
+
+Historical correction retained: SOL stop 108.55 is **0.05 above**, not literally inside, [107.5,108.5]. The lesson is insufficient clearance and relocated defense. There are five archetypes, despite the prompt's references to four. No guarantee of zero future losses is made.
+
+## 9. Institutional telemetry audit and profitability research
+
+These are concrete research/schema recommendations, not deployed trading changes or proven profitability improvements.
+
+### A. Correctness and microstructure additions
+
+1. **Causal wall/sweep join (highest priority this cycle):** persist `order_identity_kind`, `first_seen`, `last_seen`, `available_at`, event/receipt timestamps, cancellation/execution flags, source sequence, historical basis at each event, and `wall_present_at_touch`. A shelf touch can count only if both price and defending liquidity were observed then. Store `sweep_price_traversal`, `stop_execution_confirmed`, `sweep_reclaim`, `hold_duration` separately. Stop-notional changes alone are not executions.
+2. **Native quote precision:** integer bid/ask ticks plus tick_size/digits; assert midpoint, spread_price and bps consistency within native rounding tolerance. Treat EUR/GBP cost as unresolved rather than zero/exact from rounded values.
+3. **Basis uncertainty:** per-venue median has recovered; add sample count, lookback, paired timestamp skew, residual MAD/quantiles, quote age and instrument/expiry mapping. Let residual `e_t = MT5_mid_t − external_mid_t − median_basis`; retain side-specific adverse quantiles. Do not transplant the current median onto an old candle as verified historical mapping.
+4. **Band representation:** retain raw triggers, unique position/stop contributors, exchange price grid, occupancy within bins and density. Mark below/overlaps/above by the entire interval, not midpoint. Add `bin_width/ATR`, duplicate IDs, and stop/liquidation overlap. Contiguous display bins can prohibit every local buffered stop under the current any-band rule; clarify real occupied sweep support from display boundaries before changing policy. Do not silently discard a low-notional adjacent interval to rescue a card.
+5. **Multi-level event OFI:** `OFI_K = sum_k w_k sum_t event_queue_change_k,t / (epsilon + sum_k w_k mean_depth_k)`. Queue changes must be price-aware: bid additions minus removals, minus ask additions plus removals, with update sequencing and coverage. Static snapshot imbalance and synthetic L1 ticks are different features.
+6. **Microprice:** `(ask*bid_size + bid*ask_size)/(bid_size+ask_size)`. Store displacement from mid in ticks/ATR, drift over 1s/5s/30s, and subsequent markouts. Do not use external microprice as the broker's actual OTC matching queue.
+7. **Aggressor ratios and absorption:** `buy_ratio_h=buy_notional_h/(buy_notional_h+sell_notional_h)` for h=1/5/15/30m, plus non-overlapping delta-rate slope. Proposed absorption research score: `z(opposing_aggressive_volume) − z(abs(price_displacement)/ATR) + z(replenishment_ratio)`, conditional on a documented sweep/reclaim/hold. Fit scales causally; no magic threshold is assumed. Actual footprint price-bin bid/ask volume is absent: `trapped_traders_signal` is not a substitute for `footprint_trapped_traders` data.
+8. **Queue decay and wall survival:** estimate cancellation hazard `−log(retained_notional_fraction)/dt` only when cancellation versus execution is attributable. Add replenishment, reprice lineage, notional retained fraction, gap duration, concentration HHI and wallet two-sidedness. Without order IDs, identical signatures must not be counted as independent conviction. Exact exchange queue position is not observable for MT5 OTC orders; label broker fill-probability estimates as proxies.
+9. **HTF and pullback trajectories:** warmed 1H/4H EMA20/50/200 with seed/count/cutoff; RSI and velocity paths, touch depth, reclaim closes, maximum adverse excursion and retest duration. Do not confuse a low single velocity value with verified absorption or label a 15m EMA200 as 4H.
+10. **Broker economics and calibration:** explicit profit currency, tick-value profit/loss, conversion quote, freeze/stops levels, margin tiers, commissions/swaps, `order_calc_profit`, `order_calc_margin` and `order_check` receipts. Log candidate non-fills, cancellations, partial fills, slippage and MAE/MFE. Calibrate by asset/engine and fill state; the pooled 17-trade lower bound is not sufficient evidence of edge.
+11. **Atomic snapshots and dimensional typing:** root finalization must follow all included component availability or exclude later components from the decision view. Keep signed ticks, base volume and USD notional in different typed fields; missing coverage is unknown, not zero. A 0x address denotes provider-attributed wallet identity here, not proof that the order resides on Ethereum rather than Hyperliquid.
+
+### B. Constructing payable 2.0–2.5R intraday geometry
+
+Start with a real shelf and valid all-band-safe stop, not the desired ratio. For executable-side valuation:
+
+`R_net = (broker_gain_at_TP − additional_win_cost) / (broker_loss_at_SL + additional_loss_cost)`.
+
+Avoid double-counting spread embedded in bid/ask entry and exit prices. Under a mid-coordinate research convention, include spread explicitly and consistently. Use the first material opposing magnet/barrier and conditional reachability, not an arbitrarily distant target past several walls.
+
+For approximately linear USD payoff, nominal risk is `lots * USD_sensitivity_per_price_unit * stop_distance`. Enumerate broker lot steps, round risk sizing down, and verify actual loss in **[7.50,14.50]**, net reward, margin and joint stress. Wider valid buffers require proportional downsizing, not an arbitrary 10 USD floor. USDJPY requires quote-currency conversion/native broker valuation.
+
+For a linear instrument at fixed geometry, `spread_cash/nominal_risk = spread_distance/stop_distance`; **lot downsizing alone does not improve this ratio or R:R**. Increasing stop distance can reduce friction percentage while worsening reward. ETH's 3.16R gross narrow-stop example demonstrates why gross geometry alone is misleading.
+
+A valid 1.0–1.2 ATR risk can support a 2–3 ATR intraday target before costs when such a magnet genuinely exists. A 10-ATR excursion is not mathematically necessary, but no field guarantees a nearby 2R opportunity. Prefer deeper **observed** swept-and-held anchors that improve entry-to-target distance while keeping a structurally valid stop; do not front-run a shallow edge or use a later wall retroactively.
+
+### C. Dynamic buffer and target calibration
+
+Research a broker-price-unit buffer based on `max(policy_ATR_floor, conditional_sweep_overshoot_quantile, joint_adverse_basis_spread_latency_allowance)`. If estimating overshoot and execution tails separately, combine conservatively or model their joint distribution; do not assume independence or double-count the same risk. Retain the current Engine 2 0.50–0.75 ATR protection and recheck every interval after tick rounding. Larger uncertainty should reduce lots or invalidate the card, not cause tighter stops.
+
+Condition overshoot distributions on asset, regime, realized volatility, depth, spread, session and orderflow. Target front-running remains **5–10 bps** under current policy, calibrated to depth consumption, replenishment, fill probability and conditional markout. Front-run the approached edge: upper edge of a lower band for shorts, lower edge of an upper band for longs, then account for broker trigger side. For FX a fixed bps distance can consume substantial ATR; propose and validate any policy change explicitly, never silently waive the rule.
+
+### D. Frequency, friction and peer corrections without macro halts
+
+Continuous scanning is permitted across all calendar conditions. Rank **valid** opportunities by fill-conditional expected net USD per stressed-risk and margin-time unit. Refresh on actual shelf touch/reclaim, material wall changes and synchronized basis changes. Measured spread/depth/slippage can make an order uneconomic at any time; this is not a disguised calendar halt. No event-time purge or runway rule is used.
+
+The peer statement that all 11 altcoins necessarily fail the cash-friction cap is not proven by these quotes. Against the **2.175 USD** maximum allowable spread cost (15% of 14.50), minimum-lot spread floors establish failure for XRP **3**, ADA **10.5**, DOGE **21**, TRX **10**, LTC **3**, NEAR **3.3**, and silver **2.9** USD. Other minimum costs—BNB **0.005**, DOT **0.21**, LINK **0.85**, BCH **0.58**, AVAX **0.03**, SOL **0.23**—do not alone prove universal cash-friction failure. Several still violate nominal spread policy/current exclusions or lack structural backing. Priority can remain with the clean-friction universe without misstating the mathematics. Printed historical friction percentages are not live constants.
+
+Validate with next-observation passive fills, bid/ask paths, partial fills, actual commissions/swaps, cancellation latency, moving walls, correlated joint fills and adverse markouts. Use purged walk-forward testing, no future-bar/basis leakage, and confidence intervals for fill-conditional expectancy, drawdown and time-to-target. More fills are not automatically more alpha; no new backtest or profit improvement is claimed here.
+
+## 10. Verification and publication boundary
+
+Evidence: `docs/trade_plans/audits/CYCLE_103_EVIDENCE.json`. Reproduction: `python docs/trade_plans/audits/cycle103_audit.py CANONICAL_SOURCE_DIRECTORY OUTPUT_JSON`. The extractor refuses the wrong generation and records all main-source hashes. Regression checks cover all 24 verdicts, flow direction/coverage, fresh basis, wall chronology, adjacent-band containment, FX precision and exact Decimal stress arithmetic.
+
+Only the report, reproducible evidence/audit/tests and append-only desk entry are changed. No raw telemetry overwrite, production strategy edit, broker order or macro-policy change is made. Canonical source is main; publication is the session-fixed branch, with integration to main pending any pull-request merge. Computational validation certifies these calculations against the pinned source, not a live trading authorization.
+
+
+---
+
+# Post-Cycle-103 continuation — 18:21:56 UTC canonical-main audit
+
+## 1. Verdict and pinned provenance
+
+**STAND ASIDE: 0 CANDIDATES / 6 WATCHLIST / 18 NO SETUP.** Research watches: **BTC, ETH, SP500, NAS100, GOLD, USWTI**. USDJPY leaves the watchlist because its current producer regime is RANGE_BOUND. WATCHLIST does not authorize staging; oil in particular fails the current spread ceiling.
+
+This is the user-requested fresh audit after Cycle 103, **not a relabeling of the 17:37:44 snapshot and not an operator-assigned Cycle 104**. No broker execution or PR merge occurred.
+
+- Generation **`edacf075b6e24de4a3c95dd1b61971db`**, **2026-10-14 18:21:56 UTC**.
+- All seven required source files were freshly retrieved from canonical main at **`6ea58c54cb2bca51a6002cd33ac7f57de1256d67`**: [immutable telemetry](https://github.com/kbsingh1399/Trading_2/blob/6ea58c54cb2bca51a6002cd33ac7f57de1256d67/docs/telemetry/live_snapshot_latest.json), [playbook](https://github.com/kbsingh1399/Trading_2/blob/6ea58c54cb2bca51a6002cd33ac7f57de1256d67/docs/specs/TRADE_DECISION_PLAYBOOK.md), [desk](https://github.com/kbsingh1399/Trading_2/blob/6ea58c54cb2bca51a6002cd33ac7f57de1256d67/docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md), [active context](https://github.com/kbsingh1399/Trading_2/blob/6ea58c54cb2bca51a6002cd33ac7f57de1256d67/.agents/rules/ACTIVE_CONTEXT.md), [history](https://github.com/kbsingh1399/Trading_2/blob/6ea58c54cb2bca51a6002cd33ac7f57de1256d67/.agents/memory/session_chat_history.md), [skill](https://github.com/kbsingh1399/Trading_2/blob/6ea58c54cb2bca51a6002cd33ac7f57de1256d67/.agent/skills/arena/SKILL.md) and [rubric](https://github.com/kbsingh1399/Trading_2/blob/6ea58c54cb2bca51a6002cd33ac7f57de1256d67/.agent/skills/arena/rubric.md).
+- Telemetry **4,443,852 bytes / 152,179 lines / 136,419 recursively traversed nodes**; SHA-256 **`8cede55b84df5316f7d2992f1efad55e74d1ce5ccf23cf15e88ed5c2d3978c08`**.
+- The six non-telemetry main sources are byte-identical to those retrieved for Cycle 103. Their hashes and relevant already-reviewed rules were retained; no new main-context policy or peer report is inferred. Main still does not contain the session's earlier report appends.
+- Account **5064568**: balance/equity/free margin **4,859.55 USD**, used margin **0**, **0 active positions / 0 pending orders**, contingent stress **0**. Legal broker identity remains operator-supplied; native server is null. No direct terminal query was made.
+- Calendar still reports **Fed Beige Book, 18:00 UTC**, `blackout_active=false`, `blackout_enforcement=DISABLED_BY_OPERATOR`. The stored 17:30–18:30 interval is not enforced. **No macro halt, event purge or runway veto** is used. The snapshot is after the reported release time; release contents and causal market impact were not independently verified.
+
+All asset blocks/arrays were machine-ingested and traversed; no candle ordering, OHLC-containment or explicit-close-after-cutoff violations were found. Crypto windows were checked for exact minute coverage. This is **not a claim of manually interpreting all 152,179 lines or every historical sentence**. The evidence ledger preserves source-block inventories, hashes and diagnostics; absent fields are not fabricated. Exchange bars without explicit close_ts are not certified completed merely by the explicit-close test.
+
+Policy precedence remains: passive limits only, **7.50–14.50 USD risk**, **35 bps crypto / 5 bps TradFi** nominal spreads, **<=15% actual cash friction**, separate engines, and RANGE_BOUND/UNDEFINED stand-aside. Engine 2 keeps the stronger **0.50–0.75 ATR** shelf buffer outside all relevant known intervals, <=2-ATR entry proximity, and the playbook's index >=1.5-ATR total stop distance. No producer authorization string or retired eligibility flag supplies the verdict. Main is the analytical source; publication remains on **`arena/66c9be42-trading-2`**. PR #2 is not merged.
+
+## 2. What changed since 17:37:44
+
+| Item | Cycle 103 | Fresh 18:21:56 observation | Interpretation |
+|---|---|---|---|
+| BTC fast tape | Negative 5/15/30m | Still negative, smaller net amounts; producer label now BULLISH_ABSORPTION | Credit recovery context, but label does not establish a held bid shelf or authorize bearish-HTF longs. |
+| ETH fast tape | All three windows negative | 5m/15m positive, 30m negative | Short-term recovery is real; no longer claim all-window seller domination. |
+| SOL primary | Largest aged ask <5 M | 5.338 M ask, 253.3s | Defense size improved, but mapped wall is 2.81 ATR away and spread worsened to 43.25 bps. |
+| SP500 nearby ask | New wall observed after last completed candle | 4.399 M ask has existed since 18:08:04 | Timing is better, but the overlapping completed candle did not reach its current mapped level. |
+| NAS100 target geometry | Tested nearby target ~0.58 R gross | New hypothetical card can display ~2.92 R gross | Do not repeat old geometry; the new stop is still invalid and below the total index distance standard. |
+| GOLD location | 0.75 ATR below EMA20 | Mid 4,092.29 versus EMA20 4,092.6033, ~0.03 ATR | Genuine near-shelf opportunity search, defeated by missing class-sized seasoned ask/held rejection. |
+| Oil primary proximity | 2.41 ATR away | 1.11 ATR away | Improvement credited; spread 6.29 bps, seller ticks and stop/friction now prevent staging. |
+| USDJPY regime | BULLISH | RANGE_BOUND | Both engines stand aside under current instruction; remove the watch. |
+
+### Complete CVD windows ending 18:21:00 UTC
+
+| Asset | 5m USD | 15m USD | 30m USD | Previous non-overlapping 5m USD |
+|---|---:|---:|---:|---:|
+| BTC | −152,098.49 | −498,084.49 | −491,409.10 | +290,929.05 |
+| ETH | +88,123.96 | +320,121.27 | −443,208.97 | +287,598.91 |
+| SOL | +44,365.87 | +340,305.02 | +387,890.84 | +90,051.97 |
+
+**BTC:** session/weekly/24h CVD **−94.102 M / −73.309 M / −123.900 M USD**; latest supplied 15m bar delta **+2.069 M** and divergence label **BULLISH_ABSORPTION**. Its trailing granular windows remain negative. Different endpoints/window constructions can disagree; do not silently equate the bar delta with trailing 15m. The 18:00–18:15 broker candle bounced from **81,380.5** to close **81,548.5**, but current mid **81,557.5** remains below bearish shelves. Buying absorption at an identified persistent bid is not verified. New primary asks were first seen after the completed bar.
+
+**ETH:** session/weekly/24h CVD **−89.443 M / −106.209 M / −95.027 M**. Positive 5/15m flow signals recovery, not automatically long eligibility or confirmed short exhaustion. The 18:00–18:15 low/close is **2,419.3 / 2,425.8**. Latest primary walls were first seen **18:16:16**, so they cannot be credited retroactively as defense of that low. Bearish H1/H4 and Z −1.40 prohibit an E1 dip-buy regardless.
+
+### Wall-at-touch chronology and fresh index structure
+
+**SP500:** current median-mapped primary ask **7,712.455** (raw 7,712.9, **4.399 M**, **808.3s**, 14 samples, presence 1.0) was first seen **18:08:04**. It overlaps the 18:00–18:15 completed candle, but that candle's high was only **7,709.58**. Thus this is no longer simply a later-wall problem: **the supplied completed path did not reach the currently mapped wall**. Historical basis throughout that candle is still unavailable. Current mid **7,710.425** is only 2.03 points below the median-mapped ask, so it is a meaningful near-term research level, not a certified fill/rejection.
+
+Another seasoned ask maps **7,720.155** (1.087 M, 440s, first seen 18:14:12). EMA20 **7,736.228** is 2.19 ATR away. Current raw [7,710,7,720] buy-stop+squeeze fuel has fallen to approximately **153,360 USD**, versus 5.040 M previously. **That decline is not proof of execution**: price decline, cancellation, reclassification and relocation remain possible. A large aged bid now sits raw **7,687 / 38.357 M**. Do not reuse the old 5.040 M overhead-fuel figure or assume the lower notional completes the trade thesis.
+
+**NAS100:** new primary ask raw **30,081**, mapped **30,063.26**, is **1.078 M / 382.7s / 7 samples / presence 1.0**, first seen **18:15:09**, after the last completed bar. The 18:00–18:15 broker high/low/close is **29,977.52 / 29,881.27 / 29,965.86**, below the proposed wall. Raw 30,018 / 1.051 M is closer but single-sample. Other aged >1 M asks at raw 30,225 and 30,342 are too far for immediate staging under the 2-ATR proximity standard. Raw [30,000,30,100] current stop+squeeze fuel is only about **147,132 USD**, not the old Cycle 102/103 amounts. No fresh verified sweep-and-held-wall short is established.
+
+### Other telemetry blocks
+
+- **1,133 L3 observations / 549 duration>=180s**; **64 L2 records / 23 duration>=180s**. These are sampled wallet-price recurrences without order IDs, not full continuous L3. Duplicate-signature excess: BTC 2, NAS100 3, USDJPY 2. Avoid counting identical records as independent defense.
+- Hyperliquid median/spot basis: BTC **−65 / −42**, ETH **−2.2 / −1.5**, SP500 **−0.445 / +1.175**, NAS100 **−17.74 / −14.27**, GOLD **−2.645 / −2.86**, oil **+1.4445 / +1.4095**, JPY **+0.077 / +0.088**. Source-specific medians remain populated for 22 assets; DJ30/GER40 lack coverage. The **23-point BTC** and **1.62-point SP500** median-versus-spot differences are observable uncertainty, not assumed constant execution offsets.
+- L2 imbalance now favors bids in BTC **+0.6401**, ETH **+0.4563**, SP500 **+0.3674** and oil **+0.2205**; NAS100 is **−0.063**. Static imbalance is not tape absorption or event OFI.
+- TradFi 15m signed ticks: SP500 **−11**, NAS100 **+21**, GOLD **+8**, oil **−21**, EUR **+37**, GBP **+20**, JPY **−29**. They are not USD trade flow; most use 1,000 ticks and GER40 uses 896. True window coverage remains unspecified.
+- All H1/H4 histories contain 96 completed bars. First-close-seeded EMA20/50 diagnostics are estimates; warmed HTF EMA200 is not supplied. The 800-bar producer EMA200 is 15m. SP500/DJ30/NEAR/TRX H4 remain mixed; GER40 H1 mixed/H4 bullish conflicts with its BEARISH label. JPY's completed H1/H4 remain bullish while the current producer regime is RANGE_BOUND: follow the explicit regime exclusion rather than force the older trend.
+- EURUSD still serializes spread_price 0 with positive bps; GBPUSD displayed precision still cannot certify native five-digit cash spread. ETF flows are null/NOT_YET_REPORTED. Funding is exchange context, not CFD financing. MT5 profile volume is a tick-volume proxy; trap labels are not price-bin footprints.
+- The global Hyperdash block is **5.481 seconds later than root time**. Its full block was traversed but not backdated as contemporaneous decision proof. Coinbase premium is **−18.99 bps**, fear/greed 62; these are context, not triggers. The win lower bound 0.4197 remains uncalibrated on 17 trades/11 wins.
+
+## 3. Mandate 1 — both engines across all 24 assets
+
+E1/E2 remain independent. Shelves below are supplied 15m EMA20/EMA50; H1/H4 ordering is evaluated separately. All rows lack a fully certified executable card; WATCHLIST means research only.
+
+| Asset / MT5 symbol | Engine 1 verdict | Engine 2 verdict | Final |
+|---|---|---|---|
+| BTC / BTCUSD.pi | Z −1.65: not extreme; bearish-HTF long prohibited despite absorption label. | Bear/bear; 81,947.1849 / 82,483.5704. New 8.975 M ask maps 81,839, 0.93 ATR away, but first seen after last completed bar. Velocity 1.5213, negative trailing tape and invalid stop; no held short shelf. | WATCHLIST |
+| ETH / ETHUSD.pi | Z −1.40: not extreme; bearish long prohibited. | Bear/bear; 2,441.6618 / 2,463.8856. Quiet velocity 0.0805; 7.394 M ask maps 2,443.9. Positive fast recovery, negative 30m, late wall chronology and stop/friction failure. | WATCHLIST |
+| SOL / SOLUSD.p | Z −1.25: not extreme. | Bear/bear; 104.5927 / 105.4383. New 5.338 M ask now passes size/age, maps 105.90 but is 2.81 ATR away. Positive fast CVD and spread 43.25 bps >35 defeat immediate staging. | NO SETUP |
+| BNB / BNBUSD.p | Z −1.91: below extreme threshold. | Bear/bear; 731.3989 / 735.4475. Negative flow and velocity 0.1241 supportive; maximum aged ask only 1.233 M, no >=5 M coherent local shield/held shelf. | NO SETUP |
+| XRP / XRPUSD.pi | Z −1.42: not extreme. | Bear/bear; 1.3357 / 1.3480. Positive fast flow, zero L3 and 4 USD minimum spread cost >2.175 maximum friction allowance. | NO SETUP |
+| ADA / ADAUSD.p | Z −0.82: not extreme. | Bear/bear; 0.2283 / 0.2304. Near EMA20 explicitly considered; positive flow, no wall, 139.98 bps, minimum spread 16 USD. | NO SETUP |
+| DOGE / DOGUSD.p | Z −0.55: not extreme. | Bear/bear; 0.0813 / 0.0821. Negative flow and reported zero pullback velocity do not establish held resistance. No walls, 500.31 bps and minimum spread 41 USD. | NO SETUP |
+| TRX / TRXUSD.p | Z +1.20: not extreme; bullish short fade prohibited. | Bull/mixed H4; 0.3332 / 0.3323, POC 0.3327. Mixed fast flow, no L3, minimum spread 10 USD. | NO SETUP |
+| DOT / DOTUSD.pi | Z −0.35: not extreme. | Bear/bear; 1.1200 / 1.1284, POC 1.1307. Mid 1.129 near EMA50/POC and negative flow considered; no walls, 354.30 bps and explicit exclusion. | NO SETUP |
+| LINK / LNKUSD.p | Z −1.31: not extreme. | Bear/bear; 12.4816 / 12.6217. Quiet velocity 0.1253 and negative windows, but no wall and 100.69 bps; current exclusion retained. | NO SETUP |
+| BCH / BCHUSD.p | Z −1.44: not extreme. | Bear/bear; 270.4310 / 272.8099. Quiet velocity 0.1887, mixed fast flow, no L3. 26.02 bps passes nominal cap but not a full setup; no blanket min-lot-friction assertion. | NO SETUP |
+| LTC / LTCUSD.pi | Z −0.79: not extreme. | Bear/bear; 59.5486 / 60.1726. Mid within 0.09 ATR of EMA20, negative fast flow; no defense, 67.14 bps and 4 USD minimum spread. | NO SETUP |
+| AVAX / AVXUSD.p | Z −1.14: not extreme. | Bear/bear; 9.9078 / 10.0127. Near shelf, low velocity 0.1572 and 30.35 bps considered. Positive 5/15m versus negative 30m, no walls/held rejection. Contract 100, min/step 0.01, digits 2. | NO SETUP |
+| NEAR / NERUSD.p | Z −1.95: no longer >=2. | Bear/mixed H4; 4.8821 / 4.9485. Negative flow but velocity 1.4483, no shield, 66.39 bps and 3.20 USD minimum spread. | NO SETUP |
+| SP500 / SP500.p | Z −1.63: not extreme; no bearish-state dip-buy. | Bear/mixed H4; 7,736.2280 / 7,768.1501. Nearer 4.399 M ask at mapped 7,712.455 is considered. Overlapping candle did not touch it under current mapping; velocity 1.7907 and tested geometry fail. | WATCHLIST |
+| NAS100 / NAS100.p | Z −1.69: not extreme; no bearish-HTF long. | Bear/bear; 30,118.8299 / 30,298.7276. New 1.078 M ask maps 30,063.26 within 1.31 ATR but first seen after completed bar. Gross2.92 R counterexample has invalid stop and insufficient total index distance. | WATCHLIST |
+| DJ30 / DJ30.p | Z −1.06: not extreme. | Bear/mixed H4; 51,557.2994 / 51,657.6304. POC 51,408.4818 considered; velocity 3.1263, no external depth/walls/bands. | NO SETUP |
+| GER40 / GER40.p | Reported Z −2.00 meets rounded boundary; no exhaustion/backing or aligned regime. | Producer BEARISH but H1 mixed/H4 bullish; 25,292.3723 / 25,323.5878. Buyer ticks, velocity 3.1708, no external shield. | NO SETUP |
+| GOLD / XAUUSD.pi | Z −0.85: not extreme; bearish-HTF dip-buy prohibited. | Bear/bear; 4,092.6033 / 4,113.1262; mid 4,092.29 nearly EMA20 and POC 4,099.5908 considered. Velocity0.3995 constructive, but buyer ticks, no held rejection and largest aged ask 0.612 M<0.75 M. Larger ask single-sample. | WATCHLIST |
+| SILVER / XAGUSD.pi | Z −1.50: not extreme. | Bear/bear; 56.1278 / 57.1336. Buyer ticks, largest aged ask 0.644 M<0.75 M;9.16 bps and 2.55 USD minimum spread fail. | NO SETUP |
+| USWTI / USWTI.p | Z +0.36: not extreme; no bullish-trend short fade. | Bull/bull;95.6032 /95.3496,POC 95.4852. Bid 95.0245 nowwithin1.11 ATR, but seller ticks,velocity 1.044,6.29 bps>5 and 20.03% illustrative friction/invalid stop. Research only while execution conditions fail. | WATCHLIST |
+| EURUSD / EURUSD.pi | Z −0.13: not extreme. | Bear/bear;1.1136 /1.1156. Mid 1.115 approaching EMA50,RSI 53.18,quiet velocity 0.3435; buyer ticks, largest aged ask 0.200 M<0.50 M and native precision defect. | NO SETUP |
+| GBPUSD / GBPUSD.pi | Z −0.71: not extreme. | Bear/bear;1.3174 /1.3205. Mid 1.3179 aboveEMA20,low velocity 0.2512; buyer ticks, distant aged asks~0.099 M and quote precision limits. | NO SETUP |
+| USDJPY / USDJPY.pi | Z −1.00: not extreme; RANGE_BOUND excludes E1. | RANGE_BOUND excludes E2 despite older completed bull/bull ordering. Mid 158.313 below EMA20/50 at 158.6664/158.5924, seller ticks, no class-sized bid. Do not relabel this as a confirmed bullish pullback. | NO SETUP |
+
+Single-record maxima are not blanket proofs of missing clustered defense. In the current <=2-ATR neighborhood, BNB's two aged asks total about 1.381 M and GOLD's three about 0.702 M, below their respective5 M/0.75 M requirements even before coherence checks. EUR/GBP/JPY have no correct-side aged records within that neighborhood. **Silver does have nearby aged ask clusters exceeding 0.75 M**; its table's0.644 M figure is a single-record maximum only. Silver remains rejected independently for9.16 bps nominal spread and 2.55 USD minimum cash spread, not a claim that no adequate cluster exists.
+
+## 4. Fresh geometry falsification — not order cards
+
+Use Hyperliquid median basis for these idealized coordinates; source-specific uncertainty and broker-side execution checks remain necessary. Stops below clear the governing edge by 0.5 ATR plus half-spread, then are checked against other known intervals. The examples intentionally demonstrate why apparent confluence is insufficient; **no lots or executable orders are authorized**.
+
+| Hypothesis | Research entry | Buffered stop | Adjacent interval containing stop, MT5-mapped | Tested gross R / friction |
+|---|---:|---:|---|---|
+| BTC short at 8.975 M ask | 81,839 | 82,097.5823 | [82,035,82,135] | 1.018 R to 81,575.7675;8.51% friction |
+| ETH short at 7.394 M ask | 2,443.9 | 2,465.9186 | [2,457.8,2,467.8] | 1.130 R to 2,419.0089;16.35% friction |
+| SP500 short at 4.399 M ask | 7,712.455 | 7,725.81865 | [7,719.555,7,729.555] | 0.677 R to 7,703.40478;5.46% friction |
+| NAS100 short at 1.078 M ask | 30,063.26 | 30,120.2196 | [30,082.26,30,182.26] | 2.915 R to 29,897.20113;3.27% friction |
+| Oil long at 1.450 M bid | 95.0245 | 94.72495 | [94.6445,94.7445] | No certified material target;20.03% friction |
+
+**BTC:** the new 18:18:24 primary cannot defend an earlier candle. The nearest lower pool's front-run is only about 1 R even before costs; do not use the much older 17:00 high as a touch of the new wall.
+
+**ETH:** use the major raw [2,450,2,460] squeeze band, not only the smaller nearby interval. Its buffered stop falls in the next band. Using the closer raw2,450 edge would produce an even narrower stop inside the large squeeze zone, not a better trade. Positive fast recovery weakens immediate short confirmation.
+
+**SP500:** the nearer material [7,690,7,700] sell-stop/cascade pool totals approximately 4.596 M. Its5 bps front-run produces only 0.677 R. The tested13.36365-point risk also fails the historical1.5 ATR total index distance (17.69595). Widening to that minimum places the stop near 7,730.15095, inside another known interval; re-evaluation, not automatic approval, is required.
+
+**NAS100:** the first selected >=0.50 M downside stop pool is now [29,800,29,900], unlike Cycle103's nearer material pool. Thus the new gross ratio is genuinely higher. It is nevertheless built on a56.9596-point risk, below 1.5 ATR=111.0888, and the stop is inside another interval. Widening to the index minimum reduces grossR to approximately 1.495 before costs and still does not clear all bands. Do not certify the2.915 R figure as payable edge.
+
+**Oil:** the primary bid is closer and has6,748.4s recurrence, but the protected-entry example fails both the6.29 bps nominal spread ceiling and 20.03% cash friction. New small overhead squeeze bands are present—unlike the previous empty list—but none of the supplied top buy-stop/squeeze targets reaches0.50 M. No distant target is invented to meet2 R.
+
+Entries equal to a mapped wall here are diagnostic reference prices, not proof that the wall lies strictly between executable entry and stop. Any future card must place the qualifying defense on the protective side, compensate for executable bid/ask and half-spread consistently, and recompute the entire geometry after passive-limit/tick placement.
+
+The hypothetical stops are not tick-rounded broker instructions. Their interval failures are large enough to persist under ordinary tick rounding. Passing nominal friction for BTC/SP/NAS does not cure their structural failures. Downsizing affects cash exposure, not interval containment or the approximately spread-distance/stop-distance ratio.
+
+## 5. Mandate 2 — running positions
+
+**Exact snapshot: active_positions=[]; no running TP/SL modification or frozen-R0 ratchet is needed.** No historical context position is treated as current. Keep initial entry/SL/R0 immutable for any later live position; the newer playbook1.25 R0/1.65 R0/2 R0 ladder is not activated here. No broker SL change, profit lock, close or new terminal inventory check occurred.
+
+Historical listed gains are already reflected in balance and are not added again. Full closed-deal/commission/swap receipts are not supplied, so no fresh net-profit reconciliation is claimed.
+
+## 6. Mandate 3 — pending orders
+
+**pending_orders=[]; no tickets to WAIT, MODIFY or DELETE.** A research watch does not reserve a capacity slot and is not an order waiting to fill. No old watchcard is resurrected and no cancellation was sent.
+
+## 7. Capital governance and actionable execution table
+
+Exact stressed loss per14.50 USD-risk ticket is **20.125 USD**. Model all independently fillable positions and pending orders jointly, without premature rounding.
+
+| Scenario | Total stress USD | Modeled post-stop equity USD | Buffer headroom USD |
+|---|---:|---:|---:|
+| Actual flat book | 0 | 4,859.55 | 64.55 |
+| Three hypothetical maximum-risk tickets | 60.375 | 4,799.175 | 4.175 |
+| Four hypothetical maximum-risk tickets | 80.500 | 4,779.050 | −15.950 |
+
+Current cushion is **84.55 above 4,775 hard floor /64.55 above 4,795 operating buffer**. Four slots are free, but retain the explicit three-new-ticket limit. This stress model is **not an unconditional guarantee** against unbounded gaps/slippage/broker failure. Native profit, conversion, margin and order-check receipts are required before exact future lots, especially for quote-currency-dependent FX.
+
+| Action | Symbol | Side | Lots | Entry | SL Bunker | TP Magnet | Risk USD | R:R | Engine | Archetype Defense | Rationale |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| STAND ASIDE | — | — | — | — | — | — | — | — | — | — | No contemporaneous held shelf with valid all-band stop and payable net target; oil/SOL spread failures and JPY regime change explicitly recognized. No macro veto. |
+
+## 8. Five-perspective deliberation and arena-rubric adaptation
+
+The unchanged canonical skill/rubric was retrieved again. Independent-agent dispatch is unavailable; this is an explicit **single-agent five-perspective adaptation**, not a completed independent-agent tournament or verified external peer consensus.
+
+1. **Orderflow:** BTC's BULLISH_ABSORPTION label, positive bar delta and bid-heavy book deserve credit; ETH now has positive 5/15m. Counterargument: BTC trailing tape remains negative, ETH30m negative, bearishHTF persists, and newly observed bids cannot prove earlier defense. **Revision:** no long; reassess short-side confirmation at a real shelf.
+2. **Structural:** GOLD is now almost atEMA20; SP500's4.399 M ask is only 2.03mapped points away. Counterargument: GOLD lacks a seasoned0.75 M ask and confirmed rejection; SP's overlapping bar high stayed below its mapped wall. **Revision:** retain close watches, not stale far-shelf reasoning.
+3. **Liquidation forensic:** NAS100 now appears to offer2.915 R gross. Counterargument: stop lies inside the next band and below index1.5 ATR total distance. **Revision:** reject that construction; do not recycle the older0.58 R claim either.
+4. **Portfolio/execution:** oil's primary entry improved from 2.41 to 1.11 ATR; SOL finally exceeds5 M ask backing. Counterargument: their observed spreads now6.29/43.25 bps fail the respective nominal ceilings; oil's tested cash friction20.03% also fails. **Revision:** neither is an order; calendar time is not the rejection reason.
+5. **Red team:** stand aside remains preferred. Counterargument to complacency: JPY must be removed from watches, and no unchanged all-negative-ETH-flow/undersized-SOL-wall/empty-oil-squeeze claims should survive. **Revision:** explicit6-watch/18-no-setup result with updated evidence and activation deficiencies.
+
+Adapted rubric vectors are correctness/completeness/specificity/robustness/clarity (0–10); weights30/25/15/20/10. These are subjective audit-quality scores, not trading probabilities. Fatal flaws outrank totals.
+
+| Hypothesis | Vector | Weighted /100 | Standing flaw |
+|---|---|---:|---|
+| Immediate BTC/ETH absorption long | 3/6/6/1/7 | 42.0 | Fatal: adverseHTF and unverified held absorption. |
+| Immediate SP500/GOLD shelf short | 6/7/8/2/8 | 59.5 | Fatal: SP stop/target failure; GOLD no required shield/rejection. |
+| Immediate NAS1002.915 R short | 6/7/8/2/8 | 59.5 | Fatal: interval containment and total-distance deficiency. |
+| Immediate oil long/SOL short | 5/7/8/2/8 | 56.5 | Fatal: observed execution friction/spread and structural deficiencies. |
+| Stand aside with six differentiated watches | 9/8/9/9/9 | 87.5 | Adapted winner; limits and recovered signals disclosed. |
+
+Archetype defenses: **A1** checks adjacent bands; **A2** prevents bearish-regime dip-buys; **A3** refuses tight stops manufactured forR; **A4** requires same-time observed defense and correct-side placement; **A5** retains deeper pullback anchoring/wider buffers before lot sizing. No guarantee of zero future losses. Historical108.55 is above 108.50, not literally inside[107.5,108.5]; insufficient clearance/relocated defense remains the valid lesson.
+
+## 9. Institutional schema and payable-frequency improvements
+
+No production changes or new profitability claims are made. The fresh evidence sharpens priorities:
+
+### A. Causal and execution correctness
+
+- Add `wall_present_at_touch`, historical per-event basis, first/last seen, observation gaps, notional retained fraction and availability timestamps. A current large wall cannot be backdated to an earlier candle; SP500 now also illustrates that simultaneous observation without price contact is insufficient.
+- Store basis median sample count/lookback and residual quantiles; mark median-versus-spot deviations explicitly. Use side-specific adverse basis/spread/latency tails rather than assuming constant translation. Preserve broker-native integer bid/ask ticks and monetary units; repair EUR/GBP rounded-spread inconsistencies.
+- Preserve raw stop/liquidation triggers, density/occupancy within bins and unique contributor IDs. Separate execution, cancellation and reclassification; a fall from 5.040 M to 0.153 M overhead fuel is not an execution receipt. Deduplicate top/nearest copies and repeated wall signatures. Do not silently ignore low-notional adjacent bins under the current all-band rule.
+- Add independently warmed H1/H4EMA200, RSI/pullback trajectories, quote freshness at actual decision time, broker profit/margin/order-check receipts, financing costs and fill/cancel logs. Keep signed ticks distinct from USD CVD. Do not pass future component availability into historical decisions.
+
+### B. Microstructure mathematics
+
+- **Event OFI:** weighted price-aware bid/ask queue additions/removals across levels, normalized by time-weighted depth; include sequence gaps and reset flags. Snapshot imbalance is not eventOFI.
+- **Microprice:** `(ask*bid_size + bid*ask_size)/(bid_size+ask_size)`; record microprice-minus-mid in ticks, short-horizon drift and fill-conditional markouts.
+- **Aggression:** `buy_ratio=buy_notional/(buy_notional+sell_notional)` over complete1/5/15/30m windows, with non-overlapping delta-rate changes. Different bar endpoints must be published to explain conflicts such as BTC's positive15mbar versus negative trailing15m.
+- **Absorption research:** combine normalized opposing aggressor volume, low price displacement, replenishment and an observed sweep/reclaim/hold. Example score: `z(opposing_volume) − z(abs(displacement)/ATR) + z(replenishment)`, calibrated causally rather than treated as a proven threshold.
+- **Wall/queue survival:** cancellation hazard `−log(retained_notional_fraction)/dt` only with execution/cancel attribution. Add wallet concentration and two-sided exposure. Exact MT5 OTC queue rank is unavailable; label fill-probability models as proxies, not exchange queue measurements. A0x address is not proof of Ethereum-resident orders.
+
+### C. Payable2.0–2.5 R geometry and friction
+
+Use `R_net=(broker_gain_at_TP−additional_win_cost)/(broker_loss_at_SL+additional_loss_cost)` with a consistent executable-side or explicitly costed mid-price convention. Do not double-count embedded spread. Identify a real shelf, valid band-union stop and reachable first material magnet before enumerating discrete lots in[7.50,14.50]. Widen safe stops and downsize cash risk; **downsizing alone leaves spread-distance/stop-distance friction andR unchanged**. Never raise lots to force a minimum risk or stretch a target past unconsumed barriers merely to print2.5 R.
+
+A valid1–1.2 ATR risk may support2–3 ATR reward when an actual magnet exists; no universal10 ATR excursion is necessary. NAS100's apparent2.915 R is a useful falsification example: enforcing the index total stop distance already reduces it below 2 R before costs, without solving band containment.
+
+Research buffers using the policy minimum and conditional sweep-overshoot plus joint adverse execution/basis tails, without assuming independence. Retain current Engine2 protection and recheck all intervals after tick rounding. Calibrate5–10 bps target front-running against depth, replenishment and conditional fill probability; any change to fixed-bps policy requires explicit separate validation.
+
+### D. Frequency without calendar halts
+
+Continuously rank valid cards by fill-conditional expected netUSD per stressed-risk and margin-time. Trigger review on actual touch/reclaim, material wall changes, spread normalization and synchronized basis updates. No macro halt/purge/runway condition is applied. Distinguish market-price rejection from event-time exclusion.
+
+Live minimum-lot spread floors now independently exceed the maximum2.175 USD friction allowance for XRP4, ADA16, DOGE41, TRX10, LTC4, NEAR3.2 and silver2.55 USD. Other altcoin minimum costs do not alone prove universal infeasibility; several still fail nominal spread or structural conditions. SOL's failure is not an undersized whale anymore: it is43.25 bps, remote shield, flow and geometry. Oil's bid improvement does not override6.29 bps and 20.03% example friction. Historical printed asset friction percentages are not constants.
+
+Validate with next-observation passive fills, bid/ask paths, partial fills, commissions/swaps, cancellation latency, changing walls and joint correlated fills, using purged walk-forward splits. Report confidence intervals, fill rate, net expectancy, drawdown and time-to-target. The17-trade pooled lower bound does not demonstrate asset/engine-specific edge; more trades or available slots are not themselves profitable alpha.
+
+## 10. Reproducibility and publication
+
+Evidence: `audits/CYCLE_103_CONTINUATION_182156_EVIDENCE.json`. Reproduce with `python docs/trade_plans/audits/continuation103_audit.py SOURCE_DIRECTORY OUTPUT_JSON` after retrieving the seven paths from the pinned main commit. The existing Cycle103 extractor is parameterized with backward-compatible defaults; its old geometry is explicitly disabled for this refresh and replaced with fresh cases. No old prices are silently reused.
+
+The report is appended once to the session desk, preserving the entire canonical-main prefix and all prior session entries. Only report/evidence/audit-test files change; no raw telemetry overwrite, production strategy patch, broker action or merge occurs. Publishing on the session branch updates the existing PR head, but **main remains unchanged until a separately authorized merge**. The latest-at-retrieval snapshot is not a streaming-price guarantee.
+
+
+---
+
+# Cycle 104 — Astra council: pure telemetry and playbook analysis
+
+## 1. Ingestion, provenance and policy precedence
+
+The requested generation is verified: **`8d5df9f2469d485bb7fefb740fb44ccf`**, **2026-10-14 18:41:47 UTC**, fetched from canonical main pinned at **`d06acd0739b3e0eb9b63c8f835937830f103d060`**. This is Cycle 104, not either Cycle 103 snapshot.
+
+Required sources, all retrieved at that same main commit:
+
+1. [Telemetry](https://github.com/kbsingh1399/Trading_2/blob/d06acd0739b3e0eb9b63c8f835937830f103d060/docs/telemetry/live_snapshot_latest.json).
+2. [Playbook](https://github.com/kbsingh1399/Trading_2/blob/d06acd0739b3e0eb9b63c8f835937830f103d060/docs/specs/TRADE_DECISION_PLAYBOOK.md).
+3. [Order desk](https://github.com/kbsingh1399/Trading_2/blob/d06acd0739b3e0eb9b63c8f835937830f103d060/docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md).
+4. [Active context](https://github.com/kbsingh1399/Trading_2/blob/d06acd0739b3e0eb9b63c8f835937830f103d060/.agents/rules/ACTIVE_CONTEXT.md).
+5. [Session history](https://github.com/kbsingh1399/Trading_2/blob/d06acd0739b3e0eb9b63c8f835937830f103d060/.agents/memory/session_chat_history.md).
+6. [Arena skill](https://github.com/kbsingh1399/Trading_2/blob/d06acd0739b3e0eb9b63c8f835937830f103d060/.agent/skills/arena/SKILL.md) and [written rubric](https://github.com/kbsingh1399/Trading_2/blob/d06acd0739b3e0eb9b63c8f835937830f103d060/.agent/skills/arena/rubric.md).
+
+Telemetry receipt: **4,444,821 bytes**, **152,257 byte-delimited lines**, **136,486 recursively traversed JSON nodes**. SHA-256: **`90b05663639e48ad97f4cea1749e44130b630f45c69217e9321596011d835108`**. The six context documents are byte-identical to the prior canonical-main retrieval; their historical report appends are not current inventory. Full-file hashes and all source-block inventories are retained in `audits/CYCLE_104_EVIDENCE.json`.
+
+**Reading-scope disclosure:** every required file was ingested in full and the complete JSON was parsed/traversed, including all 24 assets and arrays. Detailed semantic review focused on the current signals, structures, chronology, execution and relevant context. This does **not** establish exhaustive human-style interpretation of every one of 152,257 telemetry lines or every historical sentence. I cannot honestly certify the requested “100% direct manual line-by-line analysis.” No independent broker or calendar query was made.
+
+**Calendar:** the snapshot reports **Fed Bowman Speech: Bangkok Economic Festival**, release **2026-10-15 02:55:00 UTC**, `blackout_active=false`, `blackout_enforcement=DISABLED_BY_OPERATOR`, null purge deadline and runway. No event halt, purge, news-runway rejection or macro veto is applied.
+
+**Zero producer-decision-gate adaptation:** no production admission/decision-gate engine was run, and `DENIED_UNVERIFIED_ORDERFLOW` or per-wall eligibility booleans do not decide the result. The user's explicitly required economic and structural invariants remain applicable. Engine 2 is evaluated separately even at low Z. Current instructions override stale playbook sections: RANGE_BOUND/UNDEFINED means neither engine; no macro blackout; risk 7.50–14.50 USD; 35/5 bps nominal ceilings plus actual <=15% friction; Section 7.4 supersedes old ETH 8-bps and blanket SOL exclusions. Historical printed friction percentages are not current measurements. For Engine 2, retain the stricter 0.50–0.75 ATR shelf/band protection and the playbook's index total stop-distance standard of at least 1.5 ATR.
+
+**Branch disclosure:** canonical main is the analytical source. This session is fixed to `arena/66c9be42-trading-2`; the requested direct append on main cannot be performed here. The report and append-only desk update are published on the session branch through existing PR #2, without a merge. No broker order, terminal modification or production strategy patch is made.
+
+## 2. Fresh evidence and peer cross-check
+
+### 2.1 Crypto tape: do not repeat Cycle 103's all-negative claim
+
+These exact, complete 1-minute-bucket windows end at **18:41:00 UTC**. All 14 crypto assets have complete 1/5/15/30-minute coverage with no duplicated or missing timestamps in those windows.
+
+| Asset | 1m delta USD | 5m delta USD | 15m delta USD | 30m delta USD | Previous non-overlapping 5m USD |
+|---|---:|---:|---:|---:|---:|
+| BTC | +45,437.10 | +9,067.99 | +2,135,351.98 | +2,243,854.86 | +1,572,274.02 |
+| ETH | +319,199.66 | −189,932.29 | −74,946.82 | +202,920.13 | +292,086.31 |
+| SOL | −29,109.68 | −85,820.37 | +44,171.03 | +131,519.07 | −29,704.34 |
+
+**BTC:** 15m buy ratio is 58.35%; the latest 5m is nearly balanced at 50.14%. Session/weekly CVD remain negative, but current fast flow is **not seller-dominated**. The BULLISH_ABSORPTION label is consistent with improved buying context, not proof of a protected long. H1/H4 remain bearish; Z −1.73 is below Engine 1's threshold. For a short, buying has slowed, but an actual defended relief-rally touch is still absent.
+
+**ETH:** bearish-exhaustion label coexists with renewed negative 5m/15m and positive 30m. The latest1m is positive319,199.66USD, so the most recent minute also differs from the broader5m window. Do not call all windows negative, nor equate negative delta with absorption. At the 7.394 M ask, basis-mapped resistance is **2,443.70**, well above the latest completed high **2,426.50**.
+
+The BTC 8.975 M / ETH 7.394 M asks first seen at 18:18:24 / 18:16:16 now overlap the 18:15–18:30 completed candle. Their histories are older than in the continuation audit, but that candle never reached their mapped prices. **Chronology has improved; touch confirmation has not.**
+
+### 2.2 SP500: a crossed price is not a defended touch
+
+- Current bid/ask **7,702.78 / 7,703.02**; median Hyperliquid basis **−0.155**.
+- New nearby ask: raw **7,710.4**, mapped **7,710.245**, **4.946730 M**, **478.0 s**, presence 1.0; first seen **18:33:19**.
+- The 18:15–18:30 candle high **7,710.54** crossed that *current* mapped price, but the wall was first observed **after the candle closed**. It cannot be credited as defense of that earlier excursion. Historical basis would also be needed for exact touch attribution.
+- New deeper ask: raw **7,732.8**, mapped **7,732.645**, **1.999996 M**, **316.7 s**, first seen **18:36:00**, near the current 15m EMA20 **7,733.4501**. No completed post-observation bar establishes its hold.
+- The Cycle 103 7,712.9 ask is not the current primary. Its absence does not by itself identify cancellation, fill or relocation.
+- Current raw [7,710,7,720] stop+squeeze fuel totals **153,222.85 USD**, not the peer's old 5.04 M. A smaller reconstructed pool is not an execution receipt.
+- Latest signed ticks **−13**; pullback velocity **2.4256** is not a slow retest. Completed H1 is bearish but H4 ordering remains mixed.
+
+**Peer task result:** no verified contemporaneous seasoned-ask touch with valid >=2 R downside payoff. A deeper reference card can print 2.21 R, but its stop fails and its wall is newly observed; see Section 3.
+
+### 2.3 NAS100: previous primary ask no longer observed
+
+- Current mid **29,913.01**, median basis **−17.74**. Latest completed 18:15–18:30 high/low/close: **29,973.72 / 29,928.83 / 29,951.40**.
+- The previously qualifying raw **30,081 / 1.078 M** ask is absent from current L3 records. Do not carry forward its age or the previous 2.915 R counterexample.
+- Largest current aged single ask is **0.565 M**, not >=1 M. Nearby aged asks at raw **29,960** sum **830,359.37 USD**, all with **75% sampled presence**, first seen **18:38:15**. Even their gross sum falls below 1 M; no independent L2 addition is assumed because venues/constituents may overlap.
+- An L2 ask at raw **29,942** is **1.040 M**, but only **122.2 s**, with presence **0.6667**. It does not supply the required seasoned primary.
+- Buyer ticks **+11**, velocity **2.0980**; no slow held short retest. H1/H4 are bearish but trend alone is insufficient.
+
+**Peer task result:** **NO SETUP**. The former primary must be re-established or replaced with independently verified defense before this returns to the actionable research watchlist.
+
+### 2.4 Oil and JPY support retests
+
+**USWTI improves materially:** spread **4.83 bps** now passes the nominal 5-bps ceiling; velocity falls to **0.2222**; 15m ticks are **+21**, although 5m ticks are **−6**. H1/H4 remain bullish. The pullback block's `direction=SHORT` is a descriptive inconsistency with the trend-long hypothesis, not an automatic producer veto.
+
+Primary bid raw **93.58 / 1.450490 M**, **7,940.3 s**, presence **0.9355**, maps with median **+1.396** to **94.976**. Current mid **95.155** is only **0.461 ATR** above it. This is no longer the old 2.41-ATR-distant-wall case. Nevertheless, the latest completed low **95.124** remains above that mapped primary, and its close **95.250** is below EMA50 **95.3457**, not a held EMA50 reclaim. Current small bids near 95.069–95.156 are each about 0.186 M; they are not individually the required primary.
+
+Spread-compensated reference entry **94.999** lies above the protective bid and can pass cash friction, but the buffered stop falls in another known interval. The near pool and session POC do not supply >=2 R. **WATCHLIST**, not an order.
+
+**USDJPY:** producer regime remains **RANGE_BOUND**, so both engines stand aside. Mid **158.1045** is near session VAL **158.113**, not the old EMA50 test at 158.60. EMA20/50 are now **158.6261 / 158.5787**. A new aged bid raw157.93 maps **158.0115**, but is only **315,860 USD**, first seen18:38:14. Its L2 representation is406,639.74 USD with75% sampled presence; do not sum L2 and attributed L3 as separate liquidity. Positive ticks+26 do not override the regime exclusion or create a0.50 M primary.
+
+### 2.5 Remaining blocks and limitations
+
+- **1,133 L3 records / 576 duration>=180 s**. **63 L2 records / only 5 duration>=180 s**. Duplicate-signature excess: BTC2, SP5002, NAS1001. Duration and sampled recurrence do not certify uninterrupted defense.
+- 22 assets have populated Hyperliquid median basis; DJ30/GER40 lack external depth/basis. Median versus spot: BTC **−71.5 / −89.5**, ETH **−2.4 / −2.3**, SP500 **−0.155 / +0.55**, NAS100 **−17.74 / −19.49**, gold **−2.795 / −2.015**, oil **+1.396 / +1.3755**, JPY **+0.0815 / +0.1095**. Translate each source by its own venue, not a single universal offset.
+- All H1/H4 arrays have96 bars: seeded EMA20/50 ordering is computable, warmed HTF EMA200 is not certified. The supplied800-bar EMA200 is15m. No candle ordering, OHLC containment or explicit-close-after-cutoff violation was found; missing explicit close_ts on exchange bars is not a certificate of completion.
+- Session/profile/auction levels are broker tick-volume-derived. `trapped_traders_signal` is a label, not a complete price-bin footprint. A0x address identifies a wallet format, not proof of Ethereum-resident orders; this feed concerns Hyperliquid.
+- The TradFi tick analysis uses1,000 ticks per asset, without exact horizon coverage receipts. Signed tick counts are not USD aggressive volume; mostly-zero OFI should not be interpreted as zero event-level queue pressure.
+- EURUSD still prints zero spread_price despite positive0.27 bps; GBPUSD precision is also insufficient to certify exact native cash spread. Neither is treated as free execution.
+- Global flow is timestamped **5.605 seconds after root**, so it is not backdated to root-time decisions. Its10,000-alert summary contains9,233 liquidations/767 whale trades, zero active TWAPs and BALANCED_TWO_SIDED_FLOW; availability and observation windows matter. ETF flows remain null/NOT_YET_REPORTED; Coinbase premium−11.99 bps and fear/greed62 are context, not entry triggers. Exchange funding is not MT5 financing.
+- `p_win_lower_bound=0.4197` remains uncalibrated on17 trades/11 wins; no asset/engine edge is inferred from that pooled value. Historical replay claims in the playbook were not independently rerun here.
+
+## 3. Fresh stop/target falsification — research only
+
+All coordinates below are illustrative, unrounded references, **not executable limit tickets**. Translate by current source median basis, place the stop0.5 ATR beyond the governing edge plus half-spread, then test it against the **deduplicated union of all supplied nearest/top stop and liquidation intervals**, not merely the governing interval. Front-run selected downside pool edges by5 bps. Further broker-side/tick/commission adjustments cannot repair an already-contained stop.
+
+| Hypothesis | Reference entry | Buffered stop | Another mapped interval containing stop | Gross R to selected target | Spread/risk distance |
+|---|---:|---:|---|---:|---:|
+| BTC primary short | 81,832.50 | 82,083.14785 | [82,028.5,82,128.5] | 1.449 to 81,469.21425 | 6.38% |
+| ETH primary short | 2,443.70 | 2,465.18515 | [2,457.6,2,467.6] | 1.159 to 2,418.8088 | 13.50% |
+| SOL primary short | 105.90 | 106.39045 | [105.95,106.95] | 3.870 to 104.001975 | **46.90%** |
+| SP500 near ask | 7,710.245 | 7,725.73445 | [7,719.845,7,729.845] | 0.423 to 7,703.69492 | 1.55% |
+| SP500 deeper ask | 7,732.645 | 7,745.73445 | [7,739.845,7,749.845] | 2.212 to 7,703.69492 | 1.83% |
+| NAS100 subthreshold pocket | 29,942.26 | 30,018.74785 | [29,982.26,30,082.26] | 0.589 to 29,897.20113 | 1.31% |
+| Oil primary long, half-spread adjusted | 94.999 | 94.6787 | [94.596,94.696] | 1.369 toPOC front-run95.4374574 | 14.36% |
+
+**SP500:** nearest material downside pool raw[7,690,7,700] totals4.592280 M. Both short references use total stop distances smaller than1.5 ATR=17.30835. Enforcing that minimum on the deeper reference reduces grossR to approximately**1.673** before costs and still leaves the stop near 7,749.95335 inside the next interval. No valid2 R card has emerged.
+
+**NAS100:** first selected material downside pool raw[29,800,29,900] totals0.644456 M. The hypothetical pocket is under-backed and its stop distance76.48785 is below 1.5 ATR=107.96355. Prior-cycle0.58 R or2.915 R figures are not carried forward as current calculations.
+
+**SOL:** nominal spread improves to 22.15 bps, and the5.338 M ask is genuinely seasoned. But its reference stop is invalid and consumes46.90% of risk in spread. For linear same-currency economics,15% friction requires stop distance at least **0.23/0.15=1.533333**. The same first-target reward is1.898025; even before other costs its R cannot exceed **1.238** at that minimum distance, far below the2.5 R requirement. This is not a claim that every conceivable farther target is impossible; bypassing intervening material liquidity needs fresh structural evidence. The primary is3.157 ATR from mid and has not been touched in the latest completed bar. Nearby smaller asks may form composites, but their aggregation cannot cure payoff/stop failure.
+
+**Oil:** reference entry is on the correct side of the bid;14.36% friction now passes, unlike the previous continuation. The stop still lies inside raw[93.2,93.3] after translation. First small overhead stop pool raw[93.8,93.9] front-runs to 95.148402, only 0.466 R; the POC front-run is1.369 R. No supplied top overhead stop/squeeze pool individually reaches0.50 M. A distant magnet is not invented. Widening stop clearance reduces these reward ratios; resizing lots does not improve them.
+
+For other short examples, entry at the mapped wall is only a diagnostic anchor: a real passive card must position defense between executable entry and SL, compensate spread consistently, round to broker ticks, then recompute all geometry and cash costs. No lots are authorized for these failed constructions. The playbook proximity condition also excludes immediate staging of the distant SOL primary (3.157 ATR) and deeper SP500 reference (2.578 ATR); these were nevertheless analyzed rather than prefiltered out.
+
+## 4. Mandate 1 — independent evaluation of all 24 assets
+
+All rows were assessed through both engines, including near-zero Z. “Bear/bear” denotes seeded completed H1/H4 ordering, not a verified full HTF200 stack. Shelves shown are current15m EMA20/50 unless otherwise stated. WATCHLIST means a specific research hypothesis, not permission to stage; NO SETUP assets remain in future scans.
+
+| Asset / MT5 symbol | Engine 1: Z and verdict | Engine 2: regime, shelf and verdict | Final |
+|---|---|---|---|
+| BTC / BTCUSD.pi | −1.73: below 2; bearish-HTF dip-buy prohibited despite improved buying. | Bear/bear;81,907.5006 /82,446.1951. Seasoned8.975 M ask maps81,832.5, but completed candle did not reach it; stop/first-target fail. | WATCHLIST |
+| ETH / ETHUSD.pi | −1.50: below 2; no bearish-HTF long. | Bear/bear;2,439.8797 /2,462.2803, VAL2,436.412. Velocity0.0605 and renewed short-term selling considered;7.394 M ask2,443.7 untested, invalid stop and 1.159 R. | WATCHLIST |
+| SOL / SOLUSD.p | −1.35: below 2; no countertrend long. | Bear/bear;104.5144 /105.3728, VAL104.6042. Slow0.0708, seasoned5.338 M ask105.90 and 22.15 bps credited. No held wall touch; invalid tight stop and dynamic friction/2.5 R incompatibility at first pool. | NO SETUP |
+| BNB / BNBUSD.p | −1.98: still below 2; no rounding up. | Bear/bear;731.0942 /735.1633. Correct-side aged asks within 2 ATR total only 1.381 M, not5 M; velocity1.6411, mixed fast flow and no defended hold. | NO SETUP |
+| XRP / XRPUSD.pi | −1.61: below 2; positive absorption label does not overrideHTF. | Bear/bear;1.3346 /1.3471, VAL1.3342. Positive5/15/30m, noL3 shield; minimum spread cost3 USD exceeds2.175 USD allowance. | NO SETUP |
+| ADA / ADAUSD.p | −1.06: below 2. | Bear/bear;0.2282 /0.2302. Mid0.2276 nearEMA20 and negative fast tape examined; no wall,92.25 bps,10.5 USD minimum spread and explicit exclusion. | NO SETUP |
+| DOGE / DOGUSD.p | −0.76: below 2. | Bear/bear;0.0812 /0.0820, VAL0.0819. Negative tape does not establish protected shelf; no wall,257.2 bps and 21 USD minimum spread. | NO SETUP |
+| TRX / TRXUSD.p | +1.26: below 2; no bullish-regime short fade. | Bull/mixedH4;0.3332 /0.3324, POC0.3327. Negative5/15/30m, no bid defense,10 USD minimum spread. | NO SETUP |
+| DOT / DOTUSD.pi | −0.29: below 2; E2 still evaluated. | Bear/bear;1.1195 /1.1278, POC1.1307. Mid1.1295 nearEMA50/POC and slow0.1699 considered; positive fast flow, no wall,185.92 bps and explicit exclusion. | NO SETUP |
+| LINK / LNKUSD.p | −1.51: below 2. | Bear/bear;12.4667 /12.6100. Slow0.0559 and negative flow, but no defense;69.57 bps and explicit exclusion. | NO SETUP |
+| BCH / BCHUSD.p | −1.67: below 2. | Bear/bear;270.1947 /272.6193; prior-dayVAL268.04 near mid267.95 is considered but not a defended short shelf. Mixed fast flow, noL3.21.65 bps passes nominal cap, not full setup. | NO SETUP |
+| LTC / LTCUSD.pi | −0.92: below 2. | Bear/bear;59.5373 /60.1435. Mid59.43 is0.31 ATR fromEMA20, negative tape and slow0.1957; no wall,50.48 bps and 3 USD minimum spread. | NO SETUP |
+| AVAX / AVXUSD.p | −1.44: below 2. | Bear/bear;9.9023 /10.0063, POC9.8603. Negative fast flow and slow0.1102 considered; no wall and 40.69 bps>35. Contract100, min/step0.01, digits2 preserved. | NO SETUP |
+| NEAR / NERUSD.p | −1.95: below 2. | Bear/mixedH4;4.8746 /4.9428. Positive5/15m versus negative30m, no wall,68.56 bps and 3.30 USD minimum spread; explicit exclusion. | NO SETUP |
+| SP500 / SP500.p | −1.75: below 2; no bearish-state dip-buy. | Bear/mixedH4;7,733.4501 /7,765.7544. New nearby4.947 M/deeper2 M asks, but post-candle first-seen times, fast2.4256 pullback and invalid geometry. | WATCHLIST |
+| NAS100 / NAS100.p | −1.84: below 2; no bearish-HTF long. | Bear/bear;30,102.8842 /30,285.1069. Old primary absent, nearby aged aggregate0.830 M,1.040 M L2 only 122.2 s; no qualified held ask or payable near card. | NO SETUP |
+| DJ30 / DJ30.p | −1.08: below 2. | Bear/mixedH4;51,547.8594 /51,649.8088. Mid51,445.35 nearPOC51,454.5634; buyer ticks+49, velocity4.1043, no external defense/bands. | NO SETUP |
+| GER40 / GER40.p | −2.34: statistical threshold passes, confluence does not. ProducerBEARISH conflicts with mixedH1/bullH4; no exhaustion/walls. | MixedH1/bullH4;25,287.1845 /25,320.2275. Prior-dayPOC25,240.34 considered; velocity3.9198, no external depth/defense. | NO SETUP |
+| GOLD / XAUUSD.pi | −0.80: below 2; no bearish-HTF dip-buy. | Bear/bear;4,092.8173 /4,112.4095, POC4,099.5908. Price crossedEMA20 but remains above it with+67ticks; no held rejection. Nearby composite asks exist; no individual seasoned0.75 M primary. | WATCHLIST |
+| SILVER / XAGUSD.pi | −1.51: below 2. | Bear/bear;56.0819 /57.0753. Aged ask clusters exceed0.75 M, so no blanket missing-liquidity claim. Buyer ticks+58, fast1.5551,6.48 bps>5; no held short shelf. | NO SETUP |
+| USWTI / USWTI.p | −0.29: below 2; no low-Z exclusion fromE2. | Bull/bull;95.5696 /95.3457, POC95.4852. Spread4.83 bps, slow0.2222, primary94.976 nearby; no completed primary touch/EMA50 hold and stop/target failure. | WATCHLIST |
+| EURUSD / EURUSD.pi | −0.01: below 2; near-zeroZ does not skipE2. | Bear/bear;1.1138 /1.1156. Mid1.1154 nearEMA50, RSI57.07, slow0.3705; buyer ticks+47, no nearby aged class-sized ask and quote precision defect. | NO SETUP |
+| GBPUSD / GBPUSD.pi | −0.65: below 2. | Bear/bear;1.3175 /1.3204. Mid1.3181 aboveEMA20, RSI48.34, slow0.2746; buyer ticks+45, no nearby0.50 M ask, exact spread unresolved. | NO SETUP |
+| USDJPY / USDJPY.pi | −1.89: below 2; RANGE_BOUND independently excludesE1. | RANGE_BOUND excludesE2 despite completed bull/bull history. Mid158.1045 nearVAL158.113 but belowEMA20/50; new315,860 USD bid insufficient. | NO SETUP |
+
+**Cluster qualification:** gold's raw4,108/4,109 aged asks total783,905.73 USD; these are meaningful nearby composite liquidity, not an individual0.75 M primary or proof of resistance at 4,092.8. Their mapped prices are4,105.205/4,106.205, first seen18:28:52/18:37:06. Nearby SOL smaller asks also aggregate meaningfully. Where aggregation is allowed, unique orders/constituents, spatial coherence and contemporaneous presence must be checked; neither summing every wall on one side nor single-record maxima prove a full setup.
+
+## 5. Mandates 2 and 3; portfolio governance
+
+**Mandate 2 — active positions:** exact snapshot `active_positions=[]`; **no open-position TP/SL modification or frozen-initial-R0 ratchet is needed**. No historical ticket is promoted into live inventory. Future ratchets must retain original entry, initialSL andR0; current Section7.1 uses1.25 R0/1.65 R0/2 R0, not obsolete early scratch thresholds. No profit is guaranteed through gaps.
+
+**Mandate 3 — pending orders:** exact snapshot `pending_orders=[]`; **no ticket exists to WAIT, MODIFY or DELETE**. Research watches do not reserve tickets or authorize future placement. No cancellation or terminal query was sent.
+
+Account5064568: balance/equity/free margin **4,859.55 USD**, margin used0.00. The four stated closed-trade profits total28.44 USD and are not added to current balance again. Full commission/swap/deal reconciliation is not available from this snapshot; broker legal identity remains operator-supplied and native server is null.
+
+Stress uses exact arithmetic, not the displayed20.12 rounding:
+
+| Scenario | Aggregate stress USD | Modeled post-stop equity USD | Headroom above 4,795 USD |
+|---|---:|---:|---:|
+| Actual flat book | 0 | 4,859.550 | 64.550 |
+| Three hypothetical14.50-risk tickets | 60.375 | 4,799.175 | 4.175 |
+| Four hypothetical14.50-risk tickets | 80.500 | 4,779.050 | −15.950 |
+
+Per-ticket stress is **1.25×14.50+2=20.125 USD**. Four slots are free, but only three new maximum-risk tickets are permitted. All independently fillable open/pending risks must be counted jointly. The formula preserves the operating buffer **within the stated stress model**; it cannot unconditionally guarantee a floor against unlimited gaps, broker failure or unbounded slippage.
+
+## 6. Five-persona dialectic and written-rubric adaptation
+
+The skill calls for genuinely independent competitors, attacks, revisions and judges. That dispatcher is unavailable here. This is an explicit **single-agent five-perspective adaptation**, not100 independent agents, a blind tournament or verified cross-tab consensus. The user-supplied Fable/Argon conclusions are historical peer context, not freshly authenticated Cycle104 votes.
+
+1. **Orderflow analyst:** BTC positive15/30m and bid imbalance+0.6243 challenge stale seller-dominance claims. **Attack:** buying slowing is not a held short shelf, and bearishHTF forbids the dip-buy. **Revision:** credit recovery; require observed resistance defense for the short.
+2. **Structural specialist:** SP500 deeper ask nearly coincides withEMA20; gold has crossedEMA20; oil is close to its old primary bid. **Attack:** SP walls were observed after completed candles; gold has not rejected the shelf; oil closed belowEMA50 and has not reached the mapped primary. **Revision:** distinct research watches, no “touch” claim manufactured from level proximity.
+3. **Liquidation forensic:** SP deeper short shows2.212 R and SOL3.870 R gross. **Attack:** both stops sit inside adjacent bands; SP fails total index distance, SOL fails15% friction. **Revision:** abandon those cards, not the all-band check. Price traversal is not a liquidation execution receipt.
+4. **Portfolio governor:** oil's4.83 bps and spread-compensated14.36% friction now pass, so the old spread-based rejection is obsolete. **Attack:** its stop remains contained and nearbyPOC yields1.369 R; capacity cannot make the trade profitable. **Revision:** retain oil as research only; use20.125 USD exact ticket stress.
+5. **Red team:** stand aside remains the hypothesis to beat. **Attack on complacency:** do not copy prior negativeBTC tape, oldNAS wall, excessiveoil spread or undersizedSOL primary. **Revision:** all those observations are corrected; NAS loses its watch status, and SOL remains no setup for current geometry, not an outdated nominal-spread failure.
+
+Rubric vectors are correctness/completeness/specificity/robustness/clarity on0–10, weighted30/25/15/20/10. Scores assess the audit hypotheses, **not probabilities of winning a trade**. A verified fatal flaw overrides the weighted score.
+
+| Hypothesis | Vector | Weighted /100 | Attack disposition |
+|---|---|---:|---|
+| H1 BTC absorption dip-buy | 3/6/7/1/8 | 44.5 | Fatal standing: E1 threshold and adverseHTF; protected long not shown. |
+| H2 SP deeper2.212 R short | 6/8/9/2/8 | 63.5 | Fatal standing: contained stop, index-distance failure, wall chronology. |
+| H3 SOL3.870 R short | 5/8/9/2/8 | 60.5 | Fatal standing:46.90% friction and contained stop. |
+| H4 Oil primary long now | 6/8/9/2/8 | 63.5 | Fatal standing: stop containment and inadequate nearby payoff. |
+| H5 NAS prior-primary short | 3/6/8/1/8 | 46.0 | Fatal standing: claimed primary absent from current observations. |
+| H6 Gold EMA20 short now | 5/7/7/2/8 | 55.0 | Fatal standing: held rejection/primary defense not established. |
+| H7 Fill four maximum-risk slots | 1/4/8/0/8 | 33.0 | Fatal standing: operating-buffer breach. |
+| H8 Flat plus five differentiated watches | 9/8/9/9/9 | 87.5 | No identified fatal flaw in the snapshot recommendation; reading/independence limits disclosed. |
+
+Adapted bracket: H2>H1; H4>H3; H6>H5; H8>H7; H4>H2 on fewer independent standing deficiencies at equal score; H8>H6; **H8>H4**. No losing construction is an executable recommendation.
+
+Archetype defense: **A1** test every known interval; **A2** reject countertrend dip-buys; **A3** retain structural and total-distance buffers; **A4** require genuine same-time defense rather than retrospective age; **A5** use deeper protected entries, then downsize after widening stops. These controls reduce identified failure modes, not guarantee zero losses. Historical SOL108.55 is above 108.50, not literally inside[107.5,108.5]; inadequate clearance/relocation is the defensible autopsy lesson.
+
+## 7. Final verdict and actionable execution table
+
+**STAND ASIDE — 0 CANDIDATES / 5 WATCHLIST / 19 NO SETUP.** Watches: **BTC, ETH, SP500, GOLD, USWTI**. NAS100 is downgraded because current defense must be rebuilt; SOL's improved nominal spread does not solve its current geometry. No macro reason is used.
+
+| Action | Symbol | Side | Lots | Entry | SL Bunker | TP Magnet | Risk USD | R:R | Engine | Archetype Defense | Rationale |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| STAND ASIDE | — | — | — | — | — | — | — | — | — | — | No current hypothesis combines a confirmed defended shelf, valid all-band stop, payable net target and execution economics. No open or pending tickets require action. |
+
+Re-evaluate on actual observed touch/reclaim/rejection, changing primary-wall survival, spread and basis conditions—not calendar permission. BTC/ETH need contemporaneous relief-shelf rejection plus reconstructible valid payoff; SP needs same-time defense and safe net2 R geometry; gold needs a held rejection with qualifying primary defense; oil needs a supported hold and valid stop with a reachable2 R magnet. NAS must recover a seasoned>=1 M primary; JPY must regain an eligible confirmed regime and bid backing. All24 remain in the next independent scan.
+
+## 8. Institutional quantitative audit and profitability research
+
+These are proposed improvements, **not deployed fixes, proven alpha or new decision gates**.
+
+### A. Schema, timing and microstructure
+
+1. **Atomic provenance:** event_ts, received_ts, available_at, sequence_id, snapshot transactionID and component clock uncertainty. Never backdate the5.605 s-late global block. Recompute quote freshness at actual use, not only generation. Define time-window coverage for tickCVD.
+2. **Wall lifecycle:** venue/orderID where available, wallet/price re-peg links, first/last seen, sample count/gaps, replenished/cancelled/executed notional and minimum retained amount. Distinguish observation disappearance from cancellation or consumption. Store `present_at_touch`, not just current age; SP500 demonstrates why this matters.
+3. **Multilevel event OFI:** price-aware queue-event contributions `OFI_K=sum_k w_k*(bid_add_k−bid_remove_k−ask_add_k+ask_remove_k)`, normalized by time-weighted depth with price-shift and sequence-gap handling. Current book imbalance is not eventOFI, and L1 signed ticks cannot recover full depth-event flow.
+4. **Microprice:** `(ask*bid_size+bid*ask_size)/(bid_size+ask_size)`; publish drift relative to mid in ticks, multi-horizon conditional markouts and depth-adjusted impact. Match price/size units and venue before aggregation.
+5. **Taker aggressor ratio:** `buy_notional/(buy_notional+sell_notional)` for complete1/5/15/30m windows, non-overlapping delta-rate changes, gross volume and exact endpoints. Publish bar-CVD endpoints to reconcile producer divergence labels with current trailing windows.
+6. **Absorption:** price-bin bid/ask traded volume, realized sweeps, price displacement, refill and subsequent reclaim/hold. A research score such as `z(opposing_aggressor_volume) − z(abs(displacement)/ATR) + z(replenishment)` needs causal calibration; neither positive CVD nor a trap label proves absorption at the defended level.
+7. **Queue survival:** estimate cancellation hazard `−ln(retained_notional_fraction)/dt` only after separating executions from cancellations; track concentration `HHI=sum(wallet_weight²)` and effective wallets1/HHI. Exact exchange queue rank is unavailable on an MT5 OTC CFD: label a fill model as a proxy rather than inventing queue position.
+8. **Band semantics:** preserve underlying triggers, per-price occupancy, unique contributors and overlap IDs. Deduplicate top/nearest display copies; avoid summing a wallet's L2 and L3 representation. Adjacent coarse bins create continuous apparent stop territory. Fix/validate raw trigger semantics before considering any policy refinement; do not silently ignore small bins to manufactureR.
+9. **Basis distributions:** synchronized source-specific basis, sample count/lookback, residual quantiles, drift and adverse tails. Use basis available at historical touch, not today's median. BTC's18-point median/spot difference and gold's0.78 difference are material to fine geometry.
+10. **Broker and HTF receipts:** native integer-tick bid/ask, point/digits, monetary tick value, profit currency, commission, swap, `order_calc_profit`, `order_calc_margin` and `order_check` receipts; warmed H1/H4EMA200 and RSI/shelf trajectories. Repair EUR/GBP serialization. Preserve frozen initialR0 and reconcile deals without double-counting banked profits.
+
+### B. Payable2.0–2.5 R without10 ATR excursions
+
+Use `R_net=(broker_gain_at_TP−additional_win_cost)/(broker_loss_at_SL+additional_loss_cost)` with a consistent executable-side convention; do not charge spread again when already embedded. First find a genuinely held shelf and reachable opposing liquidity, then a valid stop outside all supplied intervals, then enumerate discrete lots within 7.50–14.50 USD. No commission/margin/profit receipts are fabricated.
+
+For a linear instrument, `friction≈spread_price/stop_distance`; reducing lots reduces cash risk and spread cost together, **not their ratio**. ETH's illustrative13.50% and oil's14.36% pass that test but still fail structure/payoff. SOL's first-target reward and 15% friction floor imply grossR<=1.238 at the tested primary; no lot manipulation can turn it into2.5 R.
+
+A1.0–1.2 ATR risk can support a2–3 ATR reward if a real accessible magnet exists. For indices with1.5 ATR minimum total risk, a genuine2 R target needs at least3 ATR plus costs. The correct response to an obstructed path is a different defended entry or no trade, not an artificially tight stop or a distant target chosen solely for its printed ratio.
+
+Research dynamic buffer `B=max(policy_minimum, conditional_sweep_overshoot_quantile, combined_adverse_basis_spread_latency_allowance)` in compatible price units, calibrated jointly without assuming independent tails. Keep current Engine2 at least0.50–0.75 ATR as applicable; widen further when needed, size down, and repeat all-band/tick checks. Quantile estimation is a research task, not an available guarantee.
+
+Within the current5–10 bps rule, calibrate front-running to available depth, replenishment and fill probability. On oil,5 bps is about 0.048 price units, a meaningful fraction of its0.3886 ATR. A future depth/tick-based replacement requires separate policy approval and out-of-sample evidence; do not silently alter the rule for a desired trade.
+
+### C. Continuous execution research with no macro halts
+
+Rank admissible cards by fill-conditional expected netUSD per stressed-risk and margin-time, not number of trades or free slots. Trigger fresh review on actual touches, wall survival/re-pegs, normalized spreads and synchronized basis. Measure event-conditioned spread/gap behavior as realized execution risk while **never applying a scheduled news freeze, purge or runway veto**.
+
+Maximum allowed spread cost is2.175 USD at 14.50 risk. Current minimum-lot floors independently exceed it for XRP3, ADA10.5, DOGE21, TRX10, LTC3 and NEAR3.3 USD. Silver improves to 1.80 USD: do not reuse its former2.55 USD friction-floor failure; its nominal6.48 bps and structural deficiencies remain. DOT/LINK's historical percentages are not universal current calculations, but their explicit operator exclusions and nominal spreads still apply. SOL and oil demonstrate that nominal-spread normalization is a reason to re-analyze, not automatic admission.
+
+Walk-forward validation must include next-observation passive fills, bid/ask paths, partial fills, cancellation latency, adverse selection, commission/swap, changing wall availability, joint correlated fills and sequence-correct basis. Report net expectancy, uncertainty intervals, drawdown, fill rate, time-to-target and comparison at equal capital usage. Seventeen pooled trades and an uncalibrated0.4197 bound cannot substantiate a profitability improvement.
+
+## 9. Reproducibility and publication
+
+Run `python docs/trade_plans/audits/cycle104_audit.py SOURCE_DIRECTORY OUTPUT_JSON` after retrieving all seven pinned paths. It rejects any source-hash mismatch, uses the prior extractor with old geometry explicitly disabled, rebuilds fresh chronology/geometry and stores analyst classifications separately from diagnostics. Regression tests cover the changed flow, wall timing, disappearing primary, refreshed friction, full24-row coverage, exact stress, and append-only preservation. No raw telemetry file is overwritten. Verification completed with **51 passing tests** via `python -m unittest discover -s docs/trade_plans/audits -p 'test_*audit.py'`; evidence regeneration is identical and `git diff --check` passes.
+
+The full report is appended once to the session desk, preserving canonical main's3,374,485-byte prefix and every prior session append. Publication updates existing PR #2; **main remains unmodified by this work until a separately authorized merge**. Snapshot freshness is pinned-at-retrieval, not a streaming execution guarantee.
+
+
+---
+
+# Cycle 105 — Astra council: pinned telemetry, independent engines, no broker action
+
+## 1. Verified ingestion and scope
+
+**Requested generation verified:** `d14b626dfa5a47e0a641b86f6ba49dd0`, **2026-10-14 19:30:16 UTC**, from canonical main commit **`82d50427c41ddbd8cbe21c605108bf05af7de229`**. Main had already advanced to 19:31:06 when retrieved; that newer generation was detected and was **not substituted** for Cycle105.
+
+All seven required source paths were fetched through the GitHub API at this exact main commit:
+
+- [Telemetry](https://github.com/kbsingh1399/Trading_2/blob/82d50427c41ddbd8cbe21c605108bf05af7de229/docs/telemetry/live_snapshot_latest.json)
+- [Playbook](https://github.com/kbsingh1399/Trading_2/blob/82d50427c41ddbd8cbe21c605108bf05af7de229/docs/specs/TRADE_DECISION_PLAYBOOK.md)
+- [Desk](https://github.com/kbsingh1399/Trading_2/blob/82d50427c41ddbd8cbe21c605108bf05af7de229/docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md)
+- [Active context](https://github.com/kbsingh1399/Trading_2/blob/82d50427c41ddbd8cbe21c605108bf05af7de229/.agents/rules/ACTIVE_CONTEXT.md)
+- [Session history](https://github.com/kbsingh1399/Trading_2/blob/82d50427c41ddbd8cbe21c605108bf05af7de229/.agents/memory/session_chat_history.md)
+- [Arena skill](https://github.com/kbsingh1399/Trading_2/blob/82d50427c41ddbd8cbe21c605108bf05af7de229/.agent/skills/arena/SKILL.md) and [rubric](https://github.com/kbsingh1399/Trading_2/blob/82d50427c41ddbd8cbe21c605108bf05af7de229/.agent/skills/arena/rubric.md)
+
+Telemetry: **4,406,622 bytes /151,293 byte-delimited lines /135,588 recursively traversed JSON nodes**. SHA-256 **`fa65b3ab5f948c093996d2ac6cc5fad5114229e2e5e357f350b52c41e2d45048`**. All source hashes, source-block inventories and calculations are in `audits/CYCLE_105_EVIDENCE.json`.
+
+Five context files are unchanged from Cycle104. Session history grew by29,659 bytes, preserving its previous3,617,333-byte prefix. The new historical appendix includes older trading/automation records and an18:50 Cycle104 dispatch entry; it does not establish current positions, current wall continuity, or a current calendar prohibition. No old ticket or pre-CPI purge is revived.
+
+**Honest reading scope:** all required files were ingested in full and the entire JSON was parsed and traversed, including all 24 assets and arrays. Detailed interpretation covered the current signals, shelves, flow, chronology, geometry, broker economics and relevant context. This is not a claim that every historical sentence or each of 151,293 lines received exhaustive manual semantic interpretation; the requested100% manual certification cannot honestly be given.
+
+Calendar verified **within the snapshot**, not independently from the central bank: **Fed Bowman Speech: Bangkok Economic Festival, 2026-10-15 02:55:00 UTC**; `blackout_active=false`, `blackout_enforcement=DISABLED_BY_OPERATOR`, purge/runway null. **No macro veto, halt, purge or event-runway test is used.**
+
+**Policy precedence:** no producer decision-gate/admission engine was run; producer eligibility booleans are not the verdict. Both engines were evaluated independently, including near-zeroZ. The current explicit regime, persistence, class-defense, passive-limit,7.50–14.50 USD risk,35/5 bps nominal spread and 15% cash-friction requirements remain binding. Current instructions supersede stale playbook range-onlyE1, macro-halt,10 USD minimum-risk, old ETH8 bps and blanket SOL-ban language. Engine2 uses the stricter0.50–0.75 ATR buffer outside known intervals; the playbook index minimum total distance and<=2 ATR proposed-entry proximity are separately checked.
+
+Main is the analytical source. This session is fixed to **`arena/66c9be42-trading-2`**: the report and append are published there through existing PR#2, **not directly on main**. No PR merge, broker order or production-strategy patch is performed.
+
+## 2. New institutional issue: recorded persistence collapsed, not liquidity
+
+The native observations—not a gate flag—show:
+
+- **1,108 L3 records, zero with recorded persistence>=180 s**. Maximum recorded duration is**141.0 s**.
+- **47 L2 wall records, zero>=180 s**; maximum138.7 s.
+- Current L3 records have only one or two samples. Recurrent primary records typically show presence**0.6667**, not continuous coverage.
+- First-seen timestamps cluster around**19:27:26–19:27:32**; newly encountered records appear around19:29. All current L3 first-seen times follow the last completed broker candle's19:15 close.
+
+| Asset / current defense example | Raw price → current median-mapped MT5 price | Notional | Recorded duration |
+|---|---|---:|---:|
+| BTC ask | 82,166 →82,081.75 | 8.979745 M | 141.0 s |
+| ETH ask | 2,450.3 →2,448.125 | 7.399147 M | 132.5 s |
+| SOL ask | 105.94 →105.865 | 5.339429 M | 133.4 s |
+| SP500 nearest large primary ask | 7,741.4 →7,740.21 | 6.275628 M | 140.2 s |
+| NAS100 near primary ask | 30,020 →29,997.305 | 1.050700 M | 139.9 s |
+| NAS100 deeper primary ask | 30,080 →30,057.305 | 1.072755 M | 139.9 s |
+| GOLD primary ask | 4,127.8 →4,125.2725 | 0.751260 M | 139.9 s |
+| USWTI primary bid | 93.58 →94.931 | 1.450490 M | 140.8 s |
+| USDJPY nearby bid | 158.10 →158.192 | 0.316200 M | single sample |
+
+Many economically substantial walls remain visible. It would be false to say that all whales disappeared. The shared truncation is consistent with a persistence-history discontinuity, but **restart, state loss, feed reset, cancellation or reappearance is not causally established without logs**. The oil wall even retains its old price/notional, but matching endpoints across a49-minute gap do not prove uninterrupted order survival. Do not graft old durations onto new records.
+
+Likewise, do not extrapolate that a wall becomes eligible merely because39 more wall-clock seconds pass. Fresh observations, continuity coverage, retained notional and correct-side placement must be re-established. This is a measured defense deficiency—not a macro blackout or a refusal to evaluate lowZ.
+
+### Snapshot assembly crosses the minute boundary
+
+Generation began **19:29:44 UTC**; root publication is **19:30:16 UTC**. The candle cutoff remains the generation-start instant, so the latest completed15m broker candle is **19:00–19:15**, not19:15–19:30. The absence of the latter is consistent with the configured cutoff; it is not automatically a feed outage.
+
+Each crypto has59 supplied minute buckets. Two useful CVD readings are preserved:
+
+1. Root-aligned windows ending19:30:00 have exact timestamp-grid coverage.
+2. Conservative windows ending19:29:00 exclude the bucket still open at generation start.
+
+The feed lacks an explicit per-bucket finalization watermark/availability receipt. Exact grid coverage alone does not prove finalization of the19:29 bucket. Therefore report both rather than silently selecting whichever favors a trade.
+
+| Asset | Root-grid1m /5m /15m /30m delta, USD | Generation-cutoff5m /15m /30m delta, USD |
+|---|---|---|
+| BTC | −458,078.04 /−636,211.81 /−285,597.96 /+1,449,021.65 | −252,265.42 /+378,499.34 /+1,740,565.95 |
+| ETH | −202,853.80 /−657,871.45 /−1,019,534.94 /−1,567,837.03 | −501,856.78 /−870,847.17 /−1,456,697.22 |
+| SOL | −14,011.15 /−109,026.37 /+232,287.94 /+137,893.76 | −101,563.26 /+264,477.13 /+161,930.33 |
+
+**BTC:** renewed fast selling is observed, while30m remains positive and 15m changes sign with the endpoint. Session/weekly CVD are−91.704 M/−74.062 M. This is not an uninterrupted seller cascade or a confirmed protected absorption long. Bearish H1/H4 and Z−1.30 do not permit anE1 dip-buy.
+
+**ETH:** both endpoint conventions show negative5/15/30m; this supports selling pressure, not absorption. A slow relief pullback toward resistance is the relevantE2 hypothesis, conditional on actual held resistance and qualified defense.
+
+**SOL:** recent selling coexists with positive15/30m, a slow pullback and normalized nominal spread. These improvements are evaluated, but do not solve current defense and payoff economics.
+
+## 3. Peer audit: fresh relief bounces and support retests
+
+### SP500
+
+Mid**7,715.67**, EMA20/50**7,725.7746 /7,758.7489**, ATR**10.8416**, pullback velocity**0.5621**, signed15m/5m ticks**−23/−23**. This is a slower relief bounce than Cycle104. Completed H1 is bearish; H4 EMA20/50 ordering remains mixed.
+
+The near raw7,724.6 ask maps**7,723.41**, but is only**926,952 USD /140.2 s**. A larger6.276 M ask maps**7,740.21**, **2.264 ATR** above mid, also only 140.2 s. Smaller nearby records may form composites; none is seasoned, so aggregation cannot establish the required persistence.
+
+The last completed candle high is**7,706.02**, below these reference asks and predating their current recorded histories. The current quote shows a rebound beyond that bar, but no completed post-observation path proves a touch-and-held-wall rejection.
+
+Current raw[7,720,7,730] overhead stop+squeeze fuel is**427,095.45 USD**. Raw[7,710,7,720] now appears in the below-market sell-stop/cascade lists, totaling**242,871.81 USD**. Neither is the old5.04 M overhead figure. Reclassification or changed pool estimates are not proof that forced orders executed.
+
+**Answer:** no certified seasoned ask touch with valid>=2 R downside geometry. Keep a research watch, not a staged short.
+
+### NAS100
+
+Mid**29,967.16**, EMA20/50**30,051.9874 /30,242.3073**, ATR**68.0948**, velocity**0.1789**, ticks**−19/−19**, bearish H1/H4. Relief and deceleration are meaningful.
+
+Unlike Cycle104, nominally large primary asks are visible again: **29,997.305 /1.0507 M** and **30,057.305 /1.0728 M**, the latter close toEMA20. Both are only 139.9 s/two samples. The last completed high**29,912.66** predates both recorded histories. Do not treat their return as180 s defense.
+
+**Answer:** re-enter the research watchlist because size/location/tape improved, but no candidate. The near reference yields0.917 R gross; the deeper one prints3.026 R only with an invalid, too-short stop.
+
+### USWTI
+
+Mid**95.249**, EMA20/50**95.4764 /95.3303**, POC**95.4852**, ATR**0.3500**. H1/H4 remain bullish; velocity is**0.1321**, not3.01. `TRAPPED_SELLERS_BELOW` is now present, contrary to the older peer statement, but it remains a derived label rather than a full footprint proof. Signed ticks are now **−19 over15m /−11 over5m**, on only 446 analyzed ticks.
+
+The1.45049 M bid maps**94.931**, about 0.909 ATR below mid, but only 140.8 s is recorded. The last completed low**95.141** is still above that current mapped wall; current price is belowEMA50. The completed H1 close95.257 remains above seededH1EMA20≈95.148, so broader trend support is credited without inventing a15m hold.
+
+The bid's median translation changed from 94.976 inCycle104 to 94.931 now; no claim is made that the raw93.58 wall moved. The prior-dayPOC is now92.407 and cannot be confused with the current sessionPOC95.4852.
+
+**Answer:** lower velocity and nominal4.83 bps are constructive; unseasoned support, opposing fast ticks, contained stop and inadequate nearby reward still prevent a limit recommendation.
+
+### USDJPY
+
+Regime remains**RANGE_BOUND**; H1 now mixed/H4 bullish. Mid**158.2925** is belowEMA20/50**158.5129 /158.5346**, with velocity**1.8532**—not a slow eligible trend pullback. A bid maps158.192 but is only 316,200 USD and single-sample. Buyer ticks+20 do not supply missing regime/defense.
+
+**Answer:** neither engine applies. NO SETUP; no research order card.
+
+### Additional changed execution/data conditions
+
+- BTC median/spot basis **−84.25/−118.5**, ETH**−2.175/−3.05**, SP500**−1.19/−0.18**, NAS100**−22.695/−22.34**, gold**−2.5275/−3.325**, oil**+1.351/+1.3095**, JPY**+0.092/+0.1025**. These differences are uncertainty, not interchangeable offsets.
+- EURUSD **and GBPUSD** now both serialize bid=ask/spread_price0 despite positive0.09/0.08 bps. Native five-digit executable cash spread remains unknown; neither is free execution.
+- Source quote ages exceed10 s for XRP12.71 s, DOGE14.26 s, DOT12.25 s and AVAX11.59 s. These are recorded age observations, not freshly polled quotes.
+- All24 H1/H4 arrays have96 bars; seededEMA20/50 diagnostics do not certify warmedHTFEMA200. Current producer15m EMA200 reports799 bars, not800. Supplied broker15m arrays have100 bars. No ordering, OHLC containment or explicit-close-after-cutoff failures were found; exchange rows without explicit close_ts remain a separate completion limitation.
+- Global flow is **3.478 s later than root**, with9,225 liquidations/775 whale trades in a10,000-alert summary and zero activeTWAPs. Do not backdate that summary or conflate its lookback with the current minute. ETF flows remain unreported, Coinbase premium−13.2 bps, fear/greed62; exchange funding does not equal CFD financing.
+- Duplicate-signature excess: SP5001, NAS1001. L3 coverage explicitly says wallet-price snapshots without orderIDs, not full continuousL3. A0x address is not proof of Ethereum-resident orders.
+- The pooled lower bound0.4197 remains uncalibrated on17 trades/11 wins. No new profitability or independent replay verification is claimed.
+
+## 4. Fresh geometry falsification, not executable orders
+
+Reference prices below use current Hyperliquid median basis, a0.5 ATR governing-edge buffer plus half-spread, and a5 bps front-run of the chosen material downside pool. Oil uses a long entry half-spread above its bid and a sessionPOC target. All supplied nearest/top stop and liquidation intervals are deduplicated and checked, not merely the governing band.
+
+**Every tested stop remains inside another known interval.** These are failed, unrounded research constructions, not order cards or lots to stage. Short entry exactly at a mapped wall is a diagnostic anchor; actual broker-side placement must leave defense between entry and SL and be rechecked after spread/tick adjustments.
+
+| Reference | Entry | Buffered SL | Containing mapped interval | Target | GrossR | Spread/risk distance |
+|---|---:|---:|---|---:|---:|---:|
+| BTC primary short | 82,081.75 | 82,266.6988 | [82,215.75,82,315.75] | 81,556.507875 | 2.840 | 8.65% |
+| ETH primary short | 2,448.125 | 2,465.1867 | [2,457.825,2,467.825] | 2,419.033913 | 1.705 | 16.41% |
+| SOL primary short | 105.865 | 106.3628 | [105.925,106.925] | 103.976963 | 3.793 | 50.22% |
+| SP500 near subthreshold ask | 7,723.41 | 7,734.3508 | [7,728.81,7,738.81] | 7,702.659405 | 1.897 | 2.19% |
+| SP500 primary ask | 7,740.21 | 7,754.3508 | [7,748.81,7,758.81] | 7,702.659405 | 2.655 | 1.70% |
+| NAS100 near primary | 29,997.305 | 30,111.8524 | [30,077.305,30,177.305] | 29,892.243653 | 0.917 | 0.87% |
+| NAS100 deeper primary | 30,057.305 | 30,111.8524 | [30,077.305,30,177.305] | 29,892.243653 | 3.026 | 1.83% |
+| Gold remote primary | 4,125.2725 | 4,131.8026 | [4,127.4725,4,137.4725] | 4,079.511236 | 7.008 | 1.07% |
+| Oil primary long | 94.954 | 94.653 | [94.651,94.751] | 95.437457 | 1.606 | 15.28% |
+
+**Do not confuse apparentR with valid edge.** BTC's2.840 R and gold's7.008 R are invalid-stop examples, not overlooked candidates. Gold's primary is2.741 ATR away; SOL's2.526 ATR and SP's2.264 ATR primary also fail immediate proximity. These were analyzed nonetheless, not screened out before consideringE2.
+
+SP's primary risk14.1408 is below the1.5 ATR index minimum16.2624. Enforcing that minimum leaves a stop inside the same adjacent band; clearing the next boundary by0.5 ATR increases distance to 24.1408 and reduces this target to about 1.56 R, while still requiring another all-band check.
+
+NAS's deeper risk54.5474 is below 1.5 ATR=102.1422. Enforcing that minimum reduces selected-target grossR to approximately 1.62; near-primary risk already exceeds the minimum but only offers0.917 R. Both remain interval-contained.
+
+SOL's15% friction condition requires risk distance at least**0.25/0.15=1.666667**. Its first-target reward1.8880375 then implies grossR<=**1.133**, below 2.5. ETH similarly needs at least18.666667 risk distance for 2.80 spread; the selected-target grossR ceiling is1.558, below 2.2. These are bounds for the tested entry/target, not proof that every future structure is impossible.
+
+Oil's exact-grid illustrative distance is0.301; **0.046/0.301=15.2824%**, so the previous Cycle10414.36% passing example is obsolete. The SL94.653 lies only 0.002 above the adjacent interval's lower edge94.651: moving one or two ticks still does not provide the required structural clearance. Making the stop genuinely wider demands a fresh all-band check and lowers nearbyR; reducing lots alone cannot repair the friction ratio.
+
+This is a set of explicit falsifications, not an exhaustive optimal-order search or guaranteed future outcome. No hypothetical lot size or synthetic broker profit/margin receipt is presented as executable.
+
+## 5. Mandate 1 — both engines across all 24 assets
+
+**All24 reported |Z| values are below 2.** This rejectsE1's extreme trigger but is never used to skipE2. Shelves below are current15m EMA20/50; H1/H4 ordering and auction/profile alternatives are separately considered. AllE2 hypotheses currently lack seasoned defense, with additional asset-specific findings below. WATCHLIST means a research hypothesis, not permission to stage or grandfather persistence.
+
+| Asset / broker symbol | Engine1 verdict | Engine2 verdict | Final |
+|---|---|---|---|
+| BTC / BTCUSD.pi | Z−1.30: no extreme; bearishHTF long prohibited. | Bear/bear;81,826.0748 /82,349.2556, sessionVAL82,123.26. Fast selling returned but endpoint-sensitive15m;8.980 M ask82,081.75 only 141 s, no held touch, invalid stop. | WATCHLIST |
+| ETH / ETHUSD.pi | Z−1.14: no extreme; no bearishHTF dip-buy. | Bear/bear;2,435.9387 /2,458.0093, VAL2,434.12. Slow0.0503, both endpoint conventions negative5/15/30m;7.399 M ask2,448.125 only 132.5 s, friction/stop/R fail. | WATCHLIST |
+| SOL / SOLUSD.p | Z−0.96: no extreme. | Bear/bear;104.3775 /105.2152, POC103.8287. Slow0.0487 nearEMA20, mixed tape;5.339 M ask105.865 only 133.4 s and 2.526 ATR away; tested friction50.22%, invalid stop. | NO SETUP |
+| BNB / BNBUSD.p | Z−1.64: no extreme. | Bear/bear;730.3417 /734.3732. Velocity0.4412, mixed flow; no seasoned5 M defense or held shelf.8.23 bps alone does not qualify. | NO SETUP |
+| XRP / XRPUSD.pi | Z−1.20: no extreme; label not HTF override. | Bear/bear;1.3319 /1.3445, VAL1.3292. Positive5/15/30m, velocity1.5778, noL3; stale12.71 s quote and 4 USD minimum spread. | NO SETUP |
+| ADA / ADAUSD.p | Z−0.76: no extreme. | Bear/bear;0.2279 /0.2299, VAL0.2286 at mid. Slow0.1074 considered; mixed flow, no wall,96.24 bps and explicit exclusion. | NO SETUP |
+| DOGE / DOGUSD.p | Z−0.35: no extreme. | Bear/bear;0.0811 /0.0819. Mid0.082 nearEMA50, but fast1.8816, no seasoned wall,255.94 bps, stale quote and 21 USD minimum spread. | NO SETUP |
+| TRX / TRXUSD.p | Z+0.76: no extreme; bullish-regime short fade banned. | Bull/mixedH4;0.3331 /0.3324, POC0.3327. Mid atEMA20, but negative fast windows; small L2 bids only 138.7 s and 10 USD minimum spread. | NO SETUP |
+| DOT / DOTUSD.pi | Z+0.19: no extreme; E2 independently checked. | Bear/bear;1.1203 /1.1272, POC1.1307. RSI52.01/slow0.1557 recovery considered, but no defense,184.78 bps, stale quote and explicit exclusion. | NO SETUP |
+| LINK / LNKUSD.p | Z−1.03: no extreme. | Bear/bear;12.4359 /12.5803. Mid12.4515 just aboveEMA20, slow0.0491 and mixed tape; no wall,68.26 bps, explicit exclusion. | NO SETUP |
+| BCH / BCHUSD.p | Z−1.21: no extreme. | Bear/bear;269.761 /272.154. Mid269.7395 almostEMA20, slow0.1135, positive5/15/30m; no wall or held rejection.22.28 bps nominally passes. | NO SETUP |
+| LTC / LTCUSD.pi | Z−0.70: no extreme. | Bear/bear;59.4629 /60.0423, VAL59.5372. Slow0.0914/positive fast flow, but no wall,50.31 bps and 3 USD minimum spread. | NO SETUP |
+| AVAX / AVXUSD.p | Z−1.12: no extreme. | Bear/bear;9.8829 /9.9860, mid9.875 nearEMA20. Slow0.0599/positive fast flow; no wall, quote11.59 s old.30.38 bps passes nominal cap; contract100/min-step0.01/digits2 retained. | NO SETUP |
+| NEAR / NERUSD.p | Z−1.91: no extreme. | Bear/mixedH4;4.8526 /4.9256. Negative5/15/30m, slow0.2518 but no wall;66.65 bps,3.2 USD minimum spread and explicit exclusion. | NO SETUP |
+| SP500 / SP500.p | Z−1.28: no extreme; no bearish-state long. | Bear/mixedH4;7,725.7746 /7,758.7489. Slow0.5621/seller ticks;near ask0.927 M, larger primary2.264 ATR away, both140.2 s; no defended retest and invalid geometry. | WATCHLIST |
+| NAS100 / NAS100.p | Z−1.42: no extreme. | Bear/bear;30,051.9874 /30,242.3073. Slow0.1789/seller ticks; nominal>=1 M asks return near/deep but139.9 s only. No completed post-observation hold or valid payoff. | WATCHLIST |
+| DJ30 / DJ30.p | Z−0.27: no extreme. | Bear/mixedH4;51,527.9865 /51,629.5130. Mid aboveEMA20; prior-dayVAL51,582.36 nearby. Buyer ticks+53, velocity1.1632, no external depth/walls/bands. | NO SETUP |
+| GER40 / GER40.p | Z−1.56: no longer an extreme as in104. | MixedH1/bullH4 conflicts with producerBEARISH;25,272.918 /25,310.2408. Prior-dayPOC25,240.34 considered; no external defense, mixed tick horizons. | NO SETUP |
+| GOLD / XAUUSD.pi | Z−0.51: no extreme; no bearishHTF dip-buy. | Bear/bear;4,093.7283 /4,110.5799, POC4,099.5908. RSI50.73/seller ticks support research nearPOC; primary4,125.2725 remote and 139.9 s. Held short defense absent. | WATCHLIST |
+| SILVER / XAGUSD.pi | Z−1.40: no extreme. | Bear/bear;55.9470 /56.9043, POC55.576. Slow0.2251 considered; buyer ticks, all 52L3 single-sample,6.47 bps>5. Minimum spread1.8 USD alone is not a universal friction failure. | NO SETUP |
+| USWTI / USWTI.p | Z−0.07: no extreme; not an E2 veto. | Bull/bull;95.4764 /95.3303, POC95.4852. Slow0.1321 and trap label credited; seller ticks, unseasoned94.931 bid, no demonstrated hold,15.28% example friction/invalid stop. | WATCHLIST |
+| EURUSD / EURUSD.pi | Z−0.12: no extreme. | Bear/bear;1.1142 /1.1156. Slow0.2911/seller ticks, mid1.115 nearEMA50; no seasoned0.50 M ask, bid/ask precision unresolved. Pullback directionLONG is not an authorization. | NO SETUP |
+| GBPUSD / GBPUSD.pi | Z−0.57: no extreme. | Bear/bear;1.3177 /1.3202. RSI53.70/slow0.2806, mixed15m+12/5m−15ticks; no seasoned0.50 M ask and zero-spread serialization defect. | NO SETUP |
+| USDJPY / USDJPY.pi | Z−0.93: no extreme; RANGE_BOUND excludesE1. | RANGE_BOUND excludesE2; mixedH1/bullH4,158.5129 /158.5346. Fast1.8532 and single-sample0.316 M bid; buyer ticks do not repair regime. | NO SETUP |
+
+Primary class thresholds are not inferred from the largest single record alone when clustering is permitted. Here **every** L2/L3 duration is below 180 s, so even a spatially coherent composite cannot establish the required current temporal evidence. LowZ shelf opportunities were still evaluated explicitly rather than rejected by a common early filter.
+
+## 6. Mandates2 and 3; exact capital governance
+
+**Mandate2:** the requested snapshot contains `active_positions=[]`. **No running TP/SL modification or frozen-initial-R0 ratchet is needed.** Keep initial entry/SL/R0 immutable for future live tickets; the current playbook1.25 R0/1.65 R0/2 R0 ladder supersedes older scratch schedules. No terminal query or broker modification occurred.
+
+**Mandate3:** `pending_orders=[]`. **No ticket to WAIT, MODIFY or DELETE.** A research watch is not a pending order and does not reserve capital.
+
+Account5064568: balance/equity/free margin **4,859.55 USD**, used margin0.00; cushion **84.55 USD** over4,775 and **64.55 USD** over4,795. Native account server is null; broker legal identity is operator-supplied. The listed closed profits total28.44 USD, already represented in balance and not added again. This is snapshot-reported inventory, not an independent terminal or complete net-deal reconciliation.
+
+| Scenario | Aggregate stress USD | Modeled post-stop equity USD | Headroom over4,795 USD |
+|---|---:|---:|---:|
+| Actual flat book | 0 | 4,859.550 | 64.550 |
+| Three hypothetical14.50-risk tickets | 60.375 | 4,799.175 | 4.175 |
+| Four hypothetical14.50-risk tickets | 80.500 | 4,779.050 | −15.950 |
+
+**Exact per-ticket stress is20.125 USD**, not20.12 internally. Four slots are free, but retain the explicit maximum of three new maximum-risk tickets. Include every independently fillable open and pending exposure jointly. The4,795 requirement is preserved within the specified model; **no unconditional guarantee** exists against unlimited gaps, slippage or broker failure.
+
+## 7. Five-persona dialectic and arena-rubric adaptation
+
+The canonical skill and written rubric were re-retrieved. No independent-agent dispatcher is available: this is a **single-agent five-perspective adaptation**, not a blind100-agent tournament or newly verified cross-tab consensus. Peer statements were treated as historical hypotheses and checked against the pinned source.
+
+1. **Orderflow:** BTC/ETH seller pressure on the bounce could support shorts. **Attack:** BTC15m changes sign between timestamp conventions; current book labels do not prove absorption. **Revision:** disclose both endpoints; require observed held resistance and persistence, not merely negativeCVD.
+2. **Structure:** slower SP/NAS pullbacks and recovered NAS primary sizes are closer to anE2 opportunity. **Attack:** current walls were first seen after completed bars; SP H4 is mixed; a quote rebound is not a verified defended touch. **Revision:** six differentiated watches, no staged entry.
+3. **Liquidation forensic:** BTC2.840 R, SP2.655 R, NAS3.026 R and gold7.008 R appear attractive. **Attack:** every associated stop is inside another interval; index minimum distances and proximity expose further failures. **Revision:** retain numerical counterexamples to prevent appearance-of-R errors; do not silently ignore thin adjacent bins.
+4. **Portfolio governor:** oil velocity0.1321 and trapped sellers improve the setup; free capital is ample. **Attack:** seller ticks oppose the long; primary is only 140.8 s, example friction15.28%, POC payoff1.606 R. **Revision:** no inherited3.5% friction assumption and no lot scaling to disguise bad geometry.
+5. **Red team:** zero seasoned walls suggests universal structural caution. **Attack on that baseline:** declaring all liquidity gone or a definite daemon restart overstates the data, and skipping all lowZ analysis violates the mandate. **Revision:** distinguish visible depth from verified history, analyze all 24 independently, and request telemetry lineage repair rather than fabricate age.
+
+Vectors are correctness/completeness/specificity/robustness/clarity, each0–10, weighted30/25/15/20/10. These subjective scores assess report hypotheses, not profit probability; verified fatal flaws override totals.
+
+| Hypothesis | Vector | Weighted /100 | Standing attack |
+|---|---|---:|---|
+| H1 BTC recovery long | 3/6/7/1/8 | 44.5 | Fatal: E1/HTF and unverified bid defense. |
+| H2 BTC/ETH relief short now | 6/8/9/2/8 | 63.5 | Fatal: persistence, actual hold and contained stop. |
+| H3 SP/NAS relief short now | 6/8/9/2/8 | 63.5 | Fatal: persistence/chronology and invalid index geometry. |
+| H4 Oil bid long now | 6/8/9/2/8 | 63.5 | Fatal: unseasoned defense, contained stop, friction/payoff. |
+| H5 Gold primary short now | 5/7/8/2/8 | 56.5 | Fatal: remote/unseasoned wall and contained stop. |
+| H6 SOL nominal-spread short | 5/7/8/2/8 | 56.5 | Fatal:50.22% example friction, stop and defense. |
+| H7 Grandfather prior wall ages | 2/5/8/0/8 | 38.5 | Fatal: unproven continuity across observations. |
+| H8 Flat plus six research watches | 9/8/9/9/9 | 87.5 | No identified fatal flaw in the bounded snapshot recommendation. |
+
+Adapted bracket: H2>H1; H3>H4 at equal score because a nominally recovered primary plus low-friction research has fewer independent execution deficiencies, without approving either; H5>H6 on the same fewer-deficiencies tie-break; H8>H7; H2>H3 on clearer BTC/ETH HTF alignment at equal score; H8>H5; **H8>H2**. These are disclosed same-agent judgments, not independent consensus.
+
+Archetype defenses: **A1** reject stops in any supplied known interval; **A2** prevent bearish-HTF dip-buys; **A3** retain adequate buffers/total index distance; **A4** do not inherit or extrapolate wall persistence; **A5** use genuinely deeper protected entries and downsize only after valid stop construction. The history's108.55 is above 108.50, not literally inside[107.5,108.5]; inadequate clearance and moved defense are the defensible lessons. None of these controls guarantees zero losses.
+
+## 8. Final verdict and execution table
+
+**STAND ASIDE — 0 CANDIDATES /6 WATCHLIST /18 NO SETUP.** Research watches: **BTC, ETH, SP500, NAS100, GOLD, USWTI**. NAS returns to research because primary sizes/location and pullback behavior improved; it is still unseasoned and not executable. USDJPY remains excluded by regime. No macro veto is involved.
+
+| Action | Symbol | Side | Lots | Entry | SL Bunker | TP Magnet | Risk USD | R:R | Engine | Archetype Defense | Rationale |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| STAND ASIDE | — | — | — | — | — | — | — | — | — | — | No current hypothesis combines verified seasoned defense at touch, valid all-band stop, payable net target and execution economics. Inventory is flat with no pending tickets. |
+
+Next evaluation is observation-driven, not clock- or macro-driven: collect new continuity evidence; distinguish price touching a current wall from defense actually present then; reassess source-specific basis and broker-native friction; reconstruct safe stop and first payable magnet. Recovering180 s alone does not authorize a trade. All24 remain eligible for the next independent analytical scan subject to the user's explicit exclusions.
+
+## 9. Institutional quantitative audit and profitability research
+
+No production changes or proven profit improvements are claimed.
+
+### A. Highest-priority schema work
+
+1. **Durable wall lineage:** persist an append-only observation journal outside process memory, with boot/epoch ID, venue, wallet/order identifier where available, raw price/size, first/last seen, sample gaps and source receipt timestamps. On restart, restore only verified history with explicit gaps; never manufacture uninterrupted age or bridge changed orders solely by matching current notional. Add cancellation/execution attribution and wallet re-peg links. Report both sample-span and continuous-coverage bounds.
+2. **Atomic snapshot and finalization:** record per-component available_at, feed watermark, per-bucket `is_final`, expected/observed timestamps and generation-cutoff versus publication-cutoff policy. BTC15m changed sign across the19:30 boundary; a single unlabeled number can reverse the narrative. Quotes need freshness recalculated at use; future-dated global components must not enter earlier backtests.
+3. **Event-level multilevel OFI:** `OFI_K=sum_k w_k*(bid_add_k−bid_remove_k−ask_add_k+ask_remove_k)`, with price-shift handling, sequence continuity and time-weighted-depth normalization. Current L2 imbalance is a stock of liquidity, not an event-flow measure; signed MT5 ticks are not USD aggressive volume.
+4. **Microprice drift:** `(ask*bid_size+bid*ask_size)/(bid_size+ask_size)`, measured minus mid in ticks and followed by30 s/1m/5m markouts. Do not combine Binance depth with Hyperliquid basis or MT5 quote sizes without explicit mapping.
+5. **Taker ratio/momentum:** `buy/(buy+sell)` over1/5/15/30m, completed-window coverage, total volume, endpoint labels and non-overlapping delta-rate acceleration. Preserve both raw provider labels and independently calculated flow instead of treating a BULLISH_MOMENTUM label as a trigger.
+6. **Footprint absorption:** publish price-bin traded buy/sell volume, opposing aggression, displacement per volume, replenishment and observed sweep/reclaim/hold. A research score `z(opposing_volume)−z(abs(displacement)/ATR)+z(replenishment)` needs causal training and validation. `trapped_traders_signal` is not a full footprint.
+7. **Queue/survival proxies:** separate executed from cancelled depth; estimate withdrawal hazard `−ln(retained_fraction)/dt`, with refill and concentration `HHI=sum(wallet_weight²)`. Exact MT5 OTC exchange queue rank is unobservable; label fill-probability estimates as proxies, not precise queue decay.
+8. **Band occupancy and deduplication:** retain raw triggers, unique contributors, per-price density, adaptive bin widths and top/nearest overlap IDs. Do not add L2 and L3 representations of the same liquidity twice. Continuous coarse bins can make every nearby stop appear contained; diagnose their semantics before policy reform, rather than silently discarding thin bins to manufactureR.
+9. **Basis uncertainty:** per-venue synchronized median/lookback/sample count, residual quantiles, drift and historical basis at touch. BTC median−84.25 versus spot−118.5 differs by34.25 price units; a static unqualified translation is inadequate for tight entry/stop attribution.
+10. **Native execution/HTF/ledger:** preserve integer-tick bid/ask and monetary tick values, commission/swap/profit currency, native margin/profit/order-check receipts, warmedH1/H4EMA200 and RSI trajectories. EUR/GBP both serializing zero spread despite positivebps is a concrete defect. Maintain immutable initialR0; reconcile fills and net banked P&L independently of historical narratives.
+
+### B. Payable2.0–2.5 R without forced10 ATR targets
+
+Use consistent executable-side economics:
+
+`R_net=(broker_gain_at_TP−additional_win_cost)/(broker_loss_at_SL+additional_loss_cost)`.
+
+Spread embedded in bid/ask-based broker calculations must not be charged twice. First locate a real held shelf and reachable first material magnet; then construct a stop outside all intervals and buffers; then enumerate discrete lots in[7.50,14.50]USD and verify margin/profit/order-check receipts. No broker receipt is fabricated here.
+
+For linear same-currency economics, `friction≈spread_distance/stop_distance`. Lot downsizing reduces cash risk and spread cost together, not their ratio. SOL's selected-target1.133 R friction ceiling and oil's15.28% example show why nominalbps improvements or smaller lots do not create edge. Wider safe stops require smaller lots, but also lowerR to the same nearby target.
+
+Research buffer `B=max(policy_floor, conditional_sweep_overshoot_quantile, combined_adverse_basis_spread_latency_allowance)` in price units, calibrated jointly rather than assuming independent tails. Preserve current Engine2 protection and index total-distance standard. Repeat interval/proximity/tick checks after every adjustment. A1–1.2 ATR valid risk can support2–3 ATR reward where actual liquidity exists; index1.5 ATR minimum risk needs>=3 ATR plus costs for 2 R. No universal10 ATR excursion is necessary, but arbitrary far targets are not a solution.
+
+Keep5–10 bps front-running under current policy while researching depth/replenishment/fill-probability calibration. On oil,5 bps≈0.048 is meaningful againstATR0.35. Any future tick/depth-based replacement requires explicit policy revision and out-of-sample validation, not a hidden exception.
+
+### C. More profitable frequency, no calendar halts
+
+Maintain continuous observation-driven research and rank **qualified** cards by fill-conditional expected netUSD per stressed-risk and margin-time. Reassess on touches, defense survival, source-basis changes and spread normalization; do not trade merely to occupy slots or claim that180 s itself creates alpha.
+
+At maximum14.50 risk, allowed cash spread is2.175 USD. Current minimum-lot floors independently exceed that for XRP4, ADA11, DOGE21, TRX10, LTC3 and NEAR3.2 USD. Silver's1.8 USD does not independently fail that ceiling, but6.47 bps exceeds the nominal TradFi cap. Other assets require actual geometry-specific friction, not inherited printed percentages. The explicit DOGE/DOT/ADA/LINK/NEAR exclusions remain in force.
+
+Validate next-observation passive fills, bid/ask paths, partial fills, order aging/cancellation, adverse selection, financing, gaps and correlated joint fills in purged walk-forward tests. Report confidence intervals, net expectancy, drawdown, fill rate and time-to-target. Use actual execution conditions during events without news halts, purges or runway vetoes. Seventeen pooled trades and an uncalibrated lower bound do not demonstrate newly profitable frequency.
+
+## 10. Reproduction and publication
+
+`python docs/trade_plans/audits/cycle105_audit.py SOURCE_DIRECTORY OUTPUT_JSON` verifies every pinned source hash, traverses all blocks using backward-compatible extraction, calculates both CVD endpoint conventions and rebuilds fresh geometry. Analyst classifications are explicitly separate from source diagnostics. Earlier cycle artifacts and the working raw telemetry are not overwritten. **69 regression tests pass** using `python -m unittest discover -s docs/trade_plans/audits -p 'test_*audit.py'`; evidence regeneration is identical and `git diff --check` passes.
+
+The complete report is appended once to the session desk, preserving canonical main's3,374,485-byte prefix and all3,526,356 prior local desk bytes. Publication updates PR#2 on the fixed session branch; **main remains unmodified by this work until separately authorized integration**. No autonomous broker action, merge, external-agent result, daemon repair or guaranteed floor is claimed.
+
+
+---
+
+# Cycle 105 continuation — pending inventory and recovered persistence
+
+## 1. Scope, receipts and council method
+
+This is a new, read-only assessment, not a revision of the 19:30:16 UTC Cycle 105 snapshot. Canonical-main source commit: `eb0d611bf72b8ffb5398adaa7be70cefafe72a6e`. Snapshot generation: `f21bb0ddf5ce4a4c993da82a4f1affc4`, **2026-10-14 20:22:47 UTC / October 15, 01:52:47 IST**. Findings are as of that snapshot, not a claim about the account at the time of reading.
+
+All seven requested sources were byte-read and SHA-256 checked: live telemetry, decision playbook, canonical order desk, active context, session history, arena skill and rubric. The five unchanged context files retain their previously reviewed hashes. The preceding history's 3,646,992-byte prefix was verified; its entire 4,454-byte extension was read. Historical claims of zero orders do not override current inventory. Full manifests are in `audits/CYCLE_105_CONTINUATION_EVIDENCE.json`.
+
+The JSON traversal visited **134,483 nodes across all 24 assets**, with per-block inventories, complete array hashes, candle integrity checks, order-book/band extraction and recomputed flow windows. This is **not** a claim of fresh manual line-by-line interpretation of every source line or telemetry leaf. No direct MT5 query or independent calendar/venue query was performed. Broker valuation below is a receipt in the snapshot, not a broker call made in this audit.
+
+### Five-persona dialectic — single-agent adaptation, before the verdict
+
+No independent subagents were dispatched. These are five analytical lenses applied by one agent, not five independent votes or a claimed cross-model tournament.
+
+| Lens | Strongest proposal or challenge | Resolution |
+|---|---|---|
+| Trend / auction | ETH is bear/bear, selling continues, and an aged 7.399M ask sits between the order's entry and stop. Could WAIT be justified? | Credit the alignment and actual defense location. They do not cure an SL inside a sweep band or 30.53% friction. No completed retest at the primary wall was demonstrated. |
+| Tape / persistence | Durations have recovered; do not recycle the earlier universal age failure. | 645 L3 rows now report at least 180 seconds. Presence gaps and chronology still matter; neither age nor the retired producer gate is a standalone decision. BTC and SOL now have positive 5/15/30-minute flow. |
+| Execution / geometry | Reduce ETH lots or widen its stop; NAS deep has attractive paper R. | Lot reduction leaves the friction ratio unchanged. Widening ETH to the friction minimum collapses its fixed-target R below 1.17. NAS's thin-stop paper R omits the index distance floor and lands inside another band. |
+| Portfolio / margin | The account has zero active trades, so allow three new full-risk tickets. | Rejected: one pending ticket consumes risk and a slot. Only two additional full-risk tickets fit the operating buffer; this is a ceiling, not authorization. Its modeled fill also lowers free margin below the playbook's 4,000 USD reserve criterion. |
+| Adversarial / data integrity | Treat the 4.083B SP500 concentration as a new outlier; sum all nearby oil bids into a primary wall. | The concentration was already present in the preceding generation. Oil's apparent aggregation repeats address/size identities at different prices; independent simultaneous orders cannot be assumed. GOLD's distinct-address pair is credited, but the later wall appeared after the latest completed candle. |
+
+Rubric order is correctness, completeness, specificity, robustness, clarity; weights **30/25/15/20/10**. These subjective solution scores are not win probabilities, calibrated trading edges or independent judging results.
+
+| Audited approach | Scores /10 | Weighted /100 | Fatal rule |
+|---|---|---:|---|
+| WAIT unchanged | 2 / 5 / 8 / 1 / 8 | 40.5 | Verified stop-band and friction breaches remain |
+| MODIFY lots only | 3 / 5 / 7 / 2 / 8 | 44.0 | Friction and stop location unchanged |
+| NEW NAS deep with thin stop | 3 / 6 / 8 / 2 / 8 | 48.0 | Violates index distance and band exclusion |
+| DELETE advice; retain reserve; no new admission | 9 / 8 / 9 / 9 / 9 | 87.5 | None found in the as-of research conclusion; live execution remains unverified |
+
+## 2. Final verdict and three mandates
+
+**Zero new executable candidates; five research watches; nineteen no-setup assets. Existing pending ETH #18925596: DELETE recommendation, not executed.** There are **zero active positions and one pending order**, not a flat book.
+
+| Mandate | Snapshot finding | Action / status |
+|---|---|---|
+| New setups | No setup passes the combined trend, defense, geometry and execution checks | No new executable cards; no placements |
+| Active management | Zero active positions | No TP/SL ratchet and no invented initial R0. If the pending order subsequently fills, obtain the actual fill and frozen original R0 before reviewing the active position. |
+| Pending management | ETHUSD.pi #18925596, SELL_LIMIT, 1.00 lot; entry 2447.50, SL 2457.00, TP 2425.00 | **DELETE recommended; cancellation NOT performed or confirmed. Keep its risk/margin/slot reserved.** Refresh ticket state before any separately authorized action; a filled order requires active-position review, not cancellation advice. |
+
+Passive LIMIT-only policy remains intact. No market order, broker mutation, dispatcher action or macro purge was made. A watch is a research priority, not permission to stage a dormant order.
+
+## 3. Pending ETH forensic review
+
+The order was created at **20:20:12 UTC**. Quotes in this snapshot are bid **2428.80**, ask **2431.70**, mid **2430.25**, spread **2.90 / 11.93 bps**. The entry remains a passive sell-limit location at capture. Its prices and 1.00-lot volume are on the serialized broker grid; the nominal risk is within the operator's ticket range. Those valid details do not make the setup admissible.
+
+- **Risk:** `(2457.00 − 2447.50) × 1 contract × 1 lot = 9.50 USD`; stress `1.25 × 9.50 + 2 = 13.875 USD`.
+- **Sweep containment:** median Hyperliquid-to-broker basis is **−2.15**. The raw buy-stop interval **[2450, 2460]**, reported notional **2,359,072.07 USD**, maps to **[2447.85, 2457.85]**. SL **2457.00 is inside it**, 0.85 below its upper edge—not 0.50–0.75 ATR beyond it. ATR is **10.6457**.
+- **Friction:** `(2.90 × 1.00) / 9.50 = 30.5263158%`, exceeding **15%** even though the separate 35-bps crypto spread cap passes. Scaling lots scales both cost and risk; it cannot repair this ratio.
+- **Reward:** gross `(2447.50 − 2425.00) / 9.50 = 2.368421R`. Do not subtract spread a second time from side-specific prices and call the result a verified net R. At the same entry/target, friction alone demands distance **19.333333**, reducing the best gross R to **1.163793**. A simple wider-stop modification does not preserve the target economics.
+- **Actual in-range defense credited:** raw ask **2450.30 → 2448.15**, **7,399,147.39 USD**, recorded duration **1982.2 seconds**, **30 samples**, presence **0.8824**, first seen **19:49:13 UTC**. It lies between this entry and SL. Do not falsely say all qualifying defense lies outside the stop. But recorded span/presence is not proof of uninterrupted queue survival or a defended retest.
+- **Outside defense not credited:** the larger **14,426,892.30 USD** ask at raw **2461.70 → 2459.55** lies beyond the current stop. It cannot protect a stop hit earlier.
+- **Chronology:** the fully subsequent completed 20:00–20:15 candle's high was **2430.90**, below **2448.15**. No completed primary-shelf touch/hold is shown. ETH's 5/15/30-minute taker CVD is **−416,090.74 / −2,518,033.41 / −2,648,506.77 USD**. The prior five-minute window was −458,816.65; modest aggregate deceleration does not establish absorption. The latest completed minute was still **−152,831.04**.
+
+**DELETE is preferred to WAIT or a lot-only MODIFY.** Any replacement is a new qualification exercise: fresh inventory, defended shelf, outside-band stop, front-run target, discrete broker sizing, verified margin and joint risk. None is supplied as an executable replacement here.
+
+## 4. Nonempty-book risk and margin
+
+Balance/equity **4859.55 USD**; hard floor **4775**; operating minimum **4795**. The snapshot labels the pending ticket's valuation `BROKER_VALUED`, with no valuation errors. Margin-on-fill is **1223.75 USD**. Current free margin is **4859.55**, but modeled free margin after that pending fill is **3635.80**.
+
+The playbook explicitly says to maintain more than **4000 USD** free margin. Current reported free margin passes; the modeled contingent fill does **not** preserve that reserve. This is separate from the stressed-equity test, which the existing ticket alone passes.
+
+| Additional new tickets at 14.50 USD nominal risk each | Total modeled post-stop equity, including existing pending | 4795 buffer |
+|---:|---:|---|
+| 0 | 4845.675 | Pass |
+| 1 | 4825.550 | Pass |
+| 2 | 4805.425 | Pass |
+| 3 | 4785.300 | **Fail**, though still above the hard floor |
+
+Each new full-risk ticket consumes exactly **20.125 USD** stressed loss, not rounded 20.12. Three slot openings do not imply three full-risk tickets are affordable. The buffer-only ceiling is **two additional full-risk tickets**, before margin, correlation and setup constraints. There are no approved additions.
+
+Only **after a confirmed cancellation**, and a fresh otherwise-flat account receipt, would the hypothetical three-full-ticket arithmetic return to **4799.175**. That is not the current inventory baseline and no reserve was released.
+
+## 5. All-24 dual-engine screen
+
+**Engine 1:** every asset has `abs(Z) < 2`; none passes the required extreme. This alone does not reject Engine 2, which was assessed separately below. No RANGE_BOUND or UNDEFINED producer regime is being smuggled into a trend setup; notably USDJPY is now BEARISH, unlike the previous snapshot.
+
+HTF ordering below is the independently recomputed close/seeded-EMA20/50 diagnostic on **96 candles each for 1H and 4H**. It is not a claim of a fully warmed HTF EMA200. The producer's 800-bar lower-timeframe EMA200 does not cure that higher-timeframe history limitation.
+
+| Asset | Z | 1H / 4H diagnostic | New-setup class | Engine 2 assessment |
+|---|---:|---|---|---|
+| BTC | -1.00 | bear/bear | WATCHLIST | Bear/bear; primary ask duration recovered, but positive 5/15/30m taker flow and no demonstrated primary-shelf rejection. |
+| ETH | -1.09 | bear/bear | WATCHLIST | Bear/bear and selling; pending ticket separately DELETE: stop containment, friction, no primary-shelf touch/hold. Rebuild only after fresh qualification. |
+| SOL | -0.83 | bear/bear | NO SETUP | Bear/bear, but positive taker flow; primary ask remote and selected-target R ceiling at the friction minimum below 2.5. |
+| BNB | -1.39 | bear/bear | NO SETUP | Bear/bear; aged ask maximum below 5M, pullback velocity 1.1637, positive taker flow; quote age 26.63s. |
+| XRP | -1.19 | bear/bear | NO SETUP | Minimum-lot spread cost 4 USD exceeds the maximum 2.175 USD friction budget. |
+| ADA | -0.57 | bear/bear | NO SETUP | Explicit operator ban; spread and minimum-lot friction also fail. |
+| DOGE | -0.17 | bear/bear | NO SETUP | Explicit operator ban; spread and minimum-lot friction also fail. |
+| TRX | +0.67 | bull/mixed | NO SETUP | Bull/mixed HTF; minimum-lot spread cost 9 USD exceeds 2.175 USD. |
+| DOT | +0.32 | bear/bear | NO SETUP | Explicit operator ban; spread exceeds crypto cap. |
+| LINK | -1.02 | bear/bear | NO SETUP | Explicit operator ban; spread exceeds crypto cap. |
+| BCH | -0.94 | bear/bear | NO SETUP | Bear/bear; no aged 5M ask and no verified primary defended shelf. |
+| LTC | -0.39 | bear/bear | NO SETUP | 50.05 bps exceeds crypto cap; minimum-lot spread cost 3 USD exceeds 2.175 USD. |
+| AVAX | -0.74 | bear/bear | NO SETUP | Bear/bear; no aged 5M ask and no verified primary defended shelf. |
+| NEAR | -1.56 | bear/mixed | NO SETUP | Explicit operator ban; spread, minimum-lot friction and mixed HTF also obstruct. |
+| SP500 | -1.11 | bear/mixed | WATCHLIST | Bear/mixed HTF; relief retraces near EMA20 but primary ask not touched; selected nearby target not payable at 2R. |
+| NAS100 | -1.41 | bear/bear | WATCHLIST | Bear/bear; near primary first seen inside latest completed candle, not a demonstrated retest; near geometry under 2R and deep geometry unconfirmed. |
+| DJ30 | -0.12 | bear/mixed | NO SETUP | Bear/mixed HTF, not confirmed two-timeframe alignment. |
+| GER40 | -1.72 | mixed/bull | NO SETUP | Mixed/bull HTF conflicts with bearish producer regime; neither allowed direction confirmed. |
+| GOLD | -0.51 | bear/bear | WATCHLIST | Bear/bear; two distinct-address asks total 0.7895M near EMA50, but the newer first appeared after the last completed candle. No confirmed joint defended retest. |
+| SILVER | -1.36 | bear/bear | NO SETUP | Bear/bear; 6.48 bps exceeds 5 bps TradFi cap despite an aged 0.8442M ask. |
+| USWTI | -0.10 | bull/bull | NO SETUP | Bull/bull and slow pullback; nearby bid sum has repeated address/size identities, support defense unconfirmed, and selected support-to-POC geometry fails friction and 2R. |
+| EURUSD | +0.09 | bear/bear | NO SETUP | Bear/bear, but no aged 0.50M ask; broker-native spread precision unresolved, not zero-cost. |
+| GBPUSD | -0.39 | bear/bear | NO SETUP | Bear/bear, but no aged 0.50M ask; broker-native spread precision unresolved, not zero-cost. |
+| USDJPY | -0.85 | mixed/bull | NO SETUP | Now BEARISH producer regime, not RANGE_BOUND; mixed/bull HTF and velocity 1.0663 defeat either aligned pullback interpretation. |
+
+The explicit bans remain DOGE/DOT/ADA/LINK/NEAR. The 15% friction budget at the maximum 14.50 risk is **2.175 USD**; it is not 2.18 internally. Minimum-lot spread costs for XRP/ADA/DOGE/TRX/LTC/NEAR already exceed it. EURUSD/GBPUSD serialize zero price spread despite nonzero bps; do not infer free execution or manufacture exact lots from rounded quotes.
+
+## 6. What recovered—and what still did not qualify
+
+### Persistence and completed-flow timing
+
+- L3: **1055 rows, 645 with recorded duration ≥180s**. L2: **54 rows, 8 ≥180s**. The prior cycle's zero-seasoned finding is superseded, not repeated.
+- `persist_s` is a sampled observed span, not necessarily continuous age. Presence fractions, disappearance/reappearance, first-seen time, contact evidence and wallet/order identity must accompany it. Producer `INSUFFICIENT_PERSISTENCE` labels are neither blindly accepted as a veto nor ignored as evidence of gaps.
+- Generation began at **20:22:12.149 UTC**; both start-based and root-based completed-minute endpoints are **20:22:00**. All crypto 1/5/15/30-minute grids are complete at that cutoff. The previous cycle's one-minute endpoint disagreement does not recur here; grid completeness still does not independently certify upstream finalization.
+- Latest completed 15-minute close: **20:15 UTC**. No OHLC invalidity, nonmonotonic candle timestamp or close beyond the serialized cutoff was found in the audited candle arrays.
+- Global flow was timestamped **4.35447 seconds after the root**: not an atomic same-instant observation. Quotes older than ten seconds include BNB **26.63s**, TRX **14.26s**, DOT **12.67s**, GBPUSD **10.25s**; refresh before execution rather than treating them as current.
+
+### BTC, SOL and the index relief bounce
+
+BTC 5/15/30-minute CVD is now **+394,707.24 / +1,170,050.87 / +858,827.36 USD**; SOL is **+137,220.50 / +182,277.25 / +212,429.08**. These are buying/relief-flow observations, not evidence of renewed aggressive selling or a completed seller defense. BTC's raw 82164 ask maps to **82085.50**, 8.978M and 1113.5s with 0.9474 presence; the latest completed high was **81856**. A bearish backdrop is not a short-entry trigger.
+
+SP500's last three completed highs were **7722.03 / 7724.34 / 7723.97**, around EMA20 **7723.115**. This is a near-shelf retrace, but it did not test the primary raw **7741 → 7740.835** ask, **6.286M**, duration **1986.9s**, presence **0.8824**. The nearer raw 7725 ask is only **0.500001M**. H4 is mixed and tick flow is +49/+49. Do not upgrade the EMA brush to a defended primary retest.
+
+NAS100's raw **30039 → 30021.075** ask is **1.079677M**, duration **576.9s**, presence **0.9091**, first seen **20:12:37**—inside the latest completed 20:00–20:15 candle, whose high was **29991.75**. The wall's sampled duration recovered, but a subsequent completed retest did not. The deeper **30209 → 30191.075** ask is **1.029145M / 912.9s** and remains remote. Negative tick flow does not license selling below these untested shelves.
+
+### GOLD composite and oil/JPY support
+
+GOLD has two distinct-address asks at raw **4113.50/4113.80 → 4110.13/4110.43**, totaling **789,533.81 USD**, with individual durations **366.4/909.3s**. Credit that aggregate rather than inventing a single-wallet requirement. However the newer wall first appeared at **20:16:06**, after the last completed candle. There is no jointly demonstrated completed retest of the pair. Individually ≥0.75M asks at 4126.3 and 4138.6 are fresh, with recorded duration zero. Keep GOLD as research, not an admitted ticket.
+
+USWTI remains **bull/bull**, Z **−0.10**, velocity **0.0412**, spread **4.83 bps**: the previous high-velocity rejection must not be recycled. EMA20/50 are **95.4108/95.3224**, POC **95.4852**. The last completed low **95.166** pierced the mapped near bid **95.21725**, with close **95.261** above it, but that bid first appeared inside the same candle. Intrabar contact order and held liquidity are unverified; tick CVD remains **−1/−7**.
+
+Oil's raw 93.67–93.85 neighborhood appears to contain **1,751,388.64 USD** of aged bids, but nine rows reduce to three `(address, side, size)` signatures. Taking only the maximum notional per signature gives **555,499.92 USD**. This is a conservative identity diagnostic, not proof that all repeated rows are duplicates: they could be distinct same-sized orders or re-pegs. Do not certify 1.751M of simultaneous unique defense without order IDs. The older 93.58 primary is not inherited into this generation. The fresh near-support example below also fails friction and reward.
+
+USDJPY is now producer **BEARISH**, but H1/H4 ordering is **mixed/bull**, velocity **1.0663**, and aged bid maximum is only **0.1997M**. A large ask far away at raw 160.8 does not defend a local support long. Neither a confirmed aligned short nor a defended slow-pullback long is established.
+
+## 7. Fresh geometry counterexamples—not order cards
+
+All numbers below are research coordinates, **not tick-rounded executable instructions**. Foreign-venue levels are mapped with each current median basis; broker-native EMA/profile levels are not translated twice. Short targets shown front-run the selected lower magnet's upper edge by 5 bps; the oil long target front-runs broker POC by 5 bps. Stops use 0.50 ATR beyond the selected governing edge plus half-spread, then undergo **all-known-band containment checks**. Merely clearing one band is insufficient. These examples do not prove that every conceivable alternative geometry is impossible.
+
+| Research example | Mapped entry | Trial stop | Selected 5-bps target | Gross R | Friction | Remaining obstruction |
+|---|---:|---:|---:|---:|---:|---|
+| BTC primary | 82085.50 | 82257.65445 | 81562.26075 | 3.0394 | 9.294% | Stop lies in mapped raw [82300,82400]; primary rejection unshown |
+| ETH primary | 2448.15 | 2464.62285 | 2419.058925 | 1.7660 | 17.605% | Stop in raw [2460,2470]; friction and 2.2R fail |
+| SOL primary | 105.8525 | 106.312 | 103.96445625 | 4.1089 | 50.054% | Stop in raw [106,107]; friction-minimum R ceiling only 1.2313, below 2.5 |
+| SP500 primary | 7740.835 | 7755.56985 | 7723.6949175 | 1.1632 | 2.307% | Stop in raw [7750,7760]; total distance below index floor |
+| NAS100 near | 30021.075 | 30117.53005 | 29897.0160375 | 1.2862 | 1.265% | Stop in raw [30100,30200]; total distance below index floor |
+| NAS100 deep | 30191.075 | 30217.53005 | 29897.0160375 | 11.1154 | 4.612% | Misleading thin-stop R; stop in raw [30200,30300], untested shelf |
+| GOLD fresh primary | 4122.93 | 4130.5604 | 4078.668315 | 5.8007 | 0.917% | Fresh wall; stop in raw [4130,4140] |
+| Oil near subthreshold bid | 95.24025 | 94.99995 | 95.4374574 | 0.8207 | 19.143% | Unconfirmed defense; stop in raw [93.6,93.7]; economics fail |
+
+SP500's **1.5 ATR** minimum is **16.69455**, versus trial distance **14.73485**; its selected-target R falls to **1.0267** at that minimum. NAS's minimum is **104.53515**: the near example falls to **1.1868R**. The deep NAS example still has **2.8130R** at the distance floor; do **not** falsely claim distance alone destroys every deep alternative. It remains unqualified because retest chronology and safe all-band exclusion were not demonstrated. R is necessary, not sufficient.
+
+## 8. Institutional telemetry findings and prioritized improvements
+
+1. **Inventory-first admission and cancellation acknowledgments.** Join positions, pending orders, ticket valuation and capacity by generation/ticket. A history summary saying zero orders must never release the observed ETH reserve. Record request, broker acknowledgment and refreshed inventory separately; recommendation is not execution.
+2. **Continuous-versus-recurrent wall evidence.** Persist venue/order ID, address, side, size, observed price trajectory, missing intervals, refill/consumption and touch timestamps. Preserve `persist_s` as sampled span rather than relabeling it continuous defense. GOLD needs joint-window contact evidence; oil needs simultaneous-order identity rather than naive row sums.
+3. **Interval-union stop validation and target obstacle accounting.** Enumerate every known stop/cascade interval after basis translation. Test the rounded executable stop against the union and required edge buffers; after widening, recompute target R, spread friction, discrete lot risk and margin. Never shrink stops to meet lot/risk targets.
+4. **Large-notional provenance rather than blanket rejection.** SP500's raw [7700,7710] reported pool is **4,083,172,972.22 USD**. The immediately preceding telemetry commit `b0824bb020e4294cafed69e44adc21b7b07f68b1`, generation `f214c940152c4deaa1d81de871342925`, at **20:21:28 UTC**, already reported **4,082,882,029.25**, same size **528987.216**. Ratio **1.000071259**, not a >100× one-generation jump. This is repeated upstream evidence, not independent venue validation. Audit contract units, trigger direction/stop-versus-take-profit semantics, wallet concentration and deduplication before using it as forced-flow fuel. The excerpt's `top_buy_whale_stops` includes large below-market prices; bucket names alone cannot resolve execution-side semantics.
+5. **Native precision and broker receipts.** Preserve EUR/GBP bid/ask at native digits, exact tick value/currency conversion, quote time, commission, volume step, stop/freeze levels, `order_calc_profit` and `order_calc_margin` receipts for proposed cards. Do not derive a free spread from rounded zero.
+6. **Time-coherent telemetry.** Publish explicit CVD finalization watermarks and per-block sampling times; fetch warmed HTF histories independently. Do not combine post-root global flow with earlier book/bars as if atomic. No claim of a calibrated execution probability follows from this council score.
+
+These are research/schema recommendations. This turn adds a read-only pinned-source audit and regressions, **not a production admission-engine change**.
+
+## 9. Five-loss-archetype defense
+
+| Archetype | This audit's defense |
+|---|---|
+| Stop inside sweep | Existing ETH containment explicitly fails; all fresh trial stops checked against deduplicated interval sets, not a single preferred band |
+| Countertrend | No bearish-HTF longs or bullish-HTF shorts admitted; SP/DJ mixed and GER/JPY conflicts remain unresolved |
+| Inadequate buffer | ETH reserve retained; third additional full-risk ticket breaches 4795 even though four total slots exist |
+| Ephemeral / misleading wall | Recovered spans credited without inventing continuous survival; first-seen chronology and oil repeated identities reviewed |
+| Pullback overshoot | Require touch, hold, slow geometry and flow confirmation; JPY velocity >1 and unconfirmed oil contact are not repaired by small Z |
+
+## 10. Macro, reproducibility and publication scope
+
+Macro blackout enforcement stays **DISABLED_BY_OPERATOR**. The snapshot lists the Bowman Bangkok event at **2026-10-15 02:55 UTC**, but there is no news veto, purge, runway exclusion or calendar-based reason for DELETE. The ETH decision rests on inventory, structure and execution economics. Calendar fields are snapshot context, not independently verified in this turn.
+
+Reproduce from the seven exact pinned paths plus the adjacent snapshot receipt:
+
+```text
+python docs/trade_plans/audits/cycle105_continuation_audit.py SOURCE_DIRECTORY PREVIOUS_SNAPSHOT OUTPUT_JSON
+python -m unittest discover -s docs/trade_plans/audits -p 'test_*audit.py'
+```
+
+Durable artifacts: this report; `audits/cycle105_continuation_audit.py`; `audits/CYCLE_105_CONTINUATION_EVIDENCE.json`; `audits/test_cycle105_continuation_audit.py`; one append to `LIVE_COLLABORATIVE_ORDER_DESK.md`. Preserve the entire **3,563,784-byte** pre-continuation local desk prefix, SHA-256 **c9e0d6483f3cfd583f53ec7a45d3db894be243c10f39749347253a912b25fb0a**; preserve the canonical-main prefix as well. No telemetry payload or large source corpus is added to Git.
+
+Publication is scoped to `arena/66c9be42-trading-2` / PR #2. **Main remains untouched; no PR merge and no broker action are authorized or performed.** Publication receipt and executed test result are supplied with the completed delivery, not assumed from this report's creation.
+
+
+---
+
+# Cycle 106 — pending ETH unchanged; wall-history discontinuity
+
+## 1. Source scope and council method
+
+**As-of snapshot:** 2026-10-14 **20:40:24 UTC** / October 15 **02:10:24 IST**. Canonical-main commit `d3020d8a84b577e4288f1683ac0376e2d1baefb8`; generation `e13af7f63a4b4473b5f5dc8b5953aca2`. This report supersedes the preceding snapshot assessment only where new observations differ; it is not a live broker-state guarantee at reading time.
+
+All seven requested files were byte-read and SHA-256 checked: telemetry, playbook, canonical desk, active context, session history, arena skill and rubric. **All six context files are unchanged** from the preceding audit; no new history suffix exists. Full telemetry traversal covered **133,829 nodes and all 24 assets**, with per-block inventories, array hashes, candle checks and recomputed completed CVD. Targeted manual review covered inventory, risk, execution, liquidity, HTF/auction shelves, timing and counterexamples. This is **not** a claim of fresh manual line-by-line interpretation of every telemetry leaf. Full source manifests are in `audits/CYCLE_106_EVIDENCE.json`.
+
+An additional pinned snapshot at commit `846791153d9364118d1e76047b1f70ae13f70459`, generation `b6833dccb15b44928f9b842c6946d72f`, **20:39:30 UTC**, was checked for persistence history. Published 20:22:47 evidence was separately hash-guarded. Neither is an independent venue or broker query.
+
+### Five-persona dialectic, before the verdict
+
+**Single-agent adaptation:** no independent agents or models were dispatched. These are analytical lenses, not independent votes.
+
+| Lens | Challenge | Resolution |
+|---|---|---|
+| Trend / auction | ETH is bear/bear and selling; the largest ask is now inside the order's stop. Does that justify WAIT? | Credit the newly in-range 14.4296M ask. The existing stop remains inside the mapped sweep interval, and friction remains 30.53%. |
+| Tape / persistence | Zero seasoned rows means every large wall vanished or is spoofed? | Rejected. Many exact large-wall signatures recur from the preceding audit. Current recurrence histories restarted/discontinued; the mechanism and continuous physical survival are unproven. |
+| Execution / geometry | Shrink ETH lots; use deep NAS's high paper R for a new order. | Lot reduction leaves friction unchanged. Deep NAS retains possible reward at a wider distance, but its thin trial stop is contained and its defended retest is unverified. |
+| Portfolio | The market is already below ETH's TP, so can the pending reserve be released? | No. The ticket remains pending, not a realized winner. Reserve 13.875 stressed dollars, 1223.75 margin-on-fill and one slot. |
+| Adversarial / data integrity | Reuse the last report's positive BTC flow, fast JPY rejection and GOLD composite. | All three are stale: BTC selling returned, JPY velocity improved, and only one leg of the prior GOLD pair remains at those prices. |
+
+Rubric: correctness/completeness/specificity/robustness/clarity, weights **30/25/15/20/10**. Scores judge research approaches, not trade win probabilities.
+
+| Approach | Scores /10 | Weighted /100 | Fatal verified flaw |
+|---|---|---:|---|
+| WAIT on stronger in-range ETH ask | 2 / 5 / 8 / 1 / 8 | 40.5 | Existing stop and friction breaches |
+| MODIFY lots only | 3 / 5 / 7 / 2 / 8 | 44.0 | Does not fix those breaches |
+| Inherit prior wall age and admit NAS | 3 / 5 / 8 / 2 / 8 | 45.5 | Unsupported continuity and unsafe selected stop |
+| DELETE advice; retain reserve; await fresh defense | 9 / 8 / 9 / 9 / 9 | **87.5** | None found in this as-of research conclusion; live execution remains unverified |
+
+## 2. Verdict and three mandates
+
+**0 new executable candidates; 5 research watches; 19 no-setup assets. Existing ETH #18925596: DELETE recommended, NOT executed.** Inventory remains **0 active / 1 pending**, not flat.
+
+| Mandate | Finding | Action / status |
+|---|---|---|
+| New setups | No fully qualified dual-engine candidate | No new order cards or placements; watches are not dormant-order authorization |
+| Active management | Zero active positions | No active TP/SL ratchets or invented initial R0. If the pending fills, refresh the fill and frozen original risk before active review. |
+| Pending management | ETHUSD.pi #18925596, SELL_LIMIT, **1.00 lot**, entry **2447.50**, SL **2457.00**, TP **2425.00** | **DELETE advice only. No cancellation request or broker acknowledgment. Keep risk/margin/slot reserved.** |
+
+Before any separately authorized action, verify that the ticket is still pending. If it has filled, pending-order advice does not substitute for position management. No market order, broker mutation, PR merge or macro purge occurred.
+
+## 3. Pending ETH: update the defense, preserve the rejection
+
+The order is unchanged from its **20:20:12 UTC** creation. Snapshot bid/ask **2417.20 / 2420.10**, mid **2418.65**, spread **2.90 / 11.99 bps**. Entry and volume remain on the serialized broker grid and the sell limit remains above the current ask. Nominal risk passes the operator's 7.50–14.50 range; that is not enough for admission.
+
+**Sweep:** current median basis is **−2.20**, not −2.15. Raw **[2450,2460]** maps to **[2447.80,2457.80]**; the band reports **2,347,725.95 USD**. The existing **2457.00** stop is still inside it. ATR is now **10.3425**, and there is no required outside-edge ATR buffer.
+
+**Friction:** `2.90 / (2457−2447.50) = 30.5263158%`, versus 15% maximum. The 35-bps crypto spread cap passes separately. Changing lots does not change this ratio.
+
+**Reward:** gross `(2447.50−2425)/9.50 = 2.368421R`. At the same entry/target, friction alone requires distance `2.90/0.15 = 19.333333`; the gross-R ceiling then falls to **1.163793**. Do not widen the existing stop and call the same target a compliant repair. No spread double-counting is used to label a fabricated net R.
+
+### Fresh large-ask locations
+
+| Raw ask → broker mapped | Notional | Current recorded span | Relation to this pending order |
+|---|---:|---:|---|
+| 2439.10 → **2436.90** | **7,395,117.53** | **0s / 1 sample** | Below entry; not overhead protection after a 2447.50 sell fill |
+| 2452.20 → **2450.00** | **14,429,638.63** | **131.3s / 2 samples** | **Between entry and SL**; credit its location, but no seasoned current-history defense |
+| 2462.00 → **2459.80** | **5,038,492.11** | **0s / 1 sample** | Beyond SL; cannot protect a stop-out that happens first |
+
+The previous report's statement that the largest ask was outside SL **must not be carried forward**. The same large wallet appears again at changed prices/sizes, but wallet identity without order IDs does not prove the same order survived or justify inherited age. Even granting uninterrupted defense, the independent sweep and friction failures remain.
+
+**Unfilled is not profitable:** current ask **2420.10 is below the pending TP 2425.00**, but the order is still unfilled. The intended price area has been reached without an entry; there is no realized reward, no active trailing opportunity, and no reserve release. This observation alone does not make a future sell-limit TP mechanically invalid—it demands a fresh setup review.
+
+ETH 5/15/30-minute taker CVD is now **−373,989.10 / −1,328,144.92 / −2,901,468.11 USD**. The latest completed 20:15–20:30 bar had high **2429.10**, low **2422.70**, close **2423.10**. Current recorded wall histories begin later than that bar. Selling and bearish HTF cannot establish a defended shelf by themselves.
+
+## 4. Account risk and margin: reserve unchanged
+
+Balance/equity **4859.55 USD**; hard floor **4775**; operating minimum **4795**. The source reports `BROKER_VALUED` risk, no valuation errors, and the same pending ticket:
+
+- Nominal loss **9.50 USD**.
+- Stressed loss `1.25×9.50 + 2 = 13.875 USD`.
+- Pending margin-on-fill **1223.75 USD**.
+- Current free margin **4859.55**, modeled after-fill free margin **3635.80**.
+
+Current free margin exceeds the playbook's **4000 USD** reserve criterion; the modeled pending fill does **not** preserve it. The existing ticket nevertheless passes the separate stressed-equity floor test. These are different constraints.
+
+| Additional tickets at 14.50 nominal risk each | Post-stop equity including existing ETH pending | 4795 minimum |
+|---:|---:|---|
+| 0 | **4845.675** | Pass |
+| 1 | **4825.550** | Pass |
+| 2 | **4805.425** | Pass |
+| 3 | **4785.300** | **Fail** |
+
+Each addition consumes exactly **20.125** stressed dollars. There are three slot openings, but only **two additional full-risk tickets** fit the buffer before margin, correlation and setup checks. None is approved. The 4799.175 flat-book three-ticket scenario becomes relevant only after confirmed cancellation and refreshed otherwise-flat inventory; it is not the current baseline.
+
+## 5. Persistence: observed discontinuity, not proven liquidity disappearance
+
+| Snapshot | L3 rows | L3 recorded span ≥180s | Maximum span | Maximum samples |
+|---|---:|---:|---:|---:|
+| Prior published 20:22:47 | 1055 | 645 | Earlier histories retained in prior evidence | Earlier histories |
+| Adjacent 20:39:30 | 1031 | **0** | **0s** | **1** |
+| Current 20:40:24 | 1020 | **0** | **131.3s** | **2** |
+
+Current L2 likewise has **53 rows and zero ≥180s**. Every current recorded L3 `first_seen_utc` is between **20:37:52 and 20:40:05**, after the latest completed 15-minute close at **20:30**.
+
+But **77 exact large-wall signatures**—address, side, price, size and notional—match the published 20:22:47 audit; **75 report shorter spans now**. Examples:
+
+- BTC's **24,999,845.67** bid at raw 81196: prior **3290.9s**, current **76.5s**.
+- SP500's **6,285,622.33** ask at raw 7741: prior **1986.9s**, current **72.8s**.
+- Several unchanged GOLD asks likewise report reduced histories.
+
+This establishes a **recurrence-history discontinuity/restart in the observations**, not its cause. Collector reset, loss of state, disappearance/reappearance or replacement at identical levels cannot be distinguished from these receipts alone. The adjacent snapshot's all-single-sample state supports the history finding; it does not independently prove a collector restart.
+
+**Do not claim every physical wall is younger than 180s, disappeared, or is spoofed. Do not simply inherit old age either.** Cross-audit recurrence is credited, but uninterrupted survival and price-contact defense are not certified. The setup rejection is not based solely on a producer eligibility flag: unconfirmed contact, geometry, alignment and execution failures were evaluated independently.
+
+## 6. All-24 dual-engine assessment
+
+**Engine 1:** all 24 have `abs(Z)<2`, including NEAR at **1.93**, so none passes the required extreme. Negative CVD alone is not exhaustion. **Engine 2 was separately evaluated despite low Z.** No RANGE_BOUND/UNDEFINED trend setup is admitted.
+
+The HTF diagnostic is independently recomputed close/seeded-EMA20/50 ordering from **96 bars each for 1H and 4H**. It does not verify a fully warmed HTF EMA200. All source blocks were parsed; displayed reasons are decisive findings, not an assertion that every block was manually discussed.
+
+| Asset | Z | 1H / 4H diagnostic | Classification | Engine 2 finding |
+|---|---:|---|---|---|
+| BTC | -1.21 | bear/bear | WATCHLIST | Bear/bear; selling returned, but primary asks have only 76.5s recorded span, no current-history completed retest. |
+| ETH | -1.41 | bear/bear | WATCHLIST | Bear/bear; pending DELETE separately. Larger ask now in range but 131.3s only; sweep and friction failures persist. |
+| SOL | -1.25 | bear/bear | NO SETUP | Bear/bear; 5/15m selling, 30m positive; primary span 73.9s and selected-target friction-minimum R below 2.5. |
+| BNB | -1.68 | bear/bear | NO SETUP | Bear/bear; no seasoned primary; velocity 1.009 and positive 5/15/30m flow do not confirm seller defense. |
+| XRP | -1.46 | bear/bear | NO SETUP | Minimum-lot spread cost 3 USD still exceeds 2.175 USD maximum budget; no seasoned defense. |
+| ADA | -0.87 | bear/bear | NO SETUP | Explicit ban; spread and minimum-lot friction also fail. |
+| DOGE | -0.54 | bear/bear | NO SETUP | Explicit ban; spread and minimum-lot friction also fail. |
+| TRX | +0.55 | bull/mixed | NO SETUP | Bull/mixed HTF; 9 USD minimum-lot spread cost and no seasoned defense. |
+| DOT | -0.17 | bear/bear | NO SETUP | Explicit ban; 185.76 bps exceeds crypto cap. |
+| LINK | -1.21 | bear/bear | NO SETUP | Explicit ban; 69.40 bps exceeds crypto cap. |
+| BCH | -1.30 | bear/bear | NO SETUP | Bear/bear; no seasoned 5M primary ask or independently verified defended shelf. |
+| LTC | -0.69 | bear/bear | NO SETUP | 50.33 bps exceeds crypto cap; minimum-lot spread cost 3 USD exceeds 2.175 USD. |
+| AVAX | -0.87 | bear/bear | NO SETUP | Spread now 40.36 bps, above 35; no seasoned primary defense. |
+| NEAR | -1.93 | bear/mixed | NO SETUP | Explicit ban; 69 bps, minimum-lot cost and mixed HTF also fail; abs(Z)=1.93 is still below 2. |
+| SP500 | -1.16 | bear/mixed | WATCHLIST | Bear/mixed HTF; 72.8s primary span, buyer tick flow, latest high below EMA20 and primary; nearby target not payable at 2R. |
+| NAS100 | -1.44 | bear/bear | WATCHLIST | Bear/bear; three ask shelves examined, all 131.1s. Near targets fail 2R at index floor; deeper paper reward lacks safe stop/retest. |
+| DJ30 | -0.16 | bear/mixed | NO SETUP | Bear/mixed HTF and no seasoned primary defense. |
+| GER40 | -1.74 | mixed/bull | NO SETUP | Mixed/bull HTF conflicts with bearish producer regime; no permitted aligned direction confirmed. |
+| GOLD | -0.55 | bear/bear | WATCHLIST | Bear/bear; old 4113.5/4113.8 pair no longer intact, qualifying individual asks only 84.8s; no completed current-history retest. |
+| SILVER | -1.38 | bear/bear | NO SETUP | 6.48 bps exceeds TradFi 5 bps cap; no seasoned defense. |
+| USWTI | -0.15 | bull/bull | NO SETUP | Bull/bull, velocity 0.0306; no seasoned primary, mixed tick flow and fresh support-to-POC friction/reward failure. |
+| EURUSD | +0.03 | bear/bear | NO SETUP | Bear/bear; no seasoned ask; equal rounded bid/ask and zero price spread conflict with 0.45 bps. |
+| GBPUSD | -0.46 | bear/bear | NO SETUP | Bear/bear; no seasoned ask; equal rounded bid/ask conflict with nonzero 0.0001 price spread and 0.61 bps. |
+| USDJPY | -0.71 | mixed/bull | NO SETUP | Velocity improved to 0.6154; reject for mixed/bull HTF, bearish producer regime and missing seasoned support, not stale fast-velocity failure. |
+
+Explicit bans remain DOGE/DOT/ADA/LINK/NEAR. At maximum nominal risk, the spread-cost budget is exactly **2.175 USD**, not rounded 2.18. XRP's minimum-lot cost improved from 4 to **3 USD**, but still fails. ADA/DOGE/TRX/LTC/NEAR also fail that bound. AVAX's spread now independently breaches the crypto cap.
+
+### Focus updates
+
+- **BTC:** 5/15/30-minute CVD is now **−664,912.87 / −1,993,529.24 / −1,781,324.07 USD**, reversing the preceding audit's positive flow. That supports selling pressure, not automatic exhaustion. The nearer 6.097M raw 82000 ask maps to **81924**; the 8.978M raw 82164 ask maps to **82088**. Both report 76.5s. Latest completed high **81889** is below both. No completed retest with the current recorded history is demonstrated.
+- **SOL:** 5/15-minute flow is **−11,423.67 / −79,143.52**, while 30-minute remains **+28,736.72**. Do not reuse the prior all-positive description. The >5M primary ask still has only 73.9s recorded span and poor friction-compliant target economics.
+- **SP500:** EMA20 **7722.5059**; latest high **7719.01**; primary mapped ask **7740.91**, **6.286M / 72.8s**. H4 remains mixed; tick CVD +37/+37. A prior EMA brush is not current primary defense. The reported raw [7700,7710] concentration is **4.082009B**; it is not newly discovered or independently authenticated in this audit. Trigger semantics and notional provenance still require care.
+- **NAS100:** current mapped asks **29960.715 / 30022.715 / 30192.715**, approximately **1.049 / 1.080 / 1.029M**, all **131.1s**. Latest completed high **29933.65** is below all three. Negative tick CVD −17/−17 is not a shelf-hold substitute.
+- **GOLD:** of the prior raw 4113.5/4113.8 pair, only **4113.8 / 453,101.75 USD** remains at those exact prices. Do not retain the old 789,533.81 composite. Individual qualifying asks at raw **4126.1 / 4138.2** exist but record only **84.8s**. Price remains near broker POC 4099.5908; that alone does not establish overhead seller defense.
+- **Oil:** bull/bull, Z **−0.15**, velocity **0.0306**, spread **4.83 bps**. These are positives, not automatic rejection for small Z. Current tick flow is mixed: **−5 over 5m / +7 over 15m**. EMA20/50 **95.3889 / 95.3169**, POC **95.4852**. The fresh raw 93.815 bid maps to **95.18375**, is only **202,145.62 USD**, and is single-sample. Its recorded first sighting follows the completed candle, so the earlier candle's low/close cannot prove that particular wall held.
+- **JPY:** velocity improved from 1.0663 to **0.6154**, so the previous fast-pullback rejection is removed. Producer regime remains bearish while HTF is mixed/bull. Missing verified seasoned support and alignment still prevent either direction; a far-away 1.608M ask at raw 160.8 does not defend local support.
+
+## 7. Fresh geometry tests — not executable cards
+
+These are **unrounded research counterexamples**, not broker instructions. Current median bases translate foreign-venue levels once. Broker EMA/profile levels are not translated twice. Short targets front-run the selected lower magnet's upper edge by 5 bps; the oil target front-runs broker POC by 5 bps. Trial stops clear the selected edge by 0.50 ATR plus half-spread and are then checked against **all known deduplicated intervals**. They fail because clearing one interval is not clearing its neighbors.
+
+| Example | Mapped entry | Trial stop | 5-bps target | Gross R | Friction | Containing raw interval |
+|---|---:|---:|---:|---:|---:|---|
+| BTC near | 81924.00000 | 82156.35770 | 81664.8120000 | 1.1155 | 6.8859% | [82200, 82300] |
+| BTC primary | 82088.00000 | 82256.35770 | 81564.7620000 | 3.1079 | 9.5036% | [82300, 82400] |
+| ETH in range primary | 2450.00000 | 2464.42125 | 2419.0089000 | 2.1490 | 20.1092% | [2460, 2470] |
+| SOL primary | 105.82250 | 106.27670 | 103.9344412 | 4.1569 | 50.6385% | [106, 107] |
+| SP500 primary | 7740.91000 | 7755.39025 | 7723.7699550 | 1.1837 | 2.3480% | [7750, 7760] |
+| NAS100 nearest | 29960.71500 | 30017.43325 | 29898.6568575 | 1.0941 | 2.1510% | [30000, 30100] |
+| NAS100 primary | 30022.71500 | 30117.43325 | 29898.6568575 | 1.3098 | 1.2880% | [30100, 30200] |
+| NAS100 deep | 30192.71500 | 30217.43325 | 29898.6568575 | 11.8964 | 4.9356% | [30200, 30300] |
+| GOLD primary | 4122.32500 | 4130.02645 | 4078.2631125 | 5.7212 | 2.5969% | [4130, 4140] |
+| USWTI subthreshold | 95.20675 | 94.99970 | 95.4374574 | 1.1143 | 22.2169% | [93.6, 93.7] |
+
+Every displayed trial stop is contained in another known mapped interval. Equity-index total spacing must also meet the playbook's **1.5 ATR** guard: **15.93075** for SP500, **99.32475** for NAS100. At that minimum, selected-target R is **1.0759** for SP500, **0.6248 / 1.2490** for near/middle NAS, and **2.9606** for deep NAS. Do not falsely reject every deep geometry on reward alone; the deep example still lacks a safe demonstrated stop and retest.
+
+The fresh ETH primary example has **2.1490R / 20.1092% friction**, below the playbook's 2.2R ETH target requirement and above the friction cap. Oil gives **1.1143R / 22.2169% friction**. SOL's attractive thin-stop gross R does not survive the friction minimum. These selected failures do not prove every conceivable future geometry impossible; they establish that no displayed example is an executable card. Any future card needs tick rounding, discrete lot sizing, native broker profit/margin receipts, minimum stop/freeze checks and joint-book recalculation.
+
+## 8. Timing, precision, calibration and institutional improvements
+
+- Generation start **20:40:03.736 UTC**, root **20:40:24.241**; both completed-minute cutoffs are **20:40:00**. All crypto 1/5/15/30-minute grids are complete and both cutoff calculations agree. Grid coverage is not an independent upstream finalization receipt.
+- Latest completed 15-minute close is **20:30**. No invalid OHLC, nonmonotonic bar timestamps or candle close beyond the serialized cutoff was found. Global-flow receipt is **3.81499 seconds after root**; the observation is not atomic across blocks.
+- Quotes older than ten seconds include XRP **22.87s**, DOGE **13.60s**, TRX **18.04s**, DOT **22.96s**, LINK **14.47s**, LTC **11.43s**. Refresh quotes for execution; do not reuse the prior stale-symbol list.
+- EURUSD has equal serialized bid/ask and zero price spread but **0.45 bps**. GBPUSD also has equal serialized bid/ask, yet reports **0.0001** price spread and **0.61 bps**. The prior statement that both price-spread fields are zero is no longer true; **both remain precision-inconsistent**. No exact admission lots or zero-cost execution are inferred.
+- Producer win lower bound **0.4197**, from **11 wins / 17 observations**, is explicitly **uncalibrated**, with minimum sample 100. The council rubric is not a substitute probability estimate or validated positive expectancy.
+
+### Prioritized changes recommended, not silently deployed
+
+1. **Persist wall-history state with an epoch and reset reason.** Emit collector/process ID, warm-start status, state-restoration checksum, gaps and reset events. Test that a restart cannot silently turn an old recurring level into an apparently new wall or trigger unsupported age inheritance.
+2. **Track order identity and contact chronology separately.** Preserve order IDs where available; otherwise label wallet/level signatures as recurrence, not queue continuity. Emit first/last seen, presence denominator, missing intervals, re-peg trajectory, refill/consumption and bid/ask touch times. Do not infer a fill-time defender from a same-wallet historical row.
+3. **Inventory-first pending lifecycle.** Keep observed pending reserve until broker acknowledgment plus refreshed inventory. Distinguish recommendation, request, acknowledgment, pending removal and actual fill. A price crossing an unfilled order's TP is not realized P&L.
+4. **Recompute geometry and economics together.** Rebuild mapped interval unions, round executable stops outward, verify all edge buffers, then recalculate target obstacles, friction, discrete lots, frozen initial risk and margin. Do not repair wide safe stops by silently reducing their structural distance.
+5. **Native precision and time-coherent receipts.** Preserve broker-native FX decimals, exact tick values/currency conversion, per-block timestamps and finalized CVD watermarks. Obtain adequately warmed HTF histories. Validate oversized trigger notional/side semantics rather than automatically treating every bucket as executable forced-flow fuel.
+
+This turn adds a **read-only audit, report, evidence and tests**, not a production trading-engine change.
+
+## 9. Five loss archetypes and macro policy
+
+| Archetype | Concrete defense |
+|---|---|
+| Stop inside sweep | ETH SL containment rechecked with new basis; every research stop checked against deduplicated interval sets |
+| Countertrend | No bearish-HTF longs or bullish-HTF shorts; SP/DJ mixed and GER/JPY conflicts remain unresolved |
+| Inadequate buffer | Existing ETH stress and slot retained; three additional full-risk tickets fail 4795 |
+| Ephemeral / misidentified wall | History discontinuity diagnosed without alleging physical withdrawal; no inherited age, old GOLD composite or same-wallet continuity assumption |
+| Pullback overshoot | Require actual shelf touch/hold and defended liquidity; small Z or improved JPY velocity alone cannot qualify a trade |
+
+Macro blackout enforcement remains **DISABLED_BY_OPERATOR**. The snapshot still lists Bowman Bangkok at **2026-10-15 02:55 UTC**. There is **no news veto, purge, blackout or runway-based rejection**; event context was not independently queried here. ETH DELETE rests on structure/execution, not the calendar.
+
+## 10. Reproduction, append safety and publication scope
+
+```text
+python docs/trade_plans/audits/cycle106_audit.py SOURCE_DIRECTORY ADJACENT_SNAPSHOT OUTPUT_JSON
+python -m unittest discover -s docs/trade_plans/audits -p 'test_*audit.py'
+```
+
+Durable files: this report; `audits/cycle106_audit.py`; `audits/CYCLE_106_EVIDENCE.json`; `audits/test_cycle106_audit.py`; one append to `LIVE_COLLABORATIVE_ORDER_DESK.md`. Preserve the entire **3,589,567-byte** pre-Cycle106 local desk prefix, SHA-256 **3373a7485116e4805f73245aad12364337e3e2ee1303af001fc317f655bef337**, plus the canonical-main prefix. Large raw source downloads remain outside tracked deliverables.
+
+Publish only to `arena/66c9be42-trading-2` / PR #2. **Main untouched; no PR merge and no broker action.** Executed test and publication receipts are provided with delivery rather than assumed from report creation.
