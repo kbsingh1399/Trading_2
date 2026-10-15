@@ -1,0 +1,5857 @@
+{
+ "run_id": "cycle112_20261015T000126Z",
+ "seed": 112,
+ "snapshot_path": "/tmp/snap112.json",
+ "snapshot_generation": "7b193feddf874dfda838cfaae6ac9d39",
+ "generation_id": "7b193feddf874dfda838cfaae6ac9d39",
+ "as_of_utc": "2026-10-15 00:01:26 UTC",
+ "trade_authorization": "DENIED_UNVERIFIED_ORDERFLOW",
+ "cards_path": "docs/trade_plans/arena_cards/cycle112_20261015T000126Z.json",
+ "cards_sha256": "262e65686541e705bd68e8f725e4e2c3684cf5b017ffca31e5e83304624e13aa",
+ "evidence_paths": [
+  "docs/trade_plans/ARENA_COUNCIL_EVIDENCE_20261014_132635Z.json",
+  "docs/trade_plans/ARENA_COUNCIL_EVIDENCE_20261014_144200Z.json",
+  "docs/trade_plans/ARENA_COUNCIL_EVIDENCE_20261014_150912Z.json"
+ ],
+ "continuity_keys": 297,
+ "entries": [
+  {
+   "id": "btc_belt_long",
+   "action": "STAGE",
+   "asset": "BTC",
+   "side": "LONG",
+   "thesis": "Best legal long geometry in the book (0.94R): price is under EMA20 81,613.5 < EMA50 81,951.6 < EMA200 82,700.9 (bearish stack), so a Model-1 long is banned outright and the $151.6M cascade ladder below mid overwhelms defence.",
+   "engine": 2,
+   "target_ticket": null,
+   "metrics": {
+    "symbol": "BTCUSD.pi",
+    "asset_class": "CRYPTO_MAJOR",
+    "mid": 81609.5,
+    "atr_14": 239.1908,
+    "regime": "BEARISH",
+    "spread_price": 17.0,
+    "spread_bps": 2.08,
+    "contract_size": 1.0,
+    "min_lot": 0.01,
+    "quote_freshness": "FRESH",
+    "spread_cap_bps": 35.0,
+    "spread_over_atr": 0.07107296768939274,
+    "min_lot_spread_cash_usd": 0.17,
+    "asset_present": true,
+    "side": "LONG",
+    "entry": 81143.07794,
+    "sl": 80615.087266,
+    "tp": 81638.72499999999,
+    "lots": 0.02,
+    "stop_points": 527.9906740000006,
+    "risk_usd": 10.559813480000011,
+    "reward_usd": 9.912941199999768,
+    "rr_gross": 0.9387420733116734,
+    "usd_factor": 1.0,
+    "rr_min_required": 2.0,
+    "entry_distance_atr": 1.9499999999999882,
+    "friction_pct": 3.2197538398187655,
+    "magnet_neighbor_ratio_max": 7.332354553020455,
+    "magnet_bins_excluded": [],
+    "hazard_runs": [
+     [
+      77800.0,
+      77900.0,
+      3490817.67
+     ],
+     [
+      78600.0,
+      78900.0,
+      63549241.72
+     ],
+     [
+      79400.0,
+      79500.0,
+      25878688.78
+     ],
+     [
+      79600.0,
+      79700.0,
+      13959589.93
+     ],
+     [
+      79800.0,
+      80100.0,
+      31703187.93
+     ],
+     [
+      80200.0,
+      80300.0,
+      18100330.63
+     ],
+     [
+      80700.0,
+      81700.0,
+      101713595.55
+     ]
+    ],
+    "entry_run": [
+     80700.0,
+     81700.0
+    ],
+    "hazard_union": [
+     null,
+     null
+    ],
+    "hazard_union_usd": 0,
+    "hazard_union_members": [],
+    "sl_clearance_atr": 0.3549999999999905,
+    "sl_clearance_reference": 80700.0,
+    "entry_fuel_usd": 101713595.54999998,
+    "in_range_defense_usd": 65621096.00999999,
+    "in_range_walls": [
+     {
+      "price": 80663.0,
+      "notional_usd": 22222176.56,
+      "persist_s": 9832.2,
+      "address": "0xf5a523b171032c060d49c39fbf2e9bec473e1286",
+      "continuity_age_s": 38129.479756355286,
+      "continuity_max_persist_s": 1256.2,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 80979.0,
+      "notional_usd": 14741944.33,
+      "persist_s": 6104.9,
+      "address": "0xf5a523b171032c060d49c39fbf2e9bec473e1286",
+      "continuity_age_s": 38129.479756355286,
+      "continuity_max_persist_s": 1256.2,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 80815.0,
+      "notional_usd": 6151718.61,
+      "persist_s": 0.0,
+      "address": "0x31dea2516beee92135b96f464eeec3cf292a13f2",
+      "continuity_age_s": 38129.479756355286,
+      "continuity_max_persist_s": 127.8,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 81034.0,
+      "notional_usd": 5771931.89,
+      "persist_s": 0.0,
+      "address": "0x31dea2516beee92135b96f464eeec3cf292a13f2",
+      "continuity_age_s": 38129.479756355286,
+      "continuity_max_persist_s": 127.8,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 81100.0,
+      "notional_usd": 1737451.53,
+      "persist_s": 4300.6,
+      "address": "0x2814e4612802066a76a99e8afbcdf1ec44039b08",
+      "continuity_age_s": 31976.147223949432,
+      "continuity_max_persist_s": 800.6,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 81000.0,
+      "notional_usd": 1467060.66,
+      "persist_s": 11131.9,
+      "address": "0x12f7aea21eed5461d30212ea771c4441656b8750",
+      "continuity_age_s": 38129.479756355286,
+      "continuity_max_persist_s": 938.9,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 80941.0,
+      "notional_usd": 1440007.57,
+      "persist_s": 0.0,
+      "address": "0x71d0e11ebb6150cebe20cf62f798be1a50108c26",
+      "continuity_age_s": 38129.479756355286,
+      "continuity_max_persist_s": 1039.5,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 80874.0,
+      "notional_usd": 1286894.59,
+      "persist_s": 6104.9,
+      "address": "0x2e1aa624f04fa7ab7198c6fbfeaa42a707b42c1a",
+      "continuity_age_s": 38129.479756355286,
+      "continuity_max_persist_s": 1256.2,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     }
+    ],
+    "wall_threshold_usd": 5000000.0,
+    "corridor_fuel_usd": 62670762.379999995,
+    "corridor_fuel_bins": [
+     [
+      80700.0,
+      80800.0,
+      9352568.63
+     ],
+     [
+      80800.0,
+      80900.0,
+      9264650.3
+     ],
+     [
+      80900.0,
+      81000.0,
+      16207825.15
+     ],
+     [
+      81000.0,
+      81100.0,
+      18200881.28
+     ],
+     [
+      81100.0,
+      81200.0,
+      9644837.02
+     ]
+    ],
+    "overwhelm_ratio": 0.9550398605114673,
+    "magnets_considered": [
+     [
+      81700.0,
+      82700.0,
+      34270543.0,
+      81618.3
+     ],
+     [
+      83100.0,
+      83300.0,
+      20942808.8,
+      83016.9
+     ],
+     [
+      83500.0,
+      83600.0,
+      8637234.83,
+      83416.5
+     ],
+     [
+      84100.0,
+      84200.0,
+      8163635.2,
+      84015.9
+     ],
+     [
+      84300.0,
+      84400.0,
+      26743105.79,
+      84215.7
+     ],
+     [
+      84900.0,
+      85000.0,
+      4373837.71,
+      84815.1
+     ]
+    ],
+    "magnets_reachable": [
+     [
+      81700.0,
+      82700.0,
+      34270543.0,
+      81618.3,
+      475.22
+     ]
+    ],
+    "best_reachable_rr": 0.9000576779126965,
+    "best_reachable_reward_points": 475.22206000000006,
+    "best_reachable_tp": 81618.3,
+    "min_compliant_stop_points": 526.7947200000028,
+    "min_compliant_stop_anchor": 80700.0,
+    "max_achievable_rr": 0.9021010309290828,
+    "tp_front_run_bps": 7.500000000001069,
+    "tp_governing_magnet": [
+     81700.0,
+     81800.0,
+     4005280.46
+    ],
+    "session_cvd": 0.0,
+    "existing_stress_usd": 0.0,
+    "card_stress_usd": 15.199766850000014,
+    "stress_multiplier": 1.25,
+    "stress_per_ticket_usd": 2.0,
+    "post_stop_equity_usd": 4844.35023315,
+    "available_slots": 4,
+    "tickets_wanted": 1,
+    "required_post_stop_equity_usd": 4795.0
+   },
+   "findings": [
+    {
+     "code": "ENTRY_IN_FUEL",
+     "severity": "MAJOR",
+     "archetype": "A8",
+     "message": "entry 81143.07794 sits inside un-swept sale-side stop fuel [80700.0, 81700.0] = 101.714M USD",
+     "values": {
+      "union": [
+       80700.0,
+       81700.0
+      ],
+      "union_usd": 101713595.54999998
+     },
+     "purchase_side": false
+    },
+    {
+     "code": "UNPAYABLE_GEOMETRY",
+     "severity": "FATAL",
+     "archetype": "A6",
+     "message": "best reachable front-runnable target yields 0.90R at this card's stop < required 2.0R",
+     "values": {
+      "best_reachable_rr": 0.9000576779126965
+     },
+     "purchase_side": false
+    },
+    {
+     "code": "NO_PAYABLE_SETUP",
+     "severity": "FATAL",
+     "archetype": "A6",
+     "message": "asset-level verdict: the best front-runnable target pays 0.90R against the minimum compliant stop (526.8 points = clear the 80700.0 fuel edge by 0.35 ATR), so no card on this asset can be staged at >= 2.0R in this generation",
+     "values": {
+      "max_achievable_rr": 0.9021010309290828,
+      "min_stop_points": 526.7947200000028
+     },
+     "purchase_side": false
+    },
+    {
+     "code": "RR_BELOW_MIN",
+     "severity": "FATAL",
+     "archetype": "A6",
+     "message": "quoted geometry 0.94R < 2.0R required for BTCUSD.pi",
+     "values": {},
+     "purchase_side": false
+    },
+    {
+     "code": "COUNTER_TREND",
+     "severity": "FATAL",
+     "archetype": "A2",
+     "message": "Model 1/2 longs are banned in a verified BEARISH regime",
+     "values": {},
+     "purchase_side": false
+    }
+   ],
+   "personas": [
+    {
+     "persona": "Orderflow & Microstructure",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: UNPAYABLE_GEOMETRY, NO_PAYABLE_SETUP, RR_BELOW_MIN, COUNTER_TREND",
+     "vote": "CONTRADICTS",
+     "evidence": "session CVD 0 (with the LONG); tape BEARISH_MOMENTUM; L2 imbalance +0.6258; trap signal TRAPPED_BUYERS_ABOVE",
+     "fatal_seen": [
+      "COUNTER_TREND"
+     ]
+    },
+    {
+     "persona": "Structural Price Action",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: UNPAYABLE_GEOMETRY, NO_PAYABLE_SETUP, RR_BELOW_MIN, COUNTER_TREND",
+     "vote": "CONTRADICTS",
+     "evidence": "mid 81609.5 vs EMA20 81613.5038 / EMA50 81951.615 / EMA200 82700.9064; VWAP 82548.3062 sigma 845.5989; entry belt [80700.0, 81700.0]; stop clearance +0.355 ATR",
+     "fatal_seen": [
+      "NO_PAYABLE_SETUP",
+      "RR_BELOW_MIN",
+      "UNPAYABLE_GEOMETRY"
+     ]
+    },
+    {
+     "persona": "Liquidation & Stop Forensic",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: UNPAYABLE_GEOMETRY, NO_PAYABLE_SETUP, RR_BELOW_MIN, COUNTER_TREND",
+     "vote": "CONTRADICTS",
+     "evidence": "101.71M USD of un-swept fuel at the entry; in-range wall defense 65.62M USD; governing belt edge 80700.0",
+     "fatal_seen": [
+      "NO_PAYABLE_SETUP",
+      "RR_BELOW_MIN",
+      "UNPAYABLE_GEOMETRY"
+     ]
+    },
+    {
+     "persona": "Macro Risk & Portfolio Governor",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: UNPAYABLE_GEOMETRY, NO_PAYABLE_SETUP, RR_BELOW_MIN, COUNTER_TREND",
+     "vote": "NO OBJECTION",
+     "evidence": "asset ceiling 0.90R; friction 3.22% of risk; min-lot spread cash 0.17 USD; card stress 15.20 USD, post-stop 4844.35 USD",
+     "fatal_seen": []
+    },
+    {
+     "persona": "Adversarial Pre-Mortem Red Team",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: UNPAYABLE_GEOMETRY, NO_PAYABLE_SETUP, RR_BELOW_MIN, COUNTER_TREND",
+     "vote": "CONTRADICTS",
+     "evidence": "best reachable 0.90R vs ceiling 0.90R; TP front-run offset 7.50 bps; entry 1.95 ATR from mid; book structure 7 fuel belts overhead",
+     "fatal_seen": [
+      "COUNTER_TREND",
+      "NO_PAYABLE_SETUP",
+      "RR_BELOW_MIN",
+      "UNPAYABLE_GEOMETRY"
+     ]
+    }
+   ],
+   "total": 48.0,
+   "fatal": true,
+   "action_contradicted": true,
+   "verified": false
+  },
+  {
+   "id": "eth_artifact_anchor_short",
+   "action": "STAGE",
+   "asset": "ETH",
+   "side": "SHORT",
+   "thesis": "Artifact-free geometry after the trusted-magnet exclusion still pays only ~0.19R; the merged prop belt [2,300-2,420] carries $202.8M of cascade structure under price.",
+   "engine": 2,
+   "target_ticket": null,
+   "metrics": {
+    "symbol": "ETHUSD.pi",
+    "asset_class": "CRYPTO_MAJOR",
+    "mid": 2419.75,
+    "atr_14": 10.2393,
+    "regime": "BEARISH",
+    "spread_price": 2.9,
+    "spread_bps": 11.98,
+    "contract_size": 1.0,
+    "min_lot": 0.01,
+    "quote_freshness": "FRESH",
+    "spread_cap_bps": 35.0,
+    "spread_over_atr": 0.2832224859121229,
+    "min_lot_spread_cash_usd": 0.028999999999999998,
+    "asset_present": true,
+    "side": "SHORT",
+    "entry": 2439.716635,
+    "sl": 2533.6349515,
+    "tp": 2421.815,
+    "lots": 0.12,
+    "stop_points": 93.91831649999995,
+    "risk_usd": 11.270197979999994,
+    "reward_usd": 2.14819620000002,
+    "rr_gross": 0.1906085593005724,
+    "usd_factor": 1.0,
+    "rr_min_required": 2.2,
+    "entry_distance_atr": 1.950000000000022,
+    "friction_pct": 3.0877895900103804,
+    "magnet_neighbor_ratio_max": 33.38652426685489,
+    "magnet_bins_excluded": [
+     [
+      2400.0,
+      2410.0,
+      1650425373.8999999,
+      "untrusted"
+     ]
+    ],
+    "hazard_runs": [
+     [
+      2420.0,
+      2530.0,
+      17174157.3
+     ]
+    ],
+    "entry_run": [
+     2420.0,
+     2530.0
+    ],
+    "hazard_union": [
+     null,
+     null
+    ],
+    "hazard_union_usd": 0,
+    "hazard_union_members": [],
+    "sl_clearance_atr": 0.35500000000001664,
+    "sl_clearance_reference": 2530.0,
+    "entry_fuel_usd": 17174157.299999997,
+    "in_range_defense_usd": 31831081.150000002,
+    "in_range_walls": [
+     {
+      "price": 2455.4,
+      "notional_usd": 15852007.89,
+      "persist_s": 2789.3,
+      "address": "0xab5e6f394951c28ab1873007e373202689cdbec3",
+      "continuity_age_s": 38125.61241602898,
+      "continuity_max_persist_s": 423.6,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 2463.9,
+      "notional_usd": 5006178.38,
+      "persist_s": 59.5,
+      "address": "0x31dea2516beee92135b96f464eeec3cf292a13f2",
+      "continuity_age_s": 38125.61241602898,
+      "continuity_max_persist_s": 59.2,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 2451.5,
+      "notional_usd": 3549218.7,
+      "persist_s": 59.5,
+      "address": "0x31dea2516beee92135b96f464eeec3cf292a13f2",
+      "continuity_age_s": 38125.61241602898,
+      "continuity_max_persist_s": 59.2,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 2442.1,
+      "notional_usd": 2446092.59,
+      "persist_s": 59.5,
+      "address": "0x31dea2516beee92135b96f464eeec3cf292a13f2",
+      "continuity_age_s": 38125.61241602898,
+      "continuity_max_persist_s": 59.2,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 2442.1,
+      "notional_usd": 1375630.05,
+      "persist_s": 59.5,
+      "address": "0x71d0e11ebb6150cebe20cf62f798be1a50108c26",
+      "continuity_age_s": 38125.61241602898,
+      "continuity_max_persist_s": 311.2,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 2445.5,
+      "notional_usd": 804309.3,
+      "persist_s": 59.5,
+      "address": "0x2e1aa624f04fa7ab7198c6fbfeaa42a707b42c1a",
+      "continuity_age_s": 38125.61241602898,
+      "continuity_max_persist_s": 311.2,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 2445.5,
+      "notional_usd": 774896.05,
+      "persist_s": 59.5,
+      "address": "0xc9186f29695cfe18b79e6a8ebf1be13905cac077",
+      "continuity_age_s": 38125.61241602898,
+      "continuity_max_persist_s": 423.6,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 2440.0,
+      "notional_usd": 639920.26,
+      "persist_s": 5445.0,
+      "address": "0xcf553d794d8bee4cfb41b5c5d9dd9191460310f4",
+      "continuity_age_s": null,
+      "continuity_max_persist_s": null,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     }
+    ],
+    "wall_threshold_usd": 5000000.0,
+    "corridor_fuel_usd": 16301370.079999996,
+    "corridor_fuel_bins": [
+     [
+      2430.0,
+      2440.0,
+      1913321.22
+     ],
+     [
+      2440.0,
+      2450.0,
+      173126.28
+     ],
+     [
+      2450.0,
+      2460.0,
+      4906079.8
+     ],
+     [
+      2460.0,
+      2470.0,
+      612723.1
+     ],
+     [
+      2470.0,
+      2480.0,
+      1030211.78
+     ],
+     [
+      2480.0,
+      2490.0,
+      3296747.44
+     ],
+     [
+      2490.0,
+      2500.0,
+      729531.44
+     ],
+     [
+      2500.0,
+      2510.0,
+      2692454.04
+     ],
+     [
+      2510.0,
+      2520.0,
+      664356.94
+     ],
+     [
+      2520.0,
+      2530.0,
+      282818.04
+     ]
+    ],
+    "overwhelm_ratio": 0.5121211561486656,
+    "magnets_considered": [
+     [
+      2300.0,
+      2400.0,
+      266752287.25,
+      2402.4
+     ]
+    ],
+    "magnets_reachable": [
+     [
+      2300.0,
+      2400.0,
+      266752287.25,
+      2402.4,
+      37.32
+     ]
+    ],
+    "best_reachable_rr": 0.39733074857661665,
+    "best_reachable_reward_points": 37.31663500000059,
+    "best_reachable_tp": 2402.3999999999996,
+    "min_compliant_stop_points": 93.86711999999977,
+    "min_compliant_stop_anchor": 2530.0,
+    "max_achievable_rr": 0.397547458577622,
+    "tp_front_run_bps": 7.500000000000226,
+    "tp_governing_magnet": [
+     2410.0,
+     2420.0,
+     912936.6000000001
+    ],
+    "session_cvd": 0.0,
+    "existing_stress_usd": 0.0,
+    "card_stress_usd": 16.087747474999993,
+    "stress_multiplier": 1.25,
+    "stress_per_ticket_usd": 2.0,
+    "post_stop_equity_usd": 4843.462252525001,
+    "available_slots": 4,
+    "tickets_wanted": 1,
+    "required_post_stop_equity_usd": 4795.0,
+    "purchase_side_flagged": [
+     "ENTRY_IN_FUEL"
+    ]
+   },
+   "findings": [
+    {
+     "code": "SPREAD_OVER_ATR",
+     "severity": "MAJOR",
+     "archetype": "A7",
+     "message": "spread/ATR 0.283 exceeds 0.18",
+     "values": {
+      "ratio": 0.2832224859121229
+     },
+     "purchase_side": false
+    },
+    {
+     "code": "MAGNET_UNTRUSTED_EXCLUDED",
+     "severity": "MINOR",
+     "archetype": "A6",
+     "message": "1 bin(s) excluded as untrusted (> 10x the larger neighbour); largest [2400.0, 2410.0] carrying 1650.425M USD cannot anchor a TP",
+     "values": {
+      "excluded": [
+       [
+        2400.0,
+        2410.0,
+        1650425373.8999999
+       ]
+      ]
+     },
+     "purchase_side": false
+    },
+    {
+     "code": "ENTRY_IN_FUEL",
+     "severity": "MAJOR",
+     "archetype": "A8",
+     "message": "entry 2439.716635 sits inside un-swept purchase-side stop fuel [2420.0, 2530.0] = 17.174M USD",
+     "values": {
+      "union": [
+       2420.0,
+       2530.0
+      ],
+      "union_usd": 17174157.299999997
+     },
+     "purchase_side": true
+    },
+    {
+     "code": "PRICE_INSIDE_MAGNET_LADDER",
+     "severity": "MINOR",
+     "archetype": "A6",
+     "message": "mid 2419.75 sits inside the sell-stop/long-cascade ladder [2410.0, 2420.0] carrying 0.913M USD: no front-runnable TP exists inside the ladder, the exit must clear its near edge",
+     "values": {
+      "ladder": [
+       2410.0,
+       2420.0
+      ],
+      "ladder_usd": 912936.6000000001
+     },
+     "purchase_side": false
+    },
+    {
+     "code": "UNPAYABLE_GEOMETRY",
+     "severity": "FATAL",
+     "archetype": "A6",
+     "message": "best reachable front-runnable target yields 0.40R at this card's stop < required 2.2R",
+     "values": {
+      "best_reachable_rr": 0.39733074857661665
+     },
+     "purchase_side": false
+    },
+    {
+     "code": "NO_PAYABLE_SETUP",
+     "severity": "FATAL",
+     "archetype": "A6",
+     "message": "asset-level verdict: the best front-runnable target pays 0.40R against the minimum compliant stop (93.9 points = clear the 2530.0 fuel edge by 0.35 ATR), so no card on this asset can be staged at >= 2.2R in this generation",
+     "values": {
+      "max_achievable_rr": 0.397547458577622,
+      "min_stop_points": 93.86711999999977
+     },
+     "purchase_side": false
+    },
+    {
+     "code": "RR_BELOW_MIN",
+     "severity": "FATAL",
+     "archetype": "A6",
+     "message": "quoted geometry 0.19R < 2.2R required for ETHUSD.pi",
+     "values": {},
+     "purchase_side": false
+    }
+   ],
+   "personas": [
+    {
+     "persona": "Orderflow & Microstructure",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: UNPAYABLE_GEOMETRY, NO_PAYABLE_SETUP, RR_BELOW_MIN | purchase-side sweep hazard: ENTRY_IN_FUEL",
+     "vote": "NO OBJECTION",
+     "evidence": "session CVD 0 (AGAINST the SHORT); tape BEARISH_MOMENTUM; L2 imbalance +0.8183; trap signal BALANCED",
+     "fatal_seen": []
+    },
+    {
+     "persona": "Structural Price Action",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: UNPAYABLE_GEOMETRY, NO_PAYABLE_SETUP, RR_BELOW_MIN | purchase-side sweep hazard: ENTRY_IN_FUEL",
+     "vote": "CONTRADICTS",
+     "evidence": "mid 2419.75 vs EMA20 2419.0548 / EMA50 2436.1225 / EMA200 2477.6731; VWAP 2461.8145 sigma 37.8245; entry belt [2420.0, 2530.0]; stop clearance +0.355 ATR",
+     "fatal_seen": [
+      "NO_PAYABLE_SETUP",
+      "RR_BELOW_MIN",
+      "UNPAYABLE_GEOMETRY"
+     ]
+    },
+    {
+     "persona": "Liquidation & Stop Forensic",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: UNPAYABLE_GEOMETRY, NO_PAYABLE_SETUP, RR_BELOW_MIN | purchase-side sweep hazard: ENTRY_IN_FUEL",
+     "vote": "CONTRADICTS",
+     "evidence": "17.17M USD of un-swept fuel at the entry; in-range wall defense 31.83M USD; governing belt edge 2530.0",
+     "fatal_seen": [
+      "NO_PAYABLE_SETUP",
+      "RR_BELOW_MIN",
+      "UNPAYABLE_GEOMETRY"
+     ]
+    },
+    {
+     "persona": "Macro Risk & Portfolio Governor",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: UNPAYABLE_GEOMETRY, NO_PAYABLE_SETUP, RR_BELOW_MIN | purchase-side sweep hazard: ENTRY_IN_FUEL",
+     "vote": "NO OBJECTION",
+     "evidence": "asset ceiling 0.40R; friction 3.09% of risk; min-lot spread cash 0.03 USD; card stress 16.09 USD, post-stop 4843.46 USD",
+     "fatal_seen": []
+    },
+    {
+     "persona": "Adversarial Pre-Mortem Red Team",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: UNPAYABLE_GEOMETRY, NO_PAYABLE_SETUP, RR_BELOW_MIN | purchase-side sweep hazard: ENTRY_IN_FUEL",
+     "vote": "CONTRADICTS",
+     "evidence": "best reachable 0.40R vs ceiling 0.40R; TP front-run offset 7.50 bps; entry 1.95 ATR from mid; book structure 1 fuel belts overhead",
+     "fatal_seen": [
+      "NO_PAYABLE_SETUP",
+      "RR_BELOW_MIN",
+      "UNPAYABLE_GEOMETRY"
+     ]
+    }
+   ],
+   "total": 48.0,
+   "fatal": true,
+   "action_contradicted": true,
+   "verified": false
+  },
+  {
+   "id": "eth_shelf_long",
+   "action": "STAGE",
+   "asset": "ETH",
+   "side": "LONG",
+   "thesis": "Bearish stack (EMA20 2,419.1 < EMA50 2,436.1 < EMA200 2,477.7) with a 2,083-point stop against $202.8M of cascade structure below mid: defence loses 51:1.",
+   "engine": 2,
+   "target_ticket": null,
+   "metrics": {
+    "symbol": "ETHUSD.pi",
+    "asset_class": "CRYPTO_MAJOR",
+    "mid": 2419.75,
+    "atr_14": 10.2393,
+    "regime": "BEARISH",
+    "spread_price": 2.9,
+    "spread_bps": 11.98,
+    "contract_size": 1.0,
+    "min_lot": 0.01,
+    "quote_freshness": "FRESH",
+    "spread_cap_bps": 35.0,
+    "spread_over_atr": 0.2832224859121229,
+    "min_lot_spread_cash_usd": 0.028999999999999998,
+    "asset_present": true,
+    "side": "LONG",
+    "entry": 2418.214105,
+    "sl": 2296.3650485,
+    "tp": 2448.1625,
+    "lots": 0.09,
+    "stop_points": 121.84905650000019,
+    "risk_usd": 10.966415085000017,
+    "reward_usd": 2.69535554999999,
+    "rr_gross": 0.245782740221709,
+    "usd_factor": 1.0,
+    "rr_min_required": 2.2,
+    "entry_distance_atr": 0.14999999999999827,
+    "friction_pct": 2.3799938081588636,
+    "magnet_neighbor_ratio_max": 8.007009691653538,
+    "magnet_bins_excluded": [],
+    "hazard_runs": [
+     [
+      2300.0,
+      2420.0,
+      1861543236.09
+     ]
+    ],
+    "entry_run": [
+     2300.0,
+     2420.0
+    ],
+    "hazard_union": [
+     null,
+     null
+    ],
+    "hazard_union_usd": 0,
+    "hazard_union_members": [],
+    "sl_clearance_atr": 0.35500000000001664,
+    "sl_clearance_reference": 2300.0,
+    "entry_fuel_usd": 1861543236.0900002,
+    "in_range_defense_usd": 70614774.63000003,
+    "in_range_walls": [
+     {
+      "price": 2388.8,
+      "notional_usd": 15422039.77,
+      "persist_s": 2789.3,
+      "address": "0xab5e6f394951c28ab1873007e373202689cdbec3",
+      "continuity_age_s": 38125.61241602898,
+      "continuity_max_persist_s": 423.6,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 2404.3,
+      "notional_usd": 8006139.16,
+      "persist_s": 2789.3,
+      "address": "0xab5e6f394951c28ab1873007e373202689cdbec3",
+      "continuity_age_s": 38125.61241602898,
+      "continuity_max_persist_s": 423.6,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 2381.2,
+      "notional_usd": 4765663.2,
+      "persist_s": 59.5,
+      "address": "0x31dea2516beee92135b96f464eeec3cf292a13f2",
+      "continuity_age_s": 38125.61241602898,
+      "continuity_max_persist_s": 59.2,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 2412.2,
+      "notional_usd": 4098685.77,
+      "persist_s": 845.5,
+      "address": "0xab5e6f394951c28ab1873007e373202689cdbec3",
+      "continuity_age_s": 38125.61241602898,
+      "continuity_max_persist_s": 423.6,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 2393.3,
+      "notional_usd": 3357847.77,
+      "persist_s": 59.5,
+      "address": "0x31dea2516beee92135b96f464eeec3cf292a13f2",
+      "continuity_age_s": 38125.61241602898,
+      "continuity_max_persist_s": 59.2,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 2412.0,
+      "notional_usd": 3003549.99,
+      "persist_s": 59.5,
+      "address": "0xb8eb97eaed8367079894d2f1bed69bd220ec1dd5",
+      "continuity_age_s": 38125.61241602898,
+      "continuity_max_persist_s": 59.2,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 2400.0,
+      "notional_usd": 2400000.0,
+      "persist_s": 11127.7,
+      "address": "0x007d76eec0ba411ce873a8819df50dd443d967a0",
+      "continuity_age_s": 31971.702079296112,
+      "continuity_max_persist_s": 1516.3,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 2395.0,
+      "notional_usd": 2395000.0,
+      "persist_s": 11127.7,
+      "address": "0x007d76eec0ba411ce873a8819df50dd443d967a0",
+      "continuity_age_s": 31971.702079296112,
+      "continuity_max_persist_s": 1516.3,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     }
+    ],
+    "wall_threshold_usd": 5000000.0,
+    "corridor_fuel_usd": 1861543236.0900002,
+    "corridor_fuel_bins": [
+     [
+      2300.0,
+      2310.0,
+      96490474.25
+     ],
+     [
+      2310.0,
+      2320.0,
+      24136755.55
+     ],
+     [
+      2320.0,
+      2330.0,
+      4416818.92
+     ],
+     [
+      2330.0,
+      2340.0,
+      3267342.08
+     ],
+     [
+      2340.0,
+      2350.0,
+      6051261.89
+     ],
+     [
+      2350.0,
+      2360.0,
+      15081664.68
+     ],
+     [
+      2360.0,
+      2370.0,
+      26865993.77
+     ],
+     [
+      2370.0,
+      2380.0,
+      12789751.82
+     ],
+     [
+      2380.0,
+      2390.0,
+      10987889.68
+     ],
+     [
+      2390.0,
+      2400.0,
+      16825473.01
+     ],
+     [
+      2400.0,
+      2410.0,
+      1643762193.28
+     ],
+     [
+      2410.0,
+      2420.0,
+      867617.16
+     ]
+    ],
+    "overwhelm_ratio": 26.36195110504737,
+    "magnets_considered": [
+     [
+      2420.0,
+      2440.0,
+      2790358.39,
+      2417.58
+     ],
+     [
+      2450.0,
+      2520.0,
+      13932104.539999997,
+      2447.55
+     ]
+    ],
+    "magnets_reachable": [
+     [
+      2420.0,
+      2440.0,
+      2790358.39,
+      2417.58,
+      0.63
+     ],
+     [
+      2450.0,
+      2520.0,
+      13932104.539999997,
+      2447.55,
+      29.34
+     ]
+    ],
+    "best_reachable_rr": 0.24075602916137573,
+    "best_reachable_reward_points": 29.335895000000164,
+    "best_reachable_tp": 2447.55,
+    "min_compliant_stop_points": 121.79786000000001,
+    "min_compliant_stop_anchor": 2300.0,
+    "max_achievable_rr": 0.24085722852601976,
+    "tp_front_run_bps": 7.500000000000371,
+    "tp_governing_magnet": [
+     2450.0,
+     2460.0,
+     4906079.8
+    ],
+    "session_cvd": 0.0,
+    "existing_stress_usd": 0.0,
+    "card_stress_usd": 15.708018856250021,
+    "stress_multiplier": 1.25,
+    "stress_per_ticket_usd": 2.0,
+    "post_stop_equity_usd": 4843.84198114375,
+    "available_slots": 4,
+    "tickets_wanted": 1,
+    "required_post_stop_equity_usd": 4795.0
+   },
+   "findings": [
+    {
+     "code": "SPREAD_OVER_ATR",
+     "severity": "MAJOR",
+     "archetype": "A7",
+     "message": "spread/ATR 0.283 exceeds 0.18",
+     "values": {
+      "ratio": 0.2832224859121229
+     },
+     "purchase_side": false
+    },
+    {
+     "code": "ENTRY_IN_FUEL",
+     "severity": "MAJOR",
+     "archetype": "A8",
+     "message": "entry 2418.214105 sits inside un-swept sale-side stop fuel [2300.0, 2420.0] = 1861.543M USD",
+     "values": {
+      "union": [
+       2300.0,
+       2420.0
+      ],
+      "union_usd": 1861543236.0900002
+     },
+     "purchase_side": false
+    },
+    {
+     "code": "OVERWHELM_RATIO",
+     "severity": "FATAL",
+     "archetype": "A5",
+     "message": "forced fuel 1861.543M exceeds in-range verified defense 70.615M by 26.36:1 (> 2.0:1 cap)",
+     "values": {},
+     "purchase_side": false
+    },
+    {
+     "code": "UNPAYABLE_GEOMETRY",
+     "severity": "FATAL",
+     "archetype": "A6",
+     "message": "best reachable front-runnable target yields 0.24R at this card's stop < required 2.2R",
+     "values": {
+      "best_reachable_rr": 0.24075602916137573
+     },
+     "purchase_side": false
+    },
+    {
+     "code": "NO_PAYABLE_SETUP",
+     "severity": "FATAL",
+     "archetype": "A6",
+     "message": "asset-level verdict: the best front-runnable target pays 0.24R against the minimum compliant stop (121.8 points = clear the 2300.0 fuel edge by 0.35 ATR), so no card on this asset can be staged at >= 2.2R in this generation",
+     "values": {
+      "max_achievable_rr": 0.24085722852601976,
+      "min_stop_points": 121.79786000000001
+     },
+     "purchase_side": false
+    },
+    {
+     "code": "RR_BELOW_MIN",
+     "severity": "FATAL",
+     "archetype": "A6",
+     "message": "quoted geometry 0.25R < 2.2R required for ETHUSD.pi",
+     "values": {},
+     "purchase_side": false
+    },
+    {
+     "code": "COUNTER_TREND",
+     "severity": "FATAL",
+     "archetype": "A2",
+     "message": "Model 1/2 longs are banned in a verified BEARISH regime",
+     "values": {},
+     "purchase_side": false
+    }
+   ],
+   "personas": [
+    {
+     "persona": "Orderflow & Microstructure",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: OVERWHELM_RATIO, UNPAYABLE_GEOMETRY, NO_PAYABLE_SETUP, RR_BELOW_MIN, COUNTER_TREND",
+     "vote": "CONTRADICTS",
+     "evidence": "session CVD 0 (with the LONG); tape BEARISH_MOMENTUM; L2 imbalance +0.8183; trap signal BALANCED",
+     "fatal_seen": [
+      "COUNTER_TREND"
+     ]
+    },
+    {
+     "persona": "Structural Price Action",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: OVERWHELM_RATIO, UNPAYABLE_GEOMETRY, NO_PAYABLE_SETUP, RR_BELOW_MIN, COUNTER_TREND",
+     "vote": "CONTRADICTS",
+     "evidence": "mid 2419.75 vs EMA20 2419.0548 / EMA50 2436.1225 / EMA200 2477.6731; VWAP 2461.8145 sigma 37.8245; entry belt [2300.0, 2420.0]; stop clearance +0.355 ATR",
+     "fatal_seen": [
+      "NO_PAYABLE_SETUP",
+      "OVERWHELM_RATIO",
+      "RR_BELOW_MIN",
+      "UNPAYABLE_GEOMETRY"
+     ]
+    },
+    {
+     "persona": "Liquidation & Stop Forensic",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: OVERWHELM_RATIO, UNPAYABLE_GEOMETRY, NO_PAYABLE_SETUP, RR_BELOW_MIN, COUNTER_TREND",
+     "vote": "CONTRADICTS",
+     "evidence": "1861.54M USD of un-swept fuel at the entry; in-range wall defense 70.61M USD; governing belt edge 2300.0",
+     "fatal_seen": [
+      "NO_PAYABLE_SETUP",
+      "RR_BELOW_MIN",
+      "UNPAYABLE_GEOMETRY"
+     ]
+    },
+    {
+     "persona": "Macro Risk & Portfolio Governor",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: OVERWHELM_RATIO, UNPAYABLE_GEOMETRY, NO_PAYABLE_SETUP, RR_BELOW_MIN, COUNTER_TREND",
+     "vote": "CONTRADICTS",
+     "evidence": "asset ceiling 0.24R; friction 2.38% of risk; min-lot spread cash 0.03 USD; card stress 15.71 USD, post-stop 4843.84 USD",
+     "fatal_seen": [
+      "OVERWHELM_RATIO"
+     ]
+    },
+    {
+     "persona": "Adversarial Pre-Mortem Red Team",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: OVERWHELM_RATIO, UNPAYABLE_GEOMETRY, NO_PAYABLE_SETUP, RR_BELOW_MIN, COUNTER_TREND",
+     "vote": "CONTRADICTS",
+     "evidence": "best reachable 0.24R vs ceiling 0.24R; TP front-run offset 7.50 bps; entry 0.15 ATR from mid; book structure 1 fuel belts overhead",
+     "fatal_seen": [
+      "COUNTER_TREND",
+      "NO_PAYABLE_SETUP",
+      "OVERWHELM_RATIO",
+      "RR_BELOW_MIN",
+      "UNPAYABLE_GEOMETRY"
+     ]
+    }
+   ],
+   "total": 48.0,
+   "fatal": true,
+   "action_contradicted": true,
+   "verified": false
+  },
+  {
+   "id": "sol_belt_short",
+   "action": "STAGE",
+   "asset": "SOL",
+   "side": "SHORT",
+   "thesis": "SOL is inside the buy-stop belt [104-114] $16.9M; the only reachable front-runnable pool sits directly under mid and the compliant stop is 9.0 ATR wide.",
+   "engine": 2,
+   "target_ticket": null,
+   "metrics": {
+    "symbol": "SOLUSD.p",
+    "asset_class": "CRYPTO_ALT",
+    "mid": 104.18,
+    "atr_14": 0.4914,
+    "regime": "BEARISH",
+    "spread_price": 0.22,
+    "spread_bps": 21.12,
+    "contract_size": 100.0,
+    "min_lot": 0.01,
+    "quote_freshness": "FRESH",
+    "spread_cap_bps": 35.0,
+    "spread_over_atr": 0.4477004477004477,
+    "min_lot_spread_cash_usd": 0.22,
+    "asset_present": true,
+    "side": "SHORT",
+    "entry": 105.13823000000001,
+    "sl": 114.174447,
+    "tp": 104.078,
+    "lots": 0.01,
+    "stop_points": 9.036216999999994,
+    "risk_usd": 9.036216999999994,
+    "reward_usd": 1.0602300000000042,
+    "rr_gross": 0.11733117962970621,
+    "usd_factor": 1.0,
+    "rr_min_required": 2.5,
+    "entry_distance_atr": 1.9500000000000006,
+    "friction_pct": 2.4346471537812797,
+    "magnet_neighbor_ratio_max": 11.641570308131199,
+    "magnet_bins_excluded": [],
+    "hazard_runs": [
+     [
+      104.0,
+      114.0,
+      16899198.87
+     ],
+     [
+      116.0,
+      117.0,
+      3349749.81
+     ],
+     [
+      120.0,
+      121.0,
+      730016.91
+     ],
+     [
+      123.0,
+      124.0,
+      859778.08
+     ],
+     [
+      125.0,
+      126.0,
+      370848.18
+     ]
+    ],
+    "entry_run": [
+     104.0,
+     114.0
+    ],
+    "hazard_union": [
+     null,
+     null
+    ],
+    "hazard_union_usd": 0,
+    "hazard_union_members": [],
+    "sl_clearance_atr": 0.35500000000000137,
+    "sl_clearance_reference": 114.0,
+    "entry_fuel_usd": 16899198.869999997,
+    "in_range_defense_usd": 8679781.44,
+    "in_range_walls": [
+     {
+      "price": 106.22,
+      "notional_usd": 4853224.73,
+      "persist_s": 181.6,
+      "address": "0xeac842b2214cfece3f0d288293da19f408d91ede",
+      "continuity_age_s": 38124.69204378128,
+      "continuity_max_persist_s": 738.4,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 105.99,
+      "notional_usd": 1218885.0,
+      "persist_s": 58.8,
+      "address": "0x31dea2516beee92135b96f464eeec3cf292a13f2",
+      "continuity_age_s": 38124.69204378128,
+      "continuity_max_persist_s": 221.5,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 105.36,
+      "notional_usd": 1211640.0,
+      "persist_s": 58.8,
+      "address": "0x31dea2516beee92135b96f464eeec3cf292a13f2",
+      "continuity_age_s": 38124.69204378128,
+      "continuity_max_persist_s": 221.5,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 105.26,
+      "notional_usd": 619917.19,
+      "persist_s": 58.8,
+      "address": "0xc9186f29695cfe18b79e6a8ebf1be13905cac077",
+      "continuity_age_s": 38124.69204378128,
+      "continuity_max_persist_s": 314.7,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 105.56,
+      "notional_usd": 451348.17,
+      "persist_s": 58.8,
+      "address": "0x71d0e11ebb6150cebe20cf62f798be1a50108c26",
+      "continuity_age_s": 38124.69204378128,
+      "continuity_max_persist_s": 539.4,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 105.19,
+      "notional_usd": 162421.78,
+      "persist_s": 3879.4,
+      "address": "0x5323b92268b4e140ac2133c677e991cd9ad1b23c",
+      "continuity_age_s": 38124.69204378128,
+      "continuity_max_persist_s": 1648.2,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 105.14,
+      "notional_usd": 162344.57,
+      "persist_s": 3879.4,
+      "address": "0x5323b92268b4e140ac2133c677e991cd9ad1b23c",
+      "continuity_age_s": 38124.69204378128,
+      "continuity_max_persist_s": 1648.2,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     }
+    ],
+    "wall_threshold_usd": 5000000.0,
+    "corridor_fuel_usd": 16787486.35,
+    "corridor_fuel_bins": [
+     [
+      105.0,
+      106.0,
+      449047.16
+     ],
+     [
+      106.0,
+      107.0,
+      1245995.28
+     ],
+     [
+      107.0,
+      108.0,
+      2330350.1
+     ],
+     [
+      108.0,
+      109.0,
+      4689013.96
+     ],
+     [
+      109.0,
+      110.0,
+      274186.79
+     ],
+     [
+      110.0,
+      111.0,
+      346186.46
+     ],
+     [
+      111.0,
+      112.0,
+      82270.0
+     ],
+     [
+      112.0,
+      113.0,
+      180110.18
+     ],
+     [
+      113.0,
+      114.0,
+      7190326.42
+     ]
+    ],
+    "overwhelm_ratio": 1.9340909060954423,
+    "magnets_considered": [
+     [
+      93.0,
+      104.0,
+      107339346.22,
+      104.104
+     ],
+     [
+      90.0,
+      91.0,
+      578551.93,
+      91.091
+     ],
+     [
+      87.0,
+      88.0,
+      4610319.92,
+      88.088
+     ]
+    ],
+    "magnets_reachable": [
+     [
+      93.0,
+      104.0,
+      107339346.22,
+      104.104,
+      1.03
+     ]
+    ],
+    "best_reachable_rr": 0.11445386935705759,
+    "best_reachable_reward_points": 1.0342300000000222,
+    "best_reachable_tp": 104.10399999999998,
+    "min_compliant_stop_points": 9.033759999999992,
+    "min_compliant_stop_anchor": 114.0,
+    "max_achievable_rr": 0.11448499849453861,
+    "tp_front_run_bps": 7.500000000000284,
+    "tp_governing_magnet": [
+     103.0,
+     104.0,
+     3725503.87
+    ],
+    "session_cvd": 0.0,
+    "existing_stress_usd": 0.0,
+    "card_stress_usd": 13.295271249999992,
+    "stress_multiplier": 1.25,
+    "stress_per_ticket_usd": 2.0,
+    "post_stop_equity_usd": 4846.25472875,
+    "available_slots": 4,
+    "tickets_wanted": 1,
+    "required_post_stop_equity_usd": 4795.0,
+    "purchase_side_flagged": [
+     "ENTRY_IN_FUEL",
+     "BUNKER_WALL_THIN"
+    ]
+   },
+   "findings": [
+    {
+     "code": "SPREAD_OVER_ATR",
+     "severity": "MAJOR",
+     "archetype": "A7",
+     "message": "spread/ATR 0.448 exceeds 0.18",
+     "values": {
+      "ratio": 0.4477004477004477
+     },
+     "purchase_side": false
+    },
+    {
+     "code": "ENTRY_IN_FUEL",
+     "severity": "MAJOR",
+     "archetype": "A8",
+     "message": "entry 105.13823000000001 sits inside un-swept purchase-side stop fuel [104.0, 114.0] = 16.899M USD",
+     "values": {
+      "union": [
+       104.0,
+       114.0
+      ],
+      "union_usd": 16899198.869999997
+     },
+     "purchase_side": true
+    },
+    {
+     "code": "BUNKER_WALL_THIN",
+     "severity": "MAJOR",
+     "archetype": "A4",
+     "message": "largest in-range wall 4.853M < 5.00M CRYPTO_ALT requirement",
+     "values": {
+      "best": {
+       "price": 106.22,
+       "notional_usd": 4853224.73,
+       "persist_s": 181.6,
+       "address": "0xeac842b2214cfece3f0d288293da19f408d91ede",
+       "continuity_age_s": 38124.69204378128,
+       "continuity_max_persist_s": 738.4,
+       "continuity_price_ok": true,
+       "verified": true,
+       "wall_class": "GENUINE"
+      }
+     },
+     "purchase_side": true
+    },
+    {
+     "code": "UNPAYABLE_GEOMETRY",
+     "severity": "FATAL",
+     "archetype": "A6",
+     "message": "best reachable front-runnable target yields 0.11R at this card's stop < required 2.5R",
+     "values": {
+      "best_reachable_rr": 0.11445386935705759
+     },
+     "purchase_side": false
+    },
+    {
+     "code": "NO_PAYABLE_SETUP",
+     "severity": "FATAL",
+     "archetype": "A6",
+     "message": "asset-level verdict: the best front-runnable target pays 0.11R against the minimum compliant stop (9.0 points = clear the 114.0 fuel edge by 0.35 ATR), so no card on this asset can be staged at >= 2.5R in this generation",
+     "values": {
+      "max_achievable_rr": 0.11448499849453861,
+      "min_stop_points": 9.033759999999992
+     },
+     "purchase_side": false
+    },
+    {
+     "code": "RR_BELOW_MIN",
+     "severity": "FATAL",
+     "archetype": "A6",
+     "message": "quoted geometry 0.12R < 2.5R required for SOLUSD.p",
+     "values": {},
+     "purchase_side": false
+    }
+   ],
+   "personas": [
+    {
+     "persona": "Orderflow & Microstructure",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: UNPAYABLE_GEOMETRY, NO_PAYABLE_SETUP, RR_BELOW_MIN | purchase-side sweep hazard: ENTRY_IN_FUEL, BUNKER_WALL_THIN",
+     "vote": "NO OBJECTION",
+     "evidence": "session CVD 0 (AGAINST the SHORT); tape BULLISH_MOMENTUM; L2 imbalance +0.2914; trap signal TRAPPED_BUYERS_ABOVE",
+     "fatal_seen": []
+    },
+    {
+     "persona": "Structural Price Action",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: UNPAYABLE_GEOMETRY, NO_PAYABLE_SETUP, RR_BELOW_MIN | purchase-side sweep hazard: ENTRY_IN_FUEL, BUNKER_WALL_THIN",
+     "vote": "CONTRADICTS",
+     "evidence": "mid 104.18 vs EMA20 104.1868 / EMA50 104.6379 / EMA200 106.3843; VWAP 105.3988 sigma 1.432; entry belt [104.0, 114.0]; stop clearance +0.355 ATR",
+     "fatal_seen": [
+      "NO_PAYABLE_SETUP",
+      "RR_BELOW_MIN",
+      "UNPAYABLE_GEOMETRY"
+     ]
+    },
+    {
+     "persona": "Liquidation & Stop Forensic",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: UNPAYABLE_GEOMETRY, NO_PAYABLE_SETUP, RR_BELOW_MIN | purchase-side sweep hazard: ENTRY_IN_FUEL, BUNKER_WALL_THIN",
+     "vote": "CONTRADICTS",
+     "evidence": "16.90M USD of un-swept fuel at the entry; in-range wall defense 8.68M USD; governing belt edge 114.0",
+     "fatal_seen": [
+      "NO_PAYABLE_SETUP",
+      "RR_BELOW_MIN",
+      "UNPAYABLE_GEOMETRY"
+     ]
+    },
+    {
+     "persona": "Macro Risk & Portfolio Governor",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: UNPAYABLE_GEOMETRY, NO_PAYABLE_SETUP, RR_BELOW_MIN | purchase-side sweep hazard: ENTRY_IN_FUEL, BUNKER_WALL_THIN",
+     "vote": "NO OBJECTION",
+     "evidence": "asset ceiling 0.11R; friction 2.43% of risk; min-lot spread cash 0.22 USD; card stress 13.30 USD, post-stop 4846.25 USD",
+     "fatal_seen": []
+    },
+    {
+     "persona": "Adversarial Pre-Mortem Red Team",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: UNPAYABLE_GEOMETRY, NO_PAYABLE_SETUP, RR_BELOW_MIN | purchase-side sweep hazard: ENTRY_IN_FUEL, BUNKER_WALL_THIN",
+     "vote": "CONTRADICTS",
+     "evidence": "best reachable 0.11R vs ceiling 0.11R; TP front-run offset 7.50 bps; entry 1.95 ATR from mid; book structure 5 fuel belts overhead",
+     "fatal_seen": [
+      "NO_PAYABLE_SETUP",
+      "RR_BELOW_MIN",
+      "UNPAYABLE_GEOMETRY"
+     ]
+    }
+   ],
+   "total": 48.0,
+   "fatal": true,
+   "action_contradicted": true,
+   "verified": false
+  },
+  {
+   "id": "sp500_core_short",
+   "action": "STAGE",
+   "asset": "SP500",
+   "side": "SHORT",
+   "thesis": "The $812.6M buy-stop cluster at [7,700-7,710] sits at price; best reachable reward is 32.7 pts against a 94.8-pt compliant stop.",
+   "engine": 2,
+   "target_ticket": null,
+   "metrics": {
+    "symbol": "SP500.p",
+    "asset_class": "INDEX",
+    "mid": 7700.63,
+    "atr_14": 9.1432,
+    "regime": "BEARISH",
+    "spread_price": 0.34,
+    "spread_bps": 0.44,
+    "contract_size": 10.0,
+    "min_lot": 0.01,
+    "quote_freshness": "FRESH",
+    "spread_cap_bps": 5.0,
+    "spread_over_atr": 0.03718610552104296,
+    "min_lot_spread_cash_usd": 0.034,
+    "asset_present": true,
+    "side": "SHORT",
+    "entry": 7718.45924,
+    "sl": 7813.245836,
+    "tp": 7685.76,
+    "lots": 0.01,
+    "stop_points": 94.78659599999992,
+    "risk_usd": 9.478659599999991,
+    "reward_usd": 3.269923999999992,
+    "rr_gross": 0.3449774691771815,
+    "usd_factor": 1.0,
+    "rr_min_required": 2.0,
+    "entry_distance_atr": 1.9500000000000028,
+    "friction_pct": 0.3587005065568557,
+    "magnet_neighbor_ratio_max": 16.335837265523928,
+    "magnet_bins_excluded": [],
+    "hazard_runs": [
+     [
+      7700.0,
+      7810.0,
+      818974015.71
+     ],
+     [
+      7840.0,
+      7860.0,
+      3685732.74
+     ],
+     [
+      7890.0,
+      7900.0,
+      881675.67
+     ],
+     [
+      7980.0,
+      7990.0,
+      539193.18
+     ],
+     [
+      8000.0,
+      8010.0,
+      3413445.23
+     ],
+     [
+      8020.0,
+      8030.0,
+      1350835.56
+     ],
+     [
+      8040.0,
+      8050.0,
+      570113.77
+     ]
+    ],
+    "entry_run": [
+     7700.0,
+     7810.0
+    ],
+    "hazard_union": [
+     null,
+     null
+    ],
+    "hazard_union_usd": 0,
+    "hazard_union_members": [],
+    "sl_clearance_atr": 0.35500000000000587,
+    "sl_clearance_reference": 7810.0,
+    "entry_fuel_usd": 818974015.71,
+    "in_range_defense_usd": 22010418.580000002,
+    "in_range_walls": [
+     {
+      "price": 7758.0,
+      "notional_usd": 6299426.18,
+      "persist_s": 11127.8,
+      "address": "0xf517639a8872e756ac98d3c65507d2ebc25cc032",
+      "continuity_age_s": 33612.18593645096,
+      "continuity_max_persist_s": 1639.1,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 7741.0,
+      "notional_usd": 6285622.33,
+      "persist_s": 11127.8,
+      "address": "0xf517639a8872e756ac98d3c65507d2ebc25cc032",
+      "continuity_age_s": 33612.18593645096,
+      "continuity_max_persist_s": 1639.1,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 7749.0,
+      "notional_usd": 2092230.0,
+      "persist_s": 11127.8,
+      "address": "0x9abb9d9c10d1512148e9e0074547f0e6785c84d8",
+      "continuity_age_s": null,
+      "continuity_max_persist_s": null,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 7726.1,
+      "notional_usd": 2000001.42,
+      "persist_s": 0.0,
+      "address": "0x354bcb431a332079950d2ce3a4698745e0f66425",
+      "continuity_age_s": 38122.61488008499,
+      "continuity_max_persist_s": 72.3,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 7789.9,
+      "notional_usd": 748523.7,
+      "persist_s": 663.1,
+      "address": "0x5a209e55c592687bb3f105f2f645c09238612d1b",
+      "continuity_age_s": 38122.61488008499,
+      "continuity_max_persist_s": 678.0,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 7763.5,
+      "notional_usd": 745854.97,
+      "persist_s": 1204.9,
+      "address": "0x5a209e55c592687bb3f105f2f645c09238612d1b",
+      "continuity_age_s": 38122.61488008499,
+      "continuity_max_persist_s": 678.0,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 7739.5,
+      "notional_usd": 733898.09,
+      "persist_s": 0.0,
+      "address": "0xe5ddb76c071ab59b96e97a839a941d02fa99ecba",
+      "continuity_age_s": 33612.18593645096,
+      "continuity_max_persist_s": 1094.1,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 7741.5,
+      "notional_usd": 695504.1,
+      "persist_s": 1204.9,
+      "address": "0x5a209e55c592687bb3f105f2f645c09238612d1b",
+      "continuity_age_s": 38122.61488008499,
+      "continuity_max_persist_s": 678.0,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     }
+    ],
+    "wall_threshold_usd": 1000000.0,
+    "corridor_fuel_usd": 6358870.08,
+    "corridor_fuel_bins": [
+     [
+      7710.0,
+      7720.0,
+      125260.73
+     ],
+     [
+      7720.0,
+      7730.0,
+      1493258.14
+     ],
+     [
+      7730.0,
+      7740.0,
+      1924837.5
+     ],
+     [
+      7740.0,
+      7750.0,
+      274297.04
+     ],
+     [
+      7750.0,
+      7760.0,
+      57475.65
+     ],
+     [
+      7760.0,
+      7770.0,
+      126762.1
+     ],
+     [
+      7770.0,
+      7780.0,
+      151222.93
+     ],
+     [
+      7780.0,
+      7790.0,
+      750486.44
+     ],
+     [
+      7790.0,
+      7800.0,
+      341196.7
+     ],
+     [
+      7800.0,
+      7810.0,
+      1114072.85
+     ]
+    ],
+    "overwhelm_ratio": 0.2889027328984127,
+    "magnets_considered": [
+     [
+      7630.0,
+      7680.0,
+      39198591.96000001,
+      7687.68
+     ],
+     [
+      7600.0,
+      7620.0,
+      9709927.45,
+      7627.62
+     ],
+     [
+      7580.0,
+      7590.0,
+      8287965.3100000005,
+      7597.59
+     ],
+     [
+      7520.0,
+      7530.0,
+      507348.67,
+      7537.53
+     ],
+     [
+      7500.0,
+      7510.0,
+      1297078.7,
+      7517.51
+     ],
+     [
+      7430.0,
+      7440.0,
+      1268621.9,
+      7447.44
+     ]
+    ],
+    "magnets_reachable": [
+     [
+      7630.0,
+      7680.0,
+      39198591.96000001,
+      7687.68,
+      30.78
+     ]
+    ],
+    "best_reachable_rr": 0.3247214405716266,
+    "best_reachable_reward_points": 30.779240000000755,
+    "best_reachable_tp": 7687.679999999999,
+    "min_compliant_stop_points": 94.74087999999986,
+    "min_compliant_stop_anchor": 7810.0,
+    "max_achievable_rr": 0.32487813074990224,
+    "tp_front_run_bps": 7.500000000000284,
+    "tp_governing_magnet": [
+     7670.0,
+     7680.0,
+     1162663.45
+    ],
+    "session_cvd": -83.0,
+    "existing_stress_usd": 0.0,
+    "card_stress_usd": 13.84832449999999,
+    "stress_multiplier": 1.25,
+    "stress_per_ticket_usd": 2.0,
+    "post_stop_equity_usd": 4845.7016755,
+    "available_slots": 4,
+    "tickets_wanted": 1,
+    "required_post_stop_equity_usd": 4795.0,
+    "purchase_side_flagged": [
+     "ENTRY_IN_FUEL"
+    ]
+   },
+   "findings": [
+    {
+     "code": "ENTRY_IN_FUEL",
+     "severity": "MAJOR",
+     "archetype": "A8",
+     "message": "entry 7718.45924 sits inside un-swept purchase-side stop fuel [7700.0, 7810.0] = 818.974M USD",
+     "values": {
+      "union": [
+       7700.0,
+       7810.0
+      ],
+      "union_usd": 818974015.71
+     },
+     "purchase_side": true
+    },
+    {
+     "code": "UNPAYABLE_GEOMETRY",
+     "severity": "FATAL",
+     "archetype": "A6",
+     "message": "best reachable front-runnable target yields 0.32R at this card's stop < required 2.0R",
+     "values": {
+      "best_reachable_rr": 0.3247214405716266
+     },
+     "purchase_side": false
+    },
+    {
+     "code": "NO_PAYABLE_SETUP",
+     "severity": "FATAL",
+     "archetype": "A6",
+     "message": "asset-level verdict: the best front-runnable target pays 0.32R against the minimum compliant stop (94.7 points = clear the 7810.0 fuel edge by 0.35 ATR), so no card on this asset can be staged at >= 2.0R in this generation",
+     "values": {
+      "max_achievable_rr": 0.32487813074990224,
+      "min_stop_points": 94.74087999999986
+     },
+     "purchase_side": false
+    },
+    {
+     "code": "RR_BELOW_MIN",
+     "severity": "FATAL",
+     "archetype": "A6",
+     "message": "quoted geometry 0.34R < 2.0R required for SP500.p",
+     "values": {},
+     "purchase_side": false
+    }
+   ],
+   "personas": [
+    {
+     "persona": "Orderflow & Microstructure",
+     "scores": {
+      "correctness": 0.38,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 1.24,
+      "clarity": 8.0
+     },
+     "weighted_total": 51.62,
+     "note": "fatal: UNPAYABLE_GEOMETRY, NO_PAYABLE_SETUP, RR_BELOW_MIN | purchase-side sweep hazard: ENTRY_IN_FUEL",
+     "vote": "NO OBJECTION",
+     "evidence": "session CVD -83 (with the SHORT); tape SELLER_AGGRESSION; L2 imbalance -0.3622; trap signal BALANCED",
+     "fatal_seen": []
+    },
+    {
+     "persona": "Structural Price Action",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: UNPAYABLE_GEOMETRY, NO_PAYABLE_SETUP, RR_BELOW_MIN | purchase-side sweep hazard: ENTRY_IN_FUEL",
+     "vote": "CONTRADICTS",
+     "evidence": "mid 7700.63 vs EMA20 7710.9957 / EMA50 7736.1056 / EMA200 7780.1781; VWAP 7763.4746 sigma 43.7992; entry belt [7700.0, 7810.0]; stop clearance +0.355 ATR",
+     "fatal_seen": [
+      "NO_PAYABLE_SETUP",
+      "RR_BELOW_MIN",
+      "UNPAYABLE_GEOMETRY"
+     ]
+    },
+    {
+     "persona": "Liquidation & Stop Forensic",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: UNPAYABLE_GEOMETRY, NO_PAYABLE_SETUP, RR_BELOW_MIN | purchase-side sweep hazard: ENTRY_IN_FUEL",
+     "vote": "CONTRADICTS",
+     "evidence": "818.97M USD of un-swept fuel at the entry; in-range wall defense 22.01M USD; governing belt edge 7810.0",
+     "fatal_seen": [
+      "NO_PAYABLE_SETUP",
+      "RR_BELOW_MIN",
+      "UNPAYABLE_GEOMETRY"
+     ]
+    },
+    {
+     "persona": "Macro Risk & Portfolio Governor",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: UNPAYABLE_GEOMETRY, NO_PAYABLE_SETUP, RR_BELOW_MIN | purchase-side sweep hazard: ENTRY_IN_FUEL",
+     "vote": "NO OBJECTION",
+     "evidence": "asset ceiling 0.32R; friction 0.36% of risk; min-lot spread cash 0.03 USD; card stress 13.85 USD, post-stop 4845.70 USD",
+     "fatal_seen": []
+    },
+    {
+     "persona": "Adversarial Pre-Mortem Red Team",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: UNPAYABLE_GEOMETRY, NO_PAYABLE_SETUP, RR_BELOW_MIN | purchase-side sweep hazard: ENTRY_IN_FUEL",
+     "vote": "CONTRADICTS",
+     "evidence": "best reachable 0.32R vs ceiling 0.32R; TP front-run offset 7.50 bps; entry 1.95 ATR from mid; book structure 7 fuel belts overhead",
+     "fatal_seen": [
+      "NO_PAYABLE_SETUP",
+      "RR_BELOW_MIN",
+      "UNPAYABLE_GEOMETRY"
+     ]
+    }
+   ],
+   "total": 48.72,
+   "fatal": true,
+   "action_contradicted": true,
+   "verified": false
+  },
+  {
+   "id": "sp500_long_variant",
+   "action": "STAGE",
+   "asset": "SP500",
+   "side": "LONG",
+   "thesis": "Long-side variant of the same wall: reward 20.0 pts against a 97.5-pt stop = 0.21R.",
+   "engine": 2,
+   "target_ticket": null,
+   "metrics": {
+    "symbol": "SP500.p",
+    "asset_class": "INDEX",
+    "mid": 7700.63,
+    "atr_14": 9.1432,
+    "regime": "BEARISH",
+    "spread_price": 0.34,
+    "spread_bps": 0.44,
+    "contract_size": 10.0,
+    "min_lot": 0.01,
+    "quote_freshness": "FRESH",
+    "spread_cap_bps": 5.0,
+    "spread_over_atr": 0.03718610552104296,
+    "min_lot_spread_cash_usd": 0.034,
+    "asset_present": true,
+    "side": "LONG",
+    "entry": 7694.22976,
+    "sl": 7596.754164,
+    "tp": 7714.21,
+    "lots": 0.01,
+    "stop_points": 97.47559600000022,
+    "risk_usd": 9.747559600000022,
+    "reward_usd": 1.9980239999999867,
+    "rr_gross": 0.20497684363991805,
+    "usd_factor": 1.0,
+    "rr_min_required": 2.0,
+    "entry_distance_atr": 0.6999999999999934,
+    "friction_pct": 0.3488052537785963,
+    "magnet_neighbor_ratio_max": 6.330653570210216,
+    "magnet_bins_excluded": [
+     [
+      7700.0,
+      7710.0,
+      812615145.63,
+      "artifact"
+     ]
+    ],
+    "hazard_runs": [
+     [
+      7320.0,
+      7330.0,
+      1209621.78
+     ],
+     [
+      7380.0,
+      7410.0,
+      7609052.03
+     ],
+     [
+      7430.0,
+      7440.0,
+      1268621.9
+     ],
+     [
+      7470.0,
+      7480.0,
+      484550.89
+     ],
+     [
+      7500.0,
+      7510.0,
+      1297078.7
+     ],
+     [
+      7520.0,
+      7540.0,
+      916638.42
+     ],
+     [
+      7580.0,
+      7590.0,
+      5991433.99
+     ],
+     [
+      7600.0,
+      7700.0,
+      41985032.91
+     ]
+    ],
+    "entry_run": [
+     7600.0,
+     7700.0
+    ],
+    "hazard_union": [
+     null,
+     null
+    ],
+    "hazard_union_usd": 0,
+    "hazard_union_members": [],
+    "sl_clearance_atr": 0.35500000000000587,
+    "sl_clearance_reference": 7600.0,
+    "entry_fuel_usd": 41985032.910000004,
+    "in_range_defense_usd": 11966322.700000001,
+    "in_range_walls": [
+     {
+      "price": 7687.0,
+      "notional_usd": 38356969.26,
+      "persist_s": 11127.8,
+      "address": "0xf517639a8872e756ac98d3c65507d2ebc25cc032",
+      "continuity_age_s": 33612.18593645096,
+      "continuity_max_persist_s": 1639.1,
+      "continuity_price_ok": false,
+      "verified": false,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 7678.0,
+      "notional_usd": 6813395.78,
+      "persist_s": 5079.6,
+      "address": "0xb1ec7febea4f841d525785955b7fe0e812d6e86a",
+      "continuity_age_s": null,
+      "continuity_max_persist_s": null,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 7671.7,
+      "notional_usd": 2000004.52,
+      "persist_s": 0.0,
+      "address": "0x354bcb431a332079950d2ce3a4698745e0f66425",
+      "continuity_age_s": 38122.61488008499,
+      "continuity_max_persist_s": 72.3,
+      "continuity_price_ok": false,
+      "verified": false,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 7630.0,
+      "notional_usd": 1526000.0,
+      "persist_s": 11127.8,
+      "address": "0x6ad04649246c78a43d16597ccab67c5e3f785af1",
+      "continuity_age_s": 38122.61488008499,
+      "continuity_max_persist_s": 1987.3,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 7690.9,
+      "notional_usd": 999993.89,
+      "persist_s": 0.0,
+      "address": "0x354bcb431a332079950d2ce3a4698745e0f66425",
+      "continuity_age_s": 38122.61488008499,
+      "continuity_max_persist_s": 72.3,
+      "continuity_price_ok": false,
+      "verified": false,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 7690.0,
+      "notional_usd": 922800.0,
+      "persist_s": 0.0,
+      "address": "0xf12474d3dc642f9712d94643477affebeebcd738",
+      "continuity_age_s": 38122.61488008499,
+      "continuity_max_persist_s": 367.6,
+      "continuity_price_ok": false,
+      "verified": false,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 7612.9,
+      "notional_usd": 761290.0,
+      "persist_s": 11127.8,
+      "address": "0x296e27d522a2c44e5a47d6b324135873b9380a04",
+      "continuity_age_s": 33612.18593645096,
+      "continuity_max_persist_s": 1639.1,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 7670.1,
+      "notional_usd": 734534.8,
+      "persist_s": 304.6,
+      "address": "0xe5ddb76c071ab59b96e97a839a941d02fa99ecba",
+      "continuity_age_s": 33612.18593645096,
+      "continuity_max_persist_s": 1094.1,
+      "continuity_price_ok": false,
+      "verified": false,
+      "wall_class": "GENUINE"
+     }
+    ],
+    "wall_threshold_usd": 1000000.0,
+    "corridor_fuel_usd": 41985032.910000004,
+    "corridor_fuel_bins": [
+     [
+      7600.0,
+      7610.0,
+      5406760.74
+     ],
+     [
+      7610.0,
+      7620.0,
+      1968100.15
+     ],
+     [
+      7620.0,
+      7630.0,
+      262732.62
+     ],
+     [
+      7630.0,
+      7640.0,
+      8602884.12
+     ],
+     [
+      7640.0,
+      7650.0,
+      13714944.55
+     ],
+     [
+      7650.0,
+      7660.0,
+      8303133.02
+     ],
+     [
+      7660.0,
+      7670.0,
+      2156849.72
+     ],
+     [
+      7670.0,
+      7680.0,
+      972751.28
+     ],
+     [
+      7680.0,
+      7690.0,
+      251429.97
+     ],
+     [
+      7690.0,
+      7700.0,
+      345446.74
+     ]
+    ],
+    "overwhelm_ratio": 3.5085994221098518,
+    "magnets_considered": [
+     [
+      7720.0,
+      7740.0,
+      3563805.84,
+      7712.28
+     ],
+     [
+      7780.0,
+      7790.0,
+      750486.44,
+      7772.22
+     ],
+     [
+      7800.0,
+      7810.0,
+      1114072.85,
+      7792.2
+     ],
+     [
+      7850.0,
+      7860.0,
+      3311983.19,
+      7842.15
+     ],
+     [
+      7890.0,
+      7900.0,
+      881675.67,
+      7882.11
+     ],
+     [
+      7980.0,
+      7990.0,
+      539193.18,
+      7972.02
+     ]
+    ],
+    "magnets_reachable": [
+     [
+      7720.0,
+      7740.0,
+      3563805.84,
+      7712.28,
+      18.05
+     ]
+    ],
+    "best_reachable_rr": 0.18517701599895356,
+    "best_reachable_reward_points": 18.050239999999576,
+    "best_reachable_tp": 7712.28,
+    "min_compliant_stop_points": 97.42988000000017,
+    "min_compliant_stop_anchor": 7600.0,
+    "max_achievable_rr": 0.185263904666613,
+    "tp_front_run_bps": 7.499999999999952,
+    "tp_governing_magnet": [
+     7720.0,
+     7730.0,
+     1497177.1099999999
+    ],
+    "session_cvd": -83.0,
+    "existing_stress_usd": 0.0,
+    "card_stress_usd": 14.184449500000028,
+    "stress_multiplier": 1.25,
+    "stress_per_ticket_usd": 2.0,
+    "post_stop_equity_usd": 4845.365550500001,
+    "available_slots": 4,
+    "tickets_wanted": 1,
+    "required_post_stop_equity_usd": 4795.0,
+    "purchase_side_flagged": [
+     "COUNTER_CVD"
+    ]
+   },
+   "findings": [
+    {
+     "code": "MAGNET_ARTIFACT_EXCLUDED",
+     "severity": "MINOR",
+     "archetype": "A6",
+     "message": "1 bin(s) excluded as provider artifacts (>= 100x the larger price-adjacent neighbour); largest [7700.0, 7710.0] carrying 812.615M USD cannot anchor a TP",
+     "values": {
+      "excluded": [
+       [
+        7700.0,
+        7710.0,
+        812615145.63
+       ]
+      ]
+     },
+     "purchase_side": false
+    },
+    {
+     "code": "ENTRY_IN_FUEL",
+     "severity": "MAJOR",
+     "archetype": "A8",
+     "message": "entry 7694.22976 sits inside un-swept sale-side stop fuel [7600.0, 7700.0] = 41.985M USD",
+     "values": {
+      "union": [
+       7600.0,
+       7700.0
+      ],
+      "union_usd": 41985032.910000004
+     },
+     "purchase_side": false
+    },
+    {
+     "code": "OVERWHELM_RATIO",
+     "severity": "FATAL",
+     "archetype": "A5",
+     "message": "forced fuel 41.985M exceeds in-range verified defense 11.966M by 3.51:1 (> 2.0:1 cap)",
+     "values": {},
+     "purchase_side": false
+    },
+    {
+     "code": "UNPAYABLE_GEOMETRY",
+     "severity": "FATAL",
+     "archetype": "A6",
+     "message": "best reachable front-runnable target yields 0.19R at this card's stop < required 2.0R",
+     "values": {
+      "best_reachable_rr": 0.18517701599895356
+     },
+     "purchase_side": false
+    },
+    {
+     "code": "NO_PAYABLE_SETUP",
+     "severity": "FATAL",
+     "archetype": "A6",
+     "message": "asset-level verdict: the best front-runnable target pays 0.19R against the minimum compliant stop (97.4 points = clear the 7600.0 fuel edge by 0.35 ATR), so no card on this asset can be staged at >= 2.0R in this generation",
+     "values": {
+      "max_achievable_rr": 0.185263904666613,
+      "min_stop_points": 97.42988000000017
+     },
+     "purchase_side": false
+    },
+    {
+     "code": "RR_BELOW_MIN",
+     "severity": "FATAL",
+     "archetype": "A6",
+     "message": "quoted geometry 0.20R < 2.0R required for SP500.p",
+     "values": {},
+     "purchase_side": false
+    },
+    {
+     "code": "COUNTER_TREND",
+     "severity": "FATAL",
+     "archetype": "A2",
+     "message": "Model 1/2 longs are banned in a verified BEARISH regime",
+     "values": {},
+     "purchase_side": false
+    },
+    {
+     "code": "COUNTER_CVD",
+     "severity": "MAJOR",
+     "archetype": "A2",
+     "message": "long against negative session CVD -83",
+     "values": {},
+     "purchase_side": true
+    }
+   ],
+   "personas": [
+    {
+     "persona": "Orderflow & Microstructure",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: OVERWHELM_RATIO, UNPAYABLE_GEOMETRY, NO_PAYABLE_SETUP, RR_BELOW_MIN, COUNTER_TREND | purchase-side sweep hazard: COUNTER_CVD",
+     "vote": "CONTRADICTS",
+     "evidence": "session CVD -83 (AGAINST the LONG); tape SELLER_AGGRESSION; L2 imbalance -0.3622; trap signal BALANCED",
+     "fatal_seen": [
+      "COUNTER_TREND"
+     ]
+    },
+    {
+     "persona": "Structural Price Action",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: OVERWHELM_RATIO, UNPAYABLE_GEOMETRY, NO_PAYABLE_SETUP, RR_BELOW_MIN, COUNTER_TREND | purchase-side sweep hazard: COUNTER_CVD",
+     "vote": "CONTRADICTS",
+     "evidence": "mid 7700.63 vs EMA20 7710.9957 / EMA50 7736.1056 / EMA200 7780.1781; VWAP 7763.4746 sigma 43.7992; entry belt [7600.0, 7700.0]; stop clearance +0.355 ATR",
+     "fatal_seen": [
+      "NO_PAYABLE_SETUP",
+      "OVERWHELM_RATIO",
+      "RR_BELOW_MIN",
+      "UNPAYABLE_GEOMETRY"
+     ]
+    },
+    {
+     "persona": "Liquidation & Stop Forensic",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: OVERWHELM_RATIO, UNPAYABLE_GEOMETRY, NO_PAYABLE_SETUP, RR_BELOW_MIN, COUNTER_TREND | purchase-side sweep hazard: COUNTER_CVD",
+     "vote": "CONTRADICTS",
+     "evidence": "41.99M USD of un-swept fuel at the entry; in-range wall defense 11.97M USD; governing belt edge 7600.0",
+     "fatal_seen": [
+      "NO_PAYABLE_SETUP",
+      "RR_BELOW_MIN",
+      "UNPAYABLE_GEOMETRY"
+     ]
+    },
+    {
+     "persona": "Macro Risk & Portfolio Governor",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: OVERWHELM_RATIO, UNPAYABLE_GEOMETRY, NO_PAYABLE_SETUP, RR_BELOW_MIN, COUNTER_TREND | purchase-side sweep hazard: COUNTER_CVD",
+     "vote": "CONTRADICTS",
+     "evidence": "asset ceiling 0.19R; friction 0.35% of risk; min-lot spread cash 0.03 USD; card stress 14.18 USD, post-stop 4845.37 USD",
+     "fatal_seen": [
+      "OVERWHELM_RATIO"
+     ]
+    },
+    {
+     "persona": "Adversarial Pre-Mortem Red Team",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: OVERWHELM_RATIO, UNPAYABLE_GEOMETRY, NO_PAYABLE_SETUP, RR_BELOW_MIN, COUNTER_TREND | purchase-side sweep hazard: COUNTER_CVD",
+     "vote": "CONTRADICTS",
+     "evidence": "best reachable 0.19R vs ceiling 0.19R; TP front-run offset 7.50 bps; entry 0.70 ATR from mid; book structure 8 fuel belts overhead",
+     "fatal_seen": [
+      "COUNTER_TREND",
+      "NO_PAYABLE_SETUP",
+      "OVERWHELM_RATIO",
+      "RR_BELOW_MIN",
+      "UNPAYABLE_GEOMETRY"
+     ]
+    }
+   ],
+   "total": 48.0,
+   "fatal": true,
+   "action_contradicted": true,
+   "verified": false
+  },
+  {
+   "id": "near_friction_probe",
+   "action": "STAGE",
+   "asset": "NEAR",
+   "side": "SHORT",
+   "thesis": "2.94R gross - the best geometry in the book - burning 48.34% of risk in friction at the 1.81 lots required; NEAR is on the banned-instrument list.",
+   "engine": 2,
+   "target_ticket": null,
+   "metrics": {
+    "symbol": "NERUSD.p",
+    "asset_class": "CRYPTO_ALT",
+    "mid": 4.89,
+    "atr_14": 0.04,
+    "regime": "BEARISH",
+    "spread_price": 0.032,
+    "spread_bps": 65.44,
+    "contract_size": 100.0,
+    "min_lot": 1.0,
+    "quote_freshness": "FRESH",
+    "spread_cap_bps": 35.0,
+    "spread_over_atr": 0.8,
+    "min_lot_spread_cash_usd": 3.2,
+    "asset_present": true,
+    "side": "SHORT",
+    "entry": 4.968,
+    "sl": 5.034199999999999,
+    "tp": 4.7735775,
+    "lots": 2.0,
+    "stop_points": 0.06619999999999937,
+    "risk_usd": 13.239999999999874,
+    "reward_usd": 38.88449999999999,
+    "rr_gross": 2.9368957703927765,
+    "usd_factor": 1.0,
+    "rr_min_required": 2.0,
+    "entry_distance_atr": 1.9500000000000073,
+    "friction_pct": 48.33836858006088,
+    "magnet_neighbor_ratio_max": 1.7073787477020042,
+    "magnet_bins_excluded": [],
+    "hazard_runs": [
+     [
+      4.89,
+      5.02,
+      1365678.49
+     ],
+     [
+      5.05,
+      5.06,
+      144372.29
+     ],
+     [
+      5.1,
+      5.11,
+      2005665.51
+     ]
+    ],
+    "entry_run": [
+     4.89,
+     5.02
+    ],
+    "hazard_union": [
+     null,
+     null
+    ],
+    "hazard_union_usd": 0,
+    "hazard_union_members": [],
+    "sl_clearance_atr": 0.3549999999999942,
+    "sl_clearance_reference": 5.02,
+    "entry_fuel_usd": 1365678.4900000002,
+    "in_range_defense_usd": 0,
+    "in_range_walls": [],
+    "wall_threshold_usd": 5000000.0,
+    "corridor_fuel_usd": 858292.04,
+    "corridor_fuel_bins": [
+     [
+      4.96,
+      4.97,
+      178023.98
+     ],
+     [
+      4.97,
+      4.98,
+      78379.32
+     ],
+     [
+      4.98,
+      4.99,
+      296836.37
+     ],
+     [
+      4.99,
+      5.0,
+      31689.01
+     ],
+     [
+      5.0,
+      5.01,
+      243423.36
+     ],
+     [
+      5.01,
+      5.02,
+      29940.0
+     ]
+    ],
+    "overwhelm_ratio": null,
+    "magnets_considered": [
+     [
+      4.74,
+      4.77,
+      1983790.9000000001,
+      4.7748
+     ]
+    ],
+    "magnets_reachable": [
+     [
+      4.74,
+      4.77,
+      1983790.9000000001,
+      4.7748,
+      0.19
+     ]
+    ],
+    "best_reachable_rr": 2.9188821752266243,
+    "best_reachable_reward_points": 0.19323000000000068,
+    "best_reachable_tp": 4.774769999999999,
+    "min_compliant_stop_points": 0.0659999999999996,
+    "min_compliant_stop_anchor": 5.02,
+    "max_achievable_rr": 2.9277272727273007,
+    "tp_front_run_bps": 7.500000000000956,
+    "tp_governing_magnet": [
+     4.76,
+     4.77,
+     507186.47
+    ],
+    "session_cvd": 0.0,
+    "existing_stress_usd": 0.0,
+    "card_stress_usd": 18.54999999999984,
+    "stress_multiplier": 1.25,
+    "stress_per_ticket_usd": 2.0,
+    "post_stop_equity_usd": 4841.0,
+    "available_slots": 4,
+    "tickets_wanted": 1,
+    "required_post_stop_equity_usd": 4795.0,
+    "purchase_side_flagged": [
+     "ENTRY_IN_FUEL",
+     "NO_BUNKER_WALL"
+    ]
+   },
+   "findings": [
+    {
+     "code": "SPREAD_CEILING",
+     "severity": "MAJOR",
+     "archetype": "A7",
+     "message": "spread 65.44 bps exceeds the 35 bps CRYPTO_ALT ceiling",
+     "values": {
+      "spread_bps": 65.44,
+      "cap_bps": 35.0
+     },
+     "purchase_side": false
+    },
+    {
+     "code": "SPREAD_OVER_ATR",
+     "severity": "MAJOR",
+     "archetype": "A7",
+     "message": "spread/ATR 0.800 exceeds 0.18",
+     "values": {
+      "ratio": 0.8
+     },
+     "purchase_side": false
+    },
+    {
+     "code": "MIN_LOT_FRICTION",
+     "severity": "MAJOR",
+     "archetype": "A7",
+     "message": "spread cash at min lot (1.0 lot) is 3.20 USD, above 2.175 USD (15% of max risk)",
+     "values": {
+      "min_lot_spread_cash_usd": 3.2
+     },
+     "purchase_side": false
+    },
+    {
+     "code": "FRICTION_BUDGET",
+     "severity": "FATAL",
+     "archetype": "A7",
+     "message": "spread 0.032 / stop distance 0.066 = 48.34% of risk, above the 15% dynamic friction ceiling",
+     "values": {
+      "friction_pct": 48.33836858006088
+     },
+     "purchase_side": false
+    },
+    {
+     "code": "ENTRY_IN_FUEL",
+     "severity": "MAJOR",
+     "archetype": "A8",
+     "message": "entry 4.968 sits inside un-swept purchase-side stop fuel [4.89, 5.02] = 1.366M USD",
+     "values": {
+      "union": [
+       4.89,
+       5.02
+      ],
+      "union_usd": 1365678.4900000002
+     },
+     "purchase_side": true
+    },
+    {
+     "code": "NO_BUNKER_WALL",
+     "severity": "MAJOR",
+     "archetype": "A4",
+     "message": "no ask whale wall at or inside the SL",
+     "values": {},
+     "purchase_side": true
+    }
+   ],
+   "personas": [
+    {
+     "persona": "Orderflow & Microstructure",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: FRICTION_BUDGET | purchase-side sweep hazard: ENTRY_IN_FUEL, NO_BUNKER_WALL",
+     "vote": "CONTRADICTS",
+     "evidence": "session CVD 0 (AGAINST the SHORT); tape BULLISH_MOMENTUM; L2 imbalance -0.0224; trap signal BALANCED",
+     "fatal_seen": [
+      "FRICTION_BUDGET"
+     ]
+    },
+    {
+     "persona": "Structural Price Action",
+     "scores": {
+      "correctness": 2.96,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 3.57,
+      "clarity": 8.0
+     },
+     "weighted_total": 64.02,
+     "note": "fatal: FRICTION_BUDGET | purchase-side sweep hazard: ENTRY_IN_FUEL, NO_BUNKER_WALL",
+     "vote": "NO OBJECTION",
+     "evidence": "mid 4.89 vs EMA20 4.8393 / EMA50 4.8724 / EMA200 5.0489; VWAP 4.9667 sigma 0.1111; entry belt [4.89, 5.02]; stop clearance +0.355 ATR",
+     "fatal_seen": []
+    },
+    {
+     "persona": "Liquidation & Stop Forensic",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.46,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.92,
+     "note": "fatal: FRICTION_BUDGET | purchase-side sweep hazard: ENTRY_IN_FUEL, NO_BUNKER_WALL",
+     "vote": "NO OBJECTION",
+     "evidence": "1.37M USD of un-swept fuel at the entry; in-range wall defense 0.00M USD; governing belt edge 5.02",
+     "fatal_seen": []
+    },
+    {
+     "persona": "Macro Risk & Portfolio Governor",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: FRICTION_BUDGET | purchase-side sweep hazard: ENTRY_IN_FUEL, NO_BUNKER_WALL",
+     "vote": "CONTRADICTS",
+     "evidence": "asset ceiling 2.93R; friction 48.34% of risk; min-lot spread cash 3.20 USD; card stress 18.55 USD, post-stop 4841.00 USD",
+     "fatal_seen": [
+      "FRICTION_BUDGET"
+     ]
+    },
+    {
+     "persona": "Adversarial Pre-Mortem Red Team",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: FRICTION_BUDGET | purchase-side sweep hazard: ENTRY_IN_FUEL, NO_BUNKER_WALL",
+     "vote": "CONTRADICTS",
+     "evidence": "best reachable 2.92R vs ceiling 2.93R; TP front-run offset 7.50 bps; entry 1.95 ATR from mid; book structure 3 fuel belts overhead",
+     "fatal_seen": [
+      "FRICTION_BUDGET"
+     ]
+    }
+   ],
+   "total": 51.39,
+   "fatal": true,
+   "action_contradicted": true,
+   "verified": false
+  },
+  {
+   "id": "silver_floor_probe",
+   "action": "STAGE",
+   "asset": "SILVER",
+   "side": "SHORT",
+   "thesis": "Ceiling 0.70R against a 2.0R mandate AND min-lot risk 54.08 USD: a 1.08-point structural stop cannot be traded at 0.01 lots inside the envelope.",
+   "engine": 2,
+   "target_ticket": null,
+   "metrics": {
+    "symbol": "XAGUSD.pi",
+    "asset_class": "COMMODITY",
+    "mid": 55.738,
+    "atr_14": 0.2385,
+    "regime": "BEARISH",
+    "spread_price": 0.036,
+    "spread_bps": 6.46,
+    "contract_size": 5000.0,
+    "min_lot": 0.01,
+    "quote_freshness": "FRESH",
+    "spread_cap_bps": 5.0,
+    "spread_over_atr": 0.1509433962264151,
+    "min_lot_spread_cash_usd": 1.8,
+    "asset_present": true,
+    "side": "SHORT",
+    "entry": 56.203075,
+    "sl": 57.284667500000005,
+    "tp": 55.44155,
+    "lots": 0.01,
+    "stop_points": 1.0815925000000064,
+    "risk_usd": 54.07962500000033,
+    "reward_usd": 38.076249999999945,
+    "rr_gross": 0.7040775523129037,
+    "usd_factor": 1.0,
+    "rr_min_required": 2.0,
+    "entry_distance_atr": 1.949999999999995,
+    "friction_pct": 3.328425446737083,
+    "magnet_neighbor_ratio_max": 15.203828333830726,
+    "magnet_bins_excluded": [],
+    "hazard_runs": [
+     [
+      55.8,
+      57.2,
+      567594.25
+     ],
+     [
+      57.5,
+      57.7,
+      577084.51
+     ],
+     [
+      57.8,
+      57.9,
+      23226.38
+     ],
+     [
+      58.0,
+      58.1,
+      195074.78
+     ],
+     [
+      58.3,
+      58.6,
+      633607.06
+     ]
+    ],
+    "entry_run": [
+     55.8,
+     57.2
+    ],
+    "hazard_union": [
+     null,
+     null
+    ],
+    "hazard_union_usd": 0,
+    "hazard_union_members": [],
+    "sl_clearance_atr": 0.355000000000008,
+    "sl_clearance_reference": 57.2,
+    "entry_fuel_usd": 567594.25,
+    "in_range_defense_usd": 397693.29000000004,
+    "in_range_walls": [
+     {
+      "price": 56.764,
+      "notional_usd": 199693.48,
+      "persist_s": 1083.5,
+      "address": "0xcb02837caaee310c178501855b63bf7f4f4b1f8b",
+      "continuity_age_s": 38125.70767903328,
+      "continuity_max_persist_s": 1006.8,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 56.766,
+      "notional_usd": 197999.81,
+      "persist_s": 122.9,
+      "address": "0xcb02837caaee310c178501855b63bf7f4f4b1f8b",
+      "continuity_age_s": 38125.70767903328,
+      "continuity_max_persist_s": 1006.8,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     }
+    ],
+    "wall_threshold_usd": 750000.0,
+    "corridor_fuel_usd": 484076.37000000005,
+    "corridor_fuel_bins": [
+     [
+      56.2,
+      56.3,
+      26102.34
+     ],
+     [
+      56.3,
+      56.4,
+      7347.21
+     ],
+     [
+      56.4,
+      56.5,
+      9889.62
+     ],
+     [
+      56.5,
+      56.6,
+      6024.69
+     ],
+     [
+      56.6,
+      56.7,
+      1594.72
+     ],
+     [
+      56.7,
+      56.8,
+      10844.55
+     ],
+     [
+      56.8,
+      56.9,
+      87439.72
+     ],
+     [
+      56.9,
+      57.0,
+      6430.2
+     ],
+     [
+      57.0,
+      57.1,
+      224654.38
+     ],
+     [
+      57.1,
+      57.2,
+      103748.94
+     ]
+    ],
+    "overwhelm_ratio": 1.2172103029447643,
+    "magnets_considered": [
+     [
+      55.3,
+      55.4,
+      700355.0,
+      55.4554
+     ],
+     [
+      55.1,
+      55.2,
+      606123.62,
+      55.2552
+     ],
+     [
+      54.9,
+      55.0,
+      504745.27999999997,
+      55.055
+     ],
+     [
+      54.6,
+      54.8,
+      1289070.53,
+      54.8548
+     ],
+     [
+      54.4,
+      54.5,
+      9049833.729999999,
+      54.5545
+     ],
+     [
+      53.9,
+      54.3,
+      3989343.08,
+      54.3543
+     ]
+    ],
+    "magnets_reachable": [
+     [
+      55.3,
+      55.4,
+      700355.0,
+      55.4554,
+      0.75
+     ],
+     [
+      55.1,
+      55.2,
+      606123.62,
+      55.2552,
+      0.95
+     ],
+     [
+      54.9,
+      55.0,
+      504745.27999999997,
+      55.055,
+      1.15
+     ]
+    ],
+    "best_reachable_rr": 1.0614672346563043,
+    "best_reachable_reward_points": 1.1480750000000057,
+    "best_reachable_tp": 55.05499999999999,
+    "min_compliant_stop_points": 1.0804000000000045,
+    "min_compliant_stop_anchor": 57.2,
+    "max_achievable_rr": 1.0626388374676055,
+    "tp_front_run_bps": 7.500000000000156,
+    "tp_governing_magnet": [
+     55.3,
+     55.4,
+     700355.0
+    ],
+    "session_cvd": -105.0,
+    "existing_stress_usd": 0.0,
+    "card_stress_usd": 69.59953125000041,
+    "stress_multiplier": 1.25,
+    "stress_per_ticket_usd": 2.0,
+    "post_stop_equity_usd": 4789.950468749999,
+    "available_slots": 4,
+    "tickets_wanted": 1,
+    "required_post_stop_equity_usd": 4795.0,
+    "purchase_side_flagged": [
+     "ENTRY_IN_FUEL",
+     "BUNKER_WALL_THIN"
+    ]
+   },
+   "findings": [
+    {
+     "code": "SPREAD_CEILING",
+     "severity": "MAJOR",
+     "archetype": "A7",
+     "message": "spread 6.46 bps exceeds the 5 bps COMMODITY ceiling",
+     "values": {
+      "spread_bps": 6.46,
+      "cap_bps": 5.0
+     },
+     "purchase_side": false
+    },
+    {
+     "code": "ENTRY_IN_FUEL",
+     "severity": "MAJOR",
+     "archetype": "A8",
+     "message": "entry 56.203075 sits inside un-swept purchase-side stop fuel [55.8, 57.2] = 0.568M USD",
+     "values": {
+      "union": [
+       55.8,
+       57.2
+      ],
+      "union_usd": 567594.25
+     },
+     "purchase_side": true
+    },
+    {
+     "code": "BUNKER_WALL_THIN",
+     "severity": "MAJOR",
+     "archetype": "A4",
+     "message": "largest in-range wall 0.200M < 0.75M COMMODITY requirement",
+     "values": {
+      "best": {
+       "price": 56.764,
+       "notional_usd": 199693.48,
+       "persist_s": 1083.5,
+       "address": "0xcb02837caaee310c178501855b63bf7f4f4b1f8b",
+       "continuity_age_s": 38125.70767903328,
+       "continuity_max_persist_s": 1006.8,
+       "continuity_price_ok": true,
+       "verified": true,
+       "wall_class": "GENUINE"
+      }
+     },
+     "purchase_side": true
+    },
+    {
+     "code": "UNPAYABLE_GEOMETRY",
+     "severity": "FATAL",
+     "archetype": "A6",
+     "message": "best reachable front-runnable target yields 1.06R at this card's stop < required 2.0R",
+     "values": {
+      "best_reachable_rr": 1.0614672346563043
+     },
+     "purchase_side": false
+    },
+    {
+     "code": "NO_PAYABLE_SETUP",
+     "severity": "FATAL",
+     "archetype": "A6",
+     "message": "asset-level verdict: the best front-runnable target pays 1.06R against the minimum compliant stop (1.1 points = clear the 57.2 fuel edge by 0.35 ATR), so no card on this asset can be staged at >= 2.0R in this generation",
+     "values": {
+      "max_achievable_rr": 1.0626388374676055,
+      "min_stop_points": 1.0804000000000045
+     },
+     "purchase_side": false
+    },
+    {
+     "code": "RR_BELOW_MIN",
+     "severity": "FATAL",
+     "archetype": "A6",
+     "message": "quoted geometry 0.70R < 2.0R required for XAGUSD.pi",
+     "values": {},
+     "purchase_side": false
+    },
+    {
+     "code": "FLOOR_BREACH",
+     "severity": "FATAL",
+     "archetype": "A5",
+     "message": "joint post-stop equity 4789.950 USD < 4795.0 USD operating buffer",
+     "values": {
+      "post_stop_equity_usd": 4789.950468749999
+     },
+     "purchase_side": false
+    }
+   ],
+   "personas": [
+    {
+     "persona": "Orderflow & Microstructure",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: UNPAYABLE_GEOMETRY, NO_PAYABLE_SETUP, RR_BELOW_MIN, FLOOR_BREACH | purchase-side sweep hazard: ENTRY_IN_FUEL, BUNKER_WALL_THIN",
+     "vote": "NO OBJECTION",
+     "evidence": "session CVD -105 (with the SHORT); tape SELLER_AGGRESSION; L2 imbalance +0.0392; trap signal BALANCED",
+     "fatal_seen": []
+    },
+    {
+     "persona": "Structural Price Action",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: UNPAYABLE_GEOMETRY, NO_PAYABLE_SETUP, RR_BELOW_MIN, FLOOR_BREACH | purchase-side sweep hazard: ENTRY_IN_FUEL, BUNKER_WALL_THIN",
+     "vote": "CONTRADICTS",
+     "evidence": "mid 55.738 vs EMA20 55.7344 / EMA50 56.3483 / EMA200 58.2895; VWAP 57.3923 sigma 1.3919; entry belt [55.8, 57.2]; stop clearance +0.355 ATR",
+     "fatal_seen": [
+      "FLOOR_BREACH",
+      "NO_PAYABLE_SETUP",
+      "RR_BELOW_MIN",
+      "UNPAYABLE_GEOMETRY"
+     ]
+    },
+    {
+     "persona": "Liquidation & Stop Forensic",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: UNPAYABLE_GEOMETRY, NO_PAYABLE_SETUP, RR_BELOW_MIN, FLOOR_BREACH | purchase-side sweep hazard: ENTRY_IN_FUEL, BUNKER_WALL_THIN",
+     "vote": "CONTRADICTS",
+     "evidence": "0.57M USD of un-swept fuel at the entry; in-range wall defense 0.40M USD; governing belt edge 57.2",
+     "fatal_seen": [
+      "NO_PAYABLE_SETUP",
+      "RR_BELOW_MIN",
+      "UNPAYABLE_GEOMETRY"
+     ]
+    },
+    {
+     "persona": "Macro Risk & Portfolio Governor",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: UNPAYABLE_GEOMETRY, NO_PAYABLE_SETUP, RR_BELOW_MIN, FLOOR_BREACH | purchase-side sweep hazard: ENTRY_IN_FUEL, BUNKER_WALL_THIN",
+     "vote": "CONTRADICTS",
+     "evidence": "asset ceiling 1.06R; friction 3.33% of risk; min-lot spread cash 1.80 USD; card stress 69.60 USD, post-stop 4789.95 USD",
+     "fatal_seen": [
+      "FLOOR_BREACH"
+     ]
+    },
+    {
+     "persona": "Adversarial Pre-Mortem Red Team",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: UNPAYABLE_GEOMETRY, NO_PAYABLE_SETUP, RR_BELOW_MIN, FLOOR_BREACH | purchase-side sweep hazard: ENTRY_IN_FUEL, BUNKER_WALL_THIN",
+     "vote": "CONTRADICTS",
+     "evidence": "best reachable 1.06R vs ceiling 1.06R; TP front-run offset 7.50 bps; entry 1.95 ATR from mid; book structure 5 fuel belts overhead",
+     "fatal_seen": [
+      "FLOOR_BREACH",
+      "NO_PAYABLE_SETUP",
+      "RR_BELOW_MIN",
+      "UNPAYABLE_GEOMETRY"
+     ]
+    }
+   ],
+   "total": 48.0,
+   "fatal": true,
+   "action_contradicted": true,
+   "verified": false
+  },
+  {
+   "id": "nas100_extreme_probe",
+   "action": "STAGE",
+   "asset": "NAS100",
+   "side": "SHORT",
+   "thesis": "Deepest statistical extreme in the book (Z -2.01, RSI 17.3, EMA stack down 29,862 < 30,057 < 30,406) but the compliant stop must clear the [29,700-30,900] buy belt -> 119.50 USD at min lot.",
+   "engine": 1,
+   "target_ticket": null,
+   "metrics": {
+    "symbol": "NAS100.p",
+    "asset_class": "INDEX",
+    "mid": 29724.82,
+    "atr_14": 61.7065,
+    "regime": "BEARISH",
+    "spread_price": 1.22,
+    "spread_bps": 0.41,
+    "contract_size": 10.0,
+    "min_lot": 0.01,
+    "quote_freshness": "FRESH",
+    "spread_cap_bps": 5.0,
+    "spread_over_atr": 0.019771012778232438,
+    "min_lot_spread_cash_usd": 0.122,
+    "asset_present": true,
+    "side": "SHORT",
+    "entry": 29845.147675,
+    "sl": 30921.9058075,
+    "tp": 29722.275,
+    "lots": 0.01,
+    "stop_points": 1076.7581324999992,
+    "risk_usd": 107.67581324999992,
+    "reward_usd": 12.28726749999987,
+    "rr_gross": 0.11411353329156193,
+    "usd_factor": 1.0,
+    "rr_min_required": 2.0,
+    "entry_distance_atr": 1.9500000000000075,
+    "friction_pct": 0.11330306808711296,
+    "magnet_neighbor_ratio_max": 10.104390078828768,
+    "magnet_bins_excluded": [],
+    "hazard_runs": [
+     [
+      29700.0,
+      30900.0,
+      4192112.59
+     ],
+     [
+      31100.0,
+      31200.0,
+      176480.28
+     ]
+    ],
+    "entry_run": [
+     29700.0,
+     30900.0
+    ],
+    "hazard_union": [
+     null,
+     null
+    ],
+    "hazard_union_usd": 0,
+    "hazard_union_members": [],
+    "sl_clearance_atr": 0.35499999999998955,
+    "sl_clearance_reference": 30900.0,
+    "entry_fuel_usd": 4192112.5900000003,
+    "in_range_defense_usd": 5896421.59,
+    "in_range_walls": [
+     {
+      "price": 30085.0,
+      "notional_usd": 1033416.74,
+      "persist_s": 0.0,
+      "address": "0x5a209e55c592687bb3f105f2f645c09238612d1b",
+      "continuity_age_s": 38128.00963687897,
+      "continuity_max_persist_s": 308.9,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 29979.0,
+      "notional_usd": 1029829.61,
+      "persist_s": 0.0,
+      "address": "0x5a209e55c592687bb3f105f2f645c09238612d1b",
+      "continuity_age_s": 38128.00963687897,
+      "continuity_max_persist_s": 308.9,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 29851.0,
+      "notional_usd": 975653.07,
+      "persist_s": 62.1,
+      "address": "0xe724acd020fbd65ddb42a0f05dcfb65489480320",
+      "continuity_age_s": 38128.00963687897,
+      "continuity_max_persist_s": 1536.6,
+      "continuity_price_ok": false,
+      "verified": false,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 29894.0,
+      "notional_usd": 960225.17,
+      "persist_s": 0.0,
+      "address": "0x5a209e55c592687bb3f105f2f645c09238612d1b",
+      "continuity_age_s": 38128.00963687897,
+      "continuity_max_persist_s": 308.9,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 30000.0,
+      "notional_usd": 888375.0,
+      "persist_s": 1947.3,
+      "address": "0x20ad988487d6a53fea7918657f45fe0bb8fd8183",
+      "continuity_age_s": null,
+      "continuity_max_persist_s": null,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 29860.0,
+      "notional_usd": 290077.96,
+      "persist_s": 62.1,
+      "address": "0x31dea2516beee92135b96f464eeec3cf292a13f2",
+      "continuity_age_s": 38128.00963687897,
+      "continuity_max_persist_s": 0.0,
+      "continuity_price_ok": false,
+      "verified": false,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 29950.0,
+      "notional_usd": 267154.0,
+      "persist_s": 3390.0,
+      "address": "0x57d2174150cd858d46748dd9e443640c0c7e456c",
+      "continuity_age_s": 38128.00963687897,
+      "continuity_max_persist_s": 2236.0,
+      "continuity_price_ok": false,
+      "verified": false,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 30221.0,
+      "notional_usd": 211547.0,
+      "persist_s": 11133.3,
+      "address": "0x2e2e76c5e1d91a78ec41672da4640620d88a1c50",
+      "continuity_age_s": null,
+      "continuity_max_persist_s": null,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     }
+    ],
+    "wall_threshold_usd": 1000000.0,
+    "corridor_fuel_usd": 3849336.6700000004,
+    "corridor_fuel_bins": [
+     [
+      29800.0,
+      29900.0,
+      8299.92
+     ],
+     [
+      29900.0,
+      30000.0,
+      223978.88
+     ],
+     [
+      30000.0,
+      30100.0,
+      41984.15
+     ],
+     [
+      30100.0,
+      30200.0,
+      568764.36
+     ],
+     [
+      30200.0,
+      30300.0,
+      238741.56
+     ],
+     [
+      30300.0,
+      30400.0,
+      365410.42
+     ],
+     [
+      30400.0,
+      30500.0,
+      560833.06
+     ],
+     [
+      30500.0,
+      30600.0,
+      1468883.34
+     ],
+     [
+      30600.0,
+      30700.0,
+      99655.5
+     ],
+     [
+      30700.0,
+      30800.0,
+      166952.61
+     ],
+     [
+      30800.0,
+      30900.0,
+      105832.87
+     ]
+    ],
+    "overwhelm_ratio": 0.6528258896087518,
+    "magnets_considered": [
+     [
+      29600.0,
+      29700.0,
+      1697232.17,
+      29729.7
+     ],
+     [
+      29400.0,
+      29500.0,
+      4112086.17,
+      29529.5
+     ],
+     [
+      29100.0,
+      29300.0,
+      2240213.87,
+      29329.3
+     ],
+     [
+      28800.0,
+      28900.0,
+      15130262.98,
+      28928.9
+     ],
+     [
+      28200.0,
+      28400.0,
+      2976700.78,
+      28428.4
+     ]
+    ],
+    "magnets_reachable": [
+     [
+      29600.0,
+      29700.0,
+      1697232.17,
+      29729.7,
+      115.45
+     ],
+     [
+      29400.0,
+      29500.0,
+      4112086.17,
+      29529.5,
+      315.65
+     ]
+    ],
+    "best_reachable_rr": 0.2931463115742978,
+    "best_reachable_reward_points": 315.6476750000038,
+    "best_reachable_tp": 29529.499999999996,
+    "min_compliant_stop_points": 1076.4496,
+    "min_compliant_stop_anchor": 30900.0,
+    "max_achievable_rr": 0.29323033331054593,
+    "tp_front_run_bps": 7.50000000000049,
+    "tp_governing_magnet": [
+     29600.0,
+     29700.0,
+     1697232.17
+    ],
+    "session_cvd": 11.0,
+    "existing_stress_usd": 0.0,
+    "card_stress_usd": 136.5947665624999,
+    "stress_multiplier": 1.25,
+    "stress_per_ticket_usd": 2.0,
+    "post_stop_equity_usd": 4722.9552334375,
+    "available_slots": 4,
+    "tickets_wanted": 1,
+    "required_post_stop_equity_usd": 4795.0,
+    "purchase_side_flagged": [
+     "ENTRY_IN_FUEL",
+     "COUNTER_CVD"
+    ]
+   },
+   "findings": [
+    {
+     "code": "ENTRY_IN_FUEL",
+     "severity": "MAJOR",
+     "archetype": "A8",
+     "message": "entry 29845.147675 sits inside un-swept purchase-side stop fuel [29700.0, 30900.0] = 4.192M USD",
+     "values": {
+      "union": [
+       29700.0,
+       30900.0
+      ],
+      "union_usd": 4192112.5900000003
+     },
+     "purchase_side": true
+    },
+    {
+     "code": "UNPAYABLE_GEOMETRY",
+     "severity": "FATAL",
+     "archetype": "A6",
+     "message": "best reachable front-runnable target yields 0.29R at this card's stop < required 2.0R",
+     "values": {
+      "best_reachable_rr": 0.2931463115742978
+     },
+     "purchase_side": false
+    },
+    {
+     "code": "NO_PAYABLE_SETUP",
+     "severity": "FATAL",
+     "archetype": "A6",
+     "message": "asset-level verdict: the best front-runnable target pays 0.29R against the minimum compliant stop (1076.4 points = clear the 30900.0 fuel edge by 0.35 ATR), so no card on this asset can be staged at >= 2.0R in this generation",
+     "values": {
+      "max_achievable_rr": 0.29323033331054593,
+      "min_stop_points": 1076.4496
+     },
+     "purchase_side": false
+    },
+    {
+     "code": "RR_BELOW_MIN",
+     "severity": "FATAL",
+     "archetype": "A6",
+     "message": "quoted geometry 0.11R < 2.0R required for NAS100.p",
+     "values": {},
+     "purchase_side": false
+    },
+    {
+     "code": "COUNTER_CVD",
+     "severity": "MAJOR",
+     "archetype": "A2",
+     "message": "short against positive session CVD 11",
+     "values": {},
+     "purchase_side": true
+    },
+    {
+     "code": "FLOOR_BREACH",
+     "severity": "FATAL",
+     "archetype": "A5",
+     "message": "joint post-stop equity 4722.955 USD < 4795.0 USD operating buffer",
+     "values": {
+      "post_stop_equity_usd": 4722.9552334375
+     },
+     "purchase_side": false
+    }
+   ],
+   "personas": [
+    {
+     "persona": "Orderflow & Microstructure",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: UNPAYABLE_GEOMETRY, NO_PAYABLE_SETUP, RR_BELOW_MIN, FLOOR_BREACH | purchase-side sweep hazard: ENTRY_IN_FUEL, COUNTER_CVD",
+     "vote": "NO OBJECTION",
+     "evidence": "session CVD 11 (AGAINST the SHORT); tape BUYER_AGGRESSION; L2 imbalance -0.0945; trap signal TRAPPED_BUYERS_ABOVE",
+     "fatal_seen": []
+    },
+    {
+     "persona": "Structural Price Action",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: UNPAYABLE_GEOMETRY, NO_PAYABLE_SETUP, RR_BELOW_MIN, FLOOR_BREACH | purchase-side sweep hazard: ENTRY_IN_FUEL, COUNTER_CVD",
+     "vote": "CONTRADICTS",
+     "evidence": "mid 29724.82 vs EMA20 29862.3009 / EMA50 30056.9777 / EMA200 30406.0015; VWAP 30274.7228 sigma 272.9278; entry belt [29700.0, 30900.0]; stop clearance +0.355 ATR",
+     "fatal_seen": [
+      "FLOOR_BREACH",
+      "NO_PAYABLE_SETUP",
+      "RR_BELOW_MIN",
+      "UNPAYABLE_GEOMETRY"
+     ]
+    },
+    {
+     "persona": "Liquidation & Stop Forensic",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: UNPAYABLE_GEOMETRY, NO_PAYABLE_SETUP, RR_BELOW_MIN, FLOOR_BREACH | purchase-side sweep hazard: ENTRY_IN_FUEL, COUNTER_CVD",
+     "vote": "CONTRADICTS",
+     "evidence": "4.19M USD of un-swept fuel at the entry; in-range wall defense 5.90M USD; governing belt edge 30900.0",
+     "fatal_seen": [
+      "NO_PAYABLE_SETUP",
+      "RR_BELOW_MIN",
+      "UNPAYABLE_GEOMETRY"
+     ]
+    },
+    {
+     "persona": "Macro Risk & Portfolio Governor",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: UNPAYABLE_GEOMETRY, NO_PAYABLE_SETUP, RR_BELOW_MIN, FLOOR_BREACH | purchase-side sweep hazard: ENTRY_IN_FUEL, COUNTER_CVD",
+     "vote": "CONTRADICTS",
+     "evidence": "asset ceiling 0.29R; friction 0.11% of risk; min-lot spread cash 0.12 USD; card stress 136.59 USD, post-stop 4722.96 USD",
+     "fatal_seen": [
+      "FLOOR_BREACH"
+     ]
+    },
+    {
+     "persona": "Adversarial Pre-Mortem Red Team",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: UNPAYABLE_GEOMETRY, NO_PAYABLE_SETUP, RR_BELOW_MIN, FLOOR_BREACH | purchase-side sweep hazard: ENTRY_IN_FUEL, COUNTER_CVD",
+     "vote": "CONTRADICTS",
+     "evidence": "best reachable 0.29R vs ceiling 0.29R; TP front-run offset 7.50 bps; entry 1.95 ATR from mid; book structure 2 fuel belts overhead",
+     "fatal_seen": [
+      "FLOOR_BREACH",
+      "NO_PAYABLE_SETUP",
+      "RR_BELOW_MIN",
+      "UNPAYABLE_GEOMETRY"
+     ]
+    }
+   ],
+   "total": 48.0,
+   "fatal": true,
+   "action_contradicted": true,
+   "verified": false
+  },
+  {
+   "id": "xrp_alt_long",
+   "action": "STAGE",
+   "asset": "XRP",
+   "side": "LONG",
+   "thesis": "Counter-trend long into a bearish stack; min-lot risk 101.41 USD at the compliant stop, and the [1.30-1.31] bin is excluded as untrusted (>10x neighbours).",
+   "engine": 2,
+   "target_ticket": null,
+   "metrics": {
+    "symbol": "XRPUSD.pi",
+    "asset_class": "CRYPTO_ALT",
+    "mid": 1.3305,
+    "atr_14": 0.0057,
+    "regime": "BEARISH",
+    "spread_price": 0.003,
+    "spread_bps": 22.55,
+    "contract_size": 1000.0,
+    "min_lot": 1.0,
+    "quote_freshness": "FRESH",
+    "spread_cap_bps": 35.0,
+    "spread_over_atr": 0.5263157894736842,
+    "min_lot_spread_cash_usd": 3.0,
+    "asset_present": true,
+    "side": "LONG",
+    "entry": 1.319385,
+    "sl": 1.2179765,
+    "tp": 1.3489875,
+    "lots": 1.0,
+    "stop_points": 0.10140850000000001,
+    "risk_usd": 101.40850000000002,
+    "reward_usd": 29.602499999999978,
+    "rr_gross": 0.2919133997643193,
+    "usd_factor": 1.0,
+    "rr_min_required": 2.0,
+    "entry_distance_atr": 1.9499999999999975,
+    "friction_pct": 2.9583318952553284,
+    "magnet_neighbor_ratio_max": 10.343659580873501,
+    "magnet_bins_excluded": [],
+    "hazard_runs": [
+     [
+      1.07,
+      1.08,
+      306151.92
+     ],
+     [
+      1.15,
+      1.16,
+      1448496.82
+     ],
+     [
+      1.19,
+      1.2,
+      1119862.39
+     ],
+     [
+      1.22,
+      1.33,
+      33071420.98
+     ]
+    ],
+    "entry_run": [
+     1.22,
+     1.33
+    ],
+    "hazard_union": [
+     null,
+     null
+    ],
+    "hazard_union_usd": 0,
+    "hazard_union_members": [],
+    "sl_clearance_atr": 0.35499999999999227,
+    "sl_clearance_reference": 1.22,
+    "entry_fuel_usd": 33071420.98,
+    "in_range_defense_usd": 0,
+    "in_range_walls": [],
+    "wall_threshold_usd": 5000000.0,
+    "corridor_fuel_usd": 33008980.66,
+    "corridor_fuel_bins": [
+     [
+      1.22,
+      1.23,
+      12061232.19
+     ],
+     [
+      1.23,
+      1.24,
+      285820.87
+     ],
+     [
+      1.24,
+      1.25,
+      714253.3
+     ],
+     [
+      1.25,
+      1.26,
+      770729.17
+     ],
+     [
+      1.26,
+      1.27,
+      553295.75
+     ],
+     [
+      1.27,
+      1.28,
+      598278.07
+     ],
+     [
+      1.28,
+      1.29,
+      198730.61
+     ],
+     [
+      1.29,
+      1.3,
+      949023.56
+     ],
+     [
+      1.3,
+      1.31,
+      16633237.2
+     ],
+     [
+      1.31,
+      1.32,
+      244379.94
+     ]
+    ],
+    "overwhelm_ratio": null,
+    "magnets_considered": [
+     [
+      1.35,
+      1.36,
+      1055832.44,
+      1.3487
+     ],
+     [
+      1.41,
+      1.43,
+      7602266.78,
+      1.4086
+     ],
+     [
+      1.55,
+      1.56,
+      1171353.68,
+      1.5485
+     ]
+    ],
+    "magnets_reachable": [
+     [
+      1.35,
+      1.36,
+      1055832.44,
+      1.3487,
+      0.03
+     ]
+    ],
+    "best_reachable_rr": 0.28858527638215825,
+    "best_reachable_reward_points": 0.029265000000000096,
+    "best_reachable_tp": 1.3486500000000001,
+    "min_compliant_stop_points": 0.10138000000000005,
+    "min_compliant_stop_anchor": 1.22,
+    "max_achievable_rr": 0.2886664036299081,
+    "tp_front_run_bps": 7.500000000000613,
+    "tp_governing_magnet": [
+     1.35,
+     1.36,
+     1055832.44
+    ],
+    "session_cvd": 0.0,
+    "existing_stress_usd": 0.0,
+    "card_stress_usd": 128.760625,
+    "stress_multiplier": 1.25,
+    "stress_per_ticket_usd": 2.0,
+    "post_stop_equity_usd": 4730.789375,
+    "available_slots": 4,
+    "tickets_wanted": 1,
+    "required_post_stop_equity_usd": 4795.0
+   },
+   "findings": [
+    {
+     "code": "SPREAD_OVER_ATR",
+     "severity": "MAJOR",
+     "archetype": "A7",
+     "message": "spread/ATR 0.526 exceeds 0.18",
+     "values": {
+      "ratio": 0.5263157894736842
+     },
+     "purchase_side": false
+    },
+    {
+     "code": "MIN_LOT_FRICTION",
+     "severity": "MAJOR",
+     "archetype": "A7",
+     "message": "spread cash at min lot (1.0 lot) is 3.00 USD, above 2.175 USD (15% of max risk)",
+     "values": {
+      "min_lot_spread_cash_usd": 3.0
+     },
+     "purchase_side": false
+    },
+    {
+     "code": "ENTRY_IN_FUEL",
+     "severity": "MAJOR",
+     "archetype": "A8",
+     "message": "entry 1.319385 sits inside un-swept sale-side stop fuel [1.22, 1.33] = 33.071M USD",
+     "values": {
+      "union": [
+       1.22,
+       1.33
+      ],
+      "union_usd": 33071420.98
+     },
+     "purchase_side": false
+    },
+    {
+     "code": "NO_BUNKER_WALL",
+     "severity": "MAJOR",
+     "archetype": "A4",
+     "message": "no bid whale wall at or inside the SL",
+     "values": {},
+     "purchase_side": false
+    },
+    {
+     "code": "UNPAYABLE_GEOMETRY",
+     "severity": "FATAL",
+     "archetype": "A6",
+     "message": "best reachable front-runnable target yields 0.29R at this card's stop < required 2.0R",
+     "values": {
+      "best_reachable_rr": 0.28858527638215825
+     },
+     "purchase_side": false
+    },
+    {
+     "code": "NO_PAYABLE_SETUP",
+     "severity": "FATAL",
+     "archetype": "A6",
+     "message": "asset-level verdict: the best front-runnable target pays 0.29R against the minimum compliant stop (0.1 points = clear the 1.22 fuel edge by 0.35 ATR), so no card on this asset can be staged at >= 2.0R in this generation",
+     "values": {
+      "max_achievable_rr": 0.2886664036299081,
+      "min_stop_points": 0.10138000000000005
+     },
+     "purchase_side": false
+    },
+    {
+     "code": "RR_BELOW_MIN",
+     "severity": "FATAL",
+     "archetype": "A6",
+     "message": "quoted geometry 0.29R < 2.0R required for XRPUSD.pi",
+     "values": {},
+     "purchase_side": false
+    },
+    {
+     "code": "COUNTER_TREND",
+     "severity": "FATAL",
+     "archetype": "A2",
+     "message": "Model 1/2 longs are banned in a verified BEARISH regime",
+     "values": {},
+     "purchase_side": false
+    },
+    {
+     "code": "FLOOR_BREACH",
+     "severity": "FATAL",
+     "archetype": "A5",
+     "message": "joint post-stop equity 4730.789 USD < 4795.0 USD operating buffer",
+     "values": {
+      "post_stop_equity_usd": 4730.789375
+     },
+     "purchase_side": false
+    }
+   ],
+   "personas": [
+    {
+     "persona": "Orderflow & Microstructure",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: UNPAYABLE_GEOMETRY, NO_PAYABLE_SETUP, RR_BELOW_MIN, COUNTER_TREND, FLOOR_BREACH",
+     "vote": "CONTRADICTS",
+     "evidence": "session CVD 0 (with the LONG); tape BULLISH_MOMENTUM; L2 imbalance +0.1266; trap signal TRAPPED_BUYERS_ABOVE",
+     "fatal_seen": [
+      "COUNTER_TREND"
+     ]
+    },
+    {
+     "persona": "Structural Price Action",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: UNPAYABLE_GEOMETRY, NO_PAYABLE_SETUP, RR_BELOW_MIN, COUNTER_TREND, FLOOR_BREACH",
+     "vote": "CONTRADICTS",
+     "evidence": "mid 1.3305 vs EMA20 1.3286 / EMA50 1.3354 / EMA200 1.3564; VWAP 1.3454 sigma 0.0194; entry belt [1.22, 1.33]; stop clearance +0.355 ATR",
+     "fatal_seen": [
+      "FLOOR_BREACH",
+      "NO_PAYABLE_SETUP",
+      "RR_BELOW_MIN",
+      "UNPAYABLE_GEOMETRY"
+     ]
+    },
+    {
+     "persona": "Liquidation & Stop Forensic",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: UNPAYABLE_GEOMETRY, NO_PAYABLE_SETUP, RR_BELOW_MIN, COUNTER_TREND, FLOOR_BREACH",
+     "vote": "CONTRADICTS",
+     "evidence": "33.07M USD of un-swept fuel at the entry; in-range wall defense 0.00M USD; governing belt edge 1.22",
+     "fatal_seen": [
+      "NO_PAYABLE_SETUP",
+      "RR_BELOW_MIN",
+      "UNPAYABLE_GEOMETRY"
+     ]
+    },
+    {
+     "persona": "Macro Risk & Portfolio Governor",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: UNPAYABLE_GEOMETRY, NO_PAYABLE_SETUP, RR_BELOW_MIN, COUNTER_TREND, FLOOR_BREACH",
+     "vote": "CONTRADICTS",
+     "evidence": "asset ceiling 0.29R; friction 2.96% of risk; min-lot spread cash 3.00 USD; card stress 128.76 USD, post-stop 4730.79 USD",
+     "fatal_seen": [
+      "FLOOR_BREACH"
+     ]
+    },
+    {
+     "persona": "Adversarial Pre-Mortem Red Team",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: UNPAYABLE_GEOMETRY, NO_PAYABLE_SETUP, RR_BELOW_MIN, COUNTER_TREND, FLOOR_BREACH",
+     "vote": "CONTRADICTS",
+     "evidence": "best reachable 0.29R vs ceiling 0.29R; TP front-run offset 7.50 bps; entry 1.95 ATR from mid; book structure 4 fuel belts overhead",
+     "fatal_seen": [
+      "COUNTER_TREND",
+      "FLOOR_BREACH",
+      "NO_PAYABLE_SETUP",
+      "RR_BELOW_MIN",
+      "UNPAYABLE_GEOMETRY"
+     ]
+    }
+   ],
+   "total": 48.0,
+   "fatal": true,
+   "action_contradicted": true,
+   "verified": false
+  },
+  {
+   "id": "eth_artifact_probe",
+   "action": "STAGE",
+   "asset": "ETH",
+   "side": "SHORT",
+   "thesis": "Deliberate probe of the peer-audited Trusted-Magnet Rule: TP 2,412.41 anchors the [2,400-2,410] bin carrying $1,650.43M after per-bucket consolidation (~54x its larger neighbour, ~1,904x its smaller), so the engine must refuse to let it anchor an exit.",
+   "engine": 2,
+   "target_ticket": null,
+   "metrics": {
+    "symbol": "ETHUSD.pi",
+    "asset_class": "CRYPTO_MAJOR",
+    "mid": 2419.75,
+    "atr_14": 10.2393,
+    "regime": "BEARISH",
+    "spread_price": 2.9,
+    "spread_bps": 11.98,
+    "contract_size": 1.0,
+    "min_lot": 0.01,
+    "quote_freshness": "FRESH",
+    "spread_cap_bps": 35.0,
+    "spread_over_atr": 0.2832224859121229,
+    "min_lot_spread_cash_usd": 0.028999999999999998,
+    "asset_present": true,
+    "side": "SHORT",
+    "entry": 2439.72,
+    "sl": 2533.69,
+    "tp": 2412.41,
+    "lots": 0.12,
+    "stop_points": 93.97000000000025,
+    "risk_usd": 11.27640000000003,
+    "reward_usd": 3.2771999999999935,
+    "rr_gross": 0.2906246674470562,
+    "usd_factor": 1.0,
+    "rr_min_required": 2.2,
+    "entry_distance_atr": 1.9503286357465648,
+    "friction_pct": 3.0860913057358648,
+    "magnet_neighbor_ratio_max": 33.38652426685489,
+    "magnet_bins_excluded": [
+     [
+      2400.0,
+      2410.0,
+      1650425373.8999999,
+      "untrusted"
+     ]
+    ],
+    "hazard_runs": [
+     [
+      2420.0,
+      2530.0,
+      17174157.3
+     ]
+    ],
+    "entry_run": [
+     2420.0,
+     2530.0
+    ],
+    "hazard_union": [
+     null,
+     null
+    ],
+    "hazard_union_usd": 0,
+    "hazard_union_members": [],
+    "sl_clearance_atr": 0.3603761975916376,
+    "sl_clearance_reference": 2530.0,
+    "entry_fuel_usd": 17174157.299999997,
+    "in_range_defense_usd": 31831081.150000002,
+    "in_range_walls": [
+     {
+      "price": 2455.4,
+      "notional_usd": 15852007.89,
+      "persist_s": 2789.3,
+      "address": "0xab5e6f394951c28ab1873007e373202689cdbec3",
+      "continuity_age_s": 38125.61241602898,
+      "continuity_max_persist_s": 423.6,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 2463.9,
+      "notional_usd": 5006178.38,
+      "persist_s": 59.5,
+      "address": "0x31dea2516beee92135b96f464eeec3cf292a13f2",
+      "continuity_age_s": 38125.61241602898,
+      "continuity_max_persist_s": 59.2,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 2451.5,
+      "notional_usd": 3549218.7,
+      "persist_s": 59.5,
+      "address": "0x31dea2516beee92135b96f464eeec3cf292a13f2",
+      "continuity_age_s": 38125.61241602898,
+      "continuity_max_persist_s": 59.2,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 2442.1,
+      "notional_usd": 2446092.59,
+      "persist_s": 59.5,
+      "address": "0x31dea2516beee92135b96f464eeec3cf292a13f2",
+      "continuity_age_s": 38125.61241602898,
+      "continuity_max_persist_s": 59.2,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 2442.1,
+      "notional_usd": 1375630.05,
+      "persist_s": 59.5,
+      "address": "0x71d0e11ebb6150cebe20cf62f798be1a50108c26",
+      "continuity_age_s": 38125.61241602898,
+      "continuity_max_persist_s": 311.2,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 2445.5,
+      "notional_usd": 804309.3,
+      "persist_s": 59.5,
+      "address": "0x2e1aa624f04fa7ab7198c6fbfeaa42a707b42c1a",
+      "continuity_age_s": 38125.61241602898,
+      "continuity_max_persist_s": 311.2,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 2445.5,
+      "notional_usd": 774896.05,
+      "persist_s": 59.5,
+      "address": "0xc9186f29695cfe18b79e6a8ebf1be13905cac077",
+      "continuity_age_s": 38125.61241602898,
+      "continuity_max_persist_s": 423.6,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     },
+     {
+      "price": 2440.0,
+      "notional_usd": 639920.26,
+      "persist_s": 5445.0,
+      "address": "0xcf553d794d8bee4cfb41b5c5d9dd9191460310f4",
+      "continuity_age_s": null,
+      "continuity_max_persist_s": null,
+      "continuity_price_ok": true,
+      "verified": true,
+      "wall_class": "GENUINE"
+     }
+    ],
+    "wall_threshold_usd": 5000000.0,
+    "corridor_fuel_usd": 16301370.079999996,
+    "corridor_fuel_bins": [
+     [
+      2430.0,
+      2440.0,
+      1913321.22
+     ],
+     [
+      2440.0,
+      2450.0,
+      173126.28
+     ],
+     [
+      2450.0,
+      2460.0,
+      4906079.8
+     ],
+     [
+      2460.0,
+      2470.0,
+      612723.1
+     ],
+     [
+      2470.0,
+      2480.0,
+      1030211.78
+     ],
+     [
+      2480.0,
+      2490.0,
+      3296747.44
+     ],
+     [
+      2490.0,
+      2500.0,
+      729531.44
+     ],
+     [
+      2500.0,
+      2510.0,
+      2692454.04
+     ],
+     [
+      2510.0,
+      2520.0,
+      664356.94
+     ],
+     [
+      2520.0,
+      2530.0,
+      282818.04
+     ]
+    ],
+    "overwhelm_ratio": 0.5121211561486656,
+    "magnets_considered": [
+     [
+      2300.0,
+      2400.0,
+      266752287.25,
+      2402.4
+     ]
+    ],
+    "magnets_reachable": [
+     [
+      2300.0,
+      2400.0,
+      266752287.25,
+      2402.4,
+      37.32
+     ]
+    ],
+    "best_reachable_rr": 0.3971480259657344,
+    "best_reachable_reward_points": 37.320000000000164,
+    "best_reachable_tp": 2402.3999999999996,
+    "min_compliant_stop_points": 93.8637550000002,
+    "min_compliant_stop_anchor": 2530.0,
+    "max_achievable_rr": 0.3975975604214863,
+    "session_cvd": 0.0,
+    "existing_stress_usd": 0.0,
+    "card_stress_usd": 16.095500000000037,
+    "stress_multiplier": 1.25,
+    "stress_per_ticket_usd": 2.0,
+    "post_stop_equity_usd": 4843.4545,
+    "available_slots": 4,
+    "tickets_wanted": 1,
+    "required_post_stop_equity_usd": 4795.0,
+    "purchase_side_flagged": [
+     "ENTRY_IN_FUEL"
+    ]
+   },
+   "findings": [
+    {
+     "code": "SPREAD_OVER_ATR",
+     "severity": "MAJOR",
+     "archetype": "A7",
+     "message": "spread/ATR 0.283 exceeds 0.18",
+     "values": {
+      "ratio": 0.2832224859121229
+     },
+     "purchase_side": false
+    },
+    {
+     "code": "MAGNET_UNTRUSTED_EXCLUDED",
+     "severity": "MINOR",
+     "archetype": "A6",
+     "message": "1 bin(s) excluded as untrusted (> 10x the larger neighbour); largest [2400.0, 2410.0] carrying 1650.425M USD cannot anchor a TP",
+     "values": {
+      "excluded": [
+       [
+        2400.0,
+        2410.0,
+        1650425373.8999999
+       ]
+      ]
+     },
+     "purchase_side": false
+    },
+    {
+     "code": "ENTRY_IN_FUEL",
+     "severity": "MAJOR",
+     "archetype": "A8",
+     "message": "entry 2439.72 sits inside un-swept purchase-side stop fuel [2420.0, 2530.0] = 17.174M USD",
+     "values": {
+      "union": [
+       2420.0,
+       2530.0
+      ],
+      "union_usd": 17174157.299999997
+     },
+     "purchase_side": true
+    },
+    {
+     "code": "PRICE_INSIDE_MAGNET_LADDER",
+     "severity": "MINOR",
+     "archetype": "A6",
+     "message": "mid 2419.75 sits inside the sell-stop/long-cascade ladder [2410.0, 2420.0] carrying 0.913M USD: no front-runnable TP exists inside the ladder, the exit must clear its near edge",
+     "values": {
+      "ladder": [
+       2410.0,
+       2420.0
+      ],
+      "ladder_usd": 912936.6000000001
+     },
+     "purchase_side": false
+    },
+    {
+     "code": "UNPAYABLE_GEOMETRY",
+     "severity": "FATAL",
+     "archetype": "A6",
+     "message": "best reachable front-runnable target yields 0.40R at this card's stop < required 2.2R",
+     "values": {
+      "best_reachable_rr": 0.3971480259657344
+     },
+     "purchase_side": false
+    },
+    {
+     "code": "NO_PAYABLE_SETUP",
+     "severity": "FATAL",
+     "archetype": "A6",
+     "message": "asset-level verdict: the best front-runnable target pays 0.40R against the minimum compliant stop (93.9 points = clear the 2530.0 fuel edge by 0.35 ATR), so no card on this asset can be staged at >= 2.2R in this generation",
+     "values": {
+      "max_achievable_rr": 0.3975975604214863,
+      "min_stop_points": 93.8637550000002
+     },
+     "purchase_side": false
+    },
+    {
+     "code": "TP_INSIDE_MAGNET",
+     "severity": "FATAL",
+     "archetype": "A6",
+     "message": "TP 2412.41 sits INSIDE the magnet pool [2410.0, 2420.0] carrying 0.913M USD instead of front-running it",
+     "values": {
+      "magnet": [
+       2410.0,
+       2420.0
+      ],
+      "magnet_usd": 912936.6000000001
+     },
+     "purchase_side": false
+    },
+    {
+     "code": "RR_BELOW_MIN",
+     "severity": "FATAL",
+     "archetype": "A6",
+     "message": "quoted geometry 0.29R < 2.2R required for ETHUSD.pi",
+     "values": {},
+     "purchase_side": false
+    }
+   ],
+   "personas": [
+    {
+     "persona": "Orderflow & Microstructure",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: UNPAYABLE_GEOMETRY, NO_PAYABLE_SETUP, TP_INSIDE_MAGNET, RR_BELOW_MIN | purchase-side sweep hazard: ENTRY_IN_FUEL",
+     "vote": "NO OBJECTION",
+     "evidence": "session CVD 0 (AGAINST the SHORT); tape BEARISH_MOMENTUM; L2 imbalance +0.8183; trap signal BALANCED",
+     "fatal_seen": []
+    },
+    {
+     "persona": "Structural Price Action",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: UNPAYABLE_GEOMETRY, NO_PAYABLE_SETUP, TP_INSIDE_MAGNET, RR_BELOW_MIN | purchase-side sweep hazard: ENTRY_IN_FUEL",
+     "vote": "CONTRADICTS",
+     "evidence": "mid 2419.75 vs EMA20 2419.0548 / EMA50 2436.1225 / EMA200 2477.6731; VWAP 2461.8145 sigma 37.8245; entry belt [2420.0, 2530.0]; stop clearance +0.360 ATR",
+     "fatal_seen": [
+      "NO_PAYABLE_SETUP",
+      "RR_BELOW_MIN",
+      "TP_INSIDE_MAGNET",
+      "UNPAYABLE_GEOMETRY"
+     ]
+    },
+    {
+     "persona": "Liquidation & Stop Forensic",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: UNPAYABLE_GEOMETRY, NO_PAYABLE_SETUP, TP_INSIDE_MAGNET, RR_BELOW_MIN | purchase-side sweep hazard: ENTRY_IN_FUEL",
+     "vote": "CONTRADICTS",
+     "evidence": "17.17M USD of un-swept fuel at the entry; in-range wall defense 31.83M USD; governing belt edge 2530.0",
+     "fatal_seen": [
+      "NO_PAYABLE_SETUP",
+      "RR_BELOW_MIN",
+      "TP_INSIDE_MAGNET",
+      "UNPAYABLE_GEOMETRY"
+     ]
+    },
+    {
+     "persona": "Macro Risk & Portfolio Governor",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: UNPAYABLE_GEOMETRY, NO_PAYABLE_SETUP, TP_INSIDE_MAGNET, RR_BELOW_MIN | purchase-side sweep hazard: ENTRY_IN_FUEL",
+     "vote": "NO OBJECTION",
+     "evidence": "asset ceiling 0.40R; friction 3.09% of risk; min-lot spread cash 0.03 USD; card stress 16.10 USD, post-stop 4843.45 USD",
+     "fatal_seen": []
+    },
+    {
+     "persona": "Adversarial Pre-Mortem Red Team",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: UNPAYABLE_GEOMETRY, NO_PAYABLE_SETUP, TP_INSIDE_MAGNET, RR_BELOW_MIN | purchase-side sweep hazard: ENTRY_IN_FUEL",
+     "vote": "CONTRADICTS",
+     "evidence": "best reachable 0.40R vs ceiling 0.40R; entry 1.95 ATR from mid; book structure 1 fuel belts overhead",
+     "fatal_seen": [
+      "NO_PAYABLE_SETUP",
+      "RR_BELOW_MIN",
+      "TP_INSIDE_MAGNET",
+      "UNPAYABLE_GEOMETRY"
+     ]
+    }
+   ],
+   "total": 48.0,
+   "fatal": true,
+   "action_contradicted": true,
+   "verified": false
+  },
+  {
+   "id": "fx_range_gate_probe",
+   "action": "STAGE",
+   "asset": "GBPUSD",
+   "side": "SHORT",
+   "thesis": "RANGE_BOUND regime (EMA20 1.3199 vs EMA50 1.3201 vs EMA200 1.3224, RSI 77.3): neither engine applies in non-trending noise, so the regime gate must strike the card down before geometry. EURUSD is range-bound too.",
+   "engine": 2,
+   "target_ticket": null,
+   "metrics": {
+    "symbol": "GBPUSD.pi",
+    "asset_class": "FX",
+    "mid": 1.3231,
+    "atr_14": 0.0008,
+    "regime": "RANGE_BOUND",
+    "spread_price": 0.0,
+    "spread_bps": 0.08,
+    "contract_size": 100000.0,
+    "min_lot": 0.01,
+    "quote_freshness": "FRESH",
+    "spread_cap_bps": 5.0,
+    "spread_over_atr": 0.0,
+    "min_lot_spread_cash_usd": 0.0,
+    "asset_present": true,
+    "side": "SHORT",
+    "entry": 1.32466,
+    "sl": 1.32514,
+    "tp": 1.3207,
+    "lots": 0.23,
+    "stop_points": 0.00048000000000003595,
+    "risk_usd": 11.040000000000827,
+    "reward_usd": 91.07999999999917,
+    "rr_gross": 8.249999999999307,
+    "usd_factor": 1.0,
+    "rr_min_required": 2.0,
+    "entry_distance_atr": 1.9500000000000073,
+    "friction_pct": 0.0,
+    "magnet_neighbor_ratio_max": null,
+    "magnet_bins_excluded": [],
+    "hazard_runs": [
+     [
+      1.32,
+      1.37,
+      1299698.18
+     ],
+     [
+      1.38,
+      1.39,
+      497.64
+     ]
+    ],
+    "entry_run": [
+     1.32,
+     1.37
+    ],
+    "hazard_union": [
+     1.32,
+     1.37
+    ],
+    "hazard_union_usd": 1299698.1800000002,
+    "hazard_union_members": [
+     [
+      1.32,
+      1.33,
+      200452.02
+     ],
+     [
+      1.33,
+      1.34,
+      652146.68
+     ],
+     [
+      1.34,
+      1.35,
+      5537.52
+     ],
+     [
+      1.35,
+      1.36,
+      398373.5
+     ],
+     [
+      1.36,
+      1.37,
+      43188.46
+     ]
+    ],
+    "sl_clearance_atr": -6.424999999999903,
+    "entry_fuel_usd": 1299698.1800000002,
+    "in_range_defense_usd": 0,
+    "in_range_walls": [],
+    "wall_threshold_usd": 500000.0,
+    "corridor_fuel_usd": 200452.02,
+    "corridor_fuel_bins": [
+     [
+      1.32,
+      1.33,
+      200452.02
+     ]
+    ],
+    "overwhelm_ratio": null,
+    "session_cvd": 62.0,
+    "existing_stress_usd": 0.0,
+    "card_stress_usd": 15.800000000001035,
+    "stress_multiplier": 1.25,
+    "stress_per_ticket_usd": 2.0,
+    "post_stop_equity_usd": 4843.749999999999,
+    "available_slots": 4,
+    "tickets_wanted": 1,
+    "required_post_stop_equity_usd": 4795.0,
+    "purchase_side_flagged": [
+     "SL_INSIDE_SWEEP",
+     "ENTRY_IN_FUEL",
+     "NO_BUNKER_WALL",
+     "COUNTER_CVD"
+    ]
+   },
+   "findings": [
+    {
+     "code": "REGIME_GATED_STAND_ASIDE",
+     "severity": "FATAL",
+     "archetype": "A2",
+     "message": "trend_regime=RANGE_BOUND: neither engine applies in non-trending noise",
+     "values": {
+      "regime": "RANGE_BOUND"
+     },
+     "purchase_side": false
+    },
+    {
+     "code": "SL_INSIDE_SWEEP",
+     "severity": "FATAL",
+     "archetype": "A1",
+     "message": "SL 1.32514 sits INSIDE the purchase-side sweep belt [1.32, 1.37] carrying 1.300M USD",
+     "values": {
+      "union": [
+       1.32,
+       1.37
+      ],
+      "union_usd": 1299698.1800000002
+     },
+     "purchase_side": true
+    },
+    {
+     "code": "ENTRY_IN_FUEL",
+     "severity": "MAJOR",
+     "archetype": "A8",
+     "message": "entry 1.32466 sits inside un-swept purchase-side stop fuel [1.32, 1.37] = 1.300M USD",
+     "values": {
+      "union": [
+       1.32,
+       1.37
+      ],
+      "union_usd": 1299698.1800000002
+     },
+     "purchase_side": true
+    },
+    {
+     "code": "NO_BUNKER_WALL",
+     "severity": "MAJOR",
+     "archetype": "A4",
+     "message": "no ask whale wall at or inside the SL",
+     "values": {},
+     "purchase_side": true
+    },
+    {
+     "code": "NO_MAGNETS",
+     "severity": "FATAL",
+     "archetype": "A6",
+     "message": "no opposing stop/liquidation magnet >= 0.50M USD on the target side",
+     "values": {},
+     "purchase_side": false
+    },
+    {
+     "code": "COUNTER_CVD",
+     "severity": "MAJOR",
+     "archetype": "A2",
+     "message": "short against positive session CVD 62",
+     "values": {},
+     "purchase_side": true
+    }
+   ],
+   "personas": [
+    {
+     "persona": "Orderflow & Microstructure",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: REGIME_GATED_STAND_ASIDE, SL_INSIDE_SWEEP, NO_MAGNETS | purchase-side sweep hazard: SL_INSIDE_SWEEP, ENTRY_IN_FUEL, NO_BUNKER_WALL, COUNTER_CVD",
+     "vote": "CONTRADICTS",
+     "evidence": "session CVD 62 (AGAINST the SHORT); tape BUYER_AGGRESSION; L2 imbalance +0.2226; trap signal TRAPPED_BUYERS_ABOVE",
+     "fatal_seen": [
+      "REGIME_GATED_STAND_ASIDE"
+     ]
+    },
+    {
+     "persona": "Structural Price Action",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: REGIME_GATED_STAND_ASIDE, SL_INSIDE_SWEEP, NO_MAGNETS | purchase-side sweep hazard: SL_INSIDE_SWEEP, ENTRY_IN_FUEL, NO_BUNKER_WALL, COUNTER_CVD",
+     "vote": "CONTRADICTS",
+     "evidence": "mid 1.3231 vs EMA20 1.3199 / EMA50 1.3201 / EMA200 1.3224; VWAP 1.3210 sigma 0.0046; entry belt [1.32, 1.37]; stop clearance -6.425 ATR",
+     "fatal_seen": [
+      "NO_MAGNETS",
+      "SL_INSIDE_SWEEP"
+     ]
+    },
+    {
+     "persona": "Liquidation & Stop Forensic",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: REGIME_GATED_STAND_ASIDE, SL_INSIDE_SWEEP, NO_MAGNETS | purchase-side sweep hazard: SL_INSIDE_SWEEP, ENTRY_IN_FUEL, NO_BUNKER_WALL, COUNTER_CVD",
+     "vote": "CONTRADICTS",
+     "evidence": "1.30M USD of un-swept fuel at the entry; 1.30M USD in the SL belt; in-range wall defense 0.00M USD",
+     "fatal_seen": [
+      "NO_MAGNETS",
+      "SL_INSIDE_SWEEP"
+     ]
+    },
+    {
+     "persona": "Macro Risk & Portfolio Governor",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: REGIME_GATED_STAND_ASIDE, SL_INSIDE_SWEEP, NO_MAGNETS | purchase-side sweep hazard: SL_INSIDE_SWEEP, ENTRY_IN_FUEL, NO_BUNKER_WALL, COUNTER_CVD",
+     "vote": "NO OBJECTION",
+     "evidence": "friction 0.00% of risk; min-lot spread cash 0.00 USD; card stress 15.80 USD, post-stop 4843.75 USD",
+     "fatal_seen": []
+    },
+    {
+     "persona": "Adversarial Pre-Mortem Red Team",
+     "scores": {
+      "correctness": 0.0,
+      "completeness": 10.0,
+      "specificity": 10.0,
+      "robustness": 0.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 48.0,
+     "note": "fatal: REGIME_GATED_STAND_ASIDE, SL_INSIDE_SWEEP, NO_MAGNETS | purchase-side sweep hazard: SL_INSIDE_SWEEP, ENTRY_IN_FUEL, NO_BUNKER_WALL, COUNTER_CVD",
+     "vote": "CONTRADICTS",
+     "evidence": "entry 1.95 ATR from mid; book structure 2 fuel belts overhead",
+     "fatal_seen": [
+      "NO_MAGNETS",
+      "REGIME_GATED_STAND_ASIDE",
+      "SL_INSIDE_SWEEP"
+     ]
+    }
+   ],
+   "total": 48.0,
+   "fatal": true,
+   "action_contradicted": true,
+   "verified": false
+  },
+  {
+   "id": "desk_batch_4x_max_risk",
+   "action": "STAGE_BATCH",
+   "asset": "BTC",
+   "side": "SHORT",
+   "thesis": "Capacity strawman: four max-envelope tickets (4 x 20.12 = 80.48 stress) against the 64.55 USD budget. Included so the bracket contains the boundary case the governor computes by hand.",
+   "engine": 2,
+   "target_ticket": null,
+   "metrics": {
+    "symbol": "BTCUSD.pi",
+    "asset_class": "CRYPTO_MAJOR",
+    "mid": 81609.5,
+    "atr_14": 239.1908,
+    "regime": "BEARISH",
+    "spread_price": 17.0,
+    "spread_bps": 2.08,
+    "contract_size": 1.0,
+    "min_lot": 0.01,
+    "quote_freshness": "FRESH",
+    "spread_cap_bps": 35.0,
+    "spread_over_atr": 0.07107296768939274,
+    "min_lot_spread_cash_usd": 0.17,
+    "asset_present": true
+   },
+   "findings": [
+    {
+     "code": "CARD_INCOMPLETE",
+     "severity": "FATAL",
+     "archetype": "A6",
+     "message": "trade card is missing entry/SL/TP/lots",
+     "values": {},
+     "purchase_side": false
+    }
+   ],
+   "personas": [
+    {
+     "persona": "Orderflow & Microstructure",
+     "scores": {
+      "correctness": 7.5,
+      "completeness": 5.0,
+      "specificity": 4.0,
+      "robustness": 7.65,
+      "clarity": 8.0
+     },
+     "weighted_total": 64.3,
+     "note": "fatal: CARD_INCOMPLETE",
+     "vote": "NO OBJECTION",
+     "evidence": "session CVD 0 (AGAINST the SHORT); tape BEARISH_MOMENTUM; L2 imbalance +0.6258; trap signal TRAPPED_BUYERS_ABOVE",
+     "fatal_seen": []
+    },
+    {
+     "persona": "Structural Price Action",
+     "scores": {
+      "correctness": 4.5,
+      "completeness": 5.0,
+      "specificity": 4.0,
+      "robustness": 4.95,
+      "clarity": 8.0
+     },
+     "weighted_total": 49.9,
+     "note": "fatal: CARD_INCOMPLETE",
+     "vote": "CONTRADICTS",
+     "evidence": "mid 81609.5 vs EMA20 81613.5038 / EMA50 81951.615 / EMA200 82700.9064; VWAP 82548.3062 sigma 845.5989",
+     "fatal_seen": [
+      "CARD_INCOMPLETE"
+     ]
+    },
+    {
+     "persona": "Liquidation & Stop Forensic",
+     "scores": {
+      "correctness": 4.5,
+      "completeness": 5.0,
+      "specificity": 4.0,
+      "robustness": 4.95,
+      "clarity": 8.0
+     },
+     "weighted_total": 49.9,
+     "note": "fatal: CARD_INCOMPLETE",
+     "vote": "CONTRADICTS",
+     "evidence": "no evidence in this generation",
+     "fatal_seen": [
+      "CARD_INCOMPLETE"
+     ]
+    },
+    {
+     "persona": "Macro Risk & Portfolio Governor",
+     "scores": {
+      "correctness": 6.0,
+      "completeness": 5.0,
+      "specificity": 4.0,
+      "robustness": 6.3,
+      "clarity": 8.0
+     },
+     "weighted_total": 57.1,
+     "note": "fatal: CARD_INCOMPLETE",
+     "vote": "NO OBJECTION",
+     "evidence": "min-lot spread cash 0.17 USD",
+     "fatal_seen": []
+    },
+    {
+     "persona": "Adversarial Pre-Mortem Red Team",
+     "scores": {
+      "correctness": 6.0,
+      "completeness": 5.0,
+      "specificity": 4.0,
+      "robustness": 6.3,
+      "clarity": 8.0
+     },
+     "weighted_total": 57.1,
+     "note": "fatal: CARD_INCOMPLETE",
+     "vote": "CONTRADICTS",
+     "evidence": "no evidence in this generation",
+     "fatal_seen": [
+      "CARD_INCOMPLETE"
+     ]
+    }
+   ],
+   "total": 55.66,
+   "fatal": true,
+   "action_contradicted": true,
+   "verified": false
+  },
+  {
+   "id": "nas100_relief_rally_short",
+   "action": "WATCH",
+   "asset": "NAS100",
+   "side": null,
+   "thesis": "Peer-audit watch (Astra, seed 111). Relief rally into the EMA20 shelf 29,850-29,900 paying >=2.0R to a 29,729.7 front-run requires SL <=30,050; on this generation that stop sits INSIDE the [29,700-30,900] buy belt ($4.12M) = archetype-1 kill. The watch is therefore latent until the belt is consumed or thinned below the index wall threshold.",
+   "engine": 1,
+   "target_ticket": null,
+   "metrics": {
+    "symbol": "NAS100.p",
+    "asset_class": "INDEX",
+    "mid": 29724.82,
+    "atr_14": 61.7065,
+    "regime": "BEARISH",
+    "spread_price": 1.22,
+    "spread_bps": 0.41,
+    "contract_size": 10.0,
+    "min_lot": 0.01,
+    "quote_freshness": "FRESH",
+    "spread_cap_bps": 5.0,
+    "spread_over_atr": 0.019771012778232438,
+    "min_lot_spread_cash_usd": 0.122,
+    "untriggered": true,
+    "armed_trigger": "relief rally >=29,930 with velocity_ratio < 0.70, a >=1.0M USD ask wall defending the shelf AND the [29,700-30,900] buy belt thinned below 1.0M USD",
+    "invalidation": "15m close > 30,100 (belt re-armed) or buy-belt thins then price closes > 30,050"
+   },
+   "findings": [
+    {
+     "code": "CONDITIONAL_UNTRIGGERED",
+     "severity": "INFO",
+     "archetype": "A5",
+     "message": "armed trigger has not fired in this generation: relief rally >=29,930 with velocity_ratio < 0.70, a >=1.0M USD ask wall defending the shelf AND the [29,700-30,900] buy belt thinned below 1.0M USD",
+     "values": {
+      "condition": "relief rally >=29,930 with velocity_ratio < 0.70, a >=1.0M USD ask wall defending the shelf AND the [29,700-30,900] buy belt thinned below 1.0M USD"
+     },
+     "purchase_side": false
+    }
+   ],
+   "personas": [
+    {
+     "persona": "Orderflow & Microstructure",
+     "scores": {
+      "correctness": 9.0,
+      "completeness": 4.0,
+      "specificity": 4.0,
+      "robustness": 9.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 69.0,
+     "note": "no fatal flaw found",
+     "vote": "NO OBJECTION",
+     "evidence": "session CVD 11 (AGAINST the SHORT); tape BUYER_AGGRESSION; L2 imbalance -0.0945; trap signal TRAPPED_BUYERS_ABOVE",
+     "fatal_seen": []
+    },
+    {
+     "persona": "Structural Price Action",
+     "scores": {
+      "correctness": 9.0,
+      "completeness": 4.0,
+      "specificity": 4.0,
+      "robustness": 9.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 69.0,
+     "note": "no fatal flaw found",
+     "vote": "NO OBJECTION",
+     "evidence": "mid 29724.82 vs EMA20 29862.3009 / EMA50 30056.9777 / EMA200 30406.0015; VWAP 30274.7228 sigma 272.9278",
+     "fatal_seen": []
+    },
+    {
+     "persona": "Liquidation & Stop Forensic",
+     "scores": {
+      "correctness": 9.0,
+      "completeness": 4.0,
+      "specificity": 4.0,
+      "robustness": 9.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 69.0,
+     "note": "no fatal flaw found",
+     "vote": "NO OBJECTION",
+     "evidence": "no evidence in this generation",
+     "fatal_seen": []
+    },
+    {
+     "persona": "Macro Risk & Portfolio Governor",
+     "scores": {
+      "correctness": 9.0,
+      "completeness": 4.0,
+      "specificity": 4.0,
+      "robustness": 9.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 69.0,
+     "note": "no fatal flaw found",
+     "vote": "NO OBJECTION",
+     "evidence": "min-lot spread cash 0.12 USD",
+     "fatal_seen": []
+    },
+    {
+     "persona": "Adversarial Pre-Mortem Red Team",
+     "scores": {
+      "correctness": 9.0,
+      "completeness": 4.0,
+      "specificity": 4.0,
+      "robustness": 9.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 69.0,
+     "note": "no fatal flaw found",
+     "vote": "NO OBJECTION",
+     "evidence": "no evidence in this generation",
+     "fatal_seen": []
+    }
+   ],
+   "total": 69.0,
+   "fatal": false,
+   "action_contradicted": false,
+   "verified": false
+  },
+  {
+   "id": "btc_armed_post_ladder_short",
+   "action": "WATCH",
+   "asset": "BTC",
+   "side": null,
+   "thesis": "The merged seller ladder [80,500-81,500] ($79.0M) is the wall that blocks the exit; a decisive break below 80,400 clears it and re-opens a front-runnable path to the 79,800-80,100 pool.",
+   "engine": 2,
+   "target_ticket": null,
+   "metrics": {
+    "symbol": "BTCUSD.pi",
+    "asset_class": "CRYPTO_MAJOR",
+    "mid": 81609.5,
+    "atr_14": 239.1908,
+    "regime": "BEARISH",
+    "spread_price": 17.0,
+    "spread_bps": 2.08,
+    "contract_size": 1.0,
+    "min_lot": 0.01,
+    "quote_freshness": "FRESH",
+    "spread_cap_bps": 35.0,
+    "spread_over_atr": 0.07107296768939274,
+    "min_lot_spread_cash_usd": 0.17,
+    "untriggered": true,
+    "armed_trigger": "15m close < 80,400 with session CVD < 0 (ladder vacated)",
+    "invalidation": "15m close > 82,600 (reclaim above the buy-stop belt top)"
+   },
+   "findings": [
+    {
+     "code": "CONDITIONAL_UNTRIGGERED",
+     "severity": "INFO",
+     "archetype": "A5",
+     "message": "armed trigger has not fired in this generation: 15m close < 80,400 with session CVD < 0 (ladder vacated)",
+     "values": {
+      "condition": "15m close < 80,400 with session CVD < 0 (ladder vacated)"
+     },
+     "purchase_side": false
+    }
+   ],
+   "personas": [
+    {
+     "persona": "Orderflow & Microstructure",
+     "scores": {
+      "correctness": 9.0,
+      "completeness": 4.0,
+      "specificity": 4.0,
+      "robustness": 9.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 69.0,
+     "note": "no fatal flaw found",
+     "vote": "NO OBJECTION",
+     "evidence": "session CVD 0 (AGAINST the SHORT); tape BEARISH_MOMENTUM; L2 imbalance +0.6258; trap signal TRAPPED_BUYERS_ABOVE",
+     "fatal_seen": []
+    },
+    {
+     "persona": "Structural Price Action",
+     "scores": {
+      "correctness": 9.0,
+      "completeness": 4.0,
+      "specificity": 4.0,
+      "robustness": 9.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 69.0,
+     "note": "no fatal flaw found",
+     "vote": "NO OBJECTION",
+     "evidence": "mid 81609.5 vs EMA20 81613.5038 / EMA50 81951.615 / EMA200 82700.9064; VWAP 82548.3062 sigma 845.5989",
+     "fatal_seen": []
+    },
+    {
+     "persona": "Liquidation & Stop Forensic",
+     "scores": {
+      "correctness": 9.0,
+      "completeness": 4.0,
+      "specificity": 4.0,
+      "robustness": 9.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 69.0,
+     "note": "no fatal flaw found",
+     "vote": "NO OBJECTION",
+     "evidence": "no evidence in this generation",
+     "fatal_seen": []
+    },
+    {
+     "persona": "Macro Risk & Portfolio Governor",
+     "scores": {
+      "correctness": 9.0,
+      "completeness": 4.0,
+      "specificity": 4.0,
+      "robustness": 9.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 69.0,
+     "note": "no fatal flaw found",
+     "vote": "NO OBJECTION",
+     "evidence": "min-lot spread cash 0.17 USD",
+     "fatal_seen": []
+    },
+    {
+     "persona": "Adversarial Pre-Mortem Red Team",
+     "scores": {
+      "correctness": 9.0,
+      "completeness": 4.0,
+      "specificity": 4.0,
+      "robustness": 9.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 69.0,
+     "note": "no fatal flaw found",
+     "vote": "NO OBJECTION",
+     "evidence": "no evidence in this generation",
+     "fatal_seen": []
+    }
+   ],
+   "total": 69.0,
+   "fatal": false,
+   "action_contradicted": false,
+   "verified": false
+  },
+  {
+   "id": "desk_stand_aside_cycle112",
+   "action": "STAND_ASIDE",
+   "asset": null,
+   "side": null,
+   "thesis": "Every candidate carries at least one fatal gate failure on generation 7b193feddf874dfda838cfaae6ac9d39 (2026-10-15 00:01:26 UTC); 0 of 24 assets clear the dual engine. Re-proves itself by re-running each member card.",
+   "engine": null,
+   "target_ticket": null,
+   "metrics": {
+    "asset_present": null,
+    "card_class": "PORTFOLIO",
+    "universe_probe": [
+     {
+      "id": "btc_belt_long",
+      "fatal": true,
+      "qualified": false,
+      "fatal_codes": [
+       "UNPAYABLE_GEOMETRY",
+       "NO_PAYABLE_SETUP",
+       "RR_BELOW_MIN",
+       "COUNTER_TREND"
+      ],
+      "major_codes": [
+       "ENTRY_IN_FUEL"
+      ],
+      "best_reachable_rr": 0.9000576779126965
+     },
+     {
+      "id": "eth_artifact_anchor_short",
+      "fatal": true,
+      "qualified": false,
+      "fatal_codes": [
+       "UNPAYABLE_GEOMETRY",
+       "NO_PAYABLE_SETUP",
+       "RR_BELOW_MIN"
+      ],
+      "major_codes": [
+       "SPREAD_OVER_ATR",
+       "ENTRY_IN_FUEL"
+      ],
+      "best_reachable_rr": 0.39733074857661665
+     },
+     {
+      "id": "eth_shelf_long",
+      "fatal": true,
+      "qualified": false,
+      "fatal_codes": [
+       "OVERWHELM_RATIO",
+       "UNPAYABLE_GEOMETRY",
+       "NO_PAYABLE_SETUP",
+       "RR_BELOW_MIN",
+       "COUNTER_TREND"
+      ],
+      "major_codes": [
+       "SPREAD_OVER_ATR",
+       "ENTRY_IN_FUEL"
+      ],
+      "best_reachable_rr": 0.24075602916137573
+     },
+     {
+      "id": "sol_belt_short",
+      "fatal": true,
+      "qualified": false,
+      "fatal_codes": [
+       "UNPAYABLE_GEOMETRY",
+       "NO_PAYABLE_SETUP",
+       "RR_BELOW_MIN"
+      ],
+      "major_codes": [
+       "SPREAD_OVER_ATR",
+       "ENTRY_IN_FUEL",
+       "BUNKER_WALL_THIN"
+      ],
+      "best_reachable_rr": 0.11445386935705759
+     },
+     {
+      "id": "sp500_core_short",
+      "fatal": true,
+      "qualified": false,
+      "fatal_codes": [
+       "UNPAYABLE_GEOMETRY",
+       "NO_PAYABLE_SETUP",
+       "RR_BELOW_MIN"
+      ],
+      "major_codes": [
+       "ENTRY_IN_FUEL"
+      ],
+      "best_reachable_rr": 0.3247214405716266
+     },
+     {
+      "id": "sp500_long_variant",
+      "fatal": true,
+      "qualified": false,
+      "fatal_codes": [
+       "OVERWHELM_RATIO",
+       "UNPAYABLE_GEOMETRY",
+       "NO_PAYABLE_SETUP",
+       "RR_BELOW_MIN",
+       "COUNTER_TREND"
+      ],
+      "major_codes": [
+       "ENTRY_IN_FUEL",
+       "COUNTER_CVD"
+      ],
+      "best_reachable_rr": 0.18517701599895356
+     },
+     {
+      "id": "near_friction_probe",
+      "fatal": true,
+      "qualified": false,
+      "fatal_codes": [
+       "FRICTION_BUDGET"
+      ],
+      "major_codes": [
+       "SPREAD_CEILING",
+       "SPREAD_OVER_ATR",
+       "MIN_LOT_FRICTION",
+       "ENTRY_IN_FUEL",
+       "NO_BUNKER_WALL"
+      ],
+      "best_reachable_rr": 2.9188821752266243
+     },
+     {
+      "id": "silver_floor_probe",
+      "fatal": true,
+      "qualified": false,
+      "fatal_codes": [
+       "UNPAYABLE_GEOMETRY",
+       "NO_PAYABLE_SETUP",
+       "RR_BELOW_MIN",
+       "FLOOR_BREACH"
+      ],
+      "major_codes": [
+       "SPREAD_CEILING",
+       "ENTRY_IN_FUEL",
+       "BUNKER_WALL_THIN"
+      ],
+      "best_reachable_rr": 1.0614672346563043
+     },
+     {
+      "id": "nas100_extreme_probe",
+      "fatal": true,
+      "qualified": false,
+      "fatal_codes": [
+       "UNPAYABLE_GEOMETRY",
+       "NO_PAYABLE_SETUP",
+       "RR_BELOW_MIN",
+       "FLOOR_BREACH"
+      ],
+      "major_codes": [
+       "ENTRY_IN_FUEL",
+       "COUNTER_CVD"
+      ],
+      "best_reachable_rr": 0.2931463115742978
+     },
+     {
+      "id": "xrp_alt_long",
+      "fatal": true,
+      "qualified": false,
+      "fatal_codes": [
+       "UNPAYABLE_GEOMETRY",
+       "NO_PAYABLE_SETUP",
+       "RR_BELOW_MIN",
+       "COUNTER_TREND",
+       "FLOOR_BREACH"
+      ],
+      "major_codes": [
+       "SPREAD_OVER_ATR",
+       "MIN_LOT_FRICTION",
+       "ENTRY_IN_FUEL",
+       "NO_BUNKER_WALL"
+      ],
+      "best_reachable_rr": 0.28858527638215825
+     },
+     {
+      "id": "eth_artifact_probe",
+      "fatal": true,
+      "qualified": false,
+      "fatal_codes": [
+       "UNPAYABLE_GEOMETRY",
+       "NO_PAYABLE_SETUP",
+       "TP_INSIDE_MAGNET",
+       "RR_BELOW_MIN"
+      ],
+      "major_codes": [
+       "SPREAD_OVER_ATR",
+       "ENTRY_IN_FUEL"
+      ],
+      "best_reachable_rr": 0.3971480259657344
+     },
+     {
+      "id": "fx_range_gate_probe",
+      "fatal": true,
+      "qualified": false,
+      "fatal_codes": [
+       "REGIME_GATED_STAND_ASIDE",
+       "SL_INSIDE_SWEEP",
+       "NO_MAGNETS"
+      ],
+      "major_codes": [
+       "ENTRY_IN_FUEL",
+       "NO_BUNKER_WALL",
+       "COUNTER_CVD"
+      ],
+      "best_reachable_rr": null
+     }
+    ],
+    "qualified_candidates": []
+   },
+   "findings": [
+    {
+     "code": "STAND_ASIDE_JUSTIFIED",
+     "severity": "INFO",
+     "archetype": "A6",
+     "message": "every one of the 12 candidate cards in the universe carries at least one fatal gate failure",
+     "values": {},
+     "purchase_side": false
+    }
+   ],
+   "personas": [
+    {
+     "persona": "Orderflow & Microstructure",
+     "scores": {
+      "correctness": 9.0,
+      "completeness": 5.0,
+      "specificity": 4.0,
+      "robustness": 9.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 71.5,
+     "note": "no fatal flaw found",
+     "vote": "NO OBJECTION",
+     "evidence": "flow coverage: 24/24 assets report taker CVD / tick CVD",
+     "fatal_seen": []
+    },
+    {
+     "persona": "Structural Price Action",
+     "scores": {
+      "correctness": 9.0,
+      "completeness": 5.0,
+      "specificity": 4.0,
+      "robustness": 9.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 71.5,
+     "note": "no fatal flaw found",
+     "vote": "NO OBJECTION",
+     "evidence": "regime coverage: 24/24 assets carry a trend regime",
+     "fatal_seen": []
+    },
+    {
+     "persona": "Liquidation & Stop Forensic",
+     "scores": {
+      "correctness": 9.0,
+      "completeness": 5.0,
+      "specificity": 4.0,
+      "robustness": 9.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 71.5,
+     "note": "no fatal flaw found",
+     "vote": "NO OBJECTION",
+     "evidence": "verified wall defense across the book: 77 wall(s) with persist >= 180 s",
+     "fatal_seen": []
+    },
+    {
+     "persona": "Macro Risk & Portfolio Governor",
+     "scores": {
+      "correctness": 9.0,
+      "completeness": 5.0,
+      "specificity": 4.0,
+      "robustness": 9.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 71.5,
+     "note": "no fatal flaw found",
+     "vote": "NO OBJECTION",
+     "evidence": "balance 4859.55 USD; contingent stress 0 USD; post-joint-stop 4859.55 USD vs 4795.0 buffer; joint-fill slots used 0/4; causal-indicator coverage 24/24 assets; walls >= 500k USD 249, with persist >= 180 s 77",
+     "fatal_seen": []
+    },
+    {
+     "persona": "Adversarial Pre-Mortem Red Team",
+     "scores": {
+      "correctness": 9.0,
+      "completeness": 5.0,
+      "specificity": 4.0,
+      "robustness": 9.0,
+      "clarity": 8.0
+     },
+     "weighted_total": 71.5,
+     "note": "no fatal flaw found",
+     "vote": "NO OBJECTION",
+     "evidence": "worst case: every card in the universe was probed by the full gate set",
+     "fatal_seen": []
+    }
+   ],
+   "total": 71.5,
+   "fatal": false,
+   "action_contradicted": false,
+   "verified": false
+  }
+ ],
+ "bracket": {
+  "rounds": [
+   {
+    "round": 1,
+    "matches": [
+     {
+      "a": "nas100_extreme_probe",
+      "b": "sp500_long_variant",
+      "winner": "nas100_extreme_probe",
+      "reason": "exact tie: fewer standing attacks (deterministic order)",
+      "a_total": 48.0,
+      "b_total": 48.0,
+      "a_fatal": true,
+      "b_fatal": true
+     },
+     {
+      "a": "btc_belt_long",
+      "b": "sol_belt_short",
+      "winner": "btc_belt_long",
+      "reason": "exact tie: fewer standing attacks (deterministic order)",
+      "a_total": 48.0,
+      "b_total": 48.0,
+      "a_fatal": true,
+      "b_fatal": true
+     },
+     {
+      "a": "btc_armed_post_ladder_short",
+      "b": "eth_artifact_anchor_short",
+      "winner": "btc_armed_post_ladder_short",
+      "reason": "eth_artifact_anchor_short is contradicted by the snapshot; btc_armed_post_ladder_short is not",
+      "a_total": 69.0,
+      "b_total": 48.0,
+      "a_fatal": false,
+      "b_fatal": true
+     },
+     {
+      "a": "fx_range_gate_probe",
+      "b": "eth_shelf_long",
+      "winner": "fx_range_gate_probe",
+      "reason": "exact tie: fewer standing attacks (deterministic order)",
+      "a_total": 48.0,
+      "b_total": 48.0,
+      "a_fatal": true,
+      "b_fatal": true
+     },
+     {
+      "a": "near_friction_probe",
+      "b": "silver_floor_probe",
+      "winner": "near_friction_probe",
+      "reason": "higher rubric total (51.39 vs 48.0)",
+      "a_total": 51.39,
+      "b_total": 48.0,
+      "a_fatal": true,
+      "b_fatal": true
+     },
+     {
+      "a": "sp500_core_short",
+      "b": "desk_batch_4x_max_risk",
+      "winner": "desk_batch_4x_max_risk",
+      "reason": "higher rubric total (55.66 vs 48.72)",
+      "a_total": 48.72,
+      "b_total": 55.66,
+      "a_fatal": true,
+      "b_fatal": true
+     },
+     {
+      "a": "xrp_alt_long",
+      "b": "eth_artifact_probe",
+      "winner": "xrp_alt_long",
+      "reason": "exact tie: fewer standing attacks (deterministic order)",
+      "a_total": 48.0,
+      "b_total": 48.0,
+      "a_fatal": true,
+      "b_fatal": true
+     },
+     {
+      "a": "nas100_relief_rally_short",
+      "b": "desk_stand_aside_cycle112",
+      "winner": "desk_stand_aside_cycle112",
+      "reason": "higher rubric total (71.5 vs 69.0)",
+      "a_total": 69.0,
+      "b_total": 71.5,
+      "a_fatal": false,
+      "b_fatal": false
+     }
+    ],
+    "bye": null,
+    "survivors": [
+     "nas100_extreme_probe",
+     "btc_belt_long",
+     "btc_armed_post_ladder_short",
+     "fx_range_gate_probe",
+     "near_friction_probe",
+     "desk_batch_4x_max_risk",
+     "xrp_alt_long",
+     "desk_stand_aside_cycle112"
+    ]
+   },
+   {
+    "round": 2,
+    "matches": [
+     {
+      "a": "nas100_extreme_probe",
+      "b": "btc_belt_long",
+      "winner": "nas100_extreme_probe",
+      "reason": "exact tie: fewer standing attacks (deterministic order)",
+      "a_total": 48.0,
+      "b_total": 48.0,
+      "a_fatal": true,
+      "b_fatal": true
+     },
+     {
+      "a": "btc_armed_post_ladder_short",
+      "b": "fx_range_gate_probe",
+      "winner": "btc_armed_post_ladder_short",
+      "reason": "fx_range_gate_probe is contradicted by the snapshot; btc_armed_post_ladder_short is not",
+      "a_total": 69.0,
+      "b_total": 48.0,
+      "a_fatal": false,
+      "b_fatal": true
+     },
+     {
+      "a": "near_friction_probe",
+      "b": "desk_batch_4x_max_risk",
+      "winner": "desk_batch_4x_max_risk",
+      "reason": "higher rubric total (55.66 vs 51.39)",
+      "a_total": 51.39,
+      "b_total": 55.66,
+      "a_fatal": true,
+      "b_fatal": true
+     },
+     {
+      "a": "xrp_alt_long",
+      "b": "desk_stand_aside_cycle112",
+      "winner": "desk_stand_aside_cycle112",
+      "reason": "xrp_alt_long is contradicted by the snapshot; desk_stand_aside_cycle112 is not",
+      "a_total": 48.0,
+      "b_total": 71.5,
+      "a_fatal": true,
+      "b_fatal": false
+     }
+    ],
+    "bye": null,
+    "survivors": [
+     "nas100_extreme_probe",
+     "btc_armed_post_ladder_short",
+     "desk_batch_4x_max_risk",
+     "desk_stand_aside_cycle112"
+    ]
+   },
+   {
+    "round": 3,
+    "matches": [
+     {
+      "a": "nas100_extreme_probe",
+      "b": "btc_armed_post_ladder_short",
+      "winner": "btc_armed_post_ladder_short",
+      "reason": "nas100_extreme_probe is contradicted by the snapshot; btc_armed_post_ladder_short is not",
+      "a_total": 48.0,
+      "b_total": 69.0,
+      "a_fatal": true,
+      "b_fatal": false
+     },
+     {
+      "a": "desk_batch_4x_max_risk",
+      "b": "desk_stand_aside_cycle112",
+      "winner": "desk_stand_aside_cycle112",
+      "reason": "desk_batch_4x_max_risk is contradicted by the snapshot; desk_stand_aside_cycle112 is not",
+      "a_total": 55.66,
+      "b_total": 71.5,
+      "a_fatal": true,
+      "b_fatal": false
+     }
+    ],
+    "bye": null,
+    "survivors": [
+     "btc_armed_post_ladder_short",
+     "desk_stand_aside_cycle112"
+    ]
+   },
+   {
+    "round": 4,
+    "matches": [
+     {
+      "a": "btc_armed_post_ladder_short",
+      "b": "desk_stand_aside_cycle112",
+      "winner": "desk_stand_aside_cycle112",
+      "reason": "higher rubric total (71.5 vs 69.0)",
+      "a_total": 69.0,
+      "b_total": 71.5,
+      "a_fatal": false,
+      "b_fatal": false
+     }
+    ],
+    "bye": null,
+    "survivors": [
+     "desk_stand_aside_cycle112"
+    ]
+   }
+  ],
+  "winner": "desk_stand_aside_cycle112"
+ },
+ "rubric_weights": {
+  "correctness": 30,
+  "completeness": 25,
+  "specificity": 15,
+  "robustness": 20,
+  "clarity": 10
+ },
+ "invariants": {
+  "hard_floor_usd": 4775.0,
+  "operating_buffer_usd": 4795.0,
+  "risk_envelope_usd": [
+   7.5,
+   14.5
+  ],
+  "stress_multiplier": 1.25,
+  "stress_per_ticket_usd": 2.0,
+  "entry_proximity_atr_max": 2.0,
+  "sl_buffer_atr": [
+   0.35,
+   0.5
+  ],
+  "friction_max": 0.15,
+  "rr_min": 2.0,
+  "target_horizon_atr": 3.5
+ }
+}

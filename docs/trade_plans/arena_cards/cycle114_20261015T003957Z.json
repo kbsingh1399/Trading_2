@@ -1,0 +1,574 @@
+{
+ "cycle": 114,
+ "as_of_utc": "2026-10-15 00:39:57 UTC",
+ "generation_id": "58546954882d4480970079703e97b9c2",
+ "supersedes_generation": "92f847703ca744488026fec4ba7e6cd5",
+ "card_semantics": "STAGE = actionable ticket candidate; WATCH = armed forward trigger; STAGE_BATCH = capacity strawman; STAND_ASIDE = council posture card whose universe is re-probed card-by-card.",
+ "desk_state_note": "Desk flat: 0 active positions, 0 pending orders, 0/4 joint-fill slots used.",
+ "cards": [
+  {
+   "id": "btc_belt_long",
+   "action": "STAGE",
+   "asset": "BTC",
+   "side": "LONG",
+   "entry": 81069.364525,
+   "sl": 80517.501325,
+   "tp": 81518.4,
+   "lots": 0.02,
+   "engine": 2,
+   "thesis": "Best geometry in the book again (0.81R ceiling): mid has slipped back under the EMA20 81,625 to 81,529, the compliant stop anchors on the 80,600 fuel edge, and the target is the 10 bps front-run of the [81,600-81,800] lane. A Model-1 long is banned in a BEARISH HTF and mid sits inside the [80,600-81,600] sell-stop/cascade lane carrying $125.2M.",
+   "meta": {
+    "derivation": "engine screen best (materiality + trusted magnets + ladder merge + front-run)",
+    "nominal_risk_usd": 11.04
+   }
+  },
+  {
+   "id": "eth_shelf_long",
+   "action": "STAGE",
+   "asset": "ETH",
+   "side": "LONG",
+   "entry": 2398.7262450000003,
+   "sl": 2296.513685,
+   "tp": 2447.55,
+   "lots": 0.11,
+   "engine": 2,
+   "thesis": "Bullish-reversion bid into the $15.48M/1,386 s 0xab5e6f grid at 2,392.2 (crypto shield satisfied) but the BEARISH stack (EMA20 2,419.7 < EMA50 2,435.1 < EMA200 2,476.6) and the $323.6M cascade structure under price cap the ceiling at 0.48R.",
+   "meta": {
+    "derivation": "engine screen best (materiality + trusted magnets + ladder merge + front-run)",
+    "nominal_risk_usd": 11.24
+   }
+  },
+  {
+   "id": "sol_belt_short",
+   "action": "STAGE",
+   "asset": "SOL",
+   "side": "SHORT",
+   "entry": 105.219885,
+   "sl": 114.166005,
+   "tp": 104.10399999999998,
+   "lots": 0.01,
+   "engine": 2,
+   "thesis": "Mid 104.295 is inside the [104,105]-adjacent belt with a $106M cascade stack below; compliant stop 9 ATR wide, ceiling 0.13R.",
+   "meta": {
+    "derivation": "engine screen best (materiality + trusted magnets + ladder merge + front-run)",
+    "nominal_risk_usd": 8.95
+   }
+  },
+  {
+   "id": "sol_counter_long",
+   "action": "STAGE",
+   "asset": "SOL",
+   "side": "LONG",
+   "entry": 103.370115,
+   "sl": 92.833995,
+   "tp": 105.894,
+   "lots": 0.01,
+   "engine": 2,
+   "thesis": "Counter-trend long into a BEARISH stack; ceiling 0.24R with the $6.59M bid wall at 102.72 as the only eligible support.",
+   "meta": {
+    "derivation": "engine screen best (materiality + trusted magnets + ladder merge + front-run)",
+    "nominal_risk_usd": 10.54
+   }
+  },
+  {
+   "id": "sp500_core_short",
+   "action": "STAGE",
+   "asset": "SP500",
+   "side": "SHORT",
+   "entry": 7719.5885,
+   "sl": 7813.2305,
+   "tp": 7687.679999999999,
+   "lots": 0.01,
+   "engine": 2,
+   "thesis": "Cleanest microstructure in the book (0.44 bps) but the compliant stop walks to 92 pts while the reachable reward is 31 pts (0.34R); the $38.33M bid wall at 7,682 sits where the target must print.",
+   "meta": {
+    "derivation": "engine screen best (materiality + trusted magnets + ladder merge + front-run)",
+    "nominal_risk_usd": 9.36
+   }
+  },
+  {
+   "id": "sp500_long_variant",
+   "action": "STAGE",
+   "asset": "SP500",
+   "side": "LONG",
+   "entry": 7683.5915,
+   "sl": 7596.7695,
+   "tp": 7712.28,
+   "lots": 0.01,
+   "engine": 2,
+   "thesis": "Mirror geometry: 0.33R ceiling with the stop below the same 7,682 defence and the BEARISH stack overhead.",
+   "meta": {
+    "derivation": "engine screen best (materiality + trusted magnets + ladder merge + front-run)",
+    "nominal_risk_usd": 8.68
+   }
+  },
+  {
+   "id": "ltc_friction_short",
+   "action": "STAGE",
+   "asset": "LTC",
+   "side": "SHORT",
+   "entry": 59.699169999999995,
+   "sl": 61.48421,
+   "tp": 58.95889999999999,
+   "lots": 0.1,
+   "engine": 2,
+   "thesis": "Gross 0.42R at 16.81% friction (rule ceiling 15%) with zero eligible walls on the entire book; LTC is friction-class this generation.",
+   "meta": {
+    "derivation": "engine screen best (materiality + trusted magnets + ladder merge + front-run)",
+    "nominal_risk_usd": 17.85,
+    "allow_out_of_envelope": true
+   }
+  },
+  {
+   "id": "near_friction_probe",
+   "action": "STAGE",
+   "asset": "NEAR",
+   "side": "SHORT",
+   "entry": 4.90056,
+   "sl": 5.02428,
+   "tp": 4.774769999999999,
+   "lots": 1.0,
+   "engine": 2,
+   "thesis": "Gross 1.02R at 25.86% friction; banned instrument, museum geometry.",
+   "meta": {
+    "derivation": "engine screen best (materiality + trusted magnets + ladder merge + front-run)",
+    "nominal_risk_usd": 12.37
+   }
+  },
+  {
+   "id": "silver_floor_probe",
+   "action": "STAGE",
+   "asset": "SILVER",
+   "side": "SHORT",
+   "entry": 56.56069,
+   "sl": 57.28197,
+   "tp": 55.45539999999999,
+   "lots": 0.01,
+   "engine": 2,
+   "thesis": "1.53R ceiling but min-lot risk 36.06 USD at the compliant stop (2.5x the envelope) and the best commodity-class wall is $0.29M against the $0.75M shield.",
+   "meta": {
+    "derivation": "engine screen best (materiality + trusted magnets + ladder merge + front-run)",
+    "nominal_risk_usd": 36.06,
+    "allow_out_of_envelope": true
+   }
+  },
+  {
+   "id": "nas100_extreme_probe",
+   "action": "STAGE",
+   "asset": "NAS100",
+   "side": "SHORT",
+   "entry": 29868.505855,
+   "sl": 30921.783615,
+   "tp": 29529.499999999996,
+   "lots": 0.01,
+   "engine": 1,
+   "thesis": "Deepest RSI dislocation in the book (31.4, BEARISH stack 29,838 < 30,031 < 30,393) but the compliant stop anchors on the 30,900 fuel edge -> 1,053 pts = 105.33 USD at min lot.",
+   "meta": {
+    "derivation": "engine screen best (materiality + trusted magnets + ladder merge + front-run)",
+    "nominal_risk_usd": 105.33,
+    "allow_out_of_envelope": true
+   }
+  },
+  {
+   "id": "btc_relief_rally_short",
+   "action": "STAGE",
+   "asset": "BTC",
+   "side": "SHORT",
+   "entry": 81600.0,
+   "sl": 82530.0,
+   "tp": 80950.0,
+   "lots": 0.01,
+   "engine": 2,
+   "thesis": "Astra CP-113/114 hypothesis re-derived: relief flow into the EMA20 81,625 shelf, but mid has now slipped back BELOW the shelf (81,529) and the compliant stop must clear the [81,600-82,600] purchase belt.",
+   "meta": {
+    "derivation": "entry at the EMA20 shelf, SL above the belt, TP front-running the 80,950 pool",
+    "nominal_risk_usd": 9.3
+   }
+  },
+  {
+   "id": "eth_watch_probe",
+   "action": "STAGE",
+   "asset": "ETH",
+   "side": "SHORT",
+   "entry": 2432.0,
+   "sl": 2464.35,
+   "tp": 2395.2,
+   "lots": 0.38,
+   "engine": 2,
+   "thesis": "Astra's ETH VAL-shelf ticket skeleton tested verbatim for a third generation: entry 2,432 inside the 2,426.6-2,442.7 zone, SL 2,464.35, TP 2,395.2. No rejection wick has formed (max upper wick 0.29 ATR) and the engine returns no legal front-runnable geometry at all (mid sits inside the [2,300-2,420] ladder).",
+   "meta": {
+    "derivation": "peer skeleton, 0.38 lots"
+   }
+  },
+  {
+   "id": "uswti_bullish_pullback_long",
+   "action": "STAGE",
+   "asset": "USWTI",
+   "side": "LONG",
+   "entry": 94.29,
+   "sl": 93.0,
+   "tp": 94.94,
+   "lots": 0.09,
+   "engine": 2,
+   "thesis": "The only BULLISH regime with trapped sellers below; pullback into the prior-day POC 94.29 / weekly VWAP 93.85 shelf. Best commodity wall is $0.32M against the $0.75M shield and the stop belts overlap the shelf.",
+   "meta": {
+    "derivation": "entry at prior-day POC, SL below the 93.0 pool, TP at prior-day VAH",
+    "nominal_risk_usd": 11.61
+   }
+  },
+  {
+   "id": "gold_range_gate_probe",
+   "action": "STAGE",
+   "asset": "GOLD",
+   "side": "SHORT",
+   "entry": 4144.63,
+   "sl": 4149.46,
+   "tp": 4132.58,
+   "lots": 0.02,
+   "engine": 2,
+   "thesis": "GOLD is RANGE_BOUND again with RSI 75.18 while SELLER_AGGRESSION prints in the TradFi tape: the regime gate strikes the card down before geometry, and the commodity shield fails at $0.61M < $0.75M.",
+   "meta": {
+    "derivation": "0.5 ATR entry / 0.6 ATR stop / 1.0 ATR target probe",
+    "nominal_risk_usd": 9.66
+   }
+  },
+  {
+   "id": "desk_batch_4x_max_risk",
+   "action": "STAGE_BATCH",
+   "asset": "BTC",
+   "side": "SHORT",
+   "entry": null,
+   "sl": null,
+   "tp": null,
+   "lots": null,
+   "engine": 2,
+   "thesis": "Capacity strawman: four max-envelope tickets (4 x 20.12 = 80.48 stress) against the 64.55 USD budget; the ceiling is three tickets (60.36).",
+   "meta": {
+    "strawman": true,
+    "members": [
+     "btc_belt_long",
+     "eth_shelf_long",
+     "sp500_core_short",
+     "silver_floor_probe"
+    ],
+    "joint_stressed_usd": 80.5,
+    "budget_usd": 64.55
+   }
+  },
+  {
+   "id": "eth_val_rejection_watch",
+   "action": "WATCH",
+   "asset": "ETH",
+   "side": null,
+   "entry": null,
+   "sl": null,
+   "tp": null,
+   "lots": null,
+   "engine": 2,
+   "thesis": "Peer-audit watch, generation 2 of the re-test spec. ETH traded DOWN out of the zone (mid 2,418.15, below the VAL 2,424.04 and the EMA20 2,419.68) with rising 15m closes back toward it. The rejection wick never formed (max upper wick 0.29 ATR vs the 0.5 ATR gate), and the engine now returns NO legal front-runnable geometry at all because mid sits inside the $323.6M [2,300-2,420] ladder.",
+   "meta": {
+    "condition": ">= 0.5 ATR rejection wick off the 2,424.0-2,442.7 zone AND >= 2.0R geometry at the compliant stop (currently none) AND symmetric shield (bid 2,392.2 $15.48M vs ask 2,442.0 $8.15M / 2,457.6 $15.90M - satisfied)",
+    "invalidation": "2 consecutive 15m closes above the EMA50 2,435.07 (expiry per Astra spec) or 8 wick-less generations (this is generation 2)",
+    "armed_levels": {
+     "zone": [
+      2424.0,
+      2442.7
+     ],
+     "sl_ref": 2464.35,
+     "tp": 2395.2,
+     "lots": 0.38
+    }
+   }
+  },
+  {
+   "id": "nas100_belt_thin_watch",
+   "action": "WATCH",
+   "asset": "NAS100",
+   "side": null,
+   "entry": null,
+   "sl": null,
+   "tp": null,
+   "lots": null,
+   "engine": 1,
+   "thesis": "The purchase-side belt that falsified this watch in Cycle 112 has THINNED: stops above now read [29,800-29,900] $0.109M and liquidation band [29,900-30,000] $0.114M (was $4.12M combined). One precondition of three now holds; the rally and the >= $1.0M ask shield do not (best shelf-adjacent ask wall is $0.97M at 29,868/481 s vs the $1.0M index shield).",
+   "meta": {
+    "condition": "relief rally >= 29,930 with velocity_ratio < 0.70 AND a >= 1.0M USD ask wall defending the 29,850-29,900 EMA20 shelf AND engine geometry >= 2.0R (currently 0.32R ceiling)",
+    "invalidation": "15m close > 30,100 or the belt rebuilding above $1.0M",
+    "armed_levels": {
+     "shelf": [
+      29850.0,
+      29900.0
+     ],
+     "sl_max": 30050.0,
+     "tp": 29729.7
+    }
+   }
+  },
+  {
+   "id": "btc_ladder_break_watch",
+   "action": "WATCH",
+   "asset": "BTC",
+   "side": null,
+   "entry": null,
+   "sl": null,
+   "tp": null,
+   "lots": null,
+   "engine": 2,
+   "thesis": "BTC is coiling under the EMA20 81,625 with the $25.0M/13,443 s bid wall at 81,196 the only defence and the [81,600-82,600] purchase belt overhead. A decisive loss of 81,000 opens the 79,800-80,100 pool.",
+   "meta": {
+    "condition": "15m close < 81,000 with session CVD < 0 and the 81,196 bid wall thinning",
+    "invalidation": "15m close > 82,838 (top ask wall) or the bid wall rebuilt > $25M",
+    "armed_levels": {
+     "trigger": 81000.0,
+     "invalidation": 82838.0,
+     "target_zone": [
+      79800.0,
+      80100.0
+     ]
+    }
+   }
+  },
+  {
+   "id": "desk_stand_aside_cycle114",
+   "action": "STAND_ASIDE",
+   "asset": null,
+   "side": null,
+   "entry": null,
+   "sl": null,
+   "tp": null,
+   "lots": null,
+   "engine": null,
+   "thesis": "Second consecutive generation with the session-VWAP bridge dark (vwap_z_score null on all 24 assets) and zero payable geometry: Engine 1 NOT EVALUABLE, Engine 2 fails the exit leg or min-lot affordability on every asset. Re-proves itself card by card.",
+   "meta": {
+    "universe": [
+     {
+      "id": "btc_belt_long",
+      "action": "STAGE",
+      "asset": "BTC",
+      "side": "LONG",
+      "entry": 81069.364525,
+      "sl": 80517.501325,
+      "tp": 81518.4,
+      "lots": 0.02,
+      "engine": 2,
+      "thesis": "Best geometry in the book again (0.81R ceiling): mid has slipped back under the EMA20 81,625 to 81,529, the compliant stop anchors on the 80,600 fuel edge, and the target is the 10 bps front-run of the [81,600-81,800] lane. A Model-1 long is banned in a BEARISH HTF and mid sits inside the [80,600-81,600] sell-stop/cascade lane carrying $125.2M.",
+      "meta": {
+       "derivation": "engine screen best (materiality + trusted magnets + ladder merge + front-run)",
+       "nominal_risk_usd": 11.04
+      }
+     },
+     {
+      "id": "eth_shelf_long",
+      "action": "STAGE",
+      "asset": "ETH",
+      "side": "LONG",
+      "entry": 2398.7262450000003,
+      "sl": 2296.513685,
+      "tp": 2447.55,
+      "lots": 0.11,
+      "engine": 2,
+      "thesis": "Bullish-reversion bid into the $15.48M/1,386 s 0xab5e6f grid at 2,392.2 (crypto shield satisfied) but the BEARISH stack (EMA20 2,419.7 < EMA50 2,435.1 < EMA200 2,476.6) and the $323.6M cascade structure under price cap the ceiling at 0.48R.",
+      "meta": {
+       "derivation": "engine screen best (materiality + trusted magnets + ladder merge + front-run)",
+       "nominal_risk_usd": 11.24
+      }
+     },
+     {
+      "id": "sol_belt_short",
+      "action": "STAGE",
+      "asset": "SOL",
+      "side": "SHORT",
+      "entry": 105.219885,
+      "sl": 114.166005,
+      "tp": 104.10399999999998,
+      "lots": 0.01,
+      "engine": 2,
+      "thesis": "Mid 104.295 is inside the [104,105]-adjacent belt with a $106M cascade stack below; compliant stop 9 ATR wide, ceiling 0.13R.",
+      "meta": {
+       "derivation": "engine screen best (materiality + trusted magnets + ladder merge + front-run)",
+       "nominal_risk_usd": 8.95
+      }
+     },
+     {
+      "id": "sol_counter_long",
+      "action": "STAGE",
+      "asset": "SOL",
+      "side": "LONG",
+      "entry": 103.370115,
+      "sl": 92.833995,
+      "tp": 105.894,
+      "lots": 0.01,
+      "engine": 2,
+      "thesis": "Counter-trend long into a BEARISH stack; ceiling 0.24R with the $6.59M bid wall at 102.72 as the only eligible support.",
+      "meta": {
+       "derivation": "engine screen best (materiality + trusted magnets + ladder merge + front-run)",
+       "nominal_risk_usd": 10.54
+      }
+     },
+     {
+      "id": "sp500_core_short",
+      "action": "STAGE",
+      "asset": "SP500",
+      "side": "SHORT",
+      "entry": 7719.5885,
+      "sl": 7813.2305,
+      "tp": 7687.679999999999,
+      "lots": 0.01,
+      "engine": 2,
+      "thesis": "Cleanest microstructure in the book (0.44 bps) but the compliant stop walks to 92 pts while the reachable reward is 31 pts (0.34R); the $38.33M bid wall at 7,682 sits where the target must print.",
+      "meta": {
+       "derivation": "engine screen best (materiality + trusted magnets + ladder merge + front-run)",
+       "nominal_risk_usd": 9.36
+      }
+     },
+     {
+      "id": "sp500_long_variant",
+      "action": "STAGE",
+      "asset": "SP500",
+      "side": "LONG",
+      "entry": 7683.5915,
+      "sl": 7596.7695,
+      "tp": 7712.28,
+      "lots": 0.01,
+      "engine": 2,
+      "thesis": "Mirror geometry: 0.33R ceiling with the stop below the same 7,682 defence and the BEARISH stack overhead.",
+      "meta": {
+       "derivation": "engine screen best (materiality + trusted magnets + ladder merge + front-run)",
+       "nominal_risk_usd": 8.68
+      }
+     },
+     {
+      "id": "ltc_friction_short",
+      "action": "STAGE",
+      "asset": "LTC",
+      "side": "SHORT",
+      "entry": 59.699169999999995,
+      "sl": 61.48421,
+      "tp": 58.95889999999999,
+      "lots": 0.1,
+      "engine": 2,
+      "thesis": "Gross 0.42R at 16.81% friction (rule ceiling 15%) with zero eligible walls on the entire book; LTC is friction-class this generation.",
+      "meta": {
+       "derivation": "engine screen best (materiality + trusted magnets + ladder merge + front-run)",
+       "nominal_risk_usd": 17.85,
+       "allow_out_of_envelope": true
+      }
+     },
+     {
+      "id": "near_friction_probe",
+      "action": "STAGE",
+      "asset": "NEAR",
+      "side": "SHORT",
+      "entry": 4.90056,
+      "sl": 5.02428,
+      "tp": 4.774769999999999,
+      "lots": 1.0,
+      "engine": 2,
+      "thesis": "Gross 1.02R at 25.86% friction; banned instrument, museum geometry.",
+      "meta": {
+       "derivation": "engine screen best (materiality + trusted magnets + ladder merge + front-run)",
+       "nominal_risk_usd": 12.37
+      }
+     },
+     {
+      "id": "silver_floor_probe",
+      "action": "STAGE",
+      "asset": "SILVER",
+      "side": "SHORT",
+      "entry": 56.56069,
+      "sl": 57.28197,
+      "tp": 55.45539999999999,
+      "lots": 0.01,
+      "engine": 2,
+      "thesis": "1.53R ceiling but min-lot risk 36.06 USD at the compliant stop (2.5x the envelope) and the best commodity-class wall is $0.29M against the $0.75M shield.",
+      "meta": {
+       "derivation": "engine screen best (materiality + trusted magnets + ladder merge + front-run)",
+       "nominal_risk_usd": 36.06,
+       "allow_out_of_envelope": true
+      }
+     },
+     {
+      "id": "nas100_extreme_probe",
+      "action": "STAGE",
+      "asset": "NAS100",
+      "side": "SHORT",
+      "entry": 29868.505855,
+      "sl": 30921.783615,
+      "tp": 29529.499999999996,
+      "lots": 0.01,
+      "engine": 1,
+      "thesis": "Deepest RSI dislocation in the book (31.4, BEARISH stack 29,838 < 30,031 < 30,393) but the compliant stop anchors on the 30,900 fuel edge -> 1,053 pts = 105.33 USD at min lot.",
+      "meta": {
+       "derivation": "engine screen best (materiality + trusted magnets + ladder merge + front-run)",
+       "nominal_risk_usd": 105.33,
+       "allow_out_of_envelope": true
+      }
+     },
+     {
+      "id": "btc_relief_rally_short",
+      "action": "STAGE",
+      "asset": "BTC",
+      "side": "SHORT",
+      "entry": 81600.0,
+      "sl": 82530.0,
+      "tp": 80950.0,
+      "lots": 0.01,
+      "engine": 2,
+      "thesis": "Astra CP-113/114 hypothesis re-derived: relief flow into the EMA20 81,625 shelf, but mid has now slipped back BELOW the shelf (81,529) and the compliant stop must clear the [81,600-82,600] purchase belt.",
+      "meta": {
+       "derivation": "entry at the EMA20 shelf, SL above the belt, TP front-running the 80,950 pool",
+       "nominal_risk_usd": 9.3
+      }
+     },
+     {
+      "id": "eth_watch_probe",
+      "action": "STAGE",
+      "asset": "ETH",
+      "side": "SHORT",
+      "entry": 2432.0,
+      "sl": 2464.35,
+      "tp": 2395.2,
+      "lots": 0.38,
+      "engine": 2,
+      "thesis": "Astra's ETH VAL-shelf ticket skeleton tested verbatim for a third generation: entry 2,432 inside the 2,426.6-2,442.7 zone, SL 2,464.35, TP 2,395.2. No rejection wick has formed (max upper wick 0.29 ATR) and the engine returns no legal front-runnable geometry at all (mid sits inside the [2,300-2,420] ladder).",
+      "meta": {
+       "derivation": "peer skeleton, 0.38 lots"
+      }
+     },
+     {
+      "id": "uswti_bullish_pullback_long",
+      "action": "STAGE",
+      "asset": "USWTI",
+      "side": "LONG",
+      "entry": 94.29,
+      "sl": 93.0,
+      "tp": 94.94,
+      "lots": 0.09,
+      "engine": 2,
+      "thesis": "The only BULLISH regime with trapped sellers below; pullback into the prior-day POC 94.29 / weekly VWAP 93.85 shelf. Best commodity wall is $0.32M against the $0.75M shield and the stop belts overlap the shelf.",
+      "meta": {
+       "derivation": "entry at prior-day POC, SL below the 93.0 pool, TP at prior-day VAH",
+       "nominal_risk_usd": 11.61
+      }
+     },
+     {
+      "id": "gold_range_gate_probe",
+      "action": "STAGE",
+      "asset": "GOLD",
+      "side": "SHORT",
+      "entry": 4144.63,
+      "sl": 4149.46,
+      "tp": 4132.58,
+      "lots": 0.02,
+      "engine": 2,
+      "thesis": "GOLD is RANGE_BOUND again with RSI 75.18 while SELLER_AGGRESSION prints in the TradFi tape: the regime gate strikes the card down before geometry, and the commodity shield fails at $0.61M < $0.75M.",
+      "meta": {
+       "derivation": "0.5 ATR entry / 0.6 ATR stop / 1.0 ATR target probe",
+       "nominal_risk_usd": 9.66
+      }
+     }
+    ]
+   }
+  }
+ ]
+}

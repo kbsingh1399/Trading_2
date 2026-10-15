@@ -1,0 +1,327 @@
+{
+  "cycle": 106,
+  "as_of_utc": "2026-10-14 20:56:21 UTC",
+  "generation_id": "c82b8c85623c4368812f708ca9dd33e8",
+  "card_semantics": "STAGE/STAGE_BATCH cards carry their own levels. HOLD/DELETE/MODIFY cards carry the levels of the order they act upon in meta.evaluates and are audited by an internal STAGE probe, so a resting limit faces the identical gate set as a fresh one. WATCH cards carry an armed trigger and are not evaluated for geometry.",
+  "cards": [
+    {
+      "id": "eth_hold_18925596",
+      "action": "HOLD",
+      "asset": "ETH",
+      "target_ticket": 18925596,
+      "engine": 2,
+      "thesis": "Mandate 3 option A: keep the live ETHUSD.pi SELL LIMIT 1.00 lot @ 2447.50 (SL 2457.00, TP 2425.00) resting unchanged because the bearish Model 2 relief-rally thesis is still directionally alive.",
+      "meta": {
+        "evaluates": {
+          "asset": "ETH",
+          "side": "SHORT",
+          "entry": 2447.5,
+          "sl": 2457.0,
+          "tp": 2425.0,
+          "lots": 1.0
+        },
+        "source": "MT5 pending order observed in snapshot generation c82b8c85"
+      }
+    },
+    {
+      "id": "eth_modify_safe_stop_near_tp",
+      "action": "MODIFY",
+      "asset": "ETH",
+      "target_ticket": 18925596,
+      "engine": 2,
+      "thesis": "Mandate 3 option B: repair the ticket - entry pulled to the 2.0 ATR proximity perimeter, SL pushed clear of the whole 2440-2530 purchase-side belt, TP front-running the 2410 sell-stop magnet, lots downsized for the wider bunker (Gate R-4).",
+      "meta": {
+        "evaluates": {
+          "asset": "ETH",
+          "side": "SHORT",
+          "entry": 2442.5,
+          "sl": 2544.0,
+          "tp": 2412.4,
+          "lots": 0.14
+        },
+        "derivation": "entry = mid + 1.99*ATR; SL = top-list union top 2530 + 0.35*ATR; TP = 2410 + 7.5 bps; lots = 13.725 USD risk on a 91.5 point stop"
+      }
+    },
+    {
+      "id": "eth_modify_safe_stop_deep_tp",
+      "action": "MODIFY",
+      "asset": "ETH",
+      "target_ticket": 18925596,
+      "engine": 2,
+      "thesis": "Mandate 3 option B variant: identical repaired bunker, TP pushed to the 2300-2310 liquidation cascade magnet to manufacture payable reward.",
+      "meta": {
+        "evaluates": {
+          "asset": "ETH",
+          "side": "SHORT",
+          "entry": 2442.5,
+          "sl": 2544.0,
+          "tp": 2311.5,
+          "lots": 0.14
+        },
+        "derivation": "same geometry, TP = 2310 + 7.5 bps front-run"
+      }
+    },
+    {
+      "id": "eth_modify_r3_forced_rr",
+      "action": "MODIFY",
+      "asset": "ETH",
+      "target_ticket": 18925596,
+      "engine": 2,
+      "thesis": "Mandate 3 option B adversarial variant: the only TP that satisfies a 2.2R gross requirement is 2241.2, which is 60 points BELOW the outer edge of the 108.45M USD 2300-2310 magnet cluster. Tests whether a compliant R:R can be claimed without front-running the magnet.",
+      "meta": {
+        "evaluates": {
+          "asset": "ETH",
+          "side": "SHORT",
+          "entry": 2442.5,
+          "sl": 2544.0,
+          "tp": 2219.2,
+          "lots": 0.14
+        },
+        "derivation": "TP = entry - 2.2 * 101.5 point stop"
+      }
+    },
+    {
+      "id": "eth_delete_18925596",
+      "action": "DELETE",
+      "asset": "ETH",
+      "target_ticket": 18925596,
+      "engine": 2,
+      "thesis": "Mandate 3 option C: cancel the resting order - price drifted 2.46 ATR from the entry, the stop sits inside the 2450-2460 purchase-side sweep bin, friction is 33.7% of risk, and the cited sheltering ask wall relocated from 2450.30 down to 2439.10.",
+      "meta": {
+        "evaluates": {
+          "asset": "ETH",
+          "side": "SHORT",
+          "entry": 2447.5,
+          "sl": 2457.0,
+          "tp": 2425.0,
+          "lots": 1.0
+        },
+        "source": "Card under Mandate 3"
+      }
+    },
+    {
+      "id": "btc_stage_82190_argon",
+      "action": "STAGE",
+      "asset": "BTC",
+      "side": "SHORT",
+      "entry": 82190.0,
+      "sl": 82420.0,
+      "tp": 81660.0,
+      "lots": 0.05,
+      "engine": 2,
+      "thesis": "Peer-question card from the Gemini/Argon desk: Model 2 relief-rally short at 82190 (SL 82420, TP 81660), quoted 2.30R at 11.50 USD nominal risk.",
+      "meta": {
+        "quoted_rr": 2.3,
+        "source": "PART CP peer audit question"
+      }
+    },
+    {
+      "id": "btc_stage_argon_tp_fixed",
+      "action": "STAGE",
+      "asset": "BTC",
+      "side": "SHORT",
+      "entry": 82190.0,
+      "sl": 82420.0,
+      "tp": 81710.0,
+      "lots": 0.05,
+      "engine": 2,
+      "thesis": "Isolates a single defect: the Argon card with only the TP repaired to a true 8.5 bps front-run of the 81700 band edge. Tests whether the take-profit placement or the stop placement is the binding flaw.",
+      "meta": {
+        "variant_of": "btc_stage_82190_argon"
+      }
+    },
+    {
+      "id": "btc_stage_belt_cleared",
+      "action": "STAGE",
+      "asset": "BTC",
+      "side": "SHORT",
+      "entry": 82190.0,
+      "sl": 83390.0,
+      "tp": 80160.0,
+      "lots": 0.01,
+      "engine": 2,
+      "thesis": "Maximum-effort repair: same entry, stop pushed clear of the entire contiguous 81800-83300 purchase-side fuel belt, TP front-running the 80000-80100 stop magnet (22.93M USD). Tests whether a fully compliant bunker can still pay 2.0R.",
+      "meta": {
+        "derivation": "SL = top-list union top 83300 + 0.35*ATR; TP = 80100 + 7.5 bps"
+      }
+    },
+    {
+      "id": "sp500_stage_short_7738",
+      "action": "STAGE",
+      "asset": "SP500",
+      "side": "SHORT",
+      "entry": 7737.8,
+      "sl": 7823.6,
+      "tp": 7650.8,
+      "lots": 0.01,
+      "engine": 2,
+      "thesis": "Model 2 relief-rally short at the 2.0 ATR perimeter with the stop above the 7720-7820 purchase-side belt and the TP front-running the 7650-7660 magnet.",
+      "meta": {
+        "derivation": "entry = mid + 2.0*ATR; SL = 7820 union top + 0.35*ATR; TP = 7660 + 7.5 bps"
+      }
+    },
+    {
+      "id": "nas100_stage_short_30000",
+      "action": "STAGE",
+      "asset": "NAS100",
+      "side": "SHORT",
+      "entry": 30000.0,
+      "sl": 30260.0,
+      "tp": 29620.0,
+      "lots": 0.01,
+      "engine": 2,
+      "thesis": "Model 2 short into NAS100's thin overhead fuel pocket with 1.0M+ walls on both sides; tests whether any setup can be certified on an asset with no causal indicators.",
+      "meta": {
+        "derivation": "entry 30000 round number; SL above the 30100-30200 bin + buffer; TP front-run of the 29500-29600 cascade band"
+      }
+    },
+    {
+      "id": "gold_stage_short_4115",
+      "action": "STAGE",
+      "asset": "GOLD",
+      "side": "SHORT",
+      "entry": 4115.0,
+      "sl": 4125.0,
+      "tp": 4090.0,
+      "lots": 0.01,
+      "engine": 2,
+      "thesis": "Commodity relief-rally short with the 1.04M USD ask wall at 4139.90 as backsplash and a 7.58M USD cascade magnet below; tests the commodity card class against the 750k wall threshold.",
+      "meta": {
+        "derivation": "entry 4115; SL 4125 (10 points = 10.00 USD at 0.01 lot); TP 4090"
+      }
+    },
+    {
+      "id": "desk_batch_3x_max_risk",
+      "action": "STAGE_BATCH",
+      "asset": "BTC",
+      "side": "SHORT",
+      "entry": 82190.0,
+      "sl": 83390.0,
+      "tp": 80160.0,
+      "lots": 0.012,
+      "batch_count": 3,
+      "engine": 2,
+      "thesis": "Strawman capacity card: fill all three 'available' joint-fill slots with structurally sound copies of the best geometry. Tests the briefing's capacity arithmetic (3 available slots) against the snapshot's broker-valued contingent stress.",
+      "meta": {
+        "strawman": true,
+        "derivation": "3 x (1.25*13.80 + 2.00) = 56.75 USD joint stress against a 50.675 USD available budget"
+      }
+    },
+    {
+      "id": "btc_armed_post_sweep_short",
+      "action": "WATCH",
+      "asset": "BTC",
+      "engine": 1,
+      "thesis": "Do not fade intact fuel. Arm the Model 1 sweep-and-reverse instead: if BTC takes the 82400-82500 purchase-side bin and closes an M15 back below 82300, the belt above is consumed and a short becomes payable with a tight stop.",
+      "meta": {
+        "condition": "BTCUSD.pi prints a 15m high >= 82450 AND closes back below 82300 while session CVD stays negative",
+        "invalidation": "15m close above 83300 (the belt top) or positive session CVD flip above +25M USD",
+        "armed_levels": {
+          "side": "SHORT",
+          "entry": 82300.0,
+          "sl": 82600.0,
+          "note": "levels are provisional until the sweep prints; SL must be re-derived from the realised sweep high + 0.35 ATR"
+        }
+      }
+    },
+    {
+      "id": "desk_stand_aside_cycle106",
+      "action": "STAND_ASIDE",
+      "thesis": "No new ticket and no hold: the snapshot denies trade authorisation, 21 of 24 assets carry no causal indicators, the ETH ticket is fatally mis-specified, and every STAGE geometry above is contradicted by the same gate set. The card proves it by running the whole universe through the gates.",
+      "meta": {
+        "universe": [
+          {
+            "id": "probe_eth_r1",
+            "action": "STAGE",
+            "asset": "ETH",
+            "side": "SHORT",
+            "entry": 2442.5,
+            "sl": 2544.0,
+            "tp": 2412.0,
+            "lots": 0.14
+          },
+          {
+            "id": "probe_eth_r2",
+            "action": "STAGE",
+            "asset": "ETH",
+            "side": "SHORT",
+            "entry": 2442.5,
+            "sl": 2544.0,
+            "tp": 2311.5,
+            "lots": 0.14
+          },
+          {
+            "id": "probe_eth_r3",
+            "action": "STAGE",
+            "asset": "ETH",
+            "side": "SHORT",
+            "entry": 2442.5,
+            "sl": 2544.0,
+            "tp": 2219.2,
+            "lots": 0.14
+          },
+          {
+            "id": "probe_btc_argon",
+            "action": "STAGE",
+            "asset": "BTC",
+            "side": "SHORT",
+            "entry": 82190.0,
+            "sl": 82420.0,
+            "tp": 81660.0,
+            "lots": 0.05
+          },
+          {
+            "id": "probe_btc_argon_tp_fixed",
+            "action": "STAGE",
+            "asset": "BTC",
+            "side": "SHORT",
+            "entry": 82190.0,
+            "sl": 82420.0,
+            "tp": 81710.0,
+            "lots": 0.05
+          },
+          {
+            "id": "probe_btc_repaired",
+            "action": "STAGE",
+            "asset": "BTC",
+            "side": "SHORT",
+            "entry": 82190.0,
+            "sl": 83390.0,
+            "tp": 80160.0,
+            "lots": 0.01
+          },
+          {
+            "id": "probe_sp500",
+            "action": "STAGE",
+            "asset": "SP500",
+            "side": "SHORT",
+            "entry": 7737.8,
+            "sl": 7823.6,
+            "tp": 7650.8,
+            "lots": 0.01
+          },
+          {
+            "id": "probe_nas100",
+            "action": "STAGE",
+            "asset": "NAS100",
+            "side": "SHORT",
+            "entry": 30000.0,
+            "sl": 30260.0,
+            "tp": 29620.0,
+            "lots": 0.01
+          },
+          {
+            "id": "probe_gold",
+            "action": "STAGE",
+            "asset": "GOLD",
+            "side": "SHORT",
+            "entry": 4115.0,
+            "sl": 4125.0,
+            "tp": 4090.0,
+            "lots": 0.01
+          }
+        ]
+      }
+    }
+  ]
+}

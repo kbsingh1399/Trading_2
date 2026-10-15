@@ -1,0 +1,178 @@
+{
+  "cycle": "106b",
+  "as_of_utc": "2026-10-14 21:32:35 UTC",
+  "generation_id": "5c7a7a223e9a41f1947bfa663cbba86c",
+  "card_semantics": "STAGE cards carry their own levels; HOLD/DELETE/MODIFY carry the levels of the order they act on in meta.evaluates and are audited through an internal STAGE probe, so a resting limit faces the identical gate set as a fresh one.",
+  "note": "Live desk state changed since the 20:56 generation: ETH ticket #18925596 is gone (no position, balance unchanged at 4859.55 -> cancelled, not filled) and a NEW pending order #18925879 SOLUSD.p SELL LIMIT 0.10 @ 104.90 / SL 105.75 / TP 103.10 (staged 21:21:47 UTC) is now the card under Mandate 3.",
+  "cards": [
+    {
+      "id": "sol_hold_18925879",
+      "action": "HOLD",
+      "asset": "SOL",
+      "target_ticket": 18925879,
+      "engine": 2,
+      "thesis": "Mandate 3 option A: keep the live SOLUSD.p SELL LIMIT 0.10 @ 104.90 (SL 105.75, TP 103.10, 2.12R quoted) resting unchanged because the Model 2 relief-pullback short into the EMA50 shelf is directionally sound.",
+      "meta": {
+        "evaluates": {"asset": "SOL", "side": "SHORT", "entry": 104.90, "sl": 105.75, "tp": 103.10, "lots": 0.10},
+        "source": "MT5 pending order observed in generation 5c7a7a22"
+      }
+    },
+    {
+      "id": "sol_modify_wide_stop_near_tp",
+      "action": "MODIFY",
+      "asset": "SOL",
+      "target_ticket": 18925879,
+      "engine": 2,
+      "thesis": "Mandate 3 option B: repair the stop - push the SL clear of the entire 105.0-115.0 purchase-side belt by 0.35 ATR (Gate R-1) and keep the original take-profit magnet, downsizing the lot per Gate R-4.",
+      "meta": {
+        "evaluates": {"asset": "SOL", "side": "SHORT", "entry": 104.90, "sl": 115.30, "tp": 103.10, "lots": 0.01},
+        "derivation": "SL = belt max 115.0 + 0.35 x ATR(0.5436) = 115.19 -> 115.30; lots = 0.01 keeps nominal risk at 10.40 USD"
+      }
+    },
+    {
+      "id": "sol_modify_wide_stop_deep_tp",
+      "action": "MODIFY",
+      "asset": "SOL",
+      "target_ticket": 18925879,
+      "engine": 2,
+      "thesis": "Mandate 3 option B variant: same repaired stop, but the TP is pushed to front-run the 21.78M USD sell-stop pool at 100-101 - the only pool deep enough to pay meaningfully on SOL.",
+      "meta": {
+        "evaluates": {"asset": "SOL", "side": "SHORT", "entry": 104.90, "sl": 115.30, "tp": 101.08, "lots": 0.01},
+        "derivation": "TP = 101.0 x (1 + 7.5 bps) front-run of the 21.78M pool"
+      }
+    },
+    {
+      "id": "sol_delete_18925879",
+      "action": "DELETE",
+      "asset": "SOL",
+      "target_ticket": 18925879,
+      "engine": 2,
+      "thesis": "Mandate 3 option C: cancel the resting order - the SL sits inside the contiguous 105.0-115.0 belt (15.85M USD), friction is 29.4% of risk at the quoted spread, the TP sits inside the 103-104 pool, and the short fights a +7.45M USD positive session CVD.",
+      "meta": {
+        "evaluates": {"asset": "SOL", "side": "SHORT", "entry": 104.90, "sl": 105.75, "tp": 103.10, "lots": 0.10},
+        "source": "Card under Mandate 3"
+      }
+    },
+    {
+      "id": "btc_stage_82190_cp",
+      "action": "STAGE",
+      "asset": "BTC",
+      "side": "SHORT",
+      "entry": 82190.0,
+      "sl": 82420.0,
+      "tp": 81660.0,
+      "lots": 0.05,
+      "engine": 2,
+      "thesis": "PART CP peer question re-tested on the 21:32 generation: BTCUSD.pi SELL LIMIT @ 82,190 (SL 82,420, TP 81,660, 2.30R quoted).",
+      "meta": {"quoted_rr": 2.30, "source": "PART CP peer audit question"}
+    },
+    {
+      "id": "btc_stage_82190_belt_cleared",
+      "action": "STAGE",
+      "asset": "BTC",
+      "side": "SHORT",
+      "entry": 82190.0,
+      "sl": 82990.0,
+      "tp": 80760.0,
+      "lots": 0.01,
+      "engine": 2,
+      "thesis": "Maximum-effort repair of the CP card: stop pushed clear of the whole 81,900-82,900 belt and TP front-running the 23.22M USD 80,000-80,100 pool. Tests whether any BTC short can pay 2.0R today.",
+      "meta": {"derivation": "SL = belt max 82,900 + 0.35 x ATR(239.77) = 82,984 -> 82,990; TP = 80,100 x (1 + 7.5 bps)"}
+    },
+    {
+      "id": "eth_stage_repair_short",
+      "action": "STAGE",
+      "asset": "ETH",
+      "side": "SHORT",
+      "entry": 2442.0,
+      "sl": 2534.0,
+      "tp": 2411.8,
+      "lots": 0.01,
+      "engine": 2,
+      "thesis": "Re-test of the cancelled ETH ticket's strategy with a compliant bunker (SL clears the 2430-2530 belt) and a true front-run TP of the 25.85M USD 2400-2410 pool.",
+      "meta": {"derivation": "entry = mid + 1.43 ATR; SL = belt max 2530 + 0.35 x ATR(11.29) = 2533.95 -> 2534; TP = 2410 x (1 + 7.5 bps)"}
+    },
+    {
+      "id": "xrp_stage_short",
+      "action": "STAGE",
+      "asset": "XRP",
+      "side": "SHORT",
+      "entry": 1.3400,
+      "sl": 1.4350,
+      "tp": 1.3108,
+      "lots": 0.01,
+      "engine": 2,
+      "thesis": "XRP carries a live BEARISH regime and the largest single magnet below (19.13M USD at 1.30-1.31); tests whether a 30-45 bps spread crypto can be traded at all.",
+      "meta": {"derivation": "entry = mid + 0.86 ATR; SL = belt max 1.43 + 0.35 x ATR(0.007); TP = 1.31 x (1 + 7.5 bps)"}
+    },
+    {
+      "id": "trx_stage_long",
+      "action": "STAGE",
+      "asset": "TRX",
+      "side": "LONG",
+      "entry": 0.3328,
+      "sl": 0.3300,
+      "tp": 0.3400,
+      "lots": 0.01,
+      "engine": 2,
+      "thesis": "TRX is the only BULLISH regime in the matrix - the single Model 2 long candidate the trend-first hierarchy permits; tests the long side of the book for completeness.",
+      "meta": {"derivation": "entry at mid 0.3328; SL 0.3300 below the shelf; TP 0.3400"}
+    },
+    {
+      "id": "sp500_stage_short",
+      "action": "STAGE",
+      "asset": "SP500",
+      "side": "SHORT",
+      "entry": 7730.0,
+      "sl": 7745.0,
+      "tp": 7700.0,
+      "lots": 0.01,
+      "engine": 2,
+      "thesis": "SP500 is the desk's core instrument (1.13 bps spread) but reports INSUFFICIENT_HISTORY in this generation - no ATR, no regime. Tests whether a core-index card can be certified without causal indicators.",
+      "meta": {"derivation": "entry 7730 (mid + 12.9); SL 7745; TP 7700"}
+    },
+    {
+      "id": "desk_batch_3x_max_risk",
+      "action": "STAGE_BATCH",
+      "asset": "BTC",
+      "side": "SHORT",
+      "entry": 82290.0,
+      "sl": 82990.0,
+      "tp": 80760.0,
+      "lots": 0.01,
+      "batch_count": 3,
+      "engine": 2,
+      "thesis": "Strawman capacity card: fill all three 'available' joint-fill slots at maximum risk. Tests the briefing's capacity arithmetic against the SOL ticket's live 12.625 USD of broker-valued stress.",
+      "meta": {"strawman": true}
+    },
+    {
+      "id": "btc_armed_post_sweep_short",
+      "action": "WATCH",
+      "asset": "BTC",
+      "engine": 1,
+      "thesis": "Do not fade intact fuel. Arm the sweep-and-reverse: if BTC punches through the 22.83M USD sell wall at 82,868 (persist 902.6s) and closes back below 82,700, the overhead belt is consumed and a short becomes payable against the 25.0M USD buy wall at 81,196.",
+      "meta": {
+        "condition": "BTCUSD.pi prints a 15m high >= 82,880 AND closes back below 82,700 while session CVD stays negative",
+        "invalidation": "15m close above 83,300, or session CVD flipping above +25M USD",
+        "armed_levels": {"side": "SHORT", "note": "levels provisional until the sweep prints; SL re-derived from the realised sweep high + 0.35 ATR"}
+      }
+    },
+    {
+      "id": "desk_stand_aside_cycle106b",
+      "action": "STAND_ASIDE",
+      "thesis": "No new ticket and no hold: the snapshot denies trade authorisation, no asset reaches |Z| >= 2.0 for Engine 1, the SOL ticket is fatally mis-specified, and every STAGE geometry above is contradicted by the same gate set.",
+      "meta": {
+        "universe": [
+          {"id": "probe_sol_r1", "action": "STAGE", "asset": "SOL", "side": "SHORT", "entry": 104.90, "sl": 115.30, "tp": 103.10, "lots": 0.01},
+          {"id": "probe_sol_r2", "action": "STAGE", "asset": "SOL", "side": "SHORT", "entry": 104.90, "sl": 115.30, "tp": 101.08, "lots": 0.01},
+          {"id": "probe_btc_cp", "action": "STAGE", "asset": "BTC", "side": "SHORT", "entry": 82190.0, "sl": 82420.0, "tp": 81660.0, "lots": 0.05},
+          {"id": "probe_btc_repaired", "action": "STAGE", "asset": "BTC", "side": "SHORT", "entry": 82190.0, "sl": 82990.0, "tp": 80760.0, "lots": 0.01},
+          {"id": "probe_eth_repair", "action": "STAGE", "asset": "ETH", "side": "SHORT", "entry": 2442.0, "sl": 2534.0, "tp": 2411.8, "lots": 0.01},
+          {"id": "probe_xrp", "action": "STAGE", "asset": "XRP", "side": "SHORT", "entry": 1.34, "sl": 1.435, "tp": 1.3108, "lots": 0.01},
+          {"id": "probe_trx", "action": "STAGE", "asset": "TRX", "side": "LONG", "entry": 0.3328, "sl": 0.33, "tp": 0.34, "lots": 0.01},
+          {"id": "probe_sp500", "action": "STAGE", "asset": "SP500", "side": "SHORT", "entry": 7730.0, "sl": 7745.0, "tp": 7700.0, "lots": 0.01}
+        ]
+      }
+    }
+  ]
+}
