@@ -20955,6 +20955,7 @@ No broker order, ratchet, cancellation, production patch, independent agent disp
 - No independent-agent or peer-consensus claim, no profitability guarantee, no unconditional capital protection — finite stress model not bound for gaps/slippage/broker failure.
 
 **End Cycle 120.**
+<<<<<<< HEAD
 
 ---
 
@@ -20969,3 +20970,5 @@ No broker order, ratchet, cancellation, production patch, independent agent disp
 **Actionable:** HOLD GOLD SL 4135 TP 4167.5, WAIT SP500 7738.5 SL7757 TP7634, STAND ASIDE rest
 **Tournament:** a002 beat a004 (84-69) survived missing verification receipts, whale calibration, R0 USD conversion; beat a003 (88-68) macro calendar + stress arithmetic; beat a010 (88-68); beat a016 (88-68) final champion
 
+=======
+>>>>>>> origin/arena/7a89a384-trading-2
