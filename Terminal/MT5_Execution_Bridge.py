@@ -742,14 +742,14 @@ class MT5ExecutionBridge:
         if min(abs(price-sl), abs(tp-price))+point*1e-6 < min_distance:
             return {"success": False, "retcode": 10016, "error": "pending_bracket_inside_broker_stops_level"}
         tick_age = self.tick_age_seconds(tick, symbol)
-        if tick_age is None and getattr(self, "broker_clock", None) and getattr(self.broker_clock, "status", None) == "UNVERIFIED":
+        if tick_age is None or tick_age > 2.0:
             for _ in range(4):
                 time.sleep(0.15)
                 new_tick = mt5.symbol_info_tick(symbol)
                 if new_tick:
                     tick = new_tick
                     tick_age = self.tick_age_seconds(tick, symbol)
-                    if tick_age is not None:
+                    if tick_age is not None and tick_age <= 2.0:
                         break
         if tick_age is None or tick_age > 2.0:
             return {"success": False, "error": "pending_quote_clock_unverified_or_stale", "age_ms": None if tick_age is None else tick_age * 1000}

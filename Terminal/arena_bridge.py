@@ -37,7 +37,7 @@ if str(PROJECT_ROOT) not in sys.path:
 CANDLES_DIR = PROJECT_ROOT / "Data" / "Candles"
 TELEMETRY_SNAPSHOT = PROJECT_ROOT / "docs" / "telemetry" / "live_snapshot_latest.json"
 
-CDP_HTTP_URL = "http://localhost:9222"
+CDP_HTTP_URL = "http://127.0.0.1:9222"
 
 PRIMARY_ASSETS = [
     # 14 Institutional Binance Perpetuals (Crypto)

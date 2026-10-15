@@ -66,10 +66,50 @@
     "r0": 1010.0,
     "tp": 84320.0,
     "staged_at_utc": "2026-10-14 09:24:43 UTC",
-    "nominal_risk_usd": 10.10,
+    "nominal_risk_usd": 10.1,
     "stressed_risk_usd": 14.63,
-    "status": "OPEN",
+    "status": "CLOSED_STOP_LOSS",
     "cycle": "Cycle 88",
     "thesis": "Model 2 Trend Pullback LONG into post-sweep liquidity zone defended by 35.9M USD L3 whale wall cluster at 82,303 - 82,615 USD with TP front-running 84,350 USD buy stop pool"
+  },
+  "18934259": {
+    "symbol": "BTCUSD.pi",
+    "type": "SELL_LIMIT",
+    "volume": 0.03,
+    "price_open": 81680.0,
+    "initial_sl": 82040.0,
+    "r0": 360.0,
+    "tp": 80450.0,
+    "staged_at_utc": "2026-10-15 03:01:36 UTC",
+    "modified_at_utc": "2026-10-15 03:30:37 UTC",
+    "nominal_risk_usd": 10.8,
+    "stressed_risk_usd": 14.5,
+    "status": "STAGED_PENDING_MODIFIED",
+    "cycle": "Cycle 118",
+    "thesis": "Model 2 Trend Pullback SHORT refined to front-run the shifted 12.47M USD Ask Whale Wall @ 81,705 (persist 423s) and defended by 6.43M USD wall @ 81,928 and 7.29M USD wall @ 82,216, with TP front-running 80,450 swing lows and sell stops"
+  },
+  "18968006": {
+    "symbol": "BTCUSD.pi",
+    "direction": "SELL",
+    "entry": 81650.0,
+    "initial_sl": 82050.0,
+    "tp": 80650.0,
+    "r0": 400.0,
+    "volume": 0.03,
+    "risk_usd": 12.0,
+    "model": "MODEL_2_TREND_PULLBACK_SHORT",
+    "staged_at": "2026-10-15 14:40:42 UTC"
+  },
+  "18968007": {
+    "symbol": "SP500.p",
+    "direction": "SELL",
+    "entry": 7720.0,
+    "initial_sl": 7736.0,
+    "tp": 7680.0,
+    "r0": 16.0,
+    "volume": 0.08,
+    "risk_usd": 12.8,
+    "model": "MODEL_2_TREND_PULLBACK_SHORT",
+    "staged_at": "2026-10-15 14:40:42 UTC"
   }
 }
