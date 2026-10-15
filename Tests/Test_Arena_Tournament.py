@@ -297,6 +297,46 @@ def test_wall_beyond_the_stop_is_not_shelter():
     assert "NO_BUNKER_WALL" not in _codes(ev2)
 
 
+def test_untrusted_magnet_bin_cannot_anchor_a_tp():
+    """Astra trusted-magnet standard (Cycle 112 peer audit): a provider bin that dwarfs
+    BOTH price-adjacent neighbours by >=100x is an artifact and may never anchor a TP."""
+    sell = [_bin(80, 81, 8_000_000.0), _bin(82, 83, 900_000_000.0), _bin(84, 85, 7_000_000.0)]
+    asset = _asset(symbol="ETHUSD.pi", mid=100.0, atr=10.0, regime="BEARISH", sell_stops=sell)
+    ev = at.evaluate_card(_card(entry=105.0, sl=112.0, tp=83.0830, lots=0.1), _snap(asset), {})
+    assert "MAGNET_ARTIFACT_EXCLUDED" in _codes(ev)
+    excluded = [f for f in ev.findings if f.code == "MAGNET_ARTIFACT_EXCLUDED"][0]
+    assert [82.0, 83.0, 900_000_000.0] in [list(map(float, row)) for row in excluded.values["excluded"]]
+    considered = [row[:3] for row in ev.metrics["magnets_considered"]]
+    assert [82.0, 83.0, 900_000_000.0] not in considered
+    # the deepest TRUSTED reachable pool is [80, 81] -> front-run 10 bps
+    assert ev.metrics["best_reachable_tp"] == pytest.approx(81.0 * 1.001, rel=1e-9)
+
+
+def test_trusted_bins_unit_and_neighbor_ratio_metric():
+    bins = [(80.0, 81.0, 8_000_000.0), (82.0, 83.0, 900_000_000.0), (84.0, 85.0, 7_000_000.0)]
+    trusted, excluded, ratio = at._trusted_bins(bins)
+    assert [row[:3] for row in excluded] == [(82.0, 83.0, 900_000_000.0)]
+    assert excluded[0][3] == "artifact"                      # >=100x the larger neighbour
+    assert [b[0] for b in trusted] == [80.0, 84.0]
+    assert ratio == pytest.approx(8_000_000.0 / 7_000_000.0, rel=1e-9)
+    # the >10x tier is a discontinuity too, but is labelled separately from a true artifact
+    mid_tier = [(80.0, 81.0, 6_000_000.0), (82.0, 83.0, 200_000_000.0), (84.0, 85.0, 7_000_000.0)]
+    t3, e3, r3 = at._trusted_bins(mid_tier)
+    assert [row[:3] for row in e3] == [(82.0, 83.0, 200_000_000.0)] and e3[0][3] == "untrusted"
+    assert [b[0] for b in t3] == [80.0, 84.0]
+    # duplicate feeds of one bucket are consolidated before the neighbour test, so a giant can
+    # never hide behind its own twin (the live ETH [2400, 2410] case)
+    dup = [(80.0, 81.0, 9_000_000.0), (81.0, 82.0, 1_200_000_000.0), (81.0, 82.0, 3_000_000.0),
+           (82.0, 83.0, 4_000_000.0)]
+    t4, e4, r4 = at._trusted_bins(dup)
+    assert [row[:3] for row in e4] == [(81.0, 82.0, 1_203_000_000.0)]
+    assert [b[0] for b in t4] == [80.0, 82.0]
+    # a merely large-but-continuous ladder keeps every bin (no over-filtering)
+    flat = [(i, i + 1, 1_000_000.0) for i in range(100, 140)]
+    trusted2, excluded2, ratio2 = at._trusted_bins(flat)
+    assert excluded2 == [] and len(trusted2) == 40 and ratio2 == pytest.approx(1.0)
+
+
 def test_persistence_needs_180s_or_ledger_continuity():
     walls = [{"side": "SELL", "price": 113.0, "notional_usd": 9_000_000.0, "persist_s": 0.0,
               "address": "0xabc", "wall_class": "MM"}]

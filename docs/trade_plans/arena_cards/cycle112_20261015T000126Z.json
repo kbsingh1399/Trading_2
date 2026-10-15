@@ -1,0 +1,485 @@
+{
+ "cycle": 112,
+ "as_of_utc": "2026-10-15 00:01:26 UTC",
+ "generation_id": "7b193feddf874dfda838cfaae6ac9d39",
+ "supersedes_generation": "92182f87cfd347e79d2e5e20c1f8689b",
+ "card_semantics": "STAGE = actionable ticket candidate; WATCH = armed forward trigger; STAGE_BATCH = capacity strawman; STAND_ASIDE = council posture card whose universe is re-probed card-by-card.",
+ "desk_state_note": "Desk flat: 0 active positions, 0 pending orders, 0/4 joint-fill slots used.",
+ "cards": [
+  {
+   "id": "btc_belt_long",
+   "action": "STAGE",
+   "asset": "BTC",
+   "side": "LONG",
+   "entry": 81143.07794,
+   "sl": 80615.087266,
+   "tp": 81638.72499999999,
+   "lots": 0.02,
+   "engine": 2,
+   "thesis": "Best legal long geometry in the book (0.94R): price is under EMA20 81,613.5 < EMA50 81,951.6 < EMA200 82,700.9 (bearish stack), so a Model-1 long is banned outright and the $151.6M cascade ladder below mid overwhelms defence.",
+   "meta": {
+    "derivation": "engine screen best",
+    "nominal_risk_usd": 10.56
+   }
+  },
+  {
+   "id": "eth_artifact_anchor_short",
+   "action": "STAGE",
+   "asset": "ETH",
+   "side": "SHORT",
+   "entry": 2439.716635,
+   "sl": 2533.6349515,
+   "tp": 2421.815,
+   "lots": 0.12,
+   "engine": 2,
+   "thesis": "Artifact-free geometry after the trusted-magnet exclusion still pays only ~0.19R; the merged prop belt [2,300-2,420] carries $202.8M of cascade structure under price.",
+   "meta": {
+    "derivation": "engine screen best (post trusted-magnet filter)",
+    "nominal_risk_usd": 11.27
+   }
+  },
+  {
+   "id": "eth_shelf_long",
+   "action": "STAGE",
+   "asset": "ETH",
+   "side": "LONG",
+   "entry": 2418.214105,
+   "sl": 2296.3650485,
+   "tp": 2448.1625,
+   "lots": 0.09,
+   "engine": 2,
+   "thesis": "Bearish stack (EMA20 2,419.1 < EMA50 2,436.1 < EMA200 2,477.7) with a 2,083-point stop against $202.8M of cascade structure below mid: defence loses 51:1.",
+   "meta": {
+    "derivation": "engine screen best",
+    "nominal_risk_usd": 10.97
+   }
+  },
+  {
+   "id": "sol_belt_short",
+   "action": "STAGE",
+   "asset": "SOL",
+   "side": "SHORT",
+   "entry": 105.13823000000001,
+   "sl": 114.174447,
+   "tp": 104.078,
+   "lots": 0.01,
+   "engine": 2,
+   "thesis": "SOL is inside the buy-stop belt [104-114] $16.9M; the only reachable front-runnable pool sits directly under mid and the compliant stop is 9.0 ATR wide.",
+   "meta": {
+    "derivation": "engine screen best",
+    "nominal_risk_usd": 9.04
+   }
+  },
+  {
+   "id": "sp500_core_short",
+   "action": "STAGE",
+   "asset": "SP500",
+   "side": "SHORT",
+   "entry": 7718.45924,
+   "sl": 7813.245836,
+   "tp": 7685.76,
+   "lots": 0.01,
+   "engine": 2,
+   "thesis": "The $812.6M buy-stop cluster at [7,700-7,710] sits at price; best reachable reward is 32.7 pts against a 94.8-pt compliant stop.",
+   "meta": {
+    "derivation": "engine screen best",
+    "nominal_risk_usd": 9.48
+   }
+  },
+  {
+   "id": "sp500_long_variant",
+   "action": "STAGE",
+   "asset": "SP500",
+   "side": "LONG",
+   "entry": 7694.22976,
+   "sl": 7596.754164,
+   "tp": 7714.21,
+   "lots": 0.01,
+   "engine": 2,
+   "thesis": "Long-side variant of the same wall: reward 20.0 pts against a 97.5-pt stop = 0.21R.",
+   "meta": {
+    "derivation": "engine screen best",
+    "nominal_risk_usd": 9.75
+   }
+  },
+  {
+   "id": "near_friction_probe",
+   "action": "STAGE",
+   "asset": "NEAR",
+   "side": "SHORT",
+   "entry": 4.968,
+   "sl": 5.034199999999999,
+   "tp": 4.7735775,
+   "lots": 2.0,
+   "engine": 2,
+   "thesis": "2.94R gross - the best geometry in the book - burning 48.34% of risk in friction at the 1.81 lots required; NEAR is on the banned-instrument list.",
+   "meta": {
+    "derivation": "engine screen best",
+    "nominal_risk_usd": 13.24
+   }
+  },
+  {
+   "id": "silver_floor_probe",
+   "action": "STAGE",
+   "asset": "SILVER",
+   "side": "SHORT",
+   "entry": 56.203075,
+   "sl": 57.284667500000005,
+   "tp": 55.44155,
+   "lots": 0.01,
+   "engine": 2,
+   "thesis": "Ceiling 0.70R against a 2.0R mandate AND min-lot risk 54.08 USD: a 1.08-point structural stop cannot be traded at 0.01 lots inside the envelope.",
+   "meta": {
+    "derivation": "engine screen best",
+    "nominal_risk_usd": 54.08,
+    "allow_out_of_envelope": true
+   }
+  },
+  {
+   "id": "nas100_extreme_probe",
+   "action": "STAGE",
+   "asset": "NAS100",
+   "side": "SHORT",
+   "entry": 29845.147675,
+   "sl": 30921.9058075,
+   "tp": 29722.275,
+   "lots": 0.01,
+   "engine": 1,
+   "thesis": "Deepest statistical extreme in the book (Z -2.01, RSI 17.3, EMA stack down 29,862 < 30,057 < 30,406) but the compliant stop must clear the [29,700-30,900] buy belt -> 119.50 USD at min lot.",
+   "meta": {
+    "derivation": "engine screen best",
+    "nominal_risk_usd": 107.68,
+    "allow_out_of_envelope": true
+   }
+  },
+  {
+   "id": "xrp_alt_long",
+   "action": "STAGE",
+   "asset": "XRP",
+   "side": "LONG",
+   "entry": 1.319385,
+   "sl": 1.2179765,
+   "tp": 1.3489875,
+   "lots": 1.0,
+   "engine": 2,
+   "thesis": "Counter-trend long into a bearish stack; min-lot risk 101.41 USD at the compliant stop, and the [1.30-1.31] bin is excluded as untrusted (>10x neighbours).",
+   "meta": {
+    "derivation": "engine screen best",
+    "nominal_risk_usd": 101.41,
+    "allow_out_of_envelope": true
+   }
+  },
+  {
+   "id": "eth_artifact_probe",
+   "action": "STAGE",
+   "asset": "ETH",
+   "side": "SHORT",
+   "entry": 2439.72,
+   "sl": 2533.69,
+   "tp": 2412.41,
+   "lots": 0.12,
+   "engine": 2,
+   "thesis": "Deliberate probe of the peer-audited Trusted-Magnet Rule: TP 2,412.41 anchors the [2,400-2,410] bin carrying $1,650.43M after per-bucket consolidation (~54x its larger neighbour, ~1,904x its smaller), so the engine must refuse to let it anchor an exit.",
+   "meta": {
+    "derivation": "entry=mid+1.95ATR; SL=2,530+0.36ATR; TP=2,410 front-run 10 bps (artifact anchor)",
+    "nominal_risk_usd": 11.28
+   }
+  },
+  {
+   "id": "fx_range_gate_probe",
+   "action": "STAGE",
+   "asset": "GBPUSD",
+   "side": "SHORT",
+   "entry": 1.32466,
+   "sl": 1.32514,
+   "tp": 1.3207,
+   "lots": 0.23,
+   "engine": 2,
+   "thesis": "RANGE_BOUND regime (EMA20 1.3199 vs EMA50 1.3201 vs EMA200 1.3224, RSI 77.3): neither engine applies in non-trending noise, so the regime gate must strike the card down before geometry. EURUSD is range-bound too.",
+   "meta": {
+    "derivation": "entry=mid+1.95ATR; SL=mid+2.55ATR; TP=mid-3.0ATR",
+    "nominal_risk_usd": 11.04
+   }
+  },
+  {
+   "id": "desk_batch_4x_max_risk",
+   "action": "STAGE_BATCH",
+   "asset": "BTC",
+   "side": "SHORT",
+   "entry": null,
+   "sl": null,
+   "tp": null,
+   "lots": null,
+   "engine": 2,
+   "thesis": "Capacity strawman: four max-envelope tickets (4 x 20.12 = 80.48 stress) against the 64.55 USD budget. Included so the bracket contains the boundary case the governor computes by hand.",
+   "meta": {
+    "strawman": true,
+    "members": [
+     "btc_belt_long",
+     "sol_belt_short",
+     "sp500_core_short",
+     "near_friction_probe"
+    ],
+    "joint_stressed_usd": 80.5,
+    "budget_usd": 64.55
+   }
+  },
+  {
+   "id": "nas100_relief_rally_short",
+   "action": "WATCH",
+   "asset": "NAS100",
+   "side": null,
+   "entry": null,
+   "sl": null,
+   "tp": null,
+   "lots": null,
+   "engine": 1,
+   "thesis": "Peer-audit watch (Astra, seed 111). Relief rally into the EMA20 shelf 29,850-29,900 paying >=2.0R to a 29,729.7 front-run requires SL <=30,050; on this generation that stop sits INSIDE the [29,700-30,900] buy belt ($4.12M) = archetype-1 kill. The watch is therefore latent until the belt is consumed or thinned below the index wall threshold.",
+   "meta": {
+    "condition": "relief rally >=29,930 with velocity_ratio < 0.70, a >=1.0M USD ask wall defending the shelf AND the [29,700-30,900] buy belt thinned below 1.0M USD",
+    "invalidation": "15m close > 30,100 (belt re-armed) or buy-belt thins then price closes > 30,050",
+    "armed_levels": {
+     "shelf": [
+      29850.0,
+      29900.0
+     ],
+     "entry_ref": 29930.0,
+     "sl_max": 30050.0,
+     "tp": 29729.7
+    }
+   }
+  },
+  {
+   "id": "btc_armed_post_ladder_short",
+   "action": "WATCH",
+   "asset": "BTC",
+   "side": null,
+   "entry": null,
+   "sl": null,
+   "tp": null,
+   "lots": null,
+   "engine": 2,
+   "thesis": "The merged seller ladder [80,500-81,500] ($79.0M) is the wall that blocks the exit; a decisive break below 80,400 clears it and re-opens a front-runnable path to the 79,800-80,100 pool.",
+   "meta": {
+    "condition": "15m close < 80,400 with session CVD < 0 (ladder vacated)",
+    "invalidation": "15m close > 82,600 (reclaim above the buy-stop belt top)",
+    "armed_levels": {
+     "trigger": 80400.0,
+     "invalidation": 82600.0,
+     "cvd_gate_usd": 0.0
+    }
+   }
+  },
+  {
+   "id": "desk_stand_aside_cycle112",
+   "action": "STAND_ASIDE",
+   "asset": null,
+   "side": null,
+   "entry": null,
+   "sl": null,
+   "tp": null,
+   "lots": null,
+   "engine": null,
+   "thesis": "Every candidate carries at least one fatal gate failure on generation 7b193feddf874dfda838cfaae6ac9d39 (2026-10-15 00:01:26 UTC); 0 of 24 assets clear the dual engine. Re-proves itself by re-running each member card.",
+   "meta": {
+    "universe": [
+     {
+      "id": "btc_belt_long",
+      "action": "STAGE",
+      "asset": "BTC",
+      "side": "LONG",
+      "entry": 81143.07794,
+      "sl": 80615.087266,
+      "tp": 81638.72499999999,
+      "lots": 0.02,
+      "engine": 2,
+      "thesis": "Best legal long geometry in the book (0.94R): price is under EMA20 81,613.5 < EMA50 81,951.6 < EMA200 82,700.9 (bearish stack), so a Model-1 long is banned outright and the $151.6M cascade ladder below mid overwhelms defence.",
+      "meta": {
+       "derivation": "engine screen best",
+       "nominal_risk_usd": 10.56
+      }
+     },
+     {
+      "id": "eth_artifact_anchor_short",
+      "action": "STAGE",
+      "asset": "ETH",
+      "side": "SHORT",
+      "entry": 2439.716635,
+      "sl": 2533.6349515,
+      "tp": 2421.815,
+      "lots": 0.12,
+      "engine": 2,
+      "thesis": "Artifact-free geometry after the trusted-magnet exclusion still pays only ~0.19R; the merged prop belt [2,300-2,420] carries $202.8M of cascade structure under price.",
+      "meta": {
+       "derivation": "engine screen best (post trusted-magnet filter)",
+       "nominal_risk_usd": 11.27
+      }
+     },
+     {
+      "id": "eth_shelf_long",
+      "action": "STAGE",
+      "asset": "ETH",
+      "side": "LONG",
+      "entry": 2418.214105,
+      "sl": 2296.3650485,
+      "tp": 2448.1625,
+      "lots": 0.09,
+      "engine": 2,
+      "thesis": "Bearish stack (EMA20 2,419.1 < EMA50 2,436.1 < EMA200 2,477.7) with a 2,083-point stop against $202.8M of cascade structure below mid: defence loses 51:1.",
+      "meta": {
+       "derivation": "engine screen best",
+       "nominal_risk_usd": 10.97
+      }
+     },
+     {
+      "id": "sol_belt_short",
+      "action": "STAGE",
+      "asset": "SOL",
+      "side": "SHORT",
+      "entry": 105.13823000000001,
+      "sl": 114.174447,
+      "tp": 104.078,
+      "lots": 0.01,
+      "engine": 2,
+      "thesis": "SOL is inside the buy-stop belt [104-114] $16.9M; the only reachable front-runnable pool sits directly under mid and the compliant stop is 9.0 ATR wide.",
+      "meta": {
+       "derivation": "engine screen best",
+       "nominal_risk_usd": 9.04
+      }
+     },
+     {
+      "id": "sp500_core_short",
+      "action": "STAGE",
+      "asset": "SP500",
+      "side": "SHORT",
+      "entry": 7718.45924,
+      "sl": 7813.245836,
+      "tp": 7685.76,
+      "lots": 0.01,
+      "engine": 2,
+      "thesis": "The $812.6M buy-stop cluster at [7,700-7,710] sits at price; best reachable reward is 32.7 pts against a 94.8-pt compliant stop.",
+      "meta": {
+       "derivation": "engine screen best",
+       "nominal_risk_usd": 9.48
+      }
+     },
+     {
+      "id": "sp500_long_variant",
+      "action": "STAGE",
+      "asset": "SP500",
+      "side": "LONG",
+      "entry": 7694.22976,
+      "sl": 7596.754164,
+      "tp": 7714.21,
+      "lots": 0.01,
+      "engine": 2,
+      "thesis": "Long-side variant of the same wall: reward 20.0 pts against a 97.5-pt stop = 0.21R.",
+      "meta": {
+       "derivation": "engine screen best",
+       "nominal_risk_usd": 9.75
+      }
+     },
+     {
+      "id": "near_friction_probe",
+      "action": "STAGE",
+      "asset": "NEAR",
+      "side": "SHORT",
+      "entry": 4.968,
+      "sl": 5.034199999999999,
+      "tp": 4.7735775,
+      "lots": 2.0,
+      "engine": 2,
+      "thesis": "2.94R gross - the best geometry in the book - burning 48.34% of risk in friction at the 1.81 lots required; NEAR is on the banned-instrument list.",
+      "meta": {
+       "derivation": "engine screen best",
+       "nominal_risk_usd": 13.24
+      }
+     },
+     {
+      "id": "silver_floor_probe",
+      "action": "STAGE",
+      "asset": "SILVER",
+      "side": "SHORT",
+      "entry": 56.203075,
+      "sl": 57.284667500000005,
+      "tp": 55.44155,
+      "lots": 0.01,
+      "engine": 2,
+      "thesis": "Ceiling 0.70R against a 2.0R mandate AND min-lot risk 54.08 USD: a 1.08-point structural stop cannot be traded at 0.01 lots inside the envelope.",
+      "meta": {
+       "derivation": "engine screen best",
+       "nominal_risk_usd": 54.08,
+       "allow_out_of_envelope": true
+      }
+     },
+     {
+      "id": "nas100_extreme_probe",
+      "action": "STAGE",
+      "asset": "NAS100",
+      "side": "SHORT",
+      "entry": 29845.147675,
+      "sl": 30921.9058075,
+      "tp": 29722.275,
+      "lots": 0.01,
+      "engine": 1,
+      "thesis": "Deepest statistical extreme in the book (Z -2.01, RSI 17.3, EMA stack down 29,862 < 30,057 < 30,406) but the compliant stop must clear the [29,700-30,900] buy belt -> 119.50 USD at min lot.",
+      "meta": {
+       "derivation": "engine screen best",
+       "nominal_risk_usd": 107.68,
+       "allow_out_of_envelope": true
+      }
+     },
+     {
+      "id": "xrp_alt_long",
+      "action": "STAGE",
+      "asset": "XRP",
+      "side": "LONG",
+      "entry": 1.319385,
+      "sl": 1.2179765,
+      "tp": 1.3489875,
+      "lots": 1.0,
+      "engine": 2,
+      "thesis": "Counter-trend long into a bearish stack; min-lot risk 101.41 USD at the compliant stop, and the [1.30-1.31] bin is excluded as untrusted (>10x neighbours).",
+      "meta": {
+       "derivation": "engine screen best",
+       "nominal_risk_usd": 101.41,
+       "allow_out_of_envelope": true
+      }
+     },
+     {
+      "id": "eth_artifact_probe",
+      "action": "STAGE",
+      "asset": "ETH",
+      "side": "SHORT",
+      "entry": 2439.72,
+      "sl": 2533.69,
+      "tp": 2412.41,
+      "lots": 0.12,
+      "engine": 2,
+      "thesis": "Deliberate probe of the peer-audited Trusted-Magnet Rule: TP 2,412.41 anchors the [2,400-2,410] bin carrying $1,650.43M after per-bucket consolidation (~54x its larger neighbour, ~1,904x its smaller), so the engine must refuse to let it anchor an exit.",
+      "meta": {
+       "derivation": "entry=mid+1.95ATR; SL=2,530+0.36ATR; TP=2,410 front-run 10 bps (artifact anchor)",
+       "nominal_risk_usd": 11.28
+      }
+     },
+     {
+      "id": "fx_range_gate_probe",
+      "action": "STAGE",
+      "asset": "GBPUSD",
+      "side": "SHORT",
+      "entry": 1.32466,
+      "sl": 1.32514,
+      "tp": 1.3207,
+      "lots": 0.23,
+      "engine": 2,
+      "thesis": "RANGE_BOUND regime (EMA20 1.3199 vs EMA50 1.3201 vs EMA200 1.3224, RSI 77.3): neither engine applies in non-trending noise, so the regime gate must strike the card down before geometry. EURUSD is range-bound too.",
+      "meta": {
+       "derivation": "entry=mid+1.95ATR; SL=mid+2.55ATR; TP=mid-3.0ATR",
+       "nominal_risk_usd": 11.04
+      }
+     }
+    ]
+   }
+  }
+ ]
+}

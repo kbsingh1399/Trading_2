@@ -87,6 +87,8 @@ RR_MIN = 2.00
 # spread ~21 bps) requires >= 2.5R. Every other asset keeps the flat 2.0R desk floor.
 RR_MIN_BY_ASSET: Dict[str, float] = {"ETHUSD.pi": 2.20, "SOLUSD.p": 2.50}
 MAGNET_MATERIAL_USD = 500_000.0      # playbook section 5.6 "real notional"
+MAGNET_NEIGHBOR_RATIO_MAX = 10.0      # Astra trusted-magnet standard: within 10x of neighbours
+MAGNET_ARTIFACT_RATIO = 100.0         # >100x BOTH neighbours = provider artifact, never a TP anchor
 FRONT_RUN_BPS_LOW = 5.0
 FRONT_RUN_BPS_HIGH = 10.0
 TARGET_HORIZON_ATR = 3.50            # magnet must exist within 3.5 ATR of mid (reachable payoff doctrine)
@@ -320,6 +322,44 @@ def hazard_union(bins: Sequence[Tuple[float, float, float]], price: float
         if lo <= price <= hi:
             return lo, hi, members
     return None, None, []
+
+
+def _trusted_bins(bins: List[Tuple[float, float, float]]):
+    """Astra trusted-magnet standard (Cycle 112 peer audit).
+
+    A magnet may anchor a take-profit only if it is *within 10x* of its price-adjacent
+    neighbourhood. Two rejection tiers are returned separately so the desk can see which
+    one fired:
+      * ``artifact``  - notional >= 100x the LARGER neighbour: the canonical provider
+        artifact (live example: the ETH [2,400, 2,410] bin printing $1,643.76M).
+      * ``untrusted`` - notional > 10x the larger neighbour but below the artifact tier:
+        a discontinuity that must not anchor an exit either.
+
+    Per-bucket duplicate feeds are consolidated first, otherwise a duplicated bucket lands
+    beside its own twin in the sort and defeats the neighbour test.
+
+    Returns ``(trusted, [(lo, hi, notional, tier), ...], max_neighbour_ratio_of_trusted)``.
+    """
+    buckets: Dict[Tuple[float, float], float] = {}
+    for lo, hi, n in bins:
+        buckets[(lo, hi)] = buckets.get((lo, hi), 0.0) + float(n)
+    ordered = sorted(((lo, hi, n) for (lo, hi), n in buckets.items()), key=lambda b: (b[0], b[1]))
+    trusted: List[Tuple[float, float, float]] = []
+    rejected: List[Tuple[float, float, float, str]] = []
+    for i, b in enumerate(ordered):
+        neigh = [ordered[j][2] for j in (i - 1, i + 1) if 0 <= j < len(ordered)]
+        if neigh and min(neigh) > 0 and b[2] / max(neigh) >= MAGNET_ARTIFACT_RATIO:
+            rejected.append((b[0], b[1], b[2], "artifact"))
+        elif neigh and min(neigh) > 0 and b[2] / max(neigh) > MAGNET_NEIGHBOR_RATIO_MAX:
+            rejected.append((b[0], b[1], b[2], "untrusted"))
+        else:
+            trusted.append(b)
+    ratios = []
+    for i, b in enumerate(trusted):
+        neigh = [trusted[j][2] for j in (i - 1, i + 1) if 0 <= j < len(trusted)]
+        if neigh and min(neigh) > 0:
+            ratios.append(b[2] / min(neigh))
+    return trusted, rejected, (max(ratios) if ratios else None)
 
 
 def _runs(bins: Sequence[Tuple[float, float, float]]) -> List[Tuple[float, float, List[Tuple[float, float, float]]]]:
@@ -563,6 +603,25 @@ def evaluate_card(card: Card, snap: Dict[str, Any],
             magnets = _merge_sources(buy_above, squeeze_above)
             magnets.sort(key=lambda b: b[0])
         magnets = [(lo, hi, n) for lo, hi, n in magnets if n >= MAGNET_MATERIAL_USD]
+        magnets, rejected_bins, neighbor_ratio = _trusted_bins(magnets)
+        ev.metrics["magnet_neighbor_ratio_max"] = neighbor_ratio
+        artifacts = [r for r in rejected_bins if r[3] == "artifact"]
+        untrusted = [r for r in rejected_bins if r[3] == "untrusted"]
+        ev.metrics["magnet_bins_excluded"] = [[r[0], r[1], r[2], r[3]] for r in rejected_bins]
+        if artifacts:
+            biggest = max(artifacts, key=lambda r: r[2])
+            ev.add("MAGNET_ARTIFACT_EXCLUDED", "MINOR", "A6",
+                   f"{len(artifacts)} bin(s) excluded as provider artifacts (>= "
+                   f"{MAGNET_ARTIFACT_RATIO:.0f}x the larger price-adjacent neighbour); largest "
+                   f"[{biggest[0]}, {biggest[1]}] carrying {biggest[2]/1e6:.3f}M USD cannot anchor a TP",
+                   excluded=[[r[0], r[1], r[2]] for r in artifacts])
+        if untrusted:
+            biggest = max(untrusted, key=lambda r: r[2])
+            ev.add("MAGNET_UNTRUSTED_EXCLUDED", "MINOR", "A6",
+                   f"{len(untrusted)} bin(s) excluded as untrusted (> {MAGNET_NEIGHBOR_RATIO_MAX:.0f}x the "
+                   f"larger neighbour); largest [{biggest[0]}, {biggest[1]}] carrying "
+                   f"{biggest[2]/1e6:.3f}M USD cannot anchor a TP",
+                   excluded=[[r[0], r[1], r[2]] for r in untrusted])
 
         runs = _runs(hazard)
         ev.metrics["hazard_runs"] = [[lo, hi, round(sum(m[2] for m in mem), 2)] for lo, hi, mem in runs][:10]
