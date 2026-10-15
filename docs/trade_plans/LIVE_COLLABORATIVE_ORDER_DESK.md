@@ -20733,3 +20733,15 @@ Increase frequency by continuously ranking qualified cards on fill-conditional e
 Companion evidence retains all24source-block inventories, structural/depth/profile/spec/funding/CVD data, HTF diagnostics, coverage, classifications, interval containment, risk calculations, source manifest and rubric arithmetic. Computational PASS means calculations match the pinned snapshot—not that all data defects are fixed or a trade is authorized.
 
 Only this report, its evidence ledger and an append-only desk entry are published. Prior entries and local-only Cycle93 files are preserved. No live order, ratchet, cancellation, production patch, independent agent dispatch, backtest result or external AI-service repair is claimed.
+
+## 9. Arena 24-asset dual-model ruling — 2026-10-15 13:45 UTC (observation c56410ac9d3)
+
+Receipt `docs/telemetry/live_snapshot_latest.json` as_of 2026-10-15 13:42:12 UTC, generation `c56410ac9d324a81bb3f7986f630d137`. Full report: `docs/trade_plans/ARENA_24_ASSET_DUAL_MODEL_RULING_20261015_1345UTC.md`.
+
+Desk state: equity 4,862.28 USD, 0 filled positions, 2 pending SELL_LIMIT tickets (#18954801 BTC 0.04 @ 81,280.00; #18956325 ETH 0.61 @ 2,377.00), floor cushion +87.28 USD, joint stressed post-stop equity 4,830.555 USD (+35.555 USD over the 4,795.00 operating threshold).
+
+Rulings: **(C) CANCEL IMMEDIATELY on both tickets.** BTC sits 2.283 ATR away with its entry inside the un-swept buy-stop cluster [81,200, 81,300] (1.77M USD) and its SL inside [81,500, 81,600] (1.37M USD); the canonical bunker needs 81,765.51, not 81,560. ETH sits 2.074 ATR away with its entry at the edge of [2,370, 2,380] and its SL inside [2,390, 2,400]; the outer-boundary stop is 2,448.21, which costs 43.44 USD at 0.61 lots and 14.50 USD only at 0.20 lots, against a 0.216R first-magnet payoff. Both tickets additionally fail the whale gate: BTC has zero `gate_g7_eligible` walls and ETH's qualifying walls top out at 663,503 USD.
+
+New orders: **none — STAND ASIDE across all 24 assets.** The double gate (`gate_g7_eligible True` AND `persist_s >= 180` AND `presence_frac >= 0.85` AND notional at the Patch-4 institutional threshold) has an empty intersection: the persistent, g7-verified population ceiling is 663,503 USD, while every institutionally sized wall prints presence 0.75-0.80. 14 of 24 assets also fail the spread gate outright. Rebuilt BTC and ETH shorts priced at lawful VWAP/20-EMA shelves resolve to 1.39R and 0.216R at the first material opposing barrier — unpayable after a canonical stop.
+
+Caveats: HTF arrays ship 96 bars, so a 1H/4H EMA200 hierarchy is not independently recomputable; `assets_matrix_24[symbol].arkham_onchain` is absent; Arkham logged zero exchange events this cycle; p_win lower bound 0.4197 remains uncalibrated at n=17. Arena staged, modified and cancelled nothing.
