@@ -54,7 +54,7 @@ trigger: always_on
   7. *Step 7 — Dialectic Cross-Pollination Re-Prompt*: Inject next cycle's tailored prompts with peer findings (Fable + Argon points to Astra; Astra + Argon points to Fable; Astra + Fable points to Argon) into all 3 tabs via `Terminal/dispatch_tri_council.py`.
   8. *Step 8 — Turn-Ending Session Record & Silent Sleep*: Append the complete turn record to `.agents/memory/session_chat_history.md` in both repositories, arm the next wake-up sentry, and enter silent standby.
 - **ARENA ACTIVE BRANCHES & DUAL-BRANCH TELEMETRY SYNC (STRICT OPERATOR DIRECTIVE)**:
-  * Astra is active on branch `arena/d6de1eb4-trading-2`; Fable is active on branch `arena/af999588-trading-2`. Both branches are created on origin and continuously updated by `autonomous_telemetry_git_daemon.py` every 60s alongside `main`.
+  * Current active Arena.ai branch is `arena/7a89a384-trading-2` (alongside Astra `arena/d6de1eb4-trading-2`, Fable `arena/af999588-trading-2`, and `arena/5c05910e-trading-2`). All branches are created on origin and continuously updated by `autonomous_telemetry_git_daemon.py` every 60s alongside `main`.
 - **ARENA AUTO-RECOVERY DAEMON (ZERO-TOKEN RECOVERY MANDATE)**:
   * `Terminal/arena_auto_recovery_daemon.py` runs persistently in the background. If it detects the red error banner "The AI service encountered an error. Please try again." on any Arena tab when generation has halted, it automatically injects "continue and fix The AI service encountered an error. Please try again." and hits Enter without human intervention and without token cost.
 - **TRI-COUNCIL CROSS-POLLINATION / ADVERSARIAL DIALECTIC ARCHITECTURE (STRICT OPERATOR DIRECTIVE)**:

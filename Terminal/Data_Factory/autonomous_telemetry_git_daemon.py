@@ -43,7 +43,12 @@ logging.basicConfig(
 logger = logging.getLogger("TelemetryGitDaemon")
 
 BRANCH_NAME = "main"
-ARENA_BRANCH = "arena/5c05910e-trading-2"
+ASTRA_BRANCH = "arena/d6de1eb4-trading-2"
+FABLE_BRANCH = "arena/af999588-trading-2"
+ACTIVE_ARENA_BRANCH = "arena/7a89a384-trading-2"
+LEGACY_ARENA_1 = "arena/5c05910e-trading-2"
+LEGACY_ARENA_2 = "arena/e3d7cc98-trading-2"
+TARGET_BRANCHES = [BRANCH_NAME, ACTIVE_ARENA_BRANCH, ASTRA_BRANCH, FABLE_BRANCH, LEGACY_ARENA_1, LEGACY_ARENA_2]
 CANONICAL_REMOTE = "https://github.com/kbsingh1399/Trading_2"
 SNAPSHOT_FILE = "docs/telemetry/live_snapshot_latest.json"
 INTERVAL_SECONDS = 60
@@ -101,11 +106,12 @@ def load_successful_generation(generated_snapshot, *, clock=None):
     from Terminal.Telemetry_Provenance import validate_observed_snapshot
     try:
         document = json.loads((ROOT / SNAPSHOT_FILE).read_text(encoding="utf-8"))
-        observed_now = clock() if clock is not None else time.time()
+        observed_now = clock() if clock is not None else None
+        if observed_now is None:
+            observed_now = time.time()
         if (not isinstance(generated_snapshot, dict) or not document.get("generation_id")
                 or document != generated_snapshot or not validate_observed_snapshot(document)
                 or document.get("snapshot_status") != "LIVE_OBSERVATION"
-                or observed_now is None
                 or not -5.0 <= float(observed_now) - float(document["as_of_epoch"]) <= 180.0):
             raise ValueError("missing, stale or mismatched successful generation")
         cap = document["capacity"]
@@ -216,29 +222,28 @@ def sync_git_cycle(generated_snapshot=None, *, clock=None):
         return False
     if load_successful_generation(generated_snapshot, clock=clock) is None:
         return False
-    # Never resolve HEAD during push: the operator may commit after verification.
-    code, _, err = run_cmd(["git", "push", "--atomic", "origin",
-                            f"{publication_revision}:{BRANCH_NAME}", f"{publication_revision}:{ARENA_BRANCH}"])
-    if code:
-        logger.warning("Dual-ref push failed (%s); attempting fallback push to main only", err)
-        if load_successful_generation(generated_snapshot, clock=clock) is None:
-            return False
-        code_main, _, err_main = run_cmd(["git", "push", "origin", f"{publication_revision}:{BRANCH_NAME}"])
-        if code_main:
-            logger.warning("Telemetry push failed; retaining local commit for review: %s", err_main)
-            return False
-        logger.info("Published this cycle's observed snapshot to origin/%s (arena ref deferred)", BRANCH_NAME)
-        # Immediately resolve the diverged arena branch by fetching and merging
-        run_cmd(["git", "fetch", "origin", ARENA_BRANCH])
-        m_code, _, _ = run_cmd(["git", "merge", f"origin/{ARENA_BRANCH}", "-m", "daemon: auto-merge arena branch ref"])
-        if m_code == 0:
-            run_cmd(["git", "push", "origin", f"HEAD:{ARENA_BRANCH}"])
-            run_cmd(["git", "push", "origin", f"HEAD:{BRANCH_NAME}"])
-            logger.info("Auto-synchronized origin/%s after merge", ARENA_BRANCH)
+    # Push to main first (canonical source of truth)
+    code_main, _, err_main = run_cmd(["git", "push", "origin", f"{publication_revision}:{BRANCH_NAME}"])
+    if code_main:
+        logger.warning("Telemetry push to %s failed: %s", BRANCH_NAME, err_main)
+        return False
+    logger.info("Published this cycle's observed snapshot to origin/%s", BRANCH_NAME)
+
+    # Now push to all Arena branches (GPT_Astra, Fable, and legacy)
+    for arena_br in [ASTRA_BRANCH, FABLE_BRANCH, LEGACY_ARENA_1, LEGACY_ARENA_2]:
+        code_br, _, err_br = run_cmd(["git", "push", "origin", f"{publication_revision}:{arena_br}"])
+        if code_br == 0:
+            logger.info("Published observed snapshot to origin/%s", arena_br)
         else:
-            run_cmd(["git", "merge", "--abort"])
-        return True
-    logger.info("Published this cycle's observed snapshot to origin/%s and origin/%s", BRANCH_NAME, ARENA_BRANCH)
+            logger.warning("Push to %s rejected/failed (%s); attempting auto-merge sync", arena_br, err_br)
+            run_cmd(["git", "fetch", "origin", arena_br])
+            m_code, _, _ = run_cmd(["git", "merge", "-X", "ours", f"origin/{arena_br}", "-m", f"daemon: auto-merge {arena_br} ref"])
+            if m_code == 0:
+                run_cmd(["git", "push", "origin", f"HEAD:{arena_br}"])
+                run_cmd(["git", "push", "origin", f"HEAD:{BRANCH_NAME}"])
+                logger.info("Auto-synchronized origin/%s after merge", arena_br)
+            else:
+                run_cmd(["git", "merge", "--abort"])
     return True
 
 
@@ -273,6 +278,11 @@ def main():
                 cushion = snapshot["account"]["cushion_above_floor_usd"]
                 pending = snapshot["capacity"]["pending"]
                 logger.info(f"Telemetry generated. Equity: {equity:.2f} USD | Cushion: +{cushion:.2f} USD | Pending Orders: {pending}")
+                try:
+                    from Terminal.Data_Factory.make_slim_snapshot import make_slim
+                    make_slim()
+                except Exception as slim_err:
+                    logger.warning(f"Could not update slim snapshot: {slim_err}")
             except Exception as exc:
                 logger.error(f"Error during generate_full_snapshot: {exc}", exc_info=True)
 

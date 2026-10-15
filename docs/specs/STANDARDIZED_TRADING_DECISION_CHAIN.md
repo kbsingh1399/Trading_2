@@ -314,9 +314,226 @@ stateDiagram-v2
 
 ## SECTION 3: INSTITUTIONAL BENCHMARK & ACCOUNTABILITY CONTRACT
 
-1. **Benchmark Comparison**: All desk performance, equity metrics, and Sharpe ratios must be continuously benchmarked against the **BTC Buy and Hold** benchmark normalized to initial capital ($5,000\text{ USD}$).
+1. **Benchmark Comparison**: All desk performance, equity metrics, and Sharpe ratios must be continuously benchmarked against the **BTC Buy and Hold** benchmark normalized to initial capital ($5,000 USD).
 2. **Immutable Audit Provenance**: Every trade decision, council debate, and execution log must be recorded in:
    - `docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md`
    - `.agents/memory/session_chat_history.md`
-   - Telemetry snapshots pushed to Git repository (`main` branch) every 60 seconds.
+   - Telemetry snapshots pushed to Git repository (`main` branch and `arena/7a89a384-trading-2`) every 60 seconds.
 3. **Zero-Litter Discipline**: All scratch scripts and exploratory debug artifacts must be immediately purged upon validation.
+
+---
+
+## SECTION 4: FULL EMBEDDED SKILL HANDBOOKS & EXECUTION PROTOCOLS
+> **Self-Contained Operating Handbooks**: To ensure models without local skill repositories (external AIs, sandboxed instances, or remote auditors) execute with 100% fidelity, the complete operational instructions, constraints, and methodologies for all 8 foundational skills are embedded below directly.
+
+```mermaid
+flowchart LR
+    subgraph SocraticSkills ["Discovery & Synthesis"]
+        SK1["Skill 1: /brainstorm<br/>Socratic Gate & Dialectic"]
+        SK2["Skill 2: /graphify<br/>AST Semantic Graph Traversal"]
+        SK3["Skill 3: /remember<br/>Persistent Trajectory & Anti-Amnesia"]
+    end
+    subgraph DataSkills ["Engineering & Diagnostics"]
+        SK4["Skill 4: /data-analyst<br/>Orderflow & Auction Profiling"]
+        SK5["Skill 5: /data-engineer<br/>Data Contracts & Monotonicity"]
+        SK6["Skill 6: /dataform-bigquery<br/>Time-Series Modeling & Partitioning"]
+        SK7["Skill 7: /data-driven-feature<br/>Statistical Power & Feature Rigor"]
+    end
+    subgraph ExecutionSkills ["Verification & Risk"]
+        SK8["Skill 8: /verify & test-guard<br/>Ex-Ante Pre-Execution Gate"]
+    end
+    SocraticSkills --> DataSkills --> ExecutionSkills
+```
+
+---
+
+### SKILL 1: `/brainstorm` (Socratic Gate & Multi-Perspective Adversarial Trade Debate)
+*Source: `.agents/skills/brainstorming/SKILL.md`*
+
+#### 1. Purpose & Core Mandate
+The `/brainstorm` protocol enforces structured dialectic reasoning and prevents premature execution, confirmation bias, or single-agent echo chambers. It guarantees that any trade hypothesis is stress-tested against counter-hypotheses before capital is committed.
+
+#### 2. The Socratic Gate (Mandatory Rules)
+Before any order proposal is ratified:
+1. **The 3 Mandatory Pre-Flight Questions**:
+   - **Target Problem / Edge**: What exact structural inefficiency or orderflow imbalance is being exploited? (e.g. resting whale absorption vs exhausted taker cascade).
+   - **Adverse Scenarios**: What happens if the resting whale wall pulls, cancels, or is eaten in a violent blow-through? Where is the invalidation point?
+   - **Boundary & Capacity Constraints**: Does this order respect the hard floor ($4,775.00 USD), the $10.00–$14.50 USD risk envelope, and the 4-position capacity limit?
+2. **Dynamic Questioning Principles**:
+   - Never use static or boilerplate affirmations.
+   - Every question must connect directly to an empirical risk or execution consequence.
+   - Questions must systematically eliminate invalid implementation paths.
+
+#### 3. 3-Persona Adversarial Debate Protocol
+Every trade setup must be evaluated through three distinct adversarial viewpoints:
+- **Persona A (The Aggressive Orderflow Specialist)**:
+  - Advocates for the setup based on micro-level tape data: CVD delta deceleration, footprint absorption, resting L2/L3 whale walls, and basis-mapped stop sweeps.
+- **Persona B (The Skeptical Macro & Regime Risk Officer)**:
+  - Challenges the setup: Inspects higher-timeframe EMA alignment (Price vs EMA20/EMA50/EMA200), upcoming Tier-1 macro catalysts, interbank FX rollover spread widening (21:30–22:30 UTC), and cross-asset correlation shocks.
+- **Persona C (The Forensic Position & Friction Auditor)**:
+  - Audits broker friction and execution math: Evaluates spread in bps, calculates tick slippage, tests IOC vs RETURN filling policies, verifies `mt5.order_calc_profit` cash risk, and computes post-loss stressed floor cushion.
+- **Ratification Threshold**: A trade is approved ONLY if Persona A's edge withstands the critiques of Persona B and Persona C with verifiable empirical evidence.
+
+---
+
+### SKILL 2: `/graphify` (AST Knowledge Graph & Structural Architecture Traversal)
+*Source: `.agents/rules/graphify.md`*
+
+#### 1. Purpose & Knowledge Base Structure
+`graphify` provides instant AST-level semantic navigation of the codebase (`graphify-out/graph.json`, comprising 7,400+ nodes and dependencies) without loading entire multi-thousand-line source files into context windows, preventing token exhaustion and hallucination.
+
+#### 2. Core Execution Protocols & Commands
+- **`graphify query "<question>"`**:
+  - Queries scoped subgraphs for specific symbols, function contracts, risk constants, or execution routes.
+  - Example: `graphify query "order_calc_profit"` or `graphify query "bunker stop formula"`.
+- **`graphify path "<Node_A>" "<Node_B>"`**:
+  - Finds the shortest dependency path between two components (e.g. from `generate_telemetry_snapshot.py` to `OF_Strategy.py`).
+- **`graphify explain "<concept>"`**:
+  - Extracts focused architectural summaries and dependencies for classes, invariants, and pipelines.
+- **Rules of Engagement**:
+  - For architecture and code structure queries, always query the AST knowledge graph first.
+  - After modifying any core logic or execution modules, run `graphify update .` to keep the semantic graph synchronized.
+
+---
+
+### SKILL 3: `/remember` & `agent-memory` (Persistent Cross-Session Knowledge Management)
+*Source: `.agents/skills/agent-memory/SKILL.md`*
+
+#### 1. Purpose & Anti-Amnesia Protocol
+Maintains durable, persistent memory across AI coding sessions, multi-account Gemini handoffs, and external council rounds. Eliminates context amnesia, ensures past operator feedback is permanently respected, and prevents regression into previously identified failure modes.
+
+#### 2. Architecture & File Hierarchy
+- **Layer 1 (Semantic Graph Memory)**: `.agents/memory/graph/mcp_graph_memory.json`
+- **Layer 2 (Roadmap & Milestones)**: `.agents/memory/SESSION_CONTEXT_MAP.md`
+- **Layer 3 (Active Mission & Invariants Card)**: `.agents/rules/ACTIVE_CONTEXT.md`
+- **Layer 4 (Immutable Session History)**: `.agents/memory/session_chat_history.md`
+
+#### 3. Mandatory Behavioral Invariants
+1. **Turn-0 Retrospective**: On every single turn, before analyzing data or modifying code, review previous conversation logs and active context to establish unbroken continuity.
+2. **The Anti-Trap Memory Registry**: Never repeat an identified trap:
+   - *Trap 1*: Placing limit entries directly above un-swept opposing stop clusters.
+   - *Trap 2*: Buying falling knives into aggressive seller CVD cascades without absorption.
+   - *Trap 3*: Measuring stop loss buffers from `mid_price` instead of the outer bunker boundary (`min_price` / `max_price`).
+   - *Trap 4*: Staging orders backed by ephemeral/spoofed whale walls (`persist_s < 180s`).
+   - *Trap 5*: Staging limit entries > 2.0 ATR away from current market price.
+3. **Turn-Ending Append**: Append prompt, decisions, and execution outcomes to `session_chat_history.md` at the conclusion of every cycle.
+
+---
+
+### SKILL 4: `/data-analyst` (Advanced Orderflow, Distribution & Auction Dissection)
+*Source: `.agents/skills/data-analyst/SKILL.md`*
+
+#### 1. Purpose & Analytical Rigor
+Transforms raw market streams into decision-ready econometric and orderflow intelligence. Decomposes multidimensional metrics with mathematical precision, identifies instrumentation caveats, and separates causal signals from statistical noise.
+
+#### 2. Core Methodologies & Analysis Patterns
+1. **Multi-Dimensional Metric Slicing**:
+   - Always decompose metrics across multiple dimensions: Asset Class (Crypto vs TradFi), Timeframe (1m, 5m, 15m, 1h, 1d), Venue (Binance Futures vs Hyperdash vs Blueberry MT5).
+   - Never rely on single aggregate metrics; aggregate stability often masks severe localized divergence.
+2. **Spread Analysis in Basis Points**:
+   $$\text{Spread (bps)} = \frac{\text{Ask} - \text{Bid}}{\text{Mid}} \times 10,000$$
+   - Enforce hard eligibility gates: Crypto $\le 25.0\text{ bps}$, TradFi CFDs $\le 5.0\text{ bps}$.
+3. **Auction Profile Dissection**:
+   - Identify Point of Control (POC), Value Area High (VAH, 70% volume threshold), and Value Area Low (VAL).
+   - Detect Virgin / Naked POCs that act as unvisited liquidity magnets.
+4. **Cumulative Volume Delta (CVD) Forensics**:
+   - Calculate multi-horizon CVD deltas (Session, Weekly, 24h, 15m).
+   - Detect **Absorption**: Price makes a lower low but 15m CVD makes a higher low (passive limit buyers absorbing aggressive sellers).
+   - Detect **Continuation / Blow-Through**: Price and CVD decline synchronously with accelerating negative velocity ($d^2(\text{CVD})/dt^2 < 0$), signaling that resting liquidity will be consumed without reversing.
+5. **Data Caveat Verification**:
+   - Verify instrumentation provenance before trusting any metric. Ensure taker volume excludes exchange wash-trading and that MT5 tick feeds reflect live broker quotes.
+
+---
+
+### SKILL 5: `/data-engineer` (Data Contract Enforcement, Pipeline Ingestion & Monotonicity)
+*Source: `.agents/skills/data-engineer/SKILL.md`*
+
+#### 1. Purpose & Pipeline Governance
+Guarantees the structural integrity, latency, and reliability of the data pipeline feeding the trading desk. Governs data contracts, timestamp monotonicity, venue basis translation, and fail-closed error handling.
+
+#### 2. Execution Standards & Protocols
+1. **Data Contracts & SLA Enforcement**:
+   - Telemetry snapshots (`docs/telemetry/live_snapshot_latest.json`) must be regenerated every 60 seconds with strict schema compliance.
+   - Latency Gate: Reject snapshots with $\text{Age} > 180\text{ seconds}$.
+2. **Monotonicity & Zero-Null Invariant**:
+   - All historical and real-time candle series must exhibit strictly increasing timestamps ($t_i > t_{i-1}$).
+   - Zero null, NaN, or infinite values permitted across Open, High, Low, Close, Volume, and CVD fields.
+3. **Venue Basis Normalization**:
+   - Map external Binance / Hyperdash orderbook feeds onto the broker MT5 execution grid:
+     $$\text{MT5 Level} = \text{Venue Level} + \text{venue\_basis}$$
+   - Prevents misaligned limit placement caused by cross-venue pricing discrepancies.
+4. **Fail-Closed Architecture**:
+   - If an upstream API (Binance, Arkham, MT5) returns corrupt payloads or connection errors, the data pipeline raises immediate alerts and freezes new order generation until data consistency is restored.
+
+---
+
+### SKILL 6: `/dataform-bigquery` (Institutional Time-Series Modeling & Scalability)
+*Source: Modern BigQuery / Dataform Data Engineering Standards*
+
+#### 1. Purpose & Architecture
+Governs massive time-series modeling, table partitioning, clustering, and reproducible ELT transformations across 43 canonical Parquet datasets and 3,467,571 historical 15m bars.
+
+#### 2. Time-Series Partitioning & Query Optimization
+1. **Partition Pruning**:
+   - In all analytical queries and backtests, always filter by partition columns (`_PARTITIONDATE`, `timestamp_utc`) first to prevent full table scans and eliminate execution latency.
+2. **Clustering Strategy**:
+   - Cluster datasets by `symbol`, `venue`, and `regime_id` to optimize filter speed for multi-asset scans.
+3. **Data Quality Assertions**:
+   - Implement automated Dataform-style assertions:
+     - `unique_key`: Combination of `(timestamp, symbol)` must be strictly unique.
+     - `row_conditions`: High $\ge$ Max(Open, Close), Low $\le$ Min(Open, Close), Volume $\ge 0$.
+     - `referential_integrity`: All mapped assets must exist in the canonical 43-symbol universe.
+
+---
+
+### SKILL 7: `/data-engineering-data-driven-feature` (Empirical Feature Engineering & Statistical Power)
+*Source: `.agents/skills/data-engineering-data-driven-feature/SKILL.md`*
+
+#### 1. Purpose & Scientific Method
+Drives the systematic creation, testing, and validation of quantitative trading features using statistical experiment design, A/B testing frameworks, and causal econometrics.
+
+#### 2. Two-Phase Development Workflow
+- **Phase 1: Hypothesis Formulation & Statistical Power**:
+  1. *Exploratory Data Analysis*: Identify empirical anomalies in price distribution, orderbook skew, or liquidation cascades.
+  2. *Quantitative Hypothesis Definition*: State the causal mechanism clearly:
+     $$\mathcal{H}_1: \text{Long Liquidation Z-Score} > 1.8 \land \text{RSI} < 40 \land \text{Whale Wall Persist} \ge 180\text{s} \implies \mathbb{P}(\text{Win}) \ge 60\%$$
+  3. *Statistical Significance & Power Analysis*:
+     - Sample size must provide $\ge 80\%$ statistical power ($\beta = 0.20$) at $\alpha = 0.05$.
+     - Compute Clopper-Pearson exact binomial confidence bounds for win rates across non-overlapping windows.
+     - Apply Benjamini-Hochberg False Discovery Rate (FDR) corrections when testing multiple parameter combinations.
+- **Phase 2: Feature Architecture & Zero-Lookahead Invariant**:
+  1. *Causal Calculation*: All feature values for bar $t$ must be calculated strictly using information available at or before $t$. Any future data leakage permanently invalidates the model.
+  2. *Out-of-Sample Validation*: Validate features across 20 non-overlapping 1-month walk-forward windows (2021–2026) with causal 72h purge buffers.
+
+---
+
+### SKILL 8: `/verify` & `test-guard` (Ex-Ante Pre-Execution Gate Verification)
+*Source: `.agents/skills/test-guard/SKILL.md` & Institutional Pre-Execution Governance*
+
+#### 1. Purpose & Review Discipline
+Acts as the final, immutable gatekeeper before live order dispatch. Enforces the 9 Universal Rules of Test Guard and conducts ex-ante mathematical proofs of risk, margin, and boundary safety.
+
+#### 2. The 9 Universal Verification Rules
+1. **Rule 1: Verify Observable Behavior, Not Mocks**: Test actual broker responses, real MT5 tick quotes, and live order ticket states. Never rely on simulated or mocked assumptions.
+2. **Rule 2: Ex-Ante Cash Risk Verification**:
+   - Compute cash risk via `mt5.order_calc_profit()` for the exact proposed lot size, entry, and stop loss.
+   - Confirm risk is strictly within the authorized envelope ($10.00–$14.50 USD for Tier 1; up to $22.00 USD for Tier 2 TradFi indices).
+3. **Rule 3: Stressed Capital Floor Defense Gate**:
+   - Verify that in the event of an immediate stop-out on all active positions and staged orders:
+     $$\text{Stressed Equity} = \text{Current Equity} - \sum_{i} (\text{Risk}_i \times 1.25) \ge 4,775.00\text{ USD}$$
+   - If Stressed Equity $< 4,775.00\text{ USD}$, the order is rejected immediately.
+4. **Rule 4: Outer Bunker Boundary Audit**:
+   - For Longs: $\text{SL} \le \text{min\_price} - 0.50\text{ ATR} - \text{half\_spread}$.
+   - For Shorts: $\text{SL} \ge \text{max\_price} + 0.50\text{ ATR} + \text{half\_spread}$.
+   - Measuring stop distance from `mid_price` is strictly prohibited.
+5. **Rule 5: Resting Whale Wall Persistence Gate**:
+   - The supporting whale wall must show $\text{persist\_s} \ge 180\text{s}$, $\text{presence\_frac} \ge 0.85$, and `gate_g7_eligible: True`. Any wall with $0.0\text{s}$ persistence is rejected as spoofed.
+6. **Rule 6: Target Magnet Front-Run Gate**:
+   - Take Profit must front-run the opposing liquidation band or structural stop cluster by 5 to 10 bps to ensure fill priority before exhaustion.
+7. **Rule 7: Proximity / Runway Gate**:
+   - Limit entry price must be within $2.0\text{ ATR}$ of current market price. Orders $> 2.0\text{ ATR}$ away are rejected as unfillable noise.
+8. **Rule 8: Passive Order Posture**:
+   - Verify order type is strictly `BUY_LIMIT` or `SELL_LIMIT`. Market orders and aggressive spread-crossing are banned.
+9. **Rule 9: Broker Filling Compatibility**:
+   - Transmit with `ORDER_FILLING_IOC`, with automated sequential fallback to `ORDER_FILLING_RETURN` and `ORDER_FILLING_FOK`.
+
