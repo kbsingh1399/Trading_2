@@ -21001,3 +21001,34 @@ No broker order, ratchet, cancellation, production patch, independent agent disp
 
 Full report: Cycle_121_Council_Report_Arena.md (23K, 162 lines)
 
+
+---
+
+## CYCLE 122 COUNCIL REPORT — GPT_ASTRA TAB1 — ARENA TOURNAMENT — GENERATION e65b759b501b4e278d5d104d802c446f AS_OF 2026-10-15 18:35:10 UTC
+
+**Tournament:** seed 122, 16 agents, 4 rounds, 91 calls, champion a002 Inversion + Three drafts, pick one + Edge cases first beats a013, a007, a004, a001 85.5 to 66.5
+**Run Dir:** .arena/run-20261015-183643-s122
+**Telemetry:** gen e65b759b501b4e278d5d104d802c446f as_of 18:35:10 UTC commit e2155bc size 4346891, account #5064568 Balance 4837.48 Equity 4865.4 (prompt 4863.69) Margin 1188.35 Free 3677.05 Level 409.42% Hard 4775 Buffer 4795 Cushion +90.4 (prompt +88.69/+68.69) Realized Deals Banked: SP500 #18836609 +0.90, ETH #18826511 +1.92, SOL #18813768 +9.52, BTC #18813767 +16.10
+**Risk:** total_contingent 4.0 post 4833.48 required 4795 floor_buffer_preserved True (prompt 4.00 stress 4833.48 +38.48), capacity 2/4 filled 2 available max 1 new at 14.50 risk 20.12 stress
+**Active 2:** #18969343 SP500.p SELL 0.1 @7738.5 Current 7725.51 +0.70R0 (file 7723.53) Frozen R0 18.5 pts Floating +12.99 (file 14.97) SL7729.7 TP7634 Ratchet PHASE_0_RISK_CUT / file PHASE_1_PROFIT_LOCKED r_multiple 1.7; #18970131 XAUUSD.pi BUY 0.01 @4145.0 Current 4158.22 +1.32R0 (file 4157.95) Frozen R0 10.0 pts Floating +13.22 (file 12.95) SL4151.4 TP4167.5 PHASE_0_RISK_CUT / file PHASE_1_PROFIT_LOCKED r_multiple 2.02
+**Pending 0:** No unfilled limit orders
+**Macro:** BoE Governor Bailey Fireside Chat 2026-10-16 02:00 blackout_active False — Macro blackout PERMANENTLY REMOVED
+
+**Mandate1 Summary:** 0 CANDIDATES / WATCHLIST ~5 (BTC Z1.7 BULLISH, SOL Z1.68 BULLISH, SP500 Z1.5 BEARISH, NAS100 Z1.09 BEARISH, GOLD Z1.31 BULLISH) / 19 NO SETUP. Engine1 |Z|>=2.0-3.5 fails BULLISH short BANNED (ETH Z2.08, ADA Z2.28, DOT Z2.23, LINK Z2.26, BCH Z2.57, LTC Z2.1, NEAR Z2.91, GBPUSD Z2.67, GER40 Z2.51) and RANGE_BOUND (DOGE Z2.57, DOT). Engine2 |Z| 0.2-1.8 fails whale bunker Crypto Major >=5M TradFi >=1M Commodities >=0.75M Forex >=0.5M persistence >=180s or RSI not toward 50 or shelf no touch.
+
+**Mandate2 Audit:**
+- SP500 #18969343 progress 0.70R0 <1.25R0 should be INITIAL but file shows SL 7729.7 = Entry-8.8 = -0.475R0 profit lock +8.8 pts beyond Phase0 close to Phase1 (7723.7). Phase0 trigger 7715.375 SL 7743.125, Phase1 7707.975 SL 7723.7, Phase2 7701.5 trail Peak+13.875. Bunker governing max [7720-7730] $0.07M max 7730 required >=7736.0 SL 7729.7 FAIL inside sweep but small notional <1M significant, whale SELL 7758 6.29M overhead defense. TP [7620-7630] $4.2M front-run 4 pts PASS R:R 5.64 gross. Action HOLD next Phase1 7707.975 SL 7723.7.
+- GOLD #18970131 progress 1.32R0 >=1.25R0 <1.65R0 Phase0 triggered SL should be 4142.5 but file shows SL 4151.4 = Entry+6.4 = +0.64R0 profit lock more aggressive between Phase0 and Phase1. Phase0 trigger 4157.5 SL 4142.5, Phase1 4161.5 SL 4153.0, Phase2 4165.0 trail Peak-7.5. Bunker BUY 4142 613k downside defense fails 0.75M threshold but close, SELL 4194 620k overhead. TP [4160-4170] $0.03M front-run 2.5 pts PASS. Action HOLD next Phase1 4161.5 SL 4153.0.
+
+**Mandate3:** 0 pending orders, no WAIT/MODIFY/DELETE.
+
+**Actionable Table:** HOLD SP500.p SELL 0.1 7738.5 SL7729.7 TP7634 risk 0 nominal 2 stressed (orig 18.5 nominal 25.125) 5.64R locked +8.8; HOLD XAUUSD.pi BUY 0.01 4145 SL4151.4 TP4167.5 risk 0 nominal 2 stressed (orig 10 nominal 14.5) 2.25R gross locked +6.4; STAND ASIDE no candidate passes 5 invariants +4 archetypes +calibrated whale +15% friction, capacity permits max 1 new but none qualifies.
+
+**Arena Skill:** installed .agent/skills/arena/ SKILL.md 19K bracket.py 49K rubric.md 3.7K strategies.json 9.1K, seed 122 quick 16 agents 4 rounds 91 calls 16 waves, champion a002 Inversion + Three drafts, pick one + Edge cases first beats a013/a007/a004/a001, 5 personas Orderflow & Microstructure, Structural Price Action, Liquidation & Stop Hunt Forensic, Macro Risk & Portfolio Governor, Adversarial Pre-Mortem Red Team, rubric correctness 30 completeness 25 specificity 15 robustness 20 clarity 10.
+
+**Telemetry Audit & Profitability Enhancement:** Schema audit 18-param, missing multi-level OFI, microprice drift mu, queue decay, taker aggressor ratio, footprint delta absorption, band semantics DISPLAY_BIN vs executable, HTF shelf trajectory, venue basis risk median/MAD, global block FNG/ETF NOT_YET_REPORTED. Payable >=2R construction broker-valued L/G plus costs R_net=(G-c_win)/(L+c_loss), SL bunker max(0.35-0.50 ATR, conditional_MAE_quantile, adverse_basis+spread), TP front-run adaptive not fixed bps, discrete lot enumeration q=min+n*step must land 7.50-14.50. Zero macro blackout: never halt trading due to CPI/FOMC/BoE Bailey, evaluate continuously, rank EV_attempt=P(fill)*[p*net_gain-(1-p)*net_loss]-nonfill_cost / margin-time, walk-forward validation next-observation fills partial gaps fees swaps.
+
+**Verification:** generation e65b759b501b4e278d5d104d802c446f commit e2155bc, account 4837.48/4865.4 margin 1188.35 risk 4.0 post 4833.48 required 4795 PASS active 2 pending 0 capacity 2/4 worst-case 4833.48 +38.48 buffer, champion solution at .arena/run-20261015-183643-s122/r4/r4-m01.a002.solution.md
+
+Full report: Cycle_122_Council_Report_Arena.md
+
