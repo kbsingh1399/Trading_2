@@ -235,7 +235,7 @@ Requested calibration is implemented and exercised: `SL_BUFFER_ATR_MIN/MAX = 0.3
 ## §10 — ARTIFACTS & PROVENANCE
 
 * **Snapshot**: `docs/telemetry/live_snapshot_latest.json` @ `7b193feddf874dfda838cfaae6ac9d39` (2026-10-15 00:01:26 UTC), canonical `main` @ `deb6652`
-* **Cards**: `docs/trade_plans/arena_cards/cycle112_20261015T000126Z.json` (15 cards)
+* **Cards**: `docs/trade_plans/arena_cards/cycle112_20261015T000126Z.json` (16 cards)
 * **Run**: `docs/trade_plans/arena_runs/cycle112_20261015T000126Z/{run.json,REPORT.md}` (seed 112; `LATEST` updated)
 * **Engine**: `Terminal/arena_tournament.py` — trusted-magnet rule (`_trusted_bins` with per-bucket consolidation, `MAGNET_ARTIFACT_RATIO = 100`, `MAGNET_NEIGHBOR_RATIO_MAX = 10`, findings `MAGNET_ARTIFACT_EXCLUDED` / `MAGNET_UNTRUSTED_EXCLUDED` / `MAGNET_NEIGHBOR_DISCONTINUITY`, metric `magnet_neighbor_ratio_max`); tests **43/43**
 * **Skill mirror**: `.agent/skills/arena/{SKILL.md,rubric.md,bracket.py,strategies.json}` — verified present and run before the verdict
