@@ -1,0 +1,345 @@
+{
+  "as_of_utc": "2026-10-15 12:35:12 UTC",
+  "source": "Arkham Intelligence Live Harvester (arkm.com via Chrome CDP)",
+  "feed_status": "STREAMING_ACTIVE",
+  "market_flow_sentiment": "NEUTRAL_BALANCED_FLOW",
+  "aggregate_metrics": {
+    "total_transfers_monitored": 23,
+    "exchange_inflow_events": 0,
+    "exchange_outflow_events": 0,
+    "market_maker_events": 0,
+    "large_whale_alerts_count": 0,
+    "total_inflow_volume_usd": 0,
+    "total_outflow_volume_usd": 0,
+    "net_flow_usd": 0
+  },
+  "asset_breakdown": {
+    "BTC": {
+      "inflow_usd": 0.0,
+      "outflow_usd": 0.0,
+      "tx_count": 0
+    },
+    "ETH": {
+      "inflow_usd": 0.0,
+      "outflow_usd": 0.0,
+      "tx_count": 0
+    },
+    "SOL": {
+      "inflow_usd": 0.0,
+      "outflow_usd": 0.0,
+      "tx_count": 0
+    },
+    "USDT": {
+      "inflow_usd": 0.0,
+      "outflow_usd": 0.0,
+      "tx_count": 0
+    },
+    "USDC": {
+      "inflow_usd": 0.0,
+      "outflow_usd": 0.0,
+      "tx_count": 0
+    },
+    "OTHER": {
+      "inflow_usd": 0.0,
+      "outflow_usd": 0.0,
+      "tx_count": 0
+    }
+  },
+  "trending_institutional_entities": [
+    {
+      "name": "MEXC",
+      "holdings_usd": "$4,677,532,976.04",
+      "change_pct_24h": "1.76%",
+      "largest_holding": "USDT (1.59B)",
+      "active_wallets": "11,239,557",
+      "entity_url": "https://arkm.com/explorer/entity/mexc"
+    },
+    {
+      "name": "Drift Protocol",
+      "holdings_usd": "$285,614,618.03",
+      "change_pct_24h": "4.81%",
+      "largest_holding": "SOL (2.79M)",
+      "active_wallets": "54,801",
+      "entity_url": "https://arkm.com/explorer/entity/drift-protocol"
+    },
+    {
+      "name": "Kraken",
+      "holdings_usd": "$21,121,637,106.35",
+      "change_pct_24h": "3.81%",
+      "largest_holding": "BTC (166.63K)",
+      "active_wallets": "7,480,499",
+      "entity_url": "https://arkm.com/explorer/entity/kraken"
+    },
+    {
+      "name": "Vitalik Buterin",
+      "holdings_usd": "$533,444,702.87",
+      "change_pct_24h": "5.81%",
+      "largest_holding": "ETH (224.34K)",
+      "active_wallets": "10",
+      "entity_url": "https://arkm.com/explorer/entity/vitalik-buterin"
+    }
+  ],
+  "whale_alerts": [],
+  "recent_classified_transfers": [
+    {
+      "time": "Now",
+      "tx_hash": "0xafb070c32feb61d67a1f3152965f703c0929c079e220729cfb65ea3d8e155152",
+      "tx_url": "https://arkm.com/explorer/tx/0xafb070c32feb61d67a1f3152965f703c0929c079e220729cfb65ea3d8e155152",
+      "from_entity": "Now",
+      "from_type": "WALLET",
+      "to_entity": "Uniswap",
+      "to_type": "DEX_PROTOCOL",
+      "token": "UNKNOWN",
+      "amount": 0.0,
+      "usd_value": 602.13,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "Now",
+      "tx_hash": "0xc674cc217492630c9dd29dcb4f588d7866c48036c5fa6f6f4b992bf757f74996",
+      "tx_url": "https://arkm.com/explorer/tx/0xc674cc217492630c9dd29dcb4f588d7866c48036c5fa6f6f4b992bf757f74996",
+      "from_entity": "Now",
+      "from_type": "WALLET",
+      "to_entity": "Relay.link",
+      "to_type": "WALLET",
+      "token": "SOL",
+      "amount": 0.0,
+      "usd_value": 70.0,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "Now",
+      "tx_hash": "0x0f14b5dac921bb542593d8af31506e72d808e622d515d20e5ceffcbe93822b77",
+      "tx_url": "https://arkm.com/explorer/tx/0x0f14b5dac921bb542593d8af31506e72d808e622d515d20e5ceffcbe93822b77",
+      "from_entity": "Now",
+      "from_type": "WALLET",
+      "to_entity": "Velodrome Finance",
+      "to_type": "WALLET",
+      "token": "USDC",
+      "amount": 2.533,
+      "usd_value": 2.53,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "Now",
+      "tx_hash": "0x16e5f7e05359e3e37c8efcc2ee9c96b249a8f2c9b777fba00eab07a71cc0a5cc",
+      "tx_url": "https://arkm.com/explorer/tx/0x16e5f7e05359e3e37c8efcc2ee9c96b249a8f2c9b777fba00eab07a71cc0a5cc",
+      "from_entity": "Now",
+      "from_type": "WALLET",
+      "to_entity": "Velodrome Finance",
+      "to_type": "WALLET",
+      "token": "USDC",
+      "amount": 743.634,
+      "usd_value": 743.63,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "Now",
+      "tx_hash": "0x19bae84b2916f1cc85675b57771d7292c689e9539421e82dfebe8fc21da7e117",
+      "tx_url": "https://arkm.com/explorer/tx/0x19bae84b2916f1cc85675b57771d7292c689e9539421e82dfebe8fc21da7e117",
+      "from_entity": "Now",
+      "from_type": "WALLET",
+      "to_entity": "0x7A05FfEC63a936F61653221d0f56E11b868C8D5b",
+      "to_type": "WALLET",
+      "token": "USDC",
+      "amount": 1.367,
+      "usd_value": 1.37,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "Now",
+      "tx_hash": "0x19bae84b2916f1cc85675b57771d7292c689e9539421e82dfebe8fc21da7e117",
+      "tx_url": "https://arkm.com/explorer/tx/0x19bae84b2916f1cc85675b57771d7292c689e9539421e82dfebe8fc21da7e117",
+      "from_entity": "Now",
+      "from_type": "WALLET",
+      "to_entity": "0x07F7D089d3Fba0eFf25980a2e38a5477C2B09d64",
+      "to_type": "WALLET",
+      "token": "USDC",
+      "amount": 1.367,
+      "usd_value": 1.37,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "Now",
+      "tx_hash": "0x19bae84b2916f1cc85675b57771d7292c689e9539421e82dfebe8fc21da7e117",
+      "tx_url": "https://arkm.com/explorer/tx/0x19bae84b2916f1cc85675b57771d7292c689e9539421e82dfebe8fc21da7e117",
+      "from_entity": "Now",
+      "from_type": "WALLET",
+      "to_entity": "0x7A05FfEC63a936F61653221d0f56E11b868C8D5b",
+      "to_type": "WALLET",
+      "token": "USDC",
+      "amount": 10.0,
+      "usd_value": 10.0,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "Now",
+      "tx_hash": "0x19bae84b2916f1cc85675b57771d7292c689e9539421e82dfebe8fc21da7e117",
+      "tx_url": "https://arkm.com/explorer/tx/0x19bae84b2916f1cc85675b57771d7292c689e9539421e82dfebe8fc21da7e117",
+      "from_entity": "Now",
+      "from_type": "WALLET",
+      "to_entity": "0x07F7D089d3Fba0eFf25980a2e38a5477C2B09d64",
+      "to_type": "WALLET",
+      "token": "UNKNOWN",
+      "amount": 0.0,
+      "usd_value": 4.89,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "Now",
+      "tx_hash": "0x32b9465ea90f7c9a9f0ca340ad36e1e4ee87d6b5b33a8a2b4b4bc8d3166364df",
+      "tx_url": "https://arkm.com/explorer/tx/0x32b9465ea90f7c9a9f0ca340ad36e1e4ee87d6b5b33a8a2b4b4bc8d3166364df",
+      "from_entity": "Now",
+      "from_type": "WALLET",
+      "to_entity": "Velodrome Finance",
+      "to_type": "WALLET",
+      "token": "WETH",
+      "amount": 2.826,
+      "usd_value": 6.68,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "Now",
+      "tx_hash": "0x67708f9d12742a7ef6f4c81d9a3a70258e4e5299733db32ef5657d9a102b4076",
+      "tx_url": "https://arkm.com/explorer/tx/0x67708f9d12742a7ef6f4c81d9a3a70258e4e5299733db32ef5657d9a102b4076",
+      "from_entity": "Now",
+      "from_type": "WALLET",
+      "to_entity": "0xF1b41a86d82D9b93f1d88DB14F98d33505887C76",
+      "to_type": "WALLET",
+      "token": "WETH",
+      "amount": 5.681,
+      "usd_value": 13.44,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "Now",
+      "tx_hash": "0x67708f9d12742a7ef6f4c81d9a3a70258e4e5299733db32ef5657d9a102b4076",
+      "tx_url": "https://arkm.com/explorer/tx/0x67708f9d12742a7ef6f4c81d9a3a70258e4e5299733db32ef5657d9a102b4076",
+      "from_entity": "Now",
+      "from_type": "WALLET",
+      "to_entity": "0xF1b41a86d82D9b93f1d88DB14F98d33505887C76",
+      "to_type": "WALLET",
+      "token": "USDC",
+      "amount": 17.275,
+      "usd_value": 17.27,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "Now",
+      "tx_hash": "0xac7a7ab04f7bc0721716a6b85f4a1db55896b5cc6567b573639943c72debf42b",
+      "tx_url": "https://arkm.com/explorer/tx/0xac7a7ab04f7bc0721716a6b85f4a1db55896b5cc6567b573639943c72debf42b",
+      "from_entity": "Now",
+      "from_type": "WALLET",
+      "to_entity": "Velodrome Finance",
+      "to_type": "WALLET",
+      "token": "USDC",
+      "amount": 172.44,
+      "usd_value": 172.44,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "Now",
+      "tx_hash": "0xbd50d51b4ee0b71e1d99d97cccdf2904a4595a2c8703a9e966e7c64d1e7d978d",
+      "tx_url": "https://arkm.com/explorer/tx/0xbd50d51b4ee0b71e1d99d97cccdf2904a4595a2c8703a9e966e7c64d1e7d978d",
+      "from_entity": "Now",
+      "from_type": "WALLET",
+      "to_entity": "0xDB49Dc858FEa0D474A2e4Bf2164a224b672d8118",
+      "to_type": "WALLET",
+      "token": "USDC",
+      "amount": 743.634,
+      "usd_value": 743.63,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "Now",
+      "tx_hash": "0xbd50d51b4ee0b71e1d99d97cccdf2904a4595a2c8703a9e966e7c64d1e7d978d",
+      "tx_url": "https://arkm.com/explorer/tx/0xbd50d51b4ee0b71e1d99d97cccdf2904a4595a2c8703a9e966e7c64d1e7d978d",
+      "from_entity": "Now",
+      "from_type": "WALLET",
+      "to_entity": "0xDB49Dc858FEa0D474A2e4Bf2164a224b672d8118",
+      "to_type": "WALLET",
+      "token": "UNKNOWN",
+      "amount": 0.0,
+      "usd_value": 486.16,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "Now",
+      "tx_hash": "0xbd50d51b4ee0b71e1d99d97cccdf2904a4595a2c8703a9e966e7c64d1e7d978d",
+      "tx_url": "https://arkm.com/explorer/tx/0xbd50d51b4ee0b71e1d99d97cccdf2904a4595a2c8703a9e966e7c64d1e7d978d",
+      "from_entity": "Now",
+      "from_type": "WALLET",
+      "to_entity": "0x00c19C3321989ade2c1214f8d4285aAD4240EEDc",
+      "to_type": "WALLET",
+      "token": "UNKNOWN",
+      "amount": 0.0,
+      "usd_value": 122.36,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "Now",
+      "tx_hash": "0xd9f7dfc2702df655df994fa533ec650f194ee9e68ed91d060a488902a4007617",
+      "tx_url": "https://arkm.com/explorer/tx/0xd9f7dfc2702df655df994fa533ec650f194ee9e68ed91d060a488902a4007617",
+      "from_entity": "Now",
+      "from_type": "WALLET",
+      "to_entity": "0x07F7D089d3Fba0eFf25980a2e38a5477C2B09d64",
+      "to_type": "WALLET",
+      "token": "UNKNOWN",
+      "amount": 0.0,
+      "usd_value": 5.24,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "Now",
+      "tx_hash": "0xd9f7dfc2702df655df994fa533ec650f194ee9e68ed91d060a488902a4007617",
+      "tx_url": "https://arkm.com/explorer/tx/0xd9f7dfc2702df655df994fa533ec650f194ee9e68ed91d060a488902a4007617",
+      "from_entity": "Now",
+      "from_type": "WALLET",
+      "to_entity": "Velodrome Finance",
+      "to_type": "WALLET",
+      "token": "USDC",
+      "amount": 10.0,
+      "usd_value": 10.0,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "Now",
+      "tx_hash": "0xd9f7dfc2702df655df994fa533ec650f194ee9e68ed91d060a488902a4007617",
+      "tx_url": "https://arkm.com/explorer/tx/0xd9f7dfc2702df655df994fa533ec650f194ee9e68ed91d060a488902a4007617",
+      "from_entity": "Now",
+      "from_type": "WALLET",
+      "to_entity": "Velodrome Finance",
+      "to_type": "WALLET",
+      "token": "UNKNOWN",
+      "amount": 0.0,
+      "usd_value": 4.89,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "Now",
+      "tx_hash": "0xd9f7dfc2702df655df994fa533ec650f194ee9e68ed91d060a488902a4007617",
+      "tx_url": "https://arkm.com/explorer/tx/0xd9f7dfc2702df655df994fa533ec650f194ee9e68ed91d060a488902a4007617",
+      "from_entity": "Now",
+      "from_type": "WALLET",
+      "to_entity": "0x07F7D089d3Fba0eFf25980a2e38a5477C2B09d64",
+      "to_type": "WALLET",
+      "token": "USDC",
+      "amount": 10.0,
+      "usd_value": 10.0,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "Now",
+      "tx_hash": "0xd9f7dfc2702df655df994fa533ec650f194ee9e68ed91d060a488902a4007617",
+      "tx_url": "https://arkm.com/explorer/tx/0xd9f7dfc2702df655df994fa533ec650f194ee9e68ed91d060a488902a4007617",
+      "from_entity": "Now",
+      "from_type": "WALLET",
+      "to_entity": "0x07F7D089d3Fba0eFf25980a2e38a5477C2B09d64",
+      "to_type": "WALLET",
+      "token": "UNKNOWN",
+      "amount": 0.0,
+      "usd_value": 4.89,
+      "flow_classification": "INTERNAL_TRANSFER"
+    }
+  ]
+}

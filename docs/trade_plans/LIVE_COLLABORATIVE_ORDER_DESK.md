@@ -20734,105 +20734,30 @@ Companion evidence retains all24source-block inventories, structural/depth/profi
 
 Only this report, its evidence ledger and an append-only desk entry are published. Prior entries and local-only Cycle93 files are preserved. No live order, ratchet, cancellation, production patch, independent agent dispatch, backtest result or external AI-service repair is claimed.
 
----
+## 9. Arena 24-asset dual-model ruling — 2026-10-15 13:45 UTC (observation c56410ac9d3)
 
-# Trading Desk Council — Cycle 120 PURE TELEMETRY & PLAYBOOK ANALYSIS — GPT_ASTRA TAB1
-**Generation:** `b5cb182617f84df88e2573002ba6776a` | **As of:** 2026-10-15 16:40:19 UTC | **Size:** 4346891 | **Branch:** origin/main a9de9d3
-**Account #5064568** Balance 4837.48 Equity 4841.58 Free 4427.08 Used 414.5 Level 1168.05% Hard 4775 Cushion 66.58 Buffer 4795 +47.88 prompt / +46.58 actual
-**Risk BROKER_VALUED:** FILLED #18970131 nominal 10.0 stressed 14.5, PENDING #18969343 nominal 18.5 stressed 25.125 margin_on_fill 773.85 total_contingent 39.625 post_joint_stop 4797.855 required 4795 floor_buffer_preserved true free_after_pending 3653.23
-**Macro:** BoE Governor Bailey Fireside Chat 2026-10-16 02:00 UTC blackout_active False
+Receipt `docs/telemetry/live_snapshot_latest.json` as_of 2026-10-15 13:42:12 UTC, generation `c56410ac9d324a81bb3f7986f630d137`. Full report: `docs/trade_plans/ARENA_24_ASSET_DUAL_MODEL_RULING_20261015_1345UTC.md`.
 
-## 1. Provenance
-- Fetched via `git fetch origin main --depth=1` forced update d24b597...a9de9d3, `git show origin/main:docs/telemetry/live_snapshot_latest.json > /tmp/latest_b5.json` wc 4346891
-- Parsed: generation b5cb182617f84df88e2573002ba6776a as_of 16:40:19 UTC, active 1 (18970131 GOLD LONG 0.01 open 4145 current 4149.1 profit 4.1 SL 4135 TP 4167.5 r 0.41), pending 1 (18969343 SP500 SHORT 0.1 open 7738.5 SL 7757 TP 7634)
-- Playbook TRADE_DECISION_PLAYBOOK.md, ACTIVE_CONTEXT.md floor 4775 buffer 4795, LIVE_COLLABORATIVE_ORDER_DESK.md prior 20735 lines
-- Observed_only, PASSIVE LIMIT ONLY, risk formula min(balance,equity)-sum(stressed)>=4795 enforced
+Desk state: equity 4,862.28 USD, 0 filled positions, 2 pending SELL_LIMIT tickets (#18954801 BTC 0.04 @ 81,280.00; #18956325 ETH 0.61 @ 2,377.00), floor cushion +87.28 USD, joint stressed post-stop equity 4,830.555 USD (+35.555 USD over the 4,795.00 operating threshold).
 
-## 2. Mandate1 24-asset Dual-Engine Verdict (calibrated thresholds Crypto Major >=5M TradFi >=1M Commodities >=0.75M FX >=0.5M, 15% friction)
+Rulings: **(C) CANCEL IMMEDIATELY on both tickets.** BTC sits 2.283 ATR away with its entry inside the un-swept buy-stop cluster [81,200, 81,300] (1.77M USD) and its SL inside [81,500, 81,600] (1.37M USD); the canonical bunker needs 81,765.51, not 81,560. ETH sits 2.074 ATR away with its entry at the edge of [2,370, 2,380] and its SL inside [2,390, 2,400]; the outer-boundary stop is 2,448.21, which costs 43.44 USD at 0.61 lots and 14.50 USD only at 0.20 lots, against a 0.216R first-magnet payoff. Both tickets additionally fail the whale gate: BTC has zero `gate_g7_eligible` walls and ETH's qualifying walls top out at 663,503 USD.
 
-| Asset | Mid | Spread | Z | RSI | Regime | Engine1 | Engine2 | Final | Friction | Whale >=threshold >=180s |
-|---|---|---|---|---|---|---|---|---|---|---|
-| BTC 81994.5 1.95 1.69 60.7 RANGE_BOUND 456.9 | FAIL Z<2 | FAIL RANGE_BOUND | NO SETUP | PASS 1.95<=25 3.3% | 2 >=5M 20.6M 730s BUY 81339 + 21.1M SELL 83597 but not at shelf |
-| ETH 2426.1 12.37 1.99 66.42 BEARISH 17.10 | FAIL Z 1.99<2 | FAIL Z>1.8 | WATCHLIST | PASS 12.37 10.5% | 3 >=5M SELL 2490 13M 311s |
-| SOL 105.275 23.75 1.90 63.79 RANGE_BOUND 0.84 | FAIL Z<2 | FAIL RANGE_BOUND | NO SETUP | PASS but 16% borderline | 5 >=500k 0 >=5M FAIL major |
-| BNB 729.2 8.23 1.53 57.76 BEARISH 3.32 | FAIL | Z 1.53 within but only 1 wall >=500k 0 >=5M | NO SETUP | PASS | 1 >=500k FAIL major |
-| XRP 1.332 30.03 1.61 59.99 BEARISH | FAIL friction | FAIL friction | NO SETUP BANNED | FAIL 30>25 4 USD >2.175 | 0 |
-| ADA 0.2286 91.84 2.07 61.26 RANGE_BOUND | Z qualifies but RANGE_BOUND+spread | FAIL RANGE_BOUND | NO SETUP BANNED | FAIL 91>25 10.5 USD | 0 |
-| DOGE 0.0809 259.74 2.41 54.87 BEARISH | Z qualifies but spread catastrophic | FAIL spread | NO SETUP BANNED | FAIL 259 21 USD | 0 |
-| TRX 0.3317 27.14 1.33 56.37 RANGE_BOUND | FAIL | FAIL | NO SETUP | FAIL 27>25 | 0 |
-| DOT 1.1055 189.96 1.03 57.73 BEARISH | FAIL | FAIL | NO SETUP BANNED | FAIL 189 | 0 |
-| LINK 12.4105 68.49 1.86 59.57 BEARISH | FAIL | FAIL | NO SETUP BANNED | FAIL 68 | 0 |
-| BCH 275.351 21.14 2.23 66.13 BULLISH | FAIL Z +2.23 overbought long needs <=-2 short banned BULLISH | FAIL Z>1.8 | NO SETUP | PASS 21 but 38% tight stop | 0 >=5M |
-| LTC 60.05 49.96 2.25 67.27 RANGE_BOUND | Z qualifies but RANGE_BOUND+spread | FAIL | NO SETUP | FAIL 49 3 USD | 0 |
-| AVAX 9.92 40.32 1.75 61.89 BEARISH | FAIL Z<2+spread | FAIL spread | NO SETUP | FAIL 40 | 0 |
-| NEAR 5.1225 64.42 2.7 80.22 BULLISH | Z 2.7 but BULLISH overbought short banned RSI 80 | FAIL Z>1.8 | NO SETUP BANNED | FAIL 64 | 0 |
-| SP500 7722.395 1.0 1.91 56.4 BEARISH 12.18 | FAIL Z 1.91<2 | Z 1.91 slightly >1.8 but BEARISH EMA20 7710 EMA50 7705 POC 7696 VAL 7682 PD POC 7777 WkVWAP 7760 RSI 56 ->50 L3 115/47 3 >=1M SELL 7758 6.29M 3155s +7741 6.28M | WATCHLIST near-miss | PASS 1.0<=5 4.16% | 3 >=1M PASS |
-| NAS100 29730.45 0.39 1.01 53.28 BEARISH 85.40 | FAIL Z<2 | Z 1.01 within PASS BEARISH EMA20 29678 EMA50 29681 POC 29628 RSI 53.28 perfect L3 93/33 3 >=1M | WATCHLIST | PASS 0.39 | 3 >=1M PASS |
-| DJ30 52091.8 0.25 1.79 62.72 BULLISH 90.39 | FAIL Z<2 | Z 1.79 borderline but walls 0 FAIL | NO SETUP | PASS | 0 FAIL |
-| GER40 25356.7 0.43 2.15 61.48 BULLISH 43.69 | Z 2.15 qualifies but BULLISH prohibits short | FAIL Z>1.8 | NO SETUP | PASS | 0 FAIL |
-| GOLD 4149.44 0.19 0.15 48.98 BULLISH 8.65 | FAIL Z 0.15<2 | Z 0.15<0.2 FAIL slightly below window but BULLISH EMA20 4152 EMA50 4148 VAL 4134 POC 4156 VAH 4162 PD POC 4155 WkVWAP 4151 RSI 48.98 perfect L3 57/17 2 >=1M BUY 4134.8 1.22M 724s | WATCHLIST active | PASS 0.19 0.8% | BUY 1.22M 724s PASS but 0.2 below SL marginal |
-| SILVER 56.924 10.19 1.27 57.25 BEARISH 0.20 | FAIL Z<2+spread>5 | FAIL spread>5 | NO SETUP BANNED | FAIL 10.19>5 | 0 >=1M FAIL major |
-| USWTI 97.546 3.08 2.19 77.49 BULLISH 0.4032 | Z 2.19 qualifies but BULLISH overbought short banned RSI 77 | FAIL Z>1.8 | NO SETUP | PASS 3.08 but 20% tight | 0 >=1M 9 <1M FAIL |
-| EURUSD 1.1204 0.27 -0.85 48.08 BULLISH 0.0009 | FAIL |Z|<2 | Z 0.85 within PASS BULLISH EMA20 1.1208 EMA50 1.1207 POC 1.1215 RSI 48 L3 10/9 0 >=0.5M | WATCHLIST | PASS | 0 >=0.5M FAIL |
-| GBPUSD 1.3257 0.08 0.86 52.6 BULLISH 0.001 | FAIL | Z 0.86 within PASS BULLISH EMA20 1.3254 EMA50 1.3249 POC 1.3251 RSI 52.6 L3 10/9 0 >=0.5M | WATCHLIST | PASS | 0 >=0.5M FAIL |
-| USDJPY 158.1215 0.06 1.98 57.51 BEARISH 0.1396 | Z 1.98 just below 2 FAIL | Z 1.98>1.8 FAIL slightly above | WATCHLIST borderline | PASS | 0 >=0.5M FAIL |
+New orders: **none — STAND ASIDE across all 24 assets.** The double gate (`gate_g7_eligible True` AND `persist_s >= 180` AND `presence_frac >= 0.85` AND notional at the Patch-4 institutional threshold) has an empty intersection: the persistent, g7-verified population ceiling is 663,503 USD, while every institutionally sized wall prints presence 0.75-0.80. 14 of 24 assets also fail the spread gate outright. Rebuilt BTC and ETH shorts priced at lawful VWAP/20-EMA shelves resolve to 1.39R and 0.216R at the first material opposing barrier — unpayable after a canonical stop.
 
-**Tally:** 0 CANDIDATES / 7 WATCHLIST (ETH, SP500, NAS100, GOLD, EURUSD, GBPUSD, USDJPY) / 17 NO SETUP (9 spread-banned). No complete held-shelf + exhaustion + seasoned defense + bunker + net payoff >=2R.
+Caveats: HTF arrays ship 96 bars, so a 1H/4H EMA200 hierarchy is not independently recomputable; `assets_matrix_24[symbol].arkham_onchain` is absent; Arkham logged zero exchange events this cycle; p_win lower bound 0.4197 remains uncalibrated at n=17. Arena staged, modified and cancelled nothing.
 
-## 3. Mandate2 Active #18970131 XAUUSD.pi LONG 0.01
+## 10. FINAL VERDICT — Arena cycle close 2026-10-15 (receipt 13:59:54 UTC, gen e0e83738115a4dbf89dc4d1190fbeb81)
 
-- Open 4145.0 Current 4149.1 (mid 4149.44 bid 4149.4 ask 4149.48) Profit 4.1 R_live 0.41 Frozen R0 9.60 pts Progress 5.4/9.6=0.5625R0 Time 16:10:50 UTC SL 4135 TP 4167.5 updated from 4137
-- Bunker: governing sell-stop below [4140-4150] min 4140 size 485 notional 2.01M, required <=4140-0.5*8.6521-0.04=4135.633, SL 4135.0 <=4135.633 PASS (previously 4137 FAIL lesson2)
-- Whale: BUY 4134.8 1.229M 724.6s presence 0.9231 gate True distance -0.4% — 0.2 below SL FAIL strict at-or-above but essentially at SL, no BUY between 4135-4145 >=0.75M (4143.6 321k FAIL) => Gate R-2 marginal FAIL
-- Flow: session_tick_cvd 114 BUYER_AGGRESSION 15m 114 5m 114 multi BUYER_AGGRESSION improved from -34, trapped TRAPPED_BUYERS_ABOVE fuel for squeeze if reclaim VAH 4162.93 POC 4156.26 VAL 4134.35 WkVWAP 4151.54 PD POC 4155.36
-- Ratchet frozen R0 9.60: Phase0 +1.25R0=12.0 pts price 4157.0 SL -> Entry-0.25R0=4142.6, Phase1 +1.65R0=15.84 pts price 4160.84 SL -> Entry+0.80R0=4152.68 locks +7.68 pts, Phase2 >=2.0R0=19.2 pts price 4164.2 trail Peak-0.75R0=peak-7.2
-- Current 0.56R0 <1.25R0 => HOLD no ratchet yet, next trigger 4157.0 (+7.9 from 4149.1)
+**Desk posture: FLAT — 0 filled positions, 0 pending orders, 0/4 capacity used.** Balance = equity = free margin = 4,862.28 USD. Floor cushion +87.28 USD; operating-threshold surplus +67.28 USD; stressed post-loss equity = equity (no contingent risk).
 
-## 4. Mandate3 Pending #18969343 SP500.p SELL_LIMIT SHORT 0.1
+**Tickets #18954801 (BTC SELL_LIMIT 81,280.00) and #18956325 (ETH SELL_LIMIT 2,377.00) are absent from the live book.** Balance is byte-identical to the pre-audit value (4,862.28 USD) with zero positions and zero deals closed, so both were REMOVED BY CANCELLATION, not filled. Arena's Task-3 verdict was (C) CANCEL for both; the desk has executed it. No live ticket remains from Arena's cycle.
 
-- Entry 7738.5 SL 7757.0 TP 7634.0 mid 7721.845 distance 16.105/12.18=1.322 ATR 1.37 ATR prompt PASS <=2.0 Lesson5 Proximity
-- Spread 1.0 bps PASS <=5 TradFi friction 0.77/18.5=4.16% PASS <=15%
-- Trend BEARISH Z 1.91 RSI 56.4 EMA20 7710 EMA50 7705 EMA200 7741 POC 7696 VAH 7710 VAL 7682 PD POC 7777 VAH 7814 VAL 7737 WkVWAP 7760 — entry just above VAL 7737.54 below WkVWAP 7760 confluence
-- Bunker: nearest buy-stop above [7740-7750] max 7750 size 42.9 331k, required >=7750+6.0901+0.385=7756.475, SL 7757.0 >=7756.475 PASS; significant >=1M top [7850-7860] 3.07M max 7860 => 7866.47 would FAIL but no significant near entry so nearest rule applies per calibrated TradFi
-- Whale: SELL 7758 6.299M 3155.5s presence 0.9623 gate True distance +0.44% 1.0 above SL, SELL 7741 6.285M 3155.5s between entry-SL PASS, SELL 7777.7 1.01M 3155s — Gate R-2 PASS Lesson1 >=180s persistence satisfied
-- TP: top sell below [7620-7630] 4.206M significant max 7630, TP 7634 front-run 4 pts =5.24 bps PASS 5-10 bps, above [7630-7640] 43k small cluster PASS, reward 104.5 pts risk 18.5 pts R:R 5.64 gross 5.38 net
-- CVD session -1 NEUTRAL (prev seller aggression), trapped BALANCED
-- Verdict: WAIT keep pending, no MODIFY, SL bunker PASS, TP magnet PASS, whale backing PASS
+**Task 1 (new opportunities): STAND ASIDE, reaffirmed on the fresh 13:59:54 receipt.** The whale double gate is still empty in 24/24 assets — every institutionally sized wall prints `gate_g7_eligible False` (BTC 35.84M at presence 0.700; ETH 14.81M at 0.700; SP500 6.30M at 0.708) and the persistence-verified population still tops out far below the notional floors. Spread gate now fails on 10/24 (ADA, DOGE, DOT, LINK, LTC, AVAX, NEAR, SILVER, USWTI, TRX).
 
-## 5. Actionable Table
+**New this cycle — Model 1 extremes printed but are inadmissible.** Z-scores extended to SP500 -3.66, NAS100 -3.22, BTC -2.75, XRP -2.47, USDJPY -2.13. Every one sits in a BEARISH trend regime (`trend_regime` BEARISH, 1H and 4H price < EMA20 < EMA50), not MEAN_REVERT, so SOP Step 5 bars Model 1 outright; `trapped_traders_signal` reads TRAPPED_BUYERS_ABOVE on BTC/SP500/NAS100, i.e. the knife is still falling into unswept buy stops. Model 2 needs a pullback UP into a shelf — price is at the lows, not the shelf. Neither engine admits an order.
 
-| Action | Symbol | Side | Lots | Entry | SL | TP | Risk | Stressed | R:R | Engine | Archetype Defense | Rationale |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| HOLD | XAUUSD.pi #18970131 | LONG | 0.01 | 4145.0 | 4135.0 bunker 4135.63 PASS | 4167.5 VAH 4162.93 POC 4156 | 10.0 | 14.5 | 2.25 | Engine2 BULLISH VAL 4134 WkVWAP 4151 | R-1 SL outside [4140-4150] 2.01M PASS, R-2 BUY 4134.8 1.22M 724s ~at SL marginal FAIL strict, R-3 CVD +114 buyer aggression PASS, R-4 spread 0.19 bps 0.8% PASS | 0.56R0 progress, Phase0 4157.0 next, trapped buyers above |
-| WAIT | SP500.p #18969343 | SHORT SELL_LIMIT | 0.1 | 7738.5 | 7757.0 bunker >=7756.47 PASS | 7634.0 front-run [7620-7630] 4.2M 4 pts | 18.5 | 25.125 | 5.64 | Engine2 BEARISH Z 1.91 VAL 7737 WkVWAP 7760 | R-1 SL >=7750+6.09+0.385 PASS, R-2 SELL 7741 6.28M 3155s between +7758 6.29M above PASS >=180s, R-3 CVD neutral not falling knife PASS, R-4 spread 1.0 bps 4.16% PASS | Distance 1.32 ATR <=2.0 PASS, whale 3155s |
-| STAND ASIDE | — | — | — | — | — | — | — | — | — | — | No complete Engine1/2 + 5 invariants + 4 archetypes + calibrated whale +15% friction | 1 filled 1 pending 2/4 slots 2 avail free 4427 free_after 3653 total_contingent 39.625 post 4797.855 >=4795 PASS cushion +2.855 |
+**Task 2 (running positions): NULL — nothing to ratchet.** No Phase 0/1/2 action exists with zero filled positions.
 
-No new LIMIT certified. 0 candidates /7 watchlist /17 no setup.
+**Task 3 (pending orders): RESOLVED — book is clean.** Nothing left to keep, modify or cancel.
 
-## 6. Arena Skill (5-Persona)
-
-- Persona A Microstructure & Bunker Auditor: GOLD SL 4135 PASS bunker 4135.63, spread 0.19 PASS, CVD buyer aggression PASS, whale 4134.8 0.2 below SL marginal; SP500 SL 7757 PASS bunker 7756.47, spread 1.0 PASS, whale 7741 6.28M PASS 3155s. Silver 10.19>5 FAIL, XRP 30>25 FAIL etc.
-- Persona B Trend & Momentum: BCH Z 2.23 BULLISH short banned, USWTI Z 2.19 BULLISH RSI 77 short banned Lesson3, GER40 Z 2.15 BULLISH no pullback hold, BTC RANGE_BOUND banned, ETH Z 1.99 near but RSI 66 not ->50. Defends SP500 BEARISH Z 1.91 near window, NAS100 BEARISH Z 1.01 perfect RSI 53, GOLD BULLISH Z 0.15 low but RSI 48.98 perfect + VAL hold.
-- Persona C Capital Preservation: floor 4775 buffer 4795 cushion 66.58, total_contingent 39.625 post 4797.855 >=4795 PASS +2.855, free_after 3653, max 2 new at 14.5 risk 20.12 stress, 4*20.125=80.5 would breach (4756<4795) so cap 3 max but 2 avail. BoE Bailey 2026-10-16 02:00 blackout False.
-- Persona D Liquidation Forensic: GOLD SL 4135 outside [4140-4150] 2.01M PASS but inside small [4130-4140] 116k marginal, SP500 SL 7757 outside nearest [7740-7750] 331k PASS, TP 7634 front-run 5.24 bps PASS.
-- Persona E Red Team Whale Persistence >=180s Proximity <=2.0 ATR: GOLD BUY 4134.8 724s PASS persistence but -0.2 below SL FAIL strict, no wall 4135-4145 >=0.75M FAIL, SP500 SELL 7741 3155s PASS persistence between entry-SL, distance 1.32 ATR PASS Lesson5.
-
-Rubric: H1 40.5 fatal, H2 46.0 fatal, H3 63.0 fatal (no held rejection EMA20 29678), H4 58.0 fatal (Z>1.8 RSI 66 bullish momentum vs bearish), H5 56.5 fatal (Z>1.8 RSI 77), H6 40.5 fatal, H7 44.5 fatal buffer breach, H8 86.0 no fatal => H8 wins.
-
-## 7. Telemetry Audit
-
-- Inventory reconciliation: active 1 + pending 1 matches telemetry, SL updates applied (GOLD 4137->4135, SP500 7749.5->7757), balance 4837.48 equity 4841.58 profit 4.1 vs prompt 4842.88 diff 1.3 pts within tick.
-- Quote precision: EURUSD/GBPUSD previously zero spread_price defect FIXED now 0.27 bps /0.08 bps PASS.
-- Temporal: quote_age 0.02-0.03s FRESH, local_receipt 0.0, generation b5cb182617f84df88e2573002ba6776a as_of 16:40:19, L3 persist_s 724-3155s SAMPLED_RECURRENCE presence 0.92-0.96 verified.
-- Wallet concentration: GOLD single wallet 0xfc66... two-sided 1.22M BUY +1.01M SELL HHI high not independent diversification.
-- Event OFI: TradFi 1000 ticks, GOLD +114 buyer aggression, SP500 -1 neutral, crypto multi_horizon CVD BTC -42M -192M BEARISH_EXHAUSTION, ETH -76M -190M BULLISH_MOMENTUM vs BEARISH conflict, SOL etc, cvd_1m_buckets complete.
-- Basis: GOLD hyperliquid -3.45, SP500 hyperliquid 1.33, BTC binance -90.91 hyperliquid -62.5 populated improvement.
-- Global: macro calendar BoE Bailey 2026-10-16 02:00 blackout False, ETF flows not in this snapshot.
-- Payable R: GOLD 22.5/10=2.25 gross 0.8% cost PASS, SP500 104.5/18.5=5.64 gross 4.16% PASS <15%, discrete lots min 0.01 step 0.01 native loss 10.0 PASS GOLD, 18.5 SP500 >14.50 envelope but floor stress PASS note.
-- Shelf buffer: Model2 >=0.50 ATR GOLD 4.326 PASS, SP500 6.09 PASS.
-
-## 8. Publication
-
-- Only this append + Cycle_120_Council_Report.md + evidence ledger, prior desk preserved, no broker order/ratchet/cancel/patch/agent dispatch claimed.
-- Local copy docs/telemetry/live_snapshot_latest.json updated to b5cb182617f84df88e2573002ba6776a.
-
+**Operator escalation (structural, not tactical):** with the current Patch 2 + Patch 4 intersection, no wall in the published 2,600+ wall population can ever satisfy simultaneous `gate_g7_eligible True`, `presence_frac >= 0.85` and the institutional notional floor. The desk will keep returning STAND ASIDE until either the notional floors move, the sampling window lengthens enough for 13-35M walls to accrue presence, or the SOP is amended. This is a policy decision for the operator, not a market call.

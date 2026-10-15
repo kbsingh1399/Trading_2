@@ -1,0 +1,261 @@
+TRADING DESK COUNCIL: CYCLE 108 PURE TELEMETRY & PLAYBOOK ANALYSIS PROMPT
+ROUTING TARGET: GPT_ASTRA (ARENA PRIMARY WORKSPACE - TAB 1)
+CANONICAL WORKSPACE: https://github.com/kbsingh1399/Trading_2
+ACTIVE BRANCH: main (https://github.com/kbsingh1399/Trading_2/tree/main)
+MANDATE: 100% DIRECT LINE-BY-LINE ANALYSIS OF docs/telemetry/live_snapshot_latest.json (ZERO DECISION GATES)
+MANDATORY SKILL ENFORCEMENT: https://github.com/Jakeschincariol/arena-skill IS MANDATE TO USE ALWAYS.
+You MUST verify/clone `https://github.com/Jakeschincariol/arena-skill.git` (or read in-repo `.agent/skills/arena/SKILL.md`) and apply the tournament bracket evaluation (`bracket.py`, `rubric.md`) across competing personas to score trade hypotheses before issuing any trading verdict or code commit.
+
+PART A: REQUIRED READING (complete before analysis)
+Read the following repository sources in full (strictly from canonical main branch):
+
+1. Live Telemetry Matrix (Primary Ground Truth): docs/telemetry/live_snapshot_latest.json
+   Latest Generation: c7f7f4cd72cd4b128e956535dfcbbea1 (2026-10-14 21:59:42 UTC)
+   Upstream Main: https://github.com/kbsingh1399/Trading_2/blob/main/docs/telemetry/live_snapshot_latest.json
+   Raw: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/telemetry/live_snapshot_latest.json
+   Inspect all 24 assets in assets_matrix_24 and all telemetry blocks.
+2. Live Trade Decision Playbook: docs/specs/TRADE_DECISION_PLAYBOOK.md
+   Source: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/specs/TRADE_DECISION_PLAYBOOK.md
+3. Live Order Desk & Session Context:
+   • docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md (https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md)
+   • .agents/rules/ACTIVE_CONTEXT.md (https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agents/rules/ACTIVE_CONTEXT.md)
+   • .agents/memory/session_chat_history.md (https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agents/memory/session_chat_history.md)
+4. Mandatory Arena Skill: https://github.com/Jakeschincariol/arena-skill (in-repo at `.agent/skills/arena/SKILL.md` or clone to `~/.claude/skills/arena`) — STRICT MANDATE TO USE ALWAYS.
+
+PART B: ACCOUNT AND RISK BASELINE
+• Execution Mode: PASSIVE LIMIT ORDERS ONLY (no market orders).
+• Broker: Blueberry Markets SVG LLC, MetaTrader 5 account #5064568
+• Balance / Equity: 4859.55 USD / 4859.55 USD
+• Margin used: 0.00 USD
+• Realized Deals Banked Today: Ticket #18836609 (SP500.p SHORT -> +0.90 USD cash profit booked via Trailing Stop Loss at 7,807.75), Ticket #18826511 (ETHUSD.pi SHORT -> +1.92 USD profit banked via Profit Lock at 2,513.02), Ticket #18813768 (SOLUSD.p SHORT -> +9.52 USD profit banked via Phase 1 Lock), Ticket #18813767 (BTCUSD.pi SHORT -> +16.10 USD full TP).
+• Hard floor: 4,775.00 USD | Operating buffer: 4,795.00 USD
+• Live cushion: +84.55 USD above hard floor (+64.55 USD above operating buffer)
+• Risk per trade: 7.50 to 14.50 USD (adaptive risk envelope, 0.15% to 0.29% of capital).
+• Stressed Loss Formula (Astra Invariant): Stressed Loss = 1.25 * nominal_risk + 2.00 USD/ticket. Requirement: min(balance, equity) - sum(all open & pending stressed risks) >= 4,795.00 USD.
+• Rigorous Capacity Ceiling: Open positions currently consume 0.00 USD total contingent stress (0.00 USD (Flat)). Stressed worst-case equity is 4859.55 USD, leaving +64.55 USD above 4,795.00 USD buffer. Capacity permits: max 3 new ticket(s) at 14.50 USD risk (stress 20.12 USD each). Capacity: 1/4 filled, 3 available.
+
+PART C: ACTIVE REPOSITORIES & DATA PROVENANCE (MAIN BRANCH SOURCE OF TRUTH)
+• Canonical Workspace: https://github.com/kbsingh1399/Trading_2
+• Active Branch: main (CANONICAL UPSTREAM SOURCE OF TRUTH — ALL MODELS ROUTE TO MAIN)
+• Direct Raw URLs (Strictly from main branch):
+  - Telemetry: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/telemetry/live_snapshot_latest.json
+  - Playbook: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/specs/TRADE_DECISION_PLAYBOOK.md
+  - Desk State: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md
+
+PART D: DUAL-ENGINE ANALYTICAL FRAMEWORK & 18-PARAMETER TELEMETRY SYNTHESIS
+
+CRITICAL DIRECTIVE: YOU ARE OPERATING TWO INDEPENDENT STATISTICAL ENGINES SIMULTANEOUSLY.
+DO NOT collapse them into one. For every asset, you must explicitly evaluate BOTH engines and state which (if either) triggers:
+
+  ENGINE 1 — EXTREME MEAN REVERSION (Strict |Z| >= 2.0 SD to 3.5 SD):
+    Trigger: Price has stretched to an extreme statistical dislocation from Session VWAP.
+    Required confluence (ALL must hold): |Z| >= 2.0 SD + confirmed tape exhaustion (CVD delta deceleration/absorption NOT just negative CVD) + multi-layer whale backing (>= 500k USD, >= 180s persistence) + HTF regime alignment (Model 1 Longs are BANNED in Bearish HTF; Model 1 Shorts are BANNED in Bullish HTF).
+    Disqualifier: Attempting mean reversion against HTF trend momentum is the single deadliest error pattern in our loss autopsy ledger.
+
+  ENGINE 2 — TREND FOLLOWING PULLBACKS (|Z| can be 0.2 to 1.8 SD — DO NOT DISCARD for low |Z|!):
+    Trigger: Asset is in a confirmed BULLISH or BEARISH regime on 1H/4H and is pulling back INTO a structural shelf IN THE DIRECTION of the dominant trend.
+    Shelf detection protocol (evaluate in order of priority):
+      a) HTF EMA Stack: 20 EMA > 50 EMA > 200 EMA (bullish) or 20 EMA < 50 EMA < 200 EMA (bearish). Pullback touches the 20 or 50 EMA and holds.
+      b) Volume Profile Shelves: Price pulls back to POC, VAH (for shorts), or VAL (for longs) — high-volume nodes where institutional positioning is concentrated.
+      c) Prior Day/Week Auction Levels: htf_auction_profiles prior_day_poc, prior_day_vah, prior_day_val, weekly_vwap — institutional memory shelves.
+      d) L2/L3 Resting Walls: Heavy resting Bid walls (for long pullbacks) or Ask walls (for short pullbacks) with notional >= 500k USD and persistence >= 180s defending the stop.
+    Required confluence (ALL must hold): Confirmed regime + shelf touch + low pullback velocity (RSI returning from oversold/overbought toward 50) + resting L2/L3 walls defending the stop + SL outside min_price/max_price of nearest opposing sweep band.
+    Key insight: Engine 2 opportunities often present at LOW |Z| (0.3 to 1.2 SD). Previous prompt versions caused agents to SKIP these by filtering on |Z| >= 2.0 first. This is explicitly forbidden.
+
+  REGIME-GATED STAND-ASIDE: When trend_regime is RANGE_BOUND or UNDEFINED, neither engine applies. The mathematically correct action is STAND ASIDE. Never force trades in non-trending noise.
+
+TREND-FIRST HIERARCHY (SUPERSEDES ALL BAND-BASED ANALYSIS):
+  DO NOT STICK DOGMATICALLY TO VWAP SD BANDS ALONE. Fading oversold/overbought bands in a trending market is lethal. You MUST evaluate the overall trend supported by all parameters in live_snapshot_latest.json:
+  1. Higher Timeframe Trend Hierarchy: Inspect 1H & 4H OHLCV candles, 20/50/200 EMAs. If Price < EMA20 < EMA50 on 1H/4H (Bearish regime), Model 1 dip-buying Longs are STRICTLY FORBIDDEN. All priority shifts to Model 2 Trend Pullback SHORTS!
+  2. cvd_1m_buckets & CVD Momentum: Massive negative taker CVD (-1M to -3M USD) is proof of aggressive seller domination. Never buy into negative CVD. Use negative CVD to qualify SHORT entries on relief rallies.
+  3. Model 2 Pullback Short Protocol: In a downtrend, patiently wait for pullbacks up into the EMA20/EMA50/VAH shelves where heavy Ask Whale Walls are resting to defend the Stop Loss.
+
+18-PARAMETER TELEMETRY FIELD REFERENCE (live_snapshot_latest.json schema):
+  1. quotes: Live MT5 Bid/Ask spread in bps (spread_bps <= 35 bps Crypto, <= 5 bps TradFi).
+  2. causal_indicators: Session VWAP, vwap_z_score, RSI(14), ATR(14), EMA 20/50/200, POC/VAH/VAL, trend_regime.
+  3. multi_horizon_cvd: Session CVD (since 00:00 UTC), Weekly CVD (since Monday 00:00 UTC), trailing 24h CVD, Absorption/Exhaustion divergence.
+  4. tradfi_orderflow: MT5 Lee-Ready synthetic tick CVD, 15m delta, Order Flow Imbalance (OFI), Buyer/Seller aggression bias.
+  5. htf_auction_profiles: Prior Day/Week POC/VAH/VAL, Developing Weekly VWAP.
+  6. trapped_traders_signal: TRAPPED_BUYERS_ABOVE / TRAPPED_SELLERS_BELOW footprint detection.
+  7. orderbook_live_depth: 20-level L2 depth & book_imbalance.
+  8. whale_walls_l3: On-chain Ethereum whale wallet orders (0x... addresses, notionals, persistence_s >= 180s).
+  9. structural_stop_clusters: nearest_sell_stop_clusters_below, nearest_buy_stop_clusters_above.
+  10. reconstructed_liquidations: nearest_long_cascade_bands_below, nearest_short_squeeze_bands_above.
+  11. venue_basis: MT5 mid minus perp mid (cross-venue price translation for SL/TP mapping).
+  12. cvd_1m_buckets: Granular 1-minute CVD series for micro-momentum reading.
+  13. execution_specs: Broker tick size, point size, contract size, margin requirements.
+  14. macro_calendar: Tier-1 macroeconomic event proximity and blackout windows.
+  15. LIQUIDITY MAGNETS: Dense liquidation cascade bands and structural stop clusters act as gravitational attraction points. TP should front-run these magnets by 5-10 bps; SL must be sheltered behind whale walls outside opposing sweep bands.
+  16. CROSS-VENUE BASIS: Orderbooks are in Binance/Hyperliquid perpetual futures prices; execution is on MT5 OTC CFDs. Inspect venue_basis before finalizing levels.
+  17. Broker Ticker Mapping: Avalanche = AVXUSD.p (contract 100, lot 0.01, digits 2).
+  18. Adaptive Risk Envelope: [7.50, 14.50 USD]. Do not reject 0.01 lot shorts risking 8.50-9.50 USD over arbitrary floor bureaucracy.
+
+PART E: KAIZEN CONTINUOUS SELF-IMPROVEMENT & CLASSIFIED LOSS-PATTERN TAXONOMY
+
+Study the forensic breakdown of all recent stopped-out trades. The Council must actively learn from each.
+These losses are classified into 4 FAILURE ARCHETYPES — pattern recognition prevents recurrence:
+
+  ARCHETYPE 1 — SL INSIDE SWEEP BAND (the most common killer):
+    • #18825384 SOLUSD.p -11.05 USD: SL @ 108.55 sat inside [107.5-108.5] buy-stop sweep band. Ask walls relocated from 108.34/108.75 to 108.68/109.22, leaving SL undefended. Wick to 108.58 triggered stop before drop to 107.79.
+    • #18806752 SOLUSD.p -10.88 USD: SL @ 108.79 inside discount sell-stop cluster during cascading flush.
+    • #18786372 BTCUSD.pi -11.17 USD: Long entry staged above un-swept sell-stop pool at 83,500. Market punched through to sweep stops, hit SL @ 83,472.55.
+    INVARIANT: SL MUST sit 0.35-0.50 ATR OUTSIDE [min_price, max_price] of the governing sweep cluster. Never inside!
+
+  ARCHETYPE 2 — COUNTER-TREND ENTRY (fighting the river):
+    • #18813343 BTCUSD.pi -11.58 USD: Long at 82,351 against -3.07M USD negative taker CVD during market cascade.
+    • #18798018 BTCUSD.pi -11.20 USD: Mean-reversion long at 83,150 against heavily accelerating negative 1m/5m CVD (-420 BTC) before delta absorption formed.
+    • #18744533 XAUUSD.pi -13.70 USD: Model 1 long against adverse momentum without multi-timeframe trend alignment.
+    INVARIANT: Long entries require confirmed CVD delta deceleration/absorption. Never catch falling knives with negative taker momentum!
+
+  ARCHETYPE 3 — INSUFFICIENT STRUCTURAL BUFFER:
+    • #18749312 SP500.p -13.00 USD: Trend pullback long with SL only 0.15 ATR below VAL. Routine liquidity sweep tagged stop before rally to target.
+    INVARIANT: SL buffer must be >= 0.35 ATR. The 0.15 ATR buffer is statistically insufficient to survive routine sweeps.
+
+  ARCHETYPE 4 — EPHEMERAL WALL DEFENSE (pulled rug):
+    • #18748507 ETHUSD.pi -11.90 USD: Entered based on whale bid wall that was pulled/thinned by 65% within 90 seconds (<< 180s persistence threshold).
+    INVARIANT: Supporting whale walls must show >= 500k USD notional AND >= 180s verified temporal persistence. If a wall relocates, re-evaluate or trim immediately.
+
+  ARCHETYPE 5 — RETRACEMENT OVERSHOOT & PREMATURE STOP-OUT (Operator Core Invariant):
+    • On counter-trend pullbacks into an EMA/VWAP shelf, institutional liquidity sweepers routinely punch 0.35 to 0.75 ATR past the shelf to trigger obvious retail stops before reversing.
+    • Placing SL inside this sweep zone or right at the shelf edge guarantees getting stopped out before the winning move develops.
+    THE 4 MANDATORY RETRACEMENT GATES (Strict Invariants for all Model 2 Pullbacks):
+      - Gate R-1 (Deep Structural Bunker Buffer): Stop Loss MUST be positioned at least 0.50 to 0.75 ATR outside the structural shelf, and strictly outside [min_price, max_price] of any known stop cluster or liquidation band. Tight stops (<= 0.30 ATR) on pullbacks are strictly FORBIDDEN.
+      - Gate R-2 (Calibrated Asset-Class Whale Bunker Shield): Between entry and Stop Loss, there MUST be at least one substantial verified resting whale wall (persistence >= 180s) standing in front of the SL to absorb retracement momentum, calibrated by asset class:
+        * Crypto Major (BTCUSD.pi, ETHUSD.pi): >= 5.0M USD resting wall
+        * TradFi Equity Indices (SP500.p, NAS100.p, DJ30.p, GER40.p): >= 1.0M USD primary wall (removes artificial 3M block on index CFDs)
+        * Commodities (XAUUSD.pi, USWTI.p): >= 0.75M USD primary wall
+        * Major Forex (EURUSD.pi, GBPUSD.pi, USDJPY.pi): >= 0.50M USD primary wall
+      - Gate R-3 (Deep Shelf Anchor Entry & Spread Compensation): Never front-run the shallow outer edge of a pullback. Stage limit entries deeper inside the shelf (at the POC, 50 EMA, or at primary whale wall level), accounting for half-spread.
+      - Gate R-4 (Dynamic Lot Downsizing for Wider Buffers): When a safe structural SL requires a wider distance (0.50-0.75 ATR) to clear the retracement sweep zone, ALWAYS downsize lot size proportionally (e.g. 0.50 -> 0.30 or 0.20 lots) so total nominal risk remains strictly within [7.50, 14.50 USD] envelope and unconditionally preserves the 4,775.00 USD hard floor!
+
+MANDATORY KAIZEN CONTINUOUS SELF-IMPROVEMENT MANDATE:
+  1. Zero Regression: The Council is strictly FORBIDDEN from repeating any of these 5 archetypes. Every proposed action must explicitly state WHICH archetype it defends against and HOW.
+  2. Dynamic Lot Sizing: When wider structural stop buffers are required to clear liquidation bands (e.g. ETH SL moved to 2,555.00), DOWNSIZE lot size immediately (e.g. 0.50 -> 0.35 lots) so risk remains within [7.50, 14.50 USD] ceiling.
+  3. Multi-timeframe trend alignment MUST be respected: In Bearish HTF regime, Model 1 longs are BANNED.
+
+PART F: COUNCIL PERSONAS & ADVERSARIAL DELIBERATION
+You embody 5 simultaneous analytical personas. Each must contribute independently before a final synthesis:
+  1. Orderflow & Microstructure Analyst: MT5 spread_bps, L2 20-level depth & imbalance, L3 on-chain wallet orders (0x..., persistence_s >= 180s), and multi-window 1m CVD (5m, 15m, 30m).
+  2. Structural Price Action Specialist: Session VWAP & SD bands (Z-score), Volume Profile (POC/VAH/VAL), HTF Auction Profiles (Prior Day/Week POC/VAH/VAL), 20/50/200 EMA hierarchy, and psychological round numbers.
+  3. Liquidation & Stop Hunt Forensic: Reconstructed liquidation cascade bands (nearest_* and top_*), stop clusters, SL bunker placement outside min_price/max_price, and TP magnet front-running by 5-10 bps.
+  4. Macro Risk & Portfolio Governor: Capital floor defense (4,775.00 USD hard floor / 4,795.00 USD buffer), discrete lot sizing (execution_specs), margin requirements, and net expectancy.
+  5. Adversarial Pre-Mortem Red Team (Falsification & Autopsy Invalidator):
+     Default baseline is NO TRADE / STAND ASIDE. For any proposed candidate:
+     a) Assume the trade was entered and stopped out. Formulate the exact fatal flaw from our 4 loss archetypes.
+     b) Check: Does SL sit inside ANY known sweep band [min_price, max_price]? -> ARCHETYPE 1 KILL.
+     c) Check: Is the entry against HTF trend with unabsorbed opposing CVD? -> ARCHETYPE 2 KILL.
+     d) Check: Is the SL buffer < 0.35 ATR from the nearest cluster edge? -> ARCHETYPE 3 KILL.
+     e) Check: Is the supporting wall < 500k USD or < 180s persistence? -> ARCHETYPE 4 KILL.
+     f) Check: Can a venue_basis spike + broker spread widening tag the stop? -> ADDITIONAL KILL.
+     Certify clearance ONLY if no fatal flaw exists under any archetype.
+
+PART G: MANDATORY 3-PILLAR DESK EVALUATION (STRICT OPERATOR MANDATE)
+
+MANDATE 1 — DUAL-ENGINE SEARCH ACROSS ALL 24 ASSETS (MEAN REVERSION + TREND PULLBACKS):
+Analyze all 24 assets in assets_matrix_24 line-by-line from docs/telemetry/live_snapshot_latest.json (covering all Cryptos, Metals GOLD/XAUUSD.pi & SILVER/XAGUSD.pi, Energy USWTI.p, Forex EURUSD.pi/GBPUSD.pi/USDJPY.pi, and Indices SP500.p/NAS100.p/DJ30.p/GER40.p).
+APPLY PLAYBOOK SECTION 7.4 CALIBRATED MULTI-ASSET STANDARDS & 15% DYNAMIC FRICTION RULE:
+  • DYNAMIC 15% FRICTION RULE: Spread Friction % = (Spread in USD on 1 lot * Trade Lots) / Total Trade Risk Budget <= 15.0%.
+  • EXPANDED ACTIVE UNIVERSE ADMITTED: SP500.p (0.8% friction), NAS100.p (1.0%), XAUUSD.pi (1.2%), BTCUSD.pi (1.7%), DJ30.p (1.5%), GER40.p (2.0%), USWTI.p (3.5%), Major FX (0.5%), ETHUSD.pi (8.1% - target >= 2.2R), SOLUSD.p (13.8% - target >= 2.5R).
+  • CALIBRATED WHALE WALL DEFENSE: TradFi indices require >= 1.0M USD primary wall; Commodities >= 0.75M USD; Crypto >= 5.0M USD.
+  • BANNED INSTRUMENTS (Friction > 15%): DOGE (210%), DOT (122%), ADA (89%), LINK (68%), NEAR (62%) — mathematically lethal on MT5 CFDs.
+For EACH asset, explicitly state: (a) Engine 1 verdict (Mean Reversion: Z-score, eligible or disqualified and why), (b) Engine 2 verdict (Trend Pullback: regime, shelf, eligible or disqualified and why), (c) Final classification: CANDIDATE / WATCHLIST / NO SETUP.
+
+Live 24-asset mutual universe matrix:
+• BTC (BTCUSD.pi | CRYPTO): Mid 81671.0 | Spread 1.96 bps | Z = -1.19 SD | RSI 45.06 | Trend BEARISH | L2 Imb -0.5134 | Sess CVD -94.01M | Wk CVD -79.59M | Flow: BEARISH_EXHAUSTION | Trapped: TRAPPED_BUYERS_ABOVE | PriorDay POC 83147.80 [VAH 83818.86 / VAL 82604.57] | WkVWAP 82915.99 | L3 Whales (tot/elig>=180s): 420/290 | Stops Below/Above: [81700.0-81800.0 $0.00M] / [81800.0-81900.0 $4.53M] | Liq Below/Above (Attraction Bands): [81700.0-81800.0 $0.05M] / [81900.0-82000.0 $0.01M]
+• ETH (ETHUSD.pi | CRYPTO): Mid 2417.3 | Spread 12.41 bps | Z = -1.32 SD | RSI 40.52 | Trend BEARISH | L2 Imb -0.7192 | Sess CVD -91.61M | Wk CVD -102.05M | Flow: BEARISH_MOMENTUM | Trapped: BALANCED | PriorDay POC 2501.43 [VAH 2528.87 / VAL 2484.43] | WkVWAP 2492.76 | L3 Whales (tot/elig>=180s): 168/48 | Stops Below/Above: [2410.0-2420.0 $0.59M] / [2420.0-2430.0 $0.03M] | Liq Below/Above (Attraction Bands): [2410.0-2420.0 $0.87M] / [2420.0-2430.0 $0.00M]
+• SOL (SOLUSD.p | CRYPTO): Mid 104.61 | Spread 21.03 bps | Z = -0.61 SD | RSI 53.44 | Trend BEARISH | L2 Imb 0.0622 | Sess CVD +7.93M | Wk CVD +18.84M | Flow: BEARISH_EXHAUSTION | Trapped: TRAPPED_BUYERS_ABOVE | PriorDay POC 107.38 [VAH 107.90 / VAL 105.68] | WkVWAP 106.91 | L3 Whales (tot/elig>=180s): 104/68 | Stops Below/Above: [104.0-105.0 $1.35M] / [105.0-106.0 $0.25M] | Liq Below/Above (Attraction Bands): [104.0-105.0 $0.00M] / none
+• BNB (BNBUSD.p | CRYPTO): Mid 728.9 | Spread 8.23 bps | Z = -1.41 SD | RSI 46.17 | Trend BEARISH | L2 Imb -0.2258 | Sess CVD -2.29M | Wk CVD -8.51M | Flow: BEARISH_EXHAUSTION | Trapped: TRAPPED_BUYERS_ABOVE | PriorDay POC 743.91 [VAH 745.18 / VAL 737.05] | WkVWAP 740.48 | L3 Whales (tot/elig>=180s): 10/8 | Stops Below/Above: [728.0-729.0 $0.00M] / [729.0-730.0 $0.00M] | Liq Below/Above (Attraction Bands): [725.0-726.0 $0.00M] / [729.0-730.0 $0.00M]
+• XRP (XRPUSD.pi | CRYPTO): Mid 1.333 | Spread 30.01 bps | Z = -0.75 SD | RSI 50.4 | Trend BEARISH | L2 Imb -0.0159 | Sess CVD +28.88M | Wk CVD +60.79M | Flow: BULLISH_MOMENTUM | Trapped: TRAPPED_BUYERS_ABOVE | PriorDay POC 1.37 [VAH 1.38 / VAL 1.35] | WkVWAP 1.36 | L3 Whales (tot/elig>=180s): 0/0 | Stops Below/Above: [1.3-1.3 $0.01M] / [1.3-1.3 $0.03M] | Liq Below/Above (Attraction Bands): [1.3-1.3 $0.02M] / [1.3-1.4 $0.09M]
+• ADA (ADAUSD.p | CRYPTO): Mid 0.2289 | Spread 91.72 bps | Z = -0.56 SD | RSI 50.68 | Trend BEARISH | L2 Imb 0.0605 | Sess CVD -0.31M | Wk CVD -1.95M | Flow: BEARISH_EXHAUSTION | Trapped: TRAPPED_BUYERS_ABOVE | PriorDay POC 0.23 [VAH 0.24 / VAL 0.23] | WkVWAP 0.24 | L3 Whales (tot/elig>=180s): 0/0 | Stops Below/Above: [0.2-0.2 $0.00M] / [0.2-0.2 $0.01M] | Liq Below/Above (Attraction Bands): [0.2-0.2 $0.00M] / [0.2-0.2 $0.00M]
+• DOGE (DOGUSD.p | CRYPTO): Mid 0.0818 | Spread 268.95 bps | Z = -0.41 SD | RSI 44.48 | Trend BEARISH | L2 Imb 0.2206 | Sess CVD -9.28M | Wk CVD -19.29M | Flow: BULLISH_ABSORPTION | Trapped: TRAPPED_BUYERS_ABOVE | PriorDay POC 0.08 [VAH 0.08 / VAL 0.08] | WkVWAP 0.08 | L3 Whales (tot/elig>=180s): 0/0 | Stops Below/Above: [0.1-0.1 $0.00M] / [0.1-0.1 $0.00M] | Liq Below/Above (Attraction Bands): [0.1-0.1 $0.00M] / [0.1-0.1 $0.00M]
+• TRX (TRXUSD.p | CRYPTO): Mid 0.3327 | Spread 30.06 bps | Z = 0.51 SD | RSI 38.54 | Trend BULLISH | L2 Imb 0.1401 | Sess CVD +10.78M | Wk CVD +3.26M | Flow: BEARISH_MOMENTUM | Trapped: TRAPPED_SELLERS_BELOW | PriorDay POC 0.33 [VAH 0.33 / VAL 0.33] | WkVWAP 0.33 | L3 Whales (tot/elig>=180s): 0/0 | Stops Below/Above: [0.3-0.3 $0.01M] / [0.3-0.3 $0.00M] | Liq Below/Above (Attraction Bands): [0.3-0.3 $0.00M] / [0.3-0.3 $0.00M]
+• DOT (DOTUSD.pi | CRYPTO): Mid 1.1405 | Spread 184.13 bps | Z = 0.52 SD | RSI 57.24 | Trend BEARISH | L2 Imb 0.2218 | Sess CVD -0.05M | Wk CVD -0.72M | Flow: BULLISH_MOMENTUM | Trapped: TRAPPED_BUYERS_ABOVE | PriorDay POC 1.17 [VAH 1.18 / VAL 1.10] | WkVWAP 1.18 | L3 Whales (tot/elig>=180s): 0/0 | Stops Below/Above: [1.1-1.1 $0.00M] / [1.1-1.1 $0.00M] | Liq Below/Above (Attraction Bands): [1.1-1.1 $0.00M] / [1.1-1.1 $0.00M]
+• LINK (LNKUSD.p | CRYPTO): Mid 12.4225 | Spread 68.42 bps | Z = -1.01 SD | RSI 44.26 | Trend BEARISH | L2 Imb 0.2721 | Sess CVD -3.66M | Wk CVD -4.91M | Flow: BEARISH_MOMENTUM | Trapped: TRAPPED_BUYERS_ABOVE | PriorDay POC 12.88 [VAH 13.02 / VAL 12.75] | WkVWAP 12.86 | L3 Whales (tot/elig>=180s): 0/0 | Stops Below/Above: [12.3-12.4 $0.03M] / [12.4-12.5 $0.00M] | Liq Below/Above (Attraction Bands): [12.3-12.4 $0.00M] / [12.5-12.6 $0.00M]
+• BCH (BCHUSD.p | CRYPTO): Mid 269.0 | Spread 14.87 bps | Z = -1.22 SD | RSI 42.61 | Trend BEARISH | L2 Imb 0.0672 | Sess CVD +0.47M | Wk CVD -0.22M | Flow: BEARISH_MOMENTUM | Trapped: TRAPPED_BUYERS_ABOVE | PriorDay POC 271.86 [VAH 274.23 / VAL 268.77] | WkVWAP 274.48 | L3 Whales (tot/elig>=180s): 0/0 | Stops Below/Above: [268.0-269.0 $0.10M] / [269.0-270.0 $0.00M] | Liq Below/Above (Attraction Bands): [268.0-269.0 $0.00M] / [269.0-270.0 $0.00M]
+• LTC (LTCUSD.pi | CRYPTO): Mid 59.57 | Spread 50.36 bps | Z = -0.67 SD | RSI 45.15 | Trend BEARISH | L2 Imb 0.2477 | Sess CVD -1.30M | Wk CVD -3.05M | Flow: BULLISH_ABSORPTION | Trapped: TRAPPED_BUYERS_ABOVE | PriorDay POC 61.26 [VAH 61.68 / VAL 60.46] | WkVWAP 61.62 | L3 Whales (tot/elig>=180s): 0/0 | Stops Below/Above: [59.5-59.6 $0.08M] / [59.6-59.7 $0.00M] | Liq Below/Above (Attraction Bands): [59.5-59.6 $0.00M] / [59.6-59.7 $0.00M]
+• AVAX (AVXUSD.p | CRYPTO): Mid 9.975 | Spread 30.08 bps | Z = -0.47 SD | RSI 57.7 | Trend BEARISH | L2 Imb 0.3164 | Sess CVD -0.83M | Wk CVD -0.73M | Flow: BEARISH_EXHAUSTION | Trapped: BALANCED | PriorDay POC 10.27 [VAH 10.37 / VAL 10.10] | WkVWAP 10.36 | L3 Whales (tot/elig>=180s): 0/0 | Stops Below/Above: [10.0-10.0 $0.00M] / [10.0-10.0 $0.01M] | Liq Below/Above (Attraction Bands): [10.0-10.0 $0.00M] / [10.0-10.0 $0.00M]
+• NEAR (NERUSD.p | CRYPTO): Mid 4.8445 | Spread 68.12 bps | Z = -1.22 SD | RSI 47.7 | Trend BEARISH | L2 Imb 0.0758 | Sess CVD -8.34M | Wk CVD -2.25M | Flow: BEARISH_MOMENTUM | Trapped: TRAPPED_BUYERS_ABOVE | PriorDay POC 5.07 [VAH 5.16 / VAL 4.87] | WkVWAP 5.24 | L3 Whales (tot/elig>=180s): 0/0 | Stops Below/Above: [4.8-4.8 $0.01M] / [4.8-4.8 $0.00M] | Liq Below/Above (Attraction Bands): [4.8-4.8 $0.02M] / [4.8-4.8 $0.00M]
+• SP500 (SP500.p | INDICES): Mid 7717.125 | Spread 1.13 bps | Z = None SD | RSI None | Trend INSUFFICIENT_HISTORY | L2 Imb 0.0445 | TradFi OF: L1 Tick Stream Validated | Bias: SELLER_AGGRESSION | Trapped: BALANCED | PriorDay POC 7801.07 [VAH 7803.15 / VAL 7791.27] | WkVWAP 7789.63 | L3 Whales (tot/elig>=180s): 70/62 | Stops Below/Above: [7710.0-7720.0 $4335.48M] / [7720.0-7730.0 $0.66M] | Liq Below/Above (Attraction Bands): [7710.0-7720.0 $0.13M] / [7730.0-7740.0 $0.00M]
+• NAS100 (NAS100.p | INDICES): Mid 29918.2 | Spread 0.47 bps | Z = None SD | RSI None | Trend INSUFFICIENT_HISTORY | L2 Imb -0.0662 | TradFi OF: L1 Tick Stream Validated | Bias: SELLER_AGGRESSION | Trapped: BALANCED | PriorDay POC 30436.30 [VAH 30534.13 / VAL 30420.52] | WkVWAP 30503.95 | L3 Whales (tot/elig>=180s): 57/56 | Stops Below/Above: [29800.0-29900.0 $0.83M] / [29900.0-30000.0 $0.31M] | Liq Below/Above (Attraction Bands): [29800.0-29900.0 $0.01M] / [29900.0-30000.0 $0.11M]
+• DJ30 (DJ30.p | INDICES): Mid 51600.75 | Spread 0.4 bps | Z = None SD | RSI None | Trend INSUFFICIENT_HISTORY | L2 Imb None | TradFi OF: L1 Tick Stream Validated | Bias: BUYER_AGGRESSION | Trapped: TRAPPED_BUYERS_ABOVE | PriorDay POC 51822.61 [VAH 52062.86 / VAL 51582.36] | WkVWAP 51745.75 | L3 Whales (tot/elig>=180s): 0/0 | Stops Below/Above: none / none | Liq Below/Above (Attraction Bands): none / none
+• GER40 (GER40.p | INDICES): Mid 25238.8 | Spread 1.27 bps | Z = None SD | RSI None | Trend INSUFFICIENT_HISTORY | L2 Imb None | TradFi OF: L1 Tick Stream Validated | Bias: BUYER_AGGRESSION | Trapped: BALANCED | PriorDay POC 25240.34 [VAH 25333.30 / VAL 25202.65] | WkVWAP 25299.16 | L3 Whales (tot/elig>=180s): 0/0 | Stops Below/Above: none / none | Liq Below/Above (Attraction Bands): none / none
+• GOLD (XAUUSD.pi | COMMODITIES): Mid 4105.105 | Spread 0.76 bps | Z = None SD | RSI None | Trend INSUFFICIENT_HISTORY | L2 Imb 0.1107 | TradFi OF: L1 Tick Stream Validated | Bias: NEUTRAL | Trapped: BALANCED | PriorDay POC 4166.74 [VAH 4184.43 / VAL 4146.91] | WkVWAP 4153.47 | L3 Whales (tot/elig>=180s): 49/39 | Stops Below/Above: [4100.0-4110.0 $0.16M] / [4110.0-4120.0 $0.19M] | Liq Below/Above (Attraction Bands): [4100.0-4110.0 $0.00M] / [4110.0-4120.0 $0.02M]
+• SILVER (XAGUSD.pi | COMMODITIES): Mid 56.8605 | Spread 140.87 bps | Z = None SD | RSI None | Trend INSUFFICIENT_HISTORY | L2 Imb -0.1669 | TradFi OF: L1 Tick Stream Validated | Bias: BUYER_AGGRESSION | Trapped: TRAPPED_BUYERS_ABOVE | PriorDay POC 60.11 [VAH 60.64 / VAL 59.79] | WkVWAP 59.16 | L3 Whales (tot/elig>=180s): 19/18 | Stops Below/Above: [55.6-55.7 $0.02M] / [55.7-55.8 $0.01M] | Liq Below/Above (Attraction Bands): [55.6-55.7 $0.00M] / [55.7-55.8 $0.13M]
+• USWTI (USWTI.p | COMMODITIES): Mid 95.329 | Spread 3.15 bps | Z = None SD | RSI None | Trend INSUFFICIENT_HISTORY | L2 Imb 0.518 | TradFi OF: L1 Tick Stream Validated | Bias: BUYER_AGGRESSION | Trapped: BALANCED | PriorDay POC 92.29 [VAH 94.05 / VAL 92.02] | WkVWAP 93.84 | L3 Whales (tot/elig>=180s): 14/1 | Stops Below/Above: [93.9-94.0 $0.00M] / [94.0-94.1 $0.06M] | Liq Below/Above (Attraction Bands): [93.7-93.8 $0.04M] / [94.0-94.1 $0.04M]
+• EURUSD (EURUSD.pi | FOREX): Mid 1.1155 | Spread 3.85 bps | Z = 0.02 SD | RSI 54.05 | Trend BEARISH | L2 Imb 0.0933 | TradFi OF: L1 Tick Stream Validated | Bias: SELLER_AGGRESSION | Trapped: BALANCED | PriorDay POC 1.12 [VAH 1.12 / VAL 1.12] | WkVWAP 1.12 | L3 Whales (tot/elig>=180s): 10/9 | Stops Below/Above: [1.1-1.1 $0.05M] / [1.1-1.1 $0.23M] | Liq Below/Above (Attraction Bands): [1.1-1.1 $0.31M] / none
+• GBPUSD (GBPUSD.pi | FOREX): Mid 1.319 | Spread 3.03 bps | Z = -0.43 SD | RSI 50.91 | Trend BEARISH | L2 Imb 0.9492 | TradFi OF: L1 Tick Stream Validated | Bias: NEUTRAL | Trapped: BALANCED | PriorDay POC 1.32 [VAH 1.33 / VAL 1.32] | WkVWAP 1.32 | L3 Whales (tot/elig>=180s): 10/9 | Stops Below/Above: [1.3-1.3 $0.03M] / [1.3-1.3 $0.13M] | Liq Below/Above (Attraction Bands): [1.3-1.3 $0.11M] / [1.3-1.3 $0.00M]
+• USDJPY (USDJPY.pi | FOREX): Mid 158.322 | Spread 5.43 bps | Z = -0.73 SD | RSI 38.36 | Trend BEARISH | L2 Imb 0.6174 | TradFi OF: L1 Tick Stream Validated | Bias: NEUTRAL | Trapped: BALANCED | PriorDay POC 158.28 [VAH 158.43 / VAL 158.12] | WkVWAP 158.40 | L3 Whales (tot/elig>=180s): 34/31 | Stops Below/Above: [157.0-158.0 $0.02M] / [158.0-159.0 $0.02M] | Liq Below/Above (Attraction Bands): [157.0-158.0 $0.00M] / none
+
+For every qualifying new opportunity across Crypto, Metals, Energy, Forex, or Indices, specify: MT5 symbol, BUY/SELL LIMIT, exact lot size, Entry price, SL (0.35-0.50 ATR outside min_price/max_price of bunker), TP (front-running magnet by 5-10 bps), USD risk, R:R, Engine (1 or 2), and complete telemetry coincidence proof including which loss archetype(s) it specifically defends against.
+
+MANDATE 2 — LOOK FOR ACTIVE / RUNNING TRADES (LOGICAL TP OR SL MODIFICATION BASED ON LATEST DATA):
+• Current Active Running Trades on MT5: 0 open positions (Flat / 100% Cash reserves). Confirm that no open-position ratchets are needed right now.
+
+MANDATE 3 — AUDIT UNFILLED LIMIT ORDERS (VIABLE TO WAIT vs. SLIGHT MODIFICATION vs. DELETE):
+• Current Unfilled Limit Orders on MT5: 1 pending order(s):
+  - Ticket #18925879: SOLUSD.p SELL_LIMIT 0.1 lots @ Entry 104.9 USD | Live Mid: 104.66499999999999 USD (Distance: 0.43 ATR, ATR_14=0.5419) | Current SL: 105.75 USD | Current TP: 103.1 USD | Trend: BEARISH | Z: -0.61 SD
+• For EACH unfilled limit order listed above, perform a complete logical & quantitative audit against the latest live_snapshot_latest.json and explicitly classify it into one of three decisions:
+  (A) VIABLE — WAIT TO BE FILLED AS-IS: Confirm that distance to entry is <= 2.0 ATR, supporting L3 whale walls (persistence_s >= 180s) remain intact, 5m/15m/30m CVD and L2 imbalance support absorption, SL sits safely 0.35x-0.50x ATR outside min_price/max_price of the governing bunker, and TP front-runs the opposing buy-stop/sell-stop magnet by 5-10 bps.
+  (B) SLIGHT MODIFICATION REQUIRED (MODIFY ENTRY / SL / TP): If the thesis remains valid but live whale walls, stop clusters (nearest_*), or liquidation band boundaries (min_price/max_price) have shifted in the latest snapshot, specify the exact modified Entry, SL, and/or TP levels and why.
+  (C) DELETE / CANCEL IMMEDIATELY: If the structural thesis has degraded (e.g., supporting whale walls pulled/thinned >50%, price drifted >2.0 ATR away, regime invalidated, or unabsorbed aggressive selling/buying broke the shelf), recommend immediate deletion to free capacity.
+
+STEP 4 — PORTFOLIO CAPACITY & CAPITAL FLOOR GOVERNANCE:
+• Stress Formula: Stressed Loss = 1.25 * nominal_risk + 2.00 USD/ticket (covering adverse gap, spread widening, and slippage).
+• Account Balance: 4859.55 USD | Equity: 4859.55 USD | Hard Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD.
+• Open Position Stress: 0.00 USD (Flat / 100% Cash reserves).
+• Available Stress Budget to 4,795.00 USD Buffer: 64.55 USD.
+• Strict Portfolio Capacity Rules:
+  - Active positions currently using 1 / 4 capacity slots (3 available).
+  - Max new tickets permitted: 3 (at 14.50 USD risk = 20.12 USD stress each).
+  - Worst-case post-stop equity: 4859.55 USD (cushion: +64.55 USD above 4,795.00 operating buffer).
+• Joint Worst-Case Post-Stop Equity MUST remain unconditionally >= 4,795.00 USD (>= 20.00 USD cushion above 4,775.00 USD hard floor).
+
+PART H: REQUIRED OUTPUT FORMAT & QUAD-COUNCIL SYNCHRONIZATION (2 ARENA.AI TABS + 2 COPILOT STUDIO TABS)
+1. TELEMETRY & PLAYBOOK INGESTION CITATION (confirming generation_id: c7f7f4cd72cd4b128e956535dfcbbea1, as_of_utc: 2026-10-14 21:59:42 UTC, macro event: Fed Bowman Speech: Bangkok Economic Festival at 2026-10-15 02:55:00 UTC [blackout_active=False], and Playbook compliance)
+2. MANDATE 1 REPORT: Line-by-Line Screening of 24 Assets for New Trading Opportunities
+   For EACH asset: state Engine 1 verdict, Engine 2 verdict, and Final classification.
+3. MANDATE 2 REPORT: Active / Running Trades Audit (TP/SL Modifications using FROZEN INITIAL R0)
+4. MANDATE 3 REPORT: Unfilled Limit Orders Audit (Ticket-by-Ticket: WAIT / MODIFY / DELETE)
+5. ACTIONABLE EXECUTION SUMMARY TABLE:
+   | Action | Symbol | Side | Lots | Entry | SL Bunker | TP Magnet | Risk USD | R:R | Engine | Archetype Defense | Rationale |
+   If no actions: output table with single row: | STAND ASIDE | — | — | — | — | — | — | — | — | — | — | [Reason] |
+7. ARENA SKILL IMPLEMENTATION & ADAPTATION MANDATE (https://github.com/Jakeschincariol/arena-skill):
+   • The canonical 'arena-skill' tournament evaluation framework has been installed into this repository at `.agent/skills/arena/` (https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agent/skills/arena/SKILL.md).
+   • If operating in an environment with bash/git access, install/confirm it via: `git clone https://github.com/Jakeschincariol/arena-skill.git ~/.claude/skills/arena` (or read `.agent/skills/arena/SKILL.md`).
+   • You MUST ALWAYS apply this arena tournament methodology to pit competing trade hypotheses against each other across the 5 personas and written rubric (`.agent/skills/arena/rubric.md`) before issuing any final trade verdict.
+8. INSTITUTIONAL QUANTITATIVE TELEMETRY AUDIT & PROFITABILITY ENHANCEMENT MANDATE:
+   • The operator specifically mandates a comprehensive, institutional quantitative review of our telemetry data structure (`docs/telemetry/live_snapshot_latest.json`) to maximize trading profitability, edge, and execution efficiency while defending the 4,775.00 USD hard floor:
+     a) Telemetry Data Structure & Microstructure Schema Audit:
+        - Critically review the JSON schema in live_snapshot_latest.json (`assets_matrix_24`, `orderbook_live_depth`, `structural_stop_clusters`, `reconstructed_liquidations`, `whale_walls_l3`, `footprint_trapped_traders`).
+        - What exact fields, features, or microstructural indicators are missing or suboptimal? Propose concrete mathematical additions: e.g. multi-level Order Flow Imbalance (OFI), Micro-price drift vs. Mid, Queue-position decay rate, Taker aggressor ratio over 1m/5m/15m/30m, and Footprint delta absorption scores.
+     b) Calibrating Model 1 & Model 2 for Payable >= 2.0R Setups:
+        - Both models frequently report 0 candidates due to strict 2.0R geometry or wide swing targets. How can we mathematically construct payable 2.0R - 2.5R setups that capture intraday liquidity sweeps without requiring multi-day 10 ATR excursions?
+        - How should the SL bunker buffer (currently 0.35 - 0.50 ATR beyond outer bunker edge) and TP magnet front-run (5 - 10 bps) be dynamically calibrated based on live volatility surface and book depth?
+     c) Expanding Profitable Trade Frequency & Zero Macro Blackout Halts:
+        - OPERATOR DIRECTIVE: Macro blackout enforcement is PERMANENTLY REMOVED AND DISABLED. Never halt trading, purge positions, or disqualify candidates due to macro events, CPI, FOMC, or news runway. Evaluate and trade setups continuously across all market conditions.
+        - How can we optimize execution on Blueberry Markets MT5 CFDs under the 15% dynamic friction rule to capture maximum net alpha?
+
+9. COUNCIL SYNC PROTOCOL (ARENA.AI TAB 1 - GPT ASTRA):
+   • Output your complete 3-Mandate Council Report, Dialectic Deliberation, and Actionable Execution Table in your response.
+   • All repository sources and context are strictly anchored to canonical `main` branch.
+   • Append your council report to docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md on main.
+
+================================================================================
+PART CP: TRI-COUNCIL PEER AUDIT & CROSS-POLLINATION (FABLE & ARGON REVIEW)
+================================================================================
+Your peers Claude Fable and Gemini Argon completed deep audits of Cycle 106:
+1. Tournament Engine Feature Built by Fable:
+   - Fable implemented the persistent repo tournament engine at `Terminal/arena_tournament.py` with 30/30 passing unit tests (`Tests/Test_Arena_Tournament.py`) and opened PR #3 on GitHub!
+2. Unanimous Ratification on MT5 Orders Executed by Desk:
+   - ETH Ticket #18925596: DELETED from MT5. Fable and your champion a002 independently proved the distance (26 pts / 2.45 ATR) breached the <=2.0 ATR proximity gate, and SL @ 2457 sat inside the [2450, 2460] 2.35M squeeze band.
+   - BTC Ticket #18925868: DELETED from MT5. The 82,190 limit had SL @ 82,420 inside the [82400, 82500] 1.05M sweep band.
+3. LIVE ORDER STAGED ON MT5 (TICKET #18925879):
+   - Desk staged Model 2 Pullback Short on Solana: SELL LIMIT 0.10 lots SOLUSD.p @ 104.90 USD | SL: 105.75 USD (-8.50 USD risk, 0.17% equity) | TP: 103.10 USD (+18.00 USD reward, 2.12R).
+   - Defended by 50 EMA @ 104.85, 2.48M Ask Wall @ 104.88, and SL sheltered behind 4.85M Ask Wall @ 105.64 outside the [104, 105] buy-stop band.
+   - Distance to market is currently only 0.46 pts (<1.0 ATR).
+4. MANDATE FOR CYCLE 107:
+   - Mandate 1: Screen all 24 assets in `live_snapshot_latest.json` for new high-confluence Model 1 / Model 2 setups across the 3 remaining capacity slots.
+   - Mandate 3: Audit Ticket #18925879 (`SOLUSD.p` SELL LIMIT @ 104.90) against fresh orderbook depth and distance (WAIT / MODIFY / CANCEL).
+5. MANDATORY ARENA SKILL (https://github.com/Jakeschincariol/arena-skill) INVARIANT:
+   - https://github.com/Jakeschincariol/arena-skill IS MANDATE TO USE ALWAYS.
+   - Run tournament bracket evaluations (`bracket.py`, `rubric.md`) across competing hypotheses before issuing your final ruling.

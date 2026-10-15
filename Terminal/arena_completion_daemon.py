@@ -28,7 +28,7 @@ from datetime import datetime, timezone
 import websockets
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
-CDP_URL = "http://localhost:9222/json"
+CDP_URL = "http://127.0.0.1:9222/json"
 ARENA_AGENT_ID = "01a1311e-fda5-7fa9-9b2b-a0f35c05910e"
 STATUS_FILE = ROOT / "Data" / "arena_completion_status.json"
 LATEST_RAW_FILE = ROOT / "docs" / "trade_plans" / "ARENA_LATEST_RAW.md"
@@ -52,7 +52,7 @@ def _find_arena_ws_url() -> str | None:
         tabs = json.loads(raw)
         for t in tabs:
             u = t.get("url", "")
-            if ("01a13b65" in u or "01a136b2" in u or "01a13a16" in u or "d6de1eb4" in u) and t.get("webSocketDebuggerUrl"):
+            if ("01a13f2a" in u or "7a89a384" in u or "01a13c34-30fd" in u or "01a13b65" in u or "01a136b2" in u or "01a13a16" in u or "d6de1eb4" in u or "arena.ai/agent/" in u) and t.get("webSocketDebuggerUrl"):
                 return t["webSocketDebuggerUrl"]
     except Exception:
         return None
@@ -65,7 +65,7 @@ def _find_arena_fable_ws_url() -> str | None:
         tabs = json.loads(raw)
         for t in tabs:
             u = t.get("url", "")
-            if ("01a13bea" in u or "01a13b4a" in u or "01a1311e" in u or "01a13a13" in u or "af999588" in u) and t.get("webSocketDebuggerUrl"):
+            if ("01a13c34-09c6" in u or "01a13bea" in u or "01a13b4a" in u or "01a1311e" in u or "01a13a13" in u or "af999588" in u) and t.get("webSocketDebuggerUrl"):
                 return t["webSocketDebuggerUrl"]
     except Exception:
         return None
@@ -84,19 +84,78 @@ def _find_zai_ws_url() -> str | None:
     return None
 
 
+async def reload_arena_tab(target: str = "arena1") -> None:
+    """Reloads the Arena tab via CDP Page.reload and waits for full DOM rehydration."""
+    try:
+        ws_url = _find_arena_ws_url() if target == "arena1" else _find_arena_fable_ws_url()
+        if not ws_url:
+            return
+        async with websockets.connect(ws_url, open_timeout=5) as ws:
+            await ws.send(json.dumps({"id": 9999, "method": "Page.reload", "params": {"ignoreCache": True}}))
+            try:
+                await asyncio.wait_for(ws.recv(), timeout=2.5)
+            except Exception:
+                pass
+        await asyncio.sleep(4.0)
+    except Exception as e:
+        print(f"[CouncilWatcher] Error reloading {target} tab: {e}", file=sys.stderr)
+
+
 async def probe_arena_state(target: str = "arena1") -> dict:
     ws_url = _find_arena_ws_url() if target == "arena1" else _find_arena_fable_ws_url()
     if not ws_url:
         return {"connected": False, "error": f"{target} tab not found on CDP 9222"}
 
     js = """(() => {
+        function nodeToMd(node) {
+            if (!node) return '';
+            if (node.nodeType === Node.TEXT_NODE) return node.textContent;
+            if (node.nodeType !== Node.ELEMENT_NODE) return '';
+
+            const tag = node.tagName.toLowerCase();
+            if (tag === 'pre') {
+                const code = node.querySelector('code');
+                const lang = code ? (code.className.match(/language-(\\\\w+)/) || ['', ''])[1] : '';
+                return '\\\\n```' + lang + '\\\\n' + (code ? code.innerText : node.innerText) + '\\\\n```\\\\n';
+            }
+            if (tag === 'code' && node.parentElement.tagName.toLowerCase() !== 'pre') return '`' + node.innerText + '`';
+            if (tag === 'h1') return '\\\\n# ' + node.innerText.trim() + '\\\\n\\\\n';
+            if (tag === 'h2') return '\\\\n## ' + node.innerText.trim() + '\\\\n\\\\n';
+            if (tag === 'h3') return '\\\\n### ' + node.innerText.trim() + '\\\\n\\\\n';
+            if (tag === 'h4') return '\\\\n#### ' + node.innerText.trim() + '\\\\n\\\\n';
+            if (tag === 'p') return '\\\\n' + Array.from(node.childNodes).map(nodeToMd).join('').trim() + '\\\\n';
+            if (tag === 'br') return '\\\\n';
+            if (tag === 'hr') return '\\\\n---\\\\n';
+            if (tag === 'ul') return '\\\\n' + Array.from(node.children).map(li => '- ' + nodeToMd(li).trim()).join('\\\\n') + '\\\\n';
+            if (tag === 'ol') return '\\\\n' + Array.from(node.children).map((li, idx) => (idx + 1) + '. ' + nodeToMd(li).trim()).join('\\\\n') + '\\\\n';
+            if (tag === 'li') return Array.from(node.childNodes).map(nodeToMd).join('').trim();
+            if (tag === 'strong' || tag === 'b') return '**' + Array.from(node.childNodes).map(nodeToMd).join('') + '**';
+            if (tag === 'em' || tag === 'i') return '*' + Array.from(node.childNodes).map(nodeToMd).join('') + '*';
+            if (tag === 'table') {
+                const rows = Array.from(node.querySelectorAll('tr'));
+                if (rows.length === 0) return '';
+                const lines = [];
+                let isHeader = true;
+                for (const r of rows) {
+                    const cells = Array.from(r.querySelectorAll('th, td')).map(c => nodeToMd(c).replace(/\\\\n/g, ' ').trim());
+                    lines.push('| ' + cells.join(' | ') + ' |');
+                    if (isHeader) {
+                        lines.push('| ' + cells.map(() => '---').join(' | ') + ' |');
+                        isHeader = false;
+                    }
+                }
+                return '\\\\n' + lines.join('\\\\n') + '\\\\n\\\\n';
+            }
+            return Array.from(node.childNodes).map(nodeToMd).join('');
+        }
+
         const btnStop = document.querySelector('button[aria-label*="Stop"], button[title*="Stop"]');
         const isGenerating = Boolean(btnStop);
         const allProses = Array.from(document.querySelectorAll('.prose'));
         const proseCount = allProses.length;
         const nonEmptyProses = allProses.filter(e => (e.innerText || '').trim().length > 0);
         const lastProse = nonEmptyProses.length > 0 ? nonEmptyProses[nonEmptyProses.length - 1] : null;
-        const lastText = lastProse ? (lastProse.innerText || '').trim() : '';
+        const lastText = lastProse ? nodeToMd(lastProse).trim() : '';
         const recentSnippets = nonEmptyProses.slice(-3).map(e => (e.innerText || '').trim().slice(0, 220));
 
         let turnEl = lastProse;
@@ -105,7 +164,7 @@ async def probe_arena_state(target: str = "arena1") -> dict:
         }
         const hasCopyButton = Boolean(turnEl && turnEl.querySelector('button[aria-label="Copy"]'));
         const turnFooter = turnEl ? (turnEl.innerText || '').slice(-160) : '';
-        const hasDurationFooter = /\\d+[ms]\\s*\\|\\s*(just now|\\d+[smh]\\s+ago)/i.test(turnFooter);
+        const hasDurationFooter = /\\\\d+[ms]\\\\s*\\\\|\\\\s*(just now|\\\\d+[smh]\\\\s+ago)/i.test(turnFooter);
 
         const bodyText = document.body ? (document.body.innerText || '') : '';
         const hasKeepWorkingBtn = Array.from(document.querySelectorAll('button')).some(b => (b.innerText || '').trim() === 'Keep working');
@@ -384,11 +443,16 @@ async def run_wait_for_completion(poll_interval: float = 2.0, timeout_s: float =
                             last_seen_hash = curr_hash
                             stable_ready_ticks = 1
                         if stable_ready_ticks >= 2:
+                            print(f"[CouncilWatcher] Refreshing Arena tab for clean markdown rehydration...", flush=True)
+                            await reload_arena_tab("arena1")
+                            re_state = await probe_arena_state("arena1")
+                            if re_state.get("connected") and re_state.get("lastLen", 0) > 200:
+                                state = re_state
                             save_completion_artifacts(state)
                             arena_done = True
                             arena_done_ts = time.time()
                             print(
-                                f"\n🔔 ARENA 1 PRIMARY RESPONSE COMPLETE (len={last_len}, hash={curr_hash}) -> saved {LATEST_RAW_FILE.name}",
+                                f"\n🔔 ARENA 1 PRIMARY RESPONSE COMPLETE (len={state.get('lastLen')}, hash={state.get('textHash')}) -> saved {LATEST_RAW_FILE.name}",
                                 flush=True,
                             )
                     else:
@@ -459,8 +523,17 @@ async def run_wait_for_completion(poll_interval: float = 2.0, timeout_s: float =
                                 flush=True,
                             )
 
-        # Wake up when ALL active instances are done (or if secondary instances timeout)
-        all_arenas_done = arena_done and (fable_done or (time.time() - arena_done_ts) >= 180.0 if arena_done else False)
+        # Wake up when ALL active instances are done (or if secondary instances timeout when idle)
+        fable_is_gen = fstate.get("isGenerating", False) if (fable_active and not fable_done and 'fstate' in locals()) else False
+        fable_timed_out = False
+        if not fable_is_gen:
+            if arena_done and (time.time() - arena_done_ts) >= 180.0:
+                fable_timed_out = True
+        else:
+            # If actively generating, allow up to 45 minutes (2700s)
+            if arena_done and (time.time() - arena_done_ts) >= 2700.0:
+                fable_timed_out = True
+        all_arenas_done = arena_done and (fable_done or fable_timed_out)
         if all_arenas_done and (zai_done or (time.time() - arena_done_ts) >= 60.0):
             print("\n✅ COUNCIL WAKE UP TRIGGERED (Both Arena instances ready for Antigravity synthesis)!", flush=True)
             return 0
@@ -516,11 +589,16 @@ async def run_persistent_daemon(poll_interval: float = 3.0) -> None:
                     stable_ticks = 1
 
                 if stable_ticks >= 2:
+                    print(f"[CouncilWatcher] Refreshing Arena tab for clean markdown rehydration...", flush=True)
+                    await reload_arena_tab("arena1")
+                    re_state = await probe_arena_state("arena1")
+                    if re_state.get("connected") and re_state.get("lastLen", 0) > 200:
+                        state = re_state
                     save_completion_artifacts(state)
-                    last_recorded_hash = curr_hash
+                    last_recorded_hash = state.get("textHash", curr_hash)
                     print(
                         f"[{datetime.now(timezone.utc).strftime('%H:%M:%S UTC')}] "
-                        f"🔔 Arena 1 Primary completion detected (len={state.get('lastLen')}, hash={curr_hash}) -> saved {LATEST_RAW_FILE.name}",
+                        f"🔔 Arena 1 Primary completion detected (len={state.get('lastLen')}, hash={last_recorded_hash}) -> saved {LATEST_RAW_FILE.name}",
                         flush=True,
                     )
             else:
