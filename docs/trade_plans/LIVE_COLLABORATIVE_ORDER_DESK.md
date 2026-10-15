@@ -20955,3 +20955,49 @@ No broker order, ratchet, cancellation, production patch, independent agent disp
 - No independent-agent or peer-consensus claim, no profitability guarantee, no unconditional capital protection — finite stress model not bound for gaps/slippage/broker failure.
 
 **End Cycle 120.**
+<<<<<<< HEAD
+
+---
+
+# Trading Desk Council — Cycle 120 ARENA TOURNAMENT CHAMPION a002 — 2026-10-15 17:38 UTC
+**Generation:** b5cb182617f84df88e2573002ba6776a as_of 16:40:19 UTC | **Arena:** https://github.com/Jakeschincariol/arena-skill installed git clone, bracket.py plan --quick 16 agents 4 rounds 91 calls, seed 42, run .arena/run-20261015-173705-s42, champion a002 Evidence first/Draft-critique-rewrite/Built to last 4 matches won 84-69,88-68,88-68,88-68
+**Account:** #5064568 Balance 4837.48 Equity 4841.58 Free 4427.08 Used 414.5 Level 1168.05% Hard 4775 Buffer 4795 Cushion 66.58 total_contingent 39.625 post 4797.855 >=4795 PASS
+**Active #18970131 GOLD LONG 0.01 4145.0->4149.1 profit 4.1 R0 frozen 9.60 pts progress 0.5625R0 Phase0 1.25R0=4157.0 SL->4142.6 risk 2.4 USD Phase1 1.65R0=4160.84 SL->4152.68 locks +7.68 Phase2 >=2.0R0=4164.2 trail Peak-0.75R0=peak-7.2 HOLD
+**Pending #18969343 SP500 SHORT 0.1 7738.5 SL 7757 TP 7634 distance 1.32 ATR ATR 12.18 BEARISH Z1.91 bunker PASS >=7756.47 whale SELL 7741 6.28M 3155s between +7758 6.29M above PASS WAIT
+**Mandate1:** 0 CANDIDATES /7 WATCHLIST (ETH 2426.1 Z1.99 3 walls >=5M, SP500 7722 Z1.91 3 walls >=1M, NAS100 29730 Z1.01 RSI53, GOLD 4149 Z0.15 RSI48 BUY 1.22M 724s, EURUSD 1.1204 Z-0.85, GBPUSD 1.3257 Z0.86, USDJPY 158.12 Z1.98) /17 NO SETUP 9 banned spread (XRP 30.03, ADA 91.84, DOGE 259, TRX 27.14, DOT 189, LINK 68, LTC 49.96, AVAX 40.32, NEAR 64.42, SILVER 10.19>5)
+**Friction:** Crypto <=25bps PASS BTC 1.95 ETH 12.37 BNB 8.23 BCH 21.14 SOL 23.75 borderline 16% FAIL, TradFi <=5bps PASS SP500 1.0 NAS100 0.39 DJ30 0.25 GER40 0.43 GOLD 0.19 EURUSD 0.27 GBPUSD 0.08 USDJPY 0.06 SILVER 10.19 FAIL, 15% dynamic friction GOLD 0.8% PASS SP500 4.16% PASS
+**Whale Calibration:** Crypto Major >=5M BTC 2 walls 20.6M/21.1M 730s PASS, ETH 3 walls 13M PASS, SOL 0 >=5M FAIL, SP500 >=1M 3 walls 6.29M PASS, NAS100 3 walls PASS, GOLD >=0.75M BUY 1.229M 724s PASS marginal -0.2 below SL, FX >=0.5M EUR/GBP/JPY 0 FAIL
+**Actionable:** HOLD GOLD SL 4135 TP 4167.5, WAIT SP500 7738.5 SL7757 TP7634, STAND ASIDE rest
+**Tournament:** a002 beat a004 (84-69) survived missing verification receipts, whale calibration, R0 USD conversion; beat a003 (88-68) macro calendar + stress arithmetic; beat a010 (88-68); beat a016 (88-68) final champion
+
+=======
+>>>>>>> origin/arena/7a89a384-trading-2
+
+---
+
+## CYCLE 121 COUNCIL REPORT — GPT_ASTRA TAB1 — ARENA TOURNAMENT — GENERATION 71076970432c426fa836ed01153fb189 AS_OF 2026-10-15 18:10:34 UTC
+
+**Tournament:** seed 121, 16 agents, 4 rounds, 91 calls, champion a002 (Adversarial + Open questions first + Fewest moving parts) beats a009, a001, a003, a004 85.5 to 66.5
+**Run Dir:** .arena/run-20261015-181359-s121
+**Telemetry:** gen 71076970432c426fa836ed01153fb189 as_of 18:10:34 UTC commit 206e660 size 4320788, account #5064568 Balance 4837.48 Equity 4858.97 Margin 1188.35 Hard 4775 Buffer 4795 Cushion +83.97/+63.97 Realized Deals Banked: SP500 #18836609 +0.90, ETH #18826511 +1.92, SOL #18813768 +9.52, BTC #18813767 +16.10
+**Risk:** file total_contingent 27.125 post 4810.355 vs prompt 4.00 post 4833.48 +38.48 buffer, capacity 2/4 filled 2 available max 1 new at 14.50 risk 20.12 stress
+**Active 2:** #18969343 SP500.p SELL 0.1 @7738.5 Current 7724.32 +0.77R0 Frozen R0 18.5 pts Floating +14.18 SL7757 TP7634 INITIAL; #18970131 XAUUSD.pi BUY 0.01 @4145.0 Current 4154.85 +0.99R0 Frozen R0 10.0 pts Floating +9.85 SL4151.4 TP4167.5 PHASE_0_RISK_CUT / PHASE_1_PROFIT_LOCKED
+**Pending 0:** No unfilled limit orders
+**Macro:** BoE Governor Bailey Fireside Chat 2026-10-16 02:00 blackout_active False — Macro blackout PERMANENTLY REMOVED
+
+**Mandate1 Summary:** 0 CANDIDATES / WATCHLIST 5 (BTC Z1.74 BULLISH, SOL Z1.69 BULLISH, SP500 Z1.81 BEARISH borderline 1.81>1.8, NAS100 Z1.30 BEARISH, GOLD Z0.86 BULLISH perfect RSI52.96 but fails calibrated whale 0 >=1M) / 19 NO SETUP. Engine1 |Z|>=2.0-3.5 fails due to BULLISH short BANNED and RANGE_BOUND. Engine2 |Z| 0.2-1.8 fails whale bunker Crypto Major >=5M TradFi >=1M Commodities >=0.75M Forex >=0.5M persistence >=180s.
+
+**Mandate2 Audit:** SP500 #18969343 progress 0.77R0 <1.25R0 no ratchet, next trigger 7715.375 SL 7743.125, then 7707.975 SL 7723.7, then 7701.5 trail Peak+13.875. Bunker SELL 7758 6.29M 8579s above SL PASS. TP [7620-7630] 4.2M front-run 4 pts PASS R:R 5.64 gross. GOLD #18970131 progress 0.99R0 <1.25R0 but SL already 4151.4 profit-locked +6.4, next Phase1 4161.5 SL 4153.0, Phase2 4165.0 trail Peak-7.5. Bunker BUY 4142 613k 304s downside defense, SELL 4194 620k overhead. TP [4160-4170] $0.03M small front-run 2.5 pts PASS.
+
+**Mandate3:** 0 pending orders, no WAIT/MODIFY/DELETE.
+
+**Actionable Table:** HOLD SP500.p SELL 0.1 7738.5 SL7757 TP7634 risk 18.5 nominal 25.125 stressed 5.64R; HOLD XAUUSD.pi BUY 0.01 4145 SL4151.4 TP4167.5 risk 0.0 nominal 2.0 stressed (orig 10) 2.25R gross locked +6.4; STAND ASIDE no candidate passes 5 invariants + 4 archetypes + calibrated whale +15% friction, capacity permits max 1 new but none qualifies.
+
+**Arena Skill:** installed .agent/skills/arena/ SKILL.md 19K bracket.py 49K rubric.md 3.7K strategies.json 9.1K, seed 121 quick 16 agents 4 rounds 91 calls 16 waves, champion a002 Adversarial + Open questions first + Fewest moving parts beats a009/a001/a003/a004, 5 personas Orderflow & Microstructure, Structural Price Action, Liquidation & Stop Hunt Forensic, Macro Risk & Portfolio Governor, Adversarial Pre-Mortem Red Team, rubric correctness 30 completeness 25 specificity 15 robustness 20 clarity 10.
+
+**Telemetry Audit & Profitability Enhancement:** Schema audit 18-param, missing multi-level OFI, microprice drift mu, queue decay, taker aggressor ratio, footprint delta absorption, band semantics DISPLAY_BIN vs executable, HTF shelf trajectory, venue basis risk median/MAD, global block FNG/ETF NOT_YET_REPORTED. Payable >=2R construction broker-valued L/G plus costs R_net=(G-c_win)/(L+c_loss), SL bunker max(0.35-0.50 ATR, conditional_MAE_quantile, adverse_basis+spread), TP front-run adaptive not fixed bps, discrete lot enumeration q=min+n*step must land 7.50-14.50. Zero macro blackout: never halt trading due to CPI/FOMC/BoE Bailey, evaluate continuously, rank EV_attempt=P(fill)*[p*net_gain-(1-p)*net_loss]-nonfill_cost / margin-time, walk-forward validation next-observation fills partial gaps fees swaps.
+
+**Verification:** generation 71076970432c426fa836ed01153fb189 commit 206e660, account 4837.48/4858.97 margin 1188.35 risk 27.125 post 4810.355 required 4795 PASS active 2 pending 0 capacity 2/4 worst-case 4833.48 +38.48 buffer, champion solution at .arena/run-20261015-181359-s121/r4/r4-m01.a002.solution.md
+
+Full report: Cycle_121_Council_Report_Arena.md (23K, 162 lines)
+
