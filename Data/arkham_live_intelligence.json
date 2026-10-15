@@ -1,0 +1,146 @@
+{
+  "as_of_utc": "2026-10-15 12:01:51 UTC",
+  "source": "Arkham Intelligence (arkm.com via Chrome CDP)",
+  "status": "LIVE_STREAMING",
+  "market_flow_sentiment": "NET_DISTRIBUTION",
+  "metrics": {
+    "total_transfers_monitored": 24,
+    "exchange_inflow_alerts": 4,
+    "exchange_outflow_alerts": 0,
+    "sample_volume_usd": 1540.54
+  },
+  "trending_institutional_entities": [
+    {
+      "text": "City of Roswell | $14,116.90 | 2.76% | LARGEST HOLDING | BTC | (0.17) | ACTIVE WALLETS | 1",
+      "href": "https://arkm.com/explorer/entity/city-of-roswell"
+    },
+    {
+      "text": "Aave | $16,564,995,932.00 | 3.86% | LARGEST HOLDING | WEETH | (1.43M) | ACTIVE WALLETS | 2,184",
+      "href": "https://arkm.com/explorer/entity/aave"
+    },
+    {
+      "text": "German Government | $52.03 | 2.74% | LARGEST HOLDING | BTC | (0) | ACTIVE WALLETS | 8",
+      "href": "https://arkm.com/explorer/entity/germany"
+    },
+    {
+      "text": "Twenty One Capital | $3,524,649,211.05 | 2.85% | LARGEST HOLDING | BTC | (43.51K) | ACTIVE WALLETS | 15",
+      "href": "https://arkm.com/explorer/entity/twenty-one-capital"
+    },
+    {
+      "text": "Polymarket",
+      "href": "https://arkm.com/explorer/entity/polymarket"
+    },
+    {
+      "text": "Polymarket",
+      "href": "https://arkm.com/explorer/entity/polymarket"
+    },
+    {
+      "text": "Polymarket",
+      "href": "https://arkm.com/explorer/entity/polymarket"
+    },
+    {
+      "text": "Polymarket",
+      "href": "https://arkm.com/explorer/entity/polymarket"
+    },
+    {
+      "text": "@viiniijunior",
+      "href": "https://arkm.com/explorer/entity/viiniijunior"
+    },
+    {
+      "text": "Polymarket",
+      "href": "https://arkm.com/explorer/entity/polymarket"
+    }
+  ],
+  "recent_classified_transfers": [
+    {
+      "raw": "FROM | TO | VALUE | TOKEN | USD",
+      "tx_link": "",
+      "usd_value": 0.0,
+      "classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "raw": "Now | Polymarket Deposit Wallet | (0xD17) | CTFExchange | (0xE11) | 5.004 | PUSD | $5",
+      "tx_link": "https://arkm.com/explorer/tx/0x19083b824d86d9a8bec0ac9fb45a54f8141479b8861008bc12c6ca0370ae80f8",
+      "usd_value": 5.0,
+      "classification": "EXCHANGE_INFLOW (SELL_PRESSURE)"
+    },
+    {
+      "raw": "Now | Polymarket | : | SingleOwnerMSCA (Proxy) | (0xC41) | Polymarket | : | CtfCollateralAdapter | (0xADa) | 6.037 | USDC | $6.04",
+      "tx_link": "https://arkm.com/explorer/tx/0x19083b824d86d9a8bec0ac9fb45a54f8141479b8861008bc12c6ca0370ae80f8",
+      "usd_value": 6.04,
+      "classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "raw": "Now | \"dddd123ab\" Polymarket Account | (0xe81) | CTFExchange | (0xE11) | 4.9 | PUSD | $4.9",
+      "tx_link": "https://arkm.com/explorer/tx/0x1e98c41557efd729592ca2c00eec3b12ae9e38f7b5f7a2756a277e07b510d095",
+      "usd_value": 4.9,
+      "classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "raw": "Now | \"dddd111dd\" Polymarket Account | (0x568) | CTFExchange | (0xE11) | 2.612 | PUSD | $2.61",
+      "tx_link": "https://arkm.com/explorer/tx/0x1e98c41557efd729592ca2c00eec3b12ae9e38f7b5f7a2756a277e07b510d095",
+      "usd_value": 2.61,
+      "classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "raw": "Now | Polymarket | : | Polymarket USD (PUSD) | (0xC01) | Null Address | (0x000) | 1.538 | PUSD | $1.54",
+      "tx_link": "https://arkm.com/explorer/tx/0x34b30c2ef3c20cab92be4a47699b3db7dffbf43d876bad77be9c7cc1a0c26848",
+      "usd_value": 1.54,
+      "classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "raw": "Now | CTFExchange | (0xE11) | Polymarket | : | Polymarket USD (PUSD) | (0xC01) | 20 | PUSD | $20",
+      "tx_link": "https://arkm.com/explorer/tx/0x3bf832e73e143c1cf3ffd621f6999f6bed2689570b0f5b4eff59208f992c3011",
+      "usd_value": 20.0,
+      "classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "raw": "Now | \"Hermann2017\" Polymarket Account | (0xcd0) | @viiniijunior | : | \"vinii\" Polymarket Account | (0x1Ee) | 9.87 | PUSD | $9.87",
+      "tx_link": "https://arkm.com/explorer/tx/0x3cb5fb22a5b8a1e7f55ee5f205bda04a524ff7eb95062fa13949e16bc4c39fa6",
+      "usd_value": 9.87,
+      "classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "raw": "Now | \"UpTheBlues\" Polymarket Account | (0x2a6) | CTFExchange | (0xE11) | 311.998 | PUSD | $312",
+      "tx_link": "https://arkm.com/explorer/tx/0x49799a4a2740d0294598091bdefec62c3a3dada3fad630ffc1931bb14520f26d",
+      "usd_value": 312.0,
+      "classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "raw": "Now | CTFExchange | (0xE11) | Polymarket | : | Polymarket USD (PUSD) | (0xC01) | 227.6 | PUSD | $227.6",
+      "tx_link": "https://arkm.com/explorer/tx/0x49799a4a2740d0294598091bdefec62c3a3dada3fad630ffc1931bb14520f26d",
+      "usd_value": 227.6,
+      "classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "raw": "Now | Courtyard.io | : | Orderbook | (0x5E4) | 0xE56EF64823b95062b3958F92241ba01001Da18CE | 31.89 | USDC | $31.89",
+      "tx_link": "https://arkm.com/explorer/tx/0x56918fee7eeee7e3fb1808f193d7c0aee89c18a3d660b510f19f937a077c39a8",
+      "usd_value": 31.89,
+      "classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "raw": "Now | Bybit Deposit | (0x6D8) | Bybit | : | Hot Wallet | (0x134) | 52 | USDT0 | $52",
+      "tx_link": "https://arkm.com/explorer/tx/0x6e823470392b5cd138fd41a530f57a8a5f955e2f392acabbda31e9a33ca6afaa",
+      "usd_value": 52.0,
+      "classification": "EXCHANGE_INFLOW (SELL_PRESSURE)"
+    },
+    {
+      "raw": "Now | 0x41c17d8E1FEe246fA45BEa0872299115a13A9fbB | 0x3068aaa8E7E07693CF3066dD15F174F7afC30C40 | 40 | USDC | $40",
+      "tx_link": "https://arkm.com/explorer/tx/0x74c75be44a357b6f5aeda6c75e8afe4db8bef92cdc0f3f3b62ec5a0c2fb99b0e",
+      "usd_value": 40.0,
+      "classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "raw": "Now | Polymarket Deposit Wallet | (0xeCa) | CTFExchange | (0xE11) | 40.455 | PUSD | $40.45",
+      "tx_link": "https://arkm.com/explorer/tx/0x7dd6bbdfc60374270c96b7175377c02d0a2cbd5ad9fbd0679f8bb71e485f487a",
+      "usd_value": 40.45,
+      "classification": "EXCHANGE_INFLOW (SELL_PRESSURE)"
+    },
+    {
+      "raw": "Now | CTFExchange | (0xE11) | Polymarket | : | Polymarket USD (PUSD) | (0xC01) | 45.455 | PUSD | $45.45",
+      "tx_link": "https://arkm.com/explorer/tx/0x7dd6bbdfc60374270c96b7175377c02d0a2cbd5ad9fbd0679f8bb71e485f487a",
+      "usd_value": 45.45,
+      "classification": "INTERNAL_TRANSFER"
+    }
+  ]
+}
