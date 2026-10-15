@@ -20745,3 +20745,19 @@ Rulings: **(C) CANCEL IMMEDIATELY on both tickets.** BTC sits 2.283 ATR away wit
 New orders: **none — STAND ASIDE across all 24 assets.** The double gate (`gate_g7_eligible True` AND `persist_s >= 180` AND `presence_frac >= 0.85` AND notional at the Patch-4 institutional threshold) has an empty intersection: the persistent, g7-verified population ceiling is 663,503 USD, while every institutionally sized wall prints presence 0.75-0.80. 14 of 24 assets also fail the spread gate outright. Rebuilt BTC and ETH shorts priced at lawful VWAP/20-EMA shelves resolve to 1.39R and 0.216R at the first material opposing barrier — unpayable after a canonical stop.
 
 Caveats: HTF arrays ship 96 bars, so a 1H/4H EMA200 hierarchy is not independently recomputable; `assets_matrix_24[symbol].arkham_onchain` is absent; Arkham logged zero exchange events this cycle; p_win lower bound 0.4197 remains uncalibrated at n=17. Arena staged, modified and cancelled nothing.
+
+## 10. FINAL VERDICT — Arena cycle close 2026-10-15 (receipt 13:59:54 UTC, gen e0e83738115a4dbf89dc4d1190fbeb81)
+
+**Desk posture: FLAT — 0 filled positions, 0 pending orders, 0/4 capacity used.** Balance = equity = free margin = 4,862.28 USD. Floor cushion +87.28 USD; operating-threshold surplus +67.28 USD; stressed post-loss equity = equity (no contingent risk).
+
+**Tickets #18954801 (BTC SELL_LIMIT 81,280.00) and #18956325 (ETH SELL_LIMIT 2,377.00) are absent from the live book.** Balance is byte-identical to the pre-audit value (4,862.28 USD) with zero positions and zero deals closed, so both were REMOVED BY CANCELLATION, not filled. Arena's Task-3 verdict was (C) CANCEL for both; the desk has executed it. No live ticket remains from Arena's cycle.
+
+**Task 1 (new opportunities): STAND ASIDE, reaffirmed on the fresh 13:59:54 receipt.** The whale double gate is still empty in 24/24 assets — every institutionally sized wall prints `gate_g7_eligible False` (BTC 35.84M at presence 0.700; ETH 14.81M at 0.700; SP500 6.30M at 0.708) and the persistence-verified population still tops out far below the notional floors. Spread gate now fails on 10/24 (ADA, DOGE, DOT, LINK, LTC, AVAX, NEAR, SILVER, USWTI, TRX).
+
+**New this cycle — Model 1 extremes printed but are inadmissible.** Z-scores extended to SP500 -3.66, NAS100 -3.22, BTC -2.75, XRP -2.47, USDJPY -2.13. Every one sits in a BEARISH trend regime (`trend_regime` BEARISH, 1H and 4H price < EMA20 < EMA50), not MEAN_REVERT, so SOP Step 5 bars Model 1 outright; `trapped_traders_signal` reads TRAPPED_BUYERS_ABOVE on BTC/SP500/NAS100, i.e. the knife is still falling into unswept buy stops. Model 2 needs a pullback UP into a shelf — price is at the lows, not the shelf. Neither engine admits an order.
+
+**Task 2 (running positions): NULL — nothing to ratchet.** No Phase 0/1/2 action exists with zero filled positions.
+
+**Task 3 (pending orders): RESOLVED — book is clean.** Nothing left to keep, modify or cancel.
+
+**Operator escalation (structural, not tactical):** with the current Patch 2 + Patch 4 intersection, no wall in the published 2,600+ wall population can ever satisfy simultaneous `gate_g7_eligible True`, `presence_frac >= 0.85` and the institutional notional floor. The desk will keep returning STAND ASIDE until either the notional floors move, the sampling window lengthens enough for 13-35M walls to accrue presence, or the SOP is amended. This is a policy decision for the operator, not a market call.
