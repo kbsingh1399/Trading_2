@@ -98,7 +98,10 @@
     "volume": 0.03,
     "risk_usd": 12.0,
     "model": "MODEL_2_TREND_PULLBACK_SHORT",
-    "staged_at": "2026-10-15 14:40:42 UTC"
+    "staged_at": "2026-10-15 14:40:42 UTC",
+    "status": "CLOSED_STOPPED_OUT",
+    "closed_price": 82050.0,
+    "profit_usd": -12.0
   },
   "18968007": {
     "symbol": "SP500.p",
@@ -110,6 +113,33 @@
     "volume": 0.08,
     "risk_usd": 12.8,
     "model": "MODEL_2_TREND_PULLBACK_SHORT",
-    "staged_at": "2026-10-15 14:40:42 UTC"
+    "staged_at": "2026-10-15 14:40:42 UTC",
+    "status": "OPEN_RUNNING"
+  },
+  "18969343": {
+    "symbol": "SP500.p",
+    "direction": "SELL_LIMIT",
+    "entry": 7738.5,
+    "initial_sl": 7749.5,
+    "tp": 7674.5,
+    "r0": 11.0,
+    "volume": 0.1,
+    "risk_usd": 11.0,
+    "model": "MODEL_2_SWEEP_RESISTANCE_SHORT",
+    "staged_at": "2026-10-15 15:05:00 UTC",
+    "status": "PENDING_LIMIT"
+  },
+  "18970131": {
+    "symbol": "XAUUSD.pi",
+    "direction": "BUY_LIMIT",
+    "entry": 4148.1,
+    "initial_sl": 4138.5,
+    "tp": 4172.1,
+    "r0": 9.6,
+    "volume": 0.01,
+    "risk_usd": 9.6,
+    "model": "MODEL_2_BULL_VWAP_PULLBACK_LONG",
+    "staged_at": "2026-10-15 15:28:14 UTC",
+    "status": "PENDING_LIMIT"
   }
 }

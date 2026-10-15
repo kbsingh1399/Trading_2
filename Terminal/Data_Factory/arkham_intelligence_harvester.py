@@ -63,7 +63,7 @@ KNOWN_PROTOCOLS = {
     "kamino": "Kamino Finance"
 }
 
-async def harvest_arkham_dom() -> dict:
+async def harvest_arkham_dom(refresh: bool = True) -> dict:
     try:
         tabs = json.loads(urllib.request.urlopen("http://127.0.0.1:9222/json").read())
     except Exception as e:
@@ -79,8 +79,21 @@ async def harvest_arkham_dom() -> dict:
         print("[WARNING] Active Arkham tab not found on port 9222.")
         return {}
 
+    if refresh:
+        try:
+            print("[*] Refreshing Arkham tab via CDP to ensure streaming feed is active and not stale...")
+            async with websockets.connect(ws_url, max_size=10*1024*1024, open_timeout=5) as ws_reload:
+                await ws_reload.send(json.dumps({"id": 9999, "method": "Page.reload"}))
+                try:
+                    await asyncio.wait_for(ws_reload.recv(), timeout=2.0)
+                except Exception:
+                    pass
+            await asyncio.sleep(6.5)
+        except Exception as e:
+            print(f"[WARNING] Error reloading Arkham tab: {e}")
+
     try:
-        async with websockets.connect(ws_url, max_size=30*1024*1024) as ws:
+        async with websockets.connect(ws_url, max_size=30*1024*1024, open_timeout=8) as ws:
             js = """
             (() => {
                 const doc = window.top.document;
