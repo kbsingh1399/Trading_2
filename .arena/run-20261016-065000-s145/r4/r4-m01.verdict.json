@@ -1,0 +1,36 @@
+{
+  "match": "r4-m01",
+  "scores": {
+    "a002": {
+      "correctness": 9,
+      "completeness": 9,
+      "specificity": 9,
+      "robustness": 8,
+      "clarity": 9,
+      "fatal": false
+    },
+    "a008": {
+      "correctness": 8,
+      "completeness": 8,
+      "specificity": 8,
+      "robustness": 7,
+      "clarity": 8,
+      "fatal": false
+    }
+  },
+  "winner": "a002",
+  "reason": "a002 champion HOLD EURUSD 0.06 @1.1211 SL1.1218 current recommend upgrade to 1.12262 Entry+0.80R0 Phase1 at 1.124235 and trail Peak-0.75R0=1.12227 if >=2.0R0 TP1.125 risk0.00 nom /2.00 stressed (orig 11.40) RR2.05 r1.25 canonical (3.97 per prompt bug) PHASE_1_PROFIT_LOCKED + STAND ASIDE no new GOLD Z1.28 PASS but RSI57 trending up + extended +11 above VAH, all 24+10 NO SETUP/WATCHLIST/BANNED zero 5-pillar confluence STAND ASIDE justified per proactive alpha mandate, capital floor 4775 buffer 4795 cushion98.92 post4857.64 +62.64 buffer",
+  "survived": [
+    "display bin forensic 15.75 ATR",
+    "Z1.64 PASS vs Z1.28 PASS but extended",
+    "bunker outside governing 3.0ATR",
+    "ARCHETYPE1",
+    "capital floor PASS worst-case 4797.28 +2.28 buffer"
+  ],
+  "standing": {
+    "a002": [],
+    "a008": [
+      "minor"
+    ]
+  }
+}
