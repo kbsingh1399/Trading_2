@@ -1,0 +1,33 @@
+{
+ "match": "r2-m02",
+ "scores": {
+  "a004": {
+   "correctness": 9,
+   "completeness": 9,
+   "specificity": 9,
+   "robustness": 7,
+   "clarity": 8,
+   "fatal": false
+  },
+  "a006": {
+   "correctness": 8,
+   "completeness": 8,
+   "specificity": 8,
+   "robustness": 7,
+   "clarity": 8,
+   "fatal": false
+  }
+ },
+ "winner": "a004",
+ "reason": "a004 is the only memo that applies venue_basis before quoting, and it supplies the GOLD proximity proof. 84.0 to 80.0.",
+ "survived": [
+  "venue basis mapping",
+  "GOLD proximity"
+ ],
+ "standing": {
+  "a004": [],
+  "a006": [
+   "MAJOR"
+  ]
+ }
+}

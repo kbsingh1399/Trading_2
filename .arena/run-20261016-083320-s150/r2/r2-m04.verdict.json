@@ -1,0 +1,33 @@
+{
+ "match": "r2-m04",
+ "scores": {
+  "a016": {
+   "correctness": 9,
+   "completeness": 9,
+   "specificity": 9,
+   "robustness": 7,
+   "clarity": 8,
+   "fatal": false
+  },
+  "a008": {
+   "correctness": 8,
+   "completeness": 8,
+   "specificity": 8,
+   "robustness": 7,
+   "clarity": 8,
+   "fatal": false
+  }
+ },
+ "winner": "a016",
+ "reason": "a016 reconciles NAS100 to the MT5 grid and keeps the constraint ledger; a008 agrees to add the table. 83.5 to 81.0.",
+ "survived": [
+  "NAS100 basis",
+  "constraint ledger"
+ ],
+ "standing": {
+  "a016": [],
+  "a008": [
+   "MAJOR"
+  ]
+ }
+}

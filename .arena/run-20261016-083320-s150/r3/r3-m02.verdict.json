@@ -1,0 +1,33 @@
+{
+ "match": "r3-m02",
+ "scores": {
+  "a014": {
+   "correctness": 8,
+   "completeness": 8,
+   "specificity": 8,
+   "robustness": 7,
+   "clarity": 8,
+   "fatal": false
+  },
+  "a016": {
+   "correctness": 9,
+   "completeness": 9,
+   "specificity": 9,
+   "robustness": 7,
+   "clarity": 8,
+   "fatal": false
+  }
+ },
+ "winner": "a016",
+ "reason": "a016 normalises the archetype registry and keeps the constraint ledger; a014 adopts the ratchet boundaries. 84.0 to 83.0.",
+ "survived": [
+  "archetype naming",
+  "ratchet boundaries"
+ ],
+ "standing": {
+  "a014": [
+   "MAJOR"
+  ],
+  "a016": []
+ }
+}

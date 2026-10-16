@@ -1,0 +1,35 @@
+{
+ "match": "r4-m01",
+ "scores": {
+  "a002": {
+   "correctness": 9,
+   "completeness": 9,
+   "specificity": 9,
+   "robustness": 7,
+   "clarity": 8,
+   "fatal": false
+  },
+  "a016": {
+   "correctness": 8,
+   "completeness": 8,
+   "specificity": 8,
+   "robustness": 7,
+   "clarity": 8,
+   "fatal": false
+  }
+ },
+ "winner": "a002",
+ "reason": "a002 returns the complete 24-row MANDATE 1 table, the MANDATE 2 frozen-R0 verdict, the MANDATE 3 prune verdict, the admission stamps, the Actionable Execution Summary Table and the ratified ratchet boundaries with no standing MAJOR attack. 86.0 to 83.5.",
+ "survived": [
+  "frozen R0",
+  "admission stamps",
+  "ratchet boundaries",
+  "trilemma derivation"
+ ],
+ "standing": {
+  "a002": [],
+  "a016": [
+   "MAJOR"
+  ]
+ }
+}

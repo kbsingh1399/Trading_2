@@ -1,0 +1,34 @@
+{
+ "match": "r1-m02",
+ "scores": {
+  "a003": {
+   "correctness": 8,
+   "completeness": 7,
+   "specificity": 7,
+   "robustness": 7,
+   "clarity": 8,
+   "fatal": false
+  },
+  "a008": {
+   "correctness": 9,
+   "completeness": 8,
+   "specificity": 9,
+   "robustness": 7,
+   "clarity": 8,
+   "fatal": false
+  }
+ },
+ "winner": "a008",
+ "reason": "a008 is the only memo that surfaces trade_authorization = DENIED_UNVERIFIED_ORDERFLOW and portfolio_gating = ADMISSION_FROZEN_UNVERIFIED_DATA before quoting levels, and it keeps the levels. 80.5 to 76.0.",
+ "survived": [
+  "DENIED_UNVERIFIED_ORDERFLOW",
+  "pioneer gate"
+ ],
+ "standing": {
+  "a003": [
+   "MAJOR"
+  ],
+  "b": [],
+  "a008": []
+ }
+}

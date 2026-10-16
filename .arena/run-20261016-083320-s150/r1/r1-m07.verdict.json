@@ -1,0 +1,34 @@
+{
+ "match": "r1-m07",
+ "scores": {
+  "a007": {
+   "correctness": 8,
+   "completeness": 7,
+   "specificity": 7,
+   "robustness": 7,
+   "clarity": 8,
+   "fatal": false
+  },
+  "a012": {
+   "correctness": 9,
+   "completeness": 8,
+   "specificity": 9,
+   "robustness": 7,
+   "clarity": 8,
+   "fatal": false
+  }
+ },
+ "winner": "a012",
+ "reason": "a012 replaces an extrapolated margin with a bounded admissibility statement and keeps the tightest worked arithmetic. 83.5 to 80.0.",
+ "survived": [
+  "margin evidence",
+  "trim trigger"
+ ],
+ "standing": {
+  "a007": [
+   "MAJOR"
+  ],
+  "b": [],
+  "a012": []
+ }
+}
