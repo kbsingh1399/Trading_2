@@ -1380,12 +1380,22 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
     # Compute live Coinbase premium from premiumIndex mark-vs-index
     live_cb_premium = compute_live_coinbase_premium_bps(crypto_prems)
 
+    # Attach Forex Factory live macro summary if present
+    ff_summary_path = ROOT / "Data" / "forex_factory_summary.json"
+    ff_summary = None
+    if ff_summary_path.exists():
+        try:
+            ff_summary = json.loads(ff_summary_path.read_text(encoding="utf-8"))
+        except Exception:
+            pass
+
     macro_calendar = {
         **calendar_observation(now_ts),
         "fng_index": fng_val,
         "etf_net_flows": etf_flows_1d,
         "coinbase_premium_bps": live_cb_premium,
         "coinbase_premium_source": "COINBASE_SPOT_AND_BINANCE_SPOT_RECEIPT" if live_cb_premium is not None else "UNAVAILABLE",
+        "forex_factory_macro": ff_summary,
     }
 
     # Load previous whale wall state for persistence tracking

@@ -1,0 +1,16 @@
+{
+  "balance_usd": 4857.32,
+  "equity_usd": 4862.5,
+  "margin_used_usd": 200.0,
+  "margin_free_usd": 4662.5,
+  "cushion_above_floor_usd": 87.5,
+  "_temporal_meta": {
+    "stream": "account_equity",
+    "recorded_at_utc": "2026-10-16T19:30:00Z",
+    "recorded_at_epoch": 1792178932.2480845,
+    "gap_detected": false,
+    "gap_duration_minutes": 0.0,
+    "last_active_utc": null,
+    "status": "CONTINUOUS_SERIES"
+  }
+}

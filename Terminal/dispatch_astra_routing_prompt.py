@@ -54,10 +54,11 @@ ROUTING TARGET: ASTRA-MAX REASONING CLASS (GPT-6 ASTRA / TIER-1 FORMAL MATHEMATI
 CANONICAL WORKSPACE: https://github.com/kbsingh1399/Trading_2
 ACTIVE BRANCHES: main (production) and arena/5c05910e-trading-2 (container active sync)
 DIRECT REPO LINKS:
-- Telemetry: https://raw.githubusercontent.com/kbsingh1399/Trading_2/arena/5c05910e-trading-2/docs/telemetry/live_snapshot_latest.json
-- Playbook: https://raw.githubusercontent.com/kbsingh1399/Trading_2/arena/5c05910e-trading-2/docs/specs/TRADE_DECISION_PLAYBOOK.md
-- Desk State: https://raw.githubusercontent.com/kbsingh1399/Trading_2/arena/5c05910e-trading-2/docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md
-- Active Context: https://raw.githubusercontent.com/kbsingh1399/Trading_2/arena/5c05910e-trading-2/.agents/rules/ACTIVE_CONTEXT.md
+- Telemetry: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/telemetry/live_snapshot_latest.json
+- Playbook: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/specs/TRADE_DECISION_PLAYBOOK.md
+- Standardized Decision Chain (SOP): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/specs/STANDARDIZED_TRADING_DECISION_CHAIN.md
+- Desk State: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md
+- Active Context: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agents/rules/ACTIVE_CONTEXT.md
 
 LOCAL TIME / SNAPSHOT AS-OF: {now_utc} (Snapshot Gen: {snap_gen})
 ACCOUNT CONTEXT: Balance: {equity:.2f} USD | Equity: {equity:.2f} USD | Hard Floor: 4,775.00 USD | Cushion: +{cushion:.2f} USD | Open: 0 | Pending: {pending_count}

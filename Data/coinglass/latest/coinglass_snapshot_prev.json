@@ -1,0 +1,2458 @@
+{
+  "harvest_timestamp_utc": "2026-10-16T19:48:37.326361+00:00",
+  "harvest_epoch": 1792180117.361813,
+  "domains": {
+    "hyperliquid_whales": {
+      "name": "Hyperliquid Whale Tracker",
+      "url": "https://www.coinglass.com/hyperliquid",
+      "count": 0,
+      "data": []
+    },
+    "hyperliquid_wallets": {
+      "name": "Hyperliquid Wallet Position Distribution",
+      "url": "https://www.coinglass.com/hl",
+      "data": {
+        "wallet_size_groups": [
+          {
+            "tier": "$0 To $250",
+            "group_name": "Shrimp",
+            "wallets_count": "894,564",
+            "in_position": "54,909 (6.14%)",
+            "long_short_notional": "$32.05M $56.64M",
+            "total_position": "$88.69M",
+            "wallet_bias": "Very Bullish"
+          },
+          {
+            "tier": "$250 To $10K",
+            "group_name": "Fish",
+            "wallets_count": "48,173",
+            "in_position": "32,933 (68.37%)",
+            "long_short_notional": "$264.77M $83.70M",
+            "total_position": "$348.47M",
+            "wallet_bias": "Very Bullish"
+          },
+          {
+            "tier": "$10K To $50K",
+            "group_name": "Dolphin",
+            "wallets_count": "7,881",
+            "in_position": "6,286 (79.77%)",
+            "long_short_notional": "$443.66M $173.43M",
+            "total_position": "$617.09M",
+            "wallet_bias": "Very Bullish"
+          },
+          {
+            "tier": "$50K To $100K",
+            "group_name": "Apex Predator",
+            "wallets_count": "1,677",
+            "in_position": "1,355 (80.8%)",
+            "long_short_notional": "$266.69M $132.72M",
+            "total_position": "$399.41M",
+            "wallet_bias": "Very Bullish"
+          },
+          {
+            "tier": "$100K To $500K",
+            "group_name": "Small Whale",
+            "wallets_count": "1,997",
+            "in_position": "1,667 (83.48%)",
+            "long_short_notional": "$891.57M $574.74M",
+            "total_position": "$1.47B",
+            "wallet_bias": "Bullish"
+          },
+          {
+            "tier": "$500K To $1M",
+            "group_name": "Whale",
+            "wallets_count": "364",
+            "in_position": "314 (86.27%)",
+            "long_short_notional": "$400.56M $435.05M",
+            "total_position": "$835.61M",
+            "wallet_bias": "Slightly Bearish"
+          },
+          {
+            "tier": "$1M To $50M",
+            "group_name": "Tidal Whale",
+            "wallets_count": "366",
+            "in_position": "315 (86.07%)",
+            "long_short_notional": "$1.85B $1.19B",
+            "total_position": "$3.04B",
+            "wallet_bias": "Very Bullish"
+          },
+          {
+            "tier": "$50M To \u221e",
+            "group_name": "Leviathan",
+            "wallets_count": "85",
+            "in_position": "74 (87.06%)",
+            "long_short_notional": "$1.48B $2.99B",
+            "total_position": "$4.48B",
+            "wallet_bias": "Very Bearish"
+          }
+        ],
+        "pnl_groups": [
+          {
+            "pnl_range": "$1M To \u221e",
+            "group_name": "Money Printer",
+            "wallets_count": "778",
+            "in_position": "338 (43.45%)",
+            "total_position": "$4.94B",
+            "wallet_bias": "Bearish"
+          },
+          {
+            "pnl_range": "$100K To $1M",
+            "group_name": "Smart Money",
+            "wallets_count": "3,565",
+            "in_position": "1,137 (31.9%)",
+            "total_position": "$1.15B",
+            "wallet_bias": "Slightly Bullish"
+          },
+          {
+            "pnl_range": "$10K To $100K",
+            "group_name": "Arbitrage Pro",
+            "wallets_count": "11,495",
+            "in_position": "2,911 (25.33%)",
+            "total_position": "$610.41M",
+            "wallet_bias": "Slightly Bullish"
+          },
+          {
+            "pnl_range": "0 To $10K",
+            "group_name": "Retail Grinder",
+            "wallets_count": "213,290",
+            "in_position": "30,222 (14.17%)",
+            "total_position": "$257.09M",
+            "wallet_bias": "Very Bullish"
+          },
+          {
+            "pnl_range": "0 To -$10K",
+            "group_name": "Mini Rekt",
+            "wallets_count": "686,958",
+            "in_position": "56,106 (8.17%)",
+            "total_position": "$326.55M",
+            "wallet_bias": "Very Bullish"
+          },
+          {
+            "pnl_range": "-$10K To -$100K",
+            "group_name": "Stop-loss Hero",
+            "wallets_count": "30,844",
+            "in_position": "5,439 (17.64%)",
+            "total_position": "$593.63M",
+            "wallet_bias": "Very Bullish"
+          },
+          {
+            "pnl_range": "-$100K To -$1M",
+            "group_name": "Leverage bagholders",
+            "wallets_count": "7,120",
+            "in_position": "1,432 (20.12%)",
+            "total_position": "$1.32B",
+            "wallet_bias": "Very Bullish"
+          },
+          {
+            "pnl_range": "-$1M To \u221e",
+            "group_name": "Rekt Master",
+            "wallets_count": "1,057",
+            "in_position": "268 (25.36%)",
+            "total_position": "$2.12B",
+            "wallet_bias": "Slightly Bullish"
+          }
+        ]
+      }
+    },
+    "liquidation_maxpain": {
+      "name": "Liquidation Max Pain",
+      "url": "https://www.coinglass.com/liquidation-maxpain",
+      "count": 11,
+      "data": [
+        {
+          "rank": 1.0,
+          "symbol": "BTC",
+          "current_price": 81335.2,
+          "short_max_pain_raw": "$82768.78 66.24M $1433.58 +1.76% \ud83d\udca5",
+          "long_max_pain_raw": "$80813.92 53.99M -$521.28 -0.64% \ud83d\udca5"
+        },
+        {
+          "rank": 2.0,
+          "symbol": "ETH",
+          "current_price": 2403.77,
+          "short_max_pain_raw": "$2500.95 25.01M $97.18 +4.04% \ud83d\udca5",
+          "long_max_pain_raw": "$2382.92 11.41M -$20.85 -0.87% \ud83d\udca5"
+        },
+        {
+          "rank": 3.0,
+          "symbol": "SOL",
+          "current_price": 102.94,
+          "short_max_pain_raw": "$104.02 4.57M $1.08 +1.05% \ud83d\udca5",
+          "long_max_pain_raw": "$101.95 5.05M -$0.99 -0.96% \ud83d\udca5"
+        },
+        {
+          "rank": 4.0,
+          "symbol": "HYPE",
+          "current_price": 79.062,
+          "short_max_pain_raw": "$80.891 1.66M $1.829 +2.31% \ud83d\udca5",
+          "long_max_pain_raw": "$77.7185 1.38M -$1.3435 -1.70% \ud83d\udca5"
+        },
+        {
+          "rank": 5.0,
+          "symbol": "XRP",
+          "current_price": 1.2953,
+          "short_max_pain_raw": "$1.3469 2.46M $0.0516 +3.98% \ud83d\udca5",
+          "long_max_pain_raw": "$1.2842 1.16M -$0.0111 -0.86% \ud83d\udca5"
+        },
+        {
+          "rank": 8.0,
+          "symbol": "NEAR",
+          "current_price": 4.961,
+          "short_max_pain_raw": "$5.4155 834.60K $0.4545 +9.16% \ud83d\udca5",
+          "long_max_pain_raw": "$4.849 762.59K -$0.112 -2.26% \ud83d\udca5"
+        },
+        {
+          "rank": 9.0,
+          "symbol": "BNB",
+          "current_price": 720.62,
+          "short_max_pain_raw": "$745.987 947.02K $25.367 +3.52% \ud83d\udca5",
+          "long_max_pain_raw": "$717.023 1.02M -$3.597 -0.50% \ud83d\udca5"
+        },
+        {
+          "rank": 10.0,
+          "symbol": "DOGE",
+          "current_price": 0.07985,
+          "short_max_pain_raw": "$0.083308 589.09K $0.003458 +4.33% \ud83d\udca5",
+          "long_max_pain_raw": "$0.078616 358.00K -$0.001234 -1.55% \ud83d\udca5"
+        },
+        {
+          "rank": 20.0,
+          "symbol": "LINK",
+          "current_price": 12.231,
+          "short_max_pain_raw": "$12.8858 232.52K $0.6548 +5.35% \ud83d\udca5",
+          "long_max_pain_raw": "$12.0758 171.83K -$0.1552 -1.27% \ud83d\udca5"
+        },
+        {
+          "rank": 26.0,
+          "symbol": "AVAX",
+          "current_price": 9.927,
+          "short_max_pain_raw": "$10.2686 315.29K $0.3416 +3.44% \ud83d\udca5",
+          "long_max_pain_raw": "$9.8738 393.74K -$0.0532 -0.54% \ud83d\udca5"
+        },
+        {
+          "rank": 27.0,
+          "symbol": "ADA",
+          "current_price": 0.2229,
+          "short_max_pain_raw": "$0.2336 360.47K $0.0107 +4.80% \ud83d\udca5",
+          "long_max_pain_raw": "$0.2202 304.66K -$0.0027 -1.21% \ud83d\udca5"
+        }
+      ]
+    },
+    "liquidations_summary": {
+      "name": "24h Liquidation Summary",
+      "url": "https://www.coinglass.com/liquidations",
+      "table_count": 4,
+      "tables": [
+        {
+          "headers": [
+            "Exchange",
+            "Liquidations",
+            "Long",
+            "Short",
+            "Market share",
+            "Long / Short"
+          ],
+          "rowCount": 11,
+          "rows": [
+            [
+              "\u03a3 All",
+              "$135.96M",
+              "$112.31M",
+              "$23.65M",
+              "100.0%",
+              "82.6% Long"
+            ],
+            [
+              "Binance",
+              "$57.20M",
+              "$42.88M",
+              "$14.33M",
+              "42.1%",
+              "75.0% Long"
+            ],
+            [
+              "Hyperliquid",
+              "$33.17M",
+              "$30.86M",
+              "$2.31M",
+              "24.4%",
+              "93.0% Long"
+            ],
+            [
+              "OKX",
+              "$17.48M",
+              "$15.19M",
+              "$2.29M",
+              "12.9%",
+              "86.9% Long"
+            ],
+            [
+              "Gate",
+              "$9.64M",
+              "$8.27M",
+              "$1.37M",
+              "7.1%",
+              "85.8% Long"
+            ],
+            [
+              "Bybit",
+              "$9.46M",
+              "$7.79M",
+              "$1.67M",
+              "7.0%",
+              "82.3% Long"
+            ],
+            [
+              "Bitget",
+              "$5.63M",
+              "$5.02M",
+              "$607.64K",
+              "4.1%",
+              "89.2% Long"
+            ],
+            [
+              "Aster",
+              "$1.41M",
+              "$1.15M",
+              "$264.44K",
+              "1.0%",
+              "81.3% Long"
+            ],
+            [
+              "HTX",
+              "$1.07M",
+              "$390.16K",
+              "$683.27K",
+              "0.8%",
+              "63.6% Short"
+            ],
+            [
+              "Lighter",
+              "$864.41K",
+              "$739.06K",
+              "$125.36K",
+              "0.6%",
+              "85.5% Long"
+            ],
+            [
+              "Bitfinex",
+              "$30.73K",
+              "$30.68K",
+              "$47.78",
+              "0.0%",
+              "99.8% Long"
+            ]
+          ]
+        },
+        {
+          "headers": [
+            "Rank",
+            "Time",
+            "Liquidations",
+            "Event"
+          ],
+          "rowCount": 10,
+          "rows": [
+            [
+              "01",
+              "2025-10-11",
+              "$19.16B",
+              "U.S. tariff hike on China"
+            ],
+            [
+              "02",
+              "2021-04-18",
+              "$9.94B",
+              "AML crackdown rumor + mining halt"
+            ],
+            [
+              "03",
+              "2021-05-19",
+              "$9.01B",
+              "Tesla stance reversal + regulatory tightening"
+            ],
+            [
+              "04",
+              "2021-02-22",
+              "$4.10B",
+              "Overheated rally correction"
+            ],
+            [
+              "05",
+              "2021-09-07",
+              "$3.65B",
+              "El Salvador BTC law launch dump"
+            ],
+            [
+              "06",
+              "2025-09-22",
+              "$3.62B",
+              "Over-leveraged longs flushed"
+            ],
+            [
+              "07",
+              "2021-02-23",
+              "$3.15B",
+              "Yellen anti-BTC remarks"
+            ],
+            [
+              "08",
+              "2026-08-19",
+              "$2.99B",
+              "US Treasury Buybacks + SEC Crypto Reg. Tailwinds"
+            ],
+            [
+              "09",
+              "2021-04-23",
+              "$2.92B",
+              "U.S. capital-gains tax hike plan"
+            ],
+            [
+              "10",
+              "2021-04-16",
+              "$2.77B",
+              "Turkey crypto-payment ban"
+            ]
+          ]
+        },
+        {
+          "headers": [
+            "Ranking",
+            "Assets",
+            "Price",
+            "Price (24h%)",
+            "1h Long",
+            "1h Short",
+            "4h Long",
+            "4h Short",
+            "12h Long",
+            "12h Short",
+            "24h Long",
+            "24h Short"
+          ],
+          "rowCount": 0,
+          "rows": []
+        },
+        {
+          "headers": [],
+          "rowCount": 20,
+          "rows": [
+            [
+              "1",
+              "BTC",
+              "$81372.2",
+              "-1.26%",
+              "$648.81K",
+              "$2.49M",
+              "$28.55M",
+              "$5.72M",
+              "$50.47M",
+              "$22.66M",
+              "$58.67M",
+              "$25.42M"
+            ],
+            [
+              "2",
+              "ETH",
+              "$2406.72",
+              "-2.01%",
+              "$1.02M",
+              "$486.60K",
+              "$21.65M",
+              "$4.22M",
+              "$32.60M",
+              "$27.84M",
+              "$38.51M",
+              "$33.65M"
+            ],
+            [
+              "3",
+              "SOL",
+              "$103.14",
+              "-2.70%",
+              "$825.22K",
+              "$13.32K",
+              "$5.12M",
+              "$372.19K",
+              "$7.83M",
+              "$1.44M",
+              "$8.37M",
+              "$2.33M"
+            ],
+            [
+              "4",
+              "HYPE",
+              "$78.96",
+              "-3.48%",
+              "$4.32K",
+              "$829.29",
+              "$372.12K",
+              "$39.81K",
+              "$681.38K",
+              "$98.96K",
+              "$1.05M",
+              "$178.61K"
+            ],
+            [
+              "5",
+              "XRP",
+              "$1.2975",
+              "-3.45%",
+              "$356.26K",
+              "$30.70K",
+              "$2.84M",
+              "$106.68K",
+              "$4.78M",
+              "$439.37K",
+              "$5.34M",
+              "$550.41K"
+            ],
+            [
+              "6",
+              "ZEC",
+              "$1136.02",
+              "-8.76%",
+              "$361.03K",
+              "$28.41K",
+              "$4.44M",
+              "$479.36K",
+              "$6.35M",
+              "$1.18M",
+              "$7.93M",
+              "$2.70M"
+            ],
+            [
+              "7",
+              "XAU",
+              "$4177.11",
+              "+0.02%",
+              "$23.75K",
+              "$5.97K",
+              "$316.63K",
+              "$30.87K",
+              "$565.50K",
+              "$196.92K",
+              "$589.87K",
+              "$970.91K"
+            ],
+            [
+              "8",
+              "NEAR",
+              "$4.985",
+              "-8.18%",
+              "$155.02K",
+              "$5.12K",
+              "$1.86M",
+              "$369.56K",
+              "$3.21M",
+              "$712.35K",
+              "$4.60M",
+              "$1.09M"
+            ],
+            [
+              "9",
+              "BNB",
+              "$720.92",
+              "-1.74%",
+              "$6.70K",
+              "$0",
+              "$78.93K",
+              "$4.95K",
+              "$151.64K",
+              "$18.18K",
+              "$165.99K",
+              "$18.71K"
+            ],
+            [
+              "10",
+              "DOGE",
+              "$0.07994",
+              "-2.01%",
+              "$6.99K",
+              "$2.87K",
+              "$1.53M",
+              "$74.32K",
+              "$2.28M",
+              "$149.79K",
+              "$2.37M",
+              "$320.62K"
+            ],
+            [
+              "11",
+              "SPCX",
+              "$144.32",
+              "-3.11%",
+              "$383.41K",
+              "$4.32",
+              "$1.04M",
+              "$843.87",
+              "$2.65M",
+              "$206.30K",
+              "$2.71M",
+              "$672.86K"
+            ],
+            [
+              "12",
+              "SKHYNIX",
+              "$919.14",
+              "-6.34%",
+              "$476.67K",
+              "$665.04",
+              "$1.58M",
+              "$1.34K",
+              "$2.17M",
+              "$8.17K",
+              "$3.07M",
+              "$170.45K"
+            ],
+            [
+              "13",
+              "CL",
+              "$99.07",
+              "+2.79%",
+              "$0",
+              "$156.46K",
+              "$2.36K",
+              "$3.89M",
+              "$94.05K",
+              "$4.02M",
+              "$106.54K",
+              "$4.13M"
+            ],
+            [
+              "14",
+              "SNDK",
+              "$1301.32",
+              "-6.13%",
+              "$1.05M",
+              "$79.91K",
+              "$1.89M",
+              "$236.55K",
+              "$4.37M",
+              "$525.30K",
+              "$4.96M",
+              "$1.83M"
+            ],
+            [
+              "15",
+              "SUI",
+              "$1.0119",
+              "-2.64%",
+              "$41.87K",
+              "$10.04",
+              "$788.04K",
+              "$28.79K",
+              "$1.29M",
+              "$177.32K",
+              "$1.57M",
+              "$242.71K"
+            ],
+            [
+              "16",
+              "XAUT",
+              "$4164.95",
+              "+0.02%",
+              "$9.86K",
+              "$0",
+              "$11.14K",
+              "$10.98K",
+              "$45.11K",
+              "$14.19K",
+              "$49.30K",
+              "$110.22K"
+            ],
+            [
+              "17",
+              "XAG",
+              "$57.17",
+              "-0.64%",
+              "$49.73K",
+              "$0",
+              "$466.42K",
+              "$2.40K",
+              "$622.46K",
+              "$7.73K",
+              "$626.73K",
+              "$404.96K"
+            ],
+            [
+              "18",
+              "UNI",
+              "$7.234",
+              "-2.77%",
+              "$3.42K",
+              "$32.17K",
+              "$239.82K",
+              "$43.83K",
+              "$664.26K",
+              "$57.99K",
+              "$785.07K",
+              "$131.07K"
+            ],
+            [
+              "19",
+              "SOXL",
+              "$94.54",
+              "-12.81%",
+              "$2.10M",
+              "$54.83K",
+              "$4.88M",
+              "$65.27K",
+              "$6.92M",
+              "$236.65K",
+              "$7.19M",
+              "$657.90K"
+            ],
+            [
+              "20",
+              "LINK",
+              "$12.239",
+              "-2.64%",
+              "$104.25",
+              "$75.87",
+              "$275.33K",
+              "$8.53K",
+              "$610.51K",
+              "$59.41K",
+              "$621.09K",
+              "$77.14K"
+            ]
+          ]
+        }
+      ],
+      "cards": [
+        "Legend NEW",
+        "Updated 01:18:49",
+        "1h Rekt $23.73M Long $18.94M Short $4.79M",
+        "Long $18.94M",
+        "Short $4.79M",
+        "4h Rekt $135.96M Long $112.31M Short $23.65M",
+        "Long $112.31M",
+        "Short $23.65M",
+        "12h Rekt $262.81M Long $188.03M Short $74.78M",
+        "Long $188.03M",
+        "Short $74.78M",
+        "24h Rekt $320.99M Long $220.69M Short $100.30M",
+        "Long $220.69M",
+        "Short $100.30M",
+        "Updated 01:18:49",
+        "Updated 01:18:49",
+        "Updated 01:18:50",
+        "Loading\u2026",
+        "Loading\u2026"
+      ]
+    },
+    "bitcoin_etfs": {
+      "name": "Spot Bitcoin ETF Flows & Holdings",
+      "url": "https://www.coinglass.com/etf/bitcoin",
+      "table_count": 4,
+      "tables": [
+        {
+          "headers": [
+            "Time(UTC)",
+            "GBTC",
+            "IBIT",
+            "FBTC",
+            "ARKB",
+            "BITB",
+            "BTCO",
+            "HODL",
+            "BRRR",
+            "EZBC",
+            "BTCW",
+            "BTC",
+            "MSBT",
+            "Total"
+          ],
+          "rowCount": 0,
+          "rows": []
+        },
+        {
+          "headers": [],
+          "rowCount": 12,
+          "rows": [
+            [
+              "2026-10-16",
+              "-",
+              "-",
+              "-",
+              "-",
+              "-",
+              "-",
+              "-",
+              "-",
+              "-",
+              "-",
+              "-",
+              "-",
+              "0"
+            ],
+            [
+              "2026-10-15",
+              "0",
+              "+205.78",
+              "0",
+              "0",
+              "0",
+              "-50.22",
+              "0",
+              "0",
+              "0",
+              "0",
+              "-93.09",
+              "0",
+              "+62.47"
+            ],
+            [
+              "2026-10-14",
+              "0",
+              "-1.33K",
+              "-1.84K",
+              "0",
+              "+26.47",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "-3.14K"
+            ],
+            [
+              "2026-10-13",
+              "0",
+              "+805.49",
+              "+1.26K",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "+81.89",
+              "+2.15K"
+            ],
+            [
+              "2026-10-12",
+              "0",
+              "-781.15",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "-781.15"
+            ],
+            [
+              "2026-10-09",
+              "0",
+              "+274.14",
+              "-44.06",
+              "0",
+              "0",
+              "0",
+              "+28.15",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "+258.23"
+            ],
+            [
+              "2026-10-08",
+              "-98.46",
+              "-66.04",
+              "-2.37K",
+              "-243.75",
+              "-212.53",
+              "0",
+              "0",
+              "0",
+              "+56.43",
+              "0",
+              "0",
+              "0",
+              "-2.93K"
+            ],
+            [
+              "2026-10-07",
+              "-459.61",
+              "-2.43K",
+              "-1.23K",
+              "-1.19K",
+              "-322.78",
+              "0",
+              "-40.93",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "-5.67K"
+            ],
+            [
+              "2026-10-06",
+              "0",
+              "+1.42K",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "-128.33",
+              "+91.00",
+              "+1.39K"
+            ],
+            [
+              "2026-10-05",
+              "0",
+              "+808.25",
+              "-861.44",
+              "-985.17",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "-1.04K"
+            ],
+            [
+              "2026-10-02 2024-01-11",
+              "-451.94K",
+              "+820.40K",
+              "+193.03K",
+              "+39.94K",
+              "+41.51K",
+              "+5.10K",
+              "+13.61K",
+              "+9.60K",
+              "+5.84K",
+              "+2.21K",
+              "+37.13K",
+              "+10.61K",
+              "+727.03K"
+            ],
+            [
+              "Total",
+              "-452.50K",
+              "+819.31K",
+              "+187.95K",
+              "+37.53K",
+              "+41.00K",
+              "+5.05K",
+              "+13.60K",
+              "+9.60K",
+              "+5.89K",
+              "+2.21K",
+              "+36.91K",
+              "+10.78K",
+              "+717.32K"
+            ]
+          ]
+        },
+        {
+          "headers": [
+            "#",
+            "Ticker",
+            "ETF Name",
+            "Price",
+            "Price Change",
+            "Volume",
+            "Volume",
+            "Turnover Rate",
+            "Shares Outstanding",
+            "AUM",
+            "Market Cap",
+            "Expense Ratio"
+          ],
+          "rowCount": 0,
+          "rows": []
+        },
+        {
+          "headers": [],
+          "rowCount": 20,
+          "rows": [
+            [
+              "1",
+              "IBIT BTC",
+              "iShares Bitcoin Trust",
+              "$46.032",
+              "-0.558 -1.20%",
+              "$1.88B",
+              "40.73M",
+              "2.942%",
+              "1.38B",
+              "$67.10B",
+              "$63.75B",
+              "0.25%"
+            ],
+            [
+              "2",
+              "FBTC BTC",
+              "Fidelity Wise Origin Bitcoin Fund",
+              "$70.727",
+              "-0.823 -1.15%",
+              "$198.76M",
+              "2.81M",
+              "1.391%",
+              "202.10M",
+              "$14.92B",
+              "$14.29B",
+              "0.25%"
+            ],
+            [
+              "3",
+              "GBTC BTC",
+              "Grayscale Bitcoin Trust ETF",
+              "$62.785",
+              "-0.745 -1.17%",
+              "$103.53M",
+              "1.65M",
+              "1.011%",
+              "163.13M",
+              "$10.37B",
+              "$10.24B",
+              "1.50%"
+            ],
+            [
+              "4",
+              "BTC",
+              "Grayscale Bitcoin Mini Trust ETF",
+              "$35.945",
+              "-0.425 -1.17%",
+              "$67.50M",
+              "1.88M",
+              "1.320%",
+              "142.23M",
+              "$5.42B",
+              "$5.11B",
+              "0.15%"
+            ],
+            [
+              "5",
+              "BITB BTC",
+              "Bitwise Bitcoin ETF",
+              "$44.116",
+              "-0.544 -1.22%",
+              "$49.32M",
+              "1.12M",
+              "1.625%",
+              "68.78M",
+              "$3.07B",
+              "$3.03B",
+              "0.20%"
+            ],
+            [
+              "6",
+              "ARKB BTC",
+              "ARK 21Shares Bitcoin ETF",
+              "$26.956",
+              "-0.314 -1.15%",
+              "$57.46M",
+              "2.13M",
+              "2.208%",
+              "96.56M",
+              "$2.62B",
+              "$2.60B",
+              "0.21%"
+            ],
+            [
+              "7",
+              "BITO BTC",
+              "ProShares Bitcoin ETF",
+              "$10.865",
+              "-0.135 -1.23%",
+              "$785.78M",
+              "72.39M",
+              "45.517%",
+              "158.89M",
+              "$1.62B",
+              "$1.73B",
+              ""
+            ],
+            [
+              "8",
+              "HODL BTC",
+              "VanEck Bitcoin ETF",
+              "$22.985",
+              "-0.275 -1.18%",
+              "$21.82M",
+              "949.44K",
+              "1.830%",
+              "51.87M",
+              "$1.21B",
+              "$1.19B",
+              "0.00%"
+            ],
+            [
+              "9",
+              "EZBC BTC",
+              "Franklin Bitcoin ETF",
+              "$46.961",
+              "-0.559 -1.18%",
+              "$6.65M",
+              "141.62K",
+              "1.445%",
+              "9.80M",
+              "$466.25M",
+              "$460.18M",
+              "0.19%"
+            ],
+            [
+              "10",
+              "BRRR BTC",
+              "Coinshares Bitcoin ETF Common Shares of Beneficial Interest",
+              "$22.909",
+              "-0.271 -1.17%",
+              "$393.35K",
+              "17.17K",
+              "0.085%",
+              "20.16M",
+              "$472.12M",
+              "$461.82M",
+              "0.25%"
+            ],
+            [
+              "11",
+              "BTCO BTC",
+              "Invesco Galaxy Bitcoin ETF",
+              "$80.838",
+              "-0.962 -1.18%",
+              "$5.71M",
+              "70.66K",
+              "1.361%",
+              "5.19M",
+              "$421.78M",
+              "$419.55M",
+              "0.39%"
+            ],
+            [
+              "12",
+              "BTCW BTC",
+              "WisdomTree Bitcoin Fund",
+              "$85.871",
+              "-1.009 -1.16%",
+              "$3.03M",
+              "35.27K",
+              "1.772%",
+              "1.99M",
+              "$167.76M",
+              "$170.88M",
+              "0.30%"
+            ],
+            [
+              "13",
+              "BITS BTC",
+              "Global X Blockchain & Bitcoin Strategy ETF",
+              "$58.71",
+              "-2.965 -4.81%",
+              "$30.59K",
+              "521.00",
+              "0.125%",
+              "417.12K",
+              "$22.84M",
+              "$24.49M",
+              ""
+            ],
+            [
+              "14",
+              "BITC BTC",
+              "Bitwise Trendwise Bitcoin and Treasuries Rotation Strategy ETF",
+              "$37.61",
+              "+0.0403 +0.11%",
+              "$29.19K",
+              "776.00",
+              "0.243%",
+              "319.36K",
+              "$4.55M",
+              "$12.01M",
+              ""
+            ],
+            [
+              "15",
+              "BTF BTC,ETH",
+              "CoinShares ETF Trust CoinShares Bitcoin and Ether ETF",
+              "$22.093",
+              "+0.498 +2.31%",
+              "$73.50K",
+              "3.33K",
+              "0.462%",
+              "720.00K",
+              "$16.24M",
+              "$15.91M",
+              ""
+            ],
+            [
+              "16",
+              "BETH BTC,ETH",
+              "ProShares Bitcoin & Ether Market Cap Weight ETF",
+              "$44.31",
+              "-0.711 -1.58%",
+              "$21.14K",
+              "477.00",
+              "0.227%",
+              "210.01K",
+              "$16.35M",
+              "$9.31M",
+              ""
+            ],
+            [
+              "17",
+              "DEFI BTC",
+              "Hashdex Commodities Trust",
+              "$72.7656",
+              "+0 +0.00%",
+              "$268.45K",
+              "3.69K",
+              "3.074%",
+              "120.00K",
+              "$5.00M",
+              "$8.73M",
+              ""
+            ],
+            [
+              "18",
+              "BETE BTC,ETH",
+              "ProShares Bitcoin & Ether Equal Weight ETF",
+              "$38.379",
+              "-0.5258 -1.35%",
+              "$69.50K",
+              "1.81K",
+              "0.787%",
+              "230.00K",
+              "",
+              "$8.83M",
+              ""
+            ],
+            [
+              "19",
+              "BITW BTC",
+              "Bitwise 10 Crypto Index ETF",
+              "$52.334",
+              "-0.8136 -1.53%",
+              "$816.26K",
+              "15.61K",
+              "0.105%",
+              "14.92M",
+              "",
+              "$780.93M",
+              ""
+            ],
+            [
+              "20",
+              "MSBT",
+              "Morgan Stanley Bitcoin Trust",
+              "$23.305",
+              "-0.275 -1.17%",
+              "$12.77M",
+              "548.28K",
+              "-",
+              "-",
+              "",
+              "-",
+              ""
+            ]
+          ]
+        }
+      ],
+      "cards": [
+        "Legend NEW",
+        "Total Net Inflow +$57.42B +717.32K BTC Last update : Oct 16, 9:40 AM",
+        "Daily Total Net Inflow +$5.10M +62.47 BTC Last update : Oct 16, 9:40 AM",
+        "Daily Trading Volume $2.95B Last update : Oct 16, 9:40 AM",
+        "Total Net Assets $107.89B Last update : Oct 16, 9:40 AM"
+      ]
+    },
+    "ethereum_etfs": {
+      "name": "Spot Ethereum ETF Flows",
+      "url": "https://www.coinglass.com/etf/ethereum",
+      "table_count": 4,
+      "tables": [
+        {
+          "headers": [
+            "Time(UTC)",
+            "ETHE Grayscale",
+            "ETH Grayscale",
+            "ETHA Blackrock",
+            "ETHB Blackrock",
+            "ETHW Bitwise",
+            "FETH Fidelity",
+            "ETHV VanEck",
+            "EZET Franklin",
+            "TETH 21 Shares",
+            "QETH Invesco",
+            "Total"
+          ],
+          "rowCount": 0,
+          "rows": []
+        },
+        {
+          "headers": [],
+          "rowCount": 12,
+          "rows": [
+            [
+              "2026-10-16",
+              "-",
+              "-",
+              "-",
+              "-",
+              "-",
+              "-",
+              "-",
+              "-",
+              "-",
+              "-",
+              "-"
+            ],
+            [
+              "2026-10-15",
+              "-7.56K",
+              "+0",
+              "-18.34K",
+              "+0",
+              "+0",
+              "+991.41",
+              "+0",
+              "+0",
+              "+0",
+              "+0",
+              "-24.91K"
+            ],
+            [
+              "2026-10-14",
+              "+0",
+              "-7.53K",
+              "-43.97K",
+              "+0",
+              "+0",
+              "+0",
+              "+0",
+              "-360.45",
+              "+0",
+              "+0",
+              "-51.86K"
+            ],
+            [
+              "2026-10-13",
+              "+0",
+              "+6.83K",
+              "+0",
+              "+0",
+              "+0",
+              "+3.31K",
+              "+0",
+              "+0",
+              "+0",
+              "+0",
+              "+10.14K"
+            ],
+            [
+              "2026-10-12",
+              "+0",
+              "-4.06K",
+              "-29.62K",
+              "+0",
+              "+0",
+              "+0",
+              "+0",
+              "+0",
+              "+0",
+              "+0",
+              "-33.68K"
+            ],
+            [
+              "2026-10-09",
+              "+0",
+              "+0",
+              "-22.68K",
+              "+0",
+              "+0",
+              "+0",
+              "+0",
+              "+0",
+              "+0",
+              "+0",
+              "-22.68K"
+            ],
+            [
+              "2026-10-08",
+              "-2.37K",
+              "+0",
+              "-27.63K",
+              "+0",
+              "+0",
+              "+2.14K",
+              "-349.80",
+              "+0",
+              "-466.41",
+              "+0",
+              "-28.18K"
+            ],
+            [
+              "2026-10-07",
+              "-9.57K",
+              "-741.72",
+              "-43.06K",
+              "+0",
+              "-2.19K",
+              "+0",
+              "-1.04K",
+              "+0",
+              "-2.34K",
+              "-741.72",
+              "-59.67K"
+            ],
+            [
+              "2026-10-06",
+              "+0",
+              "+0",
+              "-74.54K",
+              "+0",
+              "+0",
+              "+0",
+              "+0",
+              "+0",
+              "+0",
+              "+0",
+              "-74.54K"
+            ],
+            [
+              "2026-10-05",
+              "+0",
+              "+0",
+              "-11.70K",
+              "+0",
+              "+0",
+              "-6.93K",
+              "+0",
+              "+0",
+              "+0",
+              "+0",
+              "-18.64K"
+            ],
+            [
+              "2026-10-02 2024-07-23",
+              "-1.79M",
+              "+658.93K",
+              "+3.76M",
+              "+364.19K",
+              "+138.45K",
+              "+658.40K",
+              "+44.97K",
+              "+20.37K",
+              "+19.15K",
+              "+12.76K",
+              "+3.86M"
+            ],
+            [
+              "Total",
+              "-1.81M",
+              "+653.43K",
+              "+3.48M",
+              "+364.19K",
+              "+136.26K",
+              "+657.90K",
+              "+43.58K",
+              "+20.01K",
+              "+16.35K",
+              "+12.02K",
+              "+3.57M"
+            ]
+          ]
+        },
+        {
+          "headers": [
+            "#",
+            "Ticker",
+            "ETF Name",
+            "Price",
+            "Price Change",
+            "Volume",
+            "Volume",
+            "Turnover Rate",
+            "Shares Outstanding",
+            "AUM",
+            "Market Cap",
+            "Expense Ratio",
+            "Status"
+          ],
+          "rowCount": 0,
+          "rows": []
+        },
+        {
+          "headers": [],
+          "rowCount": 12,
+          "rows": [
+            [
+              "1",
+              "ETHA",
+              "iShares Ethereum Trust ETF",
+              "$54.38",
+              "-1.03 -1.86%",
+              "$438.66M",
+              "8.07M",
+              "1.736%",
+              "464.56M",
+              "$8.61B",
+              "$25.26B",
+              "0.25%",
+              "Open"
+            ],
+            [
+              "2",
+              "ETH",
+              "Grayscale Ethereum Staking Mini ETF Shares",
+              "$22.933",
+              "-0.447 -1.91%",
+              "$49.05M",
+              "2.14M",
+              "2.278%",
+              "93.90M",
+              "$2.20B",
+              "$2.15B",
+              "0.15%",
+              "Open"
+            ],
+            [
+              "3",
+              "ETHE",
+              "Grayscale Ethereum Staking ETF Shares",
+              "$19.283",
+              "-0.357 -1.82%",
+              "$41.72M",
+              "2.16M",
+              "2.334%",
+              "92.70M",
+              "$1.83B",
+              "$1.79B",
+              "2.50%",
+              "Open"
+            ],
+            [
+              "4",
+              "FETH",
+              "Fidelity Ethereum Fund",
+              "$23.932",
+              "-0.448 -1.84%",
+              "$42.47M",
+              "1.77M",
+              "3.124%",
+              "56.80M",
+              "$1.37B",
+              "$1.36B",
+              "0.25%",
+              "Open"
+            ],
+            [
+              "5",
+              "ETHW",
+              "Bitwise Ethereum ETF",
+              "$17.185",
+              "-0.315 -1.80%",
+              "$5.95M",
+              "346.06K",
+              "2.271%",
+              "15.24M",
+              "$267.22M",
+              "$261.90M",
+              "0.20%",
+              "Open"
+            ],
+            [
+              "6",
+              "ETHV",
+              "VanEck Ethereum ETF",
+              "$35.09",
+              "-0.69 -1.93%",
+              "$594.78K",
+              "16.95K",
+              "0.547%",
+              "3.10M",
+              "$111.05M",
+              "$108.78M",
+              "0.20%",
+              "Open"
+            ],
+            [
+              "7",
+              "EETH ETH",
+              "ProShares Ether ETF",
+              "$28.925",
+              "-0.525 -1.78%",
+              "$6.73M",
+              "232.72K",
+              "10.167%",
+              "2.29M",
+              "$68.15M",
+              "$66.17M",
+              "",
+              "Open"
+            ],
+            [
+              "8",
+              "EZET",
+              "Franklin Ethereum ETF",
+              "$18.205",
+              "-0.345 -1.86%",
+              "$129.89K",
+              "7.13K",
+              "0.274%",
+              "2.60M",
+              "$48.30M",
+              "$47.33M",
+              "0.19%",
+              "Open"
+            ],
+            [
+              "9",
+              "QETH",
+              "Invesco Galaxy Ethereum ETF",
+              "$23.909",
+              "-0.441 -1.81%",
+              "$217.16K",
+              "9.08K",
+              "0.804%",
+              "1.13M",
+              "$27.55M",
+              "$27.02M",
+              "0.25%",
+              "Open"
+            ],
+            [
+              "10",
+              "TETH",
+              "21Shares Ethereum Staking ETF",
+              "$12",
+              "-0.22 -1.80%",
+              "$4.23M",
+              "352.53K",
+              "26.974%",
+              "1.31M",
+              "$15.99M",
+              "$15.68M",
+              "0.21%",
+              "Open"
+            ],
+            [
+              "11",
+              "AETH ETH",
+              "Bitwise Trendwise Ether and Treasuries Rotation Strategy ETF",
+              "$37.5395",
+              "+0 +0.00%",
+              "$14.70K",
+              "392.00",
+              "0.479%",
+              "81.77K",
+              "$3.10M",
+              "$3.07M",
+              "",
+              "Open"
+            ],
+            [
+              "12",
+              "ETHB",
+              "iShares Staked Ethereum Trust ETF Shares of Fractional Undivided Beneficial Interest",
+              "$30.921",
+              "-0.609 -1.93%",
+              "$14.30M",
+              "462.60K",
+              "2.138%",
+              "21.64M",
+              "",
+              "$669.13M",
+              "",
+              "Open"
+            ]
+          ]
+        }
+      ],
+      "cards": [
+        "Legend NEW"
+      ]
+    },
+    "long_short_ratio": {
+      "name": "Global Long/Short Ratio",
+      "url": "https://www.coinglass.com/LongShortRatio",
+      "table_count": 8,
+      "tables": [
+        {
+          "headers": [
+            "Type",
+            "Long/Short",
+            "Sentiment"
+          ],
+          "rowCount": 0,
+          "rows": []
+        },
+        {
+          "headers": [],
+          "rowCount": 4,
+          "rows": [
+            [
+              "Retail",
+              "1.74",
+              "Bullish"
+            ],
+            [
+              "Whale Account",
+              "1.89",
+              "Bullish"
+            ],
+            [
+              "Whale Position",
+              "1.78",
+              "Bullish"
+            ],
+            [
+              "Smart Money Sentiment",
+              "",
+              "Bearish"
+            ]
+          ]
+        },
+        {
+          "headers": [
+            "Type",
+            "Long/Short",
+            "Sentiment"
+          ],
+          "rowCount": 0,
+          "rows": []
+        },
+        {
+          "headers": [],
+          "rowCount": 4,
+          "rows": [
+            [
+              "Retail",
+              "1.84",
+              "Bullish"
+            ],
+            [
+              "Whale Account",
+              "0.61",
+              "\ud83d\udd25 Extremely Bearish"
+            ],
+            [
+              "Whale Position",
+              "1.24",
+              "Bullish"
+            ],
+            [
+              "Smart Money Sentiment",
+              "",
+              "\ud83d\udd25 Extremely Bullish"
+            ]
+          ]
+        },
+        {
+          "headers": [
+            "Type",
+            "Long/Short",
+            "Sentiment"
+          ],
+          "rowCount": 0,
+          "rows": []
+        },
+        {
+          "headers": [],
+          "rowCount": 4,
+          "rows": [
+            [
+              "Retail",
+              "1.73",
+              "Bullish"
+            ],
+            [
+              "Whale Account",
+              "1.73",
+              "Bullish"
+            ],
+            [
+              "Whale Position",
+              "0.99",
+              "Neutral"
+            ],
+            [
+              "Smart Money Sentiment",
+              "",
+              "\ud83d\udd25 Extremely Bearish"
+            ]
+          ]
+        },
+        {
+          "headers": [
+            "Ranking",
+            "Assets",
+            "Price",
+            "Price (24h%)",
+            "Long/Short (5m)",
+            "Binance Whale bias",
+            "Binance Retail",
+            "OKX Whale bias",
+            "OKX Retail",
+            "Bybit Whale bias"
+          ],
+          "rowCount": 0,
+          "rows": []
+        },
+        {
+          "headers": [],
+          "rowCount": 1,
+          "rows": [
+            [
+              "No data"
+            ]
+          ]
+        }
+      ],
+      "cards": [
+        "Legend NEW",
+        "Cryptocurrency Longs vs Shorts Taker Buy/Sell Volume 1 hour 4 hour 12 hour 24 hour 50.43% 4H Long Volume $7.89B 49.57% 4H Short Volume $7.75B",
+        "50.43% 4H Long Volume $7.89B",
+        "50.43%",
+        "49.57% 4H Short Volume $7.75B",
+        "49.57%",
+        "What Is Your Current BTC Sentiment? Very Bullish 16% Bullish 21% Neutral 17% Bearish 32% Very Bearish 14%"
+      ]
+    },
+    "funding_rates": {
+      "name": "Perpetual Funding Rates",
+      "url": "https://www.coinglass.com/FundingRate",
+      "table_count": 2,
+      "tables": [
+        {
+          "headers": [
+            "",
+            "Symbol",
+            "Binance",
+            "OKX",
+            "Bybit",
+            "KuCoin",
+            "MEXC",
+            "BingX",
+            "Gate",
+            "Bitunix",
+            "Bitget",
+            "WhiteBIT",
+            "LBank",
+            "tradeXYZ",
+            "",
+            "Binance",
+            "OKX",
+            "Bybit"
+          ],
+          "rowCount": 0,
+          "rows": []
+        },
+        {
+          "headers": [],
+          "rowCount": 20,
+          "rows": [
+            [
+              "",
+              "BTC Predicted",
+              "0.0100% -",
+              "0.0100% -",
+              "0.0022% -",
+              "0.0100% -",
+              "0.0100% -",
+              "0.0100% -",
+              "0.0033% 0.0033%",
+              "0.0100% -",
+              "0.0100% -",
+              "0.0100% -",
+              "0.0100% -",
+              "- -",
+              "",
+              "0.0100% -",
+              "0.0100% -",
+              "0.0080% -"
+            ],
+            [
+              "",
+              "ETH",
+              "0.0026%",
+              "0.0080%",
+              "-0.0003%",
+              "0.0034%",
+              "0.0025%",
+              "0.0088%",
+              "0.0038%",
+              "0.0031%",
+              "0.0089%",
+              "-0.0007%",
+              "0.0025%",
+              "-",
+              "",
+              "0.0001%",
+              "0.0094%",
+              "0.0004%"
+            ],
+            [
+              "",
+              "SOL",
+              "0.0012%",
+              "0.0024%",
+              "-0.0071%",
+              "-0.0045%",
+              "0.0011%",
+              "0.0024%",
+              "-0.0039%",
+              "0.0013%",
+              "0.0013%",
+              "-0.0118%",
+              "0.0012%",
+              "-",
+              "",
+              "0.0017%",
+              "0.0100%",
+              "0.0051%"
+            ],
+            [
+              "",
+              "HYPE",
+              "0.0043% *",
+              "0.0082%",
+              "-0.0026%",
+              "0.0050% *",
+              "0.0044% *",
+              "0.0050% *",
+              "0.0026% *",
+              "0.0048%",
+              "0.0050% *",
+              "0.0050% *",
+              "0.0043% *",
+              "-",
+              "",
+              "-",
+              "0.0100%",
+              "0.0050% *"
+            ],
+            [
+              "",
+              "XRP",
+              "-0.0023%",
+              "0.0096%",
+              "-0.0055%",
+              "0.0100%",
+              "-0.0023%",
+              "0.0094%",
+              "-0.0020%",
+              "0.0071%",
+              "0.0072%",
+              "-0.0146%",
+              "-0.0023%",
+              "-",
+              "",
+              "0.0100%",
+              "0.0086%",
+              "0.0100%"
+            ],
+            [
+              "",
+              "ZEC",
+              "0.0091%",
+              "0.0100%",
+              "0.0059%",
+              "0.0100%",
+              "0.0088%",
+              "0.0100%",
+              "0.0100%",
+              "0.0081%",
+              "0.0100%",
+              "-0.0002%",
+              "0.0090%",
+              "-",
+              "",
+              "-",
+              "-",
+              "-"
+            ],
+            [
+              "",
+              "XAU",
+              "0.0016% *",
+              "0.0000%",
+              "0.0028% *",
+              "-",
+              "0.0016% *",
+              "-",
+              "0.0017% *",
+              "0.0022%",
+              "0.0092% *",
+              "-",
+              "-",
+              "-",
+              "",
+              "-",
+              "-",
+              "-"
+            ],
+            [
+              "",
+              "NEAR",
+              "0.0023%",
+              "0.0100%",
+              "0.0078%",
+              "0.0100%",
+              "0.0023%",
+              "0.0100%",
+              "0.0100%",
+              "0.0029%",
+              "-0.0028%",
+              "0.0100%",
+              "-",
+              "-",
+              "",
+              "0.0100%",
+              "-",
+              "0.0100%"
+            ],
+            [
+              "",
+              "BNB",
+              "0.0000%",
+              "0.0072%",
+              "0.0030%",
+              "0.0033%",
+              "0.0000%",
+              "0.0094%",
+              "0.0100%",
+              "0.0007%",
+              "0.0092%",
+              "0.0100%",
+              "0.0000%",
+              "-",
+              "",
+              "0.0016%",
+              "-",
+              "-"
+            ],
+            [
+              "",
+              "DOGE",
+              "0.0000%",
+              "0.0007%",
+              "-0.0091%",
+              "0.0081%",
+              "0.0000%",
+              "0.0006%",
+              "-0.0042%",
+              "0.0001%",
+              "0.0001%",
+              "-0.0183%",
+              "0.0000%",
+              "-",
+              "",
+              "0.0082%",
+              "0.0100%",
+              "0.0100%"
+            ],
+            [
+              "",
+              "SPCX",
+              "0.0186%",
+              "0.0169%",
+              "0.0173%",
+              "0.0354%",
+              "0.0186%",
+              "-",
+              "0.0024%",
+              "0.0181%",
+              "0.0201%",
+              "-",
+              "-",
+              "0.0026% *",
+              "",
+              "-",
+              "-",
+              "-"
+            ],
+            [
+              "",
+              "SKHYNIX",
+              "-0.0438% *",
+              "-0.1103%",
+              "-0.1026%",
+              "-0.0341% *",
+              "-0.0403% *",
+              "-",
+              "0.0000%",
+              "-0.0267%",
+              "-0.0305% *",
+              "-",
+              "-0.0438% *",
+              "-",
+              "",
+              "-",
+              "-",
+              "-"
+            ],
+            [
+              "",
+              "CL",
+              "-0.0100% *",
+              "-0.0234% *",
+              "-0.0378%",
+              "-0.0249% *",
+              "-",
+              "-",
+              "-0.0287%",
+              "-0.0101%",
+              "-0.0466% *",
+              "-",
+              "-",
+              "-0.0011% *",
+              "",
+              "-",
+              "-",
+              "-"
+            ],
+            [
+              "",
+              "SNDK",
+              "0.0296%",
+              "0.0299%",
+              "0.0371%",
+              "0.0461%",
+              "0.0295%",
+              "-",
+              "0.0056%",
+              "0.0292%",
+              "0.0539%",
+              "-",
+              "-",
+              "0.0041% *",
+              "",
+              "-",
+              "-",
+              "-"
+            ],
+            [
+              "",
+              "SUI",
+              "0.0094%",
+              "0.0100%",
+              "0.0100%",
+              "0.0100%",
+              "0.0092%",
+              "0.0100%",
+              "0.0049%",
+              "0.0099%",
+              "0.0024%",
+              "0.0100%",
+              "0.0094%",
+              "-",
+              "",
+              "0.0100%",
+              "0.0100%",
+              "0.0100%"
+            ],
+            [
+              "",
+              "XAUT",
+              "0.0050% *",
+              "-",
+              "-0.0033% *",
+              "0.0029% *",
+              "-0.0031% *",
+              "-",
+              "0.0000%",
+              "0.0050%",
+              "0.0012% *",
+              "0.0050% *",
+              "-",
+              "-",
+              "",
+              "-",
+              "-",
+              "-"
+            ],
+            [
+              "",
+              "XAG",
+              "0.0057% *",
+              "0.0111%",
+              "0.0062% *",
+              "0.0074% *",
+              "-",
+              "-",
+              "0.0057% *",
+              "0.0042%",
+              "0.0104% *",
+              "-",
+              "-",
+              "-",
+              "",
+              "-",
+              "-",
+              "-"
+            ],
+            [
+              "",
+              "UNI",
+              "0.0001%",
+              "0.0100%",
+              "-0.0152%",
+              "0.0100%",
+              "0.0001%",
+              "0.0100%",
+              "0.0001%",
+              "0.0004%",
+              "0.0017%",
+              "0.0100%",
+              "0.0001%",
+              "-",
+              "",
+              "0.0100%",
+              "0.0100%",
+              "0.0100%"
+            ],
+            [
+              "",
+              "SOXL",
+              "0.0650%",
+              "0.0481%",
+              "0.0829%",
+              "0.0687%",
+              "0.0646%",
+              "-",
+              "0.0051%",
+              "0.0647%",
+              "0.1010%",
+              "-",
+              "0.0650%",
+              "0.0036% *",
+              "",
+              "-",
+              "-",
+              "-"
+            ],
+            [
+              "",
+              "LINK",
+              "-0.0002%",
+              "-0.0069%",
+              "-0.0024%",
+              "0.0022%",
+              "-0.0004%",
+              "0.0071%",
+              "-0.0033%",
+              "0.0000%",
+              "0.0072%",
+              "-0.0117%",
+              "-0.0002%",
+              "-",
+              "",
+              "0.0043%",
+              "0.0075%",
+              "0.0100%"
+            ]
+          ]
+        }
+      ],
+      "cards": [
+        "Legend NEW",
+        "0.0083% BTC OI-Weighted Funding Rate",
+        "0.0026% ETH OI-Weighted Funding Rate",
+        "0.0079% BTC Volume-Weighted Funding Rate",
+        "0.0039% ETH Volume-Weighted Funding Rate",
+        "Highest Funding Rate Gate LAPTOP/USDT 0.2797% Bitget USDESTOCK/USDT 0.2203% Gate FUTUON/USDT 0.1901% Bitget CYPH/USDT 0.1225% OKX SECZ/USDT 0.1127%",
+        "Lowest Funding Rate Bybit AGI/USDT -0.6109% Bybit LRC/USDT -0.4454% Bybit DNA/USDT -0.2760% Bybit BLUR/USDT -0.2432% Bybit ZIL/USDT -0.2217%"
+      ]
+    },
+    "exchange_balance": {
+      "name": "Bitcoin Exchange Balance",
+      "url": "https://www.coinglass.com/Balance",
+      "table_count": 2,
+      "tables": [
+        {
+          "headers": [
+            "Ranking",
+            "Exchanges",
+            "Balance",
+            "24h Change",
+            "7d Change",
+            "30d Change"
+          ],
+          "rowCount": 0,
+          "rows": []
+        },
+        {
+          "headers": [],
+          "rowCount": 16,
+          "rows": [
+            [
+              "1",
+              "Coinbase Pro",
+              "838,680.20",
+              "-170.03",
+              "+2,028.60",
+              "-6,473.93"
+            ],
+            [
+              "2",
+              "Binance",
+              "662,402.77",
+              "+2,834.69",
+              "+8,885.97",
+              "-20,489.47"
+            ],
+            [
+              "3",
+              "Bitfinex",
+              "427,557.05",
+              "+196.90",
+              "+665.11",
+              "+7,349.24"
+            ],
+            [
+              "4",
+              "Kraken",
+              "151,320.26",
+              "-1,118.20",
+              "-269.07",
+              "-486.22"
+            ],
+            [
+              "5",
+              "OKX",
+              "107,630.73",
+              "+284.35",
+              "+1,896.65",
+              "+4,554.17"
+            ],
+            [
+              "6",
+              "Gemini",
+              "84,283.32",
+              "+51.40",
+              "-203.09",
+              "-539.80"
+            ],
+            [
+              "7",
+              "bitFlyer",
+              "54,184.20",
+              "+28.70",
+              "+29.26",
+              "-111.79"
+            ],
+            [
+              "8",
+              "Bybit",
+              "47,266.12",
+              "+804.00",
+              "+1,139.88",
+              "+415.54"
+            ],
+            [
+              "9",
+              "Bitget",
+              "29,099.61",
+              "0.00",
+              "0.00",
+              "-6,737.00"
+            ],
+            [
+              "10",
+              "Gate",
+              "23,129.38",
+              "+196.35",
+              "+261.98",
+              "+337.69"
+            ],
+            [
+              "11",
+              "Bitstamp",
+              "8,549.98",
+              "+259.48",
+              "+423.15",
+              "-1,064.19"
+            ],
+            [
+              "12",
+              "KuCoin",
+              "8,046.17",
+              "0.00",
+              "+219.37",
+              "+387.89"
+            ],
+            [
+              "13",
+              "Coinone",
+              "4,611.67",
+              "+10.05",
+              "-18.01",
+              "+12.95"
+            ],
+            [
+              "14",
+              "Poloniex",
+              "2,528.75",
+              "+0.29",
+              "-0.85",
+              "-16.72"
+            ],
+            [
+              "15",
+              "Bithumb",
+              "1,163.33",
+              "+0.45",
+              "+0.32",
+              "+0.51"
+            ],
+            [
+              "16",
+              "Total",
+              "2,450,453.54",
+              "+3,378.42",
+              "+15,059.28",
+              "-22,861.14"
+            ]
+          ]
+        }
+      ],
+      "cards": [
+        "Legend NEW"
+      ]
+    },
+    "utxo_age_bands": {
+      "name": "Bitcoin Realized Price UTXO Age Bands",
+      "url": "https://www.coinglass.com/pro/i/utxo",
+      "table_count": 0,
+      "tables": [],
+      "cards": [
+        "Legend NEW",
+        "Bitcoin Realized Price UTXO Age Bands day hour"
+      ]
+    }
+  },
+  "harvest_duration_seconds": 36.26,
+  "_temporal_meta": {
+    "stream": "coinglass",
+    "recorded_at_utc": "2026-10-16T19:48:37.326361+00:00",
+    "recorded_at_epoch": 1792180117.361813,
+    "gap_detected": false,
+    "gap_duration_minutes": 0.0,
+    "last_active_utc": null,
+    "status": "CONTINUOUS_SERIES",
+    "compressed": true
+  }
+}
