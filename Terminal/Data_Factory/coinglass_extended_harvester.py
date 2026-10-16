@@ -250,7 +250,7 @@ class CoinglassExtendedHarvester:
 
         # 4. Ingest into TimeSeriesDatabase (Gzip Compressed Partition + SQLite Relational Index)
         try:
-            db_res = ts_db.record_snapshot("coinglass", results, compress=True)
+            db_res = ts_db.record_snapshot("coinglass_extended", results, compress=True)
             print(f"TimeSeriesDatabase: Archived to {db_res.get('history_file')} ({db_res.get('size_kb')} KB)")
         except Exception as e:
             print(f"TimeSeriesDatabase record notice: {e}")

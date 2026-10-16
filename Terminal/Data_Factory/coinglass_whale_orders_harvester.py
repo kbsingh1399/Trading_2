@@ -45,7 +45,7 @@ TARGET_URL = "https://www.coinglass.com/large-orderbook-statistics"
 OUTPUT_SNAPSHOT_DIR = ROOT / "Data" / "coinglass" / "latest"
 OUTPUT_SNAPSHOT_FILE = OUTPUT_SNAPSHOT_DIR / "coinglass_whale_orders_snapshot.json"
 
-TARGET_ASSETS = ["BTC", "ETH", "SOL", "BNB", "DOGE", "XRP", "ADA", "LINK", "AVAX", "NEAR", "LTC", "BCH"]
+TARGET_ASSETS = ["BTC", "ETH", "SOL", "BNB", "DOGE", "XRP", "ADA", "LINK", "AVAX", "SUI", "NEAR", "DOT", "LTC", "BCH", "APT", "OP", "ARB", "TRX"]
 
 
 def parse_notional(val_str: str) -> float:

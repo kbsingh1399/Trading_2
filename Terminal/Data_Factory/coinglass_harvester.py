@@ -292,15 +292,20 @@ class CoinglassCDPHarvester:
         if not raw_tables:
             return whales
 
-        # Find table with whale columns
+        # Find table with whale columns by inspecting rows directly
         target_rows = []
         for t in raw_tables:
-            if t.get("rowCount", 0) > 0 and len(t.get("rows", [])) > 5:
-                target_rows = t.get("rows", [])
-                break
+            rows = t.get("rows", [])
+            if len(rows) > 3:
+                # Check if rows contain institutional crypto asset symbols
+                if any(any(c in ("BTC", "ETH", "SOL", "HYPE", "XRP", "DOGE", "SUI", "BNB") for c in r) for r in rows[:10]):
+                    target_rows = rows
+                    break
 
         for r in target_rows:
-            if len(r) < 10:
+            # Skip empty placeholder/header rows (Ant Design measurement row)
+            cells = [c for c in r if c]
+            if len(cells) < 6:
                 continue
             # Typical row format: [empty, rank, user, asset, side, position, pnl, entry_price_lev, liq_price, margin, funding, price, entry_time]
             try:
@@ -326,6 +331,10 @@ class CoinglassCDPHarvester:
                 pos_parts = pos_str.split(" ")
                 notional_usd = _clean_num(pos_parts[0]) if pos_parts else None
 
+                # Extract clean numeric entry price from raw string (e.g. "$76204.7 5X Cross" -> 76204.7)
+                px_m = re.search(r"[\$]?([0-9]+(?:\.[0-9]+)?)", str(entry_str))
+                entry_price_clean = round(float(px_m.group(1)), 4) if px_m else None
+
                 # Parse leverage
                 lev_m = re.search(r"(\d+)X", entry_str)
                 leverage = int(lev_m.group(1)) if lev_m else None
@@ -338,6 +347,7 @@ class CoinglassCDPHarvester:
                     "notional_usd": notional_usd,
                     "unrealised_pnl_raw": pnl_str,
                     "entry_price_raw": entry_str,
+                    "entry_price_clean": entry_price_clean,
                     "leverage": leverage,
                     "liquidation_price_raw": liq_str,
                     "margin_raw": margin_str,
@@ -404,41 +414,72 @@ class CoinglassCDPHarvester:
     def _update_persistence_ledger(self, current_whales: List[Dict[str, Any]]) -> Dict[str, Any]:
         """
         Updates the persistent ledger across 5-minute cycles with fail-closed safety and bounded trajectories.
-        Calculates exact cumulative duration, cycle count, and flags persistent resting whales.
+        Keyed canonically on (asset, side, user, entry_time_iso) with clean price extraction.
+        Guarantees that a corrupted primary never overwrites a valid .bak file.
         """
         from Terminal.Data_Factory.time_series_database import atomic_write_text
         ledger: Dict[str, Any] = {}
         bak_path = PERSISTENCE_LEDGER_PATH.with_suffix(".bak")
 
+        # Load existing ledger with strict sentinel validation
+        primary_loaded = False
         if PERSISTENCE_LEDGER_PATH.exists():
             try:
-                ledger = json.loads(PERSISTENCE_LEDGER_PATH.read_text(encoding="utf-8"))
+                raw_primary = json.loads(PERSISTENCE_LEDGER_PATH.read_text(encoding="utf-8"))
+                if isinstance(raw_primary, dict) and (len(raw_primary) > 0):
+                    ledger = raw_primary
+                    primary_loaded = True
             except Exception as e:
                 print(f"[WhaleLedger] Warning: Failed to read {PERSISTENCE_LEDGER_PATH.name}: {e}. Attempting backup restore...")
-                if bak_path.exists():
-                    try:
-                        ledger = json.loads(bak_path.read_text(encoding="utf-8"))
-                        print("[WhaleLedger] Restored ledger from .bak")
-                    except Exception as be:
-                        print(f"[WhaleLedger] FATAL: .bak also corrupted: {be}. Failing closed.")
-                        return {}
+
+        if not primary_loaded and bak_path.exists():
+            try:
+                raw_bak = json.loads(bak_path.read_text(encoding="utf-8"))
+                if isinstance(raw_bak, dict) and len(raw_bak) > 0:
+                    ledger = raw_bak
+                    print(f"[WhaleLedger] Successfully restored ledger from .bak ({len(ledger)} keys).")
                 else:
-                    print("[WhaleLedger] FATAL: No .bak found. Failing closed.")
+                    print("[WhaleLedger] FATAL: .bak exists but is empty/invalid. Failing closed.")
                     return {}
+            except Exception as be:
+                print(f"[WhaleLedger] FATAL: .bak corrupted: {be}. Failing closed.")
+                return {}
+        elif not primary_loaded and not bak_path.exists():
+            print("[WhaleLedger] Cold start: Initializing new empty ledger.")
+            ledger = {}
 
         now_utc = datetime.datetime.now(datetime.timezone.utc).isoformat()
         now_epoch = time.time()
 
+        # Ensure sentinel metadata exists
+        if "__meta__" not in ledger:
+            ledger["__meta__"] = {
+                "schema_version": "2.1.0",
+                "key_format": "{asset}_{side}_{user}_{entry_time_iso}",
+                "created_at_utc": now_utc,
+                "description": "Unified canonical immutable whale identity keyed by asset, side, user, entry_time_iso with duplicate zombie pruning."
+            }
+        ledger["__meta__"]["last_update_utc"] = now_utc
+        ledger["__meta__"]["last_update_epoch"] = now_epoch
+
         for w in current_whales:
-            p_val = _clean_num(w.get("entry_price_raw"))
-            price_key = round(p_val, 4) if p_val else 0
-            key = f"{w['asset']}_{w['side']}_{w['user']}_{price_key}"
+            p_val = w.get("entry_price_clean")
+            if p_val is None:
+                px_m = re.search(r"[\$]?([0-9]+(?:\.[0-9]+)?)", str(w.get("entry_price_raw") or ""))
+                p_val = round(float(px_m.group(1)), 4) if px_m else 0.0
+
+            # Immutable identity: (asset, side, user, entry_time_iso), falling back to price if time unavailable
+            t_iso = w.get("entry_time_iso")
+            t_part = t_iso if t_iso else f"px_{p_val}"
+            key = f"{w['asset']}_{w['side'].upper()}_{w['user']}_{t_part}"
+
             if key not in ledger:
                 ledger[key] = {
                     "key": key,
                     "asset": w["asset"],
-                    "side": w["side"],
+                    "side": w["side"].upper(),
                     "user": w["user"],
+                    "entry_price_clean": p_val,
                     "entry_price_raw": w.get("entry_price_raw"),
                     "entry_time_raw": w.get("entry_time_raw"),
                     "entry_time_iso": w.get("entry_time_iso"),
@@ -465,11 +506,14 @@ class CoinglassCDPHarvester:
                 item = ledger[key]
                 item["last_seen_cycle_utc"] = now_utc
                 item["last_seen_epoch"] = now_epoch
-                item["cycle_count"] += 1
+                item["cycle_count"] = item.get("cycle_count", 0) + 1
                 item["notional_usd"] = w.get("notional_usd")
+                item["current_price_raw"] = w.get("current_price_raw")
                 item["duration_hours"] = w.get("duration_hours")
                 item["duration_days"] = w.get("duration_days")
                 item["status"] = w.get("status")
+                if "entry_price_clean" not in item:
+                    item["entry_price_clean"] = p_val
                 if "trajectory" not in item:
                     item["trajectory"] = []
                 item["trajectory"].append({
@@ -483,13 +527,15 @@ class CoinglassCDPHarvester:
                 if len(item["trajectory"]) > 288:
                     item["trajectory"] = item["trajectory"][-288:]
 
-        # Rotate backup and atomically persist ledger
-        if PERSISTENCE_LEDGER_PATH.exists():
+        ledger["__meta__"]["total_whales"] = len([k for k in ledger.keys() if not k.startswith("__")])
+
+        # Rotate backup safely: only copy primary to .bak if primary is valid and non-trivial
+        if PERSISTENCE_LEDGER_PATH.exists() and len(ledger) > 1:
             try:
-                import shutil
-                shutil.copy2(PERSISTENCE_LEDGER_PATH, bak_path)
-            except Exception:
-                pass
+                atomic_write_text(bak_path, json.dumps(ledger, indent=2))
+            except Exception as e:
+                print(f"[WhaleLedger] Warning: Failed to write .bak atomically: {e}")
+
         atomic_write_text(PERSISTENCE_LEDGER_PATH, json.dumps(ledger, indent=2))
         return ledger
 

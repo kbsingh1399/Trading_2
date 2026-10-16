@@ -54,6 +54,100 @@ def get_arkham_intelligence() -> Dict[str, Any]:
         "recent_classified_transfers": []
     }
 
+
+def get_coinglass_whale_orders_intelligence() -> Dict[str, Any]:
+    """Load latest asset-wise CoinGlass L3 whale orders snapshot from Data/coinglass/latest/coinglass_whale_orders_snapshot.json."""
+    cg_path = ROOT / "Data" / "coinglass" / "latest" / "coinglass_whale_orders_snapshot.json"
+    if cg_path.exists():
+        try:
+            return json.loads(cg_path.read_text(encoding="utf-8"))
+        except Exception:
+            pass
+    return {"status": "UNAVAILABLE", "assets": {}}
+
+
+def compute_s_whale(
+    cg_asset: Dict[str, Any],
+    mid_price: Optional[float],
+    atr_14: Optional[float],
+    snapshot_age_s: float,
+    is_crypto: bool
+) -> Tuple[Optional[float], Optional[float], Optional[float], Optional[float], str]:
+    """
+    Computes S_whale institutional composite score:
+      S_whale = 0.50 * rho + 0.30 * Pi + 0.20 * D
+    where:
+      rho = ln((Buy+10k)/(Sell+10k)) winsorized at +/-2.079 (8:1 ratio)
+      Pi = size-weighted proximity decay exp(-(d/0.5)^2) over 0.15 <= d <= 3.0 ATR
+      D = duration-weighted persistence (1 - exp(-tau/86400))
+    Gated by strict fail-closed constraints. Never touches order authorization.
+    """
+    if not is_crypto:
+        return None, None, None, None, "NOT_APPLICABLE_NON_CRYPTO"
+    if not cg_asset:
+        return None, None, None, None, "COINGLASS_FEED_UNAVAILABLE"
+    if cg_asset.get("side_parse_health") != "HEALTHY":
+        return None, None, None, None, "SIDE_PARSE_HEALTH_DEGRADED"
+    if snapshot_age_s > 600.0:
+        return None, None, None, None, "SNAPSHOT_STALE_EXCEEDS_600S"
+    if not mid_price or mid_price <= 0 or not atr_14 or atr_14 <= 0:
+        return None, None, None, None, "MISSING_PRICE_OR_ATR"
+
+    all_orders = cg_asset.get("all_orders") or cg_asset.get("top_whale_walls") or []
+    qualifying = [w for w in all_orders if not w.get("is_canceled") and (w.get("notional_usd") or 0.0) >= 100_000.0]
+    if len(qualifying) < 3:
+        return None, None, None, None, f"INSUFFICIENT_QUALIFYING_WALLS_{len(qualifying)}_LT_3"
+
+    buy_walls = [w for w in qualifying if w.get("side") == "BUY"]
+    sell_walls = [w for w in qualifying if w.get("side") == "SELL"]
+    if not buy_walls or not sell_walls:
+        return None, None, None, None, "ONE_SIDED_ORDERBOOK_ZERO_BIDS_OR_ASKS"
+
+    # 1. Log-ratio imbalance rho
+    buy_tot = sum(float(w.get("notional_usd") or 0.0) for w in buy_walls)
+    sell_tot = sum(float(w.get("notional_usd") or 0.0) for w in sell_walls)
+    rho_raw = math.log((buy_tot + 10_000.0) / (sell_tot + 10_000.0))
+    rho_clipped = max(-2.0794, min(2.0794, rho_raw))
+    rho = rho_clipped / 2.0794  # [-1, 1]
+
+    # 2. Size-weighted proximity Pi
+    def _proximity(walls):
+        tot = 0.0
+        for w in walls:
+            px = float(w.get("price") or 0.0)
+            sz = min(float(w.get("notional_usd") or 0.0), 50_000_000.0)
+            d = abs(px - mid_price) / atr_14
+            if 0.15 <= d <= 3.0:
+                tot += (sz / 1_000_000.0) * math.exp(-((d / 0.5) ** 2))
+        return tot
+
+    pi_buy = _proximity(buy_walls)
+    pi_sell = _proximity(sell_walls)
+    pi_denom = pi_buy + pi_sell
+    pi_score = (pi_buy - pi_sell) / pi_denom if pi_denom > 1e-4 else 0.0
+    pi_score = max(-1.0, min(1.0, pi_score))
+
+    # 3. Persistence D
+    def _persistence(walls):
+        tot_sz = sum(float(w.get("notional_usd") or 0.0) for w in walls)
+        if tot_sz <= 0:
+            return 0.0
+        weighted = sum(float(w.get("notional_usd") or 0.0) * (1.0 - math.exp(-float(w.get("duration_seconds") or 0.0) / 86400.0)) for w in walls)
+        return weighted / tot_sz
+
+    d_buy = _persistence(buy_walls)
+    d_sell = _persistence(sell_walls)
+    d_denom = d_buy + d_sell
+    d_score = (d_buy - d_sell) / d_denom if d_denom > 1e-4 else 0.0
+    d_score = max(-1.0, min(1.0, d_score))
+
+    # Composite: 0.50 rho + 0.30 Pi + 0.20 D
+    s_whale = 0.50 * rho + 0.30 * pi_score + 0.20 * d_score
+    s_whale = max(-1.0, min(1.0, s_whale))
+
+    return s_whale, rho, pi_score, d_score, "QUALIFYING_CONFLUENCE"
+
+
 TELEMETRY_PATH = ROOT / "docs" / "telemetry" / "live_snapshot_latest.json"
 TELEMETRY_PATH.parent.mkdir(parents=True, exist_ok=True)
 CANDLE_DIR = ROOT / "Data" / "Candles"
@@ -1421,7 +1515,18 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
 
     assets_matrix: Dict[str, Any] = {}
 
+    # Load latest CoinGlass Whale Orders feed
+    cg_whale_intelligence = get_coinglass_whale_orders_intelligence()
+    cg_epoch = cg_whale_intelligence.get("harvest_epoch")
+    if not cg_epoch and cg_whale_intelligence.get("harvest_timestamp_utc"):
+        try:
+            cg_epoch = datetime.fromisoformat(cg_whale_intelligence["harvest_timestamp_utc"]).timestamp()
+        except Exception:
+            cg_epoch = None
+    cg_snapshot_age_s = (now_ts - cg_epoch) if cg_epoch else 999999.0
+
     for asset in ALL_24_ASSETS:
+        cg_asset_data = cg_whale_intelligence.get("assets", {}).get(asset, {})
         # Resolve broker symbol & quote
         broker_sym = bridge.resolve_symbol(asset) if bridge.initialized else None
         quote = (bridge.get_symbol_price(broker_sym) or {}) if (bridge.initialized and broker_sym) else {}
@@ -1887,6 +1992,44 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                     })
 
             binance_mid = (float(raw_book["bids"][0][0]) + float(raw_book["asks"][0][0])) / 2
+
+            # Merge CoinGlass L3 Whale Orders into whale_walls using max-not-sum
+            cg_all_orders = cg_asset_data.get("all_orders") or cg_asset_data.get("top_whale_walls") or []
+            for cg_o in cg_all_orders:
+                if cg_o.get("is_canceled"):
+                    continue
+                cg_notional = float(cg_o.get("notional_usd") or 0.0)
+                if cg_notional < 150_000.0:
+                    continue
+                cg_px = round(float(cg_o.get("price") or 0.0), 4)
+                cg_side = str(cg_o.get("side", "")).upper()
+                if not cg_px or cg_side not in ("BUY", "SELL"):
+                    continue
+
+                match_wall = next((w for w in whale_walls if w.get("side") == cg_side and abs(w.get("price", 0.0) - cg_px) / max(cg_px, 1.0) <= 0.001), None)
+                if match_wall:
+                    # Max-not-sum: take maximum depth between venues
+                    match_wall["notional_usd"] = max(match_wall["notional_usd"], round(cg_notional, 2))
+                    match_wall["coinglass_notional_usd"] = round(cg_notional, 2)
+                    match_wall["source_venues"] = ["BINANCE", "COINGLASS"]
+                else:
+                    dist_pct = round((cg_px - binance_mid) / binance_mid * 100.0, 2) if binance_mid > 0 else 0.0
+                    cg_dur_s = float(cg_o.get("duration_seconds") or 0.0)
+                    whale_walls.append({
+                        "side": cg_side,
+                        "price": cg_px,
+                        "notional_usd": round(cg_notional, 2),
+                        "distance_pct": dist_pct,
+                        "sample_span_sec": cg_dur_s,
+                        "persist_s": cg_dur_s,
+                        "presence_frac": 1.0,
+                        "persistence_status": "VETERAN_WHALE" if (float(cg_o.get("duration_hours") or 0.0) >= 24.0) else "PERSISTENT_WHALE",
+                        "wall_class": WALL_GENUINE,
+                        "gate_g7_eligible": True,
+                        "source": "COINGLASS_L3_RESTING_ORDER",
+                        "first_seen_utc": datetime.fromtimestamp(now_ts - cg_dur_s, tz=timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
+                    })
+
             total_bid_depth = cum_bid_usd
             total_ask_depth = cum_ask_usd
             book_imbalance = round((total_bid_depth - total_ask_depth) / max(total_bid_depth + total_ask_depth, 1.0), 4)
@@ -1924,6 +2067,17 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                     "mid_ts": sample_epoch,
                     "basis_median": (round(hd_basis_median, 8) if hd_basis_median is not None else None),
                 }
+
+            cg_whale_book_payload = {
+                "source": "COINGLASS_L3_LARGE_ORDERBOOK_STATISTICS" if cg_asset_data else "UNAVAILABLE",
+                "orders_count": cg_asset_data.get("orders_count", len(cg_all_orders)),
+                "buy_notional_usd": round(cg_asset_data.get("buy_notional_usd", 0.0), 2),
+                "sell_notional_usd": round(cg_asset_data.get("sell_notional_usd", 0.0), 2),
+                "imbalance_ratio": round(cg_asset_data.get("imbalance_ratio", 0.0), 4),
+                "side_parse_health": cg_asset_data.get("side_parse_health", "UNKNOWN"),
+                "top_whale_walls": cg_asset_data.get("top_whale_walls", [])[:5]
+            }
+
             orderbook_payload = {
                 "source": "REAL_BINANCE_FUTURES_L2_AND_HYPERDASH_L3",
                 "venue": "BINANCE_USDM_FUTURES_AND_HYPERLIQUID",
@@ -1942,6 +2096,7 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                 "asks_top20": asks_top20,
                 "whale_walls_l3": top_wallet_whales_l3,  # Real on-chain 0x addresses from Hyperdash!
                 "l2_wall_levels": whale_walls,
+                "coinglass_whale_book": cg_whale_book_payload,
                 "wall_coverage": "REAL_HYPERDASH_WALLET_ATTRIBUTED_L3",
                 "wall_sample_ts_epoch": sample_epoch
             }
@@ -2131,6 +2286,27 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
         recent_high = max(float(b.get("high", 0.0)) for b in bars[-16:]) if bars else None
         trapped_traders_signal = detect_trapped_traders(poc_ref, poc_delta_ref, mid_price, recent_low, recent_high)
 
+        if "coinglass_whale_book" not in orderbook_payload:
+            cg_all_o = cg_asset_data.get("all_orders") or cg_asset_data.get("top_whale_walls") or []
+            orderbook_payload["coinglass_whale_book"] = {
+                "source": "COINGLASS_L3_LARGE_ORDERBOOK_STATISTICS" if cg_asset_data else "UNAVAILABLE",
+                "orders_count": cg_asset_data.get("orders_count", len(cg_all_o)) if cg_asset_data else 0,
+                "buy_notional_usd": round(cg_asset_data.get("buy_notional_usd", 0.0), 2) if cg_asset_data else 0.0,
+                "sell_notional_usd": round(cg_asset_data.get("sell_notional_usd", 0.0), 2) if cg_asset_data else 0.0,
+                "imbalance_ratio": round(cg_asset_data.get("imbalance_ratio", 0.0), 4) if cg_asset_data else 0.0,
+                "side_parse_health": cg_asset_data.get("side_parse_health", "UNKNOWN") if cg_asset_data else "UNAVAILABLE",
+                "top_whale_walls": cg_asset_data.get("top_whale_walls", [])[:5] if cg_asset_data else []
+            }
+
+        # S_whale Institutional Composite Indicator (derived objectively without order authorization)
+        s_whale, s_rho, s_pi, s_d, s_gate_reason = compute_s_whale(
+            cg_asset=cg_asset_data,
+            mid_price=mid_price if quote_valid else (orderbook_payload.get("binance_mid") or orderbook_payload.get("hyperliquid_mid")),
+            atr_14=atr,
+            snapshot_age_s=cg_snapshot_age_s,
+            is_crypto=is_crypto
+        )
+
         assets_matrix[asset] = {
             "symbol_broker": broker_sym or asset,
             "category": "CRYPTO" if asset in CRYPTO_ASSETS else ("INDICES" if asset in INDICES_ASSETS else ("COMMODITIES" if asset in COMMODITIES_ASSETS else "FOREX")),
@@ -2175,6 +2351,12 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                 "ema_200": round(ema_200, 4) if ema_200 is not None else None,
                 "ema_200_bars_used": len(bars),
                 "ema_200_slope_3h_pct": round(ema_200_slope, 4) if ema_200_slope is not None else None,
+                "s_whale": round(s_whale, 4) if s_whale is not None else None,
+                "s_whale_imbalance_rho": round(s_rho, 4) if s_rho is not None else None,
+                "s_whale_proximity_pi": round(s_pi, 4) if s_pi is not None else None,
+                "s_whale_persistence_d": round(s_d, 4) if s_d is not None else None,
+                "s_whale_status": "GATED_VALID" if s_whale is not None else "GATED_FAIL_CLOSED",
+                "s_whale_gate_reason": s_gate_reason,
                 "trend_regime": trend_status,
                 "indicators_source": bars_source,
                 "vwap_weight_unit": "MT5_TICK_VOLUME_PROXY_NOT_EXCHANGE_CONTRACTS" if has_bar_volume else "UNAVAILABLE",

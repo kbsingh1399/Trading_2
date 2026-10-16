@@ -1,12 +1,12 @@
 {
-  "last_updated_utc": "2026-10-16T21:25:48Z",
+  "last_updated_utc": "2026-10-16T21:55:20Z",
   "streams": {
     "coinglass": {
-      "total_snapshots": 14,
+      "total_snapshots": 15,
       "first_recorded_utc": "2026-10-16T19:26:03Z",
-      "latest_recorded_utc": "2026-10-16T21:10:21Z",
-      "latest_epoch": 1792185021.769456,
-      "latest_file": "Data\\history\\coinglass\\2026-10-16\\coinglass_20261016_211021.json.gz",
+      "latest_recorded_utc": "2026-10-16T21:47:10.855111+00:00",
+      "latest_epoch": 1792187230.9774861,
+      "latest_file": "Data\\history\\coinglass\\2026-10-16\\coinglass_20261016_214759.json.gz",
       "dates_present": [
         "2026-10-16"
       ],
@@ -122,6 +122,14 @@
           "gap_detected": true,
           "gap_duration_minutes": 41.19,
           "records": 0
+        },
+        {
+          "utc": "2026-10-16T21:47:10.855111+00:00",
+          "epoch": 1792187230.9774861,
+          "file": "Data\\history\\coinglass\\2026-10-16\\coinglass_20261016_214759.json.gz",
+          "gap_detected": true,
+          "gap_duration_minutes": 36.82,
+          "records": 44
         }
       ]
     },
@@ -526,11 +534,11 @@
       ]
     },
     "coinglass_whale_orders": {
-      "total_snapshots": 5,
+      "total_snapshots": 6,
       "first_recorded_utc": "2026-10-16T20:48:35Z",
-      "latest_recorded_utc": "2026-10-16T21:25:48Z",
-      "latest_epoch": 1792185948.278192,
-      "latest_file": "Data\\history\\coinglass_whale_orders\\2026-10-16\\coinglass_whale_orders_20261016_212548.json.gz",
+      "latest_recorded_utc": "2026-10-16T21:55:20Z",
+      "latest_epoch": 1792187720.095027,
+      "latest_file": "Data\\history\\coinglass_whale_orders\\2026-10-16\\coinglass_whale_orders_20261016_215520.json.gz",
       "dates_present": [
         "2026-10-16"
       ],
@@ -574,6 +582,14 @@
           "gap_detected": false,
           "gap_duration_minutes": 0.0,
           "records": 456
+        },
+        {
+          "utc": "2026-10-16T21:55:20Z",
+          "epoch": 1792187720.095027,
+          "file": "Data\\history\\coinglass_whale_orders\\2026-10-16\\coinglass_whale_orders_20261016_215520.json.gz",
+          "gap_detected": true,
+          "gap_duration_minutes": 29.53,
+          "records": 457
         }
       ]
     }

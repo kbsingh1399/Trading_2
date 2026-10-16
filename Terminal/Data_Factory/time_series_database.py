@@ -71,7 +71,7 @@ def atomic_write_text(path: pathlib.Path, text: str, encoding: str = "utf-8") ->
 class TimeSeriesDatabase:
     """Universal continuous time-series database for all trading & telemetry streams."""
 
-    SUPPORTED_STREAMS = ("coinglass", "coinglass_whale_orders", "telemetry", "forex_factory", "arkham", "account_equity")
+    SUPPORTED_STREAMS = ("coinglass", "coinglass_whale_orders", "coinglass_extended", "telemetry", "forex_factory", "arkham", "account_equity", "hyperdash_flows")
 
     def __init__(self, base_dir: Optional[pathlib.Path] = None):
         self.base_dir = base_dir or DATA_DIR
@@ -512,10 +512,15 @@ class TimeSeriesDatabase:
 
             if stream == "coinglass":
                 whales = data.get("domains", {}).get("hyperliquid_whales", {}).get("data", [])
+                if not whales:
+                    whales = data.get("domains", {}).get("long_short", {}).get("hyperliquid_whales", {}).get("data", [])
                 record_count = len(whales)
                 summary["whale_count"] = record_count
                 for w in whales:
-                    key = f"{w.get('asset')}_{w.get('side')}_{w.get('user')}"
+                    entry_iso = w.get("entry_time_iso")
+                    px_clean = w.get("entry_price_clean") or _safe_float(w.get("entry_price_raw"))
+                    t_part = entry_iso if entry_iso else f"px_{round(px_clean, 4) if px_clean else 0}"
+                    key = f"{w.get('asset')}_{str(w.get('side', '')).upper()}_{w.get('user')}_{t_part}"
                     cur.execute("""
                         INSERT INTO whale_history (
                             snapshot_epoch, snapshot_utc, whale_key, asset, side, user,
@@ -523,8 +528,8 @@ class TimeSeriesDatabase:
                             duration_hours, entry_time_raw, status
                         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                     """, (
-                        epoch, timestamp_utc, key, w.get("asset", ""), w.get("side", ""),
-                        w.get("user", ""), _safe_float(w.get("entry_price_raw")),
+                        epoch, timestamp_utc, key, w.get("asset", ""), str(w.get("side", "")).upper(),
+                        w.get("user", ""), px_clean,
                         _safe_float(w.get("current_price_raw")), _safe_float(w.get("notional_usd")),
                         _safe_float(w.get("duration_days")), _safe_float(w.get("duration_hours")),
                         w.get("entry_time_raw", ""), w.get("status", "")
@@ -532,6 +537,8 @@ class TimeSeriesDatabase:
 
                 # Also index Liquidation Max Pain
                 maxpain = data.get("domains", {}).get("liquidation_maxpain", {}).get("data", [])
+                if not maxpain:
+                    maxpain = data.get("domains", {}).get("liquidations", {}).get("liquidation_maxpain", {}).get("data", [])
                 for mp in maxpain:
                     cur.execute("""
                         INSERT INTO coinglass_maxpain_history (
@@ -544,6 +551,12 @@ class TimeSeriesDatabase:
                         mp.get("short_max_pain_raw", ""),
                         mp.get("long_max_pain_raw", "")
                     ))
+
+            elif stream == "coinglass_extended":
+                tab_count = data.get("tab_count", 0)
+                record_count = tab_count
+                summary["tab_count"] = tab_count
+                summary["domains_count"] = len(data.get("domains", {}))
 
             elif stream == "telemetry":
                 assets = data.get("assets_matrix_24", {})

@@ -57191,3 +57191,71 @@ what about attached tabs...did you visit all of them and dump them
 
 **Assistant Response:**
 Verified: All 54 tabs and sub-tabs from the attached screenshots were visited and dumped into Data/coinglass/latest/coinglass_extended_snapshot.json and archived in time_series_database (502 KB, 1,946 table rows, 1,437 metric cards). All background processes remain completely terminated.
+
+
+## Turn: 2026-10-17 02:21:26 UTC
+**User Prompt:**
+just to be sure we also have hyperdash hyperliquid etc...right? and we also have large-orderbook-statistics... be end to end perfect for all assets and explore inspect webpages... once done, then you may push all to git and promp arena.ai and also start which will wake u when arena.ai complete the task response.
+
+**Assistant Response:**
+Verified Hyperdash (10,000 parquet/json flow records) and Hyperliquid (/hl, /hyperliquid). Built production asset-wise Large Orderbook Statistics harvester (Terminal/Data_Factory/coinglass_whale_orders_harvester.py) traversing MuiAutocomplete across all 12 institutional assets (458 whale orders, .2M notional). Committed and pushed all code to origin/main (commit 468097b71). Formulated and dispatched comprehensive 6-layer pipeline review prompt to Arena.ai. Launched arena_completion_daemon.py --wait to reactively wake Antigravity upon completion.
+
+
+## Turn: 2026-10-17 02:26:08 UTC
+**User Prompt:**
+I am going to sleep...you may run automosly with arena.ai...keep disuccsing keep improving with him and ensure leave no gaps in data collection from all sources and storing them in well strucutred manner as a time serries so that we can refer back at any point in time to check data.
+
+**Assistant Response:**
+Autonomous overnight loop activated. Arena completion watcher is running (task-76989). Continuous cycle configured: ingest Arena rulings, execute architectural and schema hardening, harvest and archive continuous time-series snapshots (CoinGlass 54 tabs + 12-asset Whale Orders) with zero gaps, push all commits to GitHub main, and re-prompt Arena iteratively.
+
+---
+## Turn: 2026-10-17T02:42:30+05:30 (UTC: 2026-10-16T21:12:30Z)
+**User Request:**
+Autonomous overnight operation with Arena.ai: resolve all data pipeline audit findings, guarantee zero gap in time-series collection across all sources (CoinGlass, Hyperliquid, Hyperdash, Whale Orders), store data in structured time-series, commit and push to Git, reprompt Arena.ai with the dialectic, and activate instant reactive wakeup.
+
+**OMNI Actions & Accomplishments:**
+1. **Time-Series Database Hardening (`time_series_database.py`)**:
+   - Implemented process-unique atomic file writes (`atomic_write_bytes`, `atomic_write_text` using `tmp.{pid}.{time_ns}` and `os.replace`) to prevent zero-byte corruptions.
+   - Configured SQLite WAL concurrency pragmas (`journal_mode = WAL`, `synchronous = NORMAL`, `busy_timeout = 30000`, `foreign_keys = ON`).
+   - Added SHA-256 cryptographic hashing to `snapshot_catalog` for immutable verification.
+   - Calibrated resumption gap threshold to 900.0s (15 min) for 5-minute sampling cadence.
+   - Handled `coinglass_whale_orders` indexing into `whale_history` and `snapshot_catalog`.
+2. **Whale Orders Harvester Hardening (`coinglass_whale_orders_harvester.py`)**:
+   - Implemented exact token matching (`txt.split(/[\s\n]+/)[0].toUpperCase() === targetSymbol`) and post-selection verification (`finalInputVal === targetSymbol`), failing closed with `STALE_SKIPPED` on mismatch.
+   - Harvested 459 resting whale orders ($203,513,070 notional) across all 12 institutional assets (`BTC, ETH, SOL, BNB, DOGE, XRP, ADA, LINK, AVAX, NEAR, LTC, BCH`) with zero cross-contamination.
+   - Archived snapshot into `time_series_database` with 0 gaps (`coinglass_whale_orders_20261016_210832.json.gz`).
+3. **54-Tab Extended Pipeline Sync (`coinglass_extended_harvester.py`)**:
+   - Harvested all 54 indicator tabs in 92.55s with atomic snapshot writing and continuous time-series database archiving (`coinglass_20261016_211021.json.gz`).
+4. **Git Commits & Pushes**:
+   - Pushed commit `5a86f4945` (`fix(pipeline): implement atomic IO, WAL pragmas, sha256 indexing, exact whale token matching & 54-tab sync`).
+   - Pushed commit `b4f8819b4` (`docs(arena): cycle 178 architecture dialectic prompt and dispatch script`).
+5. **Arena.ai Cycle 178 Dialectic & Wakeup**:
+   - Authored `docs/prompts/ARENA_CYCLE_178_ARCHITECTURE_DIALECTIC.md` detailing the verified P0 remediations, deduplication rule (max vs sum), dynamic friction floor (6.67 * spread_p90), price-touch first-passage fill probability model, autocorrelation CPCV embargo, and desk-settled invariants.
+   - Dispatched prompt to Arena Primary via `Terminal/dispatch_cycle_178_prompt.py`.
+   - Activated instant wakeup daemon `python Terminal/arena_completion_daemon.py --wait` (`task-77181`).
+
+---
+## Turn: 2026-10-17T03:01:00+05:30 (UTC: 2026-10-16T21:31:00Z)
+**User Request:**
+Autonomous overnight operation with Arena.ai: resolve all data pipeline audit findings, guarantee zero gap in time-series collection across all sources (CoinGlass, Hyperliquid, Hyperdash, Whale Orders), store data in structured time-series, commit and push to Git, reprompt Arena.ai with the dialectic, and activate instant reactive wakeup.
+
+**OMNI Actions & Accomplishments:**
+1. **Resolved NEW P0 (Whale Book 100% Sell Extraction Bug)**:
+   - Discovered that the leading `"S"` character in CoinGlass order elements represents the **Spot market** (vs Futures), NOT "Sell"!
+   - Extracted true order side directly from the background indicator classes: `.ovv2-item-bg-l` (`BUY`) vs `.ovv2-item-bg-s` (`SELL`).
+   - Verified live on CDP across all 12 institutional assets: BTC now accurately reports **20 BUYs ($41.42M) and 19 SELLs ($43.23M)**, imbalance ratio 0.96. Every single asset now registers `side_parse_health: HEALTHY` with balanced two-sided books.
+2. **Resolved NEW High (SQLite Undercoverage - 60 vs 459 Orders)**:
+   - Modified `time_series_database.py#L683` to index `all_orders` instead of `top_whale_walls[:5]`.
+   - Verified that all **456 institutional whale orders** are now fully indexed in `whale_history` and recorded in `snapshot_catalog` (10.0 KB compressed partition `coinglass_whale_orders_20261016_212548.json.gz`).
+3. **Resolved Remaining P0s in Legacy `coinglass_harvester.py`**:
+   - P0-2: Implemented fail-closed safety with `.bak` recovery on read failure instead of wiping the ledger with `{}`.
+   - P0-3: Replaced string slice `entry_price_raw[:10]` with clean numeric key `round(p_val, 4) if p_val else 0`.
+   - P0-4: Capped trajectory history to recent 288 cycles (24h of 5m snapshots) to eliminate write amplification + atomic writes.
+4. **Synchronized Co-Temporal Telemetry**:
+   - Executed `Terminal/Data_Factory/generate_telemetry_snapshot.py` at `21:26:30 UTC`, synchronizing 24-asset broker MT5 quotes, Hyperdash L2/L3 wallets, and cushion state (+88.74 USD) co-temporally with the CoinGlass whale harvest.
+5. **Git Commits & Pushes**:
+   - Pushed commit `09b54fd0e` (`fix(pipeline): resolve whale buy/sell side extraction, full 456-order SQLite indexing, fail-closed ledger & fresh telemetry sync`).
+   - Pushed commit `b3a215055` (`docs(arena): cycle 179 dialectic prompt and dispatch script`).
+6. **Dispatched Cycle 179 Dialectic & Activated Reactive Completion Watcher**:
+   - Dispatched `docs/prompts/ARENA_CYCLE_179_ARCHITECTURE_DIALECTIC.md` to Arena Primary.
+   - Launched instant completion daemon `python Terminal/arena_completion_daemon.py --wait` (`task-77320`).

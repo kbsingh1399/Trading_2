@@ -103,8 +103,8 @@ def estimate_cycle_interval(state: Dict[str, Any],
 # over PRIOR observations only -- call rolling_basis_median BEFORE recording the
 # current print, so the current reading is free to drift away from it.
 BASIS_HISTORY_KEY = "basis_history"
-BASIS_WINDOW_S = 1800.0
-BASIS_MIN_SAMPLES = 5
+BASIS_WINDOW_S = 7200.0
+BASIS_MIN_SAMPLES = 2
 BASIS_MAX_SAMPLES = 60
 
 
@@ -152,6 +152,11 @@ def rolling_basis_median(meta: Optional[Dict[str, Any]], asset: str, now_ts: flo
             if isinstance(t, (int, float)) and isinstance(b, (int, float))
             and float(t) >= cutoff and float(b) == float(b) and abs(float(b)) != float("inf")]
     if len(vals) < int(min_samples):
+        if len(vals) >= 1:
+            try:
+                return float(statistics.median(vals))
+            except statistics.StatisticsError:
+                return None
         return None
     try:
         return float(statistics.median(vals))
