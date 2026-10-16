@@ -1,5 +1,5 @@
 {
-  "as_of_utc": "2026-10-16 23:42:04 UTC",
+  "as_of_utc": "2026-10-16 23:47:07 UTC",
   "source": "Arkham Intelligence Upgraded Harvester (arkm.com via Chrome CDP)",
   "filter_applied": "",
   "feed_status": "CONNECTED_NO_TRANSFERS",
@@ -717,88 +717,10 @@
       "address_count": "601.7k Addresses",
       "total_portfolio_usd": "$0.00",
       "portfolio_change_24h": "",
-      "holdings_breakdown": [
-        {
-          "symbol": "USDC",
-          "price": "$1",
-          "amount": "USDC",
-          "value_usd": "$2.13B",
-          "change_24h": "\u00b10%"
-        },
-        {
-          "symbol": "BTC",
-          "price": "$81,710",
-          "amount": "BTC",
-          "value_usd": "$4.34M",
-          "change_24h": "-0.84%"
-        },
-        {
-          "symbol": "ETH",
-          "price": "$2,422.04",
-          "amount": "ETH",
-          "value_usd": "$1.7M",
-          "change_24h": "-1.32%"
-        },
-        {
-          "symbol": "USDT",
-          "price": "$1",
-          "amount": "USDT",
-          "value_usd": "$993.71K",
-          "change_24h": "\u00b10%"
-        },
-        {
-          "symbol": "SOL",
-          "price": "$104.31",
-          "amount": "SOL",
-          "value_usd": "$356.19K",
-          "change_24h": "-1.38%"
-        },
-        {
-          "symbol": "WBTC",
-          "price": "$81,572",
-          "amount": "WBTC",
-          "value_usd": "$56.43K",
-          "change_24h": "-0.82%"
-        },
-        {
-          "symbol": "BNB",
-          "price": "$721.71",
-          "amount": "BNB",
-          "value_usd": "$26.9K",
-          "change_24h": "-1.03%"
-        },
-        {
-          "symbol": "AERO",
-          "price": "$0.88",
-          "amount": "AERO",
-          "value_usd": "$3.06K",
-          "change_24h": "-5.98%"
-        },
-        {
-          "symbol": "CBBTC",
-          "price": "$81,683",
-          "amount": "CBBTC",
-          "value_usd": "$1.78K",
-          "change_24h": "-0.85%"
-        },
-        {
-          "symbol": "AVAX",
-          "price": "$9.97",
-          "amount": "AVAX",
-          "value_usd": "$1.75K",
-          "change_24h": "-0.7%"
-        },
-        {
-          "symbol": "LINK",
-          "price": "$12.33",
-          "amount": "LINK",
-          "value_usd": "$1.3K",
-          "change_24h": "-1.44%"
-        }
-      ],
+      "holdings_breakdown": [],
       "category": "STABLECOIN_RESERVE",
       "priority": "HIGH",
-      "last_updated_utc": "2026-10-16 22:56:42 UTC"
+      "last_updated_utc": "2026-10-16 23:46:36 UTC"
     },
     "mt-gox": {
       "slug": "mt-gox",
@@ -806,10 +728,18 @@
       "address_count": "570.5k Addresses",
       "total_portfolio_usd": "$0.00",
       "portfolio_change_24h": "",
-      "holdings_breakdown": [],
+      "holdings_breakdown": [
+        {
+          "symbol": "BTC",
+          "price": "$81,574",
+          "amount": "BTC",
+          "value_usd": "$2.81B",
+          "change_24h": "-0.65%"
+        }
+      ],
       "category": "INSOLVENCY_TRUSTEE",
       "priority": "HIGH",
-      "last_updated_utc": "2026-10-16 22:56:47 UTC"
+      "last_updated_utc": "2026-10-16 23:46:42 UTC"
     },
     "binance": {
       "slug": "binance",
@@ -819,16 +749,86 @@
       "portfolio_change_24h": "",
       "holdings_breakdown": [
         {
+          "symbol": "BTC",
+          "price": "$81,563",
+          "amount": "BTC",
+          "value_usd": "$58.83B",
+          "change_24h": "-0.7%"
+        },
+        {
           "symbol": "USDT",
-          "price": "$1K",
+          "price": "$1",
+          "amount": "USDT",
+          "value_usd": "$39.47B",
+          "change_24h": "\u00b10%"
+        },
+        {
+          "symbol": "ETH",
+          "price": "$2,421.36",
+          "amount": "ETH",
+          "value_usd": "$8.68B",
+          "change_24h": "-0.72%"
+        },
+        {
+          "symbol": "USDC",
+          "price": "$1",
+          "amount": "USDC",
+          "value_usd": "$7.65B",
+          "change_24h": "\u00b10%"
+        },
+        {
+          "symbol": "SOL",
+          "price": "$104.23",
+          "amount": "SOL",
+          "value_usd": "$2.55B",
+          "change_24h": "-1.02%"
+        },
+        {
+          "symbol": "DOGE",
+          "price": "$0.081",
+          "amount": "DOGE",
+          "value_usd": "$1.48B",
+          "change_24h": "-0.26%"
+        },
+        {
+          "symbol": "LINK",
+          "price": "$12.33",
+          "amount": "LINK",
+          "value_usd": "$1.02B",
+          "change_24h": "-0.96%"
+        },
+        {
+          "symbol": "UNI",
+          "price": "$7.33",
+          "amount": "UNI",
+          "value_usd": "$545.91M",
+          "change_24h": "-1.21%"
+        },
+        {
+          "symbol": "XRP",
+          "price": "$1.31",
+          "amount": "Binance-Peg XRP",
+          "value_usd": "$243.13M",
+          "change_24h": "-1.5%"
+        },
+        {
+          "symbol": "AVAX",
+          "price": "$9.95",
+          "amount": "AVAX",
+          "value_usd": "$216.92M",
+          "change_24h": "-0.7%"
+        },
+        {
+          "symbol": "BNB",
+          "price": "$35.93",
           "amount": "",
-          "value_usd": "$26,717.71",
-          "change_24h": "-0.11%"
+          "value_usd": "$26,716.34",
+          "change_24h": "-0.07%"
         }
       ],
       "category": "CENTRALIZED_EXCHANGE",
       "priority": "HIGH",
-      "last_updated_utc": "2026-10-16 23:01:27 UTC"
+      "last_updated_utc": "2026-10-16 23:46:59 UTC"
     },
     "coinbase": {
       "slug": "coinbase",
@@ -839,15 +839,15 @@
       "holdings_breakdown": [
         {
           "symbol": "SOL",
-          "price": "$201.01",
+          "price": "$34.73",
           "amount": "",
-          "value_usd": "$16",
-          "change_24h": ""
+          "value_usd": "$84,515.23",
+          "change_24h": "-1.41%"
         }
       ],
       "category": "PRIME_CUSTODIAN",
       "priority": "HIGH",
-      "last_updated_utc": "2026-10-16 23:01:33 UTC"
+      "last_updated_utc": "2026-10-16 23:47:05 UTC"
     },
     "okx": {
       "slug": "okx",
