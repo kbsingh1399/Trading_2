@@ -545,7 +545,9 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
     # ── PART G: MANDATORY 3-PILLAR DESK EVALUATION ──────────────────────────
     lines.append("PART G: MANDATORY 3-PILLAR DESK EVALUATION (STRICT OPERATOR MANDATE)")
     lines.append("")
-    lines.append("MANDATE 1 — DUAL-ENGINE SEARCH ACROSS ALL 24 ASSETS (MEAN REVERSION + TREND PULLBACKS):")
+    lines.append("MANDATE 1 — DUAL-ENGINE SEARCH & PASSIVE LIMIT ORDER CANDIDATE IDENTIFICATION ACROSS ALL 24 ASSETS:")
+    lines.append("OPERATOR MANDATE ON WAKE UP: You are strictly mandated to actively search for, qualify, and formulate high-conviction PASSIVE LIMIT ORDER proposals (both Model 1 Extreme Mean Reversion and Model 2 Trend Pullbacks) across all orthogonal asset clusters (Indices, Commodities, Metals, Forex, Crypto).")
+    lines.append("Whenever portfolio capacity permits (currently 1 of 4 slots allocated, 3 slots freely available), actively formulate complete limit order parameters: Symbol, Order Type (BUY_LIMIT / SELL_LIMIT), Entry (shelf-anchored), SL (outside sweep band behind whale bunker), TP (front-running magnet by 5-10 bps), Lots (calibrated to $15.00-$25.00 USD risk envelope), and Stressed Capital Floor Check.")
     lines.append("Analyze all 24 assets in assets_matrix_24 line-by-line from docs/telemetry/live_snapshot_latest.json (covering all Cryptos, Metals GOLD/XAUUSD.pi & SILVER/XAGUSD.pi, Energy USWTI.p, Forex EURUSD.pi/GBPUSD.pi/USDJPY.pi, and Indices SP500.p/NAS100.p/DJ30.p/GER40.p).")
     lines.append("APPLY PLAYBOOK SECTION 7.4 CALIBRATED MULTI-ASSET STANDARDS & 15% DYNAMIC FRICTION RULE:")
     lines.append("  • DYNAMIC 15% FRICTION RULE: Spread Friction % = (Spread in USD on 1 lot * Trade Lots) / Total Trade Risk Budget <= 15.0%.")

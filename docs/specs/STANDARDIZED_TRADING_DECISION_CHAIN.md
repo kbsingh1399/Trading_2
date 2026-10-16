@@ -183,6 +183,13 @@ Screen candidates across the universe into two distinct, non-overlapping quantit
      - **Daily VWAP +1.0D / -1.0D Band coincidence with persistent whale orders**.
 - **Execution**: Pro-trend passive limit order placed at the shelf, targeting cascade momentum into the next structural magnet.
 
+#### Mandatory Wake-Up Candidate Identification Protocol (Passive Limit Orders)
+- **Active Scanning Mandate**: On EVERY wake-up cycle and autonomous turn, the coordinator, all dispatched subagents (`Orderflow Analyst`, `Position Manager`, `Macro Risk Analyst`), and the external council models are **strictly mandated to actively scan the 24 mutual assets and the 93-asset screener to discover, qualify, and formulate explicit passive limit order candidates**.
+- **Execution Readiness**: Do not remain passive when valid setups exist. Whenever portfolio capacity permits (up to 4 tickets total across orthogonal asset clusters: Crypto, Metals, Energy, Forex, Indices), actively identify and stage:
+  1. **Model 1 Extreme Mean Reversion Limits**: Staged at outer shelves (|Z| >= 2.0 to 3.5 SD in verified `MEAN_REVERT` regimes) with confirmed tape exhaustion and un-swept resting whale shelters.
+  2. **Model 2 Trend Pullback Limits**: Staged at 20/50 EMA, VAH/VAL, or Session VWAP shelves in verified `TREND_UP` or `TREND_DOWN` regimes, defended by resting whale bunkers outside opposing sweep bands.
+- **Complete Order Specification**: Every identified candidate must be fully parameterized: Symbol, Order Type (`BUY_LIMIT` / `SELL_LIMIT`), Entry Price (shelf-anchored, accounting for half-spread), Stop Loss (safely bunkered behind whale wall with >= 0.35–0.50 ATR clearance), Take Profit (front-running magnet by 5–10 bps), Lot Size (calibrated to $15.00–$25.00 USD risk envelope), and Stressed Floor Cushion check (>= 4,775.00 USD hard floor).
+
 ---
 
 ### STEP 6: Microstructure Coincidence Stack & On-Chain Intelligence

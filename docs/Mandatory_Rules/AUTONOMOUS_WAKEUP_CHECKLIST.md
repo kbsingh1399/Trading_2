@@ -73,10 +73,18 @@ flowchart TD
 
 ---
 
-### Step 4: Institutional 93-Asset Market Scan
+### Step 4: Institutional 93-Asset Market Scan & Mandatory Limit Order Candidate Identification
 - [ ] Execute `python Terminal/institutional_95_screener.py` to scan all 93 tradeable MT5 symbols in < 1 second.
 - [ ] Filter by strict spread friction: `<= 5.0 bps` for TradFi CFDs (Forex, Indices, Commodities), `<= 25.0 bps` for Crypto.
 - [ ] Identify top Model 1 (Extreme Mean Reversion, |Z| >= 2.0 to 3.5 SD in `MEAN_REVERT`) and Model 2 (Trend Pullback, |Z| 0.2 to 1.8 SD in `TREND_UP` or `TREND_DOWN`) candidates.
+- [ ] **MANDATORY CANDIDATE IDENTIFICATION FOR PASSIVE LIMIT ORDERS**:
+  - In EVERY wake-up cycle, actively screen the 24 mutual assets and 93-asset screener to discover, qualify, and formulate explicit passive limit order proposals (both Model 1 Extreme Mean Reversion and Model 2 Trend Pullbacks).
+  - Verify that each proposed limit order satisfies:
+    1. Clean Entry staged inside a verified structural shelf (EMA 20/50, VAH/VAL/POC) accounting for half-spread.
+    2. SL safely anchored behind a genuine resting whale bunker (>= 500k USD notional, >= 180s persistence) or held auction level with >= 0.35–0.50 ATR clearance outside opposing sweep bands.
+    3. TP front-running opposing liquidation cascade magnets by 5–10 bps.
+    4. Net payoff >= 2.0R within the operator-approved expanded risk envelope ($15.00–$25.00 USD).
+    5. Preserves the 4,775.00 USD hard floor and 4,795.00 USD buffer under stressed post-loss simulation.
 
 ---
 
@@ -85,10 +93,12 @@ flowchart TD
   - Activate the 8 core skill ensembles: `/remember`, `/graphify`, `/data-engineer`, `/dataform-bigquery`, `/data-analyst`, `/data-engineering-data-driven-feature`, `/brainstorm`, `/verify`.
   - **MANDATORY**: Dispatch all 3 internal specialists (`Orderflow Analyst`, `Position Manager`, `Macro Risk Analyst`) via `invoke_subagent` on EVERY wake-up turn without exception.
   - **Mandatory Line-by-Line Ingestion**: Explicitly instruct all 3 subagents to read `docs/telemetry/live_snapshot_latest.json` line-by-line to maintain running account/order narrative continuity, and read `Data/forex_factory_summary.json` & `Data/forex_factory_live.json` line-by-line to extract Central Bank rate differentials, upcoming speeches, breaking geopolitical/energy headlines, and generate fresh macro trade ideas.
+  - **MANDATORY PASSIVE LIMIT ORDER HUNTING**: Mandate each subagent to actively identify, evaluate, and qualify new passive limit order candidates across orthogonal clusters (Cryptos, Metals, Energy, Forex, Indices) whenever open capacity exists (max 4 tickets total).
   - Instruct agents to evaluate market structure, orderbook depth, CVD flow, expanded risk envelope ($15.00 to $25.00 USD), and macro environment.
 - [ ] **Track B (MANDATORY Council Prompt Construction & Arena.ai Injection)**:
   - **MANDATORY**: On EVERY wake-up turn, generate and inject the comprehensive prompt into Arena.ai Tab 1 via `python Terminal/dispatch_comprehensive_wake_up_prompt.py --arena-only`.
   - Embed direct raw links to `STANDARDIZED_TRADING_DECISION_CHAIN.md`, `LOSING_TRADES_DEEP_FORENSIC_AUTOPSY.md`, fresh live snapshot data, Forex Factory macro intelligence, and live MT5 positions/orders.
+  - **Mandatory Candidate Identification Mandate**: Explicitly mandate Arena.ai to actively search, screen, and propose concrete passive limit order setups across the 24 mutual assets, checking capacity headroom.
   - Enforce the 10-step SOP traversal, line-by-line ingestion of telemetry and Forex Factory, and tournament bracket evaluation in Arena.
 
 ---
@@ -136,5 +146,5 @@ flowchart TD
 - [ ] Update `.agents/rules/ACTIVE_CONTEXT.md` with latest balances, cushion, open tickets, and actions taken.
 - [ ] Append complete turn record (including both Antigravity research and Arena analysis) to `.agents/memory/session_chat_history.md`.
 - [ ] Re-arm the 20-minute cycle sentry timer via `schedule` with mandatory prompt template:
-  `Prompt: "MANDATORY WAKE-UP AUDIT: Strictly follow and enforce @[c:\Users\SIGMA\Documents\Trading_2\docs\specs\STANDARDIZED_TRADING_DECISION_CHAIN.md], @[c:\Users\SIGMA\Documents\Trading_2\docs\specs\AUTONOMOUS_WAKEUP_CHECKLIST.md] & @[c:\Users\SIGMA\.gemini\antigravity\brain\b00c810a-61bb-46bf-a147-4c8859c64058\LOSING_TRADES_DEEP_FORENSIC_AUTOPSY.md] - execute all 10 steps sequentially: Step 1 System Health, Arkham Tab CDP Reload & Telemetry Freshness Check, Step 2 MT5 Account, Floor Defense, Forensic Autopsy & Expanded Risk ($15-$25 USD) Audit, Step 3 Position & Ratchet Audit, Step 4 93-Asset Scan, Step 5 MANDATORY DUAL-TRACK DISPATCH (MANDATORY: Dispatch all 3 subagents: Orderflow Analyst, Position Manager, Macro Risk Analyst + MANDATORY: Generate & Inject Prompt into Arena.ai Tab 1 following STANDARDIZED_TRADING_DECISION_CHAIN.md), Step 6 Arena Completion Wait & Harvest, Step 7 Joint Cross-Verification, Step 8 Error Correction, Step 9 Autonomous MT5 Live Punch/Ratchet, Step 10 Telemetry Git Sync & Sentry Arming."`
+  `Prompt: "MANDATORY WAKE-UP AUDIT: Strictly follow and enforce @[c:\Users\SIGMA\Documents\Trading_2\docs\Mandatory_Rules\STANDARDIZED_TRADING_DECISION_CHAIN.md], @[c:\Users\SIGMA\Documents\Trading_2\docs\Mandatory_Rules\AUTONOMOUS_WAKEUP_CHECKLIST.md] & @[c:\Users\SIGMA\.gemini\antigravity\brain\b00c810a-61bb-46bf-a147-4c8859c64058\LOSING_TRADES_DEEP_FORENSIC_AUTOPSY.md] - execute all 10 steps sequentially: Step 1 System Health, Arkham Tab CDP Reload & Telemetry Freshness Check, Step 2 MT5 Account, Floor Defense, Forensic Autopsy & Expanded Risk ($15-$25 USD) Audit, Step 3 Position & Ratchet Audit, Step 4 93-Asset Scan & Mandatory Passive Limit Candidate Identification, Step 5 MANDATORY DUAL-TRACK DISPATCH (MANDATORY: Dispatch all 3 subagents: Orderflow Analyst, Position Manager, Macro Risk Analyst with mandate to identify potential limit order candidates + MANDATORY: Generate & Inject Prompt into Arena.ai Tab 1 following STANDARDIZED_TRADING_DECISION_CHAIN.md), Step 6 Arena Completion Wait & Harvest, Step 7 Joint Cross-Verification, Step 8 Error Correction, Step 9 Autonomous MT5 Live Punch/Ratchet, Step 10 Telemetry Git Sync & Sentry Arming."`
 - [ ] Enter silent standby awaiting next cycle.
