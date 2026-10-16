@@ -217,26 +217,24 @@ trigger: always_on
 - **Pre-Order Gating**: Must verify all 7 sub-gates (Price Action geometry, CVD divergence, 20-level L2 depth, L3 whales >= 150k USD with >= 180s persistence, liquidation FFR, macro blackouts, covariance room vs 4,775.00 USD floor).
 - **Smart SL & TP Adjustments**: Deterministic ratchets (Phase 0 BE @ +0.80R, Phase 1 Profit Lock @ +1.50R, Phase 2 Trailing Lock @ +2.00R). TP extensions into orderbook liquidity vacuums require simultaneous Phase 2 SL profit lock.
 
-## 7. Live Account State & Cycle 163 Invariants (Cycle 163 Verified)
-- **MT5 Account State**: Balance: 4,882.62 USD | Live Equity: 4,884.68–4,886.46 USD | Margin: 775.12 USD | Free Margin: 4,109.56 USD | Hard Floor (4,775.00 USD) Cushion: +109.68 USD (+2.26%) | Operating Buffer (4,795.00 USD) Cushion: +89.68 USD (+1.84%).
+## 7. Live Account State & Cycle 173 Invariants (Cycle 173 Verified)
+- **MT5 Account State**: Balance: 4,857.32 USD | Live Equity: ~4,857.40 USD | Margin: 200.00 USD | Free Margin: ~4,657.40 USD | Hard Floor (4,775.00 USD) Cushion: +82.40 USD (+1.70%) | Operating Buffer (4,795.00 USD) Cushion: +62.40 USD (+1.28%).
 - **Active Market Positions (1 of 4 slots allocated, 2 slots available)**:
-  1. Ticket #18995127: `SP500.p` BUY 0.10 lots @ 7,751.20 (SL: 7,737.30, TP: 7,794.00, Nominal Risk: 13.90 USD, Reward: 42.80 USD, 3.08R).
-     - Running in green (+2.06 to +3.84 USD floating, +0.28 R0).
-     - Phase 0 BE Trigger (+1.25 R0): 7,768.58.
-     - Backed by 3,159,699 USD in verified L3 buy whale walls (7,744.40 at 2.00M USD, 7,745.10 at 929k USD, 7,741.30 at 231k USD).
-     - Stop Loss at 7,737.30 sits 3.50 points below swept shelf outer edge (0.62 ATR buffer).
-- **Active Pending Orders (1 of 4 slots allocated)**:
-  1. Ticket #19003983: `BTCUSD.pi` BUY_LIMIT 0.04 lots @ 82,120.00 (SL: 81,835.00, TP: 82,790.00, Nominal Cash Risk: 11.40 USD, Reward: 26.80 USD, 2.35R).
-     - Model 2 Pro-Trend Pullback at M15 EMA50 (82,117.08) and Session VWAP (82,111.90) confluence shelf.
-     - Spread friction 2.80 bps (<= 25.0 bps institutional crypto ceiling).
-     - Defended by 8.27M USD resting whale wall at 81,993.00 and 16.15M USD at 81,716.00 between entry and SL.
-     - TP front-runs 16.38M USD ask wall at 82,873.00.
+  1. Ticket #19012500: `USDJPY.pi` SELL 0.06 lots @ 158.180 (SL: 158.700, TP: 157.140, Nominal Risk: -19.66 USD, Reward: +39.71 USD, 2.02R).
+     - Live floating PnL: +0.08 USD (+0.01 R0).
+     - Phase 0 BE Trigger (+0.80 R0): 157.764 -> SL moves to 158.102 (+0.15R BE lock).
+     - Defended by $1.51M USD resting ask whale bunker at 158.590–158.650 (projected to 158.648 on MT5 with +5.75 pip venue basis). Stop Loss at 158.700 has a 5.2 pip (0.47 ATR) clearance buffer completely outside the sweep zone (Invariant A compliant).
+- **Active Pending Orders (0 of 4 slots allocated)**:
+  - None resting (Ticket #19020166 cancelled and pruned; candidate identification decoupled from mandatory staging per operator precision directive).
+- **Potential Limit Order Candidates (Qualified Watchlist - Staging Gated on High Conviction)**:
+  1. `EURGBP.pi` (SELL_LIMIT 0.30 @ 0.84335 | SL 0.84385 | TP 0.84225 | Net 2.20R | Risk: -$19.97 USD | Spread: 0.12 bps)
+  2. `BTCUSD.pi` (SELL_LIMIT 0.05 @ 81,850.0 | SL 82,250.0 | TP 80,800.0 | Net 2.62R | Risk: -$20.00 USD | Spread: 2.09 bps | $23.38M whale bunker)
+  3. `COPPER.p` (SELL_LIMIT 0.01 @ 14,405.0 | SL 14,428.0 | TP 14,350.0 | Net 2.39R | Risk: -$23.00 USD | Spread: 4.49 bps)
 - **Capacity & Floor Solvency**:
-  - 2 of 4 concurrent ticket slots allocated (1 filled + 1 pending limit), 2 slots freely available for Energy and Metals.
-  - Joint Stressed Risk: SP500 (19.38 USD) + BTC (14.25 USD) = 33.63 USD.
-  - Worst-Case Stressed Equity = 4,884.68 - 33.63 = **4,851.05 USD**.
-  - Surplus above Operating Buffer (4,795.00 USD): **+56.05 USD (+1.17%)**.
-  - Surplus above Hard Floor (4,775.00 USD): **+76.05 USD (+1.59%)**.
+  - 1 of 4 concurrent ticket slots allocated (1 filled: USDJPY.pi #19012500, 0 pending limits). Exactly 3 orthogonal slots freely available.
+  - Stressed Worst-Case Equity (USDJPY stopped at max slippage): **4,830.82 USD**.
+  - Surplus above Operating Buffer (4,795.00 USD): **+35.82 USD (+0.74%)**.
+  - Surplus above Hard Floor (4,775.00 USD): **+55.82 USD (+1.16%)**.
 - **Cycle 163 Joint Dialectic & Cross-Verification Ruling**:
   - **Full Dual-Track Convergence on BTC Long**: Both Antigravity subagent fleet (`d8bbdd65` Capital Floor Governor, `6adcd5d1` Macro Specialist, `8925a6fd` Orderflow Analyst) and Arena.ai Tab 1 C163 council report independently accredited BTC as the #1 candidate across the entire board. Antigravity ratified and executed the limit order at 82,120.00 (Ticket #19003983) with certified 2.35R payout and $8.27M whale backing.
   - **Unanimous Agreement on Active Trade**: Both tracks unanimously rule **HOLD Ticket #18995127 on SP500.p with unmodified SL/TP**.

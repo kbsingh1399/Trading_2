@@ -31,34 +31,42 @@
 
 ### Active Open Positions (1 / 4 capacity slots occupied):
 * **Slot 1 (RUNNING POSITION)**:
-  - **Ticket**: #19012500 (USDJPY.pi)
+  - **Ticket**: `#19012500` (`USDJPY.pi`)
   - **Direction & Sizing**: SELL 0.06 lots
   - **Execution Fill Timestamp**: 2026-10-16 16:30 UTC
   - **Entry Fill Price**: **158.180**
   - **Current Market Price**: **158.178**
   - **Current Floating PnL**: **+0.08 USD (+0.01R)**
-  - **Active Stop Loss**: **158.700** (Risk Distance: 52.0 pips | Nominal Risk: **-.66 USD** / 0.41% equity)
-  - **Active Take Profit**: **157.140** (+2.02R target / 104.0 pips gain = **+.71 USD**)
-  - **Microstructure Status**: Defended by .51M USD resting ask whale bunker at 158.590–158.650 (projected to 158.648 on MT5 with +5.75 pip venue basis). SL at 158.700 has a 5.2 pip (0.47 ATR) clearance buffer completely outside the sweep zone.
+  - **Active Stop Loss**: **158.700** (Risk Distance: 52.0 pips | Nominal Risk: **-$19.66 USD** / 0.41% equity)
+  - **Active Take Profit**: **157.140** (+2.02R target / 104.0 pips gain = **+$39.71 USD**)
+  - **Microstructure Status**: Defended by $1.51M USD resting ask whale bunker at 158.590–158.650 (projected to 158.648 on MT5 with +5.75 pip venue basis). SL at 158.700 has a 5.2 pip (0.47 ATR) clearance buffer completely outside the sweep zone.
   - **Ratchet Trigger Thresholds**:
-    * **Phase 0 BE Arming Price**: **157.764** (+0.80R gain). Once hit, SL moves to **158.102** (+0.15R BE lock), securing +.95 USD profit and eliminating all downside risk!
+    * **Phase 0 BE Arming Price**: **157.764** (+0.80R gain). Once hit, SL moves to **158.102** (+0.15R BE lock), securing +$2.95 USD profit and eliminating all downside risk!
     * **Phase 1 Profit Lock Price**: **157.400** (+1.50R gain). Once hit, SL moves to **157.764** (+0.80R profit lock).
 
-### Active Pending Limit Orders (1 / 4 capacity slots occupied):
-* **Slot 2 (PASSIVE LIMIT ORDER RESTING)**:
-  - **Ticket**: #19020166 (EURGBP.pi)
-  - **Direction & Sizing**: SELL_LIMIT 0.30 lots
-  - **Staged Timestamp**: 2026-10-16 17:10:17 UTC
-  - **Limit Price**: **0.84335** (Resting 5.0 pips above market 0.84285)
-  - **Stop Loss**: **0.84385** (Risk Distance: 5.0 pips | Nominal Risk: **-.97 USD** / 0.41% equity | 1.33 ATR above EMA50)
-  - **Take Profit**: **0.84225** (Target: 11.0 pips | Target Value: **+.93 USD** / 0.90% equity | Net **2.20R**)
-  - **Confluence**: European FX Cross orthogonal to USD; -110 bps EUR rate penalty vs GBP; UK GDP beat +0.1%; 1H/4H bear alignment; Spread 0.12 bps (0.1 pip).
+### Active Pending Limit Orders (0 / 4 capacity slots occupied):
+* **None currently resting** (Ticket #19020166 cancelled and pruned per operator two-stage governance directive: candidate identification decoupled from mandatory staging).
+
+### Potential Passive Limit Order Candidates (Qualified Watchlist - Staging Gated on High Conviction):
+1. **EURGBP.pi** (Model 2 Trend Pullback SHORT):
+   - Entry: `0.84335` | SL: `0.84385` (5 pips, 1.33 ATR above EMA50) | TP: `0.84225` (11 pips) | Net 2.20R
+   - Risk: -$19.97 USD (0.41% eq) | Target: +$43.93 USD | Spread: 0.12 bps
+   - Status: Qualified candidate on Watchlist; resting staging deferred pending live tape trigger.
+2. **BTCUSD.pi** (Model 2 Trend Pullback SHORT):
+   - Entry: `81,850.0` | SL: `82,250.0` (400 pts, 1.08 ATR) | TP: `80,800.0` (1,050 pts) | Net 2.62R
+   - Risk: -$20.00 USD (0.41% eq) | Target: +$52.50 USD | Spread: 2.09 bps
+   - Status: Qualified candidate on Watchlist; backed by $23.38M whale bunker at 81,872–81,951.
+3. **COPPER.p** (Model 2 Trend Pullback SHORT):
+   - Entry: `14,405.0` | SL: `14,428.0` (23 pts, 0.52 ATR) | TP: `14,350.0` (55 pts) | Net 2.39R
+   - Risk: -$23.00 USD (0.47% eq) | Target: +$55.00 USD | Spread: 4.49 bps
+   - Status: Qualified candidate on Watchlist.
 
 ### Floor Cushion & Joint Risk Summary:
 * **Account Balance**: **4,857.32 USD** | **Equity**: **4,857.40 USD**
-* **Absolute Hard Floor**: **4,775.00 USD** | **Operating Buffer**: **4,795.00 USD**
-* **Stressed Post-Joint Stop Equity**: **4,804.86 USD** (Preserves **+.86 USD** surplus above operating buffer and **+.86 USD** above hard floor under simultaneous catastrophic stopout).
-* **Slots Utilization**: 2 / 4 utilized (1 filled, 1 pending limit). Exactly 2 orthogonal slots remain available.
+* **Absolute Hard Floor**: **4,775.00 USD** (Cushion: **+82.40 USD**)
+* **Operating Buffer**: **4,795.00 USD** (Cushion: **+62.40 USD**)
+* **Stressed Post-Loss Equity (USDJPY stopped at max slippage)**: **4,830.82 USD** (Preserves **+35.82 USD** surplus above operating buffer and **+55.82 USD** above hard floor).
+* **Slots Utilization**: 1 / 4 occupied (1 filled, 0 pending limits). Exactly 3 orthogonal slots remain available.
 
 ---
 
