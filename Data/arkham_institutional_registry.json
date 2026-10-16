@@ -1088,10 +1088,18 @@
     "address_count": "6.3M Addresses",
     "total_portfolio_usd": "$0.00",
     "portfolio_change_24h": "",
-    "holdings_breakdown": [],
+    "holdings_breakdown": [
+      {
+        "symbol": "ETH",
+        "price": "$7.54",
+        "amount": "",
+        "value_usd": "$116,017.1",
+        "change_24h": "+0.78%"
+      }
+    ],
     "category": "DEFI_DEX_DAO",
     "priority": "MEDIUM",
-    "last_updated_utc": "2026-10-16 22:21:09 UTC"
+    "last_updated_utc": "2026-10-16 23:11:31 UTC"
   },
   "aave": {
     "slug": "aave",
@@ -1101,16 +1109,51 @@
     "portfolio_change_24h": "",
     "holdings_breakdown": [
       {
+        "symbol": "WBTC",
+        "price": "$81,570",
+        "amount": "WBTC",
+        "value_usd": "$2.84B",
+        "change_24h": "-0.76%"
+      },
+      {
+        "symbol": "CBBTC",
+        "price": "$81,698",
+        "amount": "CBBTC",
+        "value_usd": "$1.66B",
+        "change_24h": "-0.81%"
+      },
+      {
         "symbol": "USDT",
-        "price": "$8.38K",
+        "price": "$1",
+        "amount": "USDT",
+        "value_usd": "$365.84M",
+        "change_24h": "\u00b10%"
+      },
+      {
+        "symbol": "USDC",
+        "price": "$1",
+        "amount": "USDC",
+        "value_usd": "$130.94M",
+        "change_24h": "\u00b10%"
+      },
+      {
+        "symbol": "LINK",
+        "price": "$12.33",
+        "amount": "LINK",
+        "value_usd": "$110.65M",
+        "change_24h": "-1.44%"
+      },
+      {
+        "symbol": "ETH",
+        "price": "$16.95K",
         "amount": "",
-        "value_usd": "$386,792,483.27",
-        "change_24h": "-0.13%"
+        "value_usd": "$386,814,143.01",
+        "change_24h": "-0.05%"
       }
     ],
     "category": "DEFI_LENDING_DAO",
     "priority": "MEDIUM",
-    "last_updated_utc": "2026-10-16 22:21:15 UTC"
+    "last_updated_utc": "2026-10-16 23:11:37 UTC"
   },
   "lido": {
     "slug": "lido",
@@ -1121,10 +1164,10 @@
     "holdings_breakdown": [
       {
         "symbol": "ETH",
-        "price": "$2,420.77",
+        "price": "$2,422.66",
         "amount": "ETH",
-        "value_usd": "$204.99M",
-        "change_24h": "-1.55%"
+        "value_usd": "$205.15M",
+        "change_24h": "-1.27%"
       },
       {
         "symbol": "USDC",
@@ -1142,57 +1185,57 @@
       },
       {
         "symbol": "SOL",
-        "price": "$104.42",
+        "price": "$104.3",
         "amount": "SOL",
-        "value_usd": "$5.39M",
-        "change_24h": "-1.41%"
+        "value_usd": "$5.38M",
+        "change_24h": "-1.37%"
       },
       {
         "symbol": "MKR",
-        "price": "$1,615.77",
+        "price": "$1,616.49",
         "amount": "MKR",
         "value_usd": "$1.29K",
-        "change_24h": "-2.08%"
+        "change_24h": "-1.69%"
       },
       {
         "symbol": "BNB",
-        "price": "$722.2",
+        "price": "$721.94",
         "amount": "BNB",
-        "value_usd": "$222.11",
-        "change_24h": "-1.01%"
+        "value_usd": "$222.03",
+        "change_24h": "-0.98%"
       },
       {
         "symbol": "NEAR",
-        "price": "$5.04",
+        "price": "$5.08",
         "amount": "NEAR",
-        "value_usd": "$142.56",
-        "change_24h": "-4.91%"
+        "value_usd": "$143.69",
+        "change_24h": "-4.51%"
       },
       {
         "symbol": "LINK",
-        "price": "$12.32",
+        "price": "$12.33",
         "amount": "LINK",
-        "value_usd": "$130.87",
-        "change_24h": "-1.75%"
+        "value_usd": "$130.98",
+        "change_24h": "-1.44%"
       },
       {
         "symbol": "AVAX",
-        "price": "$9.98",
+        "price": "$9.97",
         "amount": "AVAX",
-        "value_usd": "$90.72",
-        "change_24h": "-0.5%"
+        "value_usd": "$90.63",
+        "change_24h": "-0.89%"
       },
       {
         "symbol": "UNI",
-        "price": "$7.3",
+        "price": "$7.32",
         "amount": "UNI",
-        "value_usd": "$9.87",
-        "change_24h": "-2.54%"
+        "value_usd": "$9.9",
+        "change_24h": "-1.88%"
       }
     ],
     "category": "LIQUID_STAKING_DAO",
     "priority": "MEDIUM",
-    "last_updated_utc": "2026-10-16 22:21:22 UTC"
+    "last_updated_utc": "2026-10-16 23:11:42 UTC"
   },
   "polymarket": {
     "slug": "polymarket",
