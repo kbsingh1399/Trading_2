@@ -1,5 +1,5 @@
 {
-  "as_of_utc": "2026-10-16 22:46:27 UTC",
+  "as_of_utc": "2026-10-16 22:52:13 UTC",
   "source": "Arkham Intelligence Upgraded Harvester (arkm.com via Chrome CDP)",
   "filter_applied": "",
   "feed_status": "CONNECTED_NO_TRANSFERS",
@@ -589,15 +589,15 @@
       "holdings_breakdown": [
         {
           "symbol": "BTC",
-          "price": "$81,608",
+          "price": "$81,711",
           "amount": "BTC",
-          "value_usd": "$596.34M",
-          "change_24h": "-1%"
+          "value_usd": "$597.09M",
+          "change_24h": "-0.82%"
         }
       ],
       "category": "SOVEREIGN_TREASURY",
       "priority": "HIGH",
-      "last_updated_utc": "2026-10-16 22:05:58 UTC"
+      "last_updated_utc": "2026-10-16 22:52:05 UTC"
     },
     "microstrategy": {
       "slug": "microstrategy",
@@ -608,15 +608,15 @@
       "holdings_breakdown": [
         {
           "symbol": "BTC",
-          "price": "$81,610",
+          "price": "$81,687",
           "amount": "BTC",
-          "value_usd": "$39.03B",
-          "change_24h": "-0.89%"
+          "value_usd": "$39.06B",
+          "change_24h": "-0.87%"
         }
       ],
       "category": "CORPORATE_TREASURY",
       "priority": "HIGH",
-      "last_updated_utc": "2026-10-16 22:06:04 UTC"
+      "last_updated_utc": "2026-10-16 22:52:10 UTC"
     },
     "tesla": {
       "slug": "tesla",
