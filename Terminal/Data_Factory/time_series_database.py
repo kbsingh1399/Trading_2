@@ -26,6 +26,7 @@ Features:
 from __future__ import annotations
 import datetime
 import gzip
+import hashlib
 import json
 import logging
 import os
@@ -49,6 +50,24 @@ if not logger.handlers:
     logger.setLevel(logging.INFO)
 
 
+def atomic_write_bytes(path: pathlib.Path, data: bytes) -> None:
+    """Atomically writes binary data via a process-unique temporary file to prevent corruption on crash."""
+    path = pathlib.Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp = path.with_suffix(f"{path.suffix}.tmp.{os.getpid()}.{time.time_ns()}")
+    tmp.write_bytes(data)
+    tmp.replace(path)
+
+
+def atomic_write_text(path: pathlib.Path, text: str, encoding: str = "utf-8") -> None:
+    """Atomically writes text data via a process-unique temporary file to prevent corruption on crash."""
+    path = pathlib.Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp = path.with_suffix(f"{path.suffix}.tmp.{os.getpid()}.{time.time_ns()}")
+    tmp.write_text(text, encoding=encoding)
+    tmp.replace(path)
+
+
 class TimeSeriesDatabase:
     """Universal continuous time-series database for all trading & telemetry streams."""
 
@@ -65,6 +84,10 @@ class TimeSeriesDatabase:
     def _get_connection(self) -> sqlite3.Connection:
         conn = sqlite3.connect(str(self.db_path), timeout=30.0)
         conn.row_factory = sqlite3.Row
+        conn.execute("PRAGMA journal_mode = WAL;")
+        conn.execute("PRAGMA synchronous = NORMAL;")
+        conn.execute("PRAGMA busy_timeout = 30000;")
+        conn.execute("PRAGMA foreign_keys = ON;")
         return conn
 
     def _init_sqlite(self) -> None:
@@ -84,6 +107,7 @@ class TimeSeriesDatabase:
                     is_compressed INTEGER DEFAULT 1,
                     gap_detected INTEGER DEFAULT 0,
                     gap_duration_minutes REAL DEFAULT 0.0,
+                    sha256_hash TEXT,
                     summary_json TEXT
                 )
             """)
@@ -232,6 +256,8 @@ class TimeSeriesDatabase:
             cat_cols = {row[1] for row in cur.fetchall()}
             if "is_compressed" not in cat_cols:
                 cur.execute("ALTER TABLE snapshot_catalog ADD COLUMN is_compressed INTEGER DEFAULT 1")
+            if "sha256_hash" not in cat_cols:
+                cur.execute("ALTER TABLE snapshot_catalog ADD COLUMN sha256_hash TEXT")
 
             conn.commit()
 
@@ -293,8 +319,8 @@ class TimeSeriesDatabase:
                 )
                 if prev_epoch and epoch:
                     diff_sec = epoch - float(prev_epoch)
-                    # For a 5-minute cycle, a gap > 12 minutes indicates a shutdown or interruption
-                    if diff_sec > 720.0:
+                    # For a 5-minute cycle, a gap > 15 minutes indicates a shutdown or interruption
+                    if diff_sec > 900.0:
                         gap_detected = True
                         gap_duration_min = round(diff_sec / 60.0, 2)
                         logger.warning(
@@ -321,28 +347,29 @@ class TimeSeriesDatabase:
         # 2. Save immutable historical snapshot (compressed with gzip for 90% space reduction)
         raw_json_str = json.dumps(data_copy, separators=(',', ':'))
         raw_bytes = raw_json_str.encode("utf-8")
+        sha256_hash = hashlib.sha256(raw_bytes).hexdigest()
         if compress:
             hist_filename = f"{stream}_{time_tag}.json.gz"
             hist_path = stream_dir / hist_filename
             gz_bytes = gzip.compress(raw_bytes, compresslevel=6)
-            hist_path.write_bytes(gz_bytes)
+            atomic_write_bytes(hist_path, gz_bytes)
             file_size = len(gz_bytes)
         else:
             hist_filename = f"{stream}_{time_tag}.json"
             hist_path = stream_dir / hist_filename
-            hist_path.write_bytes(raw_bytes)
+            atomic_write_bytes(hist_path, raw_bytes)
             file_size = len(raw_bytes)
 
         # 3. Rotate state: t becomes t-1, current becomes t (keep latest uncompressed for fast inspection)
         if prev_data is not None:
             try:
-                prev_file.write_text(json.dumps(prev_data, indent=2), encoding="utf-8")
+                atomic_write_text(prev_file, json.dumps(prev_data, indent=2))
                 delta = self._compute_generic_delta(stream, data_copy, prev_data, gap_duration_min)
-                delta_file.write_text(json.dumps(delta, indent=2), encoding="utf-8")
+                atomic_write_text(delta_file, json.dumps(delta, indent=2))
             except Exception as e:
                 logger.warning(f"Error generating delta for {stream}: {e}")
 
-        latest_file.write_text(json.dumps(data_copy, indent=2), encoding="utf-8")
+        atomic_write_text(latest_file, json.dumps(data_copy, indent=2))
 
         # 4. Extract domain metrics and index in SQLite
         record_count = self._index_snapshot_in_sqlite(
@@ -355,7 +382,8 @@ class TimeSeriesDatabase:
             is_compressed=1 if compress else 0,
             gap_detected=gap_detected,
             gap_duration_min=gap_duration_min,
-            data=data_copy
+            data=data_copy,
+            sha256_hash=sha256_hash
         )
 
         # 5. Update Master JSON Manifest
@@ -472,7 +500,8 @@ class TimeSeriesDatabase:
         is_compressed: int,
         gap_detected: bool,
         gap_duration_min: float,
-        data: Dict[str, Any]
+        data: Dict[str, Any],
+        sha256_hash: str = ""
     ) -> int:
         """Parses domain-level entities and inserts them into SQLite tables for fast indexing."""
         record_count = 0
@@ -647,16 +676,45 @@ class TimeSeriesDatabase:
                 ))
                 record_count = 1
 
+            elif stream == "coinglass_whale_orders":
+                assets_data = data.get("assets", {})
+                total_orders = 0
+                for asset, a_info in assets_data.items():
+                    walls = a_info.get("top_whale_walls", [])
+                    total_orders += len(walls)
+                    for w in walls:
+                        side = w.get("side", "")
+                        price = _safe_float(w.get("price"))
+                        key = f"{asset}_{side}_{round(price, 4) if price else 0}"
+                        cur.execute("""
+                            INSERT INTO whale_history (
+                                snapshot_epoch, snapshot_utc, whale_key, asset, side, user,
+                                entry_price, current_price, notional_usd, duration_days,
+                                duration_hours, entry_time_raw, status
+                            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                        """, (
+                            epoch, timestamp_utc, key, asset, side,
+                            "coinglass_l3", price, price,
+                            _safe_float(w.get("notional_usd")),
+                            _safe_float((w.get("duration_hours") or 0.0) / 24.0),
+                            _safe_float(w.get("duration_hours")),
+                            w.get("duration_str", ""),
+                            "CANCELED" if w.get("is_canceled") else "ACTIVE"
+                        ))
+                record_count = total_orders
+                summary["whale_orders_count"] = total_orders
+                summary["grand_total_notional_usd"] = data.get("grand_total_notional_usd", 0.0)
+
             # Insert into master catalog
             cur.execute("""
                 INSERT INTO snapshot_catalog (
                     stream, timestamp_utc, epoch, date_partition, file_path,
-                    record_count, size_bytes, is_compressed, gap_detected, gap_duration_minutes, summary_json
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    record_count, size_bytes, is_compressed, gap_detected, gap_duration_minutes, sha256_hash, summary_json
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """, (
                 stream, timestamp_utc, epoch, date_partition, file_path,
                 record_count, size_bytes, is_compressed, 1 if gap_detected else 0, gap_duration_min,
-                json.dumps(summary)
+                sha256_hash, json.dumps(summary)
             ))
             conn.commit()
 
@@ -723,7 +781,7 @@ class TimeSeriesDatabase:
         if len(s_meta["recent_history"]) > 288:
             s_meta["recent_history"] = s_meta["recent_history"][-288:]
 
-        self.manifest_path.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
+        atomic_write_text(self.manifest_path, json.dumps(manifest, indent=2))
 
     def query_as_of(self, stream: str, target_utc_or_epoch: Any) -> Optional[Dict[str, Any]]:
         """

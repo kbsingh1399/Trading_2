@@ -243,14 +243,15 @@ class CoinglassExtendedHarvester:
         results["total_harvest_duration_seconds"] = round(total_elapsed, 2)
         print(f"Harvest completed across all {len(EXTENDED_PAGES)} tabs in {total_elapsed:.2f}s!")
 
-        # 3. Save Latest Extended Snapshot
-        LATEST_SNAPSHOT_PATH.write_text(json.dumps(results, indent=2), encoding="utf-8")
+        # 3. Save Latest Extended Snapshot atomically
+        from Terminal.Data_Factory.time_series_database import atomic_write_text
+        atomic_write_text(LATEST_SNAPSHOT_PATH, json.dumps(results, indent=2))
         print(f"Saved latest snapshot to: {LATEST_SNAPSHOT_PATH}")
 
         # 4. Ingest into TimeSeriesDatabase (Gzip Compressed Partition + SQLite Relational Index)
         try:
             db_res = ts_db.record_snapshot("coinglass", results, compress=True)
-            print(f"TimeSeriesDatabase: Saved to {db_res['rel_file']} ({db_res['compressed_bytes']} bytes, ratio: {db_res['compression_ratio']:.1%})")
+            print(f"TimeSeriesDatabase: Archived to {db_res.get('history_file')} ({db_res.get('size_kb')} KB)")
         except Exception as e:
             print(f"TimeSeriesDatabase record notice: {e}")
 

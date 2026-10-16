@@ -130,27 +130,38 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
                     const searchInput = document.querySelector('input.MuiAutocomplete-input');
                     if (!searchInput) return {{ error: 'No MuiAutocomplete input found' }};
 
-                    // Check if current value already matches
-                    if (searchInput.value === targetSymbol) {{
-                        // Already selected, extract immediately
-                    }} else {{
-                        // Set value and trigger input
+                    const curVal = (searchInput.value || '').trim().toUpperCase();
+                    if (curVal !== targetSymbol) {{
+                        searchInput.focus();
                         const nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
                         nativeInputValueSetter.call(searchInput, targetSymbol);
                         searchInput.dispatchEvent(new Event('input', {{ bubbles: true }}));
                         await new Promise(r => setTimeout(r, 600));
 
-                        // Find listbox and click matching option
                         const listbox = document.querySelector('.MuiAutocomplete-popper, ul.MuiAutocomplete-listbox, div[role="listbox"]');
                         if (listbox) {{
                             const options = Array.from(listbox.querySelectorAll('li, div[role="option"]'));
-                            const match = options.find(o => (o.innerText || '').trim().startsWith(targetSymbol) || (o.innerText || '').trim().includes(targetSymbol));
+                            const match = options.find(o => {{
+                                const txt = (o.innerText || '').trim();
+                                const firstToken = txt.split(/[\\s\\n]+/)[0].toUpperCase();
+                                return firstToken === targetSymbol;
+                            }});
                             if (match) {{
                                 match.click();
                             }}
                         }}
-                        // Allow time for new symbol data to fetch and render
                         await new Promise(r => setTimeout(r, 2200));
+                    }}
+
+                    const finalInputVal = (searchInput.value || '').trim().toUpperCase();
+                    if (finalInputVal !== targetSymbol) {{
+                        return {{
+                            symbol: targetSymbol,
+                            currentInput: finalInputVal,
+                            error: 'Failed to switch to ' + targetSymbol + ', active input is ' + finalInputVal,
+                            itemCount: 0,
+                            items: []
+                        }};
                     }}
 
                     // Extract all whale order rows
@@ -165,7 +176,7 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
 
                     return {{
                         symbol: targetSymbol,
-                        currentInput: searchInput.value,
+                        currentInput: finalInputVal,
                         itemCount: items.length,
                         items: items
                     }};
@@ -173,6 +184,9 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
 
                 res = await send("Runtime.evaluate", {"expression": js_switch, "returnByValue": True, "awaitPromise": True})
                 val = res.get("result", {}).get("result", {}).get("value", {})
+                if val.get("error"):
+                    print(f"[{idx+1}/{len(assets)}] {asset:<5} -> WARNING: {val.get('error')}. Skipping.")
+                    continue
                 
                 raw_items = val.get("items", [])
                 parsed_orders = []
@@ -271,8 +285,9 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
         "assets": harvested_data
     }
 
-    # Save active JSON snapshot
-    OUTPUT_SNAPSHOT_FILE.write_text(json.dumps(full_payload, indent=2), encoding="utf-8")
+    # Save active JSON snapshot atomically
+    from Terminal.Data_Factory.time_series_database import atomic_write_text
+    atomic_write_text(OUTPUT_SNAPSHOT_FILE, json.dumps(full_payload, indent=2))
     print(f"\n✅ Asset-Wise Whale Orders Harvest Complete!")
     print(f"Captured {grand_orders} Whale Orders (${grand_notional:,.0f} total notional) across {len(harvested_data)} assets in {total_duration}s")
     print(f"Saved snapshot to: {OUTPUT_SNAPSHOT_FILE}")
