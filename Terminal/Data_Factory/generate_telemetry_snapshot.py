@@ -1956,6 +1956,7 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                         "wall_class": _wclass,
                         "gate_g7_eligible": bool(
                             pers["gate_g7_eligible"] and _wclass == WALL_GENUINE),
+                        "source_venues": ["BINANCE"],
                         "first_seen_utc": datetime.fromtimestamp(pers["first_seen"], tz=timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
                     })
 
@@ -1988,6 +1989,7 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                         "wall_class": _wclass,
                         "gate_g7_eligible": bool(
                             pers["gate_g7_eligible"] and _wclass == WALL_GENUINE),
+                        "source_venues": ["BINANCE"],
                         "first_seen_utc": datetime.fromtimestamp(pers["first_seen"], tz=timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
                     })
 
@@ -2027,6 +2029,7 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                         "wall_class": WALL_GENUINE,
                         "gate_g7_eligible": True,
                         "source": "COINGLASS_L3_RESTING_ORDER",
+                        "source_venues": ["COINGLASS"],
                         "first_seen_utc": datetime.fromtimestamp(now_ts - cg_dur_s, tz=timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
                     })
 
@@ -2081,7 +2084,7 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
             orderbook_payload = {
                 "source": "REAL_BINANCE_FUTURES_L2_AND_HYPERDASH_L3",
                 "venue": "BINANCE_USDM_FUTURES_AND_HYPERLIQUID",
-                "aggregation": "BINANCE_AGGREGATED_L2_WITH_HYPERDASH_L3_WALLETS",
+                "aggregation": "BINANCE_L2_HYPERDASH_L3_AND_COINGLASS_L3_RESTING_ORDERS",
                 "binance_mid": round(binance_mid, 4),
                 "binance_mid_ts": sample_epoch,
                 "hyperliquid_mid": round(hd_mid, 4) if (hd_status == "SUCCESS" and hd_mid and hd_mid > 0) else None,
@@ -2492,6 +2495,14 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
         raise RuntimeError("FAIL_CLOSED: telemetry provenance validation failed")
 
     atomic_snapshot_write(out_path, payload)
+
+    # Archive live telemetry snapshot into TimeSeriesDatabase (Fixes N1: telemetry stream gap)
+    try:
+        from Terminal.Data_Factory.time_series_database import TimeSeriesDatabase
+        _ts_db = TimeSeriesDatabase()
+        _ts_db.record_snapshot("telemetry", payload)
+    except Exception as e:
+        logger.warning(f"Failed to record telemetry snapshot to TimeSeriesDatabase: {e}")
 
     try:
         print(f"[{now_utc}] Successfully exported observed-only telemetry snapshot v3 to {out_path}")

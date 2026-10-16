@@ -1,61 +1,61 @@
 {
-  "harvest_timestamp_utc": "2026-10-16T21:55:19.976905+00:00",
-  "harvest_epoch": 1792187719.9769146,
-  "total_assets_scraped": 12,
-  "total_whale_orders": 457,
-  "grand_total_notional_usd": 202201790.0,
-  "total_duration_seconds": 39.21,
+  "harvest_timestamp_utc": "2026-10-16T22:17:57.845402+00:00",
+  "harvest_epoch": 1792189077.8454318,
+  "total_assets_scraped": 17,
+  "total_whale_orders": 349,
+  "grand_total_notional_usd": 189383260.0,
+  "total_duration_seconds": 57.77,
   "assets": {
     "BTC": {
       "asset": "BTC",
       "orders_count": 39,
       "side_parse_health": "HEALTHY",
-      "total_notional_usd": 84910000.0,
-      "buy_notional_usd": 41120000.0,
-      "sell_notional_usd": 43790000.0,
-      "imbalance_ratio": 0.939,
-      "max_single_order_usd": 6730000.0,
-      "oldest_order_hours": 48.0,
+      "total_notional_usd": 85250000.0,
+      "buy_notional_usd": 41880000.0,
+      "sell_notional_usd": 43370000.0,
+      "imbalance_ratio": 0.966,
+      "max_single_order_usd": 6740000.0,
+      "oldest_order_hours": 49.0,
       "top_whale_walls": [
         {
           "side": "BUY",
           "is_canceled": false,
           "price": 80000.0,
-          "notional_str": "$6.73M",
-          "notional_usd": 6730000.0,
-          "duration_str": "13H 47m",
-          "duration_seconds": 49620.0,
-          "duration_hours": 13.78
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 81906.65,
-          "notional_str": "$5.32M",
-          "notional_usd": 5320000.0,
-          "duration_str": "2m 0s",
-          "duration_seconds": 120.0,
-          "duration_hours": 0.03
+          "notional_str": "$6.74M",
+          "notional_usd": 6740000.0,
+          "duration_str": "14H 9m",
+          "duration_seconds": 50940.0,
+          "duration_hours": 14.15
         },
         {
           "side": "BUY",
           "is_canceled": false,
-          "price": 81264.48,
-          "notional_str": "$5.31M",
-          "notional_usd": 5310000.0,
-          "duration_str": "2m 0s",
-          "duration_seconds": 120.0,
-          "duration_hours": 0.03
+          "price": 81356.88,
+          "notional_str": "$5.64M",
+          "notional_usd": 5640000.0,
+          "duration_str": "0m 7s",
+          "duration_seconds": 7.0,
+          "duration_hours": 0.0
+        },
+        {
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 81998.64,
+          "notional_str": "$5.02M",
+          "notional_usd": 5020000.0,
+          "duration_str": "0m 7s",
+          "duration_seconds": 7.0,
+          "duration_hours": 0.0
         },
         {
           "side": "SELL",
           "is_canceled": false,
           "price": 84000.0,
-          "notional_str": "$4.62M",
-          "notional_usd": 4620000.0,
-          "duration_str": "13H 48m",
-          "duration_seconds": 49680.0,
-          "duration_hours": 13.8
+          "notional_str": "$4.59M",
+          "notional_usd": 4590000.0,
+          "duration_str": "14H 11m",
+          "duration_seconds": 51060.0,
+          "duration_hours": 14.18
         },
         {
           "side": "SELL",
@@ -63,9 +63,9 @@
           "price": 82653.0,
           "notional_str": "$4.59M",
           "notional_usd": 4590000.0,
-          "duration_str": "2H 38m",
-          "duration_seconds": 9480.0,
-          "duration_hours": 2.63
+          "duration_str": "3H 0m",
+          "duration_seconds": 10800.0,
+          "duration_hours": 3.0
         }
       ],
       "all_orders": [
@@ -73,11 +73,11 @@
           "side": "SELL",
           "is_canceled": false,
           "price": 84500.0,
-          "notional_str": "$2.81M",
-          "notional_usd": 2810000.0,
-          "duration_str": "13H 49m",
-          "duration_seconds": 49740.0,
-          "duration_hours": 13.82
+          "notional_str": "$2.82M",
+          "notional_usd": 2820000.0,
+          "duration_str": "14H 11m",
+          "duration_seconds": 51060.0,
+          "duration_hours": 14.18
         },
         {
           "side": "SELL",
@@ -85,19 +85,19 @@
           "price": 84500.0,
           "notional_str": "$1.22M",
           "notional_usd": 1220000.0,
-          "duration_str": "13H 5m",
-          "duration_seconds": 47100.0,
-          "duration_hours": 13.08
+          "duration_str": "13H 27m",
+          "duration_seconds": 48420.0,
+          "duration_hours": 13.45
         },
         {
           "side": "SELL",
           "is_canceled": false,
           "price": 84000.0,
-          "notional_str": "$4.62M",
-          "notional_usd": 4620000.0,
-          "duration_str": "13H 48m",
-          "duration_seconds": 49680.0,
-          "duration_hours": 13.8
+          "notional_str": "$4.59M",
+          "notional_usd": 4590000.0,
+          "duration_str": "14H 11m",
+          "duration_seconds": 51060.0,
+          "duration_hours": 14.18
         },
         {
           "side": "SELL",
@@ -105,19 +105,19 @@
           "price": 84000.0,
           "notional_str": "$1.46M",
           "notional_usd": 1460000.0,
-          "duration_str": "13H 5m",
-          "duration_seconds": 47100.0,
-          "duration_hours": 13.08
+          "duration_str": "13H 27m",
+          "duration_seconds": 48420.0,
+          "duration_hours": 13.45
         },
         {
           "side": "SELL",
           "is_canceled": false,
           "price": 83500.0,
-          "notional_str": "$2.39M",
-          "notional_usd": 2390000.0,
-          "duration_str": "13H 49m",
-          "duration_seconds": 49740.0,
-          "duration_hours": 13.82
+          "notional_str": "$2.34M",
+          "notional_usd": 2340000.0,
+          "duration_str": "14H 12m",
+          "duration_seconds": 51120.0,
+          "duration_hours": 14.2
         },
         {
           "side": "SELL",
@@ -125,29 +125,29 @@
           "price": 83500.0,
           "notional_str": "$2.18M",
           "notional_usd": 2180000.0,
-          "duration_str": "13H 5m",
-          "duration_seconds": 47100.0,
-          "duration_hours": 13.08
+          "duration_str": "13H 27m",
+          "duration_seconds": 48420.0,
+          "duration_hours": 13.45
         },
         {
           "side": "SELL",
           "is_canceled": false,
           "price": 83200.0,
-          "notional_str": "$1.28M",
-          "notional_usd": 1280000.0,
-          "duration_str": "13H 45m",
-          "duration_seconds": 49500.0,
-          "duration_hours": 13.75
+          "notional_str": "$1.33M",
+          "notional_usd": 1330000.0,
+          "duration_str": "14H 7m",
+          "duration_seconds": 50820.0,
+          "duration_hours": 14.12
         },
         {
           "side": "SELL",
           "is_canceled": false,
           "price": 83000.0,
-          "notional_str": "$2.00M",
-          "notional_usd": 2000000.0,
-          "duration_str": "2D 0H",
-          "duration_seconds": 172800.0,
-          "duration_hours": 48.0
+          "notional_str": "$2.03M",
+          "notional_usd": 2029999.9999999998,
+          "duration_str": "2D 1H",
+          "duration_seconds": 176400.0,
+          "duration_hours": 49.0
         },
         {
           "side": "SELL",
@@ -155,9 +155,9 @@
           "price": 83000.0,
           "notional_str": "$1.39M",
           "notional_usd": 1390000.0,
-          "duration_str": "1H 4m",
-          "duration_seconds": 3840.0,
-          "duration_hours": 1.07
+          "duration_str": "1H 27m",
+          "duration_seconds": 5220.0,
+          "duration_hours": 1.45
         },
         {
           "side": "SELL",
@@ -165,9 +165,9 @@
           "price": 82653.0,
           "notional_str": "$4.59M",
           "notional_usd": 4590000.0,
-          "duration_str": "2H 38m",
-          "duration_seconds": 9480.0,
-          "duration_hours": 2.63
+          "duration_str": "3H 0m",
+          "duration_seconds": 10800.0,
+          "duration_hours": 3.0
         },
         {
           "side": "SELL",
@@ -175,19 +175,19 @@
           "price": 82582.0,
           "notional_str": "$4.11M",
           "notional_usd": 4110000.0000000005,
-          "duration_str": "2H 36m",
-          "duration_seconds": 9360.0,
-          "duration_hours": 2.6
+          "duration_str": "2H 58m",
+          "duration_seconds": 10680.0,
+          "duration_hours": 2.97
         },
         {
           "side": "SELL",
           "is_canceled": false,
           "price": 82500.0,
-          "notional_str": "$3.01M",
-          "notional_usd": 3010000.0,
-          "duration_str": "1H 35m",
-          "duration_seconds": 5700.0,
-          "duration_hours": 1.58
+          "notional_str": "$2.99M",
+          "notional_usd": 2990000.0,
+          "duration_str": "1H 57m",
+          "duration_seconds": 7020.0,
+          "duration_hours": 1.95
         },
         {
           "side": "SELL",
@@ -195,9 +195,9 @@
           "price": 82444.0,
           "notional_str": "$1.00M",
           "notional_usd": 1000000.0,
-          "duration_str": "2H 0m",
-          "duration_seconds": 7200.0,
-          "duration_hours": 2.0
+          "duration_str": "2H 23m",
+          "duration_seconds": 8580.0,
+          "duration_hours": 2.38
         },
         {
           "side": "SELL",
@@ -205,119 +205,109 @@
           "price": 82298.72,
           "notional_str": "$1.00M",
           "notional_usd": 1000000.0,
-          "duration_str": "1H 47m",
-          "duration_seconds": 6420.0,
-          "duration_hours": 1.78
+          "duration_str": "2H 10m",
+          "duration_seconds": 7800.0,
+          "duration_hours": 2.17
         },
         {
           "side": "SELL",
           "is_canceled": false,
-          "price": 81906.65,
-          "notional_str": "$5.32M",
-          "notional_usd": 5320000.0,
-          "duration_str": "2m 0s",
-          "duration_seconds": 120.0,
-          "duration_hours": 0.03
+          "price": 81998.64,
+          "notional_str": "$5.02M",
+          "notional_usd": 5020000.0,
+          "duration_str": "0m 7s",
+          "duration_seconds": 7.0,
+          "duration_hours": 0.0
         },
         {
           "side": "SELL",
           "is_canceled": false,
-          "price": 81827.93,
-          "notional_str": "$1.69M",
-          "notional_usd": 1690000.0,
-          "duration_str": "2m 0s",
-          "duration_seconds": 120.0,
-          "duration_hours": 0.03
+          "price": 81908.96,
+          "notional_str": "$1.68M",
+          "notional_usd": 1680000.0,
+          "duration_str": "14m 7s",
+          "duration_seconds": 847.0,
+          "duration_hours": 0.24
         },
         {
           "side": "SELL",
           "is_canceled": false,
-          "price": 81772.94,
-          "notional_str": "$1.35M",
-          "notional_usd": 1350000.0,
-          "duration_str": "2m 0s",
-          "duration_seconds": 120.0,
-          "duration_hours": 0.03
+          "price": 81839.58,
+          "notional_str": "$1.43M",
+          "notional_usd": 1430000.0,
+          "duration_str": "14m 7s",
+          "duration_seconds": 847.0,
+          "duration_hours": 0.24
         },
         {
           "side": "SELL",
           "is_canceled": false,
-          "price": 81711.5,
-          "notional_str": "$1.28M",
-          "notional_usd": 1280000.0,
-          "duration_str": "2m 0s",
-          "duration_seconds": 120.0,
-          "duration_hours": 0.03
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 81690.42,
+          "price": 81789.04,
           "notional_str": "$1.09M",
           "notional_usd": 1090000.0,
-          "duration_str": "2m 0s",
-          "duration_seconds": 120.0,
-          "duration_hours": 0.03
+          "duration_str": "14m 7s",
+          "duration_seconds": 847.0,
+          "duration_hours": 0.24
         },
         {
-          "side": "BUY",
+          "side": "SELL",
           "is_canceled": false,
-          "price": 81511.5,
-          "notional_str": "$1.06M",
-          "notional_usd": 1060000.0,
-          "duration_str": "0m 1s",
-          "duration_seconds": 1.0,
+          "price": 81780.26,
+          "notional_str": "$1.10M",
+          "notional_usd": 1100000.0,
+          "duration_str": "0m 13s",
+          "duration_seconds": 13.0,
           "duration_hours": 0.0
         },
         {
           "side": "BUY",
           "is_canceled": false,
-          "price": 81459.63,
-          "notional_str": "$1.18M",
-          "notional_usd": 1180000.0,
-          "duration_str": "2m 0s",
-          "duration_seconds": 120.0,
-          "duration_hours": 0.03
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 81457.41,
+          "price": 81590.7,
           "notional_str": "$1.08M",
           "notional_usd": 1080000.0,
-          "duration_str": "0m 4s",
-          "duration_seconds": 4.0,
+          "duration_str": "0m 12s",
+          "duration_seconds": 12.0,
           "duration_hours": 0.0
         },
         {
           "side": "BUY",
           "is_canceled": false,
-          "price": 81398.19,
-          "notional_str": "$1.17M",
-          "notional_usd": 1170000.0,
-          "duration_str": "2m 0s",
-          "duration_seconds": 120.0,
+          "price": 81513.61,
+          "notional_str": "$1.10M",
+          "notional_usd": 1100000.0,
+          "duration_str": "1m 46s",
+          "duration_seconds": 106.0,
           "duration_hours": 0.03
         },
         {
           "side": "BUY",
           "is_canceled": false,
-          "price": 81343.2,
-          "notional_str": "$1.71M",
-          "notional_usd": 1710000.0,
-          "duration_str": "2m 0s",
-          "duration_seconds": 120.0,
-          "duration_hours": 0.03
+          "price": 81430.77,
+          "notional_str": "$1.27M",
+          "notional_usd": 1270000.0,
+          "duration_str": "14m 32s",
+          "duration_seconds": 872.0,
+          "duration_hours": 0.24
         },
         {
           "side": "BUY",
           "is_canceled": false,
-          "price": 81264.48,
-          "notional_str": "$5.31M",
-          "notional_usd": 5310000.0,
-          "duration_str": "2m 0s",
-          "duration_seconds": 120.0,
-          "duration_hours": 0.03
+          "price": 81422.57,
+          "notional_str": "$1.49M",
+          "notional_usd": 1490000.0,
+          "duration_str": "3m 48s",
+          "duration_seconds": 228.0,
+          "duration_hours": 0.06
+        },
+        {
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 81356.88,
+          "notional_str": "$5.64M",
+          "notional_usd": 5640000.0,
+          "duration_str": "0m 7s",
+          "duration_seconds": 7.0,
+          "duration_hours": 0.0
         },
         {
           "side": "BUY",
@@ -325,9 +315,9 @@
           "price": 81185.04,
           "notional_str": "$1.00M",
           "notional_usd": 1000000.0,
-          "duration_str": "29m 9s",
-          "duration_seconds": 1749.0,
-          "duration_hours": 0.49
+          "duration_str": "51m 28s",
+          "duration_seconds": 3088.0,
+          "duration_hours": 0.86
         },
         {
           "side": "BUY",
@@ -335,9 +325,9 @@
           "price": 80790.66,
           "notional_str": "$1.00M",
           "notional_usd": 1000000.0,
-          "duration_str": "2H 18m",
-          "duration_seconds": 8280.0,
-          "duration_hours": 2.3
+          "duration_str": "2H 40m",
+          "duration_seconds": 9600.0,
+          "duration_hours": 2.67
         },
         {
           "side": "BUY",
@@ -345,9 +335,9 @@
           "price": 80530.91,
           "notional_str": "$1.00M",
           "notional_usd": 1000000.0,
-          "duration_str": "2H 56m",
-          "duration_seconds": 10560.0,
-          "duration_hours": 2.93
+          "duration_str": "3H 18m",
+          "duration_seconds": 11880.0,
+          "duration_hours": 3.3
         },
         {
           "side": "BUY",
@@ -355,9 +345,9 @@
           "price": 80500.0,
           "notional_str": "$1.47M",
           "notional_usd": 1470000.0,
-          "duration_str": "13H 47m",
-          "duration_seconds": 49620.0,
-          "duration_hours": 13.78
+          "duration_str": "14H 9m",
+          "duration_seconds": 50940.0,
+          "duration_hours": 14.15
         },
         {
           "side": "BUY",
@@ -365,9 +355,9 @@
           "price": 80300.0,
           "notional_str": "$2.24M",
           "notional_usd": 2240000.0,
-          "duration_str": "4H 57m",
-          "duration_seconds": 17820.0,
-          "duration_hours": 4.95
+          "duration_str": "5H 19m",
+          "duration_seconds": 19140.0,
+          "duration_hours": 5.32
         },
         {
           "side": "BUY",
@@ -375,9 +365,9 @@
           "price": 80100.0,
           "notional_str": "$1.57M",
           "notional_usd": 1570000.0,
-          "duration_str": "6H 34m",
-          "duration_seconds": 23640.0,
-          "duration_hours": 6.57
+          "duration_str": "6H 57m",
+          "duration_seconds": 25020.0,
+          "duration_hours": 6.95
         },
         {
           "side": "BUY",
@@ -385,19 +375,19 @@
           "price": 80001.0,
           "notional_str": "$3.11M",
           "notional_usd": 3110000.0,
-          "duration_str": "2H 7m",
-          "duration_seconds": 7620.0,
-          "duration_hours": 2.12
+          "duration_str": "2H 29m",
+          "duration_seconds": 8940.0,
+          "duration_hours": 2.48
         },
         {
           "side": "BUY",
           "is_canceled": false,
           "price": 80000.0,
-          "notional_str": "$6.73M",
-          "notional_usd": 6730000.0,
-          "duration_str": "13H 47m",
-          "duration_seconds": 49620.0,
-          "duration_hours": 13.78
+          "notional_str": "$6.74M",
+          "notional_usd": 6740000.0,
+          "duration_str": "14H 9m",
+          "duration_seconds": 50940.0,
+          "duration_hours": 14.15
         },
         {
           "side": "BUY",
@@ -405,9 +395,9 @@
           "price": 80000.0,
           "notional_str": "$1.77M",
           "notional_usd": 1770000.0,
-          "duration_str": "10H 14m",
-          "duration_seconds": 36840.0,
-          "duration_hours": 10.23
+          "duration_str": "10H 36m",
+          "duration_seconds": 38160.0,
+          "duration_hours": 10.6
         },
         {
           "side": "BUY",
@@ -415,9 +405,9 @@
           "price": 79900.65,
           "notional_str": "$2.40M",
           "notional_usd": 2400000.0,
-          "duration_str": "5H 51m",
-          "duration_seconds": 21060.0,
-          "duration_hours": 5.85
+          "duration_str": "6H 14m",
+          "duration_seconds": 22440.0,
+          "duration_hours": 6.23
         },
         {
           "side": "BUY",
@@ -425,9 +415,9 @@
           "price": 79900.0,
           "notional_str": "$1.09M",
           "notional_usd": 1090000.0,
-          "duration_str": "4H 25m",
-          "duration_seconds": 15900.0,
-          "duration_hours": 4.42
+          "duration_str": "4H 47m",
+          "duration_seconds": 17220.0,
+          "duration_hours": 4.78
         },
         {
           "side": "BUY",
@@ -435,9 +425,9 @@
           "price": 79800.0,
           "notional_str": "$1.49M",
           "notional_usd": 1490000.0,
-          "duration_str": "13H 49m",
-          "duration_seconds": 49740.0,
-          "duration_hours": 13.82
+          "duration_str": "14H 11m",
+          "duration_seconds": 51060.0,
+          "duration_hours": 14.18
         },
         {
           "side": "BUY",
@@ -445,9 +435,9 @@
           "price": 79800.0,
           "notional_str": "$1.24M",
           "notional_usd": 1240000.0,
-          "duration_str": "13H 5m",
-          "duration_seconds": 47100.0,
-          "duration_hours": 13.08
+          "duration_str": "13H 27m",
+          "duration_seconds": 48420.0,
+          "duration_hours": 13.45
         },
         {
           "side": "BUY",
@@ -455,9 +445,19 @@
           "price": 79500.0,
           "notional_str": "$3.50M",
           "notional_usd": 3500000.0,
-          "duration_str": "13H 43m",
-          "duration_seconds": 49380.0,
-          "duration_hours": 13.72
+          "duration_str": "14H 5m",
+          "duration_seconds": 50700.0,
+          "duration_hours": 14.08
+        },
+        {
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 79500.0,
+          "notional_str": "$1.68M",
+          "notional_usd": 1680000.0,
+          "duration_str": "13H 27m",
+          "duration_seconds": 48420.0,
+          "duration_hours": 13.45
         }
       ],
       "scrape_duration_s": 0.0
@@ -466,22 +466,22 @@
       "asset": "ETH",
       "orders_count": 39,
       "side_parse_health": "HEALTHY",
-      "total_notional_usd": 49779310.0,
-      "buy_notional_usd": 32192810.0,
-      "sell_notional_usd": 17586500.0,
-      "imbalance_ratio": 1.831,
-      "max_single_order_usd": 7100000.0,
+      "total_notional_usd": 50022930.0,
+      "buy_notional_usd": 32091090.0,
+      "sell_notional_usd": 17931840.0,
+      "imbalance_ratio": 1.79,
+      "max_single_order_usd": 7090000.0,
       "oldest_order_hours": 55.0,
       "top_whale_walls": [
         {
           "side": "BUY",
           "is_canceled": false,
           "price": 2350.0,
-          "notional_str": "$7.10M",
-          "notional_usd": 7100000.0,
-          "duration_str": "13H 50m",
-          "duration_seconds": 49800.0,
-          "duration_hours": 13.83
+          "notional_str": "$7.09M",
+          "notional_usd": 7090000.0,
+          "duration_str": "14H 12m",
+          "duration_seconds": 51120.0,
+          "duration_hours": 14.2
         },
         {
           "side": "BUY",
@@ -489,19 +489,19 @@
           "price": 2300.15,
           "notional_str": "$4.22M",
           "notional_usd": 4220000.0,
-          "duration_str": "9H 43m",
-          "duration_seconds": 34980.0,
-          "duration_hours": 9.72
+          "duration_str": "10H 5m",
+          "duration_seconds": 36300.0,
+          "duration_hours": 10.08
         },
         {
           "side": "BUY",
           "is_canceled": false,
           "price": 2300.0,
-          "notional_str": "$3.24M",
-          "notional_usd": 3240000.0,
-          "duration_str": "13H 46m",
-          "duration_seconds": 49560.0,
-          "duration_hours": 13.77
+          "notional_str": "$3.23M",
+          "notional_usd": 3230000.0,
+          "duration_str": "14H 9m",
+          "duration_seconds": 50940.0,
+          "duration_hours": 14.15
         },
         {
           "side": "BUY",
@@ -509,9 +509,9 @@
           "price": 2280.0,
           "notional_str": "$3.07M",
           "notional_usd": 3070000.0,
-          "duration_str": "13H 47m",
-          "duration_seconds": 49620.0,
-          "duration_hours": 13.78
+          "duration_str": "14H 9m",
+          "duration_seconds": 50940.0,
+          "duration_hours": 14.15
         },
         {
           "side": "SELL",
@@ -519,31 +519,21 @@
           "price": 2700.0,
           "notional_str": "$2.67M",
           "notional_usd": 2670000.0,
-          "duration_str": "13H 45m",
-          "duration_seconds": 49500.0,
-          "duration_hours": 13.75
+          "duration_str": "14H 8m",
+          "duration_seconds": 50880.0,
+          "duration_hours": 14.13
         }
       ],
       "all_orders": [
         {
           "side": "SELL",
           "is_canceled": false,
-          "price": 2712.0,
-          "notional_str": "$537.95K",
-          "notional_usd": 537950.0,
-          "duration_str": "3H 20m",
-          "duration_seconds": 12000.0,
-          "duration_hours": 3.33
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
           "price": 2706.0,
           "notional_str": "$550.13K",
           "notional_usd": 550130.0,
-          "duration_str": "13H 43m",
-          "duration_seconds": 49380.0,
-          "duration_hours": 13.72
+          "duration_str": "14H 5m",
+          "duration_seconds": 50700.0,
+          "duration_hours": 14.08
         },
         {
           "side": "SELL",
@@ -551,9 +541,9 @@
           "price": 2705.0,
           "notional_str": "$734.32K",
           "notional_usd": 734320.0,
-          "duration_str": "3H 22m",
-          "duration_seconds": 12120.0,
-          "duration_hours": 3.37
+          "duration_str": "3H 44m",
+          "duration_seconds": 13440.0,
+          "duration_hours": 3.73
         },
         {
           "side": "SELL",
@@ -561,9 +551,9 @@
           "price": 2700.0,
           "notional_str": "$2.67M",
           "notional_usd": 2670000.0,
-          "duration_str": "13H 45m",
-          "duration_seconds": 49500.0,
-          "duration_hours": 13.75
+          "duration_str": "14H 8m",
+          "duration_seconds": 50880.0,
+          "duration_hours": 14.13
         },
         {
           "side": "SELL",
@@ -571,56 +561,6 @@
           "price": 2650.0,
           "notional_str": "$645.07K",
           "notional_usd": 645070.0,
-          "duration_str": "13H 21m",
-          "duration_seconds": 48060.0,
-          "duration_hours": 13.35
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 2625.0,
-          "notional_str": "$611.94K",
-          "notional_usd": 611940.0,
-          "duration_str": "12H 17m",
-          "duration_seconds": 44220.0,
-          "duration_hours": 12.28
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 2620.0,
-          "notional_str": "$516.25K",
-          "notional_usd": 516250.0,
-          "duration_str": "12H 41m",
-          "duration_seconds": 45660.0,
-          "duration_hours": 12.68
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 2600.0,
-          "notional_str": "$1.21M",
-          "notional_usd": 1210000.0,
-          "duration_str": "13H 53m",
-          "duration_seconds": 49980.0,
-          "duration_hours": 13.88
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 2589.0,
-          "notional_str": "$784.51K",
-          "notional_usd": 784510.0,
-          "duration_str": "3H 22m",
-          "duration_seconds": 12120.0,
-          "duration_hours": 3.37
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 2550.0,
-          "notional_str": "$1.13M",
-          "notional_usd": 1130000.0,
           "duration_str": "13H 44m",
           "duration_seconds": 49440.0,
           "duration_hours": 13.73
@@ -628,12 +568,62 @@
         {
           "side": "SELL",
           "is_canceled": false,
+          "price": 2625.0,
+          "notional_str": "$611.94K",
+          "notional_usd": 611940.0,
+          "duration_str": "12H 40m",
+          "duration_seconds": 45600.0,
+          "duration_hours": 12.67
+        },
+        {
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 2620.0,
+          "notional_str": "$516.25K",
+          "notional_usd": 516250.0,
+          "duration_str": "13H 4m",
+          "duration_seconds": 47040.0,
+          "duration_hours": 13.07
+        },
+        {
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 2600.0,
+          "notional_str": "$1.24M",
+          "notional_usd": 1240000.0,
+          "duration_str": "14H 15m",
+          "duration_seconds": 51300.0,
+          "duration_hours": 14.25
+        },
+        {
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 2589.0,
+          "notional_str": "$784.51K",
+          "notional_usd": 784510.0,
+          "duration_str": "3H 44m",
+          "duration_seconds": 13440.0,
+          "duration_hours": 3.73
+        },
+        {
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 2550.0,
+          "notional_str": "$1.13M",
+          "notional_usd": 1130000.0,
+          "duration_str": "14H 6m",
+          "duration_seconds": 50760.0,
+          "duration_hours": 14.1
+        },
+        {
+          "side": "SELL",
+          "is_canceled": false,
           "price": 2520.0,
-          "notional_str": "$704.63K",
-          "notional_usd": 704630.0,
-          "duration_str": "1D 6H",
-          "duration_seconds": 108000.0,
-          "duration_hours": 30.0
+          "notional_str": "$704.34K",
+          "notional_usd": 704340.0,
+          "duration_str": "1D 7H",
+          "duration_seconds": 111600.0,
+          "duration_hours": 31.0
         },
         {
           "side": "SELL",
@@ -641,9 +631,9 @@
           "price": 2515.13,
           "notional_str": "$1.00M",
           "notional_usd": 1000000.0,
-          "duration_str": "46m 3s",
-          "duration_seconds": 2763.0,
-          "duration_hours": 0.77
+          "duration_str": "1H 8m",
+          "duration_seconds": 4080.0,
+          "duration_hours": 1.13
         },
         {
           "side": "SELL",
@@ -658,132 +648,142 @@
         {
           "side": "SELL",
           "is_canceled": false,
-          "price": 2429.29,
-          "notional_str": "$733.51K",
-          "notional_usd": 733510.0,
-          "duration_str": "0m 51s",
-          "duration_seconds": 51.0,
-          "duration_hours": 0.01
+          "price": 2485.0,
+          "notional_str": "$821.89K",
+          "notional_usd": 821890.0,
+          "duration_str": "16m 38s",
+          "duration_seconds": 998.0,
+          "duration_hours": 0.28
         },
         {
           "side": "SELL",
           "is_canceled": false,
-          "price": 2428.92,
-          "notional_str": "$736.82K",
-          "notional_usd": 736820.0,
-          "duration_str": "0m 51s",
-          "duration_seconds": 51.0,
-          "duration_hours": 0.01
+          "price": 2435.96,
+          "notional_str": "$732.51K",
+          "notional_usd": 732510.0,
+          "duration_str": "3m 16s",
+          "duration_seconds": 196.0,
+          "duration_hours": 0.05
         },
         {
           "side": "SELL",
           "is_canceled": false,
-          "price": 2427.1,
-          "notional_str": "$1.70M",
-          "notional_usd": 1700000.0,
-          "duration_str": "0m 0s",
-          "duration_seconds": 0.0,
+          "price": 2435.73,
+          "notional_str": "$732.73K",
+          "notional_usd": 732730.0,
+          "duration_str": "3m 16s",
+          "duration_seconds": 196.0,
+          "duration_hours": 0.05
+        },
+        {
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 2434.17,
+          "notional_str": "$1.75M",
+          "notional_usd": 1750000.0,
+          "duration_str": "0m 10s",
+          "duration_seconds": 10.0,
           "duration_hours": 0.0
         },
         {
           "side": "SELL",
           "is_canceled": false,
-          "price": 2425.33,
-          "notional_str": "$554.45K",
-          "notional_usd": 554450.0,
-          "duration_str": "1m 45s",
-          "duration_seconds": 105.0,
+          "price": 2431.11,
+          "notional_str": "$613.97K",
+          "notional_usd": 613970.0,
+          "duration_str": "3m 51s",
+          "duration_seconds": 231.0,
+          "duration_hours": 0.06
+        },
+        {
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 2427.41,
+          "notional_str": "$731.77K",
+          "notional_usd": 731770.0,
+          "duration_str": "1m 53s",
+          "duration_seconds": 113.0,
           "duration_hours": 0.03
         },
         {
           "side": "SELL",
           "is_canceled": false,
-          "price": 2421.4,
-          "notional_str": "$781.84K",
-          "notional_usd": 781840.0,
-          "duration_str": "0m 11s",
-          "duration_seconds": 11.0,
-          "duration_hours": 0.0
+          "price": 2427.19,
+          "notional_str": "$732.41K",
+          "notional_usd": 732410.0,
+          "duration_str": "1m 53s",
+          "duration_seconds": 113.0,
+          "duration_hours": 0.03
         },
         {
-          "side": "SELL",
+          "side": "BUY",
           "is_canceled": false,
-          "price": 2421.21,
-          "notional_str": "$755.08K",
-          "notional_usd": 755080.0,
-          "duration_str": "0m 11s",
-          "duration_seconds": 11.0,
+          "price": 2419.85,
+          "notional_str": "$733.15K",
+          "notional_usd": 733150.0,
+          "duration_str": "0m 3s",
+          "duration_seconds": 3.0,
           "duration_hours": 0.0
         },
         {
           "side": "BUY",
           "is_canceled": false,
-          "price": 2413.97,
-          "notional_str": "$730.25K",
-          "notional_usd": 730250.0,
-          "duration_str": "0m 11s",
-          "duration_seconds": 11.0,
-          "duration_hours": 0.0
+          "price": 2419.7,
+          "notional_str": "$727.23K",
+          "notional_usd": 727230.0,
+          "duration_str": "1m 47s",
+          "duration_seconds": 107.0,
+          "duration_hours": 0.03
         },
         {
           "side": "BUY",
           "is_canceled": false,
-          "price": 2413.85,
-          "notional_str": "$732.88K",
-          "notional_usd": 732880.0,
-          "duration_str": "0m 11s",
-          "duration_seconds": 11.0,
-          "duration_hours": 0.0
+          "price": 2414.57,
+          "notional_str": "$727.61K",
+          "notional_usd": 727610.0,
+          "duration_str": "3m 16s",
+          "duration_seconds": 196.0,
+          "duration_hours": 0.05
         },
         {
           "side": "BUY",
           "is_canceled": false,
-          "price": 2407.48,
-          "notional_str": "$730.37K",
-          "notional_usd": 730370.0,
-          "duration_str": "0m 11s",
-          "duration_seconds": 11.0,
-          "duration_hours": 0.0
+          "price": 2414.41,
+          "notional_str": "$727.38K",
+          "notional_usd": 727380.0,
+          "duration_str": "3m 16s",
+          "duration_seconds": 196.0,
+          "duration_hours": 0.05
         },
         {
           "side": "BUY",
           "is_canceled": false,
-          "price": 2407.47,
-          "notional_str": "$733.00K",
-          "notional_usd": 733000.0,
-          "duration_str": "0m 11s",
-          "duration_seconds": 11.0,
-          "duration_hours": 0.0
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 2404.19,
-          "notional_str": "$602.43K",
-          "notional_usd": 602430.0,
-          "duration_str": "17m 39s",
-          "duration_seconds": 1059.0,
-          "duration_hours": 0.29
+          "price": 2409.8,
+          "notional_str": "$555.25K",
+          "notional_usd": 555250.0,
+          "duration_str": "1m 49s",
+          "duration_seconds": 109.0,
+          "duration_hours": 0.03
         },
         {
           "side": "BUY",
           "is_canceled": false,
           "price": 2390.0,
-          "notional_str": "$878.07K",
-          "notional_usd": 878070.0,
-          "duration_str": "16H 52m",
-          "duration_seconds": 60720.0,
-          "duration_hours": 16.87
+          "notional_str": "$853.96K",
+          "notional_usd": 853960.0,
+          "duration_str": "17H 14m",
+          "duration_seconds": 62040.0,
+          "duration_hours": 17.23
         },
         {
           "side": "BUY",
           "is_canceled": false,
           "price": 2386.0,
-          "notional_str": "$521.91K",
-          "notional_usd": 521909.99999999994,
-          "duration_str": "5H 34m",
-          "duration_seconds": 20040.0,
-          "duration_hours": 5.57
+          "notional_str": "$523.10K",
+          "notional_usd": 523100.0,
+          "duration_str": "5H 56m",
+          "duration_seconds": 21360.0,
+          "duration_hours": 5.93
         },
         {
           "side": "BUY",
@@ -791,19 +791,19 @@
           "price": 2375.0,
           "notional_str": "$582.13K",
           "notional_usd": 582130.0,
-          "duration_str": "4H 29m",
-          "duration_seconds": 16140.0,
-          "duration_hours": 4.48
+          "duration_str": "4H 51m",
+          "duration_seconds": 17460.0,
+          "duration_hours": 4.85
         },
         {
           "side": "BUY",
           "is_canceled": false,
           "price": 2350.0,
-          "notional_str": "$7.10M",
-          "notional_usd": 7100000.0,
-          "duration_str": "13H 50m",
-          "duration_seconds": 49800.0,
-          "duration_hours": 13.83
+          "notional_str": "$7.09M",
+          "notional_usd": 7090000.0,
+          "duration_str": "14H 12m",
+          "duration_seconds": 51120.0,
+          "duration_hours": 14.2
         },
         {
           "side": "BUY",
@@ -811,9 +811,9 @@
           "price": 2340.0,
           "notional_str": "$674.20K",
           "notional_usd": 674200.0,
-          "duration_str": "5H 1m",
-          "duration_seconds": 18060.0,
-          "duration_hours": 5.02
+          "duration_str": "5H 24m",
+          "duration_seconds": 19440.0,
+          "duration_hours": 5.4
         },
         {
           "side": "BUY",
@@ -821,9 +821,9 @@
           "price": 2330.0,
           "notional_str": "$961.79K",
           "notional_usd": 961790.0,
-          "duration_str": "13H 43m",
-          "duration_seconds": 49380.0,
-          "duration_hours": 13.72
+          "duration_str": "14H 5m",
+          "duration_seconds": 50700.0,
+          "duration_hours": 14.08
         },
         {
           "side": "BUY",
@@ -831,9 +831,9 @@
           "price": 2320.0,
           "notional_str": "$1.09M",
           "notional_usd": 1090000.0,
-          "duration_str": "13H 43m",
-          "duration_seconds": 49380.0,
-          "duration_hours": 13.72
+          "duration_str": "14H 5m",
+          "duration_seconds": 50700.0,
+          "duration_hours": 14.08
         },
         {
           "side": "BUY",
@@ -841,26 +841,26 @@
           "price": 2300.15,
           "notional_str": "$4.22M",
           "notional_usd": 4220000.0,
-          "duration_str": "9H 43m",
-          "duration_seconds": 34980.0,
-          "duration_hours": 9.72
+          "duration_str": "10H 5m",
+          "duration_seconds": 36300.0,
+          "duration_hours": 10.08
         },
         {
           "side": "BUY",
           "is_canceled": false,
           "price": 2300.0,
-          "notional_str": "$3.24M",
-          "notional_usd": 3240000.0,
-          "duration_str": "13H 46m",
-          "duration_seconds": 49560.0,
-          "duration_hours": 13.77
+          "notional_str": "$3.23M",
+          "notional_usd": 3230000.0,
+          "duration_str": "14H 9m",
+          "duration_seconds": 50940.0,
+          "duration_hours": 14.15
         },
         {
           "side": "BUY",
           "is_canceled": false,
           "price": 2300.0,
-          "notional_str": "$812.22K",
-          "notional_usd": 812220.0,
+          "notional_str": "$811.73K",
+          "notional_usd": 811730.0,
           "duration_str": "1D 3H",
           "duration_seconds": 97200.0,
           "duration_hours": 27.0
@@ -871,9 +871,9 @@
           "price": 2280.0,
           "notional_str": "$3.07M",
           "notional_usd": 3070000.0,
-          "duration_str": "13H 47m",
-          "duration_seconds": 49620.0,
-          "duration_hours": 13.78
+          "duration_str": "14H 9m",
+          "duration_seconds": 50940.0,
+          "duration_hours": 14.15
         },
         {
           "side": "BUY",
@@ -881,9 +881,9 @@
           "price": 2270.0,
           "notional_str": "$2.55M",
           "notional_usd": 2550000.0,
-          "duration_str": "12H 39m",
-          "duration_seconds": 45540.0,
-          "duration_hours": 12.65
+          "duration_str": "13H 2m",
+          "duration_seconds": 46920.0,
+          "duration_hours": 13.03
         },
         {
           "side": "BUY",
@@ -891,9 +891,9 @@
           "price": 2260.0,
           "notional_str": "$796.81K",
           "notional_usd": 796810.0,
-          "duration_str": "13H 46m",
-          "duration_seconds": 49560.0,
-          "duration_hours": 13.77
+          "duration_str": "14H 9m",
+          "duration_seconds": 50940.0,
+          "duration_hours": 14.15
         },
         {
           "side": "BUY",
@@ -901,9 +901,9 @@
           "price": 2250.0,
           "notional_str": "$1.60M",
           "notional_usd": 1600000.0,
-          "duration_str": "13H 44m",
-          "duration_seconds": 49440.0,
-          "duration_hours": 13.73
+          "duration_str": "14H 6m",
+          "duration_seconds": 50760.0,
+          "duration_hours": 14.1
         },
         {
           "side": "BUY",
@@ -916,25 +916,25 @@
           "duration_hours": 43.0
         }
       ],
-      "scrape_duration_s": 3.13
+      "scrape_duration_s": 3.12
     },
     "SOL": {
       "asset": "SOL",
       "orders_count": 39,
       "side_parse_health": "HEALTHY",
-      "total_notional_usd": 27705520.0,
-      "buy_notional_usd": 15027710.0,
-      "sell_notional_usd": 12677810.0,
-      "imbalance_ratio": 1.185,
-      "max_single_order_usd": 2100000.0,
+      "total_notional_usd": 27341470.0,
+      "buy_notional_usd": 14920850.0,
+      "sell_notional_usd": 12420620.0,
+      "imbalance_ratio": 1.201,
+      "max_single_order_usd": 2080000.0,
       "oldest_order_hours": 616.0,
       "top_whale_walls": [
         {
           "side": "BUY",
           "is_canceled": false,
           "price": 95.0,
-          "notional_str": "$2.10M",
-          "notional_usd": 2100000.0,
+          "notional_str": "$2.08M",
+          "notional_usd": 2080000.0,
           "duration_str": "7D 14H",
           "duration_seconds": 655200.0,
           "duration_hours": 182.0
@@ -981,6 +981,16 @@
         }
       ],
       "all_orders": [
+        {
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 127.0,
+          "notional_str": "$270.38K",
+          "notional_usd": 270380.0,
+          "duration_str": "7D 14H",
+          "duration_seconds": 655200.0,
+          "duration_hours": 182.0
+        },
         {
           "side": "SELL",
           "is_canceled": false,
@@ -1125,11 +1135,11 @@
           "side": "SELL",
           "is_canceled": false,
           "price": 107.55,
-          "notional_str": "$330.15K",
-          "notional_usd": 330150.0,
-          "duration_str": "5H 31m",
-          "duration_seconds": 19860.0,
-          "duration_hours": 5.52
+          "notional_str": "$330.26K",
+          "notional_usd": 330260.0,
+          "duration_str": "5H 53m",
+          "duration_seconds": 21180.0,
+          "duration_hours": 5.88
         },
         {
           "side": "SELL",
@@ -1137,46 +1147,56 @@
           "price": 107.22,
           "notional_str": "$433.91K",
           "notional_usd": 433910.0,
-          "duration_str": "2H 14m",
-          "duration_seconds": 8040.0,
-          "duration_hours": 2.23
+          "duration_str": "2H 36m",
+          "duration_seconds": 9360.0,
+          "duration_hours": 2.6
         },
         {
           "side": "SELL",
           "is_canceled": false,
-          "price": 104.96,
-          "notional_str": "$347.92K",
-          "notional_usd": 347920.0,
-          "duration_str": "3m 32s",
-          "duration_seconds": 212.0,
-          "duration_hours": 0.06
+          "price": 105.12,
+          "notional_str": "$348.44K",
+          "notional_usd": 348440.0,
+          "duration_str": "14m 10s",
+          "duration_seconds": 850.0,
+          "duration_hours": 0.24
         },
         {
           "side": "SELL",
           "is_canceled": false,
-          "price": 104.88,
-          "notional_str": "$546.35K",
-          "notional_usd": 546350.0,
-          "duration_str": "4m 43s",
-          "duration_seconds": 283.0,
-          "duration_hours": 0.08
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 104.47,
-          "notional_str": "$346.91K",
-          "notional_usd": 346910.0,
-          "duration_str": "0m 15s",
-          "duration_seconds": 15.0,
-          "duration_hours": 0.0
+          "price": 104.78,
+          "notional_str": "$365.06K",
+          "notional_usd": 365060.0,
+          "duration_str": "0m 43s",
+          "duration_seconds": 43.0,
+          "duration_hours": 0.01
         },
         {
           "side": "BUY",
           "is_canceled": false,
-          "price": 104.0,
-          "notional_str": "$353.44K",
-          "notional_usd": 353440.0,
+          "price": 104.32,
+          "notional_str": "$354.68K",
+          "notional_usd": 354680.0,
+          "duration_str": "0m 43s",
+          "duration_seconds": 43.0,
+          "duration_hours": 0.01
+        },
+        {
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 103.95,
+          "notional_str": "$352.96K",
+          "notional_usd": 352960.0,
+          "duration_str": "3m 13s",
+          "duration_seconds": 193.0,
+          "duration_hours": 0.05
+        },
+        {
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 103.84,
+          "notional_str": "$301.17K",
+          "notional_usd": 301170.0,
           "duration_str": "0m 0s",
           "duration_seconds": 0.0,
           "duration_hours": 0.0
@@ -1184,42 +1204,32 @@
         {
           "side": "BUY",
           "is_canceled": false,
-          "price": 103.61,
-          "notional_str": "$352.39K",
-          "notional_usd": 352390.0,
-          "duration_str": "6m 55s",
-          "duration_seconds": 415.0,
-          "duration_hours": 0.12
+          "price": 103.72,
+          "notional_str": "$603.88K",
+          "notional_usd": 603880.0,
+          "duration_str": "3m 40s",
+          "duration_seconds": 220.0,
+          "duration_hours": 0.06
         },
         {
           "side": "BUY",
           "is_canceled": false,
           "price": 103.5,
-          "notional_str": "$715.75K",
-          "notional_usd": 715750.0,
-          "duration_str": "36m 41s",
-          "duration_seconds": 2201.0,
-          "duration_hours": 0.61
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 103.36,
-          "notional_str": "$522.55K",
-          "notional_usd": 522549.99999999994,
-          "duration_str": "6m 56s",
-          "duration_seconds": 416.0,
-          "duration_hours": 0.12
+          "notional_str": "$715.74K",
+          "notional_usd": 715740.0,
+          "duration_str": "59m 0s",
+          "duration_seconds": 3540.0,
+          "duration_hours": 0.98
         },
         {
           "side": "BUY",
           "is_canceled": false,
           "price": 103.0,
-          "notional_str": "$752.78K",
-          "notional_usd": 752780.0,
-          "duration_str": "36m 24s",
-          "duration_seconds": 2184.0,
-          "duration_hours": 0.61
+          "notional_str": "$752.81K",
+          "notional_usd": 752810.0,
+          "duration_str": "58m 43s",
+          "duration_seconds": 3523.0,
+          "duration_hours": 0.98
         },
         {
           "side": "BUY",
@@ -1227,19 +1237,19 @@
           "price": 100.42,
           "notional_str": "$304.97K",
           "notional_usd": 304970.0,
-          "duration_str": "19H 39m",
-          "duration_seconds": 70740.0,
-          "duration_hours": 19.65
+          "duration_str": "20H 1m",
+          "duration_seconds": 72060.0,
+          "duration_hours": 20.02
         },
         {
           "side": "BUY",
           "is_canceled": false,
           "price": 100.0,
-          "notional_str": "$796.91K",
-          "notional_usd": 796910.0,
-          "duration_str": "12D 7H",
-          "duration_seconds": 1062000.0,
-          "duration_hours": 295.0
+          "notional_str": "$796.61K",
+          "notional_usd": 796610.0,
+          "duration_str": "12D 8H",
+          "duration_seconds": 1065600.0,
+          "duration_hours": 296.0
         },
         {
           "side": "BUY",
@@ -1257,9 +1267,9 @@
           "price": 98.07,
           "notional_str": "$463.14K",
           "notional_usd": 463140.0,
-          "duration_str": "8H 6m",
-          "duration_seconds": 29160.0,
-          "duration_hours": 8.1
+          "duration_str": "8H 28m",
+          "duration_seconds": 30480.0,
+          "duration_hours": 8.47
         },
         {
           "side": "BUY",
@@ -1285,8 +1295,8 @@
           "side": "BUY",
           "is_canceled": false,
           "price": 97.0,
-          "notional_str": "$727.29K",
-          "notional_usd": 727290.0,
+          "notional_str": "$727.19K",
+          "notional_usd": 727190.0,
           "duration_str": "7D 14H",
           "duration_seconds": 655200.0,
           "duration_hours": 182.0
@@ -1335,8 +1345,8 @@
           "side": "BUY",
           "is_canceled": false,
           "price": 95.0,
-          "notional_str": "$2.10M",
-          "notional_usd": 2100000.0,
+          "notional_str": "$2.08M",
+          "notional_usd": 2080000.0,
           "duration_str": "7D 14H",
           "duration_seconds": 655200.0,
           "duration_hours": 182.0
@@ -1347,9 +1357,9 @@
           "price": 94.9,
           "notional_str": "$477.74K",
           "notional_usd": 477740.0,
-          "duration_str": "1D 15H",
-          "duration_seconds": 140400.0,
-          "duration_hours": 39.0
+          "duration_str": "1D 16H",
+          "duration_seconds": 144000.0,
+          "duration_hours": 40.0
         },
         {
           "side": "BUY",
@@ -1357,19 +1367,9 @@
           "price": 94.3,
           "notional_str": "$472.49K",
           "notional_usd": 472490.0,
-          "duration_str": "1D 15H",
-          "duration_seconds": 140400.0,
-          "duration_hours": 39.0
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 93.9,
-          "notional_str": "$470.79K",
-          "notional_usd": 470790.0,
-          "duration_str": "1D 18H",
-          "duration_seconds": 151200.0,
-          "duration_hours": 42.0
+          "duration_str": "1D 16H",
+          "duration_seconds": 144000.0,
+          "duration_hours": 40.0
         }
       ],
       "scrape_duration_s": 3.12
@@ -1378,19 +1378,29 @@
       "asset": "BNB",
       "orders_count": 39,
       "side_parse_health": "HEALTHY",
-      "total_notional_usd": 5959330.0,
-      "buy_notional_usd": 3126710.0,
-      "sell_notional_usd": 2832620.0,
-      "imbalance_ratio": 1.104,
-      "max_single_order_usd": 387290.0,
-      "oldest_order_hours": 43.0,
+      "total_notional_usd": 6407590.0,
+      "buy_notional_usd": 3609170.0,
+      "sell_notional_usd": 2798420.0,
+      "imbalance_ratio": 1.29,
+      "max_single_order_usd": 444570.0,
+      "oldest_order_hours": 181.0,
       "top_whale_walls": [
         {
           "side": "BUY",
           "is_canceled": false,
+          "price": 708.0,
+          "notional_str": "$444.57K",
+          "notional_usd": 444570.0,
+          "duration_str": "7D 13H",
+          "duration_seconds": 651600.0,
+          "duration_hours": 181.0
+        },
+        {
+          "side": "BUY",
+          "is_canceled": false,
           "price": 710.0,
-          "notional_str": "$387.29K",
-          "notional_usd": 387290.0,
+          "notional_str": "$361.14K",
+          "notional_usd": 361140.0,
           "duration_str": "1D 19H",
           "duration_seconds": 154800.0,
           "duration_hours": 43.0
@@ -1401,9 +1411,9 @@
           "price": 735.64,
           "notional_str": "$315.05K",
           "notional_usd": 315050.0,
-          "duration_str": "33m 19s",
-          "duration_seconds": 1999.0,
-          "duration_hours": 0.56
+          "duration_str": "55m 38s",
+          "duration_seconds": 3338.0,
+          "duration_hours": 0.93
         },
         {
           "side": "BUY",
@@ -1411,28 +1421,18 @@
           "price": 709.92,
           "notional_str": "$309.60K",
           "notional_usd": 309600.0,
-          "duration_str": "33m 19s",
-          "duration_seconds": 1999.0,
-          "duration_hours": 0.56
+          "duration_str": "55m 38s",
+          "duration_seconds": 3338.0,
+          "duration_hours": 0.93
         },
         {
           "side": "SELL",
           "is_canceled": false,
-          "price": 728.37,
-          "notional_str": "$260.06K",
-          "notional_usd": 260060.0,
-          "duration_str": "14m 17s",
-          "duration_seconds": 857.0,
-          "duration_hours": 0.24
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 727.04,
-          "notional_str": "$259.56K",
-          "notional_usd": 259560.0,
-          "duration_str": "14m 38s",
-          "duration_seconds": 878.0,
+          "price": 729.04,
+          "notional_str": "$260.35K",
+          "notional_usd": 260350.00000000003,
+          "duration_str": "14m 27s",
+          "duration_seconds": 867.0,
           "duration_hours": 0.24
         }
       ],
@@ -1440,22 +1440,42 @@
         {
           "side": "SELL",
           "is_canceled": false,
-          "price": 735.64,
-          "notional_str": "$315.05K",
-          "notional_usd": 315050.0,
-          "duration_str": "33m 19s",
-          "duration_seconds": 1999.0,
-          "duration_hours": 0.56
+          "price": 737.0,
+          "notional_str": "$70.75K",
+          "notional_usd": 70750.0,
+          "duration_str": "9H 54m",
+          "duration_seconds": 35640.0,
+          "duration_hours": 9.9
         },
         {
           "side": "SELL",
           "is_canceled": false,
-          "price": 735.09,
-          "notional_str": "$152.40K",
-          "notional_usd": 152400.0,
-          "duration_str": "39m 57s",
-          "duration_seconds": 2397.0,
-          "duration_hours": 0.67
+          "price": 735.64,
+          "notional_str": "$315.05K",
+          "notional_usd": 315050.0,
+          "duration_str": "55m 38s",
+          "duration_seconds": 3338.0,
+          "duration_hours": 0.93
+        },
+        {
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 735.21,
+          "notional_str": "$81.55K",
+          "notional_usd": 81550.0,
+          "duration_str": "6m 44s",
+          "duration_seconds": 404.0,
+          "duration_hours": 0.11
+        },
+        {
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 735.16,
+          "notional_str": "$152.55K",
+          "notional_usd": 152550.0,
+          "duration_str": "5m 40s",
+          "duration_seconds": 340.0,
+          "duration_hours": 0.09
         },
         {
           "side": "SELL",
@@ -1463,89 +1483,109 @@
           "price": 735.0,
           "notional_str": "$103.76K",
           "notional_usd": 103760.0,
-          "duration_str": "5H 50m",
-          "duration_seconds": 21000.0,
-          "duration_hours": 5.83
+          "duration_str": "6H 12m",
+          "duration_seconds": 22320.0,
+          "duration_hours": 6.2
         },
         {
           "side": "SELL",
           "is_canceled": false,
-          "price": 734.6,
-          "notional_str": "$79.94K",
-          "notional_usd": 79940.0,
-          "duration_str": "0m 2s",
-          "duration_seconds": 2.0,
-          "duration_hours": 0.0
+          "price": 732.78,
+          "notional_str": "$151.95K",
+          "notional_usd": 151950.0,
+          "duration_str": "5m 27s",
+          "duration_seconds": 327.0,
+          "duration_hours": 0.09
         },
         {
           "side": "SELL",
           "is_canceled": false,
-          "price": 732.5,
-          "notional_str": "$153.80K",
-          "notional_usd": 153800.0,
-          "duration_str": "39m 42s",
-          "duration_seconds": 2382.0,
-          "duration_hours": 0.66
+          "price": 730.46,
+          "notional_str": "$182.62K",
+          "notional_usd": 182620.0,
+          "duration_str": "13m 38s",
+          "duration_seconds": 818.0,
+          "duration_hours": 0.23
         },
         {
           "side": "SELL",
           "is_canceled": false,
-          "price": 730.59,
-          "notional_str": "$182.67K",
-          "notional_usd": 182670.0,
-          "duration_str": "16m 45s",
-          "duration_seconds": 1005.0,
-          "duration_hours": 0.28
+          "price": 729.12,
+          "notional_str": "$80.95K",
+          "notional_usd": 80950.0,
+          "duration_str": "5m 40s",
+          "duration_seconds": 340.0,
+          "duration_hours": 0.09
         },
         {
           "side": "SELL",
           "is_canceled": false,
-          "price": 728.37,
-          "notional_str": "$260.06K",
-          "notional_usd": 260060.0,
-          "duration_str": "14m 17s",
-          "duration_seconds": 857.0,
+          "price": 729.04,
+          "notional_str": "$260.35K",
+          "notional_usd": 260350.00000000003,
+          "duration_str": "14m 27s",
+          "duration_seconds": 867.0,
           "duration_hours": 0.24
         },
         {
           "side": "SELL",
           "is_canceled": false,
-          "price": 728.0,
-          "notional_str": "$190.37K",
-          "notional_usd": 190370.0,
-          "duration_str": "0m 2s",
-          "duration_seconds": 2.0,
+          "price": 728.93,
+          "notional_str": "$159.80K",
+          "notional_usd": 159800.0,
+          "duration_str": "1m 54s",
+          "duration_seconds": 114.0,
+          "duration_hours": 0.03
+        },
+        {
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 727.97,
+          "notional_str": "$150.92K",
+          "notional_usd": 150920.0,
+          "duration_str": "4m 59s",
+          "duration_seconds": 299.0,
+          "duration_hours": 0.08
+        },
+        {
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 727.83,
+          "notional_str": "$80.80K",
+          "notional_usd": 80800.0,
+          "duration_str": "5m 27s",
+          "duration_seconds": 327.0,
+          "duration_hours": 0.09
+        },
+        {
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 727.72,
+          "notional_str": "$259.83K",
+          "notional_usd": 259829.99999999997,
+          "duration_str": "11m 4s",
+          "duration_seconds": 664.0,
+          "duration_hours": 0.18
+        },
+        {
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 727.35,
+          "notional_str": "$171.36K",
+          "notional_usd": 171360.0,
+          "duration_str": "3m 55s",
+          "duration_seconds": 235.0,
+          "duration_hours": 0.07
+        },
+        {
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 726.92,
+          "notional_str": "$181.75K",
+          "notional_usd": 181750.0,
+          "duration_str": "0m 3s",
+          "duration_seconds": 3.0,
           "duration_hours": 0.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 727.6,
-          "notional_str": "$80.81K",
-          "notional_usd": 80810.0,
-          "duration_str": "39m 42s",
-          "duration_seconds": 2382.0,
-          "duration_hours": 0.66
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 727.58,
-          "notional_str": "$151.00K",
-          "notional_usd": 151000.0,
-          "duration_str": "27m 27s",
-          "duration_seconds": 1647.0,
-          "duration_hours": 0.46
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 727.04,
-          "notional_str": "$259.56K",
-          "notional_usd": 259560.0,
-          "duration_str": "14m 38s",
-          "duration_seconds": 878.0,
-          "duration_hours": 0.24
         },
         {
           "side": "SELL",
@@ -1553,109 +1593,79 @@
           "price": 726.84,
           "notional_str": "$63.42K",
           "notional_usd": 63420.0,
-          "duration_str": "40m 48s",
-          "duration_seconds": 2448.0,
-          "duration_hours": 0.68
+          "duration_str": "1H 3m",
+          "duration_seconds": 3780.0,
+          "duration_hours": 1.05
         },
         {
           "side": "SELL",
           "is_canceled": false,
-          "price": 726.63,
-          "notional_str": "$181.69K",
-          "notional_usd": 181690.0,
-          "duration_str": "8m 5s",
-          "duration_seconds": 485.0,
-          "duration_hours": 0.13
+          "price": 725.48,
+          "notional_str": "$180.88K",
+          "notional_usd": 180880.0,
+          "duration_str": "1m 9s",
+          "duration_seconds": 69.0,
+          "duration_hours": 0.02
         },
         {
           "side": "SELL",
           "is_canceled": false,
-          "price": 726.38,
-          "notional_str": "$171.28K",
-          "notional_usd": 171280.0,
-          "duration_str": "3m 35s",
-          "duration_seconds": 215.0,
-          "duration_hours": 0.06
+          "price": 725.45,
+          "notional_str": "$80.54K",
+          "notional_usd": 80540.0,
+          "duration_str": "4m 59s",
+          "duration_seconds": 299.0,
+          "duration_hours": 0.08
         },
         {
           "side": "SELL",
           "is_canceled": false,
-          "price": 725.32,
-          "notional_str": "$80.53K",
-          "notional_usd": 80530.0,
-          "duration_str": "27m 27s",
-          "duration_seconds": 1647.0,
-          "duration_hours": 0.46
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 725.24,
-          "notional_str": "$80.52K",
-          "notional_usd": 80520.0,
-          "duration_str": "27m 27s",
-          "duration_seconds": 1647.0,
-          "duration_hours": 0.46
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 724.41,
-          "notional_str": "$76.22K",
-          "notional_usd": 76220.0,
-          "duration_str": "0m 2s",
-          "duration_seconds": 2.0,
-          "duration_hours": 0.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 724.34,
-          "notional_str": "$180.92K",
-          "notional_usd": 180920.0,
-          "duration_str": "0m 4s",
-          "duration_seconds": 4.0,
-          "duration_hours": 0.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 723.69,
-          "notional_str": "$68.62K",
-          "notional_usd": 68620.0,
-          "duration_str": "6m 7s",
-          "duration_seconds": 367.0,
-          "duration_hours": 0.1
+          "price": 724.37,
+          "notional_str": "$69.59K",
+          "notional_usd": 69590.0,
+          "duration_str": "14m 27s",
+          "duration_seconds": 867.0,
+          "duration_hours": 0.24
         },
         {
           "side": "BUY",
           "is_canceled": false,
-          "price": 719.68,
-          "notional_str": "$69.99K",
-          "notional_usd": 69990.0,
-          "duration_str": "0m 2s",
-          "duration_seconds": 2.0,
-          "duration_hours": 0.0
+          "price": 720.43,
+          "notional_str": "$249.42K",
+          "notional_usd": 249420.0,
+          "duration_str": "14m 33s",
+          "duration_seconds": 873.0,
+          "duration_hours": 0.24
         },
         {
           "side": "BUY",
           "is_canceled": false,
-          "price": 719.35,
-          "notional_str": "$179.65K",
-          "notional_usd": 179650.0,
-          "duration_str": "0m 4s",
-          "duration_seconds": 4.0,
-          "duration_hours": 0.0
+          "price": 718.8,
+          "notional_str": "$179.84K",
+          "notional_usd": 179840.0,
+          "duration_str": "0m 28s",
+          "duration_seconds": 28.0,
+          "duration_hours": 0.01
         },
         {
           "side": "BUY",
           "is_canceled": false,
           "price": 718.68,
-          "notional_str": "$79.82K",
-          "notional_usd": 79820.0,
-          "duration_str": "25m 26s",
-          "duration_seconds": 1526.0,
-          "duration_hours": 0.42
+          "notional_str": "$249.11K",
+          "notional_usd": 249110.0,
+          "duration_str": "47m 45s",
+          "duration_seconds": 2865.0,
+          "duration_hours": 0.8
+        },
+        {
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 717.9,
+          "notional_str": "$257.82K",
+          "notional_usd": 257820.0,
+          "duration_str": "11m 4s",
+          "duration_seconds": 664.0,
+          "duration_hours": 0.18
         },
         {
           "side": "BUY",
@@ -1663,29 +1673,9 @@
           "price": 717.87,
           "notional_str": "$149.43K",
           "notional_usd": 149430.0,
-          "duration_str": "25m 9s",
-          "duration_seconds": 1509.0,
-          "duration_hours": 0.42
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 717.73,
-          "notional_str": "$172.77K",
-          "notional_usd": 172770.0,
-          "duration_str": "6m 36s",
-          "duration_seconds": 396.0,
-          "duration_hours": 0.11
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 717.5,
-          "notional_str": "$180.11K",
-          "notional_usd": 180110.0,
-          "duration_str": "0m 19s",
-          "duration_seconds": 19.0,
-          "duration_hours": 0.01
+          "duration_str": "47m 28s",
+          "duration_seconds": 2848.0,
+          "duration_hours": 0.79
         },
         {
           "side": "BUY",
@@ -1693,19 +1683,19 @@
           "price": 717.3,
           "notional_str": "$69.65K",
           "notional_usd": 69650.0,
-          "duration_str": "33m 26s",
-          "duration_seconds": 2006.0,
-          "duration_hours": 0.56
+          "duration_str": "55m 45s",
+          "duration_seconds": 3345.0,
+          "duration_hours": 0.93
         },
         {
           "side": "BUY",
           "is_canceled": false,
-          "price": 717.23,
-          "notional_str": "$257.60K",
-          "notional_usd": 257600.00000000003,
-          "duration_str": "14m 38s",
-          "duration_seconds": 878.0,
-          "duration_hours": 0.24
+          "price": 716.8,
+          "notional_str": "$159.97K",
+          "notional_usd": 159970.0,
+          "duration_str": "0m 40s",
+          "duration_seconds": 40.0,
+          "duration_hours": 0.01
         },
         {
           "side": "BUY",
@@ -1713,9 +1703,19 @@
           "price": 716.59,
           "notional_str": "$79.56K",
           "notional_usd": 79560.0,
-          "duration_str": "25m 46s",
-          "duration_seconds": 1546.0,
-          "duration_hours": 0.43
+          "duration_str": "48m 5s",
+          "duration_seconds": 2885.0,
+          "duration_hours": 0.8
+        },
+        {
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 716.41,
+          "notional_str": "$257.91K",
+          "notional_usd": 257910.00000000003,
+          "duration_str": "11m 4s",
+          "duration_seconds": 664.0,
+          "duration_hours": 0.18
         },
         {
           "side": "BUY",
@@ -1723,36 +1723,16 @@
           "price": 716.05,
           "notional_str": "$79.52K",
           "notional_usd": 79520.0,
-          "duration_str": "6m 7s",
-          "duration_seconds": 367.0,
-          "duration_hours": 0.1
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 715.74,
-          "notional_str": "$257.68K",
-          "notional_usd": 257680.0,
-          "duration_str": "14m 17s",
-          "duration_seconds": 857.0,
-          "duration_hours": 0.24
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 715.52,
-          "notional_str": "$157.22K",
-          "notional_usd": 157220.0,
-          "duration_str": "0m 4s",
-          "duration_seconds": 4.0,
-          "duration_hours": 0.0
+          "duration_str": "28m 26s",
+          "duration_seconds": 1706.0,
+          "duration_hours": 0.47
         },
         {
           "side": "BUY",
           "is_canceled": false,
           "price": 715.0,
-          "notional_str": "$137.34K",
-          "notional_usd": 137340.0,
+          "notional_str": "$133.05K",
+          "notional_usd": 133050.0,
           "duration_str": "1D 5H",
           "duration_seconds": 104400.0,
           "duration_hours": 29.0
@@ -1761,21 +1741,21 @@
           "side": "BUY",
           "is_canceled": false,
           "price": 714.97,
-          "notional_str": "$148.87K",
-          "notional_usd": 148870.0,
-          "duration_str": "25m 26s",
-          "duration_seconds": 1526.0,
-          "duration_hours": 0.42
+          "notional_str": "$148.86K",
+          "notional_usd": 148860.0,
+          "duration_str": "47m 45s",
+          "duration_seconds": 2865.0,
+          "duration_hours": 0.8
         },
         {
           "side": "BUY",
           "is_canceled": false,
           "price": 712.0,
-          "notional_str": "$61.81K",
-          "notional_usd": 61810.0,
-          "duration_str": "22H 5m",
-          "duration_seconds": 79500.0,
-          "duration_hours": 22.08
+          "notional_str": "$61.71K",
+          "notional_usd": 61710.0,
+          "duration_str": "22H 27m",
+          "duration_seconds": 80820.0,
+          "duration_hours": 22.45
         },
         {
           "side": "BUY",
@@ -1783,9 +1763,9 @@
           "price": 711.0,
           "notional_str": "$122.06K",
           "notional_usd": 122060.0,
-          "duration_str": "5H 46m",
-          "duration_seconds": 20760.0,
-          "duration_hours": 5.77
+          "duration_str": "6H 9m",
+          "duration_seconds": 22140.0,
+          "duration_hours": 6.15
         },
         {
           "side": "BUY",
@@ -1793,16 +1773,26 @@
           "price": 710.75,
           "notional_str": "$147.98K",
           "notional_usd": 147980.0,
-          "duration_str": "25m 46s",
-          "duration_seconds": 1546.0,
-          "duration_hours": 0.43
+          "duration_str": "48m 5s",
+          "duration_seconds": 2885.0,
+          "duration_hours": 0.8
+        },
+        {
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 710.21,
+          "notional_str": "$78.70K",
+          "notional_usd": 78700.0,
+          "duration_str": "0m 40s",
+          "duration_seconds": 40.0,
+          "duration_hours": 0.01
         },
         {
           "side": "BUY",
           "is_canceled": false,
           "price": 710.0,
-          "notional_str": "$387.29K",
-          "notional_usd": 387290.0,
+          "notional_str": "$361.14K",
+          "notional_usd": 361140.0,
           "duration_str": "1D 19H",
           "duration_seconds": 154800.0,
           "duration_hours": 43.0
@@ -1813,19 +1803,29 @@
           "price": 709.92,
           "notional_str": "$309.60K",
           "notional_usd": 309600.0,
-          "duration_str": "33m 19s",
-          "duration_seconds": 1999.0,
-          "duration_hours": 0.56
+          "duration_str": "55m 38s",
+          "duration_seconds": 3338.0,
+          "duration_hours": 0.93
         },
         {
           "side": "BUY",
           "is_canceled": false,
-          "price": 709.58,
-          "notional_str": "$78.76K",
-          "notional_usd": 78760.0,
-          "duration_str": "3m 29s",
-          "duration_seconds": 209.0,
-          "duration_hours": 0.06
+          "price": 708.0,
+          "notional_str": "$444.57K",
+          "notional_usd": 444570.0,
+          "duration_str": "7D 13H",
+          "duration_seconds": 651600.0,
+          "duration_hours": 181.0
+        },
+        {
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 706.0,
+          "notional_str": "$69.27K",
+          "notional_usd": 69270.0,
+          "duration_str": "7D 12H",
+          "duration_seconds": 648000.0,
+          "duration_hours": 180.0
         }
       ],
       "scrape_duration_s": 3.13
@@ -1834,114 +1834,74 @@
       "asset": "DOGE",
       "orders_count": 39,
       "side_parse_health": "HEALTHY",
-      "total_notional_usd": 4503240.0,
-      "buy_notional_usd": 2362230.0,
-      "sell_notional_usd": 2141010.0,
-      "imbalance_ratio": 1.103,
-      "max_single_order_usd": 417120.0,
+      "total_notional_usd": 4434210.0,
+      "buy_notional_usd": 2264880.0,
+      "sell_notional_usd": 2169330.0,
+      "imbalance_ratio": 1.044,
+      "max_single_order_usd": 419010.0,
       "oldest_order_hours": 1094.0,
       "top_whale_walls": [
         {
           "side": "SELL",
           "is_canceled": false,
-          "price": 0.08123,
-          "notional_str": "$417.12K",
-          "notional_usd": 417120.0,
-          "duration_str": "0m 0s",
-          "duration_seconds": 0.0,
+          "price": 0.08165,
+          "notional_str": "$419.01K",
+          "notional_usd": 419010.0,
+          "duration_str": "0m 12s",
+          "duration_seconds": 12.0,
           "duration_hours": 0.0
         },
         {
           "side": "BUY",
           "is_canceled": false,
-          "price": 0.08016,
-          "notional_str": "$269.72K",
-          "notional_usd": 269720.0,
-          "duration_str": "1m 6s",
-          "duration_seconds": 66.0,
-          "duration_hours": 0.02
+          "price": 0.08062,
+          "notional_str": "$267.94K",
+          "notional_usd": 267940.0,
+          "duration_str": "0m 50s",
+          "duration_seconds": 50.0,
+          "duration_hours": 0.01
         },
         {
           "side": "SELL",
           "is_canceled": false,
-          "price": 0.08083,
-          "notional_str": "$260.53K",
-          "notional_usd": 260529.99999999997,
-          "duration_str": "14m 26s",
-          "duration_seconds": 866.0,
-          "duration_hours": 0.24
+          "price": 0.08106,
+          "notional_str": "$265.93K",
+          "notional_usd": 265930.0,
+          "duration_str": "1m 57s",
+          "duration_seconds": 117.0,
+          "duration_hours": 0.03
         },
         {
           "side": "SELL",
           "is_canceled": false,
-          "price": 0.08132,
-          "notional_str": "$258.29K",
-          "notional_usd": 258290.00000000003,
-          "duration_str": "13m 43s",
-          "duration_seconds": 823.0,
-          "duration_hours": 0.23
+          "price": 0.08154,
+          "notional_str": "$259.90K",
+          "notional_usd": 259899.99999999997,
+          "duration_str": "12m 8s",
+          "duration_seconds": 728.0,
+          "duration_hours": 0.2
         },
         {
           "side": "BUY",
           "is_canceled": false,
-          "price": 0.07956,
-          "notional_str": "$254.50K",
-          "notional_usd": 254500.0,
-          "duration_str": "0m 21s",
-          "duration_seconds": 21.0,
-          "duration_hours": 0.01
+          "price": 0.08017,
+          "notional_str": "$257.93K",
+          "notional_usd": 257930.0,
+          "duration_str": "4m 6s",
+          "duration_seconds": 246.0,
+          "duration_hours": 0.07
         }
       ],
       "all_orders": [
         {
           "side": "SELL",
           "is_canceled": false,
-          "price": 0.085,
-          "notional_str": "$56.90K",
-          "notional_usd": 56900.0,
-          "duration_str": "1D 12H",
-          "duration_seconds": 129600.0,
-          "duration_hours": 36.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 0.084,
-          "notional_str": "$51.16K",
-          "notional_usd": 51160.0,
-          "duration_str": "2H 5m",
-          "duration_seconds": 7500.0,
-          "duration_hours": 2.08
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 0.08361,
-          "notional_str": "$88.87K",
-          "notional_usd": 88870.0,
-          "duration_str": "45D 14H",
-          "duration_seconds": 3938400.0,
-          "duration_hours": 1094.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 0.0834,
-          "notional_str": "$80.07K",
-          "notional_usd": 80070.0,
-          "duration_str": "4H 28m",
-          "duration_seconds": 16080.0,
-          "duration_hours": 4.47
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
           "price": 0.083,
-          "notional_str": "$106.41K",
-          "notional_usd": 106410.0,
-          "duration_str": "11H 45m",
-          "duration_seconds": 42300.0,
-          "duration_hours": 11.75
+          "notional_str": "$109.07K",
+          "notional_usd": 109070.0,
+          "duration_str": "12H 8m",
+          "duration_seconds": 43680.0,
+          "duration_hours": 12.13
         },
         {
           "side": "BUY",
@@ -1959,9 +1919,9 @@
           "price": 0.08266,
           "notional_str": "$75.12K",
           "notional_usd": 75120.0,
-          "duration_str": "3H 57m",
-          "duration_seconds": 14220.0,
-          "duration_hours": 3.95
+          "duration_str": "4H 19m",
+          "duration_seconds": 15540.0,
+          "duration_hours": 4.32
         },
         {
           "side": "SELL",
@@ -1969,116 +1929,76 @@
           "price": 0.08258,
           "notional_str": "$112.98K",
           "notional_usd": 112980.0,
-          "duration_str": "4H 15m",
-          "duration_seconds": 15300.0,
-          "duration_hours": 4.25
+          "duration_str": "4H 37m",
+          "duration_seconds": 16620.0,
+          "duration_hours": 4.62
+        },
+        {
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 0.08165,
+          "notional_str": "$419.01K",
+          "notional_usd": 419010.0,
+          "duration_str": "0m 12s",
+          "duration_seconds": 12.0,
+          "duration_hours": 0.0
+        },
+        {
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 0.08154,
+          "notional_str": "$259.90K",
+          "notional_usd": 259899.99999999997,
+          "duration_str": "12m 8s",
+          "duration_seconds": 728.0,
+          "duration_hours": 0.2
+        },
+        {
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 0.08152,
+          "notional_str": "$128.53K",
+          "notional_usd": 128530.0,
+          "duration_str": "7m 55s",
+          "duration_seconds": 475.0,
+          "duration_hours": 0.13
+        },
+        {
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 0.08145,
+          "notional_str": "$100.92K",
+          "notional_usd": 100920.0,
+          "duration_str": "1m 58s",
+          "duration_seconds": 118.0,
+          "duration_hours": 0.03
         },
         {
           "side": "SELL",
           "is_canceled": false,
           "price": 0.08134,
-          "notional_str": "$123.99K",
-          "notional_usd": 123990.0,
-          "duration_str": "33m 35s",
-          "duration_seconds": 2015.0,
-          "duration_hours": 0.56
+          "notional_str": "$70.25K",
+          "notional_usd": 70250.0,
+          "duration_str": "0m 20s",
+          "duration_seconds": 20.0,
+          "duration_hours": 0.01
         },
         {
           "side": "SELL",
           "is_canceled": false,
           "price": 0.08132,
-          "notional_str": "$258.29K",
-          "notional_usd": 258290.00000000003,
-          "duration_str": "13m 43s",
-          "duration_seconds": 823.0,
-          "duration_hours": 0.23
+          "notional_str": "$50.73K",
+          "notional_usd": 50730.0,
+          "duration_str": "2m 11s",
+          "duration_seconds": 131.0,
+          "duration_hours": 0.04
         },
         {
           "side": "SELL",
           "is_canceled": false,
-          "price": 0.08123,
-          "notional_str": "$417.12K",
-          "notional_usd": 417120.0,
-          "duration_str": "0m 0s",
-          "duration_seconds": 0.0,
-          "duration_hours": 0.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 0.08107,
-          "notional_str": "$50.02K",
-          "notional_usd": 50020.0,
-          "duration_str": "0m 6s",
-          "duration_seconds": 6.0,
-          "duration_hours": 0.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 0.08107,
-          "notional_str": "$100.91K",
-          "notional_usd": 100910.0,
-          "duration_str": "1m 6s",
-          "duration_seconds": 66.0,
-          "duration_hours": 0.02
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 0.08083,
-          "notional_str": "$260.53K",
-          "notional_usd": 260529.99999999997,
-          "duration_str": "14m 26s",
-          "duration_seconds": 866.0,
-          "duration_hours": 0.24
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 0.08079,
-          "notional_str": "$146.58K",
-          "notional_usd": 146580.0,
-          "duration_str": "8m 33s",
-          "duration_seconds": 513.0,
-          "duration_hours": 0.14
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 0.08075,
-          "notional_str": "$50.84K",
-          "notional_usd": 50840.0,
-          "duration_str": "0m 22s",
-          "duration_seconds": 22.0,
-          "duration_hours": 0.01
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 0.08074,
-          "notional_str": "$54.30K",
-          "notional_usd": 54300.0,
-          "duration_str": "0m 23s",
-          "duration_seconds": 23.0,
-          "duration_hours": 0.01
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 0.08059,
-          "notional_str": "$55.06K",
-          "notional_usd": 55060.0,
-          "duration_str": "0m 21s",
-          "duration_seconds": 21.0,
-          "duration_hours": 0.01
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 0.08058,
-          "notional_str": "$77.36K",
-          "notional_usd": 77360.0,
+          "price": 0.08114,
+          "notional_str": "$75.37K",
+          "notional_usd": 75370.0,
           "duration_str": "0m 7s",
           "duration_seconds": 7.0,
           "duration_hours": 0.0
@@ -2086,9 +2006,89 @@
         {
           "side": "SELL",
           "is_canceled": false,
-          "price": 0.08037,
-          "notional_str": "$63.37K",
-          "notional_usd": 63370.0,
+          "price": 0.08107,
+          "notional_str": "$50.26K",
+          "notional_usd": 50260.0,
+          "duration_str": "0m 25s",
+          "duration_seconds": 25.0,
+          "duration_hours": 0.01
+        },
+        {
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 0.08106,
+          "notional_str": "$265.93K",
+          "notional_usd": 265930.0,
+          "duration_str": "1m 57s",
+          "duration_seconds": 117.0,
+          "duration_hours": 0.03
+        },
+        {
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 0.08105,
+          "notional_str": "$137.71K",
+          "notional_usd": 137710.0,
+          "duration_str": "2m 5s",
+          "duration_seconds": 125.0,
+          "duration_hours": 0.03
+        },
+        {
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 0.08101,
+          "notional_str": "$54.95K",
+          "notional_usd": 54950.0,
+          "duration_str": "0m 26s",
+          "duration_seconds": 26.0,
+          "duration_hours": 0.01
+        },
+        {
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 0.08099,
+          "notional_str": "$83.08K",
+          "notional_usd": 83080.0,
+          "duration_str": "0m 4s",
+          "duration_seconds": 4.0,
+          "duration_hours": 0.0
+        },
+        {
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 0.08095,
+          "notional_str": "$54.92K",
+          "notional_usd": 54920.0,
+          "duration_str": "0m 14s",
+          "duration_seconds": 14.0,
+          "duration_hours": 0.0
+        },
+        {
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 0.08089,
+          "notional_str": "$51.49K",
+          "notional_usd": 51490.0,
+          "duration_str": "0m 4s",
+          "duration_seconds": 4.0,
+          "duration_hours": 0.0
+        },
+        {
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 0.08078,
+          "notional_str": "$69.11K",
+          "notional_usd": 69110.0,
+          "duration_str": "0m 3s",
+          "duration_seconds": 3.0,
+          "duration_hours": 0.0
+        },
+        {
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 0.08072,
+          "notional_str": "$51.62K",
+          "notional_usd": 51620.0,
           "duration_str": "0m 4s",
           "duration_seconds": 4.0,
           "duration_hours": 0.0
@@ -2096,49 +2096,19 @@
         {
           "side": "BUY",
           "is_canceled": false,
-          "price": 0.08032,
-          "notional_str": "$163.45K",
-          "notional_usd": 163450.0,
-          "duration_str": "0m 14s",
-          "duration_seconds": 14.0,
+          "price": 0.08071,
+          "notional_str": "$63.37K",
+          "notional_usd": 63370.0,
+          "duration_str": "0m 1s",
+          "duration_seconds": 1.0,
           "duration_hours": 0.0
         },
         {
           "side": "BUY",
           "is_canceled": false,
-          "price": 0.08031,
-          "notional_str": "$115.44K",
-          "notional_usd": 115440.0,
-          "duration_str": "0m 14s",
-          "duration_seconds": 14.0,
-          "duration_hours": 0.0
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 0.08029,
-          "notional_str": "$52.16K",
-          "notional_usd": 52160.0,
-          "duration_str": "0m 22s",
-          "duration_seconds": 22.0,
-          "duration_hours": 0.01
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 0.08027,
-          "notional_str": "$114.02K",
-          "notional_usd": 114020.0,
-          "duration_str": "45m 43s",
-          "duration_seconds": 2743.0,
-          "duration_hours": 0.76
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 0.08027,
-          "notional_str": "$74.12K",
-          "notional_usd": 74120.0,
+          "price": 0.0807,
+          "notional_str": "$112.60K",
+          "notional_usd": 112600.0,
           "duration_str": "0m 7s",
           "duration_seconds": 7.0,
           "duration_hours": 0.0
@@ -2146,19 +2116,39 @@
         {
           "side": "BUY",
           "is_canceled": false,
-          "price": 0.08016,
-          "notional_str": "$269.72K",
-          "notional_usd": 269720.0,
-          "duration_str": "1m 6s",
-          "duration_seconds": 66.0,
+          "price": 0.08068,
+          "notional_str": "$74.34K",
+          "notional_usd": 74340.0,
+          "duration_str": "0m 4s",
+          "duration_seconds": 4.0,
+          "duration_hours": 0.0
+        },
+        {
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 0.08062,
+          "notional_str": "$267.94K",
+          "notional_usd": 267940.0,
+          "duration_str": "0m 50s",
+          "duration_seconds": 50.0,
+          "duration_hours": 0.01
+        },
+        {
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 0.08061,
+          "notional_str": "$144.20K",
+          "notional_usd": 144200.0,
+          "duration_str": "0m 58s",
+          "duration_seconds": 58.0,
           "duration_hours": 0.02
         },
         {
           "side": "BUY",
           "is_canceled": false,
-          "price": 0.08014,
-          "notional_str": "$120.29K",
-          "notional_usd": 120290.0,
+          "price": 0.0805,
+          "notional_str": "$87.83K",
+          "notional_usd": 87830.0,
           "duration_str": "0m 7s",
           "duration_seconds": 7.0,
           "duration_hours": 0.0
@@ -2166,99 +2156,89 @@
         {
           "side": "BUY",
           "is_canceled": false,
-          "price": 0.08012,
-          "notional_str": "$76.97K",
-          "notional_usd": 76970.0,
-          "duration_str": "0m 22s",
-          "duration_seconds": 22.0,
-          "duration_hours": 0.01
+          "price": 0.08047,
+          "notional_str": "$87.60K",
+          "notional_usd": 87600.0,
+          "duration_str": "0m 3s",
+          "duration_seconds": 3.0,
+          "duration_hours": 0.0
         },
         {
           "side": "BUY",
           "is_canceled": false,
-          "price": 0.08006,
-          "notional_str": "$59.21K",
-          "notional_usd": 59210.0,
-          "duration_str": "0m 9s",
-          "duration_seconds": 9.0,
-          "duration_hours": 0.0
+          "price": 0.08027,
+          "notional_str": "$100.32K",
+          "notional_usd": 100320.0,
+          "duration_str": "1H 8m",
+          "duration_seconds": 4080.0,
+          "duration_hours": 1.13
+        },
+        {
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 0.08025,
+          "notional_str": "$99.49K",
+          "notional_usd": 99490.0,
+          "duration_str": "1m 58s",
+          "duration_seconds": 118.0,
+          "duration_hours": 0.03
+        },
+        {
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 0.08017,
+          "notional_str": "$257.93K",
+          "notional_usd": 257930.0,
+          "duration_str": "4m 6s",
+          "duration_seconds": 246.0,
+          "duration_hours": 0.07
+        },
+        {
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 0.08013,
+          "notional_str": "$124.12K",
+          "notional_usd": 124120.0,
+          "duration_str": "8m 2s",
+          "duration_seconds": 482.0,
+          "duration_hours": 0.13
         },
         {
           "side": "BUY",
           "is_canceled": false,
           "price": 0.08,
-          "notional_str": "$79.63K",
-          "notional_usd": 79630.0,
-          "duration_str": "1H 31m",
-          "duration_seconds": 5460.0,
-          "duration_hours": 1.52
+          "notional_str": "$72.17K",
+          "notional_usd": 72170.0,
+          "duration_str": "1H 53m",
+          "duration_seconds": 6780.0,
+          "duration_hours": 1.88
         },
         {
           "side": "BUY",
           "is_canceled": false,
-          "price": 0.07991,
-          "notional_str": "$62.63K",
-          "notional_usd": 62630.0,
-          "duration_str": "2m 18s",
-          "duration_seconds": 138.0,
-          "duration_hours": 0.04
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 0.07988,
-          "notional_str": "$99.96K",
-          "notional_usd": 99960.0,
-          "duration_str": "1m 6s",
-          "duration_seconds": 66.0,
-          "duration_hours": 0.02
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 0.07977,
-          "notional_str": "$119.38K",
-          "notional_usd": 119380.0,
-          "duration_str": "14m 27s",
-          "duration_seconds": 867.0,
-          "duration_hours": 0.24
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 0.0796,
-          "notional_str": "$66.30K",
-          "notional_usd": 66300.0,
-          "duration_str": "0m 0s",
-          "duration_seconds": 0.0,
+          "price": 0.07999,
+          "notional_str": "$66.70K",
+          "notional_usd": 66700.0,
+          "duration_str": "0m 6s",
+          "duration_seconds": 6.0,
           "duration_hours": 0.0
         },
         {
           "side": "BUY",
           "is_canceled": false,
-          "price": 0.07956,
-          "notional_str": "$254.50K",
-          "notional_usd": 254500.0,
-          "duration_str": "0m 21s",
-          "duration_seconds": 21.0,
-          "duration_hours": 0.01
+          "price": 0.079,
+          "notional_str": "$112.84K",
+          "notional_usd": 112840.0,
+          "duration_str": "20H 18m",
+          "duration_seconds": 73080.0,
+          "duration_hours": 20.3
         },
         {
           "side": "BUY",
           "is_canceled": false,
           "price": 0.079,
-          "notional_str": "$116.39K",
-          "notional_usd": 116390.0,
-          "duration_str": "19H 55m",
-          "duration_seconds": 71700.0,
-          "duration_hours": 19.92
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 0.079,
-          "notional_str": "$200.72K",
-          "notional_usd": 200720.0,
+          "notional_str": "$200.67K",
+          "notional_usd": 200670.0,
           "duration_str": "1D 1H",
           "duration_seconds": 90000.0,
           "duration_hours": 25.0
@@ -2269,382 +2249,402 @@
           "price": 0.0785,
           "notional_str": "$117.69K",
           "notional_usd": 117690.0,
-          "duration_str": "6H 25m",
-          "duration_seconds": 23100.0,
-          "duration_hours": 6.42
+          "duration_str": "6H 47m",
+          "duration_seconds": 24420.0,
+          "duration_hours": 6.78
         },
         {
           "side": "BUY",
           "is_canceled": false,
           "price": 0.07821,
-          "notional_str": "$57.63K",
-          "notional_usd": 57630.0,
-          "duration_str": "37m 8s",
-          "duration_seconds": 2228.0,
-          "duration_hours": 0.62
+          "notional_str": "$57.53K",
+          "notional_usd": 57530.0,
+          "duration_str": "6m 3s",
+          "duration_seconds": 363.0,
+          "duration_hours": 0.1
+        },
+        {
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 0.0782,
+          "notional_str": "$53.98K",
+          "notional_usd": 53980.0,
+          "duration_str": "3H 51m",
+          "duration_seconds": 13860.0,
+          "duration_hours": 3.85
+        },
+        {
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 0.07801,
+          "notional_str": "$58.79K",
+          "notional_usd": 58790.0,
+          "duration_str": "4m 20s",
+          "duration_seconds": 260.0,
+          "duration_hours": 0.07
         }
       ],
-      "scrape_duration_s": 3.14
+      "scrape_duration_s": 3.12
     },
     "XRP": {
       "asset": "XRP",
       "orders_count": 39,
       "side_parse_health": "HEALTHY",
-      "total_notional_usd": 4140520.0,
-      "buy_notional_usd": 2091000.0,
-      "sell_notional_usd": 2049520.0,
-      "imbalance_ratio": 1.02,
-      "max_single_order_usd": 277620.0,
-      "oldest_order_hours": 0.6,
+      "total_notional_usd": 3431410.0,
+      "buy_notional_usd": 2003660.0,
+      "sell_notional_usd": 1427750.0,
+      "imbalance_ratio": 1.403,
+      "max_single_order_usd": 278790.0,
+      "oldest_order_hours": 0.25,
       "top_whale_walls": [
         {
           "side": "BUY",
           "is_canceled": false,
-          "price": 1.3028,
-          "notional_str": "$277.62K",
-          "notional_usd": 277620.0,
-          "duration_str": "1m 3s",
-          "duration_seconds": 63.0,
-          "duration_hours": 0.02
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 1.3094,
-          "notional_str": "$267.62K",
-          "notional_usd": 267620.0,
-          "duration_str": "1m 3s",
-          "duration_seconds": 63.0,
-          "duration_hours": 0.02
+          "price": 1.3071,
+          "notional_str": "$278.79K",
+          "notional_usd": 278790.0,
+          "duration_str": "0m 28s",
+          "duration_seconds": 28.0,
+          "duration_hours": 0.01
         },
         {
           "side": "BUY",
           "is_canceled": false,
-          "price": 1.3006,
-          "notional_str": "$247.11K",
-          "notional_usd": 247110.0,
-          "duration_str": "1m 16s",
-          "duration_seconds": 76.0,
-          "duration_hours": 0.02
+          "price": 1.3057,
+          "notional_str": "$228.44K",
+          "notional_usd": 228440.0,
+          "duration_str": "4m 50s",
+          "duration_seconds": 290.0,
+          "duration_hours": 0.08
         },
         {
           "side": "SELL",
           "is_canceled": false,
-          "price": 1.3078,
-          "notional_str": "$188.15K",
-          "notional_usd": 188150.0,
-          "duration_str": "1m 4s",
-          "duration_seconds": 64.0,
-          "duration_hours": 0.02
+          "price": 1.3121,
+          "notional_str": "$212.90K",
+          "notional_usd": 212900.0,
+          "duration_str": "0m 29s",
+          "duration_seconds": 29.0,
+          "duration_hours": 0.01
         },
         {
-          "side": "SELL",
+          "side": "BUY",
           "is_canceled": false,
-          "price": 1.3077,
-          "notional_str": "$187.85K",
-          "notional_usd": 187850.0,
-          "duration_str": "1m 16s",
-          "duration_seconds": 76.0,
-          "duration_hours": 0.02
+          "price": 1.3051,
+          "notional_str": "$199.95K",
+          "notional_usd": 199950.0,
+          "duration_str": "1m 42s",
+          "duration_seconds": 102.0,
+          "duration_hours": 0.03
+        },
+        {
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 1.3065,
+          "notional_str": "$132.91K",
+          "notional_usd": 132910.0,
+          "duration_str": "4m 35s",
+          "duration_seconds": 275.0,
+          "duration_hours": 0.08
         }
       ],
       "all_orders": [
         {
           "side": "SELL",
           "is_canceled": false,
-          "price": 1.3104,
-          "notional_str": "$185.38K",
-          "notional_usd": 185380.0,
-          "duration_str": "2m 3s",
-          "duration_seconds": 123.0,
-          "duration_hours": 0.03
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 1.3094,
-          "notional_str": "$267.62K",
-          "notional_usd": 267620.0,
-          "duration_str": "1m 3s",
-          "duration_seconds": 63.0,
-          "duration_hours": 0.02
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 1.3093,
-          "notional_str": "$134.07K",
-          "notional_usd": 134070.0,
-          "duration_str": "0m 32s",
-          "duration_seconds": 32.0,
+          "price": 1.3124,
+          "notional_str": "$84.11K",
+          "notional_usd": 84110.0,
+          "duration_str": "0m 53s",
+          "duration_seconds": 53.0,
           "duration_hours": 0.01
         },
         {
           "side": "SELL",
           "is_canceled": false,
-          "price": 1.3092,
-          "notional_str": "$68.14K",
-          "notional_usd": 68140.0,
-          "duration_str": "0m 2s",
-          "duration_seconds": 2.0,
+          "price": 1.3124,
+          "notional_str": "$60.00K",
+          "notional_usd": 60000.0,
+          "duration_str": "0m 49s",
+          "duration_seconds": 49.0,
+          "duration_hours": 0.01
+        },
+        {
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 1.3121,
+          "notional_str": "$212.90K",
+          "notional_usd": 212900.0,
+          "duration_str": "0m 29s",
+          "duration_seconds": 29.0,
+          "duration_hours": 0.01
+        },
+        {
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 1.3116,
+          "notional_str": "$100.75K",
+          "notional_usd": 100750.0,
+          "duration_str": "0m 29s",
+          "duration_seconds": 29.0,
+          "duration_hours": 0.01
+        },
+        {
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 1.3115,
+          "notional_str": "$114.03K",
+          "notional_usd": 114030.0,
+          "duration_str": "0m 11s",
+          "duration_seconds": 11.0,
           "duration_hours": 0.0
+        },
+        {
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 1.3113,
+          "notional_str": "$78.92K",
+          "notional_usd": 78920.0,
+          "duration_str": "0m 0s",
+          "duration_seconds": 0.0,
+          "duration_hours": 0.0
+        },
+        {
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 1.3112,
+          "notional_str": "$53.07K",
+          "notional_usd": 53070.0,
+          "duration_str": "0m 1s",
+          "duration_seconds": 1.0,
+          "duration_hours": 0.0
+        },
+        {
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 1.3111,
+          "notional_str": "$58.83K",
+          "notional_usd": 58830.0,
+          "duration_str": "0m 0s",
+          "duration_seconds": 0.0,
+          "duration_hours": 0.0
+        },
+        {
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 1.3108,
+          "notional_str": "$62.55K",
+          "notional_usd": 62550.0,
+          "duration_str": "0m 4s",
+          "duration_seconds": 4.0,
+          "duration_hours": 0.0
+        },
+        {
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 1.3107,
+          "notional_str": "$51.82K",
+          "notional_usd": 51820.0,
+          "duration_str": "1m 10s",
+          "duration_seconds": 70.0,
+          "duration_hours": 0.02
+        },
+        {
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 1.3106,
+          "notional_str": "$51.76K",
+          "notional_usd": 51760.0,
+          "duration_str": "0m 29s",
+          "duration_seconds": 29.0,
+          "duration_hours": 0.01
+        },
+        {
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 1.3104,
+          "notional_str": "$65.84K",
+          "notional_usd": 65840.0,
+          "duration_str": "0m 1s",
+          "duration_seconds": 1.0,
+          "duration_hours": 0.0
+        },
+        {
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 1.3103,
+          "notional_str": "$74.12K",
+          "notional_usd": 74120.0,
+          "duration_str": "0m 1s",
+          "duration_seconds": 1.0,
+          "duration_hours": 0.0
+        },
+        {
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 1.3102,
+          "notional_str": "$73.70K",
+          "notional_usd": 73700.0,
+          "duration_str": "0m 1s",
+          "duration_seconds": 1.0,
+          "duration_hours": 0.0
+        },
+        {
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 1.3099,
+          "notional_str": "$86.90K",
+          "notional_usd": 86900.0,
+          "duration_str": "0m 0s",
+          "duration_seconds": 0.0,
+          "duration_hours": 0.0
+        },
+        {
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 1.3098,
+          "notional_str": "$73.96K",
+          "notional_usd": 73960.0,
+          "duration_str": "0m 0s",
+          "duration_seconds": 0.0,
+          "duration_hours": 0.0
+        },
+        {
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 1.3095,
+          "notional_str": "$52.25K",
+          "notional_usd": 52250.0,
+          "duration_str": "0m 1s",
+          "duration_seconds": 1.0,
+          "duration_hours": 0.0
+        },
+        {
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 1.3094,
+          "notional_str": "$71.34K",
+          "notional_usd": 71340.0,
+          "duration_str": "1m 29s",
+          "duration_seconds": 89.0,
+          "duration_hours": 0.02
+        },
+        {
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 1.3092,
+          "notional_str": "$62.14K",
+          "notional_usd": 62140.0,
+          "duration_str": "1m 29s",
+          "duration_seconds": 89.0,
+          "duration_hours": 0.02
+        },
+        {
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 1.3091,
+          "notional_str": "$57.10K",
+          "notional_usd": 57100.0,
+          "duration_str": "0m 1s",
+          "duration_seconds": 1.0,
+          "duration_hours": 0.0
+        },
+        {
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 1.3091,
+          "notional_str": "$77.84K",
+          "notional_usd": 77840.0,
+          "duration_str": "1m 29s",
+          "duration_seconds": 89.0,
+          "duration_hours": 0.02
         },
         {
           "side": "SELL",
           "is_canceled": false,
           "price": 1.309,
-          "notional_str": "$147.40K",
-          "notional_usd": 147400.0,
-          "duration_str": "0m 33s",
-          "duration_seconds": 33.0,
-          "duration_hours": 0.01
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 1.3083,
-          "notional_str": "$60.00K",
-          "notional_usd": 60000.0,
-          "duration_str": "1m 16s",
-          "duration_seconds": 76.0,
-          "duration_hours": 0.02
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 1.3079,
-          "notional_str": "$60.30K",
-          "notional_usd": 60300.0,
-          "duration_str": "0m 2s",
-          "duration_seconds": 2.0,
+          "notional_str": "$71.17K",
+          "notional_usd": 71170.0,
+          "duration_str": "0m 0s",
+          "duration_seconds": 0.0,
           "duration_hours": 0.0
         },
         {
           "side": "SELL",
           "is_canceled": false,
-          "price": 1.3078,
-          "notional_str": "$188.15K",
-          "notional_usd": 188150.0,
-          "duration_str": "1m 4s",
-          "duration_seconds": 64.0,
-          "duration_hours": 0.02
+          "price": 1.3089,
+          "notional_str": "$53.32K",
+          "notional_usd": 53320.0,
+          "duration_str": "0m 0s",
+          "duration_seconds": 0.0,
+          "duration_hours": 0.0
         },
         {
-          "side": "SELL",
+          "side": "BUY",
           "is_canceled": false,
-          "price": 1.3077,
-          "notional_str": "$187.85K",
-          "notional_usd": 187850.0,
-          "duration_str": "1m 16s",
-          "duration_seconds": 76.0,
-          "duration_hours": 0.02
+          "price": 1.3086,
+          "notional_str": "$68.40K",
+          "notional_usd": 68400.0,
+          "duration_str": "13m 39s",
+          "duration_seconds": 819.0,
+          "duration_hours": 0.23
         },
         {
-          "side": "SELL",
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 1.3082,
+          "notional_str": "$66.72K",
+          "notional_usd": 66720.0,
+          "duration_str": "13m 45s",
+          "duration_seconds": 825.0,
+          "duration_hours": 0.23
+        },
+        {
+          "side": "BUY",
           "is_canceled": false,
           "price": 1.3076,
-          "notional_str": "$59.84K",
-          "notional_usd": 59840.0,
-          "duration_str": "2m 39s",
-          "duration_seconds": 159.0,
-          "duration_hours": 0.04
+          "notional_str": "$82.02K",
+          "notional_usd": 82020.0,
+          "duration_str": "14m 54s",
+          "duration_seconds": 894.0,
+          "duration_hours": 0.25
         },
         {
-          "side": "SELL",
+          "side": "BUY",
           "is_canceled": false,
           "price": 1.3072,
-          "notional_str": "$103.74K",
-          "notional_usd": 103740.0,
-          "duration_str": "0m 40s",
-          "duration_seconds": 40.0,
-          "duration_hours": 0.01
+          "notional_str": "$52.13K",
+          "notional_usd": 52130.0,
+          "duration_str": "14m 54s",
+          "duration_seconds": 894.0,
+          "duration_hours": 0.25
         },
         {
-          "side": "SELL",
+          "side": "BUY",
           "is_canceled": false,
-          "price": 1.3067,
-          "notional_str": "$109.39K",
-          "notional_usd": 109390.0,
-          "duration_str": "0m 40s",
-          "duration_seconds": 40.0,
-          "duration_hours": 0.01
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 1.3061,
-          "notional_str": "$59.76K",
-          "notional_usd": 59760.0,
-          "duration_str": "1m 16s",
-          "duration_seconds": 76.0,
-          "duration_hours": 0.02
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 1.306,
-          "notional_str": "$51.23K",
-          "notional_usd": 51230.0,
-          "duration_str": "0m 19s",
-          "duration_seconds": 19.0,
+          "price": 1.3071,
+          "notional_str": "$278.79K",
+          "notional_usd": 278790.0,
+          "duration_str": "0m 28s",
+          "duration_seconds": 28.0,
           "duration_hours": 0.01
         },
         {
           "side": "BUY",
           "is_canceled": false,
-          "price": 1.3059,
-          "notional_str": "$55.31K",
-          "notional_usd": 55310.0,
-          "duration_str": "0m 2s",
-          "duration_seconds": 2.0,
-          "duration_hours": 0.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 1.3059,
-          "notional_str": "$109.53K",
-          "notional_usd": 109530.0,
-          "duration_str": "0m 1s",
-          "duration_seconds": 1.0,
-          "duration_hours": 0.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 1.3058,
-          "notional_str": "$68.04K",
-          "notional_usd": 68040.0,
-          "duration_str": "1m 16s",
-          "duration_seconds": 76.0,
-          "duration_hours": 0.02
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 1.3057,
-          "notional_str": "$59.59K",
-          "notional_usd": 59590.0,
-          "duration_str": "0m 1s",
-          "duration_seconds": 1.0,
-          "duration_hours": 0.0
+          "price": 1.3071,
+          "notional_str": "$73.45K",
+          "notional_usd": 73450.0,
+          "duration_str": "10m 7s",
+          "duration_seconds": 607.0,
+          "duration_hours": 0.17
         },
         {
           "side": "BUY",
           "is_canceled": false,
-          "price": 1.3055,
-          "notional_str": "$71.32K",
-          "notional_usd": 71320.0,
-          "duration_str": "0m 2s",
-          "duration_seconds": 2.0,
-          "duration_hours": 0.0
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 1.3051,
-          "notional_str": "$76.95K",
-          "notional_usd": 76950.0,
-          "duration_str": "19m 50s",
-          "duration_seconds": 1190.0,
-          "duration_hours": 0.33
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 1.3051,
-          "notional_str": "$66.26K",
-          "notional_usd": 66260.0,
-          "duration_str": "0m 1s",
-          "duration_seconds": 1.0,
-          "duration_hours": 0.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 1.305,
-          "notional_str": "$63.23K",
-          "notional_usd": 63230.0,
-          "duration_str": "0m 1s",
-          "duration_seconds": 1.0,
-          "duration_hours": 0.0
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 1.3047,
-          "notional_str": "$86.98K",
-          "notional_usd": 86980.0,
-          "duration_str": "13m 40s",
-          "duration_seconds": 820.0,
-          "duration_hours": 0.23
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 1.3045,
-          "notional_str": "$53.74K",
-          "notional_usd": 53740.0,
-          "duration_str": "0m 37s",
-          "duration_seconds": 37.0,
-          "duration_hours": 0.01
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 1.3041,
-          "notional_str": "$78.79K",
-          "notional_usd": 78790.0,
-          "duration_str": "13m 40s",
-          "duration_seconds": 820.0,
-          "duration_hours": 0.23
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 1.3031,
-          "notional_str": "$136.45K",
-          "notional_usd": 136450.0,
-          "duration_str": "0m 32s",
-          "duration_seconds": 32.0,
-          "duration_hours": 0.01
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 1.3028,
-          "notional_str": "$277.62K",
-          "notional_usd": 277620.0,
-          "duration_str": "1m 3s",
-          "duration_seconds": 63.0,
-          "duration_hours": 0.02
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 1.3023,
-          "notional_str": "$83.10K",
-          "notional_usd": 83100.0,
-          "duration_str": "0m 1s",
-          "duration_seconds": 1.0,
-          "duration_hours": 0.0
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 1.3018,
-          "notional_str": "$91.05K",
-          "notional_usd": 91050.0,
-          "duration_str": "0m 26s",
-          "duration_seconds": 26.0,
-          "duration_hours": 0.01
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 1.3015,
-          "notional_str": "$115.10K",
-          "notional_usd": 115100.0,
+          "price": 1.3071,
+          "notional_str": "$55.08K",
+          "notional_usd": 55080.0,
           "duration_str": "1m 10s",
           "duration_seconds": 70.0,
           "duration_hours": 0.02
@@ -2652,104 +2652,104 @@
         {
           "side": "BUY",
           "is_canceled": false,
-          "price": 1.3014,
-          "notional_str": "$64.09K",
-          "notional_usd": 64090.0,
-          "duration_str": "0m 1s",
-          "duration_seconds": 1.0,
+          "price": 1.3069,
+          "notional_str": "$77.34K",
+          "notional_usd": 77340.0,
+          "duration_str": "1m 18s",
+          "duration_seconds": 78.0,
+          "duration_hours": 0.02
+        },
+        {
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 1.3065,
+          "notional_str": "$132.91K",
+          "notional_usd": 132910.0,
+          "duration_str": "4m 35s",
+          "duration_seconds": 275.0,
+          "duration_hours": 0.08
+        },
+        {
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 1.3065,
+          "notional_str": "$53.04K",
+          "notional_usd": 53040.0,
+          "duration_str": "0m 0s",
+          "duration_seconds": 0.0,
           "duration_hours": 0.0
         },
         {
           "side": "BUY",
           "is_canceled": false,
-          "price": 1.3011,
-          "notional_str": "$77.88K",
-          "notional_usd": 77880.0,
-          "duration_str": "0m 33s",
-          "duration_seconds": 33.0,
+          "price": 1.306,
+          "notional_str": "$94.84K",
+          "notional_usd": 94840.0,
+          "duration_str": "0m 28s",
+          "duration_seconds": 28.0,
           "duration_hours": 0.01
         },
         {
           "side": "BUY",
           "is_canceled": false,
-          "price": 1.3009,
-          "notional_str": "$99.31K",
-          "notional_usd": 99310.0,
-          "duration_str": "0m 19s",
-          "duration_seconds": 19.0,
-          "duration_hours": 0.01
+          "price": 1.3057,
+          "notional_str": "$228.44K",
+          "notional_usd": 228440.0,
+          "duration_str": "4m 50s",
+          "duration_seconds": 290.0,
+          "duration_hours": 0.08
         },
         {
           "side": "BUY",
           "is_canceled": false,
-          "price": 1.3008,
-          "notional_str": "$175.81K",
-          "notional_usd": 175810.0,
-          "duration_str": "1m 4s",
-          "duration_seconds": 64.0,
-          "duration_hours": 0.02
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 1.3007,
-          "notional_str": "$60.00K",
-          "notional_usd": 60000.0,
-          "duration_str": "0m 1s",
-          "duration_seconds": 1.0,
+          "price": 1.3053,
+          "notional_str": "$99.28K",
+          "notional_usd": 99280.0,
+          "duration_str": "0m 11s",
+          "duration_seconds": 11.0,
           "duration_hours": 0.0
         },
         {
           "side": "BUY",
           "is_canceled": false,
-          "price": 1.3006,
-          "notional_str": "$247.11K",
-          "notional_usd": 247110.0,
-          "duration_str": "1m 16s",
-          "duration_seconds": 76.0,
-          "duration_hours": 0.02
+          "price": 1.3051,
+          "notional_str": "$199.95K",
+          "notional_usd": 199950.0,
+          "duration_str": "1m 42s",
+          "duration_seconds": 102.0,
+          "duration_hours": 0.03
         },
         {
           "side": "BUY",
           "is_canceled": false,
-          "price": 1.3005,
-          "notional_str": "$60.00K",
-          "notional_usd": 60000.0,
-          "duration_str": "1m 16s",
-          "duration_seconds": 76.0,
-          "duration_hours": 0.02
+          "price": 1.305,
+          "notional_str": "$51.20K",
+          "notional_usd": 51200.0,
+          "duration_str": "0m 5s",
+          "duration_seconds": 5.0,
+          "duration_hours": 0.0
         },
         {
           "side": "BUY",
           "is_canceled": false,
-          "price": 1.3001,
-          "notional_str": "$120.39K",
-          "notional_usd": 120390.0,
-          "duration_str": "36m 14s",
-          "duration_seconds": 2174.0,
-          "duration_hours": 0.6
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 1.3001,
-          "notional_str": "$60.00K",
-          "notional_usd": 60000.0,
-          "duration_str": "0m 52s",
-          "duration_seconds": 52.0,
-          "duration_hours": 0.01
+          "price": 1.3048,
+          "notional_str": "$69.40K",
+          "notional_usd": 69400.0,
+          "duration_str": "1m 42s",
+          "duration_seconds": 102.0,
+          "duration_hours": 0.03
         }
       ],
-      "scrape_duration_s": 3.25
+      "scrape_duration_s": 3.12
     },
     "ADA": {
       "asset": "ADA",
       "orders_count": 39,
       "side_parse_health": "HEALTHY",
-      "total_notional_usd": 4011330.0,
-      "buy_notional_usd": 2362520.0,
-      "sell_notional_usd": 1648810.0,
-      "imbalance_ratio": 1.433,
+      "total_notional_usd": 3914450.0,
+      "buy_notional_usd": 2270100.0,
+      "sell_notional_usd": 1644350.0,
+      "imbalance_ratio": 1.381,
       "max_single_order_usd": 325490.0,
       "oldest_order_hours": 568.0,
       "top_whale_walls": [
@@ -2759,16 +2759,16 @@
           "price": 0.209,
           "notional_str": "$325.49K",
           "notional_usd": 325490.0,
-          "duration_str": "11H 11m",
-          "duration_seconds": 40260.0,
-          "duration_hours": 11.18
+          "duration_str": "11H 34m",
+          "duration_seconds": 41640.0,
+          "duration_hours": 11.57
         },
         {
           "side": "BUY",
           "is_canceled": false,
           "price": 0.2,
-          "notional_str": "$283.19K",
-          "notional_usd": 283190.0,
+          "notional_str": "$283.25K",
+          "notional_usd": 283250.0,
           "duration_str": "7D 14H",
           "duration_seconds": 655200.0,
           "duration_hours": 182.0
@@ -2779,9 +2779,9 @@
           "price": 0.233,
           "notional_str": "$191.09K",
           "notional_usd": 191090.0,
-          "duration_str": "5H 23m",
-          "duration_seconds": 19380.0,
-          "duration_hours": 5.38
+          "duration_str": "5H 45m",
+          "duration_seconds": 20700.0,
+          "duration_hours": 5.75
         },
         {
           "side": "BUY",
@@ -2796,35 +2796,15 @@
         {
           "side": "SELL",
           "is_canceled": false,
-          "price": 0.2276,
-          "notional_str": "$159.20K",
-          "notional_usd": 159200.0,
-          "duration_str": "0m 20s",
-          "duration_seconds": 20.0,
-          "duration_hours": 0.01
+          "price": 0.2282,
+          "notional_str": "$158.66K",
+          "notional_usd": 158660.0,
+          "duration_str": "0m 1s",
+          "duration_seconds": 1.0,
+          "duration_hours": 0.0
         }
       ],
       "all_orders": [
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 0.2782,
-          "notional_str": "$66.02K",
-          "notional_usd": 66020.0,
-          "duration_str": "8D 6H",
-          "duration_seconds": 712800.0,
-          "duration_hours": 198.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 0.2766,
-          "notional_str": "$65.23K",
-          "notional_usd": 65230.00000000001,
-          "duration_str": "7D 13H",
-          "duration_seconds": 651600.0,
-          "duration_hours": 181.0
-        },
         {
           "side": "SELL",
           "is_canceled": false,
@@ -2841,9 +2821,9 @@
           "price": 0.275,
           "notional_str": "$69.67K",
           "notional_usd": 69670.0,
-          "duration_str": "4D 16H",
-          "duration_seconds": 403200.0,
-          "duration_hours": 112.0
+          "duration_str": "4D 17H",
+          "duration_seconds": 406800.0,
+          "duration_hours": 113.0
         },
         {
           "side": "SELL",
@@ -2851,9 +2831,9 @@
           "price": 0.2733,
           "notional_str": "$65.59K",
           "notional_usd": 65590.0,
-          "duration_str": "7D 13H",
-          "duration_seconds": 651600.0,
-          "duration_hours": 181.0
+          "duration_str": "7D 14H",
+          "duration_seconds": 655200.0,
+          "duration_hours": 182.0
         },
         {
           "side": "SELL",
@@ -2861,9 +2841,9 @@
           "price": 0.27,
           "notional_str": "$74.15K",
           "notional_usd": 74150.0,
-          "duration_str": "7D 13H",
-          "duration_seconds": 651600.0,
-          "duration_hours": 181.0
+          "duration_str": "7D 14H",
+          "duration_seconds": 655200.0,
+          "duration_hours": 182.0
         },
         {
           "side": "SELL",
@@ -2871,9 +2851,9 @@
           "price": 0.265,
           "notional_str": "$94.99K",
           "notional_usd": 94990.0,
-          "duration_str": "6D 14H",
-          "duration_seconds": 568800.0,
-          "duration_hours": 158.0
+          "duration_str": "6D 15H",
+          "duration_seconds": 572400.0,
+          "duration_hours": 159.0
         },
         {
           "side": "SELL",
@@ -2881,9 +2861,9 @@
           "price": 0.263,
           "notional_str": "$145.36K",
           "notional_usd": 145360.0,
-          "duration_str": "4D 16H",
-          "duration_seconds": 403200.0,
-          "duration_hours": 112.0
+          "duration_str": "4D 17H",
+          "duration_seconds": 406800.0,
+          "duration_hours": 113.0
         },
         {
           "side": "SELL",
@@ -2931,19 +2911,19 @@
           "price": 0.25,
           "notional_str": "$65.34K",
           "notional_usd": 65340.0,
-          "duration_str": "4D 7H",
-          "duration_seconds": 370800.0,
-          "duration_hours": 103.0
+          "duration_str": "4D 8H",
+          "duration_seconds": 374400.0,
+          "duration_hours": 104.0
         },
         {
           "side": "SELL",
           "is_canceled": false,
-          "price": 0.24679,
-          "notional_str": "$68.06K",
-          "notional_usd": 68060.0,
-          "duration_str": "0m 22s",
-          "duration_seconds": 22.0,
-          "duration_hours": 0.01
+          "price": 0.24999,
+          "notional_str": "$83.79K",
+          "notional_usd": 83790.0,
+          "duration_str": "1m 58s",
+          "duration_seconds": 118.0,
+          "duration_hours": 0.03
         },
         {
           "side": "SELL",
@@ -2951,9 +2931,9 @@
           "price": 0.24,
           "notional_str": "$71.74K",
           "notional_usd": 71740.0,
-          "duration_str": "8H 52m",
-          "duration_seconds": 31920.0,
-          "duration_hours": 8.87
+          "duration_str": "9H 14m",
+          "duration_seconds": 33240.0,
+          "duration_hours": 9.23
         },
         {
           "side": "SELL",
@@ -2961,9 +2941,9 @@
           "price": 0.237,
           "notional_str": "$50.31K",
           "notional_usd": 50310.0,
-          "duration_str": "11H 9m",
-          "duration_seconds": 40140.0,
-          "duration_hours": 11.15
+          "duration_str": "11H 31m",
+          "duration_seconds": 41460.0,
+          "duration_hours": 11.52
         },
         {
           "side": "SELL",
@@ -2971,9 +2951,9 @@
           "price": 0.233,
           "notional_str": "$191.09K",
           "notional_usd": 191090.0,
-          "duration_str": "5H 23m",
-          "duration_seconds": 19380.0,
-          "duration_hours": 5.38
+          "duration_str": "5H 45m",
+          "duration_seconds": 20700.0,
+          "duration_hours": 5.75
         },
         {
           "side": "SELL",
@@ -2981,99 +2961,119 @@
           "price": 0.232,
           "notional_str": "$70.29K",
           "notional_usd": 70290.0,
-          "duration_str": "7H 33m",
-          "duration_seconds": 27180.0,
-          "duration_hours": 7.55
+          "duration_str": "7H 55m",
+          "duration_seconds": 28500.0,
+          "duration_hours": 7.92
         },
         {
           "side": "SELL",
           "is_canceled": false,
-          "price": 0.2276,
-          "notional_str": "$159.20K",
-          "notional_usd": 159200.0,
-          "duration_str": "0m 20s",
-          "duration_seconds": 20.0,
-          "duration_hours": 0.01
+          "price": 0.2282,
+          "notional_str": "$158.66K",
+          "notional_usd": 158660.0,
+          "duration_str": "0m 1s",
+          "duration_seconds": 1.0,
+          "duration_hours": 0.0
+        },
+        {
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 0.227,
+          "notional_str": "$55.50K",
+          "notional_usd": 55500.0,
+          "duration_str": "0m 56s",
+          "duration_seconds": 56.0,
+          "duration_hours": 0.02
+        },
+        {
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 0.2262,
+          "notional_str": "$56.10K",
+          "notional_usd": 56100.0,
+          "duration_str": "0m 12s",
+          "duration_seconds": 12.0,
+          "duration_hours": 0.0
+        },
+        {
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 0.2256,
+          "notional_str": "$58.36K",
+          "notional_usd": 58360.0,
+          "duration_str": "0m 13s",
+          "duration_seconds": 13.0,
+          "duration_hours": 0.0
+        },
+        {
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 0.225,
+          "notional_str": "$72.71K",
+          "notional_usd": 72710.0,
+          "duration_str": "4m 25s",
+          "duration_seconds": 265.0,
+          "duration_hours": 0.07
         },
         {
           "side": "BUY",
           "is_canceled": false,
           "price": 0.2249,
-          "notional_str": "$127.15K",
-          "notional_usd": 127150.0,
-          "duration_str": "0m 5s",
-          "duration_seconds": 5.0,
+          "notional_str": "$64.19K",
+          "notional_usd": 64190.0,
+          "duration_str": "4m 24s",
+          "duration_seconds": 264.0,
+          "duration_hours": 0.07
+        },
+        {
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 0.2249,
+          "notional_str": "$62.04K",
+          "notional_usd": 62040.0,
+          "duration_str": "0m 1s",
+          "duration_seconds": 1.0,
           "duration_hours": 0.0
         },
         {
           "side": "BUY",
           "is_canceled": false,
-          "price": 0.2246,
-          "notional_str": "$59.25K",
-          "notional_usd": 59250.0,
-          "duration_str": "0m 7s",
-          "duration_seconds": 7.0,
-          "duration_hours": 0.0
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 0.2242,
-          "notional_str": "$54.39K",
-          "notional_usd": 54390.0,
-          "duration_str": "0m 21s",
-          "duration_seconds": 21.0,
-          "duration_hours": 0.01
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 0.2241,
-          "notional_str": "$62.51K",
-          "notional_usd": 62510.0,
-          "duration_str": "0m 20s",
-          "duration_seconds": 20.0,
+          "price": 0.2235,
+          "notional_str": "$67.11K",
+          "notional_usd": 67110.0,
+          "duration_str": "0m 18s",
+          "duration_seconds": 18.0,
           "duration_hours": 0.01
         },
         {
           "side": "BUY",
           "is_canceled": false,
           "price": 0.223,
-          "notional_str": "$122.16K",
-          "notional_usd": 122160.0,
-          "duration_str": "1H 36m",
-          "duration_seconds": 5760.0,
-          "duration_hours": 1.6
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 0.2228,
-          "notional_str": "$66.29K",
-          "notional_usd": 66290.0,
-          "duration_str": "0m 7s",
-          "duration_seconds": 7.0,
-          "duration_hours": 0.0
+          "notional_str": "$92.48K",
+          "notional_usd": 92480.0,
+          "duration_str": "1H 58m",
+          "duration_seconds": 7080.0,
+          "duration_hours": 1.97
         },
         {
           "side": "BUY",
           "is_canceled": false,
           "price": 0.222,
-          "notional_str": "$103.28K",
-          "notional_usd": 103280.0,
-          "duration_str": "2H 43m",
-          "duration_seconds": 9780.0,
-          "duration_hours": 2.72
+          "notional_str": "$102.32K",
+          "notional_usd": 102320.0,
+          "duration_str": "3H 6m",
+          "duration_seconds": 11160.0,
+          "duration_hours": 3.1
         },
         {
           "side": "BUY",
           "is_canceled": false,
           "price": 0.22,
-          "notional_str": "$86.22K",
-          "notional_usd": 86220.0,
-          "duration_str": "11H 50m",
-          "duration_seconds": 42600.0,
-          "duration_hours": 11.83
+          "notional_str": "$84.42K",
+          "notional_usd": 84420.0,
+          "duration_str": "12H 12m",
+          "duration_seconds": 43920.0,
+          "duration_hours": 12.2
         },
         {
           "side": "BUY",
@@ -3081,9 +3081,9 @@
           "price": 0.2195,
           "notional_str": "$140.65K",
           "notional_usd": 140650.0,
-          "duration_str": "5H 11m",
-          "duration_seconds": 18660.0,
-          "duration_hours": 5.18
+          "duration_str": "5H 33m",
+          "duration_seconds": 19980.0,
+          "duration_hours": 5.55
         },
         {
           "side": "BUY",
@@ -3091,9 +3091,9 @@
           "price": 0.218,
           "notional_str": "$64.26K",
           "notional_usd": 64260.00000000001,
-          "duration_str": "3H 54m",
-          "duration_seconds": 14040.0,
-          "duration_hours": 3.9
+          "duration_str": "4H 17m",
+          "duration_seconds": 15420.0,
+          "duration_hours": 4.28
         },
         {
           "side": "BUY",
@@ -3101,29 +3101,29 @@
           "price": 0.218,
           "notional_str": "$51.74K",
           "notional_usd": 51740.0,
-          "duration_str": "4H 46m",
-          "duration_seconds": 17160.0,
-          "duration_hours": 4.77
+          "duration_str": "5H 8m",
+          "duration_seconds": 18480.0,
+          "duration_hours": 5.13
         },
         {
           "side": "BUY",
           "is_canceled": false,
           "price": 0.21501,
-          "notional_str": "$74.47K",
-          "notional_usd": 74470.0,
-          "duration_str": "1m 14s",
-          "duration_seconds": 74.0,
-          "duration_hours": 0.02
+          "notional_str": "$59.58K",
+          "notional_usd": 59580.0,
+          "duration_str": "10m 18s",
+          "duration_seconds": 618.0,
+          "duration_hours": 0.17
         },
         {
           "side": "BUY",
           "is_canceled": false,
           "price": 0.215,
-          "notional_str": "$155.97K",
-          "notional_usd": 155970.0,
-          "duration_str": "7D 13H",
-          "duration_seconds": 651600.0,
-          "duration_hours": 181.0
+          "notional_str": "$156.00K",
+          "notional_usd": 156000.0,
+          "duration_str": "7D 14H",
+          "duration_seconds": 655200.0,
+          "duration_hours": 182.0
         },
         {
           "side": "BUY",
@@ -3151,9 +3151,9 @@
           "price": 0.209,
           "notional_str": "$325.49K",
           "notional_usd": 325490.0,
-          "duration_str": "11H 11m",
-          "duration_seconds": 40260.0,
-          "duration_hours": 11.18
+          "duration_str": "11H 34m",
+          "duration_seconds": 41640.0,
+          "duration_hours": 11.57
         },
         {
           "side": "BUY",
@@ -3161,9 +3161,9 @@
           "price": 0.20588,
           "notional_str": "$114.73K",
           "notional_usd": 114730.0,
-          "duration_str": "8D 4H",
-          "duration_seconds": 705600.0,
-          "duration_hours": 196.0
+          "duration_str": "8D 5H",
+          "duration_seconds": 709200.0,
+          "duration_hours": 197.0
         },
         {
           "side": "BUY",
@@ -3171,16 +3171,16 @@
           "price": 0.2,
           "notional_str": "$106.70K",
           "notional_usd": 106700.0,
-          "duration_str": "3D 14H",
-          "duration_seconds": 309600.0,
-          "duration_hours": 86.0
+          "duration_str": "3D 15H",
+          "duration_seconds": 313200.0,
+          "duration_hours": 87.0
         },
         {
           "side": "BUY",
           "is_canceled": false,
           "price": 0.2,
-          "notional_str": "$283.19K",
-          "notional_usd": 283190.0,
+          "notional_str": "$283.25K",
+          "notional_usd": 283250.0,
           "duration_str": "7D 14H",
           "duration_seconds": 655200.0,
           "duration_hours": 182.0
@@ -3196,18 +3196,18 @@
           "duration_hours": 428.0
         }
       ],
-      "scrape_duration_s": 3.15
+      "scrape_duration_s": 3.11
     },
     "LINK": {
       "asset": "LINK",
       "orders_count": 39,
       "side_parse_health": "HEALTHY",
-      "total_notional_usd": 4819580.0,
-      "buy_notional_usd": 1641400.0,
-      "sell_notional_usd": 3178180.0,
-      "imbalance_ratio": 0.516,
+      "total_notional_usd": 4568050.0,
+      "buy_notional_usd": 1777250.0,
+      "sell_notional_usd": 2790800.0,
+      "imbalance_ratio": 0.637,
       "max_single_order_usd": 713750.0,
-      "oldest_order_hours": 661.0,
+      "oldest_order_hours": 662.0,
       "top_whale_walls": [
         {
           "side": "SELL",
@@ -3222,22 +3222,22 @@
         {
           "side": "SELL",
           "is_canceled": false,
-          "price": 15.0,
-          "notional_str": "$374.46K",
-          "notional_usd": 374460.0,
-          "duration_str": "16D 20H",
-          "duration_seconds": 1454400.0,
-          "duration_hours": 404.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
           "price": 14.8,
           "notional_str": "$270.37K",
           "notional_usd": 270370.0,
-          "duration_str": "9D 5H",
-          "duration_seconds": 795600.0,
-          "duration_hours": 221.0
+          "duration_str": "9D 6H",
+          "duration_seconds": 799200.0,
+          "duration_hours": 222.0
+        },
+        {
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 12.0,
+          "notional_str": "$227.78K",
+          "notional_usd": 227780.0,
+          "duration_str": "6H 41m",
+          "duration_seconds": 24060.0,
+          "duration_hours": 6.68
         },
         {
           "side": "SELL",
@@ -3264,32 +3264,12 @@
         {
           "side": "SELL",
           "is_canceled": false,
-          "price": 15.0,
-          "notional_str": "$374.46K",
-          "notional_usd": 374460.0,
-          "duration_str": "16D 20H",
-          "duration_seconds": 1454400.0,
-          "duration_hours": 404.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 15.0,
-          "notional_str": "$114.67K",
-          "notional_usd": 114670.0,
-          "duration_str": "9D 5H",
-          "duration_seconds": 795600.0,
-          "duration_hours": 221.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
           "price": 14.85,
           "notional_str": "$75.72K",
           "notional_usd": 75720.0,
-          "duration_str": "19H 5m",
-          "duration_seconds": 68700.0,
-          "duration_hours": 19.08
+          "duration_str": "19H 27m",
+          "duration_seconds": 70020.0,
+          "duration_hours": 19.45
         },
         {
           "side": "SELL",
@@ -3307,9 +3287,9 @@
           "price": 14.8,
           "notional_str": "$270.37K",
           "notional_usd": 270370.0,
-          "duration_str": "9D 5H",
-          "duration_seconds": 795600.0,
-          "duration_hours": 221.0
+          "duration_str": "9D 6H",
+          "duration_seconds": 799200.0,
+          "duration_hours": 222.0
         },
         {
           "side": "SELL",
@@ -3317,9 +3297,9 @@
           "price": 14.5,
           "notional_str": "$133.57K",
           "notional_usd": 133570.0,
-          "duration_str": "4D 10H",
-          "duration_seconds": 381600.0,
-          "duration_hours": 106.0
+          "duration_str": "4D 11H",
+          "duration_seconds": 385200.0,
+          "duration_hours": 107.0
         },
         {
           "side": "SELL",
@@ -3337,9 +3317,9 @@
           "price": 14.2,
           "notional_str": "$79.90K",
           "notional_usd": 79900.0,
-          "duration_str": "1D 5H",
-          "duration_seconds": 104400.0,
-          "duration_hours": 29.0
+          "duration_str": "1D 6H",
+          "duration_seconds": 108000.0,
+          "duration_hours": 30.0
         },
         {
           "side": "SELL",
@@ -3347,9 +3327,9 @@
           "price": 14.129,
           "notional_str": "$51.00K",
           "notional_usd": 51000.0,
-          "duration_str": "3D 22H",
-          "duration_seconds": 338400.0,
-          "duration_hours": 94.0
+          "duration_str": "3D 23H",
+          "duration_seconds": 342000.0,
+          "duration_hours": 95.0
         },
         {
           "side": "SELL",
@@ -3407,9 +3387,9 @@
           "price": 13.4,
           "notional_str": "$68.57K",
           "notional_usd": 68570.0,
-          "duration_str": "23H 35m",
-          "duration_seconds": 84900.0,
-          "duration_hours": 23.58
+          "duration_str": "23H 58m",
+          "duration_seconds": 86280.0,
+          "duration_hours": 23.97
         },
         {
           "side": "SELL",
@@ -3417,9 +3397,9 @@
           "price": 13.3,
           "notional_str": "$77.75K",
           "notional_usd": 77750.0,
-          "duration_str": "10H 40m",
-          "duration_seconds": 38400.0,
-          "duration_hours": 10.67
+          "duration_str": "11H 2m",
+          "duration_seconds": 39720.0,
+          "duration_hours": 11.03
         },
         {
           "side": "SELL",
@@ -3427,9 +3407,9 @@
           "price": 12.8,
           "notional_str": "$50.04K",
           "notional_usd": 50040.0,
-          "duration_str": "5H 37m",
-          "duration_seconds": 20220.0,
-          "duration_hours": 5.62
+          "duration_str": "6H 0m",
+          "duration_seconds": 21600.0,
+          "duration_hours": 6.0
         },
         {
           "side": "SELL",
@@ -3444,22 +3424,62 @@
         {
           "side": "SELL",
           "is_canceled": false,
-          "price": 12.427,
-          "notional_str": "$163.51K",
-          "notional_usd": 163510.0,
+          "price": 12.461,
+          "notional_str": "$163.90K",
+          "notional_usd": 163900.0,
           "duration_str": "0m 10s",
           "duration_seconds": 10.0,
           "duration_hours": 0.0
         },
         {
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 12.37,
+          "notional_str": "$51.31K",
+          "notional_usd": 51310.0,
+          "duration_str": "1m 48s",
+          "duration_seconds": 108.0,
+          "duration_hours": 0.03
+        },
+        {
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 12.368,
+          "notional_str": "$50.05K",
+          "notional_usd": 50050.0,
+          "duration_str": "1m 16s",
+          "duration_seconds": 76.0,
+          "duration_hours": 0.02
+        },
+        {
           "side": "BUY",
           "is_canceled": false,
-          "price": 12.25,
-          "notional_str": "$73.43K",
-          "notional_usd": 73430.0,
-          "duration_str": "19m 43s",
-          "duration_seconds": 1183.0,
-          "duration_hours": 0.33
+          "price": 12.293,
+          "notional_str": "$65.33K",
+          "notional_usd": 65330.0,
+          "duration_str": "0m 17s",
+          "duration_seconds": 17.0,
+          "duration_hours": 0.0
+        },
+        {
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 12.278,
+          "notional_str": "$57.31K",
+          "notional_usd": 57310.0,
+          "duration_str": "0m 42s",
+          "duration_seconds": 42.0,
+          "duration_hours": 0.01
+        },
+        {
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 12.264,
+          "notional_str": "$69.15K",
+          "notional_usd": 69150.0,
+          "duration_str": "6m 38s",
+          "duration_seconds": 398.0,
+          "duration_hours": 0.11
         },
         {
           "side": "BUY",
@@ -3467,59 +3487,39 @@
           "price": 12.218,
           "notional_str": "$79.53K",
           "notional_usd": 79530.0,
-          "duration_str": "27D 13H",
-          "duration_seconds": 2379600.0,
-          "duration_hours": 661.0
+          "duration_str": "27D 14H",
+          "duration_seconds": 2383200.0,
+          "duration_hours": 662.0
         },
         {
           "side": "BUY",
           "is_canceled": false,
-          "price": 12.213,
-          "notional_str": "$65.79K",
-          "notional_usd": 65790.0,
-          "duration_str": "0m 12s",
-          "duration_seconds": 12.0,
+          "price": 12.211,
+          "notional_str": "$66.35K",
+          "notional_usd": 66350.0,
+          "duration_str": "0m 4s",
+          "duration_seconds": 4.0,
           "duration_hours": 0.0
         },
         {
           "side": "BUY",
           "is_canceled": false,
-          "price": 12.205,
-          "notional_str": "$73.31K",
-          "notional_usd": 73310.0,
-          "duration_str": "50m 38s",
-          "duration_seconds": 3038.0,
-          "duration_hours": 0.84
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 12.18,
-          "notional_str": "$66.54K",
-          "notional_usd": 66540.0,
-          "duration_str": "0m 19s",
-          "duration_seconds": 19.0,
-          "duration_hours": 0.01
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 12.176,
-          "notional_str": "$66.05K",
-          "notional_usd": 66050.0,
-          "duration_str": "0m 10s",
-          "duration_seconds": 10.0,
-          "duration_hours": 0.0
+          "price": 12.207,
+          "notional_str": "$76.32K",
+          "notional_usd": 76320.0,
+          "duration_str": "14m 29s",
+          "duration_seconds": 869.0,
+          "duration_hours": 0.24
         },
         {
           "side": "BUY",
           "is_canceled": false,
           "price": 12.0,
-          "notional_str": "$81.17K",
-          "notional_usd": 81170.0,
-          "duration_str": "6H 18m",
-          "duration_seconds": 22680.0,
-          "duration_hours": 6.3
+          "notional_str": "$227.78K",
+          "notional_usd": 227780.0,
+          "duration_str": "6H 41m",
+          "duration_seconds": 24060.0,
+          "duration_hours": 6.68
         },
         {
           "side": "BUY",
@@ -3527,9 +3527,9 @@
           "price": 11.93,
           "notional_str": "$53.92K",
           "notional_usd": 53920.0,
-          "duration_str": "2H 14m",
-          "duration_seconds": 8040.0,
-          "duration_hours": 2.23
+          "duration_str": "2H 36m",
+          "duration_seconds": 9360.0,
+          "duration_hours": 2.6
         },
         {
           "side": "BUY",
@@ -3537,9 +3537,9 @@
           "price": 11.8,
           "notional_str": "$77.84K",
           "notional_usd": 77840.0,
-          "duration_str": "7D 13H",
-          "duration_seconds": 651600.0,
-          "duration_hours": 181.0
+          "duration_str": "7D 14H",
+          "duration_seconds": 655200.0,
+          "duration_hours": 182.0
         },
         {
           "side": "BUY",
@@ -3547,9 +3547,9 @@
           "price": 11.78,
           "notional_str": "$78.35K",
           "notional_usd": 78350.0,
-          "duration_str": "9D 5H",
-          "duration_seconds": 795600.0,
-          "duration_hours": 221.0
+          "duration_str": "9D 6H",
+          "duration_seconds": 799200.0,
+          "duration_hours": 222.0
         },
         {
           "side": "BUY",
@@ -3557,9 +3557,9 @@
           "price": 11.75,
           "notional_str": "$56.68K",
           "notional_usd": 56680.0,
-          "duration_str": "19H 46m",
-          "duration_seconds": 71160.0,
-          "duration_hours": 19.77
+          "duration_str": "20H 9m",
+          "duration_seconds": 72540.0,
+          "duration_hours": 20.15
         },
         {
           "side": "BUY",
@@ -3587,19 +3587,19 @@
           "price": 11.54,
           "notional_str": "$58.75K",
           "notional_usd": 58750.0,
-          "duration_str": "3H 7m",
-          "duration_seconds": 11220.0,
-          "duration_hours": 3.12
+          "duration_str": "3H 29m",
+          "duration_seconds": 12540.0,
+          "duration_hours": 3.48
         },
         {
           "side": "BUY",
           "is_canceled": false,
           "price": 11.5,
-          "notional_str": "$142.14K",
-          "notional_usd": 142140.0,
-          "duration_str": "7D 13H",
-          "duration_seconds": 651600.0,
-          "duration_hours": 181.0
+          "notional_str": "$142.04K",
+          "notional_usd": 142040.0,
+          "duration_str": "7D 14H",
+          "duration_seconds": 655200.0,
+          "duration_hours": 182.0
         },
         {
           "side": "BUY",
@@ -3607,9 +3607,9 @@
           "price": 11.5,
           "notional_str": "$125.55K",
           "notional_usd": 125550.0,
-          "duration_str": "9D 5H",
-          "duration_seconds": 795600.0,
-          "duration_hours": 221.0
+          "duration_str": "9D 6H",
+          "duration_seconds": 799200.0,
+          "duration_hours": 222.0
         },
         {
           "side": "BUY",
@@ -3617,9 +3617,9 @@
           "price": 11.45,
           "notional_str": "$64.78K",
           "notional_usd": 64780.0,
-          "duration_str": "9D 5H",
-          "duration_seconds": 795600.0,
-          "duration_hours": 221.0
+          "duration_str": "9D 6H",
+          "duration_seconds": 799200.0,
+          "duration_hours": 222.0
         },
         {
           "side": "BUY",
@@ -3647,21 +3647,21 @@
           "price": 11.04,
           "notional_str": "$76.03K",
           "notional_usd": 76030.0,
-          "duration_str": "9D 5H",
-          "duration_seconds": 795600.0,
-          "duration_hours": 221.0
+          "duration_str": "9D 6H",
+          "duration_seconds": 799200.0,
+          "duration_hours": 222.0
         }
       ],
-      "scrape_duration_s": 3.11
+      "scrape_duration_s": 3.12
     },
     "AVAX": {
       "asset": "AVAX",
       "orders_count": 37,
-      "side_parse_health": "HEALTHY",
-      "total_notional_usd": 3971810.0,
-      "buy_notional_usd": 188340.0,
-      "sell_notional_usd": 3783470.0,
-      "imbalance_ratio": 0.05,
+      "side_parse_health": "SIDE_PARSE_DEGENERATE",
+      "total_notional_usd": 4013150.0,
+      "buy_notional_usd": 0.0,
+      "sell_notional_usd": 4013150.0,
+      "imbalance_ratio": 0.0,
       "max_single_order_usd": 311300.0,
       "oldest_order_hours": 3198.0,
       "top_whale_walls": [
@@ -3720,12 +3720,22 @@
         {
           "side": "SELL",
           "is_canceled": false,
+          "price": 19.9,
+          "notional_str": "$127.97K",
+          "notional_usd": 127970.0,
+          "duration_str": "1D 3H",
+          "duration_seconds": 97200.0,
+          "duration_hours": 27.0
+        },
+        {
+          "side": "SELL",
+          "is_canceled": false,
           "price": 19.5,
           "notional_str": "$111.90K",
           "notional_usd": 111900.0,
-          "duration_str": "23H 4m",
-          "duration_seconds": 83040.0,
-          "duration_hours": 23.07
+          "duration_str": "23H 27m",
+          "duration_seconds": 84420.0,
+          "duration_hours": 23.45
         },
         {
           "side": "SELL",
@@ -3753,9 +3763,9 @@
           "price": 18.6,
           "notional_str": "$52.91K",
           "notional_usd": 52910.0,
-          "duration_str": "5D 16H",
-          "duration_seconds": 489600.0,
-          "duration_hours": 136.0
+          "duration_str": "5D 17H",
+          "duration_seconds": 493200.0,
+          "duration_hours": 137.0
         },
         {
           "side": "SELL",
@@ -3773,9 +3783,9 @@
           "price": 18.0,
           "notional_str": "$136.19K",
           "notional_usd": 136190.0,
-          "duration_str": "19D 21H",
-          "duration_seconds": 1717200.0,
-          "duration_hours": 477.0
+          "duration_str": "19D 22H",
+          "duration_seconds": 1720800.0,
+          "duration_hours": 478.0
         },
         {
           "side": "SELL",
@@ -3813,9 +3823,9 @@
           "price": 16.0,
           "notional_str": "$104.12K",
           "notional_usd": 104120.0,
-          "duration_str": "7D 13H",
-          "duration_seconds": 651600.0,
-          "duration_hours": 181.0
+          "duration_str": "7D 14H",
+          "duration_seconds": 655200.0,
+          "duration_hours": 182.0
         },
         {
           "side": "SELL",
@@ -3893,9 +3903,9 @@
           "price": 14.5,
           "notional_str": "$62.71K",
           "notional_usd": 62710.0,
-          "duration_str": "15H 8m",
-          "duration_seconds": 54480.0,
-          "duration_hours": 15.13
+          "duration_str": "15H 30m",
+          "duration_seconds": 55800.0,
+          "duration_hours": 15.5
         },
         {
           "side": "SELL",
@@ -3933,9 +3943,9 @@
           "price": 13.0,
           "notional_str": "$66.67K",
           "notional_usd": 66670.0,
-          "duration_str": "6D 20H",
-          "duration_seconds": 590400.0,
-          "duration_hours": 164.0
+          "duration_str": "6D 21H",
+          "duration_seconds": 594000.0,
+          "duration_hours": 165.0
         },
         {
           "side": "SELL",
@@ -3973,9 +3983,9 @@
           "price": 11.9,
           "notional_str": "$71.41K",
           "notional_usd": 71410.0,
-          "duration_str": "9D 7H",
-          "duration_seconds": 802800.0,
-          "duration_hours": 223.0
+          "duration_str": "9D 8H",
+          "duration_seconds": 806400.0,
+          "duration_hours": 224.0
         },
         {
           "side": "SELL",
@@ -4000,12 +4010,12 @@
         {
           "side": "SELL",
           "is_canceled": false,
-          "price": 11.181,
-          "notional_str": "$62.63K",
-          "notional_usd": 62630.0,
-          "duration_str": "0m 15s",
-          "duration_seconds": 15.0,
-          "duration_hours": 0.0
+          "price": 11.084,
+          "notional_str": "$62.14K",
+          "notional_usd": 62140.0,
+          "duration_str": "4m 19s",
+          "duration_seconds": 259.0,
+          "duration_hours": 0.07
         },
         {
           "side": "SELL",
@@ -4013,9 +4023,9 @@
           "price": 10.95,
           "notional_str": "$87.12K",
           "notional_usd": 87120.0,
-          "duration_str": "1D 2H",
-          "duration_seconds": 93600.0,
-          "duration_hours": 26.0
+          "duration_str": "1D 3H",
+          "duration_seconds": 97200.0,
+          "duration_hours": 27.0
         },
         {
           "side": "SELL",
@@ -4023,1350 +4033,174 @@
           "price": 10.42,
           "notional_str": "$100.09K",
           "notional_usd": 100090.0,
-          "duration_str": "7H 51m",
-          "duration_seconds": 28260.0,
-          "duration_hours": 7.85
+          "duration_str": "8H 13m",
+          "duration_seconds": 29580.0,
+          "duration_hours": 8.22
         },
         {
           "side": "SELL",
           "is_canceled": false,
-          "price": 10.035,
-          "notional_str": "$158.84K",
-          "notional_usd": 158840.0,
-          "duration_str": "0m 0s",
-          "duration_seconds": 0.0,
+          "price": 10.093,
+          "notional_str": "$65.61K",
+          "notional_usd": 65610.0,
+          "duration_str": "0m 7s",
+          "duration_seconds": 7.0,
           "duration_hours": 0.0
         },
         {
           "side": "SELL",
           "is_canceled": false,
-          "price": 10.017,
-          "notional_str": "$50.44K",
-          "notional_usd": 50440.0,
-          "duration_str": "0m 8s",
-          "duration_seconds": 8.0,
-          "duration_hours": 0.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 9.933,
-          "notional_str": "$69.56K",
-          "notional_usd": 69560.0,
-          "duration_str": "0m 4s",
-          "duration_seconds": 4.0,
-          "duration_hours": 0.0
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 9.879,
-          "notional_str": "$73.81K",
-          "notional_usd": 73810.0,
-          "duration_str": "0m 22s",
-          "duration_seconds": 22.0,
-          "duration_hours": 0.01
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 9.853,
-          "notional_str": "$51.92K",
-          "notional_usd": 51920.0,
-          "duration_str": "0m 22s",
-          "duration_seconds": 22.0,
-          "duration_hours": 0.01
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 9.835,
-          "notional_str": "$62.61K",
-          "notional_usd": 62610.0,
-          "duration_str": "0m 22s",
-          "duration_seconds": 22.0,
-          "duration_hours": 0.01
-        }
-      ],
-      "scrape_duration_s": 3.12
-    },
-    "NEAR": {
-      "asset": "NEAR",
-      "orders_count": 39,
-      "side_parse_health": "HEALTHY",
-      "total_notional_usd": 4075980.0,
-      "buy_notional_usd": 1868840.0,
-      "sell_notional_usd": 2207140.0,
-      "imbalance_ratio": 0.847,
-      "max_single_order_usd": 525660.0,
-      "oldest_order_hours": 29.0,
-      "top_whale_walls": [
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 5.2,
-          "notional_str": "$525.66K",
-          "notional_usd": 525660.0,
-          "duration_str": "1H 34m",
-          "duration_seconds": 5640.0,
-          "duration_hours": 1.57
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 4.941,
-          "notional_str": "$230.36K",
-          "notional_usd": 230360.0,
-          "duration_str": "3H 18m",
-          "duration_seconds": 11880.0,
-          "duration_hours": 3.3
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 5.058,
-          "notional_str": "$195.65K",
-          "notional_usd": 195650.0,
-          "duration_str": "0m 9s",
-          "duration_seconds": 9.0,
-          "duration_hours": 0.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 5.15,
-          "notional_str": "$175.74K",
-          "notional_usd": 175740.0,
-          "duration_str": "2H 43m",
-          "duration_seconds": 9780.0,
-          "duration_hours": 2.72
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 5.25,
-          "notional_str": "$173.35K",
-          "notional_usd": 173350.0,
-          "duration_str": "4H 15m",
-          "duration_seconds": 15300.0,
-          "duration_hours": 4.25
-        }
-      ],
-      "all_orders": [
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 5.38,
-          "notional_str": "$57.80K",
-          "notional_usd": 57800.0,
-          "duration_str": "15H 45m",
-          "duration_seconds": 56700.0,
-          "duration_hours": 15.75
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 5.35,
-          "notional_str": "$53.82K",
-          "notional_usd": 53820.0,
-          "duration_str": "2H 48m",
-          "duration_seconds": 10080.0,
-          "duration_hours": 2.8
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 5.302,
-          "notional_str": "$101.22K",
-          "notional_usd": 101220.0,
-          "duration_str": "1H 14m",
-          "duration_seconds": 4440.0,
-          "duration_hours": 1.23
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 5.3,
-          "notional_str": "$115.94K",
-          "notional_usd": 115940.0,
-          "duration_str": "7H 0m",
-          "duration_seconds": 25200.0,
-          "duration_hours": 7.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 5.25,
-          "notional_str": "$173.35K",
-          "notional_usd": 173350.0,
-          "duration_str": "4H 15m",
-          "duration_seconds": 15300.0,
-          "duration_hours": 4.25
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 5.2,
-          "notional_str": "$525.66K",
-          "notional_usd": 525660.0,
-          "duration_str": "1H 34m",
-          "duration_seconds": 5640.0,
-          "duration_hours": 1.57
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 5.15,
-          "notional_str": "$175.74K",
-          "notional_usd": 175740.0,
-          "duration_str": "2H 43m",
-          "duration_seconds": 9780.0,
-          "duration_hours": 2.72
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 5.103,
-          "notional_str": "$56.00K",
-          "notional_usd": 56000.0,
-          "duration_str": "0m 50s",
-          "duration_seconds": 50.0,
-          "duration_hours": 0.01
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 5.102,
-          "notional_str": "$110.10K",
-          "notional_usd": 110100.0,
-          "duration_str": "0m 29s",
-          "duration_seconds": 29.0,
-          "duration_hours": 0.01
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 5.097,
-          "notional_str": "$110.02K",
-          "notional_usd": 110020.0,
-          "duration_str": "0m 37s",
-          "duration_seconds": 37.0,
-          "duration_hours": 0.01
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 5.095,
-          "notional_str": "$91.45K",
-          "notional_usd": 91450.0,
-          "duration_str": "0m 23s",
-          "duration_seconds": 23.0,
-          "duration_hours": 0.01
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 5.0946,
-          "notional_str": "$50.89K",
-          "notional_usd": 50890.0,
-          "duration_str": "0m 18s",
-          "duration_seconds": 18.0,
-          "duration_hours": 0.01
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 5.0807,
-          "notional_str": "$170.56K",
-          "notional_usd": 170560.0,
-          "duration_str": "0m 31s",
-          "duration_seconds": 31.0,
-          "duration_hours": 0.01
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 5.0588,
-          "notional_str": "$51.25K",
-          "notional_usd": 51250.0,
-          "duration_str": "0m 31s",
-          "duration_seconds": 31.0,
-          "duration_hours": 0.01
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 5.058,
-          "notional_str": "$195.65K",
-          "notional_usd": 195650.0,
-          "duration_str": "0m 9s",
-          "duration_seconds": 9.0,
-          "duration_hours": 0.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 5.053,
-          "notional_str": "$54.30K",
-          "notional_usd": 54300.0,
-          "duration_str": "8m 42s",
-          "duration_seconds": 522.0,
-          "duration_hours": 0.14
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 5.047,
-          "notional_str": "$61.30K",
-          "notional_usd": 61300.0,
-          "duration_str": "0m 37s",
-          "duration_seconds": 37.0,
-          "duration_hours": 0.01
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 5.045,
-          "notional_str": "$52.09K",
-          "notional_usd": 52090.0,
-          "duration_str": "0m 23s",
-          "duration_seconds": 23.0,
-          "duration_hours": 0.01
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 4.999,
-          "notional_str": "$63.47K",
-          "notional_usd": 63470.0,
-          "duration_str": "0m 2s",
-          "duration_seconds": 2.0,
-          "duration_hours": 0.0
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 4.995,
-          "notional_str": "$52.84K",
-          "notional_usd": 52840.0,
-          "duration_str": "0m 9s",
-          "duration_seconds": 9.0,
-          "duration_hours": 0.0
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 4.99,
-          "notional_str": "$51.87K",
-          "notional_usd": 51870.0,
+          "price": 10.084,
+          "notional_str": "$159.10K",
+          "notional_usd": 159100.0,
           "duration_str": "0m 1s",
           "duration_seconds": 1.0,
           "duration_hours": 0.0
         },
         {
-          "side": "BUY",
+          "side": "SELL",
           "is_canceled": false,
-          "price": 4.976,
-          "notional_str": "$54.18K",
-          "notional_usd": 54180.0,
-          "duration_str": "0m 36s",
-          "duration_seconds": 36.0,
-          "duration_hours": 0.01
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 4.958,
-          "notional_str": "$76.19K",
-          "notional_usd": 76190.0,
-          "duration_str": "0m 9s",
-          "duration_seconds": 9.0,
+          "price": 10.069,
+          "notional_str": "$52.45K",
+          "notional_usd": 52450.0,
+          "duration_str": "0m 3s",
+          "duration_seconds": 3.0,
           "duration_hours": 0.0
         },
         {
-          "side": "BUY",
+          "side": "SELL",
           "is_canceled": false,
-          "price": 4.9536,
-          "notional_str": "$55.02K",
-          "notional_usd": 55020.0,
-          "duration_str": "14m 51s",
-          "duration_seconds": 891.0,
-          "duration_hours": 0.25
+          "price": 10.068,
+          "notional_str": "$50.46K",
+          "notional_usd": 50460.0,
+          "duration_str": "3m 2s",
+          "duration_seconds": 182.0,
+          "duration_hours": 0.05
         },
         {
-          "side": "BUY",
+          "side": "SELL",
           "is_canceled": false,
-          "price": 4.951,
-          "notional_str": "$69.27K",
-          "notional_usd": 69270.0,
-          "duration_str": "0m 16s",
-          "duration_seconds": 16.0,
+          "price": 10.053,
+          "notional_str": "$53.42K",
+          "notional_usd": 53420.0,
+          "duration_str": "0m 7s",
+          "duration_seconds": 7.0,
           "duration_hours": 0.0
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 4.9486,
-          "notional_str": "$54.97K",
-          "notional_usd": 54970.0,
-          "duration_str": "27m 15s",
-          "duration_seconds": 1635.0,
-          "duration_hours": 0.45
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 4.941,
-          "notional_str": "$230.36K",
-          "notional_usd": 230360.0,
-          "duration_str": "3H 18m",
-          "duration_seconds": 11880.0,
-          "duration_hours": 3.3
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 4.9358,
-          "notional_str": "$54.83K",
-          "notional_usd": 54830.0,
-          "duration_str": "20m 59s",
-          "duration_seconds": 1259.0,
-          "duration_hours": 0.35
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 4.9234,
-          "notional_str": "$54.69K",
-          "notional_usd": 54690.0,
-          "duration_str": "0m 52s",
-          "duration_seconds": 52.0,
-          "duration_hours": 0.01
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 4.911,
-          "notional_str": "$110.55K",
-          "notional_usd": 110550.0,
-          "duration_str": "0m 36s",
-          "duration_seconds": 36.0,
-          "duration_hours": 0.01
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 4.9098,
-          "notional_str": "$154.66K",
-          "notional_usd": 154660.0,
-          "duration_str": "0m 25s",
-          "duration_seconds": 25.0,
-          "duration_hours": 0.01
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 4.908,
-          "notional_str": "$110.12K",
-          "notional_usd": 110120.0,
-          "duration_str": "0m 9s",
-          "duration_seconds": 9.0,
-          "duration_hours": 0.0
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 4.906,
-          "notional_str": "$93.90K",
-          "notional_usd": 93900.0,
-          "duration_str": "0m 9s",
-          "duration_seconds": 9.0,
-          "duration_hours": 0.0
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 4.903,
-          "notional_str": "$54.07K",
-          "notional_usd": 54070.0,
-          "duration_str": "0m 50s",
-          "duration_seconds": 50.0,
-          "duration_hours": 0.01
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 4.9,
-          "notional_str": "$78.72K",
-          "notional_usd": 78720.0,
-          "duration_str": "1D 3H",
-          "duration_seconds": 97200.0,
-          "duration_hours": 27.0
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 4.85,
-          "notional_str": "$94.54K",
-          "notional_usd": 94540.0,
-          "duration_str": "4H 25m",
-          "duration_seconds": 15900.0,
-          "duration_hours": 4.42
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 4.8,
-          "notional_str": "$145.56K",
-          "notional_usd": 145560.0,
-          "duration_str": "1D 5H",
-          "duration_seconds": 104400.0,
-          "duration_hours": 29.0
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 4.785,
-          "notional_str": "$71.40K",
-          "notional_usd": 71400.0,
-          "duration_str": "30m 50s",
-          "duration_seconds": 1850.0,
-          "duration_hours": 0.51
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 4.7,
-          "notional_str": "$137.63K",
-          "notional_usd": 137630.0,
-          "duration_str": "1D 0H",
-          "duration_seconds": 86400.0,
-          "duration_hours": 24.0
         }
       ],
       "scrape_duration_s": 3.13
+    },
+    "SUI": {
+      "asset": "SUI",
+      "orders_count": 0,
+      "side_parse_health": "UNILATERAL_BOOK",
+      "total_notional_usd": 0.0,
+      "buy_notional_usd": 0.0,
+      "sell_notional_usd": 0.0,
+      "imbalance_ratio": 0.0,
+      "max_single_order_usd": 0.0,
+      "oldest_order_hours": 0.0,
+      "top_whale_walls": [],
+      "all_orders": [],
+      "scrape_duration_s": 3.12
+    },
+    "DOT": {
+      "asset": "DOT",
+      "orders_count": 0,
+      "side_parse_health": "UNILATERAL_BOOK",
+      "total_notional_usd": 0.0,
+      "buy_notional_usd": 0.0,
+      "sell_notional_usd": 0.0,
+      "imbalance_ratio": 0.0,
+      "max_single_order_usd": 0.0,
+      "oldest_order_hours": 0.0,
+      "top_whale_walls": [],
+      "all_orders": [],
+      "scrape_duration_s": 3.11
     },
     "LTC": {
       "asset": "LTC",
-      "orders_count": 39,
-      "side_parse_health": "HEALTHY",
-      "total_notional_usd": 5009240.0,
-      "buy_notional_usd": 1203420.0,
-      "sell_notional_usd": 3805820.0,
-      "imbalance_ratio": 0.316,
-      "max_single_order_usd": 1100000.0,
-      "oldest_order_hours": 661.0,
-      "top_whale_walls": [
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 85.0,
-          "notional_str": "$1.10M",
-          "notional_usd": 1100000.0,
-          "duration_str": "12D 4H",
-          "duration_seconds": 1051200.0,
-          "duration_hours": 292.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 59.84,
-          "notional_str": "$334.14K",
-          "notional_usd": 334140.0,
-          "duration_str": "0m 25s",
-          "duration_seconds": 25.0,
-          "duration_hours": 0.01
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 76.76,
-          "notional_str": "$231.14K",
-          "notional_usd": 231140.0,
-          "duration_str": "6D 1H",
-          "duration_seconds": 522000.0,
-          "duration_hours": 145.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 85.0,
-          "notional_str": "$219.72K",
-          "notional_usd": 219720.0,
-          "duration_str": "7D 13H",
-          "duration_seconds": 651600.0,
-          "duration_hours": 181.0
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 50.0,
-          "notional_str": "$205.98K",
-          "notional_usd": 205980.0,
-          "duration_str": "7D 13H",
-          "duration_seconds": 651600.0,
-          "duration_hours": 181.0
-        }
-      ],
-      "all_orders": [
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 87.0,
-          "notional_str": "$64.11K",
-          "notional_usd": 64110.0,
-          "duration_str": "6D 0H",
-          "duration_seconds": 518400.0,
-          "duration_hours": 144.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 86.0,
-          "notional_str": "$73.47K",
-          "notional_usd": 73470.0,
-          "duration_str": "3D 14H",
-          "duration_seconds": 309600.0,
-          "duration_hours": 86.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 85.0,
-          "notional_str": "$219.72K",
-          "notional_usd": 219720.0,
-          "duration_str": "7D 13H",
-          "duration_seconds": 651600.0,
-          "duration_hours": 181.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 85.0,
-          "notional_str": "$1.10M",
-          "notional_usd": 1100000.0,
-          "duration_str": "12D 4H",
-          "duration_seconds": 1051200.0,
-          "duration_hours": 292.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 84.0,
-          "notional_str": "$80.41K",
-          "notional_usd": 80410.0,
-          "duration_str": "6D 16H",
-          "duration_seconds": 576000.0,
-          "duration_hours": 160.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 82.0,
-          "notional_str": "$177.38K",
-          "notional_usd": 177380.0,
-          "duration_str": "6D 14H",
-          "duration_seconds": 568800.0,
-          "duration_hours": 158.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 82.0,
-          "notional_str": "$53.38K",
-          "notional_usd": 53380.0,
-          "duration_str": "12D 4H",
-          "duration_seconds": 1051200.0,
-          "duration_hours": 292.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 80.0,
-          "notional_str": "$171.82K",
-          "notional_usd": 171820.0,
-          "duration_str": "7D 11H",
-          "duration_seconds": 644400.0,
-          "duration_hours": 179.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 77.0,
-          "notional_str": "$96.47K",
-          "notional_usd": 96470.0,
-          "duration_str": "7D 7H",
-          "duration_seconds": 630000.0,
-          "duration_hours": 175.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 76.76,
-          "notional_str": "$231.14K",
-          "notional_usd": 231140.0,
-          "duration_str": "6D 1H",
-          "duration_seconds": 522000.0,
-          "duration_hours": 145.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 75.25,
-          "notional_str": "$156.62K",
-          "notional_usd": 156620.0,
-          "duration_str": "12D 4H",
-          "duration_seconds": 1051200.0,
-          "duration_hours": 292.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 75.0,
-          "notional_str": "$133.77K",
-          "notional_usd": 133770.0,
-          "duration_str": "7D 13H",
-          "duration_seconds": 651600.0,
-          "duration_hours": 181.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 74.51,
-          "notional_str": "$118.77K",
-          "notional_usd": 118770.0,
-          "duration_str": "5D 13H",
-          "duration_seconds": 478800.0,
-          "duration_hours": 133.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 73.5,
-          "notional_str": "$71.43K",
-          "notional_usd": 71430.0,
-          "duration_str": "7D 0H",
-          "duration_seconds": 604800.0,
-          "duration_hours": 168.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 73.24,
-          "notional_str": "$57.25K",
-          "notional_usd": 57250.0,
-          "duration_str": "1H 56m",
-          "duration_seconds": 6960.0,
-          "duration_hours": 1.93
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 73.0,
-          "notional_str": "$57.53K",
-          "notional_usd": 57530.0,
-          "duration_str": "12D 6H",
-          "duration_seconds": 1058400.0,
-          "duration_hours": 294.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 72.0,
-          "notional_str": "$74.91K",
-          "notional_usd": 74910.0,
-          "duration_str": "4D 10H",
-          "duration_seconds": 381600.0,
-          "duration_hours": 106.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 69.999,
-          "notional_str": "$56.79K",
-          "notional_usd": 56790.0,
-          "duration_str": "1m 55s",
-          "duration_seconds": 115.0,
-          "duration_hours": 0.03
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 65.5,
-          "notional_str": "$95.52K",
-          "notional_usd": 95520.0,
-          "duration_str": "4D 7H",
-          "duration_seconds": 370800.0,
-          "duration_hours": 103.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 65.0,
-          "notional_str": "$86.02K",
-          "notional_usd": 86020.0,
-          "duration_str": "1D 6H",
-          "duration_seconds": 108000.0,
-          "duration_hours": 30.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 64.8,
-          "notional_str": "$71.99K",
-          "notional_usd": 71990.0,
-          "duration_str": "4D 4H",
-          "duration_seconds": 360000.0,
-          "duration_hours": 100.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 59.84,
-          "notional_str": "$334.14K",
-          "notional_usd": 334140.0,
-          "duration_str": "0m 25s",
-          "duration_seconds": 25.0,
-          "duration_hours": 0.01
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 59.75,
-          "notional_str": "$102.37K",
-          "notional_usd": 102370.0,
-          "duration_str": "0m 19s",
-          "duration_seconds": 19.0,
-          "duration_hours": 0.01
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 59.38,
-          "notional_str": "$65.94K",
-          "notional_usd": 65940.0,
-          "duration_str": "0m 25s",
-          "duration_seconds": 25.0,
-          "duration_hours": 0.01
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 59.28,
-          "notional_str": "$54.87K",
-          "notional_usd": 54870.0,
-          "duration_str": "0m 0s",
-          "duration_seconds": 0.0,
-          "duration_hours": 0.0
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 59.16,
-          "notional_str": "$64.81K",
-          "notional_usd": 64810.0,
-          "duration_str": "0m 5s",
-          "duration_seconds": 5.0,
-          "duration_hours": 0.0
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 59.07,
-          "notional_str": "$66.06K",
-          "notional_usd": 66060.0,
-          "duration_str": "0m 25s",
-          "duration_seconds": 25.0,
-          "duration_hours": 0.01
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 58.7,
-          "notional_str": "$99.83K",
-          "notional_usd": 99830.0,
-          "duration_str": "0m 19s",
-          "duration_seconds": 19.0,
-          "duration_hours": 0.01
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 58.63,
-          "notional_str": "$66.41K",
-          "notional_usd": 66410.0,
-          "duration_str": "0m 25s",
-          "duration_seconds": 25.0,
-          "duration_hours": 0.01
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 57.0,
-          "notional_str": "$62.63K",
-          "notional_usd": 62630.0,
-          "duration_str": "4H 23m",
-          "duration_seconds": 15780.0,
-          "duration_hours": 4.38
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 56.81,
-          "notional_str": "$59.98K",
-          "notional_usd": 59980.0,
-          "duration_str": "27D 13H",
-          "duration_seconds": 2379600.0,
-          "duration_hours": 661.0
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 56.39,
-          "notional_str": "$78.25K",
-          "notional_usd": 78250.0,
-          "duration_str": "27D 13H",
-          "duration_seconds": 2379600.0,
-          "duration_hours": 661.0
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 56.0,
-          "notional_str": "$60.34K",
-          "notional_usd": 60340.0,
-          "duration_str": "5H 9m",
-          "duration_seconds": 18540.0,
-          "duration_hours": 5.15
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 55.561,
-          "notional_str": "$56.21K",
-          "notional_usd": 56210.0,
-          "duration_str": "18m 49s",
-          "duration_seconds": 1129.0,
-          "duration_hours": 0.31
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 55.0,
-          "notional_str": "$143.94K",
-          "notional_usd": 143940.0,
-          "duration_str": "7D 12H",
-          "duration_seconds": 648000.0,
-          "duration_hours": 180.0
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 55.0,
-          "notional_str": "$62.39K",
-          "notional_usd": 62390.0,
-          "duration_str": "3D 18H",
-          "duration_seconds": 324000.0,
-          "duration_hours": 90.0
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 52.0,
-          "notional_str": "$114.19K",
-          "notional_usd": 114190.0,
-          "duration_str": "1D 8H",
-          "duration_seconds": 115200.0,
-          "duration_hours": 32.0
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 51.1,
-          "notional_str": "$62.40K",
-          "notional_usd": 62400.0,
-          "duration_str": "1D 5H",
-          "duration_seconds": 104400.0,
-          "duration_hours": 29.0
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 50.0,
-          "notional_str": "$205.98K",
-          "notional_usd": 205980.0,
-          "duration_str": "7D 13H",
-          "duration_seconds": 651600.0,
-          "duration_hours": 181.0
-        }
-      ],
-      "scrape_duration_s": 3.12
+      "orders_count": 0,
+      "side_parse_health": "UNILATERAL_BOOK",
+      "total_notional_usd": 0.0,
+      "buy_notional_usd": 0.0,
+      "sell_notional_usd": 0.0,
+      "imbalance_ratio": 0.0,
+      "max_single_order_usd": 0.0,
+      "oldest_order_hours": 0.0,
+      "top_whale_walls": [],
+      "all_orders": [],
+      "scrape_duration_s": 3.11
     },
     "BCH": {
       "asset": "BCH",
-      "orders_count": 30,
-      "side_parse_health": "HEALTHY",
-      "total_notional_usd": 3315930.0,
-      "buy_notional_usd": 1539620.0,
-      "sell_notional_usd": 1776310.0,
-      "imbalance_ratio": 0.867,
-      "max_single_order_usd": 534930.0,
-      "oldest_order_hours": 289.0,
-      "top_whale_walls": [
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 400.0,
-          "notional_str": "$534.93K",
-          "notional_usd": 534930.0,
-          "duration_str": "7D 6H",
-          "duration_seconds": 626400.0,
-          "duration_hours": 174.0
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 203.0,
-          "notional_str": "$182.74K",
-          "notional_usd": 182740.0,
-          "duration_str": "3D 21H",
-          "duration_seconds": 334800.0,
-          "duration_hours": 93.0
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 182.0,
-          "notional_str": "$182.60K",
-          "notional_usd": 182600.0,
-          "duration_str": "12D 1H",
-          "duration_seconds": 1040400.0,
-          "duration_hours": 289.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 277.5,
-          "notional_str": "$178.11K",
-          "notional_usd": 178110.0,
-          "duration_str": "0m 15s",
-          "duration_seconds": 15.0,
-          "duration_hours": 0.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 289.6,
-          "notional_str": "$178.04K",
-          "notional_usd": 178040.0,
-          "duration_str": "13H 34m",
-          "duration_seconds": 48840.0,
-          "duration_hours": 13.57
-        }
-      ],
-      "all_orders": [
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 515.0,
-          "notional_str": "$52.74K",
-          "notional_usd": 52740.0,
-          "duration_str": "3D 14H",
-          "duration_seconds": 309600.0,
-          "duration_hours": 86.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 428.0,
-          "notional_str": "$56.46K",
-          "notional_usd": 56460.0,
-          "duration_str": "3D 14H",
-          "duration_seconds": 309600.0,
-          "duration_hours": 86.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 415.9,
-          "notional_str": "$165.93K",
-          "notional_usd": 165930.0,
-          "duration_str": "6D 4H",
-          "duration_seconds": 532800.0,
-          "duration_hours": 148.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 412.0,
-          "notional_str": "$77.70K",
-          "notional_usd": 77700.0,
-          "duration_str": "3D 14H",
-          "duration_seconds": 309600.0,
-          "duration_hours": 86.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 400.0,
-          "notional_str": "$534.93K",
-          "notional_usd": 534930.0,
-          "duration_str": "7D 6H",
-          "duration_seconds": 626400.0,
-          "duration_hours": 174.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 399.0,
-          "notional_str": "$81.10K",
-          "notional_usd": 81100.0,
-          "duration_str": "6D 6H",
-          "duration_seconds": 540000.0,
-          "duration_hours": 150.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 391.0,
-          "notional_str": "$73.92K",
-          "notional_usd": 73920.0,
-          "duration_str": "4D 21H",
-          "duration_seconds": 421200.0,
-          "duration_hours": 117.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 385.0,
-          "notional_str": "$77.12K",
-          "notional_usd": 77120.0,
-          "duration_str": "12D 1H",
-          "duration_seconds": 1040400.0,
-          "duration_hours": 289.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 353.0,
-          "notional_str": "$75.51K",
-          "notional_usd": 75510.0,
-          "duration_str": "3D 14H",
-          "duration_seconds": 309600.0,
-          "duration_hours": 86.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 328.0,
-          "notional_str": "$61.13K",
-          "notional_usd": 61130.0,
-          "duration_str": "3D 14H",
-          "duration_seconds": 309600.0,
-          "duration_hours": 86.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 325.0,
-          "notional_str": "$98.86K",
-          "notional_usd": 98860.0,
-          "duration_str": "3D 21H",
-          "duration_seconds": 334800.0,
-          "duration_hours": 93.0
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 295.0,
-          "notional_str": "$64.76K",
-          "notional_usd": 64760.00000000001,
-          "duration_str": "7H 31m",
-          "duration_seconds": 27060.0,
-          "duration_hours": 7.52
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 289.6,
-          "notional_str": "$178.04K",
-          "notional_usd": 178040.0,
-          "duration_str": "13H 34m",
-          "duration_seconds": 48840.0,
-          "duration_hours": 13.57
-        },
-        {
-          "side": "SELL",
-          "is_canceled": false,
-          "price": 277.5,
-          "notional_str": "$178.11K",
-          "notional_usd": 178110.0,
-          "duration_str": "0m 15s",
-          "duration_seconds": 15.0,
-          "duration_hours": 0.0
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 273.6,
-          "notional_str": "$60.98K",
-          "notional_usd": 60980.0,
-          "duration_str": "0m 22s",
-          "duration_seconds": 22.0,
-          "duration_hours": 0.01
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 271.6,
-          "notional_str": "$68.25K",
-          "notional_usd": 68250.0,
-          "duration_str": "0m 43s",
-          "duration_seconds": 43.0,
-          "duration_hours": 0.01
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 260.0,
-          "notional_str": "$93.70K",
-          "notional_usd": 93700.0,
-          "duration_str": "11H 44m",
-          "duration_seconds": 42240.0,
-          "duration_hours": 11.73
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 256.0,
-          "notional_str": "$128.15K",
-          "notional_usd": 128150.0,
-          "duration_str": "8D 4H",
-          "duration_seconds": 705600.0,
-          "duration_hours": 196.0
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 251.5,
-          "notional_str": "$131.34K",
-          "notional_usd": 131340.0,
-          "duration_str": "15H 31m",
-          "duration_seconds": 55860.0,
-          "duration_hours": 15.52
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 251.0,
-          "notional_str": "$59.52K",
-          "notional_usd": 59520.0,
-          "duration_str": "7D 13H",
-          "duration_seconds": 651600.0,
-          "duration_hours": 181.0
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 241.0,
-          "notional_str": "$72.99K",
-          "notional_usd": 72990.0,
-          "duration_str": "4D 5H",
-          "duration_seconds": 363600.0,
-          "duration_hours": 101.0
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 231.0,
-          "notional_str": "$69.18K",
-          "notional_usd": 69180.0,
-          "duration_str": "7D 8H",
-          "duration_seconds": 633600.0,
-          "duration_hours": 176.0
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 226.0,
-          "notional_str": "$100.16K",
-          "notional_usd": 100160.0,
-          "duration_str": "1D 19H",
-          "duration_seconds": 154800.0,
-          "duration_hours": 43.0
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 219.0,
-          "notional_str": "$70.18K",
-          "notional_usd": 70180.0,
-          "duration_str": "6D 22H",
-          "duration_seconds": 597600.0,
-          "duration_hours": 166.0
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 204.38,
-          "notional_str": "$57.17K",
-          "notional_usd": 57170.0,
-          "duration_str": "3D 12H",
-          "duration_seconds": 302400.0,
-          "duration_hours": 84.0
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 203.0,
-          "notional_str": "$182.74K",
-          "notional_usd": 182740.0,
-          "duration_str": "3D 21H",
-          "duration_seconds": 334800.0,
-          "duration_hours": 93.0
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 201.05,
-          "notional_str": "$65.28K",
-          "notional_usd": 65280.0,
-          "duration_str": "8D 7H",
-          "duration_seconds": 716400.0,
-          "duration_hours": 199.0
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 200.0,
-          "notional_str": "$55.51K",
-          "notional_usd": 55510.0,
-          "duration_str": "7D 13H",
-          "duration_seconds": 651600.0,
-          "duration_hours": 181.0
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 182.0,
-          "notional_str": "$182.60K",
-          "notional_usd": 182600.0,
-          "duration_str": "12D 1H",
-          "duration_seconds": 1040400.0,
-          "duration_hours": 289.0
-        },
-        {
-          "side": "BUY",
-          "is_canceled": false,
-          "price": 170.0,
-          "notional_str": "$141.87K",
-          "notional_usd": 141870.0,
-          "duration_str": "2D 20H",
-          "duration_seconds": 244800.0,
-          "duration_hours": 68.0
-        }
-      ],
-      "scrape_duration_s": 3.13
+      "orders_count": 0,
+      "side_parse_health": "UNILATERAL_BOOK",
+      "total_notional_usd": 0.0,
+      "buy_notional_usd": 0.0,
+      "sell_notional_usd": 0.0,
+      "imbalance_ratio": 0.0,
+      "max_single_order_usd": 0.0,
+      "oldest_order_hours": 0.0,
+      "top_whale_walls": [],
+      "all_orders": [],
+      "scrape_duration_s": 3.11
+    },
+    "APT": {
+      "asset": "APT",
+      "orders_count": 0,
+      "side_parse_health": "UNILATERAL_BOOK",
+      "total_notional_usd": 0.0,
+      "buy_notional_usd": 0.0,
+      "sell_notional_usd": 0.0,
+      "imbalance_ratio": 0.0,
+      "max_single_order_usd": 0.0,
+      "oldest_order_hours": 0.0,
+      "top_whale_walls": [],
+      "all_orders": [],
+      "scrape_duration_s": 3.11
+    },
+    "OP": {
+      "asset": "OP",
+      "orders_count": 0,
+      "side_parse_health": "UNILATERAL_BOOK",
+      "total_notional_usd": 0.0,
+      "buy_notional_usd": 0.0,
+      "sell_notional_usd": 0.0,
+      "imbalance_ratio": 0.0,
+      "max_single_order_usd": 0.0,
+      "oldest_order_hours": 0.0,
+      "top_whale_walls": [],
+      "all_orders": [],
+      "scrape_duration_s": 3.12
+    },
+    "ARB": {
+      "asset": "ARB",
+      "orders_count": 0,
+      "side_parse_health": "UNILATERAL_BOOK",
+      "total_notional_usd": 0.0,
+      "buy_notional_usd": 0.0,
+      "sell_notional_usd": 0.0,
+      "imbalance_ratio": 0.0,
+      "max_single_order_usd": 0.0,
+      "oldest_order_hours": 0.0,
+      "top_whale_walls": [],
+      "all_orders": [],
+      "scrape_duration_s": 3.12
+    },
+    "TRX": {
+      "asset": "TRX",
+      "orders_count": 0,
+      "side_parse_health": "UNILATERAL_BOOK",
+      "total_notional_usd": 0.0,
+      "buy_notional_usd": 0.0,
+      "sell_notional_usd": 0.0,
+      "imbalance_ratio": 0.0,
+      "max_single_order_usd": 0.0,
+      "oldest_order_hours": 0.0,
+      "top_whale_walls": [],
+      "all_orders": [],
+      "scrape_duration_s": 3.11
     }
   }
 }

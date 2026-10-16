@@ -42,6 +42,7 @@ DELTA_SNAPSHOT_PATH = COINGLASS_DATA_DIR / "latest" / "coinglass_delta.json"
 HISTORY_DIR = COINGLASS_DATA_DIR / "history"
 PERSISTENCE_LEDGER_PATH = COINGLASS_DATA_DIR / "whale_persistence_ledger.json"
 DATA_DICTIONARY_PATH = ROOT / "docs" / "telemetry" / "coinglass_data_dictionary.md"
+INSTITUTIONAL_CRYPTO_ASSETS = ("BTC", "ETH", "SOL", "BNB", "DOGE", "XRP", "ADA", "LINK", "AVAX", "SUI", "NEAR", "DOT", "LTC", "BCH", "APT", "OP", "ARB", "TRX", "HYPE")
 
 PRIMARY_HARVEST_PAGES = [
     {
@@ -298,7 +299,7 @@ class CoinglassCDPHarvester:
             rows = t.get("rows", [])
             if len(rows) > 3:
                 # Check if rows contain institutional crypto asset symbols
-                if any(any(c in ("BTC", "ETH", "SOL", "HYPE", "XRP", "DOGE", "SUI", "BNB") for c in r) for r in rows[:10]):
+                if any(any(c in INSTITUTIONAL_CRYPTO_ASSETS for c in r) for r in rows[:10]):
                     target_rows = rows
                     break
 
@@ -310,7 +311,7 @@ class CoinglassCDPHarvester:
             # Typical row format: [empty, rank, user, asset, side, position, pnl, entry_price_lev, liq_price, margin, funding, price, entry_time]
             try:
                 # Find asset index
-                asset_match = [i for i, c in enumerate(r) if c in ("BTC", "ETH", "SOL", "HYPE", "XRP", "DOGE", "SUI", "BNB")]
+                asset_match = [i for i, c in enumerate(r) if c in INSTITUTIONAL_CRYPTO_ASSETS]
                 if not asset_match:
                     continue
                 a_idx = asset_match[0]
@@ -401,7 +402,7 @@ class CoinglassCDPHarvester:
         for t in raw_tables:
             for r in t.get("rows", []):
                 # Format: [empty, rank, symbol, price, short_max_pain, long_max_pain]
-                if len(r) >= 6 and r[2] in ("BTC", "ETH", "SOL", "XRP", "DOGE", "HYPE", "BNB", "ADA", "AVAX", "NEAR", "LINK"):
+                if len(r) >= 6 and r[2] in INSTITUTIONAL_CRYPTO_ASSETS:
                     maxpain_list.append({
                         "rank": _clean_num(r[1]),
                         "symbol": r[2],
