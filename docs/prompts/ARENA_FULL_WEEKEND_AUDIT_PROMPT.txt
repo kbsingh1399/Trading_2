@@ -1,0 +1,89 @@
+[BENCHMARK EVALUATION: COMPREHENSIVE ARCHITECTURAL AUDIT & QUANTITATIVE STRATEGY REVIEW]
+ROUTING TARGET: ASTRA-MAX REASONING CLASS (TIER-1 FORMAL MATHEMATICAL & QUANTITATIVE SYSTEMS ENGINE)
+
+CANONICAL WORKSPACE: https://github.com/kbsingh1399/Trading_2 (Branch: main, Commit: bebdb3dd4)
+
+DIRECT REPO ARTIFACTS & ACTIVE CODEBASE:
+1. Continuous Time-Series Database Engine:
+   https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Terminal/Data_Factory/time_series_database.py
+2. Historical Time-Travel & Behavioral Analytics CLI:
+   https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Terminal/Data_Factory/history_query.py
+3. CoinGlass Autonomous 5-Minute CDP Harvester:
+   https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Terminal/Data_Factory/coinglass_harvester.py
+4. CoinGlass Data Dictionary & Persistence Schema:
+   https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/telemetry/coinglass_data_dictionary.md
+5. Live Market Telemetry & Microstructure Snapshot:
+   https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/telemetry/live_snapshot_latest.json
+6. Autonomous Telemetry & Multi-Stream Ingestion Daemon:
+   https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Terminal/Data_Factory/autonomous_telemetry_git_daemon.py
+7. Standardized Trading Decision Chain (SOP):
+   https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/Mandatory_Rules/STANDARDIZED_TRADING_DECISION_CHAIN.md
+8. Deep Forensic Loss Autopsy (Invariants A, B, C):
+   https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/LOSING_TRADES_DEEP_FORENSIC_AUTOPSY.md
+
+================================================================================
+EXECUTIVE CONTEXT: COMPLETED ARCHITECTURAL UPGRADE & FRIDAY RISK-OFF
+================================================================================
+The autonomous quant trading desk has executed a major infrastructure upgrade and prudent weekend capital preservation action:
+
+1. COINGLASS 5-MINUTE TELEMETRY HARVESTING ENGINE (coinglass_harvester.py):
+   - Autonomous extraction via Chrome DevTools Protocol (CDP port 9222) connected to the user's Edge session.
+   - Uses ephemeral background tabs (Target.createTarget) so user browser workspace is never disturbed.
+   - Harvests 10 major data domains every 5 minutes:
+     * Hyperliquid Whale Tracking (/hyperliquid): Address, Asset, Side, Notional ($USD), PnL, Entry Price, Leverage, Liquidation Price.
+     * Capital Tier Distribution (/hl): 8 wallet tiers (Shrimp to Leviathan) and 8 PnL groups.
+     * Liquidation Max Pain (/liquidation-maxpain): Distance and notional to short/long max pain gravity magnets.
+     * 24h Liquidation Aggregates (/liquidations): Total volume, per-exchange breakdown.
+     * Spot ETF Flows (/etf/bitcoin, /etf/ethereum): Daily net inflows/outflows, cumulative holdings.
+     * Perpetual Funding Rates (/FundingRate) & Global Long/Short Ratios (/LongShortRatio).
+     * Exchange Balances (/Balance) & Bitcoin UTXO Age Bands (/pro/i/utxo).
+
+2. TEMPORAL PERSISTENCE LEDGER (whale_persistence_ledger.json):
+   - Solves temporal duration tracking: computes exactly how long each whale order or wallet position has been active (duration_hours, duration_days).
+   - Tracks first_seen_utc, last_seen_utc, cycles_present, and status tags (VETERAN_WHALE > 7d, PERSISTENT_WHALE > 24h, FRESH_WHALE <= 24h).
+
+3. UNIFIED GAP-TOLERANT CONTINUOUS TIME-SERIES DATABASE (time_series_database.py):
+   - High-Density Space Optimization: Level 6 transparent Gzip compression (.json.gz) achieving 89.8% disk footprint reduction (4.28 MB telemetry snapshot compresses to 411.7 KB).
+   - State Rotation: Maintains State (t) in uncompressed latest/ for instant inspection, State (t-1) in _prev.json, and Live Delta in _delta.json.
+   - Gap & Shutdown Tolerance: Detects offline periods (gap > 720s), logs downtime duration in stream_gaps table, and seamlessly resumes appending without historical amnesia or data corruption.
+   - Sub-Millisecond SQLite Relational Index (time_series_index.db): Full tabular indexing of telemetry metrics, whale trajectories, max pain levels, macro events, and account equity.
+   - Time-Travel CLI (history_query.py):
+     * --timeline SYM: Multi-hour metric trajectory (price, Z-score, RSI, regime, spread, whale walls).
+     * --correlate SYM: Cross-stream alignment of price, macro catalysts, whale positions, and fund flows.
+     * --compare T1 T2: Side-by-side behavioral shift analysis between two timestamps.
+     * --as-of TIMESTAMP: Point-in-time state retrieval with transparent on-the-fly decompression.
+     * --whale USER: Complete lifecycle and sizing progression of specific whale wallets.
+     * --gaps: Downtime and resumption event audit.
+
+4. FRIDAY RISK-OFF CAPITAL DEFENSE & MT5 POSITION CLOSURE:
+   - MT5 Account #5064568 audited synchronously:
+     * Balance: 4,863.74 USD | Equity: 4,863.74 USD | Margin: 0.00 USD | Free Margin: 4,863.74 USD.
+     * Hard Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD.
+     * Cushion above Hard Floor: +88.74 USD in pure cash.
+   - Friday Session Close Protocol:
+     * Active position Ticket #19012500 (USDJPY.pi SELL 0.06 @ 158.180) closed at market at 158.000 (Deal: 17221329) securing +18 pips gain (+0.35R).
+     * 0 active positions, 0 pending orders.
+     * Eliminates weekend FX gap risk, illiquid interbank rollover spread blowouts (21:30–22:30 UTC), and Friday liquidity drain.
+
+================================================================================
+REQUIRED REVIEW & QUANTITATIVE RECOMMENDATIONS MANDATE
+================================================================================
+As the Lead Quantitative Architect and Reviewer, provide a rigorous, formal, mathematical review addressing:
+
+1. ARCHITECTURAL & DATA PIPELINE EVALUATION:
+   - Evaluate the design of TimeSeriesDatabase, Gzip compression strategy, and SQLite relational index.
+   - Identify potential scaling bottlenecks, race conditions, or serialization failure modes across long continuous multi-week runs.
+
+2. QUANTITATIVE ALPHA EXPLOITATION OF TEMPORAL WHALE & MAX PAIN METRICS:
+   - Propose a mathematical signal model combining:
+     (a) Whale position holding duration (e.g., decay or weighting function for duration_days >= 7d veteran whales vs fresh momentum whales).
+     (b) Distance to Liquidation Max Pain levels (acting as mean-reverting gravitational magnets).
+     (c) Multi-horizon taker CVD delta and Orderbook L2/L3 depth asymmetry.
+   - Formulate explicit entry, exit, and stop-loss heuristics for this multi-stream confluence stack.
+
+3. WEEKEND TRADING STRATEGY (CRYPTO 24/7 vs CASH PRESERVATION):
+   - With TradFi markets (FX, Equities, Energy, Metals) closed until Sunday evening, evaluate whether trading weekend Binance USDT-M perpetuals (BTC, ETH, SOL) is mathematically advantageous or detrimental given lower weekend liquidity, chop, and fake-out risks.
+   - Provide concrete decision rules for when to engage weekend crypto setups vs standing aside in 100% cash.
+
+4. CRITICAL RECOMMENDATIONS & SYSTEM REFINEMENTS:
+   - Provide top 3 high-impact architectural or algorithmic refinements for the upcoming trading week.
