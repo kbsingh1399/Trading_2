@@ -83,25 +83,25 @@ def compute_s_whale(
     Gated by strict fail-closed constraints. Never touches order authorization.
     """
     if not is_crypto:
-        return None, None, None, None, "NOT_APPLICABLE_NON_CRYPTO"
+        return None, None, None, None, "NOT_APPLICABLE_NON_CRYPTO", round(snapshot_age_s, 1), 0.0
     if not cg_asset:
-        return None, None, None, None, "COINGLASS_FEED_UNAVAILABLE"
+        return None, None, None, None, "COINGLASS_FEED_UNAVAILABLE", round(snapshot_age_s, 1), 0.0
     if cg_asset.get("side_parse_health") != "HEALTHY":
-        return None, None, None, None, "SIDE_PARSE_HEALTH_DEGRADED"
+        return None, None, None, None, "SIDE_PARSE_HEALTH_DEGRADED", round(snapshot_age_s, 1), 0.0
     if snapshot_age_s > 1800.0:
-        return None, None, None, None, "SNAPSHOT_STALE_EXCEEDS_1800S"
+        return None, None, None, None, "SNAPSHOT_STALE_EXCEEDS_1800S", round(snapshot_age_s, 1), 0.0
     if not mid_price or mid_price <= 0 or not atr_14 or atr_14 <= 0:
-        return None, None, None, None, "MISSING_PRICE_OR_ATR"
+        return None, None, None, None, "MISSING_PRICE_OR_ATR", round(snapshot_age_s, 1), 0.0
 
     all_orders = cg_asset.get("all_orders") or cg_asset.get("top_whale_walls") or []
     qualifying = [w for w in all_orders if not w.get("is_canceled") and (w.get("notional_usd") or 0.0) >= 100_000.0]
     if len(qualifying) < 3:
-        return None, None, None, None, f"INSUFFICIENT_QUALIFYING_WALLS_{len(qualifying)}_LT_3"
+        return None, None, None, None, f"INSUFFICIENT_QUALIFYING_WALLS_{len(qualifying)}_LT_3", round(snapshot_age_s, 1), 0.0
 
     buy_walls = [w for w in qualifying if w.get("side") == "BUY"]
     sell_walls = [w for w in qualifying if w.get("side") == "SELL"]
     if not buy_walls or not sell_walls:
-        return None, None, None, None, "ONE_SIDED_ORDERBOOK_ZERO_BIDS_OR_ASKS"
+        return None, None, None, None, "ONE_SIDED_ORDERBOOK_ZERO_BIDS_OR_ASKS", round(snapshot_age_s, 1), 0.0
 
     # 1. Log-ratio imbalance rho
     buy_tot = sum(float(w.get("notional_usd") or 0.0) for w in buy_walls)
@@ -153,7 +153,7 @@ def compute_s_whale(
     s_whale = max(-1.0, min(1.0, s_whale))
 
     reason = "QUALIFYING_CONFLUENCE" if decay_factor >= 0.999 else f"AGE_DISCOUNTED_TAU_{int(snapshot_age_s)}S"
-    return round(s_whale, 4), round(rho, 4), round(pi_score, 4), round(d_score, 4), reason
+    return round(s_whale, 4), round(rho, 4), round(pi_score, 4), round(d_score, 4), reason, round(snapshot_age_s, 1), round(decay_factor, 4)
 
 
 TELEMETRY_PATH = ROOT / "docs" / "telemetry" / "live_snapshot_latest.json"
@@ -2009,9 +2009,10 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
             binance_mid = (float(raw_book["bids"][0][0]) + float(raw_book["asks"][0][0])) / 2
 
             # Merge CoinGlass L3 Whale Orders into whale_walls using max-not-sum
-            # First, deduplicate CoinGlass orders by (side, rounded price) keeping dominant order
+            # Merge CoinGlass L3 Whale Orders into whale_walls using max-not-sum against Binance
+            # Aggregate CoinGlass orders by (side, rounded price) summing notional and tracking max single order (Resolves F42)
             cg_all_orders = cg_asset_data.get("all_orders") or cg_asset_data.get("top_whale_walls") or []
-            cg_deduped_orders: Dict[Tuple[str, float], Dict[str, Any]] = {}
+            cg_level_orders: Dict[Tuple[str, float], Dict[str, Any]] = {}
             for cg_o in cg_all_orders:
                 if cg_o.get("is_canceled"):
                     continue
@@ -2023,19 +2024,31 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                 if not cg_px or cg_side not in ("BUY", "SELL"):
                     continue
                 k = (cg_side, cg_px)
-                if k not in cg_deduped_orders or cg_notional > cg_deduped_orders[k]["notional_usd"]:
-                    cg_deduped_orders[k] = {
+                dur_s = float(cg_o.get("duration_seconds") or 0.0)
+                dur_str = str(cg_o.get("duration_str") or "")
+                if k not in cg_level_orders:
+                    cg_level_orders[k] = {
                         "side": cg_side,
                         "price": cg_px,
                         "notional_usd": cg_notional,
-                        "duration_seconds": float(cg_o.get("duration_seconds") or 0.0),
-                        "duration_str": str(cg_o.get("duration_str") or "")
+                        "max_single_notional_usd": cg_notional,
+                        "duration_seconds": dur_s,
+                        "duration_str": dur_str,
+                        "order_count": 1
                     }
+                else:
+                    # Sum distinct resting whale orders at this price level (F42: do not drop real size)
+                    cg_level_orders[k]["notional_usd"] += cg_notional
+                    cg_level_orders[k]["max_single_notional_usd"] = max(cg_level_orders[k]["max_single_notional_usd"], cg_notional)
+                    if dur_s > cg_level_orders[k]["duration_seconds"]:
+                        cg_level_orders[k]["duration_seconds"] = dur_s
+                        cg_level_orders[k]["duration_str"] = dur_str
+                    cg_level_orders[k]["order_count"] += 1
 
-            for (cg_side, cg_px), cg_item in cg_deduped_orders.items():
-                cg_notional = cg_item["notional_usd"]
+            for (cg_side, cg_px), cg_item in cg_level_orders.items():
+                cg_notional = round(cg_item["notional_usd"], 2)
                 cg_dur_s = cg_item["duration_seconds"]
-                cg_g7 = bool(cg_dur_s >= 180.0 and cg_notional >= 500_000.0)
+                cg_g7 = bool(cg_dur_s >= 180.0 and cg_item["max_single_notional_usd"] >= 500_000.0)
 
                 # Match ONLY against authentic Binance-sourced walls to prevent CoinGlass-vs-CoinGlass collisions (F21)
                 match_wall = next((w for w in whale_walls if w.get("source_venues") == ["BINANCE"] and w.get("side") == cg_side and abs(w.get("price", 0.0) - cg_px) / max(cg_px, 1.0) <= 0.001), None)
@@ -2372,7 +2385,7 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
             }
 
         # S_whale Institutional Composite Indicator (derived objectively without order authorization)
-        s_whale, s_rho, s_pi, s_d, s_gate_reason = compute_s_whale(
+        s_whale, s_rho, s_pi, s_d, s_gate_reason, s_tau_s, s_decay_factor = compute_s_whale(
             cg_asset=cg_asset_data,
             mid_price=mid_price if quote_valid else (orderbook_payload.get("binance_mid") or orderbook_payload.get("hyperliquid_mid")),
             atr_14=atr,
@@ -2432,18 +2445,22 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                 "s_whale_gate_reason": s_gate_reason,
                 "s_whale_pass_through": {
                     "score": round(s_whale, 4) if s_whale is not None else None,
-                    "dead_band_cleared": bool(s_whale is not None and abs(s_whale) >= 0.25),
+                    "tau_s": s_tau_s,
+                    "decay_factor": s_decay_factor,
+                    "dead_band_cleared": bool(s_whale is not None and abs(s_whale) > 0.25),
                     "action": (
-                        "NEUTRAL_DEAD_BAND" if (s_whale is not None and abs(s_whale) < 0.25)
-                        else ("STRONG_BULLISH_WHALE_SUPPORT" if (s_whale is not None and s_whale >= 0.25)
-                              else ("STRONG_BEARISH_WHALE_PRESSURE" if s_whale is not None else "FAIL_CLOSED_NO_DATA"))
+                        "FAIL_CLOSED_NO_DATA" if s_whale is None
+                        else ("STRONG_BULLISH_WHALE_SUPPORT" if s_whale > 0.25
+                              else ("STRONG_BEARISH_WHALE_PRESSURE" if s_whale < -0.25
+                                    else "NEUTRAL_DEAD_BAND"))
                     ),
                     "permits_long": bool(s_whale is not None and s_whale >= -0.25),
                     "permits_short": bool(s_whale is not None and s_whale <= 0.25),
                     "rationale": (
-                        f"Magnitude |{s_whale}| < 0.25 dead band; strictly neutral." if (s_whale is not None and abs(s_whale) < 0.25)
-                        else (f"S_whale +{s_whale} >= +0.25 confirms Long confluence / blocks contrary Short." if (s_whale is not None and s_whale >= 0.25)
-                              else (f"S_whale {s_whale} <= -0.25 confirms Short confluence / blocks contrary Long." if s_whale is not None else "S_whale is null / fail-closed."))
+                        "S_whale is null / fail-closed." if s_whale is None
+                        else (f"Magnitude |{s_whale}| <= 0.25 dead band; strictly neutral." if abs(s_whale) <= 0.25
+                              else (f"S_whale +{s_whale} > +0.25 confirms Long confluence / blocks contrary Short." if s_whale > 0.25
+                                    else f"S_whale {s_whale} < -0.25 confirms Short confluence / blocks contrary Long."))
                     )
                 },
                 "trend_regime": trend_status,
@@ -2571,18 +2588,18 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
         "hyperdash_flow_intelligence": get_hyperdash_flow_intelligence(),
         "onchain_arkham_intelligence": get_arkham_intelligence(),
         "data_layer_status": {
-            "as_of_epoch": now_ts,
-            "as_of_utc": now_utc,
+            "as_of_epoch": time.time(),
+            "as_of_utc": datetime.fromtimestamp(time.time(), timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC"),
             "layers": {
                 "layer_1_binance_l2_depth": {
                     "layer_num": 1,
                     "name": "Binance Futures L2 Orderbook Depth & Basis",
                     "venue": "BINANCE_USDM_FUTURES",
-                    "status": "HEALTHY" if crypto_books and len([a for a, b in crypto_books.items() if b and "bids" in b]) >= 12 and (now_ts - t_l1_depth_fetched) <= 30.0 else ("DEGRADED" if crypto_books else "UNAVAILABLE"),
+                    "status": "HEALTHY" if crypto_books and len([a for a, b in crypto_books.items() if b and "bids" in b]) >= 12 and (time.time() - t_l1_depth_fetched) <= 60.0 else ("DEGRADED" if crypto_books else "UNAVAILABLE"),
                     "assets_covered": len([a for a, b in crypto_books.items() if b and "bids" in b]),
                     "target_assets": len(CRYPTO_ASSETS),
                     "freshness_epoch": t_l1_depth_fetched,
-                    "age_s": round(max(0.0, now_ts - t_l1_depth_fetched), 2)
+                    "age_s": round(max(0.01, time.time() - t_l1_depth_fetched), 2)
                 },
                 "layer_2_hyperliquid_l2_l3": {
                     "layer_num": 2,
@@ -2591,16 +2608,16 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                     "status": "HEALTHY" if any(r.get("status") == "SUCCESS" for r in hyperdash_results.values()) else "UNAVAILABLE",
                     "assets_covered": len([a for a, r in hyperdash_results.items() if r.get("status") == "SUCCESS"]),
                     "target_assets": len(ALL_24_ASSETS),
-                    "freshness_epoch": max((float(r.get("stops", {}).get("received_at") or r.get("liquidations", {}).get("received_at") or 0)) for r in hyperdash_results.values() if r) if hyperdash_results else now_ts,
-                    "age_s": round(max(0.0, now_ts - max((float(r.get("stops", {}).get("received_at") or r.get("liquidations", {}).get("received_at") or 0)) for r in hyperdash_results.values() if r)), 2) if hyperdash_results else 0.0
+                    "freshness_epoch": max((float(r.get("stops", {}).get("received_at") or r.get("liquidations", {}).get("received_at") or 0)) for r in hyperdash_results.values() if r) if hyperdash_results else time.time(),
+                    "age_s": round(max(0.01, time.time() - max((float(r.get("stops", {}).get("received_at") or r.get("liquidations", {}).get("received_at") or 0)) for r in hyperdash_results.values() if r)), 2) if hyperdash_results else 0.01
                 },
                 "layer_3_coinglass_whale_orders": {
                     "layer_num": 3,
                     "name": "CoinGlass L3 Large Orderbook Whale Orders",
                     "venue": "COINGLASS_AGGREGATED_EXCHANGES",
-                    "status": "HEALTHY" if (cg_epoch and (now_ts - cg_epoch) <= 300.0) else ("DEGRADED" if (cg_epoch and (now_ts - cg_epoch) <= 1800.0) else "STALE"),
+                    "status": "HEALTHY" if (cg_epoch and (time.time() - cg_epoch) <= 300.0) else ("DEGRADED" if (cg_epoch and (time.time() - cg_epoch) <= 1800.0) else "STALE"),
                     "freshness_epoch": cg_epoch,
-                    "age_s": round(now_ts - cg_epoch, 1) if cg_epoch else None,
+                    "age_s": round(time.time() - cg_epoch, 1) if cg_epoch else None,
                     "total_orders_harvested": cg_whale_intelligence.get("total_whale_orders", 0),
                     "total_notional_usd": cg_whale_intelligence.get("grand_total_notional_usd", 0.0),
                     "total_assets_scraped": cg_whale_intelligence.get("total_assets_scraped", 0)
@@ -2609,9 +2626,9 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                     "layer_num": 4,
                     "name": "CoinGlass Liquidation Heatmap & Max Pain",
                     "venue": "COINGLASS_LIQUIDATION_MODEL",
-                    "status": "HEALTHY" if ((ROOT / "Data" / "coinglass" / "latest" / "coinglass_snapshot.json").exists() and (now_ts - (ROOT / "Data" / "coinglass" / "latest" / "coinglass_snapshot.json").stat().st_mtime) <= 600.0) else "DEGRADED",
+                    "status": "HEALTHY" if ((ROOT / "Data" / "coinglass" / "latest" / "coinglass_snapshot.json").exists() and (time.time() - (ROOT / "Data" / "coinglass" / "latest" / "coinglass_snapshot.json").stat().st_mtime) <= 600.0) else "DEGRADED",
                     "freshness_epoch": (ROOT / "Data" / "coinglass" / "latest" / "coinglass_snapshot.json").stat().st_mtime if (ROOT / "Data" / "coinglass" / "latest" / "coinglass_snapshot.json").exists() else None,
-                    "age_s": round(now_ts - (ROOT / "Data" / "coinglass" / "latest" / "coinglass_snapshot.json").stat().st_mtime, 1) if (ROOT / "Data" / "coinglass" / "latest" / "coinglass_snapshot.json").exists() else None
+                    "age_s": round(time.time() - (ROOT / "Data" / "coinglass" / "latest" / "coinglass_snapshot.json").stat().st_mtime, 1) if (ROOT / "Data" / "coinglass" / "latest" / "coinglass_snapshot.json").exists() else None
                 },
                 "layer_5_broker_mt5_telemetry": {
                     "layer_num": 5,
@@ -2623,8 +2640,8 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                     "account_login": acc_summary.get("login"),
                     "balance_usd": balance_usd,
                     "equity_usd": equity_usd,
-                    "freshness_epoch": trusted_finish if trusted_finish is not None else now_ts,
-                    "age_s": round(max(0.0, time.time() - (trusted_finish if trusted_finish is not None else now_ts)), 2)
+                    "freshness_epoch": trusted_finish if trusted_finish is not None else time.time(),
+                    "age_s": round(max(0.01, time.time() - (trusted_finish if trusted_finish is not None else time.time())), 2)
                 },
                 "layer_6_stop_clusters_and_reconstructed_liqs": {
                     "layer_num": 6,
@@ -2632,8 +2649,18 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                     "venue": "HYPERLIQUID_ONCHAIN_ANALYTICS",
                     "status": "HEALTHY" if sum(len(r.get("stops", {}).get("bands", [])) + len(r.get("liquidations", {}).get("bands", [])) for r in hyperdash_results.values()) > 1000 else "DEGRADED",
                     "bands_tracked": sum(len(r.get("stops", {}).get("bands", [])) + len(r.get("liquidations", {}).get("bands", [])) for r in hyperdash_results.values()),
-                    "freshness_epoch": max((float(r.get("stops", {}).get("received_at") or r.get("liquidations", {}).get("received_at") or 0)) for r in hyperdash_results.values() if r) if hyperdash_results else now_ts,
-                    "age_s": round(max(0.0, now_ts - max((float(r.get("stops", {}).get("received_at") or r.get("liquidations", {}).get("received_at") or 0)) for r in hyperdash_results.values() if r)), 2) if hyperdash_results else 0.0
+                    "freshness_epoch": max((float(r.get("stops", {}).get("received_at") or r.get("liquidations", {}).get("received_at") or 0)) for r in hyperdash_results.values() if r) if hyperdash_results else time.time(),
+                    "age_s": round(max(0.01, time.time() - max((float(r.get("stops", {}).get("received_at") or r.get("liquidations", {}).get("received_at") or 0)) for r in hyperdash_results.values() if r)), 2) if hyperdash_results else 0.01
+                },
+                "layer_7_arkham_onchain_intelligence": {
+                    "layer_num": 7,
+                    "name": "Arkham Institutional On-Chain Intelligence",
+                    "venue": "ARKHAM_INTELLIGENCE_API",
+                    "status": "HEALTHY" if get_arkham_intelligence().get("status") in ("CONNECTED_FLOWING", "CONNECTED_NO_TRANSFERS") and get_arkham_intelligence().get("is_feed_available") else ("DEGRADED" if get_arkham_intelligence().get("status") else "UNAVAILABLE"),
+                    "feed_status": get_arkham_intelligence().get("status", "UNAVAILABLE"),
+                    "is_feed_available": get_arkham_intelligence().get("is_feed_available", False),
+                    "freshness_epoch": get_arkham_intelligence().get("last_observed_epoch") or time.time(),
+                    "age_s": round(max(0.01, time.time() - (get_arkham_intelligence().get("last_observed_epoch") or time.time())), 2)
                 }
             }
         },

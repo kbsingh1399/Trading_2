@@ -148,7 +148,7 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
                     await send("Input.insertText", {"text": asset})
                     await asyncio.sleep(0.6)
 
-                    # Click matching option from MUI listbox
+                    # Click matching option from MUI listbox (NO options[0] fallback: prevents mislabeling)
                     click_opt_js = f"""(() => {{
                         const targetSymbol = {json.dumps(asset)};
                         const listbox = document.querySelector('.MuiAutocomplete-popper, ul.MuiAutocomplete-listbox, div[role="listbox"]');
@@ -158,7 +158,7 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
                             const txt = (o.innerText || '').trim();
                             const firstToken = txt.split(/[\\s\\n]+/)[0].toUpperCase();
                             return firstToken === targetSymbol;
-                        }}) || options[0];
+                        }});
                         if (match) {{
                             match.dispatchEvent(new MouseEvent('mousedown', {{ bubbles: true }}));
                             match.dispatchEvent(new MouseEvent('mouseup', {{ bubbles: true }}));
@@ -178,11 +178,20 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
                     await send("Runtime.evaluate", {"expression": close_popper_js, "returnByValue": True})
                     await asyncio.sleep(0.3)
 
-                # Extract all whale order rows with true Buy/Sell side from background style class
+                # Extract all whale order rows with strict validation of currentInput === targetSymbol
                 extract_js = f"""(() => {{
                     const targetSymbol = {json.dumps(asset)};
                     const searchInput = document.querySelector('input.MuiAutocomplete-input, input[placeholder*="Search"]');
                     const finalInputVal = (searchInput && searchInput.value ? searchInput.value : '').trim().toUpperCase();
+
+                    if (finalInputVal !== targetSymbol) {{
+                        return {{
+                            error: 'Symbol mismatch: requested ' + targetSymbol + ' but active input is ' + finalInputVal,
+                            currentInput: finalInputVal,
+                            itemCount: 0,
+                            items: []
+                        }};
+                    }}
 
                     const items = Array.from(document.querySelectorAll('.large-order-item')).map(el => {{
                         const rawLines = (el.innerText || '').split('\\n').map(s => s.trim()).filter(Boolean);
