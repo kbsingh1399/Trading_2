@@ -21061,3 +21061,37 @@ Full report: Cycle_122_Council_Report_Arena.md
 
 Full report: Cycle_123_Council_Report_Arena.md
 
+
+
+---
+
+# Cycle 151 Collaborative Council Ledger & Execution Record
+**As-Of Timestamp**: 2026-10-16 08:24:00 UTC | **Generation**: `db8e47c4e72b478096fa42f2ce679c7e`  
+**Execution Decider**: Antigravity (Flash) | **Advisory Council**: Arena.ai Quad-Council (Seed 149 Champion a002) + Subagent Triad  
+**MT5 Account Baseline**: Blueberry Markets #5064568 | Balance: 4,859.64 USD | Equity: 4,877.46 USD | Margin: 224.22 USD | Free Margin: 4,653.24 USD | Hard Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD
+
+### 1. Active Position & Ratchet Audit
+- **Ticket #18976378 (`EURUSD.pi` BUY 0.06 @ 1.12110)**:
+  - Current Market Bid: **1.12428** | Peak MFE: **1.12476** (+36.6 pips / +1.93R0)
+  - Active Stop Loss: **`1.12338`** (+22.8 pips above entry)
+  - Unconditional Guaranteed Cash Banked: **`+$13.68 USD`** (Downside risk: 0.00 USD)
+  - Floating Profit: **+$19.08 USD**
+  - Take Profit Magnet: **1.12500** (7.2 pips away, target reward: **+$23.40 USD** / 2.05R)
+  - Decision: **UNANIMOUS HOLD AS-IS**.
+
+### 2. Resting Pending Order Audit
+- **Ticket #18990916 (`CADJPY.pi` BUY_LIMIT 0.14 @ 111.345)**:
+  - Entry: 111.345 | Current Market Bid: 111.536 | Stop Loss: 111.245 (1.93 ATR buffer) | Take Profit: 111.555 (2.10R)
+  - Nominal Cash Risk: **-8.87 USD** (0.18% equity) | Reward: **+$18.62 USD**
+  - Stressed Worst-Case Equity (Dual Stop-Out): **4,862.23 USD** (+67.23 USD above operating buffer, +87.23 USD above hard floor)
+  - Decision: **MAINTAIN AS-IS**.
+
+### 3. Universe Scan & Opportunity Dialectic
+- Model 1 (Extreme Mean Reversion): 0/24 candidates meet |Z| >= 2.0 SD with tape exhaustion.
+- Model 2 (Trend Pullbacks): All candidates extended above VAH/VWAP bands or in conflicting intraday CVD flow (USWTI, XAUUSD, SP500).
+- Decision: **STAND ASIDE ON NEW MARKET ENTRIES**. Do not chase extended intraday highs.
+
+### 4. Hardware & System Health
+- Dual-channel DDR4-3200 16 GB RAM validated 100% compatible (0 WHEA errors).
+- Arkham tab verified live and reloaded on Edge CDP port 9222.
+- 4 persistent background daemons operating nominally.

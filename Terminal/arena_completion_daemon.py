@@ -52,7 +52,7 @@ def _find_arena_ws_url() -> str | None:
         tabs = json.loads(raw)
         for t in tabs:
             u = t.get("url", "")
-            if ("01a13f2a" in u or "7a89a384" in u or "01a13c34-30fd" in u or "01a13b65" in u or "01a136b2" in u or "01a13a16" in u or "d6de1eb4" in u or "arena.ai/agent/" in u) and t.get("webSocketDebuggerUrl"):
+            if ("74cd2d1a" in u or "01a143d0" in u or "01a13f2a" in u or "7a89a384" in u or "01a13c34-30fd" in u or "01a13b65" in u or "01a136b2" in u or "01a13a16" in u or "d6de1eb4" in u or "arena.ai/agent/" in u) and t.get("webSocketDebuggerUrl"):
                 return t["webSocketDebuggerUrl"]
     except Exception:
         return None

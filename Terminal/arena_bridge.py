@@ -333,6 +333,8 @@ def build_48h_orderflow_prompt() -> str:
     lines.append("  https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md")
     lines.append("- Active risk context, floor defense, capacity rules:")
     lines.append("  https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agents/rules/ACTIVE_CONTEXT.md")
+    lines.append("- Canonical Standardized Trading Decision Chain SOP (MANDATORY 10-STEP EXECUTION CHAIN):")
+    lines.append("  https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/specs/STANDARDIZED_TRADING_DECISION_CHAIN.md")
     lines.append("- Thinking chain protocol V2.0 - 7-stage chain, formulas, ALL 9 Heuristic Trap Rebuttals (esp. 7/8/9):")
     lines.append("  https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/specs/ANTIGRAVITY_ARENA_THINKING_CHAIN_COUNCIL_PROTOCOL.md")
     lines.append("- Round 2 thinking chain audit: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/reviews/ROUND2_THINKING_CHAIN_AUDIT.md")
@@ -493,7 +495,7 @@ async def get_all_arena_tab_ws_urls() -> List[Tuple[str, str]]:
         res = []
         for i, t in enumerate(arena_tabs):
             u = t.get("url", "")
-            if "d6de1eb4" in u or "01a136b2" in u or "01a13a16" in u or "01a13b65" in u:
+            if "74cd2d1a" in u or "01a143d0" in u or "7a89a384" in u or "d6de1eb4" in u or "01a136b2" in u or "01a13a16" in u or "01a13b65" in u:
                 name = "arena_1_primary"
             elif "af999588" in u or "01a1311e" in u or "01a13a13" in u or "01a13b4a" in u or "01a13bea" in u:
                 name = "arena_2_fable"
@@ -1644,11 +1646,12 @@ async def post_prompt_to_single_copilot(tab_info: Dict[str, Any], prompt_text: s
             except Exception:
                 pass
 
-            # Step 1: Attach all 4 authentic context files via CDP DOM.setFileInputFiles
+            # Step 1: Attach all 5 authentic context files via CDP DOM.setFileInputFiles
             try:
                 files_to_attach = [
                     str((PROJECT_ROOT / "docs" / "telemetry" / "live_snapshot_latest.json").resolve()),
                     str((PROJECT_ROOT / "docs" / "specs" / "TRADE_DECISION_PLAYBOOK.md").resolve()),
+                    str((PROJECT_ROOT / "docs" / "specs" / "STANDARDIZED_TRADING_DECISION_CHAIN.md").resolve()),
                     str((PROJECT_ROOT / "docs" / "trade_plans" / "LIVE_COLLABORATIVE_ORDER_DESK.md").resolve()),
                     str((PROJECT_ROOT / ".agents" / "rules" / "ACTIVE_CONTEXT.md").resolve()),
                 ]

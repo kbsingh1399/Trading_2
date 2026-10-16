@@ -45,11 +45,12 @@ logger = logging.getLogger("TelemetryGitDaemon")
 BRANCH_NAME = "main"
 ASTRA_BRANCH = "arena/d6de1eb4-trading-2"
 FABLE_BRANCH = "arena/af999588-trading-2"
-ACTIVE_ARENA_BRANCH = "arena/7a89a384-trading-2"
+ACTIVE_ARENA_BRANCH = "arena/74cd2d1a-trading-2"
+PRIOR_ARENA_BRANCH = "arena/7a89a384-trading-2"
 ACTIVE_ARENA_SESSION = "arena/186525a3-trading-2"
 LEGACY_ARENA_1 = "arena/5c05910e-trading-2"
 LEGACY_ARENA_2 = "arena/e3d7cc98-trading-2"
-TARGET_BRANCHES = [BRANCH_NAME, ACTIVE_ARENA_SESSION, ACTIVE_ARENA_BRANCH, ASTRA_BRANCH, FABLE_BRANCH, LEGACY_ARENA_1, LEGACY_ARENA_2]
+TARGET_BRANCHES = [BRANCH_NAME, ACTIVE_ARENA_BRANCH, PRIOR_ARENA_BRANCH, ACTIVE_ARENA_SESSION, ASTRA_BRANCH, FABLE_BRANCH, LEGACY_ARENA_1, LEGACY_ARENA_2]
 CANONICAL_REMOTE = "https://github.com/kbsingh1399/Trading_2"
 SNAPSHOT_FILE = "docs/telemetry/live_snapshot_latest.json"
 INTERVAL_SECONDS = 60
@@ -230,8 +231,8 @@ def sync_git_cycle(generated_snapshot=None, *, clock=None):
         return False
     logger.info("Published this cycle's observed snapshot to origin/%s", BRANCH_NAME)
 
-    # Now push to all Arena branches (GPT_Astra, Fable, and legacy)
-    for arena_br in [ASTRA_BRANCH, FABLE_BRANCH, LEGACY_ARENA_1, LEGACY_ARENA_2]:
+    # Now push to all active Arena branches (Primary arena/74cd2d1a-trading-2, Prior 7a89a384, Astra, Fable)
+    for arena_br in [ACTIVE_ARENA_BRANCH, PRIOR_ARENA_BRANCH, ACTIVE_ARENA_SESSION, ASTRA_BRANCH, FABLE_BRANCH]:
         code_br, _, err_br = run_cmd(["git", "push", "origin", f"{publication_revision}:{arena_br}"])
         if code_br == 0:
             logger.info("Published observed snapshot to origin/%s", arena_br)
@@ -268,6 +269,15 @@ def main():
             t_start = time.time()
             now_str = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
             logger.info(f"--- Iteration #{iteration} [{now_str}] ---")
+
+            # Periodically refresh Arkham On-Chain Intelligence (every 2 cycles = ~2 mins)
+            if iteration % 2 == 1:
+                try:
+                    from Terminal.Data_Factory import arkham_intelligence_harvester as arkham_mod
+                    importlib.reload(arkham_mod)
+                    arkham_mod.run()
+                except Exception as arkham_err:
+                    logger.warning(f"Background Arkham harvest skipped: {arkham_err}")
 
             # Step 1: Reload generator module so code updates take effect automatically, then generate fresh observations.
             snapshot = None
