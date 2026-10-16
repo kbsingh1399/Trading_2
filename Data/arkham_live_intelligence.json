@@ -1,9 +1,10 @@
 {
-  "as_of_utc": "2026-10-16 17:01:11 UTC",
+  "as_of_utc": "2026-10-16 19:35:23 UTC",
   "source": "Arkham Intelligence Upgraded Harvester (arkm.com via Chrome CDP)",
   "filter_applied": "",
-  "feed_status": "STREAMING_ACTIVE",
-  "market_flow_sentiment": "NEUTRAL_BALANCED_FLOW",
+  "feed_status": "CONNECTED_NO_TRANSFERS",
+  "is_feed_available": false,
+  "market_flow_sentiment": "UNAVAILABLE_INSUFFICIENT_DATA",
   "aggregate_metrics": {
     "total_transfers_monitored": 0,
     "total_observed_volume_usd": 0,

@@ -1,5 +1,5 @@
 {
-  "harvested_at_utc": "2026-10-16 16:56:57 UTC",
+  "harvested_at_utc": "2026-10-16 19:15:33 UTC",
   "source": "FOREX_FACTORY_LIVE_CDP",
   "central_bank_rates": {
     "AUD": "4.60%",
@@ -10,6 +10,16 @@
     "CAD": "2.25%",
     "JPY": "<1.25%",
     "CHF": "0.00%"
+  },
+  "central_bank_rates_numeric": {
+    "AUD": 4.6,
+    "USD": 4.0,
+    "GBP": 3.75,
+    "NZD": 2.75,
+    "EUR": 2.65,
+    "CAD": 2.25,
+    "JPY": 1.25,
+    "CHF": 0.0
   },
   "high_medium_calendar_events": [
     {
@@ -290,6 +300,38 @@
   ],
   "breaking_news_stories": [
     {
+      "headline": "France in focus for bond markets",
+      "url": "https://www.forexfactory.com/news/1431843-france-in-focus-for-bond-markets"
+    },
+    {
+      "headline": "U.S. budget deficit swells to almost $2 trillion for fiscal 2026, up 12% in a single year",
+      "url": "https://www.forexfactory.com/news/1431867-us-budget-deficit-swells-to-almost-2-trillion"
+    },
+    {
+      "headline": "Central banks stay on tightening path",
+      "url": "https://www.forexfactory.com/news/1431844-central-banks-stay-on-tightening-path"
+    },
+    {
+      "headline": "Iran Says It's Ready To Help Resolve Saudi-Yemen Conflict",
+      "url": "https://www.forexfactory.com/news/1431865-iran-says-its-ready-to-help-resolve-saudi-yemen"
+    },
+    {
+      "headline": "Swiss Franc Forecast: USD/CHF Seven-Week Rally Reverses From Yearly Highs",
+      "url": "https://www.forexfactory.com/news/1431864-swiss-franc-forecast-usdchf-seven-week-rally-reverses-from"
+    },
+    {
+      "headline": "France's President Macron: Trump diesel deal is not useful, creates doubts and defiance",
+      "url": "https://www.forexfactory.com/news/1431860-frances-president-macron-trump-diesel-deal-is-not"
+    },
+    {
+      "headline": "EC Pres. von der Leyen: There is remarkable unity among EU leaders on China",
+      "url": "https://www.forexfactory.com/news/1431859-ec-pres-von-der-leyen-there-is-remarkable"
+    },
+    {
+      "headline": "Trump on Inflation: Oil prices are going to come down soon",
+      "url": "https://www.forexfactory.com/news/1431855-trump-on-inflation-oil-prices-are-going-to"
+    },
+    {
       "headline": "AI Bubble Popping Or A Boring Pullback?",
       "url": "https://www.forexfactory.com/news/1431852-ai-bubble-popping-or-a-boring-pullback"
     },
@@ -304,55 +346,23 @@
     {
       "headline": "Five ways the UK\u2019s Autumn Budget could shock us",
       "url": "https://www.forexfactory.com/news/1431801-five-ways-the-uks-autumn-budget-could-shock"
-    },
-    {
-      "headline": "Gold steadies as oil tightness and growth fears divide markets",
-      "url": "https://www.forexfactory.com/news/1431830-gold-steadies-as-oil-tightness-and-growth-fears"
-    },
-    {
-      "headline": "A New Era of Chinese Mercantilism",
-      "url": "https://www.forexfactory.com/news/1431816-a-new-era-of-chinese-mercantilism"
-    },
-    {
-      "headline": "US industrial production up 0.7% in September",
-      "url": "https://www.forexfactory.com/news/1431824-us-industrial-production-up-07-in-september"
-    },
-    {
-      "headline": "Warsh Gives No Hike Hint, Fed on Hold Until Dec?",
-      "url": "https://www.forexfactory.com/news/1431814-warsh-gives-no-hike-hint-fed-on-hold"
-    },
-    {
-      "headline": "US Import and Export Price Indexes - September 2026",
-      "url": "https://www.forexfactory.com/news/1431811-us-import-and-export-price-indexes-september"
-    },
-    {
-      "headline": "Canada's international transactions in securities, August 2026",
-      "url": "https://www.forexfactory.com/news/1431810-canadas-international-transactions-in-securities-august-2026"
-    },
-    {
-      "headline": "Canada Housing starts and construction data for September 2026",
-      "url": "https://www.forexfactory.com/news/1431809-canada-housing-starts-and-construction-data-for-september"
-    },
-    {
-      "headline": "Artificial intelligence meets business intelligence: the anatomy of inflation",
-      "url": "https://www.forexfactory.com/news/1431803-artificial-intelligence-meets-business-intelligence-the-anatomy-of"
     }
   ],
   "community_trade_flow": [
-    "BTC/USD BUY 81,308.95 Opened Long | 1 min ago janesmile 0.0% MTM na",
-    "BTC/USD BUY 81,346.96 Opened Long | 1 min ago janesmile -2.6% MTM na",
-    "BTC/USD SELL 81,356.86 Closed Long | 2 min ago janesmile 0.1% na",
-    "BTC/USD SELL ~ 81,343.3 Scaled Out | ~2 min ago Closed Long at 81,342.1Closed Long at 81,344.59 janesmile -2.3% 4.0% 1.7% na na na",
-    "Xauusdm SELL 4,160.097 Opened Short | 3 min ago shazahan -2.0% MTM na",
-    "Gold/USD SELL 4,159.78 Opened Short | 3 min ago VimalAlgoSys 0.0% MTM na",
-    "Xauusd-stdc SELL ~ 4,159.1 Scaled In | ~3 min ago Opened Short at 4,158.86Opened Short at 4,158.73Opened Short at 4,159.63 Raden Winata 0.0% MTM 0.0% MTM 0.0% MTM 0.0% MTM na na na na",
-    "EUR/USD BUY 1.1217 Opened Long | 4 min ago JammyKwan 0.0% MTM 0 MTM",
-    "USA/100 BUY 29,438.85 Opened Long | 4 min ago mmjacho -24.5% MTM na",
-    "Gold/USD BUY 4,159.6 Closed Short | 5 min ago phrixusong 0.0% na",
-    "Xauusdb BUY ~ 4,159.4 Scaled In | ~5 min ago Opened Long at 4,159.15Opened Long at 4,159.05Opened Long at 4,159.87 Zhephyr10 8.2% MTM 10.0% MTM -4.6% MTM 13.6% MTM na na na na",
-    "ETH/USD SELL 2,424.4 Opened Short | 5 min ago phrixusong 0.0% MTM na",
-    "USD/JPY BUY 158.32 Closed Short | 6 min ago mmjacho -54.6% -30",
-    "Gold/USD SELL 4,158.4 Opened Short | 6 min ago phrixusong 0.0% na",
-    "BTC/USD BUY ~ 81,315.2 Scaled Out | ~6 min ago Closed Short at 81,317.43Closed Short at 81,318.65Closed Short at 81,306.58Closed Short at 81,328Closed Short at 81,314.55Closed Short at 81,314.52Closed Short at 81,300.6 janesmile -2.6% 6.3% 1.8% -2.7% -2.6% 5.6% 0.2% 6.0% na na na na na na na na"
+    "Xauusd-stdc BUY ~ 4,165.4 Scaled Out | < 1 min ago Closed Short at 4,165.59Closed Short at 4,165.59Closed Short at 4,165.59Closed Short at 4,165.59Closed Short at 4,165.59Closed Short at 4,165.59Closed Short at 4,164.27 Raden Winata 0.0% 0.0% 0.0% 0.0% 0.0% 0.0% 0.0% 0.0% na na na na na na na na",
+    "EUR/USD SELL 1.1236 Opened Short | < 1 min ago Ian.Maina 0.0% MTM -1 MTM",
+    "ETH/USD BUY 2,408.5 Opened Long | 2 min ago phrixusong 0.0% MTM na",
+    "Gold/USD BUY ~ 4,164.8 Scaled In | ~2 min ago Opened Long at 4,165.09Opened Long at 4,164.49 phrixusong 0.0% MTM 0.0% MTM 0.0% MTM na na na",
+    "Us500 SELL 7,656.27 Closed Long | 2 min ago GotyMetal 0.0% na",
+    "EUR/USD SELL 1.1223 Opened Short | 2 min ago mogero 0.1% 1",
+    "Xauusd-stdc SELL 4,164.13 Opened Short | 2 min ago VimalAlgoSys 0.0% MTM na",
+    "Gold/USD BUY 4,164.73 Closed Short | 2 min ago phrixusong 0.0% na",
+    "Gold/USD BUY 4,164.49 Opened Long | 2 min ago phrixusong 0.0% MTM na",
+    "Gold/USD SELL 4,163.73 Opened Short | 3 min ago phrixusong 0.0% na",
+    "ETH/USD BUY 2,406.9 Closed Short | 3 min ago phrixusong 0.0% na",
+    "Xauusd-stdc BUY ~ 4,164.6 Scaled Out | ~6 min ago Closed Short at 4,164.61Closed Short at 4,164.61Closed Short at 4,164.61Closed Short at 4,164.61Closed Short at 4,164.61 Raden Winata 0.0% 0.0% 0.0% 0.0% 0.0% 0.0% na na na na na na",
+    "[sp500] BUY ~ 7,633.7 Scaled In | ~7 min ago Opened Long at 7,633.27Opened Long at 7,634.52 JohnnyPip 3.8% MTM 1.8% MTM 5.6% MTM na na na",
+    "Gold/USD SELL 4,161.92 Closed Long | 8 min ago phrixusong 0.0% na",
+    "EUR/USD SELL 1.1236 Closed Long | 8 min ago JammyKwan 0.0% 0"
   ]
 }

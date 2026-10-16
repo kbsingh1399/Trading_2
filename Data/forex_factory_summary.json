@@ -1,5 +1,5 @@
 {
-  "as_of_utc": "2026-10-16 16:56:57 UTC",
+  "as_of_utc": "2026-10-16 19:15:33 UTC",
   "rates": {
     "AUD": "4.60%",
     "USD": "4.00%",
@@ -10,22 +10,33 @@
     "JPY": "<1.25%",
     "CHF": "0.00%"
   },
+  "rates_numeric": {
+    "AUD": 4.6,
+    "USD": 4.0,
+    "GBP": 3.75,
+    "NZD": 2.75,
+    "EUR": 2.65,
+    "CAD": 2.25,
+    "JPY": 1.25,
+    "CHF": 0.0
+  },
   "key_events": [
-    "EUR ECB President Lagarde Speaks (MEDIUM) [F: ]",
-    "GBP BOE Gov Bailey Speaks (MEDIUM) [F: ]",
-    "CAD BOC Gov Macklem Speaks (MEDIUM) [F: ]",
-    "EUR ECB President Lagarde Speaks (MEDIUM) [F: ]",
-    "EUR EU Economic Summit (MEDIUM) [F: ]"
+    "EUR ECB President Lagarde Speaks (MEDIUM) [SPEECH/EVENT]",
+    "GBP BOE Gov Bailey Speaks (MEDIUM) [SPEECH/EVENT]",
+    "CAD BOC Gov Macklem Speaks (MEDIUM) [SPEECH/EVENT]",
+    "EUR ECB President Lagarde Speaks (MEDIUM) [SPEECH/EVENT]",
+    "EUR EU Economic Summit (MEDIUM) [SPEECH/EVENT]",
+    "USD Core CPI m/m (HIGH) [Act: 0.3% | F: 0.2%]"
   ],
   "top_headlines": [
-    "AI Bubble Popping Or A Boring Pullback?",
-    "NATO Weighs Response To Recent Black Sea Drone Attacks On Ships - WSJ",
-    "Lawmakers introduce a bill to block trumps Russia diesel deal",
-    "Five ways the UK\u2019s Autumn Budget could shock us"
+    "France in focus for bond markets",
+    "U.S. budget deficit swells to almost $2 trillion for fiscal 2026, up 12% in a single year",
+    "Central banks stay on tightening path",
+    "Iran Says It's Ready To Help Resolve Saudi-Yemen Conflict"
   ],
   "sample_retail_flow": [
-    "BTC/USD BUY 81,308.95 Opened Long | 1 min ago janesmile 0.0% MTM na",
-    "BTC/USD BUY 81,346.96 Opened Long | 1 min ago janesmile -2.6% MTM na",
-    "BTC/USD SELL 81,356.86 Closed Long | 2 min ago janesmile 0.1% na"
+    "Xauusd-stdc BUY ~ 4,165.4 Scaled Out | < 1 min ago Closed Short at 4,165.59Close",
+    "EUR/USD SELL 1.1236 Opened Short | < 1 min ago Ian.Maina 0.0% MTM -1 MTM",
+    "ETH/USD BUY 2,408.5 Opened Long | 2 min ago phrixusong 0.0% MTM na"
   ]
 }
