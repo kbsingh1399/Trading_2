@@ -569,15 +569,15 @@
     "holdings_breakdown": [
       {
         "symbol": "BTC",
-        "price": "$81,610",
+        "price": "$81,698",
         "amount": "BTC",
-        "value_usd": "$939.27M",
-        "change_24h": "-0.89%"
+        "value_usd": "$940.29M",
+        "change_24h": "-0.86%"
       }
     ],
     "category": "CORPORATE_TREASURY",
     "priority": "MEDIUM",
-    "last_updated_utc": "2026-10-16 22:06:10 UTC"
+    "last_updated_utc": "2026-10-16 22:56:31 UTC"
   },
   "tether": {
     "slug": "tether",
@@ -585,60 +585,10 @@
     "address_count": "55 Addresses",
     "total_portfolio_usd": "$0.00",
     "portfolio_change_24h": "",
-    "holdings_breakdown": [
-      {
-        "symbol": "BTC",
-        "price": "$81,613",
-        "amount": "BTC",
-        "value_usd": "$7.92B",
-        "change_24h": "-0.9%"
-      },
-      {
-        "symbol": "USDT",
-        "price": "$1",
-        "amount": "USDT",
-        "value_usd": "$6.23B",
-        "change_24h": "\u00b10%"
-      },
-      {
-        "symbol": "USDC",
-        "price": "$1",
-        "amount": "USDC",
-        "value_usd": "$425.19K",
-        "change_24h": "\u00b10%"
-      },
-      {
-        "symbol": "BNB",
-        "price": "$721.24",
-        "amount": "BNB",
-        "value_usd": "$117.42K",
-        "change_24h": "-1.3%"
-      },
-      {
-        "symbol": "ETH",
-        "price": "$2,414.72",
-        "amount": "ETH",
-        "value_usd": "$32.66K",
-        "change_24h": "-1.82%"
-      },
-      {
-        "symbol": "SOL",
-        "price": "$104.13",
-        "amount": "SOL",
-        "value_usd": "$23.27K",
-        "change_24h": "-1.72%"
-      },
-      {
-        "symbol": "AVAX",
-        "price": "$9.93",
-        "amount": "AVAX",
-        "value_usd": "$1.46K",
-        "change_24h": "-0.7%"
-      }
-    ],
+    "holdings_breakdown": [],
     "category": "STABLECOIN_RESERVE",
     "priority": "HIGH",
-    "last_updated_utc": "2026-10-16 22:06:16 UTC"
+    "last_updated_utc": "2026-10-16 22:56:37 UTC"
   },
   "circle": {
     "slug": "circle",
@@ -649,15 +599,85 @@
     "holdings_breakdown": [
       {
         "symbol": "USDC",
-        "price": "$59.07M",
-        "amount": "",
-        "value_usd": "$154.68",
-        "change_24h": "-0.00%"
+        "price": "$1",
+        "amount": "USDC",
+        "value_usd": "$2.13B",
+        "change_24h": "\u00b10%"
+      },
+      {
+        "symbol": "BTC",
+        "price": "$81,710",
+        "amount": "BTC",
+        "value_usd": "$4.34M",
+        "change_24h": "-0.84%"
+      },
+      {
+        "symbol": "ETH",
+        "price": "$2,422.04",
+        "amount": "ETH",
+        "value_usd": "$1.7M",
+        "change_24h": "-1.32%"
+      },
+      {
+        "symbol": "USDT",
+        "price": "$1",
+        "amount": "USDT",
+        "value_usd": "$993.71K",
+        "change_24h": "\u00b10%"
+      },
+      {
+        "symbol": "SOL",
+        "price": "$104.31",
+        "amount": "SOL",
+        "value_usd": "$356.19K",
+        "change_24h": "-1.38%"
+      },
+      {
+        "symbol": "WBTC",
+        "price": "$81,572",
+        "amount": "WBTC",
+        "value_usd": "$56.43K",
+        "change_24h": "-0.82%"
+      },
+      {
+        "symbol": "BNB",
+        "price": "$721.71",
+        "amount": "BNB",
+        "value_usd": "$26.9K",
+        "change_24h": "-1.03%"
+      },
+      {
+        "symbol": "AERO",
+        "price": "$0.88",
+        "amount": "AERO",
+        "value_usd": "$3.06K",
+        "change_24h": "-5.98%"
+      },
+      {
+        "symbol": "CBBTC",
+        "price": "$81,683",
+        "amount": "CBBTC",
+        "value_usd": "$1.78K",
+        "change_24h": "-0.85%"
+      },
+      {
+        "symbol": "AVAX",
+        "price": "$9.97",
+        "amount": "AVAX",
+        "value_usd": "$1.75K",
+        "change_24h": "-0.7%"
+      },
+      {
+        "symbol": "LINK",
+        "price": "$12.33",
+        "amount": "LINK",
+        "value_usd": "$1.3K",
+        "change_24h": "-1.44%"
       }
     ],
     "category": "STABLECOIN_RESERVE",
     "priority": "HIGH",
-    "last_updated_utc": "2026-10-16 22:06:22 UTC"
+    "last_updated_utc": "2026-10-16 22:56:42 UTC"
   },
   "mt-gox": {
     "slug": "mt-gox",
@@ -665,18 +685,10 @@
     "address_count": "570.5k Addresses",
     "total_portfolio_usd": "$0.00",
     "portfolio_change_24h": "",
-    "holdings_breakdown": [
-      {
-        "symbol": "BTC",
-        "price": "$81,624",
-        "amount": "BTC",
-        "value_usd": "$2.81B",
-        "change_24h": "-0.79%"
-      }
-    ],
+    "holdings_breakdown": [],
     "category": "INSOLVENCY_TRUSTEE",
     "priority": "HIGH",
-    "last_updated_utc": "2026-10-16 22:10:56 UTC"
+    "last_updated_utc": "2026-10-16 22:56:47 UTC"
   },
   "binance": {
     "slug": "binance",
