@@ -53,7 +53,14 @@ LEGACY_ARENA_2 = "arena/e3d7cc98-trading-2"
 TARGET_BRANCHES = [BRANCH_NAME, ACTIVE_ARENA_BRANCH, PRIOR_ARENA_BRANCH, ACTIVE_ARENA_SESSION, ASTRA_BRANCH, FABLE_BRANCH, LEGACY_ARENA_1, LEGACY_ARENA_2]
 CANONICAL_REMOTE = "https://github.com/kbsingh1399/Trading_2"
 SNAPSHOT_FILE = "docs/telemetry/live_snapshot_latest.json"
-INTERVAL_SECONDS = 60
+DATA_SYNC_FILES = [
+    "docs/telemetry/live_snapshot_latest.json",
+    "Data/forex_factory_live.json",
+    "Data/forex_factory_summary.json",
+    "Data/arkham_live_intelligence.json",
+    "Data/arkham_institutional_registry.json"
+]
+INTERVAL_SECONDS = 300  # 5-minute production cadence: reduces Git traffic by 80% while JIT gate ensures 0s freshness at decision gates
 
 
 PID_FILE = ROOT / "logs" / "autonomous_telemetry_git_daemon.pid"
@@ -205,17 +212,17 @@ def sync_git_cycle(generated_snapshot=None, *, clock=None):
     # A fast-forward or another writer may have replaced the generated file.
     if load_successful_generation(generated_snapshot, clock=clock) is None:
         return False
-    code, modified, _ = run_cmd(["git", "status", "--porcelain", "--", SNAPSHOT_FILE])
+    existing_sync_files = [f for f in DATA_SYNC_FILES if (ROOT / f).exists()]
+    code, modified_output, _ = run_cmd(["git", "status", "--porcelain", "--"] + existing_sync_files)
     if code:
-        logger.warning("Telemetry publication deferred: snapshot status unavailable")
+        logger.warning("Telemetry publication deferred: sync files status unavailable")
         return False
-    if modified:
-        # --only excludes every foreign index entry even if it appears after the
-        # initial staged-work check; no bare commit, directory add or auto-stash.
+    if modified_output:
+        # Commit only modified data sync files, preserving any other operator staged work
         now_str = generated_snapshot["as_of_utc"]
-        code, _, err = run_cmd(["git", "commit", "--only", "-m", f"telemetry: observed snapshot [as_of {now_str}]", "--", SNAPSHOT_FILE])
+        code, _, err = run_cmd(["git", "commit", "--only", "-m", f"telemetry: observed snapshot & macro data [as_of {now_str}]", "--"] + existing_sync_files)
         if code:
-            logger.warning("Telemetry commit failed: %s", err)
+            logger.warning("Telemetry & data commit failed: %s", err)
             return False
     code, publication_revision, _ = run_cmd(["git", "rev-parse", "HEAD"])
     if code or not publication_revision or not _verified_publication_revision(
@@ -270,16 +277,7 @@ def main():
             now_str = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
             logger.info(f"--- Iteration #{iteration} [{now_str}] ---")
 
-            # Periodically refresh Arkham On-Chain Intelligence (every 2 cycles = ~2 mins)
-            if iteration % 2 == 1:
-                try:
-                    from Terminal.Data_Factory import arkham_intelligence_harvester as arkham_mod
-                    importlib.reload(arkham_mod)
-                    arkham_mod.run()
-                except Exception as arkham_err:
-                    logger.warning(f"Background Arkham harvest skipped: {arkham_err}")
-
-            # Step 1: Reload generator module so code updates take effect automatically, then generate fresh observations.
+            # Step 1: Reload generator module and generate fresh MT5/broker observations FIRST.
             snapshot = None
             try:
                 importlib.reload(api_mod)
@@ -297,12 +295,31 @@ def main():
             except Exception as exc:
                 logger.error(f"Error during generate_full_snapshot: {exc}", exc_info=True)
 
-            # Step 2: Git Synchronization (fetch, pull Arena messages, push telemetry)
+            # Step 2: Immediate Git Synchronization (fetch, pull Arena messages, push telemetry to main & arena branches)
             try:
                 if snapshot is not None:
                     sync_git_cycle(snapshot, clock=bridge.broker_utc_now)
             except Exception as exc:
                 logger.error(f"Error during sync_git_cycle: {exc}", exc_info=True)
+
+            # Step 3: Auxiliary Harvesters (Non-blocking, run AFTER telemetry is pushed)
+            # Refresh Arkham On-Chain Intelligence (every cycle = 5 mins, 5 entities per pass rotates all 48 entities in 48m)
+            try:
+                from Terminal.Data_Factory import arkham_intelligence_harvester as arkham_mod
+                importlib.reload(arkham_mod)
+                arkham_mod.run(batch_size=5)
+            except Exception as arkham_err:
+                logger.warning(f"Background Arkham harvest skipped: {arkham_err}")
+
+            # Periodically refresh Forex Factory Macro News & Calendar (every 2 cycles = ~10 mins)
+            if iteration % 2 == 0:
+                try:
+                    import asyncio
+                    from Terminal.Data_Factory import forex_factory_harvester as ff_mod
+                    importlib.reload(ff_mod)
+                    asyncio.run(asyncio.wait_for(ff_mod.run_harvester(), timeout=8.0))
+                except Exception as ff_err:
+                    logger.warning(f"Background Forex Factory harvest skipped: {ff_err}")
 
             # Memory cleanup
             gc.collect()
@@ -313,8 +330,8 @@ def main():
                 except Exception:
                     pass
 
-            # Periodic System-Wide RAM Optimization every 5 cycles (~5 minutes)
-            if iteration % 5 == 0:
+            # Periodic System-Wide RAM Optimization every 3 cycles (~15 minutes)
+            if iteration % 3 == 0:
                 try:
                     free_ram_script = ROOT / ".agents" / "scripts" / "free_ram.ps1"
                     if free_ram_script.exists():
