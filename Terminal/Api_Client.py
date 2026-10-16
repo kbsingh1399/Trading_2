@@ -24,27 +24,33 @@ DEFAULT_HEADERS = {
 _SHARED_GRAPHQL_CACHE: Dict[str, Any] = globals().get("_SHARED_GRAPHQL_CACHE", {})
 _L3_CALL_TIMESTAMPS: List[float] = globals().get("_L3_CALL_TIMESTAMPS", [])
 _L3_DISK_CACHE_PATH = pathlib.Path(__file__).resolve().parents[1] / "docs" / "telemetry" / ".hyperdash_l3_cache.json"
+_GRAPHQL_DISK_CACHE_PATH = pathlib.Path(__file__).resolve().parents[1] / "docs" / "telemetry" / ".hyperdash_graphql_cache.json"
 
-if _L3_DISK_CACHE_PATH.exists():
+for _cpath in (_GRAPHQL_DISK_CACHE_PATH, _L3_DISK_CACHE_PATH):
+    if _cpath.exists():
+        try:
+            _loaded = json.loads(_cpath.read_text(encoding="utf-8"))
+            if isinstance(_loaded, dict):
+                for _k, _v in _loaded.items():
+                    if _k not in _SHARED_GRAPHQL_CACHE and isinstance(_v, list) and len(_v) == 2:
+                        _SHARED_GRAPHQL_CACHE[_k] = (float(_v[0]), _v[1])
+        except Exception:
+            pass
+
+
+def _persist_graphql_disk_cache() -> None:
     try:
-        _loaded = json.loads(_L3_DISK_CACHE_PATH.read_text(encoding="utf-8"))
-        if isinstance(_loaded, dict):
-            for _k, _v in _loaded.items():
-                if _k not in _SHARED_GRAPHQL_CACHE and isinstance(_v, list) and len(_v) == 2:
-                    _SHARED_GRAPHQL_CACHE[_k] = (float(_v[0]), _v[1])
+        data = {k: [ts, val] for k, (ts, val) in _SHARED_GRAPHQL_CACHE.items() if k.startswith(("l3_", "stop_", "liq_"))}
+        _GRAPHQL_DISK_CACHE_PATH.parent.mkdir(parents=True, exist_ok=True)
+        tmp = _GRAPHQL_DISK_CACHE_PATH.with_suffix(".tmp")
+        tmp.write_text(json.dumps(data), encoding="utf-8")
+        tmp.replace(_GRAPHQL_DISK_CACHE_PATH)
     except Exception:
         pass
 
 
 def _persist_l3_disk_cache() -> None:
-    try:
-        l3_only = {k: [ts, val] for k, (ts, val) in _SHARED_GRAPHQL_CACHE.items() if k.startswith("l3_")}
-        _L3_DISK_CACHE_PATH.parent.mkdir(parents=True, exist_ok=True)
-        tmp = _L3_DISK_CACHE_PATH.with_suffix(".tmp")
-        tmp.write_text(json.dumps(l3_only), encoding="utf-8")
-        tmp.replace(_L3_DISK_CACHE_PATH)
-    except Exception:
-        pass
+    _persist_graphql_disk_cache()
 
 
 class HyperdashClient:
@@ -468,6 +474,7 @@ class HyperdashClient:
                 }
             }
             self._graphql_cache[cache_key] = (now_epoch, out_res)
+            _persist_graphql_disk_cache()
             return out_res
         except Exception:
             if cache_key in self._graphql_cache:
@@ -624,6 +631,7 @@ class HyperdashClient:
                 }
             }
             self._graphql_cache[cache_key] = (now_epoch, out_res)
+            _persist_graphql_disk_cache()
             return out_res
         except Exception:
             if cache_key in self._graphql_cache:
