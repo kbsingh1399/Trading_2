@@ -191,64 +191,64 @@
     "slug": "vaneck",
     "entity_name": "VanEck",
     "address_count": "1.0k Addresses",
-    "total_portfolio_usd": "$1,434,324,931.3",
-    "portfolio_change_24h": "-0.71%",
+    "total_portfolio_usd": "$0.00",
+    "portfolio_change_24h": "",
     "holdings_breakdown": [
       {
         "symbol": "BTC",
-        "price": "$81,562",
+        "price": "$81,703",
         "amount": "BTC",
         "value_usd": "$1.2B",
-        "change_24h": "-0.86%"
+        "change_24h": "-0.96%"
       },
       {
         "symbol": "ETH",
-        "price": "$2,440.61",
+        "price": "$2,422.14",
         "amount": "ETH",
-        "value_usd": "$188.67M",
-        "change_24h": "+0.25%"
+        "value_usd": "$187.24M",
+        "change_24h": "-1.53%"
       },
       {
         "symbol": "SOL",
-        "price": "$104.31",
+        "price": "$104.45",
         "amount": "SOL",
-        "value_usd": "$21.01M",
-        "change_24h": "-1.19%"
+        "value_usd": "$21.03M",
+        "change_24h": "-1.5%"
       },
       {
         "symbol": "BNB",
-        "price": "$724.88",
+        "price": "$722.1",
         "amount": "BNB",
-        "value_usd": "$10.12M",
-        "change_24h": "-0.98%"
+        "value_usd": "$10.09M",
+        "change_24h": "-1.14%"
       },
       {
         "symbol": "LINK",
-        "price": "$12.4",
+        "price": "$12.34",
         "amount": "LINK",
-        "value_usd": "$8.38M",
-        "change_24h": "-0.48%"
+        "value_usd": "$8.34M",
+        "change_24h": "-1.67%"
       },
       {
         "symbol": "AVAX",
-        "price": "$10.13",
+        "price": "$9.98",
         "amount": "AVAX",
-        "value_usd": "$7.18M",
-        "change_24h": "+1.81%"
+        "value_usd": "$7.07M",
+        "change_24h": "-0.5%"
       },
       {
         "symbol": "UNI",
         "price": "$7.31",
         "amount": "UNI",
         "value_usd": "$25.59",
-        "change_24h": "-2.79%"
+        "change_24h": "-2.53%"
       },
       {
         "symbol": "AAVE",
-        "price": "$157.9",
+        "price": "$154.93",
         "amount": "AAVE",
-        "value_usd": "$14.05",
-        "change_24h": "+1.37%"
+        "value_usd": "$13.79",
+        "change_24h": "-2.46%"
       },
       {
         "symbol": "USDC",
@@ -267,26 +267,26 @@
     ],
     "category": "ASSET_MANAGER_ETF",
     "priority": "MEDIUM",
-    "last_updated_utc": "2026-10-16 16:25:16 UTC"
+    "last_updated_utc": "2026-10-16 22:36:03 UTC"
   },
   "ark-invest": {
     "slug": "ark-invest",
     "entity_name": "ARK Invest",
     "address_count": "408 Addresses",
-    "total_portfolio_usd": "$2,591,269,890.19",
-    "portfolio_change_24h": "-1.04%",
+    "total_portfolio_usd": "$0.00",
+    "portfolio_change_24h": "",
     "holdings_breakdown": [
       {
         "symbol": "BTC",
-        "price": "$81,502",
+        "price": "$81,700",
         "amount": "BTC",
-        "value_usd": "$2.59B",
-        "change_24h": "-1.03%"
+        "value_usd": "$2.6B",
+        "change_24h": "-0.75%"
       }
     ],
     "category": "ASSET_MANAGER_ETF",
     "priority": "MEDIUM",
-    "last_updated_utc": "2026-10-16 16:25:21 UTC"
+    "last_updated_utc": "2026-10-16 22:36:09 UTC"
   },
   "21shares": {
     "slug": "21shares",
@@ -297,45 +297,45 @@
     "holdings_breakdown": [
       {
         "symbol": "BTC",
-        "price": "$81,504",
+        "price": "$81,717",
         "amount": "BTC",
         "value_usd": "$1.27B",
-        "change_24h": "-1.03%"
+        "change_24h": "-0.83%"
       },
       {
         "symbol": "ETH",
-        "price": "$2,436.32",
+        "price": "$2,421.78",
         "amount": "ETH",
-        "value_usd": "$92.97M",
-        "change_24h": "-0.06%"
+        "value_usd": "$92.42M",
+        "change_24h": "-1.46%"
       },
       {
         "symbol": "LINK",
-        "price": "$12.38",
+        "price": "$12.34",
         "amount": "LINK",
-        "value_usd": "$29.26M",
-        "change_24h": "-0.88%"
+        "value_usd": "$29.16M",
+        "change_24h": "-1.59%"
       },
       {
         "symbol": "UNI",
-        "price": "$7.29",
+        "price": "$7.31",
         "amount": "UNI",
-        "value_usd": "$5.21M",
-        "change_24h": "-3.7%"
+        "value_usd": "$5.22M",
+        "change_24h": "-2.4%"
       },
       {
         "symbol": "SOL",
-        "price": "$104.17",
+        "price": "$104.33",
         "amount": "SOL",
-        "value_usd": "$468.38",
-        "change_24h": "-1.43%"
+        "value_usd": "$469.1",
+        "change_24h": "-1.44%"
       },
       {
         "symbol": "BNB",
-        "price": "$724.29",
+        "price": "$721.98",
         "amount": "BNB",
-        "value_usd": "$43.41",
-        "change_24h": "-1.2%"
+        "value_usd": "$43.27",
+        "change_24h": "-1.08%"
       },
       {
         "symbol": "USDT",
@@ -346,24 +346,24 @@
       },
       {
         "symbol": "AVAX",
-        "price": "$10.12",
+        "price": "$9.97",
         "amount": "AVAX",
-        "value_usd": "$8.01",
-        "change_24h": "+1.61%"
+        "value_usd": "$7.89",
+        "change_24h": "-0.7%"
       },
       {
         "symbol": "WBTC",
-        "price": "$81,388",
+        "price": "$81,563",
         "amount": "WBTC",
-        "value_usd": "$3",
-        "change_24h": "-0.98%"
+        "value_usd": "$3.01",
+        "change_24h": "-0.82%"
       },
       {
         "symbol": "DOGE",
         "price": "$0.081",
         "amount": "DOGE",
         "value_usd": "$0.57",
-        "change_24h": "-0.47%"
+        "change_24h": "-0.89%"
       },
       {
         "symbol": "USDC",
@@ -375,7 +375,7 @@
     ],
     "category": "ASSET_MANAGER_ETF",
     "priority": "MEDIUM",
-    "last_updated_utc": "2026-10-16 16:25:54 UTC"
+    "last_updated_utc": "2026-10-16 22:36:15 UTC"
   },
   "franklin-templeton": {
     "slug": "franklin-templeton",
@@ -386,22 +386,22 @@
     "holdings_breakdown": [
       {
         "symbol": "BTC",
-        "price": "$81,562",
+        "price": "$81,703",
         "amount": "BTC",
-        "value_usd": "$461.75M",
-        "change_24h": "-0.86%"
+        "value_usd": "$462.55M",
+        "change_24h": "-0.96%"
       },
       {
         "symbol": "ETH",
-        "price": "$2,440.61",
+        "price": "$2,422.14",
         "amount": "ETH",
-        "value_usd": "$48.08M",
-        "change_24h": "+0.25%"
+        "value_usd": "$47.71M",
+        "change_24h": "-1.53%"
       }
     ],
     "category": "ASSET_MANAGER_ETF",
     "priority": "MEDIUM",
-    "last_updated_utc": "2026-10-16 16:26:00 UTC"
+    "last_updated_utc": "2026-10-16 22:36:21 UTC"
   },
   "dwf-labs": {
     "slug": "dwf-labs",
@@ -1400,5 +1400,73 @@
     "category": "ASSET_MANAGER_TRUSTS",
     "priority": "HIGH",
     "last_updated_utc": "2026-10-16 22:31:19 UTC"
+  },
+  "bitwise": {
+    "slug": "bitwise",
+    "entity_name": "Bitwise",
+    "address_count": "2.1k Addresses",
+    "total_portfolio_usd": "$0.00",
+    "portfolio_change_24h": "",
+    "holdings_breakdown": [
+      {
+        "symbol": "BTC",
+        "price": "$81,679",
+        "amount": "BTC",
+        "value_usd": "$4.07B",
+        "change_24h": "-0.91%"
+      },
+      {
+        "symbol": "SOL",
+        "price": "$104.37",
+        "amount": "SOL",
+        "value_usd": "$1.09B",
+        "change_24h": "-1.41%"
+      },
+      {
+        "symbol": "ETH",
+        "price": "$2,420.57",
+        "amount": "ETH",
+        "value_usd": "$263.75M",
+        "change_24h": "-1.49%"
+      },
+      {
+        "symbol": "LINK",
+        "price": "$12.32",
+        "amount": "LINK",
+        "value_usd": "$59.8M",
+        "change_24h": "-1.75%"
+      },
+      {
+        "symbol": "UNI",
+        "price": "$7.3",
+        "amount": "UNI",
+        "value_usd": "$856.4K",
+        "change_24h": "-2.54%"
+      },
+      {
+        "symbol": "AERO",
+        "price": "$0.88",
+        "amount": "AERO",
+        "value_usd": "$164.32K",
+        "change_24h": "-5.8%"
+      },
+      {
+        "symbol": "USDC",
+        "price": "$1",
+        "amount": "USDC",
+        "value_usd": "$32.21",
+        "change_24h": "\u00b10%"
+      },
+      {
+        "symbol": "USDT",
+        "price": "$1",
+        "amount": "USDT",
+        "value_usd": "$0.036",
+        "change_24h": "\u00b10%"
+      }
+    ],
+    "category": "ASSET_MANAGER_CRYPTO",
+    "priority": "MEDIUM",
+    "last_updated_utc": "2026-10-16 22:35:57 UTC"
   }
 }
