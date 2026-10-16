@@ -1,0 +1,30 @@
+{
+  "match": "r2-m002",
+  "scores": {
+    "a010": {
+      "correctness": 8,
+      "completeness": 8,
+      "specificity": 8,
+      "robustness": 8,
+      "clarity": 8,
+      "fatal": false
+    },
+    "a003": {
+      "correctness": 7,
+      "completeness": 7,
+      "specificity": 7,
+      "robustness": 7,
+      "clarity": 7,
+      "fatal": false
+    }
+  },
+  "winner": "a010",
+  "reason": "a010 HOLD + STAND ASIDE",
+  "survived": [
+    "capital"
+  ],
+  "standing": {
+    "a010": [],
+    "a003": []
+  }
+}
