@@ -1,0 +1,33 @@
+{
+  "match": "r3-m001",
+  "scores": {
+    "a002": {
+      "correctness": 9,
+      "completeness": 8,
+      "specificity": 8,
+      "robustness": 8,
+      "clarity": 8,
+      "fatal": false
+    },
+    "a004": {
+      "correctness": 7,
+      "completeness": 7,
+      "specificity": 7,
+      "robustness": 7,
+      "clarity": 7,
+      "fatal": false
+    }
+  },
+  "winner": "a002",
+  "reason": "a002 HOLD+STAND ASIDE",
+  "survived": [
+    "bunker",
+    "capital"
+  ],
+  "standing": {
+    "a002": [],
+    "a004": [
+      "minor"
+    ]
+  }
+}
