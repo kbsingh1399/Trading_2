@@ -290,20 +290,25 @@ Every staged order must undergo strict broker-specific contract sizing and capit
    - **Operator Directive**: The operator has explicitly granted full authorization to expand the stop loss dollar budget to capture more trades and prevent choked stops.
    - **Unified Risk Envelope across all assets (Crypto, Metals, FX, Energy, Indices)**: Authorized up to **15.00 USD to 25.00 USD** (0.30% to 0.51% of equity).
    - **Mandatory Rationale & Invariant A Enforcement**: Stops must NEVER be choked or compressed inside market sweep zones to satisfy a rigid sub-15 USD cap. Stops MUST anchor safely behind genuine resting institutional whale walls (`persist >= 180s`) with a 0.35–0.50 ATR structural buffer. If placing the stop behind the true bunker requires 18.00 to 25.00 USD risk on minimum lots (e.g. on USDJPY, BTC, Gold, Indices), that risk is fully authorized.
-3. **Stressed Floor Defense (Unconditional Invariant)**:
-   - Stressed post-loss simulation across all active positions and staged pending orders:
-     $$\text{Total Staged Risk} = \sum_{i} \text{Risk}_i$$
-     $$\text{Stressed Equity} = \text{Current Equity} - \sum_{i} (\text{Risk}_i \times 1.25 + 2.00) \ge 4,795.00\text{ USD}$$
-   - Under no circumstances may an order be staged if Stressed Equity violates the 4,795.00 USD operating buffer (and 4,775.00 USD hard floor). With equity at 4,857.32 USD (+82.32 USD above hard floor), a 20.00 to 25.00 USD risk trade is safely supported (+29.07 USD surplus above buffer, +49.07 USD above floor).
-4. **Unified Dynamic Position Capacity**:
-   - Up to **2 to 3 concurrent positions** across orthogonal asset clusters, provided joint stressed risk maintains a minimum $+20.00\text{ USD}$ operating buffer above the 4,775.00 USD hard floor.
+3. **Stressed Floor Defense & Dynamic Capacity (Canonical Risk Kernel Invariant)**:
+   - Stressed post-loss simulation across all active positions and staged pending orders is strictly governed by `Terminal/risk/risk_kernel.py`:
+     $$\text{Floor Base} = \min(\text{Balance}, \text{Equity})$$
+     $$\text{Stressed Risk}_i = \text{Risk}_i \times 1.25 + \max(\text{Notional}_i \times 0.0015, 2.00)$$
+     $$\text{Post-Joint-Stop Equity} = \text{Floor Base} - \sum_{i} \text{Stressed Risk}_i \ge 4,795.00\text{ USD}$$
+   - Under no circumstances may an order be staged or punched if Post-Joint-Stop Equity breaches the 4,795.00 USD operating buffer (and 4,775.00 USD hard floor).
+   - **Dynamic Per-Slot Risk Sizing & Residual Solvency Admission**:
+     * Position capacity is governed by live financial solvency, NOT an unconstrained slogan.
+     * With Headroom to Operating Buffer $= \text{Post-Joint-Stop Equity} - 4,795.00\text{ USD}$:
+     * Maximum allowable nominal risk for any new ticket is dynamically capped:
+       $$\text{Max Risk}_{\text{new}} = \min\left(25.00\text{ USD}, \frac{\text{Headroom to Buffer}}{1.25 \times \text{Remaining Slots}} - \frac{2.00}{1.25}\right)$$
+     * If Headroom to Operating Buffer $< 14.50\text{ USD}$ (the stressed cost of a minimum 10.00 USD trade), **no new tickets may be admitted regardless of open physical slots**. Cash is held to defend the floor.
 
 ---
 
 ### STEP 9: Pre-Execution Ex-Ante Audit
 *Active Skills: `@[verify]`, `@[clean-code]`*
 
-Prior to order transmission, perform the final 5-point sanity audit:
+Prior to order transmission, perform the final 5-point sanity audit enforced by the deterministic pre-trade validator `Terminal/risk/risk_kernel.py::admit()`:
 1. **Passive Limit Posture**: Confirm order type is strictly `BUY_LIMIT` or `SELL_LIMIT`. Market orders and spread-crossing taker executions are permanently banned.
 2. **Reward-to-Risk (R:R) Gate**:
    $$\text{R:R Ratio} = \frac{|\text{TP} - \text{Entry}|}{|\text{Entry} - \text{SL}|} \ge 2.0\text{R}$$
@@ -326,13 +331,13 @@ stateDiagram-v2
     PendingLimitOrder --> Cancelled: Distance > 2.0 ATR or Whale pulls
     
     FilledPosition --> Phase0RiskCut: Profit reaches +1.25R0
-    note right of Phase0RiskCut: Move SL to -0.25R0 (Cut 75% risk)
+    note right of Phase0RiskCut: Move SL to Entry - 0.25R0 (Cut 75% risk, 0.25R breathing room)
     
     Phase0RiskCut --> Phase1ProfitLock: Profit reaches +1.65R0
-    note right of Phase1ProfitLock: Move SL to +0.80R0 (Bank profit)
+    note right of Phase1ProfitLock: Move SL to Entry + 0.80R0 (Bank profit)
     
     Phase1ProfitLock --> Phase2Trailing: Profit reaches >= +2.00R0
-    note right of Phase2Trailing: Continuous 0.50 ATR trail behind micro-shelves
+    note right of Phase2Trailing: Continuous trail Peak MFE - 0.75R0 (0.10R0 min step)
     
     Phase2Trailing --> TakeProfitExit: Hit TP Magnet (+2.5R to +3.0R)
     FilledPosition --> TimeDecayExit: Time > 24 bars (6h) & gain < +0.20R0
@@ -340,11 +345,11 @@ stateDiagram-v2
 ```
 
 1. **Autonomous Execution**: Execute via `mt5.order_send()` with unique magic number (`888888`) and descriptive comment.
-2. **Dynamic Profit Ratchet Protocol (Frozen $R_0$)**:
-   - **Phase Early-BE (Adaptive Microstructure Breakeven — Mandated by Forensic Autopsy)**: At $+0.75R_0$ to $+0.80R_0$ unrealized profit once price reclaims the session Volume Profile POC or VWAP $\to$ Move SL to $\text{Entry} + 0.10R_0$ (eliminates 100% of risk and guarantees zero-loss protection, preventing the 76.9% positive MFE from ever turning into a full stop-out).
-   - **Phase 0 (Risk Cut)**: At $+1.25R_0$ unrealized profit $\to$ Move SL to $\text{Entry} + 0.15R_0$ (locks in minor profit + broker commission buffer).
-   - **Phase 1 (Profit Lock)**: At $+1.65R_0$ unrealized profit $\to$ Move SL to $\text{Entry} + 0.80R_0$ (locks in guaranteed major profit).
-   - **Phase 2 (Continuous Trailing Ratchet)**: At $\ge +2.00R_0$ unrealized profit $\to$ Trail SL behind structural 15m swing shelves or $0.50\text{ ATR}$ trailing stop.
+2. **Dynamic Profit Ratchet Protocol (Canonical `risk_kernel.py::RATCHET_LADDER` — Playbook 7.1)**:
+   - **Phase 0 (Risk Reduction & Retest Breathing Room)**: At $+1.25R_0$ gain $\to$ Move SL to $\text{Entry} - 0.25R_0$. Cuts downside risk by 75% while leaving 0.25R breathing room for routine 15m entry retests (preventing the 31.3% micro-scratch choking trap documented in empirical replay).
+   - **Phase 1 (Profit Lock)**: At $+1.65R_0$ gain $\to$ Move SL to $\text{Entry} + 0.80R_0$ (guarantees major profit lock).
+   - **Phase 2 (Continuous Trailing Ratchet)**: At $\ge +2.00R_0$ gain $\to$ Continuously trail SL at $\text{Peak MFE} - 0.75R_0$ (monotonic only, updating whenever candidate SL improves by $\ge 0.10R_0$).
+   - **Target**: $+2.50\text{R}$ to $+3.00\text{R}$.
 3. **Time-Decay Exit**: If a position has been active for 24 bars (6 hours) and has not generated at least $+0.20R_0$ gain, close at market to redeploy capital.
 
 ---

@@ -2,11 +2,11 @@
 """Terminal/risk/autonomous_ratchet_daemon.py
 ================================================
 Continuous autonomous ratchet & trade-lifecycle manager daemon.
-Polls active MetaTrader 5 positions every 15 seconds to enforce:
-  - Phase 0 (BE Lock):    At +0.80R gain -> move SL to Entry + 0.15R (locking spread/friction)
-  - Phase 1 (Profit Lock):At +1.50R gain -> move SL to Entry + 0.80R
-  - Phase 2 (Trail):      At +2.00R gain -> trail SL to Entry + 1.50R
-  - Time-Decay Exit:      Exit at market if < +0.20R gain after 24 bars (6 hours)
+Polls active MetaTrader 5 positions every 15 seconds to enforce Playbook 7.1:
+  - Phase 0 (Risk Cut):    At +1.25R0 gain -> move SL to Entry - 0.25R0 (75% risk reduction with 0.25R breathing room)
+  - Phase 1 (Profit Lock): At +1.65R0 gain -> move SL to Entry + 0.80R0 (guaranteed profit lock)
+  - Phase 2 (Trail):       At >= +2.00R0 gain -> continuous trail at Peak MFE - 0.75R0 (monotonic 0.10R0 step)
+  - Time-Decay Exit:       Exit at market if < +0.20R0 gain after 24 bars (6 hours)
 """
 from __future__ import annotations
 

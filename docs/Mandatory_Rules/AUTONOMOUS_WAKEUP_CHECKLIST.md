@@ -64,11 +64,11 @@ flowchart TD
 
 ### Step 3: Active Position & Trailing Ratchet Audit
 - [ ] Query `mt5.positions_get()` and `mt5.orders_get()`.
-- [ ] For each open position, enforce the **Frozen Initial R0 Piecewise Ratchet**:
-  - **Phase Early-BE (Adaptive Microstructure Breakeven)**: When price reaches `Entry + 0.75 * R0` to `0.80 * R0` and reclaims POC/VWAP, move SL to `Entry + 0.10 * R0` (zero-risk lock).
-  - **Phase 0 (Break-Even Lock)**: When price reaches `Entry + 1.25 * R0`, move SL to `Entry + 0.15 * R0` (cut risk to 0).
-  - **Phase 1 (Profit Lock)**: When price reaches `Entry + 1.65 * R0`, lock in `Entry + 0.80 * R0` of profit.
-  - **Phase 2 (Running Trail)**: When price exceeds `+2.00 * R0`, trail behind peak by `0.75 * R0` or recent swing shelf.
+- [ ] For each open position, enforce the canonical **Playbook 7.1 Ratchet Ladder** (`Terminal/risk/risk_kernel.py::RATCHET_LADDER`):
+  - **Phase 0 (Risk Cut & Retest Breathing Room)**: When gain reaches `+1.25 * R0`, move SL to `Entry - 0.25 * R0` (cuts downside risk by 75% to 0.25R, leaving 0.25R breathing room to prevent the 31.3% micro-scratch choking trap).
+  - **Phase 1 (Profit Lock)**: When gain reaches `+1.65 * R0`, move SL to `Entry + 0.80 * R0` (locks in guaranteed profit).
+  - **Phase 2 (Running Trail)**: When gain exceeds `+2.00 * R0`, continuously trail SL at `Peak MFE - 0.75 * R0` (monotonic only, 0.10R0 min step).
+  - **Time-Decay Exit**: Close at market if floating gain is `< +0.20 * R0` after 24 bars (6 hours).
 - [ ] Audit pending limit orders: cancel or modify any order whose underlying whale wall has pulled or expired (> 30 minutes).
 
 ---
@@ -83,8 +83,8 @@ flowchart TD
     1. Clean Entry staged inside a verified structural shelf (EMA 20/50, VAH/VAL/POC) accounting for half-spread.
     2. SL safely anchored behind a genuine resting whale bunker (>= 500k USD notional, >= 180s persistence) or held auction level with >= 0.35–0.50 ATR clearance outside opposing sweep bands.
     3. TP front-running opposing liquidation cascade magnets by 5–10 bps.
-    4. Net payoff >= 2.0R within the operator-approved expanded risk envelope ($15.00–$25.00 USD).
-    5. Preserves the 4,775.00 USD hard floor and 4,795.00 USD buffer under stressed post-loss simulation.
+    4. Net payoff >= 2.0R within the operator-approved risk envelope ($10.00–$25.00 USD, dynamically sized by `risk_kernel.py`).
+    5. Preserves the 4,775.00 USD hard floor and 4,795.00 USD operating buffer under stressed simulation.
 
 ---
 
@@ -93,8 +93,8 @@ flowchart TD
   - Activate the 8 core skill ensembles: `/remember`, `/graphify`, `/data-engineer`, `/dataform-bigquery`, `/data-analyst`, `/data-engineering-data-driven-feature`, `/brainstorm`, `/verify`.
   - **MANDATORY**: Dispatch all 3 internal specialists (`Orderflow Analyst`, `Position Manager`, `Macro Risk Analyst`) via `invoke_subagent` on EVERY wake-up turn without exception.
   - **Mandatory Line-by-Line Ingestion**: Explicitly instruct all 3 subagents to read `docs/telemetry/live_snapshot_latest.json` line-by-line to maintain running account/order narrative continuity, and read `Data/forex_factory_summary.json` & `Data/forex_factory_live.json` line-by-line to extract Central Bank rate differentials, upcoming speeches, breaking geopolitical/energy headlines, and generate fresh macro trade ideas.
-  - **MANDATORY PASSIVE LIMIT ORDER HUNTING**: Mandate each subagent to actively identify, evaluate, and qualify new passive limit order candidates across orthogonal clusters (Cryptos, Metals, Energy, Forex, Indices) whenever open capacity exists (max 4 tickets total).
-  - Instruct agents to evaluate market structure, orderbook depth, CVD flow, expanded risk envelope ($15.00 to $25.00 USD), and macro environment.
+  - **MANDATORY PASSIVE LIMIT ORDER HUNTING**: Mandate each subagent to actively identify, evaluate, and qualify new passive limit order candidates across orthogonal clusters (Cryptos, Metals, Energy, Forex, Indices) whenever open capacity exists.
+  - Instruct agents to evaluate market structure, orderbook depth, CVD flow, risk envelope, and macro environment.
 - [ ] **Track B (MANDATORY Council Prompt Construction & Arena.ai Injection)**:
   - **MANDATORY**: On EVERY wake-up turn, generate and inject the comprehensive prompt into Arena.ai Tab 1 via `python Terminal/dispatch_comprehensive_wake_up_prompt.py --arena-only`.
   - Embed direct raw links to `STANDARDIZED_TRADING_DECISION_CHAIN.md`, `LOSING_TRADES_DEEP_FORENSIC_AUTOPSY.md`, fresh live snapshot data, Forex Factory macro intelligence, and live MT5 positions/orders.
@@ -106,6 +106,7 @@ flowchart TD
 ### Step 6: Arena.ai Completion Wait & Harvesting Gate (CYCLE IN-PROGRESS)
 > ⚠️ **CRITICAL OPERATOR MANDATE**: The cycle is NOT finished when prompt dispatch completes! Arena.ai is actively working in the background. Antigravity must wait for Arena.ai to finish before closing the loop.
 - [ ] Launch `python Terminal/arena_completion_daemon.py --wait` (or monitor CDP status) to await completion of Arena.ai generation.
+- [ ] **Hard 90-Second Timeout Fallback**: If Arena.ai hangs or exceeds 90 seconds, Antigravity is authorized to proceed with Track-A internal subagent consensus under `SINGLE_TRACK_RATIFIED` logging to prevent latency paralysis.
 - [ ] Verify that `docs/trade_plans/ARENA_LATEST_RAW.md` has been successfully harvested and contains a complete, non-truncated response.
 - [ ] Confirm both Antigravity's internal subagents AND Arena.ai have completed their respective analysis phases.
 
@@ -117,7 +118,7 @@ flowchart TD
   - Audit proposed Entry levels against live MT5 spreads and resting orderbook depth.
   - Audit SL Liquidity Bunkers: ensure SL sits safely outside `[min_price, max_price]` with `>= 0.35–0.50 ATR` buffer.
   - Audit TP Liquidity Magnets: ensure TP front-runs opposing liquidation/stop clusters by `5–10 bps`.
-  - Audit exact cash risk via `mt5.order_calc_profit` (strictly $10.00 to $14.50 USD).
+  - Audit exact cash risk via deterministic validator `Terminal/risk/risk_kernel.py::admit()` (dynamically sized within $10.00 to $25.00 USD envelope, strictly bounded by buffer headroom).
 
 ---
 

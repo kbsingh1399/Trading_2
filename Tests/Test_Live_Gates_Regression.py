@@ -144,6 +144,46 @@ class TestRatchetAndWall(unittest.TestCase):
         self.assertEqual(result["action"], "time_decay_exit_failed")
         self.assertEqual(state.phase, RatchetPhase.OPEN)
 
+    def test_ratchet_phase_progression_and_direct_promotion(self):
+        # Long position: Entry 100, SL 90, 1R = 10
+        manager = RatchetManager()
+        state = manager.register(101, "TEST", 100.0, 90.0, 125.0, 1)
+        manager._modify_sl = lambda s, new_sl: True
+
+        # At +0.80R gain (price 108.0): must stay OPEN (does not choke trade)
+        res = manager.check_position(101, 108.0)
+        self.assertIsNone(res)
+        self.assertEqual(state.phase, RatchetPhase.OPEN)
+
+        # At +1.25R gain (price 112.5): triggers Phase 0 BE lock (SL -> 97.5, entry - 0.25R)
+        res = manager.check_position(101, 112.5)
+        self.assertIsNotNone(res)
+        self.assertEqual(res["action"], "phase_0_be")
+        self.assertEqual(state.phase, RatchetPhase.BE_LOCKED)
+        self.assertAlmostEqual(res["sl_new"], 97.5)
+
+        # At +1.65R gain (price 116.5): triggers Phase 1 Profit lock (SL -> 108.0, +0.80R)
+        res = manager.check_position(101, 116.5)
+        self.assertIsNotNone(res)
+        self.assertEqual(res["action"], "phase_1_profit")
+        self.assertEqual(state.phase, RatchetPhase.PROFIT_1)
+        self.assertAlmostEqual(res["sl_new"], 108.0)
+
+        # At +2.05R gain (price 120.5): triggers Phase 2 Trail (SL -> 115.0, +1.50R)
+        res = manager.check_position(101, 120.5)
+        self.assertIsNotNone(res)
+        self.assertEqual(res["action"], "phase_2_trail")
+        self.assertEqual(state.phase, RatchetPhase.TRAIL_2)
+        self.assertAlmostEqual(res["sl_new"], 115.0)
+
+        # Test direct jump from OPEN directly to Target extension (+2.35R)
+        state2 = manager.register(102, "TEST2", 100.0, 90.0, 125.0, 1)
+        res2 = manager.check_position(102, 123.5)
+        self.assertIsNotNone(res2)
+        self.assertEqual(res2["action"], "phase_target_lock")
+        self.assertEqual(state2.phase, RatchetPhase.TRAIL_2)
+        self.assertAlmostEqual(res2["sl_new"], 118.5)  # +1.85R locked immediately
+
     def test_wall_side_and_missing_sample_reset(self):
         w = PersistentWallTracker()
         for ts in (1000, 1090, 1180):

@@ -137,17 +137,18 @@ class FloorDefense:
                 capacity_slots_free=0,
             )
 
-        # 3. Worst-case floor math
-        total_risk = sum(open_risks) + proposed_risk
-        post_stopout = balance - total_risk
+        # 3. Worst-case floor math using 1.25x stress multiplier + fee reserve
+        from Terminal.risk.risk_kernel import calculate_stressed_risk
+        total_stressed_risk = sum(calculate_stressed_risk(r) for r in open_risks) + calculate_stressed_risk(proposed_risk)
+        post_stopout = balance - total_stressed_risk
         cushion = post_stopout - self.hard_floor
-        headroom = balance - self.hard_floor - self.buffer - sum(open_risks)
+        headroom = post_stopout - (self.hard_floor + self.buffer)
 
         if cushion < self.buffer:
             return AdmissionResult(
                 allowed=False,
                 reason=(
-                    f"G-1 floor breach: balance {balance:.2f} - total_risk {total_risk:.2f} "
+                    f"G-1 floor breach: balance {balance:.2f} - total_stressed_risk {total_stressed_risk:.2f} "
                     f"= {post_stopout:.2f} USD — cushion {cushion:.2f} < required {self.buffer:.2f} USD"
                 ),
                 headroom_usd=headroom,

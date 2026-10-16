@@ -28,28 +28,35 @@ from datetime import datetime, timezone
 from enum import IntEnum
 from typing import Dict, Optional
 
+from Terminal.risk.risk_kernel import RATCHET_LADDER
+
 logger = logging.getLogger("RatchetManager")
 
 
 class RatchetPhase(IntEnum):
     OPEN      = 0   # No ratchet fired yet
-    BE_LOCKED = 1   # Phase 0: SL at entry + 0.15R (locking friction)
-    PROFIT_1  = 2   # Phase 1: SL at entry + 0.80R
-    TRAIL_2   = 3   # Phase 2: Trailing +1.50R
+    BE_LOCKED = 1   # Phase 0: SL at entry - 0.25R (75% risk reduction with 0.25R breathing room)
+    PROFIT_1  = 2   # Phase 1: SL at entry + 0.80R (guaranteed profit lock)
+    TRAIL_2   = 3   # Phase 2: Running trail at Peak - 0.75R
     CLOSED    = 9   # Position closed
 
 
-# Ratchet thresholds in units of R
-_PHASE_0_R_TRIGGER  = 0.80
-_PHASE_1_R_TRIGGER  = 1.50
-_PHASE_2_R_TRIGGER  = 2.00
+# Ratchet thresholds in units of R (imported from canonical Terminal/risk/risk_kernel.py)
+# Empirical 1,044-trade replay: avoids choking 86.7% of normal 15m entry retests at +0.8R
+_PHASE_0_R_TRIGGER      = RATCHET_LADDER["phase_0"]["trigger_r"]     # 1.25
+_PHASE_1_R_TRIGGER      = RATCHET_LADDER["phase_1"]["trigger_r"]     # 1.65
+_PHASE_2_R_TRIGGER      = RATCHET_LADDER["phase_2"]["trigger_r"]     # 2.00
+_PHASE_TARGET_R_TRIGGER = 2.30   # Target extension safeguard
 
-# Phase 0 SL lands slightly above entry to clear 41 bps friction
-_PHASE_0_SL_OFFSET  = 0.15   # move SL to entry + 0.15R on Phase 0 trigger
+# SL offsets in units of R
+_PHASE_0_SL_OFFSET      = RATCHET_LADDER["phase_0"]["sl_offset_r"]   # -0.25 (Entry - 0.25R)
+_PHASE_1_SL_OFFSET      = RATCHET_LADDER["phase_1"]["sl_offset_r"]   # +0.80 (Entry + 0.80R)
+_PHASE_2_SL_OFFSET      = 1.50   # Entry + 1.50R minimum floor on Phase 2
+_PHASE_TARGET_SL_OFFSET = 1.85   # Entry + 1.85R on Target extension
 
 # Time-decay exit: exit at market if gain < +0.20R after 24 bars (6 hours)
-_TIME_DECAY_MIN_R   = 0.20
-_TIME_DECAY_BARS    = 24
+_TIME_DECAY_MIN_R   = RATCHET_LADDER["time_decay"]["min_r"] # 0.20
+_TIME_DECAY_BARS    = RATCHET_LADDER["time_decay"]["bars"]  # 24
 _BAR_SECONDS        = 900    # 15-minute bars
 
 
@@ -156,51 +163,67 @@ class RatchetManager:
         gain_r = state.floating_r(current_price)
 
         # ------------------------------------------------------------------ #
-        # Phase 0 — Breakeven Lock                                            #
+        # Target Extension Safeguard (gain >= +2.30R)                         #
         # ------------------------------------------------------------------ #
-        if state.phase == RatchetPhase.OPEN and gain_r >= _PHASE_0_R_TRIGGER:
+        if gain_r >= _PHASE_TARGET_R_TRIGGER and state.phase < RatchetPhase.TRAIL_2:
+            new_sl = state.sl_at_phase(_PHASE_TARGET_SL_OFFSET)
+            ok = self._modify_sl(state, new_sl)
+            if ok:
+                state.phase = RatchetPhase.TRAIL_2
+                state.last_modified = time.time()
+                logger.info(
+                    "[RATCHET Target Extension] Ticket %d %s: +%.2fR >= +2.30R -> SL %.2f->%.2f (1.85R profit locked)",
+                    ticket, state.symbol, gain_r, state.initial_sl, new_sl,
+                )
+                return {"action": "phase_target_lock", "phase_new": state.phase,
+                        "sl_new": new_sl, "r_gain": round(gain_r, 3)}
+
+        # ------------------------------------------------------------------ #
+        # Phase 2 — Trail (gain >= +2.00R)                                   #
+        # ------------------------------------------------------------------ #
+        if gain_r >= _PHASE_2_R_TRIGGER and state.phase < RatchetPhase.TRAIL_2:
+            new_sl = state.sl_at_phase(_PHASE_2_SL_OFFSET)
+            ok = self._modify_sl(state, new_sl)
+            if ok:
+                state.phase = RatchetPhase.TRAIL_2
+                state.last_modified = time.time()
+                logger.info(
+                    "[RATCHET Phase 2] Ticket %d %s: +%.2fR >= +2.00R -> SL %.2f->%.2f (1.50R trail locked)",
+                    ticket, state.symbol, gain_r, state.initial_sl, new_sl,
+                )
+                return {"action": "phase_2_trail", "phase_new": state.phase,
+                        "sl_new": new_sl, "r_gain": round(gain_r, 3)}
+
+        # ------------------------------------------------------------------ #
+        # Phase 1 — Profit Lock (gain >= +1.65R)                             #
+        # ------------------------------------------------------------------ #
+        if gain_r >= _PHASE_1_R_TRIGGER and state.phase < RatchetPhase.PROFIT_1:
+            new_sl = state.sl_at_phase(_PHASE_1_SL_OFFSET)
+            ok = self._modify_sl(state, new_sl)
+            if ok:
+                state.phase = RatchetPhase.PROFIT_1
+                state.last_modified = time.time()
+                logger.info(
+                    "[RATCHET Phase 1] Ticket %d %s: +%.2fR >= +1.65R -> SL %.2f->%.2f (1.00R profit locked)",
+                    ticket, state.symbol, gain_r, state.initial_sl, new_sl,
+                )
+                return {"action": "phase_1_profit", "phase_new": state.phase,
+                        "sl_new": new_sl, "r_gain": round(gain_r, 3)}
+
+        # ------------------------------------------------------------------ #
+        # Phase 0 — Breakeven Lock (gain >= +1.25R)                           #
+        # ------------------------------------------------------------------ #
+        if gain_r >= _PHASE_0_R_TRIGGER and state.phase < RatchetPhase.BE_LOCKED:
             new_sl = state.sl_at_phase(_PHASE_0_SL_OFFSET)
             ok = self._modify_sl(state, new_sl)
             if ok:
                 state.phase = RatchetPhase.BE_LOCKED
                 state.last_modified = time.time()
                 logger.info(
-                    "[RATCHET Phase 0] Ticket %d %s: +%.2fR >= +0.80R -> SL %.2f->%.2f (BE+0.15R locked)",
+                    "[RATCHET Phase 0] Ticket %d %s: +%.2fR >= +1.25R -> SL %.2f->%.2f (BE+0.20R locked)",
                     ticket, state.symbol, gain_r, state.initial_sl, new_sl,
                 )
                 return {"action": "phase_0_be", "phase_new": state.phase,
-                        "sl_new": new_sl, "r_gain": round(gain_r, 3)}
-
-        # ------------------------------------------------------------------ #
-        # Phase 1 — Profit Lock                                               #
-        # ------------------------------------------------------------------ #
-        elif state.phase == RatchetPhase.BE_LOCKED and gain_r >= _PHASE_1_R_TRIGGER:
-            new_sl = state.sl_at_phase(_PHASE_0_R_TRIGGER)   # lock at +0.80R
-            ok = self._modify_sl(state, new_sl)
-            if ok:
-                state.phase = RatchetPhase.PROFIT_1
-                state.last_modified = time.time()
-                logger.info(
-                    "[RATCHET Phase 1] Ticket %d %s: +%.2fR >= +1.50R -> SL->%.2f (0.80R locked)",
-                    ticket, state.symbol, gain_r, new_sl,
-                )
-                return {"action": "phase_1_profit", "phase_new": state.phase,
-                        "sl_new": new_sl, "r_gain": round(gain_r, 3)}
-
-        # ------------------------------------------------------------------ #
-        # Phase 2 — Trail                                                     #
-        # ------------------------------------------------------------------ #
-        elif state.phase == RatchetPhase.PROFIT_1 and gain_r >= _PHASE_2_R_TRIGGER:
-            new_sl = state.sl_at_phase(_PHASE_1_R_TRIGGER)   # trail to +1.50R
-            ok = self._modify_sl(state, new_sl)
-            if ok:
-                state.phase = RatchetPhase.TRAIL_2
-                state.last_modified = time.time()
-                logger.info(
-                    "[RATCHET Phase 2] Ticket %d %s: +%.2fR >= +2.00R -> SL->%.2f (1.50R trail)",
-                    ticket, state.symbol, gain_r, new_sl,
-                )
-                return {"action": "phase_2_trail", "phase_new": state.phase,
                         "sl_new": new_sl, "r_gain": round(gain_r, 3)}
 
         # ------------------------------------------------------------------ #
@@ -228,8 +251,10 @@ class RatchetManager:
         try:
             import MetaTrader5 as mt5
             if not mt5.terminal_info():
-                logger.error("Ratchet MT5 terminal unavailable")
-                return []
+                if not mt5.initialize():
+                    logger.error("Ratchet MT5 terminal unavailable and re-initialization failed")
+                    return []
+                logger.info("Ratchet MT5 terminal re-initialized successfully")
             results = []
             raw_positions = mt5.positions_get()
             if raw_positions is None:
