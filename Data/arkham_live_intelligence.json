@@ -1,5 +1,5 @@
 {
-  "as_of_utc": "2026-10-16 22:36:23 UTC",
+  "as_of_utc": "2026-10-16 22:41:28 UTC",
   "source": "Arkham Intelligence Upgraded Harvester (arkm.com via Chrome CDP)",
   "filter_applied": "",
   "feed_status": "CONNECTED_NO_TRANSFERS",
@@ -122,128 +122,80 @@
       "slug": "jump-trading",
       "entity_name": "Jump Crypto",
       "address_count": "322 Addresses",
-      "total_portfolio_usd": "$1,433,010,951.67",
-      "portfolio_change_24h": "-1.43%",
+      "total_portfolio_usd": "$0.00",
+      "portfolio_change_24h": "",
       "holdings_breakdown": [
         {
           "symbol": "SOL",
-          "price": "$103.82",
+          "price": "$104.37",
           "amount": "SOL",
-          "value_usd": "$720.91M",
-          "change_24h": "-1.95%"
+          "value_usd": "$724.97M",
+          "change_24h": "-1.41%"
         },
         {
           "symbol": "BTC",
-          "price": "$81,315",
+          "price": "$81,679",
           "amount": "BTC",
-          "value_usd": "$207.73M",
-          "change_24h": "-1.32%"
-        },
-        {
-          "symbol": "USDC",
-          "price": "$1",
-          "amount": "USDC",
-          "value_usd": "$89.25M",
-          "change_24h": "\u00b10%"
+          "value_usd": "$177.75M",
+          "change_24h": "-0.91%"
         },
         {
           "symbol": "USDT",
           "price": "$1",
           "amount": "USDT",
-          "value_usd": "$71.23M",
+          "value_usd": "$71.27M",
+          "change_24h": "\u00b10%"
+        },
+        {
+          "symbol": "USDC",
+          "price": "$1",
+          "amount": "USDC",
+          "value_usd": "$69.47M",
           "change_24h": "\u00b10%"
         },
         {
           "symbol": "ETH",
-          "price": "$2,429.57",
+          "price": "$2,420.57",
           "amount": "ETH",
-          "value_usd": "$28.77M",
-          "change_24h": "-0.48%"
+          "value_usd": "$28.63M",
+          "change_24h": "-1.49%"
         },
         {
           "symbol": "BNB",
-          "price": "$723.58",
+          "price": "$721.72",
           "amount": "BNB",
-          "value_usd": "$206.08K",
-          "change_24h": "-1.33%"
+          "value_usd": "$205.55K",
+          "change_24h": "-1.14%"
+        },
+        {
+          "symbol": "UNI",
+          "price": "$7.3",
+          "amount": "UNI",
+          "value_usd": "$84.13K",
+          "change_24h": "-2.54%"
         },
         {
           "symbol": "LINK",
-          "price": "$12.34",
+          "price": "$12.32",
           "amount": "LINK",
-          "value_usd": "$55.05K",
-          "change_24h": "-1.44%"
+          "value_usd": "$62.77K",
+          "change_24h": "-1.75%"
         }
       ],
       "category": "MARKET_MAKER_HFT",
-      "last_updated_utc": "2026-10-16 16:22:54 UTC"
+      "priority": "HIGH",
+      "last_updated_utc": "2026-10-16 22:41:04 UTC"
     },
     "wintermute": {
       "slug": "wintermute",
       "entity_name": "Wintermute",
       "address_count": "11.0k Addresses",
-      "total_portfolio_usd": "$839,112,704.7",
-      "portfolio_change_24h": "-1.8%",
-      "holdings_breakdown": [
-        {
-          "symbol": "BTC",
-          "price": "$81,315",
-          "amount": "BTC",
-          "value_usd": "$74.09M",
-          "change_24h": "-1.32%"
-        },
-        {
-          "symbol": "USDC",
-          "price": "$1",
-          "amount": "USDC",
-          "value_usd": "$36.98M",
-          "change_24h": "\u00b10%"
-        },
-        {
-          "symbol": "ETH",
-          "price": "$2,429.57",
-          "amount": "ETH",
-          "value_usd": "$34.99M",
-          "change_24h": "-0.48%"
-        },
-        {
-          "symbol": "WBTC",
-          "price": "$81,173",
-          "amount": "WBTC",
-          "value_usd": "$15.16M",
-          "change_24h": "-1.28%"
-        },
-        {
-          "symbol": "USDT",
-          "price": "$1",
-          "amount": "USDT",
-          "value_usd": "$8.19M",
-          "change_24h": "\u00b10%"
-        },
-        {
-          "symbol": "CBBTC",
-          "price": "$81,272",
-          "amount": "CBBTC",
-          "value_usd": "$7.55M",
-          "change_24h": "-1.32%"
-        },
-        {
-          "symbol": "LINK",
-          "price": "$12.34",
-          "amount": "LINK",
-          "value_usd": "$6.96M",
-          "change_24h": "-1.44%"
-        },
-        {
-          "symbol": "AVAX",
-          "price": "$10.11",
-          "amount": "AVAX",
-          "value_usd": "$1.61M",
-          "change_24h": "+1.4%"
-        }
-      ],
+      "total_portfolio_usd": "$0.00",
+      "portfolio_change_24h": "",
+      "holdings_breakdown": [],
       "category": "MARKET_MAKER_ALGO",
-      "last_updated_utc": "2026-10-16 16:20:39 UTC"
+      "priority": "HIGH",
+      "last_updated_utc": "2026-10-16 22:40:58 UTC"
     },
     "vaneck": {
       "slug": "vaneck",
@@ -1526,6 +1478,92 @@
       "category": "ASSET_MANAGER_CRYPTO",
       "priority": "MEDIUM",
       "last_updated_utc": "2026-10-16 22:35:57 UTC"
+    },
+    "cumberland": {
+      "slug": "cumberland",
+      "entity_name": "Cumberland DRW",
+      "address_count": "13.0k Addresses",
+      "total_portfolio_usd": "$0.00",
+      "portfolio_change_24h": "",
+      "holdings_breakdown": [
+        {
+          "symbol": "USDT",
+          "price": "$1",
+          "amount": "USDT",
+          "value_usd": "$7.15M",
+          "change_24h": "\u00b10%"
+        },
+        {
+          "symbol": "ETH",
+          "price": "$2,422.89",
+          "amount": "ETH",
+          "value_usd": "$1.1M",
+          "change_24h": "-1.36%"
+        },
+        {
+          "symbol": "BTC",
+          "price": "$81,730",
+          "amount": "BTC",
+          "value_usd": "$522.17K",
+          "change_24h": "-0.8%"
+        },
+        {
+          "symbol": "USDC",
+          "price": "$1",
+          "amount": "USDC",
+          "value_usd": "$60.03K",
+          "change_24h": "\u00b10%"
+        },
+        {
+          "symbol": "LINK",
+          "price": "$12.34",
+          "amount": "LINK",
+          "value_usd": "$27.72K",
+          "change_24h": "-1.52%"
+        },
+        {
+          "symbol": "MKR",
+          "price": "$1,616.19",
+          "amount": "MKR",
+          "value_usd": "$252.13",
+          "change_24h": "-2.02%"
+        },
+        {
+          "symbol": "UNI",
+          "price": "$7.31",
+          "amount": "UNI",
+          "value_usd": "$217.36",
+          "change_24h": "-2.27%"
+        },
+        {
+          "symbol": "BNB",
+          "price": "$722.07",
+          "amount": "BNB",
+          "value_usd": "$105.76",
+          "change_24h": "-1.04%"
+        },
+        {
+          "symbol": "WBTC",
+          "price": "$81,569",
+          "amount": "WBTC",
+          "value_usd": "$80.8",
+          "change_24h": "-0.81%"
+        }
+      ],
+      "category": "OTC_LIQUIDITY_DESK",
+      "priority": "HIGH",
+      "last_updated_utc": "2026-10-16 22:41:10 UTC"
+    },
+    "falconx": {
+      "slug": "falconx",
+      "entity_name": "FalconX",
+      "address_count": "4.5k Addresses",
+      "total_portfolio_usd": "$0.00",
+      "portfolio_change_24h": "",
+      "holdings_breakdown": [],
+      "category": "PRIME_BROKERAGE_EXECUTION",
+      "priority": "HIGH",
+      "last_updated_utc": "2026-10-16 22:41:16 UTC"
     }
   },
   "whale_alerts": [],
