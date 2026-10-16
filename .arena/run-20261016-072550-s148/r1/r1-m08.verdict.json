@@ -1,0 +1,35 @@
+{
+  "match": "r1-m08",
+  "scores": {
+    "a004": {
+      "correctness": 8,
+      "completeness": 8,
+      "specificity": 8,
+      "robustness": 8,
+      "clarity": 8,
+      "fatal": false
+    },
+    "a009": {
+      "correctness": 7,
+      "completeness": 7,
+      "specificity": 7,
+      "robustness": 7,
+      "clarity": 7,
+      "fatal": false
+    }
+  },
+  "winner": "a004",
+  "reason": "a004 HOLD + STAND ASIDE + CADJPY VIABLE",
+  "survived": [
+    "display bin",
+    "CADJPY ATR 1.93",
+    "bunker",
+    "capital"
+  ],
+  "standing": {
+    "a004": [],
+    "a009": [
+      "minor"
+    ]
+  }
+}
