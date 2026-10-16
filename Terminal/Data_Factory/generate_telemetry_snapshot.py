@@ -1457,6 +1457,7 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
     with ThreadPoolExecutor(max_workers=12) as ex:
         # Existing: depth + OI + premium
         depth_futures = list(ex.map(fetch_crypto_depth_and_oi, CRYPTO_ASSETS))
+        t_l1_depth_fetched = time.time()
         for asset, depth, oi, prem in depth_futures:
             crypto_books[asset] = depth
             crypto_ois[asset] = oi
@@ -2429,6 +2430,22 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                 "s_whale_persistence_d": round(s_d, 4) if s_d is not None else None,
                 "s_whale_status": "GATED_VALID" if s_whale is not None else "GATED_FAIL_CLOSED",
                 "s_whale_gate_reason": s_gate_reason,
+                "s_whale_pass_through": {
+                    "score": round(s_whale, 4) if s_whale is not None else None,
+                    "dead_band_cleared": bool(s_whale is not None and abs(s_whale) >= 0.25),
+                    "action": (
+                        "NEUTRAL_DEAD_BAND" if (s_whale is not None and abs(s_whale) < 0.25)
+                        else ("STRONG_BULLISH_WHALE_SUPPORT" if (s_whale is not None and s_whale >= 0.25)
+                              else ("STRONG_BEARISH_WHALE_PRESSURE" if s_whale is not None else "FAIL_CLOSED_NO_DATA"))
+                    ),
+                    "permits_long": bool(s_whale is not None and s_whale >= -0.25),
+                    "permits_short": bool(s_whale is not None and s_whale <= 0.25),
+                    "rationale": (
+                        f"Magnitude |{s_whale}| < 0.25 dead band; strictly neutral." if (s_whale is not None and abs(s_whale) < 0.25)
+                        else (f"S_whale +{s_whale} >= +0.25 confirms Long confluence / blocks contrary Short." if (s_whale is not None and s_whale >= 0.25)
+                              else (f"S_whale {s_whale} <= -0.25 confirms Short confluence / blocks contrary Long." if s_whale is not None else "S_whale is null / fail-closed."))
+                    )
+                },
                 "trend_regime": trend_status,
                 "indicators_source": bars_source,
                 "vwap_weight_unit": "MT5_TICK_VOLUME_PROXY_NOT_EXCHANGE_CONTRACTS" if has_bar_volume else "UNAVAILABLE",
@@ -2552,6 +2569,7 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
         **win_calibration,
         "macro_calendar": macro_calendar,
         "hyperdash_flow_intelligence": get_hyperdash_flow_intelligence(),
+        "onchain_arkham_intelligence": get_arkham_intelligence(),
         "data_layer_status": {
             "as_of_epoch": now_ts,
             "as_of_utc": now_utc,
@@ -2560,11 +2578,11 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                     "layer_num": 1,
                     "name": "Binance Futures L2 Orderbook Depth & Basis",
                     "venue": "BINANCE_USDM_FUTURES",
-                    "status": "HEALTHY" if crypto_books else "UNAVAILABLE",
-                    "assets_covered": len([a for a, b in crypto_books.items() if b]),
+                    "status": "HEALTHY" if crypto_books and len([a for a, b in crypto_books.items() if b and "bids" in b]) >= 12 and (now_ts - t_l1_depth_fetched) <= 30.0 else ("DEGRADED" if crypto_books else "UNAVAILABLE"),
+                    "assets_covered": len([a for a, b in crypto_books.items() if b and "bids" in b]),
                     "target_assets": len(CRYPTO_ASSETS),
-                    "freshness_epoch": now_ts,
-                    "age_s": 0.0
+                    "freshness_epoch": t_l1_depth_fetched,
+                    "age_s": round(max(0.0, now_ts - t_l1_depth_fetched), 2)
                 },
                 "layer_2_hyperliquid_l2_l3": {
                     "layer_num": 2,
@@ -2573,47 +2591,49 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                     "status": "HEALTHY" if any(r.get("status") == "SUCCESS" for r in hyperdash_results.values()) else "UNAVAILABLE",
                     "assets_covered": len([a for a, r in hyperdash_results.items() if r.get("status") == "SUCCESS"]),
                     "target_assets": len(ALL_24_ASSETS),
-                    "freshness_epoch": now_ts,
-                    "age_s": 0.0
+                    "freshness_epoch": max((float(r.get("stops", {}).get("received_at") or r.get("liquidations", {}).get("received_at") or 0)) for r in hyperdash_results.values() if r) if hyperdash_results else now_ts,
+                    "age_s": round(max(0.0, now_ts - max((float(r.get("stops", {}).get("received_at") or r.get("liquidations", {}).get("received_at") or 0)) for r in hyperdash_results.values() if r)), 2) if hyperdash_results else 0.0
                 },
                 "layer_3_coinglass_whale_orders": {
                     "layer_num": 3,
                     "name": "CoinGlass L3 Large Orderbook Whale Orders",
                     "venue": "COINGLASS_AGGREGATED_EXCHANGES",
-                    "status": "HEALTHY" if (cg_epoch and (now_ts - cg_epoch) <= 600.0) else ("STALE" if cg_epoch else "UNAVAILABLE"),
+                    "status": "HEALTHY" if (cg_epoch and (now_ts - cg_epoch) <= 300.0) else ("DEGRADED" if (cg_epoch and (now_ts - cg_epoch) <= 1800.0) else "STALE"),
                     "freshness_epoch": cg_epoch,
                     "age_s": round(now_ts - cg_epoch, 1) if cg_epoch else None,
-                    "total_orders_harvested": cg_whale_intelligence.get("total_orders_harvested", 0),
-                    "total_notional_usd": cg_whale_intelligence.get("total_notional_usd", 0.0)
+                    "total_orders_harvested": cg_whale_intelligence.get("total_whale_orders", 0),
+                    "total_notional_usd": cg_whale_intelligence.get("grand_total_notional_usd", 0.0),
+                    "total_assets_scraped": cg_whale_intelligence.get("total_assets_scraped", 0)
                 },
                 "layer_4_coinglass_liquidations": {
                     "layer_num": 4,
                     "name": "CoinGlass Liquidation Heatmap & Max Pain",
                     "venue": "COINGLASS_LIQUIDATION_MODEL",
-                    "status": "HEALTHY",
-                    "freshness_epoch": now_ts,
-                    "age_s": 0.0
+                    "status": "HEALTHY" if ((ROOT / "Data" / "coinglass" / "latest" / "coinglass_snapshot.json").exists() and (now_ts - (ROOT / "Data" / "coinglass" / "latest" / "coinglass_snapshot.json").stat().st_mtime) <= 600.0) else "DEGRADED",
+                    "freshness_epoch": (ROOT / "Data" / "coinglass" / "latest" / "coinglass_snapshot.json").stat().st_mtime if (ROOT / "Data" / "coinglass" / "latest" / "coinglass_snapshot.json").exists() else None,
+                    "age_s": round(now_ts - (ROOT / "Data" / "coinglass" / "latest" / "coinglass_snapshot.json").stat().st_mtime, 1) if (ROOT / "Data" / "coinglass" / "latest" / "coinglass_snapshot.json").exists() else None
                 },
                 "layer_5_broker_mt5_telemetry": {
                     "layer_num": 5,
                     "name": "MT5 Broker Native Telemetry & Execution Bridge",
                     "venue": "MT5_RAW_SPREAD_BROKER",
-                    "status": "HEALTHY" if acc_summary.get("login") == 5064568 else "OFFLINE",
-                    "clock_offset_s": round(float(getattr(bridge, "clock_offset", 0.0) or 0.0), 3) if getattr(bridge, "clock_offset", None) is not None else None,
+                    "status": "HEALTHY" if acc_summary.get("login") == 5064568 and getattr(getattr(bridge, "broker_clock", None), "status", None) == "CALIBRATED" else ("DEGRADED" if acc_summary.get("login") == 5064568 else "OFFLINE"),
+                    "clock_offset_s": round(float(getattr(getattr(bridge, "broker_clock", None), "offset_seconds", 0.0) or 0.0), 3) if getattr(getattr(bridge, "broker_clock", None), "offset_seconds", None) is not None else None,
+                    "broker_clock_status": getattr(getattr(bridge, "broker_clock", None), "status", "UNVERIFIED"),
                     "account_login": acc_summary.get("login"),
                     "balance_usd": balance_usd,
                     "equity_usd": equity_usd,
-                    "freshness_epoch": now_ts,
-                    "age_s": 0.0
+                    "freshness_epoch": trusted_finish if trusted_finish is not None else now_ts,
+                    "age_s": round(max(0.0, time.time() - (trusted_finish if trusted_finish is not None else now_ts)), 2)
                 },
                 "layer_6_stop_clusters_and_reconstructed_liqs": {
                     "layer_num": 6,
                     "name": "Structural Stop Clusters & Reconstructed DEX Liquidations",
                     "venue": "HYPERLIQUID_ONCHAIN_ANALYTICS",
-                    "status": "HEALTHY" if any(len(r.get("stops", {}).get("bands", [])) > 0 for r in hyperdash_results.values()) else "UNAVAILABLE",
+                    "status": "HEALTHY" if sum(len(r.get("stops", {}).get("bands", [])) + len(r.get("liquidations", {}).get("bands", [])) for r in hyperdash_results.values()) > 1000 else "DEGRADED",
                     "bands_tracked": sum(len(r.get("stops", {}).get("bands", [])) + len(r.get("liquidations", {}).get("bands", [])) for r in hyperdash_results.values()),
-                    "freshness_epoch": now_ts,
-                    "age_s": 0.0
+                    "freshness_epoch": max((float(r.get("stops", {}).get("received_at") or r.get("liquidations", {}).get("received_at") or 0)) for r in hyperdash_results.values() if r) if hyperdash_results else now_ts,
+                    "age_s": round(max(0.0, now_ts - max((float(r.get("stops", {}).get("received_at") or r.get("liquidations", {}).get("received_at") or 0)) for r in hyperdash_results.values() if r)), 2) if hyperdash_results else 0.0
                 }
             }
         },

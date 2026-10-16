@@ -124,55 +124,66 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
             for idx, asset in enumerate(assets):
                 t_asset_start = time.time()
                 
-                # Switch asset in MuiAutocomplete input and extract orders
-                js_switch = f"""(async () => {{
-                    const targetSymbol = {json.dumps(asset)};
-                    let searchInput = document.querySelector('input.MuiAutocomplete-input, input[placeholder*="Search"]');
-                    if (!searchInput) return {{ error: 'No MuiAutocomplete input found' }};
+                # Check if asset is already selected
+                check_js = f"""(() => {{
+                    const el = document.querySelector('input.MuiAutocomplete-input, input[placeholder*="Search"]');
+                    return el ? (el.value || '').trim().toUpperCase() : '';
+                }})()"""
+                chk_res = await send("Runtime.evaluate", {"expression": check_js, "returnByValue": True})
+                cur_val = chk_res.get("result", {}).get("result", {}).get("value", "")
 
-                    for (let attempt = 0; attempt < 2; attempt++) {{
-                        let curVal = (searchInput.value || '').trim().toUpperCase();
-                        if (curVal === targetSymbol) break;
+                if cur_val != asset:
+                    # Focus and select existing text
+                    focus_js = """(() => {
+                        const el = document.querySelector('input.MuiAutocomplete-input, input[placeholder*="Search"]');
+                        if (!el) return false;
+                        el.focus();
+                        el.select();
+                        return true;
+                    })()"""
+                    await send("Runtime.evaluate", {"expression": focus_js, "returnByValue": True})
+                    await asyncio.sleep(0.2)
 
-                        searchInput.focus();
-                        const nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
-                        nativeInputValueSetter.call(searchInput, targetSymbol);
-                        searchInput.dispatchEvent(new Event('input', {{ bubbles: true }}));
-                        await new Promise(r => setTimeout(r, 700));
+                    # Insert target symbol via CDP native input
+                    await send("Input.insertText", {"text": asset})
+                    await asyncio.sleep(0.6)
 
+                    # Click matching option from MUI listbox
+                    click_opt_js = f"""(() => {{
+                        const targetSymbol = {json.dumps(asset)};
                         const listbox = document.querySelector('.MuiAutocomplete-popper, ul.MuiAutocomplete-listbox, div[role="listbox"]');
-                        if (listbox) {{
-                            const options = Array.from(listbox.querySelectorAll('li, div[role="option"]'));
-                            const match = options.find(o => {{
-                                const txt = (o.innerText || '').trim();
-                                const firstToken = txt.split(/[\\s\\n]+/)[0].toUpperCase();
-                                return firstToken === targetSymbol;
-                            }});
-                            if (match) {{
-                                match.dispatchEvent(new MouseEvent('mousedown', {{ bubbles: true }}));
-                                match.dispatchEvent(new MouseEvent('mouseup', {{ bubbles: true }}));
-                                match.click();
-                            }}
+                        if (!listbox) return false;
+                        const options = Array.from(listbox.querySelectorAll('li, div[role="option"]'));
+                        const match = options.find(o => {{
+                            const txt = (o.innerText || '').trim();
+                            const firstToken = txt.split(/[\\s\\n]+/)[0].toUpperCase();
+                            return firstToken === targetSymbol;
+                        }}) || options[0];
+                        if (match) {{
+                            match.dispatchEvent(new MouseEvent('mousedown', {{ bubbles: true }}));
+                            match.dispatchEvent(new MouseEvent('mouseup', {{ bubbles: true }}));
+                            match.click();
+                            return true;
                         }}
-                        await new Promise(r => setTimeout(r, 2000));
-                        document.body.click();
-                        await new Promise(r => setTimeout(r, 500));
-                    }}
+                        return false;
+                    }})()"""
+                    await send("Runtime.evaluate", {"expression": click_opt_js, "returnByValue": True})
+                    await asyncio.sleep(1.8)
 
-                    // Re-query input in case DOM rehydrated
-                    searchInput = document.querySelector('input.MuiAutocomplete-input, input[placeholder*="Search"]');
+                    # Ensure popper is closed
+                    close_popper_js = """(() => {
+                        const el = document.querySelector('input.MuiAutocomplete-input, input[placeholder*="Search"]');
+                        if (el) el.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+                    })()"""
+                    await send("Runtime.evaluate", {"expression": close_popper_js, "returnByValue": True})
+                    await asyncio.sleep(0.3)
+
+                # Extract all whale order rows with true Buy/Sell side from background style class
+                extract_js = f"""(() => {{
+                    const targetSymbol = {json.dumps(asset)};
+                    const searchInput = document.querySelector('input.MuiAutocomplete-input, input[placeholder*="Search"]');
                     const finalInputVal = (searchInput && searchInput.value ? searchInput.value : '').trim().toUpperCase();
-                    if (finalInputVal !== targetSymbol) {{
-                        return {{
-                            symbol: targetSymbol,
-                            currentInput: finalInputVal,
-                            error: 'Failed to switch to ' + targetSymbol + ', active input is ' + finalInputVal,
-                            itemCount: 0,
-                            items: []
-                        }};
-                    }}
 
-                    // Extract all whale order rows with true Buy/Sell side from background style class
                     const items = Array.from(document.querySelectorAll('.large-order-item')).map(el => {{
                         const rawLines = (el.innerText || '').split('\\n').map(s => s.trim()).filter(Boolean);
                         const isCanceled = Boolean(el.querySelector('span[class*="cancel"], div[class*="cancel"]') || rawLines.includes('C'));
@@ -199,10 +210,11 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
                     }};
                 }})()"""
 
-                res = await send("Runtime.evaluate", {"expression": js_switch, "returnByValue": True, "awaitPromise": True})
+                res = await send("Runtime.evaluate", {"expression": extract_js, "returnByValue": True})
                 val = res.get("result", {}).get("result", {}).get("value", {})
-                if val.get("error"):
-                    print(f"[{idx+1}/{len(assets)}] {asset:<5} -> WARNING: {val.get('error')}. Skipping.")
+                if not val or val.get("error"):
+                    if val and val.get("error"):
+                        print(f"[{idx+1}/{len(assets)}] {asset:<5} -> WARNING: {val.get('error')}. Skipping.")
                     continue
                 
                 raw_items = val.get("items", [])

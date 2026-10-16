@@ -60,6 +60,8 @@ DATA_SYNC_FILES = [
     "Data/arkham_live_intelligence.json",
     "Data/arkham_institutional_registry.json",
     "Data/coinglass/latest/coinglass_snapshot.json",
+    "Data/coinglass/latest/coinglass_whale_orders_snapshot.json",
+    "Data/coinglass/coinglass_harvester_status.json",
     "Data/coinglass/whale_persistence_ledger.json",
     "docs/telemetry/coinglass_data_dictionary.md",
     "Data/history/master_manifest.json"
