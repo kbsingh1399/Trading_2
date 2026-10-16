@@ -157,13 +157,17 @@ Deliver your response using high-fidelity discrete proofs, clear markdown typogr
     return prompt
 
 
-async def dispatch_prompt():
-    print(f"[{datetime.now(timezone.utc).strftime('%H:%M:%S UTC')}] Generating GPT Astra Orchestration Prompt...")
-    prompt_text = build_astra_orchestration_prompt()
-    
-    PROMPT_OUT.parent.mkdir(parents=True, exist_ok=True)
-    PROMPT_OUT.write_text(prompt_text, encoding="utf-8")
-    print(f"Saved prompt to {PROMPT_OUT} ({len(prompt_text)} chars)")
+async def dispatch_prompt(custom_prompt_path: Optional[pathlib.Path] = None):
+    now_str = datetime.now(timezone.utc).strftime('%H:%M:%S UTC')
+    if custom_prompt_path and custom_prompt_path.exists():
+        print(f"[{now_str}] Loading custom prompt from {custom_prompt_path}...")
+        prompt_text = custom_prompt_path.read_text(encoding="utf-8")
+    else:
+        print(f"[{now_str}] Generating GPT Astra Orchestration Prompt...")
+        prompt_text = build_astra_orchestration_prompt()
+        PROMPT_OUT.parent.mkdir(parents=True, exist_ok=True)
+        PROMPT_OUT.write_text(prompt_text, encoding="utf-8")
+        print(f"Saved prompt to {PROMPT_OUT} ({len(prompt_text)} chars)")
 
     ws_url = await get_arena_tab_ws_url()
     if not ws_url:
@@ -268,5 +272,11 @@ async def dispatch_prompt():
 
 
 if __name__ == "__main__":
-    success = asyncio.run(dispatch_prompt())
+    target_prompt = None
+    if len(sys.argv) > 1:
+        if sys.argv[1] == "--audit":
+            target_prompt = ROOT / "docs" / "prompts" / "ARENA_FULL_WEEKEND_AUDIT_PROMPT.txt"
+        else:
+            target_prompt = pathlib.Path(sys.argv[1])
+    success = asyncio.run(dispatch_prompt(custom_prompt_path=target_prompt))
     sys.exit(0 if success else 1)
