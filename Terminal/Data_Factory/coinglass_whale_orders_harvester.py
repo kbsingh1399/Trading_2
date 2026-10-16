@@ -127,7 +127,7 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
                 # Switch asset in MuiAutocomplete input and extract orders
                 js_switch = f"""(async () => {{
                     const targetSymbol = {json.dumps(asset)};
-                    const searchInput = document.querySelector('input.MuiAutocomplete-input');
+                    let searchInput = document.querySelector('input.MuiAutocomplete-input, input[placeholder*="Search"]');
                     if (!searchInput) return {{ error: 'No MuiAutocomplete input found' }};
 
                     const curVal = (searchInput.value || '').trim().toUpperCase();
@@ -150,10 +150,13 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
                                 match.click();
                             }}
                         }}
-                        await new Promise(r => setTimeout(r, 2200));
+                        await new Promise(r => setTimeout(r, 2500));
+                        document.body.click();
                     }}
 
-                    const finalInputVal = (searchInput.value || '').trim().toUpperCase();
+                    // Re-query input in case DOM rehydrated
+                    searchInput = document.querySelector('input.MuiAutocomplete-input, input[placeholder*="Search"]');
+                    const finalInputVal = (searchInput && searchInput.value ? searchInput.value : '').trim().toUpperCase();
                     if (finalInputVal !== targetSymbol) {{
                         return {{
                             symbol: targetSymbol,
@@ -164,13 +167,22 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
                         }};
                     }}
 
-                    // Extract all whale order rows
+                    // Extract all whale order rows with true Buy/Sell side from background style class
                     const items = Array.from(document.querySelectorAll('.large-order-item')).map(el => {{
                         const rawLines = (el.innerText || '').split('\\n').map(s => s.trim()).filter(Boolean);
                         const isCanceled = Boolean(el.querySelector('span[class*="cancel"], div[class*="cancel"]') || rawLines.includes('C'));
+                        const bgEl = el.querySelector('div[class*="item-bg"], div[class*="ovv2-item-bg"]');
+                        const bgClass = bgEl ? bgEl.className : '';
+                        let domSide = 'UNKNOWN';
+                        if (bgClass.includes('-l') || bgClass.includes('long') || bgClass.includes('buy')) {{
+                            domSide = 'BUY';
+                        }} else if (bgClass.includes('-s') || bgClass.includes('short') || bgClass.includes('sell')) {{
+                            domSide = 'SELL';
+                        }}
                         return {{
                             lines: rawLines,
-                            isCanceled: isCanceled
+                            isCanceled: isCanceled,
+                            domSide: domSide
                         }};
                     }});
 
@@ -198,9 +210,10 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
                 for it in raw_items:
                     lines = it.get("lines", [])
                     is_canc = it.get("isCanceled", False)
+                    dom_side = it.get("domSide", "UNKNOWN")
                     if len(lines) >= 3:
-                        # Typical pattern: ['S', '85000', '$1.23M', '11H 52m'] or ['S', 'C', '84000', '$4.62M', '12H 35m']
-                        side_str = "SELL" if "S" in lines[0] else ("BUY" if "B" in lines[0] else "UNKNOWN")
+                        # True side extracted from DOM background style class (.ovv2-item-bg-l = BUY, .ovv2-item-bg-s = SELL)
+                        side_str = dom_side if dom_side in ("BUY", "SELL") else "UNKNOWN"
                         if "C" in lines:
                             is_canc = True
                         
@@ -248,9 +261,15 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
                         })
 
                 elapsed = round(time.time() - t_asset_start, 2)
+                has_buy = buy_notional > 0
+                has_sell = sell_notional > 0
+                side_parse_health = "HEALTHY" if (has_buy and has_sell) else (
+                    "UNILATERAL_BOOK" if len(parsed_orders) < 5 else "SIDE_PARSE_DEGENERATE"
+                )
                 harvested_data[asset] = {
                     "asset": asset,
                     "orders_count": len(parsed_orders),
+                    "side_parse_health": side_parse_health,
                     "total_notional_usd": round(buy_notional + sell_notional, 2),
                     "buy_notional_usd": round(buy_notional, 2),
                     "sell_notional_usd": round(sell_notional, 2),

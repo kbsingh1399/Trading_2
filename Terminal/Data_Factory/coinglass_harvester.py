@@ -403,21 +403,36 @@ class CoinglassCDPHarvester:
 
     def _update_persistence_ledger(self, current_whales: List[Dict[str, Any]]) -> Dict[str, Any]:
         """
-        Updates the persistent ledger across 5-minute cycles.
+        Updates the persistent ledger across 5-minute cycles with fail-closed safety and bounded trajectories.
         Calculates exact cumulative duration, cycle count, and flags persistent resting whales.
         """
-        ledger = {}
+        from Terminal.Data_Factory.time_series_database import atomic_write_text
+        ledger: Dict[str, Any] = {}
+        bak_path = PERSISTENCE_LEDGER_PATH.with_suffix(".bak")
+
         if PERSISTENCE_LEDGER_PATH.exists():
             try:
                 ledger = json.loads(PERSISTENCE_LEDGER_PATH.read_text(encoding="utf-8"))
-            except Exception:
-                ledger = {}
+            except Exception as e:
+                print(f"[WhaleLedger] Warning: Failed to read {PERSISTENCE_LEDGER_PATH.name}: {e}. Attempting backup restore...")
+                if bak_path.exists():
+                    try:
+                        ledger = json.loads(bak_path.read_text(encoding="utf-8"))
+                        print("[WhaleLedger] Restored ledger from .bak")
+                    except Exception as be:
+                        print(f"[WhaleLedger] FATAL: .bak also corrupted: {be}. Failing closed.")
+                        return {}
+                else:
+                    print("[WhaleLedger] FATAL: No .bak found. Failing closed.")
+                    return {}
 
         now_utc = datetime.datetime.now(datetime.timezone.utc).isoformat()
         now_epoch = time.time()
 
         for w in current_whales:
-            key = f"{w['asset']}_{w['side']}_{w['user']}_{w.get('entry_price_raw', '')[:10]}"
+            p_val = _clean_num(w.get("entry_price_raw"))
+            price_key = round(p_val, 4) if p_val else 0
+            key = f"{w['asset']}_{w['side']}_{w['user']}_{price_key}"
             if key not in ledger:
                 ledger[key] = {
                     "key": key,
@@ -464,12 +479,18 @@ class CoinglassCDPHarvester:
                     "pnl": w.get("unrealised_pnl_raw"),
                     "price": w.get("current_price_raw")
                 })
-                # Retain full historical trajectory up to 8,640 cycles (30 days of 5m data)
-                if len(item["trajectory"]) > 8640:
-                    item["trajectory"] = item["trajectory"][-8640:]
+                # Cap trajectory to recent 288 cycles (24 hours of 5m snapshots) to eliminate write amplification
+                if len(item["trajectory"]) > 288:
+                    item["trajectory"] = item["trajectory"][-288:]
 
-        # Save persistent ledger
-        PERSISTENCE_LEDGER_PATH.write_text(json.dumps(ledger, indent=2), encoding="utf-8")
+        # Rotate backup and atomically persist ledger
+        if PERSISTENCE_LEDGER_PATH.exists():
+            try:
+                import shutil
+                shutil.copy2(PERSISTENCE_LEDGER_PATH, bak_path)
+            except Exception:
+                pass
+        atomic_write_text(PERSISTENCE_LEDGER_PATH, json.dumps(ledger, indent=2))
         return ledger
 
     def compute_delta(self, curr: Dict[str, Any], prev: Dict[str, Any]) -> Dict[str, Any]:

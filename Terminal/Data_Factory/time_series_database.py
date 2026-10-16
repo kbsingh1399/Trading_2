@@ -680,7 +680,7 @@ class TimeSeriesDatabase:
                 assets_data = data.get("assets", {})
                 total_orders = 0
                 for asset, a_info in assets_data.items():
-                    walls = a_info.get("top_whale_walls", [])
+                    walls = a_info.get("all_orders") or a_info.get("top_whale_walls", [])
                     total_orders += len(walls)
                     for w in walls:
                         side = w.get("side", "")
