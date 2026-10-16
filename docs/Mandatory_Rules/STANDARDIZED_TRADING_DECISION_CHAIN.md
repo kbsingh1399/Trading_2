@@ -77,15 +77,35 @@ flowchart TD
 
 ---
 
-### STEP 1: Data Contract, Ingestion & Sanity Gate
-*Active Skills: `@[data-engineer]`, `@[dataform-bigquery]`*
+### STEP 1: Data Contract, Ingestion & Sanity Gate (Mandatory Line-by-Line Ingestion & JIT Refresh)
+*Active Skills: `@[data-engineer]`, `@[dataform-bigquery]`, `@[performance-engineer]`*
 
-Every analysis begins by establishing absolute data integrity across the telemetry pipeline (`docs/telemetry/live_snapshot_latest.json`):
-1. **Clock & Freshness Audit**: Verify telemetry timestamp is within 180 seconds of live UTC. Stale telemetry triggers immediate live tick refresh.
-2. **Monotonicity & Zero-Null Invariant**: Ingest 15m and HTF OHLCV bars, verifying strict time monotonicity and zero NaN/null values in closing prices, volume, and CVD.
-3. **Broker Venue Basis Mapping**: Map Binance / Hyperdash crypto levels to MT5 execution symbols using `venue_basis`:
+Every analysis begins by establishing absolute data integrity across the telemetry pipeline and macro calendar:
+
+1. **Mandatory Just-In-Time (JIT) Telemetry Refresh Gate**:
+   - While the background synchronization daemon operates at a peaceful 5-minute (300s) cadence to eliminate Git push collisions and CPU bloat, **prior to dispatching any subagents or compiling a prompt for Arena.ai**, Step 1 mandates an immediate synchronous run of `Terminal/Data_Factory/generate_telemetry_snapshot.py`.
+   - This guarantees that all subagents and external models make decisions exclusively on **0-second-fresh live MT5 quotes, open ticket PnL, margin levels, and L2/L3 orderbook depth**.
+
+2. **Mandatory Line-by-Line Telemetry Ingestion & Narrative Continuity**:
+   - Agents, subagents, and external council models are **strictly forbidden from skimming or reading only top-level summary keys**.
+   - You MUST read `docs/telemetry/live_snapshot_latest.json` **line-by-line and section-by-section**:
+     * Trace the running account narrative: track how equity, balance, floating PnL, and hard floor cushion have progressed turn-over-turn.
+     * Track active positions and tickets: inspect entry fills, current bid/ask, ATR-14 volatility, and distance to dynamic ratchet triggers.
+     * Trace orderbook and whale wall evolution: confirm whether supporting whale bunkers are persistent (persist >= 180s) or decaying.
+     * Trace liquidation floor/ceiling migration: map evolving short-squeeze and long-liquidation cascade pools across cycles.
+
+3. **Mandatory Line-by-Line Forex Factory Macro Calendar & News Ingestion (Macro Idea Generation)**:
+   - Systematically read `Data/forex_factory_live.json` and `Data/forex_factory_summary.json` **line-by-line**:
+     * **High-Impact Macro Releases**: Scrutinize inflation prints (CPI, PPI), employment data (NFP, unemployment), retail sales, and GDP metrics, analyzing actual vs forecast surprises.
+     * **Central Bank Speeches & Policy**: Dissect public statements from Federal Reserve officials, Bank of Japan (MoF intervention warnings), Bank of England (Gov Bailey), and ECB governors.
+     * **Geopolitical & Commodity Catalysts**: Track breaking geopolitical headlines, trade policies, and energy supply shocks (e.g. crude oil surging toward $100/bbl).
+     * **Macro Trade Idea Generation**: Actively synthesize this macro intelligence into fresh, asymmetric trade hypotheses (e.g. fading USD/JPY at 158.20 intervention tripwires, shorting risk-off equities under stagflation, or trading commodities with structural flow tailwinds).
+
+4. **Clock & Freshness Audit**: Verify telemetry timestamp is within 180 seconds of live UTC. Stale telemetry triggers immediate live tick refresh.
+5. **Monotonicity & Zero-Null Invariant**: Ingest 15m and HTF OHLCV bars, verifying strict time monotonicity and zero NaN/null values in closing prices, volume, and CVD.
+6. **Broker Venue Basis Mapping**: Map Binance / Hyperdash crypto levels to MT5 execution symbols using `venue_basis`:
    $$\text{Price}_{\text{MT5}} = \text{Price}_{\text{Binance}} + \text{venue\_basis}$$
-4. **Spread Friction Threshold Gate**:
+7. **Spread Friction Threshold Gate**:
    - Crypto Perpetuals: MT5 Spread must be $\le 25.0\text{ bps}$ (e.g. BTC ~2.5 bps, ETH ~12 bps).
    - TradFi CFDs (Forex/Indices/Commodities): MT5 Spread must be $\le 5.0\text{ bps}$ (Gold ~0.2 bps, SP500 ~0.4 bps, USDJPY ~0.1 bps).
    - Any asset with spread exceeding its ceiling (e.g. DOGE at 261 bps) is disqualified immediately.

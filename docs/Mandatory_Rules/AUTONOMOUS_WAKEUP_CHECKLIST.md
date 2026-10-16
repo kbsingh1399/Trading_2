@@ -84,11 +84,12 @@ flowchart TD
 - [ ] **Track A (MANDATORY Subagent Dispatch & SOP Traversal)**:
   - Activate the 8 core skill ensembles: `/remember`, `/graphify`, `/data-engineer`, `/dataform-bigquery`, `/data-analyst`, `/data-engineering-data-driven-feature`, `/brainstorm`, `/verify`.
   - **MANDATORY**: Dispatch all 3 internal specialists (`Orderflow Analyst`, `Position Manager`, `Macro Risk Analyst`) via `invoke_subagent` on EVERY wake-up turn without exception.
+  - **Mandatory Line-by-Line Ingestion**: Explicitly instruct all 3 subagents to read `docs/telemetry/live_snapshot_latest.json` line-by-line to maintain running account/order narrative continuity, and read `Data/forex_factory_summary.json` & `Data/forex_factory_live.json` line-by-line to extract Central Bank rate differentials, upcoming speeches, breaking geopolitical/energy headlines, and generate fresh macro trade ideas.
   - Instruct agents to evaluate market structure, orderbook depth, CVD flow, expanded risk envelope ($15.00 to $25.00 USD), and macro environment.
 - [ ] **Track B (MANDATORY Council Prompt Construction & Arena.ai Injection)**:
   - **MANDATORY**: On EVERY wake-up turn, generate and inject the comprehensive prompt into Arena.ai Tab 1 via `python Terminal/dispatch_comprehensive_wake_up_prompt.py --arena-only`.
-  - Embed direct raw links to `STANDARDIZED_TRADING_DECISION_CHAIN.md`, `LOSING_TRADES_DEEP_FORENSIC_AUTOPSY.md`, fresh live snapshot data, and live MT5 positions/orders.
-  - Enforce the 10-step SOP traversal and tournament bracket evaluation in Arena.
+  - Embed direct raw links to `STANDARDIZED_TRADING_DECISION_CHAIN.md`, `LOSING_TRADES_DEEP_FORENSIC_AUTOPSY.md`, fresh live snapshot data, Forex Factory macro intelligence, and live MT5 positions/orders.
+  - Enforce the 10-step SOP traversal, line-by-line ingestion of telemetry and Forex Factory, and tournament bracket evaluation in Arena.
 
 ---
 

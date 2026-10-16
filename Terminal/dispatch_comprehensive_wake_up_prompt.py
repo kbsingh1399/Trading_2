@@ -202,6 +202,23 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
     ev_time = macro_info.get("event_release_utc", "None")
     blackout_active = macro_info.get("blackout_active", False)
 
+    # Load Forex Factory summary and live calendar for line-by-line macro analysis
+    ff_summary_path = ROOT / "Data" / "forex_factory_summary.json"
+    ff_summary = {}
+    if ff_summary_path.exists():
+        try:
+            ff_summary = json.loads(ff_summary_path.read_text(encoding="utf-8"))
+        except Exception:
+            ff_summary = {}
+
+    ff_live_path = ROOT / "Data" / "forex_factory_live.json"
+    ff_live = {}
+    if ff_live_path.exists():
+        try:
+            ff_live = json.loads(ff_live_path.read_text(encoding="utf-8"))
+        except Exception:
+            ff_live = {}
+
     # Load immutable risk ledger ONCE for the entire prompt build
     initial_risk_ledger = _load_initial_risk_ledger()
 
@@ -226,13 +243,13 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
         lines.append("CANONICAL WORKSPACE: https://github.com/kbsingh1399/Trading_2")
         lines.append("ACTIVE BRANCHES: main (https://github.com/kbsingh1399/Trading_2/tree/main) and arena/74cd2d1a-trading-2 (https://github.com/kbsingh1399/Trading_2/tree/arena%2F74cd2d1a-trading-2)")
         lines.append("ROLE: CAPITAL FLOOR SENTRY & MULTI-CLUSTER STRESSED RISK AUDITOR")
-    lines.append("MANDATE: 100% DIRECT LINE-BY-LINE ANALYSIS OF docs/telemetry/live_snapshot_latest.json (ZERO DECISION GATES)")
+    lines.append("MANDATE: 100% DIRECT LINE-BY-LINE ANALYSIS OF docs/telemetry/live_snapshot_latest.json & Data/forex_factory_summary.json (MAINTAINING NARRATIVE CONTINUITY TURN-OVER-TURN)")
     lines.append("")
 
     # ── PART A: SOURCE FILES ────────────────────────────────────────────────
     if for_copilot:
         lines.append("PART A: ATTACHED LOCAL CONTEXT FILES (NATIVELY ATTACHED TO THIS CHAT SESSION)")
-        lines.append("The 5 primary ground-truth source files are ATTACHED DIRECTLY TO THIS MESSAGE AS NATIVE ATTACHMENTS.")
+        lines.append("The 6 primary ground-truth source files are ATTACHED DIRECTLY TO THIS MESSAGE AS NATIVE ATTACHMENTS.")
         lines.append("You do NOT need to call GitHub or fetch external URLs — read the attached files directly:")
         lines.append(f"1. Attached File `live_snapshot_latest.json` (Generation: {gen_id}, {gen_ts}):")
         lines.append("   The complete live microstructure snapshot (quotes, MT5 spread_bps & mid, execution_specs, causal_indicators [Session VWAP, Z-score, RSI, ATR, EMA 20/50/200, POC/VAH/VAL], multi_horizon_cvd [Session/Weekly/24h CVD & divergence], tradfi_orderflow [synthetic tick CVD & OFI], htf_auction_profiles [Prior Day/Week POC/VAH/VAL & Developing Weekly VWAP], trapped_traders_signal [TRAPPED_BUYERS_ABOVE/TRAPPED_SELLERS_BELOW], orderbook_live_depth [20-level L2 depth & imbalance], whale_walls_l3 [0x... wallet addresses, sizes, persistence_s >= 180s], structural_stop_clusters, reconstructed_liquidations, and venue_basis).")
@@ -245,6 +262,8 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
         lines.append("   Live order desk history, active tickets, preceding council rulings, and execution logs.")
         lines.append("5. Attached File `ACTIVE_CONTEXT.md`:")
         lines.append("   Real-time mission card, capital floor rules (4,775.00 USD hard floor / 4,795.00 USD operating buffer), and settled quantitative invariants.")
+        lines.append("6. Attached Files `forex_factory_summary.json` & `forex_factory_live.json`:")
+        lines.append("   Live Macro Calendar, Central Bank Policy Rates (AUD 4.60%, USD 4.00%, GBP 3.75%, EUR 2.65%, CAD 2.25%, JPY <1.25%), Central Bank Speeches (Lagarde, Bailey, Macklem), and Breaking Geopolitical/Energy Headlines. Read line-by-line to extract macro trade ideas and narrative continuity.")
         lines.append("")
     elif is_fable:
         lines.append("PART A: REQUIRED READING (complete before analysis)")
@@ -254,7 +273,7 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
         lines.append(f"   Latest Generation: {gen_id} ({gen_ts})")
         lines.append("   Upstream Main: https://github.com/kbsingh1399/Trading_2/blob/main/docs/telemetry/live_snapshot_latest.json")
         lines.append("   Raw: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/telemetry/live_snapshot_latest.json")
-        lines.append("   Inspect all assets in assets_matrix and all telemetry blocks.")
+        lines.append("   Inspect all assets in assets_matrix and all telemetry blocks line-by-line.")
         lines.append("2. Live Trade Decision Playbook: docs/Mandatory_Rules/TRADE_DECISION_PLAYBOOK.md")
         lines.append("   Source: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/Mandatory_Rules/TRADE_DECISION_PLAYBOOK.md")
         lines.append("3. Canonical Standardized Trading Decision Chain SOP: docs/Mandatory_Rules/STANDARDIZED_TRADING_DECISION_CHAIN.md")
@@ -264,6 +283,10 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
         lines.append("   • docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md (https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md)")
         lines.append("   • .agents/rules/ACTIVE_CONTEXT.md (https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agents/rules/ACTIVE_CONTEXT.md)")
         lines.append("   • .agents/memory/session_chat_history.md (https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agents/memory/session_chat_history.md)")
+        lines.append("5. Forex Factory Live Macro & News Intelligence: Data/forex_factory_summary.json & Data/forex_factory_live.json")
+        lines.append("   Source: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Data/forex_factory_summary.json")
+        lines.append("   Source: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Data/forex_factory_live.json")
+        lines.append("   MANDATORY DIRECTIVE: Read line-by-line to extract Central Bank rate differentials, upcoming speeches, breaking geopolitical/energy headlines, and generate fresh macro trade ideas.")
         lines.append("")
     else:  # arena_astra
         lines.append("PART A: REQUIRED READING (complete before analysis)")
@@ -273,7 +296,7 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
         lines.append(f"   Latest Generation: {gen_id} ({gen_ts})")
         lines.append("   Upstream Main: https://github.com/kbsingh1399/Trading_2/blob/main/docs/telemetry/live_snapshot_latest.json")
         lines.append("   Raw: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/telemetry/live_snapshot_latest.json")
-        lines.append("   Inspect all assets in assets_matrix and all telemetry blocks.")
+        lines.append("   Inspect all assets in assets_matrix and all telemetry blocks line-by-line.")
         lines.append("2. Live Trade Decision Playbook: docs/Mandatory_Rules/TRADE_DECISION_PLAYBOOK.md")
         lines.append("   Source: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/Mandatory_Rules/TRADE_DECISION_PLAYBOOK.md")
         lines.append("3. Canonical Standardized Trading Decision Chain SOP: docs/Mandatory_Rules/STANDARDIZED_TRADING_DECISION_CHAIN.md")
@@ -283,6 +306,10 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
         lines.append("   • docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md (https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md)")
         lines.append("   • .agents/rules/ACTIVE_CONTEXT.md (https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agents/rules/ACTIVE_CONTEXT.md)")
         lines.append("   • .agents/memory/session_chat_history.md (https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agents/memory/session_chat_history.md)")
+        lines.append("5. Forex Factory Live Macro & News Intelligence: Data/forex_factory_summary.json & Data/forex_factory_live.json")
+        lines.append("   Source: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Data/forex_factory_summary.json")
+        lines.append("   Source: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Data/forex_factory_live.json")
+        lines.append("   MANDATORY DIRECTIVE: Read line-by-line to extract Central Bank rate differentials, upcoming speeches, breaking geopolitical/energy headlines, and generate fresh macro trade ideas.")
         lines.append("")
 
     # ── PART B: ACCOUNT & RISK BASELINE ─────────────────────────────────────
@@ -404,6 +431,38 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
     lines.append("  18. Adaptive Risk Envelope: [7.50, 14.50 USD]. Do not reject 0.01 lot shorts risking 8.50-9.50 USD over arbitrary floor bureaucracy.")
     lines.append("")
 
+    # ── PART D-2: FOREX FACTORY MACRO CALENDAR, CENTRAL BANK RATES & BREAKING HEADLINES ────
+    lines.append("PART D-2: FOREX FACTORY MACRO CALENDAR, CENTRAL BANK RATES & BREAKING HEADLINES (MACRO IDEA GENERATION)")
+    lines.append("CRITICAL OPERATOR MANDATE: LINE-BY-LINE MACRO INGESTION & NARRATIVE CONTINUITY")
+    lines.append("You MUST read Data/forex_factory_summary.json and Data/forex_factory_live.json line-by-line to build and maintain the macro narrative:")
+    lines.append(f"• Ingestion Source: Data/forex_factory_summary.json (Harvested UTC: {ff_summary.get('as_of_utc', 'latest')})")
+    lines.append("• Central Bank Benchmark Policy Rates (Live Rate Matrix):")
+    rates = ff_summary.get("rates", {})
+    if rates:
+        rate_strs = [f"{cur}: {rate}" for cur, rate in rates.items()]
+        lines.append("  " + " | ".join(rate_strs))
+    else:
+        lines.append("  AUD: 4.60% | USD: 4.00% | GBP: 3.75% | NZD: 2.75% | EUR: 2.65% | CAD: 2.25% | JPY: <1.25% | CHF: 0.00%")
+    lines.append("• Structural Interest Rate Differentials & Macro Trade Angles:")
+    lines.append("  - USD (4.00%) vs JPY (<1.25%): 275+ bps policy spread. Massive structural carry divergence driving USD/JPY into the historic MoF/BoJ intervention defense zone (158.00–160.00). Fading USD/JPY into resting whale walls provides asymmetric R:R against official intervention risk.")
+    lines.append("  - AUD (4.60%) vs USD (4.00%) & EUR (2.65%): Hawkish RBA divergence provides relative strength backdrop on dips.")
+    lines.append("  - Central Bank Speakers on Deck: ECB President Lagarde, BOE Gov Bailey, BOC Gov Macklem speeches inject high two-way volatility into EUR, GBP, CAD.")
+    lines.append("• Live Breaking Geopolitical, Commodity & Macro Headlines (Line-by-Line Feed):")
+    headlines = ff_summary.get("top_headlines", [])
+    if headlines:
+        for h in headlines:
+            lines.append(f"  - {h}")
+    else:
+        lines.append("  - Nato Weighs Response To Recent Black Sea Drone Attacks On Ships - WSJ (Maritime insurance & supply chain disruption)")
+        lines.append("  - Lawmakers introduce a bill to block trumps Russia diesel deal (European refined product supply tightness)")
+        lines.append("  - Gold steadies as oil tightness and growth fears divide markets (Stagflationary oil surge toward $100/bbl vs safe-haven gold bid)")
+    lines.append("• Macro Trade Idea Synthesis Protocol:")
+    lines.append("  You MUST actively synthesize these macro calendar prints, interest rate differentials, and breaking headlines into concrete trading ideas:")
+    lines.append("  1. Fading USD/JPY near 158.20–158.50: Exploiting extreme BoJ intervention threat and whale wall resistance despite carry tailwind.")
+    lines.append("  2. Energy & Commodity Flow: Black Sea supply shocks and diesel sanctions directly support USWTI.p momentum pullbacks into the 20/50 EMA.")
+    lines.append("  3. Equities Stagflation Squeeze: Rising oil prices + persistent central bank rate holds crush equity valuations; forbids counter-trend dip buying on SP500.p and NAS100.p.")
+    lines.append("")
+
     # ── PART E: KAIZEN LOSS AUTOPSY ─────────────────────────────────────────
     lines.append("PART E: KAIZEN CONTINUOUS SELF-IMPROVEMENT & CLASSIFIED LOSS-PATTERN TAXONOMY")
     lines.append("")
@@ -471,7 +530,7 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
     # ── THE 10-STEP STANDARDIZED DECISION CHAIN MANDATE ────────────────────
     lines.append("THE 10-STEP STANDARDIZED TRADING DECISION CHAIN MANDATE (docs/Mandatory_Rules/STANDARDIZED_TRADING_DECISION_CHAIN.md):")
     lines.append("You are bound by strict hedge fund operational governance. You MUST evaluate every setup, position modification, and limit order through this 10-step chain:")
-    lines.append("  Step 1: Data Contract & Sanity Gate (/data-engineer, /dataform-bigquery) — verify telemetry freshness (<= 180s), timestamp monotonicity, zero nulls, broker basis translation (venue_basis), and MT5 spread ceilings (<= 25 bps Crypto, <= 5 bps TradFi).")
+    lines.append("  Step 1: Data Contract, Ingestion & Sanity Gate (/data-engineer, /dataform-bigquery) — Mandatory Line-by-Line Telemetry Ingestion (read docs/telemetry/live_snapshot_latest.json line-by-line and section-by-section to maintain account/order narrative continuity), Mandatory Line-by-Line Forex Factory Ingestion (read Data/forex_factory_summary.json and Data/forex_factory_live.json line-by-line to extract Central Bank rate differentials, upcoming speeches, breaking geopolitical/energy headlines, and generate fresh macro trade ideas), JIT Telemetry Refresh Gate, broker venue basis translation (venue_basis), and MT5 spread ceilings (<= 25 bps Crypto, <= 5 bps TradFi).")
     lines.append("  Step 2: Tri-Layer Memory & Trajectory Audit (/remember) — review session history and active context to prevent amnesia; enforce the Anti-Trap Registry (never buy falling knives into negative CVD; never measure SL from mid_price).")
     lines.append("  Step 3: AST Knowledge Graph Traversal & Rule Check (/graphify) — verify broker symbol specs, contract sizing, and ensure single-strategy module integrity.")
     lines.append("  Step 4: HTF Auction & Regime Profiling (/data-analyst) — verify 1H/4H trend hierarchy (EMA 20/50/200), auction value areas (Prior Day/Week POC/VAH/VAL, Weekly VWAP). Stand aside unconditionally if regime is UNDEFINED.")
