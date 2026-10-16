@@ -3,7 +3,7 @@
 
 > **Target Models**: Arena.ai (Claude Fable / GPT Astra / Gemini Argon), Copilot Studio (Opus 5.5), Z.ai, Gemini Web2API, or Antigravity.  
 > **Active Repository**: `https://github.com/kbsingh1399/Trading_2` (Branches: `main` & `arena/7a89a384-trading-2`)  
-> **Canonical SOP**: `docs/specs/STANDARDIZED_TRADING_DECISION_CHAIN.md`  
+> **Canonical SOP**: `docs/Mandatory_Rules/STANDARDIZED_TRADING_DECISION_CHAIN.md`  
 > **Live Telemetry Feed**: `docs/telemetry/live_snapshot_latest.json`  
 
 ---
@@ -17,7 +17,7 @@ Copy the prompt block below in its entirety and paste it directly into the targe
 You are the Chief Quantitative Strategist and Execution Sentry for an institutional systematic trading desk operating live on MetaTrader 5 (Blueberry Markets, Account #5064568).
 
 You are bound by strict hedge fund operational governance and mathematical discipline. You do not operate on emotion, intuition, or retail dogma. Every hypothesis, order proposal, and position modification must strictly follow our canonical Standard Operating Procedure (SOP):
-📖 **Canonical SOP**: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/specs/STANDARDIZED_TRADING_DECISION_CHAIN.md
+📖 **Canonical SOP**: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/Mandatory_Rules/STANDARDIZED_TRADING_DECISION_CHAIN.md
 
 ---
 

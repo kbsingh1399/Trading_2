@@ -11,7 +11,7 @@ Replaces legacy Arena.ai bridge:
 - Strictly embeds the Mandatory Pre-Flight Session History Review & Second Brain Directive:
   * .agents/memory/session_chat_history.md (Trajectory, avoided traps, operator directives)
   * .agents/rules/ACTIVE_CONTEXT.md (Live account state, floor cushion)
-  * docs/specs/ANTIGRAVITY_ARENA_THINKING_CHAIN_COUNCIL_PROTOCOL.md (Thinking Chain V2.0)
+  * docs/Mandatory_Rules/ANTIGRAVITY_ARENA_THINKING_CHAIN_COUNCIL_PROTOCOL.md (Thinking Chain V2.0)
 - Seamlessly updates docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md.
 """
 
@@ -145,12 +145,13 @@ def build_copilot_studio_prompt() -> str:
     lines.append("   - Review the complete session history to understand operator directives, historical setbacks, and avoided traps. Never evaluate in a vacuum!")
     lines.append("3. Active Operational Context: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agents/rules/ACTIVE_CONTEXT.md")
     lines.append("   - Review live account state, cash reserves, active tickets, and hard capital floor defense.")
-    lines.append("4. Thinking Chain Protocol V2.0 Hardened: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/specs/ANTIGRAVITY_ARENA_THINKING_CHAIN_COUNCIL_PROTOCOL.md")
+    lines.append("4. Canonical Standardized Trading Decision Chain SOP: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/Mandatory_Rules/STANDARDIZED_TRADING_DECISION_CHAIN.md")
+    lines.append("   - MANDATORY DIRECTIVE: You MUST execute every trade evaluation, active trade audit, and limit order check through the 10-Step Standardized Trading Decision Chain and activate the 8 Core Multi-Domain Skill Ensembles (/brainstorm, /graphify, /remember, /data-analyst, /data-engineer, /dataform-bigquery, /data-driven-feature, /verify).")
+    lines.append("5. Thinking Chain Protocol V2.0 Hardened: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/Mandatory_Rules/ANTIGRAVITY_ARENA_THINKING_CHAIN_COUNCIL_PROTOCOL.md")
     lines.append("   - Strictly adhere to the 7-stage verification gates, EV over probability score, broker CFD spread mechanics, and 0-100 evidence arbitration rubric.")
-    lines.append("5. Round 2 Thinking Chain Audit Report: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/reviews/ROUND2_THINKING_CHAIN_AUDIT.md")
-    lines.append("6. Decision Gates V3 Reference Implementation: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Terminal/decision_gates_v3.py")
+    lines.append("6. Round 2 Thinking Chain Audit Report: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/reviews/ROUND2_THINKING_CHAIN_AUDIT.md")
     lines.append("7. Master Agent Enforcement Rules: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agents/AGENTS.md")
-    lines.append("8. Live 24-Asset Telemetry Snapshot JSON (Pushed to GitHub every 60s): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/telemetry/live_snapshot_latest.json (Blob: https://github.com/kbsingh1399/Trading_2/blob/main/docs/telemetry/live_snapshot_latest.json)")
+    lines.append("8. Live Telemetry Snapshot JSON (Pushed to GitHub every 60s): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/telemetry/live_snapshot_latest.json (Blob: https://github.com/kbsingh1399/Trading_2/blob/main/docs/telemetry/live_snapshot_latest.json)")
     lines.append("9. Live Collaborative Order Desk Blackboard (Pushed to GitHub): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md")
     lines.append("")
     lines.append("[SECTION 1: LIVE MT5 ACCOUNT STATE & FLOOR DEFENSE]")

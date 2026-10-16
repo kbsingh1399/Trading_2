@@ -3,7 +3,7 @@
 > **PROMPT PURPOSE**: Cross-Council Peer Audit of our Canonical 10-Step Quantitative Trading Decision Chain Specification.  
 > **TARGET AGENT**: Arena.ai (Agent Mode / Council Persona)  
 > **REPOSITORY**: https://github.com/kbsingh1399/Trading_2 (Branch: `main`)  
-> **CANONICAL SPECIFICATION**: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/specs/STANDARDIZED_TRADING_DECISION_CHAIN.md  
+> **CANONICAL SPECIFICATION**: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/Mandatory_Rules/STANDARDIZED_TRADING_DECISION_CHAIN.md  
 > **ACTIVE CONTEXT**: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agents/rules/ACTIVE_CONTEXT.md  
 > **LIVE TELEMETRY SNAPSHOT**: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/telemetry/live_snapshot_latest.json  
 
@@ -19,13 +19,13 @@ You are an institutional quant researcher, microstructure expert, and senior hed
 
 FETCH AND READ THESE LIVE RAW REPOSITORY FILES FIRST:
 1. Canonical Decision Chain Spec:
-   https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/specs/STANDARDIZED_TRADING_DECISION_CHAIN.md
+   https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/Mandatory_Rules/STANDARDIZED_TRADING_DECISION_CHAIN.md
 2. Active Operational Context & Capital Rules:
    https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agents/rules/ACTIVE_CONTEXT.md
 3. Live Market Telemetry Snapshot (24 Assets):
    https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/telemetry/live_snapshot_latest.json
 4. Master Trade Decision Playbook:
-   https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/specs/TRADE_DECISION_PLAYBOOK.md
+   https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/Mandatory_Rules/TRADE_DECISION_PLAYBOOK.md
 
 ----------------------------------------------------------------------------------------
 EXECUTIVE DESK STATE & CURRENT LIVE POSTURE
