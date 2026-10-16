@@ -1,0 +1,34 @@
+{
+  "match": "r1-m02",
+  "scores": {
+    "a005": {
+      "correctness": 8,
+      "completeness": 8,
+      "specificity": 8,
+      "robustness": 8,
+      "clarity": 8,
+      "fatal": false
+    },
+    "a006": {
+      "correctness": 7,
+      "completeness": 7,
+      "specificity": 7,
+      "robustness": 7,
+      "clarity": 7,
+      "fatal": false
+    }
+  },
+  "winner": "a005",
+  "reason": "a005 HOLD + STAND ASIDE + MODIFY CADJPY",
+  "survived": [
+    "display bin",
+    "SL buffer",
+    "capital"
+  ],
+  "standing": {
+    "a005": [],
+    "a006": [
+      "minor"
+    ]
+  }
+}
