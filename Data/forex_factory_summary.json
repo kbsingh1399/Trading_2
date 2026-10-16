@@ -1,0 +1,31 @@
+{
+  "as_of_utc": "2026-10-16 16:56:57 UTC",
+  "rates": {
+    "AUD": "4.60%",
+    "USD": "4.00%",
+    "GBP": "3.75%",
+    "NZD": "2.75%",
+    "EUR": "2.65%",
+    "CAD": "2.25%",
+    "JPY": "<1.25%",
+    "CHF": "0.00%"
+  },
+  "key_events": [
+    "EUR ECB President Lagarde Speaks (MEDIUM) [F: ]",
+    "GBP BOE Gov Bailey Speaks (MEDIUM) [F: ]",
+    "CAD BOC Gov Macklem Speaks (MEDIUM) [F: ]",
+    "EUR ECB President Lagarde Speaks (MEDIUM) [F: ]",
+    "EUR EU Economic Summit (MEDIUM) [F: ]"
+  ],
+  "top_headlines": [
+    "AI Bubble Popping Or A Boring Pullback?",
+    "NATO Weighs Response To Recent Black Sea Drone Attacks On Ships - WSJ",
+    "Lawmakers introduce a bill to block trumps Russia diesel deal",
+    "Five ways the UK\u2019s Autumn Budget could shock us"
+  ],
+  "sample_retail_flow": [
+    "BTC/USD BUY 81,308.95 Opened Long | 1 min ago janesmile 0.0% MTM na",
+    "BTC/USD BUY 81,346.96 Opened Long | 1 min ago janesmile -2.6% MTM na",
+    "BTC/USD SELL 81,356.86 Closed Long | 2 min ago janesmile 0.1% na"
+  ]
+}
