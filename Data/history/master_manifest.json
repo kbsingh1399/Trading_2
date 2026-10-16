@@ -1,12 +1,12 @@
 {
-  "last_updated_utc": "2026-10-16T20:12:45Z",
+  "last_updated_utc": "2026-10-16T20:48:35Z",
   "streams": {
     "coinglass": {
-      "total_snapshots": 12,
+      "total_snapshots": 13,
       "first_recorded_utc": "2026-10-16T19:26:03Z",
-      "latest_recorded_utc": "2026-10-16T20:08:36.676634+00:00",
-      "latest_epoch": 1792181316.7097425,
-      "latest_file": "Data\\history\\coinglass\\2026-10-16\\coinglass_20261016_200924.json.gz",
+      "latest_recorded_utc": "2026-10-16T20:29:10Z",
+      "latest_epoch": 1792182550.567542,
+      "latest_file": "Data\\history\\coinglass\\2026-10-16\\coinglass_20261016_202910.json.gz",
       "dates_present": [
         "2026-10-16"
       ],
@@ -105,6 +105,14 @@
           "file": "Data\\history\\coinglass\\2026-10-16\\coinglass_20261016_200924.json.gz",
           "gap_detected": false,
           "gap_duration_minutes": 0.0,
+          "records": 0
+        },
+        {
+          "utc": "2026-10-16T20:29:10Z",
+          "epoch": 1792182550.567542,
+          "file": "Data\\history\\coinglass\\2026-10-16\\coinglass_20261016_202910.json.gz",
+          "gap_detected": true,
+          "gap_duration_minutes": 20.56,
           "records": 0
         }
       ]
@@ -506,6 +514,26 @@
           "gap_detected": false,
           "gap_duration_minutes": 0.0,
           "records": 1
+        }
+      ]
+    },
+    "coinglass_whale_orders": {
+      "total_snapshots": 1,
+      "first_recorded_utc": "2026-10-16T20:48:35Z",
+      "latest_recorded_utc": "2026-10-16T20:48:35Z",
+      "latest_epoch": 1792183715.497438,
+      "latest_file": "Data\\history\\coinglass_whale_orders\\2026-10-16\\coinglass_whale_orders_20261016_204835.json.gz",
+      "dates_present": [
+        "2026-10-16"
+      ],
+      "recent_history": [
+        {
+          "utc": "2026-10-16T20:48:35Z",
+          "epoch": 1792183715.497438,
+          "file": "Data\\history\\coinglass_whale_orders\\2026-10-16\\coinglass_whale_orders_20261016_204835.json.gz",
+          "gap_detected": false,
+          "gap_duration_minutes": 0.0,
+          "records": 0
         }
       ]
     }

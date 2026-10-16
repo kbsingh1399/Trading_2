@@ -52,7 +52,7 @@ if not logger.handlers:
 class TimeSeriesDatabase:
     """Universal continuous time-series database for all trading & telemetry streams."""
 
-    SUPPORTED_STREAMS = ("coinglass", "telemetry", "forex_factory", "arkham", "account_equity")
+    SUPPORTED_STREAMS = ("coinglass", "coinglass_whale_orders", "telemetry", "forex_factory", "arkham", "account_equity")
 
     def __init__(self, base_dir: Optional[pathlib.Path] = None):
         self.base_dir = base_dir or DATA_DIR
