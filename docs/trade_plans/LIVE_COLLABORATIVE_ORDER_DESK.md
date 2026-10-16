@@ -21792,3 +21792,11 @@ Full report Cycle_137_Council_Report_Arena.md + Cycle_136_Council_Report_Arena.m
 - Capacity: 2/4 filled (1 active +1 pending), 2 avail, budget62.64 max2 new @14.50 risk20.12 stress worst-case post with 2 new 4817.40 +22.40 buffer +42.40 floor PASS tight but PASS
 - Arena seed147: 16 agents 91 calls champion a002 Systems thinking + Outline first + Completeness — r1 beat a007 8-7, r2 beat a016 8-7, r3 beat a013 8-7, r4 beat a015 9-8 champion a002 HOLD EURUSD r1.25 (3.77 live) + STAND ASIDE no new + CADJPY MODIFY/DELETE — solution .arena/run-20261016-070418-s147/r4/r4-m01.a002.solution.md
 
+
+# Cycle147 Antigravity Correction CADJPY gen 34467a2fd1a94126b75e317b5788146d 2026-10-16 07:09:51 UTC — CADJPY RATIFICATION VIABLE WAIT AS-IS
+- Correction: Previous report assumed ATR 1.000 JPY (100 pips) erroneously asserting 10-pip stop is 0.10 ATR <0.35 FAIL ARCHETYPE3. Actual M15 ATR(14) is 0.0519 JPY (5.2 pips). Stop Distance 0.100 JPY =10.0 pips =1.93 ATR (0.100/0.0519=1.93) vastly exceeds mandatory >=0.35-0.50 ATR structural buffer requirement PASS with 1.43-1.58 ATR excess buffer. Previous MODIFY/DELETE classification WRONG, corrected to VIABLE WAIT AS-IS.
+- Structural EMAs: Live Quote 111.435 | EMA20 111.360 | EMA50 111.358 | EMA200 111.328 Price > EMA20 > EMA50 > EMA200 verified Bullish Alignment Model2 Trend Pullback PASS. Entry @111.345 anchored to EMA20/50 dynamic support shelf. SL @111.245 anchored 8.3 pips safely below M15 EMA200 (111.328) =0.083 JPY =8.3 pips =1.60 ATR below EMA200 +1.93 ATR total from entry. TP @111.555 provides 21.0 pips reward R:R 2.10R PASS.
+- Solvency: Nominal Risk -8.87 USD (0.18% equity) within 7.50-14.50 envelope PASS, Reward +18.62 USD, R:R 2.10R PASS >=2.0, Stressed Worst-Case Equity (both EURUSD and CADJPY stop out) 4852.76 +57.76 buffer +77.76 floor PASS, Spread 0.99 bps PASS <=5 TradFi, Correlation with EURUSD -0.0079 orthogonal.
+- Verdict: Ticket #18990916 BUY_LIMIT 0.14 @111.345 structurally pristine remains active on MT5 broker server. Record ratification in tournament ledger. EURUSD HOLD ratified 100%. No new trade STAND ASIDE other 24.
+- Arena seed147 champion a002 corrected — solution .arena/run-20261016-070418-s147/r4/r4-m01.a002.solution.md + correction ledger
+
