@@ -1,0 +1,35 @@
+{
+  "match": "r1-m01",
+  "scores": {
+    "a015": {
+      "correctness": 8,
+      "completeness": 8,
+      "specificity": 8,
+      "robustness": 8,
+      "clarity": 8,
+      "fatal": false
+    },
+    "a012": {
+      "correctness": 7,
+      "completeness": 7,
+      "specificity": 7,
+      "robustness": 7,
+      "clarity": 7,
+      "fatal": false
+    }
+  },
+  "winner": "a015",
+  "reason": "a015 HOLD EURUSD r1.25 + STAND ASIDE no new",
+  "survived": [
+    "display bin",
+    "Z gate",
+    "bunker",
+    "capital"
+  ],
+  "standing": {
+    "a015": [],
+    "a012": [
+      "minor"
+    ]
+  }
+}
