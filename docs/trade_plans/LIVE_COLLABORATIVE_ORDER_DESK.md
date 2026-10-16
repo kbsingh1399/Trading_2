@@ -29,29 +29,36 @@
 
 ## 2. ACTIVE MT5 POSITIONS & PENDING ORDERS LEDGER (LIVE MONITORING)
 
-### Active Open Positions (1 / 2 slots occupied):
-* **Slot 1 (FILLED & RUNNING IN PROFIT)**:
-  - **Ticket**: `#18640304` (`SP500.p`)
-  - **Direction & Sizing**: BUY 0.13 lots (Contract size: 10.0)
-  - **Execution Fill Timestamp**: 2026-10-07 14:02:17 UTC
-  - **Entry Fill Price**: **7,770.00 USD** (Passive limit order filled at bottom of flush)
-  - **Current Market Price**: **7,772.60 USD**
-  - **Current Floating PnL**: **+3.38 USD (+0.306R)**
-  - **Active Stop Loss**: **7,761.50 USD** (Risk Distance: 8.50 pts | Notional Risk: **11.05 USD**)
-  - **Active Take Profit**: **7,791.25 USD** (+2.50R target / +21.25 pts gain = **+27.63 USD**)
-  - **Microstructure Status**: Defending session sweep low shelf at 7,766–7,770 USD. VWAP Z = -2.47 SD.
+### Active Open Positions (1 / 4 capacity slots occupied):
+* **Slot 1 (RUNNING POSITION)**:
+  - **Ticket**: #19012500 (USDJPY.pi)
+  - **Direction & Sizing**: SELL 0.06 lots
+  - **Execution Fill Timestamp**: 2026-10-16 16:30 UTC
+  - **Entry Fill Price**: **158.180**
+  - **Current Market Price**: **158.178**
+  - **Current Floating PnL**: **+0.08 USD (+0.01R)**
+  - **Active Stop Loss**: **158.700** (Risk Distance: 52.0 pips | Nominal Risk: **-.66 USD** / 0.41% equity)
+  - **Active Take Profit**: **157.140** (+2.02R target / 104.0 pips gain = **+.71 USD**)
+  - **Microstructure Status**: Defended by .51M USD resting ask whale bunker at 158.590–158.650 (projected to 158.648 on MT5 with +5.75 pip venue basis). SL at 158.700 has a 5.2 pip (0.47 ATR) clearance buffer completely outside the sweep zone.
   - **Ratchet Trigger Thresholds**:
-    * **Phase 0 BE Arming Price**: **7,776.80 USD** (+0.80R gain). Once hit, SL moves to **7,772.98 USD** (+0.35R BE lock), reducing risk to 0.00 USD!
-    * **Phase 1 Profit Lock Price**: **7,782.75 USD** (+1.50R gain). Once hit, SL moves to **7,776.80 USD** (+0.80R profit lock = +8.84 USD cash locked).
-    * **Pre-FOMC Holding Rule**: Position will be closed prior to 16:55:00 UTC unless Phase 1 (+1.50R / 7,782.75 USD) is secured.
+    * **Phase 0 BE Arming Price**: **157.764** (+0.80R gain). Once hit, SL moves to **158.102** (+0.15R BE lock), securing +.95 USD profit and eliminating all downside risk!
+    * **Phase 1 Profit Lock Price**: **157.400** (+1.50R gain). Once hit, SL moves to **157.764** (+0.80R profit lock).
 
-### Active Pending Limit Orders (0 / 2 slots):
-* **None currently resting** (Slot 2 vacant and available for high-confluence staging).
+### Active Pending Limit Orders (1 / 4 capacity slots occupied):
+* **Slot 2 (PASSIVE LIMIT ORDER RESTING)**:
+  - **Ticket**: #19020166 (EURGBP.pi)
+  - **Direction & Sizing**: SELL_LIMIT 0.30 lots
+  - **Staged Timestamp**: 2026-10-16 17:10:17 UTC
+  - **Limit Price**: **0.84335** (Resting 5.0 pips above market 0.84285)
+  - **Stop Loss**: **0.84385** (Risk Distance: 5.0 pips | Nominal Risk: **-.97 USD** / 0.41% equity | 1.33 ATR above EMA50)
+  - **Take Profit**: **0.84225** (Target: 11.0 pips | Target Value: **+.93 USD** / 0.90% equity | Net **2.20R**)
+  - **Confluence**: European FX Cross orthogonal to USD; -110 bps EUR rate penalty vs GBP; UK GDP beat +0.1%; 1H/4H bear alignment; Spread 0.12 bps (0.1 pip).
 
-### Reconciled Closed Positions This Cycle:
-* `USWTI.p` (#18625151): Closed at **91.720 USD** (Deal #16858349) via protective Phase 1 Profit Lock for **+9.88 USD profit** banked.
-* `BTCUSD.pi` (#18630694): Closed at **82,700.00 USD** (Deal #16857838) via protective SL for **-6.80 USD loss**.
-* **Cycle Net Delta**: **+3.08 USD net profit realized into cash balance**.
+### Floor Cushion & Joint Risk Summary:
+* **Account Balance**: **4,857.32 USD** | **Equity**: **4,857.40 USD**
+* **Absolute Hard Floor**: **4,775.00 USD** | **Operating Buffer**: **4,795.00 USD**
+* **Stressed Post-Joint Stop Equity**: **4,804.86 USD** (Preserves **+.86 USD** surplus above operating buffer and **+.86 USD** above hard floor under simultaneous catastrophic stopout).
+* **Slots Utilization**: 2 / 4 utilized (1 filled, 1 pending limit). Exactly 2 orthogonal slots remain available.
 
 ---
 
@@ -21465,3 +21472,19 @@ Capacity 2/4 joint-fill · `total_contingent_stress_usd` after the punch **20.25
 
 **Verification anchor:** generation `b49a532804f349168bbeebc87df84426`, as_of 2026-10-16 08:41:21 UTC. Baseline report: `Cycle_148_Redispatched_Council_Report_Arena.md` (generation `521b6c13a13d47ff817d1b87aa7399da`). Tournament champion: `.arena/run-20261016-083320-s150/r4/r4-m01.a002.solution.md`.
 
+
+---
+
+## Cycle 153 Collaborative Desk Update (2026-10-16 09:22:00 UTC)
+- **Account State & Milestones**:
+  - Balance & Equity: **4,882.62 USD** (All-time mission high).
+  - Realized Profit: **+$22.98 USD net** banked from Ticket #18976378 (`EURUSD.pi` BUY 0.06 @ 1.12110 -> TP 1.12500).
+  - Hard Floor ($4,775) Cushion: **+$107.62 USD (+2.25%)** | Operating Buffer ($4,795) Cushion: **+$87.62 USD (+1.83%)**.
+- **Active Pending Limit Orders (2 / 4 slots allocated)**:
+  1. **Ticket #18995127**: `SP500.p` BUY_LIMIT 0.10 @ 7,751.20 | SL 7,738.20 | TP 7,794.00 | Risk: -$13.00 USD | Reward: +$42.80 USD (3.29R net).
+  2. **Ticket #18996223**: `ETHUSD.pi` BUY_LIMIT 1.40 @ 2,442.50 | SL 2,434.60 | TP 2,472.00 | Risk: -$11.06 USD | Reward: +$41.30 USD (3.73R net).
+- **Stressed Post-Loss Portfolio Simulation**:
+  - Cumulative Stressed Risk: $16.25 (SP500) + $13.83 (ETH) = **$30.08 USD**.
+  - Worst-Case Stressed Equity: **$4,852.54 USD** (preserving $4,775 hard floor by **+$77.54 USD** and $4,795 buffer by **+$57.54 USD**).
+  - Capacity: **2 vacant slots remaining** strictly reserved for orthogonal clusters (Commodities / Energy / Forex).
+- **Execution Invariant**: Zero hesitation autonomous punch executed under Step 10 of `STANDARDIZED_TRADING_DECISION_CHAIN.md`.

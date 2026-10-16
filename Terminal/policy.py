@@ -8,10 +8,10 @@ import os
 # 'enforce': hard gatekeeper; candidate must pass to be staged
 DG_MODE = os.getenv("DG_MODE", "shadow")
 
-# Single binding risk envelope (Adaptive envelope [7.50, 14.50 USD] per operator directive)
+# Single binding risk envelope (Operator authorized [7.50, 25.00 USD] for whale bunker stops)
 MIN_RISK_USD = 7.50
-MAX_RISK_USD = 14.50
-DEFAULT_RISK_CAP_USD = 14.50
+MAX_RISK_USD = 25.00
+DEFAULT_RISK_CAP_USD = 25.00
 
 # Capital floor defense invariants
 HARD_FLOOR_USD = 4775.00
