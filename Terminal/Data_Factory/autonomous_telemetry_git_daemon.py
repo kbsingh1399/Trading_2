@@ -58,7 +58,11 @@ DATA_SYNC_FILES = [
     "Data/forex_factory_live.json",
     "Data/forex_factory_summary.json",
     "Data/arkham_live_intelligence.json",
-    "Data/arkham_institutional_registry.json"
+    "Data/arkham_institutional_registry.json",
+    "Data/coinglass/latest/coinglass_snapshot.json",
+    "Data/coinglass/whale_persistence_ledger.json",
+    "docs/telemetry/coinglass_data_dictionary.md",
+    "Data/history/master_manifest.json"
 ]
 INTERVAL_SECONDS = 300  # 5-minute production cadence: reduces Git traffic by 80% while JIT gate ensures 0s freshness at decision gates
 
@@ -292,6 +296,15 @@ def main():
                     make_slim()
                 except Exception as slim_err:
                     logger.warning(f"Could not update slim snapshot: {slim_err}")
+
+                # Continuous Time-Series Historical Database recording
+                try:
+                    from Terminal.Data_Factory.time_series_database import ts_db
+                    ts_db.record_snapshot("telemetry", snapshot)
+                    if "account" in snapshot:
+                        ts_db.record_snapshot("account_equity", snapshot)
+                except Exception as ts_err:
+                    logger.warning(f"Could not record telemetry to TimeSeriesDB: {ts_err}")
             except Exception as exc:
                 logger.error(f"Error during generate_full_snapshot: {exc}", exc_info=True)
 
@@ -311,15 +324,30 @@ def main():
             except Exception as arkham_err:
                 logger.warning(f"Background Arkham harvest skipped: {arkham_err}")
 
-            # Periodically refresh Forex Factory Macro News & Calendar (every 2 cycles = ~10 mins)
-            if iteration % 2 == 0:
-                try:
-                    import asyncio
-                    from Terminal.Data_Factory import forex_factory_harvester as ff_mod
-                    importlib.reload(ff_mod)
-                    asyncio.run(asyncio.wait_for(ff_mod.run_harvester(), timeout=8.0))
-                except Exception as ff_err:
-                    logger.warning(f"Background Forex Factory harvest skipped: {ff_err}")
+            # Step 3b: Refresh CoinGlass 5-Minute Telemetry & Temporal Persistence
+            try:
+                import asyncio
+                from Terminal.Data_Factory import coinglass_harvester as cg_mod
+                importlib.reload(cg_mod)
+                harvester = cg_mod.CoinglassCDPHarvester()
+                asyncio.run(asyncio.wait_for(harvester.harvest_all(), timeout=60.0))
+                logger.info("CoinGlass 5-minute telemetry & persistence ledger updated successfully.")
+            except Exception as cg_err:
+                logger.warning(f"Background CoinGlass harvest skipped/error: {cg_err}")
+
+            # Step 3c: Ingest Forex Factory & Arkham into TimeSeriesDB
+            try:
+                from Terminal.Data_Factory.time_series_database import ts_db
+                ff_file = ROOT / "Data" / "forex_factory_live.json"
+                if ff_file.exists():
+                    ff_data = json.loads(ff_file.read_text(encoding="utf-8"))
+                    ts_db.record_snapshot("forex_factory", ff_data)
+                ark_file = ROOT / "Data" / "arkham_live_intelligence.json"
+                if ark_file.exists():
+                    ark_data = json.loads(ark_file.read_text(encoding="utf-8"))
+                    ts_db.record_snapshot("arkham", ark_data)
+            except Exception as hist_err:
+                logger.warning(f"Error recording auxiliary feeds to TimeSeriesDB: {hist_err}")
 
             # Memory cleanup
             gc.collect()
