@@ -73,6 +73,27 @@ PRIMARY_HARVEST_PAGES = [
         "wait_s": 3.5
     },
     {
+        "domain": "liquidations",
+        "slug": "liquidation_levels",
+        "name": "Bitcoin Liquidation Levels Lines",
+        "url": "https://www.coinglass.com/liquidation-levels",
+        "wait_s": 3.5
+    },
+    {
+        "domain": "liquidations",
+        "slug": "liquidation_map",
+        "name": "Crypto Liquidation Map",
+        "url": "https://www.coinglass.com/pro/futures/LiquidationMap",
+        "wait_s": 4.0
+    },
+    {
+        "domain": "liquidations",
+        "slug": "liquidation_heatmap",
+        "name": "Liquidation Heatmap",
+        "url": "https://www.coinglass.com/pro/futures/LiquidationHeatMap",
+        "wait_s": 4.0
+    },
+    {
         "domain": "etfs",
         "slug": "bitcoin_etfs",
         "name": "Spot Bitcoin ETF Flows & Holdings",
@@ -227,17 +248,38 @@ class CoinglassCDPHarvester:
             });
 
             // Extract all stat cards and summary metrics
-            const cards = Array.from(document.querySelectorAll('[class*="card"], [class*="stat"], [class*="metric"], [class*="overview"]')).map(el => {
-                const t = el.innerText.trim().replace(/\\s+/g, ' ');
-                return (t.length > 5 && t.length < 150) ? t : null;
+            const cards = Array.from(document.querySelectorAll('[class*="card"], [class*="stat"], [class*="metric"], [class*="overview"], [class*="item"], [class*="summary"]')).map(el => {
+                const t = el.innerText ? el.innerText.trim().replace(/\\s+/g, ' ') : '';
+                return (t.length > 3 && t.length < 200) ? t : null;
             }).filter(Boolean);
+
+            // Extract SVG chart annotations and liquidation price levels
+            const svgLabels = Array.from(document.querySelectorAll('svg text')).map(el => el.textContent.trim()).filter(t => t.length > 0 && t.length < 50);
+
+            // Extract embedded pageProps or state if available
+            let nextDataSummary = null;
+            try {
+                const nextScript = document.getElementById('__NEXT_DATA__');
+                if (nextScript) {
+                    const parsed = JSON.parse(nextScript.textContent);
+                    const pp = parsed.props ? parsed.props.pageProps : null;
+                    if (pp) {
+                        nextDataSummary = {
+                            page: parsed.page,
+                            keys: Object.keys(pp).slice(0, 15)
+                        };
+                    }
+                }
+            } catch (e) {}
 
             return {
                 title,
                 url: currentUrl,
                 tableCount: tables.length,
                 tables,
-                cards: cards.slice(0, 20)
+                cards: cards.slice(0, 35),
+                svgLabels: svgLabels.slice(0, 50),
+                nextDataSummary
             };
         })()"""
 
@@ -603,6 +645,9 @@ class CoinglassCDPHarvester:
             "| **Whales** | `/hl` | 8 Wallet Tiers (Shrimp to Leviathan: Wallets, In Position %, Long/Short notional, Total Position, Winners/Losers, Bias) & 8 PnL Groups (Money Printer to Rekt Master) | Real-time position shifts across capital tiers |",
             "| **Liquidations** | `/liquidation-maxpain` | Asset Symbol, Live Price, Short Max Pain Price ($), Short Max Pain Notional ($M), Distance to Short Max Pain (%), Long Max Pain Price ($), Long Max Pain Notional ($M), Distance to Long Max Pain (%) | 5m cycle tracking of liquidation gravity magnets |",
             "| **Liquidations** | `/liquidations` | 24h Total Liquidation Volume ($USD), Total Long Liquidations ($USD), Total Short Liquidations ($USD), Per-Exchange liquidation breakdown | Exchange liquidation cascades across time |",
+            "| **Liquidations** | `/liquidation-levels` | Bitcoin Liquidation Levels Lines & discrete liquidation trigger boundaries | High-density liquidation shelf detection |",
+            "| **Liquidations** | `/pro/futures/LiquidationMap` | Cryptocurrency Liquidation Map across major venues | Cross-exchange liquidation cluster concentration |",
+            "| **Liquidations** | `/pro/futures/LiquidationHeatMap` | Cumulative Liquidation Heatmap intensity by price level | Identification of high-leverage magnetic liquidity pools |",
             "| **Institutions** | `/etf/bitcoin` | Spot Bitcoin ETF Daily Net Inflows/Outflows ($USD), Cumulative Flows, Individual ETF Holdings (IBIT, FBTC, GBTC, ARKB, BITB), Historical Timeline | Cumulative institutional adoption timeline |",
             "| **Institutions** | `/etf/ethereum` | Spot Ethereum ETF Daily Net Flows ($USD), Total ETH Holdings, Issuer breakdown | Institutional Ethereum accumulation |",
             "| **Sentiment** | `/LongShortRatio` | Global 5m, 15m, 1h, 4h, 24h Long/Short account ratios across Binance, OKX, Bybit | Macro retail vs smart money positioning |",

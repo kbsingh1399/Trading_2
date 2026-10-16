@@ -1,5 +1,5 @@
 # 📊 COINGLASS DATA DICTIONARY & HARVEST SPECIFICATION
-**Last Harvested**: `2026-10-16T19:53:35.469485+00:00` | **Cadence**: `5 Minutes` | **Engine**: `Terminal/Data_Factory/coinglass_harvester.py`
+**Last Harvested**: `2026-10-16T20:01:00.840486+00:00` | **Cadence**: `5 Minutes` | **Engine**: `Terminal/Data_Factory/coinglass_harvester.py`
 
 ## 1. EXTRACTED DATA DOMAINS & DATA POINTS SUMMARY
 
@@ -9,6 +9,9 @@
 | **Whales** | `/hl` | 8 Wallet Tiers (Shrimp to Leviathan: Wallets, In Position %, Long/Short notional, Total Position, Winners/Losers, Bias) & 8 PnL Groups (Money Printer to Rekt Master) | Real-time position shifts across capital tiers |
 | **Liquidations** | `/liquidation-maxpain` | Asset Symbol, Live Price, Short Max Pain Price ($), Short Max Pain Notional ($M), Distance to Short Max Pain (%), Long Max Pain Price ($), Long Max Pain Notional ($M), Distance to Long Max Pain (%) | 5m cycle tracking of liquidation gravity magnets |
 | **Liquidations** | `/liquidations` | 24h Total Liquidation Volume ($USD), Total Long Liquidations ($USD), Total Short Liquidations ($USD), Per-Exchange liquidation breakdown | Exchange liquidation cascades across time |
+| **Liquidations** | `/liquidation-levels` | Bitcoin Liquidation Levels Lines & discrete liquidation trigger boundaries | High-density liquidation shelf detection |
+| **Liquidations** | `/pro/futures/LiquidationMap` | Cryptocurrency Liquidation Map across major venues | Cross-exchange liquidation cluster concentration |
+| **Liquidations** | `/pro/futures/LiquidationHeatMap` | Cumulative Liquidation Heatmap intensity by price level | Identification of high-leverage magnetic liquidity pools |
 | **Institutions** | `/etf/bitcoin` | Spot Bitcoin ETF Daily Net Inflows/Outflows ($USD), Cumulative Flows, Individual ETF Holdings (IBIT, FBTC, GBTC, ARKB, BITB), Historical Timeline | Cumulative institutional adoption timeline |
 | **Institutions** | `/etf/ethereum` | Spot Ethereum ETF Daily Net Flows ($USD), Total ETH Holdings, Issuer breakdown | Institutional Ethereum accumulation |
 | **Sentiment** | `/LongShortRatio` | Global 5m, 15m, 1h, 4h, 24h Long/Short account ratios across Binance, OKX, Bybit | Macro retail vs smart money positioning |
@@ -36,6 +39,6 @@
 ```
 
 ## 3. INGESTION STATUS & DATA FRESHNESS
-- **Latest Ingestion**: `2026-10-16T19:53:35.469485+00:00`
-- **Duration**: `36.31 seconds`
+- **Latest Ingestion**: `2026-10-16T20:01:00.840486+00:00`
+- **Duration**: `48.43 seconds`
 - **Sinks**: `C:\Users\SIGMA\Documents\Trading_2\Data\coinglass\latest\coinglass_snapshot.json` and `C:\Users\SIGMA\Documents\Trading_2\Data\coinglass\whale_persistence_ledger.json`
