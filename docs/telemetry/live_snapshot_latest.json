@@ -3298,15 +3298,15 @@
           },
           {
             "address": "0x6752fd3edb8a9adf4db1eed002f7134cf7ae7a2f",
-            "price": 84500.0,
-            "size": 115.0,
-            "notional_usd": 9717500.0
-          },
-          {
-            "address": "0x6752fd3edb8a9adf4db1eed002f7134cf7ae7a2f",
             "price": 79647.0,
             "size": 115.0,
             "notional_usd": 9159405.0
+          },
+          {
+            "address": "0x6752fd3edb8a9adf4db1eed002f7134cf7ae7a2f",
+            "price": 84500.0,
+            "size": 115.0,
+            "notional_usd": 9717500.0
           },
           {
             "address": "0x5986347c1d0133d02d307f08bb1efd44c2eb89d9",
@@ -3582,6 +3582,12 @@
             "price": 76569.9313,
             "size": 200.0,
             "notional_usd": 15313986.26
+          },
+          {
+            "address": "0x4044570e13b5184f7eb2709de25a4eb766a4794c",
+            "price": 66764.172,
+            "size": 175.3567,
+            "notional_usd": 11707547.54
           }
         ],
         "top_short_liquidation_whales": [
@@ -3590,12 +3596,6 @@
             "price": 90655.0367,
             "size": 721.4325,
             "notional_usd": 65401486.12
-          },
-          {
-            "address": "0x469e9a7f624b04c24f0e64edf8d8a277e6bf58a5",
-            "price": 98549.5909,
-            "size": 352.2444,
-            "notional_usd": 34713541.53
           },
           {
             "address": "0xaeaab54bbf65bfd6efed7d2eb68372298e3c2416",
@@ -3614,6 +3614,12 @@
             "price": 83123.0266,
             "size": 293.3463,
             "notional_usd": 24383833.13
+          },
+          {
+            "address": "0x575087ab0899e40cf3a042a2c38a29d4f9643586",
+            "price": 97265.4578,
+            "size": 241.7448,
+            "notional_usd": 23513415.73
           }
         ],
         "band_count": 330,
@@ -4274,7 +4280,7 @@
             "timestamp_basis": "RECEIPT_ONLY",
             "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
             "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
-            "distance_pct": 0.4,
+            "distance_pct": 0.42,
             "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
             "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
             "persist_s": 116.5,
@@ -4659,6 +4665,28 @@
             "wall_class": "GENUINE",
             "gate_g7_eligible": false,
             "first_seen_utc": "2026-10-16 06:48:31 UTC"
+          },
+          {
+            "address": "0x31dea2516beee92135b96f464eeec3cf292a13f2",
+            "side": "BUY",
+            "price": 81963.0,
+            "size": 15.2547,
+            "notional_usd": 1250324.25,
+            "observed_at": 1792133158.2145617,
+            "timestamp_basis": "RECEIPT_ONLY",
+            "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
+            "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
+            "distance_pct": -0.18,
+            "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
+            "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
+            "persist_s": 0.0,
+            "presence_frac": 1.0,
+            "samples": 1,
+            "sample_span_sec": 0.0,
+            "persistence_status": "SINGLE_SAMPLE",
+            "wall_class": "GENUINE",
+            "gate_g7_eligible": false,
+            "first_seen_utc": "2026-10-16 06:45:58 UTC"
           },
           {
             "address": "0xc9186f29695cfe18b79e6a8ebf1be13905cac077",
@@ -5308,7 +5336,7 @@
             "timestamp_basis": "RECEIPT_ONLY",
             "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
             "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
-            "distance_pct": -0.14,
+            "distance_pct": -0.16,
             "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
             "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
             "persist_s": 116.5,
@@ -5968,7 +5996,7 @@
             "timestamp_basis": "RECEIPT_ONLY",
             "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
             "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
-            "distance_pct": 0.25,
+            "distance_pct": 0.24,
             "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
             "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
             "persist_s": 116.5,
@@ -6242,7 +6270,7 @@
             "persistence_status": "INSUFFICIENT_PERSISTENCE",
             "wall_class": "GENUINE",
             "gate_g7_eligible": false,
-            "first_seen_utc": "2026-10-16 06:39:05 UTC"
+            "first_seen_utc": "2026-10-16 06:45:58 UTC"
           },
           {
             "address": "0x325edd95bb016c36027ce3b9f7595af7094a9564",
@@ -6397,6 +6425,28 @@
             "wall_class": "GENUINE",
             "gate_g7_eligible": false,
             "first_seen_utc": "2026-10-16 06:39:05 UTC"
+          },
+          {
+            "address": "0xf5d81a135f756ca16544e53c20fc20643ec3ad53",
+            "side": "BUY",
+            "price": 82105.0,
+            "size": 5.0374,
+            "notional_usd": 413598.19,
+            "observed_at": 1792133158.2145617,
+            "timestamp_basis": "RECEIPT_ONLY",
+            "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
+            "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
+            "distance_pct": -0.01,
+            "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
+            "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
+            "persist_s": 0.0,
+            "presence_frac": 1.0,
+            "samples": 1,
+            "sample_span_sec": 0.0,
+            "persistence_status": "SINGLE_SAMPLE",
+            "wall_class": "GENUINE",
+            "gate_g7_eligible": false,
+            "first_seen_utc": "2026-10-16 06:45:58 UTC"
           },
           {
             "address": "0x92a7bc9b107bdd35e3db97dc171d5a8c1ee33fea",
@@ -6870,7 +6920,7 @@
             "timestamp_basis": "RECEIPT_ONLY",
             "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
             "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
-            "distance_pct": -0.04,
+            "distance_pct": -0.05,
             "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
             "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
             "persist_s": 116.5,
@@ -7420,7 +7470,7 @@
             "timestamp_basis": "RECEIPT_ONLY",
             "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
             "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
-            "distance_pct": 0.1,
+            "distance_pct": 0.12,
             "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
             "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
             "persist_s": 116.5,
@@ -7673,6 +7723,28 @@
             "wall_class": "GENUINE",
             "gate_g7_eligible": false,
             "first_seen_utc": "2026-10-16 06:39:05 UTC"
+          },
+          {
+            "address": "0xc1914d36f97dc5557e4df26cbdab98e9c988ef37",
+            "side": "SELL",
+            "price": 82653.0,
+            "size": 4.0069,
+            "notional_usd": 331183.13,
+            "observed_at": 1792133158.2145617,
+            "timestamp_basis": "RECEIPT_ONLY",
+            "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
+            "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
+            "distance_pct": 0.66,
+            "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
+            "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
+            "persist_s": 0.0,
+            "presence_frac": 1.0,
+            "samples": 1,
+            "sample_span_sec": 0.0,
+            "persistence_status": "SINGLE_SAMPLE",
+            "wall_class": "GENUINE",
+            "gate_g7_eligible": false,
+            "first_seen_utc": "2026-10-16 06:45:58 UTC"
           },
           {
             "address": "0x24e370916722584204322fad3c179a7fbde6684b",
@@ -8071,7 +8143,7 @@
             "first_seen_utc": "2026-10-16 06:39:05 UTC"
           },
           {
-            "address": "0xf517639a8872e756ac98d3c65507d2ebc25cc032",
+            "address": "0x7b7f72a28fe109fa703eeed7984f2a8a68fedee2",
             "side": "SELL",
             "price": 83796.0,
             "size": 3.5303,
@@ -9061,7 +9133,7 @@
             "first_seen_utc": "2026-10-16 06:39:05 UTC"
           },
           {
-            "address": "0x7b7f72a28fe109fa703eeed7984f2a8a68fedee2",
+            "address": "0xcf3f419d08a5bdc2c6e5fbd9ad70904c5420f95f",
             "side": "SELL",
             "price": 82881.0,
             "size": 2.7131,
@@ -9620,7 +9692,7 @@
             "timestamp_basis": "RECEIPT_ONLY",
             "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
             "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
-            "distance_pct": 0.11,
+            "distance_pct": 0.13,
             "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
             "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
             "persist_s": 116.5,
@@ -9897,6 +9969,204 @@
             "first_seen_utc": "2026-10-16 06:39:05 UTC"
           },
           {
+            "address": "0xffc03f2cfbc0b2dc47e84003800ad296eb6caf0b",
+            "side": "BUY",
+            "price": 81340.0,
+            "size": 2.4944,
+            "notional_usd": 202895.31,
+            "observed_at": 1792133158.2145617,
+            "timestamp_basis": "RECEIPT_ONLY",
+            "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
+            "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
+            "distance_pct": -0.94,
+            "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
+            "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
+            "persist_s": 147.6,
+            "presence_frac": 1.0,
+            "samples": 3,
+            "sample_span_sec": 147.6,
+            "persistence_status": "INSUFFICIENT_PERSISTENCE",
+            "wall_class": "GENUINE",
+            "gate_g7_eligible": false,
+            "first_seen_utc": "2026-10-16 06:43:30 UTC"
+          },
+          {
+            "address": "0xffc03f2cfbc0b2dc47e84003800ad296eb6caf0b",
+            "side": "BUY",
+            "price": 81329.0,
+            "size": 2.4944,
+            "notional_usd": 202867.87,
+            "observed_at": 1792133158.2145617,
+            "timestamp_basis": "RECEIPT_ONLY",
+            "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
+            "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
+            "distance_pct": -0.95,
+            "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
+            "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
+            "persist_s": 0.0,
+            "presence_frac": 1.0,
+            "samples": 1,
+            "sample_span_sec": 0.0,
+            "persistence_status": "SINGLE_SAMPLE",
+            "wall_class": "GENUINE",
+            "gate_g7_eligible": false,
+            "first_seen_utc": "2026-10-16 06:45:58 UTC"
+          },
+          {
+            "address": "0xffc03f2cfbc0b2dc47e84003800ad296eb6caf0b",
+            "side": "BUY",
+            "price": 81318.0,
+            "size": 2.4944,
+            "notional_usd": 202840.43,
+            "observed_at": 1792133158.2145617,
+            "timestamp_basis": "RECEIPT_ONLY",
+            "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
+            "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
+            "distance_pct": -0.97,
+            "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
+            "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
+            "persist_s": 0.0,
+            "presence_frac": 1.0,
+            "samples": 1,
+            "sample_span_sec": 0.0,
+            "persistence_status": "SINGLE_SAMPLE",
+            "wall_class": "GENUINE",
+            "gate_g7_eligible": false,
+            "first_seen_utc": "2026-10-16 06:45:58 UTC"
+          },
+          {
+            "address": "0xffc03f2cfbc0b2dc47e84003800ad296eb6caf0b",
+            "side": "BUY",
+            "price": 81308.0,
+            "size": 2.4944,
+            "notional_usd": 202815.49,
+            "observed_at": 1792133158.2145617,
+            "timestamp_basis": "RECEIPT_ONLY",
+            "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
+            "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
+            "distance_pct": -0.98,
+            "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
+            "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
+            "persist_s": 0.0,
+            "presence_frac": 1.0,
+            "samples": 1,
+            "sample_span_sec": 0.0,
+            "persistence_status": "SINGLE_SAMPLE",
+            "wall_class": "GENUINE",
+            "gate_g7_eligible": false,
+            "first_seen_utc": "2026-10-16 06:45:58 UTC"
+          },
+          {
+            "address": "0xffc03f2cfbc0b2dc47e84003800ad296eb6caf0b",
+            "side": "BUY",
+            "price": 81297.0,
+            "size": 2.4944,
+            "notional_usd": 202788.05,
+            "observed_at": 1792133158.2145617,
+            "timestamp_basis": "RECEIPT_ONLY",
+            "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
+            "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
+            "distance_pct": -0.99,
+            "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
+            "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
+            "persist_s": 0.0,
+            "presence_frac": 1.0,
+            "samples": 1,
+            "sample_span_sec": 0.0,
+            "persistence_status": "SINGLE_SAMPLE",
+            "wall_class": "GENUINE",
+            "gate_g7_eligible": false,
+            "first_seen_utc": "2026-10-16 06:45:58 UTC"
+          },
+          {
+            "address": "0xffc03f2cfbc0b2dc47e84003800ad296eb6caf0b",
+            "side": "BUY",
+            "price": 81286.0,
+            "size": 2.4944,
+            "notional_usd": 202760.61,
+            "observed_at": 1792133158.2145617,
+            "timestamp_basis": "RECEIPT_ONLY",
+            "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
+            "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
+            "distance_pct": -1.0,
+            "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
+            "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
+            "persist_s": 0.0,
+            "presence_frac": 1.0,
+            "samples": 1,
+            "sample_span_sec": 0.0,
+            "persistence_status": "SINGLE_SAMPLE",
+            "wall_class": "GENUINE",
+            "gate_g7_eligible": false,
+            "first_seen_utc": "2026-10-16 06:45:58 UTC"
+          },
+          {
+            "address": "0xffc03f2cfbc0b2dc47e84003800ad296eb6caf0b",
+            "side": "BUY",
+            "price": 81275.0,
+            "size": 2.4944,
+            "notional_usd": 202733.17,
+            "observed_at": 1792133158.2145617,
+            "timestamp_basis": "RECEIPT_ONLY",
+            "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
+            "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
+            "distance_pct": -1.02,
+            "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
+            "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
+            "persist_s": 0.0,
+            "presence_frac": 1.0,
+            "samples": 1,
+            "sample_span_sec": 0.0,
+            "persistence_status": "SINGLE_SAMPLE",
+            "wall_class": "GENUINE",
+            "gate_g7_eligible": false,
+            "first_seen_utc": "2026-10-16 06:45:58 UTC"
+          },
+          {
+            "address": "0xffc03f2cfbc0b2dc47e84003800ad296eb6caf0b",
+            "side": "BUY",
+            "price": 81264.0,
+            "size": 2.4944,
+            "notional_usd": 202705.73,
+            "observed_at": 1792133158.2145617,
+            "timestamp_basis": "RECEIPT_ONLY",
+            "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
+            "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
+            "distance_pct": -1.03,
+            "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
+            "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
+            "persist_s": 0.0,
+            "presence_frac": 1.0,
+            "samples": 1,
+            "sample_span_sec": 0.0,
+            "persistence_status": "SINGLE_SAMPLE",
+            "wall_class": "GENUINE",
+            "gate_g7_eligible": false,
+            "first_seen_utc": "2026-10-16 06:45:58 UTC"
+          },
+          {
+            "address": "0xffc03f2cfbc0b2dc47e84003800ad296eb6caf0b",
+            "side": "BUY",
+            "price": 81251.0,
+            "size": 2.4944,
+            "notional_usd": 202673.31,
+            "observed_at": 1792133158.2145617,
+            "timestamp_basis": "RECEIPT_ONLY",
+            "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
+            "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
+            "distance_pct": -1.05,
+            "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
+            "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
+            "persist_s": 0.0,
+            "presence_frac": 1.0,
+            "samples": 1,
+            "sample_span_sec": 0.0,
+            "persistence_status": "SINGLE_SAMPLE",
+            "wall_class": "GENUINE",
+            "gate_g7_eligible": false,
+            "first_seen_utc": "2026-10-16 06:45:58 UTC"
+          },
+          {
             "address": "0x296e27d522a2c44e5a47d6b324135873b9380a04",
             "side": "BUY",
             "price": 81007.0,
@@ -10148,7 +10418,7 @@
             "timestamp_basis": "RECEIPT_ONLY",
             "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
             "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
-            "distance_pct": -0.03,
+            "distance_pct": -0.02,
             "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
             "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
             "persist_s": 116.5,
@@ -10225,6 +10495,28 @@
             "wall_class": "GENUINE",
             "gate_g7_eligible": false,
             "first_seen_utc": "2026-10-16 06:39:05 UTC"
+          },
+          {
+            "address": "0x7b7f72a28fe109fa703eeed7984f2a8a68fedee2",
+            "side": "BUY",
+            "price": 82068.0,
+            "size": 2.4072,
+            "notional_usd": 197557.37,
+            "observed_at": 1792133158.2145617,
+            "timestamp_basis": "RECEIPT_ONLY",
+            "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
+            "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
+            "distance_pct": -0.05,
+            "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
+            "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
+            "persist_s": 0.0,
+            "presence_frac": 1.0,
+            "samples": 1,
+            "sample_span_sec": 0.0,
+            "persistence_status": "SINGLE_SAMPLE",
+            "wall_class": "GENUINE",
+            "gate_g7_eligible": false,
+            "first_seen_utc": "2026-10-16 06:45:58 UTC"
           },
           {
             "address": "0x01e44479c125f7715a3a1e08143c38d58a7bdb86",
@@ -10368,7 +10660,7 @@
             "timestamp_basis": "RECEIPT_ONLY",
             "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
             "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
-            "distance_pct": -0.14,
+            "distance_pct": -0.12,
             "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
             "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
             "persist_s": 116.5,
@@ -11415,6 +11707,28 @@
             "first_seen_utc": "2026-10-16 06:39:05 UTC"
           },
           {
+            "address": "0x8c1ab015da7e5319649afca4a551924f89eff883",
+            "side": "BUY",
+            "price": 80489.0,
+            "size": 2.0,
+            "notional_usd": 160978.0,
+            "observed_at": 1792133158.2145617,
+            "timestamp_basis": "RECEIPT_ONLY",
+            "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
+            "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
+            "distance_pct": -1.97,
+            "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
+            "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
+            "persist_s": 0.0,
+            "presence_frac": 1.0,
+            "samples": 1,
+            "sample_span_sec": 0.0,
+            "persistence_status": "SINGLE_SAMPLE",
+            "wall_class": "GENUINE",
+            "gate_g7_eligible": false,
+            "first_seen_utc": "2026-10-16 06:45:58 UTC"
+          },
+          {
             "address": "0x76bf72092bbfe1c935b6d834f70dd9e75b057fd6",
             "side": "BUY",
             "price": 82225.0,
@@ -11589,6 +11903,28 @@
             "wall_class": "GENUINE",
             "gate_g7_eligible": false,
             "first_seen_utc": "2026-10-16 06:39:05 UTC"
+          },
+          {
+            "address": "0x0ba58d3e7ea392de7c0f9b50f9baf488a35397a6",
+            "side": "SELL",
+            "price": 82383.0,
+            "size": 1.8626,
+            "notional_usd": 153445.75,
+            "observed_at": 1792133158.2145617,
+            "timestamp_basis": "RECEIPT_ONLY",
+            "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
+            "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
+            "distance_pct": 0.33,
+            "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
+            "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
+            "persist_s": 0.0,
+            "presence_frac": 1.0,
+            "samples": 1,
+            "sample_span_sec": 0.0,
+            "persistence_status": "SINGLE_SAMPLE",
+            "wall_class": "GENUINE",
+            "gate_g7_eligible": false,
+            "first_seen_utc": "2026-10-16 06:45:58 UTC"
           },
           {
             "address": "0x5e77b3373317f6185d5025ba876decc56f5cda5d",
@@ -18070,11 +18406,11 @@
             "distance_pct": 1.71,
             "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
             "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
-            "persist_s": 0.0,
+            "persist_s": 76.2,
             "presence_frac": 1.0,
-            "samples": 1,
-            "sample_span_sec": 0.0,
-            "persistence_status": "SINGLE_SAMPLE",
+            "samples": 2,
+            "sample_span_sec": 76.2,
+            "persistence_status": "INSUFFICIENT_PERSISTENCE",
             "wall_class": "GENUINE",
             "gate_g7_eligible": false,
             "first_seen_utc": "2026-10-16 06:50:00 UTC"
@@ -18092,11 +18428,11 @@
             "distance_pct": -1.65,
             "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
             "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
-            "persist_s": 0.0,
+            "persist_s": 76.2,
             "presence_frac": 1.0,
-            "samples": 1,
-            "sample_span_sec": 0.0,
-            "persistence_status": "SINGLE_SAMPLE",
+            "samples": 2,
+            "sample_span_sec": 76.2,
+            "persistence_status": "INSUFFICIENT_PERSISTENCE",
             "wall_class": "GENUINE",
             "gate_g7_eligible": false,
             "first_seen_utc": "2026-10-16 06:50:00 UTC"
@@ -18133,14 +18469,14 @@
             "timestamp_basis": "RECEIPT_ONLY",
             "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
             "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
-            "distance_pct": -0.36,
+            "distance_pct": -0.37,
             "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
             "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
-            "persist_s": 0.0,
+            "persist_s": 76.2,
             "presence_frac": 1.0,
-            "samples": 1,
-            "sample_span_sec": 0.0,
-            "persistence_status": "SINGLE_SAMPLE",
+            "samples": 2,
+            "sample_span_sec": 76.2,
+            "persistence_status": "INSUFFICIENT_PERSISTENCE",
             "wall_class": "GENUINE",
             "gate_g7_eligible": false,
             "first_seen_utc": "2026-10-16 06:50:00 UTC"
@@ -18221,7 +18557,7 @@
             "timestamp_basis": "RECEIPT_ONLY",
             "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
             "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
-            "distance_pct": 0.45,
+            "distance_pct": 0.44,
             "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
             "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
             "persist_s": 0.0,
@@ -18312,11 +18648,11 @@
             "distance_pct": 0.35,
             "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
             "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
-            "persist_s": 0.0,
+            "persist_s": 76.2,
             "presence_frac": 1.0,
-            "samples": 1,
-            "sample_span_sec": 0.0,
-            "persistence_status": "SINGLE_SAMPLE",
+            "samples": 2,
+            "sample_span_sec": 76.2,
+            "persistence_status": "INSUFFICIENT_PERSISTENCE",
             "wall_class": "GENUINE",
             "gate_g7_eligible": false,
             "first_seen_utc": "2026-10-16 06:50:00 UTC"
@@ -18375,7 +18711,7 @@
             "timestamp_basis": "RECEIPT_ONLY",
             "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
             "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
-            "distance_pct": -0.63,
+            "distance_pct": -0.64,
             "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
             "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
             "persist_s": 579.5,
@@ -19654,11 +19990,11 @@
             "distance_pct": 0.09,
             "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
             "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
-            "persist_s": 0.0,
+            "persist_s": 76.2,
             "presence_frac": 1.0,
-            "samples": 1,
-            "sample_span_sec": 0.0,
-            "persistence_status": "SINGLE_SAMPLE",
+            "samples": 2,
+            "sample_span_sec": 76.2,
+            "persistence_status": "INSUFFICIENT_PERSISTENCE",
             "wall_class": "GENUINE",
             "gate_g7_eligible": false,
             "first_seen_utc": "2026-10-16 06:50:00 UTC"
@@ -19676,11 +20012,11 @@
             "distance_pct": 0.06,
             "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
             "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
-            "persist_s": 0.0,
+            "persist_s": 76.2,
             "presence_frac": 1.0,
-            "samples": 1,
-            "sample_span_sec": 0.0,
-            "persistence_status": "SINGLE_SAMPLE",
+            "samples": 2,
+            "sample_span_sec": 76.2,
+            "persistence_status": "INSUFFICIENT_PERSISTENCE",
             "wall_class": "GENUINE",
             "gate_g7_eligible": false,
             "first_seen_utc": "2026-10-16 06:50:00 UTC"
@@ -19764,11 +20100,11 @@
             "distance_pct": -0.02,
             "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
             "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
-            "persist_s": 0.0,
+            "persist_s": 76.2,
             "presence_frac": 1.0,
-            "samples": 1,
-            "sample_span_sec": 0.0,
-            "persistence_status": "SINGLE_SAMPLE",
+            "samples": 2,
+            "sample_span_sec": 76.2,
+            "persistence_status": "INSUFFICIENT_PERSISTENCE",
             "wall_class": "GENUINE",
             "gate_g7_eligible": false,
             "first_seen_utc": "2026-10-16 06:50:00 UTC"
@@ -27235,12 +27571,6 @@
             "notional_usd": 4763402.05
           },
           {
-            "address": "0x9c16bc8f1104e4d2f72267eb981fa12de7cc4a6f",
-            "price": 127.4842,
-            "size": 37830.89,
-            "notional_usd": 4822840.67
-          },
-          {
             "address": "0x482b0f4dad512fe086e121882a81e34c374acae4",
             "price": 125.5919,
             "size": 22018.57,
@@ -28103,7 +28433,7 @@
             "timestamp_basis": "RECEIPT_ONLY",
             "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
             "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
-            "distance_pct": -0.37,
+            "distance_pct": -0.33,
             "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
             "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
             "persist_s": 114.6,
@@ -28268,6 +28598,248 @@
             "wall_class": "GENUINE",
             "gate_g7_eligible": false,
             "first_seen_utc": "2026-10-16 06:48:33 UTC"
+          },
+          {
+            "address": "0x0a06ec6754b628be489b2c40bba20c8580392a7b",
+            "side": "SELL",
+            "price": 106.65,
+            "size": 3756.95,
+            "notional_usd": 400678.72,
+            "observed_at": 1792133161.495657,
+            "timestamp_basis": "RECEIPT_ONLY",
+            "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
+            "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
+            "distance_pct": 0.4,
+            "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
+            "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
+            "persist_s": 0.0,
+            "presence_frac": 1.0,
+            "samples": 1,
+            "sample_span_sec": 0.0,
+            "persistence_status": "SINGLE_SAMPLE",
+            "wall_class": "GENUINE",
+            "gate_g7_eligible": false,
+            "first_seen_utc": "2026-10-16 06:46:01 UTC"
+          },
+          {
+            "address": "0x07fe8986162d7f68bcfe15822ec062123dd45f9f",
+            "side": "BUY",
+            "price": 105.49,
+            "size": 3796.55,
+            "notional_usd": 400498.06,
+            "observed_at": 1792133161.495657,
+            "timestamp_basis": "RECEIPT_ONLY",
+            "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
+            "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
+            "distance_pct": -0.69,
+            "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
+            "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
+            "persist_s": 0.0,
+            "presence_frac": 1.0,
+            "samples": 1,
+            "sample_span_sec": 0.0,
+            "persistence_status": "SINGLE_SAMPLE",
+            "wall_class": "GENUINE",
+            "gate_g7_eligible": false,
+            "first_seen_utc": "2026-10-16 06:46:01 UTC"
+          },
+          {
+            "address": "0x0a06ec6754b628be489b2c40bba20c8580392a7b",
+            "side": "BUY",
+            "price": 105.81,
+            "size": 3784.94,
+            "notional_usd": 400484.5,
+            "observed_at": 1792133161.495657,
+            "timestamp_basis": "RECEIPT_ONLY",
+            "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
+            "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
+            "distance_pct": -0.39,
+            "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
+            "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
+            "persist_s": 0.0,
+            "presence_frac": 1.0,
+            "samples": 1,
+            "sample_span_sec": 0.0,
+            "persistence_status": "SINGLE_SAMPLE",
+            "wall_class": "GENUINE",
+            "gate_g7_eligible": false,
+            "first_seen_utc": "2026-10-16 06:46:01 UTC"
+          },
+          {
+            "address": "0x31dea2516beee92135b96f464eeec3cf292a13f2",
+            "side": "BUY",
+            "price": 105.94,
+            "size": 3290.99,
+            "notional_usd": 348647.48,
+            "observed_at": 1792133161.495657,
+            "timestamp_basis": "RECEIPT_ONLY",
+            "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
+            "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
+            "distance_pct": -0.27,
+            "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
+            "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
+            "persist_s": 0.0,
+            "presence_frac": 1.0,
+            "samples": 1,
+            "sample_span_sec": 0.0,
+            "persistence_status": "SINGLE_SAMPLE",
+            "wall_class": "GENUINE",
+            "gate_g7_eligible": false,
+            "first_seen_utc": "2026-10-16 06:46:01 UTC"
+          },
+          {
+            "address": "0x31dea2516beee92135b96f464eeec3cf292a13f2",
+            "side": "SELL",
+            "price": 106.54,
+            "size": 3231.71,
+            "notional_usd": 344306.38,
+            "observed_at": 1792133161.495657,
+            "timestamp_basis": "RECEIPT_ONLY",
+            "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
+            "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
+            "distance_pct": 0.3,
+            "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
+            "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
+            "persist_s": 0.0,
+            "presence_frac": 1.0,
+            "samples": 1,
+            "sample_span_sec": 0.0,
+            "persistence_status": "SINGLE_SAMPLE",
+            "wall_class": "GENUINE",
+            "gate_g7_eligible": false,
+            "first_seen_utc": "2026-10-16 06:46:01 UTC"
+          },
+          {
+            "address": "0x71d0e11ebb6150cebe20cf62f798be1a50108c26",
+            "side": "SELL",
+            "price": 106.34,
+            "size": 3165.13,
+            "notional_usd": 336579.92,
+            "observed_at": 1792133161.495657,
+            "timestamp_basis": "RECEIPT_ONLY",
+            "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
+            "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
+            "distance_pct": 0.11,
+            "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
+            "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
+            "persist_s": 0.0,
+            "presence_frac": 1.0,
+            "samples": 1,
+            "sample_span_sec": 0.0,
+            "persistence_status": "SINGLE_SAMPLE",
+            "wall_class": "GENUINE",
+            "gate_g7_eligible": false,
+            "first_seen_utc": "2026-10-16 06:46:01 UTC"
+          },
+          {
+            "address": "0x71d0e11ebb6150cebe20cf62f798be1a50108c26",
+            "side": "BUY",
+            "price": 106.01,
+            "size": 3165.06,
+            "notional_usd": 335528.01,
+            "observed_at": 1792133161.495657,
+            "timestamp_basis": "RECEIPT_ONLY",
+            "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
+            "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
+            "distance_pct": -0.2,
+            "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
+            "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
+            "persist_s": 0.0,
+            "presence_frac": 1.0,
+            "samples": 1,
+            "sample_span_sec": 0.0,
+            "persistence_status": "SINGLE_SAMPLE",
+            "wall_class": "GENUINE",
+            "gate_g7_eligible": false,
+            "first_seen_utc": "2026-10-16 06:46:01 UTC"
+          },
+          {
+            "address": "0x2ac4641985412e7436d57585faad13d04717746e",
+            "side": "BUY",
+            "price": 105.64,
+            "size": 2990.36,
+            "notional_usd": 315901.63,
+            "observed_at": 1792133161.495657,
+            "timestamp_basis": "RECEIPT_ONLY",
+            "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
+            "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
+            "distance_pct": -0.55,
+            "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
+            "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
+            "persist_s": 75.9,
+            "presence_frac": 1.0,
+            "samples": 2,
+            "sample_span_sec": 75.9,
+            "persistence_status": "INSUFFICIENT_PERSISTENCE",
+            "wall_class": "GENUINE",
+            "gate_g7_eligible": false,
+            "first_seen_utc": "2026-10-16 06:44:45 UTC"
+          },
+          {
+            "address": "0x2ac4641985412e7436d57585faad13d04717746e",
+            "side": "SELL",
+            "price": 106.92,
+            "size": 2924.01,
+            "notional_usd": 312635.15,
+            "observed_at": 1792133161.495657,
+            "timestamp_basis": "RECEIPT_ONLY",
+            "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
+            "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
+            "distance_pct": 0.65,
+            "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
+            "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
+            "persist_s": 219.6,
+            "presence_frac": 0.8,
+            "samples": 4,
+            "sample_span_sec": 219.6,
+            "persistence_status": "INSUFFICIENT_PERSISTENCE",
+            "wall_class": "GENUINE",
+            "gate_g7_eligible": false,
+            "first_seen_utc": "2026-10-16 06:42:21 UTC"
+          },
+          {
+            "address": "0x72cb918356c4f6d3f1b2e532928110ba6995f139",
+            "side": "SELL",
+            "price": 106.53,
+            "size": 2819.75,
+            "notional_usd": 300387.97,
+            "observed_at": 1792133161.495657,
+            "timestamp_basis": "RECEIPT_ONLY",
+            "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
+            "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
+            "distance_pct": 0.29,
+            "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
+            "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
+            "persist_s": 0.0,
+            "presence_frac": 1.0,
+            "samples": 1,
+            "sample_span_sec": 0.0,
+            "persistence_status": "SINGLE_SAMPLE",
+            "wall_class": "GENUINE",
+            "gate_g7_eligible": false,
+            "first_seen_utc": "2026-10-16 06:46:01 UTC"
+          },
+          {
+            "address": "0x72cb918356c4f6d3f1b2e532928110ba6995f139",
+            "side": "BUY",
+            "price": 105.85,
+            "size": 2628.51,
+            "notional_usd": 278227.78,
+            "observed_at": 1792133161.495657,
+            "timestamp_basis": "RECEIPT_ONLY",
+            "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
+            "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
+            "distance_pct": -0.35,
+            "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
+            "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
+            "persist_s": 0.0,
+            "presence_frac": 1.0,
+            "samples": 1,
+            "sample_span_sec": 0.0,
+            "persistence_status": "SINGLE_SAMPLE",
+            "wall_class": "GENUINE",
+            "gate_g7_eligible": false,
+            "first_seen_utc": "2026-10-16 06:46:01 UTC"
           },
           {
             "address": "0x7b7f72a28fe109fa703eeed7984f2a8a68fedee2",
@@ -28653,7 +29225,7 @@
             "timestamp_basis": "RECEIPT_ONLY",
             "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
             "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
-            "distance_pct": 0.15,
+            "distance_pct": 0.18,
             "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
             "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
             "persist_s": 114.6,
@@ -28710,7 +29282,7 @@
             "first_seen_utc": "2026-10-16 06:48:33 UTC"
           },
           {
-            "address": "0x31dea2516beee92135b96f464eeec3cf292a13f2",
+            "address": "0x0a06ec6754b628be489b2c40bba20c8580392a7b",
             "side": "BUY",
             "price": 106.4,
             "size": 1514.57,
@@ -28719,7 +29291,7 @@
             "timestamp_basis": "RECEIPT_ONLY",
             "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
             "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
-            "distance_pct": -0.19,
+            "distance_pct": -0.21,
             "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
             "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
             "persist_s": 114.6,
@@ -35001,7 +35573,7 @@
             "timestamp_basis": "RECEIPT_ONLY",
             "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
             "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
-            "distance_pct": -0.21,
+            "distance_pct": -0.2,
             "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
             "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
             "persist_s": 0.0,
@@ -104346,6 +104918,28 @@
           },
           {
             "address": "0x5c9b84105d63f0c8ed35fd62f66d9b8c6800ce01",
+            "side": "SELL",
+            "price": 7752.2,
+            "size": 87.658,
+            "notional_usd": 679542.35,
+            "observed_at": 1792133157.9414196,
+            "timestamp_basis": "RECEIPT_ONLY",
+            "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
+            "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
+            "distance_pct": 0.03,
+            "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
+            "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
+            "persist_s": 0.0,
+            "presence_frac": 1.0,
+            "samples": 1,
+            "sample_span_sec": 0.0,
+            "persistence_status": "SINGLE_SAMPLE",
+            "wall_class": "GENUINE",
+            "gate_g7_eligible": false,
+            "first_seen_utc": "2026-10-16 06:45:57 UTC"
+          },
+          {
+            "address": "0x5c9b84105d63f0c8ed35fd62f66d9b8c6800ce01",
             "side": "BUY",
             "price": 7748.9,
             "size": 86.201,
@@ -104654,6 +105248,28 @@
           },
           {
             "address": "0x5c9b84105d63f0c8ed35fd62f66d9b8c6800ce01",
+            "side": "BUY",
+            "price": 7748.4,
+            "size": 45.661,
+            "notional_usd": 353799.69,
+            "observed_at": 1792133157.9414196,
+            "timestamp_basis": "RECEIPT_ONLY",
+            "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
+            "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
+            "distance_pct": -0.01,
+            "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
+            "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
+            "persist_s": 0.0,
+            "presence_frac": 1.0,
+            "samples": 1,
+            "sample_span_sec": 0.0,
+            "persistence_status": "SINGLE_SAMPLE",
+            "wall_class": "MIRRORED_LEG",
+            "gate_g7_eligible": false,
+            "first_seen_utc": "2026-10-16 06:45:57 UTC"
+          },
+          {
+            "address": "0x5c9b84105d63f0c8ed35fd62f66d9b8c6800ce01",
             "side": "SELL",
             "price": 7752.7,
             "size": 45.83,
@@ -104772,7 +105388,7 @@
             "timestamp_basis": "RECEIPT_ONLY",
             "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
             "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
-            "distance_pct": 0.33,
+            "distance_pct": 0.34,
             "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
             "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
             "persist_s": 0.0,
@@ -105489,6 +106105,28 @@
             "first_seen_utc": "2026-10-16 06:48:31 UTC"
           },
           {
+            "address": "0x5c9b84105d63f0c8ed35fd62f66d9b8c6800ce01",
+            "side": "BUY",
+            "price": 7748.4,
+            "size": 25.66,
+            "notional_usd": 198823.94,
+            "observed_at": 1792133157.9414196,
+            "timestamp_basis": "RECEIPT_ONLY",
+            "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
+            "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
+            "distance_pct": -0.01,
+            "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
+            "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
+            "persist_s": 0.0,
+            "presence_frac": 1.0,
+            "samples": 1,
+            "sample_span_sec": 0.0,
+            "persistence_status": "SINGLE_SAMPLE",
+            "wall_class": "MIRRORED_LEG",
+            "gate_g7_eligible": false,
+            "first_seen_utc": "2026-10-16 06:45:57 UTC"
+          },
+          {
             "address": "0x723fe6e68bced0a7029d336ba84d5e08080fd5d9",
             "side": "BUY",
             "price": 7676.5,
@@ -105706,7 +106344,7 @@
             "persistence_status": "INSUFFICIENT_PERSISTENCE",
             "wall_class": "GENUINE",
             "gate_g7_eligible": false,
-            "first_seen_utc": "2026-10-16 06:43:30 UTC"
+            "first_seen_utc": "2026-10-16 06:45:57 UTC"
           },
           {
             "address": "0xc1914d36f97dc5557e4df26cbdab98e9c988ef37",
@@ -111190,7 +111828,7 @@
             "timestamp_basis": "RECEIPT_ONLY",
             "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
             "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
-            "distance_pct": -0.05,
+            "distance_pct": -0.04,
             "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
             "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
             "persist_s": 113.7,
@@ -115334,7 +115972,7 @@
         "weekly_vwap": 51795.3955,
         "source": "MT5_COMPLETED_15M_BARS"
       },
-      "trapped_traders_signal": "BALANCED",
+      "trapped_traders_signal": "TRAPPED_SELLERS_BELOW",
       "bars_15m_ohlcv": [
         {
           "ts": 1792039500,
@@ -122423,11 +123061,11 @@
             "distance_pct": 0.79,
             "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
             "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
-            "persist_s": 0.0,
+            "persist_s": 75.7,
             "presence_frac": 1.0,
-            "samples": 1,
-            "sample_span_sec": 0.0,
-            "persistence_status": "SINGLE_SAMPLE",
+            "samples": 2,
+            "sample_span_sec": 75.7,
+            "persistence_status": "INSUFFICIENT_PERSISTENCE",
             "wall_class": "GENUINE",
             "gate_g7_eligible": false,
             "first_seen_utc": "2026-10-16 06:50:00 UTC"
@@ -122445,11 +123083,11 @@
             "distance_pct": -0.79,
             "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
             "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
-            "persist_s": 0.0,
+            "persist_s": 75.7,
             "presence_frac": 1.0,
-            "samples": 1,
-            "sample_span_sec": 0.0,
-            "persistence_status": "SINGLE_SAMPLE",
+            "samples": 2,
+            "sample_span_sec": 75.7,
+            "persistence_status": "INSUFFICIENT_PERSISTENCE",
             "wall_class": "GENUINE",
             "gate_g7_eligible": false,
             "first_seen_utc": "2026-10-16 06:50:00 UTC"
@@ -122467,11 +123105,11 @@
             "distance_pct": 0.51,
             "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
             "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
-            "persist_s": 0.0,
+            "persist_s": 75.7,
             "presence_frac": 1.0,
-            "samples": 1,
-            "sample_span_sec": 0.0,
-            "persistence_status": "SINGLE_SAMPLE",
+            "samples": 2,
+            "sample_span_sec": 75.7,
+            "persistence_status": "INSUFFICIENT_PERSISTENCE",
             "wall_class": "GENUINE",
             "gate_g7_eligible": false,
             "first_seen_utc": "2026-10-16 06:50:00 UTC"
@@ -122731,11 +123369,11 @@
             "distance_pct": 0.31,
             "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
             "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
-            "persist_s": 0.0,
+            "persist_s": 75.7,
             "presence_frac": 1.0,
-            "samples": 1,
-            "sample_span_sec": 0.0,
-            "persistence_status": "SINGLE_SAMPLE",
+            "samples": 2,
+            "sample_span_sec": 75.7,
+            "persistence_status": "INSUFFICIENT_PERSISTENCE",
             "wall_class": "GENUINE",
             "gate_g7_eligible": false,
             "first_seen_utc": "2026-10-16 06:50:00 UTC"
@@ -122973,11 +123611,11 @@
             "distance_pct": 0.14,
             "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
             "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
-            "persist_s": 0.0,
+            "persist_s": 75.7,
             "presence_frac": 1.0,
-            "samples": 1,
-            "sample_span_sec": 0.0,
-            "persistence_status": "SINGLE_SAMPLE",
+            "samples": 2,
+            "sample_span_sec": 75.7,
+            "persistence_status": "INSUFFICIENT_PERSISTENCE",
             "wall_class": "GENUINE",
             "gate_g7_eligible": false,
             "first_seen_utc": "2026-10-16 06:50:00 UTC"
@@ -123017,11 +123655,11 @@
             "distance_pct": 0.05,
             "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
             "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
-            "persist_s": 0.0,
+            "persist_s": 75.7,
             "presence_frac": 1.0,
-            "samples": 1,
-            "sample_span_sec": 0.0,
-            "persistence_status": "SINGLE_SAMPLE",
+            "samples": 2,
+            "sample_span_sec": 75.7,
+            "persistence_status": "INSUFFICIENT_PERSISTENCE",
             "wall_class": "GENUINE",
             "gate_g7_eligible": false,
             "first_seen_utc": "2026-10-16 06:50:00 UTC"
@@ -123039,11 +123677,11 @@
             "distance_pct": -0.05,
             "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
             "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
-            "persist_s": 0.0,
+            "persist_s": 75.7,
             "presence_frac": 1.0,
-            "samples": 1,
-            "sample_span_sec": 0.0,
-            "persistence_status": "SINGLE_SAMPLE",
+            "samples": 2,
+            "sample_span_sec": 75.7,
+            "persistence_status": "INSUFFICIENT_PERSISTENCE",
             "wall_class": "GENUINE",
             "gate_g7_eligible": false,
             "first_seen_utc": "2026-10-16 06:50:00 UTC"
@@ -123303,11 +123941,11 @@
             "distance_pct": 0.04,
             "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
             "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
-            "persist_s": 0.0,
+            "persist_s": 75.7,
             "presence_frac": 1.0,
-            "samples": 1,
-            "sample_span_sec": 0.0,
-            "persistence_status": "SINGLE_SAMPLE",
+            "samples": 2,
+            "sample_span_sec": 75.7,
+            "persistence_status": "INSUFFICIENT_PERSISTENCE",
             "wall_class": "GENUINE",
             "gate_g7_eligible": false,
             "first_seen_utc": "2026-10-16 06:50:00 UTC"
@@ -123347,11 +123985,11 @@
             "distance_pct": -0.03,
             "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
             "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
-            "persist_s": 0.0,
+            "persist_s": 75.7,
             "presence_frac": 1.0,
-            "samples": 1,
-            "sample_span_sec": 0.0,
-            "persistence_status": "SINGLE_SAMPLE",
+            "samples": 2,
+            "sample_span_sec": 75.7,
+            "persistence_status": "INSUFFICIENT_PERSISTENCE",
             "wall_class": "GENUINE",
             "gate_g7_eligible": false,
             "first_seen_utc": "2026-10-16 06:50:00 UTC"
@@ -123369,11 +124007,11 @@
             "distance_pct": -0.02,
             "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
             "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
-            "persist_s": 0.0,
+            "persist_s": 75.7,
             "presence_frac": 1.0,
-            "samples": 1,
-            "sample_span_sec": 0.0,
-            "persistence_status": "SINGLE_SAMPLE",
+            "samples": 2,
+            "sample_span_sec": 75.7,
+            "persistence_status": "INSUFFICIENT_PERSISTENCE",
             "wall_class": "GENUINE",
             "gate_g7_eligible": false,
             "first_seen_utc": "2026-10-16 06:50:00 UTC"
@@ -127871,6 +128509,28 @@
             "wall_class": "GENUINE",
             "gate_g7_eligible": false,
             "first_seen_utc": "2026-10-16 06:42:21 UTC"
+          },
+          {
+            "address": "0xa52507fc8e3f14c686b965e6b660267e86a6e1bd",
+            "side": "BUY",
+            "price": 56.579,
+            "size": 8748.82,
+            "notional_usd": 494999.49,
+            "observed_at": 1792133157.8125246,
+            "timestamp_basis": "RECEIPT_ONLY",
+            "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
+            "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
+            "distance_pct": -2.0,
+            "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
+            "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
+            "persist_s": 0.0,
+            "presence_frac": 1.0,
+            "samples": 1,
+            "sample_span_sec": 0.0,
+            "persistence_status": "SINGLE_SAMPLE",
+            "wall_class": "GENUINE",
+            "gate_g7_eligible": false,
+            "first_seen_utc": "2026-10-16 06:45:57 UTC"
           },
           {
             "address": "0xfc667adba8d4837586078f4fdcdc29804337ca06",
@@ -133702,6 +134362,28 @@
             "first_seen_utc": "2026-10-16 06:48:31 UTC"
           },
           {
+            "address": "0x354bcb431a332079950d2ce3a4698745e0f66425",
+            "side": "BUY",
+            "price": 95.491,
+            "size": 2618.036,
+            "notional_usd": 249998.88,
+            "observed_at": 1792133160.5936582,
+            "timestamp_basis": "RECEIPT_ONLY",
+            "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
+            "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
+            "distance_pct": -0.22,
+            "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
+            "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
+            "persist_s": 0.0,
+            "presence_frac": 1.0,
+            "samples": 1,
+            "sample_span_sec": 0.0,
+            "persistence_status": "SINGLE_SAMPLE",
+            "wall_class": "GENUINE",
+            "gate_g7_eligible": false,
+            "first_seen_utc": "2026-10-16 06:46:00 UTC"
+          },
+          {
             "address": "0xce975678a14f17a15c946b95704744cd7c677e78",
             "side": "BUY",
             "price": 95.705,
@@ -134020,7 +134702,7 @@
             "persist_s": 0.0,
             "presence_frac": 1.0,
             "persistence_status": "SINGLE_SAMPLE",
-            "wall_class": "GENUINE",
+            "wall_class": "MIRRORED_LEG",
             "gate_g7_eligible": false,
             "first_seen_utc": "2026-10-16 06:50:03 UTC"
           },
@@ -134076,7 +134758,7 @@
         "weekly_vwap": 94.3399,
         "source": "MT5_COMPLETED_15M_BARS"
       },
-      "trapped_traders_signal": "BALANCED",
+      "trapped_traders_signal": "TRAPPED_SELLERS_BELOW",
       "bars_15m_ohlcv": [
         {
           "ts": 1792039500,
@@ -137049,9 +137731,9 @@
       "symbol_broker": "EURUSD.pi",
       "category": "FOREX",
       "quotes": {
-        "bid": 1.1237,
-        "ask": 1.1237,
-        "mid": 1.1237,
+        "bid": 1.1238,
+        "ask": 1.1238,
+        "mid": 1.1238,
         "spread_price": 0.0,
         "spread_bps": 0.09,
         "quote_source": "MT5_L1_TICK",
@@ -137127,9 +137809,9 @@
         "coverage": "REAL_HYPERLIQUID_ONCHAIN_STOPS",
         "venue": "HYPERLIQUID_PERP_DEX",
         "amount_semantics": "BASE_ASSET_AND_NOTIONAL_USD",
-        "total_buy_stops_usd": 1106846.97,
+        "total_buy_stops_usd": 1106896.2,
         "total_buy_stops_count": 49,
-        "total_sell_stops_usd": 1912465.7,
+        "total_sell_stops_usd": 1912550.76,
         "total_sell_stops_count": 86,
         "top_sell_stop_clusters_below": [
           {
@@ -137137,71 +137819,71 @@
             "max_price": 1.12,
             "mid_price": 1.115,
             "size": 258730.4,
-            "notional_usd": 290851.78,
-            "distance_pct": -0.81
+            "notional_usd": 290864.72,
+            "distance_pct": -0.82
           },
           {
             "min_price": 1.09,
             "max_price": 1.1,
             "mid_price": 1.095,
             "size": 158473.0,
-            "notional_usd": 178147.42,
-            "distance_pct": -2.59
+            "notional_usd": 178155.35,
+            "distance_pct": -2.6
           },
           {
             "min_price": 1.1,
             "max_price": 1.11,
             "mid_price": 1.105,
             "size": 152617.3,
-            "notional_usd": 171564.74,
-            "distance_pct": -1.7
+            "notional_usd": 171572.37,
+            "distance_pct": -1.71
           },
           {
             "min_price": 1.08,
             "max_price": 1.09,
             "mid_price": 1.085,
             "size": 18256.9,
-            "notional_usd": 20523.49,
-            "distance_pct": -3.48
+            "notional_usd": 20524.41,
+            "distance_pct": -3.49
           },
           {
             "min_price": 1.07,
             "max_price": 1.08,
             "mid_price": 1.075,
             "size": 668.1,
-            "notional_usd": 751.04,
-            "distance_pct": -4.37
+            "notional_usd": 751.08,
+            "distance_pct": -4.38
           },
           {
             "min_price": 1.06,
             "max_price": 1.07,
             "mid_price": 1.065,
             "size": 180401.5,
-            "notional_usd": 202798.35,
-            "distance_pct": -5.26
+            "notional_usd": 202807.37,
+            "distance_pct": -5.27
           },
           {
             "min_price": 1.04,
             "max_price": 1.05,
             "mid_price": 1.045,
             "size": 90412.4,
-            "notional_usd": 101637.1,
-            "distance_pct": -7.04
+            "notional_usd": 101641.62,
+            "distance_pct": -7.05
           },
           {
             "min_price": 1.05,
             "max_price": 1.06,
             "mid_price": 1.055,
             "size": 88232.1,
-            "notional_usd": 99186.12,
-            "distance_pct": -6.15
+            "notional_usd": 99190.53,
+            "distance_pct": -6.16
           },
           {
             "min_price": 1.01,
             "max_price": 1.02,
             "mid_price": 1.015,
             "size": 9104.2,
-            "notional_usd": 10234.49,
+            "notional_usd": 10234.94,
             "distance_pct": -9.71
           },
           {
@@ -137209,7 +137891,7 @@
             "max_price": 1.01,
             "mid_price": 1.005,
             "size": 4276.4,
-            "notional_usd": 4807.32,
+            "notional_usd": 4807.53,
             "distance_pct": -10.6
           }
         ],
@@ -137219,7 +137901,7 @@
             "max_price": 1.18,
             "mid_price": 1.175,
             "size": 643833.4,
-            "notional_usd": 723765.32,
+            "notional_usd": 723797.51,
             "distance_pct": 4.52
           },
           {
@@ -137227,15 +137909,15 @@
             "max_price": 1.13,
             "mid_price": 1.125,
             "size": 378795.8,
-            "notional_usd": 425823.3,
-            "distance_pct": 0.08
+            "notional_usd": 425842.24,
+            "distance_pct": 0.07
           },
           {
             "min_price": 1.15,
             "max_price": 1.16,
             "mid_price": 1.155,
             "size": 235914.6,
-            "notional_usd": 265203.4,
+            "notional_usd": 265215.19,
             "distance_pct": 2.74
           },
           {
@@ -137243,15 +137925,15 @@
             "max_price": 1.14,
             "mid_price": 1.135,
             "size": 187786.8,
-            "notional_usd": 211100.53,
-            "distance_pct": 0.97
+            "notional_usd": 211109.92,
+            "distance_pct": 0.96
           },
           {
             "min_price": 1.14,
             "max_price": 1.15,
             "mid_price": 1.145,
             "size": 33734.5,
-            "notional_usd": 37922.64,
+            "notional_usd": 37924.32,
             "distance_pct": 1.85
           },
           {
@@ -137259,7 +137941,7 @@
             "max_price": 1.17,
             "mid_price": 1.165,
             "size": 27053.0,
-            "notional_usd": 30411.63,
+            "notional_usd": 30412.98,
             "distance_pct": 3.63
           },
           {
@@ -137267,15 +137949,15 @@
             "max_price": 1.29,
             "mid_price": 1.285,
             "size": 297943.7,
-            "notional_usd": 334933.41,
-            "distance_pct": 14.31
+            "notional_usd": 334948.31,
+            "distance_pct": 14.3
           },
           {
             "min_price": 1.18,
             "max_price": 1.19,
             "mid_price": 1.185,
             "size": 19255.2,
-            "notional_usd": 21645.73,
+            "notional_usd": 21646.7,
             "distance_pct": 5.41
           },
           {
@@ -137283,7 +137965,7 @@
             "max_price": 1.24,
             "mid_price": 1.235,
             "size": 5345.5,
-            "notional_usd": 6009.14,
+            "notional_usd": 6009.41,
             "distance_pct": 9.86
           },
           {
@@ -137291,8 +137973,8 @@
             "max_price": 1.31,
             "mid_price": 1.305,
             "size": 3183.0,
-            "notional_usd": 3578.17,
-            "distance_pct": 16.09
+            "notional_usd": 3578.33,
+            "distance_pct": 16.08
           }
         ],
         "nearest_sell_stop_clusters_below": [
@@ -137301,64 +137983,64 @@
             "max_price": 1.12,
             "mid_price": 1.115,
             "size": 258730.4,
-            "notional_usd": 290851.78,
-            "distance_pct": -0.81
+            "notional_usd": 290864.72,
+            "distance_pct": -0.82
           },
           {
             "min_price": 1.1,
             "max_price": 1.11,
             "mid_price": 1.105,
             "size": 152617.3,
-            "notional_usd": 171564.74,
-            "distance_pct": -1.7
+            "notional_usd": 171572.37,
+            "distance_pct": -1.71
           },
           {
             "min_price": 1.09,
             "max_price": 1.1,
             "mid_price": 1.095,
             "size": 158473.0,
-            "notional_usd": 178147.42,
-            "distance_pct": -2.59
+            "notional_usd": 178155.35,
+            "distance_pct": -2.6
           },
           {
             "min_price": 1.08,
             "max_price": 1.09,
             "mid_price": 1.085,
             "size": 18256.9,
-            "notional_usd": 20523.49,
-            "distance_pct": -3.48
+            "notional_usd": 20524.41,
+            "distance_pct": -3.49
           },
           {
             "min_price": 1.07,
             "max_price": 1.08,
             "mid_price": 1.075,
             "size": 668.1,
-            "notional_usd": 751.04,
-            "distance_pct": -4.37
+            "notional_usd": 751.08,
+            "distance_pct": -4.38
           },
           {
             "min_price": 1.06,
             "max_price": 1.07,
             "mid_price": 1.065,
             "size": 180401.5,
-            "notional_usd": 202798.35,
-            "distance_pct": -5.26
+            "notional_usd": 202807.37,
+            "distance_pct": -5.27
           },
           {
             "min_price": 1.05,
             "max_price": 1.06,
             "mid_price": 1.055,
             "size": 88232.1,
-            "notional_usd": 99186.12,
-            "distance_pct": -6.15
+            "notional_usd": 99190.53,
+            "distance_pct": -6.16
           },
           {
             "min_price": 1.04,
             "max_price": 1.05,
             "mid_price": 1.045,
             "size": 90412.4,
-            "notional_usd": 101637.1,
-            "distance_pct": -7.04
+            "notional_usd": 101641.62,
+            "distance_pct": -7.05
           },
           {
             "min_price": 1.02,
@@ -137373,7 +138055,7 @@
             "max_price": 1.02,
             "mid_price": 1.015,
             "size": 9104.2,
-            "notional_usd": 10234.49,
+            "notional_usd": 10234.94,
             "distance_pct": -9.71
           }
         ],
@@ -137383,23 +138065,23 @@
             "max_price": 1.13,
             "mid_price": 1.125,
             "size": 378795.8,
-            "notional_usd": 425823.3,
-            "distance_pct": 0.08
+            "notional_usd": 425842.24,
+            "distance_pct": 0.07
           },
           {
             "min_price": 1.13,
             "max_price": 1.14,
             "mid_price": 1.135,
             "size": 187786.8,
-            "notional_usd": 211100.53,
-            "distance_pct": 0.97
+            "notional_usd": 211109.92,
+            "distance_pct": 0.96
           },
           {
             "min_price": 1.14,
             "max_price": 1.15,
             "mid_price": 1.145,
             "size": 33734.5,
-            "notional_usd": 37922.64,
+            "notional_usd": 37924.32,
             "distance_pct": 1.85
           },
           {
@@ -137407,7 +138089,7 @@
             "max_price": 1.16,
             "mid_price": 1.155,
             "size": 235914.6,
-            "notional_usd": 265203.4,
+            "notional_usd": 265215.19,
             "distance_pct": 2.74
           },
           {
@@ -137415,7 +138097,7 @@
             "max_price": 1.17,
             "mid_price": 1.165,
             "size": 27053.0,
-            "notional_usd": 30411.63,
+            "notional_usd": 30412.98,
             "distance_pct": 3.63
           },
           {
@@ -137423,7 +138105,7 @@
             "max_price": 1.18,
             "mid_price": 1.175,
             "size": 643833.4,
-            "notional_usd": 723765.32,
+            "notional_usd": 723797.51,
             "distance_pct": 4.52
           },
           {
@@ -137431,7 +138113,7 @@
             "max_price": 1.19,
             "mid_price": 1.185,
             "size": 19255.2,
-            "notional_usd": 21645.73,
+            "notional_usd": 21646.7,
             "distance_pct": 5.41
           },
           {
@@ -137439,7 +138121,7 @@
             "max_price": 1.2,
             "mid_price": 1.195,
             "size": 185.8,
-            "notional_usd": 208.87,
+            "notional_usd": 208.88,
             "distance_pct": 6.3
           },
           {
@@ -137447,7 +138129,7 @@
             "max_price": 1.21,
             "mid_price": 1.205,
             "size": 2421.1,
-            "notional_usd": 2721.68,
+            "notional_usd": 2721.8,
             "distance_pct": 7.19
           },
           {
@@ -137455,7 +138137,7 @@
             "max_price": 1.22,
             "mid_price": 1.215,
             "size": 638.1,
-            "notional_usd": 717.32,
+            "notional_usd": 717.35,
             "distance_pct": 8.08
           }
         ],
@@ -137524,9 +138206,9 @@
         "source": "HYPERDASH_GRAPHQL_LIQUIDATION_LEVELS",
         "coverage": "REAL_HYPERLIQUID_POSITION_LIQUIDATIONS",
         "venue": "HYPERLIQUID_PERP_DEX",
-        "total_long_liquidations_usd": 13532443.28,
+        "total_long_liquidations_usd": 13533045.18,
         "total_long_liquidations_count": 164,
-        "total_short_liquidations_usd": 13576234.66,
+        "total_short_liquidations_usd": 13576838.5,
         "total_short_liquidations_count": 169,
         "top_long_cascade_bands_below": [
           {
@@ -137534,55 +138216,55 @@
             "max_price": 1.11,
             "mid_price": 1.105,
             "size": 1012519.5,
-            "notional_usd": 1138223.8,
-            "distance_pct": -1.7
+            "notional_usd": 1138274.42,
+            "distance_pct": -1.71
           },
           {
             "min_price": 1.08,
             "max_price": 1.09,
             "mid_price": 1.085,
             "size": 646316.3,
-            "notional_usd": 726556.47,
-            "distance_pct": -3.48
+            "notional_usd": 726588.78,
+            "distance_pct": -3.49
           },
           {
             "min_price": 1.09,
             "max_price": 1.1,
             "mid_price": 1.095,
             "size": 474375.3,
-            "notional_usd": 533268.99,
-            "distance_pct": -2.59
+            "notional_usd": 533292.71,
+            "distance_pct": -2.6
           },
           {
             "min_price": 1.07,
             "max_price": 1.08,
             "mid_price": 1.075,
             "size": 411987.7,
-            "notional_usd": 463135.97,
-            "distance_pct": -4.37
+            "notional_usd": 463156.57,
+            "distance_pct": -4.38
           },
           {
             "min_price": 1.11,
             "max_price": 1.12,
             "mid_price": 1.115,
             "size": 284157.3,
-            "notional_usd": 319435.43,
-            "distance_pct": -0.81
+            "notional_usd": 319449.64,
+            "distance_pct": -0.82
           },
           {
             "min_price": 1.05,
             "max_price": 1.06,
             "mid_price": 1.055,
             "size": 8037158.3,
-            "notional_usd": 9034971.5,
-            "distance_pct": -6.15
+            "notional_usd": 9035373.36,
+            "distance_pct": -6.16
           },
           {
             "min_price": 0.98,
             "max_price": 0.99,
             "mid_price": 0.985,
             "size": 287013.3,
-            "notional_usd": 322646.0,
+            "notional_usd": 322660.35,
             "distance_pct": -12.38
           },
           {
@@ -137590,7 +138272,7 @@
             "max_price": 0.98,
             "mid_price": 0.975,
             "size": 264902.6,
-            "notional_usd": 297790.26,
+            "notional_usd": 297803.5,
             "distance_pct": -13.27
           },
           {
@@ -137598,15 +138280,15 @@
             "max_price": 1.05,
             "mid_price": 1.045,
             "size": 257601.1,
-            "notional_usd": 289582.28,
-            "distance_pct": -7.04
+            "notional_usd": 289595.16,
+            "distance_pct": -7.05
           },
           {
             "min_price": 1.02,
             "max_price": 1.03,
             "mid_price": 1.025,
             "size": 242454.0,
-            "notional_usd": 272554.66,
+            "notional_usd": 272566.79,
             "distance_pct": -8.82
           }
         ],
@@ -137617,71 +138299,71 @@
             "max_price": 1.12,
             "mid_price": 1.115,
             "size": 284157.3,
-            "notional_usd": 319435.43,
-            "distance_pct": -0.81
+            "notional_usd": 319449.64,
+            "distance_pct": -0.82
           },
           {
             "min_price": 1.1,
             "max_price": 1.11,
             "mid_price": 1.105,
             "size": 1012519.5,
-            "notional_usd": 1138223.8,
-            "distance_pct": -1.7
+            "notional_usd": 1138274.42,
+            "distance_pct": -1.71
           },
           {
             "min_price": 1.09,
             "max_price": 1.1,
             "mid_price": 1.095,
             "size": 474375.3,
-            "notional_usd": 533268.99,
-            "distance_pct": -2.59
+            "notional_usd": 533292.71,
+            "distance_pct": -2.6
           },
           {
             "min_price": 1.08,
             "max_price": 1.09,
             "mid_price": 1.085,
             "size": 646316.3,
-            "notional_usd": 726556.47,
-            "distance_pct": -3.48
+            "notional_usd": 726588.78,
+            "distance_pct": -3.49
           },
           {
             "min_price": 1.07,
             "max_price": 1.08,
             "mid_price": 1.075,
             "size": 411987.7,
-            "notional_usd": 463135.97,
-            "distance_pct": -4.37
+            "notional_usd": 463156.57,
+            "distance_pct": -4.38
           },
           {
             "min_price": 1.06,
             "max_price": 1.07,
             "mid_price": 1.065,
             "size": 97129.4,
-            "notional_usd": 109188.02,
-            "distance_pct": -5.26
+            "notional_usd": 109192.87,
+            "distance_pct": -5.27
           },
           {
             "min_price": 1.05,
             "max_price": 1.06,
             "mid_price": 1.055,
             "size": 8037158.3,
-            "notional_usd": 9034971.5,
-            "distance_pct": -6.15
+            "notional_usd": 9035373.36,
+            "distance_pct": -6.16
           },
           {
             "min_price": 1.04,
             "max_price": 1.05,
             "mid_price": 1.045,
             "size": 257601.1,
-            "notional_usd": 289582.28,
-            "distance_pct": -7.04
+            "notional_usd": 289595.16,
+            "distance_pct": -7.05
           },
           {
             "min_price": 1.03,
             "max_price": 1.04,
             "mid_price": 1.035,
             "size": 16590.4,
-            "notional_usd": 18650.1,
+            "notional_usd": 18650.93,
             "distance_pct": -7.93
           },
           {
@@ -137689,7 +138371,7 @@
             "max_price": 1.03,
             "mid_price": 1.025,
             "size": 242454.0,
-            "notional_usd": 272554.66,
+            "notional_usd": 272566.79,
             "distance_pct": -8.82
           }
         ],
@@ -138040,7 +138722,7 @@
             "timestamp_basis": "RECEIPT_ONLY",
             "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
             "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
-            "distance_pct": -1.24,
+            "distance_pct": -1.25,
             "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
             "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
             "persist_s": 578.4,
@@ -138062,7 +138744,7 @@
             "timestamp_basis": "RECEIPT_ONLY",
             "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
             "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
-            "distance_pct": 1.9,
+            "distance_pct": 1.89,
             "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
             "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
             "persist_s": 578.4,
@@ -138084,7 +138766,7 @@
             "timestamp_basis": "RECEIPT_ONLY",
             "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
             "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
-            "distance_pct": 1.67,
+            "distance_pct": 1.66,
             "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
             "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
             "persist_s": 578.4,
@@ -138106,7 +138788,7 @@
             "timestamp_basis": "RECEIPT_ONLY",
             "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
             "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
-            "distance_pct": 1.27,
+            "distance_pct": 1.26,
             "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
             "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
             "persist_s": 578.4,
@@ -138268,7 +138950,7 @@
         "weekly_vwap": 1.1188,
         "source": "MT5_COMPLETED_15M_BARS"
       },
-      "trapped_traders_signal": "TRAPPED_SELLERS_BELOW",
+      "trapped_traders_signal": "BALANCED",
       "bars_15m_ohlcv": [
         {
           "ts": 1792043100,
@@ -142145,11 +142827,11 @@
             "distance_pct": 0.07,
             "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
             "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
-            "persist_s": 0.0,
+            "persist_s": 75.1,
             "presence_frac": 1.0,
-            "samples": 1,
-            "sample_span_sec": 0.0,
-            "persistence_status": "SINGLE_SAMPLE",
+            "samples": 2,
+            "sample_span_sec": 75.1,
+            "persistence_status": "INSUFFICIENT_PERSISTENCE",
             "wall_class": "GENUINE",
             "gate_g7_eligible": false,
             "first_seen_utc": "2026-10-16 06:50:26 UTC"
@@ -146992,7 +147674,7 @@
             "timestamp_basis": "RECEIPT_ONLY",
             "coverage": "WALLET_ATTRIBUTED_SNAPSHOT_NO_ORDER_ID_NOT_FULL_L3",
             "source": "HYPERDASH_GRAPHQL_ORDERBOOK_SNAPSHOT",
-            "distance_pct": 0.09,
+            "distance_pct": 0.1,
             "identity_kind": "WALLET_PRICE_LEVEL_NO_ORDER_ID",
             "persistence_basis": "SAMPLED_RECEIPT_RECURRENCE",
             "persist_s": 113.5,
