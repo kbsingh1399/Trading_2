@@ -130,13 +130,15 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
                     let searchInput = document.querySelector('input.MuiAutocomplete-input, input[placeholder*="Search"]');
                     if (!searchInput) return {{ error: 'No MuiAutocomplete input found' }};
 
-                    const curVal = (searchInput.value || '').trim().toUpperCase();
-                    if (curVal !== targetSymbol) {{
+                    for (let attempt = 0; attempt < 2; attempt++) {{
+                        let curVal = (searchInput.value || '').trim().toUpperCase();
+                        if (curVal === targetSymbol) break;
+
                         searchInput.focus();
                         const nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
                         nativeInputValueSetter.call(searchInput, targetSymbol);
                         searchInput.dispatchEvent(new Event('input', {{ bubbles: true }}));
-                        await new Promise(r => setTimeout(r, 600));
+                        await new Promise(r => setTimeout(r, 700));
 
                         const listbox = document.querySelector('.MuiAutocomplete-popper, ul.MuiAutocomplete-listbox, div[role="listbox"]');
                         if (listbox) {{
@@ -147,11 +149,14 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
                                 return firstToken === targetSymbol;
                             }});
                             if (match) {{
+                                match.dispatchEvent(new MouseEvent('mousedown', {{ bubbles: true }}));
+                                match.dispatchEvent(new MouseEvent('mouseup', {{ bubbles: true }}));
                                 match.click();
                             }}
                         }}
-                        await new Promise(r => setTimeout(r, 2500));
+                        await new Promise(r => setTimeout(r, 2000));
                         document.body.click();
+                        await new Promise(r => setTimeout(r, 500));
                     }}
 
                     // Re-query input in case DOM rehydrated

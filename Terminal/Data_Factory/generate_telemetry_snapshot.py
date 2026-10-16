@@ -2017,6 +2017,14 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                 else:
                     dist_pct = round((cg_px - binance_mid) / binance_mid * 100.0, 2) if binance_mid > 0 else 0.0
                     cg_dur_s = float(cg_o.get("duration_seconds") or 0.0)
+                    is_g7_eligible = bool(cg_dur_s >= 180.0)
+                    if cg_dur_s >= 86400.0:
+                        pers_status = "VETERAN_WHALE"
+                    elif cg_dur_s >= 180.0:
+                        pers_status = "PERSISTENT_WHALE"
+                    else:
+                        pers_status = "FLEETING_OR_NEW_ORDER"
+
                     whale_walls.append({
                         "side": cg_side,
                         "price": cg_px,
@@ -2024,14 +2032,18 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                         "distance_pct": dist_pct,
                         "sample_span_sec": cg_dur_s,
                         "persist_s": cg_dur_s,
-                        "presence_frac": 1.0,
-                        "persistence_status": "VETERAN_WHALE" if (float(cg_o.get("duration_hours") or 0.0) >= 24.0) else "PERSISTENT_WHALE",
-                        "wall_class": WALL_GENUINE,
-                        "gate_g7_eligible": True,
+                        "presence_frac": round(min(1.0, cg_dur_s / 180.0), 3) if cg_dur_s < 180.0 else 1.0,
+                        "persistence_status": pers_status,
+                        "wall_class": WALL_GENUINE if is_g7_eligible else "UNCONFIRMED_NEW_WALL",
+                        "gate_g7_eligible": is_g7_eligible,
                         "source": "COINGLASS_L3_RESTING_ORDER",
                         "source_venues": ["COINGLASS"],
                         "first_seen_utc": datetime.fromtimestamp(now_ts - cg_dur_s, tz=timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
                     })
+
+            n_merged_walls = sum(1 for w in whale_walls if "BINANCE" in w.get("source_venues", []) and "COINGLASS" in w.get("source_venues", []))
+            n_coinglass_exclusive = sum(1 for w in whale_walls if w.get("source_venues") == ["COINGLASS"])
+            n_binance_exclusive = sum(1 for w in whale_walls if w.get("source_venues") == ["BINANCE"])
 
             total_bid_depth = cum_bid_usd
             total_ask_depth = cum_ask_usd
@@ -2099,6 +2111,14 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                 "asks_top20": asks_top20,
                 "whale_walls_l3": top_wallet_whales_l3,  # Real on-chain 0x addresses from Hyperdash!
                 "l2_wall_levels": whale_walls,
+                "n_merged_walls": n_merged_walls,
+                "n_coinglass_exclusive_walls": n_coinglass_exclusive,
+                "n_binance_exclusive_walls": n_binance_exclusive,
+                "persistence_state_summary": {
+                    "walls_tracked": len(new_whale_state),
+                    "state_epoch": now_ts,
+                    "state_utc": now_utc
+                },
                 "coinglass_whale_book": cg_whale_book_payload,
                 "wall_coverage": "REAL_HYPERDASH_WALLET_ATTRIBUTED_L3",
                 "wall_sample_ts_epoch": sample_epoch
