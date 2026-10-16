@@ -1,0 +1,34 @@
+{
+ "match": "r1-m01",
+ "scores": {
+  "a005": {
+   "correctness": 8,
+   "completeness": 7,
+   "specificity": 7,
+   "robustness": 7,
+   "clarity": 8,
+   "fatal": false
+  },
+  "a014": {
+   "correctness": 9,
+   "completeness": 8,
+   "specificity": 9,
+   "robustness": 7,
+   "clarity": 8,
+   "fatal": false
+  }
+ },
+ "winner": "a014",
+ "reason": "a014 carries the complete 24-row MANDATE 1 deliverable once it concedes the omission; a005 omits twenty rows. 78.0 to 74.0.",
+ "survived": [
+  "CVD conflict",
+  "admission gate"
+ ],
+ "standing": {
+  "a005": [
+   "MAJOR"
+  ],
+  "b": [],
+  "a014": []
+ }
+}

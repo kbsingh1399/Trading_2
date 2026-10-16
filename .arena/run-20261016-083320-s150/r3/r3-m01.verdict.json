@@ -1,0 +1,33 @@
+{
+ "match": "r3-m01",
+ "scores": {
+  "a004": {
+   "correctness": 8,
+   "completeness": 8,
+   "specificity": 8,
+   "robustness": 7,
+   "clarity": 8,
+   "fatal": false
+  },
+  "a002": {
+   "correctness": 9,
+   "completeness": 9,
+   "specificity": 9,
+   "robustness": 7,
+   "clarity": 8,
+   "fatal": false
+  }
+ },
+ "winner": "a002",
+ "reason": "a002 publishes the frozen-R0 ledger and the payable BTC construction with the blocking fact named. 85.5 to 82.0.",
+ "survived": [
+  "BTC payable construction",
+  "tick-stream wording"
+ ],
+ "standing": {
+  "a004": [
+   "MAJOR"
+  ],
+  "a002": []
+ }
+}

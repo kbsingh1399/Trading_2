@@ -1,0 +1,33 @@
+{
+ "match": "r2-m03",
+ "scores": {
+  "a014": {
+   "correctness": 9,
+   "completeness": 9,
+   "specificity": 9,
+   "robustness": 7,
+   "clarity": 8,
+   "fatal": false
+  },
+  "a012": {
+   "correctness": 8,
+   "completeness": 8,
+   "specificity": 8,
+   "robustness": 7,
+   "clarity": 8,
+   "fatal": false
+  }
+ },
+ "winner": "a014",
+ "reason": "a014 keeps the worked arithmetic and now carries both admission stamps and the overhead-cluster contingency. 84.5 to 81.0.",
+ "survived": [
+  "admission stamps",
+  "contingent target"
+ ],
+ "standing": {
+  "a014": [],
+  "a012": [
+   "MAJOR"
+  ]
+ }
+}

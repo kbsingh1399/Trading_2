@@ -1,0 +1,33 @@
+{
+ "match": "r2-m01",
+ "scores": {
+  "a010": {
+   "correctness": 8,
+   "completeness": 8,
+   "specificity": 8,
+   "robustness": 7,
+   "clarity": 8,
+   "fatal": false
+  },
+  "a002": {
+   "correctness": 9,
+   "completeness": 9,
+   "specificity": 9,
+   "robustness": 7,
+   "clarity": 8,
+   "fatal": false
+  }
+ },
+ "winner": "a002",
+ "reason": "a002 returns the MANDATE 2 verdict against the frozen 0.00190 R0, which a010 never does. 85.0 to 79.5.",
+ "survived": [
+  "frozen R0 phase boundaries",
+  "MANDATE 2 verdict"
+ ],
+ "standing": {
+  "a010": [
+   "MAJOR"
+  ],
+  "a002": []
+ }
+}

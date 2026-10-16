@@ -1,0 +1,34 @@
+{
+ "match": "r1-m06",
+ "scores": {
+  "a013": {
+   "correctness": 8,
+   "completeness": 7,
+   "specificity": 7,
+   "robustness": 7,
+   "clarity": 8,
+   "fatal": false
+  },
+  "a004": {
+   "correctness": 9,
+   "completeness": 8,
+   "specificity": 9,
+   "robustness": 7,
+   "clarity": 8,
+   "fatal": false
+  }
+ },
+ "winner": "a004",
+ "reason": "a004 keeps the evidence list and supplies the missing ETH band arithmetic; a013 withdraws an unsupported claim. 82.0 to 78.0.",
+ "survived": [
+  "ETH band collision",
+  "prior-cycle claim withdrawn"
+ ],
+ "standing": {
+  "a013": [
+   "MAJOR"
+  ],
+  "b": [],
+  "a004": []
+ }
+}
