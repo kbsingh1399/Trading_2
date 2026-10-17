@@ -1,15 +1,33 @@
 {
   "daemon": "autonomous_coinglass_harvester_daemon",
-  "status": "DEGRADED",
-  "current_cycle_status": "FAILED",
-  "pid": 5492,
-  "cycle_count": 23,
+  "status": "HEALTHY",
+  "current_cycle_status": "SUCCESS",
+  "pid": 8212,
+  "cycle_count": 24,
   "error_count": 6,
   "interval_seconds": 180.0,
-  "last_heartbeat_utc": "2026-10-17T07:24:29.509864+00:00",
-  "last_heartbeat_epoch": 1792221932.0851474,
-  "last_duration_s": 62.57,
-  "last_success_utc": "2026-10-17T07:21:29.487556+00:00",
+  "last_heartbeat_utc": "2026-10-17T07:31:26.413250+00:00",
+  "last_heartbeat_epoch": 1792222343.1262286,
+  "last_harvest_epoch": 1792222343.06549,
+  "last_duration_s": 56.71,
+  "total_orders_harvested": 471,
+  "grand_total_notional_usd": 206889510.0,
+  "total_assets_scraped": 18,
+  "total_assets_valid": 14,
+  "skipped_assets": {
+    "NEAR": "DYNAMIC_PRICE_SANITY: Median price 0.9350 deviates by 81.7% from live Binance price 5.1030 (>15% threshold)",
+    "DOT": "DYNAMIC_PRICE_SANITY: Median price 1.5000 deviates by 29.1% from live Binance price 1.1618 (>15% threshold)",
+    "APT": "DYNAMIC_PRICE_SANITY: Median price 1.0000 deviates by 20.5% from live Binance price 0.8298 (>15% threshold)",
+    "ARB": "DYNAMIC_PRICE_SANITY: Median price 0.2500 deviates by 32.3% from live Binance price 0.1890 (>15% threshold)"
+  },
+  "last_success_utc": "2026-10-17T07:31:26.413250+00:00",
   "last_error": "",
-  "last_error_utc": "2026-10-17T07:24:29.509864+00:00"
+  "last_error_utc": "2026-10-17T07:24:29.509864+00:00",
+  "backup_recovery_active": false,
+  "corruption_recovery_event": false,
+  "status_source": "coinglass_harvester_status.json",
+  "backup_mirror_paths": [
+    "C:\\Users\\SIGMA\\Documents\\Trading_2\\Data\\coinglass\\coinglass_harvester_status.bak",
+    "C:\\Users\\SIGMA\\Documents\\Trading_2\\Data\\coinglass\\backup\\coinglass_harvester_status.json"
+  ]
 }
