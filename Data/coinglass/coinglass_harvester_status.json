@@ -1,27 +1,15 @@
 {
   "daemon": "autonomous_coinglass_harvester_daemon",
-  "status": "HEALTHY",
-  "current_cycle_status": "SUCCESS",
+  "status": "DEGRADED",
+  "current_cycle_status": "FAILED",
   "pid": 5492,
-  "cycle_count": 22,
-  "error_count": 5,
+  "cycle_count": 23,
+  "error_count": 6,
   "interval_seconds": 180.0,
-  "last_heartbeat_utc": "2026-10-17T07:21:29.487556+00:00",
-  "last_heartbeat_epoch": 1792221745.5999928,
-  "last_harvest_epoch": 1792221745.5458047,
-  "last_duration_s": 56.11,
-  "total_orders_harvested": 432,
-  "grand_total_notional_usd": 208631620.0,
-  "total_assets_scraped": 18,
-  "total_assets_valid": 13,
-  "skipped_assets": {
-    "AVAX": "DYNAMIC_PRICE_SANITY: Median price 14.5000 deviates by 45.0% from live Binance price 10.0020 (>15% threshold)",
-    "DOT": "DYNAMIC_PRICE_SANITY: Median price 1.5500 deviates by 33.8% from live Binance price 1.1583 (>15% threshold)",
-    "APT": "DYNAMIC_PRICE_SANITY: Median price 1.0150 deviates by 22.6% from live Binance price 0.8277 (>15% threshold)",
-    "ARB": "DYNAMIC_PRICE_SANITY: Median price 0.2500 deviates by 32.5% from live Binance price 0.1887 (>15% threshold)",
-    "TRX": "DYNAMIC_PRICE_SANITY: Median price 0.4000 deviates by 19.2% from live Binance price 0.3355 (>15% threshold)"
-  },
+  "last_heartbeat_utc": "2026-10-17T07:24:29.509864+00:00",
+  "last_heartbeat_epoch": 1792221932.0851474,
+  "last_duration_s": 62.57,
   "last_success_utc": "2026-10-17T07:21:29.487556+00:00",
   "last_error": "",
-  "last_error_utc": "2026-10-17T07:12:29.379527+00:00"
+  "last_error_utc": "2026-10-17T07:24:29.509864+00:00"
 }
