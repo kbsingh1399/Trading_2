@@ -1963,6 +1963,15 @@ def main():
         p = build_48h_orderflow_prompt()
         success = asyncio.run(post_prompt_to_arena(p))
         sys.exit(0 if success else 1)
+    elif len(sys.argv) > 2 and sys.argv[1] == "post-file":
+        filepath = Path(sys.argv[2])
+        if not filepath.exists():
+            print(f"Error: file {filepath} not found.")
+            sys.exit(1)
+        p = filepath.read_text(encoding="utf-8")
+        asyncio.run(dismiss_arena_popup())
+        success = asyncio.run(post_prompt_to_arena(p))
+        sys.exit(0 if success else 1)
     elif len(sys.argv) > 1 and sys.argv[1] == "check":
         asyncio.run(dismiss_arena_popup())
         done, text = asyncio.run(check_arena_response())
