@@ -580,16 +580,18 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
         t_of = a.get("tradfi_orderflow", {})
         if cat == "CRYPTO":
             cvd_str = f"Sess CVD {s_cvd/1e6:+.2f}M | Wk CVD {w_cvd/1e6:+.2f}M | Flow: {div}"
-        else:
             t_status = t_of.get("status")
-            s_tick = float(t_of.get("session_tick_cvd") or 0.0)
-            c15_tick = float(t_of.get("15m_tick_cvd") or 0.0)
-            t_bias = t_of.get("flow_bias", "NEUTRAL")
-            t_ofi = float(t_of.get("order_flow_imbalance_ofi") or 0.0)
-            if t_status == "AVAILABLE":
+            s_val = t_of.get("session_tick_cvd")
+            c15_val = t_of.get("15m_tick_cvd")
+            t_ofi_val = t_of.get("order_flow_imbalance_ofi")
+            t_bias = t_of.get("flow_bias", "UNAVAILABLE")
+            if t_status in ("AVAILABLE", "CALCULATED_FROM_MT5_TICKS") and s_val is not None:
+                s_tick = float(s_val)
+                c15_tick = float(c15_val if c15_val is not None else 0.0)
+                t_ofi = float(t_ofi_val if t_ofi_val is not None else 0.0)
                 cvd_str = f"TradFi OF: Sess {s_tick:+.0f}t, 15m {c15_tick:+.0f}t | Bias: {t_bias} | OFI: {t_ofi:+.3f}"
             else:
-                cvd_str = f"TradFi OF: L1 Tick Stream Validated | Bias: {t_bias}"
+                cvd_str = f"TradFi OF: UNAVAILABLE (No Live MT5 Ticks | Bias: {t_bias})"
 
         trp_str = a.get("trapped_traders_signal", "BALANCED")
 

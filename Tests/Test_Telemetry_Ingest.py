@@ -529,6 +529,29 @@ def test_get_fresh_snapshot_refuses_when_active_fatal_error_marker_present(tmp_p
     assert "MT5 account disconnected" in exc_info.value.diagnostics["reason"]
 
 
+def test_get_fresh_snapshot_refuses_when_corrupt_error_marker_present(tmp_path):
+    """FAIL-CLOSED: If .generator_error.json is corrupt/malformed, refuse snapshot."""
+    tele = tmp_path / "docs" / "telemetry"
+    tele.mkdir(parents=True, exist_ok=True)
+    snap_file = tele / "live_snapshot_latest.json"
+    err_file = tele / ".generator_error.json"
+    
+    now_ts = 1_000_000.0
+    snap_file.write_text(json.dumps({
+        "as_of_epoch": now_ts - 10.0,
+        "generation_id": "gen-fresh",
+        "assets_matrix_24": {}
+    }), encoding="utf-8")
+    
+    # Write corrupted JSON
+    err_file.write_text("{corrupt json", encoding="utf-8")
+    
+    with pytest.raises(StaleDataError) as exc_info:
+        get_fresh_snapshot(snap_file, now=now_ts)
+    
+    assert exc_info.value.reason == "generator_fatal_error_corrupt"
+
+
 def test_get_fresh_snapshot_succeeds_when_error_marker_cleared(tmp_path):
     """When the generator clears .generator_error.json, fresh snapshot loads cleanly."""
     tele = tmp_path / "docs" / "telemetry"

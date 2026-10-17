@@ -1152,14 +1152,41 @@ def calendar_observation(now: float, calendar_path=None):
                   "runway_hours_to_blackout": None}
         if windows:
             ws, we, release, purge, event = windows[0]
-            result.update(event=event["name"], event_release_utc=text_stamp(release), event_source=event["source"],
-                          hard_blackout_window_utc=[text_stamp(ws), text_stamp(we)], purge_deadline_utc=None,
-                          runway_hours_to_blackout=None, blackout_active=False, blackout_enforcement="DISABLED_BY_OPERATOR")
+            is_active = bool(ws <= now < we)
+            runway = max(0.0, round((ws - now) / 3600.0, 2)) if now < ws else (0.0 if is_active else None)
+            result.update(
+                event=event["name"],
+                event_release_utc=text_stamp(release),
+                event_source=event["source"],
+                hard_blackout_window_utc=[text_stamp(ws), text_stamp(we)],
+                purge_deadline_utc=text_stamp(purge) if purge else None,
+                runway_hours_to_blackout=runway,
+                blackout_active=is_active,
+                blackout_enforcement="ACTIVE_ENFORCED" if is_active else "ARMED"
+            )
+        else:
+            result.update(
+                event=None,
+                event_release_utc=None,
+                event_source=None,
+                hard_blackout_window_utc=None,
+                purge_deadline_utc=None,
+                runway_hours_to_blackout=None,
+                blackout_active=False,
+                blackout_enforcement="ARMED_STANDBY"
+            )
         return result
     except (OSError, ValueError, KeyError, TypeError, OverflowError) as exc:
-        return {"calendar_status": "COVERAGE_AVAILABLE", "blackout_active": False, "blackout_enforcement": "DISABLED_BY_OPERATOR",
-                "event": None, "event_release_utc": None, "hard_blackout_window_utc": None,
-                "runway_hours_to_blackout": None, "error": str(exc)}
+        return {
+            "calendar_status": "CALENDAR_UNAVAILABLE",
+            "blackout_active": True,
+            "blackout_enforcement": "FAIL_CLOSED_BLOCKED",
+            "event": None,
+            "event_release_utc": None,
+            "hard_blackout_window_utc": None,
+            "runway_hours_to_blackout": None,
+            "error": str(exc)
+        }
 
 
 def atomic_snapshot_write(out_path, payload):

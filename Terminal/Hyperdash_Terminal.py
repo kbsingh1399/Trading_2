@@ -338,9 +338,9 @@ class HyperdashTerminal:
         table.add_column("Notional Value", justify="right", style="bold")
         table.add_column("Distance %", justify="right")
 
-        curr_px = self.cached_asset_info.get("mark_px", 1.0)
+        curr_px = float(self.cached_asset_info.get("mark_px") or 1.0)
         for o in orders[:20]:
-            val = o.get("notional_usd", 0.0)
+            val = float(o.get("notional_usd") or 0.0)
             if val >= 500000:
                 tier = "[bold bright_yellow]🐋 MEGA WHALE[/bold bright_yellow]"
             elif val >= 150000:
@@ -351,23 +351,25 @@ class HyperdashTerminal:
                 tier = "[dim]🐬 DOLPHIN[/dim]"
 
             side_color = "bright_green" if o.get("side") == "BUY" else "bright_red"
-            px = o.get("price", 0.0)
+            px = float(o.get("price") or 0.0)
             dist_pct = ((px - curr_px) / curr_px) * 100.0 if curr_px > 0 else 0.0
 
-            addr = o.get("address", "")
+            addr = str(o.get("address") or "")
             disp_addr = f"{addr[:8]}...{addr[-6:]}" if len(addr) > 16 else addr
+            sz = float(o.get("size") or 0.0)
 
             table.add_row(
                 tier,
                 disp_addr,
-                f"[{side_color}]{o.get('side')}[/{side_color}]",
+                f"[{side_color}]{o.get('side', '')}[/{side_color}]",
                 f"${px:,.2f}",
-                f"{o.get('size', 0.0):.4f}",
+                f"{sz:.4f}",
                 f"${val:,.0f}",
                 f"{dist_pct:+.2f}%"
             )
 
-        summary = f"Total Whale Orders Monitored: {len(orders)}  |  Top Whale Size: ${orders[0]['notional_usd']:,.0f}" if orders else "No resting orders in filter range."
+        top_val = float(orders[0].get("notional_usd") or 0.0) if orders else 0.0
+        summary = f"Total Whale Orders Monitored: {len(orders)}  |  Top Whale Size: ${top_val:,.0f}" if orders else "No resting orders in filter range."
         return Panel(table, subtitle=summary, style="cyan", border_style="cyan", box=box.ROUNDED)
 
     def render_liquidations(self) -> Panel:
@@ -381,9 +383,9 @@ class HyperdashTerminal:
             except Exception as e:
                 return Panel(f"[bold red]Liquidations data unavailable: {e}[/bold red]", border_style="red")
 
-        long_size = data.get("total_long_size", 0.0)
-        short_size = data.get("total_short_size", 0.0)
-        curr_px = data.get("current_price", self.cached_asset_info.get("mark_px", 0.0))
+        long_size = float(data.get("total_long_size") or 0.0)
+        short_size = float(data.get("total_short_size") or 0.0)
+        curr_px = float(data.get("current_price") or (self.cached_asset_info.get("mark_px") or 0.0))
 
         table = Table(title=f"LIQUIDATION CASCADE HEATMAP & CONCENTRATION LADDER - {self.current_coin}", box=box.SIMPLE_HEAD, expand=True)
         table.add_column("Price Band (USD)", style="bold", ratio=2)
@@ -392,12 +394,12 @@ class HyperdashTerminal:
         table.add_column("Estimated Liquidation Volume", ratio=4)
         table.add_column("Notional Amount", justify="right", ratio=2)
 
-        bands = data.get("bands", [])
-        max_amt = max([b.get("amount", 0.0) for b in bands] + [1.0])
+        bands = data.get("bands") or []
+        max_amt = max([float(b.get("amount") or 0.0) for b in bands] + [1.0])
 
-        for b in sorted(bands, key=lambda x: x.get("mid_px", 0.0), reverse=True):
-            mid = b.get("mid_px", 0.0)
-            amt = b.get("amount", 0.0)
+        for b in sorted(bands, key=lambda x: float(x.get("mid_px") or 0.0), reverse=True):
+            mid = float(b.get("mid_px") or 0.0)
+            amt = float(b.get("amount") or 0.0)
             if amt <= 0:
                 continue
 
@@ -409,8 +411,10 @@ class HyperdashTerminal:
             bar_len = int((amt / max_amt) * 30)
             bar = "█" * max(1, bar_len)
 
+            min_px = float(b.get("min_px") or 0.0)
+            max_px = float(b.get("max_px") or 0.0)
             table.add_row(
-                f"${b.get('min_px', 0.0):,.1f} - ${b.get('max_px', 0.0):,.1f}",
+                f"${min_px:,.1f} - ${max_px:,.1f}",
                 f"{dist:+.1f}%",
                 liq_type,
                 f"[{bar_color}]{bar}[/{bar_color}]",
@@ -431,9 +435,9 @@ class HyperdashTerminal:
             except Exception as e:
                 return Panel(f"[bold red]Stops data unavailable: {e}[/bold red]", border_style="red")
 
-        buy_stops = data.get("total_buy_size", 0.0)
-        sell_stops = data.get("total_sell_size", 0.0)
-        curr_px = data.get("current_price", self.cached_asset_info.get("mark_px", 0.0))
+        buy_stops = float(data.get("total_buy_size") or 0.0)
+        sell_stops = float(data.get("total_sell_size") or 0.0)
+        curr_px = float(data.get("current_price") or (self.cached_asset_info.get("mark_px") or 0.0))
 
         table = Table(title=f"STOP-LOSS CLUSTERS & INSTITUTIONAL TRIGGER POOLS - {self.current_coin}", box=box.SIMPLE_HEAD, expand=True)
         table.add_column("Price Range (USD)", style="bold", ratio=2)
@@ -442,12 +446,12 @@ class HyperdashTerminal:
         table.add_column("Stop Density", ratio=4)
         table.add_column("Volume", justify="right", ratio=2)
 
-        bands = data.get("bands", [])
-        max_amt = max([b.get("amount", 0.0) for b in bands] + [1.0])
+        bands = data.get("bands") or []
+        max_amt = max([float(b.get("amount") or 0.0) for b in bands] + [1.0])
 
-        for b in sorted(bands, key=lambda x: x.get("mid_px", 0.0), reverse=True):
-            mid = b.get("mid_px", 0.0)
-            amt = b.get("amount", 0.0)
+        for b in sorted(bands, key=lambda x: float(x.get("mid_px") or 0.0), reverse=True):
+            mid = float(b.get("mid_px") or 0.0)
+            amt = float(b.get("amount") or 0.0)
             if amt <= 0:
                 continue
 
@@ -459,8 +463,10 @@ class HyperdashTerminal:
             bar_len = int((amt / max_amt) * 30)
             bar = "█" * max(1, bar_len)
 
+            min_px = float(b.get("min_px") or 0.0)
+            max_px = float(b.get("max_px") or 0.0)
             table.add_row(
-                f"${b.get('min_px', 0.0):,.1f} - ${b.get('max_px', 0.0):,.1f}",
+                f"${min_px:,.1f} - ${max_px:,.1f}",
                 f"{dist:+.1f}%",
                 side_badge,
                 f"[{bar_color}]{bar}[/{bar_color}]",
