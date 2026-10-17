@@ -498,3 +498,50 @@ def test_documented_operator_budget_is_tighter_than_git_propagation_latency():
         get_fresh_snapshot(LIVE, max_age_s=DEFAULT_MAX_AGE_S)
     assert ei.value.reason == "snapshot_stale"
     assert ei.value.diagnostics["age_s"] == pytest.approx(age, abs=5.0)
+
+
+def test_get_fresh_snapshot_refuses_when_active_fatal_error_marker_present(tmp_path):
+    """FAIL-CLOSED: If generator wrote .generator_error.json with fatal=True, refuse snapshot."""
+    tele = tmp_path / "docs" / "telemetry"
+    tele.mkdir(parents=True, exist_ok=True)
+    snap_file = tele / "live_snapshot_latest.json"
+    err_file = tele / ".generator_error.json"
+    
+    now_ts = 1_000_000.0
+    # Write a fresh snapshot
+    snap_file.write_text(json.dumps({
+        "as_of_epoch": now_ts - 10.0,
+        "generation_id": "gen-fresh",
+        "assets_matrix_24": {}
+    }), encoding="utf-8")
+    
+    # Write an active fatal error marker
+    err_file.write_text(json.dumps({
+        "ts_epoch": now_ts - 5.0,
+        "fatal": True,
+        "reason": "MT5 account disconnected during telemetry run"
+    }), encoding="utf-8")
+    
+    with pytest.raises(StaleDataError) as exc_info:
+        get_fresh_snapshot(snap_file, now=now_ts)
+    
+    assert exc_info.value.reason == "generator_fatal_error"
+    assert "MT5 account disconnected" in exc_info.value.diagnostics["reason"]
+
+
+def test_get_fresh_snapshot_succeeds_when_error_marker_cleared(tmp_path):
+    """When the generator clears .generator_error.json, fresh snapshot loads cleanly."""
+    tele = tmp_path / "docs" / "telemetry"
+    tele.mkdir(parents=True, exist_ok=True)
+    snap_file = tele / "live_snapshot_latest.json"
+    
+    now_ts = 1_000_000.0
+    snap_file.write_text(json.dumps({
+        "as_of_epoch": now_ts - 10.0,
+        "generation_id": "gen-fresh",
+        "assets_matrix_24": {}
+    }), encoding="utf-8")
+    
+    loaded = get_fresh_snapshot(snap_file, now=now_ts)
+    assert loaded["generation_id"] == "gen-fresh"
+

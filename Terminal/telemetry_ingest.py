@@ -248,7 +248,27 @@ def get_fresh_snapshot(
                 "snapshot_unreadable", {"source": src, "error": str(exc)}
             ) from None
 
+        # FAIL-CLOSED (Concern 2): Refuse snapshot if an active fatal generator error marker exists
+        err_marker_path = os.path.join(os.path.dirname(src), ".generator_error.json")
+        if os.path.exists(err_marker_path):
+            try:
+                with open(err_marker_path, encoding="utf-8") as ef:
+                    err_info = json.load(ef)
+                if isinstance(err_info, dict) and err_info.get("fatal"):
+                    err_epoch = float(err_info.get("ts_epoch", 0.0))
+                    now_val = _resolve_now(now)
+                    if now_val - err_epoch < 300.0:
+                        raise StaleDataError(
+                            "generator_fatal_error",
+                            {"source": err_marker_path, "reason": err_info.get("reason"), "error_epoch": err_epoch}
+                        )
+            except StaleDataError:
+                raise
+            except Exception:
+                pass
+
         meas = measure_snapshot_age(payload, now=now)
+
         meas = SnapshotFreshness(
             as_of_epoch=meas.as_of_epoch,
             generation_id=meas.generation_id,

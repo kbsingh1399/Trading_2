@@ -28,7 +28,8 @@ When `AGENTS.md` is loaded, execute sequentially without asking:
 3. **Bug Hunt & Checklist**: Execute 13-step lethal bug hunt: `Read: .agents/rules/FABLE5_CHECKLIST.md`.
 4. **Universal Directives**: Institutional quant standards: `Read: .agents/AGENT_INSTRUCTIONS.md`.
 5. **DeepSeek Harness**: Local verification loop: `python .agents/scripts/deepseek_harness_runner.py` (or `pnpm --dir deepseek-harness run dsh`).
-6. **Hardware Health**: If RAM > 85% or CPU throttles: `powershell -ExecutionPolicy Bypass -File .agents/scripts/free_ram.ps1`.
+6. **Hardware Health**: If RAM > 85% or CPU throttles: `powershell -ExecutionPolicy Bypass -File scripts/free_ram.ps1`.
+
 7. **Dual-Repo Parity**: Byte-for-byte parity across `.agents`: `python .agents/scripts/verify_and_sync_agents.py`.
 8. **Always-On Background Hexad-Daemon & Gemini Web2API (Endogen Architecture)**:
    Verify and guarantee that ALL 6 mandatory persistent background tasks are running by default in the Antigravity task runner:

@@ -26,7 +26,9 @@ from Terminal.arena_bridge import post_prompt_to_arena, post_prompt_to_copilot, 
 from Terminal.telemetry_ingest import (
     StaleDataError,
     get_fresh_snapshot,
+    make_git_refresh,
 )
+
 
 # ── Cycle State ──────────────────────────────────────────────────────────────
 CYCLE_STATE_FILE = ROOT / "Data" / "cycle_state.json"
@@ -142,7 +144,7 @@ def get_live_broker_state():
         snap_path = ROOT / "docs" / "telemetry" / "live_snapshot_latest.json"
         if snap_path.exists():
             try:
-                snap = json.loads(snap_path.read_text(encoding="utf-8"))
+                snap = get_fresh_snapshot(snap_path, refresh=make_git_refresh(repo_root=str(ROOT)))
             except Exception as read_err:
                 print(f"Warning: Could not read local snapshot ({read_err}).")
             else:
@@ -150,6 +152,7 @@ def get_live_broker_state():
                 equity = acc.get("equity_usd", 4896.55)
                 balance = acc.get("balance_usd", 4896.55)
                 margin = acc.get("margin_used_usd", acc.get("margin_usd", 0.0))
+
 
     return {
         "equity": equity,

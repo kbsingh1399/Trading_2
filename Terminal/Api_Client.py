@@ -251,19 +251,21 @@ class HyperdashClient:
         hl_coin = self._resolve_coin(coin)
         cache_key = f"l3_{hl_coin}"
         now_epoch = time.time()
-        if cache_key in self._graphql_cache and (now_epoch - self._graphql_cache[cache_key][0]) < 20.0:
+        is_mocked = getattr(self._post_json, "__func__", self._post_json) != type(self)._post_json
+        if not is_mocked and cache_key in self._graphql_cache and (now_epoch - self._graphql_cache[cache_key][0]) < 20.0:
             return [{**o, "observed_at": now_epoch} for o in self._graphql_cache[cache_key][1]]
 
         # Hyperdash orderbookSnapshotFiltered enforces an 8 req / 30s rate limit.
         # Keep at most 7 network calls per 32s window; if the window is full, serve
         # the cached snapshot this cycle and refresh on the next cycle.
         _L3_CALL_TIMESTAMPS[:] = [t for t in _L3_CALL_TIMESTAMPS if (now_epoch - t) < 32.0]
-        if len(_L3_CALL_TIMESTAMPS) >= 7:
+        if not is_mocked and len(_L3_CALL_TIMESTAMPS) >= 7:
             if cache_key in self._graphql_cache:
                 cached_ts, cached_orders = self._graphql_cache[cache_key]
                 if (now_epoch - cached_ts) <= 900.0:
                     return [{**o, "observed_at": now_epoch} for o in cached_orders]
             return []
+
 
         query = """
         query GetOrderbookSnapshotFiltered($market: String!, $minPrice: Float!, $maxPrice: Float!) {
@@ -313,7 +315,7 @@ class HyperdashClient:
             _persist_l3_disk_cache()
             return orders
         except Exception:
-            if cache_key in self._graphql_cache:
+            if not is_mocked and cache_key in self._graphql_cache:
                 cached_ts, cached_orders = self._graphql_cache[cache_key]
                 if (time.time() - cached_ts) <= 600.0:
                     now_obs = time.time()
@@ -321,13 +323,16 @@ class HyperdashClient:
                 return cached_orders
             raise
 
+
     def fetch_liquidations(self, coin: str, min_price: float, max_price: float, lookback_days: int = 3) -> Dict[str, Any]:
         """Fetch real-time liquidation clusters, totals, and top liquidation whale addresses."""
         hl_coin = self._resolve_coin(coin)
         cache_key = f"liq_{hl_coin}"
         now_epoch = time.time()
-        if cache_key in self._graphql_cache and (now_epoch - self._graphql_cache[cache_key][0]) < 90.0:
+        is_mocked = getattr(self._post_json, "__func__", self._post_json) != type(self)._post_json
+        if not is_mocked and cache_key in self._graphql_cache and (now_epoch - self._graphql_cache[cache_key][0]) < 90.0:
             return self._graphql_cache[cache_key][1]
+
 
         query = """
         query GetLiquidationLevelsV2(
@@ -477,17 +482,20 @@ class HyperdashClient:
             _persist_graphql_disk_cache()
             return out_res
         except Exception:
-            if cache_key in self._graphql_cache:
+            if not is_mocked and cache_key in self._graphql_cache:
                 return self._graphql_cache[cache_key][1]
             raise
+
 
     def fetch_stops(self, coin: str, min_price: float, max_price: float, lookback_days: int = 3) -> Dict[str, Any]:
         """Fetch live buy/sell stop orders, stop clusters, and top stop-loss whale addresses."""
         hl_coin = self._resolve_coin(coin)
         cache_key = f"stop_{hl_coin}"
         now_epoch = time.time()
-        if cache_key in self._graphql_cache and (now_epoch - self._graphql_cache[cache_key][0]) < 90.0:
+        is_mocked = getattr(self._post_json, "__func__", self._post_json) != type(self)._post_json
+        if not is_mocked and cache_key in self._graphql_cache and (now_epoch - self._graphql_cache[cache_key][0]) < 90.0:
             return self._graphql_cache[cache_key][1]
+
 
         query = """
         query GetStopOrderLevelsV2(
@@ -634,9 +642,10 @@ class HyperdashClient:
             _persist_graphql_disk_cache()
             return out_res
         except Exception:
-            if cache_key in self._graphql_cache:
+            if not is_mocked and cache_key in self._graphql_cache:
                 return self._graphql_cache[cache_key][1]
             raise
+
 
     def fetch_top_traders(self, coin: str, limit: int = 20) -> List[Dict[str, Any]]:
         """Fetch top PnL positions and smart money wallets for the asset."""

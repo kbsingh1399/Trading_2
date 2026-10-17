@@ -39,20 +39,29 @@ from Terminal.Data_Factory.hyperdash_flow_feed import get_hyperdash_flow_intelli
 
 
 def get_arkham_intelligence() -> Dict[str, Any]:
-    """Load latest live Arkham On-Chain Intelligence feed from Data/arkham_live_intelligence.json."""
+    """Load latest live Arkham On-Chain Intelligence feed from Data/arkham_live_intelligence.json.
+    
+    Fail-closed: Returns FEED_CORRUPT_OR_UNAVAILABLE and is_feed_available=False
+    if the JSON feed is missing, empty, or corrupted. Never masks failures with neutral sentiment.
+    """
     arkham_path = ROOT / "Data" / "arkham_live_intelligence.json"
     if arkham_path.exists():
         try:
-            return json.loads(arkham_path.read_text(encoding="utf-8"))
+            data = json.loads(arkham_path.read_text(encoding="utf-8"))
+            if isinstance(data, dict) and data:
+                return data
         except Exception:
             pass
     return {
         "source": "Arkham Intelligence Live Harvester (arkm.com via Chrome CDP)",
-        "feed_status": "AWAITING_SAMPLE",
-        "market_flow_sentiment": "NEUTRAL_BALANCED_FLOW",
+        "status": "FEED_CORRUPT_OR_UNAVAILABLE",
+        "feed_status": "FEED_CORRUPT_OR_UNAVAILABLE",
+        "is_feed_available": False,
+        "market_flow_sentiment": "UNAVAILABLE",
         "trending_institutional_entities": [],
         "recent_classified_transfers": []
     }
+
 
 
 def get_coinglass_whale_orders_intelligence() -> Dict[str, Any]:
@@ -479,13 +488,14 @@ def compute_tradfi_tick_orderflow(ticks: List[Any], now_ts: float) -> Dict[str, 
         return {
             "status": "UNAVAILABLE",
             "tick_count_analyzed": 0,
-            "session_tick_cvd": 0.0,
-            "15m_tick_cvd": 0.0,
-            "5m_tick_cvd": 0.0,
-            "flow_bias": "NEUTRAL",
-            "order_flow_imbalance_ofi": 0.0,
+            "session_tick_cvd": None,
+            "15m_tick_cvd": None,
+            "5m_tick_cvd": None,
+            "flow_bias": "UNAVAILABLE",
+            "order_flow_imbalance_ofi": None,
             "source": "MT5_L1_TICK_STREAM"
         }
+
 
     parsed_ticks = []
     for t in ticks:
@@ -522,13 +532,14 @@ def compute_tradfi_tick_orderflow(ticks: List[Any], now_ts: float) -> Dict[str, 
         return {
             "status": "UNAVAILABLE",
             "tick_count_analyzed": 0,
-            "session_tick_cvd": 0.0,
-            "15m_tick_cvd": 0.0,
-            "5m_tick_cvd": 0.0,
-            "flow_bias": "NEUTRAL",
-            "order_flow_imbalance_ofi": 0.0,
+            "session_tick_cvd": None,
+            "15m_tick_cvd": None,
+            "5m_tick_cvd": None,
+            "flow_bias": "UNAVAILABLE",
+            "order_flow_imbalance_ofi": None,
             "source": "MT5_L1_TICK_STREAM"
         }
+
 
     t_max = max(pt[0] for pt in parsed_ticks)
     dt_now = datetime.fromtimestamp(t_max, timezone.utc)
@@ -2751,6 +2762,13 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
         raise RuntimeError("FAIL_CLOSED: telemetry provenance validation failed")
 
     atomic_snapshot_write(out_path, payload)
+
+    # Clear any prior fatal generator error marker upon verified successful write
+    try:
+        ERROR_MARKER_PATH.unlink(missing_ok=True)
+    except Exception:
+        pass
+
 
     # Archive live telemetry snapshot into TimeSeriesDatabase (Fixes N1: telemetry stream gap)
     try:
