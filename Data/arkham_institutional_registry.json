@@ -466,15 +466,15 @@
     "holdings_breakdown": [
       {
         "symbol": "BTC",
-        "price": "$81,612",
+        "price": "$81,555",
         "amount": "BTC",
-        "value_usd": "$596.37M",
-        "change_24h": "-0.45%"
+        "value_usd": "$595.95M",
+        "change_24h": "-0.7%"
       }
     ],
     "category": "SOVEREIGN_TREASURY",
     "priority": "HIGH",
-    "last_updated_utc": "2026-10-17 10:05:35 UTC"
+    "last_updated_utc": "2026-10-17 10:50:56 UTC"
   },
   "microstrategy": {
     "slug": "microstrategy",
@@ -485,15 +485,15 @@
     "holdings_breakdown": [
       {
         "symbol": "BTC",
-        "price": "$81,576",
+        "price": "$81,566",
         "amount": "BTC",
-        "value_usd": "$39.01B",
-        "change_24h": "-0.57%"
+        "value_usd": "$39B",
+        "change_24h": "-0.73%"
       }
     ],
     "category": "CORPORATE_TREASURY",
     "priority": "HIGH",
-    "last_updated_utc": "2026-10-17 10:05:41 UTC"
+    "last_updated_utc": "2026-10-17 10:51:02 UTC"
   },
   "tesla": {
     "slug": "tesla",
@@ -1698,15 +1698,15 @@
     "holdings_breakdown": [
       {
         "symbol": "BTC",
-        "price": "$81,628",
+        "price": "$81,548",
         "amount": "BTC",
-        "value_usd": "$52.43",
-        "change_24h": "-0.49%"
+        "value_usd": "$52.37",
+        "change_24h": "-0.76%"
       }
     ],
     "category": "SOVEREIGN_TREASURY",
     "priority": "MEDIUM",
-    "last_updated_utc": "2026-10-17 10:00:45 UTC"
+    "last_updated_utc": "2026-10-17 10:50:39 UTC"
   },
   "uk": {
     "slug": "uk",
@@ -1717,15 +1717,15 @@
     "holdings_breakdown": [
       {
         "symbol": "BTC",
-        "price": "$81,612",
+        "price": "$81,555",
         "amount": "BTC",
-        "value_usd": "$5B",
-        "change_24h": "-0.45%"
+        "value_usd": "$4.99B",
+        "change_24h": "-0.7%"
       }
     ],
     "category": "SOVEREIGN_TREASURY",
     "priority": "MEDIUM",
-    "last_updated_utc": "2026-10-17 10:00:51 UTC"
+    "last_updated_utc": "2026-10-17 10:50:45 UTC"
   },
   "druk-holding-investments": {
     "slug": "druk-holding-investments",
@@ -1736,28 +1736,14 @@
     "holdings_breakdown": [
       {
         "symbol": "BTC",
-        "price": "$81,576",
-        "amount": "BTC",
-        "value_usd": "$42.29M",
-        "change_24h": "-0.6%"
-      },
-      {
-        "symbol": "BNB",
-        "price": "$720.71",
-        "amount": "BNB",
-        "value_usd": "$21.24K",
-        "change_24h": "-1.33%"
-      },
-      {
-        "symbol": "ETH",
-        "price": "$2,432.52",
-        "amount": "ETH",
-        "value_usd": "$17.59K",
-        "change_24h": "-0.79%"
+        "price": "$2.35M",
+        "amount": "",
+        "value_usd": "$0",
+        "change_24h": "+0.00%"
       }
     ],
     "category": "SOVEREIGN_TREASURY",
     "priority": "MEDIUM",
-    "last_updated_utc": "2026-10-17 10:00:57 UTC"
+    "last_updated_utc": "2026-10-17 10:50:51 UTC"
   }
 }
