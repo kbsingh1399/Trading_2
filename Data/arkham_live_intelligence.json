@@ -1,5 +1,5 @@
 {
-  "as_of_utc": "2026-10-17 02:37:03 UTC",
+  "as_of_utc": "2026-10-17 02:42:05 UTC",
   "source": "Arkham Intelligence Upgraded Harvester (arkm.com via Chrome CDP)",
   "filter_applied": "",
   "feed_status": "CONNECTED_NO_TRANSFERS",
@@ -127,17 +127,17 @@
       "holdings_breakdown": [
         {
           "symbol": "SOL",
-          "price": "$104.3",
+          "price": "$104.23",
           "amount": "SOL",
-          "value_usd": "$724.85M",
-          "change_24h": "-0.76%"
+          "value_usd": "$724.36M",
+          "change_24h": "-0.93%"
         },
         {
           "symbol": "BTC",
-          "price": "$81,465",
+          "price": "$81,349",
           "amount": "BTC",
-          "value_usd": "$178.33M",
-          "change_24h": "-0.76%"
+          "value_usd": "$178.08M",
+          "change_24h": "-0.8%"
         },
         {
           "symbol": "USDC",
@@ -155,36 +155,36 @@
         },
         {
           "symbol": "ETH",
-          "price": "$2,417.39",
+          "price": "$2,417.06",
           "amount": "ETH",
           "value_usd": "$30.07M",
-          "change_24h": "-0.65%"
+          "change_24h": "-0.79%"
         },
         {
           "symbol": "BNB",
-          "price": "$719.52",
+          "price": "$719.99",
           "amount": "BNB",
-          "value_usd": "$204.92K",
-          "change_24h": "-1.08%"
+          "value_usd": "$205.06K",
+          "change_24h": "-0.98%"
         },
         {
           "symbol": "UNI",
-          "price": "$7.28",
+          "price": "$7.27",
           "amount": "UNI",
-          "value_usd": "$102.08K",
-          "change_24h": "-2.15%"
+          "value_usd": "$101.94K",
+          "change_24h": "-2.42%"
         },
         {
           "symbol": "LINK",
-          "price": "$12.3",
+          "price": "$12.28",
           "amount": "LINK",
-          "value_usd": "$62.67K",
-          "change_24h": "-1.2%"
+          "value_usd": "$62.56K",
+          "change_24h": "-1.29%"
         }
       ],
       "category": "MARKET_MAKER_HFT",
       "priority": "HIGH",
-      "last_updated_utc": "2026-10-17 01:52:02 UTC"
+      "last_updated_utc": "2026-10-17 02:41:42 UTC"
     },
     "wintermute": {
       "slug": "wintermute",
@@ -195,7 +195,7 @@
       "holdings_breakdown": [],
       "category": "MARKET_MAKER_ALGO",
       "priority": "HIGH",
-      "last_updated_utc": "2026-10-17 01:51:56 UTC"
+      "last_updated_utc": "2026-10-17 02:41:37 UTC"
     },
     "vaneck": {
       "slug": "vaneck",
@@ -1490,17 +1490,17 @@
         },
         {
           "symbol": "ETH",
-          "price": "$2,416.63",
+          "price": "$2,416.68",
           "amount": "ETH",
           "value_usd": "$1.1M",
-          "change_24h": "-0.66%"
+          "change_24h": "-1.03%"
         },
         {
           "symbol": "BTC",
-          "price": "$81,457",
+          "price": "$81,347",
           "amount": "BTC",
-          "value_usd": "$520.43K",
-          "change_24h": "-0.73%"
+          "value_usd": "$519.72K",
+          "change_24h": "-0.93%"
         },
         {
           "symbol": "USDC",
@@ -1511,43 +1511,43 @@
         },
         {
           "symbol": "LINK",
-          "price": "$12.29",
+          "price": "$12.26",
           "amount": "LINK",
-          "value_usd": "$27.6K",
-          "change_24h": "-1.29%"
+          "value_usd": "$27.54K",
+          "change_24h": "-1.84%"
         },
         {
           "symbol": "MKR",
-          "price": "$1,621.86",
+          "price": "$1,622.96",
           "amount": "MKR",
-          "value_usd": "$253.01",
-          "change_24h": "-0.32%"
+          "value_usd": "$253.18",
+          "change_24h": "-0.62%"
         },
         {
           "symbol": "UNI",
-          "price": "$7.28",
+          "price": "$7.25",
           "amount": "UNI",
-          "value_usd": "$216.46",
-          "change_24h": "-2.02%"
+          "value_usd": "$215.57",
+          "change_24h": "-3.2%"
         },
         {
           "symbol": "BNB",
-          "price": "$719.6",
+          "price": "$719.88",
           "amount": "BNB",
-          "value_usd": "$105.4",
-          "change_24h": "-1.06%"
+          "value_usd": "$105.44",
+          "change_24h": "-1.25%"
         },
         {
           "symbol": "WBTC",
-          "price": "$81,316",
+          "price": "$81,209",
           "amount": "WBTC",
-          "value_usd": "$80.55",
-          "change_24h": "-0.76%"
+          "value_usd": "$80.44",
+          "change_24h": "-0.9%"
         }
       ],
       "category": "OTC_LIQUIDITY_DESK",
       "priority": "HIGH",
-      "last_updated_utc": "2026-10-17 01:52:08 UTC"
+      "last_updated_utc": "2026-10-17 02:41:48 UTC"
     },
     "falconx": {
       "slug": "falconx",
@@ -1558,7 +1558,7 @@
       "holdings_breakdown": [],
       "category": "PRIME_BROKERAGE_EXECUTION",
       "priority": "HIGH",
-      "last_updated_utc": "2026-10-17 01:57:15 UTC"
+      "last_updated_utc": "2026-10-17 02:41:54 UTC"
     }
   },
   "whale_alerts": [],
