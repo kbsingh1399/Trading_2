@@ -1318,38 +1318,38 @@
       },
       {
         "symbol": "ETH",
-        "price": "$2,419.81",
+        "price": "$2,418.02",
         "amount": "ETH",
-        "value_usd": "$28.24K",
-        "change_24h": "-0.86%"
+        "value_usd": "$28.22K",
+        "change_24h": "-0.95%"
       },
       {
         "symbol": "AERO",
-        "price": "$0.88",
+        "price": "$0.87",
         "amount": "AERO",
-        "value_usd": "$79.93",
-        "change_24h": "-5.97%"
+        "value_usd": "$79.25",
+        "change_24h": "-6.56%"
       },
       {
         "symbol": "UNI",
-        "price": "$7.33",
+        "price": "$7.28",
         "amount": "UNI",
-        "value_usd": "$47.13",
-        "change_24h": "-1.21%"
+        "value_usd": "$46.8",
+        "change_24h": "-2.8%"
       },
       {
         "symbol": "WBTC",
-        "price": "$81,399",
+        "price": "$81,365",
         "amount": "WBTC",
-        "value_usd": "$23.88",
-        "change_24h": "-0.77%"
+        "value_usd": "$23.87",
+        "change_24h": "-0.91%"
       },
       {
         "symbol": "CBBTC",
-        "price": "$81,503",
+        "price": "$81,428",
         "amount": "CBBTC",
-        "value_usd": "$20.67",
-        "change_24h": "-0.79%"
+        "value_usd": "$20.66",
+        "change_24h": "-0.98%"
       },
       {
         "symbol": "USDT",
@@ -1360,22 +1360,22 @@
       },
       {
         "symbol": "SOL",
-        "price": "$104.28",
+        "price": "$104.17",
         "amount": "SOL",
-        "value_usd": "$9.74",
-        "change_24h": "-1.02%"
+        "value_usd": "$9.73",
+        "change_24h": "-1.26%"
       },
       {
         "symbol": "BNB",
-        "price": "$720.44",
+        "price": "$719.25",
         "amount": "BNB",
         "value_usd": "$1.84",
-        "change_24h": "-1.18%"
+        "change_24h": "-1.34%"
       }
     ],
     "category": "PREDICTION_MARKET_CUSTODY",
     "priority": "MEDIUM",
-    "last_updated_utc": "2026-10-17 00:06:38 UTC"
+    "last_updated_utc": "2026-10-17 00:52:05 UTC"
   },
   "arbitrum": {
     "slug": "arbitrum",
@@ -1386,15 +1386,43 @@
     "holdings_breakdown": [
       {
         "symbol": "ETH",
-        "price": "$376.7",
-        "amount": "",
-        "value_usd": "$238",
-        "change_24h": "-0.01%"
+        "price": "$2,415.92",
+        "amount": "ETH",
+        "value_usd": "$13.33B",
+        "change_24h": "-0.96%"
+      },
+      {
+        "symbol": "WBTC",
+        "price": "$81,314",
+        "amount": "WBTC",
+        "value_usd": "$602.08M",
+        "change_24h": "-0.97%"
+      },
+      {
+        "symbol": "USDC",
+        "price": "$1",
+        "amount": "USDC",
+        "value_usd": "$52.36M",
+        "change_24h": "\u00b10%"
+      },
+      {
+        "symbol": "LINK",
+        "price": "$12.29",
+        "amount": "LINK",
+        "value_usd": "$23.12M",
+        "change_24h": "-1.44%"
+      },
+      {
+        "symbol": "UNI",
+        "price": "$7.27",
+        "amount": "UNI",
+        "value_usd": "$7.85M",
+        "change_24h": "-2.68%"
       }
     ],
     "category": "LAYER_2_DAO",
     "priority": "LOW",
-    "last_updated_utc": "2026-10-17 00:06:44 UTC"
+    "last_updated_utc": "2026-10-17 00:52:11 UTC"
   },
   "optimism": {
     "slug": "optimism",
