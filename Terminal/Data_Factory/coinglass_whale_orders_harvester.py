@@ -546,7 +546,12 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
                                 for c in range(N):
                                     if cost_matrix[r, c] < 1e6:
                                         edges.append((cost_matrix[r, c], r, c))
-                            edges.sort(key=lambda x: x[0])
+                            edges.sort(key=lambda x: (
+                                x[0],
+                                abs(float(parsed_orders[cur_side_indices[x[1]]].get("duration_seconds", 0.0)) - (float(prev_orders[prev_side_indices[x[2]]].get("duration_seconds", 0.0)) + cycle_interval_s)),
+                                -float(prev_orders[prev_side_indices[x[2]]].get("notional_usd", 0.0)),
+                                float(prev_orders[prev_side_indices[x[2]]].get("price", 0.0))
+                            ))
                             assigned_r = set()
                             assigned_c = set()
                             row_ind = []
@@ -578,12 +583,22 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
                                 drift_bps = round(abs(cur_p - prev_p) / max(prev_p, 1e-4) * 10000.0, 2)
                                 p_dev = abs(cur_p - prev_p) / max(prev_p, 1e-4)
 
-                                # Attribution and status
+                                # Attribution and status with bounded partial fill gate (F97: c_not >= 0.10 * p_not)
                                 if c_not < p_not * 0.95:
-                                    match_status = "PARTIAL_FILL"
-                                    o["fill_pct"] = round((p_not - c_not) / p_not * 100.0, 1)
-                                    o["filled_usd"] = round(p_not - c_not, 2)
-                                    partial_fills += 1
+                                    if c_not >= p_not * 0.10:
+                                        match_status = "PARTIAL_FILL"
+                                        o["fill_pct"] = round((p_not - c_not) / p_not * 100.0, 1)
+                                        o["filled_usd"] = round(p_not - c_not, 2)
+                                        partial_fills += 1
+                                    else:
+                                        # Severe drop (>90% drop): prior whale wall canceled/swept; current small order is a new book entry!
+                                        matched_cur_indices.discard(c_idx)
+                                        matched_prev_indices.discard(p_idx)
+                                        o["track_id"] = f"{asset}_{o['side']}_{round(cur_p, 2)}_{uuid.uuid4().hex[:6]}"
+                                        o["match_status"] = "NEW_ORDER"
+                                        o["lineage"] = {"parent_track_id": prev_o.get("track_id"), "relation": "PRIOR_WALL_CANCELED_EXCESSIVE_DROP"}
+                                        new_orders += 1
+                                        continue
                                 elif c_not > p_not * 1.05:
                                     match_status = "NOTIONAL_EXPANDED"
                                     o["expanded_usd"] = round(c_not - p_not, 2)
@@ -724,7 +739,9 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
         "harvest_epoch": time.time(),
         "total_assets_queried": len(assets),
         "total_assets_scraped": len(harvested_data),
-        "total_assets_valid": sum(1 for a, d in harvested_data.items() if d.get("side_parse_health") in ["HEALTHY", "UNILATERAL_BOOK"]),
+        "total_assets_valid": sum(1 for a, d in harvested_data.items() if d.get("side_parse_health") in ["HEALTHY", "UNILATERAL_BOOK"] and d.get("orders_count", 0) > 0),
+        "total_assets_price_rejected": sum(1 for a, d in harvested_data.items() if d.get("side_parse_health") == "PRICE_SANITY_REJECTED"),
+        "total_assets_with_orders": sum(1 for a, d in harvested_data.items() if d.get("orders_count", 0) > 0),
         "total_whale_orders": grand_orders,
         "grand_total_notional_usd": round(grand_notional, 2),
         "total_duration_seconds": total_duration,

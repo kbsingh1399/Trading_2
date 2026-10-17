@@ -96,7 +96,12 @@ def match_cross_cycle_orders(cur_orders: list[dict], prev_orders: list[dict], cy
                 for c in range(N):
                     if cost_matrix[r, c] < 1e6:
                         edges.append((cost_matrix[r, c], r, c))
-            edges.sort(key=lambda x: x[0])
+            edges.sort(key=lambda x: (
+                x[0],
+                abs(float(out_orders[cur_side_indices[x[1]]].get("duration_seconds", 0.0)) - (float(prev_orders[prev_side_indices[x[2]]].get("duration_seconds", 0.0)) + cycle_interval_s)),
+                -float(prev_orders[prev_side_indices[x[2]]].get("notional_usd", 0.0)),
+                float(prev_orders[prev_side_indices[x[2]]].get("price", 0.0))
+            ))
             assigned_r = set()
             assigned_c = set()
             row_ind = []
@@ -128,10 +133,20 @@ def match_cross_cycle_orders(cur_orders: list[dict], prev_orders: list[dict], cy
                 drift_bps = round(abs(cur_p - prev_p) / max(prev_p, 1e-4) * 10000.0, 2)
 
                 if c_not < p_not * 0.95:
-                    match_status = "PARTIAL_FILL"
-                    o["fill_pct"] = round((p_not - c_not) / p_not * 100.0, 1)
-                    o["filled_usd"] = round(p_not - c_not, 2)
-                    partial_fills += 1
+                    if c_not >= p_not * 0.10:
+                        match_status = "PARTIAL_FILL"
+                        o["fill_pct"] = round((p_not - c_not) / p_not * 100.0, 1)
+                        o["filled_usd"] = round(p_not - c_not, 2)
+                        partial_fills += 1
+                    else:
+                        # Severe drop (>90% reduction): prior wall was canceled/swept; current small order is a new book entry!
+                        matched_cur_indices.discard(c_idx)
+                        matched_prev_indices.discard(p_idx)
+                        o["track_id"] = f"{o.get('asset', 'COIN')}_{o['side']}_{round(cur_p, 2)}_NEW"
+                        o["match_status"] = "NEW_ORDER"
+                        o["lineage"] = {"parent_track_id": prev_o.get("track_id"), "relation": "PRIOR_WALL_CANCELED_EXCESSIVE_DROP"}
+                        new_orders += 1
+                        continue
                 elif c_not > p_not * 1.05:
                     match_status = "NOTIONAL_EXPANDED"
                     o["expanded_usd"] = round(c_not - p_not, 2)
@@ -330,10 +345,39 @@ def test_q3_sign_persistence_four_adjacent_harvests():
     assert adjacent_gap is False  # Non-adjacent fails closed!
 
 
+def test_q2_partial_fill_bounds_prevent_drastic_drop_misattribution():
+    """Verify that severe notional drop (>90% reduction, e.g. $100k vs $5M) is NOT misattributed as partial fill."""
+    prev_orders = [
+        {"track_id": "BTC_BUY_80000_WHALE", "side": "BUY", "price": 80000.0, "notional_usd": 5000000.0, "duration_seconds": 3600.0}
+    ]
+    # Whale canceled, only $100k tiny retail order remains (98% drop < 10% remaining)
+    cur_orders = [
+        {"side": "BUY", "price": 80000.0, "notional_usd": 100000.0, "duration_seconds": 3780.0}
+    ]
+    matched, report = match_cross_cycle_orders(cur_orders, prev_orders, cycle_interval_s=180.0)
+    # Must NOT be PARTIAL_FILL
+    assert matched[0]["match_status"] == "NEW_ORDER"
+    assert matched[0]["track_id"] != "BTC_BUY_80000_WHALE"
+    # Prior whale wall must be reported in lost_orders
+    assert report["lost_orders_count"] == 1
+    assert report["lost_orders"][0]["track_id"] == "BTC_BUY_80000_WHALE"
+
+    # In contrast, a genuine partial fill (e.g. $5M dropped to $3M: 40% fill, 60% remains >= 10%)
+    cur_orders_valid_fill = [
+        {"side": "BUY", "price": 80000.0, "notional_usd": 3000000.0, "duration_seconds": 3780.0}
+    ]
+    matched_fill, report_fill = match_cross_cycle_orders(cur_orders_valid_fill, prev_orders, cycle_interval_s=180.0)
+    assert matched_fill[0]["match_status"] == "PARTIAL_FILL"
+    assert matched_fill[0]["track_id"] == "BTC_BUY_80000_WHALE"
+    assert matched_fill[0]["fill_pct"] == 40.0
+    assert report_fill["lost_orders_count"] == 0
+
+
 if __name__ == "__main__":
     test_q1_first_token_matching()
     test_q2_grid_tolerance_non_merging()
     test_q2_stacked_orders_duration_continuity_and_ties()
     test_q2_notional_expansion_handling()
+    test_q2_partial_fill_bounds_prevent_drastic_drop_misattribution()
     test_q3_sign_persistence_four_adjacent_harvests()
-    print("All hardened CoinGlass pipeline unit tests (Cycles 187-190) passed 100% successfully!")
+    print("All hardened CoinGlass pipeline unit tests (Cycles 187-192) passed 100% successfully!")
