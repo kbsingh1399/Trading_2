@@ -35,3 +35,12 @@ Data/history/**/*.json.gz
 Data/history/*/*.json.gz
 Data/history/*.json.gz
 
+# Ephemeral screenshots, backups, and sqlite write-ahead journals
+Data/*.png
+Data/*.bak
+Data/**/*.bak
+*.db-shm
+*.db-wal
+*.tmp
+docs/telemetry/*.tmp
+
