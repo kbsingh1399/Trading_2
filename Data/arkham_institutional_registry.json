@@ -1089,14 +1089,14 @@
     "holdings_breakdown": [
       {
         "symbol": "BTC",
-        "price": "$81,543",
+        "price": "$81,568",
         "amount": "BTC",
         "value_usd": "$15.11B",
-        "change_24h": "-0.69%"
+        "change_24h": "-0.85%"
       },
       {
         "symbol": "ETH",
-        "price": "$2,421.28",
+        "price": "$2,421.32",
         "amount": "ETH",
         "value_usd": "$3.79B",
         "change_24h": "-0.74%"
@@ -1105,50 +1105,50 @@
         "symbol": "DOGE",
         "price": "$0.081",
         "amount": "DOGE",
-        "value_usd": "$2.47B",
-        "change_24h": "-0.19%"
+        "value_usd": "$2.46B",
+        "change_24h": "-0.54%"
       },
       {
         "symbol": "SOL",
-        "price": "$104.31",
+        "price": "$104.39",
         "amount": "SOL",
-        "value_usd": "$898.84M",
-        "change_24h": "-1%"
+        "value_usd": "$899.53M",
+        "change_24h": "-0.94%"
       },
       {
         "symbol": "LINK",
-        "price": "$12.34",
+        "price": "$12.32",
         "amount": "LINK",
-        "value_usd": "$264.13M",
-        "change_24h": "-0.88%"
+        "value_usd": "$263.71M",
+        "change_24h": "-0.96%"
       },
       {
         "symbol": "AVAX",
-        "price": "$9.95",
+        "price": "$9.93",
         "amount": "AVAX",
-        "value_usd": "$129.79M",
-        "change_24h": "-0.9%"
+        "value_usd": "$129.53M",
+        "change_24h": "-1.1%"
       },
       {
         "symbol": "UNI",
-        "price": "$7.33",
+        "price": "$7.31",
         "amount": "UNI",
-        "value_usd": "$71.74M",
-        "change_24h": "-1.21%"
+        "value_usd": "$71.55M",
+        "change_24h": "-2.27%"
       },
       {
         "symbol": "AERO",
-        "price": "$0.88",
+        "price": "$0.87",
         "amount": "AERO",
-        "value_usd": "$12.01M",
-        "change_24h": "-6.19%"
+        "value_usd": "$11.91M",
+        "change_24h": "-6.69%"
       },
       {
         "symbol": "BNB",
-        "price": "$721.54",
+        "price": "$719.83",
         "amount": "BNB",
-        "value_usd": "$10.73M",
-        "change_24h": "-0.96%"
+        "value_usd": "$10.7M",
+        "change_24h": "-1.26%"
       },
       {
         "symbol": "USDC",
@@ -1160,7 +1160,7 @@
     ],
     "category": "RETAIL_BROKERAGE_CUSTODY",
     "priority": "MEDIUM",
-    "last_updated_utc": "2026-10-16 23:56:52 UTC"
+    "last_updated_utc": "2026-10-17 00:46:34 UTC"
   },
   "uniswap": {
     "slug": "uniswap",
@@ -1171,7 +1171,7 @@
     "holdings_breakdown": [],
     "category": "DEFI_DEX_DAO",
     "priority": "MEDIUM",
-    "last_updated_utc": "2026-10-16 23:56:58 UTC"
+    "last_updated_utc": "2026-10-17 00:46:40 UTC"
   },
   "aave": {
     "slug": "aave",
@@ -1182,17 +1182,17 @@
     "holdings_breakdown": [
       {
         "symbol": "WBTC",
-        "price": "$81,439",
+        "price": "$81,366",
         "amount": "WBTC",
         "value_usd": "$2.83B",
-        "change_24h": "-0.67%"
+        "change_24h": "-0.94%"
       },
       {
         "symbol": "CBBTC",
-        "price": "$81,505",
+        "price": "$81,469",
         "amount": "CBBTC",
-        "value_usd": "$1.66B",
-        "change_24h": "-0.78%"
+        "value_usd": "$1.65B",
+        "change_24h": "-0.98%"
       },
       {
         "symbol": "USDT",
@@ -1210,15 +1210,15 @@
       },
       {
         "symbol": "LINK",
-        "price": "$12.34",
+        "price": "$12.3",
         "amount": "LINK",
-        "value_usd": "$110.74M",
-        "change_24h": "-0.96%"
+        "value_usd": "$110.38M",
+        "change_24h": "-1.13%"
       }
     ],
     "category": "DEFI_LENDING_DAO",
     "priority": "MEDIUM",
-    "last_updated_utc": "2026-10-16 23:57:04 UTC"
+    "last_updated_utc": "2026-10-17 00:46:46 UTC"
   },
   "lido": {
     "slug": "lido",
@@ -1229,10 +1229,10 @@
     "holdings_breakdown": [
       {
         "symbol": "ETH",
-        "price": "$2,421.56",
+        "price": "$2,418.56",
         "amount": "ETH",
-        "value_usd": "$205.06M",
-        "change_24h": "-0.67%"
+        "value_usd": "$204.81M",
+        "change_24h": "-0.93%"
       },
       {
         "symbol": "USDC",
@@ -1250,57 +1250,57 @@
       },
       {
         "symbol": "SOL",
-        "price": "$104.3",
+        "price": "$104.27",
         "amount": "SOL",
         "value_usd": "$5.38M",
-        "change_24h": "-0.96%"
+        "change_24h": "-1.04%"
       },
       {
         "symbol": "MKR",
-        "price": "$1,615.66",
+        "price": "$1,612.77",
         "amount": "MKR",
         "value_usd": "$1.29K",
-        "change_24h": "-1.07%"
+        "change_24h": "-1.51%"
       },
       {
         "symbol": "BNB",
-        "price": "$720.99",
+        "price": "$719.1",
         "amount": "BNB",
-        "value_usd": "$221.74",
-        "change_24h": "-0.95%"
+        "value_usd": "$221.16",
+        "change_24h": "-1.38%"
       },
       {
         "symbol": "NEAR",
-        "price": "$5.05",
+        "price": "$5.01",
         "amount": "NEAR",
-        "value_usd": "$142.84",
-        "change_24h": "-3.63%"
+        "value_usd": "$141.71",
+        "change_24h": "-5.29%"
       },
       {
         "symbol": "LINK",
-        "price": "$12.33",
+        "price": "$12.3",
         "amount": "LINK",
-        "value_usd": "$130.98",
-        "change_24h": "-0.96%"
+        "value_usd": "$130.66",
+        "change_24h": "-1.13%"
       },
       {
         "symbol": "AVAX",
-        "price": "$9.96",
+        "price": "$9.91",
         "amount": "AVAX",
-        "value_usd": "$90.53",
-        "change_24h": "-0.7%"
+        "value_usd": "$90.08",
+        "change_24h": "-1.1%"
       },
       {
         "symbol": "UNI",
-        "price": "$7.33",
+        "price": "$7.29",
         "amount": "UNI",
-        "value_usd": "$9.91",
-        "change_24h": "-1.21%"
+        "value_usd": "$9.86",
+        "change_24h": "-2.67%"
       }
     ],
     "category": "LIQUID_STAKING_DAO",
     "priority": "MEDIUM",
-    "last_updated_utc": "2026-10-17 00:01:37 UTC"
+    "last_updated_utc": "2026-10-17 00:46:51 UTC"
   },
   "polymarket": {
     "slug": "polymarket",
