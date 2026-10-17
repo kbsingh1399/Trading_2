@@ -1,40 +1,15 @@
 {
   "daemon": "autonomous_coinglass_harvester_daemon",
-  "status": "HEALTHY",
-  "current_cycle_status": "SUCCESS",
+  "status": "DEGRADED",
+  "current_cycle_status": "FAILED",
   "pid": 15136,
-  "cycle_count": 44,
-  "error_count": 11,
+  "cycle_count": 45,
+  "error_count": 12,
   "interval_seconds": 180.0,
-  "last_heartbeat_utc": "2026-10-17T08:31:11.243735+00:00",
-  "last_heartbeat_epoch": 1792225925.1115777,
-  "last_harvest_epoch": 1792225925.0434825,
-  "last_duration_s": 53.87,
-  "total_orders_harvested": 386,
-  "grand_total_notional_usd": 227772680.0,
-  "total_assets_queried": 18,
-  "total_assets_dom_extracted": 18,
-  "total_assets_price_rejected": 5,
-  "total_assets_ingested": 10,
-  "total_assets_with_orders": 10,
-  "total_assets_scraped": 10,
-  "total_assets_valid": 10,
-  "skipped_assets": {
-    "ADA": "DYNAMIC_PRICE_SANITY: Median price 0.3000 deviates by 34.0% from live Binance price 0.2238 (>15% threshold)",
-    "LINK": "DYNAMIC_PRICE_SANITY: Median price 21.5000 deviates by 75.4% from live Binance price 12.2570 (>15% threshold)",
-    "AVAX": "DYNAMIC_PRICE_SANITY: Median price 14.5000 deviates by 44.7% from live Binance price 10.0240 (>15% threshold)",
-    "DOT": "DYNAMIC_PRICE_SANITY: Median price 1.6000 deviates by 38.4% from live Binance price 1.1563 (>15% threshold)",
-    "APT": "DYNAMIC_PRICE_SANITY: Median price 1.1500 deviates by 38.8% from live Binance price 0.8284 (>15% threshold)",
-    "TRX": "Dropdown option matching 'TRX' not found or click failed: {'status': 'NO_MATCH', 'options': ['No options']}"
-  },
+  "last_heartbeat_utc": "2026-10-17T08:34:11.343607+00:00",
+  "last_heartbeat_epoch": 1792226171.353296,
+  "last_duration_s": 120.01,
   "last_success_utc": "2026-10-17T08:31:11.243735+00:00",
   "last_error": "",
-  "last_error_utc": "2026-10-17T08:28:11.192661+00:00",
-  "backup_recovery_active": false,
-  "corruption_recovery_event": false,
-  "status_source": "coinglass_harvester_status.json",
-  "backup_mirror_paths": [
-    "C:\\Users\\SIGMA\\Documents\\Trading_2\\Data\\coinglass\\coinglass_harvester_status.bak",
-    "C:\\Users\\SIGMA\\Documents\\Trading_2\\Data\\coinglass\\backup\\coinglass_harvester_status.json"
-  ]
+  "last_error_utc": "2026-10-17T08:34:11.343607+00:00"
 }
