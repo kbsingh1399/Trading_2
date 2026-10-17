@@ -112,7 +112,7 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
                 cur_id += 1
                 await ws.send(json.dumps({"id": cur_id, "method": method, "params": params or {}}))
                 while True:
-                    raw = await ws.recv()
+                    raw = await asyncio.wait_for(ws.recv(), timeout=15.0)
                     msg = json.loads(raw)
                     if msg.get("id") == cur_id:
                         return msg

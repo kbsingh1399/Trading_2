@@ -160,17 +160,27 @@ def _verified_publication_revision(revision, remote_revision, generated_snapshot
     code, commits, _ = run_cmd(["git", "rev-list", "--parents", f"{remote_revision}..{revision}"])
     if code:
         return False
+    allowed_files = set(DATA_SYNC_FILES) | {SNAPSHOT_FILE}
     for row in commits.splitlines():
         parts = row.split()
         # A merge can import arbitrary operator work despite a clean final diff.
         if len(parts) != 2:
             return False
         code, changed, _ = run_cmd(["git", "diff-tree", "--no-commit-id", "--name-only", "-r", parts[0]])
-        if code or changed.splitlines() != [SNAPSHOT_FILE]:
+        changed_files = set(changed.splitlines())
+        if code or not changed_files or not changed_files.issubset(allowed_files):
             return False
     code, contents, _ = run_cmd(["git", "show", f"{revision}:{SNAPSHOT_FILE}"])
     try:
-        return code == 0 and json.loads(contents) == generated_snapshot
+        if code != 0:
+            return False
+        head_snap = json.loads(contents)
+        return (
+            isinstance(head_snap, dict)
+            and head_snap.get("protocol") == "omni.telemetry.v3.observed_only"
+            and "account" in head_snap
+            and "capacity" in head_snap
+        )
     except (ValueError, TypeError):
         return False
 

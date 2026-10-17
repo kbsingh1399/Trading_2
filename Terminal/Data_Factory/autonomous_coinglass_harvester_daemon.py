@@ -108,7 +108,7 @@ async def run_daemon(interval_s: float = DEFAULT_INTERVAL_S, run_once: bool = Fa
         logger.info(f"--- Cycle #{cycle_count} starting at {now_utc} ---")
 
         try:
-            harvest_result = await harvest_whale_orders()
+            harvest_result = await asyncio.wait_for(harvest_whale_orders(), timeout=120.0)
             elapsed = round(time.time() - t_cycle_start, 2)
             orders = harvest_result.get("total_whale_orders", 0)
             notional = harvest_result.get("grand_total_notional_usd", 0.0)
