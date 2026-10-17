@@ -371,17 +371,17 @@
       },
       {
         "symbol": "BNB",
-        "price": "$719.07",
+        "price": "$719.19",
         "amount": "BNB",
-        "value_usd": "$115.05K",
-        "change_24h": "-1.31%"
+        "value_usd": "$115.07K",
+        "change_24h": "-1.14%"
       },
       {
         "symbol": "ETH",
-        "price": "$2,419.52",
+        "price": "$2,416.43",
         "amount": "ETH",
-        "value_usd": "$37.45K",
-        "change_24h": "-0.72%"
+        "value_usd": "$37.4K",
+        "change_24h": "-0.66%"
       },
       {
         "symbol": "USDC",
@@ -392,15 +392,15 @@
       },
       {
         "symbol": "SOL",
-        "price": "$104.22",
+        "price": "$104.29",
         "amount": "SOL",
-        "value_usd": "$48.17",
-        "change_24h": "-1.07%"
+        "value_usd": "$48.2",
+        "change_24h": "-0.8%"
       }
     ],
     "category": "MARKET_MAKER_VENTURE",
     "priority": "MEDIUM",
-    "last_updated_utc": "2026-10-17 01:11:34 UTC"
+    "last_updated_utc": "2026-10-17 01:57:41 UTC"
   },
   "flow-traders": {
     "slug": "flow-traders",
@@ -410,86 +410,16 @@
     "portfolio_change_24h": "",
     "holdings_breakdown": [
       {
-        "symbol": "BTC",
-        "price": "$81,478",
-        "amount": "BTC",
-        "value_usd": "$4.52M",
-        "change_24h": "-0.9%"
-      },
-      {
         "symbol": "BNB",
-        "price": "$719.07",
-        "amount": "BNB",
-        "value_usd": "$28.2K",
-        "change_24h": "-1.31%"
-      },
-      {
-        "symbol": "ETH",
-        "price": "$2,419.52",
-        "amount": "ETH",
-        "value_usd": "$7.67K",
-        "change_24h": "-0.72%"
-      },
-      {
-        "symbol": "USDC",
-        "price": "$1",
-        "amount": "USDC",
-        "value_usd": "$4.05K",
-        "change_24h": "\u00b10%"
-      },
-      {
-        "symbol": "USDT",
-        "price": "$1",
-        "amount": "USDT",
-        "value_usd": "$3.89K",
-        "change_24h": "\u00b10%"
-      },
-      {
-        "symbol": "MKR",
-        "price": "$1,614.12",
-        "amount": "MKR",
-        "value_usd": "$1.29K",
-        "change_24h": "-1.28%"
-      },
-      {
-        "symbol": "UNI",
-        "price": "$7.28",
-        "amount": "UNI",
-        "value_usd": "$1.26K",
-        "change_24h": "-2.54%"
-      },
-      {
-        "symbol": "LINK",
-        "price": "$12.29",
-        "amount": "LINK",
-        "value_usd": "$665.8",
-        "change_24h": "-1.44%"
-      },
-      {
-        "symbol": "AVAX",
-        "price": "$9.92",
-        "amount": "AVAX",
-        "value_usd": "$133.97",
-        "change_24h": "-1%"
-      },
-      {
-        "symbol": "WBTC",
-        "price": "$81,320",
-        "amount": "WBTC",
-        "value_usd": "$119.87",
-        "change_24h": "-0.91%"
-      },
-      {
-        "symbol": "AAVE",
-        "price": "$154.23",
-        "amount": "AAVE",
-        "value_usd": "$108.41",
-        "change_24h": "-2.21%"
+        "price": "$144.25",
+        "amount": "",
+        "value_usd": "$3.24M",
+        "change_24h": ""
       }
     ],
     "category": "MARKET_MAKER_HFT",
     "priority": "MEDIUM",
-    "last_updated_utc": "2026-10-17 01:11:40 UTC"
+    "last_updated_utc": "2026-10-17 01:57:47 UTC"
   },
   "jane-street": {
     "slug": "jane-street",
@@ -1724,6 +1654,6 @@
     "holdings_breakdown": [],
     "category": "PRIME_BROKERAGE_EXECUTION",
     "priority": "HIGH",
-    "last_updated_utc": "2026-10-17 01:06:54 UTC"
+    "last_updated_utc": "2026-10-17 01:57:15 UTC"
   }
 }
