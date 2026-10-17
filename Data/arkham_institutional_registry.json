@@ -498,17 +498,17 @@
     "holdings_breakdown": [
       {
         "symbol": "BTC",
-        "price": "$81,500",
+        "price": "$81,642",
         "amount": "BTC",
-        "value_usd": "$25B",
-        "change_24h": "-0.57%"
+        "value_usd": "$25.05B",
+        "change_24h": "-0.63%"
       },
       {
         "symbol": "ETH",
-        "price": "$2,425.46",
+        "price": "$2,432.38",
         "amount": "ETH",
-        "value_usd": "$42.28M",
-        "change_24h": "-0.49%"
+        "value_usd": "$42.4M",
+        "change_24h": "-0.83%"
       },
       {
         "symbol": "USDC",
@@ -526,22 +526,22 @@
       },
       {
         "symbol": "BNB",
-        "price": "$720.88",
+        "price": "$721.59",
         "amount": "BNB",
         "value_usd": "$6.59K",
-        "change_24h": "-1.04%"
+        "change_24h": "-1.19%"
       },
       {
         "symbol": "AVAX",
-        "price": "$9.98",
+        "price": "$10.02",
         "amount": "AVAX",
-        "value_usd": "$32.97",
-        "change_24h": "-0.6%"
+        "value_usd": "$33.1",
+        "change_24h": "-0.99%"
       }
     ],
     "category": "SOVEREIGN_TREASURY",
     "priority": "HIGH",
-    "last_updated_utc": "2026-10-17 03:36:45 UTC"
+    "last_updated_utc": "2026-10-17 08:28:13 UTC"
   },
   "el-salvador": {
     "slug": "el-salvador",
@@ -552,15 +552,15 @@
     "holdings_breakdown": [
       {
         "symbol": "BTC",
-        "price": "$81,514",
+        "price": "$81,626",
         "amount": "BTC",
-        "value_usd": "$595.65M",
-        "change_24h": "-0.51%"
+        "value_usd": "$596.47M",
+        "change_24h": "-0.6%"
       }
     ],
     "category": "SOVEREIGN_TREASURY",
     "priority": "HIGH",
-    "last_updated_utc": "2026-10-17 03:41:44 UTC"
+    "last_updated_utc": "2026-10-17 08:28:50 UTC"
   },
   "microstrategy": {
     "slug": "microstrategy",
