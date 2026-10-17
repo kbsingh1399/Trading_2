@@ -361,28 +361,16 @@ def main():
             except Exception as hist_err:
                 logger.warning(f"Error recording auxiliary feeds to TimeSeriesDB: {hist_err}")
 
-            # Memory cleanup
-            gc.collect()
-            if os.name == "nt":
-                try:
-                    import ctypes
-                    ctypes.windll.psapi.EmptyWorkingSet(ctypes.windll.kernel32.GetCurrentProcess())
-                except Exception:
-                    pass
-
-            # Periodic System-Wide RAM Optimization every 3 cycles (~15 minutes)
-            if iteration % 3 == 0:
-                try:
-                    free_ram_script = ROOT / ".agents" / "scripts" / "free_ram.ps1"
-                    if free_ram_script.exists():
-                        subprocess.run(
-                            ["powershell", "-ExecutionPolicy", "Bypass", "-File", str(free_ram_script)],
-                            capture_output=True,
-                            timeout=30
-                        )
-                        logger.info("Autonomous System-Wide RAM Optimization executed via free_ram.ps1")
-                except Exception as free_err:
-                    logger.warning(f"Error invoking free_ram.ps1: {free_err}")
+            # Autonomous RAM & Resource Optimization (Working Set Trim & Standby Purge)
+            try:
+                from Terminal.Data_Factory import system_memory_optimizer as mem_opt
+                mem_report = mem_opt.optimize_ram(threshold_pct=75)
+                logger.info("RAM Optimization status: Load=%s%% | Avail=%.2f GB | System cleanup triggered=%s",
+                            mem_report.get("final", {}).get("memory_load_pct"),
+                            mem_report.get("final", {}).get("avail_phys_gb", 0.0),
+                            mem_report.get("triggered_system_cleanup"))
+            except Exception as mem_err:
+                logger.warning("RAM optimization step encountered error: %s", mem_err)
 
             elapsed = time.time() - t_start
             sleep_time = max(5.0, INTERVAL_SECONDS - elapsed)

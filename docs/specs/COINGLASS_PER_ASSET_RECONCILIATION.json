@@ -1,0 +1,188 @@
+{
+  "schema_version": "1.0.0",
+  "title": "CoinGlass Large Orderbook Whale Orders Per-Asset Reconciliation Artifact",
+  "harvest_timestamp_utc": "2026-10-17T08:15:03.014017+00:00",
+  "harvest_epoch": 1792224903.0140493,
+  "metrics": {
+    "total_assets_queried": 18,
+    "total_assets_dom_extracted": 18,
+    "total_assets_price_rejected": 4,
+    "total_assets_ingested": 14,
+    "total_assets_with_orders": 14,
+    "total_whale_orders": 508,
+    "grand_total_notional_usd": 216728410.0
+  },
+  "reconciliation_verification": {
+    "sum_per_asset_notional_usd": 216728410.0,
+    "recorded_grand_total_usd": 216728410.0,
+    "notional_difference_usd": 0.0,
+    "sum_per_asset_orders": 508,
+    "recorded_total_orders": 508,
+    "orders_difference": 0,
+    "arithmetic_exact_match": true
+  },
+  "per_asset_breakdown": [
+    {
+      "asset": "BTC",
+      "status": "INGESTED",
+      "notional_usd": 87130000.0,
+      "order_count": 39,
+      "buy_orders": 20,
+      "sell_orders": 19,
+      "rejection_detail": ""
+    },
+    {
+      "asset": "ETH",
+      "status": "INGESTED",
+      "notional_usd": 54284690.0,
+      "order_count": 39,
+      "buy_orders": 22,
+      "sell_orders": 17,
+      "rejection_detail": ""
+    },
+    {
+      "asset": "SOL",
+      "status": "INGESTED",
+      "notional_usd": 27464110.0,
+      "order_count": 39,
+      "buy_orders": 20,
+      "sell_orders": 19,
+      "rejection_detail": ""
+    },
+    {
+      "asset": "BNB",
+      "status": "INGESTED",
+      "notional_usd": 5702720.0,
+      "order_count": 39,
+      "buy_orders": 20,
+      "sell_orders": 19,
+      "rejection_detail": ""
+    },
+    {
+      "asset": "DOGE",
+      "status": "INGESTED",
+      "notional_usd": 4800390.0,
+      "order_count": 39,
+      "buy_orders": 21,
+      "sell_orders": 18,
+      "rejection_detail": ""
+    },
+    {
+      "asset": "XRP",
+      "status": "INGESTED",
+      "notional_usd": 3933690.0,
+      "order_count": 39,
+      "buy_orders": 17,
+      "sell_orders": 22,
+      "rejection_detail": ""
+    },
+    {
+      "asset": "ADA",
+      "status": "INGESTED",
+      "notional_usd": 4039710.0,
+      "order_count": 39,
+      "buy_orders": 20,
+      "sell_orders": 19,
+      "rejection_detail": ""
+    },
+    {
+      "asset": "LINK",
+      "status": "INGESTED",
+      "notional_usd": 4812120.0,
+      "order_count": 39,
+      "buy_orders": 20,
+      "sell_orders": 19,
+      "rejection_detail": ""
+    },
+    {
+      "asset": "AVAX",
+      "status": "INGESTED",
+      "notional_usd": 3617330.0,
+      "order_count": 39,
+      "buy_orders": 16,
+      "sell_orders": 23,
+      "rejection_detail": ""
+    },
+    {
+      "asset": "SUI",
+      "status": "INGESTED",
+      "notional_usd": 6777630.0,
+      "order_count": 39,
+      "buy_orders": 20,
+      "sell_orders": 19,
+      "rejection_detail": ""
+    },
+    {
+      "asset": "NEAR",
+      "status": "INGESTED",
+      "notional_usd": 3850490.0,
+      "order_count": 39,
+      "buy_orders": 20,
+      "sell_orders": 19,
+      "rejection_detail": ""
+    },
+    {
+      "asset": "DOT",
+      "status": "PRICE_SANITY_REJECTED",
+      "notional_usd": 0.0,
+      "order_count": 0,
+      "buy_orders": 0,
+      "sell_orders": 0,
+      "rejection_detail": "DYNAMIC_PRICE_SANITY: Median price 1.6000 deviates by 38.0% from live Binance price 1.1591 (>15% threshold)"
+    },
+    {
+      "asset": "LTC",
+      "status": "INGESTED",
+      "notional_usd": 5483240.0,
+      "order_count": 39,
+      "buy_orders": 14,
+      "sell_orders": 25,
+      "rejection_detail": ""
+    },
+    {
+      "asset": "BCH",
+      "status": "INGESTED",
+      "notional_usd": 3118990.0,
+      "order_count": 28,
+      "buy_orders": 14,
+      "sell_orders": 14,
+      "rejection_detail": ""
+    },
+    {
+      "asset": "APT",
+      "status": "PRICE_SANITY_REJECTED",
+      "notional_usd": 0.0,
+      "order_count": 0,
+      "buy_orders": 0,
+      "sell_orders": 0,
+      "rejection_detail": "STATIC_PRICE_SANITY: Median price 0.77 is outside [1.0, 150.0]"
+    },
+    {
+      "asset": "OP",
+      "status": "INGESTED",
+      "notional_usd": 1713300.0,
+      "order_count": 12,
+      "buy_orders": 4,
+      "sell_orders": 8,
+      "rejection_detail": ""
+    },
+    {
+      "asset": "ARB",
+      "status": "PRICE_SANITY_REJECTED",
+      "notional_usd": 0.0,
+      "order_count": 0,
+      "buy_orders": 0,
+      "sell_orders": 0,
+      "rejection_detail": "DYNAMIC_PRICE_SANITY: Median price 0.2500 deviates by 32.8% from live Binance price 0.1882 (>15% threshold)"
+    },
+    {
+      "asset": "TRX",
+      "status": "PRICE_SANITY_REJECTED",
+      "notional_usd": 0.0,
+      "order_count": 0,
+      "buy_orders": 0,
+      "sell_orders": 0,
+      "rejection_detail": "DYNAMIC_PRICE_SANITY: Median price 0.4000 deviates by 19.2% from live Binance price 0.3357 (>15% threshold)"
+    }
+  ]
+}

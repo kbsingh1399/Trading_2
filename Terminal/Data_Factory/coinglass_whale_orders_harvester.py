@@ -132,6 +132,234 @@ def parse_duration_seconds(dur_str: str) -> float:
     return total_sec
 
 
+def match_heading_token(heading_text: str | None, target_symbol: str) -> tuple[bool, str]:
+    """
+    First-token exact match assertion:
+    Prevents pair collisions (e.g. SOL/ETH matching ETH) and substring collisions
+    (e.g. OP in STOP, LINK in BLINK, ARB in ARBITRUM). Fails closed on empty heading.
+    """
+    if not heading_text or not heading_text.strip():
+        return False, f"Orderbook heading missing or empty: fail-closed for {target_symbol}"
+    tokens = [t.upper() for t in re.split(r'[^A-Za-z0-9]+', heading_text.strip()) if t]
+    target = target_symbol.upper()
+    first_token = tokens[0] if tokens else ""
+    exact_match = first_token in (target, f"{target}USDT", f"{target}USD")
+    if not exact_match:
+        return False, f"First-token mismatch: expected first token {target} in orderbook heading [{heading_text[:50]}] but found tokens [{', '.join(tokens[:10])}]"
+    return True, "MATCH"
+
+
+def match_cross_cycle_orders(
+    cur_orders: list[dict],
+    prev_orders: list[dict],
+    cycle_interval_s: float = 180.0,
+    ref_price: float | None = None,
+    asset: str = "COIN"
+) -> tuple[list[dict], dict]:
+    """
+    Global bipartite cross-cycle orderbook matching engine.
+    - Zero external dependencies: pure Python standard library list-of-lists cost matrix.
+    - Uses scipy.optimize.linear_sum_assignment if available; otherwise deterministic greedy edge fallback.
+    - Grid-derived price tolerance (2.5 bps, ~20 USD at 80k) guarantees distinct levels never merge.
+    - Continuous partial fill attribution: any reduction in notional is attributed as PARTIAL_FILL
+      with exact fill_pct, filled_usd, and residual_pct; ZERO arbitrary cliff threshold.
+    - Preserves unique track_ids across duration continuity and stacked-order tie breaks.
+    - Microstructure attribution for lost orders: attributes FILLED_PRICE_CROSSED vs CANCELED_UNTOUCHED
+      based on reference market price.
+    """
+    exact_matches = 0
+    partial_fills = 0
+    ambiguous_matches = 0
+    new_orders = 0
+    ambiguity_log = []
+    matched_prev_indices = set()
+    out_orders = [dict(o) for o in cur_orders]
+
+    try:
+        from scipy.optimize import linear_sum_assignment
+        has_scipy = True
+    except ImportError:
+        has_scipy = False
+
+    for side in ("BUY", "SELL"):
+        cur_side_indices = [idx for idx, o in enumerate(out_orders) if o.get("side") == side]
+        prev_side_indices = [idx for idx, p in enumerate(prev_orders) if p.get("side") == side]
+
+        if not cur_side_indices or not prev_side_indices:
+            for c_idx in cur_side_indices:
+                o = out_orders[c_idx]
+                cur_p = float(o.get("price", 0.0))
+                o["track_id"] = f"{asset}_{o['side']}_{round(cur_p, 4)}_row{c_idx}_{uuid.uuid4().hex[:6]}"
+                o["match_status"] = "NEW_ORDER"
+                o["lineage"] = {"parent_track_id": None, "relation": "FRESH_BOOK_ENTRY"}
+                new_orders += 1
+            continue
+
+        M = len(cur_side_indices)
+        N = len(prev_side_indices)
+        # Pure Python cost matrix: shape (M, N) initialized to 1e9 (zero numpy dependency)
+        cost_matrix = [[1e9 for _ in range(N)] for _ in range(M)]
+
+        for m_idx, c_idx in enumerate(cur_side_indices):
+            o = out_orders[c_idx]
+            cur_p = float(o.get("price", 0.0))
+            cur_not = float(o.get("notional_usd", 0.0))
+            cur_dur = float(o.get("duration_seconds", 0.0))
+            tick_size = 0.0001 if cur_p < 1.0 else (0.01 if cur_p < 500.0 else 0.1)
+            price_tol = max(2.0 * tick_size, 0.00025 * cur_p)
+
+            for n_idx, p_idx in enumerate(prev_side_indices):
+                prev_o = prev_orders[p_idx]
+                prev_p = float(prev_o.get("price", 0.0))
+                prev_dur = float(prev_o.get("duration_seconds", 0.0))
+
+                p_diff = abs(cur_p - prev_p)
+                p_dev = p_diff / max(prev_p, 1e-4)
+
+                if p_diff <= price_tol or p_dev <= 0.00025:
+                    exp_dur = prev_dur + cycle_interval_s
+                    dur_err = abs(cur_dur - exp_dur)
+                    norm_p = p_diff / max(price_tol, 1e-4)
+                    norm_dur = min(dur_err / 180.0, 10.0)
+                    cost_matrix[m_idx][n_idx] = norm_p * 1.0 + norm_dur * 0.25
+
+        if has_scipy:
+            row_ind, col_ind = linear_sum_assignment(cost_matrix)
+        else:
+            edges = []
+            for r in range(M):
+                for c in range(N):
+                    if cost_matrix[r][c] < 1e6:
+                        edges.append((cost_matrix[r][c], r, c))
+            edges.sort(key=lambda x: (
+                x[0],
+                abs(float(out_orders[cur_side_indices[x[1]]].get("duration_seconds", 0.0)) - (float(prev_orders[prev_side_indices[x[2]]].get("duration_seconds", 0.0)) + cycle_interval_s)),
+                -float(prev_orders[prev_side_indices[x[2]]].get("notional_usd", 0.0)),
+                float(prev_orders[prev_side_indices[x[2]]].get("price", 0.0))
+            ))
+            assigned_r = set()
+            assigned_c = set()
+            row_ind = []
+            col_ind = []
+            for cost, r, c in edges:
+                if r not in assigned_r and c not in assigned_c:
+                    assigned_r.add(r)
+                    assigned_c.add(c)
+                    row_ind.append(r)
+                    col_ind.append(c)
+
+        matched_cur_indices = set()
+        for r, c in zip(row_ind, col_ind):
+            if cost_matrix[r][c] < 1e6:
+                c_idx = cur_side_indices[r]
+                p_idx = prev_side_indices[c]
+                o = out_orders[c_idx]
+                prev_o = prev_orders[p_idx]
+
+                matched_cur_indices.add(c_idx)
+                matched_prev_indices.add(p_idx)
+
+                cur_p = float(o.get("price", 0.0))
+                prev_p = float(prev_o.get("price", 0.0))
+                c_not = float(o.get("notional_usd", 0.0))
+                p_not = float(prev_o.get("notional_usd", 0.0))
+
+                drift_usd = round(cur_p - prev_p, 4)
+                drift_bps = round(abs(cur_p - prev_p) / max(prev_p, 1e-4) * 10000.0, 2)
+                delta_notional = round(p_not - c_not, 2)
+
+                # Continuous partial fill formulation (F103: zero cliff threshold across all sizes)
+                if delta_notional > 0.0:
+                    match_status = "PARTIAL_FILL"
+                    fill_pct = round(delta_notional / max(p_not, 1e-4) * 100.0, 2)
+                    o["fill_pct"] = fill_pct
+                    o["filled_usd"] = delta_notional
+                    o["residual_pct"] = round(c_not / max(p_not, 1e-4) * 100.0, 2)
+                    partial_fills += 1
+                elif delta_notional < 0.0:
+                    match_status = "NOTIONAL_EXPANDED"
+                    o["expanded_usd"] = round(abs(delta_notional), 2)
+                    o["fill_pct"] = 0.0
+                    exact_matches += 1
+                elif drift_usd != 0.0:
+                    match_status = "PRICE_DRIFT_ACCEPTED"
+                    exact_matches += 1
+                else:
+                    match_status = "EXACT_SINGLE_MATCH"
+                    exact_matches += 1
+
+                # Tie detection (check if other candidates had tied cost within 0.05)
+                tied_count = sum(1 for c2 in range(N) if c2 != c and abs(cost_matrix[r][c2] - cost_matrix[r][c]) < 0.05 and cost_matrix[r][c2] < 1e6)
+                is_tied = (tied_count > 0)
+                if is_tied:
+                    match_status += "_TIED"
+                    ambiguous_matches += 1
+                    ambiguity_log.append({
+                        "price": cur_p,
+                        "side": side,
+                        "tied_candidates": tied_count + 1,
+                        "cost": round(float(cost_matrix[r][c]), 4),
+                        "resolved_to_track_id": prev_o.get("track_id")
+                    })
+
+                o["track_id"] = prev_o.get("track_id", prev_o.get("row_id", f"{asset}_{o['side']}_{round(cur_p, 4)}"))
+                o["match_status"] = match_status
+                o["price_dev_bps"] = drift_bps
+                o["lineage"] = {
+                    "parent_track_id": o["track_id"],
+                    "relation": match_status,
+                    "price_drift_usd": drift_usd,
+                    "price_drift_bps": drift_bps,
+                    "global_assignment_cost": round(float(cost_matrix[r][c]), 4)
+                }
+
+        # Unassigned current orders become NEW_ORDER with unique IDs
+        for m_idx, c_idx in enumerate(cur_side_indices):
+            if c_idx not in matched_cur_indices:
+                o = out_orders[c_idx]
+                cur_p = float(o.get("price", 0.0))
+                o["track_id"] = f"{asset}_{o['side']}_{round(cur_p, 4)}_row{c_idx}_{uuid.uuid4().hex[:6]}"
+                o["match_status"] = "NEW_ORDER"
+                o["lineage"] = {"parent_track_id": None, "relation": "FRESH_BOOK_ENTRY"}
+                new_orders += 1
+
+    # Track lost orders with microstructure attribution (FILLED_PRICE_CROSSED vs CANCELED_UNTOUCHED)
+    lost_orders = []
+    for p_idx, p_o in enumerate(prev_orders):
+        if p_idx not in matched_prev_indices:
+            p_side = p_o.get("side")
+            p_px = float(p_o.get("price", 0.0))
+            if ref_price is not None and ref_price > 0:
+                if p_side == "BUY":
+                    term_status = "FILLED_PRICE_CROSSED" if ref_price <= p_px else "CANCELED_UNTOUCHED"
+                elif p_side == "SELL":
+                    term_status = "FILLED_PRICE_CROSSED" if ref_price >= p_px else "CANCELED_UNTOUCHED"
+                else:
+                    term_status = "CANCELED_OR_FILLED"
+            else:
+                term_status = "CANCELED_OR_FILLED"
+
+            lost_orders.append({
+                "track_id": p_o.get("track_id", p_o.get("row_id")),
+                "side": p_side,
+                "price": p_px,
+                "last_notional_usd": p_o.get("notional_usd"),
+                "terminal_status": term_status
+            })
+
+    report = {
+        "total_orders": len(out_orders),
+        "exact_matches": exact_matches,
+        "partial_fills": partial_fills,
+        "ambiguous_matches": ambiguous_matches,
+        "new_orders": new_orders,
+        "lost_orders_count": len(lost_orders),
+        "ambiguity_log": ambiguity_log,
+        "lost_orders": lost_orders
+    }
+    return out_orders, report
+
+
 async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
     OUTPUT_SNAPSHOT_DIR.mkdir(parents=True, exist_ok=True)
     t_start = time.time()
@@ -475,181 +703,16 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
                                 }
                                 continue
 
-                    # Cross-Cycle Global Bipartite Matching (Q2 / C191: Hungarian Linear Sum Assignment)
-                    # Eliminates greedy DOM-order dependence, guarantees bijective global optimality,
-                    # explicitly logs and attributes price drift, and reports tied candidates.
+                    # Cross-Cycle Global Bipartite Matching (Q2 / C191 / C194: zero-dependency Hungarian / greedy fallback)
                     prev_orders = prev_snapshot_data.get(asset, {}).get("all_orders", [])
-                    exact_matches = 0
-                    partial_fills = 0
-                    ambiguous_matches = 0
-                    new_orders = 0
-                    ambiguity_log = []
-                    matched_prev_indices = set()
-
-                    try:
-                        from scipy.optimize import linear_sum_assignment
-                        has_scipy = True
-                    except ImportError:
-                        has_scipy = False
-
-                    for side in ("BUY", "SELL"):
-                        cur_side_indices = [idx for idx, o in enumerate(parsed_orders) if o.get("side") == side]
-                        prev_side_indices = [idx for idx, p in enumerate(prev_orders) if p.get("side") == side]
-
-                        if not cur_side_indices or not prev_side_indices:
-                            for c_idx in cur_side_indices:
-                                o = parsed_orders[c_idx]
-                                cur_p = float(o.get("price", 0.0))
-                                o["track_id"] = f"{asset}_{o['side']}_{round(cur_p, 4)}_row{c_idx}_{uuid.uuid4().hex[:6]}"
-                                o["match_status"] = "NEW_ORDER"
-                                o["lineage"] = {"parent_track_id": None, "relation": "FRESH_BOOK_ENTRY"}
-                                new_orders += 1
-                            continue
-
-                        # Construct Cost Matrix of shape (M, N)
-                        M = len(cur_side_indices)
-                        N = len(prev_side_indices)
-                        import numpy as np
-                        cost_matrix = np.full((M, N), 1e9, dtype=np.float64)
-
-                        for m_idx, c_idx in enumerate(cur_side_indices):
-                            o = parsed_orders[c_idx]
-                            cur_p = float(o.get("price", 0.0))
-                            cur_not = float(o.get("notional_usd", 0.0))
-                            cur_dur = float(o.get("duration_seconds", 0.0))
-                            tick_size = 0.0001 if cur_p < 1.0 else (0.01 if cur_p < 500.0 else 0.1)
-                            price_tol = max(2.0 * tick_size, 0.00025 * cur_p)
-
-                            for n_idx, p_idx in enumerate(prev_side_indices):
-                                prev_o = prev_orders[p_idx]
-                                prev_p = float(prev_o.get("price", 0.0))
-                                prev_not = float(prev_o.get("notional_usd", 0.0))
-                                prev_dur = float(prev_o.get("duration_seconds", 0.0))
-
-                                p_diff = abs(cur_p - prev_p)
-                                p_dev = p_diff / max(prev_p, 1e-4)
-
-                                if p_diff <= price_tol or p_dev <= 0.00025:
-                                    exp_dur = prev_dur + cycle_interval_s
-                                    dur_err = abs(cur_dur - exp_dur)
-                                    norm_p = p_diff / max(price_tol, 1e-4)
-                                    norm_dur = min(dur_err / 180.0, 10.0)
-                                    # Primary weight: price closeness (1.0), Secondary: duration continuity (0.25)
-                                    cost_matrix[m_idx, n_idx] = norm_p * 1.0 + norm_dur * 0.25
-
-                        # Solve optimal linear sum assignment
-                        if has_scipy:
-                            row_ind, col_ind = linear_sum_assignment(cost_matrix)
-                        else:
-                            # Fallback greedy on sorted edge costs
-                            edges = []
-                            for r in range(M):
-                                for c in range(N):
-                                    if cost_matrix[r, c] < 1e6:
-                                        edges.append((cost_matrix[r, c], r, c))
-                            edges.sort(key=lambda x: (
-                                x[0],
-                                abs(float(parsed_orders[cur_side_indices[x[1]]].get("duration_seconds", 0.0)) - (float(prev_orders[prev_side_indices[x[2]]].get("duration_seconds", 0.0)) + cycle_interval_s)),
-                                -float(prev_orders[prev_side_indices[x[2]]].get("notional_usd", 0.0)),
-                                float(prev_orders[prev_side_indices[x[2]]].get("price", 0.0))
-                            ))
-                            assigned_r = set()
-                            assigned_c = set()
-                            row_ind = []
-                            col_ind = []
-                            for cost, r, c in edges:
-                                if r not in assigned_r and c not in assigned_c:
-                                    assigned_r.add(r)
-                                    assigned_c.add(c)
-                                    row_ind.append(r)
-                                    col_ind.append(c)
-
-                        matched_cur_indices = set()
-                        for r, c in zip(row_ind, col_ind):
-                            if cost_matrix[r, c] < 1e6:
-                                c_idx = cur_side_indices[r]
-                                p_idx = prev_side_indices[c]
-                                o = parsed_orders[c_idx]
-                                prev_o = prev_orders[p_idx]
-
-                                matched_cur_indices.add(c_idx)
-                                matched_prev_indices.add(p_idx)
-
-                                cur_p = float(o.get("price", 0.0))
-                                prev_p = float(prev_o.get("price", 0.0))
-                                c_not = float(o.get("notional_usd", 0.0))
-                                p_not = float(prev_o.get("notional_usd", 0.0))
-
-                                drift_usd = round(cur_p - prev_p, 4)
-                                drift_bps = round(abs(cur_p - prev_p) / max(prev_p, 1e-4) * 10000.0, 2)
-                                p_dev = abs(cur_p - prev_p) / max(prev_p, 1e-4)
-
-                                # Attribution and status with continuous partial fill rule (F103: no step threshold cliff)
-                                if c_not < p_not * 0.95:
-                                    match_status = "PARTIAL_FILL"
-                                    o["fill_pct"] = round((p_not - c_not) / p_not * 100.0, 1)
-                                    o["filled_usd"] = round(p_not - c_not, 2)
-                                    o["residual_pct"] = round(c_not / p_not * 100.0, 1)
-                                    partial_fills += 1
-                                elif c_not > p_not * 1.05:
-                                    match_status = "NOTIONAL_EXPANDED"
-                                    o["expanded_usd"] = round(c_not - p_not, 2)
-                                    o["fill_pct"] = 0.0
-                                    exact_matches += 1
-                                elif drift_usd != 0.0:
-                                    match_status = "PRICE_DRIFT_ACCEPTED"
-                                    exact_matches += 1
-                                else:
-                                    match_status = "EXACT_SINGLE_MATCH"
-                                    exact_matches += 1
-
-                                # Tie detection (check if other candidates had tied cost within 0.05)
-                                tied_count = sum(1 for c2 in range(N) if c2 != c and abs(cost_matrix[r, c2] - cost_matrix[r, c]) < 0.05 and cost_matrix[r, c2] < 1e6)
-                                is_tied = (tied_count > 0)
-                                if is_tied:
-                                    match_status += "_TIED"
-                                    ambiguous_matches += 1
-                                    ambiguity_log.append({
-                                        "price": cur_p,
-                                        "side": side,
-                                        "tied_candidates": tied_count + 1,
-                                        "cost": round(float(cost_matrix[r, c]), 4),
-                                        "resolved_to_track_id": prev_o.get("track_id")
-                                    })
-
-                                o["track_id"] = prev_o.get("track_id", prev_o.get("row_id", f"{asset}_{o['side']}_{round(cur_p, 4)}"))
-                                o["match_status"] = match_status
-                                o["price_dev_bps"] = drift_bps
-                                o["lineage"] = {
-                                    "parent_track_id": o["track_id"],
-                                    "relation": match_status,
-                                    "price_drift_usd": drift_usd,
-                                    "price_drift_bps": drift_bps,
-                                    "global_assignment_cost": round(float(cost_matrix[r, c]), 4)
-                                }
-
-                        # Unassigned current orders become NEW_ORDER with unique IDs
-                        for m_idx, c_idx in enumerate(cur_side_indices):
-                            if c_idx not in matched_cur_indices:
-                                o = parsed_orders[c_idx]
-                                cur_p = float(o.get("price", 0.0))
-                                o["track_id"] = f"{asset}_{o['side']}_{round(cur_p, 4)}_row{c_idx}_{uuid.uuid4().hex[:6]}"
-                                o["match_status"] = "NEW_ORDER"
-                                o["lineage"] = {"parent_track_id": None, "relation": "FRESH_BOOK_ENTRY"}
-                                new_orders += 1
-
-                    # Track lost orders (prior resting orders filled or canceled in this cycle)
-                    lost_orders = [
-                        {
-                            "track_id": p_o.get("track_id", p_o.get("row_id")),
-                            "side": p_o.get("side"),
-                            "price": p_o.get("price"),
-                            "last_notional_usd": p_o.get("notional_usd"),
-                            "terminal_status": "FILLED_OR_CANCELED"
-                        }
-                        for p_idx, p_o in enumerate(prev_orders)
-                        if p_idx not in matched_prev_indices
-                    ]
+                    ref_px = live_binance_prices.get(asset)
+                    parsed_orders, ambiguity_report = match_cross_cycle_orders(
+                        cur_orders=parsed_orders,
+                        prev_orders=prev_orders,
+                        cycle_interval_s=cycle_interval_s,
+                        ref_price=ref_px,
+                        asset=asset
+                    )
 
                     elapsed = round(time.time() - t_asset_start, 2)
                     has_buy = buy_notional > 0
@@ -670,18 +733,10 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
                         "oldest_order_hours": round(max_dur_sec / 3600.0, 2),
                         "top_whale_walls": sorted(parsed_orders, key=lambda x: x["notional_usd"], reverse=True)[:5],
                         "all_orders": parsed_orders,
-                        "ambiguity_report": {
-                            "total_orders": len(parsed_orders),
-                            "exact_matches": exact_matches,
-                            "partial_fills": partial_fills,
-                            "ambiguous_matches": ambiguous_matches,
-                            "new_orders": new_orders,
-                            "lost_orders_count": len(lost_orders),
-                            "ambiguity_log": ambiguity_log[:5],
-                            "lost_orders": lost_orders[:5]
-                        },
+                        "ambiguity_report": ambiguity_report,
                         "scrape_duration_s": elapsed
                     }
+
                     print(f"[{idx+1}/{len(assets)}] {asset:<5} -> Heading: '{extracted_heading}' | {len(parsed_orders):<3} Whale Orders | Notional: ${buy_notional + sell_notional:,.0f} | Oldest: {round(max_dur_sec/3600.0, 1)}h ({elapsed}s)")
                 except Exception as asset_err:
                     reason = f"ASSET_EXTRACTION_EXCEPTION: {type(asset_err).__name__}: {asset_err}"

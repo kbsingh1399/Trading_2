@@ -153,12 +153,16 @@ async def run_daemon(interval_s: float = DEFAULT_INTERVAL_S, run_once: bool = Fa
             elapsed = round(time.time() - t_cycle_start, 2)
             orders = harvest_result.get("total_whale_orders", 0)
             notional = harvest_result.get("grand_total_notional_usd", 0.0)
-            assets_count = harvest_result.get("total_assets_scraped", 0)
+            assets_queried = harvest_result.get("total_assets_queried", len(harvest_result.get("assets", {})))
+            assets_ingested = harvest_result.get("total_assets_ingested", 0)
+            assets_price_rejected = harvest_result.get("total_assets_price_rejected", 0)
+            assets_dom_extracted = harvest_result.get("total_assets_dom_extracted", assets_queried)
+            assets_with_orders = harvest_result.get("total_assets_with_orders", 0)
             last_success_utc = now_utc
 
             logger.info(
                 f"Cycle #{cycle_count} SUCCESS: {orders} whale orders (${notional:,.0f} notional) "
-                f"across {assets_count} assets in {elapsed}s."
+                f"across {assets_ingested} ingested assets ({assets_price_rejected} price-rejected, {assets_queried} queried) in {elapsed}s."
             )
 
             status_payload = {
@@ -175,8 +179,13 @@ async def run_daemon(interval_s: float = DEFAULT_INTERVAL_S, run_once: bool = Fa
                 "last_duration_s": elapsed,
                 "total_orders_harvested": orders,
                 "grand_total_notional_usd": notional,
-                "total_assets_scraped": assets_count,
-                "total_assets_valid": harvest_result.get("total_assets_valid", assets_count),
+                "total_assets_queried": assets_queried,
+                "total_assets_dom_extracted": assets_dom_extracted,
+                "total_assets_price_rejected": assets_price_rejected,
+                "total_assets_ingested": assets_ingested,
+                "total_assets_with_orders": assets_with_orders,
+                "total_assets_scraped": assets_ingested,
+                "total_assets_valid": assets_ingested,
                 "skipped_assets": harvest_result.get("skipped_assets", {}),
                 "last_success_utc": last_success_utc,
                 "last_error": last_error_message,
@@ -230,6 +239,11 @@ async def run_daemon(interval_s: float = DEFAULT_INTERVAL_S, run_once: bool = Fa
             await asyncio.sleep(min(2.0, max(0.1, sleep_until - time.time())))
 
         gc.collect()
+        try:
+            from Terminal.Data_Factory.system_memory_optimizer import trim_current_process_working_set
+            trim_current_process_working_set()
+        except Exception:
+            pass
 
     logger.info("Daemon loop terminated. Cleaning up PID file.")
     try:

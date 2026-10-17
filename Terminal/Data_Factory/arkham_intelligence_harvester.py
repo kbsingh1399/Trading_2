@@ -60,17 +60,17 @@ INSTITUTIONAL_ROSTER: List[Dict[str, str]] = [
     {"slug": "jump-trading", "name": "Jump Crypto", "category": "MARKET_MAKER_HFT", "priority": "HIGH"},
     {"slug": "cumberland", "name": "Cumberland DRW", "category": "OTC_LIQUIDITY_DESK", "priority": "HIGH"},
     {"slug": "falconx", "name": "FalconX", "category": "PRIME_BROKERAGE_EXECUTION", "priority": "HIGH"},
-    {"slug": "gsr", "name": "GSR Markets", "category": "MARKET_MAKER_ALGO", "priority": "MEDIUM"},
-    {"slug": "amber-group", "name": "Amber Group", "category": "MARKET_MAKER_CEFI", "priority": "MEDIUM"},
+    {"slug": "gsr-markets", "name": "GSR Markets", "category": "MARKET_MAKER_ALGO", "priority": "MEDIUM"},
+    {"slug": "amber", "name": "Amber Group", "category": "MARKET_MAKER_CEFI", "priority": "MEDIUM"},
     {"slug": "dwf-labs", "name": "DWF Labs", "category": "MARKET_MAKER_VENTURE", "priority": "MEDIUM"},
     {"slug": "flow-traders", "name": "Flow Traders", "category": "MARKET_MAKER_HFT", "priority": "MEDIUM"},
     {"slug": "jane-street", "name": "Jane Street", "category": "MARKET_MAKER_HFT", "priority": "MEDIUM"},
 
     # --- SECTOR 3: SOVEREIGN GOVERNMENTS & STATE TREASURIES ---
     {"slug": "usg", "name": "U.S. Government", "category": "SOVEREIGN_TREASURY", "priority": "HIGH"},
-    {"slug": "german-government", "name": "German Government (BKA)", "category": "SOVEREIGN_TREASURY", "priority": "MEDIUM"},
-    {"slug": "uk-government", "name": "U.K. Government", "category": "SOVEREIGN_TREASURY", "priority": "MEDIUM"},
-    {"slug": "royal-government-of-bhutan", "name": "Royal Government of Bhutan", "category": "SOVEREIGN_TREASURY", "priority": "MEDIUM"},
+    {"slug": "germany", "name": "German Government (BKA)", "category": "SOVEREIGN_TREASURY", "priority": "MEDIUM"},
+    {"slug": "uk", "name": "U.K. Government", "category": "SOVEREIGN_TREASURY", "priority": "MEDIUM"},
+    {"slug": "druk-holding-investments", "name": "Royal Government of Bhutan (DHI)", "category": "SOVEREIGN_TREASURY", "priority": "MEDIUM"},
     {"slug": "el-salvador", "name": "El Salvador Treasury", "category": "SOVEREIGN_TREASURY", "priority": "HIGH"},
 
     # --- SECTOR 4: CORPORATE TREASURIES & STABLECOINS ---
@@ -79,7 +79,7 @@ INSTITUTIONAL_ROSTER: List[Dict[str, str]] = [
     {"slug": "tether", "name": "Tether Treasury", "category": "STABLECOIN_RESERVE", "priority": "HIGH"},
     {"slug": "circle", "name": "Circle Treasury", "category": "STABLECOIN_RESERVE", "priority": "HIGH"},
     {"slug": "mt-gox", "name": "Mt. Gox Trustee", "category": "INSOLVENCY_TRUSTEE", "priority": "HIGH"},
-    {"slug": "block-inc", "name": "Block Inc (Square)", "category": "CORPORATE_TREASURY", "priority": "MEDIUM"},
+    {"slug": "cash-app", "name": "Block Inc (Square / Cash App)", "category": "CORPORATE_TREASURY", "priority": "MEDIUM"},
 
     # --- SECTOR 5: CENTRALIZED EXCHANGES & PRIME CUSTODIANS ---
     {"slug": "binance", "name": "Binance Reserves", "category": "CENTRALIZED_EXCHANGE", "priority": "HIGH"},
@@ -89,7 +89,7 @@ INSTITUTIONAL_ROSTER: List[Dict[str, str]] = [
     {"slug": "kraken", "name": "Kraken Reserves", "category": "CENTRALIZED_EXCHANGE", "priority": "HIGH"},
     {"slug": "deribit", "name": "Deribit Derivatives", "category": "DERIVATIVES_EXCHANGE", "priority": "HIGH"},
     {"slug": "bitfinex", "name": "Bitfinex Reserves", "category": "CENTRALIZED_EXCHANGE", "priority": "MEDIUM"},
-    {"slug": "htx", "name": "HTX (Huobi)", "category": "CENTRALIZED_EXCHANGE", "priority": "LOW"},
+    {"slug": "huobi", "name": "HTX (Huobi)", "category": "CENTRALIZED_EXCHANGE", "priority": "LOW"},
     {"slug": "gate-io", "name": "Gate.io", "category": "CENTRALIZED_EXCHANGE", "priority": "LOW"},
     {"slug": "robinhood", "name": "Robinhood Crypto", "category": "RETAIL_BROKERAGE_CUSTODY", "priority": "MEDIUM"},
 
@@ -97,10 +97,10 @@ INSTITUTIONAL_ROSTER: List[Dict[str, str]] = [
     {"slug": "uniswap", "name": "Uniswap Foundation / Timelock", "category": "DEFI_DEX_DAO", "priority": "MEDIUM"},
     {"slug": "aave", "name": "Aave Governance", "category": "DEFI_LENDING_DAO", "priority": "MEDIUM"},
     {"slug": "lido", "name": "Lido DAO", "category": "LIQUID_STAKING_DAO", "priority": "MEDIUM"},
-    {"slug": "maker", "name": "Maker / Sky Protocol", "category": "DEFI_CDP_DAO", "priority": "MEDIUM"},
-    {"slug": "aerodrome", "name": "Aerodrome Finance", "category": "BASE_DEX_LIQUIDITY", "priority": "MEDIUM"},
-    {"slug": "drift", "name": "Drift Protocol", "category": "SOLANA_PERP_DEX", "priority": "MEDIUM"},
-    {"slug": "curve", "name": "Curve Finance", "category": "DEFI_STABLE_SWAP", "priority": "LOW"},
+    {"slug": "makerdao", "name": "Maker / Sky Protocol", "category": "DEFI_CDP_DAO", "priority": "MEDIUM"},
+    {"slug": "aerodrome-finance", "name": "Aerodrome Finance", "category": "BASE_DEX_LIQUIDITY", "priority": "MEDIUM"},
+    {"slug": "drift-protocol", "name": "Drift Protocol", "category": "SOLANA_PERP_DEX", "priority": "MEDIUM"},
+    {"slug": "curve-fi", "name": "Curve Finance", "category": "DEFI_STABLE_SWAP", "priority": "LOW"},
     {"slug": "polymarket", "name": "Polymarket Liquidity", "category": "PREDICTION_MARKET_CUSTODY", "priority": "MEDIUM"},
     {"slug": "arbitrum", "name": "Arbitrum Foundation", "category": "LAYER_2_DAO", "priority": "LOW"},
     {"slug": "optimism", "name": "Optimism Collective", "category": "LAYER_2_DAO", "priority": "LOW"}
@@ -116,6 +116,7 @@ KNOWN_EXCHANGES = {
     "deribit": "Deribit",
     "bitfinex": "Bitfinex",
     "htx": "HTX",
+    "huobi": "HTX",
     "gate.io": "Gate.io",
     "gate-io": "Gate.io",
     "mexc": "MEXC",
@@ -130,6 +131,7 @@ KNOWN_MARKET_MAKERS = {
     "jump": "Jump Crypto",
     "cumberland": "Cumberland",
     "gsr": "GSR Markets",
+    "gsr-markets": "GSR Markets",
     "amber": "Amber Group",
     "dwf": "DWF Labs",
     "falconx": "FalconX",
@@ -155,8 +157,12 @@ KNOWN_SOVEREIGN_TREASURIES = {
     "usg": "U.S. Government",
     "u.s. government": "U.S. Government",
     "german": "German Government",
+    "germany": "German Government",
+    "uk": "U.K. Government",
     "uk-government": "U.K. Government",
     "bhutan": "Royal Government of Bhutan",
+    "druk": "Royal Government of Bhutan",
+    "druk-holding-investments": "Royal Government of Bhutan",
     "el salvador": "El Salvador"
 }
 
@@ -168,18 +174,25 @@ KNOWN_CORPORATE_TREASURIES = {
     "circle": "Circle Treasury",
     "mt. gox": "Mt. Gox Trustee",
     "mt-gox": "Mt. Gox Trustee",
-    "block": "Block Inc"
+    "block": "Block Inc",
+    "cash-app": "Block Inc (Square / Cash App)",
+    "cash app": "Block Inc (Square / Cash App)"
 }
 
 KNOWN_PROTOCOLS = {
     "uniswap": "Uniswap",
     "curve": "Curve",
+    "curve-fi": "Curve",
     "aave": "Aave",
     "maker": "MakerDAO / Sky",
+    "makerdao": "MakerDAO / Sky",
+    "sky": "MakerDAO / Sky",
     "lido": "Lido",
     "polymarket": "Polymarket",
     "drift": "Drift Protocol",
+    "drift-protocol": "Drift Protocol",
     "aerodrome": "Aerodrome Finance",
+    "aerodrome-finance": "Aerodrome Finance",
     "arbitrum": "Arbitrum",
     "optimism": "Optimism"
 }
@@ -287,6 +300,22 @@ class ArkhamBatchRotationPipeline:
         self._save_state()
         return batch
 
+    def prune_orphaned_cdp_tabs(self, keep_tab_id: Optional[str] = None):
+        """Ensure no stray Arkham entity tabs remain open in the user's browser."""
+        try:
+            tabs = json.loads(urllib.request.urlopen(f"http://127.0.0.1:{self.cdp_port}/json", timeout=3).read())
+            for t in tabs:
+                tid = t.get("id")
+                url = t.get("url", "")
+                if tid != keep_tab_id and "/explorer/entity/" in url and t.get("type") == "page":
+                    try:
+                        urllib.request.urlopen(f"http://127.0.0.1:{self.cdp_port}/json/close/{tid}", timeout=2)
+                        logger.info("Pruned orphaned Arkham entity tab: %s (%s)", t.get("title", ""), tid)
+                    except Exception:
+                        pass
+        except Exception as exc:
+            logger.debug("Orphaned tab prune check: %s", exc)
+
     async def harvest_entity_cdp(self, entity_meta: Dict[str, str]) -> Optional[Dict[str, Any]]:
         slug = entity_meta["slug"]
         url = f"https://arkm.com/explorer/entity/{slug}"
@@ -299,14 +328,23 @@ class ArkhamBatchRotationPipeline:
             ws_url = tab["webSocketDebuggerUrl"]
 
             async with websockets.connect(ws_url, max_size=30 * 1024 * 1024, open_timeout=8) as ws:
-                # Dynamic Hydration Polling Loop: wait until entity details / Addresses hydrate
-                for _ in range(6):
-                    await asyncio.sleep(1.0)
+                # Instant 404 / ENTITY NOT FOUND and Hydration Polling Loop
+                for _ in range(5):
+                    await asyncio.sleep(0.8)
                     try:
-                        check_js = "document.body.innerText.includes('Addresses') || document.body.innerText.includes('$')"
+                        check_js = """(() => {
+                            const text = document.body.innerText || '';
+                            if (text.includes('ENTITY NOT FOUND') || text.includes('does not exist')) return 'NOT_FOUND';
+                            if (text.includes('Addresses') || text.includes('$')) return 'HYDRATED';
+                            return 'PENDING';
+                        })()"""
                         await ws.send(json.dumps({"id": 99, "method": "Runtime.evaluate", "params": {"expression": check_js, "returnByValue": True}}))
                         check_res = json.loads(await asyncio.wait_for(ws.recv(), timeout=2.0))
-                        if check_res.get("result", {}).get("result", {}).get("value") is True:
+                        state = check_res.get("result", {}).get("result", {}).get("value")
+                        if state == "NOT_FOUND":
+                            logger.warning("Arkham entity '%s' (slug: %s) returned ENTITY NOT FOUND. Aborting instantly.", entity_meta["name"], slug)
+                            return None
+                        if state == "HYDRATED":
                             break
                     except Exception:
                         pass
@@ -410,9 +448,15 @@ class ArkhamBatchRotationPipeline:
                     urllib.request.urlopen(f"http://127.0.0.1:{self.cdp_port}/json/close/{tab_id}", timeout=4)
                 except Exception as close_err:
                     logger.warning("Could not close tab %s: %s", tab_id, close_err)
+            try:
+                from Terminal.Data_Factory.system_memory_optimizer import trim_current_process_working_set
+                trim_current_process_working_set()
+            except Exception:
+                pass
 
     async def run_batch(self, batch: List[Dict[str, str]]) -> Dict[str, Any]:
         """Execute a batch of entities sequentially with rate-limit protection."""
+        self.prune_orphaned_cdp_tabs()
         registry = {}
         if REGISTRY_PATH.exists():
             try:
@@ -444,6 +488,14 @@ class ArkhamBatchRotationPipeline:
             json.dump(registry, f, indent=2)
 
         self._save_state()
+        self.prune_orphaned_cdp_tabs()
+
+        try:
+            from Terminal.Data_Factory.system_memory_optimizer import trim_current_process_working_set
+            trim_current_process_working_set()
+        except Exception:
+            pass
+
         return registry
 
 
