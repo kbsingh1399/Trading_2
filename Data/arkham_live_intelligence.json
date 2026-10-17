@@ -1,5 +1,5 @@
 {
-  "as_of_utc": "2026-10-16 23:57:06 UTC",
+  "as_of_utc": "2026-10-17 00:02:19 UTC",
   "source": "Arkham Intelligence Upgraded Harvester (arkm.com via Chrome CDP)",
   "filter_applied": "",
   "feed_status": "CONNECTED_NO_TRANSFERS",
@@ -1209,10 +1209,10 @@
       "holdings_breakdown": [
         {
           "symbol": "ETH",
-          "price": "$2,422.66",
+          "price": "$2,421.56",
           "amount": "ETH",
-          "value_usd": "$205.15M",
-          "change_24h": "-1.27%"
+          "value_usd": "$205.06M",
+          "change_24h": "-0.67%"
         },
         {
           "symbol": "USDC",
@@ -1233,54 +1233,54 @@
           "price": "$104.3",
           "amount": "SOL",
           "value_usd": "$5.38M",
-          "change_24h": "-1.37%"
+          "change_24h": "-0.96%"
         },
         {
           "symbol": "MKR",
-          "price": "$1,616.49",
+          "price": "$1,615.66",
           "amount": "MKR",
           "value_usd": "$1.29K",
-          "change_24h": "-1.69%"
+          "change_24h": "-1.07%"
         },
         {
           "symbol": "BNB",
-          "price": "$721.94",
+          "price": "$720.99",
           "amount": "BNB",
-          "value_usd": "$222.03",
-          "change_24h": "-0.98%"
+          "value_usd": "$221.74",
+          "change_24h": "-0.95%"
         },
         {
           "symbol": "NEAR",
-          "price": "$5.08",
+          "price": "$5.05",
           "amount": "NEAR",
-          "value_usd": "$143.69",
-          "change_24h": "-4.51%"
+          "value_usd": "$142.84",
+          "change_24h": "-3.63%"
         },
         {
           "symbol": "LINK",
           "price": "$12.33",
           "amount": "LINK",
           "value_usd": "$130.98",
-          "change_24h": "-1.44%"
+          "change_24h": "-0.96%"
         },
         {
           "symbol": "AVAX",
-          "price": "$9.97",
+          "price": "$9.96",
           "amount": "AVAX",
-          "value_usd": "$90.63",
-          "change_24h": "-0.89%"
+          "value_usd": "$90.53",
+          "change_24h": "-0.7%"
         },
         {
           "symbol": "UNI",
-          "price": "$7.32",
+          "price": "$7.33",
           "amount": "UNI",
-          "value_usd": "$9.9",
-          "change_24h": "-1.88%"
+          "value_usd": "$9.91",
+          "change_24h": "-1.21%"
         }
       ],
       "category": "LIQUID_STAKING_DAO",
       "priority": "MEDIUM",
-      "last_updated_utc": "2026-10-16 23:11:42 UTC"
+      "last_updated_utc": "2026-10-17 00:01:37 UTC"
     },
     "polymarket": {
       "slug": "polymarket",
