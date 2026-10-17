@@ -1,5 +1,5 @@
 {
-  "as_of_utc": "2026-10-17 10:01:00 UTC",
+  "as_of_utc": "2026-10-17 10:06:01 UTC",
   "source": "Arkham Intelligence Upgraded Harvester (arkm.com via Chrome CDP)",
   "filter_applied": "",
   "feed_status": "CONNECTED_NO_TRANSFERS",
@@ -694,15 +694,15 @@
       "holdings_breakdown": [
         {
           "symbol": "BTC",
-          "price": "$81,631",
+          "price": "$81,612",
           "amount": "BTC",
-          "value_usd": "$596.51M",
-          "change_24h": "-0.67%"
+          "value_usd": "$596.37M",
+          "change_24h": "-0.45%"
         }
       ],
       "category": "SOVEREIGN_TREASURY",
       "priority": "HIGH",
-      "last_updated_utc": "2026-10-17 09:15:49 UTC"
+      "last_updated_utc": "2026-10-17 10:05:35 UTC"
     },
     "microstrategy": {
       "slug": "microstrategy",
@@ -713,15 +713,15 @@
       "holdings_breakdown": [
         {
           "symbol": "BTC",
-          "price": "$81,617",
+          "price": "$81,576",
           "amount": "BTC",
-          "value_usd": "$39.03B",
-          "change_24h": "-0.64%"
+          "value_usd": "$39.01B",
+          "change_24h": "-0.57%"
         }
       ],
       "category": "CORPORATE_TREASURY",
       "priority": "HIGH",
-      "last_updated_utc": "2026-10-17 09:15:55 UTC"
+      "last_updated_utc": "2026-10-17 10:05:41 UTC"
     },
     "tesla": {
       "slug": "tesla",
@@ -732,15 +732,15 @@
       "holdings_breakdown": [
         {
           "symbol": "BTC",
-          "price": "$87.75",
+          "price": "$81,612",
           "amount": "BTC",
-          "value_usd": "$1.15",
-          "change_24h": ""
+          "value_usd": "$939.3M",
+          "change_24h": "-0.45%"
         }
       ],
       "category": "CORPORATE_TREASURY",
       "priority": "MEDIUM",
-      "last_updated_utc": "2026-10-17 09:16:01 UTC"
+      "last_updated_utc": "2026-10-17 10:05:47 UTC"
     },
     "tether": {
       "slug": "tether",
@@ -751,10 +751,10 @@
       "holdings_breakdown": [
         {
           "symbol": "BTC",
-          "price": "$81,629",
+          "price": "$81,612",
           "amount": "BTC",
           "value_usd": "$7.92B",
-          "change_24h": "-0.65%"
+          "change_24h": "-0.45%"
         },
         {
           "symbol": "USDT",
@@ -772,36 +772,36 @@
         },
         {
           "symbol": "BNB",
-          "price": "$721.79",
+          "price": "$721.08",
           "amount": "BNB",
-          "value_usd": "$117.51K",
-          "change_24h": "-1.14%"
+          "value_usd": "$117.4K",
+          "change_24h": "-1.26%"
         },
         {
           "symbol": "ETH",
-          "price": "$2,433.03",
+          "price": "$2,435.31",
           "amount": "ETH",
-          "value_usd": "$32.89K",
-          "change_24h": "-0.8%"
+          "value_usd": "$32.92K",
+          "change_24h": "-0.55%"
         },
         {
           "symbol": "SOL",
-          "price": "$104.93",
+          "price": "$104.83",
           "amount": "SOL",
-          "value_usd": "$23.44K",
-          "change_24h": "-1.67%"
+          "value_usd": "$23.42K",
+          "change_24h": "-1.35%"
         },
         {
           "symbol": "AVAX",
-          "price": "$10.06",
+          "price": "$10.01",
           "amount": "AVAX",
-          "value_usd": "$1.48K",
-          "change_24h": "-1.66%"
+          "value_usd": "$1.47K",
+          "change_24h": "-3.47%"
         }
       ],
       "category": "STABLECOIN_RESERVE",
       "priority": "HIGH",
-      "last_updated_utc": "2026-10-17 09:20:41 UTC"
+      "last_updated_utc": "2026-10-17 10:05:53 UTC"
     },
     "circle": {
       "slug": "circle",
@@ -812,15 +812,15 @@
       "holdings_breakdown": [
         {
           "symbol": "USDC",
-          "price": "$53.2",
-          "amount": "USDC",
-          "value_usd": "$59.11",
-          "change_24h": ""
+          "price": "$20",
+          "amount": "",
+          "value_usd": "$154.68",
+          "change_24h": "-0.00%"
         }
       ],
       "category": "STABLECOIN_RESERVE",
       "priority": "HIGH",
-      "last_updated_utc": "2026-10-17 09:20:47 UTC"
+      "last_updated_utc": "2026-10-17 10:05:59 UTC"
     },
     "mt-gox": {
       "slug": "mt-gox",
