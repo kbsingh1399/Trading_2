@@ -187,6 +187,10 @@ async def run_daemon(interval_s: float = DEFAULT_INTERVAL_S, run_once: bool = Fa
                 "backup_mirror_paths": [str(STATUS_FILE.with_suffix(".bak")), str(secondary_path)]
             }
             update_status(status_payload)
+            # Reset recovery active flag once a cycle completes cleanly and restores primary status
+            backup_recovery_active = False
+            corruption_recovery_event = False
+            status_source = STATUS_FILE.name
 
         except Exception as e:
             error_count += 1

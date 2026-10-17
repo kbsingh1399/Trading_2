@@ -172,7 +172,7 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
                 cur_id += 1
                 await ws.send(json.dumps({"id": cur_id, "method": method, "params": params or {}}))
                 while True:
-                    raw = await asyncio.wait_for(ws.recv(), timeout=15.0)
+                    raw = await asyncio.wait_for(ws.recv(), timeout=25.0)
                     msg = json.loads(raw)
                     if msg.get("id") == cur_id:
                         return msg
@@ -183,275 +183,72 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
 
             for idx, asset in enumerate(assets):
                 t_asset_start = time.time()
-                
-                # Check if asset is already selected
-                check_js = f"""(() => {{
-                    const el = document.querySelector('input.MuiAutocomplete-input, input[placeholder*="Search"]');
-                    return el ? (el.value || '').trim().toUpperCase() : '';
-                }})()"""
-                chk_res = await send("Runtime.evaluate", {"expression": check_js, "returnByValue": True})
-                cur_val = chk_res.get("result", {}).get("result", {}).get("value", "")
-
-                if cur_val != asset:
-                    # Focus and select existing text
-                    focus_js = """(() => {
+                try:
+                    # Check if asset is already selected
+                    check_js = f"""(() => {{
                         const el = document.querySelector('input.MuiAutocomplete-input, input[placeholder*="Search"]');
-                        if (!el) return false;
-                        el.focus();
-                        el.select();
-                        return true;
-                    })()"""
-                    await send("Runtime.evaluate", {"expression": focus_js, "returnByValue": True})
-                    await asyncio.sleep(0.2)
-
-                    # Insert target symbol via CDP native input
-                    await send("Input.insertText", {"text": asset})
-                    await asyncio.sleep(0.6)
-
-                    # Click matching option from MUI listbox (NO options[0] fallback: prevents mislabeling)
-                    click_opt_js = f"""(() => {{
-                        const targetSymbol = {json.dumps(asset)};
-                        const listbox = document.querySelector('.MuiAutocomplete-popper, ul.MuiAutocomplete-listbox, div[role="listbox"]');
-                        if (!listbox) return false;
-                        const options = Array.from(listbox.querySelectorAll('li, div[role="option"]'));
-                        const match = options.find(o => {{
-                            const txt = (o.innerText || '').trim();
-                            const firstToken = txt.split(/[\\s\\n]+/)[0].toUpperCase();
-                            return firstToken === targetSymbol;
-                        }});
-                        if (match) {{
-                            match.dispatchEvent(new MouseEvent('mousedown', {{ bubbles: true }}));
-                            match.dispatchEvent(new MouseEvent('mouseup', {{ bubbles: true }}));
-                            match.click();
-                            return true;
-                        }}
-                        return false;
+                        return el ? (el.value || '').trim().toUpperCase() : '';
                     }})()"""
-                    click_res = await send("Runtime.evaluate", {"expression": click_opt_js, "returnByValue": True})
-                    clicked = click_res.get("result", {}).get("result", {}).get("value", False)
-                    if not clicked:
-                        reason = f"Dropdown option matching '{asset}' not found or click failed"
-                        print(f"[{idx+1}/{len(assets)}] {asset:<5} -> WARNING: {reason}. Skipping.")
-                        skipped_assets[asset] = reason
-                        # Ensure popper is closed before moving to next asset
-                        close_popper_js = """(() => {
+                    chk_res = await send("Runtime.evaluate", {"expression": check_js, "returnByValue": True})
+                    cur_val = chk_res.get("result", {}).get("result", {}).get("value", "")
+
+                    if cur_val != asset:
+                        # Focus, click, and cleanly reset input via native setter for React/MUI state tracking
+                        prepare_input_js = """(() => {
                             const el = document.querySelector('input.MuiAutocomplete-input, input[placeholder*="Search"]');
-                            if (el) el.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+                            if (!el) return false;
+                            el.focus();
+                            el.click();
+                            const nativeSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value").set;
+                            nativeSetter.call(el, '');
+                            el.dispatchEvent(new Event('input', { bubbles: true }));
+                            el.dispatchEvent(new Event('change', { bubbles: true }));
+                            return true;
                         })()"""
-                        await send("Runtime.evaluate", {"expression": close_popper_js, "returnByValue": True})
-                        harvested_data[asset] = {
-                            "asset": asset,
-                            "orders_count": 0,
-                            "side_parse_health": "DROPDOWN_CLICK_FAILED",
-                            "rejection_reason": reason,
-                            "total_notional_usd": 0.0,
-                            "buy_notional_usd": 0.0,
-                            "sell_notional_usd": 0.0,
-                            "imbalance_ratio": 1.0,
-                            "max_single_order_usd": 0.0,
-                            "oldest_order_hours": 0.0,
-                            "top_whale_walls": [],
-                            "all_orders": [],
-                            "scrape_duration_s": round(time.time() - t_asset_start, 2)
-                        }
-                        continue
-                    await asyncio.sleep(1.8)
+                        await send("Runtime.evaluate", {"expression": prepare_input_js, "returnByValue": True})
+                        await asyncio.sleep(0.2)
 
-                    # Ensure popper is closed
-                    close_popper_js = """(() => {
-                        const el = document.querySelector('input.MuiAutocomplete-input, input[placeholder*="Search"]');
-                        if (el) el.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
-                    })()"""
-                    await send("Runtime.evaluate", {"expression": close_popper_js, "returnByValue": True})
-                    await asyncio.sleep(0.3)
+                        # Insert target symbol via CDP native input
+                        await send("Input.insertText", {"text": asset})
+                        await asyncio.sleep(0.6)
 
-                # Extract all whale order rows with strict validation of currentInput === targetSymbol
-                extract_js = f"""(() => {{
-                    const targetSymbol = {json.dumps(asset)};
-                    const searchInput = document.querySelector('input.MuiAutocomplete-input, input[placeholder*="Search"]');
-                    const finalInputVal = (searchInput && searchInput.value ? searchInput.value : '').trim().toUpperCase();
-
-                    if (finalInputVal !== targetSymbol) {{
-                        return {{
-                            error: 'Symbol mismatch: requested ' + targetSymbol + ' but active input is ' + finalInputVal,
-                            currentInput: finalInputVal,
-                            itemCount: 0,
-                            items: []
-                        }};
-                    }}
-
-                    // Assert page heading on the orderbook container with first-token exact matching (closes pair and listbox-content gap)
-                    const headingEl = document.querySelector('h1.cgj-typo-h1, div[class*="OrderHeatmap"] h1, div[class*="OrderHatemap"] h1, div[class*="orderbook"] h1, h1[class*="sxTypography"]');
-
-                    if (!headingEl) {{
-                        return {{
-                            error: 'Orderbook heading element missing: fail-closed for ' + targetSymbol,
-                            currentInput: finalInputVal,
-                            itemCount: 0,
-                            items: []
-                        }};
-                    }}
-
-                    const headingText = (headingEl.innerText || '').trim().toUpperCase();
-                    if (!headingText) {{
-                        return {{
-                            error: 'Orderbook heading text empty: fail-closed for ' + targetSymbol,
-                            currentInput: finalInputVal,
-                            itemCount: 0,
-                            items: []
-                        }};
-                    }}
-
-                    // First-token exact match (prevents pair collision SOL/ETH matching ETH, and eliminates substring collisions OP/STOP, LINK/BLINK, ARB/ARBITRUM)
-                    const tokens = headingText.split(/[^A-Za-z0-9]+/).filter(Boolean);
-                    const firstToken = tokens.length > 0 ? tokens[0] : '';
-                    const exactTokenMatch = (firstToken === targetSymbol || firstToken === targetSymbol + 'USDT' || firstToken === targetSymbol + 'USD');
-                    if (!exactTokenMatch) {{
-                        return {{
-                            error: 'First-token mismatch: expected first token ' + targetSymbol + ' in orderbook heading [' + headingText.slice(0, 50) + '] but found tokens [' + tokens.slice(0, 10).join(', ') + ']',
-                            currentInput: finalInputVal,
-                            itemCount: 0,
-                            items: []
-                        }};
-                    }}
-
-                    const items = Array.from(document.querySelectorAll('.large-order-item')).map((el, domIdx) => {{
-                        const rawLines = (el.innerText || '').split('\\n').map(s => s.trim()).filter(Boolean);
-                        const isCanceled = Boolean(el.querySelector('span[class*="cancel"], div[class*="cancel"]') || rawLines.includes('C'));
-                        const bgEl = el.querySelector('div[class*="item-bg"], div[class*="ovv2-item-bg"]');
-                        const bgClass = bgEl ? bgEl.className : '';
-                        let domSide = 'UNKNOWN';
-                        if (bgClass.includes('-l') || bgClass.includes('long') || bgClass.includes('buy')) {{
-                            domSide = 'BUY';
-                        }} else if (bgClass.includes('-s') || bgClass.includes('short') || bgClass.includes('sell')) {{
-                            domSide = 'SELL';
-                        }}
-                        return {{
-                            domIndex: domIdx,
-                            lines: rawLines,
-                            isCanceled: isCanceled,
-                            domSide: domSide
-                        }};
-                    }});
-
-                    return {{
-                        symbol: targetSymbol,
-                        currentInput: finalInputVal,
-                        itemCount: items.length,
-                        items: items
-                    }};
-                }})()"""
-
-                res = await send("Runtime.evaluate", {"expression": extract_js, "returnByValue": True})
-                val = res.get("result", {}).get("result", {}).get("value", {})
-                if not val or val.get("error"):
-                    err_msg = val.get("error") if val else "No result from extraction script"
-                    print(f"[{idx+1}/{len(assets)}] {asset:<5} -> WARNING: {err_msg}. Skipping.")
-                    skipped_assets[asset] = err_msg
-                    harvested_data[asset] = {
-                        "asset": asset,
-                        "orders_count": 0,
-                        "side_parse_health": "EXTRACTION_EVAL_ERROR",
-                        "rejection_reason": err_msg,
-                        "total_notional_usd": 0.0,
-                        "buy_notional_usd": 0.0,
-                        "sell_notional_usd": 0.0,
-                        "imbalance_ratio": 1.0,
-                        "max_single_order_usd": 0.0,
-                        "oldest_order_hours": 0.0,
-                        "top_whale_walls": [],
-                        "all_orders": [],
-                        "scrape_duration_s": round(time.time() - t_asset_start, 2)
-                    }
-                    continue
-                
-                raw_items = val.get("items", [])
-                parsed_orders = []
-                buy_notional = 0.0
-                sell_notional = 0.0
-                max_order_usd = 0.0
-                max_dur_sec = 0.0
-
-                for it in raw_items:
-                    lines = it.get("lines", [])
-                    is_canc = it.get("isCanceled", False)
-                    dom_side = it.get("domSide", "UNKNOWN")
-                    if len(lines) >= 3:
-                        # True side extracted from DOM background style class (.ovv2-item-bg-l = BUY, .ovv2-item-bg-s = SELL)
-                        side_str = dom_side if dom_side in ("BUY", "SELL") else "UNKNOWN"
-                        if "C" in lines:
-                            is_canc = True
-                        
-                        # Find price, notional, and age
-                        price = 0.0
-                        notional_str = ""
-                        dur_str = ""
-                        
-                        for tok in lines[1:]:
-                            if tok == "C":
-                                is_canc = True
-                                continue
-                            if tok.startswith("$"):
-                                notional_str = tok
-                            elif any(c in tok for c in ["m", "H", "D", "s"]) and re.search(r'\d', tok):
-                                dur_str = tok
-                            elif price == 0.0:
-                                try:
-                                    price = float(tok.replace(",", ""))
-                                except Exception:
-                                    pass
-
-                        notional_usd = parse_notional(notional_str)
-                        dur_sec = parse_duration_seconds(dur_str)
-
-                        if side_str == "BUY":
-                            buy_notional += notional_usd
-                        elif side_str == "SELL":
-                            sell_notional += notional_usd
-
-                        if notional_usd > max_order_usd:
-                            max_order_usd = notional_usd
-                        if dur_sec > max_dur_sec:
-                            max_dur_sec = dur_sec
-
-                        parsed_orders.append({
-                            "row_id": f"{asset}_{side_str}_{it.get('domIndex', len(parsed_orders))}_{round(price, 4)}",
-                            "side": side_str,
-                            "is_canceled": is_canc,
-                            "price": price,
-                            "notional_str": notional_str,
-                            "notional_usd": notional_usd,
-                            "duration_str": dur_str,
-                            "duration_seconds": dur_sec,
-                            "duration_hours": round(dur_sec / 3600.0, 2)
-                        })
-
-                # Dynamic Price Sanity Gate (Q1 / C186): eliminates all 100/153 overlap bands
-                if parsed_orders:
-                    prices = [o["price"] for o in parsed_orders if o.get("price", 0.0) > 0.0]
-                    if prices:
-                        import statistics
-                        median_px = statistics.median(prices)
-                        rejection_reason = None
-                        # Primary: Dynamic 15% check against live Binance price
-                        ref_px = live_binance_prices.get(asset)
-                        if ref_px and ref_px > 0:
-                            dev = abs(median_px - ref_px) / ref_px
-                            if dev > 0.15:
-                                rejection_reason = f"DYNAMIC_PRICE_SANITY: Median price {median_px:.4f} deviates by {dev*100:.1f}% from live Binance price {ref_px:.4f} (>15% threshold)"
-                        if not rejection_reason:
-                            # Secondary: Static canonical bounds check
-                            min_p, max_p = PRICE_SANITY_BOUNDS.get(asset, (0.0, 1e9))
-                            if not (min_p <= median_px <= max_p):
-                                rejection_reason = f"STATIC_PRICE_SANITY: Median price {median_px:.2f} is outside [{min_p}, {max_p}]"
-                        if rejection_reason:
-                            print(f"[{idx+1}/{len(assets)}] {asset:<5} -> REJECTED: {rejection_reason}. Skipping stale table.")
-                            skipped_assets[asset] = rejection_reason
+                        # Click matching option from MUI listbox (token-based match handles 'Chainlink LINK' and 'LINK')
+                        click_opt_js = f"""(() => {{
+                            const targetSymbol = {json.dumps(asset)};
+                            const listbox = document.querySelector('.MuiAutocomplete-popper, ul.MuiAutocomplete-listbox, div[role="listbox"]');
+                            if (!listbox) return {{ status: 'NO_LISTBOX' }};
+                            const options = Array.from(listbox.querySelectorAll('li, div[role="option"]'));
+                            const match = options.find(o => {{
+                                const txt = (o.innerText || '').trim();
+                                const tokens = txt.split(/[^A-Za-z0-9]+/).filter(Boolean).map(t => t.toUpperCase());
+                                return tokens[0] === targetSymbol || tokens.includes(targetSymbol) || tokens.includes(targetSymbol + 'USDT');
+                            }});
+                            if (match) {{
+                                match.dispatchEvent(new MouseEvent('mousedown', {{ bubbles: true }}));
+                                match.dispatchEvent(new MouseEvent('mouseup', {{ bubbles: true }}));
+                                match.click();
+                                return {{ status: 'CLICKED', text: match.innerText.trim() }};
+                            }}
+                            return {{ status: 'NO_MATCH', options: options.map(o => o.innerText.trim()) }};
+                        }})()"""
+                        click_res = await send("Runtime.evaluate", {"expression": click_opt_js, "returnByValue": True})
+                        val = click_res.get("result", {}).get("result", {}).get("value", {})
+                        if val.get("status") != "CLICKED":
+                            reason = f"Dropdown option matching '{asset}' not found or click failed: {val}"
+                            print(f"[{idx+1}/{len(assets)}] {asset:<5} -> WARNING: {reason}. Skipping.")
+                            skipped_assets[asset] = reason
+                            # Ensure popper is closed before moving to next asset
+                            close_popper_js = """(() => {
+                                const el = document.querySelector('input.MuiAutocomplete-input, input[placeholder*="Search"]');
+                                if (el) el.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+                            })()"""
+                            await send("Runtime.evaluate", {"expression": close_popper_js, "returnByValue": True})
                             harvested_data[asset] = {
                                 "asset": asset,
+                                "heading_text": "",
                                 "orders_count": 0,
-                                "side_parse_health": "PRICE_SANITY_REJECTED",
-                                "rejection_reason": rejection_reason,
+                                "side_parse_health": "DROPDOWN_CLICK_FAILED",
+                                "rejection_reason": reason,
                                 "total_notional_usd": 0.0,
                                 "buy_notional_usd": 0.0,
                                 "sell_notional_usd": 0.0,
@@ -463,164 +260,452 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
                                 "scrape_duration_s": round(time.time() - t_asset_start, 2)
                             }
                             continue
+                        await asyncio.sleep(1.8)
 
-                # Cross-Cycle Order Matching & Ambiguity Resolution (Q2 / C188 / C189)
-                prev_orders = prev_snapshot_data.get(asset, {}).get("all_orders", [])
-                exact_matches = 0
-                partial_fills = 0
-                ambiguous_matches = 0
-                new_orders = 0
-                ambiguity_log = []
-                matched_prev_indices = set()
+                        # Ensure popper is closed
+                        close_popper_js = """(() => {
+                            const el = document.querySelector('input.MuiAutocomplete-input, input[placeholder*="Search"]');
+                            if (el) el.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+                        })()"""
+                        await send("Runtime.evaluate", {"expression": close_popper_js, "returnByValue": True})
+                        await asyncio.sleep(0.3)
 
-                for o in parsed_orders:
-                    cur_p = float(o.get("price", 0.0))
-                    cur_not = float(o.get("notional_usd", 0.0))
-                    cur_dur = float(o.get("duration_seconds", 0.0))
-                    tick_size = 0.0001 if cur_p < 1.0 else (0.01 if cur_p < 500.0 else 0.1)
-                    # Tight 2.5 bps grid-derived tolerance (Q2/C190: ~20 USD at 80k, never merges 56 USD spaced levels)
-                    price_tol = max(2.0 * tick_size, 0.00025 * cur_p)
+                    # Extract all whale order rows with strict validation of currentInput === targetSymbol
+                    extract_js = f"""(() => {{
+                        const targetSymbol = {json.dumps(asset)};
+                        const searchInput = document.querySelector('input.MuiAutocomplete-input, input[placeholder*="Search"]');
+                        const finalInputVal = (searchInput && searchInput.value ? searchInput.value : '').trim().toUpperCase();
 
-                    cand_matches = []
-                    for p_idx, prev_o in enumerate(prev_orders):
-                        if p_idx in matched_prev_indices:
+                        if (finalInputVal !== targetSymbol) {{
+                            return {{
+                                error: 'Symbol mismatch: requested ' + targetSymbol + ' but active input is ' + finalInputVal,
+                                currentInput: finalInputVal,
+                                itemCount: 0,
+                                items: []
+                            }};
+                        }}
+
+                        // Assert page heading on the orderbook container with first-token exact matching (closes pair and listbox-content gap)
+                        const headingEl = document.querySelector('h1.cgj-typo-h1, div[class*="OrderHeatmap"] h1, div[class*="orderbook"] h1, h1[class*="sxTypography"]');
+
+                        if (!headingEl) {{
+                            return {{
+                                error: 'Orderbook heading element missing: fail-closed for ' + targetSymbol,
+                                currentInput: finalInputVal,
+                                itemCount: 0,
+                                items: []
+                            }};
+                        }}
+
+                        const headingText = (headingEl.innerText || '').trim().toUpperCase();
+                        if (!headingText) {{
+                            return {{
+                                error: 'Orderbook heading text empty: fail-closed for ' + targetSymbol,
+                                currentInput: finalInputVal,
+                                itemCount: 0,
+                                items: []
+                            }};
+                        }}
+
+                        // First-token exact match (prevents pair collision SOL/ETH matching ETH, and eliminates substring collisions OP/STOP, LINK/BLINK, ARB/ARBITRUM)
+                        const tokens = headingText.split(/[^A-Za-z0-9]+/).filter(Boolean);
+                        const firstToken = tokens.length > 0 ? tokens[0] : '';
+                        const exactTokenMatch = (firstToken === targetSymbol || firstToken === targetSymbol + 'USDT' || firstToken === targetSymbol + 'USD');
+                        if (!exactTokenMatch) {{
+                            return {{
+                                error: 'First-token mismatch: expected first token ' + targetSymbol + ' in orderbook heading [' + headingText.slice(0, 50) + '] but found tokens [' + tokens.slice(0, 10).join(', ') + ']',
+                                currentInput: finalInputVal,
+                                headingText: headingText,
+                                itemCount: 0,
+                                items: []
+                            }};
+                        }}
+
+                        const items = Array.from(document.querySelectorAll('.large-order-item')).map((el, domIdx) => {{
+                            const rawLines = (el.innerText || '').split('\\n').map(s => s.trim()).filter(Boolean);
+                            const isCanceled = Boolean(el.querySelector('span[class*="cancel"], div[class*="cancel"]') || rawLines.includes('C'));
+                            const bgEl = el.querySelector('div[class*="item-bg"], div[class*="ovv2-item-bg"]');
+                            const bgClass = bgEl ? bgEl.className : '';
+                            let domSide = 'UNKNOWN';
+                            if (bgClass.includes('-l') || bgClass.includes('long') || bgClass.includes('buy')) {{
+                                domSide = 'BUY';
+                            }} else if (bgClass.includes('-s') || bgClass.includes('short') || bgClass.includes('sell')) {{
+                                domSide = 'SELL';
+                            }}
+                            return {{
+                                domIndex: domIdx,
+                                lines: rawLines,
+                                isCanceled: isCanceled,
+                                domSide: domSide
+                            }};
+                        }});
+
+                        return {{
+                            symbol: targetSymbol,
+                            currentInput: finalInputVal,
+                            headingText: headingText,
+                            itemCount: items.length,
+                            items: items
+                        }};
+                    }})()"""
+
+                    res = await send("Runtime.evaluate", {"expression": extract_js, "returnByValue": True})
+                    val = res.get("result", {}).get("result", {}).get("value", {})
+                    extracted_heading = val.get("headingText", "") if val else ""
+                    if not val or val.get("error"):
+                        err_msg = val.get("error") if val else "No result from extraction script"
+                        print(f"[{idx+1}/{len(assets)}] {asset:<5} -> WARNING: {err_msg}. Skipping.")
+                        skipped_assets[asset] = err_msg
+                        harvested_data[asset] = {
+                            "asset": asset,
+                            "heading_text": extracted_heading,
+                            "orders_count": 0,
+                            "side_parse_health": "EXTRACTION_EVAL_ERROR",
+                            "rejection_reason": err_msg,
+                            "total_notional_usd": 0.0,
+                            "buy_notional_usd": 0.0,
+                            "sell_notional_usd": 0.0,
+                            "imbalance_ratio": 1.0,
+                            "max_single_order_usd": 0.0,
+                            "oldest_order_hours": 0.0,
+                            "top_whale_walls": [],
+                            "all_orders": [],
+                            "scrape_duration_s": round(time.time() - t_asset_start, 2)
+                        }
+                        continue
+
+                    raw_items = val.get("items", [])
+                    parsed_orders = []
+                    buy_notional = 0.0
+                    sell_notional = 0.0
+                    max_order_usd = 0.0
+                    max_dur_sec = 0.0
+
+                    for it in raw_items:
+                        lines = it.get("lines", [])
+                        is_canc = it.get("isCanceled", False)
+                        dom_side = it.get("domSide", "UNKNOWN")
+                        if len(lines) >= 3:
+                            # True side extracted from DOM background style class (.ovv2-item-bg-l = BUY, .ovv2-item-bg-s = SELL)
+                            side_str = dom_side if dom_side in ("BUY", "SELL") else "UNKNOWN"
+                            if "C" in lines:
+                                is_canc = True
+
+                            # Find price, notional, and age
+                            price = 0.0
+                            notional_str = ""
+                            dur_str = ""
+
+                            for tok in lines[1:]:
+                                if tok == "C":
+                                    is_canc = True
+                                    continue
+                                if tok.startswith("$"):
+                                    notional_str = tok
+                                elif any(c in tok for c in ["m", "H", "D", "s"]) and re.search(r'\d', tok):
+                                    dur_str = tok
+                                elif price == 0.0:
+                                    try:
+                                        price = float(tok.replace(",", ""))
+                                    except Exception:
+                                        pass
+
+                            notional_usd = parse_notional(notional_str)
+                            dur_sec = parse_duration_seconds(dur_str)
+
+                            if side_str == "BUY":
+                                buy_notional += notional_usd
+                            elif side_str == "SELL":
+                                sell_notional += notional_usd
+
+                            if notional_usd > max_order_usd:
+                                max_order_usd = notional_usd
+                            if dur_sec > max_dur_sec:
+                                max_dur_sec = dur_sec
+
+                            parsed_orders.append({
+                                "row_id": f"{asset}_{side_str}_{it.get('domIndex', len(parsed_orders))}_{round(price, 4)}",
+                                "side": side_str,
+                                "is_canceled": is_canc,
+                                "price": price,
+                                "notional_str": notional_str,
+                                "notional_usd": notional_usd,
+                                "duration_str": dur_str,
+                                "duration_seconds": dur_sec,
+                                "duration_hours": round(dur_sec / 3600.0, 2)
+                            })
+
+                    # Dynamic Price Sanity Gate (Q1 / C186): eliminates all 100/153 overlap bands
+                    if parsed_orders:
+                        prices = [o["price"] for o in parsed_orders if o.get("price", 0.0) > 0.0]
+                        if prices:
+                            import statistics
+                            median_px = statistics.median(prices)
+                            rejection_reason = None
+                            # Primary: Dynamic 15% check against live Binance price
+                            ref_px = live_binance_prices.get(asset)
+                            if ref_px and ref_px > 0:
+                                dev = abs(median_px - ref_px) / ref_px
+                                if dev > 0.15:
+                                    rejection_reason = f"DYNAMIC_PRICE_SANITY: Median price {median_px:.4f} deviates by {dev*100:.1f}% from live Binance price {ref_px:.4f} (>15% threshold)"
+                            if not rejection_reason:
+                                # Secondary: Static canonical bounds check
+                                min_p, max_p = PRICE_SANITY_BOUNDS.get(asset, (0.0, 1e9))
+                                if not (min_p <= median_px <= max_p):
+                                    rejection_reason = f"STATIC_PRICE_SANITY: Median price {median_px:.2f} is outside [{min_p}, {max_p}]"
+                            if rejection_reason:
+                                print(f"[{idx+1}/{len(assets)}] {asset:<5} -> REJECTED: {rejection_reason}. Skipping stale table.")
+                                skipped_assets[asset] = rejection_reason
+                                harvested_data[asset] = {
+                                    "asset": asset,
+                                    "heading_text": extracted_heading,
+                                    "orders_count": 0,
+                                    "side_parse_health": "PRICE_SANITY_REJECTED",
+                                    "rejection_reason": rejection_reason,
+                                    "total_notional_usd": 0.0,
+                                    "buy_notional_usd": 0.0,
+                                    "sell_notional_usd": 0.0,
+                                    "imbalance_ratio": 1.0,
+                                    "max_single_order_usd": 0.0,
+                                    "oldest_order_hours": 0.0,
+                                    "top_whale_walls": [],
+                                    "all_orders": [],
+                                    "scrape_duration_s": round(time.time() - t_asset_start, 2)
+                                }
+                                continue
+
+                    # Cross-Cycle Global Bipartite Matching (Q2 / C191: Hungarian Linear Sum Assignment)
+                    # Eliminates greedy DOM-order dependence, guarantees bijective global optimality,
+                    # explicitly logs and attributes price drift, and reports tied candidates.
+                    prev_orders = prev_snapshot_data.get(asset, {}).get("all_orders", [])
+                    exact_matches = 0
+                    partial_fills = 0
+                    ambiguous_matches = 0
+                    new_orders = 0
+                    ambiguity_log = []
+                    matched_prev_indices = set()
+
+                    try:
+                        from scipy.optimize import linear_sum_assignment
+                        has_scipy = True
+                    except ImportError:
+                        has_scipy = False
+
+                    for side in ("BUY", "SELL"):
+                        cur_side_indices = [idx for idx, o in enumerate(parsed_orders) if o.get("side") == side]
+                        prev_side_indices = [idx for idx, p in enumerate(prev_orders) if p.get("side") == side]
+
+                        if not cur_side_indices or not prev_side_indices:
+                            for c_idx in cur_side_indices:
+                                o = parsed_orders[c_idx]
+                                cur_p = float(o.get("price", 0.0))
+                                o["track_id"] = f"{asset}_{o['side']}_{round(cur_p, 2)}_{uuid.uuid4().hex[:6]}"
+                                o["match_status"] = "NEW_ORDER"
+                                o["lineage"] = {"parent_track_id": None, "relation": "FRESH_BOOK_ENTRY"}
+                                new_orders += 1
                             continue
-                        if prev_o.get("side") == o.get("side"):
-                            prev_p = float(prev_o.get("price", 0.0))
-                            prev_not = float(prev_o.get("notional_usd", 0.0))
-                            prev_dur = float(prev_o.get("duration_seconds", 0.0))
-                            p_diff = abs(cur_p - prev_p)
-                            p_dev = p_diff / max(prev_p, 1e-4)
 
-                            # Price must be within tight grid/bps tolerance (<= 2.5 bps)
-                            if p_diff <= price_tol or p_dev <= 0.00025:
-                                exp_dur = prev_dur + cycle_interval_s
-                                dur_err = abs(cur_dur - exp_dur)
-                                cand_matches.append((p_idx, prev_o, p_dev, cur_not, prev_not, dur_err))
+                        # Construct Cost Matrix of shape (M, N)
+                        M = len(cur_side_indices)
+                        N = len(prev_side_indices)
+                        import numpy as np
+                        cost_matrix = np.full((M, N), 1e9, dtype=np.float64)
 
-                    if len(cand_matches) == 1:
-                        p_idx, best_prev, p_dev, c_not, p_not, dur_err = cand_matches[0]
-                        matched_prev_indices.add(p_idx)  # Bijective 1-to-1 reservation
-                        o["track_id"] = best_prev.get("track_id", best_prev.get("row_id", f"{asset}_{o['side']}_{round(cur_p, 2)}"))
-                        if c_not < p_not * 0.95:
-                            o["match_status"] = "PARTIAL_FILL"
-                            o["fill_pct"] = round((p_not - c_not) / p_not * 100.0, 1)
-                            o["filled_usd"] = round(p_not - c_not, 2)
-                            partial_fills += 1
-                        elif c_not > p_not * 1.05:
-                            o["match_status"] = "NOTIONAL_EXPANDED"
-                            o["expanded_usd"] = round(c_not - p_not, 2)
-                            o["fill_pct"] = 0.0
-                            exact_matches += 1
+                        for m_idx, c_idx in enumerate(cur_side_indices):
+                            o = parsed_orders[c_idx]
+                            cur_p = float(o.get("price", 0.0))
+                            cur_not = float(o.get("notional_usd", 0.0))
+                            cur_dur = float(o.get("duration_seconds", 0.0))
+                            tick_size = 0.0001 if cur_p < 1.0 else (0.01 if cur_p < 500.0 else 0.1)
+                            price_tol = max(2.0 * tick_size, 0.00025 * cur_p)
+
+                            for n_idx, p_idx in enumerate(prev_side_indices):
+                                prev_o = prev_orders[p_idx]
+                                prev_p = float(prev_o.get("price", 0.0))
+                                prev_not = float(prev_o.get("notional_usd", 0.0))
+                                prev_dur = float(prev_o.get("duration_seconds", 0.0))
+
+                                p_diff = abs(cur_p - prev_p)
+                                p_dev = p_diff / max(prev_p, 1e-4)
+
+                                if p_diff <= price_tol or p_dev <= 0.00025:
+                                    exp_dur = prev_dur + cycle_interval_s
+                                    dur_err = abs(cur_dur - exp_dur)
+                                    norm_p = p_diff / max(price_tol, 1e-4)
+                                    norm_dur = min(dur_err / 180.0, 10.0)
+                                    # Primary weight: price closeness (1.0), Secondary: duration continuity (0.25)
+                                    cost_matrix[m_idx, n_idx] = norm_p * 1.0 + norm_dur * 0.25
+
+                        # Solve optimal linear sum assignment
+                        if has_scipy:
+                            row_ind, col_ind = linear_sum_assignment(cost_matrix)
                         else:
-                            o["match_status"] = "EXACT_SINGLE_MATCH"
-                            exact_matches += 1
-                        o["price_dev_bps"] = round(p_dev * 10000.0, 2)
-                        o["lineage"] = {"parent_track_id": o["track_id"], "relation": o["match_status"]}
-                    elif len(cand_matches) > 1:
-                        # Tie-break stacked orders at the same price using duration continuity (min dur_err)
-                        cand_matches.sort(key=lambda x: (x[2], x[5]))
-                        dur_diff = abs(cand_matches[0][5] - cand_matches[1][5])
-                        is_tied = (dur_diff < 5.0)  # Tied duration within 5s
+                            # Fallback greedy on sorted edge costs
+                            edges = []
+                            for r in range(M):
+                                for c in range(N):
+                                    if cost_matrix[r, c] < 1e6:
+                                        edges.append((cost_matrix[r, c], r, c))
+                            edges.sort(key=lambda x: x[0])
+                            assigned_r = set()
+                            assigned_c = set()
+                            row_ind = []
+                            col_ind = []
+                            for cost, r, c in edges:
+                                if r not in assigned_r and c not in assigned_c:
+                                    assigned_r.add(r)
+                                    assigned_c.add(c)
+                                    row_ind.append(r)
+                                    col_ind.append(c)
 
-                        p_idx, best_prev, p_dev, c_not, p_not, dur_err = cand_matches[0]
-                        matched_prev_indices.add(p_idx)  # Bijective 1-to-1 reservation
-                        o["track_id"] = best_prev.get("track_id", best_prev.get("row_id", f"{asset}_{o['side']}_{round(cur_p, 2)}"))
+                        matched_cur_indices = set()
+                        for r, c in zip(row_ind, col_ind):
+                            if cost_matrix[r, c] < 1e6:
+                                c_idx = cur_side_indices[r]
+                                p_idx = prev_side_indices[c]
+                                o = parsed_orders[c_idx]
+                                prev_o = prev_orders[p_idx]
 
-                        if is_tied:
-                            o["match_status"] = "AMBIGUOUS_TIED_STACKED"
-                            tie_break_desc = "TIED_DURATION_REPORTED"
-                            ambiguous_matches += 1
-                        else:
-                            tie_break_desc = "DURATION_CONTINUITY"
-                            if c_not < p_not * 0.95:
-                                o["match_status"] = "PARTIAL_FILL_AMBIGUOUS"
-                                o["fill_pct"] = round((p_not - c_not) / p_not * 100.0, 1)
-                                o["filled_usd"] = round(p_not - c_not, 2)
-                                partial_fills += 1
-                            elif c_not > p_not * 1.05:
-                                o["match_status"] = "NOTIONAL_EXPANDED_AMBIGUOUS"
-                                o["expanded_usd"] = round(c_not - p_not, 2)
-                                o["fill_pct"] = 0.0
-                                exact_matches += 1
-                            else:
-                                o["match_status"] = "AMBIGUOUS_MULTI_MATCH"
-                                ambiguous_matches += 1
+                                matched_cur_indices.add(c_idx)
+                                matched_prev_indices.add(p_idx)
 
-                        o["price_dev_bps"] = round(p_dev * 10000.0, 2)
-                        o["lineage"] = {"parent_track_id": o["track_id"], "relation": o["match_status"], "tie_break": tie_break_desc}
-                        ambiguity_log.append({
-                            "price": o["price"],
-                            "side": o["side"],
-                            "candidate_count": len(cand_matches),
-                            "duration_error_s": round(dur_err, 1),
-                            "tied_duration": is_tied,
-                            "resolved_to_track_id": o["track_id"]
-                        })
-                    else:
-                        # Check if this order is a potential price amendment of an unmatched prior order
-                        nearest_unmatched = [
-                            p for p_idx, p in enumerate(prev_orders)
-                            if p_idx not in matched_prev_indices and p.get("side") == o.get("side")
-                        ]
-                        parent_id = None
-                        relation = "FRESH_BOOK_ENTRY"
-                        if nearest_unmatched:
-                            nearest = min(nearest_unmatched, key=lambda p: abs(cur_p - float(p.get("price", 0.0))))
-                            n_dev = abs(cur_p - float(nearest.get("price", 0.0))) / max(float(nearest.get("price", 1.0)), 1e-4)
-                            if n_dev <= 0.0020:  # within 20 bps
-                                parent_id = nearest.get("track_id", nearest.get("row_id"))
-                                relation = "PRICE_AMENDMENT_CANDIDATE"
+                                cur_p = float(o.get("price", 0.0))
+                                prev_p = float(prev_o.get("price", 0.0))
+                                c_not = float(o.get("notional_usd", 0.0))
+                                p_not = float(prev_o.get("notional_usd", 0.0))
 
-                        o["track_id"] = f"{asset}_{o['side']}_{round(cur_p, 2)}_{uuid.uuid4().hex[:6]}"
-                        o["match_status"] = "NEW_ORDER"
-                        o["lineage"] = {"parent_track_id": parent_id, "relation": relation}
-                        new_orders += 1
+                                drift_usd = round(cur_p - prev_p, 4)
+                                drift_bps = round(abs(cur_p - prev_p) / max(prev_p, 1e-4) * 10000.0, 2)
+                                p_dev = abs(cur_p - prev_p) / max(prev_p, 1e-4)
 
-                # Track lost orders (prior resting orders filled or canceled in this cycle)
-                lost_orders = [
-                    {
-                        "track_id": p_o.get("track_id", p_o.get("row_id")),
-                        "side": p_o.get("side"),
-                        "price": p_o.get("price"),
-                        "last_notional_usd": p_o.get("notional_usd"),
-                        "terminal_status": "FILLED_OR_CANCELED"
+                                # Attribution and status
+                                if c_not < p_not * 0.95:
+                                    match_status = "PARTIAL_FILL"
+                                    o["fill_pct"] = round((p_not - c_not) / p_not * 100.0, 1)
+                                    o["filled_usd"] = round(p_not - c_not, 2)
+                                    partial_fills += 1
+                                elif c_not > p_not * 1.05:
+                                    match_status = "NOTIONAL_EXPANDED"
+                                    o["expanded_usd"] = round(c_not - p_not, 2)
+                                    o["fill_pct"] = 0.0
+                                    exact_matches += 1
+                                elif drift_usd != 0.0:
+                                    match_status = "PRICE_DRIFT_ACCEPTED"
+                                    exact_matches += 1
+                                else:
+                                    match_status = "EXACT_SINGLE_MATCH"
+                                    exact_matches += 1
+
+                                # Tie detection (check if other candidates had tied cost within 0.05)
+                                tied_count = sum(1 for c2 in range(N) if c2 != c and abs(cost_matrix[r, c2] - cost_matrix[r, c]) < 0.05 and cost_matrix[r, c2] < 1e6)
+                                is_tied = (tied_count > 0)
+                                if is_tied:
+                                    match_status += "_TIED"
+                                    ambiguous_matches += 1
+                                    ambiguity_log.append({
+                                        "price": cur_p,
+                                        "side": side,
+                                        "tied_candidates": tied_count + 1,
+                                        "cost": round(float(cost_matrix[r, c]), 4),
+                                        "resolved_to_track_id": prev_o.get("track_id")
+                                    })
+
+                                o["track_id"] = prev_o.get("track_id", prev_o.get("row_id", f"{asset}_{o['side']}_{round(cur_p, 2)}"))
+                                o["match_status"] = match_status
+                                o["price_dev_bps"] = drift_bps
+                                o["lineage"] = {
+                                    "parent_track_id": o["track_id"],
+                                    "relation": match_status,
+                                    "price_drift_usd": drift_usd,
+                                    "price_drift_bps": drift_bps,
+                                    "global_assignment_cost": round(float(cost_matrix[r, c]), 4)
+                                }
+
+                        # Unassigned current orders become NEW_ORDER
+                        for m_idx, c_idx in enumerate(cur_side_indices):
+                            if c_idx not in matched_cur_indices:
+                                o = parsed_orders[c_idx]
+                                cur_p = float(o.get("price", 0.0))
+                                o["track_id"] = f"{asset}_{o['side']}_{round(cur_p, 2)}_{uuid.uuid4().hex[:6]}"
+                                o["match_status"] = "NEW_ORDER"
+                                o["lineage"] = {"parent_track_id": None, "relation": "FRESH_BOOK_ENTRY"}
+                                new_orders += 1
+
+                    # Track lost orders (prior resting orders filled or canceled in this cycle)
+                    lost_orders = [
+                        {
+                            "track_id": p_o.get("track_id", p_o.get("row_id")),
+                            "side": p_o.get("side"),
+                            "price": p_o.get("price"),
+                            "last_notional_usd": p_o.get("notional_usd"),
+                            "terminal_status": "FILLED_OR_CANCELED"
+                        }
+                        for p_idx, p_o in enumerate(prev_orders)
+                        if p_idx not in matched_prev_indices
+                    ]
+
+                    elapsed = round(time.time() - t_asset_start, 2)
+                    has_buy = buy_notional > 0
+                    has_sell = sell_notional > 0
+                    side_parse_health = "HEALTHY" if (has_buy and has_sell) else (
+                        "UNILATERAL_BOOK" if len(parsed_orders) < 5 else "SIDE_PARSE_DEGENERATE"
+                    )
+                    harvested_data[asset] = {
+                        "asset": asset,
+                        "heading_text": extracted_heading,
+                        "orders_count": len(parsed_orders),
+                        "side_parse_health": side_parse_health,
+                        "total_notional_usd": round(buy_notional + sell_notional, 2),
+                        "buy_notional_usd": round(buy_notional, 2),
+                        "sell_notional_usd": round(sell_notional, 2),
+                        "imbalance_ratio": round(buy_notional / max(sell_notional, 1.0), 3),
+                        "max_single_order_usd": round(max_order_usd, 2),
+                        "oldest_order_hours": round(max_dur_sec / 3600.0, 2),
+                        "top_whale_walls": sorted(parsed_orders, key=lambda x: x["notional_usd"], reverse=True)[:5],
+                        "all_orders": parsed_orders,
+                        "ambiguity_report": {
+                            "total_orders": len(parsed_orders),
+                            "exact_matches": exact_matches,
+                            "partial_fills": partial_fills,
+                            "ambiguous_matches": ambiguous_matches,
+                            "new_orders": new_orders,
+                            "lost_orders_count": len(lost_orders),
+                            "ambiguity_log": ambiguity_log[:5],
+                            "lost_orders": lost_orders[:5]
+                        },
+                        "scrape_duration_s": elapsed
                     }
-                    for p_idx, p_o in enumerate(prev_orders)
-                    if p_idx not in matched_prev_indices
-                ]
-
-                elapsed = round(time.time() - t_asset_start, 2)
-                has_buy = buy_notional > 0
-                has_sell = sell_notional > 0
-                side_parse_health = "HEALTHY" if (has_buy and has_sell) else (
-                    "UNILATERAL_BOOK" if len(parsed_orders) < 5 else "SIDE_PARSE_DEGENERATE"
-                )
-                harvested_data[asset] = {
+                    print(f"[{idx+1}/{len(assets)}] {asset:<5} -> Heading: '{extracted_heading}' | {len(parsed_orders):<3} Whale Orders | Notional: ${buy_notional + sell_notional:,.0f} | Oldest: {round(max_dur_sec/3600.0, 1)}h ({elapsed}s)")
+                except Exception as asset_err:
+                    reason = f"ASSET_EXTRACTION_EXCEPTION: {asset_err}"
+                    print(f"[{idx+1}/{len(assets)}] {asset:<5} -> ERROR: {reason}. Continuing to next asset.")
+                    skipped_assets[asset] = reason
+                    harvested_data[asset] = {
                     "asset": asset,
-                    "orders_count": len(parsed_orders),
-                    "side_parse_health": side_parse_health,
-                    "total_notional_usd": round(buy_notional + sell_notional, 2),
-                    "buy_notional_usd": round(buy_notional, 2),
-                    "sell_notional_usd": round(sell_notional, 2),
-                    "imbalance_ratio": round(buy_notional / max(sell_notional, 1.0), 3),
-                    "max_single_order_usd": round(max_order_usd, 2),
-                    "oldest_order_hours": round(max_dur_sec / 3600.0, 2),
-                    "top_whale_walls": sorted(parsed_orders, key=lambda x: x["notional_usd"], reverse=True)[:5],
-                    "all_orders": parsed_orders,
+                    "heading_text": "",
+                    "orders_count": 0,
+                    "side_parse_health": "ERROR_DURING_EXTRACTION",
+                    "rejection_reason": reason,
+                    "total_notional_usd": 0.0,
+                    "buy_notional_usd": 0.0,
+                    "sell_notional_usd": 0.0,
+                    "imbalance_ratio": 1.0,
+                    "max_single_order_usd": 0.0,
+                    "oldest_order_hours": 0.0,
+                    "top_whale_walls": [],
+                    "all_orders": [],
                     "ambiguity_report": {
-                        "total_orders": len(parsed_orders),
-                        "exact_matches": exact_matches,
-                        "partial_fills": partial_fills,
-                        "ambiguous_matches": ambiguous_matches,
-                        "new_orders": new_orders,
-                        "lost_orders_count": len(lost_orders),
-                        "ambiguity_log": ambiguity_log[:5],
-                        "lost_orders": lost_orders[:5]
+                    "total_orders": 0,
+                    "exact_matches": 0,
+                    "partial_fills": 0,
+                    "ambiguous_matches": 0,
+                    "new_orders": 0,
+                    "lost_orders_count": 0,
+                    "ambiguity_log": [],
+                    "lost_orders": []
                     },
-                    "scrape_duration_s": elapsed
-                }
-                print(f"[{idx+1}/{len(assets)}] {asset:<5} -> {len(parsed_orders):<3} Whale Orders | Notional: ${buy_notional + sell_notional:,.0f} | Oldest: {round(max_dur_sec/3600.0, 1)}h ({elapsed}s)")
+                    "scrape_duration_s": round(time.time() - t_asset_start, 2)
+                    }
 
     finally:
         try:

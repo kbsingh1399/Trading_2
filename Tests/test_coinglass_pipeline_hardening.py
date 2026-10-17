@@ -30,100 +30,151 @@ def match_heading_token(heading_text: str | None, target_symbol: str) -> tuple[b
 
 
 def match_cross_cycle_orders(cur_orders: list[dict], prev_orders: list[dict], cycle_interval_s: float = 180.0) -> tuple[list[dict], dict]:
-    """Offline implementation of Q2 cross-cycle matching engine with grid tolerance and bijective assignment."""
+    """Offline implementation of Q2 global bipartite cross-cycle matching engine."""
     exact_matches = 0
     partial_fills = 0
     ambiguous_matches = 0
     new_orders = 0
     ambiguity_log = []
     matched_prev_indices = set()
-
     out_orders = [dict(o) for o in cur_orders]
-    for o in out_orders:
-        cur_p = float(o.get("price", 0.0))
-        cur_not = float(o.get("notional_usd", 0.0))
-        cur_dur = float(o.get("duration_seconds", 0.0))
-        tick_size = 0.0001 if cur_p < 1.0 else (0.01 if cur_p < 500.0 else 0.1)
-        # Tight 2.5 bps grid-derived tolerance (~20.6 USD at 82.5k)
-        price_tol = max(2.0 * tick_size, 0.00025 * cur_p)
 
-        cand_matches = []
-        for p_idx, prev_o in enumerate(prev_orders):
-            if p_idx in matched_prev_indices:
-                continue
-            if prev_o.get("side") == o.get("side"):
+    try:
+        from scipy.optimize import linear_sum_assignment
+        has_scipy = True
+    except ImportError:
+        has_scipy = False
+
+    for side in ("BUY", "SELL"):
+        cur_side_indices = [idx for idx, o in enumerate(out_orders) if o.get("side") == side]
+        prev_side_indices = [idx for idx, p in enumerate(prev_orders) if p.get("side") == side]
+
+        if not cur_side_indices or not prev_side_indices:
+            for c_idx in cur_side_indices:
+                o = out_orders[c_idx]
+                cur_p = float(o.get("price", 0.0))
+                o["track_id"] = f"{o.get('asset', 'COIN')}_{o['side']}_{round(cur_p, 2)}_NEW"
+                o["match_status"] = "NEW_ORDER"
+                o["lineage"] = {"parent_track_id": None, "relation": "FRESH_BOOK_ENTRY"}
+                new_orders += 1
+            continue
+
+        M = len(cur_side_indices)
+        N = len(prev_side_indices)
+        import numpy as np
+        cost_matrix = np.full((M, N), 1e9, dtype=np.float64)
+
+        for m_idx, c_idx in enumerate(cur_side_indices):
+            o = out_orders[c_idx]
+            cur_p = float(o.get("price", 0.0))
+            cur_not = float(o.get("notional_usd", 0.0))
+            cur_dur = float(o.get("duration_seconds", 0.0))
+            tick_size = 0.0001 if cur_p < 1.0 else (0.01 if cur_p < 500.0 else 0.1)
+            price_tol = max(2.0 * tick_size, 0.00025 * cur_p)
+
+            for n_idx, p_idx in enumerate(prev_side_indices):
+                prev_o = prev_orders[p_idx]
                 prev_p = float(prev_o.get("price", 0.0))
                 prev_not = float(prev_o.get("notional_usd", 0.0))
                 prev_dur = float(prev_o.get("duration_seconds", 0.0))
+
                 p_diff = abs(cur_p - prev_p)
                 p_dev = p_diff / max(prev_p, 1e-4)
 
                 if p_diff <= price_tol or p_dev <= 0.00025:
                     exp_dur = prev_dur + cycle_interval_s
                     dur_err = abs(cur_dur - exp_dur)
-                    cand_matches.append((p_idx, prev_o, p_dev, cur_not, prev_not, dur_err))
+                    norm_p = p_diff / max(price_tol, 1e-4)
+                    norm_dur = min(dur_err / 180.0, 10.0)
+                    cost_matrix[m_idx, n_idx] = norm_p * 1.0 + norm_dur * 0.25
 
-        if len(cand_matches) == 1:
-            p_idx, best_prev, p_dev, c_not, p_not, dur_err = cand_matches[0]
-            matched_prev_indices.add(p_idx)  # Bijective 1-to-1 reservation
-            o["track_id"] = best_prev.get("track_id", best_prev.get("row_id"))
-            if c_not < p_not * 0.95:
-                o["match_status"] = "PARTIAL_FILL"
-                o["fill_pct"] = round((p_not - c_not) / p_not * 100.0, 1)
-                o["filled_usd"] = round(p_not - c_not, 2)
-                partial_fills += 1
-            elif c_not > p_not * 1.05:
-                o["match_status"] = "NOTIONAL_EXPANDED"
-                o["expanded_usd"] = round(c_not - p_not, 2)
-                o["fill_pct"] = 0.0
-                exact_matches += 1
-            else:
-                o["match_status"] = "EXACT_SINGLE_MATCH"
-                exact_matches += 1
-            o["lineage"] = {"parent_track_id": o["track_id"], "relation": o["match_status"]}
-        elif len(cand_matches) > 1:
-            cand_matches.sort(key=lambda x: (x[2], x[5]))
-            dur_diff = abs(cand_matches[0][5] - cand_matches[1][5])
-            is_tied = (dur_diff < 5.0)  # Tied duration within 5s
+        if has_scipy:
+            row_ind, col_ind = linear_sum_assignment(cost_matrix)
+        else:
+            edges = []
+            for r in range(M):
+                for c in range(N):
+                    if cost_matrix[r, c] < 1e6:
+                        edges.append((cost_matrix[r, c], r, c))
+            edges.sort(key=lambda x: x[0])
+            assigned_r = set()
+            assigned_c = set()
+            row_ind = []
+            col_ind = []
+            for cost, r, c in edges:
+                if r not in assigned_r and c not in assigned_c:
+                    assigned_r.add(r)
+                    assigned_c.add(c)
+                    row_ind.append(r)
+                    col_ind.append(c)
 
-            p_idx, best_prev, p_dev, c_not, p_not, dur_err = cand_matches[0]
-            matched_prev_indices.add(p_idx)  # Bijective 1-to-1 reservation
-            o["track_id"] = best_prev.get("track_id", best_prev.get("row_id"))
+        matched_cur_indices = set()
+        for r, c in zip(row_ind, col_ind):
+            if cost_matrix[r, c] < 1e6:
+                c_idx = cur_side_indices[r]
+                p_idx = prev_side_indices[c]
+                o = out_orders[c_idx]
+                prev_o = prev_orders[p_idx]
 
-            if is_tied:
-                o["match_status"] = "AMBIGUOUS_TIED_STACKED"
-                tie_break_desc = "TIED_DURATION_REPORTED"
-                ambiguous_matches += 1
-            else:
-                tie_break_desc = "DURATION_CONTINUITY"
+                matched_cur_indices.add(c_idx)
+                matched_prev_indices.add(p_idx)
+
+                cur_p = float(o.get("price", 0.0))
+                prev_p = float(prev_o.get("price", 0.0))
+                c_not = float(o.get("notional_usd", 0.0))
+                p_not = float(prev_o.get("notional_usd", 0.0))
+
+                drift_usd = round(cur_p - prev_p, 4)
+                drift_bps = round(abs(cur_p - prev_p) / max(prev_p, 1e-4) * 10000.0, 2)
+
                 if c_not < p_not * 0.95:
-                    o["match_status"] = "PARTIAL_FILL_AMBIGUOUS"
+                    match_status = "PARTIAL_FILL"
                     o["fill_pct"] = round((p_not - c_not) / p_not * 100.0, 1)
                     o["filled_usd"] = round(p_not - c_not, 2)
                     partial_fills += 1
                 elif c_not > p_not * 1.05:
-                    o["match_status"] = "NOTIONAL_EXPANDED_AMBIGUOUS"
+                    match_status = "NOTIONAL_EXPANDED"
                     o["expanded_usd"] = round(c_not - p_not, 2)
                     o["fill_pct"] = 0.0
                     exact_matches += 1
+                elif drift_usd != 0.0:
+                    match_status = "PRICE_DRIFT_ACCEPTED"
+                    exact_matches += 1
                 else:
-                    o["match_status"] = "AMBIGUOUS_MULTI_MATCH"
-                    ambiguous_matches += 1
+                    match_status = "EXACT_SINGLE_MATCH"
+                    exact_matches += 1
 
-            o["lineage"] = {"parent_track_id": o["track_id"], "relation": o["match_status"], "tie_break": tie_break_desc}
-            ambiguity_log.append({
-                "price": o["price"],
-                "side": o["side"],
-                "candidates": len(cand_matches),
-                "duration_error_s": round(dur_err, 1),
-                "tied_duration": is_tied,
-                "resolved_track_id": o["track_id"]
-            })
-        else:
-            o["track_id"] = f"{o.get('asset', 'COIN')}_{o['side']}_{round(cur_p, 2)}_NEW"
-            o["match_status"] = "NEW_ORDER"
-            o["lineage"] = {"parent_track_id": None, "relation": "FRESH_BOOK_ENTRY"}
-            new_orders += 1
+                tied_count = sum(1 for c2 in range(N) if c2 != c and abs(cost_matrix[r, c2] - cost_matrix[r, c]) < 0.05 and cost_matrix[r, c2] < 1e6)
+                if tied_count > 0:
+                    match_status += "_TIED"
+                    ambiguous_matches += 1
+                    ambiguity_log.append({
+                        "price": cur_p,
+                        "side": side,
+                        "tied_candidates": tied_count + 1,
+                        "cost": round(float(cost_matrix[r, c]), 4),
+                        "resolved_to_track_id": prev_o.get("track_id")
+                    })
+
+                o["track_id"] = prev_o.get("track_id", prev_o.get("row_id"))
+                o["match_status"] = match_status
+                o["price_dev_bps"] = drift_bps
+                o["lineage"] = {
+                    "parent_track_id": o["track_id"],
+                    "relation": match_status,
+                    "price_drift_usd": drift_usd,
+                    "price_drift_bps": drift_bps,
+                    "global_cost": round(float(cost_matrix[r, c]), 4)
+                }
+
+        for m_idx, c_idx in enumerate(cur_side_indices):
+            if c_idx not in matched_cur_indices:
+                o = out_orders[c_idx]
+                cur_p = float(o.get("price", 0.0))
+                o["track_id"] = f"{o.get('asset', 'COIN')}_{o['side']}_{round(cur_p, 2)}_NEW"
+                o["match_status"] = "NEW_ORDER"
+                o["lineage"] = {"parent_track_id": None, "relation": "FRESH_BOOK_ENTRY"}
+                new_orders += 1
 
     lost_orders = [
         {"track_id": p.get("track_id"), "price": p.get("price"), "terminal_status": "FILLED_OR_CANCELED"}
@@ -220,7 +271,7 @@ def test_q2_stacked_orders_duration_continuity_and_ties():
         {"side": "BUY", "price": 80000.0, "notional_usd": 5000000.0, "duration_seconds": 3780.0},
     ]
     matched_tied, rep_tied = match_cross_cycle_orders(cur_tied, prev_tied, cycle_interval_s=180.0)
-    assert matched_tied[0]["match_status"] == "AMBIGUOUS_TIED_STACKED"
+    assert "TIED" in matched_tied[0]["match_status"]
 
 
 def test_q2_notional_expansion_handling():
