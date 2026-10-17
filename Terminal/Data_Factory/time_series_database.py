@@ -277,14 +277,25 @@ class TimeSeriesDatabase:
         - Inserts into SQLite index for instant time-travel queries.
         - Updates master manifest.
         """
-        now_dt = datetime.datetime.now(datetime.timezone.utc)
-        if timestamp_utc is None:
-            timestamp_utc = now_dt.strftime("%Y-%m-%dT%H:%M:%SZ")
-        if epoch is None:
-            epoch = now_dt.timestamp()
+        if epoch is not None:
+            record_dt = datetime.datetime.fromtimestamp(epoch, tz=datetime.timezone.utc)
+            if timestamp_utc is None:
+                timestamp_utc = record_dt.strftime("%Y-%m-%dT%H:%M:%SZ")
+        elif timestamp_utc is not None:
+            try:
+                cleaned = timestamp_utc.replace(" UTC", "Z").replace(" ", "T")
+                record_dt = datetime.datetime.fromisoformat(cleaned.replace("Z", "+00:00"))
+                epoch = record_dt.timestamp()
+            except Exception:
+                record_dt = datetime.datetime.now(datetime.timezone.utc)
+                epoch = record_dt.timestamp()
+        else:
+            record_dt = datetime.datetime.now(datetime.timezone.utc)
+            timestamp_utc = record_dt.strftime("%Y-%m-%dT%H:%M:%SZ")
+            epoch = record_dt.timestamp()
 
-        date_partition = now_dt.strftime("%Y-%m-%d")
-        time_tag = now_dt.strftime("%Y%m%d_%H%M%S")
+        date_partition = record_dt.strftime("%Y-%m-%d")
+        time_tag = record_dt.strftime("%Y%m%d_%H%M%S")
 
         stream_dir = self.history_dir / stream / date_partition
         stream_dir.mkdir(parents=True, exist_ok=True)
@@ -372,12 +383,17 @@ class TimeSeriesDatabase:
         atomic_write_text(latest_file, json.dumps(data_copy, indent=2))
 
         # 4. Extract domain metrics and index in SQLite
+        try:
+            rel_file_path = str(hist_path.relative_to(ROOT))
+        except (ValueError, Exception):
+            rel_file_path = str(hist_path)
+
         record_count = self._index_snapshot_in_sqlite(
             stream=stream,
             timestamp_utc=timestamp_utc,
             epoch=epoch,
             date_partition=date_partition,
-            file_path=str(hist_path.relative_to(ROOT)),
+            file_path=rel_file_path,
             size_bytes=file_size,
             is_compressed=1 if compress else 0,
             gap_detected=gap_detected,
@@ -392,7 +408,7 @@ class TimeSeriesDatabase:
             timestamp_utc=timestamp_utc,
             epoch=epoch,
             date_partition=date_partition,
-            file_path=str(hist_path.relative_to(ROOT)),
+            file_path=rel_file_path,
             gap_detected=gap_detected,
             gap_duration_min=gap_duration_min,
             record_count=record_count
