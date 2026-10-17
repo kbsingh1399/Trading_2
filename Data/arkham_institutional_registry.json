@@ -523,15 +523,15 @@
     "holdings_breakdown": [
       {
         "symbol": "BTC",
-        "price": "$81,466",
+        "price": "$81,365",
         "amount": "BTC",
-        "value_usd": "$595.3M",
-        "change_24h": "-0.65%"
+        "value_usd": "$594.56M",
+        "change_24h": "-0.9%"
       }
     ],
     "category": "SOVEREIGN_TREASURY",
     "priority": "HIGH",
-    "last_updated_utc": "2026-10-17 02:06:38 UTC"
+    "last_updated_utc": "2026-10-17 02:52:07 UTC"
   },
   "microstrategy": {
     "slug": "microstrategy",
@@ -542,15 +542,15 @@
     "holdings_breakdown": [
       {
         "symbol": "BTC",
-        "price": "$81,461",
+        "price": "$81,390",
         "amount": "BTC",
-        "value_usd": "$38.95B",
-        "change_24h": "-0.68%"
+        "value_usd": "$38.92B",
+        "change_24h": "-0.71%"
       }
     ],
     "category": "CORPORATE_TREASURY",
     "priority": "HIGH",
-    "last_updated_utc": "2026-10-17 02:06:44 UTC"
+    "last_updated_utc": "2026-10-17 02:52:13 UTC"
   },
   "tesla": {
     "slug": "tesla",
