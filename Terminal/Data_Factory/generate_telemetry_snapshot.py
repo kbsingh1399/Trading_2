@@ -2422,13 +2422,24 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                 hist = hist[-10:]
         _prev_s_whale_hist[asset] = hist
 
-        # Multi-cycle sign persistence requires at least 3 distinct physical harvests maintaining |S| >= 0.25 with constant sign
+        # Multi-cycle sign persistence requires 4 adjacent physical harvests spanning >= 540s (~9 min) maintaining |S| >= 0.25 with constant sign (Q3 / C190)
         sign_persistence = False
-        if len(hist) >= 3:
-            last3 = [entry.get("s", 0.0) for entry in hist[-3:]]
-            all_pos = all(s >= 0.25 for s in last3)
-            all_neg = all(s <= -0.25 for s in last3)
-            sign_persistence = bool(all_pos or all_neg)
+        if len(hist) >= 4:
+            last4 = hist[-4:]
+            now_ts = time.time()
+            # Enforce freshness and adjacency (gap between consecutive harvests <= 300s, latest harvest <= 300s old)
+            adjacent_fresh = (now_ts - float(last4[-1].get("harvest_epoch", 0.0)) <= 300.0)
+            for h_idx in range(1, len(last4)):
+                gap = float(last4[h_idx].get("harvest_epoch", 0.0)) - float(last4[h_idx - 1].get("harvest_epoch", 0.0))
+                if gap > 300.0 or gap < 60.0:
+                    adjacent_fresh = False
+                    break
+
+            if adjacent_fresh:
+                scores = [entry.get("s", 0.0) for entry in last4]
+                all_pos = all(s >= 0.25 for s in scores)
+                all_neg = all(s <= -0.25 for s in scores)
+                sign_persistence = bool(all_pos or all_neg)
 
         assets_matrix[asset] = {
             "symbol_broker": broker_sym or asset,

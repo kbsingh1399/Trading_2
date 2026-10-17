@@ -280,8 +280,8 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
                         }};
                     }}
 
-                    // Assert page heading on the orderbook container with exact token matching (closes listbox-content gap)
-                    const headingEl = document.querySelector('h1.cgj-typo-h1, div[class*="OrderHatemap"] h1, div[class*="orderbook"] h1, h1[class*="sxTypography"]');
+                    // Assert page heading on the orderbook container with first-token exact matching (closes pair and listbox-content gap)
+                    const headingEl = document.querySelector('h1.cgj-typo-h1, div[class*="OrderHeatmap"] h1, div[class*="OrderHatemap"] h1, div[class*="orderbook"] h1, h1[class*="sxTypography"]');
 
                     if (!headingEl) {{
                         return {{
@@ -302,12 +302,13 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
                         }};
                     }}
 
-                    // Exact token match (word boundary tokenization prevents OP matching STOP, LINK matching BLINK, ARB matching ARBITRUM)
+                    // First-token exact match (prevents pair collision SOL/ETH matching ETH, and eliminates substring collisions OP/STOP, LINK/BLINK, ARB/ARBITRUM)
                     const tokens = headingText.split(/[^A-Za-z0-9]+/).filter(Boolean);
-                    const exactTokenMatch = tokens.some(tok => tok === targetSymbol || tok === targetSymbol + 'USDT' || tok === targetSymbol + 'USD');
+                    const firstToken = tokens.length > 0 ? tokens[0] : '';
+                    const exactTokenMatch = (firstToken === targetSymbol || firstToken === targetSymbol + 'USDT' || firstToken === targetSymbol + 'USD');
                     if (!exactTokenMatch) {{
                         return {{
-                            error: 'Exact token mismatch: expected token ' + targetSymbol + ' in orderbook heading [' + headingText.slice(0, 50) + '] but found tokens [' + tokens.slice(0, 10).join(', ') + ']',
+                            error: 'First-token mismatch: expected first token ' + targetSymbol + ' in orderbook heading [' + headingText.slice(0, 50) + '] but found tokens [' + tokens.slice(0, 10).join(', ') + ']',
                             currentInput: finalInputVal,
                             itemCount: 0,
                             items: []
@@ -477,7 +478,8 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
                     cur_not = float(o.get("notional_usd", 0.0))
                     cur_dur = float(o.get("duration_seconds", 0.0))
                     tick_size = 0.0001 if cur_p < 1.0 else (0.01 if cur_p < 500.0 else 0.1)
-                    price_tol = max(5.0 * tick_size, 0.0008 * cur_p)
+                    # Tight 2.5 bps grid-derived tolerance (Q2/C190: ~20 USD at 80k, never merges 56 USD spaced levels)
+                    price_tol = max(2.0 * tick_size, 0.00025 * cur_p)
 
                     cand_matches = []
                     for p_idx, prev_o in enumerate(prev_orders):
@@ -490,23 +492,26 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
                             p_diff = abs(cur_p - prev_p)
                             p_dev = p_diff / max(prev_p, 1e-4)
 
-                            # Price must be within tick/bps tolerance
-                            if p_diff <= price_tol or p_dev <= 0.0008:
-                                # Partial fill or resting order: notional <= 105% of prior (allowing price drift)
-                                if cur_not <= prev_not * 1.05 or abs(cur_not - prev_not) / max(prev_not, 1.0) <= 0.10:
-                                    exp_dur = prev_dur + cycle_interval_s
-                                    dur_err = abs(cur_dur - exp_dur)
-                                    cand_matches.append((p_idx, prev_o, p_dev, cur_not, prev_not, dur_err))
+                            # Price must be within tight grid/bps tolerance (<= 2.5 bps)
+                            if p_diff <= price_tol or p_dev <= 0.00025:
+                                exp_dur = prev_dur + cycle_interval_s
+                                dur_err = abs(cur_dur - exp_dur)
+                                cand_matches.append((p_idx, prev_o, p_dev, cur_not, prev_not, dur_err))
 
                     if len(cand_matches) == 1:
                         p_idx, best_prev, p_dev, c_not, p_not, dur_err = cand_matches[0]
-                        matched_prev_indices.add(p_idx)
+                        matched_prev_indices.add(p_idx)  # Bijective 1-to-1 reservation
                         o["track_id"] = best_prev.get("track_id", best_prev.get("row_id", f"{asset}_{o['side']}_{round(cur_p, 2)}"))
                         if c_not < p_not * 0.95:
                             o["match_status"] = "PARTIAL_FILL"
                             o["fill_pct"] = round((p_not - c_not) / p_not * 100.0, 1)
                             o["filled_usd"] = round(p_not - c_not, 2)
                             partial_fills += 1
+                        elif c_not > p_not * 1.05:
+                            o["match_status"] = "NOTIONAL_EXPANDED"
+                            o["expanded_usd"] = round(c_not - p_not, 2)
+                            o["fill_pct"] = 0.0
+                            exact_matches += 1
                         else:
                             o["match_status"] = "EXACT_SINGLE_MATCH"
                             exact_matches += 1
@@ -515,24 +520,41 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
                     elif len(cand_matches) > 1:
                         # Tie-break stacked orders at the same price using duration continuity (min dur_err)
                         cand_matches.sort(key=lambda x: (x[2], x[5]))
+                        dur_diff = abs(cand_matches[0][5] - cand_matches[1][5])
+                        is_tied = (dur_diff < 5.0)  # Tied duration within 5s
+
                         p_idx, best_prev, p_dev, c_not, p_not, dur_err = cand_matches[0]
-                        matched_prev_indices.add(p_idx)
+                        matched_prev_indices.add(p_idx)  # Bijective 1-to-1 reservation
                         o["track_id"] = best_prev.get("track_id", best_prev.get("row_id", f"{asset}_{o['side']}_{round(cur_p, 2)}"))
-                        if c_not < p_not * 0.95:
-                            o["match_status"] = "PARTIAL_FILL_AMBIGUOUS"
-                            o["fill_pct"] = round((p_not - c_not) / p_not * 100.0, 1)
-                            o["filled_usd"] = round(p_not - c_not, 2)
-                            partial_fills += 1
-                        else:
-                            o["match_status"] = "AMBIGUOUS_MULTI_MATCH"
+
+                        if is_tied:
+                            o["match_status"] = "AMBIGUOUS_TIED_STACKED"
+                            tie_break_desc = "TIED_DURATION_REPORTED"
                             ambiguous_matches += 1
+                        else:
+                            tie_break_desc = "DURATION_CONTINUITY"
+                            if c_not < p_not * 0.95:
+                                o["match_status"] = "PARTIAL_FILL_AMBIGUOUS"
+                                o["fill_pct"] = round((p_not - c_not) / p_not * 100.0, 1)
+                                o["filled_usd"] = round(p_not - c_not, 2)
+                                partial_fills += 1
+                            elif c_not > p_not * 1.05:
+                                o["match_status"] = "NOTIONAL_EXPANDED_AMBIGUOUS"
+                                o["expanded_usd"] = round(c_not - p_not, 2)
+                                o["fill_pct"] = 0.0
+                                exact_matches += 1
+                            else:
+                                o["match_status"] = "AMBIGUOUS_MULTI_MATCH"
+                                ambiguous_matches += 1
+
                         o["price_dev_bps"] = round(p_dev * 10000.0, 2)
-                        o["lineage"] = {"parent_track_id": o["track_id"], "relation": o["match_status"], "tie_break": "DURATION_CONTINUITY"}
+                        o["lineage"] = {"parent_track_id": o["track_id"], "relation": o["match_status"], "tie_break": tie_break_desc}
                         ambiguity_log.append({
                             "price": o["price"],
                             "side": o["side"],
                             "candidate_count": len(cand_matches),
                             "duration_error_s": round(dur_err, 1),
+                            "tied_duration": is_tied,
                             "resolved_to_track_id": o["track_id"]
                         })
                     else:

@@ -82,12 +82,15 @@ def enforce_single_instance() -> None:
 
 
 def update_status(payload: dict) -> None:
-    """Atomically record daemon status and heartbeat with redundant backup mirror."""
+    """Atomically record daemon status and heartbeat with redundant backup mirror across multiple paths."""
     STATUS_FILE.parent.mkdir(parents=True, exist_ok=True)
+    secondary_dir = ROOT / "Data" / "coinglass" / "backup"
+    secondary_dir.mkdir(parents=True, exist_ok=True)
     raw = json.dumps(payload, indent=2)
     atomic_write_text(STATUS_FILE, raw)
     try:
         atomic_write_text(STATUS_FILE.with_suffix(".bak"), raw)
+        atomic_write_text(secondary_dir / "coinglass_harvester_status.json", raw)
     except Exception:
         pass
 
@@ -108,17 +111,26 @@ async def run_daemon(interval_s: float = DEFAULT_INTERVAL_S, run_once: bool = Fa
     last_error_utc = None
     last_success_utc = None
 
-    # Restore historical failure and success tracking from status file across restarts (with backup recovery)
+    # Restore historical failure and success tracking from status file across restarts (with dual-candidate backup recovery)
     status_source = None
     prev_status = None
-    for candidate_path in [STATUS_FILE, STATUS_FILE.with_suffix(".bak")]:
+    secondary_path = ROOT / "Data" / "coinglass" / "backup" / "coinglass_harvester_status.json"
+    backup_recovery_active = False
+    corruption_recovery_event = False
+
+    for candidate_path in [STATUS_FILE, STATUS_FILE.with_suffix(".bak"), secondary_path]:
         if candidate_path.exists():
             try:
                 prev_status = json.loads(candidate_path.read_text(encoding="utf-8"))
                 status_source = candidate_path.name
+                if candidate_path != STATUS_FILE:
+                    backup_recovery_active = True
+                    corruption_recovery_event = True
+                    logger.warning(f"ALERT: Primary status file missing/corrupt. Restored from backup mirror {candidate_path}")
                 break
             except Exception as e:
                 logger.error(f"Corruption detected in {candidate_path}: {e}")
+                corruption_recovery_event = True
 
     if prev_status:
         cycle_count = int(prev_status.get("cycle_count", 0))
@@ -168,7 +180,11 @@ async def run_daemon(interval_s: float = DEFAULT_INTERVAL_S, run_once: bool = Fa
                 "skipped_assets": harvest_result.get("skipped_assets", {}),
                 "last_success_utc": last_success_utc,
                 "last_error": last_error_message,
-                "last_error_utc": last_error_utc
+                "last_error_utc": last_error_utc,
+                "backup_recovery_active": backup_recovery_active,
+                "corruption_recovery_event": corruption_recovery_event,
+                "status_source": status_source,
+                "backup_mirror_paths": [str(STATUS_FILE.with_suffix(".bak")), str(secondary_path)]
             }
             update_status(status_payload)
 
