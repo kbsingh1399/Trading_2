@@ -3,13 +3,13 @@
   "status": "DEGRADED",
   "current_cycle_status": "FAILED",
   "pid": 15136,
-  "cycle_count": 45,
-  "error_count": 12,
+  "cycle_count": 46,
+  "error_count": 13,
   "interval_seconds": 180.0,
-  "last_heartbeat_utc": "2026-10-17T08:34:11.343607+00:00",
-  "last_heartbeat_epoch": 1792226171.353296,
+  "last_heartbeat_utc": "2026-10-17T08:37:11.384024+00:00",
+  "last_heartbeat_epoch": 1792226351.3933728,
   "last_duration_s": 120.01,
   "last_success_utc": "2026-10-17T08:31:11.243735+00:00",
   "last_error": "",
-  "last_error_utc": "2026-10-17T08:34:11.343607+00:00"
+  "last_error_utc": "2026-10-17T08:37:11.384024+00:00"
 }
