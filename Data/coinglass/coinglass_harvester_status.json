@@ -1,29 +1,15 @@
 {
   "daemon": "autonomous_coinglass_harvester_daemon",
-  "status": "HEALTHY",
-  "current_cycle_status": "SUCCESS",
+  "status": "DEGRADED",
+  "current_cycle_status": "FAILED",
   "pid": 5492,
-  "cycle_count": 16,
-  "error_count": 3,
+  "cycle_count": 18,
+  "error_count": 4,
   "interval_seconds": 180.0,
-  "last_heartbeat_utc": "2026-10-17T07:03:29.271749+00:00",
-  "last_heartbeat_epoch": 1792220657.3728974,
-  "last_harvest_epoch": 1792220657.3210602,
-  "last_duration_s": 48.1,
-  "total_orders_harvested": 351,
-  "grand_total_notional_usd": 199265410.0,
-  "total_assets_scraped": 18,
-  "total_assets_valid": 11,
-  "skipped_assets": {
-    "LINK": "DYNAMIC_PRICE_SANITY: Median price 21.7500 deviates by 77.3% from live Binance price 12.2680 (>15% threshold)",
-    "AVAX": "DYNAMIC_PRICE_SANITY: Median price 14.5000 deviates by 45.0% from live Binance price 9.9990 (>15% threshold)",
-    "DOT": "DYNAMIC_PRICE_SANITY: Median price 1.6000 deviates by 37.1% from live Binance price 1.1669 (>15% threshold)",
-    "APT": "Dropdown option matching 'APT' not found or click failed",
-    "OP": "Dropdown option matching 'OP' not found or click failed",
-    "ARB": "Dropdown option matching 'ARB' not found or click failed",
-    "TRX": "Dropdown option matching 'TRX' not found or click failed"
-  },
-  "last_success_utc": "2026-10-17T07:03:29.271749+00:00",
+  "last_heartbeat_utc": "2026-10-17T07:09:29.342106+00:00",
+  "last_heartbeat_epoch": 1792221025.6610575,
+  "last_duration_s": 56.32,
+  "last_success_utc": "2026-10-17T07:06:29.311447+00:00",
   "last_error": "",
-  "last_error_utc": "2026-10-17T06:57:38.419812+00:00"
+  "last_error_utc": "2026-10-17T07:09:29.342106+00:00"
 }
