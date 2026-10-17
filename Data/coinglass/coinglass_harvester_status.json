@@ -1,37 +1,15 @@
 {
   "daemon": "autonomous_coinglass_harvester_daemon",
-  "status": "HEALTHY",
-  "current_cycle_status": "SUCCESS",
+  "status": "DEGRADED",
+  "current_cycle_status": "FAILED",
   "pid": 15136,
-  "cycle_count": 40,
-  "error_count": 8,
+  "cycle_count": 42,
+  "error_count": 10,
   "interval_seconds": 180.0,
-  "last_heartbeat_utc": "2026-10-17T08:19:11.011409+00:00",
-  "last_heartbeat_epoch": 1792225207.2665396,
-  "last_harvest_epoch": 1792225207.1887918,
-  "last_duration_s": 56.26,
-  "total_orders_harvested": 548,
-  "grand_total_notional_usd": 225999360.0,
-  "total_assets_queried": 18,
-  "total_assets_dom_extracted": 18,
-  "total_assets_price_rejected": 3,
-  "total_assets_ingested": 15,
-  "total_assets_with_orders": 15,
-  "total_assets_scraped": 15,
-  "total_assets_valid": 15,
-  "skipped_assets": {
-    "DOT": "DYNAMIC_PRICE_SANITY: Median price 1.6000 deviates by 38.1% from live Binance price 1.1582 (>15% threshold)",
-    "APT": "DYNAMIC_PRICE_SANITY: Median price 1.0750 deviates by 30.0% from live Binance price 0.8270 (>15% threshold)",
-    "ARB": "DYNAMIC_PRICE_SANITY: Median price 0.2500 deviates by 32.7% from live Binance price 0.1884 (>15% threshold)"
-  },
+  "last_heartbeat_utc": "2026-10-17T08:25:11.147949+00:00",
+  "last_heartbeat_epoch": 1792225631.204983,
+  "last_duration_s": 120.05,
   "last_success_utc": "2026-10-17T08:19:11.011409+00:00",
   "last_error": "",
-  "last_error_utc": "2026-10-17T07:52:26.719576+00:00",
-  "backup_recovery_active": false,
-  "corruption_recovery_event": false,
-  "status_source": "coinglass_harvester_status.json",
-  "backup_mirror_paths": [
-    "C:\\Users\\SIGMA\\Documents\\Trading_2\\Data\\coinglass\\coinglass_harvester_status.bak",
-    "C:\\Users\\SIGMA\\Documents\\Trading_2\\Data\\coinglass\\backup\\coinglass_harvester_status.json"
-  ]
+  "last_error_utc": "2026-10-17T08:25:11.147949+00:00"
 }
