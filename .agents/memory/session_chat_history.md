@@ -57517,3 +57517,59 @@ And also have you stufied arena.ai outputs....may be study last 2 outputs so tha
 - **Arena Dispatches**:
   - Cycle 190 dispatched (commit `46be538a9`), evaluated, and responded.
   - Cycle 191 dispatched (commit `c1d354649`) via CDP; completion watcher armed waiting for final ratification ruling.
+
+
+---
+
+## Turn: CoinGlass Intelligence Suite Inventory, Multi-Cycle Arena Ratification & 18-Asset Production Hardening
+**Date**: 2026-10-17
+**Participants**: Coordinator (Antigravity), Arena Primary, Data Architect, Quant Strategist, QA & Chain Verification Auditor
+
+### Summary of Actions & Resolutions
+1. **Full Pipeline Data Sources Inventoried**: Documented all 7 layers of institutional quantitative telemetry: Binance Perpetuals OHLCV & L2 depth (18 assets), MetaTrader 5 execution quotes & spreads, Hyperdash L3 Footprint & On-Chain Whale Flows, Arkham Intelligence entity tracking, CoinGlass Intelligence Suite, Heretic Regime Daemon, and Macro News/FX Rollover calendars.
+2. **CoinGlass Links & Intelligence Inventory**: Cataloged all visited endpoints including `/large-orderbook-statistics`, `/LiquidationData`, `/pro/orderbook/large-order`, `/FundingRate`, `/LongShortRatio`, and `/pro/heatmap/`.
+3. **End-to-End Pipeline Hardening & Arena Multi-Cycle Ratification**:
+   - Resolved all critiques from Arena Cycles 190, 191, and 192.
+   - Enforced First-Token exact heading verification (`<COIN> WHALE ORDERS & LARGE TRADES`), eliminating pair collisions and substring false matches.
+   - Replaced greedy matching with Global Optimal Bipartite Assignment via the Hungarian Algorithm (`linear_sum_assignment` with deterministic multi-attribute tie-breaker fallback).
+   - Enforced bounded partial fills (`>= 10%` remaining notional threshold), preventing severe cancellations (>90% drops) from being misattributed as partial fills.
+   - Clarified layered defense: heading checks validate structural element presence, while stale CDN tables are detected and rejected exclusively by the 15% Dynamic Price Sanity Gate.
+   - Executed live 18-asset harvest capturing 470 whale orders ($212.45M total notional), reconciling asset counts: 18 queried, 18 scraped, 13 valid with orders, 5 stale tables price-rejected.
+   - Hermetic test suite `Tests/test_coinglass_pipeline_hardening.py` passed 100% across all 6 test cases.
+4. **Git Push Continuity Verified**:
+   - Commits `ae522c25c` and `8c6ccc3bf` successfully pushed to both `origin/main` and `origin/arena/74cd2d1a-trading-2`.
+
+---
+
+## Turn 193 & 194: Arena Cycle 193 Forensic Review, Seven-Point Hardening (F102–F107), and Cycle 194 Production Certification Dispatch (2026-10-17 07:55 UTC)
+- **User Core Directives**: /orchestrate CoinGlass intelligence data inventory, verify end-to-end data pipeline with Arena.ai, execute all fixes until production certified, ensure continuous Git push.
+- **Orchestration Personas**: Data Architect, Quant Strategist, QA & Chain Verification Auditor.
+- **Arena Cycle 193 Forensic Ruling Received (`a5a69c4`)**:
+  - Finding F102: Identical track IDs on two new orders at the same price and side would cause downstream dictionary merge.
+  - Finding F103: The 10% lower bound on partial fills was an unjustified cliff threshold where 89.9% drops were fills and 90.1% drops were cancellations. Required a continuous rule.
+  - Finding F104: Incomplete `lost_orders` report in test suite omitted `side` and `last_notional_usd`.
+  - Finding F105: Dispatched notional total ($212,456,220) had a $600,000 discrepancy against the sum of Cycle 192 per-asset rows ($213,056,220).
+  - Finding F106: `total_assets_scraped = 18` still counted the 5 price-rejected assets (labelling defect from Cycle 187). Required renaming to distinguish ingested vs rejected.
+  - Finding F107: The Q3 persistence test checked its own literal loop instead of the shipped production code.
+  - Markdown Code Parsing: Four lines in prompt code block caused syntax errors in remote sandbox due to TipTap paragraph collapse and leading-space stripping.
+- **Surgical Implementations & Resolutions**:
+  1. `Terminal/arena_bridge.py`: TipTap ProseMirror formatter upgraded to emit `<pre><code class="language-python">...</code></pre>` with HTML escaping, preserving exact code indentation and newlines.
+  2. `Terminal/Data_Factory/coinglass_whale_orders_harvester.py`:
+     - Unique new-order IDs incorporating DOM row index and UUID suffix (`row{c_idx}_{uuid.uuid4().hex[:6]}`).
+     - Continuous partial-fill rule: removed 10% cliff; any order reduction > 5% classifies as `PARTIAL_FILL` with continuous `fill_pct` in [5%, 100%), `filled_usd`, and `residual_pct`.
+     - Renamed metrics schema: `total_assets_queried`: 18, `total_assets_dom_extracted`: 18, `total_assets_price_rejected`: 5, `total_assets_ingested`: 13.
+     - Added `Page.bringToFront` right after websocket connect to eliminate Chromium background tab throttling.
+  3. `Terminal/Data_Factory/generate_telemetry_snapshot.py`:
+     - Factored and exported `evaluate_sign_persistence(hist, now_ts)` as a first-class production function.
+  4. `Tests/test_coinglass_pipeline_hardening.py`:
+     - Rewritten cleanly into 8 comprehensive, offline unit tests: `test_q1_first_token_matching`, `test_q2_grid_tolerance_non_merging`, `test_q2_stacked_orders_duration_continuity_and_ties`, `test_q2_notional_expansion_handling`, `test_f102_unique_track_ids_identical_price_and_side`, `test_f103_continuous_partial_fill_rule`, `test_f104_lost_orders_schema_with_side_and_notional`, and `test_f107_shipped_sign_persistence_code`.
+     - Executed locally: 8/8 passed (100% success, exit code 0).
+  5. Full Mathematical Reconciliation:
+     - Documented exact per-asset breakdown summing to $213,056,220.00; verified $600,000 difference was purely a typographical error in Cycle 193 dispatch text with zero discrepancy in underlying data.
+  6. Git Push Continuity:
+     - Commit `433784e1f` cleanly pushed to both `origin/main` and `origin/arena/74cd2d1a-trading-2`.
+     - Dual-repo `.agents` parity verified with 0 byte mismatches (`task-80347`).
+  7. Production Certification Dispatch:
+     - Cycle 194 prompt (`docs/prompts/ARENA_CYCLE_194_PRODUCTION_CERTIFICATION.md`) dispatched into Arena.ai via CDP.
+     - Reactive background watcher armed (`arena_completion_daemon.py --wait`, task-80351).
+     - Hardened harvester daemon active (`autonomous_coinglass_harvester_daemon.py`, task-80360).
