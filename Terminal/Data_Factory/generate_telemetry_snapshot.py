@@ -2412,13 +2412,17 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
             is_crypto=is_crypto
         )
 
-        # Multi-cycle sign persistence tracking across consecutive snapshot cycles
+        # Multi-cycle sign persistence tracking keyed strictly to physical harvest_epoch (C189)
         hist = list(_prev_s_whale_hist.get(asset) or [])
-        if s_whale is not None:
-            hist.append({"t": round(now_ts, 1), "s": s_whale})
-            hist = hist[-10:]
+        if s_whale is not None and cg_epoch is not None:
+            last_epoch = float(hist[-1].get("harvest_epoch", 0.0)) if hist else 0.0
+            # Only append a new history print when a distinct physical harvest has landed
+            if float(cg_epoch) > last_epoch:
+                hist.append({"harvest_epoch": float(cg_epoch), "s": s_whale, "recorded_utc": datetime.fromtimestamp(float(cg_epoch), timezone.utc).isoformat()})
+                hist = hist[-10:]
         _prev_s_whale_hist[asset] = hist
 
+        # Multi-cycle sign persistence requires at least 3 distinct physical harvests maintaining |S| >= 0.25 with constant sign
         sign_persistence = False
         if len(hist) >= 3:
             last3 = [entry.get("s", 0.0) for entry in hist[-3:]]

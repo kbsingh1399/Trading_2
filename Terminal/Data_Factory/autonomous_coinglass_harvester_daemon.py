@@ -82,9 +82,14 @@ def enforce_single_instance() -> None:
 
 
 def update_status(payload: dict) -> None:
-    """Atomically record daemon status and heartbeat."""
+    """Atomically record daemon status and heartbeat with redundant backup mirror."""
     STATUS_FILE.parent.mkdir(parents=True, exist_ok=True)
-    atomic_write_text(STATUS_FILE, json.dumps(payload, indent=2))
+    raw = json.dumps(payload, indent=2)
+    atomic_write_text(STATUS_FILE, raw)
+    try:
+        atomic_write_text(STATUS_FILE.with_suffix(".bak"), raw)
+    except Exception:
+        pass
 
 
 def handle_shutdown(signum, frame) -> None:
@@ -103,18 +108,27 @@ async def run_daemon(interval_s: float = DEFAULT_INTERVAL_S, run_once: bool = Fa
     last_error_utc = None
     last_success_utc = None
 
-    # Restore historical failure and success tracking from status file across restarts
-    if STATUS_FILE.exists():
-        try:
-            prev_status = json.loads(STATUS_FILE.read_text(encoding="utf-8"))
-            cycle_count = int(prev_status.get("cycle_count", 0))
-            error_count = int(prev_status.get("error_count", 0))
-            last_error_message = prev_status.get("last_error")
-            last_error_utc = prev_status.get("last_error_utc")
-            last_success_utc = prev_status.get("last_success_utc")
-            logger.info(f"Restored historical state: {cycle_count} cycles, {error_count} errors. Last error: {last_error_message}")
-        except Exception as e:
-            logger.warning(f"Could not restore previous status: {e}")
+    # Restore historical failure and success tracking from status file across restarts (with backup recovery)
+    status_source = None
+    prev_status = None
+    for candidate_path in [STATUS_FILE, STATUS_FILE.with_suffix(".bak")]:
+        if candidate_path.exists():
+            try:
+                prev_status = json.loads(candidate_path.read_text(encoding="utf-8"))
+                status_source = candidate_path.name
+                break
+            except Exception as e:
+                logger.error(f"Corruption detected in {candidate_path}: {e}")
+
+    if prev_status:
+        cycle_count = int(prev_status.get("cycle_count", 0))
+        error_count = int(prev_status.get("error_count", 0))
+        last_error_message = prev_status.get("last_error")
+        last_error_utc = prev_status.get("last_error_utc")
+        last_success_utc = prev_status.get("last_success_utc")
+        logger.info(f"Restored historical state from {status_source}: {cycle_count} cycles, {error_count} errors. Last error: {last_error_message}")
+    else:
+        logger.critical("ALERT: Both primary and backup status files are missing or corrupt. Operating in quarantine recovery mode.")
 
     while _keep_running:
         cycle_count += 1

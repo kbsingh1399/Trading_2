@@ -152,9 +152,15 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
     # Load previous snapshot for cross-cycle order tracking
     prev_snapshot_file = OUTPUT_SNAPSHOT_DIR / "coinglass_whale_orders_snapshot.json"
     prev_snapshot_data: dict[str, dict] = {}
+    prev_harvest_epoch: float = 0.0
+    cycle_interval_s: float = 180.0
     if prev_snapshot_file.exists():
         try:
-            prev_snapshot_data = json.loads(prev_snapshot_file.read_text(encoding="utf-8")).get("assets", {})
+            prev_snapshot_root = json.loads(prev_snapshot_file.read_text(encoding="utf-8"))
+            prev_snapshot_data = prev_snapshot_root.get("assets", {})
+            prev_harvest_epoch = float(prev_snapshot_root.get("harvest_epoch") or 0.0)
+            if prev_harvest_epoch > 0:
+                cycle_interval_s = max(30.0, min(3600.0, time.time() - prev_harvest_epoch))
         except Exception:
             prev_snapshot_data = {}
 
@@ -274,12 +280,34 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
                         }};
                     }}
 
-                    // Assert page heading/title reflects the target coin (closes listbox-content gap)
-                    const titleEl = document.querySelector('h1, h2, h3, h4, .title, .coin-name, div[class*="title"], div[class*="header"]');
-                    const titleText = (titleEl ? (titleEl.innerText || '') : '').trim().toUpperCase();
-                    if (titleText && !titleText.includes(targetSymbol)) {{
+                    // Assert page heading on the orderbook container with exact token matching (closes listbox-content gap)
+                    const headingEl = document.querySelector('h1.cgj-typo-h1, div[class*="OrderHatemap"] h1, div[class*="orderbook"] h1, h1[class*="sxTypography"]');
+
+                    if (!headingEl) {{
                         return {{
-                            error: 'Table heading mismatch: requested ' + targetSymbol + ' but active page heading displays ' + titleText.slice(0, 50),
+                            error: 'Orderbook heading element missing: fail-closed for ' + targetSymbol,
+                            currentInput: finalInputVal,
+                            itemCount: 0,
+                            items: []
+                        }};
+                    }}
+
+                    const headingText = (headingEl.innerText || '').trim().toUpperCase();
+                    if (!headingText) {{
+                        return {{
+                            error: 'Orderbook heading text empty: fail-closed for ' + targetSymbol,
+                            currentInput: finalInputVal,
+                            itemCount: 0,
+                            items: []
+                        }};
+                    }}
+
+                    // Exact token match (word boundary tokenization prevents OP matching STOP, LINK matching BLINK, ARB matching ARBITRUM)
+                    const tokens = headingText.split(/[^A-Za-z0-9]+/).filter(Boolean);
+                    const exactTokenMatch = tokens.some(tok => tok === targetSymbol || tok === targetSymbol + 'USDT' || tok === targetSymbol + 'USD');
+                    if (!exactTokenMatch) {{
+                        return {{
+                            error: 'Exact token mismatch: expected token ' + targetSymbol + ' in orderbook heading [' + headingText.slice(0, 50) + '] but found tokens [' + tokens.slice(0, 10).join(', ') + ']',
                             currentInput: finalInputVal,
                             itemCount: 0,
                             items: []
@@ -435,56 +463,110 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
                             }
                             continue
 
-                # Cross-Cycle Order Matching & Ambiguity Resolution (Q2 / C188)
+                # Cross-Cycle Order Matching & Ambiguity Resolution (Q2 / C188 / C189)
                 prev_orders = prev_snapshot_data.get(asset, {}).get("all_orders", [])
                 exact_matches = 0
+                partial_fills = 0
                 ambiguous_matches = 0
                 new_orders = 0
                 ambiguity_log = []
                 matched_prev_indices = set()
 
                 for o in parsed_orders:
+                    cur_p = float(o.get("price", 0.0))
+                    cur_not = float(o.get("notional_usd", 0.0))
+                    cur_dur = float(o.get("duration_seconds", 0.0))
+                    tick_size = 0.0001 if cur_p < 1.0 else (0.01 if cur_p < 500.0 else 0.1)
+                    price_tol = max(5.0 * tick_size, 0.0008 * cur_p)
+
                     cand_matches = []
                     for p_idx, prev_o in enumerate(prev_orders):
                         if p_idx in matched_prev_indices:
                             continue
                         if prev_o.get("side") == o.get("side"):
                             prev_p = float(prev_o.get("price", 0.0))
-                            cur_p = float(o.get("price", 0.0))
-                            p_dev = abs(cur_p - prev_p) / max(prev_p, 1e-4)
                             prev_not = float(prev_o.get("notional_usd", 0.0))
-                            cur_not = float(o.get("notional_usd", 0.0))
-                            not_dev = abs(cur_not - prev_not) / max(prev_not, 1.0)
-                            if p_dev <= 0.0005 and not_dev <= 0.10:
-                                cand_matches.append((p_idx, prev_o, p_dev, not_dev))
+                            prev_dur = float(prev_o.get("duration_seconds", 0.0))
+                            p_diff = abs(cur_p - prev_p)
+                            p_dev = p_diff / max(prev_p, 1e-4)
+
+                            # Price must be within tick/bps tolerance
+                            if p_diff <= price_tol or p_dev <= 0.0008:
+                                # Partial fill or resting order: notional <= 105% of prior (allowing price drift)
+                                if cur_not <= prev_not * 1.05 or abs(cur_not - prev_not) / max(prev_not, 1.0) <= 0.10:
+                                    exp_dur = prev_dur + cycle_interval_s
+                                    dur_err = abs(cur_dur - exp_dur)
+                                    cand_matches.append((p_idx, prev_o, p_dev, cur_not, prev_not, dur_err))
 
                     if len(cand_matches) == 1:
-                        p_idx, best_prev, p_dev, not_dev = cand_matches[0]
+                        p_idx, best_prev, p_dev, c_not, p_not, dur_err = cand_matches[0]
                         matched_prev_indices.add(p_idx)
-                        o["track_id"] = best_prev.get("track_id", best_prev.get("row_id", f"{asset}_{o['side']}_{round(o['price'], 2)}"))
-                        o["match_status"] = "EXACT_SINGLE_MATCH"
+                        o["track_id"] = best_prev.get("track_id", best_prev.get("row_id", f"{asset}_{o['side']}_{round(cur_p, 2)}"))
+                        if c_not < p_not * 0.95:
+                            o["match_status"] = "PARTIAL_FILL"
+                            o["fill_pct"] = round((p_not - c_not) / p_not * 100.0, 1)
+                            o["filled_usd"] = round(p_not - c_not, 2)
+                            partial_fills += 1
+                        else:
+                            o["match_status"] = "EXACT_SINGLE_MATCH"
+                            exact_matches += 1
                         o["price_dev_bps"] = round(p_dev * 10000.0, 2)
-                        o["notional_dev_pct"] = round(not_dev * 100.0, 2)
-                        exact_matches += 1
+                        o["lineage"] = {"parent_track_id": o["track_id"], "relation": o["match_status"]}
                     elif len(cand_matches) > 1:
-                        cand_matches.sort(key=lambda x: x[2])
-                        p_idx, best_prev, p_dev, not_dev = cand_matches[0]
+                        # Tie-break stacked orders at the same price using duration continuity (min dur_err)
+                        cand_matches.sort(key=lambda x: (x[2], x[5]))
+                        p_idx, best_prev, p_dev, c_not, p_not, dur_err = cand_matches[0]
                         matched_prev_indices.add(p_idx)
-                        o["track_id"] = best_prev.get("track_id", best_prev.get("row_id", f"{asset}_{o['side']}_{round(o['price'], 2)}"))
-                        o["match_status"] = "AMBIGUOUS_MULTI_MATCH"
+                        o["track_id"] = best_prev.get("track_id", best_prev.get("row_id", f"{asset}_{o['side']}_{round(cur_p, 2)}"))
+                        if c_not < p_not * 0.95:
+                            o["match_status"] = "PARTIAL_FILL_AMBIGUOUS"
+                            o["fill_pct"] = round((p_not - c_not) / p_not * 100.0, 1)
+                            o["filled_usd"] = round(p_not - c_not, 2)
+                            partial_fills += 1
+                        else:
+                            o["match_status"] = "AMBIGUOUS_MULTI_MATCH"
+                            ambiguous_matches += 1
                         o["price_dev_bps"] = round(p_dev * 10000.0, 2)
-                        o["notional_dev_pct"] = round(not_dev * 100.0, 2)
-                        ambiguous_matches += 1
+                        o["lineage"] = {"parent_track_id": o["track_id"], "relation": o["match_status"], "tie_break": "DURATION_CONTINUITY"}
                         ambiguity_log.append({
                             "price": o["price"],
                             "side": o["side"],
                             "candidate_count": len(cand_matches),
+                            "duration_error_s": round(dur_err, 1),
                             "resolved_to_track_id": o["track_id"]
                         })
                     else:
-                        o["track_id"] = f"{asset}_{o['side']}_{round(o['price'], 2)}_{uuid.uuid4().hex[:6]}"
+                        # Check if this order is a potential price amendment of an unmatched prior order
+                        nearest_unmatched = [
+                            p for p_idx, p in enumerate(prev_orders)
+                            if p_idx not in matched_prev_indices and p.get("side") == o.get("side")
+                        ]
+                        parent_id = None
+                        relation = "FRESH_BOOK_ENTRY"
+                        if nearest_unmatched:
+                            nearest = min(nearest_unmatched, key=lambda p: abs(cur_p - float(p.get("price", 0.0))))
+                            n_dev = abs(cur_p - float(nearest.get("price", 0.0))) / max(float(nearest.get("price", 1.0)), 1e-4)
+                            if n_dev <= 0.0020:  # within 20 bps
+                                parent_id = nearest.get("track_id", nearest.get("row_id"))
+                                relation = "PRICE_AMENDMENT_CANDIDATE"
+
+                        o["track_id"] = f"{asset}_{o['side']}_{round(cur_p, 2)}_{uuid.uuid4().hex[:6]}"
                         o["match_status"] = "NEW_ORDER"
+                        o["lineage"] = {"parent_track_id": parent_id, "relation": relation}
                         new_orders += 1
+
+                # Track lost orders (prior resting orders filled or canceled in this cycle)
+                lost_orders = [
+                    {
+                        "track_id": p_o.get("track_id", p_o.get("row_id")),
+                        "side": p_o.get("side"),
+                        "price": p_o.get("price"),
+                        "last_notional_usd": p_o.get("notional_usd"),
+                        "terminal_status": "FILLED_OR_CANCELED"
+                    }
+                    for p_idx, p_o in enumerate(prev_orders)
+                    if p_idx not in matched_prev_indices
+                ]
 
                 elapsed = round(time.time() - t_asset_start, 2)
                 has_buy = buy_notional > 0
@@ -507,9 +589,12 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
                     "ambiguity_report": {
                         "total_orders": len(parsed_orders),
                         "exact_matches": exact_matches,
+                        "partial_fills": partial_fills,
                         "ambiguous_matches": ambiguous_matches,
                         "new_orders": new_orders,
-                        "ambiguity_log": ambiguity_log[:5]
+                        "lost_orders_count": len(lost_orders),
+                        "ambiguity_log": ambiguity_log[:5],
+                        "lost_orders": lost_orders[:5]
                     },
                     "scrape_duration_s": elapsed
                 }
