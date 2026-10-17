@@ -1,23 +1,23 @@
 {
-  "harvest_timestamp_utc": "2026-10-17T09:58:29.479543+00:00",
-  "harvest_epoch": 1792231109.4795544,
+  "harvest_timestamp_utc": "2026-10-17T10:04:40.736702+00:00",
+  "harvest_epoch": 1792231480.7367566,
   "total_assets_queried": 18,
   "total_assets_attempted": 18,
   "total_assets_dom_extracted": 18,
-  "total_assets_price_rejected": 1,
-  "total_assets_ingested": 0,
-  "total_assets_with_orders": 0,
-  "total_whale_orders": 0,
-  "grand_total_notional_usd": 0.0,
-  "total_duration_seconds": 23.28,
+  "total_assets_price_rejected": 6,
+  "total_assets_ingested": 1,
+  "total_assets_with_orders": 1,
+  "total_whale_orders": 43,
+  "grand_total_notional_usd": 99190000.0,
+  "total_duration_seconds": 34.23,
   "skipped_assets": {
-    "ETH": "DYNAMIC_PRICE_SANITY: Median price 78900.0000 deviates by 3136.7% from live Binance price 2437.6800 (>15% threshold)",
-    "SOL": "Symbol mismatch: requested SOL but active input is ",
-    "BNB": "Dropdown option matching 'BNB' not found or click failed: {'status': 'NO_LISTBOX'}",
-    "DOGE": "Dropdown option matching 'DOGE' not found or click failed: {'status': 'NO_LISTBOX'}",
-    "XRP": "Dropdown option matching 'XRP' not found or click failed: {'status': 'NO_LISTBOX'}",
-    "ADA": "Dropdown option matching 'ADA' not found or click failed: {'status': 'NO_LISTBOX'}",
-    "LINK": "Dropdown option matching 'LINK' not found or click failed: {'status': 'NO_LISTBOX'}",
+    "ETH": "DYNAMIC_PRICE_SANITY: Median price 3600.0000 deviates by 47.9% from live Binance price 2433.3600 (>15% threshold)",
+    "SOL": "DYNAMIC_PRICE_SANITY: Median price 140.0000 deviates by 33.7% from live Binance price 104.7000 (>15% threshold)",
+    "BNB": "DYNAMIC_PRICE_SANITY: Median price 95.0800 deviates by 86.8% from live Binance price 721.7300 (>15% threshold)",
+    "DOGE": "DYNAMIC_PRICE_SANITY: Median price 709.7800 deviates by 885022.8% from live Binance price 0.0802 (>15% threshold)",
+    "XRP": "DYNAMIC_PRICE_SANITY: Median price 0.0794 deviates by 93.9% from live Binance price 1.3038 (>15% threshold)",
+    "ADA": "DYNAMIC_PRICE_SANITY: Median price 1.2989 deviates by 483.0% from live Binance price 0.2228 (>15% threshold)",
+    "LINK": "Symbol mismatch: requested LINK but active input is ",
     "AVAX": "Dropdown option matching 'AVAX' not found or click failed: {'status': 'NO_LISTBOX'}",
     "SUI": "Dropdown option matching 'SUI' not found or click failed: {'status': 'NO_LISTBOX'}",
     "NEAR": "Dropdown option matching 'NEAR' not found or click failed: {'status': 'NO_LISTBOX'}",
@@ -33,336 +33,852 @@
     "BTC": {
       "asset": "BTC",
       "heading_text": "BTC WHALE ORDERS & LARGE TRADES",
-      "orders_count": 0,
-      "side_parse_health": "UNILATERAL_BOOK",
-      "total_notional_usd": 0.0,
-      "buy_notional_usd": 0.0,
-      "sell_notional_usd": 0.0,
-      "imbalance_ratio": 0.0,
-      "max_single_order_usd": 0.0,
-      "oldest_order_hours": 0.0,
-      "top_whale_walls": [],
-      "all_orders": [],
+      "orders_count": 43,
+      "side_parse_health": "HEALTHY",
+      "total_notional_usd": 99190000.0,
+      "buy_notional_usd": 53000000.0,
+      "sell_notional_usd": 46190000.0,
+      "imbalance_ratio": 1.147,
+      "max_single_order_usd": 8060000.0,
+      "oldest_order_hours": 25.0,
+      "top_whale_walls": [
+        {
+          "row_id": "BTC_BUY_41_78900.0",
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 78900.0,
+          "notional_str": "$8.06M",
+          "notional_usd": 8060000.000000001,
+          "duration_str": "1H 49m",
+          "duration_seconds": 6540.0,
+          "duration_hours": 1.82,
+          "track_id": "BTC_BUY_78900.0_row41_1ab875",
+          "match_status": "NEW_ORDER",
+          "lineage": {
+            "parent_track_id": null,
+            "relation": "FRESH_BOOK_ENTRY"
+          }
+        },
+        {
+          "row_id": "BTC_BUY_33_80000.0",
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 80000.0,
+          "notional_str": "$6.84M",
+          "notional_usd": 6840000.0,
+          "duration_str": "2H 25m",
+          "duration_seconds": 8700.0,
+          "duration_hours": 2.42,
+          "track_id": "BTC_BUY_80000.0_row33_85635b",
+          "match_status": "NEW_ORDER",
+          "lineage": {
+            "parent_track_id": null,
+            "relation": "FRESH_BOOK_ENTRY"
+          }
+        },
+        {
+          "row_id": "BTC_BUY_39_79000.0",
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 79000.0,
+          "notional_str": "$6.69M",
+          "notional_usd": 6690000.0,
+          "duration_str": "2H 25m",
+          "duration_seconds": 8700.0,
+          "duration_hours": 2.42,
+          "track_id": "BTC_BUY_79000.0_row39_46818f",
+          "match_status": "NEW_ORDER",
+          "lineage": {
+            "parent_track_id": null,
+            "relation": "FRESH_BOOK_ENTRY"
+          }
+        },
+        {
+          "row_id": "BTC_SELL_0_87000.0",
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 87000.0,
+          "notional_str": "$4.72M",
+          "notional_usd": 4720000.0,
+          "duration_str": "1D 1H",
+          "duration_seconds": 90000.0,
+          "duration_hours": 25.0,
+          "track_id": "BTC_SELL_87000.0_row0_aba4a6",
+          "match_status": "NEW_ORDER",
+          "lineage": {
+            "parent_track_id": null,
+            "relation": "FRESH_BOOK_ENTRY"
+          }
+        },
+        {
+          "row_id": "BTC_SELL_4_85000.0",
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 85000.0,
+          "notional_str": "$4.58M",
+          "notional_usd": 4580000.0,
+          "duration_str": "2H 19m",
+          "duration_seconds": 8340.0,
+          "duration_hours": 2.32,
+          "track_id": "BTC_SELL_85000.0_row4_fcdf77",
+          "match_status": "NEW_ORDER",
+          "lineage": {
+            "parent_track_id": null,
+            "relation": "FRESH_BOOK_ENTRY"
+          }
+        }
+      ],
+      "all_orders": [
+        {
+          "row_id": "BTC_SELL_0_87000.0",
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 87000.0,
+          "notional_str": "$4.72M",
+          "notional_usd": 4720000.0,
+          "duration_str": "1D 1H",
+          "duration_seconds": 90000.0,
+          "duration_hours": 25.0,
+          "track_id": "BTC_SELL_87000.0_row0_aba4a6",
+          "match_status": "NEW_ORDER",
+          "lineage": {
+            "parent_track_id": null,
+            "relation": "FRESH_BOOK_ENTRY"
+          }
+        },
+        {
+          "row_id": "BTC_SELL_1_86500.0",
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 86500.0,
+          "notional_str": "$2.05M",
+          "notional_usd": 2049999.9999999998,
+          "duration_str": "2H 18m",
+          "duration_seconds": 8280.0,
+          "duration_hours": 2.3,
+          "track_id": "BTC_SELL_86500.0_row1_9780c5",
+          "match_status": "NEW_ORDER",
+          "lineage": {
+            "parent_track_id": null,
+            "relation": "FRESH_BOOK_ENTRY"
+          }
+        },
+        {
+          "row_id": "BTC_SELL_2_86000.0",
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 86000.0,
+          "notional_str": "$4.08M",
+          "notional_usd": 4080000.0,
+          "duration_str": "2H 18m",
+          "duration_seconds": 8280.0,
+          "duration_hours": 2.3,
+          "track_id": "BTC_SELL_86000.0_row2_9355c6",
+          "match_status": "NEW_ORDER",
+          "lineage": {
+            "parent_track_id": null,
+            "relation": "FRESH_BOOK_ENTRY"
+          }
+        },
+        {
+          "row_id": "BTC_SELL_3_86000.0",
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 86000.0,
+          "notional_str": "$1.45M",
+          "notional_usd": 1450000.0,
+          "duration_str": "1D 1H",
+          "duration_seconds": 90000.0,
+          "duration_hours": 25.0,
+          "track_id": "BTC_SELL_86000.0_row3_908040",
+          "match_status": "NEW_ORDER",
+          "lineage": {
+            "parent_track_id": null,
+            "relation": "FRESH_BOOK_ENTRY"
+          }
+        },
+        {
+          "row_id": "BTC_SELL_4_85000.0",
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 85000.0,
+          "notional_str": "$4.58M",
+          "notional_usd": 4580000.0,
+          "duration_str": "2H 19m",
+          "duration_seconds": 8340.0,
+          "duration_hours": 2.32,
+          "track_id": "BTC_SELL_85000.0_row4_fcdf77",
+          "match_status": "NEW_ORDER",
+          "lineage": {
+            "parent_track_id": null,
+            "relation": "FRESH_BOOK_ENTRY"
+          }
+        },
+        {
+          "row_id": "BTC_SELL_5_85000.0",
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 85000.0,
+          "notional_str": "$1.28M",
+          "notional_usd": 1280000.0,
+          "duration_str": "1D 1H",
+          "duration_seconds": 90000.0,
+          "duration_hours": 25.0,
+          "track_id": "BTC_SELL_85000.0_row5_92ee95",
+          "match_status": "NEW_ORDER",
+          "lineage": {
+            "parent_track_id": null,
+            "relation": "FRESH_BOOK_ENTRY"
+          }
+        },
+        {
+          "row_id": "BTC_SELL_6_84500.0",
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 84500.0,
+          "notional_str": "$2.84M",
+          "notional_usd": 2840000.0,
+          "duration_str": "1H 47m",
+          "duration_seconds": 6420.0,
+          "duration_hours": 1.78,
+          "track_id": "BTC_SELL_84500.0_row6_fb3f78",
+          "match_status": "NEW_ORDER",
+          "lineage": {
+            "parent_track_id": null,
+            "relation": "FRESH_BOOK_ENTRY"
+          }
+        },
+        {
+          "row_id": "BTC_SELL_7_84500.0",
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 84500.0,
+          "notional_str": "$1.22M",
+          "notional_usd": 1220000.0,
+          "duration_str": "1D 1H",
+          "duration_seconds": 90000.0,
+          "duration_hours": 25.0,
+          "track_id": "BTC_SELL_84500.0_row7_2c6d2d",
+          "match_status": "NEW_ORDER",
+          "lineage": {
+            "parent_track_id": null,
+            "relation": "FRESH_BOOK_ENTRY"
+          }
+        },
+        {
+          "row_id": "BTC_SELL_8_84000.0",
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 84000.0,
+          "notional_str": "$4.41M",
+          "notional_usd": 4410000.0,
+          "duration_str": "2H 15m",
+          "duration_seconds": 8100.0,
+          "duration_hours": 2.25,
+          "track_id": "BTC_SELL_84000.0_row8_8716fc",
+          "match_status": "NEW_ORDER",
+          "lineage": {
+            "parent_track_id": null,
+            "relation": "FRESH_BOOK_ENTRY"
+          }
+        },
+        {
+          "row_id": "BTC_SELL_9_84000.0",
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 84000.0,
+          "notional_str": "$1.42M",
+          "notional_usd": 1420000.0,
+          "duration_str": "1D 1H",
+          "duration_seconds": 90000.0,
+          "duration_hours": 25.0,
+          "track_id": "BTC_SELL_84000.0_row9_58cd0d",
+          "match_status": "NEW_ORDER",
+          "lineage": {
+            "parent_track_id": null,
+            "relation": "FRESH_BOOK_ENTRY"
+          }
+        },
+        {
+          "row_id": "BTC_SELL_10_83500.0",
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 83500.0,
+          "notional_str": "$2.47M",
+          "notional_usd": 2470000.0,
+          "duration_str": "2H 21m",
+          "duration_seconds": 8460.0,
+          "duration_hours": 2.35,
+          "track_id": "BTC_SELL_83500.0_row10_5305f5",
+          "match_status": "NEW_ORDER",
+          "lineage": {
+            "parent_track_id": null,
+            "relation": "FRESH_BOOK_ENTRY"
+          }
+        },
+        {
+          "row_id": "BTC_SELL_11_83500.0",
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 83500.0,
+          "notional_str": "$2.16M",
+          "notional_usd": 2160000.0,
+          "duration_str": "1D 1H",
+          "duration_seconds": 90000.0,
+          "duration_hours": 25.0,
+          "track_id": "BTC_SELL_83500.0_row11_9bfd06",
+          "match_status": "NEW_ORDER",
+          "lineage": {
+            "parent_track_id": null,
+            "relation": "FRESH_BOOK_ENTRY"
+          }
+        },
+        {
+          "row_id": "BTC_SELL_12_83200.0",
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 83200.0,
+          "notional_str": "$1.22M",
+          "notional_usd": 1220000.0,
+          "duration_str": "59m 59s",
+          "duration_seconds": 3599.0,
+          "duration_hours": 1.0,
+          "track_id": "BTC_SELL_83200.0_row12_87ae78",
+          "match_status": "NEW_ORDER",
+          "lineage": {
+            "parent_track_id": null,
+            "relation": "FRESH_BOOK_ENTRY"
+          }
+        },
+        {
+          "row_id": "BTC_SELL_13_83000.0",
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 83000.0,
+          "notional_str": "$1.89M",
+          "notional_usd": 1890000.0,
+          "duration_str": "2H 15m",
+          "duration_seconds": 8100.0,
+          "duration_hours": 2.25,
+          "track_id": "BTC_SELL_83000.0_row13_594efa",
+          "match_status": "NEW_ORDER",
+          "lineage": {
+            "parent_track_id": null,
+            "relation": "FRESH_BOOK_ENTRY"
+          }
+        },
+        {
+          "row_id": "BTC_SELL_14_83000.0",
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 83000.0,
+          "notional_str": "$1.35M",
+          "notional_usd": 1350000.0,
+          "duration_str": "13H 14m",
+          "duration_seconds": 47640.0,
+          "duration_hours": 13.23,
+          "track_id": "BTC_SELL_83000.0_row14_ddfa55",
+          "match_status": "NEW_ORDER",
+          "lineage": {
+            "parent_track_id": null,
+            "relation": "FRESH_BOOK_ENTRY"
+          }
+        },
+        {
+          "row_id": "BTC_SELL_15_82500.0",
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 82500.0,
+          "notional_str": "$2.86M",
+          "notional_usd": 2860000.0,
+          "duration_str": "3H 56m",
+          "duration_seconds": 14160.0,
+          "duration_hours": 3.93,
+          "track_id": "BTC_SELL_82500.0_row15_244dd0",
+          "match_status": "NEW_ORDER",
+          "lineage": {
+            "parent_track_id": null,
+            "relation": "FRESH_BOOK_ENTRY"
+          }
+        },
+        {
+          "row_id": "BTC_SELL_16_82444.0",
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 82444.0,
+          "notional_str": "$1.00M",
+          "notional_usd": 1000000.0,
+          "duration_str": "14H 10m",
+          "duration_seconds": 51000.0,
+          "duration_hours": 14.17,
+          "track_id": "BTC_SELL_82444.0_row16_3c553d",
+          "match_status": "NEW_ORDER",
+          "lineage": {
+            "parent_track_id": null,
+            "relation": "FRESH_BOOK_ENTRY"
+          }
+        },
+        {
+          "row_id": "BTC_SELL_17_81722.91",
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 81722.91,
+          "notional_str": "$1.63M",
+          "notional_usd": 1630000.0,
+          "duration_str": "4m 22s",
+          "duration_seconds": 262.0,
+          "duration_hours": 0.07,
+          "track_id": "BTC_SELL_81722.91_row17_0c5657",
+          "match_status": "NEW_ORDER",
+          "lineage": {
+            "parent_track_id": null,
+            "relation": "FRESH_BOOK_ENTRY"
+          }
+        },
+        {
+          "row_id": "BTC_SELL_18_81667.99",
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 81667.99,
+          "notional_str": "$1.24M",
+          "notional_usd": 1240000.0,
+          "duration_str": "4m 22s",
+          "duration_seconds": 262.0,
+          "duration_hours": 0.07,
+          "track_id": "BTC_SELL_81667.99_row18_492e26",
+          "match_status": "NEW_ORDER",
+          "lineage": {
+            "parent_track_id": null,
+            "relation": "FRESH_BOOK_ENTRY"
+          }
+        },
+        {
+          "row_id": "BTC_SELL_19_81606.64",
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 81606.64,
+          "notional_str": "$1.24M",
+          "notional_usd": 1240000.0,
+          "duration_str": "4m 22s",
+          "duration_seconds": 262.0,
+          "duration_hours": 0.07,
+          "track_id": "BTC_SELL_81606.64_row19_718f86",
+          "match_status": "NEW_ORDER",
+          "lineage": {
+            "parent_track_id": null,
+            "relation": "FRESH_BOOK_ENTRY"
+          }
+        },
+        {
+          "row_id": "BTC_SELL_20_81585.61",
+          "side": "SELL",
+          "is_canceled": false,
+          "price": 81585.61,
+          "notional_str": "$1.08M",
+          "notional_usd": 1080000.0,
+          "duration_str": "4m 22s",
+          "duration_seconds": 262.0,
+          "duration_hours": 0.07,
+          "track_id": "BTC_SELL_81585.61_row20_8fee5e",
+          "match_status": "NEW_ORDER",
+          "lineage": {
+            "parent_track_id": null,
+            "relation": "FRESH_BOOK_ENTRY"
+          }
+        },
+        {
+          "row_id": "BTC_BUY_21_81381.7",
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 81381.7,
+          "notional_str": "$1.07M",
+          "notional_usd": 1070000.0,
+          "duration_str": "0m 11s",
+          "duration_seconds": 11.0,
+          "duration_hours": 0.0,
+          "track_id": "BTC_BUY_81381.7_row21_53b5e3",
+          "match_status": "NEW_ORDER",
+          "lineage": {
+            "parent_track_id": null,
+            "relation": "FRESH_BOOK_ENTRY"
+          }
+        },
+        {
+          "row_id": "BTC_BUY_22_81352.96",
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 81352.96,
+          "notional_str": "$1.18M",
+          "notional_usd": 1180000.0,
+          "duration_str": "4m 22s",
+          "duration_seconds": 262.0,
+          "duration_hours": 0.07,
+          "track_id": "BTC_BUY_81352.96_row22_fdc3e3",
+          "match_status": "NEW_ORDER",
+          "lineage": {
+            "parent_track_id": null,
+            "relation": "FRESH_BOOK_ENTRY"
+          }
+        },
+        {
+          "row_id": "BTC_BUY_23_81313.66",
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 81313.66,
+          "notional_str": "$1.17M",
+          "notional_usd": 1170000.0,
+          "duration_str": "3m 18s",
+          "duration_seconds": 198.0,
+          "duration_hours": 0.06,
+          "track_id": "BTC_BUY_81313.66_row23_a66b47",
+          "match_status": "NEW_ORDER",
+          "lineage": {
+            "parent_track_id": null,
+            "relation": "FRESH_BOOK_ENTRY"
+          }
+        },
+        {
+          "row_id": "BTC_BUY_24_81250.73",
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 81250.73,
+          "notional_str": "$1.38M",
+          "notional_usd": 1380000.0,
+          "duration_str": "3m 18s",
+          "duration_seconds": 198.0,
+          "duration_hours": 0.06,
+          "track_id": "BTC_BUY_81250.73_row24_c6331d",
+          "match_status": "NEW_ORDER",
+          "lineage": {
+            "parent_track_id": null,
+            "relation": "FRESH_BOOK_ENTRY"
+          }
+        },
+        {
+          "row_id": "BTC_BUY_25_81229.09",
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 81229.09,
+          "notional_str": "$1.64M",
+          "notional_usd": 1640000.0,
+          "duration_str": "4m 22s",
+          "duration_seconds": 262.0,
+          "duration_hours": 0.07,
+          "track_id": "BTC_BUY_81229.09_row25_e60335",
+          "match_status": "NEW_ORDER",
+          "lineage": {
+            "parent_track_id": null,
+            "relation": "FRESH_BOOK_ENTRY"
+          }
+        },
+        {
+          "row_id": "BTC_BUY_26_81163.17",
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 81163.17,
+          "notional_str": "$1.60M",
+          "notional_usd": 1600000.0,
+          "duration_str": "0m 2s",
+          "duration_seconds": 2.0,
+          "duration_hours": 0.0,
+          "track_id": "BTC_BUY_81163.17_row26_b481a9",
+          "match_status": "NEW_ORDER",
+          "lineage": {
+            "parent_track_id": null,
+            "relation": "FRESH_BOOK_ENTRY"
+          }
+        },
+        {
+          "row_id": "BTC_BUY_27_81000.0",
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 81000.0,
+          "notional_str": "$1.02M",
+          "notional_usd": 1020000.0,
+          "duration_str": "2H 9m",
+          "duration_seconds": 7740.0,
+          "duration_hours": 2.15,
+          "track_id": "BTC_BUY_81000.0_row27_593002",
+          "match_status": "NEW_ORDER",
+          "lineage": {
+            "parent_track_id": null,
+            "relation": "FRESH_BOOK_ENTRY"
+          }
+        },
+        {
+          "row_id": "BTC_BUY_28_80989.1",
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 80989.1,
+          "notional_str": "$1.00M",
+          "notional_usd": 1000000.0,
+          "duration_str": "4m 18s",
+          "duration_seconds": 258.0,
+          "duration_hours": 0.07,
+          "track_id": "BTC_BUY_80989.1_row28_2d396f",
+          "match_status": "NEW_ORDER",
+          "lineage": {
+            "parent_track_id": null,
+            "relation": "FRESH_BOOK_ENTRY"
+          }
+        },
+        {
+          "row_id": "BTC_BUY_29_80500.0",
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 80500.0,
+          "notional_str": "$1.79M",
+          "notional_usd": 1790000.0,
+          "duration_str": "2H 15m",
+          "duration_seconds": 8100.0,
+          "duration_hours": 2.25,
+          "track_id": "BTC_BUY_80500.0_row29_e808c1",
+          "match_status": "NEW_ORDER",
+          "lineage": {
+            "parent_track_id": null,
+            "relation": "FRESH_BOOK_ENTRY"
+          }
+        },
+        {
+          "row_id": "BTC_BUY_30_80300.0",
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 80300.0,
+          "notional_str": "$2.24M",
+          "notional_usd": 2240000.0,
+          "duration_str": "1H 24m",
+          "duration_seconds": 5040.0,
+          "duration_hours": 1.4,
+          "track_id": "BTC_BUY_80300.0_row30_e3c07a",
+          "match_status": "NEW_ORDER",
+          "lineage": {
+            "parent_track_id": null,
+            "relation": "FRESH_BOOK_ENTRY"
+          }
+        },
+        {
+          "row_id": "BTC_BUY_31_80100.0",
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 80100.0,
+          "notional_str": "$1.61M",
+          "notional_usd": 1610000.0,
+          "duration_str": "2H 15m",
+          "duration_seconds": 8100.0,
+          "duration_hours": 2.25,
+          "track_id": "BTC_BUY_80100.0_row31_45659c",
+          "match_status": "NEW_ORDER",
+          "lineage": {
+            "parent_track_id": null,
+            "relation": "FRESH_BOOK_ENTRY"
+          }
+        },
+        {
+          "row_id": "BTC_BUY_32_80001.0",
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 80001.0,
+          "notional_str": "$3.11M",
+          "notional_usd": 3110000.0,
+          "duration_str": "14H 17m",
+          "duration_seconds": 51420.0,
+          "duration_hours": 14.28,
+          "track_id": "BTC_BUY_80001.0_row32_e7ee13",
+          "match_status": "NEW_ORDER",
+          "lineage": {
+            "parent_track_id": null,
+            "relation": "FRESH_BOOK_ENTRY"
+          }
+        },
+        {
+          "row_id": "BTC_BUY_33_80000.0",
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 80000.0,
+          "notional_str": "$6.84M",
+          "notional_usd": 6840000.0,
+          "duration_str": "2H 25m",
+          "duration_seconds": 8700.0,
+          "duration_hours": 2.42,
+          "track_id": "BTC_BUY_80000.0_row33_85635b",
+          "match_status": "NEW_ORDER",
+          "lineage": {
+            "parent_track_id": null,
+            "relation": "FRESH_BOOK_ENTRY"
+          }
+        },
+        {
+          "row_id": "BTC_BUY_34_80000.0",
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 80000.0,
+          "notional_str": "$1.83M",
+          "notional_usd": 1830000.0,
+          "duration_str": "22H 23m",
+          "duration_seconds": 80580.0,
+          "duration_hours": 22.38,
+          "track_id": "BTC_BUY_80000.0_row34_319d8e",
+          "match_status": "NEW_ORDER",
+          "lineage": {
+            "parent_track_id": null,
+            "relation": "FRESH_BOOK_ENTRY"
+          }
+        },
+        {
+          "row_id": "BTC_BUY_35_79800.0",
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 79800.0,
+          "notional_str": "$1.62M",
+          "notional_usd": 1620000.0,
+          "duration_str": "1H 54m",
+          "duration_seconds": 6840.0,
+          "duration_hours": 1.9,
+          "track_id": "BTC_BUY_79800.0_row35_80e6e5",
+          "match_status": "NEW_ORDER",
+          "lineage": {
+            "parent_track_id": null,
+            "relation": "FRESH_BOOK_ENTRY"
+          }
+        },
+        {
+          "row_id": "BTC_BUY_36_79800.0",
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 79800.0,
+          "notional_str": "$1.16M",
+          "notional_usd": 1160000.0,
+          "duration_str": "1D 1H",
+          "duration_seconds": 90000.0,
+          "duration_hours": 25.0,
+          "track_id": "BTC_BUY_79800.0_row36_de8609",
+          "match_status": "NEW_ORDER",
+          "lineage": {
+            "parent_track_id": null,
+            "relation": "FRESH_BOOK_ENTRY"
+          }
+        },
+        {
+          "row_id": "BTC_BUY_37_79500.0",
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 79500.0,
+          "notional_str": "$3.29M",
+          "notional_usd": 3290000.0,
+          "duration_str": "2H 24m",
+          "duration_seconds": 8640.0,
+          "duration_hours": 2.4,
+          "track_id": "BTC_BUY_79500.0_row37_831a8d",
+          "match_status": "NEW_ORDER",
+          "lineage": {
+            "parent_track_id": null,
+            "relation": "FRESH_BOOK_ENTRY"
+          }
+        },
+        {
+          "row_id": "BTC_BUY_38_79500.0",
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 79500.0,
+          "notional_str": "$1.70M",
+          "notional_usd": 1700000.0,
+          "duration_str": "1D 1H",
+          "duration_seconds": 90000.0,
+          "duration_hours": 25.0,
+          "track_id": "BTC_BUY_79500.0_row38_1895d2",
+          "match_status": "NEW_ORDER",
+          "lineage": {
+            "parent_track_id": null,
+            "relation": "FRESH_BOOK_ENTRY"
+          }
+        },
+        {
+          "row_id": "BTC_BUY_39_79000.0",
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 79000.0,
+          "notional_str": "$6.69M",
+          "notional_usd": 6690000.0,
+          "duration_str": "2H 25m",
+          "duration_seconds": 8700.0,
+          "duration_hours": 2.42,
+          "track_id": "BTC_BUY_79000.0_row39_46818f",
+          "match_status": "NEW_ORDER",
+          "lineage": {
+            "parent_track_id": null,
+            "relation": "FRESH_BOOK_ENTRY"
+          }
+        },
+        {
+          "row_id": "BTC_BUY_40_79000.0",
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 79000.0,
+          "notional_str": "$1.46M",
+          "notional_usd": 1460000.0,
+          "duration_str": "1D 1H",
+          "duration_seconds": 90000.0,
+          "duration_hours": 25.0,
+          "track_id": "BTC_BUY_79000.0_row40_02acf6",
+          "match_status": "NEW_ORDER",
+          "lineage": {
+            "parent_track_id": null,
+            "relation": "FRESH_BOOK_ENTRY"
+          }
+        },
+        {
+          "row_id": "BTC_BUY_41_78900.0",
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 78900.0,
+          "notional_str": "$8.06M",
+          "notional_usd": 8060000.000000001,
+          "duration_str": "1H 49m",
+          "duration_seconds": 6540.0,
+          "duration_hours": 1.82,
+          "track_id": "BTC_BUY_78900.0_row41_1ab875",
+          "match_status": "NEW_ORDER",
+          "lineage": {
+            "parent_track_id": null,
+            "relation": "FRESH_BOOK_ENTRY"
+          }
+        },
+        {
+          "row_id": "BTC_BUY_42_78888.0",
+          "side": "BUY",
+          "is_canceled": false,
+          "price": 78888.0,
+          "notional_str": "$1.54M",
+          "notional_usd": 1540000.0,
+          "duration_str": "1H 50m",
+          "duration_seconds": 6600.0,
+          "duration_hours": 1.83,
+          "track_id": "BTC_BUY_78888.0_row42_747d89",
+          "match_status": "NEW_ORDER",
+          "lineage": {
+            "parent_track_id": null,
+            "relation": "FRESH_BOOK_ENTRY"
+          }
+        }
+      ],
       "ambiguity_report": {
-        "total_orders": 0,
+        "total_orders": 43,
         "exact_matches": 0,
         "partial_fills": 0,
         "ambiguous_matches": 0,
-        "new_orders": 0,
-        "lost_orders_count": 43,
+        "new_orders": 43,
+        "lost_orders_count": 0,
         "ambiguity_log": [],
-        "lost_orders": [
-          {
-            "track_id": "BTC_SELL_87000.0_row0_132f82",
-            "side": "SELL",
-            "price": 87000.0,
-            "last_notional_usd": 4720000.0,
-            "terminal_status": "CANCELED_UNTOUCHED"
-          },
-          {
-            "track_id": "BTC_SELL_86500.0_row1_e57b58",
-            "side": "SELL",
-            "price": 86500.0,
-            "last_notional_usd": 2049999.9999999998,
-            "terminal_status": "CANCELED_UNTOUCHED"
-          },
-          {
-            "track_id": "BTC_SELL_86000.0_row1_5f9d64",
-            "side": "SELL",
-            "price": 86000.0,
-            "last_notional_usd": 4080000.0,
-            "terminal_status": "CANCELED_UNTOUCHED"
-          },
-          {
-            "track_id": "BTC_SELL_86000.0_row2_443dc5",
-            "side": "SELL",
-            "price": 86000.0,
-            "last_notional_usd": 1450000.0,
-            "terminal_status": "CANCELED_UNTOUCHED"
-          },
-          {
-            "track_id": "BTC_SELL_85000.0_row3_d68d00",
-            "side": "SELL",
-            "price": 85000.0,
-            "last_notional_usd": 4580000.0,
-            "terminal_status": "CANCELED_UNTOUCHED"
-          },
-          {
-            "track_id": "BTC_SELL_85000.0_row4_d55820",
-            "side": "SELL",
-            "price": 85000.0,
-            "last_notional_usd": 1280000.0,
-            "terminal_status": "CANCELED_UNTOUCHED"
-          },
-          {
-            "track_id": "BTC_SELL_84500.0_row4_343146",
-            "side": "SELL",
-            "price": 84500.0,
-            "last_notional_usd": 2840000.0,
-            "terminal_status": "CANCELED_UNTOUCHED"
-          },
-          {
-            "track_id": "BTC_SELL_84500.0_row5_1ac409",
-            "side": "SELL",
-            "price": 84500.0,
-            "last_notional_usd": 1220000.0,
-            "terminal_status": "CANCELED_UNTOUCHED"
-          },
-          {
-            "track_id": "BTC_SELL_84000.0_row6_23fcb5",
-            "side": "SELL",
-            "price": 84000.0,
-            "last_notional_usd": 4410000.0,
-            "terminal_status": "CANCELED_UNTOUCHED"
-          },
-          {
-            "track_id": "BTC_SELL_84000.0_row7_0f34d0",
-            "side": "SELL",
-            "price": 84000.0,
-            "last_notional_usd": 1420000.0,
-            "terminal_status": "CANCELED_UNTOUCHED"
-          },
-          {
-            "track_id": "BTC_SELL_83500.0_row8_e0e438",
-            "side": "SELL",
-            "price": 83500.0,
-            "last_notional_usd": 2470000.0,
-            "terminal_status": "CANCELED_UNTOUCHED"
-          },
-          {
-            "track_id": "BTC_SELL_83500.0_row9_86c119",
-            "side": "SELL",
-            "price": 83500.0,
-            "last_notional_usd": 2160000.0,
-            "terminal_status": "CANCELED_UNTOUCHED"
-          },
-          {
-            "track_id": "BTC_SELL_83200.0_row11_0e6059",
-            "side": "SELL",
-            "price": 83200.0,
-            "last_notional_usd": 1220000.0,
-            "terminal_status": "CANCELED_UNTOUCHED"
-          },
-          {
-            "track_id": "BTC_SELL_83000.0_row10_37fbc1",
-            "side": "SELL",
-            "price": 83000.0,
-            "last_notional_usd": 1890000.0,
-            "terminal_status": "CANCELED_UNTOUCHED"
-          },
-          {
-            "track_id": "BTC_SELL_83000.0_row11_34f80d",
-            "side": "SELL",
-            "price": 83000.0,
-            "last_notional_usd": 1350000.0,
-            "terminal_status": "CANCELED_UNTOUCHED"
-          },
-          {
-            "track_id": "BTC_SELL_82500.0_row12_c6c48e",
-            "side": "SELL",
-            "price": 82500.0,
-            "last_notional_usd": 2860000.0,
-            "terminal_status": "CANCELED_UNTOUCHED"
-          },
-          {
-            "track_id": "BTC_SELL_82444.0_row13_3a6d7d",
-            "side": "SELL",
-            "price": 82444.0,
-            "last_notional_usd": 1000000.0,
-            "terminal_status": "CANCELED_UNTOUCHED"
-          },
-          {
-            "track_id": "BTC_SELL_81803.39_row17_040479",
-            "side": "SELL",
-            "price": 81803.39,
-            "last_notional_usd": 1520000.0,
-            "terminal_status": "CANCELED_UNTOUCHED"
-          },
-          {
-            "track_id": "BTC_SELL_81767.32_row18_03b199",
-            "side": "SELL",
-            "price": 81767.32,
-            "last_notional_usd": 1270000.0,
-            "terminal_status": "CANCELED_UNTOUCHED"
-          },
-          {
-            "track_id": "BTC_SELL_81705.25_row19_7f6fba",
-            "side": "SELL",
-            "price": 81705.25,
-            "last_notional_usd": 1100000.0,
-            "terminal_status": "CANCELED_UNTOUCHED"
-          },
-          {
-            "track_id": "BTC_SELL_81680.17_row18_8510eb",
-            "side": "SELL",
-            "price": 81682.66,
-            "last_notional_usd": 1080000.0,
-            "terminal_status": "CANCELED_UNTOUCHED"
-          },
-          {
-            "track_id": "BTC_BUY_81489.0_row21_1fddcf",
-            "side": "BUY",
-            "price": 81489.0,
-            "last_notional_usd": 1100000.0,
-            "terminal_status": "CANCELED_UNTOUCHED"
-          },
-          {
-            "track_id": "BTC_BUY_81476.78_row22_699f42",
-            "side": "BUY",
-            "price": 81476.78,
-            "last_notional_usd": 1190000.0,
-            "terminal_status": "CANCELED_UNTOUCHED"
-          },
-          {
-            "track_id": "BTC_BUY_81416.87_row23_03dc5c",
-            "side": "BUY",
-            "price": 81416.87,
-            "last_notional_usd": 1200000.0,
-            "terminal_status": "CANCELED_UNTOUCHED"
-          },
-          {
-            "track_id": "BTC_BUY_81391.08_row24_ca8efb",
-            "side": "BUY",
-            "price": 81391.08,
-            "last_notional_usd": 1260000.0,
-            "terminal_status": "CANCELED_UNTOUCHED"
-          },
-          {
-            "track_id": "BTC_BUY_81305.34_row25_0afb6e",
-            "side": "BUY",
-            "price": 81304.29,
-            "last_notional_usd": 1630000.0,
-            "terminal_status": "CANCELED_UNTOUCHED"
-          },
-          {
-            "track_id": "BTC_BUY_81262.29_row26_d640b5",
-            "side": "BUY",
-            "price": 81262.29,
-            "last_notional_usd": 2700000.0,
-            "terminal_status": "CANCELED_UNTOUCHED"
-          },
-          {
-            "track_id": "BTC_BUY_81129.96_row25_491943",
-            "side": "BUY",
-            "price": 81129.96,
-            "last_notional_usd": 1000000.0,
-            "terminal_status": "CANCELED_UNTOUCHED"
-          },
-          {
-            "track_id": "BTC_BUY_81000.0_row26_d7cc10",
-            "side": "BUY",
-            "price": 81000.0,
-            "last_notional_usd": 1020000.0,
-            "terminal_status": "CANCELED_UNTOUCHED"
-          },
-          {
-            "track_id": "BTC_BUY_80500.0_row27_388d4d",
-            "side": "BUY",
-            "price": 80500.0,
-            "last_notional_usd": 1790000.0,
-            "terminal_status": "CANCELED_UNTOUCHED"
-          },
-          {
-            "track_id": "BTC_BUY_80300.0_row30_464ef3",
-            "side": "BUY",
-            "price": 80300.0,
-            "last_notional_usd": 2240000.0,
-            "terminal_status": "CANCELED_UNTOUCHED"
-          },
-          {
-            "track_id": "BTC_BUY_80100.0_row28_feb270",
-            "side": "BUY",
-            "price": 80100.0,
-            "last_notional_usd": 1610000.0,
-            "terminal_status": "CANCELED_UNTOUCHED"
-          },
-          {
-            "track_id": "BTC_BUY_80001.0_row29_79631e",
-            "side": "BUY",
-            "price": 80001.0,
-            "last_notional_usd": 3110000.0,
-            "terminal_status": "CANCELED_UNTOUCHED"
-          },
-          {
-            "track_id": "BTC_BUY_80000.0_row30_a2ded9",
-            "side": "BUY",
-            "price": 80000.0,
-            "last_notional_usd": 6830000.0,
-            "terminal_status": "CANCELED_UNTOUCHED"
-          },
-          {
-            "track_id": "BTC_BUY_80000.0_row31_220a3c",
-            "side": "BUY",
-            "price": 80000.0,
-            "last_notional_usd": 1830000.0,
-            "terminal_status": "CANCELED_UNTOUCHED"
-          },
-          {
-            "track_id": "BTC_BUY_79800.0_row32_2c54a6",
-            "side": "BUY",
-            "price": 79800.0,
-            "last_notional_usd": 1620000.0,
-            "terminal_status": "CANCELED_UNTOUCHED"
-          },
-          {
-            "track_id": "BTC_BUY_79800.0_row32_175e66",
-            "side": "BUY",
-            "price": 79800.0,
-            "last_notional_usd": 1160000.0,
-            "terminal_status": "CANCELED_UNTOUCHED"
-          },
-          {
-            "track_id": "BTC_BUY_79500.0_row33_898d93",
-            "side": "BUY",
-            "price": 79500.0,
-            "last_notional_usd": 3290000.0,
-            "terminal_status": "CANCELED_UNTOUCHED"
-          },
-          {
-            "track_id": "BTC_BUY_79500.0_row34_6700b8",
-            "side": "BUY",
-            "price": 79500.0,
-            "last_notional_usd": 1700000.0,
-            "terminal_status": "CANCELED_UNTOUCHED"
-          },
-          {
-            "track_id": "BTC_BUY_79000.0_row35_d44c0b",
-            "side": "BUY",
-            "price": 79000.0,
-            "last_notional_usd": 6690000.0,
-            "terminal_status": "CANCELED_UNTOUCHED"
-          },
-          {
-            "track_id": "BTC_BUY_79000.0_row36_77fc8f",
-            "side": "BUY",
-            "price": 79000.0,
-            "last_notional_usd": 1460000.0,
-            "terminal_status": "CANCELED_UNTOUCHED"
-          },
-          {
-            "track_id": "BTC_BUY_78888.0_row38_4b2b2d",
-            "side": "BUY",
-            "price": 78900.0,
-            "last_notional_usd": 8060000.000000001,
-            "terminal_status": "CANCELED_UNTOUCHED"
-          },
-          {
-            "track_id": "BTC_BUY_78888.0_row41_8d6fd7",
-            "side": "BUY",
-            "price": 78888.0,
-            "last_notional_usd": 1540000.0,
-            "terminal_status": "CANCELED_UNTOUCHED"
-          }
-        ]
+        "lost_orders": []
       },
-      "scrape_duration_s": 0.01
+      "scrape_duration_s": 0.0
     },
     "ETH": {
       "asset": "ETH",
       "heading_text": "ETH WHALE ORDERS & LARGE TRADES",
       "orders_count": 0,
       "side_parse_health": "PRICE_SANITY_REJECTED",
-      "rejection_reason": "DYNAMIC_PRICE_SANITY: Median price 78900.0000 deviates by 3136.7% from live Binance price 2437.6800 (>15% threshold)",
+      "rejection_reason": "DYNAMIC_PRICE_SANITY: Median price 3600.0000 deviates by 47.9% from live Binance price 2433.3600 (>15% threshold)",
       "total_notional_usd": 0.0,
       "buy_notional_usd": 0.0,
       "sell_notional_usd": 0.0,
@@ -375,10 +891,10 @@
     },
     "SOL": {
       "asset": "SOL",
-      "heading_text": "",
+      "heading_text": "SOL WHALE ORDERS & LARGE TRADES",
       "orders_count": 0,
-      "side_parse_health": "EXTRACTION_EVAL_ERROR",
-      "rejection_reason": "Symbol mismatch: requested SOL but active input is ",
+      "side_parse_health": "PRICE_SANITY_REJECTED",
+      "rejection_reason": "DYNAMIC_PRICE_SANITY: Median price 140.0000 deviates by 33.7% from live Binance price 104.7000 (>15% threshold)",
       "total_notional_usd": 0.0,
       "buy_notional_usd": 0.0,
       "sell_notional_usd": 0.0,
@@ -387,14 +903,14 @@
       "oldest_order_hours": 0.0,
       "top_whale_walls": [],
       "all_orders": [],
-      "scrape_duration_s": 3.02
+      "scrape_duration_s": 3.0
     },
     "BNB": {
       "asset": "BNB",
-      "heading_text": "",
+      "heading_text": "BNB WHALE ORDERS & LARGE TRADES",
       "orders_count": 0,
-      "side_parse_health": "DROPDOWN_CLICK_FAILED",
-      "rejection_reason": "Dropdown option matching 'BNB' not found or click failed: {'status': 'NO_LISTBOX'}",
+      "side_parse_health": "PRICE_SANITY_REJECTED",
+      "rejection_reason": "DYNAMIC_PRICE_SANITY: Median price 95.0800 deviates by 86.8% from live Binance price 721.7300 (>15% threshold)",
       "total_notional_usd": 0.0,
       "buy_notional_usd": 0.0,
       "sell_notional_usd": 0.0,
@@ -403,14 +919,14 @@
       "oldest_order_hours": 0.0,
       "top_whale_walls": [],
       "all_orders": [],
-      "scrape_duration_s": 0.83
+      "scrape_duration_s": 2.99
     },
     "DOGE": {
       "asset": "DOGE",
-      "heading_text": "",
+      "heading_text": "DOGE WHALE ORDERS & LARGE TRADES",
       "orders_count": 0,
-      "side_parse_health": "DROPDOWN_CLICK_FAILED",
-      "rejection_reason": "Dropdown option matching 'DOGE' not found or click failed: {'status': 'NO_LISTBOX'}",
+      "side_parse_health": "PRICE_SANITY_REJECTED",
+      "rejection_reason": "DYNAMIC_PRICE_SANITY: Median price 709.7800 deviates by 885022.8% from live Binance price 0.0802 (>15% threshold)",
       "total_notional_usd": 0.0,
       "buy_notional_usd": 0.0,
       "sell_notional_usd": 0.0,
@@ -419,14 +935,14 @@
       "oldest_order_hours": 0.0,
       "top_whale_walls": [],
       "all_orders": [],
-      "scrape_duration_s": 0.82
+      "scrape_duration_s": 2.98
     },
     "XRP": {
       "asset": "XRP",
-      "heading_text": "",
+      "heading_text": "XRP WHALE ORDERS & LARGE TRADES",
       "orders_count": 0,
-      "side_parse_health": "DROPDOWN_CLICK_FAILED",
-      "rejection_reason": "Dropdown option matching 'XRP' not found or click failed: {'status': 'NO_LISTBOX'}",
+      "side_parse_health": "PRICE_SANITY_REJECTED",
+      "rejection_reason": "DYNAMIC_PRICE_SANITY: Median price 0.0794 deviates by 93.9% from live Binance price 1.3038 (>15% threshold)",
       "total_notional_usd": 0.0,
       "buy_notional_usd": 0.0,
       "sell_notional_usd": 0.0,
@@ -435,14 +951,14 @@
       "oldest_order_hours": 0.0,
       "top_whale_walls": [],
       "all_orders": [],
-      "scrape_duration_s": 0.82
+      "scrape_duration_s": 3.01
     },
     "ADA": {
       "asset": "ADA",
-      "heading_text": "",
+      "heading_text": "ADA WHALE ORDERS & LARGE TRADES",
       "orders_count": 0,
-      "side_parse_health": "DROPDOWN_CLICK_FAILED",
-      "rejection_reason": "Dropdown option matching 'ADA' not found or click failed: {'status': 'NO_LISTBOX'}",
+      "side_parse_health": "PRICE_SANITY_REJECTED",
+      "rejection_reason": "DYNAMIC_PRICE_SANITY: Median price 1.2989 deviates by 483.0% from live Binance price 0.2228 (>15% threshold)",
       "total_notional_usd": 0.0,
       "buy_notional_usd": 0.0,
       "sell_notional_usd": 0.0,
@@ -451,14 +967,14 @@
       "oldest_order_hours": 0.0,
       "top_whale_walls": [],
       "all_orders": [],
-      "scrape_duration_s": 0.81
+      "scrape_duration_s": 2.99
     },
     "LINK": {
       "asset": "LINK",
       "heading_text": "",
       "orders_count": 0,
-      "side_parse_health": "DROPDOWN_CLICK_FAILED",
-      "rejection_reason": "Dropdown option matching 'LINK' not found or click failed: {'status': 'NO_LISTBOX'}",
+      "side_parse_health": "EXTRACTION_EVAL_ERROR",
+      "rejection_reason": "Symbol mismatch: requested LINK but active input is ",
       "total_notional_usd": 0.0,
       "buy_notional_usd": 0.0,
       "sell_notional_usd": 0.0,
@@ -467,7 +983,7 @@
       "oldest_order_hours": 0.0,
       "top_whale_walls": [],
       "all_orders": [],
-      "scrape_duration_s": 0.82
+      "scrape_duration_s": 2.99
     },
     "AVAX": {
       "asset": "AVAX",
@@ -499,7 +1015,7 @@
       "oldest_order_hours": 0.0,
       "top_whale_walls": [],
       "all_orders": [],
-      "scrape_duration_s": 0.81
+      "scrape_duration_s": 0.82
     },
     "NEAR": {
       "asset": "NEAR",
@@ -531,7 +1047,7 @@
       "oldest_order_hours": 0.0,
       "top_whale_walls": [],
       "all_orders": [],
-      "scrape_duration_s": 0.81
+      "scrape_duration_s": 0.82
     },
     "LTC": {
       "asset": "LTC",
@@ -547,7 +1063,7 @@
       "oldest_order_hours": 0.0,
       "top_whale_walls": [],
       "all_orders": [],
-      "scrape_duration_s": 0.83
+      "scrape_duration_s": 0.82
     },
     "BCH": {
       "asset": "BCH",
@@ -563,7 +1079,7 @@
       "oldest_order_hours": 0.0,
       "top_whale_walls": [],
       "all_orders": [],
-      "scrape_duration_s": 0.82
+      "scrape_duration_s": 0.81
     },
     "APT": {
       "asset": "APT",
@@ -627,7 +1143,7 @@
       "oldest_order_hours": 0.0,
       "top_whale_walls": [],
       "all_orders": [],
-      "scrape_duration_s": 0.82
+      "scrape_duration_s": 0.81
     }
   }
 }
