@@ -178,6 +178,7 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
                         return msg
 
             await send("Page.enable")
+            await send("Page.bringToFront")
             # Wait for initial page hydration
             await asyncio.sleep(4.5)
 
@@ -499,7 +500,7 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
                             for c_idx in cur_side_indices:
                                 o = parsed_orders[c_idx]
                                 cur_p = float(o.get("price", 0.0))
-                                o["track_id"] = f"{asset}_{o['side']}_{round(cur_p, 2)}_{uuid.uuid4().hex[:6]}"
+                                o["track_id"] = f"{asset}_{o['side']}_{round(cur_p, 4)}_row{c_idx}_{uuid.uuid4().hex[:6]}"
                                 o["match_status"] = "NEW_ORDER"
                                 o["lineage"] = {"parent_track_id": None, "relation": "FRESH_BOOK_ENTRY"}
                                 new_orders += 1
@@ -583,22 +584,13 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
                                 drift_bps = round(abs(cur_p - prev_p) / max(prev_p, 1e-4) * 10000.0, 2)
                                 p_dev = abs(cur_p - prev_p) / max(prev_p, 1e-4)
 
-                                # Attribution and status with bounded partial fill gate (F97: c_not >= 0.10 * p_not)
+                                # Attribution and status with continuous partial fill rule (F103: no step threshold cliff)
                                 if c_not < p_not * 0.95:
-                                    if c_not >= p_not * 0.10:
-                                        match_status = "PARTIAL_FILL"
-                                        o["fill_pct"] = round((p_not - c_not) / p_not * 100.0, 1)
-                                        o["filled_usd"] = round(p_not - c_not, 2)
-                                        partial_fills += 1
-                                    else:
-                                        # Severe drop (>90% drop): prior whale wall canceled/swept; current small order is a new book entry!
-                                        matched_cur_indices.discard(c_idx)
-                                        matched_prev_indices.discard(p_idx)
-                                        o["track_id"] = f"{asset}_{o['side']}_{round(cur_p, 2)}_{uuid.uuid4().hex[:6]}"
-                                        o["match_status"] = "NEW_ORDER"
-                                        o["lineage"] = {"parent_track_id": prev_o.get("track_id"), "relation": "PRIOR_WALL_CANCELED_EXCESSIVE_DROP"}
-                                        new_orders += 1
-                                        continue
+                                    match_status = "PARTIAL_FILL"
+                                    o["fill_pct"] = round((p_not - c_not) / p_not * 100.0, 1)
+                                    o["filled_usd"] = round(p_not - c_not, 2)
+                                    o["residual_pct"] = round(c_not / p_not * 100.0, 1)
+                                    partial_fills += 1
                                 elif c_not > p_not * 1.05:
                                     match_status = "NOTIONAL_EXPANDED"
                                     o["expanded_usd"] = round(c_not - p_not, 2)
@@ -625,7 +617,7 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
                                         "resolved_to_track_id": prev_o.get("track_id")
                                     })
 
-                                o["track_id"] = prev_o.get("track_id", prev_o.get("row_id", f"{asset}_{o['side']}_{round(cur_p, 2)}"))
+                                o["track_id"] = prev_o.get("track_id", prev_o.get("row_id", f"{asset}_{o['side']}_{round(cur_p, 4)}"))
                                 o["match_status"] = match_status
                                 o["price_dev_bps"] = drift_bps
                                 o["lineage"] = {
@@ -636,12 +628,12 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
                                     "global_assignment_cost": round(float(cost_matrix[r, c]), 4)
                                 }
 
-                        # Unassigned current orders become NEW_ORDER
+                        # Unassigned current orders become NEW_ORDER with unique IDs
                         for m_idx, c_idx in enumerate(cur_side_indices):
                             if c_idx not in matched_cur_indices:
                                 o = parsed_orders[c_idx]
                                 cur_p = float(o.get("price", 0.0))
-                                o["track_id"] = f"{asset}_{o['side']}_{round(cur_p, 2)}_{uuid.uuid4().hex[:6]}"
+                                o["track_id"] = f"{asset}_{o['side']}_{round(cur_p, 4)}_row{c_idx}_{uuid.uuid4().hex[:6]}"
                                 o["match_status"] = "NEW_ORDER"
                                 o["lineage"] = {"parent_track_id": None, "relation": "FRESH_BOOK_ENTRY"}
                                 new_orders += 1
@@ -692,7 +684,7 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
                     }
                     print(f"[{idx+1}/{len(assets)}] {asset:<5} -> Heading: '{extracted_heading}' | {len(parsed_orders):<3} Whale Orders | Notional: ${buy_notional + sell_notional:,.0f} | Oldest: {round(max_dur_sec/3600.0, 1)}h ({elapsed}s)")
                 except Exception as asset_err:
-                    reason = f"ASSET_EXTRACTION_EXCEPTION: {asset_err}"
+                    reason = f"ASSET_EXTRACTION_EXCEPTION: {type(asset_err).__name__}: {asset_err}"
                     print(f"[{idx+1}/{len(assets)}] {asset:<5} -> ERROR: {reason}. Continuing to next asset.")
                     skipped_assets[asset] = reason
                     harvested_data[asset] = {
@@ -738,9 +730,10 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
         "harvest_timestamp_utc": datetime.datetime.now(datetime.timezone.utc).isoformat(),
         "harvest_epoch": time.time(),
         "total_assets_queried": len(assets),
-        "total_assets_scraped": len(harvested_data),
-        "total_assets_valid": sum(1 for a, d in harvested_data.items() if d.get("side_parse_health") in ["HEALTHY", "UNILATERAL_BOOK"] and d.get("orders_count", 0) > 0),
+        "total_assets_attempted": len(assets),
+        "total_assets_dom_extracted": len(harvested_data),
         "total_assets_price_rejected": sum(1 for a, d in harvested_data.items() if d.get("side_parse_health") == "PRICE_SANITY_REJECTED"),
+        "total_assets_ingested": sum(1 for a, d in harvested_data.items() if d.get("side_parse_health") in ["HEALTHY", "UNILATERAL_BOOK"] and d.get("orders_count", 0) > 0),
         "total_assets_with_orders": sum(1 for a, d in harvested_data.items() if d.get("orders_count", 0) > 0),
         "total_whale_orders": grand_orders,
         "grand_total_notional_usd": round(grand_notional, 2),

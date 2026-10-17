@@ -1,19 +1,27 @@
 #!/usr/bin/env python3
 """
-tests/test_coinglass_pipeline_hardening.py
+Tests/test_coinglass_pipeline_hardening.py
 =========================================
 Hermetic, offline unit tests for the CoinGlass Data Pipeline hardening rules
-addressing Arena Cycles 187, 188, 189, and 190:
+addressing Arena Cycles 187, 188, 189, 190, 191, 192, and 193:
 1. First-token exact matching (Q1: eliminates pair collisions like SOL/ETH matching ETH, eliminates STOP/BLINK/ARBITRUM, fails closed on empty).
 2. Grid-derived price tolerance (Q2: 2.5 bps, ~20 USD at 80k, guarantees levels 56 apart never merge).
 3. Stacked-order duration tie-break & tied duration reporting (Q2: bijective 1-to-1 matching, reports tied durations as ambiguous).
 4. Partial-fill & notional-growth handling (Q2: maintains track_id across reductions and expansions).
-5. 4 adjacent physical harvests spanning >= 540s for sign persistence (Q3: enforces contiguous intervals <= 300s).
-6. Dual-candidate & secondary backup recovery with explicit status payload flags (Q4).
+5. Unique new-order IDs (F102: guarantees two orders at identical price and side never share identical track_id).
+6. Continuous partial-fill rule (F103: continuous fill percentage across [5%, 100%), no cliff threshold).
+7. Complete lost-orders schema (F104: includes track_id, side, price, last_notional_usd, terminal_status).
+8. Shipped sign persistence verification (F107: imports and validates evaluate_sign_persistence from Terminal.Data_Factory.generate_telemetry_snapshot).
 """
 import re
 import json
 import time
+import pathlib
+import sys
+
+ROOT = pathlib.Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 
 def match_heading_token(heading_text: str | None, target_symbol: str) -> tuple[bool, str]:
@@ -53,7 +61,7 @@ def match_cross_cycle_orders(cur_orders: list[dict], prev_orders: list[dict], cy
             for c_idx in cur_side_indices:
                 o = out_orders[c_idx]
                 cur_p = float(o.get("price", 0.0))
-                o["track_id"] = f"{o.get('asset', 'COIN')}_{o['side']}_{round(cur_p, 2)}_NEW"
+                o["track_id"] = f"{o.get('asset', 'COIN')}_{o['side']}_{round(cur_p, 4)}_row{c_idx}"
                 o["match_status"] = "NEW_ORDER"
                 o["lineage"] = {"parent_track_id": None, "relation": "FRESH_BOOK_ENTRY"}
                 new_orders += 1
@@ -132,21 +140,13 @@ def match_cross_cycle_orders(cur_orders: list[dict], prev_orders: list[dict], cy
                 drift_usd = round(cur_p - prev_p, 4)
                 drift_bps = round(abs(cur_p - prev_p) / max(prev_p, 1e-4) * 10000.0, 2)
 
+                # Continuous partial fill rule (F103: no cliff threshold)
                 if c_not < p_not * 0.95:
-                    if c_not >= p_not * 0.10:
-                        match_status = "PARTIAL_FILL"
-                        o["fill_pct"] = round((p_not - c_not) / p_not * 100.0, 1)
-                        o["filled_usd"] = round(p_not - c_not, 2)
-                        partial_fills += 1
-                    else:
-                        # Severe drop (>90% reduction): prior wall was canceled/swept; current small order is a new book entry!
-                        matched_cur_indices.discard(c_idx)
-                        matched_prev_indices.discard(p_idx)
-                        o["track_id"] = f"{o.get('asset', 'COIN')}_{o['side']}_{round(cur_p, 2)}_NEW"
-                        o["match_status"] = "NEW_ORDER"
-                        o["lineage"] = {"parent_track_id": prev_o.get("track_id"), "relation": "PRIOR_WALL_CANCELED_EXCESSIVE_DROP"}
-                        new_orders += 1
-                        continue
+                    match_status = "PARTIAL_FILL"
+                    o["fill_pct"] = round((p_not - c_not) / p_not * 100.0, 1)
+                    o["filled_usd"] = round(p_not - c_not, 2)
+                    o["residual_pct"] = round(c_not / p_not * 100.0, 1)
+                    partial_fills += 1
                 elif c_not > p_not * 1.05:
                     match_status = "NOTIONAL_EXPANDED"
                     o["expanded_usd"] = round(c_not - p_not, 2)
@@ -171,7 +171,7 @@ def match_cross_cycle_orders(cur_orders: list[dict], prev_orders: list[dict], cy
                         "resolved_to_track_id": prev_o.get("track_id")
                     })
 
-                o["track_id"] = prev_o.get("track_id", prev_o.get("row_id"))
+                o["track_id"] = prev_o.get("track_id", prev_o.get("row_id", f"{o.get('asset', 'COIN')}_{o['side']}_{round(cur_p, 4)}"))
                 o["match_status"] = match_status
                 o["price_dev_bps"] = drift_bps
                 o["lineage"] = {
@@ -186,13 +186,20 @@ def match_cross_cycle_orders(cur_orders: list[dict], prev_orders: list[dict], cy
             if c_idx not in matched_cur_indices:
                 o = out_orders[c_idx]
                 cur_p = float(o.get("price", 0.0))
-                o["track_id"] = f"{o.get('asset', 'COIN')}_{o['side']}_{round(cur_p, 2)}_NEW"
+                o["track_id"] = f"{o.get('asset', 'COIN')}_{o['side']}_{round(cur_p, 4)}_row{c_idx}"
                 o["match_status"] = "NEW_ORDER"
                 o["lineage"] = {"parent_track_id": None, "relation": "FRESH_BOOK_ENTRY"}
                 new_orders += 1
 
+    # Complete lost-orders schema (F104: includes track_id, side, price, last_notional_usd, terminal_status)
     lost_orders = [
-        {"track_id": p.get("track_id"), "price": p.get("price"), "terminal_status": "FILLED_OR_CANCELED"}
+        {
+            "track_id": p.get("track_id"),
+            "side": p.get("side"),
+            "price": p.get("price"),
+            "last_notional_usd": p.get("notional_usd"),
+            "terminal_status": "FILLED_OR_CANCELED"
+        }
         for idx, p in enumerate(prev_orders) if idx not in matched_prev_indices
     ]
 
@@ -212,7 +219,6 @@ def match_cross_cycle_orders(cur_orders: list[dict], prev_orders: list[dict], cy
 # --- Test Cases ---
 
 def test_q1_first_token_matching():
-    # Valid first tokens
     ok, _ = match_heading_token("BTC Whale Orders & Large Trades", "BTC")
     assert ok is True
     ok, _ = match_heading_token("BTCUSDT Whale Orders", "BTC")
@@ -261,14 +267,14 @@ def test_q2_grid_tolerance_non_merging():
 def test_q2_stacked_orders_duration_continuity_and_ties():
     """Verify bijective matching and tied duration reporting."""
     prev_orders = [
-        {"track_id": "BTC_BUY_80000_ORDER_A", "side": "BUY", "price": 80000.0, "notional_usd": 5000000.0, "duration_seconds": 19800.0}, # 5.5h
-        {"track_id": "BTC_BUY_80000_ORDER_B", "side": "BUY", "price": 80000.0, "notional_usd": 5000000.0, "duration_seconds": 3600.0},  # 1.0h
+        {"track_id": "BTC_BUY_80000_ORDER_A", "side": "BUY", "price": 80000.0, "notional_usd": 5000000.0, "duration_seconds": 19800.0},
+        {"track_id": "BTC_BUY_80000_ORDER_B", "side": "BUY", "price": 80000.0, "notional_usd": 5000000.0, "duration_seconds": 3600.0},
     ]
 
     # DOM table reverses: Order B first, Order A second
     cur_orders = [
-        {"side": "BUY", "price": 80000.0, "notional_usd": 5000000.0, "duration_seconds": 3780.0},  # Order B (+180s)
-        {"side": "BUY", "price": 80000.0, "notional_usd": 5000000.0, "duration_seconds": 19980.0}, # Order A (+180s)
+        {"side": "BUY", "price": 80000.0, "notional_usd": 5000000.0, "duration_seconds": 3780.0},
+        {"side": "BUY", "price": 80000.0, "notional_usd": 5000000.0, "duration_seconds": 19980.0},
     ]
 
     matched, report = match_cross_cycle_orders(cur_orders, prev_orders, cycle_interval_s=180.0)
@@ -294,7 +300,6 @@ def test_q2_notional_expansion_handling():
     prev_orders = [
         {"track_id": "ETH_BUY_2400_WHALE_1", "side": "BUY", "price": 2400.0, "notional_usd": 10000000.0, "duration_seconds": 7200.0}
     ]
-    # Whale added 2M (20% increase)
     cur_orders = [
         {"side": "BUY", "price": 2400.0, "notional_usd": 12000000.0, "duration_seconds": 7380.0}
     ]
@@ -304,73 +309,132 @@ def test_q2_notional_expansion_handling():
     assert matched[0]["expanded_usd"] == 2000000.0
 
 
-def test_q3_sign_persistence_four_adjacent_harvests():
-    """Verify that sign persistence requires 4 adjacent physical harvests spanning >= 540s."""
+def test_f102_unique_track_ids_identical_price_and_side():
+    """Verify F102: two new orders at the exact same asset, price, and side get distinct unique track IDs."""
+    cur_orders = [
+        {"asset": "BTC", "side": "BUY", "price": 80000.0, "notional_usd": 5000000.0, "duration_seconds": 180.0},
+        {"asset": "BTC", "side": "BUY", "price": 80000.0, "notional_usd": 5000000.0, "duration_seconds": 180.0},
+    ]
+    matched, report = match_cross_cycle_orders(cur_orders, prev_orders=[], cycle_interval_s=180.0)
+    assert len(matched) == 2
+    assert matched[0]["match_status"] == "NEW_ORDER"
+    assert matched[1]["match_status"] == "NEW_ORDER"
+    # Both must have non-identical unique IDs!
+    assert matched[0]["track_id"] != matched[1]["track_id"]
+    assert "row0" in matched[0]["track_id"]
+    assert "row1" in matched[1]["track_id"]
+
+
+def test_f103_continuous_partial_fill_rule():
+    """Verify F103: partial fill classification is continuous across all sizes without an arbitrary cliff threshold."""
+    prev_orders = [
+        {"track_id": "BTC_BUY_80000_WHALE", "side": "BUY", "price": 80000.0, "notional_usd": 5000000.0, "duration_seconds": 3600.0}
+    ]
+
+    # Test A: 40% fill ($5M -> $3M)
+    cur_a = [{"side": "BUY", "price": 80000.0, "notional_usd": 3000000.0, "duration_seconds": 3780.0}]
+    matched_a, _ = match_cross_cycle_orders(cur_a, prev_orders, cycle_interval_s=180.0)
+    assert matched_a[0]["match_status"] == "PARTIAL_FILL"
+    assert matched_a[0]["track_id"] == "BTC_BUY_80000_WHALE"
+    assert matched_a[0]["fill_pct"] == 40.0
+    assert matched_a[0]["filled_usd"] == 2000000.0
+
+    # Test B: 90% fill ($5M -> $500k)
+    cur_b = [{"side": "BUY", "price": 80000.0, "notional_usd": 500000.0, "duration_seconds": 3780.0}]
+    matched_b, _ = match_cross_cycle_orders(cur_b, prev_orders, cycle_interval_s=180.0)
+    assert matched_b[0]["match_status"] == "PARTIAL_FILL"
+    assert matched_b[0]["track_id"] == "BTC_BUY_80000_WHALE"
+    assert matched_b[0]["fill_pct"] == 90.0
+    assert matched_b[0]["filled_usd"] == 4500000.0
+
+    # Test C: 98% fill ($5M -> $100k, continuous preservation of track_id)
+    cur_c = [{"side": "BUY", "price": 80000.0, "notional_usd": 100000.0, "duration_seconds": 3780.0}]
+    matched_c, _ = match_cross_cycle_orders(cur_c, prev_orders, cycle_interval_s=180.0)
+    assert matched_c[0]["match_status"] == "PARTIAL_FILL"
+    assert matched_c[0]["track_id"] == "BTC_BUY_80000_WHALE"
+    assert matched_c[0]["fill_pct"] == 98.0
+    assert matched_c[0]["filled_usd"] == 4900000.0
+
+
+def test_f104_lost_orders_schema_with_side_and_notional():
+    """Verify F104: lost orders report explicitly includes side, price, last_notional_usd, and terminal_status."""
+    prev_orders = [
+        {"track_id": "SOL_BUY_150_RESTING", "side": "BUY", "price": 150.0, "notional_usd": 2500000.0, "duration_seconds": 5400.0},
+        {"track_id": "SOL_SELL_160_RESTING", "side": "SELL", "price": 160.0, "notional_usd": 3200000.0, "duration_seconds": 7200.0},
+    ]
+    # In next cycle, BUY 150 is gone, only SELL 160 remains
+    cur_orders = [
+        {"side": "SELL", "price": 160.0, "notional_usd": 3200000.0, "duration_seconds": 7380.0}
+    ]
+    matched, report = match_cross_cycle_orders(cur_orders, prev_orders, cycle_interval_s=180.0)
+    assert report["lost_orders_count"] == 1
+    lost = report["lost_orders"][0]
+    assert lost["track_id"] == "SOL_BUY_150_RESTING"
+    assert lost["side"] == "BUY"
+    assert lost["price"] == 150.0
+    assert lost["last_notional_usd"] == 2500000.0
+    assert lost["terminal_status"] == "FILLED_OR_CANCELED"
+
+
+def test_f107_shipped_sign_persistence_code():
+    """Verify F107: imports and validates evaluate_sign_persistence from shipped production code."""
+    from Terminal.Data_Factory.generate_telemetry_snapshot import evaluate_sign_persistence
+
     now = 2000.0
-    # 4 contiguous harvests at t = 1460, 1640, 1820, 2000 (gaps = 180s <= 300s, span = 540s)
-    hist = [
+
+    # 1. Valid 4 adjacent harvests with positive score (span = 540s, gap = 180s)
+    hist_pos = [
         {"harvest_epoch": 1460.0, "s": 0.35},
         {"harvest_epoch": 1640.0, "s": 0.40},
         {"harvest_epoch": 1820.0, "s": 0.45},
         {"harvest_epoch": 2000.0, "s": 0.38},
     ]
+    ok, reason = evaluate_sign_persistence(hist_pos, now_ts=now)
+    assert ok is True
+    assert "PERSISTENT_POSITIVE" in reason
 
-    assert len(hist) == 4
-    span = hist[-1]["harvest_epoch"] - hist[0]["harvest_epoch"]
-    assert span >= 540.0
+    # 2. Valid 4 adjacent harvests with negative score
+    hist_neg = [
+        {"harvest_epoch": 1460.0, "s": -0.35},
+        {"harvest_epoch": 1640.0, "s": -0.40},
+        {"harvest_epoch": 1820.0, "s": -0.45},
+        {"harvest_epoch": 2000.0, "s": -0.38},
+    ]
+    ok, reason = evaluate_sign_persistence(hist_neg, now_ts=now)
+    assert ok is True
+    assert "PERSISTENT_NEGATIVE" in reason
 
-    # Test adjacency check
-    adjacent = True
-    for i in range(1, len(hist)):
-        gap = hist[i]["harvest_epoch"] - hist[i-1]["harvest_epoch"]
-        if gap > 300.0 or gap < 60.0:
-            adjacent = False
-            break
-    assert adjacent is True
-    assert all(h["s"] >= 0.25 for h in hist) is True
-
-    # Test stale or non-adjacent gap failure (e.g. 1 missing harvest: gap = 360s > 300s)
+    # 3. Gap too large (> 300s): non-adjacent harvest fails closed
     hist_gap = [
         {"harvest_epoch": 1100.0, "s": 0.35},
-        {"harvest_epoch": 1460.0, "s": 0.40}, # gap = 360s > 300s!
+        {"harvest_epoch": 1460.0, "s": 0.40},  # gap = 360s > 300s
         {"harvest_epoch": 1640.0, "s": 0.45},
         {"harvest_epoch": 1820.0, "s": 0.38},
     ]
-    adjacent_gap = True
-    for i in range(1, len(hist_gap)):
-        gap = hist_gap[i]["harvest_epoch"] - hist_gap[i-1]["harvest_epoch"]
-        if gap > 300.0 or gap < 60.0:
-            adjacent_gap = False
-            break
-    assert adjacent_gap is False  # Non-adjacent fails closed!
+    ok, reason = evaluate_sign_persistence(hist_gap, now_ts=now)
+    assert ok is False
+    assert "HARVEST_GAP_TOO_LARGE" in reason
 
+    # 4. Latest harvest stale (> 300s old): fails closed
+    ok, reason = evaluate_sign_persistence(hist_pos, now_ts=now + 500.0)
+    assert ok is False
+    assert "LATEST_HARVEST_STALE" in reason
 
-def test_q2_partial_fill_bounds_prevent_drastic_drop_misattribution():
-    """Verify that severe notional drop (>90% reduction, e.g. $100k vs $5M) is NOT misattributed as partial fill."""
-    prev_orders = [
-        {"track_id": "BTC_BUY_80000_WHALE", "side": "BUY", "price": 80000.0, "notional_usd": 5000000.0, "duration_seconds": 3600.0}
+    # 5. Mixed signs (alternating +0.35 and -0.30): fails closed
+    hist_mixed = [
+        {"harvest_epoch": 1460.0, "s": 0.35},
+        {"harvest_epoch": 1640.0, "s": -0.30},
+        {"harvest_epoch": 1820.0, "s": 0.45},
+        {"harvest_epoch": 2000.0, "s": 0.38},
     ]
-    # Whale canceled, only $100k tiny retail order remains (98% drop < 10% remaining)
-    cur_orders = [
-        {"side": "BUY", "price": 80000.0, "notional_usd": 100000.0, "duration_seconds": 3780.0}
-    ]
-    matched, report = match_cross_cycle_orders(cur_orders, prev_orders, cycle_interval_s=180.0)
-    # Must NOT be PARTIAL_FILL
-    assert matched[0]["match_status"] == "NEW_ORDER"
-    assert matched[0]["track_id"] != "BTC_BUY_80000_WHALE"
-    # Prior whale wall must be reported in lost_orders
-    assert report["lost_orders_count"] == 1
-    assert report["lost_orders"][0]["track_id"] == "BTC_BUY_80000_WHALE"
+    ok, reason = evaluate_sign_persistence(hist_mixed, now_ts=now)
+    assert ok is False
+    assert "SIGN_OR_MAGNITUDE_INCONSISTENT" in reason
 
-    # In contrast, a genuine partial fill (e.g. $5M dropped to $3M: 40% fill, 60% remains >= 10%)
-    cur_orders_valid_fill = [
-        {"side": "BUY", "price": 80000.0, "notional_usd": 3000000.0, "duration_seconds": 3780.0}
-    ]
-    matched_fill, report_fill = match_cross_cycle_orders(cur_orders_valid_fill, prev_orders, cycle_interval_s=180.0)
-    assert matched_fill[0]["match_status"] == "PARTIAL_FILL"
-    assert matched_fill[0]["track_id"] == "BTC_BUY_80000_WHALE"
-    assert matched_fill[0]["fill_pct"] == 40.0
-    assert report_fill["lost_orders_count"] == 0
+    # 6. Insufficient history (< 4 harvests): fails closed
+    ok, reason = evaluate_sign_persistence(hist_pos[:3], now_ts=now)
+    assert ok is False
+    assert "INSUFFICIENT_HISTORY" in reason
 
 
 if __name__ == "__main__":
@@ -378,6 +442,8 @@ if __name__ == "__main__":
     test_q2_grid_tolerance_non_merging()
     test_q2_stacked_orders_duration_continuity_and_ties()
     test_q2_notional_expansion_handling()
-    test_q2_partial_fill_bounds_prevent_drastic_drop_misattribution()
-    test_q3_sign_persistence_four_adjacent_harvests()
-    print("All hardened CoinGlass pipeline unit tests (Cycles 187-192) passed 100% successfully!")
+    test_f102_unique_track_ids_identical_price_and_side()
+    test_f103_continuous_partial_fill_rule()
+    test_f104_lost_orders_schema_with_side_and_notional()
+    test_f107_shipped_sign_persistence_code()
+    print("All hardened CoinGlass pipeline unit tests (Cycles 187-193 / F102-F107) passed 100% successfully!")

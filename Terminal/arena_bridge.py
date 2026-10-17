@@ -9,6 +9,7 @@ and evaluates Arena's recommendations against strict quantitative orderflow gate
 
 from __future__ import annotations
 import asyncio
+import html
 import importlib.util
 import json
 import os
@@ -647,21 +648,55 @@ async def clear_arena_prompt_box(ws) -> bool:
 def format_prompt_for_tiptap_html(md: str) -> str:
     """
     Converts plain text/markdown prompts into structured HTML nodes
-    that TipTap ProseMirror natively parses into headings, bullet lists,
-    and distinct paragraphs, preventing unformatted single-paragraph collapse.
+    that TipTap ProseMirror natively parses into headings, code blocks,
+    bullet lists, and distinct paragraphs, preventing syntax stripping or collapse.
     """
     lines = md.split('\n')
     html_parts = []
     in_list = False
-    
+    in_code_block = False
+    code_block_lines = []
+    code_lang = ""
+
     for line in lines:
         stripped = line.strip()
+
+        # Handle fenced code blocks
+        if stripped.startswith('```'):
+            if not in_code_block:
+                if in_list:
+                    html_parts.append('</ul>')
+                    in_list = False
+                in_code_block = True
+                code_lang = stripped[3:].strip()
+                code_block_lines = []
+            else:
+                in_code_block = False
+                code_text = html.escape('\n'.join(code_block_lines))
+                lang_attr = f' class="language-{code_lang}"' if code_lang else ''
+                html_parts.append(f'<pre><code{lang_attr}>{code_text}</code></pre>')
+                code_block_lines = []
+                code_lang = ""
+            continue
+
+        if in_code_block:
+            code_block_lines.append(line)
+            continue
+
         if not stripped:
             if in_list:
                 html_parts.append('</ul>')
                 in_list = False
             continue
-        
+
+        # Horizontal rules
+        if stripped in ('---', '***', '___'):
+            if in_list:
+                html_parts.append('</ul>')
+                in_list = False
+            html_parts.append('<hr>')
+            continue
+
         # Heading 1, 2, 3 or PART X / MANDATE X / STEP X
         if stripped.startswith('# '):
             if in_list:
@@ -686,7 +721,12 @@ def format_prompt_for_tiptap_html(md: str) -> str:
                 html_parts.append('</ul>')
                 in_list = False
             html_parts.append(f'<p>{stripped}</p>')
-            
+
+    if in_code_block:
+        code_text = html.escape('\n'.join(code_block_lines))
+        lang_attr = f' class="language-{code_lang}"' if code_lang else ''
+        html_parts.append(f'<pre><code{lang_attr}>{code_text}</code></pre>')
+
     if in_list:
         html_parts.append('</ul>')
     return ''.join(html_parts)
