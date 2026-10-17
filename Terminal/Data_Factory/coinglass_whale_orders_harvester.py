@@ -28,6 +28,7 @@ import re
 import sys
 import time
 import urllib.request
+import uuid
 import websockets
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
@@ -148,6 +149,15 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
     if live_binance_prices:
         print(f"[WhaleOrdersHarvester] Fetched {len(live_binance_prices)} live Binance reference prices for dynamic price validation.")
 
+    # Load previous snapshot for cross-cycle order tracking
+    prev_snapshot_file = OUTPUT_SNAPSHOT_DIR / "coinglass_whale_orders_snapshot.json"
+    prev_snapshot_data: dict[str, dict] = {}
+    if prev_snapshot_file.exists():
+        try:
+            prev_snapshot_data = json.loads(prev_snapshot_file.read_text(encoding="utf-8")).get("assets", {})
+        except Exception:
+            prev_snapshot_data = {}
+
     try:
         async with websockets.connect(ws_url, max_size=50_000_000) as ws:
             cur_id = 0
@@ -258,6 +268,18 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
                     if (finalInputVal !== targetSymbol) {{
                         return {{
                             error: 'Symbol mismatch: requested ' + targetSymbol + ' but active input is ' + finalInputVal,
+                            currentInput: finalInputVal,
+                            itemCount: 0,
+                            items: []
+                        }};
+                    }}
+
+                    // Assert page heading/title reflects the target coin (closes listbox-content gap)
+                    const titleEl = document.querySelector('h1, h2, h3, h4, .title, .coin-name, div[class*="title"], div[class*="header"]');
+                    const titleText = (titleEl ? (titleEl.innerText || '') : '').trim().toUpperCase();
+                    if (titleText && !titleText.includes(targetSymbol)) {{
+                        return {{
+                            error: 'Table heading mismatch: requested ' + targetSymbol + ' but active page heading displays ' + titleText.slice(0, 50),
                             currentInput: finalInputVal,
                             itemCount: 0,
                             items: []
@@ -413,6 +435,57 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
                             }
                             continue
 
+                # Cross-Cycle Order Matching & Ambiguity Resolution (Q2 / C188)
+                prev_orders = prev_snapshot_data.get(asset, {}).get("all_orders", [])
+                exact_matches = 0
+                ambiguous_matches = 0
+                new_orders = 0
+                ambiguity_log = []
+                matched_prev_indices = set()
+
+                for o in parsed_orders:
+                    cand_matches = []
+                    for p_idx, prev_o in enumerate(prev_orders):
+                        if p_idx in matched_prev_indices:
+                            continue
+                        if prev_o.get("side") == o.get("side"):
+                            prev_p = float(prev_o.get("price", 0.0))
+                            cur_p = float(o.get("price", 0.0))
+                            p_dev = abs(cur_p - prev_p) / max(prev_p, 1e-4)
+                            prev_not = float(prev_o.get("notional_usd", 0.0))
+                            cur_not = float(o.get("notional_usd", 0.0))
+                            not_dev = abs(cur_not - prev_not) / max(prev_not, 1.0)
+                            if p_dev <= 0.0005 and not_dev <= 0.10:
+                                cand_matches.append((p_idx, prev_o, p_dev, not_dev))
+
+                    if len(cand_matches) == 1:
+                        p_idx, best_prev, p_dev, not_dev = cand_matches[0]
+                        matched_prev_indices.add(p_idx)
+                        o["track_id"] = best_prev.get("track_id", best_prev.get("row_id", f"{asset}_{o['side']}_{round(o['price'], 2)}"))
+                        o["match_status"] = "EXACT_SINGLE_MATCH"
+                        o["price_dev_bps"] = round(p_dev * 10000.0, 2)
+                        o["notional_dev_pct"] = round(not_dev * 100.0, 2)
+                        exact_matches += 1
+                    elif len(cand_matches) > 1:
+                        cand_matches.sort(key=lambda x: x[2])
+                        p_idx, best_prev, p_dev, not_dev = cand_matches[0]
+                        matched_prev_indices.add(p_idx)
+                        o["track_id"] = best_prev.get("track_id", best_prev.get("row_id", f"{asset}_{o['side']}_{round(o['price'], 2)}"))
+                        o["match_status"] = "AMBIGUOUS_MULTI_MATCH"
+                        o["price_dev_bps"] = round(p_dev * 10000.0, 2)
+                        o["notional_dev_pct"] = round(not_dev * 100.0, 2)
+                        ambiguous_matches += 1
+                        ambiguity_log.append({
+                            "price": o["price"],
+                            "side": o["side"],
+                            "candidate_count": len(cand_matches),
+                            "resolved_to_track_id": o["track_id"]
+                        })
+                    else:
+                        o["track_id"] = f"{asset}_{o['side']}_{round(o['price'], 2)}_{uuid.uuid4().hex[:6]}"
+                        o["match_status"] = "NEW_ORDER"
+                        new_orders += 1
+
                 elapsed = round(time.time() - t_asset_start, 2)
                 has_buy = buy_notional > 0
                 has_sell = sell_notional > 0
@@ -431,6 +504,13 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
                     "oldest_order_hours": round(max_dur_sec / 3600.0, 2),
                     "top_whale_walls": sorted(parsed_orders, key=lambda x: x["notional_usd"], reverse=True)[:5],
                     "all_orders": parsed_orders,
+                    "ambiguity_report": {
+                        "total_orders": len(parsed_orders),
+                        "exact_matches": exact_matches,
+                        "ambiguous_matches": ambiguous_matches,
+                        "new_orders": new_orders,
+                        "ambiguity_log": ambiguity_log[:5]
+                    },
                     "scrape_duration_s": elapsed
                 }
                 print(f"[{idx+1}/{len(assets)}] {asset:<5} -> {len(parsed_orders):<3} Whale Orders | Notional: ${buy_notional + sell_notional:,.0f} | Oldest: {round(max_dur_sec/3600.0, 1)}h ({elapsed}s)")

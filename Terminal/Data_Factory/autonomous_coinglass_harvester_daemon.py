@@ -103,6 +103,19 @@ async def run_daemon(interval_s: float = DEFAULT_INTERVAL_S, run_once: bool = Fa
     last_error_utc = None
     last_success_utc = None
 
+    # Restore historical failure and success tracking from status file across restarts
+    if STATUS_FILE.exists():
+        try:
+            prev_status = json.loads(STATUS_FILE.read_text(encoding="utf-8"))
+            cycle_count = int(prev_status.get("cycle_count", 0))
+            error_count = int(prev_status.get("error_count", 0))
+            last_error_message = prev_status.get("last_error")
+            last_error_utc = prev_status.get("last_error_utc")
+            last_success_utc = prev_status.get("last_success_utc")
+            logger.info(f"Restored historical state: {cycle_count} cycles, {error_count} errors. Last error: {last_error_message}")
+        except Exception as e:
+            logger.warning(f"Could not restore previous status: {e}")
+
     while _keep_running:
         cycle_count += 1
         t_cycle_start = time.time()

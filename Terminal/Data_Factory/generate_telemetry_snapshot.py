@@ -1515,6 +1515,7 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
     # file is needed. `new_whale_state[META_KEY]` was just created above by
     # record_cycle_interval; we mutate that same dict as assets are processed.
     _prev_basis_meta = dict((prev_whale_state or {}).get(META_KEY) or {})
+    _prev_s_whale_hist = dict(_prev_basis_meta.get("s_whale_history") or {})
     _basis_meta = dict(new_whale_state.get(META_KEY) or {})
 
     # 4. Process all 24 Assets
@@ -2411,6 +2412,20 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
             is_crypto=is_crypto
         )
 
+        # Multi-cycle sign persistence tracking across consecutive snapshot cycles
+        hist = list(_prev_s_whale_hist.get(asset) or [])
+        if s_whale is not None:
+            hist.append({"t": round(now_ts, 1), "s": s_whale})
+            hist = hist[-10:]
+        _prev_s_whale_hist[asset] = hist
+
+        sign_persistence = False
+        if len(hist) >= 3:
+            last3 = [entry.get("s", 0.0) for entry in hist[-3:]]
+            all_pos = all(s >= 0.25 for s in last3)
+            all_neg = all(s <= -0.25 for s in last3)
+            sign_persistence = bool(all_pos or all_neg)
+
         assets_matrix[asset] = {
             "symbol_broker": broker_sym or asset,
             "category": "CRYPTO" if asset in CRYPTO_ASSETS else ("INDICES" if asset in INDICES_ASSETS else ("COMMODITIES" if asset in COMMODITIES_ASSETS else "FOREX")),
@@ -2466,19 +2481,19 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                     "tau_s": s_tau_s,
                     "decay_factor": s_decay_factor,
                     "dead_band_cleared": bool(s_whale is not None and abs(s_whale) > 0.25),
-                    "sign_persistence": bool(s_whale is not None and abs(s_whale) >= 0.25 and (s_decay_factor or 0.0) >= 0.50),
+                    "sign_persistence": sign_persistence,
                     "shelf_flag": any(
                         bool(w.get("gate_g7_eligible") or w.get("wall_class") == "WALL_GENUINE") and
                         abs(w.get("price", 0.0) - (binance_mid or mid_price or 1.0)) / max(binance_mid or mid_price or 1.0, 1.0) <= 0.010
                         for w in whale_walls
                     ),
                     "p_eff": (
-                        round(min(0.58, max(0.52, float(confluence_trade_setup.get("p_win", 0.55)) + 0.03 * s_whale * (1.0 if "LONG" in str(confluence_trade_setup.get("direction", "")).upper() or "BUY" in str(confluence_trade_setup.get("direction", "")).upper() else -1.0))), 4)
+                        round(float(confluence_trade_setup.get("p_win", 0.55)) + min(0.03, max(-0.03, 0.03 * s_whale * (1.0 if "LONG" in str(confluence_trade_setup.get("direction", "")).upper() or "BUY" in str(confluence_trade_setup.get("direction", "")).upper() else -1.0))), 4)
                         if (s_whale is not None and confluence_trade_setup and str(confluence_trade_setup.get("direction", "")).upper() in ["LONG", "BUY", "SHORT", "SELL"])
                         else None
                     ),
                     "R_req": (
-                        round(min(3.0, max(2.0, float(confluence_trade_setup.get("R_target", 2.50)) - 0.30 * s_whale * (1.0 if "LONG" in str(confluence_trade_setup.get("direction", "")).upper() or "BUY" in str(confluence_trade_setup.get("direction", "")).upper() else -1.0))), 4)
+                        round(float(confluence_trade_setup.get("R_target", 2.50)) + min(0.30, max(-0.30, -0.30 * s_whale * (1.0 if "LONG" in str(confluence_trade_setup.get("direction", "")).upper() or "BUY" in str(confluence_trade_setup.get("direction", "")).upper() else -1.0))), 4)
                         if (s_whale is not None and confluence_trade_setup and str(confluence_trade_setup.get("direction", "")).upper() in ["LONG", "BUY", "SHORT", "SELL"])
                         else None
                     ),
@@ -2592,10 +2607,11 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
     # Fold this generation's basis prints into META so the next cycle's median is
     # independent of the reading it anchors. Written after the asset loop and
     # before prune_wall_state, which preserves META_KEY verbatim.
+    _meta_out = dict(new_whale_state.get(META_KEY) or {})
     if _prev_basis_meta.get("basis_history"):
-        _meta_out = dict(new_whale_state.get(META_KEY) or {})
         _meta_out["basis_history"] = _prev_basis_meta["basis_history"]
-        new_whale_state[META_KEY] = _meta_out
+    _meta_out["s_whale_history"] = _prev_s_whale_hist
+    new_whale_state[META_KEY] = _meta_out
     save_whale_state(prune_wall_state(new_whale_state, now_ts), whale_state_path)
 
     # Assemble master document
