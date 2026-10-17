@@ -2013,6 +2013,7 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
             # Aggregate CoinGlass orders by (side, rounded price) summing notional and tracking max single order (Resolves F42)
             cg_all_orders = cg_asset_data.get("all_orders") or cg_asset_data.get("top_whale_walls") or []
             cg_level_orders: Dict[Tuple[str, float], Dict[str, Any]] = {}
+            seen_order_sigs = set()
             for cg_o in cg_all_orders:
                 if cg_o.get("is_canceled"):
                     continue
@@ -2023,9 +2024,20 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                 cg_side = str(cg_o.get("side", "")).upper()
                 if not cg_px or cg_side not in ("BUY", "SELL"):
                     continue
-                k = (cg_side, cg_px)
+
                 dur_s = float(cg_o.get("duration_seconds") or 0.0)
                 dur_str = str(cg_o.get("duration_str") or "")
+
+                # F48: Strict Row Identity to eliminate potential duplicate counting
+                order_sig = (cg_side, cg_px, round(cg_notional, 2), round(dur_s, 0))
+                if order_sig in seen_order_sigs:
+                    continue
+                seen_order_sigs.add(order_sig)
+
+                # F48: Single-order conjunction: order must INDIVIDUALLY meet BOTH size >= $500k and duration >= 180s
+                single_g7 = bool(dur_s >= 180.0 and cg_notional >= 500_000.0)
+
+                k = (cg_side, cg_px)
                 if k not in cg_level_orders:
                     cg_level_orders[k] = {
                         "side": cg_side,
@@ -2034,6 +2046,7 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                         "max_single_notional_usd": cg_notional,
                         "duration_seconds": dur_s,
                         "duration_str": dur_str,
+                        "has_single_order_g7": single_g7,
                         "order_count": 1
                     }
                 else:
@@ -2043,12 +2056,14 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                     if dur_s > cg_level_orders[k]["duration_seconds"]:
                         cg_level_orders[k]["duration_seconds"] = dur_s
                         cg_level_orders[k]["duration_str"] = dur_str
+                    cg_level_orders[k]["has_single_order_g7"] = cg_level_orders[k]["has_single_order_g7"] or single_g7
                     cg_level_orders[k]["order_count"] += 1
 
             for (cg_side, cg_px), cg_item in cg_level_orders.items():
                 cg_notional = round(cg_item["notional_usd"], 2)
                 cg_dur_s = cg_item["duration_seconds"]
-                cg_g7 = bool(cg_dur_s >= 180.0 and cg_item["max_single_notional_usd"] >= 500_000.0)
+                # F48: cg_g7 is true IF AND ONLY IF at least one individual order satisfied BOTH size >= $500k and duration >= 180s
+                cg_g7 = bool(cg_item["has_single_order_g7"])
 
                 # Match ONLY against authentic Binance-sourced walls to prevent CoinGlass-vs-CoinGlass collisions (F21)
                 match_wall = next((w for w in whale_walls if w.get("source_venues") == ["BINANCE"] and w.get("side") == cg_side and abs(w.get("price", 0.0) - cg_px) / max(cg_px, 1.0) <= 0.001), None)
@@ -2448,6 +2463,15 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                     "tau_s": s_tau_s,
                     "decay_factor": s_decay_factor,
                     "dead_band_cleared": bool(s_whale is not None and abs(s_whale) > 0.25),
+                    "p_eff": round(min(0.58, max(0.52, 0.55 + 0.03 * (s_whale or 0.0) * (1.0 if "UP" in str(trend_status).upper() or "BULL" in str(trend_status).upper() else (-1.0 if "DOWN" in str(trend_status).upper() or "BEAR" in str(trend_status).upper() else (1.0 if (s_whale or 0.0) >= 0 else -1.0))))), 4) if s_whale is not None else 0.55,
+                    "R_req": round(min(3.0, max(2.0, 2.5 - 0.30 * (s_whale or 0.0) * (1.0 if "UP" in str(trend_status).upper() or "BULL" in str(trend_status).upper() else (-1.0 if "DOWN" in str(trend_status).upper() or "BEAR" in str(trend_status).upper() else (1.0 if (s_whale or 0.0) >= 0 else -1.0))))), 4) if s_whale is not None else 2.50,
+                    "size_multiplier": round(min(1.25, max(1.0, 1.0 + 0.25 * max(0.0, (s_whale or 0.0) * (1.0 if "UP" in str(trend_status).upper() or "BULL" in str(trend_status).upper() else (-1.0 if "DOWN" in str(trend_status).upper() or "BEAR" in str(trend_status).upper() else 1.0))))), 4) if s_whale is not None else 1.0,
+                    "sign_persistence": bool(s_whale is not None and abs(s_whale) >= 0.25 and (s_decay_factor or 0.0) >= 0.50),
+                    "shelf_flag": any(
+                        bool(w.get("gate_g7_eligible") or w.get("wall_class") == "WALL_GENUINE") and
+                        abs(w.get("price", 0.0) - (binance_mid or mid_price or 1.0)) / max(binance_mid or mid_price or 1.0, 1.0) <= 0.010
+                        for w in whale_walls
+                    ),
                     "action": (
                         "FAIL_CLOSED_NO_DATA" if s_whale is None
                         else ("STRONG_BULLISH_WHALE_SUPPORT" if s_whale > 0.25

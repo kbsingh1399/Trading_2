@@ -47,6 +47,28 @@ OUTPUT_SNAPSHOT_FILE = OUTPUT_SNAPSHOT_DIR / "coinglass_whale_orders_snapshot.js
 
 TARGET_ASSETS = ["BTC", "ETH", "SOL", "BNB", "DOGE", "XRP", "ADA", "LINK", "AVAX", "SUI", "NEAR", "DOT", "LTC", "BCH", "APT", "OP", "ARB", "TRX"]
 
+# Price sanity bounds to physically prevent cross-asset mislabeling (F46)
+PRICE_SANITY_BOUNDS = {
+    "BTC": (25_000.0, 250_000.0),
+    "ETH": (1_000.0, 15_000.0),
+    "SOL": (10.0, 1_000.0),
+    "BNB": (100.0, 3_000.0),
+    "DOGE": (0.01, 3.0),
+    "XRP": (0.10, 15.0),
+    "ADA": (0.05, 10.0),
+    "LINK": (2.0, 150.0),
+    "AVAX": (5.0, 300.0),
+    "SUI": (0.10, 30.0),
+    "NEAR": (0.30, 60.0),
+    "DOT": (1.0, 80.0),
+    "LTC": (15.0, 600.0),
+    "BCH": (40.0, 3_000.0),
+    "APT": (1.0, 150.0),
+    "OP": (0.10, 30.0),
+    "ARB": (0.05, 20.0),
+    "TRX": (0.02, 3.0),
+}
+
 
 def parse_notional(val_str: str) -> float:
     """Converts strings like '$4.62M', '$790.81K', '$1.2B' into numeric USD floats."""
@@ -167,7 +189,17 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
                         }}
                         return false;
                     }})()"""
-                    await send("Runtime.evaluate", {"expression": click_opt_js, "returnByValue": True})
+                    click_res = await send("Runtime.evaluate", {"expression": click_opt_js, "returnByValue": True})
+                    clicked = click_res.get("result", {}).get("result", {}).get("value", False)
+                    if not clicked:
+                        print(f"[{idx+1}/{len(assets)}] {asset:<5} -> WARNING: Dropdown option matching '{asset}' not found or click failed. Skipping.")
+                        # Ensure popper is closed before moving to next asset
+                        close_popper_js = """(() => {
+                            const el = document.querySelector('input.MuiAutocomplete-input, input[placeholder*="Search"]');
+                            if (el) el.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+                        })()"""
+                        await send("Runtime.evaluate", {"expression": close_popper_js, "returnByValue": True})
+                        continue
                     await asyncio.sleep(1.8)
 
                     # Ensure popper is closed
@@ -285,6 +317,17 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
                             "duration_seconds": dur_sec,
                             "duration_hours": round(dur_sec / 3600.0, 2)
                         })
+
+                # Price sanity check (F46): mathematically prevent cross-asset table mislabeling
+                if parsed_orders:
+                    prices = [o["price"] for o in parsed_orders if o.get("price", 0.0) > 0.0]
+                    if prices:
+                        import statistics
+                        median_px = statistics.median(prices)
+                        min_p, max_p = PRICE_SANITY_BOUNDS.get(asset, (0.0, 1e9))
+                        if not (min_p <= median_px <= max_p):
+                            print(f"[{idx+1}/{len(assets)}] {asset:<5} -> REJECTED: Price sanity failure. Median price {median_px:.2f} is outside [{min_p}, {max_p}]. Stale table detected! Skipping.")
+                            continue
 
                 elapsed = round(time.time() - t_asset_start, 2)
                 has_buy = buy_notional > 0

@@ -1,4 +1,40 @@
-\n**Q1 — No. I can't certify 10/10, and I won't: 8 clean, 1 with two new defects, 1 still provisional.** Deliverable: **`Cycle_181_Evidence_Ratification_Audit.md`** (222 lines, local commit `d45a3a7`; session GitHub access is closed, so it isn't pushed). Verified against `d9086d56` @22:19:24Z and its committed artifacts.\n\n**Two corrections to my own Cycle 180 findings, first:**\n\n1. **The max-not-sum merge DOES exist — my C180 claim was wrong.** I read generator chunks 13–15; it lives in chunk 12: `match_wall["notional_usd"] = max(...)`, `coinglass_notional_usd`, `source_venues = ["BINANCE","COINGLASS"]`, tolerance `|Δp|/p ≤ 0.001`. **Item 6 certifies as VERIFIED.** My error, not yours.\n2. **The 21:53:44Z event was a young state, not a reset.** Same `first_seen` now carries `samples: 7`, `persist_s: 1474.2`, `SAMPLED_RECURRENCE_VERIFIED`, `gate true`. Nothing was wiped — I sampled the file 117 s after creation.\n\n**N1 — RESOLVED, verified live.** `ts_db.record_snapshot("telemetry", payload)` is there, the manifest reads **18 snapshots, latest 22:18:47Z**, and the historical hole is correctly **journaled, not hidden** (`22:05:51Z gap_detected: true, 113.12 min`). Genuine fix.\n
-**N2 — RESOLVED, verified live.** The tracker is discriminating correctly: `0xf5a523…` at 1,474.2 s / 7 samples / eligible, `0x31dea2…` at 179.9 s / 2 samples / **ineligible**. Residual: the state file is **gitignored** (404 + `.gitignore` line), so "1,811 walls / zero resets" is unauditable — publish `state_epoch`/`walls_tracked` and it's closed.\n
-**N3 — PARTIAL.** The 19-symbol tuple is verified in all three sites, but the live harvest says **`total_assets_scraped: 17`**, not 18 — and the positions/max-pain spread has no committed artifact (the `.gz` partitions are gitignored).\n
-**N4 — PARTIAL.** The compute is right (live `s_whale −0.0475` = 0.50(−0.0168)+0.30(−0.1286)+0.20(−0.0027)); §2A/§3 quote the 21:25/22:15 generations.\n\n**The one that must be fixed before any CoinGlass wall touches a level decision (F15):** the append path hard-codes `gate_g7_eligible: True`, `presence_frac: 1.0`, and takes `persistence_status` from CoinGlass's own duration — so a **7-second-old** $5.64 M order reads `PERSISTENT_WHALE` + gate-eligible, and the live harvest contains 7 s / 12 s / 13 s orders. That bypasses the exact ≥180 s gate the desk ratified. (Bonus: the merge tolerance is ±$81.8 at BTC, while the Binance top-20 spans **~$4** — so "confluence" can only ever be near-touch, seconds-old orders; deep 82k–84k CoinGlass orders are single-venue. Publish `n_merged_walls`.) Also **F20**: that top-20 ladder is a dust proxy — 0.0001 BTC = **$8** rungs.\n\n**Q2 — yes, capture the endpoints, but passively:** `Network.enable` + `getResponseBody` as primary (**not** continuous `Fetch.enable` — it interposes on every request and turns a network hiccup into a hung session), `__NEXT_DATA__` secondary, and **the DOM kept as the reconciler** so raw JSON has to earn trust against the table the desk actually sees. Discover shapes with one 60 s capture window, then never guess; expect signed payloads and be willing to abandon the path after one cycle. For the gate: calibrate **per asset per weekday-hour bucket on notional, not rows** (a 4-order asset carrying the same $18 M is complete), separate **weekend buckets** or every Saturday flags, `max(MAD, 1)` for small integers, and a PARTIAL cycle must never overwrite `latest/` without stamping `completeness_ratio`.\n\n**Q3 — posture confirmed: PASSIVE LIMIT ORDERS ONLY, zero tickets, flat book.** First, the evidence that matters most: your ratified dead band just earned its keep — `s_whale` printed **+0.0667 → −0.0475 in ~22 minutes** (three sign changes in an hour), all inside |S| < 0.25, all **neutral**. A bare sign gate would have flipped admission three times for zero information. That's on the record as calibration evidence now.\n\n**W0 — provisional, not certified.** `trade_mode` is permissions; broker 01:15 Sat = 22:15 UTC Fri, and cached ticks persist outside sessions. The strong part is that the price *changed* across the poll, and 1.96 bps spread is encouraging — but ticking ≠ tradable. `session_deals_*` (7 days) or an accepted-and-cancelled resting order ends it; §6 has both commands. Nothing about this weekend's risk depends on it.\n
+# Cycle 185 — not ratified. Audit committed locally as 4c8bc9f (188 lines), presented.
+
+The dispatch says the fixes are live and verified. The committed artifacts at `940f5d78` (23:33:57Z) show the daemon has stopped and the harvester guard does not do what the dispatch says. I did not ratify any of the four questions as written.
+
+## Verdicts
+
+| Q | Verdict | Why |
+| --- | --- | --- |
+| **Q1** F29 freshness | **Partial** | L1/L2/L4/L5/L6 ages are now positive and recompute exactly. L7 age is a fallback (`or time.time()`) plus a 0.01 floor. L3 is correctly DEGRADED at 729 s, but the dispatch says HEALTHY at 697.3 s and 42.5 s. |
+| **Q2** F42 aggregation | **Not certified** | Level sums reproduce $18.01M across the four BTC levels. But G-7 tests the level's max duration and max single order, not one order. Row identity is not guaranteed, so the sum can double count. The dispatch's SELL 84,000 = $6.05M is $10k off the committed $6.04M. |
+| **Q3** pass-through | **Certified as a gating interface** | The boundary partition is correct in code and in the served block. `tau_s` 657.3 and `decay_factor` 0.6724 reconcile with the C183 decay curve. The C184 engine fields (`p_eff`, `R_req`, size, sign persistence, shelf flag) are still not in the block. |
+| **Q4** harvester guard | **Not certified** | This is the main finding. See below. |
+
+## The harvester guard (Q4)
+
+- `click_opt_js` returns `false` when no option matches. The caller discards that return value, sleeps, and extracts anyway.
+- The guard then reads the search box. The harvester set that box to the target with `insertText` just before, so the guard passes whether or not the click worked.
+- The extract reads the rows currently on screen. After a failed switch, those are the previous asset's rows, written under the target's key.
+- The dispatch says the code "throws an error and skips the asset." It does not.
+
+Removing `options[0]` closed the visible hole. This one is still open.
+
+## Daemon
+
+- `coinglass_harvester_status.json` now exists, which resolves the C184 404. It is also the reason the dispatch's "daemon is currently active" claim is checkable.
+- The last harvest is 23:19:25Z. At the served as-of of 23:31:34Z, that is 729 s of silence, about four missed 180 s cycles.
+- The committed `latest` snapshot still shows 611 orders from 23:13:51Z, while the archive and the served block show 570 from 23:19:25Z. Two artifacts disagree at HEAD.
+- The 180 s cadence rests on one daemon-era gap (179.6 s). That is n = 1, not a certification.
+
+## Dispatch numbers
+
+Most of Part 1 and Part 2 does not match the HEAD served block. The Q2 example JSON (score 0.2436) is not a served artifact; the served BTC score is 0.2373. I treated the dispatch's numbers as claims and graded them against the artifacts.
+
+## New findings
+
+F44–F52 are in the audit. The P1s are: daemon silence (F44), the stale `latest` file (F45), the harvester guard (F46), row identity under F42 (F48). Part 7 lists what must be fixed before re-ratification.
+
+**Limits:** I could not reach the sandbox desktop, so daemon liveness is inferred from committed artifacts only. I did not fetch the served BTC wall-level rows.
+
+Desk posture is unchanged: shadow run only, no orders. Equity 4,863.74, cushion +88.74, 0 positions. W0 is still open.
