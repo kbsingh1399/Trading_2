@@ -1,12 +1,12 @@
 {
-  "last_updated_utc": "2026-10-17T07:47:29Z",
+  "last_updated_utc": "2026-10-17T07:52:32Z",
   "streams": {
     "coinglass": {
-      "total_snapshots": 131,
+      "total_snapshots": 132,
       "first_recorded_utc": "2026-10-16T19:26:03Z",
-      "latest_recorded_utc": "2026-10-17T07:43:34.248699+00:00",
-      "latest_epoch": 1792223014.322175,
-      "latest_file": "Data\\history\\coinglass\\2026-10-17\\coinglass_20261017_074421.json.gz",
+      "latest_recorded_utc": "2026-10-17T07:48:35.259413+00:00",
+      "latest_epoch": 1792223315.2888303,
+      "latest_file": "Data\\history\\coinglass\\2026-10-17\\coinglass_20261017_074922.json.gz",
       "dates_present": [
         "2026-10-16",
         "2026-10-17"
@@ -1059,15 +1059,23 @@
           "gap_detected": false,
           "gap_duration_minutes": 0.0,
           "records": 0
+        },
+        {
+          "utc": "2026-10-17T07:48:35.259413+00:00",
+          "epoch": 1792223315.2888303,
+          "file": "Data\\history\\coinglass\\2026-10-17\\coinglass_20261017_074922.json.gz",
+          "gap_detected": false,
+          "gap_duration_minutes": 0.0,
+          "records": 45
         }
       ]
     },
     "telemetry": {
-      "total_snapshots": 256,
+      "total_snapshots": 258,
       "first_recorded_utc": "2026-10-16T19:26:58Z",
-      "latest_recorded_utc": "2026-10-17T07:47:28Z",
-      "latest_epoch": 1792223248.941675,
-      "latest_file": "Data\\history\\telemetry\\2026-10-17\\telemetry_20261017_074728.json.gz",
+      "latest_recorded_utc": "2026-10-17T07:52:32Z",
+      "latest_epoch": 1792223552.218574,
+      "latest_file": "Data\\history\\telemetry\\2026-10-17\\telemetry_20261017_075232.json.gz",
       "dates_present": [
         "2026-10-16",
         "2026-10-17"
@@ -3120,15 +3128,31 @@
           "gap_detected": false,
           "gap_duration_minutes": 0.0,
           "records": 24
+        },
+        {
+          "utc": "2026-10-17T07:52:31Z",
+          "epoch": 1792223551.879595,
+          "file": "Data\\history\\telemetry\\2026-10-17\\telemetry_20261017_075231.json.gz",
+          "gap_detected": false,
+          "gap_duration_minutes": 0.0,
+          "records": 24
+        },
+        {
+          "utc": "2026-10-17T07:52:32Z",
+          "epoch": 1792223552.218574,
+          "file": "Data\\history\\telemetry\\2026-10-17\\telemetry_20261017_075232.json.gz",
+          "gap_detected": false,
+          "gap_duration_minutes": 0.0,
+          "records": 24
         }
       ]
     },
     "forex_factory": {
-      "total_snapshots": 125,
+      "total_snapshots": 126,
       "first_recorded_utc": "2026-10-16T19:26:59Z",
-      "latest_recorded_utc": "2026-10-17T07:44:21Z",
-      "latest_epoch": 1792223061.206748,
-      "latest_file": "Data\\history\\forex_factory\\2026-10-17\\forex_factory_20261017_074421.json.gz",
+      "latest_recorded_utc": "2026-10-17T07:49:22Z",
+      "latest_epoch": 1792223362.82899,
+      "latest_file": "Data\\history\\forex_factory\\2026-10-17\\forex_factory_20261017_074922.json.gz",
       "dates_present": [
         "2026-10-16",
         "2026-10-17"
@@ -4133,15 +4157,23 @@
           "gap_detected": false,
           "gap_duration_minutes": 0.0,
           "records": 25
+        },
+        {
+          "utc": "2026-10-17T07:49:22Z",
+          "epoch": 1792223362.82899,
+          "file": "Data\\history\\forex_factory\\2026-10-17\\forex_factory_20261017_074922.json.gz",
+          "gap_detected": false,
+          "gap_duration_minutes": 0.0,
+          "records": 25
         }
       ]
     },
     "arkham": {
-      "total_snapshots": 125,
+      "total_snapshots": 126,
       "first_recorded_utc": "2026-10-16T19:26:59Z",
-      "latest_recorded_utc": "2026-10-17T07:44:21Z",
-      "latest_epoch": 1792223061.227063,
-      "latest_file": "Data\\history\\arkham\\2026-10-17\\arkham_20261017_074421.json.gz",
+      "latest_recorded_utc": "2026-10-17T07:49:22Z",
+      "latest_epoch": 1792223362.848966,
+      "latest_file": "Data\\history\\arkham\\2026-10-17\\arkham_20261017_074922.json.gz",
       "dates_present": [
         "2026-10-16",
         "2026-10-17"
@@ -5146,15 +5178,23 @@
           "gap_detected": false,
           "gap_duration_minutes": 0.0,
           "records": 0
+        },
+        {
+          "utc": "2026-10-17T07:49:22Z",
+          "epoch": 1792223362.848966,
+          "file": "Data\\history\\arkham\\2026-10-17\\arkham_20261017_074922.json.gz",
+          "gap_detected": false,
+          "gap_duration_minutes": 0.0,
+          "records": 0
         }
       ]
     },
     "account_equity": {
-      "total_snapshots": 131,
+      "total_snapshots": 132,
       "first_recorded_utc": "2026-10-16T17:30:00Z",
-      "latest_recorded_utc": "2026-10-17T07:47:29Z",
-      "latest_epoch": 1792223249.184962,
-      "latest_file": "Data\\history\\account_equity\\2026-10-17\\account_equity_20261017_074729.json.gz",
+      "latest_recorded_utc": "2026-10-17T07:52:32Z",
+      "latest_epoch": 1792223552.450541,
+      "latest_file": "Data\\history\\account_equity\\2026-10-17\\account_equity_20261017_075232.json.gz",
       "dates_present": [
         "2026-10-16",
         "2026-10-17"
@@ -6207,15 +6247,23 @@
           "gap_detected": false,
           "gap_duration_minutes": 0.0,
           "records": 1
+        },
+        {
+          "utc": "2026-10-17T07:52:32Z",
+          "epoch": 1792223552.450541,
+          "file": "Data\\history\\account_equity\\2026-10-17\\account_equity_20261017_075232.json.gz",
+          "gap_detected": false,
+          "gap_duration_minutes": 0.0,
+          "records": 1
         }
       ]
     },
     "coinglass_whale_orders": {
-      "total_snapshots": 48,
+      "total_snapshots": 49,
       "first_recorded_utc": "2026-10-16T20:48:35Z",
-      "latest_recorded_utc": "2026-10-17T07:47:22Z",
-      "latest_epoch": 1792223242.659383,
-      "latest_file": "Data\\history\\coinglass_whale_orders\\2026-10-17\\coinglass_whale_orders_20261017_074722.json.gz",
+      "latest_recorded_utc": "2026-10-17T07:50:22Z",
+      "latest_epoch": 1792223422.567324,
+      "latest_file": "Data\\history\\coinglass_whale_orders\\2026-10-17\\coinglass_whale_orders_20261017_075022.json.gz",
       "dates_present": [
         "2026-10-16",
         "2026-10-17"
@@ -6604,6 +6652,14 @@
           "gap_detected": false,
           "gap_duration_minutes": 0.0,
           "records": 351
+        },
+        {
+          "utc": "2026-10-17T07:50:22Z",
+          "epoch": 1792223422.567324,
+          "file": "Data\\history\\coinglass_whale_orders\\2026-10-17\\coinglass_whale_orders_20261017_075022.json.gz",
+          "gap_detected": false,
+          "gap_duration_minutes": 0.0,
+          "records": 470
         }
       ]
     }
