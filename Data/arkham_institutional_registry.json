@@ -1105,14 +1105,7 @@
     "holdings_breakdown": [
       {
         "symbol": "SOL",
-        "price": "$12.83",
-        "amount": "",
-        "value_usd": "$1K",
-        "change_24h": ""
-      },
-      {
-        "symbol": "ETH",
-        "price": "$168.45",
+        "price": "$123.54",
         "amount": "",
         "value_usd": "$0",
         "change_24h": "+0.00%"
@@ -1120,7 +1113,7 @@
     ],
     "category": "RETAIL_BROKERAGE_CUSTODY",
     "priority": "MEDIUM",
-    "last_updated_utc": "2026-10-17 07:58:18 UTC"
+    "last_updated_utc": "2026-10-17 08:45:38 UTC"
   },
   "uniswap": {
     "slug": "uniswap",
@@ -1128,10 +1121,18 @@
     "address_count": "6.3M Addresses",
     "total_portfolio_usd": "$0.00",
     "portfolio_change_24h": "",
-    "holdings_breakdown": [],
+    "holdings_breakdown": [
+      {
+        "symbol": "ETH",
+        "price": "$7.45",
+        "amount": "",
+        "value_usd": "$119,210.98",
+        "change_24h": "+1.63%"
+      }
+    ],
     "category": "DEFI_DEX_DAO",
     "priority": "MEDIUM",
-    "last_updated_utc": "2026-10-17 07:58:25 UTC"
+    "last_updated_utc": "2026-10-17 08:45:44 UTC"
   },
   "aave": {
     "slug": "aave",
@@ -1142,17 +1143,17 @@
     "holdings_breakdown": [
       {
         "symbol": "WBTC",
-        "price": "$81,427",
+        "price": "$81,495",
         "amount": "WBTC",
-        "value_usd": "$2.83B",
-        "change_24h": "-0.72%"
+        "value_usd": "$2.84B",
+        "change_24h": "-0.63%"
       },
       {
         "symbol": "CBBTC",
-        "price": "$81,516",
+        "price": "$81,547",
         "amount": "CBBTC",
         "value_usd": "$1.66B",
-        "change_24h": "-0.74%"
+        "change_24h": "-0.68%"
       },
       {
         "symbol": "USDT",
@@ -1170,29 +1171,29 @@
       },
       {
         "symbol": "LINK",
-        "price": "$12.24",
+        "price": "$12.25",
         "amount": "LINK",
-        "value_usd": "$109.84M",
-        "change_24h": "-2.63%"
+        "value_usd": "$109.93M",
+        "change_24h": "-2.7%"
       }
     ],
     "category": "DEFI_LENDING_DAO",
     "priority": "MEDIUM",
-    "last_updated_utc": "2026-10-17 07:58:32 UTC"
+    "last_updated_utc": "2026-10-17 08:45:51 UTC"
   },
   "lido": {
     "slug": "lido",
     "entity_name": "Lido",
     "address_count": "3.3k Addresses",
-    "total_portfolio_usd": "$52,915,015,470.47",
-    "portfolio_change_24h": "-0.86%",
+    "total_portfolio_usd": "$0.00",
+    "portfolio_change_24h": "",
     "holdings_breakdown": [
       {
         "symbol": "ETH",
-        "price": "$2,430.95",
+        "price": "$2,431.9",
         "amount": "ETH",
-        "value_usd": "$205.86M",
-        "change_24h": "-0.88%"
+        "value_usd": "$205.94M",
+        "change_24h": "-1%"
       },
       {
         "symbol": "USDC",
@@ -1210,57 +1211,57 @@
       },
       {
         "symbol": "SOL",
-        "price": "$104.91",
+        "price": "$104.83",
         "amount": "SOL",
-        "value_usd": "$5.42M",
-        "change_24h": "-1.28%"
+        "value_usd": "$5.41M",
+        "change_24h": "-1.64%"
       },
       {
         "symbol": "MKR",
-        "price": "$1,630.89",
+        "price": "$1,631.47",
         "amount": "MKR",
-        "value_usd": "$1.3K",
-        "change_24h": "-2.03%"
+        "value_usd": "$1.31K",
+        "change_24h": "-2.14%"
       },
       {
         "symbol": "BNB",
-        "price": "$721.42",
+        "price": "$721.57",
         "amount": "BNB",
-        "value_usd": "$221.87",
-        "change_24h": "-1.23%"
+        "value_usd": "$221.92",
+        "change_24h": "-1.16%"
       },
       {
         "symbol": "NEAR",
-        "price": "$5.09",
+        "price": "$5.08",
         "amount": "NEAR",
-        "value_usd": "$143.97",
-        "change_24h": "-2.3%"
+        "value_usd": "$143.69",
+        "change_24h": "-2.87%"
       },
       {
         "symbol": "LINK",
-        "price": "$12.23",
+        "price": "$12.25",
         "amount": "LINK",
-        "value_usd": "$129.92",
-        "change_24h": "-2.78%"
+        "value_usd": "$130.13",
+        "change_24h": "-2.7%"
       },
       {
         "symbol": "AVAX",
-        "price": "$9.99",
+        "price": "$10.02",
         "amount": "AVAX",
-        "value_usd": "$90.81",
-        "change_24h": "-1.48%"
+        "value_usd": "$91.08",
+        "change_24h": "-1.28%"
       },
       {
         "symbol": "UNI",
-        "price": "$7.3",
+        "price": "$7.32",
         "amount": "UNI",
-        "value_usd": "$9.87",
-        "change_24h": "-2.28%"
+        "value_usd": "$9.9",
+        "change_24h": "-2.14%"
       }
     ],
     "category": "LIQUID_STAKING_DAO",
     "priority": "MEDIUM",
-    "last_updated_utc": "2026-10-17 08:01:24 UTC"
+    "last_updated_utc": "2026-10-17 08:45:58 UTC"
   },
   "polymarket": {
     "slug": "polymarket",
@@ -1751,5 +1752,73 @@
     "category": "CENTRALIZED_EXCHANGE",
     "priority": "LOW",
     "last_updated_utc": "2026-10-17 08:40:53 UTC"
+  },
+  "makerdao": {
+    "slug": "makerdao",
+    "entity_name": "Sky (MakerDAO)",
+    "address_count": "532 Addresses",
+    "total_portfolio_usd": "$0.00",
+    "portfolio_change_24h": "",
+    "holdings_breakdown": [
+      {
+        "symbol": "USDC",
+        "price": "$1",
+        "amount": "USDC",
+        "value_usd": "$4.03B",
+        "change_24h": "\u00b10%"
+      },
+      {
+        "symbol": "WBTC",
+        "price": "$81,495",
+        "amount": "WBTC",
+        "value_usd": "$27.52M",
+        "change_24h": "-0.63%"
+      },
+      {
+        "symbol": "ETH",
+        "price": "$2,431.9",
+        "amount": "ETH",
+        "value_usd": "$139.41K",
+        "change_24h": "-1%"
+      },
+      {
+        "symbol": "LINK",
+        "price": "$12.25",
+        "amount": "LINK",
+        "value_usd": "$103.47K",
+        "change_24h": "-2.7%"
+      },
+      {
+        "symbol": "UNI",
+        "price": "$7.32",
+        "amount": "UNI",
+        "value_usd": "$89.09K",
+        "change_24h": "-2.14%"
+      },
+      {
+        "symbol": "BNB",
+        "price": "$721.57",
+        "amount": "BNB",
+        "value_usd": "$53.6K",
+        "change_24h": "-1.16%"
+      },
+      {
+        "symbol": "BTC",
+        "price": "$81,633",
+        "amount": "BTC",
+        "value_usd": "$35.4K",
+        "change_24h": "-0.67%"
+      },
+      {
+        "symbol": "USDT",
+        "price": "$1",
+        "amount": "USDT",
+        "value_usd": "$16.63K",
+        "change_24h": "\u00b10%"
+      }
+    ],
+    "category": "DEFI_CDP_DAO",
+    "priority": "MEDIUM",
+    "last_updated_utc": "2026-10-17 08:46:08 UTC"
   }
 }
