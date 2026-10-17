@@ -143,17 +143,18 @@ def compute_s_whale(
 
     # Continuous age-decay factor D(tau) preventing abrupt signal cliff dropouts (F22)
     # Full weight (1.0) up to 300s (5 min); smoothly decays with half-life ~624s (tau=900s) up to 1800s
-    if snapshot_age_s <= 300.0:
+    age_tau = max(0.01, float(snapshot_age_s))
+    if age_tau <= 300.0:
         decay_factor = 1.0
     else:
-        decay_factor = math.exp(-(snapshot_age_s - 300.0) / 900.0)
+        decay_factor = math.exp(-(age_tau - 300.0) / 900.0)
 
     # Composite: (0.50 rho + 0.30 Pi + 0.20 D) * decay_factor
     s_whale = (0.50 * rho + 0.30 * pi_score + 0.20 * d_score) * decay_factor
     s_whale = max(-1.0, min(1.0, s_whale))
 
-    reason = "QUALIFYING_CONFLUENCE" if decay_factor >= 0.999 else f"AGE_DISCOUNTED_TAU_{int(snapshot_age_s)}S"
-    return round(s_whale, 4), round(rho, 4), round(pi_score, 4), round(d_score, 4), reason, round(snapshot_age_s, 1), round(decay_factor, 4)
+    reason = "QUALIFYING_CONFLUENCE" if decay_factor >= 0.999 else f"AGE_DISCOUNTED_TAU_{int(age_tau)}S"
+    return round(s_whale, 4), round(rho, 4), round(pi_score, 4), round(d_score, 4), reason, round(age_tau, 1), round(decay_factor, 4)
 
 
 TELEMETRY_PATH = ROOT / "docs" / "telemetry" / "live_snapshot_latest.json"
@@ -1532,7 +1533,8 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
             cg_epoch = datetime.fromisoformat(cg_whale_intelligence["harvest_timestamp_utc"]).timestamp()
         except Exception:
             cg_epoch = None
-    cg_snapshot_age_s = (now_ts - cg_epoch) if cg_epoch else 999999.0
+    # F53: Compute authentic wall-clock age against local harvest epoch, strictly non-negative
+    cg_snapshot_age_s = max(0.01, time.time() - cg_epoch) if cg_epoch else 999999.0
 
     for asset in ALL_24_ASSETS:
         cg_asset_data = cg_whale_intelligence.get("assets", {}).get(asset, {})
@@ -2028,11 +2030,12 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                 dur_s = float(cg_o.get("duration_seconds") or 0.0)
                 dur_str = str(cg_o.get("duration_str") or "")
 
-                # F48: Strict Row Identity to eliminate potential duplicate counting
-                order_sig = (cg_side, cg_px, round(cg_notional, 2), round(dur_s, 0))
-                if order_sig in seen_order_sigs:
-                    continue
-                seen_order_sigs.add(order_sig)
+                # F48: Authentic DOM Row Identity (eliminates duplicate DOM extractions without collapsing distinct legitimate orders)
+                row_id = cg_o.get("row_id")
+                if row_id:
+                    if row_id in seen_order_sigs:
+                        continue
+                    seen_order_sigs.add(row_id)
 
                 # F48: Single-order conjunction: order must INDIVIDUALLY meet BOTH size >= $500k and duration >= 180s
                 single_g7 = bool(dur_s >= 180.0 and cg_notional >= 500_000.0)
@@ -2463,15 +2466,47 @@ def generate_full_snapshot(bridge: Any = None, telemetry_path: Any = None,
                     "tau_s": s_tau_s,
                     "decay_factor": s_decay_factor,
                     "dead_band_cleared": bool(s_whale is not None and abs(s_whale) > 0.25),
-                    "p_eff": round(min(0.58, max(0.52, 0.55 + 0.03 * (s_whale or 0.0) * (1.0 if "UP" in str(trend_status).upper() or "BULL" in str(trend_status).upper() else (-1.0 if "DOWN" in str(trend_status).upper() or "BEAR" in str(trend_status).upper() else (1.0 if (s_whale or 0.0) >= 0 else -1.0))))), 4) if s_whale is not None else 0.55,
-                    "R_req": round(min(3.0, max(2.0, 2.5 - 0.30 * (s_whale or 0.0) * (1.0 if "UP" in str(trend_status).upper() or "BULL" in str(trend_status).upper() else (-1.0 if "DOWN" in str(trend_status).upper() or "BEAR" in str(trend_status).upper() else (1.0 if (s_whale or 0.0) >= 0 else -1.0))))), 4) if s_whale is not None else 2.50,
-                    "size_multiplier": round(min(1.25, max(1.0, 1.0 + 0.25 * max(0.0, (s_whale or 0.0) * (1.0 if "UP" in str(trend_status).upper() or "BULL" in str(trend_status).upper() else (-1.0 if "DOWN" in str(trend_status).upper() or "BEAR" in str(trend_status).upper() else 1.0))))), 4) if s_whale is not None else 1.0,
                     "sign_persistence": bool(s_whale is not None and abs(s_whale) >= 0.25 and (s_decay_factor or 0.0) >= 0.50),
                     "shelf_flag": any(
                         bool(w.get("gate_g7_eligible") or w.get("wall_class") == "WALL_GENUINE") and
                         abs(w.get("price", 0.0) - (binance_mid or mid_price or 1.0)) / max(binance_mid or mid_price or 1.0, 1.0) <= 0.010
                         for w in whale_walls
                     ),
+                    "p_eff": (
+                        round(min(0.58, max(0.52, float(confluence_trade_setup.get("p_win", 0.55)) + 0.03 * s_whale * (1.0 if "LONG" in str(confluence_trade_setup.get("direction", "")).upper() or "BUY" in str(confluence_trade_setup.get("direction", "")).upper() else -1.0))), 4)
+                        if (s_whale is not None and confluence_trade_setup and str(confluence_trade_setup.get("direction", "")).upper() in ["LONG", "BUY", "SHORT", "SELL"])
+                        else None
+                    ),
+                    "R_req": (
+                        round(min(3.0, max(2.0, float(confluence_trade_setup.get("R_target", 2.50)) - 0.30 * s_whale * (1.0 if "LONG" in str(confluence_trade_setup.get("direction", "")).upper() or "BUY" in str(confluence_trade_setup.get("direction", "")).upper() else -1.0))), 4)
+                        if (s_whale is not None and confluence_trade_setup and str(confluence_trade_setup.get("direction", "")).upper() in ["LONG", "BUY", "SHORT", "SELL"])
+                        else None
+                    ),
+                    "size_multiplier": (
+                        round(min(1.25, max(1.0, 1.0 + 0.25 * max(0.0, s_whale * (1.0 if "LONG" in str(confluence_trade_setup.get("direction", "")).upper() or "BUY" in str(confluence_trade_setup.get("direction", "")).upper() else -1.0)))), 4)
+                        if (s_whale is not None and confluence_trade_setup and str(confluence_trade_setup.get("direction", "")).upper() in ["LONG", "BUY", "SHORT", "SELL"])
+                        else None
+                    ),
+                    "modulation_status": (
+                        "NO_ACTIVE_SETUP_FAIL_CLOSED" if (s_whale is None or not confluence_trade_setup)
+                        else "SETUP_MODULATED_ACTIVE"
+                    ),
+                    "directional_modulation": {
+                        "long": {
+                            "s_dir": 1.0,
+                            "confluence": "SUPPORTIVE" if (s_whale is not None and s_whale > 0.25) else ("ADVERSE" if (s_whale is not None and s_whale < -0.25) else "NEUTRAL"),
+                            "p_eff_delta": round(0.03 * s_whale, 4) if s_whale is not None else None,
+                            "R_req_delta": round(-0.30 * s_whale, 4) if s_whale is not None else None,
+                            "size_multiplier": round(min(1.25, max(1.0, 1.0 + 0.25 * max(0.0, s_whale))), 4) if s_whale is not None else None,
+                        },
+                        "short": {
+                            "s_dir": -1.0,
+                            "confluence": "SUPPORTIVE" if (s_whale is not None and s_whale < -0.25) else ("ADVERSE" if (s_whale is not None and s_whale > 0.25) else "NEUTRAL"),
+                            "p_eff_delta": round(-0.03 * s_whale, 4) if s_whale is not None else None,
+                            "R_req_delta": round(0.30 * s_whale, 4) if s_whale is not None else None,
+                            "size_multiplier": round(min(1.25, max(1.0, 1.0 + 0.25 * max(0.0, -s_whale))), 4) if s_whale is not None else None,
+                        }
+                    },
                     "action": (
                         "FAIL_CLOSED_NO_DATA" if s_whale is None
                         else ("STRONG_BULLISH_WHALE_SUPPORT" if s_whale > 0.25

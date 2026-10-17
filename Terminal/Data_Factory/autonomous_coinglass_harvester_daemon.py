@@ -99,7 +99,9 @@ async def run_daemon(interval_s: float = DEFAULT_INTERVAL_S, run_once: bool = Fa
     
     cycle_count = 0
     error_count = 0
-    last_error = None
+    last_error_message = None
+    last_error_utc = None
+    last_success_utc = None
 
     while _keep_running:
         cycle_count += 1
@@ -113,6 +115,7 @@ async def run_daemon(interval_s: float = DEFAULT_INTERVAL_S, run_once: bool = Fa
             orders = harvest_result.get("total_whale_orders", 0)
             notional = harvest_result.get("grand_total_notional_usd", 0.0)
             assets_count = harvest_result.get("total_assets_scraped", 0)
+            last_success_utc = now_utc
 
             logger.info(
                 f"Cycle #{cycle_count} SUCCESS: {orders} whale orders (${notional:,.0f} notional) "
@@ -122,6 +125,7 @@ async def run_daemon(interval_s: float = DEFAULT_INTERVAL_S, run_once: bool = Fa
             status_payload = {
                 "daemon": "autonomous_coinglass_harvester_daemon",
                 "status": "HEALTHY",
+                "current_cycle_status": "SUCCESS",
                 "pid": os.getpid(),
                 "cycle_count": cycle_count,
                 "error_count": error_count,
@@ -133,27 +137,35 @@ async def run_daemon(interval_s: float = DEFAULT_INTERVAL_S, run_once: bool = Fa
                 "total_orders_harvested": orders,
                 "grand_total_notional_usd": notional,
                 "total_assets_scraped": assets_count,
-                "last_error": None
+                "total_assets_valid": harvest_result.get("total_assets_valid", assets_count),
+                "skipped_assets": harvest_result.get("skipped_assets", {}),
+                "last_success_utc": last_success_utc,
+                "last_error": last_error_message,
+                "last_error_utc": last_error_utc
             }
             update_status(status_payload)
 
         except Exception as e:
             error_count += 1
-            last_error = str(e)
+            last_error_message = str(e)
+            last_error_utc = now_utc
             elapsed = round(time.time() - t_cycle_start, 2)
             logger.error(f"Cycle #{cycle_count} FAILED after {elapsed}s: {e}", exc_info=True)
 
             status_payload = {
                 "daemon": "autonomous_coinglass_harvester_daemon",
                 "status": "DEGRADED",
+                "current_cycle_status": "FAILED",
                 "pid": os.getpid(),
                 "cycle_count": cycle_count,
                 "error_count": error_count,
                 "interval_seconds": interval_s,
                 "last_heartbeat_utc": now_utc,
                 "last_heartbeat_epoch": time.time(),
-                "last_error": last_error,
-                "last_duration_s": elapsed
+                "last_duration_s": elapsed,
+                "last_success_utc": last_success_utc,
+                "last_error": last_error_message,
+                "last_error_utc": last_error_utc
             }
             update_status(status_payload)
 

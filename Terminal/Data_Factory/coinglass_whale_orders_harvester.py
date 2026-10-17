@@ -70,6 +70,24 @@ PRICE_SANITY_BOUNDS = {
 }
 
 
+def get_live_binance_prices() -> Dict[str, float]:
+    """Fetch live market prices directly from Binance Futures API to dynamically eliminate all 100/153 overlap bands (F46/C186)."""
+    url = "https://fapi.binance.com/fapi/v1/ticker/price"
+    try:
+        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+        with urllib.request.urlopen(req, timeout=5) as resp:
+            data = json.loads(resp.read().decode("utf-8"))
+            prices = {}
+            for item in data:
+                sym = item.get("symbol", "")
+                if sym.endswith("USDT"):
+                    asset = sym[:-4]
+                    prices[asset] = float(item["price"])
+            return prices
+    except Exception as e:
+        return {}
+
+
 def parse_notional(val_str: str) -> float:
     """Converts strings like '$4.62M', '$790.81K', '$1.2B' into numeric USD floats."""
     val_str = val_str.replace("$", "").replace(",", "").strip()
@@ -125,6 +143,10 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
     print(f"[WhaleOrdersHarvester] Connected to CDP background target {tab_id}")
 
     harvested_data: dict[str, dict] = {}
+    skipped_assets: dict[str, str] = {}
+    live_binance_prices = get_live_binance_prices()
+    if live_binance_prices:
+        print(f"[WhaleOrdersHarvester] Fetched {len(live_binance_prices)} live Binance reference prices for dynamic price validation.")
 
     try:
         async with websockets.connect(ws_url, max_size=50_000_000) as ws:
@@ -192,13 +214,30 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
                     click_res = await send("Runtime.evaluate", {"expression": click_opt_js, "returnByValue": True})
                     clicked = click_res.get("result", {}).get("result", {}).get("value", False)
                     if not clicked:
-                        print(f"[{idx+1}/{len(assets)}] {asset:<5} -> WARNING: Dropdown option matching '{asset}' not found or click failed. Skipping.")
+                        reason = f"Dropdown option matching '{asset}' not found or click failed"
+                        print(f"[{idx+1}/{len(assets)}] {asset:<5} -> WARNING: {reason}. Skipping.")
+                        skipped_assets[asset] = reason
                         # Ensure popper is closed before moving to next asset
                         close_popper_js = """(() => {
                             const el = document.querySelector('input.MuiAutocomplete-input, input[placeholder*="Search"]');
                             if (el) el.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
                         })()"""
                         await send("Runtime.evaluate", {"expression": close_popper_js, "returnByValue": True})
+                        harvested_data[asset] = {
+                            "asset": asset,
+                            "orders_count": 0,
+                            "side_parse_health": "DROPDOWN_CLICK_FAILED",
+                            "rejection_reason": reason,
+                            "total_notional_usd": 0.0,
+                            "buy_notional_usd": 0.0,
+                            "sell_notional_usd": 0.0,
+                            "imbalance_ratio": 1.0,
+                            "max_single_order_usd": 0.0,
+                            "oldest_order_hours": 0.0,
+                            "top_whale_walls": [],
+                            "all_orders": [],
+                            "scrape_duration_s": round(time.time() - t_asset_start, 2)
+                        }
                         continue
                     await asyncio.sleep(1.8)
 
@@ -225,7 +264,7 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
                         }};
                     }}
 
-                    const items = Array.from(document.querySelectorAll('.large-order-item')).map(el => {{
+                    const items = Array.from(document.querySelectorAll('.large-order-item')).map((el, domIdx) => {{
                         const rawLines = (el.innerText || '').split('\\n').map(s => s.trim()).filter(Boolean);
                         const isCanceled = Boolean(el.querySelector('span[class*="cancel"], div[class*="cancel"]') || rawLines.includes('C'));
                         const bgEl = el.querySelector('div[class*="item-bg"], div[class*="ovv2-item-bg"]');
@@ -237,6 +276,7 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
                             domSide = 'SELL';
                         }}
                         return {{
+                            domIndex: domIdx,
                             lines: rawLines,
                             isCanceled: isCanceled,
                             domSide: domSide
@@ -254,8 +294,24 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
                 res = await send("Runtime.evaluate", {"expression": extract_js, "returnByValue": True})
                 val = res.get("result", {}).get("result", {}).get("value", {})
                 if not val or val.get("error"):
-                    if val and val.get("error"):
-                        print(f"[{idx+1}/{len(assets)}] {asset:<5} -> WARNING: {val.get('error')}. Skipping.")
+                    err_msg = val.get("error") if val else "No result from extraction script"
+                    print(f"[{idx+1}/{len(assets)}] {asset:<5} -> WARNING: {err_msg}. Skipping.")
+                    skipped_assets[asset] = err_msg
+                    harvested_data[asset] = {
+                        "asset": asset,
+                        "orders_count": 0,
+                        "side_parse_health": "EXTRACTION_EVAL_ERROR",
+                        "rejection_reason": err_msg,
+                        "total_notional_usd": 0.0,
+                        "buy_notional_usd": 0.0,
+                        "sell_notional_usd": 0.0,
+                        "imbalance_ratio": 1.0,
+                        "max_single_order_usd": 0.0,
+                        "oldest_order_hours": 0.0,
+                        "top_whale_walls": [],
+                        "all_orders": [],
+                        "scrape_duration_s": round(time.time() - t_asset_start, 2)
+                    }
                     continue
                 
                 raw_items = val.get("items", [])
@@ -308,6 +364,7 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
                             max_dur_sec = dur_sec
 
                         parsed_orders.append({
+                            "row_id": f"{asset}_{side_str}_{it.get('domIndex', len(parsed_orders))}_{round(price, 4)}",
                             "side": side_str,
                             "is_canceled": is_canc,
                             "price": price,
@@ -318,15 +375,42 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
                             "duration_hours": round(dur_sec / 3600.0, 2)
                         })
 
-                # Price sanity check (F46): mathematically prevent cross-asset table mislabeling
+                # Dynamic Price Sanity Gate (Q1 / C186): eliminates all 100/153 overlap bands
                 if parsed_orders:
                     prices = [o["price"] for o in parsed_orders if o.get("price", 0.0) > 0.0]
                     if prices:
                         import statistics
                         median_px = statistics.median(prices)
-                        min_p, max_p = PRICE_SANITY_BOUNDS.get(asset, (0.0, 1e9))
-                        if not (min_p <= median_px <= max_p):
-                            print(f"[{idx+1}/{len(assets)}] {asset:<5} -> REJECTED: Price sanity failure. Median price {median_px:.2f} is outside [{min_p}, {max_p}]. Stale table detected! Skipping.")
+                        rejection_reason = None
+                        # Primary: Dynamic 15% check against live Binance price
+                        ref_px = live_binance_prices.get(asset)
+                        if ref_px and ref_px > 0:
+                            dev = abs(median_px - ref_px) / ref_px
+                            if dev > 0.15:
+                                rejection_reason = f"DYNAMIC_PRICE_SANITY: Median price {median_px:.4f} deviates by {dev*100:.1f}% from live Binance price {ref_px:.4f} (>15% threshold)"
+                        if not rejection_reason:
+                            # Secondary: Static canonical bounds check
+                            min_p, max_p = PRICE_SANITY_BOUNDS.get(asset, (0.0, 1e9))
+                            if not (min_p <= median_px <= max_p):
+                                rejection_reason = f"STATIC_PRICE_SANITY: Median price {median_px:.2f} is outside [{min_p}, {max_p}]"
+                        if rejection_reason:
+                            print(f"[{idx+1}/{len(assets)}] {asset:<5} -> REJECTED: {rejection_reason}. Skipping stale table.")
+                            skipped_assets[asset] = rejection_reason
+                            harvested_data[asset] = {
+                                "asset": asset,
+                                "orders_count": 0,
+                                "side_parse_health": "PRICE_SANITY_REJECTED",
+                                "rejection_reason": rejection_reason,
+                                "total_notional_usd": 0.0,
+                                "buy_notional_usd": 0.0,
+                                "sell_notional_usd": 0.0,
+                                "imbalance_ratio": 1.0,
+                                "max_single_order_usd": 0.0,
+                                "oldest_order_hours": 0.0,
+                                "top_whale_walls": [],
+                                "all_orders": [],
+                                "scrape_duration_s": round(time.time() - t_asset_start, 2)
+                            }
                             continue
 
                 elapsed = round(time.time() - t_asset_start, 2)
@@ -366,10 +450,13 @@ async def harvest_whale_orders(assets: list[str] = TARGET_ASSETS) -> dict:
     full_payload = {
         "harvest_timestamp_utc": datetime.datetime.now(datetime.timezone.utc).isoformat(),
         "harvest_epoch": time.time(),
+        "total_assets_queried": len(assets),
         "total_assets_scraped": len(harvested_data),
+        "total_assets_valid": sum(1 for a, d in harvested_data.items() if d.get("side_parse_health") in ["HEALTHY", "UNILATERAL_BOOK"]),
         "total_whale_orders": grand_orders,
         "grand_total_notional_usd": round(grand_notional, 2),
         "total_duration_seconds": total_duration,
+        "skipped_assets": skipped_assets,
         "assets": harvested_data
     }
 
