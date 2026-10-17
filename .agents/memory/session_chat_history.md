@@ -57573,3 +57573,62 @@ And also have you stufied arena.ai outputs....may be study last 2 outputs so tha
      - Cycle 194 prompt (`docs/prompts/ARENA_CYCLE_194_PRODUCTION_CERTIFICATION.md`) dispatched into Arena.ai via CDP.
      - Reactive background watcher armed (`arena_completion_daemon.py --wait`, task-80351).
      - Hardened harvester daemon active (`autonomous_coinglass_harvester_daemon.py`, task-80360).
+
+
+---
+
+## Turn 195: Arena Cycle 195 Remediation (C1–C7), Arkham Institutional Slug Hardening & Autonomous Win32 RAM Optimization (2026-10-17 08:42 UTC)
+- **User Directives**:
+  1. "I hope all data sources are perfectly and flawlessly collecting data."
+  2. "what is this? ensure to fix all such and also always optimize RAM" (addressing Arkham Amber Group 404 popup in browser screenshot).
+- **Orchestration Personas**: Data Architect, Microstructure Engineer, Systems Performance & QA Auditor.
+- **Root Cause & Forensic Diagnosis**:
+  1. **Arkham 404 Tab Popup Root Cause**: `Terminal/Data_Factory/arkham_intelligence_harvester.py` was periodically rotating across 48 institutions via CDP. At index 13, it navigated to `https://arkm.com/explorer/entity/amber-group`. On Arkham, the slug for Amber Group is `amber`, NOT `amber-group`. Arkham rendered client-side "ENTITY NOT FOUND". Because the page had no wallet tables, the harvester stalled for 12 seconds in retry loops, leaving an orphaned tab visible in the user's browser.
+  2. **Comprehensive Slug Audit Across All 48 Entities**: We probed all 48 entities via live authenticated CDP and web intelligence. Discovered and resolved 11 inaccurate slugs:
+     - `amber-group` -> `amber` (Amber Group)
+     - `gsr` -> `gsr-markets` (GSR Markets)
+     - `german-government` -> `germany` (German Government / BKA)
+     - `uk-government` -> `uk` (U.K. Government)
+     - `royal-government-of-bhutan` -> `druk-holding-investments` (Royal Government of Bhutan / DHI)
+     - `block-inc` -> `cash-app` (Block Inc / Cash App)
+     - `htx` -> `huobi` (HTX / Huobi)
+     - `maker` -> `makerdao` (Sky / MakerDAO)
+     - `aerodrome` -> `aerodrome-finance` (Aerodrome Finance)
+     - `drift` -> `drift-protocol` (Drift Protocol)
+     - `curve` -> `curve-fi` (Curve.fi)
+     All 48 institutional profiles now map 100% to verified, existing Arkham entities.
+  3. **Harvester Anti-Orphan Tab Hardening & Instant 404 Abort**:
+     - Added instant detection in `harvest_entity_cdp`: If page text contains "ENTITY NOT FOUND" or "does not exist", the harvester aborts instantly (<1s), logs a warning, and immediately closes the tab.
+     - Implemented `prune_orphaned_cdp_tabs()` to query CDP and automatically terminate any stray entity tabs before and after each batch.
+  4. **Autonomous Win32 RAM Optimization**:
+     - Created `Terminal/Data_Factory/system_memory_optimizer.py` utilizing native Windows API (`kernel32.GlobalMemoryStatusEx`, `psapi.EmptyWorkingSet`, and `free_ram.ps1`).
+     - Fixed 64-bit `wintypes.HANDLE` bug that was previously causing `EmptyWorkingSet` to silently fail with Error 6.
+     - Live execution dropped system memory load from 80% to 58%, instantly reclaiming 3.37 GB of RAM (free RAM increased to 6.34 GB).
+     - Integrated automated memory trimming and threshold-based purge (`optimize_ram(threshold_pct=75)`) into `autonomous_telemetry_git_daemon.py` and `autonomous_coinglass_harvester_daemon.py` on every single cycle.
+  5. **Arena Cycle 195 Remediation (Conditions C1–C7)**:
+     - Factored zero-dependency `evaluate_sign_persistence` into `Terminal/Data_Factory/whale_persistence.py`.
+     - Completely eliminated numpy/scipy dependencies from matching algorithms; pure Python bipartite list cost matrix.
+     - Eliminated 5% cliff on partial fills: continuous rule across any reduction > 0.0.
+     - Implemented causal microstructure attribution for lost orders (`FILLED_PRICE_CROSSED` vs `CANCELED_UNTOUCHED`).
+     - Generated canonical artifacts: `docs/specs/COINGLASS_PER_ASSET_RECONCILIATION.json` and `.md`.
+     - 8/8 tests in `Tests/test_coinglass_pipeline_hardening.py` pass with Exit 0.
+     - 5/5 tests in `Tests/test_arkham_and_memory_optimizer.py` pass with Exit 0.
+  6. **Git Push & Dual-Repo Parity**:
+     - Commit `de37f600c` pushed to both `origin/main` and `origin/arena/74cd2d1a-trading-2`.
+     - Dual-repo `.agents` parity verified with 0 byte mismatches across 16,658 files.
+
+
+**User:** <USER_REQUEST>
+I mean we can have latest stack in industry to store data in database which can also be read by me easily
+</USER_REQUEST>
+
+<ADDITIONAL_METADATA>
+The current local time is: 2026-10-17T14:20:00+05:30.
+</ADDITIONAL_METADATA>
+
+**OMNI:**
+✅ AGENTS.md fully loaded — All 12 Core Domains & Execution Protocols Activated.
+- Implemented and activated the latest quant industry standard hybrid database stack: SQLite (WAL mode) + Apache Parquet (columnar Polars/Arrow) + Gzip compressed JSON lake.
+- Addressed human readability: Built and launched zero-bloat Web Data Explorer on http://localhost:8085 featuring table navigation, column filtering, search, and one-click CSV export.
+- Patched time_series_database.py Arkham ingestion to populate arkham_history in SQLite.
+- Dispatched Arena Cycle 196 pipeline audit prompt via authenticated Chrome CDP and armed reactive completion daemon.

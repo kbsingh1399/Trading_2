@@ -658,17 +658,37 @@ class TimeSeriesDatabase:
                     ))
 
             elif stream == "arkham":
-                entities = data.get("trending_institutional_entities", [])
-                record_count = len(entities)
+                deep_entities = data.get("institutional_entities_deep", {})
+                trending_entities = data.get("trending_institutional_entities", [])
+                
+                rows_to_insert = []
+                if deep_entities and isinstance(deep_entities, dict):
+                    for slug, ent in deep_entities.items():
+                        name = ent.get("entity_name") or ent.get("slug") or slug
+                        bal = _safe_float(ent.get("total_portfolio_usd"))
+                        if not bal or bal == 0.0:
+                            h_sum = 0.0
+                            for h in ent.get("holdings_breakdown", []):
+                                h_val = _safe_float(h.get("value_usd"))
+                                if h_val:
+                                    h_sum += h_val
+                            if h_sum > 0:
+                                bal = h_sum
+                        rows_to_insert.append((epoch, timestamp_utc, name, bal))
+                elif trending_entities and isinstance(trending_entities, list):
+                    for ent in trending_entities:
+                        name = ent.get("name") or ent.get("entity_name", "")
+                        bal = _safe_float(ent.get("balance_usd"))
+                        rows_to_insert.append((epoch, timestamp_utc, name, bal))
+                        
+                record_count = len(rows_to_insert)
                 summary["entities_count"] = record_count
-                for ent in entities:
+                for r in rows_to_insert:
                     cur.execute("""
                         INSERT INTO arkham_history (
                             snapshot_epoch, snapshot_utc, entity_name, balance_usd
                         ) VALUES (?, ?, ?, ?)
-                    """, (
-                        epoch, timestamp_utc, ent.get("name", ""), _safe_float(ent.get("balance_usd"))
-                    ))
+                    """, r)
 
             elif stream == "account_equity":
                 acct = data.get("account", data)
