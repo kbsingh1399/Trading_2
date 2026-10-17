@@ -1,5 +1,5 @@
 {
-  "as_of_utc": "2026-10-17 09:11:02 UTC",
+  "as_of_utc": "2026-10-17 09:16:04 UTC",
   "source": "Arkham Intelligence Upgraded Harvester (arkm.com via Chrome CDP)",
   "filter_applied": "",
   "feed_status": "CONNECTED_NO_TRANSFERS",
@@ -610,15 +610,15 @@
       "holdings_breakdown": [
         {
           "symbol": "BTC",
-          "price": "$81,626",
+          "price": "$81,631",
           "amount": "BTC",
-          "value_usd": "$596.47M",
-          "change_24h": "-0.6%"
+          "value_usd": "$596.51M",
+          "change_24h": "-0.67%"
         }
       ],
       "category": "SOVEREIGN_TREASURY",
       "priority": "HIGH",
-      "last_updated_utc": "2026-10-17 08:28:50 UTC"
+      "last_updated_utc": "2026-10-17 09:15:49 UTC"
     },
     "microstrategy": {
       "slug": "microstrategy",
@@ -629,15 +629,15 @@
       "holdings_breakdown": [
         {
           "symbol": "BTC",
-          "price": "$81,633",
+          "price": "$81,617",
           "amount": "BTC",
-          "value_usd": "$39.04B",
-          "change_24h": "-0.67%"
+          "value_usd": "$39.03B",
+          "change_24h": "-0.64%"
         }
       ],
       "category": "CORPORATE_TREASURY",
       "priority": "HIGH",
-      "last_updated_utc": "2026-10-17 08:32:51 UTC"
+      "last_updated_utc": "2026-10-17 09:15:55 UTC"
     },
     "tesla": {
       "slug": "tesla",
@@ -656,7 +656,7 @@
       ],
       "category": "CORPORATE_TREASURY",
       "priority": "MEDIUM",
-      "last_updated_utc": "2026-10-17 08:32:57 UTC"
+      "last_updated_utc": "2026-10-17 09:16:01 UTC"
     },
     "tether": {
       "slug": "tether",
@@ -1995,6 +1995,58 @@
       "category": "SOVEREIGN_TREASURY",
       "priority": "MEDIUM",
       "last_updated_utc": "2026-10-17 09:10:59 UTC"
+    },
+    "uk": {
+      "slug": "uk",
+      "entity_name": "U.K. Government",
+      "address_count": "4 Addresses",
+      "total_portfolio_usd": "$0.00",
+      "portfolio_change_24h": "",
+      "holdings_breakdown": [
+        {
+          "symbol": "BTC",
+          "price": "$81,631",
+          "amount": "BTC",
+          "value_usd": "$5B",
+          "change_24h": "-0.67%"
+        }
+      ],
+      "category": "SOVEREIGN_TREASURY",
+      "priority": "MEDIUM",
+      "last_updated_utc": "2026-10-17 09:15:37 UTC"
+    },
+    "druk-holding-investments": {
+      "slug": "druk-holding-investments",
+      "entity_name": "Royal Government of Bhutan (Druk Holdings)",
+      "address_count": "274 Addresses",
+      "total_portfolio_usd": "$0.00",
+      "portfolio_change_24h": "",
+      "holdings_breakdown": [
+        {
+          "symbol": "BTC",
+          "price": "$81,626",
+          "amount": "BTC",
+          "value_usd": "$42.31M",
+          "change_24h": "-0.66%"
+        },
+        {
+          "symbol": "BNB",
+          "price": "$721.63",
+          "amount": "BNB",
+          "value_usd": "$21.27K",
+          "change_24h": "-1.16%"
+        },
+        {
+          "symbol": "ETH",
+          "price": "$2,433.06",
+          "amount": "ETH",
+          "value_usd": "$17.59K",
+          "change_24h": "-0.81%"
+        }
+      ],
+      "category": "SOVEREIGN_TREASURY",
+      "priority": "MEDIUM",
+      "last_updated_utc": "2026-10-17 09:15:43 UTC"
     }
   },
   "whale_alerts": [],
