@@ -27,7 +27,7 @@
     "holdings_breakdown": [],
     "category": "MARKET_MAKER_HFT",
     "priority": "HIGH",
-    "last_updated_utc": "2026-10-17 11:26:12 UTC"
+    "last_updated_utc": "2026-10-18 23:48:04 UTC"
   },
   "wintermute": {
     "slug": "wintermute",
@@ -37,79 +37,16 @@
     "portfolio_change_24h": "",
     "holdings_breakdown": [
       {
-        "symbol": "BTC",
-        "price": "$81,486",
-        "amount": "BTC",
-        "value_usd": "$46.69M",
-        "change_24h": "-1.5%"
-      },
-      {
-        "symbol": "USDC",
-        "price": "$1",
-        "amount": "USDC",
-        "value_usd": "$38.08M",
-        "change_24h": "\u00b10%"
-      },
-      {
-        "symbol": "ETH",
-        "price": "$2,432.73",
-        "amount": "ETH",
-        "value_usd": "$35.04M",
-        "change_24h": "-2.01%"
-      },
-      {
-        "symbol": "MKR",
-        "price": "$1,628.99",
-        "amount": "MKR",
-        "value_usd": "$31.77M",
-        "change_24h": "-2.5%"
-      },
-      {
-        "symbol": "WBTC",
-        "price": "$81,339",
-        "amount": "WBTC",
-        "value_usd": "$15.17M",
-        "change_24h": "-1.44%"
-      },
-      {
-        "symbol": "USDT",
-        "price": "$1",
-        "amount": "USDT",
-        "value_usd": "$8.19M",
-        "change_24h": "\u00b10%"
-      },
-      {
         "symbol": "CBBTC",
-        "price": "$81,419",
-        "amount": "CBBTC",
-        "value_usd": "$7.56M",
-        "change_24h": "-1.52%"
-      },
-      {
-        "symbol": "LINK",
-        "price": "$12.2",
-        "amount": "LINK",
-        "value_usd": "$6.88M",
-        "change_24h": "-4.01%"
-      },
-      {
-        "symbol": "AERO",
-        "price": "$0.89",
-        "amount": "AERO",
-        "value_usd": "$4.31M",
-        "change_24h": "-3.43%"
-      },
-      {
-        "symbol": "UNI",
-        "price": "$7.31",
-        "amount": "UNI",
-        "value_usd": "$1.39M",
-        "change_24h": "-2.01%"
+        "price": "$636.15",
+        "amount": "",
+        "value_usd": "$476.45",
+        "change_24h": "+0.46%"
       }
     ],
     "category": "MARKET_MAKER_ALGO",
     "priority": "HIGH",
-    "last_updated_utc": "2026-10-17 11:26:05 UTC"
+    "last_updated_utc": "2026-10-18 23:47:57 UTC"
   },
   "vaneck": {
     "slug": "vaneck",
@@ -310,22 +247,22 @@
     "holdings_breakdown": [
       {
         "symbol": "BTC",
-        "price": "$81,547",
+        "price": "$82,031",
         "amount": "BTC",
-        "value_usd": "$461.67M",
-        "change_24h": "-1.22%"
+        "value_usd": "$464.41M",
+        "change_24h": "+0.97%"
       },
       {
         "symbol": "ETH",
-        "price": "$2,435.98",
+        "price": "$2,403.95",
         "amount": "ETH",
-        "value_usd": "$47.98M",
-        "change_24h": "-1.97%"
+        "value_usd": "$47.35M",
+        "change_24h": "+0.4%"
       }
     ],
     "category": "ASSET_MANAGER_ETF",
     "priority": "MEDIUM",
-    "last_updated_utc": "2026-10-17 11:25:57 UTC"
+    "last_updated_utc": "2026-10-18 23:47:51 UTC"
   },
   "dwf-labs": {
     "slug": "dwf-labs",
@@ -1544,10 +1481,74 @@
     "address_count": "13.0k Addresses",
     "total_portfolio_usd": "$0.00",
     "portfolio_change_24h": "",
-    "holdings_breakdown": [],
+    "holdings_breakdown": [
+      {
+        "symbol": "USDT",
+        "price": "$1",
+        "amount": "USDT",
+        "value_usd": "$2.85M",
+        "change_24h": "\u00b10%"
+      },
+      {
+        "symbol": "ETH",
+        "price": "$2,406.33",
+        "amount": "ETH",
+        "value_usd": "$1M",
+        "change_24h": "+0.48%"
+      },
+      {
+        "symbol": "MKR",
+        "price": "$1,586.77",
+        "amount": "MKR",
+        "value_usd": "$247.54",
+        "change_24h": "-1.31%"
+      },
+      {
+        "symbol": "UNI",
+        "price": "$7.17",
+        "amount": "UNI",
+        "value_usd": "$205.4",
+        "change_24h": "+0.42%"
+      },
+      {
+        "symbol": "LINK",
+        "price": "$12.03",
+        "amount": "LINK",
+        "value_usd": "$196.28",
+        "change_24h": "+0.67%"
+      },
+      {
+        "symbol": "USDC",
+        "price": "$1",
+        "amount": "USDC",
+        "value_usd": "$177.54",
+        "change_24h": "\u00b10%"
+      },
+      {
+        "symbol": "BTC",
+        "price": "$82,040",
+        "amount": "BTC",
+        "value_usd": "$113.85",
+        "change_24h": "+0.94%"
+      },
+      {
+        "symbol": "WBTC",
+        "price": "$81,903",
+        "amount": "WBTC",
+        "value_usd": "$81.13",
+        "change_24h": "+0.97%"
+      },
+      {
+        "symbol": "BNB",
+        "price": "$722.63",
+        "amount": "BNB",
+        "value_usd": "$80.04",
+        "change_24h": "+0.89%"
+      }
+    ],
     "category": "OTC_LIQUIDITY_DESK",
     "priority": "HIGH",
-    "last_updated_utc": "2026-10-17 11:30:40 UTC"
+    "last_updated_utc": "2026-10-18 23:48:10 UTC"
   },
   "falconx": {
     "slug": "falconx",
@@ -1558,7 +1559,7 @@
     "holdings_breakdown": [],
     "category": "PRIME_BROKERAGE_EXECUTION",
     "priority": "HIGH",
-    "last_updated_utc": "2026-10-17 11:30:46 UTC"
+    "last_updated_utc": "2026-10-18 23:48:16 UTC"
   },
   "amber": {
     "slug": "amber",

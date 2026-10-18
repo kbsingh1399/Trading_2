@@ -1,28 +1,35 @@
 {
-  "as_of_utc": "2026-10-18 05:14:50 UTC",
+  "as_of_utc": "2026-10-18 23:48:19 UTC",
   "source": "Arkham Intelligence Upgraded Harvester (arkm.com via Chrome CDP)",
-  "filter_applied": "",
-  "feed_status": "CONNECTED_NO_TRANSFERS",
-  "is_feed_available": false,
-  "market_flow_sentiment": "UNAVAILABLE_INSUFFICIENT_DATA",
+  "filter_applied": "USD >= $100K",
+  "feed_status": "STREAMING_ACTIVE",
+  "is_feed_available": true,
+  "market_flow_sentiment": "NEUTRAL_BALANCED_FLOW",
   "aggregate_metrics": {
-    "total_transfers_monitored": 0,
-    "total_observed_volume_usd": 0,
+    "total_transfers_monitored": 23,
+    "total_observed_volume_usd": 2508850000.0,
     "exchange_inflow_events": 0,
     "exchange_outflow_events": 0,
     "market_maker_events": 0,
-    "large_whale_alerts_count": 0,
+    "large_whale_alerts_count": 23,
     "total_inflow_volume_usd": 0,
     "total_outflow_volume_usd": 0,
     "net_flow_usd": 0
   },
-  "bitcoin_macro_explorer": {},
+  "bitcoin_macro_explorer": {
+    "price_usd": 82037.0,
+    "change_24h_pct": "+1.05%",
+    "change_7d_pct": "-1.92%",
+    "change_30d_pct": "+1.33%",
+    "volume_24h_usd": 19860000000.0,
+    "market_cap_usd": 1650000000000.0
+  },
   "asset_breakdown": {
     "BTC": {
       "inflow_usd": 0.0,
       "outflow_usd": 0.0,
       "tx_count": 0,
-      "whale_txs": 0
+      "whale_txs": 15
     },
     "ETH": {
       "inflow_usd": 0.0,
@@ -52,10 +59,43 @@
       "inflow_usd": 0.0,
       "outflow_usd": 0.0,
       "tx_count": 0,
-      "whale_txs": 0
+      "whale_txs": 8
     }
   },
-  "trending_institutional_entities": [],
+  "trending_institutional_entities": [
+    {
+      "name": "Donald Trump",
+      "holdings_usd": "$622,857.82",
+      "change_pct_24h": "0.24%",
+      "largest_holding": "TROG (210.35B)",
+      "active_wallets": "2",
+      "entity_url": "https://arkm.com/explorer/entity/donald-trump"
+    },
+    {
+      "name": "QiDao Protocol (Mai)",
+      "holdings_usd": "$196,288,648.85",
+      "change_pct_24h": "0.01%",
+      "largest_holding": "MIMATIC (188.53M)",
+      "active_wallets": "97",
+      "entity_url": "https://arkm.com/explorer/entity/mai-finance"
+    },
+    {
+      "name": "GMX",
+      "holdings_usd": "$291,733,403.16",
+      "change_pct_24h": "0.07%",
+      "largest_holding": "USDC (86.82M)",
+      "active_wallets": "1,012",
+      "entity_url": "https://arkm.com/explorer/entity/gmx"
+    },
+    {
+      "name": "Justin Sun",
+      "holdings_usd": "$2,262,703,333.44",
+      "change_pct_24h": "0.37%",
+      "largest_holding": "SUSDS (1.03B)",
+      "active_wallets": "211",
+      "entity_url": "https://arkm.com/explorer/entity/justin-sun"
+    }
+  ],
   "institutional_entities_deep": {
     "blackrock": {
       "slug": "blackrock",
@@ -85,7 +125,7 @@
       "holdings_breakdown": [],
       "category": "MARKET_MAKER_HFT",
       "priority": "HIGH",
-      "last_updated_utc": "2026-10-17 11:26:12 UTC"
+      "last_updated_utc": "2026-10-18 23:48:04 UTC"
     },
     "wintermute": {
       "slug": "wintermute",
@@ -95,79 +135,16 @@
       "portfolio_change_24h": "",
       "holdings_breakdown": [
         {
-          "symbol": "BTC",
-          "price": "$81,486",
-          "amount": "BTC",
-          "value_usd": "$46.69M",
-          "change_24h": "-1.5%"
-        },
-        {
-          "symbol": "USDC",
-          "price": "$1",
-          "amount": "USDC",
-          "value_usd": "$38.08M",
-          "change_24h": "\u00b10%"
-        },
-        {
-          "symbol": "ETH",
-          "price": "$2,432.73",
-          "amount": "ETH",
-          "value_usd": "$35.04M",
-          "change_24h": "-2.01%"
-        },
-        {
-          "symbol": "MKR",
-          "price": "$1,628.99",
-          "amount": "MKR",
-          "value_usd": "$31.77M",
-          "change_24h": "-2.5%"
-        },
-        {
-          "symbol": "WBTC",
-          "price": "$81,339",
-          "amount": "WBTC",
-          "value_usd": "$15.17M",
-          "change_24h": "-1.44%"
-        },
-        {
-          "symbol": "USDT",
-          "price": "$1",
-          "amount": "USDT",
-          "value_usd": "$8.19M",
-          "change_24h": "\u00b10%"
-        },
-        {
           "symbol": "CBBTC",
-          "price": "$81,419",
-          "amount": "CBBTC",
-          "value_usd": "$7.56M",
-          "change_24h": "-1.52%"
-        },
-        {
-          "symbol": "LINK",
-          "price": "$12.2",
-          "amount": "LINK",
-          "value_usd": "$6.88M",
-          "change_24h": "-4.01%"
-        },
-        {
-          "symbol": "AERO",
-          "price": "$0.89",
-          "amount": "AERO",
-          "value_usd": "$4.31M",
-          "change_24h": "-3.43%"
-        },
-        {
-          "symbol": "UNI",
-          "price": "$7.31",
-          "amount": "UNI",
-          "value_usd": "$1.39M",
-          "change_24h": "-2.01%"
+          "price": "$636.15",
+          "amount": "",
+          "value_usd": "$476.45",
+          "change_24h": "+0.46%"
         }
       ],
       "category": "MARKET_MAKER_ALGO",
       "priority": "HIGH",
-      "last_updated_utc": "2026-10-17 11:26:05 UTC"
+      "last_updated_utc": "2026-10-18 23:47:57 UTC"
     },
     "vaneck": {
       "slug": "vaneck",
@@ -368,22 +345,22 @@
       "holdings_breakdown": [
         {
           "symbol": "BTC",
-          "price": "$81,547",
+          "price": "$82,031",
           "amount": "BTC",
-          "value_usd": "$461.67M",
-          "change_24h": "-1.22%"
+          "value_usd": "$464.41M",
+          "change_24h": "+0.97%"
         },
         {
           "symbol": "ETH",
-          "price": "$2,435.98",
+          "price": "$2,403.95",
           "amount": "ETH",
-          "value_usd": "$47.98M",
-          "change_24h": "-1.97%"
+          "value_usd": "$47.35M",
+          "change_24h": "+0.4%"
         }
       ],
       "category": "ASSET_MANAGER_ETF",
       "priority": "MEDIUM",
-      "last_updated_utc": "2026-10-17 11:25:57 UTC"
+      "last_updated_utc": "2026-10-18 23:47:51 UTC"
     },
     "dwf-labs": {
       "slug": "dwf-labs",
@@ -1602,10 +1579,74 @@
       "address_count": "13.0k Addresses",
       "total_portfolio_usd": "$0.00",
       "portfolio_change_24h": "",
-      "holdings_breakdown": [],
+      "holdings_breakdown": [
+        {
+          "symbol": "USDT",
+          "price": "$1",
+          "amount": "USDT",
+          "value_usd": "$2.85M",
+          "change_24h": "\u00b10%"
+        },
+        {
+          "symbol": "ETH",
+          "price": "$2,406.33",
+          "amount": "ETH",
+          "value_usd": "$1M",
+          "change_24h": "+0.48%"
+        },
+        {
+          "symbol": "MKR",
+          "price": "$1,586.77",
+          "amount": "MKR",
+          "value_usd": "$247.54",
+          "change_24h": "-1.31%"
+        },
+        {
+          "symbol": "UNI",
+          "price": "$7.17",
+          "amount": "UNI",
+          "value_usd": "$205.4",
+          "change_24h": "+0.42%"
+        },
+        {
+          "symbol": "LINK",
+          "price": "$12.03",
+          "amount": "LINK",
+          "value_usd": "$196.28",
+          "change_24h": "+0.67%"
+        },
+        {
+          "symbol": "USDC",
+          "price": "$1",
+          "amount": "USDC",
+          "value_usd": "$177.54",
+          "change_24h": "\u00b10%"
+        },
+        {
+          "symbol": "BTC",
+          "price": "$82,040",
+          "amount": "BTC",
+          "value_usd": "$113.85",
+          "change_24h": "+0.94%"
+        },
+        {
+          "symbol": "WBTC",
+          "price": "$81,903",
+          "amount": "WBTC",
+          "value_usd": "$81.13",
+          "change_24h": "+0.97%"
+        },
+        {
+          "symbol": "BNB",
+          "price": "$722.63",
+          "amount": "BNB",
+          "value_usd": "$80.04",
+          "change_24h": "+0.89%"
+        }
+      ],
       "category": "OTC_LIQUIDITY_DESK",
       "priority": "HIGH",
-      "last_updated_utc": "2026-10-17 11:30:40 UTC"
+      "last_updated_utc": "2026-10-18 23:48:10 UTC"
     },
     "falconx": {
       "slug": "falconx",
@@ -1616,7 +1657,7 @@
       "holdings_breakdown": [],
       "category": "PRIME_BROKERAGE_EXECUTION",
       "priority": "HIGH",
-      "last_updated_utc": "2026-10-17 11:30:46 UTC"
+      "last_updated_utc": "2026-10-18 23:48:16 UTC"
     },
     "amber": {
       "slug": "amber",
@@ -2121,6 +2162,514 @@
       "last_updated_utc": "2026-10-17 11:40:44 UTC"
     }
   },
-  "whale_alerts": [],
-  "recent_classified_transfers": []
+  "whale_alerts": [
+    {
+      "tx_hash": "0xca32c511b4a54a3639d2f9c0f2733875fadd6920b8560dc89a61e245734fb4bd",
+      "time": "2026-10-18 04:20:59",
+      "from": "Capyfi",
+      "to": "OffchainBtcVault (Proxy)\n(0x6cb)",
+      "usd_value": 109250000.0,
+      "token": "WBTC",
+      "asset_bucket": "BTC",
+      "flow_tag": "INTERNAL_TRANSFER"
+    },
+    {
+      "tx_hash": "0xca32c511b4a54a3639d2f9c0f2733875fadd6920b8560dc89a61e245734fb4bd",
+      "time": "2026-10-18 04:20:59",
+      "from": "Capyfi",
+      "to": "Staked WBTC (STBTC)\n(0xb40)",
+      "usd_value": 109250000.0,
+      "token": "WBTC",
+      "asset_bucket": "BTC",
+      "flow_tag": "INTERNAL_TRANSFER"
+    },
+    {
+      "tx_hash": "0xca32c511b4a54a3639d2f9c0f2733875fadd6920b8560dc89a61e245734fb4bd",
+      "time": "2026-10-18 04:20:59",
+      "from": "0x00acd5005200E7009BEB000000E35E1E002b5565",
+      "to": "Capyfi",
+      "usd_value": 109250000.0,
+      "token": "WBTC",
+      "asset_bucket": "BTC",
+      "flow_tag": "INTERNAL_TRANSFER"
+    },
+    {
+      "tx_hash": "0x2afbaae716145a2eb0b149ca37b8d4a6d7d3d4e65024e7090f3abbd323e39e0f",
+      "time": "2026-10-18 03:20:59",
+      "from": "Capyfi",
+      "to": "OffchainBtcVault (Proxy)\n(0x6cb)",
+      "usd_value": 109190000.0,
+      "token": "WBTC",
+      "asset_bucket": "BTC",
+      "flow_tag": "INTERNAL_TRANSFER"
+    },
+    {
+      "tx_hash": "0x2afbaae716145a2eb0b149ca37b8d4a6d7d3d4e65024e7090f3abbd323e39e0f",
+      "time": "2026-10-18 03:20:59",
+      "from": "0x2AbdaAAf3176DfF7dcADd08824A351bcbF06587d",
+      "to": "Capyfi",
+      "usd_value": 109190000.0,
+      "token": "WBTC",
+      "asset_bucket": "BTC",
+      "flow_tag": "INTERNAL_TRANSFER"
+    },
+    {
+      "tx_hash": "0x2afbaae716145a2eb0b149ca37b8d4a6d7d3d4e65024e7090f3abbd323e39e0f",
+      "time": "2026-10-18 03:20:59",
+      "from": "Capyfi",
+      "to": "Staked WBTC (STBTC)\n(0xb40)",
+      "usd_value": 109190000.0,
+      "token": "WBTC",
+      "asset_bucket": "BTC",
+      "flow_tag": "INTERNAL_TRANSFER"
+    },
+    {
+      "tx_hash": "0x2afbaae716145a2eb0b149ca37b8d4a6d7d3d4e65024e7090f3abbd323e39e0f",
+      "time": "2026-10-18 03:20:59",
+      "from": "0x2AbdaAAf3176DfF7dcADd08824A351bcbF06587d",
+      "to": "Morpho",
+      "usd_value": 109190000.0,
+      "token": "MORPHO",
+      "asset_bucket": "OTHER",
+      "flow_tag": "INTERNAL_TRANSFER"
+    },
+    {
+      "tx_hash": "0x2afbaae716145a2eb0b149ca37b8d4a6d7d3d4e65024e7090f3abbd323e39e0f",
+      "time": "2026-10-18 03:20:59",
+      "from": "Morpho",
+      "to": "Morpho Blue\n(0xBBB)",
+      "usd_value": 109190000.0,
+      "token": "MORPHO",
+      "asset_bucket": "OTHER",
+      "flow_tag": "INTERNAL_TRANSFER"
+    },
+    {
+      "tx_hash": "0x9904c28461b53c12395e65ff663697692f4857a1a5e01726c2f89f9cabb01f90",
+      "time": "2026-10-18 06:20:59",
+      "from": "Capyfi",
+      "to": "OffchainBtcVault (Proxy)\n(0x6cb)",
+      "usd_value": 109060000.0,
+      "token": "WBTC",
+      "asset_bucket": "BTC",
+      "flow_tag": "INTERNAL_TRANSFER"
+    },
+    {
+      "tx_hash": "0x9904c28461b53c12395e65ff663697692f4857a1a5e01726c2f89f9cabb01f90",
+      "time": "2026-10-18 06:20:59",
+      "from": "0x00acd5005200E7009BEB000000E35E1E002b5565",
+      "to": "Capyfi",
+      "usd_value": 109060000.0,
+      "token": "WBTC",
+      "asset_bucket": "BTC",
+      "flow_tag": "INTERNAL_TRANSFER"
+    },
+    {
+      "tx_hash": "0x9904c28461b53c12395e65ff663697692f4857a1a5e01726c2f89f9cabb01f90",
+      "time": "2026-10-18 06:20:59",
+      "from": "0x00acd5005200E7009BEB000000E35E1E002b5565",
+      "to": "Morpho",
+      "usd_value": 109060000.0,
+      "token": "MORPHO",
+      "asset_bucket": "OTHER",
+      "flow_tag": "INTERNAL_TRANSFER"
+    },
+    {
+      "tx_hash": "0x9904c28461b53c12395e65ff663697692f4857a1a5e01726c2f89f9cabb01f90",
+      "time": "2026-10-18 06:20:59",
+      "from": "Capyfi",
+      "to": "Staked WBTC (STBTC)\n(0xb40)",
+      "usd_value": 109060000.0,
+      "token": "WBTC",
+      "asset_bucket": "BTC",
+      "flow_tag": "INTERNAL_TRANSFER"
+    },
+    {
+      "tx_hash": "0x9904c28461b53c12395e65ff663697692f4857a1a5e01726c2f89f9cabb01f90",
+      "time": "2026-10-18 06:20:59",
+      "from": "Morpho",
+      "to": "Morpho Blue\n(0xBBB)",
+      "usd_value": 109060000.0,
+      "token": "MORPHO",
+      "asset_bucket": "OTHER",
+      "flow_tag": "INTERNAL_TRANSFER"
+    },
+    {
+      "tx_hash": "0x3d31e8892f124304ae6e31d9e1ffd272af46a2710de5017191b8f5f6d05a1bf2",
+      "time": "2026-10-18 07:20:59",
+      "from": "Capyfi",
+      "to": "OffchainBtcVault (Proxy)\n(0x6cb)",
+      "usd_value": 109010000.0,
+      "token": "WBTC",
+      "asset_bucket": "BTC",
+      "flow_tag": "INTERNAL_TRANSFER"
+    },
+    {
+      "tx_hash": "0x3d31e8892f124304ae6e31d9e1ffd272af46a2710de5017191b8f5f6d05a1bf2",
+      "time": "2026-10-18 07:20:59",
+      "from": "0x00acd5005200E7009BEB000000E35E1E002b5565",
+      "to": "Morpho",
+      "usd_value": 109010000.0,
+      "token": "MORPHO",
+      "asset_bucket": "OTHER",
+      "flow_tag": "INTERNAL_TRANSFER"
+    },
+    {
+      "tx_hash": "0x3d31e8892f124304ae6e31d9e1ffd272af46a2710de5017191b8f5f6d05a1bf2",
+      "time": "2026-10-18 07:20:59",
+      "from": "Morpho",
+      "to": "Morpho Blue\n(0xBBB)",
+      "usd_value": 109010000.0,
+      "token": "MORPHO",
+      "asset_bucket": "OTHER",
+      "flow_tag": "INTERNAL_TRANSFER"
+    },
+    {
+      "tx_hash": "0x3d31e8892f124304ae6e31d9e1ffd272af46a2710de5017191b8f5f6d05a1bf2",
+      "time": "2026-10-18 07:20:59",
+      "from": "0x00acd5005200E7009BEB000000E35E1E002b5565",
+      "to": "Capyfi",
+      "usd_value": 109010000.0,
+      "token": "WBTC",
+      "asset_bucket": "BTC",
+      "flow_tag": "INTERNAL_TRANSFER"
+    },
+    {
+      "tx_hash": "0x3d31e8892f124304ae6e31d9e1ffd272af46a2710de5017191b8f5f6d05a1bf2",
+      "time": "2026-10-18 07:20:59",
+      "from": "Capyfi",
+      "to": "Staked WBTC (STBTC)\n(0xb40)",
+      "usd_value": 109010000.0,
+      "token": "WBTC",
+      "asset_bucket": "BTC",
+      "flow_tag": "INTERNAL_TRANSFER"
+    },
+    {
+      "tx_hash": "0xe826d7807d62992b5b45551e18bad0d546eb2f6eafe6ed42888a1dbef9d63088",
+      "time": "2026-10-18 09:20:59",
+      "from": "Capyfi",
+      "to": "OffchainBtcVault (Proxy)\n(0x6cb)",
+      "usd_value": 108960000.0,
+      "token": "WBTC",
+      "asset_bucket": "BTC",
+      "flow_tag": "INTERNAL_TRANSFER"
+    },
+    {
+      "tx_hash": "0xe826d7807d62992b5b45551e18bad0d546eb2f6eafe6ed42888a1dbef9d63088",
+      "time": "2026-10-18 09:20:59",
+      "from": "Capyfi",
+      "to": "Staked WBTC (STBTC)\n(0xb40)",
+      "usd_value": 108960000.0,
+      "token": "WBTC",
+      "asset_bucket": "BTC",
+      "flow_tag": "INTERNAL_TRANSFER"
+    },
+    {
+      "tx_hash": "0xe826d7807d62992b5b45551e18bad0d546eb2f6eafe6ed42888a1dbef9d63088",
+      "time": "2026-10-18 09:20:59",
+      "from": "0xa0F1C3aD83E07d97B5e7030e177718bE175275ea",
+      "to": "Capyfi",
+      "usd_value": 108960000.0,
+      "token": "WBTC",
+      "asset_bucket": "BTC",
+      "flow_tag": "INTERNAL_TRANSFER"
+    },
+    {
+      "tx_hash": "0xe826d7807d62992b5b45551e18bad0d546eb2f6eafe6ed42888a1dbef9d63088",
+      "time": "2026-10-18 09:20:59",
+      "from": "Morpho",
+      "to": "Morpho Blue\n(0xBBB)",
+      "usd_value": 108960000.0,
+      "token": "MORPHO",
+      "asset_bucket": "OTHER",
+      "flow_tag": "INTERNAL_TRANSFER"
+    },
+    {
+      "tx_hash": "0xe826d7807d62992b5b45551e18bad0d546eb2f6eafe6ed42888a1dbef9d63088",
+      "time": "2026-10-18 09:20:59",
+      "from": "0xa0F1C3aD83E07d97B5e7030e177718bE175275ea",
+      "to": "Morpho",
+      "usd_value": 108960000.0,
+      "token": "MORPHO",
+      "asset_bucket": "OTHER",
+      "flow_tag": "INTERNAL_TRANSFER"
+    }
+  ],
+  "recent_classified_transfers": [
+    {
+      "time": "2026-10-18 04:20:59",
+      "tx_hash": "0xca32c511b4a54a3639d2f9c0f2733875fadd6920b8560dc89a61e245734fb4bd",
+      "from_entity": "Capyfi",
+      "from_type": "WALLET",
+      "to_entity": "OffchainBtcVault (Proxy)\n(0x6cb)",
+      "to_type": "WALLET",
+      "token": "WBTC",
+      "amount": 1338.0,
+      "usd_value": 109250000.0,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "2026-10-18 04:20:59",
+      "tx_hash": "0xca32c511b4a54a3639d2f9c0f2733875fadd6920b8560dc89a61e245734fb4bd",
+      "from_entity": "Capyfi",
+      "from_type": "WALLET",
+      "to_entity": "Staked WBTC (STBTC)\n(0xb40)",
+      "to_type": "WALLET",
+      "token": "WBTC",
+      "amount": 0.0,
+      "usd_value": 109250000.0,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "2026-10-18 04:20:59",
+      "tx_hash": "0xca32c511b4a54a3639d2f9c0f2733875fadd6920b8560dc89a61e245734fb4bd",
+      "from_entity": "0x00acd5005200E7009BEB000000E35E1E002b5565",
+      "from_type": "WALLET",
+      "to_entity": "Capyfi",
+      "to_type": "WALLET",
+      "token": "WBTC",
+      "amount": 0.0,
+      "usd_value": 109250000.0,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "2026-10-18 03:20:59",
+      "tx_hash": "0x2afbaae716145a2eb0b149ca37b8d4a6d7d3d4e65024e7090f3abbd323e39e0f",
+      "from_entity": "Capyfi",
+      "from_type": "WALLET",
+      "to_entity": "OffchainBtcVault (Proxy)\n(0x6cb)",
+      "to_type": "WALLET",
+      "token": "WBTC",
+      "amount": 1338.0,
+      "usd_value": 109190000.0,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "2026-10-18 03:20:59",
+      "tx_hash": "0x2afbaae716145a2eb0b149ca37b8d4a6d7d3d4e65024e7090f3abbd323e39e0f",
+      "from_entity": "0x2AbdaAAf3176DfF7dcADd08824A351bcbF06587d",
+      "from_type": "WALLET",
+      "to_entity": "Capyfi",
+      "to_type": "WALLET",
+      "token": "WBTC",
+      "amount": 0.0,
+      "usd_value": 109190000.0,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "2026-10-18 03:20:59",
+      "tx_hash": "0x2afbaae716145a2eb0b149ca37b8d4a6d7d3d4e65024e7090f3abbd323e39e0f",
+      "from_entity": "Capyfi",
+      "from_type": "WALLET",
+      "to_entity": "Staked WBTC (STBTC)\n(0xb40)",
+      "to_type": "WALLET",
+      "token": "WBTC",
+      "amount": 0.0,
+      "usd_value": 109190000.0,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "2026-10-18 03:20:59",
+      "tx_hash": "0x2afbaae716145a2eb0b149ca37b8d4a6d7d3d4e65024e7090f3abbd323e39e0f",
+      "from_entity": "0x2AbdaAAf3176DfF7dcADd08824A351bcbF06587d",
+      "from_type": "WALLET",
+      "to_entity": "Morpho",
+      "to_type": "WALLET",
+      "token": "MORPHO",
+      "amount": 2.317670882435107e+18,
+      "usd_value": 109190000.0,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "2026-10-18 03:20:59",
+      "tx_hash": "0x2afbaae716145a2eb0b149ca37b8d4a6d7d3d4e65024e7090f3abbd323e39e0f",
+      "from_entity": "Morpho",
+      "from_type": "WALLET",
+      "to_entity": "Morpho Blue\n(0xBBB)",
+      "to_type": "WALLET",
+      "token": "MORPHO",
+      "amount": -20261018032059.0,
+      "usd_value": 109190000.0,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "2026-10-18 06:20:59",
+      "tx_hash": "0x9904c28461b53c12395e65ff663697692f4857a1a5e01726c2f89f9cabb01f90",
+      "from_entity": "Capyfi",
+      "from_type": "WALLET",
+      "to_entity": "OffchainBtcVault (Proxy)\n(0x6cb)",
+      "to_type": "WALLET",
+      "token": "WBTC",
+      "amount": 1338.0,
+      "usd_value": 109060000.0,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "2026-10-18 06:20:59",
+      "tx_hash": "0x9904c28461b53c12395e65ff663697692f4857a1a5e01726c2f89f9cabb01f90",
+      "from_entity": "0x00acd5005200E7009BEB000000E35E1E002b5565",
+      "from_type": "WALLET",
+      "to_entity": "Capyfi",
+      "to_type": "WALLET",
+      "token": "WBTC",
+      "amount": 0.0,
+      "usd_value": 109060000.0,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "2026-10-18 06:20:59",
+      "tx_hash": "0x9904c28461b53c12395e65ff663697692f4857a1a5e01726c2f89f9cabb01f90",
+      "from_entity": "0x00acd5005200E7009BEB000000E35E1E002b5565",
+      "from_type": "WALLET",
+      "to_entity": "Morpho",
+      "to_type": "WALLET",
+      "token": "MORPHO",
+      "amount": 5.0052007009e+26,
+      "usd_value": 109060000.0,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "2026-10-18 06:20:59",
+      "tx_hash": "0x9904c28461b53c12395e65ff663697692f4857a1a5e01726c2f89f9cabb01f90",
+      "from_entity": "Capyfi",
+      "from_type": "WALLET",
+      "to_entity": "Staked WBTC (STBTC)\n(0xb40)",
+      "to_type": "WALLET",
+      "token": "WBTC",
+      "amount": 0.0,
+      "usd_value": 109060000.0,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "2026-10-18 06:20:59",
+      "tx_hash": "0x9904c28461b53c12395e65ff663697692f4857a1a5e01726c2f89f9cabb01f90",
+      "from_entity": "Morpho",
+      "from_type": "WALLET",
+      "to_entity": "Morpho Blue\n(0xBBB)",
+      "to_type": "WALLET",
+      "token": "MORPHO",
+      "amount": -20261018062059.0,
+      "usd_value": 109060000.0,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "2026-10-18 07:20:59",
+      "tx_hash": "0x3d31e8892f124304ae6e31d9e1ffd272af46a2710de5017191b8f5f6d05a1bf2",
+      "from_entity": "Capyfi",
+      "from_type": "WALLET",
+      "to_entity": "OffchainBtcVault (Proxy)\n(0x6cb)",
+      "to_type": "WALLET",
+      "token": "WBTC",
+      "amount": 1338.0,
+      "usd_value": 109010000.0,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "2026-10-18 07:20:59",
+      "tx_hash": "0x3d31e8892f124304ae6e31d9e1ffd272af46a2710de5017191b8f5f6d05a1bf2",
+      "from_entity": "0x00acd5005200E7009BEB000000E35E1E002b5565",
+      "from_type": "WALLET",
+      "to_entity": "Morpho",
+      "to_type": "WALLET",
+      "token": "MORPHO",
+      "amount": 5.0052007009e+26,
+      "usd_value": 109010000.0,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "2026-10-18 07:20:59",
+      "tx_hash": "0x3d31e8892f124304ae6e31d9e1ffd272af46a2710de5017191b8f5f6d05a1bf2",
+      "from_entity": "Morpho",
+      "from_type": "WALLET",
+      "to_entity": "Morpho Blue\n(0xBBB)",
+      "to_type": "WALLET",
+      "token": "MORPHO",
+      "amount": -20261018072059.0,
+      "usd_value": 109010000.0,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "2026-10-18 07:20:59",
+      "tx_hash": "0x3d31e8892f124304ae6e31d9e1ffd272af46a2710de5017191b8f5f6d05a1bf2",
+      "from_entity": "0x00acd5005200E7009BEB000000E35E1E002b5565",
+      "from_type": "WALLET",
+      "to_entity": "Capyfi",
+      "to_type": "WALLET",
+      "token": "WBTC",
+      "amount": 0.0,
+      "usd_value": 109010000.0,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "2026-10-18 07:20:59",
+      "tx_hash": "0x3d31e8892f124304ae6e31d9e1ffd272af46a2710de5017191b8f5f6d05a1bf2",
+      "from_entity": "Capyfi",
+      "from_type": "WALLET",
+      "to_entity": "Staked WBTC (STBTC)\n(0xb40)",
+      "to_type": "WALLET",
+      "token": "WBTC",
+      "amount": 0.0,
+      "usd_value": 109010000.0,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "2026-10-18 09:20:59",
+      "tx_hash": "0xe826d7807d62992b5b45551e18bad0d546eb2f6eafe6ed42888a1dbef9d63088",
+      "from_entity": "Capyfi",
+      "from_type": "WALLET",
+      "to_entity": "OffchainBtcVault (Proxy)\n(0x6cb)",
+      "to_type": "WALLET",
+      "token": "WBTC",
+      "amount": 1333.0,
+      "usd_value": 108960000.0,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "2026-10-18 09:20:59",
+      "tx_hash": "0xe826d7807d62992b5b45551e18bad0d546eb2f6eafe6ed42888a1dbef9d63088",
+      "from_entity": "Capyfi",
+      "from_type": "WALLET",
+      "to_entity": "Staked WBTC (STBTC)\n(0xb40)",
+      "to_type": "WALLET",
+      "token": "WBTC",
+      "amount": 0.0,
+      "usd_value": 108960000.0,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "2026-10-18 09:20:59",
+      "tx_hash": "0xe826d7807d62992b5b45551e18bad0d546eb2f6eafe6ed42888a1dbef9d63088",
+      "from_entity": "0xa0F1C3aD83E07d97B5e7030e177718bE175275ea",
+      "from_type": "WALLET",
+      "to_entity": "Capyfi",
+      "to_type": "WALLET",
+      "token": "WBTC",
+      "amount": 0.0,
+      "usd_value": 108960000.0,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "2026-10-18 09:20:59",
+      "tx_hash": "0xe826d7807d62992b5b45551e18bad0d546eb2f6eafe6ed42888a1dbef9d63088",
+      "from_entity": "Morpho",
+      "from_type": "WALLET",
+      "to_entity": "Morpho Blue\n(0xBBB)",
+      "to_type": "WALLET",
+      "token": "MORPHO",
+      "amount": -20261018092059.0,
+      "usd_value": 108960000.0,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "2026-10-18 09:20:59",
+      "tx_hash": "0xe826d7807d62992b5b45551e18bad0d546eb2f6eafe6ed42888a1dbef9d63088",
+      "from_entity": "0xa0F1C3aD83E07d97B5e7030e177718bE175275ea",
+      "from_type": "WALLET",
+      "to_entity": "Morpho",
+      "to_type": "WALLET",
+      "token": "MORPHO",
+      "amount": 1.3830797570301776e+24,
+      "usd_value": 108960000.0,
+      "flow_classification": "INTERNAL_TRANSFER"
+    }
+  ]
 }
