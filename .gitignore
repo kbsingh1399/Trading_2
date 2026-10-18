@@ -39,6 +39,8 @@ Data/history/*.json.gz
 Data/*.png
 Data/*.bak
 Data/**/*.bak
+*.bak.xlsx
+Data/*.bak.xlsx
 *.db-shm
 *.db-wal
 *.tmp

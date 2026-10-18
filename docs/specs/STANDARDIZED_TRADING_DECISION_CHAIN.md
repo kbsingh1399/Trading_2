@@ -122,7 +122,7 @@ No trade is evaluated in a vacuum. The system reviews the persistent narrative a
 2. **Mandatory Forensic Autopsy Reference (`LOSING_TRADES_DEEP_FORENSIC_AUTOPSY.md`)**:
    - The desk MUST refer to [`LOSING_TRADES_DEEP_FORENSIC_AUTOPSY.md`](file:///c:/Users/SIGMA/Documents/Trading_2/docs/specs/LOSING_TRADES_DEEP_FORENSIC_AUTOPSY.md) (Brain Artifact: `C:\Users\SIGMA\.gemini\antigravity\brain\b00c810a-61bb-46bf-a147-4c8859c64058\LOSING_TRADES_DEEP_FORENSIC_AUTOPSY.md`) on EVERY evaluation turn to eliminate historical failure patterns.
    - **The Three Inviolable Anti-Regression Invariants**:
-     * **Invariant A (Whale Bunker Stop Sizing — Never Choke Stops & Expanded Risk Rights)**: In 38.5% of historical losses, direction was 100% correct, and 4 trades (EURUSD, USWTI, BTC, Gold) hit full Take Profit immediately post-stop. Stops must NEVER be calculated from arbitrary point or ATR fractions inside the market sweep zone. All stops MUST anchor behind verified resting institutional liquidity (persistent L2/L3 whale walls with $\text{persist} \ge 180\text{s}$) plus a $0.35\text{–}0.50\text{ ATR}$ structural buffer. Per explicit operator directive, the stop loss dollar budget is expanded to **$15.00–$25.00 USD** (0.30%–0.51% equity) or lot size scaled down (0.05 or 0.01) to safely clear the whale bunker without choking!
+     * **Invariant A (Whale Bunker Stop Sizing — Never Choke Stops & Expanded Risk Rights)**: In 38.5% of historical losses, direction was 100% correct, and 4 trades (EURUSD, USWTI, BTC, Gold) hit full Take Profit immediately post-stop. Stops must NEVER be calculated from arbitrary point or ATR fractions inside the market sweep zone. All stops MUST anchor behind verified resting institutional liquidity (persistent L2/L3 whale walls with $\text{persist} \ge 180\text{s}$) plus a $0.50\text{ ATR}$ structural buffer. Per explicit operator directive, the stop loss dollar budget is expanded to **$15.00–$25.00 USD** (0.30%–0.51% equity) or lot size scaled down (0.05 or 0.01) to safely clear the whale bunker without choking!
      * **Invariant B (Higher-Timeframe Trend Hierarchy Gate — Zero Falling Knives)**: In 38.5% of historical losses, the desk bought dips in aggressive HTF bear trends (BTC plunging -2,151 pts further, ETH dropping -$155 further). In a confirmed 1H/4H Bear Trend ($\text{Price} < \text{EMA}_{20} < \text{EMA}_{50} < \text{EMA}_{200}$), Model 1 Long dip-buying is **strictly FORBIDDEN** regardless of 15m oversold oscillator readings. The desk may ONLY stage Model 2 Trend Pullback Shorts at overhead resistance shelves.
      * **Invariant C (Adaptive Early Breakeven at +0.75R0 to +0.80R0 — Protecting Positive MFE)**: 76.9% of historical losing trades (20 of 26) were in positive profit before reversing. Once price reaches $+0.75\text{R0 to }+0.80\text{R0}$ and reclaims the session Volume Profile POC or VWAP, arm an early risk cut to Entry $+ 0.10\text{R0}$ to prevent green trades from turning into full stop-outs during session volatility transitions (e.g. 13:30 UTC NY Cash Open).
 3. **Anti-Trap Checklist**: Confirm candidate setup does not match known trap patterns:
@@ -314,7 +314,7 @@ Prior to order transmission, perform the final 5-point sanity audit:
 2. **Reward-to-Risk (R:R) Gate**:
    $$\text{R:R Ratio} = \frac{|\text{TP} - \text{Entry}|}{|\text{Entry} - \text{SL}|} \ge 2.0\text{R}$$
    (Default target is 2.5R to 3.0R).
-3. **Bunker Stop Verification**: SL is positioned safely beyond the outer boundary of the resting whale wall and liquidation band with $\ge 0.35\text{ ATR}$ safety margin.
+3. **Bunker Stop Verification**: SL is positioned safely beyond the outer boundary of the resting whale wall and liquidation band with $\ge 0.50\text{ ATR}$ safety margin.
 4. **Target Magnet Front-Run**: TP is set 5 to 10 bps ahead of the opposing structural cluster or liquidation band to guarantee fill liquidity before depletion.
 5. **Filling Policy Compatibility**: Test `ORDER_FILLING_IOC`, with automatic failover to `ORDER_FILLING_RETURN` / `ORDER_FILLING_FOK` if rejected by broker bridge.
 
@@ -490,7 +490,7 @@ flowchart TD
 │    -> Directional whale trades & confirmed liquidation pressure confirmation│
 │ 3. Resting Whale Bunker Shelter (Whales_Orders >= $100K):                   │
 │    -> Limit order sheltered behind verified resting whale wall (persist>=180s)
-│       with a 0.35 to 0.50 ATR structural buffer.                            │
+│       with a 0.50 ATR structural buffer.                            │
 │                                                                             │
 │ STAGE 3B: TradFi Instruments (Indices, Commodities, Forex Majors):          │
 │ 1. Interbank Tick Spread & Session Liquidity Gate:                          │
@@ -500,7 +500,7 @@ flowchart TD
 │    -> Zero Tier-1 releases within 60 minutes for base/quote currency.       │
 │ 3. Structural Auction Shelf Defense (Live_Orderbook_CVD_Depth):             │
 │    -> Limit entry sheltered behind verified L2 top-of-book depth cluster    │
-│       with mandatory 0.35 to 0.50 ATR structural buffer.                    │
+│       with mandatory 0.50 ATR structural buffer.                    │
 └──────────────────────────────────────┬──────────────────────────────────────┘
                                        ▼
 ┌─────────────────────────────────────────────────────────────────────────────┐

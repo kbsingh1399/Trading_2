@@ -249,3 +249,13 @@ class FloorDefense:
             proposed_symbol=proposed_symbol,
             open_symbols=open_symbols,
         )
+
+
+# Direct functional access matching Arena Cycle 200 specifications
+from Terminal.risk.fail_closed import (
+    admissible,
+    max_slots,
+    four_slot_threshold,
+    stressed_equity,
+)
+

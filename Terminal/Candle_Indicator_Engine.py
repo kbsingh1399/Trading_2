@@ -34,6 +34,7 @@ if str(ROOT) not in sys.path:
 
 from Terminal.Asset_Universe import UNIVERSE, EXTENDED_UNIVERSE, canonical_asset
 from Terminal.MT5_Execution_Bridge import MT5ExecutionBridge
+from Terminal.risk.fail_closed import bar_fresh, num
 
 CANDLE_DIR = ROOT / "Data" / "Candles"
 CANDLE_DIR.mkdir(parents=True, exist_ok=True)
@@ -52,7 +53,7 @@ class CandleIndicatorEngine:
         self.universe = list(universe)
         self.cache: Dict[str, List[Dict[str, Any]]] = {}
 
-    def sync_candles(self, asset: str, count: int = 512) -> Dict[str, Any]:
+    def sync_candles(self, asset: str, count: int = 800) -> Dict[str, Any]:
         """Fetch completed 15m bars from MT5, audit gaps, persist to disk."""
         asset = canonical_asset(asset)
         symbol = self.bridge.resolve_symbol(asset)
@@ -141,15 +142,14 @@ class CandleIndicatorEngine:
         last_price = closes[-1]
         now_ts = times[-1] + 900.0  # Close of latest bar
 
-        # Clean volume resolution (prioritize real volume, fall back to tick volume)
+        # Clean volume resolution (prioritize real volume, fall back to tick volume, strict float)
         vols_list = []
         for b in bars:
-            v = float(b.get("real_volume") or 0.0)
-            if v <= 0.0:
-                v = float(b.get("volume") or 0.0)
-            if v <= 0.0:
-                v = float(b.get("tick_volume") or 0.0)
-            vols_list.append(max(v, 0.0))
+            rv = num(b.get("real_volume"))
+            v = num(b.get("volume"))
+            tv = num(b.get("tick_volume"))
+            chosen = rv if (rv is not None and rv > 0) else (v if (v is not None and v > 0) else (tv if (tv is not None and tv > 0) else 0.0))
+            vols_list.append(max(float(chosen), 0.0))
         volumes = np.array(vols_list)
 
         # -------------------------------------------------------------

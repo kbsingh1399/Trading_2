@@ -17,9 +17,17 @@ import asyncio
 import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
 import openpyxl
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
+
+from Terminal.risk.fail_closed import num, cell, spread_bps, spread_gate, NA
+from Terminal.Data_Factory.atomic_xlsx import atomic_save, check_minimums, cache_sum_formulas
 
 # Styles & Fonts
 FONT_NAME = "Segoe UI"
@@ -121,19 +129,19 @@ def dump_telemetry_system_state(wb, tele_data):
     acc = tele_data.get("account", {})
     rows.append(("Account Capital", "login", acc.get("login", 5064568), "MT5 Account ID", "NATIVE_MT5_ACCOUNT_INFO", "AUTHENTICATED", "Production execution account"))
     rows.append(("Account Capital", "currency", acc.get("currency", "USD"), "ISO Code", "Broker Specification", "VALID", "Base currency"))
-    rows.append(("Account Capital", "balance_usd", acc.get("balance_usd", 0.0), "USD", "MT5 Terminal Balance", "NOMINAL", "Realized ledger balance"))
-    rows.append(("Account Capital", "equity_usd", acc.get("equity_usd", 0.0), "USD", "MT5 Terminal Equity", "NOMINAL", "Real-time floating equity"))
-    rows.append(("Account Capital", "margin_used_usd", acc.get("margin_used_usd", 0.0), "USD", "Broker Margin Engine", "NOMINAL", "Active collateral requirement"))
-    rows.append(("Account Capital", "margin_free_usd", acc.get("margin_free_usd", 0.0), "USD", "Broker Margin Engine", "NOMINAL", "Unencumbered purchasing power"))
-    rows.append(("Account Capital", "hard_floor_usd", acc.get("hard_floor_usd", 4775.0), "USD", "Firm Capital Mandate", "HARD FLOOR", "Catastrophic circuit breaker"))
-    rows.append(("Account Capital", "cushion_above_floor_usd", acc.get("cushion_above_floor_usd", 0.0), "USD", "Calculated Risk Buffer", "PROTECTED", "Equity minus Hard Floor ($4,775)"))
+    rows.append(("Account Capital", "balance_usd", cell(acc.get("balance_usd")), "USD", "MT5 Terminal Balance", "NOMINAL", "Realized ledger balance"))
+    rows.append(("Account Capital", "equity_usd", cell(acc.get("equity_usd")), "USD", "MT5 Terminal Equity", "NOMINAL", "Real-time floating equity"))
+    rows.append(("Account Capital", "margin_used_usd", cell(acc.get("margin_used_usd")), "USD", "Broker Margin Engine", "NOMINAL", "Active collateral requirement"))
+    rows.append(("Account Capital", "margin_free_usd", cell(acc.get("margin_free_usd")), "USD", "Broker Margin Engine", "NOMINAL", "Unencumbered purchasing power"))
+    rows.append(("Account Capital", "hard_floor_usd", cell(acc.get("hard_floor_usd", 4775.0)), "USD", "Firm Capital Mandate", "HARD FLOOR", "Catastrophic circuit breaker"))
+    rows.append(("Account Capital", "cushion_above_floor_usd", cell(acc.get("cushion_above_floor_usd")), "USD", "Calculated Risk Buffer", "PROTECTED", "Equity minus Hard Floor ($4,775)"))
     
     # Risk & Exposure
     risk = tele_data.get("risk", {})
     rows.append(("Risk Management", "risk_status", risk.get("status", "BROKER_VALUED"), "Status", "Live Broker Valuation", "VERIFIED", "Broker-valued joint stress model"))
-    rows.append(("Risk Management", "total_contingent_stress_usd", risk.get("total_contingent_stress_usd", 0.0), "USD", "Monte Carlo Stress Model", "SAFE", "Worst-case joint stop loss stress"))
-    rows.append(("Risk Management", "post_joint_stop_equity_usd", risk.get("post_joint_stop_equity_usd", 0.0), "USD", "Stressed Stop Simulation", "COMPLIANT", "Simulated equity after all stops hit"))
-    rows.append(("Risk Management", "required_post_stop_equity_usd", risk.get("required_post_stop_equity_usd", 4795.0), "USD", "Operational Floor ($4,775 + $20)", "REQUIRED", "Minimum post-stop floor buffer"))
+    rows.append(("Risk Management", "total_contingent_stress_usd", cell(risk.get("total_contingent_stress_usd")), "USD", "Monte Carlo Stress Model", "SAFE", "Worst-case joint stop loss stress"))
+    rows.append(("Risk Management", "post_joint_stop_equity_usd", cell(risk.get("post_joint_stop_equity_usd")), "USD", "Stressed Stop Simulation", "COMPLIANT", "Simulated equity after all stops hit"))
+    rows.append(("Risk Management", "required_post_stop_equity_usd", cell(risk.get("required_post_stop_equity_usd", 4795.0)), "USD", "Operational Floor ($4,775 + $20)", "REQUIRED", "Minimum post-stop floor buffer"))
     rows.append(("Risk Management", "floor_buffer_preserved", str(risk.get("floor_buffer_preserved", True)), "Boolean", "Invariant Validator", "CONFIRMED", "Must remain TRUE on all orders"))
     
     # Capacity
@@ -144,7 +152,7 @@ def dump_telemetry_system_state(wb, tele_data):
     rows.append(("Order Capacity", "max_concurrent_slots", cap.get("max_concurrent", 4), "Slots", "System Architecture Invariant", "LOCKED", "Maximum 4 joint concurrent tickets"))
     
     # Statistical Calibration
-    rows.append(("Quant Statistics", "p_win_lower_bound", tele_data.get("p_win_lower_bound", 0.4197), "Probability", "Clopper-Pearson Exact 95%", "STATISTICAL", "One-sided binomial lower confidence bound"))
+    rows.append(("Quant Statistics", "p_win_lower_bound", cell(tele_data.get("p_win_lower_bound", 0.4197)), "Probability", "Clopper-Pearson Exact 95%", "STATISTICAL", "One-sided binomial lower confidence bound"))
     rows.append(("Quant Statistics", "p_win_calibration_sample_n", tele_data.get("p_win_calibration_sample_n", 17), "Trades Count", "Historical Closed Record", "CALIBRATING", "Minimum 100 sample threshold"))
     rows.append(("Quant Statistics", "p_win_calibration_wins", tele_data.get("p_win_calibration_wins", 11), "Wins Count", "Historical Closed Record", "TRACKED", "Realized trade wins"))
     
@@ -152,53 +160,53 @@ def dump_telemetry_system_state(wb, tele_data):
     mc = tele_data.get("macro_calendar", {})
     rows.append(("Macro Calendar", "fomc_event", mc.get("event", "FOMC"), "Macro Event", mc.get("event_source", "Federal Reserve"), "MONITORED", "Tier-1 volatility risk"))
     rows.append(("Macro Calendar", "event_release_utc", mc.get("event_release_utc", ""), "Timestamp UTC", "Federal Reserve Calendar", "SCHEDULED", "Hard blackout initiation"))
-    rows.append(("Macro Calendar", "runway_hours_to_blackout", mc.get("runway_hours_to_blackout", 0.0), "Hours", "Proximity Engine", "CLEAR", "Hours until mandatory order purge"))
+    rows.append(("Macro Calendar", "runway_hours_to_blackout", cell(mc.get("runway_hours_to_blackout")), "Hours", "Proximity Engine", "CLEAR", "Hours until mandatory order purge"))
     rows.append(("Macro Calendar", "blackout_active", str(mc.get("blackout_active", False)), "Boolean", "Execution Sentinel", "STANDBY", "Freezes execution during release"))
     fng = mc.get("fng_index", {})
-    rows.append(("Macro Calendar", "crypto_fear_greed_index", fng.get("value", 53), "Index (0-100)", "Alternative.me Live Feed", fng.get("classification", "Neutral"), "Historical sentiment indicator"))
+    rows.append(("Macro Calendar", "crypto_fear_greed_index", cell(fng.get("value", 53), "{:.0f}"), "Index (0-100)", "Alternative.me Live Feed", fng.get("classification", "Neutral"), "Historical sentiment indicator"))
     etf_flows = mc.get("etf_net_flows", {})
-    rows.append(("Macro Calendar", "btc_etf_net_flows_m_usd", etf_flows.get("BTC_net_usd_millions", 0.0), "Million USD", "Farside Investors Authentic Scrape", "REPORTED", "Institutional ETF daily netflow"))
-    rows.append(("Macro Calendar", "eth_etf_net_flows_m_usd", etf_flows.get("ETH_net_usd_millions", 0.0), "Million USD", "Farside Investors Authentic Scrape", "REPORTED", "Ethereum ETF daily netflow"))
-    rows.append(("Macro Calendar", "coinbase_premium_bps", mc.get("coinbase_premium_bps", 0.0), "Basis Points (bps)", "Coinbase vs Binance Spot", "OBSERVED", "US institutional buying pressure"))
+    rows.append(("Macro Calendar", "btc_etf_net_flows_m_usd", cell(etf_flows.get("BTC_net_usd_millions")), "Million USD", "Farside Investors Authentic Scrape", "REPORTED", "Institutional ETF daily netflow"))
+    rows.append(("Macro Calendar", "eth_etf_net_flows_m_usd", cell(etf_flows.get("ETH_net_usd_millions")), "Million USD", "Farside Investors Authentic Scrape", "REPORTED", "Ethereum ETF daily netflow"))
+    rows.append(("Macro Calendar", "coinbase_premium_bps", cell(mc.get("coinbase_premium_bps")), "Basis Points (bps)", "Coinbase vs Binance Spot", "OBSERVED", "US institutional buying pressure"))
     
     # Write rows
     for r_idx, row in enumerate(rows, 3):
         fill = FILL_ZEBRA if r_idx % 2 == 0 else FILL_WHITE
         for c_idx, val in enumerate(row, 1):
-            cell = ws.cell(row=r_idx, column=c_idx, value=val)
-            cell.font = FONT_DATA
-            cell.fill = fill
-            cell.border = BORDER_THIN
+            cl = ws.cell(row=r_idx, column=c_idx, value=val)
+            cl.font = FONT_DATA
+            cl.fill = fill
+            cl.border = BORDER_THIN
             if c_idx in (1, 2):
-                cell.alignment = ALIGN_LEFT
+                cl.alignment = ALIGN_LEFT
             elif c_idx in (4, 5, 6):
-                cell.alignment = ALIGN_CENTER
+                cl.alignment = ALIGN_CENTER
             elif c_idx == 7:
-                cell.alignment = ALIGN_LEFT
+                cl.alignment = ALIGN_LEFT
             else:
                 if isinstance(val, (int, float)):
-                    cell.alignment = ALIGN_RIGHT
+                    cl.alignment = ALIGN_RIGHT
                     if "usd" in row[1].lower():
-                        cell.number_format = "$#,##0.00"
+                        cl.number_format = "$#,##0.00"
                     elif "bps" in row[1].lower() or "bound" in row[1].lower():
-                        cell.number_format = "#,##0.0000"
+                        cl.number_format = "#,##0.0000"
                     else:
-                        cell.number_format = "#,##0.00"
+                        cl.number_format = "#,##0.00"
                 else:
-                    cell.alignment = ALIGN_LEFT
+                    cl.alignment = ALIGN_LEFT
                     
             # Highlight status
             if c_idx == 6:
                 v_str = str(val).upper()
                 if any(x in v_str for x in ["ACTIVE", "VERIFIED", "AUTHENTICATED", "CONFIRMED", "OPEN", "SAFE", "NOMINAL", "COMPLIANT"]):
-                    cell.fill = FILL_GREEN
-                    cell.font = FONT_GREEN
+                    cl.fill = FILL_GREEN
+                    cl.font = FONT_GREEN
                 elif any(x in v_str for x in ["HARD FLOOR", "REQUIRED", "DENIED", "CRITICAL"]):
-                    cell.fill = FILL_RED
-                    cell.font = FONT_RED
+                    cl.fill = FILL_RED
+                    cl.font = FONT_RED
                 elif any(x in v_str for x in ["MONITORED", "STANDBY", "CALIBRATING"]):
-                    cell.fill = FILL_AMBER
-                    cell.font = FONT_AMBER
+                    cl.fill = FILL_AMBER
+                    cl.font = FONT_AMBER
                     
         ws.row_dimensions[r_idx].height = 20
         
@@ -241,35 +249,38 @@ def dump_live_orderbook_cvd_depth(wb, tele_data):
         ob = d.get("orderbook_live_depth", {}) or {}
         cvd = d.get("multi_horizon_cvd", {}) or {}
         
-        bid = q.get("bid")
-        ask = q.get("ask")
-        spread = q.get("spread")
-        if spread is None and ask is not None and bid is not None:
-            spread = ask - bid
-        spread_bps = q.get("spread_bps")
+        bid = num(q.get("bid"))
+        ask = num(q.get("ask"))
+        quote_age_s = num(q.get("quote_age_s"))
+        category = d.get("category", "CRYPTO")
+        
+        # Single spread definition: (ask-bid)/mid * 1e4 with freshness check
+        sp = spread_bps(bid, ask, quote_age_s if quote_age_s is not None else 1.0, max_age_s=5.0)
+        spread_bps_val = sp if sp is not None else num(q.get("spread_bps"))
+        spread = (ask - bid) if (ask is not None and bid is not None) else None
         
         vb = ob.get("venue_basis", {})
         if isinstance(vb, dict):
-            b_mid = vb.get("BINANCE", {}).get("mid") or ob.get("binance_mid")
-            hl_mid = vb.get("HYPERLIQUID", {}).get("mid") or ob.get("hyperliquid_mid")
+            b_mid = num(vb.get("BINANCE", {}).get("mid")) or num(ob.get("binance_mid"))
+            hl_mid = num(vb.get("HYPERLIQUID", {}).get("mid")) or num(ob.get("hyperliquid_mid"))
             venue_basis = (b_mid - hl_mid) if (b_mid is not None and hl_mid is not None) else None
         else:
-            b_mid = ob.get("binance_mid")
-            hl_mid = ob.get("hyperliquid_mid")
-            venue_basis = float(vb) if isinstance(vb, (int, float)) else None
+            b_mid = num(ob.get("binance_mid"))
+            hl_mid = num(ob.get("hyperliquid_mid"))
+            venue_basis = num(vb)
         
-        bid_depth = ob.get("top20_bid_depth_usd")
-        ask_depth = ob.get("top20_ask_depth_usd")
-        imbalance = ob.get("book_imbalance")
-        skew = ob.get("skew_ratio")
+        bid_depth = num(ob.get("top20_bid_depth_usd"))
+        ask_depth = num(ob.get("top20_ask_depth_usd"))
+        imbalance = num(ob.get("book_imbalance"))
+        skew = num(ob.get("skew_ratio"))
         
-        sess_cvd = cvd.get("session_cvd_usd")
-        cvd_24h = cvd.get("cvd_24h_usd")
-        bar_15m = cvd.get("bar_delta_15m_usd")
+        sess_cvd = num(cvd.get("session_cvd_usd"))
+        cvd_24h = num(cvd.get("cvd_24h_usd"))
+        bar_15m = num(cvd.get("bar_delta_15m_usd"))
         
         row_vals = [
-            sym, d.get("category", "CRYPTO"), d.get("symbol_broker", sym),
-            bid, ask, spread, spread_bps,
+            sym, category, d.get("symbol_broker", sym),
+            bid, ask, spread, spread_bps_val,
             b_mid, hl_mid, venue_basis,
             bid_depth, ask_depth, imbalance, skew,
             sess_cvd, cvd_24h, bar_15m
@@ -357,24 +368,24 @@ def dump_exchange_basis_spreads(wb, tele_data):
         fr = d.get("funding_and_rates", {}) or {}
         ci = d.get("causal_indicators", {}) or {}
         
-        mark = fr.get("mark_price") or ci.get("last_price")
-        index = fr.get("index_price") or mark
+        mark = num(fr.get("mark_price")) or num(ci.get("last_price"))
+        index = num(fr.get("index_price")) or mark
         prem_bps = ((mark - index) / index * 10000.0) if (index and mark) else None
-        funding_bps = fr.get("last_funding_rate_bps")
+        funding_bps = num(fr.get("last_funding_rate_bps"))
         ann_funding = (funding_bps * 3 * 365) / 100.0 if funding_bps is not None else None
         
-        regime = ci.get("trend_regime")
-        rsi = ci.get("rsi_14")
-        atr = ci.get("atr_14")
-        atr_pct = ci.get("atr_pct")
-        ema20 = ci.get("ema_20")
-        ema50 = ci.get("ema_50")
-        ema200 = ci.get("ema_200")
-        session_vwap = ci.get("session_vwap_utc")
-        vwap_u2 = ci.get("vwap_upper_2sd")
-        vwap_l2 = ci.get("vwap_lower_2sd")
-        vwap_z = ci.get("vwap_z_score")
-        rho = ci.get("s_whale_imbalance_rho")
+        regime = ci.get("trend_regime") or "UNDEFINED"
+        rsi = num(ci.get("rsi_14"))
+        atr = num(ci.get("atr_14"))
+        atr_pct = num(ci.get("atr_pct"))
+        ema20 = num(ci.get("ema_20"))
+        ema50 = num(ci.get("ema_50"))
+        ema200 = num(ci.get("ema_200"))
+        session_vwap = num(ci.get("session_vwap_utc"))
+        vwap_u2 = num(ci.get("vwap_upper_2sd"))
+        vwap_l2 = num(ci.get("vwap_lower_2sd"))
+        vwap_z = num(ci.get("vwap_z_score"))
+        rho = num(ci.get("s_whale_imbalance_rho"))
         
         row_vals = [
             sym, d.get("category", "CRYPTO"), mark, index,
@@ -428,19 +439,16 @@ def dump_exchange_basis_spreads(wb, tele_data):
 
 
 def cache_liquidation_map_formulas(wb):
-    """Pre-calculates numerical totals for Exchange_Liquidation_Map_1D/7D so non-Excel readers see valid numbers."""
+    """Pre-calculates numerical totals for Exchange_Liquidation_Map_1D/7D using exact Excel formula evaluation."""
+    total_stats = {"cached": 0, "na": 0, "skipped": 0}
     for sheetname in ["Exchange_Liquidation_Map_1D", "Exchange_Liquidation_Map_7D"]:
         if sheetname in wb.sheetnames:
             ws = wb[sheetname]
-            for r in range(3, ws.max_row + 1):
-                f = ws.cell(r, 6).value or 0.0
-                g = ws.cell(r, 7).value or 0.0
-                h = ws.cell(r, 8).value or 0.0
-                try:
-                    tot = round(float(f) + float(g) + float(h), 2)
-                    ws.cell(r, 9, value=tot)
-                except Exception:
-                    pass
+            stats = cache_sum_formulas(ws)
+            for k in total_stats:
+                total_stats[k] += stats.get(k, 0)
+    print(f"Liquidation map formula evaluation stats: {total_stats}")
+    return total_stats
 
 # -------------------------------------------------------------
 # 4. Hyperdash Flow Feed Sheet
@@ -1503,8 +1511,9 @@ def run_pipeline():
     print("Probing Cognitive Daemons...")
     daemons_status = {}
     try:
-        auth_token = os.environ.get("GEMINI_WEB2API_AUTH", "Bearer sk-gemini")
-        req = urllib.request.Request("http://localhost:8081/v1/models", headers={"Authorization": auth_token})
+        auth_key = os.environ.get("GEMINI_WEB2API_AUTH", "")
+        headers = {"Authorization": f"Bearer {auth_key}"} if auth_key else {}
+        req = urllib.request.Request("http://localhost:8081/v1/models", headers=headers)
         res = urllib.request.urlopen(req, timeout=2)
         daemons_status["Web2API_8081"] = f"ONLINE ({res.status} OK, 11 Models Active)"
     except Exception as e:
@@ -1561,15 +1570,16 @@ def run_pipeline():
     
     final_sheet_count = len(wb.sheetnames)
     
-    # Save Workbook atomically
-    temp_path = excel_path.with_suffix(".tmp.xlsx")
-    print(f"Saving master workbook atomically via {temp_path.name}...")
-    wb.save(temp_path)
-    if temp_path.exists():
-        if excel_path.exists():
-            os.replace(temp_path, excel_path)
-        else:
-            temp_path.rename(excel_path)
+    # Pre-save minimum sanity check
+    counts = {
+        "orderflow_rows": len(tele_data.get("assets_matrix_24", {})),
+        "arkham_transfers": len(arkham_transfers),
+    }
+    check_minimums(counts, {"orderflow_rows": 20})
+    
+    # Save Workbook atomically with .bak backup
+    print(f"Saving master workbook atomically via atomic_save to {excel_path}...")
+    atomic_save(wb, excel_path)
     elapsed_time = time.time() - start_time
     
     print("=" * 70)
