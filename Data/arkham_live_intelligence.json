@@ -1,8 +1,8 @@
 {
-  "as_of_utc": "2026-10-17 12:01:34 UTC",
+  "as_of_utc": "2026-10-18 05:09:57 UTC",
   "source": "Arkham Intelligence Upgraded Harvester (arkm.com via Chrome CDP)",
-  "filter_applied": "",
-  "feed_status": "CONNECTED_NO_TRANSFERS",
+  "filter_applied": "USD >= $50K",
+  "feed_status": "STANDBY",
   "is_feed_available": false,
   "market_flow_sentiment": "UNAVAILABLE_INSUFFICIENT_DATA",
   "aggregate_metrics": {
