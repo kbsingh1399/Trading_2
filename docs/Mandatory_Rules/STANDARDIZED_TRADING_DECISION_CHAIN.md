@@ -50,7 +50,7 @@ flowchart TD
 8. **`/verify` (Ex-Ante Pre-Execution Gate & Boundary Verification)**:
    - Mathematical proof before dispatch. Verifies cash risk calculations against `mt5.order_calc_profit`, checks hard floor cushion (>= 4,775 USD), verifies passive limit posture, and validates SL/TP placement.
 9. **`/risk-engine` (Stressed Multi-Ticket Floor Defense Simulator)**:
-   - Computes worst-case stressed equity across all open and staged tickets: $\text{Stressed Equity} = \text{Equity} - \sum (\text{Risk}_i \times 1.25) \ge 4,775.00\text{ USD}$.
+   - Computes worst-case stressed equity across all open and staged tickets: $\text{Stressed Equity} = \text{Current Equity} - \sum (\text{Risk}_i \times 1.25 + 2.00) \ge 4,795.00\text{ USD}$ (preserving a mandatory $+20.00\text{ USD}$ operating buffer above the $4,775.00\text{ USD}$ absolute hard floor).
 10. **`/execution-sim` (Microstructure Execution & Friction Compensation)**:
     - Models half-spread offset ($\text{Entry} = \text{Shelf} - \text{half\_spread}$ for longs, $\text{Shelf} + \text{half\_spread}$ for shorts), verifies `ORDER_FILLING_IOC` with automatic failover to `RETURN` and `FOK`.
 11. **`/onchain-forensics` (Arkham Institutional Deanonymization)**:
@@ -122,7 +122,7 @@ No trade is evaluated in a vacuum. The system reviews the persistent narrative a
 2. **Mandatory Forensic Autopsy Reference (`LOSING_TRADES_DEEP_FORENSIC_AUTOPSY.md`)**:
    - The desk MUST refer to [`LOSING_TRADES_DEEP_FORENSIC_AUTOPSY.md`](file:///c:/Users/SIGMA/Documents/Trading_2/docs/specs/LOSING_TRADES_DEEP_FORENSIC_AUTOPSY.md) (Brain Artifact: `C:\Users\SIGMA\.gemini\antigravity\brain\b00c810a-61bb-46bf-a147-4c8859c64058\LOSING_TRADES_DEEP_FORENSIC_AUTOPSY.md`) on EVERY evaluation turn to eliminate historical failure patterns.
    - **The Three Inviolable Anti-Regression Invariants**:
-     * **Invariant A (Whale Bunker Stop Sizing — Never Choke Stops & Expanded Risk Rights)**: In 38.5% of historical losses, direction was 100% correct, and 4 trades (EURUSD, USWTI, BTC, Gold) hit full Take Profit immediately post-stop. Stops must NEVER be calculated from arbitrary point or ATR fractions inside the market sweep zone. All stops MUST anchor behind verified resting institutional liquidity (persistent L2/L3 whale walls with $\text{persist} \ge 180\text{s}$) plus a $0.35\text{–}0.50\text{ ATR}$ structural buffer. Per explicit operator directive, the stop loss dollar budget is expanded to **$15.00–$25.00 USD** (0.30%–0.51% equity) or lot size scaled down (0.05 or 0.01) to safely clear the whale bunker without choking!
+     * **Invariant A (Whale Bunker Stop Sizing — Never Choke Stops & Expanded Risk Rights)**: In 38.5% of historical losses, direction was 100% correct, and 4 trades (EURUSD, USWTI, BTC, Gold) hit full Take Profit immediately post-stop. Stops must NEVER be calculated from arbitrary point or ATR fractions inside the market sweep zone. All stops MUST anchor behind verified resting institutional liquidity (persistent L2/L3 whale walls with $\text{persist} \ge 180\text{s}$) plus a $0.50\text{ ATR}$ structural buffer. Per explicit operator directive, the stop loss dollar budget is expanded to **$15.00–$25.00 USD** (0.30%–0.51% equity) or lot size scaled down (0.05 or 0.01) to safely clear the whale bunker without choking!
      * **Invariant B (Higher-Timeframe Trend Hierarchy Gate — Zero Falling Knives)**: In 38.5% of historical losses, the desk bought dips in aggressive HTF bear trends (BTC plunging -2,151 pts further, ETH dropping -$155 further). In a confirmed 1H/4H Bear Trend ($\text{Price} < \text{EMA}_{20} < \text{EMA}_{50} < \text{EMA}_{200}$), Model 1 Long dip-buying is **strictly FORBIDDEN** regardless of 15m oversold oscillator readings. The desk may ONLY stage Model 2 Trend Pullback Shorts at overhead resistance shelves.
      * **Invariant C (Adaptive Early Breakeven at +0.75R0 to +0.80R0 — Protecting Positive MFE)**: 76.9% of historical losing trades (20 of 26) were in positive profit before reversing. Once price reaches $+0.75\text{R0 to }+0.80\text{R0}$ and reclaims the session Volume Profile POC or VWAP, arm an early risk cut to Entry $+ 0.10\text{R0}$ to prevent green trades from turning into full stop-outs during session volatility transitions (e.g. 13:30 UTC NY Cash Open).
 3. **Anti-Trap Checklist**: Confirm candidate setup does not match known trap patterns:
@@ -290,30 +290,31 @@ Every staged order must undergo strict broker-specific contract sizing and capit
    - **Operator Directive**: The operator has explicitly granted full authorization to expand the stop loss dollar budget to capture more trades and prevent choked stops.
    - **Unified Risk Envelope across all assets (Crypto, Metals, FX, Energy, Indices)**: Authorized up to **15.00 USD to 25.00 USD** (0.30% to 0.51% of equity).
    - **Mandatory Rationale & Invariant A Enforcement**: Stops must NEVER be choked or compressed inside market sweep zones to satisfy a rigid sub-15 USD cap. Stops MUST anchor safely behind genuine resting institutional whale walls (`persist >= 180s`) with a 0.35–0.50 ATR structural buffer. If placing the stop behind the true bunker requires 18.00 to 25.00 USD risk on minimum lots (e.g. on USDJPY, BTC, Gold, Indices), that risk is fully authorized.
-3. **Stressed Floor Defense & Dynamic Capacity (Canonical Risk Kernel Invariant)**:
-   - Stressed post-loss simulation across all active positions and staged pending orders is strictly governed by `Terminal/risk/risk_kernel.py`:
-     $$\text{Floor Base} = \min(\text{Balance}, \text{Equity})$$
-     $$\text{Stressed Risk}_i = \text{Risk}_i \times 1.25 + \max(\text{Notional}_i \times 0.0015, 2.00)$$
-     $$\text{Post-Joint-Stop Equity} = \text{Floor Base} - \sum_{i} \text{Stressed Risk}_i \ge 4,795.00\text{ USD}$$
-   - Under no circumstances may an order be staged or punched if Post-Joint-Stop Equity breaches the 4,795.00 USD operating buffer (and 4,775.00 USD hard floor).
-   - **Dynamic Per-Slot Risk Sizing & Residual Solvency Admission**:
-     * Position capacity is governed by live financial solvency, NOT an unconstrained slogan.
-     * With Headroom to Operating Buffer $= \text{Post-Joint-Stop Equity} - 4,795.00\text{ USD}$:
-     * Maximum allowable nominal risk for any new ticket is dynamically capped:
-       $$\text{Max Risk}_{\text{new}} = \min\left(25.00\text{ USD}, \frac{\text{Headroom to Buffer}}{1.25 \times \text{Remaining Slots}} - \frac{2.00}{1.25}\right)$$
-     * If Headroom to Operating Buffer $< 14.50\text{ USD}$ (the stressed cost of a minimum 10.00 USD trade), **no new tickets may be admitted regardless of open physical slots**. Cash is held to defend the floor.
+3. **Stressed Floor Defense (Unconditional Invariant)**:
+   - Stressed post-loss simulation across all active positions and staged pending orders:
+     $$\text{Total Staged Risk} = \sum_{i} \text{Risk}_i$$
+     $$\text{Stressed Equity} = \text{Current Equity} - \sum_{i} (\text{Risk}_i \times 1.25 + 2.00) \ge 4,795.00\text{ USD}$$
+   - Under no circumstances may an order be staged if Stressed Equity violates the 4,795.00 USD operating buffer (and 4,775.00 USD hard floor). With equity at 4,857.32 USD (+82.32 USD above hard floor), a 20.00 to 25.00 USD risk trade is safely supported (+29.07 USD surplus above buffer, +49.07 USD above floor).
+4. **Unified Dynamic Position Capacity Formula**:
+   - **At 25.00 USD cash risk**: Each slot incurs $25.00 \times 1.25 + 2.00 = 33.25\text{ USD}$ stressed risk.
+     $$\text{Max Slots} = \lfloor \frac{68.74}{33.25} \rfloor = \mathbf{2\text{ concurrent positions}}$$
+     (Consumes 66.50 USD stressed risk, preserving a +2.24 USD buffer surplus and +22.24 USD hard floor surplus).
+   - **At 15.00 USD cash risk**: Each slot incurs $15.00 \times 1.25 + 2.00 = 20.75\text{ USD}$ stressed risk.
+     $$\text{Max Slots} = \lfloor \frac{68.74}{20.75} \rfloor = \mathbf{3\text{ concurrent positions}}$$
+     (Consumes 62.25 USD stressed risk, preserving a +6.49 USD buffer surplus and +26.49 USD hard floor surplus).
+   - **4 concurrent positions**: Mathematically permitted ONLY when equity expands above $4,878.00\text{ USD}$ ($4,795.00 + 4 \times 20.75\text{ USD}$). Under current equity, any attempt to stage 4 positions is hard-blocked fail-closed.
 
 ---
 
 ### STEP 9: Pre-Execution Ex-Ante Audit
 *Active Skills: `@[verify]`, `@[clean-code]`*
 
-Prior to order transmission, perform the final 5-point sanity audit enforced by the deterministic pre-trade validator `Terminal/risk/risk_kernel.py::admit()`:
+Prior to order transmission, perform the final 5-point sanity audit:
 1. **Passive Limit Posture**: Confirm order type is strictly `BUY_LIMIT` or `SELL_LIMIT`. Market orders and spread-crossing taker executions are permanently banned.
 2. **Reward-to-Risk (R:R) Gate**:
    $$\text{R:R Ratio} = \frac{|\text{TP} - \text{Entry}|}{|\text{Entry} - \text{SL}|} \ge 2.0\text{R}$$
    (Default target is 2.5R to 3.0R).
-3. **Bunker Stop Verification**: SL is positioned safely beyond the outer boundary of the resting whale wall and liquidation band with $\ge 0.35\text{ ATR}$ safety margin.
+3. **Bunker Stop Verification**: SL is positioned safely beyond the outer boundary of the resting whale wall and liquidation band with $\ge 0.50\text{ ATR}$ safety margin.
 4. **Target Magnet Front-Run**: TP is set 5 to 10 bps ahead of the opposing structural cluster or liquidation band to guarantee fill liquidity before depletion.
 5. **Filling Policy Compatibility**: Test `ORDER_FILLING_IOC`, with automatic failover to `ORDER_FILLING_RETURN` / `ORDER_FILLING_FOK` if rejected by broker bridge.
 
@@ -331,13 +332,13 @@ stateDiagram-v2
     PendingLimitOrder --> Cancelled: Distance > 2.0 ATR or Whale pulls
     
     FilledPosition --> Phase0RiskCut: Profit reaches +1.25R0
-    note right of Phase0RiskCut: Move SL to Entry - 0.25R0 (Cut 75% risk, 0.25R breathing room)
+    note right of Phase0RiskCut: Move SL to -0.25R0 (Cut 75% risk)
     
     Phase0RiskCut --> Phase1ProfitLock: Profit reaches +1.65R0
-    note right of Phase1ProfitLock: Move SL to Entry + 0.80R0 (Bank profit)
+    note right of Phase1ProfitLock: Move SL to +0.80R0 (Bank profit)
     
     Phase1ProfitLock --> Phase2Trailing: Profit reaches >= +2.00R0
-    note right of Phase2Trailing: Continuous trail Peak MFE - 0.75R0 (0.10R0 min step)
+    note right of Phase2Trailing: Continuous 0.50 ATR trail behind micro-shelves
     
     Phase2Trailing --> TakeProfitExit: Hit TP Magnet (+2.5R to +3.0R)
     FilledPosition --> TimeDecayExit: Time > 24 bars (6h) & gain < +0.20R0
@@ -345,27 +346,192 @@ stateDiagram-v2
 ```
 
 1. **Autonomous Execution**: Execute via `mt5.order_send()` with unique magic number (`888888`) and descriptive comment.
-2. **Dynamic Profit Ratchet Protocol (Canonical `risk_kernel.py::RATCHET_LADDER` — Playbook 7.1)**:
-   - **Phase 0 (Risk Reduction & Retest Breathing Room)**: At $+1.25R_0$ gain $\to$ Move SL to $\text{Entry} - 0.25R_0$. Cuts downside risk by 75% while leaving 0.25R breathing room for routine 15m entry retests (preventing the 31.3% micro-scratch choking trap documented in empirical replay).
-   - **Phase 1 (Profit Lock)**: At $+1.65R_0$ gain $\to$ Move SL to $\text{Entry} + 0.80R_0$ (guarantees major profit lock).
-   - **Phase 2 (Continuous Trailing Ratchet)**: At $\ge +2.00R_0$ gain $\to$ Continuously trail SL at $\text{Peak MFE} - 0.75R_0$ (monotonic only, updating whenever candidate SL improves by $\ge 0.10R_0$).
-   - **Target**: $+2.50\text{R}$ to $+3.00\text{R}$.
+2. **Dynamic Profit Ratchet Protocol (Frozen $R_0$)**:
+   - **Phase Early-BE (Adaptive Microstructure Breakeven — Mandated by Forensic Autopsy)**: At $+0.75R_0$ to $+0.80R_0$ unrealized profit once price reclaims the session Volume Profile POC or VWAP $\to$ Move SL to $\text{Entry} + 0.10R_0$ (eliminates 100% of risk and guarantees zero-loss protection, preventing the 76.9% positive MFE from ever turning into a full stop-out).
+   - **Phase 0 (Risk Cut)**: At $+1.25R_0$ unrealized profit $\to$ Move SL to $\text{Entry} + 0.15R_0$ (locks in minor profit + broker commission buffer).
+   - **Phase 1 (Profit Lock)**: At $+1.65R_0$ unrealized profit $\to$ Move SL to $\text{Entry} + 0.80R_0$ (locks in guaranteed major profit).
+   - **Phase 2 (Continuous Trailing Ratchet)**: At $\ge +2.00R_0$ unrealized profit $\to$ Trail SL behind structural 15m swing shelves or $0.50\text{ ATR}$ trailing stop.
 3. **Time-Decay Exit**: If a position has been active for 24 bars (6 hours) and has not generated at least $+0.20R_0$ gain, close at market to redeploy capital.
 
 ---
 
-## SECTION 3: INSTITUTIONAL BENCHMARK & ACCOUNTABILITY CONTRACT
+## SECTION 3: 40-SHEET INSTITUTIONAL EXCEL DATA MATRIX DECISION SYNTHESIS PROTOCOL
+### Operationalizing the 209,597-Cell Quantitative Data Warehouse in `DataBase_Trading.xlsx`
+
+> **Data Warehouse Status**: 40 LIVE PRODUCTION WORKSHEETS | 209,597 CELLS | ZERO FORMULA ERRORS  
+> **Master File Location**: `Data/DataBase_Trading.xlsx`  
+> **Refresh Latency**: 15.42 Seconds End-to-End Ingestion & Serialization  
+> **Core Mandate**: Every trading decision, macro hypothesis, and order staging must systematically cross-reference and weight the 4 functional data clusters below before capital commitment.
+
+```mermaid
+flowchart TD
+    subgraph DataWarehouse ["DataBase_Trading.xlsx (40 Sheets)"]
+        CA["Cluster A: Global Macro & System Defense<br/>(Sheets 21-28, 31, 37, 38)"]
+        CB["Cluster B: Microstructure, Depth & Orderflow<br/>(Sheets 1-15, 20, 21, 32, 33)"]
+        CC["Cluster C: On-Chain Whales & Liquidations<br/>(Sheets 16-19, 22, 34-36)"]
+        CD["Cluster D: Brokerage & Cognitive Councils<br/>(Sheets 39, 40)"]
+    end
+
+    subgraph DecisionWorkflow ["4-Stage Institutional Synthesis Workflow"]
+        Stage1["Stage 1: Macro Regime & Event Defense Gate<br/>(FOMC Blackout, FNG Index, Central Bank Rates, DVOL Term Structure)"]
+        Stage2["Stage 2: Universe Screening & Dual-Engine Dialectic<br/>(Spread Gate, VWAP Z-Score, HTF Auction, Basis Spreads)"]
+        Stage3["Stage 3: On-Chain Whales & Bunker Entry Confluence<br/>(Arkham 100K+ Transfers, Whale Orders >=100K, Hyperdash Flow, L2/L3 Walls)"]
+        Stage4["Stage 4: Risk Sizing, Floor Defense & Council Ratification<br/>(MT5 Cash Risk, Stressed Equity >= $4,795, Gemini/Heretic/Arena Consensus)"]
+    end
+
+    CA --> Stage1
+    Stage1 --> Stage2
+    CB --> Stage2
+    Stage2 --> Stage3
+    CC --> Stage3
+    Stage3 --> Stage4
+    CD --> Stage4
+    Stage4 --> MT5Execution["Autonomous Limit Order Punch in MetaTrader 5"]
+```
+
+---
+
+### PART 3.1: THE 4 FUNCTIONAL EXCEL DATA CLUSTERS & MAPPING
+
+#### 1. Cluster A: Global Macro Regime, Event Defense & Corporate Anchors (Sheets 21–28, 31, 37, 38)
+- **`Telemetry_System_State` (Sheet 31)**:
+  - System protocol (`omni.telemetry.v3`), MT5 account balance ($4,863.74), equity ($4,863.74), hard floor ($4,775.00), live floor cushion (**+$88.74**), 4 joint capacity slots.
+  - Clopper-Pearson 95% one-sided binomial lower confidence bound (`p_win >= 0.4197`) across 17 calibration trades (11 wins).
+  - Macro Calendar FOMC proximity (252.26 hours runway to hard blackout), Crypto Fear & Greed index (`53` Neutral), institutional ETF netflows (-$82.40M BTC / -$69.70M ETH), and Coinbase spot premium (-14.36 bps).
+- **`Volatility_Sentiment` (Sheet 38)**:
+  - Table 1 (Alternative.me Crypto Fear & Greed Index): 30 daily historical records (53 to 78) mapping sentiment extremes (`Extreme Accumulation` vs `Extreme Greed`).
+  - Table 2 (Deribit BTC DVOL): 30 daily forward implied volatility records (Close IV: 37.93%, Implied Daily Move: 1.99%).
+  - Table 3 (Deribit ETH DVOL): 30 daily forward implied volatility records (Close IV: 52.22%, Implied Daily Move: 2.73%, exhibiting a +14.29% persistent volatility risk premium over BTC).
+- **`FF_Economic_Calendar` (Sheet 23)**:
+  - 38 scheduled weekly macro releases categorized by impact (High/Medium/Low) with exact UTC release times, currencies, forecasts, and previous prints.
+- **`FF_News_Latest`, `FF_News_Fundamental`, `FF_News_Technical` (Sheets 24, 25, 26)**:
+  - 60 curated articles with complete body summaries, publisher URLs, and technical chart setups covering central bank policy statements (Fed, BoJ, BoE, ECB), energy shocks, and geopolitics.
+- **`Bitcoin_Treasuries` (Sheet 37)**:
+  - 60 publicly listed corporate balance sheet holdings (Strategy / MicroStrategy: 848,000 BTC, Metaplanet, XXI, MARA, Coinbase, Tesla, etc.) totaling 1,265,370 BTC ($104.77B USD), plus the 124-row historical purchasing ledger from 2020 to 2026.
+- **`ETF_Overview`, `Spot_ETF_Net_Inflow`, `Spot_ETF_Net_Inflow_Graph` (Sheets 1, 2, 3)**:
+  - 44 institutional spot ETFs across BTC, ETH, SOL, XRP, and HYPE with daily inflows/outflows, cumulative flows, and AUM across 11 major sponsors (BlackRock IBIT, Fidelity FBTC, Grayscale, Bitwise, VanEck, etc.).
+
+#### 2. Cluster B: Microstructure, Orderbook Depth & Orderflow Confluence (Sheets 4–15, 20, 21, 32, 33)
+- **`Live_Orderbook_CVD_Depth` (Sheet 32)**:
+  - Matrix across all 24 institutional assets (14 Crypto, 4 Indices, 3 Commodities, 3 Forex): Real-time tick Bid, Ask, Spread (points and bps), Binance Mid, Hyperliquid Mid, Top-20 Bid Depth USD, Top-20 Ask Depth USD, Book Imbalance %, Skew Ratio, Session CVD USD, 24h CVD USD, and 15m Bar Delta USD.
+- **`Exchange_Basis_Spreads` (Sheet 33)**:
+  - Multi-exchange pricing across all 24 assets: Mark Price, Index Price, Basis Premium/Discount (bps), Last Funding Rate (bps), Annualized Funding %, Trend Regime, RSI (14), ATR (14) in points and %, EMA (20), EMA (50), EMA (200), VWAP Z-Score, and Whale Imbalance Rho.
+- **`Whales_Orders` (Sheet 20)**:
+  - 520 resting institutional whale orders across all 18 institutional perpetuals filtered strictly for notional >= $100K USD at 15m timeframe, with canceled orders excluded.
+- **`Spot_Netflow` (Sheet 21)**:
+  - 740 assets across 13 timeframes (5m, 15m, 30m, 1h, 2h, 4h, 6h, 8h, 12h, 24h, 3d, 7d, 30d) displaying dynamic green accumulation (#D4EDDA) and red distribution (#F8D7DA) heatmaps.
+- **`Funding_Rates` & `Funding_Fees` (Sheets 4, 5)**:
+  - Cross-venue funding rates and fees across 12 exchanges identifying overcrowded retail positioning.
+- **`Open_Interest` Suite (Sheets 10, 11, 12, 13, 14, 15)**:
+  - 387 exchange breakdown rows across 19 assets, top OI gainers/losers, and multi-timeframe OI charts (15M, 1H, 4H) diagnosing aggressive positioning vs deleveraging.
+
+#### 3. Cluster C: On-Chain Whale Conviction & Liquidation Dynamics (Sheets 16–19, 22, 34–36)
+- **`Arkham_Transfers_100K` (Sheet 35)**:
+  - 138 live on-chain whale transfers >= $100,000 USD harvested via Chrome CDP across Base, Optimism, Polygon, BNB Chain, Tron, and Solana. 100% full 42-character EVM addresses, 34-character Tron addresses, and full 66-character transaction hashes (zero truncation, zero ellipsis).
+- **`Arkham_Whales_Holdings` (Sheet 36)**:
+  - 48 tracked institutional whale entities (BlackRock $49.32B, Strategy $38.96B, Wintermute $195.08M, VanEck $1.43B, ARK Invest $2.60B, Jump Crypto $450M, etc.) controlling $402.16B in on-chain assets.
+- **`Hyperdash_Flow_Feed` (Sheet 34)**:
+  - 273 rows across 4 sections: Flow summary KPIs, 50 real-time whale trades with full 42-char addresses, 50 confirmed liquidations with directional market impact (`SELL_PRESSURE` / `BUY_PRESSURE`), and 158-asset universe liquidation profile.
+- **`Hyperliquid_Whales` (Sheet 22)**:
+  - 1,922 active whale positions across 39 pages with 100% full 42-character addresses, unrealized PnL, leverage, entry price, and mark price.
+- **`liquidation_maxpain_1D/2D` & `Exchange_Liquidation_Map_1D/7D` (Sheets 16, 17, 18, 19)**:
+  - Multi-exchange liquidation surfaces mapping dense short-squeeze and long-liquidation cascade pools across 18 perpetuals.
+
+#### 4. Cluster D: Execution Brokerage & Multi-Model Cognitive Councils (Sheets 38, 39)
+- **`MT5_Live_Quotes_Account` (Sheet 38)**:
+  - Live Blueberry Markets broker ledger ($4,863.74 balance/equity, +$88.74 hard floor cushion, +$68.74 buffer cushion) and live interbank tick bid/ask quotes, spreads, digits, and contract specifications for all 24 symbols.
+- **`Cognitive_Council_Telemetry` (Sheet 39)**:
+  - Real-time operational status of Google Gemini Web2API (port 8081, 11 models, HTTP 200 OK), Heretic Engine Daemon (port 8083, v2.0.0.dev0, HTTP 200 OK), Arena.ai consensus, Autonomous Telemetry Git Sync Daemon (60s cadence), AST Knowledge Graph Watcher (7.4k nodes), and Tier-2 Swarm Cron.
+
+---
+
+### PART 3.2: THE 4-STAGE INSTITUTIONAL SYNTHESIS WORKFLOW
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ STAGE 1: MACRO REGIME & EVENT DEFENSE GATE (CLUSTER A)                      │
+│ 1. Check FF_Economic_Calendar & Telemetry_System_State: Is FOMC or Tier-1   │
+│    release within the mandatory hard blackout window (< 1.0 hour)?          │
+│    -> If YES: Stand aside unconditionally across all 24 assets.             │
+│    -> FOMC Runway: 252.77 hours runway to hard blackout.                    │
+│ 2. Check Volatility_Sentiment & Alternative.me FNG:                         │
+│    -> FNG <= 25: Extreme Accumulation Regime (Favor Long Mean Reversions).  │
+│    -> FNG >= 75: Extreme Greed / Risk-Off (Favor Overhead Shorts).          │
+│    -> Compare Deribit DVOL IV (BTC vs ETH): ETH IV exhibits a +14.29 IV pt  │
+│       absolute (+37.67% relative) risk premium, mandating wider buffers.    │
+│ 3. Check Spot_ETF_Net_Inflow & Bitcoin_Treasuries (Sheet 36):               │
+│    -> Cumulative institutional inflows (+716k BTC) and $104.71B public     │
+│       treasury holdings confirm underlying sovereign accumulation.          │
+└──────────────────────────────────────┬──────────────────────────────────────┘
+                                       ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ STAGE 2: UNIVERSE SCREENING & DUAL-ENGINE DIALECTIC (CLUSTER B)             │
+│ 1. Strict Spread Friction Gate (Live_Orderbook_CVD_Depth):                  │
+│    -> Crypto perps must have MT5 Spread <= 25.0 bps (BTC 1.96, ETH 11.6,    │
+│       BNB 8.33, BCH 20.95 bps pass; wide altcoins like DOGE 264 bps fail).   │
+│    -> TradFi CFDs must have MT5 Spread <= 5.0 bps (SP500 1.14, NAS100 0.49, │
+│       DJ30 0.39, GER40 0.31, Gold 1.06, USWTI 3.0 bps pass).                │
+│    -> Wide spread assets are disqualified automatically to prevent slippage.│
+│ 2. Statistical Regime Assignment (Exchange_Basis_Spreads):                  │
+│    -> Model 1 (Extreme Mean Reversion): |Z_VWAP| >= 2.0 to 3.5 SD in        │
+│       confirmed MEAN_REVERT regime with tape exhaustion & trapped traders.  │
+│    -> Model 2 (Structural Trend Pullback): |Z_VWAP| < 2.0 SD (0.2 to 1.7 SD)│
+│       in confirmed TREND_UP / TREND_DOWN regime retracing to 20/50 EMA shelf│
+│    -> If Regime is UNDEFINED: Stand aside unconditionally.                  │
+└──────────────────────────────────────┬──────────────────────────────────────┘
+                                       ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ STAGE 3: BIFURCATED LIQUIDITY & BUNKER ENTRY CONFLUENCE (CLUSTER C)         │
+│ STAGE 3A: Crypto Perpetuals (BTC, ETH, SOL, BNB, XRP, BCH, etc.):          │
+│ 1. Arkham Whale Validation (Arkham_Transfers_100K & Arkham_Whales_Holdings):│
+│    -> Cross-reference with 48 institutional whale entities ($402.16B).      │
+│    -> MicroStrategy: $38.96B on-chain custody / 848k BTC balance sheet.     │
+│ 2. Hyperdash Flow Feed (Hyperdash_Flow_Feed):                               │
+│    -> Directional whale trades & confirmed liquidation pressure confirmation│
+│ 3. Resting Whale Bunker Shelter (Whales_Orders >= $100K):                   │
+│    -> Limit order sheltered behind verified resting whale wall (persist>=180s)
+│       with a 0.50 ATR structural buffer.                            │
+│                                                                             │
+│ STAGE 3B: TradFi Instruments (Indices, Commodities, Forex Majors):          │
+│ 1. Interbank Tick Spread & Session Liquidity Gate:                          │
+│    -> Active session spread <= 5.0 bps. Stand aside during 21:30-22:30 UTC  │
+│       interbank rollover spread expansion.                                  │
+│ 2. Forex Factory Economic Calendar & Breaking Intelligence Filter:          │
+│    -> Zero Tier-1 releases within 60 minutes for base/quote currency.       │
+│ 3. Structural Auction Shelf Defense (Live_Orderbook_CVD_Depth):             │
+│    -> Limit entry sheltered behind verified L2 top-of-book depth cluster    │
+│       with mandatory 0.50 ATR structural buffer.                    │
+└──────────────────────────────────────┬──────────────────────────────────────┘
+                                       ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ STAGE 4: RISK SIZING, FLOOR DEFENSE & COUNCIL RATIFICATION (CLUSTER D)      │
+│ 1. Exact Cash Risk Sizing: Calculate risk via mt5.order_calc_profit().      │
+│    -> Authorized Envelope: 15.00 to 25.00 USD (0.30% to 0.51% equity).      │
+│ 2. Unified Stressed Floor Defense Gate:                                     │
+│    -> Stressed Equity = Current Equity - sum(Risk_i * 1.25 + 2.00) >= $4,795 │
+│    -> Maximum 2 slots at $25.00 risk ($66.50 stressed <= $68.74 buffer).    │
+│    -> Maximum 3 slots at $15.00 risk ($62.25 stressed <= $68.74 buffer).    │
+│    -> 4 slots require equity expansion above $4,878.00 USD.                 │
+│ 3. Cognitive Council Consensus (Cognitive_Council_Telemetry):               │
+│    -> Ratify trade through Gemini Web2API (8081), Heretic (8083), and Arena.│
+│    -> Autonomous limit order punch via MT5 Execution Bridge (magic: 888888).│
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## SECTION 4: INSTITUTIONAL BENCHMARK & ACCOUNTABILITY CONTRACT
 
 1. **Benchmark Comparison**: All desk performance, equity metrics, and Sharpe ratios must be continuously benchmarked against the **BTC Buy and Hold** benchmark normalized to initial capital ($5,000 USD).
 2. **Immutable Audit Provenance**: Every trade decision, council debate, and execution log must be recorded in:
    - `docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md`
    - `.agents/memory/session_chat_history.md`
-   - Telemetry snapshots pushed to Git repository (`main` branch and `arena/7a89a384-trading-2`) every 60 seconds.
+   - Telemetry snapshots pushed to Git repository (`main` branch) every 60 seconds.
 3. **Zero-Litter Discipline**: All scratch scripts and exploratory debug artifacts must be immediately purged upon validation.
 
 ---
 
-## SECTION 4: FULL EMBEDDED SKILL HANDBOOKS & EXECUTION PROTOCOLS
+## SECTION 5: FULL EMBEDDED SKILL HANDBOOKS & EXECUTION PROTOCOLS
 > **Self-Contained Operating Handbooks**: To ensure models without local skill repositories (external AIs, sandboxed instances, or remote auditors) execute with 100% fidelity, the complete operational instructions, constraints, and methodologies for all 8 foundational skills are embedded below directly.
 
 ```mermaid

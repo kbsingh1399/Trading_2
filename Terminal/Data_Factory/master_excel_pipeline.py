@@ -493,10 +493,10 @@ def dump_hyperdash_flow_feed(wb, tele_data):
         curr_r += 1
         
     curr_r += 1
-    # Section 2: Real-time Whale Trades (50 rows)
+    # Section 2: Real-time Whale Trades (Full Universe Coverage)
     trades = hd.get("whale_trades", []) or []
     ws.merge_cells(f"A{curr_r}:H{curr_r}")
-    ws[f"A{curr_r}"].value = "INSTITUTIONAL WHALE TRADES (RECENT VERIFIED EXECUTIONS)"
+    ws[f"A{curr_r}"].value = "INSTITUTIONAL WHALE TRADES (RECENT VERIFIED EXECUTIONS - 18-ASSET COVERAGE)"
     ws[f"A{curr_r}"].font = FONT_SECTION
     ws[f"A{curr_r}"].fill = FILL_SECTION
     curr_r += 1
@@ -510,7 +510,7 @@ def dump_hyperdash_flow_feed(wb, tele_data):
         c.border = BORDER_HEADER
     curr_r += 1
     
-    for t in trades[:50]:
+    for t in trades:
         coin = t.get("coin", "")
         side = t.get("side", "")
         notional = t.get("notional_usd", 0.0)
@@ -545,10 +545,10 @@ def dump_hyperdash_flow_feed(wb, tele_data):
         curr_r += 1
         
     curr_r += 1
-    # Section 3: Confirmed Liquidations (50 rows)
+    # Section 3: Confirmed Liquidations (Full Universe Coverage)
     liqs = hd.get("recent_confirmed_liquidations", []) or []
     ws.merge_cells(f"A{curr_r}:H{curr_r}")
-    ws[f"A{curr_r}"].value = "CONFIRMED FORCED LIQUIDATIONS (CASCADE EXHAUSTION FEED)"
+    ws[f"A{curr_r}"].value = "CONFIRMED FORCED LIQUIDATIONS (CASCADE EXHAUSTION FEED - 18-ASSET COVERAGE)"
     ws[f"A{curr_r}"].font = FONT_SECTION
     ws[f"A{curr_r}"].fill = FILL_SECTION
     curr_r += 1
@@ -562,7 +562,7 @@ def dump_hyperdash_flow_feed(wb, tele_data):
         c.border = BORDER_HEADER
     curr_r += 1
     
-    for lq in liqs[:50]:
+    for lq in liqs:
         coin = lq.get("coin", "")
         side = lq.get("side", "")
         notional = lq.get("notional_usd", 0.0)
@@ -1359,15 +1359,69 @@ def dump_cognitive_council_telemetry(wb, daemons_status):
 # -------------------------------------------------------------
 # Arkham Real-Time Harvester Helper
 # -------------------------------------------------------------
-async def harvest_live_arkham(num_pages=6):
+async def jump_to_page_1(ws):
+    jump_js = """
+    (() => {
+        const h = Array.from(document.querySelectorAll('*')).find(el => el.innerText && el.innerText.trim() === 'All Transfers');
+        const card = h.closest('section');
+        const pageInput = card.querySelector('input[aria-label="Current page"]');
+        if (!pageInput) return null;
+        pageInput.scrollIntoView({ block: 'center', inline: 'center' });
+        const rect = pageInput.getBoundingClientRect();
+        return { x: Math.round(rect.x + rect.width / 2), y: Math.round(rect.y + rect.height / 2) };
+    })()
+    """
+    await ws.send(json.dumps({'id': 2, 'method': 'Runtime.evaluate', 'params': {'expression': jump_js, 'returnByValue': True}}))
+    res = json.loads(await ws.recv())
+    coords = res.get('result', {}).get('result', {}).get('value')
+    if coords:
+        x, y = coords['x'], coords['y']
+        await ws.send(json.dumps({'id': 3, 'method': 'Input.dispatchMouseEvent', 'params': {'type': 'mousePressed', 'x': x, 'y': y, 'button': 'left', 'clickCount': 2}}))
+        await ws.recv()
+        await ws.send(json.dumps({'id': 4, 'method': 'Input.dispatchMouseEvent', 'params': {'type': 'mouseReleased', 'x': x, 'y': y, 'button': 'left', 'clickCount': 2}}))
+        await ws.recv()
+        await asyncio.sleep(0.1)
+        
+        await ws.send(json.dumps({'id': 5, 'method': 'Input.dispatchKeyEvent', 'params': {'type': 'rawKeyDown', 'key': 'Control', 'code': 'ControlLeft', 'windowsVirtualKeyCode': 17}}))
+        await ws.recv()
+        await ws.send(json.dumps({'id': 6, 'method': 'Input.dispatchKeyEvent', 'params': {'type': 'rawKeyDown', 'key': 'a', 'code': 'KeyA', 'windowsVirtualKeyCode': 65}}))
+        await ws.recv()
+        await ws.send(json.dumps({'id': 7, 'method': 'Input.dispatchKeyEvent', 'params': {'type': 'keyUp', 'key': 'a', 'code': 'KeyA', 'windowsVirtualKeyCode': 65}}))
+        await ws.recv()
+        await ws.send(json.dumps({'id': 8, 'method': 'Input.dispatchKeyEvent', 'params': {'type': 'keyUp', 'key': 'Control', 'code': 'ControlLeft', 'windowsVirtualKeyCode': 17}}))
+        await ws.recv()
+        await asyncio.sleep(0.1)
+        
+        await ws.send(json.dumps({'id': 9, 'method': 'Input.dispatchKeyEvent', 'params': {'type': 'rawKeyDown', 'key': 'Backspace', 'code': 'Backspace', 'windowsVirtualKeyCode': 8}}))
+        await ws.recv()
+        await ws.send(json.dumps({'id': 10, 'method': 'Input.dispatchKeyEvent', 'params': {'type': 'keyUp', 'key': 'Backspace', 'code': 'Backspace', 'windowsVirtualKeyCode': 8}}))
+        await ws.recv()
+        await asyncio.sleep(0.1)
+        
+        await ws.send(json.dumps({'id': 11, 'method': 'Input.insertText', 'params': {'text': '1'}}))
+        await ws.recv()
+        await asyncio.sleep(0.1)
+        
+        await ws.send(json.dumps({'id': 12, 'method': 'Input.dispatchKeyEvent', 'params': {'type': 'rawKeyDown', 'key': 'Enter', 'code': 'Enter', 'windowsVirtualKeyCode': 13}}))
+        await ws.recv()
+        await ws.send(json.dumps({'id': 13, 'method': 'Input.dispatchKeyEvent', 'params': {'type': 'keyUp', 'key': 'Enter', 'code': 'Enter', 'windowsVirtualKeyCode': 13}}))
+        await ws.recv()
+        await asyncio.sleep(1.2)
+
+async def harvest_live_arkham(num_pages=35):
     ws_url = 'ws://127.0.0.1:9222/devtools/page/FBF807FE4420ADFBAA18119185558D9D'
     all_transfers = []
     try:
         import websockets
         async with websockets.connect(ws_url, max_size=50*1024*1024) as ws:
+            await jump_to_page_1(ws)
+            
             extract_expr = """
             (() => {
-                const rows = Array.from(document.querySelectorAll('[role="row"]'));
+                const h = Array.from(document.querySelectorAll('*')).find(el => el.innerText && el.innerText.trim() === 'All Transfers');
+                const card = h.closest('section');
+                const page = card.querySelector('input[aria-label="Current page"]').value;
+                const rows = Array.from(card.querySelectorAll('[role="row"]')).slice(1);
                 const data = [];
                 for (const r of rows) {
                     const cells = Array.from(r.querySelectorAll('[role="cell"]'));
@@ -1376,9 +1430,9 @@ async def harvest_live_arkham(num_pages=6):
                     const timeText = cells[2] ? cells[2].innerText.trim().replace(/\\n/g, ' ') : '';
                     const fromText = cells[3] ? cells[3].innerText.trim().replace(/\\n/g, ' ') : '';
                     const toText = cells[4] ? cells[4].innerText.trim().replace(/\\n/g, ' ') : '';
-                    const valText = cells[5] ? cells[5].innerText.trim().replace(/\\n/g, ' ') : '';
-                    const tokenText = cells[6] ? cells[6].innerText.trim().replace(/\\n/g, ' ') : '';
-                    const usdText = cells[7] ? cells[7].innerText.trim().replace(/\\n/g, ' ') : '';
+                    const valText = cells[5] ? cells[5].innerText.trim() : '';
+                    const tokenText = cells[6] ? cells[6].innerText.trim() : '';
+                    const usdText = cells[7] ? cells[7].innerText.trim() : '';
                     
                     const txLink = r.querySelector('a[href*="/explorer/tx/"]');
                     const txUrl = txLink ? txLink.href : '';
@@ -1390,7 +1444,11 @@ async def harvest_live_arkham(num_pages=6):
                         fromAddr = addrLinks[0].href.split('/explorer/address/')[1] || '';
                         toAddr = addrLinks[1].href.split('/explorer/address/')[1] || '';
                     } else if (addrLinks.length === 1) {
-                        fromAddr = addrLinks[0].href.split('/explorer/address/')[1] || '';
+                        if (cells[3].contains(addrLinks[0])) {
+                            fromAddr = addrLinks[0].href.split('/explorer/address/')[1] || '';
+                        } else {
+                            toAddr = addrLinks[0].href.split('/explorer/address/')[1] || '';
+                        }
                     }
                     
                     const imgs = Array.from(r.querySelectorAll('img')).map(img => img.src.toLowerCase());
@@ -1404,11 +1462,12 @@ async def harvest_live_arkham(num_pages=6):
                         if (src.includes('bsc') || src.includes('binance')) { chain = 'BNB Chain'; break; }
                         if (src.includes('polygon') || src.includes('matic')) { chain = 'Polygon'; break; }
                         if (src.includes('avalanche') || src.includes('avax')) { chain = 'Avalanche'; break; }
-                        if (src.includes('robinhood')) { chain = 'Robinhood/L2'; break; }
+                        if (src.includes('bitcoin') || src.includes('btc')) { chain = 'Bitcoin'; break; }
                     }
                     
                     if (timeText && (valText || usdText)) {
                         data.push({
+                            page: page,
                             time: timeText,
                             chain: chain,
                             from_entity: fromText,
@@ -1423,26 +1482,50 @@ async def harvest_live_arkham(num_pages=6):
                         });
                     }
                 }
-                return data;
+                return { page, data };
             })()
             """
+            
+            click_expr = """
+            (() => {
+                const h = Array.from(document.querySelectorAll('*')).find(el => el.innerText && el.innerText.trim() === 'All Transfers');
+                const card = h.closest('section');
+                const nextBtn = card.querySelector('button[aria-label="Next page"]');
+                if (!nextBtn || nextBtn.disabled) return null;
+                nextBtn.scrollIntoView({ block: 'center', inline: 'center' });
+                const rect = nextBtn.getBoundingClientRect();
+                return { x: Math.round(rect.x + rect.width / 2), y: Math.round(rect.y + rect.height / 2) };
+            })()
+            """
+            
             for p in range(num_pages):
                 await ws.send(json.dumps({'id': 100 + p, 'method': 'Runtime.evaluate', 'params': {'expression': extract_expr, 'returnByValue': True}}))
                 res = json.loads(await ws.recv())
-                pdata = res.get('result', {}).get('result', {}).get('value', [])
-                all_transfers.extend(pdata)
+                res_val = res.get('result', {}).get('result', {}).get('value', {})
+                page_rows = res_val.get('data', [])
+                curr_page = res_val.get('page', str(p+1))
+                all_transfers.extend(page_rows)
                 
                 if p < num_pages - 1:
-                    click_expr = """
-                    (() => {
-                        const nextBtn = document.querySelector('button[aria-label="Next page"]');
-                        if (nextBtn) { nextBtn.click(); return true; }
-                        return false;
-                    })()
-                    """
                     await ws.send(json.dumps({'id': 200 + p, 'method': 'Runtime.evaluate', 'params': {'expression': click_expr, 'returnByValue': True}}))
-                    await ws.recv()
-                    await asyncio.sleep(1.0)
+                    res2 = json.loads(await ws.recv())
+                    coords = res2.get('result', {}).get('result', {}).get('value')
+                    if coords:
+                        x, y = coords['x'], coords['y']
+                        await ws.send(json.dumps({'id': 300 + p, 'method': 'Input.dispatchMouseEvent', 'params': {'type': 'mouseMoved', 'x': x, 'y': y}}))
+                        await ws.recv()
+                        await ws.send(json.dumps({'id': 400 + p, 'method': 'Input.dispatchMouseEvent', 'params': {'type': 'mousePressed', 'x': x, 'y': y, 'button': 'left', 'clickCount': 1}}))
+                        await ws.recv()
+                        await ws.send(json.dumps({'id': 500 + p, 'method': 'Input.dispatchMouseEvent', 'params': {'type': 'mouseReleased', 'x': x, 'y': y, 'button': 'left', 'clickCount': 1}}))
+                        await ws.recv()
+                    
+                    for wait_i in range(15):
+                        await asyncio.sleep(0.3)
+                        await ws.send(json.dumps({'id': 600 + p*20 + wait_i, 'method': 'Runtime.evaluate', 'params': {'expression': "document.querySelector('input[aria-label=\"Current page\"]').value", 'returnByValue': True}}))
+                        res_p = json.loads(await ws.recv())
+                        new_p = res_p.get('result', {}).get('result', {}).get('value')
+                        if new_p != curr_page:
+                            break
     except Exception as e:
         print(f"Arkham harvest warning: {e}")
         
@@ -1504,7 +1587,7 @@ def run_pipeline():
         
     # 5. Harvest Live Arkham Transfers from CDP
     print("Harvesting Live Arkham Transfers (USD >= $100K) via Chrome CDP...")
-    arkham_transfers = asyncio.run(harvest_live_arkham(num_pages=6))
+    arkham_transfers = asyncio.run(harvest_live_arkham(num_pages=35))
     print(f"Harvested {len(arkham_transfers)} Arkham transfers")
     
     # 6. Check Cognitive Daemons Status

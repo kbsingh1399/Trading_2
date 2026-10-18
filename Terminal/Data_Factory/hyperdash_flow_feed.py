@@ -318,15 +318,28 @@ def sync_live_api_flows(max_wallets_to_check: int = 8) -> int:
         except Exception as exc:
             logger.debug("Failed querying userFills for %s: %s", addr, exc)
 
-    # 3. Check recent ticks for large whale executions (>= 50k USD) on primary crypto assets
-    # Covers full Binance 11 perpetual universe + primary Hyperliquid perp liquidity
-    core_assets = ["BTC", "ETH", "SOL", "NEAR", "DOGE", "XRP", "BNB", "ADA", "TRX", "LINK", "DOT", "LTC", "BCH"]
+    # 3. Check recent ticks for large whale executions on all 18 institutional perpetuals
+    # Complete 18 institutional perpetual universe
+    core_assets = [
+        "BTC", "ETH", "SOL", "BNB", "XRP", "ADA", "DOGE", "TRX", "DOT", "LINK",
+        "BCH", "LTC", "AVAX", "NEAR", "SUI", "APT", "OP", "ARB"
+    ]
     fallback_occurrences = Counter()
     for coin in core_assets:
         try:
             trades = _post_json({"type": "recentTrades", "coin": coin}, timeout=2)
             if not isinstance(trades, list):
                 continue
+            
+            # Asset-adaptive whale thresholds: $40K for BTC/ETH, $20K for SOL/BNB, $5K for altcoins
+            c_upper = coin.upper()
+            if c_upper in ("BTC", "ETH"):
+                min_threshold = 40_000.0
+            elif c_upper in ("SOL", "BNB"):
+                min_threshold = 20_000.0
+            else:
+                min_threshold = 5_000.0
+
             for tr in trades:
                 if not isinstance(tr, dict):
                     continue
@@ -337,7 +350,7 @@ def sync_live_api_flows(max_wallets_to_check: int = 8) -> int:
                 except (ValueError, TypeError, OverflowError, KeyError):
                     continue
                 notional = px * sz
-                if not all(math.isfinite(x) and x > 0 for x in (px, sz, notional)) or notional < 50_000.0:
+                if not all(math.isfinite(x) and x > 0 for x in (px, sz, notional)) or notional < min_threshold:
                     continue
                 side_char = str(tr.get("side") or "").upper()
                 if side_char not in ("B", "A"):
@@ -398,7 +411,7 @@ def sync_live_api_flows(max_wallets_to_check: int = 8) -> int:
     return 0
 
 
-def get_hyperdash_flow_intelligence(max_recent_items: int = 50) -> Dict[str, Any]:
+def get_hyperdash_flow_intelligence(max_recent_items: int = 300) -> Dict[str, Any]:
     """Aggregate Hyperdash flow records into a high-density intelligence payload.
     
     Designed for zero-latency injection into live_snapshot_latest.json and
