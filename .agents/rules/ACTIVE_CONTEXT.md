@@ -47,6 +47,14 @@ trigger: always_on
   * Macro blackout trading halts, pre-news purge deadlines, and calendar-based trade blocks are PERMANENTLY TERMINATED across all components (`Terminal/risk/blackout_guard.py`, `Terminal/Data_Factory/generate_telemetry_snapshot.py`, prompts, and strategy engines).
   * `BlackoutGuard.is_blocked()` permanently returns `False, ""`.
   * Open positions (including Ticket #18892038 `BTCUSD.pi` BUY) run continuously toward take-profit and trailing profit locks across all news and inflation events. No position is ever purged due to an upcoming calendar event.
+- **EDGE BROWSER PRESERVATION INVARIANT (STRICT OPERATOR DIRECTIVE)**:
+  * NEVER terminate, kill, or flush Microsoft Edge (`msedge.exe`) during RAM or system optimization routines.
+  * In all memory cleanup scripts (`scripts/deep_optimize_ram.ps1`, `scripts/free_ram.ps1`, and future utilities), Microsoft Edge is strictly exempted from application termination and native working set trimming. Edge instances and user tabs must remain untouched at all times.
+- **MANDATORY FUTURE-AGI PLATFORM INTEGRATION & OBSERVABILITY (STRICT OPERATOR DIRECTIVE)**:
+  * Always install and use [future-agi/future-agi](https://github.com/future-agi/future-agi) across all workflows and agent runs.
+  * Cloned repository: `C:\Users\SIGMA\Documents\Trading\future-agi`.
+  * Python core package installed: `futureagi` (Open-source platform for evaluating, observing, tracing, simulations, gateway, and guardrails for AI agents).
+  * Always incorporate Future AGI evaluations, tracing, and feedback loops into agent telemetry, model evaluations, and prompt quality scoring.
 - **MANDATORY STANDARDIZED TRADING DECISION CHAIN (SOP) & WAKE-UP SKILL SUITE (STRICT OPERATOR DIRECTIVE)**:
   * **Always Enforce Canonical SOP**: On EVERY wake-up turn and on EVERY order decision step, Antigravity and all auxiliary models MUST strictly adhere to and execute through `docs/Mandatory_Rules/STANDARDIZED_TRADING_DECISION_CHAIN.md` (Raw URL: `https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/Mandatory_Rules/STANDARDIZED_TRADING_DECISION_CHAIN.md`).
   * **Mandatory 10-Step Sequential Traversal**:

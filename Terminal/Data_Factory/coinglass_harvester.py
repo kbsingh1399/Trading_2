@@ -697,6 +697,15 @@ class CoinglassCDPHarvester:
 
         # Update documentation data dictionary
         self._generate_data_dictionary(results)
+
+        # Update tabular Excel database Data/DataBase_Trading.xlsx
+        try:
+            from Terminal.Data_Factory.etf_excel_dumper import dump_to_excel
+            etf_res = dump_to_excel()
+            print(f"Updated Excel DataBase_Trading.xlsx: {etf_res.get('records_written')} records (rows {etf_res.get('start_row')}-{etf_res.get('end_row')}).")
+        except Exception as e:
+            print(f"Warning updating Excel DataBase_Trading.xlsx: {e}")
+
         return results
 
     def _generate_data_dictionary(self, latest_results: Dict[str, Any]) -> None:

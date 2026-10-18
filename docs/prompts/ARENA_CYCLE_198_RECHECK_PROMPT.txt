@@ -1,0 +1,88 @@
+# INSTITUTIONAL QUANTITATIVE AUDIT & CERTIFICATION REQUEST (CYCLE 198)
+Canonical Repository: https://github.com/kbsingh1399/Trading_2 (Branch: `main`)
+Head Commit: `d39768378` (following hardening commit `15a5e9a24`)
+Timestamp: 2026-10-17 10:45:00 UTC
+Target: Arena.ai Lead Quantitative & Infrastructure Auditor
+
+---
+
+### EXECUTIVE SUMMARY & CONTEXT
+In Cycle 197 (`a731d24`), you issued a comprehensive audit identifying 9 specific concerns and confirmed 2 real defects in scratch copies (TSDB wall-clock partitioning and `relative_to` path exceptions). You correctly noted: "None of it is applied to the repo."
+
+We have now physically committed and pushed all fixes, drop-in patches, fail-closed guards, and unit tests directly to `main` on GitHub (https://github.com/kbsingh1399/Trading_2). 
+
+Please perform an exhaustive, end-to-end review of the entire updated pipeline across all domains (data ingestion, database schemas, fail-closed risk gates, order admission, and broker accounting) and evaluate whether the system is now certified.
+
+---
+
+### DIRECT EVIDENCE & RESOLUTION OF PREVIOUS CONCERNS
+
+1. **Fatal Generator Marker Cleared & Wired (Fixed & Tested)**:
+   - Commit: `15a5e9a24`
+   - File: `Terminal/Data_Factory/generate_telemetry_snapshot.py`
+     * In `generate_full_snapshot()`, immediately after `atomic_snapshot_write(out_path, payload)` succeeds, `ERROR_MARKER_PATH.unlink(missing_ok=True)` is called to clear any prior `.generator_error.json`.
+   - File: `Terminal/telemetry_ingest.py`
+     * In `get_fresh_snapshot()`, an explicit check for `.generator_error.json` inspects `fatal: True`. If an active fatal marker (< 300s old) is detected, it raises `StaleDataError("generator_fatal_error")`.
+   - Unit Tests: Added `test_get_fresh_snapshot_refuses_when_active_fatal_error_marker_present` and `test_get_fresh_snapshot_succeeds_when_error_marker_cleared` in `Tests/Test_Telemetry_Ingest.py`. Total 40/40 tests pass.
+
+2. **5-Pillar Confluence / CVD Delta Fail-Closed Gating (Fixed & Hardened)**:
+   - File: `Terminal/Data_Factory/generate_telemetry_snapshot.py` (`compute_tradfi_tick_orderflow`)
+     * When ticks are missing or empty, orderflow delta fields now explicitly return `session_tick_cvd: None`, `15m_tick_cvd: None`, `5m_tick_cvd: None`, and `flow_bias: "UNAVAILABLE"` (instead of defaulting to `0.0`).
+     * Prevents empty or unavailable data feeds from silently satisfying `>= 0.0` or Long-entry confluence rules.
+
+3. **Arkham Feed Fails Closed (Fixed)**:
+   - File: `Terminal/Data_Factory/generate_telemetry_snapshot.py` (`get_arkham_intelligence`)
+     * When `Data/arkham_live_intelligence.json` is missing, empty, or corrupted, the loader explicitly returns `status: "FEED_CORRUPT_OR_UNAVAILABLE"`, `is_feed_available: False`, and `market_flow_sentiment: "UNAVAILABLE"`. It never defaults to `NEUTRAL_BALANCED_FLOW`.
+
+4. **Win32 Memory Purge Script Tracked in Git (Fixed)**:
+   - Script `scripts/free_ram.ps1` has been added to Git tracking (since `scripts/` is tracked, unlike `.agents/`).
+   - `AGENTS.md` boot sequence updated to reference `scripts/free_ram.ps1`.
+
+5. **Time-Series Database Parity & Hardening (Fixed & Tested)**:
+   - File: `Terminal/Data_Factory/time_series_database.py`
+     * Date partition and time tag now strictly use the record's physical `epoch` timestamp, not wall-clock time.
+     * `relative_to` path resolution safely falls back to absolute path if `base_dir` is outside the repository root.
+     * Verified with unit tests `Tests/test_time_series_database_hardening.py` (2/2 passing).
+
+6. **MT5 Ticket #18976378 Closure Empirically Verified**:
+   - Query: Direct broker execution query via `mt5.history_deals_get()` on broker login 5064568.
+   - Evidence:
+     * Position Ticket: 18976378 (EURUSD.pi)
+     * Close Deal: 17194964
+     * Time: 2026-10-16 12:08:33 UTC
+     * Deal Type: DEAL_TYPE_SELL (Closing BUY)
+     * Price: 1.12500
+     * Profit: +23.40 USD (clean win)
+   - Current MT5 Account #5064568 State:
+     * Balance: 4,863.74 USD
+     * Equity: 4,863.74 USD
+     * Margin: 0.00 USD
+     * Open Positions: 0
+     * Pending Orders: 0
+     * Floor Cushion: +88.74 USD above the 4,775.00 USD hard floor.
+
+7. **Reconciliation of Quantitative Metrics**:
+   - Candles: Each individual asset parquet file in `Data/Candles/*.parquet` contains ~28,928 15m bars. The 3.47M figure represents the cumulative row count across all 43 asset history files.
+   - CoinGlass: 556 is the raw unfiltered orderbook count; 202 is the filtered genuine resting whale wall count ($131.36M).
+   - SQLite Store: 8 tables in `Data/history/time_series_index.db` are active and populated, including `arkham_history` (48 entities), `account_equity_history`, `whale_history`, and `telemetry_history`.
+
+8. **Rate Limiting & Mock Isolation in Test Suite (Fixed)**:
+   - File: `Terminal/Api_Client.py`
+     * In `fetch_l3_orders`, `fetch_liquidations`, and `fetch_stops`, mock detection (`is_mocked`) bypasses the live disk cache and rate limiter when `_post_json` is monkeypatched, ensuring tests run deterministically in any environment.
+   - Test Results: 93/93 unit tests pass across the entire suite with 0 failures.
+
+---
+
+### AUDIT INSTRUCTIONS FOR ARENA.AI
+1. Pull latest `main` (`git pull origin main`) to ensure you are on commit `d39768378` or later.
+2. Review the implementations in:
+   - `Terminal/Data_Factory/time_series_database.py`
+   - `Terminal/Data_Factory/generate_telemetry_snapshot.py`
+   - `Terminal/telemetry_ingest.py`
+   - `Terminal/Api_Client.py`
+   - `scripts/free_ram.ps1`
+   - `Tests/Test_Telemetry_Ingest.py`
+   - `Tests/test_time_series_database_hardening.py`
+3. Verify test coverage and pass status (`pytest Tests/`).
+4. Audit the local tabular database and data dumps (`Data/history/time_series_index.db`, `Data/Candles/`, `Data/coinglass/`, `Data/arkham/`).
+5. Deliver your Cycle 198 formal verdict: Is the pipeline certified for live execution / shadow execution (W0)? Are all previous concerns fully resolved? If any remaining defect or gap exists, provide exact code and proof.

@@ -57,7 +57,7 @@ if (-not ([System.Management.Automation.PSTypeName]'MemoryCleaner').Type) {
     Add-Type -TypeDefinition $code -ErrorAction SilentlyContinue
 }
 
-Get-Process | Where-Object { $_.WorkingSet64 -gt 15MB } | ForEach-Object { [MemoryCleaner]::TrimProcess($_.Id) }
+Get-Process | Where-Object { $_.WorkingSet64 -gt 15MB -and $_.ProcessName -notmatch 'msedge' } | ForEach-Object { [MemoryCleaner]::TrimProcess($_.Id) }
 [MemoryCleaner]::PurgeStandbyList()
 [System.GC]::Collect()
 

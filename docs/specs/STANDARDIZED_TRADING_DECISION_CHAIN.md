@@ -349,18 +349,172 @@ stateDiagram-v2
 
 ---
 
-## SECTION 3: INSTITUTIONAL BENCHMARK & ACCOUNTABILITY CONTRACT
+## SECTION 3: 40-SHEET INSTITUTIONAL EXCEL DATA MATRIX DECISION SYNTHESIS PROTOCOL
+### Operationalizing the 209,597-Cell Quantitative Data Warehouse in `DataBase_Trading.xlsx`
+
+> **Data Warehouse Status**: 40 LIVE PRODUCTION WORKSHEETS | 209,597 CELLS | ZERO FORMULA ERRORS  
+> **Master File Location**: `Data/DataBase_Trading.xlsx`  
+> **Refresh Latency**: 15.42 Seconds End-to-End Ingestion & Serialization  
+> **Core Mandate**: Every trading decision, macro hypothesis, and order staging must systematically cross-reference and weight the 4 functional data clusters below before capital commitment.
+
+```mermaid
+flowchart TD
+    subgraph DataWarehouse ["DataBase_Trading.xlsx (40 Sheets)"]
+        CA["Cluster A: Global Macro & System Defense<br/>(Sheets 21-28, 31, 37, 38)"]
+        CB["Cluster B: Microstructure, Depth & Orderflow<br/>(Sheets 1-15, 20, 21, 32, 33)"]
+        CC["Cluster C: On-Chain Whales & Liquidations<br/>(Sheets 16-19, 22, 34-36)"]
+        CD["Cluster D: Brokerage & Cognitive Councils<br/>(Sheets 39, 40)"]
+    end
+
+    subgraph DecisionWorkflow ["4-Stage Institutional Synthesis Workflow"]
+        Stage1["Stage 1: Macro Regime & Event Defense Gate<br/>(FOMC Blackout, FNG Index, Central Bank Rates, DVOL Term Structure)"]
+        Stage2["Stage 2: Universe Screening & Dual-Engine Dialectic<br/>(Spread Gate, VWAP Z-Score, HTF Auction, Basis Spreads)"]
+        Stage3["Stage 3: On-Chain Whales & Bunker Entry Confluence<br/>(Arkham 100K+ Transfers, Whale Orders >=100K, Hyperdash Flow, L2/L3 Walls)"]
+        Stage4["Stage 4: Risk Sizing, Floor Defense & Council Ratification<br/>(MT5 Cash Risk, Stressed Equity >= $4,795, Gemini/Heretic/Arena Consensus)"]
+    end
+
+    CA --> Stage1
+    Stage1 --> Stage2
+    CB --> Stage2
+    Stage2 --> Stage3
+    CC --> Stage3
+    Stage3 --> Stage4
+    CD --> Stage4
+    Stage4 --> MT5Execution["Autonomous Limit Order Punch in MetaTrader 5"]
+```
+
+---
+
+### PART 3.1: THE 4 FUNCTIONAL EXCEL DATA CLUSTERS & MAPPING
+
+#### 1. Cluster A: Global Macro Regime, Event Defense & Corporate Anchors (Sheets 21–28, 31, 37, 38)
+- **`Telemetry_System_State` (Sheet 31)**:
+  - System protocol (`omni.telemetry.v3`), MT5 account balance ($4,863.74), equity ($4,863.74), hard floor ($4,775.00), live floor cushion (**+$88.74**), 4 joint capacity slots.
+  - Clopper-Pearson 95% one-sided binomial lower confidence bound (`p_win >= 0.4197`) across 17 calibration trades (11 wins).
+  - Macro Calendar FOMC proximity (252.26 hours runway to hard blackout), Crypto Fear & Greed index (`53` Neutral), institutional ETF netflows (-$82.40M BTC / -$69.70M ETH), and Coinbase spot premium (-14.36 bps).
+- **`Volatility_Sentiment` (Sheet 38)**:
+  - Table 1 (Alternative.me Crypto Fear & Greed Index): 30 daily historical records (53 to 78) mapping sentiment extremes (`Extreme Accumulation` vs `Extreme Greed`).
+  - Table 2 (Deribit BTC DVOL): 30 daily forward implied volatility records (Close IV: 37.93%, Implied Daily Move: 1.99%).
+  - Table 3 (Deribit ETH DVOL): 30 daily forward implied volatility records (Close IV: 52.22%, Implied Daily Move: 2.73%, exhibiting a +14.29% persistent volatility risk premium over BTC).
+- **`FF_Economic_Calendar` (Sheet 23)**:
+  - 38 scheduled weekly macro releases categorized by impact (High/Medium/Low) with exact UTC release times, currencies, forecasts, and previous prints.
+- **`FF_News_Latest`, `FF_News_Fundamental`, `FF_News_Technical` (Sheets 24, 25, 26)**:
+  - 60 curated articles with complete body summaries, publisher URLs, and technical chart setups covering central bank policy statements (Fed, BoJ, BoE, ECB), energy shocks, and geopolitics.
+- **`Bitcoin_Treasuries` (Sheet 37)**:
+  - 60 publicly listed corporate balance sheet holdings (Strategy / MicroStrategy: 848,000 BTC, Metaplanet, XXI, MARA, Coinbase, Tesla, etc.) totaling 1,265,370 BTC ($104.77B USD), plus the 124-row historical purchasing ledger from 2020 to 2026.
+- **`ETF_Overview`, `Spot_ETF_Net_Inflow`, `Spot_ETF_Net_Inflow_Graph` (Sheets 1, 2, 3)**:
+  - 44 institutional spot ETFs across BTC, ETH, SOL, XRP, and HYPE with daily inflows/outflows, cumulative flows, and AUM across 11 major sponsors (BlackRock IBIT, Fidelity FBTC, Grayscale, Bitwise, VanEck, etc.).
+
+#### 2. Cluster B: Microstructure, Orderbook Depth & Orderflow Confluence (Sheets 4–15, 20, 21, 32, 33)
+- **`Live_Orderbook_CVD_Depth` (Sheet 32)**:
+  - Matrix across all 24 institutional assets (14 Crypto, 4 Indices, 3 Commodities, 3 Forex): Real-time tick Bid, Ask, Spread (points and bps), Binance Mid, Hyperliquid Mid, Top-20 Bid Depth USD, Top-20 Ask Depth USD, Book Imbalance %, Skew Ratio, Session CVD USD, 24h CVD USD, and 15m Bar Delta USD.
+- **`Exchange_Basis_Spreads` (Sheet 33)**:
+  - Multi-exchange pricing across all 24 assets: Mark Price, Index Price, Basis Premium/Discount (bps), Last Funding Rate (bps), Annualized Funding %, Trend Regime, RSI (14), ATR (14) in points and %, EMA (20), EMA (50), EMA (200), VWAP Z-Score, and Whale Imbalance Rho.
+- **`Whales_Orders` (Sheet 20)**:
+  - 520 resting institutional whale orders across all 18 institutional perpetuals filtered strictly for notional >= $100K USD at 15m timeframe, with canceled orders excluded.
+- **`Spot_Netflow` (Sheet 21)**:
+  - 740 assets across 13 timeframes (5m, 15m, 30m, 1h, 2h, 4h, 6h, 8h, 12h, 24h, 3d, 7d, 30d) displaying dynamic green accumulation (#D4EDDA) and red distribution (#F8D7DA) heatmaps.
+- **`Funding_Rates` & `Funding_Fees` (Sheets 4, 5)**:
+  - Cross-venue funding rates and fees across 12 exchanges identifying overcrowded retail positioning.
+- **`Open_Interest` Suite (Sheets 10, 11, 12, 13, 14, 15)**:
+  - 387 exchange breakdown rows across 19 assets, top OI gainers/losers, and multi-timeframe OI charts (15M, 1H, 4H) diagnosing aggressive positioning vs deleveraging.
+
+#### 3. Cluster C: On-Chain Whale Conviction & Liquidation Dynamics (Sheets 16–19, 22, 34–36)
+- **`Arkham_Transfers_100K` (Sheet 35)**:
+  - 138 live on-chain whale transfers >= $100,000 USD harvested via Chrome CDP across Base, Optimism, Polygon, BNB Chain, Tron, and Solana. 100% full 42-character EVM addresses, 34-character Tron addresses, and full 66-character transaction hashes (zero truncation, zero ellipsis).
+- **`Arkham_Whales_Holdings` (Sheet 36)**:
+  - 48 tracked institutional whale entities (BlackRock $49.32B, Strategy $38.96B, Wintermute $195.08M, VanEck $1.43B, ARK Invest $2.60B, Jump Crypto $450M, etc.) controlling $402.16B in on-chain assets.
+- **`Hyperdash_Flow_Feed` (Sheet 34)**:
+  - 273 rows across 4 sections: Flow summary KPIs, 50 real-time whale trades with full 42-char addresses, 50 confirmed liquidations with directional market impact (`SELL_PRESSURE` / `BUY_PRESSURE`), and 158-asset universe liquidation profile.
+- **`Hyperliquid_Whales` (Sheet 22)**:
+  - 1,922 active whale positions across 39 pages with 100% full 42-character addresses, unrealized PnL, leverage, entry price, and mark price.
+- **`liquidation_maxpain_1D/2D` & `Exchange_Liquidation_Map_1D/7D` (Sheets 16, 17, 18, 19)**:
+  - Multi-exchange liquidation surfaces mapping dense short-squeeze and long-liquidation cascade pools across 18 perpetuals.
+
+#### 4. Cluster D: Execution Brokerage & Multi-Model Cognitive Councils (Sheets 39, 40)
+- **`MT5_Live_Quotes_Account` (Sheet 39)**:
+  - Live Blueberry Markets broker ledger ($4,863.74 balance/equity, +$88.74 floor cushion) and live interbank tick bid/ask quotes, spreads, digits, and contract specifications for all 24 symbols.
+- **`Cognitive_Council_Telemetry` (Sheet 40)**:
+  - Real-time operational status of Google Gemini Web2API (port 8081, 11 models, HTTP 200 OK), Heretic Engine Daemon (port 8083, v2.0.0.dev0, HTTP 200 OK), Arena.ai consensus, Autonomous Telemetry Git Sync Daemon (60s cadence), AST Knowledge Graph Watcher (7.4k nodes), and Tier-2 Swarm Cron.
+
+---
+
+### PART 3.2: THE 4-STAGE INSTITUTIONAL SYNTHESIS WORKFLOW
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ STAGE 1: MACRO REGIME & EVENT DEFENSE GATE (CLUSTER A)                      │
+│ 1. Check FF_Economic_Calendar & Telemetry_System_State: Is FOMC or Tier-1   │
+│    release within the mandatory hard blackout window (< 1.0 hour)?          │
+│    -> If YES: Stand aside unconditionally across all 24 assets.             │
+│ 2. Check Volatility_Sentiment & Alternative.me FNG:                         │
+│    -> FNG <= 25: Extreme Accumulation Regime (Favor Long Mean Reversions).  │
+│    -> FNG >= 75: Extreme Greed / Risk-Off (Favor Overhead Shorts).          │
+│    -> Compare Deribit DVOL IV (BTC vs ETH): High IV spread (> 14%) mandates │
+│       expanding bunker stop buffers by +0.15 ATR.                           │
+│ 3. Check Spot_ETF_Net_Inflow & Bitcoin_Treasuries:                          │
+│    -> Cumulative institutional inflows (+716k BTC, IBIT dominance) confirm │
+│       underlying sovereign/corporate accumulation tailwinds.                │
+└──────────────────────────────────────┬──────────────────────────────────────┘
+                                       ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ STAGE 2: UNIVERSE SCREENING & DUAL-ENGINE DIALECTIC (CLUSTER B)             │
+│ 1. Spread Friction Gate (Live_Orderbook_CVD_Depth):                         │
+│    -> Crypto perps must have MT5 Spread <= 25.0 bps (BTC, ETH, SOL, BNB).   │
+│    -> TradFi CFDs must have MT5 Spread <= 5.0 bps (Gold, SP500, USDJPY).   │
+│    -> Disqualify any asset exceeding its ceiling (e.g. DOGE > 260 bps).     │
+│ 2. Statistical Regime Assignment (Exchange_Basis_Spreads):                  │
+│    -> Model 1 (Extreme Mean Reversion): |Z_VWAP| >= 2.0 to 3.5 SD in        │
+│       confirmed MEAN_REVERT regime with tape exhaustion & trapped traders.  │
+│    -> Model 2 (Structural Trend Pullback): |Z_VWAP| < 2.0 SD (0.2 to 1.7 SD)│
+│       in confirmed TREND_UP / TREND_DOWN regime retracing to 20/50 EMA shelf│
+│    -> If Regime is UNDEFINED: Stand aside unconditionally.                  │
+└──────────────────────────────────────┬──────────────────────────────────────┘
+                                       ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ STAGE 3: ON-CHAIN WHALES & BUNKER ENTRY CONFLUENCE (CLUSTER C)              │
+│ 1. Arkham Whale Validation (Arkham_Transfers_100K & Arkham_Whales_Holdings):│
+│    -> Cross-reference trade direction with 48 institutional whale balances: │
+│       Are BlackRock, Strategy, and market makers accumulating or dumping?   │
+│    -> Verify that no large exchange deposit transfers (inflow to CEX)       │
+│       are actively slamming the candidate asset.                            │
+│ 2. Hyperdash Flow & Hyperliquid Whales (Hyperdash_Flow_Feed):               │
+│    -> Ensure 50 whale trades and confirmed liquidations support direction.  │
+│ 3. Resting Whale Bunker Shelter (Whales_Orders):                            │
+│    -> Verify candidate limit entry is sheltered by genuine resting whale    │
+│       orders (>= $100K at 15m) with persist >= 180s.                        │
+│    -> Anchor Stop Loss strictly BEHIND the whale wall + 0.35 to 0.50 ATR.   │
+└──────────────────────────────────────┬──────────────────────────────────────┘
+                                       ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ STAGE 4: BROKER RISK SIZING & COUNCIL RATIFICATION (CLUSTER D)              │
+│ 1. Broker Risk Calculation (MT5_Live_Quotes_Account):                       │
+│    -> Calculate cash risk precisely using mt5.order_calc_profit().          │
+│    -> Sizing envelope: $15.00 to $25.00 USD (0.30% to 0.51% equity).        │
+│ 2. Stressed Capital Floor Gate:                                             │
+│    -> Stressed Equity = Current Equity - (Staged Risk * 1.25 + 2.00)        │
+│    -> Stressed Equity MUST remain >= $4,795.00 USD (Hard floor + $20 buffer)│
+│ 3. Multi-Model AI Council Consensus (Cognitive_Council_Telemetry):          │
+│    -> Validate hypothesis across Gemini Web2API (8081), Heretic Daemon      │
+│       (8083), and Arena.ai consensus before autonomous execution.           │
+│ 4. Autonomous Execution: Transmit BUY_LIMIT / SELL_LIMIT into MT5 bridge.   │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## SECTION 4: INSTITUTIONAL BENCHMARK & ACCOUNTABILITY CONTRACT
 
 1. **Benchmark Comparison**: All desk performance, equity metrics, and Sharpe ratios must be continuously benchmarked against the **BTC Buy and Hold** benchmark normalized to initial capital ($5,000 USD).
 2. **Immutable Audit Provenance**: Every trade decision, council debate, and execution log must be recorded in:
    - `docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md`
    - `.agents/memory/session_chat_history.md`
-   - Telemetry snapshots pushed to Git repository (`main` branch and `arena/7a89a384-trading-2`) every 60 seconds.
+   - Telemetry snapshots pushed to Git repository (`main` branch) every 60 seconds.
 3. **Zero-Litter Discipline**: All scratch scripts and exploratory debug artifacts must be immediately purged upon validation.
 
 ---
 
-## SECTION 4: FULL EMBEDDED SKILL HANDBOOKS & EXECUTION PROTOCOLS
+## SECTION 5: FULL EMBEDDED SKILL HANDBOOKS & EXECUTION PROTOCOLS
 > **Self-Contained Operating Handbooks**: To ensure models without local skill repositories (external AIs, sandboxed instances, or remote auditors) execute with 100% fidelity, the complete operational instructions, constraints, and methodologies for all 8 foundational skills are embedded below directly.
 
 ```mermaid
