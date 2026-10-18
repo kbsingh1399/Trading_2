@@ -241,29 +241,31 @@ def dump_live_orderbook_cvd_depth(wb, tele_data):
         ob = d.get("orderbook_live_depth", {}) or {}
         cvd = d.get("multi_horizon_cvd", {}) or {}
         
-        bid = q.get("bid", 0.0) or 0.0
-        ask = q.get("ask", 0.0) or 0.0
-        spread = q.get("spread", 0.0) or (ask - bid if ask and bid else 0.0)
-        spread_bps = q.get("spread_bps", 0.0) or 0.0
+        bid = q.get("bid")
+        ask = q.get("ask")
+        spread = q.get("spread")
+        if spread is None and ask is not None and bid is not None:
+            spread = ask - bid
+        spread_bps = q.get("spread_bps")
         
         vb = ob.get("venue_basis", {})
         if isinstance(vb, dict):
-            b_mid = vb.get("BINANCE", {}).get("mid", 0.0) or ob.get("binance_mid", 0.0) or 0.0
-            hl_mid = vb.get("HYPERLIQUID", {}).get("mid", 0.0) or ob.get("hyperliquid_mid", 0.0) or 0.0
-            venue_basis = (b_mid - hl_mid) if (b_mid and hl_mid) else 0.0
+            b_mid = vb.get("BINANCE", {}).get("mid") or ob.get("binance_mid")
+            hl_mid = vb.get("HYPERLIQUID", {}).get("mid") or ob.get("hyperliquid_mid")
+            venue_basis = (b_mid - hl_mid) if (b_mid is not None and hl_mid is not None) else None
         else:
-            b_mid = ob.get("binance_mid", 0.0) or 0.0
-            hl_mid = ob.get("hyperliquid_mid", 0.0) or 0.0
-            venue_basis = float(vb) if isinstance(vb, (int, float)) else 0.0
+            b_mid = ob.get("binance_mid")
+            hl_mid = ob.get("hyperliquid_mid")
+            venue_basis = float(vb) if isinstance(vb, (int, float)) else None
         
-        bid_depth = ob.get("top20_bid_depth_usd", 0.0) or 0.0
-        ask_depth = ob.get("top20_ask_depth_usd", 0.0) or 0.0
-        imbalance = ob.get("book_imbalance", 0.0) or 0.0
-        skew = ob.get("skew_ratio", 0.0) or 0.0
+        bid_depth = ob.get("top20_bid_depth_usd")
+        ask_depth = ob.get("top20_ask_depth_usd")
+        imbalance = ob.get("book_imbalance")
+        skew = ob.get("skew_ratio")
         
-        sess_cvd = cvd.get("session_cvd_usd", 0.0) or 0.0
-        cvd_24h = cvd.get("cvd_24h_usd", 0.0) or 0.0
-        bar_15m = cvd.get("bar_delta_15m_usd", 0.0) or 0.0
+        sess_cvd = cvd.get("session_cvd_usd")
+        cvd_24h = cvd.get("cvd_24h_usd")
+        bar_15m = cvd.get("bar_delta_15m_usd")
         
         row_vals = [
             sym, d.get("category", "CRYPTO"), d.get("symbol_broker", sym),
@@ -275,10 +277,14 @@ def dump_live_orderbook_cvd_depth(wb, tele_data):
         
         fill = FILL_ZEBRA if row_idx % 2 == 0 else FILL_WHITE
         for c_idx, val in enumerate(row_vals, 1):
-            cell = ws.cell(row=row_idx, column=c_idx, value=val)
+            cell = ws.cell(row=row_idx, column=c_idx, value=val if val is not None else "N/A")
             cell.font = FONT_DATA
             cell.fill = fill
             cell.border = BORDER_THIN
+            
+            if val is None:
+                cell.alignment = ALIGN_CENTER
+                continue
             
             if c_idx in (1, 2, 3):
                 cell.alignment = ALIGN_CENTER
@@ -321,9 +327,9 @@ def dump_live_orderbook_cvd_depth(wb, tele_data):
 def dump_exchange_basis_spreads(wb, tele_data):
     ws = recreate_sheet(wb, "Exchange_Basis_Spreads")
     
-    ws.merge_cells("A1:P1")
+    ws.merge_cells("A1:S1")
     title_cell = ws["A1"]
-    title_cell.value = "MULTI-EXCHANGE BASIS SPREADS, PERPETUAL PREMIUM/DISCOUNT & CAUSAL QUANT SIGNALS"
+    title_cell.value = "MULTI-EXCHANGE BASIS SPREADS, PERPETUAL PREMIUM/DISCOUNT, VWAP BANDS & CAUSAL QUANT SIGNALS"
     title_cell.font = FONT_TITLE
     title_cell.fill = FILL_TITLE
     title_cell.alignment = ALIGN_CENTER
@@ -333,7 +339,9 @@ def dump_exchange_basis_spreads(wb, tele_data):
         "Asset", "Category", "Mark Price ($)", "Index Price ($)",
         "Prem / Disc (bps)", "Last Funding (bps)", "Annualized Funding (%)",
         "Regime", "RSI (14)", "ATR (14)", "ATR (%)",
-        "EMA (20)", "EMA (50)", "EMA (200)", "VWAP Z-Score", "Whale Imbalance Rho"
+        "EMA (20)", "EMA (50)", "EMA (200)",
+        "Session VWAP ($)", "VWAP +2.0 SD Band ($)", "VWAP -2.0 SD Band ($)",
+        "VWAP Z-Score", "Whale Imbalance Rho"
     ]
     for col_idx, h in enumerate(headers, 1):
         c = ws.cell(row=2, column=col_idx, value=h)
@@ -349,42 +357,51 @@ def dump_exchange_basis_spreads(wb, tele_data):
         fr = d.get("funding_and_rates", {}) or {}
         ci = d.get("causal_indicators", {}) or {}
         
-        mark = fr.get("mark_price", 0.0) or 0.0
-        index = fr.get("index_price", 0.0) or 0.0
-        prem_bps = ((mark - index) / index * 10000.0) if index and mark else 0.0
-        funding_bps = fr.get("last_funding_rate_bps", 0.0) or 0.0
-        ann_funding = (funding_bps * 3 * 365) / 100.0 if funding_bps is not None else 0.0
+        mark = fr.get("mark_price") or ci.get("last_price")
+        index = fr.get("index_price") or mark
+        prem_bps = ((mark - index) / index * 10000.0) if (index and mark) else None
+        funding_bps = fr.get("last_funding_rate_bps")
+        ann_funding = (funding_bps * 3 * 365) / 100.0 if funding_bps is not None else None
         
-        regime = ci.get("trend_regime", "NEUTRAL") or "NEUTRAL"
-        rsi = ci.get("rsi_14", 50.0) or 50.0
-        atr = ci.get("atr_14", 0.0) or 0.0
-        atr_pct = ci.get("atr_pct", 0.0) or 0.0
-        ema20 = ci.get("ema_20", 0.0) or 0.0
-        ema50 = ci.get("ema_50", 0.0) or 0.0
-        ema200 = ci.get("ema_200", 0.0) or 0.0
-        vwap_z = ci.get("vwap_z_score", 0.0) or 0.0
-        rho = ci.get("s_whale_imbalance_rho", 0.0) or 0.0
+        regime = ci.get("trend_regime")
+        rsi = ci.get("rsi_14")
+        atr = ci.get("atr_14")
+        atr_pct = ci.get("atr_pct")
+        ema20 = ci.get("ema_20")
+        ema50 = ci.get("ema_50")
+        ema200 = ci.get("ema_200")
+        session_vwap = ci.get("session_vwap_utc")
+        vwap_u2 = ci.get("vwap_upper_2sd")
+        vwap_l2 = ci.get("vwap_lower_2sd")
+        vwap_z = ci.get("vwap_z_score")
+        rho = ci.get("s_whale_imbalance_rho")
         
         row_vals = [
             sym, d.get("category", "CRYPTO"), mark, index,
             prem_bps, funding_bps, ann_funding,
             regime, rsi, atr, atr_pct,
-            ema20, ema50, ema200, vwap_z, rho
+            ema20, ema50, ema200,
+            session_vwap, vwap_u2, vwap_l2,
+            vwap_z, rho
         ]
         
         fill = FILL_ZEBRA if row_idx % 2 == 0 else FILL_WHITE
         for c_idx, val in enumerate(row_vals, 1):
-            cell = ws.cell(row=row_idx, column=c_idx, value=val)
+            cell = ws.cell(row=row_idx, column=c_idx, value=val if val is not None else "N/A")
             cell.font = FONT_DATA
             cell.fill = fill
             cell.border = BORDER_THIN
             
+            if val is None:
+                cell.alignment = ALIGN_CENTER
+                continue
+            
             if c_idx in (1, 2):
                 cell.alignment = ALIGN_CENTER
                 if c_idx == 1: cell.font = FONT_DATA_BOLD
-            elif c_idx in (3, 4, 12, 13, 14):
+            elif c_idx in (3, 4, 12, 13, 14, 15, 16, 17):
                 cell.alignment = ALIGN_RIGHT
-                cell.number_format = "$#,##0.00" if val >= 1 else "$#,##0.0000"
+                cell.number_format = "$#,##0.00" if (isinstance(val, (int, float)) and val >= 1) else "$#,##0.0000"
             elif c_idx in (5, 6):
                 cell.alignment = ALIGN_RIGHT
                 cell.number_format = "#,##0.00"
@@ -398,16 +415,32 @@ def dump_exchange_basis_spreads(wb, tele_data):
                     cell.font = FONT_GREEN
                 elif "DOWN" in v_str or "BEAR" in v_str:
                     cell.font = FONT_RED
-            elif c_idx in (9, 10, 15, 16):
+            elif c_idx in (9, 10, 18, 19):
                 cell.alignment = ALIGN_RIGHT
-                cell.number_format = "#,##0.00"
-                if c_idx == 15 and abs(val) >= 2.0:
+                cell.number_format = "#,##0.00" if c_idx in (9, 10, 18) else "#,##0.000"
+                if c_idx == 18 and isinstance(val, (int, float)) and abs(val) >= 2.0:
                     cell.font = FONT_RED if val < -2.0 else FONT_GREEN
                     
         ws.row_dimensions[row_idx].height = 20
         row_idx += 1
         
-    apply_sheet_view_and_autofit(ws, 1, 16)
+    apply_sheet_view_and_autofit(ws, 1, 19)
+
+
+def cache_liquidation_map_formulas(wb):
+    """Pre-calculates numerical totals for Exchange_Liquidation_Map_1D/7D so non-Excel readers see valid numbers."""
+    for sheetname in ["Exchange_Liquidation_Map_1D", "Exchange_Liquidation_Map_7D"]:
+        if sheetname in wb.sheetnames:
+            ws = wb[sheetname]
+            for r in range(3, ws.max_row + 1):
+                f = ws.cell(r, 6).value or 0.0
+                g = ws.cell(r, 7).value or 0.0
+                h = ws.cell(r, 8).value or 0.0
+                try:
+                    tot = round(float(f) + float(g) + float(h), 2)
+                    ws.cell(r, 9, value=tot)
+                except Exception:
+                    pass
 
 # -------------------------------------------------------------
 # 4. Hyperdash Flow Feed Sheet
@@ -1470,7 +1503,8 @@ def run_pipeline():
     print("Probing Cognitive Daemons...")
     daemons_status = {}
     try:
-        req = urllib.request.Request("http://localhost:8081/v1/models", headers={"Authorization": "Bearer sk-gemini"})
+        auth_token = os.environ.get("GEMINI_WEB2API_AUTH", "Bearer sk-gemini")
+        req = urllib.request.Request("http://localhost:8081/v1/models", headers={"Authorization": auth_token})
         res = urllib.request.urlopen(req, timeout=2)
         daemons_status["Web2API_8081"] = f"ONLINE ({res.status} OK, 11 Models Active)"
     except Exception as e:
@@ -1522,12 +1556,20 @@ def run_pipeline():
     print("Dumping Cognitive_Council_Telemetry...")
     dump_cognitive_council_telemetry(wb, daemons_status)
     
-    final_sheet_count = len(wb.sheetnames)
-    print(f"Final sheet count: {final_sheet_count} (Added/Updated 10 institutional sheets)")
+    print("Pre-calculating numerical totals for Exchange_Liquidation_Map formula cells...")
+    cache_liquidation_map_formulas(wb)
     
-    # Save Workbook
-    print("Saving master workbook...")
-    wb.save(excel_path)
+    final_sheet_count = len(wb.sheetnames)
+    
+    # Save Workbook atomically
+    temp_path = excel_path.with_suffix(".tmp.xlsx")
+    print(f"Saving master workbook atomically via {temp_path.name}...")
+    wb.save(temp_path)
+    if temp_path.exists():
+        if excel_path.exists():
+            os.replace(temp_path, excel_path)
+        else:
+            temp_path.rename(excel_path)
     elapsed_time = time.time() - start_time
     
     print("=" * 70)

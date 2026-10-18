@@ -50,7 +50,7 @@ flowchart TD
 8. **`/verify` (Ex-Ante Pre-Execution Gate & Boundary Verification)**:
    - Mathematical proof before dispatch. Verifies cash risk calculations against `mt5.order_calc_profit`, checks hard floor cushion (>= 4,775 USD), verifies passive limit posture, and validates SL/TP placement.
 9. **`/risk-engine` (Stressed Multi-Ticket Floor Defense Simulator)**:
-   - Computes worst-case stressed equity across all open and staged tickets: $\text{Stressed Equity} = \text{Equity} - \sum (\text{Risk}_i \times 1.25) \ge 4,775.00\text{ USD}$.
+   - Computes worst-case stressed equity across all open and staged tickets: $\text{Stressed Equity} = \text{Current Equity} - \sum (\text{Risk}_i \times 1.25 + 2.00) \ge 4,795.00\text{ USD}$ (preserving a mandatory $+20.00\text{ USD}$ operating buffer above the $4,775.00\text{ USD}$ absolute hard floor).
 10. **`/execution-sim` (Microstructure Execution & Friction Compensation)**:
     - Models half-spread offset ($\text{Entry} = \text{Shelf} - \text{half\_spread}$ for longs, $\text{Shelf} + \text{half\_spread}$ for shorts), verifies `ORDER_FILLING_IOC` with automatic failover to `RETURN` and `FOK`.
 11. **`/onchain-forensics` (Arkham Institutional Deanonymization)**:
@@ -295,8 +295,14 @@ Every staged order must undergo strict broker-specific contract sizing and capit
      $$\text{Total Staged Risk} = \sum_{i} \text{Risk}_i$$
      $$\text{Stressed Equity} = \text{Current Equity} - \sum_{i} (\text{Risk}_i \times 1.25 + 2.00) \ge 4,795.00\text{ USD}$$
    - Under no circumstances may an order be staged if Stressed Equity violates the 4,795.00 USD operating buffer (and 4,775.00 USD hard floor). With equity at 4,857.32 USD (+82.32 USD above hard floor), a 20.00 to 25.00 USD risk trade is safely supported (+29.07 USD surplus above buffer, +49.07 USD above floor).
-4. **Unified Dynamic Position Capacity**:
-   - Up to **2 to 3 concurrent positions** across orthogonal asset clusters, provided joint stressed risk maintains a minimum $+20.00\text{ USD}$ operating buffer above the 4,775.00 USD hard floor.
+4. **Unified Dynamic Position Capacity Formula**:
+   - **At 25.00 USD cash risk**: Each slot incurs $25.00 \times 1.25 + 2.00 = 33.25\text{ USD}$ stressed risk.
+     $$\text{Max Slots} = \lfloor \frac{68.74}{33.25} \rfloor = \mathbf{2\text{ concurrent positions}}$$
+     (Consumes 66.50 USD stressed risk, preserving a +2.24 USD buffer surplus and +22.24 USD hard floor surplus).
+   - **At 15.00 USD cash risk**: Each slot incurs $15.00 \times 1.25 + 2.00 = 20.75\text{ USD}$ stressed risk.
+     $$\text{Max Slots} = \lfloor \frac{68.74}{20.75} \rfloor = \mathbf{3\text{ concurrent positions}}$$
+     (Consumes 62.25 USD stressed risk, preserving a +6.49 USD buffer surplus and +26.49 USD hard floor surplus).
+   - **4 concurrent positions**: Mathematically permitted ONLY when equity expands above $4,878.00\text{ USD}$ ($4,795.00 + 4 \times 20.75\text{ USD}$). Under current equity, any attempt to stage 4 positions is hard-blocked fail-closed.
 
 ---
 
@@ -431,10 +437,10 @@ flowchart TD
 - **`liquidation_maxpain_1D/2D` & `Exchange_Liquidation_Map_1D/7D` (Sheets 16, 17, 18, 19)**:
   - Multi-exchange liquidation surfaces mapping dense short-squeeze and long-liquidation cascade pools across 18 perpetuals.
 
-#### 4. Cluster D: Execution Brokerage & Multi-Model Cognitive Councils (Sheets 39, 40)
-- **`MT5_Live_Quotes_Account` (Sheet 39)**:
-  - Live Blueberry Markets broker ledger ($4,863.74 balance/equity, +$88.74 floor cushion) and live interbank tick bid/ask quotes, spreads, digits, and contract specifications for all 24 symbols.
-- **`Cognitive_Council_Telemetry` (Sheet 40)**:
+#### 4. Cluster D: Execution Brokerage & Multi-Model Cognitive Councils (Sheets 38, 39)
+- **`MT5_Live_Quotes_Account` (Sheet 38)**:
+  - Live Blueberry Markets broker ledger ($4,863.74 balance/equity, +$88.74 hard floor cushion, +$68.74 buffer cushion) and live interbank tick bid/ask quotes, spreads, digits, and contract specifications for all 24 symbols.
+- **`Cognitive_Council_Telemetry` (Sheet 39)**:
   - Real-time operational status of Google Gemini Web2API (port 8081, 11 models, HTTP 200 OK), Heretic Engine Daemon (port 8083, v2.0.0.dev0, HTTP 200 OK), Arena.ai consensus, Autonomous Telemetry Git Sync Daemon (60s cadence), AST Knowledge Graph Watcher (7.4k nodes), and Tier-2 Swarm Cron.
 
 ---
@@ -447,22 +453,25 @@ flowchart TD
 │ 1. Check FF_Economic_Calendar & Telemetry_System_State: Is FOMC or Tier-1   │
 │    release within the mandatory hard blackout window (< 1.0 hour)?          │
 │    -> If YES: Stand aside unconditionally across all 24 assets.             │
+│    -> FOMC Runway: 252.77 hours runway to hard blackout.                    │
 │ 2. Check Volatility_Sentiment & Alternative.me FNG:                         │
 │    -> FNG <= 25: Extreme Accumulation Regime (Favor Long Mean Reversions).  │
 │    -> FNG >= 75: Extreme Greed / Risk-Off (Favor Overhead Shorts).          │
-│    -> Compare Deribit DVOL IV (BTC vs ETH): High IV spread (> 14%) mandates │
-│       expanding bunker stop buffers by +0.15 ATR.                           │
-│ 3. Check Spot_ETF_Net_Inflow & Bitcoin_Treasuries:                          │
-│    -> Cumulative institutional inflows (+716k BTC, IBIT dominance) confirm │
-│       underlying sovereign/corporate accumulation tailwinds.                │
+│    -> Compare Deribit DVOL IV (BTC vs ETH): ETH IV exhibits a +14.29 IV pt  │
+│       absolute (+37.67% relative) risk premium, mandating wider buffers.    │
+│ 3. Check Spot_ETF_Net_Inflow & Bitcoin_Treasuries (Sheet 36):               │
+│    -> Cumulative institutional inflows (+716k BTC) and $104.71B public     │
+│       treasury holdings confirm underlying sovereign accumulation.          │
 └──────────────────────────────────────┬──────────────────────────────────────┘
                                        ▼
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │ STAGE 2: UNIVERSE SCREENING & DUAL-ENGINE DIALECTIC (CLUSTER B)             │
-│ 1. Spread Friction Gate (Live_Orderbook_CVD_Depth):                         │
-│    -> Crypto perps must have MT5 Spread <= 25.0 bps (BTC, ETH, SOL, BNB).   │
-│    -> TradFi CFDs must have MT5 Spread <= 5.0 bps (Gold, SP500, USDJPY).   │
-│    -> Disqualify any asset exceeding its ceiling (e.g. DOGE > 260 bps).     │
+│ 1. Strict Spread Friction Gate (Live_Orderbook_CVD_Depth):                  │
+│    -> Crypto perps must have MT5 Spread <= 25.0 bps (BTC 1.96, ETH 11.6,    │
+│       BNB 8.33, BCH 20.95 bps pass; wide altcoins like DOGE 264 bps fail).   │
+│    -> TradFi CFDs must have MT5 Spread <= 5.0 bps (SP500 1.14, NAS100 0.49, │
+│       DJ30 0.39, GER40 0.31, Gold 1.06, USWTI 3.0 bps pass).                │
+│    -> Wide spread assets are disqualified automatically to prevent slippage.│
 │ 2. Statistical Regime Assignment (Exchange_Basis_Spreads):                  │
 │    -> Model 1 (Extreme Mean Reversion): |Z_VWAP| >= 2.0 to 3.5 SD in        │
 │       confirmed MEAN_REVERT regime with tape exhaustion & trapped traders.  │
@@ -472,32 +481,40 @@ flowchart TD
 └──────────────────────────────────────┬──────────────────────────────────────┘
                                        ▼
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│ STAGE 3: ON-CHAIN WHALES & BUNKER ENTRY CONFLUENCE (CLUSTER C)              │
+│ STAGE 3: BIFURCATED LIQUIDITY & BUNKER ENTRY CONFLUENCE (CLUSTER C)         │
+│ STAGE 3A: Crypto Perpetuals (BTC, ETH, SOL, BNB, XRP, BCH, etc.):          │
 │ 1. Arkham Whale Validation (Arkham_Transfers_100K & Arkham_Whales_Holdings):│
-│    -> Cross-reference trade direction with 48 institutional whale balances: │
-│       Are BlackRock, Strategy, and market makers accumulating or dumping?   │
-│    -> Verify that no large exchange deposit transfers (inflow to CEX)       │
-│       are actively slamming the candidate asset.                            │
-│ 2. Hyperdash Flow & Hyperliquid Whales (Hyperdash_Flow_Feed):               │
-│    -> Ensure 50 whale trades and confirmed liquidations support direction.  │
-│ 3. Resting Whale Bunker Shelter (Whales_Orders):                            │
-│    -> Verify candidate limit entry is sheltered by genuine resting whale    │
-│       orders (>= $100K at 15m) with persist >= 180s.                        │
-│    -> Anchor Stop Loss strictly BEHIND the whale wall + 0.35 to 0.50 ATR.   │
+│    -> Cross-reference with 48 institutional whale entities ($402.16B).      │
+│    -> MicroStrategy: $38.96B on-chain custody / 848k BTC balance sheet.     │
+│ 2. Hyperdash Flow Feed (Hyperdash_Flow_Feed):                               │
+│    -> Directional whale trades & confirmed liquidation pressure confirmation│
+│ 3. Resting Whale Bunker Shelter (Whales_Orders >= $100K):                   │
+│    -> Limit order sheltered behind verified resting whale wall (persist>=180s)
+│       with a 0.35 to 0.50 ATR structural buffer.                            │
+│                                                                             │
+│ STAGE 3B: TradFi Instruments (Indices, Commodities, Forex Majors):          │
+│ 1. Interbank Tick Spread & Session Liquidity Gate:                          │
+│    -> Active session spread <= 5.0 bps. Stand aside during 21:30-22:30 UTC  │
+│       interbank rollover spread expansion.                                  │
+│ 2. Forex Factory Economic Calendar & Breaking Intelligence Filter:          │
+│    -> Zero Tier-1 releases within 60 minutes for base/quote currency.       │
+│ 3. Structural Auction Shelf Defense (Live_Orderbook_CVD_Depth):             │
+│    -> Limit entry sheltered behind verified L2 top-of-book depth cluster    │
+│       with mandatory 0.35 to 0.50 ATR structural buffer.                    │
 └──────────────────────────────────────┬──────────────────────────────────────┘
                                        ▼
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│ STAGE 4: BROKER RISK SIZING & COUNCIL RATIFICATION (CLUSTER D)              │
-│ 1. Broker Risk Calculation (MT5_Live_Quotes_Account):                       │
-│    -> Calculate cash risk precisely using mt5.order_calc_profit().          │
-│    -> Sizing envelope: $15.00 to $25.00 USD (0.30% to 0.51% equity).        │
-│ 2. Stressed Capital Floor Gate:                                             │
-│    -> Stressed Equity = Current Equity - (Staged Risk * 1.25 + 2.00)        │
-│    -> Stressed Equity MUST remain >= $4,795.00 USD (Hard floor + $20 buffer)│
-│ 3. Multi-Model AI Council Consensus (Cognitive_Council_Telemetry):          │
-│    -> Validate hypothesis across Gemini Web2API (8081), Heretic Daemon      │
-│       (8083), and Arena.ai consensus before autonomous execution.           │
-│ 4. Autonomous Execution: Transmit BUY_LIMIT / SELL_LIMIT into MT5 bridge.   │
+│ STAGE 4: RISK SIZING, FLOOR DEFENSE & COUNCIL RATIFICATION (CLUSTER D)      │
+│ 1. Exact Cash Risk Sizing: Calculate risk via mt5.order_calc_profit().      │
+│    -> Authorized Envelope: 15.00 to 25.00 USD (0.30% to 0.51% equity).      │
+│ 2. Unified Stressed Floor Defense Gate:                                     │
+│    -> Stressed Equity = Current Equity - sum(Risk_i * 1.25 + 2.00) >= $4,795 │
+│    -> Maximum 2 slots at $25.00 risk ($66.50 stressed <= $68.74 buffer).    │
+│    -> Maximum 3 slots at $15.00 risk ($62.25 stressed <= $68.74 buffer).    │
+│    -> 4 slots require equity expansion above $4,878.00 USD.                 │
+│ 3. Cognitive Council Consensus (Cognitive_Council_Telemetry):               │
+│    -> Ratify trade through Gemini Web2API (8081), Heretic (8083), and Arena.│
+│    -> Autonomous limit order punch via MT5 Execution Bridge (magic: 888888).│
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
