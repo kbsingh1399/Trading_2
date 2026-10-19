@@ -107,7 +107,7 @@ DIRECT RAW GITHUB UPSTREAM LINKS (Verbatim Access - Public Main Branch):
 
 OPERATOR MANDATE:
 Review our live book, positions, resting walls, and telemetry data structure across all 24 assets to maximize profitability and trade edge while defending the 4,775.00 USD hard floor.
-MACRO BLACKOUT ENFORCEMENT IS PERMANENTLY REMOVED AND DISABLED. Never halt trading, purge positions, or disqualify setups due to macro events, CPI, FOMC, or news runway.
+MACRO BLACKOUT ENFORCEMENT IS ACTIVELY ENFORCED (OPTION 1). Orders are strictly blocked within ±35m of Tier-1 macro releases (FOMC, CPI, NFP) via BlackoutGuard. Fail-closed on calendar errors.
 
 ================================================================================
 PART CP: TRI-COUNCIL DIALECTIC SYNTHESIS (ASTRA & FABLE FINDINGS REVIEW)
@@ -123,7 +123,7 @@ Both Astra and Fable have submitted their Cycle 104 reports:
    - USWTI: Spread tightened to 4.83 bps (3.5% friction), but pullback velocity spiked to 3.01 (>= 0.80) and Trapped = BALANCED (no TRAPPED_SELLERS_BELOW print yet); nearby POC target offers only ~1.37R.
    - USDJPY: Flushed to 158.1045, regime transitioned to RANGE_BOUND, |Z| = 1.89 < 2.00 SD, and max L3 bid wall (~0.22M) fails the >= 0.50M USD Major FX floor.
 TASK FOR ARGON:
-Synthesize peer findings with your deep reasoning engine. Deliver the definitive verdict on high-confluence Model 1 and Model 2 setups across the Clean-Friction Universe without any macro blackout restrictions.
+Synthesize peer findings with your deep reasoning engine. Deliver the definitive verdict on high-confluence Model 1 and Model 2 setups across the Clean-Friction Universe respecting the fail-closed macro blackout guard.
 
 {part_g_text}"""
 

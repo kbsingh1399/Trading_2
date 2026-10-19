@@ -763,8 +763,8 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
     lines.append("     b) Calibrating Model 1 & Model 2 for Payable >= 2.0R Setups:")
     lines.append("        - Both models frequently report 0 candidates due to strict 2.0R geometry or wide swing targets. How can we mathematically construct payable 2.0R - 2.5R setups that capture intraday liquidity sweeps without requiring multi-day 10 ATR excursions?")
     lines.append("        - How should the SL bunker buffer (currently 0.35 - 0.50 ATR beyond outer bunker edge) and TP magnet front-run (5 - 10 bps) be dynamically calibrated based on live volatility surface and book depth?")
-    lines.append("     c) Expanding Profitable Trade Frequency & Zero Macro Blackout Halts:")
-    lines.append("        - OPERATOR DIRECTIVE: Macro blackout enforcement is PERMANENTLY REMOVED AND DISABLED. Never halt trading, purge positions, or disqualify candidates due to macro events, CPI, FOMC, or news runway. Evaluate and trade setups continuously across all market conditions.")
+    lines.append("     c) Institutional Macro Blackout & Risk Protection (Option 1 Formalized):")
+    lines.append("        - OPERATOR DIRECTIVE: Macro blackout enforcement is ACTIVELY ENFORCED via BlackoutGuard (Option 1). New orders are strictly halted within ±35m of Tier-1 macro events (FOMC, CPI, NFP) and fail closed on calendar errors. Active positions continue trailing micro-ratchets. Evaluate and trade high-conviction setups outside the blackout window.")
     lines.append("        - How can we optimize execution on Blueberry Markets MT5 CFDs under the 15% dynamic friction rule to capture maximum net alpha?")
     lines.append("")
     if for_copilot:
