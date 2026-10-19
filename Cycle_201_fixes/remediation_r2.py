@@ -57,18 +57,39 @@ def within_window(label, window_h: float = 24.0) -> bool:
     return a is not None and a <= window_h
 
 
+_BASE58_ALPHABET = set("123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz")
+_HEX_ALPHABET = set("0123456789abcdefABCDEF")
+
+
+def is_valid_tx_hash(tx: str) -> bool:
+    """Validates EVM (66-char 0x hex), BTC/Tron (64-char hex), or Solana (64-88 base58)."""
+    if not tx:
+        return False
+    if tx.startswith(("0x", "0X")):
+        return len(tx) == 66 and all(c in _HEX_ALPHABET for c in tx[2:])
+    if len(tx) == 64 and all(c in _HEX_ALPHABET for c in tx):
+        return True  # 64-char BTC or Tron raw hex
+    if 64 <= len(tx) <= 88 and all(c in _BASE58_ALPHABET for c in tx):
+        return True  # Solana base58 signature
+    return False
+
+
 def harvest_key(t: dict, harvest_epoch: float = 0.0) -> Optional[tuple]:
     """Key on the on-chain identity. The time label is not part of the key.
 
     Returns None when there is no full transaction hash; such rows must be
     flagged for review, not deduplicated on weaker fields.
+    Accommodates 66-char EVM hex (0x...), 64-char BTC/Tron hex, and base58 Solana.
+    Includes log_index / event_index to distinguish multiple transfers within one tx.
     """
-    tx = str(t.get("tx_hash", "")).strip().lower()
-    if not (tx and ((tx.startswith("0x") and len(tx) == 66) or (len(tx) >= 64 and not tx.startswith("0x")))):
+    raw_tx = str(t.get("tx_hash", "")).strip()
+    if not is_valid_tx_hash(raw_tx):
         return None
+    tx = raw_tx.lower() if raw_tx.startswith(("0x", "0X")) or len(raw_tx) == 64 else raw_tx
     s = lambda k: str(t.get(k, "")).strip().lower()  # noqa: E731
+    log_idx = str(t.get("log_index") if t.get("log_index") is not None else (t.get("event_index") if t.get("event_index") is not None else (t.get("idx") if t.get("idx") is not None else ""))).strip()
     return (tx, s("from_address"), s("to_address"), s("token_symbol"),
-            s("token_value"), s("usd_value"))
+            s("token_value"), s("usd_value"), log_idx)
 
 
 def sheet_guard(actual: Iterable[str], required: Iterable[str]) -> Tuple[list, list]:

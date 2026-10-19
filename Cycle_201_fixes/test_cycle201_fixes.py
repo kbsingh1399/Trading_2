@@ -1,17 +1,27 @@
 import os
 import sys
 
-sys.path.insert(0, os.path.dirname(__file__))
+ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+if ROOT_DIR not in sys.path:
+    sys.path.insert(0, ROOT_DIR)
 
 import openpyxl  # noqa: E402
 import pytest  # noqa: E402
 
-from fail_closed import (  # noqa: E402
-    NA, num, cell, spread_bps, spread_gate, stressed_equity, admissible,
-    max_slots, four_slot_threshold, bar_fresh,
-)
-from atomic_xlsx import atomic_save, check_minimums, cache_sum_formulas  # noqa: E402
-import atomic_xlsx  # noqa: E402
+try:
+    from Cycle_201_fixes.fail_closed import (  # noqa: E402
+        NA, num, cell, spread_bps, spread_gate, stressed_equity, admissible,
+        max_slots, four_slot_threshold, bar_fresh,
+    )
+    from Cycle_201_fixes.atomic_xlsx import atomic_save, check_minimums, cache_sum_formulas  # noqa: E402
+    from Cycle_201_fixes import atomic_xlsx  # noqa: E402
+except ImportError:
+    from fail_closed import (  # noqa: E402
+        NA, num, cell, spread_bps, spread_gate, stressed_equity, admissible,
+        max_slots, four_slot_threshold, bar_fresh,
+    )
+    from atomic_xlsx import atomic_save, check_minimums, cache_sum_formulas  # noqa: E402
+    import atomic_xlsx  # noqa: E402
 
 
 # ---- F1: numeric parsing, strict

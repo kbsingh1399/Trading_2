@@ -50,17 +50,38 @@ def test_harvest_key_dedupes_drift_across_pages():
     assert harvest_key(row1) == harvest_key(row2)
 
 
-def test_harvest_key_rejects_non_66_char_hash():
+def test_harvest_key_rejects_invalid_hash_formats():
     assert harvest_key({"tx_hash": "0x123", "from_address": "0x1"}) is None
     assert harvest_key({"tx_hash": "", "from_address": "0x1"}) is None
     assert harvest_key({"tx_hash": None, "from_address": "0x1"}) is None
+    # 64-char string that fails both hex (has 'g') and base58 (has '0')
+    assert harvest_key({"tx_hash": "0g" * 32, "from_address": "0x1"}) is None
+    # 64-char punctuation fails all checks
+    assert harvest_key({"tx_hash": "!" * 64, "from_address": "0x1"}) is None
+
+
+def test_harvest_key_accepts_evm_btc_and_solana():
+    evm_tx = "0x" + "a" * 64
+    btc_tx = "b" * 64
+    # Valid Solana base58 (no 0, O, I, l)
+    sol_tx = "5U3bCurAzWeTkqigcvk9x9QfJzK9Cj7XWc2tA4E7Qn1yM8p6K4w3v2u1t9s8r7q6"
+    assert len(sol_tx) == 64
+    base = {"from_address": "from", "to_address": "to", "token_symbol": "USDC", "token_value": "100", "usd_value": "$100"}
+    assert harvest_key(dict(base, tx_hash=evm_tx)) is not None
+    assert harvest_key(dict(base, tx_hash=btc_tx)) is not None
+    assert harvest_key(dict(base, tx_hash=sol_tx)) is not None
 
 
 def test_harvest_key_two_transfers_same_tx_differ():
     base = {"tx_hash": "0x" + "a" * 64, "token_symbol": "USDC", "token_value": "100", "usd_value": "$100"}
+    # Different address pairs
     t1 = dict(base, from_address="0x" + "1" * 40, to_address="0x" + "2" * 40)
     t2 = dict(base, from_address="0x" + "3" * 40, to_address="0x" + "4" * 40)
     assert harvest_key(t1) != harvest_key(t2)
+    # Identical address pair and values but different log_index
+    t3 = dict(base, from_address="0x" + "1" * 40, to_address="0x" + "2" * 40, log_index=0)
+    t4 = dict(base, from_address="0x" + "1" * 40, to_address="0x" + "2" * 40, log_index=1)
+    assert harvest_key(t3) != harvest_key(t4)
 
 
 def test_sheet_guard_detects_renamed_sheet():
