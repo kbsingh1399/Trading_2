@@ -43,10 +43,11 @@ trigger: always_on
   * Full rights granted by the operator to increase stop loss dollar risk up to **$20.00 – $25.00 USD** whenever needed to capture high-conviction structural trades and prevent stop hunts.
   * Invariant A takes absolute precedence: stops MUST sit behind verified resting whale walls (`persist >= 180s`) with 0.35–0.50 ATR structural buffer. Never choke stops.
   * Stressed simulation requirement: `Stressed Equity = Current Equity - (Risk * 1.25 + 2.00) >= 4,795.00 USD`. With $4,857.32 USD equity, a $25.00 USD risk trade is safely supported (+29.07 USD above operating buffer, +49.07 USD above hard floor).
-- **MACRO BLACKOUT ENFORCEMENT PERMANENTLY REMOVED & DISABLED (STRICT OPERATOR MANDATE)**:
-  * Macro blackout trading halts, pre-news purge deadlines, and calendar-based trade blocks are PERMANENTLY TERMINATED across all components (`Terminal/risk/blackout_guard.py`, `Terminal/Data_Factory/generate_telemetry_snapshot.py`, prompts, and strategy engines).
-  * `BlackoutGuard.is_blocked()` permanently returns `False, ""`.
-  * Open positions (including Ticket #18892038 `BTCUSD.pi` BUY) run continuously toward take-profit and trailing profit locks across all news and inflation events. No position is ever purged due to an upcoming calendar event.
+- **MACRO BLACKOUT ENFORCEMENT (P0 INSTITUTIONAL FAIL-CLOSED INVARIANT)**:
+  * Pre-submission macro blackout is ACTIVELY ENFORCED via `Terminal/risk/blackout_guard.py` (`BlackoutGuard.get().is_blocked()`).
+  * Blocks new order submissions within ±35 minutes of scheduled Tier-1 macro events (FOMC, CPI, NFP) loaded from `Data/macro_calendar.json`.
+  * Calendar read errors or unverified coverage fail closed (`is_blocked() -> True`), preventing blind execution during unverified windows, verified by `Tests/Test_Macro_Calendar_Hardening.py`.
+  * Open positions continue to be managed via micro-ratchet trailing profit locks; genuine position closes remain authorized during blackouts.
 - **EDGE BROWSER PRESERVATION INVARIANT (STRICT OPERATOR DIRECTIVE)**:
   * NEVER terminate, kill, or flush Microsoft Edge (`msedge.exe`) during RAM or system optimization routines.
   * In all memory cleanup scripts (`scripts/deep_optimize_ram.ps1`, `scripts/free_ram.ps1`, and future utilities), Microsoft Edge is strictly exempted from application termination and native working set trimming. Edge instances and user tabs must remain untouched at all times.
