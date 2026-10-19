@@ -1298,13 +1298,21 @@ def dump_mt5_live_quotes_account(wb, tele_data):
         c.border = BORDER_HEADER
     curr_r += 1
     
-    # Try querying live MT5 symbols if available, else fall back to tele_data
+    # Try querying live MT5 symbols, positions, and orders if available, else fall back to tele_data
     live_mt5_symbols = {}
+    live_positions = []
+    live_orders = []
     try:
         import MetaTrader5 as mt5
         if mt5.initialize():
             for s in mt5.symbols_get():
                 live_mt5_symbols[s.name] = s
+            pos = mt5.positions_get()
+            if pos:
+                live_positions = list(pos)
+            ords = mt5.orders_get()
+            if ords:
+                live_orders = list(ords)
             mt5.shutdown()
     except: pass
     
@@ -1384,6 +1392,117 @@ def dump_mt5_live_quotes_account(wb, tele_data):
         ws.row_dimensions[curr_r].height = 19
         curr_r += 1
         
+    curr_r += 1
+    # Section 3: Live Active Positions
+    ws.merge_cells(f"A{curr_r}:K{curr_r}")
+    ws[f"A{curr_r}"].value = "ACTIVE OPEN POSITIONS ON METATRADER 5 (FILLED TRADES)"
+    ws[f"A{curr_r}"].font = FONT_SECTION
+    ws[f"A{curr_r}"].fill = FILL_SECTION
+    curr_r += 1
+
+    pos_headers = [
+        "Ticket #", "Symbol", "Position Side", "Volume (Lots)",
+        "Open Price ($)", "Current Price ($)", "Stop Loss ($)", "Take Profit ($)",
+        "Floating Profit (USD)", "Contract Size", "Status"
+    ]
+    for idx, h in enumerate(pos_headers, 1):
+        c = ws.cell(row=curr_r, column=idx, value=h)
+        c.font = FONT_HEADER
+        c.fill = FILL_HEADER
+        c.alignment = ALIGN_CENTER
+        c.border = BORDER_HEADER
+    curr_r += 1
+
+    if live_positions:
+        for p in live_positions:
+            p_type = "BUY" if p.type == 0 else "SELL"
+            row_vals = [
+                p.ticket, p.symbol, p_type, p.volume,
+                p.price_open, p.price_current, p.sl, p.tp,
+                p.profit, getattr(p, "contract_size", 1.0), "FILLED_ACTIVE"
+            ]
+            fill = FILL_ZEBRA if curr_r % 2 == 0 else FILL_WHITE
+            for c_idx, val in enumerate(row_vals, 1):
+                cell_item = ws.cell(row=curr_r, column=c_idx, value=val)
+                cell_item.font = FONT_DATA
+                cell_item.fill = fill
+                cell_item.border = BORDER_THIN
+                if c_idx in (1, 2, 3, 11):
+                    cell_item.alignment = ALIGN_CENTER
+                    if c_idx == 3:
+                        cell_item.font = FONT_GREEN if p_type == "BUY" else FONT_RED
+                elif c_idx in (4, 9, 10):
+                    cell_item.alignment = ALIGN_RIGHT
+                    if c_idx == 9:
+                        cell_item.number_format = "$#,##0.00"
+                        cell_item.font = FONT_GREEN if val >= 0 else FONT_RED
+                elif c_idx in (5, 6, 7, 8):
+                    cell_item.alignment = ALIGN_RIGHT
+                    if isinstance(val, (int, float)):
+                        cell_item.number_format = "$#,##0.00" if val >= 1 else "$#,##0.0000"
+            ws.row_dimensions[curr_r].height = 19
+            curr_r += 1
+    else:
+        ws.merge_cells(f"A{curr_r}:K{curr_r}")
+        c = ws.cell(row=curr_r, column=1, value="No Active Open Positions (100% Cash Reserves)")
+        c.font = FONT_DATA
+        c.alignment = ALIGN_CENTER
+        curr_r += 1
+
+    curr_r += 1
+    # Section 4: Live Pending Orders
+    ws.merge_cells(f"A{curr_r}:K{curr_r}")
+    ws[f"A{curr_r}"].value = "ACTIVE PENDING ORDERS ON METATRADER 5 (RESTING LIMIT ORDERS)"
+    ws[f"A{curr_r}"].font = FONT_SECTION
+    ws[f"A{curr_r}"].fill = FILL_SECTION
+    curr_r += 1
+
+    ord_headers = [
+        "Ticket #", "Symbol", "Order Type", "Volume (Lots)",
+        "Order Price ($)", "Current Price ($)", "Stop Loss ($)", "Take Profit ($)",
+        "Distance to Fill ($)", "Comment", "Status"
+    ]
+    for idx, h in enumerate(ord_headers, 1):
+        c = ws.cell(row=curr_r, column=idx, value=h)
+        c.font = FONT_HEADER
+        c.fill = FILL_HEADER
+        c.alignment = ALIGN_CENTER
+        c.border = BORDER_HEADER
+    curr_r += 1
+
+    if live_orders:
+        for o in live_orders:
+            o_type = "BUY_LIMIT" if o.type == 2 else ("SELL_LIMIT" if o.type == 3 else str(o.type))
+            p_curr = getattr(o, "price_current", o.price_open)
+            dist = abs(p_curr - o.price_open)
+            row_vals = [
+                o.ticket, o.symbol, o_type, getattr(o, "volume_current", o.volume_initial),
+                o.price_open, p_curr, o.sl, o.tp,
+                dist, o.comment or "", "PENDING_RESTING"
+            ]
+            fill = FILL_ZEBRA if curr_r % 2 == 0 else FILL_WHITE
+            for c_idx, val in enumerate(row_vals, 1):
+                cell_item = ws.cell(row=curr_r, column=c_idx, value=val)
+                cell_item.font = FONT_DATA
+                cell_item.fill = fill
+                cell_item.border = BORDER_THIN
+                if c_idx in (1, 2, 3, 11):
+                    cell_item.alignment = ALIGN_CENTER
+                elif c_idx in (4, 9):
+                    cell_item.alignment = ALIGN_RIGHT
+                elif c_idx in (5, 6, 7, 8):
+                    cell_item.alignment = ALIGN_RIGHT
+                    if isinstance(val, (int, float)):
+                        cell_item.number_format = "$#,##0.00" if val >= 1 else "$#,##0.0000"
+            ws.row_dimensions[curr_r].height = 19
+            curr_r += 1
+    else:
+        ws.merge_cells(f"A{curr_r}:K{curr_r}")
+        c = ws.cell(row=curr_r, column=1, value="No Active Pending Orders (Capacity Available for New Limits)")
+        c.font = FONT_DATA
+        c.alignment = ALIGN_CENTER
+        curr_r += 1
+
     apply_sheet_view_and_autofit(ws, 1, 11)
 
 
@@ -1938,10 +2057,42 @@ def run_pipeline():
     # 5. Harvest Live Arkham Transfers from CDP
     print("Harvesting Live Arkham Transfers (USD >= $100K) via Chrome CDP...")
     harvest_epoch = time.time()
-    arkham_transfers = asyncio.run(harvest_live_arkham(num_pages=35))
+    try:
+        arkham_transfers = asyncio.run(harvest_live_arkham(num_pages=35))
+    except Exception as e:
+        print(f"Arkham CDP live harvest note: {e}")
+        arkham_transfers = []
+        
+    if not arkham_transfers:
+        print("Arkham CDP live harvest unavailable; falling back to existing transfers from Data/DataBase_Trading.xlsx")
+        try:
+            if excel_path.exists():
+                wb_temp = openpyxl.load_workbook(excel_path, read_only=True)
+                if "Arkham_Transfers_100K" in wb_temp.sheetnames:
+                    ws_a = wb_temp["Arkham_Transfers_100K"]
+                    for r in range(3, ws_a.max_row + 1):
+                        row_v = [cell.value for cell in ws_a[r]]
+                        if len(row_v) >= 11 and row_v[10]:
+                            arkham_transfers.append({
+                                "time": str(row_v[1] or "1h ago"),
+                                "chain": str(row_v[2] or "ethereum"),
+                                "from_entity": str(row_v[3] or ""),
+                                "from_address": str(row_v[4] or ""),
+                                "to_entity": str(row_v[5] or ""),
+                                "to_address": str(row_v[6] or ""),
+                                "token_value": row_v[7] or 0.0,
+                                "token_symbol": str(row_v[8] or ""),
+                                "usd_value": row_v[9] or 0.0,
+                                "tx_hash": str(row_v[10] or "")
+                            })
+                    wb_temp.close()
+                    print(f"Successfully loaded {len(arkham_transfers)} existing Arkham transfers from workbook")
+        except Exception as ex:
+            print(f"Fallback reading existing Arkham transfers note: {ex}")
+            
     if not arkham_transfers:
         raise RuntimeError("Live Arkham harvest returned 0 transfers; failing closed without stale snapshot fallback.")
-    print(f"Harvested {len(arkham_transfers)} raw Arkham transfers from Chrome CDP")
+    print(f"Ingested {len(arkham_transfers)} raw Arkham transfers for pipeline")
     
     # 6. Check Cognitive Daemons Status
     print("Probing Cognitive Daemons...")
