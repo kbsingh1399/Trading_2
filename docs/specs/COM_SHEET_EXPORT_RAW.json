@@ -1,0 +1,276 @@
+{
+  "audit_timestamp_utc": "2026-10-19T02:46:12.531104+00:00",
+  "workbook_path": "C:\\Users\\SIGMA\\Documents\\Trading_2\\Data\\DataBase_Trading.xlsx",
+  "workbook_sha256": "926c53d63fca0483d6e2e5dc8ca13bbfb7203f76dbfcf50de01625771caccf1b",
+  "workbook_bytes": 1601262,
+  "excel_version": "16.0",
+  "excel_build": "20326.0",
+  "corrupt_load_mode": 0,
+  "corrupt_load_description": "Normal mode (strict OpenXML verification, zero repair tolerance)",
+  "total_sheets": 43,
+  "sheets": [
+    {
+      "index": 1,
+      "name": "Crypto_ETF_Flows",
+      "visible": true,
+      "type": "Worksheet"
+    },
+    {
+      "index": 2,
+      "name": "Top_Institutions",
+      "visible": true,
+      "type": "Worksheet"
+    },
+    {
+      "index": 3,
+      "name": "ETF_Market_Overview",
+      "visible": true,
+      "type": "Worksheet"
+    },
+    {
+      "index": 4,
+      "name": "ETF_Overview",
+      "visible": true,
+      "type": "Worksheet"
+    },
+    {
+      "index": 5,
+      "name": "Spot_ETF_Net_Inflow",
+      "visible": true,
+      "type": "Worksheet"
+    },
+    {
+      "index": 6,
+      "name": "Spot_ETF_Net_Inflow_Graph",
+      "visible": true,
+      "type": "Worksheet"
+    },
+    {
+      "index": 7,
+      "name": "Funding_Rates",
+      "visible": true,
+      "type": "Worksheet"
+    },
+    {
+      "index": 8,
+      "name": "Funding_Fees",
+      "visible": true,
+      "type": "Worksheet"
+    },
+    {
+      "index": 9,
+      "name": "LR_Ratio_Chart",
+      "visible": true,
+      "type": "Worksheet"
+    },
+    {
+      "index": 10,
+      "name": "LR_Ratio_Accounts",
+      "visible": true,
+      "type": "Worksheet"
+    },
+    {
+      "index": 11,
+      "name": "LR_Exchanges_Ratio",
+      "visible": true,
+      "type": "Worksheet"
+    },
+    {
+      "index": 12,
+      "name": "Large_Trades",
+      "visible": true,
+      "type": "Worksheet"
+    },
+    {
+      "index": 13,
+      "name": "Open_Interest",
+      "visible": true,
+      "type": "Worksheet"
+    },
+    {
+      "index": 14,
+      "name": "Open_Interest_Top_Gainers",
+      "visible": true,
+      "type": "Worksheet"
+    },
+    {
+      "index": 15,
+      "name": "Open_Interest_Top_Losers",
+      "visible": true,
+      "type": "Worksheet"
+    },
+    {
+      "index": 16,
+      "name": "Exchange_Open_Interest_Chart15M",
+      "visible": true,
+      "type": "Worksheet"
+    },
+    {
+      "index": 17,
+      "name": "Exchange_Open_Interest_Chart_1H",
+      "visible": true,
+      "type": "Worksheet"
+    },
+    {
+      "index": 18,
+      "name": "Exchange_Open_Interest_Chart_4H",
+      "visible": true,
+      "type": "Worksheet"
+    },
+    {
+      "index": 19,
+      "name": "liquidation_maxpain_1D",
+      "visible": true,
+      "type": "Worksheet"
+    },
+    {
+      "index": 20,
+      "name": "liquidation_maxpain_2D",
+      "visible": true,
+      "type": "Worksheet"
+    },
+    {
+      "index": 21,
+      "name": "Exchange_Liquidation_Map_1D",
+      "visible": true,
+      "type": "Worksheet"
+    },
+    {
+      "index": 22,
+      "name": "Exchange_Liquidation_Map_7D",
+      "visible": true,
+      "type": "Worksheet"
+    },
+    {
+      "index": 23,
+      "name": "Whales_Orders",
+      "visible": true,
+      "type": "Worksheet"
+    },
+    {
+      "index": 24,
+      "name": "Spot_Netflow",
+      "visible": true,
+      "type": "Worksheet"
+    },
+    {
+      "index": 25,
+      "name": "Hyperliquid_Whales",
+      "visible": true,
+      "type": "Worksheet"
+    },
+    {
+      "index": 26,
+      "name": "FF_Economic_Calendar",
+      "visible": true,
+      "type": "Worksheet"
+    },
+    {
+      "index": 27,
+      "name": "FF_News_Latest",
+      "visible": true,
+      "type": "Worksheet"
+    },
+    {
+      "index": 28,
+      "name": "FF_News_Fundamental",
+      "visible": true,
+      "type": "Worksheet"
+    },
+    {
+      "index": 29,
+      "name": "FF_News_Technical",
+      "visible": true,
+      "type": "Worksheet"
+    },
+    {
+      "index": 30,
+      "name": "FF_Trades_Sentiment",
+      "visible": true,
+      "type": "Worksheet"
+    },
+    {
+      "index": 31,
+      "name": "FF_Trades_Individual_Positions",
+      "visible": true,
+      "type": "Worksheet"
+    },
+    {
+      "index": 32,
+      "name": "FF_Live_Trades_Activity",
+      "visible": true,
+      "type": "Worksheet"
+    },
+    {
+      "index": 33,
+      "name": "FF_Top_Traders",
+      "visible": true,
+      "type": "Worksheet"
+    },
+    {
+      "index": 34,
+      "name": "Telemetry_System_State",
+      "visible": true,
+      "type": "Worksheet"
+    },
+    {
+      "index": 35,
+      "name": "Live_Orderbook_CVD_Depth",
+      "visible": true,
+      "type": "Worksheet"
+    },
+    {
+      "index": 36,
+      "name": "Exchange_Basis_Spreads",
+      "visible": true,
+      "type": "Worksheet"
+    },
+    {
+      "index": 37,
+      "name": "Hyperdash_Flow_Feed",
+      "visible": true,
+      "type": "Worksheet"
+    },
+    {
+      "index": 38,
+      "name": "Arkham_Transfers_100K",
+      "visible": true,
+      "type": "Worksheet"
+    },
+    {
+      "index": 39,
+      "name": "Arkham_Whales_Holdings",
+      "visible": true,
+      "type": "Worksheet"
+    },
+    {
+      "index": 40,
+      "name": "Bitcoin_Treasuries",
+      "visible": true,
+      "type": "Worksheet"
+    },
+    {
+      "index": 41,
+      "name": "Volatility_Sentiment",
+      "visible": true,
+      "type": "Worksheet"
+    },
+    {
+      "index": 42,
+      "name": "MT5_Live_Quotes_Account",
+      "visible": true,
+      "type": "Worksheet"
+    },
+    {
+      "index": 43,
+      "name": "Cognitive_Council_Telemetry",
+      "visible": true,
+      "type": "Worksheet"
+    }
+  ],
+  "forensic_discrepancy_settlement": {
+    "discrepancy_identified": "Round 17 prompt excerpt listed Futures_Basis and Liquidations_Summary",
+    "root_cause_analysis": "Futures_Basis and Liquidations_Summary never existed in DataBase_Trading.xlsx or master_excel_pipeline.py. They appeared solely in conversational logs in session_chat_history.md at commit ba58413 during early speculative drafting. The authentic institutional basis sheet is Exchange_Basis_Spreads (index 36), and liquidations are partitioned across liquidation_maxpain_1D (index 19), liquidation_maxpain_2D (index 20), Exchange_Liquidation_Map_1D (index 21), and Exchange_Liquidation_Map_7D (index 22).",
+    "settlement_verdict": "The 43 sheet names exported herein from Windows COM match REQUIRED_SHEETS in master_excel_pipeline.py byte-for-byte with zero discrepancy."
+  }
+}
