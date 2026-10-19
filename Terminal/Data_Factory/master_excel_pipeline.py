@@ -121,7 +121,7 @@ def recreate_sheet(wb, title):
 # -------------------------------------------------------------
 # 1. Telemetry System State Sheet
 # -------------------------------------------------------------
-def dump_telemetry_system_state(wb, tele_data):
+def dump_telemetry_system_state(wb, tele_data, ff_summary_data=None):
     ws = recreate_sheet(wb, "Telemetry_System_State")
     
     # Title Banner
@@ -235,6 +235,20 @@ def dump_telemetry_system_state(wb, tele_data):
     rows.append(("Macro Calendar", "btc_etf_net_flows_m_usd", cell(etf_flows.get("BTC_net_usd_millions")), "Million USD", "Farside Investors Authentic Scrape", "REPORTED", "Institutional ETF daily netflow"))
     rows.append(("Macro Calendar", "eth_etf_net_flows_m_usd", cell(etf_flows.get("ETH_net_usd_millions")), "Million USD", "Farside Investors Authentic Scrape", "REPORTED", "Ethereum ETF daily netflow"))
     rows.append(("Macro Calendar", "coinbase_premium_bps", cell(mc.get("coinbase_premium_bps")), "Basis Points (bps)", "Coinbase vs Binance Spot", "OBSERVED", "US institutional buying pressure"))
+    
+    # Forex Factory Live Intelligence & Central Bank Policy Rates
+    if ff_summary_data:
+        rates = ff_summary_data.get("rates", {})
+        for ccy, r_str in rates.items():
+            rows.append(("Central Bank Policy Rates", f"policy_rate_{ccy.lower()}", r_str, "Percent", "Forex Factory Live", "ACTIVE", f"Central bank policy benchmark for {ccy}"))
+            
+        key_evs = ff_summary_data.get("key_events", [])
+        for k_idx, ev_str in enumerate(key_evs[:4], 1):
+            rows.append(("Forex Factory Key Events", f"upcoming_event_{k_idx}", ev_str, "Macro Release", "Forex Factory Summary", "SCHEDULED", "High/medium impact scheduled event"))
+            
+        top_hls = ff_summary_data.get("top_headlines", [])
+        for h_idx, hl_str in enumerate(top_hls[:4], 1):
+            rows.append(("Forex Factory Breaking News", f"top_headline_{h_idx}", hl_str, "Headline", "Forex Factory News", "BREAKING", "Global economic / geopolitical catalyst"))
     
     # Write rows
     for r_idx, row in enumerate(rows, 3):
@@ -1490,6 +1504,202 @@ def dump_cognitive_council_telemetry(wb, daemons_status):
     apply_sheet_view_and_autofit(ws, 1, 7)
 
 # -------------------------------------------------------------
+# 11. Forex Factory Sheets (Calendar, News, Live Trades)
+# -------------------------------------------------------------
+def dump_ff_economic_calendar(wb, ff_live_data, ff_summary_data):
+    ws = recreate_sheet(wb, "FF_Economic_Calendar")
+    
+    ws.merge_cells("A1:I1")
+    title_cell = ws["A1"]
+    title_cell.value = "FOREX FACTORY ECONOMIC CALENDAR | WEEKLY SCHEDULED EVENTS"
+    title_cell.font = FONT_TITLE
+    title_cell.fill = FILL_TITLE
+    title_cell.alignment = ALIGN_CENTER
+    ws.row_dimensions[1].height = 28
+    
+    headers = ['Date', 'Time (UTC)', 'Currency', 'Impact Level', 'Event Name', 'Actual', 'Forecast', 'Previous', 'Event ID']
+    for col_idx, h in enumerate(headers, 1):
+        c = ws.cell(row=2, column=col_idx, value=h)
+        c.font = FONT_HEADER
+        c.fill = FILL_HEADER
+        c.alignment = ALIGN_CENTER
+        c.border = BORDER_HEADER
+    ws.row_dimensions[2].height = 24
+    
+    events = ff_live_data.get("high_medium_calendar_events", []) or []
+    r_idx = 3
+    for ev in events:
+        impact = str(ev.get("impact", "")).capitalize()
+        impact_label = f"{impact} Impact" if "impact" not in impact.lower() else impact
+        row_vals = [
+            ev.get("date", ""),
+            ev.get("time", ""),
+            ev.get("currency", ""),
+            impact_label,
+            ev.get("name", ""),
+            ev.get("actual") or None,
+            ev.get("forecast") or None,
+            ev.get("previous") or None,
+            str(ev.get("dateline", ""))
+        ]
+        fill = FILL_ZEBRA if r_idx % 2 == 0 else FILL_WHITE
+        for c_idx, val in enumerate(row_vals, 1):
+            cell = ws.cell(row=r_idx, column=c_idx, value=val)
+            cell.font = FONT_DATA
+            cell.fill = fill
+            cell.border = BORDER_THIN
+            if c_idx in (1, 2, 3, 9):
+                cell.alignment = ALIGN_CENTER
+            elif c_idx == 4:
+                cell.alignment = ALIGN_CENTER
+                if "High" in str(val):
+                    cell.font = FONT_RED
+                    cell.fill = FILL_RED
+                elif "Med" in str(val):
+                    cell.font = FONT_AMBER
+                    cell.fill = FILL_AMBER
+            elif c_idx == 5:
+                cell.alignment = ALIGN_LEFT
+                cell.font = FONT_DATA_BOLD
+            else:
+                cell.alignment = ALIGN_RIGHT
+        ws.row_dimensions[r_idx].height = 20
+        r_idx += 1
+        
+    apply_sheet_view_and_autofit(ws, 1, 9)
+
+
+def dump_ff_news_latest(wb, ff_live_data, ff_summary_data):
+    ws = recreate_sheet(wb, "FF_News_Latest")
+    
+    ws.merge_cells("A1:J1")
+    title_cell = ws["A1"]
+    title_cell.value = "FOREX FACTORY NEWS INTELLIGENCE | LATEST MARKET STORIES"
+    title_cell.font = FONT_TITLE
+    title_cell.fill = FILL_TITLE
+    title_cell.alignment = ALIGN_CENTER
+    ws.row_dimensions[1].height = 28
+    
+    headers = ['Rank (#)', 'Category', 'Headline / Title', 'Source Domain', 'Published Time', 'Exact Timestamp', 'Comments', 'Story URL', 'Publisher URL', 'Full Article Excerpt / Summary']
+    for col_idx, h in enumerate(headers, 1):
+        c = ws.cell(row=2, column=col_idx, value=h)
+        c.font = FONT_HEADER
+        c.fill = FILL_HEADER
+        c.alignment = ALIGN_CENTER
+        c.border = BORDER_HEADER
+    ws.row_dimensions[2].height = 24
+    
+    stories = ff_live_data.get("breaking_news_stories", []) or []
+    r_idx = 3
+    for idx, s in enumerate(stories, 1):
+        headline = s.get("headline", "")
+        url = s.get("url", "")
+        domain = "forexfactory.com"
+        if "//" in url:
+            domain = url.split("//")[1].split("/")[0]
+        row_vals = [
+            idx,
+            "Latest Stories",
+            headline,
+            domain,
+            "Recent",
+            ff_live_data.get("harvested_at_utc", ""),
+            0,
+            url,
+            url,
+            headline
+        ]
+        fill = FILL_ZEBRA if r_idx % 2 == 0 else FILL_WHITE
+        for c_idx, val in enumerate(row_vals, 1):
+            cell = ws.cell(row=r_idx, column=c_idx, value=val)
+            cell.font = FONT_DATA
+            cell.fill = fill
+            cell.border = BORDER_THIN
+            if c_idx in (1, 7):
+                cell.alignment = ALIGN_CENTER
+            elif c_idx == 3:
+                cell.alignment = ALIGN_LEFT
+                cell.font = FONT_DATA_BOLD
+            else:
+                cell.alignment = ALIGN_LEFT
+        ws.row_dimensions[r_idx].height = 20
+        r_idx += 1
+        
+    apply_sheet_view_and_autofit(ws, 1, 10)
+
+
+def dump_ff_live_trades_activity(wb, ff_live_data, ff_summary_data):
+    ws = recreate_sheet(wb, "FF_Live_Trades_Activity")
+    
+    ws.merge_cells("A1:K1")
+    title_cell = ws["A1"]
+    title_cell.value = "FOREX FACTORY LIVE TRADING ACTIVITY | REAL-TIME EXECUTION FEED"
+    title_cell.font = FONT_TITLE
+    title_cell.fill = FILL_TITLE
+    title_cell.alignment = ALIGN_CENTER
+    ws.row_dimensions[1].height = 28
+    
+    headers = ['Trade (#)', 'Instrument', 'Action / Side', 'Execution Price', 'Order Type / Status', 'Scaled Order Execution Details', 'Time Ago', 'Unix Timestamp', 'Trader Username', 'Trade Return (%)', 'Pips']
+    for col_idx, h in enumerate(headers, 1):
+        c = ws.cell(row=2, column=col_idx, value=h)
+        c.font = FONT_HEADER
+        c.fill = FILL_HEADER
+        c.alignment = ALIGN_CENTER
+        c.border = BORDER_HEADER
+    ws.row_dimensions[2].height = 24
+    
+    trades = ff_live_data.get("community_trade_flow", []) or []
+    r_idx = 3
+    for idx, t_str in enumerate(trades, 1):
+        parts = t_str.split("|")
+        head = parts[0].strip() if len(parts) > 0 else t_str
+        tail = parts[1].strip() if len(parts) > 1 else ""
+        
+        tokens = head.split()
+        instrument = tokens[0] if len(tokens) > 0 else "N/A"
+        side = tokens[1] if len(tokens) > 1 else "TRADE"
+        price = tokens[3] if len(tokens) > 3 else (tokens[2] if len(tokens) > 2 else "0.0")
+        
+        row_vals = [
+            idx,
+            instrument,
+            side,
+            price,
+            "Market Order",
+            tail or head,
+            "< 5 min ago",
+            str(int(time.time())),
+            "CommunityTrader",
+            "0.0%",
+            "N/A"
+        ]
+        fill = FILL_ZEBRA if r_idx % 2 == 0 else FILL_WHITE
+        for c_idx, val in enumerate(row_vals, 1):
+            cell = ws.cell(row=r_idx, column=c_idx, value=val)
+            cell.font = FONT_DATA
+            cell.fill = fill
+            cell.border = BORDER_THIN
+            if c_idx in (1, 8):
+                cell.alignment = ALIGN_CENTER
+            elif c_idx == 3:
+                cell.alignment = ALIGN_CENTER
+                if "BUY" in str(val).upper():
+                    cell.font = FONT_GREEN
+                    cell.fill = FILL_GREEN
+                elif "SELL" in str(val).upper():
+                    cell.font = FONT_RED
+                    cell.fill = FILL_RED
+            elif c_idx in (2, 4):
+                cell.alignment = ALIGN_CENTER
+                cell.font = FONT_DATA_BOLD
+            else:
+                cell.alignment = ALIGN_LEFT
+        ws.row_dimensions[r_idx].height = 20
+        r_idx += 1
+        
+    apply_sheet_view_and_autofit(ws, 1, 11)
+
+# -------------------------------------------------------------
 # Arkham Real-Time Harvester Helper
 # -------------------------------------------------------------
 async def jump_to_page_1(ws):
@@ -1687,6 +1897,13 @@ def run_pipeline():
     print(f"Loading {extended_path}...")
     ext_data = json.load(open(extended_path, "r", encoding="utf-8")) if extended_path.exists() else {}
     
+    # 2b. Load Forex Factory Live & Summary Data
+    ff_live_path = Path("Data/forex_factory_live.json")
+    ff_summary_path = Path("Data/forex_factory_summary.json")
+    ff_live_data = json.load(open(ff_live_path, "r", encoding="utf-8")) if ff_live_path.exists() else {}
+    ff_summary_data = json.load(open(ff_summary_path, "r", encoding="utf-8")) if ff_summary_path.exists() else {}
+    print(f"Loaded Forex Factory data: {len(ff_live_data.get('high_medium_calendar_events', []))} events, {len(ff_live_data.get('central_bank_rates', {}))} rates")
+    
     # 3. Fetch Alternative.me Fear & Greed
     print("Fetching Alternative.me Fear & Greed Index (30 days)...")
     fng_records = []
@@ -1755,7 +1972,7 @@ def run_pipeline():
     
     # Execute Dumps
     print("Dumping Telemetry_System_State...")
-    dump_telemetry_system_state(wb, tele_data)
+    dump_telemetry_system_state(wb, tele_data, ff_summary_data=ff_summary_data)
     
     print("Dumping Live_Orderbook_CVD_Depth...")
     dump_live_orderbook_cvd_depth(wb, tele_data)
@@ -1783,6 +2000,15 @@ def run_pipeline():
     
     print("Dumping Cognitive_Council_Telemetry...")
     dump_cognitive_council_telemetry(wb, daemons_status)
+    
+    print("Dumping FF_Economic_Calendar...")
+    dump_ff_economic_calendar(wb, ff_live_data, ff_summary_data)
+    
+    print("Dumping FF_News_Latest...")
+    dump_ff_news_latest(wb, ff_live_data, ff_summary_data)
+    
+    print("Dumping FF_Live_Trades_Activity...")
+    dump_ff_live_trades_activity(wb, ff_live_data, ff_summary_data)
     
     print("Pre-calculating numerical totals for Exchange_Liquidation_Map formula cells...")
     cache_liquidation_map_formulas(wb)

@@ -56,7 +56,7 @@ async def evaluate_js(ws, js_code: str) -> dict:
     }
     try:
         await ws.send(json.dumps(msg))
-        resp_raw = await asyncio.wait_for(ws.recv(), timeout=5.0)
+        resp_raw = await asyncio.wait_for(ws.recv(), timeout=15.0)
         resp = json.loads(resp_raw)
         result = resp.get("result", {}).get("result", {})
         if "value" in result:
@@ -64,7 +64,7 @@ async def evaluate_js(ws, js_code: str) -> dict:
         if "description" in result:
             logger.warning(f"JS execution error: {result['description']}")
     except asyncio.TimeoutError:
-        logger.warning("CDP evaluate_js timed out after 5.0s")
+        logger.warning("CDP evaluate_js timed out after 15.0s")
     except Exception as e:
         logger.warning(f"CDP evaluate_js exception: {e}")
     return {}
@@ -205,15 +205,15 @@ async def run_harvester() -> bool:
     
     logger.info("Connecting to Forex Factory tab via CDP...")
     try:
-        async with websockets.connect(ws_url, max_size=10_000_000, open_timeout=5.0) as ws:
+        async with websockets.connect(ws_url, max_size=10_000_000, open_timeout=10.0) as ws:
             logger.info("Harvesting Economic Calendar...")
-            cal_data = await asyncio.wait_for(harvest_calendar(ws), timeout=5.0)
+            cal_data = await asyncio.wait_for(harvest_calendar(ws), timeout=15.0)
             
             logger.info("Harvesting Central Bank Rates & Breaking News...")
-            news_data = await asyncio.wait_for(harvest_news_and_rates(ws), timeout=5.0)
+            news_data = await asyncio.wait_for(harvest_news_and_rates(ws), timeout=15.0)
             
             logger.info("Harvesting Community Trade Flow...")
-            trades_data = await asyncio.wait_for(harvest_trade_flow(ws), timeout=5.0)
+            trades_data = await asyncio.wait_for(harvest_trade_flow(ws), timeout=15.0)
             
             now_utc = time.strftime("%Y-%m-%d %H:%M:%S UTC", time.gmtime())
             
