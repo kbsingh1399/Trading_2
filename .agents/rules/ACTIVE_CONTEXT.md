@@ -45,7 +45,7 @@ trigger: always_on
   * Stressed simulation requirement: `Stressed Equity = Current Equity - (Risk * 1.25 + 2.00) >= 4,795.00 USD`. With $4,857.32 USD equity, a $25.00 USD risk trade is safely supported (+29.07 USD above operating buffer, +49.07 USD above hard floor).
 - **MACRO BLACKOUT ENFORCEMENT (P0 INSTITUTIONAL FAIL-CLOSED INVARIANT)**:
   * Pre-submission macro blackout is ACTIVELY ENFORCED via `Terminal/risk/blackout_guard.py` (`BlackoutGuard.get().is_blocked()`).
-  * Blocks new order submissions within ±35 minutes of scheduled Tier-1 macro events (FOMC, CPI, NFP) loaded from `Data/macro_calendar.json`.
+  * Blocks new order submissions within ±30 minutes of scheduled Tier-1 macro events (FOMC, CPI, NFP) loaded from `Data/macro_calendar.json` (aligned with institutional 15m candle boundaries, two bars pre-event and two bars post-event).
   * Calendar read errors or unverified coverage fail closed (`is_blocked() -> True`), preventing blind execution during unverified windows, verified by `Tests/Test_Macro_Calendar_Hardening.py`.
   * Open positions continue to be managed via micro-ratchet trailing profit locks; genuine position closes remain authorized during blackouts.
 - **EDGE BROWSER PRESERVATION INVARIANT (STRICT OPERATOR DIRECTIVE)**:
