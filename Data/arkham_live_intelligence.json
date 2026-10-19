@@ -1,5 +1,5 @@
 {
-  "as_of_utc": "2026-10-19 03:53:10 UTC",
+  "as_of_utc": "2026-10-19 03:58:09 UTC",
   "source": "Arkham Intelligence Upgraded Harvester (arkm.com via Chrome CDP)",
   "filter_applied": "USD >= $100K",
   "feed_status": "STREAMING_ACTIVE",
@@ -650,53 +650,10 @@
       "address_count": "622 Addresses",
       "total_portfolio_usd": "$0.00",
       "portfolio_change_24h": "",
-      "holdings_breakdown": [
-        {
-          "symbol": "BTC",
-          "price": "$82,622",
-          "amount": "BTC",
-          "value_usd": "$25.35B",
-          "change_24h": "+1.09%"
-        },
-        {
-          "symbol": "ETH",
-          "price": "$2,424.86",
-          "amount": "ETH",
-          "value_usd": "$42.27M",
-          "change_24h": "+0.43%"
-        },
-        {
-          "symbol": "USDC",
-          "price": "$1",
-          "amount": "USDC",
-          "value_usd": "$10.6M",
-          "change_24h": "\u00b10%"
-        },
-        {
-          "symbol": "USDT",
-          "price": "$1",
-          "amount": "USDT",
-          "value_usd": "$6.6M",
-          "change_24h": "\u00b10%"
-        },
-        {
-          "symbol": "BNB",
-          "price": "$727.2",
-          "amount": "BNB",
-          "value_usd": "$6.65K",
-          "change_24h": "+0.89%"
-        },
-        {
-          "symbol": "AVAX",
-          "price": "$9.79",
-          "amount": "AVAX",
-          "value_usd": "$32.34",
-          "change_24h": "-0.1%"
-        }
-      ],
+      "holdings_breakdown": [],
       "category": "SOVEREIGN_TREASURY",
       "priority": "HIGH",
-      "last_updated_utc": "2026-10-19 03:08:05 UTC"
+      "last_updated_utc": "2026-10-19 03:57:43 UTC"
     },
     "el-salvador": {
       "slug": "el-salvador",
@@ -707,15 +664,15 @@
       "holdings_breakdown": [
         {
           "symbol": "BTC",
-          "price": "$82,563",
+          "price": "$82,448",
           "amount": "BTC",
-          "value_usd": "$603.48M",
-          "change_24h": "+0.97%"
+          "value_usd": "$602.64M",
+          "change_24h": "+0.68%"
         }
       ],
       "category": "SOVEREIGN_TREASURY",
       "priority": "HIGH",
-      "last_updated_utc": "2026-10-19 03:12:48 UTC"
+      "last_updated_utc": "2026-10-19 03:58:06 UTC"
     },
     "microstrategy": {
       "slug": "microstrategy",
@@ -1989,15 +1946,15 @@
       "holdings_breakdown": [
         {
           "symbol": "BTC",
-          "price": "$82,641",
+          "price": "$82,458",
           "amount": "BTC",
-          "value_usd": "$53.08",
-          "change_24h": "+1.14%"
+          "value_usd": "$52.96",
+          "change_24h": "+0.68%"
         }
       ],
       "category": "SOVEREIGN_TREASURY",
       "priority": "MEDIUM",
-      "last_updated_utc": "2026-10-19 03:08:11 UTC"
+      "last_updated_utc": "2026-10-19 03:57:49 UTC"
     },
     "uk": {
       "slug": "uk",
@@ -2008,15 +1965,15 @@
       "holdings_breakdown": [
         {
           "symbol": "BTC",
-          "price": "$82,563",
+          "price": "$82,427",
           "amount": "BTC",
-          "value_usd": "$5.06B",
-          "change_24h": "+0.95%"
+          "value_usd": "$5.05B",
+          "change_24h": "+0.63%"
         }
       ],
       "category": "SOVEREIGN_TREASURY",
       "priority": "MEDIUM",
-      "last_updated_utc": "2026-10-19 03:08:16 UTC"
+      "last_updated_utc": "2026-10-19 03:57:54 UTC"
     },
     "druk-holding-investments": {
       "slug": "druk-holding-investments",
@@ -2027,29 +1984,29 @@
       "holdings_breakdown": [
         {
           "symbol": "BTC",
-          "price": "$82,563",
+          "price": "$82,427",
           "amount": "BTC",
-          "value_usd": "$42.8M",
-          "change_24h": "+0.89%"
+          "value_usd": "$42.73M",
+          "change_24h": "+0.61%"
         },
         {
           "symbol": "BNB",
-          "price": "$726.36",
+          "price": "$725.4",
           "amount": "BNB",
-          "value_usd": "$21.41K",
-          "change_24h": "+0.65%"
+          "value_usd": "$21.38K",
+          "change_24h": "+0.45%"
         },
         {
           "symbol": "ETH",
-          "price": "$2,422.14",
+          "price": "$2,420.08",
           "amount": "ETH",
-          "value_usd": "$17.51K",
-          "change_24h": "+0.16%"
+          "value_usd": "$17.82K",
+          "change_24h": "-0.19%"
         }
       ],
       "category": "SOVEREIGN_TREASURY",
       "priority": "MEDIUM",
-      "last_updated_utc": "2026-10-19 03:12:42 UTC"
+      "last_updated_utc": "2026-10-19 03:58:00 UTC"
     }
   },
   "whale_alerts": [
