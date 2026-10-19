@@ -171,5 +171,34 @@
     "staged_at": "2026-10-16 09:01:23 UTC",
     "status": "CANCELLED_BY_COUNCIL",
     "cancel_reason": "Arena & Antigravity joint proof: 35.4% spread friction and SL inside [2430, 2440] cascade band (Archetype 1)"
+  },
+  "19049770": {
+    "symbol": "XAUUSD.pi",
+    "direction": "BUY_LIMIT",
+    "entry": 4167.5,
+    "initial_sl": 4163.8,
+    "tp": 4177.5,
+    "r0": 3.7,
+    "volume": 0.05,
+    "nominal_risk_usd": 18.5,
+    "stressed_risk_usd": 25.13,
+    "model": "MODEL_2_BULL_PULLBACK_LONG",
+    "staged_at": "2026-10-19 09:09:54 UTC",
+    "status": "ACTIVE_FILLED",
+    "filled_at": "2026-10-19 09:59:00 UTC"
+  },
+  "19049772": {
+    "symbol": "BTCUSD.pi",
+    "direction": "BUY_LIMIT",
+    "entry": 82445.0,
+    "initial_sl": 81945.0,
+    "tp": 83945.0,
+    "r0": 500.0,
+    "volume": 0.04,
+    "nominal_risk_usd": 20.0,
+    "stressed_risk_usd": 27.0,
+    "model": "MODEL_2_BULL_VWAP_PULLBACK_LONG",
+    "staged_at": "2026-10-19 09:09:54 UTC",
+    "status": "STAGED_LIMIT_PENDING"
   }
 }
