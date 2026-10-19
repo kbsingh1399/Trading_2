@@ -1,7 +1,7 @@
 """
 Terminal/dispatch_comprehensive_wake_up_prompt.py
 Dispatches the operator-mandated 4-step collaborative council prompt to Arena.ai:
-  STEP 1 (Mandate 1): Screen 24 assets for new Model 1/2 limit order candidates directly from live_snapshot_latest.json.
+  STEP 1 (Mandate 1): Screen 24 assets for new Model 1/2 limit order candidates directly from Data/DataBase_Trading.xlsx.
   STEP 2 (Mandate 2): Audit running trades (floating PnL, trailing SL ratchets, expanding TP into liquidation bands).
   STEP 3 (Mandate 3): Audit resting limit orders (prevail vs prune sentry: whale walls, ATR distance, regime validity).
   STEP 4 (Mandate 4): Position capacity & capital floor defense (multi-cluster concurrency defending 4,775.00 USD floor).
@@ -164,12 +164,18 @@ def get_live_broker_state():
 
 def _resolve_asset_key(mt5_symbol: str, assets: dict) -> str:
     clean = mt5_symbol.replace(".pi", "").replace(".p", "").replace("USD", "")
+    if clean == "XAU":
+        return "GOLD"
+    if clean == "XAG":
+        return "SILVER"
+    if mt5_symbol in assets:
+        return mt5_symbol
     if mt5_symbol.replace(".pi", "").replace(".p", "") in assets:
         return mt5_symbol.replace(".pi", "").replace(".p", "")
     if clean in assets:
         return clean
     for k, v in assets.items():
-        if v.get("mt5_symbol") == mt5_symbol:
+        if v.get("symbol_broker") == mt5_symbol or v.get("mt5_symbol") == mt5_symbol:
             return k
     return clean
 
@@ -229,13 +235,12 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
     lines.append(f"TRADING DESK COUNCIL: CYCLE {cycle_num} TELEMETRY, PLAYBOOK & STANDARDIZED DECISION CHAIN PROMPT")
     if is_arena_astra:
         lines.append("ROUTING TARGET: GPT_ASTRA (ARENA PRIMARY WORKSPACE - TAB 1)")
-        lines.append("CANONICAL WORKSPACE: https://github.com/kbsingh1399/Trading_2")
-        lines.append("ACTIVE BRANCHES: main (https://github.com/kbsingh1399/Trading_2/tree/main) and arena/74cd2d1a-trading-2 (https://github.com/kbsingh1399/Trading_2/tree/arena%2F74cd2d1a-trading-2)")
-        lines.append("BRANCH STATUS NOTE: Both 'main' and 'arena/74cd2d1a-trading-2' are 100% active, open, and updated with live telemetry commits every 60 seconds.")
+        lines.append("ROLE: SENIOR QUANTITATIVE STRATEGIST & MARKET SCREENER (ADVISORY & RATIFICATION)")
+        lines.append("EXECUTION & GIT SEPARATION: You DO NOT need an active broker connection, MT5 terminal, or GitHub push rights. Antigravity handles all MT5 executions and all git commits autonomously. Your sole responsibility is to evaluate market data from Data/DataBase_Trading.xlsx and provide your recommended limit orders directly in markdown in this response.")
     elif is_fable:
         lines.append("ROUTING TARGET: CLAUDE FABLE 5.1 / MYTHOS-CLASS FRONTIER REASONING ENGINE (ANTHROPIC FABLE ORCHESTRATOR - TAB 2)")
-        lines.append("CANONICAL WORKSPACE: https://github.com/kbsingh1399/Trading_2")
-        lines.append("ACTIVE BRANCHES: main (https://github.com/kbsingh1399/Trading_2/tree/main) and arena/74cd2d1a-trading-2 (https://github.com/kbsingh1399/Trading_2/tree/arena%2F74cd2d1a-trading-2)")
+        lines.append("ROLE: LEAD QUANTITATIVE AUDITOR & MARKET SCREENER (ADVISORY & RATIFICATION)")
+        lines.append("EXECUTION & GIT SEPARATION: You DO NOT need an active broker connection, MT5 terminal, or GitHub push rights. Antigravity handles all MT5 executions and all git commits autonomously. Your sole responsibility is to evaluate market data from Data/DataBase_Trading.xlsx and provide your recommended limit orders directly in markdown in this response.")
     elif is_copilot_opus:
         lines.append("ROUTING TARGET: CLAUDE OPUS 5.5 (MICROSOFT COPILOT STUDIO - TAB 1)")
         lines.append("CANONICAL WORKSPACE: https://github.com/kbsingh1399/Trading_2")
@@ -246,86 +251,25 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
         lines.append("CANONICAL WORKSPACE: https://github.com/kbsingh1399/Trading_2")
         lines.append("ACTIVE BRANCHES: main (https://github.com/kbsingh1399/Trading_2/tree/main) and arena/74cd2d1a-trading-2 (https://github.com/kbsingh1399/Trading_2/tree/arena%2F74cd2d1a-trading-2)")
         lines.append("ROLE: CAPITAL FLOOR SENTRY & MULTI-CLUSTER STRESSED RISK AUDITOR")
-    lines.append("MANDATE: THE SINGLE DEFINITIVE SOURCE OF TRADING DECISIONS FOR BOTH ARENA.AI AND ANTIGRAVITY IS Data/DataBase_Trading.xlsx (ALL 43 PRODUCTION WORKSHEETS).")
-    lines.append("OPERATOR MANDATE & FULL RIGHTS: The operator has explicitly granted full authority: 'Final you have to take decision. If you think candidates are potential logical... then you can punch orders without hesitation. You have all rights and now you can run autonomously.'")
-    lines.append("CRITICAL: The static telemetry tag 'trade_authorization: DENIED_UNVERIFIED_ORDERFLOW' in the JSON header is an artifact of TradFi CFDs lacking centralized orderbooks (whereas Crypto has full L2/L3 on Hyperliquid/Binance and TradFi has auction/spread data). It is NOT a trading lock on the Council. You are authorized to evaluate, qualify, and ratify logical passive limit orders based on the 43 sheets of DataBase_Trading.xlsx.")
+    lines.append("MANDATE: THE SINGLE DEFINITIVE SOURCE OF TRADING TRUTH FOR BOTH ARENA.AI AND ANTIGRAVITY IS Data/DataBase_Trading.xlsx (ALL 43 PRODUCTION WORKSHEETS).")
+    lines.append("OPERATOR TRADING AUTHORIZATION: The portfolio manager/operator has explicitly granted full live trading authority: 'Final you have to take decision. If you think candidates are potential logical... then you can punch orders without hesitation. You have all rights and now you can run autonomously. We need trade...'")
+    lines.append("STATIC TAG CLARIFICATION: The static telemetry metadata tag 'trade_authorization: DENIED_UNVERIFIED_ORDERFLOW' in the JSON header is purely an internal scraper provenance tag confirming the automated telemetry collector itself does not punch orders. It is NOT a trading lock on the Council. You are explicitly authorized and requested to evaluate, qualify, and ratify logical passive limit orders based on the 43 sheets of DataBase_Trading.xlsx.")
     lines.append("")
 
     # ── PART A: SOURCE FILES ────────────────────────────────────────────────
-    if for_copilot:
-        lines.append("PART A: ATTACHED LOCAL CONTEXT FILES (NATIVELY ATTACHED TO THIS CHAT SESSION)")
-        lines.append("The primary ground-truth source files are ATTACHED DIRECTLY TO THIS MESSAGE AS NATIVE ATTACHMENTS.")
-        lines.append("You do NOT need to call GitHub or fetch external URLs — read the attached files directly:")
-        lines.append("1. Master Data Warehouse: `Data/DataBase_Trading.xlsx` (43 Sheets across Macro, Microstructure, On-Chain Whales, and Account Ledger).")
-        lines.append(f"2. Attached File `live_snapshot_latest.json` (Generation: {gen_id}, {gen_ts}):")
-        lines.append("   The complete live microstructure snapshot (quotes, MT5 spread_bps & mid, execution_specs, causal_indicators [Session VWAP, Z-score, RSI, ATR, EMA 20/50/200, POC/VAH/VAL], multi_horizon_cvd [Session/Weekly/24h CVD & divergence], tradfi_orderflow [synthetic tick CVD & OFI], htf_auction_profiles [Prior Day/Week POC/VAH/VAL & Developing Weekly VWAP], trapped_traders_signal [TRAPPED_BUYERS_ABOVE/TRAPPED_SELLERS_BELOW], orderbook_live_depth [20-level L2 depth & imbalance], whale_walls_l3 [0x... wallet addresses, sizes, persistence_s >= 180s], structural_stop_clusters, reconstructed_liquidations, and venue_basis).")
-        lines.append("3. Attached File `TRADE_DECISION_PLAYBOOK.md`:")
-        lines.append("   Apply the Parameter Coincidence Matrix (Entry Shelf + SL Liquidity Bunker outside min_price/max_price + TP Liquidity Magnet front-run by 5-10 bps + Psychological Round Numbers), Dual-Venue Division of Labor (Spreads/Quotes from MT5; Orderbook/Whales/Liquidations/Stops from Hyperdash & Binance), and the 7-Point Pre-Trade Checklist.")
-        lines.append("4. Attached File `STANDARDIZED_TRADING_DECISION_CHAIN.md`:")
-        lines.append("   Canonical Standard Operating Procedure (SOP) governing the 8 Core Multi-Domain Skill Ensembles (/brainstorm, /graphify, /remember, /data-analyst, /data-engineer, /dataform-bigquery, /data-driven-feature, /verify), the 10-Step Standardized Trading Decision Chain, and pre-execution verification gates. You must execute all evaluations, active trade audits, and limit order reviews strictly through this 10-step chain.")
-        lines.append("5. Attached File `LIVE_COLLABORATIVE_ORDER_DESK.md`:")
-        lines.append("   Live order desk history, active tickets, preceding council rulings, and execution logs.")
-        lines.append("6. Attached File `ACTIVE_CONTEXT.md`:")
-        lines.append("   Real-time mission card, capital floor rules (4,775.00 USD hard floor / 4,795.00 USD operating buffer), and settled quantitative invariants.")
-        lines.append("7. Attached Files `forex_factory_summary.json` & `forex_factory_live.json`:")
-        lines.append("   Live Macro Calendar, Central Bank Policy Rates (AUD 4.60%, USD 4.00%, GBP 3.75%, EUR 2.65%, CAD 2.25%, JPY <1.25%), Central Bank Speeches (Lagarde, Bailey, Macklem), and Breaking Geopolitical/Energy Headlines. Read line-by-line to extract macro trade ideas and narrative continuity.")
-        lines.append("")
-    elif is_fable:
-        lines.append("PART A: REQUIRED READING (complete before analysis)")
-        lines.append("Read the following repository sources in full (strictly from canonical main branch):")
-        lines.append("")
-        lines.append("1. CANONICAL MASTER DATA WAREHOUSE (PRIMARY GROUND TRUTH): Data/DataBase_Trading.xlsx (ALL 43 PRODUCTION WORKSHEETS)")
-        lines.append("   The 225,000+-cell master workbook Data/DataBase_Trading.xlsx is our SINGLE DEFINITIVE SOURCE OF TRADING TRUTH, continuously refreshed every 10 minutes by the host daemon:")
-        lines.append("   • Cluster A (Macro & Event Defense): Sheets 1-6, 26-34, 40, 41 (FF_Economic_Calendar, Volatility_Sentiment, Bitcoin_Treasuries, Spot_ETF_Net_Inflow, Telemetry_System_State).")
-        lines.append("   • Cluster B (Microstructure & Depth): Sheets 7-18, 23, 24, 35, 36 (Live_Orderbook_CVD_Depth, Exchange_Basis_Spreads, Whales_Orders [520 resting institutional orders >= $100K], Spot_Netflow, Funding_Rates, Open_Interest).")
-        lines.append("   • Cluster C (On-Chain Whales & Liquidations): Sheets 19-22, 25, 37-39 (Arkham_Transfers_100K, Arkham_Whales_Holdings [$402.16B assets], Hyperdash_Flow_Feed, Hyperliquid_Whales [1,922 active positions], Exchange_Liquidation_Map_1D/7D).")
-        lines.append("   • Cluster D (Brokerage Execution & Council Health): Sheets 42, 43 (MT5_Live_Quotes_Account [$4,863.74 equity, +$88.74 floor cushion], Cognitive_Council_Telemetry).")
-        lines.append("   MANDATORY DIRECTIVE: Synthesize all 43 sheets to formulate and ratify trade candidates.")
-        lines.append("")
-        lines.append("2. Live Telemetry Matrix: docs/telemetry/live_snapshot_latest.json")
-        lines.append(f"   Latest Generation: {gen_id} ({gen_ts})")
-        lines.append("   Upstream Main: https://github.com/kbsingh1399/Trading_2/blob/main/docs/telemetry/live_snapshot_latest.json")
-        lines.append("   Raw: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/telemetry/live_snapshot_latest.json")
-        lines.append("3. Live Trade Decision Playbook: docs/Mandatory_Rules/TRADE_DECISION_PLAYBOOK.md")
-        lines.append("   Source: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/Mandatory_Rules/TRADE_DECISION_PLAYBOOK.md")
-        lines.append("4. Canonical Standardized Trading Decision Chain SOP: docs/Mandatory_Rules/STANDARDIZED_TRADING_DECISION_CHAIN.md")
-        lines.append("   Source: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/Mandatory_Rules/STANDARDIZED_TRADING_DECISION_CHAIN.md")
-        lines.append("5. Live Order Desk & Session Context:")
-        lines.append("   • docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md (https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md)")
-        lines.append("   • .agents/rules/ACTIVE_CONTEXT.md (https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agents/rules/ACTIVE_CONTEXT.md)")
-        lines.append("   • .agents/memory/session_chat_history.md (https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agents/memory/session_chat_history.md)")
-        lines.append("6. Forex Factory Live Macro & News Intelligence: Data/forex_factory_summary.json & Data/forex_factory_live.json")
-        lines.append("   Source: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Data/forex_factory_summary.json")
-        lines.append("   Source: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Data/forex_factory_live.json")
-        lines.append("")
-    else:  # arena_astra
-        lines.append("PART A: REQUIRED READING (complete before analysis)")
-        lines.append("Read the following repository sources in full (strictly from canonical main branch):")
-        lines.append("")
-        lines.append("1. CANONICAL MASTER DATA WAREHOUSE (PRIMARY GROUND TRUTH): Data/DataBase_Trading.xlsx (ALL 43 PRODUCTION WORKSHEETS)")
-        lines.append("   The 225,000+-cell master workbook Data/DataBase_Trading.xlsx is our SINGLE DEFINITIVE SOURCE OF TRADING TRUTH, continuously refreshed every 10 minutes by the host daemon:")
-        lines.append("   • Cluster A (Macro & Event Defense): Sheets 1-6, 26-34, 40, 41 (FF_Economic_Calendar, Volatility_Sentiment, Bitcoin_Treasuries, Spot_ETF_Net_Inflow, Telemetry_System_State).")
-        lines.append("   • Cluster B (Microstructure & Depth): Sheets 7-18, 23, 24, 35, 36 (Live_Orderbook_CVD_Depth, Exchange_Basis_Spreads, Whales_Orders [520 resting institutional orders >= $100K], Spot_Netflow, Funding_Rates, Open_Interest).")
-        lines.append("   • Cluster C (On-Chain Whales & Liquidations): Sheets 19-22, 25, 37-39 (Arkham_Transfers_100K, Arkham_Whales_Holdings [$402.16B assets], Hyperdash_Flow_Feed, Hyperliquid_Whales [1,922 active positions], Exchange_Liquidation_Map_1D/7D).")
-        lines.append("   • Cluster D (Brokerage Execution & Council Health): Sheets 42, 43 (MT5_Live_Quotes_Account [$4,863.74 equity, +$88.74 floor cushion], Cognitive_Council_Telemetry).")
-        lines.append("   MANDATORY DIRECTIVE: Synthesize all 43 sheets to formulate and ratify trade candidates.")
-        lines.append("")
-        lines.append("2. Live Telemetry Matrix: docs/telemetry/live_snapshot_latest.json")
-        lines.append(f"   Latest Generation: {gen_id} ({gen_ts})")
-        lines.append("   Upstream Main: https://github.com/kbsingh1399/Trading_2/blob/main/docs/telemetry/live_snapshot_latest.json")
-        lines.append("   Raw: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/telemetry/live_snapshot_latest.json")
-        lines.append("3. Live Trade Decision Playbook: docs/Mandatory_Rules/TRADE_DECISION_PLAYBOOK.md")
-        lines.append("   Source: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/Mandatory_Rules/TRADE_DECISION_PLAYBOOK.md")
-        lines.append("4. Canonical Standardized Trading Decision Chain SOP: docs/Mandatory_Rules/STANDARDIZED_TRADING_DECISION_CHAIN.md")
-        lines.append("   Source: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/Mandatory_Rules/STANDARDIZED_TRADING_DECISION_CHAIN.md")
-        lines.append("5. Live Order Desk & Session Context:")
-        lines.append("   • docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md (https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md)")
-        lines.append("   • .agents/rules/ACTIVE_CONTEXT.md (https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agents/rules/ACTIVE_CONTEXT.md)")
-        lines.append("   • .agents/memory/session_chat_history.md (https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/.agents/memory/session_chat_history.md)")
-        lines.append("6. Forex Factory Live Macro & News Intelligence: Data/forex_factory_summary.json & Data/forex_factory_live.json")
-        lines.append("   Source: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Data/forex_factory_summary.json")
-        lines.append("   Source: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Data/forex_factory_live.json")
-        lines.append("")
+    lines.append("PART A: REQUIRED READING (CANONICAL EXCLUSIVE SOURCE OF TRUTH)")
+    lines.append("1. EXCLUSIVE MASTER DATA WAREHOUSE (SINGLE SOURCE OF TRUTH): Data/DataBase_Trading.xlsx (ALL 43 PRODUCTION WORKSHEETS)")
+    lines.append("   The 225,000+-cell master workbook Data/DataBase_Trading.xlsx is our EXCLUSIVE, SINGLE DEFINITIVE SOURCE OF TRADING TRUTH. ALL market data points — including real-time quotes, level 2/3 depth, multi-horizon CVD, venue basis spreads, economic calendar, news headlines, and account ledger — are dumped directly into this workbook every 10 minutes:")
+    lines.append("   • Cluster A (Macro, Calendar, News & Sentiment): Sheets 26-34, 40, 41 (FF_Economic_Calendar, FF_News_Latest, FF_News_Fundamental, FF_News_Technical, FF_Trades_Sentiment, FF_Trades_Individual_Positions, FF_Live_Trades_Activity, FF_Top_Traders, Volatility_Sentiment, Bitcoin_Treasuries, Telemetry_System_State).")
+    lines.append("   • Cluster B (Microstructure, Depth & CVD): Sheets 7-18, 23, 24, 35, 36 (Live_Orderbook_CVD_Depth, Exchange_Basis_Spreads, Whales_Orders [resting institutional orders >= $100K], Spot_Netflow, Funding_Rates, Open_Interest).")
+    lines.append("   • Cluster C (On-Chain Whales & Liquidations): Sheets 19-22, 25, 37-39 (Arkham_Transfers_100K, Arkham_Whales_Holdings, Hyperdash_Flow_Feed, Hyperliquid_Whales, Exchange_Liquidation_Map_1D/7D).")
+    lines.append("   • Cluster D (Brokerage Execution & Council Health): Sheets 42, 43 (MT5_Live_Quotes_Account, Cognitive_Council_Telemetry).")
+    lines.append("   MANDATORY DIRECTIVE: You DO NOT need to refer to any raw JSON files. Every market, macro, and account observation must be derived exclusively from Data/DataBase_Trading.xlsx.")
+    lines.append("")
+    lines.append("2. Canonical Trade Decision Playbook: docs/Mandatory_Rules/TRADE_DECISION_PLAYBOOK.md")
+    lines.append("3. Standardized Trading Decision Chain SOP: docs/Mandatory_Rules/STANDARDIZED_TRADING_DECISION_CHAIN.md")
+    lines.append("4. Live Order Desk & Session Context: docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md & .agents/rules/ACTIVE_CONTEXT.md")
+    lines.append("")
 
     # ── PART B: ACCOUNT & RISK BASELINE ─────────────────────────────────────
     lines.append("PART B: ACCOUNT AND RISK BASELINE")
@@ -388,7 +332,7 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
     lines.append("• Canonical Workspace: https://github.com/kbsingh1399/Trading_2")
     lines.append("• Active Branch: main (CANONICAL UPSTREAM SOURCE OF TRUTH — ALL MODELS ROUTE TO MAIN)")
     lines.append("• Direct Raw URLs (Strictly from main branch):")
-    lines.append("  - Telemetry: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/telemetry/live_snapshot_latest.json")
+    lines.append("  - Master Trading Database (Single Source of Truth, all 43 sheets): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Data/DataBase_Trading.xlsx")
     lines.append("  - Playbook: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/Mandatory_Rules/TRADE_DECISION_PLAYBOOK.md")
     lines.append("  - Standardized Decision Chain (SOP): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/Mandatory_Rules/STANDARDIZED_TRADING_DECISION_CHAIN.md")
     lines.append("  - Desk State: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md")
@@ -420,12 +364,12 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
     lines.append("  REGIME-GATED STAND-ASIDE: When trend_regime is RANGE_BOUND or UNDEFINED, neither engine applies. The mathematically correct action is STAND ASIDE. Never force trades in non-trending noise.")
     lines.append("")
     lines.append("TREND-FIRST HIERARCHY (SUPERSEDES ALL BAND-BASED ANALYSIS):")
-    lines.append("  DO NOT STICK DOGMATICALLY TO VWAP SD BANDS ALONE. Fading oversold/overbought bands in a trending market is lethal. You MUST evaluate the overall trend supported by all parameters in live_snapshot_latest.json:")
+    lines.append("  DO NOT STICK DOGMATICALLY TO VWAP SD BANDS ALONE. Fading oversold/overbought bands in a trending market is lethal. You MUST evaluate the overall trend supported by all parameters in Data/DataBase_Trading.xlsx (Sheets 34-36, 41-42):")
     lines.append("  1. Higher Timeframe Trend Hierarchy: Inspect 1H & 4H OHLCV candles, 20/50/200 EMAs. If Price < EMA20 < EMA50 on 1H/4H (Bearish regime), Model 1 dip-buying Longs are STRICTLY FORBIDDEN. All priority shifts to Model 2 Trend Pullback SHORTS!")
     lines.append("  2. cvd_1m_buckets & CVD Momentum: Massive negative taker CVD (-1M to -3M USD) is proof of aggressive seller domination. Never buy into negative CVD. Use negative CVD to qualify SHORT entries on relief rallies.")
     lines.append("  3. Model 2 Pullback Short Protocol: In a downtrend, patiently wait for pullbacks up into the EMA20/EMA50/VAH shelves where heavy Ask Whale Walls are resting to defend the Stop Loss.")
     lines.append("")
-    lines.append("18-PARAMETER TELEMETRY FIELD REFERENCE (live_snapshot_latest.json schema):")
+    lines.append("18-PARAMETER TELEMETRY FIELD REFERENCE (Data/DataBase_Trading.xlsx Sheets 34-36 & 41-42):")
     lines.append("  1. quotes: Live MT5 Bid/Ask spread in bps (spread_bps <= 35 bps Crypto, <= 5 bps TradFi).")
     lines.append("  2. causal_indicators: Session VWAP, vwap_z_score, RSI(14), ATR(14), EMA 20/50/200, POC/VAH/VAL, trend_regime.")
     lines.append("  3. multi_horizon_cvd: Session CVD (since 00:00 UTC), Weekly CVD (since Monday 00:00 UTC), trailing 24h CVD, Absorption/Exhaustion divergence.")
@@ -449,8 +393,8 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
     # ── PART D-2: FOREX FACTORY MACRO CALENDAR, CENTRAL BANK RATES & BREAKING HEADLINES ────
     lines.append("PART D-2: FOREX FACTORY MACRO CALENDAR, CENTRAL BANK RATES & BREAKING HEADLINES (MACRO IDEA GENERATION)")
     lines.append("CRITICAL OPERATOR MANDATE: LINE-BY-LINE MACRO INGESTION & NARRATIVE CONTINUITY")
-    lines.append("You MUST read Data/forex_factory_summary.json and Data/forex_factory_live.json line-by-line to build and maintain the macro narrative:")
-    lines.append(f"• Ingestion Source: Data/forex_factory_summary.json (Harvested UTC: {ff_summary.get('as_of_utc', 'latest')})")
+    lines.append("You MUST read Data/DataBase_Trading.xlsx Sheets 26-33 (FF_Economic_Calendar, FF_News_Latest, FF_News_Fundamental, FF_News_Technical, FF_Trades_Sentiment, FF_Trades_Individual_Positions, FF_Live_Trades_Activity, FF_Top_Traders) line-by-line to build and maintain the macro narrative:")
+    lines.append("• Ingestion Source: Data/DataBase_Trading.xlsx Sheets 26-33 (Continuously dumped and validated by autonomous Excel pipeline)")
     lines.append("• Central Bank Benchmark Policy Rates (Live Rate Matrix):")
     rates = ff_summary.get("rates", {})
     if rates:
@@ -545,7 +489,7 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
     # ── THE 10-STEP STANDARDIZED DECISION CHAIN MANDATE ────────────────────
     lines.append("THE 10-STEP STANDARDIZED TRADING DECISION CHAIN MANDATE (docs/Mandatory_Rules/STANDARDIZED_TRADING_DECISION_CHAIN.md):")
     lines.append("You are bound by strict hedge fund operational governance. You MUST evaluate every setup, position modification, and limit order through this 10-step chain:")
-    lines.append("  Step 1: Data Contract, Ingestion & Sanity Gate (/data-engineer, /dataform-bigquery) — Mandatory Line-by-Line Telemetry Ingestion (read docs/telemetry/live_snapshot_latest.json line-by-line and section-by-section to maintain account/order narrative continuity), Mandatory Line-by-Line Forex Factory Ingestion (read Data/forex_factory_summary.json and Data/forex_factory_live.json line-by-line to extract Central Bank rate differentials, upcoming speeches, breaking geopolitical/energy headlines, and generate fresh macro trade ideas), JIT Telemetry Refresh Gate, broker venue basis translation (venue_basis), and MT5 spread ceilings (<= 25 bps Crypto, <= 5 bps TradFi).")
+    lines.append("  Step 1: Data Contract, Ingestion & Sanity Gate (/data-engineer, /dataform-bigquery) — Mandatory Line-by-Line Master Database Ingestion (read Data/DataBase_Trading.xlsx Sheets 34-36, 41-42 line-by-line and section-by-section to maintain account/order narrative continuity), Mandatory Line-by-Line Forex Factory Ingestion (read Data/DataBase_Trading.xlsx Sheets 26-33 line-by-line to extract Central Bank rate differentials, upcoming speeches, breaking geopolitical/energy headlines, and generate fresh macro trade ideas), JIT Telemetry Refresh Gate, broker venue basis translation (venue_basis), and MT5 spread ceilings (<= 25 bps Crypto, <= 5 bps TradFi).")
     lines.append("  Step 2: Tri-Layer Memory & Trajectory Audit (/remember) — review session history and active context to prevent amnesia; enforce the Anti-Trap Registry (never buy falling knives into negative CVD; never measure SL from mid_price).")
     lines.append("  Step 3: AST Knowledge Graph Traversal & Rule Check (/graphify) — verify broker symbol specs, contract sizing, and ensure single-strategy module integrity.")
     lines.append("  Step 4: HTF Auction & Regime Profiling (/data-analyst) — verify 1H/4H trend hierarchy (EMA 20/50/200), auction value areas (Prior Day/Week POC/VAH/VAL, Weekly VWAP). Stand aside unconditionally if regime is UNDEFINED.")
@@ -563,7 +507,7 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
     lines.append("MANDATE 1 — DUAL-ENGINE SEARCH & PASSIVE LIMIT ORDER CANDIDATE IDENTIFICATION ACROSS ALL 24 ASSETS:")
     lines.append("OPERATOR MANDATE ON WAKE UP: You are strictly mandated to actively search for, qualify, and formulate high-conviction PASSIVE LIMIT ORDER proposals (both Model 1 Extreme Mean Reversion and Model 2 Trend Pullbacks) across all orthogonal asset clusters (Indices, Commodities, Metals, Forex, Crypto).")
     lines.append("Whenever portfolio capacity permits (currently 1 of 4 slots allocated, 3 slots freely available), actively formulate complete limit order parameters: Symbol, Order Type (BUY_LIMIT / SELL_LIMIT), Entry (shelf-anchored), SL (outside sweep band behind whale bunker), TP (front-running magnet by 5-10 bps), Lots (calibrated to $15.00-$25.00 USD risk envelope), and Stressed Capital Floor Check.")
-    lines.append("Analyze all 24 assets in assets_matrix_24 line-by-line from docs/telemetry/live_snapshot_latest.json (covering all Cryptos, Metals GOLD/XAUUSD.pi & SILVER/XAGUSD.pi, Energy USWTI.p, Forex EURUSD.pi/GBPUSD.pi/USDJPY.pi, and Indices SP500.p/NAS100.p/DJ30.p/GER40.p).")
+    lines.append("Analyze all 24 assets in Data/DataBase_Trading.xlsx Sheets 34-36 & 41-42 line-by-line (covering all Cryptos, Metals GOLD/XAUUSD.pi & SILVER/XAGUSD.pi, Energy USWTI.p, Forex EURUSD.pi/GBPUSD.pi/USDJPY.pi, and Indices SP500.p/NAS100.p/DJ30.p/GER40.p).")
     lines.append("APPLY PLAYBOOK SECTION 7.4 CALIBRATED MULTI-ASSET STANDARDS & 15% DYNAMIC FRICTION RULE:")
     lines.append("  • DYNAMIC 15% FRICTION RULE: Spread Friction % = (Spread in USD on 1 lot * Trade Lots) / Total Trade Risk Budget <= 15.0%.")
     lines.append("  • EXPANDED ACTIVE UNIVERSE ADMITTED: SP500.p (0.8% friction), NAS100.p (1.0%), XAUUSD.pi (1.2%), BTCUSD.pi (1.7%), DJ30.p (1.5%), GER40.p (2.0%), USWTI.p (3.5%), Major FX (0.5%), ETHUSD.pi (8.1% - target >= 2.2R), SOLUSD.p (13.8% - target >= 2.5R).")
@@ -571,67 +515,93 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
     lines.append("  • BANNED INSTRUMENTS (Friction > 15%): DOGE (210%), DOT (122%), ADA (89%), LINK (68%), NEAR (62%) — mathematically lethal on MT5 CFDs.")
     lines.append("For EACH asset, explicitly state: (a) Engine 1 verdict (Mean Reversion: Z-score, eligible or disqualified and why), (b) Engine 2 verdict (Trend Pullback: regime, shelf, eligible or disqualified and why), (c) Final classification: CANDIDATE / WATCHLIST / NO SETUP.")
     lines.append("")
-    lines.append("Live 24-asset mutual universe matrix:")
+    if not for_copilot:
+        lines.append("Key Liquid Assets Snapshot (Comprehensive Depth, CVD, Whales, and Spreads in Data/DataBase_Trading.xlsx):")
+        focus_keys = ["XAUUSD", "BTC", "ETH", "SOL", "SP500", "EURUSD"]
+        for fk in focus_keys:
+            a = assets.get(fk) or assets.get(fk + "USD.pi") or assets.get(fk + ".p") or {}
+            if not a:
+                continue
+            q = a.get("quotes", {})
+            ci = a.get("causal_indicators", {})
+            ob = a.get("orderbook_live_depth", {})
+            w3 = ob.get("whale_walls_l3") or []
+            elig_w3 = [w for w in w3 if float(w.get("persist_s") or 0.0) >= 180.0]
+            sc = a.get("structural_stop_clusters", {})
+            rl = a.get("reconstructed_liquidations", {})
+            s_below = sc.get('nearest_sell_stop_clusters_below', [])
+            s_above = sc.get('nearest_buy_stop_clusters_above', [])
+            s_b_str = f"[{s_below[0].get('min_price', 0):.1f}-{s_below[0].get('max_price', 0):.1f}]" if s_below else "none"
+            s_a_str = f"[{s_above[0].get('min_price', 0):.1f}-{s_above[0].get('max_price', 0):.1f}]" if s_above else "none"
+            l_b_str = f"[{rl.get('nearest_long_cascade_bands_below', [{}])[0].get('min_price', 0):.1f}-{rl.get('nearest_long_cascade_bands_below', [{}])[0].get('max_price', 0):.1f}]" if rl.get('nearest_long_cascade_bands_below') else "none"
+            l_a_str = f"[{rl.get('nearest_short_squeeze_bands_above', [{}])[0].get('min_price', 0):.1f}-{rl.get('nearest_short_squeeze_bands_above', [{}])[0].get('max_price', 0):.1f}]" if rl.get('nearest_short_squeeze_bands_above') else "none"
+            lines.append(
+                f"• {fk} ({a.get('symbol_broker', '')}): Mid {q.get('mid')} | Spread {q.get('spread_bps')} bps | "
+                f"Z = {ci.get('vwap_z_score')} SD | RSI {ci.get('rsi_14')} | Trend {ci.get('trend_regime')} | "
+                f"Whales (elig>=180s): {len(elig_w3)} | Stops: Below {s_b_str} / Above {s_a_str} | Liq: Below {l_b_str} / Above {l_a_str}"
+            )
+        lines.append("• Full 24-Asset Microstructure, L2 Book Depth, Whales, and Basis Spreads: Read directly from Data/DataBase_Trading.xlsx (Sheets 21-23, 26, 35, 36, 41, 42).")
+    else:
+        lines.append("Live 24-asset mutual universe matrix:")
+        for sym_key, a in assets.items():
+            if not isinstance(a, dict):
+                continue
+            q = a.get("quotes", {})
+            ci = a.get("causal_indicators", {})
+            ob = a.get("orderbook_live_depth", {})
+            w3 = ob.get("whale_walls_l3") or []
+            elig_w3 = [w for w in w3 if float(w.get("persist_s") or 0.0) >= 180.0]
+            sc = a.get("structural_stop_clusters", {})
+            rl = a.get("reconstructed_liquidations", {})
+            cat = a.get("category", "")
+            m_cvd = a.get("multi_horizon_cvd", {})
+            s_cvd = float(m_cvd.get("session_cvd_usd") or 0.0)
+            w_cvd = float(m_cvd.get("weekly_cvd_usd") or 0.0)
+            div = m_cvd.get("divergence", "NEUTRAL")
 
-    for sym_key, a in assets.items():
-        if not isinstance(a, dict):
-            continue
-        q = a.get("quotes", {})
-        ci = a.get("causal_indicators", {})
-        ob = a.get("orderbook_live_depth", {})
-        w3 = ob.get("whale_walls_l3") or []
-        elig_w3 = [w for w in w3 if float(w.get("persist_s") or 0.0) >= 180.0]
-        sc = a.get("structural_stop_clusters", {})
-        rl = a.get("reconstructed_liquidations", {})
-        cat = a.get("category", "")
-        m_cvd = a.get("multi_horizon_cvd", {})
-        s_cvd = float(m_cvd.get("session_cvd_usd") or 0.0)
-        w_cvd = float(m_cvd.get("weekly_cvd_usd") or 0.0)
-        div = m_cvd.get("divergence", "NEUTRAL")
+            t_of = a.get("tradfi_orderflow", {})
+            if cat == "CRYPTO":
+                cvd_str = f"Sess CVD {s_cvd/1e6:+.2f}M | Wk CVD {w_cvd/1e6:+.2f}M | Flow: {div}"
+                t_status = t_of.get("status")
+                s_val = t_of.get("session_tick_cvd")
+                c15_val = t_of.get("15m_tick_cvd")
+                t_ofi_val = t_of.get("order_flow_imbalance_ofi")
+                t_bias = t_of.get("flow_bias", "UNAVAILABLE")
+                if t_status in ("AVAILABLE", "CALCULATED_FROM_MT5_TICKS") and s_val is not None:
+                    s_tick = float(s_val)
+                    c15_tick = float(c15_val if c15_val is not None else 0.0)
+                    t_ofi = float(t_ofi_val if t_ofi_val is not None else 0.0)
+                    cvd_str = f"TradFi OF: Sess {s_tick:+.0f}t, 15m {c15_tick:+.0f}t | Bias: {t_bias} | OFI: {t_ofi:+.3f}"
+                else:
+                    cvd_str = f"TradFi OF: UNAVAILABLE (No Live MT5 Ticks | Bias: {t_bias})"
 
-        t_of = a.get("tradfi_orderflow", {})
-        if cat == "CRYPTO":
-            cvd_str = f"Sess CVD {s_cvd/1e6:+.2f}M | Wk CVD {w_cvd/1e6:+.2f}M | Flow: {div}"
-            t_status = t_of.get("status")
-            s_val = t_of.get("session_tick_cvd")
-            c15_val = t_of.get("15m_tick_cvd")
-            t_ofi_val = t_of.get("order_flow_imbalance_ofi")
-            t_bias = t_of.get("flow_bias", "UNAVAILABLE")
-            if t_status in ("AVAILABLE", "CALCULATED_FROM_MT5_TICKS") and s_val is not None:
-                s_tick = float(s_val)
-                c15_tick = float(c15_val if c15_val is not None else 0.0)
-                t_ofi = float(t_ofi_val if t_ofi_val is not None else 0.0)
-                cvd_str = f"TradFi OF: Sess {s_tick:+.0f}t, 15m {c15_tick:+.0f}t | Bias: {t_bias} | OFI: {t_ofi:+.3f}"
-            else:
-                cvd_str = f"TradFi OF: UNAVAILABLE (No Live MT5 Ticks | Bias: {t_bias})"
+            trp_str = a.get("trapped_traders_signal", "BALANCED")
 
-        trp_str = a.get("trapped_traders_signal", "BALANCED")
+            prof = a.get("htf_auction_profiles", {})
+            d_poc = float(prof.get("prior_day_poc") or 0.0)
+            d_vah = float(prof.get("prior_day_vah") or 0.0)
+            d_val = float(prof.get("prior_day_val") or 0.0)
+            w_vwap = float(prof.get("weekly_vwap") or 0.0)
+            prof_str = f"PriorDay POC {d_poc:.2f} [VAH {d_vah:.2f} / VAL {d_val:.2f}] | WkVWAP {w_vwap:.2f}"
 
-        prof = a.get("htf_auction_profiles", {})
-        d_poc = float(prof.get("prior_day_poc") or 0.0)
-        d_vah = float(prof.get("prior_day_vah") or 0.0)
-        d_val = float(prof.get("prior_day_val") or 0.0)
-        w_vwap = float(prof.get("weekly_vwap") or 0.0)
-        prof_str = f"PriorDay POC {d_poc:.2f} [VAH {d_vah:.2f} / VAL {d_val:.2f}] | WkVWAP {w_vwap:.2f}"
+            s_below = sc.get('nearest_sell_stop_clusters_below', [])
+            s_above = sc.get('nearest_buy_stop_clusters_above', [])
+            s_b_str = f"[{s_below[0].get('min_price', 0):.1f}-{s_below[0].get('max_price', 0):.1f} ${s_below[0].get('notional_usd', 0)/1e6:.2f}M]" if s_below else "none"
+            s_a_str = f"[{s_above[0].get('min_price', 0):.1f}-{s_above[0].get('max_price', 0):.1f} ${s_above[0].get('notional_usd', 0)/1e6:.2f}M]" if s_above else "none"
 
-        s_below = sc.get('nearest_sell_stop_clusters_below', [])
-        s_above = sc.get('nearest_buy_stop_clusters_above', [])
-        s_b_str = f"[{s_below[0].get('min_price', 0):.1f}-{s_below[0].get('max_price', 0):.1f} ${s_below[0].get('notional_usd', 0)/1e6:.2f}M]" if s_below else "none"
-        s_a_str = f"[{s_above[0].get('min_price', 0):.1f}-{s_above[0].get('max_price', 0):.1f} ${s_above[0].get('notional_usd', 0)/1e6:.2f}M]" if s_above else "none"
+            l_below = rl.get('nearest_long_cascade_bands_below', [])
+            l_above = rl.get('nearest_short_squeeze_bands_above', [])
+            l_b_str = f"[{l_below[0].get('min_price', 0):.1f}-{l_below[0].get('max_price', 0):.1f} ${l_below[0].get('notional_usd', 0)/1e6:.2f}M]" if l_below else "none"
+            l_a_str = f"[{l_above[0].get('min_price', 0):.1f}-{l_above[0].get('max_price', 0):.1f} ${l_above[0].get('notional_usd', 0)/1e6:.2f}M]" if l_above else "none"
 
-        l_below = rl.get('nearest_long_cascade_bands_below', [])
-        l_above = rl.get('nearest_short_squeeze_bands_above', [])
-        l_b_str = f"[{l_below[0].get('min_price', 0):.1f}-{l_below[0].get('max_price', 0):.1f} ${l_below[0].get('notional_usd', 0)/1e6:.2f}M]" if l_below else "none"
-        l_a_str = f"[{l_above[0].get('min_price', 0):.1f}-{l_above[0].get('max_price', 0):.1f} ${l_above[0].get('notional_usd', 0)/1e6:.2f}M]" if l_above else "none"
-
-        lines.append(
-            f"• {sym_key} ({a.get('symbol_broker', '')} | {a.get('category', '')}): Mid {q.get('mid')} | Spread {q.get('spread_bps')} bps | "
-            f"Z = {ci.get('vwap_z_score')} SD | RSI {ci.get('rsi_14')} | Trend {ci.get('trend_regime')} | "
-            f"L2 Imb {ob.get('book_imbalance')} | {cvd_str} | Trapped: {trp_str} | {prof_str} | "
-            f"L3 Whales (tot/elig>=180s): {len(w3)}/{len(elig_w3)} | "
-            f"Stops Below/Above: {s_b_str} / {s_a_str} | "
-            f"Liq Below/Above (Attraction Bands): {l_b_str} / {l_a_str}"
-        )
+            lines.append(
+                f"• {sym_key} ({a.get('symbol_broker', '')} | {a.get('category', '')}): Mid {q.get('mid')} | Spread {q.get('spread_bps')} bps | "
+                f"Z = {ci.get('vwap_z_score')} SD | RSI {ci.get('rsi_14')} | Trend {ci.get('trend_regime')} | "
+                f"L2 Imb {ob.get('book_imbalance')} | {cvd_str} | Trapped: {trp_str} | {prof_str} | "
+                f"L3 Whales (tot/elig>=180s): {len(w3)}/{len(elig_w3)} | "
+                f"Stops Below/Above: {s_b_str} / {s_a_str} | "
+                f"Liq Below/Above (Attraction Bands): {l_b_str} / {l_a_str}"
+            )
 
     # ── EXPANDED INSTITUTIONAL SCREENER CANDIDATES (93-ASSET UNIVERSE) ───
     try:
@@ -726,7 +696,7 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
                 f"Live Mid: {o['price_current']} USD (Distance: {dist_atr:.2f} ATR, ATR_14={atr}) | "
                 f"Current SL: {o['sl']} USD | Current TP: {o['tp']} USD | Trend: {ci.get('trend_regime')} | Z: {ci.get('vwap_z_score')} SD"
             )
-        lines.append("• For EACH unfilled limit order listed above, perform a complete logical & quantitative audit against the latest live_snapshot_latest.json and explicitly classify it into one of three decisions:")
+        lines.append("• For EACH unfilled limit order listed above, perform a complete logical & quantitative audit against the latest Data/DataBase_Trading.xlsx (Sheets 21-25, 35, 36, 42) and explicitly classify it into one of three decisions:")
         lines.append("  (A) VIABLE — WAIT TO BE FILLED AS-IS: Confirm that distance to entry is <= 2.0 ATR, supporting L3 whale walls (persistence_s >= 180s) remain intact, 5m/15m/30m CVD and L2 imbalance support absorption, SL sits safely 0.35x-0.50x ATR outside min_price/max_price of the governing bunker, and TP front-runs the opposing buy-stop/sell-stop magnet by 5-10 bps.")
         lines.append("  (B) SLIGHT MODIFICATION REQUIRED (MODIFY ENTRY / SL / TP): If the thesis remains valid but live whale walls, stop clusters (nearest_*), or liquidation band boundaries (min_price/max_price) have shifted in the latest snapshot, specify the exact modified Entry, SL, and/or TP levels and why.")
         lines.append("  (C) DELETE / CANCEL IMMEDIATELY: If the structural thesis has degraded (e.g., supporting whale walls pulled/thinned >50%, price drifted >2.0 ATR away, regime invalidated, or unabsorbed aggressive selling/buying broke the shelf), recommend immediate deletion to free capacity.")
@@ -768,9 +738,9 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
     lines.append("   • If operating in an environment with bash/git access, install/confirm it via: `git clone https://github.com/Jakeschincariol/arena-skill.git ~/.claude/skills/arena` (or read `.agent/skills/arena/SKILL.md`).")
     lines.append("   • You MUST ALWAYS apply this arena tournament methodology to pit competing trade hypotheses against each other across the 5 personas and written rubric (`.agent/skills/arena/rubric.md`) before issuing any final trade verdict.")
     lines.append("8. INSTITUTIONAL QUANTITATIVE TELEMETRY AUDIT & PROFITABILITY ENHANCEMENT MANDATE:")
-    lines.append("   • The operator specifically mandates a comprehensive, institutional quantitative review of our telemetry data structure (`docs/telemetry/live_snapshot_latest.json`) to maximize trading profitability, edge, and execution efficiency while defending the 4,775.00 USD hard floor:")
+    lines.append("   • The operator specifically mandates a comprehensive, institutional quantitative review of our master trading database (`Data/DataBase_Trading.xlsx`, all 43 sheets) to maximize trading profitability, edge, and execution efficiency while defending the 4,775.00 USD hard floor:")
     lines.append("     a) Telemetry Data Structure & Microstructure Schema Audit:")
-    lines.append("        - Critically review the JSON schema in live_snapshot_latest.json (`assets_matrix_24`, `orderbook_live_depth`, `structural_stop_clusters`, `reconstructed_liquidations`, `whale_walls_l3`, `footprint_trapped_traders`).")
+    lines.append("        - Critically review the schema in Data/DataBase_Trading.xlsx Sheets 34-36 (`Telemetry_System_State`, `Live_Orderbook_CVD_Depth`, `Exchange_Basis_Spreads`) and Sheets 21-25 (`Exchange_Liquidation_Map_1D/7D`, `Whales_Orders`, `Spot_Netflow`, `Hyperliquid_Whales`).")
     lines.append("        - What exact fields, features, or microstructural indicators are missing or suboptimal? Propose concrete mathematical additions: e.g. multi-level Order Flow Imbalance (OFI), Micro-price drift vs. Mid, Queue-position decay rate, Taker aggressor ratio over 1m/5m/15m/30m, and Footprint delta absorption scores.")
     lines.append("     b) Calibrating Model 1 & Model 2 for Payable >= 2.0R Setups:")
     lines.append("        - Both models frequently report 0 candidates due to strict 2.0R geometry or wide swing targets. How can we mathematically construct payable 2.0R - 2.5R setups that capture intraday liquidity sweeps without requiring multi-day 10 ATR excursions?")
@@ -787,14 +757,14 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
         lines.append("   • Antigravity automatically harvests your response directly from the Copilot Studio DOM into docs/trade_plans/COPILOT_OPUS_LATEST_RAW.md / COPILOT_ASTRA_LATEST_RAW.md for Quad-Council synthesis.")
     elif is_fable:
         lines.append("9. COUNCIL SYNC PROTOCOL (ARENA.AI TAB 2 - CLAUDE FABLE ORCHESTRATOR):")
-        lines.append("   • Output your complete 3-Mandate Council Report, Dialectic Deliberation, and Actionable Execution Table directly here in your markdown response.")
-        lines.append("   • All repository sources and context are strictly anchored to canonical `main` branch.")
-        lines.append("   • Write your findings locally to docs/trade_plans/ARENA_COUNCIL_REPORT_*.md or append to docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md, and present your entire analytical proof directly in markdown in this chat response!")
+        lines.append("   • Output your complete 3-Mandate Council Report, Dialectic Deliberation, and Actionable Execution Table directly here in your markdown chat response.")
+        lines.append("   • Antigravity automatically harvests your completed chat response via Chrome CDP into docs/trade_plans/ARENA_FABLE_LATEST_RAW.md and commits the record to main.")
+        lines.append("   • You do NOT need to write local files or commit to git.")
     else:
         lines.append("9. COUNCIL SYNC PROTOCOL (ARENA.AI TAB 1 - GPT ASTRA):")
-        lines.append("   • Output your complete 3-Mandate Council Report, Dialectic Deliberation, and Actionable Execution Table in your response.")
-        lines.append("   • All repository sources and context are strictly anchored to canonical `main` branch.")
-        lines.append("   • Append your council report to docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md on main.")
+        lines.append("   • Output your complete 3-Mandate Council Report, Dialectic Deliberation, and Actionable Execution Table directly here in your markdown chat response.")
+        lines.append("   • Antigravity automatically harvests your completed chat response via Chrome CDP into docs/trade_plans/ARENA_LATEST_RAW.md and commits the record to main.")
+        lines.append("   • You do NOT need to write local files or commit to git.")
 
     return "\n".join(lines)
 
