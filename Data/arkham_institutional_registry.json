@@ -389,10 +389,10 @@
     "holdings_breakdown": [
       {
         "symbol": "ETH",
-        "price": "$2,407.59",
+        "price": "$2,420.19",
         "amount": "ETH",
-        "value_usd": "$1.26K",
-        "change_24h": "+0.31%"
+        "value_usd": "$1.27K",
+        "change_24h": "+0.62%"
       },
       {
         "symbol": "USDC",
@@ -403,29 +403,29 @@
       },
       {
         "symbol": "UNI",
-        "price": "$7.18",
+        "price": "$7.23",
         "amount": "UNI",
-        "value_usd": "$54.86",
+        "value_usd": "$55.24",
         "change_24h": "+0.14%"
       },
       {
         "symbol": "BNB",
-        "price": "$722.8",
+        "price": "$725.2",
         "amount": "BNB",
-        "value_usd": "$4.18",
-        "change_24h": "+0.8%"
+        "value_usd": "$4.2",
+        "change_24h": "+0.91%"
       },
       {
         "symbol": "AVAX",
-        "price": "$9.7",
+        "price": "$9.75",
         "amount": "AVAX",
         "value_usd": "$0.28",
-        "change_24h": "-0.72%"
+        "change_24h": "-0.41%"
       }
     ],
     "category": "MARKET_MAKER_HFT",
     "priority": "MEDIUM",
-    "last_updated_utc": "2026-10-19 00:43:14 UTC"
+    "last_updated_utc": "2026-10-19 01:33:03 UTC"
   },
   "usg": {
     "slug": "usg",
@@ -436,17 +436,17 @@
     "holdings_breakdown": [
       {
         "symbol": "BTC",
-        "price": "$82,125",
+        "price": "$82,407",
         "amount": "BTC",
-        "value_usd": "$25.2B",
-        "change_24h": "+0.89%"
+        "value_usd": "$25.28B",
+        "change_24h": "+1.05%"
       },
       {
         "symbol": "ETH",
-        "price": "$2,407.93",
+        "price": "$2,420.56",
         "amount": "ETH",
-        "value_usd": "$41.98M",
-        "change_24h": "+0.31%"
+        "value_usd": "$42.2M",
+        "change_24h": "+0.57%"
       },
       {
         "symbol": "USDC",
@@ -464,22 +464,22 @@
       },
       {
         "symbol": "BNB",
-        "price": "$722.63",
+        "price": "$725.31",
         "amount": "BNB",
-        "value_usd": "$6.6K",
-        "change_24h": "+0.79%"
+        "value_usd": "$6.63K",
+        "change_24h": "+0.94%"
       },
       {
         "symbol": "AVAX",
-        "price": "$9.71",
+        "price": "$9.74",
         "amount": "AVAX",
-        "value_usd": "$32.08",
-        "change_24h": "-0.51%"
+        "value_usd": "$32.18",
+        "change_24h": "-0.61%"
       }
     ],
     "category": "SOVEREIGN_TREASURY",
     "priority": "HIGH",
-    "last_updated_utc": "2026-10-19 00:43:21 UTC"
+    "last_updated_utc": "2026-10-19 01:33:09 UTC"
   },
   "el-salvador": {
     "slug": "el-salvador",
@@ -1679,15 +1679,15 @@
     "holdings_breakdown": [
       {
         "symbol": "BTC",
-        "price": "$82,102",
+        "price": "$82,423",
         "amount": "BTC",
-        "value_usd": "$52.73",
-        "change_24h": "+0.9%"
+        "value_usd": "$52.94",
+        "change_24h": "+1.1%"
       }
     ],
     "category": "SOVEREIGN_TREASURY",
     "priority": "MEDIUM",
-    "last_updated_utc": "2026-10-19 00:43:26 UTC"
+    "last_updated_utc": "2026-10-19 01:33:15 UTC"
   },
   "uk": {
     "slug": "uk",
@@ -1698,15 +1698,15 @@
     "holdings_breakdown": [
       {
         "symbol": "BTC",
-        "price": "$82,102",
+        "price": "$82,423",
         "amount": "BTC",
-        "value_usd": "$5.03B",
-        "change_24h": "+0.9%"
+        "value_usd": "$5.05B",
+        "change_24h": "+1.1%"
       }
     ],
     "category": "SOVEREIGN_TREASURY",
     "priority": "MEDIUM",
-    "last_updated_utc": "2026-10-19 00:48:01 UTC"
+    "last_updated_utc": "2026-10-19 01:33:21 UTC"
   },
   "druk-holding-investments": {
     "slug": "druk-holding-investments",
@@ -1717,28 +1717,28 @@
     "holdings_breakdown": [
       {
         "symbol": "BTC",
-        "price": "$82,324",
+        "price": "$82,392",
         "amount": "BTC",
-        "value_usd": "$42.68M",
-        "change_24h": "+1.13%"
+        "value_usd": "$42.71M",
+        "change_24h": "+1.08%"
       },
       {
         "symbol": "BNB",
-        "price": "$723.96",
+        "price": "$725.19",
         "amount": "BNB",
-        "value_usd": "$21.34K",
-        "change_24h": "+0.99%"
+        "value_usd": "$21.37K",
+        "change_24h": "+0.94%"
       },
       {
         "symbol": "ETH",
-        "price": "$2,413.5",
+        "price": "$2,419.96",
         "amount": "ETH",
-        "value_usd": "$17.45K",
-        "change_24h": "+0.51%"
+        "value_usd": "$17.5K",
+        "change_24h": "+0.61%"
       }
     ],
     "category": "SOVEREIGN_TREASURY",
     "priority": "MEDIUM",
-    "last_updated_utc": "2026-10-19 00:48:06 UTC"
+    "last_updated_utc": "2026-10-19 01:33:27 UTC"
   }
 }
