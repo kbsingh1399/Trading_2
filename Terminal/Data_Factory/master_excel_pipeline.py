@@ -31,8 +31,28 @@ from Terminal.Data_Factory.atomic_xlsx import atomic_save, check_minimums, cache
 from Cycle_201_fixes.data_quality import (
     status_color, is_within_24h, parse_chain_from_url_or_text,
     parse_whale_change_pct, long_short_ratio, exchange_basis_bps,
-    extract_largest_holding, dedup_arkham_transfers, WHALE_THRESHOLDS
+    extract_largest_holding, dedup_arkham_transfers, WHALE_THRESHOLDS,
+    quote_or_na, age_hours
 )
+from Cycle_201_fixes.remediation_r2 import (
+    quote_age_or_none, execution_status, orderbook_spread, within_window,
+    harvest_key, sheet_guard, FRESHNESS_MAX_S
+)
+
+REQUIRED_SHEETS = [
+    "Crypto_ETF_Flows", "Top_Institutions", "ETF_Market_Overview", "ETF_Overview",
+    "Spot_ETF_Net_Inflow", "Spot_ETF_Net_Inflow_Graph", "Funding_Rates", "Funding_Fees",
+    "LR_Ratio_Chart", "LR_Ratio_Accounts", "LR_Exchanges_Ratio", "Large_Trades",
+    "Open_Interest", "Open_Interest_Top_Gainers", "Open_Interest_Top_Losers",
+    "Exchange_Open_Interest_Chart15M", "Exchange_Open_Interest_Chart_1H", "Exchange_Open_Interest_Chart_4H",
+    "liquidation_maxpain_1D", "liquidation_maxpain_2D", "Exchange_Liquidation_Map_1D", "Exchange_Liquidation_Map_7D",
+    "Whales_Orders", "Spot_Netflow", "Hyperliquid_Whales", "FF_Economic_Calendar",
+    "FF_News_Latest", "FF_News_Fundamental", "FF_News_Technical", "FF_Trades_Sentiment",
+    "FF_Trades_Individual_Positions", "FF_Live_Trades_Activity", "FF_Top_Traders",
+    "Telemetry_System_State", "Live_Orderbook_CVD_Depth", "Exchange_Basis_Spreads",
+    "Hyperdash_Flow_Feed", "Arkham_Transfers_100K", "Arkham_Whales_Holdings",
+    "Bitcoin_Treasuries", "Volatility_Sentiment", "MT5_Live_Quotes_Account", "Cognitive_Council_Telemetry"
+]
 
 # Styles & Fonts
 FONT_NAME = "Segoe UI"
@@ -301,10 +321,10 @@ def dump_live_orderbook_cvd_depth(wb, tele_data):
         quote_age_s = num(q.get("quote_age_s"))
         category = d.get("category", "CRYPTO")
         
-        # Single spread definition: (ask-bid)/mid * 1e4 with freshness check (fail-closed)
-        sp = spread_bps(bid, ask, quote_age_s, max_age_s=5.0)
+        # Single spread definition: (ask-bid)/mid * 1e4 with freshness check (fail-closed, 5s max age)
+        sp = orderbook_spread(bid, ask, quote_age_s)
         spread_bps_val = sp
-        spread = (ask - bid) if (ask is not None and bid is not None) else None
+        spread = (ask - bid) if (ask is not None and bid is not None and ask > bid) else None
         
         vb = ob.get("venue_basis", {})
         if isinstance(vb, dict):
@@ -711,7 +731,9 @@ def dump_hyperdash_flow_feed(wb, tele_data):
 # -------------------------------------------------------------
 # 5. Arkham Transfers 100K Sheet
 # -------------------------------------------------------------
-def dump_arkham_transfers_100k(wb, arkham_transfers):
+def dump_arkham_transfers_100k(wb, arkham_transfers, harvest_epoch=None):
+    if harvest_epoch is None:
+        harvest_epoch = time.time()
     ws = recreate_sheet(wb, "Arkham_Transfers_100K")
     
     ws.merge_cells("A1:K1")
@@ -736,7 +758,18 @@ def dump_arkham_transfers_100k(wb, arkham_transfers):
         c.border = BORDER_HEADER
     ws.row_dimensions[2].height = 24
     
-    deduped = dedup_arkham_transfers(arkham_transfers)
+    seen_keys = set()
+    deduped = []
+    for tx in arkham_transfers:
+        time_label = tx.get("time", "")
+        if not within_window(time_label, window_h=24.0):
+            continue
+        key = harvest_key(tx, harvest_epoch)
+        if key is None or key in seen_keys:
+            continue
+        seen_keys.add(key)
+        deduped.append(tx)
+        
     for r_idx, tx in enumerate(deduped, 3):
         idx_num = r_idx - 2
         time_str = tx.get("time", "")
@@ -1257,9 +1290,9 @@ def dump_mt5_live_quotes_account(wb, tele_data):
         b_sym = d.get("symbol_broker", sym)
         category = d.get("category", "CRYPTO")
         
-        bid = q.get("bid", 0.0) or 0.0
-        ask = q.get("ask", 0.0) or 0.0
-        quote_age_s = q.get("quote_age_s", 0.5)
+        bid = q.get("bid")
+        ask = q.get("ask")
+        quote_age_s = quote_age_or_none(q.get("quote_age_s"))
         
         digits = specs.get("digits", 2)
         contract_sz = specs.get("contract_size", 1.0)
@@ -1276,21 +1309,14 @@ def dump_mt5_live_quotes_account(wb, tele_data):
                 ask = s_info.ask
                 quote_age_s = 0.1
                 
-        b_num, a_num = num(bid), num(ask)
-        if b_num is not None and a_num is not None and b_num > 0 and a_num > 0 and a_num > b_num:
-            spread = a_num - b_num
-            sbps = spread_bps(b_num, a_num, quote_age_s=quote_age_s, max_age_s=60.0)
-            if sbps is None:
-                sbps = (spread / ((a_num + b_num) / 2.0)) * 10000.0
-            status_val = "ACTIVE EXECUTION"
-        else:
-            spread = 0.0
-            sbps = 0.0
-            status_val = "INACTIVE"
+        b_num, a_num = quote_or_na(bid), quote_or_na(ask)
+        status_val, status_color_val = execution_status(b_num, a_num, quote_age_s)
+        sbps = orderbook_spread(b_num, a_num, quote_age_s)
+        spread = (a_num - b_num) if (b_num is not None and a_num is not None and a_num > b_num) else 0.0
                 
         row_vals = [
-            b_sym, category, cell(b_num) if b_num is not None else 0.0, cell(a_num) if a_num is not None else 0.0,
-            spread, sbps, tick_sz, digits,
+            b_sym, category, cell(b_num), cell(a_num),
+            spread, sbps if sbps is not None else "N/A", tick_sz, digits,
             contract_sz, min_lot, status_val
         ]
         fill = FILL_ZEBRA if curr_r % 2 == 0 else FILL_WHITE
@@ -1303,9 +1329,12 @@ def dump_mt5_live_quotes_account(wb, tele_data):
                 cell_item.alignment = ALIGN_CENTER
                 if c_idx == 1: cell_item.font = FONT_DATA_BOLD
                 elif c_idx == 11:
-                    if val == "ACTIVE EXECUTION":
+                    if status_color_val == "GREEN":
                         cell_item.font = FONT_GREEN
                         cell_item.fill = FILL_GREEN
+                    elif status_color_val == "RED":
+                        cell_item.font = FONT_RED
+                        cell_item.fill = FILL_RED
                     else:
                         cell_item.font = FONT_AMBER
                         cell_item.fill = FILL_AMBER
@@ -1363,7 +1392,7 @@ def dump_cognitive_council_telemetry(wb, daemons_status):
         (
             "Google Gemini Web2API Council Daemon",
             "http://localhost:8081",
-            daemons_status.get("Web2API_8081", "UNKNOWN"),
+            daemons_status.get("Web2API_8081", "STANDBY (UNPROBED)"),
             "Gemini 3.7 Flash, 3.5 Flash Thinking, 3.1 Pro (11 Models)",
             "Bearer sk-gemini (Endogen Architecture)",
             "/v1/models & /v1/chat/completions",
@@ -1372,7 +1401,7 @@ def dump_cognitive_council_telemetry(wb, daemons_status):
         (
             "Heretic Engine Daemon",
             "http://localhost:8083",
-            daemons_status.get("Heretic_8083", "UNKNOWN"),
+            daemons_status.get("Heretic_8083", "STANDBY (UNPROBED)"),
             "heretic-llm (v2.0.0.dev0, p-e-w/heretic)",
             "Internal HTTP / Health Telemetry",
             "/health & Data/heretic_daemon_status.json",
@@ -1381,7 +1410,7 @@ def dump_cognitive_council_telemetry(wb, daemons_status):
         (
             "Arena.ai Consensus Council",
             "Chrome CDP (Port 9222) / Local Daemon",
-            daemons_status.get("Arena_Status", "UNKNOWN"),
+            daemons_status.get("Arena_Status", "STANDBY (UNPROBED)"),
             "Multi-Model Tournament (Arena.ai)",
             "Chrome CDP Remote Debugging Interface",
             "docs/trade_plans/ARENA_LATEST_RAW.md",
@@ -1430,9 +1459,13 @@ def dump_cognitive_council_telemetry(wb, daemons_status):
             elif c_idx == 3:
                 cell.alignment = ALIGN_CENTER
                 v_str = str(val).upper()
-                if "ONLINE" in v_str or "ACTIVE" in v_str or "SCHEDULED" in v_str:
+                c_status = status_color(v_str)
+                if c_status == "GREEN":
                     cell.font = FONT_GREEN
                     cell.fill = FILL_GREEN
+                elif c_status == "RED":
+                    cell.font = FONT_RED
+                    cell.fill = FILL_RED
                 else:
                     cell.font = FONT_AMBER
                     cell.fill = FILL_AMBER
@@ -1676,30 +1709,11 @@ def run_pipeline():
         
     # 5. Harvest Live Arkham Transfers from CDP
     print("Harvesting Live Arkham Transfers (USD >= $100K) via Chrome CDP...")
+    harvest_epoch = time.time()
     arkham_transfers = asyncio.run(harvest_live_arkham(num_pages=35))
     if not arkham_transfers:
-        print("Live Arkham harvest returned 0 transfers; checking snapshot fallback...")
-        snap_path = Path("Data/arkham/latest/arkham_snapshot.json")
-        if snap_path.exists():
-            try:
-                snap_data = json.load(open(snap_path, "r", encoding="utf-8"))
-                for tx in snap_data.get("recent_classified_transfers", []):
-                    arkham_transfers.append({
-                        "time": tx.get("time", ""),
-                        "chain": tx.get("chain", "Ethereum"),
-                        "from_entity": tx.get("from_entity", ""),
-                        "from_address": tx.get("from_address", ""),
-                        "to_entity": tx.get("to_entity", ""),
-                        "to_address": tx.get("to_address", ""),
-                        "token_value": tx.get("amount", ""),
-                        "token_symbol": tx.get("token", ""),
-                        "usd_value": tx.get("usd_value", ""),
-                        "tx_hash": tx.get("tx_hash", "")
-                    })
-                print(f"Loaded {len(arkham_transfers)} fallback transfers from snapshot")
-            except Exception as e:
-                print(f"Fallback snapshot load error: {e}")
-    print(f"Harvested / Loaded {len(arkham_transfers)} Arkham transfers")
+        raise RuntimeError("Live Arkham harvest returned 0 transfers; failing closed without stale snapshot fallback.")
+    print(f"Harvested {len(arkham_transfers)} raw Arkham transfers from Chrome CDP")
     
     # 6. Check Cognitive Daemons Status
     print("Probing Cognitive Daemons...")
@@ -1742,7 +1756,7 @@ def run_pipeline():
     dump_hyperdash_flow_feed(wb, tele_data)
     
     print("Dumping Arkham_Transfers_100K...")
-    dump_arkham_transfers_100k(wb, arkham_transfers)
+    dump_arkham_transfers_100k(wb, arkham_transfers, harvest_epoch=harvest_epoch)
     
     print("Dumping Arkham_Whales_Holdings...")
     dump_arkham_whales_holdings(wb, tele_data)
@@ -1764,6 +1778,14 @@ def run_pipeline():
     
     final_sheet_count = len(wb.sheetnames)
     
+    # Check sheet guard against canonical specification
+    print("Checking sheet guard against specification...")
+    missing_sheets, unexpected_sheets = sheet_guard(wb.sheetnames, REQUIRED_SHEETS)
+    if missing_sheets:
+        raise RuntimeError(f"Master workbook failed sheet_guard: missing required sheets: {missing_sheets}")
+    if unexpected_sheets:
+        print(f"Note: Workbook contains additional sheets: {unexpected_sheets}")
+        
     # Pre-save minimum sanity check
     counts = {
         "orderflow_rows": len(tele_data.get("assets_matrix_24", {})),
@@ -1772,8 +1794,8 @@ def run_pipeline():
     check_minimums(counts, {"orderflow_rows": 20, "arkham_transfers": 20})
     
     # Save Workbook atomically with .bak backup
-    print(f"Saving master workbook atomically via atomic_save to {excel_path} (expected_sheets={initial_sheet_count})...")
-    atomic_save(wb, excel_path, expected_sheets=initial_sheet_count)
+    print(f"Saving master workbook atomically via atomic_save to {excel_path} (expected_sheets={len(REQUIRED_SHEETS)})...")
+    atomic_save(wb, excel_path, expected_sheets=len(REQUIRED_SHEETS))
     elapsed_time = time.time() - start_time
     
     print("=" * 70)

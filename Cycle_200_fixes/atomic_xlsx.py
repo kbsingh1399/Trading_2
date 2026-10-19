@@ -1,6 +1,7 @@
-"""Cycle 200 drop-in: atomic workbook save, row-count guard, Excel-equivalent formula cache.
+"""Cycle 201 drop-in (supersedes Cycle_200_fixes/atomic_xlsx.py).
 
-Pure and unit-tested in test_cycle200_fixes.py.
+Atomic workbook save with verify-before-replace, row-count guard, and an
+Excel-equivalent '=F+G+H' evaluator that treats a missing operand as N/A by default.
 """
 from __future__ import annotations
 
@@ -9,49 +10,87 @@ import re
 import shutil
 from pathlib import Path
 
+import openpyxl
+
 try:
     from .fail_closed import NA, num
 except ImportError:  # run as plain script / tests
     from fail_closed import NA, num
 
-_SUM_FORMULA = re.compile(r"^=\s*([A-Z]+)(\d+)\s*\+\s*([A-Z]+)(\d+)\s*\+\s*([A-Z]+)(\d+)\s*$")
+_SUM_FORMULA = re.compile(
+    r"^=\s*([A-Z]+)(\d+)\s*\+\s*([A-Z]+)(\d+)\s*\+\s*([A-Z]+)(\d+)\s*$"
+)
 
 
-def atomic_save(wb, path) -> None:
-    """Serialize to a temp file in the same directory, fsync, then os.replace.
+def _default_verify(path: Path) -> bool:
+    """Re-open the written temp file. Raises if it is not a readable workbook."""
+    wb = openpyxl.load_workbook(path, read_only=True)
+    try:
+        return len(wb.sheetnames) > 0
+    finally:
+        wb.close()
 
-    Keeps the previous workbook as <name>.bak so a bad run can be rolled back.
+
+def atomic_save(wb, path, verify=None, expected_sheets: int | None = None) -> None:
+    """Write temp -> fsync -> verify temp -> keep .bak -> os.replace.
+
+    * The live file is replaced only after the temp file re-opens and passes
+      verification (sheet count == expected_sheets when given).
+    * If the target is locked (e.g. open in Excel) os.replace raises
+      PermissionError; we raise RuntimeError and the original is left intact.
     """
     path = Path(path)
     tmp = path.with_name(path.stem + ".tmp" + path.suffix)
     bak = path.with_name(path.stem + ".bak" + path.suffix)
+
     wb.save(tmp)
     with open(tmp, "a+b") as fh:
         os.fsync(fh.fileno())
+
+    ok = (verify(tmp) if verify is not None else _default_verify(tmp))
+    if not ok:
+        raise RuntimeError(f"verification failed for {tmp}; original left intact")
+    if expected_sheets is not None:
+        _wb_check = openpyxl.load_workbook(tmp, read_only=True)
+        try:
+            n = len(_wb_check.sheetnames)
+        finally:
+            _wb_check.close()
+        if n != expected_sheets:
+            raise RuntimeError(f"sheet count {n} != expected {expected_sheets}; original left intact")
+
     if path.exists():
         shutil.copy2(path, bak)
-    os.replace(tmp, path)
+    try:
+        os.replace(tmp, path)
+    except PermissionError as exc:
+        raise RuntimeError(
+            f"{path} is locked (open in Excel?). Original left intact; new copy kept at {tmp}"
+        ) from exc
 
 
 def check_minimums(counts: dict, minimums: dict) -> None:
-    """Raise before saving if any harvest returned fewer rows than required.
-
-    Prevents an outage from overwriting a good sheet with an empty one.
-    """
+    """Raise if any harvest is below its minimum. A missing key counts as 0 (fail closed)."""
     short = {k: (counts.get(k, 0), m) for k, m in minimums.items() if counts.get(k, 0) < m}
     if short:
         raise RuntimeError(f"refusing to save: harvest below minimum {short}")
 
 
-def cache_sum_formulas(ws, sheet_formula_rows: range | None = None) -> dict:
-    """Replace '=Fr+Gr+Hr'-style formulas with evaluated values, mirroring Excel.
+def cache_sum_formulas(ws, sheet_formula_rows: range | None = None,
+                       blank_policy: str = "na") -> dict:
+    """Evaluate '=Fr+Gr+Hr' formulas and replace them with values.
 
-    Excel semantics: blank operand -> 0; numeric text operand -> its number;
-    any other text (e.g. '-') -> #VALUE!, which we write as 'N/A' rather than 0.
-    Returns counts: {'cached': n, 'na': m, 'skipped': k}.
-    Note: this REPLACES the formula. If the live formula must survive, write the
-    value to a new column instead (openpyxl cannot store a cached value with a formula).
+    blank_policy:
+      "na"   (default, fail closed): any blank operand -> "N/A". A missing
+             exchange leg must not silently under-report the total.
+      "zero" (explicit opt-in only): blank operand -> 0.
+    Numeric text operands are read with num(). Any other text (e.g. "-") -> "N/A".
+    Returns {'cached': n, 'na': m, 'skipped': k}.
+    NOTE: this replaces the formula. To keep the live formula, write the value
+    to a new column instead.
     """
+    if blank_policy not in ("na", "zero"):
+        raise ValueError("blank_policy must be 'na' or 'zero'")
     out = {"cached": 0, "na": 0, "skipped": 0}
     rows = sheet_formula_rows or range(1, ws.max_row + 1)
     for r in rows:
@@ -63,14 +102,18 @@ def cache_sum_formulas(ws, sheet_formula_rows: range | None = None) -> dict:
             if not m:
                 out["skipped"] += 1
                 continue
-            refs = [(m.group(1), int(m.group(2))), (m.group(3), int(m.group(4))), (m.group(5), int(m.group(6)))]
-            vals = []
-            bad = False
+            refs = [(m.group(1), int(m.group(2))),
+                    (m.group(3), int(m.group(4))),
+                    (m.group(5), int(m.group(6)))]
+            vals, bad = [], False
             for col, row in refs:
                 raw = ws[f"{col}{row}"].value
-                if raw is None or raw == "":
-                    vals.append(0.0)
-                    continue
+                if raw is None or (isinstance(raw, str) and raw.strip() == ""):
+                    if blank_policy == "zero":
+                        vals.append(0.0)
+                        continue
+                    bad = True
+                    break
                 x = num(raw)
                 if x is None:
                     bad = True

@@ -21,12 +21,13 @@ PROMPT_FILE = ROOT / "docs" / "prompts" / "ARENA_CYCLE_201_SYSTEM_AUDIT_VERIFICA
 
 
 async def main():
-    if not PROMPT_FILE.exists():
-        print(f"Error: {PROMPT_FILE} does not exist", file=sys.stderr)
+    prompt_path = pathlib.Path(sys.argv[1]) if len(sys.argv) > 1 else PROMPT_FILE
+    if not prompt_path.exists():
+        print(f"Error: {prompt_path} does not exist", file=sys.stderr)
         return 1
 
-    prompt_text = PROMPT_FILE.read_text(encoding="utf-8")
-    print(f"Loaded prompt from {PROMPT_FILE.name} ({len(prompt_text)} chars)")
+    prompt_text = prompt_path.read_text(encoding="utf-8")
+    print(f"Loaded prompt from {prompt_path.name} ({len(prompt_text)} chars)")
 
     ws_url = await get_arena_tab_ws_url("primary")
     if not ws_url:

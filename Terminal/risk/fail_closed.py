@@ -1,7 +1,9 @@
-"""Terminal/risk/fail_closed.py
-=============================
-Canonical drop-in fail-closed numeric parsing and spread/capacity/freshness gates.
-(Hardened Cycle 201 implementation).
+"""Cycle 201 drop-in (supersedes Cycle_200_fixes/fail_closed.py).
+
+Fail-closed numeric parsing and gates. Pure functions, no I/O.
+Conventions:
+  * unknown / malformed / non-finite value -> None (never 0.0, never 50.0);
+  * every gate returns False (or 0 slots) when any input is None.
 """
 from __future__ import annotations
 

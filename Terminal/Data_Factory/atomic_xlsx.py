@@ -1,6 +1,7 @@
-"""Terminal/Data_Factory/atomic_xlsx.py
-======================================
-Canonical atomic workbook save, row-count guard, and formula evaluation cache.
+"""Cycle 201 drop-in (supersedes Cycle_200_fixes/atomic_xlsx.py).
+
+Atomic workbook save with verify-before-replace, row-count guard, and an
+Excel-equivalent '=F+G+H' evaluator that treats a missing operand as N/A by default.
 """
 from __future__ import annotations
 
@@ -9,15 +10,18 @@ import re
 import shutil
 from pathlib import Path
 
+import openpyxl
+
 try:
     from Terminal.risk.fail_closed import NA, num
 except ImportError:
     try:
         from ..risk.fail_closed import NA, num
     except ImportError:
-        from fail_closed import NA, num
-
-import openpyxl
+        try:
+            from .fail_closed import NA, num
+        except ImportError:
+            from fail_closed import NA, num
 
 _SUM_FORMULA = re.compile(
     r"^=\s*([A-Z]+)(\d+)\s*\+\s*([A-Z]+)(\d+)\s*\+\s*([A-Z]+)(\d+)\s*$"

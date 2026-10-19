@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import math
 import re
+from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional, Sequence, Tuple
 from urllib.parse import urlsplit
 
@@ -24,7 +25,7 @@ _RED_TOKENS = {
     "MISSING", "FAILED", "HARD FLOOR", "CRITICAL", "VIOLATION", "OFFLINE"
 }
 _AMBER_TOKENS = {
-    "MONITORED", "STANDBY", "CALIBRATING", "ELEVATED", "WARNING", "PENDING"
+    "MONITORED", "STANDBY", "CALIBRATING", "ELEVATED", "WARNING", "PENDING", "INACTIVE"
 }
 _GREEN_TOKENS = {
     "ACTIVE", "VERIFIED", "AUTHENTICATED", "CONFIRMED", "OPEN", "SAFE",
@@ -66,6 +67,21 @@ def status_color(val: Any) -> Optional[str]:
     return None
 
 
+status_colour = status_color
+
+
+def quote_or_na(v: Any) -> Optional[float]:
+    """Positive finite float quote or None."""
+    x = num(v)
+    return x if (x is not None and x > 0) else None
+
+
+def age_hours(label: Any) -> Optional[float]:
+    """Parses relative time string (e.g. '3 hours ago', '15m ago') into hours float."""
+    sec = parse_time_ago_seconds(label)
+    return (sec / 3600.0) if sec is not None else None
+
+
 # ---------------------------------------------------------------- time parsing (24h)
 _TIME_AGO = re.compile(
     r"^(?:about\s+)?(\d+)\s*(s|sec|secs|seconds|m|min|mins|minutes|h|hr|hrs|hours|d|day|days)\s*(?:ago)?$",
@@ -74,29 +90,40 @@ _TIME_AGO = re.compile(
 
 
 def parse_time_ago_seconds(label: Any) -> Optional[float]:
-    """Parses '2h ago', '15m ago', '30s', '1 day ago' into total seconds.
+    """Parses '2h ago', '15m ago', '30s', '1 day ago' or ISO timestamp into total seconds.
     Returns None for invalid or unparseable labels.
     """
     if label is None:
         return None
-    s = str(label).strip().lower()
-    if not s or s == "n/a":
+    s = str(label).strip()
+    if not s or s.lower() == "n/a":
         return None
 
     m = _TIME_AGO.match(s)
-    if not m:
-        return None
+    if m:
+        val = float(m.group(1))
+        unit = m.group(2).lower()
+        if unit.startswith("s"):
+            return val
+        elif unit.startswith("m") and not unit.startswith("mo"):
+            return val * 60.0
+        elif unit.startswith("h"):
+            return val * 3600.0
+        elif unit.startswith("d"):
+            return val * 86400.0
 
-    val = float(m.group(1))
-    unit = m.group(2).lower()
-    if unit.startswith("s"):
-        return val
-    elif unit.startswith("m") and not unit.startswith("mo"):
-        return val * 60.0
-    elif unit.startswith("h"):
-        return val * 3600.0
-    elif unit.startswith("d"):
-        return val * 86400.0
+    # Try ISO/datetime parsing: e.g. "2026-10-18 13:20:59" or "2026-10-18T13:20:59Z"
+    clean_s = s.rstrip("Zz").strip()
+    for fmt in ("%Y-%m-%d %H:%M:%S", "%Y-%m-%dT%H:%M:%S", "%Y-%m-%d"):
+        try:
+            dt = datetime.strptime(clean_s, fmt).replace(tzinfo=timezone.utc)
+            now = datetime.now(timezone.utc)
+            diff = (now - dt).total_seconds()
+            if diff >= 0:
+                return diff
+        except Exception:
+            pass
+
     return None
 
 
