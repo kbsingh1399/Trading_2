@@ -1,5 +1,5 @@
 {
-  "as_of_utc": "2026-10-19 02:18:34 UTC",
+  "as_of_utc": "2026-10-19 02:23:26 UTC",
   "source": "Arkham Intelligence Upgraded Harvester (arkm.com via Chrome CDP)",
   "filter_applied": "USD >= $100K",
   "feed_status": "STREAMING_ACTIVE",
@@ -544,15 +544,15 @@
       "holdings_breakdown": [
         {
           "symbol": "BTC",
-          "price": "$82,428",
+          "price": "$82,459",
           "amount": "BTC",
-          "value_usd": "$602.5M",
+          "value_usd": "$602.72M",
           "change_24h": "+1.06%"
         }
       ],
       "category": "SOVEREIGN_TREASURY",
       "priority": "HIGH",
-      "last_updated_utc": "2026-10-19 01:38:01 UTC"
+      "last_updated_utc": "2026-10-19 02:23:18 UTC"
     },
     "microstrategy": {
       "slug": "microstrategy",
@@ -563,15 +563,15 @@
       "holdings_breakdown": [
         {
           "symbol": "BTC",
-          "price": "$82,416",
+          "price": "$82,411",
           "amount": "BTC",
           "value_usd": "$39.41B",
-          "change_24h": "+1.07%"
+          "change_24h": "+1%"
         }
       ],
       "category": "CORPORATE_TREASURY",
       "priority": "HIGH",
-      "last_updated_utc": "2026-10-19 01:38:08 UTC"
+      "last_updated_utc": "2026-10-19 02:23:24 UTC"
     },
     "tesla": {
       "slug": "tesla",
@@ -2075,15 +2075,15 @@
       "holdings_breakdown": [
         {
           "symbol": "BTC",
-          "price": "$82,423",
+          "price": "$82,373",
           "amount": "BTC",
-          "value_usd": "$52.94",
-          "change_24h": "+1.1%"
+          "value_usd": "$52.9",
+          "change_24h": "+0.94%"
         }
       ],
       "category": "SOVEREIGN_TREASURY",
       "priority": "MEDIUM",
-      "last_updated_utc": "2026-10-19 01:33:15 UTC"
+      "last_updated_utc": "2026-10-19 02:23:00 UTC"
     },
     "uk": {
       "slug": "uk",
@@ -2094,15 +2094,15 @@
       "holdings_breakdown": [
         {
           "symbol": "BTC",
-          "price": "$82,423",
+          "price": "$82,373",
           "amount": "BTC",
-          "value_usd": "$5.05B",
-          "change_24h": "+1.1%"
+          "value_usd": "$5.04B",
+          "change_24h": "+0.94%"
         }
       ],
       "category": "SOVEREIGN_TREASURY",
       "priority": "MEDIUM",
-      "last_updated_utc": "2026-10-19 01:33:21 UTC"
+      "last_updated_utc": "2026-10-19 02:23:06 UTC"
     },
     "druk-holding-investments": {
       "slug": "druk-holding-investments",
@@ -2113,29 +2113,29 @@
       "holdings_breakdown": [
         {
           "symbol": "BTC",
-          "price": "$82,392",
+          "price": "$82,484",
           "amount": "BTC",
-          "value_usd": "$42.71M",
-          "change_24h": "+1.08%"
+          "value_usd": "$42.76M",
+          "change_24h": "+1.1%"
         },
         {
           "symbol": "BNB",
-          "price": "$725.19",
+          "price": "$726.52",
           "amount": "BNB",
-          "value_usd": "$21.37K",
-          "change_24h": "+0.94%"
+          "value_usd": "$21.41K",
+          "change_24h": "+1.07%"
         },
         {
           "symbol": "ETH",
-          "price": "$2,419.96",
+          "price": "$2,425.87",
           "amount": "ETH",
-          "value_usd": "$17.5K",
-          "change_24h": "+0.61%"
+          "value_usd": "$17.54K",
+          "change_24h": "+0.86%"
         }
       ],
       "category": "SOVEREIGN_TREASURY",
       "priority": "MEDIUM",
-      "last_updated_utc": "2026-10-19 01:33:27 UTC"
+      "last_updated_utc": "2026-10-19 02:23:12 UTC"
     }
   },
   "whale_alerts": [
