@@ -64,7 +64,7 @@ def harvest_key(t: dict, harvest_epoch: float = 0.0) -> Optional[tuple]:
     flagged for review, not deduplicated on weaker fields.
     """
     tx = str(t.get("tx_hash", "")).strip().lower()
-    if not (tx.startswith("0x") and len(tx) == 66):
+    if not (tx and ((tx.startswith("0x") and len(tx) == 66) or (len(tx) >= 64 and not tx.startswith("0x")))):
         return None
     s = lambda k: str(t.get(k, "")).strip().lower()  # noqa: E731
     return (tx, s("from_address"), s("to_address"), s("token_symbol"),
