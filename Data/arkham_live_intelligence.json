@@ -1,5 +1,5 @@
 {
-  "as_of_utc": "2026-10-19 08:54:46 UTC",
+  "as_of_utc": "2026-10-19 09:00:14 UTC",
   "source": "Arkham Intelligence Upgraded Harvester (arkm.com via Chrome CDP)",
   "filter_applied": "USD >= $100K",
   "feed_status": "STREAMING_ACTIVE",
@@ -7,7 +7,7 @@
   "market_flow_sentiment": "NEUTRAL_BALANCED_FLOW",
   "aggregate_metrics": {
     "total_transfers_monitored": 23,
-    "total_observed_volume_usd": 2653960000.0,
+    "total_observed_volume_usd": 4621390000.0,
     "exchange_inflow_events": 0,
     "exchange_outflow_events": 0,
     "market_maker_events": 0,
@@ -29,7 +29,7 @@
       "inflow_usd": 0.0,
       "outflow_usd": 0.0,
       "tx_count": 0,
-      "whale_txs": 6
+      "whale_txs": 0
     },
     "ETH": {
       "inflow_usd": 0.0,
@@ -59,7 +59,7 @@
       "inflow_usd": 0.0,
       "outflow_usd": 0.0,
       "tx_count": 0,
-      "whale_txs": 17
+      "whale_txs": 23
     }
   },
   "trending_institutional_entities": [
@@ -843,10 +843,81 @@
       "address_count": "69.7M Addresses",
       "total_portfolio_usd": "$0.00",
       "portfolio_change_24h": "",
-      "holdings_breakdown": [],
+      "holdings_breakdown": [
+        {
+          "symbol": "BTC",
+          "price": "$82,823",
+          "amount": "BTC",
+          "value_usd": "$79.78B",
+          "change_24h": "+1.43%"
+        },
+        {
+          "symbol": "USDC",
+          "price": "$1",
+          "amount": "USDC",
+          "value_usd": "$11.69B",
+          "change_24h": "\u00b10%"
+        },
+        {
+          "symbol": "ETH",
+          "price": "$2,435.67",
+          "amount": "ETH",
+          "value_usd": "$9.58B",
+          "change_24h": "+1.07%"
+        },
+        {
+          "symbol": "SOL",
+          "price": "$105.77",
+          "amount": "SOL",
+          "value_usd": "$2.24B",
+          "change_24h": "+2.65%"
+        },
+        {
+          "symbol": "LINK",
+          "price": "$12.18",
+          "amount": "LINK",
+          "value_usd": "$1.1B",
+          "change_24h": "+2.01%"
+        },
+        {
+          "symbol": "USDT",
+          "price": "$1",
+          "amount": "USDT",
+          "value_usd": "$356.44M",
+          "change_24h": "\u00b10%"
+        },
+        {
+          "symbol": "AERO",
+          "price": "$0.79",
+          "amount": "AERO",
+          "value_usd": "$249.1M",
+          "change_24h": "-4.7%"
+        },
+        {
+          "symbol": "AVAX",
+          "price": "$9.77",
+          "amount": "AVAX",
+          "value_usd": "$195.86M",
+          "change_24h": "\u00b10%"
+        },
+        {
+          "symbol": "UNI",
+          "price": "$7.41",
+          "amount": "UNI",
+          "value_usd": "$84.1M",
+          "change_24h": "+2.49%"
+        },
+        {
+          "symbol": "CBBTC",
+          "price": "$82,791",
+          "amount": "CBBTC",
+          "value_usd": "$27.11M",
+          "change_24h": "+1.46%"
+        }
+      ],
       "category": "PRIME_CUSTODIAN",
       "priority": "HIGH",
-      "last_updated_utc": "2026-10-19 08:09:30 UTC"
+      "last_updated_utc": "2026-10-19 08:59:42 UTC"
     },
     "okx": {
       "slug": "okx",
@@ -854,74 +925,10 @@
       "address_count": "30.7M Addresses",
       "total_portfolio_usd": "$0.00",
       "portfolio_change_24h": "",
-      "holdings_breakdown": [
-        {
-          "symbol": "BTC",
-          "price": "$82,689",
-          "amount": "BTC",
-          "value_usd": "$12.85B",
-          "change_24h": "+1.32%"
-        },
-        {
-          "symbol": "USDT",
-          "price": "$1",
-          "amount": "USDT",
-          "value_usd": "$8.68B",
-          "change_24h": "\u00b10%"
-        },
-        {
-          "symbol": "ETH",
-          "price": "$2,428.04",
-          "amount": "ETH",
-          "value_usd": "$2.73B",
-          "change_24h": "+0.87%"
-        },
-        {
-          "symbol": "USDC",
-          "price": "$1",
-          "amount": "USDC",
-          "value_usd": "$1.43B",
-          "change_24h": "\u00b10%"
-        },
-        {
-          "symbol": "SOL",
-          "price": "$105.59",
-          "amount": "SOL",
-          "value_usd": "$880.28M",
-          "change_24h": "+2.32%"
-        },
-        {
-          "symbol": "DOGE",
-          "price": "$0.08",
-          "amount": "DOGE",
-          "value_usd": "$520.28M",
-          "change_24h": "+0.95%"
-        },
-        {
-          "symbol": "UNI",
-          "price": "$7.43",
-          "amount": "UNI",
-          "value_usd": "$153.91M",
-          "change_24h": "+2.77%"
-        },
-        {
-          "symbol": "BNB",
-          "price": "$726.32",
-          "amount": "BNB",
-          "value_usd": "$121.71M",
-          "change_24h": "+0.91%"
-        },
-        {
-          "symbol": "LINK",
-          "price": "$12.18",
-          "amount": "LINK",
-          "value_usd": "$105.58M",
-          "change_24h": "+1.84%"
-        }
-      ],
+      "holdings_breakdown": [],
       "category": "CENTRALIZED_EXCHANGE",
       "priority": "HIGH",
-      "last_updated_utc": "2026-10-19 08:09:38 UTC"
+      "last_updated_utc": "2026-10-19 08:59:49 UTC"
     },
     "bybit": {
       "slug": "bybit",
@@ -931,16 +938,93 @@
       "portfolio_change_24h": "",
       "holdings_breakdown": [
         {
+          "symbol": "BTC",
+          "price": "$82,809",
+          "amount": "BTC",
+          "value_usd": "$5.14B",
+          "change_24h": "+1.45%"
+        },
+        {
           "symbol": "USDT",
-          "price": "$461.92",
-          "amount": "",
-          "value_usd": "$2,206.7",
-          "change_24h": "+0.17%"
+          "price": "$1",
+          "amount": "USDT",
+          "value_usd": "$2.95B",
+          "change_24h": "+0.03%"
+        },
+        {
+          "symbol": "ETH",
+          "price": "$2,435.03",
+          "amount": "ETH",
+          "value_usd": "$1.02B",
+          "change_24h": "+1.15%"
+        },
+        {
+          "symbol": "USDC",
+          "price": "$1",
+          "amount": "USDC",
+          "value_usd": "$548.43M",
+          "change_24h": "+0.01%"
+        },
+        {
+          "symbol": "SOL",
+          "price": "$105.73",
+          "amount": "SOL",
+          "value_usd": "$363.52M",
+          "change_24h": "+2.68%"
+        },
+        {
+          "symbol": "DOGE",
+          "price": "$0.08",
+          "amount": "DOGE",
+          "value_usd": "$129.22M",
+          "change_24h": "+1.32%"
+        },
+        {
+          "symbol": "LINK",
+          "price": "$12.17",
+          "amount": "LINK",
+          "value_usd": "$87.81M",
+          "change_24h": "+2.01%"
+        },
+        {
+          "symbol": "UNI",
+          "price": "$7.4",
+          "amount": "UNI",
+          "value_usd": "$60.02M",
+          "change_24h": "+2.49%"
+        },
+        {
+          "symbol": "BNB",
+          "price": "$726.62",
+          "amount": "BNB",
+          "value_usd": "$53.61M",
+          "change_24h": "+0.98%"
+        },
+        {
+          "symbol": "AVAX",
+          "price": "$9.76",
+          "amount": "AVAX",
+          "value_usd": "$37.82M",
+          "change_24h": "\u00b10%"
+        },
+        {
+          "symbol": "AAVE",
+          "price": "$152.93",
+          "amount": "AAVE",
+          "value_usd": "$29.65M",
+          "change_24h": "+0.84%"
+        },
+        {
+          "symbol": "AERO",
+          "price": "$0.8",
+          "amount": "AERO",
+          "value_usd": "$19.87M",
+          "change_24h": "-4.46%"
         }
       ],
       "category": "CENTRALIZED_EXCHANGE",
       "priority": "HIGH",
-      "last_updated_utc": "2026-10-19 08:09:45 UTC"
+      "last_updated_utc": "2026-10-19 08:59:57 UTC"
     },
     "kraken": {
       "slug": "kraken",
@@ -951,7 +1035,7 @@
       "holdings_breakdown": [],
       "category": "CENTRALIZED_EXCHANGE",
       "priority": "HIGH",
-      "last_updated_utc": "2026-10-19 08:14:17 UTC"
+      "last_updated_utc": "2026-10-19 09:00:04 UTC"
     },
     "deribit": {
       "slug": "deribit",
@@ -962,17 +1046,17 @@
       "holdings_breakdown": [
         {
           "symbol": "BTC",
-          "price": "$82,561",
+          "price": "$82,782",
           "amount": "BTC",
-          "value_usd": "$3.37B",
-          "change_24h": "+1.19%"
+          "value_usd": "$3.38B",
+          "change_24h": "+1.36%"
         },
         {
           "symbol": "ETH",
-          "price": "$2,426.87",
+          "price": "$2,435.04",
           "amount": "ETH",
-          "value_usd": "$444.58M",
-          "change_24h": "+0.88%"
+          "value_usd": "$446.08M",
+          "change_24h": "+1.11%"
         },
         {
           "symbol": "USDC",
@@ -990,24 +1074,24 @@
         },
         {
           "symbol": "SOL",
-          "price": "$105.49",
+          "price": "$105.64",
           "amount": "SOL",
           "value_usd": "$2.27M",
-          "change_24h": "+2.28%"
+          "change_24h": "+2.41%"
         },
         {
           "symbol": "BNB",
-          "price": "$724.73",
+          "price": "$725.8",
           "amount": "BNB",
-          "value_usd": "$19.06K",
-          "change_24h": "+0.7%"
+          "value_usd": "$19.09K",
+          "change_24h": "+0.89%"
         },
         {
           "symbol": "CBBTC",
-          "price": "$82,496",
+          "price": "$82,783",
           "amount": "CBBTC",
-          "value_usd": "$14.64",
-          "change_24h": "+1.17%"
+          "value_usd": "$14.69",
+          "change_24h": "+1.45%"
         },
         {
           "symbol": "AVAX",
@@ -1019,7 +1103,7 @@
       ],
       "category": "DERIVATIVES_EXCHANGE",
       "priority": "HIGH",
-      "last_updated_utc": "2026-10-19 08:14:23 UTC"
+      "last_updated_utc": "2026-10-19 09:00:10 UTC"
     },
     "bitfinex": {
       "slug": "bitfinex",
@@ -2006,511 +2090,511 @@
   },
   "whale_alerts": [
     {
-      "tx_hash": "0x1096ef98535ae2f8ddaf5b2f7d509cbb1a6e60297e28977d5ac8714ade90c109",
-      "time": "2026-10-18 22:38:11",
-      "from": "MEV Bot\n(0x06C)",
+      "tx_hash": "0x4f72cff6761c0ea6e77c2e695ed519c3b3cf0147180a51240904f495f5ba5f3b",
+      "time": "2026-10-19 07:21:41",
+      "from": "0x2DAB508284dDf436e9e23e81BFcD16638a67F759",
       "to": "Morpho",
-      "usd_value": 120000000.0,
+      "usd_value": 201110000.0,
       "token": "MORPHO",
       "asset_bucket": "OTHER",
       "flow_tag": "INTERNAL_TRANSFER"
     },
     {
-      "tx_hash": "0x1096ef98535ae2f8ddaf5b2f7d509cbb1a6e60297e28977d5ac8714ade90c109",
-      "time": "2026-10-18 22:38:11",
+      "tx_hash": "0xf0dcc3e3b59dee201f888fd52105ca2f1a2decbf7f13f8fa369be6b7f36bfc2f",
+      "time": "2026-10-19 07:22:19",
       "from": "Morpho",
       "to": "Morpho Blue\n(0xBBB)",
-      "usd_value": 120000000.0,
+      "usd_value": 201090000.0,
       "token": "MORPHO",
       "asset_bucket": "OTHER",
       "flow_tag": "INTERNAL_TRANSFER"
     },
     {
-      "tx_hash": "0x37b1886ca1749a9a0a97ee80883ee90f35813237ba358b17617b48934acec299",
-      "time": "2026-10-18 22:35:35",
-      "from": "MEV Bot\n(0x06C)",
+      "tx_hash": "0xf0dcc3e3b59dee201f888fd52105ca2f1a2decbf7f13f8fa369be6b7f36bfc2f",
+      "time": "2026-10-19 07:22:19",
+      "from": "0x2DAB508284dDf436e9e23e81BFcD16638a67F759",
       "to": "Morpho",
-      "usd_value": 120000000.0,
+      "usd_value": 201090000.0,
       "token": "MORPHO",
       "asset_bucket": "OTHER",
       "flow_tag": "INTERNAL_TRANSFER"
     },
     {
-      "tx_hash": "0x37b1886ca1749a9a0a97ee80883ee90f35813237ba358b17617b48934acec299",
-      "time": "2026-10-18 22:35:35",
+      "tx_hash": "0xd5cf69b13a2e3a75a5cc063f82e9920d392931e1375845c9405fc08d4082706c",
+      "time": "2026-10-19 08:36:39",
       "from": "Morpho",
       "to": "Morpho Blue\n(0xBBB)",
-      "usd_value": 120000000.0,
+      "usd_value": 201050000.0,
       "token": "MORPHO",
       "asset_bucket": "OTHER",
       "flow_tag": "INTERNAL_TRANSFER"
     },
     {
-      "tx_hash": "0x3d550bc2f00ffa3fb866deb158c0e05deb8e2671a82d698036792eeff3e010b6",
-      "time": "2026-10-18 22:32:35",
+      "tx_hash": "0xd5cf69b13a2e3a75a5cc063f82e9920d392931e1375845c9405fc08d4082706c",
+      "time": "2026-10-19 08:36:39",
+      "from": "0x2DAB508284dDf436e9e23e81BFcD16638a67F759",
+      "to": "Morpho",
+      "usd_value": 201050000.0,
+      "token": "MORPHO",
+      "asset_bucket": "OTHER",
+      "flow_tag": "INTERNAL_TRANSFER"
+    },
+    {
+      "tx_hash": "0x06eae34823bf71913f83c6365d47d6fca5261f4138b797656412b292854f73f6",
+      "time": "2026-10-19 07:34:23",
       "from": "Morpho",
       "to": "Morpho Blue\n(0xBBB)",
-      "usd_value": 119990000.0,
+      "usd_value": 201030000.0,
       "token": "MORPHO",
       "asset_bucket": "OTHER",
       "flow_tag": "INTERNAL_TRANSFER"
     },
     {
-      "tx_hash": "0x3d550bc2f00ffa3fb866deb158c0e05deb8e2671a82d698036792eeff3e010b6",
-      "time": "2026-10-18 22:32:35",
-      "from": "MEV Bot\n(0x06C)",
+      "tx_hash": "0xedbd02e292eaddf7c016c884e670d5a3dedd88222721590945562c6df1c05f7b",
+      "time": "2026-10-19 07:34:23",
+      "from": "MEV Bot\n(0xed1)",
       "to": "Morpho",
-      "usd_value": 119990000.0,
+      "usd_value": 201030000.0,
       "token": "MORPHO",
       "asset_bucket": "OTHER",
       "flow_tag": "INTERNAL_TRANSFER"
     },
     {
-      "tx_hash": "0x034f6d5fb9f62bd7f9248f96299bac81b09ed01fa6d73ef7014eee11c5a1c709",
-      "time": "2026-10-18 22:45:11",
-      "from": "MEV Bot\n(0x06C)",
-      "to": "Morpho",
-      "usd_value": 119990000.0,
-      "token": "MORPHO",
-      "asset_bucket": "OTHER",
-      "flow_tag": "INTERNAL_TRANSFER"
-    },
-    {
-      "tx_hash": "0x034f6d5fb9f62bd7f9248f96299bac81b09ed01fa6d73ef7014eee11c5a1c709",
-      "time": "2026-10-18 22:45:11",
+      "tx_hash": "0x77467dc115c87f006d28b0a91bcfa922bf62b31e4bc5b00364aa6c1449d283ac",
+      "time": "2026-10-19 07:34:21",
       "from": "Morpho",
       "to": "Morpho Blue\n(0xBBB)",
-      "usd_value": 119990000.0,
+      "usd_value": 201030000.0,
       "token": "MORPHO",
       "asset_bucket": "OTHER",
       "flow_tag": "INTERNAL_TRANSFER"
     },
     {
-      "tx_hash": "0x3aa9c26b6dd3b401c71ef3bd38ab288472263ceff02f49b92916e84054721831",
-      "time": "2026-10-18 23:23:47",
+      "tx_hash": "0xa6d48dd29053a4f3d3ea33f0c266881ac64f20e473fad9d6c3b379a0c740a557",
+      "time": "2026-10-19 07:34:21",
+      "from": "MEV Bot\n(0x84B)",
+      "to": "Morpho",
+      "usd_value": 201030000.0,
+      "token": "MORPHO",
+      "asset_bucket": "OTHER",
+      "flow_tag": "INTERNAL_TRANSFER"
+    },
+    {
+      "tx_hash": "0x77467dc115c87f006d28b0a91bcfa922bf62b31e4bc5b00364aa6c1449d283ac",
+      "time": "2026-10-19 07:34:21",
+      "from": "MEV Bot\n(0x9FC)",
+      "to": "Morpho",
+      "usd_value": 201030000.0,
+      "token": "MORPHO",
+      "asset_bucket": "OTHER",
+      "flow_tag": "INTERNAL_TRANSFER"
+    },
+    {
+      "tx_hash": "0x06eae34823bf71913f83c6365d47d6fca5261f4138b797656412b292854f73f6",
+      "time": "2026-10-19 07:34:23",
+      "from": "MEV Bot\n(0xF39)",
+      "to": "Morpho",
+      "usd_value": 201030000.0,
+      "token": "MORPHO",
+      "asset_bucket": "OTHER",
+      "flow_tag": "INTERNAL_TRANSFER"
+    },
+    {
+      "tx_hash": "0xa6d48dd29053a4f3d3ea33f0c266881ac64f20e473fad9d6c3b379a0c740a557",
+      "time": "2026-10-19 07:34:21",
       "from": "Morpho",
       "to": "Morpho Blue\n(0xBBB)",
-      "usd_value": 119430000.0,
+      "usd_value": 201030000.0,
       "token": "MORPHO",
       "asset_bucket": "OTHER",
       "flow_tag": "INTERNAL_TRANSFER"
     },
     {
-      "tx_hash": "0x3aa9c26b6dd3b401c71ef3bd38ab288472263ceff02f49b92916e84054721831",
-      "time": "2026-10-18 23:23:47",
-      "from": "MEV Bot\n(0xd22)",
-      "to": "Morpho",
-      "usd_value": 119430000.0,
-      "token": "MORPHO",
-      "asset_bucket": "OTHER",
-      "flow_tag": "INTERNAL_TRANSFER"
-    },
-    {
-      "tx_hash": "0x8b820d5c027cedc2c9699a3606392dced355f9ce85fe0e4a0bd3cb4a3b95860e",
-      "time": "2026-10-19 02:13:27",
-      "from": "Null Address\n(0x000)",
-      "to": "PancakeSwap",
-      "usd_value": 117440000.0,
-      "token": "UNKNOWN",
-      "asset_bucket": "OTHER",
-      "flow_tag": "INTERNAL_TRANSFER"
-    },
-    {
-      "tx_hash": "0x8b820d5c027cedc2c9699a3606392dced355f9ce85fe0e4a0bd3cb4a3b95860e",
-      "time": "2026-10-19 02:13:27",
-      "from": "PancakeSwap",
-      "to": "SyrupBar Token (SYRUP)\n(0x009)",
-      "usd_value": 117440000.0,
-      "token": "UNKNOWN",
-      "asset_bucket": "OTHER",
-      "flow_tag": "INTERNAL_TRANSFER"
-    },
-    {
-      "tx_hash": "0x8b820d5c027cedc2c9699a3606392dced355f9ce85fe0e4a0bd3cb4a3b95860e",
-      "time": "2026-10-19 02:13:27",
-      "from": "PancakeSwap",
-      "to": "Staking\n(0xa5f)",
-      "usd_value": 117110000.0,
-      "token": "UNKNOWN",
-      "asset_bucket": "OTHER",
-      "flow_tag": "INTERNAL_TRANSFER"
-    },
-    {
-      "tx_hash": "0xc76afc0403543ec064120403cd8eecf0802bd4516f375359865278cc5617152a",
-      "time": "2026-10-19 08:21:11",
-      "from": "Capyfi",
-      "to": "OffchainBtcVault (Proxy)\n(0x6cb)",
-      "usd_value": 110430000.0,
-      "token": "WBTC",
-      "asset_bucket": "BTC",
-      "flow_tag": "INTERNAL_TRANSFER"
-    },
-    {
-      "tx_hash": "0xc76afc0403543ec064120403cd8eecf0802bd4516f375359865278cc5617152a",
-      "time": "2026-10-19 08:21:11",
-      "from": "Capyfi",
-      "to": "Staked WBTC (STBTC)\n(0xb40)",
-      "usd_value": 110430000.0,
-      "token": "WBTC",
-      "asset_bucket": "BTC",
-      "flow_tag": "INTERNAL_TRANSFER"
-    },
-    {
-      "tx_hash": "0xc76afc0403543ec064120403cd8eecf0802bd4516f375359865278cc5617152a",
-      "time": "2026-10-19 08:21:11",
+      "tx_hash": "0xedbd02e292eaddf7c016c884e670d5a3dedd88222721590945562c6df1c05f7b",
+      "time": "2026-10-19 07:34:23",
       "from": "Morpho",
       "to": "Morpho Blue\n(0xBBB)",
-      "usd_value": 110430000.0,
+      "usd_value": 201030000.0,
       "token": "MORPHO",
       "asset_bucket": "OTHER",
       "flow_tag": "INTERNAL_TRANSFER"
     },
     {
-      "tx_hash": "0xc76afc0403543ec064120403cd8eecf0802bd4516f375359865278cc5617152a",
-      "time": "2026-10-19 08:21:11",
-      "from": "0x00acd5005200E7009BEB000000E35E1E002b5565",
-      "to": "Capyfi",
-      "usd_value": 110430000.0,
-      "token": "WBTC",
-      "asset_bucket": "BTC",
-      "flow_tag": "INTERNAL_TRANSFER"
-    },
-    {
-      "tx_hash": "0xc76afc0403543ec064120403cd8eecf0802bd4516f375359865278cc5617152a",
-      "time": "2026-10-19 08:21:11",
-      "from": "0x00acd5005200E7009BEB000000E35E1E002b5565",
-      "to": "Morpho",
-      "usd_value": 110430000.0,
-      "token": "MORPHO",
-      "asset_bucket": "OTHER",
-      "flow_tag": "INTERNAL_TRANSFER"
-    },
-    {
-      "tx_hash": "0x631dc34195ca64c74487c15f70bc69440aa12c4f3358cfbfa30cbeb8d5980b15",
-      "time": "2026-10-19 05:21:11",
-      "from": "Capyfi",
-      "to": "OffchainBtcVault (Proxy)\n(0x6cb)",
-      "usd_value": 110200000.0,
-      "token": "WBTC",
-      "asset_bucket": "BTC",
-      "flow_tag": "INTERNAL_TRANSFER"
-    },
-    {
-      "tx_hash": "0x631dc34195ca64c74487c15f70bc69440aa12c4f3358cfbfa30cbeb8d5980b15",
-      "time": "2026-10-19 05:21:11",
+      "tx_hash": "0xd1f6ded03d18540c3ce7cfe3f1a455f1a2ce9cc2d9b9d08e9f308e7faa61875f",
+      "time": "2026-10-19 08:31:19",
       "from": "Morpho",
       "to": "Morpho Blue\n(0xBBB)",
-      "usd_value": 110200000.0,
+      "usd_value": 200960000.0,
       "token": "MORPHO",
       "asset_bucket": "OTHER",
       "flow_tag": "INTERNAL_TRANSFER"
     },
     {
-      "tx_hash": "0x631dc34195ca64c74487c15f70bc69440aa12c4f3358cfbfa30cbeb8d5980b15",
-      "time": "2026-10-19 05:21:11",
-      "from": "0x00acd5005200E7009BEB000000E35E1E002b5565",
-      "to": "Capyfi",
-      "usd_value": 110200000.0,
-      "token": "WBTC",
-      "asset_bucket": "BTC",
-      "flow_tag": "INTERNAL_TRANSFER"
-    },
-    {
-      "tx_hash": "0x631dc34195ca64c74487c15f70bc69440aa12c4f3358cfbfa30cbeb8d5980b15",
-      "time": "2026-10-19 05:21:11",
-      "from": "0x00acd5005200E7009BEB000000E35E1E002b5565",
+      "tx_hash": "0xd1f6ded03d18540c3ce7cfe3f1a455f1a2ce9cc2d9b9d08e9f308e7faa61875f",
+      "time": "2026-10-19 08:31:19",
+      "from": "0x2DAB508284dDf436e9e23e81BFcD16638a67F759",
       "to": "Morpho",
-      "usd_value": 110200000.0,
+      "usd_value": 200960000.0,
       "token": "MORPHO",
       "asset_bucket": "OTHER",
       "flow_tag": "INTERNAL_TRANSFER"
     },
     {
-      "tx_hash": "0x631dc34195ca64c74487c15f70bc69440aa12c4f3358cfbfa30cbeb8d5980b15",
-      "time": "2026-10-19 05:21:11",
-      "from": "Capyfi",
-      "to": "Staked WBTC (STBTC)\n(0xb40)",
-      "usd_value": 110200000.0,
-      "token": "WBTC",
-      "asset_bucket": "BTC",
+      "tx_hash": "0xa2557f48b97668d7b875d3db450fd6aa98691ae16debf5bd5cc334a863be36a7",
+      "time": "2026-10-19 06:40:21",
+      "from": "0x2DAB508284dDf436e9e23e81BFcD16638a67F759",
+      "to": "Morpho",
+      "usd_value": 200870000.0,
+      "token": "MORPHO",
+      "asset_bucket": "OTHER",
+      "flow_tag": "INTERNAL_TRANSFER"
+    },
+    {
+      "tx_hash": "0xa2557f48b97668d7b875d3db450fd6aa98691ae16debf5bd5cc334a863be36a7",
+      "time": "2026-10-19 06:40:21",
+      "from": "Morpho",
+      "to": "Morpho Blue\n(0xBBB)",
+      "usd_value": 200870000.0,
+      "token": "MORPHO",
+      "asset_bucket": "OTHER",
+      "flow_tag": "INTERNAL_TRANSFER"
+    },
+    {
+      "tx_hash": "0x201244df7fe9ae040ce2e72c6c30cb5f40bb315a7aa2bccfba1d4160b281ded0",
+      "time": "2026-10-19 06:36:35",
+      "from": "0x2DAB508284dDf436e9e23e81BFcD16638a67F759",
+      "to": "Morpho",
+      "usd_value": 200750000.0,
+      "token": "MORPHO",
+      "asset_bucket": "OTHER",
+      "flow_tag": "INTERNAL_TRANSFER"
+    },
+    {
+      "tx_hash": "0x201244df7fe9ae040ce2e72c6c30cb5f40bb315a7aa2bccfba1d4160b281ded0",
+      "time": "2026-10-19 06:36:35",
+      "from": "Morpho",
+      "to": "Morpho Blue\n(0xBBB)",
+      "usd_value": 200750000.0,
+      "token": "MORPHO",
+      "asset_bucket": "OTHER",
+      "flow_tag": "INTERNAL_TRANSFER"
+    },
+    {
+      "tx_hash": "0x67df1e38822bc168c070a33899fda103d448e93444f3f1e9e095452a1e5c5423",
+      "time": "2026-10-19 07:56:41",
+      "from": "0x2DAB508284dDf436e9e23e81BFcD16638a67F759",
+      "to": "Morpho",
+      "usd_value": 200730000.0,
+      "token": "MORPHO",
+      "asset_bucket": "OTHER",
+      "flow_tag": "INTERNAL_TRANSFER"
+    },
+    {
+      "tx_hash": "0x67df1e38822bc168c070a33899fda103d448e93444f3f1e9e095452a1e5c5423",
+      "time": "2026-10-19 07:56:41",
+      "from": "Morpho",
+      "to": "Morpho Blue\n(0xBBB)",
+      "usd_value": 200730000.0,
+      "token": "MORPHO",
+      "asset_bucket": "OTHER",
+      "flow_tag": "INTERNAL_TRANSFER"
+    },
+    {
+      "tx_hash": "0x62151a9ee6474c2fab5ffdbaf13f76c11b9caf4dbffbb0f73c49c20e543b6141",
+      "time": "2026-10-19 05:56:23",
+      "from": "0x2DAB508284dDf436e9e23e81BFcD16638a67F759",
+      "to": "Morpho",
+      "usd_value": 200570000.0,
+      "token": "MORPHO",
+      "asset_bucket": "OTHER",
+      "flow_tag": "INTERNAL_TRANSFER"
+    },
+    {
+      "tx_hash": "0x62151a9ee6474c2fab5ffdbaf13f76c11b9caf4dbffbb0f73c49c20e543b6141",
+      "time": "2026-10-19 05:56:23",
+      "from": "Morpho",
+      "to": "Morpho Blue\n(0xBBB)",
+      "usd_value": 200570000.0,
+      "token": "MORPHO",
+      "asset_bucket": "OTHER",
       "flow_tag": "INTERNAL_TRANSFER"
     }
   ],
   "recent_classified_transfers": [
     {
-      "time": "2026-10-18 22:38:11",
-      "tx_hash": "0x1096ef98535ae2f8ddaf5b2f7d509cbb1a6e60297e28977d5ac8714ade90c109",
-      "from_entity": "MEV Bot\n(0x06C)",
+      "time": "2026-10-19 07:21:41",
+      "tx_hash": "0x4f72cff6761c0ea6e77c2e695ed519c3b3cf0147180a51240904f495f5ba5f3b",
+      "from_entity": "0x2DAB508284dDf436e9e23e81BFcD16638a67F759",
       "from_type": "WALLET",
       "to_entity": "Morpho",
       "to_type": "WALLET",
       "token": "MORPHO",
-      "amount": -6.0,
-      "usd_value": 120000000.0,
+      "amount": 2.5082844369238116e+24,
+      "usd_value": 201110000.0,
       "flow_classification": "INTERNAL_TRANSFER"
     },
     {
-      "time": "2026-10-18 22:38:11",
-      "tx_hash": "0x1096ef98535ae2f8ddaf5b2f7d509cbb1a6e60297e28977d5ac8714ade90c109",
+      "time": "2026-10-19 07:22:19",
+      "tx_hash": "0xf0dcc3e3b59dee201f888fd52105ca2f1a2decbf7f13f8fa369be6b7f36bfc2f",
       "from_entity": "Morpho",
       "from_type": "WALLET",
       "to_entity": "Morpho Blue\n(0xBBB)",
       "to_type": "WALLET",
       "token": "MORPHO",
-      "amount": -20261018223811.0,
-      "usd_value": 120000000.0,
+      "amount": -20261019072219.0,
+      "usd_value": 201090000.0,
       "flow_classification": "INTERNAL_TRANSFER"
     },
     {
-      "time": "2026-10-18 22:35:35",
-      "tx_hash": "0x37b1886ca1749a9a0a97ee80883ee90f35813237ba358b17617b48934acec299",
-      "from_entity": "MEV Bot\n(0x06C)",
+      "time": "2026-10-19 07:22:19",
+      "tx_hash": "0xf0dcc3e3b59dee201f888fd52105ca2f1a2decbf7f13f8fa369be6b7f36bfc2f",
+      "from_entity": "0x2DAB508284dDf436e9e23e81BFcD16638a67F759",
       "from_type": "WALLET",
       "to_entity": "Morpho",
       "to_type": "WALLET",
       "token": "MORPHO",
-      "amount": -6.0,
-      "usd_value": 120000000.0,
+      "amount": 2.5082844369238116e+24,
+      "usd_value": 201090000.0,
       "flow_classification": "INTERNAL_TRANSFER"
     },
     {
-      "time": "2026-10-18 22:35:35",
-      "tx_hash": "0x37b1886ca1749a9a0a97ee80883ee90f35813237ba358b17617b48934acec299",
+      "time": "2026-10-19 08:36:39",
+      "tx_hash": "0xd5cf69b13a2e3a75a5cc063f82e9920d392931e1375845c9405fc08d4082706c",
       "from_entity": "Morpho",
       "from_type": "WALLET",
       "to_entity": "Morpho Blue\n(0xBBB)",
       "to_type": "WALLET",
       "token": "MORPHO",
-      "amount": -20261018223535.0,
-      "usd_value": 120000000.0,
+      "amount": -20261019083639.0,
+      "usd_value": 201050000.0,
       "flow_classification": "INTERNAL_TRANSFER"
     },
     {
-      "time": "2026-10-18 22:32:35",
-      "tx_hash": "0x3d550bc2f00ffa3fb866deb158c0e05deb8e2671a82d698036792eeff3e010b6",
+      "time": "2026-10-19 08:36:39",
+      "tx_hash": "0xd5cf69b13a2e3a75a5cc063f82e9920d392931e1375845c9405fc08d4082706c",
+      "from_entity": "0x2DAB508284dDf436e9e23e81BFcD16638a67F759",
+      "from_type": "WALLET",
+      "to_entity": "Morpho",
+      "to_type": "WALLET",
+      "token": "MORPHO",
+      "amount": 2.5082844369238116e+24,
+      "usd_value": 201050000.0,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "2026-10-19 07:34:23",
+      "tx_hash": "0x06eae34823bf71913f83c6365d47d6fca5261f4138b797656412b292854f73f6",
       "from_entity": "Morpho",
       "from_type": "WALLET",
       "to_entity": "Morpho Blue\n(0xBBB)",
       "to_type": "WALLET",
       "token": "MORPHO",
-      "amount": -20261018223235.0,
-      "usd_value": 119990000.0,
+      "amount": -20261019073423.0,
+      "usd_value": 201030000.0,
       "flow_classification": "INTERNAL_TRANSFER"
     },
     {
-      "time": "2026-10-18 22:32:35",
-      "tx_hash": "0x3d550bc2f00ffa3fb866deb158c0e05deb8e2671a82d698036792eeff3e010b6",
-      "from_entity": "MEV Bot\n(0x06C)",
+      "time": "2026-10-19 07:34:23",
+      "tx_hash": "0xedbd02e292eaddf7c016c884e670d5a3dedd88222721590945562c6df1c05f7b",
+      "from_entity": "MEV Bot\n(0xed1)",
       "from_type": "WALLET",
       "to_entity": "Morpho",
       "to_type": "WALLET",
       "token": "MORPHO",
-      "amount": -6.0,
-      "usd_value": 119990000.0,
+      "amount": -1.0,
+      "usd_value": 201030000.0,
       "flow_classification": "INTERNAL_TRANSFER"
     },
     {
-      "time": "2026-10-18 22:45:11",
-      "tx_hash": "0x034f6d5fb9f62bd7f9248f96299bac81b09ed01fa6d73ef7014eee11c5a1c709",
-      "from_entity": "MEV Bot\n(0x06C)",
-      "from_type": "WALLET",
-      "to_entity": "Morpho",
-      "to_type": "WALLET",
-      "token": "MORPHO",
-      "amount": -6.0,
-      "usd_value": 119990000.0,
-      "flow_classification": "INTERNAL_TRANSFER"
-    },
-    {
-      "time": "2026-10-18 22:45:11",
-      "tx_hash": "0x034f6d5fb9f62bd7f9248f96299bac81b09ed01fa6d73ef7014eee11c5a1c709",
+      "time": "2026-10-19 07:34:21",
+      "tx_hash": "0x77467dc115c87f006d28b0a91bcfa922bf62b31e4bc5b00364aa6c1449d283ac",
       "from_entity": "Morpho",
       "from_type": "WALLET",
       "to_entity": "Morpho Blue\n(0xBBB)",
       "to_type": "WALLET",
       "token": "MORPHO",
-      "amount": -20261018224511.0,
-      "usd_value": 119990000.0,
+      "amount": -20261019073421.0,
+      "usd_value": 201030000.0,
       "flow_classification": "INTERNAL_TRANSFER"
     },
     {
-      "time": "2026-10-18 23:23:47",
-      "tx_hash": "0x3aa9c26b6dd3b401c71ef3bd38ab288472263ceff02f49b92916e84054721831",
+      "time": "2026-10-19 07:34:21",
+      "tx_hash": "0xa6d48dd29053a4f3d3ea33f0c266881ac64f20e473fad9d6c3b379a0c740a557",
+      "from_entity": "MEV Bot\n(0x84B)",
+      "from_type": "WALLET",
+      "to_entity": "Morpho",
+      "to_type": "WALLET",
+      "token": "MORPHO",
+      "amount": -84.0,
+      "usd_value": 201030000.0,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "2026-10-19 07:34:21",
+      "tx_hash": "0x77467dc115c87f006d28b0a91bcfa922bf62b31e4bc5b00364aa6c1449d283ac",
+      "from_entity": "MEV Bot\n(0x9FC)",
+      "from_type": "WALLET",
+      "to_entity": "Morpho",
+      "to_type": "WALLET",
+      "token": "MORPHO",
+      "amount": -9.0,
+      "usd_value": 201030000.0,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "2026-10-19 07:34:23",
+      "tx_hash": "0x06eae34823bf71913f83c6365d47d6fca5261f4138b797656412b292854f73f6",
+      "from_entity": "MEV Bot\n(0xF39)",
+      "from_type": "WALLET",
+      "to_entity": "Morpho",
+      "to_type": "WALLET",
+      "token": "MORPHO",
+      "amount": -39.0,
+      "usd_value": 201030000.0,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "2026-10-19 07:34:21",
+      "tx_hash": "0xa6d48dd29053a4f3d3ea33f0c266881ac64f20e473fad9d6c3b379a0c740a557",
       "from_entity": "Morpho",
       "from_type": "WALLET",
       "to_entity": "Morpho Blue\n(0xBBB)",
       "to_type": "WALLET",
       "token": "MORPHO",
-      "amount": -20261018232347.0,
-      "usd_value": 119430000.0,
+      "amount": -20261019073421.0,
+      "usd_value": 201030000.0,
       "flow_classification": "INTERNAL_TRANSFER"
     },
     {
-      "time": "2026-10-18 23:23:47",
-      "tx_hash": "0x3aa9c26b6dd3b401c71ef3bd38ab288472263ceff02f49b92916e84054721831",
-      "from_entity": "MEV Bot\n(0xd22)",
-      "from_type": "WALLET",
-      "to_entity": "Morpho",
-      "to_type": "WALLET",
-      "token": "MORPHO",
-      "amount": -22.0,
-      "usd_value": 119430000.0,
-      "flow_classification": "INTERNAL_TRANSFER"
-    },
-    {
-      "time": "2026-10-19 02:13:27",
-      "tx_hash": "0x8b820d5c027cedc2c9699a3606392dced355f9ce85fe0e4a0bd3cb4a3b95860e",
-      "from_entity": "Null Address\n(0x000)",
-      "from_type": "WALLET",
-      "to_entity": "PancakeSwap",
-      "to_type": "WALLET",
-      "token": "UNKNOWN",
-      "amount": 0.0,
-      "usd_value": 117440000.0,
-      "flow_classification": "INTERNAL_TRANSFER"
-    },
-    {
-      "time": "2026-10-19 02:13:27",
-      "tx_hash": "0x8b820d5c027cedc2c9699a3606392dced355f9ce85fe0e4a0bd3cb4a3b95860e",
-      "from_entity": "PancakeSwap",
-      "from_type": "WALLET",
-      "to_entity": "SyrupBar Token (SYRUP)\n(0x009)",
-      "to_type": "WALLET",
-      "token": "UNKNOWN",
-      "amount": 0.0,
-      "usd_value": 117440000.0,
-      "flow_classification": "INTERNAL_TRANSFER"
-    },
-    {
-      "time": "2026-10-19 02:13:27",
-      "tx_hash": "0x8b820d5c027cedc2c9699a3606392dced355f9ce85fe0e4a0bd3cb4a3b95860e",
-      "from_entity": "PancakeSwap",
-      "from_type": "WALLET",
-      "to_entity": "Staking\n(0xa5f)",
-      "to_type": "WALLET",
-      "token": "UNKNOWN",
-      "amount": 0.0,
-      "usd_value": 117110000.0,
-      "flow_classification": "INTERNAL_TRANSFER"
-    },
-    {
-      "time": "2026-10-19 08:21:11",
-      "tx_hash": "0xc76afc0403543ec064120403cd8eecf0802bd4516f375359865278cc5617152a",
-      "from_entity": "Capyfi",
-      "from_type": "WALLET",
-      "to_entity": "OffchainBtcVault (Proxy)\n(0x6cb)",
-      "to_type": "WALLET",
-      "token": "WBTC",
-      "amount": 1338.0,
-      "usd_value": 110430000.0,
-      "flow_classification": "INTERNAL_TRANSFER"
-    },
-    {
-      "time": "2026-10-19 08:21:11",
-      "tx_hash": "0xc76afc0403543ec064120403cd8eecf0802bd4516f375359865278cc5617152a",
-      "from_entity": "Capyfi",
-      "from_type": "WALLET",
-      "to_entity": "Staked WBTC (STBTC)\n(0xb40)",
-      "to_type": "WALLET",
-      "token": "WBTC",
-      "amount": 0.0,
-      "usd_value": 110430000.0,
-      "flow_classification": "INTERNAL_TRANSFER"
-    },
-    {
-      "time": "2026-10-19 08:21:11",
-      "tx_hash": "0xc76afc0403543ec064120403cd8eecf0802bd4516f375359865278cc5617152a",
+      "time": "2026-10-19 07:34:23",
+      "tx_hash": "0xedbd02e292eaddf7c016c884e670d5a3dedd88222721590945562c6df1c05f7b",
       "from_entity": "Morpho",
       "from_type": "WALLET",
       "to_entity": "Morpho Blue\n(0xBBB)",
       "to_type": "WALLET",
       "token": "MORPHO",
-      "amount": -20261019082111.0,
-      "usd_value": 110430000.0,
+      "amount": -20261019073423.0,
+      "usd_value": 201030000.0,
       "flow_classification": "INTERNAL_TRANSFER"
     },
     {
-      "time": "2026-10-19 08:21:11",
-      "tx_hash": "0xc76afc0403543ec064120403cd8eecf0802bd4516f375359865278cc5617152a",
-      "from_entity": "0x00acd5005200E7009BEB000000E35E1E002b5565",
-      "from_type": "WALLET",
-      "to_entity": "Capyfi",
-      "to_type": "WALLET",
-      "token": "WBTC",
-      "amount": 0.0,
-      "usd_value": 110430000.0,
-      "flow_classification": "INTERNAL_TRANSFER"
-    },
-    {
-      "time": "2026-10-19 08:21:11",
-      "tx_hash": "0xc76afc0403543ec064120403cd8eecf0802bd4516f375359865278cc5617152a",
-      "from_entity": "0x00acd5005200E7009BEB000000E35E1E002b5565",
-      "from_type": "WALLET",
-      "to_entity": "Morpho",
-      "to_type": "WALLET",
-      "token": "MORPHO",
-      "amount": 5.0052007009e+26,
-      "usd_value": 110430000.0,
-      "flow_classification": "INTERNAL_TRANSFER"
-    },
-    {
-      "time": "2026-10-19 05:21:11",
-      "tx_hash": "0x631dc34195ca64c74487c15f70bc69440aa12c4f3358cfbfa30cbeb8d5980b15",
-      "from_entity": "Capyfi",
-      "from_type": "WALLET",
-      "to_entity": "OffchainBtcVault (Proxy)\n(0x6cb)",
-      "to_type": "WALLET",
-      "token": "WBTC",
-      "amount": 1338.0,
-      "usd_value": 110200000.0,
-      "flow_classification": "INTERNAL_TRANSFER"
-    },
-    {
-      "time": "2026-10-19 05:21:11",
-      "tx_hash": "0x631dc34195ca64c74487c15f70bc69440aa12c4f3358cfbfa30cbeb8d5980b15",
+      "time": "2026-10-19 08:31:19",
+      "tx_hash": "0xd1f6ded03d18540c3ce7cfe3f1a455f1a2ce9cc2d9b9d08e9f308e7faa61875f",
       "from_entity": "Morpho",
       "from_type": "WALLET",
       "to_entity": "Morpho Blue\n(0xBBB)",
       "to_type": "WALLET",
       "token": "MORPHO",
-      "amount": -20261019052111.0,
-      "usd_value": 110200000.0,
+      "amount": -20261019083119.0,
+      "usd_value": 200960000.0,
       "flow_classification": "INTERNAL_TRANSFER"
     },
     {
-      "time": "2026-10-19 05:21:11",
-      "tx_hash": "0x631dc34195ca64c74487c15f70bc69440aa12c4f3358cfbfa30cbeb8d5980b15",
-      "from_entity": "0x00acd5005200E7009BEB000000E35E1E002b5565",
-      "from_type": "WALLET",
-      "to_entity": "Capyfi",
-      "to_type": "WALLET",
-      "token": "WBTC",
-      "amount": 0.0,
-      "usd_value": 110200000.0,
-      "flow_classification": "INTERNAL_TRANSFER"
-    },
-    {
-      "time": "2026-10-19 05:21:11",
-      "tx_hash": "0x631dc34195ca64c74487c15f70bc69440aa12c4f3358cfbfa30cbeb8d5980b15",
-      "from_entity": "0x00acd5005200E7009BEB000000E35E1E002b5565",
+      "time": "2026-10-19 08:31:19",
+      "tx_hash": "0xd1f6ded03d18540c3ce7cfe3f1a455f1a2ce9cc2d9b9d08e9f308e7faa61875f",
+      "from_entity": "0x2DAB508284dDf436e9e23e81BFcD16638a67F759",
       "from_type": "WALLET",
       "to_entity": "Morpho",
       "to_type": "WALLET",
       "token": "MORPHO",
-      "amount": 5.0052007009e+26,
-      "usd_value": 110200000.0,
+      "amount": 2.5082844369238116e+24,
+      "usd_value": 200960000.0,
       "flow_classification": "INTERNAL_TRANSFER"
     },
     {
-      "time": "2026-10-19 05:21:11",
-      "tx_hash": "0x631dc34195ca64c74487c15f70bc69440aa12c4f3358cfbfa30cbeb8d5980b15",
-      "from_entity": "Capyfi",
+      "time": "2026-10-19 06:40:21",
+      "tx_hash": "0xa2557f48b97668d7b875d3db450fd6aa98691ae16debf5bd5cc334a863be36a7",
+      "from_entity": "0x2DAB508284dDf436e9e23e81BFcD16638a67F759",
       "from_type": "WALLET",
-      "to_entity": "Staked WBTC (STBTC)\n(0xb40)",
+      "to_entity": "Morpho",
       "to_type": "WALLET",
-      "token": "WBTC",
-      "amount": 0.0,
-      "usd_value": 110200000.0,
+      "token": "MORPHO",
+      "amount": 2.5082844369238116e+24,
+      "usd_value": 200870000.0,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "2026-10-19 06:40:21",
+      "tx_hash": "0xa2557f48b97668d7b875d3db450fd6aa98691ae16debf5bd5cc334a863be36a7",
+      "from_entity": "Morpho",
+      "from_type": "WALLET",
+      "to_entity": "Morpho Blue\n(0xBBB)",
+      "to_type": "WALLET",
+      "token": "MORPHO",
+      "amount": -20261019064021.0,
+      "usd_value": 200870000.0,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "2026-10-19 06:36:35",
+      "tx_hash": "0x201244df7fe9ae040ce2e72c6c30cb5f40bb315a7aa2bccfba1d4160b281ded0",
+      "from_entity": "0x2DAB508284dDf436e9e23e81BFcD16638a67F759",
+      "from_type": "WALLET",
+      "to_entity": "Morpho",
+      "to_type": "WALLET",
+      "token": "MORPHO",
+      "amount": 2.5082844369238116e+24,
+      "usd_value": 200750000.0,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "2026-10-19 06:36:35",
+      "tx_hash": "0x201244df7fe9ae040ce2e72c6c30cb5f40bb315a7aa2bccfba1d4160b281ded0",
+      "from_entity": "Morpho",
+      "from_type": "WALLET",
+      "to_entity": "Morpho Blue\n(0xBBB)",
+      "to_type": "WALLET",
+      "token": "MORPHO",
+      "amount": -20261019063635.0,
+      "usd_value": 200750000.0,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "2026-10-19 07:56:41",
+      "tx_hash": "0x67df1e38822bc168c070a33899fda103d448e93444f3f1e9e095452a1e5c5423",
+      "from_entity": "0x2DAB508284dDf436e9e23e81BFcD16638a67F759",
+      "from_type": "WALLET",
+      "to_entity": "Morpho",
+      "to_type": "WALLET",
+      "token": "MORPHO",
+      "amount": 2.5082844369238116e+24,
+      "usd_value": 200730000.0,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "2026-10-19 07:56:41",
+      "tx_hash": "0x67df1e38822bc168c070a33899fda103d448e93444f3f1e9e095452a1e5c5423",
+      "from_entity": "Morpho",
+      "from_type": "WALLET",
+      "to_entity": "Morpho Blue\n(0xBBB)",
+      "to_type": "WALLET",
+      "token": "MORPHO",
+      "amount": -20261019075641.0,
+      "usd_value": 200730000.0,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "2026-10-19 05:56:23",
+      "tx_hash": "0x62151a9ee6474c2fab5ffdbaf13f76c11b9caf4dbffbb0f73c49c20e543b6141",
+      "from_entity": "0x2DAB508284dDf436e9e23e81BFcD16638a67F759",
+      "from_type": "WALLET",
+      "to_entity": "Morpho",
+      "to_type": "WALLET",
+      "token": "MORPHO",
+      "amount": 2.5082844369238116e+24,
+      "usd_value": 200570000.0,
+      "flow_classification": "INTERNAL_TRANSFER"
+    },
+    {
+      "time": "2026-10-19 05:56:23",
+      "tx_hash": "0x62151a9ee6474c2fab5ffdbaf13f76c11b9caf4dbffbb0f73c49c20e543b6141",
+      "from_entity": "Morpho",
+      "from_type": "WALLET",
+      "to_entity": "Morpho Blue\n(0xBBB)",
+      "to_type": "WALLET",
+      "token": "MORPHO",
+      "amount": -20261019055623.0,
+      "usd_value": 200570000.0,
       "flow_classification": "INTERNAL_TRANSFER"
     }
   ]
