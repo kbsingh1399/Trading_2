@@ -1,5 +1,5 @@
 {
-  "as_of_utc": "2026-10-19 04:33:10 UTC",
+  "as_of_utc": "2026-10-19 04:38:09 UTC",
   "source": "Arkham Intelligence Upgraded Harvester (arkm.com via Chrome CDP)",
   "filter_applied": "USD >= $100K",
   "feed_status": "STREAMING_ACTIVE",
@@ -166,65 +166,16 @@
       "portfolio_change_24h": "",
       "holdings_breakdown": [
         {
-          "symbol": "SOL",
-          "price": "$105.36",
-          "amount": "SOL",
-          "value_usd": "$732.03M",
-          "change_24h": "+1.3%"
-        },
-        {
-          "symbol": "BTC",
-          "price": "$82,541",
-          "amount": "BTC",
-          "value_usd": "$180.56M",
-          "change_24h": "+0.96%"
-        },
-        {
-          "symbol": "USDC",
-          "price": "$1",
-          "amount": "USDC",
-          "value_usd": "$79.91M",
-          "change_24h": "\u00b10%"
-        },
-        {
-          "symbol": "USDT",
-          "price": "$1",
-          "amount": "USDT",
-          "value_usd": "$75.55M",
-          "change_24h": "\u00b10%"
-        },
-        {
           "symbol": "ETH",
-          "price": "$2,425.24",
-          "amount": "ETH",
-          "value_usd": "$28.12M",
-          "change_24h": "+0.29%"
-        },
-        {
-          "symbol": "BNB",
-          "price": "$725.66",
-          "amount": "BNB",
-          "value_usd": "$213.93K",
-          "change_24h": "+0.65%"
-        },
-        {
-          "symbol": "UNI",
-          "price": "$7.32",
-          "amount": "UNI",
-          "value_usd": "$96.94K",
-          "change_24h": "+0.97%"
-        },
-        {
-          "symbol": "LINK",
-          "price": "$12.2",
-          "amount": "LINK",
-          "value_usd": "$61.07K",
-          "change_24h": "+1.41%"
+          "price": "$17.28K",
+          "amount": "",
+          "value_usd": "$0",
+          "change_24h": "+0.00%"
         }
       ],
       "category": "MARKET_MAKER_HFT",
       "priority": "HIGH",
-      "last_updated_utc": "2026-10-19 03:47:57 UTC"
+      "last_updated_utc": "2026-10-19 04:37:42 UTC"
     },
     "wintermute": {
       "slug": "wintermute",
@@ -1613,31 +1564,31 @@
         },
         {
           "symbol": "ETH",
-          "price": "$2,425.24",
+          "price": "$2,423.48",
           "amount": "ETH",
           "value_usd": "$1.01M",
-          "change_24h": "+0.29%"
+          "change_24h": "+0.28%"
         },
         {
           "symbol": "MKR",
-          "price": "$1,591.62",
+          "price": "$1,590.96",
           "amount": "MKR",
-          "value_usd": "$248.29",
-          "change_24h": "-1.59%"
+          "value_usd": "$248.19",
+          "change_24h": "-1.54%"
         },
         {
           "symbol": "UNI",
-          "price": "$7.32",
+          "price": "$7.33",
           "amount": "UNI",
-          "value_usd": "$209.7",
-          "change_24h": "+0.97%"
+          "value_usd": "$209.99",
+          "change_24h": "+1.24%"
         },
         {
           "symbol": "LINK",
-          "price": "$12.2",
+          "price": "$12.13",
           "amount": "LINK",
-          "value_usd": "$199.05",
-          "change_24h": "+1.41%"
+          "value_usd": "$197.91",
+          "change_24h": "+1.17%"
         },
         {
           "symbol": "USDC",
@@ -1648,29 +1599,36 @@
         },
         {
           "symbol": "BTC",
-          "price": "$82,541",
+          "price": "$82,564",
           "amount": "BTC",
-          "value_usd": "$114.54",
-          "change_24h": "+0.96%"
+          "value_usd": "$114.58",
+          "change_24h": "+0.98%"
         },
         {
           "symbol": "WBTC",
-          "price": "$82,349",
+          "price": "$82,369",
           "amount": "WBTC",
-          "value_usd": "$81.57",
-          "change_24h": "+0.9%"
+          "value_usd": "$81.59",
+          "change_24h": "+0.92%"
         },
         {
           "symbol": "BNB",
-          "price": "$725.66",
+          "price": "$726.53",
           "amount": "BNB",
-          "value_usd": "$80.38",
-          "change_24h": "+0.65%"
+          "value_usd": "$80.47",
+          "change_24h": "+0.97%"
+        },
+        {
+          "symbol": "AAVE",
+          "price": "$1.02K",
+          "amount": "",
+          "value_usd": "$12.33K",
+          "change_24h": ""
         }
       ],
       "category": "OTC_LIQUIDITY_DESK",
       "priority": "HIGH",
-      "last_updated_utc": "2026-10-19 03:48:04 UTC"
+      "last_updated_utc": "2026-10-19 04:37:48 UTC"
     },
     "falconx": {
       "slug": "falconx",
@@ -1681,7 +1639,7 @@
       "holdings_breakdown": [],
       "category": "PRIME_BROKERAGE_EXECUTION",
       "priority": "HIGH",
-      "last_updated_utc": "2026-10-19 03:48:10 UTC"
+      "last_updated_utc": "2026-10-19 04:37:54 UTC"
     },
     "amber": {
       "slug": "amber",
@@ -1692,10 +1650,10 @@
       "holdings_breakdown": [
         {
           "symbol": "ETH",
-          "price": "$2,420.08",
+          "price": "$2,424.48",
           "amount": "ETH",
-          "value_usd": "$99.84M",
-          "change_24h": "-0.19%"
+          "value_usd": "$100.02M",
+          "change_24h": "+0.34%"
         },
         {
           "symbol": "USDT",
@@ -1713,43 +1671,43 @@
         },
         {
           "symbol": "WBTC",
-          "price": "$82,274",
+          "price": "$82,369",
           "amount": "WBTC",
           "value_usd": "$7.1M",
-          "change_24h": "+0.57%"
+          "change_24h": "+0.92%"
         },
         {
           "symbol": "LINK",
-          "price": "$12.17",
+          "price": "$12.14",
           "amount": "LINK",
-          "value_usd": "$241.09K",
-          "change_24h": "+0.83%"
+          "value_usd": "$240.5K",
+          "change_24h": "+1.25%"
         },
         {
           "symbol": "UNI",
-          "price": "$7.29",
+          "price": "$7.34",
           "amount": "UNI",
-          "value_usd": "$135.02K",
-          "change_24h": "-0.14%"
+          "value_usd": "$135.95K",
+          "change_24h": "+1.38%"
         },
         {
           "symbol": "AAVE",
-          "price": "$151.09",
+          "price": "$151.75",
           "amount": "AAVE",
-          "value_usd": "$14.92K",
-          "change_24h": "-1.83%"
+          "value_usd": "$14.99K",
+          "change_24h": "-0.73%"
         },
         {
           "symbol": "BNB",
-          "price": "$725.4",
+          "price": "$726.63",
           "amount": "BNB",
-          "value_usd": "$14.92K",
-          "change_24h": "+0.44%"
+          "value_usd": "$14.94K",
+          "change_24h": "+0.98%"
         }
       ],
       "category": "MARKET_MAKER_CEFI",
       "priority": "MEDIUM",
-      "last_updated_utc": "2026-10-19 03:52:49 UTC"
+      "last_updated_utc": "2026-10-19 04:38:06 UTC"
     },
     "gsr-markets": {
       "slug": "gsr-markets",
@@ -1760,7 +1718,7 @@
       "holdings_breakdown": [],
       "category": "MARKET_MAKER_ALGO",
       "priority": "MEDIUM",
-      "last_updated_utc": "2026-10-19 03:52:42 UTC"
+      "last_updated_utc": "2026-10-19 04:38:00 UTC"
     },
     "cash-app": {
       "slug": "cash-app",
