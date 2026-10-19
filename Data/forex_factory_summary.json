@@ -1,5 +1,5 @@
 {
-  "as_of_utc": "2026-10-19 08:51:29 UTC",
+  "as_of_utc": "2026-10-19 11:21:58 UTC",
   "rates": {
     "AUD": "4.60%",
     "USD": "4.00%",
@@ -29,14 +29,14 @@
     "GBP CPI y/y (HIGH) [F: 3.4%]"
   ],
   "top_headlines": [
-    "PBOC Governor: China to facilitate overseas financial institutions to conduct RMB trading in the domestic foreign exchange market - CCTV",
-    "CommBank economists stick with November RBA interest rates call, but outlook remains uncertain",
-    "FX Daily: AI jitters have damaged USD safe haven appeal",
-    "BOJ chief says underlying inflation 'quite close' to price goal"
+    "Euro Marked Down, China's GDP Firmer than Expected, AI Equities Stabilize",
+    "Sources familiar with mediation efforts told Al-Araby Al-Jadeed that a breakthrough agreement between Washington and Tehran could be announced this we",
+    "Ex-NFL Star Shawne Merriman to Pay $4M in Playboy Employee Wrongful Death Case",
+    "France hit by worst unrest in years as attempts to rein in government spending meet citizen ire"
   ],
   "sample_retail_flow": [
-    "Xauusd-vipc SELL ~ 4,170.3 Scaled Out | < 1 min ago Closed Long at 4,170.26Close",
-    "Xauusd-vipc SELL ~ 4,170.5 Scaled Out | ~1 min ago Closed Long at 4,170.47Closed",
-    "BTC/USD SELL 82,708.52 Opened Short | 1 min ago janesmile -0.4% MTM na"
+    "GBP/USD BUY ~ 1.3340 Scaled In | < 1 min ago Opened Long at 1.3340Opened Long at",
+    "Gold BUY 4,175.26 Closed Short | 2 min ago ToliyEA 0.2% na",
+    "Us30 BUY 51,956.1 Opened Long | 3 min ago Hesam8855 0.0% MTM na"
   ]
 }

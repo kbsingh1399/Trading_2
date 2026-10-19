@@ -1,5 +1,5 @@
 {
-  "harvested_at_utc": "2026-10-19 08:51:29 UTC",
+  "harvested_at_utc": "2026-10-19 11:21:58 UTC",
   "source": "FOREX_FACTORY_LIVE_CDP",
   "central_bank_rates": {
     "AUD": "4.60%",
@@ -245,6 +245,22 @@
   ],
   "breaking_news_stories": [
     {
+      "headline": "Euro Marked Down, China's GDP Firmer than Expected, AI Equities Stabilize",
+      "url": "https://www.forexfactory.com/news/1432071-euro-marked-down-chinas-gdp-firmer-than-expected"
+    },
+    {
+      "headline": "Sources familiar with mediation efforts told Al-Araby Al-Jadeed that a breakthrough agreement between Washington and Tehran could be announced this we",
+      "url": "https://www.forexfactory.com/news/1432073-sources-familiar-with-mediation-efforts-told-al-araby-al-jadeed"
+    },
+    {
+      "headline": "Ex-NFL Star Shawne Merriman to Pay $4M in Playboy Employee Wrongful Death Case",
+      "url": "https://www.forexfactory.com/news/1432066-ex-nfl-star-shawne-merriman-to-pay-4m-in"
+    },
+    {
+      "headline": "France hit by worst unrest in years as attempts to rein in government spending meet citizen ire",
+      "url": "https://www.forexfactory.com/news/1432057-france-hit-by-worst-unrest-in-years-as"
+    },
+    {
       "headline": "PBOC Governor: China to facilitate overseas financial institutions to conduct RMB trading in the domestic foreign exchange market - CCTV",
       "url": "https://www.forexfactory.com/news/1432058-pboc-governor-china-to-facilitate-overseas-financial-institutions"
     },
@@ -275,39 +291,23 @@
     {
       "headline": "Australia & New Zealand Weekly",
       "url": "https://www.forexfactory.com/news/1432028-australia-new-zealand-weekly"
-    },
-    {
-      "headline": "China's economic growth picks up in third quarter, beating expectations",
-      "url": "https://www.forexfactory.com/news/1432026-chinas-economic-growth-picks-up-in-third-quarter"
-    },
-    {
-      "headline": "China: National Economy was Generally Stable with New Achievement Made in High-Quality Development in the First Three Quarters",
-      "url": "https://www.forexfactory.com/news/1432003-china-national-economy-was-generally-stable-with-new"
-    },
-    {
-      "headline": "What Is F&O Trading? Futures and Options Explained for Beginners",
-      "url": "https://www.forexfactory.com/news/1432005-what-is-fo-trading-futures-and-options-explained"
-    },
-    {
-      "headline": "September Data Bring \u201cTotally Different Texture\u201d to Inflation Environment",
-      "url": "https://www.forexfactory.com/news/1432023-september-data-bring-totally-different-texture-to-inflation"
     }
   ],
   "community_trade_flow": [
-    "Xauusd-vipc SELL ~ 4,170.3 Scaled Out | < 1 min ago Closed Long at 4,170.26Closed Long at 4,170.27Closed Long at 4,170.28Closed Long at 4,170.25Closed Long at 4,170.25Closed Long at 4,170.26Closed Long at 4,170.22Closed Long at 4,170.19Closed Long at 4,170.18Closed Long at 4,170.19Closed Long at 4,170.18Closed Long at 4,170.33Closed Long at 4,170.47Closed Long at 4,170.33Closed Long at 4,170.48 Showing 15; remainder omitted. Wilson16 -0.1% -0.1% -0.1% -0.1% -0.1% -0.1% -0.1% -0.1% -0.1% -0.1% -0.1% -0.1% 0.0% 0.0% 0.0% -2.9% na na na na na na na na na na na na na na na na",
-    "Xauusd-vipc SELL ~ 4,170.5 Scaled Out | ~1 min ago Closed Long at 4,170.47Closed Long at 4,170.48Closed Long at 4,170.36Closed Long at 4,170.58Closed Long at 4,170.59Closed Long at 4,170.63Closed Long at 4,170.58Closed Long at 4,170.58Closed Long at 4,170.61Closed Long at 4,170.46Closed Long at 4,170.45Closed Long at 4,170.39Closed Long at 4,170.35Closed Long at 4,170.51Closed Long at 4,170.58 Showing 15; remainder omitted. Wilson16 0.0% 0.0% 0.0% 0.0% 0.0% 0.0% -0.1% -0.1% -0.1% -0.1% -0.1% -0.1% 0.0% 0.0% 0.0% -1.0% na na na na na na na na na na na na na na na na",
-    "BTC/USD SELL 82,708.52 Opened Short | 1 min ago janesmile -0.4% MTM na",
-    "Xauusdc SELL ~ 4,170.4 Scaled In | ~1 min ago Opened Short at 4,170.42Opened Short at 4,170.37 DikyDarmawan 0.0% MTM 0.0% MTM 0.0% MTM na na na",
-    "Xauusdc BUY ~ 4,170.6 Scaled Out | ~1 min ago Closed Short at 4,170.7Closed Short at 4,170.55Closed Short at 4,170.54 DikyDarmawan 0.1% 0.1% 0.3% 0.6% na na na na",
-    "Xauusdc SELL 4,170.671 Closed Long | 1 min ago Parrot 0.1% na",
-    "Xauusd.sc BUY 4,170.74 Opened Long | 1 min ago secretpips 0.0% MTM na",
-    "Gold/USD BUY 4,170.48 Opened Long | 1 min ago phrixusong 0.0% MTM na",
-    "Xauusd.s SELL 4,171.03 Opened Short | 1 min ago Smartboi 0.5% MTM na",
-    "EUR/USD BUY 1.1215 Opened Long | 1 min ago Saeedfxtd 0.0% MTM -0 MTM",
-    "Gold/USD BUY 4,173.19 Closed Short | 5 min ago phrixusong 0.0% na",
-    "EUR/USD SELL ~ 1.1215 Scaled Out | ~5 min ago Closed Long at 1.1215Closed Long at 1.1215Closed Long at 1.1215Closed Long at 1.1215Closed Long at 1.1215Closed Long at 1.1215Closed Long at 1.1215 Saeedfxtd -0.6% -0.4% -0.2% 0.0% 0.3% 0.8% 1.0% 1.0% -12 -8 -4 0 8 20 12 3",
-    "Gold/USD BUY 4,172.66 Opened Long | 5 min ago WhiteHamster -5.3% MTM na",
-    "Xauusdc BUY 4,172.33 Opened Long | 6 min ago DikyDarmawan -0.1% MTM na",
-    "Xauusd.min SELL 4,171.66 Opened Short | 6 min ago Madsan88 0.0% MTM na"
+    "GBP/USD BUY ~ 1.3340 Scaled In | < 1 min ago Opened Long at 1.3340Opened Long at 1.3340Opened Long at 1.3340Opened Long at 1.3340Opened Long at 1.3340 mandadapu 0.0% MTM 0.0% MTM 0.0% MTM 0.0% MTM 0.0% MTM 0.0% MTM 1 MTM 1 MTM 1 MTM 1 MTM 1 MTM 1 MTM",
+    "Gold BUY 4,175.26 Closed Short | 2 min ago ToliyEA 0.2% na",
+    "Us30 BUY 51,956.1 Opened Long | 3 min ago Hesam8855 0.0% MTM na",
+    "Gold SELL 4,175.59 Opened Short | 3 min ago ToliyEA 0.2% na",
+    "Gold SELL ~ 4,175.3 Scaled Out | ~4 min ago Closed Long at 4,175.18Closed Long at 4,175.25Closed Long at 4,175.37 imanmodaresi -4.4% 4.9% 25.5% 26.0% na na na na",
+    "Gold/USD SELL 4,175.61 Closed Long | 4 min ago phrixusong 0.0% na",
+    "Xauusdc BUY 4,175.949 Opened Long | 4 min ago smarttang 0.0% MTM na",
+    "Xauusdc SELL 4,175.793 Opened Short | 4 min ago smarttang 0.0% MTM na",
+    "Gold/USD BUY ~ 4,175.8 Scaled In | ~4 min ago Opened Long at 4,176.38Opened Long at 4,175.31 GoldEATrad 0.0% MTM 0.0% MTM 0.0% MTM na na na",
+    "Xauusdc SELL ~ 4,175.6 Scaled Out | ~5 min ago Closed Long at 4,175.65Closed Long at 4,175.56 asimchy 0.2% 0.2% 0.4% na na na",
+    "Xauusdc BUY 4,177.336 Closed Short | 5 min ago Parrot -0.9% na",
+    "Gold/USD SELL ~ 4,176.5 Scaled Out | ~5 min ago Closed Long at 4,176.52Closed Long at 4,176.45 stocktrader2 0.8% 1.1% 1.8% na na na",
+    "XMR/USD SELL 589.862 Opened Short | 5 min ago Surya12 0.0% MTM na",
+    "Btcusd.m BUY ~ 82,094.5 Scaled In | ~5 min ago Opened Long at 82,085.79Opened Long at 82,085.79Opened Long at 82,085.79Opened Long at 82,085.79Opened Long at 82,096.29Opened Long at 82,088.29Opened Long at 82,088.29Opened Long at 82,089.79Opened Long at 82,089.29Opened Long at 82,089.29Opened Long at 82,111.29Opened Long at 82,115.29Opened Long at 82,117.29 ToliyEA 0.0% MTM 0.0% MTM 0.0% MTM 0.0% MTM 0.0% MTM 0.0% MTM 0.0% MTM 0.0% MTM 0.0% MTM 0.0% MTM 0.0% MTM 0.0% MTM 0.0% MTM 0.2% MTM na na na na na na na na na na na na na na",
+    "Xauusd-stdc SELL 4,176.54 Opened Short | 5 min ago VimalAlgoSys 0.0% MTM na"
   ]
 }
