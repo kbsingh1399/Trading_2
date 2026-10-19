@@ -1,22 +1,30 @@
-\n## Scope and limits\n\n\n- I audited the code and SOP as pasted. I could not check `main`, the 23.21 s and 213.08 s runs, the Excel COM result, or the Arkham harvest.\n- The log line "across 35 pages (full 24-hour window)" does not appear in any print statement in the pasted pipeline. The code prints `Harvested {n} Arkham transfers`.\n- The Excel COM call passes 12 positional arguments to `Workbooks.Open`. By Excel's documented parameter order, the trailing `0` lands on `Converter`, not `CorruptLoad`. The "0 repair flags" claim is not measured by that call.\n- The pasted `Terminal/risk/fail_closed.py` is the Cycle 200 version. It still has the defects fixed in Cycle 201: commas accepted as thousands separators, locked quotes returned as 0 bps, and `max_slots(…, "15")` raising. The 21/21 tests ran against the `Cycle_200_fixes/` copy, not the copy the pipeline imports.\n- The summary's F2 says "Blanks -> 0.0", but the code default is `blank_policy="na"`. Either the summary or the code is wrong.\n- The clone has been reset since last turn. Commits `c90ad9b`, `b654474` and `17dca57` are not in it. I committed the Cycle 200 and 201 files again as `a25814a` on `arena/74cd2d1a-trading-2`. Nothing was pushed.\n\n## Defects found\n\n\n**Critical (fail-open or misleading to the operator)**\n\n1. **Denial shows green.** The telemetry highlight uses substring matching. `DENIED_UNVERIFIED_ORDERFLOW` contains `VERIFIED`, so the trade-authorization cell is green.\n2. **Hard-coded status labels.** `floor_buffer_preserved` is always labelled `CONFIRMED`, and balance, stress and compliance rows have fixed labels (`NOMINAL`, `SAFE`, `COMPLIANT`), whatever the value.\n3. **Fabricated defaults.** `blackout_active` defaults to `False`, `floor_buffer_preserved` to `True`. Other fallbacks include `balance_usd 4863.74`, `available 4`, `p_win n=17 / wins 11`, F&G `53`, login `5064568`, and probe results `ONLINE (200 OK)`.\n4. **Orderbook spread treated as fresh.** A missing `quote_age_s` defaults to `1.0`, so it passes the 5 s freshness check. The snapshot fallback ignores the snapshot's own age.\n5. **MT5 rows marked active with no quote.** `bid`/`ask` default to `0.0`, and every row is labelled `ACTIVE EXECUTION`. The MT5 spread is ask-denominated, which differs from the mid-based definition.\n6. **Arkham harvest can save an empty or duplicate-laden sheet.** The harvest exception is swallowed. When Next is disabled or the page does not advance, the loop re-appends the same page, so the 805 can include duplicates. The page ID is hard-coded. Arkham is not in `check_minimums`, and `atomic_save` is called without `expected_sheets`.\n7. **24-hour coverage never checked.** The "Time Ago" labels are not parsed.\n8. **Chain labels by substring.** `'base' in src` matches "database"-type URLs, and unknown chains default to `Ethereum`.\n\n**High (wrong numbers in the workbook)**\n
-9. Arkham whale change: `x/100 if abs(x) > 0.5 else x` shows 0.4% as 40.00%.\n
-10. Hyperdash long/short ratio: `long / max(short, 1.0)` returns a USD amount when the short side is zero.\n
-11. Hyperdash: the docstring says whale executions ≥ $10M, the code uses $40K/$20K/$5K, and the section titles "18-ASSET COVERAGE" and "158-ASSET" are hard-coded.\n
-12. Exchange basis: `index or mark` makes the basis zero when the index is missing.\n
-13. Bitcoin treasuries use fixed table indices (`tables[3]`, `tables[1]`) with no row-count check.\n
-14. Largest holding assumes the list is sorted.\n
-15. Whale thresholds in the SOP and code conflict: $50K (Arkham), $100K (orders), $500K–$5M (walls), $10M (docstring), $5K–$40K (code). These should live in one config.\n\n**SOP contradictions**\n
-16. Risk envelope: Skill 1 and Skill 8 Rule 2 say $10.00–$14.50; Invariant A and Step 8 say $15–$25.\n
-17. Stressed equity: Skill 8 Rule 3 uses Σ(Risk×1.25) ≥ 4,775; Step 8 uses Σ(Risk×1.25+2) ≥ 4,795.\n
-18. Equity: Step 8 uses 4,857.32 for one $25 trade, while the slot math uses 4,863.74. Two $25 slots need equity of at least 4,861.50, which the SOP never states.\n
-19. FOMC runway: 252.77 h in Stage 1, 252.26 h in Section 3 and the workbook.\n
-20. Bitcoin treasury total: $104.77B in Cluster A, $104.71B in Stage 1.\n
-21. Spread examples: Step 1 gives Gold ~0.2, SP500 ~0.4, USDJPY ~0.1 bps. The live snapshot shows 1.06, 1.14 and 8.73. USDJPY fails the 5 bps gate.\n
-22. Refresh latency 15.42 s and "40 sheets / 209,597 cells", against the 213.08 s and 43-sheet run. Arkham 138 transfers and Hyperdash 273 rows, against 805 and 773.\n
-23. Live figures are hard-coded in a canonical SOP (F&G 53, +716k BTC, ETF flows, equity). These will go stale.\n\n## Cycle 201 fix: Cycle_201_fixes/data_quality.py\n\n\nIt is pure, depends on the `fail_closed.py` in the same folder, and is not wired into the pipeline yet. Test result: **88 passed** (`test_data_quality.py` + `test_cycle201_fixes.py`). Cycle 200's 21 still pass.\n\n```\n"""Cycle 201 data-quality helpers. Pure functions; no I/O.
-
-Each function fixes one defect found in the pasted Cycle 201 pipeline and
-dispatch. Not yet wired into master_excel_pipeline.py (see the audit report for
-the wiring diffs). Depends on fail_closed.py in the same folder.
-"""
-from \n```\n
+\n## Verdict: NOT RATIFIED\n\n\nThe Round 11 commit step would produce a commit that cannot run its own tests. Option 1 is accepted as the decision of record. I changed nothing in `/home/user/Trading_2`: HEAD is still `e5da816`, and nothing is staged.\n\n## What is wrong with the staging list\n\n\n1. \n**Four of the nine "modified" paths are new untracked files.** `Cycle_200_fixes/` and `Cycle_201_fixes/` are untracked as directories. These four are `test_cycle200_fixes.py`, `data_quality.py`, `remediation_r2.py` and `test_remediation_r2.py`. Only five paths are tracked modifications.\n\n2. \n**Seven files the tests need are missing from the list.** They are all untracked:\n
+\n- `Cycle_200_fixes/__init__.py`\n- `Cycle_200_fixes/fail_closed.py`\n- `Cycle_200_fixes/atomic_xlsx.py`\n- `Cycle_201_fixes/fail_closed.py`\n- `Cycle_201_fixes/atomic_xlsx.py`\n- `Cycle_201_fixes/test_cycle201_fixes.py`\n- `Cycle_201_fixes/test_data_quality.py`\n\n3. \n**Consequence (verified).** I copied only the nine listed paths into a clean directory and ran the suites: both fail at collection with import errors. The staged-set check passes because it compares against the same incomplete list, so it does not catch this.\n\n4. \n**The "from the commit" test run is not from the commit.** The installer runs pytest on the working tree, not on the committed tree.\n\n\n## Corrected commit step\n\n\nStage all 16 files, and verify the commit with a clean export rather than the working tree:\n\n```\nimport subprocess, pathlib, tempfile, tarfile, io
+ROOT = pathlib.Path("/home/user/Trading_2")
+PATHS = [
+    # new (untracked) Cycle files
+    "Cycle_200_fixes/__init__.py", "Cycle_200_fixes/fail_closed.py", "Cycle_200_fixes/atomic_xlsx.py",
+    "Cycle_200_fixes/test_cycle200_fixes.py",
+    "Cycle_201_fixes/fail_closed.py", "Cycle_201_fixes/atomic_xlsx.py",
+    "Cycle_201_fixes/data_quality.py", "Cycle_201_fixes/remediation_r2.py",
+    "Cycle_201_fixes/test_cycle201_fixes.py", "Cycle_201_fixes/test_data_quality.py",
+    "Cycle_201_fixes/test_remediation_r2.py",
+    # tracked modifications
+    "Terminal/Data_Factory/generate_telemetry_snapshot.py", ".agents/rules/ACTIVE_CONTEXT.md",
+    "Terminal/dispatch_tri_council.py", "Terminal/dispatch_comprehensive_wake_up_prompt.py",
+    "docs/trade_plans/SESSION_FULL_FABLE.md",
+]
+subprocess.run(["git", "add", "--"] + PATHS, cwd=ROOT, check=True)
+staged = subprocess.run(["git", "diff", "--cached", "--name-only"], cwd=ROOT,
+                        capture_output=True, text=True, check=True).stdout.split()
+assert sorted(staged) == sorted(PATHS), sorted(set(staged) ^ set(PATHS))
+subprocess.run(["git", "commit", "-m", "fix(cycle-201): Option 1 macro guard, remediation_r2, 121 tests"],
+               cwd=ROOT, check=True)
+head = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT, capture_output=True, text=True, check=True).stdout.strip()
+# verify from the commit itself (git archive does not touch the working tree)
+archive = subprocess.run(["git", "archive", head], cwd=ROOT, capture_output=True, check=True).stdout
+tmp = pathlib.Path(tempfile.mkdtemp(prefix="commit_verify_"))
+tarfile.open(fileobj=io.BytesIO(archive)).extractall(tmp)
+for cmd in (["Cycle_200_fixes", "Cycle_201_fixes"], ["Tests/Test_Macro_Calendar_Hardening.py"]):
+    r = subprocess.run(["python3", "-m", "pytest", "-q", "-p", "no:cacheprovider", *cmd], cwd=tmp, capture_output=True, text=True)
+    print(cmd, r.stdout.strip().splitlines()[-1])\n```\n\nNote that the verification step needs `pytest` and the macro-test dependencies (`numpy`, `pandas`, `polars`, `lxml`, `requests`) in the Python used for `python3`. Use the same environment as the earlier runs.\n\n## Verified in this round\n\n\n- **Working-tree suites:** after the Cycle 200 import step, the Cycle 200 and Cycle 201 files give **117 passed** (with the repository's current 8-test `remediation_r2` file). The 121 figure needs the 12-test file that the installer writes. I verified that file in Round 9's scratch run, but did not rerun it here.\n- The other installer steps match their earlier verified texts: the `data_quality.py` step, the telemetry function, the dispatch replacements, and the `SESSION_FULL_FABLE.md` replacement.\n- The two-space `ACTIVE_CONTEXT.md` regex matches exactly one block.\n\n## Conditions for ratification\n\n\n1. The commit made with the corrected 16-path list, and the `git archive` check above passing for both suites.\n2. The 121 count shown from that archive, with the 12-test `remediation_r2` file included.\n3. `Tests/Test_Macro_Calendar_Hardening.py` 5/5 in the same archive check.\n4. The workbook and pipeline in the repository, with `REQUIRED_SHEETS` in the file. They are not in this checkout.\n5. Gemini key rotation, still open from earlier cycles.\n\n## Note on this session\n\n\nThis session is closed because its pull request was merged or closed. I cannot push, open PRs or fetch from GitHub. Local commits remain allowed. The repository is still at `e5da816`, and the venv used for these checks disappeared between turns and had to be recreated.\n
