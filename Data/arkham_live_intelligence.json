@@ -1,5 +1,5 @@
 {
-  "as_of_utc": "2026-10-19 08:04:53 UTC",
+  "as_of_utc": "2026-10-19 08:09:48 UTC",
   "source": "Arkham Intelligence Upgraded Harvester (arkm.com via Chrome CDP)",
   "filter_applied": "USD >= $100K",
   "feed_status": "STREAMING_ACTIVE",
@@ -776,86 +776,16 @@
       "portfolio_change_24h": "",
       "holdings_breakdown": [
         {
-          "symbol": "BTC",
-          "price": "$82,814",
-          "amount": "BTC",
-          "value_usd": "$59.97B",
-          "change_24h": "+1.39%"
-        },
-        {
-          "symbol": "USDT",
-          "price": "$1",
-          "amount": "USDT",
-          "value_usd": "$39.83B",
-          "change_24h": "\u00b10%"
-        },
-        {
-          "symbol": "ETH",
-          "price": "$2,430.37",
-          "amount": "ETH",
-          "value_usd": "$8.78B",
-          "change_24h": "+0.86%"
-        },
-        {
-          "symbol": "USDC",
-          "price": "$1",
-          "amount": "USDC",
-          "value_usd": "$7.52B",
-          "change_24h": "\u00b10%"
-        },
-        {
-          "symbol": "SOL",
-          "price": "$105.75",
-          "amount": "SOL",
-          "value_usd": "$2.59B",
-          "change_24h": "+2.11%"
-        },
-        {
-          "symbol": "DOGE",
-          "price": "$0.08",
-          "amount": "DOGE",
-          "value_usd": "$1.46B",
-          "change_24h": "+0.91%"
-        },
-        {
-          "symbol": "LINK",
-          "price": "$12.21",
-          "amount": "LINK",
-          "value_usd": "$996.38M",
-          "change_24h": "+1.75%"
-        },
-        {
-          "symbol": "UNI",
-          "price": "$7.4",
-          "amount": "UNI",
-          "value_usd": "$550.1M",
-          "change_24h": "+2.21%"
-        },
-        {
-          "symbol": "XRP",
-          "price": "$1.31",
-          "amount": "Binance-Peg XRP",
-          "value_usd": "$242.98M",
-          "change_24h": "+0.77%"
-        },
-        {
-          "symbol": "AVAX",
-          "price": "$9.78",
-          "amount": "AVAX",
-          "value_usd": "$211.77M",
-          "change_24h": "\u00b10%"
-        },
-        {
           "symbol": "BNB",
-          "price": "$131.2",
+          "price": "$11.97",
           "amount": "",
-          "value_usd": "$26,738.04",
-          "change_24h": "+0.12%"
+          "value_usd": "$26,731.82",
+          "change_24h": "+0.10%"
         }
       ],
       "category": "CENTRALIZED_EXCHANGE",
       "priority": "HIGH",
-      "last_updated_utc": "2026-10-19 07:19:39 UTC"
+      "last_updated_utc": "2026-10-19 08:09:25 UTC"
     },
     "coinbase": {
       "slug": "coinbase",
@@ -863,18 +793,10 @@
       "address_count": "69.7M Addresses",
       "total_portfolio_usd": "$0.00",
       "portfolio_change_24h": "",
-      "holdings_breakdown": [
-        {
-          "symbol": "USDC",
-          "price": "$108.87",
-          "amount": "USDC",
-          "value_usd": "$400",
-          "change_24h": ""
-        }
-      ],
+      "holdings_breakdown": [],
       "category": "PRIME_CUSTODIAN",
       "priority": "HIGH",
-      "last_updated_utc": "2026-10-19 07:19:45 UTC"
+      "last_updated_utc": "2026-10-19 08:09:30 UTC"
     },
     "okx": {
       "slug": "okx",
@@ -885,10 +807,10 @@
       "holdings_breakdown": [
         {
           "symbol": "BTC",
-          "price": "$82,766",
+          "price": "$82,689",
           "amount": "BTC",
-          "value_usd": "$12.86B",
-          "change_24h": "+1.39%"
+          "value_usd": "$12.85B",
+          "change_24h": "+1.32%"
         },
         {
           "symbol": "USDT",
@@ -899,10 +821,10 @@
         },
         {
           "symbol": "ETH",
-          "price": "$2,431.55",
+          "price": "$2,428.04",
           "amount": "ETH",
-          "value_usd": "$2.74B",
-          "change_24h": "+1%"
+          "value_usd": "$2.73B",
+          "change_24h": "+0.87%"
         },
         {
           "symbol": "USDC",
@@ -913,16 +835,16 @@
         },
         {
           "symbol": "SOL",
-          "price": "$105.76",
+          "price": "$105.59",
           "amount": "SOL",
-          "value_usd": "$881.7M",
-          "change_24h": "+2.21%"
+          "value_usd": "$880.28M",
+          "change_24h": "+2.32%"
         },
         {
           "symbol": "DOGE",
           "price": "$0.08",
           "amount": "DOGE",
-          "value_usd": "$518.58M",
+          "value_usd": "$520.28M",
           "change_24h": "+0.95%"
         },
         {
@@ -930,26 +852,26 @@
           "price": "$7.43",
           "amount": "UNI",
           "value_usd": "$153.91M",
-          "change_24h": "+2.34%"
+          "change_24h": "+2.77%"
         },
         {
           "symbol": "BNB",
-          "price": "$727.06",
+          "price": "$726.32",
           "amount": "BNB",
-          "value_usd": "$121.83M",
-          "change_24h": "+0.99%"
+          "value_usd": "$121.71M",
+          "change_24h": "+0.91%"
         },
         {
           "symbol": "LINK",
-          "price": "$12.21",
+          "price": "$12.18",
           "amount": "LINK",
-          "value_usd": "$105.84M",
-          "change_24h": "+1.83%"
+          "value_usd": "$105.58M",
+          "change_24h": "+1.84%"
         }
       ],
       "category": "CENTRALIZED_EXCHANGE",
       "priority": "HIGH",
-      "last_updated_utc": "2026-10-19 07:24:20 UTC"
+      "last_updated_utc": "2026-10-19 08:09:38 UTC"
     },
     "bybit": {
       "slug": "bybit",
@@ -960,15 +882,15 @@
       "holdings_breakdown": [
         {
           "symbol": "USDT",
-          "price": "$51.18",
+          "price": "$461.92",
           "amount": "",
-          "value_usd": "$2,207.36",
-          "change_24h": "+0.19%"
+          "value_usd": "$2,206.7",
+          "change_24h": "+0.17%"
         }
       ],
       "category": "CENTRALIZED_EXCHANGE",
       "priority": "HIGH",
-      "last_updated_utc": "2026-10-19 07:24:27 UTC"
+      "last_updated_utc": "2026-10-19 08:09:45 UTC"
     },
     "kraken": {
       "slug": "kraken",
@@ -1835,15 +1757,15 @@
       "holdings_breakdown": [
         {
           "symbol": "BTC",
-          "price": "$82,826",
+          "price": "$82,582",
           "amount": "BTC",
-          "value_usd": "$2.37B",
-          "change_24h": "+1.46%"
+          "value_usd": "$2.36B",
+          "change_24h": "+1.2%"
         }
       ],
       "category": "CORPORATE_TREASURY",
       "priority": "MEDIUM",
-      "last_updated_utc": "2026-10-19 07:19:31 UTC"
+      "last_updated_utc": "2026-10-19 08:09:19 UTC"
     },
     "huobi": {
       "slug": "huobi",
