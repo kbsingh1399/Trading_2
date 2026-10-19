@@ -1,5 +1,5 @@
 {
-  "as_of_utc": "2026-10-19 00:48:26 UTC",
+  "as_of_utc": "2026-10-19 00:53:24 UTC",
   "source": "Arkham Intelligence Upgraded Harvester (arkm.com via Chrome CDP)",
   "filter_applied": "USD >= $100K",
   "feed_status": "STREAMING_ACTIVE",
@@ -720,58 +720,16 @@
       "portfolio_change_24h": "",
       "holdings_breakdown": [
         {
-          "symbol": "BTC",
-          "price": "$81,969",
-          "amount": "BTC",
-          "value_usd": "$7.95B",
-          "change_24h": "+0.72%"
-        },
-        {
           "symbol": "USDT",
-          "price": "$1",
-          "amount": "USDT",
-          "value_usd": "$6.41B",
-          "change_24h": "\u00b10%"
-        },
-        {
-          "symbol": "USDC",
-          "price": "$1",
-          "amount": "USDC",
-          "value_usd": "$425.19K",
-          "change_24h": "\u00b10%"
-        },
-        {
-          "symbol": "BNB",
-          "price": "$722.27",
-          "amount": "BNB",
-          "value_usd": "$117.59K",
-          "change_24h": "+0.72%"
-        },
-        {
-          "symbol": "ETH",
-          "price": "$2,407.54",
-          "amount": "ETH",
-          "value_usd": "$32.55K",
-          "change_24h": "+0.36%"
-        },
-        {
-          "symbol": "SOL",
-          "price": "$104.04",
-          "amount": "SOL",
-          "value_usd": "$23.25K",
-          "change_24h": "+0.69%"
-        },
-        {
-          "symbol": "AVAX",
-          "price": "$9.77",
-          "amount": "AVAX",
-          "value_usd": "$1.44K",
-          "change_24h": "+0.1%"
+          "price": "$4.69K",
+          "amount": "",
+          "value_usd": "$0.14",
+          "change_24h": "+0.00%"
         }
       ],
       "category": "STABLECOIN_RESERVE",
       "priority": "HIGH",
-      "last_updated_utc": "2026-10-19 00:03:25 UTC"
+      "last_updated_utc": "2026-10-19 00:52:59 UTC"
     },
     "circle": {
       "slug": "circle",
@@ -782,15 +740,15 @@
       "holdings_breakdown": [
         {
           "symbol": "USDC",
-          "price": "$48.75",
-          "amount": "",
-          "value_usd": "$154.68",
-          "change_24h": "-0.00%"
+          "price": "$16.24",
+          "amount": "USDC",
+          "value_usd": "$18.04",
+          "change_24h": ""
         }
       ],
       "category": "STABLECOIN_RESERVE",
       "priority": "HIGH",
-      "last_updated_utc": "2026-10-19 00:03:30 UTC"
+      "last_updated_utc": "2026-10-19 00:53:05 UTC"
     },
     "mt-gox": {
       "slug": "mt-gox",
@@ -801,15 +759,15 @@
       "holdings_breakdown": [
         {
           "symbol": "BTC",
-          "price": "$82,045",
+          "price": "$82,377",
           "amount": "BTC",
-          "value_usd": "$2.82B",
-          "change_24h": "+0.8%"
+          "value_usd": "$2.83B",
+          "change_24h": "+1.16%"
         }
       ],
       "category": "INSOLVENCY_TRUSTEE",
       "priority": "HIGH",
-      "last_updated_utc": "2026-10-19 00:03:36 UTC"
+      "last_updated_utc": "2026-10-19 00:53:11 UTC"
     },
     "binance": {
       "slug": "binance",
@@ -820,15 +778,15 @@
       "holdings_breakdown": [
         {
           "symbol": "BNB",
-          "price": "$129.25",
+          "price": "$50.68",
           "amount": "",
-          "value_usd": "$26,714.15",
+          "value_usd": "$26,718.17",
           "change_24h": "+0.07%"
         }
       ],
       "category": "CENTRALIZED_EXCHANGE",
       "priority": "HIGH",
-      "last_updated_utc": "2026-10-19 00:08:32 UTC"
+      "last_updated_utc": "2026-10-19 00:53:21 UTC"
     },
     "coinbase": {
       "slug": "coinbase",
@@ -1716,15 +1674,15 @@
       "holdings_breakdown": [
         {
           "symbol": "BTC",
-          "price": "$81,995",
+          "price": "$82,322",
           "amount": "BTC",
-          "value_usd": "$2.34B",
-          "change_24h": "+0.79%"
+          "value_usd": "$2.35B",
+          "change_24h": "+1.1%"
         }
       ],
       "category": "CORPORATE_TREASURY",
       "priority": "MEDIUM",
-      "last_updated_utc": "2026-10-19 00:08:25 UTC"
+      "last_updated_utc": "2026-10-19 00:53:16 UTC"
     },
     "huobi": {
       "slug": "huobi",
