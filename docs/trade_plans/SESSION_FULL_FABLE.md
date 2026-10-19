@@ -1,4 +1,7 @@
-text
+> **ARCHITECTURAL RECORD (OPTION 1 RATIFIED & ACTIVE)**:
+> Historical directives from prior exploratory iterations stating macro blackouts are removed have been formally superseded by the operator.
+> Option 1 (institutional fail-closed macro blackout via BlackoutGuard, ±35m around FOMC/CPI/NFP) is actively enforced across all production modules.
+
 TRADING DESK COUNCIL: CYCLE 106 PURE TELEMETRY & PLAYBOOK ANALYSIS PROMPT
 ROUTING TARGET: CLAUDE FABLE 5.1 / MYTHOS-CLASS FRONTIER REASONING ENGINE (ANTHROPIC FABLE ORCHESTRATOR - TAB 2)
 CANONICAL WORKSPACE: https://github.com/kbsingh1399/Trading_2
@@ -229,8 +232,8 @@ PART H: REQUIRED OUTPUT FORMAT & QUAD-COUNCIL SYNCHRONIZATION (2 ARENA.AI TABS +
      b) Calibrating Model 1 & Model 2 for Payable >= 2.0R Setups:
         - Both models frequently report 0 candidates due to strict 2.0R geometry or wide swing targets. How can we mathematically construct payable 2.0R - 2.5R setups that capture intraday liquidity sweeps without requiring multi-day 10 ATR excursions?
         - How should the SL bunker buffer (currently 0.35 - 0.50 ATR beyond outer bunker edge) and TP magnet front-run (5 - 10 bps) be dynamically calibrated based on live volatility surface and book depth?
-     c) Expanding Profitable Trade Frequency & Zero Macro Blackout Halts:
-        - OPERATOR DIRECTIVE: Macro blackout enforcement is PERMANENTLY REMOVED AND DISABLED. Never halt trading, purge positions, or disqualify candidates due to macro events, CPI, FOMC, or news runway. Evaluate and trade setups continuously across all market conditions.
+     c) Institutional Macro Blackout & Risk Protection (Option 1 Formalized):
+        - OPERATOR DIRECTIVE: Macro blackout enforcement is ACTIVELY ENFORCED via BlackoutGuard (Option 1). New orders are strictly halted within ±35m of Tier-1 macro events (FOMC, CPI, NFP) and fail closed on calendar errors. Active positions continue trailing micro-ratchets. Evaluate and trade high-conviction setups outside the blackout window.
         - How can we optimize execution on Blueberry Markets MT5 CFDs under the 15% dynamic friction rule to capture maximum net alpha?
 
 9. COUNCIL SYNC PROTOCOL (ARENA.AI TAB 2 - CLAUDE FABLE ORCHESTRATOR):
