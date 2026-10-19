@@ -1,5 +1,5 @@
 {
-  "as_of_utc": "2026-10-19 01:43:31 UTC",
+  "as_of_utc": "2026-10-19 01:48:27 UTC",
   "source": "Arkham Intelligence Upgraded Harvester (arkm.com via Chrome CDP)",
   "filter_applied": "USD >= $100K",
   "feed_status": "STREAMING_ACTIVE",
@@ -989,16 +989,93 @@
       "portfolio_change_24h": "",
       "holdings_breakdown": [
         {
+          "symbol": "BTC",
+          "price": "$82,367",
+          "amount": "BTC",
+          "value_usd": "$5.11B",
+          "change_24h": "+0.88%"
+        },
+        {
           "symbol": "USDT",
-          "price": "$102",
-          "amount": "",
-          "value_usd": "$2,204.98",
-          "change_24h": "+0.14%"
+          "price": "$1",
+          "amount": "USDT",
+          "value_usd": "$2.97B",
+          "change_24h": "+0.01%"
+        },
+        {
+          "symbol": "ETH",
+          "price": "$2,421.68",
+          "amount": "ETH",
+          "value_usd": "$1.02B",
+          "change_24h": "+0.32%"
+        },
+        {
+          "symbol": "USDC",
+          "price": "$1",
+          "amount": "USDC",
+          "value_usd": "$547.55M",
+          "change_24h": "+0%"
+        },
+        {
+          "symbol": "SOL",
+          "price": "$104.69",
+          "amount": "SOL",
+          "value_usd": "$356.66M",
+          "change_24h": "+0.69%"
+        },
+        {
+          "symbol": "DOGE",
+          "price": "$0.08",
+          "amount": "DOGE",
+          "value_usd": "$129.12M",
+          "change_24h": "+0.19%"
+        },
+        {
+          "symbol": "LINK",
+          "price": "$12.14",
+          "amount": "LINK",
+          "value_usd": "$87.68M",
+          "change_24h": "+1%"
+        },
+        {
+          "symbol": "UNI",
+          "price": "$7.27",
+          "amount": "UNI",
+          "value_usd": "$59M",
+          "change_24h": "\u00b10%"
+        },
+        {
+          "symbol": "BNB",
+          "price": "$725.3",
+          "amount": "BNB",
+          "value_usd": "$53.68M",
+          "change_24h": "+0.79%"
+        },
+        {
+          "symbol": "AVAX",
+          "price": "$9.76",
+          "amount": "AVAX",
+          "value_usd": "$37.85M",
+          "change_24h": "-0.81%"
+        },
+        {
+          "symbol": "AAVE",
+          "price": "$152.79",
+          "amount": "AAVE",
+          "value_usd": "$29.63M",
+          "change_24h": "+0.8%"
+        },
+        {
+          "symbol": "AERO",
+          "price": "$0.8",
+          "amount": "AERO",
+          "value_usd": "$20.22M",
+          "change_24h": "-5.56%"
         }
       ],
       "category": "CENTRALIZED_EXCHANGE",
       "priority": "HIGH",
-      "last_updated_utc": "2026-10-19 00:58:12 UTC"
+      "last_updated_utc": "2026-10-19 01:48:00 UTC"
     },
     "kraken": {
       "slug": "kraken",
@@ -1006,18 +1083,10 @@
       "address_count": "7.5M Addresses",
       "total_portfolio_usd": "$0.00",
       "portfolio_change_24h": "",
-      "holdings_breakdown": [
-        {
-          "symbol": "USDC",
-          "price": "$985.93",
-          "amount": "",
-          "value_usd": "$23.55",
-          "change_24h": "+0.00%"
-        }
-      ],
+      "holdings_breakdown": [],
       "category": "CENTRALIZED_EXCHANGE",
       "priority": "HIGH",
-      "last_updated_utc": "2026-10-19 00:58:18 UTC"
+      "last_updated_utc": "2026-10-19 01:48:06 UTC"
     },
     "deribit": {
       "slug": "deribit",
@@ -1028,17 +1097,17 @@
       "holdings_breakdown": [
         {
           "symbol": "BTC",
-          "price": "$82,149",
+          "price": "$82,445",
           "amount": "BTC",
-          "value_usd": "$3.36B",
-          "change_24h": "+0.94%"
+          "value_usd": "$3.37B",
+          "change_24h": "+0.85%"
         },
         {
           "symbol": "ETH",
-          "price": "$2,407.82",
+          "price": "$2,425.15",
           "amount": "ETH",
-          "value_usd": "$441.09M",
-          "change_24h": "+0.32%"
+          "value_usd": "$444.26M",
+          "change_24h": "+0.4%"
         },
         {
           "symbol": "USDC",
@@ -1056,28 +1125,28 @@
         },
         {
           "symbol": "SOL",
-          "price": "$104.05",
+          "price": "$104.79",
           "amount": "SOL",
-          "value_usd": "$2.24M",
-          "change_24h": "+0.8%"
+          "value_usd": "$2.25M",
+          "change_24h": "+0.74%"
         },
         {
           "symbol": "BNB",
-          "price": "$722.93",
+          "price": "$725.52",
           "amount": "BNB",
-          "value_usd": "$19.01K",
-          "change_24h": "+0.83%"
+          "value_usd": "$19.08K",
+          "change_24h": "+0.67%"
         },
         {
           "symbol": "CBBTC",
-          "price": "$82,209",
+          "price": "$82,392",
           "amount": "CBBTC",
-          "value_usd": "$14.59",
-          "change_24h": "+1.06%"
+          "value_usd": "$14.62",
+          "change_24h": "+0.84%"
         },
         {
           "symbol": "AVAX",
-          "price": "$9.7",
+          "price": "$9.78",
           "amount": "AVAX",
           "value_usd": "$",
           "change_24h": ""
@@ -1085,7 +1154,7 @@
       ],
       "category": "DERIVATIVES_EXCHANGE",
       "priority": "HIGH",
-      "last_updated_utc": "2026-10-19 00:58:24 UTC"
+      "last_updated_utc": "2026-10-19 01:48:12 UTC"
     },
     "bitfinex": {
       "slug": "bitfinex",
@@ -1096,14 +1165,7 @@
       "holdings_breakdown": [
         {
           "symbol": "USDT",
-          "price": "$10.8K",
-          "amount": "",
-          "value_usd": "$153.51",
-          "change_24h": ""
-        },
-        {
-          "symbol": "ETH",
-          "price": "$26.17K",
+          "price": "$2.07K",
           "amount": "",
           "value_usd": "$0.00002",
           "change_24h": "+0.00%"
@@ -1111,7 +1173,7 @@
       ],
       "category": "CENTRALIZED_EXCHANGE",
       "priority": "MEDIUM",
-      "last_updated_utc": "2026-10-19 01:03:02 UTC"
+      "last_updated_utc": "2026-10-19 01:48:18 UTC"
     },
     "gate-io": {
       "slug": "gate-io",
@@ -1841,18 +1903,10 @@
       "address_count": "10.1M Addresses",
       "total_portfolio_usd": "$0.00",
       "portfolio_change_24h": "",
-      "holdings_breakdown": [
-        {
-          "symbol": "USDT",
-          "price": "$134",
-          "amount": "",
-          "value_usd": "$9,608.56",
-          "change_24h": "+0.10%"
-        }
-      ],
+      "holdings_breakdown": [],
       "category": "CENTRALIZED_EXCHANGE",
       "priority": "LOW",
-      "last_updated_utc": "2026-10-19 01:03:07 UTC"
+      "last_updated_utc": "2026-10-19 01:48:24 UTC"
     },
     "makerdao": {
       "slug": "makerdao",
