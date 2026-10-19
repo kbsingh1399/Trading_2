@@ -760,16 +760,27 @@ def dump_arkham_transfers_100k(wb, arkham_transfers, harvest_epoch=None):
     
     seen_keys = set()
     deduped = []
+    rejected_window = 0
+    unparseable_labels = set()
+    rejected_hash = 0
+    
     for tx in arkham_transfers:
         time_label = tx.get("time", "")
         if not within_window(time_label, window_h=24.0):
+            rejected_window += 1
+            if age_hours(time_label) is None and str(time_label).strip().lower() not in ("just now", "now"):
+                unparseable_labels.add(str(time_label))
             continue
         key = harvest_key(tx, harvest_epoch)
-        if key is None or key in seen_keys:
+        if key is None:
+            rejected_hash += 1
+            continue
+        if key in seen_keys:
             continue
         seen_keys.add(key)
         deduped.append(tx)
         
+    print(f"Arkham filter audit: {len(deduped)} unique valid transfers kept, {rejected_window} rejected by window, {rejected_hash} rejected (missing/invalid 66-char tx hash), {len(unparseable_labels)} unparseable labels: {list(unparseable_labels)[:5]}")
     for r_idx, tx in enumerate(deduped, 3):
         idx_num = r_idx - 2
         time_str = tx.get("time", "")

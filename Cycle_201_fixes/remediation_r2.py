@@ -46,29 +46,29 @@ def orderbook_spread(bid, ask, quote_age_s) -> Optional[float]:
 
 
 def within_window(label, window_h: float = 24.0) -> bool:
-    """True only if the relative label parses and is within the window.
+    """True only if the label parses and is within the window.
 
-    Labels are relative to the harvest moment, so the window is judged there.
+    'just now' and 'now' count as age 0. Unparseable labels return False,
+    but the caller must count them as rejected rather than dropping them.
     """
+    if label is not None and str(label).strip().lower() in ("just now", "now"):
+        return True
     a = age_hours(label)
     return a is not None and a <= window_h
 
 
-def harvest_key(t: dict, harvest_epoch: float) -> Optional[tuple]:
-    """Cross-page key for one transfer, using ONE harvest_epoch per run.
+def harvest_key(t: dict, harvest_epoch: float = 0.0) -> Optional[tuple]:
+    """Key on the on-chain identity. The time label is not part of the key.
 
-    The relative label is converted to an absolute minute, so the same transfer
-    seen on two pages gets the same key. Limitation: a label that changes between
-    reads (for example '119 minutes ago' to '2 hours ago') yields different keys.
-    Returns None when the label cannot be parsed; such rows must be rejected.
+    Returns None when there is no full transaction hash; such rows must be
+    flagged for review, not deduplicated on weaker fields.
     """
-    a = age_hours(t.get("time"))
-    if a is None:
+    tx = str(t.get("tx_hash", "")).strip().lower()
+    if not (tx.startswith("0x") and len(tx) == 66):
         return None
-    abs_min = int(round((harvest_epoch - a * 3600.0) / 60.0))
     s = lambda k: str(t.get(k, "")).strip().lower()  # noqa: E731
-    return (abs_min, s("tx_hash"), s("from_address"), s("to_address"),
-            s("token_symbol"), s("token_value"), s("usd_value"))
+    return (tx, s("from_address"), s("to_address"), s("token_symbol"),
+            s("token_value"), s("usd_value"))
 
 
 def sheet_guard(actual: Iterable[str], required: Iterable[str]) -> Tuple[list, list]:

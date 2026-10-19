@@ -35,21 +35,32 @@ def test_orderbook_spread_keeps_five_second_gate():
 def test_within_window():
     assert within_window("3 hours ago") is True
     assert within_window("2 days ago") is False
-    assert within_window("Just now") is False
+    assert within_window("Just now") is True
+    assert within_window("now") is True
+    assert within_window("unknown label") is False
     assert within_window(None) is False
 
 
-def test_harvest_key_dedupes_same_page_read_twice():
-    row = {"time": "3 hours ago", "tx_hash": "0x" + "a" * 64, "from_address": "0x" + "b" * 40,
-           "to_address": "0x" + "c" * 40, "token_symbol": "USDC",
-           "token_value": "1,000", "usd_value": "$1.0M"}
-    epoch = 1_800_000_000.0
-    assert harvest_key(row, epoch) == harvest_key(dict(row), epoch)
-    assert harvest_key(row, epoch) != harvest_key(dict(row, tx_hash="0x" + "d" * 64), epoch)
+def test_harvest_key_dedupes_drift_across_pages():
+    row1 = {"time": "119 minutes ago", "tx_hash": "0x" + "a" * 64, "from_address": "0x" + "b" * 40,
+            "to_address": "0x" + "c" * 40, "token_symbol": "USDC",
+            "token_value": "1,000", "usd_value": "$1.0M"}
+    row2 = dict(row1, time="2 hours ago")
+    # Time label drift does NOT create duplicate keys
+    assert harvest_key(row1) == harvest_key(row2)
 
 
-def test_harvest_key_rejects_unparseable_time():
-    assert harvest_key({"time": "Just now", "tx_hash": "0x1"}, 1_800_000_000.0) is None
+def test_harvest_key_rejects_non_66_char_hash():
+    assert harvest_key({"tx_hash": "0x123", "from_address": "0x1"}) is None
+    assert harvest_key({"tx_hash": "", "from_address": "0x1"}) is None
+    assert harvest_key({"tx_hash": None, "from_address": "0x1"}) is None
+
+
+def test_harvest_key_two_transfers_same_tx_differ():
+    base = {"tx_hash": "0x" + "a" * 64, "token_symbol": "USDC", "token_value": "100", "usd_value": "$100"}
+    t1 = dict(base, from_address="0x" + "1" * 40, to_address="0x" + "2" * 40)
+    t2 = dict(base, from_address="0x" + "3" * 40, to_address="0x" + "4" * 40)
+    assert harvest_key(t1) != harvest_key(t2)
 
 
 def test_sheet_guard_detects_renamed_sheet():
