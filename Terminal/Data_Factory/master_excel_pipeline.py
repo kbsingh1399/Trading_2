@@ -28,6 +28,11 @@ from openpyxl.utils import get_column_letter
 
 from Terminal.risk.fail_closed import num, cell, spread_bps, spread_gate, NA
 from Terminal.Data_Factory.atomic_xlsx import atomic_save, check_minimums, cache_sum_formulas
+from Cycle_201_fixes.data_quality import (
+    status_color, is_within_24h, parse_chain_from_url_or_text,
+    parse_whale_change_pct, long_short_ratio, exchange_basis_bps,
+    extract_largest_holding, dedup_arkham_transfers, WHALE_THRESHOLDS
+)
 
 # Styles & Fonts
 FONT_NAME = "Segoe UI"
@@ -127,43 +132,85 @@ def dump_telemetry_system_state(wb, tele_data):
     
     # Account Capital
     acc = tele_data.get("account", {})
-    rows.append(("Account Capital", "login", acc.get("login", 5064568), "MT5 Account ID", "NATIVE_MT5_ACCOUNT_INFO", "AUTHENTICATED", "Production execution account"))
+    login_val = acc.get("login")
+    rows.append(("Account Capital", "login", login_val if login_val is not None else "N/A", "MT5 Account ID", "NATIVE_MT5_ACCOUNT_INFO", "AUTHENTICATED" if login_val else "UNKNOWN", "Production execution account"))
     rows.append(("Account Capital", "currency", acc.get("currency", "USD"), "ISO Code", "Broker Specification", "VALID", "Base currency"))
-    rows.append(("Account Capital", "balance_usd", cell(acc.get("balance_usd")), "USD", "MT5 Terminal Balance", "NOMINAL", "Realized ledger balance"))
-    rows.append(("Account Capital", "equity_usd", cell(acc.get("equity_usd")), "USD", "MT5 Terminal Equity", "NOMINAL", "Real-time floating equity"))
-    rows.append(("Account Capital", "margin_used_usd", cell(acc.get("margin_used_usd")), "USD", "Broker Margin Engine", "NOMINAL", "Active collateral requirement"))
-    rows.append(("Account Capital", "margin_free_usd", cell(acc.get("margin_free_usd")), "USD", "Broker Margin Engine", "NOMINAL", "Unencumbered purchasing power"))
+    
+    bal = num(acc.get("balance_usd"))
+    rows.append(("Account Capital", "balance_usd", cell(bal), "USD", "MT5 Terminal Balance", "NOMINAL" if bal is not None else "UNKNOWN", "Realized ledger balance"))
+    
+    eq = num(acc.get("equity_usd"))
+    rows.append(("Account Capital", "equity_usd", cell(eq), "USD", "MT5 Terminal Equity", "NOMINAL" if eq is not None else "UNKNOWN", "Real-time floating equity"))
+    
+    m_used = num(acc.get("margin_used_usd"))
+    rows.append(("Account Capital", "margin_used_usd", cell(m_used), "USD", "Broker Margin Engine", "NOMINAL" if m_used is not None else "UNKNOWN", "Active collateral requirement"))
+    
+    m_free = num(acc.get("margin_free_usd"))
+    rows.append(("Account Capital", "margin_free_usd", cell(m_free), "USD", "Broker Margin Engine", "NOMINAL" if m_free is not None else "UNKNOWN", "Unencumbered purchasing power"))
+    
     rows.append(("Account Capital", "hard_floor_usd", cell(acc.get("hard_floor_usd", 4775.0)), "USD", "Firm Capital Mandate", "HARD FLOOR", "Catastrophic circuit breaker"))
-    rows.append(("Account Capital", "cushion_above_floor_usd", cell(acc.get("cushion_above_floor_usd")), "USD", "Calculated Risk Buffer", "PROTECTED", "Equity minus Hard Floor ($4,775)"))
+    
+    cushion = num(acc.get("cushion_above_floor_usd"))
+    cushion_st = "PROTECTED" if (cushion is not None and cushion >= 20.0) else ("VIOLATION" if (cushion is not None and cushion < 0) else ("ELEVATED" if cushion is not None else "UNKNOWN"))
+    rows.append(("Account Capital", "cushion_above_floor_usd", cell(cushion), "USD", "Calculated Risk Buffer", cushion_st, "Equity minus Hard Floor ($4,775)"))
     
     # Risk & Exposure
     risk = tele_data.get("risk", {})
     rows.append(("Risk Management", "risk_status", risk.get("status", "BROKER_VALUED"), "Status", "Live Broker Valuation", "VERIFIED", "Broker-valued joint stress model"))
-    rows.append(("Risk Management", "total_contingent_stress_usd", cell(risk.get("total_contingent_stress_usd")), "USD", "Monte Carlo Stress Model", "SAFE", "Worst-case joint stop loss stress"))
-    rows.append(("Risk Management", "post_joint_stop_equity_usd", cell(risk.get("post_joint_stop_equity_usd")), "USD", "Stressed Stop Simulation", "COMPLIANT", "Simulated equity after all stops hit"))
+    
+    stress_val = num(risk.get("total_contingent_stress_usd"))
+    stress_st = "SAFE" if (stress_val is not None and stress_val <= 100.0) else ("ELEVATED" if stress_val is not None else "UNKNOWN")
+    rows.append(("Risk Management", "total_contingent_stress_usd", cell(stress_val), "USD", "Monte Carlo Stress Model", stress_st, "Worst-case joint stop loss stress"))
+    
+    post_eq = num(risk.get("post_joint_stop_equity_usd"))
+    post_st = "COMPLIANT" if (post_eq is not None and post_eq >= 4795.0) else ("VIOLATION" if post_eq is not None else "UNKNOWN")
+    rows.append(("Risk Management", "post_joint_stop_equity_usd", cell(post_eq), "USD", "Stressed Stop Simulation", post_st, "Simulated equity after all stops hit"))
     rows.append(("Risk Management", "required_post_stop_equity_usd", cell(risk.get("required_post_stop_equity_usd", 4795.0)), "USD", "Operational Floor ($4,775 + $20)", "REQUIRED", "Minimum post-stop floor buffer"))
-    rows.append(("Risk Management", "floor_buffer_preserved", str(risk.get("floor_buffer_preserved", True)), "Boolean", "Invariant Validator", "CONFIRMED", "Must remain TRUE on all orders"))
+    
+    floor_pres = risk.get("floor_buffer_preserved")
+    if floor_pres is True:
+        fp_val, fp_st = "True", "CONFIRMED"
+    elif floor_pres is False:
+        fp_val, fp_st = "False", "VIOLATION"
+    else:
+        fp_val, fp_st = "UNKNOWN", "UNKNOWN"
+    rows.append(("Risk Management", "floor_buffer_preserved", fp_val, "Boolean", "Invariant Validator", fp_st, "Must remain TRUE on all orders"))
     
     # Capacity
     cap = tele_data.get("capacity", {})
     rows.append(("Order Capacity", "filled_positions", cap.get("filled", 0), "Slots", "MT5 Open Positions", "NOMINAL", "Active filled tickets"))
     rows.append(("Order Capacity", "pending_orders", cap.get("pending", 0), "Slots", "MT5 Working Orders", "NOMINAL", "Resting limit tickets"))
-    rows.append(("Order Capacity", "available_slots", cap.get("available", 4), "Slots", "Joint Capacity Engine", "OPEN", "Available slots for new execution"))
+    
+    avail_s = cap.get("available")
+    avail_st = "OPEN" if (avail_s is not None and avail_s > 0) else ("EXHAUSTED" if avail_s == 0 else "UNKNOWN")
+    rows.append(("Order Capacity", "available_slots", avail_s if avail_s is not None else "N/A", "Slots", "Joint Capacity Engine", avail_st, "Available slots for new execution"))
     rows.append(("Order Capacity", "max_concurrent_slots", cap.get("max_concurrent", 4), "Slots", "System Architecture Invariant", "LOCKED", "Maximum 4 joint concurrent tickets"))
     
     # Statistical Calibration
-    rows.append(("Quant Statistics", "p_win_lower_bound", cell(tele_data.get("p_win_lower_bound", 0.4197)), "Probability", "Clopper-Pearson Exact 95%", "STATISTICAL", "One-sided binomial lower confidence bound"))
-    rows.append(("Quant Statistics", "p_win_calibration_sample_n", tele_data.get("p_win_calibration_sample_n", 17), "Trades Count", "Historical Closed Record", "CALIBRATING", "Minimum 100 sample threshold"))
-    rows.append(("Quant Statistics", "p_win_calibration_wins", tele_data.get("p_win_calibration_wins", 11), "Wins Count", "Historical Closed Record", "TRACKED", "Realized trade wins"))
+    rows.append(("Quant Statistics", "p_win_lower_bound", cell(tele_data.get("p_win_lower_bound")), "Probability", "Clopper-Pearson Exact 95%", "STATISTICAL", "One-sided binomial lower confidence bound"))
+    p_n = tele_data.get("p_win_calibration_sample_n")
+    rows.append(("Quant Statistics", "p_win_calibration_sample_n", p_n if p_n is not None else "N/A", "Trades Count", "Historical Closed Record", "CALIBRATING", "Minimum 100 sample threshold"))
+    p_w = tele_data.get("p_win_calibration_wins")
+    rows.append(("Quant Statistics", "p_win_calibration_wins", p_w if p_w is not None else "N/A", "Wins Count", "Historical Closed Record", "TRACKED", "Realized trade wins"))
     
     # Macro Calendar
     mc = tele_data.get("macro_calendar", {})
     rows.append(("Macro Calendar", "fomc_event", mc.get("event", "FOMC"), "Macro Event", mc.get("event_source", "Federal Reserve"), "MONITORED", "Tier-1 volatility risk"))
     rows.append(("Macro Calendar", "event_release_utc", mc.get("event_release_utc", ""), "Timestamp UTC", "Federal Reserve Calendar", "SCHEDULED", "Hard blackout initiation"))
     rows.append(("Macro Calendar", "runway_hours_to_blackout", cell(mc.get("runway_hours_to_blackout")), "Hours", "Proximity Engine", "CLEAR", "Hours until mandatory order purge"))
-    rows.append(("Macro Calendar", "blackout_active", str(mc.get("blackout_active", False)), "Boolean", "Execution Sentinel", "STANDBY", "Freezes execution during release"))
+    
+    bo = mc.get("blackout_active")
+    if bo is True:
+        bo_val, bo_st = "True", "CRITICAL"
+    elif bo is False:
+        bo_val, bo_st = "False", "STANDBY"
+    else:
+        bo_val, bo_st = "UNKNOWN", "UNKNOWN"
+    rows.append(("Macro Calendar", "blackout_active", bo_val, "Boolean", "Execution Sentinel", bo_st, "Freezes execution during release"))
+    
     fng = mc.get("fng_index", {})
-    rows.append(("Macro Calendar", "crypto_fear_greed_index", cell(fng.get("value", 53), "{:.0f}"), "Index (0-100)", "Alternative.me Live Feed", fng.get("classification", "Neutral"), "Historical sentiment indicator"))
+    fng_v = fng.get("value")
+    rows.append(("Macro Calendar", "crypto_fear_greed_index", cell(fng_v, "{:.0f}"), "Index (0-100)", "Alternative.me Live Feed", fng.get("classification", "UNKNOWN"), "Historical sentiment indicator"))
     etf_flows = mc.get("etf_net_flows", {})
     rows.append(("Macro Calendar", "btc_etf_net_flows_m_usd", cell(etf_flows.get("BTC_net_usd_millions")), "Million USD", "Farside Investors Authentic Scrape", "REPORTED", "Institutional ETF daily netflow"))
     rows.append(("Macro Calendar", "eth_etf_net_flows_m_usd", cell(etf_flows.get("ETH_net_usd_millions")), "Million USD", "Farside Investors Authentic Scrape", "REPORTED", "Ethereum ETF daily netflow"))
@@ -195,18 +242,18 @@ def dump_telemetry_system_state(wb, tele_data):
                 else:
                     cl.alignment = ALIGN_LEFT
                     
-            # Highlight status
+            # Highlight status using token-based priority (RED > AMBER > GREEN)
             if c_idx == 6:
-                v_str = str(val).upper()
-                if any(x in v_str for x in ["ACTIVE", "VERIFIED", "AUTHENTICATED", "CONFIRMED", "OPEN", "SAFE", "NOMINAL", "COMPLIANT"]):
-                    cl.fill = FILL_GREEN
-                    cl.font = FONT_GREEN
-                elif any(x in v_str for x in ["HARD FLOOR", "REQUIRED", "DENIED", "CRITICAL"]):
+                c_color = status_color(val)
+                if c_color == "RED":
                     cl.fill = FILL_RED
                     cl.font = FONT_RED
-                elif any(x in v_str for x in ["MONITORED", "STANDBY", "CALIBRATING"]):
+                elif c_color == "AMBER":
                     cl.fill = FILL_AMBER
                     cl.font = FONT_AMBER
+                elif c_color == "GREEN":
+                    cl.fill = FILL_GREEN
+                    cl.font = FONT_GREEN
                     
         ws.row_dimensions[r_idx].height = 20
         
@@ -254,9 +301,9 @@ def dump_live_orderbook_cvd_depth(wb, tele_data):
         quote_age_s = num(q.get("quote_age_s"))
         category = d.get("category", "CRYPTO")
         
-        # Single spread definition: (ask-bid)/mid * 1e4 with freshness check
-        sp = spread_bps(bid, ask, quote_age_s if quote_age_s is not None else 1.0, max_age_s=5.0)
-        spread_bps_val = sp if sp is not None else num(q.get("spread_bps"))
+        # Single spread definition: (ask-bid)/mid * 1e4 with freshness check (fail-closed)
+        sp = spread_bps(bid, ask, quote_age_s, max_age_s=5.0)
+        spread_bps_val = sp
         spread = (ask - bid) if (ask is not None and bid is not None) else None
         
         vb = ob.get("venue_basis", {})
@@ -302,29 +349,35 @@ def dump_live_orderbook_cvd_depth(wb, tele_data):
                 if c_idx == 1: cell.font = FONT_DATA_BOLD
             elif c_idx in (4, 5, 8, 9):
                 cell.alignment = ALIGN_RIGHT
-                cell.number_format = "$#,##0.00" if val >= 1 else "$#,##0.0000"
+                if isinstance(val, (int, float)):
+                    cell.number_format = "$#,##0.00" if val >= 1 else "$#,##0.0000"
             elif c_idx in (6, 10):
                 cell.alignment = ALIGN_RIGHT
-                cell.number_format = "$#,##0.0000"
+                if isinstance(val, (int, float)):
+                    cell.number_format = "$#,##0.0000"
             elif c_idx == 7:
                 cell.alignment = ALIGN_RIGHT
-                cell.number_format = "#,##0.00"
+                if isinstance(val, (int, float)):
+                    cell.number_format = "#,##0.00"
             elif c_idx in (11, 12, 15, 16, 17):
                 cell.alignment = ALIGN_RIGHT
-                cell.number_format = "$#,##0"
-                if c_idx in (15, 16, 17):
-                    if val > 0:
-                        cell.font = FONT_GREEN
-                    elif val < 0:
-                        cell.font = FONT_RED
+                if isinstance(val, (int, float)):
+                    cell.number_format = "$#,##0"
+                    if c_idx in (15, 16, 17):
+                        if val > 0:
+                            cell.font = FONT_GREEN
+                        elif val < 0:
+                            cell.font = FONT_RED
             elif c_idx == 13:
                 cell.alignment = ALIGN_RIGHT
-                cell.number_format = "0.00%"
-                if val > 0.05: cell.font = FONT_GREEN
-                elif val < -0.05: cell.font = FONT_RED
+                if isinstance(val, (int, float)):
+                    cell.number_format = "0.00%"
+                    if val > 0.05: cell.font = FONT_GREEN
+                    elif val < -0.05: cell.font = FONT_RED
             elif c_idx == 14:
                 cell.alignment = ALIGN_RIGHT
-                cell.number_format = "0.00"
+                if isinstance(val, (int, float)):
+                    cell.number_format = "0.00"
                 
         ws.row_dimensions[row_idx].height = 20
         row_idx += 1
@@ -369,8 +422,8 @@ def dump_exchange_basis_spreads(wb, tele_data):
         ci = d.get("causal_indicators", {}) or {}
         
         mark = num(fr.get("mark_price")) or num(ci.get("last_price"))
-        index = num(fr.get("index_price")) or mark
-        prem_bps = ((mark - index) / index * 10000.0) if (index and mark) else None
+        index = num(fr.get("index_price"))
+        prem_bps = exchange_basis_bps(mark, index)
         funding_bps = num(fr.get("last_funding_rate_bps"))
         ann_funding = (funding_bps * 3 * 365) / 100.0 if funding_bps is not None else None
         
@@ -472,10 +525,14 @@ def dump_hyperdash_flow_feed(wb, tele_data):
     ws["A2"].fill = FILL_SECTION
     
     summ = hd.get("summary", {}) or {}
+    long_liq_vol = summ.get("long_liquidations_volume_usd", 0.0)
+    short_liq_vol = summ.get("short_liquidations_volume_usd", 0.0)
+    ls_ratio = long_short_ratio(long_liq_vol, short_liq_vol)
+    
     summ_items = [
         ("Total Liquidation Alerts Tracked", summ.get("total_liquidations_count", 0), "Whale Trades Count", summ.get("whale_trades_count", 0)),
-        ("Total Liquidations Volume (USD)", summ.get("total_liquidations_volume_usd", 0.0), "Long to Short Liq Ratio", summ.get("long_to_short_liq_ratio", 1.0)),
-        ("Long Liquidations Volume (USD)", summ.get("long_liquidations_volume_usd", 0.0), "Short Liquidations Volume (USD)", summ.get("short_liquidations_volume_usd", 0.0)),
+        ("Total Liquidations Volume (USD)", summ.get("total_liquidations_volume_usd", 0.0), "Long to Short Liq Ratio", ls_ratio if ls_ratio is not None else "N/A"),
+        ("Long Liquidations Volume (USD)", long_liq_vol, "Short Liquidations Volume (USD)", short_liq_vol),
         ("Macro Orderflow Directional Tilt", summ.get("macro_orderflow_tilt", "BALANCED"), "Net Collateral Expansion (USD)", summ.get("net_collateral_expansion_usd", 0.0))
     ]
     curr_r = 3
@@ -489,14 +546,15 @@ def dump_hyperdash_flow_feed(wb, tele_data):
         c2 = ws.cell(row=curr_r, column=4, value=val2)
         c2.font = FONT_DATA
         if "volume" in lbl2.lower() or "usd" in lbl2.lower(): c2.number_format = "$#,##0"
-        elif "ratio" in lbl2.lower(): c2.number_format = "0.00"
+        elif "ratio" in lbl2.lower() and isinstance(val2, (int, float)): c2.number_format = "0.00"
         curr_r += 1
         
     curr_r += 1
     # Section 2: Real-time Whale Trades (Full Universe Coverage)
     trades = hd.get("whale_trades", []) or []
+    n_tr_assets = len(set(t.get("coin") for t in trades if t.get("coin"))) or 18
     ws.merge_cells(f"A{curr_r}:H{curr_r}")
-    ws[f"A{curr_r}"].value = "INSTITUTIONAL WHALE TRADES (RECENT VERIFIED EXECUTIONS - 18-ASSET COVERAGE)"
+    ws[f"A{curr_r}"].value = f"INSTITUTIONAL WHALE TRADES (RECENT VERIFIED EXECUTIONS - {n_tr_assets}-ASSET COVERAGE)"
     ws[f"A{curr_r}"].font = FONT_SECTION
     ws[f"A{curr_r}"].fill = FILL_SECTION
     curr_r += 1
@@ -537,7 +595,8 @@ def dump_hyperdash_flow_feed(wb, tele_data):
                 cell.number_format = "$#,##0.00"
             elif c_idx == 4:
                 cell.alignment = ALIGN_RIGHT
-                cell.number_format = "$#,##0.00" if val >= 1 else "$#,##0.0000"
+                if isinstance(val, (int, float)):
+                    cell.number_format = "$#,##0.00" if val >= 1 else "$#,##0.0000"
             elif c_idx == 5:
                 cell.alignment = ALIGN_LEFT
                 cell.font = FONT_DATA_MUTED
@@ -547,8 +606,9 @@ def dump_hyperdash_flow_feed(wb, tele_data):
     curr_r += 1
     # Section 3: Confirmed Liquidations (Full Universe Coverage)
     liqs = hd.get("recent_confirmed_liquidations", []) or []
+    n_lq_assets = len(set(lq.get("coin") for lq in liqs if lq.get("coin"))) or 18
     ws.merge_cells(f"A{curr_r}:H{curr_r}")
-    ws[f"A{curr_r}"].value = "CONFIRMED FORCED LIQUIDATIONS (CASCADE EXHAUSTION FEED - 18-ASSET COVERAGE)"
+    ws[f"A{curr_r}"].value = f"CONFIRMED FORCED LIQUIDATIONS (CASCADE EXHAUSTION FEED - {n_lq_assets}-ASSET COVERAGE)"
     ws[f"A{curr_r}"].font = FONT_SECTION
     ws[f"A{curr_r}"].fill = FILL_SECTION
     curr_r += 1
@@ -590,7 +650,8 @@ def dump_hyperdash_flow_feed(wb, tele_data):
                 cell.number_format = "$#,##0.00"
             elif c_idx == 4:
                 cell.alignment = ALIGN_RIGHT
-                cell.number_format = "$#,##0.00" if val >= 1 else "$#,##0.0000"
+                if isinstance(val, (int, float)):
+                    cell.number_format = "$#,##0.00" if val >= 1 else "$#,##0.0000"
             elif c_idx == 5:
                 cell.alignment = ALIGN_LEFT
                 cell.font = FONT_DATA_MUTED
@@ -598,10 +659,10 @@ def dump_hyperdash_flow_feed(wb, tele_data):
         curr_r += 1
         
     curr_r += 1
-    # Section 4: Universe Asset Breakdown (158 assets)
+    # Section 4: Universe Asset Breakdown
     ubrk = hd.get("universe_asset_breakdown", {}) or {}
     ws.merge_cells(f"A{curr_r}:H{curr_r}")
-    ws[f"A{curr_r}"].value = "HYPERLIQUID 158-ASSET FLOW & LIQUIDATION VOLUME PROFILE"
+    ws[f"A{curr_r}"].value = f"HYPERLIQUID {len(ubrk)}-ASSET FLOW & LIQUIDATION VOLUME PROFILE"
     ws[f"A{curr_r}"].font = FONT_SECTION
     ws[f"A{curr_r}"].fill = FILL_SECTION
     curr_r += 1
@@ -675,10 +736,11 @@ def dump_arkham_transfers_100k(wb, arkham_transfers):
         c.border = BORDER_HEADER
     ws.row_dimensions[2].height = 24
     
-    for r_idx, tx in enumerate(arkham_transfers, 3):
+    deduped = dedup_arkham_transfers(arkham_transfers)
+    for r_idx, tx in enumerate(deduped, 3):
         idx_num = r_idx - 2
         time_str = tx.get("time", "")
-        chain = tx.get("chain", "")
+        chain = parse_chain_from_url_or_text(tx.get("chain", ""))
         from_ent = tx.get("from_entity", "")
         from_addr = tx.get("from_address", "")
         to_ent = tx.get("to_entity", "")
@@ -691,14 +753,14 @@ def dump_arkham_transfers_100k(wb, arkham_transfers):
         # Parse numeric token value if possible
         num_val = val_str
         try:
-            clean_v = val_str.replace(",", "").replace("K", "e3").replace("M", "e6").replace("B", "e9")
+            clean_v = str(val_str).replace(",", "").replace("K", "e3").replace("M", "e6").replace("B", "e9")
             num_val = float(clean_v)
         except: pass
         
         # Parse numeric usd if possible
         num_usd = usd_str
         try:
-            clean_u = usd_str.replace("$", "").replace(",", "").replace("K", "e3").replace("M", "e6").replace("B", "e9")
+            clean_u = str(usd_str).replace("$", "").replace(",", "").replace("K", "e3").replace("M", "e6").replace("B", "e9")
             num_usd = float(clean_u)
         except: pass
         
@@ -779,28 +841,17 @@ def dump_arkham_whales_holdings(wb, tele_data):
         cat = w.get("category", "INSTITUTION")
         prio = w.get("priority", "TIER_1")
         port_usd = w.get("total_portfolio_usd", 0.0) or 0.0
-        chg_24h = w.get("portfolio_change_24h", 0.0) or 0.0
+        chg_24h = w.get("portfolio_change_24h")
+        chg_pct = parse_whale_change_pct(chg_24h)
         wallets = w.get("address_count", 0) or 0
         updated = w.get("last_updated_utc", "")
         
-        # Extract largest holding
-        holdings = w.get("holdings_breakdown", []) or []
-        largest_sym = ""
-        largest_amt = ""
-        if isinstance(holdings, list) and holdings:
-            largest_sym = holdings[0].get("symbol", "")
-            amt = holdings[0].get("amount", "")
-            val_u = holdings[0].get("value_usd", "")
-            largest_amt = f"{amt} ({val_u})" if amt or val_u else ""
-        elif isinstance(holdings, dict) and holdings:
-            top_h = sorted(holdings.items(), key=lambda x: x[1].get("usd_value", 0.0) if isinstance(x[1], dict) else 0.0, reverse=True)
-            if top_h:
-                largest_sym = top_h[0][0]
-                largest_amt = f"{top_h[0][1].get('amount', 0):,.2f} ({top_h[0][1].get('usd_value', 0):,.0f} USD)" if isinstance(top_h[0][1], dict) else str(top_h[0][1])
+        # Extract true largest holding
+        largest_sym, largest_amt = extract_largest_holding(w.get("holdings_breakdown", []))
                 
         row_vals = [
             rank, slug, name, cat, prio,
-            port_usd, chg_24h / 100.0 if abs(chg_24h) > 0.5 else chg_24h, wallets,
+            port_usd, chg_pct if chg_pct is not None else "N/A", wallets,
             largest_sym, largest_amt, updated
         ]
         
@@ -823,10 +874,13 @@ def dump_arkham_whales_holdings(wb, tele_data):
                 cell.alignment = ALIGN_RIGHT
                 cell.number_format = "$#,##0"
             elif c_idx == 7:
-                cell.alignment = ALIGN_RIGHT
-                cell.number_format = "0.00%"
-                if val > 0: cell.font = FONT_GREEN
-                elif val < 0: cell.font = FONT_RED
+                if isinstance(val, (int, float)):
+                    cell.alignment = ALIGN_RIGHT
+                    cell.number_format = "0.00%"
+                    if val > 0: cell.font = FONT_GREEN
+                    elif val < 0: cell.font = FONT_RED
+                else:
+                    cell.alignment = ALIGN_CENTER
             elif c_idx == 8:
                 cell.alignment = ALIGN_RIGHT
                 cell.number_format = "#,##0"
@@ -1068,7 +1122,7 @@ def dump_volatility_sentiment(wb, fng_records, dvol_btc, dvol_eth):
                 else:
                     cell.alignment = ALIGN_RIGHT
                     cell.number_format = "0.00%"
-                    if c_idx == 10 and val >= 0.50: cell.font = FONT_AMBER
+                    if c_idx == 10 and isinstance(val, (int, float)) and val >= 0.50: cell.font = FONT_AMBER
             ws.row_dimensions[r_idx].height = 19
             
     # Table 3: Deribit ETH DVOL (Columns M..R)
@@ -1102,7 +1156,7 @@ def dump_volatility_sentiment(wb, fng_records, dvol_btc, dvol_eth):
                 else:
                     cell.alignment = ALIGN_RIGHT
                     cell.number_format = "0.00%"
-                    if c_idx == 17 and val >= 0.50: cell.font = FONT_AMBER
+                    if c_idx == 17 and isinstance(val, (int, float)) and val >= 0.50: cell.font = FONT_AMBER
             ws.row_dimensions[r_idx].height = 19
             
     apply_sheet_view_and_autofit(ws, 1, 18)
@@ -1129,11 +1183,21 @@ def dump_mt5_live_quotes_account(wb, tele_data):
     ws["A2"].fill = FILL_SECTION
     
     acc = tele_data.get("account", {}) or {}
+    login_val = acc.get("login")
+    bal_val = num(acc.get("balance_usd"))
+    eq_val = num(acc.get("equity_usd"))
+    m_used = num(acc.get("margin_used_usd"))
+    m_free = num(acc.get("margin_free_usd"))
+    floor_val = num(acc.get("hard_floor_usd")) or 4775.0
+    cush_val = num(acc.get("cushion_above_floor_usd"))
+    if cush_val is None and eq_val is not None:
+        cush_val = round(eq_val - floor_val, 2)
+        
     acc_items = [
-        ("Account Login ID", acc.get("login", 5064568), "Account Currency", acc.get("currency", "USD")),
-        ("Terminal Ledger Balance", acc.get("balance_usd", 4863.74), "Real-Time Floating Equity", acc.get("equity_usd", 4863.74)),
-        ("Margin Used (Collateral)", acc.get("margin_used_usd", 0.0), "Free Usable Margin", acc.get("margin_free_usd", 4863.74)),
-        ("Hard Equity Floor ($)", acc.get("hard_floor_usd", 4775.0), "Floor Cushion (Equity - Floor)", acc.get("cushion_above_floor_usd", 88.74))
+        ("Account Login ID", login_val if login_val is not None else "N/A", "Account Currency", acc.get("currency", "USD")),
+        ("Terminal Ledger Balance", cell(bal_val), "Real-Time Floating Equity", cell(eq_val)),
+        ("Margin Used (Collateral)", cell(m_used) if m_used is not None else 0.0, "Free Usable Margin", cell(m_free) if m_free is not None else cell(eq_val)),
+        ("Hard Equity Floor ($)", floor_val, "Floor Cushion (Equity - Floor)", cell(cush_val))
     ]
     curr_r = 3
     for lbl1, val1, lbl2, val2 in acc_items:
@@ -1141,14 +1205,18 @@ def dump_mt5_live_quotes_account(wb, tele_data):
         c1 = ws.cell(row=curr_r, column=2, value=val1)
         c1.font = FONT_DATA
         if "usd" in lbl1.lower() or "balance" in lbl1.lower() or "equity" in lbl1.lower() or "margin" in lbl1.lower() or "floor" in lbl1.lower():
-            c1.number_format = "$#,##0.00"
+            if isinstance(val1, (int, float)):
+                c1.number_format = "$#,##0.00"
             
         ws.cell(row=curr_r, column=4, value=lbl2).font = FONT_DATA_BOLD
         c2 = ws.cell(row=curr_r, column=5, value=val2)
         c2.font = FONT_DATA
         if "usd" in lbl2.lower() or "balance" in lbl2.lower() or "equity" in lbl2.lower() or "margin" in lbl2.lower() or "cushion" in lbl2.lower():
-            c2.number_format = "$#,##0.00"
-            if "cushion" in lbl2.lower() and val2 >= 20.0: c2.font = FONT_GREEN
+            if isinstance(val2, (int, float)):
+                c2.number_format = "$#,##0.00"
+                if "cushion" in lbl2.lower():
+                    if val2 >= 20.0: c2.font = FONT_GREEN
+                    else: c2.font = FONT_RED
         curr_r += 1
         
     curr_r += 1
@@ -1187,16 +1255,17 @@ def dump_mt5_live_quotes_account(wb, tele_data):
         q = d.get("quotes", {}) or {}
         specs = d.get("execution_specs", {}) or {}
         b_sym = d.get("symbol_broker", sym)
+        category = d.get("category", "CRYPTO")
         
         bid = q.get("bid", 0.0) or 0.0
         ask = q.get("ask", 0.0) or 0.0
-        spread = q.get("spread", 0.0) or (ask - bid if ask and bid else 0.0)
-        spread_bps = q.get("spread_bps", 0.0) or 0.0
-        tick_sz = q.get("tick_size", 0.01) or 0.01
+        quote_age_s = q.get("quote_age_s", 0.5)
         
-        digits = 2
-        contract_sz = 1.0
-        min_lot = 0.01
+        digits = specs.get("digits", 2)
+        contract_sz = specs.get("contract_size", 1.0)
+        min_lot = specs.get("volume_min", 0.01)
+        tick_sz = specs.get("tick_size", 0.01)
+        
         if b_sym in live_mt5_symbols:
             s_info = live_mt5_symbols[b_sym]
             digits = s_info.digits
@@ -1205,40 +1274,59 @@ def dump_mt5_live_quotes_account(wb, tele_data):
             if s_info.bid and s_info.ask:
                 bid = s_info.bid
                 ask = s_info.ask
-                spread = ask - bid
-                spread_bps = (spread / ask * 10000.0) if ask else 0.0
+                quote_age_s = 0.1
+                
+        b_num, a_num = num(bid), num(ask)
+        if b_num is not None and a_num is not None and b_num > 0 and a_num > 0 and a_num > b_num:
+            spread = a_num - b_num
+            sbps = spread_bps(b_num, a_num, quote_age_s=quote_age_s, max_age_s=60.0)
+            if sbps is None:
+                sbps = (spread / ((a_num + b_num) / 2.0)) * 10000.0
+            status_val = "ACTIVE EXECUTION"
+        else:
+            spread = 0.0
+            sbps = 0.0
+            status_val = "INACTIVE"
                 
         row_vals = [
-            b_sym, d.get("category", "CRYPTO"), bid, ask,
-            spread, spread_bps, tick_sz, digits,
-            contract_sz, min_lot, "ACTIVE EXECUTION"
+            b_sym, category, cell(b_num) if b_num is not None else 0.0, cell(a_num) if a_num is not None else 0.0,
+            spread, sbps, tick_sz, digits,
+            contract_sz, min_lot, status_val
         ]
         fill = FILL_ZEBRA if curr_r % 2 == 0 else FILL_WHITE
         for c_idx, val in enumerate(row_vals, 1):
-            cell = ws.cell(row=curr_r, column=c_idx, value=val)
-            cell.font = FONT_DATA
-            cell.fill = fill
-            cell.border = BORDER_THIN
+            cell_item = ws.cell(row=curr_r, column=c_idx, value=val)
+            cell_item.font = FONT_DATA
+            cell_item.fill = fill
+            cell_item.border = BORDER_THIN
             if c_idx in (1, 2, 8, 11):
-                cell.alignment = ALIGN_CENTER
-                if c_idx == 1: cell.font = FONT_DATA_BOLD
+                cell_item.alignment = ALIGN_CENTER
+                if c_idx == 1: cell_item.font = FONT_DATA_BOLD
                 elif c_idx == 11:
-                    cell.font = FONT_GREEN
-                    cell.fill = FILL_GREEN
+                    if val == "ACTIVE EXECUTION":
+                        cell_item.font = FONT_GREEN
+                        cell_item.fill = FILL_GREEN
+                    else:
+                        cell_item.font = FONT_AMBER
+                        cell_item.fill = FILL_AMBER
             elif c_idx in (3, 4):
-                cell.alignment = ALIGN_RIGHT
-                cell.number_format = "$#,##0.00" if val >= 1 else "$#,##0.0000"
+                cell_item.alignment = ALIGN_RIGHT
+                if isinstance(val, (int, float)):
+                    cell_item.number_format = "$#,##0.00" if val >= 1 else "$#,##0.0000"
             elif c_idx in (5, 7):
-                cell.alignment = ALIGN_RIGHT
-                cell.number_format = "#,##0.0000"
+                cell_item.alignment = ALIGN_RIGHT
+                if isinstance(val, (int, float)):
+                    cell_item.number_format = "#,##0.0000"
             elif c_idx == 6:
-                cell.alignment = ALIGN_RIGHT
-                cell.number_format = "#,##0.00"
-                if val <= 2.0: cell.font = FONT_GREEN
-                elif val >= 10.0: cell.font = FONT_AMBER
+                cell_item.alignment = ALIGN_RIGHT
+                if isinstance(val, (int, float)):
+                    cell_item.number_format = "#,##0.00"
+                    if val <= 2.0: cell_item.font = FONT_GREEN
+                    elif val >= 10.0: cell_item.font = FONT_AMBER
             elif c_idx in (9, 10):
-                cell.alignment = ALIGN_RIGHT
-                cell.number_format = "#,##0.00"
+                cell_item.alignment = ALIGN_RIGHT
+                if isinstance(val, (int, float)):
+                    cell_item.number_format = "#,##0.00"
         ws.row_dimensions[curr_r].height = 19
         curr_r += 1
         
@@ -1275,7 +1363,7 @@ def dump_cognitive_council_telemetry(wb, daemons_status):
         (
             "Google Gemini Web2API Council Daemon",
             "http://localhost:8081",
-            daemons_status.get("Web2API_8081", "ONLINE (200 OK)"),
+            daemons_status.get("Web2API_8081", "UNKNOWN"),
             "Gemini 3.7 Flash, 3.5 Flash Thinking, 3.1 Pro (11 Models)",
             "Bearer sk-gemini (Endogen Architecture)",
             "/v1/models & /v1/chat/completions",
@@ -1284,7 +1372,7 @@ def dump_cognitive_council_telemetry(wb, daemons_status):
         (
             "Heretic Engine Daemon",
             "http://localhost:8083",
-            daemons_status.get("Heretic_8083", "ONLINE (200 OK)"),
+            daemons_status.get("Heretic_8083", "UNKNOWN"),
             "heretic-llm (v2.0.0.dev0, p-e-w/heretic)",
             "Internal HTTP / Health Telemetry",
             "/health & Data/heretic_daemon_status.json",
@@ -1293,7 +1381,7 @@ def dump_cognitive_council_telemetry(wb, daemons_status):
         (
             "Arena.ai Consensus Council",
             "Chrome CDP (Port 9222) / Local Daemon",
-            daemons_status.get("Arena_Status", "ACTIVE / HARVESTED"),
+            daemons_status.get("Arena_Status", "UNKNOWN"),
             "Multi-Model Tournament (Arena.ai)",
             "Chrome CDP Remote Debugging Interface",
             "docs/trade_plans/ARENA_LATEST_RAW.md",
@@ -1347,6 +1435,7 @@ def dump_cognitive_council_telemetry(wb, daemons_status):
                     cell.fill = FILL_GREEN
                 else:
                     cell.font = FONT_AMBER
+                    cell.fill = FILL_AMBER
             elif c_idx in (4, 5):
                 cell.alignment = ALIGN_CENTER
             elif c_idx in (6, 7):
@@ -1588,7 +1677,29 @@ def run_pipeline():
     # 5. Harvest Live Arkham Transfers from CDP
     print("Harvesting Live Arkham Transfers (USD >= $100K) via Chrome CDP...")
     arkham_transfers = asyncio.run(harvest_live_arkham(num_pages=35))
-    print(f"Harvested {len(arkham_transfers)} Arkham transfers")
+    if not arkham_transfers:
+        print("Live Arkham harvest returned 0 transfers; checking snapshot fallback...")
+        snap_path = Path("Data/arkham/latest/arkham_snapshot.json")
+        if snap_path.exists():
+            try:
+                snap_data = json.load(open(snap_path, "r", encoding="utf-8"))
+                for tx in snap_data.get("recent_classified_transfers", []):
+                    arkham_transfers.append({
+                        "time": tx.get("time", ""),
+                        "chain": tx.get("chain", "Ethereum"),
+                        "from_entity": tx.get("from_entity", ""),
+                        "from_address": tx.get("from_address", ""),
+                        "to_entity": tx.get("to_entity", ""),
+                        "to_address": tx.get("to_address", ""),
+                        "token_value": tx.get("amount", ""),
+                        "token_symbol": tx.get("token", ""),
+                        "usd_value": tx.get("usd_value", ""),
+                        "tx_hash": tx.get("tx_hash", "")
+                    })
+                print(f"Loaded {len(arkham_transfers)} fallback transfers from snapshot")
+            except Exception as e:
+                print(f"Fallback snapshot load error: {e}")
+    print(f"Harvested / Loaded {len(arkham_transfers)} Arkham transfers")
     
     # 6. Check Cognitive Daemons Status
     print("Probing Cognitive Daemons...")
@@ -1658,11 +1769,11 @@ def run_pipeline():
         "orderflow_rows": len(tele_data.get("assets_matrix_24", {})),
         "arkham_transfers": len(arkham_transfers),
     }
-    check_minimums(counts, {"orderflow_rows": 20})
+    check_minimums(counts, {"orderflow_rows": 20, "arkham_transfers": 20})
     
     # Save Workbook atomically with .bak backup
-    print(f"Saving master workbook atomically via atomic_save to {excel_path}...")
-    atomic_save(wb, excel_path)
+    print(f"Saving master workbook atomically via atomic_save to {excel_path} (expected_sheets={initial_sheet_count})...")
+    atomic_save(wb, excel_path, expected_sheets=initial_sheet_count)
     elapsed_time = time.time() - start_time
     
     print("=" * 70)

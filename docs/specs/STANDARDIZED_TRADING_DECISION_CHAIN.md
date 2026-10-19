@@ -355,21 +355,21 @@ stateDiagram-v2
 
 ---
 
-## SECTION 3: 40-SHEET INSTITUTIONAL EXCEL DATA MATRIX DECISION SYNTHESIS PROTOCOL
-### Operationalizing the 209,597-Cell Quantitative Data Warehouse in `DataBase_Trading.xlsx`
+## SECTION 3: 43-SHEET INSTITUTIONAL EXCEL DATA MATRIX DECISION SYNTHESIS PROTOCOL
+### Operationalizing the 225,000+-Cell Quantitative Data Warehouse in `DataBase_Trading.xlsx`
 
-> **Data Warehouse Status**: 40 LIVE PRODUCTION WORKSHEETS | 209,597 CELLS | ZERO FORMULA ERRORS  
+> **Data Warehouse Status**: 43 LIVE PRODUCTION WORKSHEETS | 225,000+ CELLS | ZERO FORMULA ERRORS  
 > **Master File Location**: `Data/DataBase_Trading.xlsx`  
-> **Refresh Latency**: 15.42 Seconds End-to-End Ingestion & Serialization  
+> **Refresh Latency**: 213.08 Seconds (~3.55 min) End-to-End Ingestion & Serialization (43 Sheets)  
 > **Core Mandate**: Every trading decision, macro hypothesis, and order staging must systematically cross-reference and weight the 4 functional data clusters below before capital commitment.
 
 ```mermaid
 flowchart TD
-    subgraph DataWarehouse ["DataBase_Trading.xlsx (40 Sheets)"]
-        CA["Cluster A: Global Macro & System Defense<br/>(Sheets 21-28, 31, 37, 38)"]
-        CB["Cluster B: Microstructure, Depth & Orderflow<br/>(Sheets 1-15, 20, 21, 32, 33)"]
-        CC["Cluster C: On-Chain Whales & Liquidations<br/>(Sheets 16-19, 22, 34-36)"]
-        CD["Cluster D: Brokerage & Cognitive Councils<br/>(Sheets 39, 40)"]
+    subgraph DataWarehouse ["DataBase_Trading.xlsx (43 Sheets)"]
+        CA["Cluster A: Global Macro & System Defense<br/>(Sheets 1-6, 26-34, 40, 41)"]
+        CB["Cluster B: Microstructure, Depth & Orderflow<br/>(Sheets 7-18, 23, 24, 35, 36)"]
+        CC["Cluster C: On-Chain Whales & Liquidations<br/>(Sheets 19-22, 25, 37-39)"]
+        CD["Cluster D: Brokerage & Cognitive Councils<br/>(Sheets 42, 43)"]
     end
 
     subgraph DecisionWorkflow ["4-Stage Institutional Synthesis Workflow"]
@@ -393,54 +393,54 @@ flowchart TD
 
 ### PART 3.1: THE 4 FUNCTIONAL EXCEL DATA CLUSTERS & MAPPING
 
-#### 1. Cluster A: Global Macro Regime, Event Defense & Corporate Anchors (Sheets 21–28, 31, 37, 38)
-- **`Telemetry_System_State` (Sheet 31)**:
+#### 1. Cluster A: Global Macro Regime, Event Defense & Corporate Anchors (Sheets 1–6, 26–34, 40, 41)
+- **`Telemetry_System_State` (Sheet 34)**:
   - System protocol (`omni.telemetry.v3`), MT5 account balance ($4,863.74), equity ($4,863.74), hard floor ($4,775.00), live floor cushion (**+$88.74**), 4 joint capacity slots.
   - Clopper-Pearson 95% one-sided binomial lower confidence bound (`p_win >= 0.4197`) across 17 calibration trades (11 wins).
   - Macro Calendar FOMC proximity (252.26 hours runway to hard blackout), Crypto Fear & Greed index (`53` Neutral), institutional ETF netflows (-$82.40M BTC / -$69.70M ETH), and Coinbase spot premium (-14.36 bps).
-- **`Volatility_Sentiment` (Sheet 38)**:
+- **`Volatility_Sentiment` (Sheet 41)**:
   - Table 1 (Alternative.me Crypto Fear & Greed Index): 30 daily historical records (53 to 78) mapping sentiment extremes (`Extreme Accumulation` vs `Extreme Greed`).
   - Table 2 (Deribit BTC DVOL): 30 daily forward implied volatility records (Close IV: 37.93%, Implied Daily Move: 1.99%).
   - Table 3 (Deribit ETH DVOL): 30 daily forward implied volatility records (Close IV: 52.22%, Implied Daily Move: 2.73%, exhibiting a +14.29% persistent volatility risk premium over BTC).
-- **`FF_Economic_Calendar` (Sheet 23)**:
+- **`FF_Economic_Calendar` (Sheet 26)**:
   - 38 scheduled weekly macro releases categorized by impact (High/Medium/Low) with exact UTC release times, currencies, forecasts, and previous prints.
-- **`FF_News_Latest`, `FF_News_Fundamental`, `FF_News_Technical` (Sheets 24, 25, 26)**:
+- **`FF_News_Latest`, `FF_News_Fundamental`, `FF_News_Technical` (Sheets 27, 28, 29)**:
   - 60 curated articles with complete body summaries, publisher URLs, and technical chart setups covering central bank policy statements (Fed, BoJ, BoE, ECB), energy shocks, and geopolitics.
-- **`Bitcoin_Treasuries` (Sheet 37)**:
+- **`Bitcoin_Treasuries` (Sheet 40)**:
   - 60 publicly listed corporate balance sheet holdings (Strategy / MicroStrategy: 848,000 BTC, Metaplanet, XXI, MARA, Coinbase, Tesla, etc.) totaling 1,265,370 BTC ($104.77B USD), plus the 124-row historical purchasing ledger from 2020 to 2026.
-- **`ETF_Overview`, `Spot_ETF_Net_Inflow`, `Spot_ETF_Net_Inflow_Graph` (Sheets 1, 2, 3)**:
+- **`ETF_Overview`, `Spot_ETF_Net_Inflow`, `Spot_ETF_Net_Inflow_Graph` (Sheets 4, 5, 6)**:
   - 44 institutional spot ETFs across BTC, ETH, SOL, XRP, and HYPE with daily inflows/outflows, cumulative flows, and AUM across 11 major sponsors (BlackRock IBIT, Fidelity FBTC, Grayscale, Bitwise, VanEck, etc.).
 
-#### 2. Cluster B: Microstructure, Orderbook Depth & Orderflow Confluence (Sheets 4–15, 20, 21, 32, 33)
-- **`Live_Orderbook_CVD_Depth` (Sheet 32)**:
+#### 2. Cluster B: Microstructure, Orderbook Depth & Orderflow Confluence (Sheets 7–18, 23, 24, 35, 36)
+- **`Live_Orderbook_CVD_Depth` (Sheet 35)**:
   - Matrix across all 24 institutional assets (14 Crypto, 4 Indices, 3 Commodities, 3 Forex): Real-time tick Bid, Ask, Spread (points and bps), Binance Mid, Hyperliquid Mid, Top-20 Bid Depth USD, Top-20 Ask Depth USD, Book Imbalance %, Skew Ratio, Session CVD USD, 24h CVD USD, and 15m Bar Delta USD.
-- **`Exchange_Basis_Spreads` (Sheet 33)**:
+- **`Exchange_Basis_Spreads` (Sheet 36)**:
   - Multi-exchange pricing across all 24 assets: Mark Price, Index Price, Basis Premium/Discount (bps), Last Funding Rate (bps), Annualized Funding %, Trend Regime, RSI (14), ATR (14) in points and %, EMA (20), EMA (50), EMA (200), VWAP Z-Score, and Whale Imbalance Rho.
-- **`Whales_Orders` (Sheet 20)**:
+- **`Whales_Orders` (Sheet 23)**:
   - 520 resting institutional whale orders across all 18 institutional perpetuals filtered strictly for notional >= $100K USD at 15m timeframe, with canceled orders excluded.
-- **`Spot_Netflow` (Sheet 21)**:
+- **`Spot_Netflow` (Sheet 24)**:
   - 740 assets across 13 timeframes (5m, 15m, 30m, 1h, 2h, 4h, 6h, 8h, 12h, 24h, 3d, 7d, 30d) displaying dynamic green accumulation (#D4EDDA) and red distribution (#F8D7DA) heatmaps.
-- **`Funding_Rates` & `Funding_Fees` (Sheets 4, 5)**:
+- **`Funding_Rates` & `Funding_Fees` (Sheets 7, 8)**:
   - Cross-venue funding rates and fees across 12 exchanges identifying overcrowded retail positioning.
-- **`Open_Interest` Suite (Sheets 10, 11, 12, 13, 14, 15)**:
+- **`Open_Interest` Suite (Sheets 13, 14, 15, 16, 17, 18)**:
   - 387 exchange breakdown rows across 19 assets, top OI gainers/losers, and multi-timeframe OI charts (15M, 1H, 4H) diagnosing aggressive positioning vs deleveraging.
 
-#### 3. Cluster C: On-Chain Whale Conviction & Liquidation Dynamics (Sheets 16–19, 22, 34–36)
-- **`Arkham_Transfers_100K` (Sheet 35)**:
-  - 138 live on-chain whale transfers >= $100,000 USD harvested via Chrome CDP across Base, Optimism, Polygon, BNB Chain, Tron, and Solana. 100% full 42-character EVM addresses, 34-character Tron addresses, and full 66-character transaction hashes (zero truncation, zero ellipsis).
-- **`Arkham_Whales_Holdings` (Sheet 36)**:
+#### 3. Cluster C: On-Chain Whale Conviction & Liquidation Dynamics (Sheets 19–22, 25, 37–39)
+- **`Arkham_Transfers_100K` (Sheet 38)**:
+  - Live on-chain whale transfers >= $100,000 USD harvested via Chrome CDP across Base, Optimism, Polygon, BNB Chain, Tron, and Solana. 100% full 42-character EVM addresses, 34-character Tron addresses, and full 66-character transaction hashes (zero truncation, zero ellipsis).
+- **`Arkham_Whales_Holdings` (Sheet 39)**:
   - 48 tracked institutional whale entities (BlackRock $49.32B, Strategy $38.96B, Wintermute $195.08M, VanEck $1.43B, ARK Invest $2.60B, Jump Crypto $450M, etc.) controlling $402.16B in on-chain assets.
-- **`Hyperdash_Flow_Feed` (Sheet 34)**:
+- **`Hyperdash_Flow_Feed` (Sheet 37)**:
   - 273 rows across 4 sections: Flow summary KPIs, 50 real-time whale trades with full 42-char addresses, 50 confirmed liquidations with directional market impact (`SELL_PRESSURE` / `BUY_PRESSURE`), and 158-asset universe liquidation profile.
-- **`Hyperliquid_Whales` (Sheet 22)**:
+- **`Hyperliquid_Whales` (Sheet 25)**:
   - 1,922 active whale positions across 39 pages with 100% full 42-character addresses, unrealized PnL, leverage, entry price, and mark price.
-- **`liquidation_maxpain_1D/2D` & `Exchange_Liquidation_Map_1D/7D` (Sheets 16, 17, 18, 19)**:
+- **`liquidation_maxpain_1D/2D` & `Exchange_Liquidation_Map_1D/7D` (Sheets 19, 20, 21, 22)**:
   - Multi-exchange liquidation surfaces mapping dense short-squeeze and long-liquidation cascade pools across 18 perpetuals.
 
-#### 4. Cluster D: Execution Brokerage & Multi-Model Cognitive Councils (Sheets 38, 39)
-- **`MT5_Live_Quotes_Account` (Sheet 38)**:
+#### 4. Cluster D: Execution Brokerage & Multi-Model Cognitive Councils (Sheets 42, 43)
+- **`MT5_Live_Quotes_Account` (Sheet 42)**:
   - Live Blueberry Markets broker ledger ($4,863.74 balance/equity, +$88.74 hard floor cushion, +$68.74 buffer cushion) and live interbank tick bid/ask quotes, spreads, digits, and contract specifications for all 24 symbols.
-- **`Cognitive_Council_Telemetry` (Sheet 39)**:
+- **`Cognitive_Council_Telemetry` (Sheet 43)**:
   - Real-time operational status of Google Gemini Web2API (port 8081, 11 models, HTTP 200 OK), Heretic Engine Daemon (port 8083, v2.0.0.dev0, HTTP 200 OK), Arena.ai consensus, Autonomous Telemetry Git Sync Daemon (60s cadence), AST Knowledge Graph Watcher (7.4k nodes), and Tier-2 Swarm Cron.
 
 ---

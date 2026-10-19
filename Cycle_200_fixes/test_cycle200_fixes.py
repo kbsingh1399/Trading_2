@@ -113,7 +113,7 @@ def _sheet():
 
 def test_formula_cache_values_and_na():
     wb, ws = _sheet()
-    stats = cache_sum_formulas(ws)
+    stats = cache_sum_formulas(ws, blank_policy="zero")
     assert ws["I3"].value == round(1058753.36 + 743422.24 + 1077880.33, 2)
     assert ws["I4"].value == 3.0
     assert ws["I5"].value == NA
