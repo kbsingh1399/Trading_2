@@ -32,10 +32,10 @@ logger = logging.getLogger("BlackoutGuard")
 # ---------------------------------------------------------------------------
 _CALENDAR_JSON = Path(__file__).resolve().parents[2] / "Data" / "macro_calendar.json"
 
-# Default ±35-minute blackout for ordinary HIGH-impact events. Explicit
+# Default ±30-minute blackout for ordinary HIGH-impact events. Explicit
 # calendar windows (and a pre-event purge cutoff) override this for FOMC.
-_STATIC_BLACKOUT_MINUTES_PRE  = 35   # minutes before event
-_STATIC_BLACKOUT_MINUTES_POST = 35   # minutes after event
+_STATIC_BLACKOUT_MINUTES_PRE  = 30   # minutes before event
+_STATIC_BLACKOUT_MINUTES_POST = 30   # minutes after event
 
 
 class BlackoutGuard:
@@ -91,7 +91,7 @@ class BlackoutGuard:
     def is_blocked(self, dt: Optional[datetime] = None) -> tuple[bool, str]:
         """Return (blocked: bool, reason: str).
 
-        Checks calendar events with ±35 min windows.
+        Checks calendar events with ±30 min windows.
         Returns immediately on first match to keep latency minimal.
         """
         self._refresh()
