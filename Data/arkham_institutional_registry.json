@@ -699,15 +699,15 @@
     "holdings_breakdown": [
       {
         "symbol": "SOL",
-        "price": "$68.94",
+        "price": "$9.01",
         "amount": "",
-        "value_usd": "$84,387.87",
-        "change_24h": "+1.29%"
+        "value_usd": "$84,895.92",
+        "change_24h": "+1.37%"
       }
     ],
     "category": "PRIME_CUSTODIAN",
     "priority": "HIGH",
-    "last_updated_utc": "2026-10-19 00:08:37 UTC"
+    "last_updated_utc": "2026-10-19 00:58:01 UTC"
   },
   "okx": {
     "slug": "okx",
@@ -718,15 +718,15 @@
     "holdings_breakdown": [
       {
         "symbol": "USDT",
-        "price": "$30K",
+        "price": "$119.47",
         "amount": "",
-        "value_usd": "$195,207,328.11",
+        "value_usd": "$195,207,335.02",
         "change_24h": "+0.00%"
       }
     ],
     "category": "CENTRALIZED_EXCHANGE",
     "priority": "HIGH",
-    "last_updated_utc": "2026-10-19 00:08:44 UTC"
+    "last_updated_utc": "2026-10-19 00:58:07 UTC"
   },
   "bybit": {
     "slug": "bybit",
@@ -737,15 +737,15 @@
     "holdings_breakdown": [
       {
         "symbol": "USDT",
-        "price": "$77.1",
+        "price": "$102",
         "amount": "",
-        "value_usd": "$2,204.03",
-        "change_24h": "+0.10%"
+        "value_usd": "$2,204.98",
+        "change_24h": "+0.14%"
       }
     ],
     "category": "CENTRALIZED_EXCHANGE",
     "priority": "HIGH",
-    "last_updated_utc": "2026-10-19 00:08:50 UTC"
+    "last_updated_utc": "2026-10-19 00:58:12 UTC"
   },
   "kraken": {
     "slug": "kraken",
@@ -755,93 +755,16 @@
     "portfolio_change_24h": "",
     "holdings_breakdown": [
       {
-        "symbol": "BTC",
-        "price": "$82,138",
-        "amount": "BTC",
-        "value_usd": "$13.55B",
-        "change_24h": "+0.99%"
-      },
-      {
-        "symbol": "ETH",
-        "price": "$2,411.86",
-        "amount": "ETH",
-        "value_usd": "$2.15B",
-        "change_24h": "+0.64%"
-      },
-      {
-        "symbol": "SOL",
-        "price": "$104.11",
-        "amount": "SOL",
-        "value_usd": "$1.31B",
-        "change_24h": "+0.91%"
-      },
-      {
         "symbol": "USDC",
-        "price": "$1",
-        "amount": "USDC",
-        "value_usd": "$1.02B",
-        "change_24h": "\u00b10%"
-      },
-      {
-        "symbol": "USDT",
-        "price": "$1",
-        "amount": "USDT",
-        "value_usd": "$407.21M",
-        "change_24h": "\u00b10%"
-      },
-      {
-        "symbol": "LINK",
-        "price": "$12.06",
-        "amount": "LINK",
-        "value_usd": "$269.3M",
-        "change_24h": "+0.92%"
-      },
-      {
-        "symbol": "DOGE",
-        "price": "$0.079",
-        "amount": "DOGE",
-        "value_usd": "$175.54M",
-        "change_24h": "+0.25%"
-      },
-      {
-        "symbol": "UNI",
-        "price": "$7.19",
-        "amount": "UNI",
-        "value_usd": "$60.2M",
-        "change_24h": "+0.7%"
-      },
-      {
-        "symbol": "WBTC",
-        "price": "$81,944",
-        "amount": "WBTC",
-        "value_usd": "$35.62M",
-        "change_24h": "+0.96%"
-      },
-      {
-        "symbol": "AVAX",
-        "price": "$9.76",
-        "amount": "AVAX",
-        "value_usd": "$33.17M",
-        "change_24h": "+0.1%"
-      },
-      {
-        "symbol": "BNB",
-        "price": "$723.43",
-        "amount": "BNB",
-        "value_usd": "$17.98M",
-        "change_24h": "+0.95%"
-      },
-      {
-        "symbol": "AERO",
-        "price": "$0.8",
-        "amount": "AERO",
-        "value_usd": "$16.45M",
-        "change_24h": "-4.82%"
+        "price": "$985.93",
+        "amount": "",
+        "value_usd": "$23.55",
+        "change_24h": "+0.00%"
       }
     ],
     "category": "CENTRALIZED_EXCHANGE",
     "priority": "HIGH",
-    "last_updated_utc": "2026-10-19 00:13:15 UTC"
+    "last_updated_utc": "2026-10-19 00:58:18 UTC"
   },
   "deribit": {
     "slug": "deribit",
@@ -852,17 +775,17 @@
     "holdings_breakdown": [
       {
         "symbol": "BTC",
-        "price": "$82,008",
+        "price": "$82,149",
         "amount": "BTC",
-        "value_usd": "$3.35B",
-        "change_24h": "+0.82%"
+        "value_usd": "$3.36B",
+        "change_24h": "+0.94%"
       },
       {
         "symbol": "ETH",
-        "price": "$2,408.34",
+        "price": "$2,407.82",
         "amount": "ETH",
-        "value_usd": "$441.18M",
-        "change_24h": "+0.45%"
+        "value_usd": "$441.09M",
+        "change_24h": "+0.32%"
       },
       {
         "symbol": "USDC",
@@ -880,28 +803,28 @@
       },
       {
         "symbol": "SOL",
-        "price": "$104.01",
+        "price": "$104.05",
         "amount": "SOL",
         "value_usd": "$2.24M",
-        "change_24h": "+0.78%"
+        "change_24h": "+0.8%"
       },
       {
         "symbol": "BNB",
-        "price": "$722.61",
+        "price": "$722.93",
         "amount": "BNB",
-        "value_usd": "$19K",
-        "change_24h": "+0.77%"
-      },
-      {
-        "symbol": "CBBTC",
-        "price": "$81,951",
-        "amount": "CBBTC",
-        "value_usd": "$14.54",
+        "value_usd": "$19.01K",
         "change_24h": "+0.83%"
       },
       {
+        "symbol": "CBBTC",
+        "price": "$82,209",
+        "amount": "CBBTC",
+        "value_usd": "$14.59",
+        "change_24h": "+1.06%"
+      },
+      {
         "symbol": "AVAX",
-        "price": "$9.76",
+        "price": "$9.7",
         "amount": "AVAX",
         "value_usd": "$",
         "change_24h": ""
@@ -909,7 +832,7 @@
     ],
     "category": "DERIVATIVES_EXCHANGE",
     "priority": "HIGH",
-    "last_updated_utc": "2026-10-19 00:13:21 UTC"
+    "last_updated_utc": "2026-10-19 00:58:24 UTC"
   },
   "bitfinex": {
     "slug": "bitfinex",
