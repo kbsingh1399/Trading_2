@@ -74,6 +74,19 @@ def is_valid_tx_hash(tx: str) -> bool:
     return False
 
 
+def canonical_tx(raw: str) -> str:
+    """Canonicalises on-chain transaction hashes.
+    0x-prefixed EVM hex is lowercased.
+    64-char raw hex (BTC/Tron) is lowercased.
+    Base58 (Solana) is case-sensitive and preserved without lowercasing.
+    """
+    if raw[:2] in ("0x", "0X"):
+        return raw.lower()
+    if len(raw) == 64 and all(c in _HEX_ALPHABET for c in raw):
+        return raw.lower()
+    return raw  # base58 (Solana): case-sensitive, never lowercased
+
+
 def harvest_key(t: dict, harvest_epoch: float = 0.0) -> Optional[tuple]:
     """Key on the on-chain identity. The time label is not part of the key.
 
@@ -85,7 +98,7 @@ def harvest_key(t: dict, harvest_epoch: float = 0.0) -> Optional[tuple]:
     raw_tx = str(t.get("tx_hash", "")).strip()
     if not is_valid_tx_hash(raw_tx):
         return None
-    tx = raw_tx.lower() if raw_tx.startswith(("0x", "0X")) or len(raw_tx) == 64 else raw_tx
+    tx = canonical_tx(raw_tx)
     s = lambda k: str(t.get(k, "")).strip().lower()  # noqa: E731
     log_idx = str(t.get("log_index") if t.get("log_index") is not None else (t.get("event_index") if t.get("event_index") is not None else (t.get("idx") if t.get("idx") is not None else ""))).strip()
     return (tx, s("from_address"), s("to_address"), s("token_symbol"),

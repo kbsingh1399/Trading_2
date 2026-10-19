@@ -84,6 +84,23 @@ def test_harvest_key_two_transfers_same_tx_differ():
     assert harvest_key(t3) != harvest_key(t4)
 
 
+def test_harvest_key_case_sensitive_solana_no_collision():
+    # Base58 (Solana) is case sensitive - these two differ only in case and must NOT collide
+    a = "G" * 32 + "h" * 32
+    b = "g" * 32 + "H" * 32
+    base = {"from_address": "from", "to_address": "to", "token_symbol": "SOL", "token_value": "10", "usd_value": "$1000"}
+    k_a = harvest_key(dict(base, tx_hash=a))
+    k_b = harvest_key(dict(base, tx_hash=b))
+    assert k_a is not None and k_b is not None
+    assert k_a != k_b
+
+
+def test_inactive_status_colour_is_amber():
+    from data_quality import status_color, status_colour
+    assert status_color("INACTIVE") == "AMBER"
+    assert status_colour("INACTIVE") == "AMBER"
+
+
 def test_sheet_guard_detects_renamed_sheet():
     required = ["Telemetry_System_State", "Arkham_Transfers_100K", "Hyperdash_Flow_Feed"]
     actual = ["Telemetry_System_State", "Arkham_Transfers_100k", "Hyperdash_Flow_Feed"]
