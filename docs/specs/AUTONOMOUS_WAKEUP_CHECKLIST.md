@@ -30,17 +30,16 @@ flowchart TD
 - [ ] **Arkham CDP Health & On-Chain Stream Refresh**:
   - Connect to Chrome CDP on port `9222`, locate top-level tab `Arkham | The Source of Truth On-Chain` (`arkm.com`), and send `Page.reload`.
   - Confirm page reloads cleanly and title is verified. Guarantees latest on-chain whale flow (>= $50k) is live and streaming into telemetry.
-- [ ] **Telemetry Data Freshness & Updation Verification**:
-  - Inspect `docs/telemetry/live_snapshot_latest.json` timestamp (`as_of_epoch` and `as_of_utc`).
-  - Verify telemetry was generated within the last 120 seconds (maximum age <= 120s).
-  - Verify `autonomous_telemetry_git_daemon.py` is actively committing and pushing every 60s to `origin/main` and `origin/arena/...`.
-  - If stale (> 120s) or daemon dead: immediately execute `python Terminal/Data_Factory/generate_telemetry_snapshot.py` to produce a fresh snapshot, and relaunch `autonomous_telemetry_git_daemon.py`.
+- [ ] **Master Database Updation & Freshness Verification (Single Source of Truth)**:
+  - Inspect `Data/DataBase_Trading.xlsx` timestamp and confirm all 43 sheets are present and fresh.
+  - Verify that `autonomous_excel_daemon.py` is actively running and updating all 43 sheets on its 600s cadence.
+  - If stale (> 600s) or daemon dead: immediately execute `python Terminal/Data_Factory/autonomous_excel_daemon.py` to produce a fresh update.
 - [ ] Run `powershell -ExecutionPolicy Bypass -File .agents/scripts/free_ram.ps1` to clear standby memory, prune zombie processes, and optimize CPU latency.
-- [ ] Verify that all 6 persistent background tasks are running in Antigravity:
+- [ ] Verify that all core persistent background tasks are running in Antigravity:
   1. AST Watcher (`run_graphify_watcher.py`)
   2. Telemetry Git Sync Daemon (`autonomous_telemetry_git_daemon.py`, pushes every 60s)
-  3. Web2API Council Daemon (`gemini_web2api.py` on port 8081)
-  4. Autonomous Ratchet Daemon (`autonomous_ratchet_daemon.py`)
+  3. Master Excel Pipeline Daemon (`autonomous_excel_daemon.py`, updates 43 sheets every 600s)
+  4. Web2API Council Daemon (`gemini_web2api.py` on port 8081)
   5. Heretic Engine Daemon (`heretic_daemon.py` on port 8083)
   6. Arena Completion Daemon (`arena_completion_daemon.py --daemon`)
 
@@ -89,17 +88,17 @@ flowchart TD
 ---
 
 ### Step 5: Dual-Track Analysis Initiation (Internal Research + Arena Dispatch)
-- [ ] **Track A (MANDATORY Subagent Dispatch & SOP Traversal)**:
+- [ ] **Track A (MANDATORY Subagent Dispatch & STANDARDIZED DECISION CHAIN Traversal)**:
   - Activate the 8 core skill ensembles: `/remember`, `/graphify`, `/data-engineer`, `/dataform-bigquery`, `/data-analyst`, `/data-engineering-data-driven-feature`, `/brainstorm`, `/verify`.
   - **MANDATORY**: Dispatch all 3 internal specialists (`Orderflow Analyst`, `Position Manager`, `Macro Risk Analyst`) via `invoke_subagent` on EVERY wake-up turn without exception.
-  - **Mandatory Line-by-Line Ingestion**: Explicitly instruct all 3 subagents to read `docs/telemetry/live_snapshot_latest.json` line-by-line to maintain running account/order narrative continuity, and read `Data/forex_factory_summary.json` & `Data/forex_factory_live.json` line-by-line to extract Central Bank rate differentials, upcoming speeches, breaking geopolitical/energy headlines, and generate fresh macro trade ideas.
+  - **Strict SOP & Master Database Mandate**: Explicitly mandate all 3 subagents to strictly follow `docs/specs/STANDARDIZED_TRADING_DECISION_CHAIN.md` (the 10-step SOP) and read `Data/DataBase_Trading.xlsx` (all 43 sheets) line-by-line as the single source of truth.
   - **MANDATORY PASSIVE LIMIT ORDER HUNTING**: Mandate each subagent to actively identify, evaluate, and qualify new passive limit order candidates across orthogonal clusters (Cryptos, Metals, Energy, Forex, Indices) whenever open capacity exists (max 4 tickets total).
   - Instruct agents to evaluate market structure, orderbook depth, CVD flow, expanded risk envelope ($15.00 to $25.00 USD), and macro environment.
 - [ ] **Track B (MANDATORY Council Prompt Construction & Arena.ai Injection)**:
   - **MANDATORY**: On EVERY wake-up turn, generate and inject the comprehensive prompt into Arena.ai Tab 1 via `python Terminal/dispatch_comprehensive_wake_up_prompt.py --arena-only`.
-  - Embed direct raw links to `STANDARDIZED_TRADING_DECISION_CHAIN.md`, `LOSING_TRADES_DEEP_FORENSIC_AUTOPSY.md`, fresh live snapshot data, Forex Factory macro intelligence, and live MT5 positions/orders.
-  - **Mandatory Candidate Identification Mandate**: Explicitly mandate Arena.ai to actively search, screen, and propose concrete passive limit order setups across the 24 mutual assets, checking capacity headroom.
-  - Enforce the 10-step SOP traversal, line-by-line ingestion of telemetry and Forex Factory, and tournament bracket evaluation in Arena.
+  - Embed direct raw links to `docs/specs/STANDARDIZED_TRADING_DECISION_CHAIN.md` and `Data/DataBase_Trading.xlsx` (all 43 sheets) as the sole, exclusive single source of trading truth.
+  - **Mandatory Candidate Identification Mandate**: Explicitly mandate Arena.ai to strictly follow `docs/specs/STANDARDIZED_TRADING_DECISION_CHAIN.md` to search, screen, and propose concrete passive limit order setups across the 24 mutual assets, checking capacity headroom.
+  - Enforce the 10-step SOP traversal, line-by-line ingestion of `Data/DataBase_Trading.xlsx`, and tournament bracket evaluation in Arena.
 
 ---
 
