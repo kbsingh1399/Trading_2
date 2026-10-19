@@ -503,15 +503,15 @@
     "holdings_breakdown": [
       {
         "symbol": "BTC",
-        "price": "$82,671",
+        "price": "$82,672",
         "amount": "BTC",
-        "value_usd": "$604.27M",
-        "change_24h": "+1.31%"
+        "value_usd": "$604.28M",
+        "change_24h": "+1.24%"
       }
     ],
     "category": "SOVEREIGN_TREASURY",
     "priority": "HIGH",
-    "last_updated_utc": "2026-10-19 07:59:40 UTC"
+    "last_updated_utc": "2026-10-19 08:49:35 UTC"
   },
   "microstrategy": {
     "slug": "microstrategy",
@@ -522,15 +522,15 @@
     "holdings_breakdown": [
       {
         "symbol": "BTC",
-        "price": "$82,666",
+        "price": "$82,830",
         "amount": "BTC",
-        "value_usd": "$39.53B",
-        "change_24h": "+1.32%"
+        "value_usd": "$39.61B",
+        "change_24h": "+1.47%"
       }
     ],
     "category": "CORPORATE_TREASURY",
     "priority": "HIGH",
-    "last_updated_utc": "2026-10-19 08:04:24 UTC"
+    "last_updated_utc": "2026-10-19 08:49:41 UTC"
   },
   "tesla": {
     "slug": "tesla",
@@ -549,7 +549,7 @@
     ],
     "category": "CORPORATE_TREASURY",
     "priority": "MEDIUM",
-    "last_updated_utc": "2026-10-19 08:04:31 UTC"
+    "last_updated_utc": "2026-10-19 08:49:47 UTC"
   },
   "tether": {
     "slug": "tether",
@@ -1834,15 +1834,15 @@
     "holdings_breakdown": [
       {
         "symbol": "BTC",
-        "price": "$82,816",
+        "price": "$82,733",
         "amount": "BTC",
         "value_usd": "$5.07B",
-        "change_24h": "+1.49%"
+        "change_24h": "+1.33%"
       }
     ],
     "category": "SOVEREIGN_TREASURY",
     "priority": "MEDIUM",
-    "last_updated_utc": "2026-10-19 07:59:27 UTC"
+    "last_updated_utc": "2026-10-19 08:49:23 UTC"
   },
   "druk-holding-investments": {
     "slug": "druk-holding-investments",
@@ -1853,28 +1853,14 @@
     "holdings_breakdown": [
       {
         "symbol": "BTC",
-        "price": "$82,668",
-        "amount": "BTC",
-        "value_usd": "$42.85M",
-        "change_24h": "+1.31%"
-      },
-      {
-        "symbol": "BNB",
-        "price": "$726.36",
-        "amount": "BNB",
-        "value_usd": "$21.41K",
-        "change_24h": "+0.84%"
-      },
-      {
-        "symbol": "ETH",
-        "price": "$2,430.13",
-        "amount": "ETH",
-        "value_usd": "$18.22K",
-        "change_24h": "+0.97%"
+        "price": "$2.35M",
+        "amount": "",
+        "value_usd": "$0",
+        "change_24h": "+0.00%"
       }
     ],
     "category": "SOVEREIGN_TREASURY",
     "priority": "MEDIUM",
-    "last_updated_utc": "2026-10-19 07:59:34 UTC"
+    "last_updated_utc": "2026-10-19 08:49:29 UTC"
   }
 }

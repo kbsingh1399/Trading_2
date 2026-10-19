@@ -1,5 +1,5 @@
 {
-  "as_of_utc": "2026-10-16 19:15:33 UTC",
+  "as_of_utc": "2026-10-19 08:51:29 UTC",
   "rates": {
     "AUD": "4.60%",
     "USD": "4.00%",
@@ -21,22 +21,22 @@
     "CHF": 0.0
   },
   "key_events": [
-    "EUR ECB President Lagarde Speaks (MEDIUM) [SPEECH/EVENT]",
-    "GBP BOE Gov Bailey Speaks (MEDIUM) [SPEECH/EVENT]",
-    "CAD BOC Gov Macklem Speaks (MEDIUM) [SPEECH/EVENT]",
-    "EUR ECB President Lagarde Speaks (MEDIUM) [SPEECH/EVENT]",
-    "EUR EU Economic Summit (MEDIUM) [SPEECH/EVENT]",
-    "USD Core CPI m/m (HIGH) [Act: 0.3% | F: 0.2%]"
+    "CAD CPI m/m (HIGH) [F: 0.2%]",
+    "CAD Median CPI y/y (HIGH) [F: 2.0%]",
+    "CAD Trimmed CPI y/y (HIGH) [F: 1.9%]",
+    "CAD Common CPI y/y (MEDIUM) [F: 2.6%]",
+    "GBP Average Earnings Index 3m/y (MEDIUM) [F: 3.8%]",
+    "GBP CPI y/y (HIGH) [F: 3.4%]"
   ],
   "top_headlines": [
-    "France in focus for bond markets",
-    "U.S. budget deficit swells to almost $2 trillion for fiscal 2026, up 12% in a single year",
-    "Central banks stay on tightening path",
-    "Iran Says It's Ready To Help Resolve Saudi-Yemen Conflict"
+    "PBOC Governor: China to facilitate overseas financial institutions to conduct RMB trading in the domestic foreign exchange market - CCTV",
+    "CommBank economists stick with November RBA interest rates call, but outlook remains uncertain",
+    "FX Daily: AI jitters have damaged USD safe haven appeal",
+    "BOJ chief says underlying inflation 'quite close' to price goal"
   ],
   "sample_retail_flow": [
-    "Xauusd-stdc BUY ~ 4,165.4 Scaled Out | < 1 min ago Closed Short at 4,165.59Close",
-    "EUR/USD SELL 1.1236 Opened Short | < 1 min ago Ian.Maina 0.0% MTM -1 MTM",
-    "ETH/USD BUY 2,408.5 Opened Long | 2 min ago phrixusong 0.0% MTM na"
+    "Xauusd-vipc SELL ~ 4,170.3 Scaled Out | < 1 min ago Closed Long at 4,170.26Close",
+    "Xauusd-vipc SELL ~ 4,170.5 Scaled Out | ~1 min ago Closed Long at 4,170.47Closed",
+    "BTC/USD SELL 82,708.52 Opened Short | 1 min ago janesmile -0.4% MTM na"
   ]
 }
