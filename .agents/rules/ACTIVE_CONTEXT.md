@@ -129,20 +129,20 @@ trigger: always_on
       * **Position Capacity Policy**:
         - Up to 4 concurrent tickets across orthogonal asset clusters provided total joint worst-case stopout risk unconditionally defends the 4,775.00 USD hard floor and 4,795.00 USD operating buffer (>= 20.00 USD cushion at all times).
     - Connects directly via native IPC to MetaTrader 5 Account 5064568 (Blueberry Markets).
-    - **Active Positions & Pending Orders (Live State — 1 Active Open Position | 1 Staged Pending Order)**:
-      * Current Status: **1 Active Position | 1 Staged Pending Order | Balance: 4,871.22 USD | Equity: ~4,875.57 USD | Margin: 775.12 USD | Free Margin: ~4,100.45 USD | Margin Level: ~629.0%**.
+    - **Active Positions & Pending Orders (Live State — 1 Active Open Position | 0 Pending Orders)**:
+      * Current Status: **1 Active Position | 0 Pending Orders | Balance: 4,843.74 USD | Equity: ~4,839.44 USD | Margin: 2,083.75 USD | Free Margin: ~2,755.69 USD**.
       * Active Positions (1):
-        - **Ticket #18995127 (`SP500.p` BUY 0.10 lots @ 7,751.20 USD)**: SL: **7,737.30 USD** (13.90 pts distance | nominal risk -$13.90 USD | 0.28% equity risk) | TP: **7,794.00 USD** (42.80 pts distance | target profit +$42.80 USD | 3.08R gross / 2.85R net) | Phase 0 BE Trigger: **7,768.58 USD** (monitored every 15s by `autonomous_ratchet_daemon.py`). Defended by $4.28M top-20 bids vs $1.48M asks and $999k resting whale wall at 7,743.30. Floating profit: **+$4.09 USD (+0.29R)**.
-      * Staged Pending Orders (1):
-        - **Ticket #19005477 (`USDJPY.pi` SELL_LIMIT 0.10 lots @ 158.190 USD)**: SL: **158.340 USD** (15.0 pips distance | nominal risk -$9.47 USD | 0.19% equity risk) | TP: **157.790 USD** (40.0 pips distance | target profit +$25.35 USD | 2.68R gross / 2.60R net) | Placed at prior-day VAH 158.24 / weekly-VWAP 158.18 shelf, defended by $2.12M ask depth (imbalance -0.4938) and $316k wall at 158.14 and $192.9k wall at 158.34.
-      * G-1 Hard Floor Defense: Hard Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Cushion: **+$100.57 USD above hard floor (+80.57 USD above operating buffer)**.
+        - **Ticket #19049770 (`XAUUSD.pi` BUY 0.05 lots @ 4,167.50 USD)**: SL: **4,163.80 USD** (3.70 pts distance | nominal risk -$18.50 USD | stressed risk -$25.13 USD) | TP: **4,177.50 USD** (10.00 pts distance | target profit +$50.00 USD | +2.70R). Defended by held hourly VWAP shelf, multi-layer bid depth, and stop cluster clearance. Floating profit: **-$6.70 USD (-0.36R0)**.
+      * Staged Pending Orders: **0 pending orders (capacity slots available)**.
+      * G-1 Hard Floor Defense: Hard Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Cushion: **+$64.44 USD above hard floor (+44.44 USD above operating buffer)**.
       * Stressed Multi-Ticket Post-Loss Simulation:
-        - Total Staged Nominal Risk: 13.90 (SP500) + 9.47 (USDJPY) = **23.37 USD**.
-        - Total Stressed Contingent Risk: 1.25 * (13.90 + 9.47) + 4.00 execution fees = **33.21 USD**.
-        - Worst-Case Stressed Equity: 4,871.22 - 33.21 = **4,838.01 USD**.
-        - Safety Cushion Above 4,775.00 USD Hard Floor: **+63.01 USD guaranteed buffer**.
-        - Safety Cushion Above 4,795.00 USD Operating Buffer: **+43.01 USD guaranteed buffer**.
-        - Capacity Slots Used: **2 / 4** (2 slots freely available for orthogonal clusters: Energy, Metals).
+        - Total Open Nominal Risk: **18.50 USD** (Ticket #19049770 XAUUSD.pi).
+        - Total Stressed Contingent Risk: 1.25 * 18.50 + 2.00 = **25.13 USD**.
+        - Worst-Case Stressed Equity: 4,839.44 - 25.13 = **4,814.31 USD**.
+        - Safety Cushion Above 4,775.00 USD Hard Floor: **+39.31 USD guaranteed buffer**.
+        - Safety Cushion Above 4,795.00 USD Operating Buffer: **+19.31 USD guaranteed buffer**.
+        - Capacity Slots Used: **1 / 4** (3 slots freely available for orthogonal clusters: Indices, Energy, Forex).
+        - New Ticket Admission: Capacity permits max 1 new ticket risking 10.00 USD (stressed 14.50 USD) or 7.50 USD (stressed 11.38 USD).
       * Sentry & Cron State:
         - Governed directly by Antigravity under active `/goal` with 10-step joint-completion lifecycle.
         - `autonomous_telemetry_git_daemon.py` running persistently every 60s, streaming live snapshots to `origin/main` and all `origin/arena/...` branches.

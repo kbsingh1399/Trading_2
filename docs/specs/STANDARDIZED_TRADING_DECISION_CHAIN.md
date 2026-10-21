@@ -53,66 +53,52 @@ flowchart TD
    - Computes worst-case stressed equity across all open and staged tickets: $\text{Stressed Equity} = \text{Current Equity} - \sum (\text{Risk}_i \times 1.25 + 2.00) \ge 4,795.00\text{ USD}$ (preserving a mandatory $+20.00\text{ USD}$ operating buffer above the $4,775.00\text{ USD}$ absolute hard floor).
 10. **`/execution-sim` (Microstructure Execution & Friction Compensation)**:
     - Models half-spread offset ($\text{Entry} = \text{Shelf} - \text{half\_spread}$ for longs, $\text{Shelf} + \text{half\_spread}$ for shorts), verifies `ORDER_FILLING_IOC` with automatic failover to `RETURN` and `FOK`.
-11. **`/onchain-forensics` (Arkham Institutional Deanonymization)**:
-    - Parses live `onchain_arkham_intelligence`, calculates net flow velocity ($\text{Outflow} - \text{Inflow}$), flags institutional CEX deposits, and attributes wallet flows to specific assets.
+11. **`/onchain-forensics` (Hyperliquid L1 & Hyperdash Institutional Whale Intelligence)**:
+    - Parses live decentralized whale positions (`4_Hyperliquid_Analysis`), tracks 2,001 individual whale wallets, monitors institutional Telegram block trade alerts (`16_Hyperdash_telegram_Intel`), and calculates 1h to 7d spot exchange netflows (`2_Spot_Netflow_S`).
 12. **`/market-microstructure` (Orderbook Replenishment & Spoof Detection)**:
     - Analyzes L2 replenishment velocity $d(\text{depth})/dt$, calculates book imbalance ratios, and filters out phantom/ephemeral orders using presence fraction ($\ge 0.85$) and minimum persistence ($\ge 180\text{s}$).
 
 ---
 
-## SECTION 1.5: THE 43-SHEET MASTER EXCEL TRADING WAREHOUSE (EXCLUSIVE SINGLE SOURCE OF TRUTH)
+## SECTION 1.5: THE 29-SHEET CANONICAL MASTER EXCEL TRADING WAREHOUSE (EXCLUSIVE SINGLE SOURCE OF TRUTH)
 
 > **MANDATORY INVARIANT & SOLE DATA WAREHOUSE**:  
-> `Data/DataBase_Trading.xlsx` (all 43 production worksheets) is the **exclusive, single definitive source of trading information, market microstructure, and decision-making for both Antigravity and Arena.ai**.  
-> Neither Antigravity nor external council agents (Arena.ai, Copilot Studio, Ox Alpha) may ever query or cite intermediate JSON files. All market data points—covering macroeconomic indicators, central bank policies, retail sentiment, auction profiles, level 2/3 orderbook depth, resting whale walls, liquidation cascades, and live broker account state—are unified into this 225,000+-cell master workbook on a continuous 10-minute automated cadence.
+> `Data/DataBase_Trading.xlsx` (all 29 canonical production worksheets, terminating strictly at `19_Calendar` with all trailing legacy sheets permanently purged) is the **exclusive, single definitive source of trading information, market microstructure, and decision-making for both Antigravity and Arena.ai**.  
+> Neither Antigravity nor external council agents (Arena.ai, Copilot Studio, Ox Alpha) may ever query or cite unverified intermediate files. All market data points—covering macroeconomic indicators, central bank releases, cross-exchange funding rates, Long/Short ratios, level 2/3 orderbook depth, resting whale walls, liquidation ladders, stop order maps, continuous CVD, and Forex Factory calendar/news—are unified into this master workbook.
 
-### The 43 Worksheets: Functional Taxonomy & Trading Purpose Matrix
+### The 29 Worksheets: Functional Taxonomy, Primary Metrics & Tactical Decision Purpose
 
-| Sheet # | Worksheet Name | Functional Domain | Primary Metrics & Ingestion Fields | Tactical Decision Purpose (Antigravity & Arena.ai) |
+| Sheet # | Worksheet Name | Functional Domain | Primary Metrics & Exact Ingestion Fields | Tactical Decision Purpose (Antigravity & Arena.ai) |
 |---|---|---|---|---|
-| **1** | `Crypto_ETF_Flows` | **Macro Trend & Institutional Inflow** | Daily & cumulative net ETF inflows/outflows (USD), shares traded, tracking error across BTC/ETH spot ETFs. | Identifies structural institutional buying vs selling pressure across spot markets. Positive multi-day net inflow confirms macro tailwind for pro-trend long pullbacks. |
-| **2** | `Top_Institutions` | **Macro Trend & Institutional Flow** | Institutional portfolio holdings (AUM, allocation %, custodian splits, BlackRock, Fidelity, Bitwise). | Tracks sovereign & tier-1 fund allocation changes. Flags macro institutional accumulation or portfolio de-risking. |
-| **3** | `ETF_Market_Overview` | **Macro Trend & Market Liquidity** | Aggregate ETF market cap, total trading volume, premium/discount to NAV, market share. | Evaluates institutional liquidity health and TradFi capital conduit expansion. |
-| **4** | `ETF_Overview` | **Macro Trend & Capital Flows** | Fund-by-fund breakdown of expense ratios, daily volume, net asset changes. | Dissects institutional vehicle competition and capital concentration. |
-| **5** | `Spot_ETF_Net_Inflow` | **Macro Trend & Spot Momentum** | Granular daily net inflow/outflow per ticker (IBIT, FBTC, ARKB, BITB, ETHA, FETH). | Key trend indicator: sustained consecutive days of positive net spot inflow disqualify aggressive counter-trend shorting on BTC and ETH. |
-| **6** | `Spot_ETF_Net_Inflow_Graph`| **Macro Trend & Visual Flow** | Time-series trend trajectory and moving averages of institutional net creations/redemptions. | Confirms medium-term institutional momentum regime and velocity shifts. |
-| **7** | `Funding_Rates` | **Sentiment & Leverage Crowding** | Real-time 8h perpetual funding rates across Binance, OKX, Bybit, dYdX, and Hyperliquid. | Detects over-leveraged market crowding. Extreme positive funding (> +0.03%) flags over-crowded longs vulnerable to flushes; negative funding flags short squeezes. |
-| **8** | `Funding_Fees` | **Sentiment & Holding Cost** | Annualized borrowing costs and carrying fees for perpetual contracts. | Evaluates holding friction for multi-hour swing positions; prevents holding against heavy adverse funding. |
-| **9** | `LR_Ratio_Chart` | **Sentiment & Market Bias** | Historical Long/Short ratio curves across top exchanges. | Identifies sentiment extremes and retail crowd positioning divergences. |
-| **10** | `LR_Ratio_Accounts` | **Sentiment & Account Skew** | Long vs short account percentage distribution on Binance/OKX. | Contrarian sentiment filter: when retail long accounts exceed 70%, long dip-buying is deprioritized due to high sweep risk. |
-| **11** | `LR_Exchanges_Ratio` | **Sentiment & Cross-Venue Skew** | Cross-exchange comparison of net directional exposure (Binance vs Bybit vs OKX). | Pinpoints venue-specific positioning asymmetries and short squeeze vulnerability. |
-| **12** | `Large_Trades` | **Microstructure & Taker Impact** | Real-time block executions (>= 100K USD) with trade side (BUY/SELL), exact price, and exchange. | Validates aggressive market order impact. Heavy cluster of large green market buys confirms taker aggression on shelf touches. |
-| **13** | `Open_Interest` | **Technical Analysis & Leverage** | Total active open contracts (notional USD and native units) per asset. | Confirms trend health: rising price + rising OI = genuine institutional trend; rising price + falling OI = short-covering rally prone to exhaustion. |
-| **14** | `Open_Interest_Top_Gainers`| **Technical Analysis & Expansion** | Assets experiencing the highest 1h/24h percentage increase in open contracts. | Highlights assets undergoing active institutional positioning and imminent volatility expansion. |
-| **15** | `Open_Interest_Top_Losers` | **Technical Analysis & Flushes** | Assets experiencing rapid leverage flushes and mass contract closures. | Signals post-cascade exhaustion or liquidity evacuation; identifies completed flushes for mean-reversion entries. |
-| **16** | `Exchange_Open_Interest_Chart15M` | **Technical Analysis & 15m Momentum** | High-resolution 15-minute open interest progression across venues. | Tracks intraday intraday leverage build-up preceding volatility expansions. |
-| **17** | `Exchange_Open_Interest_Chart_1H` | **Technical Analysis & 1H Structure** | 1-hour open interest trajectory aligned with hourly candle closes. | Validates whether hourly structural breaks were driven by fresh capital or contract liquidation. |
-| **18** | `Exchange_Open_Interest_Chart_4H` | **Technical Analysis & HTF Trend** | 4-hour open interest trend curves over multi-day horizons. | Confirms HTF macro regime expansion or institutional contract distribution. |
-| **19** | `liquidation_maxpain_1D` | **Liquidity Magnets & Target Qualification** | 24-hour maximum pain strike prices where leveraged positions incur maximum losses. | Identifies market-maker gravitational attraction targets for intraday price discovery. |
-| **20** | `liquidation_maxpain_2D` | **Liquidity Magnets & Distal Targets** | 48-hour distal max pain price levels. | Serves as higher-order multi-day target magnets for runner take-profit levels. |
-| **21** | `Exchange_Liquidation_Map_1D` | **Liquidity Magnets & SL/TP Placement** | 24-hour reconstructed liquidation heatmaps, long cascade bands below, short squeeze bands above. | Primary defensive and offensive geometry: SL MUST sit safely outside nearest sweep band [min_price, max_price] + 0.50 ATR; TP front-runs opposing cascade band by 5-10 bps. |
-| **22** | `Exchange_Liquidation_Map_7D` | **Liquidity Magnets & Major Targets** | 7-day cumulative liquidation pools (e.g. 1.074B USD short liquidation pool on BTC). | High-conviction macro TP magnet selection: targets deep institutional squeeze pools that guarantee exit fill liquidity. |
-| **23** | `Whales_Orders` | **Microstructure & Defensive SL Bunker** | Verified Binance Futures resting institutional limit orders (>= 100K USD) with verified persistence (persist >= 180s). | Inviolable stop bunker anchor: Stop Loss must shelter behind persistent resting whale bids (for longs) or asks (for shorts). Ephemeral walls (< 180s) are rejected. |
-| **24** | `Spot_Netflow` | **Microstructure & Smart Money Flow** | Net taker buy/sell volume across spot markets. | Proves physical spot accumulation vs synthetic leverage. Long setups require positive spot netflow divergence. |
-| **25** | `Hyperliquid_Whales` | **Microstructure & Decentralized Bunkers**| Live resting whale walls and L2/L3 orderbook depth on Hyperliquid DEX. | Cross-venue confirmation of institutional whale walls; validates that resting depth is non-exchange-specific. |
-| **26** | `FF_News_Fundamental` | **Macro Trend Analysis & Policy** | Full-text articles on central bank interest rate policies, inflation reports, geopolitical conflicts, and energy supply. | Establishes the fundamental macro narrative (e.g. stagflation, rate divergence) to prioritize which asset classes to buy or short. |
-| **27** | `FF_News_Technical` | **Technical Analysis & Formations** | Quantitative technical breakdowns, chart patterns, key moving averages, and classical support/resistance nodes. | Provides technical context for key chart formations and institutional round-number levels. |
-| **28** | `FF_Trades_Sentiment` | **Sentiment & Positioning Skew** | Retail long vs short percentage, lot volume splits, average entry prices, and win/loss ratios across 8 Forex pairs and Gold. | Contrarian indicator: retail crowding (e.g. 80%+ long) warns of impending stop sweep flushes; signals high-probability counter-retail setups. |
-| **29** | `FF_Trades_Individual_Positions` | **Sentiment & Stop Cluster Mapping** | 70 individual retail trader positions with resting lot sizes, open prices, floating PnL, and stop allocations. | Maps exact retail stop hunt clusters where cascading stops will be triggered by market makers. |
-| **30** | `FF_Top_Traders` | **Sentiment & Consensus Benchmark** | Verified monthly top trader rankings, profitable system return %, and accounting modes. | Benchmarks desk execution against market-beating institutional strategies. |
-| **31** | `FF_Economic_Calendar` | **Macro Risk & Blackout Guard** | Scheduled weekly economic calendar (38+ events) with exact UTC release times, currencies, impact levels, forecast vs actual. | Operational Blackout Guard: mandates halting new orders within +-35m of Tier-1 High-Impact events (CPI, FOMC, NFP) to prevent catastrophic spread widening. |
-| **32** | `FF_News_Latest` | **Macro Trend & Breaking Catalysts** | Breaking real-time news headlines, energy supply shocks, and geopolitical announcements. | JIT news monitoring: flags breaking news catalysts that could invalidate technical setups or trigger sudden volatility. |
-| **33** | `FF_Live_Trades_Activity` | **Microstructure & Retail Execution Flow**| 40 real-time executions with side, execution price, order type, scaled execution details, and pips. | Real-time tape reading: identifies when retail traders are panic-selling or FOMO-buying into exhaustion. |
-| **34** | `Telemetry_System_State` | **Technical Regime & System State** | Global system health, 1H/4H trend regime classifications (`TREND_UP`, `TREND_DOWN`, `RANGE_BOUND`, `UNDEFINED`), 20/50/200 EMAs, Session VWAP, and ATR-14 across 24 assets. | Primary regime filter: if regime is `UNDEFINED`, stand aside unconditionally. Governs whether Model 1 (Mean Reversion) or Model 2 (Trend Pullback) is active. |
-| **35** | `Live_Orderbook_CVD_Depth` | **Microstructure, Entry & Shelf Qualification** | Real-time Level 2 20-level orderbook depth, book imbalance ratios, multi-horizon taker CVD (1m, 15m, session, weekly), Lee-Ready TradFi tick CVD, trapped traders footprint. | Primary entry staging sheet: identifies shelf anchors (POC, VAH/VAL, VWAP), verifies CVD absorption, and qualifies passive limit entry prices minus half-spread. |
-| **36** | `Exchange_Basis_Spreads` | **Execution & Venue Translation** | Cross-venue basis spreads (Binance perp mid minus MT5 CFD mid), funding basis, and spot-perpetual premium. | Inviolable execution translation: maps Binance/Hyperliquid technical levels into MT5 broker CFD prices to ensure limit orders trigger accurately. |
-| **37** | `Hyperdash_Flow_Feed` | **Microstructure & Multi-Asset Flow** | Multi-section feed with KPIs, 50 whale trades, 50 confirmed liquidations, and 158-asset universe flow sorted by liquidation volume. | Broad market screener: reveals multi-asset capital rotation and market-wide liquidation cascades. |
-| **38** | `Arkham_Transfers_100K` | **On-Chain Whale Forensics** | Transfers >= 100K USD with full 42-character 0x/Tron addresses, tx hashes, and entity badges (Wintermute, Jump, BlackRock). | Deanonymizes smart money moves: flags impending CEX dumps (deposits) or physical accumulation (outflows to cold storage). |
-| **39** | `Arkham_Whales_Holdings` | **On-Chain Entity Balances** | Portfolio tracking for 48 institutional entities, total USD holdings, 24h asset rebalancing, and wallet balance changes. | Tracks balance sheet changes of market-making institutions and crypto treasuries. |
-| **40** | `Bitcoin_Treasuries` | **Macro Trend & Corporate Balance Sheets**| 60 publicly traded entities (Strategy/MicroStrategy, MARA, Tesla) and 124-row historical acquisitions ledger. | Confirms corporate balance sheet accumulation pace; validates long-term macro trend floor. |
-| **41** | `Volatility_Sentiment` | **Sentiment & Forward Volatility** | Alternative.me Fear & Greed Index historical series alongside Deribit DVOL 30-day forward implied volatility curves for BTC and ETH. | Volatility regime sizing: adjusts stop buffers and lot sizing based on forward implied volatility expansion or compression. |
-| **42** | `MT5_Live_Quotes_Account` | **Broker Execution & Capital Defense** | Live MT5 account ledger: balance ($4,863.74), equity ($4,863.74), free margin, floor cushion (+$88.74 above hard floor), interbank tick bid/ask quotes and spreads in bps. | Sovereign capital defense gate: enforces the 15% dynamic friction rule (spread friction <= 15%), verifies hard floor preservation (>= 4,775 USD), and calculates exact cash risk. |
-| **43** | `Cognitive_Council_Telemetry` | **Desk Governance & Council Synchronization**| Real-time health of Google Gemini Web2API (port 8081, 11 models), Heretic Engine (port 8083, HEALTHY 200), Arena.ai consensus, and git sync daemons. | Confirms AI council telemetry health, API connectivity, and multi-agent synchronization status before order execution. |
+| **00** | `Crypto_ETF_Flows` | **Institutional Inflow & TradFi Proxy** | Overview of spot ETF aggregate flows, AUM, net creations/redemptions, market cap, and volume across BTC/ETH spot ETFs. | High-level TradFi spot demand barometer; sustained multi-day net inflow confirms macro tailwind for pro-trend long pullbacks. |
+| **01** | `1_Crypto_ETF_Flows` | **Granular Spot ETF Flow Matrix** | `Rank`, `Ticker` (IBIT, FBTC, etc.), `ETF Name`, `Price`, `Price Change`, `Volume (USD)`, `Volume (Shares)`, `Turnover Rate`, `Shares Outstanding`, `AUM`, `Market Cap`, `Expense Ratio`, `Asset Category`, `Issuer`, `Daily Net Inflow`, `Timestamp UTC`. | Pinpoints individual institutional fund flows (BlackRock, Fidelity). Consecutive positive net inflow days disqualify aggressive counter-trend shorting on BTC and ETH. |
+| **02** | `2_Spot_Netflow_S` | **CEX Spot Inflow/Outflow (500 Assets)** | `Rank`, `Symbol`, `Spot Price`, `1h Netflow`, `4h Netflow`, `12h Netflow`, `24h Netflow`, `7d Netflow`, `30d Netflow`, `24h Spot Volume`, `24h Change %`, `Exchange`, `Timestamp UTC`. | Measures real CEX spot accumulation vs distribution. Divergence (positive spot netflow while futures prices dip) proves institutional absorption of retail panic sells. |
+| **03** | `3_Exchanges_LS_Ratio_15M` | **15m Positioning & Account Skew** | `Asset`, `Timeframe (15M)`, `Binance LS Ratio`, `Binance Long %`, `Binance Short %`, `OKX LS Ratio`, `OKX Long %`, `OKX Short %`, `Bybit LS Ratio`, `Aggregate LS Ratio`, `Timestamp UTC`. | Immediate retail crowding filter. If retail long accounts exceed 70%, long dip-buying is halted to prevent catching stop sweeps. |
+| **04** | `3_Exchanges_LS_Ratio_1H` | **1H Structural Positioning Skew** | `Asset`, `Timeframe (1H)`, `Binance LS Ratio`, `Binance Long %`, `Binance Short %`, `OKX LS Ratio`, `OKX Long %`, `OKX Short %`, `Bybit LS Ratio`, `Aggregate LS Ratio`, `Timestamp UTC`. | Hourly sentiment confirmation. Verifies if hourly price breakouts are supported by retail short covering or fresh institutional buying. |
+| **05** | `3_Exchanges_LS_Ratio_4H` | **4H HTF Macro Positioning Skew** | `Asset`, `Timeframe (4H)`, `Binance LS Ratio`, `Binance Long %`, `Binance Short %`, `OKX LS Ratio`, `OKX Long %`, `OKX Short %`, `Bybit LS Ratio`, `Aggregate LS Ratio`, `Timestamp UTC`. | Higher-timeframe positioning consensus. Discloses multi-day trapped retail positions across major derivative exchanges. |
+| **06** | `4_Hyperliquid_Analysis` | **DEX Whale Intelligence & Leverage** | `Rank`, `Account/Wallet (0x...)`, `Total Account Value`, `Position Value`, `Unrealized PnL`, `Leverage`, `Long/Short Bias`, `Top Position Symbol`, `Top Position Size`, `Entry Price`, `Mark Price`, `Liq Price`, `Margin Utilization`, `Timestamp UTC`. | Tracks smart-money on-chain perp whales on Hyperliquid L1. Discloses top whale positions, leverage tiers, and potential squeeze liquidation prices. |
+| **07** | `5_OI` | **Futures Open Interest Analysis** | `Asset`, `OI Notional (USD)`, `OI Token (Coins)`, `1h OI Change %`, `4h OI Change %`, `24h OI Change %`, `Binance OI`, `Bybit OI`, `OKX OI`, `CME OI`, `Aggregate Trend`, `Timestamp UTC`. | Validates trend conviction across 18 perpetuals. Rising price + rising OI = genuine institutional trend; rising price + falling OI = short-covering rally prone to exhaustion. |
+| **08** | `5_Funding_Rate` | **Cross-Exchange Perpetual Funding** | `Asset`, `Symbol`, `Binance FR`, `Bybit FR`, `OKX FR`, `dYdX FR`, `Bitget FR`, `Gate FR`, `Predicted Next FR`, `Annualized FR %`, `Cumulative 7D FR %`, `Funding Bias`, `Timestamp UTC`. | Pinpoints extreme leverage imbalances across 12 venues. Funding > +0.03% warns of long flush vulnerability; negative funding (< -0.02%) sets up explosive short squeezes. |
+| **09** | `6_Funding_Fee_Settlement` | **Funding Fee Settlement & Friction** | `Asset`, `Exchange`, `Settlement Interval (8h/4h/1h)`, `Next Funding Time UTC`, `Current Rate`, `Estimated Fee USD (per 10k notional)`, `24h Fee Total`, `Annualized Carrying Cost`, `Crowding Risk Indicator`, `Timestamp UTC`. | Evaluates holding friction for multi-hour swing positions; prevents staging positions immediately ahead of heavy adverse funding fee debits. |
+| **10** | `7_Liq_Heapmap` | **Clustered Liquidation Heatmap** | `Asset`, `Timeframe`, `Clustered Liq Price`, `Total Liq Volume (USD)`, `Long Liq Volume (USD)`, `Short Liq Volume (USD)`, `Distance to Current Price %`, `Timestamp UTC`. | Locates dense liquidation clusters across timeframes. Serves as primary target magnets where cascading liquidations will guarantee exit fill liquidity. |
+| **11** | `7_Live_Liq` | **Real-Time Liquidation Stream** | `Timestamp`, `Asset/Symbol`, `Exchange`, `Side (Long/Short)`, `Liquidation USD`, `Liquidation Quantity`, `Liquidation Price`, `Mark Price`. | Real-time tape reading of forced liquidations. Detects liquidation climax flushes (e.g. > $5M longs wiped in 60s) signaling capitulation and mean-reversion bottoms. |
+| **12** | `8_Exchange_Liquidation_Map_1D` | **24H Exchange Liquidation Surface** | `Asset`, `Timeframe (1D)`, `Price Bucket`, `Long Cumulative Liq USD`, `Short Cumulative Liq USD`, `Net Delta Liq USD`, `Density Score`, `Nearest Magnet Flag`, `Timestamp UTC`. | Intraday offensive/defensive geometry: Stop Loss must sit safely outside nearest sweep band [min_price, max_price] + 0.50 ATR; Take Profit front-runs opposing band by 5-10 bps. |
+| **13** | `9_Liquidation_Max_Pain_24H` | **24H Liquidation Max Pain** | `Asset`, `Timeframe (24H)`, `Current Price`, `Max Pain Strike Price`, `Distance to Max Pain %`, `Total Long Risk USD`, `Total Short Risk USD`, `Pain Disparity Ratio`, `Target Bias`, `Timestamp UTC`. | Market-maker gravitational attraction strike where aggregate intraday open contracts experience maximum loss. |
+| **14** | `9_Liquidation_Max_Pain_48H` | **48H Distal Liquidation Max Pain** | `Asset`, `Timeframe (48H)`, `Current Price`, `Max Pain Strike Price`, `Distance to Max Pain %`, `Total Long Risk USD`, `Total Short Risk USD`, `Pain Disparity Ratio`, `Target Bias`, `Timestamp UTC`. | Multi-day structural target magnet for runner positions. |
+| **15** | `9_Liquidation_Max_Pain_3D` | **3D Liquidation Max Pain** | `Asset`, `Timeframe (3D)`, `Current Price`, `Max Pain Strike Price`, `Distance to Max Pain %`, `Total Long Risk USD`, `Total Short Risk USD`, `Pain Disparity Ratio`, `Target Bias`, `Timestamp UTC`. | Swing-horizon max pain strike anchoring weekly balance-of-power shifts. |
+| **16** | `9_Liquidation_Max_Pain_7D` | **7D Macro Liquidation Max Pain** | `Asset`, `Timeframe (7D)`, `Current Price`, `Max Pain Strike Price`, `Distance to Max Pain %`, `Total Long Risk USD`, `Total Short Risk USD`, `Pain Disparity Ratio`, `Target Bias`, `Timestamp UTC`. | Macro weekly max pain target defining the prevailing weekly auction bias. |
+| **17** | `8_Exchange_Liquidation_Map_7D` | **7D Cumulative Liquidation Surface** | `Asset`, `Timeframe (7D)`, `Price Bucket`, `Long Cumulative Liq USD`, `Short Cumulative Liq USD`, `Net Delta Liq USD`, `Density Score`, `Nearest Magnet Flag`, `Timestamp UTC`. | High-conviction macro TP magnet selection: targets multi-hundred-million-dollar squeeze pools (e.g. $1B+ short liquidation pools on BTC). |
+| **18** | `10_Whale_Orders` | **Resting Whale Orders (> $100K USD)** | `Sr. No.`, `Asset`, `Venue/Exchange`, `Side (BUY/SELL)`, `Price`, `From Price`, `Initial USD`, `Remaining USD`, `Filled USD`, `Duration`, `Status`, `Distance to Spot %`, `Whale Entity Tag`, `Timestamp UTC`. | Inviolable stop bunker anchor: Stop Loss MUST shelter behind persistent resting whale bids (longs) or asks (shorts) with confirmed persistence (persist >= 180s). |
+| **19** | `11_Technical` | **Quantitative Indicators & VWAP Bands** | `Asset`, `Close`, `20 EMA`, `50 EMA`, `200 EMA`, `VWAP`, `VWAP +1.0 SD`, `VWAP +2.0 SD`, `VWAP -1.0 SD`, `VWAP -2.0 SD`, `VWAP Z-Score`, `RSI-14`, `ATR-14`, `Volume Profile POC`, `VAH`, `VAL`, `Trend Regime`, `Timestamp UTC`. | Primary statistical regime filter: assigns Model 1 (|Z_VWAP| >= 2.0 SD in MEAN_REVERT) or Model 2 (|Z_VWAP| < 2.0 SD in TREND_UP/DOWN). If UNDEFINED, stand aside unconditionally. |
+| **20** | `12_Hyperdash` | **Hyperdash Flow Sentiment & KPIs** | `Metric Identifier`, `Symbol`, `Metric Name`, `Value`, `24h Change`, `Sentiment Bias`, `Signal Strength`, `Timestamp UTC`. | Synthesizes aggregate smart money flow metrics, on-chain sentiment scores, and multi-asset volume velocity. |
+| **21** | `13_Hyperliquid` | **Hyperliquid L1 Native Exchange Engine** | `Sr. No.`, `Asset`, `Open Interest USD`, `24h Volume USD`, `Funding Rate`, `Premium/Discount`, `Predicted Funding`, `Long/Short Skew`, `Net Taker Flow`, `Timestamp UTC`. | Real-time L1 DEX orderbook health, basis premium/discount relative to Binance, and decentralized taker flow pressure. |
+| **22** | `14_Hyperdash_Liq_Map` | **Continuous Liquidation Price Ladder** | `Asset`, `Mark Price`, `Price Level`, `Side (Long/Short)`, `Leverage Tier`, `Liquidation Notional USD`, `Cumulative Liq USD`, `Distance to Mark %`, `Cluster Rank`, `Status`, `Timestamp UTC`. | Fine-grained continuous dollar-by-dollar liquidation ladder. Accurately maps the boundary [min_price, max_price] of long cascade bands and short squeeze bands. |
+| **23** | `15_Hyperdash_Stops_Map` | **Resting Stop Orders Price Ladder** | `Asset`, `Mark Price`, `Stop Price Level`, `Order Side (Buy Stops / Sell Stops)`, `Stop Orders Count`, `Estimated Notional USD`, `Cumulative Stop Volume USD`, `Distance to Mark %`, `Sweep Vulnerability Score`, `Timestamp UTC`. | Maps exact retail resting stop loss clusters. Identifies sweep trap levels; strictly bans placing limit orders inside un-swept stop clusters. |
+| **24** | `16_Hyperdash_telegram_Intel` | **Telegram Whale Flow Intelligence** | `Timestamp`, `Asset`, `Alert Type`, `Notional USD`, `Price`, `Source Channel`, `Message Content`, `Directional Signal`, `Conviction Score`. | Rapid-response whale alert channel. Flags institutional block trades, sudden wallet movements, and large off-market derivative prints. |
+| **25** | `17_Orderbook` | **L2/L3 Orderbook & Whale Attribution** | `Asset`, `Side (BID/ASK)`, `Price Level`, `Depth Quantity`, `Cumulative Notional USD`, `Wallet/Entity Attribution`, `Imbalance Ratio`, `Persistence Status`, `Timestamp UTC`. | Top-20 depth and whale wall verification. Confirms orderbook asymmetry (Imbalance > +0.25 for longs, < -0.25 for shorts) and enforces the 180s persistence filter. |
+| **26** | `18_CVD` | **Multi-Asset Continuous CVD Engine** | `Timestamp UTC`, `Asset`, `Close Price`, `Spot Taker Buy Vol`, `Spot Taker Sell Vol`, `Spot CVD Delta`, `Futures Taker Buy Vol`, `Futures Taker Sell Vol`, `Futures CVD Delta`, `Spot vs Futures CVD Divergence (zc_div)`, `Cumulative CVD 1m, 5m, 15m, 1h, Session`, `CVD Z-Score`. | Core Pillar 2 Confluence: Evaluates aggressive market buying vs selling across spot and perp. Confirms institutional accumulation when Delta Spot > 0 and Delta Futures < 0 with zc_div > 0.8. |
+| **27** | `19_News` | **Forex Factory Breaking News Feed** | `Headline`, `URL`, `Timestamp / Time Ago`, `Currency`, `Impact (High/Med/Low)`, `Source / Tag`, `Summary / Description`, `Institutional Relevance`, `Timestamp UTC`. | Real-time institutional newsfeed. Flags breaking central bank comments, geopolitical tensions, and emergency market developments. |
+| **28** | `19_Calendar` | **Forex Factory Macroeconomic Calendar**| `Date`, `Time UTC`, `Currency`, `Impact (Red/Orange/Yellow/Grey)`, `Event Name`, `Detail / Description`, `Actual`, `Forecast`, `Previous`, `Deviation / Surprise`, `Trade Blackout Window`, `Timestamp UTC`. | Sovereign Macro Defense Gate: Enforces the mandatory blackout window (+-15m for Crypto, +-35m for TradFi) around high-impact red-folder releases (CPI, FOMC, NFP, GDP, Interest Rates). |
 
 ---
 
@@ -139,22 +125,41 @@ flowchart TD
 Every analysis begins by establishing absolute data integrity across the telemetry pipeline and macro calendar:
 
 1. **Mandatory Master Database Updation Gate**:
-   - The autonomous Excel background pipeline (`autonomous_excel_daemon.py`) updates all 43 sheets of `Data/DataBase_Trading.xlsx` every 600s.
-   - Prior to dispatching subagents or evaluating trade setups, Step 1 verifies that `Data/DataBase_Trading.xlsx` has been freshly modified within the current operating window, ensuring all 43 sheets contain live, zero-null market intelligence.
+   - The canonical Excel pipeline (`Run_Pipeline.py` / `Run_Parallel_Pipeline.py`) updates all 29 sheets of `Data/DataBase_Trading.xlsx`.
+   - Prior to dispatching subagents or evaluating trade setups, Step 1 verifies that `Data/DataBase_Trading.xlsx` has been freshly modified within the current operating window, ensuring all 29 sheets contain live, zero-null market intelligence terminating strictly at `19_Calendar`.
 
-2. **Mandatory Line-by-Line Master Excel Ingestion & Narrative Continuity**:
-   - Agents, subagents, and external council models are **strictly forbidden from skimming or using unverified proxies**.
-   - You MUST read `Data/DataBase_Trading.xlsx` **line-by-line across its primary sheets**:
-     * **Sheet 42 (`MT5_Live_Quotes_Account`)**: Trace the running account narrative: track ledger balance, real-time floating equity, margin utilized, and floor cushion above the 4,775.00 USD hard floor. Inspect interbank tick bid/ask quotes and verify spreads in bps.
-     * **Sheet 34 (`Telemetry_System_State`) & Sheet 35 (`Live_Orderbook_CVD_Depth`)**: Inspect active positions and tickets, entry fills, current market price, ATR-14 volatility, and distance to dynamic ratchet triggers. Confirm whether supporting whale bunkers are persistent (persist >= 180s) or decaying.
-     * **Sheets 21 & 22 (`Exchange_Liquidation_Map_1D/7D`)**: Trace liquidation floor/ceiling migration; map evolving short-squeeze and long-liquidation cascade pools across cycles to locate defensive bunkers and offensive target magnets.
+2. **Mandatory Comprehensive Ingestion of ALL 29 Master Excel Worksheets (Strict Non-Skimming Invariant)**:
+   - **Universal Read & Re-Read Mandate**: Agents, subagents, operators, and external council models are **strictly forbidden from skimming, sampling, or reading only a partial subset of worksheets**. On EVERY autonomous cycle, wake-up turn, and pre-order decision step, you MUST systematically **read and re-read all 29 canonical worksheets** in `Data/DataBase_Trading.xlsx` from Sheet 00 through Sheet 28:
+     * **Cluster A: Macro Event Defense & Institutional Flows (Sheets 00, 01, 02, 27, 28)**:
+       - **Sheet 00 (`Crypto_ETF_Flows`) & Sheet 01 (`1_Crypto_ETF_Flows`)**: Ingest institutional spot ETF net inflows/outflows across all 41 ETFs (IBIT, FBTC, ETHA, etc.), AUM, and volume to establish multi-day macro institutional bias.
+       - **Sheet 02 (`2_Spot_Netflow_S`)**: Ingest physical spot netflows across 500 assets (1h, 4h, 12h, 24h, 7d net inflows/outflows) to detect physical spot accumulation vs distribution.
+       - **Sheet 27 (`19_News`)**: Ingest all breaking institutional news stories and market headlines for geopolitical, energy, or central bank shocks.
+       - **Sheet 28 (`19_Calendar`)**: Ingest all macroeconomic releases, inflation prints (CPI, PPI), central bank decisions (FOMC, ECB), and enforce the +-15m crypto (+-35m TradFi) blackout gate.
+     * **Cluster B: Derivatives Positioning, Crowding & Regime (Sheets 03-05, 07, 08, 09, 19, 20, 21)**:
+       - **Sheets 03, 04, 05 (`3_Exchanges_LS_Ratio_15M`, `1H`, `4H`)**: Ingest Long/Short accounts across Binance, OKX, and Bybit across all 3 timeframes to identify dangerous retail crowding (> 70% long).
+       - **Sheet 07 (`5_OI`)**: Ingest open interest token and USD notional changes (1h, 4h, 24h) to confirm trend authenticity vs short-covering.
+       - **Sheet 08 (`5_Funding_Rate`) & Sheet 09 (`6_Funding_Fee_Settlement`)**: Ingest funding rates across exchanges, predicted next funding, annualized %, and 7-day cumulative holding costs.
+       - **Sheet 19 (`11_Technical`)**: Ingest full 43-column technical indicator matrix across universe assets: Close, 20/50/200 EMAs, VWAP, VWAP Z-Score, ATR-14, RSI-14, Volume Profile POC, VAH, VAL, and assigned Market Regime (`TREND_UP`, `TREND_DOWN`, `RANGE`, `UNDEFINED`).
+       - **Sheet 20 (`12_Hyperdash`) & Sheet 21 (`13_Hyperliquid`)**: Ingest decentralized L1 native funding, open interest, and basis premium/discount relative to CEXs.
+     * **Cluster C: Liquidation Maps, Stop Cascades & Orderflow Delta (Sheets 10, 11, 12, 13-16, 17, 22, 23, 26)**:
+       - **Sheet 10 (`7_Liq_Heapmap`) & Sheet 11 (`7_Live_Liq`)**: Ingest high-density liquidation zones and live real-time liquidation prints to identify exhaustion climaxes.
+       - **Sheets 12 & 17 (`8_Exchange_Liquidation_Map_1D` & `7D`)**: Ingest 24h and 7-day cumulative liquidation ladders across venues to locate distal exit liquidity pools.
+       - **Sheets 13, 14, 15, 16 (`9_Liquidation_Max_Pain_24H`, `48H`, `3D`, `7D`)**: Ingest theoretical Max Pain strikes and disparity ratios across 4 rolling time horizons.
+       - **Sheet 22 (`14_Hyperdash_Liq_Map`)**: Ingest granular dollar-by-dollar liquidation ladders (5,700+ rows) to identify exact boundaries of long cascade and short squeeze bands.
+       - **Sheet 23 (`15_Hyperdash_Stops_Map`)**: Ingest retail resting stop-loss ladders (3,800+ rows) to locate un-swept stop sweep traps and enforce the invariant banning limit placement inside un-swept clusters.
+       - **Sheet 26 (`18_CVD`)**: Ingest multi-timeframe continuous Cumulative Volume Delta (50,001 rows) across spot and futures to confirm institutional absorption (`Delta Spot > 0`, `Delta Futures < 0`, `zc_div > 0.8`).
+     * **Cluster D: Resting Whale Walls, L2/L3 Depth & Live Execution (Sheets 06, 18, 24, 25 + MT5 Terminal)**:
+       - **Sheet 06 (`4_Hyperliquid_Analysis`)**: Ingest 2,001 active decentralized whale wallets, unmasked 42-char hex addresses, position sizes, PnL, leverage, and net long/short bias.
+       - **Sheet 18 (`10_Whale_Orders`)**: Ingest large resting orders (>= 100K USD) across exchanges, filtering strictly for persistence >= 180s to locate inviolable stop bunkers.
+       - **Sheet 24 (`16_Hyperdash_telegram_Intel`)**: Ingest 1,501 institutional whale alerts, block trade notices, and off-market transfers.
+       - **Sheet 25 (`17_Orderbook`)**: Ingest granular top-20 L2/L3 orderbook depth across venues, calculating depth imbalance (> +0.25 for longs, < -0.25 for shorts) and verifying wall replenishment.
+       - **Live MT5 Account Telemetry (`Data/telemetry/mt5_account_telemetry.json`)**: Ingest live equity, balance, hard floor cushion (+49.89 USD above 4,775.00 USD), operating buffer (+29.89 USD above 4,795.00 USD), live broker spreads in bps, and qualified asset status.
 
-3. **Mandatory Line-by-Line Forex Factory & Macro News Ingestion (Sheets 26–33)**:
-   - Systematically read `Data/DataBase_Trading.xlsx` Sheets 26–33 (`FF_Economic_Calendar`, `FF_News_Latest`, `FF_News_Fundamental`, `FF_Trades_Sentiment`, `FF_Live_Trades_Activity`) **line-by-line**:
-     * **High-Impact Macro Releases (Sheet 31)**: Scrutinize scheduled inflation prints (CPI, PPI), employment data (NFP, unemployment), retail sales, and GDP metrics, analyzing actual vs forecast surprises and enforcing the +-35m blackout guard.
-     * **Central Bank Speeches & Policy (Sheets 26 & 31)**: Dissect public statements from Federal Reserve officials, Bank of Japan (MoF intervention warnings), Bank of England (Gov Bailey), and ECB governors.
-     * **Geopolitical & Commodity Catalysts (Sheets 26 & 32)**: Track breaking geopolitical headlines, trade policies, and energy supply shocks (e.g. crude oil surging toward $100/bbl).
-     * **Macro Trade Idea Generation**: Actively synthesize this macro intelligence into fresh, asymmetric trade hypotheses (e.g. fading USD/JPY at 158.20 intervention tripwires, shorting risk-off equities under stagflation, or trading commodities with structural flow tailwinds).
+3. **Mandatory Line-by-Line Forex Factory & Macro News Ingestion (Sheets 27 & 28)**:
+   - Systematically read `Data/DataBase_Trading.xlsx` Sheet 27 (`19_News`) and Sheet 28 (`19_Calendar`) **line-by-line**:
+     * **Macroeconomic Calendar (Sheet 28 - `19_Calendar`)**: Scrutinize scheduled inflation prints (CPI, PPI), central bank rate decisions (FOMC, ECB, BOJ), and employment releases (NFP). Inspect `Currency`, `Impact (Red/Orange/Yellow/Grey)`, `Time UTC`, `Forecast`, `Previous`, and enforce the mandatory +-15m (TradFi +-35m) blackout guard.
+     * **Institutional Breaking News (Sheet 27 - `19_News`)**: Track real-time news headlines, energy supply shocks, geopolitical developments, and regulatory announcements.
+     * **Macro Trade Hypothesis Formation**: Synthesize macro intelligence into asymmetric trade ideas while ensuring no new limit orders are staged inside an active high-impact blackout window.
 
 4. **Clock & Freshness Audit**: Verify Excel database modification timestamp is within 600 seconds of live UTC. Stale data triggers immediate pipeline refresh.
 5. **Monotonicity & Zero-Null Invariant**: Ingest 15m and HTF OHLCV bars, verifying strict time monotonicity and zero NaN/null values in closing prices, volume, and CVD.
@@ -269,23 +274,23 @@ Every candidate setup must achieve simultaneous confluence across the multi-pill
 3. **Multi-Horizon CVD Directional Taker Flow**:
    - Inspect 1m, 15m, Session, and Weekly cumulative volume delta.
    - Strong alignment: Massive negative CVD (-10M to -100M+ USD) confirms short dominance; massive positive CVD confirms buyer aggression.
-4. **Arkham Intelligence On-Chain Institutional Forensics (`onchain_arkham_intelligence`)**:
-   - Telemetry directly embeds the live Arkham on-chain feed harvested via Chrome CDP into `docs/telemetry/live_snapshot_latest.json`, granting all downstream agents (Arena, Copilot Studio, Ox Alpha) full on-chain visibility via Git without requiring browser access.
+4. **Hyperliquid & Hyperdash On-Chain Institutional Whale Forensics (`4_Hyperliquid_Analysis` & `16_Hyperdash_telegram_Intel`)**:
+   - Master Excel directly provides comprehensive decentralized whale tracking and institutional alert telemetry via Sheet 06 (`4_Hyperliquid_Analysis`), Sheet 20 (`12_Hyperdash`), Sheet 21 (`13_Hyperliquid`), and Sheet 24 (`16_Hyperdash_telegram_Intel`).
    - **Data Schema & Core Fields**:
-     * `market_flow_sentiment`: Global macro flow tag (`NET_ACCUMULATION (BULLISH_FLOW)`, `NET_DISTRIBUTION (BEARISH_FLOW)`, or `NEUTRAL_BALANCED_FLOW`).
-     * `aggregate_metrics`:
-       - `total_transfers_monitored`: Sample transfer volume.
-       - `exchange_inflow_events` & `total_inflow_volume_usd`: Institutional deposits to CEXs (Binance, OKX, Bybit, Coinbase, Kraken, etc.). Direct proxy for impending sell pressure / dumping.
-       - `exchange_outflow_events` & `total_outflow_volume_usd`: Institutional withdrawals from CEXs to cold storage / self-custody. Direct proxy for spot accumulation.
-       - `net_flow_usd`: Calculated as `total_outflow_volume_usd - total_inflow_volume_usd`. Positive = Net Accumulation; Negative = Net Distribution.
-       - `market_maker_events`: Flow to/from top liquidity providers (Wintermute, Jump, GSR, Cumberland, FalconX, DWF Labs).
-     * `asset_breakdown`: Per-asset flow mapping for `BTC`, `ETH`, `SOL`, `USDT`, and `USDC` (`inflow_usd`, `outflow_usd`, `tx_count`, and `sentiment`). Also mapped into `assets_matrix_24[symbol].arkham_onchain`.
-     * `trending_institutional_entities`: Live balances, 24h change, largest asset, and active wallet counts for tracked institutions (e.g. MicroStrategy, Kraken, MEXC, Drift Protocol, Vitalik Buterin, Purpose Bitcoin ETF).
-     * `whale_alerts`: Real-time transaction alerts for individual on-chain transfers $\ge 50,000\text{ USD}$ with counterparty deanonymization (`from_entity`, `to_entity`, `token`, `usd_value`, `tx_hash`).
-   - **Decision Rules for Arkham On-Chain Flow**:
-     * *Long Confirmation*: `market_flow_sentiment == NET_ACCUMULATION` AND `asset_breakdown[asset].outflow_usd > inflow_usd`. Confirms smart money spot absorption.
-     * *Short Confirmation*: `market_flow_sentiment == NET_DISTRIBUTION` AND `asset_breakdown[asset].inflow_usd > outflow_usd`. Confirms institutional exchange deposits / inventory dumping.
-     * *Stablecoin Mint / Whale Inflow Alert*: Significant USDT/USDC deposits from Treasury/Whales to CEXs flag imminent liquidity surges. Do not stage limit orders against the incoming flow.
+     * `4_Hyperliquid_Analysis` (Sheet 06):
+       - Tracks 2,001 active decentralized whale wallets with verified 42-character Ethereum hex addresses (`Account/Wallet 0x...`).
+       - `Total Account Value`, `Position Value (USD)`, `Unrealized PnL`, `Leverage`, `Long/Short Bias`, `Entry Price`, and `Liquidation Price`.
+     * `16_Hyperdash_telegram_Intel` (Sheet 24):
+       - Real-time institutional alerts (1,501 continuous records) monitoring whale block orders, off-market OTC transfers, and sudden liquidity migrations.
+       - `Timestamp`, `Asset`, `Alert Type`, `Notional USD`, `Price Level`, `Directional Signal`, and `Conviction Score`.
+     * `2_Spot_Netflow_S` (Sheet 02):
+       - Tracks real-time spot netflow across 500 assets across 1h, 4h, 12h, 24h, and 7d horizons (`1h Netflow`, `4h Netflow`, `24h Netflow`).
+     * `12_Hyperdash` & `13_Hyperliquid` (Sheets 20 & 21):
+       - L1 native funding rates, open interest, and basis premium/discount relative to centralized exchanges.
+   - **Decision Rules for Institutional Whale Flow**:
+     * *Long Confirmation*: Hyperliquid top whale aggregate positioning shows net long bias (`Long/Short Ratio > 1.2`), `2_Spot_Netflow_S` confirms positive 4h/24h spot accumulation, and `16_Hyperdash_telegram_Intel` registers high-conviction buy block alerts.
+     * *Short Confirmation*: Top whales aggressively build short exposure, `2_Spot_Netflow_S` confirms spot distribution (negative 4h/24h netflow), and telegram intelligence flags large block sell orders.
+     * *Whale Invalidation*: If an intended limit order sits opposing a top-tier whale position (> $5M USD) with high leverage, standing aside is mandatory.
 
 ---
 
@@ -324,7 +329,7 @@ When price approaches a significant cascade band, differentiate between absorpti
 |:---|:---|:---|
 | **1. CVD Acceleration** | CVD second derivative $d^2(\text{CVD})/dt^2 < 0$ and $15\text{m}$ delta decelerating $> 30\%$ | CVD accelerates exponentially through the band ($d^2(\text{CVD})/dt^2 > 0$) |
 | **2. L2 Book Replenishment** | Opposing depth replenishes $\ge 80\%$ within 2 seconds of the sweep | Orderbook remains hollowed out ($< 30\%$ replenishment); depth vanishes |
-| **3. Arkham Net Flow** | Net on-chain flow shows counter-trend divergence $> 500,000\text{ USD}$ in trailing 1h | Institutional wallet flow continues aggressively in direction of cascade |
+| **3. Spot Netflow & Whale Bias** | Spot Netflow (`2_Spot_Netflow_S`) shows counter-trend accumulation > +$500K USD, or Hyperliquid whales (`4_Hyperliquid_Analysis`) heavily defending shelf | Aggressive spot distribution continues in direction of cascade; Hyperliquid whales net short |
 | **4. Structural Auction Location** | Band sits at statistical extreme ($|Z| \ge 2.5\text{ SD}$, HTF POC/VAH/VAL shelf) | Band sits in the middle of a fresh HTF breakout channel with open space |
 
 - **If Absorption Confirmed**: Trade Model 1 counter-trend mean reversion with tight bunker SL.
@@ -410,28 +415,28 @@ stateDiagram-v2
 
 ---
 
-## SECTION 3: 43-SHEET INSTITUTIONAL EXCEL DATA MATRIX DECISION SYNTHESIS PROTOCOL
-### Operationalizing the 225,000+-Cell Quantitative Data Warehouse in `DataBase_Trading.xlsx`
+## SECTION 3: 29-SHEET INSTITUTIONAL EXCEL DATA MATRIX DECISION SYNTHESIS PROTOCOL
+### Operationalizing the 29 Canonical Quantitative Worksheets in `DataBase_Trading.xlsx`
 
-> **Data Warehouse Status**: 43 LIVE PRODUCTION WORKSHEETS | 225,000+ CELLS | ZERO FORMULA ERRORS  
+> **Data Warehouse Status**: 29 CANONICAL PRODUCTION WORKSHEETS | 12.55 MB | ZERO NULLS | TERMINATING AT `19_Calendar`  
 > **Master File Location**: `Data/DataBase_Trading.xlsx`  
-> **Refresh Latency**: 213.08 Seconds (~3.55 min) End-to-End Ingestion & Serialization (43 Sheets)  
+> **Refresh Latency**: Sequential: ~32 min | Parallel Pipeline: ~35–45s API / ~3.5 min Hybrid  
 > **Core Mandate**: Every trading decision, macro hypothesis, and order staging must systematically cross-reference and weight the 4 functional data clusters below before capital commitment.
 
 ```mermaid
 flowchart TD
-    subgraph DataWarehouse ["DataBase_Trading.xlsx (43 Sheets)"]
-        CA["Cluster A: Global Macro & System Defense<br/>(Sheets 1-6, 26-34, 40, 41)"]
-        CB["Cluster B: Microstructure, Depth & Orderflow<br/>(Sheets 7-18, 23, 24, 35, 36)"]
-        CC["Cluster C: On-Chain Whales & Liquidations<br/>(Sheets 19-22, 25, 37-39)"]
-        CD["Cluster D: Brokerage & Cognitive Councils<br/>(Sheets 42, 43)"]
+    subgraph DataWarehouse ["DataBase_Trading.xlsx (29 Sheets)"]
+        CA["Cluster A: Macro Event Defense & Institutional Flows<br/>(Sheets 00, 01, 02, 27, 28)"]
+        CB["Cluster B: Derivatives Positioning, Crowding & Regime<br/>(Sheets 03-05, 07, 08, 09, 19, 20, 21)"]
+        CC["Cluster C: Liquidation Maps, Stop Cascades & CVD Delta<br/>(Sheets 10, 11, 12, 13-16, 17, 22, 23, 26)"]
+        CD["Cluster D: Resting Whale Walls, L2/L3 Depth & Live Execution<br/>(Sheets 06, 18, 24, 25 + MT5 Terminal)"]
     end
 
     subgraph DecisionWorkflow ["4-Stage Institutional Synthesis Workflow"]
-        Stage1["Stage 1: Macro Regime & Event Defense Gate<br/>(FOMC Blackout, FNG Index, Central Bank Rates, DVOL Term Structure)"]
-        Stage2["Stage 2: Universe Screening & Dual-Engine Dialectic<br/>(Spread Gate, VWAP Z-Score, HTF Auction, Basis Spreads)"]
-        Stage3["Stage 3: On-Chain Whales & Bunker Entry Confluence<br/>(Arkham 100K+ Transfers, Whale Orders >=100K, Hyperdash Flow, L2/L3 Walls)"]
-        Stage4["Stage 4: Risk Sizing, Floor Defense & Council Ratification<br/>(MT5 Cash Risk, Stressed Equity >= $4,795, Gemini/Heretic/Arena Consensus)"]
+        Stage1["Stage 1: Macro Regime & Event Defense Gate<br/>(19_Calendar Blackout, 19_News Catalysts, Crypto_ETF_Flows, Spot_Netflow_S)"]
+        Stage2["Stage 2: Universe Screening & Dual-Engine Dialectic<br/>(11_Technical VWAP Z-Score, 20/50 EMAs, 5_Funding_Rate, 5_OI, LS Ratios)"]
+        Stage3["Stage 3: Microstructure, Whales & Liquidation Dynamics<br/>(10_Whale_Orders >=100K, 14_Liq_Map, 15_Stops_Map, 18_CVD Spot vs Perp, 17_Orderbook)"]
+        Stage4["Stage 4: Risk Sizing, Floor Defense & Execution<br/>(MT5 Cash Risk $15-$25, Stressed Equity >= $4,795, MT5 Execution Bridge)"]
     end
 
     CA --> Stage1
@@ -446,57 +451,78 @@ flowchart TD
 
 ---
 
-### PART 3.1: THE 4 FUNCTIONAL EXCEL DATA CLUSTERS & MAPPING
+### PART 3.1: THE 4 FUNCTIONAL EXCEL DATA CLUSTERS & SPECIFIC DATA POINTS
 
-#### 1. Cluster A: Global Macro Regime, Event Defense & Corporate Anchors (Sheets 1–6, 26–34, 40, 41)
-- **`Telemetry_System_State` (Sheet 34)**:
-  - System protocol (`omni.telemetry.v3`), MT5 account balance ($4,863.74), equity ($4,863.74), hard floor ($4,775.00), live floor cushion (**+$88.74**), 4 joint capacity slots.
-  - Clopper-Pearson 95% one-sided binomial lower confidence bound (`p_win >= 0.4197`) across 17 calibration trades (11 wins).
-  - Macro Calendar FOMC proximity (252.26 hours runway to hard blackout), Crypto Fear & Greed index (`53` Neutral), institutional ETF netflows (-$82.40M BTC / -$69.70M ETH), and Coinbase spot premium (-14.36 bps).
-- **`Volatility_Sentiment` (Sheet 41)**:
-  - Table 1 (Alternative.me Crypto Fear & Greed Index): 30 daily historical records (53 to 78) mapping sentiment extremes (`Extreme Accumulation` vs `Extreme Greed`).
-  - Table 2 (Deribit BTC DVOL): 30 daily forward implied volatility records (Close IV: 37.93%, Implied Daily Move: 1.99%).
-  - Table 3 (Deribit ETH DVOL): 30 daily forward implied volatility records (Close IV: 52.22%, Implied Daily Move: 2.73%, exhibiting a +14.29% persistent volatility risk premium over BTC).
-- **`FF_Economic_Calendar` (Sheet 26)**:
-  - 38 scheduled weekly macro releases categorized by impact (High/Medium/Low) with exact UTC release times, currencies, forecasts, and previous prints.
-- **`FF_News_Latest`, `FF_News_Fundamental`, `FF_News_Technical` (Sheets 27, 28, 29)**:
-  - 60 curated articles with complete body summaries, publisher URLs, and technical chart setups covering central bank policy statements (Fed, BoJ, BoE, ECB), energy shocks, and geopolitics.
-- **`Bitcoin_Treasuries` (Sheet 40)**:
-  - 60 publicly listed corporate balance sheet holdings (Strategy / MicroStrategy: 848,000 BTC, Metaplanet, XXI, MARA, Coinbase, Tesla, etc.) totaling 1,265,370 BTC ($104.77B USD), plus the 124-row historical purchasing ledger from 2020 to 2026.
-- **`ETF_Overview`, `Spot_ETF_Net_Inflow`, `Spot_ETF_Net_Inflow_Graph` (Sheets 4, 5, 6)**:
-  - 44 institutional spot ETFs across BTC, ETH, SOL, XRP, and HYPE with daily inflows/outflows, cumulative flows, and AUM across 11 major sponsors (BlackRock IBIT, Fidelity FBTC, Grayscale, Bitwise, VanEck, etc.).
+#### 1. Cluster A: Macro Event Defense & Institutional Flows (Sheets 00, 01, 02, 27, 28)
+- **`19_Calendar` (Sheet 28)**:
+  - **Data Points**: `Date`, `Time UTC`, `Currency`, `Impact (Red/Orange/Yellow/Grey)`, `Event Name`, `Actual`, `Forecast`, `Previous`, `Deviation / Surprise`, `Trade Blackout Window`.
+  - **Tactical Rule**: High-impact red-folder events (CPI, FOMC, NFP, GDP, Central Bank Rate Decisions) mandate an unconditional +-15m (TradFi +-35m) trading blackout. Zero limit orders may be staged inside active event windows.
+- **`19_News` (Sheet 27)**:
+  - **Data Points**: `Headline`, `URL`, `Timestamp / Time Ago`, `Currency`, `Impact`, `Summary / Description`, `Institutional Relevance`.
+  - **Tactical Rule**: Scrutinizes breaking news releases for sudden structural shifts (tariffs, geopolitical escalations, energy supply shocks) that override technical setups.
+- **`Crypto_ETF_Flows` & `1_Crypto_ETF_Flows` (Sheets 00 & 01)**:
+  - **Data Points**: `Rank`, `Ticker` (IBIT, FBTC, ETHA, etc.), `Price`, `Price Change`, `Volume (USD)`, `Turnover Rate`, `AUM`, `Market Cap`, `Issuer`, `Daily Net Inflow`.
+  - **Tactical Rule**: Aggregate ETF net inflows (USD) establish institutional macro bias. Consecutive days of positive net spot inflow confirm underlying spot accumulation, banning counter-trend shorts on BTC/ETH.
+- **`2_Spot_Netflow_S` (Sheet 02)**:
+  - **Data Points**: `Rank`, `Symbol`, `Spot Price`, `1h Netflow`, `4h Netflow`, `12h Netflow`, `24h Netflow`, `7d Netflow`, `24h Spot Volume`, `24h Change %`.
+  - **Tactical Rule**: Measures physical spot buying across 500 assets. Positive netflow on pullbacks proves smart-money accumulation; negative netflow on rallies confirms distribution.
 
-#### 2. Cluster B: Microstructure, Orderbook Depth & Orderflow Confluence (Sheets 7–18, 23, 24, 35, 36)
-- **`Live_Orderbook_CVD_Depth` (Sheet 35)**:
-  - Matrix across all 24 institutional assets (14 Crypto, 4 Indices, 3 Commodities, 3 Forex): Real-time tick Bid, Ask, Spread (points and bps), Binance Mid, Hyperliquid Mid, Top-20 Bid Depth USD, Top-20 Ask Depth USD, Book Imbalance %, Skew Ratio, Session CVD USD, 24h CVD USD, and 15m Bar Delta USD.
-- **`Exchange_Basis_Spreads` (Sheet 36)**:
-  - Multi-exchange pricing across all 24 assets: Mark Price, Index Price, Basis Premium/Discount (bps), Last Funding Rate (bps), Annualized Funding %, Trend Regime, RSI (14), ATR (14) in points and %, EMA (20), EMA (50), EMA (200), VWAP Z-Score, and Whale Imbalance Rho.
-- **`Whales_Orders` (Sheet 23)**:
-  - 520 resting institutional whale orders across all 18 institutional perpetuals filtered strictly for notional >= $100K USD at 15m timeframe, with canceled orders excluded.
-- **`Spot_Netflow` (Sheet 24)**:
-  - 740 assets across 13 timeframes (5m, 15m, 30m, 1h, 2h, 4h, 6h, 8h, 12h, 24h, 3d, 7d, 30d) displaying dynamic green accumulation (#D4EDDA) and red distribution (#F8D7DA) heatmaps.
-- **`Funding_Rates` & `Funding_Fees` (Sheets 7, 8)**:
-  - Cross-venue funding rates and fees across 12 exchanges identifying overcrowded retail positioning.
-- **`Open_Interest` Suite (Sheets 13, 14, 15, 16, 17, 18)**:
-  - 387 exchange breakdown rows across 19 assets, top OI gainers/losers, and multi-timeframe OI charts (15M, 1H, 4H) diagnosing aggressive positioning vs deleveraging.
+#### 2. Cluster B: Derivatives Positioning, Crowding & Technical Regime (Sheets 03–05, 07, 08, 09, 19, 20, 21)
+- **`11_Technical` (Sheet 19)**:
+  - **Data Points**: `Asset`, `Close`, `20 EMA`, `50 EMA`, `200 EMA`, `VWAP`, `VWAP +1.0 SD`, `VWAP +2.0 SD`, `VWAP -1.0 SD`, `VWAP -2.0 SD`, `VWAP Z-Score`, `RSI-14`, `ATR-14`, `Volume Profile POC`, `VAH`, `VAL`, `Trend Regime`.
+  - **Tactical Rule**: Primary quantitative regime filter:
+    * **Model 1 (Mean Reversion)**: Admissible ONLY when `|VWAP Z-Score| >= 2.0 SD` in `MEAN_REVERT` regime with tape exhaustion.
+    * **Model 2 (Trend Pullback)**: Admissible ONLY when `|VWAP Z-Score| < 2.0 SD` (0.2 to 1.7 SD) in confirmed `TREND_UP` or `TREND_DOWN` retracing to 20/50 EMA or VAH/VAL shelves.
+    * **Stand Aside**: If `Trend Regime == UNDEFINED`, all trading is halted unconditionally.
+- **`3_Exchanges_LS_Ratio_15M`, `1H`, `4H` (Sheets 03, 04, 05)**:
+  - **Data Points**: `Asset`, `Timeframe`, `Binance LS Ratio`, `Binance Long %`, `Binance Short %`, `OKX LS Ratio`, `Bybit LS Ratio`, `Aggregate LS Ratio`.
+  - **Tactical Rule**: Retail crowding sentiment indicator. If retail long percentage > 70%, longs are disqualified due to extreme stop-cascade vulnerability.
+- **`5_OI` (Sheet 07)**:
+  - **Data Points**: `Asset`, `OI Notional (USD)`, `OI Token (Coins)`, `1h OI Change %`, `4h OI Change %`, `24h OI Change %`, `Binance OI`, `Bybit OI`, `OKX OI`, `CME OI`, `Aggregate Trend`.
+  - **Tactical Rule**: Confirms trend authenticity. Rising price + rising OI = fresh capital trend; rising price + falling OI = short-covering rally prone to reversal.
+- **`5_Funding_Rate` & `6_Funding_Fee_Settlement` (Sheets 08 & 09)**:
+  - **Data Points**: `Asset`, `Binance FR`, `Bybit FR`, `OKX FR`, `dYdX FR`, `Predicted Next FR`, `Annualized FR %`, `Cumulative 7D FR %`, `Settlement Interval`, `Estimated Fee USD (per 10k notional)`, `Crowding Risk Indicator`.
+  - **Tactical Rule**: Extreme positive funding (> +0.03%) flags overleveraged longs vulnerable to long flushes; negative funding (< -0.02%) sets up short squeezes. Evaluates holding costs for swing positions.
+- **`12_Hyperdash` & `13_Hyperliquid` (Sheets 20 & 21)**:
+  - **Data Points**: `Metric Identifier`, `Metric Name`, `Value`, `Sentiment Bias`, `Signal Strength`, `Open Interest USD`, `Funding Rate`, `Premium/Discount`, `Net Taker Flow`.
+  - **Tactical Rule**: Cross-venue decentralized L1 market health and basis premium/discount relative to Binance.
 
-#### 3. Cluster C: On-Chain Whale Conviction & Liquidation Dynamics (Sheets 19–22, 25, 37–39)
-- **`Arkham_Transfers_100K` (Sheet 38)**:
-  - Live on-chain whale transfers >= $100,000 USD harvested via Chrome CDP across Base, Optimism, Polygon, BNB Chain, Tron, and Solana. 100% full 42-character EVM addresses, 34-character Tron addresses, and full 66-character transaction hashes (zero truncation, zero ellipsis).
-- **`Arkham_Whales_Holdings` (Sheet 39)**:
-  - 48 tracked institutional whale entities (BlackRock $49.32B, Strategy $38.96B, Wintermute $195.08M, VanEck $1.43B, ARK Invest $2.60B, Jump Crypto $450M, etc.) controlling $402.16B in on-chain assets.
-- **`Hyperdash_Flow_Feed` (Sheet 37)**:
-  - 273 rows across 4 sections: Flow summary KPIs, 50 real-time whale trades with full 42-char addresses, 50 confirmed liquidations with directional market impact (`SELL_PRESSURE` / `BUY_PRESSURE`), and 158-asset universe liquidation profile.
-- **`Hyperliquid_Whales` (Sheet 25)**:
-  - 1,922 active whale positions across 39 pages with 100% full 42-character addresses, unrealized PnL, leverage, entry price, and mark price.
-- **`liquidation_maxpain_1D/2D` & `Exchange_Liquidation_Map_1D/7D` (Sheets 19, 20, 21, 22)**:
-  - Multi-exchange liquidation surfaces mapping dense short-squeeze and long-liquidation cascade pools across 18 perpetuals.
+#### 3. Cluster C: Liquidation Maps, Stop Cascades & Orderflow Delta (Sheets 10, 11, 12, 13–16, 17, 22, 23, 26)
+- **`18_CVD` (Sheet 26)**:
+  - **Data Points**: `Timestamp UTC`, `Asset`, `Close Price`, `Spot Taker Buy Vol`, `Spot Taker Sell Vol`, `Spot CVD Delta`, `Futures Taker Buy Vol`, `Futures Taker Sell Vol`, `Futures CVD Delta`, `Spot vs Futures CVD Divergence (zc_div)`, `Cumulative CVD 1m, 5m, 15m, 1h, Session`, `CVD Z-Score`.
+  - **Tactical Rule (Pillar 2 Confluence)**: Evaluates aggressive market buying vs selling across spot and perp. Confirms institutional accumulation when `Delta Spot > 0` and `Delta Futures < 0` with `zc_div > 0.8`.
+- **`14_Hyperdash_Liq_Map` (Sheet 22)**:
+  - **Data Points**: `Asset`, `Mark Price`, `Price Level`, `Side (Long/Short)`, `Leverage Tier`, `Liquidation Notional USD`, `Cumulative Liq USD`, `Distance to Mark %`, `Cluster Rank`, `Status`.
+  - **Tactical Rule**: Fine-grained continuous dollar-by-dollar liquidation ladder. Accurately defines the exact boundary [min_price, max_price] of long cascade bands and short squeeze bands.
+- **`15_Hyperdash_Stops_Map` (Sheet 23)**:
+  - **Data Points**: `Asset`, `Mark Price`, `Stop Price Level`, `Order Side (Buy Stops / Sell Stops)`, `Stop Orders Count`, `Estimated Notional USD`, `Cumulative Stop Volume USD`, `Distance to Mark %`, `Sweep Vulnerability Score`.
+  - **Tactical Rule**: Maps exact retail resting stop loss clusters. Identifies sweep trap levels; strictly bans placing limit orders inside un-swept stop clusters.
+- **`7_Liq_Heapmap` & `7_Live_Liq` (Sheets 10 & 11)**:
+  - **Data Points**: `Clustered Liq Price`, `Total Liq Volume (USD)`, `Long Liq Volume`, `Short Liq Volume`, `Distance to Current Price %`, `Timestamp`, `Exchange`, `Side`, `Liquidation USD`, `Mark Price`.
+  - **Tactical Rule**: Identifies high-density liquidation zones and live liquidation prints. Climax prints (> $5M liquidated in 60s) signal exhaustion and mean-reversion turning points.
+- **`8_Exchange_Liquidation_Map_1D` & `7D` (Sheets 12 & 17)**:
+  - **Data Points**: `Price Bucket`, `Long Cumulative Liq USD`, `Short Cumulative Liq USD`, `Net Delta Liq USD`, `Density Score`, `Nearest Magnet Flag`.
+  - **Tactical Rule**: Defines the operational boundaries: Stop Loss must sit safely outside nearest sweep band + 0.50 ATR; Take Profit front-runs opposing major cascade pool by 5-10 bps.
+- **`9_Liquidation_Max_Pain_24H` to `7D` (Sheets 13–16)**:
+  - **Data Points**: `Max Pain Strike Price`, `Distance to Max Pain %`, `Total Long Risk USD`, `Total Short Risk USD`, `Pain Disparity Ratio`, `Target Bias`.
+  - **Tactical Rule**: Theoretical maximum pain strikes acting as gravitational price magnets across 24h, 48h, 3D, and 7D horizons.
 
-#### 4. Cluster D: Execution Brokerage & Multi-Model Cognitive Councils (Sheets 42, 43)
-- **`MT5_Live_Quotes_Account` (Sheet 42)**:
-  - Live Blueberry Markets broker ledger ($4,863.74 balance/equity, +$88.74 hard floor cushion, +$68.74 buffer cushion) and live interbank tick bid/ask quotes, spreads, digits, and contract specifications for all 24 symbols.
-- **`Cognitive_Council_Telemetry` (Sheet 43)**:
-  - Real-time operational status of Google Gemini Web2API (port 8081, 11 models, HTTP 200 OK), Heretic Engine Daemon (port 8083, v2.0.0.dev0, HTTP 200 OK), Arena.ai consensus, Autonomous Telemetry Git Sync Daemon (60s cadence), AST Knowledge Graph Watcher (7.4k nodes), and Tier-2 Swarm Cron.
+#### 4. Cluster D: Resting Whale Walls, L2/L3 Depth & Live Execution (Sheets 06, 18, 24, 25 + MT5 Terminal)
+- **`10_Whale_Orders` (Sheet 18)**:
+  - **Data Points**: `Sr. No.`, `Asset`, `Venue/Exchange`, `Side (BUY/SELL)`, `Price`, `From Price`, `Initial USD`, `Remaining USD`, `Filled USD`, `Duration`, `Status`, `Distance to Spot %`, `Whale Entity Tag`.
+  - **Tactical Rule**: Inviolable Stop Bunker Anchor: Stop Loss must shelter behind persistent resting whale bids (longs) or asks (shorts) >= $100K USD with confirmed persistence (`persist >= 180s`). Reject ephemeral walls.
+- **`17_Orderbook` (Sheet 25)**:
+  - **Data Points**: `Asset`, `Side (BID/ASK)`, `Price Level`, `Depth Quantity`, `Cumulative Notional USD`, `Wallet/Entity Attribution`, `Imbalance Ratio`, `Persistence Status`.
+  - **Tactical Rule**: Granular L2 and L3 orderbook depth ladder across top venues. Verifies top-of-book depth asymmetry (`Imbalance > +0.25` for longs, `< -0.25` for shorts) and detects order spoofing.
+- **`4_Hyperliquid_Analysis` (Sheet 06)**:
+  - **Data Points**: `Account/Wallet (0x...)`, `Total Account Value`, `Position Value`, `Unrealized PnL`, `Leverage`, `Long/Short Bias`, `Entry Price`, `Liq Price`.
+  - **Tactical Rule**: Tracks positions of decentralized whales on Hyperliquid. Confirms whether smart money is net long or net short.
+- **`16_Hyperdash_telegram_Intel` (Sheet 24)**:
+  - **Data Points**: `Timestamp`, `Asset`, `Alert Type`, `Notional USD`, `Price`, `Message Content`, `Directional Signal`, `Conviction Score`.
+  - **Tactical Rule**: Real-time institutional whale alerts, block trade notices, and off-market transfers.
+- **Live MT5 Account Telemetry (`Terminal/`)**:
+  - **Data Points**: Account balance, equity, margin utilized, floor cushion above the 4,775.00 USD hard floor, live interbank Bid/Ask quotes, and spread in bps.
+  - **Tactical Rule**: Sovereign capital defense gate: enforces spread ceiling (<= 25 bps for crypto, <= 5 bps for TradFi), verifies stressed equity >= 4,795.00 USD, and calculates lot size.
 
 ---
 
@@ -505,71 +531,62 @@ flowchart TD
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │ STAGE 1: MACRO REGIME & EVENT DEFENSE GATE (CLUSTER A)                      │
-│ 1. Check FF_Economic_Calendar & Telemetry_System_State: Is FOMC or Tier-1   │
-│    release within the mandatory hard blackout window (< 1.0 hour)?          │
-│    -> If YES: Stand aside unconditionally across all 24 assets.             │
-│    -> FOMC Runway: 252.77 hours runway to hard blackout.                    │
-│ 2. Check Volatility_Sentiment & Alternative.me FNG:                         │
-│    -> FNG <= 25: Extreme Accumulation Regime (Favor Long Mean Reversions).  │
-│    -> FNG >= 75: Extreme Greed / Risk-Off (Favor Overhead Shorts).          │
-│    -> Compare Deribit DVOL IV (BTC vs ETH): ETH IV exhibits a +14.29 IV pt  │
-│       absolute (+37.67% relative) risk premium, mandating wider buffers.    │
-│ 3. Check Spot_ETF_Net_Inflow & Bitcoin_Treasuries (Sheet 36):               │
-│    -> Cumulative institutional inflows (+716k BTC) and $104.71B public     │
-│       treasury holdings confirm underlying sovereign accumulation.          │
+│ 1. Check 19_Calendar & 19_News: Is FOMC, CPI, NFP, or Tier-1 release       │
+│    within the mandatory blackout window (< 15m for Crypto, < 35m TradFi)?   │
+│    -> If YES: Stand aside unconditionally across all universe assets.       │
+│ 2. Check Crypto_ETF_Flows & 1_Crypto_ETF_Flows:                             │
+│    -> Multi-day positive net institutional inflow confirms macro tailwind;  │
+│       prohibits aggressive counter-trend shorting on BTC and ETH.           │
+│ 3. Check 2_Spot_Netflow_S:                                                  │
+│    -> Positive spot netflow divergence proves physical smart-money          │
+│       accumulation during market dips.                                      │
 └──────────────────────────────────────┬──────────────────────────────────────┘
                                        ▼
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │ STAGE 2: UNIVERSE SCREENING & DUAL-ENGINE DIALECTIC (CLUSTER B)             │
-│ 1. Strict Spread Friction Gate (Live_Orderbook_CVD_Depth):                  │
-│    -> Crypto perps must have MT5 Spread <= 25.0 bps (BTC 1.96, ETH 11.6,    │
-│       BNB 8.33, BCH 20.95 bps pass; wide altcoins like DOGE 264 bps fail).   │
-│    -> TradFi CFDs must have MT5 Spread <= 5.0 bps (SP500 1.14, NAS100 0.49, │
-│       DJ30 0.39, GER40 0.31, Gold 1.06, USWTI 3.0 bps pass).                │
-│    -> Wide spread assets are disqualified automatically to prevent slippage.│
-│ 2. Statistical Regime Assignment (Exchange_Basis_Spreads):                  │
-│    -> Model 1 (Extreme Mean Reversion): |Z_VWAP| >= 2.0 to 3.5 SD in        │
+│ 1. Strict Spread Friction Gate (Live MT5 Terminal):                         │
+│    -> Crypto perps must have MT5 Spread <= 25.0 bps (BTC ~2.5, ETH ~12 bps).│
+│    -> TradFi CFDs must have MT5 Spread <= 5.0 bps (Gold ~0.2, USWTI ~3 bps).│
+│    -> Wide spread assets are disqualified automatically.                    │
+│ 2. Statistical Regime Assignment (11_Technical):                            │
+│    -> Model 1 (Extreme Mean Reversion): |VWAP Z-Score| >= 2.0 to 3.5 SD in  │
 │       confirmed MEAN_REVERT regime with tape exhaustion & trapped traders.  │
-│    -> Model 2 (Structural Trend Pullback): |Z_VWAP| < 2.0 SD (0.2 to 1.7 SD)│
+│    -> Model 2 (Structural Trend Pullback): |VWAP Z-Score| < 2.0 SD (0.2-1.7)│
 │       in confirmed TREND_UP / TREND_DOWN regime retracing to 20/50 EMA shelf│
 │    -> If Regime is UNDEFINED: Stand aside unconditionally.                  │
+│ 3. Leverage & Crowding Filter (3_Exchanges_LS_Ratio_*, 5_Funding_Rate, 5_OI):│
+│    -> Disqualify longs if Long/Short ratio > 70% long or funding > +0.03%.  │
 └──────────────────────────────────────┬──────────────────────────────────────┘
                                        ▼
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│ STAGE 3: BIFURCATED LIQUIDITY & BUNKER ENTRY CONFLUENCE (CLUSTER C)         │
-│ STAGE 3A: Crypto Perpetuals (BTC, ETH, SOL, BNB, XRP, BCH, etc.):          │
-│ 1. Arkham Whale Validation (Arkham_Transfers_100K & Arkham_Whales_Holdings):│
-│    -> Cross-reference with 48 institutional whale entities ($402.16B).      │
-│    -> MicroStrategy: $38.96B on-chain custody / 848k BTC balance sheet.     │
-│ 2. Hyperdash Flow Feed (Hyperdash_Flow_Feed):                               │
-│    -> Directional whale trades & confirmed liquidation pressure confirmation│
-│ 3. Resting Whale Bunker Shelter (Whales_Orders >= $100K):                   │
+│ STAGE 3: MICROSTRUCTURE, WHALES & LIQUIDATION DYNAMICS (CLUSTER C & D)       │
+│ 1. Orderflow Delta Confluence (18_CVD):                                     │
+│    -> Pillar 2 Confluence: Delta Spot > 0 and Delta Futures < 0 with        │
+│       zc_div > 0.8 proves aggressive spot buying absorbing perp selling.    │
+│ 2. Liquidation & Stop Magnet Dynamics (14_Liq_Map, 15_Stops_Map, 8_Liq_Map):│
+│    -> Locate nearest long cascade and short squeeze bands.                  │
+│    -> SL MUST sit safely outside nearest sweep band [min_price, max_price]  │
+│       plus 0.50 ATR structural buffer.                                      │
+│    -> TP front-runs opposing major liquidation magnet by 5-10 bps.          │
+│    -> Never place limit entry inside an un-swept resting stop cluster!      │
+│ 3. Resting Whale Bunker Shelter (10_Whale_Orders >= $100K & 17_Orderbook):  │
 │    -> Limit order sheltered behind verified resting whale wall (persist>=180s)
-│       with a 0.50 ATR structural buffer.                            │
-│                                                                             │
-│ STAGE 3B: TradFi Instruments (Indices, Commodities, Forex Majors):          │
-│ 1. Interbank Tick Spread & Session Liquidity Gate:                          │
-│    -> Active session spread <= 5.0 bps. Stand aside during 21:30-22:30 UTC  │
-│       interbank rollover spread expansion.                                  │
-│ 2. Forex Factory Economic Calendar & Breaking Intelligence Filter:          │
-│    -> Zero Tier-1 releases within 60 minutes for base/quote currency.       │
-│ 3. Structural Auction Shelf Defense (Live_Orderbook_CVD_Depth):             │
-│    -> Limit entry sheltered behind verified L2 top-of-book depth cluster    │
-│       with mandatory 0.50 ATR structural buffer.                    │
+│       with book depth imbalance > +0.25 (longs) or < -0.25 (shorts).        │
 └──────────────────────────────────────┬──────────────────────────────────────┘
                                        ▼
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│ STAGE 4: RISK SIZING, FLOOR DEFENSE & COUNCIL RATIFICATION (CLUSTER D)      │
+│ STAGE 4: RISK SIZING, FLOOR DEFENSE & EXECUTION                             │
 │ 1. Exact Cash Risk Sizing: Calculate risk via mt5.order_calc_profit().      │
-│    -> Authorized Envelope: 15.00 to 25.00 USD (0.30% to 0.51% equity).      │
+│    -> Authorized Risk Envelope: 15.00 to 25.00 USD (0.30% to 0.51% equity). │
 │ 2. Unified Stressed Floor Defense Gate:                                     │
 │    -> Stressed Equity = Current Equity - sum(Risk_i * 1.25 + 2.00) >= $4,795 │
-│    -> Maximum 2 slots at $25.00 risk ($66.50 stressed <= $68.74 buffer).    │
-│    -> Maximum 3 slots at $15.00 risk ($62.25 stressed <= $68.74 buffer).    │
-│    -> 4 slots require equity expansion above $4,878.00 USD.                 │
-│ 3. Cognitive Council Consensus (Cognitive_Council_Telemetry):               │
-│    -> Ratify trade through Gemini Web2API (8081), Heretic (8083), and Arena.│
-│    -> Autonomous limit order punch via MT5 Execution Bridge (magic: 888888).│
+│    -> Hard floor: 4,775.00 USD | Operating buffer: 4,795.00 USD.            │
+│    -> Maximum 2 concurrent positions at $25.00 risk.                        │
+│    -> Maximum 3 concurrent positions at $15.00 risk.                        │
+│ 3. Autonomous Execution:                                                    │
+│    -> Transmit passive limit order (BUY_LIMIT / SELL_LIMIT) into MT5.       │
+│    -> Enforce dynamic ratchet lifecycle: BE at +0.75R0, profit lock at      │
+│       +1.65R0 (+0.80R0 banked), and time decay exit at 24 bars (6 hours).   │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -726,7 +743,7 @@ Guarantees the structural integrity, latency, and reliability of the data pipeli
      $$\text{MT5 Level} = \text{Venue Level} + \text{venue\_basis}$$
    - Prevents misaligned limit placement caused by cross-venue pricing discrepancies.
 4. **Fail-Closed Architecture**:
-   - If an upstream API (Binance, Arkham, MT5) returns corrupt payloads or connection errors, the data pipeline raises immediate alerts and freezes new order generation until data consistency is restored.
+   - If an upstream API (Binance, Hyperliquid, CoinGlass, MT5) returns corrupt payloads or connection errors, the data pipeline raises immediate alerts and freezes new order generation until data consistency is restored.
 
 ---
 
@@ -745,7 +762,7 @@ Governs massive time-series modeling, table partitioning, clustering, and reprod
    - Implement automated Dataform-style assertions:
      - `unique_key`: Combination of `(timestamp, symbol)` must be strictly unique.
      - `row_conditions`: High $\ge$ Max(Open, Close), Low $\le$ Min(Open, Close), Volume $\ge 0$.
-     - `referential_integrity`: All mapped assets must exist in the canonical 43-symbol universe.
+     - `referential_integrity`: All mapped assets must exist in the canonical 18-asset Binance USDT-M universe.
 
 ---
 
