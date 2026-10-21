@@ -93,7 +93,16 @@ async def build_and_dispatch():
     prompt = prompt.replace("{SLOTS_FREE}", "4/4 slots available")
 
     # Active Tickets Table
-    ticket_table = "| Slot | Cluster | Ticket | Symbol | Side | Volume | Entry | SL | TP | Risk USD | R0 |\n|---|---|---|---|---|---|---|---|---|---|---|\n| — | Flat | — | — | — | — | — | — | — | $0.00 | — |\n*Book is 100% Cash. Zero active positions, zero pending orders.*"
+    if pos_count > 0:
+        p0 = td.get("open_positions", [])[0]
+        ticket_table = (
+            "| Slot | Cluster | Ticket | Symbol | Side | Volume | Entry | SL | TP | Risk USD | R0 |\n"
+            "|---|---|---|---|---|---|---|---|---|---|---|\n"
+            f"| Slot 1 | Crypto | #{p0.get('ticket')} | {p0.get('symbol')} | {p0.get('direction')} | {p0.get('volume')} lot | {p0.get('price_open')} | {p0.get('sl')} | {p0.get('tp')} | $17.00 | 1.70 pts |\n"
+            f"*Running Position: #{p0.get('ticket')} {p0.get('symbol')} {p0.get('direction')} {p0.get('volume')} lot. Current PnL: {p0.get('profit_usd', 0.0):.2f} USD.*"
+        )
+    else:
+        ticket_table = "| Slot | Cluster | Ticket | Symbol | Side | Volume | Entry | SL | TP | Risk USD | R0 |\n|---|---|---|---|---|---|---|---|---|---|---|\n| — | Flat | — | — | — | — | — | — | — | $0.00 | — |\n*Book is 100% Cash. Zero active positions, zero pending orders.*"
     prompt = prompt.replace("{TICKET_TABLE}", ticket_table)
 
     # Candidate Radar Table (Calibrated Multi-Asset Radar)
