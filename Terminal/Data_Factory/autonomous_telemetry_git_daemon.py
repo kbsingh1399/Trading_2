@@ -232,11 +232,10 @@ def sync_git_cycle(generated_snapshot=None, *, clock=None):
 
         if not is_valid_excel:
             logger.warning(
-                "DataBase_Trading.xlsx is currently in-flight/being written (%d bytes); resetting to prevent corrupt commit",
+                "DataBase_Trading.xlsx is currently in-flight/being written (%d bytes); un-staging to wait for complete write",
                 excel_file.stat().st_size
             )
             run_cmd(["git", "reset", "HEAD", "--", "Data/DataBase_Trading.xlsx"])
-            run_cmd(["git", "checkout", "--", "Data/DataBase_Trading.xlsx"])
         else:
             run_cmd(["git", "add", "Data/DataBase_Trading.xlsx"])
 

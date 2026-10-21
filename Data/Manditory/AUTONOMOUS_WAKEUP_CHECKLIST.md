@@ -11,11 +11,16 @@
 > **Cadence**: 20-Minute Cron Trigger (`0,20,40 * * * *` at 20th, 40th, and 60th/00th minute).  
 > **Strict Operational Invariant**: A cycle is NEVER completed upon prompt dispatch. A cycle is ONLY complete once BOTH Antigravity and Arena.ai have completed analysis, outputs are harvested and cross-verified via Co-Equal Council Discussion, and all necessary live MT5 actions (order punch, ratchet adjustment, order cancellation) are executed.
 
-## 🚨 MANDATORY INVIOLATE SUBAGENT SWARM & ARENA.AI DISPATCH GUARANTEE (OPERATOR MANDATE)
+## 🚨 MANDATORY INVIOLATE 4-SUBAGENT FLEET & ARENA.AI DISPATCH GUARANTEE (OPERATOR MANDATE)
 > **NEVER OMIT, BYPASS, OR SKIP UNDER ANY CIRCUMSTANCES**:
-> 1. **Mandatory Subagent Swarm**: On EVERY 20-minute autonomous wake-up cron and on EVERY manual turn, the coordinator MUST physically invoke the 3 specialized subagents (Orderflow Analyst, Position Manager, Macro Risk Analyst) via invoke_subagent.
-> 2. **Mandatory Arena.ai Surgical Red-Team Dispatch**: On EVERY wake-up cycle, a surgical red-team prompt MUST be injected into Arena.ai via Chrome CDP on port 9222.
-> 3. **Live Profit Ratchets Do Not Excuse Omission**: When live orders fill and dynamic ratchets (Early-BE, Phase 0, Phase 1) fire on MT5, the coordinator must execute the ratchet IMMEDIATELY to secure capital, but MUST SIMULTANEOUSLY dispatch the subagent swarm and Arena prompt. No operational event ever excuses skipping the dual-track council.
+> 1. **Mandatory 4-Subagent Fleet**: On EVERY 20-minute autonomous wake-up cron and on EVERY decision turn, Antigravity MUST physically invoke the **4 specialized subagents** via invoke_subagent:
+>    - Orderflow Analyst: Deeply studies Data/DataBase_Trading.xlsx (Sheets 10-18, 22-26: Orderbook, CVD, Liq Maps, Stops Maps, Whale Orders) row-by-row and column-by-column, checks spread gates, executes 5-pillar confluence, and formulates candidate limits.
+>    - Position Manager: Evaluates live MT5 account telemetry, computes stressed capacity ( stressed risk, +2.83 USD operating buffer cushion, +22.83 USD hard floor cushion), verifies sizing for 2-4 concurrent slots.
+>    - Macro Risk Analyst: Studies Data/DataBase_Trading.xlsx (Sheets 00-02, 27-28: ETF Flows, News, Macro Calendar) line-by-line, enforces Tier-1 blackouts and the 21:15–22:30 UTC interbank FX rollover embargo.
+>    - Excel Data Quality Auditor: Studies Data/DataBase_Trading.xlsx row-by-row and column-by-column across all 32 sheets, verifies zero formula errors, confirms clean sheet overwrite discipline, and verifies git sync daemon.
+> 2. **Mandatory Canonical Governance**: Every subagent prompt and Arena prompt MUST cite and follow docs/specs/STANDARDIZED_TRADING_DECISION_CHAIN.md (10-Step SOP) and require line-by-line inspection of Data/DataBase_Trading.xlsx.
+> 3. **Mandatory Arena.ai Surgical Red-Team Dispatch**: On EVERY wake-up cycle, a surgical red-team prompt citing STANDARDIZED_TRADING_DECISION_CHAIN.md MUST be injected into Arena.ai via Chrome CDP on port 9222.
+> 4. **Live Profit Ratchets Do Not Excuse Omission**: When live orders fill and dynamic ratchets (Early-BE, Phase 0, Phase 1) fire on MT5, the coordinator must execute the ratchet IMMEDIATELY to secure capital, but MUST SIMULTANEOUSLY dispatch the 4-subagent fleet and Arena prompt. No operational event ever excuses skipping the dual-track council.
 
 
 ---
