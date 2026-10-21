@@ -60151,3 +60151,15 @@ You may create 12_Hyperdash and 13_Hyperliquid where you dump all intelligenve a
 - Active Candidate Radar Mapped: BTC (~83,550), GOLD (~4,108), SOL (~104.80), EURUSD (~1.12150 post-rollover).
 - Desk Posture: 100% Cash (4,851.83 USD). Autonomous sentry armed to punch when checklist pre-conditions complete.
 
+
+## Turn 2026-10-21 20:10 UTC (Limit Order Punch Clarification & Trigger Invariant)
+- User Question: Did you punch limit order for potential candidates?
+- Response & Clarification:
+  1. No limit orders punched yet. Standing in 100% Cash (4,851.83 USD, +76.83 USD cushion).
+  2. Rationale: Candidate checklist pre-conditions have NOT confirmed yet:
+     - BTC: Negative taker CVD (-.42M) and un-swept .64M retail stop pool between 82,800 and 84,000. Staging early would catch a falling knife into an un-swept stop cascade.
+     - GOLD: L2 depth feed crossed (bids at 4,134 above mark 4,130).
+     - EURUSD: Interbank FX rollover spread expansion embargo active (21:15-22:30 UTC).
+     - SOL: Mid-range chop at 107.66 (Z=+1.10), target shelf at 104.80.
+  3. Protocol: We punch the limit order autonomously the instant the pre-condition checklist checks [x].
+
