@@ -17,13 +17,13 @@
 | **Account Login** | **#5064568** | Blueberry Markets MT5 Live Server |
 | **Initial Starting Balance** | 5,000.00 USD | Baseline evaluation capital |
 | **Profit Target (Phase 1)** | **5,500.00 USD** (+500.00 USD / +10.0%) | Mandatory target to pass Phase 1 |
-| **Current Balance** | 4,840.39 USD | Realized balance (Session High-Water Mark) |
-| **Current Equity** | **4,840.39 USD** | 100% Unencumbered liquid cash |
-| **Equity Needed to Pass** | **+659.61 USD** | Required gains to reach 5,500.00 USD target |
+| **Current Balance** | 4,851.83 USD | Realized balance (Session High-Water Mark) |
+| **Current Equity** | **4,851.83 USD** | 100% Unencumbered liquid cash |
+| **Equity Needed to Pass** | **+648.17 USD** | Required gains to reach 5,500.00 USD target |
 | **Absolute Hard Floor** | **4,775.00 USD** | Inviolate liquidation boundary (Never breached) |
 | **Operating Defense Buffer** | **4,795.00 USD** | Hard floor + 20.00 USD operating buffer |
-| **Current Hard Floor Cushion** | **+65.39 USD** | Equity distance above 4,775.00 USD floor |
-| **Current Buffer Cushion** | **+45.39 USD** | Equity distance above 4,795.00 USD buffer |
+| **Current Hard Floor Cushion** | **+76.83 USD** | Equity distance above 4,775.00 USD floor |
+| **Current Buffer Cushion** | **+56.83 USD** | Equity distance above 4,795.00 USD buffer |
 | **Target Deadline** | **23rd October 2026, 23:59 UTC** | End of trading week (Friday) |
 
 ---
