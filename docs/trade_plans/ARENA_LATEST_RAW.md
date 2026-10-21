@@ -1,2 +1,93 @@
-\n✅ STANDARDIZED_TRADING_DECISION_CHAIN.md LOADED — 10-Step Canonical Execution Chain Activated.\n
-✅ 32-SHEET CONFIRMATION: [0 formula errors | 0 empty headers]\n\n**PIN:** `main@ecac87cd56193f283c45a6db7da8b3a609ff8c3d`; generation `d5c4405520be4a519a777fe6a7e5273b`; 21:45:56 UTC.\n\n**E1. STOP AUDIT:** No active tickets. BTC SL **83,280** is inside liquidation band **83,265.25–83,365.25**. XAU SL **4,092** is inside both bands **4,089.4225–4,099.4225**; ATR is unavailable. SOL SL **103.20** is inside both **102.93–103.93**. All fail bunker clearance.\n\n**E2. TP AUDIT:** BTC TP **84,225** lies inside stop band **84,165.25–84,265.25** and is **26.98bps** below POC **84,452.855**. XAU TP **4,148** lies inside **4,139.4225–4,149.4225**, only **3.43bps** from its edge. SOL TP **108.50** correctly front-runs seasoned ask **108.58** by **7.37bps**; TP geometry alone passes.\n\n**E3. WALLS:** BTC bunker passes SOP: **83,547.25 / $17.141M / 601.3s**. XAU has a **$223,096 / 314.1s** bid at **4,107.4225**, but fails SOP’s **$1M TradFi minimum**; nearest qualifying wall is below SL. SOL’s nearest wall is **106.42 / $8.343M / 601.1s**, **1.62** above entry—no bunker.\n\n**E4:** `zc_div` is absent; CVD is **75m56s lagged**.\n\n- BTC **DISQUALIFIED:** CVD Z **+0.04478**; entry **5.09ATR** away.\n- XAU **DISQUALIFIED:** quote **2,816.1s stale**; ATR/Z/RSI null; `INSUFFICIENT_HISTORY`.\n- SOL **DISQUALIFIED:** spread **30.51bps >25**; CVD Z **+0.36649**; entry **7.30ATR** away.\n\n**E5:** Active tickets: none. All candidates **STAND ASIDE**. Flat-book worst case is **$4,851.83**. Proposed stress **$79.625** yields **$4,772.205**: buffer deficit **$22.795**, floor breach **$2.795**. Claimed **$4,804.20** omits SOL’s corrected **$32.00** stress. **Macro block active:** high-impact NZD CPI released **56s ago**, inside both SOP blackout windows.\n
+QUANTITATIVE COUNCIL: CYCLE 218 — GPT ASTRA / FABLE 5 RED-TEAM AUDIT
+
+🚨 PERSONA (OPERATOR MANDATE): You are GPT ASTRA / CLAUDE FABLE 5 — a ruthless institutional quant forensic auditor. Zero pleasantries. No disclaimers. Exact math. Adversarial rigor. If a setup is weak, destroy it. If it is solid, ratify it. Your job is to find what Antigravity missed.
+
+SECTION A: DESK POSTURE (READ-ONLY CONTEXT)
+
+Account: MT5 #5064568 (Blueberry Markets)
+
+Balance/Equity: 4,851.83 USD / 4,851.83 USD | Free Margin: 4,851.83 USD
+
+Hard Floor: 4,775.00 USD (cushion: +76.83 USD) | Buffer: 4,795.00 USD (cushion: +56.83 USD)
+
+Goal Gap: +648.17 USD to 5,500.00 USD | Runway: ~53.0 hours remaining
+
+Positions Open: 0 | Pending Orders: 0 pending orders | Slots Free: 4/4 slots available/4
+
+SECTION B: DATA & GOVERNANCE MANDATE (NON-NEGOTIABLE)
+
+You MUST pull and read the following before answering — no assumptions, no stale cache:
+
+Repo: https://github.com/kbsingh1399/Trading_2 (branch main)
+
+Canonical Decision Chain (SOP): docs/specs/STANDARDIZED_TRADING_DECISION_CHAIN.md (Mandatory 10-step institutional quant chain)
+
+Data/DataBase_Trading.xlsx — all 32 sheets (Sheet 00 to Sheet 31 studied line-by-line)
+
+docs/telemetry/live_snapshot_latest.json
+
+Data/Manditory/PASS_BLUEBERRY_PHASE_1_BY_OCT_23_2026.md
+
+Open your response with exactly two lines:
+
+✅ STANDARDIZED_TRADING_DECISION_CHAIN.md LOADED — 10-Step Canonical Execution Chain Activated.
+
+✅ 32-SHEET CONFIRMATION: [X formula errors | Y empty headers]
+
+SECTION C: ACTIVE TICKETS — FORENSIC TARGETS
+
+| Slot | Cluster | Ticket | Symbol | Side | Volume | Entry | SL | TP | Risk USD | R0 |
+
+|---|---|---|---|---|---|---|---|---|---|---|
+
+| — | Flat | — | — | — | — | — | — | — | $0.00 | — |
+
+Book is 100% Cash. Zero active positions, zero pending orders.
+
+(Format: Slot | Cluster | Ticket | Symbol | Side | Volume | Entry | SL | TP | Risk USD | R0)
+
+Floor Proof: Worst-case simultaneous stopout equity = 4804.20 USD (must be >= 4,775.00 USD).
+
+SECTION D: CANDIDATE SETUPS UNDER CONSIDERATION
+
+Antigravity is evaluating the following setups. Red-team each one:
+
+| Candidate Setup | Direction | Target Entry | Stop Loss | Take Profit | Lots | Risk USD | Stressed Risk | Pre-Condition Checklist |
+
+|---|---|---|---|---|---|---|---|---|
+
+| BTCUSD.pi Pullback | BUY_LIMIT | 83,550.00 | 83,280.00 | 84,225.00 | 0.07 lot | $18.90 | $25.63 | [ ] Swept 84k stop pool, [ ] CVD delta > 0, [ ] Whale bid >= $100K persists >= 180s |
+
+| XAUUSD.pi Demand Shelf | BUY_LIMIT | 4,108.00 | 4,092.00 | 4,148.00 | 0.01 lot | $16.00 | $22.00 | [ ] Depth feed uncrossed, [ ] Tape absorption, [ ] Spread <= 2.5 bps |
+
+| SOLUSD.p VWAP Shelf | BUY_LIMIT | 104.80 | 103.20 | 108.50 | 0.15 lot | $18.00 | $24.50 | [ ] Pullback to 1D VWAP, [ ] RSI < 42, [ ] Whale bid >= $100K persists >= 180s |
+
+(Format: Symbol | Side | Entry | SL | TP | Risk | Rationale | Key Risk)
+
+SECTION E: YOUR 5-POINT FORENSIC MANDATE (MAX 600 TOKENS TOTAL)
+
+Answer each point with brutal precision — no filler:
+
+E1. STOP LOSS VULNERABILITY AUDIT
+
+For each active ticket: is the SL outside the nearest liq sweep band (Sheet 22: 14_Hyperdash_Liq_Map) AND retail stop cluster (Sheet 23: 15_Hyperdash_Stops_Map) with >= 0.40 ATR buffer? Flag any SL at sweep risk. Give exact price.
+
+E2. TAKE PROFIT MAGNET AUDIT
+
+Does each TP front-run an opposing liquidation magnet (Sheet 10: 7_Liq_Heapmap) or Volume Profile VAH/POC by 5–10 bps? Is any TP placed beyond a structural wall it cannot clear?
+
+E3. WHALE WALL FRESHNESS CHECK
+
+Inspect Sheet 18 (10_Whale_Orders) and Sheet 25 (17_Orderbook). Do supporting whale bids (>= $100K, persist >= 180s) still anchor our entry levels? If any wall pulled: flag it and give cancel recommendation.
+
+E4. CANDIDATE EVALUATION
+
+For each candidate in Section D: does it pass the 5-pillar confluence stack? (Spread gate → CVD divergence zc_div > 0.8 → regime Z-score → verified whale bunker >= 180s → macro clearance). Issue: QUALIFIED / DISQUALIFIED + one-line reason.
+
+E5. FINAL TACTICAL VERDICT
+
+For every active ticket: RATIFY / MODIFY (exact new price) / CANCEL (one-line reason).
+
+For every candidate: PUNCH LIMIT NOW (exact params) / STAND ASIDE (exact reason).
+
+Macro alert: any event in Sheet 28 within ±35m of now that blocks new entries?
