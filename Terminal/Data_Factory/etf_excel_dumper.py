@@ -17,6 +17,7 @@ Sheets:
 import os
 import sys
 import json
+import time
 import asyncio
 import urllib.request
 import argparse
@@ -630,7 +631,19 @@ def dump_all_etf_data(
     # 1. Try Live CDP extraction first
     overview_records, institution_records, all_etfs = None, None, None
     try:
-        overview_records, institution_records, all_etfs = asyncio.run(fetch_live_etf_via_cdp())
+        try:
+            loop = asyncio.get_running_loop()
+        except RuntimeError:
+            loop = None
+
+        if loop and loop.is_running():
+            import concurrent.futures
+            with concurrent.futures.ThreadPoolExecutor(max_workers=1) as executor:
+                overview_records, institution_records, all_etfs = executor.submit(
+                    asyncio.run, fetch_live_etf_via_cdp()
+                ).result()
+        else:
+            overview_records, institution_records, all_etfs = asyncio.run(fetch_live_etf_via_cdp())
     except Exception as e:
         print(f"Async CDP extraction error: {e}")
 
@@ -643,12 +656,25 @@ def dump_all_etf_data(
         return {"status": "error", "message": "Failed to extract ETF records"}
 
     # 3. Open or create Excel workbook
+    wb = None
     if excel_path.exists() and not reset:
-        try:
-            wb = openpyxl.load_workbook(excel_path)
-        except Exception as e:
-            raise RuntimeError(f"Failed to open {excel_path}: {e}")
-    else:
+        for attempt in range(3):
+            try:
+                wb = openpyxl.load_workbook(excel_path)
+                break
+            except Exception as e:
+                if attempt < 2:
+                    time.sleep(0.5)
+                else:
+                    tmp_path = excel_path.with_suffix(".tmp.xlsx")
+                    if tmp_path.exists():
+                        try:
+                            wb = openpyxl.load_workbook(tmp_path)
+                            break
+                        except Exception:
+                            pass
+                    raise RuntimeError(f"Failed to open {excel_path} after retries: {e}")
+    if wb is None:
         wb = openpyxl.Workbook()
 
     # Clean up default empty Sheet/Sheet1

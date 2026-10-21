@@ -57,6 +57,10 @@ PRIMARY_18_ASSETS = [
     "AVAX", "SUI", "NEAR", "DOT", "LTC", "BCH", "APT", "OP", "ARB",
 ]
 
+TRADFI_CFD_ASSETS = [
+    "GOLD", "EURUSD", "NAS100", "SP500", "DJ30",
+]
+
 
 def harvest_mt5_telemetry() -> dict:
     t0 = time.perf_counter()
@@ -100,44 +104,86 @@ def harvest_mt5_telemetry() -> dict:
 
     # Instrument quotes & spreads
     instrument_quotes = {}
-    for asset in PRIMARY_18_ASSETS:
-        broker_sym = bridge.resolve_symbol(asset)
-        if not broker_sym:
-            instrument_quotes[asset] = {
-                "broker_symbol": None,
-                "status": "UNRESOLVED",
-            }
-            continue
+    
+    # Process Crypto (threshold <= 25.0 bps) and TradFi CFDs (threshold <= 5.0 bps)
+    asset_groups = [
+        (PRIMARY_18_ASSETS, 25.0, "CRYPTO"),
+        (TRADFI_CFD_ASSETS, 5.0, "TRADFI"),
+    ]
 
-        quote = bridge.get_symbol_price(broker_sym)
-        if not quote:
+    for asset_list, max_spread_bps, asset_class in asset_groups:
+        for asset in asset_list:
+            broker_sym = bridge.resolve_symbol(asset)
+            if not broker_sym:
+                instrument_quotes[asset] = {
+                    "broker_symbol": None,
+                    "asset_class": asset_class,
+                    "status": "UNRESOLVED",
+                }
+                continue
+
+            quote = bridge.get_symbol_price(broker_sym)
+            if not quote:
+                instrument_quotes[asset] = {
+                    "broker_symbol": broker_sym,
+                    "asset_class": asset_class,
+                    "status": "NO_QUOTE",
+                }
+                continue
+
+            bid = quote["bid"]
+            ask = quote["ask"]
+            mid = (bid + ask) / 2.0 if (bid + ask) > 0 else 0.0
+
+            # Edge-case: Crossed book detection (bid >= ask or negative spread)
+            if bid >= ask or mid <= 0:
+                instrument_quotes[asset] = {
+                    "broker_symbol": broker_sym,
+                    "asset_class": asset_class,
+                    "bid": bid,
+                    "ask": ask,
+                    "mid": mid,
+                    "spread_points": quote.get("spread", 0),
+                    "spread_bps": 0.0,
+                    "spread_eligible": False,
+                    "contract_size": quote.get("contract_size", 1.0),
+                    "point": quote.get("point", 0.01),
+                    "status": "CROSSED_BOOK_ANOMALY",
+                }
+                continue
+
+            spread_pts = quote["spread"]
+            spread_bps = round(((ask - bid) / mid) * 10000.0, 2)
+
+            # Eligibility threshold by asset class
+            spread_eligible = spread_bps <= max_spread_bps
+
+            # Edge-case: Check for stale weekend/closed market tick
+            tick_age = quote.get("broker_tick_age")
+            is_stale_market = (tick_age is not None and tick_age > 7200)
+
+            if is_stale_market:
+                status_str = "MARKET_CLOSED_OR_STALE"
+                spread_eligible = False
+            elif spread_eligible:
+                status_str = "PASS"
+            else:
+                status_str = "SPREAD_DISQUALIFIED"
+
             instrument_quotes[asset] = {
                 "broker_symbol": broker_sym,
-                "status": "NO_QUOTE",
+                "asset_class": asset_class,
+                "bid": bid,
+                "ask": ask,
+                "mid": mid,
+                "spread_points": spread_pts,
+                "spread_bps": spread_bps,
+                "spread_eligible": spread_eligible,
+                "contract_size": quote.get("contract_size", 1.0),
+                "point": quote.get("point", 0.01),
+                "tick_size": quote.get("tick_size", 0.01),
+                "status": status_str,
             }
-            continue
-
-        bid = quote["bid"]
-        ask = quote["ask"]
-        mid = (bid + ask) / 2.0 if (bid + ask) > 0 else 0.0
-        spread_pts = quote["spread"]
-        spread_bps = round(((ask - bid) / mid) * 10000.0, 2) if mid > 0 else 0.0
-
-        # Eligibility threshold: Crypto <= 25.0 bps
-        spread_eligible = spread_bps <= 25.0
-
-        instrument_quotes[asset] = {
-            "broker_symbol": broker_sym,
-            "bid": bid,
-            "ask": ask,
-            "mid": mid,
-            "spread_points": spread_pts,
-            "spread_bps": spread_bps,
-            "spread_eligible": spread_eligible,
-            "contract_size": quote.get("contract_size", 1.0),
-            "point": quote.get("point", 0.01),
-            "status": "PASS" if spread_eligible else "SPREAD_DISQUALIFIED",
-        }
 
     now_utc = datetime.datetime.now(datetime.timezone.utc).isoformat()
     duration_sec = round(time.perf_counter() - t0, 3)
