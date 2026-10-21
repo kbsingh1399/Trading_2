@@ -335,6 +335,17 @@ When price approaches a significant cascade band, differentiate between absorpti
 - **If Absorption Confirmed**: Trade Model 1 counter-trend mean reversion with tight bunker SL.
 - **If Blow-Through Confirmed**: Trade Model 2 pro-trend continuation, riding momentum into the *next* distal cascade band.
 
+#### 4. TradFi vs Crypto Dual-Engine Confluence Contract (Operator Authorized Invariant):
+To eliminate ambiguity across different asset classes:
+- **Crypto Perpetuals (BTC, ETH, SOL, BNB, etc.)**:
+  * **Pillar 2 (CVD Divergence zc_div)**: Computed using Binance Spot CVD vs Binance USDT-M Futures CVD divergence.
+  * **Pillar 4 (Resting Whales & Liquidation Maps)**: Resting whale walls sit in CoinGlass (10_Whale_Orders), Hyperdash L1 orders (12_Hyperdash), and exchange liquidation ladders (14_Hyperdash_Liq_Map).
+- **TradFi Index & Commodity CFDs (NAS100.p, SP500.p, GOLD, USWTI)**:
+  * **Pillar 2 (TradFi Orderflow Delta)**: Computed directly from MetaTrader 5 interbank tick volume cumulative orderflow delta (Sheet 18_CVD) and CME futures tick momentum.
+  * **Pillar 4 (TradFi Structural Bunkers)**: Stops sit behind CME/Interbank volume profile shelves (VAH/VAL/POC), 15m swing pivot extremes, and MT5 market depth.
+  * **Take Profit Order Posture**: All Take Profit targets (tp) are pre-staged resting broker limit orders, NEVER aggressive market orders. When price touches the target, it fills passively as a limit order.
+  * **Early-BE Ratchet Reclaim**: At +0.75R0 to +0.80R0 unrealized profit once price reclaims the local 15m structural swing shelf or intraday POC -> Move SL to Entry + 0.10R0 (100% Risk-Free lock).
+
 ---
 
 ### STEP 8: Mathematical Risk Budget & Capital Floor Gate
