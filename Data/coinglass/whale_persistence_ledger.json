@@ -6,8 +6,8 @@
     "description": "Unified canonical immutable whale identity keyed by asset, side, user, entry_time_iso with duplicate zombie pruning.",
     "total_whales": 62,
     "pruned_zombies": 12,
-    "last_update_utc": "2026-10-21T20:16:42.829596+00:00",
-    "last_update_epoch": 1792613802.8296094
+    "last_update_utc": "2026-10-21T20:21:50.689434+00:00",
+    "last_update_epoch": 1792614110.689457
   },
   "ETH_SHORT_0x5b5d..60_2026-05-09T21:18:00+00:00": {
     "key": "ETH_SHORT_0x5b5d..60_2026-05-09T21:18:00+00:00",
@@ -19,12 +19,12 @@
     "entry_time_iso": "2026-05-09T21:18:00+00:00",
     "first_seen_cycle_utc": "2026-10-16T19:16:23.686597+00:00",
     "first_seen_epoch": 1792178183.6866024,
-    "last_seen_cycle_utc": "2026-10-21T20:16:42.829596+00:00",
-    "last_seen_epoch": 1792613802.8296094,
-    "duration_hours": 3958.98,
+    "last_seen_cycle_utc": "2026-10-21T20:21:50.689434+00:00",
+    "last_seen_epoch": 1792614110.689457,
+    "duration_hours": 3959.06,
     "duration_days": 164.96,
-    "cycle_count": 280,
-    "notional_usd": 265290000.00000003,
+    "cycle_count": 281,
+    "notional_usd": 264959999.99999997,
     "status": "VETERAN_WHALE",
     "trajectory": [
       {
@@ -1972,10 +1972,17 @@
         "notional_usd": 265290000.00000003,
         "pnl": "-$18.28M -6.89%",
         "price": "$2492.5"
+      },
+      {
+        "utc": "2026-10-21T20:21:50.689434+00:00",
+        "epoch": 1792614110.689457,
+        "notional_usd": 264959999.99999997,
+        "pnl": "-$17.95M -6.77%",
+        "price": "$2490.6"
       }
     ],
     "entry_price_clean": 2322.64,
-    "current_price_raw": "$2492.5"
+    "current_price_raw": "$2490.6"
   },
   "BTC_SHORT_0x5b5d..60_2026-08-14T15:36:00+00:00": {
     "key": "BTC_SHORT_0x5b5d..60_2026-08-14T15:36:00+00:00",
@@ -1987,12 +1994,12 @@
     "entry_time_iso": "2026-08-14T15:36:00+00:00",
     "first_seen_cycle_utc": "2026-10-16T19:16:23.686597+00:00",
     "first_seen_epoch": 1792178183.6866024,
-    "last_seen_cycle_utc": "2026-10-21T20:16:42.829596+00:00",
-    "last_seen_epoch": 1792613802.8296094,
-    "duration_hours": 1636.68,
-    "duration_days": 68.19,
-    "cycle_count": 280,
-    "notional_usd": 220470000.0,
+    "last_seen_cycle_utc": "2026-10-21T20:21:50.689434+00:00",
+    "last_seen_epoch": 1792614110.689457,
+    "duration_hours": 1636.76,
+    "duration_days": 68.2,
+    "cycle_count": 281,
+    "notional_usd": 220390000.0,
     "status": "VETERAN_WHALE",
     "trajectory": [
       {
@@ -3940,10 +3947,17 @@
         "notional_usd": 220470000.0,
         "pnl": "-$21.51M -9.76%",
         "price": "$84484"
+      },
+      {
+        "utc": "2026-10-21T20:21:50.689434+00:00",
+        "epoch": 1792614110.689457,
+        "notional_usd": 220390000.0,
+        "pnl": "-$21.43M -9.72%",
+        "price": "$84483"
       }
     ],
     "entry_price_clean": 76204.7,
-    "current_price_raw": "$84484"
+    "current_price_raw": "$84483"
   },
   "ETH_SHORT_0xb83d..36_2026-05-09T14:34:00+00:00": {
     "key": "ETH_SHORT_0xb83d..36_2026-05-09T14:34:00+00:00",
@@ -3955,12 +3969,12 @@
     "entry_time_iso": "2026-05-09T14:34:00+00:00",
     "first_seen_cycle_utc": "2026-10-16T19:16:23.686597+00:00",
     "first_seen_epoch": 1792178183.6866024,
-    "last_seen_cycle_utc": "2026-10-21T20:16:42.829596+00:00",
-    "last_seen_epoch": 1792613802.8296094,
-    "duration_hours": 3965.71,
+    "last_seen_cycle_utc": "2026-10-21T20:21:50.689434+00:00",
+    "last_seen_epoch": 1792614110.689457,
+    "duration_hours": 3965.8,
     "duration_days": 165.24,
-    "cycle_count": 280,
-    "notional_usd": 165230000.0,
+    "cycle_count": 281,
+    "notional_usd": 165070000.0,
     "status": "VETERAN_WHALE",
     "trajectory": [
       {
@@ -5908,10 +5922,17 @@
         "notional_usd": 165230000.0,
         "pnl": "-$7.77M -4.71%",
         "price": "$2492.5"
+      },
+      {
+        "utc": "2026-10-21T20:21:50.689434+00:00",
+        "epoch": 1792614110.689457,
+        "notional_usd": 165070000.0,
+        "pnl": "-$7.62M -4.61%",
+        "price": "$2490.6"
       }
     ],
     "entry_price_clean": 2375.29,
-    "current_price_raw": "$2492.5"
+    "current_price_raw": "$2490.6"
   },
   "BTC_SHORT_0xb83d..36_2026-05-09T14:31:00+00:00": {
     "key": "BTC_SHORT_0xb83d..36_2026-05-09T14:31:00+00:00",
@@ -5923,12 +5944,12 @@
     "entry_time_iso": "2026-05-09T14:31:00+00:00",
     "first_seen_cycle_utc": "2026-10-16T19:16:23.686597+00:00",
     "first_seen_epoch": 1792178183.6866024,
-    "last_seen_cycle_utc": "2026-10-21T20:16:42.829596+00:00",
-    "last_seen_epoch": 1792613802.8296094,
-    "duration_hours": 3965.76,
+    "last_seen_cycle_utc": "2026-10-21T20:21:50.689434+00:00",
+    "last_seen_epoch": 1792614110.689457,
+    "duration_hours": 3965.85,
     "duration_days": 165.24,
-    "cycle_count": 280,
-    "notional_usd": 212580000.0,
+    "cycle_count": 281,
+    "notional_usd": 212560000.0,
     "status": "VETERAN_WHALE",
     "trajectory": [
       {
@@ -7876,10 +7897,17 @@
         "notional_usd": 212580000.0,
         "pnl": "-$16.02M -7.54%",
         "price": "$84484"
+      },
+      {
+        "utc": "2026-10-21T20:21:50.689434+00:00",
+        "epoch": 1792614110.689457,
+        "notional_usd": 212560000.0,
+        "pnl": "-$16.00M -7.53%",
+        "price": "$84483"
       }
     ],
     "entry_price_clean": 77751.1,
-    "current_price_raw": "$84484"
+    "current_price_raw": "$84483"
   },
   "BTC_LONG_0x30af..3e_2026-10-15T22:43:00+00:00": {
     "key": "BTC_LONG_0x30af..3e_2026-10-15T22:43:00+00:00",
@@ -8375,12 +8403,12 @@
     "entry_time_iso": "2026-10-09T16:42:00+00:00",
     "first_seen_cycle_utc": "2026-10-16T19:16:23.686597+00:00",
     "first_seen_epoch": 1792178183.6866024,
-    "last_seen_cycle_utc": "2026-10-21T20:16:42.829596+00:00",
-    "last_seen_epoch": 1792613802.8296094,
-    "duration_hours": 291.58,
+    "last_seen_cycle_utc": "2026-10-21T20:21:50.689434+00:00",
+    "last_seen_epoch": 1792614110.689457,
+    "duration_hours": 291.66,
     "duration_days": 12.15,
-    "cycle_count": 280,
-    "notional_usd": 112600000.0,
+    "cycle_count": 281,
+    "notional_usd": 111730000.0,
     "status": "VETERAN_WHALE",
     "trajectory": [
       {
@@ -10328,10 +10356,17 @@
         "notional_usd": 112600000.0,
         "pnl": "$59.23M +52.60%",
         "price": "$81.5791"
+      },
+      {
+        "utc": "2026-10-21T20:21:50.689434+00:00",
+        "epoch": 1792614110.689457,
+        "notional_usd": 111730000.0,
+        "pnl": "$58.36M +52.23%",
+        "price": "$80.889"
       }
     ],
     "entry_price_clean": 38.6755,
-    "current_price_raw": "$81.5791"
+    "current_price_raw": "$80.889"
   },
   "ETH_LONG_0x77dd..e9_2026-09-20T16:33:00+00:00": {
     "key": "ETH_LONG_0x77dd..e9_2026-09-20T16:33:00+00:00",
@@ -10343,12 +10378,12 @@
     "entry_time_iso": "2026-09-20T16:33:00+00:00",
     "first_seen_cycle_utc": "2026-10-16T19:16:23.686597+00:00",
     "first_seen_epoch": 1792178183.6866024,
-    "last_seen_cycle_utc": "2026-10-21T20:16:42.829596+00:00",
-    "last_seen_epoch": 1792613802.8296094,
-    "duration_hours": 747.73,
+    "last_seen_cycle_utc": "2026-10-21T20:21:50.689434+00:00",
+    "last_seen_epoch": 1792614110.689457,
+    "duration_hours": 747.81,
     "duration_days": 31.16,
-    "cycle_count": 280,
-    "notional_usd": 120880000.0,
+    "cycle_count": 281,
+    "notional_usd": 120760000.0,
     "status": "VETERAN_WHALE",
     "trajectory": [
       {
@@ -12296,10 +12331,17 @@
         "notional_usd": 120880000.0,
         "pnl": "-$5.71M -4.72%",
         "price": "$2492.5"
+      },
+      {
+        "utc": "2026-10-21T20:21:50.689434+00:00",
+        "epoch": 1792614110.689457,
+        "notional_usd": 120760000.0,
+        "pnl": "-$5.83M -4.83%",
+        "price": "$2490.6"
       }
     ],
     "entry_price_clean": 2646.05,
-    "current_price_raw": "$2492.5"
+    "current_price_raw": "$2490.6"
   },
   "ETH_LONG_0x0392..d9_2026-08-26T15:34:00+00:00": {
     "key": "ETH_LONG_0x0392..d9_2026-08-26T15:34:00+00:00",
@@ -12311,12 +12353,12 @@
     "entry_time_iso": "2026-08-26T15:34:00+00:00",
     "first_seen_cycle_utc": "2026-10-16T19:16:23.686597+00:00",
     "first_seen_epoch": 1792178183.6866024,
-    "last_seen_cycle_utc": "2026-10-21T20:16:42.829596+00:00",
-    "last_seen_epoch": 1792613802.8296094,
-    "duration_hours": 1348.71,
+    "last_seen_cycle_utc": "2026-10-21T20:21:50.689434+00:00",
+    "last_seen_epoch": 1792614110.689457,
+    "duration_hours": 1348.8,
     "duration_days": 56.2,
-    "cycle_count": 280,
-    "notional_usd": 111500000.0,
+    "cycle_count": 281,
+    "notional_usd": 111400000.0,
     "status": "VETERAN_WHALE",
     "trajectory": [
       {
@@ -14264,10 +14306,17 @@
         "notional_usd": 111500000.0,
         "pnl": "-$1.17M -1.05%",
         "price": "$2492.5"
+      },
+      {
+        "utc": "2026-10-21T20:21:50.689434+00:00",
+        "epoch": 1792614110.689457,
+        "notional_usd": 111400000.0,
+        "pnl": "-$1.27M -1.14%",
+        "price": "$2490.6"
       }
     ],
     "entry_price_clean": 2530.86,
-    "current_price_raw": "$2492.5"
+    "current_price_raw": "$2490.6"
   },
   "BTC_LONG_0x6046..1d_2026-08-25T11:40:00+00:00": {
     "key": "BTC_LONG_0x6046..1d_2026-08-25T11:40:00+00:00",
@@ -14279,11 +14328,11 @@
     "entry_time_iso": "2026-08-25T11:40:00+00:00",
     "first_seen_cycle_utc": "2026-10-16T19:16:23.686597+00:00",
     "first_seen_epoch": 1792178183.6866024,
-    "last_seen_cycle_utc": "2026-10-21T20:16:42.829596+00:00",
-    "last_seen_epoch": 1792613802.8296094,
-    "duration_hours": 1376.61,
+    "last_seen_cycle_utc": "2026-10-21T20:21:50.689434+00:00",
+    "last_seen_epoch": 1792614110.689457,
+    "duration_hours": 1376.7,
     "duration_days": 57.36,
-    "cycle_count": 280,
+    "cycle_count": 281,
     "notional_usd": 104380000.0,
     "status": "VETERAN_WHALE",
     "trajectory": [
@@ -16232,10 +16281,17 @@
         "notional_usd": 104380000.0,
         "pnl": "$3.07M +2.94%",
         "price": "$84484"
+      },
+      {
+        "utc": "2026-10-21T20:21:50.689434+00:00",
+        "epoch": 1792614110.689457,
+        "notional_usd": 104380000.0,
+        "pnl": "$3.07M +2.94%",
+        "price": "$84483"
       }
     ],
     "entry_price_clean": 81832.7,
-    "current_price_raw": "$84484"
+    "current_price_raw": "$84483"
   },
   "BTC_LONG_0x15a4..db_2026-07-06T17:13:00+00:00": {
     "key": "BTC_LONG_0x15a4..db_2026-07-06T17:13:00+00:00",
@@ -16247,11 +16303,11 @@
     "entry_time_iso": "2026-07-06T17:13:00+00:00",
     "first_seen_cycle_utc": "2026-10-16T19:16:23.686597+00:00",
     "first_seen_epoch": 1792178183.6866024,
-    "last_seen_cycle_utc": "2026-10-21T20:16:42.829596+00:00",
-    "last_seen_epoch": 1792613802.8296094,
-    "duration_hours": 2571.06,
+    "last_seen_cycle_utc": "2026-10-21T20:21:50.689434+00:00",
+    "last_seen_epoch": 1792614110.689457,
+    "duration_hours": 2571.15,
     "duration_days": 107.13,
-    "cycle_count": 280,
+    "cycle_count": 281,
     "notional_usd": 84480000.0,
     "status": "VETERAN_WHALE",
     "trajectory": [
@@ -18200,10 +18256,17 @@
         "notional_usd": 84480000.0,
         "pnl": "$22.13M +26.19%",
         "price": "$84484"
+      },
+      {
+        "utc": "2026-10-21T20:21:50.689434+00:00",
+        "epoch": 1792614110.689457,
+        "notional_usd": 84480000.0,
+        "pnl": "$22.13M +26.19%",
+        "price": "$84483"
       }
     ],
     "entry_price_clean": 62353.6,
-    "current_price_raw": "$84484"
+    "current_price_raw": "$84483"
   },
   "BTC_LONG_0x8ea8..bc_2026-02-04T18:50:00+00:00": {
     "key": "BTC_LONG_0x8ea8..bc_2026-02-04T18:50:00+00:00",
@@ -18215,12 +18278,12 @@
     "entry_time_iso": "2026-02-04T18:50:00+00:00",
     "first_seen_cycle_utc": "2026-10-16T19:16:23.686597+00:00",
     "first_seen_epoch": 1792178183.6866024,
-    "last_seen_cycle_utc": "2026-10-21T20:16:42.829596+00:00",
-    "last_seen_epoch": 1792613802.8296094,
-    "duration_hours": 6217.45,
+    "last_seen_cycle_utc": "2026-10-21T20:21:50.689434+00:00",
+    "last_seen_epoch": 1792614110.689457,
+    "duration_hours": 6217.53,
     "duration_days": 259.06,
-    "cycle_count": 280,
-    "notional_usd": 84470000.0,
+    "cycle_count": 281,
+    "notional_usd": 84480000.0,
     "status": "VETERAN_WHALE",
     "trajectory": [
       {
@@ -20168,10 +20231,17 @@
         "notional_usd": 84470000.0,
         "pnl": "$11.71M +13.86%",
         "price": "$84484"
+      },
+      {
+        "utc": "2026-10-21T20:21:50.689434+00:00",
+        "epoch": 1792614110.689457,
+        "notional_usd": 84480000.0,
+        "pnl": "$11.71M +13.86%",
+        "price": "$84483"
       }
     ],
     "entry_price_clean": 72771.2,
-    "current_price_raw": "$84484"
+    "current_price_raw": "$84483"
   },
   "SOL_SHORT_0x5b5d..60_2026-05-09T21:16:00+00:00": {
     "key": "SOL_SHORT_0x5b5d..60_2026-05-09T21:16:00+00:00",
@@ -20183,12 +20253,12 @@
     "entry_time_iso": "2026-05-09T21:16:00+00:00",
     "first_seen_cycle_utc": "2026-10-16T19:16:23.686597+00:00",
     "first_seen_epoch": 1792178183.6866024,
-    "last_seen_cycle_utc": "2026-10-21T20:16:42.829596+00:00",
-    "last_seen_epoch": 1792613802.8296094,
-    "duration_hours": 3959.01,
+    "last_seen_cycle_utc": "2026-10-21T20:21:50.689434+00:00",
+    "last_seen_epoch": 1792614110.689457,
+    "duration_hours": 3959.1,
     "duration_days": 164.96,
-    "cycle_count": 280,
-    "notional_usd": 78160000.0,
+    "cycle_count": 281,
+    "notional_usd": 77990000.0,
     "status": "VETERAN_WHALE",
     "trajectory": [
       {
@@ -22136,10 +22206,17 @@
         "notional_usd": 78160000.0,
         "pnl": "-$10.06M -12.88%",
         "price": "$108.11"
+      },
+      {
+        "utc": "2026-10-21T20:21:50.689434+00:00",
+        "epoch": 1792614110.689457,
+        "notional_usd": 77990000.0,
+        "pnl": "-$9.89M -12.67%",
+        "price": "$108"
       }
     ],
     "entry_price_clean": 94.3199,
-    "current_price_raw": "$108.11"
+    "current_price_raw": "$108"
   },
   "ETH_LONG_0xde8d..24_2026-08-19T20:44:00+00:00": {
     "key": "ETH_LONG_0xde8d..24_2026-08-19T20:44:00+00:00",
@@ -22151,12 +22228,12 @@
     "entry_time_iso": "2026-08-19T20:44:00+00:00",
     "first_seen_cycle_utc": "2026-10-16T19:16:23.686597+00:00",
     "first_seen_epoch": 1792178183.6866024,
-    "last_seen_cycle_utc": "2026-10-21T20:16:42.829596+00:00",
-    "last_seen_epoch": 1792613802.8296094,
-    "duration_hours": 1511.55,
+    "last_seen_cycle_utc": "2026-10-21T20:21:50.689434+00:00",
+    "last_seen_epoch": 1792614110.689457,
+    "duration_hours": 1511.63,
     "duration_days": 62.98,
-    "cycle_count": 280,
-    "notional_usd": 75480000.0,
+    "cycle_count": 281,
+    "notional_usd": 75410000.0,
     "status": "VETERAN_WHALE",
     "trajectory": [
       {
@@ -24104,10 +24181,17 @@
         "notional_usd": 75480000.0,
         "pnl": "$10.85M +14.37%",
         "price": "$2492.5"
+      },
+      {
+        "utc": "2026-10-21T20:21:50.689434+00:00",
+        "epoch": 1792614110.689457,
+        "notional_usd": 75410000.0,
+        "pnl": "$10.78M +14.29%",
+        "price": "$2490.6"
       }
     ],
     "entry_price_clean": 2134.45,
-    "current_price_raw": "$2492.5"
+    "current_price_raw": "$2490.6"
   },
   "BTC_SHORT_0xb695..2d_2026-09-02T01:30:00+00:00": {
     "key": "BTC_SHORT_0xb695..2d_2026-09-02T01:30:00+00:00",
@@ -24119,12 +24203,12 @@
     "entry_time_iso": "2026-09-02T01:30:00+00:00",
     "first_seen_cycle_utc": "2026-10-16T19:16:23.686597+00:00",
     "first_seen_epoch": 1792178183.6866024,
-    "last_seen_cycle_utc": "2026-10-21T20:16:42.829596+00:00",
-    "last_seen_epoch": 1792613802.8296094,
-    "duration_hours": 1194.78,
-    "duration_days": 49.78,
-    "cycle_count": 280,
-    "notional_usd": 68640000.0,
+    "last_seen_cycle_utc": "2026-10-21T20:21:50.689434+00:00",
+    "last_seen_epoch": 1792614110.689457,
+    "duration_hours": 1194.86,
+    "duration_days": 49.79,
+    "cycle_count": 281,
+    "notional_usd": 68630000.0,
     "status": "VETERAN_WHALE",
     "trajectory": [
       {
@@ -26072,10 +26156,17 @@
         "notional_usd": 68640000.0,
         "pnl": "-$4.62M -6.73%",
         "price": "$84484"
+      },
+      {
+        "utc": "2026-10-21T20:21:50.689434+00:00",
+        "epoch": 1792614110.689457,
+        "notional_usd": 68630000.0,
+        "pnl": "-$4.62M -6.72%",
+        "price": "$84483"
       }
     ],
     "entry_price_clean": 78792.5,
-    "current_price_raw": "$84484"
+    "current_price_raw": "$84483"
   },
   "BTC_SHORT_0x218a..a2_2026-04-11T17:19:00+00:00": {
     "key": "BTC_SHORT_0x218a..a2_2026-04-11T17:19:00+00:00",
@@ -26087,12 +26178,12 @@
     "entry_time_iso": "2026-04-11T17:19:00+00:00",
     "first_seen_cycle_utc": "2026-10-16T19:16:23.686597+00:00",
     "first_seen_epoch": 1792178183.6866024,
-    "last_seen_cycle_utc": "2026-10-21T20:16:42.829596+00:00",
-    "last_seen_epoch": 1792613802.8296094,
-    "duration_hours": 4634.96,
-    "duration_days": 193.12,
-    "cycle_count": 280,
-    "notional_usd": 68340000.0,
+    "last_seen_cycle_utc": "2026-10-21T20:21:50.689434+00:00",
+    "last_seen_epoch": 1792614110.689457,
+    "duration_hours": 4635.05,
+    "duration_days": 193.13,
+    "cycle_count": 281,
+    "notional_usd": 68330000.0,
     "status": "VETERAN_WHALE",
     "trajectory": [
       {
@@ -28040,10 +28131,17 @@
         "notional_usd": 68340000.0,
         "pnl": "-$4.39M -6.43%",
         "price": "$84484"
+      },
+      {
+        "utc": "2026-10-21T20:21:50.689434+00:00",
+        "epoch": 1792614110.689457,
+        "notional_usd": 68330000.0,
+        "pnl": "-$4.39M -6.42%",
+        "price": "$84483"
       }
     ],
     "entry_price_clean": 78477.4,
-    "current_price_raw": "$84484"
+    "current_price_raw": "$84483"
   },
   "BTC_SHORT_0x3ff5..05_2026-08-19T06:38:00+00:00": {
     "key": "BTC_SHORT_0x3ff5..05_2026-08-19T06:38:00+00:00",
@@ -28055,15 +28153,15 @@
     "entry_time_iso": "2026-08-19T06:38:00+00:00",
     "first_seen_cycle_utc": "2026-10-16T19:16:23.686597+00:00",
     "first_seen_epoch": 1792178183.6866024,
-    "last_seen_cycle_utc": "2026-10-21T20:16:42.829596+00:00",
-    "last_seen_epoch": 1792613802.8296094,
-    "duration_hours": 1525.65,
+    "last_seen_cycle_utc": "2026-10-21T20:21:50.689434+00:00",
+    "last_seen_epoch": 1792614110.689457,
+    "duration_hours": 1525.73,
     "duration_days": 63.57,
-    "cycle_count": 275,
-    "notional_usd": 69720000.0,
+    "cycle_count": 276,
+    "notional_usd": 69520000.0,
     "status": "VETERAN_WHALE",
     "entry_price_clean": 82088.7,
-    "current_price_raw": "$84484",
+    "current_price_raw": "$84483",
     "trajectory": [
       {
         "utc": "2026-10-16T19:25:51.286368+00:00",
@@ -30010,6 +30108,13 @@
         "notional_usd": 69720000.0,
         "pnl": "-$1.99M -2.85%",
         "price": "$84484"
+      },
+      {
+        "utc": "2026-10-21T20:21:50.689434+00:00",
+        "epoch": 1792614110.689457,
+        "notional_usd": 69520000.0,
+        "pnl": "-$1.98M -2.85%",
+        "price": "$84483"
       }
     ]
   },
@@ -30023,12 +30128,12 @@
     "entry_time_iso": "2026-08-08T17:18:00+00:00",
     "first_seen_cycle_utc": "2026-10-16T19:16:23.686597+00:00",
     "first_seen_epoch": 1792178183.6866024,
-    "last_seen_cycle_utc": "2026-10-21T20:16:42.829596+00:00",
-    "last_seen_epoch": 1792613802.8296094,
-    "duration_hours": 1778.98,
-    "duration_days": 74.12,
-    "cycle_count": 280,
-    "notional_usd": 59480000.0,
+    "last_seen_cycle_utc": "2026-10-21T20:21:50.689434+00:00",
+    "last_seen_epoch": 1792614110.689457,
+    "duration_hours": 1779.06,
+    "duration_days": 74.13,
+    "cycle_count": 281,
+    "notional_usd": 59410000.0,
     "status": "VETERAN_WHALE",
     "trajectory": [
       {
@@ -31976,10 +32081,17 @@
         "notional_usd": 59480000.0,
         "pnl": "$15.00M +25.22%",
         "price": "$108.11"
+      },
+      {
+        "utc": "2026-10-21T20:21:50.689434+00:00",
+        "epoch": 1792614110.689457,
+        "notional_usd": 59410000.0,
+        "pnl": "$14.94M +25.14%",
+        "price": "$108"
       }
     ],
     "entry_price_clean": 80.8579,
-    "current_price_raw": "$108.11"
+    "current_price_raw": "$108"
   },
   "HYPE_SHORT_0xb83d..36_2026-05-22T23:59:00+00:00": {
     "key": "HYPE_SHORT_0xb83d..36_2026-05-22T23:59:00+00:00",
@@ -31991,12 +32103,12 @@
     "entry_time_iso": "2026-05-22T23:59:00+00:00",
     "first_seen_cycle_utc": "2026-10-16T19:16:23.686597+00:00",
     "first_seen_epoch": 1792178183.6866024,
-    "last_seen_cycle_utc": "2026-10-21T20:16:42.829596+00:00",
-    "last_seen_epoch": 1792613802.8296094,
-    "duration_hours": 3644.3,
+    "last_seen_cycle_utc": "2026-10-21T20:21:50.689434+00:00",
+    "last_seen_epoch": 1792614110.689457,
+    "duration_hours": 3644.38,
     "duration_days": 151.85,
-    "cycle_count": 280,
-    "notional_usd": 54910000.0,
+    "cycle_count": 281,
+    "notional_usd": 54470000.0,
     "status": "VETERAN_WHALE",
     "trajectory": [
       {
@@ -33944,10 +34056,17 @@
         "notional_usd": 54910000.0,
         "pnl": "-$7.92M -14.42%",
         "price": "$81.5791"
+      },
+      {
+        "utc": "2026-10-21T20:21:50.689434+00:00",
+        "epoch": 1792614110.689457,
+        "notional_usd": 54470000.0,
+        "pnl": "-$7.48M -13.73%",
+        "price": "$80.889"
       }
     ],
     "entry_price_clean": 69.8134,
-    "current_price_raw": "$81.5791"
+    "current_price_raw": "$80.889"
   },
   "ETH_SHORT_0xb695..2d_2026-09-08T17:33:00+00:00": {
     "key": "ETH_SHORT_0xb695..2d_2026-09-08T17:33:00+00:00",
@@ -33959,12 +34078,12 @@
     "entry_time_iso": "2026-09-08T17:33:00+00:00",
     "first_seen_cycle_utc": "2026-10-16T19:16:23.686597+00:00",
     "first_seen_epoch": 1792178183.6866024,
-    "last_seen_cycle_utc": "2026-10-21T20:16:42.829596+00:00",
-    "last_seen_epoch": 1792613802.8296094,
-    "duration_hours": 1034.73,
-    "duration_days": 43.11,
-    "cycle_count": 274,
-    "notional_usd": 45930000.0,
+    "last_seen_cycle_utc": "2026-10-21T20:21:50.689434+00:00",
+    "last_seen_epoch": 1792614110.689457,
+    "duration_hours": 1034.81,
+    "duration_days": 43.12,
+    "cycle_count": 275,
+    "notional_usd": 45880000.0,
     "status": "VETERAN_WHALE",
     "trajectory": [
       {
@@ -35912,10 +36031,17 @@
         "notional_usd": 45930000.0,
         "pnl": "$1.20M +2.61%",
         "price": "$2492.5"
+      },
+      {
+        "utc": "2026-10-21T20:21:50.689434+00:00",
+        "epoch": 1792614110.689457,
+        "notional_usd": 45880000.0,
+        "pnl": "$1.25M +2.72%",
+        "price": "$2490.6"
       }
     ],
     "entry_price_clean": 2559.1,
-    "current_price_raw": "$2492.5"
+    "current_price_raw": "$2490.6"
   },
   "BTC_LONG_0xefe4..4b_2026-10-02T14:15:00+00:00": {
     "key": "BTC_LONG_0xefe4..4b_2026-10-02T14:15:00+00:00",
@@ -35927,12 +36053,12 @@
     "entry_time_iso": "2026-10-02T14:15:00+00:00",
     "first_seen_cycle_utc": "2026-10-16T19:16:23.686597+00:00",
     "first_seen_epoch": 1792178183.6866024,
-    "last_seen_cycle_utc": "2026-10-21T20:16:42.829596+00:00",
-    "last_seen_epoch": 1792613802.8296094,
-    "duration_hours": 462.03,
+    "last_seen_cycle_utc": "2026-10-21T20:21:50.689434+00:00",
+    "last_seen_epoch": 1792614110.689457,
+    "duration_hours": 462.11,
     "duration_days": 19.25,
-    "cycle_count": 280,
-    "notional_usd": 50290000.0,
+    "cycle_count": 281,
+    "notional_usd": 50270000.0,
     "status": "VETERAN_WHALE",
     "trajectory": [
       {
@@ -37880,10 +38006,17 @@
         "notional_usd": 50290000.0,
         "pnl": "-$728.13K -1.45%",
         "price": "$84484"
+      },
+      {
+        "utc": "2026-10-21T20:21:50.689434+00:00",
+        "epoch": 1792614110.689457,
+        "notional_usd": 50270000.0,
+        "pnl": "-$741.82K -1.48%",
+        "price": "$84483"
       }
     ],
     "entry_price_clean": 85719.2,
-    "current_price_raw": "$84484"
+    "current_price_raw": "$84483"
   },
   "HYPE_SHORT_0xf02d..c6_2026-09-02T01:20:00+00:00": {
     "key": "HYPE_SHORT_0xf02d..c6_2026-09-02T01:20:00+00:00",
@@ -37895,12 +38028,12 @@
     "entry_time_iso": "2026-09-02T01:20:00+00:00",
     "first_seen_cycle_utc": "2026-10-16T19:16:23.686597+00:00",
     "first_seen_epoch": 1792178183.6866024,
-    "last_seen_cycle_utc": "2026-10-21T20:16:42.829596+00:00",
-    "last_seen_epoch": 1792613802.8296094,
-    "duration_hours": 1194.95,
+    "last_seen_cycle_utc": "2026-10-21T20:21:50.689434+00:00",
+    "last_seen_epoch": 1792614110.689457,
+    "duration_hours": 1195.03,
     "duration_days": 49.79,
-    "cycle_count": 280,
-    "notional_usd": 52170000.0,
+    "cycle_count": 281,
+    "notional_usd": 57910000.0,
     "status": "VETERAN_WHALE",
     "trajectory": [
       {
@@ -39848,10 +39981,17 @@
         "notional_usd": 52170000.0,
         "pnl": "$1.80M +3.45%",
         "price": "$81.5791"
+      },
+      {
+        "utc": "2026-10-21T20:21:50.689434+00:00",
+        "epoch": 1792614110.689457,
+        "notional_usd": 57910000.0,
+        "pnl": "$2.21M +3.82%",
+        "price": "$80.889"
       }
     ],
     "entry_price_clean": 84.6099,
-    "current_price_raw": "$81.5791"
+    "current_price_raw": "$80.889"
   },
   "HYPE_SHORT_0x5b5d..60_2026-05-23T00:24:00+00:00": {
     "key": "HYPE_SHORT_0x5b5d..60_2026-05-23T00:24:00+00:00",
@@ -39863,12 +40003,12 @@
     "entry_time_iso": "2026-05-23T00:24:00+00:00",
     "first_seen_cycle_utc": "2026-10-16T19:16:23.686597+00:00",
     "first_seen_epoch": 1792178183.6866024,
-    "last_seen_cycle_utc": "2026-10-21T20:16:42.829596+00:00",
-    "last_seen_epoch": 1792613802.8296094,
-    "duration_hours": 3643.88,
+    "last_seen_cycle_utc": "2026-10-21T20:21:50.689434+00:00",
+    "last_seen_epoch": 1792614110.689457,
+    "duration_hours": 3643.96,
     "duration_days": 151.83,
-    "cycle_count": 280,
-    "notional_usd": 45410000.0,
+    "cycle_count": 281,
+    "notional_usd": 45020000.0,
     "status": "VETERAN_WHALE",
     "trajectory": [
       {
@@ -41816,10 +41956,17 @@
         "notional_usd": 45410000.0,
         "pnl": "-$6.44M -14.18%",
         "price": "$81.5791"
+      },
+      {
+        "utc": "2026-10-21T20:21:50.689434+00:00",
+        "epoch": 1792614110.689457,
+        "notional_usd": 45020000.0,
+        "pnl": "-$6.05M -13.43%",
+        "price": "$80.889"
       }
     ],
     "entry_price_clean": 70.1823,
-    "current_price_raw": "$81.5791"
+    "current_price_raw": "$80.889"
   },
   "ETH_SHORT_0xdf95..72_2026-07-29T16:04:00+00:00": {
     "key": "ETH_SHORT_0xdf95..72_2026-07-29T16:04:00+00:00",
@@ -41831,12 +41978,12 @@
     "entry_time_iso": "2026-07-29T16:04:00+00:00",
     "first_seen_cycle_utc": "2026-10-16T19:16:23.686597+00:00",
     "first_seen_epoch": 1792178183.6866024,
-    "last_seen_cycle_utc": "2026-10-21T20:16:42.829596+00:00",
-    "last_seen_epoch": 1792613802.8296094,
-    "duration_hours": 2020.21,
+    "last_seen_cycle_utc": "2026-10-21T20:21:50.689434+00:00",
+    "last_seen_epoch": 1792614110.689457,
+    "duration_hours": 2020.3,
     "duration_days": 84.18,
-    "cycle_count": 280,
-    "notional_usd": 48690000.0,
+    "cycle_count": 281,
+    "notional_usd": 48650000.0,
     "status": "VETERAN_WHALE",
     "trajectory": [
       {
@@ -43784,10 +43931,17 @@
         "notional_usd": 48690000.0,
         "pnl": "-$1.55M -3.18%",
         "price": "$2492.5"
+      },
+      {
+        "utc": "2026-10-21T20:21:50.689434+00:00",
+        "epoch": 1792614110.689457,
+        "notional_usd": 48650000.0,
+        "pnl": "-$1.51M -3.10%",
+        "price": "$2490.6"
       }
     ],
     "entry_price_clean": 2412.85,
-    "current_price_raw": "$2492.5"
+    "current_price_raw": "$2490.6"
   },
   "XRP_LONG_0x31b1..34_2026-08-08T18:09:00+00:00": {
     "key": "XRP_LONG_0x31b1..34_2026-08-08T18:09:00+00:00",
@@ -43799,12 +43953,12 @@
     "entry_time_iso": "2026-08-08T18:09:00+00:00",
     "first_seen_cycle_utc": "2026-10-16T19:16:23.686597+00:00",
     "first_seen_epoch": 1792178183.6866024,
-    "last_seen_cycle_utc": "2026-10-21T20:16:42.829596+00:00",
-    "last_seen_epoch": 1792613802.8296094,
-    "duration_hours": 1778.13,
+    "last_seen_cycle_utc": "2026-10-21T20:21:50.689434+00:00",
+    "last_seen_epoch": 1792614110.689457,
+    "duration_hours": 1778.21,
     "duration_days": 74.09,
-    "cycle_count": 280,
-    "notional_usd": 48690000.0,
+    "cycle_count": 281,
+    "notional_usd": 48720000.0,
     "status": "VETERAN_WHALE",
     "trajectory": [
       {
@@ -45752,10 +45906,17 @@
         "notional_usd": 48690000.0,
         "pnl": "$9.12M +18.72%",
         "price": "$1.3919"
+      },
+      {
+        "utc": "2026-10-21T20:21:50.689434+00:00",
+        "epoch": 1792614110.689457,
+        "notional_usd": 48720000.0,
+        "pnl": "$9.15M +18.77%",
+        "price": "$1.3921"
       }
     ],
     "entry_price_clean": 1.1298,
-    "current_price_raw": "$1.3919"
+    "current_price_raw": "$1.3921"
   },
   "ETH_SHORT_0x7fda..d1_2026-03-12T12:35:00+00:00": {
     "key": "ETH_SHORT_0x7fda..d1_2026-03-12T12:35:00+00:00",
@@ -45767,12 +45928,12 @@
     "entry_time_iso": "2026-03-12T12:35:00+00:00",
     "first_seen_cycle_utc": "2026-10-16T19:16:23.686597+00:00",
     "first_seen_epoch": 1792178183.6866024,
-    "last_seen_cycle_utc": "2026-10-21T20:16:42.829596+00:00",
-    "last_seen_epoch": 1792613802.8296094,
-    "duration_hours": 5359.7,
+    "last_seen_cycle_utc": "2026-10-21T20:21:50.689434+00:00",
+    "last_seen_epoch": 1792614110.689457,
+    "duration_hours": 5359.78,
     "duration_days": 223.32,
-    "cycle_count": 280,
-    "notional_usd": 55450000.0,
+    "cycle_count": 281,
+    "notional_usd": 55390000.0,
     "status": "VETERAN_WHALE",
     "trajectory": [
       {
@@ -47720,10 +47881,17 @@
         "notional_usd": 55450000.0,
         "pnl": "$405.09K +0.73%",
         "price": "$2492.5"
+      },
+      {
+        "utc": "2026-10-21T20:21:50.689434+00:00",
+        "epoch": 1792614110.689457,
+        "notional_usd": 55390000.0,
+        "pnl": "$465.14K +0.84%",
+        "price": "$2490.6"
       }
     ],
     "entry_price_clean": 2543.71,
-    "current_price_raw": "$2492.5"
+    "current_price_raw": "$2490.6"
   },
   "BTC_LONG_0xcfe2..b3_2026-09-09T06:49:00+00:00": {
     "key": "BTC_LONG_0xcfe2..b3_2026-09-09T06:49:00+00:00",
@@ -47735,12 +47903,12 @@
     "entry_time_iso": "2026-09-09T06:49:00+00:00",
     "first_seen_cycle_utc": "2026-10-16T19:16:23.686597+00:00",
     "first_seen_epoch": 1792178183.6866024,
-    "last_seen_cycle_utc": "2026-10-21T20:16:42.829596+00:00",
-    "last_seen_epoch": 1792613802.8296094,
-    "duration_hours": 1021.46,
+    "last_seen_cycle_utc": "2026-10-21T20:21:50.689434+00:00",
+    "last_seen_epoch": 1792614110.689457,
+    "duration_hours": 1021.55,
     "duration_days": 42.56,
-    "cycle_count": 280,
-    "notional_usd": 42240000.0,
+    "cycle_count": 281,
+    "notional_usd": 42230000.0,
     "status": "VETERAN_WHALE",
     "trajectory": [
       {
@@ -49688,10 +49856,17 @@
         "notional_usd": 42240000.0,
         "pnl": "$2.92M +6.91%",
         "price": "$84484"
+      },
+      {
+        "utc": "2026-10-21T20:21:50.689434+00:00",
+        "epoch": 1792614110.689457,
+        "notional_usd": 42230000.0,
+        "pnl": "$2.92M +6.91%",
+        "price": "$84483"
       }
     ],
     "entry_price_clean": 78639.3,
-    "current_price_raw": "$84484"
+    "current_price_raw": "$84483"
   },
   "HYPE_LONG_0x6666..f5_2026-03-18T00:04:00+00:00": {
     "key": "HYPE_LONG_0x6666..f5_2026-03-18T00:04:00+00:00",
@@ -49703,12 +49878,12 @@
     "entry_time_iso": "2026-03-18T00:04:00+00:00",
     "first_seen_cycle_utc": "2026-10-16T19:16:23.686597+00:00",
     "first_seen_epoch": 1792178183.6866024,
-    "last_seen_cycle_utc": "2026-10-21T20:16:42.829596+00:00",
-    "last_seen_epoch": 1792613802.8296094,
-    "duration_hours": 5228.21,
-    "duration_days": 217.84,
-    "cycle_count": 280,
-    "notional_usd": 36710000.0,
+    "last_seen_cycle_utc": "2026-10-21T20:21:50.689434+00:00",
+    "last_seen_epoch": 1792614110.689457,
+    "duration_hours": 5228.3,
+    "duration_days": 217.85,
+    "cycle_count": 281,
+    "notional_usd": 36420000.0,
     "status": "VETERAN_WHALE",
     "trajectory": [
       {
@@ -51656,10 +51831,17 @@
         "notional_usd": 36710000.0,
         "pnl": "$18.80M +51.21%",
         "price": "$81.5791"
+      },
+      {
+        "utc": "2026-10-21T20:21:50.689434+00:00",
+        "epoch": 1792614110.689457,
+        "notional_usd": 36420000.0,
+        "pnl": "$18.51M +50.82%",
+        "price": "$80.889"
       }
     ],
     "entry_price_clean": 39.8114,
-    "current_price_raw": "$81.5791"
+    "current_price_raw": "$80.889"
   },
   "BTC_SHORT_0x45d2..29_2026-05-11T20:43:00+00:00": {
     "key": "BTC_SHORT_0x45d2..29_2026-05-11T20:43:00+00:00",
@@ -51671,11 +51853,11 @@
     "entry_time_iso": "2026-05-11T20:43:00+00:00",
     "first_seen_cycle_utc": "2026-10-16T19:16:23.686597+00:00",
     "first_seen_epoch": 1792178183.6866024,
-    "last_seen_cycle_utc": "2026-10-21T20:16:42.829596+00:00",
-    "last_seen_epoch": 1792613802.8296094,
-    "duration_hours": 3911.56,
-    "duration_days": 162.98,
-    "cycle_count": 280,
+    "last_seen_cycle_utc": "2026-10-21T20:21:50.689434+00:00",
+    "last_seen_epoch": 1792614110.689457,
+    "duration_hours": 3911.65,
+    "duration_days": 162.99,
+    "cycle_count": 281,
     "notional_usd": 36830000.0,
     "status": "VETERAN_WHALE",
     "trajectory": [
@@ -53624,10 +53806,17 @@
         "notional_usd": 36830000.0,
         "pnl": "-$3.26M -8.85%",
         "price": "$84484"
+      },
+      {
+        "utc": "2026-10-21T20:21:50.689434+00:00",
+        "epoch": 1792614110.689457,
+        "notional_usd": 36830000.0,
+        "pnl": "-$3.26M -8.85%",
+        "price": "$84483"
       }
     ],
     "entry_price_clean": 77001.5,
-    "current_price_raw": "$84484"
+    "current_price_raw": "$84483"
   },
   "HYPE_SHORT_0x45d2..29_2026-03-13T22:11:00+00:00": {
     "key": "HYPE_SHORT_0x45d2..29_2026-03-13T22:11:00+00:00",
@@ -53639,12 +53828,12 @@
     "entry_time_iso": "2026-03-13T22:11:00+00:00",
     "first_seen_cycle_utc": "2026-10-16T19:16:23.686597+00:00",
     "first_seen_epoch": 1792178183.6866024,
-    "last_seen_cycle_utc": "2026-10-21T20:16:42.829596+00:00",
-    "last_seen_epoch": 1792613802.8296094,
-    "duration_hours": 5326.1,
+    "last_seen_cycle_utc": "2026-10-21T20:21:50.689434+00:00",
+    "last_seen_epoch": 1792614110.689457,
+    "duration_hours": 5326.18,
     "duration_days": 221.92,
-    "cycle_count": 280,
-    "notional_usd": 35380000.0,
+    "cycle_count": 281,
+    "notional_usd": 35080000.0,
     "status": "VETERAN_WHALE",
     "trajectory": [
       {
@@ -55592,10 +55781,17 @@
         "notional_usd": 35380000.0,
         "pnl": "-$22.92M -64.76%",
         "price": "$81.5791"
+      },
+      {
+        "utc": "2026-10-21T20:21:50.689434+00:00",
+        "epoch": 1792614110.689457,
+        "notional_usd": 35080000.0,
+        "pnl": "-$22.61M -64.45%",
+        "price": "$80.889"
       }
     ],
     "entry_price_clean": 28.7925,
-    "current_price_raw": "$81.5791"
+    "current_price_raw": "$80.889"
   },
   "ETH_SHORT_0x4487..2d_2026-07-12T06:02:00+00:00": {
     "key": "ETH_SHORT_0x4487..2d_2026-07-12T06:02:00+00:00",
@@ -56252,12 +56448,12 @@
     "entry_time_iso": "2026-03-13T22:11:00+00:00",
     "first_seen_cycle_utc": "2026-10-16T19:16:23.686597+00:00",
     "first_seen_epoch": 1792178183.6866024,
-    "last_seen_cycle_utc": "2026-10-21T20:16:42.829596+00:00",
-    "last_seen_epoch": 1792613802.8296094,
-    "duration_hours": 5326.1,
+    "last_seen_cycle_utc": "2026-10-21T20:21:50.689434+00:00",
+    "last_seen_epoch": 1792614110.689457,
+    "duration_hours": 5326.18,
     "duration_days": 221.92,
-    "cycle_count": 280,
-    "notional_usd": 34770000.0,
+    "cycle_count": 281,
+    "notional_usd": 34740000.0,
     "status": "VETERAN_WHALE",
     "trajectory": [
       {
@@ -58205,10 +58401,17 @@
         "notional_usd": 34770000.0,
         "pnl": "-$684.88K -1.97%",
         "price": "$2492.5"
+      },
+      {
+        "utc": "2026-10-21T20:21:50.689434+00:00",
+        "epoch": 1792614110.689457,
+        "notional_usd": 34740000.0,
+        "pnl": "-$652.80K -1.88%",
+        "price": "$2490.6"
       }
     ],
     "entry_price_clean": 2443.6,
-    "current_price_raw": "$2492.5"
+    "current_price_raw": "$2490.6"
   },
   "BTC_LONG_0x93ab..f8_2026-09-28T13:20:00+00:00": {
     "key": "BTC_LONG_0x93ab..f8_2026-09-28T13:20:00+00:00",
@@ -58220,12 +58423,12 @@
     "entry_time_iso": "2026-09-28T13:20:00+00:00",
     "first_seen_cycle_utc": "2026-10-16T19:16:23.686597+00:00",
     "first_seen_epoch": 1792178183.6866024,
-    "last_seen_cycle_utc": "2026-10-21T20:16:42.829596+00:00",
-    "last_seen_epoch": 1792613802.8296094,
-    "duration_hours": 558.95,
+    "last_seen_cycle_utc": "2026-10-21T20:21:50.689434+00:00",
+    "last_seen_epoch": 1792614110.689457,
+    "duration_hours": 559.03,
     "duration_days": 23.29,
-    "cycle_count": 280,
-    "notional_usd": 33790000.0,
+    "cycle_count": 281,
+    "notional_usd": 33780000.0,
     "status": "VETERAN_WHALE",
     "trajectory": [
       {
@@ -60173,10 +60376,17 @@
         "notional_usd": 33790000.0,
         "pnl": "$209.15K +0.62%",
         "price": "$84484"
+      },
+      {
+        "utc": "2026-10-21T20:21:50.689434+00:00",
+        "epoch": 1792614110.689457,
+        "notional_usd": 33780000.0,
+        "pnl": "$205.95K +0.61%",
+        "price": "$84483"
       }
     ],
     "entry_price_clean": 83958.1,
-    "current_price_raw": "$84484"
+    "current_price_raw": "$84483"
   },
   "BTC_SHORT_0x469e..a5_2026-10-11T23:06:00+00:00": {
     "key": "BTC_SHORT_0x469e..a5_2026-10-11T23:06:00+00:00",
@@ -61177,12 +61387,12 @@
     "entry_time_iso": "2026-10-09T03:03:00+00:00",
     "first_seen_cycle_utc": "2026-10-16T19:16:23.686597+00:00",
     "first_seen_epoch": 1792178183.6866024,
-    "last_seen_cycle_utc": "2026-10-21T20:16:42.829596+00:00",
-    "last_seen_epoch": 1792613802.8296094,
-    "duration_hours": 305.23,
+    "last_seen_cycle_utc": "2026-10-21T20:21:50.689434+00:00",
+    "last_seen_epoch": 1792614110.689457,
+    "duration_hours": 305.31,
     "duration_days": 12.72,
-    "cycle_count": 280,
-    "notional_usd": 68010000.0,
+    "cycle_count": 281,
+    "notional_usd": 68000000.0,
     "status": "VETERAN_WHALE",
     "trajectory": [
       {
@@ -63130,10 +63340,17 @@
         "notional_usd": 68010000.0,
         "pnl": "$2.14M +3.14%",
         "price": "$84484"
+      },
+      {
+        "utc": "2026-10-21T20:21:50.689434+00:00",
+        "epoch": 1792614110.689457,
+        "notional_usd": 68000000.0,
+        "pnl": "$2.13M +3.13%",
+        "price": "$84483"
       }
     ],
     "entry_price_clean": 82120.3,
-    "current_price_raw": "$84484"
+    "current_price_raw": "$84483"
   },
   "BTC_SHORT_0x7fda..d1_2026-03-11T09:28:00+00:00": {
     "key": "BTC_SHORT_0x7fda..d1_2026-03-11T09:28:00+00:00",
@@ -63145,15 +63362,15 @@
     "entry_time_iso": "2026-03-11T09:28:00+00:00",
     "first_seen_cycle_utc": "2026-10-16T19:16:23.686597+00:00",
     "first_seen_epoch": 1792178183.6866024,
-    "last_seen_cycle_utc": "2026-10-21T20:16:42.829596+00:00",
-    "last_seen_epoch": 1792613802.8296094,
-    "duration_hours": 5386.81,
+    "last_seen_cycle_utc": "2026-10-21T20:21:50.689434+00:00",
+    "last_seen_epoch": 1792614110.689457,
+    "duration_hours": 5386.9,
     "duration_days": 224.45,
-    "cycle_count": 98,
-    "notional_usd": 38350000.0,
+    "cycle_count": 99,
+    "notional_usd": 38120000.0,
     "status": "VETERAN_WHALE",
     "entry_price_clean": 82628.8,
-    "current_price_raw": "$84484",
+    "current_price_raw": "$84483",
     "trajectory": [
       {
         "utc": "2026-10-16T19:25:51.286368+00:00",
@@ -63847,6 +64064,13 @@
         "notional_usd": 38350000.0,
         "pnl": "-$1.03M -2.69%",
         "price": "$84484"
+      },
+      {
+        "utc": "2026-10-21T20:21:50.689434+00:00",
+        "epoch": 1792614110.689457,
+        "notional_usd": 38120000.0,
+        "pnl": "-$1.02M -2.66%",
+        "price": "$84483"
       }
     ]
   },
@@ -63860,12 +64084,12 @@
     "entry_time_iso": "2026-10-13T06:04:00+00:00",
     "first_seen_cycle_utc": "2026-10-16T19:16:23.686597+00:00",
     "first_seen_epoch": 1792178183.6866024,
-    "last_seen_cycle_utc": "2026-10-21T20:16:42.829596+00:00",
-    "last_seen_epoch": 1792613802.8296094,
-    "duration_hours": 206.21,
-    "duration_days": 8.59,
-    "cycle_count": 280,
-    "notional_usd": 29910000.0,
+    "last_seen_cycle_utc": "2026-10-21T20:21:50.689434+00:00",
+    "last_seen_epoch": 1792614110.689457,
+    "duration_hours": 206.3,
+    "duration_days": 8.6,
+    "cycle_count": 281,
+    "notional_usd": 29880000.0,
     "status": "VETERAN_WHALE",
     "trajectory": [
       {
@@ -65813,10 +66037,17 @@
         "notional_usd": 29910000.0,
         "pnl": "$849.91K +2.84%",
         "price": "$2492.5"
+      },
+      {
+        "utc": "2026-10-21T20:21:50.689434+00:00",
+        "epoch": 1792614110.689457,
+        "notional_usd": 29880000.0,
+        "pnl": "$821.11K +2.75%",
+        "price": "$2490.6"
       }
     ],
     "entry_price_clean": 2421.77,
-    "current_price_raw": "$2492.5"
+    "current_price_raw": "$2490.6"
   },
   "ETH_SHORT_0x4b0c..70_2025-10-16T22:45:00+00:00": {
     "key": "ETH_SHORT_0x4b0c..70_2025-10-16T22:45:00+00:00",
@@ -65955,12 +66186,12 @@
     "entry_time_iso": "2026-10-13T06:03:00+00:00",
     "first_seen_cycle_utc": "2026-10-16T19:16:23.686597+00:00",
     "first_seen_epoch": 1792178183.6866024,
-    "last_seen_cycle_utc": "2026-10-21T20:16:42.829596+00:00",
-    "last_seen_epoch": 1792613802.8296094,
-    "duration_hours": 206.23,
-    "duration_days": 8.59,
-    "cycle_count": 280,
-    "notional_usd": 29910000.0,
+    "last_seen_cycle_utc": "2026-10-21T20:21:50.689434+00:00",
+    "last_seen_epoch": 1792614110.689457,
+    "duration_hours": 206.31,
+    "duration_days": 8.6,
+    "cycle_count": 281,
+    "notional_usd": 29880000.0,
     "status": "VETERAN_WHALE",
     "trajectory": [
       {
@@ -67908,10 +68139,17 @@
         "notional_usd": 29910000.0,
         "pnl": "$878.17K +2.94%",
         "price": "$2492.5"
+      },
+      {
+        "utc": "2026-10-21T20:21:50.689434+00:00",
+        "epoch": 1792614110.689457,
+        "notional_usd": 29880000.0,
+        "pnl": "$843.37K +2.82%",
+        "price": "$2490.6"
       }
     ],
     "entry_price_clean": 2419.91,
-    "current_price_raw": "$2492.5"
+    "current_price_raw": "$2490.6"
   },
   "BTC_SHORT_0xaeaa..16_2026-10-15T18:57:00+00:00": {
     "key": "BTC_SHORT_0xaeaa..16_2026-10-15T18:57:00+00:00",
@@ -69051,11 +69289,11 @@
     "entry_time_iso": "2026-08-25T07:48:00+00:00",
     "first_seen_cycle_utc": "2026-10-16T19:16:23.686597+00:00",
     "first_seen_epoch": 1792178183.6866024,
-    "last_seen_cycle_utc": "2026-10-21T20:16:42.829596+00:00",
-    "last_seen_epoch": 1792613802.8296094,
-    "duration_hours": 1380.48,
+    "last_seen_cycle_utc": "2026-10-21T20:21:50.689434+00:00",
+    "last_seen_epoch": 1792614110.689457,
+    "duration_hours": 1380.56,
     "duration_days": 57.52,
-    "cycle_count": 280,
+    "cycle_count": 281,
     "notional_usd": 34460000.0,
     "status": "VETERAN_WHALE",
     "trajectory": [
@@ -71004,10 +71242,17 @@
         "notional_usd": 34460000.0,
         "pnl": "-$539.36K -1.57%",
         "price": "$84484"
+      },
+      {
+        "utc": "2026-10-21T20:21:50.689434+00:00",
+        "epoch": 1792614110.689457,
+        "notional_usd": 34460000.0,
+        "pnl": "-$538.95K -1.56%",
+        "price": "$84483"
       }
     ],
     "entry_price_clean": 83250.1,
-    "current_price_raw": "$84484"
+    "current_price_raw": "$84483"
   },
   "SOL_SHORT_0xb83d..36_2026-03-18T04:16:00+00:00": {
     "key": "SOL_SHORT_0xb83d..36_2026-03-18T04:16:00+00:00",
@@ -71019,12 +71264,12 @@
     "entry_time_iso": "2026-03-18T04:16:00+00:00",
     "first_seen_cycle_utc": "2026-10-16T19:16:23.686597+00:00",
     "first_seen_epoch": 1792178183.6866024,
-    "last_seen_cycle_utc": "2026-10-21T20:16:42.829596+00:00",
-    "last_seen_epoch": 1792613802.8296094,
-    "duration_hours": 5224.01,
+    "last_seen_cycle_utc": "2026-10-21T20:21:50.689434+00:00",
+    "last_seen_epoch": 1792614110.689457,
+    "duration_hours": 5224.1,
     "duration_days": 217.67,
-    "cycle_count": 280,
-    "notional_usd": 28270000.0,
+    "cycle_count": 281,
+    "notional_usd": 28220000.0,
     "status": "VETERAN_WHALE",
     "trajectory": [
       {
@@ -72972,10 +73217,17 @@
         "notional_usd": 28270000.0,
         "pnl": "-$4.37M -15.46%",
         "price": "$108.11"
+      },
+      {
+        "utc": "2026-10-21T20:21:50.689434+00:00",
+        "epoch": 1792614110.689457,
+        "notional_usd": 28220000.0,
+        "pnl": "-$4.32M -15.31%",
+        "price": "$108"
       }
     ],
     "entry_price_clean": 91.4175,
-    "current_price_raw": "$108.11"
+    "current_price_raw": "$108"
   },
   "ETH_LONG_0x0622..88_2026-07-02T15:07:00+00:00": {
     "key": "ETH_LONG_0x0622..88_2026-07-02T15:07:00+00:00",
@@ -78586,12 +78838,12 @@
     "entry_time_iso": "2026-09-06T13:23:00+00:00",
     "first_seen_cycle_utc": "2026-10-16T22:16:34.324661+00:00",
     "first_seen_epoch": 1792188994.3246675,
-    "last_seen_cycle_utc": "2026-10-21T20:16:42.829596+00:00",
-    "last_seen_epoch": 1792613802.8296094,
-    "duration_hours": 1086.9,
+    "last_seen_cycle_utc": "2026-10-21T20:21:50.689434+00:00",
+    "last_seen_epoch": 1792614110.689457,
+    "duration_hours": 1086.98,
     "duration_days": 45.29,
-    "cycle_count": 268,
-    "notional_usd": 30510000.0,
+    "cycle_count": 269,
+    "notional_usd": 30280000.0,
     "status": "VETERAN_WHALE",
     "trajectory": [
       {
@@ -80469,9 +80721,16 @@
         "notional_usd": 30510000.0,
         "pnl": "$16.97M +55.62%",
         "price": "$5.2725"
+      },
+      {
+        "utc": "2026-10-21T20:21:50.689434+00:00",
+        "epoch": 1792614110.689457,
+        "notional_usd": 30280000.0,
+        "pnl": "$16.74M +55.27%",
+        "price": "$5.266"
       }
     ],
-    "current_price_raw": "$5.2725"
+    "current_price_raw": "$5.266"
   },
   "ETH_SHORT_0x4b0c..70_2026-10-16T22:45:00+00:00": {
     "key": "ETH_SHORT_0x4b0c..70_2026-10-16T22:45:00+00:00",
@@ -82336,12 +82595,12 @@
     "entry_time_iso": "2026-10-18T04:38:00+00:00",
     "first_seen_cycle_utc": "2026-10-18T23:48:23.391862+00:00",
     "first_seen_epoch": 1792367303.3918803,
-    "last_seen_cycle_utc": "2026-10-21T20:16:42.829596+00:00",
-    "last_seen_epoch": 1792613802.8296094,
-    "duration_hours": 87.65,
-    "duration_days": 3.65,
-    "cycle_count": 212,
-    "notional_usd": 39700000.0,
+    "last_seen_cycle_utc": "2026-10-21T20:21:50.689434+00:00",
+    "last_seen_epoch": 1792614110.689457,
+    "duration_hours": 87.73,
+    "duration_days": 3.66,
+    "cycle_count": 213,
+    "notional_usd": 39680000.0,
     "status": "PERSISTENT_WHALE",
     "trajectory": [
       {
@@ -83827,9 +84086,16 @@
         "notional_usd": 39700000.0,
         "pnl": "$1.31M +3.31%",
         "price": "$2492.5"
+      },
+      {
+        "utc": "2026-10-21T20:21:50.689434+00:00",
+        "epoch": 1792614110.689457,
+        "notional_usd": 39680000.0,
+        "pnl": "$1.29M +3.26%",
+        "price": "$2490.6"
       }
     ],
-    "current_price_raw": "$2492.5"
+    "current_price_raw": "$2490.6"
   },
   "ETH_SHORT_0xb15b..ae_2026-10-18T21:48:00+00:00": {
     "key": "ETH_SHORT_0xb15b..ae_2026-10-18T21:48:00+00:00",
@@ -84817,12 +85083,12 @@
     "entry_time_iso": "2026-03-12T14:54:00+00:00",
     "first_seen_cycle_utc": "2026-10-19T01:28:30.758306+00:00",
     "first_seen_epoch": 1792373310.758393,
-    "last_seen_cycle_utc": "2026-10-21T20:16:42.829596+00:00",
-    "last_seen_epoch": 1792613802.8296094,
-    "duration_hours": 5357.38,
-    "duration_days": 223.22,
-    "cycle_count": 168,
-    "notional_usd": 35980000.0,
+    "last_seen_cycle_utc": "2026-10-21T20:21:50.689434+00:00",
+    "last_seen_epoch": 1792614110.689457,
+    "duration_hours": 5357.46,
+    "duration_days": 223.23,
+    "cycle_count": 169,
+    "notional_usd": 35950000.0,
     "status": "VETERAN_WHALE",
     "trajectory": [
       {
@@ -86000,9 +86266,16 @@
         "notional_usd": 35980000.0,
         "pnl": "-$635.97K -1.77%",
         "price": "$2492.5"
+      },
+      {
+        "utc": "2026-10-21T20:21:50.689434+00:00",
+        "epoch": 1792614110.689457,
+        "notional_usd": 35950000.0,
+        "pnl": "-$607.67K -1.69%",
+        "price": "$2490.6"
       }
     ],
-    "current_price_raw": "$2492.5"
+    "current_price_raw": "$2490.6"
   },
   "ETH_SHORT_0x4b0c..70_2026-10-19T01:27:00+00:00": {
     "key": "ETH_SHORT_0x4b0c..70_2026-10-19T01:27:00+00:00",
@@ -86107,12 +86380,12 @@
     "entry_time_iso": "2026-05-13T10:27:00+00:00",
     "first_seen_cycle_utc": "2026-10-19T22:25:02.198121+00:00",
     "first_seen_epoch": 1792448702.198134,
-    "last_seen_cycle_utc": "2026-10-21T20:16:42.829596+00:00",
-    "last_seen_epoch": 1792613802.8296094,
-    "duration_hours": 3873.83,
+    "last_seen_cycle_utc": "2026-10-21T20:21:50.689434+00:00",
+    "last_seen_epoch": 1792614110.689457,
+    "duration_hours": 3873.91,
     "duration_days": 161.41,
-    "cycle_count": 86,
-    "notional_usd": 32240000.000000004,
+    "cycle_count": 87,
+    "notional_usd": 31120000.0,
     "status": "VETERAN_WHALE",
     "trajectory": [
       {
@@ -86716,9 +86989,16 @@
         "notional_usd": 32240000.000000004,
         "pnl": "-$924.78K -2.87%",
         "price": "$84484"
+      },
+      {
+        "utc": "2026-10-21T20:21:50.689434+00:00",
+        "epoch": 1792614110.689457,
+        "notional_usd": 31120000.0,
+        "pnl": "-$884.44K -2.84%",
+        "price": "$84483"
       }
     ],
-    "current_price_raw": "$84484"
+    "current_price_raw": "$84483"
   },
   "ETH_SHORT_0xeced..10_2026-09-28T17:58:00+00:00": {
     "key": "ETH_SHORT_0xeced..10_2026-09-28T17:58:00+00:00",
@@ -86731,12 +87011,12 @@
     "entry_time_iso": "2026-09-28T17:58:00+00:00",
     "first_seen_cycle_utc": "2026-10-21T11:30:11.437537+00:00",
     "first_seen_epoch": 1792582211.4375548,
-    "last_seen_cycle_utc": "2026-10-21T20:16:42.829596+00:00",
-    "last_seen_epoch": 1792613802.8296094,
-    "duration_hours": 554.31,
+    "last_seen_cycle_utc": "2026-10-21T20:21:50.689434+00:00",
+    "last_seen_epoch": 1792614110.689457,
+    "duration_hours": 554.4,
     "duration_days": 23.1,
-    "cycle_count": 80,
-    "notional_usd": 33670000.0,
+    "cycle_count": 81,
+    "notional_usd": 33620000.0,
     "status": "VETERAN_WHALE",
     "trajectory": [
       {
@@ -87298,9 +87578,16 @@
         "notional_usd": 33670000.0,
         "pnl": "$1.27M +3.77%",
         "price": "$2492.5"
+      },
+      {
+        "utc": "2026-10-21T20:21:50.689434+00:00",
+        "epoch": 1792614110.689457,
+        "notional_usd": 33620000.0,
+        "pnl": "$1.32M +3.93%",
+        "price": "$2490.6"
       }
     ],
-    "current_price_raw": "$2492.5"
+    "current_price_raw": "$2490.6"
   },
   "ETH_LONG_0x469e..a5_2026-09-29T18:56:00+00:00": {
     "key": "ETH_LONG_0x469e..a5_2026-09-29T18:56:00+00:00",
@@ -87313,12 +87600,12 @@
     "entry_time_iso": "2026-09-29T18:56:00+00:00",
     "first_seen_cycle_utc": "2026-10-21T15:13:55.769990+00:00",
     "first_seen_epoch": 1792595635.770009,
-    "last_seen_cycle_utc": "2026-10-21T20:16:42.829596+00:00",
-    "last_seen_epoch": 1792613802.8296094,
-    "duration_hours": 529.35,
+    "last_seen_cycle_utc": "2026-10-21T20:21:50.689434+00:00",
+    "last_seen_epoch": 1792614110.689457,
+    "duration_hours": 529.43,
     "duration_days": 22.06,
-    "cycle_count": 53,
-    "notional_usd": 34900000.0,
+    "cycle_count": 54,
+    "notional_usd": 34880000.0,
     "status": "VETERAN_WHALE",
     "trajectory": [
       {
@@ -87691,9 +87978,16 @@
         "notional_usd": 34900000.0,
         "pnl": "-$1.65M -4.73%",
         "price": "$2492.5"
+      },
+      {
+        "utc": "2026-10-21T20:21:50.689434+00:00",
+        "epoch": 1792614110.689457,
+        "notional_usd": 34880000.0,
+        "pnl": "-$1.67M -4.79%",
+        "price": "$2490.6"
       }
     ],
-    "current_price_raw": "$2492.5"
+    "current_price_raw": "$2490.6"
   },
   "BTC_LONG_0x4b0c..70_2026-10-20T19:48:00+00:00": {
     "key": "BTC_LONG_0x4b0c..70_2026-10-20T19:48:00+00:00",
@@ -87706,12 +88000,12 @@
     "entry_time_iso": "2026-10-20T19:48:00+00:00",
     "first_seen_cycle_utc": "2026-10-21T16:03:37.742036+00:00",
     "first_seen_epoch": 1792598617.742053,
-    "last_seen_cycle_utc": "2026-10-21T20:16:42.829596+00:00",
-    "last_seen_epoch": 1792613802.8296094,
-    "duration_hours": 24.48,
+    "last_seen_cycle_utc": "2026-10-21T20:21:50.689434+00:00",
+    "last_seen_epoch": 1792614110.689457,
+    "duration_hours": 24.56,
     "duration_days": 1.02,
-    "cycle_count": 45,
-    "notional_usd": 29570000.0,
+    "cycle_count": 46,
+    "notional_usd": 29560000.0,
     "status": "PERSISTENT_WHALE",
     "trajectory": [
       {
@@ -88028,9 +88322,16 @@
         "notional_usd": 29570000.0,
         "pnl": "$395.41K +1.34%",
         "price": "$84484"
+      },
+      {
+        "utc": "2026-10-21T20:21:50.689434+00:00",
+        "epoch": 1792614110.689457,
+        "notional_usd": 29560000.0,
+        "pnl": "$388.87K +1.32%",
+        "price": "$84483"
       }
     ],
-    "current_price_raw": "$84484"
+    "current_price_raw": "$84483"
   },
   "BTC_SHORT_0xc3ed..dd_2026-10-20T19:50:00+00:00": {
     "key": "BTC_SHORT_0xc3ed..dd_2026-10-20T19:50:00+00:00",
@@ -88043,11 +88344,11 @@
     "entry_time_iso": "2026-10-20T19:50:00+00:00",
     "first_seen_cycle_utc": "2026-10-21T19:19:28.532103+00:00",
     "first_seen_epoch": 1792610368.5321176,
-    "last_seen_cycle_utc": "2026-10-21T20:16:42.829596+00:00",
-    "last_seen_epoch": 1792613802.8296094,
-    "duration_hours": 24.45,
+    "last_seen_cycle_utc": "2026-10-21T20:21:50.689434+00:00",
+    "last_seen_epoch": 1792614110.689457,
+    "duration_hours": 24.53,
     "duration_days": 1.02,
-    "cycle_count": 11,
+    "cycle_count": 12,
     "notional_usd": 42270000.0,
     "status": "PERSISTENT_WHALE",
     "trajectory": [
@@ -88127,8 +88428,15 @@
         "notional_usd": 42270000.0,
         "pnl": "-$319.10K -0.75%",
         "price": "$84484"
+      },
+      {
+        "utc": "2026-10-21T20:21:50.689434+00:00",
+        "epoch": 1792614110.689457,
+        "notional_usd": 42270000.0,
+        "pnl": "-$315.10K -0.75%",
+        "price": "$84483"
       }
     ],
-    "current_price_raw": "$84484"
+    "current_price_raw": "$84483"
   }
 }
