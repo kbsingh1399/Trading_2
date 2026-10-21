@@ -60300,3 +60300,8 @@ You may create 12_Hyperdash and 13_Hyperliquid where you dump all intelligenve a
   * At 22:30 UTC, if SOL spread remains <= 25 bps, stage SOLUSD.p BUY_LIMIT @ 106.96 (SL 105.10, TP 110.86, 0.10 lot, $18.60 nominal risk, $25.25 stressed risk).
   * All 4 subagent threads killed cleanly.
   * System enters silent background execution until next scheduled cron trigger at 22:20:00 UTC / 22:40:00 UTC.
+
+
+## Turn Log [2026-10-21T22:00:28.579522+00:00]
+**User Query**: does this 10 second timer consume too much tokens...i mean it should be auto wake up by subagents...rigt?
+**Response Summary**: Confirmed 10s timer causes catastrophic token consumption due to full context re-ingestion (~120k tokens/turn, 720k tokens/min). Confirmed Antigravity reactive auto-wakeup wakes coordinator up automatically on subagent message/completion with zero wasted polling tokens. Only 20m cron sentry is active.
