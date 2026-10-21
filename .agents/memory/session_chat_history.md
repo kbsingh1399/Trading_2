@@ -60246,3 +60246,23 @@ You may create 12_Hyperdash and 13_Hyperliquid where you dump all intelligenve a
   * Arena.ai: Dispatched on port 9222.
 - Actions: All 3 subagents terminated. Subagent fleet at 0 active.
 - Sleep Posture: System enters completely silent sleep until next scheduled cron trigger at 21:20:00 UTC / 21:40:00 UTC.
+
+
+## Turn 2026-10-21 21:35 UTC (Forensic Debug, Excel Corruption Repair & Perpetual Goal Protocol)
+- User Directives:
+  1. Fix "We found a problem with some content in DataBase_Trading.xlsx" Excel recovery warning.
+  2. Confirm Excel dump modules overwrite previous sheets cleanly.
+  3. Ensure GitHub repo always receives latest verified Excel file without lag or corruption.
+  4. Debug subagent socket permission error (`connectex: An attempt was made to access a socket in a way forbidden by its access permissions`).
+  5. Never kill / cancel the `/goal` contract; permanently embed it into the wake-up checklist.
+  6. Always maintain concrete Potential Candidate Radar with checkable pre-conditions.
+- Root Cause Investigations:
+  * Excel Error: `autonomous_telemetry_git_daemon.py` ran `git add -A` while `Run_Pipeline.py` was saving `DataBase_Trading.xlsx`, staging an incomplete 2.8 MB zip archive with a corrupt CRC in `docProps/core.xml` and committing it to GitHub.
+  * Subagent Socket Error: Subagents attempting secondary background SSE connections after sending their messages caused Windows socket permission exhaustion under Cloudflare WARP.
+- Fixes Applied:
+  * Restored `DataBase_Trading.xlsx` to 100% clean baseline (Commit `412afc65f`, size 13.4 MB, 32 sheets). Verified with Excel COM `CorruptLoad=0` with zero errors.
+  * Patched `autonomous_telemetry_git_daemon.py`: Added atomic zip-file validation (`zipfile.is_zipfile`, `[Content_Types].xml` verification, size > 10 MB) before staging.
+  * Patched `Terminal/Data_Factory/etf_excel_dumper.py`: Fixed `asyncio.run()` in running loop bug by executing via ThreadPoolExecutor.
+  * Patched `Terminal/generate_mt5_telemetry.py`: Added TradFi CFDs (GOLD, EURUSD, NAS100, SP500, DJ30) and crossed-book anomaly detection.
+  * Updated `AUTONOMOUS_WAKEUP_CHECKLIST.md`: Cemented perpetual `/goal` contract and mandatory Candidate Radar protocol.
+  * Pushed clean commit `5809710a6` to GitHub `origin/main`.
