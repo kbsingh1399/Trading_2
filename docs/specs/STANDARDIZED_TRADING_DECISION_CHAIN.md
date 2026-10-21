@@ -10,7 +10,14 @@
 
 ## SECTION 1: MANDATORY SKILLS ENSEMBLE FOUNDATION
 
-Under strict hedge fund operational governance, **no trading analysis, hypothesis formation, order staging, or modification may ever occur in an ad-hoc or single-agent vacuum**. Every cycle and decision must systematically activate and apply the following foundational skill suite as the **absolute minimum requirement**, dynamically augmenting with additional specialized skills as market conditions dictate:
+Under strict hedge fund operational governance, **no trading analysis, hypothesis formation, order staging, or modification may ever occur in an ad-hoc or single-agent vacuum**.
+
+### 🚨 MANDATORY INVIOLATE SUBAGENT SWARM & ARENA.AI DISPATCH GUARANTEE (OPERATOR MANDATE)
+> **NEVER OMIT, BYPASS, OR SKIP UNDER ANY CIRCUMSTANCES**:
+> 1. **Mandatory Subagent Swarm**: On EVERY 20-minute autonomous wake-up cron and on EVERY decision turn, Antigravity MUST physically invoke the specialized subagents (Orderflow Analyst, Position Manager, Macro Risk Analyst) via invoke_subagent.
+> 2. **Mandatory Arena.ai Surgical Red-Team Dispatch**: On EVERY wake-up cycle, a surgical red-team prompt MUST be injected into Arena.ai via Chrome CDP on port 9222.
+> 3. **Live Profit Ratchets Do Not Excuse Omission**: When live orders fill and dynamic ratchets (Early-BE, Phase 0, Phase 1) fire on MT5, the coordinator must execute the ratchet IMMEDIATELY to secure capital, but MUST SIMULTANEOUSLY dispatch the subagent swarm and Arena prompt. No operational event ever excuses skipping the dual-track council.
+ Every cycle and decision must systematically activate and apply the following foundational skill suite as the **absolute minimum requirement**, dynamically augmenting with additional specialized skills as market conditions dictate:
 
 ```mermaid
 flowchart TD
@@ -60,10 +67,39 @@ flowchart TD
 
 ---
 
-## SECTION 1.5: THE 29-SHEET CANONICAL MASTER EXCEL TRADING WAREHOUSE (EXCLUSIVE SINGLE SOURCE OF TRUTH)
+## SECTION 1.5: THE 32-SHEET CANONICAL MASTER EXCEL TRADING WAREHOUSE & LINE-BY-LINE NARRATIVE PROTOCOL (EXCLUSIVE SOURCE OF TRUTH)
 
 > **MANDATORY INVARIANT & SOLE DATA WAREHOUSE**:  
-> `Data/DataBase_Trading.xlsx` (all 29 canonical production worksheets, terminating strictly at `19_Calendar` with all trailing legacy sheets permanently purged) is the **exclusive, single definitive source of trading information, market microstructure, and decision-making for both Antigravity and Arena.ai**.  
+> `Data/DataBase_Trading.xlsx` (all 32 canonical production worksheets, from `00_MT5_Account_Telemetry` through `19_Calendar`) is the **exclusive, single definitive source of trading information, market microstructure, and decision-making for both Antigravity and Arena.ai**.
+
+### 📖 MANDATORY LINE-BY-LINE STUDY, NARRATIVE SYNTHESIS & TRADE POSITIONING PROTOCOL (OPERATOR INVARIANT)
+Under strict hedge fund operational governance, **the desk is forbidden from skimming summary cards or column averages**. On every wake-up and trade decision cycle, the desk must execute a rigorous 3-stage synthesis:
+
+1. **Stage 1 (Line-by-Line Microstructure Study)**:
+   - Study *each and every line* across all 32 sheets:
+     * *Sheets 00-02*: Study every line of ETF netflows (IBIT, FBTC, ETHA) and 500-asset CEX netflows to verify spot accumulation.
+     * *Sheets 03-05*: Examine Long/Short account ratios across Binance, OKX, Bybit to locate retail crowding traps.
+     * *Sheet 06*: Review every Hyperliquid L1 whale wallet (0x...), leverage tier, and liquidation price.
+     * *Sheets 07-09*: Inspect Open Interest trends and cross-exchange funding carry friction line-by-line.
+     * *Sheets 10-17, 22*: Trace continuous dollar-by-dollar liquidation ladders and forced liquidation tape prints.
+     * *Sheets 18 & 25*: Read every resting whale order (>= $100K USD) to verify persistence (>= 180s) and volume remaining.
+     * *Sheet 19*: Scrutinize 20/50/200 EMAs, Session VWAP, +-1.0/+-2.0 SD bands, Z-score, RSI-14, and Volume Profile POC/VAH/VAL.
+     * *Sheet 23*: Examine retail stop loss clusters line-by-line to avoid staging entries inside un-swept stop clusters.
+     * *Sheet 26*: Inspect continuous Spot vs Futures taker volume, delta divergence (zc_div > 0.8), and absorption signatures.
+     * *Sheets 27 & 28*: Read all upcoming economic calendar releases and breaking news line-by-line.
+
+2. **Stage 2 (Cohesive Market Narrative Construction)**:
+   - Synthesize the line-by-line evidence into an empirical multi-timeframe narrative:
+     * Who is dominating the orderflow? (Aggressive market sellers absorbing into passive institutional whale walls).
+     * Where is trapped retail liquidity located? (Below local swing lows or above daily highs).
+     * What is the causal regime? (Model 1 Mean Reversion at |Z| >= 2.0 SD vs Model 2 Trend Pullback to EMA/VWAP shelf).
+
+3. **Stage 3 (Grounded Trade Position Formulation)**:
+   - Formulate the exact execution ticket directly from the narrative:
+     * **Entry**: Placed passively behind the verified resting whale wall and demand shelf (never crossing the spread).
+     * **Stop Loss**: Anchored safely outside [min_price, max_price] of nearest liquidation/stop band with >= 0.35-0.50 ATR buffer.
+     * **Take Profit**: Front-running opposing liquidation magnet or Volume Profile shelf by 5-10 bps.
+     * **Sizing & Floor Defense**: Sized between 10.00 and 25.00 USD, guaranteeing 4,795.00 USD buffer on fill and 4,775.00 USD hard floor under catastrophic stopout.  
 > Neither Antigravity nor external council agents (Arena.ai, Copilot Studio, Ox Alpha) may ever query or cite unverified intermediate files. All market data points—covering macroeconomic indicators, central bank releases, cross-exchange funding rates, Long/Short ratios, level 2/3 orderbook depth, resting whale walls, liquidation ladders, stop order maps, continuous CVD, and Forex Factory calendar/news—are unified into this master workbook.
 
 ### The 29 Worksheets: Functional Taxonomy, Primary Metrics & Tactical Decision Purpose
@@ -334,6 +370,17 @@ When price approaches a significant cascade band, differentiate between absorpti
 
 - **If Absorption Confirmed**: Trade Model 1 counter-trend mean reversion with tight bunker SL.
 - **If Blow-Through Confirmed**: Trade Model 2 pro-trend continuation, riding momentum into the *next* distal cascade band.
+
+#### 4. TradFi vs Crypto Dual-Engine Confluence Contract (Operator Authorized Invariant):
+To eliminate ambiguity across different asset classes:
+- **Crypto Perpetuals (BTC, ETH, SOL, BNB, etc.)**:
+  * **Pillar 2 (CVD Divergence zc_div)**: Computed using Binance Spot CVD vs Binance USDT-M Futures CVD divergence.
+  * **Pillar 4 (Resting Whales & Liquidation Maps)**: Resting whale walls sit in CoinGlass (10_Whale_Orders), Hyperdash L1 orders (12_Hyperdash), and exchange liquidation ladders (14_Hyperdash_Liq_Map).
+- **TradFi Index & Commodity CFDs (NAS100.p, SP500.p, GOLD, USWTI)**:
+  * **Pillar 2 (TradFi Orderflow Delta)**: Computed directly from MetaTrader 5 interbank tick volume cumulative orderflow delta (Sheet 18_CVD) and CME futures tick momentum.
+  * **Pillar 4 (TradFi Structural Bunkers)**: Stops sit behind CME/Interbank volume profile shelves (VAH/VAL/POC), 15m swing pivot extremes, and MT5 market depth.
+  * **Take Profit Order Posture**: All Take Profit targets (tp) are pre-staged resting broker limit orders, NEVER aggressive market orders. When price touches the target, it fills passively as a limit order.
+  * **Early-BE Ratchet Reclaim**: At +0.75R0 to +0.80R0 unrealized profit once price reclaims the local 15m structural swing shelf or intraday POC -> Move SL to Entry + 0.10R0 (100% Risk-Free lock).
 
 ---
 

@@ -46,3 +46,7 @@ Data/*.bak.xlsx
 *.tmp
 docs/telemetry/*.tmp
 
+
+*.tmp.xlsx
+Data/*.tmp.xlsx
+Data/**/*.tmp.xlsx

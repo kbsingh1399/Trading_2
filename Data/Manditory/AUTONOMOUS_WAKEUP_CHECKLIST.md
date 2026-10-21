@@ -9,6 +9,118 @@
 > **Cadence**: 20-Minute Cron Trigger (`0,20,40 * * * *` at 20th, 40th, and 60th/00th minute).  
 > **Strict Operational Invariant**: A cycle is NEVER completed upon prompt dispatch. A cycle is ONLY complete once BOTH Antigravity and Arena.ai have completed analysis, outputs are harvested and cross-verified via Co-Equal Council Discussion, and all necessary live MT5 actions (order punch, ratchet adjustment, order cancellation) are executed.
 
+## 🚨 MANDATORY INVIOLATE SUBAGENT SWARM & ARENA.AI DISPATCH GUARANTEE (OPERATOR MANDATE)
+> **NEVER OMIT, BYPASS, OR SKIP UNDER ANY CIRCUMSTANCES**:
+> 1. **Mandatory Subagent Swarm**: On EVERY 20-minute autonomous wake-up cron and on EVERY manual turn, the coordinator MUST physically invoke the 3 specialized subagents (Orderflow Analyst, Position Manager, Macro Risk Analyst) via invoke_subagent.
+> 2. **Mandatory Arena.ai Surgical Red-Team Dispatch**: On EVERY wake-up cycle, a surgical red-team prompt MUST be injected into Arena.ai via Chrome CDP on port 9222.
+> 3. **Live Profit Ratchets Do Not Excuse Omission**: When live orders fill and dynamic ratchets (Early-BE, Phase 0, Phase 1) fire on MT5, the coordinator must execute the ratchet IMMEDIATELY to secure capital, but MUST SIMULTANEOUSLY dispatch the subagent swarm and Arena prompt. No operational event ever excuses skipping the dual-track council.
+
+
+---
+
+
+## 🧠 THE CANONICAL WAKE-UP INQUEST: 8 MANDATORY SELF-INTERROGATION GATEWAYS
+
+Before evaluating data, touching code, or dispatching orders, the coordinator and all subagents MUST systematically self-interrogate through these 8 non-bypassable gateways:
+
+### Gateway 1: Mission, Runway & Macro Clock
+> *"What is our exact target, how much runway remains, and what is our exact dollar bridge?"*
+- **Primary Target**: Pass Phase 1 of Blueberry Markets evaluation (#5064568) by reaching **5,500.00 USD** equity.
+- **Runway & Deadline**: End of Friday, 23rd October 2026 (23:59 UTC). Calculate exact remaining hours.
+- **Dollar Bridge**: Distance = 5,500.00 USD - Current Equity.
+- **Macro Blackout & Session Clock**: Is there any Tier-1 macroeconomic release (CPI, PPI, FOMC, NFP) scheduled within +-30 minutes in Data/macro_calendar.json? Are we approaching the 21:30-22:30 UTC interbank FX rollover spread expansion?
+
+### Gateway 2: Capital Floor & Solvency Sentry
+> *"What are our exact cushions above the 4,775.00 USD Hard Floor and 4,795.00 USD Operating Buffer?"*
+- **Hard Floor Cushion**: Equity - 4,775.00 USD (Never breach under any condition; zero exceptions).
+- **Operating Buffer Cushion**: Equity - 4,795.00 USD (+20.00 USD defense cushion).
+- **Catastrophic Simultaneous Stopout Invariant**:
+  Worst-Case Stressed Equity = Current Equity - sum(all open and pending: Risk_i * 1.25 + 2.00) >= 4,775.00 USD.
+  Even under a total 4-asset flash-crash where every resting limit order fills and stops out at 1.25x stress simultaneously, equity MUST strictly remain >= 4,775.00 USD.
+- **Single-Fill Buffer Invariant**:
+  Stressed Equity Upon Fill = Current Equity - (Open Filled Risk * 1.25 + New Fill Risk * 1.25 + 2.00) >= 4,795.00 USD.
+
+### Gateway 3: 4-Slot Portfolio Capacity Audit
+> *"How many filled positions are running, and how many resting limit orders are staged?"*
+- **Slot Definition (Operator Mandate)**: A slot is considered filled ONLY when an order executes into an active position. Resting limit orders do NOT consume filled position slots.
+- **Capacity Limits**:
+  * Active Filled Positions: len(positions) <= 4 (MAX_CONCURRENT_POSITIONS = 4).
+  * Resting Limit Orders: len(pending) <= 5 (MAX_RESTING_LIMITS = 5).
+- **Orthogonal Cluster Coverage**: Are our 4 slots balanced across non-correlated clusters:
+  1. Slot 1: Indices (NAS100.p, SP500.p)
+  2. Slot 2: Crypto (BTCUSD.pi, ETHUSD.pi, SOLUSD.p)
+  3. Slot 3: Metals (XAUUSD.pi, XAGUSD.pi)
+  4. Slot 4: Forex (EURUSD.pi, GBPUSD.pi)
+
+### Gateway 4: Active Running Positions Re-Evaluation & Dynamic Ratchets
+> *"Are there any filled positions running right now, what is their R0 excursion, and have dynamic ratchets triggered?"*
+- **Floating P&L & R0 Excursion**: R = (Current Market Price - Entry Price) / R0.
+- **Dynamic Ratchet Execution**:
+  * **Phase Early-BE (+0.75R0 to +0.80R0)**: Move Stop Loss to Entry + 0.10 * R0 immediately. Trade becomes 100% risk-free, contingent risk drops to 0.00 USD (2.00 USD fee reserve), immediately freeing buffer cushion for other slots.
+  * **Phase 0 (+1.25R0)**: Move Stop Loss to Entry + 0.15 * R0.
+  * **Phase 1 (+1.65R0)**: Move Stop Loss to Entry + 0.80 * R0 (guaranteed profit locked).
+  * **Take Profit Target**: Verify TP front-runs opposing high-density liquidation magnet or Daily VWAP.
+  * **Time Decay Rule**: If trade age > 24 bars (6 hours) and gain < +0.20R0, execute market close.
+
+### Gateway 5: Resting Limit Orders Structural & Microstructure Sentry
+> *"Are our resting limit orders still structurally valid, or has the underlying market thesis degraded?"*
+- **Distance to Market**: Is price approaching the limit? Is a fill imminent?
+- **Structural Shelf Integrity**: Is the underlying 20/50 EMA, Session VWAP, or Value Area shelf still intact, or did price experience an adverse structural regime break?
+- **Whale Wall Persistence**: Inspect Sheet 18 (10_Whale_Orders) and Sheet 25 (17_Orderbook). Do the resting whale walls (>= $100K) still persist (>= 180s), or were they cancelled/pulled?
+- **Adverse Stop Clusters**: Inspect Sheet 23 (15_Hyperdash_Stops_Map). Has an adverse retail stop sweep cluster formed between current market price and our limit entry?
+- **Sentry Decision**: Ratify one of 3 explicit actions for every resting ticket:
+  1. **MAINTAIN**: Supporting walls intact, distance reasonable (<= 2.0 ATR), thesis valid.
+  2. **SLIGHT ADJUSTMENT**: Supporting whale wall or shelf relocated; adjust entry/SL/TP to match.
+  3. **CANCEL**: Supporting wall pulled/thinned > 50%, price drifted > 3.0 ATR away, or regime broke.
+
+### Gateway 6: Candidate Formulation & 5-Pillar Confluence Pipeline
+> *"Which candidate assets across the 4 clusters qualify right now for limit order staging?"*
+- **Spread Gate**: Crypto <= 25.0 bps, TradFi <= 5.0 bps.
+- **5-Pillar Confluence Stack**:
+  1. Spread Gate pass.
+  2. Multi-horizon taker CVD delta divergence/absorption (zc_div > 0.8, Spot > 0, Futures < 0).
+  3. Auction location: Extreme absorption (|Z| >= 2.0 to 3.5 SD in MEAN_REVERT) OR structural trend pullback (|Z| < 2.0 SD to EMA20/50 shelf in dominant trend).
+  4. Resting institutional whale walls (>= $100K, persistence >= 180s) to anchor SL safely outside [min_price, max_price].
+  5. Macro clearance (zero Tier-1 blackout).
+- **Autonomous Punch Mandate**: If an empty slot exists and a candidate passes all 5 pillars, IMMEDIATELY punch the passive limit order into MT5 without hesitation and without asking permission.
+
+### Gateway 7: Line-by-Line Study of All 32 Excel Sheets, Narrative Synthesis & Position Formulation (Operator Mandate)
+> *"Have we studied each and every line of all 32 Excel sheets, built a cohesive market narrative, and formulated our trade positioning directly from it?"*
+- **Mandatory Line-by-Line Examination**:
+  * The desk is strictly forbidden from skimming summary cards, relying on column averages, or treating the master Excel warehouse as a black box.
+  * Every cycle, coordinator and subagents MUST inspect and study *each and every line* across all 32 worksheets:
+    1. *Spot ETF & Macro Netflow (Sheets 00-02)*: Every row of daily net creations/redemptions and 1h-7d CEX netflows to confirm real spot accumulation vs distribution.
+    2. *Market Positioning & Crowding (Sheets 03-05)*: Exact Binance/OKX/Bybit LS account ratios to detect crowded retail traps.
+    3. *Hyperliquid L1 Whales (Sheet 06)*: Every whale wallet (0x...), open size, leverage, margin utilization, and liquidation price.
+    4. *Open Interest & Funding Carry (Sheets 07-09)*: Exact dollar OI changes and cross-exchange funding rates to differentiate true trend breakouts from fragile short squeezes.
+    5. *Liquidation Maps & Real-Time Tape (Sheets 10-17, 22)*: Continuous dollar-by-dollar liquidation ladders and forced liquidation prints to identify exact cascade boundaries [min_price, max_price] and multi-day max pain strikes.
+    6. *Resting Whale Orders (Sheets 18 & 25)*: Every resting order line (>= $100K USD) to verify order status, price level, remaining volume, and verified persistence (>= 180s).
+    7. *Technical & Auction Profiling (Sheet 19)*: 20/50/200 EMAs, Session VWAP, +-1.0/+-2.0 SD bands, VWAP Z-score, RSI-14, ATR-14, and Volume Profile POC/VAH/VAL.
+    8. *Retail Stop Order Ladder (Sheet 23)*: Exact retail stop loss clusters to identify sweep traps and liquidity voids.
+    9. *Continuous CVD Engine (Sheet 26)*: 1m, 5m, 15m, 1h Spot vs Futures taker volume, delta divergence (zc_div > 0.8), and absorption signatures.
+    10. *Breaking News & Macro Calendar (Sheets 27 & 28)*: Line-by-line inspection of geopolitical news and scheduled red-folder releases.
+- **Integrity Gate**: Confirm exactly 0 formula errors (#REF!, #DIV/0!, #VALUE!, #N/A) and 0 empty headers.
+- **Pipeline Health**: Confirm run_pipeline_continuous_daemon.py is cycling with the verified 5-minute rest interval and data freshness < 180s.
+- **Narrative Synthesis**: Synthesize the line-by-line data into an empirical multi-dimensional narrative (who is dominating the tape, where the trapped liquidity sits, whether market is in Model 1 Mean Reversion or Model 2 Trend Pullback).
+- **Position Formulation**: Ground the exact execution ticket directly in the narrative:
+  * Entry placed passively behind resting whale wall and demand/supply shelf (never crossing spread).
+  * Stop Loss anchored safely outside [min_price, max_price] of nearest liquidation/stop band with >= 0.35-0.50 ATR buffer.
+  * Take Profit front-running opposing liquidation magnet or Volume Profile shelf by 5-10 bps.
+  * Risk sized between 10.00 and 25.00 USD, guaranteeing 4,795.00 USD operating buffer on fill and 4,775.00 USD hard floor under catastrophic stopout.
+
+### Gateway 8: Hardware Health, Background Daemons & Workspace Hygiene
+> *"Is system RAM optimized, are all 6 daemons running, and is the workspace pristine?"*
+- **RAM Check**: Is RAM usage <= 70%? If not, execute scripts/free_ram.ps1 while strictly preserving Microsoft Edge.
+- **6 Always-On Persistent Daemons**:
+  1. Continuous Pipeline Daemon (run_pipeline_continuous_daemon.py, 5m rest interval)
+  2. Telemetry Git Sync Daemon (autonomous_telemetry_git_daemon.py, pushes every 60s)
+  3. Arena Completion Daemon (arena_completion_daemon.py --daemon on port 9222)
+  4. Autonomous Swarm Cron (schedule cron on 0,20,40 * * * *)
+  5. Web2API Council Daemon (gemini_web2api.py on port 8081)
+  6. Heretic Engine Daemon (heretic_daemon.py on port 8083)
+- **Zero Scratch Litter**: Prune all temporary scripts immediately after verification.
+- **Turn Ledger Append**: Append turn record to .agents/memory/session_chat_history.md.
+
 ---
 
 ## 🔄 THE 10-STEP JOINT-COMPLETION WAKE-UP SPRINT
@@ -44,9 +156,24 @@ flowchart TD
 ---
 
 ### Step 1: System Health, Master Excel Data Warehouse & Pipeline Verification
-- [ ] **Master Database Freshness & Integrity Check (`Data/DataBase_Trading.xlsx`)**:
-  - Verify that `Data/DataBase_Trading.xlsx` contains all **29 canonical worksheets** terminating at Sheet 28 (`19_Calendar`).
-  - Confirm zero formula errors (`#REF!`, `#DIV/0!`, `#VALUE!`, `#N/A`), zero empty headers, and valid data types.
+- [ ] **MANDATORY 32-SHEET MASTER EXCEL INSPECTION CONFIRMATION**:
+  - Physically load and confirm reading across ALL **32 canonical worksheets** of `Data/DataBase_Trading.xlsx` (Sheet 00 `00_MT5_Account_Telemetry` through Sheet 31 `19_Calendar`).
+  - Output an explicit confirmation score verifying row counts, column counts, freshness timestamps, and confirming exactly zero formula errors (`#REF!`, `#DIV/0!`, `#VALUE!`, `#N/A`) and zero empty headers across all 32 sheets. Nothing may ever be skipped or missed.
+  - Require the exact same 32-sheet verification attestation from Arena.ai on every council cycle.
+- [ ] **MANDATORY LINE-BY-LINE EXCEL STUDY & NARRATIVE SYNTHESIS (OPERATOR INVARIANT)**:
+  - Systematically study *each and every line* across all worksheets:
+    * Spot ETF & CEX Netflows (Sheets 00-02): evaluate institutional net accumulation vs distribution line-by-line.
+    * Retail Skew & Crowding (Sheets 03-05): examine Long/Short percentages across Binance, OKX, Bybit line-by-line.
+    * Hyperliquid L1 Whales (Sheet 06): review top whale wallet positions, leverage, and liquidation points line-by-line.
+    * Open Interest & Funding (Sheets 07-09): inspect OI expansion and funding carry costs line-by-line.
+    * Liquidation Maps & Tape (Sheets 10-17, 22): trace continuous liquidation clusters line-by-line to map [min_price, max_price].
+    * Resting Whale Orders (Sheets 18 & 25): read every whale bid/ask line (>= $100K USD) to verify persistence (>= 180s).
+    * Quantitative Technicals (Sheet 19): check 20/50/200 EMAs, Session VWAP SD bands, Z-score, RSI, ATR, and POC/VAH/VAL.
+    * Stop Order Maps (Sheet 23): check retail stop clusters line-by-line to avoid sweep traps.
+    * Continuous CVD (Sheet 26): inspect 1m/5m/15m/1h Spot vs Futures taker delta divergence and absorption.
+    * Breaking News & Calendar (Sheets 27 & 28): read upcoming economic events and news headlines line-by-line.
+  - Synthesize findings into a rigorous **Market Narrative** (tape dominance, liquidity traps, regime classification).
+  - Derive the exact **Position of Trade** (Entry behind whale bunker, SL outside sweep band, TP front-running magnet, lot sizing).
 - [ ] **Continuous Data Pipeline Daemon Audit**:
   - Verify `python Terminal/run_pipeline_continuous_daemon.py` is active in background tasks.
   - Confirm the pipeline is cycling through all 28 data modules with an exact 5-minute (300-second) rest window between completed cycles.
@@ -72,19 +199,32 @@ flowchart TD
   - `Stressed Loss = Nominal Risk * 1.25 + 2.00 USD`.
   - `Stressed Equity = Current Equity - sum(Stressed Loss_i) >= 4,795.00 USD`.
   - Enforce expanded risk envelope: **15.00 to 25.00 USD per trade**.
-  - Capacity: Exactly 1 position at up to 25.00 USD risk, or up to 2 concurrent positions at 15.00 USD risk (or unlocked capacity when open trades are locked in Early-BE profit).
+  - 4-Slot Portfolio Capacity (Operator Directive):
+    * Slots are considered filled ONLY when an order executes into an active position. Resting limits do NOT consume filled slots.
+    * Up to 4 parallel candidate limit orders can be staged across orthogonal clusters (Indices, Crypto, Metals, Forex).
+    * Single-fill safety: Stressed equity upon fill >= 4,795.00 USD (preserves +20.00 USD buffer).
+    * Worst-case catastrophic safety: Simultaneous stopout of all resting orders strictly preserves >= 4,775.00 USD hard floor.
+    * Early-BE ratchet release: Once filled and advanced to +0.75R0, SL moves to Entry + 0.10R0, dropping risk reserve to  and freeing buffer headroom.
 
 ---
 
-### Step 3: Active Position & Dynamic Profit Ratchet Audit
-- [ ] Query active positions (`mt5.positions_get()`) and pending orders (`mt5.orders_get()`).
-- [ ] For each open position, enforce the **Frozen R0 Piecewise Dynamic Profit Ratchet**:
-  - **Phase Early-BE (Adaptive Microstructure Breakeven)**: When price reaches `Entry + 0.75 * R0` to `0.80 * R0`, move SL to `Entry + 0.10 * R0` (zero-risk lock + broker spread buffer).
-  - **Phase 0 (Risk Cut)**: When price reaches `Entry + 1.25 * R0`, move SL to `Entry + 0.15 * R0`.
-  - **Phase 1 (Profit Lock)**: When price reaches `Entry + 1.65 * R0`, move SL to `Entry + 0.80 * R0`.
-  - **Take Profit**: Front-run opposing liquidation magnet or Daily VWAP by 3.8–10 bps.
-  - **Time Decay**: Exit at market if profit remains < +0.20R0 after 24 bars (6 hours).
-- [ ] For pending limit orders: cancel or adjust any order whose underlying whale wall or structural support has degraded.
+### Step 3: Mandatory Re-Evaluation of All Running Positions & Resting Limit Orders
+- [ ] **Running Open Positions Audit (`mt5.positions_get()`)**:
+  - Calculate live floating P&L, current excursion in R0 units (`R = (Price - Entry) / R0`).
+  - Enforce the **Frozen R0 Piecewise Dynamic Profit Ratchet**:
+    * **Phase Early-BE (+0.75R0 to +0.80R0)**: Move SL to `Entry + 0.10 * R0` (100% risk-free lock + broker spread buffer). Note: Drops contingent risk reserve to $2.00, unlocking secondary slots.
+    * **Phase 0 (+1.25R0)**: Move SL to `Entry + 0.15 * R0`.
+    * **Phase 1 (+1.65R0)**: Move SL to `Entry + 0.80 * R0`.
+    * **Take Profit**: Verify TP front-runs opposing high-density liquidation magnet or Daily VWAP.
+    * **Time Decay**: Exit at market if profit remains < +0.20R0 after 24 bars (6 hours).
+- [ ] **Resting Limit Orders Re-Evaluation Audit (`mt5.orders_get()`)**:
+  - For every resting pending limit order (e.g. Ticket #19162262 NAS100, Ticket #19162276 BTC):
+    * **Structural Shelf Integrity**: Confirm whether the underlying 20/50 EMA, Session VWAP, or VAL/VAH shelf remains valid.
+    * **Whale Wall Persistence**: Inspect Sheet 18 (`10_Whale_Orders`) and Sheet 28 (`17_Orderbook`) to confirm supporting whale walls (>= $100K) still persist (>= 180s). If the supporting wall cancelled or degraded, immediately cancel or re-anchor the limit order.
+    * **Liquidation & Stop Sweep Dynamics**: Ensure no adverse retail stop sweep cluster has formed between current price and the limit entry.
+    * **Distance & Opportunity Cost**: If price moved >= 3.0R0 away from the limit order without filling, re-evaluate whether to cancel or reposition.
+    * **Stressed Solvency Check**: Verify that all resting orders fit within the portfolio's 4-slot capacity without violating the 4,795.00 USD operating buffer.
+- [ ] **Mandatory Output**: Output a dedicated "Active Positions & Limit Orders Re-Evaluation Table" on every cycle.
 
 ---
 

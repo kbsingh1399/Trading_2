@@ -1,12 +1,12 @@
 {
   "status": "HEALTHY",
-  "cadence_seconds": 600.0,
-  "total_iterations": 8,
+  "cadence_seconds": 900.0,
+  "total_iterations": 1,
   "consecutive_failures": 0,
-  "last_run_utc": "2026-10-19 08:45:11 UTC",
-  "last_duration_seconds": 216.31,
-  "pipeline_duration_seconds": 210.66,
+  "last_run_utc": "2026-10-19 11:27:09 UTC",
+  "last_duration_seconds": 33.99,
+  "pipeline_duration_seconds": 29.01,
   "sheet_count": 43,
   "com_verified": true,
-  "next_run_utc": "2026-10-19 08:58:47 UTC"
+  "next_run_utc": "2026-10-19 11:42:43 UTC"
 }

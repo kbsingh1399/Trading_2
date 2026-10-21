@@ -64,7 +64,8 @@ def _loss(bridge, row: dict) -> float:
 
 
 def assert_joint_fill_safe(bridge, symbol: str, direction: str, volume: float,
-                           entry: float, sl: float, *, min_risk_usd: float = MIN_RISK_USD) -> dict:
+                           entry: float, sl: float, *, min_risk_usd: float = MIN_RISK_USD,
+                           is_limit_order: bool = False) -> dict:
     """Raise ValueError unless all simultaneous fills preserve floor + $20.
 
     Read all native inventories immediately before placing an order. A failed
@@ -82,9 +83,18 @@ def assert_joint_fill_safe(bridge, symbol: str, direction: str, volume: float,
     if positions is None or pending is None or not isinstance(positions, (list, tuple)) or not isinstance(pending, (list, tuple)):
         raise ValueError("risk_inventory_unavailable")
 
-    # Canonical Capacity Sentry: filled positions + pending orders cannot exceed MAX_FILLED
-    if len(positions) >= MAX_FILLED or len(positions) + len(pending) >= MAX_FILLED:
-        raise ValueError("joint_fill_capacity_exceeded")
+    from Terminal.policy import MAX_RESTING_LIMITS
+    if is_limit_order:
+        # Operator Directive: A slot is filled ONLY when an order is executed/filled.
+        # Resting limit orders do not consume active position slots.
+        if len(positions) >= MAX_FILLED:
+            raise ValueError("filled_positions_capacity_exceeded")
+        if len(pending) >= MAX_RESTING_LIMITS:
+            raise ValueError("resting_limits_capacity_exceeded")
+    else:
+        # Canonical Capacity Sentry: filled positions + pending orders cannot exceed MAX_FILLED
+        if len(positions) >= MAX_FILLED or len(positions) + len(pending) >= MAX_FILLED:
+            raise ValueError("joint_fill_capacity_exceeded")
 
     direction = str(direction).upper()
     entry, sl = _positive(entry, "proposed_entry"), _positive(sl, "proposed_sl")
@@ -99,15 +109,33 @@ def assert_joint_fill_safe(bridge, symbol: str, direction: str, volume: float,
     if not min_risk_usd <= nominal <= effective_max_risk:
         raise ValueError(f"proposed_risk_out_of_bounds:{nominal:.2f}")
 
-    # Canonical Joint Risk Floor Defense:
-    # Reserve every currently resting pending order's contingent loss alongside filled positions.
-    # Stressed worst-case equity under simultaneous stopout must strictly preserve HARD_FLOOR_USD + BUFFER_USD (4,795.00 USD).
-    existing = sum(_loss(bridge, row) for row in [*positions, *pending])
-    total = existing + nominal * STOP_STRESS_MULTIPLIER + MIN_EXECUTION_COST_USD
-    post_loss = min(balance, equity) - total
-    if post_loss < HARD_FLOOR_USD + BUFFER_USD:
-        raise ValueError(f"joint_fill_floor_breach:post_loss={post_loss:.2f}"
-                         f"<required={HARD_FLOOR_USD + BUFFER_USD:.2f}")
+    if is_limit_order:
+        # Invariant A: Incremental fill preserves Operating Buffer (4,795.00 USD)
+        active_filled_loss = sum(_loss(bridge, row) for row in positions)
+        order_stress_loss = nominal * STOP_STRESS_MULTIPLIER + MIN_EXECUTION_COST_USD
+        post_fill_loss = min(balance, equity) - (active_filled_loss + order_stress_loss)
+        if post_fill_loss < HARD_FLOOR_USD + BUFFER_USD:
+            raise ValueError(f"joint_fill_floor_breach:post_fill={post_fill_loss:.2f}"
+                             f"<required={HARD_FLOOR_USD + BUFFER_USD:.2f}")
+
+        # Invariant B: Catastrophic joint stopout of all orders strictly preserves Hard Floor (4,775.00 USD)
+        total_stress_loss = active_filled_loss + sum(_loss(bridge, row) for row in pending) + order_stress_loss
+        worst_case_equity = min(balance, equity) - total_stress_loss
+        if worst_case_equity < HARD_FLOOR_USD:
+            raise ValueError(f"worst_case_hard_floor_breach:worst_case={worst_case_equity:.2f}"
+                             f"<hard_floor={HARD_FLOOR_USD:.2f}")
+        post_loss = post_fill_loss
+        total = total_stress_loss
+    else:
+        # Canonical Joint Risk Floor Defense:
+        # Reserve every currently resting pending order's contingent loss alongside filled positions.
+        # Stressed worst-case equity under simultaneous stopout must strictly preserve HARD_FLOOR_USD + BUFFER_USD (4,795.00 USD).
+        existing = sum(_loss(bridge, row) for row in [*positions, *pending])
+        total = existing + nominal * STOP_STRESS_MULTIPLIER + MIN_EXECUTION_COST_USD
+        post_loss = min(balance, equity) - total
+        if post_loss < HARD_FLOOR_USD + BUFFER_USD:
+            raise ValueError(f"joint_fill_floor_breach:post_loss={post_loss:.2f}"
+                             f"<required={HARD_FLOOR_USD + BUFFER_USD:.2f}")
     # Correlation cluster governor: prevent compounding directional exposure,
     # but allow opposing directions (delta hedges) across orthogonal/hedging setups.
     from Terminal.risk.floor_defense import FloorDefense

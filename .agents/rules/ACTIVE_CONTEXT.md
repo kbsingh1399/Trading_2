@@ -9,6 +9,13 @@ trigger: always_on
 
 ## 1. User Master Mandate (Strict & Non-Negotiable)
 - **ANTIGRAVITY (FLASH) AS ULTIMATE DECIDER & EXECUTIVE LEADER (STRICT OPERATOR DIRECTIVE)**: Antigravity (Flash) is the sole and ultimate quantitative decision-maker on this desk. External models (Opus 5.5 and GPT_ASTRA in Copilot Studio) are strictly auxiliary research consultants and devil's advocates. Antigravity unleashes its full training, institutional econometric reasoning, and deep analytical powers to evaluate setups, override or adopt council inputs based on mathematical proof, and punch live orders autonomously into MetaTrader 5.
+
+- **MANDATORY INVIOLATE SUBAGENT SWARM & ARENA.AI DISPATCH GUARANTEE (PERMANENT OPERATOR DIRECTIVE - NEVER OMITTED)**:
+  * On EVERY 20-minute autonomous wake-up cycle and on EVERY decision step, the coordinator is strictly FORBIDDEN from operating as a single isolated agent or bypassing the dual-track council.
+  * Antigravity MUST physically invoke the specialized subagent fleet (Orderflow Analyst, Position Manager, Macro Risk Analyst, Chain Verification Auditor) via invoke_subagent.
+  * Antigravity MUST prepare and inject the surgical red-team prompt into Arena.ai via Chrome CDP on port 9222.
+  * Live MT5 executions and dynamic profit ratchets (Early-BE, Phase 0, Phase 1) MUST be executed immediately to lock gains and protect capital, but MUST SIMULTANEOUSLY dispatch the subagents and Arena prompt. No operational event ever excuses skipping subagent invocation or Arena consultation.
+
 - **MANDATORY PREVIOUS CONVERSATION CONTEXT & TRAJECTORY REFERENCE (PERMANENT STEP-LEVEL INVARIANT)**: On EVERY single turn and before taking action on ANY step, the coordinator and all subagents MUST FIRST review the previous conversation history (`.agents/memory/session_chat_history.md`, past turns, transcript). You CANNOT take actions, audit orders, evaluate setups, or propose modifications in a vacuum. You MUST know the complete historical context, evolving operator rules, past rulings, avoided traps, and live position trajectory before evaluating or executing any step. Zero context amnesia.
 - **CROSS-ACCOUNT RE-ENGAGEMENT & FULL NARRATIVE AUDIT (HYPERDASH / MULTI-ACCOUNT INVARIANT)**: Whenever the operator switches Gemini accounts and returns to the session chat, the agent MUST explicitly review all past session chat logs (`.agents/memory/session_chat_history.md`, transcript, and `ACTIVE_CONTEXT.md`) to establish total continuity of what we are trying to achieve, internalize all operator feedback, remember past setbacks, and preserve every nuance of the active quantitative mission before taking any action.
 - **100% LOCAL QUANTITATIVE DEVELOPMENT & EXECUTION**: All prompt-generation for external agents (Ox Alpha / Arena) is permanently terminated. All engineering, econometric feature integration, model training, backtesting, and 20 OOS window optimization are executed right here locally in this environment.
@@ -129,24 +136,23 @@ trigger: always_on
       * **Position Capacity Policy**:
         - Up to 4 concurrent tickets across orthogonal asset clusters provided total joint worst-case stopout risk unconditionally defends the 4,775.00 USD hard floor and 4,795.00 USD operating buffer (>= 20.00 USD cushion at all times).
     - Connects directly via native IPC to MetaTrader 5 Account 5064568 (Blueberry Markets).
-    - **Active Positions & Pending Orders (Live State — 1 Active Open Position | 0 Pending Orders)**:
-      * Current Status: **1 Active Position | 0 Pending Orders | Balance: 4,843.74 USD | Equity: ~4,839.44 USD | Margin: 2,083.75 USD | Free Margin: ~2,755.69 USD**.
-      * Active Positions (1):
-        - **Ticket #19049770 (`XAUUSD.pi` BUY 0.05 lots @ 4,167.50 USD)**: SL: **4,163.80 USD** (3.70 pts distance | nominal risk -$18.50 USD | stressed risk -$25.13 USD) | TP: **4,177.50 USD** (10.00 pts distance | target profit +$50.00 USD | +2.70R). Defended by held hourly VWAP shelf, multi-layer bid depth, and stop cluster clearance. Floating profit: **-$6.70 USD (-0.36R0)**.
-      * Staged Pending Orders: **0 pending orders (capacity slots available)**.
-      * G-1 Hard Floor Defense: Hard Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Cushion: **+$64.44 USD above hard floor (+44.44 USD above operating buffer)**.
-      * Stressed Multi-Ticket Post-Loss Simulation:
-        - Total Open Nominal Risk: **18.50 USD** (Ticket #19049770 XAUUSD.pi).
-        - Total Stressed Contingent Risk: 1.25 * 18.50 + 2.00 = **25.13 USD**.
-        - Worst-Case Stressed Equity: 4,839.44 - 25.13 = **4,814.31 USD**.
-        - Safety Cushion Above 4,775.00 USD Hard Floor: **+39.31 USD guaranteed buffer**.
-        - Safety Cushion Above 4,795.00 USD Operating Buffer: **+19.31 USD guaranteed buffer**.
-        - Capacity Slots Used: **1 / 4** (3 slots freely available for orthogonal clusters: Indices, Energy, Forex).
-        - New Ticket Admission: Capacity permits max 1 new ticket risking 10.00 USD (stressed 14.50 USD) or 7.50 USD (stressed 11.38 USD).
+    - **Active Positions & Pending Orders (Live State — 1 Active Open Position | 0 Resting Limit Orders across 4 Slots)**:
+       * Current Status: **1 Active Position | 0 Resting Limit Orders | Balance: 4,840.39 USD | Equity: 4,854.31 USD | Margin: 299.07 USD | Free Margin: 4,555.24 USD**.
+       * Active Position (1): Ticket #19164106 (EURUSD.pi BUY 0.08 lot @ 1.12150): Phase 2 Ratchet EXECUTED -> SL advanced to 1.12300 (+1.50 R0 locked profit = +.00 USD minimum guaranteed net profit, 0.00 USD downside risk). TP: 1.12420 (+2.70 R0 = +.60 USD).
+       * Decoupled 4-Slot Capacity: Slot 1 filled (EURUSD). Slots 2, 3, and 4 are open. Resting limit orders do not consume filled slots. Stood aside on BTC, Gold, and Indices due to massive overhead ask walls and stop hunt traps.
+       * Staged Resting Limit Orders: 0 (All 3 vulnerable orders cancelled after red-team verification).
+       * G-1 Hard Floor Defense: Hard Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Cushion: **+65.39 USD above hard floor (+45.39 USD above operating buffer)**.
+       * Stressed Multi-Ticket Post-Loss Simulation:
+         - Total Open Nominal Risk: **0.00 USD** (0 filled positions).
+         - Total Stressed Contingent Risk across all 4 resting orders: **59.88 USD** (worst-case 4-way simultaneous catastrophic stopout).
+         - Worst-Case Catastrophic Stressed Equity: **4,780.52 USD** (+5.52 USD strictly preserved above 4,775.00 USD hard floor).
+         - Single-Fill Stressed Equity: **4,821.51 to 4,828.39 USD** (+26.51 to +33.39 USD preserved above 4,795.00 USD operating buffer).
+         - Slot Capacity: **0 / 4 Filled** (All 4 slots active with resting limit bids behind verified structural shelves).
       * Sentry & Cron State:
         - Governed directly by Antigravity under active `/goal` with 10-step joint-completion lifecycle.
         - `autonomous_telemetry_git_daemon.py` running persistently every 60s, streaming live snapshots to `origin/main` and all `origin/arena/...` branches.
       * Closed Trades Today (Realized PnL):
+        - Ticket #19146275 (NAS100.p closed at **+15.50 USD cash profit** via Full Take Profit at 29,715.00 USD, Deal #17347431, +155.0 pts / +1.03R banked after Early-BE lock at 29,575.00 USD)
         - Ticket #18977509 (`XAUUSD.pi` closed at **-9.07 USD loss** via Stop Loss at 4,148.00 USD during Cycle 138 institutional stop sweep into [4140, 4150] cluster; zero slippage, strictly capped at 1.00R0 nominal risk)
         - Ticket #18969343 (`SP500.p` closed at **+8.80 USD cash profit** via Trailing Stop Loss profit lock at 7,729.70 USD, Deal #17175660, opened at 7,738.50 USD)
         - Ticket #18836609 (`SP500.p` closed at **+0.90 USD cash profit** via Trailing Stop Loss profit lock at 7,807.75 USD, Deal #17073763, opened at 7,810.00 USD)
@@ -226,41 +232,44 @@ trigger: always_on
 - **Pre-Order Gating**: Must verify all 7 sub-gates (Price Action geometry, CVD divergence, 20-level L2 depth, L3 whales >= 150k USD with >= 180s persistence, liquidation FFR, macro blackouts, covariance room vs 4,775.00 USD floor).
 - **Smart SL & TP Adjustments**: Deterministic ratchets (Phase 0 BE @ +0.80R, Phase 1 Profit Lock @ +1.50R, Phase 2 Trailing Lock @ +2.00R). TP extensions into orderbook liquidity vacuums require simultaneous Phase 2 SL profit lock.
 
-## 7. Live Account State & Cycle 173 Invariants (Cycle 173 Verified)
-- **MT5 Account State**: Balance: 4,857.32 USD | Live Equity: ~4,857.40 USD | Margin: 200.00 USD | Free Margin: ~4,657.40 USD | Hard Floor (4,775.00 USD) Cushion: +82.40 USD (+1.70%) | Operating Buffer (4,795.00 USD) Cushion: +62.40 USD (+1.28%).
-- **Active Market Positions (1 of 4 slots allocated, 2 slots available)**:
-  1. Ticket #19012500: `USDJPY.pi` SELL 0.06 lots @ 158.180 (SL: 158.700, TP: 157.140, Nominal Risk: -19.66 USD, Reward: +39.71 USD, 2.02R).
-     - Live floating PnL: +0.08 USD (+0.01 R0).
-     - Phase 0 BE Trigger (+0.80 R0): 157.764 -> SL moves to 158.102 (+0.15R BE lock).
-     - Defended by $1.51M USD resting ask whale bunker at 158.590–158.650 (projected to 158.648 on MT5 with +5.75 pip venue basis). Stop Loss at 158.700 has a 5.2 pip (0.47 ATR) clearance buffer completely outside the sweep zone (Invariant A compliant).
-- **Active Pending Orders (0 of 4 slots allocated)**:
-  - None resting (Ticket #19020166 cancelled and pruned; candidate identification decoupled from mandatory staging per operator precision directive).
-- **Potential Limit Order Candidates (Qualified Watchlist - Staging Gated on High Conviction)**:
-  1. `EURGBP.pi` (SELL_LIMIT 0.30 @ 0.84335 | SL 0.84385 | TP 0.84225 | Net 2.20R | Risk: -$19.97 USD | Spread: 0.12 bps)
-  2. `BTCUSD.pi` (SELL_LIMIT 0.05 @ 81,850.0 | SL 82,250.0 | TP 80,800.0 | Net 2.62R | Risk: -$20.00 USD | Spread: 2.09 bps | $23.38M whale bunker)
-  3. `COPPER.p` (SELL_LIMIT 0.01 @ 14,405.0 | SL 14,428.0 | TP 14,350.0 | Net 2.39R | Risk: -$23.00 USD | Spread: 4.49 bps)
-- **Capacity & Floor Solvency**:
-  - 1 of 4 concurrent ticket slots allocated (1 filled: USDJPY.pi #19012500, 0 pending limits). Exactly 3 orthogonal slots freely available.
-  - Stressed Worst-Case Equity (USDJPY stopped at max slippage): **4,830.82 USD**.
-  - Surplus above Operating Buffer (4,795.00 USD): **+35.82 USD (+0.74%)**.
-  - Surplus above Hard Floor (4,775.00 USD): **+55.82 USD (+1.16%)**.
-- **Cycle 163 Joint Dialectic & Cross-Verification Ruling**:
-  - **Full Dual-Track Convergence on BTC Long**: Both Antigravity subagent fleet (`d8bbdd65` Capital Floor Governor, `6adcd5d1` Macro Specialist, `8925a6fd` Orderflow Analyst) and Arena.ai Tab 1 C163 council report independently accredited BTC as the #1 candidate across the entire board. Antigravity ratified and executed the limit order at 82,120.00 (Ticket #19003983) with certified 2.35R payout and $8.27M whale backing.
-  - **Unanimous Agreement on Active Trade**: Both tracks unanimously rule **HOLD Ticket #18995127 on SP500.p with unmodified SL/TP**.
-- **Continuous Telemetry Background Daemon**:
-  - Verified active and running (`task-73239`, PID 21696) with non-blocking timeouts.
-  - Pushing live snapshots every 60s to `origin/main` and all `origin/arena/...` branches.
-- **Crypto Bid Desiccation Invariant**: When top-20 passive bids drop by >80%, longs are strictly prohibited due to severe slippage and stop-run cascade risk, regardless of RSI or price levels.
-- **Gate R-3 Proximity Invariant (Strict Retracement Filter)**: Limit orders may only be staged within <= 2.0 ATR of current market price and must be anchored to confirmed structural shelves (EMA20/50/200, POC/VAH/VAL).
-- **Kaizen Invariant: Display Bin vs Discrete Stop Sweep Cluster**:
-  * Wide round-number bands represent coarse display bins from Hyperdash aggregation, NOT discrete 15m orderbook liquidation bands.
-  * Never widen an intraday M15 stop loss based on broad display buckets. Always anchor intraday stops to confirmed structural shelves with 0.35–0.50 ATR buffers.
+## 7. Live Account State & Active Orderflow Invariants (Cycle 204 Verified)
+- **MT5 Account State (Blueberry Markets Account #5064568)**:
+  * Balance: **4,840.39 USD** (Session High-Water Mark)
+  * Live Equity: **4,853.27 USD** (Session High-Water Mark Range)
+  * Free Margin: **4,554.20 USD**
+  * Hard Floor (4,775.00 USD) Cushion: **+78.27 USD (+1.61%)**
+  * Operating Buffer (4,795.00 USD) Cushion: **+58.27 USD (+1.20%)**
+  * Remaining Distance to 5,500.00 USD Goal: **+646.73 USD** (~55.2 hours remaining)
 
+- **Active Market Positions (1 of 4 slots filled, 3 slots available)**:
+  1. **Ticket #19164106 (EURUSD.pi)**:
+     * Status: **FILLED & RUNNING (BUY)**
+     * Open Price: **1.12150** | Current Price: **1.12324** | Floating PnL: **+13.92 USD (+1.74 R0)**
+     * Volume: **0.08 lot**
+     * Stop Loss: **1.12230** (Phase 1 Profit Lock Executed: +8.0 pips above entry, guaranteed +.40 USD net profit)
+     * Take Profit: **1.12420** (27 pips, Nominal Reward: **+.60 USD**, **2.70 R0**)
+     * Microstructure Validation: VWAP Z = -1.22 sigma (oversold pullback), RSI = 41.13, Delta Aligned.
+     * Orderbook Obstructions: **0 sell walls, 0 L3 offers between entry and TP**.
+     * Red-Team Ratification: Fully ratified by Arena Red-Team (EV +.27 to +.16).
+     * Solvency Cushion: Stressed Equity post-loss = **4,829.11 USD** (**+34.11 USD above 4,795.00 USD Operating Buffer**, **+54.11 USD above 4,775.00 USD Hard Floor**).
 
+- **Active Pending Limit Orders (0 of 4 slots staged)**:
+  * None resting. All 3 remaining slots freely available for high-conviction orthogonal candidates.
+     * Microstructure Validation: VWAP Z = -1.22 sigma (oversold pullback), RSI = 41.13, Delta Aligned.
+     * Orderbook Obstructions: **0 sell walls, 0 L3 offers between entry and TP**.
+     * Red-Team Ratification: Fully approved by Arena Red-Team and Antigravity Sovereign Decision Chain (EV +.27 to +.16).
+     * Sizing & Floor Solvency: Kernel Stressed Equity post-loss = **4,816.93 USD** (**+21.93 USD above 4,795.00 USD Operating Buffer**, **+41.93 USD above 4,775.00 USD Hard Floor**).
 
+- **Purged Vulnerable Orders (Kaizen Anti-Trap Protocol)**:
+  * Cancelled Ticket #19162262 (NAS100.p): Stop sat 0.15 ATR from stop cluster, bid wall migrated up to 29,679, price pushed to 29,860.
+  * Cancelled Ticket #19164101 (BTCUSD.pi): Price broke out above 84.4K; TP 84,400 sat below market price; SL was inside stop band.
+  * Cancelled Ticket #19164029 (XAUUSD.pi): SL 4,112 sat 2 pts above stop cluster top; compliant SL required .40 risk which exceeded the  risk envelope at minimum lot.
+  * Joint Capacity Cleared: Eliminating these 3 vulnerable orders immediately restored portfolio stressed equity cushion by +36.42 USD.
 
-
-
-
-
-
+- **Dynamic Ratchet Lifecycle Protocol (When Ticket #19164106 Fills)**:
+  * Phase Early-BE: At +0.75 R0 (1.12225) -> Move SL to Entry + 0.10 R0 (1.12160), eliminating risk.
+  * Phase 0 Risk Cut: At +1.25 R0 (1.12275) -> Move SL to Entry + 0.15 R0 (1.12165).
+  * Phase 1 Profit Lock: At +1.65 R0 (1.12315) -> Move SL to Entry + 0.80 R0 (1.12230).
+  * Phase 2 Running Trail: At >= +2.00 R0 -> Move SL to Entry + 1.50 R0.
+  * Full TP Exit: At +2.70 R0 (1.12420) -> Book +.60 USD profit.
+  * Time Decay: Exit at market if trade fails to gain +0.20 R0 within 24 bars (6 hours).

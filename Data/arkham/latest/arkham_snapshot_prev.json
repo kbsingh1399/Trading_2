@@ -1,35 +1,28 @@
 {
-  "as_of_utc": "2026-10-19 00:28:49 UTC",
+  "as_of_utc": "2026-10-21 11:30:07 UTC",
   "source": "Arkham Intelligence Upgraded Harvester (arkm.com via Chrome CDP)",
-  "filter_applied": "USD >= $100K",
-  "feed_status": "STREAMING_ACTIVE",
-  "is_feed_available": true,
-  "market_flow_sentiment": "NEUTRAL_BALANCED_FLOW",
+  "filter_applied": "",
+  "feed_status": "CONNECTED_NO_TRANSFERS",
+  "is_feed_available": false,
+  "market_flow_sentiment": "UNAVAILABLE_INSUFFICIENT_DATA",
   "aggregate_metrics": {
-    "total_transfers_monitored": 23,
-    "total_observed_volume_usd": 2510130000.0,
+    "total_transfers_monitored": 0,
+    "total_observed_volume_usd": 0,
     "exchange_inflow_events": 0,
     "exchange_outflow_events": 0,
     "market_maker_events": 0,
-    "large_whale_alerts_count": 23,
+    "large_whale_alerts_count": 0,
     "total_inflow_volume_usd": 0,
     "total_outflow_volume_usd": 0,
     "net_flow_usd": 0
   },
-  "bitcoin_macro_explorer": {
-    "price_usd": 82037.0,
-    "change_24h_pct": "+1.05%",
-    "change_7d_pct": "-1.92%",
-    "change_30d_pct": "+1.33%",
-    "volume_24h_usd": 19860000000.0,
-    "market_cap_usd": 1650000000000.0
-  },
+  "bitcoin_macro_explorer": {},
   "asset_breakdown": {
     "BTC": {
       "inflow_usd": 0.0,
       "outflow_usd": 0.0,
       "tx_count": 0,
-      "whale_txs": 14
+      "whale_txs": 0
     },
     "ETH": {
       "inflow_usd": 0.0,
@@ -59,43 +52,10 @@
       "inflow_usd": 0.0,
       "outflow_usd": 0.0,
       "tx_count": 0,
-      "whale_txs": 9
+      "whale_txs": 0
     }
   },
-  "trending_institutional_entities": [
-    {
-      "name": "QiDao Protocol (Mai)",
-      "holdings_usd": "$196,288,648.85",
-      "change_pct_24h": "0.01%",
-      "largest_holding": "MIMATIC (188.53M)",
-      "active_wallets": "97",
-      "entity_url": "https://arkm.com/explorer/entity/mai-finance"
-    },
-    {
-      "name": "GMX",
-      "holdings_usd": "$291,733,403.16",
-      "change_pct_24h": "0.07%",
-      "largest_holding": "USDC (86.82M)",
-      "active_wallets": "1,012",
-      "entity_url": "https://arkm.com/explorer/entity/gmx"
-    },
-    {
-      "name": "Justin Sun",
-      "holdings_usd": "$2,262,703,333.44",
-      "change_pct_24h": "0.37%",
-      "largest_holding": "SUSDS (1.03B)",
-      "active_wallets": "211",
-      "entity_url": "https://arkm.com/explorer/entity/justin-sun"
-    },
-    {
-      "name": "Bitwise",
-      "holdings_usd": "$5,531,324,780.33",
-      "change_pct_24h": "0.89%",
-      "largest_holding": "BTC (49.63K)",
-      "active_wallets": "2,084",
-      "entity_url": "https://arkm.com/explorer/entity/bitwise"
-    }
-  ],
+  "trending_institutional_entities": [],
   "institutional_entities_deep": {
     "blackrock": {
       "slug": "blackrock",
@@ -103,1247 +63,10 @@
       "address_count": "6.7k Addresses",
       "total_portfolio_usd": "$0.00",
       "portfolio_change_24h": "",
-      "holdings_breakdown": [
-        {
-          "symbol": "BTC",
-          "price": "$82,078",
-          "amount": "BTC",
-          "value_usd": "$66.04B",
-          "change_24h": "+0.81%"
-        },
-        {
-          "symbol": "ETH",
-          "price": "$2,406.88",
-          "amount": "ETH",
-          "value_usd": "$8.41B",
-          "change_24h": "+0.28%"
-        },
-        {
-          "symbol": "USDT",
-          "price": "$1",
-          "amount": "USDT",
-          "value_usd": "$4.13K",
-          "change_24h": "\u00b10%"
-        },
-        {
-          "symbol": "SOL",
-          "price": "$103.93",
-          "amount": "SOL",
-          "value_usd": "$34.13",
-          "change_24h": "+0.68%"
-        },
-        {
-          "symbol": "BNB",
-          "price": "$722.19",
-          "amount": "BNB",
-          "value_usd": "$16.89",
-          "change_24h": "+0.72%"
-        },
-        {
-          "symbol": "XRP",
-          "price": "$1.3",
-          "amount": "Binance-Peg XRP",
-          "value_usd": "$7.15",
-          "change_24h": "+0.78%"
-        },
-        {
-          "symbol": "USDC",
-          "price": "$1",
-          "amount": "USDC",
-          "value_usd": "$2.23",
-          "change_24h": "\u00b10%"
-        }
-      ],
-      "category": "ASSET_MANAGER_ETF",
-      "priority": "HIGH",
-      "last_updated_utc": "2026-10-19 00:28:27 UTC"
-    },
-    "jump-trading": {
-      "slug": "jump-trading",
-      "entity_name": "Jump Crypto",
-      "address_count": "322 Addresses",
-      "total_portfolio_usd": "$0.00",
-      "portfolio_change_24h": "",
       "holdings_breakdown": [],
-      "category": "MARKET_MAKER_HFT",
-      "priority": "HIGH",
-      "last_updated_utc": "2026-10-18 23:48:04 UTC"
-    },
-    "wintermute": {
-      "slug": "wintermute",
-      "entity_name": "Wintermute",
-      "address_count": "11.1k Addresses",
-      "total_portfolio_usd": "$0.00",
-      "portfolio_change_24h": "",
-      "holdings_breakdown": [
-        {
-          "symbol": "CBBTC",
-          "price": "$636.15",
-          "amount": "",
-          "value_usd": "$476.45",
-          "change_24h": "+0.46%"
-        }
-      ],
-      "category": "MARKET_MAKER_ALGO",
-      "priority": "HIGH",
-      "last_updated_utc": "2026-10-18 23:47:57 UTC"
-    },
-    "vaneck": {
-      "slug": "vaneck",
-      "entity_name": "VanEck",
-      "address_count": "1.0k Addresses",
-      "total_portfolio_usd": "$0.00",
-      "portfolio_change_24h": "",
-      "holdings_breakdown": [
-        {
-          "symbol": "BTC",
-          "price": "$81,704",
-          "amount": "BTC",
-          "value_usd": "$1.2B",
-          "change_24h": "+0.24%"
-        },
-        {
-          "symbol": "ETH",
-          "price": "$2,412.53",
-          "amount": "ETH",
-          "value_usd": "$186.5M",
-          "change_24h": "-0.56%"
-        },
-        {
-          "symbol": "SOL",
-          "price": "$103.64",
-          "amount": "SOL",
-          "value_usd": "$20.87M",
-          "change_24h": "-1.11%"
-        },
-        {
-          "symbol": "BNB",
-          "price": "$719.76",
-          "amount": "BNB",
-          "value_usd": "$10.05M",
-          "change_24h": "-0.32%"
-        },
-        {
-          "symbol": "LINK",
-          "price": "$11.98",
-          "amount": "LINK",
-          "value_usd": "$8.1M",
-          "change_24h": "-2.68%"
-        },
-        {
-          "symbol": "AVAX",
-          "price": "$9.76",
-          "amount": "AVAX",
-          "value_usd": "$6.92M",
-          "change_24h": "-2.3%"
-        },
-        {
-          "symbol": "UNI",
-          "price": "$7.21",
-          "amount": "UNI",
-          "value_usd": "$25.24",
-          "change_24h": "-1.37%"
-        },
-        {
-          "symbol": "AAVE",
-          "price": "$152.52",
-          "amount": "AAVE",
-          "value_usd": "$13.57",
-          "change_24h": "-2.34%"
-        },
-        {
-          "symbol": "USDC",
-          "price": "$1",
-          "amount": "USDC",
-          "value_usd": "$0.065",
-          "change_24h": "\u00b10%"
-        },
-        {
-          "symbol": "USDT",
-          "price": "$1",
-          "amount": "USDT",
-          "value_usd": "$0.033",
-          "change_24h": "\u00b10%"
-        }
-      ],
       "category": "ASSET_MANAGER_ETF",
-      "priority": "MEDIUM",
-      "last_updated_utc": "2026-10-18 05:14:36 UTC"
-    },
-    "ark-invest": {
-      "slug": "ark-invest",
-      "entity_name": "ARK Invest",
-      "address_count": "408 Addresses",
-      "total_portfolio_usd": "$0.00",
-      "portfolio_change_24h": "",
-      "holdings_breakdown": [
-        {
-          "symbol": "BTC",
-          "price": "$81,704",
-          "amount": "BTC",
-          "value_usd": "$2.6B",
-          "change_24h": "+0.24%"
-        }
-      ],
-      "category": "ASSET_MANAGER_ETF",
-      "priority": "MEDIUM",
-      "last_updated_utc": "2026-10-18 05:14:42 UTC"
-    },
-    "21shares": {
-      "slug": "21shares",
-      "entity_name": "21Shares (21.co)",
-      "address_count": "2.6k Addresses",
-      "total_portfolio_usd": "$0.00",
-      "portfolio_change_24h": "",
-      "holdings_breakdown": [
-        {
-          "symbol": "BTC",
-          "price": "$81,715",
-          "amount": "BTC",
-          "value_usd": "$1.27B",
-          "change_24h": "+0.34%"
-        },
-        {
-          "symbol": "ETH",
-          "price": "$2,413.56",
-          "amount": "ETH",
-          "value_usd": "$91.57M",
-          "change_24h": "-0.4%"
-        },
-        {
-          "symbol": "LINK",
-          "price": "$11.98",
-          "amount": "LINK",
-          "value_usd": "$28.67M",
-          "change_24h": "-2.52%"
-        },
-        {
-          "symbol": "UNI",
-          "price": "$7.23",
-          "amount": "UNI",
-          "value_usd": "$5.17M",
-          "change_24h": "-1.09%"
-        },
-        {
-          "symbol": "SOL",
-          "price": "$103.79",
-          "amount": "SOL",
-          "value_usd": "$466.67",
-          "change_24h": "-0.8%"
-        },
-        {
-          "symbol": "BNB",
-          "price": "$719.74",
-          "amount": "BNB",
-          "value_usd": "$43.13",
-          "change_24h": "-0.23%"
-        },
-        {
-          "symbol": "USDT",
-          "price": "$1",
-          "amount": "USDT",
-          "value_usd": "$15.59",
-          "change_24h": "\u00b10%"
-        },
-        {
-          "symbol": "AVAX",
-          "price": "$9.77",
-          "amount": "AVAX",
-          "value_usd": "$7.73",
-          "change_24h": "-2.01%"
-        },
-        {
-          "symbol": "WBTC",
-          "price": "$81,572",
-          "amount": "WBTC",
-          "value_usd": "$3.01",
-          "change_24h": "+0.35%"
-        },
-        {
-          "symbol": "DOGE",
-          "price": "$0.079",
-          "amount": "DOGE",
-          "value_usd": "$0.56",
-          "change_24h": "-1.23%"
-        },
-        {
-          "symbol": "USDC",
-          "price": "$1",
-          "amount": "USDC",
-          "value_usd": "$0.16",
-          "change_24h": "\u00b10%"
-        }
-      ],
-      "category": "ASSET_MANAGER_ETF",
-      "priority": "MEDIUM",
-      "last_updated_utc": "2026-10-18 05:14:47 UTC"
-    },
-    "franklin-templeton": {
-      "slug": "franklin-templeton",
-      "entity_name": "Franklin Templeton",
-      "address_count": "51 Addresses",
-      "total_portfolio_usd": "$0.00",
-      "portfolio_change_24h": "",
-      "holdings_breakdown": [
-        {
-          "symbol": "BTC",
-          "price": "$82,031",
-          "amount": "BTC",
-          "value_usd": "$464.41M",
-          "change_24h": "+0.97%"
-        },
-        {
-          "symbol": "ETH",
-          "price": "$2,403.95",
-          "amount": "ETH",
-          "value_usd": "$47.35M",
-          "change_24h": "+0.4%"
-        }
-      ],
-      "category": "ASSET_MANAGER_ETF",
-      "priority": "MEDIUM",
-      "last_updated_utc": "2026-10-18 23:47:51 UTC"
-    },
-    "dwf-labs": {
-      "slug": "dwf-labs",
-      "entity_name": "DWF Labs",
-      "address_count": "25 Addresses",
-      "total_portfolio_usd": "$0.00",
-      "portfolio_change_24h": "",
-      "holdings_breakdown": [
-        {
-          "symbol": "USDT",
-          "price": "$1",
-          "amount": "USDT",
-          "value_usd": "$6.3M",
-          "change_24h": "\u00b10%"
-        },
-        {
-          "symbol": "BNB",
-          "price": "$722.75",
-          "amount": "BNB",
-          "value_usd": "$115.64K",
-          "change_24h": "+0.9%"
-        },
-        {
-          "symbol": "ETH",
-          "price": "$2,405.38",
-          "amount": "ETH",
-          "value_usd": "$37.23K",
-          "change_24h": "+0.4%"
-        },
-        {
-          "symbol": "USDC",
-          "price": "$1",
-          "amount": "USDC",
-          "value_usd": "$13.15K",
-          "change_24h": "\u00b10%"
-        },
-        {
-          "symbol": "SOL",
-          "price": "$103.98",
-          "amount": "SOL",
-          "value_usd": "$48.06",
-          "change_24h": "+0.8%"
-        }
-      ],
-      "category": "MARKET_MAKER_VENTURE",
-      "priority": "MEDIUM",
-      "last_updated_utc": "2026-10-18 23:53:10 UTC"
-    },
-    "flow-traders": {
-      "slug": "flow-traders",
-      "entity_name": "Flow Traders",
-      "address_count": "497 Addresses",
-      "total_portfolio_usd": "$0.00",
-      "portfolio_change_24h": "",
-      "holdings_breakdown": [
-        {
-          "symbol": "BTC",
-          "price": "$48.68K",
-          "amount": "BTC",
-          "value_usd": "$48.61K",
-          "change_24h": ""
-        }
-      ],
-      "category": "MARKET_MAKER_HFT",
-      "priority": "MEDIUM",
-      "last_updated_utc": "2026-10-18 23:53:15 UTC"
-    },
-    "jane-street": {
-      "slug": "jane-street",
-      "entity_name": "Jane Street",
-      "address_count": "11 Addresses",
-      "total_portfolio_usd": "$0.00",
-      "portfolio_change_24h": "",
-      "holdings_breakdown": [
-        {
-          "symbol": "ETH",
-          "price": "$2,406.2",
-          "amount": "ETH",
-          "value_usd": "$1.26K",
-          "change_24h": "+0.38%"
-        },
-        {
-          "symbol": "USDC",
-          "price": "$1",
-          "amount": "USDC",
-          "value_usd": "$172",
-          "change_24h": "\u00b10%"
-        },
-        {
-          "symbol": "UNI",
-          "price": "$7.17",
-          "amount": "UNI",
-          "value_usd": "$54.78",
-          "change_24h": "+0.56%"
-        },
-        {
-          "symbol": "BNB",
-          "price": "$722.37",
-          "amount": "BNB",
-          "value_usd": "$4.18",
-          "change_24h": "+0.8%"
-        },
-        {
-          "symbol": "AVAX",
-          "price": "$9.77",
-          "amount": "AVAX",
-          "value_usd": "$0.29",
-          "change_24h": "+0.31%"
-        }
-      ],
-      "category": "MARKET_MAKER_HFT",
-      "priority": "MEDIUM",
-      "last_updated_utc": "2026-10-18 23:53:21 UTC"
-    },
-    "usg": {
-      "slug": "usg",
-      "entity_name": "U.S. Government",
-      "address_count": "622 Addresses",
-      "total_portfolio_usd": "$0.00",
-      "portfolio_change_24h": "",
-      "holdings_breakdown": [
-        {
-          "symbol": "BTC",
-          "price": "$81,973",
-          "amount": "BTC",
-          "value_usd": "$25.15B",
-          "change_24h": "+0.72%"
-        },
-        {
-          "symbol": "ETH",
-          "price": "$2,407.5",
-          "amount": "ETH",
-          "value_usd": "$41.97M",
-          "change_24h": "+0.36%"
-        },
-        {
-          "symbol": "USDC",
-          "price": "$1",
-          "amount": "USDC",
-          "value_usd": "$10.6M",
-          "change_24h": "\u00b10%"
-        },
-        {
-          "symbol": "USDT",
-          "price": "$1",
-          "amount": "USDT",
-          "value_usd": "$6.6M",
-          "change_24h": "\u00b10%"
-        },
-        {
-          "symbol": "BNB",
-          "price": "$722.47",
-          "amount": "BNB",
-          "value_usd": "$6.6K",
-          "change_24h": "+0.75%"
-        },
-        {
-          "symbol": "AVAX",
-          "price": "$9.77",
-          "amount": "AVAX",
-          "value_usd": "$32.28",
-          "change_24h": "+0.1%"
-        }
-      ],
-      "category": "SOVEREIGN_TREASURY",
       "priority": "HIGH",
-      "last_updated_utc": "2026-10-18 23:58:01 UTC"
-    },
-    "el-salvador": {
-      "slug": "el-salvador",
-      "entity_name": "El Salvador Government",
-      "address_count": "20 Addresses",
-      "total_portfolio_usd": "$0.00",
-      "portfolio_change_24h": "",
-      "holdings_breakdown": [
-        {
-          "symbol": "BTC",
-          "price": "$82,045",
-          "amount": "BTC",
-          "value_usd": "$599.7M",
-          "change_24h": "+0.93%"
-        }
-      ],
-      "category": "SOVEREIGN_TREASURY",
-      "priority": "HIGH",
-      "last_updated_utc": "2026-10-18 23:58:27 UTC"
-    },
-    "microstrategy": {
-      "slug": "microstrategy",
-      "entity_name": "Strategy (Prev. MicroStrategy)",
-      "address_count": "1.6k Addresses",
-      "total_portfolio_usd": "$0.00",
-      "portfolio_change_24h": "",
-      "holdings_breakdown": [
-        {
-          "symbol": "BTC",
-          "price": "$82,045",
-          "amount": "BTC",
-          "value_usd": "$39.23B",
-          "change_24h": "+0.8%"
-        }
-      ],
-      "category": "CORPORATE_TREASURY",
-      "priority": "HIGH",
-      "last_updated_utc": "2026-10-19 00:03:13 UTC"
-    },
-    "tesla": {
-      "slug": "tesla",
-      "entity_name": "Tesla",
-      "address_count": "584 Addresses",
-      "total_portfolio_usd": "$0.00",
-      "portfolio_change_24h": "",
-      "holdings_breakdown": [
-        {
-          "symbol": "BTC",
-          "price": "$87.75",
-          "amount": "BTC",
-          "value_usd": "$1.15",
-          "change_24h": ""
-        }
-      ],
-      "category": "CORPORATE_TREASURY",
-      "priority": "MEDIUM",
-      "last_updated_utc": "2026-10-19 00:03:19 UTC"
-    },
-    "tether": {
-      "slug": "tether",
-      "entity_name": "Tether",
-      "address_count": "55 Addresses",
-      "total_portfolio_usd": "$0.00",
-      "portfolio_change_24h": "",
-      "holdings_breakdown": [
-        {
-          "symbol": "BTC",
-          "price": "$81,969",
-          "amount": "BTC",
-          "value_usd": "$7.95B",
-          "change_24h": "+0.72%"
-        },
-        {
-          "symbol": "USDT",
-          "price": "$1",
-          "amount": "USDT",
-          "value_usd": "$6.41B",
-          "change_24h": "\u00b10%"
-        },
-        {
-          "symbol": "USDC",
-          "price": "$1",
-          "amount": "USDC",
-          "value_usd": "$425.19K",
-          "change_24h": "\u00b10%"
-        },
-        {
-          "symbol": "BNB",
-          "price": "$722.27",
-          "amount": "BNB",
-          "value_usd": "$117.59K",
-          "change_24h": "+0.72%"
-        },
-        {
-          "symbol": "ETH",
-          "price": "$2,407.54",
-          "amount": "ETH",
-          "value_usd": "$32.55K",
-          "change_24h": "+0.36%"
-        },
-        {
-          "symbol": "SOL",
-          "price": "$104.04",
-          "amount": "SOL",
-          "value_usd": "$23.25K",
-          "change_24h": "+0.69%"
-        },
-        {
-          "symbol": "AVAX",
-          "price": "$9.77",
-          "amount": "AVAX",
-          "value_usd": "$1.44K",
-          "change_24h": "+0.1%"
-        }
-      ],
-      "category": "STABLECOIN_RESERVE",
-      "priority": "HIGH",
-      "last_updated_utc": "2026-10-19 00:03:25 UTC"
-    },
-    "circle": {
-      "slug": "circle",
-      "entity_name": "Circle",
-      "address_count": "601.7k Addresses",
-      "total_portfolio_usd": "$0.00",
-      "portfolio_change_24h": "",
-      "holdings_breakdown": [
-        {
-          "symbol": "USDC",
-          "price": "$48.75",
-          "amount": "",
-          "value_usd": "$154.68",
-          "change_24h": "-0.00%"
-        }
-      ],
-      "category": "STABLECOIN_RESERVE",
-      "priority": "HIGH",
-      "last_updated_utc": "2026-10-19 00:03:30 UTC"
-    },
-    "mt-gox": {
-      "slug": "mt-gox",
-      "entity_name": "Mt. Gox",
-      "address_count": "570.5k Addresses",
-      "total_portfolio_usd": "$0.00",
-      "portfolio_change_24h": "",
-      "holdings_breakdown": [
-        {
-          "symbol": "BTC",
-          "price": "$82,045",
-          "amount": "BTC",
-          "value_usd": "$2.82B",
-          "change_24h": "+0.8%"
-        }
-      ],
-      "category": "INSOLVENCY_TRUSTEE",
-      "priority": "HIGH",
-      "last_updated_utc": "2026-10-19 00:03:36 UTC"
-    },
-    "binance": {
-      "slug": "binance",
-      "entity_name": "Binance",
-      "address_count": "67.9M Addresses",
-      "total_portfolio_usd": "$0.00",
-      "portfolio_change_24h": "",
-      "holdings_breakdown": [
-        {
-          "symbol": "BNB",
-          "price": "$129.25",
-          "amount": "",
-          "value_usd": "$26,714.15",
-          "change_24h": "+0.07%"
-        }
-      ],
-      "category": "CENTRALIZED_EXCHANGE",
-      "priority": "HIGH",
-      "last_updated_utc": "2026-10-19 00:08:32 UTC"
-    },
-    "coinbase": {
-      "slug": "coinbase",
-      "entity_name": "Coinbase",
-      "address_count": "69.7M Addresses",
-      "total_portfolio_usd": "$0.00",
-      "portfolio_change_24h": "",
-      "holdings_breakdown": [
-        {
-          "symbol": "SOL",
-          "price": "$68.94",
-          "amount": "",
-          "value_usd": "$84,387.87",
-          "change_24h": "+1.29%"
-        }
-      ],
-      "category": "PRIME_CUSTODIAN",
-      "priority": "HIGH",
-      "last_updated_utc": "2026-10-19 00:08:37 UTC"
-    },
-    "okx": {
-      "slug": "okx",
-      "entity_name": "OKX",
-      "address_count": "30.7M Addresses",
-      "total_portfolio_usd": "$0.00",
-      "portfolio_change_24h": "",
-      "holdings_breakdown": [
-        {
-          "symbol": "USDT",
-          "price": "$30K",
-          "amount": "",
-          "value_usd": "$195,207,328.11",
-          "change_24h": "+0.00%"
-        }
-      ],
-      "category": "CENTRALIZED_EXCHANGE",
-      "priority": "HIGH",
-      "last_updated_utc": "2026-10-19 00:08:44 UTC"
-    },
-    "bybit": {
-      "slug": "bybit",
-      "entity_name": "Bybit",
-      "address_count": "18.3M Addresses",
-      "total_portfolio_usd": "$0.00",
-      "portfolio_change_24h": "",
-      "holdings_breakdown": [
-        {
-          "symbol": "USDT",
-          "price": "$77.1",
-          "amount": "",
-          "value_usd": "$2,204.03",
-          "change_24h": "+0.10%"
-        }
-      ],
-      "category": "CENTRALIZED_EXCHANGE",
-      "priority": "HIGH",
-      "last_updated_utc": "2026-10-19 00:08:50 UTC"
-    },
-    "kraken": {
-      "slug": "kraken",
-      "entity_name": "Kraken",
-      "address_count": "7.5M Addresses",
-      "total_portfolio_usd": "$0.00",
-      "portfolio_change_24h": "",
-      "holdings_breakdown": [
-        {
-          "symbol": "BTC",
-          "price": "$82,138",
-          "amount": "BTC",
-          "value_usd": "$13.55B",
-          "change_24h": "+0.99%"
-        },
-        {
-          "symbol": "ETH",
-          "price": "$2,411.86",
-          "amount": "ETH",
-          "value_usd": "$2.15B",
-          "change_24h": "+0.64%"
-        },
-        {
-          "symbol": "SOL",
-          "price": "$104.11",
-          "amount": "SOL",
-          "value_usd": "$1.31B",
-          "change_24h": "+0.91%"
-        },
-        {
-          "symbol": "USDC",
-          "price": "$1",
-          "amount": "USDC",
-          "value_usd": "$1.02B",
-          "change_24h": "\u00b10%"
-        },
-        {
-          "symbol": "USDT",
-          "price": "$1",
-          "amount": "USDT",
-          "value_usd": "$407.21M",
-          "change_24h": "\u00b10%"
-        },
-        {
-          "symbol": "LINK",
-          "price": "$12.06",
-          "amount": "LINK",
-          "value_usd": "$269.3M",
-          "change_24h": "+0.92%"
-        },
-        {
-          "symbol": "DOGE",
-          "price": "$0.079",
-          "amount": "DOGE",
-          "value_usd": "$175.54M",
-          "change_24h": "+0.25%"
-        },
-        {
-          "symbol": "UNI",
-          "price": "$7.19",
-          "amount": "UNI",
-          "value_usd": "$60.2M",
-          "change_24h": "+0.7%"
-        },
-        {
-          "symbol": "WBTC",
-          "price": "$81,944",
-          "amount": "WBTC",
-          "value_usd": "$35.62M",
-          "change_24h": "+0.96%"
-        },
-        {
-          "symbol": "AVAX",
-          "price": "$9.76",
-          "amount": "AVAX",
-          "value_usd": "$33.17M",
-          "change_24h": "+0.1%"
-        },
-        {
-          "symbol": "BNB",
-          "price": "$723.43",
-          "amount": "BNB",
-          "value_usd": "$17.98M",
-          "change_24h": "+0.95%"
-        },
-        {
-          "symbol": "AERO",
-          "price": "$0.8",
-          "amount": "AERO",
-          "value_usd": "$16.45M",
-          "change_24h": "-4.82%"
-        }
-      ],
-      "category": "CENTRALIZED_EXCHANGE",
-      "priority": "HIGH",
-      "last_updated_utc": "2026-10-19 00:13:15 UTC"
-    },
-    "deribit": {
-      "slug": "deribit",
-      "entity_name": "Deribit",
-      "address_count": "186.5k Addresses",
-      "total_portfolio_usd": "$0.00",
-      "portfolio_change_24h": "",
-      "holdings_breakdown": [
-        {
-          "symbol": "BTC",
-          "price": "$82,008",
-          "amount": "BTC",
-          "value_usd": "$3.35B",
-          "change_24h": "+0.82%"
-        },
-        {
-          "symbol": "ETH",
-          "price": "$2,408.34",
-          "amount": "ETH",
-          "value_usd": "$441.18M",
-          "change_24h": "+0.45%"
-        },
-        {
-          "symbol": "USDC",
-          "price": "$1",
-          "amount": "USDC",
-          "value_usd": "$209.5M",
-          "change_24h": "\u00b10%"
-        },
-        {
-          "symbol": "USDT",
-          "price": "$1",
-          "amount": "USDT",
-          "value_usd": "$27.19M",
-          "change_24h": "\u00b10%"
-        },
-        {
-          "symbol": "SOL",
-          "price": "$104.01",
-          "amount": "SOL",
-          "value_usd": "$2.24M",
-          "change_24h": "+0.78%"
-        },
-        {
-          "symbol": "BNB",
-          "price": "$722.61",
-          "amount": "BNB",
-          "value_usd": "$19K",
-          "change_24h": "+0.77%"
-        },
-        {
-          "symbol": "CBBTC",
-          "price": "$81,951",
-          "amount": "CBBTC",
-          "value_usd": "$14.54",
-          "change_24h": "+0.83%"
-        },
-        {
-          "symbol": "AVAX",
-          "price": "$9.76",
-          "amount": "AVAX",
-          "value_usd": "$",
-          "change_24h": ""
-        }
-      ],
-      "category": "DERIVATIVES_EXCHANGE",
-      "priority": "HIGH",
-      "last_updated_utc": "2026-10-19 00:13:21 UTC"
-    },
-    "bitfinex": {
-      "slug": "bitfinex",
-      "entity_name": "Bitfinex",
-      "address_count": "1.8M Addresses",
-      "total_portfolio_usd": "$0.00",
-      "portfolio_change_24h": "",
-      "holdings_breakdown": [
-        {
-          "symbol": "BTC",
-          "price": "$82,000",
-          "amount": "BTC",
-          "value_usd": "$13.3B",
-          "change_24h": "+0.81%"
-        },
-        {
-          "symbol": "ETH",
-          "price": "$2,407.26",
-          "amount": "ETH",
-          "value_usd": "$2.1B",
-          "change_24h": "+0.44%"
-        },
-        {
-          "symbol": "USDT",
-          "price": "$1",
-          "amount": "USDT",
-          "value_usd": "$455.59M",
-          "change_24h": "\u00b10%"
-        },
-        {
-          "symbol": "SOL",
-          "price": "$103.97",
-          "amount": "SOL",
-          "value_usd": "$82.73M",
-          "change_24h": "+0.7%"
-        },
-        {
-          "symbol": "USDC",
-          "price": "$1",
-          "amount": "USDC",
-          "value_usd": "$23.26M",
-          "change_24h": "\u00b10%"
-        },
-        {
-          "symbol": "LINK",
-          "price": "$12.03",
-          "amount": "LINK",
-          "value_usd": "$13.06M",
-          "change_24h": "+0.59%"
-        },
-        {
-          "symbol": "DOGE",
-          "price": "$0.079",
-          "amount": "DOGE",
-          "value_usd": "$11.48M",
-          "change_24h": "+0.19%"
-        },
-        {
-          "symbol": "UNI",
-          "price": "$7.19",
-          "amount": "UNI",
-          "value_usd": "$6.95M",
-          "change_24h": "+0.7%"
-        },
-        {
-          "symbol": "WBTC",
-          "price": "$81,883",
-          "amount": "WBTC",
-          "value_usd": "$5.02M",
-          "change_24h": "+0.87%"
-        }
-      ],
-      "category": "CENTRALIZED_EXCHANGE",
-      "priority": "MEDIUM",
-      "last_updated_utc": "2026-10-19 00:13:27 UTC"
-    },
-    "gate-io": {
-      "slug": "gate-io",
-      "entity_name": "Gate",
-      "address_count": "8.7M Addresses",
-      "total_portfolio_usd": "$0.00",
-      "portfolio_change_24h": "",
-      "holdings_breakdown": [],
-      "category": "CENTRALIZED_EXCHANGE",
-      "priority": "LOW",
-      "last_updated_utc": "2026-10-19 00:13:40 UTC"
-    },
-    "robinhood": {
-      "slug": "robinhood",
-      "entity_name": "Robinhood",
-      "address_count": "1.7M Addresses",
-      "total_portfolio_usd": "$0.00",
-      "portfolio_change_24h": "",
-      "holdings_breakdown": [
-        {
-          "symbol": "BTC",
-          "price": "$82,138",
-          "amount": "BTC",
-          "value_usd": "$15.21B",
-          "change_24h": "+0.99%"
-        },
-        {
-          "symbol": "ETH",
-          "price": "$2,411.86",
-          "amount": "ETH",
-          "value_usd": "$3.78B",
-          "change_24h": "+0.64%"
-        },
-        {
-          "symbol": "DOGE",
-          "price": "$0.079",
-          "amount": "DOGE",
-          "value_usd": "$2.42B",
-          "change_24h": "+0.25%"
-        },
-        {
-          "symbol": "SOL",
-          "price": "$104.11",
-          "amount": "SOL",
-          "value_usd": "$896.91M",
-          "change_24h": "+0.91%"
-        },
-        {
-          "symbol": "LINK",
-          "price": "$12.06",
-          "amount": "LINK",
-          "value_usd": "$258.39M",
-          "change_24h": "+0.92%"
-        },
-        {
-          "symbol": "AVAX",
-          "price": "$9.76",
-          "amount": "AVAX",
-          "value_usd": "$127.2M",
-          "change_24h": "+0.1%"
-        },
-        {
-          "symbol": "UNI",
-          "price": "$7.19",
-          "amount": "UNI",
-          "value_usd": "$70.1M",
-          "change_24h": "+0.7%"
-        },
-        {
-          "symbol": "USDC",
-          "price": "$1",
-          "amount": "USDC",
-          "value_usd": "$12.98M",
-          "change_24h": "\u00b10%"
-        },
-        {
-          "symbol": "AERO",
-          "price": "$0.8",
-          "amount": "AERO",
-          "value_usd": "$10.99M",
-          "change_24h": "-4.82%"
-        },
-        {
-          "symbol": "BNB",
-          "price": "$723.43",
-          "amount": "BNB",
-          "value_usd": "$10.78M",
-          "change_24h": "+0.95%"
-        }
-      ],
-      "category": "RETAIL_BROKERAGE_CUSTODY",
-      "priority": "MEDIUM",
-      "last_updated_utc": "2026-10-19 00:18:17 UTC"
-    },
-    "uniswap": {
-      "slug": "uniswap",
-      "entity_name": "Uniswap",
-      "address_count": "6.3M Addresses",
-      "total_portfolio_usd": "$0.00",
-      "portfolio_change_24h": "",
-      "holdings_breakdown": [],
-      "category": "DEFI_DEX_DAO",
-      "priority": "MEDIUM",
-      "last_updated_utc": "2026-10-19 00:18:23 UTC"
-    },
-    "aave": {
-      "slug": "aave",
-      "entity_name": "Aave",
-      "address_count": "2.2k Addresses",
-      "total_portfolio_usd": "$0.00",
-      "portfolio_change_24h": "",
-      "holdings_breakdown": [
-        {
-          "symbol": "WBTC",
-          "price": "$81,898",
-          "amount": "WBTC",
-          "value_usd": "$2.84B",
-          "change_24h": "+0.8%"
-        },
-        {
-          "symbol": "CBBTC",
-          "price": "$81,985",
-          "amount": "CBBTC",
-          "value_usd": "$1.67B",
-          "change_24h": "+0.79%"
-        },
-        {
-          "symbol": "USDT",
-          "price": "$1",
-          "amount": "USDT",
-          "value_usd": "$436.69M",
-          "change_24h": "\u00b10%"
-        },
-        {
-          "symbol": "USDC",
-          "price": "$1",
-          "amount": "USDC",
-          "value_usd": "$130.74M",
-          "change_24h": "\u00b10%"
-        },
-        {
-          "symbol": "LINK",
-          "price": "$12.05",
-          "amount": "LINK",
-          "value_usd": "$108.71M",
-          "change_24h": "+0.58%"
-        }
-      ],
-      "category": "DEFI_LENDING_DAO",
-      "priority": "MEDIUM",
-      "last_updated_utc": "2026-10-19 00:18:30 UTC"
-    },
-    "lido": {
-      "slug": "lido",
-      "entity_name": "Lido",
-      "address_count": "3.3k Addresses",
-      "total_portfolio_usd": "$0.00",
-      "portfolio_change_24h": "",
-      "holdings_breakdown": [
-        {
-          "symbol": "ETH",
-          "price": "$8.4",
-          "amount": "",
-          "value_usd": "$0",
-          "change_24h": "+0.31%"
-        }
-      ],
-      "category": "LIQUID_STAKING_DAO",
-      "priority": "MEDIUM",
-      "last_updated_utc": "2026-10-19 00:18:36 UTC"
-    },
-    "polymarket": {
-      "slug": "polymarket",
-      "entity_name": "Polymarket",
-      "address_count": "30.9k Addresses",
-      "total_portfolio_usd": "$0.00",
-      "portfolio_change_24h": "",
-      "holdings_breakdown": [
-        {
-          "symbol": "USDC",
-          "price": "$1",
-          "amount": "USDC",
-          "value_usd": "$42.36K",
-          "change_24h": "\u00b10%"
-        },
-        {
-          "symbol": "ETH",
-          "price": "$2,406.88",
-          "amount": "ETH",
-          "value_usd": "$28.09K",
-          "change_24h": "+0.28%"
-        },
-        {
-          "symbol": "AERO",
-          "price": "$0.8",
-          "amount": "AERO",
-          "value_usd": "$72.58",
-          "change_24h": "-5.4%"
-        },
-        {
-          "symbol": "UNI",
-          "price": "$7.17",
-          "amount": "UNI",
-          "value_usd": "$46.1",
-          "change_24h": "-0.14%"
-        },
-        {
-          "symbol": "WBTC",
-          "price": "$81,903",
-          "amount": "WBTC",
-          "value_usd": "$24.03",
-          "change_24h": "+0.79%"
-        },
-        {
-          "symbol": "CBBTC",
-          "price": "$82,009",
-          "amount": "CBBTC",
-          "value_usd": "$20.8",
-          "change_24h": "+0.8%"
-        },
-        {
-          "symbol": "USDT",
-          "price": "$1",
-          "amount": "USDT",
-          "value_usd": "$9.94",
-          "change_24h": "\u00b10%"
-        },
-        {
-          "symbol": "SOL",
-          "price": "$103.93",
-          "amount": "SOL",
-          "value_usd": "$9.71",
-          "change_24h": "+0.68%"
-        },
-        {
-          "symbol": "BNB",
-          "price": "$722.19",
-          "amount": "BNB",
-          "value_usd": "$1.85",
-          "change_24h": "+0.72%"
-        }
-      ],
-      "category": "PREDICTION_MARKET_CUSTODY",
-      "priority": "MEDIUM",
-      "last_updated_utc": "2026-10-19 00:23:52 UTC"
-    },
-    "arbitrum": {
-      "slug": "arbitrum",
-      "entity_name": "Arbitrum",
-      "address_count": "202 Addresses",
-      "total_portfolio_usd": "$0.00",
-      "portfolio_change_24h": "",
-      "holdings_breakdown": [
-        {
-          "symbol": "ETH",
-          "price": "$2,406.88",
-          "amount": "ETH",
-          "value_usd": "$13.29B",
-          "change_24h": "+0.28%"
-        },
-        {
-          "symbol": "WBTC",
-          "price": "$81,903",
-          "amount": "WBTC",
-          "value_usd": "$606.66M",
-          "change_24h": "+0.79%"
-        },
-        {
-          "symbol": "USDC",
-          "price": "$1",
-          "amount": "USDC",
-          "value_usd": "$51.57M",
-          "change_24h": "\u00b10%"
-        },
-        {
-          "symbol": "LINK",
-          "price": "$12.03",
-          "amount": "LINK",
-          "value_usd": "$22.62M",
-          "change_24h": "+0.5%"
-        },
-        {
-          "symbol": "UNI",
-          "price": "$7.17",
-          "amount": "UNI",
-          "value_usd": "$7.84M",
-          "change_24h": "-0.14%"
-        }
-      ],
-      "category": "LAYER_2_DAO",
-      "priority": "LOW",
-      "last_updated_utc": "2026-10-19 00:23:59 UTC"
-    },
-    "optimism": {
-      "slug": "optimism",
-      "entity_name": "Optimism",
-      "address_count": "93 Addresses",
-      "total_portfolio_usd": "$0.00",
-      "portfolio_change_24h": "",
-      "holdings_breakdown": [],
-      "category": "LAYER_2_DAO",
-      "priority": "LOW",
-      "last_updated_utc": "2026-10-19 00:28:21 UTC"
+      "last_updated_utc": "2026-10-21 11:29:38 UTC"
     },
     "fidelity": {
       "slug": "fidelity",
@@ -1354,15 +77,15 @@
       "holdings_breakdown": [
         {
           "symbol": "BTC",
-          "price": "$82,079",
+          "price": "$83,428",
           "amount": "BTC",
-          "value_usd": "$460.97M",
-          "change_24h": "+0.81%"
+          "value_usd": "$468.54M",
+          "change_24h": "+2.44%"
         }
       ],
       "category": "ASSET_MANAGER_ETF",
       "priority": "HIGH",
-      "last_updated_utc": "2026-10-19 00:28:33 UTC"
+      "last_updated_utc": "2026-10-21 11:29:44 UTC"
     },
     "grayscale": {
       "slug": "grayscale",
@@ -1373,52 +96,52 @@
       "holdings_breakdown": [
         {
           "symbol": "BTC",
-          "price": "$82,115",
+          "price": "$83,347",
           "amount": "BTC",
-          "value_usd": "$15.78B",
-          "change_24h": "+0.97%"
+          "value_usd": "$16B",
+          "change_24h": "+2.27%"
         },
         {
           "symbol": "ETH",
-          "price": "$2,411.31",
+          "price": "$2,459.84",
           "amount": "ETH",
-          "value_usd": "$700.44M",
-          "change_24h": "+0.62%"
+          "value_usd": "$714.55M",
+          "change_24h": "+3.14%"
         },
         {
           "symbol": "LINK",
-          "price": "$12.06",
+          "price": "$12.35",
           "amount": "LINK",
-          "value_usd": "$154.34M",
-          "change_24h": "+0.84%"
+          "value_usd": "$156.08M",
+          "change_24h": "+3.52%"
         },
         {
           "symbol": "SOL",
-          "price": "$104.11",
+          "price": "$106.77",
           "amount": "SOL",
-          "value_usd": "$9.93M",
-          "change_24h": "+0.93%"
+          "value_usd": "$10.19M",
+          "change_24h": "+2.53%"
         },
         {
           "symbol": "AVAX",
-          "price": "$9.76",
+          "price": "$9.73",
           "amount": "AVAX",
-          "value_usd": "$8.16M",
-          "change_24h": "+0.1%"
+          "value_usd": "$8.14M",
+          "change_24h": "+3.4%"
         },
         {
           "symbol": "DOGE",
-          "price": "$0.079",
+          "price": "$0.082",
           "amount": "DOGE",
-          "value_usd": "$2.75M",
-          "change_24h": "+0.26%"
+          "value_usd": "$2.84M",
+          "change_24h": "+3.75%"
         },
         {
           "symbol": "UNI",
-          "price": "$7.19",
+          "price": "$7.48",
           "amount": "UNI",
-          "value_usd": "$1.16M",
-          "change_24h": "+0.42%"
+          "value_usd": "$1.21M",
+          "change_24h": "+4.62%"
         },
         {
           "symbol": "USDC",
@@ -1437,7 +160,7 @@
       ],
       "category": "ASSET_MANAGER_TRUSTS",
       "priority": "HIGH",
-      "last_updated_utc": "2026-10-19 00:28:40 UTC"
+      "last_updated_utc": "2026-10-21 11:29:50 UTC"
     },
     "bitwise": {
       "slug": "bitwise",
@@ -1448,45 +171,45 @@
       "holdings_breakdown": [
         {
           "symbol": "BTC",
-          "price": "$82,150",
+          "price": "$83,346",
           "amount": "BTC",
-          "value_usd": "$4.08B",
-          "change_24h": "+0.95%"
+          "value_usd": "$4.15B",
+          "change_24h": "+2.23%"
         },
         {
           "symbol": "SOL",
-          "price": "$104.12",
+          "price": "$106.75",
           "amount": "SOL",
-          "value_usd": "$1.09B",
-          "change_24h": "+0.82%"
+          "value_usd": "$1.1B",
+          "change_24h": "+2.43%"
         },
         {
           "symbol": "ETH",
-          "price": "$2,411.23",
+          "price": "$2,460.35",
           "amount": "ETH",
-          "value_usd": "$262.74M",
-          "change_24h": "+0.53%"
+          "value_usd": "$268.09M",
+          "change_24h": "+3.09%"
         },
         {
           "symbol": "LINK",
-          "price": "$12.06",
+          "price": "$12.35",
           "amount": "LINK",
-          "value_usd": "$58.98M",
-          "change_24h": "+0.75%"
+          "value_usd": "$61.97M",
+          "change_24h": "+3.43%"
         },
         {
           "symbol": "UNI",
-          "price": "$7.19",
+          "price": "$7.48",
           "amount": "UNI",
-          "value_usd": "$843.5K",
-          "change_24h": "+0.42%"
+          "value_usd": "$877.52K",
+          "change_24h": "+4.47%"
         },
         {
           "symbol": "AERO",
-          "price": "$0.8",
+          "price": "$0.84",
           "amount": "AERO",
-          "value_usd": "$149.5K",
-          "change_24h": "-4.83%"
+          "value_usd": "$157.81K",
+          "change_24h": "+5.58%"
         },
         {
           "symbol": "USDC",
@@ -1505,942 +228,97 @@
       ],
       "category": "ASSET_MANAGER_CRYPTO",
       "priority": "MEDIUM",
-      "last_updated_utc": "2026-10-19 00:28:46 UTC"
+      "last_updated_utc": "2026-10-21 11:29:57 UTC"
     },
-    "cumberland": {
-      "slug": "cumberland",
-      "entity_name": "Cumberland DRW",
-      "address_count": "13.0k Addresses",
+    "vaneck": {
+      "slug": "vaneck",
+      "entity_name": "VanEck",
+      "address_count": "1.0k Addresses",
       "total_portfolio_usd": "$0.00",
       "portfolio_change_24h": "",
       "holdings_breakdown": [
         {
-          "symbol": "USDT",
-          "price": "$1",
-          "amount": "USDT",
-          "value_usd": "$2.85M",
-          "change_24h": "\u00b10%"
+          "symbol": "BTC",
+          "price": "$83,346",
+          "amount": "BTC",
+          "value_usd": "$1.22B",
+          "change_24h": "+2.23%"
         },
         {
           "symbol": "ETH",
-          "price": "$2,406.33",
+          "price": "$2,460.35",
           "amount": "ETH",
-          "value_usd": "$1M",
-          "change_24h": "+0.48%"
+          "value_usd": "$194.29M",
+          "change_24h": "+3.09%"
         },
         {
-          "symbol": "MKR",
-          "price": "$1,586.77",
-          "amount": "MKR",
-          "value_usd": "$247.54",
-          "change_24h": "-1.31%"
-        },
-        {
-          "symbol": "UNI",
-          "price": "$7.17",
-          "amount": "UNI",
-          "value_usd": "$205.4",
-          "change_24h": "+0.42%"
-        },
-        {
-          "symbol": "LINK",
-          "price": "$12.03",
-          "amount": "LINK",
-          "value_usd": "$196.28",
-          "change_24h": "+0.67%"
-        },
-        {
-          "symbol": "USDC",
-          "price": "$1",
-          "amount": "USDC",
-          "value_usd": "$177.54",
-          "change_24h": "\u00b10%"
-        },
-        {
-          "symbol": "BTC",
-          "price": "$82,040",
-          "amount": "BTC",
-          "value_usd": "$113.85",
-          "change_24h": "+0.94%"
-        },
-        {
-          "symbol": "WBTC",
-          "price": "$81,903",
-          "amount": "WBTC",
-          "value_usd": "$81.13",
-          "change_24h": "+0.97%"
+          "symbol": "SOL",
+          "price": "$106.75",
+          "amount": "SOL",
+          "value_usd": "$21.51M",
+          "change_24h": "+2.43%"
         },
         {
           "symbol": "BNB",
-          "price": "$722.63",
+          "price": "$746.33",
           "amount": "BNB",
-          "value_usd": "$80.04",
-          "change_24h": "+0.89%"
-        }
-      ],
-      "category": "OTC_LIQUIDITY_DESK",
-      "priority": "HIGH",
-      "last_updated_utc": "2026-10-18 23:48:10 UTC"
-    },
-    "falconx": {
-      "slug": "falconx",
-      "entity_name": "FalconX",
-      "address_count": "4.5k Addresses",
-      "total_portfolio_usd": "$0.00",
-      "portfolio_change_24h": "",
-      "holdings_breakdown": [],
-      "category": "PRIME_BROKERAGE_EXECUTION",
-      "priority": "HIGH",
-      "last_updated_utc": "2026-10-18 23:48:16 UTC"
-    },
-    "amber": {
-      "slug": "amber",
-      "entity_name": "Amber Group",
-      "address_count": "7.6k Addresses",
-      "total_portfolio_usd": "$0.00",
-      "portfolio_change_24h": "",
-      "holdings_breakdown": [
-        {
-          "symbol": "ETH",
-          "price": "$2,406.33",
-          "amount": "ETH",
-          "value_usd": "$99.28M",
-          "change_24h": "+0.44%"
-        },
-        {
-          "symbol": "USDT",
-          "price": "$1",
-          "amount": "USDT",
-          "value_usd": "$18.24M",
-          "change_24h": "\u00b10%"
-        },
-        {
-          "symbol": "WBTC",
-          "price": "$81,903",
-          "amount": "WBTC",
-          "value_usd": "$7.06M",
-          "change_24h": "+0.97%"
-        },
-        {
-          "symbol": "USDC",
-          "price": "$1",
-          "amount": "USDC",
-          "value_usd": "$4.81M",
-          "change_24h": "\u00b10%"
+          "value_usd": "$10.42M",
+          "change_24h": "+2.53%"
         },
         {
           "symbol": "LINK",
-          "price": "$12.03",
+          "price": "$12.35",
           "amount": "LINK",
-          "value_usd": "$238.32K",
-          "change_24h": "+0.59%"
+          "value_usd": "$8.35M",
+          "change_24h": "+3.43%"
+        },
+        {
+          "symbol": "AVAX",
+          "price": "$9.73",
+          "amount": "AVAX",
+          "value_usd": "$6.89M",
+          "change_24h": "+3.29%"
         },
         {
           "symbol": "UNI",
-          "price": "$7.17",
+          "price": "$7.48",
           "amount": "UNI",
-          "value_usd": "$132.8K",
-          "change_24h": "+0.42%"
+          "value_usd": "$26.18",
+          "change_24h": "+4.47%"
         },
         {
           "symbol": "AAVE",
-          "price": "$152.05",
+          "price": "$156.34",
           "amount": "AAVE",
-          "value_usd": "$15.02K",
-          "change_24h": "+0.21%"
-        },
-        {
-          "symbol": "BNB",
-          "price": "$722.63",
-          "amount": "BNB",
-          "value_usd": "$14.86K",
-          "change_24h": "+0.87%"
-        }
-      ],
-      "category": "MARKET_MAKER_CEFI",
-      "priority": "MEDIUM",
-      "last_updated_utc": "2026-10-18 23:53:03 UTC"
-    },
-    "gsr-markets": {
-      "slug": "gsr-markets",
-      "entity_name": "GSR Markets",
-      "address_count": "48 Addresses",
-      "total_portfolio_usd": "$0.00",
-      "portfolio_change_24h": "",
-      "holdings_breakdown": [],
-      "category": "MARKET_MAKER_ALGO",
-      "priority": "MEDIUM",
-      "last_updated_utc": "2026-10-18 23:52:58 UTC"
-    },
-    "cash-app": {
-      "slug": "cash-app",
-      "entity_name": "Block Inc. (Cash App)",
-      "address_count": "18.1M Addresses",
-      "total_portfolio_usd": "$0.00",
-      "portfolio_change_24h": "",
-      "holdings_breakdown": [
-        {
-          "symbol": "BTC",
-          "price": "$81,995",
-          "amount": "BTC",
-          "value_usd": "$2.34B",
-          "change_24h": "+0.79%"
-        }
-      ],
-      "category": "CORPORATE_TREASURY",
-      "priority": "MEDIUM",
-      "last_updated_utc": "2026-10-19 00:08:25 UTC"
-    },
-    "huobi": {
-      "slug": "huobi",
-      "entity_name": "HTX",
-      "address_count": "10.1M Addresses",
-      "total_portfolio_usd": "$0.00",
-      "portfolio_change_24h": "",
-      "holdings_breakdown": [
-        {
-          "symbol": "USDT",
-          "price": "$2.44K",
-          "amount": "",
-          "value_usd": "$6.06K",
-          "change_24h": ""
-        }
-      ],
-      "category": "CENTRALIZED_EXCHANGE",
-      "priority": "LOW",
-      "last_updated_utc": "2026-10-19 00:13:34 UTC"
-    },
-    "makerdao": {
-      "slug": "makerdao",
-      "entity_name": "Sky (MakerDAO)",
-      "address_count": "532 Addresses",
-      "total_portfolio_usd": "$0.00",
-      "portfolio_change_24h": "",
-      "holdings_breakdown": [
-        {
-          "symbol": "USDC",
-          "price": "$1",
-          "amount": "USDC",
-          "value_usd": "$4B",
-          "change_24h": "\u00b10%"
-        },
-        {
-          "symbol": "WBTC",
-          "price": "$81,898",
-          "amount": "WBTC",
-          "value_usd": "$27.65M",
-          "change_24h": "+0.81%"
-        },
-        {
-          "symbol": "ETH",
-          "price": "$2,407.9",
-          "amount": "ETH",
-          "value_usd": "$138.04K",
-          "change_24h": "+0.28%"
-        },
-        {
-          "symbol": "LINK",
-          "price": "$12.05",
-          "amount": "LINK",
-          "value_usd": "$101.78K",
-          "change_24h": "+0.58%"
-        },
-        {
-          "symbol": "UNI",
-          "price": "$7.18",
-          "amount": "UNI",
-          "value_usd": "$87.38K",
-          "change_24h": "+0.14%"
-        },
-        {
-          "symbol": "BNB",
-          "price": "$722.82",
-          "amount": "BNB",
-          "value_usd": "$53.69K",
-          "change_24h": "+0.78%"
-        },
-        {
-          "symbol": "BTC",
-          "price": "$82,060",
-          "amount": "BTC",
-          "value_usd": "$35.59K",
-          "change_24h": "+0.78%"
-        },
-        {
-          "symbol": "USDT",
-          "price": "$1",
-          "amount": "USDT",
-          "value_usd": "$16.63K",
-          "change_24h": "\u00b10%"
-        }
-      ],
-      "category": "DEFI_CDP_DAO",
-      "priority": "MEDIUM",
-      "last_updated_utc": "2026-10-19 00:18:42 UTC"
-    },
-    "aerodrome-finance": {
-      "slug": "aerodrome-finance",
-      "entity_name": "Aerodrome Finance",
-      "address_count": "46.1k Addresses",
-      "total_portfolio_usd": "$0.00",
-      "portfolio_change_24h": "",
-      "holdings_breakdown": [
-        {
-          "symbol": "USDC",
-          "price": "$90.25",
-          "amount": "",
-          "value_usd": "$77.07",
-          "change_24h": "+0.21%"
-        }
-      ],
-      "category": "BASE_DEX_LIQUIDITY",
-      "priority": "MEDIUM",
-      "last_updated_utc": "2026-10-19 00:23:33 UTC"
-    },
-    "drift-protocol": {
-      "slug": "drift-protocol",
-      "entity_name": "Drift Protocol",
-      "address_count": "54.8k Addresses",
-      "total_portfolio_usd": "$0.00",
-      "portfolio_change_24h": "",
-      "holdings_breakdown": [
-        {
-          "symbol": "SOL",
-          "price": "$103.74",
-          "amount": "SOL",
-          "value_usd": "$289.11M",
-          "change_24h": "+0.5%"
+          "value_usd": "$13.91",
+          "change_24h": "+5.73%"
         },
         {
           "symbol": "USDC",
           "price": "$1",
           "amount": "USDC",
-          "value_usd": "$642.66K",
+          "value_usd": "$0.065",
           "change_24h": "\u00b10%"
         },
         {
           "symbol": "USDT",
           "price": "$1",
           "amount": "USDT",
-          "value_usd": "$28.6",
+          "value_usd": "$0.033",
           "change_24h": "\u00b10%"
-        },
-        {
-          "symbol": "ETH",
-          "price": "$2,402.82",
-          "amount": "ETH",
-          "value_usd": "$19.34",
-          "change_24h": "+0.13%"
-        },
-        {
-          "symbol": "WBTC",
-          "price": "$81,914",
-          "amount": "WBTC",
-          "value_usd": "$0.4",
-          "change_24h": "+0.78%"
         }
       ],
-      "category": "SOLANA_PERP_DEX",
+      "category": "ASSET_MANAGER_ETF",
       "priority": "MEDIUM",
-      "last_updated_utc": "2026-10-19 00:23:38 UTC"
-    },
-    "curve-fi": {
-      "slug": "curve-fi",
-      "entity_name": "Curve.fi",
-      "address_count": "9.6k Addresses",
-      "total_portfolio_usd": "$0.00",
-      "portfolio_change_24h": "",
-      "holdings_breakdown": [],
-      "category": "DEFI_STABLE_SWAP",
-      "priority": "LOW",
-      "last_updated_utc": "2026-10-19 00:23:45 UTC"
-    },
-    "germany": {
-      "slug": "germany",
-      "entity_name": "German Government",
-      "address_count": "8 Addresses",
-      "total_portfolio_usd": "$0.00",
-      "portfolio_change_24h": "",
-      "holdings_breakdown": [
-        {
-          "symbol": "BTC",
-          "price": "$82,027",
-          "amount": "BTC",
-          "value_usd": "$52.68",
-          "change_24h": "+0.92%"
-        }
-      ],
-      "category": "SOVEREIGN_TREASURY",
-      "priority": "MEDIUM",
-      "last_updated_utc": "2026-10-18 23:58:07 UTC"
-    },
-    "uk": {
-      "slug": "uk",
-      "entity_name": "U.K. Government",
-      "address_count": "4 Addresses",
-      "total_portfolio_usd": "$0.00",
-      "portfolio_change_24h": "",
-      "holdings_breakdown": [
-        {
-          "symbol": "BTC",
-          "price": "$82,031",
-          "amount": "BTC",
-          "value_usd": "$5.02B",
-          "change_24h": "+0.92%"
-        }
-      ],
-      "category": "SOVEREIGN_TREASURY",
-      "priority": "MEDIUM",
-      "last_updated_utc": "2026-10-18 23:58:13 UTC"
-    },
-    "druk-holding-investments": {
-      "slug": "druk-holding-investments",
-      "entity_name": "Royal Government of Bhutan (Druk Holdings)",
-      "address_count": "274 Addresses",
-      "total_portfolio_usd": "$0.00",
-      "portfolio_change_24h": "",
-      "holdings_breakdown": [
-        {
-          "symbol": "BTC",
-          "price": "$81,986",
-          "amount": "BTC",
-          "value_usd": "$42.5M",
-          "change_24h": "+0.8%"
-        },
-        {
-          "symbol": "BNB",
-          "price": "$722.43",
-          "amount": "BNB",
-          "value_usd": "$21.29K",
-          "change_24h": "+0.81%"
-        },
-        {
-          "symbol": "ETH",
-          "price": "$2,406.17",
-          "amount": "ETH",
-          "value_usd": "$17.4K",
-          "change_24h": "+0.39%"
-        }
-      ],
-      "category": "SOVEREIGN_TREASURY",
-      "priority": "MEDIUM",
-      "last_updated_utc": "2026-10-18 23:58:19 UTC"
+      "last_updated_utc": "2026-10-21 11:30:04 UTC"
     }
   },
-  "whale_alerts": [
-    {
-      "tx_hash": "0x3dc82e0d61735fb08626ec5a55874c8a0948b729e681f9bd6f10bedb175cf79f",
-      "time": "2026-10-18 13:20:59",
-      "from": "Capyfi",
-      "to": "Staked WBTC (STBTC)\n(0xb40)",
-      "usd_value": 109310000.0,
-      "token": "WBTC",
-      "asset_bucket": "BTC",
-      "flow_tag": "INTERNAL_TRANSFER"
-    },
-    {
-      "tx_hash": "0x3dc82e0d61735fb08626ec5a55874c8a0948b729e681f9bd6f10bedb175cf79f",
-      "time": "2026-10-18 13:20:59",
-      "from": "0x00acd5005200E7009BEB000000E35E1E002b5565",
-      "to": "Morpho",
-      "usd_value": 109310000.0,
-      "token": "MORPHO",
-      "asset_bucket": "OTHER",
-      "flow_tag": "INTERNAL_TRANSFER"
-    },
-    {
-      "tx_hash": "0xca32c511b4a54a3639d2f9c0f2733875fadd6920b8560dc89a61e245734fb4bd",
-      "time": "2026-10-18 04:20:59",
-      "from": "Capyfi",
-      "to": "OffchainBtcVault (Proxy)\n(0x6cb)",
-      "usd_value": 109250000.0,
-      "token": "WBTC",
-      "asset_bucket": "BTC",
-      "flow_tag": "INTERNAL_TRANSFER"
-    },
-    {
-      "tx_hash": "0xca32c511b4a54a3639d2f9c0f2733875fadd6920b8560dc89a61e245734fb4bd",
-      "time": "2026-10-18 04:20:59",
-      "from": "Capyfi",
-      "to": "Staked WBTC (STBTC)\n(0xb40)",
-      "usd_value": 109250000.0,
-      "token": "WBTC",
-      "asset_bucket": "BTC",
-      "flow_tag": "INTERNAL_TRANSFER"
-    },
-    {
-      "tx_hash": "0xca32c511b4a54a3639d2f9c0f2733875fadd6920b8560dc89a61e245734fb4bd",
-      "time": "2026-10-18 04:20:59",
-      "from": "Morpho",
-      "to": "Morpho Blue\n(0xBBB)",
-      "usd_value": 109250000.0,
-      "token": "MORPHO",
-      "asset_bucket": "OTHER",
-      "flow_tag": "INTERNAL_TRANSFER"
-    },
-    {
-      "tx_hash": "0xca32c511b4a54a3639d2f9c0f2733875fadd6920b8560dc89a61e245734fb4bd",
-      "time": "2026-10-18 04:20:59",
-      "from": "0x00acd5005200E7009BEB000000E35E1E002b5565",
-      "to": "Morpho",
-      "usd_value": 109250000.0,
-      "token": "MORPHO",
-      "asset_bucket": "OTHER",
-      "flow_tag": "INTERNAL_TRANSFER"
-    },
-    {
-      "tx_hash": "0xca32c511b4a54a3639d2f9c0f2733875fadd6920b8560dc89a61e245734fb4bd",
-      "time": "2026-10-18 04:20:59",
-      "from": "0x00acd5005200E7009BEB000000E35E1E002b5565",
-      "to": "Capyfi",
-      "usd_value": 109250000.0,
-      "token": "WBTC",
-      "asset_bucket": "BTC",
-      "flow_tag": "INTERNAL_TRANSFER"
-    },
-    {
-      "tx_hash": "0x2afbaae716145a2eb0b149ca37b8d4a6d7d3d4e65024e7090f3abbd323e39e0f",
-      "time": "2026-10-18 03:20:59",
-      "from": "Capyfi",
-      "to": "OffchainBtcVault (Proxy)\n(0x6cb)",
-      "usd_value": 109190000.0,
-      "token": "WBTC",
-      "asset_bucket": "BTC",
-      "flow_tag": "INTERNAL_TRANSFER"
-    },
-    {
-      "tx_hash": "0x2afbaae716145a2eb0b149ca37b8d4a6d7d3d4e65024e7090f3abbd323e39e0f",
-      "time": "2026-10-18 03:20:59",
-      "from": "Capyfi",
-      "to": "Staked WBTC (STBTC)\n(0xb40)",
-      "usd_value": 109190000.0,
-      "token": "WBTC",
-      "asset_bucket": "BTC",
-      "flow_tag": "INTERNAL_TRANSFER"
-    },
-    {
-      "tx_hash": "0x2afbaae716145a2eb0b149ca37b8d4a6d7d3d4e65024e7090f3abbd323e39e0f",
-      "time": "2026-10-18 03:20:59",
-      "from": "0x2AbdaAAf3176DfF7dcADd08824A351bcbF06587d",
-      "to": "Capyfi",
-      "usd_value": 109190000.0,
-      "token": "WBTC",
-      "asset_bucket": "BTC",
-      "flow_tag": "INTERNAL_TRANSFER"
-    },
-    {
-      "tx_hash": "0x2afbaae716145a2eb0b149ca37b8d4a6d7d3d4e65024e7090f3abbd323e39e0f",
-      "time": "2026-10-18 03:20:59",
-      "from": "0x2AbdaAAf3176DfF7dcADd08824A351bcbF06587d",
-      "to": "Morpho",
-      "usd_value": 109190000.0,
-      "token": "MORPHO",
-      "asset_bucket": "OTHER",
-      "flow_tag": "INTERNAL_TRANSFER"
-    },
-    {
-      "tx_hash": "0x2afbaae716145a2eb0b149ca37b8d4a6d7d3d4e65024e7090f3abbd323e39e0f",
-      "time": "2026-10-18 03:20:59",
-      "from": "Morpho",
-      "to": "Morpho Blue\n(0xBBB)",
-      "usd_value": 109190000.0,
-      "token": "MORPHO",
-      "asset_bucket": "OTHER",
-      "flow_tag": "INTERNAL_TRANSFER"
-    },
-    {
-      "tx_hash": "0x9904c28461b53c12395e65ff663697692f4857a1a5e01726c2f89f9cabb01f90",
-      "time": "2026-10-18 06:20:59",
-      "from": "Capyfi",
-      "to": "OffchainBtcVault (Proxy)\n(0x6cb)",
-      "usd_value": 109060000.0,
-      "token": "WBTC",
-      "asset_bucket": "BTC",
-      "flow_tag": "INTERNAL_TRANSFER"
-    },
-    {
-      "tx_hash": "0x9904c28461b53c12395e65ff663697692f4857a1a5e01726c2f89f9cabb01f90",
-      "time": "2026-10-18 06:20:59",
-      "from": "Capyfi",
-      "to": "Staked WBTC (STBTC)\n(0xb40)",
-      "usd_value": 109060000.0,
-      "token": "WBTC",
-      "asset_bucket": "BTC",
-      "flow_tag": "INTERNAL_TRANSFER"
-    },
-    {
-      "tx_hash": "0x9904c28461b53c12395e65ff663697692f4857a1a5e01726c2f89f9cabb01f90",
-      "time": "2026-10-18 06:20:59",
-      "from": "Morpho",
-      "to": "Morpho Blue\n(0xBBB)",
-      "usd_value": 109060000.0,
-      "token": "MORPHO",
-      "asset_bucket": "OTHER",
-      "flow_tag": "INTERNAL_TRANSFER"
-    },
-    {
-      "tx_hash": "0x9904c28461b53c12395e65ff663697692f4857a1a5e01726c2f89f9cabb01f90",
-      "time": "2026-10-18 06:20:59",
-      "from": "0x00acd5005200E7009BEB000000E35E1E002b5565",
-      "to": "Morpho",
-      "usd_value": 109060000.0,
-      "token": "MORPHO",
-      "asset_bucket": "OTHER",
-      "flow_tag": "INTERNAL_TRANSFER"
-    },
-    {
-      "tx_hash": "0x9904c28461b53c12395e65ff663697692f4857a1a5e01726c2f89f9cabb01f90",
-      "time": "2026-10-18 06:20:59",
-      "from": "0x00acd5005200E7009BEB000000E35E1E002b5565",
-      "to": "Capyfi",
-      "usd_value": 109060000.0,
-      "token": "WBTC",
-      "asset_bucket": "BTC",
-      "flow_tag": "INTERNAL_TRANSFER"
-    },
-    {
-      "tx_hash": "0x3d31e8892f124304ae6e31d9e1ffd272af46a2710de5017191b8f5f6d05a1bf2",
-      "time": "2026-10-18 07:20:59",
-      "from": "Capyfi",
-      "to": "OffchainBtcVault (Proxy)\n(0x6cb)",
-      "usd_value": 109010000.0,
-      "token": "WBTC",
-      "asset_bucket": "BTC",
-      "flow_tag": "INTERNAL_TRANSFER"
-    },
-    {
-      "tx_hash": "0x3d31e8892f124304ae6e31d9e1ffd272af46a2710de5017191b8f5f6d05a1bf2",
-      "time": "2026-10-18 07:20:59",
-      "from": "0x00acd5005200E7009BEB000000E35E1E002b5565",
-      "to": "Morpho",
-      "usd_value": 109010000.0,
-      "token": "MORPHO",
-      "asset_bucket": "OTHER",
-      "flow_tag": "INTERNAL_TRANSFER"
-    },
-    {
-      "tx_hash": "0x3d31e8892f124304ae6e31d9e1ffd272af46a2710de5017191b8f5f6d05a1bf2",
-      "time": "2026-10-18 07:20:59",
-      "from": "Capyfi",
-      "to": "Staked WBTC (STBTC)\n(0xb40)",
-      "usd_value": 109010000.0,
-      "token": "WBTC",
-      "asset_bucket": "BTC",
-      "flow_tag": "INTERNAL_TRANSFER"
-    },
-    {
-      "tx_hash": "0x3d31e8892f124304ae6e31d9e1ffd272af46a2710de5017191b8f5f6d05a1bf2",
-      "time": "2026-10-18 07:20:59",
-      "from": "Morpho",
-      "to": "Morpho Blue\n(0xBBB)",
-      "usd_value": 109010000.0,
-      "token": "MORPHO",
-      "asset_bucket": "OTHER",
-      "flow_tag": "INTERNAL_TRANSFER"
-    },
-    {
-      "tx_hash": "0x3d31e8892f124304ae6e31d9e1ffd272af46a2710de5017191b8f5f6d05a1bf2",
-      "time": "2026-10-18 07:20:59",
-      "from": "0x00acd5005200E7009BEB000000E35E1E002b5565",
-      "to": "Capyfi",
-      "usd_value": 109010000.0,
-      "token": "WBTC",
-      "asset_bucket": "BTC",
-      "flow_tag": "INTERNAL_TRANSFER"
-    },
-    {
-      "tx_hash": "0xe826d7807d62992b5b45551e18bad0d546eb2f6eafe6ed42888a1dbef9d63088",
-      "time": "2026-10-18 09:20:59",
-      "from": "Capyfi",
-      "to": "OffchainBtcVault (Proxy)\n(0x6cb)",
-      "usd_value": 108960000.0,
-      "token": "WBTC",
-      "asset_bucket": "BTC",
-      "flow_tag": "INTERNAL_TRANSFER"
-    }
-  ],
-  "recent_classified_transfers": [
-    {
-      "time": "2026-10-18 13:20:59",
-      "tx_hash": "0x3dc82e0d61735fb08626ec5a55874c8a0948b729e681f9bd6f10bedb175cf79f",
-      "from_entity": "Capyfi",
-      "from_type": "WALLET",
-      "to_entity": "Staked WBTC (STBTC)\n(0xb40)",
-      "to_type": "WALLET",
-      "token": "WBTC",
-      "amount": 0.0,
-      "usd_value": 109310000.0,
-      "flow_classification": "INTERNAL_TRANSFER"
-    },
-    {
-      "time": "2026-10-18 13:20:59",
-      "tx_hash": "0x3dc82e0d61735fb08626ec5a55874c8a0948b729e681f9bd6f10bedb175cf79f",
-      "from_entity": "0x00acd5005200E7009BEB000000E35E1E002b5565",
-      "from_type": "WALLET",
-      "to_entity": "Morpho",
-      "to_type": "WALLET",
-      "token": "MORPHO",
-      "amount": 5.0052007009e+26,
-      "usd_value": 109310000.0,
-      "flow_classification": "INTERNAL_TRANSFER"
-    },
-    {
-      "time": "2026-10-18 04:20:59",
-      "tx_hash": "0xca32c511b4a54a3639d2f9c0f2733875fadd6920b8560dc89a61e245734fb4bd",
-      "from_entity": "Capyfi",
-      "from_type": "WALLET",
-      "to_entity": "OffchainBtcVault (Proxy)\n(0x6cb)",
-      "to_type": "WALLET",
-      "token": "WBTC",
-      "amount": 1338.0,
-      "usd_value": 109250000.0,
-      "flow_classification": "INTERNAL_TRANSFER"
-    },
-    {
-      "time": "2026-10-18 04:20:59",
-      "tx_hash": "0xca32c511b4a54a3639d2f9c0f2733875fadd6920b8560dc89a61e245734fb4bd",
-      "from_entity": "Capyfi",
-      "from_type": "WALLET",
-      "to_entity": "Staked WBTC (STBTC)\n(0xb40)",
-      "to_type": "WALLET",
-      "token": "WBTC",
-      "amount": 0.0,
-      "usd_value": 109250000.0,
-      "flow_classification": "INTERNAL_TRANSFER"
-    },
-    {
-      "time": "2026-10-18 04:20:59",
-      "tx_hash": "0xca32c511b4a54a3639d2f9c0f2733875fadd6920b8560dc89a61e245734fb4bd",
-      "from_entity": "Morpho",
-      "from_type": "WALLET",
-      "to_entity": "Morpho Blue\n(0xBBB)",
-      "to_type": "WALLET",
-      "token": "MORPHO",
-      "amount": -20261018042059.0,
-      "usd_value": 109250000.0,
-      "flow_classification": "INTERNAL_TRANSFER"
-    },
-    {
-      "time": "2026-10-18 04:20:59",
-      "tx_hash": "0xca32c511b4a54a3639d2f9c0f2733875fadd6920b8560dc89a61e245734fb4bd",
-      "from_entity": "0x00acd5005200E7009BEB000000E35E1E002b5565",
-      "from_type": "WALLET",
-      "to_entity": "Morpho",
-      "to_type": "WALLET",
-      "token": "MORPHO",
-      "amount": 5.0052007009e+26,
-      "usd_value": 109250000.0,
-      "flow_classification": "INTERNAL_TRANSFER"
-    },
-    {
-      "time": "2026-10-18 04:20:59",
-      "tx_hash": "0xca32c511b4a54a3639d2f9c0f2733875fadd6920b8560dc89a61e245734fb4bd",
-      "from_entity": "0x00acd5005200E7009BEB000000E35E1E002b5565",
-      "from_type": "WALLET",
-      "to_entity": "Capyfi",
-      "to_type": "WALLET",
-      "token": "WBTC",
-      "amount": 0.0,
-      "usd_value": 109250000.0,
-      "flow_classification": "INTERNAL_TRANSFER"
-    },
-    {
-      "time": "2026-10-18 03:20:59",
-      "tx_hash": "0x2afbaae716145a2eb0b149ca37b8d4a6d7d3d4e65024e7090f3abbd323e39e0f",
-      "from_entity": "Capyfi",
-      "from_type": "WALLET",
-      "to_entity": "OffchainBtcVault (Proxy)\n(0x6cb)",
-      "to_type": "WALLET",
-      "token": "WBTC",
-      "amount": 1338.0,
-      "usd_value": 109190000.0,
-      "flow_classification": "INTERNAL_TRANSFER"
-    },
-    {
-      "time": "2026-10-18 03:20:59",
-      "tx_hash": "0x2afbaae716145a2eb0b149ca37b8d4a6d7d3d4e65024e7090f3abbd323e39e0f",
-      "from_entity": "Capyfi",
-      "from_type": "WALLET",
-      "to_entity": "Staked WBTC (STBTC)\n(0xb40)",
-      "to_type": "WALLET",
-      "token": "WBTC",
-      "amount": 0.0,
-      "usd_value": 109190000.0,
-      "flow_classification": "INTERNAL_TRANSFER"
-    },
-    {
-      "time": "2026-10-18 03:20:59",
-      "tx_hash": "0x2afbaae716145a2eb0b149ca37b8d4a6d7d3d4e65024e7090f3abbd323e39e0f",
-      "from_entity": "0x2AbdaAAf3176DfF7dcADd08824A351bcbF06587d",
-      "from_type": "WALLET",
-      "to_entity": "Capyfi",
-      "to_type": "WALLET",
-      "token": "WBTC",
-      "amount": 0.0,
-      "usd_value": 109190000.0,
-      "flow_classification": "INTERNAL_TRANSFER"
-    },
-    {
-      "time": "2026-10-18 03:20:59",
-      "tx_hash": "0x2afbaae716145a2eb0b149ca37b8d4a6d7d3d4e65024e7090f3abbd323e39e0f",
-      "from_entity": "0x2AbdaAAf3176DfF7dcADd08824A351bcbF06587d",
-      "from_type": "WALLET",
-      "to_entity": "Morpho",
-      "to_type": "WALLET",
-      "token": "MORPHO",
-      "amount": 2.317670882435107e+18,
-      "usd_value": 109190000.0,
-      "flow_classification": "INTERNAL_TRANSFER"
-    },
-    {
-      "time": "2026-10-18 03:20:59",
-      "tx_hash": "0x2afbaae716145a2eb0b149ca37b8d4a6d7d3d4e65024e7090f3abbd323e39e0f",
-      "from_entity": "Morpho",
-      "from_type": "WALLET",
-      "to_entity": "Morpho Blue\n(0xBBB)",
-      "to_type": "WALLET",
-      "token": "MORPHO",
-      "amount": -20261018032059.0,
-      "usd_value": 109190000.0,
-      "flow_classification": "INTERNAL_TRANSFER"
-    },
-    {
-      "time": "2026-10-18 06:20:59",
-      "tx_hash": "0x9904c28461b53c12395e65ff663697692f4857a1a5e01726c2f89f9cabb01f90",
-      "from_entity": "Capyfi",
-      "from_type": "WALLET",
-      "to_entity": "OffchainBtcVault (Proxy)\n(0x6cb)",
-      "to_type": "WALLET",
-      "token": "WBTC",
-      "amount": 1338.0,
-      "usd_value": 109060000.0,
-      "flow_classification": "INTERNAL_TRANSFER"
-    },
-    {
-      "time": "2026-10-18 06:20:59",
-      "tx_hash": "0x9904c28461b53c12395e65ff663697692f4857a1a5e01726c2f89f9cabb01f90",
-      "from_entity": "Capyfi",
-      "from_type": "WALLET",
-      "to_entity": "Staked WBTC (STBTC)\n(0xb40)",
-      "to_type": "WALLET",
-      "token": "WBTC",
-      "amount": 0.0,
-      "usd_value": 109060000.0,
-      "flow_classification": "INTERNAL_TRANSFER"
-    },
-    {
-      "time": "2026-10-18 06:20:59",
-      "tx_hash": "0x9904c28461b53c12395e65ff663697692f4857a1a5e01726c2f89f9cabb01f90",
-      "from_entity": "Morpho",
-      "from_type": "WALLET",
-      "to_entity": "Morpho Blue\n(0xBBB)",
-      "to_type": "WALLET",
-      "token": "MORPHO",
-      "amount": -20261018062059.0,
-      "usd_value": 109060000.0,
-      "flow_classification": "INTERNAL_TRANSFER"
-    },
-    {
-      "time": "2026-10-18 06:20:59",
-      "tx_hash": "0x9904c28461b53c12395e65ff663697692f4857a1a5e01726c2f89f9cabb01f90",
-      "from_entity": "0x00acd5005200E7009BEB000000E35E1E002b5565",
-      "from_type": "WALLET",
-      "to_entity": "Morpho",
-      "to_type": "WALLET",
-      "token": "MORPHO",
-      "amount": 5.0052007009e+26,
-      "usd_value": 109060000.0,
-      "flow_classification": "INTERNAL_TRANSFER"
-    },
-    {
-      "time": "2026-10-18 06:20:59",
-      "tx_hash": "0x9904c28461b53c12395e65ff663697692f4857a1a5e01726c2f89f9cabb01f90",
-      "from_entity": "0x00acd5005200E7009BEB000000E35E1E002b5565",
-      "from_type": "WALLET",
-      "to_entity": "Capyfi",
-      "to_type": "WALLET",
-      "token": "WBTC",
-      "amount": 0.0,
-      "usd_value": 109060000.0,
-      "flow_classification": "INTERNAL_TRANSFER"
-    },
-    {
-      "time": "2026-10-18 07:20:59",
-      "tx_hash": "0x3d31e8892f124304ae6e31d9e1ffd272af46a2710de5017191b8f5f6d05a1bf2",
-      "from_entity": "Capyfi",
-      "from_type": "WALLET",
-      "to_entity": "OffchainBtcVault (Proxy)\n(0x6cb)",
-      "to_type": "WALLET",
-      "token": "WBTC",
-      "amount": 1338.0,
-      "usd_value": 109010000.0,
-      "flow_classification": "INTERNAL_TRANSFER"
-    },
-    {
-      "time": "2026-10-18 07:20:59",
-      "tx_hash": "0x3d31e8892f124304ae6e31d9e1ffd272af46a2710de5017191b8f5f6d05a1bf2",
-      "from_entity": "0x00acd5005200E7009BEB000000E35E1E002b5565",
-      "from_type": "WALLET",
-      "to_entity": "Morpho",
-      "to_type": "WALLET",
-      "token": "MORPHO",
-      "amount": 5.0052007009e+26,
-      "usd_value": 109010000.0,
-      "flow_classification": "INTERNAL_TRANSFER"
-    },
-    {
-      "time": "2026-10-18 07:20:59",
-      "tx_hash": "0x3d31e8892f124304ae6e31d9e1ffd272af46a2710de5017191b8f5f6d05a1bf2",
-      "from_entity": "Capyfi",
-      "from_type": "WALLET",
-      "to_entity": "Staked WBTC (STBTC)\n(0xb40)",
-      "to_type": "WALLET",
-      "token": "WBTC",
-      "amount": 0.0,
-      "usd_value": 109010000.0,
-      "flow_classification": "INTERNAL_TRANSFER"
-    },
-    {
-      "time": "2026-10-18 07:20:59",
-      "tx_hash": "0x3d31e8892f124304ae6e31d9e1ffd272af46a2710de5017191b8f5f6d05a1bf2",
-      "from_entity": "Morpho",
-      "from_type": "WALLET",
-      "to_entity": "Morpho Blue\n(0xBBB)",
-      "to_type": "WALLET",
-      "token": "MORPHO",
-      "amount": -20261018072059.0,
-      "usd_value": 109010000.0,
-      "flow_classification": "INTERNAL_TRANSFER"
-    },
-    {
-      "time": "2026-10-18 07:20:59",
-      "tx_hash": "0x3d31e8892f124304ae6e31d9e1ffd272af46a2710de5017191b8f5f6d05a1bf2",
-      "from_entity": "0x00acd5005200E7009BEB000000E35E1E002b5565",
-      "from_type": "WALLET",
-      "to_entity": "Capyfi",
-      "to_type": "WALLET",
-      "token": "WBTC",
-      "amount": 0.0,
-      "usd_value": 109010000.0,
-      "flow_classification": "INTERNAL_TRANSFER"
-    },
-    {
-      "time": "2026-10-18 09:20:59",
-      "tx_hash": "0xe826d7807d62992b5b45551e18bad0d546eb2f6eafe6ed42888a1dbef9d63088",
-      "from_entity": "Capyfi",
-      "from_type": "WALLET",
-      "to_entity": "OffchainBtcVault (Proxy)\n(0x6cb)",
-      "to_type": "WALLET",
-      "token": "WBTC",
-      "amount": 1333.0,
-      "usd_value": 108960000.0,
-      "flow_classification": "INTERNAL_TRANSFER"
-    }
-  ],
+  "whale_alerts": [],
+  "recent_classified_transfers": [],
   "_temporal_meta": {
     "stream": "arkham",
-    "recorded_at_utc": "2026-10-19T00:29:44Z",
-    "recorded_at_epoch": 1792369784.317128,
+    "recorded_at_utc": "2026-10-21T11:31:21Z",
+    "recorded_at_epoch": 1792582281.040611,
     "gap_detected": false,
     "gap_duration_minutes": 0.0,
     "last_active_utc": null,

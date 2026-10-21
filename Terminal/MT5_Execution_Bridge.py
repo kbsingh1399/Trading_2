@@ -776,7 +776,7 @@ class MT5ExecutionBridge:
         try:
             from Terminal.risk.live_admission import assert_joint_fill_safe
             assert_joint_fill_safe(self, symbol, "LONG" if is_long else "SHORT",
-                                   normalized, price, request["sl"])
+                                   normalized, price, request["sl"], is_limit_order=True)
         except (ValueError, RuntimeError, TypeError) as exc:
             return {"success": False, "error": f"admission_refused:{exc}"}
         if hasattr(mt5, "order_check"):

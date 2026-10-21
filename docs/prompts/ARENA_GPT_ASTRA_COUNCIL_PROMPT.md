@@ -7,7 +7,10 @@ DIRECT REPO LINKS:
 - Standardized Decision Chain (SOP): https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md
 - Autonomous Wake-Up Checklist: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Data/Manditory/AUTONOMOUS_WAKEUP_CHECKLIST.md
 - Active Goal: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Data/Manditory/GOAL.md & PASS_BLUEBERRY_PHASE_1_BY_OCT_23_2026.md
-- Master 29-Module Data Warehouse: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Data/DataBase_Trading.xlsx (Sheet 0 `00_MT5_Account_Telemetry` embeds live broker telemetry)
+- Master 32-Sheet Data Warehouse: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/Data/DataBase_Trading.xlsx (All 32 sheets: Sheet 0 `00_MT5_Account_Telemetry` through Sheet 31 `19_Calendar` covering CVD, Whales, Orderbook, Liquidations, Stops, and Macro Calendar)
+
+CRITICAL DATA INTEGRITY & 32-SHEET INSPECTION MANDATE:
+You MUST confirm that you have inspected the authentic data across ALL 32 worksheets in `Data/DataBase_Trading.xlsx` so that zero microstructure, orderbook depth, CVD delta, whale persistence, liquidation magnet, or calendar event data is missed. Zero data amnesia.
 
 CRITICAL INVARIANT ON PR / MERGING:
 DO NOT open a pull request. DO NOT attempt to merge or commit code. This session is strictly a read-only mathematical and orderflow deliberation committee.
@@ -26,56 +29,51 @@ PART A: OPERATIONAL CONTEXT & CAPITAL FLOOR DEFENSE (ACCOUNT #5064568)
 - Target Environment: MetaTrader 5 (Blueberry Markets SVG-Live Account #5064568)
 - Phase 1 Target: Reach 5,500.00 USD balance/equity by Friday, 23rd October 2026 (23:59 UTC).
 - Live Account State:
-  * Realized Balance: 4,824.89 USD
-  * Live Floating Equity: 4,835.42 USD (supported by +10.53 USD unrealized profit on NAS100)
-  * Free Margin: 4,539.82 USD
+  * Realized Balance: 4,840.39 USD (Session High-Water Mark)
+  * Live Floating Equity: 4,840.39 USD (100% Unencumbered Cash / Flat Book)
+  * Free Margin: 4,840.39 USD
+  * Prior Winner Banked: Ticket #19146275 (NAS100.p) hit Take Profit at 29,715.00 USD, banking +15.50 USD net cash profit!
   * Absolute Hard Floor: 4,775.00 USD (Inviolate stop-out barrier; never breached under any circumstances).
-  * Operating Defense Buffer: 4,795.00 USD (Hard floor + 20.00 USD buffer).
-  * Live Floor Cushion: +60.42 USD above 4,775.00 USD
-  * Live Buffer Cushion: +40.42 USD above 4,795.00 USD
-  * Authorized Risk Envelope: 15.00 to 25.00 USD per trade (0.31% to 0.52% equity).
+  * Operating Defense Buffer: 4,795.00 USD (Hard floor + 20.00 USD defense buffer).
+  * Live Floor Cushion: +65.39 USD above 4,775.00 USD
+  * Live Buffer Cushion: +45.39 USD above 4,795.00 USD
+  * Distance to Target: +659.61 USD to 5,500.00 USD Goal
+  * Open Positions: 0 | Pending Orders: 0 (100% clean capacity)
+  * Authorized Risk Envelope: 15.00 to 25.00 USD per trade (Up to 2 slots at $15 risk or 1 slot at $25 risk).
   * Post-Loss Floor Invariant: Stressed Equity = Current Equity - sum(Risk_i * 1.25 + 2.00) >= 4,795.00 USD.
   * Order Posture: Strictly passive limit orders (BUY_LIMIT / SELL_LIMIT). Crossing the bid-ask spread with aggressive market orders is strictly prohibited.
 
 ================================================================================
-PART B: ACTIVE POSITION AUDIT & FROZEN R0 DYNAMIC RATCHET (TICKET #19146275)
+PART B: HISTORICAL POSITION AUDIT & COMPLETED RATCHET HARVEST
 ================================================================================
 - Symbol: NAS100.p (TradFi Index CFD)
 - Ticket: #19146275 | Direction: BUY | Volume: 0.01 lot
-- Entry Price: 29,560.00 USD | Current Price: ~29,665.29 USD (+105.29 index points gain)
-- Active Stop Loss: 29,575.00 USD (+15.0 index points above entry, 100% Risk-Free, locking in +1.50 USD guaranteed net profit). Active portfolio downside risk = 0.00 USD.
-- Active Take Profit: 29,715.00 USD (+155.0 index points / +15.50 USD reward; resting passive broker limit).
-- Piecewise Dynamic Ratchet Rules:
-  * Phase Early-BE (+0.75R0 to +0.80R0 = 29,672.50 USD): Move SL to Entry + 0.10R0 (29,575.00 USD) -> EXECUTED & ACTIVE.
-  * Phase 0 (+1.25R0 = 29,747.50 USD): Move SL to Entry + 0.15R0 (29,582.50 USD). Peak excursion reached 29,726.44 USD; trigger not breached. Current SL maintained.
-  * Phase 1 (+1.65R0 = 29,807.50 USD): Move SL to Entry + 0.80R0 (29,680.00 USD).
-  * Time Decay: Exit via passive limit if profit remains < +0.20R0 after 24 bars (6 hours).
+- Entry: 29,560.00 USD | Take Profit Executed: 29,715.00 USD (+155.0 index points)
+- Outcome: REALIZED CASH PROFIT OF +$15.50 USD. Deal #17347431 closed at NY cash open.
+- Frozen R0 Piecewise Dynamic Ratchet Status: Successfully completed full cycle. Early-BE locked +$1.50 guaranteed profit, and TP front-ran liquidity band at 29,715.00 USD before subsequent index retracement.
 
 ================================================================================
-PART C: 5-PILLAR INSTITUTIONAL CONFLUENCE EVALUATION
+PART C: LIVE CANDIDATE PIPELINE & 4 CONCRETE STAGED LIMIT SETUPS
 ================================================================================
-1. Pillar 1 (Spread Friction Gate):
-   - Crypto Perpetuals: Spread <= 25.0 bps. Qualified: BTC (1.92 bps), BNB (8.05 bps), ETH (11.35 bps), BCH (16.81 bps), SOL (21.53 bps). All others disqualified.
-   - TradFi CFDs: Spread <= 5.0 bps. Qualified: NAS100 (0.36 bps), SP500 (0.39 bps), GOLD (0.19 bps).
-2. Pillar 2 (Orderflow & CVD Divergence):
-   - Crypto: Binance Spot vs Futures taker delta divergence (zc_div > 0.8, Delta Spot > 0, Delta Futures < 0).
-   - TradFi: MT5 interbank tick volume cumulative orderflow delta (Sheet `18_CVD`).
-3. Pillar 3 (Dual-Engine Regime Classification):
-   - Model 1 (Extreme Mean Reversion): |Z_VWAP| >= 2.0 to 3.5 SD with tape exhaustion and RSI < 40 / > 60.
-   - Model 2 (Trend Following Pullback): Confirmed TREND_UP/DOWN, pullback to 20/50 EMA or Session VWAP shelf at |Z_VWAP| < 2.0 SD.
-   - If UNDEFINED, stand aside unconditionally.
-4. Pillar 4 (Resting Whale Wall & Bunker Stop):
-   - Stop Loss MUST sit safely behind an institutional whale wall (>= $100K USD, persistence >= 180s) outside liquidation sweep bands [min_price, max_price] + 0.50 ATR.
-5. Pillar 5 (Macro & Calendar Event Gate):
-   - No Tier-1 US macroeconomic events today (next FOMC Oct 28). Macro gate: APPROVED.
-   - Spot ETF: BlackRock IBIT logged +29.9M USD net institutional inflows (+111.94M USD 24h spot accumulation). Counter-trend shorts on BTC are banned.
+The desk has actively formulated 4 concrete potential trade candidates across the qualified universe:
+
+| # | Asset | Setup Type | Proposed Limit Entry | Stop Loss (Bunkered) | Take Profit (Magnet) | Lot Size | Cash Risk | R-Multiple | Activation Trigger Condition |
+|---|---|---|---|---|---|---|---|---|---|
+| **1** | **NAS100.p** | Model 2 Pullback | **BUY_LIMIT @ 29,625.00** | 29,475.00 (-150 pts) | 29,945.00 (+320 pts) | 0.01 | **$15.00** | **2.13R0** | Retest of NY Open VAL shelf (29,620–29,635) with positive tick CVD absorption |
+| **2** | **BTCUSD.pi** | Model 2 Trend Pullback | **BUY_LIMIT @ 83,350.00** | 82,850.00 (-500 USD) | 84,400.00 (+1,050 USD)| 0.03 | **$15.00** | **2.10R0** | Pullback to 20 EMA (83,388) / Session VWAP (83,082) with whale bid confirmation |
+| **3** | **XAUUSD.pi** | Model 2 VWAP Shelf | **BUY_LIMIT @ 4,122.00** | 4,107.00 (-15.00 USD) | 4,153.50 (+31.50 USD) | 0.01 | **$15.00** | **2.10R0** | Test of Session VWAP (4,122.50) with positive tick CVD aggression |
+| **4** | **SP500.p** | Model 2 Value Bounce | **BUY_LIMIT @ 7,710.00** | 7,560.00 (-150 pts) | 8,010.00 (+300 pts) | 0.01 | **$15.00** | **2.00R0** | Clean bounce from 7,710 pre-open shelf with buyer depth |
+
+Macro Clearance Gate: APPROVED (Zero Tier-1 US releases today; BlackoutGuard unblocked; FX rollover 7h 13m away).
+Stressed Capacity Clearance: Realized Equity $4,840.39 USD clears 2 concurrent $15.00 USD positions (Stressed worst-case equity $4,798.89 >= $4,795.00 operating buffer).
 
 ================================================================================
 PART D: DELIVERABLE — FORMAL QUANTITATIVE COUNCIL MEMORANDUM
 ================================================================================
 Provide your rigorous, concise institutional response structured as:
-- SECTION 0: Architecture Lineage & Fingerprint Attestation
-- SECTION A: Capital Floor Defense & Stressed Capacity Audit
-- SECTION B: Ticket #19146275 Active Ratchet Verification
-- SECTION C: 5-Asset Institutional Census Table (BTC, BNB, ETH, BCH, SOL)
-- SECTION D: Confluence Proofs & Consensus Stance (Confirm STAND ASIDE on secondary entries to preserve cushion, or stage exact passive limit order if 5 pillars align).
+- SECTION 0: Architecture Lineage & Fingerprint Attestation (Confirm GPT Astra / Tier-1 formal math engine)
+- SECTION A: Capital Floor Defense & Stressed Capacity Audit (Realized equity $4,840.39, +$65.39 floor cushion, +$45.39 buffer cushion)
+- SECTION B: Realized Take Profit Harvest Attestation (Ticket #19146275 banked +$15.50 USD)
+- SECTION C: 4-Slot Parallel Portfolio Audit (Active Tickets #19162262 NAS100.p & #19162276 BTCUSD.pi; Staged Slots 3 & 4 XAUUSD.pi & EURUSD.pi)
+- SECTION D: Master 32-Sheet Excel Data Warehouse Inspection Attestation (Confirm all 32 sheets in DataBase_Trading.xlsx inspected with zero missed signals)
+- SECTION E: Confluence Proofs & Consensus Stance (Confirm execution alignment across the 4 portfolio slots).

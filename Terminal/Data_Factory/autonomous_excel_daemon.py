@@ -47,9 +47,10 @@ logging.basicConfig(
 logger = logging.getLogger("ExcelUpdateDaemon")
 
 STATUS_FILE = ROOT / "Data" / "excel_daemon_status.json"
-DEFAULT_INTERVAL_S = 600.0  # 10 minutes
+DEFAULT_INTERVAL_S = 900.0  # 15 minutes (900 seconds)
 
 _keep_running = True
+
 
 
 def _handle_signal(signum, frame):
@@ -162,8 +163,10 @@ def main():
         logger.info("Starting Excel update iteration #%d at %s...", iteration, start_utc.strftime("%Y-%m-%d %H:%M:%S UTC"))
 
         try:
-            from Terminal.Data_Factory.master_excel_pipeline import run_pipeline
-            elapsed = run_pipeline()
+            import importlib
+            import Terminal.Data_Factory.master_excel_pipeline as mep
+            importlib.reload(mep)
+            elapsed = mep.run_pipeline()
             
             # Verify COM
             excel_path = ROOT / "Data" / "DataBase_Trading.xlsx"

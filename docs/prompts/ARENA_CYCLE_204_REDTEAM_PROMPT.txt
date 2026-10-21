@@ -1,0 +1,63 @@
+# 🏛️ QUANTITATIVE COUNCIL RED-TEAM AUDIT: CYCLE 204
+## Direct Forensic Level Audit: Antigravity Executive Desk & Arena.ai Red-Team Sentry
+
+### 1. OPERATIONAL CONTEXT & INSTITUTIONAL GOAL
+- **Target Environment**: MetaTrader 5 (Blueberry Markets Account #5064568)
+- **Phase 1 Target**: Reach **5,500.00 USD** balance/equity by **Friday, 23rd October 2026 (23:59 UTC)**.
+- **Current Account State**:
+  * Realized Balance: 4,840.39 USD (Session High-Water Mark)
+  * Realized Equity: 4,840.39 USD (100% liquid cash)
+  * Free Margin: 4,840.39 USD | Open Positions: 0
+  * Absolute Hard Capital Floor: **4,775.00 USD** (Never breach under any condition; zero exceptions).
+  * Operating Defense Buffer: **4,795.00 USD** (+20.00 USD defense cushion).
+  * Live Floor Cushion: +65.39 USD
+  * Live Buffer Cushion: +45.39 USD
+  * Remaining Distance to 5,500.00 USD Goal: +659.61 USD (~56.5 hours remaining).
+- **Execution Mandate**: Antigravity is the executive commander of the desk taking autonomous execution calls; Arena.ai is tasked as a high-precision red-team stress tester.
+
+---
+
+### 2. CANONICAL DATA SOURCES & 32-SHEET CONFIRMATION MANDATE
+Inspect the authentic, verified state directly from the canonical GitHub repository:
+- **Repository**: `https://github.com/kbsingh1399/Trading_2` (Branch `main`)
+- **Live Account Telemetry Snapshot**: `docs/telemetry/live_snapshot_latest.json`
+- **Master 32-Sheet Excel Warehouse**: `Data/DataBase_Trading.xlsx` (Sheet 00 `00_MT5_Account_Telemetry` to Sheet 31 `19_Calendar`).
+- **Standardized Decision Chain**: `docs/specs/STANDARDIZED_TRADING_DECISION_CHAIN.md`
+- **Autonomous Wake-Up Checklist**: `docs/specs/AUTONOMOUS_WAKEUP_CHECKLIST.md`
+- **Active Goal Specification**: `Data/Manditory/PASS_BLUEBERRY_PHASE_1_BY_OCT_23_2026.md`
+
+🚨 **MANDATORY 32-SHEET CONFIRMATION**: You MUST explicitly confirm in your opening section that you have inspected all 32 worksheets of `Data/DataBase_Trading.xlsx` with zero formula errors and zero empty headers.
+
+---
+
+### 3. LIVE 4-SLOT RESTING LIMIT ORDER PORTFOLIO (AUDIT TARGETS)
+Antigravity has staged the following 4 passive limit orders across 4 orthogonal clusters on MT5:
+
+| Slot | Cluster | Ticket | Symbol | Order Type | Volume | Entry Price | Stop Loss | Take Profit | Nominal Risk | Gross Reward | R0 Ratio |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| **Slot 1** | **Indices** | `#19162262` | `NAS100.p` | `BUY_LIMIT` | 0.01 lot | 29,625.00 USD | 29,490.00 USD | 29,945.00 USD | 13.50 USD | +32.00 USD | **2.37 R0** |
+| **Slot 2** | **Crypto** | `#19164101` | `BTCUSD.pi` | `BUY_LIMIT` | 0.02 lot | 83,350.00 USD | 82,850.00 USD | 84,400.00 USD | 10.00 USD | +21.00 USD | **2.10 R0** |
+| **Slot 3** | **Metals** | `#19164029` | `XAUUSD.pi` | `BUY_LIMIT` | 0.01 lot | 4,122.00 USD | 4,112.00 USD | 4,143.00 USD | 10.00 USD | +21.00 USD | **2.10 R0** |
+| **Slot 4** | **Forex** | `#19164106` | `EURUSD.pi` | `BUY_LIMIT` | 0.08 lot | 1.12150 | 1.12050 | 1.12450 | 8.00 USD | +24.00 USD | **3.00 R0** |
+
+- **Floor Invariant Proof**:
+  * Total nominal risk = 41.50 USD | Total stressed risk (1.25x + $2 fee) = 59.88 USD.
+  * Catastrophic simultaneous 4-way stopout equity: 4,840.39 - 59.88 = **4,780.52 USD** (+5.52 USD strictly preserved above 4,775.00 USD hard floor).
+  * Single-fill stressed equity: **4,821.51 to 4,828.39 USD** (+26.51 to +33.39 USD preserved above 4,795.00 USD operating buffer).
+
+---
+
+### 4. SURGICAL RED-TEAM AUDIT INSTRUCTIONS (NO ESSAYS — FOCUS ON VALUE)
+You are instructed by the operator to provide high-value, actionable forensic auditing. Do NOT write philosophical disclaimers about model identity. Deliver a concise, numbered red-team audit across these 4 questions:
+
+1. **Question 1: Stop Loss Vulnerability Audit**:
+   - For each of the 4 tickets, does the Stop Loss sit safely outside the nearest liquidation sweep band (`14_Hyperdash_Liq_Map`) and retail stop clusters (`15_Hyperdash_Stops_Map`) with >= 0.35-0.50 ATR structural buffer?
+   - Is ANY of our 4 stops vulnerable to being swept by institutional hunt algorithms?
+2. **Question 2: Take Profit Magnet Front-Running Audit**:
+   - Does each Take Profit optimally front-run an opposing high-density liquidation magnet (`7_Liq_Heapmap`, `8_Exchange_Liquidation_Map`) or Volume Profile shelf (VAH/POC) by 5-10 bps?
+   - Is any TP placed beyond an unreachable structural wall?
+3. **Question 3: Whale Wall Persistence & Freshness Check**:
+   - Inspect Sheet 18 (`10_Whale_Orders`) and Sheet 25 (`17_Orderbook`).
+   - Do the supporting whale bids (>= $100K USD) at or below our entry levels still persist (>= 180s)? Did any supporting wall pull or thin out?
+4. **Question 4: Final Tactical Ratification**:
+   - Issue a concise verdict for each ticket: **RATIFY (MAINTAIN)**, **MODIFY (GIVE NEW EXACT PRICE)**, or **CANCEL (EXPLAIN REASON)**.

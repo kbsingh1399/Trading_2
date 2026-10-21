@@ -17,13 +17,13 @@
 | **Account Login** | **#5064568** | Blueberry Markets MT5 Live Server |
 | **Initial Starting Balance** | 5,000.00 USD | Baseline evaluation capital |
 | **Profit Target (Phase 1)** | **5,500.00 USD** (+500.00 USD / +10.0%) | Mandatory target to pass Phase 1 |
-| **Current Balance** | 4,824.89 USD | Realized balance |
-| **Current Equity** | **~4,835.19 USD** | Live floating equity |
-| **Equity Needed to Pass** | **+664.81 USD** | Required gains to reach 5,500.00 USD target |
+| **Current Balance** | 4,840.39 USD | Realized balance (Session High-Water Mark) |
+| **Current Equity** | **4,840.39 USD** | 100% Unencumbered liquid cash |
+| **Equity Needed to Pass** | **+659.61 USD** | Required gains to reach 5,500.00 USD target |
 | **Absolute Hard Floor** | **4,775.00 USD** | Inviolate liquidation boundary (Never breached) |
 | **Operating Defense Buffer** | **4,795.00 USD** | Hard floor + 20.00 USD operating buffer |
-| **Current Hard Floor Cushion** | **+60.19 USD** | Equity distance above 4,775.00 USD floor |
-| **Current Buffer Cushion** | **+40.19 USD** | Equity distance above 4,795.00 USD buffer |
+| **Current Hard Floor Cushion** | **+65.39 USD** | Equity distance above 4,775.00 USD floor |
+| **Current Buffer Cushion** | **+45.39 USD** | Equity distance above 4,795.00 USD buffer |
 | **Target Deadline** | **23rd October 2026, 23:59 UTC** | End of trading week (Friday) |
 
 ---
@@ -34,10 +34,13 @@
    - Standard Trade: **15.00 to 25.00 USD** per trade (0.31% to 0.52% of equity).
    - Stressed Post-Loss Floor Invariant:
      $$\text{Stressed Equity} = \text{Current Equity} - \sum (\text{Risk}_i \times 1.25 + 2.00) \ge 4,795.00\text{ USD}$$
-2. **Position Capacity**:
-   - Exactly **1 position** at up to 25.00 USD risk, OR
-   - Up to **2 concurrent positions** at 15.00 USD risk each across the 18 perpetuals and TradFi assets.
-   - When an open position achieves Early-BE (+0.75R0) and is locked risk-free, secondary capacity is immediately unlocked.
+2. **Portfolio Capacity & 4-Slot Architecture (Operator Directive)**:
+   - **Slot Definition**: A slot is considered filled ONLY when an order executes into an active position. Resting limit orders do NOT consume filled position slots.
+   - **4-Slot Portfolio**: Up to **4 parallel candidate limit orders** can be staged simultaneously across orthogonal clusters (Indices, Crypto, Metals, Forex).
+   - **Floor & Buffer Invariants**:
+     * Single-Fill Safety: Any newly filled position preserves Operating Buffer: Stressed Equity >= 4,795.00 USD (+20.00 USD defense cushion).
+     * Catastrophic 4-Way Safety: Even under an extreme theoretical simultaneous stopout across all 4 assets, equity strictly preserves Hard Capital Floor: Worst-Case Equity >= 4,775.00 USD.
+   - **Early-BE Capacity Release**: When any filled position advances to +0.75R0, the Frozen R0 Ratchet moves SL to Entry + 0.10R0 (profit lock), reducing its risk reserve to  and releasing buffer cushion for subsequent fills.
 3. **Execution Mode**:
    - Strictly passive limit orders (`BUY_LIMIT` / `SELL_LIMIT`) with `ORDER_FILLING_IOC` / `ORDER_FILLING_RETURN`.
    - Never cross the bid-ask spread with aggressive market orders.

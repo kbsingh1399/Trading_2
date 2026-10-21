@@ -28,13 +28,13 @@ from openpyxl.utils import get_column_letter
 
 from Terminal.risk.fail_closed import num, cell, spread_bps, spread_gate, NA
 from Terminal.Data_Factory.atomic_xlsx import atomic_save, check_minimums, cache_sum_formulas
-from Cycle_201_fixes.data_quality import (
+from Terminal.Data_Factory.data_quality import (
     status_color, is_within_24h, parse_chain_from_url_or_text,
     parse_whale_change_pct, long_short_ratio, exchange_basis_bps,
     extract_largest_holding, dedup_arkham_transfers, WHALE_THRESHOLDS,
     quote_or_na, age_hours
 )
-from Cycle_201_fixes.remediation_r2 import (
+from Terminal.Data_Factory.remediation_r2 import (
     quote_age_or_none, execution_status, orderbook_spread, within_window,
     harvest_key, sheet_guard, FRESHNESS_MAX_S
 )
@@ -2070,8 +2070,7 @@ def run_pipeline():
                 wb_temp = openpyxl.load_workbook(excel_path, read_only=True)
                 if "Arkham_Transfers_100K" in wb_temp.sheetnames:
                     ws_a = wb_temp["Arkham_Transfers_100K"]
-                    for r in range(3, ws_a.max_row + 1):
-                        row_v = [cell.value for cell in ws_a[r]]
+                    for row_v in ws_a.iter_rows(min_row=3, values_only=True):
                         if len(row_v) >= 11 and row_v[10]:
                             arkham_transfers.append({
                                 "time": str(row_v[1] or "1h ago"),

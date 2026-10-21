@@ -1,0 +1,1 @@
+{"timestamp": "2026-10-21T08:24:42.755173+00:00", "event": "TEST_EVENT", "module_id": 99, "sheet": "Test_Sheet", "status": "PASS", "duration_sec": 1.23, "ram": {"used_mb": 12197.3, "avail_mb": 3512.8, "total_mb": 15710.1, "load_pct": 77}, "metadata": {}}
