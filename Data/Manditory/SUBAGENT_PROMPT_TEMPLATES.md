@@ -83,11 +83,16 @@ For each qualified asset, check all 5 pillars simultaneously:
   P4: Verified resting whale wall >= $100K USD at or below entry, persist >= 180s (Sheet 18 or Sheet 25 confirmed)
   P5: Macro clearance → zero Tier-1 blackout active right now
 
-STEP 5 — CANDIDATE FORMULATION:
-For each asset that passes all 5 pillars, produce a complete order ticket:
-  Symbol | Side | Entry (behind whale wall, no spread crossing) | SL (outside [min,max] liq band + 0.40 ATR buffer) | TP (front-runs opposing liq magnet by 5–10 bps) | Lot Size (for ~16–22 USD risk) | Exact R0
-
-If zero assets pass all 5 pillars: state STAND ASIDE with 1-line reason per asset.
+STEP 5 — CANDIDATE FORMULATION & POTENTIAL RADAR CHECKLIST (OPERATOR MANDATE):
+If assets pass all 5 pillars right now: produce the complete execution ticket (Symbol | Side | Entry | SL | TP | Lot Size | R0).
+If zero assets pass all 5 pillars right now:
+State STAND ASIDE, BUT MANDATORILY OUTPUT THE "POTENTIAL CANDIDATE RADAR CHECKLIST":
+Detail the top 3 prospective candidates (e.g. BTC Pullback, GOLD Mean Reversion, SOL Shelf), their mapped structural levels, proposed ticket geometry, and an explicit checklist of empirical pre-conditions required before pulling the trigger:
+  - [ ] Retail stop sweep completed
+  - [ ] 15m CVD delta flips positive / absorption divergence
+  - [ ] Resting whale wall >= $100K persists >= 180s
+  - [ ] Spread gate <= 25 bps (Crypto) / <= 5 bps (TradFi)
+  - [ ] Macro/session embargo cleared
 
 OUTPUT FORMAT (concise, bullet-form, max 500 tokens):
 - Data integrity: [sheets loaded | timestamp | errors]
@@ -95,7 +100,8 @@ OUTPUT FORMAT (concise, bullet-form, max 500 tokens):
 - Whale walls alive: [list walls >= $100K with persist status]
 - CVD signals: [list assets with zc_div status]
 - Spread-qualified assets: [list with bps]
-- CANDIDATES PASSING ALL 5 PILLARS: [full ticket params] or STAND ASIDE
+- POTENTIAL CANDIDATE RADAR CHECKLIST: [Top 3 setups with pre-condition checklist]
+- CANDIDATES PASSING ALL 5 PILLARS RIGHT NOW: [full ticket params] or STAND ASIDE (with reason)
 - Key risk / invalidation: [one-liner]
 ```
 

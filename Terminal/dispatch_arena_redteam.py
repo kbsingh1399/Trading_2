@@ -89,6 +89,25 @@ async def build_and_dispatch():
     prompt = prompt.replace("{CUSHION_BUFFER}", cush_buf_str)
     prompt = prompt.replace("{DISTANCE_GOAL}", dist_goal_str)
     prompt = prompt.replace("{HOURS_LEFT}", hours_left_str)
+    prompt = prompt.replace("{PENDING_ORDERS}", "0 pending orders")
+    prompt = prompt.replace("{SLOTS_FREE}", "4/4 slots available")
+
+    # Active Tickets Table
+    ticket_table = "| Slot | Cluster | Ticket | Symbol | Side | Volume | Entry | SL | TP | Risk USD | R0 |\n|---|---|---|---|---|---|---|---|---|---|---|\n| — | Flat | — | — | — | — | — | — | — | $0.00 | — |\n*Book is 100% Cash. Zero active positions, zero pending orders.*"
+    prompt = prompt.replace("{TICKET_TABLE}", ticket_table)
+
+    # Candidate Radar Table
+    candidate_table = (
+        "| Candidate Setup | Direction | Target Entry | Stop Loss | Take Profit | Lots | Risk USD | Stressed Risk | Pre-Condition Checklist |\n"
+        "|---|---|---|---|---|---|---|---|---|\n"
+        "| BTCUSD.pi Pullback | BUY_LIMIT | 83,550.00 | 83,280.00 | 84,225.00 | 0.07 lot | $18.90 | $25.63 | [ ] Swept 84k stop pool, [ ] CVD delta > 0, [ ] Whale bid >= $100K persists >= 180s |\n"
+        "| XAUUSD.pi Demand Shelf | BUY_LIMIT | 4,108.00 | 4,092.00 | 4,148.00 | 0.01 lot | $16.00 | $22.00 | [ ] Depth feed uncrossed, [ ] Tape absorption, [ ] Spread <= 2.5 bps |\n"
+        "| SOLUSD.p VWAP Shelf | BUY_LIMIT | 104.80 | 103.20 | 108.50 | 0.15 lot | $18.00 | $24.50 | [ ] Pullback to 1D VWAP, [ ] RSI < 42, [ ] Whale bid >= $100K persists >= 180s |"
+    )
+    prompt = prompt.replace("{CANDIDATE_TABLE}", candidate_table)
+
+    worst_case_eq = f"{4851.83 - 47.63:.2f}"
+    prompt = prompt.replace("{WORST_CASE_EQUITY}", worst_case_eq)
 
     # Save to prompts dir
     p_out = ROOT / "docs" / "prompts" / f"ARENA_CYCLE_{cycle_id}_REDTEAM_PROMPT.txt"

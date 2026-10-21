@@ -228,7 +228,20 @@ flowchart TD
 
 ---
 
-### Step 4: Institutional Universe Market Scan & Spread Friction Filtering
+### Step 4: Institutional Universe Market Scan & Candidate Radar Checklist
+- [ ] Extract live quotes across the 18 institutional perpetuals and TradFi CFDs from MT5 telemetry:
+  - **Crypto Spread Gate**: Spread must be `<= 25.0 bps`. (Eligible: BTC ~1.8 bps, BNB ~8.0 bps, ETH ~11.4 bps, BCH ~20.2 bps, TRX ~21.2 bps, SOL ~22.5 bps. Disqualify: XRP, AVAX, LTC, NEAR, LINK, ADA, DOT, DOGE).
+  - **TradFi Spread Gate**: Spread must be `<= 5.0 bps`. (Eligible: EURUSD ~0.09 bps, GOLD ~0.19 bps, DJ30 ~0.22 bps, NAS100 ~0.36 bps, SP500 ~0.39 bps).
+- [ ] **MANDATORY CANDIDATE RADAR CHECKLIST & TRIGGER MATRIX (OPERATOR MANDATE - NEVER OMIT)**:
+  * Even when standing aside at current market prices, the coordinator and Orderflow Analyst MUST ALWAYS compile and output a structured **Potential Candidate Radar Checklist** detailing every prospective setup on our active radar.
+  * For each prospective candidate, specify:
+    1. **Asset & Strategy Model**: (e.g. BTC Model 2 Pullback, GOLD Model 1 Absorption, SOL VWAP Shelf).
+    2. **Mapped Structural Level**: Exact price shelf (Daily VWAP, EMA20/50, Volume Profile POC/VAL/VAH).
+    3. **Proposed Ticket Geometry**: Lot Size, Entry Limit, Stop Loss (outside sweep band), Take Profit, R0.
+    4. **Current Status & Distance**: Distance in ATR or points from current market price.
+    5. **Trigger Pre-Condition Checklist**: Exact empirical criteria required to punch (e.g. `[ ] Retail stop pool swept`, `[ ] 15m CVD delta flips positive/absorption`, `[ ] Resting bid wall >= $100K persists >= 180s`, `[ ] Session rollover/MOC gate cleared`).
+  * If all checklist items are ticked `[x]` on wake-up: IMMEDIATELY punch the passive limit order autonomously!
+- [ ] Mandatory Candidate Output: Compile and format the complete candidate scan table and Candidate Radar Checklist transparently every cycle.
 - [ ] Extract live quotes across the 18 institutional perpetuals and TradFi CFDs from MT5 telemetry:
   - **Crypto Spread Gate**: Spread must be `<= 25.0 bps`. (Eligible: BTC ~1.8 bps, BNB ~8.0 bps, ETH ~11.4 bps, BCH ~20.2 bps, TRX ~21.2 bps, SOL ~22.5 bps. Disqualify: XRP, AVAX, LTC, NEAR, LINK, ADA, DOT, DOGE).
   - **TradFi Spread Gate**: Spread must be `<= 5.0 bps`. (Eligible: EURUSD ~0.09 bps, GOLD ~0.19 bps, DJ30 ~0.22 bps, NAS100 ~0.36 bps, SP500 ~0.39 bps).
