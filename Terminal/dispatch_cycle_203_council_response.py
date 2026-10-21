@@ -15,7 +15,7 @@ import urllib.request
 import websockets
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
-PROMPT_FILE = ROOT / "docs" / "prompts" / "ARENA_CYCLE_203_COUNCIL_RESPONSE.md"
+PROMPT_FILE = ROOT / "docs" / "prompts" / "ARENA_CANONICAL_MAIN_FETCH_PROMPT.md"
 
 
 async def main():
