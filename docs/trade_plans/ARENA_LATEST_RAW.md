@@ -1,18 +1,2 @@
-✅ STANDARDIZED_TRADING_DECISION_CHAIN.md LOADED — 10-Step Canonical Execution Chain Activated.
-✅ 32-SHEET CONFIRMATION: [0 formula errors | 0 empty headers]
-
-SOURCE: valid main@cb68244, 22:21:36 UTC. Step 1 FAILS: 14/15 timestamp 20:28/20:29, Technical 21:04, CVD 20:30; authorization=DENIED_UNVERIFIED_ORDERFLOW.
-
-E1 FAIL: BTC SL 83,280 is inside mapped band 83,269.50–83,369.50 (0.40ATR=87.31). XAU 14/15 have zero GOLD rows; live band 4,090.855–4,100.855 contains 4,092 (0.40ATR=2.785). SOL 103.20 is inside both bands 102.93–103.93 (0.40ATR=0.173). None meets 0.40ATR or SOP 0.50ATR.
-
-E2 FAIL: 7_Liq_Heapmap has no prices. BTC TP is 26.98bps before POC 84,452.855. XAU TP is 19.29bps before weekly POC 4,156.018; five verified asks at 4,142.555–4,145.755 block. SOL TP overshoots VAH 107.7232, lies inside 107.93–108.93, and faces 18 verified asks at 107.83–108.28. No 5–10bps pass.
-
-E3: 10_Whale_Orders is BTC-only with no bid ≤83,550. 17_Orderbook/live: BTC $8.34M@83,369.50/9,034s qualifies; XAU best $975K@4,106.755/646s misses SOP $1M; SOL has none within SL–entry. All bunkers FAIL.
-
-E4 [spread|zc_div|Z|bunker|macro]: BTC [1.89 PASS|absent FAIL|1.32|FAIL|CLEAR]; XAU [0.19 PASS|absent FAIL|1.50|FAIL|CLEAR]; SOL [20.43 PASS|absent FAIL|0.80|FAIL|CLEAR]. CVD is 111m36s stale/futures-only; entries are 4.72/4.27/6.72ATR away (>2).
-
-E5: Individual risk/R:R pass: BTC $18.90/2.50R; XAU $16/2.50R; SOL $24/2.3125R. Joint stress=$79.625 ⇒ equity=$4,772.205: $22.795 below $4,795 and $2.795 below $4,775. Inventory flat.
-
-±35m ALERT: NZD CPI 21:45 UTC; TradFi window 21:10–22:20 ended 1m36s ago. Crypto ±15m ended 22:00. Macro CLEAR.
-
-VERDICTS: BTC CANCEL / STAND-ASIDE; XAU CANCEL / STAND-ASIDE; SOL CANCEL / STAND-ASIDE. PUNCH: NONE.
+\n✅ STANDARDIZED_TRADING_DECISION_CHAIN.md LOADED — 10-Step Canonical Execution Chain Activated.\n
+✅ 32-SHEET CONFIRMATION: [0 formula errors | 0 empty headers]\n\nSOURCE: valid `main@571e6ff`, 22:36:26 UTC; 1,613,262 cells audited. Step 1 FAILS: Sheet 18 ends 20:30—126m26s stale, futures-only, no `zc_div`. Authorization=`DENIED_UNVERIFIED_ORDERFLOW`.\n\nE1 FAIL: BTC SL 83,280 is inside mapped band 83,269.50–83,369.50 (0.40ATR=88.13). XAU 14/15 have zero GOLD rows; live band 4,090.855–4,100.855 contains 4,092 (0.40ATR=2.673). SOL 103.20 is inside both bands 102.93–103.93 (0.40ATR=0.173). None clears 0.40ATR or SOP 0.50ATR.\n\nE2 FAIL: `7_Liq_Heapmap` has no prices. BTC TP is 26.98bps before POC 84,452.855. XAU TP is 19.29bps before weekly POC 4,156.018; five verified asks at 4,139.955–4,145.755 block. SOL TP overshoots VAH 107.7232, lies inside 107.93–108.93, and crosses $2.262M ask 108.04/885s. No 5–10bps pass.\n\nE3: `10_Whale_Orders` is BTC-only with no bid ≤83,550. `17_Orderbook`/live: BTC $8.34M@83,369.50/9,942s qualifies, but SL is inside sweep band; XAU $978K@4,105.455/310s passes prompt but misses SOP $1M; SOL has none within SL–entry. All bunkers FAIL.\n\nE4 `[spread|zc_div|Z/regime|bunker|macro]`: BTC `[1.77 PASS|absent FAIL|1.30/BULL|FAIL|CLEAR]`; XAU `[0.19 PASS|absent FAIL|1.12/RANGE|FAIL|CLEAR]`; SOL `[20.44 PASS|absent FAIL|0.72/BULL|FAIL|CLEAR]`. Entries are 4.67/4.01/6.58ATR away; BTC CVD<0, SOL RSI 42.90 fails <42.\n\nE5: Active tickets: NONE. SOL’s stated $18 risk is false: `(104.8−103.2)×0.15×100=$24`; stress=$32. Joint stress=$79.625 ⇒ equity=$4,772.205, breaching $4,795 by $22.795 and $4,775 by $2.795. Flat-book floor is $4,851.83—not $4,804.20.\n\n±35m ALERT: NZD CPI 21:45 UTC; window 21:10–22:20 ended 16m26s ago. Macro CLEAR.\n\nVERDICTS: BTC CANCEL / STAND-ASIDE; XAU CANCEL / STAND-ASIDE; SOL CANCEL / STAND-ASIDE. PUNCH: NONE.\n
