@@ -96,17 +96,18 @@ async def build_and_dispatch():
     ticket_table = "| Slot | Cluster | Ticket | Symbol | Side | Volume | Entry | SL | TP | Risk USD | R0 |\n|---|---|---|---|---|---|---|---|---|---|---|\n| — | Flat | — | — | — | — | — | — | — | $0.00 | — |\n*Book is 100% Cash. Zero active positions, zero pending orders.*"
     prompt = prompt.replace("{TICKET_TABLE}", ticket_table)
 
-    # Candidate Radar Table
+    # Candidate Radar Table (Calibrated Multi-Asset Radar)
     candidate_table = (
         "| Candidate Setup | Direction | Target Entry | Stop Loss | Take Profit | Lots | Risk USD | Stressed Risk | Pre-Condition Checklist |\n"
         "|---|---|---|---|---|---|---|---|---|\n"
-        "| BTCUSD.pi Pullback | BUY_LIMIT | 83,550.00 | 83,280.00 | 84,225.00 | 0.07 lot | $18.90 | $25.63 | [ ] Swept 84k stop pool, [ ] CVD delta > 0, [ ] Whale bid >= $100K persists >= 180s |\n"
-        "| XAUUSD.pi Demand Shelf | BUY_LIMIT | 4,108.00 | 4,092.00 | 4,148.00 | 0.01 lot | $16.00 | $22.00 | [ ] Depth feed uncrossed, [ ] Tape absorption, [ ] Spread <= 2.5 bps |\n"
-        "| SOLUSD.p VWAP Shelf | BUY_LIMIT | 104.80 | 103.20 | 108.50 | 0.15 lot | $18.00 | $24.50 | [ ] Pullback to 1D VWAP, [ ] RSI < 42, [ ] Whale bid >= $100K persists >= 180s |"
+        "| SOLUSD.p Demand Shelf | BUY_LIMIT | 106.96 | 105.10 | 107.95 | 0.10 lot | $18.60 | $25.25 | [x] Swept 107.50 stops, [x] 7.71M whale wall @ 106.66 persists, [x] Spread 21.49 bps <= 25.0, [ ] Touch 106.96 |\n"
+        "| XAUUSD.pi Demand Shelf | BUY_LIMIT | 4,117.50 | 4,101.50 | 4,157.50 | 0.01 lot | $16.00 | $22.00 | [ ] Pullback to VWAP -1.0 SD shelf (4,117.50), [x] Spread 0.19 bps <= 2.5 bps, [ ] CVD buyer absorption |\n"
+        "| BTCUSD.pi Cascade Shelf | BUY_LIMIT | 82,250.00 | 81,750.00 | 83,500.00 | 0.04 lot | $20.00 | $27.00 | [ ] 109M retail stop cascade (83,850-82,450) sweeps, [x] Spread 1.78 bps, [ ] CVD confirms exhaustion |\n"
+        "| EURUSD.pi Bid Pocket | BUY_LIMIT | 1.12150 | 1.12050 | 1.12450 | 0.18 lot | $18.00 | $24.50 | [x] FX rollover lifted, [x] Spread 0.09 bps <= 5.0 bps, [ ] Retest 1.12150 bid pocket |"
     )
     prompt = prompt.replace("{CANDIDATE_TABLE}", candidate_table)
 
-    worst_case_eq = f"{4851.83 - 47.63:.2f}"
+    worst_case_eq = f"{4851.83 - 47.25:.2f}"
     prompt = prompt.replace("{WORST_CASE_EQUITY}", worst_case_eq)
 
     # Save to prompts dir

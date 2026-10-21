@@ -29,23 +29,22 @@
 
 ## 2. ACTIVE MT5 POSITIONS & PENDING ORDERS LEDGER (LIVE MONITORING)
 
-### Active Open Positions (1 / 4 capacity slots occupied):
-* **Slot 1 (RUNNING POSITION)**:
-  - **Ticket**: `#19012500` (`USDJPY.pi`)
-  - **Direction & Sizing**: SELL 0.06 lots
-  - **Execution Fill Timestamp**: 2026-10-16 16:30 UTC
-  - **Entry Fill Price**: **158.180**
-  - **Current Market Price**: **158.178**
-  - **Current Floating PnL**: **+0.08 USD (+0.01R)**
-  - **Active Stop Loss**: **158.700** (Risk Distance: 52.0 pips | Nominal Risk: **-$19.66 USD** / 0.41% equity)
-  - **Active Take Profit**: **157.140** (+2.02R target / 104.0 pips gain = **+$39.71 USD**)
-  - **Microstructure Status**: Defended by $1.51M USD resting ask whale bunker at 158.590–158.650 (projected to 158.648 on MT5 with +5.75 pip venue basis). SL at 158.700 has a 5.2 pip (0.47 ATR) clearance buffer completely outside the sweep zone.
-  - **Ratchet Trigger Thresholds**:
-    * **Phase 0 BE Arming Price**: **157.764** (+0.80R gain). Once hit, SL moves to **158.102** (+0.15R BE lock), securing +$2.95 USD profit and eliminating all downside risk!
-    * **Phase 1 Profit Lock Price**: **157.400** (+1.50R gain). Once hit, SL moves to **157.764** (+0.80R profit lock).
+### Active Open Positions (0 / 4 capacity slots occupied):
+* **None currently running** (100% Cash: Balance 4,851.83 USD | Equity 4,851.83 USD).
 
-### Active Pending Limit Orders (0 / 4 capacity slots occupied):
-* **None currently resting** (Ticket #19020166 cancelled and pruned per operator two-stage governance directive: candidate identification decoupled from mandatory staging).
+### Active Pending Limit Orders (1 / 4 capacity slots occupied):
+* **Slot 1 (STAGED PASSIVE LIMIT)**:
+  - **Ticket**: `#19174858` (`SOLUSD.p`)
+  - **Direction & Sizing**: BUY_LIMIT 0.10 lots
+  - **Staged Timestamp**: 2026-10-21 23:18 UTC (Cycle 222)
+  - **Limit Entry Price**: **106.80 USD** (Resting passively on bid book)
+  - **Active Stop Loss**: **105.10 USD** (Risk Distance: 1.70 pts | Cash Risk: **-$17.00 USD** / 0.35% equity | Stressed: -$23.25 USD)
+  - **Active Take Profit**: **107.95 USD** (+1.15 pts / +0.68R target = **+$11.50 USD**, front-running 108.04 USD ask wall)
+  - **Microstructure Rationale**: Defended by verified 7.71M USD resting whale bid cluster at 106.66–106.73 USD (persist_s > 2,000s). SL at 105.10 USD is safely outside the 105.50 retail sell stop cluster.
+  - **Floor Defense**: Stressed equity upon fill = 4,828.58 USD (+33.58 USD above 4,795 buffer, +53.58 USD above 4,775 hard floor).
+  - **Ratchet Trigger Thresholds (Upon Fill)**:
+    * **Early-BE Lock**: At +0.80R gain (108.16), SL moves to Entry +0.10R (106.97).
+    * **Phase 1 Profit Lock**: At +1.50R gain (109.35), SL moves to Entry +0.80R (108.16).
 
 ### Potential Passive Limit Order Candidates (Qualified Watchlist - Staging Gated on High Conviction):
 1. **EURGBP.pi** (Model 2 Trend Pullback SHORT):
