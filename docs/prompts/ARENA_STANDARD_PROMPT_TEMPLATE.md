@@ -32,15 +32,18 @@
 
 ---
 
-## SECTION B: DATA MANDATE (NON-NEGOTIABLE)
+## SECTION B: DATA & GOVERNANCE MANDATE (NON-NEGOTIABLE)
 
 You MUST pull and read the following before answering — no assumptions, no stale cache:
 - Repo: `https://github.com/kbsingh1399/Trading_2` (branch `main`)
-- `Data/DataBase_Trading.xlsx` — all 32 sheets (Sheet 00 to Sheet 31)
+- Canonical Decision Chain (SOP): `docs/specs/STANDARDIZED_TRADING_DECISION_CHAIN.md` (Mandatory 10-step institutional quant chain)
+- `Data/DataBase_Trading.xlsx` — all 32 sheets (Sheet 00 to Sheet 31 studied line-by-line)
 - `docs/telemetry/live_snapshot_latest.json`
 - `Data/Manditory/PASS_BLUEBERRY_PHASE_1_BY_OCT_23_2026.md`
 
-Open your response with exactly one line: `✅ 32-SHEET CONFIRMATION: [X formula errors | Y empty headers]`
+Open your response with exactly two lines:
+`✅ STANDARDIZED_TRADING_DECISION_CHAIN.md LOADED — 10-Step Canonical Execution Chain Activated.`
+`✅ 32-SHEET CONFIRMATION: [X formula errors | Y empty headers]`
 
 ---
 
