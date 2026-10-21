@@ -4,22 +4,21 @@
 
 ---
 
-### 1. LIVE MT5 ACCOUNT STATE & ACTIVE TICKET INVENTORY
+### 1. LIVE MT5 ACCOUNT STATE & ACTIVE POSITION INVENTORY
 - **Broker / Environment**: MetaTrader 5 | Blueberry Markets | Account #5064568 (USD)
-- **Account Balance & Equity**: **4,824.89 USD**
+- **Account Balance & Equity**: **Balance: 4,824.89 USD | Equity: 4,832.77 USD**
 - **Capital Defense Gates**: Hard Floor: **4,775.00 USD** | Operating Defense Buffer: **4,795.00 USD**
-- **Live Floor Cushion**: **+49.89 USD** (Hard Floor) / **+29.89 USD** (Operating Buffer)
-- **Active Open Positions**: **0**
-- **Active Pending Limit Orders**: **1**
+- **Live Floor Cushion**: **+57.77 USD** (Hard Floor) / **+37.77 USD** (Operating Buffer)
+- **Active Open Positions**: **1**
   - **Ticket**: `19146275`
-  - **Instrument**: `NAS100.p` (Nasdaq 100 CFD | Blueberry MT5 Spread: 0.43 bps)
-  - **Order Type**: `BUY_LIMIT` (Passive resting limit order)
-  - **Volume**: `0.01 lot` (1 pt = 0.10 USD)
-  - **Entry Price**: `29,560.00 USD` (Staged at 200 EMA support shelf)
+  - **Instrument**: `NAS100.p` (Nasdaq 100 CFD | Blueberry MT5 Spread: 0.36 bps / 1.06 pts)
+  - **Direction**: `BUY` (Volume: `0.01 lot` | 1 pt = 0.10 USD)
+  - **Entry Fill**: `29,560.00 USD` (Filled at 200 EMA support shelf)
+  - **Current Market**: `29,638.75 USD` (Floating Gain: **+78.75 pts / +0.53R0** | Floating Profit: **+7.88 USD**)
   - **Stop Loss**: `29,410.00 USD` (150 pts structural bunker | Cash Risk: $15.00 USD)
   - **Take Profit**: `29,715.00 USD` (Front-running Daily VWAP 29,718.84 USD by 3.8 pts)
-  - **Strategy Engine**: Model 1 Extreme Mean Reversion (VWAP Z = -2.98 SD, RSI = 34.2)
-  - **Stressed Post-Loss Cushion**: Equity post-loss = 4,804.14 USD (+29.14 USD above hard floor, +9.14 USD above operating buffer)
+  - **Ratchet Trigger**: Early-BE trigger at 29,672.50 USD (+0.75R0) moves SL to 29,575.00 USD (+0.10R0 lock)
+  - **Stressed Post-Loss Cushion**: Equity post-loss = 4,812.02 USD (+37.02 USD above hard floor, +17.02 USD above operating buffer)
 
 ---
 
@@ -32,15 +31,15 @@ As codified in `docs/specs/STANDARDIZED_TRADING_DECISION_CHAIN.md`:
    - **Cluster D (Whale Walls & L2/L3 Depth)**: `4_Hyperliquid_Analysis` (2,001 whale wallets), `10_Whale_Orders` (7.45M USD BTC overhead sell resistance at 83,688-83,700 USD), `16_Hyperdash_telegram_Intel`, `17_Orderbook`, and live MT5 telemetry.
 
 2. **Spread Friction Gate Verification**:
-   - Crypto Perpetuals: MT5 Spread must be <= 25.0 bps (Qualified: BTC 2.04 bps, BNB 8.03 bps, ETH 12.62 bps, BCH 16.72 bps, SOL 21.57 bps). Disqualify illiquid CFDs (DOGE 256 bps, DOT 182 bps, ADA 93 bps, LINK 70 bps).
-   - TradFi CFDs: MT5 Spread must be <= 5.0 bps (Qualified: EURUSD 0.09 bps, GOLD 0.22 bps, DJ30 0.30 bps, NAS100 0.43 bps, SP500 1.07 bps).
+   - Crypto Perpetuals: MT5 Spread must be <= 25.0 bps (Qualified: BTC 1.80 bps, BNB 8.05 bps, ETH 11.40 bps, BCH 20.21 bps, TRX 21.16 bps, SOL 22.52 bps).
+   - TradFi CFDs: MT5 Spread must be <= 5.0 bps (Qualified: EURUSD 0.09 bps, GOLD 0.19 bps, DJ30 0.22 bps, NAS100 0.36 bps, SP500 0.39 bps).
 
 ---
 
 ### 3. YOUR MANDATE THIS TURN
-1. **Audit Active Ticket `19146275` (`NAS100.p`)**: Evaluate whether the resting limit order at 29,560.00 USD should be maintained, adjusted, or ratified.
-2. **Scan for Secondary Candidate (Model 2 Trend Pullback)**:
-   - Identify if any asset (such as `BTCUSD.pi` at the 82,845 USD Session VWAP shelf or `GOLD` at 4,118 USD support) provides a valid orthogonal setup.
-   - Note: Because Ticket `19146275` risks 15.00 USD (stressed loss 20.75 USD), our operating buffer (+29.89 USD) permits at most **1 additional position at 15.00 USD risk** provided stressed equity remains strictly above 4,775.00 USD.
+1. **Audit & Ratify Filled Position `19146275` (`NAS100.p`)**: Evaluate the current +0.53R0 gain and verify the Early-BE ratchet trigger (+0.75R0 at 29,672.50 USD).
+2. **Scan for Secondary Candidate**:
+   - Evaluate `SP500.p` (Model 1 Extreme Mean Reversion: VWAP Z = -2.31 SD, RSI = 39.74, Spread = 0.39 bps).
+   - Evaluate `BTCUSD.pi` (Model 2 Trend Pullback to Daily VWAP 82,919.63 USD support shelf).
 3. **Format Your Decision**:
-   - Provide your quantitative thesis, explicit asset metrics (VWAP Z-Score, RSI, CVD divergence, resting whale walls), and clear directive: RATIFY / ADJUST / STAGE SECONDARY CANDIDATE / STAND ASIDE.
+   - Provide your quantitative thesis, explicit asset metrics, and clear directive: RATIFY ACTIVE POSITION / STAGE SECONDARY CANDIDATE / STAND ASIDE.
