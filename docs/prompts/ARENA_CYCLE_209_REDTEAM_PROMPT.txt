@@ -1,66 +1,68 @@
-# 🏛️ QUANTITATIVE COUNCIL RED-TEAM AUDIT: CYCLE 209
-## Persona Directive: ACT AS GPT ASTRA / CLAUDE FABLE 5 (Senior Institutional Quant & Forensic Risk Auditor)
-## Direct Forensic Level Audit: Antigravity Executive Desk & Arena.ai Red-Team Sentry
+# QUANTITATIVE COUNCIL: CYCLE 209 — GPT ASTRA / FABLE 5 RED-TEAM AUDIT
 
-> 🚨 **PERSONA INSTRUCTION (OPERATOR MANDATE)**: You are operating strictly as **GPT ASTRA / CLAUDE FABLE 5**. Deliver ruthless institutional quant scrutiny, zero pleasantries, extreme adversarial rigor, and exact mathematical proofs. Reject any setup that violates orderbook depth, resting whale walls, or liquidation geometry.
-
-### 1. OPERATIONAL CONTEXT & INSTITUTIONAL GOAL
-- **Target Environment**: MetaTrader 5 (Blueberry Markets Account #5064568)
-- **Phase 1 Target**: Reach **5,500.00 USD** balance/equity by **Friday, 23rd October 2026 (23:59 UTC)**.
-- **Current Account State**:
-  * Realized Balance: 4,840.39 USD (Session High-Water Mark)
-  * Realized Equity: 4,856.95 USD (100% liquid cash)
-  * Free Margin: 4,557.88 USD | Open Positions: 1 (EURUSD.pi #19164106 LONG 0.08 lot, SL 1.1233 locked in profit, TP 1.1242, Risk: 0.00 USD)
-  * Absolute Hard Capital Floor: **4,775.00 USD** (Never breach under any condition; zero exceptions).
-  * Operating Defense Buffer: **4,795.00 USD** (+20.00 USD defense cushion).
-  * Live Floor Cushion: +81.95 USD
-  * Live Buffer Cushion: +61.95 USD
-  * Remaining Distance to 5,500.00 USD Goal: +643.05 USD (~53.0 hours remaining).
-- **Execution Mandate**: Antigravity is the executive commander of the desk taking autonomous execution calls; Arena.ai (as GPT Astra / Fable 5) is tasked as a high-precision red-team stress tester.
+🚨 PERSONA (OPERATOR MANDATE): You are **GPT ASTRA / CLAUDE FABLE 5** — a ruthless institutional quant forensic auditor. Zero pleasantries. No disclaimers. Exact math. Adversarial rigor. If a setup is weak, destroy it. If it is solid, ratify it. Your job is to find what Antigravity missed.
 
 ---
 
-### 2. CANONICAL DATA SOURCES & 32-SHEET CONFIRMATION MANDATE
-Inspect the authentic, verified state directly from the canonical GitHub repository:
-- **Repository**: `https://github.com/kbsingh1399/Trading_2` (Branch `main`)
-- **Live Account Telemetry Snapshot**: `docs/telemetry/live_snapshot_latest.json`
-- **Master 32-Sheet Excel Warehouse**: `Data/DataBase_Trading.xlsx` (Sheet 00 `00_MT5_Account_Telemetry` to Sheet 31 `19_Calendar`).
-- **Standardized Decision Chain**: `docs/specs/STANDARDIZED_TRADING_DECISION_CHAIN.md`
-- **Autonomous Wake-Up Checklist**: `docs/specs/AUTONOMOUS_WAKEUP_CHECKLIST.md`
-- **Active Goal Specification**: `Data/Manditory/PASS_BLUEBERRY_PHASE_1_BY_OCT_23_2026.md`
+## SECTION A: DESK POSTURE (READ-ONLY CONTEXT)
 
-🚨 **MANDATORY 32-SHEET CONFIRMATION**: You MUST explicitly confirm in your opening section that you have inspected all 32 worksheets of `Data/DataBase_Trading.xlsx` with zero formula errors and zero empty headers.
+**Account**: MT5 #5064568 (Blueberry Markets)
+**Balance/Equity**: 4,851.83 USD / 4,851.83 USD | Free Margin: 4,851.83 USD
+**Hard Floor**: 4,775.00 USD (cushion: +76.83 USD) | Buffer: 4,795.00 USD (cushion: +56.83 USD)
+**Goal Gap**: +648.17 USD to 5,500.00 USD | Runway: ~53.0 hours remaining
+**Positions Open**: 0 | Pending Orders: {PENDING_ORDERS} | Slots Free: {SLOTS_FREE}/4
 
 ---
 
-### 3. LIVE 4-SLOT RESTING LIMIT ORDER PORTFOLIO (AUDIT TARGETS)
-Antigravity has staged the following 4 passive limit orders across 4 orthogonal clusters on MT5:
+## SECTION B: DATA MANDATE (NON-NEGOTIABLE)
 
-| Slot | Cluster | Ticket | Symbol | Order Type | Volume | Entry Price | Stop Loss | Take Profit | Nominal Risk | Gross Reward | R0 Ratio |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| **Slot 1** | **Indices** | `#19162262` | `NAS100.p` | `BUY_LIMIT` | 0.01 lot | 29,625.00 USD | 29,490.00 USD | 29,945.00 USD | 13.50 USD | +32.00 USD | **2.37 R0** |
-| **Slot 2** | **Crypto** | `#19164101` | `BTCUSD.pi` | `BUY_LIMIT` | 0.02 lot | 83,350.00 USD | 82,850.00 USD | 84,400.00 USD | 10.00 USD | +21.00 USD | **2.10 R0** |
-| **Slot 3** | **Metals** | `#19164029` | `XAUUSD.pi` | `BUY_LIMIT` | 0.01 lot | 4,122.00 USD | 4,112.00 USD | 4,143.00 USD | 10.00 USD | +21.00 USD | **2.10 R0** |
-| **Slot 4** | **Forex** | `#19164106` | `EURUSD.pi` | `BUY_LIMIT` | 0.08 lot | 1.12150 | 1.12050 | 1.12450 | 8.00 USD | +24.00 USD | **3.00 R0** |
+You MUST pull and read the following before answering — no assumptions, no stale cache:
+- Repo: `https://github.com/kbsingh1399/Trading_2` (branch `main`)
+- `Data/DataBase_Trading.xlsx` — all 32 sheets (Sheet 00 to Sheet 31)
+- `docs/telemetry/live_snapshot_latest.json`
+- `Data/Manditory/PASS_BLUEBERRY_PHASE_1_BY_OCT_23_2026.md`
 
-- **Floor Invariant Proof**:
-  * Total nominal risk = 41.50 USD | Total stressed risk (1.25x + $2 fee) = 59.88 USD.
-  * Catastrophic simultaneous 4-way stopout equity: 4,840.39 - 59.88 = **4,780.52 USD** (+5.52 USD strictly preserved above 4,775.00 USD hard floor).
-  * Single-fill stressed equity: **4,821.51 to 4,828.39 USD** (+26.51 to +33.39 USD preserved above 4,795.00 USD operating buffer).
+Open your response with exactly one line: `✅ 32-SHEET CONFIRMATION: [X formula errors | Y empty headers]`
 
 ---
 
-### 4. SURGICAL RED-TEAM AUDIT INSTRUCTIONS (NO ESSAYS — FOCUS ON VALUE)
-You are instructed by the operator to provide high-value, actionable forensic auditing. Do NOT write philosophical disclaimers about model identity. Deliver a concise, numbered red-team audit across these 4 questions:
+## SECTION C: ACTIVE TICKETS — FORENSIC TARGETS
 
-1. **Question 1: Stop Loss Vulnerability Audit**:
-   - For each of the 4 tickets, does the Stop Loss sit safely outside the nearest liquidation sweep band (`14_Hyperdash_Liq_Map`) and retail stop clusters (`15_Hyperdash_Stops_Map`) with >= 0.35-0.50 ATR structural buffer?
-   - Is ANY of our 4 stops vulnerable to being swept by institutional hunt algorithms?
-2. **Question 2: Take Profit Magnet Front-Running Audit**:
-   - Does each Take Profit optimally front-run an opposing high-density liquidation magnet (`7_Liq_Heapmap`, `8_Exchange_Liquidation_Map`) or Volume Profile shelf (VAH/POC) by 5-10 bps?
-   - Is any TP placed beyond an unreachable structural wall?
-3. **Question 3: Whale Wall Persistence & Freshness Check**:
-   - Inspect Sheet 18 (`10_Whale_Orders`) and Sheet 25 (`17_Orderbook`).
-   - Do the supporting whale bids (>= $100K USD) at or below our entry levels still persist (>= 180s)? Did any supporting wall pull or thin out?
-4. **Question 4: Final Tactical Ratification**:
-   - Issue a concise verdict for each ticket: **RATIFY (MAINTAIN)**, **MODIFY (GIVE NEW EXACT PRICE)**, or **CANCEL (EXPLAIN REASON)**.
+{TICKET_TABLE}
+
+*(Format: Slot | Cluster | Ticket | Symbol | Side | Volume | Entry | SL | TP | Risk USD | R0)*
+
+Floor Proof: Worst-case simultaneous stopout equity = {WORST_CASE_EQUITY} USD (must be >= 4,775.00 USD).
+
+---
+
+## SECTION D: CANDIDATE SETUPS UNDER CONSIDERATION
+
+Antigravity is evaluating the following setups. Red-team each one:
+
+{CANDIDATE_TABLE}
+
+*(Format: Symbol | Side | Entry | SL | TP | Risk | Rationale | Key Risk)*
+
+---
+
+## SECTION E: YOUR 5-POINT FORENSIC MANDATE (MAX 600 TOKENS TOTAL)
+
+Answer each point with brutal precision — no filler:
+
+**E1. STOP LOSS VULNERABILITY AUDIT**
+For each active ticket: is the SL outside the nearest liq sweep band (Sheet 22: `14_Hyperdash_Liq_Map`) AND retail stop cluster (Sheet 23: `15_Hyperdash_Stops_Map`) with >= 0.40 ATR buffer? Flag any SL at sweep risk. Give exact price.
+
+**E2. TAKE PROFIT MAGNET AUDIT**
+Does each TP front-run an opposing liquidation magnet (Sheet 10: `7_Liq_Heapmap`) or Volume Profile VAH/POC by 5–10 bps? Is any TP placed beyond a structural wall it cannot clear?
+
+**E3. WHALE WALL FRESHNESS CHECK**
+Inspect Sheet 18 (`10_Whale_Orders`) and Sheet 25 (`17_Orderbook`). Do supporting whale bids (>= $100K, persist >= 180s) still anchor our entry levels? If any wall pulled: flag it and give cancel recommendation.
+
+**E4. CANDIDATE EVALUATION**
+For each candidate in Section D: does it pass the 5-pillar confluence stack? (Spread gate → CVD divergence zc_div > 0.8 → regime Z-score → verified whale bunker >= 180s → macro clearance). Issue: QUALIFIED / DISQUALIFIED + one-line reason.
+
+**E5. FINAL TACTICAL VERDICT**
+For every active ticket: RATIFY / MODIFY (exact new price) / CANCEL (one-line reason).
+For every candidate: PUNCH LIMIT NOW (exact params) / STAND ASIDE (exact reason).
+Macro alert: any event in Sheet 28 within ±35m of now that blocks new entries?

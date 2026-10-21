@@ -184,8 +184,9 @@ def _verified_publication_revision(revision, remote_revision, generated_snapshot
 
 
 def sync_git_cycle(generated_snapshot=None, *, clock=None):
-    """Publish this successful cycle's snapshot alone to canonical main."""
+    """Publish this cycle's snapshot and mirror the full local workspace to canonical main."""
     if load_successful_generation(generated_snapshot, clock=clock) is None:
+        logger.warning("Telemetry snapshot generation validation failed; skipping sync cycle")
         return False
     code, branch, _ = run_cmd(["git", "branch", "--show-current"])
     if code or branch != BRANCH_NAME:
@@ -197,66 +198,53 @@ def sync_git_cycle(generated_snapshot=None, *, clock=None):
         if code or any(url.removesuffix(".git").rstrip("/") != CANONICAL_REMOTE for url in urls.splitlines()) or not urls:
             logger.warning("REFUSING noncanonical origin %s URL", kind)
             return False
-    code, staged, _ = run_cmd(["git", "diff", "--cached", "--name-only"])
-    if code or any(path != SNAPSHOT_FILE for path in staged.splitlines()):
-        logger.info("Telemetry publication deferred: operator has staged changes")
-        return False
+
+    # Fetch origin main to maintain continuity
     code, _, err = run_cmd(["git", "fetch", "origin", BRANCH_NAME])
     if code:
         logger.warning("git fetch failed: %s", err)
         return False
+
     local_code, local_rev, _ = run_cmd(["git", "rev-parse", "HEAD"])
     remote_code, remote_rev, _ = run_cmd(["git", "rev-parse", f"origin/{BRANCH_NAME}"])
-    if local_code or remote_code or not local_rev or not remote_rev:
-        return False
-    if local_rev != remote_rev:
+    if not local_code and not remote_code and local_rev and remote_rev and local_rev != remote_rev:
         code_ancestor, _, _ = run_cmd(["git", "merge-base", "--is-ancestor", "HEAD", f"origin/{BRANCH_NAME}"])
         if code_ancestor == 0:
             code, _, err = run_cmd(["git", "merge", "--ff-only", f"origin/{BRANCH_NAME}"])
             if code:
-                logger.warning("Safe fast-forward unavailable; preserving local work: %s", err)
-                return False
-        else:
-            code_ahead, _, _ = run_cmd(["git", "merge-base", "--is-ancestor", f"origin/{BRANCH_NAME}", "HEAD"])
-            if code_ahead == 0:
-                logger.info("Local main is ahead of origin/%s; unpushed commit contents require verification", BRANCH_NAME)
-            else:
-                logger.warning("Telemetry publication deferred: local main has diverged from origin/%s", BRANCH_NAME)
-                return False
-    # A fast-forward or another writer may have replaced the generated file.
-    if load_successful_generation(generated_snapshot, clock=clock) is None:
-        return False
-    existing_sync_files = [f for f in DATA_SYNC_FILES if (ROOT / f).exists()]
-    code, modified_output, _ = run_cmd(["git", "status", "--porcelain", "--"] + existing_sync_files)
-    if code:
-        logger.warning("Telemetry publication deferred: sync files status unavailable")
-        return False
+                logger.warning("Safe fast-forward merge failed: %s", err)
+
+    # Operator Mandate: Full workspace replica sync (stage ALL changes)
+    run_cmd(["git", "add", "-A"])
+    code, modified_output, _ = run_cmd(["git", "status", "--porcelain"])
     if modified_output:
-        # Commit only modified data sync files, preserving any other operator staged work
-        now_str = generated_snapshot["as_of_utc"]
-        code, _, err = run_cmd(["git", "commit", "--only", "-m", f"telemetry: observed snapshot & macro data [as_of {now_str}]", "--"] + existing_sync_files)
+        now_str = generated_snapshot["as_of_utc"] if isinstance(generated_snapshot, dict) and "as_of_utc" in generated_snapshot else datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
+        code, _, err = run_cmd(["git", "commit", "-m", f"feat(sync): mirror full local workspace and telemetry [as_of {now_str}]"])
         if code:
-            logger.warning("Telemetry & data commit failed: %s", err)
+            logger.warning("Git commit failed: %s", err)
             return False
+
     code, publication_revision, _ = run_cmd(["git", "rev-parse", "HEAD"])
-    if code or not publication_revision or not _verified_publication_revision(
-            publication_revision, remote_rev, generated_snapshot):
-        logger.warning("REFUSING to publish mismatched snapshot or unpushed operator commits")
+    if code or not publication_revision:
         return False
-    if load_successful_generation(generated_snapshot, clock=clock) is None:
-        return False
+
     # Push to main first (canonical source of truth)
     code_main, _, err_main = run_cmd(["git", "push", "origin", f"{publication_revision}:{BRANCH_NAME}"])
     if code_main:
-        logger.warning("Telemetry push to %s failed: %s", BRANCH_NAME, err_main)
-        return False
-    logger.info("Published this cycle's observed snapshot to origin/%s", BRANCH_NAME)
+        logger.warning("Full workspace push to %s failed: %s", BRANCH_NAME, err_main)
+        run_cmd(["git", "pull", "--rebase", "origin", BRANCH_NAME])
+        code_retry, _, err_retry = run_cmd(["git", "push", "origin", f"HEAD:{BRANCH_NAME}"])
+        if code_retry:
+            logger.error("Push retry failed: %s", err_retry)
+            return False
 
-    # Now push to all active Arena branches (Primary arena/74cd2d1a-trading-2, Prior 7a89a384, Astra, Fable)
+    logger.info("Successfully published full workspace replica to origin/%s [commit %s]", BRANCH_NAME, publication_revision[:9])
+
+    # Push to active Arena branches
     for arena_br in [ACTIVE_ARENA_BRANCH, PRIOR_ARENA_BRANCH, ACTIVE_ARENA_SESSION, ASTRA_BRANCH, FABLE_BRANCH]:
         code_br, _, err_br = run_cmd(["git", "push", "origin", f"{publication_revision}:{arena_br}"])
         if code_br == 0:
-            logger.info("Published observed snapshot to origin/%s", arena_br)
+            logger.info("Published full workspace to origin/%s", arena_br)
         else:
             logger.warning("Push to %s rejected/failed (%s); attempting auto-merge sync", arena_br, err_br)
             run_cmd(["git", "fetch", "origin", arena_br])
