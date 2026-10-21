@@ -54,6 +54,11 @@ def run_single_full_update(cycle_count: int) -> bool:
         if telemetry_script.exists():
             log.info("[Phase 1] Harvesting live MT5 broker telemetry...")
             subprocess.run([sys.executable, str(telemetry_script)], check=False, cwd=str(ROOT_DIR), timeout=30)
+        
+        sheet_script = EXCEL_MODULES_DIR / "00_MT5_Account_Telemetry.py"
+        if sheet_script.exists():
+            log.info("[Phase 1b] Updating Sheet '00_MT5_Account_Telemetry' in DataBase_Trading.xlsx...")
+            subprocess.run([sys.executable, str(sheet_script)], check=False, cwd=str(ROOT_DIR), timeout=60)
     except Exception as e:
         log.warning(f"[Phase 1] Telemetry harvest notice: {e}")
 

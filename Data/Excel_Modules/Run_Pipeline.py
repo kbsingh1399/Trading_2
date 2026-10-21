@@ -83,6 +83,14 @@ CDP_BASE_URL = "http://127.0.0.1:9222"
 
 PIPELINE_MODULES = [
     {
+        "id": 0,
+        "name": "MT5 Broker Account Telemetry, Positions & Spreads",
+        "script": MODULES_DIR / "00_MT5_Account_Telemetry.py",
+        "sheet": "00_MT5_Account_Telemetry",
+        "expected_min_rows": 20,
+        "args": [],
+    },
+    {
         "id": 1,
         "name": "Crypto ETF Flows",
         "script": MODULES_DIR / "1_Crypto_ETF_Flows.py",
