@@ -449,10 +449,10 @@
     "currency": "NZD",
     "impact": "High Impact",
     "event": "CPI q/q",
-    "actual": "",
+    "actual": "0.7%",
     "forecast": "0.8%",
     "previous": "1.5%",
-    "outcome": "Pending",
+    "outcome": "Worse than Forecast",
     "url": ""
   },
   {
