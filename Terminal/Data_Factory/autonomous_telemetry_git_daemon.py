@@ -57,8 +57,6 @@ DATA_SYNC_FILES = [
     "docs/telemetry/live_snapshot_latest.json",
     "Data/forex_factory_live.json",
     "Data/forex_factory_summary.json",
-    "Data/arkham_live_intelligence.json",
-    "Data/arkham_institutional_registry.json",
     "Data/coinglass/latest/coinglass_snapshot.json",
     "Data/coinglass/latest/coinglass_whale_orders_snapshot.json",
     "Data/coinglass/coinglass_harvester_status.json",
@@ -328,13 +326,7 @@ def main():
                 logger.error(f"Error during sync_git_cycle: {exc}", exc_info=True)
 
             # Step 3: Auxiliary Harvesters (Non-blocking, run AFTER telemetry is pushed)
-            # Refresh Arkham On-Chain Intelligence (every cycle = 5 mins, 5 entities per pass rotates all 48 entities in 48m)
-            try:
-                from Terminal.Data_Factory import arkham_intelligence_harvester as arkham_mod
-                importlib.reload(arkham_mod)
-                arkham_mod.run(batch_size=5)
-            except Exception as arkham_err:
-                logger.warning(f"Background Arkham harvest skipped: {arkham_err}")
+            # (Arkham is decommissioned - Hyperdash decentralized intelligence provides whale flow)
 
             # Step 3b: Refresh CoinGlass 5-Minute Telemetry & Temporal Persistence
             try:
@@ -354,10 +346,6 @@ def main():
                 if ff_file.exists():
                     ff_data = json.loads(ff_file.read_text(encoding="utf-8"))
                     ts_db.record_snapshot("forex_factory", ff_data)
-                ark_file = ROOT / "Data" / "arkham_live_intelligence.json"
-                if ark_file.exists():
-                    ark_data = json.loads(ark_file.read_text(encoding="utf-8"))
-                    ts_db.record_snapshot("arkham", ark_data)
             except Exception as hist_err:
                 logger.warning(f"Error recording auxiliary feeds to TimeSeriesDB: {hist_err}")
 

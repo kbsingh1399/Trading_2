@@ -1,10 +1,13 @@
 # 📋 AUTONOMOUS WAKE-UP CHECKLIST & JOINT-COMPLETION LIFECYCLE
+## Antigravity Desk & Arena.ai Co-Equal Quantitative Investment Council
 
 > **Canonical Production Checklist**: Non-bypassable 10-Step Autonomous Desk Wake-Up Sequence.  
 > **Target Environment**: MetaTrader 5 (Blueberry Markets Account #5064568) | Antigravity Autonomous Decision Desk  
-> **Mandatory Foundation**: [`STANDARDIZED_TRADING_DECISION_CHAIN.md`](file:///c:/Users/SIGMA/Documents/Trading_2/docs/specs/STANDARDIZED_TRADING_DECISION_CHAIN.md) (10-Step SOP) + Master 29-Sheet Excel Data Warehouse (`Data/DataBase_Trading.xlsx`).  
+> **Active Goal**: Pass Phase 1 Challenge (Target: 5,500.00 USD) by End of Friday, 23rd October 2026.  
+> **Mandatory Foundation**: [`STANDARDIZED_TRADING_DECISION_CHAIN.md`](file:///c:/Users/SIGMA/Documents/Trading_2/docs/specs/STANDARDIZED_TRADING_DECISION_CHAIN.md) (10-Step SOP) + Master 29-Sheet Excel Data Warehouse (`Data/DataBase_Trading.xlsx` & `Data/Manditory/`).  
+> **Standard Arena Prompt Template**: [`docs/prompts/ARENA_STANDARD_PROMPT_TEMPLATE.md`](file:///c:/Users/SIGMA/Documents/Trading_2/docs/prompts/ARENA_STANDARD_PROMPT_TEMPLATE.md)  
 > **Cadence**: 20-Minute Cron Trigger (`0,20,40 * * * *` at 20th, 40th, and 60th/00th minute).  
-> **Strict Operational Invariant**: A cycle is NEVER completed upon prompt dispatch. A cycle is ONLY complete once BOTH Antigravity and Arena.ai have completed analysis, outputs are harvested and cross-verified, and all necessary live MT5 actions (order punch, ratchet adjustment, order cancellation) are executed.
+> **Strict Operational Invariant**: A cycle is NEVER completed upon prompt dispatch. A cycle is ONLY complete once BOTH Antigravity and Arena.ai have completed analysis, outputs are harvested and cross-verified via Co-Equal Council Discussion, and all necessary live MT5 actions (order punch, ratchet adjustment, order cancellation) are executed.
 
 ---
 
@@ -83,16 +86,17 @@ flowchart TD
 
 ---
 
-### Step 5: Dual-Track Analysis Initiation (Internal Subagents + Arena Dispatch)
-- [ ] **Track A: Internal Subagent Dispatch**:
+### Step 5: Antigravity & Arena.ai Co-Equal Council Discussion Initiation
+- [ ] **Track A: Antigravity Internal Subagent Dispatch**:
   - Dispatch the 3 authorized internal subagents via `invoke_subagent`:
     1. `Orderflow Analyst`: Steps 1, 4, 6, 7 (CVD delta divergence, L2/L3 orderbook depth, whale order persistence >= 180s, liquidation/stops map proximity).
     2. `Position Manager`: Steps 8, 9, 10 (MT5 telemetry, stressed floor simulation, ticket lot sizing, ratchet parameters).
     3. `Macro Risk Analyst`: Step 1 & Section 3 Cluster A (Calendar Tier-1 proximity, +-15m/+-35m blackout enforcement, news shocks, ETF flows).
-  - Explicitly mandate each subagent to read `Data/DataBase_Trading.xlsx` across all 29 worksheets line-by-line and follow `STANDARDIZED_TRADING_DECISION_CHAIN.md`.
+  - Explicitly mandate each subagent to read `Data/DataBase_Trading.xlsx` (and `Data/Manditory/`) across all 29 worksheets line-by-line and follow `STANDARDIZED_TRADING_DECISION_CHAIN.md`.
 - [ ] **Track B: Arena.ai Council Prompt Dispatch**:
-  - Ensure the latest `Data/DataBase_Trading.xlsx` and prompt are pushed to GitHub `origin/main`.
-  - Connect to Edge CDP port `9222` and inject the authoritative prompt (`docs/prompts/ARENA_CYCLE_202_CANDIDATE_SEARCH.md` or next cycle prompt) into Arena's TipTap editor.
+  - Ensure the latest `Data/DataBase_Trading.xlsx` and live telemetry are pushed to GitHub `origin/main`.
+  - Prepare the prompt using the canonical template [`docs/prompts/ARENA_STANDARD_PROMPT_TEMPLATE.md`](file:///c:/Users/SIGMA/Documents/Trading_2/docs/prompts/ARENA_STANDARD_PROMPT_TEMPLATE.md) (unrestricted character depth).
+  - Connect to Edge CDP port `9222` and inject the prompt into Arena's TipTap editor.
   - If a feedback modal banner ("Was this task successful?") is present, click "Keep working" to dismiss it before sending.
   - Verify that generation starts (`isGenerating: true` / `hasStopBtn: true`).
 
