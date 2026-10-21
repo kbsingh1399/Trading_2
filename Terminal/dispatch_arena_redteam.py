@@ -49,7 +49,12 @@ async def build_and_dispatch():
     cush_buf_str = "+56.83"
     dist_goal_str = "+648.17"
     hours_left_str = "53.0"
-    cycle_id = "209"
+    # Auto-detect latest cycle ID
+    import glob, re
+    existing = glob.glob(str(ROOT / "docs" / "prompts" / "ARENA_CYCLE_*_REDTEAM_PROMPT.txt"))
+    nums = [int(m.group(1)) for f in existing if (m := re.search(r"ARENA_CYCLE_(\d+)_REDTEAM", f))]
+    cycle_num = max(nums) + 1 if nums else 211
+    cycle_id = str(cycle_num)
 
     if telemetry_file.exists():
         try:

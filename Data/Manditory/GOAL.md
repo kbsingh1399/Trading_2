@@ -30,7 +30,7 @@ Every 20 minutes (`0,20,40 * * * *`), the autonomous desk executes:
 2. Verify system health and continuous 32-sheet Excel data updation (5m rest interval).
 3. Query live MT5 account telemetry and audit floor cushion (+76.83 USD above 4,775 USD as of Cycle 210).
 4. Audit open positions and ratchet stops using Frozen R0 piecewise protocol.
-5. Dispatch 3 subagents (Orderflow Analyst, Position Manager, Macro Risk Analyst) and Arena.ai simultaneously using canonical templates from `SUBAGENT_PROMPT_TEMPLATES.md`.
+5. Dispatch 4 subagents (Orderflow Analyst, Position Manager, Macro Risk Analyst, Excel Data Quality Auditor) and Arena.ai simultaneously using canonical templates from `SUBAGENT_PROMPT_TEMPLATES.md`.
 6. Auto-harvest Arena output via `Terminal/arena_completion_daemon.py`.
 7. Cross-verify all 4 reports (subagents + Arena). Macro blackout verdict overrides Orderflow recommendation.
 8. Punch qualified limit orders autonomously into MetaTrader 5 without waiting for confirmation.

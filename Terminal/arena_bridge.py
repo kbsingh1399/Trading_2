@@ -733,7 +733,7 @@ def format_prompt_for_tiptap_html(md: str) -> str:
 
 
 async def post_prompt_to_arena_single(ws_url: str, prompt_text: str, tab_label: str = "Arena.ai") -> bool:
-    """Clear any existing prompt in the box (Ctrl+A then Delete), inject prompt with rich HTML formatting, and hit enter for a single tab."""
+    """Clear prompt box, inject prompt text via Input.insertText for native React/TipTap sync, and click send button."""
     try:
         async with websockets.connect(ws_url, max_size=20_000_000) as ws:
             cur_id = int(time.time() * 1000) % 1000000
@@ -759,118 +759,66 @@ async def post_prompt_to_arena_single(ws_url: str, prompt_text: str, tab_label: 
 
             # 0. Bring tab to front to unthrottle execution
             await cdp_call("Page.bringToFront", timeout=3.0)
-            await asyncio.sleep(0.5)
+            await asyncio.sleep(0.3)
 
-            # Auto-dismiss any modal/review popup ("Was this task successful?", review panel) blocking the editor
+            # Auto-dismiss any modal/review popup blocking the editor
             await cdp_call("Input.dispatchKeyEvent", {"type": "rawKeyDown", "windowsVirtualKeyCode": 27, "code": "Escape", "key": "Escape"}, timeout=1.0)
             await cdp_call("Input.dispatchKeyEvent", {"type": "keyUp", "windowsVirtualKeyCode": 27, "code": "Escape", "key": "Escape"}, timeout=1.0)
-            await asyncio.sleep(0.3)
+            await asyncio.sleep(0.2)
 
-            # 1. MANDATORY CLEAR: Remove any previous prompt already in the box (Ctrl+A then Delete)
-            await clear_arena_prompt_box(ws)
+            # 1. Clear prompt box by focusing and selecting all
+            js_clear = """(() => {
+                const el = document.querySelector('.tiptap.ProseMirror');
+                if (!el) return false;
+                el.focus();
+                const range = document.createRange();
+                range.selectNodeContents(el);
+                const sel = window.getSelection();
+                sel.removeAllRanges();
+                sel.addRange(range);
+                return true;
+            })()"""
+            await cdp_call("Runtime.evaluate", {"expression": js_clear}, timeout=3.0)
             await asyncio.sleep(0.1)
+            await cdp_call("Input.dispatchKeyEvent", {"type": "rawKeyDown", "windowsVirtualKeyCode": 8, "code": "Backspace", "key": "Backspace"}, timeout=1.0)
+            await cdp_call("Input.dispatchKeyEvent", {"type": "keyUp", "windowsVirtualKeyCode": 8, "code": "Backspace", "key": "Backspace"}, timeout=1.0)
+            await asyncio.sleep(0.2)
 
-            prompt_html = format_prompt_for_tiptap_html(prompt_text)
+            # 2. Inject text natively via Input.insertText (triggers ProseMirror transactions + React onChange)
+            await cdp_call("Input.insertText", {"text": prompt_text}, timeout=10.0)
+            await asyncio.sleep(0.5)
 
-            # 2. Inject structured HTML into TipTap editor and update React state
-            js_set = f"""
-            (async () => {{
-              const promptText = {json.dumps(prompt_text)};
-              const promptHtml = {json.dumps(prompt_html)};
-
-              const el = document.querySelector('.tiptap.ProseMirror');
-              if (!el) return {{ error: 'No ProseMirror editor found' }};
-              el.focus();
-
-              let editor = null;
-              let p = el;
-              while (p) {{
-                if (p.editor) {{ editor = p.editor; break; }}
-                p = p.parentElement;
-              }}
-              if (editor) {{
-                try {{ editor.commands.setContent(promptHtml); }} catch(e) {{}}
-              }} else {{
-                el.innerText = promptText;
-              }}
-
-              // Look for submit button or form for React onChange propagation
-              const submitBtn = document.querySelector('button[aria-label="Send message"], button:has(svg.lucide-arrow-up), button:has(svg.lucide-arrow-right), button[type="submit"]');
-              if (submitBtn) {{
-                const fiberKey = Object.getOwnPropertyNames(submitBtn).find(k => k.startsWith('__reactFiber')) || Object.keys(submitBtn).find(k => k.startsWith('__reactFiber'));
-                if (fiberKey) {{
-                  let curr = submitBtn[fiberKey];
-                  while (curr) {{
-                    if (curr.memoizedProps?.onChange) {{
-                      try {{ curr.memoizedProps.onChange(promptText); }} catch(e) {{}}
-                      break;
-                    }}
-                    curr = curr.return;
-                  }}
-                }}
-              }}
-
-              return {{ success: true, hasEditor: Boolean(editor) }};
-            }})()
-            """
-            eval_res = await cdp_call("Runtime.evaluate", {"expression": js_set, "returnByValue": True, "awaitPromise": True}, timeout=6.0)
-            res_val = eval_res.get("result", {}).get("result", {}).get("value", {})
-            if not res_val.get("success"):
-                print(f"[{tab_label}] Warning on prompt injection: {res_val}", file=sys.stderr)
-
-            # Dispatch a micro text insert to trigger React fiber onChange and enable submit button
-            await cdp_call("Input.insertText", {"text": " "}, timeout=2.0)
-            await asyncio.sleep(0.1)
-
-            # 3. Hit Enter via CDP key event
-            await cdp_call("Input.dispatchKeyEvent", {
-                "type": "rawKeyDown",
-                "windowsVirtualKeyCode": 13,
-                "code": "Enter",
-                "key": "Enter"
-            }, timeout=2.0)
-            await cdp_call("Input.dispatchKeyEvent", {
-                "type": "keyUp",
-                "windowsVirtualKeyCode": 13,
-                "code": "Enter",
-                "key": "Enter"
-            }, timeout=2.0)
-
-            # 4. Failsafe submit click / onSubmit trigger
-            js_submit = """
-            (async () => {
-              const el = document.querySelector('.tiptap.ProseMirror');
-              if (el) el.focus();
-              const submitBtn = document.querySelector('button[aria-label="Send message"], button:has(svg.lucide-arrow-up), button:has(svg.lucide-arrow-right), button[type="submit"]');
-              if (!submitBtn) return { submitted: true, method: 'enter_only' };
-
-              if (!submitBtn.disabled) {
-                try { submitBtn.click(); } catch(e) {}
-              }
-
-              const fiberKey = Object.getOwnPropertyNames(submitBtn).find(k => k.startsWith('__reactFiber')) || Object.keys(submitBtn).find(k => k.startsWith('__reactFiber'));
-              if (fiberKey) {
-                let curr = submitBtn[fiberKey];
-                while (curr) {
-                  if (curr.memoizedProps?.onSubmit) {
-                    try {
-                      curr.memoizedProps.onSubmit();
-                      return { submitted: true, method: 'fiber_onSubmit' };
-                    } catch(e) {}
-                  }
-                  curr = curr.return;
+            # 3. Click the send button directly
+            js_click = """(() => {
+                const sendBtn = document.querySelector('button[aria-label="Send message"], button[type="submit"], button:has(svg.lucide-arrow-up)');
+                if (sendBtn && !sendBtn.disabled) {
+                    sendBtn.click();
+                    return { clicked: true };
                 }
-              }
+                return { clicked: false, disabled: sendBtn ? sendBtn.disabled : null };
+            })()"""
+            click_res = await cdp_call("Runtime.evaluate", {"expression": js_click, "returnByValue": True}, timeout=3.0)
+            val = click_res.get("result", {}).get("result", {}).get("value", {})
+            if val.get("clicked"):
+                print(f"[{tab_label}] SUCCESS: Clicked send button!", file=sys.stderr)
+            else:
+                # Fallback to Enter key
+                await cdp_call("Input.dispatchKeyEvent", {"type": "rawKeyDown", "windowsVirtualKeyCode": 13, "code": "Enter", "key": "Enter"}, timeout=2.0)
+                await cdp_call("Input.dispatchKeyEvent", {"type": "keyUp", "windowsVirtualKeyCode": 13, "code": "Enter", "key": "Enter"}, timeout=2.0)
 
-              return { submitted: true, method: 'click' };
-            })()
-            """
-            await cdp_call("Runtime.evaluate", {"expression": js_submit, "returnByValue": True, "awaitPromise": True}, timeout=4.0)
-            await asyncio.sleep(0.3)
-            print(f"Prompt posted successfully to {tab_label} (box cleared first with Ctrl+A Delete, prompt set, Enter hit)!")
+            # 4. Verify generation started
+            await asyncio.sleep(1.0)
+            js_gen = """(() => {
+                const stopBtn = document.querySelector('button[aria-label="Stop generating"], button:has(svg.lucide-square)');
+                return { isGenerating: !!stopBtn };
+            })()"""
+            gen_res = await cdp_call("Runtime.evaluate", {"expression": js_gen, "returnByValue": True}, timeout=3.0)
+            gen_val = gen_res.get("result", {}).get("result", {}).get("value", {})
+            is_gen = gen_val.get("isGenerating", False)
+            print(f"[{tab_label}] Generation active: {is_gen}", file=sys.stderr)
             return True
-    except Exception as e:
-        print(f"[{tab_label}] Error posting prompt over CDP: {e}", file=sys.stderr)
+    except Exception as exc:
+        print(f"[{tab_label}] post_prompt_to_arena_single error: {exc}", file=sys.stderr)
         return False
 
 
