@@ -1,7 +1,7 @@
 # ACTIVE CONTEXT CARD (LIVE SOVEREIGN QUANT DESK)
-**Last Updated**: 2026-10-22 19:54 UTC | **Autonomous Cycle**: Cycle 268 (Wake-Up sentry trigger #6)
+**Last Updated**: 2026-10-22 21:16 UTC | **Autonomous Cycle**: Cycle 270 (Order Staging Turn)
 **Target Account**: Blueberry Markets MT5 Account #5064568
-**Mission**: Pass Phase 1 Challenge (Target: 5,500.00 USD) before Oct 23, 2026 (23:59 UTC) (~28.1 hours runway).
+**Mission**: Pass Phase 1 Challenge (Target: 5,500.00 USD) before Oct 23, 2026 (23:59 UTC) (~21.3 hours runway remaining).
 
 ---
 
@@ -12,29 +12,44 @@
 - **Hard Floor (Inviolate)**: 4,775.00 USD | **Floor Cushion**: +43.51 USD
 - **Operating Buffer Floor**: 4,795.00 USD | **Buffer Cushion**: +23.51 USD
 - **Active Filled Positions**: 0 (0 consumed slots)
-- **Resting Pending Orders**: 0 (Order #19224157 USDJPY.pi SELL_LIMIT cancelled per unanimous council consensus)
-- **Fluid Capacity Available**: 4/4 filled slots free, 10 resting limit slots free
+- **Resting Pending Orders**: 1 (Ticket #19227609 `BTCUSD.pi` BUY_LIMIT 0.04 lot @ 80,950.00)
+- **Fluid Capacity Available**: 4/4 filled slots free, 9 resting limit slots free
+- **Single-Slot Capacity Law**: Exactly 1 active risk-bearing order staged under the +23.51 USD buffer cushion.
 
 ---
 
-## 2. ACTIVE ORDER HYGIENE & EXECUTION AUDIT
-- **Ticket #19224157**: `USDJPY.pi` SELL_LIMIT 0.18 lot @ 157.053 -> **CANCELLED (Retcode: 10009)**.
-  * Reason: Unanimously rejected by Arena.ai (15,556 chars) and Z.ai GLM-5.3-Flash (15,618 chars). Stressed risk (-25.14 USD) breached the 4,795.00 USD operating buffer (stressed equity 4,793.37 USD), SL (157.206) was 18 points below Auction DPOC (157.224), and FX rollover spread expansion (21:15–22:30 UTC) was approaching.
+## 2. ACTIVE ORDER AUDIT: TICKET #19227609
+- **Symbol**: `BTCUSD.pi`
+- **Ticket**: `#19227609` (Retcode: 10009 TRADE_RETCODE_DONE)
+- **Direction**: `BUY_LIMIT` @ **80,950.00 USD**
+- **Volume**: **0.04 lot**
+- **Stop Loss**: **80,600.00 USD** (Risk Distance: 350.00 pts / 1.54 ATR)
+- **Take Profit**: **82,000.00 USD** (Reward Distance: 1,050.00 pts / 4.61 ATR | **3.00R**)
+- **Financial Risk Metrics**:
+  * Nominal Risk: **-14.00 USD** (0.29% equity)
+  * Stressed Loss (1.25x + $2.00 fee): **-19.50 USD**
+  * **Stressed Post-Loss Equity**: **4,799.01 USD** (**+4.01 USD Buffer Surplus**, **+24.01 USD Hard Floor Surplus**)
+  * Expected Profit at TP: **+42.00 USD**
+- **Confluence Architecture**:
+  * Macro Alignment: BlackRock IBIT +235.0M USD net inflow + CEX spot drain -210.35M USD (institutional spot accumulation).
+  * Structural Shelf: Sits directly above Daily VAL (80,902.58 USD) and sweeps the 80,850 USD long liquidation debt pool.
+  * Target Alignment: Front-runs the massive 16.54M USD short liquidation squeeze pool and 17.20M USD buy-stop magnet at 82,050 USD.
+  * Non-Marketable Posture: Entry 80,950.00 is strictly passive (365 pts below market price of ~81,315).
+  * Spread Efficiency: Spread (16 pts / 1.97 bps) / TP (1,050 pts) = **1.52%** (<= 15.0% threshold passed).
 
 ---
 
-## 3. CO-EQUAL QUANTITATIVE COUNCIL (ARENA + Z.AI + ANTIGRAVITY)
-- **Arena.ai Primary**: Cycle 267 completed (15,556 chars in `docs/trade_plans/ARENA_LATEST_RAW.md`); Cycle 268 prompt dispatched and actively generating.
-- **Z.ai (GLM-5.3-Flash)**: Cycle 266/267 completed (15,618 chars in `docs/trade_plans/ZAI_LATEST_RAW.md`); Cycle 268 prompt dispatched via `Terminal/dispatch_zai_prompt.py` and actively generating.
-- **Dedicated Z.ai Daemon**: `Terminal/zai_completion_daemon.py --daemon` running persistently as background Task 110203.
-- **4-Subagent Fleet**: Cycle 268 dispatched using Gemini 3.8 Flash (`Orderflow Analyst`, `Position Manager`, `Macro Risk Analyst`, `Excel Data Quality Auditor`).
+## 3. CO-EQUAL QUANTITATIVE TRI-COUNCIL (ARENA + Z.AI + GEMINI WEB2API)
+- **Arena.ai Primary**: Cycle 269 completed (26,142 chars in `docs/trade_plans/ARENA_LATEST_RAW.md`).
+- **Z.ai (GLM-5.3-Flash)**: Cycle 268/269 completed (18,957 chars in `docs/trade_plans/ZAI_LATEST_RAW.md`).
+- **Gemini Web2API (Port 8081)**: Operating on `http://127.0.0.1:8081` (`Bearer sk-gemini`). Generated 6,538-char analysis in 9.8s at zero token cost.
+- **4-Subagent Swarm**: Cycle 270 completed and cleanly pruned (`Orderflow Analyst`, `Position Manager`, `Macro Risk Analyst`, `Excel Data Quality Auditor`).
 
 ---
 
-## 4. POTENTIAL CANDIDATE RADAR (UNANIMOUS ARENA + Z.AI PIPELINE)
-1. **US2000.p BUY_LIMIT** @ 2780.05 | SL: 2776.75 | TP: 2787.07 | 0.40 lot | Risk: -13.20 USD | Spread: 1.28 USD | Stressed: -20.10 USD | Stressed Equity: 4,798.41 USD (+3.41 USD buffer surplus!) | R:R: 2.13R.
-   - Triggers: [ ] Post-20:05 UTC US cash close MOC volatility clearance · [ ] Price tags DVAH 2780.05 and 15m candle closes > 2780.38 · [ ] 5m CVD flips positive.
-2. **NAS100.p SELL_LIMIT** @ 29195.00 | SL: 29222.50 | TP: 29135.21 | 0.05 lot | Risk: -13.75 USD | Spread: 0.50 USD | Stressed: -19.81 USD | Stressed Equity: 4,798.70 USD (+3.70 USD buffer surplus!) | R:R: 2.17R.
-   - Triggers: [ ] Retrace into 29186–29195 with bearish 15m delta re-acceleration · [ ] Post-20:05 UTC cash close clearance.
-3. **BTCUSD.pi Model 2 Short**: SELL_LIMIT 81,313–81,520 | SL 81,717 | TP 80,303 | 0.04 lot | Risk: -16.15 USD | Stressed: -22.19 USD | Stressed Equity: 4,796.32 USD (+1.32 USD buffer surplus!) | R:R: 2.50R.
-   - Triggers: [ ] Persistent ask whale walls >= $100K (81,333–81,535) persist >= 180s · [ ] Live CVD deceleration.
+## 4. SECONDARY CANDIDATE RADAR (STANDBY FOR REOPEN / TRIGGER)
+1. **US2000.p BUY_LIMIT** @ 2,776.00 | SL: 2,771.50 | TP: 2,787.00 | 0.30 lot | Nominal Risk: -13.50 USD | Stressed Equity: 4,799.63 USD | 2.44R.
+   - Status: Broker session break (reopens 22:00/23:00 UTC).
+2. **NAS100.p SELL_LIMIT** @ 29,085.00 | SL: 29,130.00 | TP: 28,970.00 | 0.03 lot | Nominal Risk: -13.50 USD | Stressed Equity: 4,799.63 USD | 2.55R.
+   - Status: Broker session break (reopens 22:00/23:00 UTC).
+3. **Forex Majors**: Strict embargo active 21:15–22:30 UTC for interbank rollover spread expansion.
