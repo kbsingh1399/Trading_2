@@ -473,10 +473,10 @@
     "currency": "GBP",
     "impact": "Low Impact",
     "event": "GfK Consumer Confidence",
-    "actual": "",
+    "actual": "-24",
     "forecast": "-14",
     "previous": "-13",
-    "outcome": "Pending",
+    "outcome": "Worse than Forecast",
     "url": ""
   },
   {
