@@ -490,7 +490,16 @@ def export_calendar_to_excel(
     ws.auto_filter.ref = f"A1:L{len(events) + 1}"
     ws.freeze_panes = "A2"
 
-    wb.save(excel_path)
+    temp_excel = excel_path.with_suffix(".tmp.xlsx")
+    wb.save(temp_excel)
+    wb.close()
+    import zipfile
+    with zipfile.ZipFile(temp_excel, "r") as _z:
+        if _z.testzip() is None:
+            temp_excel.replace(excel_path)
+        else:
+            if temp_excel.exists(): temp_excel.unlink()
+            raise ValueError("Corrupt zip produced during export")
     log.info(f"Saved {len(events)} events to worksheet '{sheet_name}' in {excel_path.name}.")
     return len(events)
 

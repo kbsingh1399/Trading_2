@@ -400,7 +400,16 @@ def dump_to_excel(records: list[dict], excel_path: pathlib.Path = DEFAULT_EXCEL_
     # Freeze panes below header
     ws.freeze_panes = "A2"
 
-    wb.save(excel_path)
+    temp_excel = excel_path.with_suffix(".tmp.xlsx")
+    wb.save(temp_excel)
+    wb.close()
+    import zipfile
+    with zipfile.ZipFile(temp_excel, "r") as _z:
+        if _z.testzip() is None:
+            temp_excel.replace(excel_path)
+        else:
+            if temp_excel.exists(): temp_excel.unlink()
+            raise ValueError("Corrupt zip produced during export")
     log.info(
         f"Successfully dumped {len(records)} Funding Fee Settlement records into '{SHEET_NAME}' at {excel_path}."
     )

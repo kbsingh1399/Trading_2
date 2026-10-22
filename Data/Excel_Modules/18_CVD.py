@@ -837,7 +837,16 @@ def export_cvd_to_excel(
     ws.freeze_panes = "A2"
 
     t_save = time.time()
-    wb.save(excel_path)
+    temp_excel = excel_path.with_suffix(".tmp.xlsx")
+    wb.save(temp_excel)
+    wb.close()
+    import zipfile
+    with zipfile.ZipFile(temp_excel, "r") as _z:
+        if _z.testzip() is None:
+            temp_excel.replace(excel_path)
+        else:
+            if temp_excel.exists(): temp_excel.unlink()
+            raise ValueError("Corrupt zip produced during export")
     log.info(f"Saved worksheet '{sheet_name}' in {time.time() - t_save:.2f}s with {len(display_rows):,} rows.")
     return len(display_rows)
 

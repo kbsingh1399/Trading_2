@@ -392,7 +392,16 @@ def dump_mt5_telemetry_sheet(excel_path: pathlib.Path = DEFAULT_EXCEL_PATH) -> b
     saved = False
     for attempt in range(15):
         try:
-            wb.save(excel_path)
+            temp_excel = excel_path.with_suffix(".tmp.xlsx")
+    wb.save(temp_excel)
+    wb.close()
+    import zipfile
+    with zipfile.ZipFile(temp_excel, "r") as _z:
+        if _z.testzip() is None:
+            temp_excel.replace(excel_path)
+        else:
+            if temp_excel.exists(): temp_excel.unlink()
+            raise ValueError("Corrupt zip produced during export")
             wb.close()
             saved = True
             break

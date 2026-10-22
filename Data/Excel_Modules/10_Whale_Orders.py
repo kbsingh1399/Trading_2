@@ -523,7 +523,16 @@ def dump_whale_orders_to_excel(
     # Freeze panes at E3 so Sr. No., Exchange, Symbol, Type remain visible while scrolling
     ws.freeze_panes = "E3"
 
-    wb.save(excel_path)
+    temp_excel = excel_path.with_suffix(".tmp.xlsx")
+    wb.save(temp_excel)
+    wb.close()
+    import zipfile
+    with zipfile.ZipFile(temp_excel, "r") as _z:
+        if _z.testzip() is None:
+            temp_excel.replace(excel_path)
+        else:
+            if temp_excel.exists(): temp_excel.unlink()
+            raise ValueError("Corrupt zip produced during export")
     wb.close()
     log.info(
         f"Dumped {len(records)} rows to sheet '{sheet_name}' in {excel_path.name} "

@@ -479,7 +479,16 @@ def dump_to_excel(
         ws.column_dimensions[col_letter].width = col_def[2]
 
     ws.views.sheetView[0].showGridLines = True
-    wb.save(excel_path)
+    temp_excel = excel_path.with_suffix(".tmp.xlsx")
+    wb.save(temp_excel)
+    wb.close()
+    import zipfile
+    with zipfile.ZipFile(temp_excel, "r") as _z:
+        if _z.testzip() is None:
+            temp_excel.replace(excel_path)
+        else:
+            if temp_excel.exists(): temp_excel.unlink()
+            raise ValueError("Corrupt zip produced during export")
     log.info(
         f"Successfully dumped Open Interest data ({len(matrix_rows)} matrix assets, {len(stacked_rows)} stacked rows) into '{SHEET_NAME}' at {excel_path}."
     )

@@ -549,7 +549,16 @@ def dump_hyperliquid_to_excel(
         max_rows=50,
     )
 
-    wb.save(excel_path)
+    temp_excel = excel_path.with_suffix(".tmp.xlsx")
+    wb.save(temp_excel)
+    wb.close()
+    import zipfile
+    with zipfile.ZipFile(temp_excel, "r") as _z:
+        if _z.testzip() is None:
+            temp_excel.replace(excel_path)
+        else:
+            if temp_excel.exists(): temp_excel.unlink()
+            raise ValueError("Corrupt zip produced during export")
     log.info(f"Successfully dumped Hyperliquid data to '{sheet_name}' in {excel_path} (Index: {target_index}).")
     return True
 

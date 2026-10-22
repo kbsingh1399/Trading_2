@@ -345,7 +345,16 @@ def dump_to_excel(records: list[dict], excel_path: pathlib.Path = DEFAULT_EXCEL_
     # Freeze top row
     ws.freeze_panes = "A2"
 
-    wb.save(excel_path)
+    temp_excel = excel_path.with_suffix(".tmp.xlsx")
+    wb.save(temp_excel)
+    wb.close()
+    import zipfile
+    with zipfile.ZipFile(temp_excel, "r") as _z:
+        if _z.testzip() is None:
+            temp_excel.replace(excel_path)
+        else:
+            if temp_excel.exists(): temp_excel.unlink()
+            raise ValueError("Corrupt zip produced during export")
     wb.close()
     log.info(f"Successfully saved {len(records)} rows to {excel_path} [{SHEET_NAME}].")
     return True
