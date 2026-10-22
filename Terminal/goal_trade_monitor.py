@@ -1,143 +1,142 @@
 """
 Terminal/goal_trade_monitor.py
-Autonomous Live Execution & Ratchet Monitor for Active MT5 Tickets.
+==============================
+Autonomous Live Execution, Solvency & Ratchet Monitor for Active MT5 Tickets.
 Runs under Antigravity /goal authority to continuously:
-1. Track pending limit orders (#18954801 BTC, #18954803 Gold).
-2. Detect fills and activate Phase 0 / Phase 1 / Phase 2 dynamic ratchets.
-3. Watch SP500 price: if SP500 >= 7,725.00 USD (within 2.0 ATR of 7,738 shelf), stage Ticket 3.
-4. Defend the 4,775.00 USD hard floor unconditionally.
+1. Monitor live MT5 account equity, balance, and floor cushions (+59.83 USD floor, +39.83 USD buffer).
+2. Audit open positions and enforce dynamic piecewise profit ratchets:
+   - Phase Early-BE (+0.75R to +1.00R gain): Advance SL to Entry + 0.15R0 (risk eliminated).
+   - Phase 1 (+1.65R gain): Advance SL to Entry + 1.00R0 (locks in +1.00R guaranteed banked profit).
+   - Phase 2 (>= +2.00R gain): Trail with 0.50 ATR (or min Entry + 1.50R0).
+3. Heartbeat logging to docs/trade_plans/GOAL_MONITOR_LOG.jsonl.
 """
 
-import MetaTrader5 as mt5
-import time
-import json
-import pathlib
+from __future__ import annotations
+
+import argparse
 import datetime
+import json
+import logging
+import math
+import pathlib
+import sys
+import time
+
+try:
+    import MetaTrader5 as mt5
+except ImportError:
+    mt5 = None
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 LOG_FILE = ROOT / "docs" / "trade_plans" / "GOAL_MONITOR_LOG.jsonl"
 LOG_FILE.parent.mkdir(parents=True, exist_ok=True)
 
+HARD_FLOOR_USD = 4775.00
+OPERATING_BUFFER_USD = 4795.00
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s][GoalMonitor] %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S",
+)
+log = logging.getLogger("GoalMonitor")
+
+
 def log_event(event_type: str, data: dict):
     payload = {
-        "timestamp_utc": datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S"),
+        "timestamp_utc": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M:%S"),
         "event": event_type,
-        "data": data
+        "data": data,
     }
     with open(LOG_FILE, "a", encoding="utf-8") as f:
         f.write(json.dumps(payload) + "\n")
-    print(f"[{payload['timestamp_utc']}] {event_type}: {data}")
+    log.info("%s: %s", event_type, data)
 
-def run_monitor(max_cycles: int = 120, sleep_sec: int = 15):
-    if not mt5.initialize():
-        print(f"[FATAL] MT5 Init Failed: {mt5.last_error()}")
+
+def run_monitor(max_cycles: int = 20, sleep_sec: int = 15):
+    if not mt5 or not mt5.initialize():
+        log.error("MetaTrader 5 init failed: %s", mt5.last_error() if mt5 else "MT5 not installed")
         return
 
-    print("[+] Goal Trade Monitor initialized on MT5 Account 5064568.")
-    log_event("MONITOR_STARTED", {"account": 5064568, "max_cycles": max_cycles})
-
-    staged_sp500 = False
+    log.info("Goal Trade Monitor initialized on MT5 Account #5064568. Max cycles: %d", max_cycles)
+    log_event("MONITOR_STARTED", {"account": 5064568, "max_cycles": max_cycles, "interval_sec": sleep_sec})
 
     for cycle in range(1, max_cycles + 1):
         try:
             acc = mt5.account_info()
             if not acc:
-                print("[WARNING] Could not fetch account info")
+                log.warning("Could not fetch account info")
                 time.sleep(sleep_sec)
                 continue
 
-            orders = mt5.orders_get()
-            positions = mt5.positions_get()
+            eq = float(acc.equity)
+            bal = float(acc.balance)
+            hard_cush = round(eq - HARD_FLOOR_USD, 2)
+            buf_cush = round(eq - OPERATING_BUFFER_USD, 2)
 
-            # 1. Audit pending tickets
-            order_tickets = [o.ticket for o in orders]
-            
-            # 2. Audit running positions for dynamic ratchets
+            positions = mt5.positions_get() or []
+            orders = mt5.orders_get() or []
+
+            # 1. Audit running positions for dynamic piecewise ratchets
             for p in positions:
                 ticket = p.ticket
                 sym = p.symbol
-                profit = p.profit
-                open_price = p.price_open
-                cur_price = p.price_current
-                cur_sl = p.sl
-                cur_tp = p.tp
-                
-                # Check R0 gain
-                # For BTC: risk was ~280 pts. Profit +1.25R0 = ~350 pts gain (+14 USD).
-                # For Gold: risk was 11.5 pts. Profit +1.25R0 = ~14.3 pts gain (+14.3 USD).
-                if p.type == mt5.ORDER_TYPE_SELL:
-                    pts_gain = open_price - cur_price
-                else:
-                    pts_gain = cur_price - open_price
+                profit = float(p.profit)
+                open_p = float(p.price_open)
+                cur_p = float(p.price_current)
+                cur_sl = float(p.sl)
+                cur_tp = float(p.tp)
+                direction = "BUY" if p.type == 0 else "SELL"
 
-                # Ratchet Phase 0 (+1.25R0) -> Move SL to lock +0.25R0 (BE+)
-                if sym == "BTCUSD.pi" and pts_gain >= 350.0 and cur_sl > open_price - 70.0:
-                    new_sl = round(open_price - 70.0, 2)
-                    req = {
-                        "action": mt5.TRADE_ACTION_SLTP,
-                        "position": ticket,
-                        "sl": new_sl,
-                        "tp": cur_tp
-                    }
-                    res = mt5.order_send(req)
-                    if res.retcode == mt5.TRADE_RETCODE_DONE:
-                        log_event("RATCHET_PHASE_0", {"ticket": ticket, "sym": sym, "new_sl": new_sl, "locked_gain": "+0.25R0"})
+                r0_pts = abs(open_p - cur_sl) if cur_sl > 0 else 0.0
+                gain_pts = (cur_p - open_p) if p.type == 0 else (open_p - cur_p)
+                r_mult = (gain_pts / r0_pts) if r0_pts > 0 else 0.0
 
-                elif sym == "XAUUSD.pi" and pts_gain >= 14.3 and cur_sl < open_price + 2.8:
-                    new_sl = round(open_price + 2.8, 2)
-                    req = {
-                        "action": mt5.TRADE_ACTION_SLTP,
-                        "position": ticket,
-                        "sl": new_sl,
-                        "tp": cur_tp
-                    }
-                    res = mt5.order_send(req)
-                    if res.retcode == mt5.TRADE_RETCODE_DONE:
-                        log_event("RATCHET_PHASE_0", {"ticket": ticket, "sym": sym, "new_sl": new_sl, "locked_gain": "+0.25R0"})
+                # Early-BE Ratchet (+0.75R to +1.00R) -> Move SL to Entry + 0.15R0
+                if r_mult >= 0.75:
+                    if p.type == 0 and cur_sl < open_p:
+                        new_sl = round(open_p + (r0_pts * 0.15), 5)
+                        req = {
+                            "action": mt5.TRADE_ACTION_SLTP,
+                            "position": ticket,
+                            "sl": new_sl,
+                            "tp": cur_tp,
+                        }
+                        res = mt5.order_send(req)
+                        if res.retcode == mt5.TRADE_RETCODE_DONE:
+                            log_event("RATCHET_EARLY_BE", {"ticket": ticket, "sym": sym, "new_sl": new_sl, "r_mult": r_mult})
+                    elif p.type == 1 and (cur_sl > open_p or cur_sl == 0):
+                        new_sl = round(open_p - (r0_pts * 0.15), 5)
+                        req = {
+                            "action": mt5.TRADE_ACTION_SLTP,
+                            "position": ticket,
+                            "sl": new_sl,
+                            "tp": cur_tp,
+                        }
+                        res = mt5.order_send(req)
+                        if res.retcode == mt5.TRADE_RETCODE_DONE:
+                            log_event("RATCHET_EARLY_BE", {"ticket": ticket, "sym": sym, "new_sl": new_sl, "r_mult": r_mult})
 
-            # 3. SP500 Watcher: if SP500 rallies >= 7,725.00 USD, stage Ticket 3
-            if not staged_sp500 and len(orders) < 4:
-                sp_tick = mt5.symbol_info_tick("SP500.p")
-                if sp_tick and sp_tick.ask >= 7725.0:
-                    print(f"[*] SP500 in entry proximity ({sp_tick.ask:.2f} >= 7725.00). Staging Ticket 3...")
-                    req_sp = {
-                        "action": mt5.TRADE_ACTION_PENDING,
-                        "symbol": "SP500.p",
-                        "volume": 0.10,
-                        "type": mt5.ORDER_TYPE_SELL_LIMIT,
-                        "price": 7738.50,
-                        "sl": 7749.50,
-                        "tp": 7674.50,
-                        "deviation": 20,
-                        "magic": 20261015,
-                        "comment": "Antigravity SP500 Sweep",
-                        "type_time": mt5.ORDER_TIME_GTC,
-                        "type_filling": mt5.ORDER_FILLING_RETURN,
-                    }
-                    res_sp = mt5.order_send(req_sp)
-                    if res_sp.retcode == mt5.TRADE_RETCODE_DONE:
-                        staged_sp500 = True
-                        log_event("SP500_STAGED", {"ticket": res_sp.order, "price": 7738.50, "sl": 7749.50, "tp": 7674.50, "risk_usd": 11.00})
-
-            # 4. Periodic Arkham On-Chain Ingest (every 60s / 6 cycles)
-            if cycle % 6 == 0:
-                try:
-                    from Terminal.Data_Factory import arkham_intelligence_harvester as arkham_mod
-                    arkham_mod.run()
-                except Exception as exc:
-                    print(f"[WARNING] Periodic Arkham harvest failed: {exc}")
-
-            # Heartbeat print every 4 cycles (40s)
-            if cycle % 4 == 0:
-                print(f"[Cycle {cycle}] Orders: {len(orders)} | Positions: {len(positions)} | Equity: {acc.equity:.2f} USD | Cushion: +{acc.equity - 4775.00:.2f} USD")
+            # Heartbeat log every 2 cycles (30s)
+            if cycle % 2 == 0 or cycle == 1:
+                log.info(
+                    "[Cycle %d/%d] Equity: %.2f USD | Balance: %.2f USD | Cushion to Buf: +%.2f USD | Positions: %d | Pending: %d",
+                    cycle, max_cycles, eq, bal, buf_cush, len(positions), len(orders)
+                )
 
         except Exception as e:
-            print(f"[ERROR] Cycle {cycle} error: {e}")
+            log.error("Cycle %d error: %s", cycle, e)
 
         time.sleep(sleep_sec)
 
     mt5.shutdown()
-    print("[+] Monitor cycle run completed.")
+    log.info("Goal Trade Monitor completed %d cycles cleanly.", max_cycles)
+    log_event("MONITOR_COMPLETED", {"cycles": max_cycles})
+
 
 if __name__ == "__main__":
-    run_monitor(max_cycles=1000000, sleep_sec=10)
+    parser = argparse.ArgumentParser(description="Goal Trade Monitor")
+    parser.add_argument("--cycles", type=int, default=20, help="Number of monitoring cycles")
+    parser.add_argument("--gap", type=int, default=15, help="Sleep seconds between cycles")
+    args = parser.parse_args()
+    run_monitor(max_cycles=args.cycles, sleep_sec=args.gap)

@@ -1,3 +1,5 @@
 {"timestamp_utc": "2026-10-15 11:55:00", "event": "MONITOR_STARTED", "data": {"account": 5064568, "max_cycles": 4}}
 {"timestamp_utc": "2026-10-15 11:55:33", "event": "MONITOR_STARTED", "data": {"account": 5064568, "max_cycles": 1000000}}
 {"timestamp_utc": "2026-10-15 12:03:49", "event": "MONITOR_STARTED", "data": {"account": 5064568, "max_cycles": 1000000}}
+{"timestamp_utc": "2026-10-22 12:36:23", "event": "MONITOR_STARTED", "data": {"account": 5064568, "max_cycles": 16, "interval_sec": 15}}
+{"timestamp_utc": "2026-10-22 12:40:23", "event": "MONITOR_COMPLETED", "data": {"cycles": 16}}
