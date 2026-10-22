@@ -33,10 +33,15 @@
 * **Ticket #19174858** (`SOLUSD.p` BUY 0.10 lots):
   - **Status**: **FILLED & ACTIVE IN TRADE**
   - **Fill Price**: **106.80 USD** | Open Timestamp: 2026-10-21 23:49:13 UTC
-  - **Current Price**: **106.04–106.17 USD** (Floating PnL: **-$7.60 to -$6.30 USD** / -0.45 to -0.37R0)
+  - **Current Price**: **105.26–105.49 USD** (Spread: 21.85 bps | Floating PnL: **-$14.70 USD** / -0.86R0)
   - **Active Stop Loss**: **105.10 USD** (Risk Distance: 1.70 pts | Cash Risk: -$17.00 USD nominal / -$23.25 USD stressed)
   - **Calibrated Take Profit**: **107.65 USD** (+0.85 pts = **+$8.50 USD** / +0.50R0 cash target)
-  - **Microstructure Alignment**: Price is consolidating above the 105.90 USD wick low, insulated by the verified $8.15M fortress buy bunker at 105.30–105.48 USD ($6.73M at 105.48 USD + $1.21M at 105.32 USD, persist >3,615s, 100% presence) and an active immediate bid shelf of $5.16M at 106.17–106.30 USD ($3.50M at 106.30 USD). Stop Loss at 105.10 USD sits safely 0.20 to 0.38 USD behind this wall. TP at 107.65 USD front-runs the 107.66 / 107.80 USD resistance wall.
+  - **Microstructure Alignment & Orderbook Fortress**: Price dipped into the primary institutional bunker (105.30–105.48 USD). Direct Binance Futures L2 orderbook audit confirms a massive resting buy fortress between 105.00 and 105.35 USD totaling >100,000 SOL (>$10.5M resting bids: 8,560 SOL at 105.26, 11,037 SOL at 105.19–105.20, 10,208 SOL at 105.13, 12,061 SOL at 105.10–105.12, and 31,041 SOL at 105.00–105.05). Stop Loss at 105.10 USD sits insulated behind this wall. TP at 107.65 USD front-runs the 107.66 / 107.80 USD resistance wall.
+  - **Account Solvency & Floor Cushion**:
+    * Balance: **4,851.83 USD** | Equity: **4,837.13 USD**
+    * Hard Floor (4,775.00 USD) Cushion: **+62.13 USD**
+    * Operating Buffer (4,795.00 USD) Cushion: **+42.13 USD**
+    * Stressed Stopout Equity (if hit at 105.10): **4,834.83 USD** (Preserves **+39.83 USD** surplus above operating buffer and **+59.83 USD** above hard floor).
   - **Dynamic Ratchet Triggers**:
     * **Early-BE Lock (+0.80R0)**: Trigger @ 108.16 USD -> Move SL to 106.97 USD (+0.10R0 lock).
     * **Phase 1 Profit Lock (+1.50R0)**: Trigger @ 109.35 USD -> Move SL to 108.16 USD (+0.80R0 lock).

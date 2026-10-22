@@ -24,6 +24,7 @@
 | **09** | **Deep Line-by-Line & Column-by-Column Study of Master Excel** | Subagents summarizing high-level stats instead of examining raw rows | Subagents mandated to parse exact rows across all 32 sheets; verified $109M sell stop cascade on BTC ($83,850 to $82,450) | ✅ **DEEPLY AUDITED** |
 | **10** | **Adherence to `STANDARDIZED_TRADING_DECISION_CHAIN.md`** | Subagent and Arena prompts lacked explicit citation of the 10-step SOP | Embedded mandatory citation and 10-step execution requirements into all subagent prompts and Arena template | ✅ **GOVERNING PROTOCOL** |
 | **11** | **HyperDash Microstructure Integration & Anti-Spoof Persistence** | Reliance on ephemeral liquidity or unverified depth | Sheets 12-16 (`12_Hyperdash` to `17_Orderbook`) actively enforce 180s persistence filter, L2/L3 whale attribution | ✅ **100% INTEGRATED** |
+| **12** | **Zero-Token Polling & Event-Driven Subagent Auto Wake-Up** | 10s sleep timers burn 264k tokens per turn (1.58M tokens/min) while idling | 10s timers permanently banned; Antigravity relies strictly on native event-driven reactive wakeups from subagent `send_message` and the 20m cron sentry | ✅ **PERMANENTLY ENFORCED** |
 
 ---
 
@@ -173,6 +174,21 @@
 
 ---
 
+### ISSUE 12: Zero-Token Polling & Event-Driven Subagent Auto Wake-Up (No 10s Timers)
+- **Operator Directives**:
+  * *"does this 10 second timer consume too much tokens...i mean it should be auto wake up by subagents...rigt?"*
+- **Forensic Diagnosis**:
+  * Polling with short timers (e.g. 10s `schedule`) causes Antigravity to re-read the entire conversation transcript and context window on every trigger.
+  * At ~264k tokens per turn, a 10s timer (6 triggers/min) burns **1,584,000 tokens per minute** (over 95M tokens/hour) while performing zero useful work.
+  * Antigravity already has an event-driven reactive wake-up system: subagents automatically wake up the parent agent the exact instant their `send_message` tool delivers an incoming report.
+- **Resolution**:
+  1. **Permanent Ban on Short Timers**: All short timers (<= 60s) used for status polling are permanently prohibited.
+  2. **Strict Event-Driven Reactive Wakeup**: Coordinator launches the 4-subagent fleet in parallel, calls no further tools, and sleeps silently. The system automatically resumes execution the instant a subagent sends a message.
+  3. **Zero Token Burn During Idle**: Token consumption while waiting for subagents is mathematically 0 tokens.
+  4. **20-Minute Cron Sentry**: Background scheduling is strictly reserved for the long-cadence `0,20,40 * * * *` cron sentry (`task-102061`).
+
+---
+
 ## 📋 PERPETUAL WAKE-UP AUDIT CHECKLIST (MANDATORY GATES)
 
 Every 20-minute wake-up cron cycle MUST systematically execute and verify each gate below:
@@ -188,4 +204,5 @@ Every 20-minute wake-up cron cycle MUST systematically execute and verify each g
 - [ ] **Gate 09 (HyperDash Microstructure & Stops Map Sentry)**: Inspect retail stop clusters; strictly ban limit placement inside un-swept stop cascades.
 - [ ] **Gate 10 (Candidate Radar Matrix Updation)**: Maintain concrete potential candidates with checkable `[ ]` pre-conditions.
 - [ ] **Gate 11 (Clean Subagent Pruning)**: Call `manage_subagents(kill_all)` immediately after harvesting to prevent `connectex` socket errors.
-- [ ] **Gate 12 (Capital Floor & Buffer Protection)**: Strictly preserve +76.83 USD hard floor cushion and +56.83 USD operating buffer cushion.
+- [ ] **Gate 12 (Capital Floor & Buffer Protection)**: Strictly preserve +62.13 USD hard floor cushion and +42.13 USD operating buffer cushion.
+- [ ] **Gate 13 (Zero-Token Event-Driven Wakeup)**: Rely strictly on native reactive wakeups from subagent `send_message`; zero short timers.
