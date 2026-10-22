@@ -218,21 +218,29 @@ flowchart TD
 
 ---
 
-### Step 4: Institutional Universe Market Scan & Candidate Radar Checklist
-- [ ] Extract live quotes across the 18 institutional perpetuals and TradFi CFDs from MT5 telemetry:
-  - **Crypto Spread Gate**: Spread must be `<= 25.0 bps`. (Eligible: BTC ~1.8 bps, BNB ~8.0 bps, ETH ~11.4 bps, BCH ~20.2 bps, TRX ~21.2 bps, SOL ~22.5 bps. Disqualify: XRP, AVAX, LTC, NEAR, LINK, ADA, DOT, DOGE).
-  - **TradFi Spread Gate**: Spread must be `<= 5.0 bps`. (Eligible: EURUSD ~0.09 bps, GOLD ~0.19 bps, DJ30 ~0.22 bps, NAS100 ~0.36 bps, SP500 ~0.39 bps).
+### Step 4: Full 156-Asset Multi-Asset MT5 Universe Scan & Opportunity Ranking (via `Terminal/multi_asset_opportunity_scanner.py`)
+- [ ] **Exhaustive Multi-Asset Universe Screening (OPERATOR MANDATE)**:
+  * Run `python Terminal/multi_asset_opportunity_scanner.py` across all 156 instruments in all 6 asset classes:
+    1. Forex Raw Majors (21 pairs): EURUSD, GBPUSD, USDJPY, AUDUSD, USDCAD, USDCHF, etc.
+    2. Forex Raw Minors & Crosses (39 pairs): NZDUSD, AUDNZD, NZDJPY, GBPNZD, EURZAR, etc.
+    3. Commodities & Raw Precious Metals (22 assets): XAUUSD (Gold), XAGUSD (Silver), USWTI, UKBRENT, COPPER, PLATINUM, PALLADIUM, etc.
+    4. Major & Minor Indices (16 indices): NAS100, SP500, DJ30, GER40, UK100, JP225, AU200, STOXX50, etc.
+    5. Cryptos & Cryptos Raw (58 assets): BTCUSD, ETHUSD, SOLUSD, XRPUSD, BNBUSD, DOGEUSD, etc.
+- [ ] **Dual-Engine Model Screening & Friction Gates**:
+  * **Friction Gate**: Forex <= 2.5 bps, Metals & Indices <= 4.0 bps, Crypto <= 20.0 bps.
+  * **Model 1 (Extreme Mean Reversion)**: |VWAP Z-Score| >= 2.0 to 3.5 SD with RSI exhaustion (<35 or >65) at key structural shelves.
+  * **Model 2 (Trend Continuation / Pullback)**: Verified HTF trend (Price > EMA20 > EMA50 > EMA200 or reverse) pulling back to EMA20 / Session VWAP shelf (0.2 to 1.8 SD).
+  * **Dynamic Risk Sizing**: Nominal risk 15.00 to 25.00 USD per trade, preserving Stressed Equity >= 4,795.00 USD (Buffer) and >= 4,775.00 USD (Hard Floor).
 - [ ] **MANDATORY CANDIDATE RADAR CHECKLIST & TRIGGER MATRIX (OPERATOR MANDATE - NEVER OMIT)**:
-  * Even when standing aside at current market prices, the coordinator and Orderflow Analyst MUST ALWAYS compile and output a structured **Potential Candidate Radar Checklist** detailing every prospective setup on our active radar.
+  * Even when standing aside at current market prices, the coordinator and Orderflow Analyst MUST ALWAYS compile and output a structured **Potential Candidate Radar Checklist** detailing the top qualified multi-asset setups.
   * For each prospective candidate, specify:
-    1. **Asset & Strategy Model**: (e.g. BTC Model 2 Pullback, GOLD Model 1 Absorption, SOL VWAP Shelf).
-    2. **Mapped Structural Level**: Exact price shelf (Daily VWAP, EMA20/50, Volume Profile POC/VAL/VAH).
-    3. **Proposed Ticket Geometry**: Lot Size, Entry Limit, Stop Loss (outside sweep band), Take Profit, R0.
+    1. **Asset & Strategy Model**: (e.g. NAS100 Model 1 Oversold, USDJPY Model 2 Pullback, Gold Model 2 Pullback, BTC Model 2 Pullback).
+    2. **Mapped Structural Level**: Exact price shelf (Daily VWAP, EMA20/50, Volume Profile POC/VAL/VAH, Resting Whale Wall).
+    3. **Proposed Ticket Geometry**: Lot Size, Entry Limit, Stop Loss (outside sweep band), Take Profit, R0 (>= 2.0R to 2.5R).
     4. **Current Status & Distance**: Distance in ATR or points from current market price.
     5. **Trigger Pre-Condition Checklist**: Exact empirical criteria required to punch (e.g. `[ ] Retail stop pool swept`, `[ ] 15m CVD delta flips positive/absorption`, `[ ] Resting bid wall >= $100K persists >= 180s`, `[ ] Session rollover/MOC gate cleared`).
   * If all checklist items are ticked `[x]` on wake-up: IMMEDIATELY punch the passive limit order autonomously!
-- [ ] Mandatory Candidate Output: Compile and format the complete candidate scan table and Candidate Radar Checklist transparently every cycle.
-- [ ] Extract live quotes across the 18 institutional perpetuals and TradFi CFDs from MT5 telemetry:
+- [ ] Mandatory Candidate Output: Compile and format the complete candidate scan table and Candidate Radar Checklist transparently every cycle across all asset classes.
   - **Crypto Spread Gate**: Spread must be `<= 25.0 bps`. (Eligible: BTC ~1.8 bps, BNB ~8.0 bps, ETH ~11.4 bps, BCH ~20.2 bps, TRX ~21.2 bps, SOL ~22.5 bps. Disqualify: XRP, AVAX, LTC, NEAR, LINK, ADA, DOT, DOGE).
   - **TradFi Spread Gate**: Spread must be `<= 5.0 bps`. (Eligible: EURUSD ~0.09 bps, GOLD ~0.19 bps, DJ30 ~0.22 bps, NAS100 ~0.36 bps, SP500 ~0.39 bps).
 - [ ] Identify candidate setups:
