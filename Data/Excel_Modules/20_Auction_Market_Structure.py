@@ -85,7 +85,7 @@ TARGET_INDEX = 32
 
 # Comprehensive 54-Asset Institutional Universe
 INSTITUTIONAL_ASSETS = [
-    # Crypto Perpetuals & Raw Majors (20)
+    # Crypto Perpetuals & Raw Majors (31)
     ("BTC", "BTCUSD.pi", "Crypto Major", 25.0, 2),
     ("ETH", "ETHUSD.pi", "Crypto Major", 25.0, 2),
     ("SOL", "SOLUSD.p", "Crypto Alt L1", 25.0, 2),
@@ -106,7 +106,18 @@ INSTITUTIONAL_ASSETS = [
     ("ATOM", "ATMUSD.p", "Crypto Alt L1", 25.0, 3),
     ("AAVE", "AVEUSD.p", "Crypto DeFi", 25.0, 2),
     ("ALGO", "ALGUSD.p", "Crypto Alt L1", 25.0, 4),
-    # Global Equity Indices (11)
+    ("DASH", "DSHUSD.p", "Crypto PoW", 25.0, 3),
+    ("ZEC", "ZECUSD.p", "Crypto Privacy", 25.0, 2),
+    ("YFI", "YFIUSD.p", "Crypto DeFi", 25.0, 1),
+    ("FIL", "FILUSD.p", "Crypto Storage", 25.0, 3),
+    ("HBAR", "BARUSD.p", "Crypto Enterprise", 25.0, 4),
+    ("SAND", "SNDUSD.p", "Crypto Metaverse", 25.0, 4),
+    ("SNX", "SNXUSD.p", "Crypto DeFi", 25.0, 3),
+    ("NEO", "NEOUSD.p", "Crypto Alt L1", 25.0, 2),
+    ("CRV", "CRVUSD.p", "Crypto DeFi", 25.0, 3),
+    ("AXS", "AXSUSD.p", "Crypto Gaming", 25.0, 2),
+    ("SUSHI", "XSIUSD.p", "Crypto DeFi", 25.0, 3),
+    # Global Equity Indices (15)
     ("DJ30", "DJ30.p", "Equity Index US", 5.0, 2),
     ("SP500", "SP500.p", "Equity Index US", 5.0, 2),
     ("NAS100", "NAS100.p", "Equity Index Tech", 5.0, 2),
@@ -118,7 +129,11 @@ INSTITUTIONAL_ASSETS = [
     ("FR40", "FR40.p", "Equity Index EU", 5.0, 2),
     ("HK50", "HK50.p", "Equity Index Asia", 5.0, 2),
     ("STOXX50", "STOXX50.p", "Equity Index EU", 5.0, 2),
-    # Commodities & Precious Metals (8)
+    ("CHINA50", "CHINA50.p", "Equity Index Asia", 5.0, 2),
+    ("CHINAH", "CHINAH.p", "Equity Index Asia", 5.0, 2),
+    ("NETH25", "NETH25.p", "Equity Index EU", 5.0, 2),
+    ("SWISS20", "SWISS20.p", "Equity Index EU", 5.0, 2),
+    # Commodities & Precious Metals (14)
     ("GOLD", "XAUUSD.pi", "Precious Metal", 5.0, 2),
     ("SILVER", "XAGUSD.pi", "Precious Metal", 5.0, 3),
     ("GOLD_EUR", "XAUEUR.pi", "Precious Metal", 5.0, 2),
@@ -126,8 +141,14 @@ INSTITUTIONAL_ASSETS = [
     ("GOLD_GBP", "XAUGBP.pi", "Precious Metal", 5.0, 2),
     ("USWTI", "USWTI.p", "Energy Commodity", 5.0, 3),
     ("UKBRENT", "UKBRENT.p", "Energy Commodity", 5.0, 3),
+    ("GAS", "GAS.p", "Energy Commodity", 5.0, 3),
     ("COPPER", "COPPER.p", "Industrial Metal", 5.0, 3),
-    # Forex Majors & Liquid Crosses (15)
+    ("PLATINUM", "XPTUSD.pi", "Precious Metal", 5.0, 2),
+    ("PALLADIUM", "XPDUSD.pi", "Precious Metal", 5.0, 2),
+    ("ALUMINIUM", "ALUMINIUM.p", "Industrial Metal", 5.0, 2),
+    ("LEAD", "LEAD.p", "Industrial Metal", 5.0, 2),
+    ("ZINC", "ZINC.p", "Industrial Metal", 5.0, 2),
+    # Forex Majors & Liquid Crosses (24)
     ("EURUSD", "EURUSD.pi", "FX Major", 5.0, 5),
     ("GBPUSD", "GBPUSD.pi", "FX Major", 5.0, 5),
     ("USDJPY", "USDJPY.pi", "FX Major", 5.0, 3),
@@ -143,6 +164,15 @@ INSTITUTIONAL_ASSETS = [
     ("CADJPY", "CADJPY.pi", "FX Cross", 5.0, 3),
     ("EURAUD", "EURAUD.pi", "FX Cross", 5.0, 5),
     ("GBPAUD", "GBPAUD.pi", "FX Cross", 5.0, 5),
+    ("EURCAD", "EURCAD.pi", "FX Cross", 5.0, 5),
+    ("EURCHF", "EURCHF.pi", "FX Cross", 5.0, 5),
+    ("GBPCAD", "GBPCAD.pi", "FX Cross", 5.0, 5),
+    ("GBPCHF", "GBPCHF.pi", "FX Cross", 5.0, 5),
+    ("AUDCAD", "AUDCAD.pi", "FX Cross", 5.0, 5),
+    ("AUDCHF", "AUDCHF.pi", "FX Cross", 5.0, 5),
+    ("CADCHF", "CADCHF.pi", "FX Cross", 5.0, 5),
+    ("NZDJPY", "NZDJPY.pi", "FX Cross", 5.0, 3),
+    ("USDCNH", "USDCNH.pi", "FX Liquid", 5.0, 4),
 ]
 
 COLUMNS_DEF = [

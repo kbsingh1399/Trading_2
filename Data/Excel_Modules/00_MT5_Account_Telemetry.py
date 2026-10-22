@@ -160,7 +160,14 @@ def get_live_mt5_data() -> dict:
                     mid = (tick.bid + tick.ask) / 2.0
                     spread_pts = round((tick.ask - tick.bid) / sym.point) if sym.point > 0 else 0
                     spread_bps = round((tick.ask - tick.bid) / mid * 10000.0, 2) if mid > 0 else 999.0
-                    max_bps = 5.0 if any(k in name for k in ["SP500", "NAS100", "DJ30", "GER40", "EURUSD", "GBPUSD", "USDJPY", "GOLD", "USWTI"]) else 25.0
+                    is_tradfi = any(k in name for k in [
+                        "SP500", "NAS100", "DJ30", "GER40", "GER30", "UK100", "FR40", "JP225", "AU200",
+                        "STOXX50", "US2000", "HK50", "CHINA50", "CHINAH", "NETH25", "SWISS20",
+                        "EUR", "GBP", "JPY", "AUD", "NZD", "CAD", "CHF", "CNH", "SGD", "HKD",
+                        "XAU", "XAG", "XPT", "XPD", "USWTI", "UKBRENT", "GAS", "COPPER", "ALUMINIUM",
+                        "LEAD", "NICKEL", "ZINC"
+                    ]) and not any(c in name for c in ["BTC", "ETH", "LTC", "XRP", "DOT"])
+                    max_bps = 5.0 if is_tradfi else 25.0
                     status = "PASS" if spread_bps <= max_bps else "SPREAD_DISQUALIFIED"
                     quotes[name] = {
                         "broker_symbol": name,
