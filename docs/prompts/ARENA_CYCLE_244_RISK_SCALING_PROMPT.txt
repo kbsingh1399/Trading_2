@@ -1,0 +1,62 @@
+# 🏛️ CO-EQUAL QUANTITATIVE COUNCIL: CYCLE 244 RISK SCALING & LIVE SETUP FORENSICS
+**Timestamp**: 2026-10-22 09:05 UTC | **Target Environment**: Blueberry Markets MT5 (#5064568)  
+**Canonical Spec**: `docs/specs/STANDARDIZED_TRADING_DECISION_CHAIN.md` | `Data/Manditory/CONTINUOUS_KAIZEN_SELF_IMPROVEMENT_PROTOCOL.md`  
+**GitHub Repository**: `https://github.com/kbsingh1399/Trading_2` (Branch: `main`, Commit: `1edf116c3`)
+
+---
+
+### 1. OPERATOR MANDATE & RISK SCALING SPECIFICATION
+The desk operator has explicitly mandated:
+> *"to pass you may need to increase risk...and keep discussing with arena.ai"*
+
+* **Mission Deadline**: Friday, 23rd October 2026, 23:59 UTC (~41 hours runway).
+* **Live MT5 Telemetry**: Balance: 4,834.83 USD | Equity: 4,834.83 USD | 100% FLAT in Cash (0 positions, 0 orders).
+* **Hard Floor (4,775.00 USD)**: Cushion = +59.83 USD (+1.25%).
+* **Operating Defense Buffer (4,795.00 USD)**: Cushion = +39.83 USD (+0.83%).
+* **Expanded Risk Envelope**: Authorized up to **15.00 to 20.00 USD nominal risk** for a solo high-conviction candidate passing all 17 pre-punch gates.
+  - At 18.00 USD cash risk, stressed loss = `18.00 * 1.25 + 2.00 = 24.50 USD`.
+  - Preserves a **+15.33 USD surplus** above the 4,795.00 USD operating buffer and **+35.33 USD** above the hard floor.
+  - A +2.5R winner yields **+$45.00 USD**, expanding equity to 4,879.83 USD and buffer cushion to +84.83 USD.
+* **Slot Constraint**: Strictly **1 LIVE POSITION ONLY** under current cushion.
+
+---
+
+### 2. LIVE MICROSTRUCTURE FORENSICS (POST-FLUSH TELEMETRY)
+
+#### Setup A: Bitcoin (BTCUSD.pi) — Model 1 Extreme Mean Reversion
+- **Live Price**: 81,719.50 / 81,736.50 USD (flushed 922 points from 82,641).
+- **Spread**: 2.08 bps (Eligible per <= 25 bps gate).
+- **Statistical Extremity**:
+  * 15m VWAP Z-Score: **-2.14 SD** (VWAP: 83,674.55 USD, |Z| >= 2.0 SD confirmed).
+  * 15m RSI: **17.85** (Extreme capitulation oversold).
+- **Orderbook & Whales**:
+  * Hyperliquid Whales (Sheet 06): Top 2 whales (`0x5b5d...`, `0xb83d...`) hold > $850M in short positions, driving the trend.
+  * Hyperdash Resting Bid: 8.203M USD at 81,957.50 USD (311s persistence).
+  * Liquidation Cascade Band: 81,723.50–81,823.50 USD ($5.684M) has just been swept.
+- **Proposed Ticket**:
+  * Order Type: `BUY_LIMIT` (Non-marketable: <= live bid)
+  * Entry: **81,550.00 USD** (Deep limit order below the swept cascade band)
+  * Stop Loss: **81,200.00 USD** (350 points buffer, outside all swept stops)
+  * Take Profit: **82,425.00 USD** (+2.50R, safely front-running the 82,630 ask wall)
+  * Volume: **0.05 lots** (Cash risk: `-$17.50 USD`, Stressed risk: `$23.88 USD`, Buffer surplus: `+$15.95 USD`)
+
+#### Setup B: Gold (XAUUSD.pi) — 4,080 Whale Bunker Retest
+- **Live Price**: 4,082.38 / 4,082.47 USD (testing primary whale bunker shelf).
+- **Spread**: 0.22 bps (9 points, passing <= 5.0 bps gate).
+- **Structural Shelf**:
+  * Primary institutional whale bunker at 4,080.00–4,082.50 USD (.94M / 475.82 oz, persist > 44,000s / 12h, wallet `0x12f7aea...`).
+  * Price bounced off 4,081.64 low on M1 tape.
+- **Proposed Ticket**:
+  * Order Type: `BUY_LIMIT`
+  * Entry: **4,081.00 USD** (resting in front of 4,080 bunker)
+  * Stop Loss: **4,075.00 USD** (6.00 points / 600 pips buffer, outside 4,080 shelf)
+  * Take Profit: **4,096.00 USD** (+15.00 points = +2.50R, well below the 4,123.47 ask wall)
+  * Volume: **0.03 lots** (Cash risk: `-$18.00 USD`, Stressed risk: `$24.50 USD`, Buffer surplus: `+$15.33 USD`)
+
+---
+
+### 3. MANDATORY CO-EQUAL COUNCIL QUESTIONS
+1. Does Setup A (BTC 81,550 Buy Limit) or Setup B (Gold 4,081 Buy Limit) pass all 17 pre-punch institutional gates?
+2. Given the $850M+ Hyperliquid whale short overhang, does BTC carry unacceptable cascade risk toward 80,000 USD?
+3. Between Setup A (BTC) and Setup B (Gold), which provides superior EV/ES_99.99 under our expanded $18.00 risk budget?
+4. What is your definitive verdict: **STAGE SETUP A**, **STAGE SETUP B**, or **CONTINUE TO STAND ASIDE**?

@@ -1,0 +1,52 @@
+# 🏛️ CO-EQUAL QUANTITATIVE COUNCIL: CYCLE 245 RECALIBRATED RISK & SETUP FORENSICS
+**Timestamp**: 2026-10-22 09:20 UTC | **Target Environment**: Blueberry Markets MT5 (#5064568)  
+**Canonical Spec**: `docs/specs/STANDARDIZED_TRADING_DECISION_CHAIN.md` | `Data/Manditory/CONTINUOUS_KAIZEN_SELF_IMPROVEMENT_PROTOCOL.md`  
+**Current Balance / Equity**: $4,834.83 USD | **Free Margin**: $4,834.83 USD | **Flat Cash** (0 orders, 0 positions)  
+**Floor Cushion**: +$59.83 USD above $4,775.00 | **Operating Buffer**: +$39.83 USD above $4,795.00  
+**Target Gap**: +$665.17 USD to reach $5,500.00 USD before Oct 23 23:59 UTC (~41h remaining)  
+**Expanded Risk Directive**: $15.00–$20.00 USD nominal risk per trade (strictly 1 active position slot)
+
+---
+
+### 1. RATIFICATION OF CYCLE 244 ARENA CRITIQUE
+The internal desk (Orderflow Analyst, Position Manager, Macro Risk Analyst, Coordinator) has fully ratified Arena's Cycle 244 ruling:
+1. **Setup A (BTC 81,550)** was correctly rejected: SL 81,200 sat inside the $5.65M long liquidation band. Clearing the cascade with 0.5 ATR buffer required SL <= 81,003.23, which at 0.05 lots breached our $20 risk ceiling ($27.34).
+2. **Setup B (Gold 4,081)** was correctly rejected: 4,081 lacked a >= $1M resting bid within 2 ATR, and the nearest significant resting band at 4,060 required SL <= 4,056.07, which at 0.03 lot risked $74.79 and violated our hard floor.
+3. **Fail-Closed Stance Ratified**: 100% cash maintained. Zero orders staged.
+
+---
+
+### 2. RECALIBRATED CANDIDATE PROPOSALS UNDER $15–$20 RISK ENVELOPE
+
+We have recalibrated both setups to align with Arena's exact mathematical bounds:
+
+#### RECALIBRATED SETUP A: BTC WHALE BUNKER SWEEP (80,350 USD)
+- **Concept**: Stand aside during the current 81,700–81,000 liquidation waterfall. Wait for the sweep of retail stop clusters into the verified $11.1M institutional resting bid bunker at 80,000–80,300 USD.
+- **Entry**: 80,350.00 USD (Passive Buy Limit at upper boundary of whale bunker)
+- **Stop Loss**: 79,800.00 USD (550 pt distance; placed 200 pts below the 80,000 round number and 0.55 ATR below market, clearing the entire mapped cascade complex)
+- **Sizing**: 0.03 BTC (downsized from 0.05 to respect risk ceiling)
+- **Nominal Risk**: 550 * 0.03 = **$16.50 USD** (within $15–$20 directive)
+- **Stressed Loss**: $16.50 * 1.25 + $2.00 fee = **$22.63 USD**
+- **Stressed Equity**: $4,834.83 - $22.63 = **$4,812.20 USD** (**+$17.20 USD surplus** safely above $4,795 operating buffer)
+- **Take Profit**: 81,800.00 USD (1,450 pt distance; front-running prior breakdown shelf)
+- **Target Gain**: 1,450 * 0.03 = **+$43.50 USD** (+2.63R)
+
+#### RECALIBRATED SETUP B: GOLD PRIMARY LIQUIDATION SHELF SWEEP (4,062.50 USD)
+- **Concept**: Stand aside at 4,082–4,085. Wait for the sweep into the $2.199M resting whale band identified by Arena at 4,060–4,065.
+- **Entry**: 4,062.50 USD (Passive Buy Limit)
+- **Stop Loss**: 4,054.00 USD (8.50 USD distance; strictly below Arena's calculated 4,056.07 safe threshold)
+- **Sizing**: 0.02 lots (downsized from 0.03 to fit buffer)
+- **Nominal Risk**: 8.50 * 2 = **$17.00 USD**
+- **Stressed Loss**: $17.00 * 1.25 + $2.00 fee = **$23.25 USD**
+- **Stressed Equity**: $4,834.83 - $23.25 = **$4,811.58 USD** (**+$16.58 USD surplus** safely above $4,795 operating buffer)
+- **Take Profit**: 4,082.00 USD (19.50 USD distance; prior support turned resistance)
+- **Target Gain**: 19.50 * 2 = **+$39.00 USD** (+2.29R)
+
+---
+
+### 3. CO-EQUAL QUANTITATIVE COUNCIL QUESTIONS
+
+1. **Gate Audit of Recalibrated Setup A**: Does downsized Setup A (0.03 lot @ 80,350 | SL 79,800 | $16.50 nominal risk) resolve the previous 13 gate failures, specifically clearing the liquidation complex and satisfying the 0.5 ATR buffer without breaching the $20.00 risk ceiling?
+2. **Gate Audit of Recalibrated Setup B**: Does downsized Setup B (0.02 lot @ 4,062.50 | SL 4,054.00 | $17.00 nominal risk) satisfy Arena's $1M resting wall requirement at 4,060 while preserving solvency above our $4,795.00 operating buffer under 1.25x stress?
+3. **Trigger Criteria vs Knife-Catching**: Given London session liquidity, what exact empirical orderflow confirmation (e.g. 1m/5m taker CVD flip, minimum delta absorption volume) must be satisfied *at the moment of approach* before staging these passive limits?
+4. **Final Council Ruling**: Between Recalibrated Setup A (BTC 80,350) and Recalibrated Setup B (Gold 4,062.50), which presents superior EV/ES_99.99, or should the desk maintain **100% Cash Stand Aside** until prices enter these respective bunker zones?

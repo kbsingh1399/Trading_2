@@ -1,15 +1,17 @@
 # 🤖 CANONICAL SUBAGENT PROMPT TEMPLATES
-## Blueberry Markets Phase 1 Autonomous Desk — Token-Optimized Dispatch
+## Blueberry Markets Phase 1 Autonomous Desk — Two-Tier Prompt Architecture
 
 > **Document Status**: CANONICAL PRODUCTION TEMPLATES (Non-Bypassable)  
-> **Token Optimization**: All subagents MUST use `Model='flash'`, cite canonical specification files directly rather than duplicating large texts, and return dense structured bullet points (<= 200 tokens each).  
-> **Socket Hygiene**: Cleanly terminate all subagent connections via `manage_subagents(Action='kill_all')` after harvesting reports.
+> **Operator Directive ("Ensure we prompt big prompts")**: When prompt depth and complete line-by-line sheet audits are requested, ALWAYS default to **🔬 Tier 2 (Deep Forensic / Big Prompts)**. Tier 2 prompts explicitly guide the subagents through all 32 sheets, complete orderbook depth analysis, mathematical ratchets, and full pre-trade checklist gates.
+> 1. **🔬 Tier 2 (Deep Forensic / Big Prompts, ~350–500 tokens)**: Primary standard for comprehensive analysis, account switching, session boots, manual operator probes, and high-conviction order staging.
+> 2. **⚡ Tier 1 (Fast Sentry / Small Prompts, ~80–120 tokens)**: Lightweight alternative reserved strictly for low-token background cron sentries.
+> **Execution Invariants**: All subagents MUST use `Model='flash'`. After harvesting reports, cleanly terminate all subagent connections via `manage_subagents(Action='kill_all')`.
 
 ---
 
-## ⚡ TOKEN-CONSERVING FAST DISPATCH PROMPTS (USE ON EVERY 20-MIN CRON)
+## ⚡ TIER 1: TOKEN-CONSERVING FAST DISPATCH PROMPTS (USE ON EVERY 20-MIN CRON)
 
-When invoking subagents via `invoke_subagent`, pass these concise, targeted prompts (Model='flash') to minimize token consumption while maintaining 100% mathematical rigor:
+When invoking subagents via `invoke_subagent` during regular autonomous cron cycles, pass these concise, targeted prompts (`Model='flash'`) to minimize token consumption while maintaining 100% mathematical rigor:
 
 ### 1. Orderflow Analyst (`Role='Orderflow Analyst', Model='flash'`)
 ```
@@ -70,14 +72,18 @@ Output dense bullet findings (max 150 tokens).
 
 ---
 
-## ⚙️ BEFORE DISPATCHING — COORDINATOR PRE-FLIGHT (60 SECONDS)
+## 🔬 TIER 2: DEEP FORENSIC & AUDIT PROMPTS (USE FOR BOOTSTRAP, MANUAL AUDIT & POST-LOSS AUTOPSY)
+
+Use these comprehensive, exhaustive prompts when conducting full-depth session boots, manual desk audits, or post-trade autopsies where line-by-line inspection of all 32 sheets is required.
+
+### ⚙️ COORDINATOR PRE-FLIGHT (60 SECONDS)
 
 Read these 3 files first (they take priority over everything else):
 1. `Data/Manditory/GOAL.md` — mission anchor, floors, buffers
 2. `.agents/rules/ACTIVE_CONTEXT.md` — live account state, open positions, cushions
 3. `.agents/memory/session_chat_history.md` — last 5 turns, avoided traps, pattern history
 
-Then fill in the live variable block for all 3 prompts:
+Then fill in the live variable block for all prompts:
 ```
 {BALANCE}       = mt5_account_telemetry.json → balance
 {EQUITY}        = mt5_account_telemetry.json → equity
@@ -94,7 +100,7 @@ Then fill in the live variable block for all 3 prompts:
 
 ---
 
-## 🔴 SUBAGENT 1: ORDERFLOW ANALYST
+## 🔴 TIER 2 SUBAGENT 1: ORDERFLOW ANALYST (DEEP AUDIT)
 
 **Role**: Steps 1, 4, 6, 7 of STANDARDIZED_TRADING_DECISION_CHAIN.md  
 **Mandate**: Find live candidates that pass the 5-pillar stack. Read every Excel line. Produce actionable output.
@@ -170,7 +176,7 @@ OUTPUT FORMAT (concise, bullet-form, max 500 tokens):
 
 ---
 
-## 🔵 SUBAGENT 2: POSITION MANAGER
+## 🔵 TIER 2 SUBAGENT 2: POSITION MANAGER (DEEP AUDIT)
 
 **Role**: Steps 8, 9, 10 of STANDARDIZED_TRADING_DECISION_CHAIN.md  
 **Mandate**: Audit capital defense, size tickets precisely, execute ratchets, verify floor invariants.
@@ -249,7 +255,7 @@ OUTPUT FORMAT (concise, max 400 tokens):
 
 ---
 
-## 🟡 SUBAGENT 3: MACRO RISK ANALYST
+## 🟡 TIER 2 SUBAGENT 3: MACRO RISK ANALYST (DEEP AUDIT)
 
 **Role**: Step 1 & Section 3 Cluster A of STANDARDIZED_TRADING_DECISION_CHAIN.md  
 **Mandate**: Calendar defense, ETF flows, session clock, rollover gate, macro clearance verdict.
@@ -321,7 +327,7 @@ OUTPUT FORMAT (concise, max 350 tokens):
 
 ---
 
-## 🟢 SUBAGENT 4: EXCEL DATA QUALITY AUDITOR
+## 🟢 TIER 2 SUBAGENT 4: EXCEL DATA QUALITY AUDITOR (DEEP AUDIT)
 
 **Role**: Step 1 & Gateway 7 of AUTONOMOUS_WAKEUP_CHECKLIST.md  
 **Mandate**: Inspect master Excel dump situation, audit all 32 sheets for freshness, row counts, formula errors, and monitor pipeline daemon cycling.

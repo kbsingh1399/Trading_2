@@ -108,26 +108,29 @@ Verify that `Data/DataBase_Trading.xlsx` is fresh, uncorrupted, and has zero for
 - Check that all 32 sheets load cleanly via `openpyxl`.
 - Attest that formula errors (`#REF!`, `#DIV/0!`, `#N/A`, `#VALUE!`) count = 0 across all 1.6M+ cells.
 
-### STEP 5: MANDATORY 4-SUBAGENT FLEET & ARENA.AI DISPATCH (IMMEDIATE TOOL CALLS)
-On EVERY autonomous wake-up, the agent is STRICTLY FORBIDDEN from generating narrative prose or doing manual checks before dispatching the subagents. The agent MUST FIRST call `invoke_subagent` for all 4 subagents in parallel (using `Model='flash'` to minimize token consumption):
+### STEP 5: MANDATORY 4-SUBAGENT FLEET & ARENA.AI DISPATCH (COMPREHENSIVE BIG PROMPTS)
+On EVERY autonomous wake-up, the agent is STRICTLY FORBIDDEN from generating narrative prose or doing manual checks before dispatching the subagents. The agent MUST FIRST call `invoke_subagent` for all 4 subagents in parallel (using `Model='flash'`). Per operator directive ("ensure we prompt big prompts"), always inject the full, comprehensive **Tier 2 Big Prompts** from `Data/Manditory/SUBAGENT_PROMPT_TEMPLATES.md` to ensure deep, exhaustive forensic rigor across all 32 sheets:
 
-1. **Subagent 1: Orderflow Analyst** (`invoke_subagent(TypeName='self', Role='Orderflow Analyst', Model='flash', ...)`):
-   - Studies `Data/DataBase_Trading.xlsx` row-by-row across Sheets 10–18, 22–26.
-   - Evaluates spread gates, 5-pillar confluence, L2/L3 orderbook depth, resting whale bunkers (BTC 82,190 USD, Gold 4,080 USD), and CVD divergences.
-   - Maintains the concrete Potential Candidate Radar with checkable pre-condition trigger checklists `[ ]`.
+1. **Subagent 1: Orderflow Analyst** (`invoke_subagent(TypeName='research', Role='Orderflow Analyst', Model='flash', ...)`):
+   - Injects Tier 2 Subagent 1 prompt: Full line-by-line study of `Data/DataBase_Trading.xlsx` (Sheets 00–28).
+   - Evaluates spread gates, 5-pillar confluence, L2/L3 orderbook depth, resting whale bunkers (BTC 80,300 USD, Gold 4,060 USD), and CVD divergences.
+   - Formulates the Potential Candidate Radar Checklist `[ ]` with checkable pre-condition triggers.
 
-2. **Subagent 2: Position Manager** (`invoke_subagent(TypeName='self', Role='Position Manager', Model='flash', ...)`):
-   - Audits MT5 telemetry, verifies open position ratchets (Early-BE at +0.75R to +0.80R, Phase 0 at +1.25R, Phase 1 at +1.65R).
-   - Computes stressed capital capacity across Scenarios A, B, C (1–2 positions at $10.00–$14.50 nominal risk).
+2. **Subagent 2: Position Manager** (`invoke_subagent(TypeName='research', Role='Position Manager', Model='flash', ...)`):
+   - Injects Tier 2 Subagent 2 prompt: Audits MT5 telemetry, verifies open position ratchets (Early-BE at +0.75R to +0.80R, Phase 0 at +1.25R, Phase 1 at +1.65R).
+   - Computes stressed capital capacity under the expanded $15.00–$20.00 nominal risk envelope (strictly 1 live position slot under current +$39.83 buffer cushion).
 
-3. **Subagent 3: Macro Risk Analyst** (`invoke_subagent(TypeName='self', Role='Macro Risk Analyst', Model='flash', ...)`):
-   - Audits Sheet 28 (`19_Calendar`) and `Data/macro_calendar.json` for high-impact Tier-1 events in the next 4h.
+3. **Subagent 3: Macro Risk Analyst** (`invoke_subagent(TypeName='research', Role='Macro Risk Analyst', Model='flash', ...)`):
+   - Injects Tier 2 Subagent 3 prompt: Audits Sheet 28 (`19_Calendar`) and `Data/macro_calendar.json` for high-impact Tier-1 events in next 4h.
    - Audits institutional ETF spot inflows/redemptions and CEX netflows.
    - Enforces the 21:15–22:30 UTC interbank FX rollover blackout.
 
-4. **Subagent 4: Excel Data Quality Auditor** (`invoke_subagent(TypeName='self', Role='Excel Data Quality Auditor', Model='flash', ...)`):
-   - Audits all 32 sheets for freshness, row counts, and zero formula errors.
-   - Audits continuous pipeline daemon (`task-104159`) and rest interval cycling (5-minute gap).
+4. **Subagent 4: Excel Data Quality Auditor** (`invoke_subagent(TypeName='research', Role='Excel Data Quality Auditor', Model='flash', ...)`):
+   - Injects Tier 2 Subagent 4 prompt: Audits all 32 sheets for freshness, row counts, and zero formula errors.
+   - Audits continuous pipeline daemon (`task-104314`) and 5-minute rest interval cycling.
+
+5. **Arena.ai Co-Equal Quantitative Council**:
+   - Injects full, comprehensive Big Prompts (such as `ARENA_CYCLE_245_RECALIBRATED_SETUPS.txt`) containing full market microstructure footprint, 17-gate criteria, and detailed mathematical questions.
 
 5. **Arena.ai Surgical Red-Team Dispatch**:
    - Run `python Terminal/dispatch_arena_redteam.py` to inject the standardized surgical red-team prompt into Arena.ai via Chrome CDP on port 9222.

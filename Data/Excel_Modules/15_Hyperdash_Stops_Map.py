@@ -331,13 +331,21 @@ def dump_to_excel(records: list[dict], excel_path: pathlib.Path = DEFAULT_EXCEL_
     temp_excel = excel_path.with_suffix(".tmp.xlsx")
     wb.save(temp_excel)
     wb.close()
-    import zipfile
+    import time, zipfile
+    _is_valid = False
     with zipfile.ZipFile(temp_excel, "r") as _z:
-        if _z.testzip() is None:
-            temp_excel.replace(excel_path)
-        else:
-            if temp_excel.exists(): temp_excel.unlink()
-            raise ValueError("Corrupt zip produced during export")
+        _is_valid = (_z.testzip() is None)
+    if _is_valid:
+        for _att in range(10):
+            try:
+                temp_excel.replace(excel_path)
+                break
+            except PermissionError:
+                if _att == 9: raise
+                time.sleep(0.5)
+    else:
+        if temp_excel.exists(): temp_excel.unlink()
+        raise ValueError("Corrupt zip produced during export")
     log.info(f"Successfully saved {len(records)} rows to '{SHEET_NAME}' at {excel_path}")
     return True
 
