@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-10-22T17:18:08.673478+00:00",
+  "timestamp": "2026-10-22T17:52:38.982010+00:00",
   "account": {
     "balance_usd": 4834.83,
     "equity_usd": 4834.83,
@@ -11,6 +11,25 @@
   },
   "open_positions_count": 0,
   "open_positions": [],
-  "pending_orders_count": 0,
-  "pending_orders": []
+  "pending_orders_count": 2,
+  "pending_orders": [
+    {
+      "ticket": 19224157,
+      "symbol": "USDJPY.pi",
+      "direction": "SELL_LIMIT",
+      "volume": 0.18,
+      "price_open": 157.053,
+      "sl": 157.206,
+      "tp": 156.67
+    },
+    {
+      "ticket": 19224165,
+      "symbol": "SP500.p",
+      "direction": "SELL_LIMIT",
+      "volume": 0.12,
+      "price_open": 7665.81,
+      "sl": 7681.06,
+      "tp": 7627.68
+    }
+  ]
 }
