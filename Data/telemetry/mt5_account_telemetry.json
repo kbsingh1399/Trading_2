@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-10-22T17:52:38.982010+00:00",
+  "timestamp": "2026-10-22T18:32:01.824971+00:00",
   "account": {
     "balance_usd": 4834.83,
     "equity_usd": 4834.83,
@@ -23,13 +23,13 @@
       "tp": 156.67
     },
     {
-      "ticket": 19224165,
-      "symbol": "SP500.p",
-      "direction": "SELL_LIMIT",
-      "volume": 0.12,
-      "price_open": 7665.81,
-      "sl": 7681.06,
-      "tp": 7627.68
+      "ticket": 19225284,
+      "symbol": "XAUUSD.pi",
+      "direction": "BUY_LIMIT",
+      "volume": 0.06,
+      "price_open": 4034.4,
+      "sl": 4031.75,
+      "tp": 4043.69
     }
   ]
 }

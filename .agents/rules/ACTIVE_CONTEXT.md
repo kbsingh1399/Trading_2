@@ -139,12 +139,13 @@ trigger: always_on
         - **Full Autonomous Trading Authority**: Antigravity has full autonomous rights to punch, delete, cancel, or modify orders and trailing stops in MetaTrader 5 without seeking manual operator approval.
         - **Solvency Defense & Dynamic Capacity**: Total joint worst-case stopout risk across active running positions unconditionally defends the 4,775.00 USD hard floor and 4,795.00 USD operating buffer. When positions reach Early-BE (+0.75R to +0.80R), stop is ratcheted to Entry + 0.10R0, dropping cash risk to 0.00 USD and instantly freeing risk capacity for subsequent fills.
     - Connects directly via native IPC to MetaTrader 5 Account 5064568 (Blueberry Markets).
-    - **Active Positions & Pending Orders (Live State: 0 Active Positions | 1 Resting Limit Order | 4 Available Running Slots)**:
-       * Current Status: **0 Active Positions | 1 Resting Limit Order | Balance: 4,834.83 USD | Equity: 4,834.83 USD | Margin: 0.00 USD | Free Margin: 4,834.83 USD**.
+    - **Active Positions & Pending Orders (Live State: 0 Active Positions | 2 Resting Limit Orders | 4 Available Running Slots)**:
+       * Current Status: **0 Active Positions | 2 Resting Limit Orders | Balance: 4,834.83 USD | Equity: 4,834.83 USD | Margin: 0.00 USD | Free Margin: 4,834.83 USD**.
        * Hard Floor Defense: Hard Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Cushion: **+59.83 USD above hard floor (+39.83 USD above operating buffer)**.
        * Live Resting Pending Orders on MetaTrader 5:
-         1. **Order #19224157: USDJPY.pi SELL_LIMIT** | Vol: 0.18 | Entry: 157.053 | SL: 157.206 | TP: 156.670 | Max Loss: -.52 | Max Profit: +.00 | R:R: 2.51 | Stressed Equity: 4,812.93 USD (+17.93 buffer surplus) | Passive: True
-       * Cancelled Orders: Order #19224165 (SP500.p SELL_LIMIT @ 7665.81) cancelled per Arena Cycle 264 reconcile to preserve 4,795 buffer.
+         1. **Order #19224157: USDJPY.pi SELL_LIMIT** | Vol: 0.18 | Entry: 157.053 | SL: 157.206 | TP: 156.670 | Max Loss: -.52 | Max Profit: +.00 | R:R: 2.51 | Passive: True
+         2. **Order #19225284: XAUUSD.pi BUY_LIMIT** | Vol: 0.06 | Entry: 4034.40 | SL: 4031.75 | TP: 4043.69 | Max Loss: -.90 | Max Profit: +.74 | R:R: 3.51 | Passive: True
+       * Stressed Solvency: Solo Gold stressed equity 4,812.95 USD (+17.95 buffer surplus). Joint stressed equity with USDJPY is 4,789.06 USD (+14.06 hard floor surplus).
        * Concurrency Capacity Policy (Operator Mandate Oct 22 2026): Max 4 concurrent running filled positions. Resting limit orders do not consume slots. Live fills are sized at 15.00-25.00 USD nominal risk each; when any position reaches Early-BE (+0.75R to +0.80R), its stop is ratcheted to Entry + 0.10R0, dropping risk to 0 USD and preserving solvency buffer for subsequent entries.
        * Sentry & Daemon State:
          - All 6 persistent background daemons actively running in Antigravity task manager (manage_task):
