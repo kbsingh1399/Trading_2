@@ -289,19 +289,59 @@ Screen candidates across the 156-asset universe using `Terminal/multi_asset_oppo
 
 ---
 
-### STEP 6: Microstructure Coincidence Stack, Whales & Fibonacci Confluence
+### STEP 6: Regime & Macro Narrative Driven Confluence (Shifting from Conjunctive Bottlenecks)
 *Active Skills: `@[data-analyst]`, `@[quant-analyst]`*
 
-Every candidate setup must achieve simultaneous confluence across the multi-pillar microstructure stack:
-1. **L2 Orderbook Depth Asymmetry**: Top-20 depth imbalance > +0.25 for longs, < -0.25 for shorts.
-2. **L3 Attributed Whale Wall Backing & Anti-Spoof Persistence Gate**:
-   - Supporting whale wall must show `persist_s >= 180.0s`, `presence_frac >= 0.85`, and `gate_g7_eligible: True`.
-   - Minimum Notional: $\ge 5,000,000\text{ USD}$ for BTC/ETH; $\ge 1,000,000\text{ USD}$ for TradFi (Gold, Indices, Oil); $\ge 500,000\text{ USD}$ for FX and Altcoins.
-   - Any wall with `persist_s == 0.0` or `SINGLE_SAMPLE` is classified as spoof liquidity and rejected fail-closed.
-3. **Cumulative Volume Delta (CVD) Divergence (`zc_div > 0.8`)**:
-   - Institutional accumulation: `Delta Spot > 0` and `Delta Futures < 0` with `zc_div > 0.8`.
-4. **Fibonacci Retracement Alignment**:
-   - Confluence between Fibonacci 0.50–0.618 Golden Pocket, resting whale walls, and Volume Profile shelves.
+> 🌟 **PARADIGM SHIFT: NARRATIVE & REGIMES OVER RIGID CONJUNCTIVE GATES (OPERATOR MANDATE)**:
+> In quantitative execution, requiring a rigid boolean `AND` across 7 micro-metrics simultaneously creates a fatal "conjunctive bottleneck" that eliminates 99% of valid trades and freezes the desk in permanent inaction.
+> Real institutional desks prioritize **Macro Narrative & Market Regime (The WHY)** to establish directional bias, using orderflow and structural shelves for **Execution Timing and Risk Anchoring (The HOW)**.
+
+1. **Regime-Aligned Confluence Principles**:
+   - **For Model 2 (Trend Continuation & Pullback)**:
+     * **Narrative**: A verified directional regime (`TREND_UP` or `TREND_DOWN` with 20/50 EMA ribbon alignment).
+     * **Location**: Trend pullbacks naturally occur at mild Z-scores (`|Z| = 0.5 to 1.8 SD`) into dynamic shelves (EMA20/50, Session VWAP, Volume Profile VPOC, or Fibonacci 0.50–0.618 golden pocket). Requiring extreme `|Z| >= 2.0 SD` on trend pullbacks is a mathematical error that invalidates the best trend continuation setups!
+     * **Structural Backing**:
+       - *For Crypto Perpetuals*: Resting whale walls >= $100K USD persisting >= 180s trailing behind the entry.
+       - *For Forex & Indices*: Volume Profile High Volume Nodes (HVN/VPOC), Value Area boundaries (VAH/VAL), or session VWAP shelves (since interbank FX is an OTC ECN feed without centralized $1M book depth).
+   - **For Model 1 (Extreme Mean Reversion)**:
+     * **Narrative**: Price is in a balanced range (`MEAN_REVERT`) probing outer distribution tails.
+     * **Location**: Statistical extremity (`|VWAP Z| >= 2.0 to 3.5 SD`, RSI < 35 or > 65) sweeping retail stop clusters or liquidation bands.
+     * **Confirmation**: Tape deceleration, rejection wick, and return inside the Value Area.
+
+2. **Asset-Class Specific Structural Anchors (Zero False-Disqualification Directive)**:
+   - **TradFi Forex Majors & Crosses (EURUSD, USDJPY, USDCAD, GBPUSD, etc.)**:
+     * *Data Reality*: Interbank FX is a decentralized OTC ECN feed traded via MetaTrader 5. It does NOT have Binance orderbooks (`Sheet 17/18`) or Hyperdash retail stop maps (`Sheet 23/24`).
+     * *Canonical Anchor*: **Sheet 30 (`20_Auction_Market_Structure`)**: Daily/Weekly Volume Profile VPOC, Value Area High/Low (VAH/VAL), Monday Opening Range, Previous Day High/Low, and 20/50 EMA hierarchy.
+     * *Strict Prohibition*: Subagents and Arena.ai are **strictly forbidden from disqualifying Forex candidates for missing `zc_div` or missing Hyperdash maps**.
+     * *Execution Anchor*: Raw interbank tick spread efficiency (`Spread / TP <= 15%`) + Auction Market Structure.
+   - **Precious Metals & Commodities (XAUUSD Gold, SILVER, CL_OIL)**:
+     * *Canonical Anchor*: Sheet 30 Auction VPOC/VAH/VAL + 20/50 EMA ribbon + Sheet 17 Orderbook depth when populated.
+     * *Execution Anchor*: High-efficiency tick spread + structural rejection/breakout from Daily Value Area.
+   - **Equity Indices (NAS100, SP500, DJ30, GER40)**:
+     * *Canonical Anchor*: Sheet 30 Auction Shelves (VPOC, VAH, VAL) + Sheet 17 Depth (e.g. resting ask/bid walls on SP500) + US Cash Open / Session VWAP.
+   - **Crypto Perpetuals (BTC, ETH, SOL, Alts)**:
+     * *Canonical Anchor*: Resting whale wall >= $100K USD (Sheets 18 & 25) with persistence >= 180s, taker CVD divergence (`zc_div > 0.8`), or CoinGlass/Hyperdash stop sweeps (Sheets 14, 15, 23).
+
+3. **The 3-of-4 Adaptive Confluence Framework (Replacing Rigid 7-Gate Boolean AND)**:
+   - Rather than demanding a rigid boolean `AND` across 7 micro-metrics simultaneously (which mathematically causes 0% candidate survival), the desk evaluates:
+     * **Tier 1 (Non-Negotiable Solvency & Risk Floors - 100% Strict)**:
+       1. Stressed Equity >= 4,795.00 USD Operating Buffer (+39.83 USD cushion) and >= 4,775.00 USD Hard Floor (+59.83 USD cushion).
+       2. Dynamic Spread Friction: `Spread Points / TP Distance Points <= 15.0%`.
+       3. Macro Blackout: Zero entries during active Tier-1 High-Impact red folder news and FX rollover (21:15–22:30 UTC).
+       4. Reward-to-Risk >= 2.0R to structural target.
+     * **Tier 2 (Adaptive Confluence Stack - Requires 3 of 4 Points Pass)**:
+       - **Point 1 (Regime & Macro Narrative Alignment - The WHY)**: Verified directional trend (Model 2: `TREND_UP`/`TREND_DOWN` with EMA ribbon alignment) OR statistical range extreme (Model 1: `MEAN_REVERT` with |Z| >= 2.0 SD).
+       - **Point 2 (Asset-Specific Structural Anchor - The WHERE)**: Price interacting with a verified structural shelf appropriate to that asset class (Forex/Metals/Indices: Sheet 30 VPOC/VAH/VAL or EMA20/50 shelf; Crypto: Whale Wall or Liquidation Band).
+       - **Point 3 (Microstructure Timing & Exhaustion - The WHEN)**: Tape exhaustion (declining volume on pullback, CVD deceleration/divergence, or rejection wick confirming buyer/seller absorption).
+       - **Point 4 (Safe Stop Loss Bunker Behind Structure)**: SL placed safely behind the structural shelf (>= 0.40–0.50 ATR beyond boundary), avoiding un-swept opposing stop cascades.
+   - **Scoring Rule**: If all Tier 1 floors pass AND at least 3 of 4 Tier 2 confluence points pass, the trade setup is **VALID AND APPROVED FOR EXECUTION**!
+
+4. **Inviolable Solvency Hard Floors (Never Compromised)**:
+   - Hard Floor Invariant: Stressed Equity strictly >= 4,775.00 USD (cushion: +59.83 USD).
+   - Operating Buffer Invariant: Stressed Equity strictly >= 4,795.00 USD (cushion: +39.83 USD).
+   - Dynamic Spread Friction Gate: `Spread Points / TP Distance Points <= 15.0%`.
+   - Zero Tier-1 Macro Blackouts within +/-4 hours.
+   - Multi-Asset Pristine Risk Rights: Standard $15.00–$25.00 USD nominal risk; authorized up to $25.00–$35.00 USD for pristine confluence across ALL 156 assets!
 
 ---
 
@@ -400,6 +440,35 @@ stateDiagram-v2
    - **Phase 1 (+1.65R0)**: Move SL to $\text{Entry} + 0.80R_0$ (locks in guaranteed profit).
    - **Phase 2 (>= +2.00R0)**: Continuous trailing stop at $0.50\text{ ATR}$ behind 15m swing shelves.
 3. **Time-Decay Exit**: If active for 24 bars (6 hours) with gain < +0.20R0, market close to redeploy capital.
+
+---
+
+## SECTION 2.5: THE PERPETUAL QUANTITATIVE METHODOLOGY INTERROGATION & CONTINUOUS ALPHA REFINEMENT (MANDATORY INVARIANT)
+
+> 🔬 **THE CORE QUANTITATIVE INQUEST (MANDATORY ON EVERY CYCLE, DELIBERATION & PROMPT)**:
+> *"Is our methodology for finding potential candidates truly sound, and how can we fundamentally improve it? Given that we monitor, ingest, and process immense multi-layered data across 156 assets (L2/L3 orderbooks, CVD delta, CoinGlass liquidation heatmaps, Hyperdash retail stop cascades, 33-sheet Excel warehouse, ETF flows, Auction market structure), why has equity remained flat/stagnant and why are profitable executions eluding the desk? How do we think like elite quantitative researchers to bridge this gap?"*
+
+### Mandatory 5-Point Quantitative Critique & Improvement Framework:
+On EVERY cycle, deliberation turn, and prompt response, the council models (Arena.ai, Z.ai GLM-5.3-Flash), subagents, and coordinator MUST dedicate an explicit section to answering this question:
+
+1. **Conjunctive Sclerosis vs Probabilistic Expectancy**:
+   - Are our 5-pillar filters overly conjunctive, creating an impossible bottleneck where genuine profitable trades with statistical expectancy are rejected due to minor, non-causal discrepancies?
+   - How can we weight criteria probabilistically (e.g. composite Z-score or Bayesian confluence) rather than binary fail-closed vetoes on secondary indicators?
+
+2. **Static Retrospective Data vs Dynamic Live Microstructure**:
+   - Are we analyzing backward-looking 15m/1h snapshot metrics (which lag price action) rather than dynamic orderbook replenishment velocity and real-time tick aggressive vs passive absorption?
+   - How can candidate generation transition from post-mortem analysis to predictive structural anticipation?
+
+3. **Entry Geometry & Staging Passivity**:
+   - Are our limit entries staged too deep behind structural shelves (causing orders to never fill and missing profitable legs) or too shallow (getting swept by retail cascades)?
+   - How should we calibrate distance-to-market and limit placement using dynamic ATR fractions and volume-weighted orderbook clusters to maximize fill probability while preserving R:R >= 2.0R?
+
+4. **Multi-Asset Alpha Specialization vs Uniform Template Bias**:
+   - Different asset classes possess fundamentally distinct microstructures (Binance USDT-M Perpetuals have deep centralized L2 books and liquidation cascades; interbank Forex has distributed OTC liquidity and session-driven ranges; equity indices trade around cash opens/closes and fair-value gaps).
+   - Are we incorrectly forcing crypto-specific metrics (whale walls, liquidation heatmaps) onto Forex and Indices, blinding the desk to pristine TradFi setups?
+
+5. **Actionable Alpha Evolution Proposals**:
+   - What concrete, specific adjustments to candidate discovery rules, scanner algorithms, or trigger criteria will directly increase high-expectancy trade opportunities that grow account equity toward 5,500.00 USD while maintaining rigorous floor defense?
 
 ---
 

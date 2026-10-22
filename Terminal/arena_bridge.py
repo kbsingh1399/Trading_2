@@ -486,6 +486,9 @@ def build_48h_orderflow_prompt() -> str:
     lines.append("  - Active positions audit: HOLD, Ratchet SL, or Exit.")
     lines.append("  - Executable LIMIT ORDER stages (Symbol, Direction, Entry limit price, Stop Loss, Take Profit anchored to liquidations/stops, Lots, Risk USD).")
     lines.append("  - If no trade passes, provide explicit mathematical rationale.")
+    lines.append("Part 3: MANDATORY QUANTITATIVE METHODOLOGY INQUEST (OPERATOR MANDATE - MUST ALWAYS BE REPLIED TO):")
+    lines.append("  - Is our methodology for finding potential candidates truly sound, and how can we fundamentally improve it? Given that we monitor, ingest, and process immense multi-layered data across 156 assets (L2/L3 orderbooks, CVD delta, CoinGlass liquidation heatmaps, Hyperdash retail stop cascades, 33-sheet Excel warehouse, ETF flows, Auction market structure), why has equity remained flat/stagnant and why are profitable executions eluding the desk? How do we think like elite quantitative researchers to bridge this gap?")
+    lines.append("  - Explicitly address: Are our filters overly conjunctive/restrictive? Are our entries staged too passively? How should candidate generation mathematically evolve to identify high-expectancy profitable trades while defending the floor?")
     lines.append("")
     return "\n".join(lines)
 
