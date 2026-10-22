@@ -42,32 +42,32 @@
 
 ### Potential Passive Limit Order Candidates (Qualified Watchlist - Staging Gated on High Conviction):
 1. **BTCUSD.pi** (Model 1 Institutional L3 Whale Shelf Pullback Long):
-   - Mapped Levels: Mark 82,814.0 | Limit Entry: `82,190.0` (Core Whale Wall Shelf) | SL: `81,450.0` (740 pts) | TP: `83,850.0` (1,660 pts) | Net 2.24R
-   - Sizing: 0.01 lot (~$7.40 USD nominal risk) to 0.02 lot (~$14.80 USD nominal risk) | Spread: 1.93 bps
-   - Microstructure Anchoring (Cycle 236 Audit): Wallet `0xf5a5..1286` dynamically split bids into $82,442 ($6.49M), $82,190 ($12.68M), and $81,657 ($24.43M), with Wallet `0x31de..13f2` holding $82,324 ($5.04M) and $82,143 ($5.82M). Arena confirmed $5.039M resting at $82,283.
+   - Mapped Levels: Mark 82,820.0 | Limit Entry: `82,190.0` (Core Whale Wall Shelf) | SL: `81,450.0` (740 pts) | TP: `83,850.0` (1,660 pts) | Net 2.24R
+   - Sizing: 0.01 lot (~$7.40 USD nominal risk) to 0.02 lot (~$14.80 USD nominal risk) | Spread: 1.81 bps
+   - Microstructure Anchoring (Cycle 237 Joint Audit): Wallet `0xf5a5..1286` confirmed with $12.68M buy wall at 82,190 USD and $24.43M at 81,657 USD. Arena confirmed resting bids of **$12.682M at 82,141.5 USD (2,399s persist)**.
    - Pre-condition Checklist:
-     * [x] Multi-whale bid bunker verified ($12.68M @ 82,190 + $24.43M @ 81,657)
-     * [x] Spread gate passed (1.93 bps <= 25.0 bps)
-     * [ ] [82,100–82,200 USD] ($8.93M) stop cascade fully flushed into $82,190 shelf
-     * [ ] 15m CVD delta decelerates from -$2.26M seller dump and prints positive absorption flip
+     * [x] Multi-whale bid bunker verified ($12.68M @ 82,141.5–82,190 + $24.43M @ 81,657)
+     * [x] Spread gate passed (1.81 bps <= 25.0 bps)
+     * [ ] [82,100–82,200 USD] ($7.49M) stop cascade fully flushed into $82,190 shelf
+     * [ ] 15m CVD delta decelerates from -$3.37M seller dump and prints positive absorption flip
      * [ ] Macro clearance maintained (0 high-impact events)
 2. **XAUUSD.pi** (Model 1 True Institutional Bunker Long):
-   - Mapped Levels: Mark 4,091.52–4,093.75 | Limit Entry: `4,082.50` (Front-running 4,080 whale bunker) | SL: `4,074.00` ($8.50 pts) | TP: `4,098.50` ($16.00 pts) | Net 1.88R
+   - Mapped Levels: Mark 4,091.83 | Limit Entry: `4,082.50` (Front-running 4,080.73 whale bunker) | SL: `4,074.00` ($8.50 pts) | TP: `4,098.50` ($16.00 pts) | Net 1.88R
    - Sizing: 0.01 lot (~$8.50 USD nominal risk) | Spread: 0.20 bps
-   - Forensic Update (Cycle 236): Price flushed to 4,091.52 USD (-3.20 SD). Institutional whale bunker confirmed at **4,080.00 USD ($1.94M / 475.82 oz, 38,605s / 10.7h persist, wallet `0x12f7..8750`, Gate G7 eligible)**.
+   - Forensic Update (Cycle 237 Joint Audit): Orderflow Analyst and Arena both confirmed the primary institutional whale bunker at **4,080.00–4,080.73 USD ($1.941M / 475.82 oz, 40,109s / 11.14h persist, wallet `0x12f7..8750`, Gate G7 eligible)**.
    - Pre-condition Checklist:
-     * [x] 4,080.00 USD institutional whale bunker verified ($1.94M, persist >38,600s / 10.7h)
+     * [x] 4,080.00–4,080.73 USD institutional whale bunker verified ($1.941M, persist >40,100s / 11.14h)
      * [x] Spread gate passed (0.20 bps <= 5.0 bps)
-     * [ ] Price flushes into 4,080.00–4,082.50 USD bunker
+     * [ ] Price flushes into 4,080.00–4,082.50 USD bunker (currently 4,091.83)
      * [ ] Tick volume / tape prints positive buyer absorption
      * [ ] Macro embargo clear
 3. **SOLUSD.p** (Model 1 Post-Sweep Accumulation Base Long):
-   - Mapped Levels: Mark 105.28 | Limit Entry: `104.95` (post-sweep base) | SL: `104.20` (0.75 pts) | TP: `106.75` (VWAP) | Net 2.40R
+   - Mapped Levels: Mark 105.24 | Limit Entry: `104.95` (post-sweep base) | SL: `104.20` (0.75 pts) | TP: `106.75` (VWAP) | Net 2.40R
    - Sizing: 0.10 lot (~$7.50–$10.00 USD nominal risk) | Spread: 21.85 bps
    - Pre-condition Checklist:
      * [ ] MT5 spread compresses <= 12.0 bps (currently 21.85 bps)
      * [ ] Price re-tests $104.95 post-sweep base
-     * [ ] 15m CVD delta turns positive from current -$3.48M dump
+     * [ ] 15m CVD delta turns positive
      * [ ] Resting whale bid wall >= $100K emerges (>= 180s persistence)
      * [ ] Floor cushion maintained > $39.83 USD
 

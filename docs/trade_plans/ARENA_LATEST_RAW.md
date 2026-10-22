@@ -1,19 +1,2 @@
-✅ STANDARDIZED_TRADING_DECISION_CHAIN.md LOADED — 10-Step Canonical Execution Chain Activated.
-✅ 32-SHEET CONFIRMATION: [0 formula errors | 0 empty headers]
-
-E1 — SL: N/A: zero active/pending tickets; no live SL.
-
-E2 — TP: N/A: zero active TPs.
-
-E3 — WHALES: Sheet 18 is BTC-only; CoinGlass is stale 402,083s—reject. Sheet 25/telemetry: claimed SOL $7.71M bid@106.66 is actually a $438,560 SELL, G7-false; nearest bid $175.3K@105.12/306s fails canonical $500K. XAU’s nearest bid is $306.4K@4085.07/48,869s, below SL. BTC is anchored by $5.039M@82283/314s. EURUSD’s nearest is $198K@1.110575/1812s; no Sheet-25 rows. Cancel SOL/XAU/EUR staging.
-
-E4 — FIVE PILLARS: All spreads pass: SOL/XAU/BTC/EURUSD = 21.82/0.20/1.81/0.09bps. Numeric zc_div>0.8 is absent for all.
-
-SOL DISQUALIFIED: Z=−1.00 BEARISH/bearish momentum; marketable, 3.48ATR away; no bunker; 0.532R.
-XAU DISQUALIFIED: Z=−3.20 BEARISH/seller aggression; marketable, 3.53ATR away; no entry bunker.
-BTC DISQUALIFIED: Z=−1.05 RANGE_BOUND; CVD −$103.77M, imbalance −0.7862; 2.09ATR away; SL 81750 sits inside $12.892M cascade 81659–81759.
-EURUSD DISQUALIFIED: Z=+1.10 BULLISH; 6.20ATR away, seller aggression, no bunker.
-
-E5 — VERDICT: Active tickets: NONE. All candidates: STAND ASIDE—stack failed; NO PUNCH. Authorization DENIED_UNVERIFIED_ORDERFLOW. Native joint-stop equity is $4,834.83, not $4,804.58; minimum pair: $4,834.83−$46.50=$4,788.33<$4,795.
-
-MACRO BLOCK: YES at snapshot. High-impact NZD CPI q/q at 03:15 UTC is −31m26s from 03:46:26; ±35m blackout ends 03:50 UTC.
+\n✅ STANDARDIZED_TRADING_DECISION_CHAIN.md LOADED — 10-Step Canonical Execution Chain Activated.\n
+✅ 32-SHEET CONFIRMATION: [0 formula errors | 0 empty headers]\n\n**E1 — SL:** N/A: zero active/pending tickets; no live SL.\n\n**E2 — TP:** N/A: zero active TPs.\n\n**E3 — WHALES:** Sheet 18 is BTC-only; CoinGlass layer is stale 403,573s—reject. Sheet 25/telemetry: claimed SOL $7.71M bid@106.66 is actually a $438,560 **SELL**, G7-false. A fresh $1.818M bid@105.13/312s exists, but SL 105.10 lacks the required buffer. XAU’s $1.941M bid@4080.73/40,109s is below SL. BTC is anchored by $12.682M@82141.5/2399s. EURUSD’s nearest is $198K@1.110540/3313s; no Sheet-25 rows. **Cancel SOL/XAU/EUR staging.**\n\n**E4 — FIVE PILLARS:** All spreads pass: SOL/XAU/BTC/EURUSD = 20.88/0.20/1.81/0.09bps. Numeric `zc_div>0.8` is absent for all; macro is clear.\n\n- **SOL DISQUALIFIED:** Z=−0.97 BEARISH/bearish momentum; marketable, 3.60ATR away; 0.532R; TP crosses $7.047M ask@106.99.\n- **XAU DISQUALIFIED:** Z=−2.62 BEARISH; marketable, 3.65ATR away; no entry bunker.\n- **BTC DISQUALIFIED:** Z=−1.07 BEARISH; CVD −$107.14M; SL 81750 lies inside $13.723M cascade 81651.5–81751.5.\n- **EURUSD DISQUALIFIED:** Z=+0.79 BULLISH; 5.80ATR away; no bunker.\n\n**E5 — VERDICT:** Active tickets: **NONE**. All candidates: **STAND ASIDE—stack failed; NO PUNCH**. Authorization `DENIED_UNVERIFIED_ORDERFLOW`. Native joint-stop equity is $4,834.83, not $4,804.58; minimum pair: $4,834.83−$46.50=$4,788.33<$4,795.\n\n**MACRO: CLEAR.** NZD CPI at 03:15 UTC is 56m31s before the 04:11:31 snapshot—outside ±35m; no Sheet-28 blocker.\n
