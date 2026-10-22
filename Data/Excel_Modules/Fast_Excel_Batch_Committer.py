@@ -173,11 +173,36 @@ def commit_staged_sheets(staging_dir: pathlib.Path = STAGING_DIR, excel_path: pa
 
     t_save = time.perf_counter()
     log.info(f"[BatchCommitter] Saving {len(wb.sheetnames)} sheets to {excel_path}...")
-    wb.save(excel_path)
+    temp_path = excel_path.with_name(f"{excel_path.stem}.commit_tmp.xlsx")
+    saved = False
+    for attempt in range(1, 6):
+        try:
+            wb.save(temp_path)
+            os.replace(temp_path, excel_path)
+            saved = True
+            break
+        except (PermissionError, OSError) as e:
+            log.warning(f"[BatchCommitter] Save attempt {attempt}/5 hit lock ({e}). Retrying in {attempt}s...")
+            time.sleep(1.0 * attempt)
+    if not saved:
+        log.warning(f"[BatchCommitter] Atomic replace failed. Attempting direct wb.save to {excel_path}...")
+        wb.save(excel_path)
+        if temp_path.exists():
+            try:
+                temp_path.unlink()
+            except Exception:
+                pass
     save_time = time.perf_counter() - t_save
     total_time = time.perf_counter() - t0
 
     log.info(f"[BatchCommitter] [SUCCESS] Committed {updated_count} sheets in {total_time:.2f}s (Save IO: {save_time:.2f}s).")
+
+    # Clean up staged parquet files that were successfully committed
+    for pq_path in parquet_files:
+        try:
+            pq_path.unlink()
+        except Exception:
+            pass
     emit_telemetry_event(
         event_type="BATCH_EXCEL_COMMIT",
         status="PASS",
