@@ -1,12 +1,12 @@
 {
-  "completed_at_utc": "2026-10-22 19:48:27 UTC",
-  "completed_at_epoch": 1792698507.417735,
-  "prose_count": 1,
-  "text_length": 15618,
+  "completed_at_utc": "2026-10-22 20:13:08 UTC",
+  "completed_at_epoch": 1792699988.7571154,
+  "prose_count": 2,
+  "text_length": 18292,
   "workspace_file_name": "",
-  "workspace_file_length": 0,
-  "text_hash": "fa8c1bdf5553b18a",
+  "workspace_file_length": 479,
+  "text_hash": "f73f32fd97728804",
   "is_generating": false,
   "latest_raw_path": "C:\\Users\\SIGMA\\Documents\\Trading_2\\docs\\trade_plans\\ZAI_LATEST_RAW.md",
-  "latest_attachment_path": ""
+  "latest_attachment_path": "C:\\Users\\SIGMA\\Documents\\Trading_2\\docs\\trade_plans\\ZAI_LATEST_ATTACHMENT.md"
 }
