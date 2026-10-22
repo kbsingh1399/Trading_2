@@ -1,0 +1,212 @@
+=== DATA INTEGRITY ===
+Loaded sheets count: 32
+Telemetry: ['METATRADER 5 BROKER ACCOUNT TELEMETRY, RISK DEFENSE & LIVE SPREAD GATES', None, None, None, None]
+Telemetry: ['Harvest Timestamp: 2026-10-22T02:24:10.398168+00:00 | Broker: Blueberry Markets (SVG) LLC | Account Login: 5064568 (Funded Phase 1)', None, None, None, None]
+Telemetry: ['1. CAPITAL STATE & INVIOLATE FLOOR CUSHION AUDIT', None, None, None, None]
+Telemetry: ['Realized Balance (USD)', '$4,851.83', None, 'Real-Time Floating Equity (USD)', '$4,837.33']
+Telemetry: ['Free Usable Margin (USD)', '$4,303.33', None, 'Margin Used / Collateral (USD)', '$534.00']
+Telemetry: ['Inviolate Hard Floor (USD)', '$4,775.00', None, 'Hard Floor Cushion (Equity - Floor)', '+$62.33']
+Telemetry: ['Operating Defense Buffer (USD)', '$4,795.00', None, 'Operating Buffer Cushion (Equity - Buffer)', '+$42.33']
+Telemetry: ['Phase 1 Target Target (USD)', '$5,500.00', None, 'Distance to Phase 1 Target (USD)', '+$662.67']
+
+=== ETF & CEX NETFLOWS ===
+ETF: ('#', 'Ticker', 'ETF Name', 'Price', 'Price Change', 'Volume (USD)')
+ETF: ('1', 'IBIT BTC', 'iShares Bitcoin Trust', '$47.84', '+1.13 +2.42%', '$2.42B')
+ETF: ('2', 'FBTC BTC', 'Fidelity Wise Origin Bitcoin Fund', '$73.47', '+1.75 +2.44%', '$374.58M')
+ETF: ('3', 'GBTC BTC', 'Grayscale Bitcoin Trust ETF', '$65.22', '+1.52 +2.39%', '$144.51M')
+ETF: ('4', 'BTC', 'Grayscale Bitcoin Mini Trust ETF', '$37.35', '+0.87 +2.38%', '$73.55M')
+ETF: ('5', 'BITB BTC', 'Bitwise Bitcoin ETF', '$45.82', '+1.08 +2.41%', '$49.43M')
+Netflow: ('#', 'Symbol', 'Price', '5 minute', '15 minute', '30 minute', '1 hour', '4 hour', '12 hour', '24 hour')
+Netflow: ('1', 'BTC', '-', '-$8.52M', '-$51.40M', '-$50.30M', '-$54.75M', '-$95.82M', '+$88.24M', '+$146.59M')
+Netflow: ('2', 'ETH', '-', '-$5.29M', '-$15.61M', '-$15.86M', '-$13.23M', '-$31.86M', '+$39.83M', '+$54.85M')
+Netflow: ('3', 'BNB', '-', '-$624.47K', '-$1.60M', '-$1.62M', '-$1.67M', '-$1.44M', '-$1.39M', '-$4.33M')
+Netflow: ('4', 'XRP', '-', '-$2.30M', '-$8.13M', '-$7.75M', '-$7.35M', '-$21.10M', '-$27.31M', '-$15.56M')
+Netflow: ('5', 'USDC', '-', '+$1.48M', '+$5.72M', '+$7.78M', '+$16.63M', '-$4.08M', '+$100.20M', '+$108.09M')
+Netflow: ('6', 'SOL', '-', '-$1.03M', '-$5.40M', '-$5.07M', '-$5.75M', '-$3.12M', '+$3.50M', '+$12.99M')
+Netflow: ('7', 'TRX', '-', '+$49.84K', '-$145.47K', '-$84.06K', '-$54.51K', '-$1.79M', '-$4.03M', '-$5.22M')
+Netflow: ('8', 'ZEC', '-', '-$1.74M', '-$2.94M', '-$2.76M', '-$2.22M', '-$11.35M', '+$801.63K', '+$9.84M')
+Netflow: ('9', 'HYPE', '-', '-$106.59K', '-$365.00K', '-$427.48K', '-$381.23K', '-$1.85M', '+$2.61M', '-$5.40M')
+
+=== LS RATIOS ===
+-- 3_Exchanges_LS_Ratio_15M --
+('Asset', '#', 'Exchange', 'Long %', 'Short %', 'L/S Ratio')
+('BTC', 'Total', 'BTC', '43.80%', '56.20%', '0.78')
+('BTC', '1', 'Binance', '40.18%', '59.82%', '0.67')
+('BTC', '2', 'OKX', '41.11%', '58.89%', '0.70')
+('BTC', '3', 'Bybit', '40.84%', '59.16%', '0.69')
+('BTC', '4', 'KuCoin', '37.19%', '62.81%', '0.59')
+('BTC', '5', 'Gate', '53.89%', '46.11%', '1.17')
+('BTC', '6', 'Bitget', '47.73%', '52.27%', '0.91')
+-- 3_Exchanges_LS_Ratio_1H --
+('Asset', '#', 'Exchange', 'Long %', 'Short %', 'L/S Ratio')
+('BTC', 'Total', 'BTC', '43.37%', '56.63%', '0.77')
+('BTC', '1', 'Binance', '38.9%', '61.1%', '0.64')
+('BTC', '2', 'OKX', '45.93%', '54.07%', '0.85')
+('BTC', '3', 'Bybit', '34.08%', '65.92%', '0.52')
+('BTC', '4', 'KuCoin', '41.57%', '58.43%', '0.71')
+('BTC', '5', 'Gate', '53.87%', '46.13%', '1.17')
+('BTC', '6', 'Bitget', '46.98%', '53.02%', '0.89')
+-- 3_Exchanges_LS_Ratio_4H --
+('Asset', '#', 'Exchange', 'Long %', 'Short %', 'L/S Ratio')
+('BTC', 'Total', 'BTC', '45.33%', '54.67%', '0.83')
+('BTC', '1', 'Binance', '41.98%', '58.02%', '0.72')
+('BTC', '2', 'OKX', '45.87%', '54.13%', '0.85')
+('BTC', '3', 'Bybit', '38.67%', '61.33%', '0.63')
+('BTC', '4', 'KuCoin', '45.02%', '54.98%', '0.82')
+('BTC', '5', 'Gate', '54.08%', '45.92%', '1.18')
+('BTC', '6', 'Bitget', '48.4%', '51.6%', '0.94')
+
+=== HYPERLIQUID WHALES ===
+Whale: ('#', 'User', 'Wallet Full Address', 'Assets', 'Side', 'Position', 'Unrealised PNL (%)', 'Entry Price', 'Liq.Price', 'Margin')
+Whale: ('1', '0x5b5d..60', '0x5b5d51203a0f9079f8aeb098a6523a13f298c060', 'ETH', 'Short', '$264.48M\n106.35K ETH', '-$17.47M\n-6.60%', '$2322.65\n5X Cross', '$3,919', '$52.89M')
+Whale: ('2', '0x5b5d..60', '0x5b5d51203a0f9079f8aeb098a6523a13f298c060', 'BTC', 'Short', '$220.52M\n2.60K BTC', '-$21.56M\n-9.78%', '$76265.2\n5X Cross', '$143,375', '$44.10M')
+Whale: ('3', '0xb83d..36', '0xb83de012dba672c76a7dbbbf3e459cb59d7d6e36', 'BTC', 'Short', '$212.67M\n2.51K BTC', '-$16.11M\n-7.57%', '$78113.9\n5X Cross', '$135,640', '$42.53M')
+Whale: ('4', '0xb83d..36', '0xb83de012dba672c76a7dbbbf3e459cb59d7d6e36', 'ETH', 'Short', '$164.84M\n66.28K ETH', '-$7.38M\n-4.48%', '$2375.31\n5X Cross', '$4,412', '$32.96M')
+Whale: ('5', '0x77dd..e9', '0x77ddcc4b6440b3a32b7802f053105c2fad3ae0e9', 'ETH', 'Long', '$120.58M\n48.49K ETH', '-$6.01M\n-4.99%', '$2610.31\n10X Cross', '$2,255', '$12.05M')
+Whale: ('6', '0x082e..88', '0x082e843a431aef031264dc232693dd710aedca88', 'HYPE', 'Long', '$111.91M\n1.38M HYPE', '$58.54M\n+52.31%', '$38.6755\n5X Cross', '$71.69', '$22.38M')
+Whale: ('7', '0x0392..d9', '0x0392a716dbee1661ea781881826b928daeb5d7d9', 'ETH', 'Long', '$111.24M\n44.73K ETH', '-$1.43M\n-1.28%', '$2518.71\n9X Cross', '$2,225', '$12.36M')
+
+=== OI & FUNDING ===
+OI: ('FUTURES OPEN INTEREST MATRIX - ASSETS (ROWS) x EXCHANGES (COLUMNS)', None, None, None, None, None)
+OI: ('Asset', 'Total OI (USD)', 'Binance', 'Bybit', 'OKX', 'CME')
+OI: ('BTC', '-', '-', '-', '-', '-')
+OI: ('ETH', '$30.87B', '$8.92B', '$2.17B', '$1.66B', '$3.49B')
+OI: ('XRP', '$2.98B', '$526.02M', '$332.68M', '$99.15M', '$515.12M')
+OI: ('SOL', '$6.50B', '$1.09B', '$664.86M', '$342.85M', '$682.21M')
+OI: ('BNB', '$1.28B', '$573.72M', '$105.10M', '$58.06M', '-')
+OI: ('DOGE', '$1.22B', '$272.86M', '$118.78M', '$119.45M', '-')
+Funding: ('Symbol', 'USDT or USD Margined', None, None, None, None)
+Funding: ('Symbol', 'Binance', 'OKX', 'Bybit', 'KuCoin', 'MEXC')
+Funding: ('BTC', '-0.0009%', '-0.0056%', '-0.0004%', '-0.0025%', '-0.0007%')
+Funding: ('ETH', '0.0002%', '0.0057%', '-0.0020%', '0.0043%', '0.0001%')
+Funding: ('SOL', '0.0008%', '0.0019%', '-0.0027%', '0.0003%', '0.0008%')
+Funding: ('HYPE', '-0.0036%*', '-0.0029%', '-0.0047%', '0.0050%*', '-0.0035%*')
+Funding: ('XRP', '0.0090%', '0.0100%', '0.0062%', '0.0070%', '0.0090%')
+Funding: ('ZEC', '0.0039%', '0.0042%', '0.0100%', '0.0045%', '0.0038%')
+
+=== WHALE ORDERS (SHEET 18 / 10_Whale_Orders) ===
+WhaleOrder: ('COINGLASS BITCOIN WHALE ORDERS & LARGE TRADES (> $100K) - ALL EXCHANGES (174 ORDERS) [as_of 2026-10-22 02:06:44 UTC]', None, None, None, None, None, None, None, None, None)
+WhaleOrder: ('Sr. No.', 'Exchange', 'Symbol', 'Type', 'Side', 'Price ($)', 'Amount (BTC)', 'Notional Value ($)', 'Initial Value ($)', 'Traded Value ($)')
+WhaleOrder: (1, 'Bybit', 'BTCUSDT', 'Perpetual', 'Sell Orders', 83473.7, 35.93946356756679, 3000000, 3000000, 0)
+WhaleOrder: (2, 'Binance', 'BTCUSDT', 'Perpetual', 'Sell Orders', 83472.2, 18.20965543019113, 1520000, 1520000, 0)
+WhaleOrder: (3, 'Binance', 'BTCUSDT', 'Perpetual', 'Sell Orders', 83466.2, 12.46013356304708, 1040000, 1040000, 0)
+WhaleOrder: (4, 'Binance', 'BTCUSDT', 'Perpetual', 'Sell Orders', 83466.1, 16.05442209471869, 1340000, 1340000, 0)
+WhaleOrder: (5, 'Bybit', 'BTCUSDT', 'Perpetual', 'Sell Orders', 83462.6, 22.52505912828021, 1880000, 1880000, 0)
+WhaleOrder: (6, 'Bybit', 'BTCUSDT', 'Perpetual', 'Sell Orders', 83459.8, 35.94544918631485, 3000000, 3000000, 0)
+WhaleOrder: (7, 'Bybit', 'BTCUSDT', 'Perpetual', 'Sell Orders', 83458.9, 15.09725146149782, 1260000, 1260000, 0)
+WhaleOrder: (8, 'OKX', 'BTCUSDT', 'Perpetual', 'Sell Orders', 83457.2, 19.77061296089493, 1650000, 1650000, 0)
+WhaleOrder: (9, 'Binance', 'BTCUSDT', 'Perpetual', 'Sell Orders', 83452.9, 21.44922465246864, 1790000, 1790000, 0)
+WhaleOrder: (10, 'Bybit', 'BTCUSDT', 'Perpetual', 'Sell Orders', 83450, 50.32953864589575, 4200000, 4170000, 0)
+WhaleOrder: (11, 'Bybit', 'BTCUSDT', 'Perpetual', 'Sell Orders', 83449.9, 15.57820920096968, 1300000, 1540000, 0)
+WhaleOrder: (12, 'Binance', 'BTCUSDT', 'Perpetual', 'Sell Orders', 83446.1, 15.81859427822271, 1320000, 1320000, 0)
+WhaleOrder: (13, 'OKX', 'BTCUSDT', 'Perpetual', 'Sell Orders', 83445.9, 14.8599272103243, 1240000, 1240000, 0)
+
+=== TECHNICAL (SHEET 19 / 11_Technical) ===
+Tech: ['SECTION 1: QUANTITATIVE T']
+Tech: ['Sr. No.', 'Asset', 'Category', 'Broker Symbol', 'Price ($)', '24h Chg (%)', 'Daily VWAP ($)', 'VWAP Z-Score (σ)']
+Tech: ['1', 'BTC', 'Crypto Major', 'BTCUSD.pi', '83316', '0.007655745437393419', '83934.64480698187', '-2.104590230068703']
+Tech: ['2', 'ETH', 'Crypto Major', 'ETHUSD.pi', '2448', '0.001267945519244104', '2463.941644900498', '-1.771133467013017']
+Tech: ['3', 'SOL', 'Crypto Alt L1', 'SOLUSD.p', '105.97', '-9.435742592946892e-05', '106.751054425677', '-1.874596839854033']
+Tech: ['4', 'BNB', 'Crypto Major', 'BNBUSD.p', '743.4', '0.004458856911228151', '746.6287716159809', '-2.409291476192062']
+Tech: ['5', 'XRP', 'Crypto Major', 'XRPUSD.pi', '1.348', '0.01353383458646601', '1.357597140454163', '-1.586983174251495']
+Tech: ['6', 'ADA', 'Crypto Alt L1', 'ADAUSD.p', '0.2218', '-0.004041311180960987', '0.2238051881993896', '-1.708792647564861']
+Tech: ['7', 'DOGE', 'Crypto Meme', 'DOGUSD.p', '0.08', '-0.007444168734491355', '0.08062952646239555', '-1.757000574531296']
+Tech: ['8', 'TRX', 'Crypto Alt L1', 'TRXUSD.p', '0.3295', '-0.002723970944309963', '0.3297704789833822', '-1.571582334295027']
+Tech: ['9', 'DOT', 'Crypto Alt L1', 'DOTUSD.pi', '1.127', '-0.01572052401746726', '1.138172942817294', '-1.893828449241493']
+Tech: ['10', 'LINK', 'Crypto DeFi', 'LNKUSD.p', '12.369', '0.005446268899365971', '12.46534360255343', '-1.526833495962599']
+Tech: ['11', 'BCH', 'Crypto PoW', 'BCHUSD.p', '283.06', '-0.008407482659566935', '284.8842751710655', '-1.173728447797442']
+Tech: ['12', 'SP500', 'Equity Index US', 'SP500.p', '7723.88', '-0.0007594036029625655', '7725.359884040688', '-1.30591025807873']
+Tech: ['13', 'GOLD', 'Precious Metal', 'XAUUSD.pi', '4115.38', '0.001513691362711663', '4116.404832517659', '-0.3459558232379096']
+Tech: ['14', 'SILVER', 'Precious Metal', 'XAGUSD.pi', '57.091', '-0.00652559774475342', '57.29106192899189', '-1.643329082771591']
+Tech: ['15', 'LTC', 'Crypto PoW', 'LTCUSD.pi', '61.01', '-0.004080966372837088', '61.34584867692926', '-1.565866826125718']
+Tech: ['16', 'AVAX', 'Crypto Alt L1', 'AVXUSD.p', '9.5', '-0.01960784313725485', '9.621448783248445', '-1.975202294936078']
+Tech: ['17', 'NEAR', 'Crypto Alt L1', 'NERUSD.p', '5.192', '0.04487824511974237', '5.251154480534439', '-1.683137619361539']
+Tech: ['18', 'NAS100', 'Equity Index Tech', 'NAS100.p', '29567.36', '-0.003848513506183448', '29600.15801785949', '-1.658375800096883']
+Tech: ['19', 'DJ30', 'Equity Index US', 'DJ30.p', '52724.56', '0.004149949739709099', '52692.22203009866', '2.14366174448173']
+Tech: ['20', 'GER40', 'Equity Index EU', 'GER40.p', '25524.45', '0.00429663292708121', '25541.14433613745', '-1.530779610620234']
+Tech: ['21', 'USWTI', 'Energy Commodity', 'USWTI.p', '99.246', '-0.005202225229288883', '99.02290102475972', '2.438794761111857']
+Tech: ['22', 'EURUSD', 'FX Major', 'EURUSD.pi', '1.12292', '-0.0001691730996964986', '1.123235284250816', '-1.740465397360767']
+Tech: ['23', 'GBPUSD', 'FX Major', 'GBPUSD.pi', '1.3386', '0.0005830380768713302', '1.339320092455985', '-1.938954789699045']
+Tech: ['24', 'USDJPY', 'FX Major', 'USDJPY.pi', '158.095', '-0.0007963544662213283', '158.1587607657112', '-1.582909451229011']
+Tech: ['25', 'AAVE', 'Crypto DeFi', 'AVEUSD.p', '152.49', '-0.01765122721123482', '154.5437345144104', '-1.913441912934072']
+Tech: ['26', 'ALGO', 'Crypto Alt L1', 'ALGUSD.p', '0.111', '-0.01682905225863595', '0.112036582694414', '-1.656505958562939']
+Tech: ['27', 'AR', 'Crypto Storage', 'ARWUSD.p', '3.803', '-0.007049608355091419', '3.836387345679013', '-1.534595030648426']
+Tech: ['28', 'ATOM', 'Crypto Alt L1', 'ATMUSD.p', '1.714', '-0.005800464037122974', '1.73310272213662', '-1.761373780416007']
+
+=== LIQ MAP & STOPS MAP ===
+LiqMap: ('Sr.No', 'Asset', 'Time', 'TimeStamp', 'Mark Price', 'Price', 'Distance (%)', 'Side')
+LiqMap: (1, 'BTC', 'Live', '2026-10-22 02:10:12 UTC', '$83,359.80', '$150.0000', '-99.82%', 'Long')
+LiqMap: (2, 'BTC', 'Live', '2026-10-22 02:10:12 UTC', '$83,359.80', '$250.0000', '-99.70%', 'Long')
+LiqMap: (3, 'BTC', 'Live', '2026-10-22 02:10:12 UTC', '$83,359.80', '$350.0000', '-99.58%', 'Long')
+LiqMap: (4, 'BTC', 'Live', '2026-10-22 02:10:12 UTC', '$83,359.80', '$450.0000', '-99.46%', 'Long')
+LiqMap: (5, 'BTC', 'Live', '2026-10-22 02:10:12 UTC', '$83,359.80', '$550.0000', '-99.34%', 'Long')
+LiqMap: (6, 'BTC', 'Live', '2026-10-22 02:10:12 UTC', '$83,359.80', '$850.0000', '-98.98%', 'Long')
+LiqMap: (7, 'BTC', 'Live', '2026-10-22 02:10:12 UTC', '$83,359.80', '$950.0000', '-98.86%', 'Long')
+LiqMap: (8, 'BTC', 'Live', '2026-10-22 02:10:12 UTC', '$83,359.80', '$1,250.00', '-98.50%', 'Long')
+LiqMap: (9, 'BTC', 'Live', '2026-10-22 02:10:12 UTC', '$83,359.80', '$1,350.00', '-98.38%', 'Long')
+StopsMap: ('Sr.No', 'Asset', 'Time', 'TimeStamp', 'Mark Price', 'Price', 'Distance (%)', 'Side')
+StopsMap: (1, 'BTC', 'Live', '2026-10-22 02:11:15 UTC', '$83,359.80', '$50.0000', '-99.94%', 'Sell Stop')
+StopsMap: (2, 'BTC', 'Live', '2026-10-22 02:11:15 UTC', '$83,359.80', '$5,050.00', '-93.94%', 'Sell Stop')
+StopsMap: (3, 'BTC', 'Live', '2026-10-22 02:11:15 UTC', '$83,359.80', '$6,250.00', '-92.50%', 'Sell Stop')
+StopsMap: (4, 'BTC', 'Live', '2026-10-22 02:11:15 UTC', '$83,359.80', '$8,050.00', '-90.34%', 'Sell Stop')
+StopsMap: (5, 'BTC', 'Live', '2026-10-22 02:11:15 UTC', '$83,359.80', '$8,450.00', '-89.86%', 'Sell Stop')
+StopsMap: (6, 'BTC', 'Live', '2026-10-22 02:11:15 UTC', '$83,359.80', '$8,850.00', '-89.38%', 'Sell Stop')
+StopsMap: (7, 'BTC', 'Live', '2026-10-22 02:11:15 UTC', '$83,359.80', '$10,850.00', '-86.98%', 'Sell Stop')
+StopsMap: (8, 'BTC', 'Live', '2026-10-22 02:11:15 UTC', '$83,359.80', '$16,950.00', '-79.67%', 'Sell Stop')
+StopsMap: (9, 'BTC', 'Live', '2026-10-22 02:11:15 UTC', '$83,359.80', '$17,450.00', '-79.07%', 'Sell Stop')
+StopsMap: (10, 'BTC', 'Live', '2026-10-22 02:11:15 UTC', '$83,359.80', '$17,750.00', '-78.71%', 'Sell Stop')
+StopsMap: (11, 'BTC', 'Live', '2026-10-22 02:11:15 UTC', '$83,359.80', '$18,050.00', '-78.35%', 'Sell Stop')
+StopsMap: (12, 'BTC', 'Live', '2026-10-22 02:11:15 UTC', '$83,359.80', '$18,850.00', '-77.39%', 'Sell Stop')
+StopsMap: (13, 'BTC', 'Live', '2026-10-22 02:11:15 UTC', '$83,359.80', '$18,950.00', '-77.27%', 'Sell Stop')
+StopsMap: (14, 'BTC', 'Live', '2026-10-22 02:11:15 UTC', '$83,359.80', '$19,950.00', '-76.07%', 'Sell Stop')
+
+=== ORDERBOOK (SHEET 28 / 17_Orderbook) ===
+OB: ('Sr.No', 'Data Layer', 'Asset Class', 'Asset', 'Side', 'Price ($)', 'Size (Units)', 'Notional (USD)')
+OB: (1, 'L2_AGGREGATED', 'CRYPTO', 'BTC', 'ASK', '$83,276.00', '1.7970 BTC', '$149,645.31')
+OB: (2, 'L2_AGGREGATED', 'CRYPTO', 'BTC', 'ASK', '$83,275.00', '9.3927 BTC', '$782,178.76')
+OB: (3, 'L2_AGGREGATED', 'CRYPTO', 'BTC', 'ASK', '$83,274.00', '4.4808 BTC', '$373,133.31')
+OB: (4, 'L2_AGGREGATED', 'CRYPTO', 'BTC', 'ASK', '$83,273.00', '1.8830 BTC', '$156,803.06')
+OB: (5, 'L2_AGGREGATED', 'CRYPTO', 'BTC', 'ASK', '$83,272.00', '0.4949 BTC', '$41,214.64')
+OB: (6, 'L2_AGGREGATED', 'CRYPTO', 'BTC', 'ASK', '$83,271.00', '2.0345 BTC', '$169,413.18')
+OB: (7, 'L2_AGGREGATED', 'CRYPTO', 'BTC', 'ASK', '$83,270.00', '0.0900 BTC', '$7,494.30')
+OB: (8, 'L2_AGGREGATED', 'CRYPTO', 'BTC', 'ASK', '$83,269.00', '8.4479 BTC', '$703,449.85')
+OB: (9, 'L2_AGGREGATED', 'CRYPTO', 'BTC', 'ASK', '$83,268.00', '0.0923 BTC', '$7,683.14')
+OB: (10, 'L2_AGGREGATED', 'CRYPTO', 'BTC', 'ASK', '$83,267.00', '0.2849 BTC', '$23,722.77')
+OB: (11, 'L2_AGGREGATED', 'CRYPTO', 'BTC', 'ASK', '$83,266.00', '0.3015 BTC', '$25,102.20')
+OB: (12, 'L2_AGGREGATED', 'CRYPTO', 'BTC', 'ASK', '$83,265.00', '0.0049 BTC', '$408.83')
+OB: (13, 'L2_AGGREGATED', 'CRYPTO', 'BTC', 'ASK', '$83,264.00', '1.9306 BTC', '$160,753.64')
+OB: (14, 'L2_AGGREGATED', 'CRYPTO', 'BTC', 'ASK', '$83,263.00', '0.2194 BTC', '$18,264.57')
+
+=== CVD (SHEET 29 / 18_CVD) ===
+CVD: ('Timestamp (UTC)', 'Asset Class', 'Symbol', 'Market Pair', 'Data Source', 'Timeframe', 'Open Price', 'High Price')
+CVD: ('2026-10-22 01:35:00', 'COMMODITIES', 'WTI_OIL', 'USWTI.p', 'MT5 Interbank', '5m', 98.961, 98.976)
+CVD: ('2026-10-22 01:35:00', 'CRYPTO', 'APT', 'APTUSDT', 'Binance Futures', '5m', 0.8324, 0.8326)
+CVD: ('2026-10-22 01:35:00', 'CRYPTO', 'BCH', 'BCHUSDT', 'Binance Futures', '5m', 285.52, 285.55)
+CVD: ('2026-10-22 01:35:00', 'CRYPTO', 'DOT', 'DOTUSDT', 'Binance Futures', '5m', 1.1507, 1.151)
+CVD: ('2026-10-22 01:35:00', 'CRYPTO', 'NEAR', 'NEARUSDT', 'Binance Futures', '5m', 5.271, 5.274)
+CVD: ('2026-10-22 01:35:00', 'CRYPTO', 'OP', 'OPUSDT', 'Binance Futures', '5m', 0.12932, 0.12934)
+CVD: ('2026-10-22 01:35:00', 'CRYPTO', 'SUI', 'SUIUSDT', 'Binance Futures', '5m', 1.0292, 1.0294)
+CVD: ('2026-10-22 01:35:00', 'FOREX', 'AUDUSD', 'AUDUSD.pi', 'MT5 Interbank', '5m', 0.70216, 0.70221)
+CVD: ('2026-10-22 01:35:00', 'FOREX', 'EURUSD', 'EURUSD.pi', 'MT5 Interbank', '5m', 1.123, 1.12306)
+CVD: ('2026-10-22 01:35:00', 'FOREX', 'GBPUSD', 'GBPUSD.pi', 'MT5 Interbank', '5m', 1.33904, 1.33906)
+CVD: ('2026-10-22 01:35:00', 'FOREX', 'USDJPY', 'USDJPY.pi', 'MT5 Interbank', '5m', 158.153, 158.16)
+CVD: ('2026-10-22 01:35:00', 'INDICES', 'NAS100', 'NAS100.p', 'MT5 Interbank', '5m', 29667.96, 29676.67)
+CVD: ('2026-10-22 01:35:00', 'INDICES', 'SP500', 'SP500.p', 'MT5 Interbank', '5m', 7733.61, 7734.45)
+CVD: ('2026-10-22 01:35:00', 'INDICES', 'US2000', 'US2000.p', 'MT5 Interbank', '5m', 2770.98, 2771.27)
+
+=== CALENDAR ===
+Calendar: ('Sr.No', 'Date', 'Time', 'Currency', 'Impact Tier', 'Economic Event Title', 'Actual', 'Forecast')
+Calendar: (1, 'Sun Oct 18', '5:30am', 'AUD', 'Low Impact', 'RBA Assist Gov Kent Speaks', None, None)
+Calendar: (2, 'Sun Oct 18', 'Day 7', 'All', 'Low Impact', 'IMF Meetings', None, None)
+Calendar: (3, 'Mon Oct 19', '3:00am', 'NZD', 'Low Impact', 'BusinessNZ Services Index', '50.9', None)
+Calendar: (4, 'Mon Oct 19', '3:15am', 'NZD', 'Low Impact', 'Trade Balance', '-1971M', '-775M')
+Calendar: (5, 'Mon Oct 19', '4:31am', 'GBP', 'Low Impact', 'Rightmove HPI m/m', '1.0%', None)
+Calendar: (6, 'Mon Oct 19', '4:35am', 'AUD', 'Low Impact', 'RBA Assist Gov Kent Speaks', None, None)
+Calendar: (7, 'Mon Oct 19', '7:00am', 'CNY', 'Low Impact', 'New Home Prices m/m', '-0.14%', None)
+Calendar: (8, 'Mon Oct 19', '7:30am', 'CNY', 'Low Impact', 'Fixed Asset Investment ytd/y', '-7.2%', '-7.3%')
+Calendar: (9, 'Mon Oct 19', '7:30am', 'CNY', 'Low Impact', 'GDP q/y', '4.5%', '4.4%')
+Calendar: (10, 'Mon Oct 19', '7:30am', 'CNY', 'Low Impact', 'Industrial Production y/y', '5.5%', '5.4%')
+Calendar: (11, 'Mon Oct 19', '7:30am', 'CNY', 'Low Impact', 'NBS Press Conference', None, None)
+Calendar: (12, 'Mon Oct 19', '7:30am', 'CNY', 'Low Impact', 'Retail Sales y/y', '1.1%', '0.5%')
+Calendar: (13, 'Mon Oct 19', '7:30am', 'CNY', 'Low Impact', 'Unemployment Rate', '5.2%', '5.3%')
+Calendar: (14, 'Mon Oct 19', '10:00am', 'JPY', 'Low Impact', 'Tertiary Industry Activity m/m', '-0.1%', '-0.3%')
