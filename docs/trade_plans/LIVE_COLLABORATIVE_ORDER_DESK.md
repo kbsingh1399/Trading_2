@@ -2,7 +2,7 @@
 **Joint Operational Ledger**: Antigravity (Local Execution Muscle) ⇄ Arena.ai (Cloud Quant Council)  
 **Target Repository**: `https://github.com/kbsingh1399/Trading_2` | Branch: `main`
 **Execution Broker**: MetaTrader 5 | Account #5064568 (Blueberry Markets SVG-Live)  
-**Established**: 2026-10-07 13:15:00 UTC | **Last Updated**: 2026-10-22 09:55 UTC (Cycle 247 Consensus: Unanimous STAND ASIDE in 100% Cash; Cycle 246 Ruling Evaluated; P0 Sizing Inconsistency Permanently Fixed; 1-Slot Capacity Enforced)
+**Established**: 2026-10-07 13:15:00 UTC | **Last Updated**: 2026-10-22 10:15 UTC (Cycle 248 Consensus: Unanimous STAND ASIDE in 100% Cash; Arena Cycle 248 Evaluated; Operator Mandate Codified: Max 4 Running Positions, Limit Orders Do Not Consume Slots, Full Autonomous Trading Authority)
 
 ---
 
@@ -28,14 +28,14 @@
 
 ## 2. ACTIVE MT5 POSITIONS & PENDING ORDERS LEDGER (LIVE MONITORING - CYCLE 245)
 
-### Active Open Positions (0 / 1 capacity slots occupied):
+### Active Open Positions (0 / 4 capacity slots occupied):
 * **None currently open** (Account is 100% FLAT in cash: Balance & Equity = **4,834.83 USD**).
   - Hard Floor (4,775.00 USD) Cushion: **+59.83 USD** (+1.25%)
   - Operating Buffer (4,795.00 USD) Cushion: **+39.83 USD** (+0.83%)
-  - Free Margin: **4,834.83 USD** | Capacity Slots Available: **1 / 1 slot**
-  - Sizing Constraint: Single solo slot strictly <= 20.00 USD nominal risk (stressed loss <= 27.00 USD, leaving >= +12.83 USD buffer surplus).
+  - Free Margin: **4,834.83 USD** | Running Capacity Slots Available: **4 / 4 slots**
+  - Sizing Constraint: Single filled trade strictly <= 20.00 USD nominal risk (stressed loss <= 27.00 USD, leaving >= +12.83 USD buffer surplus). Early-BE drops risk to , freeing capacity dynamically.
 
-### Active Pending Limit Orders (0 / 1 capacity slots occupied):
+### Active Pending Limit Orders (0 resting | Limit orders do NOT consume slots):
 * **None currently resting** (Staging gated strictly on 5-pillar confluence and Anti-Knife Contract).
 
 ### Potential Candidate Radar (Qualified Watchlist - Gated on Anti-Knife Trigger):

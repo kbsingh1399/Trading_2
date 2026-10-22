@@ -133,13 +133,16 @@ trigger: always_on
       * **PHASE 3 — Antigravity Wake-Up to Check Arena.ai & Z.ai Chat Output (2 Mandatory Steps)**:
         1. **Tri-Council Logical & Quantitative Reasoning Verification**: Compare **Arena.ai + Z.ai Chat + Antigravity's independent telemetry audit** across all 3 mandates (New Opportunities, Active Running Trades, Unfilled Limit Orders) against live MT5 and `docs/telemetry/live_snapshot_latest.json` (`min_price`/`max_price` boundaries, `>= 180s` whale persistence, 15m/30m CVD windows, and `mt5.order_calc_profit` cash risk).
         2. **Same-Cycle Part-B Re-Prompt on Any Flaw (`Cycle NB`)**: If ANY logic does not match live telemetry or if there is ANY flaw in council reasoning or levels, immediately re-prompt as **Part 2 of the exact same cycle (`Cycle NB`)** (`python Terminal/dispatch_comprehensive_wake_up_prompt.py --reprompt-file ...`) and wait via `arena_completion_daemon.py --wait` before executing on MT5.
-      * **Position Capacity Policy**:
-        - Up to 4 concurrent tickets across orthogonal asset clusters provided total joint worst-case stopout risk unconditionally defends the 4,775.00 USD hard floor and 4,795.00 USD operating buffer (>= 20.00 USD cushion at all times).
+      * **Position Capacity & Slot Accounting Policy (STRICT OPERATOR DIRECTIVE - OCT 22 2026)**:
+        - **Max 4 Running Filled Positions**: Up to 4 maximum running (filled) positions allowed concurrently across orthogonal asset clusters.
+        - **Limit Order Slot Rule**: A slot is considered filled ONLY when an order is filled into an active position. Pending/resting limit orders do NOT consume capacity slots!
+        - **Full Autonomous Trading Authority**: Antigravity has full autonomous rights to punch, delete, cancel, or modify orders and trailing stops in MetaTrader 5 without seeking manual operator approval.
+        - **Solvency Defense & Dynamic Capacity**: Total joint worst-case stopout risk across active running positions unconditionally defends the 4,775.00 USD hard floor and 4,795.00 USD operating buffer. When positions reach Early-BE (+0.75R to +0.80R), stop is ratcheted to Entry + 0.10R0, dropping cash risk to 0.00 USD and instantly freeing risk capacity for subsequent fills.
     - Connects directly via native IPC to MetaTrader 5 Account 5064568 (Blueberry Markets).
-    - **Active Positions & Pending Orders (Live State — 0 Active Open Positions | 0 Resting Limit Orders | 1 Capacity Slot Max)**:
+    - **Active Positions & Pending Orders (Live State — 0 Active Open Positions | 0 Resting Limit Orders | 4 Available Running Slots (Limit orders do not consume slots))**:
        * Current Status: **0 Active Positions | 0 Resting Limit Orders | Balance: 4,834.83 USD | Equity: 4,834.83 USD | Margin: 0.00 USD | Free Margin: 4,834.83 USD**.
        * 100% Flat Cash: Capital strictly preserved. All prior positions realized.
-       * Concurrency Capacity Policy: Under current +39.83 USD buffer cushion, maximum concurrent exposure is strictly **1 Slot Max** at 15.00–20.00 USD nominal risk (stressed loss <= 27.00 USD, guaranteeing >= +12.83 USD buffer surplus). Two concurrent positions are mathematically BLOCKED.
+        * Concurrency Capacity Policy (Operator Mandate Oct 22 2026): Max 4 concurrent running filled positions. Resting limit orders do not consume slots. Live fills are sized at 15.00–20.00 USD nominal risk each; when any position reaches Early-BE (+0.75R to +0.80R), its stop is ratcheted to Entry + 0.10R0, dropping risk to 0 USD and preserving solvency buffer for subsequent entries.
        * Staged Resting Limit Orders: 0 (Standing aside; market marks remain in mid-air above sweep targets; pre-staging prohibited).
        * G-1 Hard Floor Defense: Hard Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Cushion: **+59.83 USD above hard floor (+39.83 USD above operating buffer)**.
        * Stressed Single-Ticket Simulation:
