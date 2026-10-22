@@ -234,24 +234,24 @@ trigger: always_on
 - **Pre-Order Gating**: Must verify all 7 sub-gates (Price Action geometry, CVD divergence, 20-level L2 depth, L3 whales >= 150k USD with >= 180s persistence, liquidation FFR, macro blackouts, covariance room vs 4,775.00 USD floor).
 - **Smart SL & TP Adjustments**: Deterministic ratchets (Phase 0 BE @ +0.80R, Phase 1 Profit Lock @ +1.50R, Phase 2 Trailing Lock @ +2.00R). TP extensions into orderbook liquidity vacuums require simultaneous Phase 2 SL profit lock.
 
-## 7. Live Account State & Active Orderflow Invariants (Cycle 238 Verified)
+## 7. Live Account State & Active Orderflow Invariants (Cycle 249 Verified)
 - **MT5 Account State (Blueberry Markets Account #5064568)**:
   * Balance: **4,834.83 USD**
   * Live Equity: **4,834.83 USD** (100% Flat in Cash, Margin: 0.00 USD)
   * Free Margin: **4,834.83 USD**
   * Hard Floor (4,775.00 USD) Cushion: **+59.83 USD (+1.25%)**
   * Operating Buffer (4,795.00 USD) Cushion: **+39.83 USD (+0.83%)**
-  * Remaining Distance to 5,500.00 USD Goal: **+665.17 USD** (~43.4 hours remaining to Oct 23, 23:59 UTC)
+  * Remaining Distance to 5,500.00 USD Goal: **+665.17 USD** (~37.2 hours remaining to Oct 23, 23:59 UTC)
 
 - **Active Market Positions (0 of 4 slots filled, 4 slots available)**:
   * 100% Flat in Cash. Zero active market positions.
-  * Closed Ticket #19174858 (SOLUSD.p BUY 0.10 lot @ 106.80): Closed at planned SL 105.10 USD (Exit Deal #17368131 at 02:27:52 UTC). Realized loss: -.00 USD. Zero slippage.
-  * Solvency Cushion: Stressed Equity post-loss under Scenario C (2 positions @ 10+10 USD risk) = **4,805.83 USD** (**+10.83 USD above 4,795.00 USD Operating Buffer**, **+30.83 USD above 4,775.00 USD Hard Floor**).
+  * Solvency Cushion: Stressed Equity post-loss under Scenario B (1 position @ 20.00 USD nominal risk) = **4,807.83 USD** (**+12.83 USD above 4,795.00 USD Operating Buffer**, **+32.83 USD above 4,775.00 USD Hard Floor**).
+  * Capacity Policy: Max 4 running filled positions authorized. Limit orders do NOT consume slots. Full autonomous trading rights active.
 
-- **Active Pending Limit Orders (0 of 4 slots staged)**:
-  * None resting. All 4 capacity slots freely available for high-conviction orthogonal candidates.
+- **Active Pending Limit Orders (0 resting | Limit orders do NOT consume slots)**:
+  * None resting. Gated strictly on 5-pillar confluence and Anti-Knife Contract.
 
-- **Potential Candidate Radar (Cycle 238 Calibrated)**:
-  1. **BTCUSD.pi (Pullback/Stop-Sweep Long)**: Entry 82,180.0 | SL 81,580.0 (600 pts) | TP 82,900.0 (720 pts) | Lots 0.01–0.02 (.00–.00 risk) | Pre-conditions: sweep of [82,100, 82,200] stops + CVD absorption on 82,190.0 wall (.68M).
-  2. **XAUUSD.pi (Extreme Mean Reversion Long)**: Entry 4,080.50 | SL 4,074.50 (.00 pts) | TP 4,095.00 (.50 pts) | Lots 0.01–0.02 (.00–.00 risk) | Pre-conditions: flush into 4,080.00–4,082.50 USD bunker (.94M / 41.9k s persist) + tape absorption prints.
-  3. **SOLUSD.p (Structural Shelf Long)**: Entry 103.85 | SL 102.85 (.00 pt) | TP 106.20 | Lots 0.10 (.00 risk) | Pre-conditions: flush of [103.0–105.0] stops + CVD turn positive on 103.75 wall (.83M).
+- **Potential Candidate Radar (Cycle 249 Calibrated — Sheet 33 Auction Structure Integrated)**:
+  1. **BTCUSD.pi (Institutional Demand Sweep & Whale Bunker Retest)**: Entry 81,640.0 | SL 81,240.0 (400 pts) | TP 82,640.0 (1,000 pts / +2.5R0) | Lot 0.03 (12.00 USD risk | Stressed: 17.00 USD) | Pre-conditions: flush of 22.77M USD sell-stop cascade at [81,650–81,850 USD] + 15m CVD absorption flip + 81,637–81,670 USD wall (7.53M USD) persistence.
+  2. **XAUUSD.pi (Deep Fortress Whale Bunker Rebound)**: Entry 4,081.00 | SL 4,074.50 (6.50 pts) | TP 4,097.25 (16.25 pts / +2.5R0) | Lot 0.02 (13.00 USD risk | Stressed: 18.25 USD) | Pre-conditions: test into 4,080.00–4,081.00 USD bunker (0.941M USD / 475 oz, persist >12h) + tick CVD flip to buyer absorption.
+  3. **SOLUSD.p (Deep Structural Demand Shelf)**: Entry 103.80 | SL 102.30 (1.50 pts) | TP 107.55 (3.75 pts / +2.5R0) | Lot 0.10 (15.00 USD risk | Stressed: 20.75 USD) | Pre-conditions: flush of retail stops below 104.00 USD + 15m CVD delta deceleration (>30%) + 103.75 USD wall (0.83M USD) persistence.
