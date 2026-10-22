@@ -176,16 +176,9 @@ def compute_asset_indicators(bars: List[Dict[str, Any]], asset: str, symbol: str
     base_ind = CandleIndicatorEngine.compute_indicators(bars)
     px = closes[-1]
 
-    # Fast EMA 9 and EMA 100
-    def calc_ema(arr: np.ndarray, span: int) -> float:
-        alpha = 2.0 / (span + 1.0)
-        e = arr[0]
-        for v in arr[1:]:
-            e = alpha * v + (1.0 - alpha) * e
-        return float(e)
-
-    ema_9 = calc_ema(closes, 9) if len(closes) >= 9 else None
-    ema_100 = calc_ema(closes, 100) if len(closes) >= 100 else None
+    # Fast EMA 9 and EMA 100 from optimized CandleIndicatorEngine ribbon
+    ema_9 = base_ind.get("ema_9")
+    ema_100 = base_ind.get("ema_100")
 
     # Bollinger Bands (20, 2.0)
     sma_20 = float(np.mean(closes[-20:]))
