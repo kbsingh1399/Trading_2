@@ -81,29 +81,26 @@ flowchart TD
    - Operating Buffer (4,795.00 USD): Equity - 4,795.00 USD (+20.00 USD defense cushion).
    - Worst-Case Stressed Post-Loss Equity: `Equity - sum(Risk_i * 1.25 + 2.00) >= 4,795.00 USD`.
 
-### STEP 3: HEXAD-DAEMON SENTRY AUDIT & AUTO-RESTART
-Verify with `manage_task(Action='list')` that all persistent background processes are active. If any daemon is missing, immediately relaunch it:
+### STEP 3: TRI-DAEMON SENTRY AUDIT & AUTO-RESTART (NO TELEMETRY DAEMON)
+Verify with `manage_task(Action='list')` that EXACTLY the 3 authorized persistent background processes are active. Any extra daemons (such as legacy telemetry git daemon) are strictly unauthorized and must be killed immediately. If any of the 3 required daemons is missing, immediately relaunch it:
 
-1. **Daemon 1 (Git Mirror Daemon)**:
-   - Command: `python Terminal/Data_Factory/autonomous_telemetry_git_daemon.py`
+1. **Daemon 1 (Continuous 32-Sheet Excel Pipeline Daemon)**:
+   - Command: `python Data/Excel_Modules/Run_Parallel_Pipeline.py --continuous --gap 300 --workers 1`
    - Setting: `IsDaemon=true`, `WaitMsBeforeAsync=500`
-   - Purpose: Mirrors workspace and logs to GitHub `origin/main` every 60s.
+   - Purpose: Cycles full pipeline continuously with an exact 5-minute (300s) cooldown gap between cycles. Maintains fresh orderbook, CVD, liq maps, and technical data in `Data/DataBase_Trading.xlsx` with zero race conditions (workers=1 atomic safety).
+
 2. **Daemon 2 (20-Minute Cron Sentry)**:
    - Tool: `schedule`
    - Setting: `CronExpression="0,20,40 * * * *"`, `IsDaemon=true`
    - Purpose: Autonomous wake-up at 20th, 40th, and 60th/00th minute.
+
 3. **Daemon 3 (Arena Completion Daemon)**:
    - Command: `python Terminal/arena_completion_daemon.py --daemon`
    - Setting: `IsDaemon=true`, `WaitMsBeforeAsync=500`
    - Purpose: Monitors Chrome CDP (port 9222) and auto-harvests Arena responses to `docs/trade_plans/ARENA_LATEST_RAW.md`.
-4. **Daemon 4 (Continuous 32-Sheet Excel Pipeline Daemon)**:
-   - Command: `python Terminal/run_pipeline_continuous_daemon.py`
-   - Setting: `IsDaemon=true`, `WaitMsBeforeAsync=500`
-   - Purpose: Cycles every 300s to maintain fresh orderbook, CVD, liq maps, and technical data in `Data/DataBase_Trading.xlsx`.
-5. **Daemon 5 (AST Knowledge Graph Watcher)**:
-   - Command: `python Terminal/run_graphify_watcher.py`
-   - Setting: `IsDaemon=true`, `WaitMsBeforeAsync=500`
-   - Purpose: Monitors codebase AST semantic nodes.
+
+> ⚠️ **TELEMETRY GIT DAEMON RETIRED / DISABLED**:
+> The legacy `autonomous_telemetry_git_daemon.py` is permanently DEPRECATED and MUST NOT BE RUN. It spams git commits every 60s and consumes unnecessary CPU. Git synchronization is executed manually upon milestones or cycle completions only. Zero telemetry daemons allowed.
 
 ### STEP 4: MASTER 32-SHEET EXCEL INTEGRITY GATE
 Verify that `Data/DataBase_Trading.xlsx` is fresh, uncorrupted, and has zero formula errors:
@@ -111,22 +108,27 @@ Verify that `Data/DataBase_Trading.xlsx` is fresh, uncorrupted, and has zero for
 - Check that all 32 sheets load cleanly via `openpyxl`.
 - Attest that formula errors (`#REF!`, `#DIV/0!`, `#N/A`, `#VALUE!`) count = 0 across all 1.6M+ cells.
 
-### STEP 5: MANDATORY 4-SUBAGENT FLEET & ARENA.AI DISPATCH
-On EVERY autonomous cycle, Antigravity is STRICTLY FORBIDDEN from operating in a single-agent vacuum. Simultaneously dispatch:
-1. **Subagent 1: Orderflow Analyst** (`invoke_subagent`):
+### STEP 5: MANDATORY 4-SUBAGENT FLEET & ARENA.AI DISPATCH (IMMEDIATE TOOL CALLS)
+On EVERY autonomous wake-up, the agent is STRICTLY FORBIDDEN from generating narrative prose or doing manual checks before dispatching the subagents. The agent MUST FIRST call `invoke_subagent` for all 4 subagents in parallel (using `Model='flash'` to minimize token consumption):
+
+1. **Subagent 1: Orderflow Analyst** (`invoke_subagent(TypeName='self', Role='Orderflow Analyst', Model='flash', ...)`):
    - Studies `Data/DataBase_Trading.xlsx` row-by-row across Sheets 10–18, 22–26.
    - Evaluates spread gates, 5-pillar confluence, L2/L3 orderbook depth, resting whale bunkers (BTC 82,190 USD, Gold 4,080 USD), and CVD divergences.
    - Maintains the concrete Potential Candidate Radar with checkable pre-condition trigger checklists `[ ]`.
-2. **Subagent 2: Position Manager** (`invoke_subagent`):
+
+2. **Subagent 2: Position Manager** (`invoke_subagent(TypeName='self', Role='Position Manager', Model='flash', ...)`):
    - Audits MT5 telemetry, verifies open position ratchets (Early-BE at +0.75R to +0.80R, Phase 0 at +1.25R, Phase 1 at +1.65R).
    - Computes stressed capital capacity across Scenarios A, B, C (1–2 positions at $10.00–$14.50 nominal risk).
-3. **Subagent 3: Macro Risk Analyst** (`invoke_subagent`):
+
+3. **Subagent 3: Macro Risk Analyst** (`invoke_subagent(TypeName='self', Role='Macro Risk Analyst', Model='flash', ...)`):
    - Audits Sheet 28 (`19_Calendar`) and `Data/macro_calendar.json` for high-impact Tier-1 events in the next 4h.
    - Audits institutional ETF spot inflows/redemptions and CEX netflows.
    - Enforces the 21:15–22:30 UTC interbank FX rollover blackout.
-4. **Subagent 4: Excel Data Quality Auditor** (`invoke_subagent`):
+
+4. **Subagent 4: Excel Data Quality Auditor** (`invoke_subagent(TypeName='self', Role='Excel Data Quality Auditor', Model='flash', ...)`):
    - Audits all 32 sheets for freshness, row counts, and zero formula errors.
-   - Audits continuous pipeline daemon PID and rest interval cycling.
+   - Audits continuous pipeline daemon (`task-104159`) and rest interval cycling (5-minute gap).
+
 5. **Arena.ai Surgical Red-Team Dispatch**:
    - Run `python Terminal/dispatch_arena_redteam.py` to inject the standardized surgical red-team prompt into Arena.ai via Chrome CDP on port 9222.
    - Launch reactive watcher `python Terminal/arena_completion_daemon.py --wait` (`WaitMsBeforeAsync=500`).

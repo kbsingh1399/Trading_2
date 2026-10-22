@@ -167,20 +167,54 @@ def run_continuous_daemon(api_interval: int = 60, cdp_interval: int = 300, worke
         log.info("[Daemon] All threads gracefully shut down.")
 
 
+def run_continuous_cycles(gap_seconds: int = 300, workers: int = 1) -> None:
+    """
+    Runs full pipeline cycles continuously with an exact gap of gap_seconds (default 300s = 5 min)
+    after completion before starting the next cycle.
+    Guarantees:
+    - 0 race conditions / 0 zip corruption by using sequential execution (workers=1)
+    - Full 32-sheet Excel refresh
+    - Strict 5-minute cooldown between cycles
+    """
+    log.info("=" * 80)
+    log.info(f"   STARTING CONTINUOUS PIPELINE DAEMON: GAP = {gap_seconds}s ({gap_seconds/60:.1f} min), WORKERS = {workers}")
+    log.info("=" * 80)
+    cycle = 1
+    while True:
+        try:
+            log.info(f"[ContinuousPipeline] >>> Starting Cycle #{cycle} at {datetime.datetime.now(datetime.timezone.utc).isoformat()}")
+            summary = run_full_parallel_cycle(workers=workers)
+            log.info(f"[ContinuousPipeline] <<< Cycle #{cycle} completed in {summary['total_time']:.2f}s.")
+        except Exception as e:
+            log.error(f"[ContinuousPipeline] Exception in Cycle #{cycle}: {e}")
+
+        log.info(f"[ContinuousPipeline] Cooling down for {gap_seconds} seconds ({gap_seconds/60:.1f} minutes) before Cycle #{cycle+1}...")
+        try:
+            time.sleep(gap_seconds)
+        except KeyboardInterrupt:
+            log.info("[ContinuousPipeline] Shutdown received during sleep. Exiting.")
+            break
+        cycle += 1
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Master Parallel Pipeline Orchestrator")
     parser.add_argument("--run-once", action="store_true", help="Execute a single full parallel cycle and exit")
+    parser.add_argument("--continuous", action="store_true", help="Run full pipeline continuously with 5-minute gap between cycles")
+    parser.add_argument("--gap", type=int, default=300, help="Gap in seconds between cycles in continuous mode (default: 300 = 5 min)")
     parser.add_argument("--daemon", action="store_true", help="Run continuous dual-cadence background daemon")
     parser.add_argument("--api-only", action="store_true", help="Run only parallel API harvesters")
     parser.add_argument("--cdp-only", action="store_true", help="Run only Edge CDP queue worker")
     parser.add_argument("--commit-only", action="store_true", help="Run only Excel batch committer")
-    parser.add_argument("--workers", type=int, default=6, help="Worker threads for API harvest (default: 6)")
+    parser.add_argument("--workers", type=int, default=1, help="Worker threads for API harvest (default: 1 for atomic safety)")
     parser.add_argument("--api-interval", type=int, default=60, help="API loop interval in seconds (default: 60)")
     parser.add_argument("--cdp-interval", type=int, default=300, help="CDP loop interval in seconds (default: 300)")
 
     args = parser.parse_args()
 
-    if args.api_only:
+    if args.continuous:
+        run_continuous_cycles(gap_seconds=args.gap, workers=args.workers)
+    elif args.api_only:
         execute_parallel_api_harvest(max_workers=args.workers)
     elif args.cdp_only:
         run_cdp_queue_cycle()
