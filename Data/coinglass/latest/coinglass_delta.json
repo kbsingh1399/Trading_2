@@ -1,12 +1,12 @@
 {
   "stream": "coinglass",
-  "curr_timestamp_utc": "2026-10-22T04:57:33.771983+00:00",
-  "prev_timestamp_utc": "2026-10-22T04:52:40.955284+00:00",
+  "curr_timestamp_utc": "2026-10-22T05:02:34.205383+00:00",
+  "prev_timestamp_utc": "2026-10-22T04:57:33.771983+00:00",
   "time_gap_minutes": 0.0,
   "changes": {
     "coinglass": {
-      "whales_entered_count": 0,
-      "whales_exited_count": 32
+      "whales_entered_count": 32,
+      "whales_exited_count": 0
     }
   }
 }
