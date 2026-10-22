@@ -60969,3 +60969,40 @@ You may create 12_Hyperdash and 13_Hyperliquid where you dump all intelligenve a
      - Inviolable Hard Floor: 4,775.00 USD (Live Cushion: +59.83 USD).
      - Operating Buffer Floor: 4,795.00 USD (Live Cushion: +39.83 USD).
 
+## Turn Record: 2026-10-22 17:00 UTC (Cycle 261 - Autonomous Wakeup Checklist Upgrade & Other_MD Organization)
+- **User Directives**:
+  1. In `AUTONOMOUS_WAKEUP_CHECKLIST.md`: Arena.ai must actively find potential candidates using all 3 quantitative personas (Orderflow, Position, Macro — excluding Excel checker), not just act as a destructive red team.
+  2. Subagents must strictly follow every line and read/follow every referenced document in `STANDARDIZED_TRADING_DECISION_CHAIN.md`.
+  3. Fluid 4-slot capacity: Remove rigid predetermined slot mapping (Slot 1 Indices, Slot 2 Crypto, etc.); allow ANY fluid combination of qualified candidates across all 156 assets.
+  4. Adverse stop clusters & liquidation sweeps: Mandate checking BOTH Hyperdash stop/liquidation maps AND CoinGlass liquidation heatmaps, streams, and exchange surfaces.
+  5. Friction gate: Replace narrow arbitrary bps gates with dynamic friction budgeting (`spread points / tp distance points <= 15%`); authorize scaling nominal risk up to 25.00–35.00 USD for pristine setups.
+  6. Mandate that referenced documents are physically followed line-by-line, not merely read.
+  7. In `Data/Manditory/`: Keep ONLY the active production governance files actively referenced by the desk, create subfolder `Data/Manditory/Other_MD/`, and move auxiliary/historical specifications there.
+- **Actions & Results**:
+  1. **Autonomous Wake-Up Checklist Rewritten & Synchronized**:
+     - Updated `AUTONOMOUS_WAKEUP_CHECKLIST.md` across `Data/Manditory/`, `docs/Mandatory_Rules/`, and `docs/specs/` implementing all 6 operator recommendations.
+  2. **Arena Standard Prompt Template Upgraded**:
+     - Rewrote `ARENA_STANDARD_PROMPT_TEMPLATE.md` to instruct Arena.ai to act as a Co-Equal Quantitative Strategist discovering affirmative candidate setups across all 156 instruments using its 3 internal quantitative personas. Mirrored across `Data/Manditory/`, `docs/Mandatory_Rules/`, `docs/specs/`, and `docs/prompts/`.
+  3. **Clean Folder Architecture (`Other_MD/`)**:
+     - Created `Data/Manditory/Other_MD/` and `docs/Mandatory_Rules/Other_MD/`.
+     - Retained strictly the 12 active canonical production files (+ `README.md`) directly in `Data/Manditory/`:
+       * `STANDARDIZED_TRADING_DECISION_CHAIN.md`
+       * `AUTONOMOUS_WAKEUP_CHECKLIST.md`
+       * `ANTIGRAVITY_ARENA_THINKING_CHAIN_COUNCIL_PROTOCOL.md`
+       * `SUBAGENT_PROMPT_TEMPLATES.md`
+       * `ARENA_STANDARD_PROMPT_TEMPLATE.md`
+       * `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md`
+       * `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md`
+       * `OPERATOR_ISSUES_AND_RESOLUTIONS_CHECKLIST.md`
+       * `ACCOUNT_SWITCH_BOOTSTRAP_PROTOCOL.md`
+       * `CONTINUOUS_KAIZEN_SELF_IMPROVEMENT_PROTOCOL.md`
+       * `GOAL.md`
+       * `PASS_BLUEBERRY_PHASE_1_BY_OCT_23_2026.md`
+       * `README.md`
+     - Moved 15 auxiliary/historical specifications into `Data/Manditory/Other_MD/`.
+     - Committed to Git branch `main` (commit `6a6dbe1dd`).
+  4. **Live Account Solvency**:
+     - Realized Balance: 4,834.83 USD | Floating Equity: 4,834.83 USD | Free Margin: 4,834.83 USD (100% Flat Cash Defense).
+     - Live Cushions: Hard Floor (+59.83 USD above 4,775 USD) | Buffer (+39.83 USD above 4,795 USD).
+
+
