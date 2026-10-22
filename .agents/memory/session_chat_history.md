@@ -60927,3 +60927,45 @@ You may create 12_Hyperdash and 13_Hyperliquid where you dump all intelligenve a
      - Excel Data Quality Auditor: 33/33 sheets verified, modified <1m ago, Sheet 33 36/36 headers verified with 0 None values.
   5. **Clean Socket Hygiene**: Cleanly killed all 4 subagents via manage_subagents(kill_all).
 - **Capital Defense**: 4,834.83 USD 100% Flat Cash strictly defended.
+
+## Turn Record: 2026-10-22 16:45 UTC (Cycle 260 - Complete Mandatory Folder Consolidation & Synchronization)
+- **User Directives**: Consolidate all standard checklists, wakeup checklists, subagent prompt templates, trade decision playbooks, losing trade autopsies, orderflow checklists, and other essential trading decision markdown files into the `Manditory` folder (`Data/Manditory/`).
+- **Actions & Results**:
+  1. **Complete Mandatory Governance Consolidation**:
+     - Identified 28 canonical governance, decision chain, checklist, and playbook documents across the workspace.
+     - Migrated missing core files into `Data/Manditory/`:
+       * `TRADE_DECISION_PLAYBOOK.md` (Living Telemetry Trade Decision Playbook & 6-Pillar Confluence Framework, 47.6 KB).
+       * `LOSING_TRADES_DEEP_FORENSIC_AUTOPSY.md` (Forensic Autopsy of 26 Losing Trades & Invariants A, B, C, 14.5 KB).
+       * `institutional_orderflow_live_checklist.md` (Microstructure live execution checklist, tick aggressor imbalance & CVD absorption, 12.5 KB).
+       * `COPILOT_STUDIO_AGENT_INSTRUCTIONS.md` (Copilot Studio agent instructions, 5.2 KB).
+       * `OX_ALPHA_63_DECISION_CHAIN_SPECIFICATION.md` (Ox Alpha decision chain specification, 6.5 KB).
+       * `ASTRA_OMNI_MICROSTRUCTURE_ARCHITECTURE.md` (Microstructure architecture, 11.8 KB).
+       * `coinglass-cdp-harvester.md` (CoinGlass CDP Harvester Spec, 12.7 KB).
+       * `COINGLASS_PER_ASSET_RECONCILIATION.md` (CoinGlass asset reconciliation, 2.8 KB).
+       * `liquidation-maxpain-pipeline.md` (Reconstructed liquidation pipeline, 5.9 KB).
+       * `ai-15m-candle-mt5-trader.md` (15m candle trader technical spec, 24.1 KB).
+       * `HOST_VERIFICATION_ATTESTATION.md` (Host verification attestation, 6.7 KB).
+       * `OMNI_Sentinel_Wake_Protocol.md` (Operational sentinel wake protocol, 5.7 KB).
+       * `OBSERVED_ONLY_DATA_POLICY.md` (Observed-only telemetry policy, 7.2 KB).
+       * `coinglass_data_dictionary.md` (CoinGlass data dictionary, 3.8 KB).
+       * `UNIVERSAL_AUTONOMOUS_TRADING_PROMPT.md` (Universal autonomous trading prompt, 9.7 KB).
+  2. **Triple-Directory 100% Byte-for-Byte Synchronization**:
+     - Mirrored all 28 canonical documents across `Data/Manditory/`, `docs/Mandatory_Rules/`, and `docs/specs/`.
+     - Verified exact count equality across all three directories (28 / 28 / 28 markdown files).
+  3. **Master Directory Index Updated (`README.md`)**:
+     - Rewrote `Data/Manditory/README.md` (and mirrored to `docs/Mandatory_Rules/README.md` and `docs/specs/README.md`) organizing all 28 documents into 6 logical functional categories:
+       * Category 1: Core Institutional SOPs & Trading Decision Chains (6 files)
+       * Category 2: Specialist Prompts & Multi-Agent Swarm Templates (4 files)
+       * Category 3: Forensic Autopsies, Risk Pitfalls & Real-World Questions (4 files)
+       * Category 4: Operations, Bootstrapping & Continuous Improvement (3 files)
+       * Category 5: Mission Goals & Capital Solvency Contracts (3 files)
+       * Category 6: Data Layer Architecture & Ingest Policies (7 files)
+       * Plus the Master Directory Index (`README.md`)
+  4. **Cycle 260 Subagent Swarm Harvest & Pruning**:
+     - Harvested Cycle 260 Orderflow Analyst report (33/33 sheets healthy, 0 formula errors, 62% institutional overhead sell skew on BTC with 126.81M USD ask walls vs 76.67M USD bid walls, 77.27M USD un-swept retail stop pool between 81,050 and 81,450 USD). Unanimous STAND ASIDE ratified.
+     - Pruned all 4 subagent sockets cleanly via `manage_subagents(kill_all)`.
+  5. **Live Account Financials**:
+     - Realized Balance: 4,834.83 USD | Floating Equity: 4,834.83 USD | Free Margin: 4,834.83 USD (100% Flat Cash Defense).
+     - Inviolable Hard Floor: 4,775.00 USD (Live Cushion: +59.83 USD).
+     - Operating Buffer Floor: 4,795.00 USD (Live Cushion: +39.83 USD).
+
