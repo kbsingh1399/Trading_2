@@ -17,40 +17,42 @@
 | **Account Login** | **#5064568** | Blueberry Markets MT5 Live Server |
 | **Initial Starting Balance** | 5,000.00 USD | Baseline evaluation capital |
 | **Profit Target (Phase 1)** | **5,500.00 USD** (+500.00 USD / +10.0%) | Mandatory target to pass Phase 1 |
-| **Current Balance** | 4,851.83 USD | Realized balance (Session High-Water Mark) |
-| **Current Equity** | **4,851.83 USD** | 100% Unencumbered liquid cash |
-| **Equity Needed to Pass** | **+648.17 USD** | Required gains to reach 5,500.00 USD target |
+| **Current Balance** | **4,834.83 USD** | Realized balance on MT5 |
+| **Current Equity** | **4,834.83 USD** | 100% Unencumbered liquid cash |
+| **Equity Needed to Pass** | **+665.17 USD** | Required gains to reach 5,500.00 USD target |
 | **Absolute Hard Floor** | **4,775.00 USD** | Inviolate liquidation boundary (Never breached) |
 | **Operating Defense Buffer** | **4,795.00 USD** | Hard floor + 20.00 USD operating buffer |
-| **Current Hard Floor Cushion** | **+76.83 USD** | Equity distance above 4,775.00 USD floor |
-| **Current Buffer Cushion** | **+56.83 USD** | Equity distance above 4,795.00 USD buffer |
-| **Target Deadline** | **23rd October 2026, 23:59 UTC** | End of trading week (Friday) |
+| **Current Hard Floor Cushion** | **+59.83 USD** | Equity distance above 4,775.00 USD floor (+1.25%) |
+| **Current Buffer Cushion** | **+39.83 USD** | Equity distance above 4,795.00 USD buffer (+0.83%) |
+| **Target Deadline** | **23rd October 2026, 23:59 UTC** | End of trading week (Friday) (~41.5h remaining) |
 
 ---
 
-## 2. Risk Management & Capital Allocation Rules
+## 2. Risk Management & Capital Allocation Rules (Operator Authorized Scale)
 
-1. **Nominal Cash Risk Envelope**:
-   - Standard Trade: **15.00 to 25.00 USD** per trade (0.31% to 0.52% of equity).
+1. **Nominal Cash Risk Envelope (Operator Directive: Increase Risk for Confluence)**:
+   - Solo High-Conviction Setup: **15.00 to 20.00 USD** per trade (Stressed loss: $20.75 to $27.00 USD).
    - Stressed Post-Loss Floor Invariant:
-     $$\text{Stressed Equity} = \text{Current Equity} - \sum (\text{Risk}_i \times 1.25 + 2.00) \ge 4,795.00\text{ USD}$$
-2. **Portfolio Capacity & 4-Slot Architecture (Operator Directive)**:
-   - **Slot Definition**: A slot is considered filled ONLY when an order executes into an active position. Resting limit orders do NOT consume filled position slots.
-   - **4-Slot Portfolio**: Up to **4 parallel candidate limit orders** can be staged simultaneously across orthogonal clusters (Indices, Crypto, Metals, Forex).
-   - **Floor & Buffer Invariants**:
-     * Single-Fill Safety: Any newly filled position preserves Operating Buffer: Stressed Equity >= 4,795.00 USD (+20.00 USD defense cushion).
-     * Catastrophic 4-Way Safety: Even under an extreme theoretical simultaneous stopout across all 4 assets, equity strictly preserves Hard Capital Floor: Worst-Case Equity >= 4,775.00 USD.
-   - **Early-BE Capacity Release**: When any filled position advances to +0.75R0, the Frozen R0 Ratchet moves SL to Entry + 0.10R0 (profit lock), reducing its risk reserve to  and releasing buffer cushion for subsequent fills.
-3. **Execution Mode**:
-   - Strictly passive limit orders (`BUY_LIMIT` / `SELL_LIMIT`) with `ORDER_FILLING_IOC` / `ORDER_FILLING_RETURN`.
-   - Never cross the bid-ask spread with aggressive market orders.
+     $$\text{Stressed Equity} = \text{Current Equity} - (\text{Risk} \times 1.25 + 2.00) \ge 4,795.00\text{ USD}$$
+   - Under current +39.83 USD buffer cushion, taking a $18.00 risk trade incurs $24.50 stressed loss, strictly preserving **+15.33 USD surplus** above the operating buffer and **+35.33 USD** above the hard floor.
+2. **Position Capacity & Stressed Staging Rules**:
+   - Current Cushion (+39.83 USD): **1 Solo Position Maximum** at $15.00–$20.00 risk.
+   - Dynamic Unlocking: Dual concurrent positions ($15.00 each) are unlocked as soon as live equity reaches **4,836.50 USD**.
+   - Ratchet Headroom Release: When a live position hits Early-BE (+0.75R0) and SL moves to Entry + 0.10R0, risk drops to $0.00, immediately releasing buffer capacity for secondary setups.
+3. **Continuous Co-Equal Council with Arena.ai**:
+   - On every 20-minute cycle and prospective setup approach, inject the surgical red-team prompt into Arena.ai via Chrome CDP on port 9222.
+   - Arena completion daemon auto-harvests critiques to `docs/trade_plans/ARENA_LATEST_RAW.md`.
+   - Conduct joint debate: Punch limit orders ONLY when both internal fleet and Arena confirm 5-pillar confluence with valid resting whale walls.
+4. **Execution Mode**:
+   - Strictly passive limit orders (`BUY_LIMIT` / `SELL_LIMIT`) with broker-supported filling modes.
+   - Non-marketable posture: `BUY_LIMIT <= live bid`, `SELL_LIMIT >= live ask` (Never cross the spread).
 
 ---
 
 ## 3. Dynamic Profit Ratchet Protocol (Frozen R0)
 
 All open trades are governed by the non-negotiable piecewise ratchet:
-- **Phase Early-BE (Adaptive Microstructure Breakeven)**: At `+0.75R0` to `+0.80R0` gain, move Stop Loss to `Entry + 0.10R0` (+15 pts on NAS100). Trade becomes 100% risk-free.
+- **Phase Early-BE (Adaptive Microstructure Breakeven)**: At `+0.75R0` to `+0.80R0` gain, move Stop Loss to `Entry + 0.10R0`. Trade becomes 100% risk-free.
 - **Phase 0 (Risk Cut)**: At `+1.25R0` gain, move Stop Loss to `Entry + 0.15R0`.
 - **Phase 1 (Profit Lock)**: At `+1.65R0` gain, move Stop Loss to `Entry + 0.80R0`.
 - **Take Profit (TP)**: Front-run opposing high-density liquidation magnet or Daily VWAP by 3.8 to 10 bps (e.g. +2.0R0 to +2.5R0).
@@ -58,22 +60,23 @@ All open trades are governed by the non-negotiable piecewise ratchet:
 
 ---
 
-## 4. Current Active Trade State
+## 4. Current Active Trade State & Candidate Radar
 
-- **Symbol**: `NAS100.p` (Ticket #19146275)
-- **Position Type**: BUY 0.01 lot
-- **Entry Price**: 29,560.00 USD
-- **Current Stop Loss**: **29,575.00 USD** (+15.0 pts above entry)
-- **Risk Status**: **100% RISK-FREE** (Guaranteed minimum profit: +1.50 USD)
-- **Take Profit**: **29,715.00 USD** (+155.0 pts / +15.50 USD target)
-- **Floating Profit**: **+10.30 USD**
+- **Account Status**: **100% CASH** | Realized Profit Realized: EURUSD.pi Ticket #19164106 banked +$11.44 net profit at 1.12300.
+- **Open Positions**: 0
+- **Pending Orders**: 0
+- **Candidate Trigger Radar**:
+  * **BTCUSD.pi Pullback**: Buy Limit @ 83,550.00 | SL 83,280.00 | TP 84,225.00 | 0.07 lot (Risk: $18.90) | Trigger: Retail stop sweep concludes, CVD absorption.
+  * **XAUUSD.pi Demand Shelf**: Buy Limit @ 4,108.00 | SL 4,092.00 | TP 4,148.00 | 0.01 lot (Risk: $16.00) | Trigger: Depth feed uncrosses, CVD deceleration.
+  * **SOLUSD.p VWAP Shelf**: Buy Limit @ 104.80 | SL 103.20 | TP 108.80 | 0.15 lot (Risk: $18.00) | Trigger: Pullback to 1D VWAP, RSI < 42.
+  * **EURUSD.pi Post-Rollover Long**: Buy Limit @ 1.12150 | SL 1.12050 | TP 1.12450 | 0.08 lot (Risk: $8.00) | Trigger: Post-22:30 UTC rollover normalization.
 
 ---
 
 ## 5. Daily Compounding Pathway to 5,500.00 USD
 
-To bridge the +664.81 USD requirement by Friday, 23rd October 2026:
-- Target daily profit: ~135 to 160 USD net over the remaining trading sessions.
+To bridge the +648.17 USD requirement by Friday, 23rd October 2026:
+- Target daily profit: ~130 to 150 USD net over the remaining trading sessions (~51.8 hours runway).
 - Compound risk-free ratchet wins while aggressively locking profits at +1.5R to +2.5R.
-- Maximize high-probability setups across high-velocity instruments: `NAS100.p` (0.36 bps spread), `DJ30.p` (0.22 bps spread), `SP500.p` (0.39 bps spread), and `BTCUSD.pi` (1.80 bps spread).
+- Maximize high-probability setups across high-velocity instruments: `NAS100.p`, `DJ30.p`, `SP500.p`, `BTCUSD.pi`, and `XAUUSD.pi`.
 - Full autonomous execution enabled: Antigravity punches qualifying limit orders immediately without waiting for user confirmation.
