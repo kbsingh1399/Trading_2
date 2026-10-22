@@ -1,5 +1,5 @@
 # 🏛️ CO-EQUAL QUANTITATIVE COUNCIL CANDIDATE DISCOVERY & EVALUATION
-## BlueBerry Markets MT5 Account #5064568 | Cycle 275 | 2026-10-22 22:50:55 UTC
+## BlueBerry Markets MT5 Account #5064568 | Cycle 276 | 2026-10-22 23:07:40 UTC
 
 > **CANONICAL QUANT GOVERNANCE**: Follow line-by-line `STANDARDIZED_TRADING_DECISION_CHAIN.md`, `AUTONOMOUS_WAKEUP_CHECKLIST.md`, and `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md`.
 > **MISSION**: Reach 5,500.00 USD equity before Friday, 23rd October 2026 (23:59 UTC) (~21.0 hours runway remaining).
@@ -20,20 +20,29 @@
 - Formula Errors: Exactly 0 errors across all 33 sheets.
 - Continuous Pipeline Daemon: Task 109472 actively cycling Cycle #9.
 
-### SECTION 3: TOP CANDIDATES ON RADAR & UPCOMING 22:00 UTC INDEX REOPEN
-1. **NAS100.p (Model 2 Short — Trend Down Acceptance into Daily VAL Retest)**:
-   - Geometry: SELL_LIMIT @ 29,085.00 | Lots: 0.03 | SL: 29,130.00 (+45.0 pts / 0.63 ATR) | TP: 28,970.00 (-115.0 pts / 2.56R)
-   - Risk & Solvency: Nominal Risk -$13.50 | Spread Cost: 0.43 USD (1.42 pts / 0.49 bps | 1.24% friction) | Stressed Loss: -$18.88 | Stressed Equity: 4,799.63 USD (+4.63 USD buffer surplus, +24.63 USD floor surplus).
-   - Orderflow CVD: Heavy unidirectional institutional selling: 15m CVD -$997.6M, 1h CVD -$4.49B, 4h CVD -$11.07B.
-   - Status & Execution Pre-Conditions: Broker session break clearing at 22:00/22:05 UTC. Awaiting ask >= 28,941.68 (within 2.0 ATR max distance threshold) and negative 5m CVD confirmation.
-2. **US2000.p (Model 2 Long — Daily POC Retest in Bullish Trend)**:
-   - Geometry: BUY_LIMIT @ 2,776.00 | Lots: 0.30 | SL: 2,771.50 (-4.50 pts) | TP: 2,787.00 (+11.00 pts / 2.44R)
-   - Risk & Solvency: Nominal Risk -$13.50 | Spread Cost: 0.96 USD (0.32 pts / 1.15 bps | 2.91% friction) | Stressed Loss: -$18.88 | Stressed Equity: 4,799.63 USD (+4.63 USD buffer surplus, +24.63 USD floor surplus).
-   - Status & Pre-Conditions: Sits at Daily POC (2,775.84). Awaiting broker reopen and positive 15m CVD delta turn.
-3. **BTCUSD.pi (Deep Flush Cascade Reclaim Trigger)**:
-   - Council Dialectic: Arena 1 vetoed staging BUY_LIMIT @ 80,480 before the 80,450 cascade sweeps ($17.37M debt pool) and flagged 80,080 stop as vulnerable above the massive 80,050 debt pool ($28.7M debt).
-   - Protocol: Require `Sweep of 80,450 -> Tape Deceleration -> Reclaim back above 80,500 -> Retest` before entering long.
-4. **Forex Majors & Crosses**: Strict trading embargo active until 22:30 UTC for interbank rollover spread blowout.
+### SECTION 3: TOP CANDIDATES ON RADAR FOR ASIAN SESSION & 23:30 TOKYO RAMP
+1. **NAS100.p (Model 2 Short — Pullback to 15m/1h EMA 20 Shelf with Daily VAL Fortress)**:
+   - Geometry: SELL_LIMIT @ 28,971.10 | Lots: 0.01 | SL: 29,092.32 (+121.22 pts) | TP: 28,668.06 (-303.04 pts / 2.50R)
+   - Risk & Solvency: Nominal Risk -$12.12 | Spread Cost: 0.12 USD (1.22 pts / 0.42 bps | 0.40% friction) | Stressed Loss: -$17.30 | Stressed Equity: 4,801.21 USD (+6.21 USD buffer surplus, +26.21 USD floor surplus).
+   - Order Check Result: Retcode 0 (Done), Margin Required: 0.00 USD, Exact Broker Profit Calc: Loss=-$12.12 USD, Win=+$30.30 USD.
+   - Microstructure & Auction Alignment:
+     * Current Price: ~28,935. Distance to Entry: 36.10 pts (0.52 ATR away, well within 2.0 ATR staging threshold).
+     * Entry (28,971.10) catches the pullback to the 15m EMA 20 (28,968.56) and 1h EMA 20 (28,986.55) shelf where previous bounce stalled at 28,965.
+     * Stop Loss (29,092.32) is placed strictly ABOVE the Daily VAL shelf (29,087.86) by +4.46 pts with a wide 121-pt buffer.
+     * Spread Efficiency: 1.22 pts / 303.04 pts = 0.40% (Institutional ceiling <= 15.0%).
+2. **BTCUSD.pi (Asian Session 23:00–02:00 UTC Cascade Reclaim Trigger)**:
+   - Market Context: Drifting at 81,240 USD below DPOC (81,339.50). Asian overnight window features thinner L2 books which historically accelerate cascade flushes.
+   - Debt Pools: 80,450 USD ($10.81M debt pool) and mother pool at 80,050 USD ($31.79M debt pool).
+   - Execution Trigger Sequence:
+     * Gate 1: Sweep of 80,450 cascade.
+     * Gate 2: Microstructure tape deceleration (1m CVD delta flip / taker selling dry-up).
+     * Gate 3: 1m/5m candle close reclaim back above 80,500.
+     * Gate 4: Retest of 80,480–80,520 holds -> Punch BUY_LIMIT (0.02 base / 0.03 double-confirmation | SL: 79,980.00 | TP: 82,050.00).
+   - Sizing: 0.03 lot max -> Nominal Risk: -$16.20 USD | Stressed Loss: -$22.75 USD | Stressed Equity: 4,795.76 USD (+0.76 USD buffer surplus).
+3. **US2000.p**: OFFICIALLY RETIRED (Target 2,787 traded without entry, price > 2.0 ATR away, DPOC moved to 2,786.15).
+4. **Forex Majors (EURUSD.pi, GBPUSD.pi, USDJPY.pi) & Gold (XAUUSD.pi)**:
+   - Rollover embargo cleared at 22:30 UTC. Spreads normalized (< 0.3 bps).
+   - Tokyo liquidity ramp active from 23:30 to 00:00 UTC. Screen for Asian opening range expansion sweeps.
 
 ### SECTION 4: 3-PERSONA MANDATORY INQUEST & DELIBERATION
 1. **Persona 1: Orderflow Analyst** (Steps 2, 4, 6 of SOP — L2 depth, CVD absorption, liquidation cascades, dynamic friction).

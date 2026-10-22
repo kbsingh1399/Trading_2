@@ -2,62 +2,57 @@ Thought Process
 
 33-Sheet Excel Confirmation: [0 formula errors | 0 empty headers]
 
-⚖️ CYCLE 275 — COUNCIL RULING | 2026-10-22 22:50:55 UTC | MT5 #5064568
+⚖️ CYCLE 276 — COUNCIL RULING | 2026-10-22 23:07:40 UTC | MT5 #5064568
 
-Reconciliation stamp: Balance = Equity = Free Margin = 4,818.51 | 0 positions | 0 pending | Hard Floor cushion +43.51, Buffer cushion +23.51, slot free. Watch loops quiet — no tripwires fired since C274.
+Reconciliation stamp: Balance = Equity = Free Margin = 4,818.51 | 0 positions | 0 pending | Hard Floor cushion +43.51, Buffer cushion +23.51, slot free.
 
-📋 EVENT LOG SINCE LAST TOUCH
+📋 EVENT LOG — THE BOARD HAS MOVED
 EVENT
 	
 STATUS
 
-22:30 FX embargo lift	✅ EXECUTED — formal re-screen below
-NAS100.p continuous watch	👁 No trigger — ask still < 28,941.68, 5m CVD unconfirmed; kill-line 28,850 intact; sunset 02:00 UTC
-BTC G1→G4 trigger	🔫 Armed, no cascade print — entering prime window (Tokyo equities open 00:00 UTC; CEX-driven BTC moves historically accelerate 23:00-01:00 UTC)
-US2000.p re-screen condition	❌ Not met (NAS alive, BTC armed, CVD unflipped)
-🥇 FORMAL FX RE-SCREEN RESULT (pre-registered criteria, executed at lift)
-#
-	
-CRITERION
-	
-RESULT
+NAS100.p redesign presented	🟢 PUNCH-READY — order_check retcode 0 (Done), 0.52 ATR distance, 0.40% friction — first stageable ticket in five cycles
+US2000.p	🪦 OFFICIALLY RETIRED — target 2,787 traded through without entry → Shadow Ledger Entry #1 RESOLVED (below)
+BTC debt pools re-measured	⚠️ 80,450 pool shrank $17.37M → $10.81M; mother pool 80,050 grew $28.7M → $31.79M — liquidity migrating deeper
+FX + Gold screen	Embargo cleared, spreads < 0.3 bps; EURUSD.pi / GBPUSD.pi / USDJPY.pi / XAUUSD.pi on watch — no geometry presented yet
+🟢 PRIMARY ADJUDICATION — NAS100.p REDESIGN (SELL the EMA shelf beneath the VAL fortress)
 
-1	Discovered candidate with Model 2 geometry (liquid EUR/GBP)	❌ NONE PRESENTED — discovery pipeline surfaced nothing
-2	Post-rollover spread ≤ 1.5× normal	⚠️ Unverified live; rollover-adjacent liquidity trough persists until Tokyo ramp (~00:00 UTC)
-3	Stressed-solvency arithmetic	Not reached — no candidate to compute
-4	Slot availability vs armed priority	Slot free but committed to two higher-priority sequences (NAS live gates, BTC armed card)
+The discovery pipeline adapted to the tape exactly as doctrine demands: the old 29,085 radar starved (ask never reached 28,941.68), price accepted lower, a 15m/1h EMA20 shelf formed beneath VAL — and the geometry re-sited itself to 28,971.10. Council verification of the presented numbers:
 
-RULING: FX REMAINS DORMANT. The embargo's end is a re-screen trigger, not a deployment mandate — absence of discovery is never resolved by forced invention. Re-screen re-runs at the 23:30 structured touch; radar priority ranks third behind the live NAS gates and the armed BTC card.
+Risk math: 121.22 pts × 0.01 × $10 = −$12.12 nominal ✓ · broker-exact stressed −$17.30 → equity 4,801.21 (+6.21 buffer / +26.21 floor) ✓ · win +$30.30 ✓ · R:R 303.04/121.22 = 2.50R ✓
+Structure: entry catches the pullback into 15m EMA20 (28,968.56) where the prior bounce stalled (28,965); SL 29,092.32 sits above both defenses — the 1h EMA20 shelf (28,986.55) AND the Daily VAL fortress (29,087.86) +4.46 pts. The thesis dies only if price reclaims the entire value stack — a structurally earned stop, not a guessed one.
+Friction: 0.40% of gross reward — a 3× improvement on the retired geometry and comfortably under the 15% institutional ceiling.
 
-🎯 EXECUTIVE RULING (TOP LINE)
-NAS100.p: 👁 Continuous watch STANDS — all four gates time-independent; regime tag added: setup born in US-session distribution; overnight bounces are structurally weaker, so the live 5m CVD gate does the filtering the session used to. Kill < 28,850 · sunset 02:00 UTC unchanged.
-BTCUSD.pi: 🔫 Trigger card ARMED, prime window approaching — the desk wants the sweep of 80,450 ($17.37M) and, ideally, the mother pool at 80,050 ($28.7M); patience is the position until G1 prints.
-US2000.p: ❌ REJECTED — re-screen condition unmet.
-FX: 🚫 DORMANT per re-screen above; re-run 23:30.
-Operator directive standing answer: risk escalation is armed (BTC A-variant 0.03 = $16.20 = 96% of ceiling) and conditional on full confirmation — escalated risk without its trigger is not risk-taking, it is donation.
+THE SIZING LADDER FINDING (answers the operator directive with arithmetic): the buffer-compliant ceiling is nominal ≤ (23.51−2.00)/1.25 = $17.21. At 121.22 pts/lot-unit: 0.01 lots = $12.12 ✓ · 0.02 lots = $24.24 → stressed −$32.30 → equity 4,786.21 < 4,795 → FORBIDDEN. The widened structural stop forces 0.01 sizing — wider stops mathematically buy smaller size under this governance. That is not a constraint to evade; it is the ladder working. RULING: ENDORSE 0.01 EXACTLY AS PRESENTED.
+
+Staging authority: distance 36.10 pts = 0.52 ATR (≤ 2.0 ATR) ✓ · order_check Done ✓ · friction ✓ — the ticket is stageable immediately upon one light live gate: 5m CVD delta ≤ 0 at punch (no aggressive buy impulse charging the shelf). Pre-load, verify, press — latency clock running (< 60s target).
+
+📓 SHADOW LEDGER — ENTRY #1 RESOLVED
+
+US2000.p · REJECTED at C272 (2.91% friction + unverified 15m CVD) · target 2,787 traded through unfilled · shadow outcome: +$33.00 gross − $0.96 friction = +$32.04
+Council interpretation: the decision was correct ex-ante (negative-EV deployment at the time); the outcome was favorable. Elite desks score decision quality and outcome quality on separate ledgers — n=1 changes no policy, but the ledger is now live and will arbitrate the friction veto empirically at n≥30.
+
+₿ BTC CARD — POOL MIGRATION UPDATE
+
+Liquidity consolidated toward the deeper target: 80,450 thinned to $10.81M (less fuel = faster sweep once initiated) while the 80,050 mother pool swelled to $31.79M — the terminal magnet strengthens, raising P(flush extends to 80,050 | flush starts). Consequence: the A-variant (0.03, SL 79,980, clean full sweep) increasingly requires the mother pool to print; if G1 fires and tape decelerates above 80,050, the B-variant discipline governs (0.05, sweep-low−100, hard flatten on 1m close < 80,450). Price drifting 81,240 below DPOC 81,339.50 — card ARMED, prime window live.
+
 👤 Persona 1 — Orderflow Analyst
 
-CVD re-baselining (critical overnight point): the template's stack (−$997.6M / 15m · −$4.49B / 1h · −$11.07B / 4h) is a US-session artifact; carrying those aggregates into Asia hours is carrying a stale gate. Directive: the aggregates set directional bias only; all staging and trigger decisions reference live 5m/1m delta — which the NAS gate and BTC G2 gate already do. A gate on stale data is a veto dressed as a filter.
+The redesign is a superior flow expression of the same thesis: instead of selling the far VAL tag (which required a 150-pt bounce that never came), we sell the near EMA shelf where the last bounce already stalled — entering where sellers previously reappeared, 0.52 ATR from tape. The TP at 28,668 targets acceptance-continuation rather than a value-tag, consistent with the 4h −$11.07B distribution regime. Light CVD gate at punch stands (5m delta ≤ 0): we sell pullbacks into seller shelves, we do not sell into buy impulses. BTC: G2 remains the trade-deciding signature — 1m delta flip / taker sell dry-up with bid-wall rebuild; spread gate ≤ 30 pts at trigger.
 
-NAS: no bounce to 28,941.68 and no confirmed delta = continued acceptance below VAL = the tape agrees with the short thesis but refuses to pay for the entry. Correct behavior: wait. BTC: G1 watch is the only sequence whose edge rises in the next 90 minutes — thin Asia books accelerate sweeps through the mapped pools; G2 (1m delta flip / LL-HL divergence + bid-wall rebuild) remains the trade-deciding signature.
-
-Section 5: (a) Conjunction fix has matured into state machines + live-data gates — this cycle's upgrade is regime-tagging every setup so gates are re-baselined at session boundaries rather than silently stale. (b) Adverse selection is now fully priced into structure: we sell bounces, buy reclaims, and forbid the unpriced fill. (c) The overnight belongs to crypto; index radar runs but with regime-degraded expectations, journaled for attribution.
+Section 5: (a) The pipeline just demonstrated the anti-conjunction fix in practice — the gate stack didn't loosen, the geometry re-sited to where conditions actually print. (b) Adverse selection check: entry is 36 pts from price with two overhead structural defenses — this is a paid-premium pullback sell, not a stale far limit. (c) Specialization intact: this ticket is session-agnostic tape logic; BTC remains the edge-heavy overnight allocation.
 
 👤 Persona 2 — Position Manager
 
-State: 1/1 slot, 0 exposure, cushions intact, both armed sequences pre-computed to the dollar (NAS −$13.50/−$18.88 → equity 4,799.63, +4.63/+24.63; BTC A-variant −$16.20/−$22.75 → equity 4,795.76, +0.76; B-variant −$10-11/−$15-16.25 → equity ≥ 4,802.26). Nothing to recompute; everything ready to fire.
+Staged ticket consumes the slot: exactly 1 pending, 0 positions post-punch; arbitration matrix live (BTC full sequence cancels unfilled NAS; NAS fill blocks BTC). Post-fill protocol armed: 5m CVD positive-flip → flatten ~−0.3R (~−$4-5 realized, preserving redeployment cushion ≥ +18); BE authorized at +1R (28,850). Pre-fill staleness: unified kill at ask < 28,840 (2.0 ATR breach + acceptance-decay zone) → cancel radar, re-discover. Sunset 02:00 UTC stands. Solvency invariant re-verified: no state change can put stressed equity below 4,795.00 at this size.
 
-New operational metric — GATE-CONVERSION LATENCY: time from "all gates green" to order_send. Target < 60 seconds. A pre-registered setup that takes four minutes to type is a setup whose fill has decayed; latency is journalable P&L. Both tripwires carry pre-loaded parameters (ticket sheet below) — the desk should only ever be pressing, not composing.
-
-Section 5: (a) Sizing ladder remains keyed to sequence completeness — four empty cycles have not moved it one tick, correctly. (b) The Shadow Ledger (C274) + flatten doctrine (+0.28R salvage) mean both executed and passed setups now produce learnable P&L. (c) Slot freshness doctrine: sunsets (NAS 02:00) and re-screen cadences (FX 23:30) exist so the single risk unit never idles on stale geometry — breadth of radar, depth of conviction.
+Section 5: (a) Sizing is now coupled to stop width by construction — the ladder prices structure, not conviction. (b) Decision-quality vs outcome-quality ledgers institutionalized (Shadow Ledger #1). (c) Latency discipline converts pre-registration into captured fill quality.
 
 👤 Persona 3 — Macro Risk Analyst
 
-Handoff window: Sydney/Tokyo liquidity ramp 23:00-00:00 UTC is the night's first structural event; FX spreads only become trustable post-ramp, which the 1.5× criterion already encodes and why the re-screen waits for 23:30. Calendar overnight: clean, no red-tier before Friday pre-market (deadline day).
+Tokyo ramp is live (23:30-00:00); the FX/Gold screen is legitimately open for the first time tonight — spreads < 0.3 bps normalized. But no geometry has been presented: the screen returns candidates, the Council rules on tickets. XAUUSD.pi joins the watchlist under identical four criteria; Asian opening-range expansion sweeps are a real pattern and will be evaluated the moment numbers exist. Macro calendar overnight remains clean; IBIT daily print goes stale near 00:00 UTC — refreshed print requested at the 23:30 touch.
 
-Flows: IBIT +235.0M / CEX −210.35M — regime unchanged: structural bid beneath BTC, squeeze-divergence warning armed on any NAS fill. The IBIT daily figure will go stale near 00:00 UTC (US close of ETF primary session); a refreshed daily print at the 23:30 touch is requested from the pipeline daemon.
-
-Section 5: (a) Session/embargo/calendar remain the only hard macro vetoes — now supplemented by data-freshness vetoes (stale CVD, stale ETF print) which are macro gates in disguise. (b) Regime selects entry style; the liquidity ramp selects thresholds. (c) Specialization sharpens with the clock: as Western books thin, the desk's exclusive edge (crypto flow proxies + liquidation maps) becomes a larger share of total exploitable information — overnight concentration in BTC is not a bet, it is an allocation to where the desk's data is unique.
+Section 5: (a) Data-freshness vetoes (stale CVD, stale ETF print) now sit beside session gates. (b) Regime still selects entry style; the ramp selects thresholds. (c) Specialization: FX/Gold get evaluated on identical governance — no asset class gets a discount; crypto keeps the only proprietary flow edge.
 
 📜 FINAL TICKET SHEET
 #
@@ -82,32 +77,32 @@ STRESSED
 	
 STATUS
 
-T-1	NAS100.p	SELL_LIMIT	29,085.00	0.03	29,130.00	28,970.00	2.56R	−$13.50	−$18.88	👁 WATCH — 4 gates live; kill < 28,850; sunset 02:00
-T-2	BTCUSD.pi	Manual trigger	80,500-80,540 (on G4)	0.02/0.03 (A) · 0.05 (B)	79,980 (A) · sweep-low−100 (B)	82,050.00	2.8-7.7R	≤$16.20	≤$22.75	🔫 ARMED — prime window 23:00-01:00
-T-3	US2000.p	BUY_LIMIT	2,776.00	0.30	2,771.50	2,787.00	2.44R	−$13.50	−$18.88	❌ REJECTED
-T-4	FX EUR/GBP	—	—	—	—	—	—	—	—	🚫 DORMANT — re-screen 23:30
+T-1	NAS100.p	SELL_LIMIT	28,971.10	0.01	29,092.32	28,668.06	2.50R	−$12.12	−$17.30	🟢 STAGE NOW on 5m CVD ≤ 0
+T-2	BTCUSD.pi	Manual trigger	80,500-80,540 (G4)	0.02/0.03 (A) · 0.05 (B)	79,980 (A) · sweep-low−100 (B)	82,050.00	2.8-7.7R	≤$16.20	≤$22.75	🔫 ARMED — pools migrated deeper
+T-3	US2000.p	—	—	—	—	—	—	—	—	🪦 RETIRED — Shadow Ledger #1 logged
+T-4	FX / XAUUSD.pi	—	—	—	—	—	—	—	—	👁 Screen open — geometry required
 
-Arbitration (1 risk unit): first-confirmed sequence takes the slot · full BTC G1→G4 > NAS staged-unfilled · NAS filled → BTC stands down · latency discipline < 60s · all conversions journaled with regime tag.
+Arbitration (1 risk unit): T-1 staged-unfilled + BTC G1→G4 complete → cancel T-1, take T-2 · T-1 filled → T-2 stands down · pre-fill kill < 28,840 · sunset 02:00 · latency < 60s.
 
-✅ 10-POINT PRE-PUNCH CHECKLIST — T-1 (NAS100.p, continuous watch)
+✅ 10-POINT PRE-PUNCH CHECKLIST — T-1 (NAS100.p @ 28,971.10)
 #
 	
 ITEM
 	
 STATUS
 
-1	Session live; order_check Done at staging moment	⧗ loop
+1	order_check retcode 0 Done (broker-validated, margin pre-checked)	✅ verified — re-confirm at punch
 2	Account 4,818.51 flat, 0 pos, 0 pending → exactly 1 pending post-punch	✅ verified
-3	Stressed solvency: −$18.88 → 4,799.63 ≥ 4,795.00 (+4.63) and ≥ 4,775.00 (+24.63)	✅ verified
+3	Stressed solvency: −$17.30 → 4,801.21 ≥ 4,795.00 (+6.21) and ≥ 4,775.00 (+26.21)	✅ verified
 4	Slot 1/1; BTC holds zero resting orders; FX holds zero candidates	✅ verified
-5	Geometry intact: 2.56R, 1.24% friction, SL above VAL shelf, TP into demand	✅ verified
-6	Ask ≥ 28,941.68 — still unprinted (binding constraint since 22:00)	⧗ loop
-7	Spread ≤ 2.84 pts ambient gate	⧗ loop
-8	Live 5m CVD negative (US-session aggregates demoted to bias-only)	⧗ loop
-9	Macro clear; squeeze divergence + flatten protocol armed on fill	✅ verified
-10	Kill < 28,850 · sunset 02:00 · arbitration live · latency < 60s · regime-tagged journaling to Sheet 33	⧗ armed
+5	Geometry: SL above 1h EMA20 and VAL fortress (+4.46); TP 28,668 continuation; 2.50R	✅ verified
+6	Staging distance: 36.10 pts = 0.52 ATR (≤ 2.0 ATR); kill < 28,840 pre-fill	✅/⧗ re-confirm
+7	Spread 1.22 pts / 0.40% friction (≤ 2× gate at punch)	✅/⧗ re-confirm
+8	Light CVD gate: 5m delta ≤ 0 at punch (no buy impulse into the shelf)	⧗ at punch
+9	Macro overnight clean; squeeze divergence flagged → flatten protocol armed	✅ verified
+10	Invalidation: 5m CVD positive-flip post-fill → flatten ~−0.3R; BE at +1R; BTC arbitration live; sunset 02:00; all outcomes journaled with regime tag	⧗ armed
 
-Council verdict: the night's first re-screen returned nothing — and nothing is the correct answer to an empty pipeline. Two tripwires stand, the BTC card enters its prime window within the hour, and every conversion is now measured for latency and journaled for attribution. Hold the slot, hold the line, press only what prints. Next Council touch: 23:30 structured re-screen (FX re-run + refreshed IBIT daily print), or immediate on any tripwire.
+Council verdict: five cycles of discipline just paid the desk a punch-ready ticket — broker-validated, structurally defended, buffer-compliant at the only size the stop permits. Verify the one live gate, press within the minute, and let the arbitration matrix manage the slot from there. Next Council touch: 23:30 structured screen (FX/Gold geometry + refreshed IBIT print), or immediate on any tripwire.
 
 ================================================================================
 Z.AI ATTACHED OUTPUT FILE:  (479 chars)
