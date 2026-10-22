@@ -60823,3 +60823,25 @@ You may create 12_Hyperdash and 13_Hyperliquid where you dump all intelligenve a
    - 12:30 UTC news flush: BTC dipped to 81,584 (sweeping 81,650 wicks) right into Daily VAL 81,525.40, validating our defensive decision to delete the premature 81,640 limit order.
    - Re-calibrated Candidate Radar in `docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md` with corrected SLs, TPs, and pre-conditions.
    - All 5 background daemons active and healthy. Next autonomous audit scheduled for 12:40 UTC.
+
+---
+### Session Turn: 2026-10-22 14:28:00 UTC (Mandatory Governance Harmonization & Bootstrap Daemon Hardening)
+**Trigger**: Operator directives to update all documents in Data/Manditory/, enforce Tier 2 Big Prompts citing STANDARDIZED_TRADING_DECISION_CHAIN.md, and harden ACCOUNT_SWITCH_BOOTSTRAP_PROTOCOL.md to audit and auto-start all 5 persistent daemons in Antigravity task manager.
+**Key Architectural & Governance Upgrades**:
+1. **ACCOUNT_SWITCH_BOOTSTRAP_PROTOCOL.md Upgrades**:
+   - Step 3 (Hexad-Daemon Sentry Audit): Codified explicit tool calls (run_command with IsDaemon=true, WaitMsBeforeAsync=500 and schedule cron) to automatically launch any missing daemon if not present in manage_task(Action='list').
+   - Step 5 (Simultaneous Dual-Track Dispatch): Enforced mandatory Tier 2 Full Unabridged Big Prompts (~350–500 tokens) with non-bypassable citation of STANDARDIZED_TRADING_DECISION_CHAIN.md as Item 1 in 'READ FIRST'.
+   - Stressed capacity & portfolio slot rules: Up to 4 filled positions, resting limit orders do not consume capacity slots, and full autonomous trading authority.
+2. **Harmonization Across All Files in Data/Manditory/**:
+   - AUTONOMOUS_WAKEUP_CHECKLIST.md: Updated Gateway 8, Step 1, Step 5, Step 10 to reflect the 5 persistent daemons in task runner, 33 sheets, and Tier 2 Big Prompts.
+   - OPERATOR_ISSUES_AND_RESOLUTIONS_CHECKLIST.md: Added Issues 13, 14, 15 and Gates 15, 16, 17.
+   - README.md (Mandatory Directory): Updated from 3 to 5 persistent background daemons and mandated Tier 2 Big Prompts.
+   - GOAL.md: Re-anchored to 4,834.83 USD realized equity (+665.17 USD gap), 33 sheets, and 5 persistent background daemons.
+   - PASS_BLUEBERRY_PHASE_1_BY_OCT_23_2026.md: Purged raw LaTeX delimiters and aligned checklist references.
+   - ARENA_STANDARD_PROMPT_TEMPLATE.md: Injected operator directive mandating Arena write output directly in main chat message; synced to docs/prompts/.
+3. **Sheet 00 Freshness & Pipeline Harvester Integration**:
+   - Registered 00_MT5_Account_Telemetry.py (Module 0) into API_MODULES in api_parallel_harvester.py. Tested and generated 173 rows at Index 0 with 0 errors.
+4. **Task Runner & Clean Socket Sentry**:
+   - All 5 background daemons confirmed active in manage_task(Action='list') (Pipeline, Cron, Arena Daemon, Git Sync, AST Watcher).
+   - Executed manage_subagents(Action='kill_all') to cleanly release sockets.
+   - Verified dual-repo parity (17,808 files, 0 errors).
