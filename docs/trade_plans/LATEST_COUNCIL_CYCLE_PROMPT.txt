@@ -1,0 +1,43 @@
+# QUANTITATIVE COUNCIL: CYCLE 268 — CO-EQUAL 3-PERSONA CANDIDATE DISCOVERY & DIALECTIC
+
+🚨 MANDATORY CANONICAL QUANT SOP — READ FIRST & FOLLOW LINE-BY-LINE:
+You MUST read and strictly adhere line-by-line to:
+`https://github.com/kbsingh1399/Trading_2/blob/main/Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md`
+And the mandatory execution governance:
+`https://github.com/kbsingh1399/Trading_2/blob/main/Data/Manditory/TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md`
+`https://github.com/kbsingh1399/Trading_2/blob/main/Data/Manditory/CONTINUOUS_KAIZEN_SELF_IMPROVEMENT_PROTOCOL.md`
+`https://github.com/kbsingh1399/Trading_2/blob/main/Data/Manditory/32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md`
+`https://github.com/kbsingh1399/Trading_2/blob/main/Data/Manditory/AUTONOMOUS_WAKEUP_CHECKLIST.md`
+
+LIVE DESK CONTEXT & MT5 INVENTORY (CYCLE 268 | 2026-10-22 19:52 UTC):
+- Target: 5,500.00 USD by Friday, Oct 23, 2026 (23:59 UTC) | Remaining Runway: ~28.1 hours
+- Live Balance: 4,818.51 USD | Live Equity: 4,818.51 USD | Margin: 0.00 USD | Free Margin: 4,818.51 USD
+- Inviolable Hard Floor: 4,775.00 USD | Hard Floor Cushion: +43.51 USD
+- Operating Buffer Floor: 4,795.00 USD | Operating Buffer Cushion: +23.51 USD
+- Distance to Goal: +681.49 USD
+- Active Filled Positions: 0 (0 consumed slots)
+- Resting Pending Orders: 0 (USDJPY.pi SELL_LIMIT #19224157 has been CANCELLED pursuant to unanimous council consensus!)
+- Available Fluid Slots: 4/4 filled slots free, 10 resting limit slots free
+
+ACTIONABLE COUNCIL MANDATE:
+With USDJPY.pi #19224157 cancelled, the desk has +23.51 USD operating buffer cushion and +43.51 USD hard floor cushion completely unencumbered!
+Conduct an affirmative candidate discovery evaluation across all 156 assets in all 6 asset classes using the 3 quantitative personas:
+1. Persona 1 — Orderflow Analyst (SOP Steps 2, 4, 6):
+   - Evaluate live auction structure, 20/50 EMA ribbons, VPOC/VAH/VAL shelves, and taker CVD delta.
+   - Screen US2000.p (Pullback to DVAH 2780.05), NAS100.p (Pullback to EMA20 29045 or 29195), USDCAD.pi (Extreme oversold Z=-2.14 at 1.4008), and BTCUSD.pi (Sell limit at 81,313–81,520 behind $8.3M ask whale walls).
+2. Persona 2 — Position Manager (SOP Steps 1, 5, 8):
+   - Prove exact ticket sizing and cash risk via contract specifications.
+   - For US2000.p: 0.40 lot, Entry 2780.05, SL 2776.75 (Risk -$13.20, Stressed -$20.10, Stressed Equity 4,798.41 USD -> +3.41 USD buffer surplus!).
+   - For NAS100.p: 0.05 lot, Entry 29195.00, SL 29222.50 (Risk -$13.75, Stressed -$19.81, Stressed Equity 4,798.70 USD -> +3.70 USD buffer surplus!).
+   - Verify that worst-case stopout preserves both the 4,795.00 USD operating buffer and 4,775.00 USD hard floor.
+3. Persona 3 — Macro Risk Analyst (SOP Steps 3, 7):
+   - Check macro calendar proximity (+-35m for TradFi, +-15m for Crypto).
+   - Enforce the 21:15–22:30 UTC interbank FX rollover embargo (now 19:52 UTC, 1h23m until embargo).
+   - US Equity Cash close (20:00 UTC) is in 8 minutes — does MOC volatility require waiting for 20:05 UTC before staging index limits?
+
+OUTPUT REQUIREMENTS:
+- 33-Sheet Excel Confirmation: [0 formula errors | 0 empty headers].
+- Persona 1, 2, 3 individual forensic evaluations.
+- Co-equal synthesis and actionable consensus ticket:
+  If a setup passes all 5 pillars right now: output exact MT5 limit order execution ticket.
+  If conditions require waiting (e.g. post-20:05 UTC MOC clearance): output STAND ASIDE with Potential Candidate Radar Checklist [ ] and 10-Point Pre-Punch Checklist.
