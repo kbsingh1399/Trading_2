@@ -33,10 +33,10 @@
 * **Ticket #19174858** (`SOLUSD.p` BUY 0.10 lots):
   - **Status**: **FILLED & ACTIVE IN TRADE**
   - **Fill Price**: **106.80 USD** | Open Timestamp: 2026-10-21 23:49:13 UTC
-  - **Current Price**: **106.11–106.34 USD** (Floating PnL: **-$6.90 to -$4.60 USD** / -0.40 to -0.27R0)
+  - **Current Price**: **106.04–106.17 USD** (Floating PnL: **-$7.60 to -$6.30 USD** / -0.45 to -0.37R0)
   - **Active Stop Loss**: **105.10 USD** (Risk Distance: 1.70 pts | Cash Risk: -$17.00 USD nominal / -$23.25 USD stressed)
   - **Calibrated Take Profit**: **107.65 USD** (+0.85 pts = **+$8.50 USD** / +0.50R0 cash target)
-  - **Microstructure Alignment**: Low of Asian sweep printed 105.90 USD, holding well above the primary 105.30–105.48 USD mega whale buy bunker ($6.73M–$8.34M depth from wallet `0xeac8...`, persist >3,615s). Stop Loss at 105.10 USD sits safely 0.20 to 0.38 USD behind this wall. TP at 107.65 USD remains front-running the major 107.80 USD resistance block.
+  - **Microstructure Alignment**: Price is consolidating above the 105.90 USD wick low, insulated by the verified $8.15M fortress buy bunker at 105.30–105.48 USD ($6.73M at 105.48 USD + $1.21M at 105.32 USD, persist >3,615s, 100% presence) and an active immediate bid shelf of $5.16M at 106.17–106.30 USD ($3.50M at 106.30 USD). Stop Loss at 105.10 USD sits safely 0.20 to 0.38 USD behind this wall. TP at 107.65 USD front-runs the 107.66 / 107.80 USD resistance wall.
   - **Dynamic Ratchet Triggers**:
     * **Early-BE Lock (+0.80R0)**: Trigger @ 108.16 USD -> Move SL to 106.97 USD (+0.10R0 lock).
     * **Phase 1 Profit Lock (+1.50R0)**: Trigger @ 109.35 USD -> Move SL to 108.16 USD (+0.80R0 lock).
@@ -60,9 +60,9 @@
    - Status: Qualified candidate on Watchlist.
 
 ### Floor Cushion & Joint Risk Summary:
-* **Account Balance**: **4,851.83 USD** | **Equity**: **4,844.93–4,847.23 USD**
-* **Absolute Hard Floor**: **4,775.00 USD** (Cushion: **+69.93 to +72.23 USD**)
-* **Operating Buffer**: **4,795.00 USD** (Cushion: **+49.93 to +52.23 USD**)
+* **Account Balance**: **4,851.83 USD** | **Equity**: **4,844.23–4,845.53 USD**
+* **Absolute Hard Floor**: **4,775.00 USD** (Cushion: **+69.23 to +70.53 USD**)
+* **Operating Buffer**: **4,795.00 USD** (Cushion: **+49.23 to +50.53 USD**)
 * **Stressed Post-Loss Equity**: **4,828.58 USD** (Preserves **+33.58 USD** surplus above operating buffer and **+53.58 USD** above hard floor).
 * **Slots Utilization**: 1 / 2 occupied (1 filled, 0 pending limits). Exactly 1 orthogonal slot remains available under conservative risk rules.
 
