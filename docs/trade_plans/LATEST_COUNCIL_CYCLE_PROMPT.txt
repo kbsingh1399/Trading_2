@@ -1,5 +1,5 @@
 # 🏛️ CO-EQUAL QUANTITATIVE COUNCIL CANDIDATE DISCOVERY & EVALUATION
-## BlueBerry Markets MT5 Account #5064568 | Cycle 269 | 2026-10-22 20:50:13 UTC
+## BlueBerry Markets MT5 Account #5064568 | Cycle 270 | 2026-10-22 21:17:47 UTC
 
 > **CANONICAL QUANT GOVERNANCE**: Follow line-by-line `STANDARDIZED_TRADING_DECISION_CHAIN.md`, `AUTONOMOUS_WAKEUP_CHECKLIST.md`, and `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md`.
 > **MISSION**: Reach 5,500.00 USD equity before Friday, 23rd October 2026 (23:59 UTC).
@@ -8,28 +8,31 @@
 
 ### SECTION 1: LIVE ACCOUNT & RECONCILIATION
 - Balance: 4818.51 USD | Floating Equity: 4818.51 USD | Free Margin: 4818.51 USD
-- Open Positions: 0 | Pending Orders: 0
-- Order #19224157 (USDJPY.pi) was cancelled cleanly; desk is 100% clear.
+- Open Positions: 0 | Pending Orders: 1
+- Active Staged Ticket: #19227609 on BTCUSD.pi (BUY_LIMIT 0.04 lots @ 80,950.00 | SL: 80,600.00 | TP: 82,000.00).
 
 ### SECTION 2: 33-SHEET EXCEL DATA WAREHOUSE HEALTH
-- File: Data/DataBase_Trading.xlsx (13.24 MB).
+- File: Data/DataBase_Trading.xlsx (13.23 MB, 100% healthy, 0 CRC errors).
 - Sheet count: 33/33 sheets present and verified.
 - Sheet 33 (`20_Auction_Market_Structure`): Row 1 verified with 36/36 clean unmerged column headers.
 - Formula Errors: Exactly 0 errors (#REF!, #DIV/0!, #N/A, #VALUE!).
 - Live Sheets: 17_Orderbook, 18_CVD, 10_Whale_Orders, 00_MT5_Account_Telemetry all <= 15 minutes fresh.
+- Macro Flows: BlackRock IBIT logged +235.0M USD net daily inflow; CEX spot netflow logged -210.35M USD 4-hour spot withdrawal.
 
-### SECTION 3: CANDIDATE PROPOSALS TO RATIFY OR REFINE
-1. **BTCUSD.pi (Model 2 Trend Pullback / Resistance Fade)**:
-   - Order: SELL_LIMIT @ 81,520.00 | Lots: 0.04 | SL: 81,860.00 | TP: 80,300.00 | R:R: 3.59R
-   - Supporting Structure: 9.63M USD resting ask whale cluster at 81,508-81,535 (Binance & Bybit).
-   - Stop Loss: 81,860.00 (1.37 ATR above entry, safely above all buy-stop sweep clusters up to 81,850).
-   - Take Profit: 80,300.00 (front-running 308M USD long liquidation cascade magnet at 80,050-80,250).
-   - Solvency: Nominal Risk -$13.60 | Stressed Loss (1.25x + $2) = -$19.75 | Stressed Equity = 4,798.76 USD (+3.76 USD buffer surplus, +23.76 USD hard floor surplus).
-2. **NAS100.p (Post-MOC Resistance Shelf)**:
-   - Order: SELL_LIMIT @ 29,045.00 | Lots: 0.04 | SL: 29,082.50 | TP: 28,962.50 | R:R: 2.21R
-   - Sits at prior swing high / EMA20 shelf. Stressed Equity = 4,797.32 USD (+2.32 USD buffer surplus).
-3. **US2000.p (Structure Rebuild Watch)**:
-   - Old ticket 2780.05 invalidated. Monitoring 2,772.50 POC shelf for 5m CVD stabilization.
+### SECTION 3: ACTIVE STAGED ORDER & RADAR CANDIDATES
+1. **ACTIVE STAGED TICKET #19227609 — BTCUSD.pi (Model 2 Value Area Long / Squeeze Target)**:
+   - Order: BUY_LIMIT @ 80,950.00 | Lots: 0.04 | SL: 80,600.00 | TP: 82,000.00 | R:R: 3.00R
+   - Supporting Structure: Positioned directly above Daily VAL (80,902.58 USD) and sweeps 80,850 USD retail debt pool.
+   - Institutional Tailwinds: Backed by +235M USD BlackRock IBIT ETF inflow and -210M USD CEX spot drain.
+   - Take Profit Runway: Front-runs the massive 16.54M USD short liquidation squeeze pool and 17.20M USD buy-stop magnet at 82,050 USD.
+   - Solvency Defense: Nominal Risk -$14.00 (0.29%) | Stressed Loss (1.25x + $2) = -$19.50 | Stressed Equity = 4,799.01 USD (+4.01 USD buffer surplus, +24.01 USD hard floor surplus).
+2. **US2000.p (Model 2 Long — Value Acceptance & DVAH Retest)**:
+   - Setup: BUY_LIMIT @ 2,776.00 | Lots: 0.30 | SL: 2,771.50 | TP: 2,787.00 | R:R: 2.44R
+   - Status: Sits at Daily POC (2,775.78). On standby during 21:00-22:00 UTC broker session break.
+3. **NAS100.p (Model 2 Short — Trend Down Acceptance & DVAL Retest)**:
+   - Setup: SELL_LIMIT @ 29,085.00 | Lots: 0.03 | SL: 29,130.00 | TP: 28,970.00 | R:R: 2.55R
+   - Status: Retest into Daily VAL (29,087.86). On standby during 21:00-22:00 UTC broker session break.
+4. **Forex Majors & Crosses**: Strict trading embargo active 21:15-22:30 UTC for interbank rollover spread expansion.
 
 ### SECTION 4: 3-PERSONA MANDATORY INQUEST & OUTPUT FORMAT
 Evaluate the candidates across the 3 quantitative personas:
