@@ -152,6 +152,11 @@ Under strict hedge fund operational governance, **the desk is forbidden from ski
 > Per explicit operator directive, the Antigravity Autonomous Decision Desk is fully authorized to scan, evaluate, and trade across the entire **156-asset universe** available on the Blueberry Markets funded MetaTrader 5 account (#5064568).
 > Furthermore, the operator has granted explicit permission to **exceed legacy risk parameters** so that capital can be actively deployed across multiple high-conviction assets to accelerate achieving the **5,500.00 USD** equity target before Friday, 23rd October 2026.
 
+### 1. The Full 156-Asset Multi-Asset MT5 Universe & Automated Scanner Engine
+
+> 🚀 **Automated Opportunity Scanner (Terminal/multi_asset_opportunity_scanner.py)**:
+> On every cycle and autonomous wake-up, the desk and subagents execute Terminal/multi_asset_opportunity_scanner.py to evaluate all 156 instruments in < 2 seconds, ranking setups by Model 1 Extreme Oversold/Overbought (|Z| >= 2.0 to 3.5 SD) and Model 2 Trend Pullbacks, calculating precise lot sizing, nominal risk (- USD), stressed loss, and capital buffer surplus.
+
 ### 1. The Full 156-Asset Multi-Asset MT5 Universe (from `Data/Assets/mt5_full_symbol_universe.json` & `Terminal/Asset_Universe.py`)
 
 The desk operates across 6 major asset classes comprising exactly 156 tradable instruments on MetaTrader 5:

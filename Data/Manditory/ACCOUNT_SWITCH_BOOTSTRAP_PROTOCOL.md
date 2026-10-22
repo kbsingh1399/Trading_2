@@ -138,12 +138,12 @@ Verify that `Data/DataBase_Trading.xlsx` is fresh, uncorrupted, and has zero for
 
 1. **Track A (Internal Subagent Fleet Invocation with Tier 2 Big Prompts)**:
    - Immediately invoke all 4 specialized subagents simultaneously using `invoke_subagent` (`Model='flash'`):
-     * **Subagent 1: Orderflow Analyst** (`Role='Orderflow Analyst', Model='flash'`): Injected with Full Tier 2 Big Prompt covering Sheets 00–28, 30 (`20_Auction_Market_Structure`), mandatory citation of `STANDARDIZED_TRADING_DECISION_CHAIN.md`, spread gates, 5-pillar confluence, L2/L3 orderbook depth, resting whale bunkers, CVD divergence, and Potential Candidate Radar Checklist.
+     * **Subagent 1: Orderflow Analyst** (`Role='Orderflow Analyst', Model='flash'`): Injected with Full Tier 2 Big Prompt covering Sheets 00–28, 30 (`20_Auction_Market_Structure`), mandatory citation of `STANDARDIZED_TRADING_DECISION_CHAIN.md`, full 156-asset universe scan (Terminal/multi_asset_opportunity_scanner.py), spread gates across Forex/Commodities/Indices/Crypto, 5-pillar confluence, L2/L3 orderbook depth, resting whale bunkers, CVD divergence, and Potential Candidate Radar Checklist.
      * **Subagent 2: Position Manager** (`Role='Position Manager', Model='flash'`): Injected with Full Tier 2 Big Prompt covering mandatory citation of `STANDARDIZED_TRADING_DECISION_CHAIN.md`, MT5 telemetry, ratchet progression, stressed capacity audit strictly enforcing 1-position slot under +$39.83 buffer, and ticket sizing.
      * **Subagent 3: Macro Risk Analyst** (`Role='Macro Risk Analyst', Model='flash'`): Injected with Full Tier 2 Big Prompt covering mandatory citation of `STANDARDIZED_TRADING_DECISION_CHAIN.md`, Sheet 28 `19_Calendar`, `macro_calendar.json`, ETF flows, CEX netflows, session clock, and rollover embargo.
      * **Subagent 4: Excel Data Quality Auditor** (`Role='Excel Data Quality Auditor', Model='flash'`): Injected with Full Tier 2 Big Prompt covering mandatory citation of `STANDARDIZED_TRADING_DECISION_CHAIN.md`, 33-sheet coverage, CRC checks, zero formula errors, header verification, and pipeline daemon health.
 2. **Track B (Parallel Arena.ai Red-Team Prompt Dispatch)**:
-   - PARALLEL TO SUBAGENT INVOCATION, immediately dispatch the surgical red-team prompt citing `STANDARDIZED_TRADING_DECISION_CHAIN.md` to Arena.ai via Chrome CDP on port 9222:
+   - PARALLEL TO SUBAGENT INVOCATION, dispatch the unconstrained deep-reasoning multi-asset audit prompt citing `STANDARDIZED_TRADING_DECISION_CHAIN.md` to Arena.ai via Chrome CDP on port 9222:
      `python Terminal/dispatch_arena_redteam.py`
    - Arena.ai begins generation on Chrome CDP simultaneously while subagents conduct their independent empirical analyses.
 

@@ -65,12 +65,12 @@ Antigravity is evaluating the following setups. Red-team each one:
 
 ---
 
-## SECTION E: YOUR 5-POINT FORENSIC MANDATE (MAX 600 TOKENS TOTAL)
+## SECTION E: YOUR UNCONSTRAINED DEEP-REASONING MULTI-ASSET AUDIT & SIGNAL GENERATION MANDATE
 
-🚨 **MANDATORY OUTPUT FORMAT DIRECTIVE (OPERATOR RULE)**:
-Write EVERYTHING directly inside your output chat response message. DO NOT write into external documents, side artifacts, canvas files, or secondary attachments. The entire audit must be read directly in the main response text.
+🚨 **MANDATORY DEEP-REASONING DIRECTIVE (OPERATOR RULE)**:
+Write your full analysis directly inside your output chat response message. DO NOT truncate your thinking or limit your output. Use exhaustive chain-of-thought mathematical reasoning, analyze orderflow across the entire 156-asset MT5 universe (Forex Majors/Minors, Commodities, Metals, Indices, Crypto), and provide actionable, affirmative trading signals with exact parameters.
 
-Answer each point with brutal precision — no filler:
+Answer each point with brutal precision and deep quantitative evidence:
 
 **E1. STOP LOSS VULNERABILITY AUDIT**
 For each active ticket: is the SL outside the nearest liq sweep band (Sheet 22: `14_Hyperdash_Liq_Map`) AND retail stop cluster (Sheet 23: `15_Hyperdash_Stops_Map`) with >= 0.40 ATR buffer? Flag any SL at sweep risk. Give exact price.
@@ -81,13 +81,13 @@ Does each TP front-run an opposing liquidation magnet (Sheet 10: `7_Liq_Heapmap`
 **E3. WHALE WALL FRESHNESS CHECK**
 Inspect Sheet 18 (`10_Whale_Orders`) and Sheet 25 (`17_Orderbook`). Do supporting whale bids (>= $100K, persist >= 180s) still anchor our entry levels? If any wall pulled: flag it and give cancel recommendation.
 
-**E4. CANDIDATE EVALUATION**
-For each candidate in Section D: does it pass the 5-pillar confluence stack? (Spread gate → CVD divergence zc_div > 0.8 → regime Z-score → verified whale bunker >= 180s → macro clearance). Issue: QUALIFIED / DISQUALIFIED + one-line reason.
+**E4. MULTI-ASSET OPPORTUNITY EVALUATION & SCREENING**
+Evaluate the candidate setups across all asset classes (Indices, Forex, Commodities, Crypto). Which setups satisfy the 5-pillar confluence stack? (Spread gate → CVD divergence zc_div > 0.8 → regime Z-score → verified whale bunker >= 180s → macro clearance). Which non-crypto assets (e.g. NAS100 oversold, USDJPY/GBPUSD/EURUSD trend pullback, Gold demand shelf) offer the cleanest risk:reward (>= 2.2R to 2.5R)?
 
-**E5. FINAL TACTICAL VERDICT**
-For every active ticket: RATIFY / MODIFY (exact new price) / CANCEL (one-line reason).
-For every candidate: PUNCH LIMIT NOW (exact params) / STAND ASIDE (exact reason).
-Macro alert: any event in Sheet 28 within ±35m of now that blocks new entries?
+**E5. AFFIRMATIVE ACTIONABLE VERDICT & IMMEDIATE EXECUTION ORDERS**
+For every active ticket: RATIFY / MODIFY (exact new price) / CANCEL.
+For every candidate: PUNCH LIMIT NOW (Symbol, Side, Volume, Entry, SL, TP, Nominal Risk USD, Reward USD, Stressed Buffer Surplus) / STAND ASIDE (exact mathematical reason).
+Provide at least 1-2 affirmative, actionable passive limit orders that satisfy our capital solvency invariants and accelerate progress toward the 5,500.00 USD equity goal!
 ```
 
 ---

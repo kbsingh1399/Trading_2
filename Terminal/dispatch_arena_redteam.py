@@ -120,15 +120,25 @@ async def build_and_dispatch():
     ticket_table = "\n".join(table_rows)
     prompt = prompt.replace("{TICKET_TABLE}", ticket_table)
 
-    # Candidate Radar Table (Calibrated Multi-Asset Radar incorporating Operator Risk & Arena Feedback)
-    candidate_table = (
-        "| Candidate Setup | Direction | Target Entry | Stop Loss | Take Profit | Lots | Risk USD | Stressed Risk | Pre-Condition Checklist |\n"
-        "|---|---|---|---|---|---|---|---|---|\n"
-        "| BTCUSD.pi News Rejection Pin | BUY_LIMIT | 81,580.00 | 81,060.00 | 82,620.00 | 0.03 lot | $15.60 | $21.50 | [x] 12:30 M15 news bar flushed 81,578, [x] Printed 65pt lower absorption wick, [x] SL 81,060 safely < 81,150 stop cluster, [ ] TP 82,620 front-runs POC 82,746, [x] Spread 1.96 bps |\n"
-        "| NAS100.p Daily POC Shelf | BUY_LIMIT | 29,325.00 | 29,230.00 | 29,480.00 | 0.02 lot | $19.00 | $24.00 | [ ] Pullback into Daily POC 29,325.22, [x] SL 29,230 safely < Daily VAL 29,236.95, [x] TP 29,480 front-runs VAH 29,505 (Arena E2 verified 8.67 bps), [x] Spread 0.36 bps |\n"
-        "| XAUUSD.pi Demand Shelf Retest | BUY_LIMIT | 4,074.00 | 4,065.00 | 4,095.00 | 0.02 lot | $18.00 | $24.00 | [x] News low 4,069 rejected with +14pt surge to 4,083, [ ] Retest of 4,074 shelf, [x] SL 4,065 safely < 4,069 news low, [ ] TP 4,095 front-runs VAH 4,101, [x] Spread 0.20 bps |\n"
-        "| UK100.p Weekly POC Short | SELL_LIMIT | 10,742.00 | 10,762.00 | 10,695.00 | 0.07 lot | $19.60 | $25.00 | [ ] Test into Weekly POC 10,742.87, [x] SL 10,762 safely > Weekly VAH 10,758.28 (Arena E1 fix), [ ] TP 10,695 front-runs Daily VAL 10,679, [x] Spread 1.58 bps |"
-    )
+    # Candidate Radar Table (Dynamically pulled from Terminal/multi_asset_opportunity_scanner.py across all 156 assets)
+    try:
+        from Terminal.multi_asset_opportunity_scanner import scan_all_156_assets
+        scan_res = scan_all_156_assets()
+        top_opps = scan_res.get("opportunities", [])[:6]
+    except Exception as se:
+        logger.warning("Failed to scan 156 assets: %s", se)
+        top_opps = []
+
+    if top_opps:
+        c_lines = [
+            "| Candidate Setup | Direction | Target Entry | Stop Loss | Take Profit | Lots | Risk USD | Stressed Loss | Buffer Surplus |",
+            "|---|---|---|---|---|---|---|---|---|"
+        ]
+        for opp in top_opps:
+            c_lines.append(f"| {opp['symbol']} ({opp['group']}) | {opp['side']} | {opp['entry']} | {opp['sl']} | {opp['tp']} | {opp['lot']} lot | ${opp['nominal_risk_usd']:.2f} | ${opp['nominal_risk_usd']*1.25+2.0:.2f} | +${opp['buffer_surplus_usd']:.2f} |")
+        candidate_table = "\n".join(c_lines)
+    else:
+        candidate_table = "| No immediate multi-asset candidates qualified. Book is 100% Cash. |" 
     prompt = prompt.replace("{CANDIDATE_TABLE}", candidate_table)
 
     worst_case_eq = f"{eq - 27.00:.2f}"

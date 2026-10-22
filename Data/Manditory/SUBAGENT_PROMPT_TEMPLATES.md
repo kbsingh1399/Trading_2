@@ -143,18 +143,21 @@ Read and extract key signals from each cluster:
 - Sheet 26 (CVD): 15m and 1h Spot CVD vs Futures CVD. Is zc_div > 0.8 for any asset? Delta Spot > 0 and Delta Futures < 0?
 - Sheets 27–28 (News, Calendar): Any Tier-1 events within ±15m (crypto) or ±35m (TradFi) of now?
 
-STEP 3 — SPREAD GATE (from Data/telemetry/mt5_account_telemetry.json):
-Crypto: spread <= 25.0 bps → qualifying: BTC, ETH, BNB, BCH, SOL, TRX
-TradFi: spread <= 5.0 bps → qualifying: EURUSD, XAUUSD, NAS100, SP500, DJ30
-Disqualify any asset above threshold. List each asset's live spread in bps.
+STEP 3 — FULL 156-ASSET SPREAD & OPPORTUNITY SCAN (OPERATOR MANDATE):
+Run `python Terminal/multi_asset_opportunity_scanner.py` across all 156 MT5 instruments (Forex Majors/Minors, Commodities, Metals, Indices, Crypto).
+Friction gates:
+- Forex: spread <= 2.5 bps (e.g. EURUSD, GBPUSD, USDJPY, AUDUSD, USDCAD, USDCHF, Crosses)
+- Indices & Commodities: spread <= 4.0 bps (e.g. NAS100, SP500, DJ30, GER40, XAUUSD, XAGUSD, USWTI)
+- Crypto: spread <= 20.0 bps (e.g. BTC, ETH, SOL, BNB, BCH, TRX)
+Extract and evaluate the top candidates across ALL asset classes. Never restrict research to only 4 assets.
 
-STEP 4 — 5-PILLAR CANDIDATE SCREENING (for every spread-qualified asset):
-For each qualified asset, check all 5 pillars simultaneously:
-  P1: Spread gate passed (confirmed above)
-  P2: CVD divergence → zc_div > 0.8 AND Delta Spot > 0 AND Delta Futures < 0 (for longs)
-  P3: Auction location → |VWAP Z-score| >= 2.0 SD (Model 1 Mean Reversion) OR pullback to EMA20/50/VWAP in trend (Model 2)
-  P4: Verified resting whale wall >= $100K USD at or below entry, persist >= 180s (Sheet 18 or Sheet 25 confirmed)
-  P5: Macro clearance → zero Tier-1 blackout active right now
+STEP 4 — 5-PILLAR CANDIDATE SCREENING (across all qualified multi-asset candidates):
+For each candidate from the multi-asset scan, evaluate all 5 pillars simultaneously:
+  P1: Spread friction gate passed (confirmed above)
+  P2: CVD delta divergence / tape absorption (Delta Spot > 0 and Delta Futures < 0, or tick absorption)
+  P3: Structural location: Model 1 Extreme Oversold/Overbought (|VWAP Z| >= 2.0 to 3.5 SD, RSI < 35 or > 65) OR Model 2 Trend Pullback to EMA20/VWAP shelf in confirmed dominant trend
+  P4: Verified structural backing: Resting whale wall >= $100K USD, POC shelf, or EMA20/50 support anchoring Stop Loss outside sweep zone
+  P5: Macro clearance: Zero Tier-1 event blackout active right now
 
 STEP 5 — CANDIDATE FORMULATION & POTENTIAL RADAR CHECKLIST (OPERATOR MANDATE):
 If assets pass all 5 pillars right now: produce the complete execution ticket (Symbol | Side | Entry | SL | TP | Lot Size | R0).
