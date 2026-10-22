@@ -186,13 +186,11 @@ flowchart TD
   - Verify `python Terminal/run_pipeline_continuous_daemon.py` is active in background tasks.
   - Confirm the pipeline is cycling through all 28 data modules with an exact 5-minute (300-second) rest window between completed cycles.
   - If stale (> 45 min) or dead: relaunch `Terminal/run_pipeline_continuous_daemon.py` immediately.
-- [ ] **Verify Core Always-On Persistent Tasks**:
-  1. Pipeline Daemon (`run_pipeline_continuous_daemon.py`, 5m rest interval)
-  2. Telemetry Git Sync Daemon (`autonomous_telemetry_git_daemon.py`, pushes every 60s)
+- [ ] **Verify Core 4 Always-On Persistent Tasks**:
+  1. Continuous 32-Sheet Pipeline Daemon (`Run_Parallel_Pipeline.py --continuous --gap 300 --workers 1`)
+  2. 20-Minute Cron Sentry (`schedule` cron on `0,20,40 * * * *`)
   3. Arena Completion Daemon (`arena_completion_daemon.py --daemon` on port 9222)
-  4. Autonomous Swarm Cron (`schedule` cron on `0,20,40 * * * *`)
-  5. Web2API Council Daemon (`gemini_web2api.py` on port 8081)
-  6. Heretic Engine Daemon (`heretic_daemon.py` on port 8083)
+  4. Autonomous 5-Minute Git Sync Daemon (`autonomous_git_sync_daemon.py`, commits and pushes every 300s)
 
 ---
 
@@ -277,12 +275,14 @@ flowchart TD
 
 ---
 
-### Step 6: Arena.ai Completion Wait & Harvesting Gate
-- [ ] Let `Terminal/arena_completion_daemon.py --daemon` watch the generation lifecycle.
-- [ ] Once generation completes, verify that `docs/trade_plans/ARENA_LATEST_RAW.md` has been harvested and `Data/arena_completion_status.json` reflects fresh timestamp and non-empty hash.
-- [ ] Confirm both Antigravity subagent reports and Arena.ai output are in hand.
-
----
+### Step 6: Arena.ai Completion Wait, Reactive Wakeup & Output Evaluation Gate
+- [ ] **Arena Completion Daemon Reactive Wakeup**:
+  - The Arena Completion Daemon (`arena_completion_daemon.py --daemon`) continuously monitors Chrome CDP (port 9222).
+  - The instant Arena finishes generation, the daemon auto-harvests the complete response into `docs/trade_plans/ARENA_LATEST_RAW.md` and wakes up Antigravity reactively (zero token polling).
+- [ ] **Mandatory Arena.ai Evaluation & Cross-Verification**:
+  - Immediately read and deeply evaluate `docs/trade_plans/ARENA_LATEST_RAW.md`.
+  - Thoroughly inspect Arena's ruling, entry/SL/TP levels, 17-gate audit, and mathematical critique.
+  - Cross-verify Arena's critique with the independent empirical findings of all 4 subagents in the Co-Equal Council Debate.
 
 ### Step 7: Joint Output Forensic Cross-Verification & Dialectic Synthesis
 - [ ] Conduct a deep dialectic debate comparing Antigravity subagent research against Arena.ai's recommendations:
