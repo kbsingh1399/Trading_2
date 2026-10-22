@@ -24,7 +24,7 @@ logging.basicConfig(level=logging.INFO, format="[%(asctime)s][ArenaRedTeam] %(me
 logger = logging.getLogger("ArenaRedTeam")
 
 async def build_and_dispatch():
-    template_path = ROOT / "docs" / "prompts" / "ARENA_STANDARD_PROMPT_TEMPLATE.md"
+    template_path = ROOT / "Data" / "Manditory" / "ARENA_STANDARD_PROMPT_TEMPLATE.md"
     if not template_path.exists():
         logger.error("Template not found: %s", template_path)
         return False
