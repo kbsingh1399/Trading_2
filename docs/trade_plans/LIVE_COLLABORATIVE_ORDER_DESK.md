@@ -21516,3 +21516,18 @@ Capacity 2/4 joint-fill · `total_contingent_stress_usd` after the punch **20.25
   - Quad-daemons verified active: Excel pipeline daemon (`Run_Parallel_Pipeline.py`), Arena completion daemon, 20-min cron sentry, and 5-min Git sync daemon.
   - Live Spreads: BTC 2.08 bps, Gold 0.22 bps, EUR 0.18 bps (all well within institution gates).
 
+---
+
+## Cycle 247 Red-Team Evaluation & Arena Synthesis (2026-10-22 10:05:00 UTC)
+- **Arena.ai Cycle 247 Forensic Ruling Evaluated**:
+  - Ruling: Unanimous **STAND ASIDE / CANCEL DRAFTS** (100% Cash Preserved).
+  - SL Vulnerability Audit (E1):
+    * BTC-Long SL 79,503.23 sits only $29.73 above mapped 79,473.50 (Hyperdash 79,550: $59.20M sell stops / $23.90M long liquidations). Canonical 0.50-ATR clearance requires SL <= 79,350.55; resizing to 79,350 at 0.04 lot increases cash risk to $22.92, exceeding the $15–$20 budget.
+    * BTC-Short SL 82,750 collides directly with $277K buy stops and precedes $4.34M/$8.47M squeeze bands at 83,150/83,350.
+  - TP Magnet Audit (E2): BTC-Short TP 81,200 crosses the $9.91M bid at 81,493. 5–10 bps front-run (81,533–81,574) chokes R:R below 2R after safe-SL repair.
+  - Whale Wall Migration (E3): BTC 82,414 ask migrated down to 82,302 ($19.63M; only $307K left at 82,411).
+  - Candidate Evaluations (E4): BTC Deep-Sweep Long: **DISQUALIFIED**; Gold Bunker Long: **DISQUALIFIED**; BTC Relief Short: **DISQUALIFIED**.
+  - Final Synthesis (E5): 100% Cash Defense confirmed. Concurrency limit of strictly 1 solo position reaffirmed.
+- **Desk Decision**: Zero orders staged. Flat cash strictly protected. Next autonomous evaluation scheduled for 10:20 UTC cron sentry mark.
+
+
