@@ -34,7 +34,15 @@ except ImportError:
     MT5_AVAILABLE = False
 
 from Terminal.MT5_Execution_Bridge import MT5ExecutionBridge
-from Terminal.Asset_Universe import COMPLETE_UNIVERSE, canonical_asset
+from Terminal.Asset_Universe import (
+    COMPLETE_UNIVERSE,
+    ALL_INDICES_16,
+    ALL_COMMODITIES_14,
+    ALL_FOREX_MAJORS_7,
+    ALL_FOREX_CROSSES_25,
+    ALL_58_CRYPTO_ASSETS,
+    canonical_asset,
+)
 
 logging.basicConfig(
     level=logging.INFO,
@@ -53,14 +61,11 @@ OPERATING_BUFFER_USD = 4795.00
 BASE_RISK_USD = 15.00
 MAX_RISK_USD = 25.00
 
-PRIMARY_18_ASSETS = [
-    "BTC", "ETH", "XRP", "SOL", "BNB", "DOGE", "ADA", "TRX", "LINK",
-    "AVAX", "SUI", "NEAR", "DOT", "LTC", "BCH", "APT", "OP", "ARB",
-]
+PRIMARY_18_ASSETS = list(ALL_58_CRYPTO_ASSETS)
 
-TRADFI_CFD_ASSETS = [
-    "GOLD", "EURUSD", "NAS100", "SP500", "DJ30",
-]
+TRADFI_CFD_ASSETS = list(
+    ALL_INDICES_16 + ALL_COMMODITIES_14 + ALL_FOREX_MAJORS_7 + ALL_FOREX_CROSSES_25
+)
 
 
 def harvest_mt5_telemetry() -> dict:
