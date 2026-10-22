@@ -4,8 +4,8 @@
 > **Target Environment**: MetaTrader 5 (Blueberry Markets Account #5064568)  
 > **Mission Objective**: Pass Phase 1 Funded Challenge by End of Friday, 23rd October 2026  
 > **Status**: **ACTIVE & AUTONOMOUSLY EXECUTING**  
-> **Canonical SOP**: docs/specs/STANDARDIZED_TRADING_DECISION_CHAIN.md (Including Section 1.7 156-Asset Universe)  
-> **Execution Checklist**: docs/specs/AUTONOMOUS_WAKEUP_CHECKLIST.md  
+> **Canonical SOP**: Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md (Including Section 1.7 156-Asset Universe)  
+> **Execution Checklist**: Data/Manditory/AUTONOMOUS_WAKEUP_CHECKLIST.md  
 > **Master Data Warehouse**: Data/DataBase_Trading.xlsx (33 Sheets) & Data/Manditory/
 
 ---

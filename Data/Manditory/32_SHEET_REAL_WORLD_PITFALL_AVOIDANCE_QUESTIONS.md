@@ -6,7 +6,7 @@
 > **Master Warehouse Target**: `Data/DataBase_Trading.xlsx` (All 32 Canonical Production Worksheets)  
 > **Cross-Reference**: Must be executed in strict confluence with:
 > - [`Data/Manditory/TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md)
-> - [`docs/specs/STANDARDIZED_TRADING_DECISION_CHAIN.md`](file:///c:/Users/SIGMA/Documents/Trading_2/docs/specs/STANDARDIZED_TRADING_DECISION_CHAIN.md)
+> - [`Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md)
 > - [`Data/Manditory/PASS_BLUEBERRY_PHASE_1_BY_OCT_23_2026.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/PASS_BLUEBERRY_PHASE_1_BY_OCT_23_2026.md)
 > **Mission Mandate**: Enforce row-by-row, column-by-column interrogation of all 32 master sheets to eliminate context amnesia, prevent assumption bias, and guarantee mathematical survival above the **4,775.00 USD Hard Floor** and **4,795.00 USD Operating Buffer**.
 

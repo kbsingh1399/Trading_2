@@ -130,7 +130,12 @@ flowchart TD
    - Setting: `IsDaemon=true`, `WaitMsBeforeAsync=500`
    - Purpose: Continuous low-RAM AST watcher monitoring `Terminal/` and `Engine/` to synchronize code graph memory without token waste.
 
-*Verification Gate*: Re-run `manage_task(Action='list')` to verify all 5 tasks report `Status: RUNNING` and have valid `taskId` values assigned.
+6. **Daemon 6 (Gemini Web2API Council Daemon — Endogen Architecture - Token Preservation)**:
+   - Tool Call: `run_command(CommandLine="python C:\Users\SIGMA\Documents\Trading\gemini-web2api\gemini_web2api.py --config C:\Users\SIGMA\Documents\Trading\gemini-web2api\config.json", IsDaemon=true, WaitMsBeforeAsync=1000, toolSummary="Launch Gemini Web2API Daemon on port 8081")`
+   - Setting: `IsDaemon=true`, `WaitMsBeforeAsync=1000`
+   - Purpose: Continuous OpenAI-compatible reverse-proxy daemon on `http://localhost:8081` (Auth: `Bearer sk-gemini`). Provides zero-token auxiliary multi-agent councils with Gemini models, drastically saving context tokens for auxiliary analyses.
+
+*Verification Gate*: Re-run `manage_task(Action='list')` to verify all 6 tasks report `Status: RUNNING` and have valid `taskId` values assigned.
 
 ---
 

@@ -1,7 +1,7 @@
 # 🏛️ CANONICAL DESK MANDATORY GOVERNANCE & PROTOCOLS DIRECTORY
 ## Blueberry Markets Phase 1 Autonomous Desk (Account #5064568)
 
-> **Canonical Directory**: `Data/Manditory/` (Mirrored in `docs/Mandatory_Rules/`)  
+> **Canonical Directory**: `Data/Manditory/` (Mirrored in `Data/Manditory/`)  
 > **Mission**: Pass Funded Phase 1 (5,500.00 USD Equity Target) by Friday, 23rd October 2026 (23:59 UTC).  
 > **Inviolable Hard Floor**: 4,775.00 USD (Never breach under any circumstance).  
 > **Defense Operating Buffer**: 4,795.00 USD (+20.00 USD cushion above hard floor).  

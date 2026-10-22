@@ -82,20 +82,23 @@ Write EVERYTHING directly inside your output chat response message. DO NOT write
 
 Structure your response into the following explicit sections:
 
-### 1. PERSONA 1: ORDERFLOW ANALYST ASSESSMENT & INDEPENDENT DISCOVERY
+### 1. PERSONA 1: ORDERFLOW ANALYST (MUST STRICTLY FOLLOW `STANDARDIZED_TRADING_DECISION_CHAIN.md` STEPS 2, 4, 6)
+- Follow `Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md` line-by-line for all microstructure, tape, and orderbook evaluation.
 - Review Section C (active/pending tickets) and Section D (Antigravity's candidates).
 - Check Dynamic Spread Friction Gate: `Spread Points / TP Distance Points <= 15.0%`.
 - Evaluate orderflow microstructure: CVD delta divergence (`zc_div > 0.8`), 1m/5m/15m taker aggression, L2/L3 orderbook depth, resting institutional whale walls (>= $100K to $1M+, persisting >= 180s), and CoinGlass/Hyperdash stop sweep/liquidation levels.
 - Auction Market Structure: Value area position (VPOC, VAH, VAL), developing value, Monday opening range, previous session/day extremes, and Fibonacci confluence.
 - **Affirmative Candidate Discovery**: Identify the TOP 1–2 pristine setups across the entire 156-asset universe (Forex, Commodities, Metals, Indices, Crypto) that present the highest structural edge right now.
 
-### 2. PERSONA 2: POSITION MANAGER AUDIT & CAPACITY SIZING
+### 2. PERSONA 2: POSITION MANAGER (MUST STRICTLY FOLLOW `STANDARDIZED_TRADING_DECISION_CHAIN.md` STEPS 1, 5, 8)
+- Follow `Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md` line-by-line for all solvency, sizing, capacity, and ratchet evaluation.
 - Compute exact lot sizing and risk parameters for all active tickets and prospective candidates.
 - Stressed Solvency Audit: Verify `Equity - sum(Risk_i * 1.25 + 2.00) >= 4,795.00 USD` operating buffer defense cushion (+{CUSHION_BUFFER} USD) and strictly >= 4,775.00 USD hard floor (+{CUSHION_FLOOR} USD).
 - Portfolio Capacity: Verify fluid 4-slot capacity across any combination of assets. Note: resting limits do NOT consume filled slots.
 - Microstructure Exit Ratchets: Review running positions for Early-BE (+0.75R to +0.80R), Phase 0 (+1.25R), Phase 1 (+1.65R), or Target (+2.5R).
 
-### 3. PERSONA 3: MACRO RISK ANALYST CLEARANCE
+### 3. PERSONA 3: MACRO RISK ANALYST (MUST STRICTLY FOLLOW `STANDARDIZED_TRADING_DECISION_CHAIN.md` STEPS 3, 7)
+- Follow `Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md` line-by-line for all macro event, liquidity, flow, and session timing clearances.
 - Macro Calendar: Audit Sheet 28 `19_Calendar` and Tier-1 economic release schedule (CPI, NFP, FOMC, rate decisions). Confirm zero high-impact events within +/-4 hours.
 - Institutional Cross-Market Flows: Review ETF net flows (BTC/ETH) and CEX spot netflows.
 - Session Progression: Check session timing and enforce interbank FX rollover embargo (21:15–22:30 UTC). Confirm: MACRO APPROVED / STAND ASIDE.

@@ -2,9 +2,9 @@
 
 > **CANONICAL SPECIFICATION & MULTI-AGENT RE-ENGAGEMENT BLUEPRINT**  
 > **Primary Locations**:  
-> - `docs/Mandatory_Rules/ANTIGRAVITY_ARENA_THINKING_CHAIN_COUNCIL_PROTOCOL.md`  
 > - `Data/Manditory/ANTIGRAVITY_ARENA_THINKING_CHAIN_COUNCIL_PROTOCOL.md`  
-> - `docs/specs/ANTIGRAVITY_ARENA_THINKING_CHAIN_COUNCIL_PROTOCOL.md`  
+> - `Data/Manditory/ANTIGRAVITY_ARENA_THINKING_CHAIN_COUNCIL_PROTOCOL.md`  
+> - `Data/Manditory/ANTIGRAVITY_ARENA_THINKING_CHAIN_COUNCIL_PROTOCOL.md`  
 > **Operational Status**: ACTIVE PRODUCTION STANDARD (100% Causal, Empirical & Anti-Lookahead)  
 > **Target Audience**: Antigravity Coordinators, Subagent Swarms, Arena.ai Council, GPT Astra, Human Operators across all sessions & accounts.  
 > **Master Data Warehouse**: `Data/DataBase_Trading.xlsx` (All 33 Canonical Production Worksheets)  

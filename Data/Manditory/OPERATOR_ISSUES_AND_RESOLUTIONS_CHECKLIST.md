@@ -4,7 +4,7 @@
 
 > **Document Status**: CANONICAL PRODUCTION COMPLIANCE SPECIFICATION  
 > **Location**: `Data/Manditory/OPERATOR_ISSUES_AND_RESOLUTIONS_CHECKLIST.md`  
-> **Governing Framework**: [`STANDARDIZED_TRADING_DECISION_CHAIN.md`](file:///c:/Users/SIGMA/Documents/Trading_2/docs/specs/STANDARDIZED_TRADING_DECISION_CHAIN.md) & [`AUTONOMOUS_WAKEUP_CHECKLIST.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/AUTONOMOUS_WAKEUP_CHECKLIST.md)  
+> **Governing Framework**: [`STANDARDIZED_TRADING_DECISION_CHAIN.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md) & [`AUTONOMOUS_WAKEUP_CHECKLIST.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/AUTONOMOUS_WAKEUP_CHECKLIST.md)  
 > **Mandatory Rule**: Every item on this checklist has been forensically investigated, patched, verified, and converted into an inviolable operational gate executed on EVERY wake-up cycle.
 
 ---
@@ -152,7 +152,7 @@
 
 ### ISSUE 10: Adherence to `STANDARDIZED_TRADING_DECISION_CHAIN.md` (10-Step SOP)
 - **Operator Directives**:
-  * *"did we follow @[c:\Users\SIGMA\Documents\Trading_2\docs\specs\STANDARDIZED_TRADING_DECISION_CHAIN.md] and have you mentioned in aerna.ai prompt and prompt to sub agents...fix it"*
+  * *"did we follow @[c:\Users\SIGMA\Documents\Trading_2\Data\Manditory\STANDARDIZED_TRADING_DECISION_CHAIN.md] and have you mentioned in aerna.ai prompt and prompt to sub agents...fix it"*
 - **Forensic Diagnosis**: `STANDARDIZED_TRADING_DECISION_CHAIN.md` is the canonical institutional SOP, but had not been explicitly linked in Section B of `ARENA_STANDARD_PROMPT_TEMPLATE.md` or mandated in subagent prompts.
 - **Resolution**:
   1. Updated `docs/prompts/ARENA_STANDARD_PROMPT_TEMPLATE.md` Section B to explicitly mandate `STANDARDIZED_TRADING_DECISION_CHAIN.md`.
@@ -251,7 +251,7 @@ Every 20-minute wake-up cron cycle MUST systematically execute and verify each g
 - **Enforced Protocol**:
   1. Lightweight/short prompts to subagents are permanently banned.
   2. The coordinator MUST inject the FULL UNABRIDGED Tier 2 Big Prompts (~350–500 tokens) from `SUBAGENT_PROMPT_TEMPLATES.md` (Part 2) into each subagent.
-  3. Every subagent prompt MUST explicitly include `@[c:\Users\SIGMA\Documents\Trading_2\docs\specs\STANDARDIZED_TRADING_DECISION_CHAIN.md]` as the first non-bypassable reading requirement.
+  3. Every subagent prompt MUST explicitly include `@[c:\Users\SIGMA\Documents\Trading_2\Data\Manditory\STANDARDIZED_TRADING_DECISION_CHAIN.md]` as the first non-bypassable reading requirement.
 
 ---
 

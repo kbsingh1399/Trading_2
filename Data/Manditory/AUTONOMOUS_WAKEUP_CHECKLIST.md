@@ -112,12 +112,13 @@ Before evaluating data, touching code, or dispatching orders, the coordinator an
 ### Gateway 8: Hardware Health, Background Daemons & Workspace Hygiene
 > *"Is system RAM optimized, are all 5 daemons running in Antigravity task manager, and is the workspace pristine?"*
 - **RAM Check**: Is RAM usage <= 70%? If not, execute `scripts/free_ram.ps1` while strictly preserving browser sessions.
-- **5 Authorized Persistent Background Daemons (in Antigravity Task Manager)**:
+- **6 Authorized Persistent Background Daemons (in Antigravity Task Manager)**:
   1. Daemon 1: Continuous 33-Sheet Pipeline Daemon (`Run_Parallel_Pipeline.py --continuous --gap 300 --workers 1`, `IsDaemon=true`)
   2. Daemon 2: 20-Minute Cron Sentry (`schedule` cron on `0,20,40 * * * *`, `IsDaemon=true`)
   3. Daemon 3: Arena Completion Daemon (`arena_completion_daemon.py --daemon` on port 9222, `IsDaemon=true`)
   4. Daemon 4: Autonomous 5-Minute Git Sync Daemon (`autonomous_git_sync_daemon.py`, commits & pushes every 300s, `IsDaemon=true`)
   5. Daemon 5: AST Graphify Watcher Daemon (`run_graphify_watcher.py`, `IsDaemon=true`)
+  6. Daemon 6: Gemini Web2API Council Daemon on port 8081 (`python gemini_web2api.py --config config.json`, `IsDaemon=true`, Endogen architecture)
 - **Zero Scratch Litter**: Prune all temporary scripts immediately after verification.
 - **Turn Ledger Append**: Append turn record to `.agents/memory/session_chat_history.md`.
 
@@ -316,6 +317,6 @@ flowchart TD
 - [ ] **Dual-Repo Parity Verification**: Run `python .agents/scripts/verify_and_sync_agents.py` to guarantee 100% byte-for-byte parity across `Trading_2` and `Engine_2`.
 - [ ] **Continuous Kaizen Self-Improvement Audit**: Execute the 5-stage loop from `Data/Manditory/CONTINUOUS_KAIZEN_SELF_IMPROVEMENT_PROTOCOL.md`. Audit for any arithmetic mismatch, stale solvency assumption, or unanchored level; codify any discovered trap immediately.
 - [ ] **Desk Ledger & Turn Append**: Update `docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md`, `ACTIVE_CONTEXT.md`, and append turn summary to `.agents/memory/session_chat_history.md`.
-- [ ] **Ensure All 5 Daemons Active in Task Manager**: Confirm that `manage_task(Action='list')` reports all 5 persistent daemons running (Pipeline, Cron `0,20,40 * * * *`, Arena Completion, Git Sync, AST Watcher). If any daemon terminated, immediately relaunch it.
+- [ ] **Ensure All 6 Daemons Active in Task Manager**: Confirm that `manage_task(Action='list')` reports all 6 persistent daemons running (Pipeline, Cron `0,20,40 * * * *`, Arena Completion, Git Sync, AST Watcher, Gemini Web2API on port 8081). If any daemon terminated, immediately relaunch it.
 - [ ] **Zero Scratch Litter**: Prune all temporary scratch scripts immediately.
 - [ ] **Silent Standby**: Enter silent standby awaiting next autonomous reactive wakeup or cron trigger.
