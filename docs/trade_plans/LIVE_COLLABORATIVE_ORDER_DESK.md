@@ -2,7 +2,7 @@
 **Joint Operational Ledger**: Antigravity (Local Execution Muscle) ⇄ Arena.ai (Cloud Quant Council)  
 **Target Repository**: `https://github.com/kbsingh1399/Trading_2` | Branch: `main`
 **Execution Broker**: MetaTrader 5 | Account #5064568 (Blueberry Markets SVG-Live)  
-**Established**: 2026-10-07 13:15:00 UTC | **Last Updated**: 2026-10-22 09:35 UTC (Cycle 245 Consensus: Unanimous STAND ASIDE in 100% Cash; 1-Position Slot Max; Anti-Knife Sweep & Reclaim Contract Codified)
+**Established**: 2026-10-07 13:15:00 UTC | **Last Updated**: 2026-10-22 09:55 UTC (Cycle 247 Consensus: Unanimous STAND ASIDE in 100% Cash; Cycle 246 Ruling Evaluated; P0 Sizing Inconsistency Permanently Fixed; 1-Slot Capacity Enforced)
 
 ---
 
@@ -40,22 +40,28 @@
 
 ### Potential Candidate Radar (Qualified Watchlist - Gated on Anti-Knife Trigger):
 1. **BTCUSD.pi** (Model 1 Stop Sweep & Whale Bunker Long):
-   - Mapped Levels: Mark ~81,775 | Basis Offset: -76.5 | Re-test Shelf: `80,350.0` | Defending Bunker: `79,923.5` | SL: `<= 79,503.2` | TP: `81,800.0`
-   - Sizing: 0.03 lot ($16.50 nominal risk, $22.63 stressed loss)
+   - Mapped Levels: Mark ~81,796 | Basis Offset: -76.5 | Re-test Shelf: `80,350.0` | Defending Bunker: `79,923.5` | SL: `<= 79,503.23` | TP: `80,974.0` (Deep) / `82,467.0` (High)
+   - Resized Geometry (Fixed P0 Inconsistency):
+     * Deep Sweep Entry (`79,923.50`): **0.04 lot** -> Risk: **$16.81 USD**, Stressed Loss: **$23.01 USD** (Stressed Equity: $4,811.82, Buffer Surplus: +$16.82) -> CLEARED
+     * Reclaim Shelf Entry (`80,350.00`): **0.02 lot** -> Risk: **$16.94 USD**, Stressed Loss: **$23.18 USD** (Stressed Equity: $4,811.65, Buffer Surplus: +$16.65) -> CLEARED
+     * (Note: Legacy 0.03 lot at 80,350 was disqualified as it risked $25.40, exceeding the $20 ceiling)
    - Pre-condition Checklist:
      * [ ] Retail stop cascade down through 79,923.5 fully flushed
      * [ ] 15m CVD seller delta decelerates by >30% and prints positive absorption flip
      * [ ] Price reclaims 80,350 shelf with >= 80% bid replenishment within 2s
-     * [ ] Spread gate <= 25.0 bps
+     * [ ] Spread gate <= 25.0 bps (Live: 2.08 bps PASS)
      * [ ] Macro clearance approved
 2. **XAUUSD.pi** (Model 1 Whale Bunker Long):
-   - Mapped Levels: Mark ~4,089.8 | Defending Bunker: `4,046.975` ($1.619M) | SL: `<= 4,042.57` | Reclaim Shelf: `4,062.50` | TP: `4,082.00`
-   - Sizing: 0.02 lot ($17.00 nominal risk, $23.25 stressed loss)
+   - Mapped Levels: Mark ~4,084.3 | Defending Bunker: `4,046.975` ($1.619M) | SL: `<= 4,042.57` | Reclaim Shelf: `4,062.50` | TP: `4,058.00` (Deep) / `4,112.30` (High)
+   - Resized Geometry (Fixed P0 Inconsistency):
+     * Deep Bunker Entry (`4,046.98`): **0.04 lot** -> Risk: **$17.64 USD**, Stressed Loss: **$24.05 USD** (Stressed Equity: $4,810.78, Buffer Surplus: +$15.78) -> CLEARED
+     * Reclaim Shelf Entry (`4,062.50`): **0.01 lot** -> Risk: **$19.93 USD**, Stressed Loss: **$26.91 USD** (Stressed Equity: $4,807.92, Buffer Surplus: +$12.92) -> CLEARED
+     * (Note: Legacy 0.02 lot at 4,062.50 was disqualified as it risked $39.86, crashing stressed equity below the $4,795 buffer)
    - Pre-condition Checklist:
      * [ ] Retail sell-stop cluster at 4,060.475 fully flushed
      * [ ] Test into $1.619M whale bunker at 4,046.975 confirms buyer defense
      * [ ] Reclaim of 4,062.50 with live positive orderflow
-     * [ ] Spread gate <= 5.0 bps
+     * [ ] Spread gate <= 5.0 bps (Live: 0.22 bps PASS)
      * [ ] Macro clearance approved
 
 ### Floor Cushion & Joint Risk Summary (Cycle 245 Baseline):
@@ -21493,3 +21499,20 @@ Capacity 2/4 joint-fill · `total_contingent_stress_usd` after the punch **20.25
   - Worst-Case Stressed Equity: **$4,852.54 USD** (preserving $4,775 hard floor by **+$77.54 USD** and $4,795 buffer by **+$57.54 USD**).
   - Capacity: **2 vacant slots remaining** strictly reserved for orthogonal clusters (Commodities / Energy / Forex).
 - **Execution Invariant**: Zero hesitation autonomous punch executed under Step 10 of `STANDARDIZED_TRADING_DECISION_CHAIN.md`.
+
+---
+
+## Cycle 247 Collaborative Desk Update (2026-10-22 09:55:00 UTC)
+- **Account State & Milestones**:
+  - Balance & Equity: **4,834.83 USD** (100% Flat Cash, 0 Open Positions, 0 Pending Orders).
+  - Hard Floor ($4,775) Cushion: **+$59.83 USD (+1.25%)** | Operating Buffer ($4,795) Cushion: **+$39.83 USD (+0.83%)**.
+  - Concurrency Capacity: **Strictly 1 Slot Max** (Scenario C two positions at $15 risks $41.50 stressed loss, violating the +$39.83 buffer).
+- **Arena.ai Cycle 246 Ruling Evaluated**:
+  - Unanimous **STAND ASIDE IN 100% CASH** ratified.
+  - Zero resting limits confirmed: market marks (BTC ~81,796, Gold ~4,084.3) remain in mid-air above sweep targets (79,923.5 / 4,060.475). Pre-staging limits would violate Pitfall 8.
+  - P0 Kaizen Regression Resolved: Resized BTC and Gold tickets to maintain exact mathematical consistency between corrected safe stops and the $15.00–$20.00 nominal risk envelope.
+  - Gate 3 CVD Contract Codified: Requires lower price low + higher CVD low, >30% delta deceleration, follow-through 5m/1m positive prints, and >= 80% bid replenishment within 2 seconds.
+- **Autonomous Infrastructure Health**:
+  - Quad-daemons verified active: Excel pipeline daemon (`Run_Parallel_Pipeline.py`), Arena completion daemon, 20-min cron sentry, and 5-min Git sync daemon.
+  - Live Spreads: BTC 2.08 bps, Gold 0.22 bps, EUR 0.18 bps (all well within institution gates).
+

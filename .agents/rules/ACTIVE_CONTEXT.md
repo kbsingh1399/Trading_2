@@ -136,18 +136,17 @@ trigger: always_on
       * **Position Capacity Policy**:
         - Up to 4 concurrent tickets across orthogonal asset clusters provided total joint worst-case stopout risk unconditionally defends the 4,775.00 USD hard floor and 4,795.00 USD operating buffer (>= 20.00 USD cushion at all times).
     - Connects directly via native IPC to MetaTrader 5 Account 5064568 (Blueberry Markets).
-    - **Active Positions & Pending Orders (Live State — 1 Active Open Position | 0 Resting Limit Orders across 4 Slots)**:
-       * Current Status: **1 Active Position | 0 Resting Limit Orders | Balance: 4,840.39 USD | Equity: 4,854.31 USD | Margin: 299.07 USD | Free Margin: 4,555.24 USD**.
-       * Active Position (1): Ticket #19164106 (EURUSD.pi BUY 0.08 lot @ 1.12150): Phase 2 Ratchet EXECUTED -> SL advanced to 1.12300 (+1.50 R0 locked profit = +.00 USD minimum guaranteed net profit, 0.00 USD downside risk). TP: 1.12420 (+2.70 R0 = +.60 USD).
-       * Decoupled 4-Slot Capacity: Slot 1 filled (EURUSD). Slots 2, 3, and 4 are open. Resting limit orders do not consume filled slots. Stood aside on BTC, Gold, and Indices due to massive overhead ask walls and stop hunt traps.
-       * Staged Resting Limit Orders: 0 (All 3 vulnerable orders cancelled after red-team verification).
-       * G-1 Hard Floor Defense: Hard Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Cushion: **+65.39 USD above hard floor (+45.39 USD above operating buffer)**.
-       * Stressed Multi-Ticket Post-Loss Simulation:
-         - Total Open Nominal Risk: **0.00 USD** (0 filled positions).
-         - Total Stressed Contingent Risk across all 4 resting orders: **59.88 USD** (worst-case 4-way simultaneous catastrophic stopout).
-         - Worst-Case Catastrophic Stressed Equity: **4,780.52 USD** (+5.52 USD strictly preserved above 4,775.00 USD hard floor).
-         - Single-Fill Stressed Equity: **4,821.51 to 4,828.39 USD** (+26.51 to +33.39 USD preserved above 4,795.00 USD operating buffer).
-         - Slot Capacity: **0 / 4 Filled** (All 4 slots active with resting limit bids behind verified structural shelves).
+    - **Active Positions & Pending Orders (Live State — 0 Active Open Positions | 0 Resting Limit Orders | 1 Capacity Slot Max)**:
+       * Current Status: **0 Active Positions | 0 Resting Limit Orders | Balance: 4,834.83 USD | Equity: 4,834.83 USD | Margin: 0.00 USD | Free Margin: 4,834.83 USD**.
+       * 100% Flat Cash: Capital strictly preserved. All prior positions realized.
+       * Concurrency Capacity Policy: Under current +39.83 USD buffer cushion, maximum concurrent exposure is strictly **1 Slot Max** at 15.00–20.00 USD nominal risk (stressed loss <= 27.00 USD, guaranteeing >= +12.83 USD buffer surplus). Two concurrent positions are mathematically BLOCKED.
+       * Staged Resting Limit Orders: 0 (Standing aside; market marks remain in mid-air above sweep targets; pre-staging prohibited).
+       * G-1 Hard Floor Defense: Hard Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Cushion: **+59.83 USD above hard floor (+39.83 USD above operating buffer)**.
+       * Stressed Single-Ticket Simulation:
+         - Scenario A (1 pos @  nominal risk): Stressed loss .75 -> Stressed equity ,814.08 (+19.08 USD buffer surplus) -> CLEARED.
+         - Scenario B (1 pos @  nominal risk): Stressed loss .00 -> Stressed equity ,807.83 (+12.83 USD buffer surplus) -> CLEARED.
+         - Scenario C (2 pos @  nominal risk): Stressed loss .50 -> Stressed equity ,793.33 (-1.67 USD buffer deficit) -> BLOCKED.
+       * Arena.ai Cycle 246 Ruling Evaluated: Unanimous STAND ASIDE IN 100% CASH ratified. P0 ticket sizing inconsistency in desk ledger permanently resolved. Exact Gate 3 CVD absorption contract codified.
       * Sentry & Cron State:
         - Governed directly by Antigravity under active `/goal` with 10-step joint-completion lifecycle.
         - `autonomous_telemetry_git_daemon.py` running persistently every 60s, streaming live snapshots to `origin/main` and all `origin/arena/...` branches.
