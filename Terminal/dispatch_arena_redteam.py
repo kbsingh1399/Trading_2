@@ -41,19 +41,19 @@ async def build_and_dispatch():
     # Load live telemetry dynamically
     import json
     telemetry_file = ROOT / "Data" / "telemetry" / "mt5_account_telemetry.json"
-    bal_str = "4,851.83"
-    eq_str = "4,851.83"
-    fm_str = "4,851.83"
-    pos_str = "0 (100% Cash, EURUSD #19164106 closed at 1.12300 locking +$11.44 net cash profit)"
-    cush_fl_str = "+76.83"
-    cush_buf_str = "+56.83"
-    dist_goal_str = "+648.17"
-    hours_left_str = "53.0"
+    bal_str = "4,834.83"
+    eq_str = "4,834.83"
+    fm_str = "4,834.83"
+    pos_str = "0 (100% Flat Cash, 0 positions, 0 pending orders)"
+    cush_fl_str = "+59.83"
+    cush_buf_str = "+39.83"
+    dist_goal_str = "+665.17"
+    hours_left_str = "38.0"
     # Auto-detect latest cycle ID
     import glob, re
     existing = glob.glob(str(ROOT / "docs" / "prompts" / "ARENA_CYCLE_*_REDTEAM_PROMPT.txt"))
     nums = [int(m.group(1)) for f in existing if (m := re.search(r"ARENA_CYCLE_(\d+)_REDTEAM", f))]
-    cycle_num = max(nums) + 1 if nums else 211
+    cycle_num = max(nums) + 1 if nums else 247
     cycle_id = str(cycle_num)
 
     if telemetry_file.exists():
@@ -109,14 +109,13 @@ async def build_and_dispatch():
     candidate_table = (
         "| Candidate Setup | Direction | Target Entry | Stop Loss | Take Profit | Lots | Risk USD | Stressed Risk | Pre-Condition Checklist |\n"
         "|---|---|---|---|---|---|---|---|---|\n"
-        "| SOLUSD.p Demand Shelf | BUY_LIMIT | 106.96 | 105.10 | 107.95 | 0.10 lot | $18.60 | $25.25 | [x] Swept 107.50 stops, [x] 7.71M whale wall @ 106.66 persists, [x] Spread 21.49 bps <= 25.0, [ ] Touch 106.96 |\n"
-        "| XAUUSD.pi Demand Shelf | BUY_LIMIT | 4,117.50 | 4,101.50 | 4,157.50 | 0.01 lot | $16.00 | $22.00 | [ ] Pullback to VWAP -1.0 SD shelf (4,117.50), [x] Spread 0.19 bps <= 2.5 bps, [ ] CVD buyer absorption |\n"
-        "| BTCUSD.pi Cascade Shelf | BUY_LIMIT | 82,250.00 | 81,750.00 | 83,500.00 | 0.04 lot | $20.00 | $27.00 | [ ] 109M retail stop cascade (83,850-82,450) sweeps, [x] Spread 1.78 bps, [ ] CVD confirms exhaustion |\n"
-        "| EURUSD.pi Bid Pocket | BUY_LIMIT | 1.12150 | 1.12050 | 1.12450 | 0.18 lot | $18.00 | $24.50 | [x] FX rollover lifted, [x] Spread 0.09 bps <= 5.0 bps, [ ] Retest 1.12150 bid pocket |"
+        "| BTCUSD.pi Deep Sweep | BUY_LIMIT | 79,923.50 | 79,503.23 | 80,974.00 | 0.04 lot | $16.81 | $23.01 | [ ] Flush 79,923.5 stops, [ ] CVD delta decelerates >30%, [ ] Reclaim 80,350 with >=80% bid replenishment in 2s, [x] Spread 2.08 bps |\n"
+        "| XAUUSD.pi Whale Bunker | BUY_LIMIT | 4,046.98 | 4,042.57 | 4,058.00 | 0.04 lot | $17.64 | $24.05 | [ ] Sweep 4,060.475 sell stops, [ ] Buyer defense at $1.619M bunker (4,046.98), [ ] Reclaim 4,062.50, [x] Spread 0.22 bps |\n"
+        "| BTCUSD.pi Relief Short | SELL_LIMIT | 82,414.00 | 82,750.00 | 81,200.00 | 0.05 lot | $16.80 | $23.00 | [ ] Relief rally into 82,279-82,414 EMA20/Ask Wall shelf, [ ] Rejection print + tape ask replenishment, [ ] IBIT flow absorption |"
     )
     prompt = prompt.replace("{CANDIDATE_TABLE}", candidate_table)
 
-    worst_case_eq = f"{4851.83 - 47.25:.2f}"
+    worst_case_eq = f"{eq - 27.00:.2f}"
     prompt = prompt.replace("{WORST_CASE_EQUITY}", worst_case_eq)
 
     # Save to prompts dir
