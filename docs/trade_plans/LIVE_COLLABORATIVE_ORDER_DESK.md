@@ -27,7 +27,7 @@
 
 ---
 
-## 2. ACTIVE MT5 POSITIONS & PENDING ORDERS LEDGER (LIVE MONITORING - CYCLE 239)
+## 2. ACTIVE MT5 POSITIONS & PENDING ORDERS LEDGER (LIVE MONITORING - CYCLE 241)
 
 ### Active Open Positions (0 / 4 capacity slots occupied):
 * **None currently open** (Account is 100% FLAT in cash: Balance & Equity = **4,834.83 USD**).
@@ -42,36 +42,36 @@
 
 ### Potential Passive Limit Order Candidates (Qualified Watchlist - Staging Gated on High Conviction):
 1. **BTCUSD.pi** (Model 1 Institutional L3 Whale Shelf Pullback Long):
-   - Mapped Levels: Mark 82,755.0 | Limit Entry: `82,190.0` (Core Whale Wall Shelf post-sweep of [82,100, 82,200] stops) | SL: `81,490.0` (700 pts, below 81,657 $24.43M bunker) | TP: `83,390.0` (1,200 pts) | Net 1.71R
-   - Sizing: 0.01 lot (~$7.00 USD nominal risk) to 0.02 lot (~$14.00 USD nominal risk) | Spread: 1.93 bps
-   - Microstructure Anchoring (Cycle 239 Joint Audit): Wallet `0xf5a5..1286` confirmed with $12.68M buy cluster at 82,141.5–82,190 USD (>3,600s persist) and $3.43M at 81,657 USD. Arena confirmed resting anchor of **$12.682M at 82,131.5 USD (4,821s persist)**.
+   - Mapped Levels: Mark 82,735.0 | Limit Entry: `82,190.0` (Core Whale Wall Shelf post-sweep of [82,100, 82,200] stops) | SL: `82,040.0` (150 pts, 0.40 ATR buffer below stop floor) | TP: `82,600.0` (410 pts) | Net 2.73R
+   - Sizing: 0.08 lot (~$12.00 USD nominal risk) | Spread: 1.93 bps
+   - Microstructure Anchoring (Cycle 241 Joint Audit): Wallet `0xf5a5..1286` confirmed with $12.68M buy cluster at 82,141.5–82,190 USD (>6,345s persist) and $7.43M at 81,657 USD. Arena confirmed resting anchor of **$12.682M at 82,128.5–82,190.0 USD (7,507s persist)**.
    - Pre-condition Checklist:
-     * [x] Multi-whale bid bunker verified ($12.68M @ 82,131.5–82,190 + $3.43M @ 81,657)
+     * [x] Multi-whale bid bunker verified ($12.68M @ 82,128.5–82,190 + $7.43M @ 81,657)
      * [x] Spread gate passed (1.93 bps <= 25.0 bps)
-     * [ ] [82,100–82,200 USD] ($7.48M) retail stop cascade fully flushed into 82,190 shelf
-     * [ ] 15m CVD delta decelerates from -$3.37M seller dump and prints positive absorption flip
+     * [ ] [82,100–82,200 USD] ($8.72M) retail stop cascade fully flushed into 82,190 shelf
+     * [ ] 15m CVD delta decelerates from -$8.90M seller dump and prints positive absorption flip
      * [ ] Macro clearance maintained (0 high-impact events)
 2. **XAUUSD.pi** (Model 1 True Institutional Bunker Long):
-   - Mapped Levels: Mark 4,091.03 | Limit Entry: `4,082.50` (Anchored on 4,080.00 whale bunker) | SL: `4,073.00` ($9.50 pts) | TP: `4,098.50` ($16.00 pts) | Net 1.68R
-   - Sizing: 0.01 lot (~$9.50 USD nominal risk) to 0.02 lot (~$19.00 USD nominal risk) | Spread: 0.20 bps
-   - Forensic Update (Cycle 239 Joint Audit): Orderflow Analyst and Arena both confirmed the primary institutional whale bunker at **4,080.00–4,082.50 USD ($1.941M / 475.82 oz, 41,909s / 11.6h persist, wallet `0x12f7..8750`, Gate G7 eligible)**.
+   - Mapped Levels: Mark 4,086.39 | Limit Entry: `4,081.50` (Anchored on 4,080.00 whale bunker) | SL: `4,074.80` ($6.70 pts, 0.39 ATR buffer) | TP: `4,098.50` ($17.00 pts) | Net 2.54R
+   - Sizing: 0.02 lot (~$13.40 USD nominal risk) | Spread: 0.20 bps
+   - Forensic Update (Cycle 241 Joint Audit): Orderflow Analyst and Arena both confirmed the primary institutional whale bunker at **4,080.00–4,082.50 USD ($1.941M / 475.82 oz, 44,045s / 12.2h persist, wallet `0x12f7..8750`, Gate G7 eligible)**. Price is actively descending toward this bunker (4,086.39 USD).
    - Pre-condition Checklist:
-     * [x] 4,080.00–4,082.50 USD institutional whale bunker verified ($1.941M, persist 41,909s / 11.6h)
+     * [x] 4,080.00–4,082.50 USD institutional whale bunker verified ($1.941M, persist 44,045s / 12.2h)
      * [x] Spread gate passed (0.20 bps <= 5.0 bps)
-     * [ ] Price flushes into 4,080.00–4,082.50 USD bunker (currently 4,091.03)
-     * [ ] Tick volume / tape prints positive buyer absorption (currently -57.0 delta seller bias)
+     * [ ] Price reaches and tags 4,080.00–4,082.50 USD bunker zone (currently 4,086.39)
+     * [ ] Tick volume / tape prints positive buyer absorption (seller delta exhausts)
      * [ ] Macro embargo clear
-3. **SOLUSD.p** (Model 1 Structural Shelf Rebound Long):
-   - Mapped Levels: Mark 105.15 | Limit Entry: `103.85` (Front-running 103.75 $1.83M whale wall) | SL: `102.90` (0.95 pt) | TP: `105.90` | Net 2.16R
-   - Sizing: 0.15 lot (~$14.25 USD nominal risk) | Spread: 21.87 bps
+3. **SOLUSD.p** (Model 2 Trend Pullback / Shelf Defense Long):
+   - Mapped Levels: Mark 104.95–105.15 | Limit Entry: `103.85` (Front-running 103.75 $780K whale wall) | SL: `103.25` (0.60 pt) | TP: `105.40` (front-running 106.99 ask wall) | Net 2.58R
+   - Sizing: 20.0 lots / 0.20 MT5 volume (~$12.00 USD nominal risk) | Spread: 21.92 bps
    - Pre-condition Checklist:
-     * [ ] Sell stops below 104.50 flushed
-     * [ ] 15m CVD delta flips positive / absorption verified (currently -$957K Spot, -$1.01M Futures)
-     * [ ] 103.75 USD resting whale wall ($1.83M, wallet `0xeac8..42`) confirmed intact
-     * [ ] MT5 spread compresses <= 25.0 bps (currently 21.87 bps)
+     * [ ] BTC stabilizes and halts downward drag
+     * [ ] Price tags 103.75 USD demand shelf
+     * [ ] 5m taker CVD delta stabilizes / flips positive
+     * [ ] Spread gate <= 25.0 bps maintained (currently 21.92 bps)
      * [ ] Macro clearance confirmed
 
-### Floor Cushion & Joint Risk Summary (Cycle 239 Baseline):
+### Floor Cushion & Joint Risk Summary (Cycle 241 Baseline):
 * **Account Balance**: **4,834.83 USD** | **Equity**: **4,834.83 USD** (100% Cash Flat)
 * **Absolute Hard Floor**: **4,775.00 USD** (Cushion: **+59.83 USD**)
 * **Operating Buffer**: **4,795.00 USD** (Cushion: **+39.83 USD**)
