@@ -392,7 +392,8 @@ def dump_mt5_telemetry_sheet(excel_path: pathlib.Path = DEFAULT_EXCEL_PATH) -> b
     saved = False
     for attempt in range(15):
         try:
-            temp_excel = excel_path.with_suffix(".tmp.xlsx")
+            import os, time
+    temp_excel = excel_path.with_name(f"{excel_path.stem}_{os.getpid()}_{int(time.time()*1000)}.tmp.xlsx")
     wb.save(temp_excel)
     wb.close()
     import time, zipfile

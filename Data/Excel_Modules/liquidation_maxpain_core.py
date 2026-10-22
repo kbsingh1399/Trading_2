@@ -451,7 +451,8 @@ def dump_maxpain_to_excel(
     # Freeze panes below headers and after symbol column (C3)
     ws.freeze_panes = "C3"
 
-    temp_excel = excel_path.with_suffix(".tmp.xlsx")
+    import os, time
+    temp_excel = excel_path.with_name(f"{excel_path.stem}_{os.getpid()}_{int(time.time()*1000)}.tmp.xlsx")
     wb.save(temp_excel)
     wb.close()
     import time, zipfile

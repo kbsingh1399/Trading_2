@@ -738,7 +738,8 @@ def dump_technical_to_excel(
     # Freeze panes at E3 so Sr. No., Asset, Category, Symbol remain sticky while scrolling horizontally/vertically
     ws.freeze_panes = "E3"
 
-    temp_excel = excel_path.with_suffix(".tmp.xlsx")
+    import os, time
+    temp_excel = excel_path.with_name(f"{excel_path.stem}_{os.getpid()}_{int(time.time()*1000)}.tmp.xlsx")
     wb.save(temp_excel)
     wb.close()
     import time, zipfile

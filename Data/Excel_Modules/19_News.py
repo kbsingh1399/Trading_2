@@ -493,7 +493,8 @@ def export_news_to_excel(
     ws.auto_filter.ref = f"A1:K{len(stories) + 1}"
     ws.freeze_panes = "A2"
 
-    temp_excel = excel_path.with_suffix(".tmp.xlsx")
+    import os, time
+    temp_excel = excel_path.with_name(f"{excel_path.stem}_{os.getpid()}_{int(time.time()*1000)}.tmp.xlsx")
     wb.save(temp_excel)
     wb.close()
     import time, zipfile

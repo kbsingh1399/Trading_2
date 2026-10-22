@@ -618,7 +618,8 @@ def dump_to_excel(records: List[Dict[str, Any]], excel_path: pathlib.Path = DEFA
     ws.views.sheetView[0].showGridLines = True
     ws.freeze_panes = "A2"
 
-    temp_excel = excel_path.with_suffix(".tmp.xlsx")
+    import os, time
+    temp_excel = excel_path.with_name(f"{excel_path.stem}_{os.getpid()}_{int(time.time()*1000)}.tmp.xlsx")
     wb.save(temp_excel)
     wb.close()
     import time, zipfile

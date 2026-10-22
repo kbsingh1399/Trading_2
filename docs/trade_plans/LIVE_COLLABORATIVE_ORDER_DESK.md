@@ -1,83 +1,69 @@
 # 🏛️ LIVE COLLABORATIVE ORDER DESK & REAL-TIME STRATEGY BLACKBOARD
 **Joint Operational Ledger**: Antigravity (Local Execution Muscle) ⇄ Arena.ai (Cloud Quant Council)  
-**Target Repository**: `https://github.com/kbsingh1399/Trading_2` | Branch: `arena/537c1eb8-trading-2`
+**Target Repository**: `https://github.com/kbsingh1399/Trading_2` | Branch: `main`
 **Execution Broker**: MetaTrader 5 | Account #5064568 (Blueberry Markets SVG-Live)  
-**Established**: 2026-10-07 13:15:00 UTC | **Last Updated**: 2026-10-08 19:24 UTC (Arena Section 64 ADDENDUM 19:23:06 — SOL cut executed by desk, capacity OPEN 1/2, replacement stage A LTC SELL 62.450 / B LNK SELL 12.476 validated; Arena Section 64 — 19:13:28 UTC dual-model ruling: SOL #18710722 EMERGENCY SHELF CUT TRIGGERED (15m close 108.40-108.55 >= 108.35, close at market now); ETH #18706769 HOLD on SL 2,415.41 (PHASE_1 label premature, arm 2,455.10 -> SL 2,434.52); capacity HARD_ADMISSION_FREEZE 2/2 — zero punch until SOL closes; Model 1 empty; Model 2 top-2 LTC SELL 62.330 (A) / LNK SELL 12.456 (B) re-validated at 19:16, DJ30/BTC/BNB/BCH/DOT/AVAX standbys retired; telemetry `2f8030c` @19:15:06)
+**Established**: 2026-10-07 13:15:00 UTC | **Last Updated**: 2026-10-22 09:35 UTC (Cycle 245 Consensus: Unanimous STAND ASIDE in 100% Cash; 1-Position Slot Max; Anti-Knife Sweep & Reclaim Contract Codified)
 
 ---
 
 ## 1. COLLABORATIVE PROTOCOL & GOVERNANCE RULES
 1. **Source of Truth & Synchronization**:
-   - Both agents read and write to this shared document to coordinate live order staging, stop-loss / take-profit adjustments, and tactical trade lifecycle decisions.
+   - Both agents coordinate live order staging, stop-loss / take-profit adjustments, and tactical trade lifecycle decisions.
    - All proposed actions must cite strict quantitative parameters: Entry Price, Stop Loss, Take Profit, R-Multiple, Notional Risk (USD), and Floor Cushion.
 2. **Dynamic Stop-Loss & Take-Profit Modification Protocol**:
-   - **Phase 0 (BE Lock)**: At **+0.80R gain**, move SL to **Entry +0.15R / +0.35R** (locks in guaranteed profit covering 41 bps round-trip friction and frees risk budget to 0.00 USD).
-   - **Phase 1 (Profit Lock)**: At **+1.50R gain**, move SL to **Entry +0.80R** (locks in substantial baseline return).
-   - **Target Extension Protocol (Smart TP Extension)**: If price trends aggressively toward +2.50R and orderbook analysis reveals a major liquidity vacuum or massive resting buy/sell stop cluster further out (e.g. at +3.50R or +4.00R):
-     * **Condition**: TP may ONLY be extended if SL is simultaneously locked at **>= +1.50R** (securing trade outcome against any sharp mean-reversion).
-     * **Prohibition**: Never extend TP while SL remains at BE or unmitigated 1.00R risk.
-   - **Emergency Shelf Cuts**: If an order's structural invalidation shelf breaks before the broker hard stop is hit (e.g. USWTI 91.016 USD shelf), execute market cut immediately to conserve floor capital.
+   - **Phase Early-BE (+0.75R to +0.80R gain)**: Advance Stop Loss to Entry + 0.15R0 (clears MT5 spread friction and commissions, locks zero-downside posture).
+   - **Phase 0 (+1.25R gain)**: Move SL to Entry + 0.20R0 (preserves expansion runway without early choke).
+   - **Phase 1 (+1.65R gain)**: Move SL to Entry + 1.00R0 (locks in minimum +1.00R guaranteed banked profit).
+   - **Phase 2 (Running Trail at >= +2.00R)**: 0.50 ATR trailing stop (or min Entry + 1.50R0).
+   - **Time Decay Rule**: Exit at market if trade age > 24 bars (6h) and gain < +0.20R0.
 3. **Continuous Limit Order Queue (Punch & Prune Pipeline)**:
-   - **Punch Gate**: Stage passive limit orders into **Model 1** (|Z| >= 2.0 SD mean reversion) or **Model 2** (VWAP trend pullback) backed by verified resting L2/L3 whale walls (>= 150k USD, >= 180s persistence) and floor cushion >= 15.00 USD.
-   - **Prune Gate**: Immediately cancel/delete any resting limit order if:
-     1. The supporting L2/L3 whale wall is pulled or thinned by > 50%.
-     2. Market price drifts > 2.0x ATR away from the limit order without filling.
-     3. An adverse regime break invalidates the directional thesis.
-   - **Purge Deadline**: At **16:55:00 UTC sharp**, all resting pending orders across all instruments are unconditionally cancelled ahead of the FOMC blackout.
+   - **Strict 1-Position Slot Limit**: With +$39.83 buffer cushion, maximum concurrent exposure is strictly 1 position at $15.00–$20.00 nominal risk.
+   - **Anti-Knife Trigger Contract (Non-Bypassable)**:
+     * Never pre-stage passive limits above un-swept stop clusters.
+     * Sweep through stop band (BTC trades through 79,923.5; Gold trades through 4,060.475).
+     * 15m CVD delta deceleration >30% with higher low in CVD relative to lower low in price.
+     * Structural shelf reclaim (80,350 BTC / 4,062.50 Gold) with bid replenishment >= 80% within 2 seconds.
 
 ---
 
-## 2. ACTIVE MT5 POSITIONS & PENDING ORDERS LEDGER (LIVE MONITORING - CYCLE 242)
+## 2. ACTIVE MT5 POSITIONS & PENDING ORDERS LEDGER (LIVE MONITORING - CYCLE 245)
 
-### Active Open Positions (0 / 4 capacity slots occupied):
+### Active Open Positions (0 / 1 capacity slots occupied):
 * **None currently open** (Account is 100% FLAT in cash: Balance & Equity = **4,834.83 USD**).
-  - Closed Ticket #19174858 (`SOLUSD.p` BUY 0.10 lot @ 106.80): Closed on SL 105.10 USD (Exit Deal #17368131 at 02:27:52 UTC). Nominal loss: -$17.00 USD. Slippage: 0.00 pts.
   - Hard Floor (4,775.00 USD) Cushion: **+59.83 USD** (+1.25%)
   - Operating Buffer (4,795.00 USD) Cushion: **+39.83 USD** (+0.83%)
-  - Free Margin: **4,834.83 USD** | Capacity Slots Available: **4 / 4 slots**
-  - Sizing Constraint: Single slot <= 15.00 USD risk; Dual slot <= 10.00–12.50 USD risk per ticket to preserve 4,795.00 USD buffer.
+  - Free Margin: **4,834.83 USD** | Capacity Slots Available: **1 / 1 slot**
+  - Sizing Constraint: Single solo slot strictly <= 20.00 USD nominal risk (stressed loss <= 27.00 USD, leaving >= +12.83 USD buffer surplus).
 
-### Active Pending Limit Orders (0 / 4 capacity slots occupied):
-* **None currently resting** (Staging gated strictly on 5-pillar confluence).
+### Active Pending Limit Orders (0 / 1 capacity slots occupied):
+* **None currently resting** (Staging gated strictly on 5-pillar confluence and Anti-Knife Contract).
 
-### Potential Passive Limit Order Candidates (Qualified Watchlist - Staging Gated on High Conviction):
-1. **XAUUSD.pi** (Model 1 Post-Sweep Extreme Mean Reversion Long):
-   - Mapped Levels: Mark 4,071.61–4,072.40 | Limit Entry: `4,047.50` (Front-running 4,046.50 bunker) | SL: `4,043.50` ($4.00 pts, 0.59 ATR buffer behind 4,046.50 wall) | TP: `4,068.50` (+21.0 pts) | Net 5.25R
-   - Sizing: 0.03 lot (~$12.00 USD nominal risk) | Spread: 0.20 bps (institutional grade)
-   - Orderflow Anchoring: Gold completed a violent flush through 4,080 down to 4,071.61 (-2.48 SD, RSI 18.1). Whale bunker confirmed at **4,046.50 USD ($1.618M / 400 oz, wallet 0xee02fd4a..., persist >23,111s / 6.42h, Gate G7 eligible)**.
+### Potential Candidate Radar (Qualified Watchlist - Gated on Anti-Knife Trigger):
+1. **BTCUSD.pi** (Model 1 Stop Sweep & Whale Bunker Long):
+   - Mapped Levels: Mark ~81,775 | Basis Offset: -76.5 | Re-test Shelf: `80,350.0` | Defending Bunker: `79,923.5` | SL: `<= 79,503.2` | TP: `81,800.0`
+   - Sizing: 0.03 lot ($16.50 nominal risk, $22.63 stressed loss)
    - Pre-condition Checklist:
-     * [x] Institutional whale bunker verified at 4,046.50 USD ($1.618M, persist >23,111s)
-     * [x] Spread gate passed (0.20 bps <= 5.0 bps)
-     * [x] Macro clearance approved (zero red events next 4h; London open in ~1h)
-     * [ ] Price tests into 4,046.50–4,050.00 USD bunker zone
-     * [ ] Tick volume / tape prints positive buyer absorption (seller delta exhausts)
-2. **BTCUSD.pi** (Model 1 Stop Sweep & Whale Shelf Pullback Long):
-   - Mapped Levels: Mark 82,641.0 | Limit Entry: `82,195.0` (Staged above core 82,190.0 wall post-sweep of [82,100, 82,200] stops) | SL: `81,950.0` (245 pts, 0.99 ATR buffer safely behind retail stop cascade) | TP: `83,350.0` (+1,155 pts) | Net 4.71R
-   - Sizing: 0.05 lot (~$12.25 USD nominal risk) | Spread: 1.94 bps
-   - Orderflow Anchoring: Wallet `0xf5a523b1...` confirmed with $12.68M buy cluster at 82,141.50–82,190.00 USD (persist 8,421.8s) and $24.43M at 81,657.00 USD (persist 8,421.8s). Un-swept retail stop cascade at [82,100, 82,200 USD] ($8.72M) is actively pulling price down.
+     * [ ] Retail stop cascade down through 79,923.5 fully flushed
+     * [ ] 15m CVD seller delta decelerates by >30% and prints positive absorption flip
+     * [ ] Price reclaims 80,350 shelf with >= 80% bid replenishment within 2s
+     * [ ] Spread gate <= 25.0 bps
+     * [ ] Macro clearance approved
+2. **XAUUSD.pi** (Model 1 Whale Bunker Long):
+   - Mapped Levels: Mark ~4,089.8 | Defending Bunker: `4,046.975` ($1.619M) | SL: `<= 4,042.57` | Reclaim Shelf: `4,062.50` | TP: `4,082.00`
+   - Sizing: 0.02 lot ($17.00 nominal risk, $23.25 stressed loss)
    - Pre-condition Checklist:
-     * [x] Multi-whale bid bunker verified ($12.68M @ 82,190 + $24.43M @ 81,657, persist >8,400s)
-     * [x] Spread gate passed (1.94 bps <= 25.0 bps)
-     * [x] Spot ETF tailwind verified (+235.00M USD net IBIT today)
-     * [ ] [82,100–82,200 USD] ($8.72M) retail stop cascade fully flushed and swept
-     * [ ] 15m CVD delta decelerates from -$4.73M seller dump and prints positive absorption flip
-3. **NAS100.p** (Model 1 Extreme Mean Reversion Long):
-   - Mapped Levels: Mark 29,331.0 | Limit Entry: `29,135.0` (Front-running 29,130 whale shelf) | SL: `29,080.0` (55 pts, 1.30 ATR buffer) | TP: `29,320.0` (+185 pts) | Net 3.36R
-   - Sizing: 0.20 lot (~$11.00 USD nominal risk) | Spread: 0.42 bps
-   - Orderflow Anchoring: Index flushed to 29,331 (VWAP Z: -2.24 SD, RSI 21.6). Supporting whale shelf confirmed at 29,130.00 USD ($1.01M) and 29,033.00 USD ($1.01M).
-   - Pre-condition Checklist:
-     * [x] Dual whale shelves verified ($1.01M @ 29,130 + $1.01M @ 29,033)
-     * [x] Spread gate passed (0.42 bps <= 5.0 bps)
-     * [ ] Price tags 29,130–29,135 shelf
-     * [ ] Tape confirms buyer absorption on 5m/15m chart
-     * [ ] Pre-market futures stabilize ahead of European cash open
+     * [ ] Retail sell-stop cluster at 4,060.475 fully flushed
+     * [ ] Test into $1.619M whale bunker at 4,046.975 confirms buyer defense
+     * [ ] Reclaim of 4,062.50 with live positive orderflow
+     * [ ] Spread gate <= 5.0 bps
+     * [ ] Macro clearance approved
 
-### Floor Cushion & Joint Risk Summary (Cycle 242 Baseline):
+### Floor Cushion & Joint Risk Summary (Cycle 245 Baseline):
 * **Account Balance**: **4,834.83 USD** | **Equity**: **4,834.83 USD** (100% Cash Flat)
 * **Absolute Hard Floor**: **4,775.00 USD** (Cushion: **+59.83 USD**)
 * **Operating Buffer**: **4,795.00 USD** (Cushion: **+39.83 USD**)
-* **Stressed Post-Loss Equity**: **4,805.83 USD** (under Scenario C: 2 concurrent positions at 10.00+10.00 USD risk with 1.25x stress), preserving **+10.83 USD** surplus above operating buffer and **+30.83 USD** above hard floor.
-* **Slots Utilization**: 0 / 4 occupied (0 filled, 0 pending limits). 4 slots open.
+* **Concurrency Cap**: Strictly **1 Position Max** (Zero multi-position risk allowed under +$39.83 buffer).
+* **Slots Utilization**: 0 / 1 occupied (100% cash preserved).
 
 ---
 
