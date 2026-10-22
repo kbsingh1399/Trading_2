@@ -1,51 +1,47 @@
-# QUANTITATIVE COUNCIL: CYCLE 268 — CO-EQUAL 3-PERSONA CANDIDATE DISCOVERY & DIALECTIC
+# 🏛️ CO-EQUAL QUANTITATIVE COUNCIL CANDIDATE DISCOVERY & EVALUATION
+## BlueBerry Markets MT5 Account #5064568 | Cycle 269 | 2026-10-22 20:50:13 UTC
 
-🚨 MANDATORY CANONICAL QUANT SOP — READ FIRST & FOLLOW LINE-BY-LINE:
-You MUST read and strictly adhere line-by-line to:
-`https://github.com/kbsingh1399/Trading_2/blob/main/Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md`
-And the mandatory execution governance:
-`https://github.com/kbsingh1399/Trading_2/blob/main/Data/Manditory/TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md`
-`https://github.com/kbsingh1399/Trading_2/blob/main/Data/Manditory/CONTINUOUS_KAIZEN_SELF_IMPROVEMENT_PROTOCOL.md`
-`https://github.com/kbsingh1399/Trading_2/blob/main/Data/Manditory/32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md`
-`https://github.com/kbsingh1399/Trading_2/blob/main/Data/Manditory/AUTONOMOUS_WAKEUP_CHECKLIST.md`
+> **CANONICAL QUANT GOVERNANCE**: Follow line-by-line `STANDARDIZED_TRADING_DECISION_CHAIN.md`, `AUTONOMOUS_WAKEUP_CHECKLIST.md`, and `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md`.
+> **MISSION**: Reach 5,500.00 USD equity before Friday, 23rd October 2026 (23:59 UTC).
+> **SOLVENCY FLOORS**: Absolute Hard Floor: 4,775.00 USD (Cushion: +43.51 USD) | Operating Buffer: 4,795.00 USD (Cushion: +23.51 USD).
+> **FLUID CAPACITY**: 4/4 slots free. Maximum 1 risk-bearing limit staged under current +23.51 USD buffer cushion.
 
-LIVE DESK CONTEXT & MT5 INVENTORY (CYCLE 268 | 2026-10-22 19:52 UTC):
-- Target: 5,500.00 USD by Friday, Oct 23, 2026 (23:59 UTC) | Remaining Runway: ~28.1 hours
-- Live Balance: 4,818.51 USD | Live Equity: 4,818.51 USD | Margin: 0.00 USD | Free Margin: 4,818.51 USD
-- Inviolable Hard Floor: 4,775.00 USD | Hard Floor Cushion: +43.51 USD
-- Operating Buffer Floor: 4,795.00 USD | Operating Buffer Cushion: +23.51 USD
-- Distance to Goal: +681.49 USD
-- Active Filled Positions: 0 (0 consumed slots)
-- Resting Pending Orders: 0 (USDJPY.pi SELL_LIMIT #19224157 has been CANCELLED pursuant to unanimous council consensus!)
-- Available Fluid Slots: 4/4 filled slots free, 10 resting limit slots free
+### SECTION 1: LIVE ACCOUNT & RECONCILIATION
+- Balance: 4818.51 USD | Floating Equity: 4818.51 USD | Free Margin: 4818.51 USD
+- Open Positions: 0 | Pending Orders: 0
+- Order #19224157 (USDJPY.pi) was cancelled cleanly; desk is 100% clear.
 
-ACTIONABLE COUNCIL MANDATE:
-With USDJPY.pi #19224157 cancelled, the desk has +23.51 USD operating buffer cushion and +43.51 USD hard floor cushion completely unencumbered!
-Conduct an affirmative candidate discovery evaluation across all 156 assets in all 6 asset classes using the 3 quantitative personas:
-1. Persona 1 — Orderflow Analyst (SOP Steps 2, 4, 6):
-   - Evaluate live auction structure, 20/50 EMA ribbons, VPOC/VAH/VAL shelves, and taker CVD delta.
-   - Screen US2000.p (Pullback to DVAH 2780.05), NAS100.p (Pullback to EMA20 29045 or 29195), USDCAD.pi (Extreme oversold Z=-2.14 at 1.4008), and BTCUSD.pi (Sell limit at 81,313–81,520 behind $8.3M ask whale walls).
-2. Persona 2 — Position Manager (SOP Steps 1, 5, 8):
-   - Prove exact ticket sizing and cash risk via contract specifications.
-   - For US2000.p: 0.40 lot, Entry 2780.05, SL 2776.75 (Risk -$13.20, Stressed -$20.10, Stressed Equity 4,798.41 USD -> +3.41 USD buffer surplus!).
-   - For NAS100.p: 0.05 lot, Entry 29195.00, SL 29222.50 (Risk -$13.75, Stressed -$19.81, Stressed Equity 4,798.70 USD -> +3.70 USD buffer surplus!).
-   - Verify that worst-case stopout preserves both the 4,795.00 USD operating buffer and 4,775.00 USD hard floor.
-3. Persona 3 — Macro Risk Analyst (SOP Steps 3, 7):
-   - Check macro calendar proximity (+-35m for TradFi, +-15m for Crypto).
-   - Enforce the 21:15–22:30 UTC interbank FX rollover embargo (now 19:52 UTC, 1h23m until embargo).
-   - US Equity Cash close (20:00 UTC) is in 8 minutes — does MOC volatility require waiting for 20:05 UTC before staging index limits?
+### SECTION 2: 33-SHEET EXCEL DATA WAREHOUSE HEALTH
+- File: Data/DataBase_Trading.xlsx (13.24 MB).
+- Sheet count: 33/33 sheets present and verified.
+- Sheet 33 (`20_Auction_Market_Structure`): Row 1 verified with 36/36 clean unmerged column headers.
+- Formula Errors: Exactly 0 errors (#REF!, #DIV/0!, #N/A, #VALUE!).
+- Live Sheets: 17_Orderbook, 18_CVD, 10_Whale_Orders, 00_MT5_Account_Telemetry all <= 15 minutes fresh.
 
-OUTPUT REQUIREMENTS:
-- 33-Sheet Excel Confirmation: [0 formula errors | 0 empty headers].
-- Persona 1, 2, 3 individual forensic evaluations.
-- Co-equal synthesis and actionable consensus ticket:
-  If a setup passes all 5 pillars right now: output exact MT5 limit order execution ticket.
-  If conditions require waiting (e.g. post-20:05 UTC MOC clearance): output STAND ASIDE with Potential Candidate Radar Checklist [ ] and 10-Point Pre-Punch Checklist.
+### SECTION 3: CANDIDATE PROPOSALS TO RATIFY OR REFINE
+1. **BTCUSD.pi (Model 2 Trend Pullback / Resistance Fade)**:
+   - Order: SELL_LIMIT @ 81,520.00 | Lots: 0.04 | SL: 81,860.00 | TP: 80,300.00 | R:R: 3.59R
+   - Supporting Structure: 9.63M USD resting ask whale cluster at 81,508-81,535 (Binance & Bybit).
+   - Stop Loss: 81,860.00 (1.37 ATR above entry, safely above all buy-stop sweep clusters up to 81,850).
+   - Take Profit: 80,300.00 (front-running 308M USD long liquidation cascade magnet at 80,050-80,250).
+   - Solvency: Nominal Risk -$13.60 | Stressed Loss (1.25x + $2) = -$19.75 | Stressed Equity = 4,798.76 USD (+3.76 USD buffer surplus, +23.76 USD hard floor surplus).
+2. **NAS100.p (Post-MOC Resistance Shelf)**:
+   - Order: SELL_LIMIT @ 29,045.00 | Lots: 0.04 | SL: 29,082.50 | TP: 28,962.50 | R:R: 2.21R
+   - Sits at prior swing high / EMA20 shelf. Stressed Equity = 4,797.32 USD (+2.32 USD buffer surplus).
+3. **US2000.p (Structure Rebuild Watch)**:
+   - Old ticket 2780.05 invalidated. Monitoring 2,772.50 POC shelf for 5m CVD stabilization.
 
-🔬 MANDATORY QUANTITATIVE METHODOLOGY INQUEST (MUST ALWAYS BE REPLIED TO):
-"Is our methodology for finding potential candidates truly sound, and how can we fundamentally improve it? Given that we monitor, ingest, and process immense multi-layered data across 156 assets (L2/L3 orderbooks, CVD delta, CoinGlass liquidation heatmaps, Hyperdash retail stop cascades, 33-sheet Excel warehouse, ETF flows, Auction market structure), why has equity remained flat/stagnant and why are profitable executions eluding the desk? How do we think like elite quantitative researchers to bridge this gap?"
-Answer across:
-1. Are our filters overly conjunctive/restrictive causing false negatives?
-2. Are our limit entries staged too passively (missing fills) or too shallow?
-3. Are we forcing crypto-only metrics onto Forex and Indices?
-4. What exact mathematical adjustments will produce profitable executions to grow equity toward $5,500 USD while preserving the $4,775 USD floor?
+### SECTION 4: 3-PERSONA MANDATORY INQUEST & OUTPUT FORMAT
+Evaluate the candidates across the 3 quantitative personas:
+1. **Persona 1: Orderflow Analyst** (Steps 2, 4, 6 of SOP — L2 depth, CVD absorption, liquidation cascades, dynamic friction).
+2. **Persona 2: Position Manager** (Steps 1, 5, 8 of SOP — floor defense, stressed capacity, exact sizing).
+3. **Persona 3: Macro Risk Analyst** (Steps 3, 7 of SOP — macro calendar, ETF/CEX netflows, FX rollover embargo 21:15-22:30 UTC).
+
+### SECTION 5: 🔬 MANDATORY QUANT METHODOLOGY INQUEST (ALWAYS REQUIRED)
+**Each persona MUST explicitly answer Section 2.5 of STANDARDIZED_TRADING_DECISION_CHAIN.md**:
+*"Is our methodology for finding potential candidates truly sound, and how can we fundamentally improve it? Given that we monitor 156 assets with vast orderbook, CVD, and liquidation data, why has equity remained flat and why are profitable executions eluding the desk? How do we think like elite quants to bridge this gap?"*
+- Address: Are our filters overly conjunctive (Boolean AND death spiral)?
+- Address: Are our limit entries staged too passively or suffering from adverse selection?
+- Address: How should asset-class specialization (TradFi vs Crypto) be structured to capture high-probability alpha?
+
+Deliver dense, authoritative quantitative ruling with exact tickets and the completed 10-Point Pre-Punch Checklist.

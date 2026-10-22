@@ -108,7 +108,7 @@ async def dispatch_all(cycle_id: str = "AUTO"):
     except Exception as e:
         print(f"[DualCouncil] Z.ai dispatch error: {e}")
         
-    # 2. Dispatch to Arena.ai via Chrome CDP
+    # 2. Dispatch to Arena.ai via Chrome CDP using ProseMirror and Input.insertText
     print("[DualCouncil] Dispatching prompt to Arena.ai...")
     try:
         tabs = json.loads(urllib.request.urlopen(CDP_URL, timeout=5).read().decode())
@@ -118,28 +118,55 @@ async def dispatch_all(cycle_id: str = "AUTO"):
                 arena_ws = t["webSocketDebuggerUrl"]
                 break
         if arena_ws:
-            async with websockets.connect(arena_ws) as ws:
+            async with websockets.connect(arena_ws, max_size=50_000_000) as ws:
                 # Bring to front
-                await ws.send(json.dumps({"id": 1, "method": "Page.bringToFront"}))
+                await ws.send(json.dumps({"id": 101, "method": "Page.bringToFront"}))
                 await asyncio.sleep(0.5)
-                # Insert prompt
-                js = f"""(() => {{
-                    const ta = document.querySelector('textarea');
-                    if (!ta) return false;
-                    ta.focus();
-                    ta.value = {json.dumps(prompt)};
-                    ta.dispatchEvent(new Event('input', {{ bubbles: true }}));
-                    ta.dispatchEvent(new Event('change', {{ bubbles: true }}));
-                    const btn = document.querySelector('button[type="submit"], button[aria-label*="Send"]');
-                    if (btn && !btn.disabled) {{
-                        btn.click();
-                        return true;
-                    }}
-                    return false;
-                }})()"""
-                await ws.send(json.dumps({"id": 2, "method": "Runtime.evaluate", "params": {"expression": js, "returnByValue": True}}))
+                
+                # Dismiss modal/escape
+                await ws.send(json.dumps({"id": 102, "method": "Input.dispatchKeyEvent", "params": {"type": "rawKeyDown", "windowsVirtualKeyCode": 27, "code": "Escape", "key": "Escape"}}))
+                await ws.send(json.dumps({"id": 103, "method": "Input.dispatchKeyEvent", "params": {"type": "keyUp", "windowsVirtualKeyCode": 27, "code": "Escape", "key": "Escape"}}))
+                await asyncio.sleep(0.2)
+                
+                # Clear ProseMirror
+                js_clear = """(() => {
+                    const el = document.querySelector('.tiptap.ProseMirror, textarea');
+                    if (!el) return false;
+                    el.focus();
+                    const range = document.createRange();
+                    range.selectNodeContents(el);
+                    const sel = window.getSelection();
+                    sel.removeAllRanges();
+                    sel.addRange(range);
+                    return true;
+                })()"""
+                await ws.send(json.dumps({"id": 104, "method": "Runtime.evaluate", "params": {"expression": js_clear}}))
+                await asyncio.sleep(0.1)
+                await ws.send(json.dumps({"id": 105, "method": "Input.dispatchKeyEvent", "params": {"type": "rawKeyDown", "windowsVirtualKeyCode": 8, "code": "Backspace", "key": "Backspace"}}))
+                await ws.send(json.dumps({"id": 106, "method": "Input.dispatchKeyEvent", "params": {"type": "keyUp", "windowsVirtualKeyCode": 8, "code": "Backspace", "key": "Backspace"}}))
+                await asyncio.sleep(0.2)
+                
+                # Insert prompt text via Input.insertText
+                await ws.send(json.dumps({"id": 107, "method": "Input.insertText", "params": {"text": prompt}}))
+                await asyncio.sleep(0.5)
+                
+                # Click send button
+                js_click = """(() => {
+                    const sendBtn = document.querySelector('button[aria-label="Send message"], button:has(svg.lucide-arrow-up), button[type="submit"], button[aria-label*="Send"]');
+                    if (sendBtn && !sendBtn.disabled) {
+                        sendBtn.click();
+                        return { clicked: true };
+                    }
+                    return { clicked: false, disabled: sendBtn ? sendBtn.disabled : null };
+                })()"""
+                await ws.send(json.dumps({"id": 108, "method": "Runtime.evaluate", "params": {"expression": js_click, "returnByValue": True}}))
                 res = json.loads(await ws.recv())
-                print("[DualCouncil] Arena.ai prompt sent result:", res.get("result", {}).get("result", {}).get("value"))
+                click_val = res.get("result", {}).get("result", {}).get("value", {})
+                print("[DualCouncil] Arena.ai prompt sent result:", click_val)
+                if not click_val.get("clicked"):
+                    # Fallback to Enter key
+                    await ws.send(json.dumps({"id": 109, "method": "Input.dispatchKeyEvent", "params": {"type": "rawKeyDown", "windowsVirtualKeyCode": 13, "code": "Enter", "key": "Enter"}}))
+                    await ws.send(json.dumps({"id": 110, "method": "Input.dispatchKeyEvent", "params": {"type": "keyUp", "windowsVirtualKeyCode": 13, "code": "Enter", "key": "Enter"}}))
         else:
             print("[DualCouncil] Warning: No Arena.ai tab found on CDP port 9222.")
     except Exception as e:
