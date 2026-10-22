@@ -1,14 +1,2 @@
-✅ STANDARDIZED_TRADING_DECISION_CHAIN.md LOADED — 10-Step Canonical Execution Chain Activated.
-✅ 32-SHEET CONFIRMATION: [0 formula errors | 0 empty headers]
-
-E1 FAIL: #19174858 SL 105.10 is inside both mapped liq/stop bands 104.925–105.925: clearance 0 vs 0.17712 required (0.40×ATR 0.4428); safe ≤104.7479. Maps stale 42m/41m; SOP 0.50ATR fails. SWEEP RISK.
-
-E2 FAIL: Sheet 7 lacks price levels. TP 107.65 front-runs VAH 107.7232 by 6.80bps (POC 106.6705), but is 82.89bps beyond $1.809M@106.765/311s ask. 5–10bps front-run 106.6582–106.7116 equals −0.083–−0.052R; no ≥2R target.
-
-E3 FAIL: Sheet 10 is BTC-only/stale. Sheet 17: $177.9K, not $7.71M@106.66. Live support $177.1K@106.135/890s; the $1.792M wall moved to 105.775/311s. XAU/BTC have persistent bids; EUR none. PULLED—CANCEL.
-
-E4: Spreads PASS (20.67/0.19/1.91/0.27bps); numeric zc_div absent: FAIL; macro PASS. SOL DQ: Z−0.67 bull, bearish CVD, marketable/exposed SL/0.53R/duplicate. XAU DQ: Z−1.62 bear, seller CVD, marketable/no $1M bunker. BTC DQ: Z−0.12 bull, bearish CVD; wall passes, but 5.75ATR and SL inside $12.053M cascade. EUR DQ: Z+0.40 bull/neutral CVD; 4.67ATR/no bunker.
-
-E5: CANCEL/CLOSE #19174858—exposed SL, blocked TP, pulled anchor; DENIED_UNVERIFIED_ORDERFLOW. Native equity/FM/PnL $4,845.43/$4,311.43/−$6.40; risk $17/$23.25, not locked. Post-stop $4,822.18≠claimed $4,804.58; 3 slots. Three fills→$4,748.68<$4,795. All candidates: STAND ASIDE; NO PUNCH.
-
-MACRO: No ±35m block.
+\n✅ STANDARDIZED_TRADING_DECISION_CHAIN.md LOADED — 10-Step Canonical Execution Chain Activated.\n
+✅ 32-SHEET CONFIRMATION: [0 formula errors | 0 empty headers]\n\n**E1 FAIL:** #19174858 SL 105.10 lies inside both mapped bands 104.94–105.94: zero clearance vs 0.17648 required (0.40×ATR 0.4412); needs ≤104.7635. SOP 0.50ATR fails; maps age 1m/61m. **SWEEP RISK.**\n\n**E2 FAIL:** Sheet 7 lacks levels. TP 107.65 front-runs VAH 107.7232 by 6.80bps (POC 106.6705), but exceeds eligible $177.5K@106.28/598s ask by 128.90bps. Its 5–10bps front-run 106.1737–106.2269 gives −0.368–−0.337R; no ≥2R target.\n\n**E3 FAIL:** Sheet 10 BTC-only/feed-stale. $7.71M@106.66 claim is false: Sheet 17 has $177.9K; live 106.66 is a sell. Nearest bid $177.0K@106.07/598s; $1.791M wall vanished. XAU walls are sub-$1M; BTC has $18.21M@82185.5/600s; EUR none. **CANCEL.**\n\n**E4:** Spreads 21.67/0.19/3.60/0.36bps pass. Numeric zc_div absent: all FAIL; macro clear. **SOL DQ:** Z−1.50 range; bearish CVD, marketable, bad SL, 0.53R, duplicate. **XAU DQ:** Z−2.26 bear; neutral CVD, marketable/no $1M bunker. **BTC DQ:** Z−2.07 bull/bearish CVD; wall passes, but 4.11ATR and SL in $12.102M cascade. **EUR DQ:** Z−1.41 bull/neutral CVD; 5ATR/no bunker.\n\n**E5: CANCEL/CLOSE #19174858**—E1–E3 fail; DENIED_UNVERIFIED_ORDERFLOW. Native equity/FM/PnL $4,843.73/$4,309.73/−$8.10; risk $17/$23.25, not locked; post-stop $4,820.48; 3 slots. Three fills→$4,746.98<$4,775. **All candidates: STAND ASIDE; NO PUNCH.**\n\n**MACRO:** No ±35m block.\n
