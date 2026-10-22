@@ -1,5 +1,5 @@
 # 🏛️ CO-EQUAL QUANTITATIVE COUNCIL CANDIDATE DISCOVERY & EVALUATION
-## BlueBerry Markets MT5 Account #5064568 | Cycle 271 | 2026-10-22 21:37:10 UTC
+## BlueBerry Markets MT5 Account #5064568 | Cycle 272 | 2026-10-22 21:47:51 UTC
 
 > **CANONICAL QUANT GOVERNANCE**: Follow line-by-line `STANDARDIZED_TRADING_DECISION_CHAIN.md`, `AUTONOMOUS_WAKEUP_CHECKLIST.md`, and `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md`.
 > **MISSION**: Reach 5,500.00 USD equity before Friday, 23rd October 2026 (23:59 UTC) (~21.0 hours runway remaining).
@@ -9,34 +9,45 @@
 
 ### SECTION 1: LIVE ACCOUNT & RECONCILIATION
 - Balance: 4818.51 USD | Floating Equity: 4818.51 USD | Free Margin: 4818.51 USD
-- Open Positions: 0 | Pending Orders: 0
-- Account Posture: 100% FLAT CASH DEFENSE (+43.51 USD Hard Floor cushion, +23.51 USD Buffer cushion).
-- Prior Action Executed: Ticket #19227609 (BTCUSD.pi BUY_LIMIT 0.04 lots @ 80,950.00) CANCELLED on MT5 per unanimous Council & Swarm veto (retcode 10009 TRADE_RETCODE_DONE).
+- Open Positions: 0 | Pending Orders: 0 (100% Flat Cash Defense)
+- Solvency Cushions: Hard Floor Cushion: +43.51 USD | Buffer Floor Cushion: +23.51 USD.
+- Previous Order Action: Ticket #19227609 (BTCUSD.pi BUY_LIMIT 0.04 @ 80,950) was confirmed CANCELLED on MT5 (retcode 10009).
 
 ### SECTION 2: 33-SHEET EXCEL DATA WAREHOUSE HEALTH
 - File: Data/DataBase_Trading.xlsx (13.23 MB, 100% healthy, 0 CRC errors, 0 formula errors).
 - Sheet count: 33/33 sheets present and verified.
-- Sheet 33 (`20_Auction_Market_Structure`): Row 1 verified with 36/36 clean unmerged column headers.
-- Formula Errors: Exactly 0 errors (#REF!, #DIV/0!, #N/A, #VALUE!).
-- Pipeline Daemon: Task 109472 actively cycling Cycle #9.
-- Macro Flows: BlackRock IBIT logged +235.0M USD net daily inflow; CEX spot netflow logged -210.35M USD 4-hour spot withdrawal.
+- Sheet 30/33 (`20_Auction_Market_Structure`): Row 1 verified with 36/36 clean unmerged column headers.
+- Formula Errors: Exactly 0 errors across all 33 sheets.
+- Continuous Pipeline Daemon: Task 109472 actively cycling Cycle #9.
 
-### SECTION 3: TOP CANDIDATES ON RADAR & EXECUTION TRIGGERS
+### SECTION 3: TOP CANDIDATES ON RADAR & UPCOMING 22:00 UTC INDEX REOPEN
 1. **NAS100.p (Model 2 Short — Trend Down Acceptance into Daily VAL Retest)**:
    - Geometry: SELL_LIMIT @ 29,085.00 | Lots: 0.03 | SL: 29,130.00 (+45.0 pts / 0.63 ATR) | TP: 28,970.00 (-115.0 pts / 2.56R)
    - Risk & Solvency: Nominal Risk -$13.50 | Spread Cost: 0.43 USD (1.42 pts / 0.49 bps | 1.24% friction) | Stressed Loss: -$18.88 | Stressed Equity: 4,799.63 USD (+4.63 USD buffer surplus, +24.63 USD floor surplus).
    - Orderflow CVD: Heavy unidirectional institutional selling: 15m CVD -$997.6M, 1h CVD -$4.49B, 4h CVD -$11.07B.
-   - Execution Pre-Conditions: [ ] Broker session open confirmed (order_check returns Done) | [ ] Live ask reaches >= 28,941.68 (within 2.0 ATR max staging rule) | [ ] 5m CVD confirms seller delta.
+   - Status & Execution Pre-Conditions: Broker session break clearing at 22:00/22:05 UTC. Awaiting ask >= 28,941.68 (within 2.0 ATR max distance threshold) and negative 5m CVD confirmation.
 2. **US2000.p (Model 2 Long — Daily POC Retest in Bullish Trend)**:
    - Geometry: BUY_LIMIT @ 2,776.00 | Lots: 0.30 | SL: 2,771.50 (-4.50 pts) | TP: 2,787.00 (+11.00 pts / 2.44R)
    - Risk & Solvency: Nominal Risk -$13.50 | Spread Cost: 0.96 USD (0.32 pts / 1.15 bps | 2.91% friction) | Stressed Loss: -$18.88 | Stressed Equity: 4,799.63 USD (+4.63 USD buffer surplus, +24.63 USD floor surplus).
-   - Execution Pre-Conditions: [ ] Broker session open confirmed | [ ] 15m CVD delta turns positive | [ ] Price holds DPOC (2,775.84).
-3. **BTCUSD.pi (Deep Flush Re-Entry Radar — Post-Cascade Reclaim)**:
-   - Geometry: BUY_LIMIT @ 80,480.00 | Lots: 0.03 | SL: 80,080.00 (-400 pts) | TP: 82,050.00 (+1,570 pts / 3.93R)
-   - Sited safely beneath both the 80,850 USD ($11.5M) and 80,650 USD ($15M) debt cascades.
-   - Risk & Solvency: Nominal Risk -$12.00 | Stressed Loss: -$17.50 | Stressed Equity: 4,801.01 USD (+6.01 USD buffer surplus).
-   - Execution Pre-Conditions: [ ] 80,650 liquidation cascade swept | [ ] 1m/5m CVD prints absorption divergence.
-4. **Forex Majors & Crosses**: Interbank rollover embargo active until 22:30 UTC. Re-screen liquid European pairs post-22:30 UTC.
+   - Status & Pre-Conditions: Sits at Daily POC (2,775.84). Awaiting broker reopen and positive 15m CVD delta turn.
+3. **BTCUSD.pi (Deep Flush Cascade Reclaim Trigger)**:
+   - Council Dialectic: Arena 1 vetoed staging BUY_LIMIT @ 80,480 before the 80,450 cascade sweeps ($17.37M debt pool) and flagged 80,080 stop as vulnerable above the massive 80,050 debt pool ($28.7M debt).
+   - Protocol: Require `Sweep of 80,450 -> Tape Deceleration -> Reclaim back above 80,500 -> Retest` before entering long.
+4. **Forex Majors & Crosses**: Strict trading embargo active until 22:30 UTC for interbank rollover spread blowout.
+
+### SECTION 4: 3-PERSONA MANDATORY INQUEST & DELIBERATION
+1. **Persona 1: Orderflow Analyst** (Steps 2, 4, 6 of SOP — L2 depth, CVD absorption, liquidation cascades, dynamic friction).
+2. **Persona 2: Position Manager** (Steps 1, 5, 8 of SOP — floor defense, stressed capacity, exact sizing).
+3. **Persona 3: Macro Risk Analyst** (Steps 3, 7 of SOP — macro calendar, ETF/CEX netflows, FX rollover embargo).
+
+### SECTION 5: 🔬 MANDATORY QUANT METHODOLOGY INQUEST (ALWAYS REQUIRED)
+**Each persona MUST explicitly answer Section 2.5 of STANDARDIZED_TRADING_DECISION_CHAIN.md**:
+*"Is our methodology for finding potential candidates truly sound, and how can we fundamentally improve it? Given that we monitor 156 assets with vast orderbook, CVD, and liquidation data, why has equity remained flat and why are profitable executions eluding the desk? How do we think like elite quants to bridge this gap?"*
+- Address: Are our filters overly conjunctive (Boolean AND death spiral)?
+- Address: Are our limit entries staged too passively or suffering from adverse selection?
+- Address: How should asset-class specialization (TradFi vs Crypto) be structured to capture high-probability alpha?
+
+Deliver dense, authoritative quantitative ruling with exact tickets and the completed 10-Point Pre-Punch Checklist.
 
 ### SECTION 4: 3-PERSONA MANDATORY INQUEST & OUTPUT FORMAT
 Evaluate the candidates across the 3 quantitative personas:
