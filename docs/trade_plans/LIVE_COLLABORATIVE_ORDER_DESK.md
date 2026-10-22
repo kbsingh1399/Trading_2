@@ -35,37 +35,39 @@
   - Hard Floor (4,775.00 USD) Cushion: **+59.83 USD** (+1.25%)
   - Operating Buffer (4,795.00 USD) Cushion: **+39.83 USD** (+0.83%)
   - Free Margin: **4,834.83 USD** | Capacity Slots Available: **4 / 4 slots**
+  - Sizing Constraint: Single slot <= 15.00 USD risk; Dual slot <= 10.00–12.50 USD risk per ticket to preserve 4,795.00 USD buffer.
 
 ### Active Pending Limit Orders (0 / 4 capacity slots occupied):
 * **None currently resting** (Staging gated strictly on 5-pillar confluence).
 
 ### Potential Passive Limit Order Candidates (Qualified Watchlist - Staging Gated on High Conviction):
 1. **BTCUSD.pi** (Model 1 Institutional L3 Whale Shelf Pullback Long):
-   - Mapped Levels: Mark 83,316 | Limit Entry: `82,360.0` | SL: `81,750.0` (610 pts, 1.48 ATR) | TP: `83,850.0` (1,490 pts) | Net 2.44R
-   - Sizing: 0.02 lot (~$12.20 USD nominal risk, 0.25% eq) | Target: +$29.80 USD | Spread: 6.15 bps
+   - Mapped Levels: Mark 82,825.0 | Limit Entry: `82,360.0` | SL: `81,750.0` (610 pts, 1.48 ATR) | TP: `83,850.0` (1,490 pts) | Net 2.44R
+   - Sizing: 0.02 lot (~$12.20 USD nominal risk, 0.25% eq) | Target: +$29.80 USD | Spread: 4.35 bps
+   - Microstructure Anchoring: Front-runs the verified $17.39M institutional buy wall at $82,335.00 (211.21 BTC, Wallet `0xf5a5..1286`, persist >1,200s) and $18.20M bunker at $81,801.00. Arena confirmed resting bids of $5.71M–$5.87M at $82,221.5–$82,227.
    - Pre-condition Checklist:
-     * [ ] Retail sell stop clusters between $82,450–$82,950 fully swept
-     * [ ] 15m CVD delta decelerates from -$20M and prints positive absorption flip (zc_div > 0.8)
-     * [ ] $82,335.00 whale bid wall ($17.39M, Wallet `0xf5a5..1286`) remains active and un-pulled (persist >= 180s)
-     * [ ] MT5 spread remains <= 25.0 bps (currently 6.15 bps)
-     * [ ] Macro clearance maintained
+     * [x] $82,335.00 whale bid wall ($17.39M) verified alive & persistent
+     * [x] Spread gate passed (4.35 bps <= 25.0 bps)
+     * [ ] Retail sell stop clusters between $82,650–$82,550 swept as price flushes into $82,360 entry
+     * [ ] 15m CVD delta decelerates from -$51.4M seller dump and prints positive absorption flip
+     * [ ] Macro clearance maintained (0 high-impact events)
 2. **XAUUSD.pi** (Model 1 Lower Auction Value Band Long):
-   - Mapped Levels: Mark 4,115.38 | Limit Entry: `4,110.50` (-2.0 SD shelf) | SL: `4,104.00` ($6.50 pts) | TP: `4,121.50` ($11.00 pts) | Net 1.69R
+   - Mapped Levels: Mark 4,115.18 | Limit Entry: `4,110.50` (-2.0 SD shelf) | SL: `4,104.00` ($6.50 pts) | TP: `4,121.50` ($11.00 pts) | Net 1.69R
    - Sizing: 0.01 lot (~$6.50–$10.00 USD nominal risk) | Spread: 0.19 bps
    - Pre-condition Checklist:
-     * [ ] Price retests -2.0 SD shelf ($4,110.48) with orderflow deceleration
-     * [ ] MT5 tick CVD delta flips positive from current -$153K aggressive dump
+     * [x] Spread gate passed (0.19 bps <= 5.0 bps)
+     * [ ] Price pullbacks to $4,110.50 shelf (current mark 4,115.18 is neutral)
+     * [ ] Tick CVD flips positive from -$153K dump
      * [ ] L2 bid replenishment confirms resting liquidity defense
-     * [ ] Spread remains <= 5.0 bps (currently 0.19 bps)
      * [ ] Macro embargo remains clear
 3. **SOLUSD.p** (Model 1 Post-Sweep Accumulation Base Long):
-   - Mapped Levels: Mark 105.97 | Limit Entry: `104.95` (post-sweep base) | SL: `104.20` (0.75 pts) | TP: `106.75` (VWAP) | Net 2.40R
-   - Sizing: 0.10 lot (~$7.50–$10.00 USD nominal risk) | Spread: 21.85 bps
+   - Mapped Levels: Mark 105.41 | Limit Entry: `104.95` (post-sweep base) | SL: `104.20` (0.75 pts) | TP: `106.75` (VWAP) | Net 2.40R
+   - Sizing: 0.10 lot (~$7.50–$10.00 USD nominal risk) | Spread: 21.82 bps
    - Pre-condition Checklist:
-     * [ ] MT5 spread compresses <= 25.0 bps
-     * [ ] 15m CVD delta turns positive from current -$2.01M taker dump
-     * [ ] Resting whale bid wall >= $100K emerges and persists >= 180s
-     * [ ] Clean re-accumulation base forms above $104.90
+     * [ ] MT5 spread compresses <= 12.0 bps (currently 21.82 bps)
+     * [ ] Price re-tests $104.95 post-sweep base
+     * [ ] 15m CVD delta turns positive from -$5.4M taker dump
+     * [ ] Resting whale bid wall >= $100K emerges (>= 180s persistence)
      * [ ] Floor cushion maintained > $39.83 USD
 
 ### Floor Cushion & Joint Risk Summary:
