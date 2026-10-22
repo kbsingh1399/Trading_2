@@ -59,6 +59,7 @@ CANONICAL_ORDER = [
     "18_CVD",
     "19_News",
     "19_Calendar",
+    "20_Auction_Market_Structure",
 ]
 
 # Styles

@@ -115,6 +115,13 @@ API_MODULES = [
         "sheet": "18_CVD",
         "timeout": 240,
     },
+    {
+        "id": 27,
+        "name": "Auction Market Structure, Volume Profile & Session Extremes",
+        "script": MODULES_DIR / "20_Auction_Market_Structure.py",
+        "sheet": "20_Auction_Market_Structure",
+        "timeout": 180,
+    },
 ]
 
 
