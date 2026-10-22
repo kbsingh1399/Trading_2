@@ -23,6 +23,7 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 PROMPT_FILE = ROOT / "docs" / "trade_plans" / "LATEST_COUNCIL_CYCLE_PROMPT.txt"
 ARENA_BRIDGE = ROOT / "Terminal" / "arena_bridge.py"
 ZAI_DISPATCHER = ROOT / "Terminal" / "dispatch_zai_prompt.py"
+WEB2API_COUNCIL = ROOT / "Terminal" / "web2api_council.py"
 
 CDP_URL = "http://127.0.0.1:9222/json"
 
@@ -171,6 +172,14 @@ async def dispatch_all(cycle_id: str = "AUTO"):
             print("[DualCouncil] Warning: No Arena.ai tab found on CDP port 9222.")
     except Exception as e:
         print(f"[DualCouncil] Arena.ai dispatch error: {e}")
+
+    # 3. Dispatch to Gemini Web2API in background subprocess (port 8081)
+    print("[DualCouncil] Dispatching prompt to Gemini Web2API (port 8081)...")
+    try:
+        subprocess.Popen([sys.executable, str(WEB2API_COUNCIL), "--file", str(PROMPT_FILE), "--model", "gemini-3.6-flash"])
+        print("[DualCouncil] Gemini Web2API background council task launched successfully.")
+    except Exception as e:
+        print(f"[DualCouncil] Gemini Web2API dispatch error: {e}")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
