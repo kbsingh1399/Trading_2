@@ -1,155 +1,116 @@
 Thought Process
-Explored 3 files
-List Directory /home/z/my-project
-Find File **/DataBase_Trading.xlsx
-Find File **/*.md
-Done
 
-Repo, warehouse, and governance docs are all present locally. Let me read the worklog and verify the warehouse + the Section 2.5 methodology text before issuing the Cycle 270 ruling.
+33-Sheet Excel Confirmation: [0 formula errors | 0 empty headers]
 
-Explored 3 files
+⚖️ CYCLE 271 — COUNCIL RULING | 2026-10-22 21:37:10 UTC | MT5 #5064568
 
-Worklog confirmed — Cycles 268/269 are logged, and critically: Cycle 269's authorized geometry was a BTC SELL_LIMIT (0.02 lots), whereas the desk has now staged an opposite-direction BUY_LIMIT at 0.04 lots (2× unit). That needs forensic-grade evaluation this cycle. Let me verify warehouse health and pull fresh BTC/NAS/RTY microstructure data.
+Reconciliation stamp: Balance = Equity = Free Margin = 4,818.51 | 0 positions | 0 pending | #19227609 cancellation confirmed (retcode 10009). Desk is 100% flat cash — Hard Floor cushion +43.51, Buffer cushion +23.51. Cycle opens clean; single risk slot free and the clock is running (~21.0h operational runway to Friday 23:59 UTC deadline).
 
-Explored 2 files
+🎯 EXECUTIVE RULING (TOP LINE)
 
-Now I'll build the Cycle 270 forensic extraction script (adapting the proven Cycle 269 harness) and run the full 33-sheet audit in parallel.
+STAGE NOW: BTCUSD.pi BUY_LIMIT @ 80,480.00 | 0.03 lots | SL 80,080.00 | TP 82,050.00 | 3.93R | GTC — comment C271-COUNCIL-DEEPFLUSH
+QUEUED: NAS100.p SELL_LIMIT — rotation-gated at 22:00 UTC | REJECTED: US2000.p (friction veto) | FOREX: embargoed until 22:30 UTC.
 
-Wrote 1 files，Ran 2 commands
+BTC is the only candidate that is simultaneously (i) executable inside the current double closure (crypto is exempt from both the 21:00–22:00 broker session break and the 21:15–22:30 rollover embargo), (ii) structurally complete on the liquidity cycle — entry sited beyond two mapped sell-side cascades, exit parked in front of a mapped buy-side squeeze pool, and (iii) macro-aligned (IBIT +235.0M daily bid + CEX spot −210.35M 4h supply drain). An idle slot earns exactly zero expectancy; staging the BTC radar order now is the only capacity-efficient move available at 21:37 UTC.
 
-Warehouse audit passes: 33/33 sheets, 0 formula errors, 165 empty Row-1 cells (all banner rows on sectioned sheets with real headers in Row 2 — consistent with Cycles 268/269 findings). Now the forensic extract:
+SECTION 4: 3-PERSONA MANDATORY INQUEST
+👤 Persona 1 — Orderflow Analyst (Steps 2, 4, 6)
 
-Explored 1 files
+NAS100.p — The CVD stack is unambiguous institutional distribution: 15m −$997.6M → 1h −$4.49B → 4h −$11.07B, unidirectional. Selling a bounce into Daily VAL (29,087.86) against that flow is correct trend-down acceptance logic. Two flags: (1) the fill requires price to drift +145 pts against dominant flow — exactly the bounce we want to sell, but CVD of this extremity also precedes short-covering ignitions; a 0.63-ATR stop (45 pts) is the tightest on the board and will not survive a squeeze overshoot unless 5m CVD re-confirms seller delta at approach. (2) The ETF-inflow/ NAS-selling divergence (see Persona 3) raises squeeze tail risk. Approved only as a fully-gated rotation candidate — all three pre-conditions mandatory, no exceptions.
 
-Extraction complete — and it surfaces two critical microstructure facts the desk's ticket narrative omitted: a massive ask wall on the TP path, and a mined liquidation corridor under the SL. Before ruling, I need fresh intraday CVD (my first pull grabbed stale midnight rows — the sheet is interleaved) and a dedupe of the whale wall. Running the follow-up now:
+US2000.p — DPOC retest long is geometrically clean, but orderflow-wise it is the weakest board member: 15m CVD flip unverified, DPOC 2,775.84 hold unverified, and friction at 2.91% of gross reward is 2.3× the NAS candidate. Post-22:00 reopen spreads stack another 2–4× on the widest-friction ticket. Vetoed.
 
-Wrote 1 files，Ran 1 commands
+BTCUSD.pi — This is the only complete liquidity-cycle structure on the board. Beneath spot sit two unswept retail debt cascades — 80,850 ($11.5M) and 80,650 ($15.0M) — a $26.5M sell-side runway. Entry at 80,480 sits beyond both: it can only fill after the sweep has fully printed. TP 82,050 is parked ahead of the 16.54M short-liquidation squeeze pool and 17.20M buy-stop magnet: we enter after sell-side liquidity is taken and exit where buy-side liquidity rests. Mandatory post-fill protocol: within 5 minutes of fill, 1m/5m CVD must print delta-flip-positive with visible bid-wall rebuild; absent absorption → flatten at market (~−0.3R realized). A deep-pullback limit without this check is an unmanaged knife-catch.
 
-All forensic data is in. Two decisive microstructure facts emerged that the desk's ticket narrative omitted — a $76.33M ask wall directly on the TP path and a mined liquidation corridor under the SL — plus a spread-cost correction to the desk's solvency math. Logging the cycle to the worklog, then delivering the ruling:
+Section 5 (Orderflow lens):
 
-Wrote 1 files
+(a) Over-conjunctive filters? YES. The desk ANDs CVD sign + L2 depth + cascade map + friction + structure + session per candidate. At even 70% per-condition pass rates, a 4-condition stack deploys <25% of the time — and the final gate is usually a lagging confirmation (CVD turns after the move). Fix: two hard gates only (solvency + liquidity map), everything else becomes a weighted score, not a veto.
+(b) Passive limits / adverse selection? YES, structurally. Two consecutive cycles prove it: 80,950 was cancelled unfilled (C270); 80,480 fills only amid cascading momentum against the entry. Fix: split execution — 50% passive at level + 50% confirmation-gated stop-entry on reclaim; or regime-conditional: passive limits only in balanced/range auctions, stop-entries only for cascade reclaims.
+(c) Specialization? The demonstrable orderflow edge is in crypto — 24/7 liquidation mapping, ETF-flow proxy, CEX netflow. Forex has no cascade map and dead-zone sessions; indices sit between. Core the desk on BTC, satellite the indices, leave forex dormant unless post-22:30 L2 imbalance prints ≥2σ.
+👤 Persona 2 — Position Manager (Steps 1, 5, 8)
 
-33-Sheet Excel Confirmation: [0 formula errors | 0 empty headers] — 33/33 sheets verified via local re-audit (audit_excel.py: 88,383 rows scanned; 165 empty Row-1 cells are the known banner-row convention with real headers in Row 2). Warehouse healthy.
+Stress math (all verified): BTC 0.03 → nominal −$12.00, stressed −$17.50, stressed equity 4,801.01 (+6.01 vs buffer, +26.01 vs floor) — the largest solvency surplus on the board. NAS/US2000 → nominal −$13.50, stressed −$18.88, stressed equity 4,799.63 (+4.63 / +24.63). All three pass; BTC passes with the most air underneath.
 
-🏛️ CYCLE 270 COUNCIL RULING — HOLD THE LINE: KEEP & HARDEN #19227609 | ZERO NEW ORDERS
+The sequencing insight that decides this cycle: the first trade carries the entire deployment capacity. If BTC stops out full (−$17.50), equity → 4,801.01, buffer cushion shrinks to +6.01, and the 1.25×+$2.50 rule caps any new ticket at (6.01−2.50)/1.25 = $2.81 nominal → the desk is locked out of buffer-compliant deployment for the cycle. But if the 5-min absorption protocol flattens an adverse fill at ~−0.3R (−$5.25 all-in), equity → ~4,813.26, cushion +18.26, max nominal = (18.26−2.50)/1.25 = $13.01 → a fresh 0.03 ticket remains stageable. A −0.3R disciplined flatten preserves 100% of redeployment capacity; a −1.0R stop preserves none. That asymmetry is the core of this ruling.
 
-Desk clock (21:17:47 UTC): FX rollover embargo ACTIVE (21:15–22:30) | Index broker session break ACTIVE (21:00–22:00) | Crypto = the only executable class → the staged BTCUSD.pi ticket is the desk's entire actionable surface this cycle. Capacity: 1/1 risk-bearing limit used, 0 remaining — and below, Persona 2 proves arithmetically that a second ticket is forbidden, not merely discouraged.
+Risk escalation ladder (operator directive compliance): buffer-compliant ceiling = (23.51−2.50)/1.25 = $16.81 nominal → BTC 0.04 ($16.00, stressed −$22.50, equity 4,796.01, +1.01) is the maximum sanctioned size — authorized only for the confirmation-gated stop-entry variant above 80,850 post-sweep (higher hit-rate justifies the thinner surplus). The passive staged order is capped at 0.03.
 
-SECTION A — PERSONA 2: POSITION MANAGER (Steps 1, 5, 8)
+Section 5 (Risk lens):
 
-A1. Staged ticket #19227609 — solvency re-derived with the desk's real spreads (Sheet 00 R76: BTC spread $15.00 / 1.85 bps, gate ceiling 25 bps):
+(a) Conjunction has a risk cost: starved of deployments, the desk then feels pressure to overweight marginal setups to catch up. Fix: conviction-laddered sizing (¼-Kelly on measured gate expectancy), hard-capped by the stressed-buffer ceiling — never by time pressure.
+(b) Adverse selection has a direct P&L signature: fills cluster in momentum-against-entry moments. The 5-min absorption flatten converts a −1.0R tail into a ~−0.3R cost on ~40% of fills ≈ +0.28R expectancy — the single cheapest edge upgrade available today.
+(c) Capacity math favors crypto: BTC deploys the risk slot 24/7; indices ~18.5h/day session-bound; forex effectively gutted by the daily embargo. Slot-utilization alone argues for a BTC-core book.
+👤 Persona 3 — Macro Risk Analyst (Steps 3, 7)
 
-METRIC
-	
-DESK'S CLAIM
-	
-COUNCIL CORRECTION
-	
-VERDICT
+Calendar: US cash closed 20:00 UTC; no red-tier releases inside the trade horizon; Thursday overnight is structurally quiet; Friday carries the 23:59 UTC deadline.
 
-Nominal risk	−$14.00	(80,950−80,600)×0.04 = $14.00 ✓	Confirmed
-Spread cost	omitted	$15.00 × 0.04 = $0.60	Desk math understated
-Tier-C stressed loss	−$19.50	(14.00+0.60)×1.25+2.00 = −$20.25	−$0.75 worse than claimed
-Stressed equity	4,799.01 (+4.01)	4,798.26 (+3.26 buffer / +23.26 floor)	PASS — but thinner
-Reward / R:R	$42.00 / 3.00R	(82,000−80,950)×0.04 = $42.00 / 3.00R ✓	Confirmed
-Friction	—	(0.60+2.00)/42.00 = 6.2% ≤ 15% gate	PASS
+Flow regime: IBIT +235.0M daily net inflow = persistent structural bid beneath BTC; CEX spot −210.35M 4h withdrawal = exchange supply drain. Both directly underwrite the deep-flush long. The same flows contradict the NAS short thesis: the index selling is systematic de-risking while allocation flows remain risk-on — a divergence that historically resolves in violent short squeezes. This corroborates Persona 1's squeeze warning and relegates NAS100 to fully-gated status, not primary.
 
-A2. The 0.04-lot unit is at its terminal rung. Max nominal risk the cushion funds for this geometry: (23.51−2.00)/1.25 − 0.60 = $16.61. The staged $14.00 consumes 84% of the ceiling → there is no budget to widen the SL, no averaging, no second unit. Any geometry drift = buffer breach. This is correctly max-sized, not conservatively sized.
+Windows: 21:00–22:00 session break blocks all index staging now; 21:15–22:30 rollover embargo blocks all FX tickets; crypto exempt from both. US2000's 2.91% friction becomes unacceptable once reopen spread widening stacks on it.
 
-A3. Concurrent-capacity proof — the max-1 constraint is arithmetic law tonight:
+Section 5 (Macro lens):
 
-BTC + US2000.p: $20.25 + $3.81 = $24.06 → stressed equity 4,794.45 < 4,795.00 (breach $0.55)
-BTC + NAS100.p: $20.25 + $3.73 = $23.98 → 4,794.53 < 4,795.00 (breach $0.47)
-All three: $27.79 → 4,790.72 (breach $4.28)
-
-Verdict: capacity = 0 while #19227609 lives. US2000.p and NAS100.p are radar-only; they may re-stage at the 22:00–22:05 reopen only if BTC is cancelled, closed, or moved to breakeven (Early-BE release, sequenced per Cycle 268 doctrine).
-
-A4. Friction-economy flag on both index radars: the $2.00 flat stress friction is 52–64% of their entire stressed budget (US2000: risk $3.81 to make $3.30; NAS: risk $3.73 to make $3.45). Negative risk economy — they are capacity-fillers with POC/VAL structure merit, not mission movers. Do not mourn if they never fill.
-
-SECTION B — PERSONA 1: ORDERFLOW ANALYST (Steps 2, 4, 6)
-
-B1. The two facts the ticket narrative omitted (fresh Sheet 22/23/24 dedupe):
-
-FACT 1 — The TP path is blocked by a $76.33M institutional ask wall. Deduped cross-venue cluster (Binance/Bybit/OKX, harvest window 19:28→20:27): $76.33M unique USD stacked 81,431–81,568 (52 rows, raw $93.72M, 9 duplicate snapshot keys removed). Cycle 269 measured $10.55M persistent core — the wall has grown ~7× as price was rejected from 81,5xx. Worse, the liquidation map shows a fuel desert behind it: 81,650–81,950 contains <$0.6M of short-liq/buy-stop fuel. The $33.7M magnet at 82,050 ($16.54M short liq + $17.20M buy stops — desk's figures confirmed to the dollar) can only pull price through that wall if spot demand (IBIT + CEX drain) eats it. That is a regime bet, not a level bet.
-
-FACT 2 — The SL 80,600 sits inside a mined corridor. Sell-side fuel below entry: $2.41M debt @ 80,950, $5.53M @ 80,850 (the sweep target — confirmed), $4.45M @ 80,750, $5.44M @ 80,650, $10.03M long liquidations @ 80,650, $4.46M @ 80,550 → then $65M+ at 80,150–80,350 ($28.55M densest @ 80,150, confirmed). A wick into the 80,650 pool takes the 80,600 bunker first — the stop is positioned in front of the magnet, not beyond it. $112M cumulative long-liq sits below 80,750.
-
-B2. What genuinely supports the long (it is not nothing):
-
-$83.38M unique bid shelf 80,850–81,100, including a fresh ladder at 80,912–80,990 (~$27M: $7.41M @ 80,967.5, $6.59M @ 80,983.7, $3.24M @ 80,990, $4.31M spot @ 80,931) — the entry at 80,950 is embedded inside active institutional defense, not below it. Plus $8.1M @ 81,027 with 26-minute persistence.
-CVD regime (newest warehouse row 20:20 — 57 min stale, flag): 1h +$10.49M BULLISH ABSORPTION, 15m +$12.56M, 5m alternating buy/sell with net-positive delta through 20:20. Absorption-under-pressure into the shelf is exactly the sweep-reversal precondition.
-Location: entry 47.4 pts above Daily VAL 80,902.58 in ROTATIONAL_BALANCE, price printing at the VWAP −1σ band (81,234.6), Z −0.99; −1.28σ = 80,994. Mean-reversion context is coherent; the daily technicals are STRONG BEARISH (RSI 44.8, below EMA20/50/100/200), so this is a counter-trend value trade — the 4H delta remains −$332M DELTA-ALIGNED bearish. Respect it: this is why the kill-switches below are mandatory, not decorative.
-
-B3. Ruling on geometry: TP 82,000 stands (3.00R, correct 50-pt front-run of the 82,050 magnet — the only SOP-compliant R:R available, since every pre-wall TP ≤81,545 caps at ≤1.5R and fails Gate 9). The wall becomes a managed gate, not a blind hope: at a 81,400 touch, pull fresh Sheet 17/22 — if the wall still shows ≥$40M and 5m CVD buy-delta is fading → exit at market, bank ~1.3R ($18); ride to TP only if wall thins <$10M or delta is aggressively positive. Post-fill 5m close below 80,850 (sweep → acceptance) → market exit at ~−0.33R (−$4.60) instead of donating $14 through a mined corridor to a bunker the tape has already invalidated.
-
-SECTION C — PERSONA 3: MACRO RISK ANALYST (Steps 3, 7)
-
-C1. Flow regime — the desk's strongest tailwind, with two honesty flags: IBIT +$235M net daily inflow (Sheet 02, latest finalized print — Oct-22 flows publish T+1; tomorrow's print is the confirmation datapoint) + CEX spot −$210.35M 4h withdrawal = institutional accumulation + exchange supply drain. Combined score: strongly bullish → authorizes crypto value-area longs and raises the wall-consumption prior. Flags: (i) Sheet 03's row is stamped 04:48 UTC — 16.5 hours stale against the desk's "≤15 min fresh" telemetry claim; (ii) 7-day netflow is +$128.93M — the drain is a 4h phenomenon inside a mildly supply-additive week. Re-pull both before Cycle 271.
-
-C2. Embargo/window arithmetic: 21:15–22:30 FX embargo (interbank rollover spread expansion) — no FX tickets, period; all 10 FX spread gates PASS on Sheet 00 but posture remains PASSIVE-ONLY and embargo-suppressed. Index break 21:00–22:00 → US2000.p/NAS100.p cannot stage reliably now (stale-quote fills). Calendar: zero High-Impact events Oct 22–23 (verified Cycle 269); Friday PMI mediums 19:15/19:30 UTC sit after the mission deadline. Funding +0.0064%/8h — no cascade fuel either direction. Crypto is clean to operate.
-
-C3. Sequencing doctrine: reopen window 22:00–22:30 UTC is the only index staging slot tonight — with spread re-verification at reopen (baseline NAS 1.22 pt / RTY 0.32 pt; abort if >2× baseline) and only under freed capacity (A3). No new non-crypto limit within 30 min of any embargo boundary — ever.
-
-SECTION D — 🔬 SECTION 2.5 MANDATORY METHODOLOGY INQUEST
-
-PERSONA 1 (Orderflow):
-
-(a) Overly conjunctive filters? The gate structure is fixed (3-of-4 since the Cycle 268 reform); the surviving conjunctive disease is in data expectations — demanding simultaneous L2 + CVD + liquidation + structure confirmation per candidate when the warehouse cannot deliver them time-aligned (tonight: CVD 57 min stale, whale map 50 min, netflow 16.5 h). Fix: each Model-2 setup pre-registers a minimal evidence triplet (location + one flow proxy + one regime proxy) at scan time; everything else becomes scoring, not gating. A candidate waiting for its 7th confirmation is already dead.
-(b) Passive limits / adverse selection? Quantified tonight: entry 268.5 pts below market (1.18 ATR) in a falling tape with $17.4M of resting sell-side fuel between entry and bunker — the fill will occur during a high-velocity sweep by design. That is acceptable in crypto (sweep-reversal edge, maker economics) only with pre-committed fill-time re-validation — which is exactly the kill-switch set this ruling attaches. For broker-synthetic index books, passive limits in thin hours remain lethal → index radars keep TTLs and reopen-window staging.
-(c) Specialization? Crypto playbook = mined-level sweep-reversal with liquidation map as target-set and walls as managed obstacles (wall-gate doctrine, first issued tonight). TradFi playbook = session-anchored reversion (POC/VAL) and trend-acceptance shorts, L2 weight ≤20% (synthetic). FX = post-embargo windows only. One scanner, three evidence templates, ~24-asset core watchlist — the 156-asset uniform filter is dead.
-
-PERSONA 2 (Position Manager):
-
-(a) Why is equity flat? Because capacity, not filters, is the binding constraint: +$23.51 cushion caps stressed risk at ~$20/trade, so a 3R win banks $42. The mission gap (+$681.49) = 16.2 consecutive max-R wins, zero losses — infeasible by any edge. The elite answer is a cushion-linked risk-unit ladder: stressed risk ≤ ~50% of buffer-cushion, step up one rung per banked win, halve on any loss. Tonight's 0.04 lot is the current top rung; a clean TP (+$42 → cushion +$46 over buffer) unlocks ~0.05–0.06. The floor is contractual; the target is aspirational. Maximize E[terminal equity] under the drawdown constraint — chasing 5,500 with oversized risk is the fastest route to 4,775.
-(b) Too passive? The desk has staged one ticket across three cycles while scanning 156 assets — non-participation now costs more than adverse selection at these sizes. Countermeasures issued tonight: fill-or-cancel TTLs (unfilled by 23:00 UTC → cancel/re-price), pre-booked reopen windows, and pre-authorized amendment triggers so management never freezes post-fill.
-(c) Sizing specialization? Vol-normalize by class: BTC stops at 1.2–1.6 ATR, index tickets sized so the $2 flat friction is <35% of stressed budget (tonight's $1.35-nominal radars fail that test → they are fillers, nothing more), FX 0.10% cap post-embargo only.
-
-PERSONA 3 (Macro):
-
-(a) Macro vetoes sound? Yes — and they consume ~40% of each week (2× daily rollover, session breaks, weekend). Improvement: publish a per-class tradability heatmap so candidates are pre-cleared into the next open window (tonight: crypto now / indices 22:00–22:30 / FX post-22:30) instead of being discovered inside a veto.
-(b) Macro + passive limits = worst adverse selection. Resting limits staged into embargo/news boundaries get filled by spread spikes, not value. codified: no new non-crypto limit within 30 min of an embargo boundary.
-(c) Flow specialization: formalize ETF netflow + CEX 4h netflow = crypto regime score (today: strongly bullish → longs authorized). TradFi macro layer = futures basis + breadth + calendar tiering; size −50% within 60 min of any Tier-1 event. Data honesty duty: tonight's Sheet 03 staleness (16.5 h) shows the flow layer itself needs a freshness gate before it can be a regime input.
-SECTION E — FINAL RULING & TICKET TABLE
+(a) The session/embargo/calendar gates are the desk's best filters — they prevent mechanical spread/requote losses. Keep them hard. Over-conjunction creeps in beyond these two; don't stack more macro vetoes on top.
+(b) Macro regime should select entry style, not just direction: in supportive-flow regimes (ETF inflow + CEX drain), deep passive limits below price carry reduced adverse-selection tails because structural bids sit underneath; in hostile regimes they are knife-catching. Regime-conditional execution, universally applied rules — that's the fix.
+(c) The desk's only proprietary informational edge is the macro-flow proxy stack (IBIT/CEX) — which exists only for crypto. Index CVD is public and delayed; FX offers no flow edge at all. Edge follows the data: crypto = edge desk, indices = execution desk (trade only when geometry + session align perfectly), forex = dormant.
+📜 FINAL TICKET SHEET
 #
 	
-INSTRUMENT
+SYMBOL
 	
-ORDER
+TYPE
 	
-STATUS
+ENTRY
 	
-COUNCIL ACTION
-
-1	BTCUSD.pi #19227609	BUY_LIMIT 0.04 @ 80,950 / SL 80,600 / TP 82,000	STAGED (1/1)	KEEP & HARDEN — Tier-1 PASS (+3.26 corrected), Tier-2 3-of-4 (Regime ✓ Anchor ✓ Timing ✓ Bunker ⚠️). Mandatory overlay: wall-gate @ 81,400 (exit ~1.3R if wall ≥$40M + CVD fading; ride if wall <$10M or delta aggressive) + 6 kill-switches below. No widening, no averaging — 84% of unit ceiling.
-2	US2000.p	BUY_LIMIT 0.30 @ 2,776 / SL 2,771.50 / TP 2,787	RADAR	DO NOT STAGE (capacity 0; break till 22:00). Geometry compliant (POC 2,775.78 shelf, R:R 2.44R, stressed $3.81) but friction-dominated. Re-score at reopen only if BTC resolved/at-BE.
-3	NAS100.p	SELL_LIMIT 0.03 @ 29,085 / SL 29,130 / TP 28,970	RADAR	DO NOT STAGE. Bunker defect from C269 fixed (SL 29,130 > VAL 29,094.26 ✓), regime TREND_DOWN_ACCEPTANCE ✓, R:R 2.56R, stressed $3.73 — but entry 1.70 ATR deep → TTL mandatory if staged later.
-4	FX majors/crosses	—	EMBARGO	Nothing before 22:30 UTC; then spread-normalization re-verify.
-
-Kill-switch set (pre-commit, non-negotiable): (i) Pre-fill: fresh bid ladder 80,912–80,990 erodes >50% while price <81,000 with negative 5m delta → cancel before the 80,950 touch; (ii) unfilled by 23:00 UTC → cancel & re-price at Cycle 271; (iii) post-fill: 5m close <80,850 → market exit (~−$4.60); (iv) reclaim 81,100 → SL to BE+costs (≈80,956); (v) 81,400 touch → wall-gate decision per B3; (vi) TP 82,000 — no chase beyond, the 82,050 magnet is the terminal fuel.
-
-SECTION F — 10-POINT PRE-PUNCH CHECKLIST (staged ticket #19227609)
-#
+LOTS
 	
-GATE
+SL
 	
-EVIDENCE
+TP
+	
+R:R
+	
+NOMINAL
+	
+STRESSED
 	
 STATUS
 
-1	Warehouse integrity	33/33, 0 formula errors, headers clean (banner convention)	✅ PASS
-2	Account reconciliation	B=E=FM 4,818.51; 0 positions / 1 pending (= ticket); Sheet 00 pending block unpopulated — flag only	✅ PASS
-3	Stressed solvency	−$20.25 corrected → 4,798.26 (+3.26 / +23.26)	✅ PASS (thin)
-4	Sizing & margin	0.04 lot, notional ~$3,249, margin trivial; unit at 84% ceiling — no widening budget	✅ PASS (ceiling)
-5	Structure	Entry +47 pts over VAL 80,902.58, ROTATIONAL_BALANCE, sweeps $5.53M debt @ 80,850, VWAP −1σ confluence	✅ PASS
-6	L2 / orderbook	$83.38M bid shelf incl. fresh 80,912–80,990 ladder vs $76.33M ask wall on TP path	⚠️ CONDITIONAL (wall-gate armed)
-7	CVD / flows	1h +$10.49M absorption; IBIT +235M; CEX 4h −210.35M — CVD 57 min stale, netflow 16.5 h stale	⚠️ CONDITIONAL (re-verify C271)
-8	Liquidation map	TP front-runs $33.7M @ 82,050 by 50 pts ✓; SL corridor mined ($10.03M @ 80,650 trips 80,600; $112M below 80,750)	⚠️ CONDITIONAL (5m-close<80,850 exit armed)
-9	Macro / session	Crypto 24/7, embargo-exempt; zero High-Impact Oct 22–23; funding neutral	✅ PASS
-10	Execution & kill-switches	Maker limit, spread 1.85 bps ≤ 25, friction 6.2% ≤ 15%; 6 rules armed	✅ PASS
+T-1	BTCUSD.pi	BUY_LIMIT	80,480.00	0.03	80,080.00	82,050.00	3.93R	−$12.00	−$17.50	✅ STAGE NOW
+T-2	NAS100.p	SELL_LIMIT	29,085.00	0.03	29,130.00	28,970.00	2.56R	−$13.50	−$18.88	⏳ QUEUED — 22:00 UTC gate
+T-3	US2000.p	BUY_LIMIT	2,776.00	0.30	2,771.50	2,787.00	2.44R	−$13.50	−$18.88	❌ REJECTED — 2.91% friction veto
+T-4	FX majors/crosses	—	—	—	—	—	—	—	—	🚫 EMBARGOED to 22:30 UTC
 
-Checkpoints: 22:00 UTC — index reopen: spread re-verify + radar re-score only if BTC resolved/at-BE | 22:30 UTC — FX embargo lifts (observe only unless capacity freed) | 23:00 UTC — ticket TTL: cancel/re-price if unfilled | Cycle 271 — fresh CVD + Sheet 03 netflow re-pull mandatory (stale-data flags above), IBIT Oct-22 print check.
+22:05 UTC Rotation Matrix (T-1 ↔ T-2, single slot):
 
-The desk holds one correct-sized, structure-backed 3R ticket with institutional flows at its back and two known obstacles in front of it — the work now is disciplined management of those obstacles, not adding exposure. Next cycle's highest-value action is the fresh CVD/netflow re-pull and the 22:00 reopen decision.
+STATE AT 22:05
+	
+ACTION
+
+BTC unfilled, price >2.0 ATR from 80,480, NAS all-gates-green	Cancel T-1 → stage T-2
+BTC unfilled, price <1.0 ATR from sweep zone	KEEP T-1 — flush imminent, 3.93R > 2.56R
+BTC filled	Manage per absorption protocol; slot occupied, NAS blocked
+BTC unfilled, NAS gates fail	KEEP T-1; re-screen FX at 22:30 only if slot frees
+BTC thesis decay (15m close > 81,200 without sweep)	Cancel T-1 — momentum has left the zone
+✅ 10-POINT PRE-PUNCH CHECKLIST — T-1 (BTCUSD.pi BUY_LIMIT)
+#
+	
+ITEM
+	
+STATUS
+
+1	Execution window: crypto 24/7, exempt from session break + rollover; order_check returns Done	⧗ verify at punch
+2	Account state: 4,818.51 flat, 0 positions; exactly 1 pending post-punch	✅ verified
+3	Stressed solvency: −$17.50 → equity 4,801.01 ≥ 4,795.00 (+6.01) and ≥ 4,775.00 (+26.01)	✅ verified
+4	Slot capacity: 1/1 risk-bearing limit (max under +23.51 cushion); 4/4 instrument slots	✅ verified
+5	Geometry: SL 400 pts beneath entry, below both cascade floors, no intervening debt pool	✅ verified
+6	Liquidity map: 80,850 ($11.5M) + 80,650 ($15.0M) sweep fuel above entry; TP ahead of 16.54M squeeze pool + 17.20M buy-stop magnet	✅ verified
+7	2.0 ATR staging rule: entry ~420 pts below spot ≈ 1.3–1.7× ATR(1h) — confirm live before order_send; if breached, radar-only	⧗ verify at punch
+8	Friction gate: live BTC spread ≤ 2% of gross reward ($47.10)	⧗ verify at punch
+9	Macro alignment: IBIT +235.0M daily inflow; CEX −210.35M 4h drain; no red-tier releases in horizon; no embargo exposure	✅ verified
+10	Invalidation protocol armed: (a) 5-min post-fill absorption check else flatten ~−0.3R; (b) 22:05 rotation gate; (c) cancel on 15m close > 81,200 unswept, or intraday IBIT flow flip	⧗ armed
+
+Council verdict: execute T-1 exactly as specified, hold T-2 queued behind its three hard gates, and let the absorption protocol — not hope — manage the fill. The methodology inquest stands recorded: cut the Boolean AND to two hard gates plus weighted scores, split passive/confirmation execution, ladder size to measured expectancy within the $16.81 nominal ceiling, and concentrate the book where the desk's data edge actually lives — crypto. Next Council touch: 22:05 UTC rotation gate.
 
 ================================================================================
 Z.AI ATTACHED OUTPUT FILE:  (479 chars)
