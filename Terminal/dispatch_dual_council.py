@@ -45,37 +45,41 @@ def build_unified_prompt(cycle_id: str = "AUTO") -> str:
 ## BlueBerry Markets MT5 Account #5064568 | Cycle {cycle_id} | {utc_now}
 
 > **CANONICAL QUANT GOVERNANCE**: Follow line-by-line `STANDARDIZED_TRADING_DECISION_CHAIN.md`, `AUTONOMOUS_WAKEUP_CHECKLIST.md`, and `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md`.
-> **MISSION**: Reach 5,500.00 USD equity before Friday, 23rd October 2026 (23:59 UTC).
+> **MISSION**: Reach 5,500.00 USD equity before Friday, 23rd October 2026 (23:59 UTC) (~21.0 hours runway remaining).
 > **SOLVENCY FLOORS**: Absolute Hard Floor: 4,775.00 USD (Cushion: +{telem.get('equity', 4818.51) - 4775.00:.2f} USD) | Operating Buffer: 4,795.00 USD (Cushion: +{telem.get('equity', 4818.51) - 4795.00:.2f} USD).
-> **FLUID CAPACITY**: 4/4 slots free. Maximum 1 risk-bearing limit staged under current +{telem.get('equity', 4818.51) - 4795.00:.2f} USD buffer cushion.
+> **FLUID CAPACITY**: 4/4 slots free. Maximum 1 active risk-bearing limit staged under current +{telem.get('equity', 4818.51) - 4795.00:.2f} USD buffer cushion.
+> **OPERATOR DIRECTIVE**: "To pass you may need to increase risk...and keep discussing with arena.ai."
 
 ### SECTION 1: LIVE ACCOUNT & RECONCILIATION
 - Balance: {telem.get('balance', 4818.51):.2f} USD | Floating Equity: {telem.get('equity', 4818.51):.2f} USD | Free Margin: {telem.get('equity', 4818.51):.2f} USD
-- Open Positions: {telem.get('positions_count', 0)} | Pending Orders: {telem.get('orders_count', 1)}
-- Active Staged Ticket: #19227609 on BTCUSD.pi (BUY_LIMIT 0.04 lots @ 80,950.00 | SL: 80,600.00 | TP: 82,000.00).
+- Open Positions: {telem.get('positions_count', 0)} | Pending Orders: {telem.get('orders_count', 0)}
+- Account Posture: 100% FLAT CASH DEFENSE (+43.51 USD Hard Floor cushion, +23.51 USD Buffer cushion).
+- Prior Action Executed: Ticket #19227609 (BTCUSD.pi BUY_LIMIT 0.04 lots @ 80,950.00) CANCELLED on MT5 per unanimous Council & Swarm veto (retcode 10009 TRADE_RETCODE_DONE).
 
 ### SECTION 2: 33-SHEET EXCEL DATA WAREHOUSE HEALTH
-- File: Data/DataBase_Trading.xlsx (13.23 MB, 100% healthy, 0 CRC errors).
+- File: Data/DataBase_Trading.xlsx (13.23 MB, 100% healthy, 0 CRC errors, 0 formula errors).
 - Sheet count: 33/33 sheets present and verified.
 - Sheet 33 (`20_Auction_Market_Structure`): Row 1 verified with 36/36 clean unmerged column headers.
 - Formula Errors: Exactly 0 errors (#REF!, #DIV/0!, #N/A, #VALUE!).
-- Live Sheets: 17_Orderbook, 18_CVD, 10_Whale_Orders, 00_MT5_Account_Telemetry all <= 15 minutes fresh.
+- Pipeline Daemon: Task 109472 actively cycling Cycle #9.
 - Macro Flows: BlackRock IBIT logged +235.0M USD net daily inflow; CEX spot netflow logged -210.35M USD 4-hour spot withdrawal.
 
-### SECTION 3: ACTIVE STAGED ORDER & RADAR CANDIDATES
-1. **ACTIVE STAGED TICKET #19227609 — BTCUSD.pi (Model 2 Value Area Long / Squeeze Target)**:
-   - Order: BUY_LIMIT @ 80,950.00 | Lots: 0.04 | SL: 80,600.00 | TP: 82,000.00 | R:R: 3.00R
-   - Supporting Structure: Positioned directly above Daily VAL (80,902.58 USD) and sweeps 80,850 USD retail debt pool.
-   - Institutional Tailwinds: Backed by +235M USD BlackRock IBIT ETF inflow and -210M USD CEX spot drain.
-   - Take Profit Runway: Front-runs the massive 16.54M USD short liquidation squeeze pool and 17.20M USD buy-stop magnet at 82,050 USD.
-   - Solvency Defense: Nominal Risk -$14.00 (0.29%) | Stressed Loss (1.25x + $2) = -$19.50 | Stressed Equity = 4,799.01 USD (+4.01 USD buffer surplus, +24.01 USD hard floor surplus).
-2. **US2000.p (Model 2 Long — Value Acceptance & DVAH Retest)**:
-   - Setup: BUY_LIMIT @ 2,776.00 | Lots: 0.30 | SL: 2,771.50 | TP: 2,787.00 | R:R: 2.44R
-   - Status: Sits at Daily POC (2,775.78). On standby during 21:00-22:00 UTC broker session break.
-3. **NAS100.p (Model 2 Short — Trend Down Acceptance & DVAL Retest)**:
-   - Setup: SELL_LIMIT @ 29,085.00 | Lots: 0.03 | SL: 29,130.00 | TP: 28,970.00 | R:R: 2.55R
-   - Status: Retest into Daily VAL (29,087.86). On standby during 21:00-22:00 UTC broker session break.
-4. **Forex Majors & Crosses**: Strict trading embargo active 21:15-22:30 UTC for interbank rollover spread expansion.
+### SECTION 3: TOP CANDIDATES ON RADAR & EXECUTION TRIGGERS
+1. **NAS100.p (Model 2 Short — Trend Down Acceptance into Daily VAL Retest)**:
+   - Geometry: SELL_LIMIT @ 29,085.00 | Lots: 0.03 | SL: 29,130.00 (+45.0 pts / 0.63 ATR) | TP: 28,970.00 (-115.0 pts / 2.56R)
+   - Risk & Solvency: Nominal Risk -$13.50 | Spread Cost: 0.43 USD (1.42 pts / 0.49 bps | 1.24% friction) | Stressed Loss: -$18.88 | Stressed Equity: 4,799.63 USD (+4.63 USD buffer surplus, +24.63 USD floor surplus).
+   - Orderflow CVD: Heavy unidirectional institutional selling: 15m CVD -$997.6M, 1h CVD -$4.49B, 4h CVD -$11.07B.
+   - Execution Pre-Conditions: [ ] Broker session open confirmed (order_check returns Done) | [ ] Live ask reaches >= 28,941.68 (within 2.0 ATR max staging rule) | [ ] 5m CVD confirms seller delta.
+2. **US2000.p (Model 2 Long — Daily POC Retest in Bullish Trend)**:
+   - Geometry: BUY_LIMIT @ 2,776.00 | Lots: 0.30 | SL: 2,771.50 (-4.50 pts) | TP: 2,787.00 (+11.00 pts / 2.44R)
+   - Risk & Solvency: Nominal Risk -$13.50 | Spread Cost: 0.96 USD (0.32 pts / 1.15 bps | 2.91% friction) | Stressed Loss: -$18.88 | Stressed Equity: 4,799.63 USD (+4.63 USD buffer surplus, +24.63 USD floor surplus).
+   - Execution Pre-Conditions: [ ] Broker session open confirmed | [ ] 15m CVD delta turns positive | [ ] Price holds DPOC (2,775.84).
+3. **BTCUSD.pi (Deep Flush Re-Entry Radar — Post-Cascade Reclaim)**:
+   - Geometry: BUY_LIMIT @ 80,480.00 | Lots: 0.03 | SL: 80,080.00 (-400 pts) | TP: 82,050.00 (+1,570 pts / 3.93R)
+   - Sited safely beneath both the 80,850 USD ($11.5M) and 80,650 USD ($15M) debt cascades.
+   - Risk & Solvency: Nominal Risk -$12.00 | Stressed Loss: -$17.50 | Stressed Equity: 4,801.01 USD (+6.01 USD buffer surplus).
+   - Execution Pre-Conditions: [ ] 80,650 liquidation cascade swept | [ ] 1m/5m CVD prints absorption divergence.
+4. **Forex Majors & Crosses**: Interbank rollover embargo active until 22:30 UTC. Re-screen liquid European pairs post-22:30 UTC.
 
 ### SECTION 4: 3-PERSONA MANDATORY INQUEST & OUTPUT FORMAT
 Evaluate the candidates across the 3 quantitative personas:
