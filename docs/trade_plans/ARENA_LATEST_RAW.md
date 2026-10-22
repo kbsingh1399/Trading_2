@@ -1,113 +1,120 @@
-\n# QUANTITATIVE COUNCIL — CYCLE 274\n\n\n**Decision cutoff:** `2026-10-22 22:15:24 UTC`\n
-**Council ruling:** **HOLD FLAT — the purported 22:00 index reopen is not source-proven, and the workbook is a mixed-cycle snapshot.**\n\n```\nOpen positions:                  0
+\n# QUANTITATIVE COUNCIL — CYCLE 275\n\n\n**Decision cutoff:** `2026-10-22 22:50:55 UTC`\n
+**Ruling:** **HOLD FLAT. Retire the US2000 long; retain NAS100 only as a reclassified prior-day-VAL rejection template; keep BTC trigger-only.**\n\n```\nOpen positions:                  0
 Pending orders:                  0
 Orders authorized now:           0
 Filled-position capacity:        4/4 free
 Risk-bearing pending capacity:   maximum 1
-NAS100.p:                        conditional template retained, inactive
-US2000.p:                        long suspended
-BTCUSD.pi:                       trigger-only; no static ticket
-FX:                              embargoed until 22:30 UTC
-Broker action by this council:   none\n```\n\n---\n\n## 1. Provenance and decision-time cutoff\n\n\nFreshest `main` commit available no later than `22:15:24`:\n\n- Commit: `8589d4b3224c65798be19d55a35124cdc215d069`\n- Synchronized: `2026-10-22 22:12:01 UTC`\n- Age at decision: `3m23s`\n\nA later commit synchronized at `22:17:04`; it was excluded to prevent look-ahead.\n\nWorkbook:\n\n- Size: `13,872,711 bytes`\n- SHA-256: `a34ecc7b008af483fbc5d5e1a0f70049dc89604c2bdfa35721bf01fa96f258e9`\n- ZIP members: `42`\n- CRC failures: `0`\n- Governance files: checksum-identical to the reviewed versions\n\n---\n\n# 2. Exhaustive 33-sheet audit\n\n\nEvery physical coordinate in every worksheet was traversed.\n\n- Sheets: `33/33`\n- Coordinates read: `1,665,832`\n- Populated cells: `1,650,567`\n- Blank coordinates: `15,265`\n- Formulas: `0`\n- Formula errors: `0`\n- Excel error cells: `0`\n- Required-header blanks: `0`\n\n## Physical dimensions\n\n\n```\n00_MT5_Account_Telemetry       172×11    Crypto_ETF_Flows              4140×18
-1_Crypto_ETF_Flows             42×18    2_Spot_Netflow_S                501×17
-3_Exchanges_LS_Ratio_15M      349×11    3_Exchanges_LS_Ratio_1H         415×11
-3_Exchanges_LS_Ratio_4H       217×11    4_Hyperliquid_Analysis         1984×20
-5_OI                           372×21    5_Funding_Rate                   593×17
-6_Funding_Fee_Settlement      930×10    7_Liq_Heapmap                     84×7
-7_Live_Liq                   1004×8     8_Exchange_Liquidation_Map_1D   2298×11
-8_Exchange_Liquidation_Map_7D 2641×11   9_Liquidation_Max_Pain_24H       750×11
-9_Liquidation_Max_Pain_48H    750×11    9_Liquidation_Max_Pain_3D        750×11
-9_Liquidation_Max_Pain_7D     750×11    11_Technical                     224×48
-12_Hyperdash                   494×8     13_Hyperliquid                   471×13
-10_Whale_Orders               176×17    14_Hyperdash_Liq_Map            6070×12
-15_Hyperdash_Stops_Map       3855×12    16_Hyperdash_telegram_Intel     1501×14
-17_Orderbook                 5524×14    18_CVD                         50001×23
-19_News                        34×11    19_Calendar                       38×12
-20_Auction_Market_Structure    85×36    Top_Institutions                602×6
-ETF_Market_Overview           516×15\n```\n\n## Auction position and headers\n\n\n- `20_Auction_Market_Structure` is zero-based sheet index **30**, or physical sheet **31/33**.\n- Row 1 contains `36/36` populated headers.\n- Row 1 merged ranges: `0`\n- All Auction merged ranges: `0`\n- Auction records: `84`\n- Auction blank cells: `330`\n- Those blanks remain exactly:
-\n- London high/low: `55 + 55`\n- New York high/low: `55 + 55`\n- IB high/low: `55 + 55`\n\n\nThe transient second pivot section seen in Cycle 273 has been removed. Current Auction is again a single clean `85×36` table, and percentage-distance cells are normalized to percentage points rather than Excel-formatted fractions.\n\nWorkbook-wide merged ranges:\n\n- `28` merged ranges across `11` sheets\n- All are section/title layouts\n- None are in Auction\n\nPersisting schema issues:\n\n- `2_Spot_Netflow_S`: duplicated flattened headers\n- `5_Funding_Rate`: repeated hierarchical exchange headers\n- `19_Calendar`: only 37 events, terminating Tuesday, October 20\n\n**Health verdict:** file/CRC/formula integrity passes; temporal consistency, Auction session completeness and macro-calendar completeness fail. “100% healthy” is not valid for trading authorization.\n\n---\n\n# 3. Critical mixed-cycle pipeline diagnosis\n\n\nThe `22:12:01` Git synchronization captured an **unfinished pipeline cycle**.\n\nCurrent-cycle completion sequence:\n\n```\n21:58:59  Account telemetry
-21:59:47  ETF
-22:00:50  Hyperliquid analysis
-22:02:25  OI
-22:03:22  Funding
-22:04:19  Funding settlement
-22:05:10  Technicals
-22:06:22  Hyperdash
-22:07:26  Hyperliquid native
-22:08:32  Liquidation map
-22:09:27  Stops map\n```\n\nAt the cutoff commit, the current cycle had **not yet reached**:\n\n```\nOrderbook
-CVD
-Auction
-News
-Calendar
-Whale orders
-Final atomic batch completion\n```\n\nThe preceding completed cycle took `1,344.589 seconds`, approximately **22m24.6s**. A five-minute Git sync therefore does not imply a five-minute coherent market snapshot; it repeatedly publishes partial pipeline states.\n\nThis explains persistent execution attrition:\n\n- Early-cycle account quotes become stale before late-cycle CVD/Auction finish.\n- Git commits capture mutually different cycle generations.\n- The mandated simultaneous ≤15-minute freshness condition can become structurally impossible.\n\nThis is the primary operational reason equity remains flat—not merely over-conjunctive candidate filters.\n\n---\n\n# 4. Freshness at 22:15:24\n\n\n| Source | Timestamp | Age | Result |\n| --- | --- | --- | --- |\n| Main sync | `22:12:01` | `3m23s` | Repository fresh |\n| Stops map | `22:08:33` | `6m51s` | PASS |\n| Liquidation map | `22:07:27` | `7m57s` | PASS and materially changed |\n| Hyperliquid native | `22:07:00` | `8m24s` | PASS |\n| Hyperdash | `22:06:04` | `9m20s` | PASS |\n| Technicals | `22:04:51` | `10m33s` | PASS, but index input remains pre-reopen |\n| Funding settlement | `22:03:23` | `12m01s` | PASS |\n| Funding | `22:02:25` | `12m59s` | PASS |\n| OI | `22:00:51` | `14m33s` | PASS narrowly |\n| Hyperliquid analysis | `21:59:48` | `15m36s` | FAIL |\n| ETF | `21:59:00` | `16m24s` | FAIL |\n| Broker quote harvest | `21:58:16` | `17m08s` | FAIL |\n| Whale sheet | `21:51:58` | `23m26s` | FAIL |\n| Auction JSON | `21:48:04` | `27m20s` | FAIL |\n| News | `21:48:34` | `26m50s` | FAIL |\n| CVD | `21:45:00` | `30m24s` | FAIL |\n| Orderbook | no timestamp; unchanged | unknown | FAIL |\n| Calendar | no Oct 21–23 coverage | incomplete | FAIL |\n\n\nCandle coverage:\n\n- BTC completed through `21:45`\n- NAS100 completed through `20:45`\n- US2000 completed through `20:45`\n\nThere is no source-proven NAS100 or US2000 post-22:00 candle. The reopen may or may not have occurred at the broker, but it is not demonstrated by the cutoff evidence.\n\n---\n\n# 5. Account, mission and capacity\n\n\nUser-confirmed account state:\n\n```\nBalance/equity/free margin:  $4,818.51
+NAS100.p:                        conditional template retained, not stageable
+US2000.p:                        original long retired
+BTCUSD.pi:                       no static ticket
+FX embargo:                      expired at 22:30, but no FX ticket cleared
+Broker action by this council:   none\n```\n\n---\n\n# 1. Provenance and cutoff discipline\n\n\nFreshest `main` commit available before the decision cutoff:\n\n- Commit: `d9ef5bcdb051e90d5b99737757404c570a45fb41`\n- Synchronized: `2026-10-22 22:47:01 UTC`\n- Age at decision: `3m54s`\n\nA later commit synchronized at `22:52:01 UTC`; it was excluded to prevent look-ahead.\n\nWorkbook:\n\n- Size: `13,892,435 bytes`\n- SHA-256: `8071f3734271d7f282ca850676d039100dc0e01978de1e0a74fb228686d4249a`\n- ZIP members: `42`\n- CRC failures: `0`\n- Governance files: unchanged\n\n---\n\n# 2. Complete 33-sheet audit\n\n\nEvery coordinate in all 33 physical worksheets was traversed.\n\n- Coordinates inspected: `1,667,879`\n- Populated cells: `1,652,446`\n- Blank coordinates: `15,433`\n- Formulas: `0`\n- Formula errors: `0`\n- Excel error cells: `0`\n- Required-header blanks: `0`\n\nRelevant dimensions:\n\n```\nCrypto_ETF_Flows                4140×18
+1_Crypto_ETF_Flows                42×18
+2_Spot_Netflow_S                 501×17
+3_Exchanges_LS_Ratio_15M         349×11
+3_Exchanges_LS_Ratio_1H          415×11
+3_Exchanges_LS_Ratio_4H          217×11
+4_Hyperliquid_Analysis          1980×20
+5_OI                              372×21
+5_Funding_Rate                    593×17
+6_Funding_Fee_Settlement          930×10
+7_Liq_Heapmap                      84×7
+7_Live_Liq                       1004×8
+8_Exchange_Liquidation_Map_1D    2298×11
+8_Exchange_Liquidation_Map_7D    2641×11
+9_Liquidation_Max_Pain_*          750×11 each
+10_Whale_Orders                   184×17
+11_Technical                      224×48
+12_Hyperdash                      494×8
+13_Hyperliquid                    471×13
+14_Hyperdash_Liq_Map             6070×12
+15_Hyperdash_Stops_Map           3855×12
+16_Hyperdash_telegram_Intel      1501×14
+17_Orderbook                     5649×14
+18_CVD                          50001×23
+19_News                            33×11
+19_Calendar                        59×12
+20_Auction_Market_Structure        85×36
+00_MT5_Account_Telemetry          172×11
+Top_Institutions                  602×6
+ETF_Market_Overview               516×15\n```\n\n## Auction audit\n\n\n- Physical position: sheet **30/33**\n- Row 1 headers: `36/36`\n- Auction merged ranges: `0`\n- Auction records: `84`\n- Blank Auction cells: `456`\n\nSession nulls have increased:\n\n- London high/low: `76 + 76`\n- New York high/low: `76 + 76`\n- IB high/low: `76 + 76`\n\nOnly eight of 84 Auction assets currently contain all six fields.\n\nWorkbook-wide:\n\n- Merged ranges: `28` across 11 sheets\n- All are title/section layouts\n- Header duplicates remain in Spot Netflow and Funding\n\n**Health verdict:** ZIP, formulas and Auction headers pass. Temporal consistency, session completeness and schema freshness do not support “100% trading healthy.”\n\n---\n\n# 3. Pipeline architecture and freshness\n\n\nThe most recent full pipeline cycle completed at `22:42:13`, but required:\n\n```\n1,123.498 seconds = 18m43.5s\n```\n\nThe sequence began with account quotes at `22:24` and reached Whale data at `22:41`. Thus a completed “atomic” workbook still contains an internal timestamp span exceeding the 15-minute execution budget.\n\n## Freshness at 22:50:55\n\n\n| Layer | Timestamp | Age | Status |\n| --- | --- | --- | --- |\n| Main sync | `22:47:01` | `3m54s` | Repository fresh |\n| Whale snapshot | `22:41:09` | `9m46s` | Fresh snapshot |\n| Calendar harvest | `22:40:41` | `10m14s` | Current harvest; content deficient |\n| Auction JSON | `22:38:29` | `12m25s` | PASS narrowly |\n| Orderbook harvest | `22:36:49` | `14m06s` | Pipeline fresh, rows untimestamped |\n| CVD harvest | `22:38:24` | `12m31s` | Harvest fresh; latest candles incomplete |\n| Stops map | `22:32:51` | `18m04s` | FAIL |\n| Liquidation map | `22:31:55` | `19m00s` | FAIL |\n| Technical matrix | `22:29:33` | `21m22s` | FAIL |\n| Funding | `22:27:24` | `23m31s` | FAIL |\n| OI | `22:25:57` | `24m58s` | FAIL |\n| ETF | `22:24:12` | `26m43s` | FAIL |\n| Account quote harvest | `22:23:30` | `27m25s` | FAIL |\n\n\n## CVD close-state defect\n\n\nCVD was harvested at `22:38:24`, but its latest rows are labelled:\n\n- 5m: `22:35`\n- 15m: `22:30`\n- 1h: `22:00`\n\nIf those timestamps are interval starts, the 5m and 15m bars did not close until `22:40` and `22:45`; they were harvested while still forming. The schema provides no `is_closed` field or close-time convention. They therefore cannot authorize a trigger.\n\n## Frozen map proof\n\n\nAfter removing only the timestamp column, every value in both maps is byte-equivalent to Cycle 274:\n\n```\n14_Hyperdash_Liq_Map:   6,069/6,069 rows unchanged
+15_Hyperdash_Stops_Map: 3,854/3,854 rows unchanged\n```\n\nThe timestamp advanced from `22:07/22:08` to `22:31/22:32`, but mark price, ladders and cumulative amounts did not. Both maps fail the frozen-data rule.\n\n---\n\n# 4. Account, mission and risk envelope\n\n\nUser-confirmed state remains:\n\n```\nBalance/equity/free margin:  $4,818.51
 Positions:                   0
 Pending orders:              0
 Hard-floor cushion:          $43.51
-Operating-buffer cushion:    $23.51\n```\n\nBTC ticket `#19227609` remains cancelled with retcode `10009`.\n\nMission gap:\n\n```\n$5,500.00 − $4,818.51 = $681.49
-Required return = 14.1432%\n```\n\nActual runway from `22:15:24` to Friday `23:59:00` is:\n\n```\n25h43m36s\n```\n\nThe maximum aggregate nominal risk plus spread cost permitted by the operating floor remains:\n\n```\n(($4,818.51 − $4,795.00) − $2.00) / 1.25
-= $17.208\n```\n\nConsequently, the `$25–35` expanded-risk authorization cannot presently be exercised.\n\n---\n\n# 6. Full-universe discovery\n\n\nCurrent screen:\n\n- Quotes: `156`\n- Technical assets: `119`\n- Auction assets: `84`\n- CVD assets: `28`\n- Baseline spread passes: `46`\n- Spread-disqualified: `110`\n- Spread-pass + Technical + Auction intersection: `30`\n\n## Affirmative radar\n\n\n| Candidate | Current structural observation | Disposition |\n| --- | --- | --- |\n| NAS100.p short | Strong bearish; `−1.567σ`; DVAL retracement geometry | Primary conditional template; no current quote/CVD |\n| AU200.p short | Strong bearish; `−2.058σ`; DVAL `8,775.14`, `0.938 ATR` away | Next-session radar |\n| UKBRENT.p long | Trend-up acceptance; DVAH `113.595`, `0.817 ATR` away | Radar; stale quote/tape |\n| XMRUSD.p short | Bearish; `−2.034σ`; RSI `30.54`; DVAL only `0.360 ATR` away | Crypto wall/CVD absent |\n| DSHUSD.p reversal | `+3.610σ`, RSI `73.26`, rotational Auction near DPOC | Model-1 radar only; no sweep/exhaustion evidence |\n| US2000.p long | Bullish EMA hierarchy and DPOC geometry | Suspended by negative 15m CVD |\n\n\nNo candidate has a coherent current-cycle quote, trigger, dynamic spread and macro clearance.\n\n---\n\n# 7. Persona 1 — Orderflow, L2, CVD and cascades\n\n\n## NAS100.p\n\n\nUpdated technicals:\n\n- Price: `28,906.32`\n- Trend: `STRONG BEARISH`\n- Z-score: `−1.567σ`\n- RSI: `36.79`\n- ATR: `69.3629`\n- Mean-reversion classification: `OVERSOLD`\n- Technical DVAL: `29,081.87`\n- Stale Auction DVAL: `29,087.86`\n- Entry: `29,085`\n\nThe entry remains correctly located between the two DVAL estimates, but the stale ask `28,907.74` leaves it:\n\n```\n177.26 points / 69.3629 ATR = 2.556 ATR away\n```\n\nUpdated two-ATR activation threshold:\n\n```\n29,085 − 2×69.3629 = 28,946.27\n```\n\nThe prompt’s `28,941.68` threshold is obsolete.\n\nLatest CVD remains:\n\n- 5m: `−$237.820M`\n- 15m: `−$803.995M`\n- 1h: `−$3.436B`\n- 4h: `−$9.656B`\n\nIt is now `30m24s` old. The prompt’s `−$997.6M / −$4.49B / −$11.07B` values remain absent from the workbook.\n\n**NAS verdict:** structural radar passes; execution timing fails. No post-reopen quote, no post-reopen CVD and no dynamic spread distribution exist.\n\n## US2000.p\n\n\nUpdated technical state:\n\n- Price: `2,780.19`\n- Trend: `STRONG BULLISH`\n- Z-score: `+1.288σ`\n- ATR: `5.4671`\n- DPOC: `2,775.78–2,775.84`\n\nLast CVD remains:\n\n- 5m: `+$0.361M`, neutral\n- 15m: `−$14.791M`, aggressive selling\n- 1h: `−$10.129M`\n- 4h: `+$103.557M`\n\nThe positive 15m trigger remains absent, and all CVD is stale.\n\n**US2000 verdict:** suspended.\n\n## BTCUSD.pi\n\n\nFresh map mark: `81,517`\n\nFresh crypto native marks:\n\n- Hyperliquid: approximately `81,506`\n- Funding settlement price: approximately `81,512.3`\n\nThese agree with each other, but the broker quote is older:\n\n- Broker mid at `21:58`: `81,362.5`\n\nNo live broker basis can be calculated.\n\n### Revised debt pools\n\n\n| Level | Liquidations | Stops | Combined |\n| --- | --- | --- | --- |\n| `80,450` | `$7.89M` | `$2.92M` | **`$10.81M`** |\n| `80,050` | `$9.34M` | `$22.45M` | **`$31.79M`** |\n| `82,050` | `$16.56M` shorts | `$19.23M` buy stops | **`$35.79M`** |\n\n\nThe prompt’s `$17.37M` at `80,450` and `$28.7M` at `80,050` are superseded.\n\nAt the fresh map mark, `80,450` is:\n\n```\n1,067 points / 201.8535 ATR = 5.286 ATR lower\n```\n\nNo cascade exists.\n\nOther microstructure:\n\n- Untimestamped L2 remains `$3.048M` bid versus `$4.247M` ask.\n- Orderbook mid remains frozen at `81,490.50`.\n- Whale snapshot is `23m26s` old.\n- No BTC whale order is present between `79,800` and `80,650` in that snapshot.\n- CVD is `30m24s` old.\n\nThe revised `80,050` pool is now materially larger. Even after an `80,450` sweep/reclaim, a long with a stop above `80,050` would remain vulnerable.\n\n**BTC verdict:** retain trigger-only status; no `80,480` limit and no `80,080` stop.\n\n## Persona 1 — Section 2.5 answer\n\n\n1. **Boolean attrition:** Use 3-of-4 Tier-2 scoring, but do not relax quote age, temporal consistency, causal trigger or solvency.\n2. **Static versus live:** The current pipeline joins account, CVD and Auction from different cycles. Add a common `cycle_id` and refuse cross-cycle joins.\n3. **Passive-entry problem:** NAS should be staged only after DVAL rejection and on a subsequent retest. BTC should be staged only after the actual sweep/reclaim, not ahead of it.\n4. **Specialization:** TradFi uses session/Auction/EMA structure; crypto requires basis, current walls, replenishment velocity and cascade sequencing.\n5. **Concrete improvement:** Create an execution-critical fast lane refreshing quote, Orderbook, CVD and Auction atomically every 30–60 seconds; keep slow ETF/OI/macro jobs outside that barrier.\n\n---\n\n# 8. Persona 2 — Sizing and floor defense\n\n\n## NAS100.p\n\n\n```\nSELL_LIMIT 0.03 @ 29,085
+Operating-buffer cushion:    $23.51\n```\n\nBTC ticket `#19227609` remains cancelled with retcode `10009`.\n\nMission:\n\n```\nGap to $5,500 = $681.49
+Required return = 14.1432%
+Actual remaining runway = 25h08m05s\n```\n\nMaximum permissible aggregate nominal risk plus spread cost:\n\n```\n(($4,818.51 − $4,795.00) − $2.00) / 1.25
+= $17.208\n```\n\nThe current floor still prohibits `$25–35` risk.\n\n---\n\n# 5. Co-equal 156-asset discovery\n\n\nCurrent coverage:\n\n- Quotes: `156`\n- Technical rows: `119`\n- Auction assets: `84`\n- CVD assets: `28`\n- Baseline spread passes: `85`\n- Spread-disqualified: `71`\n- Spread-pass + Technical + Auction overlap: `47`\n\nThe increase from 46 to 85 spread passes is predominantly post-rollover FX normalization. It does not authorize FX because quote age is `27m25s` and the calendar has no timezone metadata.\n\n## Current radar hierarchy\n\n\n| Candidate | Source-proven structure | Ruling |\n| --- | --- | --- |\n| DJ30.p long | Strong bullish, `+2.020σ`, trend-up acceptance, DVAH `52,926.25`, only `0.208 ATR` away | Best new TradFi radar; no ticket due stale quote/tape |\n| XAUUSD.pi short | Strong bearish, Auction balance near DVAH `4,031.02`, negative short-horizon CVD snapshot | Rejection radar only |\n| USDJPY.pi short | Strong bearish, trend-down acceptance, DVAL `156.717`, `0.782 ATR` away | Post-rollover radar; calendar/quote fail |\n| NAS100.p short | Strong bearish EMA hierarchy; prior-day VAL `29,087.86` | Conditional template, but old Model-2 classification invalid |\n| AU200.p short | `−2.058σ`, trend-down acceptance, DVAL `8,775.14` | Next-session radar |\n| UKBRENT.p long | Trend-up acceptance, DVAH `113.595` | Radar only |\n| US2000.p | `+2.139σ`, current VAH/PDH test, negative short-horizon CVD | Original long retired; countertrend short trigger only |\n| BTCUSD.pi | Balanced Auction; no deep flush | No ticket |\n\n\n---\n\n# 6. Persona 1 — Orderflow and Auction\n\n\n## NAS100.p\n\n\nCurrent evidence:\n\n- Stale broker quote: `28,970.59 / 28,971.81`\n- Technical price: `28,953.86`\n- Trend: `STRONG BEARISH`\n- ATR: `68.6791`\n- Z-score: `−1.325σ`\n- EMA20: `28,986.55`\n- EMA50: `29,118.67`\n\nCurrent Auction has changed materially:\n\n```\nRegime:      ROTATIONAL_BALANCE
+DPOC:        28,935.41
+DVAH:        28,960.23
+DVAL:        28,921.51
+Prior-day VAL: 29,087.86\n```\n\nTherefore `29,085` is no longer a current Daily VAL retest. It is a **prior-day VAL / technical-profile VAL retest**.\n\nUpdated CVD snapshot:\n\n| Horizon | Delta | Regime |\n| --- | --- | --- |\n| 5m | `−$270.582M` | AGGRESSIVE SELLING |\n| 15m | `−$944.209M` | AGGRESSIVE SELLING |\n| 1h | `+$3.377B` | AGGRESSIVE BUYING |\n| 4h | `−$9.656B` | AGGRESSIVE SELLING |\n\n\nThis is not unidirectional selling. The 1h delta has reversed strongly positive.\n\nThe CVD close `28,877.45` and broker quote `28,971.81` differ by approximately `94` points, without a contemporaneous basis measurement.\n\nUpdated distance:\n\n```\n29,085 − 28,971.81 = 113.19 points
+113.19 / 68.6791 = 1.648 ATR\n```\n\nThe two-ATR threshold is now:\n\n```\n29,085 − 2×68.6791 = 28,947.64\n```\n\nThe old snapshot would satisfy the distance gate, but quote age invalidates it.\n\n**NAS ruling:** retain as a prior-day-VAL rejection radar, not a currently authorized Trend-Down-Acceptance limit.\n\n---\n\n## US2000.p\n\n\nAfter reopen:\n\n- Stale bid/ask: `2,787.95 / 2,788.27`\n- ATR: `5.6380`\n- Z-score: `+2.139σ`\n- RSI: `62.01`\n- Trend: `STRONG BULLISH`\n- Mean-reversion state: `EXTREME OVERBOUGHT`\n- Current Auction DPOC/DVAL: `2,786.15`\n- Current DVAH: `2,788.19`\n- Prior-day POC: `2,775.78`\n\nThe original entry `2,776` is now a prior-day POC ticket, not current Daily POC.\n\nDistance gate:\n\n```\nCurrent stale bid − entry = 11.95
+11.95 / 5.6380 = 2.120 ATR
+Maximum valid bid = 2,776 + 2×5.6380 = 2,787.28
+Observed stale bid = 2,787.95\n```\n\nIt exceeds the two-ATR maximum.\n\nThe `22:00` candle:\n\n```\nOpen  2,785.01
+High  2,788.05
+Low   2,783.46
+Close 2,786.59\n```\n\nPrice traded through the proposed TP `2,787` without approaching the `2,776` entry. The passive limit missed the intended move and is now causally stale.\n\nCVD snapshot:\n\n- 5m: `−$3.168M`\n- 15m: `−$30.165M`\n- 1h: `+$135.668M`\n- 4h: `+$103.557M`\n\n**US2000 ruling:** retire the long ticket. Do not leave a missed pullback limit waiting for a later adverse selloff.\n\nA separate Model-1 short radar exists only after:\n\n```\nsweep above 2,788.47–2,788.73
+→ rejection below 2,788.19
+→ completed negative 5m CVD
+→ safe stop beyond the actual sweep high\n```\n\nNo short ticket is authorized now.\n\n---\n\n## BTCUSD.pi\n\n\nCurrent observations:\n\n- Stale broker mid: `81,255.5`\n- Orderbook mid: `81,382.5`\n- CVD close: approximately `81,400`\n- Auction price: `81,293`\n- Frozen-map mark: `81,517`\n\nThese cannot be translated into a current MT5 basis.\n\nUpdated Orderbook:\n\n- L2 bids: `$4.067M`\n- L2 asks: `$5.008M`\n- Ask share: `55.19%`\n- Imbalance: `−10.37%`\n- Ask/bid ratio: `1.2315`\n\nWhale sheet shows persistent bid concentrations near:\n\n- `81,068`: `$8.13M`, duration `1h19m`\n- `81,068`: `$2.43M`, duration `3h05m`\n- `81,024`: `$2.84M`, duration `18m48s`\n- `81,016.4`: `$6.51M`, duration `11m34s`\n- `81,000`: `$1.16M` spot, duration `58m38s`\n- `81,000`: `$3.56M` perpetual, duration `3d23h`\n\nBut there are no whale bids between `79,800` and `80,650`; therefore no source-proven wall protects the proposed deep-flush entry zone.\n\nCVD snapshot is positive:\n\n- 5m: `+$1.094M`\n- 15m: `+$8.519M`\n- 1h: `+$0.326M`\n- 4h: `+$29.955M`\n\nNo downside cascade or exhaustion sequence exists.\n\nLast map values remain:\n\n- `80,450`: `$10.81M` combined\n- `80,050`: `$31.79M` combined\n- `82,050`: `$35.79M` combined\n\nThose maps are frozen and too old for execution.\n\n**BTC ruling:** no static limit.\n\n## Persona 1 — Section 2.5 answer\n\n\n1. **Boolean attrition:** Tier-2 should remain 3-of-4, but stale quote, completed-tape status and structural stop remain hard gates.\n2. **Dynamic versus static:** Add `is_closed`, cycle ID and source-acquisition timestamp to every CVD row.\n3. **Passive-entry adverse selection:** US2000 proves the problem: TP traded before the passive entry. Missed-limit tickets must expire when the intended impulse completes.\n4. **Specialization:** NAS/DJ/FX use Auction and session structure; BTC uses basis, wall persistence and cascade sequencing.\n5. **Concrete improvement:** Add a “target traded before entry” invalidation rule and require trigger-time basis rather than comparing asynchronous prices.\n\n---\n\n# 7. Persona 2 — Exact sizing and solvency\n\n\n## NAS100 conditional template\n\n\nCurrent quoted spread is `1.22`, not `1.42`.\n\n```\nSELL_LIMIT 0.03 @ 29,085
 SL 29,130
 TP 28,970
 
-Nominal risk = 45 × 10 × 0.03 = $13.50
-Spread cost  = 1.42 × 10 × 0.03 = $0.426
-Reward       = 115 × 10 × 0.03 = $34.50
-R:R          = 2.556R
-Friction     = 1.42 / 115 = 1.235%
+Risk        = 45 × 10 × 0.03 = $13.50
+Reward      = 115 × 10 × 0.03 = $34.50
+Spread cost = 1.22 × 10 × 0.03 = $0.366
+R:R         = 2.556R
+Friction    = 1.22 / 115 = 1.061%
 
-Stress = ($13.50 + $0.426) × 1.25 + $2
-       = $19.4075
+Stress = ($13.50 + $0.366) × 1.25 + $2
+       = $19.3325
 
-Stressed equity:       $4,799.1025
-Operating surplus:     $4.1025
-Hard-floor surplus:   $24.1025\n```\n\nUpdated safe-stop test:\n\n```\n29,087.86 + 0.50×69.3629 + 0.71 = 29,123.25\n```\n\n`SL 29,130` passes by `6.75 points`. Its distance is now `0.649 ATR`, not `0.63 ATR`.\n\n## US2000.p\n\n\n```\nBUY_LIMIT 0.30 @ 2,776
-SL 2,771.50
-TP 2,787
-
-Nominal risk = $13.50
-Spread cost  = $0.96
-Reward       = $33.00
-R:R          = 2.444R
-Friction     = 2.909%
-
-Stress = ($13.50 + $0.96) × 1.25 + $2
-       = $20.075
-
-Stressed equity:       $4,798.435
-Operating surplus:     $3.435
-Hard-floor surplus:   $23.435\n```\n\nUpdated safe-stop threshold:\n\n```\n2,775.78 − 0.50×5.4671 − 0.16 = 2,772.89\n```\n\n`SL 2,771.50` passes by `1.39 points`.\n\nThe stated `$18.88` stress for both tickets omits spread cost.\n\nIf both pending orders could fill independently:\n\n```\nCombined stress:          $39.4825
-Stressed equity:          $4,779.0275
-Operating-floor deficit:  $15.9725\n```\n\nOnly one may be staged.\n\n## Persona 2 — Section 2.5 answer\n\n\n1. **Boolean attrition:** Tier-2 evidence should be weighted; floor, spread and R:R remain strict.\n2. **Static versus live:** Sizing must use the trigger-time spread and `order_calc_profit`, not an older baseline spread.\n3. **Passive adverse selection:** Structural stop first, lot second. Never narrow a stop to manufacture larger size.\n4. **Specialization:** Broker contract/tick calculations remain symbol-specific; equal lot sizes do not imply equal risk.\n5. **Concrete improvement:** Rank setups by expected edge per dollar of stressed capacity. The deadline does not justify violating the `$17.208` all-in risk ceiling.\n\n---\n\n# 9. Persona 3 — Macro, flows and sessions\n\n\nCurrent admissible crypto derivatives evidence:\n\n- BTC OI: `$54.08B`\n- 1h OI: `+0.12%`\n- 4h OI: `+0.30%`\n- 24h OI: `−4.65%`\n- Funding: approximately `+0.0045%` to `+0.0100%`\n- Current funding fees: approximately `+$1.09M`\n\nThis indicates modest short-horizon re-leveraging after a large 24-hour OI contraction, with positive funding. It does not independently select direction.\n\nOther flow evidence:\n\n- IBIT `+$235M`, but source age is `16m24s`, outside the 15-minute gate.\n- Remaining ETF rows do not provide a complete aggregate.\n- Hyperliquid whale positioning is `15m36s` old.\n- Calendar still has no October 21–23 coverage.\n\nThe current upper BTC pool at `82,050` and large underwater Hyperliquid shorts indicate squeeze risk, while the lower `80,050` pool indicates cascade risk. Without current tape, this is a two-sided volatility map—not an entry signal.\n\nFX remains embargoed for another `14m36s`, until `22:30 UTC`.\n\n## Persona 3 — Section 2.5 answer\n\n\n1. **Boolean attrition:** Missing optional flow narrative should not veto TradFi, but event and rollover clearance remain Tier-1.\n2. **Static versus live:** ETF/whale signals should decay to zero immediately after their freshness budget expires.\n3. **Passive adverse selection:** Do not stage limits across uncertain session reopen or rollover boundaries.\n4. **Specialization:** Indices need cash-session state; FX needs rollover and sovereign-calendar state; crypto needs continuous derivatives/basis state.\n5. **Concrete improvement:** Operate separate asset-class clocks and a redundant current-event feed. A calendar ending October 20 cannot clear October 22 execution.\n\n---\n\n# 10. Exact ticket dispositions\n\n\n## NAS100.p — INACTIVE CONDITIONAL TEMPLATE\n\n\n```\nSELL_LIMIT 0.03 @ 29,085.00
+Stressed equity:      $4,799.1775
+Operating surplus:    $4.1775
+Hard-floor surplus:  $24.1775\n```\n\nSafe-stop threshold using prior-day VAL:\n\n```\n29,087.86 + 0.50×68.6791 + 0.61 = 29,122.81\n```\n\n`SL 29,130` passes by `7.19 points`.\n\n## US2000 retired ticket\n\n\nThe historical geometry still stress-tests as:\n\n```\nRisk:             $13.50
+Spread cost:      $0.96
+Stress:           $20.075
+Stressed equity:  $4,798.435\n```\n\nHowever, a risk-valid ticket is not necessarily causally valid. The target has already traded and the entry exceeds the two-ATR distance rule.\n\n## Aggregate capacity\n\n\nIf both old templates remained independently fillable:\n\n```\nCombined stress:          $39.4075
+Stressed equity:          $4,779.1025
+Operating-floor deficit:  $15.8975\n```\n\nOne-order capacity remains mandatory.\n\n## Persona 2 — Section 2.5 answer\n\n\n1. **Boolean attrition:** Solvency, R:R and dynamic spread remain Boolean; secondary signals should be probabilistic.\n2. **Dynamic sizing:** Recalculate spread cost and lot rights at trigger time; NAS’s spread already changed from `1.42` to `1.22`.\n3. **Adverse selection:** A limit must expire when its thesis has already paid out without filling.\n4. **Specialization:** Risk must use exact contract size/tick value per symbol; no common lot heuristic.\n5. **Concrete improvement:** Add lifecycle states `ARMED → MISSED → EXPIRED`; do not recycle a missed ticket into a later, lower-quality pullback.\n\n---\n\n# 8. Persona 3 — Macro, flow and sessions\n\n\nThe FX rollover embargo expired at `22:30`, but expiry of the embargo is not positive authorization.\n\nCalendar condition:\n\n- 58 records now exist.\n- Wednesday and Thursday are absent.\n- Friday events are populated.\n- Event times have no timezone metadata.\n- Therefore, UTC ±35-minute event clearance cannot be calculated safely.\n\nOther flow sources are stale at cutoff:\n\n- ETF: `26m43s`\n- Hyperliquid analysis: `25m57s`\n- OI: `24m58s`\n- Funding: `23m31s`\n\nLast BTC observations:\n\n- IBIT flow: `+$235M`\n- Total OI: `$54.03B`\n- 1h OI: `−0.27%`\n- 4h OI: `+0.11%`\n- 24h OI: `−4.43%`\n- Positive funding persists\n- Funding fees: approximately `+$1.01M`\n\nThese are descriptive only because they exceed the freshness budget.\n\n## Persona 3 — Section 2.5 answer\n\n\n1. **Boolean attrition:** Missing optional ETF narrative should not veto an index setup; timezone-safe event clearance remains mandatory.\n2. **Static versus live:** Flow observations must decay to zero after the freshness window.\n3. **Passive adverse selection:** Do not stage FX immediately after rollover without post-rollover spread p95 and current calendar mapping.\n4. **Specialization:** FX requires rollover/calendar logic; indices require open-session structure; crypto requires continuous derivatives/basis evidence.\n5. **Concrete improvement:** Store all calendar timestamps in UTC with explicit source timezone and event IDs; missing dates must generate a hard data-quality alert.\n\n---\n\n# 9. Exact ticket dispositions\n\n\n## NAS100.p — CONDITIONAL PRIOR-DAY-VAL REJECTION TEMPLATE\n\n\n```\nSELL_LIMIT 0.03 @ 29,085.00
 SL 29,130.00
 TP 28,970.00
-Expiry: 12 completed 15m bars after placement\n```\n\nDo not stage until all conditions exist in one coherent pipeline cycle:\n\n1. Post-reopen broker quote age ≤2 seconds.\n2. Current Auction and CVD age ≤15 minutes.\n3. Live ask:
-\n```\n28,946.27 ≤ ask < 29,085.00\n```\n\n4. Updated DVAL remains close to `29,085`.\n5. Price tests DVAL and fails acceptance.\n6. Fresh 5m CVD is negative during the downward response.\n7. Instant spread and 60-second p95 pass.\n8. `spread_now <= 1.5 × median_5m`.\n9. Calendar confirms no high-impact event within ±35 minutes.\n10. `order_check` and exact broker profit calculation pass.\n\n## US2000.p — SUSPENDED\n\n\n```\nBUY_LIMIT 0.30 @ 2,776.00
-SL 2,771.50
-TP 2,787.00\n```\n\nReconsider only if:\n\n- fresh 15m CVD becomes materially positive;\n- DPOC is tested and reclaimed;\n- live ask remains above `2,776`;\n- live bid is no higher than `2,786.93`;\n- quote, Auction, calendar and dynamic spread are current.\n\n## BTCUSD.pi — NO TICKET\n\n\nUpdated trigger:\n\n```\n80,450 sweep
-→ assess whether the larger 80,050 pool remains an active cascade magnet
-→ seller-delta deceleration
-→ live bid replenishment
+Expiry: 12 completed 15m bars after placement\n```\n\nDo not stage until:\n\n1. Quote age ≤2 seconds.\n2. Live ask satisfies:
+\n```\n28,947.64 ≤ ask < 29,085\n```\n\n3. Prior-day VAL remains near `29,087.86`.\n4. Price tests that level and rejects.\n5. A completed—not forming—5m CVD candle turns negative with price response.\n6. Current 1h orderflow no longer contradicts the short.\n7. Instantaneous and 60-second p95 spread pass.\n8. `spread_now <= 1.5 × median_5m`.\n9. Calendar ±35-minute window is UTC-verifiable.\n10. `order_check` passes.\n\n## US2000.p — RETIRED\n\n\n```\nDO NOT STAGE BUY_LIMIT 0.30 @ 2,776\n```\n\nReasons:\n\n- Target `2,787` already traded.\n- Entry never approached.\n- Current bid is more than two ATR above entry.\n- Freshest short-horizon CVD snapshot is negative.\n- Current Auction POC has migrated to `2,786.15`.\n\nA new ticket requires a new setup and new geometry.\n\n## BTCUSD.pi — NO TICKET\n\n\n```\n80,450 sweep
+→ determine whether 80,050 remains the active terminal pool
+→ completed seller-exhaustion tape
+→ current bid-wall persistence
 → reclaim >80,500
 → retest
-→ derive structural stop below the proven terminal sweep
-→ calculate lot from that stop\n```\n\nIf the cascade continues toward `80,050`, wait for that deeper pool. Do not use `80,080` as a stop.\n\n## FX\n\n\n```\nNo FX entry before 22:30 UTC.
-Calendar clearance remains required after 22:30.\n```\n\n---\n\n# 11. Completed 10-point pre-punch checklist\n\n\n| # | Gate | NAS100 | US2000 | BTC trigger |\n| --- | --- | --- | --- | --- |\n| 1 | Wall polarity/persistence or asset substitute | **PENDING**—post-open Auction rejection absent | **PENDING**—DPOC hold absent | **FAIL**—no current deep BID wall |\n| 2 | Stop-cascade/sweep clearance | **PENDING** | **PENDING** | **FAIL**—80,450 and 80,050 unswept |\n| 3 | CVD absorption/deceleration | **FAIL**—30m stale | **FAIL**—stale and last 15m negative | **FAIL**—stale; no post-sweep tape |\n| 4 | Safe structural SL | **PASS** | **PASS** | **FAIL**—no exact ticket |\n| 5 | Causal Auction location | **PASS structurally** | **PASS structurally** | **FAIL**—balanced, no cascade extreme |\n| 6 | Dynamic spread efficiency | **FAIL**—single stale quote only | **FAIL**—single stale quote only | **FAIL**—no current broker basis |\n| 7 | HTF hierarchy alignment | **PASS** | **PASS** | **MIXED/NEUTRAL** |\n| 8 | Trigger checklist complete | **FAIL** | **FAIL** | **FAIL** |\n| 9 | TP runway and ≥2R | **PASS 2.556R** | **PASS 2.444R** | **FAIL**—undefined |\n| 10 | Stressed solvency | **PASS at 0.03** | **PASS at 0.30** | **UNPROVEN** |\n\n\n## Execution-autopsy overlay\n\n\n```\nQuote age:                 FAIL
-Queue-ahead notional:      FAIL
-Partial-fill sentry:       prospective only
-60-second p95 spread:      FAIL
-Five-minute spread median: FAIL
-Session transition:        not source-proven
-BTC wall presence:         FAIL
-Cluster capacity:          maximum one order
-Schema/cycle contract:     FAIL — mixed pipeline generations\n```\n\n---\n\n# Final disposition\n\n\n```\nCYCLE 274 ACTION:              HOLD FLAT
-22:00 INDEX REOPEN:            NOT SOURCE-PROVEN
-NAS100 CONDITIONAL TICKET:     RETAIN, DO NOT STAGE
-US2000 CONDITIONAL TICKET:     SUSPEND
-BTC:                           NO STATIC LIMIT
-FX:                            EMBARGO THROUGH 22:30
-ORDERS AUTHORIZED:             ZERO
-BROKER TRANSMISSION:           NONE
-NEXT REQUIRED EVIDENCE:        one atomically completed cycle containing
-                               fresh broker quote + CVD + Auction + spread history\n```\n
+→ recalculate structural stop and lot\n```\n\n## Other affirmative triggers\n\n\n```\nDJ30.p:
+Pullback to 52,926.25 DVAH → hold/reclaim → post-pullback positive tape.
+
+XAUUSD.pi:
+Probe/reject 4,031.02 DVAH → completed negative tape → current spread check.
+
+USDJPY.pi:
+Retrace to 156.717 DVAL → rejection → negative tape,
+only after timezone-safe calendar clearance.
+
+US2000 countertrend short:
+Sweep 2,788.47–2,788.73 → reject below 2,788.19
+→ completed negative 5m CVD.\n```\n\nNo exact orders are authorized for these triggers because quote, stop and dynamic-spread evidence are not current.\n\n---\n\n# 10. Mandatory 10-point pre-punch checklist\n\n\n| # | Gate | NAS100 short | US2000 old long | BTC cascade long |\n| --- | --- | --- | --- | --- |\n| 1 | Wall/asset-specific anchor | **COND**—prior-day VAL valid | **FAIL**—current POC migrated | **FAIL**—no deep BID wall |\n| 2 | Sweep/path clearance | **COND**—rejection not observed | **FAIL**—impulse already completed | **FAIL**—80,450/80,050 unswept |\n| 3 | CVD timing | **FAIL**—forming/mixed horizons | **FAIL**—negative 5m/15m | **FAIL**—positive; no cascade |\n| 4 | Safe structural SL | **PASS** | **PASS historically** | **FAIL**—no ticket |\n| 5 | Causal Auction location | **PARTIAL**—prior-day VAL, current balance | **FAIL**—entry is stale prior-day POC | **FAIL**—balanced |\n| 6 | Dynamic spread gate | **FAIL**—p95/median unavailable | **FAIL** | **FAIL**—broker basis unavailable |\n| 7 | HTF hierarchy | **PASS bearish** | **PASS bullish**, but overextended | **NEUTRAL/MIXED** |\n| 8 | Trigger complete | **FAIL** | **FAIL** | **FAIL** |\n| 9 | TP runway and ≥2R | **PASS 2.556R** | **INVALID—TP already traded** | **UNDEFINED** |\n| 10 | Stressed floor defense | **PASS at 0.03** | **PASS mathematically only** | **UNPROVEN** |\n\n\n## Execution-autopsy overlay\n\n\n```\nLive quote age:             FAIL
+60-second spread p95:       FAIL
+Five-minute spread median:  FAIL
+CVD closed-candle proof:    FAIL
+Map value refresh:          FAIL
+Current broker/venue basis: FAIL
+Calendar timezone contract: FAIL
+Pending-order capacity:     maximum one\n```\n\n---\n\n# Final council state\n\n\n```\nCYCLE 275 ACTION:          HOLD FLAT
+NAS100:                    RETAIN CONDITIONAL TEMPLATE; DO NOT STAGE
+US2000 LONG:               RETIRE
+BTC:                       NO STATIC TICKET
+FX:                        ROLLOVER ENDED, BUT NO SETUP CLEARED
+NEW RADAR:                 DJ30 long, XAU short, USDJPY short
+ORDERS AUTHORIZED:         ZERO
+BROKER TRANSMISSION:       NONE
+PRIMARY BLOCKER:           execution-critical sources are not
+                           contemporaneous within one ≤15m snapshot\n```\n
