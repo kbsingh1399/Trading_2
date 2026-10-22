@@ -206,3 +206,16 @@ Every 20-minute wake-up cron cycle MUST systematically execute and verify each g
 - [ ] **Gate 11 (Clean Subagent Pruning)**: Call `manage_subagents(kill_all)` immediately after harvesting to prevent `connectex` socket errors.
 - [ ] **Gate 12 (Capital Floor & Buffer Protection)**: Strictly preserve +62.13 USD hard floor cushion and +42.13 USD operating buffer cushion.
 - [ ] **Gate 13 (Zero-Token Event-Driven Wakeup)**: Rely strictly on native reactive wakeups from subagent `send_message`; zero short timers.
+- [ ] **Gate 14 (Mandatory 33-Sheet Freshness & Non-Zero Delta Gate)**: Verify each sheet in `Data/DataBase_Trading.xlsx` updates with fresh values (timestamps <= 15m, non-zero deltas across consecutive dumps, zero frozen/stale feeds). Reject stale data fail-closed.
+
+---
+
+## 🏛️ RESOLUTION 11: MANDATORY EXCEL FRESHNESS & STALENESS GATES (OPERATOR DIRECTIVE)
+- **Operator Directive**: "in excel check...ensure that we mention in prmpt that to check that each excel sheet is updating with fresh values and not stale."
+- **Root Cause & Vulnerability**:
+  * An automated desk can load a 13 MB Excel file cleanly with 0 formula errors, but the data inside could be static or frozen if an upstream scraper or API hangs.
+  * Trading on stale orderbook or stale CVD delta causes catastrophic mis-alignments with live pricing.
+- **Enforced Protocol**:
+  1. **Embedded Timestamp Audit**: Every subagent prompt mandatorily instructs the Excel Data Quality Auditor and Orderflow Analyst to inspect latest embedded row timestamps. Live market sheets (`17_Orderbook`, `18_CVD`, `00_MT5_Account_Telemetry`, `20_Auction_Market_Structure`) must be <= 15 minutes old relative to current UTC time.
+  2. **Non-Zero Delta Verification**: The Auditor must verify that value deltas between successive pipeline commits are non-zero.
+  3. **Fail-Closed Staleness Halt**: If any key orderflow sheet is older than 25 minutes or fails to cycle, all trading is CONDITIONAL or PAUSED until the pipeline completes a fresh atomic dump. Zero orders may be placed on unverified data.

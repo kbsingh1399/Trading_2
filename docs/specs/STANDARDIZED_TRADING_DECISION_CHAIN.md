@@ -251,50 +251,84 @@ Query the system architecture to prevent logic regressions:
 
 ---
 
-### STEP 4: Higher-Timeframe Auction & Regime Profiling
-*Active Skills: `@[data-analyst]`*
+### STEP 4: Higher-Timeframe Auction & Market Structure Profiling
+*Active Skills: `@[data-analyst]`, `@[quant-analyst]`*
 
-Determine the macro structural environment before looking at intraday triggers:
-1. **HTF Trend Hierarchy (1H & 4H)**:
-   - **Bullish Regime**: $\text{Price} > \text{EMA}_{20} > \text{EMA}_{50} > \text{EMA}_{200}$ on 1H/4H.
-   - **Bearish Regime**: $\text{Price} < \text{EMA}_{20} < \text{EMA}_{50} < \text{EMA}_{200}$ on 1H/4H.
-   - **Ranging / Mean-Reverting**: EMAs flat, compressed, or oscillating.
-2. **Auction Market Structure**:
-   - Identify Prior Day and Prior Week POC, VAH (Value Area High), and VAL (Value Area Low).
-   - Evaluate Session VWAP and Multi-Day Anchor VWAPs.
-3. **Stand-Aside Protocol**: If the market displays conflicting regimes or choppy liquidity without clear structural edges, the desk **stands aside unconditionally**. Cash is a valid position.
+Determine the macro auction structural environment before evaluating intraday orderflow triggers:
+1. **Multi-Horizon Auction Value Area Classification (from Sheet 33: `20_Auction_Market_Structure`)**:
+   - **Daily Value Area (D-VA)**: Daily POC, VAH (Value Area High), and VAL (Value Area Low) calculated from volume profile.
+   - **Weekly Value Area (W-VA)**: Weekly POC, VAH, and VAL tracking institutional weekly balancing boundaries.
+   - **Session Value Area (S-VA)**: Asian, London, and NY session-specific POC and range boundaries.
+   - **Value Area State**:
+     * `INSIDE_VALUE (Balance)`: Price trading within VAH and VAL. Market in equilibrium; favors mean-reversion toward POC or rotational trading.
+     * `ABOVE_VALUE (Imbalance / Bullish Auction)`: Price accepted above VAH (>= 2 consecutive 15m candle closes above VAH with RVOL > 1.3x). Buyers driving price discovery higher.
+     * `BELOW_VALUE (Imbalance / Bearish Auction)`: Price accepted below VAL (>= 2 consecutive 15m candle closes below VAL with RVOL > 1.3x). Sellers driving price discovery lower.
+2. **HTF Trend Hierarchy (1H & 4H)**:
+   - **Bullish Regime**: Price > EMA20 > EMA50 > EMA100 > EMA200 on 1H/4H.
+   - **Bearish Regime**: Price < EMA20 < EMA50 < EMA100 < EMA200 on 1H/4H.
+   - **Compressed / Ranging**: EMAs tangled, flat, or oscillating.
+3. **Stand-Aside Invariant**: If the market displays conflicting regimes, unverified value area acceptance, or choppy low-volume noise (`classify_regime() == UNDEFINED`), the desk **stands aside unconditionally in 100% Cash**. Cash is an active, mathematically justified position.
 
 ---
 
-### STEP 5: Dual-Engine Strategy Dialectic & Opportunity Screening
-*Active Skills: `@[brainstorm]`, `@[data-engineering-data-driven-feature]`*
+### STEP 5: Quad-Engine Strategy Dialectic & Opportunity Screening
+*Active Skills: `@[quant-analyst]`, `@[clean-code]`, `@[ai-ml]`*
 
-Screen candidates across the universe into two distinct, non-overlapping quantitative models:
+Screen candidates across the universe into four distinct, non-overlapping quantitative engines:
 
-#### Model 1: Extreme Mean Reversion
-- **Condition**: Market reaches statistical extremes ($|Z_{\text{VWAP}}| \ge 2.0\text{ SD}$ to $3.5\text{ SD}$).
+#### Engine 1: Mean Reversion Suite
+##### Model 1A: Extreme Statistical VWAP Reversion
+- **Condition**: Market reaches extreme statistical dispersion (|Z_VWAP| >= 2.0 SD to 3.5 SD) in a verified `MEAN_REVERT` regime.
 - **Required Confluence**:
-  1. Price tested an extreme structural boundary (outer VWAP band +2.0 SD / -2.0 SD, extreme weekly deviation).
-  2. Orderflow shows **Trapped Traders** (`TRAPPED_BUYERS_ABOVE` for Shorts, `TRAPPED_SELLERS_BELOW` for Longs).
-  3. Microstructure tape reveals clear momentum exhaustion (CVD delta decelerating, lack of volume follow-through).
+  1. Price tests outer statistical band (+2.0 SD or -2.0 SD daily/session VWAP).
+  2. Orderflow confirms **Trapped Traders** (`TRAPPED_BUYERS_ABOVE` for Shorts, `TRAPPED_SELLERS_BELOW` for Longs).
+  3. Microstructure tape reveals clear momentum exhaustion (CVD delta decelerating > 30%, lack of aggressive taker follow-through).
+  4. Sheltered behind resting institutional whale wall (>= $100K to $1M+, persisting >= 180s).
 - **Execution**: Counter-trend passive limit order targeting mean reversion back toward Volume POC or Session VWAP.
 
-#### Model 2: VWAP & Structural Trend Pullback
-- **Condition**: In-range statistical score ($|Z_{\text{VWAP}}| < 2.0\text{ SD}$, typically $0.2\text{ SD}$ to $1.7\text{ SD}$) within a confirmed HTF trend.
+##### Model 1B: Auction Value Area Rejection & Failed Auction (Look Above/Below & Fail)
+- **Condition**: Price attempts breakout outside Prior Day / Session Value Area (probes above VAH or below VAL, or sweeps Session High/Low) but fails to find buyer/seller acceptance.
 - **Required Confluence**:
-  1. Primary trend confirmed by HTF EMA hierarchy and directional multi-horizon CVD.
-  2. Pullback retraces into a confirmed structural shelf:
-     - 20 EMA / 50 EMA shelf.
-     - Volume Profile Value Area edge (VAL in uptrend, VAH in downtrend).
-     - **Daily VWAP +1.0D / -1.0D Band coincidence with persistent whale orders**.
-- **Execution**: Pro-trend passive limit order placed at the shelf, targeting cascade momentum into the next structural magnet.
+  1. Price pierces VAH/VAL or sweeps local stop band but closes back inside the Value Area within 1–2 bars (printing a rejection wick / tail).
+  2. Adverse delta absorption on the tape: aggressive market orders absorbed by resting limit book with no price progress (zc_div > 0.8).
+  3. Rejection confirmed by return inside Value Area with volume profile high-volume node rejection.
+- **Execution**: Fade the failed auction with passive limit entry on re-test of the Value Area boundary (VAH/VAL), targeting rotation across the entire Value Area toward the opposite boundary (e.g. fade VAH failure -> Target 1: POC, Target 2: VAL).
 
-#### Mandatory Wake-Up Candidate Identification Protocol (Passive Limit Orders)
-- **Active Scanning Mandate**: On EVERY wake-up cycle and autonomous turn, the coordinator, all dispatched subagents (`Orderflow Analyst`, `Position Manager`, `Macro Risk Analyst`), and the external council models are **strictly mandated to actively scan the 24 mutual assets and the 93-asset screener to discover, qualify, and formulate explicit passive limit order candidates**.
-- **Execution Readiness**: Do not remain passive when valid setups exist. Whenever portfolio capacity permits (up to 4 tickets total across orthogonal asset clusters: Crypto, Metals, Energy, Forex, Indices), actively identify and stage:
-  1. **Model 1 Extreme Mean Reversion Limits**: Staged at outer shelves (|Z| >= 2.0 to 3.5 SD in verified `MEAN_REVERT` regimes) with confirmed tape exhaustion and un-swept resting whale shelters.
-  2. **Model 2 Trend Pullback Limits**: Staged at 20/50 EMA, VAH/VAL, or Session VWAP shelves in verified `TREND_UP` or `TREND_DOWN` regimes, defended by resting whale bunkers outside opposing sweep bands.
-- **Complete Order Specification**: Every identified candidate must be fully parameterized: Symbol, Order Type (`BUY_LIMIT` / `SELL_LIMIT`), Entry Price (shelf-anchored, accounting for half-spread), Stop Loss (safely bunkered behind whale wall with >= 0.35–0.50 ATR clearance), Take Profit (front-running magnet by 5–10 bps), Lot Size (calibrated to $15.00–$25.00 USD risk envelope), and Stressed Floor Cushion check (>= 4,775.00 USD hard floor).
+#### Engine 2: Trend Following & Momentum Suite
+##### Model 2A: Auction Value Area Acceptance & Expansion Breakout
+- **Condition**: Price breaks out of Prior Day / Session Value Area and establishes confirmed **Value Acceptance**.
+- **Required Confluence**:
+  1. **Value Acceptance Rule**: Minimum 2 consecutive 15m candle closes outside the Value Area (above VAH for Bullish Expansion, below VAL for Bearish Expansion).
+  2. Volume expansion: Relative Volume (RVOL) > 1.30x with developing high-volume node (POC migration toward breakout direction).
+  3. Aligned HTF trend structure (1H/4H EMA hierarchy).
+- **Execution**: Pro-trend passive limit order staged on the **re-test of the broken Value Area boundary** (broken VAH acts as new support; broken VAL acts as new resistance), targeting expansion into next HTF liquidity magnet.
+
+##### Model 2B: Orderflow Momentum Continuation & Liquidation Vacuum Drive
+- **Condition**: In-range statistical score (|Z_VWAP| between 0.3 SD and 1.8 SD) within a confirmed HTF trend, fueled by aggressive institutional orderflow.
+- **Required Confluence**:
+  1. **Orderflow Acceleration**: Accelerating Cumulative Volume Delta (dCVD/dt > 0) in the direction of the trend across 5m, 15m, and 1h horizons.
+  2. **Open Interest Alignment**: Expanding Open Interest (dOI/dt > 0) confirming new institutional capital entering the breakout, with funding rates remaining non-extreme (< 0.03%).
+  3. **Liquidation Vacuum**: Presence of un-swept opposing liquidation bands / stop sweep clusters ahead, pulling price forward like a magnet.
+  4. Supporting resting whale shelf (>= $100K USD, persist >= 180s) trailing behind the move.
+- **Execution**: Pro-trend pullback limit order placed at the 20/50 EMA or Session VWAP shelf, targeting rapid liquidation sweep into the opposing debt pool.
+
+---
+
+### STEP 5.1: CAPACITY MANAGEMENT, LIMIT ORDER ACCOUNTING & AUTONOMOUS RIGHTS (OPERATOR MANDATES)
+1. **Max 4 Running Filled Positions**: The desk is authorized to maintain up to 4 concurrent running (filled) positions across orthogonal asset clusters (Crypto, Metals, Energy, Forex, Indices).
+2. **Limit Order Slot Rule**: A slot is considered filled ONLY when an order is filled into an active position. Resting/pending limit orders do NOT consume running slots! Limit orders may be staged at structural whale shelves without blocking capacity.
+3. **Single Initial Fill Sizing**: A single initial trade is strictly sized at 12.00–15.00 USD nominal risk (stressed = 17.00–20.75 USD with 1.25x slippage stress + 2.00 USD commission reserve). This guarantees that stressed post-loss equity remains >= 4,814.08 USD, preserving > +19.00 USD surplus above the 4,795.00 USD operating buffer.
+4. **Dynamic Buffer Defense**: Once an initial filled position reaches Early-BE (+0.75R to +0.80R), its stop is ratcheted to Entry + 0.10R0, dropping cash risk to 0.00 USD and instantly freeing risk capacity for subsequent fills while keeping the 4,795.00 USD operating buffer strictly inviolate.
+5. **Full Autonomous Authority**: Antigravity has full autonomous rights to punch, delete, cancel, or modify orders and trailing stops in MetaTrader 5 without seeking manual operator approval.
+
+---
+
+### STEP 5.2: MANDATORY DATA FRESHNESS & STALENESS GATES (OPERATOR DIRECTIVE)
+To eliminate reliance on static, cached, or frozen data dumps, every cycle must verify that ALL worksheets in `Data/DataBase_Trading.xlsx` are actively updating with FRESH values:
+1. **Freshness Invariant**:
+   - Orderbook, CVD, and live ticker sheets (`17_Orderbook`, `18_CVD`, `00_MT5_Account_Telemetry`) must have timestamps within <= 15 minutes of current UTC time.
+   - Excel workbook modification time must reflect cycling by the continuous pipeline daemon within its 300s rest window.
+2. **Staleness Fail-Closed Rule**: If any key orderflow sheet displays timestamps older than 30 minutes, or if value delta between consecutive dumps is exactly zero (frozen feed), trading is CONDITIONAL or PAUSED until the pipeline completes a fresh atomic dump. No trade may ever be punched on unverified or stale orderflow.
 
 ---
 

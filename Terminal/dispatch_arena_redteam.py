@@ -92,26 +92,41 @@ async def build_and_dispatch():
     prompt = prompt.replace("{PENDING_ORDERS}", "0 pending orders")
     prompt = prompt.replace("{SLOTS_FREE}", "4/4 slots available")
 
-    # Active Tickets Table
+    pending_orders = td.get("pending_orders", [])
+    pending_count = len(pending_orders)
+    prompt = prompt.replace("{PENDING_ORDERS}", f"{pending_count} pending limit orders")
+
+    # Active Tickets & Pending Orders Table
+    table_rows = ["| Slot | Cluster | Ticket | Symbol | Side | Volume | Entry | SL | TP | Risk USD | R0 |",
+                  "|---|---|---|---|---|---|---|---|---|---|---|"]
     if pos_count > 0:
-        p0 = td.get("open_positions", [])[0]
-        ticket_table = (
-            "| Slot | Cluster | Ticket | Symbol | Side | Volume | Entry | SL | TP | Risk USD | R0 |\n"
-            "|---|---|---|---|---|---|---|---|---|---|---|\n"
-            f"| Slot 1 | Crypto | #{p0.get('ticket')} | {p0.get('symbol')} | {p0.get('direction')} | {p0.get('volume')} lot | {p0.get('price_open')} | {p0.get('sl')} | {p0.get('tp')} | $17.00 | 1.70 pts |\n"
-            f"*Running Position: #{p0.get('ticket')} {p0.get('symbol')} {p0.get('direction')} {p0.get('volume')} lot. Current PnL: {p0.get('profit_usd', 0.0):.2f} USD.*"
-        )
+        for idx, p0 in enumerate(td.get("open_positions", [])):
+            table_rows.append(f"| Filled {idx+1} | Open | #{p0.get('ticket')} | {p0.get('symbol')} | {p0.get('direction')} | {p0.get('volume')} lot | {p0.get('price_open')} | {p0.get('sl')} | {p0.get('tp')} | Sized | — |")
+    if pending_count > 0:
+        for idx, po in enumerate(pending_orders):
+            side = po.get("direction", "LIMIT")
+            sym = po.get("symbol", "")
+            cluster = "Forex" if "EUR" in sym or "GBP" in sym or "USD" in sym else "Index" if "100" in sym or "500" in sym or "30" in sym else "Crypto"
+            risk_usd = "$18.00" if "EUR" in sym else "$18.72" if "UK100" in sym else "$18.40"
+            dist = "10.0 pips" if "EUR" in sym else "20.0 pts" if "UK100" in sym else "460 pts"
+            table_rows.append(f"| Pending {idx+1} | {cluster} | #{po.get('ticket')} | {sym} | {side} | {po.get('volume')} lot | {po.get('price_open')} | {po.get('sl')} | {po.get('tp')} | {risk_usd} | {dist} |")
+    if pos_count == 0 and pending_count == 0:
+        table_rows.append("| — | Flat | — | — | — | — | — | — | — | $0.00 | — |")
+        table_rows.append("*Book is 100% Cash. Zero active positions, zero pending orders.*")
     else:
-        ticket_table = "| Slot | Cluster | Ticket | Symbol | Side | Volume | Entry | SL | TP | Risk USD | R0 |\n|---|---|---|---|---|---|---|---|---|---|---|\n| — | Flat | — | — | — | — | — | — | — | $0.00 | — |\n*Book is 100% Cash. Zero active positions, zero pending orders.*"
+        status_note = f"*Book State: {pos_count} filled positions, {pending_count} pending limit orders resting on broker book.*"
+        table_rows.append(status_note)
+
+    ticket_table = "\n".join(table_rows)
     prompt = prompt.replace("{TICKET_TABLE}", ticket_table)
 
-    # Candidate Radar Table (Calibrated Multi-Asset Radar)
+    # Candidate Radar Table (Calibrated Multi-Asset Radar incorporating Operator Risk & Arena Feedback)
     candidate_table = (
         "| Candidate Setup | Direction | Target Entry | Stop Loss | Take Profit | Lots | Risk USD | Stressed Risk | Pre-Condition Checklist |\n"
         "|---|---|---|---|---|---|---|---|---|\n"
-        "| BTCUSD.pi Deep Sweep | BUY_LIMIT | 79,923.50 | 79,503.23 | 80,974.00 | 0.04 lot | $16.81 | $23.01 | [ ] Flush 79,923.5 stops, [ ] CVD delta decelerates >30%, [ ] Reclaim 80,350 with >=80% bid replenishment in 2s, [x] Spread 2.08 bps |\n"
-        "| XAUUSD.pi Whale Bunker | BUY_LIMIT | 4,046.98 | 4,042.57 | 4,058.00 | 0.04 lot | $17.64 | $24.05 | [ ] Sweep 4,060.475 sell stops, [ ] Buyer defense at $1.619M bunker (4,046.98), [ ] Reclaim 4,062.50, [x] Spread 0.22 bps |\n"
-        "| BTCUSD.pi Relief Short | SELL_LIMIT | 82,414.00 | 82,750.00 | 81,200.00 | 0.05 lot | $16.80 | $23.00 | [ ] Relief rally into 82,279-82,414 EMA20/Ask Wall shelf, [ ] Rejection print + tape ask replenishment, [ ] IBIT flow absorption |"
+        "| BTCUSD.pi Whale Bunker | BUY_LIMIT | 81,640.00 | 81,180.00 | 82,440.00 | 0.04 lot | $18.40 | $25.00 | [ ] 22.77M USD sell stops at 81,650-81,850 swept, [ ] CVD absorption flip, [ ] 7.53M USD wall holds at 81,637-81,670, [x] Spread 1.83 bps |\n"
+        "| XAUUSD.pi Demand Shelf | BUY_LIMIT | 4,058.50 | 4,050.50 | 4,072.00 | 0.02 lot | $16.00 | $22.00 | [ ] 4,058-4,060 bunker defense, [ ] Tick CVD deceleration, [ ] 0.94M USD whale bid persists >=180s, [ ] TP 4,072 front-runs VAL, [x] Spread 0.20 bps |\n"
+        "| BTCUSD.pi Pullback Short | SELL_LIMIT | 82,410.00 | 83,050.00 | 81,680.00 | 0.03 lot | $19.20 | $26.00 | [ ] Relief rally into 82,380-82,414 Ask wall, [ ] Tape rejection + CVD selling pressure, [ ] SL 83,050 safely > 83,032.54 boundary, [x] Spread 1.83 bps |"
     )
     prompt = prompt.replace("{CANDIDATE_TABLE}", candidate_table)
 
@@ -133,4 +148,17 @@ async def build_and_dispatch():
     return success
 
 if __name__ == "__main__":
-    asyncio.run(build_and_dispatch())
+    import argparse
+    parser = argparse.ArgumentParser(description="Arena.ai Surgical Red-Team Dispatcher")
+    parser.add_argument("--status", action="store_true", help="Check status without dispatching")
+    args = parser.parse_args()
+
+    if args.status:
+        import json
+        st_file = ROOT / "Data" / "arena_completion_status.json"
+        if st_file.exists():
+            print(st_file.read_text(encoding="utf-8"))
+        else:
+            print("No status file found.")
+    else:
+        asyncio.run(build_and_dispatch())

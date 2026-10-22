@@ -25,7 +25,7 @@ flowchart TD
     Step1["Step 1: Ingest Core Governance & Memory<br/>(AGENTS.md, ACTIVE_CONTEXT.md, session_chat_history.md)"]
     Step2["Step 2: Live MT5 Telemetry & Solvency Audit<br/>(Query Account, Cushions, Positions, Pending Orders)"]
     Step3["Step 3: Hexad-Daemon Sentry Audit<br/>(Verify 5 Daemons + 20-Min Cron Active)"]
-    Step4["Step 4: Master 32-Sheet Excel Integrity<br/>(Verify DataBase_Trading.xlsx & Zero Errors)"]
+    Step4["Step 4: Master 33-Sheet Excel Integrity<br/>(Verify DataBase_Trading.xlsx & Zero Errors)"]
     Step5["Step 5: Mandatory 4-Subagent Swarm & Arena Dispatch<br/>(Orderflow, Position, Macro, Excel Auditor + Arena CDP)"]
     Step6["Step 6: Harvest, Co-Equal Debate, Clean Socket Pruning<br/>(kill_all Subagents, Update Desk Ledger, Standby)"]
 
@@ -91,7 +91,7 @@ flowchart TD
 ### STEP 3: QUAD-DAEMON SENTRY AUDIT & AUTO-RESTART
 Verify with `manage_task(Action='list')` that EXACTLY the 4 authorized persistent background processes are active. Any extra or zombie processes are killed immediately. If any of the 4 required daemons is missing, immediately relaunch it:
 
-1. **Daemon 1 (Continuous 32-Sheet Excel Pipeline Daemon)**:
+1. **Daemon 1 (Continuous 33-Sheet Excel Pipeline Daemon)**:
    - Command: `python Data/Excel_Modules/Run_Parallel_Pipeline.py --continuous --gap 300 --workers 1`
    - Setting: `IsDaemon=true`, `WaitMsBeforeAsync=500`
    - Purpose: Cycles full pipeline continuously with an exact 5-minute (300s) cooldown gap between cycles. Maintains fresh orderbook, CVD, liq maps, and technical data in `Data/DataBase_Trading.xlsx` with zero race conditions (workers=1 atomic safety).
@@ -116,7 +116,7 @@ Verify with `manage_task(Action='list')` that EXACTLY the 4 authorized persisten
 ### STEP 4: MASTER 32-SHEET EXCEL INTEGRITY GATE
 Verify that `Data/DataBase_Trading.xlsx` is fresh, uncorrupted, and has zero formula errors:
 - Path: `Data/DataBase_Trading.xlsx` (Size ~12.9 to 13.7 MB).
-- Check that all 32 sheets load cleanly via `openpyxl`.
+- Check that all 33 sheets (including Sheet 33 '20_Auction_Market_Structure') load cleanly via `openpyxl`.
 - Attest that formula errors (`#REF!`, `#DIV/0!`, `#N/A`, `#VALUE!`, `#NAME?`, `#NUM!`, `#NULL!`) count = 0 across all cells.
 
 ---
@@ -128,7 +128,7 @@ On EVERY autonomous wake-up, the agent executes the **Simultaneous Dual-Track Di
      * **Subagent 1: Orderflow Analyst** (Tier 2 Big Prompt: Sheets 00–28, spread gates, 5-pillar confluence, L2/L3 orderbook depth, resting whale bunkers).
      * **Subagent 2: Position Manager** (Tier 2 Big Prompt: MT5 telemetry, ratchet progression, stressed capacity audit strictly enforcing 1-position slot under +$39.83 buffer).
      * **Subagent 3: Macro Risk Analyst** (Tier 2 Big Prompt: Sheet 28 `19_Calendar`, `macro_calendar.json`, ETF flows, CEX netflows, 21:15–22:30 UTC rollover embargo).
-     * **Subagent 4: Excel Data Quality Auditor** (Tier 2 Big Prompt: 32-sheet coverage, CRC checks, zero formula errors, pipeline daemon health).
+     * **Subagent 4: Excel Data Quality Auditor** (Tier 2 Big Prompt: 33-sheet coverage, CRC checks, zero formula errors, pipeline daemon health).
 2. **Track B (Parallel Arena.ai Red-Team Prompt Dispatch)**:
    - PARALLEL TO SUBAGENT INVOCATION, immediately dispatch the surgical red-team prompt to Arena.ai via Chrome CDP on port 9222:
      `python Terminal/dispatch_arena_redteam.py`

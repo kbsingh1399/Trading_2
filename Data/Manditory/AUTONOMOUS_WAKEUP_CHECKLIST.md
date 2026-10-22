@@ -6,7 +6,7 @@
 > **Active Goal Contract**: Pass Phase 1 Challenge (Target: 5,500.00 USD) by End of Friday, 23rd October 2026.  
 > **INVIOLABLE OPERATOR MANDATE**: The /goal contract is PERPETUAL and must NEVER be killed, paused, or cancelled until live equity >= 5,500.00 USD is proven on MT5.  
 > **MANDATORY CANDIDATE RADAR**: The desk is STRICTLY FORBIDDEN from issuing a bare 'Stand Aside' without formulating and tracking concrete Potential Candidate Setups with checkable pre-condition trigger checklists [ ].  
-> **Mandatory Foundation**: [`STANDARDIZED_TRADING_DECISION_CHAIN.md`](file:///c:/Users/SIGMA/Documents/Trading_2/docs/specs/STANDARDIZED_TRADING_DECISION_CHAIN.md) (10-Step SOP) + Master 29-Sheet Excel Data Warehouse (`Data/DataBase_Trading.xlsx` & `Data/Manditory/`).  
+> **Mandatory Foundation**: [`STANDARDIZED_TRADING_DECISION_CHAIN.md`](file:///c:/Users/SIGMA/Documents/Trading_2/docs/specs/STANDARDIZED_TRADING_DECISION_CHAIN.md) (10-Step SOP) + Master 33-Sheet Excel Data Warehouse (`Data/DataBase_Trading.xlsx` & `Data/Manditory/`).  
 > **Standard Arena Prompt Template**: [`docs/prompts/ARENA_STANDARD_PROMPT_TEMPLATE.md`](file:///c:/Users/SIGMA/Documents/Trading_2/docs/prompts/ARENA_STANDARD_PROMPT_TEMPLATE.md)  
 > **Operator Concerns & Perpetual Resolutions**: [OPERATOR_ISSUES_AND_RESOLUTIONS_CHECKLIST.md](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/OPERATOR_ISSUES_AND_RESOLUTIONS_CHECKLIST.md)  
 > **Cadence**: 20-Minute Cron Trigger (`0,20,40 * * * *` at 20th, 40th, and 60th/00th minute).  
@@ -18,7 +18,7 @@
 >    - Orderflow Analyst: Deeply studies Data/DataBase_Trading.xlsx (Sheets 10-18, 22-26: Orderbook, CVD, Liq Maps, Stops Maps, Whale Orders) row-by-row and column-by-column, checks spread gates, executes 5-pillar confluence, and formulates candidate limits.
 >    - Position Manager: Evaluates live MT5 account telemetry, computes stressed capacity ( stressed risk, +2.83 USD operating buffer cushion, +22.83 USD hard floor cushion), verifies sizing for 2-4 concurrent slots.
 >    - Macro Risk Analyst: Studies Data/DataBase_Trading.xlsx (Sheets 00-02, 27-28: ETF Flows, News, Macro Calendar) line-by-line, enforces Tier-1 blackouts and the 21:15–22:30 UTC interbank FX rollover embargo.
->    - Excel Data Quality Auditor: Studies Data/DataBase_Trading.xlsx row-by-row and column-by-column across all 32 sheets, verifies zero formula errors, confirms clean sheet overwrite discipline, and verifies continuous 32-sheet Excel pipeline daemon (`Run_Parallel_Pipeline.py --continuous --gap 300`).
+>    - Excel Data Quality Auditor: Studies Data/DataBase_Trading.xlsx row-by-row and column-by-column across all 33 sheets (including Sheet 33 '20_Auction_Market_Structure'), verifies zero formula errors, confirms clean sheet overwrite discipline, and verifies continuous 33-sheet Excel pipeline daemon (`Run_Parallel_Pipeline.py --continuous --gap 300`).
 > 2. **Mandatory Canonical Governance**: Every subagent prompt and Arena prompt MUST cite and follow docs/specs/STANDARDIZED_TRADING_DECISION_CHAIN.md (10-Step SOP) and require line-by-line inspection of Data/DataBase_Trading.xlsx.
 > 3. **Mandatory Arena.ai Surgical Red-Team Dispatch**: On EVERY wake-up cycle, a surgical red-team prompt citing STANDARDIZED_TRADING_DECISION_CHAIN.md MUST be injected into Arena.ai via Chrome CDP on port 9222.
 > 4. **Live Profit Ratchets Do Not Excuse Omission**: When live orders fill and dynamic ratchets (Early-BE, Phase 0, Phase 1) fire on MT5, the coordinator must execute the ratchet IMMEDIATELY to secure capital, but MUST SIMULTANEOUSLY dispatch the 4-subagent fleet and Arena prompt. No operational event ever excuses skipping the dual-track council.
@@ -92,29 +92,16 @@ Before evaluating data, touching code, or dispatching orders, the coordinator an
   5. Macro clearance (zero Tier-1 blackout).
 - **Autonomous Punch Mandate**: If an empty slot exists and a candidate passes all 5 pillars, IMMEDIATELY punch the passive limit order into MT5 without hesitation and without asking permission.
 
-### Gateway 7: Line-by-Line Study of All 32 Excel Sheets, Narrative Synthesis & Position Formulation (Operator Mandate)
-> *"Have we studied each and every line of all 32 Excel sheets, built a cohesive market narrative, and formulated our trade positioning directly from it?"*
-- **Mandatory Line-by-Line Examination**:
-  * The desk is strictly forbidden from skimming summary cards, relying on column averages, or treating the master Excel warehouse as a black box.
-  * Every cycle, coordinator and subagents MUST inspect and study *each and every line* across all 32 worksheets:
-    1. *Spot ETF & Macro Netflow (Sheets 00-02)*: Every row of daily net creations/redemptions and 1h-7d CEX netflows to confirm real spot accumulation vs distribution.
-    2. *Market Positioning & Crowding (Sheets 03-05)*: Exact Binance/OKX/Bybit LS account ratios to detect crowded retail traps.
-    3. *Hyperliquid L1 Whales (Sheet 06)*: Every whale wallet (0x...), open size, leverage, margin utilization, and liquidation price.
-    4. *Open Interest & Funding Carry (Sheets 07-09)*: Exact dollar OI changes and cross-exchange funding rates to differentiate true trend breakouts from fragile short squeezes.
-    5. *Liquidation Maps & Real-Time Tape (Sheets 10-17, 22)*: Continuous dollar-by-dollar liquidation ladders and forced liquidation prints to identify exact cascade boundaries [min_price, max_price] and multi-day max pain strikes.
-    6. *Resting Whale Orders (Sheets 18 & 25)*: Every resting order line (>= $100K USD) to verify order status, price level, remaining volume, and verified persistence (>= 180s).
-    7. *Technical & Auction Profiling (Sheet 19)*: 20/50/200 EMAs, Session VWAP, +-1.0/+-2.0 SD bands, VWAP Z-score, RSI-14, ATR-14, and Volume Profile POC/VAH/VAL.
-    8. *Retail Stop Order Ladder (Sheet 23)*: Exact retail stop loss clusters to identify sweep traps and liquidity voids.
-    9. *Continuous CVD Engine (Sheet 26)*: 1m, 5m, 15m, 1h Spot vs Futures taker volume, delta divergence (zc_div > 0.8), and absorption signatures.
-    10. *Breaking News & Macro Calendar (Sheets 27 & 28)*: Line-by-line inspection of geopolitical news and scheduled red-folder releases.
-- **Integrity Gate**: Confirm exactly 0 formula errors (#REF!, #DIV/0!, #VALUE!, #N/A) and 0 empty headers.
-- **Pipeline Health**: Confirm run_pipeline_continuous_daemon.py is cycling with the verified 5-minute rest interval and data freshness < 180s.
-- **Narrative Synthesis**: Synthesize the line-by-line data into an empirical multi-dimensional narrative (who is dominating the tape, where the trapped liquidity sits, whether market is in Model 1 Mean Reversion or Model 2 Trend Pullback).
-- **Position Formulation**: Ground the exact execution ticket directly in the narrative:
-  * Entry placed passively behind resting whale wall and demand/supply shelf (never crossing spread).
-  * Stop Loss anchored safely outside [min_price, max_price] of nearest liquidation/stop band with >= 0.35-0.50 ATR buffer.
-  * Take Profit front-running opposing liquidation magnet or Volume Profile shelf by 5-10 bps.
-  * Risk sized between 10.00 and 25.00 USD, guaranteeing 4,795.00 USD operating buffer on fill and 4,775.00 USD hard floor under catastrophic stopout.
+### Gateway 7: 33-Sheet Excel Freshness & Integrity Audit (OPERATOR DIRECTIVE)
+> *"Has Data/DataBase_Trading.xlsx loaded all 33 sheets cleanly with zero formula errors, and are all values actively updating and fresh?"*
+- **File Health**: Data/DataBase_Trading.xlsx (Size ~13.1 to 13.8 MB) loads cleanly via openpyxl.
+- **Mandatory Freshness Check**:
+  * Verify each sheet is actively updating with FRESH values and NOT stale:
+  * Timestamps on `17_Orderbook`, `18_CVD`, `00_MT5_Account_Telemetry`, and `20_Auction_Market_Structure` must be <= 15 minutes old.
+  * Verify value deltas between consecutive dumps are non-zero (guarantees live incoming stream, not frozen cache).
+  * Flag any sheet where data is stale (> 25 minutes old) fail-closed.
+- **Error Scan**: Exactly 0 formula errors (#REF!, #DIV/0!, #VALUE!, #N/A, #NAME?, #NUM!, #NULL!) across all 1.6M+ cells.
+- **Pipeline Daemon**: Continuous 33-sheet pipeline daemon is actively cycling with 5m rest intervals.
 
 ### Gateway 8: Hardware Health, Background Daemons & Workspace Hygiene
 > *"Is system RAM optimized, are all 6 daemons running, and is the workspace pristine?"*
@@ -137,7 +124,7 @@ Every autonomous wake-up cycle (triggered by the 20-minute cron at :00, :20, :40
 
 ```mermaid
 flowchart TD
-    S0["Step 0: Study Goal First & Mission Continuity<br/>(GOAL.md & PASS_BLUEBERRY_PHASE_1_BY_OCT_23_2026.md)"] --> S1["Step 1: System Health, 29-Sheet Excel & Pipeline Check<br/>(run_pipeline_continuous_daemon.py & 5m Rest Interval)"] --> S2["Step 2: MT5 Account & Floor Defense Audit<br/>(Hard Floor 4,775 / Buffer 4,795 USD | Risk $15-$25)"]
+    S0["Step 0: Study Goal First & Mission Continuity<br/>(GOAL.md & PASS_BLUEBERRY_PHASE_1_BY_OCT_23_2026.md)"] --> S1["Step 1: System Health, 33-Sheet Excel & Pipeline Check<br/>(run_pipeline_continuous_daemon.py & 5m Rest Interval)"] --> S2["Step 2: MT5 Account & Floor Defense Audit<br/>(Hard Floor 4,775 / Buffer 4,795 USD | Risk $15-$25)"]
     S2 --> S3["Step 3: Active Position & Dynamic Ratchet Audit<br/>(Early-BE +0.75R / Phase 0 +1.25R / Phase 1 +1.65R)"]
     S3 --> S4["Step 4: Institutional Universe & Spread Gate Scan<br/>(Crypto <= 25.0 bps | TradFi <= 5.0 bps)"]
     S4 --> S5["Step 5: Dual-Track Analysis Initiation<br/>(Track A: Internal Subagents | Track B: Arena Dispatch)"]
@@ -166,8 +153,8 @@ flowchart TD
 ### Step 1: System Health, Master Excel Data Warehouse & Pipeline Verification
 - [ ] **MANDATORY 32-SHEET MASTER EXCEL INSPECTION CONFIRMATION**:
   - Physically load and confirm reading across ALL **32 canonical worksheets** of `Data/DataBase_Trading.xlsx` (Sheet 00 `00_MT5_Account_Telemetry` through Sheet 31 `19_Calendar`).
-  - Output an explicit confirmation score verifying row counts, column counts, freshness timestamps, and confirming exactly zero formula errors (`#REF!`, `#DIV/0!`, `#VALUE!`, `#N/A`) and zero empty headers across all 32 sheets. Nothing may ever be skipped or missed.
-  - Require the exact same 32-sheet verification attestation from Arena.ai on every council cycle.
+  - Output an explicit confirmation score verifying row counts, column counts, freshness timestamps, and confirming exactly zero formula errors (`#REF!`, `#DIV/0!`, `#VALUE!`, `#N/A`) and zero empty headers across all 33 sheets (including Sheet 33 '20_Auction_Market_Structure'). Nothing may ever be skipped or missed.
+  - Require the exact same 33-sheet verification attestation from Arena.ai on every council cycle.
 - [ ] **MANDATORY LINE-BY-LINE EXCEL STUDY & NARRATIVE SYNTHESIS (OPERATOR INVARIANT)**:
   - Systematically study *each and every line* across all worksheets:
     * Spot ETF & CEX Netflows (Sheets 00-02): evaluate institutional net accumulation vs distribution line-by-line.

@@ -37,13 +37,14 @@
 You MUST pull and read the following before answering — no assumptions, no stale cache:
 - Repo: `https://github.com/kbsingh1399/Trading_2` (branch `main`)
 - Canonical Decision Chain (SOP): `docs/specs/STANDARDIZED_TRADING_DECISION_CHAIN.md` (Mandatory 10-step institutional quant chain)
-- `Data/DataBase_Trading.xlsx` — all 32 sheets (Sheet 00 to Sheet 31 studied line-by-line)
+- `Data/DataBase_Trading.xlsx` — all 33 sheets (Sheet 00 to Sheet 33 studied line-by-line, including Sheet 33 `20_Auction_Market_Structure`)
+- **MANDATORY FRESHNESS VERIFICATION (OPERATOR DIRECTIVE)**: Check that each sheet is actively updating with FRESH values and NOT stale (timestamps <= 15m on `17_Orderbook`, `18_CVD`, `00_MT5_Account_Telemetry`, `20_Auction_Market_Structure`, non-zero deltas across consecutive dumps). Reject stale data fail-closed.
 - `docs/telemetry/live_snapshot_latest.json`
 - `Data/Manditory/PASS_BLUEBERRY_PHASE_1_BY_OCT_23_2026.md`
 
 Open your response with exactly two lines:
 `✅ STANDARDIZED_TRADING_DECISION_CHAIN.md LOADED — 10-Step Canonical Execution Chain Activated.`
-`✅ 32-SHEET CONFIRMATION: [X formula errors | Y empty headers]`
+`✅ 33-SHEET & FRESHNESS CONFIRMATION: [X formula errors | Y empty headers | Freshness: VERIFIED/STALE]`
 
 ---
 
@@ -68,6 +69,9 @@ Antigravity is evaluating the following setups. Red-team each one:
 ---
 
 ## SECTION E: YOUR 5-POINT FORENSIC MANDATE (MAX 600 TOKENS TOTAL)
+
+🚨 CRITICAL OUTPUT INSTRUCTION (STRICT OPERATOR DIRECTIVE):
+Write your ENTIRE forensic audit, critique, and ratings directly inside this chat output message! Do NOT create, write to, or reference any external document or file (no .md, no .txt, no files). Write everything completely, line-by-line, right here in the response message text so Antigravity can immediately read, parse, and review it in real-time.
 
 Answer each point with brutal precision — no filler:
 

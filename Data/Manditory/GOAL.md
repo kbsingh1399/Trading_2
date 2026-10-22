@@ -27,8 +27,8 @@ All 5 core governance documents reside strictly in [`Data/Manditory/`](file:///c
 ## 🔄 Autonomous Execution Loop (20-Minute Cron)
 Every 20 minutes (`0,20,40 * * * *`), the autonomous desk executes:
 1. Read `Data/Manditory/SUBAGENT_PROMPT_TEMPLATES.md` — use canonical prompts for ALL dispatches.
-2. Verify system health and continuous 32-sheet Excel data updation (5m rest interval).
-3. Query live MT5 account telemetry and audit floor cushion (+76.83 USD above 4,775 USD as of Cycle 210).
+2. Verify system health and continuous 33-sheet Excel data updation (5m rest interval).
+3. Query live MT5 account telemetry and audit floor cushion (+59.83 USD above 4,775 USD floor, +39.83 USD above 4,795 USD buffer).
 4. Audit open positions and ratchet stops using Frozen R0 piecewise protocol.
 5. Dispatch 4 subagents (Orderflow Analyst, Position Manager, Macro Risk Analyst, Excel Data Quality Auditor) and Arena.ai simultaneously using canonical templates from `SUBAGENT_PROMPT_TEMPLATES.md`.
 6. Auto-harvest Arena output via `Terminal/arena_completion_daemon.py`.

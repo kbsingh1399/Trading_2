@@ -392,32 +392,30 @@ def dump_mt5_telemetry_sheet(excel_path: pathlib.Path = DEFAULT_EXCEL_PATH) -> b
     saved = False
     for attempt in range(15):
         try:
-            import os, time
-    temp_excel = excel_path.with_name(f"{excel_path.stem}_{os.getpid()}_{int(time.time()*1000)}.tmp.xlsx")
-    wb.save(temp_excel)
-    wb.close()
-    import time, zipfile
-    _is_valid = False
-    with zipfile.ZipFile(temp_excel, "r") as _z:
-        _is_valid = (_z.testzip() is None)
-    if _is_valid:
-        for _att in range(30):
-            try:
-                temp_excel.replace(excel_path)
-                break
-            except PermissionError:
-                if _att == 29: raise
-                time.sleep(1.0)
-    else:
-        if temp_excel.exists(): temp_excel.unlink()
-        raise ValueError("Corrupt zip produced during export")
+            import os, time, zipfile
+            temp_excel = excel_path.with_name(f"{excel_path.stem}_{os.getpid()}_{int(time.time()*1000)}.tmp.xlsx")
+            wb.save(temp_excel)
             wb.close()
-            saved = True
-            break
+            _is_valid = False
+            with zipfile.ZipFile(temp_excel, "r") as _z:
+                _is_valid = (_z.testzip() is None)
+            if _is_valid:
+                for _att in range(30):
+                    try:
+                        temp_excel.replace(excel_path)
+                        saved = True
+                        break
+                    except PermissionError:
+                        if _att == 29: raise
+                        time.sleep(1.0)
+                if saved:
+                    break
+            else:
+                if temp_excel.exists(): temp_excel.unlink()
+                raise ValueError("Corrupt zip produced during export")
         except (PermissionError, Exception) as e:
             log.warning(f"Excel write lock on {excel_path} (attempt {attempt+1}/15): {e}. Retrying in 3s...")
             time.sleep(3.0)
-
     if not saved:
         log.error("Failed to save workbook after 15 attempts.")
         return False

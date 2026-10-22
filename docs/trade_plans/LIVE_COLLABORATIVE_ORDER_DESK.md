@@ -1,8 +1,8 @@
 # 🏛️ LIVE COLLABORATIVE ORDER DESK & REAL-TIME STRATEGY BLACKBOARD
 **Joint Operational Ledger**: Antigravity (Local Execution Muscle) ⇄ Arena.ai (Cloud Quant Council)  
-**Target Repository**: `https://github.com/kbsingh1399/Trading_2` | Branch: `main`
+**Target Repository**: https://github.com/kbsingh1399/Trading_2 | Branch: main
 **Execution Broker**: MetaTrader 5 | Account #5064568 (Blueberry Markets SVG-Live)  
-**Established**: 2026-10-07 13:15:00 UTC | **Last Updated**: 2026-10-22 10:55 UTC (Cycle 250 Consensus: Unanimous STAND ASIDE in 100% Cash; Arena Cycle 249 Evaluated; Sheet 33 Auction Market Structure Integrated; Max 4 Running Positions, Limit Orders Do Not Consume Slots, Full Autonomous Trading Authority)
+**Established**: 2026-10-07 13:15:00 UTC | **Last Updated**: 2026-10-22 11:45 UTC (Cycle 252 Consensus: Unanimous STAND ASIDE in 100% Cash; Arena Cycle 252 Critique Synthesized; Sheet 33 Auction Market Structure Verified; Max 4 Running Positions; Limit Orders Do Not Consume Slots; Operator Authorized Scaled Risk 18.00–20.00 USD for Confluence)
 
 ---
 
@@ -17,70 +17,68 @@
    - **Phase 2 (Running Trail at >= +2.00R)**: 0.50 ATR trailing stop (or min Entry + 1.50R0).
    - **Time Decay Rule**: Exit at market if trade age > 24 bars (6h) and gain < +0.20R0.
 3. **Continuous Limit Order Queue (Punch & Prune Pipeline)**:
-   - **Strict 1-Position Slot Limit**: With +$39.83 buffer cushion, maximum concurrent exposure is strictly 1 position at $15.00–$20.00 nominal risk.
+   - **Operator Scaled Risk Envelope**: Full rights granted to increase stop loss dollar risk up to 18.00–20.00 USD (and up to 25.00 USD) on high-conviction structural trades to ensure stops are safely placed behind genuine resting institutional whale walls with >= 0.40 ATR buffer.
+   - **Capacity Invariant**: Max 4 running filled positions across orthogonal clusters. Limit orders do NOT consume running slots until filled.
    - **Anti-Knife Trigger Contract (Non-Bypassable)**:
      * Never pre-stage passive limits above un-swept stop clusters.
-     * Sweep through stop band (BTC trades through 79,923.5; Gold trades through 4,060.475).
+     * Sweep through stop band (BTC trades through 81,650 sell stops; Gold trades through 4,060 demand shelf).
      * 15m CVD delta deceleration >30% with higher low in CVD relative to lower low in price.
-     * Structural shelf reclaim (80,350 BTC / 4,062.50 Gold) with bid replenishment >= 80% within 2 seconds.
+     * Structural shelf reclaim with bid replenishment >= 80% within 2 seconds.
 
 ---
 
-## 2. ACTIVE MT5 POSITIONS & PENDING ORDERS LEDGER (LIVE MONITORING - CYCLE 250)
+## 2. ACTIVE MT5 POSITIONS & PENDING ORDERS LEDGER (LIVE MONITORING - CYCLE 252)
 
 ### Active Open Positions (0 / 4 capacity slots occupied):
 * **None currently open** (Account is 100% FLAT in cash: Balance & Equity = **4,834.83 USD**).
   - Hard Floor (4,775.00 USD) Cushion: **+59.83 USD** (+1.25%)
   - Operating Buffer (4,795.00 USD) Cushion: **+39.83 USD** (+0.83%)
   - Free Margin: **4,834.83 USD** | Running Capacity Slots Available: **4 / 4 slots**
-  - Sizing Constraint: Single filled trade strictly <= 20.00 USD nominal risk (stressed loss <= 27.00 USD, leaving >= +12.83 USD buffer surplus). Early-BE drops risk to 0.00 USD, freeing capacity dynamically.
+  - Sizing Constraint: Single filled trade sized at 16.00–20.00 USD nominal risk (stressed loss <= 27.00 USD, leaving >= +12.83 USD buffer surplus). Early-BE drops risk to 0.00 USD, freeing capacity dynamically.
 
 ### Active Pending Limit Orders (0 resting | Limit orders do NOT consume slots):
 * **None currently resting** (Staging gated strictly on 5-pillar confluence and Anti-Knife Contract).
 
 ### Potential Candidate Radar (Qualified Watchlist - Gated on Anti-Knife Trigger):
 1. **BTCUSD.pi** (Model 1 Institutional Demand Sweep & Whale Bunker Retest):
-   - Mapped Levels (Sheet 33): Mark ~81,951 | Daily POC: 82,746.39 | VAH: 83,683.93 | VAL: 81,525.40 | Weekly VAL: 81,332.46 | Defending Whale Bunker: 81,637–81,686 (.53M) / 79,473.5 (.5M)
+   - Mapped Levels (Sheet 33): Mark ~81,809 | Daily POC: 82,746.39 | VAH: 83,683.93 | VAL: 81,525.40 | Defending Whale Bunker: 81,637–81,670 USD (7.53M USD)
    - Proposed Geometry:
-     * BUY LIMIT @ 81,640.00 USD | SL: 81,240.00 USD (-400 pts, behind 21.74M USD liq band) | TP: 82,640.00 USD (+1,000 pts / +2.5R0, front-running Daily POC 82,746.39)
-     * Lot Size: **0.03 lot** -> Risk: **.00 USD**, Stressed Loss: **.00 USD** (Stressed Equity: ,817.83, Buffer Surplus: +.83) -> CLEARED
+     * BUY LIMIT @ 81,640.00 USD | SL: 81,180.00 USD (-460 pts, safely >0.40 ATR below 81,242.35 2.01-sigma band) | TP: 82,440.00 USD (+800 pts / +1.74R, front-running 82,500 resistance)
+     * Lot Size: **0.04 lot** -> Risk: **18.40 USD**, Stressed Loss: **25.00 USD** (Stressed Equity: 4,809.83 USD, Buffer Surplus: +14.83 USD) -> CLEARED
    - Pre-condition Checklist:
-     * [ ] Complete flush of .77M retail sell-stop cluster at [81,650–81,850 USD]
+     * [ ] Complete flush of 22.77M retail sell-stop cluster at [81,650–81,850 USD]
      * [ ] 15m CVD seller delta decelerates by >30% and prints positive absorption flip (zc_div > 0.8)
-     * [ ] Whale buy wall at 81,637–81,670 USD (.53M) persists >= 180s during the test
-     * [ ] Live MT5 spread <= 25.0 bps (currently 1.95 bps - PASS)
+     * [ ] Whale buy wall at 81,637–81,670 USD (7.53M USD) persists >= 180s during the test
+     * [ ] Live MT5 spread <= 25.0 bps (currently 1.83 bps - PASS)
      * [ ] Zero Tier-1 macro blackouts (PASS)
 2. **XAUUSD.pi** (Model 1 Deep Fortress Whale Bunker Rebound):
-   - Mapped Levels (Sheet 33): Mark ~4,091.0 | Daily POC: 4,136.66 | VAH: 4,143.14 | VAL: 4,136.66 | Defending Bunker: 4,080.00–4,080.73 (.941M / 475 oz, persist >12h)
+   - Mapped Levels (Sheet 33): Mark ~4,062.92 | Daily POC: 4,082.50 | VAH: 4,091.20 | VAL: 4,073.39 | Defending Bunker: 4,058.00–4,060.00 USD (0.941M USD) & 4,046.50 USD (1.619M USD)
    - Proposed Geometry:
-     * BUY LIMIT @ 4,081.00 USD | SL: 4,074.50 USD (-6.50 pts, behind 4,080 bunker with 0.50 ATR buffer) | TP: 4,097.25 USD (+16.25 pts / +2.5R0, front-running Session VWAP 4,097.52)
-     * Lot Size: **0.02 lot** -> Risk: **.00 USD**, Stressed Loss: **.25 USD** (Stressed Equity: ,816.58, Buffer Surplus: +.58) -> CLEARED
+     * BUY LIMIT @ 4,058.50 USD | SL: 4,050.50 USD (-8.00 pts, safely below 4,051.50 structural low with 0.50 ATR buffer) | TP: 4,072.00 USD (+13.50 pts / +1.69R, front-running Daily VAL 4,073.39)
+     * Lot Size: **0.02 lot** -> Risk: **16.00 USD**, Stressed Loss: **22.00 USD** (Stressed Equity: 4,812.83 USD, Buffer Surplus: +17.83 USD) -> CLEARED
    - Pre-condition Checklist:
-     * [ ] Test into 4,080.00–4,081.00 USD institutional shelf
+     * [ ] Test into 4,058.00–4,060.00 USD institutional shelf
      * [ ] Tick CVD flips from waterfall selling to buyer absorption
-     * [ ] 0x12f7aea... whale bid (.941M USD) remains resting and un-canceled
+     * [ ] 0.941M USD whale bid remains resting and un-canceled
      * [ ] Live MT5 spread <= 5.0 bps (currently 0.20 bps - PASS)
      * [ ] Zero Tier-1 macro blackouts (PASS)
-3. **SOLUSD.p** (Model 1 Deep Structural Demand Shelf):
-   - Mapped Levels (Sheet 33): Mark ~104.36 | Daily POC: 107.70 | VAH: 107.90 | VAL: 107.69 | Defending Bunker: 103.75 (.83M, persist >4,200s)
+3. **BTCUSD.pi** (Model 2 Trend Pullback Short):
+   - Mapped Levels (Sheet 33): Mark ~81,809 | Ask Wall Shelf: 82,380.00 USD (4.53M USD) | EMA20: 82,279.00 USD | Safe SL Boundary: >= 83,032.54 USD (above 15.52M short liquidations)
    - Proposed Geometry:
-     * BUY LIMIT @ 103.80 USD | SL: 102.30 USD (-1.50 pts, behind 102.92 USD -2.01sigma VWAP band) | TP: 107.55 USD (+3.75 pts / +2.5R0, front-running POC)
-     * Lot Size: **0.10 lot** -> Risk: **.00 USD**, Stressed Loss: **.75 USD** (Stressed Equity: ,814.08, Buffer Surplus: +.08) -> CLEARED
+     * SELL LIMIT @ 82,410.00 USD | SL: 83,050.00 USD (+640 pts, safely above 82,850–82,950 short liquidation band) | TP: 81,680.00 USD (-730 pts / +1.14R, front-running 81,640 whale bunker)
+     * Lot Size: **0.03 lot** -> Risk: **19.20 USD**, Stressed Loss: **26.00 USD** (Stressed Equity: 4,808.83 USD, Buffer Surplus: +13.83 USD) -> CLEARED
    - Pre-condition Checklist:
-     * [ ] Flush of retail stops below 104.00 USD
-     * [ ] 15m CVD delta deceleration (>30% contraction in selling volume)
-     * [ ] Whale buy wall at 103.75 USD (.83M) persists >= 180s
-     * [ ] Live MT5 spread <= 25.0 bps (currently 22.03 bps - PASS)
-     * [ ] Zero Tier-1 macro blackouts (PASS)
+     * [ ] Relief rally into 82,380–82,414 USD Ask wall / EMA20 shelf
+     * [ ] Tape rejection + CVD selling pressure persists
+     * [ ] SL 83,050 safely above 83,032.54 liquidation boundary
+     * [ ] Live MT5 spread <= 25.0 bps (currently 1.83 bps - PASS)
 
-### Floor Cushion & Joint Risk Summary (Cycle 250 Baseline):
+### Floor Cushion & Joint Risk Summary (Cycle 252 Baseline):
 * **Account Balance**: **4,834.83 USD** | **Equity**: **4,834.83 USD** (100% Cash Flat)
 * **Absolute Hard Floor**: **4,775.00 USD** (Cushion: **+59.83 USD**)
 * **Operating Buffer**: **4,795.00 USD** (Cushion: **+39.83 USD**)
 * **Authorized Capacity**: Up to **4 Concurrent Running Filled Positions** (Limit orders do NOT consume slots).
 * **Slots Utilization**: 0 / 4 occupied (100% cash preserved; 0 orders resting; awaiting pre-condition trigger).
-
----
 
 ## 3. CAPITAL FLOOR & PORTFOLIO CAPACITY MATRIX
 

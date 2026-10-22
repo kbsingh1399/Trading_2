@@ -761,6 +761,17 @@ async def post_prompt_to_arena_single(ws_url: str, prompt_text: str, tab_label: 
             await cdp_call("Page.bringToFront", timeout=3.0)
             await asyncio.sleep(0.3)
 
+            # 0.1 Inviolable Generation Guard: Never dispatch if Arena is currently generating!
+            js_check_gen = """(() => {
+                const stopBtn = document.querySelector('button[aria-label*="Stop"], button[title*="Stop"]');
+                return Boolean(stopBtn);
+            })()"""
+            check_gen = await cdp_call("Runtime.evaluate", {"expression": js_check_gen, "returnByValue": True}, timeout=3.0)
+            is_busy = check_gen.get("result", {}).get("result", {}).get("value", False)
+            if is_busy:
+                print(f"[{tab_label}] REFUSED: Arena is currently generating! Aborting prompt dispatch.", file=sys.stderr)
+                return False
+
             # Auto-dismiss any modal/review popup blocking the editor
             await cdp_call("Input.dispatchKeyEvent", {"type": "rawKeyDown", "windowsVirtualKeyCode": 27, "code": "Escape", "key": "Escape"}, timeout=1.0)
             await cdp_call("Input.dispatchKeyEvent", {"type": "keyUp", "windowsVirtualKeyCode": 27, "code": "Escape", "key": "Escape"}, timeout=1.0)

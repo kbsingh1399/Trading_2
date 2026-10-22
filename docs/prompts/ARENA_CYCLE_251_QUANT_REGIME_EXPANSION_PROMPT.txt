@@ -1,0 +1,72 @@
+# 🏛️ CO-EQUAL QUANT COUNCIL: STRATEGIC REGIME EXPANSION & SPEC AMENDMENT PROMPT
+**Author**: Antigravity Quantitative Trading Desk  
+**Target Council**: Arena.ai Co-Equal Investment Council & External Red-Team Models  
+**Reference Repository**: `https://github.com/kbsingh1399/Trading_2` (Branch: `main`)  
+**Canonical Spec Under Review**: `docs/specs/STANDARDIZED_TRADING_DECISION_CHAIN.md`  
+**Master Data Warehouse**: `Data/DataBase_Trading.xlsx` (33 Production Worksheets, 1.61M cells, Sheet 33 '20_Auction_Market_Structure')  
+**Target Environment**: MetaTrader 5 Funded Evaluation (#5064568, Blueberry Markets)  
+**Realized Equity**: 4,834.83 USD | Hard Floor: 4,775.00 USD (Cushion: +59.83 USD) | Buffer: 4,795.00 USD (Cushion: +39.83 USD)  
+**Target**: 5,500.00 USD (Gap: +665.17 USD) | Runway: ~37.0 hours remaining  
+
+---
+
+### EXECUTIVE INQUIRY FROM OPERATOR & LIVE TRADING DESK
+
+Our live trading desk has achieved complete 33-sheet data warehouse automation, 0 formula errors, and flawless execution mechanics. However, an operational and mathematical limitation has been identified in our strategy generation chain:
+
+> **"Currently, our setup discovery and regime gating are almost entirely dependent on VWAP and VWAP Z-score deviations (|Z| >= 2.0 SD for Model 1 Mean Reversion, |Z| < 2.0 SD for Model 2 Trend Pullback). From an institutional quant perspective, strong trends dynamically drag VWAP with price, suppressing |Z| and causing us to miss sustained trend-following expansions or attempt counter-trend mean reversion prematurely. How do we systematically expand our strategy repertoire to capture both robust Trend Following and Mean Reversion setups from an orderflow and auction market microstructure standpoint, and how should we update `STANDARDIZED_TRADING_DECISION_CHAIN.md` accordingly?"**
+
+---
+
+### SECTION 1: CRITIQUE OF CURRENT VWAP-CENTRIC ARCHITECTURE
+
+Please deliver a rigorous quantitative critique of our current 2-model paradigm:
+1. **The Dynamic VWAP Drift Problem**: In persistent momentum trends, VWAP adjusts continuously with traded volume. Price can trend 3x to 5x ATR while remaining within |Z| = 0.8 to 1.6 SD. How does sole reliance on VWAP Z-score blind the desk to trending regimes?
+2. **The Chop / Noise Trap**: In low-volatility rotational balance, price frequently touches |Z| = 1.0 to 2.0 SD without any true mean-reversion edge, resulting in false counter-trend signals if orderbook absorption is absent.
+
+---
+
+### SECTION 2: THE 33-SHEET MICROSTRUCTURE WEAPONRY AVAILABLE
+
+We have 33 live worksheets in `Data/DataBase_Trading.xlsx` updated continuously:
+- **Sheet 33 (`20_Auction_Market_Structure`)**: Tracks 54 MT5 assets with Daily/Weekly POC, VAH, VAL, Prior Day Extremes, Session Extremes (Asian, London, NY), Initial Balance (IB High/Low), and Value Area Status.
+- **Sheet 26 (`18_CVD`)**: 1m, 5m, 15m, 1h, and Session Cumulative Volume Delta for Spot and Futures, with delta divergence (`zc_div`).
+- **Sheet 18 (`10_Whale_Orders`) & Sheet 25 (`17_Orderbook`)**: L2/L3 orderbook depth, resting whale walls (>= $100K USD), persistence status (>= 180s), and depth imbalance.
+- **Sheet 07 (`5_OI`) & Sheet 08 (`5_Funding_Rate`)**: Open Interest changes (1h, 4h, 24h) and cross-exchange funding rates across 12 venues.
+- **Sheet 10–17, 22 (`Liq Maps & Max Pain`)**: Clustered liquidation heatmaps, continuous dollar-by-dollar liquidation ladders, and Max Pain strikes.
+- **Sheet 23 (`15_Hyperdash_Stops_Map`)**: Retail stop-loss clusters and sweep vulnerability levels.
+- **Sheet 02 (`2_Spot_Netflow_S`) & Sheet 06 (`4_Hyperliquid_Analysis`)**: 500-asset CEX spot netflow and 2,001 on-chain Hyperliquid L1 whale positions.
+
+---
+
+### SECTION 3: REQUESTED QUANTITATIVE SOLUTIONS
+
+From an institutional quantitative perspective, define the exact mathematical and microstructure conditions for:
+
+#### 1. Robust Trend-Following Setups (Beyond VWAP Pullback):
+- **Model A: Auction Market Structure Value Area Acceptance & Expansion**:
+  * How should we define and detect Value Area Expansion when price breaks out of Prior Day Value Area (`Price > VAH` or `Price < VAL`)?
+  * What time and volume threshold confirms "acceptance" (e.g. 2 consecutive 15m bar closes, high-volume node formation) vs "failed auction"?
+- **Model B: Orderflow Momentum Continuation & Liquidation Vacuum Drive**:
+  * Formulate quantitative rules combining CVD acceleration (`dCVD/dt`), rising Open Interest (`dOI/dt > 0`), and liquidation band penetration.
+  * How do we enter pro-trend without chasing market spread (passive limit pullbacks into re-tested breakout shelves)?
+
+#### 2. Advanced Mean-Reversion Setups (Beyond VWAP Z-Score Extremes):
+- **Model C: Auction Value Area Failure & Excess Rejection Tails**:
+  * Price probes outside VAH/VAL or Prior Day High/Low, fails to find acceptance, prints a low-volume rejection tail (wick), and CVD shows aggressive market orders getting absorbed.
+  * Target: Complete rotation across the Value Area toward opposite VAL/VAH and Volume POC.
+- **Model D: Liquidation Climax & Stop Sweep Exhaustion**:
+  * Price sweeps through a dense retail stop cluster (Sheet 23) or liquidation band (Sheet 22), volume spikes, and tick CVD prints an instantaneous absorption divergence (`zc_div > 0.8` with `Delta Spot > 0`).
+
+---
+
+### SECTION 4: EXACT SPEC AMENDMENTS TO `STANDARDIZED_TRADING_DECISION_CHAIN.md`
+
+Provide the exact, drop-in replacement Markdown text for:
+1. **Step 4: Multi-Timeframe Auction & Structural Regime Classification** (incorporating Sheet 33 Value Area Acceptance vs Balance).
+2. **Step 5: Quad-Engine Strategy Dialectic**:
+   - Engine 1: Extreme Mean Reversion (Model 1A: VWAP 2SD + Model 1B: Value Area Rejection / Climax Sweep)
+   - Engine 2: Microstructure Trend Following (Model 2A: Value Area Expansion + Model 2B: Structural Shelf / EMA Pullback)
+3. **Stand-Aside Invariants**: Precise mathematical gates when neither engine has positive expected value.
+
+Be mathematically rigorous, forensic, and direct. No generic trading platitudes. Cite exact sheet names, column metrics, and threshold bounds.

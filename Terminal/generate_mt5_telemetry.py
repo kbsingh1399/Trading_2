@@ -17,6 +17,7 @@ import datetime
 import json
 import logging
 import os
+import shutil
 import pathlib
 import sys
 import time
@@ -84,8 +85,9 @@ def harvest_mt5_telemetry() -> dict:
     hard_cushion = round(equity - HARD_FLOOR_USD, 2)
     operating_cushion = round(equity - OPERATING_BUFFER_USD, 2)
 
-    # Dynamic capacity sizing
-    # Under hard floor defense, risk budget is capped by operating cushion
+    # Dynamic capacity sizing (Operator Mandate: Max 4 running filled positions across orthogonal clusters)
+    # Resting limit orders do NOT consume slots until filled.
+    # Risk budget per trade is strictly 12.00–15.00 USD nominal, preserving buffer.
     if operating_cushion <= 0:
         max_positions = 0
         status_msg = "CAPITAL_PRESERVATION_HALT: Operating buffer breached"
@@ -94,13 +96,13 @@ def harvest_mt5_telemetry() -> dict:
         status_msg = f"DEFENSIVE_MODE: Cushion ({operating_cushion} USD) < Base Risk ({BASE_RISK_USD} USD)"
     elif operating_cushion < (BASE_RISK_USD * 2):
         max_positions = 1
-        status_msg = "NOMINAL_DEFENSE: Max 1 position active"
+        status_msg = "NOMINAL_DEFENSE: Max 1 initial filled position active (4 running slots authorized upon Early-BE)"
     elif operating_cushion < (BASE_RISK_USD * 3):
         max_positions = 2
-        status_msg = "STANDARD_OPERATION: Max 2 positions active"
+        status_msg = "STANDARD_OPERATION: Max 2 filled positions active (4 running slots authorized upon Early-BE)"
     else:
-        max_positions = 3
-        status_msg = "FULL_CAPACITY: Max 3 positions active"
+        max_positions = 4
+        status_msg = "FULL_CAPACITY: Max 4 running filled positions authorized across orthogonal clusters"
 
     # Instrument quotes & spreads
     instrument_quotes = {}
@@ -220,11 +222,18 @@ def harvest_mt5_telemetry() -> dict:
         json.dump(telemetry_payload, f, indent=2)
     os.replace(temp_path, TELEMETRY_PATH)
 
-    # Also mirror to live_snapshot_latest.json
+    # Also mirror to live_snapshot_latest.json in both Data/telemetry and docs/telemetry
     temp_snap = SNAPSHOT_PATH.with_suffix(".tmp")
     with open(temp_snap, "w", encoding="utf-8") as f:
         json.dump(telemetry_payload, f, indent=2)
     os.replace(temp_snap, SNAPSHOT_PATH)
+
+    docs_snap = ROOT_DIR / "docs" / "telemetry" / "live_snapshot_latest.json"
+    try:
+        docs_snap.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(SNAPSHOT_PATH, docs_snap)
+    except Exception as e:
+        log.warning(f"Could not mirror to docs/telemetry: {e}")
 
     log.info(f"MT5 Telemetry harvested in {duration_sec}s. Equity: {equity} USD | Cushion: {operating_cushion} USD | Open: {len(open_positions)}")
     return telemetry_payload
