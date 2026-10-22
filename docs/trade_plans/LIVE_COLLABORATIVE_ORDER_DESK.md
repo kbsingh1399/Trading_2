@@ -33,10 +33,10 @@
 * **Ticket #19174858** (`SOLUSD.p` BUY 0.10 lots):
   - **Status**: **FILLED & RUNNING IN PROFIT**
   - **Fill Price**: **106.80 USD** | Open Timestamp: 2026-10-21 23:49:13 UTC
-  - **Current Price**: **107.17–107.25 USD** (Floating PnL: **+$3.70 to +$4.50 USD** / +0.22 to +0.26R0)
+  - **Current Price**: **107.19 USD** (Floating PnL: **+$3.90 USD** / +0.23R0)
   - **Active Stop Loss**: **105.10 USD** (Risk Distance: 1.70 pts | Cash Risk: -$17.00 USD nominal / -$23.25 USD stressed)
   - **Calibrated Take Profit**: **107.65 USD** (+0.85 pts = **+$8.50 USD** / +0.50R0 cash target)
-  - **Microstructure Alignment**: TP calibrated at 107.65 USD front-runs the 107.72 VAH and 4.45M USD L3 ask wall at 107.72–107.80 USD (geometry PASS verified by Arena E2; no blocker >= $500K). SL at 105.10 USD sits safely behind the verified 6.73M–8.34M USD institutional bunker at 105.30–105.41 USD.
+  - **Microstructure Alignment**: TP calibrated at 107.65 USD front-runs the 107.72 VAH and 4.45M USD L3 ask wall at 107.72–107.80 USD (geometry PASS verified by Arena E2; no blocker >= $500K). SL at 105.10 USD sits safely behind the verified 6.73M–8.34M USD institutional bunker at 105.30–105.48 USD.
   - **Dynamic Ratchet Triggers**:
     * **Early-BE Lock (+0.80R0)**: Trigger @ 108.16 USD -> Move SL to 106.97 USD (+0.10R0 lock).
     * **Phase 1 Profit Lock (+1.50R0)**: Trigger @ 109.35 USD -> Move SL to 108.16 USD (+0.80R0 lock).
@@ -60,9 +60,9 @@
    - Status: Qualified candidate on Watchlist.
 
 ### Floor Cushion & Joint Risk Summary:
-* **Account Balance**: **4,851.83 USD** | **Equity**: **4,855.53 USD**
-* **Absolute Hard Floor**: **4,775.00 USD** (Cushion: **+80.53 USD**)
-* **Operating Buffer**: **4,795.00 USD** (Cushion: **+60.53 USD**)
+* **Account Balance**: **4,851.83 USD** | **Equity**: **4,855.73 USD**
+* **Absolute Hard Floor**: **4,775.00 USD** (Cushion: **+80.73 USD**)
+* **Operating Buffer**: **4,795.00 USD** (Cushion: **+60.73 USD**)
 * **Stressed Post-Loss Equity**: **4,828.58 USD** (Preserves **+33.58 USD** surplus above operating buffer and **+53.58 USD** above hard floor).
 * **Slots Utilization**: 1 / 2 occupied (1 filled, 0 pending limits). Exactly 1 orthogonal slot remains available under conservative risk rules.
 
