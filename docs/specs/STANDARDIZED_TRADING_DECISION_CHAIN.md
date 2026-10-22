@@ -139,6 +139,57 @@ Under strict hedge fund operational governance, **the desk is forbidden from ski
 | **26** | `18_CVD` | **Multi-Asset Continuous CVD Engine** | `Timestamp UTC`, `Asset`, `Close Price`, `Spot Taker Buy Vol`, `Spot Taker Sell Vol`, `Spot CVD Delta`, `Futures Taker Buy Vol`, `Futures Taker Sell Vol`, `Futures CVD Delta`, `Spot vs Futures CVD Divergence (zc_div)`, `Cumulative CVD 1m, 5m, 15m, 1h, Session`, `CVD Z-Score`. | Core Pillar 2 Confluence: Evaluates aggressive market buying vs selling across spot and perp. Confirms institutional accumulation when Delta Spot > 0 and Delta Futures < 0 with zc_div > 0.8. |
 | **27** | `19_News` | **Forex Factory Breaking News Feed** | `Headline`, `URL`, `Timestamp / Time Ago`, `Currency`, `Impact (High/Med/Low)`, `Source / Tag`, `Summary / Description`, `Institutional Relevance`, `Timestamp UTC`. | Real-time institutional newsfeed. Flags breaking central bank comments, geopolitical tensions, and emergency market developments. |
 | **28** | `19_Calendar` | **Forex Factory Macroeconomic Calendar**| `Date`, `Time UTC`, `Currency`, `Impact (Red/Orange/Yellow/Grey)`, `Event Name`, `Detail / Description`, `Actual`, `Forecast`, `Previous`, `Deviation / Surprise`, `Trade Blackout Window`, `Timestamp UTC`. | Sovereign Macro Defense Gate: Enforces the mandatory blackout window (+-15m for Crypto, +-35m for TradFi) around high-impact red-folder releases (CPI, FOMC, NFP, GDP, Interest Rates). |
+| **29** | `00_MT5_Account_Telemetry` | **Live MT5 Account Telemetry & Spreads** | `Balance`, `Equity`, `Free Margin`, `Hard Floor Cushion`, `Buffer Cushion`, `Open Positions Count`, `Pending Orders Count`, `Universe Quotes`, `Spread Points`, `Spread BPS`, `Spread Status`, `Timestamp UTC`. | Live MT5 execution broker grounding. Audits live equity cushion above 4,775 USD floor, enforces real-time spread ceilings, and tracks active MT5 ticket excursions. |
+| **30** | `Top_Institutions` | **Institutional Whale Holders & Allocations** | `Rank`, `Institution/Entity`, `Holdings (BTC/ETH)`, `USD Notional`, `AUM %`, `Portfolio Weight`, `Filing Date`, `Net Change 30D`, `Timestamp UTC`. | Discloses deep institutional whale balance sheets (MicroStrategy, BlackRock, Fidelity). Identifies macro custody accumulations. |
+| **31** | `ETF_Market_Overview` | **Aggregate ETF Market Cap & Volume Heatmap** | `Category`, `Total Net Inflow (USD)`, `Total Volume (USD)`, `Total AUM`, `Day-over-Day %`, `Week-over-Week %`, `Leading ETF`, `Timestamp UTC`. | Macro TradFi capital velocity across spot ETFs. Confirms systemic ETF liquidity tailwinds. |
+| **32** | `20_Auction_Market_Structure` | **Auction Market Structure & Volume Profile** | `Asset`, `Daily POC`, `Daily VAH`, `Daily VAL`, `Weekly POC`, `Weekly VAH`, `Weekly VAL`, `Session POC`, `Session High`, `Session Low`, `Value Area State`, `RVOL-15M`, `Auction Bias`, `Timestamp UTC`. | Ground-truth auction profiling. Maps Volume Profile POC/VAH/VAL shelves, determines Value Area State (INSIDE_VALUE vs ABOVE/BELOW_VALUE), and validates Model 1 vs Model 2 execution shelves. |
+
+---
+
+## SECTION 1.7: THE CANONICAL 156-ASSET MULTI-ASSET MT5 UNIVERSE & OPERATOR RISK EXPANSION PROTOCOL (OPERATOR MANDATE)
+
+> **MANDATORY ASSET UNIVERSE & EXPANDED RISK DIRECTIVE**:
+> Per explicit operator directive, the Antigravity Autonomous Decision Desk is fully authorized to scan, evaluate, and trade across the entire **156-asset universe** available on the Blueberry Markets funded MetaTrader 5 account (#5064568).
+> Furthermore, the operator has granted explicit permission to **exceed legacy risk parameters** so that capital can be actively deployed across multiple high-conviction assets to accelerate achieving the **5,500.00 USD** equity target before Friday, 23rd October 2026.
+
+### 1. The Full 156-Asset Multi-Asset MT5 Universe (from `Data/Assets/mt5_full_symbol_universe.json` & `Terminal/Asset_Universe.py`)
+
+The desk operates across 6 major asset classes comprising exactly 156 tradable instruments on MetaTrader 5:
+
+| Asset Class | Total Count | MT5 Broker Symbols & Instruments | Primary Execution Filters |
+|---|---|---|---|
+| **Cryptos_Raw (Majors)** | 5 | `BTCUSD.pi, ETHUSD.pi, SOLUSD.p, LTCUSD.pi, XRPUSD.pi` *(plus BNBUSD.p, DOTUSD.pi)* | Spread <= 25.0 bps (BTC ~1.8 bps, ETH ~12 bps). High liquidity, dense L2/L3 orderbooks, continuous CVD. |
+| **Cryptos (Alts & DeFi)** | 53 | `ADAUSD.p, BCHUSD.p, LNKUSD.p, XLMUSD.p, AVXUSD.p, DOGUSD.p, FILUSD.p, GRTUSD.p, NERUSD.p, TRXUSD.p, UNIUSD.p, VETUSD.p, XMRUSD.p, AVEUSD.p, ALGUSD.p, ATMUSD.p, AXSUSD.p, CHZUSD.p, COMUSD.p, EGLUSD.p, FLWUSD.p, IOTUSD.p, KSMUSD.p, NEOUSD.p, XSIUSD.p, THTUSD.p, XTZUSD.p, ZECUSD.p, MANUSD.p, INCUSD.p, ARWUSD.p, BATUSD.p, CELUSD.p, CHRUSD.p, CRVUSD.p, ENJUSD.p, BARUSD.p, LRCUSD.p, KAVUSD.p, KNCUSD.p, ONTUSD.p, QTMUSD.p, SNDUSD.p, SKLUSD.p, SNXUSD.p, STOUSD.p, SXPUSD.p, YFIUSD.p, ZILUSD.p, ZRXUSD.p, DSHUSD.p` | Spread <= 25.0 bps. Qualified: BCH (21.1 bps), AAVE (22.2 bps), SOL (23.9 bps). Disqualified: DOGE (264 bps), ADA (101 bps). |
+| **Global Equity Indices** | 16 | **US & Europe**: `NAS100.p, SP500.p, DJ30.p, US2000.p, UK100.p, GER40.p, GER30.p, FR40.p, STOXX50.p, NETH25.p, SWISS20.p`<br/>**Asia-Pacific**: `JP225.p, AU200.p, HK50.p, CHINA50.p, CHINAH.p` | Spread <= 5.0 bps (DJ30 0.22 bps, SP500 0.31 bps, NAS100 0.34 bps, UK100 0.40 bps). NY/London cash session hours. |
+| **Commodities_Raw (Precious Metals)** | 14 | `XAUUSD.pi (Gold), XAGUSD.pi (Silver), XPTUSD.pi (Platinum), XPDUSD.pi (Palladium), XAUEUR.pi, XAUAUD.pi, XAUGBP.pi, XAUSGD.pi, XAUCNH.pi, GAUUSD.pi, GAUCNH.pi, XAGEUR.pi, XAGAUD.pi, XAGSGD.pi` | Spread <= 5.0 bps (Gold 0.20 bps, Silver 1.50 bps). Sovereign whale bunkers, macro safe-haven flows. |
+| **Commodities (Energy & Industrial Metals)** | 8 | `UKBRENT.p (Brent Crude), USWTI.p (WTI Crude), GAS.p (Natural Gas), ALUMINIUM.p, COPPER.p, LEAD.p, NICKEL.p, ZINC.p` | Spread <= 5.0 bps (USWTI ~3.0 bps). EIA inventories and OPEC headline defense. |
+| **Forex_Raw (G10 Majors & Minors)** | 28 | **Majors (7)**: `EURUSD.pi, GBPUSD.pi, USDJPY.pi, AUDUSD.pi, USDCAD.pi, USDCHF.pi, NZDUSD.pi`<br/>**Liquid Crosses (21)**: `EURGBP.pi, EURJPY.pi, GBPJPY.pi, AUDJPY.pi, CADJPY.pi, CHFJPY.pi, EURAUD.pi, EURCAD.pi, EURCHF.pi, EURNZD.pi, GBPAUD.pi, GBPCAD.pi, GBPCHF.pi, GBPNZD.pi, AUDCAD.pi, AUDCHF.pi, AUDNZD.pi, CADCHF.pi, NZDCAD.pi, NZDCHF.pi, NZDJPY.pi` | Spread <= 5.0 bps (EURUSD 0.09 bps, GBPUSD 0.15 bps, USDJPY 0.12 bps). Mandatory 21:30–22:30 UTC rollover blackout. |
+| **Forex_Raw (Exotics & EM Pairs)** | 32 | `USDSGD.pi, USDCNH.pi, USDHKD.pi, USDMXN.pi, USDZAR.pi, USDNOK.pi, USDSEK.pi, USDHUF.pi, USDTHB.pi, AUDSGD.pi, AUDCNH.pi, CHFSGD.pi, CNHJPY.pi, EURCNH.pi, EURHKD.pi, EURHUF.pi, EURMXN.pi, EURNOK.pi, EURSEK.pi, EURSGD.pi, EURZAR.pi, GBPCNH.pi, GBPHKD.pi, GBPNOK.pi, GBPSEK.pi, GBPSGD.pi, NOKJPY.pi, NOKSEK.pi, NZDCNH.pi, NZDSGD.pi, SGDJPY.pi, ZARJPY.pi` | Spread <= 15.0 bps during liquid London/NY overlap; standby during off-peak sessions. |
+
+---
+
+### 2. Operator Authorization to Exceed Risk & Dynamic Multi-Asset Capacity
+
+Under explicit operator authorization, the desk has transitioned from legacy single-trade constraints into an **Institutional Multi-Asset Scaling Architecture**:
+
+1. **Expanded Nominal Risk Envelope**:
+   - **Standard Nominal Risk**: **15.00 to 20.00 USD per trade** (0.31% to 0.41% equity).
+   - **Pristine Confluence Risk Rights (Operator Permission to Exceed Risk)**: Authorized to scale nominal risk up to **25.00 to 35.00 USD per trade** (0.51% to 0.72% equity) for pristine 5-pillar confluence setups (e.g. BTC or Gold anchored directly behind verified whale walls with persistence >= 180s, positive CVD absorption, and spread <= 2.0 bps).
+2. **4-Slot Orthogonal Portfolio Capacity**:
+   - Authorized to maintain up to **4 concurrent filled positions** running simultaneously across independent, non-correlated asset clusters:
+     * **Slot 1 (Crypto)**: BTCUSD.pi, ETHUSD.pi, SOLUSD.p, or BCHUSD.p
+     * **Slot 2 (Global Indices)**: NAS100.p, SP500.p, DJ30.p, or UK100.p
+     * **Slot 3 (Commodities / Metals)**: XAUUSD.pi, XAGUSD.pi, or USWTI.p
+     * **Slot 4 (Forex Majors)**: EURUSD.pi, GBPUSD.pi, or USDJPY.pi
+3. **Limit Order Non-Consumption Invariant**:
+   - A portfolio slot is consumed **ONLY when an order executes into an active running position**. Resting pending limit orders do **NOT** consume filled capacity slots. Up to 5 resting limits may be staged concurrently at structural whale shelves.
+4. **Dynamic Buffer Defense & Head-Room Release (Frozen R0 Ratchet)**:
+   - **Stressed Loss Invariant**: Every single fill must satisfy:
+     `Stressed Equity = Current Equity - (Risk * 1.25 + 2.00 USD) >= 4,795.00 USD`
+     *(At 20.00 USD nominal risk, stressed loss is 27.00 USD, leaving 4,807.83 USD, which guarantees a **+12.83 USD surplus above the 4,795.00 USD operating buffer**).*
+   - **Early-BE Capacity Release**: The instant Position 1 reaches +0.75R0 to +0.80R0 profit, its Stop Loss is moved to Entry + 0.10R0. Committed risk on Position 1 instantly drops to **0.00 USD** (preserving capital with zero downside), which immediately releases risk capacity to stage and fill Position 2, Position 3, or Position 4 across the 156-asset universe!
+5. **Strict Spread Friction Gate**:
+   - Expanded risk rights do **NOT** permit trading wide-spread or illiquid instruments. Every asset must strictly satisfy its Spread Gate (Crypto <= 25.0 bps, TradFi <= 5.0 bps) at the moment of order placement.
 
 ---
 
