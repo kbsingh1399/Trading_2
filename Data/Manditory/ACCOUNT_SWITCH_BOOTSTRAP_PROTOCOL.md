@@ -33,14 +33,26 @@ flowchart TD
 ```
 
 ### STEP 1: INGEST CORE GOVERNANCE & MEMORY (ZERO AMNESIA)
-1. Physical Reading Gate: Physically load and read the following core files using `read_file`:
-   - `Data/Manditory/GOAL.md` (Active mission anchor, target 5,500.00 USD, runway to Oct 23, 2026)
-   - `.agents/rules/ACTIVE_CONTEXT.md` (Real-time live account state, open positions, floor cushions)
-   - `.agents/memory/session_chat_history.md` (Tail 100 lines — recent turns, avoided traps, lost trade autopsies)
-   - `Data/Manditory/AUTONOMOUS_WAKEUP_CHECKLIST.md` (10-Step autonomous sequence)
-   - `docs/specs/STANDARDIZED_TRADING_DECISION_CHAIN.md` (Canonical 10-Step Quant SOP)
-   - `Data/Manditory/TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Lethal trading traps)
-2. Compliance Header: Emit the mandatory acknowledgment line at the top of your response:
+1. **Token Preservation Mandate (Query AST Graph FIRST)**:
+   - Always query the AST Knowledge Graph via `/graphify` or `python -m graphify query "<concept/symbol>"` (or MCP tool `query_graph_tool`) before reading large Python or code files. `graphify-out/graph.json` contains 7.4k parsed code nodes and relationships, providing instant structural context in <500 tokens.
+2. **Physical Reading Gate (Read ALL Files Line-by-Line for Full Context)**:
+   - The coordinator and all subagents MUST physically load and read ALL 12 active canonical files in `Data/Manditory/` line-by-line using `read_file` to ingest complete operational context and quantitative rigor (zero skimming, zero truncation):
+     * `Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md` (Canonical Quant Trading SOP & 5-Pillar Confluence Engine)
+     * `Data/Manditory/AUTONOMOUS_WAKEUP_CHECKLIST.md` (Canonical Autonomous Wake-Up Checklist — read and executed in full depth, line-by-line)
+     * `Data/Manditory/ACCOUNT_SWITCH_BOOTSTRAP_PROTOCOL.md` (Turn-0 Reconnection & Bootstrap Master Protocol)
+     * `Data/Manditory/SUBAGENT_PROMPT_TEMPLATES.md` (Tier 2 Big Prompts for 4-Subagent Swarm on Gemini 3.8 Flash)
+     * `Data/Manditory/ARENA_STANDARD_PROMPT_TEMPLATE.md` (3-Persona Affirmative Candidate Discovery Specification for Arena.ai)
+     * `Data/Manditory/TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Lethal trading traps, slippage autopsies, ratchet mechanics)
+     * `Data/Manditory/32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md` (32 forensic sheet inspection questions)
+     * `Data/Manditory/OPERATOR_ISSUES_AND_RESOLUTIONS_CHECKLIST.md` (Operator-mandated resolutions & invariant tracker)
+     * `Data/Manditory/CONTINUOUS_KAIZEN_SELF_IMPROVEMENT_PROTOCOL.md` (Session history learning & anti-regression protocol)
+     * `Data/Manditory/GOAL.md` (Active mission anchor, target 5,500.00 USD, runway to Oct 23, 2026)
+     * `Data/Manditory/PASS_BLUEBERRY_PHASE_1_BY_OCT_23_2026.md` (Challenge rules, 4,775 USD floor, 4,795 USD buffer)
+     * `Data/Manditory/ANTIGRAVITY_ARENA_THINKING_CHAIN_COUNCIL_PROTOCOL.md` (Council thinking chain & dialectic synthesis)
+   - Also physically load and review:
+     * `.agents/rules/ACTIVE_CONTEXT.md` (Real-time live account state, open positions, floor cushions)
+     * `.agents/memory/session_chat_history.md` (Full conversation trajectory, past setbacks, operator directives — zero amnesia)
+3. **Compliance Header**: Emit the mandatory acknowledgment line at the top of your response:
    ```
    ✅ AGENTS.md fully loaded — All 12 Core Domains & Execution Protocols Activated.
    > 📚 Active Skills Loaded & Applied: @[quant-analyst], @[clean-code], @[systematic-debugging]
@@ -100,8 +112,8 @@ flowchart TD
    - Purpose: Cycles full pipeline continuously with an exact 5-minute (300s) cooldown gap between cycles. Maintains fresh orderbook, CVD, liq maps, and technical data in `Data/DataBase_Trading.xlsx` with zero race conditions (workers=1 atomic safety).
 
 2. **Daemon 2 (20-Minute Cron Sentry)**:
-   - Tool Call: `schedule(CronExpression="0,20,40 * * * *", IsDaemon=true, Prompt="20-MINUTE AUTONOMOUS WAKE-UP AUDIT (MANDATORY CANONICAL QUANT SOP):\n1. MANDATORY CHECKLIST CHECK: Sequentially execute and audit all 10 steps of @[docs/specs/AUTONOMOUS_WAKEUP_CHECKLIST.md] and @[Data/Manditory/ACCOUNT_SWITCH_BOOTSTRAP_PROTOCOL.md].\n2. MASTER 33-SHEET EXCEL INTEGRITY: Verify all 33 sheets of Data/DataBase_Trading.xlsx (Liquidation Ladders Sheets 10-17 & 22, Retail Stops Map Sheet 23, Whale Bunkers Sheets 18 & 25, CVD Delta Sheet 26, Auction Structure Sheet 33). Verify <= 15m freshness and 0 formula errors.\n3. SUBAGENT SWARM DISPATCH: Immediately invoke 4 subagents (Model='flash') using Tier 2 Big Prompts from Data/Manditory/SUBAGENT_PROMPT_TEMPLATES.md citing @[docs/specs/STANDARDIZED_TRADING_DECISION_CHAIN.md]: Orderflow Analyst, Position Manager, Macro Risk Analyst, Excel Data Quality Auditor.\n4. ARENA.AI COUNCIL DISPATCH: Ingest surgical red-team prompt to Arena.ai via Chrome CDP port 9222.\n5. PRE-CONDITION TRIGGER CHECKLIST & CONFLUENCE EVALUATION: Cross-verify subagent research against Arena.ai output. Check Pre-Condition Trigger Checklist for BTC, Gold, SOL, NAS100 across liquidation maps, stop sweeps, whale persistence, CVD absorption, and spread gates.\n6. AUTONOMOUS MT5 EXECUTION: If all checkable pre-conditions pass, immediately punch passive limit order into MT5. If conditions not met, strictly maintain 100% flat cash defense.\n7. CLEAN PRUNING: Cleanly prune subagents via manage_subagents(Action='kill_all'). Stand by for next trigger.")`
-   - Purpose: Autonomous wake-up at 20th, 40th, and 60th/00th minute for systematic desk audits ensuring parent agent strictly executes all 10 steps of AUTONOMOUS_WAKEUP_CHECKLIST.md.
+   - Tool Call: `schedule(CronExpression="0,20,40 * * * *", IsDaemon=true, Prompt="20-MINUTE AUTONOMOUS WAKE-UP AUDIT (MANDATORY CANONICAL QUANT SOP):\n1. MANDATORY GOVERNANCE & MEMORY INGESTION: Sequentially execute and audit all sections of @[Data/Manditory/AUTONOMOUS_WAKEUP_CHECKLIST.md] and @[Data/Manditory/ACCOUNT_SWITCH_BOOTSTRAP_PROTOCOL.md] line-by-line in full depth.\n2. AST KNOWLEDGE GRAPH & TOKEN PRESERVATION: Query /graphify or python -m graphify query before reading large files.\n3. MASTER 33-SHEET EXCEL INTEGRITY: Verify all 33 sheets of Data/DataBase_Trading.xlsx (Liquidation Ladders Sheets 10-17 & 22, Retail Stops Map Sheet 23, Whale Bunkers Sheets 18 & 25, CVD Delta Sheet 26, Auction Structure Sheet 33). Verify <= 15m freshness and 0 formula errors.\n4. SUBAGENT SWARM DISPATCH: Immediately invoke 4 subagents (Model='flash' - Gemini 3.8 Flash) using Tier 2 Big Prompts from Data/Manditory/SUBAGENT_PROMPT_TEMPLATES.md citing @[Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md]: Orderflow Analyst, Position Manager, Macro Risk Analyst, Excel Data Quality Auditor.\n5. ARENA.AI CANDIDATE DISCOVERY DISPATCH: Ingest affirmative candidate discovery prompt to Arena.ai via Chrome CDP port 9222, tasking Arena.ai to evaluate all 156 assets across 3 quantitative personas (Orderflow Analyst, Position Manager, Macro Risk Analyst — excluding Excel checker) for high-confluence trade candidates.\n6. PRE-CONDITION TRIGGER CHECKLIST & CONFLUENCE EVALUATION: Cross-verify subagent research against Arena.ai output. Check Pre-Condition Trigger Checklist across the entire 156-asset universe (Crypto, Forex, Metals, Indices) across liquidation maps, stop sweeps, whale persistence (>= 180s), CVD absorption, and dynamic friction gates.\n7. AUTONOMOUS MT5 EXECUTION: If all checkable pre-conditions pass, immediately punch passive limit order into MT5. If conditions not met, strictly maintain 100% flat cash defense.\n8. CLEAN PRUNING: Cleanly prune subagents via manage_subagents(Action='kill_all'). Stand by for next trigger.")`
+   - Purpose: Autonomous wake-up at 20th, 40th, and 60th/00th minute for systematic desk audits ensuring parent agent strictly executes all checklists and SOPs line-by-line in complete depth.
 
 3. **Daemon 3 (Arena Completion Daemon)**:
    - Tool Call: `run_command(CommandLine="python Terminal/arena_completion_daemon.py --daemon", IsDaemon=true, WaitMsBeforeAsync=500, toolSummary="Launch Arena Completion Daemon")`
@@ -134,18 +146,18 @@ Verify that `Data/DataBase_Trading.xlsx` is fresh, uncorrupted, and has zero for
 > 🛑 **MANDATORY BIG PROMPT INVARIANT (STRICT OPERATOR DIRECTIVE)**:
 > The coordinator is **strictly FORBIDDEN** from dispatching lightweight, summarized, or truncated prompts to subagents.
 > On EVERY turn, cycle, and bootstrap re-engagement, the coordinator MUST copy and inject the **FULL UNABRIDGED TIER 2 BIG PROMPTS** (~350–500 tokens each) from `Data/Manditory/SUBAGENT_PROMPT_TEMPLATES.md` (Part 2) into each subagent.
-> Every subagent prompt MUST explicitly include `@[c:\Users\SIGMA\Documents\Trading_2\docs\specs\STANDARDIZED_TRADING_DECISION_CHAIN.md]` as the first non-bypassable reading requirement. Short prompts fail to audit all 33 sheets line-by-line and are considered an immediate protocol violation.
+> Every subagent prompt MUST explicitly include `@[Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md]` as the first non-bypassable reading requirement. Short prompts fail to audit all 33 sheets line-by-line and are considered an immediate protocol violation.
 
-1. **Track A (Internal Subagent Fleet Invocation with Tier 2 Big Prompts)**:
-   - Immediately invoke all 4 specialized subagents simultaneously using `invoke_subagent` (`Model='flash'`):
-     * **Subagent 1: Orderflow Analyst** (`Role='Orderflow Analyst', Model='flash'`): Injected with Full Tier 2 Big Prompt covering Sheets 00–28, 30 (`20_Auction_Market_Structure`), mandatory citation of `STANDARDIZED_TRADING_DECISION_CHAIN.md`, full 156-asset universe scan (Terminal/multi_asset_opportunity_scanner.py), spread gates across Forex/Commodities/Indices/Crypto, 5-pillar confluence, L2/L3 orderbook depth, resting whale bunkers, CVD divergence, and Potential Candidate Radar Checklist.
-     * **Subagent 2: Position Manager** (`Role='Position Manager', Model='flash'`): Injected with Full Tier 2 Big Prompt covering mandatory citation of `STANDARDIZED_TRADING_DECISION_CHAIN.md`, MT5 telemetry, ratchet progression, stressed capacity audit strictly enforcing 1-position slot under +$39.83 buffer, and ticket sizing.
-     * **Subagent 3: Macro Risk Analyst** (`Role='Macro Risk Analyst', Model='flash'`): Injected with Full Tier 2 Big Prompt covering mandatory citation of `STANDARDIZED_TRADING_DECISION_CHAIN.md`, Sheet 28 `19_Calendar`, `macro_calendar.json`, ETF flows, CEX netflows, session clock, and rollover embargo.
-     * **Subagent 4: Excel Data Quality Auditor** (`Role='Excel Data Quality Auditor', Model='flash'`): Injected with Full Tier 2 Big Prompt covering mandatory citation of `STANDARDIZED_TRADING_DECISION_CHAIN.md`, 33-sheet coverage, CRC checks, zero formula errors, header verification, and pipeline daemon health.
-2. **Track B (Parallel Arena.ai Red-Team Prompt Dispatch)**:
-   - PARALLEL TO SUBAGENT INVOCATION, dispatch the unconstrained deep-reasoning multi-asset audit prompt citing `STANDARDIZED_TRADING_DECISION_CHAIN.md` to Arena.ai via Chrome CDP on port 9222:
+1. **Track A (Internal Subagent Fleet Invocation with Tier 2 Big Prompts — Gemini 3.8 Flash)**:
+   - Immediately invoke all 4 specialized subagents simultaneously using `invoke_subagent` (`Model='flash'` - Gemini 3.8 Flash):
+     * **Subagent 1: Orderflow Analyst** (`Role='Orderflow Analyst', Model='flash'` - Gemini 3.8 Flash): Injected with Full Tier 2 Big Prompt covering Sheets 00–28, 30 (`20_Auction_Market_Structure`), mandatory citation of `STANDARDIZED_TRADING_DECISION_CHAIN.md`, full 156-asset universe scan (`Terminal/multi_asset_opportunity_scanner.py`), dynamic spread gates across Forex/Commodities/Indices/Crypto, 5-pillar confluence, L2/L3 orderbook depth, resting whale bunkers, CVD divergence, and Potential Candidate Radar Checklist.
+     * **Subagent 2: Position Manager** (`Role='Position Manager', Model='flash'` - Gemini 3.8 Flash): Injected with Full Tier 2 Big Prompt covering mandatory citation of `STANDARDIZED_TRADING_DECISION_CHAIN.md`, MT5 telemetry, ratchet progression, stressed capacity audit strictly enforcing 1-position slot under +$39.83 buffer, and ticket sizing.
+     * **Subagent 3: Macro Risk Analyst** (`Role='Macro Risk Analyst', Model='flash'` - Gemini 3.8 Flash): Injected with Full Tier 2 Big Prompt covering mandatory citation of `STANDARDIZED_TRADING_DECISION_CHAIN.md`, Sheet 28 `19_Calendar`, `macro_calendar.json`, ETF flows, CEX netflows, session clock, and rollover embargo.
+     * **Subagent 4: Excel Data Quality Auditor** (`Role='Excel Data Quality Auditor', Model='flash'` - Gemini 3.8 Flash): Injected with Full Tier 2 Big Prompt covering mandatory citation of `STANDARDIZED_TRADING_DECISION_CHAIN.md`, 33-sheet coverage, CRC checks, zero formula errors, header verification, and pipeline daemon health.
+2. **Track B (Parallel Arena.ai 3-Persona Candidate Discovery Dispatch)**:
+   - PARALLEL TO SUBAGENT INVOCATION, dispatch the affirmative 3-persona candidate discovery prompt citing `STANDARDIZED_TRADING_DECISION_CHAIN.md` to Arena.ai via Chrome CDP on port 9222:
      `python Terminal/dispatch_arena_redteam.py`
-   - Arena.ai begins generation on Chrome CDP simultaneously while subagents conduct their independent empirical analyses.
+   - Arena.ai begins generation on Chrome CDP simultaneously, embodying all 3 quantitative personas (Orderflow Analyst, Position Manager, Macro Risk Analyst — excluding Excel auditor) to discover and formulate high-confluence candidates across all 156 assets with unconstrained deep mathematical reasoning.
 
 ---
 
