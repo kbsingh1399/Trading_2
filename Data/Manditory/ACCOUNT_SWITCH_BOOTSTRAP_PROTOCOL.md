@@ -81,8 +81,8 @@ flowchart TD
    - Operating Buffer (4,795.00 USD): Equity - 4,795.00 USD (+20.00 USD defense cushion).
    - Worst-Case Stressed Post-Loss Equity: `Equity - sum(Risk_i * 1.25 + 2.00) >= 4,795.00 USD`.
 
-### STEP 3: TRI-DAEMON SENTRY AUDIT & AUTO-RESTART (NO TELEMETRY DAEMON)
-Verify with `manage_task(Action='list')` that EXACTLY the 3 authorized persistent background processes are active. Any extra daemons (such as legacy telemetry git daemon) are strictly unauthorized and must be killed immediately. If any of the 3 required daemons is missing, immediately relaunch it:
+### STEP 3: QUAD-DAEMON SENTRY AUDIT & AUTO-RESTART
+Verify with `manage_task(Action='list')` that EXACTLY the 4 authorized persistent background processes are active. Any extra or zombie processes are killed immediately. If any of the 4 required daemons is missing, immediately relaunch it:
 
 1. **Daemon 1 (Continuous 32-Sheet Excel Pipeline Daemon)**:
    - Command: `python Data/Excel_Modules/Run_Parallel_Pipeline.py --continuous --gap 300 --workers 1`
@@ -97,52 +97,48 @@ Verify with `manage_task(Action='list')` that EXACTLY the 3 authorized persisten
 3. **Daemon 3 (Arena Completion Daemon)**:
    - Command: `python Terminal/arena_completion_daemon.py --daemon`
    - Setting: `IsDaemon=true`, `WaitMsBeforeAsync=500`
-   - Purpose: Monitors Chrome CDP (port 9222) and auto-harvests Arena responses to `docs/trade_plans/ARENA_LATEST_RAW.md`.
+   - Purpose: Monitors Chrome CDP (port 9222) continuously. The instant Arena.ai completes its response, it auto-harvests the full output into `docs/trade_plans/ARENA_LATEST_RAW.md` and wakes up Antigravity for joint evaluation.
 
-> ⚠️ **TELEMETRY GIT DAEMON RETIRED / DISABLED**:
-> The legacy `autonomous_telemetry_git_daemon.py` is permanently DEPRECATED and MUST NOT BE RUN. It spams git commits every 60s and consumes unnecessary CPU. Git synchronization is executed manually upon milestones or cycle completions only. Zero telemetry daemons allowed.
+4. **Daemon 4 (Autonomous 5-Minute Git Sync Daemon)**:
+   - Command: `python Terminal/Data_Factory/autonomous_git_sync_daemon.py`
+   - Setting: `IsDaemon=true`, `WaitMsBeforeAsync=500`
+   - Purpose: Runs continuously every 5 minutes (300s). Stages all modified and new workspace files (`git add -A`), validates `Data/DataBase_Trading.xlsx` zip CRC integrity before committing, commits with timestamped provenance, and pushes cleanly to `origin/main`. Guarantees zero local/remote desynchronization with zero manual intervention.
+
+---
 
 ### STEP 4: MASTER 32-SHEET EXCEL INTEGRITY GATE
 Verify that `Data/DataBase_Trading.xlsx` is fresh, uncorrupted, and has zero formula errors:
-- Path: `Data/DataBase_Trading.xlsx` (Size ~12.9 to 13.1 MB).
+- Path: `Data/DataBase_Trading.xlsx` (Size ~12.9 to 13.7 MB).
 - Check that all 32 sheets load cleanly via `openpyxl`.
-- Attest that formula errors (`#REF!`, `#DIV/0!`, `#N/A`, `#VALUE!`) count = 0 across all 1.6M+ cells.
+- Attest that formula errors (`#REF!`, `#DIV/0!`, `#N/A`, `#VALUE!`, `#NAME?`, `#NUM!`, `#NULL!`) count = 0 across all cells.
 
-### STEP 5: MANDATORY 4-SUBAGENT FLEET & ARENA.AI DISPATCH (COMPREHENSIVE BIG PROMPTS)
-On EVERY autonomous wake-up, the agent is STRICTLY FORBIDDEN from generating narrative prose or doing manual checks before dispatching the subagents. The agent MUST FIRST call `invoke_subagent` for all 4 subagents in parallel (using `Model='flash'`). Per operator directive ("ensure we prompt big prompts"), always inject the full, comprehensive **Tier 2 Big Prompts** from `Data/Manditory/SUBAGENT_PROMPT_TEMPLATES.md` to ensure deep, exhaustive forensic rigor across all 32 sheets:
+---
 
-1. **Subagent 1: Orderflow Analyst** (`invoke_subagent(TypeName='research', Role='Orderflow Analyst', Model='flash', ...)`):
-   - Injects Tier 2 Subagent 1 prompt: Full line-by-line study of `Data/DataBase_Trading.xlsx` (Sheets 00–28).
-   - Evaluates spread gates, 5-pillar confluence, L2/L3 orderbook depth, resting whale bunkers (BTC 80,300 USD, Gold 4,060 USD), and CVD divergences.
-   - Formulates the Potential Candidate Radar Checklist `[ ]` with checkable pre-condition triggers.
+### STEP 5: SIMULTANEOUS DUAL-TRACK DISPATCH (4-SUBAGENT FLEET & ARENA.AI IN PARALLEL)
+On EVERY autonomous wake-up, the agent executes the **Simultaneous Dual-Track Dispatch Protocol**:
+1. **Track A (Internal Subagent Fleet Invocation in Parallel)**:
+   - Immediately invoke all 4 specialized subagents simultaneously using `invoke_subagent` (`Model='flash'`):
+     * **Subagent 1: Orderflow Analyst** (Tier 2 Big Prompt: Sheets 00–28, spread gates, 5-pillar confluence, L2/L3 orderbook depth, resting whale bunkers).
+     * **Subagent 2: Position Manager** (Tier 2 Big Prompt: MT5 telemetry, ratchet progression, stressed capacity audit strictly enforcing 1-position slot under +$39.83 buffer).
+     * **Subagent 3: Macro Risk Analyst** (Tier 2 Big Prompt: Sheet 28 `19_Calendar`, `macro_calendar.json`, ETF flows, CEX netflows, 21:15–22:30 UTC rollover embargo).
+     * **Subagent 4: Excel Data Quality Auditor** (Tier 2 Big Prompt: 32-sheet coverage, CRC checks, zero formula errors, pipeline daemon health).
+2. **Track B (Parallel Arena.ai Red-Team Prompt Dispatch)**:
+   - PARALLEL TO SUBAGENT INVOCATION, immediately dispatch the surgical red-team prompt to Arena.ai via Chrome CDP on port 9222:
+     `python Terminal/dispatch_arena_redteam.py`
+   - Arena.ai begins generation on Chrome CDP simultaneously while subagents conduct their independent empirical analyses.
 
-2. **Subagent 2: Position Manager** (`invoke_subagent(TypeName='research', Role='Position Manager', Model='flash', ...)`):
-   - Injects Tier 2 Subagent 2 prompt: Audits MT5 telemetry, verifies open position ratchets (Early-BE at +0.75R to +0.80R, Phase 0 at +1.25R, Phase 1 at +1.65R).
-   - Computes stressed capital capacity under the expanded $15.00–$20.00 nominal risk envelope (strictly 1 live position slot under current +$39.83 buffer cushion).
+---
 
-3. **Subagent 3: Macro Risk Analyst** (`invoke_subagent(TypeName='research', Role='Macro Risk Analyst', Model='flash', ...)`):
-   - Injects Tier 2 Subagent 3 prompt: Audits Sheet 28 (`19_Calendar`) and `Data/macro_calendar.json` for high-impact Tier-1 events in next 4h.
-   - Audits institutional ETF spot inflows/redemptions and CEX netflows.
-   - Enforces the 21:15–22:30 UTC interbank FX rollover blackout.
-
-4. **Subagent 4: Excel Data Quality Auditor** (`invoke_subagent(TypeName='research', Role='Excel Data Quality Auditor', Model='flash', ...)`):
-   - Injects Tier 2 Subagent 4 prompt: Audits all 32 sheets for freshness, row counts, and zero formula errors.
-   - Audits continuous pipeline daemon (`task-104314`) and 5-minute rest interval cycling.
-
-5. **Arena.ai Co-Equal Quantitative Council**:
-   - Injects full, comprehensive Big Prompts (such as `ARENA_CYCLE_245_RECALIBRATED_SETUPS.txt`) containing full market microstructure footprint, 17-gate criteria, and detailed mathematical questions.
-
-5. **Arena.ai Surgical Red-Team Dispatch**:
-   - Run `python Terminal/dispatch_arena_redteam.py` to inject the standardized surgical red-team prompt into Arena.ai via Chrome CDP on port 9222.
-   - Launch reactive watcher `python Terminal/arena_completion_daemon.py --wait` (`WaitMsBeforeAsync=500`).
-
-### STEP 6: HARVEST, CO-EQUAL DEBATE & SOCKET PRUNING
-1. Wait reactively for subagent messages and Arena completion (Zero token polling; never use timers <= 60s).
-2. Harvest Arena response from `docs/trade_plans/ARENA_LATEST_RAW.md`.
-3. Conduct Co-Equal Council debate:
-   - Compare subagent empirical findings against Arena red-team critique.
-   - If 5-pillar confluence passes with verified resting whale walls, punch limit order live into MT5.
-   - If 5-pillar confluence fails or active seller momentum flushes toward un-swept stops, issue unanimous **STAND ASIDE UNCONDITIONALLY** while updating candidate radar pre-conditions.
+### STEP 6: REACTIVE HARVEST, ARENA OUTPUT EVALUATION, CO-EQUAL DEBATE & PRUNING
+1. **Reactive Auto-Wakeup**: Standby for incoming messages. When the subagents finish or when `arena_completion_daemon.py` detects completion, Antigravity wakes up reactively with zero token polling.
+2. **Mandatory Arena.ai Evaluation**: Immediately read `docs/trade_plans/ARENA_LATEST_RAW.md` harvested by the daemon. Thoroughly evaluate Arena.ai's ruling, entry/SL/TP critiques, 17-gate audit, and mathematical proofs.
+3. **Co-Equal Council Synthesis & Dialectic Debate**:
+   - Synthesize Arena.ai's critique with the independent findings of all 4 subagents.
+   - If mathematical confluence, resting whale defense, and Anti-Knife contracts are validated: punch live limit order into MT5.
+   - If market momentum flushes toward un-swept stops or safe stops exceed the risk budget: issue unanimous **STAND ASIDE IN 100% CASH** and update the Candidate Radar Checklist.
+4. **Clean Socket Pruning Mandate**: Immediately execute `manage_subagents(Action='kill_all')` to terminate all SSE connections and prevent Windows socket exhaustion.
+5. **Desk Ledger Update**: Update `docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md`, `ACTIVE_CONTEXT.md`, and append turn to `.agents/memory/session_chat_history.md`.
+6. **5-Minute Git Sync**: Daemon 4 automatically pushes all committed state to `origin/main` within its 300s window.
 4. **Clean Socket Pruning Mandate**: Immediately execute `manage_subagents(Action='kill_all')` to terminate SSE connections and eliminate Windows socket leaks.
 5. Update `docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md`, `ACTIVE_CONTEXT.md`, and append turn to `.agents/memory/session_chat_history.md`.
 6. Synchronize dual-repo parity via `python .agents/scripts/verify_and_sync_agents.py`.
