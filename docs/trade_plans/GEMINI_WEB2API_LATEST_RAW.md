@@ -1,42 +1,45 @@
-### 🏛️ Co-Equal Quantitative Council: Cycle 278 Adjudication & Evaluation
+### SECTION 1: OPERATOR RISK-INCREASE DIRECTIVE & HOUSE MONEY ESCALATION
+
+Authorizing an expansion of single-ticket nominal risk from $17.00 to $25.00–$28.00 requires strict adherence to specific structural and execution guardrails:
+
+*   **Pillar 1: Structural Anchor & Whale Wall Defense.** The trade must be anchored directly behind an immutable structural barrier (e.g., a verified institutional liquidity wall or high-volume node) so that the invalidation level is tight, logical, and technically uncompromised by normal market noise.
+*   **Pillar 2: Spread & Slippage Compression.** The asset must exhibit ultra-tight execution spreads (under 0.20 bps, such as XAUUSD or USDJPY) to ensure that stressed execution fills do not breach the $37.50 maximum loss cap.
+*   **Pillar 3: Rapid Early-BE Velocity.** The setup must possess high momentum potential to reach +0.75R within the first 1 to 3 candles, allowing an immediate stop adjustment to Entry + 0.10R to zero out cash risk and free up the portfolio slot.
+*   **Pillar 4: Inviolable Hard Floor Respect.** Even at the $28.00 nominal risk tier plus friction, the maximum stressed drawdown must leave equity strictly at or above $4,781.00 ($6.00 above the $4,775.00 hard floor).
 
 ---
 
-## SECTION 3: MANDATORY THREE-PERSONA METHODOLOGY INQUEST (SECTION 2.5)
+### SECTION 2: RECONCILED LIVE ACCOUNT TELEMETRY
 
-To address why equity has remained flat despite monitoring 156 assets and why profitable executions have eluded the desk, the Council evaluates the operational architecture through three distinct quantitative lenses:
-
-### 1. Orderflow & Auction Persona
-* **Microstructure Diagnostics & State Machine Friction:** Our state machine gating (`DISCOVERED -> APPROACHING -> PROBED -> EXHAUSTED -> RECLAIMED -> RETESTED -> ELIGIBLE`) is theoretically sound but practically paralyzed by **binary thresholding**. We treat these gates as rigid tollbooths rather than probabilistic fluid states. 
-* **Adverse Selection & Queue Priority:** Across 156 assets, we suffer from chronic "latency tax" and adverse selection. By placing static limit orders (`SELL_LIMIT` / `BUY_LIMIT`) without real-time toxic flow protection (e.g., VPIN - Volume-Synchronized Probability of Toxicity metrics), we act as passive liquidity providers picking up toxic order flow remnants. 
-* **TradFi vs. Crypto Decoupling:** We apply identical execution logic to asset classes with fundamentally opposing microstructures. Crypto (`BTCUSD`) exhibits rapid mean-reversion around debt pools with high retail liquidation cascades, whereas TradFi indices and FX (`NAS100`, `USDJPY`) operate on institutional auction rotations and algorithmic TWAP/VWAP execution blocks. Treating them with the same structural checklist creates execution paralysis.
-
-### 2. Position Manager Persona
-* **The Math of Small Buffers ($P(\text{fill}) \times \text{EV}$):** With an operating buffer cushion of only **+$23.51 USD** above the hard floor, our expected value equation is severely constrained. The nominal risk ceiling ($~$17.00 USD) forces fractional sizing (e.g., 0.01–0.02 lots). When factoring in the probability of fill $P(\text{fill})$ against spread drag and slippage, the mathematical EV of these trades is often neutral or negative. 
-* **Dynamic Capacity Collapse:** A rigid risk-bearing limit of 1 active order under a $23.51 cushion creates an asymmetric trap: we cannot scale winners or average out entries to capture macro moves, while a single minor spread widening event instantly threatens the hard floor. To think like elite quants, we must recognize that *capital preservation under tight constraints requires reducing asset universe breadth to zero in on absolute high-alpha setups, rather than scattering attention across 156 instruments.*
-
-### 3. Macro & Session Risk Persona
-* **Causal Event Risk vs. Noise:** Our calendar filters frequently treat routine economic releases (like Japan National Core CPI) with blanket paralyzing blackouts while missing broader cross-asset liquidity shifts. 
-* **Session Liquidity Transitions:** The transition into the Tokyo ramp and early Asian session often features thin liquidity traps. Waiting passively for "post-CPI stability" while holding 100% flat cash defense ignores the reality that institutional flow signals are formed *during* the initial auction price discovery, not after spreads normalize and the move has already departed.
+*   **Balance / Equity / Free Margin:** 4,818.51 USD
+*   **Used Margin:** 0.00 USD (0.00%)
+*   **Active Positions / Orders:** 0 / 0 (100% Flat Cash Defense)
+*   **Hard Floor Cushion:** +43.51 USD (relative to 4,775.00 USD)
+*   **Operating Buffer Cushion:** +23.51 USD (relative to 4,795.00 USD)
+*   **Available Slots:** 4/4 free (1 active risk-bearing slot authorized under current buffer)
 
 ---
 
-## CANDIDATE RANKING & EVALUATION TABLE
+### SECTION 3: CANDIDATE DIALECTIC & EVALUATION FOR CYCLE 279
 
-| Rank | Candidate Asset & Strategy | Geometry & Risk Profile | Edge / Microstructure Justification | Ruling & Status |
-| :---: | :--- | :--- | :--- | :--- |
-| **1** | **BTCUSD.pi Asian Cascade Long** | • Entry: `BUY_LIMIT 0.02 @ 80,500.00`<br>• SL: `79,942.20`<br>• TP: `82,000.00`<br>• Nominal Risk: `-$11.16 USD`<br>• Stressed Risk: `-$16.32 USD` | High-frequency liquidation sweep potential near the 80,450 debt pool. 0.02 lot sizing preserves the +7.19 USD buffer surplus above operating floor. | **ARMED ON RADAR (Primary Execution Target)** — Await actual trade through debt pool, sell volume deceleration, and reclaim of 80,500. |
-| **2** | **XAUUSD.pi Model 2 Short** | • Entry: `SELL_LIMIT 0.01 @ 4,031.89`<br>• SL: `4,048.13`<br>• TP: `3,991.30`<br>• Nominal Risk: `-$16.24 USD`<br>• Stressed Risk: `-$22.40 USD` | Pristine spread (0.20 bps drag). However, immediate proximity to current bids (~4,025) and immediate downside obstacles (4,021.18 low) lower immediate execution odds. | **APPROACHING / DO NOT STAGE YET** — Hold until Ask probes 4,031.00–4,032.50 with 5m CVD tape exhaustion. |
-| **3** | **USDJPY.pi Model 2 Short Pullback** | • Post-CPI macro window evaluation | Macro blackout window expires at 00:05 UTC. Requires post-event spread and price action stabilization. | **RE-SCREEN POST-00:05 UTC** |
-| **4** | **UK Brent Model 2 Long** | • DVAH shelf `113.595` pullback hold | Affirmative candidate discovery, but secondary priority given the 24h runway crunch. | **RADAR ONLY** |
-| **5** | **NAS100.p Short Pullback** | • Kill Line: `28,850.00` | Ticket R:R is 1.917R, failing the `>= 2.0R` strict gateway rule. Re-site limit reached. | **DISQUALIFIED** |
+1.  **Gold (XAUUSD.pi) Short vs Low Decay Line:** 
+    Breaking the 4,021.18 Prior-Day Low invalidates the high-level failed-retest bounce. Rather than neutralizing the short thesis, a sustained break below 4,021.18 opens a clean break-and-retest short continuation targeting the 3,991.30 structural liquidity pocket.
+2.  **UK Brent (UKBRENT.p) Model 2 Trend Pullback Long:** 
+    Operating within a `TREND_UP_ACCEPTANCE` regime (+1.23 SD) with live price at 113.87 approaching the DVAH shelf at 113.595. 
+    *   *Ticket Parameters:* Entry at 113.595, Stop Loss at 113.350 (24.5 ticks risk), Take Profit at 114.450. Sized for $25.00 cash risk, this represents the desk's highest probability structural long candidate.
+3.  **Bitcoin (BTCUSD.pi) Orderbook Dialectic:** 
+    Front-running the 81,544 ask wall with a short at 81,520 is counter-trend and exposes the desk to unnecessary squeeze risk. The desk should reject the 81,520 short attempt and strictly maintain the disciplined 80,450 cascade sweep long trigger where institutional liquidity is heavily clustered.
+4.  **USDJPY.pi Post-CPI Re-Screen (00:05 UTC Blackout Expiration):** 
+    With the post-CPI blackout expired, price action hovering near Daily VAL (156.603) and POC (156.735) warrants a short pullback setup *only* upon verified volume exhaustion and rejection at the 156.735 POC node.
 
 ---
 
-## DEFINITIVE RULING FOR CYCLE 278
+### SECTION 4: MANDATORY QUANT METHODOLOGY INQUEST (SECTION 2.5)
 
-1. **Portfolio State:** Maintain **100% Flat Cash Defense** initially, honoring the strict 1 active risk-bearing order rule under the **+$23.51 USD** operating buffer cushion.
-2. **Execution Protocol:** 
-   * Designate **BTCUSD.pi (0.02 lot at 80,500.00)** as the primary active candidate. Stage on radar and execute strictly if the pre-conditions (sweep of 80,450 debt pool $\rightarrow$ volume deceleration $\rightarrow$ 1m/5m reclaim of 80,500) validate.
-   * Keep **XAUUSD.pi** on standby as a secondary contingent short only if a clean liquidity grab into 4,031–4,032.50 materializes with 5m CVD exhaustion.
-3. **Mission Objective:** With +681.49 USD required to reach the 5,500.00 USD equity target before Friday 23:59 UTC, capital preservation of the 4,775.00 USD hard floor remains absolute. No speculative over-leveraging is permitted.
+Monitoring 156 assets while equity remains flat points to an underlying systemic flaw: **over-filtering and analysis paralysis driven by static level-watching.** 
+
+*   **Why Equity Has Remained Flat:** The desk has been waiting for pristine, multi-variable alignment across disparate markets while missing fast-moving liquidity cascades and intraday momentum expansions. Static historical levels often fail in high-velocity macro environments unless backed by immediate orderbook imbalance.
+*   **The Elite Quant Bridge:** 
+    1.  *Shift from Static to Dynamic:* Transition from waiting for static price levels to tracking real-time cumulative volume delta (CVD) divergence and aggressive sweep clusters.
+    2.  *Execution Velocity:* Reduce decision latency by pre-staging tiered limit/stop triggers rather than debating discretionary entry points in real-time.
+    3.  *Capital Deployment Re-engineering:* Treat the operating buffer not as a restrictive cage, but as an active risk budget where small, agile tranches are deployed and dynamically scaled upon positive price drift.
