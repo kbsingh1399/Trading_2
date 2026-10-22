@@ -139,21 +139,25 @@ trigger: always_on
         - **Full Autonomous Trading Authority**: Antigravity has full autonomous rights to punch, delete, cancel, or modify orders and trailing stops in MetaTrader 5 without seeking manual operator approval.
         - **Solvency Defense & Dynamic Capacity**: Total joint worst-case stopout risk across active running positions unconditionally defends the 4,775.00 USD hard floor and 4,795.00 USD operating buffer. When positions reach Early-BE (+0.75R to +0.80R), stop is ratcheted to Entry + 0.10R0, dropping cash risk to 0.00 USD and instantly freeing risk capacity for subsequent fills.
     - Connects directly via native IPC to MetaTrader 5 Account 5064568 (Blueberry Markets).
-    - **Active Positions & Pending Orders (Live State: 0 Active Positions | 2 Resting Limit Orders | 4 Available Running Slots)**:
-       * Current Status: **0 Active Positions | 2 Resting Limit Orders | Balance: 4,834.83 USD | Equity: 4,834.83 USD | Margin: 0.00 USD | Free Margin: 4,834.83 USD**.
-       * Hard Floor Defense: Hard Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Cushion: **+59.83 USD above hard floor (+39.83 USD above operating buffer)**.
+    - **Active Positions & Pending Orders (Live State: 0 Active Positions | 1 Resting Limit Order | 4 Available Running Slots)**:
+       * Current Status: **0 Active Positions | 1 Resting Limit Order | Balance: 4,818.51 USD | Equity: 4,818.51 USD | Margin: 0.00 USD | Free Margin: 4,818.51 USD**.
+       * Hard Floor Defense: Hard Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Cushion: **+43.51 USD above hard floor (+23.51 USD above operating buffer)**.
        * Live Resting Pending Orders on MetaTrader 5:
-         1. **Order #19224157: USDJPY.pi SELL_LIMIT** | Vol: 0.18 | Entry: 157.053 | SL: 157.206 | TP: 156.670 | Max Loss: -.52 | Max Profit: +.00 | R:R: 2.51 | Passive: True
-         2. **Order #19225284: XAUUSD.pi BUY_LIMIT** | Vol: 0.06 | Entry: 4034.40 | SL: 4031.75 | TP: 4043.69 | Max Loss: -.90 | Max Profit: +.74 | R:R: 3.51 | Passive: True
-       * Stressed Solvency: Solo Gold stressed equity 4,812.95 USD (+17.95 buffer surplus). Joint stressed equity with USDJPY is 4,789.06 USD (+14.06 hard floor surplus).
-       * Concurrency Capacity Policy (Operator Mandate Oct 22 2026): Max 4 concurrent running filled positions. Resting limit orders do not consume slots. Live fills are sized at 15.00-25.00 USD nominal risk each; when any position reaches Early-BE (+0.75R to +0.80R), its stop is ratcheted to Entry + 0.10R0, dropping risk to 0 USD and preserving solvency buffer for subsequent entries.
+         1. **Order #19224157: USDJPY.pi SELL_LIMIT** | Vol: 0.18 | Entry: 157.053 | SL: 157.206 | TP: 156.670 | Max Loss: -.52 | Max Profit: +.00 | R:R: 2.51 | Stressed Equity: 4,794.61 USD (+19.61 floor surplus) | Passive: True
+       * Realized Trades This Session:
+         - Ticket #19225284 (XAUUSD.pi BUY 0.06 @ 4034.40): Stopped out at 4031.75 during Asian pre-market sweep. Realized Loss: **-.90 USD** (exact 1.00R, 0 slippage). Capital floor defended (+43.51 USD cushion).
+       * Candidate Pipeline (45 Total Across 4 Clusters):
+         - EURGBP.pi SELL_LIMIT @ 0.83817 (Dist: 0.11% / 9 pips, Risk .51, Profit +.98, R:R 3.13)
+         - UK100.p BUY_LIMIT @ 10707.47 (Dist: 0.20% / 21 pts, Risk .97, Profit +.84, R:R 3.00)
+         - AUDUSD.pi BUY_LIMIT @ 0.70024 (Dist: 0.18% / 12 pips, Risk .95, Profit +.52, R:R 2.93)
+         - BTCUSD.pi SELL_LIMIT @ 81840.00 (Dist: 0.71% / 580 pts, Risk .90, Profit +.69, R:R 3.00)
        * Sentry & Daemon State:
          - All 6 persistent background daemons actively running in Antigravity task manager (manage_task):
-           1. Run_Parallel_Pipeline.py --continuous --gap 300 --workers 1 (Continuous 33-sheet Excel pipeline, Task #109472)
-           2. schedule Cron (0,20,40 * * * *, 20-min autonomous wake-up sentry, Task #109478)
-           3. arena_completion_daemon.py --daemon (Chrome CDP port 9222 auto-harvester, Task #109474)
-           4. autonomous_git_sync_daemon.py (Pushing workspace & Excel to origin/main every 60s, Task #109476)
-           5. run_graphify_watcher.py (AST graphify watcher daemon, Task #109451)
+           1. Run_Parallel_Pipeline.py --continuous --gap 300 --workers 1 (Task #109472)
+           2. schedule Cron (0,20,40 * * * *, 20-min wake-up sentry, Task #109478)
+           3. arena_completion_daemon.py --daemon (Task #109474)
+           4. autonomous_git_sync_daemon.py (Task #109476)
+           5. run_graphify_watcher.py (Task #109451)
            6. gemini_web2api.py on port 8081 (Task #109455)
       * Closed Trades Today (Realized PnL):
         - Ticket #19146275 (NAS100.p closed at **+15.50 USD cash profit** via Full Take Profit at 29,715.00 USD, Deal #17347431, +155.0 pts / +1.03R banked after Early-BE lock at 29,575.00 USD)
