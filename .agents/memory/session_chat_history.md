@@ -61478,3 +61478,19 @@ You may create 12_Hyperdash and 13_Hyperliquid where you dump all intelligenve a
   * Primary TradFi Radar for Tokyo Ramp (23:30 UTC): GBPUSD.pi Model 2 Long on probe/sweep of 1.33951 DVAL + reclaim > 1.33966; XAUUSD.pi Model 2 Short on rally to prior-day VAL 4,040.73 with 15m rejection and 5m CVD flip.
 - Complete Desk Consensus: All 4 Subagents (Orderflow, Position, Macro, Excel) + All 3 Councils (Arena 1, Z.ai GLM-5.3-Flash, Gemini Web2API) are in 100% UNANIMOUS AGREEMENT: Stand flat in 100% clean cash defense.
 - Methodology Inquest Codification: Formalized the Candidate State Machine: DISCOVERED -> APPROACHING -> SWEPT -> DECELERATED -> RECLAIMED -> RETESTED -> ELIGIBLE. Zero pending orders staged before ELIGIBLE status.
+
+---
+### Gold Radar Calibration — 2026-10-22 23:28:00 UTC (Tokyo Ramp Gold & JPY Scan)
+- MT5 Telemetry: Balance=4,818.51 USD | Floating Equity=4,818.51 USD | Buffer Cushion=+23.51 USD | Hard Floor Cushion=+43.51 USD | Margin=0.00 USD (100% Cash Defense).
+- Multi-Asset Scanner Harvest (156 instruments): Calibrated Model 2 Short candidate on `XAUUSD.pi` (Gold):
+  * Entry: SELL_LIMIT @ 4,031.89 (Daily VAH shelf 4,031.03)
+  * Stop Loss: 4,048.13 (+16.24 pts, anchored +7.40 pts above Prior-Day VAL 4,040.73, exceeding Arena's >= 4,044.05 safe stop requirement)
+  * Take Profit: 3,991.30 (-40.59 pts / 2.50R)
+  * Volume: 0.01 lot
+  * Margin Required: 403.19 USD (8.37% utilization of 4,818.51 USD free margin)
+  * Exact Broker Calculation (mt5.order_check / calc_profit): Retcode 0 (Done) | Nominal Risk: -$16.24 USD | Reward: +$40.59 USD
+  * Stressed Loss (1.25x slippage + $2 comm): -$22.30 USD
+  * Stressed Equity: 4,796.21 USD (+1.21 USD operating buffer surplus, +21.21 USD hard floor surplus)
+  * Friction Efficiency: Spread 0.08 pts / 40.59 pts TP = 0.20% (Pristine, ceiling <= 15.0%)
+  * Lifecycle State: APPROACHING (Current Ask 4,028.27, 3.62 pts below entry zone; awaiting test of 4,031.00-4,032.50 with 5m CVD tape exhaustion).
+- Macro Event Status: Japan Core CPI releasing at 23:30 UTC. USDJPY tactical freeze maintained until 23:45 UTC.

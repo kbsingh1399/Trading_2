@@ -63,29 +63,27 @@ def build_unified_prompt(cycle_id: str = "AUTO") -> str:
 - Formula Errors: Exactly 0 errors across all 33 sheets.
 - Continuous Pipeline Daemon: Task 109472 actively cycling Cycle #9.
 
-### SECTION 3: TOP CANDIDATES ON RADAR FOR ASIAN SESSION & 23:30 TOKYO RAMP
-1. **NAS100.p (Model 2 Short — Pullback to 15m/1h EMA 20 Shelf with Daily VAL Fortress)**:
-   - Geometry: SELL_LIMIT @ 28,971.10 | Lots: 0.01 | SL: 29,092.32 (+121.22 pts) | TP: 28,668.06 (-303.04 pts / 2.50R)
-   - Risk & Solvency: Nominal Risk -$12.12 | Spread Cost: 0.12 USD (1.22 pts / 0.42 bps | 0.40% friction) | Stressed Loss: -$17.30 | Stressed Equity: 4,801.21 USD (+6.21 USD buffer surplus, +26.21 USD floor surplus).
-   - Order Check Result: Retcode 0 (Done), Margin Required: 0.00 USD, Exact Broker Profit Calc: Loss=-$12.12 USD, Win=+$30.30 USD.
-   - Microstructure & Auction Alignment:
-     * Current Price: ~28,935. Distance to Entry: 36.10 pts (0.52 ATR away, well within 2.0 ATR staging threshold).
-     * Entry (28,971.10) catches the pullback to the 15m EMA 20 (28,968.56) and 1h EMA 20 (28,986.55) shelf where previous bounce stalled at 28,965.
-     * Stop Loss (29,092.32) is placed strictly ABOVE the Daily VAL shelf (29,087.86) by +4.46 pts with a wide 121-pt buffer.
-     * Spread Efficiency: 1.22 pts / 303.04 pts = 0.40% (Institutional ceiling <= 15.0%).
-2. **BTCUSD.pi (Asian Session 23:00–02:00 UTC Cascade Reclaim Trigger)**:
-   - Market Context: Drifting at 81,240 USD below DPOC (81,339.50). Asian overnight window features thinner L2 books which historically accelerate cascade flushes.
-   - Debt Pools: 80,450 USD ($10.81M debt pool) and mother pool at 80,050 USD ($31.79M debt pool).
-   - Execution Trigger Sequence:
-     * Gate 1: Sweep of 80,450 cascade.
-     * Gate 2: Microstructure tape deceleration (1m CVD delta flip / taker selling dry-up).
-     * Gate 3: 1m/5m candle close reclaim back above 80,500.
-     * Gate 4: Retest of 80,480–80,520 holds -> Punch BUY_LIMIT (0.02 base / 0.03 double-confirmation | SL: 79,980.00 | TP: 82,050.00).
-   - Sizing: 0.03 lot max -> Nominal Risk: -$16.20 USD | Stressed Loss: -$22.75 USD | Stressed Equity: 4,795.76 USD (+0.76 USD buffer surplus).
-3. **US2000.p**: OFFICIALLY RETIRED (Target 2,787 traded without entry, price > 2.0 ATR away, DPOC moved to 2,786.15).
-4. **Forex Majors (EURUSD.pi, GBPUSD.pi, USDJPY.pi) & Gold (XAUUSD.pi)**:
-   - Rollover embargo cleared at 22:30 UTC. Spreads normalized (< 0.3 bps).
-   - Tokyo liquidity ramp active from 23:30 to 00:00 UTC. Screen for Asian opening range expansion sweeps.
+### SECTION 3: TOP CANDIDATES ON RADAR FOR ASIAN SESSION & TOKYO OPEN (00:00 UTC)
+1. **XAUUSD.pi (Gold — Model 2 Short Pullback to Daily VAH Shelf)**:
+   - Geometry: SELL_LIMIT @ 4,031.89 | Lots: 0.01 | SL: 4,048.13 (+16.24 pts) | TP: 3,991.30 (-40.59 pts / 2.50R)
+   - Risk & Solvency: Nominal Risk -$16.24 | Spread: 0.08 pts (0.20 bps | 0.20% friction) | Stressed Loss: -$22.30 | Stressed Equity: 4,796.21 USD (+1.21 USD buffer surplus, +21.21 USD floor surplus).
+   - Order Check Result: Retcode 0 (Done), Margin Required: 403.19 USD (8.37% utilization). Exact Broker Profit Calc: Loss=-$16.24 USD, Win=+$40.59 USD.
+   - Auction & Safe-Stop Validation:
+     * Daily VAH sits at 4,031.03; entry catches the failed auction retest of VAH.
+     * Prior-Day VAL sits at 4,040.73. Stop Loss at 4,048.13 is placed +7.40 pts safely ABOVE Prior-Day VAL, exceeding Arena 1's minimum safe-stop threshold (>= 4,044.05).
+     * State Machine: APPROACHING (Current Ask ~4,028.25; await probe into 4,031.00-4,032.50 with 5m CVD tape exhaustion before punch).
+2. **NAS100.p (Model 2 Short — Safe-Stop Geometry on 15m/1h EMA Shelf)**:
+   - Geometry: SELL_LIMIT @ 28,962.17 | Lots: 0.01 | SL: 29,120.85 (+158.68 pts, safe half-ATR buffer above Prior-Day VAL 29,087.86) | TP: 28,657.98 (-304.19 pts / 1.92R to 2.00R)
+   - Risk & Solvency: Nominal Risk -$15.87 | Stressed Loss: -$21.84 | Stressed Equity: 4,796.67 USD (+1.67 USD buffer surplus).
+   - State Machine: APPROACHING (Current Ask ~28,895; tracking 28,850 kill line; require 5m CVD <= 0).
+3. **BTCUSD.pi (Asian Session 23:00–02:00 UTC Cascade Reclaim Trigger)**:
+   - Geometry: BUY_LIMIT @ 80,500.00 | Lots: 0.02 (0.03 disqualified by safe-stop stress) | SL: 79,942.20 (-557.80 pts, safe half-ATR beneath 80,050 mother pool) | TP: 82,000.00 (front-running 82,000 ask wall / 2.69R)
+   - Risk & Solvency: Nominal Risk -$11.16 | Stressed Loss: -$15.95 | Stressed Equity: 4,802.56 USD (+7.56 USD buffer surplus).
+   - Execution Trigger Sequence: Gate 1 sweep of 80,450 debt pool ($10.81M) -> Gate 2 CVD deceleration -> Gate 3 close > 80,500 -> Gate 4 retest hold.
+4. **USDJPY.pi (Model 2 Short Pullback — Post-CPI Re-Screen after 23:45 UTC)**:
+   - Japan Core CPI printed at 23:30 UTC. Tactical freeze lifts at 23:45 UTC.
+   - Screen for trend continuation short into Daily VAL (156.644) / Daily POC (156.736) shelf. Sizing: 0.05 lot (Nominal -$6.38, Stressed -$9.98).
+5. **US2000.p**: OFFICIALLY RETIRED (Target 2,787 traded without entry fill).
 
 ### SECTION 4: 3-PERSONA MANDATORY INQUEST & DELIBERATION
 1. **Persona 1: Orderflow Analyst** (Steps 2, 4, 6 of SOP — L2 depth, CVD absorption, liquidation cascades, dynamic friction).
