@@ -89,32 +89,36 @@ flowchart TD
 4. **Dynamic Buffer Defense**: Single filled trades risk 15.00–20.00 USD nominal. Once a filled position reaches Early-BE (+0.75R to +0.80R), its stop is ratcheted to Entry + 0.10R0, dropping risk to 0.00 USD and instantly freeing risk capacity for subsequent fills while preserving the 4,795.00 USD operating buffer.
 
 ### STEP 3: HEXAD-DAEMON SENTRY AUDIT & AUTO-RESTART (IN ANTIGRAVITY TASK MANAGER)
-Verify with `manage_task(Action='list')` that ALL 5 authorized persistent background processes are active directly inside Antigravity's task runner. Any extra, duplicate, or zombie external OS processes are killed immediately. If any of the required daemons is missing, immediately relaunch it:
+> 🛑 **MANDATORY DAEMON LIFECYCLE INVARIANT (STRICT OPERATOR DIRECTIVE)**:
+> Upon instantiation or account re-engagement, the coordinator MUST call `manage_task(Action='list')` to audit the 5 authorized persistent background processes running inside Antigravity's task manager.
+> External orphan processes not registered in `manage_task` DO NOT trigger Antigravity's reactive wake-up system!
+> If ANY of the 5 authorized daemons is absent from `manage_task(Action='list')`, the coordinator MUST IMMEDIATELY launch it using the exact parameters below before proceeding:
 
 1. **Daemon 1 (Continuous 33-Sheet Excel Pipeline Daemon)**:
-   - Command: `python Data/Excel_Modules/Run_Parallel_Pipeline.py --continuous --gap 300 --workers 1`
+   - Tool Call: `run_command(CommandLine="python Data/Excel_Modules/Run_Parallel_Pipeline.py --continuous --gap 300 --workers 1", IsDaemon=true, WaitMsBeforeAsync=500, toolSummary="Launch Continuous 33-Sheet Excel Pipeline Daemon")`
    - Setting: `IsDaemon=true`, `WaitMsBeforeAsync=500`
    - Purpose: Cycles full pipeline continuously with an exact 5-minute (300s) cooldown gap between cycles. Maintains fresh orderbook, CVD, liq maps, and technical data in `Data/DataBase_Trading.xlsx` with zero race conditions (workers=1 atomic safety).
 
 2. **Daemon 2 (20-Minute Cron Sentry)**:
-   - Tool: `schedule`
-   - Setting: `CronExpression="0,20,40 * * * *"`, `IsDaemon=true`
-   - Purpose: Autonomous wake-up at 20th, 40th, and 60th/00th minute.
+   - Tool Call: `schedule(CronExpression="0,20,40 * * * *", IsDaemon=true, Prompt="20-MINUTE AUTONOMOUS WAKE-UP AUDIT:\n1. Ingest Data/Manditory/ACCOUNT_SWITCH_BOOTSTRAP_PROTOCOL.md and active cushions.\n2. Immediately invoke 4 subagents (Model='flash') using Tier 2 Big Prompts from Data/Manditory/SUBAGENT_PROMPT_TEMPLATES.md: Orderflow Analyst, Position Manager, Macro Risk Analyst, Excel Data Quality Auditor.\n3. Dispatch surgical red-team prompt to Arena.ai via Terminal/dispatch_arena_redteam.py.\n4. Evaluate Candidate Radar Checklist against 5-pillar confluence and 17 pitfalls (Top 17).\n5. If no setup passes: Stand aside (100% cash). Cleanly prune subagents via manage_subagents(kill_all).")`
+   - Purpose: Autonomous wake-up at 20th, 40th, and 60th/00th minute for systematic desk audits.
 
 3. **Daemon 3 (Arena Completion Daemon)**:
-   - Command: `python Terminal/arena_completion_daemon.py --daemon`
+   - Tool Call: `run_command(CommandLine="python Terminal/arena_completion_daemon.py --daemon", IsDaemon=true, WaitMsBeforeAsync=500, toolSummary="Launch Arena Completion Daemon")`
    - Setting: `IsDaemon=true`, `WaitMsBeforeAsync=500`
    - Purpose: Monitors Chrome CDP (port 9222) continuously. The instant Arena.ai completes its response, it auto-harvests the full output into `docs/trade_plans/ARENA_LATEST_RAW.md` and wakes up Antigravity for joint evaluation.
 
 4. **Daemon 4 (Autonomous 5-Minute Git Sync Daemon)**:
-   - Command: `python Terminal/Data_Factory/autonomous_git_sync_daemon.py`
+   - Tool Call: `run_command(CommandLine="python Terminal/Data_Factory/autonomous_git_sync_daemon.py", IsDaemon=true, WaitMsBeforeAsync=500, toolSummary="Launch Autonomous Git Sync Daemon")`
    - Setting: `IsDaemon=true`, `WaitMsBeforeAsync=500`
    - Purpose: Runs continuously every 5 minutes (300s). Stages all modified and new workspace files (`git add -A`), validates `Data/DataBase_Trading.xlsx` zip CRC integrity before committing, commits with timestamped provenance, and pushes cleanly to `origin/main`. Guarantees zero local/remote desynchronization with zero manual intervention.
 
 5. **Daemon 5 (AST Graphify Watcher Daemon)**:
-   - Command: `python Terminal/run_graphify_watcher.py`
+   - Tool Call: `run_command(CommandLine="python Terminal/run_graphify_watcher.py", IsDaemon=true, WaitMsBeforeAsync=500, toolSummary="Launch AST Graphify Watcher Daemon")`
    - Setting: `IsDaemon=true`, `WaitMsBeforeAsync=500`
    - Purpose: Continuous low-RAM AST watcher monitoring `Terminal/` and `Engine/` to synchronize code graph memory without token waste.
+
+*Verification Gate*: Re-run `manage_task(Action='list')` to verify all 5 tasks report `Status: RUNNING` and have valid `taskId` values assigned.
 
 ---
 
@@ -129,16 +133,17 @@ Verify that `Data/DataBase_Trading.xlsx` is fresh, uncorrupted, and has zero for
 ### STEP 5: SIMULTANEOUS DUAL-TRACK DISPATCH (MANDATORY TIER 2 BIG PROMPTS ONLY)
 > 🛑 **MANDATORY BIG PROMPT INVARIANT (STRICT OPERATOR DIRECTIVE)**:
 > The coordinator is **strictly FORBIDDEN** from dispatching lightweight, summarized, or truncated prompts to subagents.
-> On EVERY turn, cycle, and bootstrap re-engagement, the coordinator MUST copy and inject the **FULL UNABRIDGED TIER 2 BIG PROMPTS** (~350–500 tokens each) from `Data/Manditory/SUBAGENT_PROMPT_TEMPLATES.md` (Part 2) into each subagent. Short prompts fail to audit all 33 sheets line-by-line and are considered an immediate protocol violation.
+> On EVERY turn, cycle, and bootstrap re-engagement, the coordinator MUST copy and inject the **FULL UNABRIDGED TIER 2 BIG PROMPTS** (~350–500 tokens each) from `Data/Manditory/SUBAGENT_PROMPT_TEMPLATES.md` (Part 2) into each subagent.
+> Every subagent prompt MUST explicitly include `@[c:\Users\SIGMA\Documents\Trading_2\docs\specs\STANDARDIZED_TRADING_DECISION_CHAIN.md]` as the first non-bypassable reading requirement. Short prompts fail to audit all 33 sheets line-by-line and are considered an immediate protocol violation.
 
 1. **Track A (Internal Subagent Fleet Invocation with Tier 2 Big Prompts)**:
    - Immediately invoke all 4 specialized subagents simultaneously using `invoke_subagent` (`Model='flash'`):
-     * **Subagent 1: Orderflow Analyst** (`Role='Orderflow Analyst', Model='flash'`): Injected with Full Tier 2 Big Prompt covering Sheets 00–28, 30 (`20_Auction_Market_Structure`), spread gates, 5-pillar confluence, L2/L3 orderbook depth, resting whale bunkers, CVD divergence, and Potential Candidate Radar Checklist.
-     * **Subagent 2: Position Manager** (`Role='Position Manager', Model='flash'`): Injected with Full Tier 2 Big Prompt covering MT5 telemetry, ratchet progression, stressed capacity audit strictly enforcing 1-position slot under +$39.83 buffer, and ticket sizing.
-     * **Subagent 3: Macro Risk Analyst** (`Role='Macro Risk Analyst', Model='flash'`): Injected with Full Tier 2 Big Prompt covering Sheet 28 `19_Calendar`, `macro_calendar.json`, ETF flows, CEX netflows, session clock, and rollover embargo.
-     * **Subagent 4: Excel Data Quality Auditor** (`Role='Excel Data Quality Auditor', Model='flash'`): Injected with Full Tier 2 Big Prompt covering 33-sheet coverage, CRC checks, zero formula errors, header verification, and pipeline daemon health.
+     * **Subagent 1: Orderflow Analyst** (`Role='Orderflow Analyst', Model='flash'`): Injected with Full Tier 2 Big Prompt covering Sheets 00–28, 30 (`20_Auction_Market_Structure`), mandatory citation of `STANDARDIZED_TRADING_DECISION_CHAIN.md`, spread gates, 5-pillar confluence, L2/L3 orderbook depth, resting whale bunkers, CVD divergence, and Potential Candidate Radar Checklist.
+     * **Subagent 2: Position Manager** (`Role='Position Manager', Model='flash'`): Injected with Full Tier 2 Big Prompt covering mandatory citation of `STANDARDIZED_TRADING_DECISION_CHAIN.md`, MT5 telemetry, ratchet progression, stressed capacity audit strictly enforcing 1-position slot under +$39.83 buffer, and ticket sizing.
+     * **Subagent 3: Macro Risk Analyst** (`Role='Macro Risk Analyst', Model='flash'`): Injected with Full Tier 2 Big Prompt covering mandatory citation of `STANDARDIZED_TRADING_DECISION_CHAIN.md`, Sheet 28 `19_Calendar`, `macro_calendar.json`, ETF flows, CEX netflows, session clock, and rollover embargo.
+     * **Subagent 4: Excel Data Quality Auditor** (`Role='Excel Data Quality Auditor', Model='flash'`): Injected with Full Tier 2 Big Prompt covering mandatory citation of `STANDARDIZED_TRADING_DECISION_CHAIN.md`, 33-sheet coverage, CRC checks, zero formula errors, header verification, and pipeline daemon health.
 2. **Track B (Parallel Arena.ai Red-Team Prompt Dispatch)**:
-   - PARALLEL TO SUBAGENT INVOCATION, immediately dispatch the surgical red-team prompt to Arena.ai via Chrome CDP on port 9222:
+   - PARALLEL TO SUBAGENT INVOCATION, immediately dispatch the surgical red-team prompt citing `STANDARDIZED_TRADING_DECISION_CHAIN.md` to Arena.ai via Chrome CDP on port 9222:
      `python Terminal/dispatch_arena_redteam.py`
    - Arena.ai begins generation on Chrome CDP simultaneously while subagents conduct their independent empirical analyses.
 

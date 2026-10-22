@@ -25,6 +25,13 @@ log = setup_institutional_logger("APIHarvester")
 # All pure API modules (Zero browser / Zero CDP requirements)
 API_MODULES = [
     {
+        "id": 0,
+        "name": "MT5 Broker Account Telemetry & Spreads",
+        "script": MODULES_DIR / "00_MT5_Account_Telemetry.py",
+        "sheet": "00_MT5_Account_Telemetry",
+        "timeout": 60,
+    },
+    {
         "id": 1,
         "name": "Crypto ETF Flows",
         "script": MODULES_DIR / "1_Crypto_ETF_Flows.py",
