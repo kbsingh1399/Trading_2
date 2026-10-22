@@ -49,6 +49,7 @@ import pathlib
 import sys
 import time
 import urllib.request
+import zipfile
 from typing import Any, Dict, List, Optional, Tuple
 
 import aiohttp
@@ -837,11 +838,9 @@ def export_cvd_to_excel(
     ws.freeze_panes = "A2"
 
     t_save = time.time()
-    import os, time
     temp_excel = excel_path.with_name(f"{excel_path.stem}_{os.getpid()}_{int(time.time()*1000)}.tmp.xlsx")
     wb.save(temp_excel)
     wb.close()
-    import time, zipfile
     _is_valid = False
     with zipfile.ZipFile(temp_excel, "r") as _z:
         _is_valid = (_z.testzip() is None)
