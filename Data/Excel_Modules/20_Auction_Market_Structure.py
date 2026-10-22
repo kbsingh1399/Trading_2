@@ -564,26 +564,17 @@ def dump_auction_structure_to_excel(
 
     now_utc = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
 
-    # Section 1: Auction Market Structure
-    last_col_letter = get_column_letter(len(COLUMNS_DEF))
-    ws.merge_cells(f"A1:{last_col_letter}1")
-    t1 = ws["A1"]
-    t1.value = f"SECTION 1: INSTITUTIONAL AUCTION MARKET STRUCTURE, VOLUME PROFILE & SESSION EXTREMES ({len(structure_records)} ASSETS) [as_of {now_utc}]"
-    t1.font = font_banner
-    t1.fill = fill_banner
-    t1.alignment = Alignment(horizontal="center", vertical="center")
-    ws.row_dimensions[1].height = 28
-
-    ws.row_dimensions[2].height = 26
+    # Section 1: Auction Market Structure (Row 1 Canonical Column Names, Zero Merged Cells)
+    ws.row_dimensions[1].height = 26
     for col_idx, (col_key, header_title, width, align) in enumerate(COLUMNS_DEF, start=1):
-        c = ws.cell(row=2, column=col_idx, value=header_title)
+        c = ws.cell(row=1, column=col_idx, value=col_key)
         c.font = hdr_font
         c.fill = hdr_fill
         c.alignment = Alignment(horizontal=align, vertical="center")
         c.border = row_border
         ws.column_dimensions[get_column_letter(col_idx)].width = width
 
-    current_row = 3
+    current_row = 2
     for r in structure_records:
         ws.row_dimensions[current_row].height = 20
         row_fill = fill_zebra if (current_row % 2 == 0) else fill_white
