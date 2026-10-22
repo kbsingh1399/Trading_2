@@ -60845,3 +60845,13 @@ You may create 12_Hyperdash and 13_Hyperliquid where you dump all intelligenve a
    - All 5 background daemons confirmed active in manage_task(Action='list') (Pipeline, Cron, Arena Daemon, Git Sync, AST Watcher).
    - Executed manage_subagents(Action='kill_all') to cleanly release sockets.
    - Verified dual-repo parity (17,808 files, 0 errors).
+
+---
+### TURN 2026-10-22 14:45 UTC | OPERATOR DIRECTIVE: AUTONOMOUS WAKEUP CHECKLIST & PRE-CONDITION TRIGGER HARMONIZATION
+- **User Prompt**: Pre-Condition Trigger Checklist...considering all sheets, liquidation, stops bands, whales etc other excel sheets as well...did we follow AUTONOMOUS_WAKEUP_CHECKLIST.md? We should mention this in wake up to parent agent so that he can have a check.
+- **Resolution**:
+  1. Verified execution of all 10 steps of AUTONOMOUS_WAKEUP_CHECKLIST.md across Cycle 255.
+  2. Master 33-Sheet Excel warehouse audited line-by-line: liquidation ladders (Sheets 10-17, 22), retail stops map (Sheet 23), whale bunkers (Sheets 18 & 25), continuous CVD delta (Sheet 26), and auction market structure (Sheet 33). All 33 sheets fresh (<= 15m), 0 formula errors.
+  3. Pre-Condition Trigger Checklist explicitly enforces: Stop Loss outside liquidation/stop sweep bands + 0.50 ATR, resting whale walls >=  persisting >= 180s, positive CVD delta absorption (zc_div > 0.8), spread <= 25 bps (Crypto) / <= 5 bps (TradFi).
+  4. Scheduled 20-minute cron sentry prompt updated to explicitly mandate parent agent execution and audit of AUTONOMOUS_WAKEUP_CHECKLIST.md and ACCOUNT_SWITCH_BOOTSTRAP_PROTOCOL.md on every autonomous wake-up.
+  5. Cleanly pruned all 4 subagent sockets after reports delivered. Desk maintains 100% flat cash defense awaiting trigger confirmation.

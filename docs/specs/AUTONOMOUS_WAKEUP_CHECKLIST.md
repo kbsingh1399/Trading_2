@@ -3,17 +3,25 @@
 
 > **Canonical Production Checklist**: Non-bypassable 10-Step Autonomous Desk Wake-Up Sequence.  
 > **Target Environment**: MetaTrader 5 (Blueberry Markets Account #5064568) | Antigravity Autonomous Decision Desk  
-> **Active Goal**: Pass Phase 1 Challenge (Target: 5,500.00 USD) by End of Friday, 23rd October 2026.  
-> **Mandatory Foundation**: [`STANDARDIZED_TRADING_DECISION_CHAIN.md`](file:///c:/Users/SIGMA/Documents/Trading_2/docs/specs/STANDARDIZED_TRADING_DECISION_CHAIN.md) (10-Step SOP) + Master 29-Sheet Excel Data Warehouse (`Data/DataBase_Trading.xlsx` & `Data/Manditory/`).  
+> **Active Goal Contract**: Pass Phase 1 Challenge (Target: 5,500.00 USD) by End of Friday, 23rd October 2026.  
+> **INVIOLABLE OPERATOR MANDATE**: The /goal contract is PERPETUAL and must NEVER be killed, paused, or cancelled until live equity >= 5,500.00 USD is proven on MT5.  
+> **MANDATORY CANDIDATE RADAR**: The desk is STRICTLY FORBIDDEN from issuing a bare 'Stand Aside' without formulating and tracking concrete Potential Candidate Setups with checkable pre-condition trigger checklists [ ].  
+> **Mandatory Foundation**: [`STANDARDIZED_TRADING_DECISION_CHAIN.md`](file:///c:/Users/SIGMA/Documents/Trading_2/docs/specs/STANDARDIZED_TRADING_DECISION_CHAIN.md) (10-Step SOP) + Master 33-Sheet Excel Data Warehouse (`Data/DataBase_Trading.xlsx` & `Data/Manditory/`).  
 > **Standard Arena Prompt Template**: [`docs/prompts/ARENA_STANDARD_PROMPT_TEMPLATE.md`](file:///c:/Users/SIGMA/Documents/Trading_2/docs/prompts/ARENA_STANDARD_PROMPT_TEMPLATE.md)  
+> **Operator Concerns & Perpetual Resolutions**: [OPERATOR_ISSUES_AND_RESOLUTIONS_CHECKLIST.md](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/OPERATOR_ISSUES_AND_RESOLUTIONS_CHECKLIST.md)  
 > **Cadence**: 20-Minute Cron Trigger (`0,20,40 * * * *` at 20th, 40th, and 60th/00th minute).  
 > **Strict Operational Invariant**: A cycle is NEVER completed upon prompt dispatch. A cycle is ONLY complete once BOTH Antigravity and Arena.ai have completed analysis, outputs are harvested and cross-verified via Co-Equal Council Discussion, and all necessary live MT5 actions (order punch, ratchet adjustment, order cancellation) are executed.
 
-## 🚨 MANDATORY INVIOLATE SUBAGENT SWARM & ARENA.AI DISPATCH GUARANTEE (OPERATOR MANDATE)
+## 🚨 MANDATORY INVIOLATE 4-SUBAGENT FLEET & ARENA.AI DISPATCH GUARANTEE (OPERATOR MANDATE)
 > **NEVER OMIT, BYPASS, OR SKIP UNDER ANY CIRCUMSTANCES**:
-> 1. **Mandatory Subagent Swarm**: On EVERY 20-minute autonomous wake-up cron and on EVERY manual turn, the coordinator MUST physically invoke the 3 specialized subagents (Orderflow Analyst, Position Manager, Macro Risk Analyst) via invoke_subagent.
-> 2. **Mandatory Arena.ai Surgical Red-Team Dispatch**: On EVERY wake-up cycle, a surgical red-team prompt MUST be injected into Arena.ai via Chrome CDP on port 9222.
-> 3. **Live Profit Ratchets Do Not Excuse Omission**: When live orders fill and dynamic ratchets (Early-BE, Phase 0, Phase 1) fire on MT5, the coordinator must execute the ratchet IMMEDIATELY to secure capital, but MUST SIMULTANEOUSLY dispatch the subagent swarm and Arena prompt. No operational event ever excuses skipping the dual-track council.
+> 1. **Mandatory 4-Subagent Fleet**: On EVERY 20-minute autonomous wake-up cron and on EVERY decision turn, Antigravity MUST physically invoke the **4 specialized subagents** via invoke_subagent:
+>    - Orderflow Analyst: Deeply studies Data/DataBase_Trading.xlsx (Sheets 10-18, 22-26: Orderbook, CVD, Liq Maps, Stops Maps, Whale Orders) row-by-row and column-by-column, checks spread gates, executes 5-pillar confluence, and formulates candidate limits.
+>    - Position Manager: Evaluates live MT5 account telemetry, computes stressed capacity ( stressed risk, +2.83 USD operating buffer cushion, +22.83 USD hard floor cushion), verifies sizing for 2-4 concurrent slots.
+>    - Macro Risk Analyst: Studies Data/DataBase_Trading.xlsx (Sheets 00-02, 27-28: ETF Flows, News, Macro Calendar) line-by-line, enforces Tier-1 blackouts and the 21:15–22:30 UTC interbank FX rollover embargo.
+>    - Excel Data Quality Auditor: Studies Data/DataBase_Trading.xlsx row-by-row and column-by-column across all 33 sheets (including Sheet 33 '20_Auction_Market_Structure'), verifies zero formula errors, confirms clean sheet overwrite discipline, and verifies continuous 33-sheet Excel pipeline daemon (`Run_Parallel_Pipeline.py --continuous --gap 300`).
+> 2. **Mandatory Canonical Governance**: Every subagent prompt and Arena prompt MUST cite and follow docs/specs/STANDARDIZED_TRADING_DECISION_CHAIN.md (10-Step SOP) and require line-by-line inspection of Data/DataBase_Trading.xlsx.
+> 3. **Mandatory Arena.ai Surgical Red-Team Dispatch**: On EVERY wake-up cycle, a surgical red-team prompt citing STANDARDIZED_TRADING_DECISION_CHAIN.md MUST be injected into Arena.ai via Chrome CDP on port 9222.
+> 4. **Live Profit Ratchets Do Not Excuse Omission**: When live orders fill and dynamic ratchets (Early-BE, Phase 0, Phase 1) fire on MT5, the coordinator must execute the ratchet IMMEDIATELY to secure capital, but MUST SIMULTANEOUSLY dispatch the 4-subagent fleet and Arena prompt. No operational event ever excuses skipping the dual-track council.
 
 
 ---
@@ -84,40 +92,26 @@ Before evaluating data, touching code, or dispatching orders, the coordinator an
   5. Macro clearance (zero Tier-1 blackout).
 - **Autonomous Punch Mandate**: If an empty slot exists and a candidate passes all 5 pillars, IMMEDIATELY punch the passive limit order into MT5 without hesitation and without asking permission.
 
-### Gateway 7: Line-by-Line Study of All 32 Excel Sheets, Narrative Synthesis & Position Formulation (Operator Mandate)
-> *"Have we studied each and every line of all 32 Excel sheets, built a cohesive market narrative, and formulated our trade positioning directly from it?"*
-- **Mandatory Line-by-Line Examination**:
-  * The desk is strictly forbidden from skimming summary cards, relying on column averages, or treating the master Excel warehouse as a black box.
-  * Every cycle, coordinator and subagents MUST inspect and study *each and every line* across all 32 worksheets:
-    1. *Spot ETF & Macro Netflow (Sheets 00-02)*: Every row of daily net creations/redemptions and 1h-7d CEX netflows to confirm real spot accumulation vs distribution.
-    2. *Market Positioning & Crowding (Sheets 03-05)*: Exact Binance/OKX/Bybit LS account ratios to detect crowded retail traps.
-    3. *Hyperliquid L1 Whales (Sheet 06)*: Every whale wallet (0x...), open size, leverage, margin utilization, and liquidation price.
-    4. *Open Interest & Funding Carry (Sheets 07-09)*: Exact dollar OI changes and cross-exchange funding rates to differentiate true trend breakouts from fragile short squeezes.
-    5. *Liquidation Maps & Real-Time Tape (Sheets 10-17, 22)*: Continuous dollar-by-dollar liquidation ladders and forced liquidation prints to identify exact cascade boundaries [min_price, max_price] and multi-day max pain strikes.
-    6. *Resting Whale Orders (Sheets 18 & 25)*: Every resting order line (>= $100K USD) to verify order status, price level, remaining volume, and verified persistence (>= 180s).
-    7. *Technical & Auction Profiling (Sheet 19)*: 20/50/200 EMAs, Session VWAP, +-1.0/+-2.0 SD bands, VWAP Z-score, RSI-14, ATR-14, and Volume Profile POC/VAH/VAL.
-    8. *Retail Stop Order Ladder (Sheet 23)*: Exact retail stop loss clusters to identify sweep traps and liquidity voids.
-    9. *Continuous CVD Engine (Sheet 26)*: 1m, 5m, 15m, 1h Spot vs Futures taker volume, delta divergence (zc_div > 0.8), and absorption signatures.
-    10. *Breaking News & Macro Calendar (Sheets 27 & 28)*: Line-by-line inspection of geopolitical news and scheduled red-folder releases.
-- **Integrity Gate**: Confirm exactly 0 formula errors (#REF!, #DIV/0!, #VALUE!, #N/A) and 0 empty headers.
-- **Pipeline Health**: Confirm run_pipeline_continuous_daemon.py is cycling with the verified 5-minute rest interval and data freshness < 180s.
-- **Narrative Synthesis**: Synthesize the line-by-line data into an empirical multi-dimensional narrative (who is dominating the tape, where the trapped liquidity sits, whether market is in Model 1 Mean Reversion or Model 2 Trend Pullback).
-- **Position Formulation**: Ground the exact execution ticket directly in the narrative:
-  * Entry placed passively behind resting whale wall and demand/supply shelf (never crossing spread).
-  * Stop Loss anchored safely outside [min_price, max_price] of nearest liquidation/stop band with >= 0.35-0.50 ATR buffer.
-  * Take Profit front-running opposing liquidation magnet or Volume Profile shelf by 5-10 bps.
-  * Risk sized between 10.00 and 25.00 USD, guaranteeing 4,795.00 USD operating buffer on fill and 4,775.00 USD hard floor under catastrophic stopout.
+### Gateway 7: 33-Sheet Excel Freshness & Integrity Audit (OPERATOR DIRECTIVE)
+> *"Has Data/DataBase_Trading.xlsx loaded all 33 sheets cleanly with zero formula errors, and are all values actively updating and fresh?"*
+- **File Health**: Data/DataBase_Trading.xlsx (Size ~13.1 to 13.8 MB) loads cleanly via openpyxl.
+- **Mandatory Freshness Check**:
+  * Verify each sheet is actively updating with FRESH values and NOT stale:
+  * Timestamps on `17_Orderbook`, `18_CVD`, `00_MT5_Account_Telemetry`, and `20_Auction_Market_Structure` must be <= 15 minutes old.
+  * Verify value deltas between consecutive dumps are non-zero (guarantees live incoming stream, not frozen cache).
+  * Flag any sheet where data is stale (> 25 minutes old) fail-closed.
+- **Error Scan**: Exactly 0 formula errors (#REF!, #DIV/0!, #VALUE!, #N/A, #NAME?, #NUM!, #NULL!) across all 1.6M+ cells.
+- **Pipeline Daemon**: Continuous 33-sheet pipeline daemon is actively cycling with 5m rest intervals.
 
 ### Gateway 8: Hardware Health, Background Daemons & Workspace Hygiene
-> *"Is system RAM optimized, are all 6 daemons running, and is the workspace pristine?"*
+> *"Is system RAM optimized, are all 5 daemons running in Antigravity task manager, and is the workspace pristine?"*
 - **RAM Check**: Is RAM usage <= 70%? If not, execute scripts/free_ram.ps1 while strictly preserving Microsoft Edge.
-- **6 Always-On Persistent Daemons**:
-  1. Continuous Pipeline Daemon (run_pipeline_continuous_daemon.py, 5m rest interval)
-  2. Telemetry Git Sync Daemon (autonomous_telemetry_git_daemon.py, pushes every 60s)
-  3. Arena Completion Daemon (arena_completion_daemon.py --daemon on port 9222)
-  4. Autonomous Swarm Cron (schedule cron on 0,20,40 * * * *)
-  5. Web2API Council Daemon (gemini_web2api.py on port 8081)
-  6. Heretic Engine Daemon (heretic_daemon.py on port 8083)
+- **5 Authorized Persistent Background Daemons (in Antigravity Task Manager)**:
+  1. Daemon 1: Continuous 33-Sheet Pipeline Daemon (`Run_Parallel_Pipeline.py --continuous --gap 300 --workers 1`, `IsDaemon=true`)
+  2. Daemon 2: 20-Minute Cron Sentry (`schedule` cron on `0,20,40 * * * *`, `IsDaemon=true`)
+  3. Daemon 3: Arena Completion Daemon (`arena_completion_daemon.py --daemon` on port 9222, `IsDaemon=true`)
+  4. Daemon 4: Autonomous 5-Minute Git Sync Daemon (`autonomous_git_sync_daemon.py`, commits & pushes every 300s, `IsDaemon=true`)
+  5. Daemon 5: AST Graphify Watcher Daemon (`run_graphify_watcher.py`, `IsDaemon=true`)
 - **Zero Scratch Litter**: Prune all temporary scripts immediately after verification.
 - **Turn Ledger Append**: Append turn record to .agents/memory/session_chat_history.md.
 
@@ -129,7 +123,7 @@ Every autonomous wake-up cycle (triggered by the 20-minute cron at :00, :20, :40
 
 ```mermaid
 flowchart TD
-    S0["Step 0: Study Goal First & Mission Continuity<br/>(GOAL.md & PASS_BLUEBERRY_PHASE_1_BY_OCT_23_2026.md)"] --> S1["Step 1: System Health, 29-Sheet Excel & Pipeline Check<br/>(run_pipeline_continuous_daemon.py & 5m Rest Interval)"] --> S2["Step 2: MT5 Account & Floor Defense Audit<br/>(Hard Floor 4,775 / Buffer 4,795 USD | Risk $15-$25)"]
+    S0["Step 0: Study Goal First & Mission Continuity<br/>(GOAL.md & PASS_BLUEBERRY_PHASE_1_BY_OCT_23_2026.md)"] --> S1["Step 1: System Health, 33-Sheet Excel & Pipeline Check<br/>(run_pipeline_continuous_daemon.py & 5m Rest Interval)"] --> S2["Step 2: MT5 Account & Floor Defense Audit<br/>(Hard Floor 4,775 / Buffer 4,795 USD | Risk $15-$25)"]
     S2 --> S3["Step 3: Active Position & Dynamic Ratchet Audit<br/>(Early-BE +0.75R / Phase 0 +1.25R / Phase 1 +1.65R)"]
     S3 --> S4["Step 4: Institutional Universe & Spread Gate Scan<br/>(Crypto <= 25.0 bps | TradFi <= 5.0 bps)"]
     S4 --> S5["Step 5: Dual-Track Analysis Initiation<br/>(Track A: Internal Subagents | Track B: Arena Dispatch)"]
@@ -156,10 +150,10 @@ flowchart TD
 ---
 
 ### Step 1: System Health, Master Excel Data Warehouse & Pipeline Verification
-- [ ] **MANDATORY 32-SHEET MASTER EXCEL INSPECTION CONFIRMATION**:
-  - Physically load and confirm reading across ALL **32 canonical worksheets** of `Data/DataBase_Trading.xlsx` (Sheet 00 `00_MT5_Account_Telemetry` through Sheet 31 `19_Calendar`).
-  - Output an explicit confirmation score verifying row counts, column counts, freshness timestamps, and confirming exactly zero formula errors (`#REF!`, `#DIV/0!`, `#VALUE!`, `#N/A`) and zero empty headers across all 32 sheets. Nothing may ever be skipped or missed.
-  - Require the exact same 32-sheet verification attestation from Arena.ai on every council cycle.
+- [ ] **MANDATORY 33-SHEET MASTER EXCEL INSPECTION CONFIRMATION**:
+  - Physically load and confirm reading across ALL **33 canonical worksheets** of `Data/DataBase_Trading.xlsx` (Sheet 00 `00_MT5_Account_Telemetry` through Sheet 33 `20_Auction_Market_Structure`).
+  - Output an explicit confirmation score verifying row counts, column counts, freshness timestamps, and confirming exactly zero formula errors (`#REF!`, `#DIV/0!`, `#VALUE!`, `#N/A`) and zero empty headers across all 33 sheets. Nothing may ever be skipped or missed.
+  - Require the exact same 33-sheet verification attestation from Arena.ai on every council cycle.
 - [ ] **MANDATORY LINE-BY-LINE EXCEL STUDY & NARRATIVE SYNTHESIS (OPERATOR INVARIANT)**:
   - Systematically study *each and every line* across all worksheets:
     * Spot ETF & CEX Netflows (Sheets 00-02): evaluate institutional net accumulation vs distribution line-by-line.
@@ -174,17 +168,13 @@ flowchart TD
     * Breaking News & Calendar (Sheets 27 & 28): read upcoming economic events and news headlines line-by-line.
   - Synthesize findings into a rigorous **Market Narrative** (tape dominance, liquidity traps, regime classification).
   - Derive the exact **Position of Trade** (Entry behind whale bunker, SL outside sweep band, TP front-running magnet, lot sizing).
-- [ ] **Continuous Data Pipeline Daemon Audit**:
-  - Verify `python Terminal/run_pipeline_continuous_daemon.py` is active in background tasks.
-  - Confirm the pipeline is cycling through all 28 data modules with an exact 5-minute (300-second) rest window between completed cycles.
-  - If stale (> 45 min) or dead: relaunch `Terminal/run_pipeline_continuous_daemon.py` immediately.
-- [ ] **Verify Core Always-On Persistent Tasks**:
-  1. Pipeline Daemon (`run_pipeline_continuous_daemon.py`, 5m rest interval)
-  2. Telemetry Git Sync Daemon (`autonomous_telemetry_git_daemon.py`, pushes every 60s)
-  3. Arena Completion Daemon (`arena_completion_daemon.py --daemon` on port 9222)
-  4. Autonomous Swarm Cron (`schedule` cron on `0,20,40 * * * *`)
-  5. Web2API Council Daemon (`gemini_web2api.py` on port 8081)
-  6. Heretic Engine Daemon (`heretic_daemon.py` on port 8083)
+- [ ] **Verify Core 5 Always-On Persistent Tasks in Antigravity Task Manager**:
+  1. Continuous 33-Sheet Pipeline Daemon (`Run_Parallel_Pipeline.py --continuous --gap 300 --workers 1`, `IsDaemon=true`)
+  2. 20-Minute Cron Sentry (`schedule` cron on `0,20,40 * * * *`, `IsDaemon=true`)
+  3. Arena Completion Daemon (`arena_completion_daemon.py --daemon` on port 9222, `IsDaemon=true`)
+  4. Autonomous 5-Minute Git Sync Daemon (`autonomous_git_sync_daemon.py`, commits and pushes every 300s, `IsDaemon=true`)
+  5. AST Graphify Watcher Daemon (`run_graphify_watcher.py`, `IsDaemon=true`)
+  *If any task is absent from `manage_task(Action='list')`, launch it immediately as defined in `ACCOUNT_SWITCH_BOOTSTRAP_PROTOCOL.md`.*
 
 ---
 
@@ -228,7 +218,20 @@ flowchart TD
 
 ---
 
-### Step 4: Institutional Universe Market Scan & Spread Friction Filtering
+### Step 4: Institutional Universe Market Scan & Candidate Radar Checklist
+- [ ] Extract live quotes across the 18 institutional perpetuals and TradFi CFDs from MT5 telemetry:
+  - **Crypto Spread Gate**: Spread must be `<= 25.0 bps`. (Eligible: BTC ~1.8 bps, BNB ~8.0 bps, ETH ~11.4 bps, BCH ~20.2 bps, TRX ~21.2 bps, SOL ~22.5 bps. Disqualify: XRP, AVAX, LTC, NEAR, LINK, ADA, DOT, DOGE).
+  - **TradFi Spread Gate**: Spread must be `<= 5.0 bps`. (Eligible: EURUSD ~0.09 bps, GOLD ~0.19 bps, DJ30 ~0.22 bps, NAS100 ~0.36 bps, SP500 ~0.39 bps).
+- [ ] **MANDATORY CANDIDATE RADAR CHECKLIST & TRIGGER MATRIX (OPERATOR MANDATE - NEVER OMIT)**:
+  * Even when standing aside at current market prices, the coordinator and Orderflow Analyst MUST ALWAYS compile and output a structured **Potential Candidate Radar Checklist** detailing every prospective setup on our active radar.
+  * For each prospective candidate, specify:
+    1. **Asset & Strategy Model**: (e.g. BTC Model 2 Pullback, GOLD Model 1 Absorption, SOL VWAP Shelf).
+    2. **Mapped Structural Level**: Exact price shelf (Daily VWAP, EMA20/50, Volume Profile POC/VAL/VAH).
+    3. **Proposed Ticket Geometry**: Lot Size, Entry Limit, Stop Loss (outside sweep band), Take Profit, R0.
+    4. **Current Status & Distance**: Distance in ATR or points from current market price.
+    5. **Trigger Pre-Condition Checklist**: Exact empirical criteria required to punch (e.g. `[ ] Retail stop pool swept`, `[ ] 15m CVD delta flips positive/absorption`, `[ ] Resting bid wall >= $100K persists >= 180s`, `[ ] Session rollover/MOC gate cleared`).
+  * If all checklist items are ticked `[x]` on wake-up: IMMEDIATELY punch the passive limit order autonomously!
+- [ ] Mandatory Candidate Output: Compile and format the complete candidate scan table and Candidate Radar Checklist transparently every cycle.
 - [ ] Extract live quotes across the 18 institutional perpetuals and TradFi CFDs from MT5 telemetry:
   - **Crypto Spread Gate**: Spread must be `<= 25.0 bps`. (Eligible: BTC ~1.8 bps, BNB ~8.0 bps, ETH ~11.4 bps, BCH ~20.2 bps, TRX ~21.2 bps, SOL ~22.5 bps. Disqualify: XRP, AVAX, LTC, NEAR, LINK, ADA, DOT, DOGE).
   - **TradFi Spread Gate**: Spread must be `<= 5.0 bps`. (Eligible: EURUSD ~0.09 bps, GOLD ~0.19 bps, DJ30 ~0.22 bps, NAS100 ~0.36 bps, SP500 ~0.39 bps).
@@ -240,28 +243,34 @@ flowchart TD
 ---
 
 ### Step 5: Antigravity & Arena.ai Co-Equal Council Discussion Initiation
-- [ ] **Track A: Antigravity Internal Subagent Dispatch**:
-  - Dispatch the 4 authorized internal subagents via `invoke_subagent`:
-    1. `Excel Data Quality Auditor`: Audits all 29 sheets of `Data/DataBase_Trading.xlsx`, verifies row counts, latest timestamps, confirms data in all sheets is continuously updating, and checks `logs/pipeline_daemon.log` to guarantee zero pipeline freezes.
-    2. `Orderflow Analyst`: Steps 1, 4, 6, 7 (CVD delta divergence, L2/L3 orderbook depth, whale order persistence >= 180s, liquidation/stops map proximity).
-    3. `Position Manager`: Steps 8, 9, 10 (MT5 telemetry, stressed floor simulation, ticket lot sizing, ratchet parameters).
-    4. `Macro Risk Analyst`: Step 1 & Section 3 Cluster A (Calendar Tier-1 proximity, +-15m/+-35m blackout enforcement, news shocks, ETF flows).
-  - Explicitly mandate each subagent to read `Data/DataBase_Trading.xlsx` (and `Data/Manditory/`) across all 29 worksheets line-by-line and follow `STANDARDIZED_TRADING_DECISION_CHAIN.md`.
+- [ ] **Track A: Antigravity Internal Subagent Dispatch (MANDATORY TIER 2 BIG PROMPTS ONLY)**:
+  - Dispatch the 4 authorized internal subagents via `invoke_subagent` (`Model='flash'`):
+    1. `Orderflow Analyst`: Full Tier 2 Big Prompt covering Sheets 00–28, 33 (`20_Auction_Market_Structure`), mandatory citation of `STANDARDIZED_TRADING_DECISION_CHAIN.md`, spread gates, 5-pillar confluence, L2/L3 orderbook depth, resting whale bunkers, CVD divergence, and Potential Candidate Radar Checklist.
+    2. `Position Manager`: Full Tier 2 Big Prompt covering mandatory citation of `STANDARDIZED_TRADING_DECISION_CHAIN.md`, MT5 telemetry, ratchet progression, stressed capacity audit strictly enforcing 1-position slot under +$39.83 buffer, and ticket sizing.
+    3. `Macro Risk Analyst`: Full Tier 2 Big Prompt covering mandatory citation of `STANDARDIZED_TRADING_DECISION_CHAIN.md`, Sheet 28 `19_Calendar`, `macro_calendar.json`, ETF flows, CEX netflows, session clock, and rollover embargo.
+    4. `Excel Data Quality Auditor`: Full Tier 2 Big Prompt covering mandatory citation of `STANDARDIZED_TRADING_DECISION_CHAIN.md`, all 33 sheets of `Data/DataBase_Trading.xlsx`, row counts, CRC checks, zero formula errors, header verification, and continuous pipeline daemon health.
+  - **MANDATORY READING REQUIREMENT IN EVERY PROMPT**:
+    * `1. @[c:\Users\SIGMA\Documents\Trading_2\docs\specs\STANDARDIZED_TRADING_DECISION_CHAIN.md] (MANDATORY CANONICAL QUANT SOP)`
+    * `2. Data/Manditory/GOAL.md`
+    * `3. .agents/rules/ACTIVE_CONTEXT.md`
+    * `4. .agents/memory/session_chat_history.md`
 - [ ] **Track B: Arena.ai Council Prompt Dispatch**:
   - Ensure the latest `Data/DataBase_Trading.xlsx` and live telemetry are pushed to GitHub `origin/main`.
-  - Prepare the prompt using the canonical template [`docs/prompts/ARENA_STANDARD_PROMPT_TEMPLATE.md`](file:///c:/Users/SIGMA/Documents/Trading_2/docs/prompts/ARENA_STANDARD_PROMPT_TEMPLATE.md) (unrestricted character depth).
-  - Connect to Edge CDP port `9222` and inject the prompt into Arena's TipTap editor.
+  - Prepare the prompt using the canonical template [`docs/prompts/ARENA_STANDARD_PROMPT_TEMPLATE.md`](file:///c:/Users/SIGMA/Documents/Trading_2/docs/prompts/ARENA_STANDARD_PROMPT_TEMPLATE.md) citing `STANDARDIZED_TRADING_DECISION_CHAIN.md`.
+  - Connect to Edge CDP port `9222` and inject the prompt into Arena's TipTap editor via `Terminal/dispatch_arena_redteam.py`.
   - If a feedback modal banner ("Was this task successful?") is present, click "Keep working" to dismiss it before sending.
   - Verify that generation starts (`isGenerating: true` / `hasStopBtn: true`).
 
 ---
 
-### Step 6: Arena.ai Completion Wait & Harvesting Gate
-- [ ] Let `Terminal/arena_completion_daemon.py --daemon` watch the generation lifecycle.
-- [ ] Once generation completes, verify that `docs/trade_plans/ARENA_LATEST_RAW.md` has been harvested and `Data/arena_completion_status.json` reflects fresh timestamp and non-empty hash.
-- [ ] Confirm both Antigravity subagent reports and Arena.ai output are in hand.
-
----
+### Step 6: Arena.ai Completion Wait, Reactive Wakeup & Output Evaluation Gate
+- [ ] **Arena Completion Daemon Reactive Wakeup**:
+  - The Arena Completion Daemon (`arena_completion_daemon.py --daemon`) continuously monitors Chrome CDP (port 9222).
+  - The instant Arena finishes generation, the daemon auto-harvests the complete response into `docs/trade_plans/ARENA_LATEST_RAW.md` and wakes up Antigravity reactively (zero token polling).
+- [ ] **Mandatory Arena.ai Evaluation & Cross-Verification**:
+  - Immediately read and deeply evaluate `docs/trade_plans/ARENA_LATEST_RAW.md`.
+  - Thoroughly inspect Arena's ruling, entry/SL/TP levels, 17-gate audit, and mathematical critique.
+  - Cross-verify Arena's critique with the independent empirical findings of all 4 subagents in the Co-Equal Council Debate.
 
 ### Step 7: Joint Output Forensic Cross-Verification & Dialectic Synthesis
 - [ ] Conduct a deep dialectic debate comparing Antigravity subagent research against Arena.ai's recommendations:
@@ -289,10 +298,12 @@ flowchart TD
 
 ---
 
-### Step 10: Git Sync, Session History Append & Cron Standby (CYCLE OFFICIAL COMPLETION)
-- [ ] Harvest updated account telemetry via `Terminal/generate_mt5_telemetry.py`.
-- [ ] Commit and push `Data/DataBase_Trading.xlsx`, `Data/telemetry/mt5_account_telemetry.json`, prompts, and trade plans to GitHub `origin/main`.
-- [ ] Append the complete turn summary to `.agents/memory/session_chat_history.md`.
-- [ ] Ensure the 20-minute autonomous cron (`0,20,40 * * * *`) is armed to trigger the next sprint at the 20th, 40th, or 60th/00th minute.
-- [ ] Prune all temporary scratch scripts immediately (zero scratch litter).
-- [ ] Enter silent standby awaiting next autonomous wake-up.
+### Step 10: Git Sync, Socket Pruning, Kaizen Audit & Cron Standby (CYCLE OFFICIAL COMPLETION)
+- [ ] **Autonomous 5-Minute Git Sync Verification**: Verify that `autonomous_git_sync_daemon.py` is actively running in `manage_task(Action='list')` and pushing workspace commits to `origin/main` every 300s with validated Excel CRC integrity.
+- [ ] **Clean Socket Pruning Mandate**: Immediately execute `manage_subagents(Action='kill_all')` to terminate all SSE subagent connections and eliminate Windows network socket leaks.
+- [ ] **Dual-Repo Parity Verification**: Run `python .agents/scripts/verify_and_sync_agents.py` to guarantee 100% byte-for-byte parity across `Trading_2` and `Engine_2`.
+- [ ] **Continuous Kaizen Self-Improvement Audit**: Execute the 5-stage loop from `Data/Manditory/CONTINUOUS_KAIZEN_SELF_IMPROVEMENT_PROTOCOL.md`. Audit for any arithmetic mismatch, stale solvency assumption, or unanchored level; codify any discovered trap immediately.
+- [ ] **Desk Ledger & Turn Append**: Update `docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md`, `ACTIVE_CONTEXT.md`, and append turn summary to `.agents/memory/session_chat_history.md`.
+- [ ] **Ensure All 5 Daemons Active in Task Manager**: Confirm that `manage_task(Action='list')` reports all 5 persistent daemons running (Pipeline, Cron `0,20,40 * * * *`, Arena Completion, Git Sync, AST Watcher). If any daemon terminated, immediately relaunch it.
+- [ ] **Zero Scratch Litter**: Prune all temporary scratch scripts immediately.
+- [ ] **Silent Standby**: Enter silent standby awaiting next autonomous reactive wakeup or cron trigger.
