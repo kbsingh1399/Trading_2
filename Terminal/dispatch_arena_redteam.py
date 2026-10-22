@@ -124,9 +124,13 @@ async def build_and_dispatch():
     candidate_table = (
         "| Candidate Setup | Direction | Target Entry | Stop Loss | Take Profit | Lots | Risk USD | Stressed Risk | Pre-Condition Checklist |\n"
         "|---|---|---|---|---|---|---|---|---|\n"
-        "| BTCUSD.pi Whale Bunker | BUY_LIMIT | 81,640.00 | 81,180.00 | 82,440.00 | 0.04 lot | $18.40 | $25.00 | [ ] 22.77M USD sell stops at 81,650-81,850 swept, [ ] CVD absorption flip, [ ] 7.53M USD wall holds at 81,637-81,670, [x] Spread 1.83 bps |\n"
-        "| XAUUSD.pi Demand Shelf | BUY_LIMIT | 4,058.50 | 4,050.50 | 4,072.00 | 0.02 lot | $16.00 | $22.00 | [ ] 4,058-4,060 bunker defense, [ ] Tick CVD deceleration, [ ] 0.94M USD whale bid persists >=180s, [ ] TP 4,072 front-runs VAL, [x] Spread 0.20 bps |\n"
-        "| BTCUSD.pi Pullback Short | SELL_LIMIT | 82,410.00 | 83,050.00 | 81,680.00 | 0.03 lot | $19.20 | $26.00 | [ ] Relief rally into 82,380-82,414 Ask wall, [ ] Tape rejection + CVD selling pressure, [ ] SL 83,050 safely > 83,032.54 boundary, [x] Spread 1.83 bps |"
+        "| DJ30.p Daily VAL Shelf | BUY_LIMIT | 52,455.00 | 52,360.00 | 52,650.00 | 0.02 lot | $19.00 | $24.00 | [ ] Pullback into Daily VAL 52,451.94, [ ] M15 volume exhaustion, [ ] TP front-runs VAH 52,673, [x] Spread 0.22 bps |\n"
+        "| NAS100.p Volume Rebound | BUY_LIMIT | 29,245.00 | 29,150.00 | 29,480.00 | 0.02 lot | $19.00 | $24.00 | [ ] Pullback into Daily VAL 29,236.95, [ ] Resting bid support, [ ] TP front-runs VAH 29,505, [x] Spread 0.36 bps |\n"
+        "| UK100.p Structural Short | SELL_LIMIT | 10,724.00 | 10,752.00 | 10,682.00 | 0.07 lot | $19.60 | $25.00 | [ ] Pullback to Daily VAH 10,716-10,724, [ ] SL safely beyond Weekly POC (10,742.87), [ ] TP front-runs VAL 10,679, [x] Spread 1.59 bps |\n"
+        "| GER40.p Auction Balance | BUY_LIMIT | 25,320.00 | 25,230.00 | 25,480.00 | 0.02 lot | $18.00 | $23.00 | [ ] Retest of Daily VAL 25,308.18, [ ] Delta turn, [ ] TP front-runs VAH 25,491, [x] Spread 0.31 bps |\n"
+        "| EURUSD.pi Value Retest | BUY_LIMIT | 1.11920 | 1.11820 | 1.12300 | 0.18 lot | $18.00 | $23.00 | [ ] Post-macro sweep into 1.11900 support, [ ] Tape reversal, [ ] TP front-runs Daily POC 1.12334, [x] Spread 0.09 bps |\n"
+        "| XAUUSD.pi Demand Shelf | BUY_LIMIT | 4,058.50 | 4,050.50 | 4,072.00 | 0.02 lot | $16.00 | $22.00 | [ ] 4,058-4,060 bunker defense, [ ] Tick CVD deceleration, [ ] TP front-runs VAL, [x] Spread 0.20 bps |\n"
+        "| BTCUSD.pi Whale Bunker | BUY_LIMIT | 81,640.00 | 81,180.00 | 82,440.00 | 0.04 lot | $18.40 | $25.00 | [ ] Sweep into 81,525-81,650 VAL shelf, [ ] CVD absorption flip, [ ] 7.53M wall holds, [x] Spread 1.83 bps |"
     )
     prompt = prompt.replace("{CANDIDATE_TABLE}", candidate_table)
 
