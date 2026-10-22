@@ -25,6 +25,9 @@
 | **10** | **Adherence to `STANDARDIZED_TRADING_DECISION_CHAIN.md`** | Subagent and Arena prompts lacked explicit citation of the 10-step SOP | Embedded mandatory citation and 10-step execution requirements into all subagent prompts and Arena template | ✅ **GOVERNING PROTOCOL** |
 | **11** | **HyperDash Microstructure Integration & Anti-Spoof Persistence** | Reliance on ephemeral liquidity or unverified depth | Sheets 12-16 (`12_Hyperdash` to `17_Orderbook`) actively enforce 180s persistence filter, L2/L3 whale attribution | ✅ **100% INTEGRATED** |
 | **12** | **Zero-Token Polling & Event-Driven Subagent Auto Wake-Up** | 10s sleep timers burn 264k tokens per turn (1.58M tokens/min) while idling | 10s timers permanently banned; Antigravity relies strictly on native event-driven reactive wakeups from subagent `send_message` and the 20m cron sentry | ✅ **PERMANENTLY ENFORCED** |
+| **13** | **Hexad-Daemon Management in Antigravity Task Runner** | Daemons running as unmanaged external OS processes without reactive wakeups | All 5 persistent daemons must be launched via `run_command(IsDaemon=true)` or `schedule` so Antigravity tracks TaskIds | ✅ **ENFORCED IN TASK RUNNER** |
+| **14** | **Mandatory Tier 2 Full Unabridged Big Prompts** | Subagents dispatched with truncated prompts failing to inspect all 33 sheets | Mandatory Tier 2 Big Prompts (~350–500 tokens) citing `STANDARDIZED_TRADING_DECISION_CHAIN.md` enforced | ✅ **ENFORCED ON ALL TURNS** |
+| **15** | **Sheet 00 (`00_MT5_Account_Telemetry`) Pipeline Integration** | Module 0 missing from `api_parallel_harvester.py`, leading to stale broker telemetry | Appended Module 0 into `API_MODULES` in `api_parallel_harvester.py`; runs every parallel cycle | ✅ **RESOLVED & FRESH** |
 
 ---
 
@@ -204,9 +207,12 @@ Every 20-minute wake-up cron cycle MUST systematically execute and verify each g
 - [ ] **Gate 09 (HyperDash Microstructure & Stops Map Sentry)**: Inspect retail stop clusters; strictly ban limit placement inside un-swept stop cascades.
 - [ ] **Gate 10 (Candidate Radar Matrix Updation)**: Maintain concrete potential candidates with checkable `[ ]` pre-conditions.
 - [ ] **Gate 11 (Clean Subagent Pruning)**: Call `manage_subagents(kill_all)` immediately after harvesting to prevent `connectex` socket errors.
-- [ ] **Gate 12 (Capital Floor & Buffer Protection)**: Strictly preserve +62.13 USD hard floor cushion and +42.13 USD operating buffer cushion.
+- [ ] **Gate 12 (Capital Floor & Buffer Protection)**: Strictly preserve +59.83 USD hard floor cushion and +39.83 USD operating buffer cushion.
 - [ ] **Gate 13 (Zero-Token Event-Driven Wakeup)**: Rely strictly on native reactive wakeups from subagent `send_message`; zero short timers.
 - [ ] **Gate 14 (Mandatory 33-Sheet Freshness & Non-Zero Delta Gate)**: Verify each sheet in `Data/DataBase_Trading.xlsx` updates with fresh values (timestamps <= 15m, non-zero deltas across consecutive dumps, zero frozen/stale feeds). Reject stale data fail-closed.
+- [ ] **Gate 15 (Antigravity Task Runner Daemons Sentry)**: Confirm all 5 daemons are active in `manage_task(Action='list')`.
+- [ ] **Gate 16 (Mandatory Tier 2 Big Prompts)**: Verify all 4 subagents are launched using full unabridged ~350–500 token prompts from `SUBAGENT_PROMPT_TEMPLATES.md` citing `STANDARDIZED_TRADING_DECISION_CHAIN.md`.
+- [ ] **Gate 17 (Sheet 00 MT5 Telemetry Freshness)**: Verify Sheet 00 timestamp <= 15m; confirms active sync between MT5 account and Excel warehouse.
 
 ---
 
@@ -219,3 +225,41 @@ Every 20-minute wake-up cron cycle MUST systematically execute and verify each g
   1. **Embedded Timestamp Audit**: Every subagent prompt mandatorily instructs the Excel Data Quality Auditor and Orderflow Analyst to inspect latest embedded row timestamps. Live market sheets (`17_Orderbook`, `18_CVD`, `00_MT5_Account_Telemetry`, `20_Auction_Market_Structure`) must be <= 15 minutes old relative to current UTC time.
   2. **Non-Zero Delta Verification**: The Auditor must verify that value deltas between successive pipeline commits are non-zero.
   3. **Fail-Closed Staleness Halt**: If any key orderflow sheet is older than 25 minutes or fails to cycle, all trading is CONDITIONAL or PAUSED until the pipeline completes a fresh atomic dump. Zero orders may be placed on unverified data.
+
+---
+
+## 🏛️ RESOLUTION 13: HEXAD-DAEMON MANAGEMENT IN ANTIGRAVITY TASK RUNNER (OPERATOR DIRECTIVE)
+- **Operator Directive**: "but have you started all required bg process...Ins't it mentioned in ACCOUNT_SWITCH_BOOTSTRAP_PROTOCOL.md Instnatiated"
+- **Root Cause & Vulnerability**:
+  * Merely launching Python scripts in the operating system via detached processes leaves them unmanaged by Antigravity.
+  * When tasks are not tracked in Antigravity's task manager (`manage_task(Action='list')`), the agent receives NO automatic background task completion or error wakeups.
+- **Enforced Protocol**:
+  1. All 5 background daemons MUST be started via Antigravity's native `run_command` with `IsDaemon=true, WaitMsBeforeAsync=500` (or `schedule` for cron):
+     - Continuous 33-Sheet Pipeline Daemon (`Run_Parallel_Pipeline.py --continuous --gap 300 --workers 1`)
+     - 20-Minute Cron Sentry (`schedule` cron on `0,20,40 * * * *`)
+     - Arena Completion Daemon (`arena_completion_daemon.py --daemon` on port 9222)
+     - Autonomous 5-Minute Git Sync Daemon (`autonomous_git_sync_daemon.py`)
+     - AST Graphify Watcher Daemon (`run_graphify_watcher.py`)
+  2. The coordinator verifies their live health via `manage_task(Action='list')` on every turn and bootstrap instantiation.
+
+---
+
+## 🏛️ RESOLUTION 14: MANDATORY FULL UNABRIDGED TIER 2 BIG PROMPTS (OPERATOR DIRECTIVE)
+- **Operator Directive**: "and what are you doiing...refer all 3 hours chats...we mentioned earlier to prmpt big prompt to subagents...we should continue with all of them and update in ACCOUNT_SWITCH_BOOTSTRAP_PROTOCOL.md if required...in prmpt to sub agent...you must mention STANDARDIZED_TRADING_DECISION_CHAIN.md"
+- **Root Cause & Vulnerability**:
+  * Dispatching summarized or truncated prompts to subagents leads to superficial audits where subagents skim data and fail to audit all 33 sheets row-by-row, missing critical orderbook walls, stop cascades, and macro embargos.
+- **Enforced Protocol**:
+  1. Lightweight/short prompts to subagents are permanently banned.
+  2. The coordinator MUST inject the FULL UNABRIDGED Tier 2 Big Prompts (~350–500 tokens) from `SUBAGENT_PROMPT_TEMPLATES.md` (Part 2) into each subagent.
+  3. Every subagent prompt MUST explicitly include `@[c:\Users\SIGMA\Documents\Trading_2\docs\specs\STANDARDIZED_TRADING_DECISION_CHAIN.md]` as the first non-bypassable reading requirement.
+
+---
+
+## 🏛️ RESOLUTION 15: SHEET 00 (`00_MT5_Account_Telemetry`) PIPELINE INTEGRATION
+- **Operator Directive**: Excel Data Quality Auditor flagged Sheet 00 as stale (> 25 min old) because it was omitted from the automated harvester roster.
+- **Root Cause & Vulnerability**:
+  * `00_MT5_Account_Telemetry.py` was created as a standalone script but had not been registered in `API_MODULES` inside `Data/Excel_Modules/api_parallel_harvester.py`.
+- **Enforced Protocol**:
+  1. Registered Module 0 (`00_MT5_Account_Telemetry.py`) directly into `API_MODULES` in `api_parallel_harvester.py`.
+  2. Executed test run: verified Sheet 00 generated cleanly at Index 0 with 173 rows and 0 errors.
+  3. Sheet 00 now cycles automatically on every continuous pipeline pass, guaranteeing fresh broker equity, cushions, and live symbol spreads.

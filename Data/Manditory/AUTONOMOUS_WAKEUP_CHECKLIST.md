@@ -299,11 +299,11 @@ flowchart TD
 ---
 
 ### Step 10: Git Sync, Socket Pruning, Kaizen Audit & Cron Standby (CYCLE OFFICIAL COMPLETION)
-- [ ] **Autonomous 5-Minute Git Sync Verification**: Verify that `autonomous_git_sync_daemon.py` (`task-104957`) is actively running and pushing workspace commits to `origin/main` every 300s with validated Excel CRC integrity.
+- [ ] **Autonomous 5-Minute Git Sync Verification**: Verify that `autonomous_git_sync_daemon.py` is actively running in `manage_task(Action='list')` and pushing workspace commits to `origin/main` every 300s with validated Excel CRC integrity.
 - [ ] **Clean Socket Pruning Mandate**: Immediately execute `manage_subagents(Action='kill_all')` to terminate all SSE subagent connections and eliminate Windows network socket leaks.
 - [ ] **Dual-Repo Parity Verification**: Run `python .agents/scripts/verify_and_sync_agents.py` to guarantee 100% byte-for-byte parity across `Trading_2` and `Engine_2`.
 - [ ] **Continuous Kaizen Self-Improvement Audit**: Execute the 5-stage loop from `Data/Manditory/CONTINUOUS_KAIZEN_SELF_IMPROVEMENT_PROTOCOL.md`. Audit for any arithmetic mismatch, stale solvency assumption, or unanchored level; codify any discovered trap immediately.
 - [ ] **Desk Ledger & Turn Append**: Update `docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md`, `ACTIVE_CONTEXT.md`, and append turn summary to `.agents/memory/session_chat_history.md`.
-- [ ] **Ensure Cron Sentry Active**: Confirm that the 20-minute autonomous cron sentry (`0,20,40 * * * *`, `task-104771`) is running to trigger the next sprint at the 20th, 40th, or 60th/00th minute.
+- [ ] **Ensure All 5 Daemons Active in Task Manager**: Confirm that `manage_task(Action='list')` reports all 5 persistent daemons running (Pipeline, Cron `0,20,40 * * * *`, Arena Completion, Git Sync, AST Watcher). If any daemon terminated, immediately relaunch it.
 - [ ] **Zero Scratch Litter**: Prune all temporary scratch scripts immediately.
 - [ ] **Silent Standby**: Enter silent standby awaiting next autonomous reactive wakeup or cron trigger.

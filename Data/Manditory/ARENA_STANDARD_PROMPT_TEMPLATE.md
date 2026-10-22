@@ -32,15 +32,16 @@
 
 ---
 
-## SECTION B: DATA MANDATE (NON-NEGOTIABLE)
+## SECTION B: DATA MANDATE & GOVERNANCE (NON-NEGOTIABLE)
 
 You MUST pull and read the following before answering — no assumptions, no stale cache:
 - Repo: `https://github.com/kbsingh1399/Trading_2` (branch `main`)
-- `Data/DataBase_Trading.xlsx` — all 32 sheets (Sheet 00 to Sheet 31)
+- `Data/DataBase_Trading.xlsx` — all 33 sheets (Sheet 00 to Sheet 33, including `20_Auction_Market_Structure`)
+- `docs/specs/STANDARDIZED_TRADING_DECISION_CHAIN.md` (Mandatory 10-Step Canonical SOP)
 - `docs/telemetry/live_snapshot_latest.json`
 - `Data/Manditory/PASS_BLUEBERRY_PHASE_1_BY_OCT_23_2026.md`
 
-Open your response with exactly one line: `✅ 32-SHEET CONFIRMATION: [X formula errors | Y empty headers]`
+Open your response with exactly one line: `✅ 33-SHEET CONFIRMATION: [X formula errors | Y empty headers]`
 
 ---
 
@@ -65,6 +66,9 @@ Antigravity is evaluating the following setups. Red-team each one:
 ---
 
 ## SECTION E: YOUR 5-POINT FORENSIC MANDATE (MAX 600 TOKENS TOTAL)
+
+🚨 **MANDATORY OUTPUT FORMAT DIRECTIVE (OPERATOR RULE)**:
+Write EVERYTHING directly inside your output chat response message. DO NOT write into external documents, side artifacts, canvas files, or secondary attachments. The entire audit must be read directly in the main response text.
 
 Answer each point with brutal precision — no filler:
 

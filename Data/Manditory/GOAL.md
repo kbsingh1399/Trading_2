@@ -2,7 +2,7 @@
 
 > **Execution Directive**: `/goal GOAL.md` (Autonomous Long-Running Execution Active)  
 > **Target Account**: Blueberry Markets MT5 Account #5064568  
-> **Profit Target**: **5,500.00 USD** (+648.17 USD required from current 4,851.83 USD realized equity)  
+> **Profit Target**: **5,500.00 USD** (+665.17 USD required from current 4,834.83 USD realized equity)  
 > **Deadline**: End of Friday, 23rd October 2026 (23:59 UTC)  
 > **Inviolable Floor**: **4,775.00 USD** (Never breach under any circumstance)  
 > **Operating Buffer**: **4,795.00 USD** (+20.00 USD defense cushion)  
@@ -15,23 +15,25 @@
 
 ## 🏛️ Mandatory Governance Files in `Data/Manditory/`
 
-All 5 core governance documents reside strictly in [`Data/Manditory/`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory):
-1. **[`AUTONOMOUS_WAKEUP_CHECKLIST.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/AUTONOMOUS_WAKEUP_CHECKLIST.md)**: 10-Step Non-bypassable Joint-Completion Wake-Up Sequence.
-2. **[`STANDARDIZED_TRADING_DECISION_CHAIN.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md)**: Standard Operating Procedure for 5-pillar quantitative confluence.
-3. **[`GOAL.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/GOAL.md)**: Operational `/goal` mission tracker.
-4. **[`PASS_BLUEBERRY_PHASE_1_BY_OCT_23_2026.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/PASS_BLUEBERRY_PHASE_1_BY_OCT_23_2026.md)**: Deep roadmap and risk sizing formulas to pass Phase 1.
-5. **[`SUBAGENT_PROMPT_TEMPLATES.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/SUBAGENT_PROMPT_TEMPLATES.md)**: Canonical optimized prompts for Orderflow Analyst, Position Manager, Macro Risk Analyst subagents and Arena.ai. **USE THESE TEMPLATES EVERY CYCLE.**
+All 6 core governance documents reside strictly in [`Data/Manditory/`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory):
+1. **[`ACCOUNT_SWITCH_BOOTSTRAP_PROTOCOL.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/ACCOUNT_SWITCH_BOOTSTRAP_PROTOCOL.md)**: Universal bootstrap protocol for account switching and daemon initialization.
+2. **[`AUTONOMOUS_WAKEUP_CHECKLIST.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/AUTONOMOUS_WAKEUP_CHECKLIST.md)**: 10-Step Non-bypassable Joint-Completion Wake-Up Sequence.
+3. **[`STANDARDIZED_TRADING_DECISION_CHAIN.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md)**: Standard Operating Procedure for 5-pillar quantitative confluence.
+4. **[`GOAL.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/GOAL.md)**: Operational `/goal` mission tracker.
+5. **[`PASS_BLUEBERRY_PHASE_1_BY_OCT_23_2026.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/PASS_BLUEBERRY_PHASE_1_BY_OCT_23_2026.md)**: Deep roadmap and risk sizing formulas to pass Phase 1.
+6. **[`SUBAGENT_PROMPT_TEMPLATES.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/SUBAGENT_PROMPT_TEMPLATES.md)**: Canonical Tier 2 Full Unabridged Big Prompts (~350–500 tokens) citing `STANDARDIZED_TRADING_DECISION_CHAIN.md`. **USE THESE TEMPLATES EVERY CYCLE.**
 
 ---
 
 ## 🔄 Autonomous Execution Loop (20-Minute Cron)
 Every 20 minutes (`0,20,40 * * * *`), the autonomous desk executes:
-1. Read `Data/Manditory/SUBAGENT_PROMPT_TEMPLATES.md` — use canonical prompts for ALL dispatches.
-2. Verify system health and continuous 33-sheet Excel data updation (5m rest interval).
-3. Query live MT5 account telemetry and audit floor cushion (+59.83 USD above 4,775 USD floor, +39.83 USD above 4,795 USD buffer).
-4. Audit open positions and ratchet stops using Frozen R0 piecewise protocol.
-5. Dispatch 4 subagents (Orderflow Analyst, Position Manager, Macro Risk Analyst, Excel Data Quality Auditor) and Arena.ai simultaneously using canonical templates from `SUBAGENT_PROMPT_TEMPLATES.md`.
-6. Auto-harvest Arena output via `Terminal/arena_completion_daemon.py`.
-7. Cross-verify all 4 reports (subagents + Arena). Macro blackout verdict overrides Orderflow recommendation.
-8. Punch qualified limit orders autonomously into MetaTrader 5 without waiting for confirmation.
-9. Sync state to GitHub `origin/main` and standby.
+1. Verify that all 5 persistent background daemons are running in Antigravity task manager (`manage_task(Action='list')`).
+2. Read `Data/Manditory/SUBAGENT_PROMPT_TEMPLATES.md` — inject full Tier 2 Big Prompts citing `STANDARDIZED_TRADING_DECISION_CHAIN.md` for ALL dispatches.
+3. Verify system health and continuous 33-sheet Excel data updation (5m rest interval).
+4. Query live MT5 account telemetry and audit floor cushion (+59.83 USD above 4,775 USD floor, +39.83 USD above 4,795 USD buffer).
+5. Audit open positions and ratchet stops using Frozen R0 piecewise protocol.
+6. Dispatch 4 subagents (Orderflow Analyst, Position Manager, Macro Risk Analyst, Excel Data Quality Auditor) and Arena.ai simultaneously using canonical Tier 2 templates.
+7. Auto-harvest Arena output via `Terminal/arena_completion_daemon.py`.
+8. Cross-verify all 4 reports (subagents + Arena). Macro blackout verdict overrides Orderflow recommendation.
+9. Punch qualified limit orders autonomously into MetaTrader 5 without waiting for confirmation.
+10. Sync state to GitHub `origin/main`, cleanly prune subagent sockets via `manage_subagents(Action='kill_all')`, and standby.

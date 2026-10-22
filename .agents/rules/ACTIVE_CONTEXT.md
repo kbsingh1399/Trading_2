@@ -145,14 +145,18 @@ trigger: always_on
         * Concurrency Capacity Policy (Operator Mandate Oct 22 2026): Max 4 concurrent running filled positions. Resting limit orders do not consume slots. Live fills are sized at 15.00–20.00 USD nominal risk each; when any position reaches Early-BE (+0.75R to +0.80R), its stop is ratcheted to Entry + 0.10R0, dropping risk to 0 USD and preserving solvency buffer for subsequent entries.
        * Staged Resting Limit Orders: 0 (Standing aside; market marks remain in mid-air above sweep targets; pre-staging prohibited).
        * G-1 Hard Floor Defense: Hard Floor: 4,775.00 USD | Operating Buffer: 4,795.00 USD | Live Cushion: **+59.83 USD above hard floor (+39.83 USD above operating buffer)**.
-       * Stressed Single-Ticket Simulation:
-         - Scenario A (1 pos @  nominal risk): Stressed loss .75 -> Stressed equity ,814.08 (+19.08 USD buffer surplus) -> CLEARED.
-         - Scenario B (1 pos @  nominal risk): Stressed loss .00 -> Stressed equity ,807.83 (+12.83 USD buffer surplus) -> CLEARED.
-         - Scenario C (2 pos @  nominal risk): Stressed loss .50 -> Stressed equity ,793.33 (-1.67 USD buffer deficit) -> BLOCKED.
-       * Arena.ai Cycle 246 Ruling Evaluated: Unanimous STAND ASIDE IN 100% CASH ratified. P0 ticket sizing inconsistency in desk ledger permanently resolved. Exact Gate 3 CVD absorption contract codified.
-      * Sentry & Cron State:
-        - Governed directly by Antigravity under active `/goal` with 10-step joint-completion lifecycle.
-        - `autonomous_telemetry_git_daemon.py` running persistently every 60s, streaming live snapshots to `origin/main` and all `origin/arena/...` branches.
+        * Stressed Single-Ticket Simulation:
+          - Scenario A (1 pos @ 15.00 USD nominal risk): Stressed loss 20.75 USD -> Stressed equity 4,814.08 USD (+19.08 USD buffer surplus) -> CLEARED.
+          - Scenario B (1 pos @ 20.00 USD nominal risk): Stressed loss 27.00 USD -> Stressed equity 4,807.83 USD (+12.83 USD buffer surplus) -> CLEARED.
+          - Scenario C (2 pos @ 15.00 USD nominal risk): Stressed loss 41.50 USD -> Stressed equity 4,793.33 USD (-1.67 USD buffer deficit) -> BLOCKED.
+        * Arena.ai Cycle 254 Ruling Evaluated: Unanimous STAND ASIDE IN 100% CASH ratified. Top 3 Candidate Radar active (BTC @ 81,360, Gold @ 4,047.50, SOL @ 103.70).
+       * Sentry & Daemon State:
+         - All 5 persistent background daemons actively running in Antigravity task manager (manage_task):
+           1. Run_Parallel_Pipeline.py --continuous --gap 300 --workers 1 (Continuous 33-sheet Excel pipeline, 5m rest gap)
+           2. schedule Cron (0,20,40 * * * *, 20-min autonomous wake-up sentry)
+           3. arena_completion_daemon.py --daemon (Chrome CDP port 9222 auto-harvester)
+           4. autonomous_git_sync_daemon.py (Pushing workspace & Excel to origin/main every 300s)
+           5. run_graphify_watcher.py (AST graphify watcher daemon)
       * Closed Trades Today (Realized PnL):
         - Ticket #19146275 (NAS100.p closed at **+15.50 USD cash profit** via Full Take Profit at 29,715.00 USD, Deal #17347431, +155.0 pts / +1.03R banked after Early-BE lock at 29,575.00 USD)
         - Ticket #18977509 (`XAUUSD.pi` closed at **-9.07 USD loss** via Stop Loss at 4,148.00 USD during Cycle 138 institutional stop sweep into [4140, 4150] cluster; zero slippage, strictly capped at 1.00R0 nominal risk)

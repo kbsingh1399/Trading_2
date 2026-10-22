@@ -5,8 +5,8 @@
 > **Mission Objective**: Pass Phase 1 Funded Challenge by End of Friday, 23rd October 2026  
 > **Status**: **ACTIVE & AUTONOMOUSLY EXECUTING**  
 > **Canonical SOP**: `docs/specs/STANDARDIZED_TRADING_DECISION_CHAIN.md`  
-> **Execution Checklist**: `docs/specs/AUTONOMOUS_WAKEUP_CHECKLIST.md`  
-> **Master Data Warehouse**: `Data/DataBase_Trading.xlsx` & `Data/Manditory/`
+> **Execution Checklist**: `Data/Manditory/AUTONOMOUS_WAKEUP_CHECKLIST.md`  
+> **Master Data Warehouse**: `Data/DataBase_Trading.xlsx` (33 Sheets) & `Data/Manditory/`
 
 ---
 
@@ -33,7 +33,7 @@
 1. **Nominal Cash Risk Envelope (Operator Directive: Increase Risk for Confluence)**:
    - Solo High-Conviction Setup: **15.00 to 20.00 USD** per trade (Stressed loss: $20.75 to $27.00 USD).
    - Stressed Post-Loss Floor Invariant:
-     $$\text{Stressed Equity} = \text{Current Equity} - (\text{Risk} \times 1.25 + 2.00) \ge 4,795.00\text{ USD}$$
+     Stressed Equity = Current Equity - (Risk * 1.25 + 2.00) >= 4,795.00 USD
    - Under current +39.83 USD buffer cushion, taking a $18.00 risk trade incurs $24.50 stressed loss, strictly preserving **+15.33 USD surplus** above the operating buffer and **+35.33 USD** above the hard floor.
 2. **Position Capacity & Stressed Staging Rules**:
    - Current Cushion (+39.83 USD): **1 Solo Position Maximum** at $15.00–$20.00 risk.
