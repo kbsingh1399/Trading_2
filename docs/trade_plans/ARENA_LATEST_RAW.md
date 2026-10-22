@@ -1,21 +1,2 @@
-✅ STANDARDIZED_TRADING_DECISION_CHAIN.md LOADED — 10-Step Canonical Execution Chain Activated.
-✅ 32-SHEET CONFIRMATION: [0 formula errors | 0 empty headers]
-
-Evidence: f164332, 01:06:24Z; 1,625,776 cells.
-
-E1 — SL: #19174858 SL 105.10 is inside mapped liquidation + sell-stop band 104.9225–105.9225: zero clearance versus required 0.14968 (0.40×ATR; ATR 0.3742). Sheet 14/15 ages: 33m/32m, breaching 600s. Sweep risk.
-
-E2 — TP: 107.65 front-runs VAH 107.7232 by 6.80bps but is 3.48bps beyond qualifying $678.4K@107.6125/314s ask and beyond $1.809M@107.6325/314s. Correct first-wall front-run: 107.50–107.55, yielding only 0.41–0.45R; fails ≥2R.
-
-E3 — Walls: Sheet 10 is BTC-only; upstream whale feed is stale. Claimed $7.71M@106.66 is now $1.792M@106.6325/314s (−76.75%). Nearest active-entry bid is $300.2K@106.7925/314s; nearest SOP-sized wall is $672.3K@106.6425/314s. Anchor materially pulled: cancel.
-
-E4 — Candidates: Spreads pass (20.55/0.19/1.78/0.09bps); numeric zc_div is absent, hard-failing all.
-
-SOL DISQUALIFIED: false wall size, 0.53R, duplicate exposure despite bullish CVD.
-XAU DISQUALIFIED: seller CVD, bearish Z=-1.27; 4117.50>4115.37 ask—marketable limit; no $1M bunker.
-BTC DISQUALIFIED: bearish CVD, 8.88ATR away, no bid 81750–82250.
-EUR DISQUALIFIED: neutral CVD, 6.00ATR away, no bunker; ticket inside 1.1196625–1.1296625 stop band.
-
-E5 — CANCEL/CLOSE #19174858: exposed SL, blocked sub-1R TP, pulled anchor, DENIED_UNVERIFIED_ORDERFLOW. Native PnL/equity are $1.20/$4,853.03, not $4.40/$4,856.23. “Profit locked” is false; risk remains $17/$23.25 stressed. Post-stop equity $4,828.58; 3 slots free. All candidates: STAND ASIDE; NO PUNCH. Three additional fills imply $4,755.08<4,775.
-
-MACRO: No ±35m block. NZD CPI window expired 22:20Z.
+\n✅ STANDARDIZED_TRADING_DECISION_CHAIN.md LOADED — 10-Step Canonical Execution Chain Activated.\n
+✅ 32-SHEET CONFIRMATION: [0 formula errors | 0 empty headers]\n\n**E1:** SL `105.10` is inside both mapped liq/stop bands `104.9275–105.9275`: clearance `0<0.14584` (`0.40ATR`; ATR `0.3646`); SOP `0.50ATR` also fails. Maps age 32m/31m. **Sweep risk.**\n\n**E2:** Sheet 7 has no price ladder. TP `107.65` front-runs VAH `107.7232` by 6.80bps (POC `106.6705`), but exceeds first qualifying ask `$1.808M@107.3575/292s` by 27.25bps. Valid 5–10bps TP `107.2501–107.3038` gives `0.265–0.296R<2R`.\n\n**E3:** Sheet 10 is BTC-only/stale. Claimed `$7.71M@106.66` is only `$178.0K@106.6575/6023s` in Sheet 17/L3. Nearest supporting bid `$178.1K@106.7275/6023s` passes `$100K/180s`. Anchor pulled.\n\n**E4:** Spreads PASS (`21.66/0.19/1.91/0.27bps`); numeric `zc_div` absent: all FAIL; macro PASS. Z/bunker: SOL `−0.94 RANGE/F` (SL band); XAU `−1.36 BEAR/F` (no `$1M` wall); BTC `−0.18 BULL/F` (SL in `$12.06M` cascade/no bid); EUR `+0.47 BULL/F` (no wall). Also: SOL/BTC/EUR `2.10/6.77/5ATR` away; SOL `0.53R`/duplicate/marketable; XAU marketable.\n\n**E5: CANCEL/CLOSE `#19174858`; STAND ASIDE; NO PUNCH LIMIT NOW.** Native B/E/FM `$4,851.83/$4,846.23/$4,312.23`; PnL `−$5.60≠+$3.20`. Risk `$17/$23.25` stressed: not locked. Post-stop `$4,822.98≠$4,804.58`; 3 slots free. Three fills→`$4,749.48<$4,795`. `DENIED_UNVERIFIED_ORDERFLOW`.\n\n**MACRO:** No ±35m block; NZD CPI window expired `22:20Z`.\n
