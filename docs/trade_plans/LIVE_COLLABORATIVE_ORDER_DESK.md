@@ -39,39 +39,49 @@
 ### Active Pending Limit Orders (0 resting | Limit orders do NOT consume slots):
 * **None currently resting** (Staging gated strictly on 5-pillar confluence and Anti-Knife Contract).
 
-### Potential Candidate Radar (Qualified Watchlist - Gated on Anti-Knife Trigger):
-1. **BTCUSD.pi** (Model 1 Institutional Demand Sweep & Whale Bunker Retest):
-   - Mapped Levels (Sheet 33): Mark ~81,809 | Daily POC: 82,746.39 | VAH: 83,683.93 | VAL: 81,525.40 | Defending Whale Bunker: 81,637–81,670 USD (7.53M USD)
+### Potential Candidate Radar (Post-News Cycle 252 Calibrated - Arena Rulings Synthesized):
+1. **BTCUSD.pi** (Model 1 Daily VAL Rebound & Anti-Cluster Defense):
+   - Mapped Levels (Sheet 33): Mark ~81,621 | Daily POC: 82,746.39 | Daily VAL: 81,525.40 | Retail Stop Cluster: 81,150 USD (42.91M USD)
+   - Arena Cycle 252 Fix: Prior SL @ 81,180 was too close to 81,150 cluster; updated SL <= 81,060 (safely below 81,150 cluster with 0.40 ATR buffer).
    - Proposed Geometry:
-     * BUY LIMIT @ 81,640.00 USD | SL: 81,180.00 USD (-460 pts, safely >0.40 ATR below 81,242.35 2.01-sigma band) | TP: 82,440.00 USD (+800 pts / +1.74R, front-running 82,500 resistance)
+     * BUY LIMIT @ 81,520.00 USD | SL: 81,060.00 USD (-460 pts, safely below 81,150 cluster) | TP: 82,400.00 USD (+880 pts / +1.91R, front-running Daily POC 82,746.39 by 41.8 bps)
      * Lot Size: **0.04 lot** -> Risk: **18.40 USD**, Stressed Loss: **25.00 USD** (Stressed Equity: 4,809.83 USD, Buffer Surplus: +14.83 USD) -> CLEARED
    - Pre-condition Checklist:
-     * [ ] Complete flush of 22.77M retail sell-stop cluster at [81,650–81,850 USD]
-     * [ ] 15m CVD seller delta decelerates by >30% and prints positive absorption flip (zc_div > 0.8)
-     * [ ] Whale buy wall at 81,637–81,670 USD (7.53M USD) persists >= 180s during the test
-     * [ ] Live MT5 spread <= 25.0 bps (currently 1.83 bps - PASS)
-     * [ ] Zero Tier-1 macro blackouts (PASS)
-2. **XAUUSD.pi** (Model 1 Deep Fortress Whale Bunker Rebound):
-   - Mapped Levels (Sheet 33): Mark ~4,062.92 | Daily POC: 4,082.50 | VAH: 4,091.20 | VAL: 4,073.39 | Defending Bunker: 4,058.00–4,060.00 USD (0.941M USD) & 4,046.50 USD (1.619M USD)
+     * [x] News flush completed (12:30 UTC Jobless Claims dropped, swept low 81,584)
+     * [ ] 15m candle closes above Daily VAL 81,525.40
+     * [ ] Tape absorption confirms seller exhaustion
+     * [ ] MT5 spread returns to normal (<= 2.5 bps, currently 1.84 bps - PASS)
+
+2. **NAS100.p** (Model 1 Daily VAL Volume Rebound — Arena E2 Validated):
+   - Mapped Levels (Sheet 33): Mark ~29,338 | Daily POC: 29,325.22 | Daily VAL: 29,236.95 | Daily VAH: 29,505.59
+   - Arena Cycle 252 Finding: TP @ 29,480 achieves 8.67 bps front-run of Daily VAH -> **PASS** (only candidate passing front-run gate).
    - Proposed Geometry:
-     * BUY LIMIT @ 4,058.50 USD | SL: 4,050.50 USD (-8.00 pts, safely below 4,051.50 structural low with 0.50 ATR buffer) | TP: 4,072.00 USD (+13.50 pts / +1.69R, front-running Daily VAL 4,073.39)
-     * Lot Size: **0.02 lot** -> Risk: **16.00 USD**, Stressed Loss: **22.00 USD** (Stressed Equity: 4,812.83 USD, Buffer Surplus: +17.83 USD) -> CLEARED
+     * BUY LIMIT @ 29,245.00 USD | SL: 29,150.00 USD (-95.0 pts) | TP: 29,480.00 USD (+235.0 pts / +2.47R)
+     * Lot Size: **0.02 lot** -> Risk: **19.00 USD**, Stressed Loss: **24.00 USD** (Stressed Equity: 4,810.83 USD, Buffer Surplus: +15.83 USD) -> CLEARED
    - Pre-condition Checklist:
-     * [ ] Test into 4,058.00–4,060.00 USD institutional shelf
-     * [ ] Tick CVD flips from waterfall selling to buyer absorption
-     * [ ] 0.941M USD whale bid remains resting and un-canceled
-     * [ ] Live MT5 spread <= 5.0 bps (currently 0.20 bps - PASS)
-     * [ ] Zero Tier-1 macro blackouts (PASS)
-3. **BTCUSD.pi** (Model 2 Trend Pullback Short):
-   - Mapped Levels (Sheet 33): Mark ~81,809 | Ask Wall Shelf: 82,380.00 USD (4.53M USD) | EMA20: 82,279.00 USD | Safe SL Boundary: >= 83,032.54 USD (above 15.52M short liquidations)
+     * [ ] Post-macro pullback into Daily VAL shelf [29,236–29,245]
+     * [ ] Resting bid replenishment >= 80% on book
+     * [ ] MT5 spread <= 0.50 bps (currently 0.36 bps - PASS)
+
+3. **DJ30.p** (Model 1 Daily VAL Rebound & Equilibrium Retest):
+   - Mapped Levels (Sheet 33): Mark ~52,555 | Daily POC: 52,535.29 | Daily VAL: 52,451.94 | Daily VAH: 52,673.26
    - Proposed Geometry:
-     * SELL LIMIT @ 82,410.00 USD | SL: 83,050.00 USD (+640 pts, safely above 82,850–82,950 short liquidation band) | TP: 81,680.00 USD (-730 pts / +1.14R, front-running 81,640 whale bunker)
-     * Lot Size: **0.03 lot** -> Risk: **19.20 USD**, Stressed Loss: **26.00 USD** (Stressed Equity: 4,808.83 USD, Buffer Surplus: +13.83 USD) -> CLEARED
+     * BUY LIMIT @ 52,455.00 USD | SL: 52,360.00 USD (-95.0 pts) | TP: 52,640.00 USD (+185.0 pts / +1.95R, front-running VAH by 6.33 bps)
+     * Lot Size: **0.02 lot** -> Risk: **19.00 USD**, Stressed Loss: **24.00 USD** (Stressed Equity: 4,810.83 USD, Buffer Surplus: +15.83 USD) -> CLEARED
    - Pre-condition Checklist:
-     * [ ] Relief rally into 82,380–82,414 USD Ask wall / EMA20 shelf
-     * [ ] Tape rejection + CVD selling pressure persists
-     * [ ] SL 83,050 safely above 83,032.54 liquidation boundary
-     * [ ] Live MT5 spread <= 25.0 bps (currently 1.83 bps - PASS)
+     * [ ] Test into Daily VAL 52,451.94
+     * [ ] M15 volume exhaustion + delta absorption
+     * [ ] MT5 spread <= 0.50 bps (currently 0.22 bps - PASS)
+
+4. **XAUUSD.pi** (Model 1 Deep Demand Shelf Rebound):
+   - Mapped Levels (Sheet 33): Mark ~4,071.00 | Daily POC: 4,089.08 | Daily VAL: 4,059.00 | Daily VAH: 4,101.46
+   - Proposed Geometry:
+     * BUY LIMIT @ 4,058.50 USD | SL: 4,049.50 USD (-9.00 pts, safely below 4,050.00 structural level) | TP: 4,078.00 USD (+19.50 pts / +2.16R)
+     * Lot Size: **0.02 lot** -> Risk: **18.00 USD**, Stressed Loss: **24.50 USD** (Stressed Equity: 4,810.33 USD, Buffer Surplus: +15.33 USD) -> CLEARED
+   - Pre-condition Checklist:
+     * [ ] Pullback into Daily VAL 4,059.00
+     * [ ] Tick CVD absorption flip
+     * [ ] MT5 spread <= 1.0 bps (currently 0.20 bps - PASS)
 
 ### Floor Cushion & Joint Risk Summary (Cycle 252 Baseline):
 * **Account Balance**: **4,834.83 USD** | **Equity**: **4,834.83 USD** (100% Cash Flat)
