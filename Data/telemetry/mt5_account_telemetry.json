@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-10-22T09:36:25.653507+00:00",
+  "timestamp": "2026-10-22T09:50:49.208458+00:00",
   "account": {
     "balance_usd": 4834.83,
     "equity_usd": 4834.83,
@@ -12,5 +12,25 @@
   "open_positions_count": 0,
   "open_positions": [],
   "pending_orders_count": 0,
-  "pending_orders": []
+  "pending_orders": [],
+  "live_ticks": {
+    "BTCUSD.pi": {
+      "bid": 81796.5,
+      "ask": 81813.5,
+      "spread": 17.0,
+      "spread_bps": 2.08
+    },
+    "XAUUSD.pi": {
+      "bid": 4084.25,
+      "ask": 4084.34,
+      "spread": 0.09000000000014552,
+      "spread_bps": 0.22
+    },
+    "EURUSD.pi": {
+      "bid": 1.12202,
+      "ask": 1.12204,
+      "spread": 1.999999999990898e-05,
+      "spread_bps": 0.18
+    }
+  }
 }

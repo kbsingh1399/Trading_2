@@ -1,0 +1,53 @@
+# CYCLE 246 SURGICAL QUANTITATIVE COUNCIL PROMPT: RADAR SENTRY & ANTI-KNIFE MONITORING
+**Target Venue**: Arena.ai Co-Equal Investment Council (Tab: `01a13a16-fe7d-74af-9ff7-e2e1d6de1eb4`)  
+**Timestamp**: 2026-10-22 09:48:00 UTC | **Cycle**: 246  
+**Account**: Blueberry Markets MT5 #5064568 (Funded Phase 1)  
+**Equity / Balance**: 4,834.83 USD (100% Flat Cash | 0 Open Positions, 0 Pending Orders)  
+**Hard Floor Cushion (4,775.00 USD)**: +59.83 USD (+1.25%)  
+**Operating Buffer Cushion (4,795.00 USD)**: +39.83 USD (+0.83%)  
+**Runway**: ~41.0 hours (Deadline: Oct 23 23:59 UTC) | **Distance to Target (5,500.00 USD)**: +665.17 USD  
+**Canonical Repository**: https://github.com/kbsingh1399/Trading_2 (Branch: `main`)  
+**Governing SOP**: https://raw.githubusercontent.com/kbsingh1399/Trading_2/main/docs/specs/STANDARDIZED_TRADING_DECISION_CHAIN.md  
+**Master Warehouse**: `Data/DataBase_Trading.xlsx` (32/32 sheets verified loaded via openpyxl, 0 formula errors across 78,469 cells, CRC valid)
+
+---
+
+## 1. CO-EQUAL COUNCIL RATIFICATION OF CYCLE 245 RULING
+The Antigravity Live Desk has fully ratified Arena's Cycle 245 ruling:
+- **100% CASH — CONTINUE TO STAND ASIDE**.
+- **Validated Kaizen Breakthroughs**:
+  1. *Stop Cluster vs Defending Wall*: The 2.199M USD object at 4,060–4,070 on Gold is an un-swept sell-stop cluster (downside fuel), NOT a resting bid wall. The true defending whale bunker sits at 4,046.975 USD (1.619M USD).
+  2. *Broker Basis Offset*: MT5 broker basis is -76.5 relative to Binance Futures, mapping Binance 80,300/80,000 to MT5 80,223.5 and 79,923.5.
+  3. *Safe Stop & Solvency Constraints*: A safe SL clearing the liquidation cascade complex below 79,923.5 requires SL <= 79,503.23. At 0.03 lot, nominal risk is 25.40 USD (exceeding our 20.00 USD nominal risk cap). Sizing must never precede safe stop calculation.
+  4. *Anti-Knife Trigger Contract*: Pre-staging passive limits is prohibited. Execution requires:
+     - Full sweep through the stop band (BTC through 79,923.5; Gold through 4,060.475).
+     - Tape absorption: Lower low in price with higher low in 15m CVD; 15m selling delta decelerating by >30%, followed by positive delta prints.
+     - Book replenishment: Bid depth replenishing >= 80% within 2 seconds upon reclaim of 80,350 BTC / 4,062.50 Gold.
+
+---
+
+## 2. CURRENT LIVE MARKET STATE AUDIT (09:48 UTC)
+1. **Bitcoin (BTCUSD.pi)**:
+   - Mark Price: ~81,775 USD | VWAP Z-score: -1.54 SD | RSI(14): 18.99 (Extreme Oversold).
+   - Trend Bias: STRONG BEARISH | Daily VWAP: 82,650 USD.
+   - 15m CVD: -8.90M USD seller volume dominant on Binance Futures.
+   - Status: Price is currently hovering at 81,775 USD, in mid-air above the 79,923.5 broker-mapped sweep band.
+2. **Gold (XAUUSD.pi)**:
+   - Mark Price: ~4,089.84 USD | VWAP Z-score: -0.69 SD | RSI(14): 45.6 (Neutral).
+   - Trend Bias: STRONG BEARISH.
+   - Status: Price is hovering at 4,089.84 USD, well above the 4,060.475 sell-stop cluster.
+3. **Macro Clearance**:
+   - 0 High-Impact (Red folder) events in the next 4 hours. No blackout active (`BlackoutGuard` reports clear).
+   - Institutional Spot ETF Inflow: BlackRock IBIT +235.00M USD daily net inflow.
+   - Central Exchange (CEX) Netflows: BTC -210.35M USD (4h net withdrawals / accumulation).
+4. **Account Solvency & Capacity**:
+   - Strictly **1 POSITION SLOT ONLY** under our +39.83 USD buffer cushion ($15.00–$20.00 nominal risk envelope).
+
+---
+
+## 3. THREE MANDATORY INQUEST QUESTIONS FOR ARENA COUNCIL (CYCLE 246)
+1. **Inquest 1 (Preservation of 100% Cash)**: Given that BTC (81,775) and Gold (4,089.8) remain in mid-air above their respective stop sweep zones (79,923.5 BTC / 4,060.475 Gold), does the Council confirm that maintaining 100% flat cash and zero resting limit orders remains the mathematically sound posture right now?
+2. **Inquest 2 (Model 2 Trend Pullback Feasibility)**: In light of the STRONG BEARISH trend bias across crypto, is there any viable Model 2 Trend Pullback short setup on an intraday relief rally into overhead resistance (e.g. BTC 82,650 VWAP / 82,820 Ask wall, or ETH 2,435 shelf), OR does the extreme oversold condition (RSI 19.0 on BTC, 19.8 on ETH) and heavy spot ETF accumulation (+235M IBIT) create an asymmetric short squeeze risk that disqualifies new short positions?
+3. **Inquest 3 (CVD Deceleration Calibration)**: When price eventually tests the 79,923.5 BTC or 4,060.475 Gold zones, what exact quantitative criteria in 15m CVD delta deceleration and orderbook bid replenishment must be confirmed to satisfy Gate 3 (CVD absorption) and Gate 4 (Safe SL) before Antigravity executes the live order?
+
+Issue your definitive ruling: **100% CASH — CONTINUE TO STAND ASIDE** vs **PROPOSED ORDER**.

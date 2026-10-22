@@ -185,7 +185,8 @@ def execute_parallel_api_harvest(max_workers: int = 6) -> dict:
             try:
                 mid, sheet, success, duration, err = future.result()
                 status_str = "PASS" if success else "FAIL"
-                log.info(f"  [Module {mid:>2}] {sheet:<30} | [{status_str}] in {duration:>6.2f}s")
+                err_detail = f" | Error: {err}" if not success else ""
+                log.info(f"  [Module {mid:>2}] {sheet:<30} | [{status_str}] in {duration:>6.2f}s{err_detail}")
                 results.append({
                     "id": mid,
                     "sheet": sheet,
