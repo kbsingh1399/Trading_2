@@ -113,8 +113,25 @@ def is_excel_healthy(excel_path: pathlib.Path) -> bool:
         return False
 
 
+def clear_stale_git_locks() -> None:
+    """Clear stale .git index and ref locks if no active git process is running."""
+    dot_git = ROOT / ".git"
+    if not dot_git.exists():
+        return
+    lock_files = list(dot_git.glob("*.lock")) + list((dot_git / "refs").glob("**/*.lock"))
+    for lock in lock_files:
+        try:
+            age = time.time() - lock.stat().st_mtime
+            if age > 30.0:  # Lock older than 30 seconds
+                lock.unlink(missing_ok=True)
+                logger.warning("Cleaned stale git lock file: %s (age: %.1fs)", lock.name, age)
+        except Exception as lock_err:
+            logger.warning("Failed to clean lock %s: %s", lock, lock_err)
+
+
 def sync_cycle() -> bool:
     """Execute one full git add, commit, and push cycle."""
+    clear_stale_git_locks()
     code, current_branch, _ = run_cmd(["git", "branch", "--show-current"])
     if code != 0 or current_branch != BRANCH_NAME:
         logger.warning("Not on %s branch (current: %s); skipping sync", BRANCH_NAME, current_branch)
