@@ -143,8 +143,9 @@ def commit_staged_sheets(staging_dir: pathlib.Path = STAGING_DIR, excel_path: pa
                 continue
 
             if sheet_name in wb.sheetnames:
-                ws = wb[sheet_name]
-                ws.delete_rows(1, ws.max_row + 1)
+                idx = wb.sheetnames.index(sheet_name)
+                wb.remove(wb[sheet_name])
+                ws = wb.create_sheet(title=sheet_name, index=idx)
             else:
                 ws = wb.create_sheet(title=sheet_name)
 
