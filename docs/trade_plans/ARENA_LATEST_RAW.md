@@ -1,16 +1,2 @@
-✅ STANDARDIZED_TRADING_DECISION_CHAIN.md LOADED — 10-Step Canonical Execution Chain Activated.
-✅ 32-SHEET CONFIRMATION: [0 formula errors | 0 empty headers]
-
-Evidence: 0d585ba, 23:26:20Z; 1,597,470 cells audited.
-
-E1 — SL: All fail ≥0.40ATR clearance. SOL 105.10 lies inside stop/liq 104.925–105.925 (required 0.1680). BTC 81750 lies on Sheet 14/15 clusters and inside 81670–81770 (required 87.84). Sheets 14/15 contain zero XAU/EUR rows—clearance therefore unverified; telemetry also places XAU 4101.50 inside 4099.06–4109.06 (required 2.5096) and EUR 1.12050 inside stop band 1.119665–1.129665 (required 0.00016).
-
-E2 — TP: SOL 107.95 is 21.05bps beyond VAH 107.7232, blocked by verified asks $2.263M@107.615, $951.6K@107.815, $644.2K@107.915. XAU 4157.50 is 3.57bps beyond weekly POC 4156.018 and inside 4149.06–4159.06. BTC 83500 is inside dense 83370–83570 stop/liq bands. EUR 1.12450 is 8.90bps beyond VAH 1.12350. None is a valid 5–10bps front-run.
-
-E3 — Bunker: SOL alone has ≥$100K/≥180s bids, but claimed $7.71M@106.66 is absent; current nearest is $2.242M@106.575/895s. BTC has no qualifying bid within 81750–82250; XAU/EUR have no protected bunker. Sheet 10 is BTC-only and stale.
-
-E4 — Chain: Displayed spreads pass (21.47/0.19/1.90/0.09bps), but EUR quote is stale; numeric zc_div is absent for every asset, forcing halt before Z-score/whale progression. BTC/EUR entries are 9.33ATR/4.25ATR away, breaching 2ATR. Root authorization: DENIED_UNVERIFIED_ORDERFLOW.
-
-E5 — VERDICT: Telemetry disproves flat inventory: pending #19174858 SOL BUY_LIMIT 0.10@106.80, SL 105.10, TP 107.95; stressed post-stop equity $4,828.58. CANCEL #19174858. CANCEL SOL/XAU/BTC/EUR candidates; STAND-ASIDE; NO PUNCH. Candidate stress $98.75 leaves $4,753.08, $41.92 below floor.
-
-CALENDAR ALERT: NZD CPI 21:45Z; ±35m window 21:10–22:20Z—clear.
+\n✅ STANDARDIZED_TRADING_DECISION_CHAIN.md LOADED — 10-Step Canonical Execution Chain Activated.\n
+✅ 32-SHEET CONFIRMATION: [0 formula errors | 0 empty headers]\n\n**Evidence:** `c0e54d1`, 23:51:30Z; 1,598,854 cells.\n\n**E1 — SL:** SOL `#19174858` SL `105.10` is inside basis-mapped liquidation + sell-stop band `104.92–105.92`: `0` clearance versus required `0.16456` (`0.40×ATR`; ATR `0.4114`). Maps are 35–36m stale. **CRITICAL sweep risk.**\n\n**E2 — TP:** `107.95` is 21.05bps beyond VAH `107.7232` and behind verified `$4.451M@107.72/599s` resistance. Valid 5–10bps front-run: `107.61–107.66`; reward only `0.48–0.51R`. Existing TP is `0.68R`, failing `≥2R`.\n\n**E3 — Walls:** Sheet 10 is BTC-only. Claimed `$7.71M@106.66` is absent. Sheet 17 shows `$2.242M@106.65` without persistence; live recurring wall moved to `$2.241M@106.16/2387s`. Nearest verified bid: `$177.7K@106.52/2701s`. Anchor pulled/relocated.\n\n**E4 — Candidates:** Spreads pass (`21.56/0.19/1.90/0.18bps`), but numeric `zc_div` is absent: all fail Pillar 2.\n\n- **SOL DISQUALIFIED:** `106.96>106.80` ask; marketable limit, false wall.\n- **XAU DISQUALIFIED:** `Z=+0.02` range; bunker `$321.6K<$1M`.\n- **BTC DISQUALIFIED:** bearish CVD; `8.80ATR` away; no bid `81750–82250`.\n- **EUR DISQUALIFIED:** `6.67ATR` away; no bunker; ticket inside stop band `1.119675–1.129675`.\n\n**E5 — CANCEL `#19174858`:** exposed SL, blocked sub-1R TP, `DENIED_UNVERIFIED_ORDERFLOW`. “Profit locked” is false: SL is `1.70` below entry; risk `$17/$23.25` stressed; post-stop equity `$4,825.88`; 3 slots free. **All candidates: STAND ASIDE; NO PUNCH.** Active + XAU/BTC/EUR stress gives `$4,752.38<4,775`.\n\n**MACRO:** No ±35m block. NZD CPI `21:45Z`; `21:10–22:20Z` window expired.\n
