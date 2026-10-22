@@ -131,14 +131,27 @@ async def dispatch_all(cycle_id: str = "AUTO"):
                 await ws.send(json.dumps({"id": 101, "method": "Page.bringToFront"}))
                 await asyncio.sleep(0.5)
                 
-                # Dismiss modal/escape
+                # Dismiss modal/escape & dismiss task completion banner
                 await ws.send(json.dumps({"id": 102, "method": "Input.dispatchKeyEvent", "params": {"type": "rawKeyDown", "windowsVirtualKeyCode": 27, "code": "Escape", "key": "Escape"}}))
                 await ws.send(json.dumps({"id": 103, "method": "Input.dispatchKeyEvent", "params": {"type": "keyUp", "windowsVirtualKeyCode": 27, "code": "Escape", "key": "Escape"}}))
                 await asyncio.sleep(0.2)
                 
-                # Clear ProseMirror
+                # If "Was this task successful?" banner is active, click "Yes" to reveal ProseMirror
+                js_dismiss_banner = """(() => {
+                    const btns = Array.from(document.querySelectorAll('button')).filter(b => b.innerText.trim() === 'Yes' || b.innerText.trim() === 'No');
+                    if (btns.length > 0) {
+                        const yesBtn = btns.find(b => b.innerText.trim() === 'Yes') || btns[0];
+                        yesBtn.click();
+                        return true;
+                    }
+                    return false;
+                })()"""
+                await ws.send(json.dumps({"id": 1031, "method": "Runtime.evaluate", "params": {"expression": js_dismiss_banner}}))
+                await asyncio.sleep(0.5)
+
+                # Clear ProseMirror (specifically target .tiptap.ProseMirror, NOT g-recaptcha textarea)
                 js_clear = """(() => {
-                    const el = document.querySelector('.tiptap.ProseMirror, textarea');
+                    const el = document.querySelector('.tiptap.ProseMirror');
                     if (!el) return false;
                     el.focus();
                     const range = document.createRange();
