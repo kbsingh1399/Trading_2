@@ -1,6 +1,58 @@
-\n✅ STANDARDIZED_TRADING_DECISION_CHAIN.md LOADED — 10-Step Canonical Execution Chain Activated.\n
-✅ 33-SHEET & FRESHNESS CONFIRMATION: [0 formula errors | 0 empty headers | Freshness: STALE]\n\n**E1 — STOP AUDIT**\n
-No active tickets. Sheets 22/23 cover none of DJ30, NAS100, UK100, GER40, EURUSD, or XAU; their stops are unverified. UK100 SL 10,752 remains below Weekly VAH 10,758.28. BTC SL 81,180 is only $30 above the $42.91M combined cluster at 81,150; 0.40ATR=$79.21, requiring **SL ≤81,070.79**.\n\n**E2 — TP AUDIT**\n
-Front-run distances: DJ30 VAH **4.42 bps—FAIL**; NAS100 VAH **8.67 bps—PASS**; UK100 VAL **1.96 bps—FAIL**; GER40 VAH **4.35 bps—FAIL**; EURUSD POC **3.03 bps—FAIL**. XAU TP 4,072 is above VAL 4,059 and 41.8 bps below POC—no valid magnet. BTC TP is 37.0 bps below POC. R:R: DJ30 2.05, NAS100 2.47, UK100 1.50, GER40 1.78, EURUSD 3.80, XAU 1.69, BTC 1.74.\n\n**E3 — WALL FRESHNESS**\n
-`10_Whale_Orders` is fresh, but `17_Orderbook` is untimestamped and unchanged. BTC shows $3.33M at 81,648 for 29m; XAU shows $154.9K at 4,058.50, but neither passes cross-source persistence. Other candidates lack wall coverage. **No verified bunker.**\n\n**E4 — CANDIDATES**\n\n- DJ30: **DISQUALIFIED** — no CVD/book/maps; TP malformed.\n- NAS100: **DISQUALIFIED** — no `zc_div` or verified wall.\n- UK100: **DISQUALIFIED** — no flow coverage; SL/TP/R:R fail.\n- GER40: **DISQUALIFIED** — no flow/wall; sub-2R.\n- EURUSD: **DISQUALIFIED** — long opposes `TREND_DOWN_ACCEPTANCE`; macro block.\n- XAU: **DISQUALIFIED** — unverified wall; sub-2R.\n- BTC: **DISQUALIFIED** — absent `zc_div`; unsafe SL; sub-2R.\n\n**E5 — VERDICT**\n
-No active tickets. **STAND ASIDE every candidate; punch nothing.** MT5 sheet age=419.7m; Orderbook has no timestamp/delta. USD Unemployment Claims at 18:00 IST is inside ±35m. Flat stressed equity is **$4,834.83**, not $4,807.83; staging all seven produces **$4,660.83**, violating both floors.\n
+✅ AGENTS.md fully loaded — All 12 Core Domains & Execution Protocols Activated.
+
+📚 Active Skills Loaded & Applied: @antigravity-skills-manager, @using-superpowers, @context-manager, @agent-orchestration-improve-agent, @prompt-engineering-patterns, @systematic-debugging, @verification-before-completion
+
+Installation complete
+Installed all 307 upstream skills into .agent/skills.
+Source: rmyndharis/antigravity-skills
+Commit: 364ea63c190fcf7cac035f7fa91f0406fa392584
+Package version: 1.3.1
+Install result: 307 installed, 0 skipped, 0 failed
+No --force used.
+All 14 pre-existing skills remain unchanged.
+Total workspace skills: 321
+Permanent five-skill mandate
+
+Added to both:
+
+.agent/AGENTS.md
+.agents/AGENTS.md — canonical always_on policy
+
+The mandate requires, before every user-facing response:
+
+Route all relevant task domains.
+Physically reread at least five distinct complete SKILL.md files each turn.
+Apply a concrete rule from every loaded skill.
+Treat five as a minimum, not a maximum.
+Use the deterministic fallback order:
+using-superpowers
+context-manager
+agent-orchestration-improve-agent
+prompt-engineering-patterns
+verification-before-completion
+Print the active-skills proof header.
+Integrity and regression protection
+
+Added:
+
+.agent/skills/ANTIGRAVITY_SKILLS_LOCK.json
+.agent/skills/ANTIGRAVITY_SKILLS_LICENSE
+.agent/tests/check-antigravity-vault.sh
+
+Pinned vault integrity:
+
+307 skills
+437 upstream files
+SHA-256 tree: c2c1162d8ffa5817673c86bda1fa293ac45a53b795bdeea49339965d2afa8436
+
+Verification results:
+
+Upstream tests: 77/77 passed
+Upstream strict validation: 307 skills passed
+Catalog/plugin consistency: passed
+Workspace profile checks: 82 passed, 0 failed
+Vault and mandate checks: 49 passed, 0 failed
+Staged files: 0
+Unrelated workspace changes were not modified, staged, committed, or pushed.
+
+Restart the Antigravity agent session to refresh skill discovery.
