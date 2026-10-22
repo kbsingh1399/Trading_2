@@ -121,6 +121,11 @@ COLUMNS_DEF = [
     ("mr_bias", "Mean Reversion Bias", 20, "center"),
     ("high_24h", "24h High ($)", 14, "right"),
     ("low_24h", "24h Low ($)", 14, "right"),
+    ("daily_poc", "Daily POC ($)", 14, "right"),
+    ("daily_vah", "Daily VAH ($)", 14, "right"),
+    ("daily_val", "Daily VAL ($)", 14, "right"),
+    ("week_high", "Week High ($)", 14, "right"),
+    ("week_low", "Week Low ($)", 14, "right"),
 ]
 
 HIST_COLUMNS_DEF = [
@@ -278,6 +283,57 @@ def compute_asset_indicators(bars: List[Dict[str, Any]], asset: str, symbol: str
     else:
         mr_bias = "N/A"
 
+    # Calculate Developing Volume Profile (POC, VAH, VAL) and Week High/Low from bars
+    daily_poc = daily_vah = daily_val = week_high = week_low = None
+    try:
+        if bars:
+            df_b = pd.DataFrame(bars)
+            df_b["dt"] = pd.to_datetime(df_b["time"], unit="s", utc=True)
+            last_dt = df_b.iloc[-1]["dt"]
+            
+            # Today bars
+            df_td = df_b[df_b["dt"].dt.date == last_dt.date()]
+            if not df_td.empty:
+                p_min, p_max = float(df_td["low"].min()), float(df_td["high"].max())
+                vol_s = df_td.get("tick_volume") if "tick_volume" in df_td else df_td.get("volume")
+                vol_sum = float(vol_s.sum()) if vol_s is not None else 1.0
+                if p_min < p_max and vol_sum > 0:
+                    nb = 100
+                    bins = np.linspace(p_min, p_max, nb + 1)
+                    bin_centers = (bins[:-1] + bins[1:]) / 2.0
+                    vp = np.zeros(nb)
+                    for _, br in df_td.iterrows():
+                        v_val = br.get("tick_volume", 1.0) or 1.0
+                        il = max(0, np.searchsorted(bins, br["low"], side="left") - 1)
+                        ih = min(nb - 1, np.searchsorted(bins, br["high"], side="right"))
+                        vp[il : max(il + 1, ih + 1)] += v_val / max(1, ih - il + 1)
+                    p_idx = int(np.argmax(vp))
+                    daily_poc = float(bin_centers[p_idx])
+                    t_vol = vp.sum() * 0.70
+                    c_vol, u_i, d_i = vp[p_idx], p_idx, p_idx
+                    while c_vol < t_vol and (u_i < nb - 1 or d_i > 0):
+                        nu = vp[u_i + 1] if u_i < nb - 1 else -1.0
+                        nd = vp[d_i - 1] if d_i > 0 else -1.0
+                        if nu >= nd and nu >= 0:
+                            u_i += 1; c_vol += nu
+                        elif nd >= 0:
+                            d_i -= 1; c_vol += nd
+                        else: break
+                    daily_val = float(bin_centers[d_i])
+                    daily_vah = float(bin_centers[u_i])
+                else:
+                    daily_poc = daily_vah = daily_val = p_min
+
+            # Current Week bars
+            curr_wk_start = last_dt - datetime.timedelta(days=last_dt.weekday())
+            curr_wk_start = curr_wk_start.replace(hour=0, minute=0, second=0, microsecond=0)
+            df_wk = df_b[df_b["dt"] >= curr_wk_start]
+            if not df_wk.empty:
+                week_high = float(df_wk["high"].max())
+                week_low = float(df_wk["low"].min())
+    except Exception as e:
+        log.warning(f"Error computing POC/VAH for {asset}: {e}")
+
     return {
         "asset": asset,
         "category": ASSET_CATEGORIES.get(asset, "Crypto Alt"),
@@ -321,6 +377,11 @@ def compute_asset_indicators(bars: List[Dict[str, Any]], asset: str, symbol: str
         "mr_bias": mr_bias,
         "high_24h": base_ind.get("high_24h"),
         "low_24h": base_ind.get("low_24h"),
+        "daily_poc": daily_poc,
+        "daily_vah": daily_vah,
+        "daily_val": daily_val,
+        "week_high": week_high,
+        "week_low": week_low,
     }
 
 
@@ -562,7 +623,7 @@ def dump_technical_to_excel(
             if col_key in ("last_price", "session_vwap", "upper_1sd", "lower_1sd", "upper_1_28sd", "lower_1_28sd",
                            "upper_2sd", "lower_2sd", "upper_2_01sd", "lower_2_01sd", "upper_2_51sd", "lower_2_51sd",
                            "upper_3sd", "lower_3sd", "rolling_vwap_24h", "ema_9", "ema_20", "ema_50", "ema_100", "ema_200",
-                           "atr_14", "bb_upper", "bb_mid", "bb_lower", "high_24h", "low_24h"):
+                           "atr_14", "bb_upper", "bb_mid", "bb_lower", "high_24h", "low_24h", "daily_poc", "daily_vah", "daily_val", "week_high", "week_low"):
                 if val is not None and not (isinstance(val, float) and (math.isnan(val) or math.isinf(val))):
                     cell.value = float(val)
                     if abs(float(val)) >= 1000:
