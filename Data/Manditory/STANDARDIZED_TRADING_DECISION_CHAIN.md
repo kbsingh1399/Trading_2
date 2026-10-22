@@ -308,12 +308,35 @@ Screen candidates across the 156-asset universe using `Terminal/multi_asset_oppo
      * **Location**: Statistical extremity (`|VWAP Z| >= 2.0 to 3.5 SD`, RSI < 35 or > 65) sweeping retail stop clusters or liquidation bands.
      * **Confirmation**: Tape deceleration, rejection wick, and return inside the Value Area.
 
-2. **Asset-Class Specific Structural Anchors**:
-   - **Crypto (BTC, ETH, SOL, Alts)**: Resting whale wall >= $100K USD (Sheet 18/25) with persistence >= 180s, taker CVD divergence (`zc_div > 0.8`), or CoinGlass/Hyperdash stop sweeps.
-   - **TradFi Forex & Precious Metals (EURUSD, USDJPY, Gold, Silver)**: Volume Profile VPOC, Value Area High/Low (Sheet 30 `20_Auction_Market_Structure`), Session VWAP, and Fibonacci 0.50–0.618 golden pocket.
-   - **TradFi Equity Indices (NAS100, SP500, DJ30, GER40)**: Session VWAP, Opening Range / Cash Open balance shelves, and EMA20/50 dynamic ribbons.
+2. **Asset-Class Specific Structural Anchors (Zero False-Disqualification Directive)**:
+   - **TradFi Forex Majors & Crosses (EURUSD, USDJPY, USDCAD, GBPUSD, etc.)**:
+     * *Data Reality*: Interbank FX is a decentralized OTC ECN feed traded via MetaTrader 5. It does NOT have Binance orderbooks (`Sheet 17/18`) or Hyperdash retail stop maps (`Sheet 23/24`).
+     * *Canonical Anchor*: **Sheet 30 (`20_Auction_Market_Structure`)**: Daily/Weekly Volume Profile VPOC, Value Area High/Low (VAH/VAL), Monday Opening Range, Previous Day High/Low, and 20/50 EMA hierarchy.
+     * *Strict Prohibition*: Subagents and Arena.ai are **strictly forbidden from disqualifying Forex candidates for missing `zc_div` or missing Hyperdash maps**.
+     * *Execution Anchor*: Raw interbank tick spread efficiency (`Spread / TP <= 15%`) + Auction Market Structure.
+   - **Precious Metals & Commodities (XAUUSD Gold, SILVER, CL_OIL)**:
+     * *Canonical Anchor*: Sheet 30 Auction VPOC/VAH/VAL + 20/50 EMA ribbon + Sheet 17 Orderbook depth when populated.
+     * *Execution Anchor*: High-efficiency tick spread + structural rejection/breakout from Daily Value Area.
+   - **Equity Indices (NAS100, SP500, DJ30, GER40)**:
+     * *Canonical Anchor*: Sheet 30 Auction Shelves (VPOC, VAH, VAL) + Sheet 17 Depth (e.g. resting ask/bid walls on SP500) + US Cash Open / Session VWAP.
+   - **Crypto Perpetuals (BTC, ETH, SOL, Alts)**:
+     * *Canonical Anchor*: Resting whale wall >= $100K USD (Sheets 18 & 25) with persistence >= 180s, taker CVD divergence (`zc_div > 0.8`), or CoinGlass/Hyperdash stop sweeps (Sheets 14, 15, 23).
 
-3. **Inviolable Solvency Hard Floors (Never Compromised)**:
+3. **The 3-of-4 Adaptive Confluence Framework (Replacing Rigid 7-Gate Boolean AND)**:
+   - Rather than demanding a rigid boolean `AND` across 7 micro-metrics simultaneously (which mathematically causes 0% candidate survival), the desk evaluates:
+     * **Tier 1 (Non-Negotiable Solvency & Risk Floors - 100% Strict)**:
+       1. Stressed Equity >= 4,795.00 USD Operating Buffer (+39.83 USD cushion) and >= 4,775.00 USD Hard Floor (+59.83 USD cushion).
+       2. Dynamic Spread Friction: `Spread Points / TP Distance Points <= 15.0%`.
+       3. Macro Blackout: Zero entries during active Tier-1 High-Impact red folder news and FX rollover (21:15–22:30 UTC).
+       4. Reward-to-Risk >= 2.0R to structural target.
+     * **Tier 2 (Adaptive Confluence Stack - Requires 3 of 4 Points Pass)**:
+       - **Point 1 (Regime & Macro Narrative Alignment - The WHY)**: Verified directional trend (Model 2: `TREND_UP`/`TREND_DOWN` with EMA ribbon alignment) OR statistical range extreme (Model 1: `MEAN_REVERT` with |Z| >= 2.0 SD).
+       - **Point 2 (Asset-Specific Structural Anchor - The WHERE)**: Price interacting with a verified structural shelf appropriate to that asset class (Forex/Metals/Indices: Sheet 30 VPOC/VAH/VAL or EMA20/50 shelf; Crypto: Whale Wall or Liquidation Band).
+       - **Point 3 (Microstructure Timing & Exhaustion - The WHEN)**: Tape exhaustion (declining volume on pullback, CVD deceleration/divergence, or rejection wick confirming buyer/seller absorption).
+       - **Point 4 (Safe Stop Loss Bunker Behind Structure)**: SL placed safely behind the structural shelf (>= 0.40–0.50 ATR beyond boundary), avoiding un-swept opposing stop cascades.
+   - **Scoring Rule**: If all Tier 1 floors pass AND at least 3 of 4 Tier 2 confluence points pass, the trade setup is **VALID AND APPROVED FOR EXECUTION**!
+
+4. **Inviolable Solvency Hard Floors (Never Compromised)**:
    - Hard Floor Invariant: Stressed Equity strictly >= 4,775.00 USD (cushion: +59.83 USD).
    - Operating Buffer Invariant: Stressed Equity strictly >= 4,795.00 USD (cushion: +39.83 USD).
    - Dynamic Spread Friction Gate: `Spread Points / TP Distance Points <= 15.0%`.

@@ -83,13 +83,22 @@ Evaluate Dynamic Friction Budgeting:
 - Baseline reference: Crypto <= 35 bps, Forex <= 6 bps, Metals & Indices <= 10 bps, Exotics <= 25 bps.
 - Multi-Asset Pristine Risk Rights: Standard $15.00–$25.00 USD nominal risk; authorized up to $25.00–$35.00 USD for pristine 5-pillar setups anchored behind verified whale walls with persistence >= 180s across ALL 156 assets!
 
-STEP 4 — 5-PILLAR CONFLUENCE EVALUATION:
-For every qualified candidate from the scan, evaluate all 5 confluence pillars:
-  Pillar 1: Dynamic spread friction gate passed (Efficiency Ratio <= 15.0%).
-  Pillar 2: Taker CVD delta divergence / tape absorption (zc_div > 0.8 or tick absorption).
-  Pillar 3: Auction location: Model 1 Extreme Oversold/Overbought (|VWAP Z| >= 2.0 to 3.5 SD, RSI < 35 or > 65) sweeping dense liquidation/stop pools OR Model 2 Trend Pullback to EMA20/50, VPOC, or Fibonacci 0.50–0.618 shelf in confirmed trend.
-  Pillar 4: Verified structural whale bunker: Resting whale wall >= $100K USD (persisting >= 180s), VPOC shelf, or EMA support anchoring SL safely outside sweep zone (>= 0.40–0.50 ATR behind boundary).
-  Pillar 5: Macro clearance: Zero Tier-1 event blackout within +/-4 hours; rollover embargo cleared.
+STEP 4 — REGIME & NARRATIVE DRIVEN 3-OF-4 CONFLUENCE EVALUATION:
+For every qualified candidate from the scan, evaluate the 2-Tier Confluence Framework:
+- Tier 1 (Inviolable Floors - 100% Strict):
+  * Dynamic spread friction gate passed (Efficiency Ratio Spread / TP <= 15.0%).
+  * Solvency clearance: Stressed Loss <= Operating Buffer Surplus (+{CUSHION_BUFFER} USD).
+  * Macro clearance: Zero Tier-1 event blackout within +/-4 hours; rollover embargo cleared.
+  * Minimum R:R >= 2.0R to structural target.
+- Tier 2 (Adaptive Confluence - Require 3 of 4 Points Pass):
+  * Point 1 (Regime Alignment): Directional trend (Model 2: `TREND_UP`/`TREND_DOWN` with 20/50 EMA ribbon; `|VWAP Z|` = 0.5 to 1.8 SD is expected and valid) OR range extreme (Model 1: `MEAN_REVERT` with |Z| >= 2.0 SD).
+  * Point 2 (Asset-Specific Structural Anchor):
+    - *Forex & Indices*: Sheet 30 (`20_Auction_Market_Structure`) VPOC, VAH, VAL, Monday High/Low, or EMA20/50 shelf. (DO NOT require crypto whale walls or `zc_div` for Forex/Indices!).
+    - *Crypto*: Resting whale wall >= $100K USD (persist >= 180s), or Hyperdash Liq/Stops sweep.
+    - *Metals*: Sheet 30 Auction VPOC/VAH/VAL + EMA20/50 ribbon.
+  * Point 3 (Microstructure / Tape Timing): Tape exhaustion, declining volume on pullback, CVD deceleration/divergence (`zc_div > 0.8` on crypto, or tick exhaustion on TradFi), or rejection wick.
+  * Point 4 (Safe Structural Bunker): Stop Loss anchored safely >= 0.40–0.50 ATR behind the structural shelf, avoiding un-swept opposing stop clusters.
+- Scoring Rule: If Tier 1 passes AND at least 3 of 4 Tier 2 points pass, the setup is VALID!
 
 STEP 5 — CANDIDATE FORMULATION, RADAR CHECKLIST & 10-POINT PRE-PUNCH TABLE:
 - If setups pass all 5 pillars right now: produce the complete passive limit order execution ticket (Symbol | Side | Limit Entry | Stop Loss | Take Profit | Lots | Risk USD | R:R >= 2.0R) AND mandatorily output the completed 10-Point Ex-Ante Pre-Punch Checklist table [x].

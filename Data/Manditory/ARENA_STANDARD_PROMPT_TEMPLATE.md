@@ -86,8 +86,12 @@ Structure your response into the following explicit sections:
 - Follow `Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md` line-by-line for all microstructure, tape, and orderbook evaluation.
 - Review Section C (active/pending tickets) and Section D (Antigravity's candidates).
 - Check Dynamic Spread Friction Gate: `Spread Points / TP Distance Points <= 15.0%`.
-- Evaluate orderflow microstructure: CVD delta divergence (`zc_div > 0.8`), 1m/5m/15m taker aggression, L2/L3 orderbook depth, resting institutional whale walls (>= $100K to $1M+, persisting >= 180s), and CoinGlass/Hyperdash stop sweep/liquidation levels.
-- Auction Market Structure: Value area position (VPOC, VAH, VAL), developing value, Monday opening range, previous session/day extremes, and Fibonacci confluence.
+- 🌟 **REGIME & NARRATIVE DRIVEN 3-OF-4 CONFLUENCE (OPERATOR MANDATE)**:
+  * Do NOT enforce a rigid conjunctive boolean AND across 7 micro-metrics simultaneously.
+  * **Asset-Class Reality**: Sheet 17/18 Orderbooks and Sheet 23/24 Hyperdash Maps are Crypto-only. DO NOT disqualify Forex, Metals, or Indices for missing `zc_div` or missing Hyperdash maps!
+  * For Forex, Metals, and Indices: The canonical anchor is **Sheet 30 (`20_Auction_Market_Structure`)**: VPOC, Value Area High/Low (VAH/VAL), Monday Opening Range, Previous Day High/Low, and 20/50 EMA hierarchy.
+  * For Model 2 Trend Continuation: `|VWAP Z|` between 0.5 and 1.8 SD is EXPECTED and VALID; do NOT demand extreme `|Z| >= 2.0 SD` for trend pullbacks!
+  * Scoring: Require 3 of 4 Tier-2 confluence points (Regime Alignment, Structural Anchor, Microstructure Timing, Safe SL Bunker) alongside inviolable Tier-1 Solvency Floors.
 - **Affirmative Candidate Discovery**: Identify the TOP 1–2 pristine setups across the entire 156-asset universe (Forex, Commodities, Metals, Indices, Crypto) that present the highest structural edge right now.
 
 ### 2. PERSONA 2: POSITION MANAGER (MUST STRICTLY FOLLOW `STANDARDIZED_TRADING_DECISION_CHAIN.md` STEPS 1, 5, 8)
