@@ -232,44 +232,24 @@ trigger: always_on
 - **Pre-Order Gating**: Must verify all 7 sub-gates (Price Action geometry, CVD divergence, 20-level L2 depth, L3 whales >= 150k USD with >= 180s persistence, liquidation FFR, macro blackouts, covariance room vs 4,775.00 USD floor).
 - **Smart SL & TP Adjustments**: Deterministic ratchets (Phase 0 BE @ +0.80R, Phase 1 Profit Lock @ +1.50R, Phase 2 Trailing Lock @ +2.00R). TP extensions into orderbook liquidity vacuums require simultaneous Phase 2 SL profit lock.
 
-## 7. Live Account State & Active Orderflow Invariants (Cycle 204 Verified)
+## 7. Live Account State & Active Orderflow Invariants (Cycle 238 Verified)
 - **MT5 Account State (Blueberry Markets Account #5064568)**:
-  * Balance: **4,840.39 USD** (Session High-Water Mark)
-  * Live Equity: **4,853.27 USD** (Session High-Water Mark Range)
-  * Free Margin: **4,554.20 USD**
-  * Hard Floor (4,775.00 USD) Cushion: **+78.27 USD (+1.61%)**
-  * Operating Buffer (4,795.00 USD) Cushion: **+58.27 USD (+1.20%)**
-  * Remaining Distance to 5,500.00 USD Goal: **+646.73 USD** (~55.2 hours remaining)
+  * Balance: **4,834.83 USD**
+  * Live Equity: **4,834.83 USD** (100% Flat in Cash, Margin: 0.00 USD)
+  * Free Margin: **4,834.83 USD**
+  * Hard Floor (4,775.00 USD) Cushion: **+59.83 USD (+1.25%)**
+  * Operating Buffer (4,795.00 USD) Cushion: **+39.83 USD (+0.83%)**
+  * Remaining Distance to 5,500.00 USD Goal: **+665.17 USD** (~43.4 hours remaining to Oct 23, 23:59 UTC)
 
-- **Active Market Positions (1 of 4 slots filled, 3 slots available)**:
-  1. **Ticket #19164106 (EURUSD.pi)**:
-     * Status: **FILLED & RUNNING (BUY)**
-     * Open Price: **1.12150** | Current Price: **1.12324** | Floating PnL: **+13.92 USD (+1.74 R0)**
-     * Volume: **0.08 lot**
-     * Stop Loss: **1.12230** (Phase 1 Profit Lock Executed: +8.0 pips above entry, guaranteed +.40 USD net profit)
-     * Take Profit: **1.12420** (27 pips, Nominal Reward: **+.60 USD**, **2.70 R0**)
-     * Microstructure Validation: VWAP Z = -1.22 sigma (oversold pullback), RSI = 41.13, Delta Aligned.
-     * Orderbook Obstructions: **0 sell walls, 0 L3 offers between entry and TP**.
-     * Red-Team Ratification: Fully ratified by Arena Red-Team (EV +.27 to +.16).
-     * Solvency Cushion: Stressed Equity post-loss = **4,829.11 USD** (**+34.11 USD above 4,795.00 USD Operating Buffer**, **+54.11 USD above 4,775.00 USD Hard Floor**).
+- **Active Market Positions (0 of 4 slots filled, 4 slots available)**:
+  * 100% Flat in Cash. Zero active market positions.
+  * Closed Ticket #19174858 (SOLUSD.p BUY 0.10 lot @ 106.80): Closed at planned SL 105.10 USD (Exit Deal #17368131 at 02:27:52 UTC). Realized loss: -.00 USD. Zero slippage.
+  * Solvency Cushion: Stressed Equity post-loss under Scenario C (2 positions @ 10+10 USD risk) = **4,805.83 USD** (**+10.83 USD above 4,795.00 USD Operating Buffer**, **+30.83 USD above 4,775.00 USD Hard Floor**).
 
 - **Active Pending Limit Orders (0 of 4 slots staged)**:
-  * None resting. All 3 remaining slots freely available for high-conviction orthogonal candidates.
-     * Microstructure Validation: VWAP Z = -1.22 sigma (oversold pullback), RSI = 41.13, Delta Aligned.
-     * Orderbook Obstructions: **0 sell walls, 0 L3 offers between entry and TP**.
-     * Red-Team Ratification: Fully approved by Arena Red-Team and Antigravity Sovereign Decision Chain (EV +.27 to +.16).
-     * Sizing & Floor Solvency: Kernel Stressed Equity post-loss = **4,816.93 USD** (**+21.93 USD above 4,795.00 USD Operating Buffer**, **+41.93 USD above 4,775.00 USD Hard Floor**).
+  * None resting. All 4 capacity slots freely available for high-conviction orthogonal candidates.
 
-- **Purged Vulnerable Orders (Kaizen Anti-Trap Protocol)**:
-  * Cancelled Ticket #19162262 (NAS100.p): Stop sat 0.15 ATR from stop cluster, bid wall migrated up to 29,679, price pushed to 29,860.
-  * Cancelled Ticket #19164101 (BTCUSD.pi): Price broke out above 84.4K; TP 84,400 sat below market price; SL was inside stop band.
-  * Cancelled Ticket #19164029 (XAUUSD.pi): SL 4,112 sat 2 pts above stop cluster top; compliant SL required .40 risk which exceeded the  risk envelope at minimum lot.
-  * Joint Capacity Cleared: Eliminating these 3 vulnerable orders immediately restored portfolio stressed equity cushion by +36.42 USD.
-
-- **Dynamic Ratchet Lifecycle Protocol (When Ticket #19164106 Fills)**:
-  * Phase Early-BE: At +0.75 R0 (1.12225) -> Move SL to Entry + 0.10 R0 (1.12160), eliminating risk.
-  * Phase 0 Risk Cut: At +1.25 R0 (1.12275) -> Move SL to Entry + 0.15 R0 (1.12165).
-  * Phase 1 Profit Lock: At +1.65 R0 (1.12315) -> Move SL to Entry + 0.80 R0 (1.12230).
-  * Phase 2 Running Trail: At >= +2.00 R0 -> Move SL to Entry + 1.50 R0.
-  * Full TP Exit: At +2.70 R0 (1.12420) -> Book +.60 USD profit.
-  * Time Decay: Exit at market if trade fails to gain +0.20 R0 within 24 bars (6 hours).
+- **Potential Candidate Radar (Cycle 238 Calibrated)**:
+  1. **BTCUSD.pi (Pullback/Stop-Sweep Long)**: Entry 82,180.0 | SL 81,580.0 (600 pts) | TP 82,900.0 (720 pts) | Lots 0.01–0.02 (.00–.00 risk) | Pre-conditions: sweep of [82,100, 82,200] stops + CVD absorption on 82,190.0 wall (.68M).
+  2. **XAUUSD.pi (Extreme Mean Reversion Long)**: Entry 4,080.50 | SL 4,074.50 (.00 pts) | TP 4,095.00 (.50 pts) | Lots 0.01–0.02 (.00–.00 risk) | Pre-conditions: flush into 4,080.00–4,082.50 USD bunker (.94M / 41.9k s persist) + tape absorption prints.
+  3. **SOLUSD.p (Structural Shelf Long)**: Entry 103.85 | SL 102.85 (.00 pt) | TP 106.20 | Lots 0.10 (.00 risk) | Pre-conditions: flush of [103.0–105.0] stops + CVD turn positive on 103.75 wall (.83M).
