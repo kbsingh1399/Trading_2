@@ -312,12 +312,12 @@
   ],
   "_temporal_meta": {
     "stream": "forex_factory",
-    "recorded_at_utc": "2026-10-22T08:11:49Z",
-    "recorded_at_epoch": 1792656709.336907,
-    "gap_detected": true,
-    "gap_duration_minutes": 127.51,
-    "last_active_utc": "2026-10-22T06:04:18Z",
-    "status": "RESUMED_AFTER_SHUTDOWN",
+    "recorded_at_utc": "2026-10-22T08:17:27Z",
+    "recorded_at_epoch": 1792657047.055494,
+    "gap_detected": false,
+    "gap_duration_minutes": 0.0,
+    "last_active_utc": null,
+    "status": "CONTINUOUS_SERIES",
     "compressed": true
   }
 }

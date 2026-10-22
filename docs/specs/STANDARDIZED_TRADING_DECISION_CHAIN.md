@@ -871,4 +871,23 @@ Acts as the final, immutable gatekeeper before live order dispatch. Enforces the
 1. **Rule 1: Verify Observable Behavior, Not Mocks**: Test actual broker responses, real MT5 tick quotes, and live order ticket states. Never rely on simulated or mocked assumptions.
 2. **Rule 2: Ex-Ante Cash Risk Verification**:
    - Compute cash risk via `mt5.order_calc_profit()` for the exact proposed lot size, entry, and stop loss.
-   - Confirm risk is strictly within the authorized envelope ($10.00–$14.50 USD f
+   - Confirm risk is strictly within the authorized envelope ($10.00–$14.50 USD for Tier 1; up to $22.00 USD for Tier 2 TradFi indices).
+3. **Rule 3: Stressed Capital Floor Defense Gate**:
+   - Verify that in the event of an immediate stop-out on all active positions and staged orders:
+     $$\text{Stressed Equity} = \text{Current Equity} - \sum_{i} (\text{Risk}_i \times 1.25) \ge 4,775.00\text{ USD}$$
+   - If Stressed Equity $< 4,775.00\text{ USD}$, the order is rejected immediately.
+4. **Rule 4: Outer Bunker Boundary Audit**:
+   - For Longs: $\text{SL} \le \text{min\_price} - 0.50\text{ ATR} - \text{half\_spread}$.
+   - For Shorts: $\text{SL} \ge \text{max\_price} + 0.50\text{ ATR} + \text{half\_spread}$.
+   - Measuring stop distance from `mid_price` is strictly prohibited.
+5. **Rule 5: Resting Whale Wall Persistence Gate**:
+   - The supporting whale wall must show $\text{persist\_s} \ge 180\text{s}$, $\text{presence\_frac} \ge 0.85$, and `gate_g7_eligible: True`. Any wall with $0.0\text{s}$ persistence is rejected as spoofed.
+6. **Rule 6: Target Magnet Front-Run Gate**:
+   - Take Profit must front-run the opposing liquidation band or structural stop cluster by 5 to 10 bps to ensure fill priority before exhaustion.
+7. **Rule 7: Proximity / Runway Gate**:
+   - Limit entry price must be within $2.0\text{ ATR}$ of current market price. Orders $> 2.0\text{ ATR}$ away are rejected as unfillable noise.
+8. **Rule 8: Passive Order Posture**:
+   - Verify order type is strictly `BUY_LIMIT` or `SELL_LIMIT`. Market orders and aggressive spread-crossing are banned.
+9. **Rule 9: Broker Filling Compatibility**:
+   - Transmit with `ORDER_FILLING_IOC`, with automated sequential fallback to `ORDER_FILLING_RETURN` and `ORDER_FILLING_FOK`.
+
