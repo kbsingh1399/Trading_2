@@ -71,6 +71,10 @@ flowchart TD
 
 > **MANDATORY INVARIANT & SOLE DATA WAREHOUSE**:  
 > `Data/DataBase_Trading.xlsx` (all 32 canonical production worksheets, from `00_MT5_Account_Telemetry` through `19_Calendar`) is the **exclusive, single definitive source of trading information, market microstructure, and decision-making for both Antigravity and Arena.ai**.
+>
+> ⚠️ **MANDATORY PITFALL AVOIDANCE & 32-SHEET QUESTIONING BINDING (OPERATOR INVARIANTS)**:
+> 1. **Top 10 Lethal Execution Pitfalls**: All trading decisions must strictly audit against and avoid the 10 traps detailed in [`Data/Manditory/TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md).
+> 2. **32-Sheet Real-World Thinking Questions**: For EVERY single sheet in `Data/DataBase_Trading.xlsx`, agents and council models MUST answer the empirical, real-world questions established in [`Data/Manditory/32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md) using live cell/column values before any trade hypothesis can be ratified.
 
 ### 📖 MANDATORY LINE-BY-LINE STUDY, NARRATIVE SYNTHESIS & TRADE POSITIONING PROTOCOL (OPERATOR INVARIANT)
 Under strict hedge fund operational governance, **the desk is forbidden from skimming summary cards or column averages**. On every wake-up and trade decision cycle, the desk must execute a rigorous 3-stage synthesis:
@@ -215,8 +219,14 @@ No trade is evaluated in a vacuum. The system reviews the persistent narrative a
 1. **Persistent Memory System Audit (`/memory-system`)**:
    - Review `.agents/memory/MEMORY.md` index, `.agents/memory/feedback-history.md` (past issues, setbacks & permanent resolutions), `.agents/memory/operator-directives.md` (active operational mandates & rights), `.agents/memory/user-preferences.md`, and `.agents/rules/ACTIVE_CONTEXT.md`.
    - Zero context amnesia: Ensure all past feedback and lessons raised by the operator are perpetually enforced.
-2. **Mandatory Forensic Autopsy Reference (`LOSING_TRADES_DEEP_FORENSIC_AUTOPSY.md`)**:
-   - The desk MUST refer to [`LOSING_TRADES_DEEP_FORENSIC_AUTOPSY.md`](file:///c:/Users/SIGMA/Documents/Trading_2/docs/specs/LOSING_TRADES_DEEP_FORENSIC_AUTOPSY.md) (Brain Artifact: `C:\Users\SIGMA\.gemini\antigravity\brain\b00c810a-61bb-46bf-a147-4c8859c64058\LOSING_TRADES_DEEP_FORENSIC_AUTOPSY.md`) on EVERY evaluation turn to eliminate historical failure patterns.
+2. **Mandatory Forensic Autopsy Reference (`LOSING_TRADES_DEEP_FORENSIC_AUTOPSY.md` & `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md`)**:
+   - The desk MUST refer to [`LOSING_TRADES_DEEP_FORENSIC_AUTOPSY.md`](file:///c:/Users/SIGMA/Documents/Trading_2/docs/specs/LOSING_TRADES_DEEP_FORENSIC_AUTOPSY.md) and [`Data/Manditory/TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md) on EVERY evaluation turn to eliminate historical failure patterns.
+   - **Forensic Autopsy of SOLUSD.p #19174858 (5 Fatal Flaws)**:
+     1. *Ghost Wall Illusion*: Staged thinking $7.71M was a bid at 106.66 USD; it was actually a massive resting ask wall (Pitfall 1).
+     2. *Staged Above Un-Swept Sell Stops*: Staged long at 106.80 USD while $1.43M retail sell-stop cluster sat at [105.00, 106.50 USD] (Pitfall 2).
+     3. *Catching a Falling Knife*: Entered against accelerating negative CVD (-$3.85M session, zero absorption) (Pitfall 3).
+     4. *Stop Loss Squeezed Inside Sweep Zone*: Placed SL at 105.10 USD (inside the sweep cluster) with only 0.25 ATR buffer; true whale bunker was at 103.75 USD (Pitfall 4).
+     5. *Overhead Ask Blockade Choking TP*: Set TP at 107.95 USD while $7.047M sell wall blocked price at 106.99 USD, yielding real R:R < 0.15R (Pitfall 9).
    - **The Three Inviolable Anti-Regression Invariants**:
      * **Invariant A (Whale Bunker Stop Sizing — Never Choke Stops & Expanded Risk Rights)**: In 38.5% of historical losses, direction was 100% correct, and 4 trades (EURUSD, USWTI, BTC, Gold) hit full Take Profit immediately post-stop. Stops must NEVER be calculated from arbitrary point or ATR fractions inside the market sweep zone. All stops MUST anchor behind verified resting institutional liquidity (persistent L2/L3 whale walls with $\text{persist} \ge 180\text{s}$) plus a $0.50\text{ ATR}$ structural buffer. Per explicit operator directive, the stop loss dollar budget is expanded to **$15.00–$25.00 USD** (0.30%–0.51% equity) or lot size scaled down (0.05 or 0.01) to safely clear the whale bunker without choking!
      * **Invariant B (Higher-Timeframe Trend Hierarchy Gate — Zero Falling Knives)**: In 38.5% of historical losses, the desk bought dips in aggressive HTF bear trends (BTC plunging -2,151 pts further, ETH dropping -$155 further). In a confirmed 1H/4H Bear Trend ($\text{Price} < \text{EMA}_{20} < \text{EMA}_{50} < \text{EMA}_{200}$), Model 1 Long dip-buying is **strictly FORBIDDEN** regardless of 15m oversold oscillator readings. The desk may ONLY stage Model 2 Trend Pullback Shorts at overhead resistance shelves.
@@ -413,10 +423,11 @@ Every staged order must undergo strict broker-specific contract sizing and capit
 
 ---
 
-### STEP 9: Pre-Execution Ex-Ante Audit
-*Active Skills: `@[verify]`, `@[clean-code]`*
+### STEP 9: Pre-Execution Ex-Ante Audit & 10 Pitfalls Verification Gate
+*Active Skills: `@[verify]`, `@[clean-code]`, `@[risk-engine]`*
 
-Prior to order transmission, perform the final 5-point sanity audit:
+Prior to order transmission, perform the final sanity audit and enforce the mandatory 10-point ex-ante checklist from [`Data/Manditory/TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md):
+
 1. **Passive Limit Posture**: Confirm order type is strictly `BUY_LIMIT` or `SELL_LIMIT`. Market orders and spread-crossing taker executions are permanently banned.
 2. **Reward-to-Risk (R:R) Gate**:
    $$\text{R:R Ratio} = \frac{|\text{TP} - \text{Entry}|}{|\text{Entry} - \text{SL}|} \ge 2.0\text{R}$$
@@ -424,6 +435,22 @@ Prior to order transmission, perform the final 5-point sanity audit:
 3. **Bunker Stop Verification**: SL is positioned safely beyond the outer boundary of the resting whale wall and liquidation band with $\ge 0.50\text{ ATR}$ safety margin.
 4. **Target Magnet Front-Run**: TP is set 5 to 10 bps ahead of the opposing structural cluster or liquidation band to guarantee fill liquidity before depletion.
 5. **Filling Policy Compatibility**: Test `ORDER_FILLING_IOC`, with automatic failover to `ORDER_FILLING_RETURN` / `ORDER_FILLING_FOK` if rejected by broker bridge.
+
+#### 📋 Mandatory 10-Point Ex-Ante Pre-Punch Checklist:
+All 10 conditions must be physically verified and checked `[x]` before sending any trade request to MetaTrader 5:
+
+| # | Pitfall Check | Required Status | Verified? |
+|---|---|---|---|
+| 1 | **Whale Wall Polarity** | Confirmed genuine resting BID for longs (`is_bid == True`), ASK for shorts | [ ] |
+| 2 | **Stop Cascade Clearance** | Zero un-swept opposing retail stop clusters between market and entry | [ ] |
+| 3 | **CVD Absorption** | Selling/buying waterfall halted; tape confirms absorption / deceleration | [ ] |
+| 4 | **Safe SL Buffer** | Stop Loss placed >= 0.40–0.50 ATR behind outer liquidation boundary & whale bunker | [ ] |
+| 5 | **Auction Location** | Extreme Model 1 (|Z| >= 2.0 SD) OR confirmed Model 2 HTF pullback (No mid-range noise) | [ ] |
+| 6 | **Spread Gate** | Spread <= 25 bps for Crypto perps; Spread <= 5 bps for TradFi CFDs (Gold 0.20 bps) | [ ] |
+| 7 | **HTF Trend Alignment** | Trade respects HTF market structure or enters at macro multi-day bunker | [ ] |
+| 8 | **Pre-Condition Trigger** | All candidate radar pre-conditions checked `[x]` on live empirical data | [ ] |
+| 9 | **Clear TP Runway** | TP front-runs overhead liquidity walls; realizable R:R >= 1.5R guaranteed | [ ] |
+| 10 | **Stressed Solvency** | Stressed post-loss equity strictly >= 4,795.00 USD buffer (Max $10–$15 risk/ticket) | [ ] |
 
 ---
 
@@ -844,23 +871,4 @@ Acts as the final, immutable gatekeeper before live order dispatch. Enforces the
 1. **Rule 1: Verify Observable Behavior, Not Mocks**: Test actual broker responses, real MT5 tick quotes, and live order ticket states. Never rely on simulated or mocked assumptions.
 2. **Rule 2: Ex-Ante Cash Risk Verification**:
    - Compute cash risk via `mt5.order_calc_profit()` for the exact proposed lot size, entry, and stop loss.
-   - Confirm risk is strictly within the authorized envelope ($10.00–$14.50 USD for Tier 1; up to $22.00 USD for Tier 2 TradFi indices).
-3. **Rule 3: Stressed Capital Floor Defense Gate**:
-   - Verify that in the event of an immediate stop-out on all active positions and staged orders:
-     $$\text{Stressed Equity} = \text{Current Equity} - \sum_{i} (\text{Risk}_i \times 1.25) \ge 4,775.00\text{ USD}$$
-   - If Stressed Equity $< 4,775.00\text{ USD}$, the order is rejected immediately.
-4. **Rule 4: Outer Bunker Boundary Audit**:
-   - For Longs: $\text{SL} \le \text{min\_price} - 0.50\text{ ATR} - \text{half\_spread}$.
-   - For Shorts: $\text{SL} \ge \text{max\_price} + 0.50\text{ ATR} + \text{half\_spread}$.
-   - Measuring stop distance from `mid_price` is strictly prohibited.
-5. **Rule 5: Resting Whale Wall Persistence Gate**:
-   - The supporting whale wall must show $\text{persist\_s} \ge 180\text{s}$, $\text{presence\_frac} \ge 0.85$, and `gate_g7_eligible: True`. Any wall with $0.0\text{s}$ persistence is rejected as spoofed.
-6. **Rule 6: Target Magnet Front-Run Gate**:
-   - Take Profit must front-run the opposing liquidation band or structural stop cluster by 5 to 10 bps to ensure fill priority before exhaustion.
-7. **Rule 7: Proximity / Runway Gate**:
-   - Limit entry price must be within $2.0\text{ ATR}$ of current market price. Orders $> 2.0\text{ ATR}$ away are rejected as unfillable noise.
-8. **Rule 8: Passive Order Posture**:
-   - Verify order type is strictly `BUY_LIMIT` or `SELL_LIMIT`. Market orders and aggressive spread-crossing are banned.
-9. **Rule 9: Broker Filling Compatibility**:
-   - Transmit with `ORDER_FILLING_IOC`, with automated sequential fallback to `ORDER_FILLING_RETURN` and `ORDER_FILLING_FOK`.
-
+   - Confirm risk is strictly within the authorized envelope ($10.00–$14.50 USD f
