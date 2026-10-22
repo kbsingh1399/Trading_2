@@ -143,40 +143,48 @@ Read and extract key signals from each cluster:
 - Sheet 26 (CVD): 15m and 1h Spot CVD vs Futures CVD. Is zc_div > 0.8 for any asset? Delta Spot > 0 and Delta Futures < 0?
 - Sheets 27–28 (News, Calendar): Any Tier-1 events within ±15m (crypto) or ±35m (TradFi) of now?
 
-STEP 3 — FULL 156-ASSET SPREAD & OPPORTUNITY SCAN (OPERATOR MANDATE):
-Run `python Terminal/multi_asset_opportunity_scanner.py` across all 156 MT5 instruments (Forex Majors/Minors, Commodities, Metals, Indices, Crypto).
-Friction gates:
-- Forex: spread <= 2.5 bps (e.g. EURUSD, GBPUSD, USDJPY, AUDUSD, USDCAD, USDCHF, Crosses)
-- Indices & Commodities: spread <= 4.0 bps (e.g. NAS100, SP500, DJ30, GER40, XAUUSD, XAGUSD, USWTI)
-- Crypto: spread <= 20.0 bps (e.g. BTC, ETH, SOL, BNB, BCH, TRX)
-Extract and evaluate the top candidates across ALL asset classes. Never restrict research to only 4 assets.
+STEP 3 — FULL 156-ASSET SPREAD & DYNAMIC FRICTION SCAN (OPERATOR MANDATE):
+Run `python Terminal/multi_asset_opportunity_scanner.py` across all 156 MT5 instruments (60 Forex, 22 Commodities/Metals, 16 Indices, 58 Crypto).
+Dynamic Friction Budgeting & Expanded Risk Rights:
+- Baseline spread: Crypto <= 35 bps, Indices/Commodities <= 10 bps, Forex <= 6 bps, Exotics <= 25 bps.
+- Friction efficiency: Spread Points / TP Distance Points <= 15%.
+- Multi-Asset Pristine Risk Rights: Standard $15.00-$20.00 USD, authorized up to $25.00-$35.00 USD for pristine 5-pillar setups across ALL 156 assets!
+- Fluid 4-Slot Capacity: Any combination of assets (crypto, forex, indices, metals).
+- Uncapped Resting Limits: Stage resting limits at any qualified candidate structural whale shelves.
 
-STEP 4 — 5-PILLAR CANDIDATE SCREENING (across all qualified multi-asset candidates):
-For each candidate from the multi-asset scan, evaluate all 5 pillars simultaneously:
-  P1: Spread friction gate passed (confirmed above)
+STEP 4 — 5-PILLAR CANDIDATE SCREENING & LIQUIDATION SWEEPS (across all qualified candidates):
+For each candidate from the scan, evaluate all 5 pillars simultaneously:
+  P1: Dynamic spread friction gate passed (Efficiency Ratio <= 15%)
   P2: CVD delta divergence / tape absorption (Delta Spot > 0 and Delta Futures < 0, or tick absorption)
-  P3: Structural location: Model 1 Extreme Oversold/Overbought (|VWAP Z| >= 2.0 to 3.5 SD, RSI < 35 or > 65) OR Model 2 Trend Pullback to EMA20/VWAP shelf in confirmed dominant trend
-  P4: Verified structural backing: Resting whale wall >= $100K USD, POC shelf, or EMA20/50 support anchoring Stop Loss outside sweep zone
+  P3: Structural location: Model 1 Extreme Oversold/Overbought (|VWAP Z| >= 2.0 to 3.5 SD, RSI < 35 or > 65) sweeping dense liquidation/stop pools OR Model 2 Trend Pullback to EMA20/VWAP/Fibonacci 0.50-0.618 Golden Pocket shelf in confirmed trend
+  P4: Verified structural backing: Resting whale wall >= $100K USD (persist >= 180s), VPOC shelf, or EMA20/50 support anchoring SL outside sweep zone
   P5: Macro clearance: Zero Tier-1 event blackout active right now
 
-STEP 5 — CANDIDATE FORMULATION & POTENTIAL RADAR CHECKLIST (OPERATOR MANDATE):
-If assets pass all 5 pillars right now: produce the complete execution ticket (Symbol | Side | Entry | SL | TP | Lot Size | R0).
+STEP 5 — CANDIDATE FORMULATION & MANDATORY 10-POINT EX-ANTE PRE-PUNCH CHECKLIST:
+If assets pass all 5 pillars right now: produce the complete execution ticket (Symbol | Side | Entry | SL | TP | Lot Size | R0) AND mandatorily output the complete 10-Point Ex-Ante Pre-Punch Checklist table verifying each item [x].
 If zero assets pass all 5 pillars right now:
-State STAND ASIDE, BUT MANDATORILY OUTPUT THE "POTENTIAL CANDIDATE RADAR CHECKLIST":
-Detail the top 3 prospective candidates (e.g. BTC Pullback, GOLD Mean Reversion, SOL Shelf), their mapped structural levels, proposed ticket geometry, and an explicit checklist of empirical pre-conditions required before pulling the trigger:
-  - [ ] Retail stop sweep completed
-  - [ ] 15m CVD delta flips positive / absorption divergence
-  - [ ] Resting whale wall >= $100K persists >= 180s
-  - [ ] Spread gate <= 25 bps (Crypto) / <= 5 bps (TradFi)
-  - [ ] Macro/session embargo cleared
+State STAND ASIDE, BUT MANDATORILY OUTPUT THE "POTENTIAL CANDIDATE RADAR CHECKLIST" AND 10-POINT PRE-PUNCH CHECKLIST FOR THE TOP 3 CANDIDATES:
+Detail the top 3 prospective candidates (e.g. BTC Pullback, GOLD Mean Reversion, SOL Shelf), their mapped structural levels, proposed ticket geometry, and the 10-point checklist with status for each condition:
+  | # | Pitfall & Verification Check | Required Status | Verified? |
+  | 1 | Whale Wall Polarity & Persistence | BID for longs, ASK for shorts; persist >= 180s, >= $100K | [ ] |
+  | 2 | Stop Cascade & Sweep Clearance | Zero un-swept opposing retail stop clusters | [ ] |
+  | 3 | CVD Absorption / Deceleration | Waterfall halted; tape confirms absorption divergence | [ ] |
+  | 4 | Bunker SL Safe Buffer | SL placed >= 0.40–0.50 ATR behind outer liquidation boundary | [ ] |
+  | 5 | Causal Auction Regime Location | Model 1 Extreme (|Z| >= 2.0 SD) OR Model 2 HTF Pullback | [ ] |
+  | 6 | Dynamic Spread Efficiency Gate | Spread points / TP distance <= 15%; baseline within ceiling | [ ] |
+  | 7 | HTF Trend Alignment | Respects 1H/4H market structure | [ ] |
+  | 8 | Pre-Condition Trigger Checklist | Setup-specific empirical pre-conditions verified | [ ] |
+  | 9 | Clear TP Runway & R:R Ratio | TP front-runs opposing liquidation magnet; R:R >= 2.0R | [ ] |
+  | 10 | Stressed Solvency & Floor Defense | Stressed equity strictly >= 4,795.00 USD buffer | [ ] |
 
-OUTPUT FORMAT (concise, bullet-form, max 500 tokens):
+OUTPUT FORMAT (concise, bullet-form, max 600 tokens):
 - Data integrity: [sheets loaded | timestamp | errors]
-- Regime snapshot: [top 5 assets with Z-score, RSI, regime]
+- Regime snapshot: [top 5 assets with Z-score, RSI, regime, VPOC, Fib levels]
 - Whale walls alive: [list walls >= $100K with persist status]
 - CVD signals: [list assets with zc_div status]
 - Spread-qualified assets: [list with bps]
 - POTENTIAL CANDIDATE RADAR CHECKLIST: [Top 3 setups with pre-condition checklist]
+- MANDATORY 10-POINT EX-ANTE PRE-PUNCH CHECKLIST: [10-point table]
 - CANDIDATES PASSING ALL 5 PILLARS RIGHT NOW: [full ticket params] or STAND ASIDE (with reason)
 - Key risk / invalidation: [one-liner]
 ```
