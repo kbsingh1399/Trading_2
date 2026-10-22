@@ -60391,3 +60391,19 @@ You may create 12_Hyperdash and 13_Hyperliquid where you dump all intelligenve a
   - Excel Data Quality Auditor: 32/32 sheets verified loaded across 1,598,854 cells with 0 formula errors. Daemons running cleanly. Verdict: HEALTHY.
 - **Arena.ai Dispatch**: Cycle 224 prompt injected via CDP port 9222, generating in background.
 - **Zero Token Architecture Ratified**: 10-second polling timer permanently purged. Auto-wakeup by native reactive subagent messages and 20-minute cron sentry active.
+
+### Cycle 225 Wake-Up & TP Calibration Audit — 2026-10-22 00:15:00 UTC
+- **Account State**: Balance: 4,851.83 USD | Equity: 4,853.93 USD (+2.10 USD Floating PnL)
+- **Floor Cushions**: Hard Floor (4,775.00 USD) +78.93 USD (+1.65%) | Operating Buffer (4,795.00 USD) +58.93 USD (+1.23%)
+- **Live MT5 Position**: Ticket #19174858 BUY 0.10 lot SOLUSD.p @ 106.80 USD (Current: 107.01 USD)
+- **Unanimous Consensus & TP Amendment Execution**:
+  - Arena (E2), Orderflow Analyst, and Position Manager identified 4.45M USD resistance wall at 107.72–107.80 USD and VAH at 107.72 USD.
+  - Previous TP at 107.95 USD was blocked behind the wall.
+  - Executed MT5 TP modification: Changed TP from 107.95 USD to 107.65 USD via order_send(TRADE_ACTION_SLTP). Retcode=10009 (TRADE_RETCODE_DONE).
+  - New target: +0.85 pts (+8.50 USD / +0.50R0), front-running the wall into resting liquidity.
+- **Support Bunkers Verified**:
+  - 105.30 USD: 8.34M USD institutional buy wall (79,188 SOL, 0xeac8..., persist >3,588s). SL at 105.10 USD sits 0.20 USD behind bunker.
+  - 106.17 USD: 4.38M USD buy wall + 200 EMA at 106.235 USD.
+  - 15m CVD: +210,893.86 USD buyer delta.
+- **Candidate Radar**: Gold, BTC, EURUSD disqualified (all fail 5 pillars or are >7 ATR away). Stand aside on new entries.
+- **Subagent Fleet Pruning**: Cleanly killed all 4 subagents after harvesting. Zero socket leaks.
