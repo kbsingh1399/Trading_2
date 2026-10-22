@@ -1,2 +1,14 @@
-\n✅ STANDARDIZED_TRADING_DECISION_CHAIN.md LOADED — 10-Step Canonical Execution Chain Activated.\n
-✅ 32-SHEET CONFIRMATION: [0 formula errors | 0 empty headers]\n\n**E1:** No active ticket: native `active_positions=[]`. Stale #19174858 SL 105.10 was inside mapped band 104.935–105.935: zero clearance vs 0.186 required (0.40×ATR 0.465); safe ≤104.749. Sheet 15 now has zero SOL rows, so the AND gate is unverified. **SWEEP FAILURE.**\n\n**E2:** No live TP. Stale 107.65 front-ran VAH 107.7564 by 9.87bps (POC 106.6818), but Sheet 7 has no levels and TP sat behind eligible $3.558M@106.165/599s ask. Its 5–10bps front-run 106.0588–106.1119 was −0.436–−0.405R.\n\n**E3 FAIL:** Sheet 10 is BTC-only/feed-stale. Sheet 17 now shows SELLs near 106.66; claimed $7.71M bid is absent. Nearest SOL bid is only $176.8K@105.245/599s. XAU/EUR have no entry-zone bid; BTC has $5.873M@82227/317s. **SOL ANCHOR PULLED—CANCEL.**\n\n**E4:** Spreads 20.88/0.19/1.81/0.09bps pass; numeric zc_div absent: all FAIL; macro clear. **SOL DQ:** Z−1.77 range/bullish absorption, but marketable, 3.40ATR, bad SL, 0.53R. **XAU DQ:** Z+1.23 bearish/buyer flow; no bunker. **BTC DQ:** Z−1.81 range/bearish CVD; wall passes, but 2.17ATR and SL inside $12.038M cascade. **EUR DQ:** Z+3.74 bull/buyer flow; 8ATR/no bunker.\n\n**E5: CANCEL/CLOSED #19174858**—ticket already absent; no action. Native balance/equity/FM are all $4,834.83; realized balance loss is $17.00, not “locked profit.” Risk/inventory are zero/empty; 4 slots free, but any two minimum stresses give $4,788.33<$4,795. `DENIED_UNVERIFIED_ORDERFLOW`. **All candidates: STAND ASIDE; NO PUNCH.**\n\n**MACRO:** No ±35m block.\n
+✅ STANDARDIZED_TRADING_DECISION_CHAIN.md LOADED — 10-Step Canonical Execution Chain Activated.
+✅ 32-SHEET CONFIRMATION: [0 formula errors | 0 empty headers]
+
+E1: No active ticket: native active_positions=[]. Stale #19174858 SL 105.10 was inside mapped band 104.935–105.935: zero clearance vs 0.186 required (0.40×ATR 0.465); safe ≤104.749. Sheet 15 now has zero SOL rows, so the AND gate is unverified. SWEEP FAILURE.
+
+E2: No live TP. Stale 107.65 front-ran VAH 107.7564 by 9.87bps (POC 106.6818), but Sheet 7 has no levels and TP sat behind eligible $3.558M@106.165/599s ask. Its 5–10bps front-run 106.0588–106.1119 was −0.436–−0.405R.
+
+E3 FAIL: Sheet 10 is BTC-only/feed-stale. Sheet 17 now shows SELLs near 106.66; claimed $7.71M bid is absent. Nearest SOL bid is only $176.8K@105.245/599s. XAU/EUR have no entry-zone bid; BTC has $5.873M@82227/317s. SOL ANCHOR PULLED—CANCEL.
+
+E4: Spreads 20.88/0.19/1.81/0.09bps pass; numeric zc_div absent: all FAIL; macro clear. SOL DQ: Z−1.77 range/bullish absorption, but marketable, 3.40ATR, bad SL, 0.53R. XAU DQ: Z+1.23 bearish/buyer flow; no bunker. BTC DQ: Z−1.81 range/bearish CVD; wall passes, but 2.17ATR and SL inside $12.038M cascade. EUR DQ: Z+3.74 bull/buyer flow; 8ATR/no bunker.
+
+E5: CANCEL/CLOSED #19174858—ticket already absent; no action. Native balance/equity/FM are all $4,834.83; realized balance loss is $17.00, not “locked profit.” Risk/inventory are zero/empty; 4 slots free, but any two minimum stresses give $4,788.33<$4,795. DENIED_UNVERIFIED_ORDERFLOW. All candidates: STAND ASIDE; NO PUNCH.
+
+MACRO: No ±35m block.

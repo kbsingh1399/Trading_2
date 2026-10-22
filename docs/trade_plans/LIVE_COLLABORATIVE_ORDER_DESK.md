@@ -29,40 +29,44 @@
 
 ## 2. ACTIVE MT5 POSITIONS & PENDING ORDERS LEDGER (LIVE MONITORING)
 
-### Active Open Positions (1 / 4 capacity slots occupied):
-* **Ticket #19174858** (`SOLUSD.p` BUY 0.10 lots):
-  - **Status**: **FILLED & ACTIVE IN TRADE**
-  - **Fill Price**: **106.80 USD** | Open Timestamp: 2026-10-21 23:49:13 UTC
-  - **Current Price**: **105.26–105.49 USD** (Spread: 21.85 bps | Floating PnL: **-$14.70 USD** / -0.86R0)
-  - **Active Stop Loss**: **105.10 USD** (Risk Distance: 1.70 pts | Cash Risk: -$17.00 USD nominal / -$23.25 USD stressed)
-  - **Calibrated Take Profit**: **107.65 USD** (+0.85 pts = **+$8.50 USD** / +0.50R0 cash target)
-  - **Microstructure Alignment & Orderbook Fortress**: Price dipped into the primary institutional bunker (105.30–105.48 USD). Direct Binance Futures L2 orderbook audit confirms a massive resting buy fortress between 105.00 and 105.35 USD totaling >100,000 SOL (>$10.5M resting bids: 8,560 SOL at 105.26, 11,037 SOL at 105.19–105.20, 10,208 SOL at 105.13, 12,061 SOL at 105.10–105.12, and 31,041 SOL at 105.00–105.05). Stop Loss at 105.10 USD sits insulated behind this wall. TP at 107.65 USD front-runs the 107.66 / 107.80 USD resistance wall.
-  - **Account Solvency & Floor Cushion**:
-    * Balance: **4,851.83 USD** | Equity: **4,837.13 USD**
-    * Hard Floor (4,775.00 USD) Cushion: **+62.13 USD**
-    * Operating Buffer (4,795.00 USD) Cushion: **+42.13 USD**
-    * Stressed Stopout Equity (if hit at 105.10): **4,834.83 USD** (Preserves **+39.83 USD** surplus above operating buffer and **+59.83 USD** above hard floor).
-  - **Dynamic Ratchet Triggers**:
-    * **Early-BE Lock (+0.80R0)**: Trigger @ 108.16 USD -> Move SL to 106.97 USD (+0.10R0 lock).
-    * **Phase 1 Profit Lock (+1.50R0)**: Trigger @ 109.35 USD -> Move SL to 108.16 USD (+0.80R0 lock).
-    * **Emergency Shelf Cut**: Sustained 15m close below 106.50 USD with negative CVD acceleration.
+### Active Open Positions (0 / 4 capacity slots occupied):
+* **None currently open** (Account is 100% FLAT in cash: Balance & Equity = **4,834.83 USD**).
+  - Closed Ticket #19174858 (`SOLUSD.p` BUY 0.10 lot @ 106.80): Closed on SL 105.10 USD (Exit Deal #17368131 at 02:27:52 UTC). Nominal loss: -$17.00 USD. Slippage: 0.00 pts.
+  - Hard Floor (4,775.00 USD) Cushion: **+59.83 USD** (+1.25%)
+  - Operating Buffer (4,795.00 USD) Cushion: **+39.83 USD** (+0.83%)
+  - Free Margin: **4,834.83 USD** | Capacity Slots Available: **4 / 4 slots**
 
 ### Active Pending Limit Orders (0 / 4 capacity slots occupied):
-* **None currently resting** (1 slot available under 2-position capacity limit).
+* **None currently resting** (Staging gated strictly on 5-pillar confluence).
 
 ### Potential Passive Limit Order Candidates (Qualified Watchlist - Staging Gated on High Conviction):
-1. **EURGBP.pi** (Model 2 Trend Pullback SHORT):
-   - Entry: `0.84335` | SL: `0.84385` (5 pips, 1.33 ATR above EMA50) | TP: `0.84225` (11 pips) | Net 2.20R
-   - Risk: -$19.97 USD (0.41% eq) | Target: +$43.93 USD | Spread: 0.12 bps
-   - Status: Qualified candidate on Watchlist; resting staging deferred pending live tape trigger.
-2. **BTCUSD.pi** (Model 2 Trend Pullback SHORT):
-   - Entry: `81,850.0` | SL: `82,250.0` (400 pts, 1.08 ATR) | TP: `80,800.0` (1,050 pts) | Net 2.62R
-   - Risk: -$20.00 USD (0.41% eq) | Target: +$52.50 USD | Spread: 2.09 bps
-   - Status: Qualified candidate on Watchlist; backed by $23.38M whale bunker at 81,872–81,951.
-3. **COPPER.p** (Model 2 Trend Pullback SHORT):
-   - Entry: `14,405.0` | SL: `14,428.0` (23 pts, 0.52 ATR) | TP: `14,350.0` (55 pts) | Net 2.39R
-   - Risk: -$23.00 USD (0.47% eq) | Target: +$55.00 USD | Spread: 4.49 bps
-   - Status: Qualified candidate on Watchlist.
+1. **BTCUSD.pi** (Model 1 Institutional L3 Whale Shelf Pullback Long):
+   - Mapped Levels: Mark 83,316 | Limit Entry: `82,360.0` | SL: `81,750.0` (610 pts, 1.48 ATR) | TP: `83,850.0` (1,490 pts) | Net 2.44R
+   - Sizing: 0.02 lot (~$12.20 USD nominal risk, 0.25% eq) | Target: +$29.80 USD | Spread: 6.15 bps
+   - Pre-condition Checklist:
+     * [ ] Retail sell stop clusters between $82,450–$82,950 fully swept
+     * [ ] 15m CVD delta decelerates from -$20M and prints positive absorption flip (zc_div > 0.8)
+     * [ ] $82,335.00 whale bid wall ($17.39M, Wallet `0xf5a5..1286`) remains active and un-pulled (persist >= 180s)
+     * [ ] MT5 spread remains <= 25.0 bps (currently 6.15 bps)
+     * [ ] Macro clearance maintained
+2. **XAUUSD.pi** (Model 1 Lower Auction Value Band Long):
+   - Mapped Levels: Mark 4,115.38 | Limit Entry: `4,110.50` (-2.0 SD shelf) | SL: `4,104.00` ($6.50 pts) | TP: `4,121.50` ($11.00 pts) | Net 1.69R
+   - Sizing: 0.01 lot (~$6.50–$10.00 USD nominal risk) | Spread: 0.19 bps
+   - Pre-condition Checklist:
+     * [ ] Price retests -2.0 SD shelf ($4,110.48) with orderflow deceleration
+     * [ ] MT5 tick CVD delta flips positive from current -$153K aggressive dump
+     * [ ] L2 bid replenishment confirms resting liquidity defense
+     * [ ] Spread remains <= 5.0 bps (currently 0.19 bps)
+     * [ ] Macro embargo remains clear
+3. **SOLUSD.p** (Model 1 Post-Sweep Accumulation Base Long):
+   - Mapped Levels: Mark 105.97 | Limit Entry: `104.95` (post-sweep base) | SL: `104.20` (0.75 pts) | TP: `106.75` (VWAP) | Net 2.40R
+   - Sizing: 0.10 lot (~$7.50–$10.00 USD nominal risk) | Spread: 21.85 bps
+   - Pre-condition Checklist:
+     * [ ] MT5 spread compresses <= 25.0 bps
+     * [ ] 15m CVD delta turns positive from current -$2.01M taker dump
+     * [ ] Resting whale bid wall >= $100K emerges and persists >= 180s
+     * [ ] Clean re-accumulation base forms above $104.90
+     * [ ] Floor cushion maintained > $39.83 USD
 
 ### Floor Cushion & Joint Risk Summary:
 * **Account Balance**: **4,851.83 USD** | **Equity**: **4,844.23–4,845.53 USD**
