@@ -6,6 +6,7 @@
 > **Target Account**: Blueberry Markets MT5 Account #5064568  
 > **Active Goal**: Pass Phase 1 (Target: 5,500.00 USD) by 23rd October 2026 (23:59 UTC)  
 > **Governing Quant SOP**: [`STANDARDIZED_TRADING_DECISION_CHAIN.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md)  
+> **Mandatory Kaizen & Pitfall Governance**: Every subagent MUST actively study and interrogate [`TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md), [`CONTINUOUS_KAIZEN_SELF_IMPROVEMENT_PROTOCOL.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/CONTINUOUS_KAIZEN_SELF_IMPROVEMENT_PROTOCOL.md), and [`32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md) to eliminate context amnesia, avoid repeated traps, and uphold the PDCA-Ω continuous self-improvement loop.  
 > **Execution Invariants**: All 4 subagents MUST use `Model='flash'` (Gemini 3.8 Flash). Lightweight/truncated Tier 1 prompts are permanently removed. Every invocation MUST dispatch the complete, full-sized forensic prompt blocks below.  
 > **Token Preservation Directive**: Always query the AST Knowledge Graph via `/graphify` or `python -m graphify query "<concept/symbol>"` FIRST before reading large code files.  
 > **Socket Hygiene**: Immediately terminate all subagent connections after harvesting via `manage_subagents(Action='kill_all')`.
@@ -48,7 +49,9 @@ READ FIRST & FOLLOW LINE-BY-LINE (mandatory, in order):
 2. Data/Manditory/GOAL.md (Inviolable goal contract, 5,500 USD target, runway)
 3. .agents/rules/ACTIVE_CONTEXT.md (Live account telemetry, floor cushion, running/staged orders)
 4. .agents/memory/session_chat_history.md (Full conversation trajectory — extract lessons, avoid repeated traps)
-5. Auxiliary governance: Data/Manditory/TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md and Data/Manditory/32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md.
+5. MANDATORY EXECUTION PITFALL AUTOPSY: @[c:\Users\SIGMA\Documents\Trading_2\Data\Manditory\TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md] (Study SOL #19174858 autopsy and all 10 lethal execution traps: ghost walls/polarity inversion, staging above un-swept stop cascades, catching falling knives with negative CVD, squeezed SLs inside sweep zones, mid-range chop, spread blowout, and sizing violations).
+6. MANDATORY CONTINUOUS KAIZEN PROTOCOL: @[c:\Users\SIGMA\Documents\Trading_2\Data\Manditory\CONTINUOUS_KAIZEN_SELF_IMPROVEMENT_PROTOCOL.md] (Execute 5-stage PDCA-Ω continuous learning loop: evaluate past outcomes, internalize operator feedback, eliminate context amnesia, zero regression, and enforce codified invariants).
+7. MANDATORY 32-SHEET REAL-WORLD THINKING QUESTIONS: @[c:\Users\SIGMA\Documents\Trading_2\Data\Manditory\32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md] (Row-by-row, column-by-column interrogation of the master sheets against concrete real-world questions; reject setups fail-closed on any pitfall violation).
 
 LIVE DESK STATE (cycle {CYCLE_ID} | {CYCLE_UTC}):
 - Balance / Equity: {BALANCE} USD / {EQUITY} USD | Free Margin: {EQUITY} USD
@@ -100,6 +103,16 @@ For every qualified candidate from the scan, evaluate the 2-Tier Confluence Fram
   * Point 4 (Safe Structural Bunker): Stop Loss anchored safely >= 0.40–0.50 ATR behind the structural shelf, avoiding un-swept opposing stop clusters.
 - Scoring Rule: If Tier 1 passes AND at least 3 of 4 Tier 2 points pass, the setup is VALID!
 
+STEP 4B — MANDATORY KAIZEN & PITFALL AUTOPSY CHECK (TOP 10 TRAPS & 32-SHEET QUESTIONS):
+Before validating any candidate or radar setup, you MUST interrogate it against `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` and `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md`:
+1. Pitfall 1 (Ghost Walls / Polarity Inversion): Verify that supporting whale walls (Sheets 18 & 25) are TRUE BIDS for Longs or TRUE ASKS for Shorts, with persistence >= 180s. Never mistake resistance for support!
+2. Pitfall 2 (Staging Above Un-Swept Cascades): Check Sheets 23 & 24. Verify limit entry is NOT staged directly above/below an un-swept retail stop cluster or liquidation band.
+3. Pitfall 3 (Falling Knife / Negative CVD Waterfall): Check Sheet 26. Verify CVD absorption divergence (`zc_div > 0.8` or tick exhaustion). Never stage countertrend into accelerating market delta!
+4. Pitfall 4 (Squeezed Stop Loss): Verify SL is anchored safely >= 0.40–0.50 ATR behind structural bunker, outside the sweep cascade zone.
+5. Pitfall 9 (Overhead Liquidity Blockade): Verify take-profit path is clear with NO opposing whale walls choking the target.
+6. 32-Sheet Real-World Interrogation: Evaluate concrete questions for Sheets 10–18, 20–26, 30.
+7. Continuous Kaizen: Extract lessons from SOL #19174858 autopsy and all session chat history setbacks. Guarantee ZERO repeat of past execution errors!
+
 STEP 5 — CANDIDATE FORMULATION, RADAR CHECKLIST & 10-POINT PRE-PUNCH TABLE:
 - If setups pass all 5 pillars right now: produce the complete passive limit order execution ticket (Symbol | Side | Limit Entry | Stop Loss | Take Profit | Lots | Risk USD | R:R >= 2.0R) AND mandatorily output the completed 10-Point Ex-Ante Pre-Punch Checklist table [x].
 - If zero setups meet 5-pillar confluence: State STAND ASIDE IN 100% CASH, BUT MANDATORILY OUTPUT THE "POTENTIAL CANDIDATE RADAR CHECKLIST" with checkable pre-condition triggers [ ] and the 10-Point Pre-Punch Checklist for the top prospective setups across all asset classes.
@@ -132,7 +145,9 @@ READ FIRST & FOLLOW LINE-BY-LINE (mandatory, in order):
 2. Data/Manditory/GOAL.md (Inviolable goal contract, 5,500 USD target, runway)
 3. .agents/rules/ACTIVE_CONTEXT.md (Live account telemetry, floor cushion, running/staged orders)
 4. .agents/memory/session_chat_history.md (Full conversation trajectory — extract lessons, avoid repeated traps)
-5. Auxiliary governance: Data/Manditory/TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md and Data/Manditory/32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md.
+5. MANDATORY EXECUTION PITFALL AUTOPSY: @[c:\Users\SIGMA\Documents\Trading_2\Data\Manditory\TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md] (Study SOL #19174858 autopsy and all 10 lethal execution traps: ghost walls/polarity inversion, staging above un-swept stop cascades, catching falling knives with negative CVD, squeezed SLs inside sweep zones, mid-range chop, spread blowout, and sizing violations).
+6. MANDATORY CONTINUOUS KAIZEN PROTOCOL: @[c:\Users\SIGMA\Documents\Trading_2\Data\Manditory\CONTINUOUS_KAIZEN_SELF_IMPROVEMENT_PROTOCOL.md] (Execute 5-stage PDCA-Ω continuous learning loop: evaluate past outcomes, internalize operator feedback, eliminate context amnesia, zero regression, and enforce codified invariants).
+7. MANDATORY 32-SHEET REAL-WORLD THINKING QUESTIONS: @[c:\Users\SIGMA\Documents\Trading_2\Data\Manditory\32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md] (Row-by-row, column-by-column interrogation of the master sheets against concrete real-world questions; reject setups fail-closed on any pitfall violation).
 
 LIVE DESK STATE (cycle {CYCLE_ID} | {CYCLE_UTC}):
 - Balance / Equity: {BALANCE} USD / {EQUITY} USD | Free Margin: {EQUITY} USD
@@ -176,6 +191,12 @@ For each candidate proposed by Orderflow Analyst or Arena.ai:
 - Verify cash risk via `mt5.order_calc_profit` ensuring risk lands strictly within 15.00 to 25.00 USD (or up to 35.00 USD for pristine confluence).
 - Verify minimum volume, maximum volume, and lot step compliance for the symbol.
 
+TASK 4B — MANDATORY KAIZEN & SIZING PITFALL AUDIT:
+Study `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (specifically Pitfall 10: Dynamic Ratchet & Sizing Violations, Pitfall 6: Spread Friction Traps) and `CONTINUOUS_KAIZEN_SELF_IMPROVEMENT_PROTOCOL.md`:
+- Guarantee stressed post-loss equity strictly respects the 4,775.00 USD Hard Floor and 4,795.00 USD Operating Buffer with 1.25x slippage buffer + $2 commission.
+- Enforce Kaizen anti-regression: verify exact live MT5 telemetry down to the cent, never rely on stale cache or static assumptions.
+- Interrogate Sheet 00 (`00_MT5_Account_Telemetry`) and margin requirements against `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md`.
+
 TASK 5 — RESTING LIMIT ORDER HYGIENE:
 For every staged limit order, assess:
 - Distance to current market: Is it within reasonable range (<= 2.0 ATR)?
@@ -210,7 +231,9 @@ READ FIRST & FOLLOW LINE-BY-LINE (mandatory, in order):
 2. Data/Manditory/GOAL.md (Inviolable goal contract, 5,500 USD target, runway)
 3. .agents/rules/ACTIVE_CONTEXT.md (Live account telemetry, floor cushion, running/staged orders)
 4. .agents/memory/session_chat_history.md (Full conversation trajectory — extract lessons, avoid repeated traps)
-5. Auxiliary governance: Data/Manditory/TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md and Data/Manditory/32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md.
+5. MANDATORY EXECUTION PITFALL AUTOPSY: @[c:\Users\SIGMA\Documents\Trading_2\Data\Manditory\TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md] (Study SOL #19174858 autopsy and all 10 lethal execution traps: ghost walls/polarity inversion, staging above un-swept stop cascades, catching falling knives with negative CVD, squeezed SLs inside sweep zones, mid-range chop, spread blowout, and sizing violations).
+6. MANDATORY CONTINUOUS KAIZEN PROTOCOL: @[c:\Users\SIGMA\Documents\Trading_2\Data\Manditory\CONTINUOUS_KAIZEN_SELF_IMPROVEMENT_PROTOCOL.md] (Execute 5-stage PDCA-Ω continuous learning loop: evaluate past outcomes, internalize operator feedback, eliminate context amnesia, zero regression, and enforce codified invariants).
+7. MANDATORY 32-SHEET REAL-WORLD THINKING QUESTIONS: @[c:\Users\SIGMA\Documents\Trading_2\Data\Manditory\32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md] (Row-by-row, column-by-column interrogation of the master sheets against concrete real-world questions; reject setups fail-closed on any pitfall violation).
 
 LIVE DESK STATE (cycle {CYCLE_ID} | {CYCLE_UTC}):
 - Balance / Equity: {BALANCE} USD / {EQUITY} USD | Free Margin: {EQUITY} USD
@@ -247,6 +270,12 @@ Enforce critical timing gates:
 - Post-Rollover FX Re-Entry Window: After 22:30 UTC, Forex spreads normalize and orders are permitted.
 - Upcoming Asian morning releases (AUD/NZD employment, BOJ statements, China PMI): blackout timings?
 
+TASK 4B — MANDATORY KAIZEN & MACRO PITFALL AUDIT:
+Study `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Pitfall 6: High Relative Spread Friction / Rollover traps) and `CONTINUOUS_KAIZEN_SELF_IMPROVEMENT_PROTOCOL.md`:
+- Interrogate Sheets 00, 01, 02, 27, 28 using the real-world thinking questions in `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md`.
+- Enforce Kaizen learning: audit session clock progression and interbank FX rollover spread blowout (21:15–22:30 UTC), preventing entries into off-hours spread traps.
+- Audit multi-source calendar synchronization (`19_Calendar` and `Data/macro_calendar.json`) to prevent unprovable macro blackout gaps.
+
 TASK 5 — BREAKING NEWS SHOCK SCAN (Sheet 27: `19_News`):
 Scan headlines from the last 2 hours. Flag any systemic development:
 - Crypto regulatory actions, exchange security alerts, institutional announcements.
@@ -279,7 +308,10 @@ READ FIRST & FOLLOW LINE-BY-LINE (mandatory, in order):
 1. @[c:\Users\SIGMA\Documents\Trading_2\Data\Manditory\STANDARDIZED_TRADING_DECISION_CHAIN.md] (MANDATORY CANONICAL QUANT SOP — FOLLOW LINE BY LINE)
 2. Data/Manditory/GOAL.md (Inviolable goal contract, 5,500 USD target, runway)
 3. .agents/rules/ACTIVE_CONTEXT.md (Live account telemetry, floor cushion, running/staged orders)
-4. Auxiliary governance: Data/Manditory/32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md.
+4. .agents/memory/session_chat_history.md (Full conversation trajectory — extract lessons, avoid repeated traps)
+5. MANDATORY EXECUTION PITFALL AUTOPSY: @[c:\Users\SIGMA\Documents\Trading_2\Data\Manditory\TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md] (Study data-layer failure modes: openpyxl serialization timeouts, uncalibrated boundaries, and schema discrepancies).
+6. MANDATORY CONTINUOUS KAIZEN PROTOCOL: @[c:\Users\SIGMA\Documents\Trading_2\Data\Manditory\CONTINUOUS_KAIZEN_SELF_IMPROVEMENT_PROTOCOL.md] (Execute 5-stage PDCA-Ω continuous learning loop: atomic temp staging, root-cause investigation, and permanent defect immunity).
+7. MANDATORY 32-SHEET REAL-WORLD THINKING QUESTIONS: @[c:\Users\SIGMA\Documents\Trading_2\Data\Manditory\32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md] (Row-by-row, column-by-column interrogation of all 32/33 sheets against concrete data-health and microstructure criteria).
 
 LIVE DESK CONTEXT: Cycle {CYCLE_ID} | {CYCLE_UTC}
 
@@ -298,6 +330,12 @@ Enumerate all 33 worksheets (Sheet 00 `00_MT5_Account_Telemetry` through Sheet 3
   * Verify value delta between consecutive dumps to guarantee data is not frozen or cached.
 - Flag any sheet where row count == 0 or headers are missing.
 - Flag any sheet where data is stale (> 25 minutes old) as FAIL-CLOSED.
+
+TASK 2B — MANDATORY KAIZEN & 32-SHEET REAL-WORLD QUESTIONING AUDIT:
+Study `CONTINUOUS_KAIZEN_SELF_IMPROVEMENT_PROTOCOL.md` (Stages 1–5: Data Provenance, Forensic Anomaly Audit, Root-Cause Elimination, Codified Invariants, Permanent Immunity) and `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md`:
+- Interrogate all 33 sheets row-by-row and column-by-column against the 32-sheet real-world questioning framework.
+- Enforce Kaizen anti-regression invariants: verify atomic temp-file staging (`.tmp.xlsx` -> atomic replace) to prevent corruption.
+- Verify that live timestamps <= 15 minutes fresh, with 0 formula errors (#REF!, #DIV/0!, #N/A) and zero frozen deltas across dumps.
 
 TASK 3 — SHEET 33 (`20_Auction_Market_Structure`) UNMERGED HEADER VERIFICATION:
 Inspect Row 1 of Sheet 33 (`20_Auction_Market_Structure`):

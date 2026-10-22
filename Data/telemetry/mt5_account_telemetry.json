@@ -1,17 +1,17 @@
 {
-  "timestamp": "2026-10-22T18:32:01.824971+00:00",
+  "timestamp": "2026-10-22T19:16:55.645704+00:00",
   "account": {
-    "balance_usd": 4834.83,
-    "equity_usd": 4834.83,
+    "balance_usd": 4818.51,
+    "equity_usd": 4818.51,
     "margin_usd": 0.0,
-    "margin_free_usd": 4834.83,
+    "margin_free_usd": 4818.51,
     "margin_level": 0.0,
-    "hard_floor_cushion_usd": 59.83,
-    "operating_buffer_cushion_usd": 39.83
+    "hard_floor_cushion_usd": 43.51,
+    "operating_buffer_cushion_usd": 23.51
   },
   "open_positions_count": 0,
   "open_positions": [],
-  "pending_orders_count": 2,
+  "pending_orders_count": 1,
   "pending_orders": [
     {
       "ticket": 19224157,
@@ -21,15 +21,6 @@
       "price_open": 157.053,
       "sl": 157.206,
       "tp": 156.67
-    },
-    {
-      "ticket": 19225284,
-      "symbol": "XAUUSD.pi",
-      "direction": "BUY_LIMIT",
-      "volume": 0.06,
-      "price_open": 4034.4,
-      "sl": 4031.75,
-      "tp": 4043.69
     }
   ]
 }
