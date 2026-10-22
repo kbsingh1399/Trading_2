@@ -93,7 +93,7 @@
 | T-91 | Deploy 5-Minute Full Workspace Git Sync Daemon | COMPLETED | Upgraded Terminal/Data_Factory/autonomous_telemetry_git_daemon.py to full workspace mirror daemon (PID 27780); commits 8f5199d3e, 1d762fced, 2213337b8 confirmed on origin/main |
 | T-92 | Fix Arena.ai ProseMirror TipTap Event Bug | COMPLETED | Patched Terminal/arena_bridge.py with CDP native Input.insertText; enabled send button; verified live generation on Cycle 211 & 212; harvested into ARENA_LATEST_RAW.md |
 | T-93 | Codify Mandatory Potential Candidate Radar Checklist | COMPLETED | Added Candidate Radar Checklist & Trigger Matrix to AUTONOMOUS_WAKEUP_CHECKLIST.md, SUBAGENT_PROMPT_TEMPLATES.md, and upgraded dispatch_arena_redteam.py to populate all tables dynamically |
-| T-94 | Autonomous Goal-Loop Phase 1 Pursuit (5,500.00 USD Target) | IN PROGRESS | Live MT5 equity 4,851.83 USD (100% Cash, +76.83 USD cushion); 20m cron sentry armed; Candidate radar actively scanning BTC (83,550), GOLD (4,108), SOL (104.80) |
+| T-94 | Autonomous Goal-Loop Phase 1 Pursuit (5,500.00 USD Target) | IN PROGRESS | Live MT5 equity 4,834.83 USD (100% Cash, +59.83 USD hard floor cushion, +39.83 USD buffer cushion); 5 persistent daemons active; Cycle 256 unanimous STAND ASIDE ratified across 33 sheets; 156-asset universe & expanded risk rights codified in Section 1.7; Pre-Condition Trigger Checklist armed on radar for BTC (81,040), Gold (4,048), SOL (103.80), NAS100 (29,245) |
 
 
 
