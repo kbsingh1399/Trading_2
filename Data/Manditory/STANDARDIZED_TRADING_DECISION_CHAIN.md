@@ -289,19 +289,36 @@ Screen candidates across the 156-asset universe using `Terminal/multi_asset_oppo
 
 ---
 
-### STEP 6: Microstructure Coincidence Stack, Whales & Fibonacci Confluence
+### STEP 6: Regime & Macro Narrative Driven Confluence (Shifting from Conjunctive Bottlenecks)
 *Active Skills: `@[data-analyst]`, `@[quant-analyst]`*
 
-Every candidate setup must achieve simultaneous confluence across the multi-pillar microstructure stack:
-1. **L2 Orderbook Depth Asymmetry**: Top-20 depth imbalance > +0.25 for longs, < -0.25 for shorts.
-2. **L3 Attributed Whale Wall Backing & Anti-Spoof Persistence Gate**:
-   - Supporting whale wall must show `persist_s >= 180.0s`, `presence_frac >= 0.85`, and `gate_g7_eligible: True`.
-   - Minimum Notional: $\ge 5,000,000\text{ USD}$ for BTC/ETH; $\ge 1,000,000\text{ USD}$ for TradFi (Gold, Indices, Oil); $\ge 500,000\text{ USD}$ for FX and Altcoins.
-   - Any wall with `persist_s == 0.0` or `SINGLE_SAMPLE` is classified as spoof liquidity and rejected fail-closed.
-3. **Cumulative Volume Delta (CVD) Divergence (`zc_div > 0.8`)**:
-   - Institutional accumulation: `Delta Spot > 0` and `Delta Futures < 0` with `zc_div > 0.8`.
-4. **Fibonacci Retracement Alignment**:
-   - Confluence between Fibonacci 0.50–0.618 Golden Pocket, resting whale walls, and Volume Profile shelves.
+> 🌟 **PARADIGM SHIFT: NARRATIVE & REGIMES OVER RIGID CONJUNCTIVE GATES (OPERATOR MANDATE)**:
+> In quantitative execution, requiring a rigid boolean `AND` across 7 micro-metrics simultaneously creates a fatal "conjunctive bottleneck" that eliminates 99% of valid trades and freezes the desk in permanent inaction.
+> Real institutional desks prioritize **Macro Narrative & Market Regime (The WHY)** to establish directional bias, using orderflow and structural shelves for **Execution Timing and Risk Anchoring (The HOW)**.
+
+1. **Regime-Aligned Confluence Principles**:
+   - **For Model 2 (Trend Continuation & Pullback)**:
+     * **Narrative**: A verified directional regime (`TREND_UP` or `TREND_DOWN` with 20/50 EMA ribbon alignment).
+     * **Location**: Trend pullbacks naturally occur at mild Z-scores (`|Z| = 0.5 to 1.8 SD`) into dynamic shelves (EMA20/50, Session VWAP, Volume Profile VPOC, or Fibonacci 0.50–0.618 golden pocket). Requiring extreme `|Z| >= 2.0 SD` on trend pullbacks is a mathematical error that invalidates the best trend continuation setups!
+     * **Structural Backing**:
+       - *For Crypto Perpetuals*: Resting whale walls >= $100K USD persisting >= 180s trailing behind the entry.
+       - *For Forex & Indices*: Volume Profile High Volume Nodes (HVN/VPOC), Value Area boundaries (VAH/VAL), or session VWAP shelves (since interbank FX is an OTC ECN feed without centralized $1M book depth).
+   - **For Model 1 (Extreme Mean Reversion)**:
+     * **Narrative**: Price is in a balanced range (`MEAN_REVERT`) probing outer distribution tails.
+     * **Location**: Statistical extremity (`|VWAP Z| >= 2.0 to 3.5 SD`, RSI < 35 or > 65) sweeping retail stop clusters or liquidation bands.
+     * **Confirmation**: Tape deceleration, rejection wick, and return inside the Value Area.
+
+2. **Asset-Class Specific Structural Anchors**:
+   - **Crypto (BTC, ETH, SOL, Alts)**: Resting whale wall >= $100K USD (Sheet 18/25) with persistence >= 180s, taker CVD divergence (`zc_div > 0.8`), or CoinGlass/Hyperdash stop sweeps.
+   - **TradFi Forex & Precious Metals (EURUSD, USDJPY, Gold, Silver)**: Volume Profile VPOC, Value Area High/Low (Sheet 30 `20_Auction_Market_Structure`), Session VWAP, and Fibonacci 0.50–0.618 golden pocket.
+   - **TradFi Equity Indices (NAS100, SP500, DJ30, GER40)**: Session VWAP, Opening Range / Cash Open balance shelves, and EMA20/50 dynamic ribbons.
+
+3. **Inviolable Solvency Hard Floors (Never Compromised)**:
+   - Hard Floor Invariant: Stressed Equity strictly >= 4,775.00 USD (cushion: +59.83 USD).
+   - Operating Buffer Invariant: Stressed Equity strictly >= 4,795.00 USD (cushion: +39.83 USD).
+   - Dynamic Spread Friction Gate: `Spread Points / TP Distance Points <= 15.0%`.
+   - Zero Tier-1 Macro Blackouts within +/-4 hours.
+   - Multi-Asset Pristine Risk Rights: Standard $15.00–$25.00 USD nominal risk; authorized up to $25.00–$35.00 USD for pristine confluence across ALL 156 assets!
 
 ---
 

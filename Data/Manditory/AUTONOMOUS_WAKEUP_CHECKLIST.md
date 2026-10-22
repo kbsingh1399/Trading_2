@@ -90,11 +90,14 @@ Before evaluating data, touching code, or dispatching orders, the coordinator an
   * Evaluate the Friction Efficiency Ratio: `Spread Points / TP Distance Points <= 15.0%`.
   * Baseline guidelines: Crypto <= 35.0 bps, Forex <= 6.0 bps, Metals & Indices <= 10.0 bps, Exotics <= 25.0 bps.
   * **Pristine Confluence Risk Rights (Operator Permission to Exceed Risk)**: Authorized to scale nominal risk up to 25.00 to 35.00 USD per trade (0.51% to 0.72% equity) across ALL 156 assets for pristine 5-pillar setups anchored behind verified whale walls with persistence >= 180s and tape absorption.
-- **5-Pillar Confluence Stack**:
+- **5-Pillar Confluence Stack (Regime & Narrative Driven)**:
+  * Prioritize the dominant Market Regime & Macro Narrative (The WHY) over rigid all-or-nothing conjunctive micro-gates.
+  * For Model 2 Trend Pullbacks: Retracements to EMA20/50, Session VWAP, VPOC, or Fibonacci 0.50–0.618 golden pocket at mild Z-scores (|Z| = 0.5 to 1.8 SD) qualify for pro-trend limit orders.
+  * For Forex and Indices: Volume Profile VPOC, Value Area High/Low, and EMA ribbons serve as structural anchors (interbank FX lacks centralized Binance-style L2 book depth).
   1. Dynamic spread friction gate passed (Efficiency Ratio <= 15%).
   2. Multi-horizon taker CVD delta divergence/absorption (`zc_div > 0.8`, Spot > 0, Futures < 0, or tick absorption).
-  3. Auction location: Model 1 Extreme Mean Reversion (`|Z| >= 2.0 to 3.5 SD`, RSI < 35 or > 65) sweeping dense liquidation/stop pools OR Model 2 Trend Pullback to EMA20/50 or Fibonacci 0.50–0.618 shelf in confirmed trend.
-  4. Resting institutional whale walls (>= $100K, persistence >= 180s), VPOC shelf, or EMA support anchoring SL safely outside sweep zone.
+  3. Auction location: Model 1 Extreme Mean Reversion (`|Z| >= 2.0 to 3.5 SD`, RSI < 35 or > 65) sweeping dense liquidation/stop pools OR Model 2 Trend Pullback to EMA20/50, VPOC, or Fibonacci 0.50–0.618 shelf in confirmed trend.
+  4. Verified structural backing: Resting whale wall >= $100K (persistence >= 180s) for Crypto, or VPOC/EMA support for Forex/Indices, anchoring SL safely outside sweep zone.
   5. Macro clearance (zero Tier-1 event blackout).
 - **Autonomous Punch Mandate**: If an empty slot exists and a candidate passes all 5 pillars, IMMEDIATELY punch the passive limit order into MT5 without hesitation.
 

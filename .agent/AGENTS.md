@@ -6,6 +6,7 @@ This profile adapts Superpowers workflows for Antigravity with strict single-flo
 
 ## Core Rules
 
+0. **Token Preservation**: ALWAYS query the AST Knowledge Graph via `/graphify` or `python -m graphify query "<concept/symbol>"` FIRST before reading large code files to save context tokens.
 1. Prefer local skills in `.agent/skills/<skill-name>/SKILL.md`.
 2. Execute one core task at a time with `task_boundary`.
 3. Use `browser_subagent` only for browser automation tasks.

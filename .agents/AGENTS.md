@@ -7,6 +7,11 @@ trigger: always_on
 > **MANDATORY CENTRAL NERVOUS SYSTEM FOR ALL AGENTS, RUNTIMES & SPECIALISTS**
 > Loading `AGENTS.md` activates ALL operational protocols, memory layers, bug hunt checklists, strategy invariants, and execution gates across both repositories simultaneously.
 
+## ⚡ MANDATORY TOKEN PRESERVATION DIRECTIVE #1: ALWAYS QUERY /graphify FIRST
+> 🛑 **TOKEN ANNIHILATION DEFENSE (STRICT OPERATOR MANDATE)**:
+> Before reading large source code files or performing broad directory greps, the coordinator and all subagents MUST FIRST query the AST Knowledge Graph using `/graphify` or `python -m graphify query "<concept/symbol>"` (or MCP tool `query_graph_tool`).
+> `graphify-out/graph.json` contains 7.4k parsed code nodes and semantic relationships. A targeted graphify query returns the exact scoped subgraph in under 500 tokens, eliminating 95% of codebase context bloat. Never read 500+ line Python files when a graphify query answers structural, caller, or dependency questions immediately.
+
 ## 🔴 PROOF OF COMPLIANCE DIRECTIVE
 At the start of your first response after loading this file, you MUST include this acknowledgment line before any other content:
 ```
@@ -18,7 +23,7 @@ At the start of your first response after loading this file, you MUST include th
 
 # PART 0: 8-STEP MASTER ACTIVATION CHAIN (BOOT SEQUENCE)
 When `AGENTS.md` is loaded, execute sequentially without asking:
-1. **AST Graphify**: Sync AST semantic nodes before touching code: `python -m graphify query "<symbol>"` (`graphify-out/graph.json`: 7.4k nodes).
+1. **AST Graphify First (Token Preservation)**: Always query AST semantic nodes before touching or reading code: `/graphify` or `python -m graphify query "<symbol>"` (`graphify-out/graph.json`: 7.4k nodes). Save tokens by retrieving scoped subgraphs instead of reading raw code files.
 2. **Tri-Layer Context, Step-Level Previous Conversation & Cross-Account Re-Engagement Mandate (Strict Non-Negotiable)**:
    - *Mandatory Step Context & Cross-Account Review*: On EVERY step, agent and subagents MUST refer to previous conversation history (`.agents/memory/session_chat_history.md`, past turns, transcript). When switching Gemini accounts or returning to session chat, agent MUST review all session logs to establish complete continuity of what we are trying to achieve, all feedback, and past setbacks. No step may ever be executed in a vacuum without full context of past actions, decisions, and trajectory.
    - *Layer 1 (Graph)*: `@[.agents/memory/graph/mcp_graph_memory.json]`
