@@ -39,8 +39,136 @@ from Terminal.risk.fail_closed import bar_fresh, num
 CANDLE_DIR = ROOT / "Data" / "Candles"
 CANDLE_DIR.mkdir(parents=True, exist_ok=True)
 
+try:
+    import numba
+
+    @numba.njit(fastmath=True, cache=True)
+    def _calc_ema_series_numba(arr: np.ndarray, period: int) -> np.ndarray:
+        n = len(arr)
+        out = np.empty(n, dtype=np.float64)
+        if n < period or period <= 0:
+            out[:] = np.nan
+            return out
+        out[:period - 1] = np.nan
+        sma = 0.0
+        for i in range(period):
+            sma += arr[i]
+        sma /= period
+        out[period - 1] = sma
+        alpha = 2.0 / (period + 1.0)
+        one_minus_alpha = 1.0 - alpha
+        for i in range(period, n):
+            out[i] = alpha * arr[i] + one_minus_alpha * out[i - 1]
+        return out
+
+    @numba.njit(fastmath=True, cache=True)
+    def _calc_ema_ribbon_numba(arr: np.ndarray, periods: np.ndarray) -> np.ndarray:
+        n = len(arr)
+        num_p = len(periods)
+        out = np.empty((num_p, n), dtype=np.float64)
+        for p_idx in range(num_p):
+            p = periods[p_idx]
+            if n < p or p <= 0:
+                out[p_idx, :] = np.nan
+                continue
+            out[p_idx, :p - 1] = np.nan
+            sma = 0.0
+            for i in range(p):
+                sma += arr[i]
+            sma /= p
+            out[p_idx, p - 1] = sma
+            alpha = 2.0 / (p + 1.0)
+            one_minus_alpha = 1.0 - alpha
+            for i in range(p, n):
+                out[p_idx, i] = alpha * arr[i] + one_minus_alpha * out[p_idx, i - 1]
+        return out
+
+    NUMBA_AVAILABLE = True
+except Exception:
+    NUMBA_AVAILABLE = False
+
+
+def _calc_ema_series_numpy(arr: np.ndarray, period: int) -> np.ndarray:
+    n = len(arr)
+    out = np.full(n, np.nan, dtype=np.float64)
+    if n < period or period <= 0:
+        return out
+    sma = float(np.mean(arr[:period]))
+    out[period - 1] = sma
+    alpha = 2.0 / (period + 1.0)
+    one_minus = 1.0 - alpha
+    prev = sma
+    for i in range(period, n):
+        prev = alpha * arr[i] + one_minus * prev
+        out[i] = prev
+    return out
+
+
+def calc_ema_series(arr: np.ndarray, period: int) -> np.ndarray:
+    """Institutional SMA-seeded Exponential Moving Average full series."""
+    arr_c = np.ascontiguousarray(arr, dtype=np.float64)
+    if NUMBA_AVAILABLE:
+        return _calc_ema_series_numba(arr_c, period)
+    return _calc_ema_series_numpy(arr_c, period)
+
+
+def calc_ema_ribbon(arr: np.ndarray, periods: Tuple[int, ...] = (9, 20, 50, 100, 200)) -> Dict[int, np.ndarray]:
+    """Computes multi-timeframe EMA ribbon series with institutional SMA seeding in a single pass."""
+    arr_c = np.ascontiguousarray(arr, dtype=np.float64)
+    if NUMBA_AVAILABLE:
+        p_arr = np.array(periods, dtype=np.int64)
+        matrix = _calc_ema_ribbon_numba(arr_c, p_arr)
+        return {p: matrix[idx] for idx, p in enumerate(periods)}
+    return {p: _calc_ema_series_numpy(arr_c, p) for p in periods}
+
+
+def calc_ema(arr: np.ndarray, period: int) -> Optional[float]:
+    """Returns latest institutional SMA-seeded EMA value, or None if insufficient bars."""
+    if len(arr) < period or period <= 0:
+        return None
+    s = calc_ema_series(arr, period)
+    val = s[-1]
+    return float(val) if not np.isnan(val) else None
+
+
+def classify_ema_ribbon(
+    price: float,
+    ema_9: Optional[float],
+    ema_20: Optional[float],
+    ema_50: Optional[float],
+    ema_100: Optional[float],
+    ema_200: Optional[float],
+) -> Tuple[str, Optional[float]]:
+    """
+    Classifies structural alignment of the multi-timeframe EMA ribbon.
+    """
+    if not (ema_20 and ema_50 and ema_200):
+        return "INSUFFICIENT_DATA", None
+
+    e9 = ema_9 if ema_9 is not None else price
+    spread_pct = ((ema_20 - ema_200) / ema_200) * 100.0
+
+    if price > e9 > ema_20 > ema_50 > ema_200:
+        return "PERFECT_BULLISH", spread_pct
+    elif ema_20 > ema_50 > ema_200 and price < e9:
+        return "PULLBACK_IN_BULL", spread_pct
+    elif ema_20 > ema_50 > ema_200:
+        return "BULLISH_ALIGNMENT", spread_pct
+    elif price < e9 < ema_20 < ema_50 < ema_200:
+        return "PERFECT_BEARISH", spread_pct
+    elif ema_20 < ema_50 < ema_200 and price > e9:
+        return "PULLBACK_IN_BEAR", spread_pct
+    elif ema_20 < ema_50 < ema_200:
+        return "BEARISH_ALIGNMENT", spread_pct
+    else:
+        return "COMPRESSING_NEUTRAL", spread_pct
+
 
 class CandleIndicatorEngine:
+    calc_ema = staticmethod(calc_ema)
+    calc_ema_series = staticmethod(calc_ema_series)
+    calc_ema_ribbon = staticmethod(calc_ema_ribbon)
+    classify_ema_ribbon = staticmethod(classify_ema_ribbon)
     def __init__(
         self,
         bridge: Optional[MT5ExecutionBridge] = None,
@@ -210,25 +338,43 @@ class CandleIndicatorEngine:
         lower_3 = primary_vwap - 3.0 * primary_sigma if lower_1 is not None else None
 
         # -------------------------------------------------------------
-        # 3. Moving Averages (EMA 20, 50, 200)
+        # 3. Vectorized Multi-Timeframe EMA Ribbon (9, 20, 50, 100, 200)
         # -------------------------------------------------------------
-        def calc_ema(arr: np.ndarray, period: int) -> float:
-            alpha = 2.0 / (period + 1.0)
-            ema = arr[0]
-            for val in arr[1:]:
-                ema = alpha * val + (1.0 - alpha) * ema
-            return float(ema)
+        ribbon = calc_ema_ribbon(closes, (9, 20, 50, 100, 200))
+        s9 = ribbon[9]
+        s20 = ribbon[20]
+        s50 = ribbon[50]
+        s100 = ribbon[100]
+        s200 = ribbon[200]
 
-        ema_20 = calc_ema(closes, 20) if len(closes) >= 20 else None
-        ema_50 = calc_ema(closes, 50) if len(closes) >= 50 else None
-        ema_200 = calc_ema(closes, 200) if len(closes) >= 200 else None
+        ema_9 = float(s9[-1]) if len(closes) >= 9 and not np.isnan(s9[-1]) else None
+        ema_20 = float(s20[-1]) if len(closes) >= 20 and not np.isnan(s20[-1]) else None
+        ema_50 = float(s50[-1]) if len(closes) >= 50 and not np.isnan(s50[-1]) else None
+        ema_100 = float(s100[-1]) if len(closes) >= 100 and not np.isnan(s100[-1]) else None
+        ema_200 = float(s200[-1]) if len(closes) >= 200 and not np.isnan(s200[-1]) else None
 
+        # O(1) Slope Calculations:
         # EMA 200 slope over past 12 bars (3 hours)
-        if len(closes) >= 212:
-            ema_200_prev12 = calc_ema(closes[:-12], 200)
-            ema_200_slope_pct = (ema_200 - ema_200_prev12) / ema_200_prev12 * 100.0
+        if len(closes) >= 212 and ema_200 is not None and not np.isnan(s200[-13]) and s200[-13] > 0:
+            ema_200_slope_pct = (ema_200 - float(s200[-13])) / float(s200[-13]) * 100.0
         else:
             ema_200_slope_pct = None
+
+        # EMA 20 slope over past 4 bars (1 hour)
+        if len(closes) >= 24 and ema_20 is not None and not np.isnan(s20[-5]) and s20[-5] > 0:
+            ema_20_slope_pct = (ema_20 - float(s20[-5])) / float(s20[-5]) * 100.0
+        else:
+            ema_20_slope_pct = None
+
+        # EMA 50 slope over past 8 bars (2 hours)
+        if len(closes) >= 58 and ema_50 is not None and not np.isnan(s50[-9]) and s50[-9] > 0:
+            ema_50_slope_pct = (ema_50 - float(s50[-9])) / float(s50[-9]) * 100.0
+        else:
+            ema_50_slope_pct = None
+
+        ribbon_state, ribbon_spread_pct = classify_ema_ribbon(
+            last_price, ema_9, ema_20, ema_50, ema_100, ema_200
+        )
 
         # -------------------------------------------------------------
         # 4. Wilder Average True Range (ATR 14)
@@ -283,10 +429,16 @@ class CandleIndicatorEngine:
             "lower_2sd": float(lower_2) if lower_2 is not None else None,
             "upper_3sd": float(upper_3) if upper_3 is not None else None,
             "lower_3sd": float(lower_3) if lower_3 is not None else None,
+            "ema_9": float(ema_9) if ema_9 is not None else None,
             "ema_20": float(ema_20) if ema_20 is not None else None,
             "ema_50": float(ema_50) if ema_50 is not None else None,
+            "ema_100": float(ema_100) if ema_100 is not None else None,
             "ema_200": float(ema_200) if ema_200 is not None else None,
+            "ema_20_slope_pct": float(ema_20_slope_pct) if ema_20_slope_pct is not None else None,
+            "ema_50_slope_pct": float(ema_50_slope_pct) if ema_50_slope_pct is not None else None,
             "ema_200_slope_pct": float(ema_200_slope_pct) if ema_200_slope_pct is not None else None,
+            "ema_ribbon_state": ribbon_state,
+            "ema_ribbon_spread_pct": float(ribbon_spread_pct) if ribbon_spread_pct is not None else None,
             "atr_14": float(atr_14),
             "atr_pct": float(atr_14 / last_price * 100.0),
             "rsi_14": float(rsi_14) if rsi_14 is not None else None,
