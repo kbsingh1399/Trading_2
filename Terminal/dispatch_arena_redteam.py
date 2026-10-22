@@ -124,13 +124,10 @@ async def build_and_dispatch():
     candidate_table = (
         "| Candidate Setup | Direction | Target Entry | Stop Loss | Take Profit | Lots | Risk USD | Stressed Risk | Pre-Condition Checklist |\n"
         "|---|---|---|---|---|---|---|---|---|\n"
-        "| DJ30.p Daily VAL Shelf | BUY_LIMIT | 52,455.00 | 52,360.00 | 52,650.00 | 0.02 lot | $19.00 | $24.00 | [ ] Pullback into Daily VAL 52,451.94, [ ] M15 volume exhaustion, [ ] TP front-runs VAH 52,673, [x] Spread 0.22 bps |\n"
-        "| NAS100.p Volume Rebound | BUY_LIMIT | 29,245.00 | 29,150.00 | 29,480.00 | 0.02 lot | $19.00 | $24.00 | [ ] Pullback into Daily VAL 29,236.95, [ ] Resting bid support, [ ] TP front-runs VAH 29,505, [x] Spread 0.36 bps |\n"
-        "| UK100.p Structural Short | SELL_LIMIT | 10,724.00 | 10,752.00 | 10,682.00 | 0.07 lot | $19.60 | $25.00 | [ ] Pullback to Daily VAH 10,716-10,724, [ ] SL safely beyond Weekly POC (10,742.87), [ ] TP front-runs VAL 10,679, [x] Spread 1.59 bps |\n"
-        "| GER40.p Auction Balance | BUY_LIMIT | 25,320.00 | 25,230.00 | 25,480.00 | 0.02 lot | $18.00 | $23.00 | [ ] Retest of Daily VAL 25,308.18, [ ] Delta turn, [ ] TP front-runs VAH 25,491, [x] Spread 0.31 bps |\n"
-        "| EURUSD.pi Value Retest | BUY_LIMIT | 1.11920 | 1.11820 | 1.12300 | 0.18 lot | $18.00 | $23.00 | [ ] Post-macro sweep into 1.11900 support, [ ] Tape reversal, [ ] TP front-runs Daily POC 1.12334, [x] Spread 0.09 bps |\n"
-        "| XAUUSD.pi Demand Shelf | BUY_LIMIT | 4,058.50 | 4,050.50 | 4,072.00 | 0.02 lot | $16.00 | $22.00 | [ ] 4,058-4,060 bunker defense, [ ] Tick CVD deceleration, [ ] TP front-runs VAL, [x] Spread 0.20 bps |\n"
-        "| BTCUSD.pi Whale Bunker | BUY_LIMIT | 81,640.00 | 81,180.00 | 82,440.00 | 0.04 lot | $18.40 | $25.00 | [ ] Sweep into 81,525-81,650 VAL shelf, [ ] CVD absorption flip, [ ] 7.53M wall holds, [x] Spread 1.83 bps |"
+        "| BTCUSD.pi News Rejection Pin | BUY_LIMIT | 81,580.00 | 81,060.00 | 82,620.00 | 0.03 lot | $15.60 | $21.50 | [x] 12:30 M15 news bar flushed 81,578, [x] Printed 65pt lower absorption wick, [x] SL 81,060 safely < 81,150 stop cluster, [ ] TP 82,620 front-runs POC 82,746, [x] Spread 1.96 bps |\n"
+        "| NAS100.p Daily POC Shelf | BUY_LIMIT | 29,325.00 | 29,230.00 | 29,480.00 | 0.02 lot | $19.00 | $24.00 | [ ] Pullback into Daily POC 29,325.22, [x] SL 29,230 safely < Daily VAL 29,236.95, [x] TP 29,480 front-runs VAH 29,505 (Arena E2 verified 8.67 bps), [x] Spread 0.36 bps |\n"
+        "| XAUUSD.pi Demand Shelf Retest | BUY_LIMIT | 4,074.00 | 4,065.00 | 4,095.00 | 0.02 lot | $18.00 | $24.00 | [x] News low 4,069 rejected with +14pt surge to 4,083, [ ] Retest of 4,074 shelf, [x] SL 4,065 safely < 4,069 news low, [ ] TP 4,095 front-runs VAH 4,101, [x] Spread 0.20 bps |\n"
+        "| UK100.p Weekly POC Short | SELL_LIMIT | 10,742.00 | 10,762.00 | 10,695.00 | 0.07 lot | $19.60 | $25.00 | [ ] Test into Weekly POC 10,742.87, [x] SL 10,762 safely > Weekly VAH 10,758.28 (Arena E1 fix), [ ] TP 10,695 front-runs Daily VAL 10,679, [x] Spread 1.58 bps |"
     )
     prompt = prompt.replace("{CANDIDATE_TABLE}", candidate_table)
 
