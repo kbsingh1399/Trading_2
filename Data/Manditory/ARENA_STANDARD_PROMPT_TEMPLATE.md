@@ -112,6 +112,16 @@ Structure your response into the following explicit sections:
 - Formulate the unified recommendation:
   * **Option A (Punch Limit Now)**: If a candidate satisfies all 5 pillars with resting whale defense and solvency clearance, output the complete execution ticket: Symbol | Side | Order Type (PASSIVE LIMIT ONLY) | Limit Entry | Stop Loss | Take Profit | Lot Size | Risk USD | R:R (>= 2.0R).
   * **Option B (Stand Aside in 100% Cash Defense)**: If market momentum is aggressive, stop sweep cascades are un-swept, or whale walls lack persistence, declare unanimous **STAND ASIDE IN 100% FLAT CASH**, providing the Potential Candidate Radar Checklist and exact checkable pre-condition triggers required for entry.
+
+### 5. MANDATORY QUANTITATIVE METHODOLOGY CRITIQUE & CONTINUOUS IMPROVEMENT INQUEST (OPERATOR MANDATE)
+- 🔬 **MANDATORY PERPETUAL QUESTION (MUST BE EXPLICITLY ANSWERED ON EVERY RESPONSE)**:
+  *"Is our methodology for finding potential candidates truly sound, and how can we fundamentally improve it? Given that we monitor, ingest, and process immense multi-layered data across 156 assets (L2/L3 orderbooks, CVD delta, CoinGlass liquidation heatmaps, Hyperdash retail stop cascades, 33-sheet Excel warehouse, ETF flows, Auction market structure), why has equity remained flat/stagnant and why are profitable executions eluding the desk? How do we think like elite quantitative researchers to bridge this gap?"*
+- Provide deep, candid quantitative critique across the 5 dimensions:
+  1. Conjunctive filter sclerosis vs probabilistic expectancy (are we rejecting winners with overly rigid binary rules?).
+  2. Static retrospective data vs dynamic live microstructure (are 15m/1h sheets lagging price action?).
+  3. Entry geometry & staging passivity (are limits too far away to fill, or too close to sweep zones?).
+  4. Multi-asset alpha specialization (are we blinding ourselves by seeking crypto-only whale walls on Forex/Indices?).
+  5. Actionable alpha evolution proposals (concrete mathematical formula/rule improvements to grow equity toward $5,500 USD).
 ```
 
 ---
@@ -128,3 +138,4 @@ Before injecting into Arena's TipTap editor, confirm:
 - [ ] GitHub `origin/main` pushed (telemetry + Excel + trade plans) within last 5 minutes
 - [ ] Feedback modal dismissed via CDP before injection (`button[aria-label="Keep working"]`)
 - [ ] 3-Persona affirmative candidate discovery instruction (Orderflow, Position, Macro) prominently present in injected prompt
+- [ ] Mandatory Quantitative Methodology Critique question (Section 5) explicitly embedded in injected prompt
