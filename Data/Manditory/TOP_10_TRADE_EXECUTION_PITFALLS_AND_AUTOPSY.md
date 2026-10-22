@@ -183,19 +183,94 @@ flowchart TD
 
 ---
 
-## 📋 SUMMARY: THE 10-POINT EX-ANTE PRE-PUNCH CHECKLIST
+### 🔴 PITFALL 11: MARKETABLE-LIMIT MASQUERADE (SPREAD CROSSING IN DISGUISE)
+- **Anatomy**: Placing a "limit" order at or through the current market price, turning a passive limit into an aggressive market order that pays the full spread and taker fees.
+- **Microstructure Gate**: At transmission, MT5 order validation MUST enforce:
+  * `BUY_LIMIT <= live_bid` (Strictly passive order on the bid side).
+  * `SELL_LIMIT >= live_ask` (Strictly passive order on the ask side).
+  * Quote Age: `<= 2.0 seconds`. Any quote older than 2s freezes order transmission.
+  * Instant Rejection: Reject any order whose limit price crosses the spread.
 
-Before ANY limit order is staged or punched into MetaTrader 5, the coordinator and subagents MUST physically verify that all 10 pitfalls are absent:
+---
 
-| # | Pitfall Check | Required Status | Verified? |
+### 🔴 PITFALL 12: QUEUE-POSITION ILLUSION & STALE FILL TRAPS
+- **Anatomy**: Assuming that placing a limit order at a whale wall guarantees execution when price touches that level.
+- **Microstructure Gate**:
+  * In deep orderbooks, millions of dollars of limit orders may sit in front of yours at the exact same tick.
+  * If price touches the level but does not trade through the queue, your order is either left unfilled (missed trade) or only partially filled just as the wall is breaking (adverse selection).
+  * Must evaluate queue-ahead notional and require setup expiry: if the order does not fill within 12 bars (3 hours), cancel and reassess.
+
+---
+
+### 🔴 PITFALL 13: PARTIAL-FILL ADVERSE SELECTION
+- **Anatomy**: An order gets 20% filled right before a catastrophic liquidity cascade breaks through the support level.
+- **Microstructure Gate**:
+  * Immediately recompute risk upon every fill event.
+  * Cancel the residual pending volume if the supporting whale wall disappears or if fill remains `< 80%` and 5-second adverse markout exceeds `0.10 ATR`. Never let an unbacked residual order fill during a violent breakdown.
+
+---
+
+### 🔴 PITFALL 14: DYNAMIC SPREAD & VOLATILITY LATENCY SPIKES
+- **Anatomy**: Entering during candle closes, session transitions, or micro-news shocks when spreads widen by 3x–10x.
+- **Microstructure Gate**:
+  * Require instantaneous spread AND 60-second p95 spread below the canonical gate (<= 25 bps for Crypto, <= 5 bps for TradFi).
+  * Enforce dynamic volatility ratio: `spread_now <= 1.5 * five_minute_median_spread`.
+  * Total round-trip execution cost (spread + fees) must be `< 10% of cash R0`. Freeze trading around session opens, 15m/1h candle closes, and rollover windows.
+
+---
+
+### 🔴 PITFALL 15: SPOOFING, ICEBERGS & BASIS TRANSLATION ERRORS
+- **Anatomy**: Relying on static snapshot persistence of a whale wall without validating presence fraction or exchange basis differences.
+- **Microstructure Gate**:
+  * Static persistence alone is insufficient. A valid wall requires:
+    1. Wall age: `<= 5 seconds` from live L2 feed.
+    2. Persist duration: `>= 180 seconds`.
+    3. Presence fraction: `>= 0.85` (present in at least 85% of orderbook snapshots over the 180s window).
+    4. Sample count: `>= 3 consecutive samples`.
+    5. Cancellation status: `canceled == False`.
+    6. Basis translation: MT5 broker CFD price must be explicitly mapped to Binance/Hyperliquid spot/perp price using live basis spread.
+
+---
+
+### 🔴 PITFALL 16: PORTFOLIO CORRELATION & GAP CVaR NON-GUARANTEE
+- **Anatomy**: Staging simultaneous positions across BTC, ETH, and SOL, believing they are independent trades, only to suffer a correlated 3-asset flash loss.
+- **Microstructure Gate**:
+  * Assets within the same risk cluster (BTC, ETH, SOL in Crypto; NAS100, SP500, DJ30 in Indices) are treated as ONE single correlated book.
+  * Stress test must apply: `JointStress = sum(max(1.25 * Risk_i + Fees, GapCVaR_99.99)) + CorrelationAddon`.
+  * At current equity ($4,834.83) and operating buffer ($4,795.00), the available buffer cushion is **$39.83 USD**.
+  * **Absolute Hard Limit**: Under current cushion, **MAXIMUM 1 LIVE POSITION AT A TIME** (Stressed risk = $20.75 for a $15 trade; two positions would stress to $41.50, violating the $39.83 buffer). Dual slots are unlocked ONLY when equity exceeds $4,845.00 USD.
+
+---
+
+### 🔴 PITFALL 17: WORKBOOK SCHEMA RACE & MISSING FIELD FABRICATION
+- **Anatomy**: Strategies making decisions based on fabricated or non-existent columns in Excel sheets (e.g. attempting to calculate `zc_div` when spot and futures CVD are not split, or looking for VAH/VAL in sheets that don't output them).
+- **Microstructure Gate**:
+  * Strict Data-Contract Gate: Every referenced column MUST physically exist in `DataBase_Trading.xlsx`.
+  * If a sheet lacks price, side, or distance metrics (e.g. `7_Liq_Heapmap` or unsplit `18_CVD`), that sheet CANNOT be used to position SL/TP or gate entries until the schema is extended.
+  * Workbook atomic commit: Data must be written to `.tmp.xlsx`, fsynced, CRC-verified, and atomically replaced to prevent zip corruption.
+
+---
+
+## 📋 SUMMARY: THE 17-POINT EX-ANTE PRE-PUNCH CHECKLIST
+
+Before ANY limit order is staged or punched into MetaTrader 5, the coordinator and subagents MUST physically verify that all 17 institutional pitfalls are absent:
+
+| # | Pitfall Check | Required Quantitative Gate | Verified? |
 |---|---|---|---|
 | 1 | **Whale Wall Polarity** | Confirmed genuine resting BID for longs (`is_bid == True`), ASK for shorts | [ ] |
 | 2 | **Stop Cascade Clearance** | Zero un-swept opposing retail stop clusters between market and entry | [ ] |
-| 3 | **CVD Absorption** | Selling/buying waterfall halted; tape confirms absorption / deceleration | [ ] |
-| 4 | **Safe SL Buffer** | Stop Loss placed >= 0.40–0.50 ATR behind outer liquidation boundary & whale bunker | [ ] |
-| 5 | **Auction Location** | Extreme Model 1 (|Z| >= 2.0 SD) OR confirmed Model 2 HTF pullback (No mid-range noise) | [ ] |
-| 6 | **Spread Gate** | Spread <= 25 bps for Crypto perps; Spread <= 5 bps for TradFi CFDs (Gold 0.20 bps) | [ ] |
+| 3 | **CVD Absorption** | Tape confirms absorption / deceleration; selling waterfall halted | [ ] |
+| 4 | **Safe SL Buffer** | SL placed `>= 0.50 ATR` plus half-spread beyond outer sweep boundary | [ ] |
+| 5 | **Auction Location** | Model 1 extreme (|Z| >= 2.0 SD) OR Model 2 HTF pullback (No mid-range noise) | [ ] |
+| 6 | **Spread Gate** | Spread <= 25 bps (Crypto) / <= 5 bps (TradFi); round-trip cost < 10% R0 | [ ] |
 | 7 | **HTF Trend Alignment** | Trade respects HTF market structure or enters at macro multi-day bunker | [ ] |
 | 8 | **Pre-Condition Trigger** | All candidate radar pre-conditions checked `[x]` on live empirical data | [ ] |
-| 9 | **Clear TP Runway** | TP front-runs overhead liquidity walls; realizable R:R >= 1.5R guaranteed | [ ] |
-| 10 | **Stressed Solvency** | Stressed post-loss equity strictly >= 4,795.00 USD buffer (Max $10–$15 risk/ticket) | [ ] |
+| 9 | **Clear TP Runway** | TP front-runs overhead liquidity walls; realizable R:R >= 2.0R (default 2.5R) | [ ] |
+| 10 | **Stressed Solvency** | Stressed loss <= $39.83 buffer cushion; **MAX 1 LIVE POSITION** at current equity | [ ] |
+| 11 | **Non-Marketable Limit** | `BUY_LIMIT <= live_bid`, `SELL_LIMIT >= live_ask`; quote age <= 2.0s | [ ] |
+| 12 | **Queue & Expiry Gate** | Queue-ahead evaluated; order expires after 12 bars (3h) if unfilled | [ ] |
+| 13 | **Partial-Fill Sentry** | Immediate risk recomputation; cancel residual if fill < 80% & adverse markout > 0.10 ATR | [ ] |
+| 14 | **Dynamic Spread Ratio** | `spread_now <= 1.5 * median_5m`; zero trading during rollover/expansion | [ ] |
+| 15 | **Wall Presence Fraction** | Presence fraction >= 0.85 over 180s, sample count >= 3, `canceled == False` | [ ] |
+| 16 | **Cluster Correlation** | Correlated assets stressed jointly; zero simultaneous same-cluster slots | [ ] |
+| 17 | **Schema Data Contract** | All referenced columns exist in Excel; 0 formula errors; atomic commit verified | [ ] |

@@ -401,15 +401,22 @@ Every staged order must undergo strict broker-specific contract sizing and capit
    - Stressed post-loss simulation across all active positions and staged pending orders:
      $$\text{Total Staged Risk} = \sum_{i} \text{Risk}_i$$
      $$\text{Stressed Equity} = \text{Current Equity} - \sum_{i} (\text{Risk}_i \times 1.25 + 2.00) \ge 4,795.00\text{ USD}$$
-   - Under no circumstances may an order be staged if Stressed Equity violates the 4,795.00 USD operating buffer (and 4,775.00 USD hard floor). With equity at 4,857.32 USD (+82.32 USD above hard floor), a 20.00 to 25.00 USD risk trade is safely supported (+29.07 USD surplus above buffer, +49.07 USD above floor).
-4. **Unified Dynamic Position Capacity Formula**:
-   - **At 25.00 USD cash risk**: Each slot incurs $25.00 \times 1.25 + 2.00 = 33.25\text{ USD}$ stressed risk.
-     $$\text{Max Slots} = \lfloor \frac{68.74}{33.25} \rfloor = \mathbf{2\text{ concurrent positions}}$$
-     (Consumes 66.50 USD stressed risk, preserving a +2.24 USD buffer surplus and +22.24 USD hard floor surplus).
-   - **At 15.00 USD cash risk**: Each slot incurs $15.00 \times 1.25 + 2.00 = 20.75\text{ USD}$ stressed risk.
-     $$\text{Max Slots} = \lfloor \frac{68.74}{20.75} \rfloor = \mathbf{3\text{ concurrent positions}}$$
-     (Consumes 62.25 USD stressed risk, preserving a +6.49 USD buffer surplus and +26.49 USD hard floor surplus).
-   - **4 concurrent positions**: Mathematically permitted ONLY when equity expands above $4,878.00\text{ USD}$ ($4,795.00 + 4 \times 20.75\text{ USD}$). Under current equity, any attempt to stage 4 positions is hard-blocked fail-closed.
+   - Under no circumstances may an order be staged if Stressed Equity violates the 4,795.00 USD operating buffer (and 4,775.00 USD hard floor). With live equity at 4,834.83 USD, the cushion above the 4,795.00 USD operating buffer is exactly +39.83 USD (and +59.83 USD above the hard floor).
+4. **Dynamic Live Position Capacity Formula (Arena.ai Hardened)**:
+   - Available Buffer Capacity: Capacity = Live Equity - 4,795.00 USD (Currently: 4,834.83 - 4,795.00 = 39.83 USD).
+   - **At 10.00 USD cash risk**: Each slot incurs 10.00 * 1.25 + 2.00 = 14.50 USD stressed risk.
+     Max Slots = floor(39.83 / 14.50) = 2 concurrent positions (ONLY when risk <= 10.00 USD).
+     (Consumes 29.00 USD stressed risk, preserving a +10.83 USD buffer surplus).
+   - **At 15.00 USD cash risk**: Each slot incurs 15.00 * 1.25 + 2.00 = 20.75 USD stressed risk.
+     Max Slots = floor(39.83 / 20.75) = 1 concurrent position.
+     (Consumes 20.75 USD stressed risk, preserving a +19.08 USD buffer surplus. Second position is strictly blocked).
+   - **At 25.00 USD cash risk**: Each slot incurs 25.00 * 1.25 + 2.00 = 33.25 USD stressed risk.
+     Max Slots = floor(39.83 / 33.25) = 1 concurrent position.
+     (Consumes 33.25 USD stressed risk, preserving a +6.58 USD buffer surplus. Second position is strictly blocked).
+   - **Dynamic Unlocking Rules**:
+     * 2 simultaneous slots at 15.00 USD risk are unlocked ONLY when live equity expands above 4,836.50 USD (4,795.00 + 2 * 20.75).
+     * 3 simultaneous slots at 15.00 USD risk are unlocked ONLY when live equity expands above 4,857.25 USD (4,795.00 + 3 * 20.75).
+     * 4 simultaneous slots are unlocked ONLY when live equity expands above 4,878.00 USD. Under current equity, any attempt to stage more than 1 position at 15-25 USD risk is hard-blocked fail-closed.
 
 ---
 
