@@ -541,10 +541,27 @@ def dump_auction_structure_to_excel(
     except Exception as e:
         log.warning(f"Failed to export telemetry JSON: {e}")
 
-    # Atomic write to Excel
-    wb = openpyxl.load_workbook(excel_path)
-    if sheet_name in wb.sheetnames:
-        wb.remove(wb[sheet_name])
+    # Atomic write to Excel -- serialized via .lock file to prevent CRC collision
+    # with concurrent parallel pipeline writers (e.g. 19_Calendar, 19_News)
+    lock_path = excel_path.with_suffix('.lock')
+    lock_acquired = False
+    lock_start = time.time()
+    while time.time() - lock_start < 60:
+        try:
+            fd = os.open(str(lock_path), os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+            os.close(fd)
+            lock_acquired = True
+            break
+        except FileExistsError:
+            time.sleep(0.5)
+    if not lock_acquired:
+        log.error('Could not acquire Excel lock within 60s -- aborting write to prevent CRC collision.')
+        return False
+
+    try:
+        wb = openpyxl.load_workbook(excel_path)
+        if sheet_name in wb.sheetnames:
+            wb.remove(wb[sheet_name])
 
     ws = wb.create_sheet(title=sheet_name, index=target_index)
 
