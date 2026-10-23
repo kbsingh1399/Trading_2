@@ -1,14 +1,16 @@
 {
-  "timestamp_utc": "2026-10-23 07:58:11 UTC",
+  "timestamp_utc": "2026-10-23 08:47:44 UTC",
   "overall_status": "PASS",
   "excel_path": "Data/DataBase_Trading.xlsx",
-  "file_size_mb": 13.26,
-  "file_age_seconds": 273.7,
+  "file_size_mb": 13.3,
+  "file_age_seconds": 80.3,
   "freshness_pass": true,
   "total_sheets": 33,
+  "fresh_sheets_count": 17,
+  "stale_sheets_count": 16,
   "total_formula_errors": 0,
   "all_headers_valid": true,
-  "execution_time_seconds": 20.22,
+  "execution_time_seconds": 23.69,
   "sheets": [
     {
       "index": 1,
@@ -17,6 +19,10 @@
       "columns": 18,
       "formula_errors": 0,
       "header_valid": true,
+      "detected_timestamp": "2026-10-17 13:23:21",
+      "age_seconds": 501864.0,
+      "age_str": "5.8d",
+      "freshness_tier": "FROZEN (>24h)",
       "status": "PASS"
     },
     {
@@ -26,6 +32,10 @@
       "columns": 18,
       "formula_errors": 0,
       "header_valid": true,
+      "detected_timestamp": "2026-10-23 08:26:22",
+      "age_seconds": 1283.0,
+      "age_str": "21.4m",
+      "freshness_tier": "LIVE (<30m)",
       "status": "PASS"
     },
     {
@@ -35,6 +45,10 @@
       "columns": 17,
       "formula_errors": 0,
       "header_valid": true,
+      "detected_timestamp": "2026-10-22 04:48:44",
+      "age_seconds": 100741.0,
+      "age_str": "1.2d",
+      "freshness_tier": "FROZEN (>24h)",
       "status": "PASS"
     },
     {
@@ -44,6 +58,10 @@
       "columns": 11,
       "formula_errors": 0,
       "header_valid": true,
+      "detected_timestamp": "2026-10-22 05:33:36",
+      "age_seconds": 98049.0,
+      "age_str": "1.1d",
+      "freshness_tier": "FROZEN (>24h)",
       "status": "PASS"
     },
     {
@@ -53,6 +71,10 @@
       "columns": 11,
       "formula_errors": 0,
       "header_valid": true,
+      "detected_timestamp": "2026-10-22 05:35:25",
+      "age_seconds": 97940.0,
+      "age_str": "1.1d",
+      "freshness_tier": "FROZEN (>24h)",
       "status": "PASS"
     },
     {
@@ -62,15 +84,23 @@
       "columns": 11,
       "formula_errors": 0,
       "header_valid": true,
+      "detected_timestamp": "2026-10-22 04:54:48",
+      "age_seconds": 100377.0,
+      "age_str": "1.2d",
+      "freshness_tier": "FROZEN (>24h)",
       "status": "PASS"
     },
     {
       "index": 7,
       "sheet_name": "4_Hyperliquid_Analysis",
-      "rows": 2001,
+      "rows": 2000,
       "columns": 20,
       "formula_errors": 0,
       "header_valid": true,
+      "detected_timestamp": "2026-10-23 08:27:11",
+      "age_seconds": 1234.0,
+      "age_str": "20.6m",
+      "freshness_tier": "LIVE (<30m)",
       "status": "PASS"
     },
     {
@@ -80,15 +110,23 @@
       "columns": 21,
       "formula_errors": 0,
       "header_valid": true,
+      "detected_timestamp": "2026-10-23 08:28:15",
+      "age_seconds": 1170.0,
+      "age_str": "19.5m",
+      "freshness_tier": "LIVE (<30m)",
       "status": "PASS"
     },
     {
       "index": 9,
       "sheet_name": "5_Funding_Rate",
-      "rows": 596,
+      "rows": 598,
       "columns": 17,
       "formula_errors": 0,
       "header_valid": true,
+      "detected_timestamp": "2026-10-23 08:29:46",
+      "age_seconds": 1079.0,
+      "age_str": "18.0m",
+      "freshness_tier": "LIVE (<30m)",
       "status": "PASS"
     },
     {
@@ -98,6 +136,10 @@
       "columns": 10,
       "formula_errors": 0,
       "header_valid": true,
+      "detected_timestamp": "2026-10-23 08:30:44",
+      "age_seconds": 1021.0,
+      "age_str": "17.0m",
+      "freshness_tier": "LIVE (<30m)",
       "status": "PASS"
     },
     {
@@ -107,6 +149,10 @@
       "columns": 7,
       "formula_errors": 0,
       "header_valid": true,
+      "detected_timestamp": "2026-10-22 05:43:46",
+      "age_seconds": 97439.0,
+      "age_str": "1.1d",
+      "freshness_tier": "FROZEN (>24h)",
       "status": "PASS"
     },
     {
@@ -116,6 +162,10 @@
       "columns": 8,
       "formula_errors": 0,
       "header_valid": true,
+      "detected_timestamp": "2026-10-22 11:14:42",
+      "age_seconds": 77583.0,
+      "age_str": "21.6h",
+      "freshness_tier": "PERIODIC (<24h)",
       "status": "PASS"
     },
     {
@@ -125,6 +175,10 @@
       "columns": 11,
       "formula_errors": 0,
       "header_valid": true,
+      "detected_timestamp": "2026-10-22 05:45:35",
+      "age_seconds": 97330.0,
+      "age_str": "1.1d",
+      "freshness_tier": "FROZEN (>24h)",
       "status": "PASS"
     },
     {
@@ -134,6 +188,10 @@
       "columns": 11,
       "formula_errors": 0,
       "header_valid": true,
+      "detected_timestamp": "2026-10-22 05:46:58",
+      "age_seconds": 97247.0,
+      "age_str": "1.1d",
+      "freshness_tier": "FROZEN (>24h)",
       "status": "PASS"
     },
     {
@@ -143,6 +201,10 @@
       "columns": 11,
       "formula_errors": 0,
       "header_valid": true,
+      "detected_timestamp": "2026-10-22 05:49:04",
+      "age_seconds": 97121.0,
+      "age_str": "1.1d",
+      "freshness_tier": "FROZEN (>24h)",
       "status": "PASS"
     },
     {
@@ -152,6 +214,10 @@
       "columns": 11,
       "formula_errors": 0,
       "header_valid": true,
+      "detected_timestamp": "2026-10-22 05:49:51",
+      "age_seconds": 97074.0,
+      "age_str": "1.1d",
+      "freshness_tier": "FROZEN (>24h)",
       "status": "PASS"
     },
     {
@@ -161,6 +227,10 @@
       "columns": 11,
       "formula_errors": 0,
       "header_valid": true,
+      "detected_timestamp": "2026-10-22 05:50:44",
+      "age_seconds": 97021.0,
+      "age_str": "1.1d",
+      "freshness_tier": "FROZEN (>24h)",
       "status": "PASS"
     },
     {
@@ -170,15 +240,23 @@
       "columns": 11,
       "formula_errors": 0,
       "header_valid": true,
+      "detected_timestamp": "2026-10-22 05:51:36",
+      "age_seconds": 96969.0,
+      "age_str": "1.1d",
+      "freshness_tier": "FROZEN (>24h)",
       "status": "PASS"
     },
     {
       "index": 19,
       "sheet_name": "10_Whale_Orders",
-      "rows": 184,
+      "rows": 176,
       "columns": 17,
       "formula_errors": 0,
       "header_valid": true,
+      "detected_timestamp": "2026-10-23 08:45:16",
+      "age_seconds": 149.0,
+      "age_str": "2.5m",
+      "freshness_tier": "LIVE (<30m)",
       "status": "PASS"
     },
     {
@@ -188,15 +266,23 @@
       "columns": 48,
       "formula_errors": 0,
       "header_valid": true,
+      "detected_timestamp": "2026-10-23 08:32:09",
+      "age_seconds": 936.0,
+      "age_str": "15.6m",
+      "freshness_tier": "LIVE (<30m)",
       "status": "PASS"
     },
     {
       "index": 21,
       "sheet_name": "12_Hyperdash",
-      "rows": 494,
+      "rows": 496,
       "columns": 8,
       "formula_errors": 0,
       "header_valid": true,
+      "detected_timestamp": "2026-10-23 08:33:21",
+      "age_seconds": 864.0,
+      "age_str": "14.4m",
+      "freshness_tier": "LIVE (<30m)",
       "status": "PASS"
     },
     {
@@ -206,24 +292,36 @@
       "columns": 13,
       "formula_errors": 0,
       "header_valid": true,
+      "detected_timestamp": "2026-10-23 08:34:22",
+      "age_seconds": 803.0,
+      "age_str": "13.4m",
+      "freshness_tier": "LIVE (<30m)",
       "status": "PASS"
     },
     {
       "index": 23,
       "sheet_name": "14_Hyperdash_Liq_Map",
-      "rows": 5688,
+      "rows": 6092,
       "columns": 12,
       "formula_errors": 0,
       "header_valid": true,
+      "detected_timestamp": "2026-10-23 08:34:45",
+      "age_seconds": 780.0,
+      "age_str": "13.0m",
+      "freshness_tier": "LIVE (<30m)",
       "status": "PASS"
     },
     {
       "index": 24,
       "sheet_name": "15_Hyperdash_Stops_Map",
-      "rows": 3712,
+      "rows": 3904,
       "columns": 12,
       "formula_errors": 0,
       "header_valid": true,
+      "detected_timestamp": "2026-10-23 08:35:50",
+      "age_seconds": 715.0,
+      "age_str": "11.9m",
+      "freshness_tier": "LIVE (<30m)",
       "status": "PASS"
     },
     {
@@ -233,15 +331,23 @@
       "columns": 14,
       "formula_errors": 0,
       "header_valid": true,
+      "detected_timestamp": "2026-10-23 01:27:42",
+      "age_seconds": 26403.0,
+      "age_str": "7.3h",
+      "freshness_tier": "PERIODIC (<24h)",
       "status": "PASS"
     },
     {
       "index": 26,
       "sheet_name": "17_Orderbook",
-      "rows": 5664,
+      "rows": 5667,
       "columns": 14,
       "formula_errors": 0,
       "header_valid": true,
+      "detected_timestamp": null,
+      "age_seconds": null,
+      "age_str": "UNKNOWN",
+      "freshness_tier": "DERIVED/LIVE",
       "status": "PASS"
     },
     {
@@ -251,15 +357,23 @@
       "columns": 23,
       "formula_errors": 0,
       "header_valid": true,
+      "detected_timestamp": "2026-10-23 08:40:00",
+      "age_seconds": 465.0,
+      "age_str": "7.7m",
+      "freshness_tier": "LIVE (<30m)",
       "status": "PASS"
     },
     {
       "index": 28,
       "sheet_name": "19_News",
-      "rows": 33,
+      "rows": 34,
       "columns": 11,
       "formula_errors": 0,
       "header_valid": true,
+      "detected_timestamp": "2026-10-23 08:33:09",
+      "age_seconds": 876.0,
+      "age_str": "14.6m",
+      "freshness_tier": "LIVE (<30m)",
       "status": "PASS"
     },
     {
@@ -269,6 +383,10 @@
       "columns": 12,
       "formula_errors": 0,
       "header_valid": true,
+      "detected_timestamp": null,
+      "age_seconds": null,
+      "age_str": "UNKNOWN",
+      "freshness_tier": "DERIVED/LIVE",
       "status": "PASS"
     },
     {
@@ -278,6 +396,10 @@
       "columns": 36,
       "formula_errors": 0,
       "header_valid": true,
+      "detected_timestamp": null,
+      "age_seconds": null,
+      "age_str": "UNKNOWN",
+      "freshness_tier": "DERIVED/LIVE",
       "status": "PASS"
     },
     {
@@ -287,6 +409,10 @@
       "columns": 11,
       "formula_errors": 0,
       "header_valid": true,
+      "detected_timestamp": "2026-10-23T08:25:37",
+      "age_seconds": 1328.0,
+      "age_str": "22.1m",
+      "freshness_tier": "LIVE (<30m)",
       "status": "PASS"
     },
     {
@@ -296,6 +422,10 @@
       "columns": 6,
       "formula_errors": 0,
       "header_valid": true,
+      "detected_timestamp": "2026-10-17 13:23:21",
+      "age_seconds": 501864.0,
+      "age_str": "5.8d",
+      "freshness_tier": "FROZEN (>24h)",
       "status": "PASS"
     },
     {
@@ -305,6 +435,10 @@
       "columns": 15,
       "formula_errors": 0,
       "header_valid": true,
+      "detected_timestamp": "2026-10-17 13:23:21",
+      "age_seconds": 501864.0,
+      "age_str": "5.8d",
+      "freshness_tier": "FROZEN (>24h)",
       "status": "PASS"
     }
   ]

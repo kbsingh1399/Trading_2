@@ -192,16 +192,18 @@ def audit_excel():
     
     overall_status = "PASS" if (total_sheets >= 32 and total_formula_errors == 0 and all_headers_valid and freshness_pass) else "WARN"
     
-    print("-" * 80)
+    print("-" * 105)
     print(f"AUDIT SUMMARY:")
     print(f"  Total Sheets Audited:    {total_sheets}/33 verified")
+    print(f"  Live / Fresh Sheets:     {fresh_sheets_count}/{total_sheets} updating dynamically")
+    print(f"  Stale / Frozen Sheets:   {stale_sheets_count}/{total_sheets} (CoinGlass scraping & static legacy)")
     print(f"  Total Formula Errors:    {total_formula_errors} (Requirement: 0)")
     print(f"  Header Integrity:        {'100% UNMERGED & VALID' if all_headers_valid else 'HEADER ERROR DETECTED'}")
     print(f"  Warehouse Freshness:     {freshness_str} ({'PASS' if freshness_pass else 'STALE'})")
     print(f"  Cells Checked:           {total_cells_checked:,}")
     print(f"  Audit Execution Time:    {elapsed:.2f}s")
     print(f"  OVERALL RESULT:          [{overall_status}]")
-    print("=" * 80)
+    print("=" * 105)
     
     # Save JSON health report
     audit_data = {
@@ -212,6 +214,8 @@ def audit_excel():
         "file_age_seconds": round(file_age_s, 1),
         "freshness_pass": freshness_pass,
         "total_sheets": total_sheets,
+        "fresh_sheets_count": fresh_sheets_count,
+        "stale_sheets_count": stale_sheets_count,
         "total_formula_errors": total_formula_errors,
         "all_headers_valid": all_headers_valid,
         "execution_time_seconds": round(elapsed, 2),
