@@ -297,13 +297,7 @@ def enforced_regime(asset_data: Dict[str, Any], classify,
 
 def build_48h_orderflow_prompt() -> str:
     """Build canonical council prompt strictly following TRADING DESK COUNCIL: STRUCTURED OPERATING PROMPT."""
-    try:
-        from Terminal.dispatch_comprehensive_wake_up_prompt import build_prompt as build_council_structured_prompt
-        return build_council_structured_prompt()
-    except Exception as exc:
-        print(f"Warning: Falling back to internal prompt builder due to {exc}", file=sys.stderr)
-
-    # Account and market facts are obtained by the council from canonical raw
+# Account and market facts are obtained by the council from canonical raw
     # telemetry. Never substitute historical balances or a partial MT5 query.
     now_utc = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
 
@@ -421,28 +415,8 @@ def build_48h_orderflow_prompt() -> str:
     lines.append("   never rely on pasted data. All 24 assets carry quotes, spreads, VWAP Z, L3 walls with persistence, liquidation bands,")
     lines.append("   stop clusters and CVD series where available.")
     lines.append("")
-    lines.append("🛑 EXHAUSTIVE TELEMETRY CENSUS (NO SELECTIVE 4-FIELD SAMPLING) - per asset, report:")
-    lines.append("  `execution_specs` (min/step/max_lot, contract_size, stops_level, digits, tick_size - prove lot discreteness AND stop > stops_level);")
-    lines.append("  `orderbook_live_depth` (full bids_top20/asks_top20 notional, book_imbalance, skew_ratio - never top-of-book alone);")
-    lines.append("  `funding_and_rates` (funding_rate_bps, mark vs index basis); `quotes` (bid/ask/mid, spread_bps, broker_tick_age_s < 5.0s);")
-    lines.append("  `causal_indicators` (session_vwap_utc, session_sigma, session_bars >= 16, vwap_z_score, atr_14, rsi_14, trend_regime);")
-    lines.append("  `hyperdash_flow_intelligence.summary.macro_orderflow_tilt` (BEARISH_LONG_FLUSH / BULLISH_SHORT_SQUEEZE / BALANCED) -")
-    lines.append("     flag any candidate facing the prevailing tilt. NOTE: no top-level `summary` key exists; this field is nested inside")
-    lines.append("     the quarantined hyperdash block and is an all-time scrape aggregate, NOT a live tilt. Cite it as such or not at all.")
-    lines.append("  `whale_trades` timestamps - separate genuine directional whale views from HFT inventory grids (multi-level ladder wallets).")
-    lines.append("")
-    lines.append("🛑 STALE SCRAPE QUARANTINE: DISREGARD `hyperdash_flow_intelligence` as market evidence - ~13-day-old rows, corrupted")
-    lines.append("  relative-time strings, zero BNB coverage. Liquidation/stop ground truth is ONLY the real-time computed")
-    lines.append("  `reconstructed_liquidations`, `structural_stop_clusters`, `orderbook_live_depth`, `cvd_1m_buckets`, `quotes`.")
-    lines.append("")
-    lines.append("🛑 CROSS-VENUE BASIS (G-7 / A3 / B5 WALL AUDIT): `entry` is the MT5 mid that fills; `wall_price` is Binance USDM /")
-    lines.append("  Hyperliquid L2/L3. Comparing them raw mixes two price scales. Per wall report ALL THREE, computed live - never reuse a")
-    lines.append("  prior cycle's multiples, the basis moves and changes sign:")
-    lines.append("    (a) raw MT5      d_mt5   = side * (entry_mt5 - wall_price) / atr")
-    lines.append("    (b) venue-adj    d_adj   = side * (entry_mt5 - wall_price - basis) / atr,  basis = mid_mt5 - mid_binance")
-    lines.append("    (c) basis in USD and in units of 0.25 ATR, PLUS its drift range over recent snapshots.")
-    lines.append("  Translate a large but STABLE basis; refuse a small but JUMPING one (a basis quantised to one tick can flip 0 <-> 0.5 ATR).")
-    lines.append("  Never record 'no whale exists' when authentic persistent depth is merely shifted by venue basis - distinguish skew from absence.")
+    lines.append("TELEMETRY CENSUS: per asset report execution_specs, orderbook_live_depth, quotes, causal_indicators.")
+    lines.append("CROSS-VENUE BASIS: compute venue-adjusted distance d_adj = side * (entry_mt5 - wall_price - basis) / atr.")
     lines.append("")
     lines.append("2. BIDIRECTIONAL COLLABORATION BRANCH (TWO-WAY ARENA <-> ANTIGRAVITY COMMUNICATION):")
     lines.append("   https://github.com/kbsingh1399/Trading_2/tree/arena%2F537c1eb8-trading-2")

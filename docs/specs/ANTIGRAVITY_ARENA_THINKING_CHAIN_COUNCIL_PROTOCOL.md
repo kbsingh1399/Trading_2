@@ -152,10 +152,10 @@ Every admitted candidate must satisfy all 5 pillars simultaneously, grounded in 
    - **Fibonacci Retracement Confluence**: Retracement aligns with the 0.50–0.618 Golden Pocket coinciding with resting whale bunkers.
 
 ### Gate 5: Microstructure Execution Hygiene & Broker CFD Mechanics
-- **Passive Maker Limit Orders Only**: Strictly `BUY_LIMIT` or `SELL_LIMIT`. Zero market orders crossing the spread.
+- **Passive Maker Limit Orders Only**: Strictly `BUY_LIMIT` or `SELL_LIMIT`. Maker limit orders do NOT eliminate the broker spread. Zero market orders crossing the spread.
 - **Dynamic Spread Friction Budgeting**:
   $$\text{Efficiency Ratio} = \frac{\text{Spread Points}}{\text{TP Distance Points}} \le 15\%$$
-  - Baseline ceilings: Crypto <= 35.0 bps, Indices/Commodities <= 10.0 bps, Forex <= 6.0 bps, Exotics <= 25.0 bps.
+  - Baseline ceilings: Crypto <= 35.0 bps (or 20.00 bps for BTC/ETH), Indices/Commodities <= 10.0 bps, Forex <= 6.0 bps, Exotics <= 25.0 bps.
 - **2.0x ATR Drift Gate**: Limit order must rest within 2.0x ATR of current market price.
 - **Fresh Execution Revalidation**: Verify tick Bid/Ask, broker spread, and L2 depth immediately prior to order transmission.
 

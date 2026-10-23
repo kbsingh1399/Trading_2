@@ -112,7 +112,7 @@ class MT5ExecutionBridge:
     def tick_age_seconds(self, tick, symbol: str, now=None) -> Optional[float]:
         if not hasattr(self, "broker_clock"):
             self.broker_clock = BrokerClock()
-        if getattr(self.broker_clock, "status", None) == "UNVERIFIED" and MT5_AVAILABLE:
+        if getattr(self.broker_clock, "status", None) == "UNVERIFIED" and MT5_AVAILABLE and getattr(self, "initialized", False):
             for _ in range(4):
                 btc_tick = mt5.symbol_info_tick("BTCUSD.pi")
                 if btc_tick:
