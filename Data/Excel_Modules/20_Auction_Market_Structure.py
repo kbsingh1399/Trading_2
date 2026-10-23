@@ -212,6 +212,7 @@ COLUMNS_DEF = [
     ("ib_high", "IB High (08-09z)", 15, "right"),
     ("ib_low", "IB Low (08-09z)", 15, "right"),
     ("auction_regime", "Auction Market Regime", 22, "center"),
+    ("timestamp", "Timestamp (IST)", 22, "center"),
 ]
 
 PIVOT_COLUMNS_DEF = [
@@ -228,6 +229,7 @@ PIVOT_COLUMNS_DEF = [
     ("weekly_r1", "Weekly R1", 15, "right"),
     ("weekly_s1", "Weekly S1", 15, "right"),
     ("session_bias", "Session Bias vs Pivot", 20, "center"),
+    ("timestamp", "Timestamp (IST)", 22, "center"),
 ]
 
 
@@ -423,7 +425,9 @@ def harvest_auction_market_structure() -> Tuple[List[Dict[str, Any]], List[Dict[
         else:
             regime = "DEVELOPING"
 
+        now_ist = (datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=5, minutes=30)).strftime("%Y-%m-%d %H:%M:%S IST")
         structure_records.append({
+            "timestamp": now_ist,
             "sr_no": idx,
             "asset": asset,
             "symbol": sym,
@@ -482,6 +486,7 @@ def harvest_auction_market_structure() -> Tuple[List[Dict[str, Any]], List[Dict[
             w_pp = w_r1 = w_s1 = None
 
         pivot_records.append({
+            "timestamp": now_ist,
             "sr_no": idx,
             "asset": asset,
             "symbol": sym,
@@ -541,188 +546,182 @@ def dump_auction_structure_to_excel(
     except Exception as e:
         log.warning(f"Failed to export telemetry JSON: {e}")
 
-    # Atomic write to Excel -- serialized via .lock file to prevent CRC collision
-    # with concurrent parallel pipeline writers (e.g. 19_Calendar, 19_News)
-    lock_path = excel_path.with_suffix('.lock')
-    lock_acquired = False
-    lock_start = time.time()
-    while time.time() - lock_start < 60:
-        try:
-            fd = os.open(str(lock_path), os.O_CREAT | os.O_EXCL | os.O_WRONLY)
-            os.close(fd)
-            lock_acquired = True
-            break
-        except FileExistsError:
-            time.sleep(0.5)
-    if not lock_acquired:
-        log.error('Could not acquire Excel lock within 60s -- aborting write to prevent CRC collision.')
-        return False
-
+    import filelock
+    lock_path = excel_path.with_name("DataBase_Trading.xlsx.lock")
+    lock = filelock.FileLock(str(lock_path), timeout=120)
     try:
-        wb = openpyxl.load_workbook(excel_path)
-        if sheet_name in wb.sheetnames:
-            wb.remove(wb[sheet_name])
-    except Exception as e:
-        log.error(f'Could not load Excel: {e}')
+        with lock:
+            try:
+                wb = openpyxl.load_workbook(excel_path)
+                if sheet_name in wb.sheetnames:
+                    wb.remove(wb[sheet_name])
+            except Exception as e:
+                log.error(f'Could not load Excel: {e}')
+                return False
+        
+            ws = wb.create_sheet(title=sheet_name, index=target_index)
+        
+            font_banner = Font(name="Segoe UI", size=11, bold=True, color="FFFFFF")
+            fill_banner = PatternFill(start_color="0F172A", end_color="0F172A", fill_type="solid")
+            font_sub_banner = Font(name="Segoe UI", size=10, bold=True, color="FFFFFF")
+            fill_sub_banner = PatternFill(start_color="1E293B", end_color="1E293B", fill_type="solid")
+        
+            hdr_font = Font(name="Segoe UI", size=9, bold=True, color="FFFFFF")
+            hdr_fill = PatternFill(start_color="334155", end_color="334155", fill_type="solid")
+        
+            base_font = Font(name="Segoe UI", size=9, color="0F172A")
+            fill_zebra = PatternFill(start_color="F8FAFC", end_color="F8FAFC", fill_type="solid")
+            fill_white = PatternFill(start_color="FFFFFF", end_color="FFFFFF", fill_type="solid")
+            thin_border_side = Side(border_style="thin", color="E2E8F0")
+            row_border = Border(left=thin_border_side, right=thin_border_side, top=thin_border_side, bottom=thin_border_side)
+        
+            now_utc = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
+        
+            # Section 1: Auction Market Structure (Row 1 Canonical Column Names, Zero Merged Cells)
+            ws.row_dimensions[1].height = 26
+            for col_idx, (col_key, header_title, width, align) in enumerate(COLUMNS_DEF, start=1):
+                c = ws.cell(row=1, column=col_idx, value=header_title if header_title else col_key)
+                c.font = hdr_font
+                c.fill = hdr_fill
+                c.alignment = Alignment(horizontal=align, vertical="center")
+                c.border = row_border
+                ws.column_dimensions[get_column_letter(col_idx)].width = width
+        
+            current_row = 2
+            for r in structure_records:
+                ws.row_dimensions[current_row].height = 20
+                row_fill = fill_zebra if (current_row % 2 == 0) else fill_white
+        
+                for col_idx, (col_key, _, _, align) in enumerate(COLUMNS_DEF, start=1):
+                    cell = ws.cell(row=current_row, column=col_idx)
+                    val = r.get(col_key)
+                    cell.font = base_font
+                    cell.fill = row_fill
+                    cell.border = row_border
+                    cell.alignment = Alignment(horizontal=align, vertical="center")
+        
+                    if col_key in ("dist_poc_pct", "dist_vah_pct", "dist_val_pct"):
+                        if val is not None:
+                            cell.value = float(val) / 100.0
+                            cell.number_format = "+0.00%;-0.00%;0.00%"
+                        else:
+                            cell.value = ""
+                    elif col_key in ("price", "daily_poc", "daily_vah", "daily_val", "pd_poc", "pd_vah", "pd_val",
+                                     "pdh", "pdl", "pdc", "weekly_poc", "weekly_vah", "weekly_val", "cwh", "cwl",
+                                     "pwh", "pwl", "asian_high", "asian_low", "london_high", "london_low", "ny_high", "ny_low",
+                                     "ib_high", "ib_low"):
+                        if val is not None:
+                            cell.value = float(val)
+                            if abs(float(val)) >= 1000:
+                                cell.number_format = "$#,##0.00"
+                            elif abs(float(val)) >= 1:
+                                cell.number_format = "$#,##0.0000"
+                            else:
+                                cell.number_format = "$#,##0.00000"
+                        else:
+                            cell.value = ""
+                    elif col_key == "spread_bps":
+                        if val is not None:
+                            cell.value = float(val)
+                            cell.number_format = "0.00"
+                        else:
+                            cell.value = ""
+                    else:
+                        cell.value = str(val) if val is not None else ""
+        
+                current_row += 1
+        
+            # Section 2: Pivots & Key Shelves
+            current_row += 2
+            last_pivot_letter = get_column_letter(len(PIVOT_COLUMNS_DEF))
+            ws.merge_cells(f"A{current_row}:{last_pivot_letter}{current_row}")
+            t2 = ws[f"A{current_row}"]
+            t2.value = f"SECTION 2: INSTITUTIONAL FLOOR PIVOTS & KEY LIQUIDITY MAGNET SHELVES (DAILY & WEEKLY) [as_of {now_utc}]"
+            t2.font = font_sub_banner
+            t2.fill = fill_sub_banner
+            t2.alignment = Alignment(horizontal="center", vertical="center")
+            ws.row_dimensions[current_row].height = 26
+        
+            current_row += 1
+            ws.row_dimensions[current_row].height = 24
+            for col_idx, (col_key, header_title, width, align) in enumerate(PIVOT_COLUMNS_DEF, start=1):
+                c = ws.cell(row=current_row, column=col_idx, value=header_title)
+                c.font = hdr_font
+                c.fill = hdr_fill
+                c.alignment = Alignment(horizontal=align, vertical="center")
+                c.border = row_border
+        
+            current_row += 1
+            for r in pivot_records:
+                ws.row_dimensions[current_row].height = 20
+                row_fill = fill_zebra if (current_row % 2 == 0) else fill_white
+        
+                for col_idx, (col_key, _, _, align) in enumerate(PIVOT_COLUMNS_DEF, start=1):
+                    cell = ws.cell(row=current_row, column=col_idx)
+                    val = r.get(col_key)
+                    cell.font = base_font
+                    cell.fill = row_fill
+                    cell.border = row_border
+                    cell.alignment = Alignment(horizontal=align, vertical="center")
+        
+                    if col_key in ("price", "pivot", "r1", "s1", "r2", "s2", "weekly_pivot", "weekly_r1", "weekly_s1"):
+                        if val is not None:
+                            cell.value = float(val)
+                            if abs(float(val)) >= 1000:
+                                cell.number_format = "$#,##0.00"
+                            elif abs(float(val)) >= 1:
+                                cell.number_format = "$#,##0.0000"
+                            else:
+                                cell.number_format = "$#,##0.00000"
+                        else:
+                            cell.value = ""
+                    else:
+                        cell.value = str(val) if val is not None else ""
+        
+                current_row += 1
+        
+            # Atomic workbook save with 30-attempt retry loop
+                # Enforce Operator Invariant: Stamp Tier-1 Completion Banner ONLY ONCE row data is filled
+            if ws.max_row > 1:
+                try:
+                    from logger_config import stamp_sheet_completion_ist
+                    ws.insert_rows(1)
+                    stamp_sheet_completion_ist(
+                        ws=ws,
+                        sheet_title="20_Auction_Market_Structure",
+                        row_count=ws.max_row - 2,
+                        banner_cell="A1",
+                        status="LIVE",
+                        merge_max_col=ws.max_column
+                    )
+                    ws.freeze_panes = "A3"
+                except Exception as _e:
+                    pass
+        
+            tmp_path = excel_path.with_name(f"{excel_path.stem}.tmp{excel_path.suffix}")
+            wb.save(tmp_path)
+            wb.close()
+        
+            max_retries = 30
+            for attempt in range(max_retries):
+                try:
+                    os.replace(tmp_path, excel_path)
+                    log.info(f"Successfully committed sheet '{sheet_name}' to {excel_path.name}.")
+                    return True
+                except PermissionError:
+                    time.sleep(1.0)
+                except Exception as e:
+                    log.error(f"Unexpected error replacing file: {e}")
+                    time.sleep(1.0)
+        
+            log.error("Failed to replace Excel file after 30 attempts due to lock.")
+            return False
+    except filelock.Timeout:
+        log.error("Could not acquire Excel lock within 120s -- aborting write to prevent CRC collision.")
         return False
-
-    ws = wb.create_sheet(title=sheet_name, index=target_index)
-
-    font_banner = Font(name="Segoe UI", size=11, bold=True, color="FFFFFF")
-    fill_banner = PatternFill(start_color="0F172A", end_color="0F172A", fill_type="solid")
-    font_sub_banner = Font(name="Segoe UI", size=10, bold=True, color="FFFFFF")
-    fill_sub_banner = PatternFill(start_color="1E293B", end_color="1E293B", fill_type="solid")
-
-    hdr_font = Font(name="Segoe UI", size=9, bold=True, color="FFFFFF")
-    hdr_fill = PatternFill(start_color="334155", end_color="334155", fill_type="solid")
-
-    base_font = Font(name="Segoe UI", size=9, color="0F172A")
-    fill_zebra = PatternFill(start_color="F8FAFC", end_color="F8FAFC", fill_type="solid")
-    fill_white = PatternFill(start_color="FFFFFF", end_color="FFFFFF", fill_type="solid")
-    thin_border_side = Side(border_style="thin", color="E2E8F0")
-    row_border = Border(left=thin_border_side, right=thin_border_side, top=thin_border_side, bottom=thin_border_side)
-
-    now_utc = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
-
-    # Section 1: Auction Market Structure (Row 1 Canonical Column Names, Zero Merged Cells)
-    ws.row_dimensions[1].height = 26
-    for col_idx, (col_key, header_title, width, align) in enumerate(COLUMNS_DEF, start=1):
-        c = ws.cell(row=1, column=col_idx, value=col_key)
-        c.font = hdr_font
-        c.fill = hdr_fill
-        c.alignment = Alignment(horizontal=align, vertical="center")
-        c.border = row_border
-        ws.column_dimensions[get_column_letter(col_idx)].width = width
-
-    current_row = 2
-    for r in structure_records:
-        ws.row_dimensions[current_row].height = 20
-        row_fill = fill_zebra if (current_row % 2 == 0) else fill_white
-
-        for col_idx, (col_key, _, _, align) in enumerate(COLUMNS_DEF, start=1):
-            cell = ws.cell(row=current_row, column=col_idx)
-            val = r.get(col_key)
-            cell.font = base_font
-            cell.fill = row_fill
-            cell.border = row_border
-            cell.alignment = Alignment(horizontal=align, vertical="center")
-
-            if col_key in ("dist_poc_pct", "dist_vah_pct", "dist_val_pct"):
-                if val is not None:
-                    cell.value = float(val) / 100.0
-                    cell.number_format = "+0.00%;-0.00%;0.00%"
-                else:
-                    cell.value = ""
-            elif col_key in ("price", "daily_poc", "daily_vah", "daily_val", "pd_poc", "pd_vah", "pd_val",
-                             "pdh", "pdl", "pdc", "weekly_poc", "weekly_vah", "weekly_val", "cwh", "cwl",
-                             "pwh", "pwl", "asian_high", "asian_low", "london_high", "london_low", "ny_high", "ny_low",
-                             "ib_high", "ib_low"):
-                if val is not None:
-                    cell.value = float(val)
-                    if abs(float(val)) >= 1000:
-                        cell.number_format = "$#,##0.00"
-                    elif abs(float(val)) >= 1:
-                        cell.number_format = "$#,##0.0000"
-                    else:
-                        cell.number_format = "$#,##0.00000"
-                else:
-                    cell.value = ""
-            elif col_key == "spread_bps":
-                if val is not None:
-                    cell.value = float(val)
-                    cell.number_format = "0.00"
-                else:
-                    cell.value = ""
-            else:
-                cell.value = str(val) if val is not None else ""
-
-        current_row += 1
-
-    # Section 2: Pivots & Key Shelves
-    current_row += 2
-    last_pivot_letter = get_column_letter(len(PIVOT_COLUMNS_DEF))
-    ws.merge_cells(f"A{current_row}:{last_pivot_letter}{current_row}")
-    t2 = ws[f"A{current_row}"]
-    t2.value = f"SECTION 2: INSTITUTIONAL FLOOR PIVOTS & KEY LIQUIDITY MAGNET SHELVES (DAILY & WEEKLY) [as_of {now_utc}]"
-    t2.font = font_sub_banner
-    t2.fill = fill_sub_banner
-    t2.alignment = Alignment(horizontal="center", vertical="center")
-    ws.row_dimensions[current_row].height = 26
-
-    current_row += 1
-    ws.row_dimensions[current_row].height = 24
-    for col_idx, (col_key, header_title, width, align) in enumerate(PIVOT_COLUMNS_DEF, start=1):
-        c = ws.cell(row=current_row, column=col_idx, value=header_title)
-        c.font = hdr_font
-        c.fill = hdr_fill
-        c.alignment = Alignment(horizontal=align, vertical="center")
-        c.border = row_border
-
-    current_row += 1
-    for r in pivot_records:
-        ws.row_dimensions[current_row].height = 20
-        row_fill = fill_zebra if (current_row % 2 == 0) else fill_white
-
-        for col_idx, (col_key, _, _, align) in enumerate(PIVOT_COLUMNS_DEF, start=1):
-            cell = ws.cell(row=current_row, column=col_idx)
-            val = r.get(col_key)
-            cell.font = base_font
-            cell.fill = row_fill
-            cell.border = row_border
-            cell.alignment = Alignment(horizontal=align, vertical="center")
-
-            if col_key in ("price", "pivot", "r1", "s1", "r2", "s2", "weekly_pivot", "weekly_r1", "weekly_s1"):
-                if val is not None:
-                    cell.value = float(val)
-                    if abs(float(val)) >= 1000:
-                        cell.number_format = "$#,##0.00"
-                    elif abs(float(val)) >= 1:
-                        cell.number_format = "$#,##0.0000"
-                    else:
-                        cell.number_format = "$#,##0.00000"
-                else:
-                    cell.value = ""
-            else:
-                cell.value = str(val) if val is not None else ""
-
-        current_row += 1
-
-    # Atomic workbook save with 30-attempt retry loop
-        # Enforce Operator Invariant: Stamp Tier-1 Completion Banner ONLY ONCE row data is filled
-    if ws.max_row > 1:
-        try:
-            from logger_config import stamp_sheet_completion_ist
-            ws.insert_rows(1)
-            stamp_sheet_completion_ist(
-                ws=ws,
-                sheet_title="20_Auction_Market_Structure",
-                row_count=ws.max_row - 2,
-                banner_cell="A1",
-                status="LIVE",
-                merge_max_col=ws.max_column
-            )
-            ws.freeze_panes = "A3"
-        except Exception as _e:
-            pass
-
-    tmp_path = excel_path.with_name(f"{excel_path.stem}.tmp{excel_path.suffix}")
-    wb.save(tmp_path)
-    wb.close()
-
-    max_retries = 30
-    for attempt in range(max_retries):
-        try:
-            os.replace(tmp_path, excel_path)
-            log.info(f"Successfully committed sheet '{sheet_name}' to {excel_path.name}.")
-            return True
-        except PermissionError:
-            time.sleep(1.0)
-        except Exception as e:
-            log.error(f"Unexpected error replacing file: {e}")
-            time.sleep(1.0)
-
-    log.error("Failed to replace Excel file after 30 attempts due to lock.")
-    return False
+    except Exception as e:
+        log.error(f"Unexpected error during Excel write: {e}")
+        return False
 
 
 def run_auction_module(
