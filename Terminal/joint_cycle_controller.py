@@ -215,9 +215,6 @@ def check_cycle_completion(state: Optional[Dict[str, Any]] = None) -> bool:
     if state is None:
         state = load_cycle_state()
         
-    if state.get("cycle_status") == "COMPLETED":
-        return True
-
     comps = state.get("components", {})
     sub_done = comps.get("antigravity_subagents", {}).get("status") == "COMPLETED"
     arena_done = comps.get("arena_ai", {}).get("status") == "COMPLETED"
@@ -302,14 +299,19 @@ def run_watchdog() -> Dict[str, Any]:
                 diff_sec = (next_dt - now_dt).total_seconds()
                 
                 if diff_sec <= 0:
-                    next_cycle_num = int(cycle_id) + 1 if cycle_id.isdigit() else 297
+                    import re
+                    m = re.search(r'\d+', str(cycle_id))
+                    next_cycle_num = int(m.group(0)) + 1 if m else 310
                     msg = f"Cycle {cycle_id} rest period complete ({state.get('cycle_completed_utc')} + 20m). READY TO ADVANCE TO CYCLE {next_cycle_num}."
                     watchdog_report["status"] = "READY_TO_ADVANCE"
                     watchdog_report["actions"].append(msg)
                     logger.info(msg)
                 else:
                     rem_min = diff_sec / 60.0
-                    msg = f"Cycle {cycle_id} completed. Healthy rest period active ({rem_min:.1f} minutes remaining before Cycle {int(cycle_id)+1 if cycle_id.isdigit() else 'Next'})."
+                    import re
+                    m = re.search(r'\d+', str(cycle_id))
+                    next_cycle_display = int(m.group(0)) + 1 if m else "Next"
+                    msg = f"Cycle {cycle_id} completed. Healthy rest period active ({rem_min:.1f} minutes remaining before Cycle {next_cycle_display})."
                     watchdog_report["status"] = "HEALTHY_REST"
                     watchdog_report["actions"].append(msg)
                     logger.info(msg)
