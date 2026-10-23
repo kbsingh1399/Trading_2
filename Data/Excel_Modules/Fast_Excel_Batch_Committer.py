@@ -28,9 +28,9 @@ STAGING_DIR.mkdir(parents=True, exist_ok=True)
 
 log = setup_institutional_logger("BatchCommitter")
 
-# Canonical 29-Sheet Ordered Layout
+# Canonical 30-Sheet Ordered Layout
 CANONICAL_ORDER = [
-    "Crypto_ETF_Flows",
+    "00_MT5_Account_Telemetry",
     "1_Crypto_ETF_Flows",
     "2_Spot_Netflow_S",
     "3_Exchanges_LS_Ratio_15M",
