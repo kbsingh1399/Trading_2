@@ -81,7 +81,7 @@ Study key signals across data clusters:
 - Sheet 30 (`20_Auction_Market_Structure`): Value Area location (VPOC, VAH, VAL), Monday opening range, previous day high/low, and Fibonacci retracement confluence (0.50–0.618 golden pocket).
 
 STEP 3 — FULL 156-ASSET OPPORTUNITY SCAN & DYNAMIC FRICTION GATE:
-Run `python Terminal/multi_asset_opportunity_scanner.py` across all 156 instruments in all 6 asset classes (Forex Raw Majors, Forex Minors/Crosses, Commodities/Precious Metals, Major Indices, Cryptos).
+Run `python Terminal/institutional_95_screener.py` and `python Terminal/multi_asset_opportunity_scanner.py` across all 156 instruments in all 6 asset classes (Forex Raw Majors, Forex Minors/Crosses, Commodities/Precious Metals, Major Indices, Cryptos).
 Evaluate Dynamic Friction Budgeting:
 - Formula: `Spread Points / TP Distance Points <= 15.0%`.
 - Baseline reference: Crypto <= 35 bps, Forex <= 6 bps, Metals & Indices <= 10 bps, Exotics <= 25 bps.

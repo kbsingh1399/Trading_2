@@ -98,10 +98,15 @@ Deliver dense, authoritative quantitative ruling with exact tickets and the comp
 """
     return prompt
 
-async def dispatch_all(cycle_id: str = "AUTO"):
-    prompt = build_unified_prompt(cycle_id)
+async def dispatch_all(cycle_id: str = "AUTO", prompt_file: str = None):
+    if prompt_file and pathlib.Path(prompt_file).exists():
+        with open(prompt_file, "r", encoding="utf-8") as f:
+            prompt = f.read()
+        print(f"[DualCouncil] Loaded prompt from custom file {prompt_file} ({len(prompt)} chars)")
+    else:
+        prompt = build_unified_prompt(cycle_id)
     
-    # Save prompt to file
+    # Save prompt to canonical file
     with open(PROMPT_FILE, "w", encoding="utf-8") as f:
         f.write(prompt)
     print(f"[DualCouncil] Saved prompt to {PROMPT_FILE} ({len(prompt)} chars)")
@@ -204,5 +209,6 @@ async def dispatch_all(cycle_id: str = "AUTO"):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--cycle", default="AUTO")
+    parser.add_argument("--file", default=None, help="Path to custom prompt file")
     args = parser.parse_args()
-    asyncio.run(dispatch_all(args.cycle))
+    asyncio.run(dispatch_all(args.cycle, prompt_file=args.file))
