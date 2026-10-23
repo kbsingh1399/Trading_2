@@ -409,13 +409,13 @@ def dump_to_excel(records: list[dict], excel_path: pathlib.Path = DEFAULT_EXCEL_
     with zipfile.ZipFile(temp_excel, "r") as _z:
         _is_valid = (_z.testzip() is None)
     if _is_valid:
-        for _att in range(30):
+        for _att in range(60):
             try:
                 temp_excel.replace(excel_path)
                 break
-            except PermissionError:
-                if _att == 29: raise
-                time.sleep(1.0)
+            except (PermissionError, OSError):
+                if _att == 59: raise
+                time.sleep(1.5)
     else:
         if temp_excel.exists(): temp_excel.unlink()
         raise ValueError("Corrupt zip produced during export")
