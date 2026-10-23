@@ -7,7 +7,7 @@
 > **INVIOLABLE OPERATOR MANDATE**: The /goal contract is PERPETUAL and must NEVER be killed, paused, or cancelled until live equity >= 5,500.00 USD is proven on MT5.  
 > **MANDATORY CANDIDATE RADAR**: The desk is STRICTLY FORBIDDEN from issuing a bare 'Stand Aside' without formulating and tracking concrete Potential Candidate Setups with checkable pre-condition trigger checklists [ ].  
 > **Mandatory Foundation**: [`STANDARDIZED_TRADING_DECISION_CHAIN.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md) (Canonical Quant SOP) + Master 33-Sheet Excel Data Warehouse (`Data/DataBase_Trading.xlsx` & `Data/Manditory/`).  
-> **Standard Arena Prompt Template**: [`ARENA_STANDARD_PROMPT_TEMPLATE.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/ARENA_STANDARD_PROMPT_TEMPLATE.md) (3-Persona Candidate Discovery Co-Pilot)  
+> **Standard Dual-Council Prompt Template**: [`Arena_GLM_Standard_Prompt.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/Arena_GLM_Standard_Prompt.md) (All-in-One 4-Persona Quantitative Audit for Arena.ai [GPT Astra] & Z.ai [GLM-5.3-Flash])  
 > **Operator Concerns & Perpetual Resolutions**: [`OPERATOR_ISSUES_AND_RESOLUTIONS_CHECKLIST.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/OPERATOR_ISSUES_AND_RESOLUTIONS_CHECKLIST.md)  
 > **Cadence**: 20-Minute Cron Trigger (`0,20,40 * * * *` at 20th, 40th, and 60th/00th minute).  
 > **Token Preservation Rule**: Always query the AST Knowledge Graph via `/graphify` or `python -m graphify query "<symbol/concept>"` FIRST before reading large code files.  
@@ -257,13 +257,13 @@ flowchart TD
 
 ---
 
-### Step 5: Antigravity & Arena.ai Co-Equal Council Discussion Initiation
-- [ ] **Track A: Antigravity Internal Subagent Dispatch (MANDATORY TIER 2 BIG PROMPTS ONLY — GEMINI 3.8 FLASH)**:
-  - Dispatch the 4 authorized internal subagents via `invoke_subagent` (`Model='flash'` - Gemini 3.8 Flash):
-    1. `Role='Orderflow Analyst', Model='flash'` (Gemini 3.8 Flash): Full Tier 2 Big Prompt covering Sheets 00–28, 33 (`20_Auction_Market_Structure`), mandatory citation and line-by-line adherence to `STANDARDIZED_TRADING_DECISION_CHAIN.md`, dynamic friction gate, 5-pillar confluence, L2/L3 orderbook depth, CoinGlass/Hyperdash liquidation sweeps, resting whale bunkers, CVD divergence, and Potential Candidate Radar Checklist.
-    2. `Role='Position Manager', Model='flash'` (Gemini 3.8 Flash): Full Tier 2 Big Prompt covering mandatory line-by-line adherence to `STANDARDIZED_TRADING_DECISION_CHAIN.md`, MT5 telemetry, ratchet progression, stressed capacity audit enforcing fluid 4-slot capacity, and ticket sizing via `mt5.order_calc_profit`.
-    3. `Role='Macro Risk Analyst', Model='flash'` (Gemini 3.8 Flash): Full Tier 2 Big Prompt covering mandatory line-by-line adherence to `STANDARDIZED_TRADING_DECISION_CHAIN.md`, Sheet 28 `19_Calendar`, `macro_calendar.json`, ETF flows, CEX netflows, session clock, and rollover embargo.
-    4. `Role='Excel Data Quality Auditor', Model='flash'` (Gemini 3.8 Flash): Full Tier 2 Big Prompt covering mandatory line-by-line adherence to `STANDARDIZED_TRADING_DECISION_CHAIN.md`, all 33 sheets of `Data/DataBase_Trading.xlsx`, row counts, CRC checks, zero formula errors, Sheet 33 36/36 unmerged header verification, and continuous pipeline daemon health.
+### Step 5: Antigravity, Arena.ai & Z.ai Co-Equal Quantitative Council Initiation
+- [ ] **Track A: Antigravity Internal Subagent Swarm Dispatch (MANDATORY 360° QUANT PROMPTS ONLY — FABLE 5)**:
+  - Dispatch the 4 authorized internal subagents via `invoke_subagent` (`Model='flash'` — Fable 5 runtime):
+    1. `Role='Statistical Regime Quant', Model='flash'` (Fable 5): Full 360° quant prompt calculating Lo-MacKinlay Variance Ratio `VR(q)`, Kaufman Efficiency Ratio `ER`, Ornstein-Uhlenbeck half-life `tau_half in [20m, 4h]`, Newey-West drift `t`-stat, and First-Exit diffusion probability & TTL.
+    2. `Role='Microstructure Quant', Model='flash'` (Fable 5): Full 360° quant prompt evaluating L2/L3 orderbook depth, Binance Futures LIR, resting whale persistence (`tau >= 180s`, refill `rho >= 0.60`), Sheet 23 retail stop sweeps (< 90s reclaim vs > 240s broken), and CVD absorption divergence (`z_CVD >= 1.5`).
+    3. `Role='Solvency Sentry', Model='flash'` (Fable 5): Full 360° quant prompt evaluating live MT5 account telemetry, exact broker `mt5.order_calc_profit` lot snapping, option-adjusted EV, Quarter-Kelly sizing, Stressed Loss `= (Nominal Risk + Spread) * 1.25 + 2.00 <= Buffer Cushion`, and House Money Staircase (Rung 1 $13.06 -> Rung 2 $33.20).
+    4. `Role='Auction Profile Quant', Model='flash'` (Fable 5): Full 360° quant prompt studying Sheet 33 Value Area (VAH, VAL, POC, Initial Balance), enforcing Relative Spread Gate (`Spread Price / TP Distance <= 10.0%`), auditing 33-sheet data warehouse (33/33 sheets, 0 formula errors, <= 15m fresh), and enforcing the strict Event Risk Clock (PMIs 07:15–08:00 UTC, 07:10 cancel, 07:14:59 emergency flatten).
   - **MANDATORY READING & LINE-BY-LINE EXECUTION REQUIREMENT IN EVERY PROMPT**:
     * `0. Token Preservation: Query AST Knowledge Graph via /graphify or python -m graphify query before reading large source files.`
     * `1. @[c:\Users\SIGMA\Documents\Trading_2\Data\Manditory\STANDARDIZED_TRADING_DECISION_CHAIN.md] (MANDATORY CANONICAL QUANT SOP - FOLLOW LINE BY LINE)`
@@ -271,23 +271,31 @@ flowchart TD
     * `3. .agents/rules/ACTIVE_CONTEXT.md`
     * `4. .agents/memory/session_chat_history.md`
     * `5. All auxiliary files referenced in SOP: TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md, 32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md, OPERATOR_ISSUES_AND_RESOLUTIONS_CHECKLIST.md`
-- [ ] **Track B: Arena.ai Candidate Discovery & Multi-Persona Council Dispatch**:
+
+- [ ] **Track B: Arena.ai Candidate Discovery & Multi-Persona Council Dispatch (GPT ASTRA)**:
   - Ensure the latest `Data/DataBase_Trading.xlsx` and live telemetry are pushed to GitHub `origin/main`.
-  - Prepare the prompt using the canonical template [`ARENA_STANDARD_PROMPT_TEMPLATE.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/ARENA_STANDARD_PROMPT_TEMPLATE.md) citing `STANDARDIZED_TRADING_DECISION_CHAIN.md`.
-  - Explicitly task Arena.ai with finding potential candidates across all 156 assets using its 3 quantitative personas (Orderflow, Position, Macro — excluding Excel checker), evaluating confluence and proposing affirmative limit tickets.
-  - Connect to Edge CDP port `9222` and inject the prompt into Arena's TipTap editor via `Terminal/dispatch_arena_redteam.py`.
-  - If a feedback modal banner ("Was this task successful?") is present, click "Keep working" to dismiss it before sending.
+  - Prepare the prompt using the canonical unified template [`Arena_GLM_Standard_Prompt.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/Arena_GLM_Standard_Prompt.md) citing `STANDARDIZED_TRADING_DECISION_CHAIN.md`.
+  - Explicitly task Arena.ai (GPT Astra) with evaluating candidates across ALL 4 quantitative personas (Statistical Regime, Microstructure, Solvency, Auction Structure), finding potential candidates across all 156 assets, evaluating confluence, and proposing affirmative limit tickets.
+  - Connect to Chrome CDP port `9222` and inject the prompt into Arena's TipTap editor via `Terminal/dispatch_arena_redteam.py` or `Terminal/dispatch_dual_council.py`.
+  - Dismiss any modal banner ("Was this task successful?" / "Keep working") before sending.
   - Verify that generation starts (`isGenerating: true` / `hasStopBtn: true`).
+
+- [ ] **Track C: Z.ai Sovereign Council Candidate Discovery Dispatch (GLM-5.3-FLASH)**:
+  - MANDATORY INCLUSION (OPERATOR INVARIANT): Z.ai must be prompted in parallel on EVERY cycle alongside Arena.ai.
+  - Prepare the exact same canonical unified prompt [`Arena_GLM_Standard_Prompt.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/Arena_GLM_Standard_Prompt.md) citing `STANDARDIZED_TRADING_DECISION_CHAIN.md`.
+  - Dispatch directly into Z.ai (GLM-5.3-Flash) via `Terminal/dispatch_zai_prompt.py --file ...` or `Terminal/dispatch_dual_council.py`.
+  - Verify that generation starts in Z.ai tab on Chrome CDP.
 
 ---
 
-### Step 6: Arena.ai Completion Wait, Reactive Wakeup & Output Evaluation Gate
-- [ ] **Arena Completion Daemon Reactive Wakeup**:
-  - The Arena Completion Daemon (`arena_completion_daemon.py --daemon`) continuously monitors Chrome CDP (port 9222).
-  - The instant Arena finishes generation, the daemon auto-harvests the complete response into `docs/trade_plans/ARENA_LATEST_RAW.md` and wakes up Antigravity reactively (zero token polling).
-- [ ] **Mandatory Arena.ai Evaluation & Cross-Verification**:
-  - Immediately read and deeply evaluate `docs/trade_plans/ARENA_LATEST_RAW.md`.
-  - Inspect Arena's candidate proposals, entry/SL/TP levels, 17-gate audit, and multi-persona analysis.
+### Step 6: Dual-Council Completion Wait, Reactive Wakeup & Output Evaluation Gate
+- [ ] **Dual-Council Completion Daemons Reactive Wakeup**:
+  - The Arena Completion Daemon (`arena_completion_daemon.py --daemon`) continuously monitors Chrome CDP (port 9222) for Arena.ai.
+  - The Z.ai Completion Daemon (`zai_completion_daemon.py --daemon`) continuously monitors Chrome CDP (port 9222) for Z.ai.
+  - The instant either finishes generation, the daemons auto-harvest responses into `docs/trade_plans/ARENA_LATEST_RAW.md` and `docs/trade_plans/ZAI_LATEST_RAW.md`, waking up Antigravity reactively (zero token polling).
+- [ ] **Mandatory Dual-Council Evaluation & Dialectic Cross-Verification**:
+  - Read and deeply evaluate `docs/trade_plans/ARENA_LATEST_RAW.md` (GPT Astra) and `docs/trade_plans/ZAI_LATEST_RAW.md` (GLM-5.3-Flash).
+  - Cross-synthesize council proposals against Antigravity's internal Fable 5 subagent findings.
   - Cross-verify Arena's affirmative findings and critiques with the independent empirical research of all 4 subagents in the Co-Equal Council Debate.
 
 ---

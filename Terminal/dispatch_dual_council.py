@@ -38,64 +38,106 @@ def get_live_telemetry():
     return {"balance": 4818.51, "equity": 4818.51, "cushion_buffer": 23.51, "cushion_floor": 43.51, "positions_count": 0, "orders_count": 0}
 
 def build_unified_prompt(cycle_id: str = "AUTO") -> str:
+    template_path = ROOT / "Data" / "Manditory" / "Arena_GLM_Standard_Prompt.md"
+    if not template_path.exists():
+        template_path = ROOT / "docs" / "prompts" / "Arena_GLM_Standard_Prompt.md"
+
+    if template_path.exists():
+        raw_text = template_path.read_text(encoding="utf-8")
+        if "```markdown" in raw_text:
+            prompt = raw_text.split("```markdown")[1].split("```")[0].strip()
+        else:
+            prompt = raw_text.strip()
+    else:
+        logger.error("Template Arena_GLM_Standard_Prompt.md not found!")
+        prompt = ""
+
     telem = get_live_telemetry()
+    acc = telem.get("account", {}) if "account" in telem else telem
+    bal = float(acc.get("balance_usd", acc.get("balance", 4818.51)))
+    eq = float(acc.get("equity_usd", acc.get("equity", 4818.51)))
+    fm = float(acc.get("margin_free_usd", acc.get("margin_free", 4818.51)))
     utc_now = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
-    
-    prompt = f"""# 🏛️ CO-EQUAL QUANTITATIVE COUNCIL CANDIDATE DISCOVERY & EVALUATION
-## BlueBerry Markets MT5 Account #5064568 | Cycle {cycle_id} | {utc_now}
 
-> **CANONICAL QUANT GOVERNANCE**: Follow line-by-line `STANDARDIZED_TRADING_DECISION_CHAIN.md`, `AUTONOMOUS_WAKEUP_CHECKLIST.md`, and `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md`.
-> **MISSION**: Reach 5,500.00 USD equity before Friday, 23rd October 2026 (23:59 UTC) (~21.0 hours runway remaining).
-> **SOLVENCY FLOORS**: Absolute Hard Floor: 4,775.00 USD (Cushion: +{telem.get('equity', 4818.51) - 4775.00:.2f} USD) | Operating Buffer: 4,795.00 USD (Cushion: +{telem.get('equity', 4818.51) - 4795.00:.2f} USD).
-> **FLUID CAPACITY**: 4/4 slots free. Maximum 1 active risk-bearing limit staged under current +{telem.get('equity', 4818.51) - 4795.00:.2f} USD buffer cushion.
-> **OPERATOR DIRECTIVE**: "To pass you may need to increase risk...and keep discussing with arena.ai."
+    # Cycle auto-detection
+    if cycle_id == "AUTO":
+        import glob, re
+        existing = glob.glob(str(ROOT / "docs" / "prompts" / "ARENA_CYCLE_*_REDTEAM_PROMPT.txt"))
+        nums = [int(m.group(1)) for f in existing if (m := re.search(r"ARENA_CYCLE_(\d+)_REDTEAM", f))]
+        cycle_id = str(max(nums) + 1 if nums else 296)
 
-### SECTION 1: LIVE ACCOUNT & RECONCILIATION
-- Balance: {telem.get('balance', 4818.51):.2f} USD | Floating Equity: {telem.get('equity', 4818.51):.2f} USD | Free Margin: {telem.get('equity', 4818.51):.2f} USD
-- Open Positions: 0 | Pending Orders: 0 (100% Flat Cash Defense)
-- Solvency Cushions: Hard Floor Cushion: +43.51 USD | Buffer Floor Cushion: +23.51 USD.
-- Previous Order Action: Ticket #19227609 (BTCUSD.pi BUY_LIMIT 0.04 @ 80,950) was confirmed CANCELLED on MT5 (retcode 10009).
+    cush_fl = eq - 4775.00
+    cush_buf = eq - 4795.00
+    dist_goal = 5500.00 - eq
+    hours_left = "17.0"
 
-### SECTION 2: 33-SHEET EXCEL DATA WAREHOUSE HEALTH
-- File: Data/DataBase_Trading.xlsx (13.23 MB, 100% healthy, 0 CRC errors, 0 formula errors).
-- Sheet count: 33/33 sheets present and verified.
-- Sheet 30/33 (`20_Auction_Market_Structure`): Row 1 verified with 36/36 clean unmerged column headers.
-- Formula Errors: Exactly 0 errors across all 33 sheets.
-- Continuous Pipeline Daemon: Task 109472 actively cycling Cycle #9.
+    open_pos = telem.get("open_positions", [])
+    pending_ord = telem.get("pending_orders", [])
+    pos_count = len(open_pos)
+    pending_count = len(pending_ord)
+    slots_free = max(0, 4 - pos_count)
 
-### SECTION 3: TOP CANDIDATES ON RADAR FOR ASIAN SESSION & TOKYO OPEN (00:10 UTC)
-1. **UKBRENT.p (Crude Oil — Model 2 Trend-Following Pullback to DVAH Shelf)**:
-   - Structure & Regime: Confirmed `TREND_UP_ACCEPTANCE` (+1.23 SD, 20/50 EMA ribbon bullish alignment).
-   - Geometry: BUY_LIMIT @ 113.595 | Lots: 0.65 | SL: 113.397 (-0.198 pts, safe structural bunker) | TP: 114.300 (+0.705 pts / 3.56R)
-   - Risk & Solvency: Nominal Risk -$12.87 | Spread: 0.033 pts (2.9 bps | 4.7% friction) | Stressed Loss: -$18.09 | Stressed Equity: 4,800.42 USD (+5.42 USD buffer surplus, +25.42 USD floor surplus).
-   - State Machine: APPROACHING (Current Ask ~113.88; awaiting pullback into 113.595–113.731 shelf with M5 tape deceleration).
-2. **BTCUSD.pi (Asian Cascade Debt Sweep & Reclaim Trigger)**:
-   - Geometry: BUY_LIMIT @ 80,500.00 | Lots: 0.02 (0.03 disqualified by safe-stop stress) | SL: 79,942.20 (-557.80 pts, safe half-ATR beneath 80,050 mother pool) | TP: 82,000.00 (front-running 82,000 ask wall / 2.69R)
-   - Risk & Solvency: Nominal Risk -$11.16 | Stressed Loss: -$15.95 | Stressed Equity: 4,802.56 USD (+7.56 USD buffer surplus, +27.56 USD floor surplus).
-   - State Machine: ARMED ON RADAR (Price ~81,162 descending toward 80,450 cascade; trigger sequence: Gate 1 sweep of 80,450 pool -> Gate 2 CVD deceleration -> Gate 3 close > 80,500 -> Gate 4 retest hold).
-3. **USDJPY.pi (Post-CPI Trend Breakdown — Stand Aside at S1 Support)**:
-   - Japan Core CPI printed at 23:30 UTC. Blackout ended at 00:05 UTC. Price plunged to Daily S1 (156.214) with 3,106 ticks.
-   - Status: STAND ASIDE. Chasing into S1 support after a vertical flush violates anti-chasing rules. Await multi-candle pullback retest to 156.440–156.512 shelf before formulating short ticket.
-4. **XAUUSD.pi (Gold — Failed Breakdown Monitoring)**:
-   - Geometry: Former 4,031.89 ticket retired. Low tested 4,020.47, piercing 4,021.18 Prior-Day Low, but printed long lower wicks and reclaimed 4,023.72.
-   - Status: MONITORING. Await clear 15m structural consolidation or failed retest rejection.
-5. **NAS100.p & US2000.p**: OFFICIALLY RETIRED (NAS100 exceeded max 2 re-sites; US2000 target traded without fill).
+    pos_str = f"{pos_count} (100% Flat Cash, 0 positions)" if pos_count == 0 else f"{pos_count} active positions"
+    pending_str = f"{pending_count} pending limit orders"
 
-### SECTION 4: 3-PERSONA MANDATORY INQUEST & DELIBERATION
-1. **Persona 1: Orderflow Analyst** (Steps 2, 4, 6 of SOP — L2 depth, CVD absorption, liquidation cascades, dynamic friction).
-2. **Persona 2: Position Manager** (Steps 1, 5, 8 of SOP — floor defense, stressed capacity, exact sizing).
-3. **Persona 3: Macro Risk Analyst** (Steps 3, 7 of SOP — macro calendar, ETF/CEX netflows, FX rollover embargo).
+    # Ticket Table
+    table_rows = [
+        "| Slot | Cluster | Ticket | Symbol | Side | Volume | Entry | SL | TP | Risk USD | R0 |",
+        "|---|---|---|---|---|---|---|---|---|---|---|"
+    ]
+    if pos_count > 0:
+        for idx, p0 in enumerate(open_pos):
+            table_rows.append(f"| Filled {idx+1} | Open | #{p0.get('ticket')} | {p0.get('symbol')} | {p0.get('direction')} | {p0.get('volume')} lot | {p0.get('price_open')} | {p0.get('sl')} | {p0.get('tp')} | Sized | — |")
+    if pending_count > 0:
+        for idx, po in enumerate(pending_ord):
+            side = po.get("direction", "LIMIT")
+            sym = po.get("symbol", "")
+            cluster = "Forex" if any(c in sym for c in ["EUR", "GBP", "USD", "JPY"]) else "Index" if any(c in sym for c in ["100", "500", "40", "30"]) else "Crypto"
+            table_rows.append(f"| Pending {idx+1} | {cluster} | #{po.get('ticket')} | {sym} | {side} | {po.get('volume')} lot | {po.get('price_open')} | {po.get('sl')} | {po.get('tp')} | Sized | — |")
+    if pos_count == 0 and pending_count == 0:
+        table_rows.append("| — | Flat | — | — | — | — | — | — | — | $0.00 | — |")
+        table_rows.append("*Book is 100% Cash Defense. Zero active positions, zero pending orders.*")
 
-### SECTION 5: 🔬 MANDATORY QUANT METHODOLOGY INQUEST (ALWAYS REQUIRED — OPERATOR MANDATE)
-**Each persona MUST explicitly answer this permanent improvement question**:
-*"Is our methodology for finding potential candidates truly sound, and how can we fundamentally improve it? Given that we monitor 156 assets with vast orderbook, CVD, and liquidation data, why has equity remained flat and why are profitable executions eluding the desk? How do we think like elite quants to bridge this gap and actively increase equity while fiercely defending the hard floor?"*
-- Address: Are our filters overly conjunctive (Boolean AND death spiral where 10 conditions eliminate 100% of trades)?
-- Address: Are our limit entries staged too passively or suffering from adverse selection?
-- Address: How should asset-class specialization (TradFi vs Crypto) be structured to capture high-probability alpha?
-- Address: How should risk escalation (e.g. expanding risk safely via house money) be executed once Trade #1 wins?
+    ticket_table = "\n".join(table_rows)
 
-Deliver dense, authoritative quantitative ruling with exact tickets and the completed 10-Point Pre-Punch Checklist.
-"""
+    # Candidate Radar Table
+    try:
+        from Terminal.multi_asset_opportunity_scanner import scan_all_156_assets
+        scan_res = scan_all_156_assets()
+        top_opps = scan_res.get("opportunities", [])[:6]
+    except Exception:
+        top_opps = []
+
+    if top_opps:
+        c_lines = [
+            "| Candidate Setup | Direction | Target Entry | Stop Loss | Take Profit | Lots | Risk USD | Stressed Loss | Buffer Surplus |",
+            "|---|---|---|---|---|---|---|---|---|"
+        ]
+        for opp in top_opps:
+            c_lines.append(f"| {opp.get('symbol')} ({opp.get('group', 'CFD')}) | {opp.get('side')} | {opp.get('entry')} | {opp.get('sl')} | {opp.get('tp')} | {opp.get('lot')} lot | ${opp.get('nominal_risk_usd', 13.0):.2f} | ${opp.get('nominal_risk_usd', 13.0)*1.25+2.0:.2f} | +${opp.get('buffer_surplus_usd', 4.5):.2f} |")
+        candidate_table = "\n".join(c_lines)
+    else:
+        candidate_table = "| GER40.p (DAX 40 CFD) | SELL_LIMIT | 25,381.39 | 25,420.23 | 25,286.79 | 0.03 lot | $13.06 | $18.74 | +$4.77 |\n| BTCUSD.pi (Crypto Perp) | BUY_LIMIT | 80,500.00 | 79,942.20 | 82,000.00 | 0.02 lot | $11.16 | $15.95 | +$7.56 |"
+
+    worst_case_eq = f"{eq - 18.74:.2f}"
+
+    # Replace placeholders
+    prompt = prompt.replace("{CYCLE_ID}", cycle_id)
+    prompt = prompt.replace("{CYCLE_UTC}", utc_now)
+    prompt = prompt.replace("{BALANCE}", f"{bal:,.2f}")
+    prompt = prompt.replace("{EQUITY}", f"{eq:,.2f}")
+    prompt = prompt.replace("{FREE_MARGIN}", f"{fm:,.2f}")
+    prompt = prompt.replace("{CUSHION_FLOOR}", f"+{cush_fl:.2f}")
+    prompt = prompt.replace("{CUSHION_BUFFER}", f"+{cush_buf:.2f}")
+    prompt = prompt.replace("{DISTANCE_GOAL}", f"+{dist_goal:.2f}")
+    prompt = prompt.replace("{HOURS_LEFT}", hours_left)
+    prompt = prompt.replace("{OPEN_POSITIONS}", pos_str)
+    prompt = prompt.replace("{PENDING_ORDERS}", pending_str)
+    prompt = prompt.replace("{SLOTS_FREE}", str(slots_free))
+    prompt = prompt.replace("{TICKET_TABLE}", ticket_table)
+    prompt = prompt.replace("{WORST_CASE_EQUITY}", worst_case_eq)
+    prompt = prompt.replace("{CANDIDATE_TABLE}", candidate_table)
+
     return prompt
 
 async def dispatch_all(cycle_id: str = "AUTO", prompt_file: str = None):

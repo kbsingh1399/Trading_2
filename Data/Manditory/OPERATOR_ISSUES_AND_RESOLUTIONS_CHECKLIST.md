@@ -263,3 +263,24 @@ Every 20-minute wake-up cron cycle MUST systematically execute and verify each g
   1. Registered Module 0 (`00_MT5_Account_Telemetry.py`) directly into `API_MODULES` in `api_parallel_harvester.py`.
   2. Executed test run: verified Sheet 00 generated cleanly at Index 0 with 173 rows and 0 errors.
   3. Sheet 00 now cycles automatically on every continuous pipeline pass, guaranteeing fresh broker equity, cushions, and live symbol spreads.
+
+---
+
+## 🏛️ RESOLUTION 16: UNIFIED EXHAUSTIVE 360° 4-PERSONA DUAL-COUNCIL PROMPT & MODEL NOMENCLATURE
+- **Operator Directives**:
+  * *"don't mention flash 3.8...make it fable 5 and similarly other should be gpt astra at arena.ai...and you haven't prmpted toz.ai... add that in chclist do that you don't miss it"*
+  * *"and the prmpts to subagents is very small...make it quantitve 360 degree type for them"*
+  * *"and same exhaustive prmmpt for arena.ai and z.ai"*
+  * *"In Manditory folder...ARENA_STANDARD_PROMPT_TEMPLATE.md is the prompt that is being prompted to arena.ai and z.ai...Rename it Arena_GLM_Standard_Prompt and update it quantitve perspecitve and make it exhaustive and pull all antigravity sub agent prompt type all in one arana and glm prmpt (Z.ai)"*
+- **Root Cause & Vulnerability**:
+  * Using legacy model names ("Flash 3.8") or fragmented prompt templates caused divergent reasoning between internal subagents and external councils. Arena.ai and Z.ai were previously given prompts that omitted the complete statistical mechanics and diffusion metrics evaluated by the desk quants.
+- **Enforced Protocol**:
+  1. Internal subagents are strictly powered by **Fable 5**; Arena.ai is **GPT Astra**; Z.ai is **GLM-5.3-Flash**.
+  2. Created canonical unified dual-council prompt [`Arena_GLM_Standard_Prompt.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/Arena_GLM_Standard_Prompt.md) (mirrored to `docs/prompts/Arena_GLM_Standard_Prompt.md`).
+  3. Integrated ALL 4 Antigravity quantitative personas into the unified council prompt:
+     - Persona 1: Statistical Regime & Diffusion Quant (Lo-MacKinlay VR, Kaufman ER, Hurst, OU half-life, HAC drift t-stat, First-Exit TTL).
+     - Persona 2: Microstructure & Liquidation Quant (L2/L3 orderbook depth, resting whale wall persistence tau >= 180s and refill rho >= 0.60, Sheet 23 retail stop sweeps, CVD absorption z_CVD >= 1.50).
+     - Persona 3: Convex Portfolio & Solvency Sentry (MT5 broker lot snapping, option-adjusted EV > +0.20R, Quarter-Kelly cap, Inviolable Stressed Solvency formula, House Money compounding ladder, microstructure exit ratchets).
+     - Persona 4: Auction Profile & Friction Arbitrageur (Sheet 33 Value Area VAH/VAL/POC/IB, Relative Spread Gate Spread/TP <= 10.0%, 33-sheet data health, Event Risk Clock & European / Macro blackout horizons).
+  4. Updated `AUTONOMOUS_WAKEUP_CHECKLIST.md` to guarantee parallel Z.ai dispatch on every autonomous cycle.
+  5. Updated `Terminal/dispatch_dual_council.py` and `Terminal/dispatch_arena_redteam.py` to automatically load and populate `Arena_GLM_Standard_Prompt.md`.

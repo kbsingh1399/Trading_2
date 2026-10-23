@@ -23,7 +23,7 @@ flowchart TD
 
     subgraph Prompts["Specialist Dispatch Prompts"]
         P1["SUBAGENT_PROMPT_TEMPLATES.md"]
-        P2["ARENA_STANDARD_PROMPT_TEMPLATE.md"]
+        P2["Arena_GLM_Standard_Prompt.md"]
     end
 
     subgraph Autopsies["Forensic Autopsies & Pitfalls"]
@@ -51,7 +51,7 @@ flowchart TD
 | 2 | [`AUTONOMOUS_WAKEUP_CHECKLIST.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/AUTONOMOUS_WAKEUP_CHECKLIST.md) | **20-Minute Wake-Up Sequence** | 10-step autonomous execution sequence executed on every 20-minute cron trigger (`0,20,40 * * * *`). Mandatory 4-subagent dispatch, Arena.ai affirmative candidate discovery, and pre-condition trigger checklist. |
 | 3 | [`ANTIGRAVITY_ARENA_THINKING_CHAIN_COUNCIL_PROTOCOL.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/ANTIGRAVITY_ARENA_THINKING_CHAIN_COUNCIL_PROTOCOL.md) | **Antigravity-Arena Council Protocol** | V3.0 production-hardened council protocol, 6-gate architectural diagram, 33-sheet master Excel data warehouse provenance, and dual Arena.ai mandate (candidate discovery + critique). |
 | 4 | [`SUBAGENT_PROMPT_TEMPLATES.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/SUBAGENT_PROMPT_TEMPLATES.md) | **Specialist Subagent Dispatch Prompts** | Standardized Tier 2 Full Unabridged Big Prompts (~350–500 tokens) with mandatory citation of `STANDARDIZED_TRADING_DECISION_CHAIN.md` for all 4 subagents: Orderflow Analyst, Position Manager, Macro Risk Analyst, and Excel Data Quality Auditor. |
-| 5 | [`ARENA_STANDARD_PROMPT_TEMPLATE.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/ARENA_STANDARD_PROMPT_TEMPLATE.md) | **Arena.ai Candidate Discovery Prompt Template** | Standardized prompt template injected into Arena.ai via Chrome CDP on port 9222 for affirmative candidate discovery and multi-persona evaluation. |
+| 5 | [`Arena_GLM_Standard_Prompt.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/Arena_GLM_Standard_Prompt.md) | **Dual-Council (Arena.ai & Z.ai) Unified Prompt** | Standardized 360° 4-persona quantitative prompt template dispatched simultaneously to Arena.ai (GPT Astra via CDP 9222) and Z.ai (GLM-5.3-Flash) for affirmative candidate discovery and solvency deliberation. |
 | 6 | [`TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md) | **10 Lethal Traps & SOL Autopsy** | Forensic autopsy of losing trade (`SOLUSD.p #19174858`) and the top 10 lethal trade execution traps (unaligned limits, off-hours spread traps, catching falling knives, premature entries). |
 | 7 | [`32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md) | **33-Sheet Real-World Questioning SOP** | Concrete real-world thinking questions, pitfall mappings, and fail-closed conditions for all 33 sheets in `DataBase_Trading.xlsx`. |
 | 8 | [`OPERATOR_ISSUES_AND_RESOLUTIONS_CHECKLIST.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/OPERATOR_ISSUES_AND_RESOLUTIONS_CHECKLIST.md) | **Operator Resolutions History** | Comprehensive log of operator issues, root causes, permanent fixes, and avoided traps across all trading sessions. |

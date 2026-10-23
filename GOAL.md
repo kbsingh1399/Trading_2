@@ -9,7 +9,7 @@
 > **Risk Allocation**: 15.00 to 25.00 USD per trade | Frozen R0 Dynamic Profit Ratchet  
 > **Authority**: Full autonomous order execution granted by operator  
 > **Council Engine**: Antigravity Live Desk & Arena.ai Co-Equal Investment Council  
-> **Standard Prompt Template**: `docs/prompts/ARENA_STANDARD_PROMPT_TEMPLATE.md`  
+> **Standard Dual-Council Prompt Template**: `Data/Manditory/Arena_GLM_Standard_Prompt.md` (Mirrored to `docs/prompts/Arena_GLM_Standard_Prompt.md`)  
 
 ---
 
@@ -29,7 +29,7 @@ Every 20 minutes (`0,20,40 * * * *`), the autonomous desk executes:
 2. Query live MT5 account telemetry and audit floor cushion (+60.19 USD above 4,775 USD).
 3. Audit open positions (`NAS100.p` Ticket #19146275 locked 100% risk-free at 29,575.00 SL) and ratchet stops.
 4. Scan 18 institutional perpetuals and TradFi assets (spread <= 25 bps for crypto, <= 5 bps for TradFi).
-5. Convene Co-Equal Council Discussion with Arena.ai using `ARENA_STANDARD_PROMPT_TEMPLATE.md`.
+5. Convene Co-Equal Council Discussion with Arena.ai and Z.ai using `Arena_GLM_Standard_Prompt.md`.
 6. Auto-harvest Arena output via `Terminal/arena_completion_daemon.py`.
 7. Conduct joint cross-verification and error correction.
 8. Punch qualified limit orders autonomously into MetaTrader 5 without waiting for confirmation.

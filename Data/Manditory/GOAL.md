@@ -9,7 +9,7 @@
 > **Risk Allocation**: 15.00 to 25.00 USD per trade | Frozen R0 Dynamic Profit Ratchet  
 > **Authority**: Full autonomous order execution granted by operator  
 > **Council Engine**: Antigravity Live Desk & Arena.ai Co-Equal Investment Council  
-> **Standard Prompt Template**: `docs/prompts/ARENA_STANDARD_PROMPT_TEMPLATE.md`  
+> **Standard Dual-Council Prompt Template**: `Data/Manditory/Arena_GLM_Standard_Prompt.md` (Mirrored to `docs/prompts/Arena_GLM_Standard_Prompt.md`)  
 
 ---
 
@@ -32,8 +32,8 @@ Every 20 minutes (`0,20,40 * * * *`), the autonomous desk executes:
 3. Verify system health and continuous 33-sheet Excel data updation (5m rest interval).
 4. Query live MT5 account telemetry and audit floor cushion (+59.83 USD above 4,775 USD floor, +39.83 USD above 4,795 USD buffer).
 5. Audit open positions and ratchet stops using Frozen R0 piecewise protocol.
-6. Dispatch 4 subagents (Orderflow Analyst, Position Manager, Macro Risk Analyst, Excel Data Quality Auditor) and Arena.ai simultaneously using canonical Tier 2 templates.
-7. Auto-harvest Arena output via `Terminal/arena_completion_daemon.py`.
+6. Dispatch 4 subagents (Statistical Regime, Microstructure, Solvency, Auction Structure on Fable 5), Arena.ai (GPT Astra), and Z.ai (GLM-5.3-Flash) simultaneously using canonical 360° templates.
+7. Auto-harvest Arena and Z.ai outputs via `arena_completion_daemon.py` and `zai_completion_daemon.py`.
 8. Cross-verify all 4 reports (subagents + Arena). Macro blackout verdict overrides Orderflow recommendation.
 9. Punch qualified limit orders autonomously into MetaTrader 5 without waiting for confirmation.
 10. Sync state to GitHub `origin/main`, cleanly prune subagent sockets via `manage_subagents(Action='kill_all')`, and standby.
