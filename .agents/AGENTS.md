@@ -254,3 +254,29 @@ Windows: W1–W4 (2021), W5–W8 (2022), W9–W12 (2023), W13–W16 (2024), W17�
 3. **AST Synchronization**: After creating or modifying any feature, model, or strategy code, synchronize AST nodes via `python -m graphify update .` to maintain live knowledge graph parity.
 
 
+
+
+---
+
+# PART 10: MANDATORY META-COGNITIVE SELF-INQUEST (CAN I DO THIS BETTER WITH INSTALLED SKILLS OR AGENTS?)
+
+> 🛑 **MANDATORY IN-TURN SELF-INQUEST (STRICT OPERATOR MANDATE)**:
+> At EVERY single step, decision point, tool execution, code write, prompt generation, and autonomous candle turn, the coordinator and all subagents MUST explicitly pause and ask themselves before acting:
+> 
+> 🧠 **"Can I do this task better, faster, or with higher mathematical precision using existing skills or agents installed in this system?"**
+> 
+> ### Systematic Self-Audit Checklist:
+> 1. **Installed Skills Check**:
+>    - Risk / Capital / Solvency: Explicitly load and apply `@[trader-risk]`, `@[trader-portfolio]`.
+>    - Strategy / Microstructure / Backtesting: Explicitly load and apply `@[backtesting-trading-strategies]`, `@[trader-backtest]`, `@[quant-analyst]`, `@[trader-signal]`, `@[trader-regime]`.
+>    - Code Craftsmanship / Refactoring: Explicitly load and apply `@[clean-code]`, `@[karpathy-guidelines]`, `@[simplify-code]`.
+>    - Systematic Debugging / Anomaly Hunt: Explicitly load and apply `@[systematic-debugging]`, `@[diagnosing-bugs]`.
+>    - Prompt Engineering / Frontier Council Prompts: Explicitly load and apply `@[optimizing-prompts]`, `@[writing-for-agents]`.
+>    - Testing / TDD: Explicitly load and apply `@[pytest-skill]`, `@[test-driven-development]`.
+> 2. **Available Subagents Check**:
+>    - Deep Research / Literature Survey: Delegate to `research` subagent.
+>    - Architecture / Modularity / Blueprints: Consult `code-architect` or `architect`.
+>    - Simplification / Dead Code Cleanup: Consult `code-simplifier` or `refactor-cleaner`.
+>    - High-Precision Verification: Consult `test-guard` or `qa-browser-automation`.
+> 3. **Action Rule**:
+>    - Never reinvent the wheel or write ad-hoc logic from scratch when an installed skill or subagent provides a proven, battle-tested methodology. Always invoke the specialized capability!

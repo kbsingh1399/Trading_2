@@ -193,3 +193,29 @@ On EVERY cycle, deliberation turn, and prompt response, the council models (Aren
 5. **Actionable Alpha Evolution Proposals**:
    - What concrete, specific adjustments to candidate discovery rules, scanner algorithms, or trigger criteria will directly increase high-expectancy trade opportunities that grow account equity toward 5,500.00 USD while maintaining rigorous floor defense?
 
+
+
+---
+
+## 🛠️ PART 6: MANDATORY STEP-LEVEL META-COGNITIVE QUESTION (SKILLS & AGENTS CHECK)
+
+> 🛑 **MANDATORY IN-TURN SELF-INQUEST (STRICT OPERATOR MANDATE)**:
+> At EVERY single step, decision point, tool execution, code write, prompt generation, and autonomous wake-up, the coordinator and all subagents MUST explicitly pause and ask themselves:
+> 
+> 🧠 **"Can I do this task better, faster, or with higher mathematical precision using existing skills or agents installed in this system?"**
+> 
+> ### Systematic Self-Audit Checklist:
+> 1. **Installed Skills Check**:
+>    - Does this task touch Risk / Capital / Solvency? -> Explicitly load and leverage `@[trader-risk]`, `@[trader-portfolio]`.
+>    - Does this task touch Strategy / Backtesting? -> Explicitly load and leverage `@[backtesting-trading-strategies]`, `@[trader-backtest]`, `@[quant-analyst]`, `@[trader-signal]`.
+>    - Does this task touch Code / Refactoring? -> Explicitly load and leverage `@[clean-code]`, `@[karpathy-guidelines]`, `@[simplify-code]`.
+>    - Does this task touch Debugging / Errors? -> Explicitly load and leverage `@[systematic-debugging]`, `@[diagnosing-bugs]`.
+>    - Does this task touch Prompts / Instructions? -> Explicitly load and leverage `@[optimizing-prompts]`, `@[writing-for-agents]`.
+>    - Does this task touch Testing / TDD? -> Explicitly load and leverage `@[pytest-skill]`, `@[test-driven-development]`.
+> 2. **Available Subagents Check**:
+>    - Is deep codebase research or literature survey required? -> Delegate to `research` subagent.
+>    - Is architecture or file-level modularity involved? -> Consult `code-architect` or `architect`.
+>    - Is code simplification or dead-code cleanup needed? -> Consult `code-simplifier` or `refactor-cleaner`.
+>    - Is high-reliability verification required? -> Consult `test-guard` or `qa-browser-automation`.
+> 3. **Action Rule**:
+>    - Never reinvent the wheel or write ad-hoc logic from scratch when an installed skill or subagent provides a proven, battle-tested methodology. Always invoke the specialized capability!
