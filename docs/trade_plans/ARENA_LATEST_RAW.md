@@ -1,76 +1,118 @@
-\n# Cycle 295 — independent quantitative ruling\n\n\n## Final decision\n\n\n- **Highest verified probability:** **none of the four candidates**. No candidate-specific, out-of-sample calibrated probability exists, so `argmax(P(success))` is undefined.\n- **Conditional research leader:** `GER40.p`, but only for a **new post-PMI evaluation**—not as an authorized ticket.\n- **06:45 UTC:** **Do not stage an order.** Permit no new exposure, reconcile the conflicting account records, and remain flat if direct MT5 confirms the account is flat.\n- **Executable tickets:** **zero**.\n- **Broker transmission:** none performed.\n\n## Evidence anchor\n\n\nFreshly fetched `origin/main`:\n\n- Commit: `eb1b7d12c3eb1c3f707ce43c8f18b2936d20768c`\n- Commit time: `2026-10-23 05:32:01 UTC`\n- Workbook SHA-256: `6031ed3f617e823109f9672874e5fefc60997315076bdb79f47cf63d3f563ccc`\n- Workbook size: `13,915,931` bytes\n\n**✅ 33-SHEET CONFIRMATION:** 33 physical worksheets loaded; all **1,668,559 used-range cells** traversed, including **1,653,274 non-empty cells**; ZIP CRC passed; **0 formulas**, **0 formula-error literals**; Auction row 1 contains 36/36 columns and no merged cells.\n\nThat structural pass does **not** constitute a freshness pass.\n\n---\n\n## 1. Evidence failures requiring a no-trade ruling\n\n\n### A. Workbook schema references are wrong\n\n\nThe current physical workbook mapping is:\n\n- Physical sheet 23: `14_Hyperdash_Liq_Map`\n- Physical sheet 24: `15_Hyperdash_Stops_Map`\n- Physical sheet 30: `20_Auction_Market_Structure`\n- Physical sheet 33: `ETF_Market_Overview`\n\nTherefore the Cycle 295 instructions to use “Sheet 23” for stops and “Sheet 33” for auction structure are not deterministic. Prompts must reference immutable **sheet names and schema versions**, never ordinal sheet numbers.\n\n### B. Freshness is fragmented and non-atomic\n\n\nAt the 05:32 repository anchor:\n\n- Account sheet: `2026-10-23 04:53:05 UTC`\n- CVD latest row: `05:05:00 UTC`\n- Whale orders: `05:11:52 UTC`\n- Technical matrix: `05:24:56 UTC`\n- Orderbook: **no embedded timestamp**\n- Auction structure: **no embedded timestamp**\n- Pipeline reported `17_Orderbook` **FAIL** at `05:06:56 UTC`\n\nThe workbook is a hybrid of multiple generations, not one atomic decision snapshot.\n\nWorse, between the 05:02/05:03 and 05:27/05:28 versions:\n\n- Liquidation map: **6,053 timestamp cells changed; zero non-timestamp cells changed**\n- Stops map: **3,870 timestamp cells changed; zero non-timestamp cells changed**\n\nThat is a timestamp-only refresh of frozen values and fails the repository’s own non-zero-delta freshness requirement.\n\n### C. Account/book state is unreconciled\n\n\nTwo source families conflict:\n\n1. \nWorkbook at 04:53 and direct live snapshot at 05:12:\n
-\n- Equity/balance: `$4,818.51`\n- Positions: `0`\n- Orders: `0`\n\n2. \n`Data/telemetry/latest/telemetry_snapshot.json` at 05:16:\n
-\n- Balance: `$4,813.44`\n- Equity: `$4,815.26`\n- Margin: `$590.18`\n- Two purported filled positions\n\n\nThe latter snapshot is itself corrupted or disconnected:\n\n- `clock_basis = UNVERIFIED_HOST_CLOCK`\n- `trade_authorization = DENIED_UNVERIFIED_ORDERFLOW`\n- BTC quote is near `$83,350`, while its assigned VWAP and candles are near `$100`, demonstrating a cross-asset join or stale-terminal defect.\n- L2 is degraded, Hyperliquid L2/L3 unavailable, and whale data stale.\n\nThe two-position record is therefore not accepted as true, but its presence means the flat-book claim cannot currently be certified. **No new risk may be added until an atomic direct MT5 reconciliation resolves this.**\n\n---\n\n## 2. Which setup has the highest probability?\n\n\n### Answer: none has a verified probability\n\n\nThe supplied probabilities in the persisted Z.ai response—such as `p=0.44` for GER40—are assumptions, not calibrated estimates. That response itself admits the probability is unproven. The repository’s only generic calibration field reports:\n\n- Sample size: `17`\n- Wins: `11`\n- Lower bound: `0.4197`\n- `p_win_lower_bound_calibrated = false`\n- Required minimum sample: `100`\n\nIt is also account-wide rather than candidate/session/regime-specific.\n\nThe following are only **minimum stressed break-even probabilities**, not estimated win probabilities:\n\n| Candidate | Claimed R:R | Stressed loss | Claimed/derived reward | Stressed break-even ppp | Verified ppp |\n| --- | --- | --- | --- | --- | --- |\n| GER40 combo B | 2.436R | $18.66 | $31.81 | **36.97%** | Unknown |\n| SP500 | 2.501R | $22.28 | $40.55 | **35.46%** | Unknown |\n| NAS100 | 2.500R | $21.84 | $39.68 | **35.50%** | Unknown |\n| BTCUSD | 2.582R | $17.54 | $32.09 | **35.34%** | Unknown |\n\n\nThese thresholds omit uncertainty in fill probability, adverse selection, gap-through loss and winning-side costs.\n\n### Candidate-specific findings\n\n\n#### GER40.p\n\n\n- Latest technical matrix: strong bearish alignment, VWAP z-score `-0.426`, ATR `25.11`.\n- The screener-derived entry is near `25,322`, not `25,381.39`; the latter is an externally fused auction level.\n- At the latest technical price, `25,381.39` is approximately **2.80 ATR away**.\n- The published range permits an invalid combination: entry `25,381.39` with SL `25,345.69` places the stop **below a short entry**.\n- Valid combo B—`25,381.39 / 25,420.23 / 25,286.79`—has coherent 2.436R geometry, but has no fresh auction timestamp, no GER40 orderbook coverage, no GER40 CVD row and no calibrated fill/win probability.\n\n**Status:** first post-event research candidate, not a ticket.\n\n#### SP500.p\n\n\n- Geometry is internally coherent at approximately 2.50R.\n- Latest technical matrix is bearish, but the latest available 5-minute CVD was **aggressive buying**.\n- Stressed buffer surplus is only about **$1.23**, leaving almost no allowance for gap or model error.\n- A 05:00 level cannot remain staged until the US session without a new quote, model run and TTL calculation.\n\n**Status:** reject current ticket.\n\n#### NAS100.p\n\n\n- Geometry is coherent at approximately 2.50R.\n- Entry is close to market, but available 5-minute CVD also showed **aggressive buying**.\n- Stressed buffer surplus is only **$1.67**.\n- No calibrated conditional probability or session-valid TTL exists.\n\n**Status:** reject current ticket.\n\n#### BTCUSD.pi\n\n\n- Latest technical state was bullish/above-value with positive short-horizon CVD, contrary to the proposed short.\n- The claimed `$20.15M` wall is not freshly reproduced.\n- The 05:10 whale sheet showed `$46.76M` of asks in `81,950–82,000`, but only approximately **$8.79M** met the stated `>=180s` persistence requirement; most rows lasted only 22–63 seconds.\n- Current L3 coverage is snapshot-based and lacks trustworthy order IDs; persistence cannot be inferred merely from repeated prices.\n\n**Status:** reject current ticket.\n\n---\n\n## 3. Screener verification\n\n\n### Claim-by-claim ruling\n\n\n| Claim | Ruling |\n| --- | --- |\n| Canonical universe contains 156 symbols | **Verified** |\n| Symbols are unique | **Verified: 156/156 unique** |\n| Screener attempts names from the canonical JSON | **Verified at source** |\n| Dynamic class spread gates exist | **Verified at source** |\n| Broker `order_calc_profit()` is called | **Verified at source** |\n| Exactly 106 were eligible at 05:00 | **Not independently reproduced** |\n| Exactly 30 setups qualified | **Not independently reproduced** |\n| Results are ranked | **False** |\n| Probabilities are calculated/calibrated | **False** |\n| Screener validates auction/orderflow/events | **False** |\n| Lot sizing is guaranteed exact and fail-closed | **False; only partial** |\n\n\nUniverse composition is correctly represented as:\n\n- Forex Raw: 60\n- Crypto + Crypto Raw: 53 + 5\n- Indices: 16\n- Commodities + Commodities Raw: 8 + 14\n\n### Independent count checks\n\n\nUsing the workbook’s 04:53 quotes and the source’s dynamic spread gates:\n\n- Total configured: `156`\n- Independently eligible: **105**\n- Blocked: `51`\n\nA one-symbol difference at 05:00 is possible because spreads move; therefore this does not prove that `106` is false. It does show that the number is time-dependent and requires a preserved run artifact.\n\nUsing the exact committed indicator implementation and the persisted candle evidence:\n\n- Only 69 of the 105 eligible instruments had corresponding committed candle files.\n- At the 15% relative-friction gate: **21** reproducible candidates\n- At the current 10% gate: **19** reproducible candidates\n- Thirty-six eligible symbols lacked committed candles, so the claimed `30` cannot be fully reproduced or disproved.\n\nNo saved stdout/JSON run artifact containing the claimed `0.646s / 106 / 30` result exists.\n\n### Material source defects\n\n\n1. \n**Model 1 is unreachable.**\n
-`MEAN_REVERT` requires `abs(vwap_z) < 1`, while Model 1 requires `abs(vwap_z) >= 2`.\n\n2. \n**No ranking exists.**\n
-Candidates are appended in universe order and never scored or sorted. “Top Ranked” is an external narrative.\n\n3. \n**Misreported universe count.**\n
-`total_universe_scanned` equals the post-spread eligible list, not all 156 requested symbols.\n\n4. \n**Code/result version mismatch.**\n
-The 05:00 code used a 15% relative-spread gate and omitted explicit spread stress. Current source uses 10% and partial explicit spread stress. The claimed benchmark does not describe the current algorithm.\n\n5. \n**Incomplete-bar instability.**\n
-`copy_rates_from_pos(..., 0, 200)` includes the active M15 bar. Signals can change inside the bar without being labeled provisional.\n\n6. \n**Unsafe account fallback.**\n
-If `account_info()` fails, equity silently defaults to `$4,818.51` rather than failing closed.\n\n7. \n**Unsafe P&L fallback.**\n
-If `order_calc_profit()` fails, contract-size arithmetic is used without guaranteed account-currency conversion.\n\n8. \n**Minimum-lot over-risk is not rejected.**\n
-Lot sizing forces at least `min_lot`; it can exceed the intended risk target.\n\n9. \n**No broker admissibility checks.**\n
-No `order_check`, stops/freeze-level check, margin check, pending-distance check, tick-size snapping validation or marketability check.\n\n10. \n**No freshness, event, auction, L2/L3, CVD or probability gates.**\n\n\nAccordingly, the screener is a **technical candidate generator**, not a production qualification or probability-ranking engine.\n\n---\n\n## 4. Quant persona ruling\n\n\nThe four-way decomposition is **conditionally endorsed**, but only behind a deterministic evidence validator.\n\n| Persona | Mandatory additions and thresholds |\n| --- | --- |\n| **1. Regime & competing-risk quant** | Label outcomes as TP-first, SL-first or censored after fill. Estimate `P(fill before TTL)` and `P(TP first |\n| **2. Microstructure quant** | Stable order IDs or explicit aggregated-level lineage; `>=3` observations over `>=180s`; refill ratio `>=0.60`; spoof/cancellation sensitivity; OFI and CVD divergence z-score `>=1.5` for two completed bars. Snapshot-only or receipt-only “L3” must return `UNKNOWN`, not pass. |\n| **3. Solvency quant** | Require live `account_info`, `symbol_info`, `order_calc_profit` and successful `order_check`; prohibit all fallbacks. Stress broker-valued SL loss plus spread, commission and empirical p99 gap/slippage. Joint correlated stopout must preserve `$4,795`; minimum-lot over-risk is a hard reject. |\n| **4. Auction/event/friction quant** | Resolve by sheet name and schema hash. Require explicit ISO-UTC timestamps. Use IB-width percentile, POC migration, opening type and value-area location. Entry gate `spread/TP <=10%`; 10–15% watch-only. Enforce event blackout, pending TTL, distance/ATR and stop/freeze constraints. |\n\n\nThe Excel/provenance auditor should not be an LLM persona. It should be deterministic code that produces a signed evidence envelope.\n\n---\n\n## 5. Deterministic prompt architecture\n\n\n### Replace narrative prompts with this common contract\n\n\n```\nROLE={REGIME|MICROSTRUCTURE|SOLVENCY|AUCTION}
-INPUT=evidence.json
-INPUT_SHA256=<required>
-OUTPUT_SCHEMA=trade_decision_v2.json
-
-RULES
-1. Use only INPUT. Never copy prior-cycle probabilities or tickets.
-2. Missing, stale, contradictory, or timezone-ambiguous data => null + HARD_FAIL.
-3. Never estimate a probability unless calibration metadata and sample size are present.
-4. Every metric must include source_id, as_of_utc, generation_id, and formula_id.
-5. Output exactly one JSON object. No Markdown or prose.
-6. A ticket is forbidden unless every hard gate is PASS.
-7. Do not transmit, modify, cancel, or close broker orders.
-8. Recompute all arithmetic; never trust supplied totals.
-9. Round prices to broker tick_size and volume to volume_step.
-10. status must be one of REFUSE, NO_TRADE, WATCH, STAGE.\n```\n\n### Required output shape\n\n\n```\n{
-  "schema_version": "trade-decision.v2",
-  "cycle_id": 295,
-  "role": "SOLVENCY",
-  "input_sha256": "...",
-  "status": "NO_TRADE",
-  "candidate_id": null,
-  "probability": {
-    "p_fill": null,
-    "p_tp_before_sl_given_fill": null,
-    "lower_95": null,
-    "sample_n": 0,
-    "calibrated": false
+\n✅ 33-SHEET CONFIRMATION: [33/33 physical sheets read | 0 formulas | 0 formula-error cells | Auction Row 1: 36/36 populated, distinct, and unmerged | ZIP CRC PASS]\n\n# Cycle 296 ruling\n\n\n**Vote: 4–0 for `RE-ANCHOR SETUP`.**\n\nImmediate posture: **stand aside in flat cash.** Waiting until 07:00 by itself is insufficient; the regime, quote, auction levels, macro clock, GER40 orderflow, and execution lifecycle must all be re-established. No order was ratified or transmitted.\n\n## Evidence clock and provenance\n\n\n| Snapshot | Availability | Finding |\n| --- | --- | --- |\n| `b9088e8`, committed 06:42:35 UTC | Available before the 06:45 cutoff | Account observation was fresh at 06:37:17, but technical data was stamped 05:58:45 and the last GER40 completed candle closed 05:45—well outside the 1,800-second regime limit. |\n| `5ed6c9c`, committed 06:47:34 UTC | Acquired after cutoff | Contains technical data stamped 06:44:53 and a GER40 candle closing 06:30. These observations are causally dated before 06:45 but do not prove decision-time availability; used only for retrospective diagnostics. |\n| `b5fc9c5`, committed 06:57:36 UTC | Look-ahead; excluded from decision | Latest workbook SHA-256 `12a86af8a3f4bf206303e01e2348e233cb03baf8af83a3a543b925b1231d46b1`; 1,661,810 cells read. Auction levels and sheet ordering changed after the cutoff. |\n\n\nAdditional coverage:\n\n- 156/156 unique broker instruments were present in the spread census: 97 qualified and 59 blocked.\n- The technical matrix covers only 120 assets and the auction sheet 84, so “156 instruments” does not mean 156-instrument coverage by every evidence pillar.\n- GER40 appears only in account telemetry, technical, and auction sheets. It is absent from `17_Orderbook`, `18_CVD`, and `15_Hyperdash_Stops_Map`.\n- The repository’s latest `ZAI_LATEST_RAW.md` still contains Cycle 295, so no external Cycle-296 vote is being invented or counted here.\n\n## Persona 1 — Statistical Regime & Diffusion\n\n\n### Strongest affirmative case\n\n\nLow ER and a rotational auction label could motivate a conditional opening-auction fade. The proposed 2.44 gross R:R is geometrically attractive if a real rejection edge exists.\n\n### Independent validation\n\n\nCanonical code uses `n_15m=96`, `n_1h=48`, and `n_4h=30`, requiring 97, 49, and 31 closes respectively. Recalculation on the causal bars through 06:30 gives:\n\n| Timeframe | ER | VR(4) | Robust z | HAC return-drift t |\n| --- | --- | --- | --- | --- |\n| M15 | 0.112835 | 1.024844 | +0.141798 | −0.814501 |\n| H1 | 0.045288 | 1.297630 | +1.046558 | −0.233782 |\n| H4 | unavailable | unavailable | unavailable | unavailable |\n\n\nOnly 20 H4 closes were derivable versus 31 required. The binding classifier result is therefore:\n\n`UNDEFINED → data_invalid: regime_history_or_statistics`\n\nSpecific claim defects:\n\n- The supplied M15 `VR=0.9411, z=−0.22` resembles an ad hoc 48-bar calculation; the canonical 96-bar window produces the values above.\n- The prompt separately reports M15 z as both `−0.22` and `−0.08`.\n- H1 values substantially reproduce, including insignificant return drift around `−0.23`.\n- Significant regressions on price levels—M15 `−4.07`, H1 `−2.22`—are not the same as significant return drift and cannot authorize a short.\n- Failure to reject a variance-ratio null does **not** prove an i.i.d. Gaussian “pure Brownian” process. The defensible label is **undefined/no certified edge**.\n\nUsing the contradictory spot observations and causal Yang–Zhang volatility of approximately 17.586 points per M15 bar, the zero-drift probability of touching the proposed limit within 25 minutes is only approximately 1.8%–4.1%. The repository’s diffusion TTL heuristic is approximately 208–280 minutes, not 25 minutes. These are diagnostic only because cash-open jumps violate the stationary-diffusion assumption.\n\n**Persona 1 vote: `RE-ANCHOR SETUP`.**\n\n## Persona 2 — Microstructure & Orderflow\n\n\n### Strongest affirmative case\n\n\nPre-staging can preserve queue position and avoid chasing a rapid opening spike. The proposed stop is 14.18 points above the recorded Asian high, while the entry is 24.66 points below it.\n\n### Independent validation\n\n\nThe claimed supporting observations are not source-proven:\n\n- No GER40 row exists in the orderbook, CVD, or retail-stops worksheets.\n- Consequently, the asserted 1.8 million USD ask wall, persistence below 60 seconds, `−12 lots` CVD, and stops at 25,410–25,420 have no workbook evidence.\n- No immutable MT5/depth probe receipt authenticates those numbers.\n- “Sheet 23 Retail Stops” is also a schema error; the stops worksheet is `15_Hyperdash_Stops_Map`, is crypto-oriented, and contains no GER40.\n\nOption A raises unconditional fill probability but exposes the account to adverse selection during an opening sweep. Option B sacrifices fills but improves conditional trade quality. Under the hard-floor mandate, quality dominates fill count.\n\nHowever, Option B cannot be automatically approved either: GER40 CVD absorption is currently unobservable in the supplied warehouse. A valid replacement requires a GER40-specific venue feed or a predeclared, tested MT5 tick/M1 price-volume proxy.\n\n**Persona 2 vote: `RE-ANCHOR SETUP`, with no automatic order at 07:00.**\n\n## Persona 3 — Convex Portfolio & Solvency\n\n\nThe proposal is **single-ticket solvent**, but that is necessary rather than sufficient.\n\nUsing the stored GER40 tick value of 0.112078 USD per 0.01 point per lot:\n\n- Nominal risk: `13.05932856 USD`\n- Nominal reward: `31.80773640 USD`\n- Gross R:R: `2.43563337`\n- Correct spread cost: `0.36985740 USD`, not 0.33 USD\n- Correct stress: `(13.05932856 + 0.36985740) × 1.25 + 2 = 18.78648245 USD`\n- Post-loss equity: `4,799.72351755 USD`\n- Buffer surplus: `4.72351755 USD`\n\nThis reproduces the economics from metadata, but no immutable `order_calc_profit()` receipt proves the exact broker valuation at 06:45.\n\nFurther findings:\n\n- At 0.04 lots, corrected stress is approximately 24.3820 USD, leaving equity at 4,794.1280 USD. Thus 0.03 is the largest 0.01-lot increment compatible with the buffer for this geometry.\n- A stressed first loss leaves room for only approximately 1.81 USD additional nominal risk if similar spread is reserved—below the canonical 7.50 USD minimum.\n- A 10 USD retry would leave approximately 4,784.76 USD, breaching the 4,795 operating buffer. The claimed retry is therefore false.\n- A win produces approximately 4,850.32 USD before unverified commissions. Although 33.20 USD could pass a bare solvency calculation at that equity, it violates the binding 25 USD policy cap and is not implemented by this script.\n- Gross break-even probability is 29.11%. Kelly cannot endorse 0.03 lots without a calibrated, setup-specific net outcome distribution. The repository’s 0.4197 lower bound is explicitly uncalibrated, based on only 17 observations against a required 100, and is not GER40-opening-specific.\n\n**Persona 3 vote: `RE-ANCHOR SETUP`.**\n
+Interpretation: 0.03 lots is the largest feasible discrete size, not a Kelly-optimal size.\n\n## Persona 4 — Auction, Friction, and event clock\n\n\n### Cutoff-available auction geometry\n\n\n- POC: 25,324.37\n- VAH: 25,365.44\n- VAL: 25,269.61\n- IB: 25,285.75–25,341.15; width 55.40\n- Entry: 15.95 points above VAH and 40.24 points above IB high, a 0.726 IB extension\n- Asian high: 25,406.05\n- Spread/TP: `1.10 / 94.60 = 1.1628%`, mathematically passing the 10% friction threshold\n\nThe geometry is coherent as a hypothetical fade, but the auction row has no embedded observation timestamp. Post-cutoff, the same pipeline changed VAH to 25,381.86 and IB high to 25,355.65. That later information cannot validate the historical decision, but it demonstrates that the setup needed re-anchoring.\n\nAt the prompt’s 06:47 commit, `20_Auction_Market_Structure` was physical sheet 31, not sheet 33. It was moved to sheet 33 only in the 06:57 commit.\n\n### Macro audit\n\n\nThe worksheet lists France, Germany, and Eurozone PMIs at 12:45, 13:00, and 13:30, but stores no timezone. The asserted 07:15, 07:30, and 08:00 UTC schedule assumes UTC+05:30.\n\n- If that conversion is accepted, the combined ±35-minute TradFi embargo is 06:40–08:35 UTC. Staging at 06:45 is already prohibited.\n- If the timezone cannot be authenticated, the calendar gate fails closed anyway.\n- `Data/macro_calendar.json` contains no October 23 PMI records.\n- `BlackoutGuard` loads only `HIGH` events, while these PMIs are classified Medium/Low in the worksheet.\n- The 07:10 cancellation and 07:14:59 flatten times exist only in comments/prompts. The standalone script implements neither.\n- Flattening one second before a release is not a latency-safe control and conflicts with the stated pre-event blackout.\n\n**Persona 4 vote: `RE-ANCHOR SETUP`.**\n\n## Execution-source audit\n\n\n`Terminal/Execution/stage_european_auction.py` cannot safely implement its own stated contract:\n\n1. It instantiates `MT5ExecutionBridge()` without pinning account `5064568`.\n2. Its pre-audit treats `positions_get() is None` and `orders_get() is None` as zero inventory. The later live admission is stricter, but the displayed dry-run can falsely pass.\n3. Failed broker P&L calculations fall back to hard-coded values.\n4. Spread cost uses contract size instead of converted tick value.\n5. The pre-audit compares a 1.10 price-unit spread to 1.5, while the bridge converts it to 110 broker points and compares it to the same 1.5. The live bridge would reject the order despite the pre-audit passing.\n6. `persistent=True` creates a GTC order, but this standalone script never registers it with `OrderPersistenceGovernor`.\n7. There is no implemented 07:10 cancellation or 07:14:59 position governor.\n8. Regime, GER40 orderflow, auction freshness, and PMI checks are not wired into the entry path. The global blackout guard lacks the relevant PMI events.\n9. Decision Gates default to shadow mode and are not invoked by the staging script.\n\n## Final ballot\n\n\n- `RATIFY STAGING NOW`: **0**\n- `STAND ASIDE UNTIL 07:00 OPEN`: **0**\n- `RE-ANCHOR SETUP`: **4**\n\nWaiting until 07:00 is a component of re-anchoring, not an authorization condition. Before any future ticket can exist, the system must obtain one atomic snapshot containing exact account/inventory, a valid two-sided quote, current M15/H1/H4 histories, post-open auction levels, GER40-specific rejection/orderflow evidence, and timezone-normalized event data. The account pin, spread units, and cancel/flatten lifecycle must also be repaired and tested.\n\nThe methodology diagnosis is that data breadth has been mistaken for evidence depth: 156 symbols do not create GER40 orderflow coverage or a calibrated Frankfurt-open edge. Flat equity is consistent with distant static limits, low fill probability, non-atomic snapshots, uncalibrated probabilities, and gates left in shadow mode. The remedy is immutable as-of manifests with separate observation/acquisition timestamps, walk-forward fill-and-outcome calibration by session/regime, multiple-testing control, and enforced—not narrative—execution gates.\n\n```\n{
+  "schema_version": "cycle296.fail_closed.v1",
+  "cycle": 296,
+  "as_of_utc": "2026-10-23T06:45:00Z",
+  "account_login": 5064568,
+  "ruling": "RE_ANCHOR",
+  "symbol": "GER40.p",
+  "side": null,
+  "lot": null,
+  "entry_price": null,
+  "stop_loss": null,
+  "take_profit": null,
+  "risk_rr": null,
+  "nominal_risk_usd": null,
+  "nominal_reward_usd": null,
+  "stressed_equity_usd": null,
+  "buffer_surplus_usd": null,
+  "stage_time_utc": null,
+  "cancel_time_utc": null,
+  "flatten_time_utc": null,
+  "macro_event": "UNVERIFIED_TIMEZONE: worksheet times 12:45/13:00/13:30; prompt asserts 07:15/07:30/08:00 UTC",
+  "execution_authorized": false,
+  "transmit": false,
+  "broker_order_sent": false,
+  "order_ticket": null,
+  "ticket_null_reason": "STALE_AT_CUTOFF_AND_POST_CUTOFF_ACQUISITION; REGIME_UNDEFINED; H4_INSUFFICIENT; QUOTE_CONTRADICTORY; GER40_ORDERFLOW_UNAVAILABLE; MACRO_CLOCK_UNVERIFIED; EXECUTION_LIFECYCLE_NOT_IMPLEMENTED",
+  "evidence": {
+    "decision_available_commit": "b9088e8931b3ee66e634073f3d56a5010a07aa27",
+    "decision_available_commit_utc": "2026-10-23T06:42:35Z",
+    "decision_available_workbook_sha256": "474986ae1961b7c3ab7667f8043a4038c1d9a5c365a169d35389cc212004ff08",
+    "post_cutoff_diagnostic_commit": "5ed6c9c1b2670daa4eb6ec0393b176b98659c636",
+    "post_cutoff_acquisition_used_for_authorization": false,
+    "latest_audited_commit": "b5fc9c55880c74261d064650d0a12936845a3bd9",
+    "latest_workbook_sha256": "12a86af8a3f4bf206303e01e2348e233cb03baf8af83a3a543b925b1231d46b1",
+    "workbook_sheets_read": 33,
+    "workbook_formula_count": 0,
+    "workbook_formula_error_count": 0,
+    "universe_unique_symbols": 156,
+    "universe_qualified": 97,
+    "universe_blocked": 59
   },
-  "hard_gates": {
-    "account_reconciled": false,
-    "data_atomic": false,
-    "freshness": false,
-    "event_clear": false,
-    "broker_check": false,
-    "solvency": null
+  "regime_audit": {
+    "classification": "UNDEFINED",
+    "basis": "Causal bars through 06:30Z, first repository-acquired after cutoff; diagnostic only",
+    "m15": {
+      "window": 96,
+      "er": 0.1128351539,
+      "vr4": 1.0248437079,
+      "vr4_z": 0.1417977404,
+      "hac_return_drift_t": -0.8145014104
+    },
+    "h1": {
+      "window": 48,
+      "er": 0.0452879651,
+      "vr4": 1.2976298555,
+      "vr4_z": 1.0465581894,
+      "hac_return_drift_t": -0.2337818138
+    },
+    "h4": {
+      "available_closes": 20,
+      "required_closes": 31,
+      "statistics": null
+    }
   },
-  "ticket": null,
-  "errors": [
-    "ACCOUNT_STATE_CONFLICT",
-    "NON_ATOMIC_GENERATION",
-    "PROBABILITY_UNCALIBRATED"
+  "audited_proposal_economics": {
+    "not_an_order": true,
+    "nominal_risk_usd": 13.05932856,
+    "nominal_reward_usd": 31.8077364,
+    "gross_rr": 2.4356333677,
+    "spread_cost_usd": 0.3698574,
+    "corrected_stressed_loss_usd": 18.78648245,
+    "corrected_post_loss_equity_usd": 4799.72351755,
+    "corrected_buffer_surplus_usd": 4.72351755,
+    "maximum_retry_nominal_risk_usd_assuming_same_spread": 1.80895664,
+    "kelly_endorsed": false
+  },
+  "gates": {
+    "account_snapshot": "PASS_AT_06:37:17Z",
+    "clean_book_snapshot": "PASS_BUT_NOT_ATOMIC_WITH_ALL_OTHER_INPUTS",
+    "quote_consistency": "FAIL",
+    "decision_time_technical_freshness": "FAIL",
+    "regime": "FAIL_UNDEFINED",
+    "ger40_orderbook": "UNAVAILABLE",
+    "ger40_cvd": "UNAVAILABLE",
+    "auction_timestamp": "UNVERIFIED",
+    "spread_ratio_math": "PASS",
+    "spread_gate_implementation": "FAIL_UNIT_MISMATCH",
+    "single_ticket_solvency": "PASS",
+    "retry_optionality": "FAIL",
+    "kelly_calibration": "FAIL",
+    "macro_timezone": "FAIL_UNVERIFIED",
+    "macro_guard_coverage": "FAIL_PMIS_ABSENT",
+    "cancel_flatten_governor": "FAIL_NOT_IMPLEMENTED",
+    "exact_account_pin": "FAIL_NOT_ENFORCED"
+  },
+  "next_action": "DO_NOT_STAGE; BUILD_ATOMIC_POST_OPEN_SNAPSHOT_AND_RECOMPUTE_ALL_TICKET_FIELDS",
+  "reanchor_requirements": [
+    "Authenticate MT5 account 5064568 and atomically read positions plus pending orders",
+    "Acquire a fresh internally consistent GER40 bid, ask, midpoint, tick time, and broker valuation receipt",
+    "Provide 97 M15, 49 H1, and 31 current completed H4 closes to the canonical classifier",
+    "Recompute auction VAH, VAL, POC, IB, Asian high, and entry geometry after the Frankfurt open",
+    "Authenticate a GER40-specific sweep and reclaim plus a declared orderflow or tested MT5 tick-volume proxy",
+    "Normalize PMI timestamps to UTC and require the proposed holding interval to be outside the active blackout",
+    "Pin the account, repair spread units, and implement tested cancellation and flatten lifecycle controls",
+    "Recalculate Kelly only from a setup-specific calibrated net outcome distribution"
   ],
-  "evidence_refs": []
-}\n```\n\n### Arena.ai and Z.ai orchestration\n\n\n1. Supply the same immutable evidence envelope independently.\n2. Remove “Rank 1”, “pristine”, “highest-probability” and desired-action labels.\n3. Do not show either model the other’s conclusion.\n4. Validate both JSON outputs against the schema.\n5. Merge in code:
-\n- Any hard failure or unknown critical field → `NO_TRADE`\n- Otherwise choose the highest **lower-confidence-bound EV**, not the highest narrative score.\n\n6. Reject mixed attachments or second tickets.\n\nThis matters because the persisted Z.ai output contains one Cycle 295 BTC ticket in its verdict and a different BTC ticket in an appended attachment. Meanwhile `ARENA_LATEST_RAW.md` contains the ECC audit response rather than Cycle 295, and the persisted Gemini output is Cycle 291. There is no valid three-council consensus artifact.\n\n---\n\n## 6. 06:45 UTC Frankfurt decision\n\n\n**No staging at 06:45.**\n\nEven accepting the prompt’s own event schedule, the first EUR PMI is asserted at 07:15 UTC. Under the mandated ±35-minute TradFi blackout:\n\n- French PMI at 07:15 → blackout starts **06:40**\n- German PMI at 07:30 → overlapping blackout\n- Eurozone PMI at 08:00 → combined window can extend to **08:35**\n\nTherefore a 06:45 order directly violates the macro gate. Cancelling at 07:10 or flattening at 07:14:59 does not cure the violation; it deliberately carries exposure into pre-release spread expansion.\n\nA provisional next evaluation should occur no earlier than the first completed post-blackout M15 bar—approximately **08:45 UTC**, but only after the calendar is reissued with explicit ISO-UTC timestamps.\n\nNo Frankfurt price, lot, SL or TP is ratified now.\n\n```\n{
-  "cycle": 295,
-  "evidence_commit": "eb1b7d12c3eb1c3f707ce43c8f18b2936d20768c",
-  "decision": "NO_TRADE",
-  "selected_candidate": null,
-  "highest_verified_probability": null,
-  "conditional_watchlist_leader": "GER40.p",
-  "stage_at_0645_utc": false,
-  "tickets": [],
-  "hard_failures": [
-    "ACCOUNT_STATE_UNRECONCILED",
-    "WORKBOOK_NON_ATOMIC",
-    "ORDERBOOK_PIPELINE_FAILED",
-    "AUCTION_TIMESTAMP_MISSING",
-    "CALENDAR_TIMEZONE_AMBIGUOUS",
-    "EVENT_BLACKOUT_AT_0645",
-    "CANDIDATE_PROBABILITIES_UNCALIBRATED",
-    "SCREENER_OUTPUT_NOT_PRESERVED"
+  "red_team_counter_arguments": [
+    "The only repository snapshot available before 06:45 had stale technical and candle evidence.",
+    "The fresher causal bars were first acquired after the decision cutoff and cannot retroactively authorize staging.",
+    "The supplied live midpoint is outside its own bid-ask interval, making entry distance non-deterministic.",
+    "Canonical M15 metrics differ from the supplied values and current H4 history is insufficient.",
+    "GER40 wall, retail-stop, and CVD claims have no workbook rows or immutable probe receipts.",
+    "The asserted PMI conversion either places 06:45 inside the blackout or remains timezone-unverified.",
+    "The standalone script has a spread-unit mismatch and creates an ungoverned GTC order.",
+    "The proposed second attempt breaches the 4795 operating buffer, and Kelly probability is uncalibrated."
   ]
 }\n```\n

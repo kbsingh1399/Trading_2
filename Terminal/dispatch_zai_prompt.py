@@ -71,68 +71,81 @@ async def post_prompt_to_zai(prompt_text: str) -> bool:
             print("[ZaiDispatcher] Warning: Z.ai is currently generating a response. Aborting dispatch.", file=sys.stderr)
             return False
 
-        # 3. Focus textarea#chat-input and set value
-        js_insert = """(text) => {
-            const ta = document.querySelector('textarea#chat-input, textarea');
-            if (!ta) return false;
-            ta.focus();
-            ta.value = text;
-            ta.dispatchEvent(new Event('input', { bubbles: true }));
-            ta.dispatchEvent(new Event('change', { bubbles: true }));
+        # 3. Focus and clear chat-input
+        js_clear = """(() => {
+            const el = document.getElementById("chat-input");
+            if (!el) return false;
+            el.focus();
+            el.value = "";
+            el.dispatchEvent(new Event('input', { bubbles: true }));
+            el.dispatchEvent(new Event('change', { bubbles: true }));
             return true;
-        }"""
-        await ws.send(json.dumps({
-            "id": 3,
-            "method": "Runtime.callFunctionOn",
-            "params": {
-                "functionDeclaration": js_insert,
-                "arguments": [{"value": prompt_text}],
-                "executionContextId": None,
-                "returnByValue": True,
-                "userGesture": True
-            }
-        }))
-        resp = json.loads(await ws.recv())
-        inserted = resp.get("result", {}).get("result", {}).get("value", False)
+        })()"""
+        await ws.send(json.dumps({"id": 3, "method": "Runtime.evaluate", "params": {"expression": js_clear}}))
+        await ws.recv()
+        await asyncio.sleep(0.3)
 
-        if not inserted:
-            print("[ZaiDispatcher] Falling back to direct focus and input event...", flush=True)
-            await ws.send(json.dumps({
-                "id": 4,
-                "method": "Runtime.evaluate",
-                "params": {"expression": "(() => { const ta = document.querySelector('textarea#chat-input, textarea'); if(ta) { ta.focus(); return true; } return false; })()", "returnByValue": True}
-            }))
+        # 4. Set value via prototype descriptor and fire events
+        js_set = f"""(() => {{
+            const el = document.getElementById("chat-input");
+            if (!el) return {{ success: false, err: "no el" }};
+            el.focus();
+            const proto = Object.getPrototypeOf(el);
+            const desc = Object.getOwnPropertyDescriptor(proto, 'value') || Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value');
+            if (desc && desc.set) {{
+                desc.set.call(el, {json.dumps(prompt_text)});
+            }} else {{
+                el.value = {json.dumps(prompt_text)};
+            }}
+            el.dispatchEvent(new Event('input', {{ bubbles: true }}));
+            el.dispatchEvent(new Event('change', {{ bubbles: true }}));
+            const btn = document.getElementById("send-message-button");
+            return {{
+                success: true,
+                len: el.value.length,
+                btnDisabled: btn ? btn.disabled : null
+            }};
+        }})()"""
+        await ws.send(json.dumps({"id": 4, "method": "Runtime.evaluate", "params": {"expression": js_set, "returnByValue": True}}))
+        res4 = json.loads(await ws.recv())
+        val4 = res4.get("result", {}).get("result", {}).get("value", {})
+        print(f"[ZaiDispatcher] Set text result: {val4}", flush=True)
+        await asyncio.sleep(0.4)
+
+        # 5. If button still disabled, force Svelte reactive update via synthetic key input
+        if val4.get("btnDisabled"):
+            await ws.send(json.dumps({"id": 5, "method": "Input.insertText", "params": {"text": " "}}))
             await ws.recv()
-            await ws.send(json.dumps({"id": 5, "method": "Input.insertText", "params": {"text": prompt_text}}))
+            await asyncio.sleep(0.2)
+            await ws.send(json.dumps({"id": 6, "method": "Input.dispatchKeyEvent", "params": {"type": "rawKeyDown", "windowsVirtualKeyCode": 8, "code": "Backspace", "key": "Backspace"}}))
             await ws.recv()
+            await ws.send(json.dumps({"id": 7, "method": "Input.dispatchKeyEvent", "params": {"type": "keyUp", "windowsVirtualKeyCode": 8, "code": "Backspace", "key": "Backspace"}}))
+            await ws.recv()
+            await asyncio.sleep(0.4)
 
-        await asyncio.sleep(0.5)
-
-        # 4. Click Send button or send Enter
-        js_send = """(() => {
-            const btn = document.querySelector('button#send-message-button, button[aria-label*="Send"], button[title*="Send"]');
+        # 6. Click Send button or trigger requestSubmit
+        js_click = """(() => {
+            const btn = document.getElementById("send-message-button") || document.querySelector('button#send-message-button, button[aria-label*="Send"]');
+            const form = document.querySelector('form');
             if (btn && !btn.disabled) {
                 btn.click();
-                return true;
+                return { clicked: true, method: "button_click" };
             }
-            return false;
+            if (form && form.requestSubmit) {
+                form.requestSubmit();
+                return { clicked: true, method: "requestSubmit" };
+            }
+            return { clicked: false, btnDisabled: btn ? btn.disabled : null };
         })()"""
-        await ws.send(json.dumps({
-            "id": 6,
-            "method": "Runtime.evaluate",
-            "params": {"expression": js_send, "returnByValue": True}
-        }))
-        resp = json.loads(await ws.recv())
-        clicked = resp.get("result", {}).get("result", {}).get("value", False)
+        await ws.send(json.dumps({"id": 8, "method": "Runtime.evaluate", "params": {"expression": js_click, "returnByValue": True}}))
+        res8 = json.loads(await ws.recv())
+        val8 = res8.get("result", {}).get("result", {}).get("value", {})
+        print(f"[ZaiDispatcher] Click result: {val8}", flush=True)
 
-        if not clicked:
-            print("[ZaiDispatcher] Send button disabled or not clicked, dispatching Enter key...", flush=True)
-            for ktype, vk in [("rawKeyDown", 13), ("keyUp", 13)]:
-                await ws.send(json.dumps({
-                    "id": 7,
-                    "method": "Input.dispatchKeyEvent",
-                    "params": {"type": ktype, "windowsVirtualKeyCode": vk, "code": "Enter", "key": "Enter"}
-                }))
+        if not val8.get("clicked"):
+            print("[ZaiDispatcher] Fallback to Enter key...", flush=True)
+            for ktype in ["rawKeyDown", "keyUp"]:
+                await ws.send(json.dumps({"id": 9, "method": "Input.dispatchKeyEvent", "params": {"type": ktype, "windowsVirtualKeyCode": 13, "code": "Enter", "key": "Enter"}}))
                 await ws.recv()
 
         await asyncio.sleep(1.0)
