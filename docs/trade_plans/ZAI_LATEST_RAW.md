@@ -1,241 +1,205 @@
 Thought Process
-Wrote 2 files，Ran 2 commands
-Create File c297_math_check.py
-Run C297 math check sections N0-N7
-MultiEdit /home/z/my-project/scripts/c297_math_check.py
-Run C297 math check sections N0-N7
+Explored 7 files，Wrote 1 files，Ran 2 commands
+List Directory /home/z/my-project
+Find File **/DataBase_Trading.xlsx
+Find File **/Manditory/*.md
+Find File **/worklog.md
+Read File worklog.md
+Read File c297_math_check.py
+Read File c296_sheet_health.py
+Download fresh 33-sheet warehouse from canonical repo
+Create File c298_math_check.py
+Run C298 math check script
 Done
 
-MC delivered a decisive result — P(mission) = 0 in 20k paths. Let me patch two precision items (S8 lockout flags + theoretical upper bound) and re-run:
+All sections ran clean — and the fresh repo pull exposed one critical integrity artifact I must disclose rather than use (the BTC "series" extract was cross-sheet contaminated, so I discard the VR print as an artifact). Appending the worklog, then issuing the verdict.
 
-Wrote 2 files，Ran 2 commands
+Wrote 1 files
+🏛️ COUNCIL CYCLE 298 — SOVEREIGN VERDICT | GLM-5.3-Flash, Solvency Arbiter Channel
+BlueBerry Markets MT5 #5064568 | 2026-10-23 09:01:10 UTC | Post-stopout reconstitution cycle
 
-All numbers verified. Now appending the worklog entry:
+✅ 33-SHEET CONFIRMATION: [0 formula errors | 0 empty headers | Data Freshness: 9 min repo-sync (no embedded timestamps; live certification → Fable 5)]
 
-Wrote 1 files，Ran 1 commands
-
-✅ 33-SHEET CONFIRMATION: [0 formula errors | 0 empty headers | Data Freshness: 15 min declared — 2 exceptions: GER40 radar geometry 61 min stale (06:45 lattice), BTC whale-wall map ≥ 3h45m (C291 provenance, must re-pull before any BTC trigger)]
-
-Governance basis: all six canonical SOPs + worklog C280–C296 loaded; every figure below machine-verified in scripts/c297_math_check.py (Sections N0–N7, run clean). Where the warehouse cannot certify a live microstructure fact, the verdict fails closed with an explicit data gate.
-
-SECTION R — RECONCILIATION C296 → C297 [TEL|CALC|OPS]
-
-The book changed materially in the 37 minutes since C296. Balance delta = 0.00 (no booked fills → BANK-READ RULE: rung-0, banked $0.00, envelope 22.80 pre-bank / 33.20 post-bank, unchanged), but the broker book now carries one filled position + one pending limit — the first live risk since C291.
-
-R-1. NZDUSD.pi #19244087 — provenance verified, telemetry internally consistent [CALC]
-
-Floating P/L = 4,811.22 − 4,818.51 = −7.29 = exactly −0.90 pips × $8.10/pip → implied mark Bid 0.56895. The floating number decomposes perfectly; no hidden second position.
-Margin forensics: Used margin = 4,811.22 − 3,274.81 = 1,536.41; NZD notional = 81,000 × 0.56904 = 46,092.24 → implied leverage 30.00× — an exact retail FX margin ratio. This independently confirms lot size, entry, and that the BTC pending reserves no margin.
-Geometry provenance: entry 0.56904 + SL 0.56888 (R0 = 1.6 pips) reproduces the C286 Early-BE fix (trigger 0.56916 = entry+0.75R; BE SL 0.56906 = entry+0.10R) to the fifth decimal. This position was staged ~01:46 UTC, rested ~6h, and filled between 07:08:17–07:45:54.
-
-R-2. GER40-B (C295-1) — final classification: NOT-STAGED → OPS-MISS #1 [OPS]
-Instruction was stage 06:45:00 / cancel 07:10:00. C296 telemetry (07:08:17) showed book 0/0 — an order staged at 06:45 would still have been resting at 07:08. C297 confirms no GER40 order ever existed and equity is untouched. Classification: Rule→Order gap, staging non-execution, NON-STRIKE (no order reached the server, zero market risk, zero financial impact) — but it is the desk's first execution-omission of the session, and it means the desk's strongest ratified geometry (combo B) simply never saw the market. Desk must supply root cause at C298 (socket down vs. never attempted vs. server reject — retcode or it didn't happen).
-
-R-3. Operator worst-case figure is understated — and still breaches your own buffer [CALC]
-Telemetry claims Worst-Case Simultaneous Stopout = 4,792.48. Reverse-engineering: that is nominal risks only (12.96 + 12.43 = 25.39 + 0.64 unattributed). Canonical stress math:
-
-COMPONENT
+SECTION A — TELEMETRY RECONCILIATION [TEL + CALC]
+ITEM
 	
-NZD LEG
+VALUE
 	
-BTC-SELL LEG
+COUNCIL CROSS-CHECK
 
-Nominal risk	12.96	12.43
-Spread cost (S=0.3 pip / $0.47)	2.43	0.47
-×1.25 stress multiplier	19.24	16.12
-+ $2.00 commission	21.24	18.12
+Balance / Equity / Free Margin	4,799.88 / 4,799.88 / 4,799.88	Fully flat floating; 100% margin-free [TEL]
+Δ Balance vs C297 (4,818.51)	−18.63	= NZD #19244087 full stopout at 0.56888 [CALC]
+Loss decomposition	12.96 nominal + ~2.43 spread + 2.00 comm + ~1.24 slippage (0.15 pip)	Realized 18.63 ≤ 21.24 stressed canon → envelope HELD (+2.61 under) [CALC]
+Breaker counter	1 / 2 (defense mode on next full stopout)	NZD = session loss #1 [OPS]
+Ladder state (BANK-READ RULE)	rung-0, banked $0.00	Balance telemetry advanced nothing [CALC]
+Buffer / Floor cushion	+4.88 / +24.88	Post-stress invariant binding constraint = 4.88 [CALC]
+R13 cap (self-scaling, C297 canon)	4,799.88 − 4,788.00 = 11.88	Fixed canon 30.51 also carried for reference
+Phantom-defect #2	RESOLVED	Operator worst-case 4,781.14 = 4,799.88 − 18.74 to the cent; aggregator now agrees with canonical stress (implied S=0.96, conservative vs C295 pin 0.47) [CALC]
 
-Canonical simultaneous stopout = 4,818.51 − 39.36 = 4,779.15 — not 4,792.48. The delta (spreads 2.90 + commissions 4.00 + multiplier 7.07) is exactly the risk the operator's number omitted. Critically: even the operator's own 4,792.48 is BELOW the 4,795.00 operating buffer the same telemetry mandates. The live book violates the buffer invariant on both accountings. That drives Ruling 1 below.
+E-298-01 EXECUTION GAP [P0-adjacent]: C297 RULING-1 ordered CANCEL #19244096 at 07:45:54. The ticket is still on the book at 09:01. RTP strike counter → 2/3 (strike 1 = E-296-01 GER40-B non-staging). One further unexecuted ruling = strike 3/3 = execution-pipe escalation per AUTO-INSTANTIATION PROTOCOL.
+
+SECTION B — DATA GOVERNANCE GATES [SHEET]
+Canonical repo: fresh pull Data/DataBase_Trading.xlsx @ 09:10 UTC, 13,945,928 bytes — 33/33 sheets, 0 formula errors, 0 empty headers. Verified by machine scan, not assertion.
+Freshness integrity flag (Material): the workbook embeds no datetime cells (C296 finding holds) — freshness is certified by repo-sync mtime only. Per the C295 15-min REFUSE rule, any persona verdict requiring live tape is DATA-GATED, not assumed.
+Contaminated-extract disclosure: a heuristic BTC close-series pulled from mixed sheets produced VR(4)=0.252, z_NW=−59.7, σ=7%/M15 — statistically absurd, artifact of cross-sheet concatenation, DISCARDED. This is live proof for Section G §2: the warehouse stores cross-sectional snapshots, not tape.
+AST graphify: not addressable in this environment this cycle — architecture queries waived, no verdict depends on it.
+Sheet-extracted spot print: BTCUSD.pi 81,458 [SHEET]; NZDUSD 0.5689 (post-stopout level confirmed); GER40 print 25,285.75 (pre-PMI vintage).
+SECTION C — BOOK AUDIT: THE ZOMBIE TICKET [CALC]
+
+#19244096 BTCUSD.pi SELL_LIMIT 0.03 @ 81,960 / SL 82,374.19 / TP 80,890.43
+
+LAYER
+	
+MATH
+	
+RULING
+
+R:R	1,069.57 / 414.19 = 2.582	PASS (geometry frozen, re-site budget 0/2)
+Floor invariant	worst-case 4,781.14 ≥ 4,775.00 (+6.14)	PASS — but only 205 pts of BTC stop slippage away from breach
+Buffer invariant	4,781.14 vs 4,795.00 = −13.86	FAIL
+R13 self-scaling	18.74 > 11.88 → BREACH by 6.86	FAIL (staged legally under fixed 30.51; balance fell; canon moved)
+C1 re-arm gates (C297)	wall τ/ρ unverifiable, CVD z unverifiable, touch-armed Bid 81,458 < 81,870 FAIL, distance to fill −502 pts	FAIL-by-default per refusal rule
+Lifecycle status	P0-cancel ruling standing, unexecuted	ZOMBIE
+
+RULING R1 [P0, RE-ISSUED]: CANCEL ticket #19244096 NOW. A ruling that is not executed does not expire into validity. Non-execution ≠ ratification. Retcode proof (10009/10010) due at C299 open.
+
+SECTION D — RADAR SCREENING VERDICTS [CALC]
+CANDIDATE
+	
+STRESS
+	
+POST-STRESS EQUITY
+	
+BUFFER
+	
+INDEPENDENT STRUCTURAL FAULTS
+
+GER40.p SELL_LIMIT 0.03 (combo B)	18.74	4,781.14	−13.86 REJECT	VAH shelf vintage pre-PMI (07:15/07:30/08:00 all released); VAH/VAL/POC not re-derived post-release; 11.21 $/pt/lot spec still unpinned by order_check
+BTCUSD.pi BUY_LIMIT 0.02 @ 80,500	15.95 (operator, zero-spread) / 16.34 realistic	4,783.93 / 4,783.54	−11.07 REJECT	TP 82,000 sits inside the C286/C297 whale-wall zone 81,580–82,000 → TP into opposing liquidity; LIR/CVD unverifiable
+
+Both EV columns (+4.77 / +7.56) are isolation fallacies — computed as if the book were empty and the buffer unconstrained. The binding constraint is solvency, and both fail it at every layer, before the exactly-1 doctrine even applies.
 
 SECTION E — 4-PERSONA EXHAUSTIVE EVALUATION
-🔬 PERSONA 1: STATISTICAL REGIME & DIFFUSION QUANT
+🔬 Persona 1 — Statistical Regime & Diffusion Quant
+VR(q=4) Newey-West: computable only on contaminated extract → DISCARDED. Clean M15/1h OHLC tables are not extractable from the warehouse this cycle → BTC + GER40 regime = UNDEFINED per the refusal rule → unconditional stand-aside for all NEW directional stagings. This is the gate working as designed, not a data gap to paper over.
+ER(20/48), OU τ½, HAC t: DATA-GATED (same grounds). No certified trend or MR state exists on the desk right now.
+Driftless diffusion geometry (the only universally computable layer): p(hit TP first) = SL/(SL+TP): BTC-S 414.19/1,483.76 = 0.279; BTC-L 557.8/2,057.8 = 0.271; GER40-B 38.84/133.44 = 0.291. All three tickets are ≈0.28 propositions before edge — they require microstructure/regime certification to clear p_req ≈ 0.32–0.35, and that certification is exactly what is missing.
+Persona verdict: UNDEFINED_NOISE → UNCONDITIONAL STAND ASIDE (new risk).
+🌊 Persona 2 — Microstructure & Liquidation Quant
+Sheet 18/25 whale-wall re-verification for 81,960: τ ≥ 180s and ρ ≥ 0.60 UNVERIFIABLE from stale sheets → polarity/persistence certification FAILS by default.
+Sheet 26 CVD: no fresh 1m/5m/15m delta → z_CVD uncomputable → the C1 requirement z ≤ −1.50 (short-side absorption) is unconfirmed.
+Sheet 23/24 LIR for the BUY candidate: unverified; and the BUY's TP violates the ahead-of-opposing-liquidity rule regardless.
+Touch-armed dispatch gate (Bid ≥ 81,870): spot 81,458 → FAIL, −502 pts below the resting limit (P(fill) consistent with the measured ~0.17 naked-limit history).
+Persona verdict: REJECTED — no live orderbook ratification exists for any candidate.
+🛡️ Persona 3 — Convex Portfolio & Solvency Sentry
 
-P1-1. NZDUSD #19244087 (live — management review, not entry approval).
+Friction-vs-size law (the cycle's decisive computation):
 
-From-here dominance: reward to TP = $56.70 vs remaining risk to SL = $5.67 → R:R from here = 10.00. Breakeven p from here = 0.0909; friction-adjusted p for EV>0 = 0.1619. The entry required p ≥ 0.3204; the hold requires only p ≥ 0.18 — the position has already paid its information cost. Early exit forfeits a 10:1 payoff and is mathematically indefensible absent a regime break.
-Driftless diffusion: barriers −1.6/+6.1 pips → p(hit TP first) = 0.2078; E[T] = a·b/σ² = 0.61–2.44 M15 bars (9–37 min) for σ ∈ [2,4] pips/bar — far under the 24-bar Time-Decay Trap threshold. This position self-resolves fast; it cannot rot.
-Verdict: HOLD, regime-invalidated exit only (z_VR(4,1h) flipping > +1.96 against the MR thesis, or structural break of 0.5688 with >240s linger).
-
-P1-2. BTC BUY_LIMIT radar (0.02 @ 80,500 / 79,942.20 / 82,000).
-
-Geometry: R:R = 2.689 ✓; friction 0.2074R → p required for EV>+0.20R = 0.3815; driftless barrier baseline = 0.2711. The gap (+0.11 probability-alpha) must be certified by a TREND gate: z_VR(4,1h) > +1.96 or ER(20,1h) > 0.25. No trend statistics exist on the desk for this level → FAIL CLOSED (UNDEFINED → STAND ASIDE).
-
-P1-3. GER40-B radar re-proposal.
-
-Geometry unchanged from C295 ratification: R:R 2.4356, friction 0.1784R → p required = 0.4012 vs driftless 0.2911 (+0.11 alpha required, MR certification: z_VR(4) < −1.96).
-Fatal: non-stationarity. France PMI (07:15) and Germany PMI (07:30) are already released; Eurozone flash prints at 08:00 — 14m06s from telemetry. Every VR/ER/OU/HAC statistic computed on pre-PMI bars describes a regime that terminates at 08:00. Classifying this setup today is measuring a dead distribution. UNDEFINED through the release window → UNCONDITIONAL STAND ASIDE until 08:35:00 re-fit.
-
-P1-4. BTC SELL_LIMIT #19244096 (pending).
-
-R:R 2.5823; friction 0.1987R → p required = 0.3905 vs driftless 0.2791 (+0.11 from MR + wall). Carry-over ratification (C291/C295) survives statistically, but its aggregate position does not (Persona 3). Required p is only earnable with fresh CVD z ≤ −1.50 and wall re-verification — both stale ≥ 3h45m.
-
-P1 unifying finding: every ticket on this desk requires ≈ +0.11 probability-alpha above the driftless barrier baseline to clear EV>+0.20R. That is precisely what the 4-persona battery exists to certify — and PMI-contaminated statistics cannot certify anything European before 08:35.
-
-🌊 PERSONA 2: MICROSTRUCTURE & LIQUIDATION QUANT
-
-P2-1. BTC BUY radar — three independent microstructure failures.
-
-TP into opposing liquidity: TP 82,000 sits inside the 81,580–82,000 institutional ask zone this desk itself has been fading since C286. Section F requires TP ahead of opposing liquidity; this TP is behind it. REJECT.
-Whale polarity unverified: a long requires a resting BID bunker below 80,500 with τ ≥ 180s, ρ ≥ 0.60. Newest wall map is C291-provenance (≥ 3h45m). FAIL CLOSED.
-LIR gate unverified: longs require LIR > 1.80 in the ±2% band; no fresh Sheet 23/24 pull exists. FAIL CLOSED.
-Also: same-asset dual-side stacking with the live BTC SELL_LIMIT is a live instance of defect D6 (no correlation clustering).
-
-P2-2. BTC SELL_LIMIT — polarity is correct for a fade (resting ask above, limit at the wall face 81,960), but persistence/refill (τ ≥ 180s, ρ ≥ 0.60) is unverifiable on stale maps; sweep-reclaim state at 81,960 unknown (if the zone was swept and reclaimed <90s, fade valid; >240s linger = structural breakout, fade forbidden). Re-verification is a hard precondition of any re-arm (Gate C1).
-
-P2-3. NZD #19244087 — SL 0.56888 rests 0.7 pips below the current mark; no evidence of an un-swept retail stop cluster directly beneath (C286 diligence). No staging-trap violation. Monitor only.
-
-🛡️ PERSONA 3: CONVEX PORTFOLIO & SOLVENCY SENTRY (arbiter's home ground)
-
-P3-1. NZD #19244087 sizing audit — PASS.
-Lot-snap verified: floor((13.00/16.00)×100)/100 = 0.81 → nominal 12.96, a hair under the 13.00 band floor by correct floor-snapping (not a defect). R:R 3.8125 ≫ 2.0 ✓. Spread/TP = 4.92% ≤ 10% ✓. Kelly: f* = 0.1795 → 0.25·f*·Equity = $215.91 ≫ 12.96 — Kelly never binds at our sizes; R13/buffer are always the binding constraints.
-
-Stressed 21.24 (canon) → post-stress 4,797.27, buffer +2.27 ✓ — but under a realistic per-lot commission ($7 RT/lot → $5.67 on 0.81 lots, defect D7: our flat-$2 model underestimates multi-lot tickets), stressed = 24.91 → post-stress 4,793.60 = buffer −1.40. The NZD leg alone can breach the buffer on commission reality. Early-BE priority is mandatory.
-
-P3-2. THE GOVERNING FINDING — the live book is R13-illegal.
-RESIDUAL-13 cap = balance − 4,788.00 = 30.51. Current book aggregate = 21.24 + 18.12 = 39.36 > 30.51 → BREACH. Full scenario matrix:
-
-SCENARIO
+NR ($)
 	
-Σ STRESSED
+STRESS
 	
-WORST-CASE EQUITY
+FRICTION (R)
 	
-FLOOR (4,775)
+P(EV>0)
 	
-BUFFER (4,795)
+P(EV>+0.20R)
 	
-R13
-
-S1 NZD only (canon)	21.24	4,797.27	✓ +22.27	✓ +2.27	✓
-S2 NZD only (D7 comm)	24.91	4,793.60	✓ +18.60	✗ −1.40	✓
-S3 NZD + BTCsell [CURRENT BOOK]	39.36	4,779.15	✓ +4.15	✗ −15.85	✗ BREACH
-S4 NZD + BTCbuy	37.57	4,780.94	✓ +5.94	✗ −14.06	✗ BREACH
-S5 NZD + GER40-B	39.98	4,778.53	✓ +3.53	✗ −16.47	✗ BREACH
-S6 FULL RADAR (all three)	55.69	4,762.82	✗ FLOOR BREACH −12.18	✗	✗
-S7 NZD-BE (+1.62 locked) + BTCsell re-arm	18.12	4,800.39	✓ +25.39	✓ +5.39	✓
-
-Three decisive readings: (a) executing the entire radar as staged walks the account to 4,762.82 — a HARD FLOOR BREACH; (b) the radar's own surplus column ("+$4.77", "+$7.56") is computed against a phantom book that omits the live NZD — true surpluses are −16.47 and −14.06 (isolation fallacy, D6 live instance #2 after the XAG triplets); (c) the R13 cap is self-scaling (balance − 4,788): after one NZD stopout (balance 4,801.12) the cap shrinks to 13.12 — below every ticket we own (min 16.34) → post-loss LOCKOUT. The system is anti-martingale by construction.
-
-P3-3. BTC BUY radar stress flaw: the operator's $15.95 implies spread = $0.004 — a zero-spread assumption. Realistic (S=$15.67/BTC × 0.02): 16.34. Telemetry defect, noted for D-list.
-
-🏛️ PERSONA 4: AUCTION PROFILE & FRICTION ARBITRAGEUR
-
-P4-1. Event Risk Clock — the controlling constraint.
-
-EVENT
+POST-STOPOUT
 	
-TIME (UTC)
+NEXT CAP VS ANCHOR 4,783
+
+4.14 (0.01 BTC)	7.58	0.560	0.436	0.491	4,792.31	+9.31
+8.00	13.20	0.370	0.382	0.438	4,786.68	+3.68
+13.00	19.45	0.228	0.357	0.416	4,780.43	−2.57
+13.06 (GER40 0.03)	18.74	0.178	0.343	0.401	4,781.14	−1.86
+The flat $2.00 commission + 1.25 stress multiplier creates a minimum friction-efficient scale of NR ≈ 10. At post-loss balance 4,799.88, the self-scaling cap (11.88) admits only sub-efficient sizes whose p_req(EV>+0.20R) ≈ 0.49 exceeds our best certified p̂ ≈ 0.46 → every legal-size ticket is currently EV-negative; every EV-positive ticket is currently illegal. This is the friction trap, and it, not any indicator, is the desk's binding constraint.
+MICRO-LATTICE amendment (repairs C297's micro-rung-8, which the table shows cannot chain): anchor = FLOOR + 8.00 = 4,783.00; unit = min-lot 0.01 (stress ≈ 7.6); chain capacity 4,799.88 → 4,792.30 → 4,784.72 → 4,777.14 — four stopouts with floor intact (+2.14), fifth blocked. One micro win ≈ +8.69; two micro wins → 4,817.26 ≥ 4,814.50 = rung-1 unlock.
+RUNG-1 UNLOCK LEVEL: balance ≥ 4,814.50 (stress 19.45 → post 4,795.05 ≥ 4,795.00, buffer-clean). RUNG-2 33.20 remains post-bank-only.
+MC (20k paths, micro→rung-1→rung-2, 2-loss breaker, H = 10.98h): P(mission) 0.0000 | P(floor breach) 0.0000 | P(≥1 banked win) 0.6041 | P(reach rung-1) 0.1654 | E[final] 4,799.72 (p05 4,784.73 / p95 4,817.26).
+Persona verdict: REJECT all full-size stagings; ARM micro-lattice conditionally (p̂ ≥ 0.55, 3/4 personas RATIFY, exactly-1, spread gates, TTL ≤ 6h).
+🏛️ Persona 4 — Auction Profile & Friction Arbitrageur
+Spread/TP ratios: BTC-S 15.67/1,069.57 = 1.47% ✓; BTC-L 1.04% ✓; GER40 0.33pt/94.60pt = 0.35% ✓ — friction gates pass everywhere; friction is not the rejector this cycle (solvency and data are).
+Auction geometry: GER40 VAH/VAL/POC/IB are pre-PMI vintage (07:15 FR / 07:30 DE / 08:00 EZ all released; last EU print 25,285.75). Session range stats are non-stationary until re-derived on post-release tape — the 13:00 UTC NY re-audit is the certified re-entry point.
+Event clock forward: US flash-PMI window ≈ 13:10–14:20 blackout (±35 min, indices/FX/metals); rollover embargo 21:15–22:30 (moot — flat by 20:00); de-stage 19:00 / weekend-flat 20:00 UTC; effective runway 10.98h, not 17.0h.
+Persona verdict: REJECTED (stale auction state) — RATIFIED as re-audit schedule (13:00 UTC).
+SECTION F — CO-EQUAL SYNTHESIS: OPTION B — STAND ASIDE IN 100% FLAT CASH DEFENSE
+
+No proposal on the table — zombie ticket or radar — passes all four personas. The council's convexity is not in a ticket today; it is in the unlock ladder.
+
+EXECUTION TICKET (the only action):
+
+Action: CANCEL pending order #19244096 (BTCUSD.pi SELL_LIMIT 0.03) — retcode proof to C299
+Everything else: no new orders
+
+POTENTIAL CANDIDATE RADAR CHECKLIST (numerical triggers, pre-registered — no re-deliberation):
+
+GATE
 	
-STATUS AT 07:45:54
+SYMBOL/SIDE
 	
-CONSEQUENCE
-
-France Flash PMI	07:15	released	statistics stale
-Germany Flash PMI	07:30	released	statistics stale
-Eurozone Flash PMI	08:00	14m06s away	±35min blackout → European embargo until 08:35:00
-Rollover embargo	21:15–22:30	—	—
-Weekend flat	20:00	—	effective runway 12.24h, not 17.0h
-
-The same clock discipline that correctly cancelled GER40-B at 07:10 forbids re-staging it now. Re-proposing it 35 minutes before the release inverts the doctrine that ratified it.
-
-P4-2. Friction ratios: NZD 4.92% ✓ | BTC-sell 1.47% ✓ | BTC-buy 1.04% ✓ | GER40 ≈ 1.0 pt/94.6 pt = 1.05% now, but event spreads widen 3–5× at 08:00 → pre-release friction unverifiable; post-PMI gate: spread ≤ 3.0 pts (ratio ≤ 3.2%).
-
-P4-3. Telemetry hygiene (new defect D8): Section A states "Zero positions consumed" against a book carrying one filled position — template line not synced to live state. Small, but this is the same channel that understated worst-case by $13.33; telemetry hygiene is solvency infrastructure.
-
-SECTION F — ARBITER SYNTHESIS: OPTION B — MANAGED HOLD + STAND ASIDE ON NEW STAGING
-
-We are not 100% flat (NZD is live and mathematically correct to hold), so pure cash defense is unavailable — but zero new capital deploys this cycle. Two immediate book orders, then pre-registered re-arm gates.
-
-⚡ RULING 1 — P0 IMMEDIATE: CANCEL BTCUSD.pi #19244096 (SELL_LIMIT)
-
-Basis: aggregate R13 = 39.36 > 30.51; buffer breach on both accountings; the combination was never jointly ratified (each ticket was sanctioned at a cycle when the other didn't exist). A reactive "manage-if-both-fill" protocol was costed and rejected on execution-risk grounds (C283/C284 strike history; deterministic action beats conditional execution per COUNCIL-OS conservative-merge). Pending cancel = zero cost; parameters are preserved in Gate C1.
-
-⚡ RULING 2 — NZD #19244087 MANAGEMENT PROTOCOL (armed now)
-ORDER
+PRECONDITIONS (ALL REQUIRED)
 	
-TRIGGER (BID ≥)
+GEOMETRY
 	
-ACTION
-	
-RETCODE GATE
+TTL
 
-A1 Early-BE	0.56916 (+0.75R)	SL → 0.56906 (locks +$1.62)	require DONE; 10016-guard
-A2 +1.25R	0.56924	SL 0.56906 — quantization-merged into A1 (0.15R = 2.4 ticks rounds to the same tick)	—
-A3 Profit lock	0.56930 (+1.65R)	SL → 0.56917 (locks +$10.53)	only reachable if TP removed; dormant armor
-A4 Time-decay	fill_ts + 6h (∈ 13:08–13:46 UTC — pull the deal timestamp)	if Bid < 0.56907 (+0.20R): close at market	—
+MICRO	BTC/GER40/XAU native, either side, 0.01 lot	p̂ ≥ 0.55 and 3/4 personas RATIFY and exactly-1 and spread (BTC ≤ $16, GER ≤ 4.0 pt, XAU ≤ 0.5 pt) and fresh-tape certification	per-setup, R:R ≥ 2.0, stress ≤ bal − 4,783.00	≤ 6h, 24×M15 time-decay exit
+G-BTC-S	BTCUSD.pi SELL 0.03 @ 81,960 / 82,374.19 / 80,890.43	bal ≥ 4,814.50 and wall τ≥180s ρ≥0.60 and CVD z ≤ −1.50 and Bid ≥ 81,870 (touch-armed)	frozen; re-site 0/2	cancel 12:00 UTC
+G-BTC-L	BTCUSD.pi BUY 0.02 @ 80,500	bal ≥ 4,814.50 and no BTC leg and whale BID < 80,500 (τ/ρ) **and** LIR > 1.80 and CVD z ≥ +1.50 and (z_VR > +1.96 or ER > 0.25)	TP ≤ 81,500 (82,000 banned)	6h
+G-GER40	GER40.p SELL 0.03 (combo B)	NY re-audit 13:00 UTC: VAH/VAL/POC re-derived post-PMI and spread ≤ 4.0 pt and bal ≥ 4,814.50	25,381.39 / 25,420.23 / 25,286.79	cancel 17:30, hard flatten 15:00
+G-NY	SP500/NAS100 radar	13:00 UTC re-audit; US flash-PMI blackout 13:10–14:20	TBD at audit	—
 
-TP 0.56965 (+3.81R, +$49.41) stands and supersedes the +2.50R fallback (0.56944). No averaging, no SL widening (re-site ban). Decimal discipline: 5-digit symbols, point = 0.00001 — this is the C286 bug class, respect the tick grid.
+Session discipline: breaker 1/2 armed (next full stopout → defense mode, flat to 20:00); de-stage 19:00; weekend-flat 20:00 UTC non-negotiable.
 
-⚡ RULING 3 — PRE-REGISTERED RE-ARM GATES (execute mechanically when ALL conditions print — no council re-deliberation)
-C1 · BTC SELL re-stage 0.03 @ 81,960.00 / SL 82,374.19 / TP 80,890.43 (risk 12.43, stressed 18.12): iff NZD Early-BE retcode-confirmed or NZD closed AND wall τ ≥ 180s, ρ ≥ 0.60 AND spread ≤ $16/BTC AND CVD z ≤ −1.50 AND sweep-reclaim < 90s at the 81,960 zone AND R13 vs live book. TTL: cancel 12:00 UTC if unfilled.
-C2 · BTC BUY re-stage 0.02 @ 80,500 / SL 79,942.20 / TP ≤ 81,500 (82,000 REJECTED — into-wall): iff NO BTC leg on book AND LIR > 1.80 AND CVD z ≥ +1.50 AND whale BID below 80,500 (τ ≥ 180s, ρ ≥ 0.60) AND trend gate (z_VR > +1.96 or ER > 0.25 on 1h).
-C3 · GER40-B re-stage 0.03 @ 25,381.39 / SL 25,420.23 / TP 25,286.79: iff clock ≥ 08:35:00 UTC AND post-PMI spread ≤ 3.0 pts AND VAH/VAL/POC re-validated against the post-release auction AND NZD resolved/BE. Cancel-if-unfilled 12:00 UTC; hard flatten 15:00 UTC (DAX close).
-VERDICT JSON
+SECTION G — METHODOLOGY INQUEST (GLM-5.3-Flash full; GPT Astra concurs on §1, §3, §5 with the fill-geometry emphasis)
+
+1. Conjunctive filter sclerosis. Our 7-binary AND-gate has produced zero certified setups all session — not because edge is absent but because AND-ing seven noisy binaries drives joint pass-rate to ~0 while each filter alone is <50% precise. Fix: replace the conjunction with a calibrated scorer — p̂ = σ(β₀ + β₁·z_VR + β₂·ER + β₃·LIR′ + β₄·z_CVD + β₅·ρ_wall + β₆·session) — and gate on EV = p̂·R − (1−p̂) − f > +0.20R, coefficients fitted on the Shadow Ledger (n ≥ 30) before any size change. The refusal rule then polices data quality; the scorer polices expectancy.
+
+2. Static retrospective data vs dynamic microstructure. Today's contaminated-extract incident (VR4 = 0.252, z = −59.7 from concatenated sheet numbers) is the smoking gun: the 33-sheet warehouse is a scrapbook of cross-sectional snapshots, not tape. Any statistic computed across its rows is manufactured. Mandate: a raw per-symbol M15 OHLC table (timestamped, append-only) as Sheet 34, plus tick-velocity (Δtrades/Δt) at decision time. HTF shelves stay in the warehouse; everything timing-sensitive comes from live tape or is refused.
+
+3. Entry geometry & staging passivity. Measured funnel: E[realized] = P(instantiate) × P(fill|staged) × E[P&L|fill] ≈ 0.5 × ~0.2 × ~$3 ≈ $0.30/cycle — and today's actual is $−18.63 because the one fill was a stopout. The 81,960 limit sits 502 pts below spot: we are posting maker orders in empty rooms. Fix (already canon, now exclusive): touch-armed dispatch only — no naked limit beyond 0.5·ATR(M15)·√TTL_hours; dispatch on first touch of the trigger band, not before. Fable's socket log is the ground truth for fill forensics.
+
+4. Multi-asset alpha specialization. Category errors persist: LIR/CVD/Hyperdash are crypto-perp natives (24/7 taker flow, liquidation engines); GER40's natives are auction structure + Eurex session volume + spread regime; FX natives are rollover drift + carry + London/NY overlap flow. Grafting CVD onto DAX is reading tea leaves in the wrong language. Reorganize the screener by asset-class feature sets, not a universal template (this kills D2-type zero-spread arithmetic at the source).
+
+5. Actionable alpha evolution + the soul-searching answer. Why has equity stagnated despite immense data? Ranked by measured dollar impact: (1) The execution pipe leaks — two P0-grade rulings unexecuted in three cycles (E-296-01, E-298-01); a perfect filter stack multiplied by a broken pipe is zero. (2) Fill geometry — P(fill|staged) ≈ 0.17 on posted-and-prayed limits. (3) The friction trap — post-loss, legal size shrinks below friction-efficient scale (p_req 0.49 > p̂ 0.46), so the desk is forced to choose between −EV trades and flat cash; the micro-lattice + 4,814.50 unlock is the arithmetic escape. (4) Data theater — 33 sheets ingest megabytes and have certified nothing the broker didn't already show us; our only demonstrated edges are location (whale walls) and session timing. (5) The mission contract itself — +700.12 in 10.98 effective hours needs 9 net rung-2 wins in ≤ 8 attempts; the deterministic best chain (micro+micro → rung-1 → rung-2 → rung-3) terminates at 5,096 < 5,500; MC P(mission) = 0.0000 with P(breach) = 0.0000. The elite-researcher move is to say this out loud: at legal risk, 5,500 by 23:59 is arithmetically closed. Proposed re-contract to the operator: "Maximize equity by 20:00 UTC flat with P(floor breach) = 0; harvest the first banked win (P ≈ 0.60) and restore rung-1/2 capacity for the next session" — the target date, not the discipline, is what needs amending. We defend 4,775 absolutely; we do not defend a deadline with the account.
+
+JSON VERDICT
 json
 {
-  "cycle": 297, "arbiter": "GLM-5.3-Flash", "ts_utc": "2026-10-23T07:45:54Z",
-  "book_actions": [
-    {"action": "CANCEL", "ticket": 19244096, "symbol": "BTCUSD.pi", "priority": "P0",
-     "reason": "R13 aggregate 39.36 > 30.51 with NZD #19244087 live; buffer breach on both accountings"},
-    {"action": "ARM_RATCHET", "ticket": 19244087, "symbol": "NZDUSD.pi",
-     "orders": [{"trigger_bid": 0.56916, "new_sl": 0.56906, "label": "A1 Early-BE +0.75R"},
-                {"trigger_bid": 0.56930, "new_sl": 0.56917, "label": "A3 lock +1.65R (dormant)"}],
-     "time_decay": {"deadline": "fill_ts+6h (13:08-13:46 UTC)", "condition": "bid<0.56907", "action": "CLOSE_MARKET"},
-     "tp_stands": 0.56965}
+  "cycle": 298, "timestamp_utc": "2026-10-23T09:01:10Z",
+  "equity": 4799.88, "buffer_cushion": 4.88, "floor_cushion": 24.88,
+  "breaker": "1/2", "rung": 0, "banked": 0.00,
+  "option": "B_STAND_ASIDE_100PCT_FLAT_CASH",
+  "actions": [
+    {"prio": "P0", "action": "CANCEL_ORDER", "ticket": 19244096, "symbol": "BTCUSD.pi", "reason": "zombie: C297-P0 unexecuted; R13-SS 18.74>11.88; C1 FAIL; buffer -13.86", "proof": "retcode C299"},
+    {"prio": "NONE", "action": "NO_NEW_ORDERS", "until": "radar gate or micro-lattice certification"}
   ],
-  "new_staging": "OPTION_B_STAND_ASIDE",
-  "rearm_gates": {"C1_btc_sell": "post-NZD-BE + wall tau/rho + CVD z<=-1.50", 
-                   "C2_btc_buy": "TP<=81500 + LIR>1.80 + trend z_VR>1.96|ER>0.25",
-                   "C3_ger40": "clock>=08:35:00Z + post-PMI spread<=3.0pt + VA re-validated"},
-  "ladder": {"rung": 0, "banked_usd": 0.00, "envelope": {"pre_bank": 22.80, "post_bank": 33.20}},
-  "p_mission": 0.0000, "p_mission_upper_bound": 7.6e-06, "p_breach": 0.0000, "p_at_least_one_win": 0.67,
-  "defects_open": ["D6 correlation clustering (LIVE: BTC dual-side + NZD-blind radar)", 
-                    "D7 flat-$2 commission vs per-lot reality", "D8 telemetry template hygiene",
-                    "OPS-MISS #1: C295-1 GER40 staging never executed (non-strike)"]
+  "radar_gates": {
+    "MICRO": {"lot": 0.01, "p_hat_min": 0.55, "personas": "3/4", "stress_cap": "bal-4783.00", "ttl_h": 6},
+    "G-BTC-S": {"bal_min": 4814.50, "bid_touch": 81870, "cvd_z_max": -1.50, "wall": "tau>=180s rho>=0.60", "cancel": "12:00Z"},
+    "G-BTC-L": {"bal_min": 4814.50, "lir_min": 1.80, "cvd_z_min": 1.50, "tp_max": 81500},
+    "G-GER40": {"reaudit_utc": "13:00", "spread_pt_max": 4.0, "bal_min": 4814.50},
+    "G-NY": {"reaudit_utc": "13:00", "blackout": "13:10-14:20"}
+  },
+  "unlock": {"rung1_balance": 4814.50, "micro_anchor": 4783.00, "micro_unit": "0.01 lot"},
+  "session": {"destage_utc": "19:00", "flat_utc": "20:00", "effective_runway_h": 10.98},
+  "mission": {"P_success": "<1%", "P_floor_breach": 0.0, "verdict": "infeasible at legal risk; re-contract proposed"},
+  "strikes": {"rtp": "2/3", "events": ["E-296-01", "E-298-01"]},
+  "personas": {"regime": "UNDEFINED_STAND_ASIDE", "microstructure": "REJECTED_UNVERIFIABLE", "solvency": "REJECT_ALL_FULL_SIZE_ARM_MICRO", "auction": "REJECTED_STALE_REAUDIT_1300Z"}
 }
-SECTION G — METHODOLOGY INQUEST [MANDATE: both strategists answer — this is GLM-5.3-Flash's full position]
 
-Is the methodology sound? The honest split: our DEFENSE is elite-grade; our OFFENSE is pre-publication research-grade. Zero hard-floor breaches across 17+ cycles, P(breach) = 0.0000 in 20k Monte Carlo paths — the solvency architecture works. But E[final balance] tonight is 4,849, not 5,500. Here is the candid, five-dimension autopsy:
-
-G1 · Conjunctive Filter Sclerosis → Logistic Expectancy. We AND seven-plus binary gates whose features all derive from the same price series — they are correlated (ρ ≈ 0.6), so the conjunction adds ~2.5 independent bits, not seven. We reject ~60–70% of positive-EV candidates while gaining little discrimination, then wonder why nothing stages. Fix: replace the AND-lattice with a scored expectancy rank: s(x) = σ(β₀ + Σβᵢzᵢ) over standardized features (|z_VR| ±0.20, ER 0.10, LIR 0.15, CVD z 0.10, wall τ·ρ 0.10, spread/TP −0.15, regime match 0.10, session/embargo 0.10); accept top-k by EV = p̂·R − (1−p̂) − f > +0.20R subject to R13. But the deeper truth: we cannot fit β because we have n = 0 closed trades. The single highest-leverage action available is not a better model — it is building the evaluation harness: log EVERY candidate (accepted or rejected) with its full feature vector + 4h outcome. Two weeks of that is ~500 rows; the logistic fit becomes possible; the methodology becomes falsifiable instead of unfalsified.
-
-G2 · Static Retrospective Data vs Dynamic Microstructure. The 33-sheet warehouse is a 15-minute ETL of a market moving at tick rate; council cadence is 30–60 min; our signals' half-life is 20 min–4 h. Concrete decay math: a whale wall verified at 07:30 with survival S(t) = exp(−t/τ), τ ≈ 12 min, has S = exp(−15/12) = 0.29 by the time this council ratifies — 71% of the conviction has evaporated before the order could stage (and OPS-MISS #1 proves it sometimes never stages at all). Fix — two-speed architecture: HTF sheets define the GRID (levels, direction, invalidation); the tick stream owns the TRIGGER. Pre-register trigger JSON once per session: {price ∈ level ± 0.25 ATR} ∧ {spread ≤ 0.5×median₁ₕ} ∧ {tick-velocity z > 1.0} → desk executes mechanically; the council audits fills, not opinions. This cycle's Gates C1–C3 are exactly that pattern — extend it to everything.
-
-G3 · Entry Geometry & Staging Passivity. The value of a staged limit is p_fill × E[trade|fill] — we have been maximizing only the second factor with deep-extreme entries while p_fill runs ~0.3–0.5, so the product is starved. Our funnel: 156 assets → ~5 staged/cycle → ~0.35 fills/day → ~0.16 booked/day. We are an execution-limited shop, not an idea-limited shop. Fix: place at δ ∈ [0.10, 0.60] ATR behind the wall (not at its face), δ* = argmax p_fill(δ)·E[R|δ]; time-box every limit at TTL = 3×τ_half of the setup (this is what killed BTC/GER40 stagings silently); keep the MR-regime gate in front of every passive fade to price the adverse-selection tax of filled extremes.
-
-G4 · Multi-Asset Alpha Specialization (category errors). We run crypto L2/CVD/Hyperdash sheets against FX and European indices — those features are noise there. The native-alpha table: Crypto — CVD delta, funding, liquidation cascades, whale walls (the ONLY radar ticket where these are natively meaningful is BTC). FX majors — session liquidity, Frankfurt/London fixings, rate differentials, commodity/risk beta (NZD is a risk-on dairy currency, not an orderbook story). EU indices — cash-futures basis, auction VA geometry, PMI diffusion elasticity, the 13:30 UTC US open. Metals — LBMA fix windows, DXY inverse beta. Fix: asset-class-conditional feature matrix with zero-weight (not low-weight) crypto features on FX/indices, e.g. the FX-native fixing-reversion signal: fade fixing moves > 0.4σ at the 10:00 London fix, historically ~0.58 reversal probability.
-
-G5 · Why equity is flat — the accounting identity, no excuses.
-E[Δ
-/day]=N
-f
-	​
-
-ills×[
-p
-^
-	​
-
-⋅R−(1−
-p
-^
-	​
-
-)]×Risk
- − N_fills × friction$ ≈ 0.35 × [0.46×2.4 − 0.54] × 13 − 0.35×4.5 ≈ +$1.00/day. Against a +688.78 mission, that is ~700 days of required runway versus 12.24 hours available (weekend-flat 20:00 cuts the nominal "~17.0h" — itself overstated; 23:59 − 07:45:54 = 16.22h). The mission Monte Carlo is now categorical: P(mission) = 0.0000 across 20,000 legal paths; the theoretical upper bound on the fastest legal path is 0.40×(0.65×0.46)⁹ = 7.6×10⁻⁶. Reaching 5,500 requires 9 net rung-2 wins (23.6 at rung-1) inside ~7 possible attempts. Since C280, booked P&L ≈ $0 — every cycle re-stages, re-cancels, re-deliberates, and the decision latency exceeds the signal half-life. Two structural truths follow: (1) the Early-BE ratchet has never been costed — if it fires on 50% of would-be winners and 60% never re-reach target, it forfeits ≈ 0.72R per trade, larger than our entire net edge (+0.56R); propose a tiered-BE shadow A/B (at +0.75R → SL −0.25R, not BE) per the Persona-Cards protocol. (2) the anti-martingale reserve doctrine converts any rung-1 loss into full lockout (post-loss cap 13.12 < every ticket ≥ 16.34) — by design, and that is the price of P(breach) = 0; the surgical fix is a micro-rung: 8.00 nominal (stressed ≈ 12.5 ≤ 13.12), spread/TP ≤ 3%, MR+wall-confirmed only — BTC (1.04%) and GER40 (2.1%) qualify, NZD (4.92%) does not — so recovery stays legal after a loss instead of going dark.
-
-The researcher's bottom line: keep the floor architecture untouched — it is the best thing we have built. Rebuild the offense around: prospective journal → logistic scoring → pre-registered trigger execution → asset-native features → friction budget (prefer ≤5%, not the 10% ceiling). And say plainly to the operator: under current legal sizing and the 20:00 flat, Phase 1 as specified is a tail event of probability < 10⁻⁵ tonight. The council's duty is to maximize P(≥1 banked win) = 0.67 and compound from rung-2 — or to re-contract the mission (extend horizon / resize target) explicitly, rather than let a 7.6×10⁻⁶ lottery masquerade as a plan.
-
-Cycle 297 closed. P0 order stands: CANCEL #19244096, arm NZD A1/A3/A4, gates C1–C3 pre-registered. Next wake: bring the NZD deal timestamp, retcode logs for A1, and the post-PMI sheet pull at 08:35 — C3 is live the moment those print.
+Dispatch to Fable 5: execute R1 (cancel #19244096) immediately with retcode capture; hold 100% flat; next scheduled desk activity = 13:00 UTC NY re-audit (SP500/NAS100 + GER40 post-PMI geometry) with micro-lattice certification running continuously in shadow.
 
 ================================================================================
-Z.AI ATTACHED OUTPUT FILE:  (583 chars)
+Z.AI ATTACHED OUTPUT FILE:  (668 chars)
 ================================================================================
 
-HOLD:     #19236218 BTCUSD.pi SELL_LIMIT 0.03 @ 81,960 / SL 82,260 / TP 80,500 — geometry FINAL
-ARM:      Ratchet modify (81,735 → SL 81,930) pre-validated, <60s execution, retcode to C292
-ARM:      GER40.p SELL_LIMIT 0.03 @ 25,381.39 / 25,421.48 / 25,286.79
-          → stage ONLY on: ratchet-confirmed AND PMI absorbed AND spread ≤1.5pt
-            AND tick-vol ≥40th pct AND order_check tick-value pin
-RADAR:    SP500 7,673.49 / NAS100 29,028.84 pullbacks — NY 13:30 re-screen
-FORBIDDEN: third BTC re-site · second live risk leg before ratchet · rung-2 sizing before +$43.80 BANKS
+STAGE NOW:   SELL_LIMIT GER40.p 0.03 @ 25,381.39 | SL 25,420.23 | TP 25,286.79
+             order_check tick pin → send → retcode+ticket# at C295 (RTP)
+             ratchet 25,352.26 → SL 25,377.51 | cancel-if-unfilled 07:10 | event-flat 07:14:59
+ARM LEG-2:   SELL_LIMIT BTCUSD.pi 0.03 @ 81,960 | SL 82,374.19 | TP 80,890.43
+             stages on GER40 ratchet-confirm or 07:10 cancel (21.71 ≤ 30.51 PASS)
+ENVELOPE:    $22.80 nominal pre-bank · $33.20 rung-2 post-bank · $25–30 VETOED (residual breach)
+FORBIDDEN:   BTC long 80,986 (V1 cascade) · dual live legs pre-ratchet (36.77 > 30.51)
+RADAR:       SP500 7,677.50-SL geometry completion · NAS100 · NY 13:30 screen
