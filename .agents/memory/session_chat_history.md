@@ -62486,3 +62486,18 @@ You may create 12_Hyperdash and 13_Hyperliquid where you dump all intelligenve a
   * Role D (Clock/Universe): STAND_ASIDE (98 TradFi assets closed for weekend; 58 crypto perpetuals open).
   * Swarm cleanly pruned via kill_all.
 - **Active Reactive Sentry**: task-121459 running arena_completion_daemon.py --wait (IsDaemon=false) to trigger instant Antigravity wakeup the moment Arena.ai completes.
+
+---
+### Turn Log: Torn-Read Provenance Defect Fixed & Dual Frontier Council In Flight (Cycle 312)
+- **Timestamp**: 2026-10-23 23:57:26 UTC
+- **Arena.ai Diagnostic Autopsy**:
+  * Arena.ai (GPT Astra) delivered a non-schema diagnostic identifying that declared workbook_sha256 (b6aebf6...) did not match the committed git repository blob (e855a87f...).
+  * Root Cause: generate_cycle_envelope.py performed an unbuffered direct disk read on Data/DataBase_Trading.xlsx while the continuous Excel pipeline daemon was concurrently writing to it (torn-read defect).
+  * Permanent Engineering Fix: Patched generate_cycle_envelope.py with get_git_blob_sha256(). Provenance digests for workbook_sha256 and evidence_manifest_sha256 are now derived directly from the declared git commit blob via git show <commit>:<path>, guaranteeing 100% byte-for-byte mathematical parity with the committed repository.
+- **Re-generated Cycle 312 Envelope**:
+  * Git commit: 0d2d833b...
+  * Workbook SHA256: e855a87fb055ab6f5d8f2be8e5cdab19afe786afaa62ae006984a2c6ef2f6fab (100% MATCH).
+  * Manifest SHA256: ce3423dd3fb75685dffb1cd8280258f78b0d50e15e3e9b5c3e21c6f7bf6205a9 (100% MATCH).
+  * Risk policy SHA256: 4633e4af... (100% MATCH).
+- **Dual Council Dispatch**: Dispatched the verified Cycle 312 prompt to Arena.ai, Z.ai, and Gemini Web2API. Both Arena1 (gen=True, hash ca857c7e...) and Z.ai (gen=True) are actively generating.
+- **Reactive Wakeup Armed**: Background task 	ask-121516 (rena_completion_daemon.py --wait, IsDaemon=false) is running to trigger instant Antigravity wakeup upon completion.

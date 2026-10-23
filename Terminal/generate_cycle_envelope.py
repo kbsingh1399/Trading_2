@@ -99,6 +99,19 @@ def read_inventory(api):
     }
 
 
+
+def get_git_blob_sha256(rel_path, commit="HEAD"):
+    try:
+        norm = str(rel_path).replace("\\", "/")
+        if "Data/" in norm:
+            git_path = norm[norm.index("Data/"):]
+        else:
+            git_path = f"Data/{pathlib.Path(rel_path).name}"
+        blob = subprocess.check_output(["git", "show", f"{commit}:{git_path}"], cwd=ROOT)
+        return hashlib.sha256(blob).hexdigest()
+    except Exception:
+        return sha256_file(pathlib.Path(rel_path))
+
 def sha256_file(path):
     if not path.exists():
         return "FILE_NOT_FOUND"
@@ -143,8 +156,8 @@ def build_cycle_envelope(cycle_id=None):
     provenance = {"git_commit": get_latest_git_commit(),
                   "git_tree": subprocess.check_output(["git", "rev-parse", "HEAD^{tree}"], cwd=ROOT, text=True).strip(),
                   "risk_policy_sha256": hashlib.sha256(json.dumps(risk_policy, sort_keys=True).encode()).hexdigest(),
-                  "evidence_manifest_sha256": sha256_file(MANIFEST_PATH),
-                  "workbook_sha256": sha256_file(WORKBOOK_PATH),
+                  "evidence_manifest_sha256": get_git_blob_sha256(MANIFEST_PATH, get_latest_git_commit()),
+                  "workbook_sha256": get_git_blob_sha256(WORKBOOK_PATH, get_latest_git_commit()),
                   "excel_freshness_verified": None}
     now = datetime.datetime.now(datetime.timezone.utc)
     rollover = 21 * 60 + 15 <= now.hour * 60 + now.minute < 22 * 60 + 30

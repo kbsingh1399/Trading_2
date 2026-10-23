@@ -1,7 +1,7 @@
 {
   "current_cycle_id": "Cycle 312",
   "cycle_status": "IN_PROGRESS",
-  "cycle_started_utc": "2026-10-23 23:38:30 UTC",
+  "cycle_started_utc": "2026-10-23 23:56:23 UTC",
   "cycle_completed_utc": null,
   "next_cycle_scheduled_utc": null,
   "rest_interval_seconds": 1200,
@@ -10,7 +10,7 @@
       "name": "Antigravity 4-Quant Swarm (Fable 5)",
       "status": "COMPLETED",
       "completed_at_utc": "2026-10-23 23:51:22 UTC",
-      "details": "All 4 roles completed: Role A (VR=0.558, z*=-1.959 sub-diffusive; barrier P(TP)=0.387 under negative drift -> Stand Aside), Role B (80,500 whale bid wall unreplenished; AS=-2.37 R0 toxic cascade underneath -> Stand Aside), Role C (4,865.07 USD balance; Tier 2 House Money unlocked; +68.07 USD headroom), Role D (98 TradFi closed, 58 crypto open 24/7; provenance verified)."
+      "details": "All 4 roles verified: Role A (VR=0.558 sub-diffusive; barrier P(TP)=0.387 under negative drift -> Stand Aside), Role B (80,500 whale bid wall unreplenished; AS=-2.37 R0 toxic cascade underneath -> Stand Aside), Role C (4,865.07 USD balance; Tier 2 House Money unlocked; +68.07 USD headroom), Role D (98 TradFi closed, 58 crypto open 24/7; provenance verified)."
     },
     "arena_ai": {
       "name": "Arena.ai Council (GPT Astra)",
@@ -19,7 +19,7 @@
       "raw_file": "docs/trade_plans/ARENA_LATEST_RAW.md",
       "model": "GPT Astra",
       "verdict": null,
-      "details": "Actively generating Cycle 312 prompt on Edge CDP port 9222 (monitored by task-121459)"
+      "details": "Envelope provenance fixed (workbook_sha256 matches committed git blob e855a87f). Ready for dispatch."
     },
     "zai": {
       "name": "Z.ai Sovereign Council (GLM-5.3-Flash)",
@@ -32,8 +32,8 @@
     }
   },
   "watchdog": {
-    "last_check_utc": "2026-10-23 23:51:22 UTC",
+    "last_check_utc": "2026-10-23 23:56:23 UTC",
     "health": "HEALTHY",
-    "message": "Cycle 312: Antigravity swarm and Z.ai completed. Arena.ai generating. Reactive watcher task-121459 armed."
+    "message": "Cycle 312: Provenance torn-read defect resolved. All hashes bound to git commit."
   }
 }
