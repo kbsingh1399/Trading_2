@@ -30,7 +30,7 @@ Entry Price:        0.56904 USD
 Filled At:          0.56904 USD at 2026-10-23 07:15:12 UTC
 Exit Deal:          #17439120 at 2026-10-23 07:38:40 UTC
 Exit Price:         0.56888 USD (Hit planned Stop Loss)
-Nominal PnL:        -$12.96 USD (16 points / 1.6 pips; Realized -$18.63 USD with spread)
+Nominal PnL:        -$12.96 USD (16 points / 1.6 pips; Realized -$18.63 USD versus -$12.96 entry-to-SL price loss; the remaining -$5.67 is an unallocated transaction-cost component until broker deal receipts separate commission, spread/slippage, and swap)
 Account Impact:     Realized Equity dropped from 4,818.51 USD to 4,799.88 USD
 Floor Cushion:      Compressed from +43.51 USD to +24.88 USD above 4,775.00 USD Hard Floor
 Buffer Cushion:     Compressed from +23.51 USD to +4.88 USD above 4,795.00 USD Buffer
@@ -287,41 +287,76 @@ flowchart TD
 
 ---
 
-## 📋 SUMMARY: THE 18-POINT EX-ANTE PRE-PUNCH CHECKLIST
+### 🩸 PITFALL 19 — CLOSED-MARKET OR ROLLOVER ZOMBIE ORDER
+A technically attractive setup row is emitted while the native venue is closed, the broker quote is stale, or rollover is active. Staging orders into closed markets risks uncancelable zombie orders and catastrophic opening gaps.
 
-Before ANY limit order is staged or punched into MetaTrader 5, the coordinator and subagents MUST physically verify that all 18 institutional pitfalls are absent:
+**Ex-Ante Prevention Rule**:
+- **Market-Clock Gate**: Enforce strict session checks before candidate emission: `Tradable(symbol, now) = broker_open AND native_venue_open AND quote_fresh AND NOT rollover`.
+- **Conservative FX Rollover Embargo**: 21:15–22:30 UTC mandatory execution freeze across all Forex CFDs.
+- **Closed Symbols are WATCHLIST_ONLY**: Closed symbols cannot produce staging ticket rows.
+- **Re-Pin Levels at Reopen**: Re-derive all Value Area boundaries, quotes, and TTLs after market reopening.
 
-| # | Pitfall Check | Required Quantitative Gate | Verified? |
+---
+
+### 🩸 PITFALL 20 — UNBOUND PROMPT OR STALE ATTACHMENT (DEFECT D11)
+A ticket is harvested without cryptographically proving cycle ID, dispatch nonce, prompt digest, evidence digest, role, and response schema. A stale attachment from an earlier cycle can contradict the main answer.
+
+**Ex-Ante Prevention Rule**:
+- **Machine Validation over Prose**: Reject prompts containing unresolved template placeholders.
+- **Nonce & Digest Verification**: Reject any response where cycle ID, dispatch nonce, or evidence manifest SHA-256 does not match.
+- **Single Validated Object**: Parse strictly one schema-valid ticket object; never execute free-form text attachments.
+- **Linked Broker Telemetry**: Link every broker order request to its authenticated cycle digest.
+
+---
+
+### 🩸 PITFALL 21 — SEMANTIC MONEY-COLUMN ALIASING (DEFECT D12)
+Valid numbers are placed under the wrong economic labels, such as stressed loss being reported as reward, or stale balance surplus being reported as current trading capacity.
+
+**Ex-Ante Prevention Rule**:
+- **Independent Recomputation**: The coordinator must independently recompute risk, reward, R:R, stressed loss, and post-joint-stop equity:
+  * `abs(reward - broker_profit(entry -> TP)) <= $0.01`
+  * `abs(risk - broker_loss(entry -> SL)) <= $0.01`
+  * `post_loss_equity = min(balance, equity) - joint_stressed_loss`
+- **Quarantine on Mismatch**: Automatically quarantine any candidate row exhibiting mathematical or semantic aliasing.
+
+---
+
+### 🩸 PITFALL 22 — FALSE COMPLETION OR FALSE CONSENSUS
+A cycle is prematurely declared complete based purely on response character count or raw process status, or a council model is counted as in agreement despite missing or unauthenticated output.
+
+**Ex-Ante Prevention Rule**:
+- **Schema & Artifact Verification**: Completion requires cycle-bound artifact identity, schema validation, and arithmetic verification.
+- **No Vote Without Response Digest**: Zero consensus credit without an independently harvested, digest-verified output blob.
+- **Attestation Transparency**: Every provider identity must carry its explicit attestation level.
+- **Mathematical Disagreement is a Dispute**: Conflicting floor definitions or risk formulas constitute an unresolved Severity-1 dispute, triggering `AUTHORIZATION = DENIED_DISPUTED`.
+
+---
+
+## 📋 SUMMARY: THE EX-ANTE 22-CONTROL CHECKLIST
+
+Before ANY limit order is staged or punched into MetaTrader 5, the coordinator and subagents MUST physically verify that all 22 institutional controls pass:
+
+| # | Control Dimension | Quantitative Invariant Gate | Verified? |
 |---|---|---|---|
-| 1 | **Whale Wall Polarity** | Confirmed genuine resting BID for longs (`is_bid == True`), ASK for shorts | [ ] |
-| 2 | **Stop Cascade Clearance** | Zero un-swept opposing retail stop clusters between market and entry | [ ] |
-| 3 | **CVD Absorption** | Tape confirms absorption / deceleration; selling waterfall halted | [ ] |
-| 4 | **SL Distance Buffer** | SL distance >= 1.5x 15m ATR; outside liquidation sweep zone | [ ] |
-| 5 | **Extreme Location** | Value Area boundary (VAH/VAL) or VWAP |Z| >= 2.0 SD; no mid-range execution | [ ] |
-| 6 | **Spread Friction Gate** | Spread price / TP distance <= 10.0%; Spread <= 25 bps Crypto / <= 5 bps TradFi | [ ] |
-| 7 | **HTF Trend Alignment** | 20/50/200 EMA ribbon alignment; zero counter-trend fighting against $500M+ ETF outflow | [ ] |
-| 8 | **Execution Timing** | Staged strictly after sweep-reclaim or confirmed limit test; no premature impulse | [ ] |
-| 9 | **Clear TP Runway** | TP front-runs opposing liquidation magnet by 5-10 bps; realizable R:R >= 2.0R to 2.5R | [ ] |
-| 10 | **Dynamic Sizing & Solvency** | Stressed loss <= Buffer Cushion; Stressed Equity >= 4,795.00 USD (Defense buffer) | [ ] |
+| 1 | **Whale Wall Polarity** | Confirmed resting BID for longs (`is_bid == True`), ASK for shorts sitting ABOVE entry | [ ] |
+| 2 | **Stop Cascade Clearance** | Zero un-swept opposing retail stop clusters between market and entry (+0.40 ATR buffer) | [ ] |
+| 3 | **CVD Absorption** | Multi-timeframe CVD confirms absorption/exhaustion; aggressive counter-flow halted | [ ] |
+| 4 | **Structural Stop Anchor** | Stop placed beyond structural invalidation envelope (Session Low, VAL, VAH); never squeezed | [ ] |
+| 5 | **Auction Location** | Model 1 Extreme (|Z| >= 2.0 SD) or Model 2 HTF pullback to shelf; zero mid-range execution | [ ] |
+| 6 | **Spread Friction Gate** | All-in spread friction <= 10.0% of expected gross reward; spread <= 25 bps (Crypto) / <= 5 bps (TradFi) | [ ] |
+| 7 | **Statistical Calibration** | Setup class has calibrated empirical probability `P(win | fill)` from out-of-sample evidence | [ ] |
+| 8 | **Sweep-Reclaim Timing** | Reclaim within < 90s confirms liquidity grab; price lingering > 240s indicates structural breakout | [ ] |
+| 9 | **Clear TP Runway** | TP front-runs opposing absorption/walls with realizable net R:R >= 2.0R | [ ] |
+| 10 | **Strict Solvency Kernel** | Joint stressed post-loss balance >= 4,795.00 USD under every independently fillable scenario | [ ] |
 | 11 | **Passive Order Type** | Strictly BUY_LIMIT <= bid, SELL_LIMIT >= ask; zero marketable spread crossing | [ ] |
-| 12 | **Queue & TTL Gate** | Wall age <= 5s, sample count >= 3; order TTL <= 12 bars (3h); no stale queue traps | [ ] |
-| 13 | **Partial Fill Policy** | Auto-cancel residual unbacked volume if fill < 80% and markout > 0.10 ATR | [ ] |
-| 14 | **Dynamic Spread Spike** | Spread now <= 1.5 * 5m median spread; trading frozen during news / rollover shocks | [ ] |
-| 15 | **Spoof & Basis Check** | Presence fraction >= 0.85 over 180s; MT5 CFD mapped to underlying perpetual basis | [ ] |
-| 16 | **Cluster Correlation** | Correlated assets (BTC/ETH/SOL or indices) treated as single risk; max 1 slot at current cushion | [ ] |
-| 17 | **Workbook Schema Gate** | Zero fabricated columns; 33/33 sheets verified with atomic temp file commit | [ ] |
-| 18 | **Structural Envelope Stop** | SL placed behind VAL/VAH/Session Low envelope; NEVER inside Value Area noise band | [ ] |
-| 4 | **Safe SL Buffer** | SL placed `>= 0.50 ATR` plus half-spread beyond outer sweep boundary | [ ] |
-| 5 | **Auction Location** | Model 1 extreme (|Z| >= 2.0 SD) OR Model 2 HTF pullback (No mid-range noise) | [ ] |
-| 6 | **Spread Gate** | Spread <= 25 bps (Crypto) / <= 5 bps (TradFi); round-trip cost < 10% R0 | [ ] |
-| 7 | **HTF Trend Alignment** | Trade respects HTF market structure or enters at macro multi-day bunker | [ ] |
-| 8 | **Pre-Condition Trigger** | All candidate radar pre-conditions checked `[x]` on live empirical data | [ ] |
-| 9 | **Clear TP Runway** | TP front-runs overhead liquidity walls; realizable R:R >= 2.0R (default 2.5R) | [ ] |
-| 10 | **Stressed Solvency** | Stressed loss <= $39.83 buffer cushion; **MAX 1 LIVE POSITION** at current equity | [ ] |
-| 11 | **Non-Marketable Limit** | `BUY_LIMIT <= live_bid`, `SELL_LIMIT >= live_ask`; quote age <= 2.0s | [ ] |
-| 12 | **Queue & Expiry Gate** | Queue-ahead evaluated; order expires after 12 bars (3h) if unfilled | [ ] |
-| 13 | **Partial-Fill Sentry** | Immediate risk recomputation; cancel residual if fill < 80% & adverse markout > 0.10 ATR | [ ] |
-| 14 | **Dynamic Spread Ratio** | `spread_now <= 1.5 * median_5m`; zero trading during rollover/expansion | [ ] |
-| 15 | **Wall Presence Fraction** | Presence fraction >= 0.85 over 180s, sample count >= 3, `canceled == False` | [ ] |
-| 16 | **Cluster Correlation** | Correlated assets stressed jointly; zero simultaneous same-cluster slots | [ ] |
-| 17 | **Schema Data Contract** | All referenced columns exist in Excel; 0 formula errors; atomic commit verified | [ ] |
+| 12 | **Fill Probability P(fill)** | Calibrated `P(fill | distance, queue, TTL)` confirms positive utility; order TTL <= 12 bars (3h) | [ ] |
+| 13 | **Partial-Fill Policy** | Auto-cancel residual unbacked volume if fill < 80% and adverse markout > 0.10 ATR | [ ] |
+| 14 | **Dynamic Spread Shock** | Live spread <= 1.5x 5m median spread; zero trading during news release or rollover shocks | [ ] |
+| 15 | **Wall Persistence & Refill** | Wall persistence `tau >= 180s` and replenishment ratio `rho >= 0.60` verified on trade prints | [ ] |
+| 16 | **Joint Cluster Stress** | Correlated assets (BTC/ETH/SOL or equity indices) stressed jointly; max 1 live slot at current equity | [ ] |
+| 17 | **Evidence Manifest Digest** | Evidence manifest SHA-256 and physical data blobs verified; zero unverified inputs | [ ] |
+| 18 | **Stop Chosen Before Lot** | Structural stop price determined first; lot volume scaled to fit risk; zero stop compression | [ ] |
+| 19 | **Market-Clock Clearance** | Native venue open, broker session open, calendar blackout false, outside 21:15–22:30 UTC rollover | [ ] |
+| 20 | **D11 Artifact Binding** | Cycle ID, dispatch nonce, prompt digest, and schema match; zero unresolved template markers | [ ] |
+| 21 | **D12 Column Recomputation** | Risk, reward, R:R, stressed loss, and post-loss balance match broker receipts to $0.01 | [ ] |
+| 22 | **Joint Completion & Dialectic** | All 3 council entities complete with verified digests; Severity-1 disputes resolved or fail closed | [ ] |
