@@ -131,3 +131,45 @@ def setup_institutional_logger(name: str, log_file: pathlib.Path | str | None = 
 
     logger.propagate = False
     return logger
+
+
+# ---------------------------------------------------------------------
+# Institutional IST Timestamping Infrastructure (Tier-1 Banner Standard)
+# ---------------------------------------------------------------------
+IST_TIMEZONE = datetime.timezone(datetime.timedelta(hours=5, minutes=30))
+UTC_TIMEZONE = datetime.timezone.utc
+
+
+def get_current_timestamps() -> tuple[str, str]:
+    """Returns current timestamps formatted in IST (UTC+5:30) and UTC."""
+    now_utc = datetime.datetime.now(UTC_TIMEZONE)
+    now_ist = datetime.datetime.now(IST_TIMEZONE)
+    ist_str = now_ist.strftime("%Y-%m-%d %H:%M:%S IST")
+    utc_str = now_utc.strftime("%Y-%m-%d %H:%M:%S UTC")
+    return ist_str, utc_str
+
+
+def stamp_sheet_completion_ist(
+    ws,
+    sheet_title: str = "",
+    row_count: int = 0,
+    banner_cell: str = "A1",
+    status: str = "LIVE"
+) -> bool:
+    """Enforces Operator Invariant: Timestamp MUST be added or updated ONLY ONCE
+    row data is filled.
+    
+    Rejects any update if row_count <= 0.
+    Writes standardized Tier-1 banner to banner_cell:
+    "LAST UPDATED: YYYY-MM-DD HH:MM:SS IST (YYYY-MM-DD HH:MM:SS UTC) | ROWS: N | STATUS: LIVE"
+    """
+    if row_count <= 0:
+        return False
+        
+    ist_str, utc_str = get_current_timestamps()
+    prefix = f"{sheet_title} | " if sheet_title else ""
+    banner_text = f"{prefix}LAST UPDATED: {ist_str} ({utc_str}) | ROWS: {row_count} | STATUS: {status}"
+    
+    ws[banner_cell] = banner_text
+    return True
+
