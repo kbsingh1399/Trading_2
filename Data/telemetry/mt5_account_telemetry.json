@@ -1,26 +1,15 @@
 {
   "account": {
     "login": 5064568,
-    "balance_usd": 4818.51,
-    "equity_usd": 4810.41,
-    "margin_free_usd": 3274.0,
-    "margin_used_usd": 1536.41,
-    "hard_floor_cushion_usd": 35.409999999999854,
-    "operating_buffer_cushion_usd": 15.409999999999854
+    "balance_usd": 4799.88,
+    "equity_usd": 4799.88,
+    "margin_free_usd": 4799.88,
+    "margin_used_usd": 0.0,
+    "hard_floor_cushion_usd": 24.88000000000011,
+    "operating_buffer_cushion_usd": 4.880000000000109
   },
-  "open_positions_count": 1,
-  "open_positions": [
-    {
-      "ticket": 19244087,
-      "symbol": "NZDUSD.pi",
-      "volume": 0.81,
-      "direction": "BUY",
-      "price_open": 0.56904,
-      "sl": 0.56888,
-      "tp": 0.56965,
-      "profit": -8.1
-    }
-  ],
+  "open_positions_count": 0,
+  "open_positions": [],
   "pending_orders_count": 1,
   "pending_orders": [
     {
