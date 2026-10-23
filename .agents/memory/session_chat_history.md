@@ -62289,3 +62289,37 @@ You may create 12_Hyperdash and 13_Hyperliquid where you dump all intelligenve a
 - **Prompt Details**: Created docs/prompts/COUNCIL_AUTONOMOUS_CHAIN_IMPROVEMENT_INQUEST.md (9,456 chars, commit be6c248d3 on GitHub main).
 - **Core Topics**: Sclerosis vs edge, dual-engine dialectic, +2.88 USD realized headroom math, fixed margin proof (50% entry notional), LIR/refill geometry, TradFi weekend clock, full-sized subagents, and dynamic 20m lifecycle.
 - **Council In Flight**: Arena.ai and Z.ai actively generating via Chrome CDP port 9222. Gemini Web2API on port 8081. Monitored by task-120444 (arena_completion_daemon.py --wait).
+
+
+## Turn Update: 2026-10-23 22:30 UTC — Governance Inquest Code Upgrades & Live MT5 Audit
+
+### 1. Mandatory Governance Documents Upgraded in Data/Manditory/
+- **STANDARDIZED_TRADING_DECISION_CHAIN.md**:
+  - Replaced Step 2 with Hard Authorization + Calibrated Ranking (G_j = G_legal * G_data * G_event * G_clock * G_broker * G_solvency * G_structural_stop; Utility = LCB_5%(EV_net)/E[capital-minutes]; Tradable(symbol, now) pre-emission filter).
+  - Replaced Step 8/9 lot sizing with broker-native structural sizing formula lot* requiring order_calc_profit, order_calc_margin, and order_check validation.
+- **AUTONOMOUS_WAKEUP_CHECKLIST.md**:
+  - Replaced Step 0 with Immutable Cycle Envelope checklist (cycle_id, UUID, cutoff_utc, manifest SHA-256, workbook digest, strict solvency).
+  - Replaced Step 12 with Validated Joint Completion (schema validation, state machine CREATED -> DISPATCHED -> HARVESTED -> SCHEMA_VALIDATED -> DIALECTIC_RESOLVED -> FINALIZED -> QUIET -> READY, quiet interval max(validated_final_at + 1200s, data_ready_at), watchdog recovery).
+- **SUBAGENT_PROMPT_TEMPLATES.md**:
+  - Replaced overlapping persona templates with 4 non-overlapping institutional roles: Role A (Regime & Calibration), Role B (Fill, Microstructure & Geometry), Role C (Solvency, Portfolio & Broker Math), Role D (Market Clock, Auction, Events & Provenance).
+  - Added Dialectic Round 2 cross-examination rules.
+- **CONTINUOUS_KAIZEN_SELF_IMPROVEMENT_PROTOCOL.md**:
+  - Replaced Section 2.5 with Falsifiable Funnel Improvement (end-to-end causal candidate tracking).
+  - Added Section 2.6 Open Defect Ledger (D11 through D16).
+- **Arena_GLM_Standard_Prompt.md**:
+  - Replaced prompt body with Static Council Review Protocol & explicit JSON output schema.
+  - Synchronized copy to docs/prompts/Arena_GLM_Standard_Prompt.md.
+
+### 2. Git Synchronization & Repo Parity
+- Pushed commit 587030210 to origin/main.
+- Dual-repo parity verified across .agents: 19,302 files byte-for-byte identical with 0 errors.
+- AST Knowledge Graph updated via graphify update .: 8,189 nodes, 21,971 edges.
+
+### 3. Live Account Telemetry (#5064568)
+- Balance: 4,799.88 USD | Equity: 4,827.15 USD | Floating Profit: +27.27 USD net (+28.08 gross, -0.81 swap).
+- Active Ticket #19267445 (BTCUSD.pi Short 0.06 lot @ 81,700.00 USD):
+  - Current Mark: 81,232.00 USD (Excursion: +468 points = +1.170 R0).
+  - SL: 81,640.00 USD (Locked Early-BE in terminal, +.60 USD profit, 100% risk-free).
+  - Next Ratchet Trigger: 81,040.00 USD (+1.65 R0) -> auto-advances SL to 81,300.00 USD (+1.00 R0 / +.00 USD profit).
+  - TP: 80,600.00 USD (+2.75 R0 / +.00 USD profit).
+- Pending Orders: 0 (100% Flat Cash Defense on Slots 2, 3, 4).

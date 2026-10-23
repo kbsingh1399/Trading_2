@@ -723,3 +723,37 @@
   2. Arena.ai Council (GPT Astra): OPTION B - NO NEW POSITION OR PENDING LIMIT. Maintain only protected BTC short #19267445. GER40 closed for weekend (quote age ~100m, Eurex closed). BTC long is unanchored and conflicts with active short.
   3. Z.ai Sovereign Council (GLM-5.3-Flash): OPTION B - STAND ASIDE NEW ENTRIES, HOLD BTC EXPRESS. D12 decomposed and fixed; confirmed GER40 market closed; formulated post-TP 80,600 BTC-L2 0.07 lot template (+172.51 USD surplus).
 - **Dynamic 20-Min Rest**: Armed until 2026-10-23 22:08:20 UTC for Cycle 310 via Terminal/joint_cycle_controller.py --wait-rest (task-120395). Early wakeup enabled on position closure.
+
+
+## Turn Update: 2026-10-23 22:30 UTC — Governance Inquest Code Upgrades & Live MT5 Audit
+
+### 1. Mandatory Governance Documents Upgraded in Data/Manditory/
+- **STANDARDIZED_TRADING_DECISION_CHAIN.md**:
+  - Replaced Step 2 with Hard Authorization + Calibrated Ranking (G_j = G_legal * G_data * G_event * G_clock * G_broker * G_solvency * G_structural_stop; Utility = LCB_5%(EV_net)/E[capital-minutes]; Tradable(symbol, now) pre-emission filter).
+  - Replaced Step 8/9 lot sizing with broker-native structural sizing formula lot* requiring order_calc_profit, order_calc_margin, and order_check validation.
+- **AUTONOMOUS_WAKEUP_CHECKLIST.md**:
+  - Replaced Step 0 with Immutable Cycle Envelope checklist (cycle_id, UUID, cutoff_utc, manifest SHA-256, workbook digest, strict solvency).
+  - Replaced Step 12 with Validated Joint Completion (schema validation, state machine CREATED -> DISPATCHED -> HARVESTED -> SCHEMA_VALIDATED -> DIALECTIC_RESOLVED -> FINALIZED -> QUIET -> READY, quiet interval max(validated_final_at + 1200s, data_ready_at), watchdog recovery).
+- **SUBAGENT_PROMPT_TEMPLATES.md**:
+  - Replaced overlapping persona templates with 4 non-overlapping institutional roles: Role A (Regime & Calibration), Role B (Fill, Microstructure & Geometry), Role C (Solvency, Portfolio & Broker Math), Role D (Market Clock, Auction, Events & Provenance).
+  - Added Dialectic Round 2 cross-examination rules.
+- **CONTINUOUS_KAIZEN_SELF_IMPROVEMENT_PROTOCOL.md**:
+  - Replaced Section 2.5 with Falsifiable Funnel Improvement (end-to-end causal candidate tracking).
+  - Added Section 2.6 Open Defect Ledger (D11 through D16).
+- **Arena_GLM_Standard_Prompt.md**:
+  - Replaced prompt body with Static Council Review Protocol & explicit JSON output schema.
+  - Synchronized copy to docs/prompts/Arena_GLM_Standard_Prompt.md.
+
+### 2. Git Synchronization & Repo Parity
+- Pushed commit 587030210 to origin/main.
+- Dual-repo parity verified across .agents: 19,302 files byte-for-byte identical with 0 errors.
+- AST Knowledge Graph updated via graphify update .: 8,189 nodes, 21,971 edges.
+
+### 3. Live Account Telemetry (#5064568)
+- Balance: 4,799.88 USD | Equity: 4,827.15 USD | Floating Profit: +27.27 USD net (+28.08 gross, -0.81 swap).
+- Active Ticket #19267445 (BTCUSD.pi Short 0.06 lot @ 81,700.00 USD):
+  - Current Mark: 81,232.00 USD (Excursion: +468 points = +1.170 R0).
+  - SL: 81,640.00 USD (Locked Early-BE in terminal, +.60 USD profit, 100% risk-free).
+  - Next Ratchet Trigger: 81,040.00 USD (+1.65 R0) -> auto-advances SL to 81,300.00 USD (+1.00 R0 / +.00 USD profit).
+  - TP: 80,600.00 USD (+2.75 R0 / +.00 USD profit).
+- Pending Orders: 0 (100% Flat Cash Defense on Slots 2, 3, 4).
