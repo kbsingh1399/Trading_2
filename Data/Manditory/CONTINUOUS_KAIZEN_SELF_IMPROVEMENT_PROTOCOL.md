@@ -70,7 +70,58 @@ flowchart TD
 | **Subagents Not Invoked on Wake-Up** | 20-min cron triggered but subagents were skipped. | Agent was generating narrative text before tool calls; cron prompt was an unmanageable 1,500-token text wall. | **Immediate Tool-Call Mandate**: First action on wake-up MUST be parallel `invoke_subagent` calls (`Model='flash'`) before any prose. Cron prompt compressed to 80 tokens. |
 | **Token Exhaustion Risk** | Context filling rapidly from large prompts and subagent dumps. | Repeating full specification text blocks and large prompt templates into every turn. | **Token Conservation SOP**: Use `Model='flash'` for subagents; cite local file paths rather than pasting text; enforce max 200 token subagent outputs. 85% token reduction achieved. |
 | **Losing NZDUSD Trade (#19244087)** | Stopped out for -$18.63 loss on NZDUSD buy limit. | Squeezed 1.6-pip stop (0.56888) placed ABOVE Daily Value Area Low (0.56868); failed to anchor behind Asian Low (0.56768); inflated lot size (0.81 lot) to fit micro-stop. | **Pitfall 18 Codified & Structural Envelope Invariant**: Stop Loss must be anchored strictly BEHIND the structural boundary (VAL - 0.20*ATR or Session Low). Minimum SL distance >= 1.5x 15m ATR. Lot volume must be derived from structural stop, not vice versa. |
-| **Section 2.5 Quantitative Inquest (Terminal Funnel SLA & Limit Geometry)** | Realized P&L remained flat despite strong alpha models; limits died of loneliness. | 1) High binary hurdle (7-gate AND) created conjunctive sclerosis; 2) Naked limits placed 0.5–1.2R away had near-zero fill probability; 3) Un-instantiated rulings broke execution pipeline. | **Throughput SLA & Composite Scoring**: 1) Funnel SLA: Ruling -> order_send <= 60s; 2) Stage Gate: `P(fill\|staged) * EV > 1.50 USD`; 3) Limit distance geometry: `d* = min(structural shelf, mid + 0.40 * ATR * sqrt(TTL))`; 4) Trade native USD tape (`XAGUSD`), rejecting high-drag FX clones (`XAGSGD`, `XAGAUD`). |
+| **Section 2.5 Quantitative Inquest (Terminal Funnel SLA & Limit Geometry)** | Realized P&L remained flat despite strong alpha models; limits died of loneliness. | 1) High binary hurdle (7-gate AND) created conjunctive sclerosis; 2) Naked limits placed 0.5–1.2R away had near-zero fill probability; 3) Un-instantiated rulings broke execution pipeline. | **Throughput SLA & Composite Scoring**: 1) Funnel SLA: Ruling -> order_send <= 60s; 2) Stage Gate: `P(fill|staged) * EV > 1.50 USD`; 3) Limit distance geometry: `d* = min(structural shelf, mid + 0.40 * ATR * sqrt(TTL))`; 4) Trade native USD tape (`XAGUSD`), rejecting high-drag FX clones (`XAGSGD`, `XAGAUD`). |
+
+---
+
+## 2.5 — FALSIFIABLE FUNNEL IMPROVEMENT
+
+Measure the entire causal funnel by immutable candidate ID:
+
+discovered
+→ hard-gate eligible
+→ ranked
+→ authorized
+→ transmitted
+→ acknowledged
+→ filled
+→ TP/SL/cancel/censored
+→ realized
+
+Required metrics by symbol class, setup class, side, and session:
+- candidate count;
+- hard-gate rejection reason;
+- P(fill) forecast and outcome;
+- P(win|fill) forecast and outcome;
+- adverse-selection markouts;
+- time to fill and time to resolution;
+- net realized P/L after all costs;
+- Brier score, log loss, reliability error;
+- rejected-candidate shadow outcome without survivorship editing.
+
+Do not optimize order count. Optimize conservative out-of-sample net EV per
+capital-minute subject to the hard solvency kernel.
+
+Every claimed fix requires:
+1. defect ID;
+2. failing fixture;
+3. causal root;
+4. code/doc/config change;
+5. test artifact;
+6. shadow period;
+7. closure criterion;
+8. rollback rule.
+
+## 2.6 — OPEN DEFECT LEDGER
+
+| ID | Defect | Severity | Closure criterion |
+|---|---|---:|---|
+| D11 | Unbound or unresolved prompt/ticket artifact | 1 | 100% rejection of cycle, nonce, prompt, evidence, schema, or placeholder mismatch in tests |
+| D12 | Risk/reward/stress/surplus semantic aliasing | 1 | Broker-native recomputation fixture passes to $0.01 for every ticket row |
+| D13 | Market-clock candidate emitted while closed | 1 | Closed/rollover fixtures can emit WATCHLIST only |
+| D14 | Risk-policy digest disagreement | 1 | All admission components load one policy digest or deny execution |
+| D15 | Lifecycle STALLED has no recovery | 2 | Idempotent retry, degraded state, restart recovery, and no fabricated completion |
+| D16 | Refill inferred from recurrence | 2 | Refill requires executions plus replacements; otherwise UNAVAILABLE |
 
 ---
 

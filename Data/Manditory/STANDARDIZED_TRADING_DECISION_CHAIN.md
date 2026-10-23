@@ -237,17 +237,61 @@ Every analysis begins by establishing absolute data integrity across the **33-sh
 
 ---
 
-### STEP 2: Tri-Layer Memory & Trajectory Audit
-*Active Skills: `@[memory-system]`, `@[anti-sycophancy]`, `@[quant-analyst]`*
+### STEP 2: HARD AUTHORIZATION, THEN CALIBRATED RANKING
+*Active Skills: `@[memory-system]`, `@[anti-sycophancy]`, `@[quant-analyst]`, `@[clean-code]`*
 
-No trade is evaluated in a vacuum. The desk reviews persistent memory and avoids historical traps:
-1. **Persistent Memory System Audit (`/memory-system`)**:
-   - Review `.agents/memory/session_chat_history.md`, `.agents/memory/feedback-history.md`, and `.agents/rules/ACTIVE_CONTEXT.md`.
-2. **Forensic Autopsy Reference (`LOSING_TRADES_DEEP_FORENSIC_AUTOPSY.md` & `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md`)**:
-   - Never stage limit orders inside un-swept retail stop clusters (Pitfall 2).
-   - Never catch falling knives against massive unidirectional CVD cascades without tape absorption (Pitfall 3).
-   - Never measure stop losses from `mid_price` or choke stops inside sweep zones; anchor behind verified resting whale walls plus 0.40–0.50 ATR structural buffer (Pitfall 4).
-   - Never enter trades during illiquid interbank rollover spread expansion (21:30–22:30 UTC).
+#### 2.1 Hard authorization
+
+For candidate j:
+
+G_j = G_legal × G_data × G_event × G_clock × G_broker × G_solvency × G_structural_stop
+
+If any term is zero, status = REJECT_HARD_GATE and the candidate MUST NOT enter the ranking table.
+
+Hard gates are binary only for:
+1. Legal/account authorization.
+2. Evidence integrity, causality, and field-level freshness.
+3. Event/blackout authorization.
+4. Broker session, symbol, stop/freeze level, margin, and order_check validity.
+5. Joint solvency under every independently fillable pending-order scenario.
+6. Structural stop outside the invalidation envelope.
+
+Missing soft evidence does not silently become FALSE. It either widens model uncertainty or makes only the affected setup model unavailable.
+
+#### 2.2 Soft statistical ranking
+
+Estimate separately:
+
+P_f = P(fill before TTL | distance, queue, symbol, session, side, features)
+P_w = P(TP first | fill, setup class, asset-native features)
+
+EV_net = P_f × [P_w × G_net − (1−P_w) × L_net − AS − Costs] − (1−P_f) × C_wait
+
+Rank only hard-gate survivors by:
+
+Utility = LCB_5%(EV_net) / E[capital-minutes]
+
+No point probability may authorize execution unless the model has:
+- time-blocked out-of-sample calibration;
+- setup- and asset-class lineage;
+- Brier/log-loss and reliability diagnostics;
+- effective sample size and confidence interval;
+- no look-ahead or cross-asset feature transfer.
+
+A vote count, indicator count, or "3 of 4 pillars" is not a calibrated probability.
+
+#### 2.3 Market-clock pre-emission rule
+
+Tradable(symbol, now) =
+  broker_session_open
+  AND native_venue_open
+  AND quote_fresh
+  AND calendar_verified
+  AND NOT blackout
+  AND NOT rollover
+
+A closed-session or stale symbol may appear only in WATCHLIST output.
+It MUST NOT produce a ticket row.
 
 ---
 
@@ -401,23 +445,26 @@ Liquidation bands and stop clusters serve dual tactical functions:
 ### STEP 8: Exact Broker Quote-Conversion Risk Budget & Dynamic Capacity
 *Active Skills: `@[quant-analyst]`, `@[risk-engine]`, `@[clean-code]`*
 
-1. **Exact Broker Quote-Conversion Risk Calculation**:
-   - Cash risk is verified directly via `mt5.order_calc_profit()`:
-     ```python
-     cash_risk = abs(mt5.order_calc_profit(order_type, symbol, lot, entry, sl))
-     ```
-   - Eliminates all rounding and currency conversion errors across FX, crypto, metals, and index contracts.
-2. **Expanded Operational Risk Envelope across ALL 156 Assets**:
-   - **Standard Nominal Risk**: **15.00 to 20.00 USD per trade** (0.31% to 0.41% equity).
-   - **Pristine Confluence Risk Rights (Operator Permission to Exceed Risk)**: Authorized to scale nominal risk up to **25.00 to 35.00 USD per trade** (0.51% to 0.72% equity) across **ALL 156 assets** for pristine 5-pillar confluence setups.
-3. **Stressed Operating Buffer & Hard Floor Defense**:
-   - Every single fill must satisfy:
-     $$\text{Stressed Equity} = \text{Current Equity} - \sum (\text{Risk}_i \times 1.25 + 2.00\text{ USD}) \ge 4,795.00\text{ USD}$$
-   - At current equity (4,834.83 USD), buffer cushion is **+39.83 USD** (and **+59.83 USD** above the 4,600.00 USD hard floor).
-4. **Fluid 4-Slot Portfolio Capacity**:
-   - Up to **4 concurrent running positions** in ANY combination across the 156-asset universe.
-   - Initial fill: 1 position at 15.00–25.00 USD risk.
-   - The instant Position 1 reaches Early-BE (+0.75R0 to +0.80R0), SL is moved to Entry + 0.10R0; cash risk drops to **0.00 USD**, immediately releasing capacity for subsequent slots!
+### Broker-native structural sizing
+
+1. Determine structural invalidation and stop price before volume.
+2. Obtain fresh symbol metadata.
+3. Enumerate the broker's legal lot grid.
+4. For each volume v, calculate loss with order_calc_profit.
+5. Calculate margin with order_calc_margin.
+6. Submit the exact request to order_check.
+7. Stress all open positions and independently fillable pending orders jointly.
+8. Select the largest volume that preserves the $4,795 admission floor.
+9. If no legal volume exists, reject. Never tighten SL or over-risk minimum lot.
+
+lot* = max {v in broker lot grid:
+  R_min <= broker_stop_loss(v) <= R_cap
+  AND min(balance,equity) - stressed_joint_loss(v) >= 4795
+  AND joint_margin(v) <= free_margin - reserve
+  AND order_check(v) = OK
+}
+
+Floating profit, expected TP, model probability, and deadline pressure provide zero admission credit.
 
 ---
 
