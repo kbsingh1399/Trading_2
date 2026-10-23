@@ -1,156 +1,84 @@
-Explored 2 files
+Thought Process
+Ran 1 commands
 
-Worklog doesn't exist yet — I'll create it with the Cycle 280 record after the ruling. Now persisting the math verification script (Script Persistence Rule) before delivering the ruling:
+Confirmed: ZERO-DELTA feed — 10/10 radar fields byte-identical to C280, 18 minutes of clock only. Now extending the persisted script with time-decay EV and session-window fill probabilities:
 
-Wrote 2 files，Ran 2 commands
-Create File c280_math_check.py
-Create scripts and download directories
-Create File c280_math_check.py
-Run Cycle 280 math verification script
+Wrote 2 files，Ran 1 commands
+Edit File c280_math_check.py
+Run extended math script, show Section H output
+Edit File worklog.md
 Done
+🏛️ CYCLE 281 — QUANTITATIVE RULING: REAFFIRMATION & INVALIDATION MATRICES
+Co-Equal Quantitative Strategist | BlueBerry MT5 #5064568 | 2026-10-23 00:30:52 UTC
 
-All arithmetic verified — the capacity table even caught a marginal violation (Brent full + XAU-L = 30.64 > 30.51 cap by $0.13), which I'll encode in the arbitration matrix. Now logging the worklog and delivering the ruling:
+All figures machine-verified via persisted script scripts/c280_math_check.py (Sections A–H) — 0 discrepancies.
 
-Wrote 1 files
-🏛️ CYCLE 280 — DENSE QUANTITATIVE RULING
-Co-Equal Quantitative Strategist | BlueBerry MT5 #5064568 | 2026-10-23 00:12:46 UTC
+SECTION 0 — FEED FORENSICS: ⚠️ ZERO-DELTA RE-BROADCAST DETECTED
 
-All figures below independently re-computed and verified via persisted script scripts/c280_math_check.py — 0 discrepancies against the operator feed.
+Before any adjudication, the desk ran a field-by-field delta check of this cycle's radar against C280's: 10/10 telemetry fields are byte-identical (Brent ask 113.88, shelf 113.595–113.731, BTC ~81,162, pools $7.98M/$31.79M, XAU 4,023.72/4,020.47, USDJPY 3,106 ticks, S1 156.214, equity 4,818.51) across an 18-minute clock gap. An Asian tape that traded 18 minutes with zero tick-count change on a post-CPI JPY pair is not a quiet market — it is a stale snapshot. Two governance consequences, effective immediately:
 
-SECTION 1 — RECONCILIATION: RATIFIED, SLOT FREED
+RADAR FRESHNESS GATE (new standing rule): a zero-delta feed classifies the cycle as REAFFIRM — the book is not re-adjudicated, because re-deriving rulings on stale data is decision churn (the C277 lesson applied at ruling level). Three consecutive zero-delta cycles = tape outage → mandatory operator escalation for feed refresh.
+Operator data request for C282 (the four deltas that can actually move a ruling): (a) Brent M5 tape since 00:12 + whether 113.731 has traded; (b) BTC last + pool dollars at 80,450/80,050; (c) XAU session low/high since 00:12; (d) USDJPY pullback status toward 156.440–156.512.
 
-Equity 4,818.51 / Balance 4,818.51 / Free Margin 4,818.51 — fully flat, zero drift vs. C278. Cushions: Hard Floor +43.51 | Operating Buffer +23.51. Cancellation of #19227609 is ratified and logged; the BTC passive-limit veto-pass doctrine (C271→272) remains institutionalized. Critical capacity event: the XAU T-1 SELL_LIMIT 4,031.89 retirement releases the desk's single staged-limit slot → VACANT. Mission gap: +681.49 (+14.14%); deadline T−23h47m, but the executable window is T−20.8h to Brent/NY Friday close — the ladder must complete inside today's sessions.
+Everything below therefore reaffirms C280 in full — no geometry changes, no re-site burn — and spends this cycle's cognitive budget on the artifacts a stale tape cannot invalidate: time-decay math, invalidation triggers, and execution mechanics.
 
-SECTION 2 — WAREHOUSE HEALTH: ACCEPTED
+SECTION 1 — RECONCILIATION: RATIFIED
 
-33/33 sheets, 0 CRC, 0 formula errors, Sheet 30/33 headers 36/36 clean, Pipeline Daemon Task 109472 Cycle #9 — accepted without reservation. Regime tags queued for write to Sheet 30/33 audit trail this cycle: TREND_UP_ACCEPTANCE (Brent), FAILED_BREAKDOWN_SPRING (XAU), POST_EVENT_FLUSH (USDJPY).
+4,818.51 flat / 0 positions / 0 pending; cushions +43.51 / +23.51 intact; #19227609 cancellation stands. Staged slot: reserved for T-1 dispatch (still vacant — touch-arm condition not yet met on available data). Clock: T−23h29m to deadline, T−19.5h to the 20:00 UTC weekend-flat line, ≈65 decision cycles remaining at current cadence.
 
-SECTION 3 — RANKED-EV QUEUE (P(fill) × EV GOVERNS, PER C278)
+SECTION 2 — WAREHOUSE: ACCEPTED
 
-Priors pre-registered: p_win = 0.52 (Model 2 trend-pullback prior; Shadow Ledger n=1 at +$32.04 is directionally supportive, n≥30 replaces it). Ranked EV = P(trigger-chain) × EV/fill:
+33/33 sheets, 0 errors, headers clean, Pipeline #9 — unchanged, accepted. Sheet 30/33 regime tags from C280 queued for write once live tape confirms.
 
-RANK
+SECTION 3 — TIME-DECAY ADJUSTED QUEUE (NEW: SESSION-WINDOW POISSON MODEL)
+
+The C280 queue ranked by P(chain) × EV/fill as a static number. An elite desk prices the clock: trigger attempts arrive approximately Poisson, λ calibrated from each candidate's C280 P(chain) over the 16.5h executable window. This converts "when should we stage?" from instinct into arithmetic:
+
+TICKET
 	
-ASSET
+Λ/HR
 	
-MACHINE
+P(TRIGGER) FULL WINDOW
 	
-STATE
+P(TRIGGER) TO CHECKPOINT
 	
-P(CHAIN)
-	
-EV/FILL
-	
-RANKED EV
-	
-VERDICT
+RANKED EV (FULL → CHECKPOINT)
 
-1	UKBRENT.p	Auction	APPROACHING	0.319	$17.65	$5.63	🟢 PRIMARY — touch-armed stage
-2	BTCUSD.pi	Liquidation	ARMED G1→G4	0.30	$10.25	$3.07	🔫 ARMED, no staged order
-3	XAUUSD.pi LONG	Auction (spring)	MONITORING	0.45	$3.62	$1.63	👁 Pre-registered trigger
-4	XAUUSD.pi SHORT	Auction (fade)	CONTINGENT	0.30	$2.93	$0.88	👁 Mutually exclusive w/ #3
-5	USDJPY.pi	Post-event	STAND ASIDE	—	—	0	⏳ Re-screen on pullback
+T-1 Brent	0.0233	0.319 (→17:00)	0.235 (→12:00 void)	$5.63 → $4.15
+T-2 BTC	0.0216	0.300 (→17:00)	0.131 (→07:00 London)	$3.07 → $1.34
+T-3 XAU-L	0.0362	0.450 (→17:00)	0.210 (→07:00)	$1.63 → $0.76
+T-4 XAU-S	0.0216	0.300 (→17:00)	0.131 (→07:00)	$0.88 → $0.38
 
-C-1 UKBRENT.p — full gate sweep (Arena Rank 1 confirmed, not rubber-stamped):
+Readings: (1) The 12:00 UTC void rule on T-1 costs ~27% of fill probability — that is the price of stale-geometry protection, and re-site #1 at the NY open exists precisely to buy the NY window back. (2) 57% of BTC's cascade probability sits after London — Asian patience is mathematically correct; the G-sequence must not be force-traded in thin tape. (3) Brent Early-BE trigger 114.1238 sits +0.244 pts (+21 bps) from last ask — a normal London impulse covers it.
 
-Regime: TREND_UP_ACCEPTANCE +1.23 SD, 20/50 EMA bullish ribbon → Model 2 pullback permitted. Machine class: AUCTION — and the window is event-clean: API printed Wed 20:30 UTC, EIA printed Thu 15:00 UTC; no OPEC session until next week. Crude gets the gold/index treatment this window, not the headline treatment.
-R:R: (114.300−113.595)/(113.595−113.397) = 0.705/0.198 = 3.561 ≥ 2.0 PASS
-Stress: conservative (Risk+Spread)×1.25+2.00 = (12.87+2.145)×1.25+2.00 = −$20.77 ≤ 23.51 PASS (+2.74 headroom). The radar's −$18.09 uses the spread-excluded convention; the desk governs on the conservative figure. Stressed equity 4,797.74 → floor surplus +22.74.
-Friction: 0.033 pts = 2.9 bps = 4.68% of reward ≤ 8% ceiling PASS. Margin $73.84 (1.53%) PASS.
-Re-site budget: 0/2 used. DECISION: TOUCH-ARMED DISPATCH — not naked passive staging. The order is order_check-validated NOW; order_send fires ONLY on (a) ask printing ≤ 113.731 (shelf touch) AND (b) M5 deceleration (two consecutive 5m shrinking negative delta, or positive delta on flat tape — tick-volume proxy in Asian thin tape). Dispatch < 60s. This preserves auction-machine passivity at the deep edge while deleting the knife-fill adverse selection that naked Asian-session bids attract.
+SECTION 4 — 3-PERSONA DELIBERATION (DEPTH-2: DELTA VS. C280 ANSWERS)
 
-C-2 BTCUSD.pi — ARMED, NOT STAGED (veto-pass doctrine holds): Staging a passive bid under the 80,450 pool is the exact structure C271→272 killed. Gate-budget compliance note: G1 (sweep of 80,450) is reclassified as a state precondition, not a filter gate → gates = G2 CVD deceleration, G3 5m close > 80,500, G4 retest hold = 3 gates, budget intact. Pool decay 17.37M→7.98M means the sweep trigger is cheaper to fire; mother-pool growth 28.7M→31.79M strengthens the post-sweep reclaim logic. IBIT +235.0M vs CEX −210.35M divergence = ETF bid absorbing exchange supply — bias-only (C275 ruling), never a gate.
+Persona 1 — Orderflow Analyst: C280 answered what the filters should be; C281 answers how we will know: the ≥8pp lift rule is now a measurement plan, not a slogan — Shadow Ledger v2 schema goes live: every armed-but-unfired and vetoed ticket is logged with (ticket, machine class, timestamp, price, tape state at decision, gate states 0/1, resulting P&L-if-filled). Gate demotion decisions at n≥30 with a pre-registered significance threshold; no gate is removed on anecdote. Second: the Brent deceleration signature is pre-registered mechanically — Pattern A: two consecutive 5m candles with shrinking |negative delta| into the shelf; Pattern B: non-negative 5m delta within 5 ticks of shelf-touch. Either pattern + shelf-touch = dispatch. Two live conditions, no operator discretion layer — discretion drift is how 0.3R flatten rules become 0.8R hope trades. Third: on the stale tape, no orderflow verdict is withdrawable — C280's reads stand precisely because none of their trigger conditions has been observed to change.
 
-C-4 XAU — the PDL sweep is the structure we hunt: 4,021.18 pierced to 4,020.47, reclaimed 4,023.72 on long lower wicks = absorption spring at the decay line. The short ticket died correctly; the inversion is now the trade. Two contingent trigger tickets pre-registered (below) — neither stages, the single slot belongs to Brent.
+Persona 2 — Position Manager: Book arithmetic unchanged and re-verified: RESIDUAL-13 combos stand (Brent+BTC 0.01 = 29.90 ✅; Brent+BTC 0.02 = 37.03 ❌; Brent+XAU-L = 30.64 ❌ by $0.13; post-BE BTC+XAU-L = 26.13 ✅). Ladder intact: 4 consecutive ~3.5R wins → 5,539.75 (+39.75 surplus); rung-1 loss re-base cap 22.91. New this cycle: dispatch bookkeeping spec — on T-1 fill, MT5 write-back of (fill time, slippage vs 113.595, M5 tape state at fill, pattern A/B fired) to Sheets 30/33; this is the data that will later tell us whether touch-armed dispatch actually beat the passive alternative, or whether we traded one adverse-selection regime for another. No capacity rule is changed by an 18-minute clock tick; the only clock objects that bind today are the 12:00 void, the 20:00 weekend-flat, and the Early-BE ladder.
 
-C-3/C-5 USDJPY — STAND ASIDE RATIFIED: vertical CPI flush into Daily S1 (156.214) at 3,106 ticks = anti-chase prohibition. Provisional re-arm geometry (final at re-screen): reject at 156.440–156.512 → E≈156.500 / SL 156.665 / TP 156.000 = 3.03R, nominal −$5.27, stress −$8.71 — passes all gates if the rejection prints.
+Persona 3 — Macro Risk Analyst: Calendar re-sweep adds nothing that invalidates C280: API (Wed)/EIA (Thu) remain pre-window, no OPEC until next week, JPY CPI digested, blackout lifted 00:05. One new operational item: London-open spread normalization check at 07:00 UTC — if Brent spread prints > 2× normal (>0.066 pts) in the opening 15 minutes, dispatch is held until normalization; a 2× spread converts stress 20.77 → 24.1 and breaches the buffer tier — the spread gate is therefore not cosmetic, it is load-bearing. FX rollover void 21:55–22:15 and weekend-flat 20:00 UTC reconfirmed; IBIT/CEX divergence stays bias-only. On stale macro feeds the rule is the same as the tape: re-request, never re-improvise.
 
-SECTION 4 — 3-PERSONA DELIBERATION & SECTION 2.5 INQUEST
+SECTION 5 — METHODOLOGY INQUEST: THE FOUR QUESTIONS, ONE CYCLE LATER
+Conjunctive filters? Fixed in C280 (3-gate cap, G1 demoted to precondition). C281's increment: filters are now falsifiable — Shadow Ledger v2 makes gate lift measurable by n≥30 instead of argued by narrative. A filter we cannot measure is a filter we must not keep.
+Passive limits / adverse selection? Fixed by touch-armed dispatch; C281 adds the mechanical signature (Pattern A/B) so the fix survives contact with a fast tape. The 12:00 void + NY re-site pair is the structural answer to "staged too early vs. staged too late": stage on touch, void on staleness, re-site into liquidity.
+Asset-class specialization? Standing: 3-machine alphabet, one rank-1 asset per machine. C281's increment: session-scheduling is part of specialization — the Poisson table shows Brent's and BTC's fill mass sit in different clock hours (Brent: London+NY; BTC: 57% post-London). Specializing by machine and by hour is worth more than adding a 157th asset.
+Risk escalation? Ladder unchanged and correct: 12.87 → 33.20 → 80 → 80, stress-gated per rung, de-escalate on loss. C281's increment: escalation is also time-gated — rung upgrades are executed at the NY window (13:30 UTC), not intra-Asian-session, because rung sizing should be set once per session with full information, not re-negotiated candle by candle.
 
-Persona 1 — Orderflow Analyst (SOP 2, 4, 6): Is the methodology sound? Partially — the conjunctive-gate audit found the BTC sequence carrying 4 filters against a frozen budget of 3; P(pass) had collapsed toward zero, which is why a healthy pipeline produced zero executions C273–C279. Reform, effective now: G1 reclassified as state precondition (above), and a standing rule — every gate must demonstrate ≥8pp independent hit-rate lift or be demoted to bias-only via Shadow Ledger A/B. Adverse selection? Yes, structurally: naked deep-edge bids in thin Asian tape get filled precisely when a real seller unloads. Fix embodied in T-1: touch-armed dispatch + flatten protocol as the residual net. 156 assets? Breadth is an illusion of coverage; attention is the scarce input. Specialization is now hard-coded: auction machines (XAU, Brent, indices) read value/acceptance/delta at shelves; liquidation machines (BTC) read pool geography, cascade energy, CVD deceleration; post-event machines (FX) read post-print drift. Crypto gates never gate TradFi tickets — the C271 veto logic and the C280 Brent doctrine are different machines by design. Why flat? Zero fills ≠ zero edge: it is execution starvation under a binary GO/NO-GO regime. The ranked-EV queue (C278) + touch-armed dispatch (C280) converts an all-armed book into a staged top-ranked candidate. US2000's shadow settlement (+$32.04 on the vetoed setup) proves fills carry expectancy — execute rank 1, veto only on hard-gate violations.
+On the flat-equity question, the honest C281 update: the fix stack is now fully specified — queue, dispatch, parsimony, capacity, ladder — and nothing left to specify remains actionable on a stale tape. The binding constraint this hour is telemetry freshness, not methodology. That is progress: it means the desk's failure modes have migrated from design to data supply.
 
-Persona 2 — Position Manager (SOP 1, 5, 8): Floor defense is arithmetic, not sentiment. Two capacity rules take force this cycle: (1) Single staged-limit slot → T-1 only; trigger punches are not staged orders but must clear (2) RESIDUAL-13 RULE: Σ(stressed of full-risk legs) ≤ 30.51 (= 43.51 floor cushion − 13.00 residual covering 2× spread slippage on simultaneous stop-outs, per the C278 re-entry spread rule). Verified combinations: Brent full + BTC 0.01 = 29.90 ✅ | Brent full + BTC 0.02 = 37.03 ❌ | Brent full + XAU-L = 30.64 ❌ (fails by $0.13 — XAU-L waits for Brent Early-BE) | post-Early-BE BTC 0.02 + XAU-L = 26.13 ✅. Early-BE +0.75R is hereby ratified (C279 template): at 114.1238, SL → 113.6655, locking +$4.58, collapsing risk to ~0 and releasing the capacity slot — this is the mechanism that lets a second ticket legally exist. Escalation path is defined in Section 6 and it is house-money-only: every rung is stress-gated against the live cushion, never against hope.
+SECTION 6 — RULING: ALL TICKETS REAFFIRMED UNCHANGED + INVALIDATION MATRICES
 
-Persona 3 — Macro Risk Analyst (SOP 3, 7): Event map for the executable window: JPY CPI digested (blackout lifted 00:05 ✓); API/EIA both pre-window ✓; FX rollover void 21:55–22:15 UTC → no new risk after 21:45; weekend flat rule: every position flat by 20:00 UTC Friday — Brent's NY close and the gap risk make this non-negotiable, and BTC/XAU are not carried into the weekend regardless of P/L. A standing soft-embargo on new dispatches 12:30–14:00 UTC guards against Friday US-data headline risk. Session scheduling — the answer to when to be risky: Asian window = staging and prep only (thin tape, false probes); London open 07:00–09:00 UTC = primary Brent fill window; NY overlap 13:30–17:00 UTC = secondary window + crypto/index risk window. This single scheduling reform returns >60% of wasted cycle-clock to productive risk. IBIT/CEX flows remain a crypto-only information edge and never touch TradFi tickets.
+T-1 🟢 UKBRENT.p BUY_LIMIT 113.595 / 0.65 / SL 113.397 / TP 114.300 (3.56R) — touch-armed, order_check valid. Invalidates if: bid < 113.397 (bunker breach) | regime tag flips (ribbon bear-cross or SD < +0.5) | spread > 0.066 (stress re-gate fails at 24.1) | clock 12:00 UTC unfilled → void, re-site #1 at NY open | ask never returns → no chase above 113.780.
+T-2 🔫 BTCUSD.pi ARMED G1(precondition)+G2/G3/G4 — 0.02 (0.01 if Brent at full risk). Invalidates if: 15m close > 81,544 ask wall without sweep (upside runaway — cascade cancelled, no chase) | 80,050 mother pool drains < ~$15M (gravity gone) | G1 unfired by 07:00 → re-evaluate pool decay at London.
+T-3 👁 XAU-L (E 4,025.50 / SL 4,019.50 / TP 4,038.00, 2.08R) — invalidates if 15m close < 4,019.50 (spring failed) or 4,038 runs away without retest. T-4 👁 XAU-S — contingent, mutually exclusive. T-5 ⏳ USDJPY — stand aside; invalidates into continuation if S1 156.214 breaks and holds (re-screen fresh geometry).
 
-SECTION 5 — METHODOLOGY INQUEST: FOUR MANDATED ANSWERS, QUANTIFIED
-Overly conjunctive filters? YES — measured, not felt. Median candidate carried 5+ conjunctive conditions; P(all-pass) collapsed and starved execution. Hard cap 3 gates (incl. state precondition), lift-accounting (≥8pp or demote), Shadow Ledger n≥30 replaces priors. The desk stops asking "is everything confirmed?" and starts asking "what is the marginal EV of one more filter?"
-Limits too passive / adverse selection? YES. Naked deep-edge bids in thin tape are knife magnets; fix = touch-armed dispatch (deceleration confirmed before order_send), flatten protocol for residual waterfall fills (~−0.3R), and fill-management replacing fill-prayer.
-Asset-class specialization? Three-machine alphabet, one rank-1 asset per machine, risk scheduled into liquidity windows (London/NY for TradFi; cascade windows for crypto), flow edges never cross-applied. 156 assets → 3 monitored lines + shadow tracking is not reduced coverage, it is concentrated attention on measured EV.
-Risk escalation? Only via realized house money, never pre-emptively (Section 6 ladder). A breakeven/loss re-bases one rung down; the floor is never the funding source. This is fractional-Kelly on cushion: rung n is sized so stress ≤ live cushion, mechanically.
+Session clock plan: Asian (now–07:00) = staging + BTC cascade watch, zero discretionary changes | London (07:00–12:00) = primary T-1 window + spread-normalization gate | NY (13:30–17:00) = re-site window + ladder rung-2 execution | 20:00 UTC = everything flat.
 
-Root cause of flat equity, stated plainly: 279 cycles of healthy pipeline with binary veto-everything governance = 0 fills = 0 expectancy realized. The pipeline was never broken; the throughput was. The fix stack — ranked-EV queue, touch-armed dispatch, gate parsimony, Early-BE capacity release, house-money ladder — is now fully installed. Today it must produce its first fill.
+SECTION 7 — 10-POINT PRE-PUNCH CHECKLIST (RE-EXECUTED, T-1)
+Recon: 4,818.51 flat, slots verified ✅ 2. Events: API/EIA pre-window, no OPEC, rollover void mapped ✅ 3. Regime/state: TREND_UP_ACCEPTANCE + APPROACHING, touch-arm armed ✅ 4. R:R 3.561 ≥ 2.0 ✅ 5. Stress 20.77 ≤ 23.51 ✅ 6. Margin 1.53% ✅ 7. Spread 2.9 bps / 4.68% ≤ 8% (with London 2× normalization check pending) ✅ 8. Re-site 0/2, void triggers pre-registered ✅ 9. Management: Early-BE 114.1238 → 113.6655, flatten −0.3R, weekend-flat 20:00 ✅ 10. order_check valid, <60s dispatch spec, bookkeeping fields defined ✅ — T-2/T-3/T-4 unchanged, previously verified.
 
-SECTION 6 — FINAL RULING & EXACT TICKETS
-
-T-1 🟢 PRIMARY — UKBRENT.p BUY_LIMIT (touch-armed dispatch):
-
-text
-Symbol   UKBRENT.p        Type BUY_LIMIT @ 113.595 (deep shelf edge)
-Lots     0.65             SL 113.397   TP 114.300   (3.56R)
-Nominal  −$12.87          Stress −$20.77 (conservative, ≤23.51 PASS)
-Margin   $73.84 (1.53%)   Stressed equity 4,797.74 (+2.74 buffer / +22.74 floor)
-DISPATCH order_check NOW → order_send ONLY on ask ≤113.731 + M5 deceleration; <60s latency
-NO-CHASE ceiling 113.780 | VOID: bid <113.397 pre-fill, or unfilled by 12:00 UTC
-MGMT     Early-BE +0.75R @114.1238 → SL 113.6655 (locks +$4.58, risk→~0, frees slot)
-         Flatten: 5m CVD adverse pulse (3 expanding negative-delta 5m candles) → out ~−0.3R
-         Weekend flat 20:00 UTC if < +1R
-RE-SITE  0/2 used; #1 reserved for NY-open re-validation (R:R ≥2.0 + stress re-gated)
-
-T-2 🔫 BTCUSD.pi — ARMED (no staged order): G1 sweep 80,450 (precondition) → G2 CVD decel → G3 5m close >80,500 → G4 retest hold → punch 0.02 / SL 79,942.20 / TP 82,000 (2.69R, nominal −$11.16, stress −$16.26). If Brent at full risk pre-BE → 0.01 lots only (stress −$9.13; combo 29.90 ✅). Full size legal only post-BE.
-
-T-3 👁 XAUUSD.pi reclaim LONG — trigger: 15m close ≥4,026.00 + retest 4,023.7–4,025.0 holds (2×5m): E 4,025.50 / SL 4,019.50 / TP 4,038.00 = 2.08R, 0.01 lots, nominal −$6.00, stress −$9.88. Requires Brent Early-BE'd or flat (RESIDUAL-13).
-
-T-4 👁 XAUUSD.pi supply FADE — contingent, mutually exclusive with T-3: rejection at 4,031.5–4,033.0 (15m rejection candle + CVD exhaustion) → E ~4,031.89 / SL 4,036.50 / TP 4,022.00 = 2.14R, 0.01 lots, stress −$8.14.
-
-T-5 ⏳ USDJPY.pi — STAND ASIDE: re-screen on pullback to 156.440–156.512; short only on rejection print; provisional 3.03R geometry above; final numbers at re-screen with full stress gate.
-
-Arbitration priority: T-1 dispatch > T-2 G-sequence > T-3 > T-4. Max two concurrent full-risk legs pre-BE. Correlation cap: BTC+XAU+Brent all-long = three risk-on legs → third leg only after one Early-BE.
-
-SECTION 7 — 10-POINT PRE-PUNCH CHECKLIST — T-1 (COMPLETED)
-#
-	
-POINT
-	
-STATUS
-
-1	Account reconciled, floors verified (+43.51/+23.51), slot free	✅
-2	Event clearance: API/EIA printed, no OPEC, rollover void mapped, weekend-flat 20:00 UTC	✅
-3	Regime + state machine: TREND_UP_ACCEPTANCE, APPROACHING, touch-arm condition armed	✅
-4	R:R 3.561 ≥ 2.0	✅
-5	Stress −$20.77 ≤ 23.51 (buffer tier)	✅
-6	Sizing/margin: 0.65 lots, $73.84 = 1.53%	✅
-7	Spread 0.033 pts / 2.9 bps / 4.68% of reward ≤ 8%	✅
-8	Re-site 0/2; decay voids pre-registered (113.397 breach; 12:00 UTC stale)	✅
-9	Management pre-registered: Early-BE 114.1238→113.6655; flatten −0.3R; weekend rule	✅
-10	order_check now; dispatch <60s; regime tag + ticket log → Sheets 30/33	✅
-
-Armed tickets T-2/T-3/T-4 pass the same 10 points via their pre-registered parameters (verified: 16.26 / 9.88 / 8.14, all ≤ caps; R:R 2.69 / 2.08 / 2.14).
-
-SECTION 8 — HOUSE-MONEY LADDER TO 5,500 (verified, every rung stress-gated)
-RUNG
-	
-TRIGGER
-	
-NOMINAL
-	
-STRESS
-	
-REWARD @3.5R
-	
-EQUITY AFTER
-	
-FLOOR CUSHION
-
-0	—	—	—	—	4,818.51	+43.51
-1	T-1 win	12.87	18.09	+45.04	4,863.55	+88.55
-2	W1	33.20	43.50	+116.20	4,979.75	+204.75
-3	W2	80.00	102.00	+280.00	5,259.75	+484.75
-4	W3	80.00	102.00	+280.00	5,539.75	+764.75 ✅ MISSION
-
-Four consecutive ~3.5R wins close the mission with +$39.75 surplus. Any loss re-bases one rung down (rung-1 loss → cushion 30.64 → next cap 22.91); the floor survives every branch by construction. Runge-3 margin check: 4.04 lots Brent ≈ $459 margin (9.2%) — margin never binds before cushion does.
-
-RULING: Stage T-1 on touch-arm now; BTC stays armed on the 3-gate reclaim; XAU spring tickets wait for Brent's risk to collapse via Early-BE; USDJPY stands aside. The desk's first fill in nine cycles is one deceleration print away. Next cycle: report fills, CVD tape at dispatch, and ladder rung status — escalate only from realized money.
+RULING: The book stands. Reaffirmed, not re-derived. The single highest-value action this cycle was refusing to churn a zero-delta tape — and demanding the four deltas that matter at C282. Next cycle: if the tape refreshes, we execute the matrix above; if it is stale a third consecutive time, escalate for feed repair before any further adjudication.
 
 ================================================================================
 Z.AI ATTACHED OUTPUT FILE:  (479 chars)
