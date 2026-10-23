@@ -1,26 +1,6 @@
 [
   {
     "type": "LIQUIDATION",
-    "coin": "XYZ:TSLA",
-    "side": "SHORT_LIQUIDATED",
-    "market_impact": "BUY_PRESSURE",
-    "notional_usd": 198.24,
-    "distance_pct": null,
-    "duration_hours": null,
-    "rate_usd_per_min": null,
-    "price": 360.43,
-    "wallet_address": "0x793660578d2628b0ec7e0e2b5c75a4847ae80706",
-    "asset_slug": "XYZ:TSLA",
-    "raw_text": "#XYZ:TSLA Liquidated Short: 0.20K USD at 360.4300 USD [API]",
-    "msg_id": "HL_LIQ_0x793660578d2628b0ec7e0e2b5c75a4847ae80706_XYZ:TSLA_1031728532296400",
-    "timestamp_epoch": 1792162478,
-    "time_label": "14:54",
-    "date_heading": "October 16",
-    "source": "HYPERLIQUID_L1_NATIVE_API",
-    "identity_basis": "NATIVE_TID"
-  },
-  {
-    "type": "LIQUIDATION",
     "coin": "XYZ:NBIS",
     "side": "SHORT_LIQUIDATED",
     "market_impact": "BUY_PRESSURE",
@@ -199996,6 +199976,26 @@
     "timestamp_epoch": 1792658048,
     "time_label": "08:34",
     "date_heading": "October 22",
+    "source": "HYPERLIQUID_L1_NATIVE_API",
+    "identity_basis": "NATIVE_TID"
+  },
+  {
+    "type": "WHALE_TRADE",
+    "coin": "NEAR",
+    "side": "BUY",
+    "market_impact": "BUY_PRESSURE",
+    "notional_usd": 5271.0,
+    "distance_pct": null,
+    "duration_hours": null,
+    "rate_usd_per_min": null,
+    "price": 4.8792,
+    "wallet_address": "0xf5d81a135f756ca16544e53c20fc20643ec3ad53",
+    "asset_slug": "NEAR",
+    "raw_text": "#NEAR Whale BUY: 5.27K USD at 4.8792 USD [API]",
+    "msg_id": "HL_TRADE_NEAR_694516698104560",
+    "timestamp_epoch": 1792776088,
+    "time_label": "17:21",
+    "date_heading": "October 23",
     "source": "HYPERLIQUID_L1_NATIVE_API",
     "identity_basis": "NATIVE_TID"
   }
