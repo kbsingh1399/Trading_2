@@ -22,9 +22,9 @@
 > ⚙️ **Coordinator Dispatch Note**: Replace all `{PLACEHOLDERS}` with live values from `Data/telemetry/mt5_account_telemetry.json` and MT5 sockets before injection. The council prompt integrates ALL 4 Antigravity quantitative personas into a single exhaustive dialectic deliberation.
 
 ```markdown
-# 🏛️ CO-EQUAL QUANTITATIVE FRONTIER COUNCIL: CYCLE 307
+# 🏛️ CO-EQUAL QUANTITATIVE FRONTIER COUNCIL: CYCLE 308
 ## ARENA.AI (GPT ASTRA) & Z.AI (GLM-5.3-FLASH) — UNIFIED 360° 4-PERSONA CANDIDATE DISCOVERY & SOLVENCY DELIBERATION
-### BlueBerry Markets MT5 Account #5064568 | Time: 2026-10-23 20:20:00 UTC
+### BlueBerry Markets MT5 Account #5064568 | Time: 2026-10-23 21:06:00 UTC
 
 🚨 COUNCIL ROLES (OPERATOR MANDATE):
 You are convened as the Co-Equal Frontier Quantitative Council:
@@ -34,7 +34,7 @@ You are convened as the Co-Equal Frontier Quantitative Council:
 
 You are NOT passive observers, rubber-stampers, or destructive critics looking for excuses to stall. Your dual mission is to:
 1. ACTIVELY DISCOVER, FORMULATE, AND EVALUATE HIGH-CONFLUENCE TRADING CANDIDATES across all 156 instruments in our universe (Crypto, Forex, Metals, Indices).
-2. FIERCELY DEFEND THE SOLVENCY FLOORS: Preserve the 4,650.00 USD operating buffer defense (+177.00 USD cushion) and the absolute 4,600.00 USD hard floor (+227.00 USD cushion).
+2. FIERCELY DEFEND THE SOLVENCY FLOORS: Preserve the 4,650.00 USD operating buffer defense (+170.55 USD cushion) and the absolute 4,600.00 USD hard floor (+220.55 USD cushion).
 3. SYSTEMATICALLY EVALUATE EVERY PROPOSAL ACROSS ALL 4 QUANTITATIVE SPECIALIST PERSONAS line-by-line following `Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md`.
 
 ---
@@ -42,10 +42,10 @@ You are NOT passive observers, rubber-stampers, or destructive critics looking f
 ## SECTION A: LIVE DESK POSTURE & TELEMETRY (CANONICAL GROUND TRUTH)
 
 - MT5 Account: #5064568 (Blueberry Markets, Raw Spread CFD/Perpetual)
-- Realized Balance: 4799.88 USD | Floating Equity: 4827.00 USD | Free Margin: 2376.00 USD
-- Inviolable Hard Floor: 4,600.00 USD (Current Floor Cushion: +227.00 USD)
-- Operating Buffer Defense: 4,650.00 USD (Current Buffer Cushion: +177.00 USD)
-- Phase 1 Target: 5,500.00 USD (Goal Gap: 673.00 USD | Runway: ~3.6 hours remaining)
+- Realized Balance: 4799.88 USD | Floating Equity: 4820.55 USD | Free Margin: 2369.55 USD
+- Inviolable Hard Floor: 4,600.00 USD (Current Floor Cushion: +220.55 USD)
+- Operating Buffer Defense: 4,650.00 USD (Current Buffer Cushion: +170.55 USD)
+- Phase 1 Target: 5,500.00 USD (Goal Gap: 679.45 USD | Runway: ~2.9 hours remaining)
 - Portfolio Capacity: 1 active (Ticket #19267445 BTCUSD.pi Short 0.06 lot @ 81700, SL 81640 Early-BE risk-free, TP 80600) Open Positions | 0 Pending Orders | 3/4 Fluid Slots Free
 - Current Risk State: Zero positions consumed. Stressed post-loss equity must remain strictly >= 4,650.00 USD operating buffer.
 
@@ -219,9 +219,9 @@ Provide deep, candid quantitative critique across the 5 canonical dimensions:
 
 Before dispatching this unified prompt to Arena.ai (via Chrome CDP port 9222) and Z.ai (via `Terminal/dispatch_zai_prompt.py`):
 - [ ] Confirm `Data/Manditory/Arena_GLM_Standard_Prompt.md` is loaded.
-- [ ] Fill `4799.88`, `4827.00`, `2376.00` from live `mt5_account_telemetry.json`.
-- [ ] Fill `227.00` (Equity - 4600.00) and `177.00` (Equity - 4650.00).
-- [ ] Fill `673.00` (5500.00 - Equity) and `3.6` (runway to Oct 23 23:59 UTC).
+- [ ] Fill `4799.88`, `4820.55`, `2369.55` from live `mt5_account_telemetry.json`.
+- [ ] Fill `220.55` (Equity - 4600.00) and `170.55` (Equity - 4650.00).
+- [ ] Fill `679.45` (5500.00 - Equity) and `2.9` (runway to Oct 23 23:59 UTC).
 - [ ] Fill `1 active (Ticket #19267445 BTCUSD.pi Short 0.06 lot @ 81700, SL 81640 Early-BE risk-free, TP 80600)`, `0`, and `3` from live broker state.
 - [ ] Populate `{TICKET_TABLE}` with all active tickets and pending orders.
 - [ ] Populate `{CANDIDATE_TABLE}` from `Terminal/multi_asset_opportunity_scanner.py` or subagent reports.
