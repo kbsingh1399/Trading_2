@@ -40,10 +40,11 @@
    - Authorized up to **4 concurrent running filled positions** across orthogonal asset clusters (Crypto, Indices, Metals, Forex).
    - Resting pending limit orders do **NOT** consume running slots! Up to 5 resting limits may be pre-staged at structural whale shelves.
    - Ratchet Headroom Release: When a live position hits Early-BE (+0.75R0) and SL moves to Entry + 0.10R0, risk drops to 0.00 USD, immediately releasing buffer capacity for secondary setups.
-3. **Continuous Co-Equal Council with Arena.ai**:
-   - On every 20-minute cycle and prospective setup approach, inject the surgical red-team prompt into Arena.ai via Chrome CDP on port 9222.
-   - Arena completion daemon auto-harvests critiques to docs/trade_plans/ARENA_LATEST_RAW.md.
-   - Conduct joint debate: Punch limit orders ONLY when both internal fleet and Arena confirm 5-pillar confluence with valid resting whale walls.
+3. **Continuous Tri-Track Council (Antigravity Fable 5, Arena.ai GPT Astra & Z.ai GLM-5.3-Flash)**:
+   - On every autonomous cycle, inject the canonical unified prompt `Arena_GLM_Standard_Prompt.md` simultaneously into Arena.ai (GPT Astra) and Z.ai (GLM-5.3-Flash) via Chrome CDP port 9222.
+   - Completion daemons auto-harvest critiques and candidates into `docs/trade_plans/ARENA_LATEST_RAW.md` and `docs/trade_plans/ZAI_LATEST_RAW.md`.
+   - Joint-Completion Lifecycle: Cycle X is complete ONLY when all 3 entities finish. Next cycle triggers strictly 20 minutes after completion (`T_finish + 20 min`), supervised by the 30-minute watchdog sentry (`0,30 * * * *`).
+   - Conduct co-equal debate: Punch limit orders ONLY when all tracks confirm 5-pillar confluence with valid resting whale walls and positive solvency cushion.
 4. **Execution Mode**:
    - Strictly passive limit orders (BUY_LIMIT / SELL_LIMIT) with broker-supported filling modes.
    - Non-marketable posture: BUY_LIMIT <= live bid, SELL_LIMIT >= live ask (Never cross the spread).

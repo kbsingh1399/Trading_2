@@ -284,3 +284,29 @@ Every 20-minute wake-up cron cycle MUST systematically execute and verify each g
      - Persona 4: Auction Profile & Friction Arbitrageur (Sheet 33 Value Area VAH/VAL/POC/IB, Relative Spread Gate Spread/TP <= 10.0%, 33-sheet data health, Event Risk Clock & European / Macro blackout horizons).
   4. Updated `AUTONOMOUS_WAKEUP_CHECKLIST.md` to guarantee parallel Z.ai dispatch on every autonomous cycle.
   5. Updated `Terminal/dispatch_dual_council.py` and `Terminal/dispatch_arena_redteam.py` to automatically load and populate `Arena_GLM_Standard_Prompt.md`.
+
+
+---
+
+## 🏛️ RESOLUTION 17: JOINT-COMPLETION CYCLE LIFECYCLE, 20-MINUTE RELATIVE REST INTERVAL, AND 30-MINUTE WATCHDOG SENTRY
+- **Operator Directive**:
+  * *"Upgrade required...Right now, we are using cron jobs to wake up...Let say we are in cycle X...in this cycle, we prmpt antigraivty subagents, arena.ai , z.ai. we will call this cycle finished only when all three completed the prmpt processing...becuase sometime agents may take more time than 20 mins and till then next cycle started...so there is a collpase...When all three done, then we will call it finished. We can have a cron job at 30 min to check if all going okay and cycle completed or not or any error. And deifference between completed cycle X and next cycle trigger must be 20 mins... Accordingly update all folder in Manditory whereever it require as per the recent requirement."*
+- **Root Cause & Vulnerability**:
+  * Fixed wall-clock cron triggers (e.g. `0,20,40 * * * *`) blindly fire every 20 minutes regardless of whether Arena.ai or Z.ai is still thinking.
+  * If external LLM generation or internal subagent analysis takes longer than 20 minutes, the next cycle begins prematurely while the prior cycle is in flight, causing overlapping prompt dispatches, race conditions, context collapse, and potential double-execution of orders.
+- **Enforced Protocol**:
+  1. **Joint 3-Entity Completion Gate**: Cycle X is marked officially **FINISHED** only when **ALL THREE entities complete processing**:
+     - (1) Antigravity 4-Quant Subagent Swarm (Fable 5)
+     - (2) Arena.ai Frontier Council (GPT Astra)
+     - (3) Z.ai Sovereign Council (GLM-5.3-Flash)
+  2. **Strict Relative 20-Minute Separation (`T_finish + 20 min`)**:
+     - The separation between completed Cycle X and the trigger for Cycle X+1 must be strictly **20 minutes** (1200 seconds).
+     - Cycle advancement is armed dynamically via `next_cycle_scheduled_utc = cycle_completed_utc + 1200s`.
+  3. **Joint Cycle Controller & State Engine**:
+     - Created `Terminal/joint_cycle_controller.py` and canonical state `Data/cycle_state.json`.
+     - Tracks per-component status (`antigravity_subagents`, `arena_ai`, `zai`), auto-syncs from completion daemons, and formalizes cycle closure.
+  4. **30-Minute Watchdog Sentry Cron (`0,30 * * * *`)**:
+     - Replaces legacy fixed cycle crons with an autonomous 30-minute watchdog sentry (`0,30 * * * *` at :00 and :30).
+     - Audits cycle health, detects stalled cycles (>30 min), verifies all 8 persistent background daemons, and triggers cycle advancement safely once the clean 20-minute post-completion separation has elapsed.
+  5. **Standard Exhaustive Council Prompt**:
+     - All dispatches to Arena.ai and Z.ai use canonical [`Data/Manditory/Arena_GLM_Standard_Prompt.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/Arena_GLM_Standard_Prompt.md) (15.5k chars, 4 quantitative personas, 0 LaTeX delimiters).

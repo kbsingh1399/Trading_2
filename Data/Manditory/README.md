@@ -5,7 +5,7 @@
 > **Mission**: Pass Funded Phase 1 (5,500.00 USD Equity Target) by Friday, 23rd October 2026 (23:59 UTC).  
 > **Inviolable Hard Floor**: 4,775.00 USD (Never breach under any circumstance).  
 > **Defense Operating Buffer**: 4,795.00 USD (+20.00 USD cushion above hard floor).  
-> **Authorized Background Tasks**: EXACTLY 5 persistent daemons active in Antigravity task runner (`manage_task`).
+> **Authorized Background Tasks**: 8 persistent daemons active in Antigravity task runner (`manage_task`).
 
 ---
 
@@ -48,7 +48,7 @@ flowchart TD
 | # | Document | Primary Purpose | Key Focus & Enforcements |
 |---|---|---|---|
 | 1 | [`STANDARDIZED_TRADING_DECISION_CHAIN.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md) | **Canonical 10-Step Institutional Quant SOP** | Complete institutional quant trading decision chain, 5-pillar confluence stack, dynamic friction budgeting (spread points / TP distance <= 15%), fluid 4-slot portfolio capacity, multi-asset risk scaling (up to 25.00–35.00 USD), and 10-point ex-ante pre-punch checklist. |
-| 2 | [`AUTONOMOUS_WAKEUP_CHECKLIST.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/AUTONOMOUS_WAKEUP_CHECKLIST.md) | **20-Minute Wake-Up Sequence** | 10-step autonomous execution sequence executed on every 20-minute cron trigger (`0,20,40 * * * *`). Mandatory 4-subagent dispatch, Arena.ai affirmative candidate discovery, and pre-condition trigger checklist. |
+| 2 | [`AUTONOMOUS_WAKEUP_CHECKLIST.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/AUTONOMOUS_WAKEUP_CHECKLIST.md) | **20-Minute Wake-Up Sequence** | 10-step autonomous execution sequence executed under the joint 3-entity completion lifecycle with clean 20-minute post-completion separation and 30-minute watchdog sentry (`0,30 * * * *`). Mandatory 4-subagent fleet (Fable 5), Arena.ai (GPT Astra) & Z.ai (GLM-5.3-Flash) candidate discovery. Mandatory 4-subagent dispatch, Arena.ai affirmative candidate discovery, and pre-condition trigger checklist. |
 | 3 | [`ANTIGRAVITY_ARENA_THINKING_CHAIN_COUNCIL_PROTOCOL.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/ANTIGRAVITY_ARENA_THINKING_CHAIN_COUNCIL_PROTOCOL.md) | **Antigravity-Arena Council Protocol** | V3.0 production-hardened council protocol, 6-gate architectural diagram, 33-sheet master Excel data warehouse provenance, and dual Arena.ai mandate (candidate discovery + critique). |
 | 4 | [`SUBAGENT_PROMPT_TEMPLATES.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/SUBAGENT_PROMPT_TEMPLATES.md) | **Specialist Subagent Dispatch Prompts** | Standardized Tier 2 Full Unabridged Big Prompts (~350–500 tokens) with mandatory citation of `STANDARDIZED_TRADING_DECISION_CHAIN.md` for all 4 subagents: Orderflow Analyst, Position Manager, Macro Risk Analyst, and Excel Data Quality Auditor. |
 | 5 | [`Arena_GLM_Standard_Prompt.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/Arena_GLM_Standard_Prompt.md) | **Dual-Council (Arena.ai & Z.ai) Unified Prompt** | Standardized 360° 4-persona quantitative prompt template dispatched simultaneously to Arena.ai (GPT Astra via CDP 9222) and Z.ai (GLM-5.3-Flash) for affirmative candidate discovery and solvency deliberation. |
@@ -86,10 +86,13 @@ All secondary, historical, or specialized reference specifications are cleanly a
 
 ---
 
-## ⚙️ THE 5 AUTHORIZED PERSISTENT BACKGROUND DAEMONS (IN ANTIGRAVITY TASK MANAGER)
+## ⚙️ THE 8 AUTHORIZED PERSISTENT BACKGROUND DAEMONS (IN ANTIGRAVITY TASK MANAGER)
 
 1. **Daemon 1 (Continuous 33-Sheet Excel Pipeline Daemon)**: `Run_Parallel_Pipeline.py --continuous --gap 300 --workers 1` (`IsDaemon=true`).
-2. **Daemon 2 (20-Minute Cron Sentry)**: `schedule` on `0,20,40 * * * *` (`IsDaemon=true`).
+2. **Daemon 2 (30-Minute Autonomous Watchdog Sentry Cron)**: `schedule` on `0,30 * * * *` (`IsDaemon=true`).
 3. **Daemon 3 (Arena Completion Daemon)**: `arena_completion_daemon.py --daemon` on port 9222 (`IsDaemon=true`).
-4. **Daemon 4 (Autonomous 5-Minute Git Sync Daemon)**: `autonomous_git_sync_daemon.py` every 300s (`IsDaemon=true`).
-5. **Daemon 5 (AST Graphify Watcher Daemon)**: `run_graphify_watcher.py` (`IsDaemon=true`).
+4. **Daemon 4 (Z.ai Completion Daemon)**: `zai_completion_daemon.py --daemon` on port 9222 (`IsDaemon=true`).
+5. **Daemon 5 (Position Ratchet Daemon)**: `position_ratchet_daemon.py` (`IsDaemon=true`).
+6. **Daemon 6 (Autonomous 5-Minute Git Sync Daemon)**: `autonomous_git_sync_daemon.py` every 300s (`IsDaemon=true`).
+7. **Daemon 7 (AST Graphify Watcher Daemon)**: `run_graphify_watcher.py` (`IsDaemon=true`).
+8. **Daemon 8 (Gemini Web2API Council Daemon — Endogen Architecture - Token Preservation)**: `gemini_web2api.py` on port 8081 (`IsDaemon=true`).

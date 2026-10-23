@@ -326,12 +326,24 @@ flowchart TD
 
 ---
 
-### Step 10: Git Sync, Socket Pruning, Kaizen Audit & Cron Standby (CYCLE OFFICIAL COMPLETION)
+### Step 10: Git Sync, Socket Pruning, Kaizen Audit & Joint Cycle Controller Completion (CYCLE OFFICIAL COMPLETION)
+- [ ] **Joint Cycle Controller Completion & 20-Minute Relative Delay Arming**:
+  - Run `python Terminal/joint_cycle_controller.py --status` to attest that all 3 entities (Antigravity Fable 5 Fleet, Arena.ai GPT Astra, Z.ai GLM-5.3-Flash) are marked `COMPLETED`.
+  - Verify that `next_cycle_scheduled_utc` is computed exactly as `cycle_completed_utc + 1200s` (strict 20-minute post-completion separation).
 - [ ] **Autonomous 5-Minute Git Sync Verification**: Verify that `autonomous_git_sync_daemon.py` is actively running in `manage_task(Action='list')` and pushing workspace commits to `origin/main` every 300s with validated Excel CRC integrity.
 - [ ] **Clean Socket Pruning Mandate**: Immediately execute `manage_subagents(Action='kill_all')` to terminate all SSE subagent connections and eliminate Windows network socket leaks.
 - [ ] **Dual-Repo Parity Verification**: Run `python .agents/scripts/verify_and_sync_agents.py` to guarantee 100% byte-for-byte parity across `Trading_2` and `Engine_2`.
 - [ ] **Continuous Kaizen Self-Improvement Audit**: Execute the 5-stage loop from `Data/Manditory/CONTINUOUS_KAIZEN_SELF_IMPROVEMENT_PROTOCOL.md`. Audit for any arithmetic mismatch, stale solvency assumption, or unanchored level; codify any discovered trap immediately.
 - [ ] **Desk Ledger & Turn Append**: Update `docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md`, `ACTIVE_CONTEXT.md`, and append turn summary to `.agents/memory/session_chat_history.md`.
-- [ ] **Ensure All 6 Daemons Active in Task Manager**: Confirm that `manage_task(Action='list')` reports all 6 persistent daemons running (Pipeline, Cron `0,20,40 * * * *`, Arena Completion, Git Sync, AST Watcher, Gemini Web2API on port 8081). If any daemon terminated, immediately relaunch it.
+- [ ] **Ensure All 8 Persistent Daemons Active in Task Manager**: Confirm that `manage_task(Action='list')` reports all authorized persistent daemons running:
+  1. Continuous 33-Sheet Excel Daemon (`Run_Parallel_Pipeline.py`)
+  2. 30-Minute Watchdog Sentry Cron (`0,30 * * * *`)
+  3. Arena Completion Daemon (`arena_completion_daemon.py --daemon` on port 9222)
+  4. Z.ai Completion Daemon (`zai_completion_daemon.py --daemon` on port 9222)
+  5. Position Ratchet Daemon (`position_ratchet_daemon.py`)
+  6. Autonomous Git Sync Daemon (`autonomous_git_sync_daemon.py`)
+  7. AST Graphify Watcher Daemon (`run_graphify_watcher.py`)
+  8. Gemini Web2API Daemon on port 8081 (`gemini_web2api.py`)
+  If any daemon terminated, immediately relaunch it.
 - [ ] **Zero Scratch Litter**: Prune all temporary scratch scripts immediately.
-- [ ] **Silent Standby**: Enter silent standby awaiting next autonomous reactive wakeup or cron trigger.
+- [ ] **Silent Standby**: Enter silent standby awaiting next autonomous reactive wakeup or the 30-minute watchdog sentry.

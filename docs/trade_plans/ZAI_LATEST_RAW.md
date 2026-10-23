@@ -1,165 +1,181 @@
 Thought Process
-Explored 3 files
-List Directory /home/z/my-project/scripts
-Read File worklog.md
-WebFetch
+Ran 1 commands
+
+Warehouse snapshot acquired (13.9 MB, real file). Writing the health-check and the C296 verification layer now.
+
+Wrote 2 files，Ran 1 commands
+Create File c296_sheet_health.py
+Create File c296_math_check.py
+Audit 33-sheet warehouse health (snapshot)
 Done
 
-Worklog intact (C280–C294 continuous, C294 ruling logged), c291_math_check.py survives, and — critically — the live screener source was fetched successfully from the repo, so the audit can be source-verified rather than black-box. Marking tasks and building the verification layer now.
+33/33 sheets, 0 errors, 0 empty headers — but no embedded datetime cells, so freshness must be certified by the live desk (honest reporting). Now the verification math:
 
-Wrote 1 files，Ran 1 commands
+Ran 1 commands
 
-All canonical figures reproduce; Monte Carlo gives honest mission odds. Appending the C295 worklog entry, then delivering the ruling.
+All sections verified. Appending the worklog entry, then delivering the full council response.
 
 Wrote 1 files
-⚖️ CYCLE 295 — Z.AI SOVEREIGN COUNCIL — DENSE QUANTITATIVE RULING (05:00:00 UTC)
 
-Verification layer: scripts/c295_math_check.py Sections M0–M7 executed, all canonical figures reproduced. Screener audited at source (live fetch of Terminal/institutional_95_screener.py from repo main, not from operator's description).
+✅ 33-SHEET CONFIRMATION: 0 formula errors | 0 empty headers | Data Freshness: NOT machine-verifiable from repo snapshot (13.9 MB warehouse audited at source: 33/33 sheets clean; workbook embeds no datetime cells, so live ≤15-min freshness must be certified by Fable 5 desk at stage time — graphify is not reachable from this council seat; noted as tooling gap).
 
-SECTION 0 — RECONCILIATION & LEDGER RE-BASE (Severity classification first)
-ITEM
+Verification layer: scripts/c296_sheet_health.py + scripts/c296_math_check.py (N0–N5) executed. All figures below are computed, not asserted.
+
+⚖️ CYCLE 296 — Z.AI (GLM) SOVEREIGN MATHEMATICAL QUANT & SOLVENCY ARBITER — FULL EVALUATION
+SECTION 0 — RECONCILIATION BEFORE EVALUATION (two Severity-1 events)
+
+E-296-01 EXECUTION GAP: C295-1 (GER40.p stage command, window 06:45–07:10 UTC) is absent from the book at 07:08:17 with equity delta 0.00 → never instantiated or early-cancelled. The Frankfurt auction thesis is dead for today (PMI 07:15). RTP strike counter: 1/3, classification pending — operator sovereignty stand-aside vs execution-layer failure. EV forgone: +$5.52 (single ticket); cumulative gap class ≈ $44 (C284 autopsy precedent).
+
+PHANTOM-STATE DEFECT #2: Your telemetry states "Worst-Case Simultaneous Stopout Equity: 4,799.77" while the book is 0/0. Implied ghost leg = 4,818.51 − 4,799.77 = $18.74 stressed ≈ GER40-B's 18.65 — the risk aggregator still carries the dead C295-1 ticket. Book state and risk engine disagree. Fix the aggregator before it misprices capacity.
+
+Symbol flag: GER30.p (19,349) vs GER40.p (25,381) = 31% apart → order_check contract pin (tick value/size) is mandatory before any GER staging.
+
+SECTION E — 4-PERSONA EXHAUSTIVE EVALUATION OF THE 5 RADAR CANDIDATES
+🔬 PERSONA 1 — Statistical Regime & Diffusion Quant
+CANDIDATE
 	
-FINDING
+GEOMETRY (VERIFIED)
 	
-CLASS
-
-Equity delta C294→C295	4,818.51 → 4,818.51 = 0.00; 0/4 pos, 0/10 pending	Clean
-C294 "STAGE NOW" not in book at 05:00	Operator re-scoped window to 06:45 UTC = sovereignty deferral, not a Rule→Order defect	No strike
-Ticket #19236218	Lifecycle CLOSED (cancelled unfilled pre-expiry, C292–C293 log); zero cash impact	Closed
-Ladder state	FORMALLY RE-BASED: rung-0, banked $0.00. C291's "+43.80 → 4,862.31" was a conditional roadmap projection, never a booked fill	Canon correction
-Carry-over envelope	22.80 nominal pre-bank (RESIDUAL-13 binding) / 33.20 post-bank house tier	Reaffirmed
-
-Note to Arena.ai: if your council carries 4,862.31 as booked equity, that state is void — merge rule applies, conservative state wins.
-
-SECTION 1 — SCREENER FORENSIC AUDIT (source-verified, line-quoted)
-
-Ratified at source ✅: (1) legacy spread_bps <= 5.0 gate removed — dynamic per-class friction now live: Crypto ≤35 / Exotics ≤25 / Indices-Commodities ≤10 / Forex ≤6 bps (line 81–82); (2) 156-asset ingestion from mt5_full_symbol_universe.json (line 46); (3) order_calc_profit() + floor lot-snapping (lines 204–215); (4) stress formula present (line 222–226).
-
-Defects to patch (D1–D6):
-
-D1: Screener uses Spread/TP ≤ 15.0% (line 198–200) vs Persona-4 council gate 10.0% → unify: 10% entry / 15% monitor-only.
-D2: stressed_loss = nominal_risk * 1.25 + 2.00 — canonical is (R + S) × 1.25 + 2.00. It reconciles only because nominal_risk implicitly embeds spread (GER40: back-solved 13.32 = 13.05 + 0.27). Make S explicit or a future risk series will be silently understated.
-D3: No ranking metric — qualified setups are "returned as-is"; the "Top Ranked" ordering lives outside the screener. Add explicit EV column with declared p before ranking.
-D4: Zero session/embargo/TTL awareness — a SELL_LIMIT staged at 05:00 for SP500 7,658.80 survives 8.5h across Frankfurt vol, rollover embargo 21:15–22:30 and weekend-flat 20:00. Add a SessionGate module (windows, embargo list, order TTL).
-D5: math.floor snapping can undershoot min_lot on tiny risk targets — add post-snap guard.
-D6: No correlation clustering — the top-5 are all SHORT risk assets = one macro bet. Add cluster tag + aggregate RESIDUAL-13 check.
-
-Arithmetic integrity: 5/5 setups internally consistent — implied tick values GER40 11.20–11.21 (matches C291 order_check pin), SP500/NAS 10.00, BTC 1.00, XAG ~5,086 (5,000 + embedded spread). Verdict on "is it correctly updated": YES — remediation correct at source; patch D1–D6 before next run.
-
-SECTION 2 — Q1: SETUP RATIFICATION → GER40.p combo B WINS
-
-GER40 lattice forensics (24 combos enumerated): the screener's band presentation hides that tight-SL × upper-entry is INVALID (SL 25,345.69 < entry 25,381.39 → SL below entry on a short). The band resolves into two legal families:
-
-COMBO
-	
-GEOMETRY
-	
-RISK
-	
-R:R
-	
-STRESSED
-	
-POST-LOSS
+REGIME EVIDENCE
 	
 VERDICT
 
-B (RATIFIED)	0.03 @ 25,381.39 / SL 25,420.23 / TP 25,286.79	13.06	2.436	18.66	4,799.85	Buffer-clean, R13-PASS
-A (magnitude alt)	0.06 @ 25,321.66 / SL 25,345.69 / TP 25,261.57	16.16	2.501	22.88	4,795.63	Buffer-clean (margin 0.63)
-C (REJECT)	0.06 @ 25,381.39 / SL 25,420.23	26.12	2.436	35.33	4,783.18	Buffer breach, R13-fail
+SWISS20.p BUY	v=12.15 $/pt/lot, SLdist 33.38, TPdist 73.44, R:R 2.200	No VR(q)/ER/HAC-t supplied at radar stage; Swiss open churn 07:00–08:00; DAX-beta means PMI 07:30 dominates the next 90 min of its diffusion	UNDEFINED_NOISE → stand aside
+XAGSGD.pi SELL	v=3,912 $/px/lot, SLdist 0.374, R:R 2.497	Silver regime must be read on XAG/USD native tape; SGD translation adds FX diffusion noise the persona never modeled	REJECTED (regime source = native only)
+GER30.p BUY	v=11.21, SLdist 45.90, R:R 2.500	Direction contradicts C295's ratified GER-short auction thesis 90 min later with zero sheet evidence — screener regime-flipping = unstable state estimate; PMI makes drift bimodal within the TTL	REJECTED
+XAGAUD.pi SELL	v=3,512, SLdist 0.428, R:R 2.498	Same native-tape objection as XAGSGD	REJECTED
+XAGEUR.pi SELL	v=5,605, SLdist 0.258, R:R 2.500	EUR leg = direct PMI diffusion exposure; p is unpriceable pre-event	REJECTED (event-bimodal)
+BTC (C295-2)	v=1.00, SLdist 414.19, R:R 2.582	Regime evidence carried from C291/C294 (supply-wall site, FINAL entry); TTL: E[T_absorption] ≈ 3–5h < 6h trap bound	RATIFIED (conditional)
 
-B survives a 2.5-pt Frankfurt spread spike: stressed 19.36 → post 4,799.15, still buffer-PASS. Variant B+ (TP 25,261.57 → 3.085R, same risk) approved only after Early-BE ratchet locks — the far TP extends exposure through the PMI window, which violates the event clock unless BE is locked.
+Persona 1 finding that matters: all five radar candidates arrived without a single VR/ER/τ½/HAC-t number attached. Geometry-only candidates cannot clear Persona 1. The one candidate with a full evidence chain is the one this council already built.
 
-EV lattice (declared p, friction = spread + $0.90):
+🌊 PERSONA 2 — Microstructure & Liquidation Quant
+No candidate in Section D cites Sheet 18/25/23/24/26 metrics — no wall polarity, no τ≥180s persistence, no ρ≥0.60 refill, no LIR, no CVD z≥1.50. Per this cycle's own mandatory format, all five fail Persona 2 by data absence (RATIFIED requires empirical orderbook metrics).
+BTC: the $20.15M ask wall @ 81,950–82,000 is now 4.5h stale → Persona 2 cannot ratify from stale books. Gate 1: live re-verify (τ≥180s, ρ≥0.60, size≥100K-class). Staging-trap rule honored: entry 81,960 rests behind the ask wall, not inside an un-swept stop cluster.
+LIR logic note for the silver complex: a XAG short requires LIR < 0.55 (fuel below). None of the three crosses supplied it. The crosses also inherit CoinGlass liquidation maps that are USD-denominated — mapping them onto SGD/AUD/EUR contracts without re-denomination is a polarity-audit trap.
+🛡️ PERSONA 3 — Convex Portfolio & Solvency Sentry
 
-RANK
+Stress decomposition (canonical (R+S)×1.25+2.00; operator's stated values all use zero embedded spread — defect D2 live):
+
+CANDIDATE
 	
-SETUP
+STATED STRESSED
 	
-P
+WORST-CASE SPREAD STRESSED
 	
-EV
+POST-LOSS (WORST)
 	
-EV(R)
-	
-NOTE
-
-1	GER40.p combo B	0.44	+$5.52	+0.423R	Session-auction class (C282/C284 validated), fill window bounded 06:45–07:10
-2	BTC repaired	0.42	+$4.90	+0.394R	Wall data freshness must be re-verified ≤15 min at stage
-3	SP500 0.22	0.40	+$3.12	+0.197R	×0.62 time-risk haircut
-4	NAS100 0.03	0.40	+$3.05	+0.192R	×0.62 time-risk haircut
-5	XAG 0.01	0.40	+$2.85	+0.267R	Bench
-
-Why GER40 initiates the staircase: highest EV and highest fill-certainty inside a bounded window, canonical TradFi session-auction edge (Asian High + Frankfurt open), buffer-clean stressed loss, and no governance exceptions required. SP500/NAS100 staged now would be stale-order bets (haircut applied); they re-audit at 13:00 UTC with fresh levels. BTC = serial leg-2, not simultaneous (M5: GER40-B + BTC = 36.78 > 30.51 FAIL; only legal multi-leg = BTC ratcheted-to-BE residual 3.35 + 18.65 = 22.00 PASS).
-
-BTC governance ruling: entry 81,960 UNCHANGED → SL/TP repair on a frozen entry is not an entry re-site; budget stays 0/2. Repair ratified (R:R 4.867 → 2.582, breakeven p 27.9%, TP front-runs the 80,850–80,950 cascade).
-
-SECTION 3 — Q2: 4-QUANT PERSONAS → ENDORSED (with estimator addenda)
-PERSONA
+BUFFER SURPLUS (WORST)
 	
 VERDICT
+
+SWISS20.p	22.27	23.49	4,795.02	+0.02	REJECT — razor; one tick of spread eats the defense
+XAGSGD.pi	20.29	23.22	4,795.29	+0.29	REJECT (thin + category error)
+GER30.p	21.29	21.92	4,796.59	+1.59	Embargo-rejected
+XAGAUD.pi	20.79	23.42	4,795.09	+0.09	REJECT — razor
+XAGEUR.pi	20.08	22.88	4,795.63	+0.63	Embargo-rejected
+BTC	18.12	18.12 (spr $0.47 in)	4,800.39	+5.39	APPROVED FOR STAGING
+All five R:R ∈ [2.20, 2.50] ≥ 2.0 ✓; sizing math internally consistent (implied tick values snap to clean contract specs — the screener's order_calc_profit chain is working).
+BTC vs envelope: 18.12 ≤ 22.80 pre-bank cap ✓; solo RESIDUAL-13: 18.12 ≤ 30.51 ✓; exactly-one-leg doctrine intact.
+Ratchet ladder (R0 = 414.19 pts): +0.75R trig 81,649.36 → SL 81,918.58 locks +$1.24 (retcode-confirmed); +1.25R trig 81,442.26 → SL 81,897.87; +1.65R trig 81,276.59 → SL 81,286.59; TP 80,890.43 = +2.58R. Time-decay: exit if age > 24×M15 and gain < +0.20R.
+Ladder discipline: rung-1 = 13.00–16.00 band — BTC 12.43 fits; rung-2 (33.20) remains locked until trade #1 is booked by balance read.
+🏛️ PERSONA 4 — Auction Profile & Friction Arbitrageur
+Event clock (07:08:17 UTC): France PMI 07:15 → ±35min blackout for Indices/FX/Metals means no new EU-facing staging from ~06:40 to 08:35 UTC. GER30.p and XAGEUR.pi are embargo-blocked outright; SWISS20.p conservatively deferred (EU-beta); 07:10 cancel deadline = compliant (book already empty); 07:14:59 flatten = N/A.
+Friction dominance (the decisive finding): the three XAG crosses are FX-translation clones of ONE thesis. Implied $/px/lot: SGD 3,912 (=5,000/1.279), AUD 3,512 (=5,000×0.701), EUR 5,605 (=5,000×1.121). Native XAGUSD: stressed 16.91, post-loss 4,801.60, surplus +6.60 vs crosses' +0.09…+0.63. The crosses cost +1.4 to +2.3 USD extra friction per attempt for identical alpha. If silver is wanted, trade XAGUSD only.
+Spread-cannibalization gate: stated stressed values carry zero spread; SWISS20 and XAGAUD have zero tolerance to realistic spread → fail the 10% gate's spirit even if they pass on paper.
+BTC: crypto blackout = Tier-1 crypto events only (±15min) → PMI does not block; no Tier-1 crypto event in window.
+Verdict matrix (5 radar + 1 council)
+CANDIDATE
 	
-MANDATORY ADDITIONS
+P1 REGIME
+	
+P2 MICRO
+	
+P3 SOLVENCY
+	
+P4 AUCTION/FRICTION
+	
+FINAL
 
-P1 Regime/Diffusion	Endorse	(a) VR(q) with Newey-West z: fades require |z|<1.96; (b) OU half-life τ½ ∈ [20min, 4h] gate for pullback trades; (c) DFA Hurst + circular-block bootstrap CI: fade only H<0.45, trend-join only H>0.55; (d) vol-of-vol ratio as chop detector
-P2 Microstructure	Endorse	(a) Wall-refill ratio ρ ≥ 0.6 over τ≥180s — one-shot walls = spoof-risk → halve p; (b) sweep-reclaim latency: <90s = liquidity grab (fade valid), >240s = broken level (cancel fades); (c) CVD absorption z-score ≥ 1.5 vs 20-session distribution
-P3 Solvency Sentry	Endorse	(a) Quarter-Kelly cross-check f* = p−(1−p)/R, ticket ≤ 0.25×f×equity — GER40-B: f=0.210 → $253 ≫ $13.06, confirming solvency, not Kelly, is the binding constraint; (b) balance-read-only rung state machine; (c) 10k-path MC gate: P(breach)<0.5% before any multi-leg; (d) index-beta cluster rule (all 5 setups = one short macro bet)
-P4 Auction/Friction	Endorse	(a) **IB-width percentile <P30** → expansion day → convert fade to join; (b) POC migration velocity >0.5 tick/M5 against position → tighten BE; (c) 15-min timestamp freshness REFUSE rule (would have caught stale $20.15M wall data); (d) unify Spread/TP ≤10% entry gate (D1)
-SECTION 4 — Q3: COUNCIL-OS v2 (prompt architecture; extends C294's 8 rules)
-FACT-TAGGING: every number tagged [TEL|CALC|OPS|SHEET-n]; CALC must re-derive from constants, never copy prior cycles.
-RECONCILIATION-DIFF HEADER: every cycle opens with book/balance vs prior predicted book — would have caught #19236218-class gaps in 1 cycle, not 2.
-BANK-READ RULE: ladder rung advances only on operator balance-telemetry delta; council-internal "banked" assertions banned. (This cycle's re-base is the case study.)
-JSON TICKET CONTRACT: side-price validation (SELL_LIMIT > Bid), stress, post-loss, gates, TTL — machine-actionable, no prose tickets.
-RED-TEAM CLAUSE: ≥3 quantified counter-arguments before every verdict; HIGH conviction iff 2 personas' EV agree within ±0.10R.
-DETERMINISTIC TREE: thresholds published; output must be the tree's image; adjectives without numbers banned ("$20.15M wall, τ=214s, refill 0.7" not "strong wall").
-PERSONA CARDS v1.0: fixed inputs, estimator list (Section 3), thresholds, JSON-only output, REFUSE if inputs stale >15 min; semver + 3-cycle shadow A/B for any threshold change (EMA9/VWAP shadow-first precedent).
-SUBAGENT POLICY (answers mandate #3): sub-agents for stateless computation only (VR, MC, lot-snapping) with self-contained prompts + output schema; never for rulings — rulings require session memory. Personas = prompt cards + JSON contract, not free-roaming agents.
-DUAL-COUNCIL MERGE: identical telemetry + disagreement → conservative (smaller-risk) ticket wins; EV disagreement >0.15R → escalate with both JSONs.
-CANON FREEZE: append-only constants; every cycle ends in a VERDICT JSON block.
-SECTION 5 — Q4: STAGING → FLAT UNTIL 06:45 UTC REAFFIRMED + exact parameters
+SWISS20.p BUY	✗ noise	✗ no data	✗ +0.02 razor	✗ embargo-deferred	REJECT
+XAGSGD.pi SELL	✗ native-tape	✗ no data	✗ +0.29	✗ clone friction	REJECT
+GER30.p BUY	✗ thesis-flip	✗ no data	✗ embargo	✗ embargo	REJECT
+XAGAUD.pi SELL	✗ native-tape	✗ no data	✗ +0.09 razor	✗ clone friction	REJECT
+XAGEUR.pi SELL	✗ event-bimodal	✗ no data	✗ embargo	✗ embargo	REJECT
+BTC repaired (armed)	✓	✓ conditional re-verify	✓ +5.39	✓ crypto window open	GO (conditional)
+SECTION F — CO-EQUAL SYNTHESIS: UNIFIED CONSENSUS
+✅ OPTION A — ONE CONDITIONAL TICKET (the only stage-ready candidate)
 
-C295-1 (PRIMARY — execute 06:45:00 UTC): GER40.p SELL_LIMIT 0.03 @ 25,381.39 / SL 25,420.23 / TP 25,286.79 — risk 13.06 / stressed 18.66 / post-loss 4,799.85.
+BTCUSD.pi — SELL_LIMIT 0.03 lot @ 81,960.00 / SL 82,374.19 / TP 80,890.43
 
-Gates at staging: spread ≤ 4.0 pts; SELL_LIMIT > Bid or abort (no chase, retcode 10015 doctrine); order_check tick-value pin ≈ 11.21 $/pt/lot.
-Early-BE: trigger 25,352.26 (−0.75R) → SL 25,377.51 (−0.10R), locks +$1.31, retcode-confirmed; releases residual → unlocks BTC leg (22.00 PASS).
-PMI clock: unfilled → cancel 07:10:00; filled & un-ratcheted → flatten 07:14:59; ratcheted → may hold.
+Nominal risk $12.43 | Nominal reward $32.09 | R:R 2.582R | Stressed loss $18.12 | Post-loss 4,800.39 | Buffer surplus +5.39
+Pre-conditions (both mandatory, Fable 5 executes):
+Live wall re-verify: ask wall 81,950–82,000, τ≥180s, refill ρ≥0.60, size≥100K-class, snapshot ≤15 min old. Fail → stay armed, re-check hourly.
+Touch-armed dispatch (C280 canon): do NOT naked-stage +297 pts above market (measured P(fill|staged) = 0/2). Dispatch only when Bid ≥ 81,870 (0.22R from entry) → order_send ≤60s, retcode to next wake-up.
+Entry FROZEN (re-site budget 0/2): if price runs >0.5R below 81,960 before dispatch → setup dies for the day, logged honestly.
+TTL: cancel 19:00 UTC · flatten: M5 close > 82,167.10 (−0.5R) · ratchets per Persona 3 ladder.
+🛡️ OPTION B — STAND ASIDE IN 100% FLAT CASH DEFENSE (everything EU-facing, until 08:35 UTC)
 
-C295-2 (SERIAL — armed, not staged): BTCUSD SELL_LIMIT 0.03 @ 81,960 / SL 82,374.19 / TP 80,890.43 — stage on GER40 resolution (win/BE or 07:15 expiry), wall-data freshness ≤15 min at stage, auto-cancel 19:00 UTC.
+Potential Candidate Radar Checklist — exact numerical re-arm triggers:
 
-Day clock: 13:00 SP500/NAS re-audit · 16:00 last new entry · 19:00 de-stage all pendings · 20:00 flat (weekend).
-Breakers: 2 losses → defense mode (zero new risk) · buffer touch (4,795) → single-leg at ½ solvency cap · <4,785 → full defense.
+SLOT
+	
+RE-AUDIT TIME
+	
+NUMERICAL GATES TO STAGE
 
-SECTION 6 — LADDER & HONEST PROBABILITIES (Monte Carlo, 20k paths)
+GER40/GER30 complex	08:35 UTC (post-PMI)	Sheets fresh ≤15 min; regime evidence attached (VR z or ER>0.25); direction consistent with post-PMI structure; order_check contract pin; spread ≤1.5 pt; stressed post-loss ≥ 4,795.00 with real spread embedded
+XAG complex	08:35 UTC	Native XAGUSD only; 54.01 shelf re-verified fresh; spread ≤2.5c; LIR < 0.55 for short; surplus ≥ +$3.00 under embedded spread
+SWISS20.p	08:35 UTC	Whale polarity from Sheet 18/25 (bid below entry, τ≥180s, ρ≥0.60); live spread ≤0.8 pt (preserves surplus >0); price within 0.4×ATR(M15) of 14,502
+SP500/NAS100	13:00 UTC	C295 geometry re-derived from fresh levels only (8h-old levels banned); NY-session volume ≥40th pct; single leg (RESIDUAL-13)
+BTC	now (Option A)	Wall re-verify + dispatch gate above
 
-Assumptions: 6 attempts, P(fill) 0.65, P(win|fill) 0.46, ladder 13.05→33.20→80→80→80 @2.436R, re-base on loss, 2-loss hard stop.
+Standing clocks: 08:35 EU re-audit → 13:00 NY re-audit → 16:00 last new entry → 19:00 de-stage → 20:00 weekend flat.
 
-P(mission 5,500) = 0.81% (deterministic ceiling: 5 straight wins → 5,515.82 PASS) — honest band ~1–3%
-P(floor breach) = 0.00% (worst path: rung-3 loss → 4,829.19, cushion 54.19)
-P(≥1 banked rung) = 14.77% | terminal: p10 4,792 / median 4,804 / p90 5,046
-Operator's 25–30 escalation does not change the win-count (still 4–5 consecutive) but multiplies floor damage (post-loss cushions 10.26/4.01 < 13.00 reserve) → VETOED pre-bank; legal at rung-2+ post-bank.
+SECTION G — MANDATORY METHODOLOGY INQUEST (candid, evidence-first)
+
+The honest answer to "why is equity flat": across C280–C296 the desk produced ~8 GO rulings with EV +$3…+$6 each; 2 were instantiated, 0 were filled, 0 closed. Realized P&L = 0 not because discovery is broken but because
+
+E[realized] = P(instantiate) × P(fill|staged) × E[P&L|fill] = 0.25 × ~0.17 × ~$5 ≈ $0.21/cycle → observed $0.00.
+
+The funnel's terminal stage has zero throughput. We built a good alpha engine attached to a broken order pipe. This cycle added evidence: E-296-01 (second consecutive non-instantiated ruling) and Phantom-Defect #2 (risk engine hallucinating a ghost leg).
+
+1. Conjunctive filter sclerosis → weighted expectancy. Yes — we demand a 7-gate AND (regime + walls + LIR + CVD + friction + auction + freshness); P(pass all 7 | each 60–80% reliable) ≈ 5–20%, which systematically selects stale extremes. Transition: hard vetoes stay binary (solvency, embargo, freshness, side-price legality); soft factors become a score: S = 0.25·z_VR + 0.20·z_ER + 0.20·z_LIR + 0.20·z_friction + 0.15·z_event, stage if S ≥ 1.0. Log every candidate's features + outcome (shadow ledger) → at n≥30 closed trades fit logistic P(win) = σ(β₀+βᵀx) and replace hand weights. Until n≥30, we are calibrating priors, not doing statistics — say so in every ruling.
+
+2. Static sheets vs dynamic microstructure. The 15-min Excel warehouse decides on 15-min-stale tape; PMI candles move 50 pts in 200 ms. Fixes: (a) the REFUSE-if-stale>15min rule applies at stage time, not at analysis time (already canon; E-296-01 shows it must be enforced by the desk, not the council); (b) tick-velocity gate in the final 60s before order_send: if realized volatility in last 5 min > 2× ATR(M15)/12, cancel pending dispatch; (c) Fable 5's socket is the right owner for sub-second truth — give it the freshness certificate duty.
+
+3. Staging passivity — the silent killer. Measured P(fill|staged) = 0/2. Our limits sit 0.5–1.2R away from mid and die of loneliness. Equations: limit distance d* = min(structural shelf, mid + 0.4·ATR(M15)·√TTL_bars); ban naked limits beyond 1.0·ATR·√TTL — beyond that, use touch-armed dispatch (arm, don't stage). New stage gate: P(fill|staged) × EV > $1.50 — GER40-B at p_fill ~0.35 would have scored $1.93 (pass), but a +297-pt naked BTC limit scores ~$0.9 (fail → dispatch mode instead).
+
+4. Multi-asset alpha specialization — we ARE committing category errors. CoinGlass CVD/liquidation maps are perp-native (USD); MT5 L2 is broker-partial (Blueberry's book only, not aggregate). Native drivers: Indices = session auction geometry, IB expansion, event vol (PMI/NFP/CPI); FX majors = rollover flows, London fix, SSI positioning; Metals = native XAG/XAU tape + CME positioning + EFP; Crypto = funding, OI, real CVD, liquidation cascades (this is where Sheets 5–9 actually bite). The three XAG crosses this cycle are a live specimen: same trade, +1.4–2.3 USD friction, worse books, FX noise — rejected on friction dominance.
+
+5. Actionable alpha evolution (this week, concrete):
+
+(i) Funnel SLA: ruling → order_send ≤60s → retcode next wake-up → 3 strikes = layer rebuild (Fable 5 owns this; strike counter now 1/3).
+(ii) Risk-engine integrity: book 0/0 must compute worst-case stopout = equity exactly; phantom-leg bug (4,799.77) gets a unit test: assert worst_case == equity when OrdersTotal()==0.
+(iii) Score-based staging (dimension 1) with shadow ledger of every rejected candidate → measures selection bias directly (would-have-been PF after 100 candidates).
+(iv) EV×P(fill) gate (dimension 3) — single highest-leverage change; it converts "profitable executions eluding us" into a measurable two-factor problem.
+(v) Honest mission accounting (13h runway, 4 attempts max, dispatch-armed): P(mission) ≈ 0.5–1%, P(≥1 bank) ≈ 15%, P(floor breach) = 0.00% (20k-path MC: median 4,817.18, p90 4,931.38). The optimal remaining strategy is unchanged: defend 4,795.00 absolutely, take exactly-one high-confluence shot at a time, bank rung-1, and let the ladder compound if the tape pays. If Arena's independent review concurs on the BTC conditional, the desk's next physical action is one order, not five.
 json
-{"cycle":295,"recon":{"book":"0/10","pos":"0/4","balance":4818.51,"src":"OP-TEL-0500","delta_vs_c294":0.00},
- "ladder":{"rung":0,"banked_usd":0.00,"cap_nominal":22.80,"post_bank_cap":33.20,"source_rule":"BANK-READ v2"},
- "screener_audit":{"source_verified":true,"defects":["D1 spread/TP 15 vs 10","D2 implicit spread","D3 no ranking","D4 no session gate","D5 min-lot guard","D6 no clustering"]},
- "rulings":[{"q":1,"verdict":"GO","setup":"GER40.p combo B"},{"q":2,"verdict":"ENDORSE+ADDENDA"},{"q":3,"verdict":"COUNCIL-OS v2"},{"q":4,"verdict":"FLAT_UNTIL_0645"}],
- "tickets":[{"id":"C295-1","symbol":"GER40.p","side":"SELL_LIMIT","vol":0.03,"price":25381.39,"sl":25420.23,"tp":25286.79,"risk_usd":13.06,"stressed_usd":18.66,"post_loss":4799.85,"stage":"06:45:00Z","cancel":"07:10:00Z"},{"id":"C295-2","symbol":"BTCUSD","side":"SELL_LIMIT","vol":0.03,"price":81960.00,"sl":82374.19,"tp":80890.43,"risk_usd":12.43,"stressed_usd":18.13,"state":"ARMED_serial"}],
- "probabilities":{"mission":0.008,"floor_breach":0.000,"one_bank":0.148},
- "redteam":["p=0.44 unproven n<30 this week","PMI gap-through could breach SL before flatten","BTC wall data provenance pre-05:00 unverified"],
- "verdict":"GO — stage GER40-B 06:45:00 UTC"}
+{"cycle":296,"recon":{"book":"0/10","pos":"0/4","balance":4818.51,"src":"OP-TEL-0708","delta_vs_c295":0.00},
+ "events":[{"id":"E-296-01","type":"EXECUTION_GAP","strike":"1/3"},{"id":"PD-02","type":"PHANTOM_RISK_LEG","ghost_usd":18.74}],
+ "sheets":{"errors":0,"empty_headers":0,"freshness":"unverified_from_snapshot"},
+ "radar_verdicts":{"SWISS20":"REJECT","XAGSGD":"REJECT","GER30":"REJECT","XAGAUD":"REJECT","XAGEUR":"REJECT"},
+ "tickets":[{"id":"C296-1","symbol":"BTCUSD.pi","side":"SELL_LIMIT","vol":0.03,"price":81960.00,"sl":82374.19,"tp":80890.43,
+   "risk_usd":12.43,"stressed_usd":18.12,"post_loss":4800.39,"mode":"TOUCH_ARMED_DISPATCH","dispatch_gate":"Bid>=81870",
+   "precond":"wall re-verify tau>=180s rho>=0.60","ttl_cancel":"19:00:00Z","ratchet_trig":81649.36,"ratchet_sl":81918.58}],
+ "stage_gate":"P(fill)*EV > $1.50","clocks":{"eu_reaudit":"08:35Z","ny_reaudit":"13:00Z","last_entry":"16:00Z","flat":"20:00Z"},
+ "probabilities":{"mission":0.008,"one_bank":0.15,"floor_breach":0.0},
+ "redteam":["wall may have been consumed hours ago","dispatch gate may never trigger (price keeps falling = setup dies legally)","EU reopen at 08:35 may offer better EV than BTC"],
+ "verdict":"OPTION A: BTC conditional touch-armed | OPTION B: EU stand-aside to 08:35 UTC"}
 
-Ruling complete: GER40-B is the staircase initiator, BTC repaired-geometry armed as serial leg-2, screener remediation confirmed at source with 6 patches, 4 personas endorsed with hard thresholds, and the prompt layer upgraded to COUNCIL-OS v2. Suggested next: verify the order_check tick pin at 06:45 staging, and bring Arena.ai's independent EV table to C296 for the merge rule — if you want, I can also draft the Persona-Card prompt files and the D1–D6 patch diff for the screener next.
+Bottom line: all five radar candidates are rejected on evidence (three are embargo-blocked, two are razor-thin friction clones of a trade we can take natively); exactly one stage-ready ticket exists — BTC, conditional on a live wall and dispatched only when price comes to us. The methodology answer: we don't have a discovery problem, we have a throughput problem — instantiate, place near, and measure P(fill), or the best screener in the world keeps producing $0. Suggested next: C297 wake-up should open with the strike-counter classification and, if the wall re-verify passed, the BTC retcode.
 
 ================================================================================
-Z.AI ATTACHED OUTPUT FILE:  (754 chars)
+Z.AI ATTACHED OUTPUT FILE:  (451 chars)
 ================================================================================
 
-Symbol   UKBRENT.p        Type BUY_LIMIT @ 113.595 (deep shelf edge)
-Lots     0.65             SL 113.397   TP 114.300   (3.56R)
-Nominal  −$12.87          Stress −$20.77 (conservative, ≤23.51 PASS)
-Margin   $73.84 (1.53%)   Stressed equity 4,797.74 (+2.74 buffer / +22.74 floor)
-DISPATCH order_check NOW → order_send ONLY on ask ≤113.731 + M5 deceleration; <60s latency
-NO-CHASE ceiling 113.780 | VOID: bid <113.397 pre-fill, or unfilled by 12:00 UTC
-MGMT     Early-BE +0.75R @114.1238 → SL 113.6655 (locks +$4.58, risk→~0, frees slot)
-         Flatten: 5m CVD adverse pulse (3 expanding negative-delta 5m candles) → out ~−0.3R
-         Weekend flat 20:00 UTC if < +1R
-RE-SITE  0/2 used; #1 reserved for NY-open re-validation (R:R ≥2.0 + stress re-gated)
+ORDER 1 (NOW):    BUY_LIMIT NZDUSD.pi 0.81 @ 0.56904 | SL 0.56888 | TP 0.56965
+                  Comment: C286-R1 | Early-BE 0.56916 → SL 0.56906 | Cancel: 08:00 UTC or 2×M15 close < DVAH
+ORDER 2 (ARMED):  SELL_LIMIT BTCUSD.pi 0.04 @ 81,580 | SL 81,860 | TP 80,300
+                  Arm condition: NZD position reaches Early-BE (capacity 22.48 ≤ 23.51 PASS)
+STAND ASIDE:      USDJPY (reclaim), Brent (no location), XAU (radar), EMA9/VWAP (shadow n≥30)

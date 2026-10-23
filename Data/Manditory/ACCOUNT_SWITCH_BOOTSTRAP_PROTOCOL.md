@@ -100,42 +100,52 @@ flowchart TD
 3. **Full Autonomous Trading Rights**: Antigravity has full autonomous rights to punch, delete, cancel, or modify orders and trailing stops in MetaTrader 5 without seeking manual operator approval.
 4. **Dynamic Buffer Defense**: Single filled trades risk 15.00–20.00 USD nominal. Once a filled position reaches Early-BE (+0.75R to +0.80R), its stop is ratcheted to Entry + 0.10R0, dropping risk to 0.00 USD and instantly freeing risk capacity for subsequent fills while preserving the 4,795.00 USD operating buffer.
 
-### STEP 3: HEXAD-DAEMON SENTRY AUDIT & AUTO-RESTART (IN ANTIGRAVITY TASK MANAGER)
+### STEP 3: OCTAD-DAEMON SENTRY AUDIT & AUTO-RESTART (IN ANTIGRAVITY TASK MANAGER)
 > 🛑 **MANDATORY DAEMON LIFECYCLE INVARIANT (STRICT OPERATOR DIRECTIVE)**:
-> Upon instantiation or account re-engagement, the coordinator MUST call `manage_task(Action='list')` to audit the 5 authorized persistent background processes running inside Antigravity's task manager.
+> Upon instantiation or account re-engagement, the coordinator MUST call `manage_task(Action='list')` to audit the 8 authorized persistent background processes running inside Antigravity's task manager.
 > External orphan processes not registered in `manage_task` DO NOT trigger Antigravity's reactive wake-up system!
-> If ANY of the 5 authorized daemons is absent from `manage_task(Action='list')`, the coordinator MUST IMMEDIATELY launch it using the exact parameters below before proceeding:
+> If ANY of the authorized daemons is absent from `manage_task(Action='list')`, the coordinator MUST IMMEDIATELY launch it using the exact parameters below before proceeding:
 
 1. **Daemon 1 (Continuous 33-Sheet Excel Pipeline Daemon)**:
    - Tool Call: `run_command(CommandLine="python Data/Excel_Modules/Run_Parallel_Pipeline.py --continuous --gap 300 --workers 1", IsDaemon=true, WaitMsBeforeAsync=500, toolSummary="Launch Continuous 33-Sheet Excel Pipeline Daemon")`
    - Setting: `IsDaemon=true`, `WaitMsBeforeAsync=500`
    - Purpose: Cycles full pipeline continuously with an exact 5-minute (300s) cooldown gap between cycles. Maintains fresh orderbook, CVD, liq maps, and technical data in `Data/DataBase_Trading.xlsx` with zero race conditions (workers=1 atomic safety).
 
-2. **Daemon 2 (20-Minute Cron Sentry)**:
-   - Tool Call: `schedule(CronExpression="0,20,40 * * * *", IsDaemon=true, Prompt="20-MINUTE AUTONOMOUS WAKE-UP AUDIT (MANDATORY CANONICAL QUANT SOP):\n1. MANDATORY GOVERNANCE & MEMORY INGESTION: Sequentially execute and audit all sections of @[Data/Manditory/AUTONOMOUS_WAKEUP_CHECKLIST.md] and @[Data/Manditory/ACCOUNT_SWITCH_BOOTSTRAP_PROTOCOL.md] line-by-line in full depth.\n2. AST KNOWLEDGE GRAPH & TOKEN PRESERVATION: Query /graphify or python -m graphify query before reading large files.\n3. MASTER 33-SHEET EXCEL INTEGRITY: Verify all 33 sheets of Data/DataBase_Trading.xlsx (Liquidation Ladders Sheets 10-17 & 22, Retail Stops Map Sheet 23, Whale Bunkers Sheets 18 & 25, CVD Delta Sheet 26, Auction Structure Sheet 33). Verify <= 15m freshness and 0 formula errors.\n4. SUBAGENT SWARM DISPATCH: Immediately invoke 4 subagents (Model='flash' - Gemini 3.8 Flash) using Tier 2 Big Prompts from Data/Manditory/SUBAGENT_PROMPT_TEMPLATES.md citing @[Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md]: Orderflow Analyst, Position Manager, Macro Risk Analyst, Excel Data Quality Auditor.\n5. ARENA.AI CANDIDATE DISCOVERY DISPATCH: Ingest affirmative candidate discovery prompt to Arena.ai via Chrome CDP port 9222, tasking Arena.ai to evaluate all 156 assets across 3 quantitative personas (Orderflow Analyst, Position Manager, Macro Risk Analyst — excluding Excel checker) for high-confluence trade candidates.\n6. PRE-CONDITION TRIGGER CHECKLIST & CONFLUENCE EVALUATION: Cross-verify subagent research against Arena.ai output. Check Pre-Condition Trigger Checklist across the entire 156-asset universe (Crypto, Forex, Metals, Indices) across liquidation maps, stop sweeps, whale persistence (>= 180s), CVD absorption, and dynamic friction gates.\n7. AUTONOMOUS MT5 EXECUTION: If all checkable pre-conditions pass, immediately punch passive limit order into MT5. If conditions not met, strictly maintain 100% flat cash defense.\n8. CLEAN PRUNING: Cleanly prune subagents via manage_subagents(Action='kill_all'). Stand by for next trigger.")`
-   - Purpose: Autonomous wake-up at 20th, 40th, and 60th/00th minute for systematic desk audits ensuring parent agent strictly executes all checklists and SOPs line-by-line in complete depth.
+2. **Daemon 2 (30-Minute Autonomous Watchdog Sentry Cron)**:
+   - Tool Call: `schedule(CronExpression="0,30 * * * *", IsDaemon=true, Prompt="30-MINUTE AUTONOMOUS WATCHDOG SENTRY & DESK AUDIT (MANDATORY CANONICAL QUANT SOP):\n1. JOINT-COMPLETION LIFECYCLE AUDIT: Run python Terminal/joint_cycle_controller.py --watchdog to verify cycle state, detect any stalled cycle (>30m), and ensure the clean 20-minute separation between completed Cycle X and next Cycle X+1.\n2. PERSISTENT DAEMONS HEALTH: Verify all active background tasks in Antigravity task manager. Auto-restart any missing task immediately.\n3. NEXT CYCLE TRIGGER: If Cycle X is COMPLETED and current UTC time >= next_cycle_scheduled_utc (20-min relative delay passed), autonomously initiate next cycle: ingest governance, query AST graph, dispatch 4-quant subagent fleet (Fable 5) and dual frontier council (Arena.ai GPT Astra + Z.ai GLM-5.3-Flash) using canonical Data/Manditory/Arena_GLM_Standard_Prompt.md.\n4. SOVEREIGN SOLVENCY AUDIT: Query live MT5 account telemetry to confirm hard floor cushion (Equity - 4,775.00 USD > 0) and operating buffer cushion (Equity - 4,795.00 USD > 0). If cushions threatened, enforce 100% cash defense.\n5. STANDBY: Log health to docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md and enter silent standby.")`
+   - Purpose: Autonomous sentry at :00 and :30 of every hour for systematic desk health audits, stalled cycle detection, and safe cycle advancement enforcing the strict 20-minute post-completion separation.
 
 3. **Daemon 3 (Arena Completion Daemon)**:
    - Tool Call: `run_command(CommandLine="python Terminal/arena_completion_daemon.py --daemon", IsDaemon=true, WaitMsBeforeAsync=500, toolSummary="Launch Arena Completion Daemon")`
    - Setting: `IsDaemon=true`, `WaitMsBeforeAsync=500`
    - Purpose: Monitors Chrome CDP (port 9222) continuously. The instant Arena.ai completes its response, it auto-harvests the full output into `docs/trade_plans/ARENA_LATEST_RAW.md` and wakes up Antigravity for joint evaluation.
 
-4. **Daemon 4 (Autonomous 5-Minute Git Sync Daemon)**:
+4. **Daemon 4 (Z.ai Completion Daemon)**:
+   - Tool Call: `run_command(CommandLine="python Terminal/zai_completion_daemon.py --daemon", IsDaemon=true, WaitMsBeforeAsync=500, toolSummary="Launch Z.ai Completion Daemon")`
+   - Setting: `IsDaemon=true`, `WaitMsBeforeAsync=500`
+   - Purpose: Monitors Chrome CDP (port 9222) continuously for Z.ai generation completion, auto-harvesting into `docs/trade_plans/ZAI_LATEST_RAW.md` and notifying the controller.
+
+5. **Daemon 5 (Position Ratchet Daemon)**:
+   - Tool Call: `run_command(CommandLine="python Terminal/position_ratchet_daemon.py", IsDaemon=true, WaitMsBeforeAsync=500, toolSummary="Launch Position Ratchet Daemon")`
+   - Setting: `IsDaemon=true`, `WaitMsBeforeAsync=500`
+   - Purpose: Continuous sentry monitoring live MT5 open positions every 5 seconds, locking profit and ratcheting Stop Loss automatically the instant prices touch Early-BE (+0.75R0), Phase 0 (+1.25R0), or Phase 1 (+1.65R0) triggers.
+
+6. **Daemon 6 (Autonomous 5-Minute Git Sync Daemon)**:
    - Tool Call: `run_command(CommandLine="python Terminal/Data_Factory/autonomous_git_sync_daemon.py", IsDaemon=true, WaitMsBeforeAsync=500, toolSummary="Launch Autonomous Git Sync Daemon")`
    - Setting: `IsDaemon=true`, `WaitMsBeforeAsync=500`
    - Purpose: Runs continuously every 5 minutes (300s). Stages all modified and new workspace files (`git add -A`), validates `Data/DataBase_Trading.xlsx` zip CRC integrity before committing, commits with timestamped provenance, and pushes cleanly to `origin/main`. Guarantees zero local/remote desynchronization with zero manual intervention.
 
-5. **Daemon 5 (AST Graphify Watcher Daemon)**:
+7. **Daemon 7 (AST Graphify Watcher Daemon)**:
    - Tool Call: `run_command(CommandLine="python Terminal/run_graphify_watcher.py", IsDaemon=true, WaitMsBeforeAsync=500, toolSummary="Launch AST Graphify Watcher Daemon")`
    - Setting: `IsDaemon=true`, `WaitMsBeforeAsync=500`
    - Purpose: Continuous low-RAM AST watcher monitoring `Terminal/` and `Engine/` to synchronize code graph memory without token waste.
 
-6. **Daemon 6 (Gemini Web2API Council Daemon — Endogen Architecture - Token Preservation)**:
-   - Tool Call: `run_command(CommandLine="python C:\Users\SIGMA\Documents\Trading\gemini-web2api\gemini_web2api.py --config C:\Users\SIGMA\Documents\Trading\gemini-web2api\config.json", IsDaemon=true, WaitMsBeforeAsync=1000, toolSummary="Launch Gemini Web2API Daemon on port 8081")`
+8. **Daemon 8 (Gemini Web2API Council Daemon — Endogen Architecture - Token Preservation)**:
+   - Tool Call: `run_command(CommandLine="powershell -Command \"cd 'C:\\Users\\SIGMA\\Documents\\Trading\\gemini-web2api'; python -u gemini_web2api.py --config config.json\"", IsDaemon=true, WaitMsBeforeAsync=1000, toolSummary="Launch Gemini Web2API Daemon on port 8081")`
    - Setting: `IsDaemon=true`, `WaitMsBeforeAsync=1000`
    - Purpose: Continuous OpenAI-compatible reverse-proxy daemon on `http://localhost:8081` (Auth: `Bearer sk-gemini`). Provides zero-token auxiliary multi-agent councils with Gemini models, drastically saving context tokens for auxiliary analyses.
 
-*Verification Gate*: Re-run `manage_task(Action='list')` to verify all 6 tasks report `Status: RUNNING` and have valid `taskId` values assigned.
+*Verification Gate*: Re-run `manage_task(Action='list')` to verify all authorized tasks report `Status: RUNNING` and have valid `taskId` values assigned.
 
 ---
 
@@ -186,5 +196,5 @@ Verify that `Data/DataBase_Trading.xlsx` is fresh, uncorrupted, and has zero for
 2. **Inviolable Hard Floor**: 4,775.00 USD must NEVER be breached under any condition (0 exceptions).
 3. **Operating Buffer Defense**: 4,795.00 USD (+20.00 USD cushion) strictly preserved under worst-case 1.25x slippage stress.
 4. **Strict Passive Limit Execution**: Passive limit orders only, safely anchored behind resting institutional whale walls (>= $100K to $1M+, persisting >= 180s). Zero market orders crossing the spread.
-5. **Zero Token Polling**: Polling timers <= 60s are permanently banned. Rely strictly on native event-driven reactive wakeups and the 20-minute cron sentry (`0,20,40 * * * *`).
+5. **Zero Token Polling**: Polling timers <= 60s are permanently banned. Rely strictly on native event-driven reactive wakeups, the joint 3-entity completion lifecycle with 20-minute clean relative separation, and the 30-minute watchdog sentry (`0,30 * * * *`).
 6. **Plain-Text Formatting**: Zero raw LaTeX delimiters (`$` or `$$`) in chat responses; write plain-text variables and USD amounts.

@@ -8,7 +8,7 @@
 > **Operational Status**: ACTIVE PRODUCTION STANDARD (100% Causal, Empirical & Anti-Lookahead)  
 > **Target Audience**: Antigravity Coordinators, Subagent Swarms, Arena.ai Council, GPT Astra, Human Operators across all sessions & accounts.  
 > **Master Data Warehouse**: `Data/DataBase_Trading.xlsx` (All 33 Canonical Production Worksheets)  
-> **Autonomous Cadence**: 20-Minute Cron Sentry (`0,20,40 * * * *` at :00, :20, :40 UTC) + Reactive Background Auto-Wakeup  
+> **Autonomous Cadence**: Joint 3-Entity Completion Lifecycle with Clean 20-Minute Relative Separation (`T_finish + 20 min`) + 30-Minute Watchdog Sentry Cron (`0,30 * * * *` at :00, :30 UTC).
 
 ---
 
@@ -29,7 +29,7 @@ We reject both single-agent hallucination and blind sycophancy. Our architecture
 |                                  ARENA.AI BIG BRAIN (CDP Bridge)                                   |
 | - Ingests 33-Sheet Master Excel Data Warehouse (DataBase_Trading.xlsx) across all 156 Assets       |
 | - Dual Mandate: Affirmative Candidate Discovery across all 156 Instruments AND Adversarial Red-Team|
-| - Injected via Chrome CDP port 9222 on 20-minute cron sentry (:00, :20, :40 UTC)                   |
+| - Injected via Chrome CDP port 9222 on joint autonomous cycle trigger (T_finish + 20 min)          |
 | - Deliberates with deep Linux terminal reasoning; auto-harvested by arena_completion_daemon.py     |
 +-------------------------------------------------+--------------------------------------------------+
                                                   |
@@ -58,7 +58,7 @@ We reject both single-agent hallucination and blind sycophancy. Our architecture
 ```
 
 ### The 20-Minute Cadence & Mandatory Fresh Revalidation Bundle
-1. **Autonomous Wake-Up Trigger (`0, 20, 40 * * * *`)**: The desk automatically wakes up at the 00th, 20th, and 40th minute of every hour via the native `schedule` cron sentry.
+1. **Autonomous Tri-Track Cycle Execution & 20-Minute Post-Completion Delay**: Cycles trigger with a strict 20-minute separation after all 3 entities (Antigravity Fleet, Arena.ai, Z.ai) finish processing, supervised by a 30-minute watchdog sentry (`0,30 * * * *`).
 2. **Simultaneous Dual-Track Dispatch**:
    - **Track A**: Antigravity invokes the 4-subagent swarm (`Model='flash'`) with full Tier 2 Big Prompts citing `STANDARDIZED_TRADING_DECISION_CHAIN.md`.
    - **Track B**: Antigravity dispatches the surgical dual-mandate prompt to Arena.ai via Chrome CDP on port 9222.

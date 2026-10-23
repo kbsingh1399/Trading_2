@@ -324,10 +324,13 @@ OUTPUT FORMAT (dense, structured, max 450 tokens):
 
 ---
 
-## 📎 COORDINATOR HARVEST & PRUNING PROTOCOL
+## 📎 COORDINATOR HARVEST, JOINT-COMPLETION LIFECYCLE & PRUNING PROTOCOL
 
-1. **Simultaneous Dispatch**: Launch all 4 quantitative subagents simultaneously using the exact 360-degree prompt blocks above (`Model='flash'`).
+1. **Simultaneous Dispatch**: Launch all 4 quantitative subagents simultaneously using the exact 360-degree prompt blocks above (`Model='flash'` / Fable 5 runtime).
 2. **Parallel Frontier Council Dispatch**: In the exact same turn, dispatch `Data/Manditory/Arena_GLM_Standard_Prompt.md` simultaneously to Arena.ai (GPT Astra via Chrome CDP port 9222) and Z.ai (GLM-5.3-Flash).
 3. **Reactive Harvest & Co-Equal Dialectic Synthesis**: Cross-verify subagent research against external council outputs.
 4. **Autonomous Action**: If 5-pillar confluence and positive buffer surplus are mathematically proven: punch passive limit order into MT5 immediately. If conditions not met: maintain 100% flat cash defense.
-5. **Clean Socket Pruning Mandate**: Immediately execute `manage_subagents(Action='kill_all')` to terminate all subagent connections and prevent socket exhaustion.
+5. **Joint 3-Entity Completion Gate**: A cycle is marked officially **FINISHED** only when **ALL THREE entities complete processing**: (1) Antigravity 4-Quant Subagents (Fable 5), (2) Arena.ai (GPT Astra), and (3) Z.ai (GLM-5.3-Flash), verified via `python Terminal/joint_cycle_controller.py --status`.
+6. **Strict 20-Minute Relative Post-Completion Separation**: The difference between completed Cycle X and the trigger for Cycle X+1 must be strictly **20 minutes** (`T_finish + 20 min` / 1200 seconds).
+7. **30-Minute Watchdog Sentry**: Supervised by `schedule` cron on `0,30 * * * *` executing `python Terminal/joint_cycle_controller.py --watchdog`.
+8. **Clean Socket Pruning Mandate**: Immediately execute `manage_subagents(Action='kill_all')` to terminate all subagent connections and prevent socket exhaustion.
