@@ -61879,3 +61879,15 @@ You may create 12_Hyperdash and 13_Hyperliquid where you dump all intelligenve a
   * Confirmed 33-sheet Excel database freshness (updated 34s ago).
   * 100% Flat Cash Defense maintained through Asian session close.
   * European Pre-Market execution scheduled for 06:45 UTC for GER40.p Auction Short.
+---
+## Turn 299 - Quant Subagent Architecture Synthesis & Institutional 156 Screener Upgraded (04:52 UTC)
+- **Time**: 2026-10-23 04:52:00 UTC
+- **Account State**: Balance: 4,818.51 USD | Equity: 4,818.51 USD | Free Margin: 4,818.51 USD | Margin: 0.00 USD (100% Flat Cash Defense).
+- **Floor Cushions**: Hard Floor Cushion: +43.51 USD | Operating Buffer Cushion: +23.51 USD | Target Deficit: +681.49 USD.
+- **Quant Subagent Pivot Ratified**:
+  * Formalized migration of subagent swarm to 4 strictly quantitative personas: (1) Statistical Regime & Diffusion Quant, (2) Microstructure & Liquidation Quant, (3) Convex Portfolio & Solvency Sentry, (4) Auction Profile & Friction Arbitrageur.
+  * Anchored all subagent decisions in empirical estimators (Lo-MacKinlay Variance Ratio, Kaufman ER, Newey-West drift, Yang-Zhang sigma, First-Exit diffusion TTL, MT5 broker order_calc_profit, and 33-sheet Excel warehouse).
+- **Institutional Screener Audit & Remediation**:
+  * Diagnosed why institutional_95_screener.py screened only 88 symbols: legacy 5.0 bps hardcoded gate dropped 68 symbols, and it bypassed mt5_full_symbol_universe.json.
+  * Systematically upgraded institutional_95_screener.py to the canonical 156-asset universe with dynamic asset-class friction gates, CandleIndicatorEngine, broker order_calc_profit lot sizing, and buffer surplus defense sentry.
+  * Validated: 232/232 tests passing 100%, 0 regressions.
