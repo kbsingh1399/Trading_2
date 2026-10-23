@@ -1,13 +1,13 @@
 {
   "schema_version": "1.0.0",
   "cycle_id": "Cycle 310",
-  "uuid": "958a28f4-e569-4866-9458-8dc1eacdee95",
-  "dispatch_nonce": "5fa9bb0a-01f7-4294-9970-6dcdae4f1356",
-  "cutoff_utc": "2026-10-23 22:41:35 UTC",
+  "uuid": "ce905ef8-0629-434f-81c5-5c318f75e3c1",
+  "dispatch_nonce": "f2dfea8a-e6e1-4bd3-bc0a-28aa1c4892d0",
+  "cutoff_utc": "2026-10-23 22:42:11 UTC",
   "provenance": {
-    "git_commit": "e20c72e25578f7d2120c2ab2cdbd9ab2efe412a6",
-    "evidence_manifest_sha256": "c5501f42c2a22a947098fbe578aa68d7d6537b1675a59737e8ed3df4dff891d9",
-    "workbook_sha256": "8e9ac0edb715265e92f8021ba46d3524c039ebdd74c781cb7cc2a0ec47278a47",
+    "git_commit": "17e99eb1a26af7dbafd5312e6875e75e5af0ab55",
+    "evidence_manifest_sha256": "98568cf51e8b5f30c182ba3d9a37a3c15a8c6c7d95ed2d40ba2dd6e5be829227",
+    "workbook_sha256": "d1dec4c9fe75e7e77f1b6b7b75f6752b5b379b2156fd3c88a477ad47b40eb7c4",
     "excel_freshness_verified": true
   },
   "inventory": {
@@ -15,10 +15,10 @@
     "server": "BlueberryMarketsSVG-Live",
     "currency": "USD",
     "balance": 4799.88,
-    "equity": 4837.23,
+    "equity": 4838.85,
     "margin_used": 2451.0,
-    "margin_free": 2386.23,
-    "margin_level": 197.35740514075886,
+    "margin_free": 2387.85,
+    "margin_level": 197.4235006119951,
     "active_positions_count": 1,
     "pending_orders_count": 0,
     "active_positions": [
@@ -30,8 +30,8 @@
         "price_open": 81700.0,
         "sl": 81300.0,
         "tp": 80600.0,
-        "price_current": 81064.0,
-        "profit": 38.16,
+        "price_current": 81037.0,
+        "profit": 39.78,
         "swap": -0.81,
         "comment": "Council_BTC_Short"
       }
@@ -43,9 +43,9 @@
     "operating_buffer_usd": 4650.0,
     "solvency_kernel_usd": 4795.0,
     "base_capital_usd": 4799.88,
-    "hard_floor_cushion_usd": 237.23,
-    "operating_buffer_cushion_usd": 187.23,
-    "kernel_cushion_usd": 42.23,
+    "hard_floor_cushion_usd": 238.85,
+    "operating_buffer_cushion_usd": 188.85,
+    "kernel_cushion_usd": 43.85,
     "realized_headroom_usd": 2.88,
     "new_risk_admissible": false
   },
