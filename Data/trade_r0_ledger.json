@@ -1,23 +1,23 @@
 {
   "19267445": {
+    "status": "CLOSED_TAKE_PROFIT",
     "symbol": "BTCUSD.pi",
     "direction": "SELL",
     "volume": 0.06,
     "entry_price": 81700.0,
     "initial_sl": 82100.0,
     "initial_tp": 80600.0,
+    "closed_price": 80600.0,
     "r0_pts": 400.0,
-    "ratchet_phase": "RATCHET_STAGE2_PROFIT",
-    "ratcheted_sl": 81300.0,
-    "early_be_trigger": 81400.0,
-    "early_be_new_sl": 81640.0,
-    "profit_lock_trigger": 81040.0,
-    "profit_lock_new_sl": 81300.0,
-    "runner_trigger": 80820.0,
-    "runner_new_sl": 81060.0,
+    "realized_r0": 2.75,
+    "realized_gross_profit_usd": 66.0,
+    "swap_usd": -0.81,
+    "realized_net_profit_usd": 65.19,
     "registered_utc": "2026-10-23 17:33:09 UTC",
     "early_be_executed_utc": "2026-10-23 18:30:39 UTC",
-    "profit_lock_executed_utc": "2026-10-23 22:39:31 UTC"
+    "profit_lock_executed_utc": "2026-10-23 22:39:31 UTC",
+    "closed_at_utc": "2026-10-23 22:54:00 UTC",
+    "deal_ticket": 17457629
   },
   "19270994": {
     "status": "CANCELED_PER_COUNCIL",
