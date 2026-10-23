@@ -26,6 +26,10 @@ acc = mt5.account_info()
 equity = acc.equity
 hard_floor = 4775.00
 buffer_floor = 4795.00
+buffer_cushion = max(0.0, equity - buffer_floor)
+# Dynamic nominal risk target to strictly respect the operating buffer under 1.25x slippage + $2 comm
+target_risk = max(10.0, min(25.0, (buffer_cushion - 2.50) / 1.25))
+print(f"Live Equity: {equity:.2f} USD | Buffer Cushion: +{buffer_cushion:.2f} USD | Dynamic Target Risk: {target_risk:.2f} USD")
 
 # Get all symbols available on the broker
 all_symbols = mt5.symbols_get()
@@ -114,7 +118,7 @@ for s in tradeable:
                 # Calculate lot for target risk $20.00
                 loss_min = mt5.order_calc_profit(mt5.ORDER_TYPE_BUY, sym, s.volume_min, entry_b, sl_b)
                 if loss_min and loss_min < 0:
-                    scale = abs(20.0 / loss_min)
+                    scale = abs(target_risk / loss_min)
                     lot = round(s.volume_min * scale / s.volume_step) * s.volume_step
                     lot = max(s.volume_min, min(lot, s.volume_max))
                     lot = round(lot, 2)
@@ -166,7 +170,7 @@ for s in tradeable:
             if spread_tp_s <= 15.0 and dist_pct_s <= 4.0:
                 loss_min_s = mt5.order_calc_profit(mt5.ORDER_TYPE_SELL, sym, s.volume_min, entry_s, sl_s)
                 if loss_min_s and loss_min_s < 0:
-                    scale_s = abs(20.0 / loss_min_s)
+                    scale_s = abs(target_risk / loss_min_s)
                     lot_s = round(s.volume_min * scale_s / s.volume_step) * s.volume_step
                     lot_s = max(s.volume_min, min(lot_s, s.volume_max))
                     lot_s = round(lot_s, 2)

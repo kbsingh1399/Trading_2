@@ -1,9 +1,511 @@
-\n# Cycle 286 Council Ruling — 2026-10-23 01:46:27 UTC\n\n\n## Final verdict\n\n\n**NO-GO. Remain 100% cash, with zero pending orders and zero reserved risk.**\n\n| Persona | Vote | Controlling reason |\n| --- | --- | --- |\n| Orderflow Analyst | **REJECT** | NZD structural reference is stale and cross-source inconsistent; BTC wall persistence/basis and rejection are unproved. |\n| Position Manager | **REJECT** | NZD arithmetic is solvent, but its exact stop is not safe against the canonical Auction boundary and broker-native risk was not freshly authenticated. |\n| Macro Risk Analyst | **CONDITIONAL CLEAR** | No active Tier-1 blackout, but macro clearance cannot override hard data and execution failures. |\n| Excel/Data Auditor | **VETO** | Structural workbook integrity passes; mandatory freshness fails. |\n\n\n**Orders transmitted: 0. Orders staged: 0. Repository changes: 0.**\n\n---\n\n## 1. Evidence authentication and workbook audit\n\n\n### Point-in-time Git evidence\n\n\n- Decision cutoff: **01:46:27 UTC**\n- Newest `origin/main` commit available before cutoff:\n
-**`d7a38592693f5f7e5d7a0a12dac56cf3be54cb20`**, synchronized **01:42:01 UTC**\n- Commit `92107201afc12bc17fa2f985d5e1b6eb25c9a776` synchronized at **01:47:05 UTC**, 38 seconds after cutoff. It is excluded from Cycle-286 authorization to prevent lookahead.\n\n### Workbook integrity\n\n\n- Workbook SHA-256:\n
-`90954def4bd0f47e2c6a667561ee5c7022f85d909499e006d758cd5f98ca4f01`\n- Size: **13,887,918 bytes**\n- ZIP/OOXML members: **42**\n- CRC failures: **0**\n- Physical worksheets read: **33/33**\n- Coordinates inspected: **1,667,148**\n- Nonempty coordinates: **1,651,673**\n- Formula cells: **0**\n- Formula-error or Excel-error cells/strings: **0**\n- Merged ranges: **28**, none in Auction row 1\n- `20_Auction_Market_Structure`: **85 × 36**\n- Auction row-1 headers: **36/36 populated, unique, unmerged**\n\nThus the workbook is structurally healthy and values-only; there are no formulas whose calculation correctness can be validated.\n\n### Freshness verdict: FAIL\n\n\n| Feed | Embedded time | Age at cutoff | Result |\n| --- | --- | --- | --- |\n| MT5 Account sheet | 00:27:49 | 78m38s | **FAIL** |\n| Technical | 01:03:27 | 43m00s | **FAIL** |\n| CVD | 01:10:00 | 36m27s | **FAIL** |\n| Auction | 01:13:28 | 32m59s | **FAIL** |\n| News | 01:13:34 | 32m53s | **FAIL** |\n| Whale Orders | 01:17:32 | 28m55s | **FAIL** |\n| ETF flows | 01:25:05 | 21m22s | **FAIL** |\n| Hyperliquid Analysis | 01:26:14 | 20m13s | **FAIL** |\n| OI | 01:27:36 | 18m51s | **FAIL** |\n| Funding | 01:29:43 | 16m44s | **FAIL** |\n| Funding settlement | 01:30:54 | 15m33s | **FAIL** |\n| Hyperdash | 01:34:45 | 11m42s | Pass |\n| Liquidation maps | 01:36–01:37 | 9–10m | Pass |\n| Orderbook | No observation timestamp | Unknown | **FAIL CLOSED** |\n\n\nThe assertion that every live timestamp is `<=15m` is false. Governance requires a trading halt when execution-critical feeds exceed 25 minutes or cannot prove cycling.\n\nAdditional semantic defect: `11_Technical` classifies **NZDUSD as “Crypto Alt”**, whereas Auction correctly classifies it as **FX Major**. Asset-class rules cannot safely depend on that Technical taxonomy.\n\n---\n\n## 2. Mission clock and capital defense\n\n\n- Time remaining until 23:59 UTC: **22h12m33s**\n- Current equity supplied in the prompt: **$4,818.51**\n- Target bridge:\n
-`$5,500.00 − $4,818.51 = $681.49`\n- Hard-floor cushion:\n
-`$4,818.51 − $4,775.00 = $43.51`\n- Operating-buffer cushion:\n
-`$4,818.51 − $4,795.00 = $23.51`\n\nThe `$4,818.51` telemetry is usable for scenario arithmetic but is not freshly corroborated by the cutoff-valid workbook.\n\nMaximum one-ticket allowance before nominal/spread split:\n23.51−2.001.25=$17.208\frac{23.51-2.00}{1.25}=\$17.2081.2523.51−2.00​=$17.208\nTherefore, **nominal stop risk plus spread cost must not exceed $17.208** to retain the normal `$4,795` stressed buffer.\n\nCurrent state from supplied telemetry:\n\n| Open positions | Pending orders | Reserved risk | State |\n| --- | --- | --- | --- |\n| 0 | 0 | $0.00 | 100% cash |\n\n\nNo second risk-bearing order is permissible until Ticket #1 reaches `+0.75R`, after which its stop must lock `+0.10R`.\n\n---\n\n# 3. Primary ruling: NZDUSD.pi BUY_LIMIT\n\n\n## Proposed ticket\n\n\n`BUY_LIMIT 0.81 @ 0.56904 / SL 0.56888 / TP 0.56965`\n\n### Geometry at supplied quote 0.56930 / 0.56933\n\n\n- Spread: **3 points**\n- Stop distance: **16 points**\n- Target distance: **61 points**\n- Nominal stop risk:\n16×$0.81=$12.9616 \times \$0.81=\$12.9616×$0.81=$12.96\n- Spread cost:\n3×$0.81=$2.433 \times \$0.81=\$2.433×$0.81=$2.43\n- Gross target:\n61×$0.81=$49.4161 \times \$0.81=\$49.4161×$0.81=$49.41\n- Gross reward/risk:\n49.41/12.96=3.8125R49.41/12.96=3.8125R49.41/12.96=3.8125R\n- Friction ratio:\n3/61=4.918%3/61=4.918\%3/61=4.918%\n- Stressed loss:\n(12.96+2.43)×1.25+2=$21.2375(12.96+2.43)\times1.25+2= \$21.2375(12.96+2.43)×1.25+2=$21.2375\n- Stressed equity:\n4818.51−21.2375=$4,797.27254818.51-21.2375=\$4,797.27254818.51−21.2375=$4,797.2725\n- Remaining operating-buffer headroom: **$2.2725**\n\nThe ticket therefore passes nominal risk, spread, R:R and solvency arithmetic.\n\nThe supplied free-margin calculation is incorrect:\n4818.51−1536.41=$3,282.104818.51-1536.41=\$3,282.104818.51−1536.41=$3,282.10\nnot `$3,292.10`.\n\n## Authentication and structural problems\n\n\n### 1. The acceptance claim depends on which DVAH is used\n\n\nCutoff-valid sources disagree:\n\n- Canonical Auction DVAH at 01:13:28: **0.56894**\n- Stale Technical DVAH at 01:03:27: **0.569074**\n\nAgainst Auction `0.56894`, the archive independently proves two completed closes:\n\n| M15 open | Close | RVOL versus prior-20 median |\n| --- | --- | --- |\n| 01:00 | 0.56901 | 2.58× |\n| 01:15 | 0.56920 | 2.55× |\n\n\nAgainst Technical `0.569074`, only `0.56920` is above the boundary. The claimed subsequent `0.56923` close is absent from both the cutoff archive and the immediately post-cutoff candle file.\n\nThus:\n\n- Two-close/RVOL acceptance is supportable against **Auction 0.56894**.\n- It is **not independently supportable** against the cited Technical DVAH.\n- Developing POC remained at **0.56831**; migration toward the breakout was not established.\n\n### 2. The proposed stop is unsafe against the canonical Auction shelf\n\n\nLatest derivable M15 Wilder ATR through the archive is approximately **0.000337**.\n\nRequired long stop against Auction DVAH:\n0.56894−0.5(0.000337)−0.000015=0.56875650.56894-0.5(0.000337)-0.000015
-=0.56875650.56894−0.5(0.000337)−0.000015=0.5687565\nRounded outward, the safe level is approximately **0.56875**.\n\nThe proposed `0.56888` stop is only six points below the Auction DVAH, materially inside the required `0.50 ATR + half-spread` bunker.\n\nIt is safe only if the stale Technical boundary `0.569074` is selected. The council cannot choose whichever conflicting source makes the ticket pass.\n\n### 3. Entry is not anchored consistently\n\n\n- Relative to Auction DVAH `0.56894`, entry `0.56904` is **10 points above** the boundary, so it is not a boundary retest.\n- Relative to Technical DVAH `0.569074`, it is a slightly deep retest.\n- The later, post-cutoff Auction snapshot moved DVAH to `0.56910`, demonstrating that the shelf was evolving. That snapshot cannot authorize Cycle 286, but it confirms the adverse-selection risk of staging against an old fixed boundary.\n\n### 4. HTF evidence is incomplete\n\n\n- Completed M15 close `0.56920` was above M15 EMA50 `0.568383`.\n- Latest completed H1 close `0.56884` was above H1 EMA50 `0.568439`.\n- Latest completed 4H close `0.56840` was marginally below 4H EMA20 `0.568414`, although above EMA50 `0.568088`.\n\nTherefore the full `1H/4H` hierarchy required by Model 2A is not cleanly authenticated.\n\n## Adaptive 3-of-4 assessment\n\n\n| Tier-2 point | Result |\n| --- | --- |\n| Regime/narrative | **Conditional pass** — bullish/range expansion, but stale |\n| Asset-specific structural anchor | **Fail** — Auction and Technical boundaries conflict |\n| Timing/exhaustion | **Partial** — Auction two-close/RVOL passes; POC migration and cited second close do not |\n| Safe stop bunker | **Fail** for the exact ticket against canonical Auction |\n\n\nThis is fewer than three clean points. More importantly, the hard freshness veto independently blocks execution.\n\n## NZDUSD ruling\n\n\n**REJECT THE EXACT ORDER NOW. Keep NZDUSD armed on radar; do not stage it.**\n\n### Exact re-authorization trigger\n\n\nAll must be true concurrently:\n\n1. `[ ]` A newly published, point-in-time-valid snapshot shows Account, Auction and completed M15 data no older than 15 minutes.\n2. `[ ]` One authoritative DVAH is selected; Auction and Technical differ by no more than one tick after recalculation.\n3. `[ ]` Two completed M15 closes remain above that fresh DVAH.\n4. `[ ]` Breakout RVOL remains above `1.30×`; preferably developing POC migrates upward.\n5. `[ ]` Completed 1H and 4H hierarchy aligns bullishly.\n6. `[ ]` Fresh broker quote age is `<=2s`, current spread and 60-second spread metrics pass.\n7. `[ ]` Entry and stop are recomputed from the fresh shelf:\nEntry=⌊DVAH−12Spread⌋tickEntry=\lfloor DVAH-\tfrac12Spread\rfloor_{tick}Entry=⌊DVAH−21​Spread⌋tick​SL=⌊DVAH−0.50ATR−12Spread⌋tickSL=\lfloor DVAH-0.50ATR-\tfrac12Spread\rfloor_{tick}SL=⌊DVAH−0.50ATR−21​Spread⌋tick​\n1. `[ ]` Broker-native `order_calc_profit` and margin calculation confirm stressed equity `>= $4,795`.\n2. `[ ]` No M15 candle closes back below DVAH before fill.\n3. `[ ]` Only one risk-bearing pending ticket exists.\n\nIllustratively, using the stale cutoff Auction values would produce approximately:\n\n`0.81 @ 0.56892 / SL 0.56875 / TP 0.56965`\n\n- Nominal risk: `$13.77`\n- Spread cost: `$2.43`\n- Stressed loss: `$22.25`\n- Stressed equity: `$4,796.26`\n- Gross R:R: `73/17 = 4.29R`\n\nThis is **not an executable instruction** because its source shelf is stale.\n\n---\n\n## 4. Canonical 10-point Pre-Punch Checklist — NZDUSD\n\n\n`[x]` pass, `[~]` partial/conditional, `[ ]` unproved/fail.\n\n| # | Canonical check | Status | Audit result |\n| --- | --- | --- | --- |\n| 1 | Wall polarity/persistence or asset-specific structural substitute | `[ ]` | FX correctly substitutes Auction structure for crypto walls, but the authoritative DVAH is stale and inconsistent. |\n| 2 | Stop-cascade/sweep clearance | `[~]` | No centralized FX stop map is required, but local structural clearance beyond DVAH was not achieved by the exact SL. |\n| 3 | CVD absorption/deceleration | `[~]` | NZD has no centralized CVD and must not be disqualified for that; RVOL is strong, but pullback absorption is not observed. |\n| 4 | Bunker SL buffer | `[ ]` | `0.56888` fails `0.50 ATR + half-spread` against canonical Auction DVAH. |\n| 5 | Causal Auction location | `[~]` | Breakout acceptance exists against `0.56894`, but not against the cited `0.569074`; POC did not migrate. |\n| 6 | Dynamic spread efficiency | `[x]` | `3/61 = 4.918% <= 15%`. |\n| 7 | HTF hierarchy | `[~]` | M15/H1 pass; completed 4H hierarchy is not clean. |\n| 8 | Every empirical precondition live-verified | `[ ]` | Freshness, second cited close, POC migration, quote age and broker calculation are not all proved. |\n| 9 | TP runway and R:R | `[x]` | TP front-runs PDVAH `0.56970` by five points; gross `3.8125R`. |\n| 10 | Stressed solvency | `[~]` | Scenario arithmetic passes at `$4,797.2725`; fresh account and broker-native profit calculation do not. |\n\n\n**Checklist result: not 10/10; order transmission forbidden.**\n\n---\n\n# 5. BTCUSD.pi supply-short ruling\n\n\n## Static evidence\n\n\nThe untimestamped orderbook does show significant asks:\n\n- `81,560`: **$8.5747M**\n- `81,556`: **$1.3148M**\n- `81,569`: **$1.2864M**\n- `81,592`: **$1.2239M**\n- `81,604`: **$4.5772M**\n- `81,735`: **$5.0894M**\n- `81,861–81,862`: approximately **$2.52M combined**\n- `81,900`: **$1.638M**\n\nHowever:\n\n- Orderbook mid was `81,286.50`, versus supplied MT5 mid `81,567.50`.\n- No live cross-venue basis translation is available.\n- No timestamp, wall age, 180-second persistence, 85% presence fraction or cancellation status is present.\n- Cutoff-valid BTC CVD ended at 01:10; its last row was **aggressive buying**, `+$2.276M`.\n- Auction classified BTC as **ROTATIONAL_BALANCE**, with DVAH `81,399.95` and Asian high `81,473`.\n- The current quote is already above both levels; no completed rejection close is authenticated.\n\n## Geometry errors\n\n\n### Entry 81,520\n\n\nWith ask `81,575`, a `SELL_LIMIT @81,520` is marketable and violates:\nSELL_LIMIT≥live askSELL\_LIMIT \ge live\ askSELL_LIMIT≥live ask\nIt is rejected outright.\n\n### Entry 81,580\n\n\nThis entry is passive by only `$5`, but:\n\n- Risk to `81,860` at `0.04` lot is:\n280×0.04=$11.20280\times0.04=\$11.20280×0.04=$11.20\nnot `$13.60`. The `$13.60` risk applies only to entry `81,520`.\n\n- Spread cost: `15×0.04 = $0.60`\n- Stressed loss:\n(11.20+0.60)×1.25+2=$16.75(11.20+0.60)\times1.25+2=\$16.75(11.20+0.60)×1.25+2=$16.75\n- TP distance: `1,280`\n- Gross R:R: `1,280/280 = 4.57R`\n- Friction: `15/1,280 = 1.172%`\n\nThe arithmetic passes, but the execution structure does not:\n\n1. `81,860` lies inside/just beneath additional asks at `81,861–81,900`, rather than behind the full supply bunker.\n2. The stated long-liquidation target around `80,450` should be front-run above the pool; `80,300` sits behind it.\n3. No live rejection, negative delta flip or wall persistence is proved.\n4. At only `$5` above ask, queue position and toxic partial-fill risk are acute.\n\n## BTC ruling\n\n\n**REJECT both `81,520` and `81,580`. Do not stage.**\n\nRequired trigger:\n\n- `[ ]` Wall at `81,520–81,580` present for at least 180 seconds, presence fraction `>=0.85`, at least three samples, uncancelled.\n- `[ ]` Live Hyperliquid/Binance-to-MT5 basis mapped.\n- `[ ]` Completed rejection closes back below `81,473`/fresh DVAH.\n- `[ ]` M5 CVD flips negative or proves buyer absorption at the wall.\n- `[ ]` Safe stop is above the complete defending ask cluster plus `0.50 ATR + half-spread`.\n- `[ ]` TP front-runs the `80,450` pool rather than sitting behind it.\n- `[ ]` Broker-native risk and margin calculations pass.\n\n---\n\n# 6. Gold and USDJPY radar\n\n\n## Gold DVAL bounce: REJECT / mislabeled setup\n\n\nNo authenticated source places Gold DVAL at `4,010.50`:\n\n- Cutoff Auction DVAL: **4,020.57**\n- Technical DVAL: **4,017.054**\n- Post-cutoff forensic Auction DVAL: **4,017.10**\n- The `4,010–4,012` area is the current-week/session low, not DVAL.\n\nGold was classified **TREND_DOWN_ACCEPTANCE**, below value. The PAXG-based CVD ended at 01:10 near `4,026`, making it stale and basis-inconsistent with supplied spot Gold.\n\nA long becomes admissible only after:\n\n- `[ ]` Fresh M15 close reclaims fresh DVAL.\n- `[ ]` Retest holds above DVAL.\n- `[ ]` MT5 tick delta/rejection proves buyer absorption.\n- `[ ]` Stop clears the swept week/session low by `0.50 ATR + half-spread`.\n- `[ ]` Fresh target to DPOC provides at least `2R`.\n\nUntil then, the bounce is a countertrend weekly-low bounce, not a DVAL bounce.\n\n## USDJPY breakdown-retest: best secondary radar, not ready\n\n\nRelevant cutoff levels:\n\n- Prior-day low: **156.686**\n- Prior-day close: **156.762**\n- Prior-day VAL: **156.785**\n- Asian high: **156.819**\n- Technical regime: **STRONG BEARISH**\n\nSupplied price `156.718` is inside the prior-day-low/VAL retest zone. The last available CVD proxy at 01:10 showed aggressive selling, but it is 36 minutes stale.\n\nExact trigger:\n\n- `[ ]` Price probes `156.686–156.785`.\n- `[ ]` A completed M15 candle closes back below `156.686`.\n- `[ ]` Fresh MT5 tick delta is negative on the rejection.\n- `[ ]` Passive sell entry is recalculated at the retest plus half-spread.\n- `[ ]` Stop is above `max(156.785, 156.819) + 0.50 ATR + half-spread`.\n- `[ ]` Fresh DPOC/DVAL target supplies at least `2R`.\n- `[ ]` Broker-native lot size keeps nominal risk at `$12.96–$15.00`.\n\nNo fixed lot or ticket is authorized until those broker inputs are fresh.\n\n---\n\n# 7. Macro clock\n\n\n- No active Tier-1 high-impact blackout at 01:46:27 UTC.\n- JPY PMI had already passed at 00:30 UTC.\n- Next scheduled event: GBP Retail Sales at **06:00 UTC**, medium impact.\n- It lies 4h13m33s ahead; its TradFi blackout begins at approximately **05:25 UTC**.\n- No direct NZD Tier-1 event appears inside the four-hour analysis horizon.\n- FX rollover embargo is remote.\n\n**Macro verdict:** current window is conditionally clear, but any GBP-sensitive pending order must expire or be cancelled before 05:25 UTC. Macro clearance does not cure stale execution evidence.\n\n---\n\n# 8. Quantitative methodology inquest\n\n\nThe cutoff-valid M5 dataset is unchanged from Cycle 284, so the previous walk-forward result still controls:\n\n- Pooled trades: **164**\n- Total P&L: **−4.99R**\n- Hit rate: **40.2%**\n- Mean: **−0.030R/trade**\n- Profit factor: **0.862**\n- Maximum drawdown: **11.79R**\n\nOnly small DAX and Silver subsets were positive; they do not validate NZDUSD or BTC. Exact M3 evaluation remains impossible from M5 data. Therefore, **the current method has not established positive broad-sample out-of-sample expectancy**.\n\n## Orderflow Analyst inquest\n\n\n- **Boolean-AND death:** Replace secondary all-or-nothing signals with asset-specific `3-of-4` scoring. Keep freshness, macro, spread, R:R and solvency as hard vetoes.\n- **Passive-limit nonfills/adverse selection:** NZD’s fixed level drifted as DVAH changed; BTC’s `$5` passive offset risks filling only as the wall breaks. Levels must be recalculated from current shelves, monitored for adverse markout, and expired after 12 bars.\n- **TradFi/crypto specialization:** FX uses Auction structure, completed broker bars and MT5 tick flow. Crypto requires live centralized/DEX wall persistence, basis and taker CVD. Missing Binance-style NZD CVD is not a veto.\n- **House Money:** No realized Cycle-286 profit exists. Unrealized movement and a move to Early-BE release capacity but do not increase the risk budget.\n- **Vote:** Reject both primary tickets.\n\n## Position Manager inquest\n\n\n- **Boolean-AND death:** Signal confluence may be adaptive; account freshness, broker quote conversion and floor protection remain binary.\n- **Passive-limit nonfills/adverse selection:** Enforce quote age `<=2s`, cancellation when structure migrates, 12-bar expiry, residual cancellation after toxic partial fill, and one risk-bearing ticket.\n- **TradFi/crypto specialization:** Always size from each broker contract/tick specification through `order_calc_profit`; never transfer crypto point-value assumptions to FX or metals.\n- **House Money:** Escalation may occur only after profit is closed and the new balance/equity is harvested. At Early-BE, a second base-risk ticket may be considered, but its risk cannot be enlarged using floating P&L.\n- **Vote:** Arithmetic is admissible; authorization evidence is not.\n\n## Macro Risk Analyst inquest\n\n\n- **Boolean-AND death:** Only Tier-1 blackout and rollover are absolute vetoes. Medium events are currency-specific timing and expiry constraints.\n- **Passive-limit nonfills/adverse selection:** A pending order must not remain exposed through its currency’s blackout or rollover merely because it has not filled.\n- **TradFi/crypto specialization:** FX is driven by currency calendars and sessions; crypto trades continuously but remains sensitive to broad USD releases. Blackout windows differ.\n- **House Money:** Macro clearance never authorizes risk escalation from unrealized gains. Recheck the calendar against fresh realized equity before every escalation.\n- **Vote:** Conditional macro clearance only.\n\n---\n\n# 9. Realized-profit risk ladder\n\n\n1. **Before Trade #1:** one risk-bearing pending order maximum; nominal risk `$12.96–$15.00`.\n2. **At `+0.75R` while still open:** move stop to lock `+0.10R`; only then may a second independently fillable base-risk ticket be considered after a fresh simultaneous-stop proof.\n3. **This is capacity release, not House Money.** No nominal-risk increase is allowed from floating P&L.\n4. **After Trade #1 closes profitably:** harvest fresh realized balance/equity and calculate:\nMaximum all-in=RealizedEquity−4795−21.25Maximum\ all\text{-}in =
-\frac{RealizedEquity-4795-2}{1.25}Maximum all-in=1.25RealizedEquity−4795−2​NominalRiskCap=Maximum all-in−FreshSpreadCostNominalRiskCap =
-Maximum\ all\text{-}in - FreshSpreadCostNominalRiskCap=Maximum all-in−FreshSpreadCost\n1. Only then may the next nominal cap increase toward `$20`; `$25` remains reserved for independently validated pristine confluence and a fresh solvency proof.\n2. Exit spread, commissions and slippage mean the proposed NZD gross target of `$49.41` must never be pre-credited as banked profit.\n\n---\n\n## Final action state\n\n\n- **NZDUSD exact ticket:** rejected now; radar only.\n- **BTCUSD tickets:** rejected.\n- **Gold bounce:** rejected; mislabeled structural level.\n- **USDJPY:** conditional radar candidate.\n- **Open positions:** 0\n- **Pending orders:** 0\n- **Reserved risk:** `$0.00`\n- **Broker transmission:** none\n- **Repository/PR/commit/push:** none\n
+Cycle 287 Council Ruling — 2026-10-23 02:10:00 UTC
+Final verdict
+
+STAND ASIDE IN 100% CASH DEFENSE.
+
+Open positions: 0
+Pending orders: 0
+Reserved risk: $0.00
+Broker transmissions: 0
+Highest-ranked conditional setup: BTCUSD failed-auction supply-retest short
+Nearest alternative trigger: Gold capitulation/reclaim long
+Neither currently clears the canonical 10-point gate.
+No PR, commit, push, code change, or repository deliverable was created.
+1. Cycle evidence and workbook integrity
+Point-in-time source
+
+Newest origin/main commit available before the 02:10 cutoff:
+
+47e50360c832ffa5ba315ef4ddd6d3542869bdf2
+Synchronized: 02:07:02 UTC
+
+The three governance documents are byte-identical to Cycle 286, so their previously completed line-by-line interpretation remains controlling.
+
+Full workbook audit
+Workbook SHA-256:
+b773dfd7c54e577bbc1ed426abf4c814d71ef0615cb1ce89984d847bf803323c
+Size: 13,886,686 bytes
+Physical worksheets: 33/33
+Coordinates read: 1,666,327
+Nonempty coordinates: 1,650,847
+Formula cells: 0
+Formula/errors/error strings: 0
+Merged ranges: 28
+Auction sheet: 85 × 36
+Auction headers: 36/36 populated, unique and unmerged
+
+Structural integrity passes.
+
+Execution-critical freshness
+Feed	Observation	Age at cutoff	Status
+Account telemetry	01:53:45	16m15s	Strict <=15m fail
+Technical	02:01:24	8m36s	Pass
+Hyperdash summary	02:02:44	7m16s	Pass
+BTC liquidation map	02:04:20	5m40s	Pass
+BTC stop map	02:05:25	4m35s	Pass
+Whale Orders	01:47:22	22m38s	Fail
+Auction	01:43:57	26m03s	Fail closed
+CVD	01:40:00	30m00s	Fail closed
+Orderbook	No observation timestamp	Unknown	Fail closed
+
+The supplied live account reconciles the stale workbook values, but it does not supply a fresh broker-native order_calc_profit, margin calculation, timestamped orderbook, or current CVD.
+
+2. Cycle 286 false-breakout autopsy
+
+The Cycle-286 NZD order would have been:
+
+BUY_LIMIT 0.81 @0.56904 / SL 0.56888
+
+The supplied Cycle-287 low of 0.56868 implies:
+
+The pending buy would have filled.
+Its 0.56888 stop would then have been breached.
+Planned nominal loss was $12.96, before actual spread, commissions, or slippage.
+The council preserved the full $4,818.51 by rejecting it.
+
+The key lesson is not “reject all breakouts.” It is:
+
+Two closes and high RVOL did not create durable acceptance.
+Developing POC never migrated toward the breakout.
+Auction and Technical disagreed on the operative DVAH.
+The proposed stop was safe only under the more favorable of those conflicting boundaries.
+A pre-staged passive order would have filled specifically while the thesis was failing.
+
+Methodological correction: after apparent value acceptance, do not rest a limit through the first retest blindly. Arm an alert as price enters 0.20–0.30 ATR of the boundary; require a completed retest hold or live tick absorption before exposing the order. This reduces both false-breakout adverse selection and limits staged against migrating value.
+
+3. Capital defense
+Equity: $4,818.51
+Hard-floor cushion: $43.51
+Operating-buffer cushion: $23.51
+Target deficit: $681.49
+Time remaining: 21h49m
+
+Maximum combined nominal risk plus spread reserve:
+
+23.51
+−
+2.00
+1.25
+=
+$
+17.208
+1.25
+23.51−2.00
+	​
+
+=$17.208
+
+Thus $17.20 is not pure stop risk; it is the approximate upper bound for:
+
+𝑁
+𝑜
+𝑚
+𝑖
+𝑛
+𝑎
+𝑙
+ 
+𝑆
+𝑡
+𝑜
+𝑝
+ 
+𝑅
+𝑖
+𝑠
+𝑘
++
+𝑆
+𝑝
+𝑟
+𝑒
+𝑎
+𝑑
+ 
+𝐶
+𝑜
+𝑠
+𝑡
+Nominal Stop Risk+Spread Cost
+
+Only one risk-bearing pending order may be active. No House Money exists because no new profit has been realized.
+
+4. Affirmative 156-asset discovery
+
+The account census contains all 156 broker quotes:
+
+Spread-pass: 91
+Spread-fail: 65
+
+Notable fresh Technical extremes were examined:
+
+Asset	Z-score	RSI	Rejection reason
+GBPUSD	−3.44	41.9	Below-value expansion; no exhaustion
+USDCAD	+3.33	51.6	Balanced regime; no exhaustion/rejection
+EURUSD	−2.88	36.7	Below-value expansion; RSI not exhausted
+Gold	−2.79	27.4	Valid extreme, but current reversal bar incomplete and HTF strongly bearish
+USDJPY	+2.54	56.7	Broad USD expansion; no exhaustion confirmation
+BTC	−0.47	46.1	Not an extreme; qualifies instead as a bearish failed-auction/retest candidate
+
+No other screened instrument had fresher, more complete evidence than BTC or Gold.
+
+No source-proven probability is invented. The highest-ranked conditional setup is BTC; there is no fully qualified “highest-probability trade available now.”
+
+5. BTCUSD — highest-ranked conditional setup
+Source-proven rejection
+
+Latest completed M15 bar:
+
+Open: 81,379
+High: 81,651
+Low: 81,179
+Close: 81,220
+Volume: 5,879
+RVOL: 1.93×
+High-to-close rejection: $431, approximately 1.89 ATR
+
+Fresh Technical state at 02:01:
+
+Trend: STRONG BEARISH
+ATR: 228.11
+VWAP: 81,262.78
+EMA20: 81,286.72
+EMA50: 81,437.83
+EMA200: 82,109.04
++3σ: 81,536.47
+
+Price therefore swept above +3σ and the 81,560–81,650 supply region, then closed below VWAP and the short-term averages. This is genuine failed-auction evidence.
+
+Fresh downside magnets
+
+At 02:04–02:05:
+
+Long liquidation at 80,450: $29.71M incremental, $55.52M cumulative
+Sell stops:
+81,250: $1.39M
+81,150: $702.83K
+81,050: $9.56M
+80,950: $3.69M
+80,850: $5.43M
+
+The downside runway is real. However, selling at the current 81,274/81,289 would chase the completed move directly above those stop magnets.
+
+Why a passive supply retest cannot yet be staged
+
+Fresh opposing buy stops remain at:
+
+81,550: $205.16K
+81,650: $13.42K
+81,750: $1.96M
+81,850: $1.54M
+81,950: $814.49K
+82,050: $4.26M
+Higher ladder continues beyond 82,250
+
+Therefore, a sell limit at 81,550–81,650 would sit directly inside a renewed buy-stop ladder. That creates the precise toxic-fill risk prohibited by Pitfalls 2, 8, 12 and 15.
+
+Rejected provisional geometry
+
+A superficially attractive ticket would be:
+
+SELL_LIMIT 0.06 @81,550 / SL 81,773 / TP 81,030
+
+Nominal risk: (81,773−81,550)×0.06 = $13.38
+Spread cost: 15×0.06 = $0.90
+Stressed loss: $19.85
+Stressed equity: $4,798.66
+Gross R:R: 520/223 = 2.33R
+Friction: 15/520 = 2.88%
+
+But 81,773 is inside the 81,750–82,050 buy-stop ladder. The stop is not a bunker; it is a squeeze target.
+
+Clearing only the 81,850 band requires approximately:
+
+81
+,
+850
++
+0.5
+(
+228.11
+)
++
+7.5
+=
+81
+,
+971.56
+81,850+0.5(228.11)+7.5=81,971.56
+
+The ladder then continues at 81,950 and 82,050, so no stable outer boundary is presently authenticated. Widening the stop beyond the continuing ladder either breaks the risk lot-step geometry or reduces realizable R:R to the first Asian-range support below 2R.
+
+Elite-quant execution method
+
+Do not chase the rejection at 81,274. Do not blindly rest at the old wall.
+
+Re-arm BTC only when:
+
+[ ] Price retests the 81,550–81,850 region.
+[ ] The buy-stop ladder is actually swept.
+[ ] A completed M5/M15 candle closes back below the swept level.
+[ ] Live CVD turns negative or shows aggressive buyers absorbed without upward progress.
+[ ] Timestamped ask-wall snapshots persist for >=180s, presence fraction >=0.85, and remain uncancelled.
+[ ] Binance/Hyperliquid-to-MT5 basis is mapped.
+[ ] Entry, stop and lot are then recomputed:
+𝑆
+𝐿
+=
+max
+⁡
+(
+𝑆
+𝑤
+𝑒
+𝑒
+𝑝
+𝐻
+𝑖
+𝑔
+ℎ
+,
+𝑂
+𝑢
+𝑡
+𝑒
+𝑟
+𝐵
+𝑢
+𝑦
+𝑆
+𝑡
+𝑜
+𝑝
+,
+𝑂
+𝑢
+𝑡
+𝑒
+𝑟
+𝐴
+𝑠
+𝑘
+𝑊
+𝑎
+𝑙
+𝑙
+)
++
+0.50
+𝐴
+𝑇
+𝑅
++
+1
+2
+𝑆
+𝑝
+𝑟
+𝑒
+𝑎
+𝑑
+SL=max(SweepHigh,OuterBuyStop,OuterAskWall)+0.50ATR+
+2
+1
+	​
+
+Spread
+𝐿
+𝑜
+𝑡
+≤
+min
+⁡
+(
+15
+𝑆
+𝐿
+−
+𝐸
+𝑛
+𝑡
+𝑟
+𝑦
+,
+17.208
+𝑆
+𝐿
+−
+𝐸
+𝑛
+𝑡
+𝑟
+𝑦
++
+𝑆
+𝑝
+𝑟
+𝑒
+𝑎
+𝑑
+)
+Lot≤min(
+SL−Entry
+15
+	​
+
+,
+SL−Entry+Spread
+17.208
+	​
+
+)
+
+rounded down to the 0.01 lot step.
+
+[ ] TP front-runs the 80,450 pool by 5 bps:
+80
+,
+450
+×
+1.0005
+=
+80
+,
+490.23
+80,450×1.0005=80,490.23
+[ ] Realizable R:R remains >=2R.
+[ ] Cancel after 12 M15 bars or immediately if a candle accepts above the swept supply zone.
+
+BTC ruling: armed alert only; no pending order.
+
+6. Canonical 10-point Pre-Punch Checklist — BTCUSD
+#	Gate	Status	Finding
+1	Whale-wall polarity and persistence	[ ]	Static wall polarity is ASK and the rejection corroborates historical supply, but current age, presence fraction and cancellation state are absent.
+2	Stop-cascade clearance	[ ]	Fresh buy-stop ladder occupies 81,550–82,050; proposed entry would be inside it.
+3	CVD absorption/deceleration	[ ]	CVD ends at 01:40, before the 01:45–02:00 rejection.
+4	Safe SL bunker	[ ]	No authenticated outer edge to the continuing buy-stop ladder; 81,773 is unsafe.
+5	Causal Auction location	[~]	Completed +3σ failed auction is strong, but canonical Auction sheet is 26 minutes old.
+6	Dynamic spread efficiency	[x]	Spread is 15; candidate target distances easily satisfy <=15%.
+7	HTF trend alignment	[x]	Completed M15, H1 and 4H closes are below their principal averages; directional bias is bearish.
+8	All live empirical triggers	[ ]	No fresh wall persistence, basis mapping, CVD, or second-retest failure.
+9	TP runway and realizable R:R	[~]	Fresh downside liquidity exists, but safe-stop geometry is unresolved.
+10	Stressed solvency	[~]	Several lot/stop combinations fit mathematically, but exact broker margin and final safe stop are absent.
+
+Result: 3 passes/partials cannot substitute for the failed hard execution gates.
+
+7. Other live candidates
+Gold — nearest alternative trigger
+
+Source-proven state at 02:01:
+
+Technical close: 3,992.07
+Z-score: −2.795
+RSI: 27.41
+ATR: 8.978
+Trend: STRONG BEARISH
+M15 RVOL: 3.64×
+−3σ: 3,990.33
+DPOC: 4,020.29
+
+The supplied post-02:00 low 3,986.63 swept below −3σ, followed by a rebound to 4,009.47. That is a credible capitulation pattern, but the 02:00–02:15 M15 candle was incomplete at the decision cutoff. Fresh Gold tick absorption is also absent.
+
+Conditional research ticket after confirmation:
+
+BUY_LIMIT 0.01 @3,994.00 / SL 3,981.00 / TP 4,020.20
+
+Risk: $13.00
+Spread cost at $0.08: $0.08
+Stressed loss:
+(
+13.00
++
+0.08
+)
+×
+1.25
++
+2
+=
+$
+18.35
+(13.00+0.08)×1.25+2=$18.35
+Stressed equity: $4,800.16
+Reward: $26.20
+R:R: 2.015R
+Friction: 0.31%
+Stop is approximately 0.63 ATR below the supplied sweep low.
+TP front-runs DPOC by $0.09.
+
+Mandatory trigger before staging:
+
+[ ] Completed M15 close above 4,000.
+[ ] Positive MT5 tick-delta/absorption during the retest.
+[ ] Fresh ATR and account check.
+[ ] Entry remains within 2 ATR and TP still front-runs DPOC.
+
+Gold ruling: radar only. Do not pre-stage during the incomplete reversal candle.
+
+USDJPY
+Supplied high: 157.061
+Current quote: 156.904/156.905
+Technical Z-score: +2.536
+RSI: 56.7, not exhausted
+Broad USD expansion remains active.
+
+A short here would fade an unfinished expansion without exhaustion. Require a completed close back below the old Asian high 156.819 and negative tick flow. No ticket.
+
+NZDUSD
+
+The bullish acceptance thesis is invalidated. Price returned inside value and would have stopped the prior candidate. Retired; zero longs.
+
+8. Persona methodology inquest
+Orderflow Analyst
+Is the method sound? Partially. Cycle 286 proved that selective rejection can have positive capital value. It also exposed the weakness of static snapshots and pre-staged retests.
+Boolean-AND death: Continue adaptive 3-of-4 Tier-2 scoring, but wall freshness, active stop-map conflicts, basis, spread and solvency remain hard vetoes.
+Passive nonfill/adverse selection: A missed BTC short is preferable to chasing at 81,274. A second retest must be validated near-touch; otherwise the order fills only when the wall is being overrun.
+Asset specialization: BTC requires centralized/DEX wall, stop and CVD evidence. Gold uses Auction, distributional extremity and MT5 tick absorption. Crypto L2 rules are not imposed on OTC FX.
+House Money: None. No risk expansion from an avoided loss or an unrealized move.
+Highest-ranked setup: BTC failed-auction supply retest, conditional on a stop sweep and renewed rejection.
+Position Manager
+Is the method sound? Solvency controls are sound; opportunity capture is weakened by stale broker risk calculations and limits fixed too early.
+Boolean-AND death: Signal evidence can be scored; exact contract sizing, safe-stop placement, one-ticket capacity and floor defense cannot.
+Passive nonfill/adverse selection: Use alerts at 0.25 ATR from entry, validate at touch, and transmit only after structure remains intact. Enforce 12-bar expiry and residual cancellation on toxic partial fills.
+Asset specialization: BTC contract size is one BTC per lot; Gold is 100 ounces per lot. Their lot steps and minimum viable safe-stop geometries differ materially.
+House Money: Early-BE merely releases capacity. Risk may increase only after profit is closed and a fresh balance/equity snapshot proves the new cushion.
+Vote: No order currently has both safe geometry and authenticated inputs.
+Macro Risk Analyst
+Is the method sound? Macro gating is not causing the current rejection; execution data is.
+Boolean-AND death: Only Tier-1 blackout and rollover remain absolute macro vetoes. Medium-impact events should be currency-specific.
+Passive nonfill/adverse selection: Pending FX orders must expire before their event window. A crypto or Gold order also requires reassessment if broad USD repricing accelerates.
+Asset specialization: USDJPY and Gold are directly exposed to the present USD impulse; BTC has 24/7 microstructure but remains sensitive to broad USD liquidity.
+House Money: Macro clearance never converts floating gains or avoided losses into a larger risk budget.
+Clock: GBP Retail Sales is at 06:00 UTC, 3h50m away; no active Tier-1 blackout. Its TradFi blackout begins around 05:25 UTC.
+9. Methodological conclusion
+
+Equity remained flat because:
+
+Existing broad M5 strategy tests have not established positive out-of-sample expectancy.
+Several warehouse feeds remain asynchronous or stale at decision time.
+Static passive limits alternate between deep nonfills and toxic fills during structural failure.
+The desk has sometimes measured “signal count” rather than conditional fill quality and post-fill markout.
+
+Cycle 286 demonstrates that flat equity can be the correct outcome. The avoided NZD stop was economically superior to forcing activity.
+
+Required improvement:
+
+Synchronize features by event time, not merely workbook commit time.
+Separate candidate discovery from execution admission.
+Record every armed candidate’s touch, fill probability, five-second adverse markout, MFE, MAE and reason for nonfill.
+Revalidate passive orders only when price approaches the level.
+Use class-specific models.
+Escalate only from banked, realized profit.
+Final action state
+
+VERDICT: STAND ASIDE IN 100% CASH DEFENSE.
+
+BTC: highest-ranked conditional short; alert only.
+Gold: conditional capitulation long; wait for completed M15 confirmation.
+USDJPY: no fade.
+NZDUSD: retired.
+No broker order staged or transmitted.
+No repository mutation, PR, commit, or push.
