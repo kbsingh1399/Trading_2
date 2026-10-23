@@ -1,1 +1,35 @@
-{"last_cycle": 64, "dispatched_utc": "2026-10-22 13:33:35 UTC"}
+{
+  "current_cycle_id": "296",
+  "cycle_status": "COMPLETED",
+  "cycle_started_utc": "2026-10-23 07:17:28 UTC",
+  "cycle_completed_utc": "2026-10-23 07:17:28 UTC",
+  "next_cycle_scheduled_utc": "2026-10-23 07:37:28 UTC",
+  "rest_interval_seconds": 1200,
+  "components": {
+    "antigravity_subagents": {
+      "name": "Antigravity 4-Quant Swarm (Fable 5)",
+      "status": "COMPLETED",
+      "completed_at_utc": "2026-10-23 07:17:28 UTC",
+      "details": "Statistical Regime, Microstructure, Solvency, Auction Profile"
+    },
+    "arena_ai": {
+      "name": "Arena.ai Council (GPT Astra)",
+      "status": "COMPLETED",
+      "completed_at_utc": "2026-10-23 07:17:28 UTC",
+      "raw_file": "docs/trade_plans/ARENA_LATEST_RAW.md",
+      "model": "GPT Astra"
+    },
+    "zai": {
+      "name": "Z.ai Sovereign Council (GLM-5.3-Flash)",
+      "status": "COMPLETED",
+      "completed_at_utc": "2026-10-23 06:55:30 UTC",
+      "raw_file": "docs/trade_plans/ZAI_LATEST_RAW.md",
+      "model": "GLM-5.3-Flash"
+    }
+  },
+  "watchdog": {
+    "last_check_utc": "2026-10-23 07:17:28 UTC",
+    "health": "HEALTHY",
+    "message": "Initialized joint cycle controller."
+  }
+}
