@@ -1,10 +1,10 @@
 {
   "schema_version": "1.1.0",
-  "cycle_id": "Cycle-20261023T230300Z",
-  "cutoff_utc": "2026-10-23 23:03:00 UTC",
-  "evidence_manifest_sha256": "bf7daf283368b9d4e5a133d525d1fffe4815ea3af9787541b6d2fa8e9f2ff2d6",
+  "cycle_id": "Cycle 311",
+  "cutoff_utc": "2026-10-23 23:20:26 UTC",
+  "evidence_manifest_sha256": "303be24fe0005cbb3d240d0c30ed1ff22370e5de78148b5f41d38e904d4bd76e",
   "prompt_sha256": "8dae957f3390e13b60232312b057b01c92f13ffbcc3bac72f3349dd03d73b19e",
-  "dispatch_nonce": "ded283bb-9f4c-4cee-bfac-5bc755b3917d",
+  "dispatch_nonce": "4d044865-e59b-405e-b81c-9871edbb8161",
   "provenance_status": "PARTIAL_VERIFIED_FAIL_CLOSED_ON_GATES",
   "inventory_status": "RECONCILED_FLAT",
   "hard_gate_results": {
@@ -17,7 +17,7 @@
     "native_venue_open_verified": false,
     "native_venue_details": "envelope native_market_open=null calendar_verified=null; cannot verify venue holiday calendars (NYSE, LSE, TSE, CME, EUREX) for 2026-10-23; crypto 24/7 native open true but broker CFD session still unverified; cross-asset transfer rejected",
     "calendar_blackout_clear_verified": false,
-    "calendar_details": "macro_calendar.json verified_at 2026-10-23T17:35:00Z (5h28m before cutoff, exceeds 900s max_age for calendar freshness); no active blackout at cutoff (last event FOMC 07 Oct, next none within 30m) but freshness unknown \u21d2 fail closed; FX rollover embargo false (21:15-22:30 UTC window not active at 23:03) but requires broker session proof",
+    "calendar_details": "macro_calendar.json verified_at 2026-10-23T17:35:00Z (5h45m before new 23:20 cutoff, 20,726s >900s max_age); no active blackout (last FOMC 07 Oct) but freshness unknown \u21d2 fail closed; FX rollover false at 23:20 (window 21:15-22:30) but requires broker proof",
     "fx_rollover_embargo": {
       "window": "21:15-22:30 UTC",
       "active_at_cutoff": false,
@@ -93,10 +93,10 @@
       "symbol": "BTCUSD.pi",
       "native_market": "Hyperliquid/Binance aggregated Crypto Perp \u2013 24/7 native venue (Blueberry CFD mirror .pi)",
       "clock_status": "NATIVE_24_7_OPEN_BROKER_UNVERIFIED",
-      "quote_timestamp": "2026-10-23 23:02:15 UTC (from telemetry live_snapshot 23:12:13, observation_time 23:02:15, availability_time 23:02:45)",
+      "quote_timestamp": "2026-10-23 23:19:45 UTC (observation 23:19:45, availability 23:20:05; +17m vs prior envelope)",
       "evidence_availability_timestamps": {
-        "bid_ask_quote": "2026-10-23 23:02:45 UTC",
-        "hyperdash_l2_depth": "2026-10-24 03:05:08 IST (2026-10-23 21:35:08 UTC) \u2013 stale 88m >900s max_age",
+        "bid_ask_quote": "2026-10-23 23:20:05 UTC",
+        "hyperdash_l2_depth": "2026-10-23 21:35:08 UTC \u2013 stale 105m >900s max_age (was 88m at prior cutoff)",
         "cvd_15m": "2026-10-23 23:02:15 UTC",
         "liquidation_map": "2026-10-23 21:35 UTC \u2013 stale"
       },
@@ -107,12 +107,12 @@
         "session_calendar": 900
       },
       "evidence_age_at_cutoff_seconds": {
-        "quote": 75,
-        "orderbook_age": 5280,
-        "calendar_verified_age": 19680
+        "quote": 21,
+        "orderbook_age": 6306,
+        "calendar_verified_age": 20726
       },
       "row_causality_status": "FAIL_CAUSALITY_OVER_AGE",
-      "authorization_expiry_utc": "2026-10-23 23:08:00 UTC (900s TTL, then revalidation required)",
+      "authorization_expiry_utc": "2026-10-23 23:25:26 UTC (900s TTL)",
       "side": "SELL",
       "order_type": "STOP_LIMIT (passive limit behind ask wall)",
       "entry": 81800.0,
@@ -142,9 +142,9 @@
       "uncertainty_method": null,
       "adverse_selection_usd": null,
       "evidence_ids": [
-        "Data/DataBase_Trading.xlsx:12_Hyperdash:R197 (stale)",
+        "Data/DataBase_Trading.xlsx:12_Hyperdash:R197 (stale 105m)",
         "Data/DataBase_Trading.xlsx:18_CVD (fresh but uncalibrated)",
-        "docs/telemetry/live_snapshot_latest.json:as_of_2026-10-23_23:12_UTC (post-cutoff, cannot authorize cutoff)"
+        "docs/telemetry/live_snapshot_latest.json:as_of_2026-10-23_23:12:13_UTC (8m before new cutoff, provenance drift)"
       ],
       "verdict": "HOLD",
       "rejection_reasons": [
@@ -160,11 +160,11 @@
       "symbol": "EURUSD.pi",
       "native_market": "FX Interbank / Blueberry MT5 Forex_Raw \u2013 24h Mon-Fri, closed weekend; native session depends on interbank open + rollover",
       "clock_status": "NATIVE_SESSION_UNKNOWN_BROKER_UNKNOWN_ROLLOVER_CLEAR",
-      "quote_timestamp": "2026-10-23 23:02:30 UTC (no live broker tick at cutoff; inferred from workbook 4.3b sheet, age unknown)",
+      "quote_timestamp": "2026-10-23 23:19:50 UTC (no live tick; inferred, age unknown)",
       "evidence_availability_timestamps": {
         "quote": "UNKNOWN (no MT5 tick stream at cutoff)",
         "cvd": "NOT_APPLICABLE_FX_ASSET_CLASS",
-        "macro_calendar": "2026-10-23T17:35:00Z verified_at (19680s before cutoff)"
+        "macro_calendar": "2026-10-23T17:35:00Z verified_at (20,726s before new cutoff, >900s)"
       },
       "evidence_max_age_seconds": {
         "quote": 10,
@@ -173,7 +173,7 @@
       },
       "evidence_age_at_cutoff_seconds": {
         "quote": null,
-        "calendar": 19680
+        "calendar": 20726
       },
       "row_causality_status": "FAIL_UNKNOWN_TIMESTAMPS",
       "authorization_expiry_utc": null,
@@ -207,7 +207,7 @@
       "adverse_selection_usd": null,
       "evidence_ids": [
         "Data/DataBase_Trading.xlsx:Forex sheets (no FX L2)",
-        "Data/macro_calendar.json:verified_at 17:35Z (stale)"
+        "Data/macro_calendar.json:verified_at 17:35Z (stale 5h45m)"
       ],
       "verdict": "HOLD",
       "rejection_reasons": [
@@ -223,9 +223,9 @@
       "symbol": "GER40.p",
       "native_market": "Eurex DAX Cash CFD \u2013 official session Mon-Fri 08:00-22:00 CET (07:00-21:00 UTC); closed Fri 21:00 UTC until Sun 22:00 UTC",
       "clock_status": "NATIVE_VENUE_CLOSED_WATCHLIST_ONLY",
-      "quote_timestamp": "2026-10-23 21:00:00 UTC (last broker quote before Eurex close; 123m before cutoff, stale)",
+      "quote_timestamp": "2026-10-23 21:00:00 UTC (last Eurex close; 140m before new cutoff, 8400s stale)",
       "evidence_availability_timestamps": {
-        "broker_quote": "2026-10-23 21:00:00 UTC (>900s stale)",
+        "broker_quote": "2026-10-23 21:00:00 UTC (>900s stale, 140m) ",
         "native_session_calendar": "UNKNOWN (no holiday calendar fetched)"
       },
       "evidence_max_age_seconds": {
@@ -233,7 +233,7 @@
         "native_session": 900
       },
       "evidence_age_at_cutoff_seconds": {
-        "quote": 7380,
+        "quote": 8406,
         "native_session": null
       },
       "row_causality_status": "FAIL_NATIVE_CLOSED",
@@ -300,9 +300,9 @@
     {
       "id": "DIS-311-01",
       "severity": 2,
-      "issue": "Stale manifest/workbook digests post-cutoff: envelope manifest bf7da... vs current 15fc0..., workbook 64997... vs e855a...; delta 9-13m reflects pipeline evolution, not fork",
+      "issue": "Stale manifest/workbook digests post-cutoff: envelope manifest 303be24f... vs current file 15fc03... (from prior 23:12 master_manifest), workbook 178cf1f... vs e855a87...; delta reflects pipeline evolution post-cutoff",
       "resolution": "NOTE_ONLY_EVOLUTION_EXPECTED",
-      "evidence": "Cutoff 23:03, mirror commit 23:12:13 includes envelope; manifest last_updated 23:12:20 post-cutoff; tree evolution is legitimate inter-cycle update, no double-count"
+      "evidence": "New cutoff 23:20:26, envelope commit cf28fa8a.../4fd4e6a..., manifest 303be24f..., workbook 178cf1f...; current HEAD 6a74068... mismatch expected (envelope precedes mirror commit by ~??); tree evolution legitimate"
     },
     {
       "id": "DIS-311-02",
@@ -336,7 +336,7 @@
     },
     {
       "id": "UNK-311-02",
-      "item": "Exact native venue holiday calendars (NYSE, Eurex, CME/ICE, COMEX) for 2026-10-23",
+      "item": "Exact native venue holiday calendars for 2026-10-23 (Eurex/NYSE/CME/COMEX) \u2013 envelope calendar_verified null, macro_calendar verified_at 17:35Z now 5h45m stale vs 900s",
       "impact": "Native session claim unverified; closed symbols stay WATCHLIST_ONLY",
       "disposition": "MONITOR",
       "needed_for_reassessment": "Verified exchange calendars with DST and early-close handling"
@@ -364,5 +364,5 @@
   ],
   "authorization": "DENIED_FAIL_CLOSED",
   "authorization_details": "Capital gate passes but 5 hard gates (evidence freshness, broker session, native venue, calendar, broker order_check) are FAILED/UNKNOWN => no executable tickets. Zero candidate survives ranking. Existing positions none to manage. Overall DENIED_FAIL_CLOSED. WATCHLIST rows provided for research; none authorize order emission. Resubmission requires fresh envelope with live preflight receipts and verified session/calendar clocks.",
-  "response_sha256": "a9f1b54f074512d5afe06cc6eb5f4a0eb05b33a366504a6e4959c595759a8284"
+  "response_sha256": "e0edf9e6c54e3a8433c16a2b1f89d39febed08760068671e9d06e97ad1d0a011"
 }

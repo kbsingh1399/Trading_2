@@ -1,3 +1,14 @@
+# 🏛️ CO-EQUAL QUANTITATIVE COUNCIL RULING — Cycle 311 (UPDATED EMBEDDED ENVELOPE)
+
+**Cutoff**: 2026-10-23 23:20:26 UTC | **Dispatch nonce**: 4d044865-e59b-405e-b81c-9871edbb8161 | **Schema**: 1.1.0
+**Envelope manifest**: `303be24fe0005cbb3d240d0c30ed1ff22370e5de78148b5f41d38e904d4bd76e` | **Prompt SHA256**: `8dae957f3390e13b60232312b057b01c92f13ffbcc3bac72f3349dd03d73b19e`
+**Response SHA256**: `e0edf9e6c54e3a8433c16a2b1f89d39febed08760068671e9d06e97ad1d0a011` | **Git**: `cf28fa8a.../4fd4e6a...`
+**Authorization**: **DENIED_FAIL_CLOSED** (Capital & tier gates pass, but 5 required binary gates (evidence freshness, broker session, native venue, calendar verification, broker order_check) are UNKNOWN/NULL => REJECT_HARD_GATE; no executable ranking permitted)
+
+> **Delta vs prior Cycle-20261023T230300Z (23:03 UTC)**: New cutoff **23:20:26 UTC** (+17m26s). Commit/tree rotated to `cf28fa8a/4fd4e6a`; manifest `303be24f` workbook `178cf1f`; inventory/solvency **identical** (flat 4865.07, headroom 68.07, Tier2 15-25). All 5 hard-gate NULLs persist → still DENIED_FAIL_CLOSED. Evidence ages incremented: Hyperdash now 105m stale (was 88m), calendar 20,726s stale (was 19,680s), GER40 quote 140m stale (was 123m). No new executable survivorship.
+
+---
+
 # 🏛️ CO-EQUAL QUANTITATIVE COUNCIL RULING — Cycle Cycle-20261023T230300Z
 **Cutoff**: 2026-10-23 23:03:00 UTC  |  **Dispatch nonce**: ded283bb-9f4c-4cee-bfac-5bc755b3917d  |  **Schema**: 1.1.0
 **Envelope manifest**: `bf7daf283368b9d4e5a133d525d1fffe4815ea3af9787541b6d2fa8e9f2ff2d6`  |  **Prompt SHA256**: `8dae957f3390e13b60232312b057b01c92f13ffbcc3bac72f3349dd03d73b19e`
