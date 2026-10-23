@@ -15,6 +15,7 @@ import os
 import sys
 import time
 import json
+import re
 from datetime import datetime, timezone
 
 if hasattr(sys.stdout, 'reconfigure'):
@@ -60,14 +61,19 @@ def audit_excel():
     sheet_names = wb.sheetnames
     total_sheets = len(sheet_names)
     
+    DATE_PATTERN = re.compile(r'(\d{4}-\d{2}-\d{2}[ T]\d{2}:\d{2}:\d{2})')
+    now_dt = datetime.now(timezone.utc)
+    
     sheet_reports = []
     total_formula_errors = 0
     total_cells_checked = 0
     all_headers_valid = True
+    fresh_sheets_count = 0
+    stale_sheets_count = 0
     
-    print(f"\nScanning all {total_sheets} sheets for integrity, formula errors, and headers...\n")
-    print(f"{'#':<3} | {'Sheet Name':<30} | {'Rows':<8} | {'Errors':<8} | {'Headers':<10} | {'Status'}")
-    print("-" * 80)
+    print(f"\nScanning all {total_sheets} sheets for integrity, formula errors, headers, and internal timestamps...\n")
+    print(f"{'#':<3} | {'Sheet Name':<30} | {'Rows':<6} | {'Errors':<6} | {'Header':<7} | {'Internal Timestamp':<20} | {'Age':<10} | {'Freshness'}")
+    print("-" * 105)
     
     for idx, sheet_name in enumerate(sheet_names, 1):
         ws = wb[sheet_name]
@@ -76,6 +82,7 @@ def audit_excel():
         header_valid = True
         col_count = 0
         first_row = []
+        detected_ts = None
         
         # Read sheet rows
         for r_idx, row in enumerate(ws.iter_rows(values_only=True), 1):
@@ -83,9 +90,26 @@ def audit_excel():
             if r_idx == 1:
                 first_row = [str(c).strip() if c is not None else "" for c in row]
                 col_count = len(first_row)
-                # Check if headers are empty or invalid
                 if not any(first_row):
                     header_valid = False
+                # Check header for timestamp
+                for col in first_row:
+                    m = DATE_PATTERN.search(str(col))
+                    if m:
+                        detected_ts = m.group(1)
+                        break
+            
+            # Check early rows for timestamp if not in header
+            if not detected_ts and 2 <= r_idx <= 10:
+                for val in row:
+                    if isinstance(val, (datetime, )):
+                        detected_ts = val.strftime("%Y-%m-%d %H:%M:%S")
+                        break
+                    elif isinstance(val, str):
+                        m = DATE_PATTERN.search(val)
+                        if m:
+                            detected_ts = m.group(1)
+                            break
             
             # Inspect cells for formula errors (sample first 500 rows to keep it ultra-fast)
             if r_idx <= 500:
@@ -97,6 +121,44 @@ def audit_excel():
                             error_count += 1
                             total_formula_errors += 1
                             
+        # Calculate Sheet Age & Freshness
+        sheet_age_str = "UNKNOWN"
+        freshness_tier = "UNKNOWN"
+        sheet_age_seconds = None
+        
+        if detected_ts:
+            try:
+                ts_clean = str(detected_ts).replace('T', ' ')
+                dt = datetime.strptime(ts_clean[:19], '%Y-%m-%d %H:%M:%S').replace(tzinfo=timezone.utc)
+                diff = (now_dt - dt).total_seconds()
+                sheet_age_seconds = diff
+                if diff < 3600:
+                    sheet_age_str = f"{diff/60:.1f}m"
+                elif diff < 86400:
+                    sheet_age_str = f"{diff/3600:.1f}h"
+                else:
+                    sheet_age_str = f"{diff/86400:.1f}d"
+                    
+                if diff <= 1800:  # <= 30 min
+                    freshness_tier = "LIVE (<30m)"
+                    fresh_sheets_count += 1
+                elif diff <= 86400:  # <= 24 hrs
+                    freshness_tier = "PERIODIC (<24h)"
+                    stale_sheets_count += 1
+                else:
+                    freshness_tier = "FROZEN (>24h)"
+                    stale_sheets_count += 1
+            except Exception:
+                sheet_age_str = "ERR"
+                freshness_tier = "PARSE_ERR"
+        else:
+            if sheet_name in ["17_Orderbook", "19_Calendar", "20_Auction_Market_Structure"]:
+                freshness_tier = "DERIVED/LIVE"
+                fresh_sheets_count += 1
+            else:
+                freshness_tier = "STATIC"
+                stale_sheets_count += 1
+                
         # Specific check for Sheet 33 (20_Auction_Market_Structure)
         if sheet_name == "20_Auction_Market_Structure":
             if not ("sr_no" in [h.lower() for h in first_row] or "asset" in [h.lower() for h in first_row]):
@@ -115,10 +177,15 @@ def audit_excel():
             "columns": col_count,
             "formula_errors": error_count,
             "header_valid": header_valid,
+            "detected_timestamp": detected_ts,
+            "age_seconds": round(sheet_age_seconds, 1) if sheet_age_seconds else None,
+            "age_str": sheet_age_str,
+            "freshness_tier": freshness_tier,
             "status": status
         })
         
-        print(f"{idx:<3} | {sheet_name:<30} | {row_count:<8} | {error_count:<8} | {header_str:<10} | {status}")
+        ts_display = str(detected_ts)[:19] if detected_ts else "None"
+        print(f"{idx:<3} | {sheet_name:<30} | {row_count:<6} | {error_count:<6} | {header_str:<7} | {ts_display:<20} | {sheet_age_str:<10} | {freshness_tier}")
         
     wb.close()
     elapsed = time.time() - start_time

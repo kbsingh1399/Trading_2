@@ -593,10 +593,10 @@
     "currency": "GBP",
     "impact": "Medium Impact",
     "event": "Flash Manufacturing PMI",
-    "actual": "",
+    "actual": "52.8",
     "forecast": "51.8",
     "previous": "51.9",
-    "outcome": "Pending",
+    "outcome": "Better than Forecast",
     "url": ""
   },
   {
@@ -605,10 +605,10 @@
     "currency": "GBP",
     "impact": "Medium Impact",
     "event": "Flash Services PMI",
-    "actual": "",
+    "actual": "53.1",
     "forecast": "51.8",
     "previous": "52.1",
-    "outcome": "Pending",
+    "outcome": "Better than Forecast",
     "url": ""
   },
   {
