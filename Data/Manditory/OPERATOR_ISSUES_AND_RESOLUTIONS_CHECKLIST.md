@@ -362,3 +362,32 @@ Every 20-minute wake-up cron cycle MUST systematically execute and verify each g
   3. **Minimum SL Distance**: SL distance must be `>= 1.50 * ATR(15m)` (or `>= 25 pts` in FX, `>= 400 pts` in BTC).
   4. **Active Rested Order Preservation**: `BTCUSD.pi` Ticket #19244096 (0.03 lot SELL_LIMIT @ 81,960.00 | SL 82,374.19 | TP 80,890.43) remains resting safely behind the verified $20.15M ask wall cluster, with worst-case stressed loss (18.18 USD) strictly preserving the 4,775.00 USD hard floor (+24.88 USD cushion).
   5. **European Post-PMI Re-Audit Window**: Eurozone Flash PMI aggregate is at 08:00 UTC. European TradFi assets (GER40, STOXX50, EURUSD, XAGUSD) remain under strict blackout until 08:35 UTC (+35 min post-event buffer), at which point they will be systematically re-audited for high-expectancy trend/pullback entries.
+
+---
+
+## 🏛️ RESOLUTION 20: CANONICAL EXCEL DATA QUALITY CHECKER (`excel_data_quality_checker.py`) & AUTOMATED 33-SHEET WAREHOUSE AUDITING
+- **Operator Directive**:
+  * *"I hope we are dispatch excel checker as well to check if all values are okay and updating"*
+- **Root Cause & Architectural Gap**:
+  * While the background pipeline daemon (`Run_Parallel_Pipeline.py --continuous --gap 300`) runs continuously, the desk previously lacked an autonomous, dedicated, high-speed auditor to mathematically verify cell-level formula integrity, row counts, header alignment, and file freshness before trading decisions were enacted.
+- **Actions Taken & Systemic Upgrades**:
+  1. **Engineered Canonical Audit Tool (`Terminal/Data_Factory/excel_data_quality_checker.py`)**:
+     - Built a high-speed (20.2s) auditor utilizing `openpyxl` data-only streaming mode.
+     - Automatically verifies:
+       * All 33 physical sheets present in canonical order.
+       * Exact count of formula errors (`#REF!`, `#DIV/0!`, `#N/A`, `#VALUE!`, `#NAME?`, `#NUM!`, `#NULL!`) across all cells.
+       * Row 1 header integrity across all 33 sheets (specifically validating Sheet 33 `20_Auction_Market_Structure` unmerged distinct columns).
+       * Warehouse file modification freshness (`<= 15.0 minutes` / `900s`).
+       * Active background pipeline verification (`Run_Parallel_Pipeline.py`).
+       * Saves machine-readable scorecard to `Data/excel_health_audit.json`.
+  2. **Empirical Audit Results (Cycle 297 Live Execution)**:
+     * Total Sheets Audited: **33/33 verified PASS**.
+     * Formula Errors Count: **0 errors across 175,986 cells checked**.
+     * Header Integrity: **100% UNMERGED & VALID**.
+     * Warehouse Freshness: **4.6 min ago (PASS <= 15.0 min threshold)**.
+     * Execution Time: **20.22 seconds**.
+     * Overall Status: **`[PASS]`**.
+  3. **Institutional Governance Integration**:
+     * Codified into Step 1 of [`STANDARDIZED_TRADING_DECISION_CHAIN.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md).
+     * Codified as Gateway 0 in [`AUTONOMOUS_WAKEUP_CHECKLIST.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/AUTONOMOUS_WAKEUP_CHECKLIST.md).
+     * Embedded into Subagent 4 mandate in [`SUBAGENT_PROMPT_TEMPLATES.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/SUBAGENT_PROMPT_TEMPLATES.md).

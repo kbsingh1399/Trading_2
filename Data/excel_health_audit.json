@@ -1,0 +1,311 @@
+{
+  "timestamp_utc": "2026-10-23 07:58:11 UTC",
+  "overall_status": "PASS",
+  "excel_path": "Data/DataBase_Trading.xlsx",
+  "file_size_mb": 13.26,
+  "file_age_seconds": 273.7,
+  "freshness_pass": true,
+  "total_sheets": 33,
+  "total_formula_errors": 0,
+  "all_headers_valid": true,
+  "execution_time_seconds": 20.22,
+  "sheets": [
+    {
+      "index": 1,
+      "sheet_name": "Crypto_ETF_Flows",
+      "rows": 4230,
+      "columns": 18,
+      "formula_errors": 0,
+      "header_valid": true,
+      "status": "PASS"
+    },
+    {
+      "index": 2,
+      "sheet_name": "1_Crypto_ETF_Flows",
+      "rows": 42,
+      "columns": 18,
+      "formula_errors": 0,
+      "header_valid": true,
+      "status": "PASS"
+    },
+    {
+      "index": 3,
+      "sheet_name": "2_Spot_Netflow_S",
+      "rows": 501,
+      "columns": 17,
+      "formula_errors": 0,
+      "header_valid": true,
+      "status": "PASS"
+    },
+    {
+      "index": 4,
+      "sheet_name": "3_Exchanges_LS_Ratio_15M",
+      "rows": 349,
+      "columns": 11,
+      "formula_errors": 0,
+      "header_valid": true,
+      "status": "PASS"
+    },
+    {
+      "index": 5,
+      "sheet_name": "3_Exchanges_LS_Ratio_1H",
+      "rows": 415,
+      "columns": 11,
+      "formula_errors": 0,
+      "header_valid": true,
+      "status": "PASS"
+    },
+    {
+      "index": 6,
+      "sheet_name": "3_Exchanges_LS_Ratio_4H",
+      "rows": 217,
+      "columns": 11,
+      "formula_errors": 0,
+      "header_valid": true,
+      "status": "PASS"
+    },
+    {
+      "index": 7,
+      "sheet_name": "4_Hyperliquid_Analysis",
+      "rows": 2001,
+      "columns": 20,
+      "formula_errors": 0,
+      "header_valid": true,
+      "status": "PASS"
+    },
+    {
+      "index": 8,
+      "sheet_name": "5_OI",
+      "rows": 372,
+      "columns": 21,
+      "formula_errors": 0,
+      "header_valid": true,
+      "status": "PASS"
+    },
+    {
+      "index": 9,
+      "sheet_name": "5_Funding_Rate",
+      "rows": 596,
+      "columns": 17,
+      "formula_errors": 0,
+      "header_valid": true,
+      "status": "PASS"
+    },
+    {
+      "index": 10,
+      "sheet_name": "6_Funding_Fee_Settlement",
+      "rows": 930,
+      "columns": 10,
+      "formula_errors": 0,
+      "header_valid": true,
+      "status": "PASS"
+    },
+    {
+      "index": 11,
+      "sheet_name": "7_Liq_Heapmap",
+      "rows": 84,
+      "columns": 7,
+      "formula_errors": 0,
+      "header_valid": true,
+      "status": "PASS"
+    },
+    {
+      "index": 12,
+      "sheet_name": "7_Live_Liq",
+      "rows": 1004,
+      "columns": 8,
+      "formula_errors": 0,
+      "header_valid": true,
+      "status": "PASS"
+    },
+    {
+      "index": 13,
+      "sheet_name": "8_Exchange_Liquidation_Map_1D",
+      "rows": 2298,
+      "columns": 11,
+      "formula_errors": 0,
+      "header_valid": true,
+      "status": "PASS"
+    },
+    {
+      "index": 14,
+      "sheet_name": "8_Exchange_Liquidation_Map_7D",
+      "rows": 2641,
+      "columns": 11,
+      "formula_errors": 0,
+      "header_valid": true,
+      "status": "PASS"
+    },
+    {
+      "index": 15,
+      "sheet_name": "9_Liquidation_Max_Pain_24H",
+      "rows": 750,
+      "columns": 11,
+      "formula_errors": 0,
+      "header_valid": true,
+      "status": "PASS"
+    },
+    {
+      "index": 16,
+      "sheet_name": "9_Liquidation_Max_Pain_48H",
+      "rows": 750,
+      "columns": 11,
+      "formula_errors": 0,
+      "header_valid": true,
+      "status": "PASS"
+    },
+    {
+      "index": 17,
+      "sheet_name": "9_Liquidation_Max_Pain_3D",
+      "rows": 750,
+      "columns": 11,
+      "formula_errors": 0,
+      "header_valid": true,
+      "status": "PASS"
+    },
+    {
+      "index": 18,
+      "sheet_name": "9_Liquidation_Max_Pain_7D",
+      "rows": 750,
+      "columns": 11,
+      "formula_errors": 0,
+      "header_valid": true,
+      "status": "PASS"
+    },
+    {
+      "index": 19,
+      "sheet_name": "10_Whale_Orders",
+      "rows": 184,
+      "columns": 17,
+      "formula_errors": 0,
+      "header_valid": true,
+      "status": "PASS"
+    },
+    {
+      "index": 20,
+      "sheet_name": "11_Technical",
+      "rows": 225,
+      "columns": 48,
+      "formula_errors": 0,
+      "header_valid": true,
+      "status": "PASS"
+    },
+    {
+      "index": 21,
+      "sheet_name": "12_Hyperdash",
+      "rows": 494,
+      "columns": 8,
+      "formula_errors": 0,
+      "header_valid": true,
+      "status": "PASS"
+    },
+    {
+      "index": 22,
+      "sheet_name": "13_Hyperliquid",
+      "rows": 472,
+      "columns": 13,
+      "formula_errors": 0,
+      "header_valid": true,
+      "status": "PASS"
+    },
+    {
+      "index": 23,
+      "sheet_name": "14_Hyperdash_Liq_Map",
+      "rows": 5688,
+      "columns": 12,
+      "formula_errors": 0,
+      "header_valid": true,
+      "status": "PASS"
+    },
+    {
+      "index": 24,
+      "sheet_name": "15_Hyperdash_Stops_Map",
+      "rows": 3712,
+      "columns": 12,
+      "formula_errors": 0,
+      "header_valid": true,
+      "status": "PASS"
+    },
+    {
+      "index": 25,
+      "sheet_name": "16_Hyperdash_telegram_Intel",
+      "rows": 1501,
+      "columns": 14,
+      "formula_errors": 0,
+      "header_valid": true,
+      "status": "PASS"
+    },
+    {
+      "index": 26,
+      "sheet_name": "17_Orderbook",
+      "rows": 5664,
+      "columns": 14,
+      "formula_errors": 0,
+      "header_valid": true,
+      "status": "PASS"
+    },
+    {
+      "index": 27,
+      "sheet_name": "18_CVD",
+      "rows": 50001,
+      "columns": 23,
+      "formula_errors": 0,
+      "header_valid": true,
+      "status": "PASS"
+    },
+    {
+      "index": 28,
+      "sheet_name": "19_News",
+      "rows": 33,
+      "columns": 11,
+      "formula_errors": 0,
+      "header_valid": true,
+      "status": "PASS"
+    },
+    {
+      "index": 29,
+      "sheet_name": "19_Calendar",
+      "rows": 59,
+      "columns": 12,
+      "formula_errors": 0,
+      "header_valid": true,
+      "status": "PASS"
+    },
+    {
+      "index": 30,
+      "sheet_name": "20_Auction_Market_Structure",
+      "rows": 85,
+      "columns": 36,
+      "formula_errors": 0,
+      "header_valid": true,
+      "status": "PASS"
+    },
+    {
+      "index": 31,
+      "sheet_name": "00_MT5_Account_Telemetry",
+      "rows": 172,
+      "columns": 11,
+      "formula_errors": 0,
+      "header_valid": true,
+      "status": "PASS"
+    },
+    {
+      "index": 32,
+      "sheet_name": "Top_Institutions",
+      "rows": 616,
+      "columns": 6,
+      "formula_errors": 0,
+      "header_valid": true,
+      "status": "PASS"
+    },
+    {
+      "index": 33,
+      "sheet_name": "ETF_Market_Overview",
+      "rows": 528,
+      "columns": 15,
+      "formula_errors": 0,
+      "header_valid": true,
+      "status": "PASS"
+    }
+  ]
+}

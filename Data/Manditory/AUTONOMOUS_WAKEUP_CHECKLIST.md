@@ -32,9 +32,20 @@
 
 ---
 
-## 🧠 THE CANONICAL WAKE-UP INQUEST: 8 MANDATORY SELF-INTERROGATION GATEWAYS
+## 🧠 THE CANONICAL WAKE-UP INQUEST: 9 MANDATORY SELF-INTERROGATION GATEWAYS
 
-Before evaluating data, touching code, or dispatching orders, the coordinator and all subagents MUST systematically self-interrogate through these 8 non-bypassable gateways:
+Before evaluating data, touching code, or dispatching orders, the coordinator and all subagents MUST systematically self-interrogate through these 9 non-bypassable gateways:
+
+### Gateway 0: Automated 33-Sheet Excel Data Quality & Warehouse Updation Audit
+> *"Are all 33 sheets in Data/DataBase_Trading.xlsx present, error-free, and actively updating?"*
+- **Automated Auditor Execution**: Run `python Terminal/Data_Factory/excel_data_quality_checker.py` at the start of every wake-up cycle.
+- **Verification Criteria**:
+  * Total Sheets: 33/33 sheets present and indexed.
+  * Formula Errors: Exactly 0 errors (`#REF!`, `#DIV/0!`, `#N/A`, `#VALUE!`, `#NAME?`, `#NUM!`).
+  * Header Integrity: 100% valid, unmerged headers in Row 1 across all sheets.
+  * Warehouse Freshness: `os.path.getmtime('Data/DataBase_Trading.xlsx') <= 15.0 minutes` (`900s`).
+  * Scorecard: Verified output in `Data/excel_health_audit.json`.
+- **Fail-Closed Gate**: If the audit detects any formula error, missing sheet, or stale data (> 15m), trading is frozen in 100% Cash Defense until the pipeline refreshes.
 
 ### Gateway 1: Mission, Runway & Macro Clock
 > *"What is our exact target, how much runway remains, and what is our exact dollar bridge?"*

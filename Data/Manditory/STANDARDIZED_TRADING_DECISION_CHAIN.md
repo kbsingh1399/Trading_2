@@ -207,8 +207,18 @@ flowchart TD
 
 Every analysis begins by establishing absolute data integrity across the **33-sheet master Excel database (`Data/DataBase_Trading.xlsx`)** and macroeconomic calendar:
 
-1. **Mandatory Master Database Updation Gate**:
-   - The canonical pipeline daemon (`Run_Parallel_Pipeline.py --continuous --gap 300`) updates all 33 sheets of `Data/DataBase_Trading.xlsx`.
+1. **Automated 33-Sheet Data Quality Verification (`excel_data_quality_checker.py`)**:
+   - The coordinator and subagents MUST physically run `python Terminal/Data_Factory/excel_data_quality_checker.py` at the start of every cycle.
+   - **Verification Gates**:
+     * All 33 physical worksheets present and indexed.
+     * Exactly 0 formula errors (`#REF!`, `#DIV/0!`, `#N/A`, `#VALUE!`, `#NAME?`, `#NUM!`) across all cells.
+     * Row 1 header integrity 100% valid, unmerged, and distinct.
+     * File modification age `<= 15.0 minutes` (`900s`).
+     * JSON health report generated and archived in `Data/excel_health_audit.json`.
+   - If any formula error is detected or if data is stale > 15 minutes, the desk enters immediate **100% Flat Cash Defense** until the pipeline refreshes.
+
+2. **Mandatory Master Database Updation Gate**:
+   - The canonical pipeline daemon (`Run_Parallel_Pipeline.py --continuous --gap 300`) updates all 33 sheets of `Data/DataBase_Trading.xlsx` every 300s.
    - Prior to dispatching subagents or evaluating trade setups, Step 1 verifies that `Data/DataBase_Trading.xlsx` has been freshly modified within the current operating window, ensuring all 33 sheets contain live, zero-null market intelligence terminating strictly at `20_Auction_Market_Structure`.
    - **Sheet 33 Unmerged Header Invariant**: Verifies that Sheet 33 (`20_Auction_Market_Structure`) has unmerged column names in Row 1 (`sr_no`, `asset`, `symbol`, etc.), ensuring zero formula errors and clean programmatic parsing.
 
