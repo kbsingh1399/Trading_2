@@ -7,12 +7,29 @@
     "initial_sl": 82100.0,
     "initial_tp": 80600.0,
     "r0_pts": 400.0,
+    "ratchet_phase": "RATCHET_STAGE1_EARLY_BE",
+    "ratcheted_sl": 81640.0,
     "early_be_trigger": 81400.0,
     "early_be_new_sl": 81640.0,
     "profit_lock_trigger": 81040.0,
     "profit_lock_new_sl": 81300.0,
     "runner_trigger": 80820.0,
     "runner_new_sl": 81060.0,
-    "registered_utc": "2026-10-23 17:33:09 UTC"
+    "registered_utc": "2026-10-23 17:33:09 UTC",
+    "early_be_executed_utc": "2026-10-23 18:30:39 UTC"
+  },
+  "19270994": {
+    "symbol": "UKBRENT.p",
+    "direction": "BUY",
+    "volume": 0.54,
+    "entry_price": 117.05,
+    "initial_sl": 116.59,
+    "initial_tp": 118.2,
+    "r0_pts": 0.46,
+    "early_be_trigger": 117.395,
+    "early_be_new_sl": 117.119,
+    "profit_lock_trigger": 117.809,
+    "profit_lock_new_sl": 117.51,
+    "registered_utc": "2026-10-23 18:38:25 UTC"
   }
 }
