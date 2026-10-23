@@ -182,7 +182,6 @@ json
                      "destage": "19:00", "weekend_flat": "20:00"},
     "runway_h": 9.01, "breaker": "1/2 binding - any stopout -> defense mode"
   }
-}
 
 C301 closed. The headline is not the radar (it's dead — outage declared) and not the candidates (both fail or are quarantined): it is that the desk's own governance stack was caught mid-amendment — new floors committed into the dispatch template while the contract still says "never breach 4,775 under any circumstance." The council held the line per its own conservative-merge canon, fully priced what the re-base would unlock (P(mission) 0.0000 → 0.03–0.14% on a floor-safe disciplined ladder, E[final] +12.6), and pre-registered the exact gates under which it activates. Next: the 13:00 UTC co-audit (T−121 min), and the operator's three-step decision — commit the rationale, patch the screener, acknowledge. Until those three lines exist, the floors are 4,775/4,795 and the book stays flat.
 
