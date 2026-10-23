@@ -82,7 +82,7 @@ EXACT_COINGLASS_COLUMNS = [
     ("Asset_Category", "Asset Category", 16, "center"),
     ("Issuer", "Issuer / Sponsor", 26, "left"),
     ("Daily_Net_Inflow", "Daily Net Inflow", 20, "right"),
-    ("Timestamp_UTC", "Timestamp (UTC)", 24, "center")
+    ("Timestamp_IST", "Timestamp (IST)", 24, "center")
 ]
 
 
@@ -155,7 +155,9 @@ async def extract_coinglass_overview_table() -> list[dict]:
     log.info(f"Opened dedicated CoinGlass ETF tab (ID: {tab_id})")
 
     now_dt = datetime.datetime.now(datetime.timezone.utc)
-    ts_str = now_dt.strftime("%Y-%m-%d %H:%M:%S UTC")
+    ist_tz = datetime.timezone(datetime.timedelta(hours=5, minutes=30))
+    now_ist = datetime.datetime.now(ist_tz)
+    ts_str = now_ist.strftime("%Y-%m-%d %H:%M:%S IST")
 
     try:
         # Connect to websocket with connection retry
@@ -310,7 +312,7 @@ async def extract_coinglass_overview_table() -> list[dict]:
                     "Asset_Category": asset,
                     "Issuer": issuer,
                     "Daily_Net_Inflow": inflow,
-                    "Timestamp_UTC": ts_str
+                    "Timestamp_IST": ts_str
                 })
 
             return records
@@ -320,6 +322,9 @@ async def extract_coinglass_overview_table() -> list[dict]:
 
 def dump_crypto_etf_overview_to_excel(excel_path: pathlib.Path = DEFAULT_EXCEL_PATH) -> bool:
     """Dumps the Crypto ETF Overview table into Data/DataBase_Trading.xlsx matching CoinGlass format."""
+    import filelock
+    from logger_config import stamp_sheet_completion_ist
+
     records = asyncio.run(extract_coinglass_overview_table())
     if not records:
         log.error("No records extracted from CoinGlass.")
@@ -329,121 +334,125 @@ def dump_crypto_etf_overview_to_excel(excel_path: pathlib.Path = DEFAULT_EXCEL_P
         log.error(f"Excel file not found: {excel_path}")
         return False
 
-    wb = openpyxl.load_workbook(excel_path)
-    if SHEET_NAME in wb.sheetnames:
-        ws = wb[SHEET_NAME]
-    elif "Crypto_ETF_Flows" in wb.sheetnames:
-        ws = wb["Crypto_ETF_Flows"]
-        ws.title = SHEET_NAME
-    else:
-        ws = wb.create_sheet(title=SHEET_NAME, index=0)
+    lock = filelock.FileLock(str(excel_path) + ".lock", timeout=120)
+    with lock:
+        wb = openpyxl.load_workbook(excel_path)
+        
+        target_idx = 1
+        if SHEET_NAME in wb.sheetnames:
+            target_idx = wb.sheetnames.index(SHEET_NAME)
+            wb.remove(wb[SHEET_NAME])
+        elif "Crypto_ETF_Flows" in wb.sheetnames:
+            target_idx = wb.sheetnames.index("Crypto_ETF_Flows")
+            wb.remove(wb["Crypto_ETF_Flows"])
 
-    # Styles
-    header_font = Font(name="Segoe UI", size=11, bold=True, color="FFFFFF")
-    header_fill = PatternFill(start_color="0F172A", end_color="0F172A", fill_type="solid")  # Dark slate / black theme
+        ws = wb.create_sheet(title=SHEET_NAME, index=target_idx)
+        log.info(f"Target worksheet '{SHEET_NAME}' positioned cleanly at index {target_idx}")
 
-    data_font = Font(name="Segoe UI", size=10, bold=False, color="1E293B")
-    green_font = Font(name="Segoe UI", size=10, bold=True, color="15803D")
-    red_font = Font(name="Segoe UI", size=10, bold=True, color="B91C1C")
-    dim_font = Font(name="Segoe UI", size=10, bold=False, color="64748B")
+        # Styles
+        header_font = Font(name="Segoe UI", size=11, bold=True, color="FFFFFF")
+        header_fill = PatternFill(start_color="0F172A", end_color="0F172A", fill_type="solid")
 
-    # Soft asset fills
-    asset_fills = {
-        "Bitcoin": PatternFill(start_color="FFFBEB", end_color="FFFBEB", fill_type="solid"),
-        "Ethereum": PatternFill(start_color="F0FDF4", end_color="F0FDF4", fill_type="solid"),
-        "Solana": PatternFill(start_color="FAF5FF", end_color="FAF5FF", fill_type="solid"),
-        "XRP": PatternFill(start_color="ECFEFF", end_color="ECFEFF", fill_type="solid"),
-        "Hyperliquid": PatternFill(start_color="FFF7ED", end_color="FFF7ED", fill_type="solid"),
-        "Multi-Asset": PatternFill(start_color="FFF1F2", end_color="FFF1F2", fill_type="solid"),
-        "Default": PatternFill(start_color="FFFFFF", end_color="FFFFFF", fill_type="solid")
-    }
+        data_font = Font(name="Segoe UI", size=10, bold=False, color="1E293B")
+        green_font = Font(name="Segoe UI", size=10, bold=True, color="15803D")
+        red_font = Font(name="Segoe UI", size=10, bold=True, color="B91C1C")
+        dim_font = Font(name="Segoe UI", size=10, bold=False, color="64748B")
 
-    thin_border = Border(
-        left=Side(style='thin', color='CBD5E1'),
-        right=Side(style='thin', color='CBD5E1'),
-        top=Side(style='thin', color='CBD5E1'),
-        bottom=Side(style='thin', color='CBD5E1')
-    )
+        asset_fills = {
+            "Bitcoin": PatternFill(start_color="FFFBEB", end_color="FFFBEB", fill_type="solid"),
+            "Ethereum": PatternFill(start_color="F0FDF4", end_color="F0FDF4", fill_type="solid"),
+            "Solana": PatternFill(start_color="FAF5FF", end_color="FAF5FF", fill_type="solid"),
+            "XRP": PatternFill(start_color="ECFEFF", end_color="ECFEFF", fill_type="solid"),
+            "Hyperliquid": PatternFill(start_color="FFF7ED", end_color="FFF7ED", fill_type="solid"),
+            "Multi-Asset": PatternFill(start_color="FFF1F2", end_color="FFF1F2", fill_type="solid"),
+            "Default": PatternFill(start_color="FFFFFF", end_color="FFFFFF", fill_type="solid")
+        }
 
-    # Write Headers
-    for col_idx, (_, col_title, width, align) in enumerate(EXACT_COINGLASS_COLUMNS, 1):
-        c = ws.cell(row=1, column=col_idx, value=col_title)
-        c.font = header_font
-        c.fill = header_fill
-        c.alignment = Alignment(horizontal=align, vertical="center")
-        c.border = thin_border
-        col_letter = get_column_letter(col_idx)
-        ws.column_dimensions[col_letter].width = max(width, 12)
-    ws.row_dimensions[1].height = 26
+        thin_border = Border(
+            left=Side(style='thin', color='CBD5E1'),
+            right=Side(style='thin', color='CBD5E1'),
+            top=Side(style='thin', color='CBD5E1'),
+            bottom=Side(style='thin', color='CBD5E1')
+        )
 
-    # Write Data Rows directly starting at Row 2
-    for idx, rec in enumerate(records):
-        r_idx = 2 + idx
-        asset = rec.get("Asset_Category", "Default")
-        row_fill = asset_fills.get(asset, asset_fills["Default"])
+        # 1. Row 1: Institutional Tier-1 Completion Banner in IST (UTC+5:30)
+        # Enforces Operator Invariant: Timestamp MUST be added or updated ONLY ONCE row data is filled
+        stamp_sheet_completion_ist(
+            ws=ws,
+            sheet_title=SHEET_NAME,
+            row_count=len(records),
+            banner_cell="A1",
+            status="LIVE",
+            merge_max_col=len(EXACT_COINGLASS_COLUMNS)
+        )
 
-        for col_idx, (key, _, _, align) in enumerate(EXACT_COINGLASS_COLUMNS, 1):
-            val = rec.get(key, "-")
-            cell_obj = ws.cell(row=r_idx, column=col_idx, value=val)
-            cell_obj.border = thin_border
-            cell_obj.alignment = Alignment(horizontal=align, vertical="center")
-            cell_obj.fill = row_fill
+        # 2. Row 2: Headers (with Timestamp (IST))
+        for col_idx, (_, col_title, width, align) in enumerate(EXACT_COINGLASS_COLUMNS, 1):
+            c = ws.cell(row=2, column=col_idx, value=col_title)
+            c.font = header_font
+            c.fill = header_fill
+            c.alignment = Alignment(horizontal=align, vertical="center")
+            c.border = thin_border
+            col_letter = get_column_letter(col_idx)
+            ws.column_dimensions[col_letter].width = max(width, 12)
+        ws.row_dimensions[2].height = 26
 
-            sval = str(val or "").strip()
-            if key in ["Price_Change", "Daily_Net_Inflow"]:
-                if sval.startswith("+") or (any(c.isdigit() for c in sval) and not sval.startswith("-") and not sval.startswith("$0") and sval != "-"):
-                    cell_obj.font = green_font
-                elif sval.startswith("-") and sval != "-":
-                    cell_obj.font = red_font
+        # 3. Row 3+: Data Rows directly starting at Row 3
+        for idx, rec in enumerate(records):
+            r_idx = 3 + idx
+            asset = rec.get("Asset_Category", "Default")
+            row_fill = asset_fills.get(asset, asset_fills["Default"])
+
+            for col_idx, (key, _, _, align) in enumerate(EXACT_COINGLASS_COLUMNS, 1):
+                val = rec.get(key, "-")
+                cell_obj = ws.cell(row=r_idx, column=col_idx, value=val)
+                cell_obj.border = thin_border
+                cell_obj.alignment = Alignment(horizontal=align, vertical="center")
+                cell_obj.fill = row_fill
+
+                sval = str(val or "").strip()
+                if key in ["Price_Change", "Daily_Net_Inflow"]:
+                    if sval.startswith("+") or (any(c.isdigit() for c in sval) and not sval.startswith("-") and not sval.startswith("$0") and sval != "-"):
+                        cell_obj.font = green_font
+                    elif sval.startswith("-") and sval != "-":
+                        cell_obj.font = red_font
+                    else:
+                        cell_obj.font = dim_font
                 else:
-                    cell_obj.font = dim_font
-            else:
-                cell_obj.font = data_font
+                    cell_obj.font = data_font
 
-        ws.row_dimensions[r_idx].height = 20
+            ws.row_dimensions[r_idx].height = 20
 
-    # Prune any old trailing rows
-    current_data_end = 1 + len(records)
-    if ws.max_row > current_data_end:
-        ws.delete_rows(current_data_end + 1, ws.max_row - current_data_end)
+        ws.freeze_panes = "A3"
 
-    # Save Atomically
-        # Enforce Operator Invariant: Stamp Tier-1 Completion Banner ONLY ONCE row data is filled
-    if ws.max_row > 1:
-        try:
-            from logger_config import stamp_sheet_completion_ist
-            ws.insert_rows(1)
-            stamp_sheet_completion_ist(
-                ws=ws,
-                sheet_title="1_Crypto_ETF_Flows",
-                row_count=ws.max_row - 2,
-                banner_cell="A1",
-                status="LIVE",
-                merge_max_col=ws.max_column
-            )
-            ws.freeze_panes = "A3"
-        except Exception:
-            pass
+        # 4. Save Atomically with FileLock
+        temp_excel = excel_path.with_name(f"{excel_path.stem}_{os.getpid()}_{int(time.time()*1000)}.tmp.xlsx")
+        wb.save(temp_excel)
+        wb.close()
+        for _att in range(30):
+            try:
+                temp_excel.replace(excel_path)
+                break
+            except (PermissionError, Exception):
+                if _att == 29:
+                    if temp_excel.exists():
+                        try: temp_excel.unlink()
+                        except Exception: pass
+                    raise
+                time.sleep(1.0)
 
-    import os, time
-    temp_excel = excel_path.with_name(f"{excel_path.stem}_{os.getpid()}_{int(time.time()*1000)}.tmp.xlsx")
-    wb.save(temp_excel)
-    wb.close()
-    saved = False
-    for _att in range(30):
-        try:
-            temp_excel.replace(excel_path)
-            saved = True
-            break
-        except (PermissionError, Exception):
-            if _att == 29:
-                if temp_excel.exists():
-                    try: temp_excel.unlink()
-                    except Exception: pass
-                raise
-            time.sleep(1.0)
+    # 5. Save staged parquet for batch committer
+    try:
+        import pandas as pd
+        stage_dir = DATA_DIR / "staging"
+        stage_dir.mkdir(parents=True, exist_ok=True)
+        col_rename = {k: disp for k, disp, _, _ in EXACT_COINGLASS_COLUMNS}
+        df_stage = pd.DataFrame(records).rename(columns=col_rename)
+        df_stage.to_parquet(stage_dir / f"{SHEET_NAME}.parquet", index=False)
+    except Exception as e:
+        log.warning(f"Could not save staged parquet: {e}")
 
-    log.info(f"Successfully dumped {len(records)} CoinGlass Crypto ETF Overview records into '{SHEET_NAME}' at {excel_path}.")
+    log.info(f"Successfully dumped {len(records)} Crypto ETF Overview assets into sheet '{SHEET_NAME}' at {excel_path}.")
     return True
 
 

@@ -78,7 +78,7 @@ COLUMNS = [
     ("Short_Vol", "Short Volume", 18, "right"),
     ("Total_Vol", "Total Volume", 18, "right"),
     ("Timeframe", "Timeframe", 14, "center"),
-    ("Timestamp_UTC", "Timestamp (UTC)", 24, "center")
+    ("Timestamp_IST", "Timestamp (IST)", 24, "center")
 ]
 
 
@@ -289,7 +289,9 @@ async def extract_asset_ls_ratio(ws, asset: str, target_timeframe: str = TIMEFRA
     raw_records = rows_res.get("result", {}).get("result", {}).get("value", [])
 
     now_dt = datetime.datetime.now(datetime.timezone.utc)
-    ts_str = now_dt.strftime("%Y-%m-%d %H:%M:%S UTC")
+    ist_tz = datetime.timezone(datetime.timedelta(hours=5, minutes=30))
+    now_ist = datetime.datetime.now(ist_tz)
+    ts_str = now_ist.strftime("%Y-%m-%d %H:%M:%S IST")
 
     parsed_records = []
     for r in raw_records:
@@ -316,7 +318,7 @@ async def extract_asset_ls_ratio(ws, asset: str, target_timeframe: str = TIMEFRA
             "Short_Vol": sv,
             "Total_Vol": tv_str,
             "Timeframe": TIMEFRAME_CODE,
-            "Timestamp_UTC": ts_str
+            "Timestamp_IST": ts_str
         })
 
     return parsed_records

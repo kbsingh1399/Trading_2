@@ -62,7 +62,7 @@ COLUMNS_DEF = [
     ("tf_4h", "4hour", 18, "right"),
     ("tf_12h", "12 hour", 18, "right"),
     ("tf_24h", "24hour", 18, "right"),
-    ("timestamp_utc", "Timestamp (UTC)", 24, "center"),
+    ("timestamp_ist", "Timestamp (IST)", 24, "center"),
 ]
 
 
@@ -112,7 +112,9 @@ async def harvest_liquidation_heatmap() -> list[dict]:
     log.info(f"Opened dedicated ephemeral tab (ID: {tab_id}) for Heatmap harvest.")
 
     now_dt = datetime.datetime.now(datetime.timezone.utc)
-    ts_str = now_dt.strftime("%Y-%m-%d %H:%M:%S UTC")
+    ist_tz = datetime.timezone(datetime.timedelta(hours=5, minutes=30))
+    now_ist = datetime.datetime.now(ist_tz)
+    ts_str = now_ist.strftime("%Y-%m-%d %H:%M:%S IST")
 
     timeframes = ["1h", "4h", "12h", "24h"]
     tf_data: dict[str, dict[str, str]] = {tf: {} for tf in timeframes}
@@ -251,7 +253,7 @@ async def harvest_liquidation_heatmap() -> list[dict]:
                 "tf_4h": tf_data["4h"].get(asset, "-"),
                 "tf_12h": tf_data["12h"].get(asset, "-"),
                 "tf_24h": tf_data["24h"].get(asset, "-"),
-                "timestamp_utc": ts_str,
+                "timestamp_ist": ts_str,
             }
         )
 
@@ -349,7 +351,7 @@ def dump_to_excel(records: list[dict], excel_path: pathlib.Path = DEFAULT_EXCEL_
         c6.border = row_border
 
         # Timestamp (Col 7)
-        c7 = ws.cell(row=current_row, column=7, value=r.get("timestamp_utc", "-"))
+        c7 = ws.cell(row=current_row, column=7, value=r.get("timestamp_ist", r.get("timestamp_utc", "-")))
         c7.font = subdued_font
         c7.alignment = Alignment(horizontal="center", vertical="center")
         c7.border = row_border

@@ -82,7 +82,7 @@ COLUMNS_SCHEMA = [
     ("coin_binance", "Binance", 16, "right"),
     ("coin_okx", "OKX", 16, "right"),
     ("coin_bybit", "Bybit", 16, "right"),
-    ("timestamp_utc", "Timestamp (UTC)", 24, "center"),
+    ("timestamp_ist", "Timestamp (IST)", 24, "center"),
 ]
 
 
@@ -124,7 +124,9 @@ async def harvest_funding_rates(max_pages: int = 30) -> list[dict]:
     log.info(f"Opened dedicated ephemeral tab (ID: {tab_id}) for Funding Rate harvest.")
 
     now_dt = datetime.datetime.now(datetime.timezone.utc)
-    ts_str = now_dt.strftime("%Y-%m-%d %H:%M:%S UTC")
+    ist_tz = datetime.timezone(datetime.timedelta(hours=5, minutes=30))
+    now_ist = datetime.datetime.now(ist_tz)
+    ts_str = now_ist.strftime("%Y-%m-%d %H:%M:%S IST")
 
     all_records: list[dict] = []
     seen_symbols: set[str] = set()
@@ -256,7 +258,7 @@ async def harvest_funding_rates(max_pages: int = 30) -> list[dict]:
                         "coin_binance": clean_rate_token(r.get("coin_binance")),
                         "coin_okx": clean_rate_token(r.get("coin_okx")),
                         "coin_bybit": clean_rate_token(r.get("coin_bybit")),
-                        "timestamp_utc": ts_str
+                        "timestamp_ist": ts_str
                     }
                     all_records.append(cleaned_rec)
                     page_new_count += 1
@@ -396,7 +398,7 @@ def dump_to_excel(records: list[dict], excel_path: pathlib.Path = DEFAULT_EXCEL_
 
             if key == "symbol":
                 cell.font = bold_font
-            elif key == "timestamp_utc":
+            elif key in ["timestamp_ist", "timestamp_utc"]:
                 cell.font = base_font
             else:
                 # Rate columns color coding

@@ -71,7 +71,7 @@ COLUMNS_DEF = [
     ("sr_no", "Sr.No", 10, "center"),
     ("asset", "Asset", 12, "center"),
     ("time_window", "Time", 10, "center"),
-    ("timestamp_utc", "TimeStamp", 24, "center"),
+    ("timestamp_ist", "Timestamp (IST)", 24, "center"),
     ("price", "Price", 16, "right"),
     ("cumulative_liq", "Cummulitve Liquidation", 24, "right"),
     ("short_liq", "Short", 20, "right"),
@@ -122,7 +122,9 @@ async def harvest_exchange_liquidation_map_7d(symbols: list[str] = DEFAULT_UNIVE
     log.info(f"Opened dedicated ephemeral tab (ID: {tab_id}) for 7D Multi-Asset harvest ({len(symbols)} assets).")
 
     now_dt = datetime.datetime.now(datetime.timezone.utc)
-    ts_str = now_dt.strftime("%Y-%m-%d %H:%M:%S UTC")
+    ist_tz = datetime.timezone(datetime.timedelta(hours=5, minutes=30))
+    now_ist = datetime.datetime.now(ist_tz)
+    ts_str = now_ist.strftime("%Y-%m-%d %H:%M:%S IST")
 
     all_records: list[dict] = []
 
@@ -395,7 +397,7 @@ async def harvest_exchange_liquidation_map_7d(symbols: list[str] = DEFAULT_UNIVE
                         "sr_no": global_sr_no,
                         "asset": sym,
                         "time_window": "7D",
-                        "timestamp_utc": ts_str,
+                        "timestamp_ist": ts_str,
                         "price": price,
                         "cumulative_liq": format_usd(cum_num),
                         "short_liq": format_usd(short_num) if short_num is not None else "$0",

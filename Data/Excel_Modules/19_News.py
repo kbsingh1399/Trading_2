@@ -385,7 +385,7 @@ def export_news_to_excel(
     headers = [
         "Sr.No",
         "Published Time",
-        "Timestamp (UTC)",
+        "Timestamp (IST)",
         "Impact Level",
         "Currency / Asset",
         "Macro Category",

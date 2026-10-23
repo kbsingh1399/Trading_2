@@ -57,7 +57,7 @@ COLUMNS_DEF = [
     ("sr_no", "Sr.No", 10, "center"),
     ("asset", "Asset", 12, "center"),
     ("time_window", "Time", 10, "center"),
-    ("timestamp_utc", "TimeStamp", 24, "center"),
+    ("timestamp_ist", "Timestamp (IST)", 24, "center"),
     ("mark_price", "Mark Price", 16, "right"),
     ("price", "Price", 16, "right"),
     ("distance_pct", "Distance (%)", 14, "right"),
@@ -183,7 +183,9 @@ def harvest_all_stops_maps(symbols: list[str]) -> list[dict]:
     all_records = []
     global_sr_no = 1
     now = datetime.datetime.now(datetime.timezone.utc)
-    ts_str = now.strftime("%Y-%m-%d %H:%M:%S UTC")
+    ist_tz = datetime.timezone(datetime.timedelta(hours=5, minutes=30))
+    now_ist = datetime.datetime.now(ist_tz)
+    ts_str = now_ist.strftime("%Y-%m-%d %H:%M:%S IST")
     now_ms = now.timestamp() * 1000
     start_ms = now_ms - 24 * 3600 * 1000
 
@@ -235,7 +237,7 @@ def harvest_all_stops_maps(symbols: list[str]) -> list[dict]:
                 "sr_no": global_sr_no,
                 "asset": sym,
                 "time_window": "Live",
-                "timestamp_utc": ts_str,
+                "timestamp_ist": ts_str,
                 "mark_price": format_price(mark_px),
                 "price": format_price(px),
                 "distance_pct": f"{dist_pct:+.2f}%",

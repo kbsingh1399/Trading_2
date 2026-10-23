@@ -93,7 +93,7 @@ SECTION_2_COLS = [
     ("bin_funding", "Binance Pred. Rate", 18, "right"),
     ("bybit_funding", "Bybit Pred. Rate", 18, "right"),
     ("arb_spread_bps", "Funding Spread (bps)", 18, "right"),
-    ("next_time_utc", "Next Funding Time (UTC)", 22, "center"),
+    ("next_time_utc", "Next Funding Time (IST)", 22, "center"),
 ]
 
 SECTION_3_COLS = [
@@ -112,7 +112,7 @@ SECTION_3_COLS = [
 
 SECTION_4_COLS = [
     ("sr_no", "Sr. No.", 8, "center"),
-    ("time_utc", "Trade Time (UTC)", 20, "center"),
+    ("time_utc", "Trade Time (IST)", 20, "center"),
     ("coin", "Asset", 10, "center"),
     ("side", "Aggressor Side", 14, "center"),
     ("price", "Execution Price ($)", 18, "right"),
@@ -352,7 +352,9 @@ def dump_hyperliquid_to_excel(
         left=thin_border_side, right=thin_border_side, top=thin_border_side, bottom=thin_border_side
     )
 
-    now_utc = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
+    ist_tz = datetime.timezone(datetime.timedelta(hours=5, minutes=30))
+    now_ist = datetime.datetime.now(ist_tz)
+    now_utc = now_ist.strftime("%Y-%m-%d %H:%M:%S IST")
     current_row = 1
 
     def render_table_section(

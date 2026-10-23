@@ -278,7 +278,9 @@ def dump_hyperdash_to_excel(
         left=thin_border_side, right=thin_border_side, top=thin_border_side, bottom=thin_border_side
     )
 
-    now_utc = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
+    ist_tz = datetime.timezone(datetime.timedelta(hours=5, minutes=30))
+    now_ist = datetime.datetime.now(ist_tz)
+    now_utc = now_ist.strftime("%Y-%m-%d %H:%M:%S IST")
     current_row = 1
 
     # =========================================================================

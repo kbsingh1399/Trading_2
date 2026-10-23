@@ -136,7 +136,7 @@ COLUMNS_DEF = [
 ]
 
 HIST_COLUMNS_DEF = [
-    ("bar_time_utc", "Bar Time (UTC)", 18, "center"),
+    ("bar_time_ist", "Bar Time (IST)", 18, "center"),
     ("open", "Open ($)", 13, "right"),
     ("high", "High ($)", 13, "right"),
     ("low", "Low ($)", 13, "right"),
@@ -582,7 +582,9 @@ def dump_technical_to_excel(
         left=thin_border_side, right=thin_border_side, top=thin_border_side, bottom=thin_border_side
     )
 
-    now_utc = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
+    ist_tz = datetime.timezone(datetime.timedelta(hours=5, minutes=30))
+    now_ist = datetime.datetime.now(ist_tz)
+    now_utc = now_ist.strftime("%Y-%m-%d %H:%M:%S IST")
 
     # =========================================================================
     # SECTION 1: Multi-Asset Indicator Matrix (All 43 Assets)

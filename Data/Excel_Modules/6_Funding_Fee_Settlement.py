@@ -61,7 +61,7 @@ COLUMNS_DEF = [
     ("last_24h", "Last 24h", 18, "right"),
     ("last_3d", "Last 3 Days", 18, "right"),
     ("last_7d", "Last 7 Days", 18, "right"),
-    ("timestamp_utc", "Timestamp (UTC)", 24, "center"),
+    ("timestamp_ist", "Timestamp (IST)", 24, "center"),
 ]
 
 
@@ -90,7 +90,9 @@ async def harvest_funding_fee_settlements(max_pages: int = 19) -> list[dict]:
     log.info(f"Opened dedicated ephemeral tab (ID: {tab_id}) for Funding Fee Settlement harvest.")
 
     now_dt = datetime.datetime.now(datetime.timezone.utc)
-    ts_str = now_dt.strftime("%Y-%m-%d %H:%M:%S UTC")
+    ist_tz = datetime.timezone(datetime.timedelta(hours=5, minutes=30))
+    now_ist = datetime.datetime.now(ist_tz)
+    ts_str = now_ist.strftime("%Y-%m-%d %H:%M:%S IST")
 
     all_records: list[dict] = []
     seen_ranks: set[str] = set()
@@ -193,7 +195,7 @@ async def harvest_funding_fee_settlements(max_pages: int = 19) -> list[dict]:
                     rank_key = r.get("rank")
                     if rank_key and rank_key not in seen_ranks:
                         seen_ranks.add(rank_key)
-                        r["timestamp_utc"] = ts_str
+                        r["timestamp_ist"] = ts_str
                         all_records.append(r)
                         page_new_count += 1
                         if first_row_rank is None:
@@ -390,7 +392,7 @@ def dump_to_excel(records: list[dict], excel_path: pathlib.Path = DEFAULT_EXCEL_
         c9.border = row_border
 
         # Timestamp UTC (Col 10)
-        c10 = ws.cell(row=current_row, column=10, value=r.get("timestamp_utc", ""))
+        c10 = ws.cell(row=current_row, column=10, value=r.get("timestamp_ist", r.get("timestamp_utc", "")))
         c10.font = subdued_font
         c10.alignment = Alignment(horizontal="center", vertical="center")
         c10.border = row_border

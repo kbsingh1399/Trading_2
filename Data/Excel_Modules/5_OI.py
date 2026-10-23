@@ -224,7 +224,9 @@ async def harvest_universe_open_interest(assets: list[str] = DEFAULT_ASSETS) -> 
     log.info(f"Opened dedicated ephemeral tab (ID: {tab_id}) for Open Interest harvest across {len(assets)} assets.")
 
     now_dt = datetime.datetime.now(datetime.timezone.utc)
-    ts_str = now_dt.strftime("%Y-%m-%d %H:%M:%S UTC")
+    ist_tz = datetime.timezone(datetime.timedelta(hours=5, minutes=30))
+    now_ist = datetime.datetime.now(ist_tz)
+    ts_str = now_ist.strftime("%Y-%m-%d %H:%M:%S IST")
 
     matrix_rows: list[dict] = []
     stacked_rows: list[dict] = []
@@ -257,7 +259,7 @@ async def harvest_universe_open_interest(assets: list[str] = DEFAULT_ASSETS) -> 
 
                 for r in raw_rows:
                     r["asset"] = asset
-                    r["timestamp_utc"] = ts_str
+                    r["timestamp_ist"] = ts_str
                     stacked_rows.append(r)
 
                     exch = r.get("exchange", "")
@@ -289,7 +291,7 @@ async def harvest_universe_open_interest(assets: list[str] = DEFAULT_ASSETS) -> 
                     "chg_1h": chg_1h,
                     "oi_vol": oi_vol,
                     "others": others_str,
-                    "timestamp_utc": ts_str
+                    "timestamp_ist": ts_str
                 }
                 for exch in MAJOR_EXCHANGES:
                     matrix_row[exch] = asset_exchanges.get(exch, "-")
@@ -365,7 +367,7 @@ def dump_to_excel(
         ("chg_4h", "4h Total Change", 16, "right"),
         ("chg_1h", "1h Total Change", 16, "right"),
         ("oi_vol", "OI / 24h Vol", 14, "right"),
-        ("timestamp_utc", "Timestamp (UTC)", 24, "center"),
+        ("timestamp_ist", "Timestamp (IST)", 24, "center"),
     ]
 
     # Section 1 Title Banner
@@ -434,7 +436,7 @@ def dump_to_excel(
         ("chg_4h", "OI Change (4h)", 16, "right"),
         ("chg_24h", "OI Change (24h)", 16, "right"),
         ("oi_vol", "OI / 24h Vol", 14, "right"),
-        ("timestamp_utc", "Timestamp (UTC)", 24, "center"),
+        ("timestamp_ist", "Timestamp (IST)", 24, "center"),
     ]
 
     # Section 2 Title Banner

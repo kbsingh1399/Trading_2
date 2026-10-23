@@ -630,7 +630,7 @@ def export_cvd_to_excel(
     )
 
     headers = [
-        "Timestamp (UTC)",
+        "Timestamp (IST)",
         "Asset Class",
         "Symbol",
         "Market Pair",

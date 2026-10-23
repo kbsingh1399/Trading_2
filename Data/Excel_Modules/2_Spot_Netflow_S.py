@@ -72,7 +72,7 @@ COLUMNS = [
     ("7_day", "7 day", 15, "right"),
     ("30_day", "30 day", 15, "right"),
     ("Market_Cap", "Market Cap", 16, "right"),
-    ("Timestamp_UTC", "Timestamp (UTC)", 24, "center")
+    ("Timestamp_IST", "Timestamp (IST)", 24, "center")
 ]
 
 
@@ -104,7 +104,9 @@ async def extract_spot_netflows(max_pages: int = 25) -> list[dict]:
     log.info(f"Opened dedicated CoinGlass spot tab (ID: {tab_id})")
 
     now_dt = datetime.datetime.now(datetime.timezone.utc)
-    ts_str = now_dt.strftime("%Y-%m-%d %H:%M:%S UTC")
+    ist_tz = datetime.timezone(datetime.timedelta(hours=5, minutes=30))
+    now_ist = datetime.datetime.now(ist_tz)
+    ts_str = now_ist.strftime("%Y-%m-%d %H:%M:%S IST")
 
     try:
         await asyncio.sleep(2.0)
@@ -259,7 +261,7 @@ async def extract_spot_netflows(max_pages: int = 25) -> list[dict]:
                         "7_day": f_7d,
                         "30_day": f_30d,
                         "Market_Cap": mkt_cap,
-                        "Timestamp_UTC": ts_str
+                        "Timestamp_IST": ts_str
                     })
 
                 log.info(f"Page {page:>2}/{max_pages}: Extracted {page_extracted} assets (Total cumulative: {len(all_records)})")
@@ -340,6 +342,9 @@ def dump_spot_netflow_to_excel(excel_path: pathlib.Path = DEFAULT_EXCEL_PATH, ma
     Dumps Cryptocurrency Spot Netflow Statistics into '2_Spot_Netflow_S' sheet,
     positioned immediately next to '1_Crypto_ETF_Flows'.
     """
+    import filelock
+    from logger_config import stamp_sheet_completion_ist
+    
     records = asyncio.run(extract_spot_netflows(max_pages=max_pages))
     if not records:
         log.info("Attempting fallback to local cache...")
@@ -353,146 +358,135 @@ def dump_spot_netflow_to_excel(excel_path: pathlib.Path = DEFAULT_EXCEL_PATH, ma
         log.error(f"Target Excel file does not exist: {excel_path}")
         return False
 
-    wb = openpyxl.load_workbook(excel_path)
+    lock = filelock.FileLock(str(excel_path) + ".lock", timeout=120)
+    with lock:
+        wb = openpyxl.load_workbook(excel_path)
 
-    # Position sheet immediately next to '1_Crypto_ETF_Flows'
-    if SHEET_NAME in wb.sheetnames:
-        ws = wb[SHEET_NAME]
-    elif "2_Cryptocurrency_Spot_Netflow_Statistics" in wb.sheetnames:
-        ws = wb["2_Cryptocurrency_Spot_Netflow_Statistics"]
-        ws.title = SHEET_NAME
-    elif "2_Cryptocurrency_Spot_Netflow_S" in wb.sheetnames:
-        ws = wb["2_Cryptocurrency_Spot_Netflow_S"]
-        ws.title = SHEET_NAME
-    else:
-        if REFERENCE_SHEET in wb.sheetnames:
+        # Cleanly re-create sheet to purge any ghost columns/rows
+        target_idx = 2
+        if SHEET_NAME in wb.sheetnames:
+            target_idx = wb.sheetnames.index(SHEET_NAME)
+            wb.remove(wb[SHEET_NAME])
+        elif REFERENCE_SHEET in wb.sheetnames:
             ref_idx = wb.sheetnames.index(REFERENCE_SHEET)
-            ws = wb.create_sheet(title=SHEET_NAME, index=ref_idx + 1)
-        elif "Crypto_ETF_Flows" in wb.sheetnames:
-            ref_idx = wb.sheetnames.index("Crypto_ETF_Flows")
-            ws = wb.create_sheet(title=SHEET_NAME, index=ref_idx + 1)
-        else:
-            ws = wb.create_sheet(title=SHEET_NAME, index=1)
+            target_idx = ref_idx + 1
 
-    log.info(f"Target worksheet '{SHEET_NAME}' positioned at index {wb.sheetnames.index(SHEET_NAME)}")
+        ws = wb.create_sheet(title=SHEET_NAME, index=target_idx)
+        log.info(f"Target worksheet '{SHEET_NAME}' positioned cleanly at index {target_idx}")
 
-    # Styling definitions matching CoinGlass dark header & heatmap
-    header_font = Font(name="Segoe UI", size=11, bold=True, color="FFFFFF")
-    header_fill = PatternFill(start_color="0F172A", end_color="0F172A", fill_type="solid")
+        # Styling definitions matching CoinGlass dark header & heatmap
+        header_font = Font(name="Segoe UI", size=11, bold=True, color="FFFFFF")
+        header_fill = PatternFill(start_color="0F172A", end_color="0F172A", fill_type="solid")
 
-    symbol_font = Font(name="Segoe UI", size=10, bold=True, color="0F172A")
-    data_font = Font(name="Segoe UI", size=10, bold=False, color="1E293B")
-    dim_font = Font(name="Segoe UI", size=10, bold=False, color="64748B")
+        symbol_font = Font(name="Segoe UI", size=10, bold=True, color="0F172A")
+        data_font = Font(name="Segoe UI", size=10, bold=False, color="1E293B")
+        dim_font = Font(name="Segoe UI", size=10, bold=False, color="64748B")
 
-    # Green / Red heatmaps matching Image 1
-    green_font_light = Font(name="Segoe UI", size=10, bold=True, color="15803D")
-    green_font_deep = Font(name="Segoe UI", size=10, bold=True, color="166534")
-    red_font_light = Font(name="Segoe UI", size=10, bold=True, color="B91C1C")
-    red_font_deep = Font(name="Segoe UI", size=10, bold=True, color="991B1B")
+        # Green / Red heatmaps matching Image 1
+        green_font_light = Font(name="Segoe UI", size=10, bold=True, color="15803D")
+        green_font_deep = Font(name="Segoe UI", size=10, bold=True, color="166534")
+        red_font_light = Font(name="Segoe UI", size=10, bold=True, color="B91C1C")
+        red_font_deep = Font(name="Segoe UI", size=10, bold=True, color="991B1B")
 
-    green_fill_light = PatternFill(start_color="DCFCE7", end_color="DCFCE7", fill_type="solid")  # Mint
-    green_fill_deep = PatternFill(start_color="BBF7D0", end_color="BBF7D0", fill_type="solid")   # Vibrant green
-    red_fill_light = PatternFill(start_color="FEE2E2", end_color="FEE2E2", fill_type="solid")    # Soft coral
-    red_fill_deep = PatternFill(start_color="FECACA", end_color="FECACA", fill_type="solid")     # Intense salmon
-    neutral_fill = PatternFill(start_color="FFFFFF", end_color="FFFFFF", fill_type="solid")
+        green_fill_light = PatternFill(start_color="DCFCE7", end_color="DCFCE7", fill_type="solid")  # Mint
+        green_fill_deep = PatternFill(start_color="BBF7D0", end_color="BBF7D0", fill_type="solid")   # Vibrant green
+        red_fill_light = PatternFill(start_color="FEE2E2", end_color="FEE2E2", fill_type="solid")    # Soft coral
+        red_fill_deep = PatternFill(start_color="FECACA", end_color="FECACA", fill_type="solid")     # Intense salmon
+        neutral_fill = PatternFill(start_color="FFFFFF", end_color="FFFFFF", fill_type="solid")
 
-    thin_border = Border(
-        left=Side(style="thin", color="E2E8F0"),
-        right=Side(style="thin", color="E2E8F0"),
-        top=Side(style="thin", color="E2E8F0"),
-        bottom=Side(style="thin", color="E2E8F0")
-    )
+        thin_border = Border(
+            left=Side(style="thin", color="E2E8F0"),
+            right=Side(style="thin", color="E2E8F0"),
+            top=Side(style="thin", color="E2E8F0"),
+            bottom=Side(style="thin", color="E2E8F0")
+        )
 
-    # 1. Write Header Row
-    for col_idx, (key, display_name, width, align) in enumerate(COLUMNS, 1):
-        c = ws.cell(row=1, column=col_idx, value=display_name)
-        c.font = header_font
-        c.fill = header_fill
-        c.alignment = Alignment(horizontal=align, vertical="center")
-        c.border = thin_border
-        col_letter = get_column_letter(col_idx)
-        ws.column_dimensions[col_letter].width = max(width, 12)
-    ws.row_dimensions[1].height = 26
+        # 1. Row 1: Institutional Tier-1 Completion Banner in IST (UTC+5:30)
+        # Enforces Operator Invariant: Timestamp MUST be added or updated ONLY ONCE row data is filled
+        stamp_sheet_completion_ist(
+            ws=ws,
+            sheet_title=SHEET_NAME,
+            row_count=len(records),
+            banner_cell="A1",
+            status="LIVE",
+            merge_max_col=len(COLUMNS)
+        )
 
-    # 2. Write Data Rows directly starting at Row 2
-    for idx, rec in enumerate(records):
-        r_idx = 2 + idx
+        # 2. Row 2: Headers (with Timestamp (IST))
+        for col_idx, (key, display_name, width, align) in enumerate(COLUMNS, 1):
+            c = ws.cell(row=2, column=col_idx, value=display_name)
+            c.font = header_font
+            c.fill = header_fill
+            c.alignment = Alignment(horizontal=align, vertical="center")
+            c.border = thin_border
+            col_letter = get_column_letter(col_idx)
+            ws.column_dimensions[col_letter].width = max(width, 12)
+        ws.row_dimensions[2].height = 26
 
-        for col_idx, (key, _, _, align) in enumerate(COLUMNS, 1):
-            val = rec.get(key, "-")
-            cell_obj = ws.cell(row=r_idx, column=col_idx, value=val)
-            cell_obj.border = thin_border
-            cell_obj.alignment = Alignment(horizontal=align, vertical="center")
-            cell_obj.fill = neutral_fill
+        # 3. Row 3+: Data Rows directly starting at Row 3
+        for idx, rec in enumerate(records):
+            r_idx = 3 + idx
+            for col_idx, (key, _, _, align) in enumerate(COLUMNS, 1):
+                val = rec.get(key, "-")
+                cell_obj = ws.cell(row=r_idx, column=col_idx, value=val)
+                cell_obj.border = thin_border
+                cell_obj.alignment = Alignment(horizontal=align, vertical="center")
+                cell_obj.fill = neutral_fill
 
-            sval = str(val or "").strip()
-
-            if key == "Symbol":
-                cell_obj.font = symbol_font
-            elif key in ["Market_Cap", "Timestamp_UTC", "#"]:
-                cell_obj.font = data_font
-            else:
-                # Netflow timeframe columns: Apply Heatmap
-                if sval.startswith("+"):
-                    if any(unit in sval for unit in ["M", "B"]):
-                        cell_obj.fill = green_fill_deep
-                        cell_obj.font = green_font_deep
-                    else:
-                        cell_obj.fill = green_fill_light
-                        cell_obj.font = green_font_light
-                elif sval.startswith("-") and sval != "-":
-                    if any(unit in sval for unit in ["M", "B"]) and not sval.startswith("-$0"):
-                        cell_obj.fill = red_fill_deep
-                        cell_obj.font = red_font_deep
-                    else:
-                        cell_obj.fill = red_fill_light
-                        cell_obj.font = red_font_light
+                sval = str(val or "").strip()
+                if key == "Symbol":
+                    cell_obj.font = symbol_font
+                elif key in ["Market_Cap", "Timestamp_IST", "Timestamp_UTC", "#"]:
+                    cell_obj.font = data_font
                 else:
-                    cell_obj.fill = neutral_fill
-                    cell_obj.font = dim_font
+                    if sval.startswith("+"):
+                        if any(unit in sval for unit in ["M", "B"]):
+                            cell_obj.fill = green_fill_deep
+                            cell_obj.font = green_font_deep
+                        else:
+                            cell_obj.fill = green_fill_light
+                            cell_obj.font = green_font_light
+                    elif sval.startswith("-") and sval != "-":
+                        if any(unit in sval for unit in ["M", "B"]) and not sval.startswith("-$0"):
+                            cell_obj.fill = red_fill_deep
+                            cell_obj.font = red_font_deep
+                        else:
+                            cell_obj.fill = red_fill_light
+                            cell_obj.font = red_font_light
+                    else:
+                        cell_obj.fill = neutral_fill
+                        cell_obj.font = dim_font
 
-        ws.row_dimensions[r_idx].height = 20
+            ws.row_dimensions[r_idx].height = 20
 
-    # 3. Prune old trailing rows if previous runs had more rows
-    current_data_end = 1 + len(records)
-    if ws.max_row > current_data_end:
-        ws.delete_rows(current_data_end + 1, ws.max_row - current_data_end)
+        ws.freeze_panes = "A3"
 
-    # 4. Save Atomically
-        # Enforce Operator Invariant: Stamp Tier-1 Completion Banner ONLY ONCE row data is filled
-    if ws.max_row > 1:
-        try:
-            from logger_config import stamp_sheet_completion_ist
-            ws.insert_rows(1)
-            stamp_sheet_completion_ist(
-                ws=ws,
-                sheet_title="2_Spot_Netflow_S",
-                row_count=ws.max_row - 2,
-                banner_cell="A1",
-                status="LIVE",
-                merge_max_col=ws.max_column
-            )
-            ws.freeze_panes = "A3"
-        except Exception:
-            pass
+        # 4. Save Atomically with FileLock
+        temp_excel = excel_path.with_name(f"{excel_path.stem}_{os.getpid()}_{int(time.time()*1000)}.tmp.xlsx")
+        wb.save(temp_excel)
+        wb.close()
+        for _att in range(30):
+            try:
+                temp_excel.replace(excel_path)
+                break
+            except (PermissionError, Exception):
+                if _att == 29:
+                    if temp_excel.exists():
+                        try: temp_excel.unlink()
+                        except Exception: pass
+                    raise
+                time.sleep(1.0)
 
-    import os, time
-    temp_excel = excel_path.with_name(f"{excel_path.stem}_{os.getpid()}_{int(time.time()*1000)}.tmp.xlsx")
-    wb.save(temp_excel)
-    wb.close()
-    saved = False
-    for _att in range(30):
-        try:
-            temp_excel.replace(excel_path)
-            saved = True
-            break
-        except (PermissionError, Exception):
-            if _att == 29:
-                if temp_excel.exists():
-                    try: temp_excel.unlink()
-                    except Exception: pass
-                raise
-            time.sleep(1.0)
+    # 5. Save staged parquet for batch committer
+    try:
+        import pandas as pd
+        stage_dir = DATA_DIR / "staging"
+        stage_dir.mkdir(parents=True, exist_ok=True)
+        col_rename = {k: disp for k, disp, _, _ in COLUMNS}
+        df_stage = pd.DataFrame(records).rename(columns=col_rename)
+        df_stage.to_parquet(stage_dir / f"{SHEET_NAME}.parquet", index=False)
+    except Exception as e:
+        log.warning(f"Could not save staged parquet: {e}")
 
     log.info(f"Successfully dumped {len(records)} Cryptocurrency Spot Netflow assets into sheet '{SHEET_NAME}' at {excel_path}.")
     return True

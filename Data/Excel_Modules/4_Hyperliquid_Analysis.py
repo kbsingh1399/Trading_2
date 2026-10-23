@@ -80,7 +80,7 @@ COLUMNS_SCHEMA = [
     ("pnl_pct", "Unrealised PNL (%)_Val", 18, "right"),
     ("entry_price", "Entry Price (USD)", 18, "right"),
     ("leverage", "Leverage", 14, "center"),
-    ("timestamp_utc", "Timestamp (UTC)", 24, "center"),
+    ("timestamp_ist", "Timestamp (IST)", 24, "center"),
 ]
 
 
@@ -109,7 +109,9 @@ async def harvest_hyperliquid_whale_data(max_pages: int = 40) -> list[dict]:
     log.info(f"Opened dedicated ephemeral tab (ID: {tab_id}) for Hyperliquid Whale harvest.")
 
     now_dt = datetime.datetime.now(datetime.timezone.utc)
-    ts_str = now_dt.strftime("%Y-%m-%d %H:%M:%S UTC")
+    ist_tz = datetime.timezone(datetime.timedelta(hours=5, minutes=30))
+    now_ist = datetime.datetime.now(ist_tz)
+    ts_str = now_ist.strftime("%Y-%m-%d %H:%M:%S IST")
 
     all_records: list[dict] = []
     seen_keys: set[str] = set()
@@ -285,7 +287,7 @@ async def harvest_hyperliquid_whale_data(max_pages: int = 40) -> list[dict]:
 
                 page_new_count = 0
                 for r in rows:
-                    r["timestamp_utc"] = ts_str
+                    r["timestamp_ist"] = ts_str
                     dedup_key = f"{r.get('rank')}_{r.get('wallet_address')}_{r.get('asset')}_{r.get('side')}"
                     if dedup_key not in seen_keys:
                         seen_keys.add(dedup_key)

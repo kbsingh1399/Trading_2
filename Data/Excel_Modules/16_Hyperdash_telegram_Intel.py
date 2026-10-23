@@ -65,7 +65,7 @@ TELEGRAM_CHANNEL_URL = "https://t.me/s/hyperdashflows"
 
 COLUMNS_DEF = [
     ("sr_no", "Sr.No", 8, "center"),
-    ("timestamp_utc", "Time (UTC)", 20, "center"),
+    ("timestamp_ist", "Timestamp (IST)", 20, "center"),
     ("post_id", "Post ID", 18, "center"),
     ("category", "Category", 18, "center"),
     ("event_type", "Event Type", 22, "center"),
@@ -429,7 +429,7 @@ def fetch_telegram_channel_messages(max_pages: int = 25) -> List[Dict[str, Any]]
 
                 parsed = parse_flow_message(clean_text, links)
                 parsed["post_id"] = p_id
-                parsed["timestamp_utc"] = dt_iso.replace("T", " ").split("+")[0]
+                parsed["timestamp_ist"] = dt_iso.replace("T", " ").split("+")[0]
                 parsed["source"] = "TELEGRAM_WEB_API"
                 all_raw_posts.append(parsed)
 
@@ -472,7 +472,7 @@ def load_and_merge_archive(live_records: List[Dict[str, Any]], max_limit: int = 
                 raw_t = h.get("raw_text", "")
                 parsed = parse_flow_message(raw_t, [])
                 parsed["post_id"] = msg_id
-                parsed["timestamp_utc"] = dt_str
+                parsed["timestamp_ist"] = dt_str
                 parsed["source"] = h.get("source", "HYPERDASH_ARCHIVE")
                 # Inherit original fields if available
                 if h.get("coin"): parsed["asset"] = str(h.get("coin")).upper()

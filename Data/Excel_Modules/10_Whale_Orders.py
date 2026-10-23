@@ -90,7 +90,7 @@ COLUMNS_DEF = [
     ("initial_size_btc", "Initial Size (BTC)", 18, "right"),
     ("traded_size_btc", "Traded Size (BTC)", 18, "right"),
     ("traded_size_pct", "Traded Size (%)", 16, "right"),
-    ("order_time_utc", "Order Time (UTC)", 20, "center"),
+    ("order_time_ist", "Timestamp (IST)", 20, "center"),
     ("order_duration", "Order Duration", 16, "center"),
     ("order_id", "Order ID", 18, "center"),
 ]
@@ -457,7 +457,9 @@ def dump_whale_orders_to_excel(
         left=thin_border_side, right=thin_border_side, top=thin_border_side, bottom=thin_border_side
     )
 
-    now_utc = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
+    ist_tz = datetime.timezone(datetime.timedelta(hours=5, minutes=30))
+    now_ist = datetime.datetime.now(ist_tz)
+    now_utc = now_ist.strftime("%Y-%m-%d %H:%M:%S IST")
 
     # 1. Section Banner (Row 1)
     last_col_letter = get_column_letter(len(COLUMNS_DEF))

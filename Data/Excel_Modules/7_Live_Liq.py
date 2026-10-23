@@ -63,7 +63,7 @@ COLUMNS_DEF = [
     ("amount", "Amount", 18, "right"),
     ("time", "Time", 18, "center"),
     ("exchange", "Exchange", 16, "center"),
-    ("full_time", "Full Timestamp (UTC)", 24, "center"),
+    ("full_time", "Timestamp (IST)", 24, "center"),
 ]
 
 
