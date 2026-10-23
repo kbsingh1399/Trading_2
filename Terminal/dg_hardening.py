@@ -340,15 +340,21 @@ def gap_stressed_loss(
 
 def joint_floor_check(
     balance: Any, equity: Any, stressed_losses: Iterable[Any],
-    hard_floor_usd: float = 4600.0, buffer_usd: float = 20.0
+    hard_floor_usd: float = 4600.0, buffer_usd: float = 50.0
 ) -> Dict[str, Any]:
+    """All modeled stopout scenarios retain the binding kernel and global reserve."""
     if not (_fin(balance) and _fin(equity)):
         return {"ok": False, "reason": "account_unobserved"}
-    vals = list(stressed_losses)
+    if not (_fin(hard_floor_usd) and _fin(buffer_usd)) or min(hard_floor_usd, buffer_usd) < 0:
+        return {"ok": False, "reason": "floor_policy_unavailable"}
+    try:
+        vals = list(stressed_losses)
+    except TypeError:
+        return {"ok": False, "reason": "ticket_stress_unavailable"}
     if any(not _fin(v) or float(v) < 0 for v in vals):
         return {"ok": False, "reason": "ticket_stress_unavailable"}
-    post = min(float(balance), float(equity)) - sum(float(v) for v in vals)
-    req = hard_floor_usd + buffer_usd
+    post = min(float(balance), float(equity)) - sum(float(v) for v in vals) - 2.0
+    req = max(4795.0, hard_floor_usd + buffer_usd)
     return {
         "ok": post >= req, "post_stress_equity_usd": post,
         "required_usd": req, "cushion_usd": post - req,

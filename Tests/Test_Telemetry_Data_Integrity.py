@@ -138,6 +138,7 @@ class FakeFarside:
 @pytest.fixture()
 def offline(monkeypatch, tmp_path):
     """Remove every network dependency and repo-path side effect."""
+    monkeypatch.setattr(gts, "get_hyperdash_flow_intelligence", lambda: {})
     monkeypatch.setattr(gts, "fetch_crypto_depth_and_oi", lambda a: (a, {}, {}, {}))
     monkeypatch.setattr(gts, "fetch_crypto_cvd_buckets", lambda a: (a, []))
     monkeypatch.setattr(gts, "fetch_crypto_multi_horizon_cvd", lambda a: (a, {}))

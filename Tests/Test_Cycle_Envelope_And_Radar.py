@@ -59,6 +59,15 @@ def test_existing_stress_is_not_rounded_before_candidate_arithmetic():
     assert state["existing_ticket_stress_usd"] != round(state["existing_ticket_stress_usd"], 2)
 
 
+def test_gap_floor_helper_preserves_kernel_above_evaluation_floor():
+    from Terminal.dg_hardening import joint_floor_check
+    checked = joint_floor_check(4865.07, 4865.07, [33.25, 33.25])
+    assert checked["ok"] and checked["post_stress_equity_usd"] == pytest.approx(4796.57)
+    assert checked["required_usd"] == 4795
+    assert not joint_floor_check(4865.07, 4865.07, [80.0])["ok"]
+    assert not joint_floor_check(4865.07, 4865.07, None)["ok"]
+
+
 @pytest.mark.parametrize("field,value", [("login", 123), ("currency", "EUR"), ("balance", float("nan"))])
 def test_identity_and_nonfinite_account_are_refused(field, value):
     broker = Broker()
