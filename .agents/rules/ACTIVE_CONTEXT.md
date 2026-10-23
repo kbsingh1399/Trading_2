@@ -1,19 +1,45 @@
 # ACTIVE CONTEXT CARD (LIVE SOVEREIGN QUANT DESK)
-**Last Updated**: 2026-10-23 05:00:00 UTC | **Autonomous Cycle**: Cycle 295 (Cycle 295 Parallel Dual-Council Deliberation / European Pre-Market Standby)
+**Last Updated**: 2026-10-23 07:42:00 UTC | **Autonomous Cycle**: Cycle 296 Completed / Cycle 297 Trigger Armed (07:42:46 UTC)
 **Target Account**: Blueberry Markets MT5 Account #5064568
-**Mission**: Pass Phase 1 Challenge (Target: 5,500.00 USD) before Oct 23, 2026 (23:59 UTC) (~19.00 hours runway remaining).
+**Mission**: Pass Phase 1 Challenge (Target: 5,500.00 USD) before Oct 23, 2026 (23:59 UTC) (~16.2 hours runway remaining).
 
 ---
 
 ## 1. REAL-TIME ACCOUNT TELEMETRY & SOLVENCY SENTRY
-- **Balance / Equity**: 4,818.51 USD / 4,818.51 USD (100% Flat Cash Defense)
+- **Balance / Equity**: 4,818.51 USD / 4,818.51 USD
 - **Margin / Free Margin**: 0.00 USD / 4,818.51 USD (0.00% utilization)
 - **Goal Gap**: +681.49 USD to 5,500.00 USD (+14.14%)
 - **Hard Floor (Inviolate)**: 4,775.00 USD | **Floor Cushion**: +43.51 USD
 - **Operating Buffer Floor**: 4,795.00 USD | **Buffer Cushion**: +23.51 USD
-- **Active Filled Positions**: 0/4 consumed | **Resting Pending Orders**: 0/10 (100% Clean Book)
-- **Fluid Capacity Available**: 4/4 filled slots free, 10 resting limit slots free
-- **Single-Slot Risk Law**: Active. Dynamic risk capacity: max 16.81 USD nominal risk under current buffer cushion.
+- **Active Filled Positions**: 0/4 consumed | **Resting Pending Orders**: 2/10 ACTIVE IN MT5
+- **Fluid Capacity Available**: 4/4 filled slots free, 8 resting limit slots free
+- **Worst-Case Simultaneous Stopout Equity**: 4,780.10 USD (+5.10 USD above 4,775.00 USD hard floor)
+
+---
+
+## 2. ACTIVE RESTING LIMIT ORDERS IN MT5 BROKER BOOK
+1. **`Ticket #19244087` — `NZDUSD.pi` (Value Area Reclaim Buy Limit)**:
+   - Order Type: `BUY_LIMIT` | Volume: `0.81 lot`
+   - Entry: `0.56904` | Stop Loss: `0.56888` (16 pts / 1.6 pips) | Take Profit: `0.56965` (61 pts / 6.1 pips)
+   - Risk: 12.96 USD | Reward: 49.41 USD | R:R: 3.81R
+   - Stressed Loss: 20.23 USD | Post-Loss Equity: 4,798.28 USD (Buffer Surplus: +3.28 USD)
+   - Friction Efficiency: Spread / TP Distance = 3.28% (Well under 10.0% cap)
+   - Dynamic Ratchet: Early-BE @ 0.56916 -> move SL to 0.56906 (locks +1.62 USD profit, drops risk to 0 USD)
+
+2. **`Ticket #19244096` — `BTCUSD.pi` (Structural Ask Wall Fade Sell Limit)**:
+   - Order Type: `SELL_LIMIT` | Volume: `0.03 lot`
+   - Entry: `81,960.00` | Stop Loss: `82,374.19` (414.19 pts) | Take Profit: `80,890.43` (1,069.57 pts)
+   - Risk: 12.43 USD | Reward: 32.09 USD | R:R: 2.58R
+   - Stressed Loss: 18.18 USD | Post-Loss Equity: 4,800.33 USD (Buffer Surplus: +5.33 USD)
+   - Resting behind verified ask wall cluster at 81,950–82,000 USD.
+   - Dynamic Ratchet: Early-BE @ 81,649.36 -> move SL to 81,918.58 (locks +1.24 USD profit)
+
+---
+
+## 3. RADAR QUEUE & POST-PMI RE-ARM TRIGGERS (08:35 UTC REOPEN)
+1. **`GER40.p / GER30.p`**: European index complex re-audit at 08:35 UTC post-Eurozone Flash PMI (08:00 UTC).
+2. **`Native XAGUSD`**: Spot silver re-audit at 54.01 USD shelf, discarding cross-currency clones (XAGSGD/XAGAUD).
+3. **`SWISS20.p`**: Re-audit at 14,502 demand shelf post-08:35 UTC.
 
 ---
 

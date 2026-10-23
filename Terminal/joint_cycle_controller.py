@@ -158,6 +158,14 @@ def sync_from_daemons(state: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
     if state is None:
         state = load_cycle_state()
     
+    start_str = state.get("cycle_started_utc")
+    start_dt = None
+    if start_str:
+        try:
+            start_dt = datetime.datetime.strptime(start_str.replace(" UTC", ""), "%Y-%m-%d %H:%M:%S").replace(tzinfo=datetime.timezone.utc)
+        except Exception:
+            pass
+
     # 1. Check Arena Daemon
     if ARENA_STATUS_FILE.exists():
         try:
@@ -165,10 +173,12 @@ def sync_from_daemons(state: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
                 ad = json.load(f)
             if not ad.get("is_generating", True) and (ad.get("has_copy_button", False) or ad.get("text_length", 0) > 2000):
                 arena_ts = ad.get("completed_at_utc", now_utc_str())
-                if state["components"]["arena_ai"]["status"] != "COMPLETED" or state["components"]["arena_ai"]["completed_at_utc"] != arena_ts:
-                    state["components"]["arena_ai"]["status"] = "COMPLETED"
-                    state["components"]["arena_ai"]["completed_at_utc"] = arena_ts
-                    logger.info("Auto-synced Arena.ai completion from daemon status: %s", arena_ts)
+                ad_dt = datetime.datetime.strptime(arena_ts.replace(" UTC", ""), "%Y-%m-%d %H:%M:%S").replace(tzinfo=datetime.timezone.utc)
+                if not start_dt or ad_dt >= start_dt:
+                    if state["components"]["arena_ai"]["status"] != "COMPLETED" or state["components"]["arena_ai"]["completed_at_utc"] != arena_ts:
+                        state["components"]["arena_ai"]["status"] = "COMPLETED"
+                        state["components"]["arena_ai"]["completed_at_utc"] = arena_ts
+                        logger.info("Auto-synced Arena.ai completion from daemon status: %s", arena_ts)
         except Exception:
             pass
 
@@ -179,10 +189,12 @@ def sync_from_daemons(state: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
                 zd = json.load(f)
             if not zd.get("is_generating", True) and zd.get("text_length", 0) > 2000:
                 zai_ts = zd.get("completed_at_utc", now_utc_str())
-                if state["components"]["zai"]["status"] != "COMPLETED" or state["components"]["zai"]["completed_at_utc"] != zai_ts:
-                    state["components"]["zai"]["status"] = "COMPLETED"
-                    state["components"]["zai"]["completed_at_utc"] = zai_ts
-                    logger.info("Auto-synced Z.ai completion from daemon status: %s", zai_ts)
+                zd_dt = datetime.datetime.strptime(zai_ts.replace(" UTC", ""), "%Y-%m-%d %H:%M:%S").replace(tzinfo=datetime.timezone.utc)
+                if not start_dt or zd_dt >= start_dt:
+                    if state["components"]["zai"]["status"] != "COMPLETED" or state["components"]["zai"]["completed_at_utc"] != zai_ts:
+                        state["components"]["zai"]["status"] = "COMPLETED"
+                        state["components"]["zai"]["completed_at_utc"] = zai_ts
+                        logger.info("Auto-synced Z.ai completion from daemon status: %s", zai_ts)
         except Exception:
             pass
 

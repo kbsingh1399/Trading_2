@@ -1,28 +1,28 @@
 {
-  "current_cycle_id": "296",
-  "cycle_status": "COMPLETED",
-  "cycle_started_utc": "2026-10-23 07:17:28 UTC",
-  "cycle_completed_utc": "2026-10-23 07:22:46 UTC",
-  "next_cycle_scheduled_utc": "2026-10-23 07:42:46 UTC",
+  "current_cycle_id": "297",
+  "cycle_status": "IN_PROGRESS",
+  "cycle_started_utc": "2026-10-23 07:44:04 UTC",
+  "cycle_completed_utc": null,
+  "next_cycle_scheduled_utc": null,
   "rest_interval_seconds": 1200,
   "components": {
     "antigravity_subagents": {
       "name": "Antigravity 4-Quant Swarm (Fable 5)",
-      "status": "COMPLETED",
-      "completed_at_utc": "2026-10-23 07:17:28 UTC",
+      "status": "IN_PROGRESS",
+      "completed_at_utc": null,
       "details": "Statistical Regime, Microstructure, Solvency, Auction Profile"
     },
     "arena_ai": {
       "name": "Arena.ai Council (GPT Astra)",
-      "status": "COMPLETED",
-      "completed_at_utc": "2026-10-23 07:08:18 UTC",
+      "status": "IN_PROGRESS",
+      "completed_at_utc": null,
       "raw_file": "docs/trade_plans/ARENA_LATEST_RAW.md",
       "model": "GPT Astra"
     },
     "zai": {
       "name": "Z.ai Sovereign Council (GLM-5.3-Flash)",
-      "status": "COMPLETED",
-      "completed_at_utc": "2026-10-23 07:22:46 UTC",
+      "status": "IN_PROGRESS",
+      "completed_at_utc": null,
       "raw_file": "docs/trade_plans/ZAI_LATEST_RAW.md",
       "model": "GLM-5.3-Flash"
     }

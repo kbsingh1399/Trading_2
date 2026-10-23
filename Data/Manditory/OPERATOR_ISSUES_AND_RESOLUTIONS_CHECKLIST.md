@@ -310,3 +310,34 @@ Every 20-minute wake-up cron cycle MUST systematically execute and verify each g
      - Audits cycle health, detects stalled cycles (>30 min), verifies all 8 persistent background daemons, and triggers cycle advancement safely once the clean 20-minute post-completion separation has elapsed.
   5. **Standard Exhaustive Council Prompt**:
      - All dispatches to Arena.ai and Z.ai use canonical [`Data/Manditory/Arena_GLM_Standard_Prompt.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/Arena_GLM_Standard_Prompt.md) (15.5k chars, 4 quantitative personas, 0 LaTeX delimiters).
+
+
+---
+
+## 🏛️ RESOLUTION 18: SYSTEMIC IMPLEMENTATION OF SECTION 2.5 METHODOLOGY INQUEST (FUNNEL THROUGHPUT, COMPOSITE SCORING, LIMIT GEOMETRY & ACTIVE STAGING)
+- **Operator Directives**:
+  * *"i hope our goal is always to find potential candidates and didn't you find apotential candidate via latest z.ai output"*
+  * *"and also ensure that we improve our self as per question output"*
+- **Root Cause & Vulnerability**:
+  * The desk previously exhibited excessive hesitation, defaulting to bare stand-aside even when high-expectancy setups were surfaced by external councils.
+  * Z.ai's answer to Section 2.5 / Section G "Quantitative Methodology Inquest" identified the mathematical root cause:
+    `E[realized] = P(instantiate) * P(fill|staged) * E[P&L|fill]`.
+    Realized equity remained flat because `P(instantiate) * P(fill|staged)` was near zero due to conjunctive filter sclerosis (7-gate binary AND filter passing only 5–20% of trades) and excessively distant limit placement (0.5–1.2R away from market).
+- **Enforced Protocol & Actions**:
+  1. **Immediate Execution of Z.ai Candidates**:
+     - Verified and staged both potential candidates from Z.ai directly into MetaTrader 5 as resting passive limit orders:
+       * **Ticket #19244087**: `NZDUSD.pi` | `BUY_LIMIT` | `0.81 lot` @ `0.56904` | SL `0.56888` | TP `0.56965` (Risk: 12.96 USD, Reward: 49.41 USD, R:R: 3.81R, Stressed Loss: 20.23 USD, Post-Loss Equity: 4,798.28 USD, Buffer Surplus: +3.28 USD).
+       * **Ticket #19244096**: `BTCUSD.pi` | `SELL_LIMIT` | `0.03 lot` @ `81,960.00` | SL `82,374.19` | TP `80,890.43` (Risk: 12.43 USD, Reward: 32.09 USD, R:R: 2.58R, Stressed Loss: 18.18 USD, Post-Loss Equity: 4,800.33 USD, Buffer Surplus: +5.33 USD).
+     - Confirmed both tickets active and resting cleanly in MT5 broker book.
+  2. **Throughput SLA & Staging Gate**:
+     - The desk enforces a positive staging rule: Any candidate with `P(fill|staged) * EV > 1.50 USD` that strictly preserves the 4,795.00 USD operating buffer must be staged into MT5 immediately without manual hesitation.
+  3. **Transition to Composite Confluence Scoring**:
+     - Hard binary vetoes reserved strictly for Solvency, Non-Marketable Limit Price, and Active High-Impact Event Embargoes.
+     - Secondary factors scored via: `S = 0.25*z_VR + 0.20*z_ER + 0.20*z_LIR + 0.20*z_friction + 0.15*z_event`. Stage when `S >= 1.0`.
+  4. **Dynamic Limit Distance Calibration**:
+     - Limits placed according to `d* = min(structural shelf, mid + 0.40 * ATR(M15) * sqrt(TTL_bars))`. Naked limits beyond 1.0 ATR * sqrt(TTL) are banned to eliminate "death by loneliness".
+  5. **Multi-Asset Specialization & Clone Friction Ban**:
+     - Strictly ban foreign cross clones (e.g. XAGSGD/XAGAUD) that incur 1.40–2.30 USD excess friction; trade native tape only (XAGUSD).
+     - Separate crypto orderbook heuristics from TradFi session auction geometry.
+  6. **Purged Telemetry Phantom Risk Leg**:
+     - Fixed risk calculation so that when the book has 0 open positions and 0 pending orders, worst-case stopout equity equals realized equity exactly.
