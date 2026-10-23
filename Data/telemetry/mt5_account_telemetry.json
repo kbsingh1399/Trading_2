@@ -1,12 +1,13 @@
 {
+  "timestamp": "2026-10-23T06:36:52.006653+00:00",
   "account": {
-    "login": 5064568,
     "balance_usd": 4818.51,
     "equity_usd": 4818.51,
+    "margin_usd": 0.0,
     "margin_free_usd": 4818.51,
-    "margin_used_usd": 0.0,
-    "hard_floor_cushion_usd": 43.51000000000022,
-    "operating_buffer_cushion_usd": 23.51000000000022
+    "margin_level": 0.0,
+    "hard_floor_cushion_usd": 43.51,
+    "operating_buffer_cushion_usd": 23.51
   },
   "open_positions_count": 0,
   "open_positions": [],

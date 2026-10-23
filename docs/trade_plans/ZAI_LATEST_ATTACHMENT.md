@@ -1,7 +1,10 @@
-MT5 PUNCH — PASSIVE LIMIT (magic 888888, ORDER_FILLING_IOC→RETURN→FOK)
-Symbol : BTCUSD.pi            Side   : SELL_LIMIT
-Entry  : 81,520.00            Lot    : 0.04
-SL     : 81,860.00            TP     : 80,300.00
-Risk   : $13.60  |  Stressed $19.75  →  Stressed Equity $4,798.76 (buffer +$3.76, floor +$23.76)
-R:R    : 3.59R  |  Friction 1.3%  |  Expiry: cancel if unfilled 3h (~22:50 UTC)
-Ratchet: +0.75R→SL 81,486.00 (risk $0) | +1.25R→81,471.00 | +1.65R→80,948.00 | TP +3.59R
+Symbol   UKBRENT.p        Type BUY_LIMIT @ 113.595 (deep shelf edge)
+Lots     0.65             SL 113.397   TP 114.300   (3.56R)
+Nominal  −$12.87          Stress −$20.77 (conservative, ≤23.51 PASS)
+Margin   $73.84 (1.53%)   Stressed equity 4,797.74 (+2.74 buffer / +22.74 floor)
+DISPATCH order_check NOW → order_send ONLY on ask ≤113.731 + M5 deceleration; <60s latency
+NO-CHASE ceiling 113.780 | VOID: bid <113.397 pre-fill, or unfilled by 12:00 UTC
+MGMT     Early-BE +0.75R @114.1238 → SL 113.6655 (locks +$4.58, risk→~0, frees slot)
+         Flatten: 5m CVD adverse pulse (3 expanding negative-delta 5m candles) → out ~−0.3R
+         Weekend flat 20:00 UTC if < +1R
+RE-SITE  0/2 used; #1 reserved for NY-open re-validation (R:R ≥2.0 + stress re-gated)
