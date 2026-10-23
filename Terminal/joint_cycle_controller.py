@@ -373,7 +373,10 @@ def wait_rest():
         has_mt5 = False
 
     logger.info("Resting cleanly until %s. Early wakeup enabled on position closure.", next_str)
-    cycle_num = int(state.get("current_cycle_id", 305))
+    import re
+    cid_str = str(state.get("current_cycle_id", "309"))
+    m = re.search(r"\d+", cid_str)
+    cycle_num = int(m.group(0)) if m else 309
 
     while True:
         now_dt = datetime.datetime.now(datetime.timezone.utc)
