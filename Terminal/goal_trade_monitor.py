@@ -3,12 +3,13 @@ Terminal/goal_trade_monitor.py
 ==============================
 Autonomous Live Execution, Solvency & Ratchet Monitor for Active MT5 Tickets.
 Runs under Antigravity /goal authority to continuously:
-1. Monitor live MT5 account equity, balance, and floor cushions (+210 USD floor, +160 USD buffer).
+1. Monitor live MT5 account equity, balance, and floor cushions (+208 USD floor, +158 USD buffer).
 2. Audit open positions and enforce dynamic piecewise profit ratchets:
    - Phase Early-BE (+0.75R to +1.00R gain): Advance SL to Entry + 0.15R0 (risk eliminated).
    - Phase 1 (+1.65R gain): Advance SL to Entry + 1.00R0 (locks in +1.00R guaranteed banked profit).
    - Phase 2 (>= +2.20R gain): Advance SL to Entry + 1.60R0 (locks in +1.60R runner profit).
-3. Heartbeat logging to docs/trade_plans/GOAL_MONITOR_LOG.jsonl.
+3. Persist immutable R0 baseline to Data/trade_r0_ledger.json (survives restarts/crashes).
+4. Heartbeat logging to docs/trade_plans/GOAL_MONITOR_LOG.jsonl.
 """
 
 from __future__ import annotations
@@ -29,7 +30,9 @@ except ImportError:
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 LOG_FILE = ROOT / "docs" / "trade_plans" / "GOAL_MONITOR_LOG.jsonl"
+LEDGER_FILE = ROOT / "Data" / "trade_r0_ledger.json"
 LOG_FILE.parent.mkdir(parents=True, exist_ok=True)
+LEDGER_FILE.parent.mkdir(parents=True, exist_ok=True)
 
 HARD_FLOOR_USD = 4600.00
 OPERATING_BUFFER_USD = 4650.00
@@ -53,6 +56,25 @@ def log_event(event_type: str, data: dict):
     log.info("%s: %s", event_type, data)
 
 
+def load_r0_ledger() -> dict[int, dict]:
+    if LEDGER_FILE.exists():
+        try:
+            with open(LEDGER_FILE, "r", encoding="utf-8") as f:
+                raw = json.load(f)
+                return {int(k): v for k, v in raw.items()}
+        except Exception as e:
+            log.warning("Could not load R0 ledger: %s", e)
+    return {}
+
+
+def save_r0_ledger(ledger: dict[int, dict]):
+    try:
+        with open(LEDGER_FILE, "w", encoding="utf-8") as f:
+            json.dump({str(k): v for k, v in ledger.items()}, f, indent=2)
+    except Exception as e:
+        log.warning("Could not save R0 ledger: %s", e)
+
+
 def run_monitor(max_cycles: int = 20, sleep_sec: int = 15, daemon: bool = False):
     if not mt5 or not mt5.initialize():
         log.error("MetaTrader 5 init failed: %s", mt5.last_error() if mt5 else "MT5 not installed")
@@ -62,7 +84,8 @@ def run_monitor(max_cycles: int = 20, sleep_sec: int = 15, daemon: bool = False)
     log.info("Goal Trade Monitor initialized on MT5 Account #5064568. Mode: %s | Gap: %ds", mode_str, sleep_sec)
     log_event("MONITOR_STARTED", {"account": 5064568, "daemon": daemon, "max_cycles": max_cycles, "interval_sec": sleep_sec})
 
-    initial_r0_cache: dict[int, float] = {}
+    r0_ledger = load_r0_ledger()
+    log.info("Loaded persistent R0 ledger with %d ticket entries.", len(r0_ledger))
     last_known_positions: set[int] = set()
 
     cycle = 0
@@ -91,8 +114,11 @@ def run_monitor(max_cycles: int = 20, sleep_sec: int = 15, daemon: bool = False)
             for c_ticket in closed_tickets:
                 log_event("POSITION_CLOSED", {"ticket": c_ticket, "balance": bal, "equity": eq})
                 log.info("Position ticket #%d closed. New Balance: %.2f USD | Equity: %.2f USD", c_ticket, bal, eq)
-                if c_ticket in initial_r0_cache:
-                    del initial_r0_cache[c_ticket]
+                if c_ticket in r0_ledger:
+                    r0_ledger[c_ticket]["closed_utc"] = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
+                    r0_ledger[c_ticket]["closed_balance"] = bal
+                    r0_ledger[c_ticket]["closed_equity"] = eq
+                    save_r0_ledger(r0_ledger)
             last_known_positions = current_tickets
 
             # 1. Audit running positions for dynamic piecewise ratchets
@@ -106,19 +132,31 @@ def run_monitor(max_cycles: int = 20, sleep_sec: int = 15, daemon: bool = False)
                 cur_tp = float(p.tp)
                 is_buy = (p.type == 0)
 
-                # Initialize & preserve immutable R0 risk distance
-                if ticket not in initial_r0_cache:
+                # Initialize & preserve immutable R0 risk distance in persistent ledger
+                if ticket not in r0_ledger or "r0_pts" not in r0_ledger[ticket]:
                     if cur_sl > 0:
                         calc_r0 = (open_p - cur_sl) if is_buy else (cur_sl - open_p)
                         if calc_r0 > 0:
-                            initial_r0_cache[ticket] = calc_r0
+                            r0_val = calc_r0
                         else:
-                            initial_r0_cache[ticket] = 400.0 if "BTC" in sym else 10.0
+                            r0_val = 400.0 if "BTC" in sym else 10.0
                     else:
-                        initial_r0_cache[ticket] = 400.0 if "BTC" in sym else 10.0
-                    log.info("Ticket #%d registered with immutable R0: %.2f pts", ticket, initial_r0_cache[ticket])
+                        r0_val = 400.0 if "BTC" in sym else 10.0
 
-                r0_pts = initial_r0_cache[ticket]
+                    r0_ledger[ticket] = {
+                        "symbol": sym,
+                        "direction": "BUY" if is_buy else "SELL",
+                        "volume": float(p.volume),
+                        "entry_price": open_p,
+                        "initial_sl": cur_sl,
+                        "initial_tp": cur_tp,
+                        "r0_pts": r0_val,
+                        "registered_utc": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC"),
+                    }
+                    save_r0_ledger(r0_ledger)
+                    log.info("Ticket #%d registered to persistent ledger with immutable R0: %.2f pts", ticket, r0_val)
+
+                r0_pts = float(r0_ledger[ticket]["r0_pts"])
                 gain_pts = (cur_p - open_p) if is_buy else (open_p - cur_p)
                 r_mult = round(gain_pts / r0_pts, 3) if r0_pts > 0 else 0.0
 
@@ -166,10 +204,13 @@ def run_monitor(max_cycles: int = 20, sleep_sec: int = 15, daemon: bool = False)
                             })
                             log.info("%s on #%d (%s): SL updated from %.2f -> %.2f (r_mult: %.2fR)",
                                      ratchet_phase, ticket, sym, cur_sl, target_sl, r_mult)
+                            r0_ledger[ticket]["ratchet_phase"] = ratchet_phase
+                            r0_ledger[ticket]["ratcheted_sl"] = target_sl
+                            save_r0_ledger(r0_ledger)
                         else:
                             log.warning("Failed to modify SL for #%d: retcode=%s", ticket, res.retcode)
 
-            # Heartbeat log every 2 cycles (30s)
+            # Heartbeat log every 2 cycles (20-30s)
             if cycle % 2 == 0 or cycle == 1:
                 log.info(
                     "[Cycle %d] Equity: %.2f USD | Balance: %.2f USD | Cushion to Buf: +%.2f USD | Positions: %d | Pending: %d",
