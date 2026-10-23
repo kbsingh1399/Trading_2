@@ -1,5 +1,5 @@
 numpy>=2.0,<3
-polars==1.31.0
+polars==2.0.0
 pyarrow>=20,<26
 lightgbm>=4.6,<5
 scikit-learn>=1.6,<2

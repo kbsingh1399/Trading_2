@@ -3,4 +3,4 @@
 numpy>=1.26          # CovarianceGate / robust z-scores
 websockets>=12.0     # venue streams (lazy-imported; only needed live)
 requests>=2.31       # CognitiveEngine LLM transport
-polars>=0.20         # bulk parquet archives (data.binance.vision backfill)
+polars>=2.0.0         # bulk parquet archives (data.binance.vision backfill)
