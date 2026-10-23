@@ -1,7 +1,7 @@
 # ACTIVE CONTEXT CARD (LIVE SOVEREIGN QUANT DESK)
-**Last Updated**: 2026-10-23 00:45 UTC | **Autonomous Cycle**: Cycle 282 (Asian Session / Tokyo Cash Open)
+**Last Updated**: 2026-10-23 00:50 UTC | **Autonomous Cycle**: Cycle 282 (Asian Session / Tokyo Cash Open)
 **Target Account**: Blueberry Markets MT5 Account #5064568
-**Mission**: Pass Phase 1 Challenge (Target: 5,500.00 USD) before Oct 23, 2026 (23:59 UTC) (~23.25 hours runway remaining).
+**Mission**: Pass Phase 1 Challenge (Target: 5,500.00 USD) before Oct 23, 2026 (23:59 UTC) (~23.15 hours runway remaining).
 
 ---
 
@@ -17,42 +17,42 @@
 
 ---
 
-## 2. CO-EQUAL QUANTITATIVE TRI-COUNCIL CONSENSUS (CYCLE 282)
-- **Arena.ai Primary**: Cycle 282 completed (21,307 chars in `docs/trade_plans/ARENA_LATEST_RAW.md`).
-  * Ruling: **HOLD FLAT. TRANSMIT NOTHING. NO RISK ESCALATION.**
-  * Critical Discovery on Brent: Proved that 113.595 is Prior-Day VAH, whereas today's value area is 113.718 (DVAL) to 113.916 (DVAH), with Asian low at 113.700. Placing a blind limit at 113.595 means buying *below* today's Value Area Low after the auction breaks down (adverse selection). Ordered zero staging.
-  * USDJPY Conditional Template: Watch for post-PMI pullback to 156.440–156.512 and bearish rejection -> `SELL_LIMIT 0.08 @ 156.500` (SL: 156.809, TP: 155.687, 2.65R, nominal risk -$15.76, stressed equity $4,796.35).
-  * Gold Conditional Template: Watch for push into 4,030.05–4,030.57 (DVAH/EMA20) and bearish rejection -> `SELL_LIMIT 0.05 @ 4,030.20` (SL: 4,033.10, TP: 4,023.30, 2.38R, nominal risk -$14.50).
-- **Z.ai (GLM-5.3-Flash)**: Cycle 282 completed (11,478 chars in `docs/trade_plans/ZAI_LATEST_RAW.md`).
-  * Ruling: Reaffirmed Poisson time-decay model: Asian session volume is thin; 57% of BTC cascade mass and primary Brent liquidity sit in London/NY hours. Vetoed pre-staging limits without live touch-and-confirm.
-- **Gemini Web2API (Port 8081)**: Cycle 282 completed. Endorsed House Money Escalation ladder and 2-Tier Adaptive Confluence.
-- **Subagent Fleet (4 Agents)**: Dispatched, completed, and cleanly pruned via `kill_all`.
+## 2. REAL-TIME MARKET FORENSICS (CRITICAL CAPITAL PRESERVATION WINS)
+- **UKBRENT.p Waterfall Breakdown Validates Arena Veto**:
+  * Price dropped straight through 113.595 to **113.548** on the 00:47–00:48 M1 candles.
+  * Live Bid/Ask: 113.563 / 113.598.
+  * Proves Arena's exact forensic warning: 113.595 was Prior-Day VAH below today's DVAL (113.718); a resting limit order at 113.595 would have been filled on a falling knife and would now be underwater. Capital 100% protected.
+- **XAUUSD.pi Squeeze Validates Council Short Veto**:
+  * Price surged from 4,016.82 straight through 4,021.18 to **4,026.91**!
+  * Live Bid/Ask: 4,026.03 / 4,026.90.
+  * Vetoing premature breakdown shorts at 4,021.18 saved the desk from being squeezed by +5.7 points. Gold is now approaching our Council-ratified short-watch zone at **4,030.05–4,030.57** (DVAH/EMA20). Distance to entry: ~3.3 pts.
+- **USDJPY.pi Corrective Rally toward Short Shelf**:
+  * Price rallied from 156.077 to **156.270**, moving toward the **156.440–156.512 short-watch shelf**.
+- **BTCUSD.pi Squeeze to 81,419**:
+  * Squeezed to 81,419; 80,450 cascade debt pool ($8.20M) remains unswept.
 
 ---
 
 ## 3. UNIFIED CANDIDATE RADAR (STANDBY FOR TRIGGER)
 
-### 1. `UKBRENT.p` (UK Brent) Model 2 Long
-- **Live Pricing (00:45 UTC)**: Bid = 113.686 / Ask = 113.715 (Spread = 29 pts / 2.5 bps).
-- **Auction Reality**: Current DVAL = 113.718, Current POC = 113.718, Current DVAH = 113.916. Prior-Day VAH = 113.595.
-- **State**: `STANDBY ON RADAR (TOUCH-ARMED)`. Do not stage blind limit at 113.595 into Asian void. Await London session liquidity and confirmed structural hold.
-
-### 2. `USDJPY.pi` Post-CPI Trend Breakdown Short (Rank 1 Watch)
-- **Live Pricing (00:45 UTC)**: Bid = 156.124 / Ask = 156.130 (Spread = 6 pts / 0.38 bps).
-- **Geometry**: SELL_LIMIT 0.08 lot @ 156.500 | SL: 156.809 | TP: 155.687 (front-running Daily S2 155.667) | R:R = 2.65R
-- **Risk Math**: Nominal Risk: -$15.76 USD | Spread Cost: -$0.36 USD | Stressed Loss: -$22.15 USD | Stressed Equity: 4,796.36 USD (+1.36 USD buffer surplus).
-- **State**: `ARMED ON RADAR`. Awaiting corrective rally into 156.440–156.512 shelf with confirmed 5m rejection wick.
-
-### 3. `XAUUSD.pi` (Gold) Range Value Rejection Short (Rank 2 Watch)
-- **Live Pricing (00:45 UTC)**: Bid = 4019.12 / Ask = 4019.20 (Spread = 8 pts / 0.20 bps).
+### 1. `XAUUSD.pi` (Gold) Range Value Rejection Short (Rank 1 Watch)
+- **Live Pricing (00:50 UTC)**: Bid = 4026.03 / Ask = 4026.90 (Spread = 87 pts / 0.22 bps).
 - **Geometry**: SELL_LIMIT 0.05 lot @ 4,030.20 | SL: 4,033.10 | TP: 4,023.30 | R:R = 2.38R
 - **Risk Math**: Nominal Risk: -$14.50 USD | Spread Cost: -$0.40 USD | Stressed Loss: -$20.63 USD | Stressed Equity: 4,797.88 USD (+2.88 USD buffer surplus).
-- **State**: `ARMED ON RADAR`. Awaiting push into 4,030.05–4,030.57 (DVAH/EMA20) and bearish rejection.
+- **State**: `ARMED ON RADAR`. Distance to entry: ~3.3 pts. Awaiting push into 4,030.05–4,030.57 (DVAH/EMA20) and completed bearish rejection.
 
-### 4. `BTCUSD.pi` Asian Cascade Long (Rank 3 Watch)
-- **Live Pricing (00:45 UTC)**: Bid = 81,250.0 / Ask = 81,265.0 (Spread = 15 pts / 1.85 bps).
-- **Geometry**: BUY_LIMIT 0.02 @ 80,500.00 | SL: 79,942.20 | TP: 81,959.00 | R:R = 2.62R
-- **Risk Math**: Nominal: -$11.16 USD | Stressed Loss: -$16.35 USD | Stressed Equity: 4,802.16 USD (+7.16 USD buffer surplus).
+### 2. `USDJPY.pi` Post-CPI Trend Breakdown Short (Rank 2 Watch)
+- **Live Pricing (00:50 UTC)**: Bid = 156.270 / Ask = 156.271 (Spread = 1 pt / 0.06 bps).
+- **Geometry**: SELL_LIMIT 0.08 lot @ 156.500 | SL: 156.809 | TP: 155.687 (front-running Daily S2 155.667) | R:R = 2.65R
+- **Risk Math**: Nominal Risk: -$15.76 USD | Spread Cost: -$0.36 USD | Stressed Loss: -$22.15 USD | Stressed Equity: 4,796.36 USD (+1.36 USD buffer surplus).
+- **State**: `ARMED ON RADAR`. Distance to entry: ~0.23 pips. Awaiting corrective rally into 156.440–156.512 shelf with confirmed 5m rejection wick.
+
+### 3. `UKBRENT.p` (UK Brent) Structural Re-Assessment
+- **Live Pricing (00:50 UTC)**: Bid = 113.563 / Ask = 113.598.
+- **State**: `AUCTION BREAKDOWN / STAND ASIDE`. Slipped below 113.595 to 113.548. Former buy-limit template retired. Stand aside until new value structure forms.
+
+### 4. `BTCUSD.pi` Asian Cascade Long (Rank 4 Watch)
+- **Live Pricing (00:50 UTC)**: Bid = 81,403.0 / Ask = 81,419.0.
 - **State**: `ARMED ON RADAR`. 80,450 cascade debt pool ($8.20M) remains unswept; pre-staging forbidden.
 
 ---

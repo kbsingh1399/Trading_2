@@ -497,10 +497,10 @@
     "currency": "JPY",
     "impact": "Low Impact",
     "event": "Flash Manufacturing PMI",
-    "actual": "",
+    "actual": "53.3",
     "forecast": "54.5",
     "previous": "54.1",
-    "outcome": "Pending",
+    "outcome": "Worse than Forecast",
     "url": ""
   },
   {
