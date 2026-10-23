@@ -1,5 +1,4 @@
 {
-  "current_index": 3,
-  "updated_at": "2026-10-23T10:13:07.778132+00:00",
-  "note": "Manually seeded - jobs 0,1,2 (Spot Netflow, LS 15M, Liq Heatmap) run at idx=0 every cycle due to missing state file. Picking up from idx=3 (LS Ratio 1H, LS Ratio 4H, Live Liq)"
+  "current_index": 6,
+  "updated_at": "2026-10-23T10:39:02.625093+00:00"
 }

@@ -30,38 +30,38 @@ CORE_BROWSER_JOBS = [
         "name": "Forex Factory Institutional News",
         "script": MODULES_DIR / "19_News.py",
         "sheet": "19_News",
-        "timeout": 90,
+        "timeout": 180,
     },
     {
         "id": 28,
         "name": "Forex Factory Macroeconomic Calendar",
         "script": MODULES_DIR / "19_Calendar.py",
         "sheet": "19_Calendar",
-        "timeout": 90,
+        "timeout": 180,
     },
     {
         "id": 18,
         "name": "CoinGlass Whale Orders & Large Trades",
         "script": MODULES_DIR / "10_Whale_Orders.py",
         "sheet": "10_Whale_Orders",
-        "timeout": 90,
+        "timeout": 180,
     },
 ]
 
 # Rotating CoinGlass scraping jobs (3 per cycle, fully rotating every 4 cycles / ~10-12 min)
 ROTATING_COINGLASS_JOBS = [
-    {"id": 2, "name": "Spot Netflow", "script": MODULES_DIR / "2_Spot_Netflow_S.py", "sheet": "2_Spot_Netflow_S", "timeout": 90},
-    {"id": 3, "name": "Exchanges Long/Short Ratio 15M", "script": MODULES_DIR / "3_Exchanges_LS_Ratio_15M.py", "sheet": "3_Exchanges_LS_Ratio_15M", "timeout": 90},
-    {"id": 10, "name": "Liquidation Heatmap", "script": MODULES_DIR / "7_Liq_Heapmap.py", "sheet": "7_Liq_Heapmap", "timeout": 90},
-    {"id": 4, "name": "Exchanges Long/Short Ratio 1H", "script": MODULES_DIR / "3_Exchanges_LS_Ratio_1H.py", "sheet": "3_Exchanges_LS_Ratio_1H", "timeout": 90},
-    {"id": 5, "name": "Exchanges Long/Short Ratio 4H", "script": MODULES_DIR / "3_Exchanges_LS_Ratio_4H.py", "sheet": "3_Exchanges_LS_Ratio_4H", "timeout": 90},
-    {"id": 11, "name": "Live Liquidations", "script": MODULES_DIR / "7_Live_Liq.py", "sheet": "7_Live_Liq", "timeout": 90},
-    {"id": 12, "name": "Exchange Liquidation Map 1D", "script": MODULES_DIR / "8_Exchange_Liquidation_Map_1D.py", "sheet": "8_Exchange_Liquidation_Map_1D", "timeout": 90},
-    {"id": 13, "name": "Exchange Liquidation Map 7D", "script": MODULES_DIR / "8_Exchange_Liquidation_Map_7D.py", "sheet": "8_Exchange_Liquidation_Map_7D", "timeout": 90},
-    {"id": 14, "name": "Liquidation Max Pain 24H", "script": MODULES_DIR / "9_Liquidation_Max_Pain_24H.py", "sheet": "9_Liquidation_Max_Pain_24H", "timeout": 90},
-    {"id": 15, "name": "Liquidation Max Pain 48H", "script": MODULES_DIR / "9_Liquidation_Max_Pain_48H.py", "sheet": "9_Liquidation_Max_Pain_48H", "timeout": 90},
-    {"id": 16, "name": "Liquidation Max Pain 3D", "script": MODULES_DIR / "9_Liquidation_Max_Pain_3D.py", "sheet": "9_Liquidation_Max_Pain_3D", "timeout": 90},
-    {"id": 17, "name": "Liquidation Max Pain 7D", "script": MODULES_DIR / "9_Liquidation_Max_Pain_7D.py", "sheet": "9_Liquidation_Max_Pain_7D", "timeout": 90},
+    {"id": 2, "name": "Spot Netflow", "script": MODULES_DIR / "2_Spot_Netflow_S.py", "sheet": "2_Spot_Netflow_S", "timeout": 180},
+    {"id": 3, "name": "Exchanges Long/Short Ratio 15M", "script": MODULES_DIR / "3_Exchanges_LS_Ratio_15M.py", "sheet": "3_Exchanges_LS_Ratio_15M", "timeout": 180},
+    {"id": 10, "name": "Liquidation Heatmap", "script": MODULES_DIR / "7_Liq_Heapmap.py", "sheet": "7_Liq_Heapmap", "timeout": 180},
+    {"id": 4, "name": "Exchanges Long/Short Ratio 1H", "script": MODULES_DIR / "3_Exchanges_LS_Ratio_1H.py", "sheet": "3_Exchanges_LS_Ratio_1H", "timeout": 180},
+    {"id": 5, "name": "Exchanges Long/Short Ratio 4H", "script": MODULES_DIR / "3_Exchanges_LS_Ratio_4H.py", "sheet": "3_Exchanges_LS_Ratio_4H", "timeout": 180},
+    {"id": 11, "name": "Live Liquidations", "script": MODULES_DIR / "7_Live_Liq.py", "sheet": "7_Live_Liq", "timeout": 180},
+    {"id": 12, "name": "Exchange Liquidation Map 1D", "script": MODULES_DIR / "8_Exchange_Liquidation_Map_1D.py", "sheet": "8_Exchange_Liquidation_Map_1D", "timeout": 180},
+    {"id": 13, "name": "Exchange Liquidation Map 7D", "script": MODULES_DIR / "8_Exchange_Liquidation_Map_7D.py", "sheet": "8_Exchange_Liquidation_Map_7D", "timeout": 180},
+    {"id": 14, "name": "Liquidation Max Pain 24H", "script": MODULES_DIR / "9_Liquidation_Max_Pain_24H.py", "sheet": "9_Liquidation_Max_Pain_24H", "timeout": 180},
+    {"id": 15, "name": "Liquidation Max Pain 48H", "script": MODULES_DIR / "9_Liquidation_Max_Pain_48H.py", "sheet": "9_Liquidation_Max_Pain_48H", "timeout": 180},
+    {"id": 16, "name": "Liquidation Max Pain 3D", "script": MODULES_DIR / "9_Liquidation_Max_Pain_3D.py", "sheet": "9_Liquidation_Max_Pain_3D", "timeout": 180},
+    {"id": 17, "name": "Liquidation Max Pain 7D", "script": MODULES_DIR / "9_Liquidation_Max_Pain_7D.py", "sheet": "9_Liquidation_Max_Pain_7D", "timeout": 180},
 ]
 
 STATE_FILE = ROOT_DIR / "Data" / "cdp_rotation_state.json"
