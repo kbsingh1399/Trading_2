@@ -1,227 +1,164 @@
-"""
-Terminal/run_comprehensive_universe_scanner.py
-===============================================
-Comprehensive 156-Asset Multi-Asset Opportunity Scanner.
-Scans all tradeable symbols on Blueberry Markets MT5.
-Applies:
-1. Spread friction gate (Spread / TP <= 15.0%)
-2. Structural invalidation stops (tight 0.35-0.50 ATR beyond swing extremes)
-3. Expanded R:R targets (2.50R - 4.50R)
-4. MT5 broker profit calculation (mt5.order_calc_profit)
-5. Solvency defense (Individual Stressed Equity >= 4,795.00 USD)
-Outputs a ranked Master Candidate Radar Matrix across Crypto, Metals, Indices, Forex.
-"""
-
+"""Read-only structural radar. Candidates require the full council hard gates."""
+import math
+import sys
+from decimal import Decimal, ROUND_FLOOR, ROUND_CEILING
+from pathlib import Path
+from datetime import datetime, timezone
 import MetaTrader5 as mt5
 import numpy as np
-import json
-import pathlib
-from datetime import datetime, timezone
 
-if not mt5.initialize():
-    print("MT5 initialization failed")
-    exit(1)
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+from Terminal.generate_cycle_envelope import read_inventory, atomic_json, KERNEL_FLOOR, GLOBAL_RESERVE
 
-acc = mt5.account_info()
-equity = acc.equity
-hard_floor = 4600.00
-buffer_floor = 4650.00
-buffer_cushion = max(0.0, equity - buffer_floor)
-# Dynamic nominal risk target to strictly respect the operating buffer under 1.25x slippage + $2 comm
-target_risk = max(10.0, min(25.0, (buffer_cushion - 2.50) / 1.25))
-print(f"Live Equity: {equity:.2f} USD | Buffer Cushion: +{buffer_cushion:.2f} USD | Dynamic Target Risk: {target_risk:.2f} USD")
 
-# Get all symbols available on the broker
-all_symbols = mt5.symbols_get()
-print(f"Total Broker Symbols Found: {len(all_symbols)}")
+def snap(price, tick, up=False):
+    value = Decimal(str(price)) / Decimal(str(tick))
+    return float(value.to_integral_value(rounding=ROUND_CEILING if up else ROUND_FLOOR) * Decimal(str(tick)))
 
-# Focus on tradeable symbols
-tradeable = [s for s in all_symbols if s.trade_mode != 0 and s.visible]
-print(f"Active Visible Symbols: {len(tradeable)}")
 
-candidates = []
+def lot_star(api, info, buy, entry, stop, risk_budget, free_margin):
+    """Largest broker-grid lot satisfying native stop risk and free margin."""
+    values = (info.volume_min, info.volume_max, info.volume_step, risk_budget, free_margin)
+    if any(not math.isfinite(float(v)) or v <= 0 for v in values) or info.volume_min > info.volume_max:
+        return None
+    low, high, step = map(lambda v: Decimal(str(v)), (info.volume_min, info.volume_max, info.volume_step))
+    left, right = 0, int((high-low)/step)
+    best = None
+    while left <= right:
+        index = (left+right)//2
+        volume = float(low + index*step)
+        kind = api.ORDER_TYPE_BUY if buy else api.ORDER_TYPE_SELL
+        loss = api.order_calc_profit(kind, info.name, volume, entry, stop)
+        margin = api.order_calc_margin(kind, info.name, volume, entry)
+        if (loss is None or margin is None or not math.isfinite(float(loss))
+                or not math.isfinite(float(margin)) or loss >= 0 or margin < 0):
+            return None
+        if abs(loss) <= risk_budget + 1e-9 and margin <= free_margin:
+            best = {"lot": volume, "risk_usd": abs(float(loss)), "margin_usd": float(margin)}
+            left = index + 1
+        else:
+            right = index - 1
+    return best
 
-for s in tradeable:
-    sym = s.name
-    tick = mt5.symbol_info_tick(sym)
-    if not tick or tick.bid == 0 or tick.ask == 0:
-        continue
-    
-    spread = tick.ask - tick.bid
-    if spread <= 0:
-        continue
-        
-    # Get M15 rates (last 60 bars)
-    rates = mt5.copy_rates_from_pos(sym, mt5.TIMEFRAME_M15, 0, 60)
-    if rates is None or len(rates) < 30:
-        continue
-        
-    highs = np.array([r[2] for r in rates])
-    lows = np.array([r[3] for r in rates])
-    closes = np.array([r[4] for r in rates])
-    
-    # ATR 14
-    tr = np.maximum(highs[1:] - lows[1:], np.maximum(np.abs(highs[1:] - closes[:-1]), np.abs(lows[1:] - closes[:-1])))
-    atr = float(np.mean(tr[-14:]))
-    if atr <= 0:
-        continue
-        
-    # EMA 20 & 50
-    alpha20 = 2.0 / 21.0
-    alpha50 = 2.0 / 51.0
-    ema20 = float(closes[0])
-    ema50 = float(closes[0])
-    for c in closes[1:]:
-        ema20 = alpha20 * c + (1.0 - alpha20) * ema20
-        ema50 = alpha50 * c + (1.0 - alpha50) * ema50
-        
-    recent_high = float(np.max(highs[-20:]))
-    recent_low = float(np.min(lows[-20:]))
-    current_close = float(closes[-1])
-    
-    ts = s.trade_tick_size
-    if ts <= 0:
-        ts = 10 ** (-s.digits)
-        
-    # Determine Asset Category
-    category = "Other"
-    sym_u = sym.upper()
-    if any(k in sym_u for k in ["BTC", "ETH", "SOL", "XRP", "DOGE", "AVAX", "NEAR", "ADA", "BNB", "DOT", "LINK", "LTC", "BCH", "UNI", "AAVE", "ZEC", "XLM", "XMR"]):
-        category = "Crypto"
-    elif any(k in sym_u for k in ["XAU", "GOLD", "XAG", "SILVER", "WTI", "BRENT", "OIL", "COPPER", "GAS"]):
-        category = "Commodities/Metals"
-    elif any(k in sym_u for k in ["SP500", "NAS100", "DJ30", "GER40", "UK100", "US30", "US100", "US500", "JP225", "AU200", "HK50", "STOXX50"]):
-        category = "Indices"
-    elif any(k in sym_u for k in ["EUR", "GBP", "USD", "AUD", "CAD", "CHF", "JPY", "NZD", "SEK", "NOK"]):
-        category = "Forex"
-        
-    # --- SETUP 1: BUY_LIMIT (Bullish Pullback / Sweep of recent low) ---
-    # Entry at recent_low or EMA20 pullback (if trend is up)
-    if current_close >= ema50: # Bullish or consolidating
-        entry_b = recent_low
-        sl_b = entry_b - (0.35 * atr)
-        risk_pts_b = entry_b - sl_b
-        tp_b = entry_b + (3.0 * risk_pts_b)
-        
-        # Snap to tick
-        entry_b = round(round(entry_b / ts) * ts, s.digits)
-        sl_b = round(round(sl_b / ts) * ts, s.digits)
-        tp_b = round(round(tp_b / ts) * ts, s.digits)
-        
-        # Check passivity: entry must be below current bid
-        if entry_b < tick.bid:
-            dist_pct_b = (tick.bid - entry_b) / tick.bid * 100.0
-            tp_dist_b = abs(tp_b - entry_b)
-            spread_tp_b = (spread / tp_dist_b * 100.0) if tp_dist_b > 0 else 999.0
-            
-            if spread_tp_b <= 15.0 and dist_pct_b <= 4.0: # Good friction and within 4% of market
-                # Calculate lot for target risk $20.00
-                loss_min = mt5.order_calc_profit(mt5.ORDER_TYPE_BUY, sym, s.volume_min, entry_b, sl_b)
-                if loss_min and loss_min < 0:
-                    scale = abs(target_risk / loss_min)
-                    lot = round(s.volume_min * scale / s.volume_step) * s.volume_step
-                    lot = max(s.volume_min, min(lot, s.volume_max))
-                    lot = round(lot, 2)
-                    
-                    act_loss = mt5.order_calc_profit(mt5.ORDER_TYPE_BUY, sym, lot, entry_b, sl_b)
-                    act_prof = mt5.order_calc_profit(mt5.ORDER_TYPE_BUY, sym, lot, entry_b, tp_b)
-                    
-                    if act_loss and act_prof and act_loss < 0 and act_prof > 0:
-                        stressed_loss = abs(act_loss) * 1.25 + 2.0
-                        stressed_eq = equity - stressed_loss
-                        
-                        if stressed_eq >= buffer_floor: # Preserves $4,795 buffer!
-                            rr = abs(act_prof / act_loss)
-                            candidates.append({
-                                "symbol": sym,
-                                "category": category,
-                                "side": "BUY_LIMIT",
-                                "entry": entry_b,
-                                "sl": sl_b,
-                                "tp": tp_b,
-                                "lot": lot,
-                                "risk_usd": round(abs(act_loss), 2),
-                                "profit_usd": round(act_prof, 2),
-                                "rr": round(rr, 2),
-                                "spread_tp_pct": round(spread_tp_b, 2),
-                                "dist_to_fill_pct": round(dist_pct_b, 2),
-                                "stressed_equity": round(stressed_eq, 2),
-                                "buffer_surplus": round(stressed_eq - buffer_floor, 2),
-                                "floor_surplus": round(stressed_eq - hard_floor, 2)
-                            })
-                            
-    # --- SETUP 2: SELL_LIMIT (Bearish Rally / Sweep of recent high) ---
-    if current_close <= ema20: # Bearish or relief rally
-        entry_s = recent_high
-        sl_s = entry_s + (0.35 * atr)
-        risk_pts_s = sl_s - entry_s
-        tp_s = entry_s - (3.0 * risk_pts_s)
-        
-        entry_s = round(round(entry_s / ts) * ts, s.digits)
-        sl_s = round(round(sl_s / ts) * ts, s.digits)
-        tp_s = round(round(tp_s / ts) * ts, s.digits)
-        
-        # Check passivity: entry must be above current ask
-        if entry_s > tick.ask:
-            dist_pct_s = (entry_s - tick.ask) / tick.ask * 100.0
-            tp_dist_s = abs(entry_s - tp_s)
-            spread_tp_s = (spread / tp_dist_s * 100.0) if tp_dist_s > 0 else 999.0
-            
-            if spread_tp_s <= 15.0 and dist_pct_s <= 4.0:
-                loss_min_s = mt5.order_calc_profit(mt5.ORDER_TYPE_SELL, sym, s.volume_min, entry_s, sl_s)
-                if loss_min_s and loss_min_s < 0:
-                    scale_s = abs(target_risk / loss_min_s)
-                    lot_s = round(s.volume_min * scale_s / s.volume_step) * s.volume_step
-                    lot_s = max(s.volume_min, min(lot_s, s.volume_max))
-                    lot_s = round(lot_s, 2)
-                    
-                    act_loss_s = mt5.order_calc_profit(mt5.ORDER_TYPE_SELL, sym, lot_s, entry_s, sl_s)
-                    act_prof_s = mt5.order_calc_profit(mt5.ORDER_TYPE_SELL, sym, lot_s, entry_s, tp_s)
-                    
-                    if act_loss_s and act_prof_s and act_loss_s < 0 and act_prof_s > 0:
-                        stressed_loss_s = abs(act_loss_s) * 1.25 + 2.0
-                        stressed_eq_s = equity - stressed_loss_s
-                        
-                        if stressed_eq_s >= buffer_floor:
-                            rr_s = abs(act_prof_s / act_loss_s)
-                            candidates.append({
-                                "symbol": sym,
-                                "category": category,
-                                "side": "SELL_LIMIT",
-                                "entry": entry_s,
-                                "sl": sl_s,
-                                "tp": tp_s,
-                                "lot": lot_s,
-                                "risk_usd": round(abs(act_loss_s), 2),
-                                "profit_usd": round(act_prof_s, 2),
-                                "rr": round(rr_s, 2),
-                                "spread_tp_pct": round(spread_tp_s, 2),
-                                "dist_to_fill_pct": round(dist_pct_s, 2),
-                                "stressed_equity": round(stressed_eq_s, 2),
-                                "buffer_surplus": round(stressed_eq_s - buffer_floor, 2),
-                                "floor_surplus": round(stressed_eq_s - hard_floor, 2)
-                            })
 
-mt5.shutdown()
+def category_of(info):
+    label = (getattr(info, "path", "") + " " + info.name).upper()
+    if "CRYPTO" in label or any(x in info.name.upper() for x in ("BTC", "ETH", "SOL", "LTC", "XRP", "DOG", "BNB")):
+        return "Crypto"
+    if any(x in label for x in ("INDIC", "SP500", "NAS100", "DJ30", "GER40", "UK100", "US30", "JP225")):
+        return "Indices"
+    if any(x in label for x in ("METAL", "COMMOD", "XAU", "XAG", "WTI", "BRENT", "OIL")):
+        return "Commodities/Metals"
+    return "Forex/Other"
 
-print(f"\nTotal Qualified Candidates Identified: {len(candidates)}")
 
-# Group by category and sort by proximity to fill (dist_to_fill_pct)
-categories = ["Crypto", "Commodities/Metals", "Indices", "Forex"]
-output_report = {}
+def scan(api, now=None):
+    now = now or datetime.now(timezone.utc)
+    account, positions, orders, solvency = read_inventory(api)
+    symbols = api.symbols_get()
+    if symbols is None:
+        raise RuntimeError("symbol_inventory_unavailable")
+    target = min(solvency["risk_max_usd"], solvency["nominal_risk_capacity_usd"])
+    print(f"Balance: {account['balance']:.2f} USD | Equity: {account['equity']:.2f} USD | {solvency['capital_mode']}")
+    print(f"Capital Risk Band: {solvency['risk_min_usd']:.2f} to {solvency['risk_max_usd']:.2f} USD | Dynamic Target Risk: {target:.2f} USD")
+    print(f"Realized Headroom: {solvency['realized_headroom_usd']:.2f} USD | Existing Tickets: {len(positions)+len(orders)}/2")
+    candidates, vetoes = [], {}
+    active = [s for s in symbols if s.trade_mode != 0 and s.visible]
+    pending_margin = 0.0
+    for order in orders:
+        kind = api.ORDER_TYPE_BUY if order["type"] in (2, 4, 6) else api.ORDER_TYPE_SELL
+        margin = api.order_calc_margin(kind, order["symbol"], order["volume_current"], order["price_open"])
+        if margin is None or not math.isfinite(float(margin)) or margin < 0:
+            raise RuntimeError("pending_margin_unknown")
+        pending_margin += margin
+    available_margin = max(0.0, account["margin_free"] - pending_margin)
+    if not solvency["new_risk_admissible"]:
+        vetoes["portfolio"] = "capital_or_capacity_unavailable"
+    else:
+        for info in active:
+            symbol, category = info.name, category_of(info)
+            # This radar cannot certify native holidays, session calendars or
+            # row-level workbook freshness. Full hard gates remain external.
+            if now.weekday() >= 5 and category != "Crypto":
+                vetoes[symbol] = "WATCHLIST_ONLY_WEEKEND_NATIVE_MARKET_CLOSED"
+                continue
+            try:
+                quote = api.symbol_info_tick(symbol)
+                if quote is None or not 0 < quote.bid < quote.ask:
+                    raise ValueError("quote_unavailable_or_crossed")
+                rates = api.copy_rates_from_pos(symbol, api.TIMEFRAME_M15, 1, 60)
+                if rates is None or len(rates) < 50:
+                    raise ValueError("completed_bars_insufficient")
+                highs, lows, closes = (np.asarray(rates[key], dtype=float) for key in ("high", "low", "close"))
+                if any(not np.isfinite(a).all() or np.any(a <= 0) for a in (highs, lows, closes)):
+                    raise ValueError("bar_prices_invalid")
+                tr = np.maximum(highs[1:]-lows[1:], np.maximum(abs(highs[1:]-closes[:-1]), abs(lows[1:]-closes[:-1])))
+                atr = float(tr[-14:].mean())
+                tick = float(info.trade_tick_size)
+                if not math.isfinite(atr) or atr <= 0 or not math.isfinite(tick) or tick <= 0:
+                    raise ValueError("atr_or_tick_invalid")
+                ema20 = ema50 = float(closes[0])
+                for close in closes[1:]:
+                    ema20 += 2/21*(close-ema20)
+                    ema50 += 2/51*(close-ema50)
+                for buy, eligible in ((True, closes[-1] >= ema50), (False, closes[-1] <= ema20)):
+                    if not eligible:
+                        continue
+                    entry = snap(float(min(lows[-20:]) if buy else max(highs[-20:])), tick, up=not buy)
+                    stop = snap(entry+(-.35 if buy else .35)*atr, tick, up=not buy)
+                    target_price = snap(entry+(1 if buy else -1)*3*abs(entry-stop), tick, up=not buy)
+                    if not (stop < entry < target_price and entry < quote.bid if buy
+                            else target_price < entry < stop and entry > quote.ask):
+                        continue
+                    if (quote.ask-quote.bid)/abs(target_price-entry) > .15:
+                        continue
+                    if abs((quote.bid if buy else quote.ask)-entry) > 2*atr:
+                        continue
+                    sized = lot_star(api, info, buy, entry, stop, target, available_margin)
+                    if sized is None or sized["risk_usd"] < solvency["risk_min_usd"]-1e-9:
+                        continue
+                    total_stress = GLOBAL_RESERVE+solvency["existing_ticket_stress_usd"]+1.25*sized["risk_usd"]+2
+                    post = min(account["balance"], account["equity"])-total_stress
+                    if post < KERNEL_FLOOR:
+                        continue
+                    request = {"action": api.TRADE_ACTION_PENDING, "symbol": symbol,
+                               "type": api.ORDER_TYPE_BUY_LIMIT if buy else api.ORDER_TYPE_SELL_LIMIT,
+                               "volume": sized["lot"], "price": entry, "sl": stop, "tp": target_price,
+                               "type_time": api.ORDER_TIME_GTC, "type_filling": api.ORDER_FILLING_RETURN}
+                    checked = api.order_check(request)
+                    if checked is None or checked.retcode != 0:
+                        vetoes[symbol] = "broker_order_check_failed"
+                        continue
+                    candidates.append({"symbol": symbol, "category": category,
+                                       "side": "BUY_LIMIT" if buy else "SELL_LIMIT",
+                                       "entry": entry, "sl": stop, "tp": target_price, **sized,
+                                       "stressed_equity": post, "order_check_retcode": checked.retcode,
+                                       "authorization": "WATCHLIST_ONLY_PENDING_FULL_HARD_GATES",
+                                       "p_fill": None, "p_tp": None, "ev_net": None, "utility": None})
+            except (ValueError, TypeError, KeyError, AttributeError, OverflowError) as exc:
+                vetoes[symbol] = str(exc)
+    report = {"timestamp": now.isoformat(), "account_login": account["login"],
+              "total": len(candidates), "symbols_evaluated": len(active), "broker_symbols": len(symbols),
+              "risk_policy": solvency, "vetoes": vetoes,
+              "authorization": "WATCHLIST_ONLY_PENDING_FULL_HARD_GATES",
+              "pipeline": {c: [r for r in candidates if r["category"] == c]
+                           for c in ("Crypto", "Indices", "Commodities/Metals", "Forex/Other")}}
+    print(f"Evaluated: {len(active)} visible symbols | Structural watchlist candidates: {len(candidates)}")
+    return report
 
-for cat in categories:
-    cat_candidates = [c for c in candidates if c["category"] == cat]
-    cat_candidates.sort(key=lambda x: x["dist_to_fill_pct"])
-    output_report[cat] = cat_candidates
-    print(f"\n=== {cat.upper()} ({len(cat_candidates)} Candidates) ===")
-    for i, c in enumerate(cat_candidates[:8]): # Top 8 closest to execution
-        print(f"  {i+1}. {c['symbol']:12s} {c['side']:10s} Vol={c['lot']:.2f} | Entry={c['entry']} | SL={c['sl']} | TP={c['tp']} | R:R={c['rr']} | Risk=${c['risk_usd']} | Profit=+${c['profit_usd']} | Dist={c['dist_to_fill_pct']:.2f}% | Spread={c['spread_tp_pct']:.1f}%")
 
-# Save to JSON
-out_path = pathlib.Path("Data/telemetry/potential_candidates_pipeline.json")
-out_path.parent.mkdir(parents=True, exist_ok=True)
-with open(out_path, "w", encoding="utf-8") as f:
-    json.dump({"timestamp": datetime.now(timezone.utc).isoformat(), "total": len(candidates), "pipeline": output_report}, f, indent=2)
+def main():
+    if not mt5.initialize():
+        raise RuntimeError(f"MT5 initialization failed: {mt5.last_error()}")
+    try:
+        report = scan(mt5)
+    finally:
+        mt5.shutdown()
+    atomic_json(ROOT / "Data/telemetry/potential_candidates_pipeline.json", report)
+    return report
 
-print(f"\nSaved full pipeline to {out_path}")
+
+if __name__ == "__main__":
+    main()

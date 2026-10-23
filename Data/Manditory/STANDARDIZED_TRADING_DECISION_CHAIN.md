@@ -102,15 +102,15 @@ flowchart TD
 7. **`/brainstorm` (Multi-Perspective Dialectic & Persona Stress-Testing)**:
    - Simulates adversarial multi-agent debate (Orderflow Specialist vs Macro Risk Officer vs Forensic Position Auditor). Tests edge cases: *What if the whale pulls? What if the market blows through the cascade?*
 8. **`/verify` (Ex-Ante Pre-Execution Gate & Boundary Verification)**:
-   - Mathematical proof before dispatch. Verifies cash risk calculations against `mt5.order_calc_profit`, checks hard floor cushion (>= 4,600 USD), verifies passive limit posture, and validates SL/TP placement.
+   - Mathematical proof before dispatch. Verifies cash risk calculations against `mt5.order_calc_profit`, the 4,795.00 USD kernel admission floor after joint stress and reserves, the 4,650.00 USD buffer and 4,600.00 USD hard floor, passive limit posture, and SL/TP placement.
 9. **`/risk-engine` (Stressed Multi-Ticket Floor Defense Simulator)**:
-   - Computes worst-case stressed equity across all open and staged tickets: $\text{Stressed Equity} = \text{Current Equity} - \sum (\text{Risk}_i \times 1.25 + 2.00) \ge 4,795.00\text{ USD}$ (preserving a mandatory $+20.00\text{ USD}$ operating buffer above the $4,775.00\text{ USD}$ absolute hard floor).
+   - Computes worst-case joint stress for all open and independently fillable pending tickets: `min(balance,equity) - max_joint_sum(1.25 * NominalLoss_i + 2.00 USD) - 2.00 USD global reserve >= 4,795.00 USD`. The kernel admission floor is stricter than the 4,650.00 USD operating buffer and 4,600.00 USD hard floor.
 10. **`/execution-sim` (Microstructure Execution & Friction Compensation)**:
-    - Models half-spread offset ($\text{Entry} = \text{Shelf} - \text{half\_spread}$ for longs, $\text{Shelf} + \text{half\_spread}$ for shorts), verifies `ORDER_FILLING_IOC` with automatic failover to `RETURN` and `FOK`.
+    - Models half-spread offset (\(\text{Entry} = \text{Shelf} - \text{half\_spread}\) for longs, \(\text{Shelf} + \text{half\_spread}\) for shorts), verifies `ORDER_FILLING_IOC` with automatic failover to `RETURN` and `FOK`.
 11. **`/onchain-forensics` (Hyperliquid L1 & Hyperdash Institutional Whale Intelligence)**:
     - Parses live decentralized whale positions (`4_Hyperliquid_Analysis`), tracks 2,001 individual whale wallets, monitors institutional Telegram block trade alerts (`16_Hyperdash_telegram_Intel`), and calculates 1h to 7d spot exchange netflows (`2_Spot_Netflow_S`).
 12. **`/market-microstructure` (Orderbook Replenishment & Spoof Detection)**:
-    - Analyzes L2 replenishment velocity $d(\text{depth})/dt$, calculates book imbalance ratios, and filters out phantom/ephemeral orders using presence fraction ($\ge 0.85$) and minimum persistence ($\ge 180\text{s}$).
+    - Analyzes L2 replenishment velocity \(d(\text{depth})/dt\), calculates book imbalance ratios, and filters out phantom/ephemeral orders using presence fraction (\(\ge 0.85\)) and minimum persistence (\(\ge 180\text{s}\)).
 
 ---
 
@@ -139,14 +139,14 @@ flowchart TD
 | **09** | `5_Funding_Rate` | **Cross-Exchange Perpetual Funding** | `Asset`, `Symbol`, `Binance FR`, `Bybit FR`, `OKX FR`, `dYdX FR`, `Bitget FR`, `Gate FR`, `Predicted Next FR`, `Annualized FR %`, `Cumulative 7D FR %`, `Funding Bias`, `Timestamp UTC`. | Pinpoints extreme leverage imbalances across 12 venues. Funding > +0.03% warns of long flush vulnerability; negative funding (< -0.02%) sets up explosive short squeezes. |
 | **10** | `6_Funding_Fee_Settlement` | **Funding Fee Settlement & Friction** | `Asset`, `Exchange`, `Settlement Interval (8h/4h/1h)`, `Next Funding Time UTC`, `Current Rate`, `Estimated Fee USD (per 10k notional)`, `24h Fee Total`, `Annualized Carrying Cost`, `Crowding Risk Indicator`, `Timestamp UTC`. | Evaluates holding friction for multi-hour swing positions; prevents staging positions immediately ahead of heavy adverse funding fee debits. |
 | **11** | `7_Liq_Heapmap` | **Clustered Liquidation Heatmap** | `Asset`, `Timeframe`, `Clustered Liq Price`, `Total Liq Volume (USD)`, `Long Liq Volume (USD)`, `Short Liq Volume (USD)`, `Distance to Current Price %`, `Timestamp UTC`. | Locates dense liquidation clusters across timeframes. Serves as primary target magnets where cascading liquidations guarantee exit fill liquidity. |
-| **12** | `7_Live_Liq` | **Real-Time Liquidation Stream** | `Timestamp`, `Asset/Symbol`, `Exchange`, `Side (Long/Short)`, `Liquidation USD`, `Liquidation Quantity`, `Liquidation Price`, `Mark Price`. | Real-time tape reading of forced liquidations. Detects liquidation climax flushes (e.g. > $5M longs wiped in 60s) signaling capitulation and mean-reversion bottoms. |
+| **12** | `7_Live_Liq` | **Real-Time Liquidation Stream** | `Timestamp`, `Asset/Symbol`, `Exchange`, `Side (Long/Short)`, `Liquidation USD`, `Liquidation Quantity`, `Liquidation Price`, `Mark Price`. | Real-time tape reading of forced liquidations. Detects liquidation climax flushes (e.g. > 5M USD longs wiped in 60s) signaling capitulation and mean-reversion bottoms. |
 | **13** | `8_Exchange_Liquidation_Map_1D` | **24H Exchange Liquidation Surface** | `Asset`, `Timeframe (1D)`, `Price Bucket`, `Long Cumulative Liq USD`, `Short Cumulative Liq USD`, `Net Delta Liq USD`, `Density Score`, `Nearest Magnet Flag`, `Timestamp UTC`. | Intraday offensive/defensive geometry: Stop Loss must sit safely outside nearest sweep band [min_price, max_price] + 0.50 ATR; Take Profit front-runs opposing band by 5-10 bps. |
 | **14** | `9_Liquidation_Max_Pain_24H` | **24H Liquidation Max Pain** | `Asset`, `Timeframe (24H)`, `Current Price`, `Max Pain Strike Price`, `Distance to Max Pain %`, `Total Long Risk USD`, `Total Short Risk USD`, `Pain Disparity Ratio`, `Target Bias`, `Timestamp UTC`. | Market-maker gravitational attraction strike where aggregate intraday open contracts experience maximum loss. |
 | **15** | `9_Liquidation_Max_Pain_48H` | **48H Distal Liquidation Max Pain** | `Asset`, `Timeframe (48H)`, `Current Price`, `Max Pain Strike Price`, `Distance to Max Pain %`, `Total Long Risk USD`, `Total Short Risk USD`, `Pain Disparity Ratio`, `Target Bias`, `Timestamp UTC`. | Multi-day structural target magnet for runner positions. |
 | **16** | `9_Liquidation_Max_Pain_3D` | **3D Liquidation Max Pain** | `Asset`, `Timeframe (3D)`, `Current Price`, `Max Pain Strike Price`, `Distance to Max Pain %`, `Total Long Risk USD`, `Total Short Risk USD`, `Pain Disparity Ratio`, `Target Bias`, `Timestamp UTC`. | Swing-horizon max pain strike anchoring weekly balance-of-power shifts. |
 | **17** | `9_Liquidation_Max_Pain_7D` | **7D Macro Liquidation Max Pain** | `Asset`, `Timeframe (7D)`, `Current Price`, `Max Pain Strike Price`, `Distance to Max Pain %`, `Total Long Risk USD`, `Total Short Risk USD`, `Pain Disparity Ratio`, `Target Bias`, `Timestamp UTC`. | Macro weekly max pain target defining the prevailing weekly auction bias. |
-| **18** | `8_Exchange_Liquidation_Map_7D` | **7D Cumulative Liquidation Surface** | `Asset`, `Timeframe (7D)`, `Price Bucket`, `Long Cumulative Liq USD`, `Short Cumulative Liq USD`, `Net Delta Liq USD`, `Density Score`, `Nearest Magnet Flag`, `Timestamp UTC`. | High-conviction macro TP magnet selection: targets multi-hundred-million-dollar squeeze pools (e.g. $1B+ short liquidation pools on BTC). |
-| **19** | `10_Whale_Orders` | **Resting Whale Orders (> $100K USD)** | `Sr. No.`, `Asset`, `Venue/Exchange`, `Side (BUY/SELL)`, `Price`, `From Price`, `Initial USD`, `Remaining USD`, `Filled USD`, `Duration`, `Status`, `Distance to Spot %`, `Whale Entity Tag`, `Timestamp UTC`. | Inviolable stop bunker anchor: Stop Loss MUST shelter behind persistent resting whale bids (longs) or asks (shorts) with confirmed persistence (persist >= 180s). |
+| **18** | `8_Exchange_Liquidation_Map_7D` | **7D Cumulative Liquidation Surface** | `Asset`, `Timeframe (7D)`, `Price Bucket`, `Long Cumulative Liq USD`, `Short Cumulative Liq USD`, `Net Delta Liq USD`, `Density Score`, `Nearest Magnet Flag`, `Timestamp UTC`. | High-conviction macro TP magnet selection: targets multi-hundred-million-dollar squeeze pools (e.g. 1B USD+ short liquidation pools on BTC). |
+| **19** | `10_Whale_Orders` | **Resting Whale Orders (> 100K USD)** | `Sr. No.`, `Asset`, `Venue/Exchange`, `Side (BUY/SELL)`, `Price`, `From Price`, `Initial USD`, `Remaining USD`, `Filled USD`, `Duration`, `Status`, `Distance to Spot %`, `Whale Entity Tag`, `Timestamp UTC`. | Inviolable stop bunker anchor: Stop Loss MUST shelter behind persistent resting whale bids (longs) or asks (shorts) with confirmed persistence (persist >= 180s). |
 | **20** | `11_Technical` | **Quantitative Indicators & VWAP Bands** | `Asset`, `Close`, `20 EMA`, `50 EMA`, `100 EMA`, `200 EMA`, `VWAP`, `VWAP +1.0 SD`, `VWAP +2.0 SD`, `VWAP -1.0 SD`, `VWAP -2.0 SD`, `VWAP Z-Score`, `RSI-14`, `ATR-14`, `Volume Profile POC`, `VAH`, `VAL`, `Trend Regime`, `Timestamp UTC`. | Primary statistical regime filter: assigns Model 1 (|Z_VWAP| >= 2.0 SD in MEAN_REVERT) or Model 2 (|Z_VWAP| < 2.0 SD in TREND_UP/DOWN). If UNDEFINED, stand aside unconditionally. |
 | **21** | `12_Hyperdash` | **Hyperdash Flow Sentiment & KPIs** | `Metric Identifier`, `Symbol`, `Metric Name`, `Value`, `24h Change`, `Sentiment Bias`, `Signal Strength`, `Timestamp UTC`. | Synthesizes aggregate smart money flow metrics, on-chain sentiment scores, and multi-asset volume velocity. |
 | **22** | `13_Hyperliquid` | **Hyperliquid L1 Native Exchange Engine** | `Sr. No.`, `Asset`, `Open Interest USD`, `24h Volume USD`, `Funding Rate`, `Premium/Discount`, `Predicted Funding`, `Long/Short Skew`, `Net Taker Flow`, `Timestamp UTC`. | Real-time L1 DEX orderbook health, basis premium/discount relative to Binance, and decentralized taker flow pressure. |
@@ -167,9 +167,21 @@ flowchart TD
 
 > **OPERATOR EXPANDED RISK & UNIVERSE DIRECTIVE**:
 > 1. **Complete 156-Asset Universe**: The desk operates across **all 156 assets** available on MetaTrader 5 (Account #5064568). Subagents and council models are strictly forbidden from assuming TradFi is limited to 4 instruments.
-> 2. **Multi-Asset Pristine Confluence Risk Rights ($25.00 to $35.00 USD)**: Explicit authorization is granted to scale nominal risk up to **25.00 to 35.00 USD per trade** (0.51% to 0.72% equity) across **ALL 156 assets** whenever pristine 5-pillar confluence is confirmed.
-> 3. **Fluid 4-Slot Capacity**: The desk may maintain up to **4 concurrent filled positions in ANY combination** (e.g. 4 crypto, 2 crypto + 1 forex + 1 index, 3 forex + 1 commodity, 2 indices + 2 metals), guided purely by quantitative edge and solvency buffers.
-> 4. **Uncapped Resting Limit Orders**: Resting pending limit orders do NOT consume filled capacity slots. The desk may stage resting limit orders at **any qualified candidate structural whale shelves** across the universe without arbitrary caps.
+> 2. **Tier 2 risk envelope**: Only fresh broker-verified realized balance strictly above **4,850.00 USD** permits Tier 2: **15.00–25.00 USD nominal risk per ticket** and at most **2 independent assets**. Setup quality never raises this cap. At or below the threshold, Tier 2 is unavailable; require a separately authorized lower tier or HOLD.
+> 3. **Two contingent slots**: Count open positions and every independently fillable pending order in the same two-slot limit. Pending orders consume capacity before fill. Multiple tickets or correlated exposures cannot manufacture independent assets.
+> 4. **Joint fill scenarios**: Treat all pending orders as jointly fillable unless broker-enforced atomic OCO is verified. Client-side cancellation is not atomic OCO. Every admissible fill scenario must pass the slot, margin, and 4,795.00 USD kernel admission tests in Step 8.
+
+### Dated operator-supplied capital baseline (2026-10-24 governance update)
+
+The operator reports realized balance and equity **4,865.07 USD**, **0 positions and 0 pending orders**. Closed BTC ticket **19267445** reached TP **80,600**, with **66.00 USD gross / 65.19 USD net** realized profit. This is an operator-supplied reference, not a live broker attestation; its exact broker as-of timestamp is unspecified. Reconcile fresh account, position, pending-order and deal telemetry before any authorization.
+
+| Capital layer | Level (USD) | Supplied baseline cushion (USD) |
+|---|---:|---:|
+| Hard floor | 4,600.00 | 265.07 |
+| Operating buffer | 4,650.00 | 215.07 |
+| Stricter kernel admission floor | 4,795.00 | 70.07 |
+
+Retain a **2.00 USD global reserve** separately from every **2.00 USD per-ticket stress allowance**: realized headroom after the global reserve is **68.07 USD**. Two tickets at 25.00 USD nominal each produce joint stressed loss `2 * (1.25 * 25.00 + 2.00) = 66.50 USD`; supplied capital after ticket stress is **4,798.57 USD**, and after the additional global reserve **4,796.57 USD**. Nominal total risk 50.00 USD is not the stressed-loss proof. These illustrative calculations never replace a fresh broker-based joint solvency and margin check.
 
 ### The 156-Asset Multi-Asset MT5 Universe Breakdown
 
@@ -180,7 +192,7 @@ flowchart TD
 | **Global Equity Indices** | 16 | **US & Europe**: `NAS100.p, SP500.p, DJ30.p, US2000.p, UK100.p, GER40.p, GER30.p, FR40.p, STOXX50.p, NETH25.p, SWISS20.p`<br/>**Asia-Pacific**: `JP225.p, AU200.p, HK50.p, CHINA50.p, CHINAH.p` | Baseline spread <= 10.0 bps (DJ30 0.22 bps, SP500 0.31 bps, NAS100 0.34 bps, UK100 0.40 bps, GER40 0.50 bps). Cash session hours. |
 | **Commodities_Raw (Precious Metals)** | 14 | `XAUUSD.pi (Gold), XAGUSD.pi (Silver), XPTUSD.pi (Platinum), XPDUSD.pi (Palladium), XAUEUR.pi, XAUAUD.pi, XAUGBP.pi, XAUSGD.pi, XAUCNH.pi, GAUUSD.pi, GAUCNH.pi, XAGEUR.pi, XAGAUD.pi, XAGSGD.pi` | Baseline spread <= 10.0 bps (Gold 0.20 bps, Silver 1.50 bps). Macro safe-haven flows, sovereign whale bunkers. |
 | **Commodities (Energy & Industrial Metals)** | 8 | `UKBRENT.p (Brent Crude), USWTI.p (WTI Crude), GAS.p (Natural Gas), ALUMINIUM.p, COPPER.p, LEAD.p, NICKEL.p, ZINC.p` | Baseline spread <= 10.0 bps (USWTI ~3.0 bps). EIA inventory prints, OPEC headlines. |
-| **Forex_Raw (G10 Majors & Minors)** | 28 | **Majors (7)**: `EURUSD.pi, GBPUSD.pi, USDJPY.pi, AUDUSD.pi, USDCAD.pi, USDCHF.pi, NZDUSD.pi`<br/>**Liquid Crosses (21)**: `EURGBP.pi, EURJPY.pi, GBPJPY.pi, AUDJPY.pi, CADJPY.pi, CHFJPY.pi, EURAUD.pi, EURCAD.pi, EURCHF.pi, EURNZD.pi, GBPAUD.pi, GBPCAD.pi, GBPCHF.pi, GBPNZD.pi, AUDCAD.pi, AUDCHF.pi, AUDNZD.pi, CADCHF.pi, NZDCAD.pi, NZDCHF.pi, NZDJPY.pi` | Baseline spread <= 6.0 bps (EURUSD 0.09 bps, GBPUSD 0.15 bps, USDJPY 0.12 bps). Mandatory 21:30–22:30 UTC rollover blackout. |
+| **Forex_Raw (G10 Majors & Minors)** | 28 | **Majors (7)**: `EURUSD.pi, GBPUSD.pi, USDJPY.pi, AUDUSD.pi, USDCAD.pi, USDCHF.pi, NZDUSD.pi`<br/>**Liquid Crosses (21)**: `EURGBP.pi, EURJPY.pi, GBPJPY.pi, AUDJPY.pi, CADJPY.pi, CHFJPY.pi, EURAUD.pi, EURCAD.pi, EURCHF.pi, EURNZD.pi, GBPAUD.pi, GBPCAD.pi, GBPCHF.pi, GBPNZD.pi, AUDCAD.pi, AUDCHF.pi, AUDNZD.pi, CADCHF.pi, NZDCAD.pi, NZDCHF.pi, NZDJPY.pi` | Baseline spread <= 6.0 bps (EURUSD 0.09 bps, GBPUSD 0.15 bps, USDJPY 0.12 bps). Mandatory 21:15–22:30 UTC rollover blackout. |
 | **Forex_Raw (Exotics & EM Pairs)** | 32 | `USDSGD.pi, USDCNH.pi, USDHKD.pi, USDMXN.pi, USDZAR.pi, USDNOK.pi, USDSEK.pi, USDHUF.pi, USDTHB.pi, AUDSGD.pi, AUDCNH.pi, CHFSGD.pi, CNHJPY.pi, EURCNH.pi, EURHKD.pi, EURHUF.pi, EURMXN.pi, EURNOK.pi, EURSEK.pi, EURSGD.pi, EURZAR.pi, GBPCNH.pi, GBPHKD.pi, GBPNOK.pi, GBPSEK.pi, GBPSGD.pi, NOKJPY.pi, NOKSEK.pi, NZDCNH.pi, NZDSGD.pi, SGDJPY.pi, ZARJPY.pi` | Baseline spread <= 25.0 bps during London/NY overlap. Sized via dynamic friction budgeting. |
 
 ---
@@ -230,10 +242,9 @@ Every analysis begins by establishing absolute data integrity across the **33-sh
    - Rather than rigid arbitrary disqualification, spread friction is evaluated using **Dynamic Friction Budgeting**:
      * **Tier A (Baseline Ceilings)**: Crypto <= 35.0 bps, Indices & Commodities <= 10.0 bps, Forex Majors/Crosses <= 6.0 bps, Exotics <= 25.0 bps.
      * **Tier B (Friction-to-Target Efficiency Ratio)**:
-       $$\text{Efficiency Ratio} = \frac{\text{Spread Points}}{\text{TP Distance Points}} \le 15\%$$
-       If spread consumes less than 15% of expected target profit, the trade is economically viable!
-     * **Tier C (Dynamic Lot Sizing)**: Lot size is proportionally scaled down so that nominal risk plus spread friction remains strictly within the capital buffer surplus:
-       $$\text{Stressed Loss} = (\text{Nominal Risk} + \text{Spread Cost}) \times 1.25 + 2.00 \le \text{Buffer Cushion}$$
+       \[\text{Efficiency Ratio} = \frac{\text{Spread Points}}{\text{TP Distance Points}} \le 15\%\]
+       This ratio is an economic diagnostic; it does not establish calibrated net profitability or authorize execution.
+     * **Tier C (Dynamic Lot Sizing)**: Use broker-grid sizing under Step 8, with one cost convention preventing spread double counting. Require `min(balance,equity) - max_joint_sum(1.25 * NominalLoss_i + 2.00 USD) - 2.00 USD global reserve >= 4,795.00 USD`, the selected 15.00–25.00 USD Tier 2 nominal budget and two contingent slots.
 
 ---
 
@@ -244,9 +255,19 @@ Every analysis begins by establishing absolute data integrity across the **33-sh
 
 For candidate j:
 
-G_j = G_legal × G_data × G_event × G_clock × G_broker × G_solvency × G_structural_stop
+G_j = G_legal × DataFresh × SessionTradable × G_broker × SolvencyMet × G_structural_stop
 
 If any term is zero, status = REJECT_HARD_GATE and the candidate MUST NOT enter the ranking table.
+
+Every factor is binary (1 only when verified; missing or unknown hard evidence = 0). Define:
+
+`StressedLoss = max_over_joint_fill_scenarios(sum_i(1.25 * NominalLoss_i + 2.00 USD)) + 2.00 USD global reserve`.
+
+`SolvencyMet = 1 iff min(fresh_balance, fresh_equity) - StressedLoss >= 4,795.00 USD`, with the Tier 2 realized-balance threshold, two contingent slots and broker joint margin constraints also satisfied. Floating profit provides no admission credit above balance; floating losses reduce available capital.
+
+`SessionTradable = broker_session_open AND native_session_open AND native_holiday_calendar_verified AND blackout_clear AND rollover_clear`. Derive native hours using the venue timezone, the current date's DST, exchange holidays and early closes; a live CFD quote alone is insufficient.
+
+For **every decision-critical row**, `DataFresh = event_time <= cutoff_utc AND receipt_time <= cutoff_utc AND 0 <= cutoff_utc - event_time <= field_age_bound AND 0 <= cutoff_utc - receipt_time <= field_age_bound`, with authenticated provenance and integrity. Set field age bounds before evaluation; 900 seconds is the warehouse maximum, while broker quotes and microstructure require their stricter configured bounds. Future, missing, incomparable or over-age timestamps fail closed. Workbook modification time is not row freshness.
 
 Hard gates are binary only for:
 1. Legal/account authorization.
@@ -262,14 +283,22 @@ Missing soft evidence does not silently become FALSE. It either widens model unc
 
 Estimate separately:
 
-P_f = P(fill before TTL | distance, queue, symbol, session, side, features)
-P_w = P(TP first | fill, setup class, asset-native features)
+P_fill = P(fill before TTL | distance, queue, symbol, session, side, features)
+P_TP = P(TP first | fill, setup class, asset-native features)
 
-EV_net = P_f × [P_w × G_net − (1−P_w) × L_net − AS − Costs] − (1−P_f) × C_wait
+EV_net = P_fill * (P_TP * Gain_net - (1 - P_TP) * Loss_net - AdverseSelection - BrokerFrictions) - (1 - P_fill) * WaitCost
+
+All payoff and cost terms are measured in USD. Gain_net and Loss_net must describe exhaustive conditional filled outcomes through the declared horizon: if time exits, partial fills or cancellations after fill exist, model their weighted payoffs explicitly rather than assuming every non-TP event is a stop loss. P_TP is conditional on fill, not an unconditional win probability. Define TTL and the observation horizon before calibration.
+
+Maintain a cost ledger: Gain_net/Loss_net include only the declared outcome costs; AdverseSelection and BrokerFrictions contain incremental costs not already embedded in those net payoffs. Count spread, slippage, commission, funding and conversion costs exactly once. WaitCost is the opportunity cost of no fill before TTL. The solvency stress reserve is a safety allowance, not an additional statistical EV expense by default.
 
 Rank only hard-gate survivors by:
 
-Utility = LCB_5%(EV_net) / E[capital-minutes]
+Utility = LCB_5%(EV_net) / ExpectedCapitalMinutes
+
+ExpectedCapitalMinutes must be positive and include contingent capital reserved while pending plus expected holding time after fill. Use the fifth-percentile lower confidence bound from the calibrated EV uncertainty model. Unknown calibration, costs, outcomes, or capital-time estimates imply HOLD/WATCHLIST with uncertainty stated; never invent point probabilities or ticket inputs.
+
+New-risk execution requires a calibrated positive lower-bound utility as well as all hard gates. These authorization, freshness, asset-native evidence and sizing definitions govern every later checklist and confluence summary; indicator counts never replace them.
 
 No point probability may authorize execution unless the model has:
 - time-blocked out-of-sample calibration;
@@ -280,7 +309,13 @@ No point probability may authorize execution unless the model has:
 
 A vote count, indicator count, or "3 of 4 pillars" is not a calibrated probability.
 
-#### 2.3 Market-clock pre-emission rule
+#### 2.3 Asset-class evidence and market-clock pre-emission rule
+
+- **Crypto**: Use venue-mapped L2/L3 book depth and continuous CVD absorption/divergence (`zc_div > 0.8`), with verified structural wall persistence `>= 180s`. Preserve venue/broker basis mapping and row freshness. Crypto evidence is not a substitute for broker maintenance/session checks.
+- **FX and metals**: Use Sheet 33 (`20_Auction_Market_Structure`) VAH, VAL and POC with London/New York liquidity sweeps and session context. Do not require centralized crypto L2/L3 or copy crypto CVD calibration into OTC FX/metals. Enforce the conservative **21:15–22:30 UTC rollover embargo** and the live broker's maintenance restrictions.
+- **Indices**: Require both the broker session and the native cash session on a verified exchange calendar. US core cash **09:30–16:00 America/New_York** converts to **14:30–21:00 UTC in standard time / 13:30–20:00 UTC in daylight time**. The European reference Xetra core session **09:00–17:30 Europe/Berlin** converts to **08:00–16:30 UTC in standard time / 07:00–15:30 UTC in daylight time**. These UTC conversions follow the venue's local DST; US and European transition dates differ. Map each index to its actual venue; the Xetra reference is not a universal European or Asia-Pacific schedule. Holidays and shortened sessions override the reference windows.
+
+Official session/calendar references: [NYSE hours and holidays](https://www.nyse.com/markets/hours-calendars), [Deutsche Börse Xetra calendar and trading hours](https://cashmarket.deutsche-boerse.com/cash-en/trading/trading-calendar-and-trading-hours). The UTC ranges above are conversions from those local core hours; refresh the applicable official calendar for each decision date.
 
 Tradable(symbol, now) =
   broker_session_open
@@ -338,7 +373,7 @@ Screen candidates across the 156-asset universe using `Terminal/multi_asset_oppo
   2. **Sweeping Dense Liquidation Pools or Stop Clusters**: Price pierces into high-density liquidation bands (Sheets 10, 11, 14, 22) or sweeps retail resting stop clusters (Sheet 23 `15_Hyperdash_Stops_Map`) immediately before stalling, confirming liquidity grab and capitulation.
   3. Orderflow confirms **Trapped Traders** (`TRAPPED_BUYERS_ABOVE` for Shorts, `TRAPPED_SELLERS_BELOW` for Longs).
   4. Microstructure tape reveals momentum exhaustion (CVD delta decelerating > 30%, lack of aggressive taker follow-through).
-  5. Sheltered behind resting institutional whale wall (>= $100K to $1M+, persisting >= 180s).
+  5. Sheltered behind resting institutional whale wall (>= 100K USD to 1M USD+, persisting >= 180s).
 - **Execution**: Counter-trend passive limit order targeting mean reversion back toward Volume POC or Session VWAP.
 
 ##### Model 1B: Auction Value Area Rejection & Failed Auction (Look Above/Below & Fail)
@@ -366,7 +401,7 @@ Screen candidates across the 156-asset universe using `Terminal/multi_asset_oppo
   1. **Orderflow Acceleration**: Accelerating Cumulative Volume Delta in the direction of the trend across 5m, 15m, and 1h horizons.
   2. **Open Interest Alignment**: Expanding Open Interest confirming new institutional capital entering the breakout, with funding rates remaining non-extreme (< 0.03%).
   3. **Liquidation Vacuum**: Presence of un-swept opposing liquidation bands / stop sweep clusters ahead, pulling price forward like a magnet.
-  4. **Fibonacci & Whale Confluence**: Retracement aligns with the 0.50–0.618 Fibonacci Golden Pocket coinciding directly with resting whale walls (>= $100K USD, persist >= 180s) trailing behind the move.
+  4. **Fibonacci & Whale Confluence**: Retracement aligns with the 0.50–0.618 Fibonacci Golden Pocket coinciding directly with resting whale walls (>= 100K USD, persist >= 180s) trailing behind the move.
 - **Execution**: Pro-trend pullback limit order placed at the 20/50 EMA or Session VWAP shelf, targeting rapid liquidation sweep into the opposing debt pool.
 
 ---
@@ -383,8 +418,8 @@ Screen candidates across the 156-asset universe using `Terminal/multi_asset_oppo
      * **Narrative**: A verified directional regime (`TREND_UP` or `TREND_DOWN` with 20/50 EMA ribbon alignment).
      * **Location**: Trend pullbacks naturally occur at mild Z-scores (`|Z| = 0.5 to 1.8 SD`) into dynamic shelves (EMA20/50, Session VWAP, Volume Profile VPOC, or Fibonacci 0.50–0.618 golden pocket). Requiring extreme `|Z| >= 2.0 SD` on trend pullbacks is a mathematical error that invalidates the best trend continuation setups!
      * **Structural Backing**:
-       - *For Crypto Perpetuals*: Resting whale walls >= $100K USD persisting >= 180s trailing behind the entry.
-       - *For Forex & Indices*: Volume Profile High Volume Nodes (HVN/VPOC), Value Area boundaries (VAH/VAL), or session VWAP shelves (since interbank FX is an OTC ECN feed without centralized $1M book depth).
+       - *For Crypto Perpetuals*: Resting whale walls >= 100K USD persisting >= 180s trailing behind the entry.
+       - *For Forex & Indices*: Volume Profile High Volume Nodes (HVN/VPOC), Value Area boundaries (VAH/VAL), or session VWAP shelves (since interbank FX is an OTC ECN feed without centralized 1M USD book depth).
    - **For Model 1 (Extreme Mean Reversion)**:
      * **Narrative**: Price is in a balanced range (`MEAN_REVERT`) probing outer distribution tails.
      * **Location**: Statistical extremity (`|VWAP Z| >= 2.0 to 3.5 SD`, RSI < 35 or > 65) sweeping retail stop clusters or liquidation bands.
@@ -397,33 +432,34 @@ Screen candidates across the 156-asset universe using `Terminal/multi_asset_oppo
      * *Strict Prohibition*: Subagents and Arena.ai are **strictly forbidden from disqualifying Forex candidates for missing `zc_div` or missing Hyperdash maps**.
      * *Execution Anchor*: Raw interbank tick spread efficiency (`Spread / TP <= 15%`) + Auction Market Structure.
    - **Precious Metals & Commodities (XAUUSD Gold, SILVER, CL_OIL)**:
-     * *Canonical Anchor*: Sheet 30 Auction VPOC/VAH/VAL + 20/50 EMA ribbon + Sheet 17 Orderbook depth when populated.
+     * *Canonical Anchor*: Sheet 33 (`20_Auction_Market_Structure`) VPOC/VAH/VAL + 20/50 EMA ribbon and London/New York liquidity sweeps; optional native depth only when available. Apply the 21:15–22:30 UTC rollover embargo.
      * *Execution Anchor*: High-efficiency tick spread + structural rejection/breakout from Daily Value Area.
    - **Equity Indices (NAS100, SP500, DJ30, GER40)**:
-     * *Canonical Anchor*: Sheet 30 Auction Shelves (VPOC, VAH, VAL) + Sheet 17 Depth (e.g. resting ask/bid walls on SP500) + US Cash Open / Session VWAP.
+     * *Canonical Anchor*: Sheet 33 (`20_Auction_Market_Structure`) auction shelves (VPOC, VAH, VAL), optional native depth and session VWAP, with the index's actual native cash session, DST, holidays and early closes verified under 2.3.
    - **Crypto Perpetuals (BTC, ETH, SOL, Alts)**:
-     * *Canonical Anchor*: Resting whale wall >= $100K USD (Sheets 18 & 25) with persistence >= 180s, taker CVD divergence (`zc_div > 0.8`), or CoinGlass/Hyperdash stop sweeps (Sheets 14, 15, 23).
+     * *Canonical Anchor*: Resting whale wall >= 100K USD (Sheets 18 & 25) with persistence >= 180s, taker CVD divergence (`zc_div > 0.8`), or CoinGlass/Hyperdash stop sweeps (Sheets 14, 15, 23).
 
 3. **The 3-of-4 Adaptive Confluence Framework (Replacing Rigid 7-Gate Boolean AND)**:
    - Rather than demanding a rigid boolean `AND` across 7 micro-metrics simultaneously (which mathematically causes 0% candidate survival), the desk evaluates:
      * **Tier 1 (Non-Negotiable Solvency & Risk Floors - 100% Strict)**:
-       1. Stressed Equity >= 4,650.00 USD Operating Buffer (+39.83 USD cushion) and >= 4,600.00 USD Hard Floor (+59.83 USD cushion).
+       1. `min(balance,equity) - StressedLoss >= 4,795.00 USD` kernel admission, above the 4,650.00 USD operating buffer and 4,600.00 USD hard floor; recompute fresh cushions.
        2. Dynamic Spread Friction: `Spread Points / TP Distance Points <= 15.0%`.
        3. Macro Blackout: Zero entries during active Tier-1 High-Impact red folder news and FX rollover (21:15–22:30 UTC).
        4. Reward-to-Risk >= 2.0R to structural target.
      * **Tier 2 (Adaptive Confluence Stack - Requires 3 of 4 Points Pass)**:
        - **Point 1 (Regime & Macro Narrative Alignment - The WHY)**: Verified directional trend (Model 2: `TREND_UP`/`TREND_DOWN` with EMA ribbon alignment) OR statistical range extreme (Model 1: `MEAN_REVERT` with |Z| >= 2.0 SD).
-       - **Point 2 (Asset-Specific Structural Anchor - The WHERE)**: Price interacting with a verified structural shelf appropriate to that asset class (Forex/Metals/Indices: Sheet 30 VPOC/VAH/VAL or EMA20/50 shelf; Crypto: Whale Wall or Liquidation Band).
+       - **Point 2 (Asset-Specific Structural Anchor - The WHERE)**: Price interacting with a verified structural shelf appropriate to that asset class (Forex/Metals/Indices: Sheet 33 VPOC/VAH/VAL or EMA20/50 shelf; Crypto: Whale Wall or Liquidation Band).
        - **Point 3 (Microstructure Timing & Exhaustion - The WHEN)**: Tape exhaustion (declining volume on pullback, CVD deceleration/divergence, or rejection wick confirming buyer/seller absorption).
        - **Point 4 (Safe Stop Loss Bunker Behind Structure)**: SL placed safely behind the structural shelf (>= 0.40–0.50 ATR beyond boundary), avoiding un-swept opposing stop cascades.
-   - **Scoring Rule**: If all Tier 1 floors pass AND at least 3 of 4 Tier 2 confluence points pass, the trade setup is **VALID AND APPROVED FOR EXECUTION**!
+   - **Scoring Rule**: A 3-of-4 confluence count is a descriptive setup screen only. Execution still requires every Step 2.1 hard gate, Step 2.2 calibrated positive lower-bound utility, asset-native evidence and Step 8 broker-grid sizing; votes do not authorize risk.
 
 4. **Inviolable Solvency Hard Floors (Never Compromised)**:
-   - Hard Floor Invariant: Stressed Equity strictly >= 4,600.00 USD (cushion: +59.83 USD).
-   - Operating Buffer Invariant: Stressed Equity strictly >= 4,650.00 USD (cushion: +39.83 USD).
+   - Hard Floor Invariant: 4,600.00 USD; compute the fresh capital cushion.
+   - Operating Buffer Invariant: 4,650.00 USD; compute the fresh capital cushion.
+   - Admission Invariant: min(balance,equity) after joint stress and all reserves >= 4,795.00 USD; lower safety layers never replace it.
    - Dynamic Spread Friction Gate: `Spread Points / TP Distance Points <= 15.0%`.
    - Zero Tier-1 Macro Blackouts within +/-4 hours.
-   - Multi-Asset Pristine Risk Rights: Standard $15.00–$25.00 USD nominal risk; authorized up to $25.00–$35.00 USD for pristine confluence across ALL 156 assets!
+   - Tier 2 Risk Rights: Nominal 15.00–25.00 USD per ticket only when fresh realized balance > 4,850.00 USD; maximum two independent assets and two contingent slots including jointly fillable pending orders. Setup quality never raises the cap.
 
 ---
 
@@ -432,9 +468,9 @@ Screen candidates across the 156-asset universe using `Terminal/multi_asset_oppo
 
 Liquidation bands and stop clusters serve dual tactical functions:
 1. **Defensive Bunker (Stop Loss Placement)**:
-   - SL must sit strictly beyond the outer boundary of the nearest liquidation band and resting stop cluster with $\ge 0.40–0.50\text{ ATR}$ safety margin:
-     $$\text{SL}_{\text{short}} = \max(\text{max\_price}_{\text{nearest\_buy\_stops}}, \text{max\_price}_{\text{short\_squeeze\_band}}, \text{price}_{\text{defending\_ask\_wall}}) + 0.50 \times \text{ATR} + \text{half\_spread}$$
-     $$\text{SL}_{\text{long}} = \min(\text{min\_price}_{\text{nearest\_sell\_stops}}, \text{min\_price}_{\text{long\_cascade\_band}}, \text{price}_{\text{defending\_bid\_wall}}) - 0.50 \times \text{ATR} - \text{half\_spread}$$
+   - SL must sit strictly beyond the outer boundary of the nearest liquidation band and resting stop cluster with \(\ge 0.40–0.50\text{ ATR}\) safety margin:
+     \[\text{SL}_{\text{short}} = \max(\text{max\_price}_{\text{nearest\_buy\_stops}}, \text{max\_price}_{\text{short\_squeeze\_band}}, \text{price}_{\text{defending\_ask\_wall}}) + 0.50 \times \text{ATR} + \text{half\_spread}\]
+     \[\text{SL}_{\text{long}} = \min(\text{min\_price}_{\text{nearest\_sell\_stops}}, \text{min\_price}_{\text{long\_cascade\_band}}, \text{price}_{\text{defending\_bid\_wall}}) - 0.50 \times \text{ATR} - \text{half\_spread}\]
 2. **Offensive Magnet (Take Profit Target)**:
    - TP front-runs opposing major liquidation clusters (Sheets 10, 12, 17, 22) by 5–10 bps to capture exit liquidity before pool depletion.
 3. **Stop Sweep Trap Invariant**:
@@ -445,24 +481,28 @@ Liquidation bands and stop clusters serve dual tactical functions:
 ### STEP 8: Exact Broker Quote-Conversion Risk Budget & Dynamic Capacity
 *Active Skills: `@[quant-analyst]`, `@[risk-engine]`, `@[clean-code]`*
 
-### Broker-native structural sizing
+#### Broker-native structural sizing
 
 1. Determine structural invalidation and stop price before volume.
-2. Obtain fresh symbol metadata.
-3. Enumerate the broker's legal lot grid.
-4. For each volume v, calculate loss with order_calc_profit.
-5. Calculate margin with order_calc_margin.
-6. Submit the exact request to order_check.
-7. Stress all open positions and independently fillable pending orders jointly.
-8. Select the largest volume that preserves the $4,795 admission floor.
-9. If no legal volume exists, reject. Never tighten SL or over-risk minimum lot.
+2. Obtain fresh broker bid/ask, symbol volume_min/volume_max/volume_step, tick and contract specifications, account currency conversion, stop/freeze limits and margin inputs. Missing inputs imply HOLD; never substitute invented values.
+3. Select a nominal risk budget in **15.00–25.00 USD** only if fresh realized balance is strictly above **4,850.00 USD**; confluence does not authorize exceeding 25.00 USD.
+4. Enumerate the broker's legal volume grid from volume_min through volume_max in volume_step increments. For each volume v, calculate exact entry-to-structural-stop nominal loss with `mt5.order_calc_profit()` in account USD and a declared single-count cost convention.
+5. Calculate required margin with `mt5.order_calc_margin()` and reconcile joint margin for open positions plus every jointly fillable pending order. Missing margin or unsupported joint-fill verification means HOLD.
+6. Validate the exact request, unchanged in symbol, side, price, SL, TP and volume, with `mt5.order_check()` and require its documented successful result.
+7. Verify the **two independent-asset contingent-slot** cap, counting pending orders before fill; exclude mutually exclusive branches only with verified broker-enforced atomic OCO. Stress all jointly fillable tickets at **1.25 * nominal loss + 2.00 USD per ticket**, plus the separate **2.00 USD global reserve**.
+8. Select the **largest feasible broker-grid volume** whose nominal loss does not exceed the selected risk budget and whose joint capital after stress remains at least **4,795.00 USD**. Never round volume upward across the risk budget.
+9. If no legal volume exists, reject/HOLD with the failed constraint. Never tighten the structural stop, inflate the budget, or over-risk the minimum lot to make a ticket fit.
 
 lot* = max {v in broker lot grid:
-  R_min <= broker_stop_loss(v) <= R_cap
+  15.00 USD <= broker_nominal_loss(v) <= selected_risk_budget <= 25.00 USD
   AND min(balance,equity) - stressed_joint_loss(v) >= 4795
-  AND joint_margin(v) <= free_margin - reserve
+  AND contingent_slots(v) <= 2 AND independent_assets_verified
+  AND fresh_realized_balance > 4850
+  AND joint_additional_margin(v) <= broker_free_margin - verified_margin_reserve
   AND order_check(v) = OK
 }
+
+Here stressed_joint_loss includes both the per-ticket allowances and the separate global reserve; the USD global reserve is not an invented broker margin parameter. Reconcile any margin reserve from actual broker/account policy. A legal grid point below the 15.00 USD nominal minimum is not rounded upward without rechecking every constraint; if no point satisfies the authorized envelope, HOLD.
 
 Floating profit, expected TP, model probability, and deadline pressure provide zero admission credit.
 
@@ -477,16 +517,16 @@ Prior to order transmission, the coordinator and subagents MUST physically outpu
 
 | # | Pitfall & Verification Check | Required Status | Verified? |
 |---|---|---|---|
-| 1 | **Whale Wall Polarity & Persistence** | Genuine resting BID for longs, ASK for shorts; `persist >= 180s`, `notional >= $100K+` | [ ] |
+| 1 | **Asset-Native Structural Backing** | Crypto: genuine resting BID for longs / ASK for shorts, `persist >= 180s`, `notional >= 100K USD`; FX/metals/indices: verified native auction shelf under 2.3 | [ ] |
 | 2 | **Stop Cascade & Sweep Clearance** | Zero un-swept opposing retail stop clusters between market and entry | [ ] |
-| 3 | **CVD Absorption / Deceleration** | Waterfall halted; tape confirms absorption divergence (`zc_div > 0.8`) or CVD delta flip | [ ] |
+| 3 | **Asset-Native Timing / Absorption** | Crypto: L2/L3 plus CVD divergence `zc_div > 0.8` and 180s wall persistence; FX/metals: Sheet 33 VAH/VAL/POC and London/New York sweeps; indices: native cash session and auction evidence | [ ] |
 | 4 | **Bunker SL Safe Buffer** | SL placed >= 0.40–0.50 ATR behind outer liquidation boundary & whale wall bunker | [ ] |
 | 5 | **Causal Auction Regime Location** | Model 1 Extreme (|Z| >= 2.0 SD) OR Model 2 HTF Pullback to EMA/VWAP/Fibonacci Golden Pocket | [ ] |
 | 6 | **Dynamic Spread Efficiency Gate** | Spread points / TP distance <= 15%; baseline spread <= ceiling (Crypto <= 35, TradFi <= 10) | [ ] |
 | 7 | **HTF Trend & Hierarchy Alignment**| Respects 1H/4H market structure; no counter-trend longs in confirmed HTF bear trends | [ ] |
 | 8 | **Pre-Condition Trigger Checklist** | All setup-specific empirical pre-conditions verified on live market data | [ ] |
 | 9 | **Clear TP Runway & R:R Ratio** | TP front-runs opposing liquidation magnet by 5-10 bps; realizable R:R >= 2.0R to 2.5R | [ ] |
-| 10 | **Stressed Solvency & Floor Defense** | Stressed post-loss equity strictly >= 4,650.00 USD buffer (exact `mt5.order_calc_profit`) | [ ] |
+| 10 | **Stressed Solvency & Floor Defense** | min(balance,equity) after joint stress and reserves >= 4,795.00 USD kernel floor; two contingent slots; exact broker-native profit/margin/check | [ ] |
 
 ---
 
@@ -502,7 +542,7 @@ stateDiagram-v2
     PendingLimitOrder --> Cancelled: Distance > 2.0 ATR or Whale pulls
     
     FilledPosition --> EarlyBERiskFree: Profit reaches +0.75R0 to +0.80R0
-    note right of EarlyBERiskFree: Move SL to Entry + 0.10R0 (Risk drops to $0, frees capacity!)
+    note right of EarlyBERiskFree: Move SL to Entry + 0.10R0 (Recompute stressed loss; occupied slot remains)
     
     EarlyBERiskFree --> Phase0RiskCut: Profit reaches +1.25R0
     note right of Phase0RiskCut: Move SL to Entry + 0.15R0 (Lock minor profit)
@@ -520,9 +560,9 @@ stateDiagram-v2
 
 1. **Autonomous Execution**: Execute via `mt5.order_send()` with unique magic number (`888888`), passive `BUY_LIMIT` or `SELL_LIMIT`, and `ORDER_FILLING_IOC` (with automatic fallback to `RETURN` and `FOK`).
 2. **Frozen R0 Profit Ratchet Protocol**:
-   - **Phase Early-BE (+0.75R0 to +0.80R0)**: Move SL to Entry + 0.10R0 once price reclaims session POC or VWAP. Eliminates 100% of risk and unlocks capacity for subsequent slots.
+   - **Phase Early-BE (+0.75R0 to +0.80R0)**: Move SL to Entry + 0.10R0 once price reclaims session POC or VWAP. Recompute loss after broker confirmation; retain stressed execution costs and per-ticket allowance, and keep the occupied contingent slot counted.
    - **Phase 0 (+1.25R0)**: Move SL to Entry + 0.15R0.
-   - **Phase 1 (+1.65R0)**: Move SL to Entry + 0.80R0 (locks in guaranteed profit).
+   - **Phase 1 (+1.65R0)**: Move SL to Entry + 0.80R0 (subject to broker execution and stressed costs).
    - **Phase 2 (>= +2.00R0)**: Continuous trailing stop at 0.50 ATR behind 15m swing shelves.
 3. **Time-Decay Exit**: If active for 24 bars (6 hours) with gain < +0.20R0, market close to redeploy capital.
 4. **Joint-Completion Lifecycle & Sentry**: Orders and ratchets are managed via `Terminal/joint_cycle_controller.py` and `Data/cycle_state.json`. A cycle is complete only when all 3 entities finish. Next cycle triggers strictly 20 minutes after completion (`T_finish + 20 min`), supervised by the 30-minute watchdog sentry (`0,30 * * * *`).
@@ -565,7 +605,7 @@ On EVERY cycle, deliberation turn, and prompt response, the council models (Aren
 
 ## SECTION 3: INSTITUTIONAL BENCHMARK & PROVENANCE CONTRACT
 
-1. **Benchmark Tracking**: Continuously benchmark against BTC Buy & Hold normalized to $5,000 USD.
+1. **Benchmark Tracking**: Continuously benchmark against BTC Buy & Hold normalized to 5,000 USD.
 2. **Immutable Audit Logging**: Every trade decision, subagent report, and Arena.ai deliberation is logged in:
    - `docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md`
    - `.agents/memory/session_chat_history.md`

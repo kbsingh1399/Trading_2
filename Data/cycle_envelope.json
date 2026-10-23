@@ -1,14 +1,14 @@
 {
-  "schema_version": "1.0.0",
-  "cycle_id": "Cycle 310",
-  "uuid": "4199518b-0b0d-490f-9af1-a321c6afb63d",
-  "dispatch_nonce": "12dad8b9-4a05-4eef-bd6d-6a1fb64f7659",
-  "cutoff_utc": "2026-10-23 22:55:09 UTC",
+  "schema_version": "1.1.0",
+  "cycle_id": "Cycle-20261023T230106Z",
+  "uuid": "d419f5a9-35cd-42af-98f0-57257b47ea89",
+  "dispatch_nonce": "f2708f84-8eff-4fd5-ae7e-6cd489bfff26",
+  "cutoff_utc": "2026-10-23 23:01:06 UTC",
   "provenance": {
-    "git_commit": "90800c525d874edfbe38f117c1757f857832aeab",
-    "evidence_manifest_sha256": "4b063e68f01a05276c00ca119bc151c9f14ddebdd433b9ff9976e146b4fa0ac1",
-    "workbook_sha256": "b9eeceaa0e3e3e873c4bac791ffdb4b7134ac5a69fb3dc8a6b6b274eb9c0b072",
-    "excel_freshness_verified": true
+    "git_commit": "0ed8e27a6b3b257fbee3aaf4b897a78c94fb6fa1",
+    "evidence_manifest_sha256": "41e945c1d7436b97bde94d7dfb8332947f4e51f1aa6b959478136982d0611a50",
+    "workbook_sha256": "7f976fd8ecb25a35dc90f2ef0b00c81bd08bbb7d5deda49ee8959ea83dad5934",
+    "excel_freshness_verified": null
   },
   "inventory": {
     "account_login": 5064568,
@@ -32,16 +32,25 @@
     "hard_floor_cushion_usd": 265.07,
     "operating_buffer_cushion_usd": 215.07,
     "kernel_cushion_usd": 70.07,
-    "realized_headroom_usd": 70.07,
-    "new_risk_admissible": true
+    "global_contingency_reserve_usd": 2.0,
+    "existing_ticket_stress_usd": 0.0,
+    "realized_headroom_usd": 68.07,
+    "post_joint_stress_equity_usd": 4863.07,
+    "capital_mode": "TIER_2_HOUSE_MONEY",
+    "risk_min_usd": 15.0,
+    "risk_max_usd": 25.0,
+    "nominal_risk_capacity_usd": 25.0,
+    "max_concurrent_tickets": 2,
+    "new_risk_admissible": true,
+    "admission_scope": "CAPITAL_ONLY_REQUIRES_ALL_HARD_GATES_AND_BROKER_CHECK"
   },
   "market_clocks": {
-    "broker_clock_open": true,
-    "crypto_perpetuals_open": true,
-    "fx_open": true,
-    "metals_open": true,
+    "broker_clock_open": null,
+    "native_market_open": null,
+    "calendar_verified": null,
     "rollover_embargo_active": false,
     "rollover_window": "21:15-22:30 UTC"
   },
-  "status": "ENVELOPE_VALIDATED"
+  "status": "ACCOUNT_AND_SOLVENCY_VERIFIED",
+  "authorization": "DENIED_PENDING_FULL_HARD_GATES"
 }

@@ -4,8 +4,8 @@
 > **Document Status**: CANONICAL PRODUCTION RE-ENGAGEMENT PROTOCOL (MANDATORY TURN-0 STUDY)  
 > **Location**: `Data/Manditory/ACCOUNT_SWITCH_BOOTSTRAP_PROTOCOL.md`  
 > **Target Account**: Blueberry Markets MT5 Account #5064568 (Raw Spread CFD/Perpetual)  
-> **Mission**: Pass Phase 1 Challenge (Target: 5,500.00 USD) before Friday, 23rd October 2026 (23:59 UTC).  
-> **Purpose**: When switching Gemini/Antigravity accounts, launching a new chat session, or re-engaging after an interruption, the incoming agent MUST execute this exact protocol to achieve 100% operational continuity, restore/verify all background daemons, verify account solvency, and resume autonomous execution with ZERO context amnesia.
+> **Mission**: Pass Phase 1 Challenge (Target: 5,500.00 USD). The former 23 October 2026 deadline is historical; no replacement deadline is inferred.  
+> **Purpose**: When switching Gemini/Antigravity accounts, launching a new chat session, or re-engaging after an interruption, the incoming agent MUST execute this exact protocol to achieve 100% operational continuity, audit all background daemons without disturbing their lifecycle, verify account solvency, and resume autonomous execution with ZERO context amnesia.
 
 ---
 
@@ -13,7 +13,7 @@
 
 ```markdown
 Read and execute Data/Manditory/ACCOUNT_SWITCH_BOOTSTRAP_PROTOCOL.md immediately.
-Verify MT5 connectivity, audit account solvency, verify all 5 persistent daemons, check active Ticket #19267445, query the AST knowledge graph via graphify, and resume cycle execution using the non-overlapping 4-quant subagent swarm and dual frontier council.
+Verify MT5 connectivity, audit account solvency, verify all 5 persistent daemons, reconcile the operator-reported closed Ticket #19267445 against live deal history, query the AST knowledge graph via graphify, and resume cycle execution using the non-overlapping 4-quant subagent swarm and dual frontier council.
 ```
 
 ---
@@ -25,11 +25,11 @@ Whenever an agent receives the trigger or re-engages in a fresh session, execute
 ```mermaid
 flowchart TD
     Step1["Step 1: Ingest Core Governance & Memory<br/>(AGENTS.md, ACTIVE_CONTEXT.md, session_chat_history.md)"]
-    Step2["Step 2: Live MT5 Telemetry & Solvency Sentry<br/>(Account #5064568, Ticket #19267445, Hard Floors)"]
-    Step3["Step 3: Hexad-Daemon Sentry Audit<br/>(Verify 5 Daemons Running in Antigravity Task Manager)"]
+    Step2["Step 2: Live MT5 Telemetry & Solvency Sentry<br/>(Account #5064568, Live Inventory, Hard Floors)"]
+    Step3["Step 3: Five-Daemon Sentry Audit<br/>(Verify 5 Daemons Running in Antigravity Task Manager)"]
     Step4["Step 4: AST Graphify & Zero-Token Skill Resolution<br/>(Query graph.json for 23.3k nodes & 3.4k skills)"]
     Step5["Step 5: Generate Cycle Envelope & Dispatch Swarm<br/>(generate_cycle_envelope.py -> 4 Non-Overlapping Roles)"]
-    Step6["Step 6: Harvest, Co-Equal Debate, Clean Socket Pruning<br/>(kill_all Subagents, Update Desk Ledger, Standby)"]
+    Step6["Step 6: Harvest, Co-Equal Debate, Clean Socket Pruning<br/>(Release Cycle-Owned Subagents, Update Desk Ledger, Standby)"]
 
     Step1 --> Step2 --> Step3 --> Step4 --> Step5 --> Step6
 ```
@@ -53,15 +53,9 @@ flowchart TD
      * `.agents/rules/ACTIVE_CONTEXT.md` (Real-time live account state, open positions, floor cushions)
      * `.agents/memory/session_chat_history.md` (Full conversation trajectory, past setbacks, operator directives)
 
-3. **Mandatory Header Compliance**:
-   Every response from the agent must begin with:
-   ```markdown
-   ✅ AGENTS.md fully loaded — All 12 Core Domains & Execution Protocols Activated.
-   > 📚 **Active Skills Loaded & Applied:** @[clean-code], @[karpathy-guidelines], @[systematic-debugging]
-   
-   [🔓OMNI-Ω]
-   ```
-   *(Strictly zero raw LaTeX `$` or `$$` delimiters in chat; use plain text and unicode only).*
+3. **Governance Read Status and Formatting**:
+   - State which governance sources were actually read. If `.agents/rules/AGENTS.md`, `.agents/rules/ACTIVE_CONTEXT.md`, or `RTK.md` is unavailable, record the missing reference and continue with the available canonical sources; do not fabricate a successful load or live telemetry.
+   - Use plain text and unicode. Do not use raw LaTeX currency delimiters.
 
 ---
 
@@ -77,28 +71,30 @@ flowchart TD
    mt5.shutdown()
    ```
 
-2. **Current Ground-Truth Baseline (Account #5064568)**:
-   - **Realized Balance**: **4,799.88 USD**
-   - **Floating Equity**: **~4,836+ USD** (Floating in green profit on Ticket #19267445)
-   - **Margin Used**: 2,451.00 USD | **Free Margin**: ~2,385+ USD (Margin Level: ~197%)
-   - **Hard Floor (4,600.00 USD)**: Cushion: **+236+ USD** (Inviolate, 0.00% breach probability)
-   - **Operating Buffer (4,650.00 USD)**: Cushion: **+186+ USD** (Defended)
-   - **Solvency Kernel (4,795.00 USD)**: Cushion: **+41+ USD** (Realized Balance Headroom: **+2.88 USD net**)
+2. **Dated Operator Baseline — 2026-10-24 (Not Live Verification)**:
+   - Account **5064568**, currency **USD**. Operator-supplied realized balance **4,865.07 USD**, equity **4,865.07 USD**, margin **0.00 USD**, and free margin **4,865.07 USD**.
+   - Open positions **0**; pending orders **0**. This is the operator's dated flat-account baseline, not a claim that this editing session queried MT5.
+   - Historical `BTCUSD.pi` short Ticket **19267445** closed at TP **80,600.00 USD**, gross profit **66.00 USD**, net profit **65.19 USD**. Reconcile the closing deal, commission and swap before using it as fresh evidence; do not apply active-ticket ratchets to this historical trade.
+   - Hard floor **4,600.00 USD**: baseline cushion **265.07 USD**.
+   - Operating buffer **4,650.00 USD**: baseline cushion **215.07 USD**.
+   - Admission/solvency kernel **4,795.00 USD**: baseline cushion **70.07 USD**.
+   - Deduct the **2.00 USD global contingency** once from the baseline cushion: realized admission headroom **68.07 USD**. Include all existing contingent losses before admitting any new ticket.
+   - The **11.38 USD minimum admission value** is a **provisional screening threshold**, not permission to trade, a calibrated expected value, or a substitute for broker-native risk sizing.
+   - A fresh, reconciled live cycle envelope always supersedes this static baseline. Missing or disputed live inventory blocks new admissions.
 
-3. **Active Position Sentry (Ticket #19267445 — `BTCUSD.pi` Short)**:
-   - **Symbol / Side**: `BTCUSD.pi` Short (SELL) `0.06 lot` @ `81,700.00 USD`
-   - **Stop Loss**: `81,640.00 USD` (Early-BE locked in MT5 terminal, +$3.60 USD profit, 100% risk-free)
-   - **Take Profit**: `80,600.00 USD` (+2.75 R0 / +$66.00 USD gross gain)
-   - **Next Ratchet**: Mark <= `81,040.00 USD` (+1.65 R0) -> advance SL to `81,300.00 USD` (+1.00 R0 / +$24.00 USD locked profit).
-   - **Runner Ratchet**: Mark <= `80,820.00 USD` (+2.20 R0) -> advance SL to `81,060.00 USD` (+1.60 R0 runner profit).
-   - **Downside Risk**: **0.00 USD** (No capital at risk).
-   - **Pending Orders**: **0** (100% Flat Cash Defense on Slots 2, 3, 4).
+3. **Tier 2 House Money and Contingent Capacity**:
+   - Tier 2 House Money applies only when fresh **realized balance > 4,850.00 USD**. Floating gains and expected TP do not unlock the tier.
+   - Nominal per-ticket risk is **15.00–25.00 USD**, subject to the joint stressed kernel and all hard gates; the tier is not automatic admission.
+   - Permit at most **2 independent, uncorrelated contingent tickets**, counting positions **plus** pending orders. Pending orders consume capacity unless broker-native atomic OCO makes mutual exclusion enforceable and evidenced. Client-side cancellation or an intended OCO is insufficient.
+   - For every jointly fillable scenario require `min(balance, equity) - sum(stressed_ticket_loss) - 2.00 >= 4,795.00 USD`, without credit for floating profit or future TP. The global contingency is separate from each ticket's fee reserve.
+   - Illustrative two-ticket model: each nominal 25.00 USD loss is stressed by `1.25 × 25.00 + 2.00 = 33.25 USD`; `4,865.07 - 2 × 33.25 - 2.00 = 4,796.57 USD`, leaving **1.57 USD** above the kernel. This example assumes the stated reserves and is not mathematical immunity to gaps, slippage, fees, correlation or model error. Broker-native all-in stress can require a smaller size or HOLD.
+   - At or below 4,850.00 USD, Tier 2 is unavailable; reassess under the applicable lower-tier rules and fresh headroom rather than inferring new risk rights.
 
 ---
 
 ### STEP 3: PERSISTENT BACKGROUND DAEMONS AUDIT (IN ANTIGRAVITY TASK RUNNER)
 
-The agent MUST verify via `manage_task(Action='list')` that all 5 persistent daemons are active:
+Audit all 5 persistent daemons using read-only task/process inspection (for example `manage_task(Action='list')` when available). Record PID/task identity, command line, health and observation time; report missing or unhealthy services without altering them:
 
 | Task / Daemon | Script Command | Frequency / Port | Purpose |
 |---|---|---|---|
@@ -108,7 +104,7 @@ The agent MUST verify via `manage_task(Action='list')` that all 5 persistent dae
 | **Daemon 4** | `python Terminal/goal_trade_monitor.py --daemon --gap 10` | Every 10s | Continuous MT5 ratchet sentry, auto-locks profits to terminal |
 | **Daemon 5** | `python Terminal/Data_Factory/run_unified_30_sheets_cycle.py --continuous --interval 300` | Every 300s | Continuous 33-sheet master Excel data warehouse pipeline |
 
-*Auto-Recovery*: If any daemon terminated, immediately relaunch it with `run_command(CommandLine="...", IsDaemon=true, WaitMsBeforeAsync=500)`.
+**Lifecycle preservation**: All 5 persistent daemons must remain undisturbed across boots and chat/account reconnections. Bootstrap MUST NOT kill, restart, relaunch, or create a duplicate writer. Audit and report missing/unhealthy daemons for the operator; do not infer recovery authority from this SOP. Do not start a second spreadsheet pipeline or telemetry writer to obtain fresh evidence. Missing required health/evidence blocks the affected admission gate until resolved.
 
 ---
 
@@ -120,10 +116,9 @@ The agent MUST verify via `manage_task(Action='list')` that all 5 persistent dae
    - All skills have been indexed into `graphify-out/graph.json` (**3,478 skill-related nodes**).
    - Querying `python -m graphify query "<skill_name>"` extracts the exact phase breakdown, rules, and line references in **<200 tokens** (95% token savings).
 
-2. **RAM Optimization Mandate**:
-   - If system RAM exceeds 80% or if processes lag:
-     `powershell -ExecutionPolicy Bypass -File scripts/free_ram.ps1`
-   - Safely trims process working sets via `EmptyWorkingSet`, purges OS standby cache, and cleans zombie nodes without interrupting daemons or browser CDP sessions.
+2. **Resource Audit Without Lifecycle Changes**:
+   - Report memory pressure and the affected processes. Do not automatically run cleanup, process pruning, standby-cache purges, or restart scripts during bootstrap.
+   - Preserve persistent daemon identities, workbook-writer ownership and browser CDP sessions. Missing services remain an audit finding until separately resolved.
 
 ---
 
@@ -133,13 +128,13 @@ The agent MUST verify via `manage_task(Action='list')` that all 5 persistent dae
    ```bash
    python Terminal/generate_cycle_envelope.py "<cycle_id>"
    ```
-   Writes `Data/cycle_envelope.json` with commit hash, manifest SHA-256, workbook SHA-256, reconciled account telemetry, and market clock clearance.
+   Writes `Data/cycle_envelope.json` with commit/tree and risk-policy digests, manifest/workbook SHA-256, native account inventory and capital eligibility. Row freshness, calendar clearance and broker/native session status require separate evidence; unknown gates remain denied. Envelope generation alone does not establish deal reconciliation or trade authorization.
 
 2. **Dispatch 4 Non-Overlapping Subagents (Fable 5)**:
    Invoke in parallel using `invoke_subagent` (`TypeName='research'` or `'self'`, `Model='flash'`):
    - **Role A (`Regime and Calibration Quant`)**: Evaluates `P(TP first | fill)`, VR(q), ER, OU half-life. No lot sizing.
    - **Role B (`Fill and Microstructure Quant`)**: Evaluates `P(fill | TTL)`, adverse selection markouts, resting whale persistence and executed refill, sweep/reclaim geometry.
-   - **Role C (`Solvency and Portfolio Sentry`)**: Evaluates `lot*`, joint stress under all independently fillable scenarios, House Money status. Enforces `min(balance, equity) - joint_stress >= 4,795.00 USD`.
+   - **Role C (`Solvency and Portfolio Sentry`)**: Evaluates `lot*`, joint stress under all independently fillable scenarios, House Money status. Enforces `min(balance, equity) - joint_ticket_stress - global_contingency >= 4,795.00 USD`, Tier 2 realized-balance eligibility, and the maximum 2 independent contingent-ticket limit.
    - **Role D (`Market Clock and Provenance Auditor`)**: Evaluates session clocks, FX rollover embargo (`21:15–22:30 UTC`), auction levels, and data freshness.
 
 3. **Dispatch Dual Frontier Council**:
@@ -153,7 +148,7 @@ The agent MUST verify via `manage_task(Action='list')` that all 5 persistent dae
 
 1. **Reactive Auto-Wakeup**: Standby for background task wakeup (zero token polling).
 2. **Dialectic Cross-Examination**: Compare Subagent findings against Arena.ai and Z.ai outputs. Severity-1 arithmetic or solvency disputes cannot be settled by majority vote and trigger `AUTHORIZATION = DENIED_DISPUTED`.
-3. **Clean Socket Pruning Mandate**: Immediately execute `manage_subagents(Action='kill_all')` after harvesting to terminate all subagent SSE threads and eliminate Windows socket leaks.
+3. **Cycle-Owned Socket Cleanup**: Release only completed subagents and connections created by this cycle, using recorded identities. Never use blanket kill-all/process-pruning actions or touch any persistent daemon, browser session, or workbook writer.
 4. **Dual-Repo Parity Verification**: Run `python .agents/scripts/verify_and_sync_agents.py` to confirm 100% byte-for-byte parity across `Trading_2` and `Engine_2`.
 5. **Desk Ledger Append**: Record cycle output in `docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md` and append turn summary to `.agents/memory/session_chat_history.md`.
 
@@ -163,7 +158,7 @@ The agent MUST verify via `manage_task(Action='list')` that all 5 persistent dae
 
 1. **Perpetual Goal Contract**: Under NO circumstances may `<!-- GOAL_COMPLETE -->` or `<!-- GOAL_CANCELLED -->` be emitted until live equity >= 5,500.00 USD is proven on MetaTrader 5.
 2. **Inviolable Floors**: **4,600.00 USD Hard Floor** | **4,650.00 USD Operating Buffer** | **4,795.00 USD Solvency Kernel**.
-3. **Never Widen Stops**: Stop loss on Ticket #19267445 (81,640.00 USD) must NEVER be loosened.
-4. **Strict Passive Limit Posture**: Passive limit orders only, safely anchored behind resting institutional whale walls (>= $100K). Zero marketable spread crossing.
+3. **Never Widen Stops**: For any live position, follow its verified immutable R0 ledger and ticket-specific ratchets; never loosen a protective stop. Ticket #19267445 is historical in the dated operator baseline.
+4. **Strict Passive Limit Posture**: Passive limit orders only, safely anchored behind verified asset-native resting institutional liquidity (>= 100,000 USD where that setup requires it). Zero marketable spread crossing.
 5. **Zero Token Polling**: Polling timers <= 60s are permanently banned. Rely strictly on native event-driven reactive wakeups and the joint 3-entity completion lifecycle.
 6. **Plain-Text Formatting**: Zero raw LaTeX delimiters in chat; use clean plain text and unicode.

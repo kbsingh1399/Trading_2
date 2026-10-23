@@ -60,16 +60,18 @@ flowchart TD
 
 ## 🔬 PART 2: DESK CASE STUDIES & HARDENED INVARIANTS
 
+The rows below record historical incidents and the remedies used at that time; historical account balances, ticket counts, risk caps, and service/daemon descriptions are not current telemetry or authorization. Current admission is governed by a newly verified envelope for account 5064568 in USD: all filled + pending + proposed tickets count toward a global maximum of two, Tier 2 realized balance above 4,850.00 USD permits conditional nominal risk of 15.00 to 25.00 USD per ticket, and aggregate stressed loss plus one global reserve must preserve the binding 4,795.00 USD kernel (4,650.00 USD operating defense; 4,600.00 USD hard floor). The operator-reported 4,865.07 USD flat baseline must be reverified. Current stress is 1.25 times each ticket's nominal SL loss plus 2.00 USD per ticket, then one additional global 2.00 USD reserve even when flat. At a newly verified flat 4,865.07 USD, two nominal 25.00 USD tickets leave 4,796.57 USD after 68.50 USD total stress: capital eligibility still requires every other hard gate before execution. Full Part 2 role prompts and complete schema evidence supersede historical prompt/output truncation remedies. Verify the immutable envelope before dispatch; bounded cleanup follows validated harvest and ownership checks.
+
 | Event / Failure | Surface Symptom | Root Cause Discovered | Permanent Kaizen Invariant Codified |
 |---|---|---|---|
-| **Losing SOL Trade (#19174858)** | Stopped out for -$21.43 loss on SOL long. | 1) Squeezed stop inside 0.35 ATR sweep zone; 2) Bought directly into negative CVD waterfall; 3) Staged limit above un-swept retail stops; 4) Whale wall polarity inversion. | **Pitfalls 1, 2, 3, 4 codified**. Minimum 0.50 ATR SL buffer mandatory. Confirmed CVD absorption required before long entry. Entry barred above un-swept stops. |
+| **Losing SOL Trade (#19174858)** | Stopped out for -21.43 USD loss on SOL long. | 1) Squeezed stop inside 0.35 ATR sweep zone; 2) Bought directly into negative CVD waterfall; 3) Staged limit above un-swept retail stops; 4) Whale wall polarity inversion. | **Pitfalls 1, 2, 3, 4 codified**. Minimum 0.50 ATR SL buffer mandatory. Confirmed CVD absorption required before long entry. Entry barred above un-swept stops. |
 | **Excel Workbook Corruption** | `BadZipFile: File is not a zip file` across all modules. | Direct in-place `wb.save()` was aborted midway by tight 60s subprocess timeout during 13.7MB serialization. | **Atomic Staging Invariant**: All 21 modules now write to `.tmp.xlsx`, verify `testzip() == None`, and atomically `replace()`. Timeout expanded to 180s. Master file can never corrupt again. |
-| **Arena.ai Red-Team Critique** | Arena flagged "Stale Solvency Arithmetic" claiming 3 slots at $15 risk. | Spec cited legacy $4,857.32 equity. Live equity is $4,834.83, leaving only +$39.83 buffer cushion. Two $15 slots stress to $41.50, breaching buffer. | **Dynamic Solvency Gate**: Max 1 live slot under current cushion ($10–$12 risk). Hard-blocked 2nd slot until equity > $4,836.50. |
-| **Desk Ledger Sizing Inconsistency (P0)** | Arena flagged that corrected stops in `LIVE_COLLABORATIVE_ORDER_DESK.md` were paired with legacy lot sizes (0.03 lot BTC risked $25.40; 0.02 lot Gold risked $39.86). | Widened structural stops were updated without simultaneously recalibrating lot sizes down to maintain the $15–$20 cash risk cap. | **Sizing Precedence Invariant**: `derive complete safe SL -> compute risk distance -> calculate exact lot size -> verify mt5.order_calc_profit -> verify stressed equity >= $4,795`. |
+| **Arena.ai Red-Team Critique** | Arena flagged "Stale Solvency Arithmetic" claiming 3 slots at 15 USD risk. | Spec cited legacy 4,857.32 USD equity. Live equity is 4,834.83 USD, leaving only +39.83 USD buffer cushion. Two 15 USD slots stress to 41.50 USD, breaching buffer. | **Dynamic Solvency Gate**: Max 1 live slot under current cushion (10 USD–12 USD risk). Hard-blocked 2nd slot until equity > 4,836.50 USD. |
+| **Desk Ledger Sizing Inconsistency (P0)** | Arena flagged that corrected stops in `LIVE_COLLABORATIVE_ORDER_DESK.md` were paired with legacy lot sizes (0.03 lot BTC risked 25.40 USD; 0.02 lot Gold risked 39.86 USD). | Widened structural stops were updated without simultaneously recalibrating lot sizes down to maintain the 15 USD–20 USD cash risk cap. | **Sizing Precedence Invariant**: `derive complete safe SL -> compute risk distance -> calculate exact lot size -> verify mt5.order_calc_profit -> verify stressed equity >= 4,795 USD`. |
 | **5-Minute Continuous Git Sync Gap** | Operator identified lack of persistent daemon pushing all local workspace updates to Git every 5 minutes. | Previous telemetry daemon only synced snapshots every 60s, without staging all modified repository files or validating zip CRC integrity before commit. | **Autonomous 5-Min Git Sync Daemon (`task-104957`)**: Engineered `Terminal/Data_Factory/autonomous_git_sync_daemon.py`. Stages all files, validates Excel zip CRC, commits with timestamped provenance, and pushes to `origin/main` every 300s persistently. |
 | **Subagents Not Invoked on Wake-Up** | 20-min cron triggered but subagents were skipped. | Agent was generating narrative text before tool calls; cron prompt was an unmanageable 1,500-token text wall. | **Immediate Tool-Call Mandate**: First action on wake-up MUST be parallel `invoke_subagent` calls (`Model='flash'`) before any prose. Cron prompt compressed to 80 tokens. |
 | **Token Exhaustion Risk** | Context filling rapidly from large prompts and subagent dumps. | Repeating full specification text blocks and large prompt templates into every turn. | **Token Conservation SOP**: Use `Model='flash'` for subagents; cite local file paths rather than pasting text; enforce max 200 token subagent outputs. 85% token reduction achieved. |
-| **Losing NZDUSD Trade (#19244087)** | Stopped out for -$18.63 loss on NZDUSD buy limit. | Squeezed 1.6-pip stop (0.56888) placed ABOVE Daily Value Area Low (0.56868); failed to anchor behind Asian Low (0.56768); inflated lot size (0.81 lot) to fit micro-stop. | **Pitfall 18 Codified & Structural Envelope Invariant**: Stop Loss must be anchored strictly BEHIND the structural boundary (VAL - 0.20*ATR or Session Low). Minimum SL distance >= 1.5x 15m ATR. Lot volume must be derived from structural stop, not vice versa. |
+| **Losing NZDUSD Trade (#19244087)** | Stopped out for -18.63 USD loss on NZDUSD buy limit. | Squeezed 1.6-pip stop (0.56888) placed ABOVE Daily Value Area Low (0.56868); failed to anchor behind Asian Low (0.56768); inflated lot size (0.81 lot) to fit micro-stop. | **Pitfall 18 Codified & Structural Envelope Invariant**: Stop Loss must be anchored strictly BEHIND the structural boundary (VAL - 0.20*ATR or Session Low). Minimum SL distance >= 1.5x 15m ATR. Lot volume must be derived from structural stop, not vice versa. |
 | **Section 2.5 Quantitative Inquest (Terminal Funnel SLA & Limit Geometry)** | Realized P&L remained flat despite strong alpha models; limits died of loneliness. | 1) High binary hurdle (7-gate AND) created conjunctive sclerosis; 2) Naked limits placed 0.5–1.2R away had near-zero fill probability; 3) Un-instantiated rulings broke execution pipeline. | **Throughput SLA & Composite Scoring**: 1) Funnel SLA: Ruling -> order_send <= 60s; 2) Stage Gate: `P(fill|staged) * EV > 1.50 USD`; 3) Limit distance geometry: `d* = min(structural shelf, mid + 0.40 * ATR * sqrt(TTL))`; 4) Trade native USD tape (`XAGUSD`), rejecting high-drag FX clones (`XAGSGD`, `XAGAUD`). |
 
 ---
@@ -117,7 +119,7 @@ Every claimed fix requires:
 | ID | Defect | Severity | Closure criterion |
 |---|---|---:|---|
 | D11 | Unbound or unresolved prompt/ticket artifact | 1 | 100% rejection of cycle, nonce, prompt, evidence, schema, or placeholder mismatch in tests |
-| D12 | Risk/reward/stress/surplus semantic aliasing | 1 | Broker-native recomputation fixture passes to $0.01 for every ticket row |
+| D12 | Risk/reward/stress/surplus semantic aliasing | 1 | Broker-native recomputation fixture passes to 0.01 USD for every ticket row |
 | D13 | Market-clock candidate emitted while closed | 1 | Closed/rollover fixtures can emit WATCHLIST only |
 | D14 | Risk-policy digest disagreement | 1 | All admission components load one policy digest or deny execution |
 | D15 | Lifecycle STALLED has no recovery | 2 | Idempotent retry, degraded state, restart recovery, and no fabricated completion |
@@ -145,7 +147,7 @@ Every claimed fix requires:
 
 ### 4. Macro Risk Analyst
 - Guards the desk against external economic shocks.
-- Enforces the 21:15–22:30 UTC interbank FX rollover blackout.
+- Enforces the fixed desk-policy 21:15–22:30 UTC interbank FX rollover blackout, independently of daylight-saving shifts; verifies official native exchange calendars and broker sessions for cash-session eligibility.
 - Monitors ETF inflows and CEX netflows to confirm institutional trend sponsorship.
 
 ### 5. Excel Data Quality Auditor
@@ -202,7 +204,9 @@ On EVERY cycle, deliberation turn, and prompt response, the council models (Aren
 > 🛑 **MANDATORY IN-TURN SELF-INQUEST (STRICT OPERATOR MANDATE)**:
 > At EVERY single step, decision point, tool execution, code write, prompt generation, and autonomous wake-up, the coordinator and all subagents MUST explicitly pause and ask themselves:
 > 
-> 🧠 **"Can I do this task better, faster, or with higher mathematical precision using existing skills or agents installed in this system?"**
+> 🧠 **"Can I do this task better with existing skills or agents installed?"**
+>
+> Expanded precision check (retained): **"Can I do this task better, faster, or with higher mathematical precision using existing skills or agents installed in this system?"**
 > 
 > ### Systematic Self-Audit Checklist:
 > 1. **Installed Skills Check**:
