@@ -1,9 +1,9 @@
 {
   "current_cycle_id": "308",
-  "cycle_status": "IN_PROGRESS",
+  "cycle_status": "COMPLETED",
   "cycle_started_utc": "2026-10-23 21:06:12 UTC",
-  "cycle_completed_utc": null,
-  "next_cycle_scheduled_utc": null,
+  "cycle_completed_utc": "2026-10-23 21:17:27 UTC",
+  "next_cycle_scheduled_utc": "2026-10-23 21:37:27 UTC",
   "rest_interval_seconds": 1200,
   "components": {
     "antigravity_subagents": {
@@ -14,8 +14,8 @@
     },
     "arena_ai": {
       "name": "Arena.ai Council (GPT Astra)",
-      "status": "IN_PROGRESS",
-      "completed_at_utc": null,
+      "status": "COMPLETED",
+      "completed_at_utc": "2026-10-23 21:17:27 UTC",
       "raw_file": "docs/trade_plans/ARENA_LATEST_RAW.md",
       "model": "GPT Astra",
       "verdict": "STAND_ASIDE_FLAT_CASH",
@@ -23,8 +23,8 @@
     },
     "zai": {
       "name": "Z.ai Sovereign Council (GLM-5.3-Flash)",
-      "status": "IN_PROGRESS",
-      "completed_at_utc": null,
+      "status": "COMPLETED",
+      "completed_at_utc": "2026-10-23 21:14:03 UTC",
       "raw_file": "docs/trade_plans/ZAI_LATEST_RAW.md",
       "model": "GLM-5.3-Flash",
       "verdict": "OPTION_B_STAND_ASIDE_ARM_GATES",
