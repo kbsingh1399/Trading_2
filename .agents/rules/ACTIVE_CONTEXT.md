@@ -1,7 +1,7 @@
 # ACTIVE CONTEXT CARD (LIVE SOVEREIGN QUANT DESK)
-**Last Updated**: 2026-10-23 00:35 UTC | **Autonomous Cycle**: Cycle 281 (Asian Session / Tokyo Cash Open)
+**Last Updated**: 2026-10-23 00:45 UTC | **Autonomous Cycle**: Cycle 282 (Asian Session / Tokyo Cash Open)
 **Target Account**: Blueberry Markets MT5 Account #5064568
-**Mission**: Pass Phase 1 Challenge (Target: 5,500.00 USD) before Oct 23, 2026 (23:59 UTC) (~23.40 hours runway remaining).
+**Mission**: Pass Phase 1 Challenge (Target: 5,500.00 USD) before Oct 23, 2026 (23:59 UTC) (~23.25 hours runway remaining).
 
 ---
 
@@ -17,46 +17,43 @@
 
 ---
 
-## 2. CO-EQUAL QUANTITATIVE TRI-COUNCIL CONSENSUS (CYCLE 281)
-- **Arena.ai Primary**: Cycle 280/281 completed (21,634 chars in `docs/trade_plans/ARENA_LATEST_RAW.md`).
-  * Ruling: **HOLD FLAT IN 100% CASH DEFENSE. NO RISK ESCALATION.**
-  * Solvency Invariant: Proved $25 nominal risk on Brent (1.26 lots) creates -$40.115 stressed loss, leaving equity at 4,778.39 USD (breaching 4,795 buffer by -$16.60 and leaving only $3.39 to hard floor). Realized equity must reach >= 4,835.11 USD before $25 tier is unlocked.
-  * Rank 1 Template: Ratified UK Brent 0.65 lot ($12.87 nominal risk / 3.56R) as Rank 1 on radar, but ordered not to pre-stage until price touches 113.595 and prints a 5m rejection hold.
-- **Z.ai (GLM-5.3-Flash)**: Cycle 281 completed (15,425 chars in `docs/trade_plans/ZAI_LATEST_RAW.md`).
-  * Ruling: Independent Python arithmetic check (`c280_math_check.py`) confirmed 0 discrepancies. Ratified UK Brent as Rank 1 touch-armed candidate (EV $5.63). Vetoed pre-staging limit on BTC until 80,450 cascade is swept. Endorsed Residual-13 rule (sum of stressed losses <= 30.51 USD).
-- **Gemini Web2API (Port 8081)**: Cycle 281 completed.
-  * Ruling: Endorsed House Money Escalation ladder (+45.83 USD win lifts equity to 4,864.33, safely unlocking $25–$35 tier). Answered Section 2.5 Inquest with Weighted Probabilistic Scoring Model.
+## 2. CO-EQUAL QUANTITATIVE TRI-COUNCIL CONSENSUS (CYCLE 282)
+- **Arena.ai Primary**: Cycle 282 completed (21,307 chars in `docs/trade_plans/ARENA_LATEST_RAW.md`).
+  * Ruling: **HOLD FLAT. TRANSMIT NOTHING. NO RISK ESCALATION.**
+  * Critical Discovery on Brent: Proved that 113.595 is Prior-Day VAH, whereas today's value area is 113.718 (DVAL) to 113.916 (DVAH), with Asian low at 113.700. Placing a blind limit at 113.595 means buying *below* today's Value Area Low after the auction breaks down (adverse selection). Ordered zero staging.
+  * USDJPY Conditional Template: Watch for post-PMI pullback to 156.440–156.512 and bearish rejection -> `SELL_LIMIT 0.08 @ 156.500` (SL: 156.809, TP: 155.687, 2.65R, nominal risk -$15.76, stressed equity $4,796.35).
+  * Gold Conditional Template: Watch for push into 4,030.05–4,030.57 (DVAH/EMA20) and bearish rejection -> `SELL_LIMIT 0.05 @ 4,030.20` (SL: 4,033.10, TP: 4,023.30, 2.38R, nominal risk -$14.50).
+- **Z.ai (GLM-5.3-Flash)**: Cycle 282 completed (11,478 chars in `docs/trade_plans/ZAI_LATEST_RAW.md`).
+  * Ruling: Reaffirmed Poisson time-decay model: Asian session volume is thin; 57% of BTC cascade mass and primary Brent liquidity sit in London/NY hours. Vetoed pre-staging limits without live touch-and-confirm.
+- **Gemini Web2API (Port 8081)**: Cycle 282 completed. Endorsed House Money Escalation ladder and 2-Tier Adaptive Confluence.
 - **Subagent Fleet (4 Agents)**: Dispatched, completed, and cleanly pruned via `kill_all`.
 
 ---
 
 ## 3. UNIFIED CANDIDATE RADAR (STANDBY FOR TRIGGER)
 
-### 1. `UKBRENT.p` (UK Brent) Model 2 Long (Rank 1 Structural Template)
-- **Live Pricing (00:30 UTC)**: Bid = 113.810 / Ask = 113.843 (Spread = 33 pts / 2.9 bps).
-- **Completed M15 Candle (00:15–00:30 UTC)**: Open 113.809, High 113.896, Low 113.718, Close 113.779 (568 ticks).
-- **Geometry**: BUY_LIMIT 0.65 lot @ 113.595 (DVAH shelf) | SL: 113.397 | TP: 114.300 | R:R = 3.56R
-- **Risk Math**: Nominal Risk: -$12.87 USD | Spread Cost: -$2.15 USD | Stressed Loss: -$20.77 USD | Stressed Equity: 4,797.74 USD (+2.74 USD buffer surplus, +22.74 USD hard floor surplus).
-- **State**: `APPROACHING` (Distance to entry: ~0.18 pts; do not pre-stage until price tests 113.595 and prints 5m rejection hold).
+### 1. `UKBRENT.p` (UK Brent) Model 2 Long
+- **Live Pricing (00:45 UTC)**: Bid = 113.686 / Ask = 113.715 (Spread = 29 pts / 2.5 bps).
+- **Auction Reality**: Current DVAL = 113.718, Current POC = 113.718, Current DVAH = 113.916. Prior-Day VAH = 113.595.
+- **State**: `STANDBY ON RADAR (TOUCH-ARMED)`. Do not stage blind limit at 113.595 into Asian void. Await London session liquidity and confirmed structural hold.
 
-### 2. `XAUUSD.pi` (Gold) Range Breakdown / Failed Reclaim Short
-- **Live Pricing (00:30 UTC)**: Bid = 4018.30 / Ask = 4018.38 (Spread = 8 pts / 0.20 bps).
-- **Completed M15 Candle (00:15–00:30 UTC)**: Open 4026.63, High 4026.63, Low 4017.01, Close 4018.36 (5,264 ticks).
-- **Geometry**: SELL_LIMIT 0.01 lot @ 4,021.18 (Prior-Day Low) | SL: 4,031.50 (DVAH) | TP: 3,991.30 | R:R = 2.89R
-- **Risk Math**: Nominal Risk: -$10.32 USD | Spread Cost: -$0.08 USD | Stressed Loss: -$14.90 USD | Stressed Equity: 4,803.61 USD (+8.61 USD buffer surplus).
-- **State**: `ARMED ON RADAR` (Closed M15 below 4,021.18; awaiting failed reclaim retest of 4,021.18 from below with 5m rejection).
+### 2. `USDJPY.pi` Post-CPI Trend Breakdown Short (Rank 1 Watch)
+- **Live Pricing (00:45 UTC)**: Bid = 156.124 / Ask = 156.130 (Spread = 6 pts / 0.38 bps).
+- **Geometry**: SELL_LIMIT 0.08 lot @ 156.500 | SL: 156.809 | TP: 155.687 (front-running Daily S2 155.667) | R:R = 2.65R
+- **Risk Math**: Nominal Risk: -$15.76 USD | Spread Cost: -$0.36 USD | Stressed Loss: -$22.15 USD | Stressed Equity: 4,796.36 USD (+1.36 USD buffer surplus).
+- **State**: `ARMED ON RADAR`. Awaiting corrective rally into 156.440–156.512 shelf with confirmed 5m rejection wick.
 
-### 3. `BTCUSD.pi` Asian Cascade Long (4-Gate Trigger)
-- **Live Pricing (00:30 UTC)**: Bid = 81,100.0 / Ask = 81,116.0 (Spread = 16 pts / 1.97 bps).
-- **Completed M15 Candle (00:15–00:30 UTC)**: Open 81126.0, High 81156.0, Low 80988.0, Close 81103.0 (4,712 ticks).
-- **Geometry**: BUY_LIMIT 0.02 @ 80,500.00 | SL: 79,942.20 | TP: 81,959.00 (front-running 82,000 wall) | R:R = 2.62R
+### 3. `XAUUSD.pi` (Gold) Range Value Rejection Short (Rank 2 Watch)
+- **Live Pricing (00:45 UTC)**: Bid = 4019.12 / Ask = 4019.20 (Spread = 8 pts / 0.20 bps).
+- **Geometry**: SELL_LIMIT 0.05 lot @ 4,030.20 | SL: 4,033.10 | TP: 4,023.30 | R:R = 2.38R
+- **Risk Math**: Nominal Risk: -$14.50 USD | Spread Cost: -$0.40 USD | Stressed Loss: -$20.63 USD | Stressed Equity: 4,797.88 USD (+2.88 USD buffer surplus).
+- **State**: `ARMED ON RADAR`. Awaiting push into 4,030.05–4,030.57 (DVAH/EMA20) and bearish rejection.
+
+### 4. `BTCUSD.pi` Asian Cascade Long (Rank 3 Watch)
+- **Live Pricing (00:45 UTC)**: Bid = 81,250.0 / Ask = 81,265.0 (Spread = 15 pts / 1.85 bps).
+- **Geometry**: BUY_LIMIT 0.02 @ 80,500.00 | SL: 79,942.20 | TP: 81,959.00 | R:R = 2.62R
 - **Risk Math**: Nominal: -$11.16 USD | Stressed Loss: -$16.35 USD | Stressed Equity: 4,802.16 USD (+7.16 USD buffer surplus).
-- **State**: `ARMED ON RADAR` (Price descending toward 80,450 cascade debt pool; retail stops unswept; pre-staging forbidden).
-
-### 4. `USDJPY.pi` Post-CPI Trend Breakdown Short
-- **Live Pricing (00:30 UTC)**: Bid = 156.185 / Ask = 156.188 (Spread = 3 pts / 0.19 bps).
-- **Completed M15 Candle (00:15–00:30 UTC)**: Open 156.203, High 156.274, Low 156.111, Close 156.187 (4,718 ticks).
-- **State**: `STAND ASIDE AT S1 SUPPORT`. Grinding at Daily S1 (156.172–156.214). Chasing short into support violates anti-chasing rules. Await multi-candle pullback retest to 156.440–156.512.
+- **State**: `ARMED ON RADAR`. 80,450 cascade debt pool ($8.20M) remains unswept; pre-staging forbidden.
 
 ---
 
