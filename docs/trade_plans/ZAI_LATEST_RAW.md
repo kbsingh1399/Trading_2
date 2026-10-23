@@ -17,41 +17,34 @@ scripts/c311_dispatch_check.py → 62/62 PASSED (PASSED_TO_0.01_USD). Headline: 
 
 json
 {
-  "schema_version": "1.0.0",
-  "cycle_id": "Cycle 311",
-  "cutoff_utc": "2026-10-23 23:20:26 UTC",
-  "evidence_manifest_sha256": "303be24fe0005cbb3d240d0c30ed1ff22370e5de78148b5f41d38e904d4bd76e",
-  "prompt_sha256": "ddeb781735b45d63377150b80312f1c6fa3077decb2150ba30decbe593f28bfb",
-  "dispatch_nonce": "4d044865-e59b-405e-b81c-9871edbb8161",
-  "provenance_status": "VERIFIED_ENVELOPE_INTERNAL",
-  "inventory_status": "RECONCILED",
-  "hard_gate_results": {
-    "legal_account_authorized": true,
-    "evidence_freshness_verified": false,
-    "event_calendar_verified": false,
-    "event_blackout_active": false,
-    "broker_session_open": false,
-    "native_market_open": false,
-    "fx_rollover_embargo_active": false,
-    "tradfi_weekend_embargo_active": true,
-    "broker_feasibility_receipt_present": false,
-    "contingent_capacity_available": true,
-    "joint_solvency_kernel_met": true,
-    "realized_headroom_usd": 68.07,
-    "tier2_house_money_unlocked": true,
-    "new_risk_authorized": false
-  },
-  "universe_coverage": {
-    "declared_universe_assets": 156,
-    "reviewable_this_cycle": 0,
-    "executable_ticket_rows": 0,
-    "research_watchlist_rows": 1,
-    "coverage_pct": 0.0,
-    "exclusions": "ALL 156 — no symbol map, no quotes, no broker/native session states, no calendar verification, no evidence manifest rows in envelope",
-    "evidence_gaps": "entire universe; TradFi additionally under D4 weekend embargo (Fri 21:55 -> Sun 22:00 UTC)"
-  },
-  "account_tier_and_contingent_capacity": {
-    "capital_mode": "TIER_2_HOUSE_MONEY",
+    {
+      "id": "UNK-311-02",
+      "item": "swap rate unobserved as a rate",
+      "impact": "realized swap at TP close -0.81 (single datum, matches C310 snapshot exactly); triple-swap Wednesday for future weekend holds",
+      "disposition": "MONITOR"
+    },
+    {
+      "id": "UNK-311-03",
+      "item": "no estimator lineage/calibration payload",
+      "impact": "P_fill/P_TP remain null -> HOLD for all new admission per protocol",
+      "disposition": "HOLD_UNTIL_CALIBRATED"
+    },
+    {
+      "id": "UNK-311-04",
+      "item": "156-asset symbol map absent",
+      "impact": "universe coverage 0.0% this cycle; no TradFi-subset inference permitted",
+      "disposition": "DEFERRED"
+    },
+    {
+      "id": "UNK-311-05",
+      "item": "execution-quality distribution",
+      "impact": "TP filled at exact 80,600.00 (zero slippage implied by balance math, zero commission) — single datum",
+      "disposition": "ARCHIVE"
+    }
+  ],
+  "authorization": "DENIED_FAIL_CLOSED",
+  "response_sha256": "9a5af0b4b46de74312699119522152428c80b30e821a9dcb63a6b3aeb7227667"
+}
 Human-Readable Explanation
 
 Provenance (envelope-internal). Cycle 311, schema 1.1.0, cutoff 23:20:26 UTC Friday; commit cf28fa8 (advanced from d6f7df9), git_tree and risk_policy digest structure-valid — new 1.1.0 fields adopted. Manifest/workbook digests 64-hex valid; nonce and envelope UUID valid. The single-backtick fence is a gateway rendering artifact; the JSON content parses clean, so the fail-closed envelope denial does not trigger. Attestation level: envelope-internal (nonce-bound); manifest contents were not embedded — see disputes.
