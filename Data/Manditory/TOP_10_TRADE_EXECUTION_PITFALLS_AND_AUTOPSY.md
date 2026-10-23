@@ -12,7 +12,7 @@
 
 ```
 ========================================================================================
-TRADE AUTOPSY: SOLUSD.p BUY 0.10 LOT (TICKET #19174858)
+TRADE AUTOPSY 1: SOLUSD.p BUY 0.10 LOT (TICKET #19174858)
 ========================================================================================
 Entry Price:        106.80 USD
 Exit Deal:          #17368131 at 2026-10-22 02:27:52 UTC
@@ -22,7 +22,30 @@ Account Impact:     Realized Equity dropped from 4,851.83 USD to 4,834.83 USD
 Floor Cushion:      Compressed from +76.83 USD to +59.83 USD above 4,775.00 USD Hard Floor
 Buffer Cushion:     Compressed from +56.83 USD to +39.83 USD above 4,795.00 USD Buffer
 ========================================================================================
+
+========================================================================================
+TRADE AUTOPSY 2: NZDUSD.pi BUY 0.81 LOT (TICKET #19244087)
+========================================================================================
+Entry Price:        0.56904 USD
+Filled At:          0.56904 USD at 2026-10-23 07:15:12 UTC
+Exit Deal:          #17439120 at 2026-10-23 07:38:40 UTC
+Exit Price:         0.56888 USD (Hit planned Stop Loss)
+Nominal PnL:        -$12.96 USD (16 points / 1.6 pips; Realized -$18.63 USD with spread)
+Account Impact:     Realized Equity dropped from 4,818.51 USD to 4,799.88 USD
+Floor Cushion:      Compressed from +43.51 USD to +24.88 USD above 4,775.00 USD Hard Floor
+Buffer Cushion:     Compressed from +23.51 USD to +4.88 USD above 4,795.00 USD Buffer
+========================================================================================
 ```
+
+### 🩸 Why Did Ticket #19244087 Fail? (The NZD Forensic Autopsy):
+1. **Stop Loss Squeezed Inside Value Area Noise Band (Sub-ATR Stop)**:
+   - *The Fatal Defect*: The stop loss was set at 0.56888, a mere 1.6 pips (16 points) from entry 0.56904. In FX majors during London morning pre-market expansion, 1.6 pips sits squarely inside random bid-ask Brownian noise (< 0.35x 15m ATR).
+2. **Stop Placed Above Daily Value Area Low (Inside Auction Balance)**:
+   - *Microstructure Flaw*: Daily Value Area Low (VAL) sat at 0.56868. Placing the stop at 0.56888 meant the stop was positioned 2.0 pips ABOVE the Value Area boundary! When normal auction rotation tested Value Area Low, our stop was picked off while the auction thesis remained technically intact.
+3. **Failure to Anchor Behind Asian Session Low Envelope**:
+   - The Asian Session Low was 0.56768. The true structural invalidation shelf was below 0.56768 / 0.56860, NOT inside the 0.56888 balance zone.
+4. **Oversized Lot Allocation to Fit Artificial Micro-Stop**:
+   - Because the stop was artificially compressed to 1.6 pips to fit a $12.96 risk cap, volume was inflated to 0.81 lot. Had the trade been structured with a true 35-point structural stop below VAL (0.56860), volume would have been scaled to 0.37 lot, giving the trade structural room to breathe without exceeding risk limits.
 
 ### 🩸 Why Did Ticket #19174858 Fail? (The 5 Fatal Flaws):
 1. **The Ghost Wall Illusion (Orderbook Polarity Inversion)**:
@@ -251,15 +274,43 @@ flowchart TD
 
 ---
 
-## 📋 SUMMARY: THE 17-POINT EX-ANTE PRE-PUNCH CHECKLIST
+### 🔴 PITFALL 18: STOP LOSS PLACED INSIDE VALUE AREA NOISE BAND (SUB-ATR & UN-ANCHORED TO STRUCTURAL ENVELOPE)
+- **Anatomy**: Positioning Stop Loss inside the high-volume Value Area or within random Brownian micro-noise (< 1.5x 15m ATR) to artificially reduce risk distance so a larger lot size can be staged (e.g. NZDUSD.pi #19244087 placing SL at 0.56888 when Daily VAL was 0.56868 and Asian Low was 0.56768).
+- **Microstructure Mechanism**:
+  * Auction theory dictates that prices naturally rotate and oscillate between Value Area High (VAH) and Value Area Low (VAL).
+  * Placing a stop loss ABOVE Value Area Low for a long trade guarantees that a standard, healthy test of the Value Area boundary will trigger the stop loss before the rotation unfolds.
+  * Furthermore, stops tighter than 1.5x 15m ATR are routinely swept by normal bid-ask spread jitter during session transitions and interbank liquidity handoffs.
+- **Ex-Ante Prevention Rule**:
+  * **Mandatory Structural Envelope Anchoring**: For long positions, Stop Loss MUST be placed strictly BEHIND the structural boundary: `SL <= min(VAL - 0.20 * ATR, Session Low, Swing Low)`. For short positions, `SL >= max(VAH + 0.20 * ATR, Session High, Swing High)`.
+  * **Minimum Noise Buffer**: SL distance must be `>= 1.50 * ATR(15m)` (or `>= 25 pts` in FX, `>= 400 pts` in BTC).
+  * **Lot Sizing Follows Structure (Never Squeeze the Stop)**: Never compress a stop loss to fit a desired lot size. Determine the structural, safe stop price first, calculate the exact dollar risk per point, and scale down lot volume (e.g. 0.35 lot instead of 0.81 lot) to strictly fit the available buffer cushion!
 
-Before ANY limit order is staged or punched into MetaTrader 5, the coordinator and subagents MUST physically verify that all 17 institutional pitfalls are absent:
+---
+
+## 📋 SUMMARY: THE 18-POINT EX-ANTE PRE-PUNCH CHECKLIST
+
+Before ANY limit order is staged or punched into MetaTrader 5, the coordinator and subagents MUST physically verify that all 18 institutional pitfalls are absent:
 
 | # | Pitfall Check | Required Quantitative Gate | Verified? |
 |---|---|---|---|
 | 1 | **Whale Wall Polarity** | Confirmed genuine resting BID for longs (`is_bid == True`), ASK for shorts | [ ] |
 | 2 | **Stop Cascade Clearance** | Zero un-swept opposing retail stop clusters between market and entry | [ ] |
 | 3 | **CVD Absorption** | Tape confirms absorption / deceleration; selling waterfall halted | [ ] |
+| 4 | **SL Distance Buffer** | SL distance >= 1.5x 15m ATR; outside liquidation sweep zone | [ ] |
+| 5 | **Extreme Location** | Value Area boundary (VAH/VAL) or VWAP |Z| >= 2.0 SD; no mid-range execution | [ ] |
+| 6 | **Spread Friction Gate** | Spread price / TP distance <= 10.0%; Spread <= 25 bps Crypto / <= 5 bps TradFi | [ ] |
+| 7 | **HTF Trend Alignment** | 20/50/200 EMA ribbon alignment; zero counter-trend fighting against $500M+ ETF outflow | [ ] |
+| 8 | **Execution Timing** | Staged strictly after sweep-reclaim or confirmed limit test; no premature impulse | [ ] |
+| 9 | **Clear TP Runway** | TP front-runs opposing liquidation magnet by 5-10 bps; realizable R:R >= 2.0R to 2.5R | [ ] |
+| 10 | **Dynamic Sizing & Solvency** | Stressed loss <= Buffer Cushion; Stressed Equity >= 4,795.00 USD (Defense buffer) | [ ] |
+| 11 | **Passive Order Type** | Strictly BUY_LIMIT <= bid, SELL_LIMIT >= ask; zero marketable spread crossing | [ ] |
+| 12 | **Queue & TTL Gate** | Wall age <= 5s, sample count >= 3; order TTL <= 12 bars (3h); no stale queue traps | [ ] |
+| 13 | **Partial Fill Policy** | Auto-cancel residual unbacked volume if fill < 80% and markout > 0.10 ATR | [ ] |
+| 14 | **Dynamic Spread Spike** | Spread now <= 1.5 * 5m median spread; trading frozen during news / rollover shocks | [ ] |
+| 15 | **Spoof & Basis Check** | Presence fraction >= 0.85 over 180s; MT5 CFD mapped to underlying perpetual basis | [ ] |
+| 16 | **Cluster Correlation** | Correlated assets (BTC/ETH/SOL or indices) treated as single risk; max 1 slot at current cushion | [ ] |
+| 17 | **Workbook Schema Gate** | Zero fabricated columns; 33/33 sheets verified with atomic temp file commit | [ ] |
+| 18 | **Structural Envelope Stop** | SL placed behind VAL/VAH/Session Low envelope; NEVER inside Value Area noise band | [ ] |
 | 4 | **Safe SL Buffer** | SL placed `>= 0.50 ATR` plus half-spread beyond outer sweep boundary | [ ] |
 | 5 | **Auction Location** | Model 1 extreme (|Z| >= 2.0 SD) OR Model 2 HTF pullback (No mid-range noise) | [ ] |
 | 6 | **Spread Gate** | Spread <= 25 bps (Crypto) / <= 5 bps (TradFi); round-trip cost < 10% R0 | [ ] |

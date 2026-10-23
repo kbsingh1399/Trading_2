@@ -341,3 +341,24 @@ Every 20-minute wake-up cron cycle MUST systematically execute and verify each g
      - Separate crypto orderbook heuristics from TradFi session auction geometry.
   6. **Purged Telemetry Phantom Risk Leg**:
      - Fixed risk calculation so that when the book has 0 open positions and 0 pending orders, worst-case stopout equity equals realized equity exactly.
+
+---
+
+## 🏛️ RESOLUTION 19: QUESTION-OUTPUT DRIVEN CONTINUOUS IMPROVEMENT, NZDUSD FORENSIC AUTOPSY & STRUCTURAL ENVELOPE INVARIANT
+- **Operator Directive**:
+  * *"and also ensure that we improve our self as per question output"*
+- **Forensic Trade Autopsy (Ticket #19244087 - NZDUSD.pi)**:
+  * Order: BUY 0.81 lot @ 0.56904 | SL 0.56888 | TP 0.56965.
+  * Filled at 07:15:12 UTC; stopped out at 07:38:40 UTC at 0.56888.
+  * Realized P&L: -$18.63 USD (Nominal loss -$12.96 USD + broker spread).
+  * Post-Trade Account State: Realized Equity = 4,799.88 USD (Floor Cushion = +24.88 USD above 4,775.00 USD, Buffer Cushion = +4.88 USD above 4,795.00 USD).
+- **Root Cause Identified via Question Output (Microstructure & Auction Profile)**:
+  1. *Stop Loss Placed Inside Value Area Noise Band*: Sheet 33 confirmed Daily Value Area Low (VAL) was 0.56868. The Stop Loss was placed at 0.56888, which was 2.0 pips ABOVE the Value Area boundary! When price retested the Value Area Low, the stop was picked off while the auction rotation thesis remained technically valid.
+  2. *Sub-ATR Micro-Stop Noise Trap*: A 16-point (1.6 pip) stop is less than 0.35x 15m ATR during the London open, leaving zero buffer against normal interbank Brownian noise and spread expansion.
+  3. *Inverted Sizing Precedence*: Volume was inflated to 0.81 lot to fit an artificial 16-point stop inside a $12.96 risk cap, violating the core rule: "Anchor stop to structural barrier first, then scale down lot volume to fit the risk budget."
+- **Permanent Kaizen Improvements Codified**:
+  1. **Pitfall 18 Codified**: "Stop Loss Placed Inside Value Area Noise Band (Sub-ATR & Un-Anchored to Structural Envelope)" added to `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md`.
+  2. **Structural Boundary Anchor Rule**: Stop Loss must be placed strictly BEHIND the structural boundary: `SL <= min(VAL - 0.20 * ATR, Session Low)` for longs, and `SL >= max(VAH + 0.20 * ATR, Session High)` for shorts.
+  3. **Minimum SL Distance**: SL distance must be `>= 1.50 * ATR(15m)` (or `>= 25 pts` in FX, `>= 400 pts` in BTC).
+  4. **Active Rested Order Preservation**: `BTCUSD.pi` Ticket #19244096 (0.03 lot SELL_LIMIT @ 81,960.00 | SL 82,374.19 | TP 80,890.43) remains resting safely behind the verified $20.15M ask wall cluster, with worst-case stressed loss (18.18 USD) strictly preserving the 4,775.00 USD hard floor (+24.88 USD cushion).
+  5. **European Post-PMI Re-Audit Window**: Eurozone Flash PMI aggregate is at 08:00 UTC. European TradFi assets (GER40, STOXX50, EURUSD, XAGUSD) remain under strict blackout until 08:35 UTC (+35 min post-event buffer), at which point they will be systematically re-audited for high-expectancy trend/pullback entries.
