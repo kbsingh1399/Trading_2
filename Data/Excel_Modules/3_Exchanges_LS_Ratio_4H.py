@@ -507,10 +507,23 @@ def dump_ls_ratio_to_excel(records: list[dict], excel_path: pathlib.Path = DEFAU
         except Exception:
             pass
 
-    temp_excel = excel_path.with_suffix(".tmp.xlsx")
+    import os, time
+    temp_excel = excel_path.with_name(f"{excel_path.stem}_{os.getpid()}_{int(time.time()*1000)}.tmp.xlsx")
     wb.save(temp_excel)
     wb.close()
-    temp_excel.replace(excel_path)
+    saved = False
+    for _att in range(30):
+        try:
+            temp_excel.replace(excel_path)
+            saved = True
+            break
+        except (PermissionError, Exception):
+            if _att == 29:
+                if temp_excel.exists():
+                    try: temp_excel.unlink()
+                    except Exception: pass
+                raise
+            time.sleep(1.0)
 
     log.info(f"Successfully dumped {len(records)} rows into '{SHEET_NAME}' at {excel_path}.")
     return True
