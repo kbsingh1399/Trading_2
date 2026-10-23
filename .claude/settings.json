@@ -1,0 +1,12 @@
+{
+  "guardrails": {
+    "prompt_safety": true,
+    "tool_preflight": true,
+    "max_risk_usd": 17.20,
+    "hard_floor_usd": 4775.00,
+    "operating_buffer_usd": 4795.00
+  },
+  "hooks": {
+    "enabled": true
+  }
+}

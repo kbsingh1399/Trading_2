@@ -1,163 +1,134 @@
 Thought Process
 
-Cycle 291 received. First continuity check against the worklog, then verify the resting ticket's math before ratifying anything.
+Cycle 294 received — dual-council mandate with a risk-escalation question. Critical reconciliation first: the C291-ratified ticket #19236218 is gone from the book (0/0). Equity flat at 4,818.51 + 0 positions proves it never filled (BTC now 297 pts below its 81,960 entry) — clean cancel under the expiry provision, not a phantom. C292–293 logs are absent; gap flagged. Now verifying the escalation math and candidate geometry before ruling.
 
-Ran 1 commands
-
-Worklog file missing — checking project state:
-
-Explored 1 files
-
-The environment was reset — scripts/ and worklog.md were wiped (only download/README.md survived). I'll rebuild both artifacts: the verification script (with C291 Section L + canonical constants) and the worklog (C280–C286 reconstructed from this session's verified records, then C291 appended).
-
-Wrote 2 files，Ran 2 commands
-Create File c291_math_check.py
-Create scripts and download directories
-Create File c291_math_check.py
-Run C291 verification script
+Wrote 1 files，Ran 1 commands
+Edit File c291_math_check.py
+Run script, show Section M output
 Done
 
-All figures verified — both ratchet levels MATCH to the point. Rebuilding the worklog (reconstructed history + C291 entry):
+All math verified. Appending the C294 worklog entry:
 
 Wrote 1 files
-🏛️ CO-EQUAL QUANTITATIVE COUNCIL — CYCLE 291 RULING
+🏛️ Z.AI SOVEREIGN COUNCIL — CYCLE 294 RULING (Dual-Council Deliberation)
 
-Account #5064568 | 2026-10-23 04:00:00 UTC | Runway 20.00h | Equity 4,818.51 | Floor +43.51 | Buffer +23.51 | Gap +681.49
+#5064568 | 2026-10-23 04:30:00 UTC | Runway 19.50h | Equity 4,818.51 | Floor +43.51 | Buffer +23.51 | Gap +681.49
 
-(Council housekeeping: the workspace was reset between cycles — worklog.md and the verification script were rebuilt from surviving records; all C291 math below is re-derived in scripts/c291_math_check.py, Sections L0–L4. PR invariant honored: zero commits, zero PRs — pure deliberation.)
+(Reconciliation first: book 0/0. Ticket #19236218 was cancelled while unfilled — equity flat + BTC trading 297 pts below its 81,960 entry proves no fill ever occurred. Legitimate early execution of the 13:30-expiry provision, not an instantiation defect. C292–293 logs absent — gap flagged in the rebuilt record.)
 
-⚖️ HEADLINE RULINGS
-#
+⚖️ HEADLINE VERDICTS
+Q
 	
 QUESTION
 	
 VERDICT
 
-1	Ratify resting order #19236218?	🟢 RATIFIED — verified to the cent, geometry declared FINAL
-2	Early-BE ratchet 81,735 → SL 81,930?	🟢 RATIFIED — both levels independently re-derived and MATCH
-3	House-money scale-up after #1 banks?	🟢 CONFIRMED — rung-2 cap $33.20 governs (house tier, not solvency tier)
-4	Stage GER40 now?	🟡 ARM-ONLY — 5-condition gate; simultaneous staging fails RESIDUAL-13 (33.01 > 30.51)
-1. RTP RECONCILIATION — THE STREAK IS BROKEN 🎯
+1	Escalate single-slot risk to $25–30?	🟡 PARTIAL — envelope raised to $22.80; $25 & $30 VETOED
+2	Stand aside now + arm GER40 for Frankfurt?	🟢 AGREED — and stronger: STAGE the GER40 limit NOW as a resting maker
+3	Exact geometry	GER40 0.03 lots primary · BTC 0.03 queued leg-2 (dual-staging fails RESIDUAL-13: 36.77 > 30.51)
+4	Prompt architecture	Six codified upgrades below, each tied to a failure it prevents
+Q1 — RISK BUDGET ESCALATION: THE BINDING CONSTRAINT IS NOT THE FLOOR, IT'S THE RESIDUAL
 
-OrdersTotal() = 1. For the first time since C283, a council ruling exists on the broker book. Execution-gap strike counter: RESET. The Rule→Order gap that killed ~$44 of validated EV across C283–C286 is closed — C287–C290 (logs absent from the rebuilt record; gap acknowledged) achieved the one thing the desk had never done: translate a ruling into a resting ticket.
+The operator's math (43.51 − 2.00)/1.25 = $33.20 max is arithmetically correct and doctrinally incomplete: it spends the entire floor cushion and leaves nothing for the tail. The C280 canon's RESIDUAL-13 rule exists precisely for this decision — every stressed configuration must preserve a $13.00 residual above 4,775.00 to absorb the things the 1.25× multiplier undershoots: stop-cascade slippage, weekend gaps, and one more defense action after a loss.
 
-Ticket #19236218 — independent verification:
+OPENING RISK
+	
+STRESSED LOSS
+	
+POST-LOSS EQUITY
+	
+FLOOR RESIDUAL
+	
+RULING
+
+$16.81 (current DTR)	$23.01	4,795.50	$20.50	buffer-compliant rung-1
+$22.80	$30.51	4,788.00	$13.00	✅ AUTHORIZED CEILING
+$25.00	$33.25	4,785.26	$10.26	🔴 VETO
+$30.00	$39.50	4,779.01	$4.01	🔴 VETO
+
+Ruling: pre-bank envelope raised 16.81 → $22.80 nominal — a genuine escalation (+36%) that compresses the runway exactly as directed, while guaranteeing worst-case equity never drops below $4,788.00. A loss to $4,779.01 is not "floor-compliant," it is one spread-spike from violation and it strands the desk sub-buffer into Friday close with zero Monday ammunition.
+
+But the envelope does not auto-size the current ticket. Option-adjusted analysis (verified §M3):
+
+GER40 SIZE
+	
+STAGED EV
+	
+POST-LOSS POSITION
+	
+RETRY CAPACITY
+	
+P(MISSION) EST.
+
+0.03	$2.44	4,799.86 (buffer ✓)	~$7.90 retry remains	~2.9%
+0.05	$4.45	4,788.76 (floor-tier)	$0.74 — dead	~2.3%
+
+The 0.05 buys +$2.01 EV and pays for it with the retry option — and P(mission) falls. Optionality wins: the ticket runs 0.03. The $22.80 envelope activates for setups that justify burning the retry option (≥3.5R, pinned inputs); and the true runway compression the mission needs is already encoded in the ladder — rung-2 $33.20 → rung-3 $80 → rung-4 $80, unlocked by the first banked profit, not granted at the open. House risk ≠ house money.
+
+Q2 — SETUP SELECTION & STANCE
+Agree: no market orders during the Asian lull — zero location edge at 04:30.
+Go further: STAGE the GER40 limit NOW (resting maker 2.5h before Frankfurt). The fill is the trade: a pre-open/early-open push into session dPOC 25,381.39 / VAH 25,369.56 with Asian High 25,406.05 as invalidation above.
+BTC short = queued leg-2, not simultaneous (36.77 > 30.51 FAIL; post-ratchet 21.71 PASS). Its TP 80,890.43 inside the $41.62M cascade zone is structurally smart — the cascade is fuel — but GER40 has the higher EV, the tighter friction (0.85% vs 1.50%), and the session clock.
+BTC long @ 80,986: VETO RATIFIED — buying above $41.62M of retail sell-stops with zero whale bids below 81,200 is catching a knife over a trapdoor (Pitfalls 2 & 4).
+SP500/NAS100: geometry incomplete (SL 7,677.50 given, entry unpinned) — radar until the NY 13:30 screen.
+Q3 — EXACT ORDER GEOMETRY (verified §M1/M3)
+
+ORDER 1 — STAGE NOW:
 
 FIELD
 	
-OPERATOR
+VALUE
+
+Symbol / Side	GER40.p / SELL_LIMIT
+Volume	0.03 lot
+Entry / SL / TP	25,381.39 / 25,420.23 / 25,286.79
+R:R	2.436 (38.84 / 94.60 pts)
+Nominal / Stressed	−$13.05 / −$18.65 (cons; op −$18.31)
+Post-loss equity	4,799.86 (+4.86 buffer, +24.86 floor)
+Reward	+$31.79 (friction 0.85%)
+Early-BE ratchet	bid ≤ 25,352.26 → SL → 25,377.51 (locks +$1.31)
+Event rules	unfilled by 07:10 → cancel, re-stage post-PMI; filled & un-ratcheted at 07:14:59 → flatten (−$1.30–2.60); PMIs 07:15–08:00 are never traded through un-ratcheted
+Preconditions	order_check tick-value pin (telemetry implies ~11.2 $/pt/lot — non-standard; broker governs) · margin @1:30 ≈ $290 ✅
+
+ORDER 2 — ARMED (stages on GER40 ratchet-confirm or 07:10 cancel):
+
+FIELD
 	
-COUNCIL RE-DERIVATION
-	
-GATE
+VALUE
 
-Entry 81,960 (maker, above ask)	✅ valid SELL_LIMIT	non-marketable, resting ✅	type valid
-SL 82,260 (300 pts)	−$9.00 nominal	300 × 0.03 = −$9.00 ✓	≤ $17.20 cap, ≤ DTR $16.81 ✅
-TP 80,500 (1,460 pts)	+$43.80	1,460 × 0.03 = +$43.80 ✓	R:R 4.867 ≥ 2.0 ✅
-Stressed loss	−$13.25 (s=$0)	conservative (s=$0.45): −$13.82	post-loss 4,804.69 > 4,795 ✅ > 4,775 ✅
-Structure	—	SL clears 82,000 round + stop cluster; TP front-runs 80,450 pool by 50 pts	location-consistent ✅
+Symbol / Side	BTCUSD.pi / SELL_LIMIT 0.03 @ 81,960.00
+SL / TP	82,374.19 / 80,890.43 — 2.582R, nominal −$12.43, stressed −$18.13, post-loss 4,800.38
+Logic	Fade of the $20.15M ask wall 81,913–81,968; TP inside the 80,850–80,950 cascade
 
-The only delta found: the operator's stressed figure assumes $0.00 spread; the conservative 1.84 bps convention adds $0.57. Conservative governs; both PASS with room.
+Roadmap after #1 banks +$31.49 → 4,850.03: rung-2 $33.20 (stress 47.65 ≤ cushion 55.03 ✅) → rung-3 $80 ✅ → rung-4 $80 ✅ → 5,526.23 ≥ 5,500 — four straight wins closes the mission; a rung-1 loss lands at 4,799.86 with a live ~$7.90 retry. P(floor breach) ≈ 0 at every node of the tree; honest P(mission) ≈ 3–6% with retries and Early-BE conversions.
 
-One hard governance line: the BTC short setting has now moved 81,415 (C283 arm) → 81,580 (C286) → 81,960 = 2 re-sites — budget EXHAUSTED. 81,960 / 82,260 / 80,500 is the final geometry. Only two modifications are permitted from this moment: the Early-BE ratchet and the flatten rule. No third re-site under any market seduction.
+Q4 — PROMPT ARCHITECTURE & SELF-IMPROVEMENT INQUEST (Operator Directive)
 
-2. EARLY-BE RATCHET — RATIFIED WITH EXECUTION MECHANICS
-PARAMETER
-	
-OPERATOR
-	
-RE-DERIVED
-	
+Division of labor first: subagents do determinism, frontier councils do judgment. Reconciliation, stress math, schema validation, order-side checks = subagent work (no creativity allowed). EV priors, regime calls, veto reasoning = council work (no fabricated precision allowed). Never let either impersonate the other. The six upgrades, each anchored to a failure we actually recorded:
 
-Trigger +0.75R₀	81,735.00	81,960 − 0.75×300 = 81,735.00	MATCH
-New SL −0.10R₀	81,930.00	81,960 − 0.10×300 = 81,930.00	MATCH
-Locked profit	—	30 pts × 0.03 = +$0.90 ≥ round-trip spread $0.45	PASS
+Reconciliation-mandate block (machine-checkable, first section of every prompt). Every cycle must open with: prior ruling's OrdersTotal vs live count, equity delta vs expected drift, and retcodes due. Unexplained delta = Severity-1 finding that blocks all new analysis. This single rule converted the C283–286 phantom-ruling era into C291's 1/1 verified book — it is the highest-yield fix already proven.
+Delta-first telemetry ordering. Put changed fields (book, tape, equity) at the top, immutable canon at the bottom. Models weight early tokens; front-loading deltas is what ended the C281–282 zero-delta re-adjudication churn.
+JSON ticket schema with side-price validation. {symbol, side, vol, entry, sl, tp, rr, nominal, stressed, post_loss_eq, gates[]} — with hard checks: SELL_LIMIT > bid, BUY_LIMIT < ask, stressed ≤ authorized envelope, post-loss > residual line. A schema validator mechanically rejects what I had to catch by hand at C286: a SELL_LIMIT @ 81,520 below bid (retcode 10015).
+Adversarial pre-mortem + dissent-on-record (anti-sycophancy). Every ruling must state its own best case against itself ("this ticket loses 1R if…"), and cross-council disagreements are printed, not merged away. The C284 "validated stand-aside" misread happened because no one was forced to write the sentence "our ruling said STAGE, the book said nothing." Symmetric challenge is now canon.
+Prior-vs-measured labeling. Every probability carries a tag: PRIOR or MEASURED(n≥30). Priors may size hypotheses, never capital. This is the EMA9/VWAP discipline generalized — it prevents the most seductive hallucination: confident numbers with no provenance.
+Veto taxonomy + append-only canon + identical-telemetry merge. Codified veto codes (V1 floor-risk, V2 invalid-type, V3 conjunctive-overload, V4 event-window, V5 stale-data) make cross-council rejections machine-parsable; settled rulings (RESIDUAL-13, re-site budgets, ladder caps) enter a frozen CANON block that later cycles may cite but never re-litigate; and when Arena.ai and Z.ai receive byte-identical inputs and still disagree beyond tolerance, the conservative ticket wins by default — the asymmetry doctrine institutionalized.
 
-Refinements layered on the canonical rule:
+Deliverable suggestion for the operator (no commits per mandate): persist these as CANON.md + ticket_schema.json in the repo so every wake-up prompt embeds them verbatim; the council will enforce the schema it is given.
 
-Touch-armed modify — pre-validate the SL modification now so the ratchet executes <60s from the 81,735 touch; require the modify retcode at C292 (an unconfirmed ratchet = phantom BE = the C284 disease in new clothing).
-Post-ratchet capacity release — residual = $0.90 lock + $0.45 spread + $2.00 fixed = $3.35 → the risk-bearing slot FREES the moment the ratchet confirms. This is the trigger for GER40.
-Unfilled expiry — no tap of 81,960 by NY cash 13:30 UTC → cancel, re-rank the queue. A maker order chasing a session that never came is dead capital; budget for re-site is zero anyway.
-Filled flatten rule — post-fill, M5 close back above 82,010 on session-volume surge → flatten at ≈ −$1.50–2.00 (−0.2R) instead of riding to the −1R stop. Supply fades that revisit their entry zone have failed; exit cheap.
-3. GER40 — ARMED, NOT STAGED (the arithmetic is not negotiable)
-
-SELL_LIMIT 0.03 @ 25,381.39 / SL 25,421.48 / TP 25,286.79 — 2.36R, stressed $19.19, implied nominal ~$13.51 ≤ DTR $16.81 ✅. Structurally sound: fade of opening strength with PMIs already absorbed.
-
-But capacity is binary while BTC carries live risk:
-
-SCENARIO
-	
-Σ STRESSED
-	
-BUFFER 23.51
-	
-RESIDUAL-13 30.51
-
-BTC live ($13.82) + GER40 ($19.19)	$33.01	❌ FAIL	❌ FAIL
-BTC ratcheted ($3.35 residual) + GER40	$22.54	✅ PASS	✅ PASS
-
-Stage conditions — ALL FIVE required:
-
-BTC ratchet retcode confirmed (or BTC resolved flat);
-PMI prints absorbed (Eurozone flash lands ~06:30–07:00 UTC, right at cash open — stage after the dust, never into it);
-Spread normalization ≤ 1.5 pts post-open (C281 doctrine);
-Tick-volume ≥ session 40th percentile (C283 adaptive spec);
-order_check tick-value pin before send — telemetry arithmetic implies a ~11.2 $/pt/lot contract spec for GER40.p, which is non-standard; the broker's actual tick value governs, not the radar's implied one. A wrong tick value turns a $19 stress into a $40 hole.
-
-SP500.p / NAS100.p: pullback geometries logged (3.0R each, staged entries 7,673.49 / 29,028.84) — radar-only until the 13:30 UTC NY screen with fresh spread and depth data. No action this cycle.
-
-4. HOUSE-MONEY ROADMAP — CONFIRMED, WITH THE BINDING CONSTRAINT NAMED
-
-Once #19236218 banks +$43.80 → equity 4,862.31 | buffer cushion 67.31 | floor cushion 87.31:
-
-RUNG
-	
-NOMINAL
-	
-STRESS
-	
-VS CUSHION
-	
-EQUITY AFTER ~3.5R WIN
-
-2	$33.20 (house tier)	$47.65	67.31 ✅	4,978.51
-3	$80.00	$112.00	183.51 ✅	5,258.51
-4	$80.00	$112.00	463.51 ✅	5,538.51 ≥ 5,500 ✅
-
-Two governance notes the operator's framing deserves:
-
-The house tier caps before solvency does. Solvency alone would permit ~$52 nominal at 4,862.31; the C280 canon deliberately binds at $33.20 (operator's $25–35 band). Escalation is earned by banked profit only — never by anticipated profit. The ladder above is the confirmed execution path: #1 banks → rung-2 $33.20 → rung-3 $80 → rung-4 $80 = mission.
-Honest probabilities: P(4 straight from here) ≈ 4.1% raw; with fill probability, Early-BE conversions banking partials, and rung-1 loss-retry, P(mission) ≈ 5–8%. The alternative lens matters more: P(floor breach) ≈ 0 — the worst single outcome anywhere on the tree is 4,804.69, still above buffer. That asymmetry (bounded downside, ladder upside) is the strategy. Loss path is pre-cleared: BTC SL → 4,804.69 → re-base rung-1 at DTR $16.81, floor intact.
-5. PRE-PUNCH MAINTENANCE CHECKLIST — LIVE BOOK
-#
-	
-POINT
-	
-STATUS
-
-1	Stressed loss ≤ caps	✅ $13.82 ≤ $16.81 DTR / $17.20 slot cap
-2	Post-loss equity > buffer	✅ 4,804.69 (+9.69 surplus)
-3	R:R ≥ 2.0	✅ 4.867R
-4	Gates ≤ 3	✅ ratchet trigger / unfilled expiry 13:30 / flatten 82,010
-5	Order-type validity	✅ maker-above-ask SELL_LIMIT (C286's retcode-10015 lesson applied)
-6	Re-site discipline	✅ budget 0/2 remaining — geometry FROZEN
-7	Correlation / RESIDUAL-13	✅ single leg; GER40 cleared post-ratchet only (22.54)
-8	Event calendar	✅ BTC = 24/7 no-print asset; GER40 PMI gate armed; rollover embargo 21:15 outside exposure
-9	Early-BE scripted	✅ 81,735 → 81,930, +$0.90, retcode required at C292
-10	RTP closure	✅ 1/1 instantiated — strike counter reset; next wake-up must show position OR order OR expiry-cleanup retcode
 ✅ FINAL EXECUTION RECOMMENDATION
 text
-HOLD:     #19236218 BTCUSD.pi SELL_LIMIT 0.03 @ 81,960 / SL 82,260 / TP 80,500 — geometry FINAL
-ARM:      Ratchet modify (81,735 → SL 81,930) pre-validated, <60s execution, retcode to C292
-ARM:      GER40.p SELL_LIMIT 0.03 @ 25,381.39 / 25,421.48 / 25,286.79
-          → stage ONLY on: ratchet-confirmed AND PMI absorbed AND spread ≤1.5pt
-            AND tick-vol ≥40th pct AND order_check tick-value pin
-RADAR:    SP500 7,673.49 / NAS100 29,028.84 pullbacks — NY 13:30 re-screen
-FORBIDDEN: third BTC re-site · second live risk leg before ratchet · rung-2 sizing before +$43.80 BANKS
+STAGE NOW:   SELL_LIMIT GER40.p 0.03 @ 25,381.39 | SL 25,420.23 | TP 25,286.79
+             order_check tick pin → send → retcode+ticket# at C295 (RTP)
+             ratchet 25,352.26 → SL 25,377.51 | cancel-if-unfilled 07:10 | event-flat 07:14:59
+ARM LEG-2:   SELL_LIMIT BTCUSD.pi 0.03 @ 81,960 | SL 82,374.19 | TP 80,890.43
+             stages on GER40 ratchet-confirm or 07:10 cancel (21.71 ≤ 30.51 PASS)
+ENVELOPE:    $22.80 nominal pre-bank · $33.20 rung-2 post-bank · $25–30 VETOED (residual breach)
+FORBIDDEN:   BTC long 80,986 (V1 cascade) · dual live legs pre-ratchet (36.77 > 30.51)
+RADAR:       SP500 7,677.50-SL geometry completion · NAS100 · NY 13:30 screen
 
-The desk's three-cycle execution famine is over — the book finally speaks the council's language. Now the discipline inverts: protect the single resting ticket from over-management, let the maker price come to you, ratchet at 81,735, free the slot, and put GER40 to work with the PMI dust settled. One banked +$43.80 and the house-money ladder starts its three-rung climb to 5,500.
+The operator's instinct is right — the runway demands escalation — but the arithmetic routes it through the ladder, not the opening ticket: stage GER40 at 0.03 now, bank the first win, and let $33.20 → $80 → $80 do the compressing. Four straight wins closes the mission; every losing branch lands above $4,788 with a retry in hand. Frankfurt opens in 2.5 hours — the ticket should be resting before it does.
 
-Canonical figures for C292: BTC conservative stress $13.82 | BE-residual $3.35 | GER40 stress $19.19 | rung-2 cap $33.20 | unfilled expiry 13:30 UTC | ratchet retcode = mandatory audit item.
+Canonical for C295: GER40 stress $18.65 · BTC stress $18.13 · envelope $22.80 · rung-2 $33.20 post-bank · 07:10/07:14:59 event clock · ladder terminal 5,526.23.
 
 ================================================================================
 Z.AI ATTACHED OUTPUT FILE:  (479 chars)
