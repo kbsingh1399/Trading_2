@@ -147,22 +147,23 @@ Verify that `Data/DataBase_Trading.xlsx` is fresh, uncorrupted, and has zero for
 
 ---
 
-### STEP 5: SIMULTANEOUS DUAL-TRACK DISPATCH (MANDATORY TIER 2 BIG PROMPTS ONLY)
-> 🛑 **MANDATORY BIG PROMPT INVARIANT (STRICT OPERATOR DIRECTIVE)**:
+### STEP 5: SIMULTANEOUS DUAL-TRACK DISPATCH (MANDATORY TIER 2 BIG QUANT PROMPTS ONLY)
+> 🛑 **MANDATORY BIG QUANT PROMPT INVARIANT (STRICT OPERATOR DIRECTIVE)**:
 > The coordinator is **strictly FORBIDDEN** from dispatching lightweight, summarized, or truncated prompts to subagents.
-> On EVERY turn, cycle, and bootstrap re-engagement, the coordinator MUST copy and inject the **FULL UNABRIDGED TIER 2 BIG PROMPTS** (~350–500 tokens each) from `Data/Manditory/SUBAGENT_PROMPT_TEMPLATES.md` (Part 2) into each subagent.
-> Every subagent prompt MUST explicitly include `@[Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md]` as the first non-bypassable reading requirement. Short prompts fail to audit all 33 sheets line-by-line and are considered an immediate protocol violation.
+> On EVERY turn, cycle, and bootstrap re-engagement, the coordinator MUST copy and inject the **FULL UNABRIDGED TIER 2 BIG QUANT PROMPTS** from `Data/Manditory/SUBAGENT_PROMPT_TEMPLATES.md` into each Fable 5 subagent.
+> Every subagent prompt MUST explicitly include `@[Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md]` as the first non-bypassable reading requirement. Short prompts fail to audit all 33 sheets and mathematical estimators line-by-line and are considered an immediate protocol violation.
 
-1. **Track A (Internal Subagent Fleet Invocation with Tier 2 Big Prompts — Gemini 3.8 Flash)**:
-   - Immediately invoke all 4 specialized subagents simultaneously using `invoke_subagent` (`Model='flash'` - Gemini 3.8 Flash):
-     * **Subagent 1: Orderflow Analyst** (`Role='Orderflow Analyst', Model='flash'` - Gemini 3.8 Flash): Injected with Full Tier 2 Big Prompt covering Sheets 00–28, 30 (`20_Auction_Market_Structure`), mandatory citation of `STANDARDIZED_TRADING_DECISION_CHAIN.md`, full 156-asset universe scan (`Terminal/multi_asset_opportunity_scanner.py`), dynamic spread gates across Forex/Commodities/Indices/Crypto, 5-pillar confluence, L2/L3 orderbook depth, resting whale bunkers, CVD divergence, and Potential Candidate Radar Checklist.
-     * **Subagent 2: Position Manager** (`Role='Position Manager', Model='flash'` - Gemini 3.8 Flash): Injected with Full Tier 2 Big Prompt covering mandatory citation of `STANDARDIZED_TRADING_DECISION_CHAIN.md`, MT5 telemetry, ratchet progression, stressed capacity audit strictly enforcing 1-position slot under +$39.83 buffer, and ticket sizing.
-     * **Subagent 3: Macro Risk Analyst** (`Role='Macro Risk Analyst', Model='flash'` - Gemini 3.8 Flash): Injected with Full Tier 2 Big Prompt covering mandatory citation of `STANDARDIZED_TRADING_DECISION_CHAIN.md`, Sheet 28 `19_Calendar`, `macro_calendar.json`, ETF flows, CEX netflows, session clock, and rollover embargo.
-     * **Subagent 4: Excel Data Quality Auditor** (`Role='Excel Data Quality Auditor', Model='flash'` - Gemini 3.8 Flash): Injected with Full Tier 2 Big Prompt covering mandatory citation of `STANDARDIZED_TRADING_DECISION_CHAIN.md`, 33-sheet coverage, CRC checks, zero formula errors, header verification, and pipeline daemon health.
-2. **Track B (Parallel Arena.ai 3-Persona Candidate Discovery Dispatch)**:
-   - PARALLEL TO SUBAGENT INVOCATION, dispatch the affirmative 3-persona candidate discovery prompt citing `STANDARDIZED_TRADING_DECISION_CHAIN.md` to Arena.ai via Chrome CDP on port 9222:
-     `python Terminal/dispatch_arena_redteam.py`
-   - Arena.ai begins generation on Chrome CDP simultaneously, embodying all 3 quantitative personas (Orderflow Analyst, Position Manager, Macro Risk Analyst — excluding Excel auditor) to discover and formulate high-confluence candidates across all 156 assets with unconstrained deep mathematical reasoning.
+1. **Track A (Internal Subagent Quant Fleet Invocation — Fable 5)**:
+   - Immediately invoke all 4 specialized quantitative subagents simultaneously using `invoke_subagent` (`Model='flash'` / Fable 5 runtime):
+     * **Subagent 1: Statistical Regime & Diffusion Quant** (`Role='Statistical Regime Quant'` — Fable 5): Injected with Full Tier 2 Big Prompt covering Lo-MacKinlay Variance Ratio `VR(q)`, Kaufman Efficiency Ratio `ER`, Hurst exponent, Ornstein-Uhlenbeck half-life `tau_half`, Newey-West drift t-stat, and First-Exit diffusion TTL. Strict stand-aside on `UNDEFINED` regime.
+     * **Subagent 2: Microstructure & Liquidation Quant** (`Role='Microstructure Quant'` — Fable 5): Injected with Full Tier 2 Big Prompt covering L2/L3 orderbook depth, Binance Futures LIR, resting whale persistence (`tau >= 180s`, refill `rho >= 0.60`), Sheet 23 retail stop sweeps (< 90s reclaim vs > 240s broken), and CVD absorption divergence (`z_CVD >= 1.5`).
+     * **Subagent 3: Convex Portfolio & Solvency Sentry** (`Role='Solvency Sentry'` — Fable 5): Injected with Full Tier 2 Big Prompt covering live MT5 telemetry, exact broker `mt5.order_calc_profit` lot snapping, option-adjusted EV, Quarter-Kelly sizing, Stressed Loss `= (Nominal Risk + Spread) * 1.25 + 2.00 <= Buffer Cushion`, and House Money Staircase (Rung 1 $13.06 -> Rung 2 $33.20).
+     * **Subagent 4: Auction Profile & Friction Arbitrageur** (`Role='Auction Profile Quant'` — Fable 5): Injected with Full Tier 2 Big Prompt covering Sheet 33 Value Area (VAH, VAL, POC, Initial Balance), Relative Spread Gate (`Spread Price / TP Distance <= 10.0%`), 33-sheet data warehouse freshness, and strict Event Risk Clock embargoes.
+2. **Track B (Parallel Dual Frontier Council Dispatch — Arena.ai GPT Astra & Z.ai GLM-5.3-Flash)**:
+   - PARALLEL TO SUBAGENT INVOCATION, dispatch the exhaustive 360-degree quantitative prompt citing `STANDARDIZED_TRADING_DECISION_CHAIN.md` simultaneously to:
+     * **Arena.ai (GPT Astra)** via Chrome CDP port 9222: `python Terminal/dispatch_arena_prompt.py docs/prompts/EXHAUSTIVE_360_COUNCIL_CYCLE296_ARENA_ZAI.md`
+     * **Z.ai (GLM-5.3-Flash)** via Chrome CDP port 9222: `python Terminal/dispatch_zai_prompt.py --file docs/prompts/EXHAUSTIVE_360_COUNCIL_CYCLE296_ARENA_ZAI.md`
+   - Both external frontier councils begin generation on Chrome CDP simultaneously, embodying all 4 quantitative personas with deep mathematical reasoning and co-equal dialectic verification.
 
 ---
 
