@@ -214,8 +214,12 @@ async def harvest_live_liquidations(max_orders: int = 1000) -> list[dict]:
         close_tab(tab_id)
 
     # Format records
+    ist_tz = datetime.timezone(datetime.timedelta(hours=5, minutes=30))
+    now_ist_str = datetime.datetime.now(ist_tz).strftime("%Y-%m-%d %H:%M:%S IST")
     records: list[dict] = []
     for i, o in enumerate(orders, start=1):
+        raw_full = o.get("fullTime", "").strip()
+        ts_val = f"{raw_full} IST" if (raw_full and "IST" not in raw_full) else (raw_full or now_ist_str)
         records.append(
             {
                 "idx": i,
@@ -225,7 +229,7 @@ async def harvest_live_liquidations(max_orders: int = 1000) -> list[dict]:
                 "amount": o.get("amount", "-"),
                 "time": o.get("time", "-"),
                 "exchange": o.get("exchange", "-"),
-                "full_time": o.get("fullTime", "-"),
+                "full_time": ts_val,
             }
         )
 
@@ -242,148 +246,154 @@ def dump_to_excel(records: list[dict], excel_path: pathlib.Path = DEFAULT_EXCEL_
         log.error("Integrity guard: 0 records extracted. Aborting dump to prevent empty sheet.")
         return False
 
-    wb = openpyxl.load_workbook(excel_path)
+    try:
+        from filelock import FileLock
+        lock = FileLock(str(excel_path) + ".lock", timeout=120)
+    except ImportError:
+        lock = None
 
-    # Place sheet 7_Live_Liq at Index 10 (immediately after 7_Liq_Heapmap)
-    if SHEET_NAME in wb.sheetnames:
-        idx = wb.sheetnames.index(SHEET_NAME)
-        wb.remove(wb[SHEET_NAME])
-        ws = wb.create_sheet(title=SHEET_NAME, index=idx)
-    else:
-        target_idx = 10 if len(wb.sheetnames) >= 10 else len(wb.sheetnames)
-        ws = wb.create_sheet(title=SHEET_NAME, index=target_idx)
+    class _NoLock:
+        def __enter__(self): return self
+        def __exit__(self, *args): pass
 
-    log.info(f"Target worksheet '{SHEET_NAME}' positioned at index {wb.sheetnames.index(SHEET_NAME)}")
+    with (lock if lock else _NoLock()):
+        wb = openpyxl.load_workbook(excel_path)
 
-    # Visual Styles
-    hdr_font = Font(name="Segoe UI", size=10, bold=True, color="FFFFFF")
-    hdr_fill = PatternFill(start_color="0F172A", end_color="0F172A", fill_type="solid")
-
-    base_font = Font(name="Segoe UI", size=9, color="000000")
-    bold_font = Font(name="Segoe UI", size=9, bold=True, color="000000")
-    green_font = Font(name="Segoe UI", size=9, bold=True, color="00A86B")
-    red_font = Font(name="Segoe UI", size=9, bold=True, color="E53935")
-    subdued_font = Font(name="Segoe UI", size=9, color="888888")
-
-    thin_border_side = Side(border_style="thin", color="E2E8F0")
-    row_border = Border(
-        left=thin_border_side, right=thin_border_side, top=thin_border_side, bottom=thin_border_side
-    )
-
-    # 1. Header Row
-    ws.row_dimensions[1].height = 26
-    for col_idx, (col_key, header_title, width, align) in enumerate(COLUMNS_DEF, start=1):
-        cell = ws.cell(row=1, column=col_idx, value=header_title)
-        cell.font = hdr_font
-        cell.fill = hdr_fill
-        cell.alignment = Alignment(horizontal=align, vertical="center")
-        cell.border = row_border
-        col_letter = get_column_letter(col_idx)
-        ws.column_dimensions[col_letter].width = width
-
-    # 2. Data Rows
-    current_row = 2
-    for r in records:
-        ws.row_dimensions[current_row].height = 20
-
-        # # (Col 1)
-        c1 = ws.cell(row=current_row, column=1, value=r.get("idx", ""))
-        c1.font = subdued_font
-        c1.alignment = Alignment(horizontal="center", vertical="center")
-        c1.border = row_border
-
-        # Coin / Pair (Col 2)
-        c2 = ws.cell(row=current_row, column=2, value=r.get("coin", "-"))
-        c2.font = bold_font
-        c2.alignment = Alignment(horizontal="center", vertical="center")
-        c2.border = row_border
-
-        # Side (Col 3) - Color Coded
-        side_val = r.get("side", "-")
-        c3 = ws.cell(row=current_row, column=3, value=side_val)
-        if "long" in side_val.lower():
-            c3.font = green_font
-        elif "short" in side_val.lower():
-            c3.font = red_font
+        # Place sheet 7_Live_Liq at Index 10 (immediately after 7_Liq_Heapmap)
+        if SHEET_NAME in wb.sheetnames:
+            idx = wb.sheetnames.index(SHEET_NAME)
+            wb.remove(wb[SHEET_NAME])
+            ws = wb.create_sheet(title=SHEET_NAME, index=idx)
         else:
-            c3.font = base_font
-        c3.alignment = Alignment(horizontal="center", vertical="center")
-        c3.border = row_border
+            target_idx = 10 if len(wb.sheetnames) >= 10 else len(wb.sheetnames)
+            ws = wb.create_sheet(title=SHEET_NAME, index=target_idx)
 
-        # Price (Col 4)
-        c4 = ws.cell(row=current_row, column=4, value=r.get("price", "-"))
-        c4.font = base_font
-        c4.alignment = Alignment(horizontal="right", vertical="center")
-        c4.border = row_border
+        log.info(f"Target worksheet '{SHEET_NAME}' positioned at index {wb.sheetnames.index(SHEET_NAME)}")
 
-        # Amount (Col 5)
-        c5 = ws.cell(row=current_row, column=5, value=r.get("amount", "-"))
-        c5.font = bold_font
-        c5.alignment = Alignment(horizontal="right", vertical="center")
-        c5.border = row_border
+        # Visual Styles
+        hdr_font = Font(name="Segoe UI", size=10, bold=True, color="FFFFFF")
+        hdr_fill = PatternFill(start_color="0F172A", end_color="0F172A", fill_type="solid")
 
-        # Time (Col 6)
-        c6 = ws.cell(row=current_row, column=6, value=r.get("time", "-"))
-        c6.font = base_font
-        c6.alignment = Alignment(horizontal="center", vertical="center")
-        c6.border = row_border
+        base_font = Font(name="Segoe UI", size=9, color="000000")
+        bold_font = Font(name="Segoe UI", size=9, bold=True, color="000000")
+        green_font = Font(name="Segoe UI", size=9, bold=True, color="00A86B")
+        red_font = Font(name="Segoe UI", size=9, bold=True, color="E53935")
+        subdued_font = Font(name="Segoe UI", size=9, color="888888")
 
-        # Exchange (Col 7)
-        c7 = ws.cell(row=current_row, column=7, value=r.get("exchange", "-"))
-        c7.font = bold_font
-        c7.alignment = Alignment(horizontal="center", vertical="center")
-        c7.border = row_border
+        thin_border_side = Side(border_style="thin", color="E2E8F0")
+        row_border = Border(
+            left=thin_border_side, right=thin_border_side, top=thin_border_side, bottom=thin_border_side
+        )
 
-        # Full Timestamp (Col 8)
-        c8 = ws.cell(row=current_row, column=8, value=r.get("full_time", "-"))
-        c8.font = subdued_font
-        c8.alignment = Alignment(horizontal="center", vertical="center")
-        c8.border = row_border
+        # 1. Header Row (Row 2, Row 1 reserved for Banner)
+        ws.row_dimensions[2].height = 26
+        for col_idx, (col_key, header_title, width, align) in enumerate(COLUMNS_DEF, start=1):
+            cell = ws.cell(row=2, column=col_idx, value=header_title)
+            cell.font = hdr_font
+            cell.fill = hdr_fill
+            cell.alignment = Alignment(horizontal=align, vertical="center")
+            cell.border = row_border
+            col_letter = get_column_letter(col_idx)
+            ws.column_dimensions[col_letter].width = width
 
-        current_row += 1
+        # 2. Data Rows (Row 3+)
+        current_row = 3
+        for r in records:
+            ws.row_dimensions[current_row].height = 20
 
-    # Freeze top row
-    ws.freeze_panes = "A2"
+            # # (Col 1)
+            c1 = ws.cell(row=current_row, column=1, value=r.get("idx", ""))
+            c1.font = subdued_font
+            c1.alignment = Alignment(horizontal="center", vertical="center")
+            c1.border = row_border
 
-    import os, time
-        # Enforce Operator Invariant: Stamp Tier-1 Completion Banner ONLY ONCE row data is filled
-    if ws.max_row > 1:
+            # Coin / Pair (Col 2)
+            c2 = ws.cell(row=current_row, column=2, value=r.get("coin", "-"))
+            c2.font = bold_font
+            c2.alignment = Alignment(horizontal="center", vertical="center")
+            c2.border = row_border
+
+            # Side (Col 3) - Color Coded
+            side_val = r.get("side", "-")
+            c3 = ws.cell(row=current_row, column=3, value=side_val)
+            if "long" in side_val.lower():
+                c3.font = green_font
+            elif "short" in side_val.lower():
+                c3.font = red_font
+            else:
+                c3.font = base_font
+            c3.alignment = Alignment(horizontal="center", vertical="center")
+            c3.border = row_border
+
+            # Price (Col 4)
+            c4 = ws.cell(row=current_row, column=4, value=r.get("price", "-"))
+            c4.font = base_font
+            c4.alignment = Alignment(horizontal="right", vertical="center")
+            c4.border = row_border
+
+            # Amount (Col 5)
+            c5 = ws.cell(row=current_row, column=5, value=r.get("amount", "-"))
+            c5.font = bold_font
+            c5.alignment = Alignment(horizontal="right", vertical="center")
+            c5.border = row_border
+
+            # Time (Col 6)
+            c6 = ws.cell(row=current_row, column=6, value=r.get("time", "-"))
+            c6.font = base_font
+            c6.alignment = Alignment(horizontal="center", vertical="center")
+            c6.border = row_border
+
+            # Exchange (Col 7)
+            c7 = ws.cell(row=current_row, column=7, value=r.get("exchange", "-"))
+            c7.font = bold_font
+            c7.alignment = Alignment(horizontal="center", vertical="center")
+            c7.border = row_border
+
+            # Full Timestamp (Col 8)
+            c8 = ws.cell(row=current_row, column=8, value=r.get("full_time", "-"))
+            c8.font = subdued_font
+            c8.alignment = Alignment(horizontal="center", vertical="center")
+            c8.border = row_border
+
+            current_row += 1
+
+        # Stamp Tier-1 Completion Banner ONLY ONCE row data is filled
         try:
             from logger_config import stamp_sheet_completion_ist
-            ws.insert_rows(1)
             stamp_sheet_completion_ist(
                 ws=ws,
-                sheet_title="7_Live_Liq",
-                row_count=ws.max_row - 2,
+                sheet_title=SHEET_NAME,
+                row_count=len(records),
                 banner_cell="A1",
                 status="LIVE",
-                merge_max_col=ws.max_column
+                merge_max_col=len(COLUMNS_DEF)
             )
-            ws.freeze_panes = "A3"
         except Exception as _e:
-            pass
+            log.warning(f"Error stamping banner: {_e}")
 
-    temp_excel = excel_path.with_name(f"{excel_path.stem}_{os.getpid()}_{int(time.time()*1000)}.tmp.xlsx")
-    wb.save(temp_excel)
-    wb.close()
-    import time, zipfile
-    _is_valid = False
-    with zipfile.ZipFile(temp_excel, "r") as _z:
-        _is_valid = (_z.testzip() is None)
-    if _is_valid:
-        for _att in range(30):
-            try:
-                temp_excel.replace(excel_path)
-                break
-            except PermissionError:
-                if _att == 29: raise
-                time.sleep(1.0)
-    else:
-        if temp_excel.exists(): temp_excel.unlink()
-        raise ValueError("Corrupt zip produced during export")
-    wb.close()
-    log.info(f"Successfully saved {len(records)} rows to {excel_path} [{SHEET_NAME}].")
-    return True
+        ws.freeze_panes = "A3"
+
+        import os, time
+        temp_excel = excel_path.with_name(f"{excel_path.stem}_{os.getpid()}_{int(time.time()*1000)}.tmp.xlsx")
+        wb.save(temp_excel)
+        wb.close()
+        import time, zipfile
+        _is_valid = False
+        with zipfile.ZipFile(temp_excel, "r") as _z:
+            _is_valid = (_z.testzip() is None)
+        if _is_valid:
+            for _att in range(30):
+                try:
+                    temp_excel.replace(excel_path)
+                    break
+                except PermissionError:
+                    if _att == 29: raise
+                    time.sleep(1.0)
+        else:
+            if temp_excel.exists(): temp_excel.unlink()
+            raise ValueError("Corrupt zip produced during export")
+        log.info(f"Successfully saved {len(records)} rows to {excel_path} [{SHEET_NAME}].")
+        return True
 
 
 def main():

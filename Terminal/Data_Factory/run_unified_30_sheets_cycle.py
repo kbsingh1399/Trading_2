@@ -49,10 +49,10 @@ log = logging.getLogger("30SheetsCycle")
 # 1. Tier 1A: Pure API Modules (Can run concurrently with 3 workers)
 API_MODULES = [
     {"id": 0, "name": "MT5 Telemetry", "script": MODULES_DIR / "00_MT5_Account_Telemetry.py", "sheet": "00_MT5_Account_Telemetry", "timeout": 60, "args": []},
-    {"id": 6, "name": "Hyperliquid Whale", "script": MODULES_DIR / "4_Hyperliquid_Analysis.py", "sheet": "4_Hyperliquid_Analysis", "timeout": 120, "args": ["--pages", "20"]},
-    {"id": 7, "name": "Futures Open Interest", "script": MODULES_DIR / "5_OI.py", "sheet": "5_OI", "timeout": 120, "args": []},
-    {"id": 8, "name": "Funding Rates", "script": MODULES_DIR / "5_Funding_Rate.py", "sheet": "5_Funding_Rate", "timeout": 120, "args": ["--pages", "20"]},
-    {"id": 9, "name": "Funding Fee Settlement", "script": MODULES_DIR / "6_Funding_Fee_Settlement.py", "sheet": "6_Funding_Fee_Settlement", "timeout": 120, "args": ["--pages", "15"]},
+    {"id": 6, "name": "Hyperliquid Whale", "script": MODULES_DIR / "4_Hyperliquid_Analysis.py", "sheet": "4_Hyperliquid_Analysis", "timeout": 120, "args": ["--pages", "10"]},
+    {"id": 7, "name": "Futures Open Interest", "script": MODULES_DIR / "5_OI.py", "sheet": "5_OI", "timeout": 180, "args": []},
+    {"id": 8, "name": "Funding Rates", "script": MODULES_DIR / "5_Funding_Rate.py", "sheet": "5_Funding_Rate", "timeout": 120, "args": ["--pages", "10"]},
+    {"id": 9, "name": "Funding Fee Settlement", "script": MODULES_DIR / "6_Funding_Fee_Settlement.py", "sheet": "6_Funding_Fee_Settlement", "timeout": 120, "args": ["--pages", "10"]},
     {"id": 19, "name": "Technical Indicators", "script": MODULES_DIR / "11_Technical.py", "sheet": "11_Technical", "timeout": 120, "args": []},
     {"id": 20, "name": "Hyperdash Flow", "script": MODULES_DIR / "12_Hyperdash.py", "sheet": "12_Hyperdash", "timeout": 120, "args": []},
     {"id": 21, "name": "Hyperliquid L1", "script": MODULES_DIR / "13_Hyperliquid.py", "sheet": "13_Hyperliquid", "timeout": 120, "args": []},
@@ -60,15 +60,15 @@ API_MODULES = [
     {"id": 23, "name": "Hyperdash Stops Map", "script": MODULES_DIR / "15_Hyperdash_Stops_Map.py", "sheet": "15_Hyperdash_Stops_Map", "timeout": 120, "args": []},
     {"id": 24, "name": "Hyperdash Telegram Intel", "script": MODULES_DIR / "16_Hyperdash_telegram_Intel.py", "sheet": "16_Hyperdash_telegram_Intel", "timeout": 120, "args": ["--pages", "10", "--limit", "1000"]},
     {"id": 25, "name": "Orderbook & Whale Attribution", "script": MODULES_DIR / "17_Orderbook.py", "sheet": "17_Orderbook", "timeout": 180, "args": []},
-    {"id": 26, "name": "CVD Engine", "script": MODULES_DIR / "18_CVD.py", "sheet": "18_CVD", "timeout": 180, "args": []},
+    {"id": 26, "name": "CVD Engine", "script": MODULES_DIR / "18_CVD.py", "sheet": "18_CVD", "timeout": 240, "args": ["--max-excel-rows", "1500"]},
     {"id": 27, "name": "Auction Market Structure", "script": MODULES_DIR / "20_Auction_Market_Structure.py", "sheet": "20_Auction_Market_Structure", "timeout": 120, "args": []},
 ]
 
 # 2. Tier 1B: Browser CDP Modules (Run sequentially through Edge queue worker, preserving Arena tab)
 BROWSER_MODULES = [
     {"id": 1, "name": "Crypto ETF Flows", "script": MODULES_DIR / "1_Crypto_ETF_Flows.py", "sheet": "1_Crypto_ETF_Flows", "timeout": 120, "args": []},
-    {"id": 2, "name": "Spot Netflow", "script": MODULES_DIR / "2_Spot_Netflow_S.py", "sheet": "2_Spot_Netflow_S", "timeout": 180, "args": ["--pages", "15"]},
-    {"id": 3, "name": "LS Ratio 15M", "script": MODULES_DIR / "3_Exchanges_LS_Ratio_15M.py", "sheet": "3_Exchanges_LS_Ratio_15M", "timeout": 120, "args": []},
+    {"id": 2, "name": "Spot Netflow", "script": MODULES_DIR / "2_Spot_Netflow_S.py", "sheet": "2_Spot_Netflow_S", "timeout": 180, "args": ["--pages", "10"]},
+    {"id": 3, "name": "LS Ratio 15M", "script": MODULES_DIR / "3_Exchanges_LS_Ratio_15M.py", "sheet": "3_Exchanges_LS_Ratio_15M", "timeout": 180, "args": []},
     {"id": 4, "name": "LS Ratio 1H", "script": MODULES_DIR / "3_Exchanges_LS_Ratio_1H.py", "sheet": "3_Exchanges_LS_Ratio_1H", "timeout": 120, "args": []},
     {"id": 5, "name": "LS Ratio 4H", "script": MODULES_DIR / "3_Exchanges_LS_Ratio_4H.py", "sheet": "3_Exchanges_LS_Ratio_4H", "timeout": 120, "args": []},
     {"id": 10, "name": "Liquidation Heatmap", "script": MODULES_DIR / "7_Liq_Heapmap.py", "sheet": "7_Liq_Heapmap", "timeout": 120, "args": []},

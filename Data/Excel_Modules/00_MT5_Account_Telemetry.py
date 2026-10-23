@@ -221,7 +221,18 @@ def dump_mt5_telemetry_sheet(excel_path: pathlib.Path = DEFAULT_EXCEL_PATH) -> b
                 ws = wb.active
                 ws.title = SHEET_NAME
             else:
-                wb = openpyxl.load_workbook(excel_path)
+                try:
+                    from filelock import FileLock
+                    lock = FileLock(str(excel_path) + ".lock", timeout=120)
+                except ImportError:
+                    lock = None
+
+                class _NoLock:
+                    def __enter__(self): return self
+                    def __exit__(self, *args): pass
+
+                with (lock if lock else _NoLock()):
+                    wb = openpyxl.load_workbook(excel_path)
                 if SHEET_NAME in wb.sheetnames:
                     del wb[SHEET_NAME]
                 ws = wb.create_sheet(title=SHEET_NAME, index=0)

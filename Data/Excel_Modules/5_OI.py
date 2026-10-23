@@ -324,7 +324,18 @@ def dump_to_excel(
         )
         return False
 
-    wb = openpyxl.load_workbook(excel_path)
+    try:
+        from filelock import FileLock
+        lock = FileLock(str(excel_path) + ".lock", timeout=120)
+    except ImportError:
+        lock = None
+
+    class _NoLock:
+        def __enter__(self): return self
+        def __exit__(self, *args): pass
+
+    with (lock if lock else _NoLock()):
+        wb = openpyxl.load_workbook(excel_path)
 
     # Place sheet 5_OI at Index 6 (after 4_Hyperliquid_Analysis)
     if SHEET_NAME in wb.sheetnames:
@@ -380,8 +391,8 @@ def dump_to_excel(
         banner_cell.fill = PatternFill(start_color="D4EDDA", end_color="D4EDDA", fill_type="solid")
     else:
         banner_cell.value = "FUTURES OPEN INTEREST MATRIX - ASSETS (ROWS) x EXCHANGES (COLUMNS)"
-    banner_cell.font = Font(name="Segoe UI", size=11, bold=True, color="FFFFFF")
-    banner_cell.fill = banner_fill
+        banner_cell.font = Font(name="Segoe UI", size=11, bold=True, color="FFFFFF")
+        banner_cell.fill = banner_fill
     banner_cell.alignment = Alignment(horizontal="center", vertical="center")
     ws.row_dimensions[1].height = 28
 

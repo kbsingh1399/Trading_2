@@ -289,6 +289,12 @@ async def harvest_forex_factory_news_cdp() -> List[Dict[str, Any]]:
 
         time_ago = item.get("time_ago") or "Recently"
         utc_ts = estimate_utc_timestamp(time_ago)
+        try:
+            utc_dt = datetime.datetime.strptime(utc_ts, "%Y-%m-%d %H:%M:%S").replace(tzinfo=datetime.timezone.utc)
+            ist_tz = datetime.timezone(datetime.timedelta(hours=5, minutes=30))
+            ist_ts = utc_dt.astimezone(ist_tz).strftime("%Y-%m-%d %H:%M:%S IST")
+        except Exception:
+            ist_ts = f"{utc_ts} IST" 
         source = item.get("source") or "ForexFactory"
         cur_tag, cat_tag = attribute_currency_and_category(title, item.get("preview", ""))
 
@@ -298,6 +304,7 @@ async def harvest_forex_factory_news_cdp() -> List[Dict[str, Any]]:
             "source": source,
             "time_ago": time_ago,
             "timestamp_utc": utc_ts,
+            "timestamp_ist": ist_ts,
             "exact_title_time": item.get("exact_time_title", ""),
             "impact": item.get("impact", "Low Impact"),
             "comments": item.get("comments", "0 comments"),
@@ -327,7 +334,18 @@ def export_news_to_excel(
         return 0
 
     log.info(f"Loading workbook {excel_path.name} to write sheet '{sheet_name}'...")
-    wb = openpyxl.load_workbook(excel_path)
+    try:
+        from filelock import FileLock
+        lock = FileLock(str(excel_path) + ".lock", timeout=120)
+    except ImportError:
+        lock = None
+
+    class _NoLock:
+        def __enter__(self): return self
+        def __exit__(self, *args): pass
+
+    with (lock if lock else _NoLock()):
+        wb = openpyxl.load_workbook(excel_path)
 
     # Position at Index 27 (immediately following 18_CVD at Index 26)
     if sheet_name in wb.sheetnames:
@@ -409,7 +427,7 @@ def export_news_to_excel(
         ws.append([
             idx,
             s["time_ago"],
-            s["timestamp_utc"],
+            s.get("timestamp_ist", s["timestamp_utc"]),
             s["impact"],
             s["currency"],
             s["category"],

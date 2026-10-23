@@ -189,10 +189,17 @@ def harvest_all_stops_maps(symbols: list[str]) -> list[dict]:
     now_ms = now.timestamp() * 1000
     start_ms = now_ms - 24 * 3600 * 1000
 
+    from concurrent.futures import ThreadPoolExecutor
+
+    def _fetch_worker(sym: str):
+        return sym, fetch_stops_ladder(sym, now_ms, start_ms)
+
+    log.info(f"Concurrently harvesting Hyperdash Stops Map for {len(symbols)} symbols...")
+    with ThreadPoolExecutor(max_workers=9) as executor:
+        fetched_dict = dict(executor.map(_fetch_worker, symbols))
+
     for idx, sym in enumerate(symbols, start=1):
-        log.info(f"[{idx}/{len(symbols)}] Harvesting Hyperdash Stops Map for {sym}...")
-        t0 = time.time()
-        mark_px, bands = fetch_stops_ladder(sym, now_ms, start_ms)
+        mark_px, bands = fetched_dict.get(sym, (0.0, []))
         if not bands or mark_px <= 0:
             log.warning(f"  No active stop bands for {sym}")
             continue
@@ -219,7 +226,7 @@ def harvest_all_stops_maps(symbols: list[str]) -> list[dict]:
         all_sym_bands = sells + buys
         all_sym_bands.sort(key=lambda x: x["mid_px"])
 
-        log.info(f"  {sym}: Mark={mark_px:,.2f} | Sell Stops={len(sells)} | Buy Stops={len(buys)} | Total={len(all_sym_bands)} in {time.time()-t0:.2f}s")
+        log.info(f"  {sym}: Mark={mark_px:,.2f} | Sell Stops={len(sells)} | Buy Stops={len(buys)} | Total={len(all_sym_bands)}")
 
         for b in all_sym_bands:
             px = b["mid_px"]

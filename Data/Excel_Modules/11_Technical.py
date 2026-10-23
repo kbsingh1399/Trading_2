@@ -551,7 +551,18 @@ def dump_technical_to_excel(
         log.error("0 screener records generated. Aborting Excel dump.")
         return False
 
-    wb = openpyxl.load_workbook(excel_path)
+    try:
+        from filelock import FileLock
+        lock = FileLock(str(excel_path) + ".lock", timeout=120)
+    except ImportError:
+        lock = None
+
+    class _NoLock:
+        def __enter__(self): return self
+        def __exit__(self, *args): pass
+
+    with (lock if lock else _NoLock()):
+        wb = openpyxl.load_workbook(excel_path)
 
     # Recreate sheet at specified index
     if sheet_name in wb.sheetnames:
@@ -601,8 +612,8 @@ def dump_technical_to_excel(
         t1.fill = PatternFill(start_color="D4EDDA", end_color="D4EDDA", fill_type="solid")
     else:
         t1.value = f"SECTION 1: QUANTITATIVE TECHNICAL INDICATORS & VWAP BANDS MATRIX ({len(screener_records)} ASSETS) [as_of {now_utc}]"
-    t1.font = font_banner
-    t1.fill = fill_banner
+        t1.font = font_banner
+        t1.fill = fill_banner
     t1.alignment = Alignment(horizontal="center", vertical="center")
     ws.row_dimensions[1].height = 28
 

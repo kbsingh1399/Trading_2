@@ -189,10 +189,17 @@ def harvest_all_liquidation_maps(symbols: list[str]) -> list[dict]:
     now_ms = now.timestamp() * 1000
     start_ms = now_ms - 24 * 3600 * 1000
 
+    from concurrent.futures import ThreadPoolExecutor
+
+    def _fetch_liq_worker(sym: str):
+        return sym, fetch_liquidation_ladder(sym, now_ms, start_ms)
+
+    log.info(f"Concurrently harvesting Hyperdash Liquidation Map for {len(symbols)} symbols...")
+    with ThreadPoolExecutor(max_workers=9) as executor:
+        fetched_dict = dict(executor.map(_fetch_liq_worker, symbols))
+
     for idx, sym in enumerate(symbols, start=1):
-        log.info(f"[{idx}/{len(symbols)}] Harvesting Hyperdash Liquidation Map for {sym}...")
-        t0 = time.time()
-        mark_px, bands = fetch_liquidation_ladder(sym, now_ms, start_ms)
+        mark_px, bands = fetched_dict.get(sym, (0.0, []))
         if not bands or mark_px <= 0:
             log.warning(f"  No active liquidation bands for {sym}")
             continue
@@ -220,7 +227,7 @@ def harvest_all_liquidation_maps(symbols: list[str]) -> list[dict]:
         all_sym_bands = longs + shorts
         all_sym_bands.sort(key=lambda x: x["mid_px"])
 
-        log.info(f"  {sym}: Mark={mark_px:,.2f} | Long Bands={len(longs)} | Short Bands={len(shorts)} | Total={len(all_sym_bands)} in {time.time()-t0:.2f}s")
+        log.info(f"  {sym}: Mark={mark_px:,.2f} | Long Bands={len(longs)} | Short Bands={len(shorts)} | Total={len(all_sym_bands)}")
 
         for b in all_sym_bands:
             px = b["mid_px"]

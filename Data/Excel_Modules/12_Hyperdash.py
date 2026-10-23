@@ -249,7 +249,18 @@ def dump_hyperdash_to_excel(
         log.error(f"Excel workbook not found at: {excel_path}")
         return False
 
-    wb = openpyxl.load_workbook(excel_path)
+    try:
+        from filelock import FileLock
+        lock = FileLock(str(excel_path) + ".lock", timeout=120)
+    except ImportError:
+        lock = None
+
+    class _NoLock:
+        def __enter__(self): return self
+        def __exit__(self, *args): pass
+
+    with (lock if lock else _NoLock()):
+        wb = openpyxl.load_workbook(excel_path)
     if sheet_name in wb.sheetnames:
         wb.remove(wb[sheet_name])
 
@@ -314,8 +325,8 @@ def dump_hyperdash_to_excel(
         s1_banner.fill = PatternFill(start_color="D4EDDA", end_color="D4EDDA", fill_type="solid")
     else:
         s1_banner.value = f"SECTION 1: HYPERDASH MACRO ON-CHAIN FLOW INTELLIGENCE SUMMARY [as_of {now_utc}]"
-    s1_banner.font = font_banner
-    s1_banner.fill = fill_banner
+        s1_banner.font = font_banner
+        s1_banner.fill = fill_banner
     s1_banner.alignment = Alignment(horizontal="center", vertical="center")
     ws.row_dimensions[1].height = 28
 

@@ -386,11 +386,24 @@ def dump_ls_ratio_to_excel(records: list[dict], excel_path: pathlib.Path = DEFAU
         log.error(f"Target Excel file does not exist: {excel_path}")
         return False
 
-    wb = openpyxl.load_workbook(excel_path)
+    try:
+        from filelock import FileLock
+        lock = FileLock(str(excel_path) + ".lock", timeout=120)
+    except ImportError:
+        lock = None
 
-    # Position sheet following REFERENCE_SHEET
+    class _NoLock:
+        def __enter__(self): return self
+        def __exit__(self, *args): pass
+
+    with (lock if lock else _NoLock()):
+        wb = openpyxl.load_workbook(excel_path)
+
+    # Position sheet following REFERENCE_SHEET (recreate to clear any merged cells)
     if SHEET_NAME in wb.sheetnames:
-        ws = wb[SHEET_NAME]
+        idx = wb.sheetnames.index(SHEET_NAME)
+        wb.remove(wb[SHEET_NAME])
+        ws = wb.create_sheet(title=SHEET_NAME, index=idx)
     else:
         if REFERENCE_SHEET in wb.sheetnames:
             ref_idx = wb.sheetnames.index(REFERENCE_SHEET)

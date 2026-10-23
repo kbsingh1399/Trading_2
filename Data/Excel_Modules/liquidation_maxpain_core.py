@@ -62,6 +62,7 @@ COLUMNS_DEF = [
     ("long_max_pain_vol", "Long Max Pain Vol", 20, "right"),
     ("long_distance_usd", "Long Distance ($)", 20, "right"),
     ("long_distance_pct", "Long Distance (%)", 20, "right"),
+    ("timestamp_ist", "Timestamp (IST)", 24, "center"),
 ]
 
 
@@ -231,12 +232,17 @@ async def harvest_liquidation_maxpain(
         # Switch to requested timeframe tab if not already active
         js_switch = f"""
         (() => {{
-            const targetLabel = {json.dumps(timeframe_label)};
-            const tabs = Array.from(document.querySelectorAll('button[role="tab"], div[role="tab"]'));
-            const targetTab = tabs.find(t => t.innerText.trim().toLowerCase() === targetLabel.toLowerCase());
+            const targetLabel = {json.dumps(timeframe_label)}.toLowerCase().trim();
+            const candidates = Array.from(document.querySelectorAll('button[role="tab"], div[role="tab"], .ant-tabs-tab, button.MuiTab-root, div.MuiTab-root'));
+            let targetTab = candidates.find(t => t.innerText.trim().toLowerCase() === targetLabel);
+            if (!targetTab) {{
+                targetTab = candidates.find(t => t.innerText.trim().toLowerCase().includes(targetLabel));
+            }}
             if (!targetTab) return {{ error: "Tab not found: " + targetLabel }};
             
-            const isSelected = targetTab.getAttribute('aria-selected') === 'true' || targetTab.classList.contains('Mui-selected');
+            const isSelected = targetTab.getAttribute('aria-selected') === 'true' || 
+                               targetTab.classList.contains('Mui-selected') || 
+                               targetTab.classList.contains('ant-tabs-tab-active');
             if (!isSelected) {{
                 targetTab.click();
                 return {{ clicked: true, selected: false }};
@@ -331,7 +337,7 @@ def dump_maxpain_to_excel(
 ) -> bool:
     """
     Dumps all candidate records into target worksheet with institutional styling:
-      - Title banner in row 1
+      - Title banner in row 1 (standardized IST)
       - Dark Navy header in row 2
       - Alternating zebra rows (#F8FAFC / #FFFFFF)
       - Segoe UI typography with green/red distance highlights
@@ -349,142 +355,152 @@ def dump_maxpain_to_excel(
         log.error("Integrity guard: 0 records extracted. Aborting dump to prevent empty sheet.")
         return False
 
-    wb = openpyxl.load_workbook(excel_path)
+    try:
+        from filelock import FileLock
+        lock = FileLock(str(excel_path) + ".lock", timeout=120)
+    except ImportError:
+        lock = None
 
-    # Recreate target sheet at specified index
-    if sheet_name in wb.sheetnames:
-        wb.remove(wb[sheet_name])
+    class _NoLock:
+        def __enter__(self): return self
+        def __exit__(self, *args): pass
 
-    clamped_index = min(max(0, target_index), len(wb.sheetnames))
-    ws = wb.create_sheet(title=sheet_name, index=clamped_index)
-    log.info(f"Target worksheet '{sheet_name}' positioned at index {wb.sheetnames.index(sheet_name)}")
+    ist_tz = datetime.timezone(datetime.timedelta(hours=5, minutes=30))
+    now_ist_str = datetime.datetime.now(ist_tz).strftime("%Y-%m-%d %H:%M:%S IST")
+    now_utc_str = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
 
-    # Visual Styles
-    font_title = Font(name="Segoe UI", size=11, bold=True, color="FFFFFF")
-    fill_title = PatternFill(start_color="0F172A", end_color="0F172A", fill_type="solid")
+    with (lock if lock else _NoLock()):
+        wb = openpyxl.load_workbook(excel_path)
 
-    hdr_font = Font(name="Segoe UI", size=10, bold=True, color="FFFFFF")
-    hdr_fill = PatternFill(start_color="1E293B", end_color="1E293B", fill_type="solid")
+        # Recreate target sheet at specified index
+        if sheet_name in wb.sheetnames:
+            wb.remove(wb[sheet_name])
 
-    base_font = Font(name="Segoe UI", size=9, color="0F172A")
-    bold_font = Font(name="Segoe UI", size=9, bold=True, color="0F172A")
-    green_font = Font(name="Segoe UI", size=9, bold=True, color="00A86B")
-    red_font = Font(name="Segoe UI", size=9, bold=True, color="E53935")
+        clamped_index = min(max(0, target_index), len(wb.sheetnames))
+        ws = wb.create_sheet(title=sheet_name, index=clamped_index)
+        log.info(f"Target worksheet '{sheet_name}' positioned at index {wb.sheetnames.index(sheet_name)}")
 
-    fill_zebra = PatternFill(start_color="F8FAFC", end_color="F8FAFC", fill_type="solid")
-    fill_white = PatternFill(start_color="FFFFFF", end_color="FFFFFF", fill_type="solid")
+        # Visual Styles
+        hdr_font = Font(name="Segoe UI", size=10, bold=True, color="FFFFFF")
+        hdr_fill = PatternFill(start_color="1E293B", end_color="1E293B", fill_type="solid")
 
-    thin_border_side = Side(border_style="thin", color="E2E8F0")
-    row_border = Border(
-        left=thin_border_side, right=thin_border_side, top=thin_border_side, bottom=thin_border_side
-    )
+        base_font = Font(name="Segoe UI", size=9, color="0F172A")
+        bold_font = Font(name="Segoe UI", size=9, bold=True, color="0F172A")
+        green_font = Font(name="Segoe UI", size=9, bold=True, color="00A86B")
+        red_font = Font(name="Segoe UI", size=9, bold=True, color="E53935")
 
-    now_utc = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
+        fill_zebra = PatternFill(start_color="F8FAFC", end_color="F8FAFC", fill_type="solid")
+        fill_white = PatternFill(start_color="FFFFFF", end_color="FFFFFF", fill_type="solid")
 
-    # 1. Section Banner (Row 1)
-    ws.merge_cells("A1:K1")
-    title_cell = ws["A1"]
-    if get_current_timestamps:
-        _ist_ts, _utc_ts = get_current_timestamps()
-        title_cell.value = f"{sheet_name} | LAST UPDATED: {_ist_ts} ({_utc_ts}) | ROWS: {len(records)} | STATUS: LIVE"
-        title_cell.font = Font(name="Segoe UI", size=10, bold=True, color="155724")
-        title_cell.fill = PatternFill(start_color="D4EDDA", end_color="D4EDDA", fill_type="solid")
-    else:
-        title_cell.value = (
-            f"COINGLASS CRYPTOCURRENCY LIQUIDATION MAX PAIN ({timeframe_code}) - "
-            f"ALL CANDIDATES ({len(records)} ASSETS) [as_of {now_utc}]"
+        thin_border_side = Side(border_style="thin", color="E2E8F0")
+        row_border = Border(
+            left=thin_border_side, right=thin_border_side, top=thin_border_side, bottom=thin_border_side
         )
-    title_cell.font = font_title
-    title_cell.fill = fill_title
-    title_cell.alignment = Alignment(horizontal="center", vertical="center")
-    ws.row_dimensions[1].height = 28
 
-    # 2. Header Row (Row 2)
-    ws.row_dimensions[2].height = 26
-    for col_idx, (col_key, header_title, width, align) in enumerate(COLUMNS_DEF, start=1):
-        c = ws.cell(row=2, column=col_idx, value=header_title)
-        c.font = hdr_font
-        c.fill = hdr_fill
-        c.alignment = Alignment(horizontal=align, vertical="center")
-        c.border = row_border
-        col_letter = get_column_letter(col_idx)
-        ws.column_dimensions[col_letter].width = width
+        # 1. Section Banner (Row 1)
+        if stamp_sheet_completion_ist:
+            stamp_sheet_completion_ist(
+                ws=ws,
+                sheet_title=sheet_name,
+                row_count=len(records),
+                banner_cell="A1",
+                status="LIVE",
+                merge_max_col=len(COLUMNS_DEF)
+            )
+        else:
+            ws.merge_cells(f"A1:{get_column_letter(len(COLUMNS_DEF))}1")
+            title_cell = ws["A1"]
+            title_cell.value = f"{sheet_name} | LAST UPDATED: {now_ist_str} ({now_utc_str}) | ROWS: {len(records)} | STATUS: LIVE"
+            title_cell.font = Font(name="Segoe UI", size=10, bold=True, color="155724")
+            title_cell.fill = PatternFill(start_color="D4EDDA", end_color="D4EDDA", fill_type="solid")
+            title_cell.alignment = Alignment(horizontal="center", vertical="center")
+        ws.row_dimensions[1].height = 28
 
-    # 3. Data Rows (Row 3+)
-    for row_idx, r in enumerate(records, start=3):
-        ws.row_dimensions[row_idx].height = 20
-        row_fill = fill_zebra if (row_idx % 2 == 0) else fill_white
+        # 2. Header Row (Row 2)
+        ws.row_dimensions[2].height = 26
+        for col_idx, (col_key, header_title, width, align) in enumerate(COLUMNS_DEF, start=1):
+            c = ws.cell(row=2, column=col_idx, value=header_title)
+            c.font = hdr_font
+            c.fill = hdr_fill
+            c.alignment = Alignment(horizontal=align, vertical="center")
+            c.border = row_border
+            col_letter = get_column_letter(col_idx)
+            ws.column_dimensions[col_letter].width = width
 
-        # Formatted string representations
-        s_dist_usd = r.get("short_distance_usd")
-        s_dist_pct = r.get("short_distance_pct")
-        l_dist_usd = r.get("long_distance_usd")
-        l_dist_pct = r.get("long_distance_pct")
+        # 3. Data Rows (Row 3+)
+        for row_idx, r in enumerate(records, start=3):
+            ws.row_dimensions[row_idx].height = 20
+            row_fill = fill_zebra if (row_idx % 2 == 0) else fill_white
 
-        val_map = {
-            "ranking": r.get("ranking", row_idx - 2),
-            "symbol": r.get("symbol", ""),
-            "price": format_currency(r.get("price")),
-            "short_max_pain_price": format_currency(r.get("short_max_pain_price")),
-            "short_max_pain_vol": format_vol(r.get("short_max_pain_vol")),
-            "short_distance_usd": format_distance_usd(s_dist_usd),
-            "short_distance_pct": format_distance_pct(s_dist_pct),
-            "long_max_pain_price": format_currency(r.get("long_max_pain_price")),
-            "long_max_pain_vol": format_vol(r.get("long_max_pain_vol")),
-            "long_distance_usd": format_distance_usd(l_dist_usd),
-            "long_distance_pct": format_distance_pct(l_dist_pct),
-        }
+            s_dist_usd = r.get("short_distance_usd")
+            s_dist_pct = r.get("short_distance_pct")
+            l_dist_usd = r.get("long_distance_usd")
+            l_dist_pct = r.get("long_distance_pct")
 
-        for col_idx, (col_key, _, _, align) in enumerate(COLUMNS_DEF, start=1):
-            cell = ws.cell(row=row_idx, column=col_idx, value=val_map.get(col_key, ""))
-            cell.alignment = Alignment(horizontal=align, vertical="center")
-            cell.border = row_border
-            cell.fill = row_fill
+            val_map = {
+                "ranking": r.get("ranking", row_idx - 2),
+                "symbol": r.get("symbol", ""),
+                "price": format_currency(r.get("price")),
+                "short_max_pain_price": format_currency(r.get("short_max_pain_price")),
+                "short_max_pain_vol": format_vol(r.get("short_max_pain_vol")),
+                "short_distance_usd": format_distance_usd(s_dist_usd),
+                "short_distance_pct": format_distance_pct(s_dist_pct),
+                "long_max_pain_price": format_currency(r.get("long_max_pain_price")),
+                "long_max_pain_vol": format_vol(r.get("long_max_pain_vol")),
+                "long_distance_usd": format_distance_usd(l_dist_usd),
+                "long_distance_pct": format_distance_pct(l_dist_pct),
+                "timestamp_ist": now_ist_str,
+            }
 
-            # Semantic Typography
-            if col_key in ("ranking", "symbol"):
-                cell.font = bold_font
-            elif col_key in ("short_distance_usd", "short_distance_pct"):
-                if s_dist_usd is not None and s_dist_usd > 0:
-                    cell.font = green_font
-                elif s_dist_usd is not None and s_dist_usd < 0:
-                    cell.font = red_font
+            for col_idx, (col_key, _, _, align) in enumerate(COLUMNS_DEF, start=1):
+                cell = ws.cell(row=row_idx, column=col_idx, value=val_map.get(col_key, ""))
+                cell.alignment = Alignment(horizontal=align, vertical="center")
+                cell.border = row_border
+                cell.fill = row_fill
+
+                if col_key in ("ranking", "symbol"):
+                    cell.font = bold_font
+                elif col_key in ("short_distance_usd", "short_distance_pct"):
+                    if s_dist_usd is not None and s_dist_usd > 0:
+                        cell.font = green_font
+                    elif s_dist_usd is not None and s_dist_usd < 0:
+                        cell.font = red_font
+                    else:
+                        cell.font = base_font
+                elif col_key in ("long_distance_usd", "long_distance_pct"):
+                    if l_dist_usd is not None and l_dist_usd < 0:
+                        cell.font = red_font
+                    elif l_dist_usd is not None and l_dist_usd > 0:
+                        cell.font = green_font
+                    else:
+                        cell.font = base_font
                 else:
                     cell.font = base_font
-            elif col_key in ("long_distance_usd", "long_distance_pct"):
-                if l_dist_usd is not None and l_dist_usd < 0:
-                    cell.font = red_font
-                elif l_dist_usd is not None and l_dist_usd > 0:
-                    cell.font = green_font
-                else:
-                    cell.font = base_font
-            else:
-                cell.font = base_font
 
-    # Freeze panes below headers and after symbol column (C3)
-    ws.freeze_panes = "C3"
+        # Freeze panes below headers and after symbol column (C3)
+        ws.freeze_panes = "C3"
 
-    import os, time
-    temp_excel = excel_path.with_name(f"{excel_path.stem}_{os.getpid()}_{int(time.time()*1000)}.tmp.xlsx")
-    wb.save(temp_excel)
-    wb.close()
-    import time, zipfile
-    _is_valid = False
-    with zipfile.ZipFile(temp_excel, "r") as _z:
-        _is_valid = (_z.testzip() is None)
-    if _is_valid:
-        for _att in range(30):
-            try:
-                temp_excel.replace(excel_path)
-                break
-            except PermissionError:
-                if _att == 29: raise
-                time.sleep(1.0)
-    else:
-        if temp_excel.exists(): temp_excel.unlink()
-        raise ValueError("Corrupt zip produced during export")
-    log.info(f"Successfully saved {len(records)} rows to '{sheet_name}' in {excel_path}")
-    return True
+        import os, time
+        temp_excel = excel_path.with_name(f"{excel_path.stem}_{os.getpid()}_{int(time.time()*1000)}.tmp.xlsx")
+        wb.save(temp_excel)
+        wb.close()
+        import time, zipfile
+        _is_valid = False
+        with zipfile.ZipFile(temp_excel, "r") as _z:
+            _is_valid = (_z.testzip() is None)
+        if _is_valid:
+            for _att in range(30):
+                try:
+                    temp_excel.replace(excel_path)
+                    break
+                except PermissionError:
+                    if _att == 29: raise
+                    time.sleep(1.0)
+        else:
+            if temp_excel.exists(): temp_excel.unlink()
+            raise ValueError("Corrupt zip produced during export")
+        log.info(f"Successfully saved {len(records)} rows to '{sheet_name}' in {excel_path}")
+        return True
 
 
 def run_maxpain_harvest(

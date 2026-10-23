@@ -410,9 +410,13 @@ def enrich_series_with_quant_metrics(
 
     enriched = []
     for i, r in enumerate(records):
+        ist_tz = datetime.timezone(datetime.timedelta(hours=5, minutes=30))
         ts_utc = datetime.datetime.fromtimestamp(
             r["timestamp_ms"] / 1000.0, tz=datetime.timezone.utc
         ).strftime("%Y-%m-%d %H:%M:%S")
+        ts_ist = datetime.datetime.fromtimestamp(
+            r["timestamp_ms"] / 1000.0, tz=ist_tz
+        ).strftime("%Y-%m-%d %H:%M:%S IST")
 
         open_p = r["open"]
         close_p = r["close"]
@@ -440,6 +444,7 @@ def enrich_series_with_quant_metrics(
             regime = "DELTA ALIGNED"
 
         enriched.append({
+            "timestamp_ist": ts_ist,
             "timestamp_utc": ts_utc,
             "timestamp_ms": r["timestamp_ms"],
             "category": category,
@@ -576,7 +581,18 @@ def export_cvd_to_excel(
     display_rows = rows if max_excel_rows <= 0 else rows[:max_excel_rows]
 
     log.info(f"Opening workbook {excel_path.name} to write sheet '{sheet_name}'...")
-    wb = openpyxl.load_workbook(excel_path)
+    try:
+        from filelock import FileLock
+        lock = FileLock(str(excel_path) + ".lock", timeout=120)
+    except ImportError:
+        lock = None
+
+    class _NoLock:
+        def __enter__(self): return self
+        def __exit__(self, *args): pass
+
+    with (lock if lock else _NoLock()):
+        wb = openpyxl.load_workbook(excel_path)
 
     # Position at Index 26 (immediately after 17_Orderbook at Index 25)
     if sheet_name in wb.sheetnames:
@@ -669,7 +685,7 @@ def export_cvd_to_excel(
 
     for r in display_rows:
         ws.append([
-            r["timestamp_utc"],
+            r.get("timestamp_ist", r["timestamp_utc"]),
             r["category"],
             r["symbol"],
             r["market_pair"],
