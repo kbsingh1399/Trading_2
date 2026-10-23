@@ -1,3 +1,8 @@
+try:
+    from logger_config import stamp_sheet_completion_ist, get_current_timestamps
+except ImportError:
+    stamp_sheet_completion_ist = None
+    get_current_timestamps = None
 #!/usr/bin/env python3
 """
 Data/Excel_Modules/12_Hyperdash.py
@@ -298,7 +303,13 @@ def dump_hyperdash_to_excel(
 
     ws.merge_cells("A1:D1")
     s1_banner = ws["A1"]
-    s1_banner.value = f"SECTION 1: HYPERDASH MACRO ON-CHAIN FLOW INTELLIGENCE SUMMARY [as_of {now_utc}]"
+    if get_current_timestamps:
+        _ist_ts, _utc_ts = get_current_timestamps()
+        s1_banner.value = f"12_Hyperdash | LAST UPDATED: {_ist_ts} ({_utc_ts}) | ROWS: {current_row} | STATUS: LIVE"
+        s1_banner.font = Font(name="Segoe UI", size=10, bold=True, color="155724")
+        s1_banner.fill = PatternFill(start_color="D4EDDA", end_color="D4EDDA", fill_type="solid")
+    else:
+        s1_banner.value = f"SECTION 1: HYPERDASH MACRO ON-CHAIN FLOW INTELLIGENCE SUMMARY [as_of {now_utc}]"
     s1_banner.font = font_banner
     s1_banner.fill = fill_banner
     s1_banner.alignment = Alignment(horizontal="center", vertical="center")

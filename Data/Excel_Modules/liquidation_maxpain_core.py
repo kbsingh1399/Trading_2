@@ -1,3 +1,8 @@
+try:
+    from logger_config import stamp_sheet_completion_ist, get_current_timestamps
+except ImportError:
+    stamp_sheet_completion_ist = None
+    get_current_timestamps = None
 #!/usr/bin/env python3
 """
 Data/Excel_Modules/liquidation_maxpain_core.py
@@ -377,10 +382,16 @@ def dump_maxpain_to_excel(
     # 1. Section Banner (Row 1)
     ws.merge_cells("A1:K1")
     title_cell = ws["A1"]
-    title_cell.value = (
-        f"COINGLASS CRYPTOCURRENCY LIQUIDATION MAX PAIN ({timeframe_code}) - "
-        f"ALL CANDIDATES ({len(records)} ASSETS) [as_of {now_utc}]"
-    )
+    if get_current_timestamps:
+        _ist_ts, _utc_ts = get_current_timestamps()
+        title_cell.value = f"{sheet_name} | LAST UPDATED: {_ist_ts} ({_utc_ts}) | ROWS: {len(records)} | STATUS: LIVE"
+        title_cell.font = Font(name="Segoe UI", size=10, bold=True, color="155724")
+        title_cell.fill = PatternFill(start_color="D4EDDA", end_color="D4EDDA", fill_type="solid")
+    else:
+        title_cell.value = (
+            f"COINGLASS CRYPTOCURRENCY LIQUIDATION MAX PAIN ({timeframe_code}) - "
+            f"ALL CANDIDATES ({len(records)} ASSETS) [as_of {now_utc}]"
+        )
     title_cell.font = font_title
     title_cell.fill = fill_title
     title_cell.alignment = Alignment(horizontal="center", vertical="center")

@@ -44,6 +44,12 @@ except ImportError:
     raise ImportError("openpyxl is required. Run 'pip install openpyxl'.")
 
 try:
+    from logger_config import stamp_sheet_completion_ist, get_current_timestamps
+except ImportError:
+    stamp_sheet_completion_ist = None
+    get_current_timestamps = None
+
+try:
     import websockets
 except ImportError:
     websockets = None
@@ -363,7 +369,13 @@ def dump_to_excel(
     # Section 1 Title Banner
     ws.merge_cells("A1:U1")
     banner_cell = ws.cell(row=1, column=1)
-    banner_cell.value = "FUTURES OPEN INTEREST MATRIX - ASSETS (ROWS) x EXCHANGES (COLUMNS)"
+    if get_current_timestamps and len(matrix_rows) > 0:
+        _ist_ts, _utc_ts = get_current_timestamps()
+        banner_cell.value = f"5_OI | LAST UPDATED: {_ist_ts} ({_utc_ts}) | ROWS: {len(matrix_rows)} | STATUS: LIVE"
+        banner_cell.font = Font(name="Segoe UI", size=10, bold=True, color="155724")
+        banner_cell.fill = PatternFill(start_color="D4EDDA", end_color="D4EDDA", fill_type="solid")
+    else:
+        banner_cell.value = "FUTURES OPEN INTEREST MATRIX - ASSETS (ROWS) x EXCHANGES (COLUMNS)"
     banner_cell.font = Font(name="Segoe UI", size=11, bold=True, color="FFFFFF")
     banner_cell.fill = banner_fill
     banner_cell.alignment = Alignment(horizontal="center", vertical="center")

@@ -1,3 +1,8 @@
+try:
+    from logger_config import stamp_sheet_completion_ist, get_current_timestamps
+except ImportError:
+    stamp_sheet_completion_ist = None
+    get_current_timestamps = None
 #!/usr/bin/env python3
 """
 Data/Excel_Modules/11_Technical.py
@@ -585,7 +590,13 @@ def dump_technical_to_excel(
     # Banner Row 1
     ws.merge_cells(f"A1:{last_col_letter}1")
     t1 = ws["A1"]
-    t1.value = f"SECTION 1: QUANTITATIVE TECHNICAL INDICATORS & VWAP BANDS MATRIX ({len(screener_records)} ASSETS) [as_of {now_utc}]"
+    if get_current_timestamps:
+        _ist_ts, _utc_ts = get_current_timestamps()
+        t1.value = f"11_Technical | LAST UPDATED: {_ist_ts} ({_utc_ts}) | ROWS: {len(screener_records)} | STATUS: LIVE"
+        t1.font = Font(name="Segoe UI", size=10, bold=True, color="155724")
+        t1.fill = PatternFill(start_color="D4EDDA", end_color="D4EDDA", fill_type="solid")
+    else:
+        t1.value = f"SECTION 1: QUANTITATIVE TECHNICAL INDICATORS & VWAP BANDS MATRIX ({len(screener_records)} ASSETS) [as_of {now_utc}]"
     t1.font = font_banner
     t1.fill = fill_banner
     t1.alignment = Alignment(horizontal="center", vertical="center")

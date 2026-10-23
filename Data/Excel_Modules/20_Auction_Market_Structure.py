@@ -685,6 +685,23 @@ def dump_auction_structure_to_excel(
         current_row += 1
 
     # Atomic workbook save with 30-attempt retry loop
+        # Enforce Operator Invariant: Stamp Tier-1 Completion Banner ONLY ONCE row data is filled
+    if ws.max_row > 1:
+        try:
+            from logger_config import stamp_sheet_completion_ist
+            ws.insert_rows(1)
+            stamp_sheet_completion_ist(
+                ws=ws,
+                sheet_title="20_Auction_Market_Structure",
+                row_count=ws.max_row - 2,
+                banner_cell="A1",
+                status="LIVE",
+                merge_max_col=ws.max_column
+            )
+            ws.freeze_panes = "A3"
+        except Exception as _e:
+            pass
+
     tmp_path = excel_path.with_name(f"{excel_path.stem}.tmp{excel_path.suffix}")
     wb.save(tmp_path)
     wb.close()

@@ -1,3 +1,8 @@
+try:
+    from logger_config import stamp_sheet_completion_ist, get_current_timestamps
+except ImportError:
+    stamp_sheet_completion_ist = None
+    get_current_timestamps = None
 #!/usr/bin/env python3
 """
 Data/Excel_Modules/10_Whale_Orders.py
@@ -456,10 +461,16 @@ def dump_whale_orders_to_excel(
     last_col_letter = get_column_letter(len(COLUMNS_DEF))
     ws.merge_cells(f"A1:{last_col_letter}1")
     title_cell = ws["A1"]
-    title_cell.value = (
-        f"COINGLASS BITCOIN WHALE ORDERS & LARGE TRADES (> $100K) - "
-        f"ALL EXCHANGES ({len(records)} ORDERS) [as_of {now_utc}]"
-    )
+    if get_current_timestamps:
+        _ist_ts, _utc_ts = get_current_timestamps()
+        title_cell.value = f"10_Whale_Orders | LAST UPDATED: {_ist_ts} ({_utc_ts}) | ROWS: {len(records)} | STATUS: LIVE"
+        title_cell.font = Font(name="Segoe UI", size=10, bold=True, color="155724")
+        title_cell.fill = PatternFill(start_color="D4EDDA", end_color="D4EDDA", fill_type="solid")
+    else:
+        title_cell.value = (
+            f"COINGLASS BITCOIN WHALE ORDERS & LARGE TRADES (> $100K) - "
+            f"ALL EXCHANGES ({len(records)} ORDERS) [as_of {now_utc}]"
+        )
     title_cell.font = font_title
     title_cell.fill = fill_title
     title_cell.alignment = Alignment(horizontal="center", vertical="center")

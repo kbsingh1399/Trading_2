@@ -412,6 +412,23 @@ def dump_to_excel(records: list[dict], excel_path: pathlib.Path = DEFAULT_EXCEL_
 
     ws.views.sheetView[0].showGridLines = True
     import os, time
+        # Enforce Operator Invariant: Stamp Tier-1 Completion Banner ONLY ONCE row data is filled
+    if ws.max_row > 1:
+        try:
+            from logger_config import stamp_sheet_completion_ist
+            ws.insert_rows(1)
+            stamp_sheet_completion_ist(
+                ws=ws,
+                sheet_title="4_Hyperliquid_Analysis",
+                row_count=ws.max_row - 2,
+                banner_cell="A1",
+                status="LIVE",
+                merge_max_col=ws.max_column
+            )
+            ws.freeze_panes = "A3"
+        except Exception as _e:
+            pass
+
     temp_excel = excel_path.with_name(f"{excel_path.stem}_{os.getpid()}_{int(time.time()*1000)}.tmp.xlsx")
     wb.save(temp_excel)
     wb.close()

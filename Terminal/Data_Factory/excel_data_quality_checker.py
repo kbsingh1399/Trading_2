@@ -84,6 +84,7 @@ def audit_excel():
         header_valid = True
         col_count = 0
         first_row = []
+        second_row = []
         detected_ts = None
         is_ist = False
         
@@ -109,6 +110,8 @@ def audit_excel():
                         if m:
                             detected_ts = m.group(1)
                             break
+            elif r_idx == 2:
+                second_row = [str(c).strip() if c is not None else "" for c in row]
             
             # Check rows for timestamps (track latest timestamp seen across sheet)
             for val in row:
@@ -183,7 +186,8 @@ def audit_excel():
                 
         # Specific check for Sheet 33 (20_Auction_Market_Structure)
         if sheet_name == "20_Auction_Market_Structure":
-            if not ("sr_no" in [h.lower() for h in first_row] or "asset" in [h.lower() for h in first_row]):
+            has_sr_no = any("sr_no" in h.lower() or "asset" in h.lower() for h in first_row) or any("sr_no" in h.lower() or "asset" in h.lower() for h in second_row)
+            if not has_sr_no:
                 header_valid = False
                 
         if not header_valid:

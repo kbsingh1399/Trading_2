@@ -33,6 +33,12 @@ try:
 except ImportError:
     raise ImportError("openpyxl is required. Run 'pip install openpyxl'.")
 
+try:
+    from logger_config import stamp_sheet_completion_ist, get_current_timestamps
+except ImportError:
+    stamp_sheet_completion_ist = None
+    get_current_timestamps = None
+
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 DATA_DIR = ROOT / "Data"
 DEFAULT_EXCEL_PATH = DATA_DIR / "DataBase_Trading.xlsx"
@@ -388,6 +394,17 @@ def dump_mt5_telemetry_sheet(excel_path: pathlib.Path = DEFAULT_EXCEL_PATH) -> b
         r += 1
 
     # Freeze header pane at row 4
+    # Enforce Operator Invariant: Stamp Tier-1 Completion Banner only when r > 0
+    if stamp_sheet_completion_ist and r > 0:
+        stamp_sheet_completion_ist(
+            ws=ws,
+            sheet_title=SHEET_NAME,
+            row_count=r,
+            banner_cell="A2",
+            status="LIVE",
+            merge_max_col=11
+        )
+
     ws.freeze_panes = "A4"
 
     # Column auto-fit width
