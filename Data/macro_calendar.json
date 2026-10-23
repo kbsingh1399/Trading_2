@@ -1,6 +1,6 @@
 {
   "schema": "omni.calendar.v1",
-  "verified_at": "2026-10-23T15:53:00.000000+00:00",
+  "verified_at": "2026-10-23T17:35:00.000000+00:00",
   "coverage_start": "2026-10-01T00:00:00Z",
   "coverage_end": "2026-11-01T00:00:00Z",
   "required_series": [
@@ -166,6 +166,56 @@
       "source": "https://www.federalreserve.gov/newsevents/2026-october.htm"
     },
     {
+      "name": "Eurozone Flash Manufacturing & Services PMI",
+      "time_utc": "2026-10-23T08:00:00Z",
+      "impact": "HIGH",
+      "currency": "EUR",
+      "status": "COMPLETED",
+      "pre_blackout_m": 30,
+      "post_blackout_m": 30,
+      "source": "https://www.spglobal.com/marketintelligence/en/mi/products/pmi.html"
+    },
+    {
+      "name": "UK Flash Manufacturing & Services PMI",
+      "time_utc": "2026-10-23T08:30:00Z",
+      "impact": "HIGH",
+      "currency": "GBP",
+      "status": "COMPLETED",
+      "pre_blackout_m": 30,
+      "post_blackout_m": 30,
+      "source": "https://www.spglobal.com/marketintelligence/en/mi/products/pmi.html"
+    },
+    {
+      "name": "US S&P Global Flash Manufacturing PMI",
+      "time_utc": "2026-10-23T13:45:00Z",
+      "impact": "HIGH",
+      "currency": "USD",
+      "status": "COMPLETED",
+      "pre_blackout_m": 30,
+      "post_blackout_m": 30,
+      "source": "https://www.spglobal.com/marketintelligence/en/mi/products/pmi.html"
+    },
+    {
+      "name": "US S&P Global Flash Services PMI",
+      "time_utc": "2026-10-23T13:45:00Z",
+      "impact": "HIGH",
+      "currency": "USD",
+      "status": "COMPLETED",
+      "pre_blackout_m": 30,
+      "post_blackout_m": 30,
+      "source": "https://www.spglobal.com/marketintelligence/en/mi/products/pmi.html"
+    },
+    {
+      "name": "US University of Michigan Consumer Sentiment (Final)",
+      "time_utc": "2026-10-23T14:00:00Z",
+      "impact": "HIGH",
+      "currency": "USD",
+      "status": "COMPLETED",
+      "pre_blackout_m": 30,
+      "post_blackout_m": 30,
+      "source": "http://www.sca.isr.umich.edu/"
+    },
+    {
       "name": "FOMC",
       "time_utc": "2026-10-28T18:00:00Z",
       "impact": "HIGH",
@@ -185,11 +235,12 @@
     }
   ],
   "supplemental_coverage_start": "2026-10-12T00:00:00Z",
-  "supplemental_coverage_end": "2026-10-19T00:00:00Z",
+  "supplemental_coverage_end": "2026-10-24T00:00:00Z",
   "verification_notes": [
     "BLS and Federal Reserve times converted from America/New_York (EDT, UTC-4). Explicit BoE BST times converted from Europe/London (UTC+1).",
     "Retail Sales is October 15, not October 16. Central-bank policy decisions: FOMC October 28 and BoE November 5, neither in October 12-18.",
     "Central-bank communications receive conservative HIGH policy gating; this is not an empirical tier classification. Unpublished or timezone-ambiguous speech times are not fabricated.",
-    "Supplemental event dates were checked against linked official pages; automated core-series refresh preserves their dated windows."
+    "Supplemental event dates were checked against linked official pages; automated core-series refresh preserves their dated windows.",
+    "Friday, October 23, 2026 flash PMIs (Eurozone 08:00 UTC, UK 08:30 UTC, US 13:45 UTC) and UoM Sentiment (14:00 UTC) completed cleanly. Zero pending high-impact macro events remain for the rest of Friday Oct 23 session. Next Tier-1 central bank policy events are FOMC on October 28 and BoE on November 5."
   ]
 }

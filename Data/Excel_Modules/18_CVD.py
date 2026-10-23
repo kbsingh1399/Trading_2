@@ -565,20 +565,46 @@ def export_cvd_to_excel(
         log.error(f"Excel workbook not found at {excel_path}")
         return 0
 
-    # Sort rows for Excel display:
-    # Most recent candles first (timestamp_ms DESC), then Symbol ASC, Timeframe ASC
-    # Allows operator to immediately see the latest live CVD across all assets at the top
+    # Multi-Horizon Ring Buffer for Excel display:
+    # Ensure all timeframes (5m, 15m, 1h, 4h) across all symbols are preserved
+    # so that high-timeframe diagnostics survive compression while keeping total rows <= max_excel_rows.
     tf_order = {"5m": 1, "15m": 2, "1h": 3, "4h": 4}
-    rows.sort(
-        key=lambda x: (
-            -x["timestamp_ms"],
-            x["category"],
-            x["symbol"],
-            tf_order.get(x["timeframe"], 99),
-        )
-    )
+    if max_excel_rows > 0 and len(rows) > max_excel_rows:
+        grouped = {}
+        for r in rows:
+            key = (r["symbol"], r["timeframe"])
+            if key not in grouped:
+                grouped[key] = []
+            grouped[key].append(r)
 
-    display_rows = rows if max_excel_rows <= 0 else rows[:max_excel_rows]
+        for key in grouped:
+            grouped[key].sort(key=lambda x: -x["timestamp_ms"])
+
+        num_pairs = len(grouped)
+        quota = max(15, max_excel_rows // max(1, num_pairs))
+        balanced_rows = []
+        for key, items in grouped.items():
+            balanced_rows.extend(items[:quota])
+
+        balanced_rows.sort(
+            key=lambda x: (
+                -x["timestamp_ms"],
+                x["category"],
+                x["symbol"],
+                tf_order.get(x["timeframe"], 99),
+            )
+        )
+        display_rows = balanced_rows[:max_excel_rows]
+    else:
+        rows.sort(
+            key=lambda x: (
+                -x["timestamp_ms"],
+                x["category"],
+                x["symbol"],
+                tf_order.get(x["timeframe"], 99),
+            )
+        )
+        display_rows = rows
 
     log.info(f"Opening workbook {excel_path.name} to write sheet '{sheet_name}'...")
     try:
