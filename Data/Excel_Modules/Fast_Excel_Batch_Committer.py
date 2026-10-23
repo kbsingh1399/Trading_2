@@ -18,7 +18,7 @@ from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 from openpyxl.utils import get_column_letter
 import pandas as pd
 
-from logger_config import emit_telemetry_event, get_system_ram_telemetry, setup_institutional_logger
+from logger_config import emit_telemetry_event, get_system_ram_telemetry, setup_institutional_logger, stamp_sheet_completion_ist
 
 MODULES_DIR = pathlib.Path(__file__).resolve().parent
 ROOT_DIR = MODULES_DIR.parents[1]
@@ -78,16 +78,19 @@ THIN_BORDER = Border(
 def style_worksheet(ws: openpyxl.worksheet.worksheet.Worksheet, max_col: int, max_row: int) -> None:
     """Applies institutional header styling, alternating rows, freeze panes, and auto-filters."""
     ws.views.sheetView[0].showGridLines = True
-    ws.freeze_panes = "A2"
+    ws.freeze_panes = "A3"
 
+    # Style Row 2 (Headers)
     for col in range(1, max_col + 1):
-        cell = ws.cell(row=1, column=col)
+        cell = ws.cell(row=2, column=col)
         cell.fill = HEADER_FILL
         cell.font = HEADER_FONT
         cell.alignment = Alignment(horizontal="center", vertical="center", wrap_text=False)
         cell.border = THIN_BORDER
+    ws.row_dimensions[2].height = 24
 
-    for row in range(2, max_row + 1):
+    # Style Row 3..max_row (Data)
+    for row in range(3, max_row + 1):
         is_even = (row % 2 == 0)
         for col in range(1, max_col + 1):
             cell = ws.cell(row=row, column=col)
@@ -95,19 +98,20 @@ def style_worksheet(ws: openpyxl.worksheet.worksheet.Worksheet, max_col: int, ma
             cell.border = THIN_BORDER
             if is_even:
                 cell.fill = ZEBRA_FILL
+        ws.row_dimensions[row].height = 18
 
     # Auto column widths
     for col in range(1, max_col + 1):
         col_letter = get_column_letter(col)
         max_len = 0
-        for r in range(1, min(max_row + 1, 50)):
+        for r in range(2, min(max_row + 1, 50)):
             val = ws.cell(row=r, column=col).value
             if val is not None:
                 max_len = max(max_len, len(str(val)))
         ws.column_dimensions[col_letter].width = max(max_len + 3, 12)
 
-    if max_row > 1 and max_col > 0:
-        ws.auto_filter.ref = f"A1:{get_column_letter(max_col)}{max_row}"
+    if max_row > 2 and max_col > 0:
+        ws.auto_filter.ref = f"A2:{get_column_letter(max_col)}{max_row}"
 
 
 def commit_staged_sheets(staging_dir: pathlib.Path = STAGING_DIR, excel_path: pathlib.Path = EXCEL_PATH) -> dict:
@@ -150,13 +154,28 @@ def commit_staged_sheets(staging_dir: pathlib.Path = STAGING_DIR, excel_path: pa
                 ws = wb.create_sheet(title=sheet_name)
 
             headers = list(df.columns)
+            
+            # Row 1: Institutional Tier-1 Completion Banner in IST (UTC+5:30)
+            # Enforces Operator Invariant: Only written/updated if len(df) > 0
+            ws.append([""])  # Reserve Row 1
+            stamp_sheet_completion_ist(
+                ws=ws,
+                sheet_title=sheet_name,
+                row_count=len(df),
+                banner_cell="A1",
+                status="LIVE",
+                merge_max_col=len(headers)
+            )
+
+            # Row 2: Headers
             ws.append(headers)
 
+            # Row 3+: Data Rows
             for row in df.itertuples(index=False, name=None):
                 clean_row = ["" if pd.isna(v) else v for v in row]
                 ws.append(clean_row)
 
-            style_worksheet(ws, len(headers), len(df) + 1)
+            style_worksheet(ws, len(headers), len(df) + 2)
             updated_count += 1
             updated_sheets.append((sheet_name, len(df)))
             log.info(f"  -> Sheet '{sheet_name}': Flushed {len(df)} rows.")

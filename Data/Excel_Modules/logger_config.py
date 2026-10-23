@@ -154,7 +154,8 @@ def stamp_sheet_completion_ist(
     sheet_title: str = "",
     row_count: int = 0,
     banner_cell: str = "A1",
-    status: str = "LIVE"
+    status: str = "LIVE",
+    merge_max_col: int | None = None
 ) -> bool:
     """Enforces Operator Invariant: Timestamp MUST be added or updated ONLY ONCE
     row data is filled.
@@ -162,6 +163,10 @@ def stamp_sheet_completion_ist(
     Rejects any update if row_count <= 0.
     Writes standardized Tier-1 banner to banner_cell:
     "LAST UPDATED: YYYY-MM-DD HH:MM:SS IST (YYYY-MM-DD HH:MM:SS UTC) | ROWS: N | STATUS: LIVE"
+    Applies institutional xlsx-official styling:
+    - Font: Calibri / Segoe UI, size 10, bold, dark green text (#155724)
+    - Fill: Soft pastel green fill (#D4EDDA)
+    - Alignment: Centered horizontally and vertically
     """
     if row_count <= 0:
         return False
@@ -170,6 +175,29 @@ def stamp_sheet_completion_ist(
     prefix = f"{sheet_title} | " if sheet_title else ""
     banner_text = f"{prefix}LAST UPDATED: {ist_str} ({utc_str}) | ROWS: {row_count} | STATUS: {status}"
     
-    ws[banner_cell] = banner_text
+    cell = ws[banner_cell]
+    cell.value = banner_text
+    
+    try:
+        from openpyxl.styles import Font, PatternFill, Alignment
+        from openpyxl.utils import get_column_letter
+        
+        cell.font = Font(name="Segoe UI", size=10, bold=True, color="155724")
+        cell.fill = PatternFill(start_color="D4EDDA", end_color="D4EDDA", fill_type="solid")
+        cell.alignment = Alignment(horizontal="center", vertical="center")
+        
+        # Determine row number from cell reference (e.g., 'A1' -> 1)
+        import re
+        m = re.search(r'\d+', banner_cell)
+        if m:
+            row_num = int(m.group(0))
+            ws.row_dimensions[row_num].height = 24
+            
+        if merge_max_col and merge_max_col > 1:
+            col_letter = get_column_letter(merge_max_col)
+            ws.merge_cells(f"{banner_cell}:{col_letter}{row_num}")
+    except Exception:
+        pass
+        
     return True
 
