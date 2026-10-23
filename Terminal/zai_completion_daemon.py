@@ -176,14 +176,14 @@ def save_zai_artifacts(state: dict) -> None:
     STATUS_FILE.write_text(json.dumps(payload, indent=2), encoding="utf-8")
 
 
-async def run_wait(poll_interval: float = 2.0, timeout_s: float = 1800.0) -> int:
+async def run_wait(poll_interval: float = 2.0, timeout_s: float = 3600.0) -> int:
     start_ts = time.time()
     initial = await probe_zai_state()
     initial_hash = initial.get("textHash", "")
     saw_generating = initial.get("isGenerating", False)
 
     print(
-        f"[ZaiWatcher] Started wait-for-completion watcher (connected={initial.get('connected')}, gen={saw_generating}, hash={initial_hash})",
+        f"[ZaiWatcher] Started wait-for-completion watcher (connected={initial.get('connected')}, gen={saw_generating}, hash={initial_hash}, timeout={timeout_s}s)",
         flush=True
     )
 
