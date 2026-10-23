@@ -195,7 +195,11 @@ def harvest_mt5_telemetry() -> dict:
     now_utc = datetime.datetime.now(datetime.timezone.utc).isoformat()
     duration_sec = round(time.perf_counter() - t0, 3)
 
+    now_epoch = time.time()
     telemetry_payload = {
+        "as_of_epoch": now_epoch,
+        "generation_id": f"gen_{int(now_epoch * 1000)}",
+        "snapshot_status": "LIVE_OBSERVATION",
         "timestamp_utc": now_utc,
         "harvest_duration_seconds": duration_sec,
         "account": {
