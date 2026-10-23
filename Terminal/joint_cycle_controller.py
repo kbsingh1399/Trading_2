@@ -163,11 +163,12 @@ def sync_from_daemons(state: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         try:
             with open(ARENA_STATUS_FILE, "r", encoding="utf-8") as f:
                 ad = json.load(f)
-            if not ad.get("is_generating", True) and ad.get("has_copy_button", False):
-                if state["components"]["arena_ai"]["status"] != "COMPLETED":
+            if not ad.get("is_generating", True) and (ad.get("has_copy_button", False) or ad.get("text_length", 0) > 2000):
+                arena_ts = ad.get("completed_at_utc", now_utc_str())
+                if state["components"]["arena_ai"]["status"] != "COMPLETED" or state["components"]["arena_ai"]["completed_at_utc"] != arena_ts:
                     state["components"]["arena_ai"]["status"] = "COMPLETED"
-                    state["components"]["arena_ai"]["completed_at_utc"] = ad.get("completed_at_utc", now_utc_str())
-                    logger.info("Auto-synced Arena.ai completion from daemon status.")
+                    state["components"]["arena_ai"]["completed_at_utc"] = arena_ts
+                    logger.info("Auto-synced Arena.ai completion from daemon status: %s", arena_ts)
         except Exception:
             pass
 
@@ -177,10 +178,11 @@ def sync_from_daemons(state: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
             with open(ZAI_STATUS_FILE, "r", encoding="utf-8") as f:
                 zd = json.load(f)
             if not zd.get("is_generating", True) and zd.get("text_length", 0) > 2000:
-                if state["components"]["zai"]["status"] != "COMPLETED":
+                zai_ts = zd.get("completed_at_utc", now_utc_str())
+                if state["components"]["zai"]["status"] != "COMPLETED" or state["components"]["zai"]["completed_at_utc"] != zai_ts:
                     state["components"]["zai"]["status"] = "COMPLETED"
-                    state["components"]["zai"]["completed_at_utc"] = zd.get("completed_at_utc", now_utc_str())
-                    logger.info("Auto-synced Z.ai completion from daemon status.")
+                    state["components"]["zai"]["completed_at_utc"] = zai_ts
+                    logger.info("Auto-synced Z.ai completion from daemon status: %s", zai_ts)
         except Exception:
             pass
 
@@ -203,19 +205,26 @@ def check_cycle_completion(state: Optional[Dict[str, Any]] = None) -> bool:
     zai_done = comps.get("zai", {}).get("status") == "COMPLETED"
 
     if sub_done and arena_done and zai_done:
-        utc_now = datetime.datetime.now(datetime.timezone.utc)
-        utc_now_str = utc_now.strftime("%Y-%m-%d %H:%M:%S UTC")
-        
-        # Calculate exactly 20 minutes (1200 seconds) after completion
-        next_dt = utc_now + datetime.timedelta(seconds=state.get("rest_interval_seconds", 1200))
+        ts_list = []
+        for c in [comps.get("antigravity_subagents", {}), comps.get("arena_ai", {}), comps.get("zai", {})]:
+            c_ts = c.get("completed_at_utc")
+            if c_ts:
+                try:
+                    dt = datetime.datetime.strptime(c_ts.replace(" UTC", ""), "%Y-%m-%d %H:%M:%S").replace(tzinfo=datetime.timezone.utc)
+                    ts_list.append(dt)
+                except Exception:
+                    pass
+        max_dt = max(ts_list) if ts_list else datetime.datetime.now(datetime.timezone.utc)
+        next_dt = max_dt + datetime.timedelta(seconds=state.get("rest_interval_seconds", 1200))
+        max_dt_str = max_dt.strftime("%Y-%m-%d %H:%M:%S UTC")
         next_dt_str = next_dt.strftime("%Y-%m-%d %H:%M:%S UTC")
         
         state["cycle_status"] = "COMPLETED"
-        state["cycle_completed_utc"] = utc_now_str
+        state["cycle_completed_utc"] = max_dt_str
         state["next_cycle_scheduled_utc"] = next_dt_str
         save_cycle_state(state)
         
-        logger.info("🎯 ALL 3 ENTITIES COMPLETED! Cycle %s marked FINISHED at %s.", state.get("current_cycle_id"), utc_now_str)
+        logger.info("🎯 ALL 3 ENTITIES COMPLETED! Cycle %s marked FINISHED at %s.", state.get("current_cycle_id"), max_dt_str)
         logger.info("⏳ Next cycle trigger armed for: %s (clean 20-minute separation).", next_dt_str)
         return True
     
