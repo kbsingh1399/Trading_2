@@ -46,8 +46,8 @@ def sync_telemetry():
                 "equity_usd": acc.equity,
                 "margin_free_usd": acc.margin_free,
                 "margin_used_usd": acc.margin,
-                "hard_floor_cushion_usd": acc.equity - 4775.0,
-                "operating_buffer_cushion_usd": acc.equity - 4795.0
+                "hard_floor_cushion_usd": acc.equity - 4600.0,
+                "operating_buffer_cushion_usd": acc.equity - 4650.0
             },
             "open_positions_count": len(pos) if pos else 0,
             "open_positions": [

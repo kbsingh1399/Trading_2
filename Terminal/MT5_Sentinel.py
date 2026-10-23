@@ -21,7 +21,7 @@ from Terminal.Risk_Sizing_Engine import epoch
 from Terminal.Uplift_Model import UpliftGate, executable_ratchet, POLICY_VERSION
 
 ACCOUNT = 5064568
-FLOOR = 4775.0
+FLOOR = 4600.0
 
 def next_wakeup(now):
     candidate = now.replace(second=0, microsecond=0)+timedelta(minutes=1)

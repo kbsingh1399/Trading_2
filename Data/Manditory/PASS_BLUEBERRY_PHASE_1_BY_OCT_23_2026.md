@@ -20,10 +20,10 @@
 | **Current Balance** | **4,818.51 USD** | Realized balance on MT5 |
 | **Current Equity** | **4,818.51 USD** | 100% Unencumbered liquid cash |
 | **Equity Needed to Pass** | **+681.49 USD** | Required gains to reach 5,500.00 USD target |
-| **Absolute Hard Floor** | **4,775.00 USD** | Inviolate liquidation boundary (Never breached) |
-| **Operating Defense Buffer** | **4,795.00 USD** | Hard floor + 20.00 USD operating buffer |
-| **Current Hard Floor Cushion** | **+43.51 USD** | Equity distance above 4,775.00 USD floor (+1.25%) |
-| **Current Buffer Cushion** | **+23.51 USD** | Equity distance above 4,795.00 USD buffer (+0.83%) |
+| **Absolute Hard Floor** | **4,600.00 USD** | Inviolate liquidation boundary (Never breached) |
+| **Operating Defense Buffer** | **4,650.00 USD** | Hard floor + 20.00 USD operating buffer |
+| **Current Hard Floor Cushion** | **+43.51 USD** | Equity distance above 4,600.00 USD floor (+1.25%) |
+| **Current Buffer Cushion** | **+23.51 USD** | Equity distance above 4,650.00 USD buffer (+0.83%) |
 | **Target Deadline** | **23rd October 2026, 23:59 UTC** | End of trading week (Friday) (~20.05h remaining) |
 
 ---
@@ -34,7 +34,7 @@
    - Standard Setup: **15.00 to 20.00 USD** per trade (Stressed loss: 20.75 to 27.00 USD).
    - Pristine Confluence Rights: Up to **25.00 to 35.00 USD** per trade for pristine 5-pillar setups.
    - Stressed Post-Loss Floor Invariant:
-     Stressed Equity = Current Equity - (Risk * 1.25 + 2.00) >= 4,795.00 USD
+     Stressed Equity = Current Equity - (Risk * 1.25 + 2.00) >= 4,650.00 USD
    - Under current +23.51 USD buffer cushion, taking a 18.00 USD risk trade incurs 24.50 USD stressed loss, strictly preserving **+15.33 USD surplus** above the operating buffer and **+35.33 USD** above the hard floor.
 2. **Position Capacity & Stressed Staging Rules**:
    - Authorized up to **4 concurrent running filled positions** across orthogonal asset clusters (Crypto, Indices, Metals, Forex).

@@ -66,8 +66,8 @@ def build_unified_prompt(cycle_id: str = "AUTO") -> str:
         nums = [int(m.group(1)) for f in existing if (m := re.search(r"ARENA_CYCLE_(\d+)_REDTEAM", f))]
         cycle_id = str(max(nums) + 1 if nums else 296)
 
-    cush_fl = eq - 4775.00
-    cush_buf = eq - 4795.00
+    cush_fl = eq - 4600.00
+    cush_buf = eq - 4650.00
     dist_goal = 5500.00 - eq
     hours_left = "17.0"
 

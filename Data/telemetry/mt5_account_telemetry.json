@@ -5,8 +5,8 @@
     "equity_usd": 4799.88,
     "margin_free_usd": 4799.88,
     "margin_used_usd": 0.0,
-    "hard_floor_cushion_usd": 24.88,
-    "operating_buffer_cushion_usd": 4.88
+    "hard_floor_cushion_usd": 199.8800000000001,
+    "operating_buffer_cushion_usd": 149.8800000000001
   },
   "open_positions_count": 0,
   "open_positions": [],

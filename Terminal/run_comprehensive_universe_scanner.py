@@ -24,8 +24,8 @@ if not mt5.initialize():
 
 acc = mt5.account_info()
 equity = acc.equity
-hard_floor = 4775.00
-buffer_floor = 4795.00
+hard_floor = 4600.00
+buffer_floor = 4650.00
 buffer_cushion = max(0.0, equity - buffer_floor)
 # Dynamic nominal risk target to strictly respect the operating buffer under 1.25x slippage + $2 comm
 target_risk = max(10.0, min(25.0, (buffer_cushion - 2.50) / 1.25))

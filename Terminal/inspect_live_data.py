@@ -44,7 +44,7 @@ def inspect_account_and_execution():
             age = time.time() - os.path.getmtime(snap_path)
             balance = acc.get("balance_usd", acc.get("balance", 0.0))
             equity = acc.get("equity_usd", acc.get("equity", 0.0))
-            floor = acc.get("hard_floor_usd", 4775.00)
+            floor = acc.get("hard_floor_usd", 4600.00)
             cushion = acc.get("cushion_above_floor_usd", equity - floor)
             print(f"  Status        : LIVE ({age:.1f}s ago)")
             print(f"  Account Login : {acc.get('login', 'N/A')}")

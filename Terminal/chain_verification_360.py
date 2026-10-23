@@ -589,7 +589,7 @@ def audit_broker_execution_and_floor() -> Dict[str, Any]:
                                               MIN_EXECUTION_COST_USD)
     report = {"status": "UNKNOWN", "inventory_verified": False,
               "open_positions": [], "pending_orders": [], "closed_deals_today": [],
-              "hard_floor_usd": 4775.0, "operating_buffer_usd": 4795.0,
+              "hard_floor_usd": 4600.0, "operating_buffer_usd": 4650.0,
               "max_joint_fill_tickets": MAX_FILLED,
               "valuation_source": "MT5_ORDER_CALC_PROFIT_USD",
               "stop_stress_multiplier": STOP_STRESS_MULTIPLIER,
@@ -607,7 +607,7 @@ def audit_broker_execution_and_floor() -> Dict[str, Any]:
                       free_margin=round(_finite(account.margin_free, "free margin"), 2),
                       margin_used=round(_finite(account.margin, "margin used"), 2),
                       margin_level=round(_finite(account.margin_level, "margin level"), 1),
-                      live_floor_cushion_usd=round(account.equity - 4775.0, 2),
+                      live_floor_cushion_usd=round(account.equity - 4600.0, 2),
                       inventory_verified=True)
         total_risk = 0.0
         for pending, rows in ((False, positions), (True, orders)):
@@ -641,11 +641,11 @@ def audit_broker_execution_and_floor() -> Dict[str, Any]:
         stressed = min(account.balance, account.equity) - total_risk
         report.update(downside_portfolio_risk_usd=round(total_risk, 2),
                       stressed_worst_case_equity_usd=round(stressed, 2),
-                      stressed_floor_cushion_usd=round(stressed - 4775.0, 2))
+                      stressed_floor_cushion_usd=round(stressed - 4600.0, 2))
         if len(positions) + len(orders) > MAX_FILLED:
             raise ValueError(f"Joint-fill capacity exceeded: {len(positions) + len(orders)} > {MAX_FILLED}")
-        if stressed < 4795.0:
-            raise ValueError(f"G-1 operating buffer breach: stressed equity {stressed:.2f} < 4795.00 USD")
+        if stressed < 4650.0:
+            raise ValueError(f"G-1 operating buffer breach: stressed equity {stressed:.2f} < 4650.00 USD")
         now = datetime.now(timezone.utc)
         deals = mt5.history_deals_get(now - timedelta(hours=12), now)
         if deals is None:

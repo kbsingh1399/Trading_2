@@ -482,9 +482,9 @@ class AccountWidget(Static):
         open_pos = len(mt5.get("positions", [])) if isinstance(mt5.get("positions"), list) else 0
         pending_ord = len(mt5.get("orders", [])) if isinstance(mt5.get("orders"), list) else 0
 
-        floor = 4775.00
+        floor = 4600.00
         cushion = equity - floor
-        buffer_val = 4795.00
+        buffer_val = 4650.00
         headroom = equity - buffer_val
 
         macro = data.get("macro") or {}

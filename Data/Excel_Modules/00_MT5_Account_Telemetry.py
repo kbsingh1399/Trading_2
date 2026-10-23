@@ -87,8 +87,8 @@ def get_live_mt5_data() -> dict:
             if acc:
                 eq = float(acc.equity)
                 bal = float(acc.balance)
-                floor = 4775.00
-                buf = 4795.00
+                floor = 4600.00
+                buf = 4650.00
                 data["account"] = {
                     "login": acc.login,
                     "company": acc.company,
@@ -248,8 +248,8 @@ def dump_mt5_telemetry_sheet(excel_path: pathlib.Path = DEFAULT_EXCEL_PATH) -> b
 
     eq = float(acc.get("equity_usd", 4837.28))
     bal = float(acc.get("balance_usd", 4824.89))
-    floor = float(acc.get("hard_floor_usd", 4775.00))
-    buf = float(acc.get("operating_buffer_usd", 4795.00))
+    floor = float(acc.get("hard_floor_usd", 4600.00))
+    buf = float(acc.get("operating_buffer_usd", 4650.00))
     cush_floor = round(eq - floor, 2)
     cush_buf = round(eq - buf, 2)
     m_free = float(acc.get("margin_free_usd", 4541.68))

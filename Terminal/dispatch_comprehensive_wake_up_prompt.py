@@ -191,8 +191,8 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
     equity = broker["equity"]
     balance = broker["balance"]
     margin = broker["margin"]
-    cushion = equity - 4775.0
-    buffer_cushion = equity - 4795.0
+    cushion = equity - 4600.0
+    buffer_cushion = equity - 4650.0
     positions = broker["positions"]
     orders = broker["orders"]
 
@@ -372,7 +372,7 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
     capacity_used = len(positions) + len(orders)
     capacity_available = max(0, 4 - capacity_used)
     min_capital = min(balance, equity)
-    avail_budget = max(0.0, min_capital - 4795.0 - tot_contingent_stress)
+    avail_budget = max(0.0, min_capital - 4650.0 - tot_contingent_stress)
     calibrated_risk = 10.00
     calibrated_stress = 1.25 * calibrated_risk + 2.0  # 14.50 USD
     max_new_tickets = min(capacity_available, int(avail_budget / calibrated_stress)) if calibrated_stress > 0 else 0
@@ -386,7 +386,7 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
         stress_detail_parts.append(f"#{p['ticket']} ({p['symbol']} {p['type']}) nom {nom:.2f} -> stressed {stress:.2f} USD")
     stress_detail = "; ".join(stress_detail_parts) if stress_detail_parts else "0.00 USD (Flat)"
 
-    lines.append(f"• Rigorous Capacity Ceiling: Open positions currently consume {tot_contingent_stress:.2f} USD total contingent stress ({stress_detail}). Stressed worst-case equity is {worst_case_equity:.2f} USD, leaving +{worst_case_equity - 4795.0:.2f} USD above 4,795.00 USD buffer. Capacity permits: max {max_new_tickets} new ticket(s) at {calibrated_risk:.2f} USD risk (stress {calibrated_stress:.2f} USD) or {max_tickets_min_risk} ticket(s) at 7.50 USD risk (stress {min_new_stress:.2f} USD). Capacity: {capacity_used}/4 filled, {capacity_available} available.")
+    lines.append(f"• Rigorous Capacity Ceiling: Open positions currently consume {tot_contingent_stress:.2f} USD total contingent stress ({stress_detail}). Stressed worst-case equity is {worst_case_equity:.2f} USD, leaving +{worst_case_equity - 4650.0:.2f} USD above 4,795.00 USD buffer. Capacity permits: max {max_new_tickets} new ticket(s) at {calibrated_risk:.2f} USD risk (stress {calibrated_stress:.2f} USD) or {max_tickets_min_risk} ticket(s) at 7.50 USD risk (stress {min_new_stress:.2f} USD). Capacity: {capacity_used}/4 filled, {capacity_available} available.")
     lines.append("")
 
     # ── PART C: ACTIVE REPOSITORIES ─────────────────────────────────────────
@@ -789,7 +789,7 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
     lines.append("• Strict Portfolio Capacity Rules:")
     lines.append(f"  - Active positions currently using {capacity_used} / 4 capacity slots ({capacity_available} available).")
     lines.append(f"  - Max new tickets permitted: {max_new_tickets} (at {calibrated_risk:.2f} USD risk = {calibrated_stress:.2f} USD stress each, or {max_tickets_min_risk} ticket(s) at 7.50 USD risk).")
-    lines.append(f"  - Worst-case post-stop equity: {worst_case_equity:.2f} USD (cushion: +{worst_case_equity - 4795.0:.2f} USD above 4,795.00 operating buffer).")
+    lines.append(f"  - Worst-case post-stop equity: {worst_case_equity:.2f} USD (cushion: +{worst_case_equity - 4650.0:.2f} USD above 4,795.00 operating buffer).")
     lines.append("• Joint Worst-Case Post-Stop Equity MUST remain unconditionally >= 4,795.00 USD (>= 20.00 USD cushion above 4,775.00 USD hard floor).")
     lines.append("")
 

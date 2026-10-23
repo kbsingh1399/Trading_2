@@ -44,8 +44,8 @@ if str(ROOT) not in sys.path:
 
 from Terminal.Candle_Indicator_Engine import CandleIndicatorEngine
 
-HARD_FLOOR = 4775.00
-BUFFER_FLOOR = 4795.00
+HARD_FLOOR = 4600.00
+BUFFER_FLOOR = 4650.00
 
 def scan_all_156_assets(nominal_risk_target: float = 18.00) -> Dict[str, Any]:
     if not mt5.initialize():

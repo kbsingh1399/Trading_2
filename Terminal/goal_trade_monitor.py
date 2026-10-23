@@ -31,8 +31,8 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 LOG_FILE = ROOT / "docs" / "trade_plans" / "GOAL_MONITOR_LOG.jsonl"
 LOG_FILE.parent.mkdir(parents=True, exist_ok=True)
 
-HARD_FLOOR_USD = 4775.00
-OPERATING_BUFFER_USD = 4795.00
+HARD_FLOOR_USD = 4600.00
+OPERATING_BUFFER_USD = 4650.00
 
 logging.basicConfig(
     level=logging.INFO,

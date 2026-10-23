@@ -43,8 +43,8 @@ if str(ROOT) not in sys.path:
 
 from Terminal.Candle_Indicator_Engine import CandleIndicatorEngine
 
-HARD_FLOOR = 4775.00
-BUFFER_FLOOR = 4795.00
+HARD_FLOOR = 4600.00
+BUFFER_FLOOR = 4650.00
 
 def get_institutional_156_symbols() -> List[Dict[str, Any]]:
     """Scan all 156 MT5 instruments from canonical universe definition."""

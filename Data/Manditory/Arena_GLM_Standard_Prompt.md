@@ -34,7 +34,7 @@ You are convened as the Co-Equal Frontier Quantitative Council:
 
 You are NOT passive observers, rubber-stampers, or destructive critics looking for excuses to stall. Your dual mission is to:
 1. ACTIVELY DISCOVER, FORMULATE, AND EVALUATE HIGH-CONFLUENCE TRADING CANDIDATES across all 156 instruments in our universe (Crypto, Forex, Metals, Indices).
-2. FIERCELY DEFEND THE SOLVENCY FLOORS: Preserve the 4,795.00 USD operating buffer defense (+{CUSHION_BUFFER} USD cushion) and the absolute 4,775.00 USD hard floor (+{CUSHION_FLOOR} USD cushion).
+2. FIERCELY DEFEND THE SOLVENCY FLOORS: Preserve the 4,650.00 USD operating buffer defense (+{CUSHION_BUFFER} USD cushion) and the absolute 4,600.00 USD hard floor (+{CUSHION_FLOOR} USD cushion).
 3. SYSTEMATICALLY EVALUATE EVERY PROPOSAL ACROSS ALL 4 QUANTITATIVE SPECIALIST PERSONAS line-by-line following `Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md`.
 
 ---
@@ -43,11 +43,11 @@ You are NOT passive observers, rubber-stampers, or destructive critics looking f
 
 - MT5 Account: #5064568 (Blueberry Markets, Raw Spread CFD/Perpetual)
 - Realized Balance: {BALANCE} USD | Floating Equity: {EQUITY} USD | Free Margin: {FREE_MARGIN} USD
-- Inviolable Hard Floor: 4,775.00 USD (Current Floor Cushion: +{CUSHION_FLOOR} USD)
-- Operating Buffer Defense: 4,795.00 USD (Current Buffer Cushion: +{CUSHION_BUFFER} USD)
+- Inviolable Hard Floor: 4,600.00 USD (Current Floor Cushion: +{CUSHION_FLOOR} USD)
+- Operating Buffer Defense: 4,650.00 USD (Current Buffer Cushion: +{CUSHION_BUFFER} USD)
 - Phase 1 Target: 5,500.00 USD (Goal Gap: {DISTANCE_GOAL} USD | Runway: ~{HOURS_LEFT} hours remaining)
 - Portfolio Capacity: {OPEN_POSITIONS} Open Positions | {PENDING_ORDERS} Pending Orders | {SLOTS_FREE}/4 Fluid Slots Free
-- Current Risk State: Zero positions consumed. Stressed post-loss equity must remain strictly >= 4,795.00 USD operating buffer.
+- Current Risk State: Zero positions consumed. Stressed post-loss equity must remain strictly >= 4,650.00 USD operating buffer.
 
 ---
 
@@ -74,7 +74,7 @@ Open your response with exactly one line:
 
 {TICKET_TABLE}
 
-Worst-Case Simultaneous Stopout Equity: {WORST_CASE_EQUITY} USD (must remain strictly >= 4,775.00 USD).
+Worst-Case Simultaneous Stopout Equity: {WORST_CASE_EQUITY} USD (must remain strictly >= 4,600.00 USD).
 
 ---
 
@@ -139,9 +139,9 @@ You must conduct your evaluation across ALL 4 of the following quantitative pers
 - **Inviolable Stressed Solvency Equations**:
   * Spread Cost = Spread_Points * Snapped_Lot * Contract_Size.
   * Stressed Loss = (Nominal_Risk + Spread_Cost) * 1.25 + 2.00 USD (commission).
-  * Operating Buffer Defense Invariant: Stressed Equity = Current_Equity - Stressed_Loss >= 4,795.00 USD.
-  * Buffer Surplus = Stressed Equity - 4,795.00 USD >= 0.00 USD. If Buffer Surplus < 0: REJECT IMMEDIATELY.
-  * Hard Floor Invariant: Current_Equity - sum(all active and staged limits: Stressed_Loss_i) >= 4,775.00 USD.
+  * Operating Buffer Defense Invariant: Stressed Equity = Current_Equity - Stressed_Loss >= 4,650.00 USD.
+  * Buffer Surplus = Stressed Equity - 4,650.00 USD >= 0.00 USD. If Buffer Surplus < 0: REJECT IMMEDIATELY.
+  * Hard Floor Invariant: Current_Equity - sum(all active and staged limits: Stressed_Loss_i) >= 4,600.00 USD.
 - **Option-Adjusted Expected Value (EV) & Quarter-Kelly Cap**:
   * EV = p * R_reward - (1 - p) * 1.0 - Friction_R > +0.20R.
   * Quarter-Kelly Cap: f* = p - (1 - p)/R; Max_Kelly_Ticket = 0.25 * f* * Equity. Verify Nominal Risk <= Max_Kelly_Ticket.
@@ -210,7 +210,7 @@ Provide deep, candid quantitative critique across the 5 canonical dimensions:
 2. **Static Retrospective Data vs Dynamic Microstructure**: Are 15m/1h Excel sheets lagging real-time price action? How do we fuse sub-second MT5 tick velocity with HTF auction shelves?
 3. **Entry Geometry & Staging Passivity**: Are our limit orders placed so far into the extremes that they never fill, or placed directly in front of steamrollers? How do we optimize limit placement distance in terms of ATR and orderbook density?
 4. **Multi-Asset Alpha Specialization**: Are we making category errors by looking for crypto-specific features (CVD delta, Hyperdash stop maps) on Forex and European Indices? What are the true native alpha drivers for each asset class?
-5. **Actionable Alpha Evolution Proposals**: Specify concrete mathematical equations, threshold modifications, and architectural improvements that will accelerate our journey to 5,500.00 USD while guaranteeing zero breaches of the 4,775.00 USD hard floor.
+5. **Actionable Alpha Evolution Proposals**: Specify concrete mathematical equations, threshold modifications, and architectural improvements that will accelerate our journey to 5,500.00 USD while guaranteeing zero breaches of the 4,600.00 USD hard floor.
 ```
 
 ---
@@ -220,12 +220,12 @@ Provide deep, candid quantitative critique across the 5 canonical dimensions:
 Before dispatching this unified prompt to Arena.ai (via Chrome CDP port 9222) and Z.ai (via `Terminal/dispatch_zai_prompt.py`):
 - [ ] Confirm `Data/Manditory/Arena_GLM_Standard_Prompt.md` is loaded.
 - [ ] Fill `{BALANCE}`, `{EQUITY}`, `{FREE_MARGIN}` from live `mt5_account_telemetry.json`.
-- [ ] Fill `{CUSHION_FLOOR}` (Equity - 4775.00) and `{CUSHION_BUFFER}` (Equity - 4795.00).
+- [ ] Fill `{CUSHION_FLOOR}` (Equity - 4600.00) and `{CUSHION_BUFFER}` (Equity - 4650.00).
 - [ ] Fill `{DISTANCE_GOAL}` (5500.00 - Equity) and `{HOURS_LEFT}` (runway to Oct 23 23:59 UTC).
 - [ ] Fill `{OPEN_POSITIONS}`, `{PENDING_ORDERS}`, and `{SLOTS_FREE}` from live broker state.
 - [ ] Populate `{TICKET_TABLE}` with all active tickets and pending orders.
 - [ ] Populate `{CANDIDATE_TABLE}` from `Terminal/multi_asset_opportunity_scanner.py` or subagent reports.
-- [ ] Verify `{WORST_CASE_EQUITY}` >= 4,775.00 USD.
+- [ ] Verify `{WORST_CASE_EQUITY}` >= 4,600.00 USD.
 - [ ] Verify Master 33-Sheet Excel warehouse is fresh (<= 15m) with 0 formula errors.
 - [ ] Push latest git state to `origin/main` before dispatching.
 - [ ] Dispatch simultaneously to Arena.ai (GPT Astra) and Z.ai (GLM-5.3-Flash).

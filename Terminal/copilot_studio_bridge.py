@@ -75,7 +75,7 @@ def build_copilot_studio_prompt() -> str:
     equity = 4896.55
     margin_used = 0.0
     margin_free = 4896.55
-    cushion = equity - 4775.0
+    cushion = equity - 4600.0
     active_pos = []
     pending_ord = []
 
@@ -88,7 +88,7 @@ def build_copilot_studio_prompt() -> str:
                 equity = float(acc_info.equity)
                 margin_used = float(acc_info.margin)
                 margin_free = float(acc_info.margin_free)
-                cushion = equity - 4775.0
+                cushion = equity - 4600.0
 
             positions = mt5.positions_get()
             if positions:
@@ -158,7 +158,7 @@ def build_copilot_studio_prompt() -> str:
     lines.append(f"- Broker: MetaTrader 5 Account #5064568 (Blueberry Markets Demo Bridge)")
     lines.append(f"- Balance: {balance:.2f} USD | Equity: {equity:.2f} USD | Free Margin: {margin_free:.2f} USD (100% Cash Reserves | 0.00 Margin Used)")
     lines.append(f"- Hard Floor (G-1): 4,775.00 USD | Operating Buffer: 4,795.00 USD")
-    lines.append(f"- Live Floor Cushion: +{cushion:.2f} USD above hard floor (+{equity - 4795.00:.2f} USD above operating buffer)")
+    lines.append(f"- Live Floor Cushion: +{cushion:.2f} USD above hard floor (+{equity - 4650.00:.2f} USD above operating buffer)")
     lines.append(f"- Capacity: Max 4 concurrent filled positions across orthogonal asset clusters (Forex, Metals/Energy, Equities, Crypto).")
     lines.append("")
     lines.append("[SECTION 2: ACTIVE POSITIONS & PENDING LIMIT ORDERS]")

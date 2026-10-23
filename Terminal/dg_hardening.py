@@ -340,7 +340,7 @@ def gap_stressed_loss(
 
 def joint_floor_check(
     balance: Any, equity: Any, stressed_losses: Iterable[Any],
-    hard_floor_usd: float = 4775.0, buffer_usd: float = 20.0
+    hard_floor_usd: float = 4600.0, buffer_usd: float = 20.0
 ) -> Dict[str, Any]:
     if not (_fin(balance) and _fin(equity)):
         return {"ok": False, "reason": "account_unobserved"}

@@ -900,8 +900,8 @@ class InstitutionalTradingStation(QMainWindow):
         eq = acc.get("equity", 4813.99)
         bal = acc.get("balance", 4813.99)
         f_margin = acc.get("margin_free", 4813.99)
-        cushion = eq - 4775.00
-        headroom = eq - 4795.00
+        cushion = eq - 4600.00
+        headroom = eq - 4650.00
         self.acc_val.setText(f"Equity: {eq:,.2f} USD | Free Margin: {f_margin:,.2f} USD | 0 Pos | 0 Orders")
         self.floor_val.setText(f"Floor: 4,775.00 USD | Cushion: +{cushion:,.2f} USD | Headroom: +{headroom:,.2f} USD (1 Slot)")
 

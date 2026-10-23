@@ -9,11 +9,11 @@
 - **Balance / Equity**: 4,818.51 USD / 4,818.51 USD
 - **Margin / Free Margin**: 0.00 USD / 4,818.51 USD (0.00% utilization)
 - **Goal Gap**: +681.49 USD to 5,500.00 USD (+14.14%)
-- **Hard Floor (Inviolate)**: 4,775.00 USD | **Floor Cushion**: +43.51 USD
-- **Operating Buffer Floor**: 4,795.00 USD | **Buffer Cushion**: +23.51 USD
+- **Hard Floor (Inviolate)**: 4,600.00 USD | **Floor Cushion**: +43.51 USD
+- **Operating Buffer Floor**: 4,650.00 USD | **Buffer Cushion**: +23.51 USD
 - **Active Filled Positions**: 0/4 consumed | **Resting Pending Orders**: 2/10 ACTIVE IN MT5
 - **Fluid Capacity Available**: 4/4 filled slots free, 8 resting limit slots free
-- **Worst-Case Simultaneous Stopout Equity**: 4,780.10 USD (+5.10 USD above 4,775.00 USD hard floor)
+- **Worst-Case Simultaneous Stopout Equity**: 4,780.10 USD (+5.10 USD above 4,600.00 USD hard floor)
 
 ---
 

@@ -19,7 +19,7 @@ Under strict institutional hedge fund governance, **no trading analysis, hypothe
 > 1. **Mandatory 4-Subagent Quant Fleet (Fable 5)**: On EVERY autonomous cycle, Antigravity MUST physically invoke four specialized quantitative subagents via `invoke_subagent` (`Model='flash'` / Fable 5 runtime):
 >    - **Agent 1: Statistical Regime & Diffusion Quant**: Calculates Lo-MacKinlay Variance Ratio `VR(q)`, Kaufman Efficiency Ratio `ER`, Hurst exponent `H`, Ornstein-Uhlenbeck half-life `tau_half in [20m, 4h]`, and Newey-West drift `t`-stat. Strict stand-aside on `UNDEFINED` regime.
 >    - **Agent 2: Microstructure & Liquidation Quant**: L2/L3 orderbook depth asymmetry, continuous CVD delta divergence (`zc_div > 0.8`), liquidation ladders (Sheets 10-17, 22), retail resting stop clusters (Sheet 23), and resting whale walls (Sheets 18 & 25, persistence `tau >= 180s`, refill `rho >= 0.60`).
->    - **Agent 3: Convex Portfolio & Solvency Sentry**: Live MT5 telemetry verification, exact broker quote-conversion risk sizing via `mt5.order_calc_profit()`, frozen R0 profit ratchets (Early-BE, Phase 0, Phase 1, Trailing), and stressed capacity calculations preserving the **4,775.00 USD hard floor** and **4,795.00 USD operating buffer**.
+>    - **Agent 3: Convex Portfolio & Solvency Sentry**: Live MT5 telemetry verification, exact broker quote-conversion risk sizing via `mt5.order_calc_profit()`, frozen R0 profit ratchets (Early-BE, Phase 0, Phase 1, Trailing), and stressed capacity calculations preserving the **4,600.00 USD hard floor** and **4,650.00 USD operating buffer**.
 >    - **Agent 4: Auction Profile & Friction Arbitrageur**: Value Area metrics (VAH, VAL, POC, Initial Balance), Relative Spread Gate (`Spread Price / TP Distance <= 10.0%`), 33-sheet data warehouse verification (all 33 sheets loaded, 0 formula errors, <= 15m fresh), and Event Risk Clock embargoes.
 >
 > 2. **Mandatory Parallel Dual Frontier Council Dispatch (Arena.ai GPT Astra & Z.ai GLM-5.3-Flash)**:
@@ -102,7 +102,7 @@ flowchart TD
 7. **`/brainstorm` (Multi-Perspective Dialectic & Persona Stress-Testing)**:
    - Simulates adversarial multi-agent debate (Orderflow Specialist vs Macro Risk Officer vs Forensic Position Auditor). Tests edge cases: *What if the whale pulls? What if the market blows through the cascade?*
 8. **`/verify` (Ex-Ante Pre-Execution Gate & Boundary Verification)**:
-   - Mathematical proof before dispatch. Verifies cash risk calculations against `mt5.order_calc_profit`, checks hard floor cushion (>= 4,775 USD), verifies passive limit posture, and validates SL/TP placement.
+   - Mathematical proof before dispatch. Verifies cash risk calculations against `mt5.order_calc_profit`, checks hard floor cushion (>= 4,600 USD), verifies passive limit posture, and validates SL/TP placement.
 9. **`/risk-engine` (Stressed Multi-Ticket Floor Defense Simulator)**:
    - Computes worst-case stressed equity across all open and staged tickets: $\text{Stressed Equity} = \text{Current Equity} - \sum (\text{Risk}_i \times 1.25 + 2.00) \ge 4,795.00\text{ USD}$ (preserving a mandatory $+20.00\text{ USD}$ operating buffer above the $4,775.00\text{ USD}$ absolute hard floor).
 10. **`/execution-sim` (Microstructure Execution & Friction Compensation)**:
@@ -127,7 +127,7 @@ flowchart TD
 
 | Sheet # | Worksheet Name | Functional Domain | Primary Metrics & Exact Ingestion Fields | Tactical Decision Purpose (Antigravity & Arena.ai) |
 |---|---|---|---|---|
-| **00** | `00_MT5_Account_Telemetry` | **Live MT5 Account Telemetry & Spreads** | `Balance`, `Equity`, `Free Margin`, `Hard Floor Cushion`, `Buffer Cushion`, `Open Positions Count`, `Pending Orders Count`, `Universe Quotes`, `Spread Points`, `Spread BPS`, `Spread Status`, `Timestamp UTC`. | Live MT5 broker grounding. Audits live equity cushion above 4,775 USD floor and 4,795 USD buffer, evaluates real-time spread in bps, and tracks active MT5 ticket excursions. |
+| **00** | `00_MT5_Account_Telemetry` | **Live MT5 Account Telemetry & Spreads** | `Balance`, `Equity`, `Free Margin`, `Hard Floor Cushion`, `Buffer Cushion`, `Open Positions Count`, `Pending Orders Count`, `Universe Quotes`, `Spread Points`, `Spread BPS`, `Spread Status`, `Timestamp UTC`. | Live MT5 broker grounding. Audits live equity cushion above 4,600 USD floor and 4,650 USD buffer, evaluates real-time spread in bps, and tracks active MT5 ticket excursions. |
 | **01** | `Crypto_ETF_Flows` | **Institutional Inflow & TradFi Proxy** | Overview of spot ETF aggregate flows, AUM, net creations/redemptions, market cap, and volume across BTC/ETH spot ETFs. | High-level TradFi spot demand barometer; sustained multi-day net inflow confirms macro tailwind for pro-trend long pullbacks. |
 | **02** | `1_Crypto_ETF_Flows` | **Granular Spot ETF Flow Matrix** | `Rank`, `Ticker` (IBIT, FBTC, ETHA, etc.), `ETF Name`, `Price`, `Price Change`, `Volume (USD)`, `Volume (Shares)`, `Turnover Rate`, `Shares Outstanding`, `AUM`, `Market Cap`, `Expense Ratio`, `Asset Category`, `Issuer`, `Daily Net Inflow`, `Timestamp UTC`. | Pinpoints individual institutional fund flows (BlackRock, Fidelity). Consecutive positive net inflow days disqualify aggressive counter-trend shorting on BTC and ETH. |
 | **03** | `2_Spot_Netflow_S` | **CEX Spot Inflow/Outflow (500 Assets)** | `Rank`, `Symbol`, `Spot Price`, `1h Netflow`, `4h Netflow`, `12h Netflow`, `24h Netflow`, `7d Netflow`, `30d Netflow`, `24h Spot Volume`, `24h Change %`, `Exchange`, `Timestamp UTC`. | Measures real CEX spot accumulation vs distribution. Divergence (positive spot netflow while futures prices dip) proves institutional absorption of retail panic sells. |
@@ -363,7 +363,7 @@ Screen candidates across the 156-asset universe using `Terminal/multi_asset_oppo
 3. **The 3-of-4 Adaptive Confluence Framework (Replacing Rigid 7-Gate Boolean AND)**:
    - Rather than demanding a rigid boolean `AND` across 7 micro-metrics simultaneously (which mathematically causes 0% candidate survival), the desk evaluates:
      * **Tier 1 (Non-Negotiable Solvency & Risk Floors - 100% Strict)**:
-       1. Stressed Equity >= 4,795.00 USD Operating Buffer (+39.83 USD cushion) and >= 4,775.00 USD Hard Floor (+59.83 USD cushion).
+       1. Stressed Equity >= 4,650.00 USD Operating Buffer (+39.83 USD cushion) and >= 4,600.00 USD Hard Floor (+59.83 USD cushion).
        2. Dynamic Spread Friction: `Spread Points / TP Distance Points <= 15.0%`.
        3. Macro Blackout: Zero entries during active Tier-1 High-Impact red folder news and FX rollover (21:15–22:30 UTC).
        4. Reward-to-Risk >= 2.0R to structural target.
@@ -375,8 +375,8 @@ Screen candidates across the 156-asset universe using `Terminal/multi_asset_oppo
    - **Scoring Rule**: If all Tier 1 floors pass AND at least 3 of 4 Tier 2 confluence points pass, the trade setup is **VALID AND APPROVED FOR EXECUTION**!
 
 4. **Inviolable Solvency Hard Floors (Never Compromised)**:
-   - Hard Floor Invariant: Stressed Equity strictly >= 4,775.00 USD (cushion: +59.83 USD).
-   - Operating Buffer Invariant: Stressed Equity strictly >= 4,795.00 USD (cushion: +39.83 USD).
+   - Hard Floor Invariant: Stressed Equity strictly >= 4,600.00 USD (cushion: +59.83 USD).
+   - Operating Buffer Invariant: Stressed Equity strictly >= 4,650.00 USD (cushion: +39.83 USD).
    - Dynamic Spread Friction Gate: `Spread Points / TP Distance Points <= 15.0%`.
    - Zero Tier-1 Macro Blackouts within +/-4 hours.
    - Multi-Asset Pristine Risk Rights: Standard $15.00–$25.00 USD nominal risk; authorized up to $25.00–$35.00 USD for pristine confluence across ALL 156 assets!
@@ -413,7 +413,7 @@ Liquidation bands and stop clusters serve dual tactical functions:
 3. **Stressed Operating Buffer & Hard Floor Defense**:
    - Every single fill must satisfy:
      $$\text{Stressed Equity} = \text{Current Equity} - \sum (\text{Risk}_i \times 1.25 + 2.00\text{ USD}) \ge 4,795.00\text{ USD}$$
-   - At current equity (4,834.83 USD), buffer cushion is **+39.83 USD** (and **+59.83 USD** above the 4,775.00 USD hard floor).
+   - At current equity (4,834.83 USD), buffer cushion is **+39.83 USD** (and **+59.83 USD** above the 4,600.00 USD hard floor).
 4. **Fluid 4-Slot Portfolio Capacity**:
    - Up to **4 concurrent running positions** in ANY combination across the 156-asset universe.
    - Initial fill: 1 position at 15.00–25.00 USD risk.
@@ -439,7 +439,7 @@ Prior to order transmission, the coordinator and subagents MUST physically outpu
 | 7 | **HTF Trend & Hierarchy Alignment**| Respects 1H/4H market structure; no counter-trend longs in confirmed HTF bear trends | [ ] |
 | 8 | **Pre-Condition Trigger Checklist** | All setup-specific empirical pre-conditions verified on live market data | [ ] |
 | 9 | **Clear TP Runway & R:R Ratio** | TP front-runs opposing liquidation magnet by 5-10 bps; realizable R:R >= 2.0R to 2.5R | [ ] |
-| 10 | **Stressed Solvency & Floor Defense** | Stressed post-loss equity strictly >= 4,795.00 USD buffer (exact `mt5.order_calc_profit`) | [ ] |
+| 10 | **Stressed Solvency & Floor Defense** | Stressed post-loss equity strictly >= 4,650.00 USD buffer (exact `mt5.order_calc_profit`) | [ ] |
 
 ---
 

@@ -21,8 +21,8 @@ Before injecting each prompt block, the coordinator MUST populate the following 
 ```
 {BALANCE}        = mt5_account_telemetry.json → balance (e.g. 4818.51 USD)
 {EQUITY}         = mt5_account_telemetry.json → equity (e.g. 4818.51 USD)
-{CUSHION_FLOOR}  = equity - 4775.00 USD (e.g. +43.51 USD)
-{CUSHION_BUFFER} = equity - 4795.00 USD (e.g. +23.51 USD)
+{CUSHION_FLOOR}  = equity - 4600.00 USD (e.g. +43.51 USD)
+{CUSHION_BUFFER} = equity - 4650.00 USD (e.g. +23.51 USD)
 {DISTANCE_GOAL}  = 5500.00 - equity (e.g. +681.49 USD)
 {HOURS_LEFT}     = hours until Oct 23, 2026 23:59 UTC
 {OPEN_POS}       = mt5.positions_get() count + details
@@ -56,8 +56,8 @@ READ FIRST & FOLLOW LINE-BY-LINE (mandatory, in order):
 
 LIVE DESK STATE (cycle {CYCLE_ID} | {CYCLE_UTC}):
 - Balance / Equity: {BALANCE} USD / {EQUITY} USD | Free Margin: {EQUITY} USD
-- Hard Floor Cushion: {CUSHION_FLOOR} USD above 4,775.00 USD (INVIOLATE)
-- Operating Buffer Cushion: {CUSHION_BUFFER} USD above 4,795.00 USD (defense cushion)
+- Hard Floor Cushion: {CUSHION_FLOOR} USD above 4,600.00 USD (INVIOLATE)
+- Operating Buffer Cushion: {CUSHION_BUFFER} USD above 4,650.00 USD (defense cushion)
 - Goal Gap: {DISTANCE_GOAL} USD | Runway: {HOURS_LEFT} hours remaining
 - Open Positions: {OPEN_POS} | Pending Orders: {PENDING_ORD} | Fluid Slots Free: {SLOTS_FREE}/4
 
@@ -187,7 +187,7 @@ OUTPUT FORMAT (dense, structured, max 450 tokens):
 
 ```markdown
 You are the Convex Portfolio & Solvency Sentry for the Blueberry Markets MT5 autonomous desk (Phase 1, Account #5064568).
-Mission: Enforce absolute capital solvency, execute broker-native lot snapping, calculate option-adjusted EV, manage the House Money compounding staircase, and guarantee zero-breach probability of the 4,775.00 USD hard floor.
+Mission: Enforce absolute capital solvency, execute broker-native lot snapping, calculate option-adjusted EV, manage the House Money compounding staircase, and guarantee zero-breach probability of the 4,600.00 USD hard floor.
 
 READ FIRST & FOLLOW LINE-BY-LINE (mandatory, in order):
 0. Token Preservation: Query AST Knowledge Graph via /graphify or `python -m graphify query "<concept>"` before reading large code files.
@@ -201,8 +201,8 @@ READ FIRST & FOLLOW LINE-BY-LINE (mandatory, in order):
 
 LIVE DESK STATE (cycle {CYCLE_ID} | {CYCLE_UTC}):
 - Balance / Equity: {BALANCE} USD / {EQUITY} USD | Free Margin: {EQUITY} USD
-- Hard Floor Cushion: {CUSHION_FLOOR} USD above 4,775.00 USD (INVIOLATE)
-- Operating Buffer Cushion: {CUSHION_BUFFER} USD above 4,795.00 USD (defense cushion)
+- Hard Floor Cushion: {CUSHION_FLOOR} USD above 4,600.00 USD (INVIOLATE)
+- Operating Buffer Cushion: {CUSHION_BUFFER} USD above 4,650.00 USD (defense cushion)
 - Goal Gap: {DISTANCE_GOAL} USD | Runway: {HOURS_LEFT} hours remaining
 - Open Positions: {OPEN_POS} | Pending Orders: {PENDING_ORD} | Fluid Slots Free: {SLOTS_FREE}/4
 
@@ -223,11 +223,11 @@ TASK 2 — INVIOLABLE STRESSED SOLVENCY FORMULAS:
    `Spread_Cost = Spread_Points * Snapped_Lot * Contract_Size`
    `Stressed_Loss = (Nominal_Risk + Spread_Cost) * 1.25 + 2.00 USD (commission)`
 2. Operating Buffer Invariant:
-   `Stressed_Equity = Current_Equity - Stressed_Loss >= 4,795.00 USD`
-   `Buffer_Surplus = Stressed_Equity - 4,795.00 USD >= 0.00 USD`
+   `Stressed_Equity = Current_Equity - Stressed_Loss >= 4,650.00 USD`
+   `Buffer_Surplus = Stressed_Equity - 4,650.00 USD >= 0.00 USD`
    If Buffer_Surplus < 0: The trade is IMMEDIATELY REJECTED.
 3. Hard Floor Invariant:
-   `Worst-Case Floor Cushion = Current_Equity - sum(all active and staged limits: Stressed_Loss_i) >= 4,775.00 USD`
+   `Worst-Case Floor Cushion = Current_Equity - sum(all active and staged limits: Stressed_Loss_i) >= 4,600.00 USD`
    (Hard Floor Cushion must remain strictly positive under all adverse scenarios).
 
 TASK 3 — OPTION-ADJUSTED EXPECTED VALUE (EV) & QUARTER-KELLY CROSS-CHECK:
