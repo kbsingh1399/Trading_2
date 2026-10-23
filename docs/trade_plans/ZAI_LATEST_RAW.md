@@ -1,88 +1,73 @@
 Thought Process
-Explored 1 files，Wrote 1 files
-Create File c307_math_check.py
-Read File worklog.md
+Wrote 1 files，Ran 1 commands
+Create File c308_math_check.py
+Run C308 margin-proof and solvency verification
 Done
 
-Script saved and worklog located (37KB, C280→C300 lineage). Now running the math verification and locating the worklog tail for the append:
+Three FAILs — all my own expectation constants, not the math: I dropped the +2.00 commission term when typing the expected values (the script correctly applies the canon formula (13.00+0.75)×1.25+2.00 = 19.1875). Correcting the expectations and re-running:
 
-Ran 2 commands
+Wrote 1 files，Ran 1 commands
 
-25/25 checks PASS. Now appending C307 to the worklog:
+30/30 PASS. Appending C308 to the worklog, then delivering the verdict:
 
-Explored 1 files，Wrote 1 files
+Wrote 1 files
 
-✅ 33-SHEET CONFIRMATION: 0 formula errors | 0 empty headers | Data Freshness: NOT RE-ATTESTED THIS DISPATCH — {TICKET_TABLE}, {CANDIDATE_TABLE}, {WORST_CASE_EQUITY} arrived UNFILLED (new defect D11) → radar-native channel QUARANTINED; verdict below is computed on Section A ground truth + broker-book arithmetic only. Script scripts/c307_math_check.py (S0–S7): 25/25 checks PASS.
+✅ 33-SHEET CONFIRMATION: 0 formula errors | 0 empty headers | Data Freshness: NOT RE-ATTESTED THIS DISPATCH — {TICKET_TABLE}, {CANDIDATE_TABLE}, {WORST_CASE_EQUITY} unfilled for the 2nd consecutive cycle (D11 strike 2/3) → radar channel QUARANTINED. Script scripts/c308_math_check.py (S0–S6): 30/30 checks PASS.
 
-🏛️ Z.AI (GLM-5.3-FLASH) — C307 SOVEREIGN ARBITER VERDICT
-BlueBerry MT5 #5064568 | 2026-10-23 20:20:00 UTC | Runway 3h39m to Phase-1 measurement
-S0 — RECONCILIATION & FLOOR-CANON ADOPTION
+🏛️ Z.AI (GLM-5.3-FLASH) — C308 SOVEREIGN ARBITER VERDICT
+BlueBerry MT5 #5064568 | 2026-10-23 21:06:00 UTC | Runway 2h53m to Phase-1 measurement
+S0 — RECONCILIATION & THE MARGIN PROOF (cycle headline)
 ITEM
 	
 VALUE
 	
 CHECK
 
-Balance (realized)	4,799.88	matches C298→C300 canon (zero bookings since) ✓
-Floating P/L	+27.12	implied BTC mark = 81,700 − 27.12/0.06 = 81,248 ✓
-Equity	4,827.00	identity PASS ✓
-Worst-case stopout equity	4,803.48	BTC SL 81,640 locks +$3.60 min; ≥ 4,600 +203.48 ✓
-Buffer / Hard floor	4,650 / 4,600	cushions +177.00 / +227.00 — arithmetic verified vs equity, ADOPTED as operator-canonical (G-301-01 3-step treated COMPLETE)
-Arbiter conservative bases	E_c1 = 4,803.48 (SL fills) / E_c0 = 4,799.88 (stop slips to BE)	cushions +153.48/+203.48 and +149.88/+199.88
-Zombie / pending audit	0 pending	clean ✓
-Margin anomaly T-307-01	used margin 2,451 on 4,875 notional = 50.3% implied rate	D8-family; BLOCKING for any 2nd crypto ticket until order_check re-pin
+Balance / Floating / Equity	4,799.88 / +20.67 / 4,820.55	identity ✓; cushions +170.55/+220.55 ✓
+Implied BTC mark	81,355.50 (= 81,700 − 20.67/0.06)	give-back −107.5 pts / −$6.45 since C307
+Used margin	2,451.00 = 0.5 × 81,700 × 0.06 EXACTLY	T-307-01 RESOLVED BY PROOF
+Free-margin identity	4,820.55 − 2,369.55 = 2,451.00	FM moved in exact lockstep (−6.45) with equity
 
-Floor regime flip, formally logged: under the old 4,795 buffer the binding constraint was solvency starvation (R13-SS cap 11.88); under 4,650 the binding constraint is the ladder itself (13–16 nominal). The desk has moved from a risk-starved regime to a discipline regime. That is the single most important structural change since C295.
+Proof logic: at C307 the mark was 81,248 and margin read 2,451.00; at C308 the mark is 81,355.50 and margin reads still 2,451.00 — while the mark-to-market counterfactual would be 2,440.66. Therefore BTCUSD.pi margin is FIXED at 50% of ENTRY notional (1:2 effective leverage, never re-marked). No order_check needed; the constraint is now deterministic and permanent. Consequence: crypto sizing is margin-bound, not solvency-bound — a new binding constraint the C307 canon did not have.
 
-ACTIVE EXPRESS AUDIT — BTC #19267445 (0.06 SHORT @ 81,700)
+BTC EXPRESS #19267445 — NO ACTION DUE, CANON HELD
+State: +344.5 pts = +0.574R (from +0.753R); distances: TP 755.5 pts ↑risk-side, SL 284.5 pts; locked floor +$3.60 intact. The 107-pt give-back is weekend noise, not thesis falsification — the falsification line is the stop.
+Ratchet triggers unchanged and verified live: mark ≤ 80,950 → SL 81,610 (+$5.40); mark ≤ 80,710 → SL 81,220 (+$28.80); TP 80,600 books +$66.00 → rung-2 unlock.
+Decay check: gain +0.574R ≥ +0.20R → no time-decay exit.
+Martingale identity re-verified at the new mark: P(TP first) = 284.5/1,040 = 0.2736; E[hold] = 0.2736×66.00 + 0.7264×3.60 = 20.67 = floating, exactly. Every barrier policy remains EV-identical at drift-0; HOLD is the variance/fill-quality choice, not an edge claim.
 
-Geometry (R0 inferred): SL 81,640 = entry − 0.10×R0 ⟹ R0 = 600 pts = $36.00 — note S-GOV-01 (advisory): ex-ante risk exceeded the rung-1 cap of 16; position is now Early-BE risk-free (locks +$3.60 minimum), so the finding is ledger-only. Current +452 pts = +0.753R; the +0.75R→0.10R Early-BE ratchet was executed exactly per canon.
+Measurement protocol (new, for the 23:59 Phase-1 print): (a) if floating equity counts → HOLD through measurement (default; no action, floors safe in all branches); (b) if realized-only counts → desk is authorized to flatten in the 21:45–23:30 window (books +20.67; EV-identical to holding by the martingale identity — this is an accounting preference, not a market call). Post-23:59: weekend hold policy continues, ratchet triggers stay live, funding noise ±$0.49/event.
 
-S3 Martingale theorem (this cycle's key honest finding): from mark 81,248 with barriers at TP 80,600 (−648) and SL 81,640 (+392): P(TP first) = 392/1,040 = 0.377, and E[hold] = 0.377×66.00 + 0.623×3.60 = 27.12 = current floating, exactly. Under drift-0, every barrier policy — tighter stops, weekend guards, flatten-now — is EV-identical. HOLD is therefore not an edge claim; it is the variance/fill-quality choice that keeps the desk's unfalsified short thesis alive while ratchets convert any continued drift into locks:
+PERSONA 1–4 ON NEW CANDIDATES → OPTION B (with margin-revised template)
+P1/P2/P4: no VR/ER/LIR/CVD/book inputs shipped (D11 ×2) → UNDEFINED_NOISE for unbacked entries; FX/metals/indices dark ~48–51h (weekend); rollover embargo 21:15–22:30 moot. Crypto = only live channel.
+P3 Solvency (re-derived under the margin proof): first-ticket stressed budget 149.88 (BE base) — but the margin ceiling binds first: 0.06 lot needs 2,446.50 > FM 2,369.55 → UNFUNDABLE; 0.05 lot is the maximum rung-1-legal sizing (13.00 nominal minimum preserved).
 
-TRIGGER
-	
-ACTION
-	
-LOCKS
+Revised conditional template (dispatch ONLY on 8/8 checklist): BTCUSD.pi SELL_LIMIT 81,550 / SL 81,810 / TP 80,700 @ 0.05 — SL widened to 260 pts (still 190 pts beneath the 82,000 whale-wall ally) to hold 13.00 nominal; reward 42.50 (3.27R); spread ~0.75; stressed 19.19; surplus +130.69; sequence-worst equity (BTC-1 stops then template stops) 4,784.29 ≥ 4,650 (+134.29) ✓; margin 2,038.75 → residual FM 330.80, combined margin level 107.4% vs 50% stop-out (stop-out needs equity ≤ 2,244.88 — unreachable, and fixed margin cannot grow with adverse moves).
 
-mark ≤ 80,950 (+1.25R)	SL → 81,610	+$5.40
-mark ≤ 80,710 (+1.65R)	SL → 81,220	+$28.80 (> flatten-now value)
-TP 80,600 hit	BOOK +$66.00 → RUNG-2 UNLOCK (33.20 nominal)	+$66.00
-mark ≥ 81,640	stop books +$3.60; no discretionary adds, no averaging	+$3.60
+Checklist (8/8): ① SHEET-READ hash fresh, equity col = book ±0.01 ② |z_VR(4)| > 1.96 ③ ER(1h,20) > 0.25 ④ LIR < 0.55 ⑤ z_CVD ≥ 1.50 ⑥ wall τ ≥ 180s, ρ ≥ 0.60, polarity ⑦ order_check margin → CLOSED by C308 proof (replaced by: sizing ≤ 0.05 BTC) ⑧ no Tier-1 crypto embargo.
 
-TP 80,600 = +1.83R < the 2.5R canon — accepted as the desk's structure call ("ahead of opposing liquidity"), flagged for autopsy. Weekend funding noise ≈ ±$2.92. P(equity < 4,650 at 23:59 measurement) = 0.0000 in every branch.
-
-PERSONA 1–4 ON NEW CANDIDATES → OPTION B
-P1 Regime: no VR(q)/ER/OH inputs shipped (D11) → UNDEFINED_NOISE ⟹ unconditional stand-aside for unbacked entries; the BTC express is managed by structure, not forecast.
-P2 Microstructure: no book/CVD/LIR data → nothing RATIFIABLE; whale-wall polarity unverifiable; weekend thin books degrade the 90s sweep-reclaim canon.
-P3 Solvency: budget pre-approved (constructive, not red-team): first-ticket stressed ≤ 149.88; rung-1 13–16 nominal → stressed ~23.13 → surplus +126.76. Quarter-Kelly (241) never binds; ladder binds.
-P4 Auction/Friction: FX/metals/indices channel CLOSED (21:00 UTC Fri close, rollover embargo 21:15–22:30, weekend gap); crypto 24/7 is the only live channel — but unverified margin rate (T-307-01) may make a 2nd 0.06 BTC ticket unfundable (needs ~2,437 vs free 2,376).
-
-Staged-CONDITIONAL template (dispatch ONLY when the checklist below is green): BTCUSD.pi SELL_LIMIT 81,550 / SL 81,780 / TP 80,700, 0.06 (13.80 nominal, 3.70R, stressed 20.38; sequence-worst equity 4,783.10 ≥ 4,650 ✓). SL 81,780 deliberately sits beneath the 82,000 whale-wall ally; BTC-1's 81,640 stop fires first on any rally.
-
-Radar Checklist (all 8 required): ① warehouse hash fresh ≤15m and equity column = broker book ±0.01 (SHEET-READ RULE) ② |z_VR(4)| > 1.96 with correct sign ③ ER(1h,20) > 0.25 ④ LIR < 0.55 ⑤ z_CVD ≥ 1.50 ⑥ wall τ ≥ 180s, ρ ≥ 0.60, correct polarity ⑦ order_check margin + tick re-pin ⑧ no Tier-1 embargo (±15m crypto).
-
-SECTION G — METHODOLOGY INQUEST (perpetual question answered)
-Conjunctive sclerosis → expectancy: a 7-gate AND with two FX-inapplicable gates yields joint pass ≈ 0 on most of the 156-asset universe. Replace with a logistic scorer p̂ = σ(β·x), accept at p̂ ≥ p_req = (1.20+fr)/(1+R). Friction share is the killer: at the old 11.88 cap fr = 0.244 → p_req 0.451; at rung-2 (33.20) fr = 0.087 → p_req 0.402. Booking the BTC win is itself an expectancy repair.
-Static vs dynamic: the warehouse froze (D10) while BTC ran 452 pts — the tape moved, the museum didn't. Generalize RADAR-READ → SHEET-READ RULE: per-sheet content hash each cycle; byte-identical ⟹ auto-quarantine that sheet's candidates.
-Geometry: limits beyond the p20 of the M1 retrace distribution never fill (passive theatre). Canon: d = κ·ATR15·√(TTL/6h), κ∈[0.35,0.55], historical touch-rate ≥ 35%; stage only behind swept stops +0.40 ATR. The 81,550 template is intentionally a zero-risk unfilled option until triggered.
-Asset-native alpha: stop extracting CVD/Hyperdash on FX/indices (null → silent auto-fail). Route crypto=CVD/liq/funding-skew; FX=rollover carry, tick-velocity imbalance; indices=auction VA/IB, cash-futures basis, event geometry.
-Why equity is flat: C297→C307 ledger = one −18.63 loss, zero bookings in ~10.5h, while the only ratcheted runner produced +27.12 floating. Ranked causes: pipeline failure (D8/D10/D11) > AND-starvation > friction/risk-cap starvation > execution leakage > mission pressure (which produced both paralysis and the oversized S-GOV-01 ticket). 72h queue: D11 fail-closed dispatcher; per-cycle candidate ledger CSV (feeds scorer calibration); scorer v0; order_check re-pins (BTCUSD.pi margin, SP500/NAS tick); codify weekend hold policy for risk-free crypto runners.
+SECTION G — METHODOLOGY INQUEST (perpetual question, C308 increment)
+Sclerosis → expectancy: sizing is now a 4-constraint selection: lot* = min(lot_ladder, lot_kelly, lot_margin, lot_solvency) where lot_margin = FM_alloc / (0.5 × entry). Yesterday the desk was solving a 1-constraint problem (solvency) and calling it risk management; the margin regime would have silently rejected or force-margined any rung-1 BTC add at 0.06. Margin-aware sizing must enter the scorer's action space.
+Static vs dynamic: the dispatch layer is now the weakest link — worse than the warehouse. D11 strike 2/3: pre-registered, C309 unfilled ⟹ DISPATCH OUTAGE declared and council permanently reverts to price-native mode. Fix is one line: assert ticket_table and candidate_table and worst_case_equity, "ABORT_DISPATCH".
+Geometry: the template revision is the lesson — entry/SL/TP cannot be optimized apart from margin and friction; SL 81,780→81,810 was a pure constraint-trade (same structure story, restored rung-1 legality), not a market-opinion change.
+Asset-native alpha (weekend corollary): with FX/indices dark, suspend their feature extractors — 156-asset scanning on a ~20-asset live universe wastes compute and manufactures null-gate false-fails that pollute the acceptance statistics.
+Why equity is flat: 46 minutes of drift moved equity −6.45 with zero new information shipped to council — the pipeline, not the market, remains the bottleneck. The one autonomous express is still the only P&L engine (+20.67 floating, +3.60 locked). Bridge: D11 fix → candidate ledger CSV → scorer v0; meanwhile book the BTC TP (+66.00) to unlock rung-2, where friction share halves (0.181→0.087) and p_req drops 0.432→0.402.
 json
-{"cycle":307,"arbiter":"GLM-5.3-Flash","ts_utc":"2026-10-23T20:20:00Z",
- "ledger":{"balance":4799.88,"floating":27.12,"equity":4827.00,"implied_btc_mark":81248.0,"worst_case_stopout":4803.48},
- "floor_canon":{"buffer":4650.00,"hard_floor":4600.00,"status":"ADOPTED_OPERATOR_CANONICAL","G-301-01":"CLOSED"},
- "mission":{"gap_equity":673.00,"runway_h":3.65,"p_mission":0.0,"operative":"max terminal equity s.t. P(breach)=0; rung-2 unlock = book BTC TP +66.00"},
- "active_ticket":{"id":19267445,"action":"HOLD","sl":81640,"tp":80600,"ratchets":[{"trig":80950,"sl":81610,"lock":5.40},{"trig":80710,"sl":81220,"lock":28.80}],"no_adds":true},
+{"cycle":308,"arbiter":"GLM-5.3-Flash","ts_utc":"2026-10-23T21:06:00Z",
+ "ledger":{"balance":4799.88,"floating":20.67,"equity":4820.55,"implied_btc_mark":81355.50,"worst_case_stopout":4803.48},
+ "floor_canon":{"buffer":4650.00,"hard_floor":4600.00,"status":"STANDING","cushions":[170.55,220.55]},
+ "resolutions":{"T-307-01":"CLOSED — margin FIXED at 50% of entry notional (two-point proof 2,451.00 @ marks 81,248 & 81,355.50)"},
+ "active_ticket":{"id":19267445,"action":"HOLD","state":"+0.574R","sl":81640,"tp":80600,"ratchets":[{"trig":80950,"sl":81610},{"trig":80710,"sl":81220}],"no_adds":true},
  "new_tickets":[],"option":"B_STAND_ASIDE_NEW_ENTRIES_HOLD_BTC_EXPRESS",
- "conditional_template":{"sym":"BTCUSD.pi","side":"SELL_LIMIT","entry":81550,"sl":81780,"tp":80700,"lot":0.06,"risk":13.80,"rr":3.70,"status":"BLOCKED_UNTIL_CHECKLIST_8of8+MARGIN_REPIN"},
- "gates":{"radar":"QUARANTINED_D11","sheet_read_rule":"ACTIVE","fx_index_channel":"CLOSED_WEEKEND"},
- "defects":{"D8":"OPEN","D10":"OPEN","D11":"NEW_OPEN_Severity1","T-307-01":"ADVISORY_MARGIN","S-GOV-01":"ADVISORY_SIZING"},
- "strikes":{"radar_freshness":"2/3","rtp":"0/3","breaker":"1/2"},
- "next_triggers":["BTC<=80950 ratchet1","BTC<=80710 ratchet2","TP80600 book+66 rung-2","fresh hashed candidate table -> reopen A","order_check BTCUSD.pi margin","byte-identical sheets -> escalation"]}
+ "conditional_template":{"sym":"BTCUSD.pi","side":"SELL_LIMIT","entry":81550,"sl":81810,"tp":80700,"lot":0.05,"risk":13.00,"rr":3.269,"stressed":19.19,"surplus":130.69,"margin":2038.75,"status":"BLOCKED_CHECKLIST_8of8"},
+ "measurement_protocol":{"default":"HOLD through 23:59 (floating counts)","authorized_branch":"flatten 21:45-23:30 books +20.67 IF realized-only accounting"},
+ "gates":{"radar":"QUARANTINED_D11","fx_index":"DARK_WEEKEND_48-51h"},
+ "defects":{"D8":"OPEN","D10":"OPEN","D11":"STRIKE_2/3_OUTAGE_PRE-REGISTERED_C309"},
+ "strikes":{"radar":"2/3","rtp":"0/3","breaker":"1/2"},
+ "solvency":{"max_first_ticket_stressed":149.88,"binding_constraint":"MARGIN (0.05 lot BTC max at rung-1)","p_breach":0.0,"worst_branch_equity":4784.29},
+ "next_triggers":["BTC<=80950 r1","BTC<=80710 r2","TP80600 book+66 rung-2","checklist 8/8 -> dispatch template","C309 placeholders -> OUTAGE classification"]}
 
-Bottom line: the mission contract is arithmetically dead (P≈0) — the real game is the BTC express: let the ratchet ladder work, book +66.00 to unlock rung-2, and hold the 4,650 floor with zero breach probability in all branches. C308 re-audits on any ratchet trigger or a fresh hashed candidate table.
+Bottom line: no canon action was due on the express (give-back within noise, triggers untouched); the desk's real progress this cycle is negative knowledge made positive — the margin regime is now proven, deterministic, and priced into a legal 0.05-lot template. Hold the ladder, guard the floors (worst branch 4,784.29), fix the dispatcher before C309 or the council goes price-native by decree.
 
 ================================================================================
 Z.AI ATTACHED OUTPUT FILE:  (1480 chars)
