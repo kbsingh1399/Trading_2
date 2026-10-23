@@ -24,7 +24,7 @@
 | **Operating Defense Buffer** | **4,795.00 USD** | Hard floor + 20.00 USD operating buffer |
 | **Current Hard Floor Cushion** | **+43.51 USD** | Equity distance above 4,775.00 USD floor (+1.25%) |
 | **Current Buffer Cushion** | **+23.51 USD** | Equity distance above 4,795.00 USD buffer (+0.83%) |
-| **Target Deadline** | **23rd October 2026, 23:59 UTC** | End of trading week (Friday) (~21.55h remaining) |
+| **Target Deadline** | **23rd October 2026, 23:59 UTC** | End of trading week (Friday) (~20.05h remaining) |
 
 ---
 
