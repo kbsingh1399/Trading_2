@@ -8,8 +8,8 @@
   "components": {
     "antigravity_subagents": {
       "name": "Antigravity 4-Quant Swarm (Fable 5)",
-      "status": "IN_PROGRESS",
-      "completed_at_utc": null,
+      "status": "COMPLETED",
+      "completed_at_utc": "2026-10-23 09:50:32 UTC",
       "details": "All 4 quants ratified BTC #19244096; TradFi Stand Aside; 33-sheet audit PASS"
     },
     "arena_ai": {

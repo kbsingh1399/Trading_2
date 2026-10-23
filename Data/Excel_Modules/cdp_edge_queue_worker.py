@@ -23,8 +23,8 @@ CDP_BASE_URL = "http://127.0.0.1:9222"
 
 log = setup_institutional_logger("EdgeQueueWorker")
 
-# Browser tasks that must execute through debug Edge
-EDGE_BROWSER_JOBS = [
+# Core always-on browser jobs (run every cycle)
+CORE_BROWSER_JOBS = [
     {
         "id": 27,
         "name": "Forex Factory Institutional News",
@@ -47,6 +47,53 @@ EDGE_BROWSER_JOBS = [
         "timeout": 90,
     },
 ]
+
+# Rotating CoinGlass scraping jobs (3 per cycle, fully rotating every 4 cycles / ~10-12 min)
+ROTATING_COINGLASS_JOBS = [
+    {"id": 2, "name": "Spot Netflow", "script": MODULES_DIR / "2_Spot_Netflow_S.py", "sheet": "2_Spot_Netflow_S", "timeout": 90},
+    {"id": 3, "name": "Exchanges Long/Short Ratio 15M", "script": MODULES_DIR / "3_Exchanges_LS_Ratio_15M.py", "sheet": "3_Exchanges_LS_Ratio_15M", "timeout": 90},
+    {"id": 10, "name": "Liquidation Heatmap", "script": MODULES_DIR / "7_Liq_Heapmap.py", "sheet": "7_Liq_Heapmap", "timeout": 90},
+    {"id": 4, "name": "Exchanges Long/Short Ratio 1H", "script": MODULES_DIR / "3_Exchanges_LS_Ratio_1H.py", "sheet": "3_Exchanges_LS_Ratio_1H", "timeout": 90},
+    {"id": 5, "name": "Exchanges Long/Short Ratio 4H", "script": MODULES_DIR / "3_Exchanges_LS_Ratio_4H.py", "sheet": "3_Exchanges_LS_Ratio_4H", "timeout": 90},
+    {"id": 11, "name": "Live Liquidations", "script": MODULES_DIR / "7_Live_Liq.py", "sheet": "7_Live_Liq", "timeout": 90},
+    {"id": 12, "name": "Exchange Liquidation Map 1D", "script": MODULES_DIR / "8_Exchange_Liquidation_Map_1D.py", "sheet": "8_Exchange_Liquidation_Map_1D", "timeout": 90},
+    {"id": 13, "name": "Exchange Liquidation Map 7D", "script": MODULES_DIR / "8_Exchange_Liquidation_Map_7D.py", "sheet": "8_Exchange_Liquidation_Map_7D", "timeout": 90},
+    {"id": 14, "name": "Liquidation Max Pain 24H", "script": MODULES_DIR / "9_Liquidation_Max_Pain_24H.py", "sheet": "9_Liquidation_Max_Pain_24H", "timeout": 90},
+    {"id": 15, "name": "Liquidation Max Pain 48H", "script": MODULES_DIR / "9_Liquidation_Max_Pain_48H.py", "sheet": "9_Liquidation_Max_Pain_48H", "timeout": 90},
+    {"id": 16, "name": "Liquidation Max Pain 3D", "script": MODULES_DIR / "9_Liquidation_Max_Pain_3D.py", "sheet": "9_Liquidation_Max_Pain_3D", "timeout": 90},
+    {"id": 17, "name": "Liquidation Max Pain 7D", "script": MODULES_DIR / "9_Liquidation_Max_Pain_7D.py", "sheet": "9_Liquidation_Max_Pain_7D", "timeout": 90},
+]
+
+STATE_FILE = ROOT_DIR / "Data" / "cdp_rotation_state.json"
+
+def get_next_job_batch(batch_size: int = 3) -> list[dict]:
+    """Retrieves next batch of rotating CoinGlass jobs with persistent state."""
+    current_idx = 0
+    if STATE_FILE.exists():
+        try:
+            with open(STATE_FILE, "r", encoding="utf-8") as f:
+                data = json.load(f)
+                current_idx = data.get("current_index", 0)
+        except Exception:
+            current_idx = 0
+            
+    total_rot = len(ROTATING_COINGLASS_JOBS)
+    selected = []
+    for i in range(batch_size):
+        idx = (current_idx + i) % total_rot
+        selected.append(ROTATING_COINGLASS_JOBS[idx])
+        
+    next_idx = (current_idx + batch_size) % total_rot
+    try:
+        STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+        with open(STATE_FILE, "w", encoding="utf-8") as f:
+            json.dump({"current_index": next_idx, "updated_at": datetime.datetime.now(datetime.timezone.utc).isoformat()}, f, indent=2)
+    except Exception as e:
+        log.warning(f"Could not persist rotation state: {e}")
+        
+    return selected
+
+EDGE_BROWSER_JOBS = CORE_BROWSER_JOBS
 
 
 def verify_edge_cdp_and_arena() -> tuple[bool, str]:
@@ -122,7 +169,9 @@ def run_cdp_queue_cycle() -> dict:
     t_start = time.perf_counter()
     results = []
 
-    for job in EDGE_BROWSER_JOBS:
+    active_jobs = CORE_BROWSER_JOBS + get_next_job_batch(3)
+    log.info(f"[EdgeQueue] Active cycle queue ({len(active_jobs)} jobs): {[j['sheet'] for j in active_jobs]}")
+    for job in active_jobs:
         success, duration, err = run_edge_job(job)
         results.append({
             "id": job["id"],

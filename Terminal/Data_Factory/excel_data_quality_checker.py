@@ -99,17 +99,18 @@ def audit_excel():
                         detected_ts = m.group(1)
                         break
             
-            # Check early rows for timestamp if not in header
-            if not detected_ts and 2 <= r_idx <= 10:
-                for val in row:
-                    if isinstance(val, (datetime, )):
-                        detected_ts = val.strftime("%Y-%m-%d %H:%M:%S")
-                        break
-                    elif isinstance(val, str):
-                        m = DATE_PATTERN.search(val)
-                        if m:
-                            detected_ts = m.group(1)
-                            break
+            # Check rows for timestamps (track latest timestamp seen across sheet)
+            for val in row:
+                ts_cand = None
+                if isinstance(val, datetime):
+                    ts_cand = val.strftime("%Y-%m-%d %H:%M:%S")
+                elif isinstance(val, str) and len(val) >= 10:
+                    m = DATE_PATTERN.search(val)
+                    if m:
+                        ts_cand = m.group(1)
+                if ts_cand:
+                    if detected_ts is None or ts_cand > detected_ts:
+                        detected_ts = ts_cand
             
             # Inspect cells for formula errors (sample first 500 rows to keep it ultra-fast)
             if r_idx <= 500:
