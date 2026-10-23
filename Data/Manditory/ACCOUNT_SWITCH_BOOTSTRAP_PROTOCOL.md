@@ -118,7 +118,7 @@ Audit all persistent operational daemons and core external services across both 
 #### C. Antigravity UI Task Counter Clarification
 - In the Antigravity UI, the indicator (e.g. "Background tasks 57") represents the **cumulative session task counter** of all tasks dispatched since conversation start.
 - Run `manage_task(Action='list')` to inspect only the **active running daemons** (currently 5 persistent tasks registered in Antigravity task manager).
-- Audit OS processes periodically via `Get-CimInstance Win32_Process | Where-Object { $_.Name -match 'python|node' }` to prune zombie or orphaned tasks (e.g. hung test runs or stale updates) and ensure system RAM remains below 75% via `scripts/free_ram.ps1`.
+- Audit OS processes periodically via `Get-CimInstance Win32_Process | Where-Object Name -Match 'python|node'` to identify zombie or orphaned tasks; terminate only a proven task-owned process and never stop, restart, or prune persistent desk daemons during bootstrap and ensure system RAM remains below 75% via `scripts/free_ram.ps1`.
 
 **Lifecycle preservation**: All 7 persistent daemons must remain undisturbed across boots and chat/account reconnections. Bootstrap MUST NOT kill, restart, relaunch, or create a duplicate writer. Audit and report missing/unhealthy daemons for the operator; do not infer recovery authority from this SOP. Do not start a second spreadsheet pipeline or telemetry writer to obtain fresh evidence. Missing required health/evidence blocks the affected admission gate until resolved.
 

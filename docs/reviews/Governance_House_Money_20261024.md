@@ -23,7 +23,7 @@ after the global reserve, modeled equity is 4,796.57 USD. Gap losses can exceed 
 
 `generate_cycle_envelope.py` now validates account identity/currency and inventory, reserves all fillable tickets, retains full calculation precision, records commit/tree/policy evidence, writes atomically and leaves unknown non-capital gates denied.
 `run_comprehensive_universe_scanner.py` searches broker volume grids using native profit/margin calculations and `order_check`, consumes completed bars and enforces the 4,795 USD joint kernel. Its output remains a structural watchlist until full hard gates and calibrated EV pass; it never submits orders.
-The gap-stress helper in `dg_hardening.py` also preserves the kernel and global reserve.
+The gap-stress helper in `dg_hardening.py` and the native broker audit in `chain_verification_360.py` also preserve the kernel and global reserve. The latter retains its existing pre-reserve stress statistic and reports post-reserve kernel equity separately.
 
 The requested live commands reported:
 
@@ -35,8 +35,13 @@ Capital Risk Band: 15.00 to 25.00 USD | Dynamic Target Risk: 25.00 USD
 Evaluated: 156 visible symbols | Structural watchlist candidates: 2
 ```
 
-Independent review passed the document/runtime interfaces. Focused native-inventory, risk-grid, atomic-write and gap-floor tests passed: 42 tests.
-Full-suite, final graph and final parity results are recorded in the completion update below.
+Independent review passed the document/runtime interfaces. Focused native-inventory, risk-grid, atomic-write, gap-floor and native-audit tests passed: 74 tests.
+Full suite: **1,237 passed, 11 failed, 1 skipped**, with four existing sklearn feature-name warnings, in 73.54 seconds. All eleven remaining failures are in unchanged `Tests/Test_Telemetry_Publisher.py`, whose snapshot-only publication expectations conflict with the existing full-workspace publisher behavior. Neither that production publisher nor its tests was changed here. This run does not claim a clean full-suite pass.
+
+`python -m graphify update .` completed structural extraction of 2,378 code files. HTML visualization is omitted above the tool's 5,000-node limit; the JSON graph remains the usable artifact.
+Parity synchronization returned **19,430 files in each agent tree, zero byte mismatches, zero errors**. These are point-in-time byte comparisons; active watcher caches may subsequently change.
+
+The full-suite run also exposed a legacy offline telemetry-test fixture that called the real flow-history fetcher. It is now stubbed in that fixture, preserving offline isolation. The production fetcher and telemetry publisher were not changed by this task.
 
 ## Verification artifacts
 

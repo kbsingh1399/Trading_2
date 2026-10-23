@@ -590,6 +590,7 @@ def audit_broker_execution_and_floor() -> Dict[str, Any]:
     report = {"status": "UNKNOWN", "inventory_verified": False,
               "open_positions": [], "pending_orders": [], "closed_deals_today": [],
               "hard_floor_usd": 4600.0, "operating_buffer_usd": 4650.0,
+              "solvency_kernel_usd": 4795.0, "global_contingency_reserve_usd": 2.0,
               "max_joint_fill_tickets": MAX_FILLED,
               "valuation_source": "MT5_ORDER_CALC_PROFIT_USD",
               "stop_stress_multiplier": STOP_STRESS_MULTIPLIER,
@@ -644,8 +645,9 @@ def audit_broker_execution_and_floor() -> Dict[str, Any]:
                       stressed_floor_cushion_usd=round(stressed - 4600.0, 2))
         if len(positions) + len(orders) > MAX_FILLED:
             raise ValueError(f"Joint-fill capacity exceeded: {len(positions) + len(orders)} > {MAX_FILLED}")
-        if stressed < 4650.0:
-            raise ValueError(f"G-1 operating buffer breach: stressed equity {stressed:.2f} < 4650.00 USD")
+        report["post_reserve_kernel_equity_usd"] = round(stressed - 2.0, 2)
+        if stressed - 2.0 < 4795.0:
+            raise ValueError(f"G-1 kernel breach: post-reserve stressed equity {stressed - 2.0:.2f} < 4795.00 USD")
         now = datetime.now(timezone.utc)
         deals = mt5.history_deals_get(now - timedelta(hours=12), now)
         if deals is None:
