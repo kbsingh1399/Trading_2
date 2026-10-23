@@ -213,9 +213,9 @@ Every analysis begins by establishing absolute data integrity across the **33-sh
      * All 33 physical worksheets present and indexed.
      * Exactly 0 formula errors (`#REF!`, `#DIV/0!`, `#N/A`, `#VALUE!`, `#NAME?`, `#NUM!`) across all cells.
      * Row 1 header integrity 100% valid, unmerged, and distinct.
-     * File modification age `<= 15.0 minutes` (`900s`).
+     * **Per-Sheet Internal Freshness Invariant**: Every dynamic trading sheet (`00_MT5_Account_Telemetry`, `11_Technical`, `14_Hyperdash_Liq_Map`, `15_Hyperdash_Stops_Map`, `17_Orderbook`, `18_CVD`, `20_Auction_Market_Structure`) MUST have an internal timestamp age `<= 15.0 minutes` (`900s`). Never rely solely on overall file modification time (`os.path.getmtime`).
      * JSON health report generated and archived in `Data/excel_health_audit.json`.
-   - If any formula error is detected or if data is stale > 15 minutes, the desk enters immediate **100% Flat Cash Defense** until the pipeline refreshes.
+   - If any formula error is detected or if any dynamic operational sheet is stale > 15 minutes, the desk enters immediate **100% Flat Cash Defense** until the pipeline refreshes.
 
 2. **Mandatory Master Database Updation Gate**:
    - The canonical pipeline daemon (`Run_Parallel_Pipeline.py --continuous --gap 300`) updates all 33 sheets of `Data/DataBase_Trading.xlsx` every 300s.

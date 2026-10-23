@@ -150,12 +150,21 @@ Inspect Sheet 23 (`15_Hyperdash_Stops_Map`) and Sheet 24 (`15_Hyperdash_Liq_Map`
    - Price lingering past broken level > 240 seconds = Structural Breakout (fades strictly forbidden; cancel limit).
 3. Staging Trap Elimination: Never place a limit order directly inside an un-swept retail stop cluster! The order MUST rest behind the sweep zone (+0.40 ATR buffer).
 
-TASK 3 — CVD ABSORPTION DIVERGENCE (Sheet 26: `18_CVD`):
-1. Calculate 1m, 5m, and 15m Taker CVD Delta.
-2. Absorption Divergence Test:
-   - Bullish Absorption: Price makes lower low while CVD makes higher low, AND Delta Spot > 0 while Delta Futures < 0.
-   - Bearish Absorption: Price makes higher high while CVD makes lower high, AND Delta Spot < 0 while Delta Futures > 0.
-3. CVD Absorption z-score: Require z_CVD >= 1.50 against the 20-session distribution to confirm institutional absorption.
+TASK 3 -- MASTER 33-SHEET PER-SHEET FRESHNESS (<= 15 MIN) & 0 FORMULA ERRORS:
+1. Automated Per-Sheet Freshness & Quality Auditor:
+   - Run `python Terminal/Data_Factory/excel_data_quality_checker.py` and inspect `Data/excel_health_audit.json`.
+   - Verify all 33 sheets are present and indexed.
+   - Zero Formula Errors: Confirm exactly 0 formula errors (#REF!, #DIV/0!, #N/A, #VALUE!, #NAME?, #NUM!) across all 175,000+ cells.
+   - Individual Sheet Freshness Audit: Verify that EVERY dynamic operational sheet has an internal age <= 15.0 minutes (900s).
+   - Specifically check:
+     * 00_MT5_Account_Telemetry <= 15m
+     * 11_Technical <= 15m
+     * 14_Hyperdash_Liq_Map <= 15m
+     * 15_Hyperdash_Stops_Map <= 15m
+     * 17_Orderbook <= 15m
+     * 18_CVD <= 15m
+     * 20_Auction_Market_Structure <= 15m
+   - Per-Sheet Staleness Gate: If ANY dynamic trading sheet exceeds 15 minutes internal age, the subagent MUST REJECT trade execution and issue a STALE DATA alert naming the specific sheet. Do not rely solely on workbook file modification time.
 
 TASK 4 — QUANTITATIVE PROMPT SELF-IMPROVEMENT INQUEST:
 Answer Section 2.5 of STANDARDIZED_TRADING_DECISION_CHAIN.md:
