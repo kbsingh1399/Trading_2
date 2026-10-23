@@ -37,6 +37,12 @@ import sys
 import time
 from typing import Dict, Any, Optional
 
+try:
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+except Exception:
+    pass
+
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
@@ -373,8 +379,8 @@ def wait_rest():
         now_dt = datetime.datetime.now(datetime.timezone.utc)
         rem_sec = (next_dt - now_dt).total_seconds()
         if rem_sec <= 0:
-            logger.info("🎯 Dynamic rest period complete (20 minutes). Ready for Cycle %d!", cycle_num + 1)
-            print(f"\n🔔 REST PERIOD COMPLETE: Ready to trigger Cycle {cycle_num + 1}!")
+            logger.info("Dynamic rest period complete (20 minutes). Ready for Cycle %d!", cycle_num + 1)
+            print(f"\n[REST_COMPLETE] Ready to trigger Cycle {cycle_num + 1}!")
             break
 
         # Check if active positions closed early
@@ -382,8 +388,8 @@ def wait_rest():
             try:
                 positions = mt5.positions_get()
                 if positions is not None and len(positions) == 0:
-                    logger.info("🔔 POSITION EVENT: Active position closed (TP/SL hit)! Waking up immediately.")
-                    print(f"\n🔔 POSITION EVENT: Active position closed! Waking up immediately for Cycle {cycle_num + 1}!")
+                    logger.info("POSITION EVENT: Active position closed (TP/SL hit)! Waking up immediately.")
+                    print(f"\n[POSITION_CLOSED] Active position closed! Waking up immediately for Cycle {cycle_num + 1}!")
                     break
             except Exception:
                 pass
