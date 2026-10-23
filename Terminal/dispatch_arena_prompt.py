@@ -73,6 +73,20 @@ async def main():
         await send_cmd("Page.bringToFront")
         await asyncio.sleep(0.3)
 
+        # 1b. Dismiss 'Keep working' / feedback banner if present
+        await send_cmd("Runtime.evaluate", {
+            "expression": """(() => {
+                const btns = Array.from(document.querySelectorAll('button'));
+                const keepWorking = btns.find(b => b.innerText && b.innerText.includes('Keep working'));
+                if (keepWorking) {
+                    keepWorking.click();
+                    return { dismissed_banner: true };
+                }
+                return { dismissed_banner: false };
+            })()"""
+        })
+        await asyncio.sleep(0.5)
+
         # 2. Focus editor and clear existing text
         await send_cmd("Runtime.evaluate", {
             "expression": "document.querySelector('.tiptap.ProseMirror').focus()"
