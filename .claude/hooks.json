@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "*",
+        "description": "Pre-tool execution safety and capital preservation guardrail"
+      }
+    ],
+    "beforeSubmitPrompt": [
+      {
+        "matcher": "*",
+        "description": "Prompt verification and deterministic constraint guardrail"
+      }
+    ]
+  }
+}

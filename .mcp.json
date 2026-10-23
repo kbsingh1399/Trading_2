@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "gemini-api-docs": {
+      "command": "python",
+      "args": ["-m", "gemini_api_docs"]
+    },
+    "code-review-graph": {
+      "command": "python",
+      "args": ["-m", "code_review_graph"]
+    }
+  }
+}
