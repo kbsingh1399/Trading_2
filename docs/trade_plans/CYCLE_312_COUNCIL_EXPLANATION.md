@@ -1,3 +1,5 @@
+> **SUPERSEDED FOR PROVENANCE (23:51 UTC):** the declared `workbook_sha256` fb6aebf6 matched no artifact, so this review's provenance section is withdrawn. See `CYCLE_312_ENVELOPE_DEFECT.md`; verdict is `DENIED_BAD_CYCLE_ENVELOPE`. The authorization it reached (`DENIED_FAIL_CLOSED`) was conservative and remains correct.
+
 # Cycle 312 — Co-Equal Council Ruling (Arena.ai GPT Astra + Z.ai GLM-5.3-Flash)
 
 **Cutoff** 2026-10-23 23:37:12 UTC · **Nonce** 9e2562d4-c54b-4b84-96d5-4e222ec3f88a · **Envelope** canonical sha256 `ce69e21653601b702c38ec46cd137048bde9fb100cf6bdbbd8e3f9c0d69db67b` · **Manifest** 5cf58f83… · **Ruling** `44dd879f3b12824d6b320bb2b3c61de1db8c1fd7894fa68d9e9e6c43f4b87fbd`

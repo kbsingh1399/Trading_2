@@ -1,0 +1,116 @@
+{
+  "report_type": "CYCLE_ENVELOPE_INTEGRITY_FAILURE",
+  "cycle_id": "Cycle 312",
+  "dispatch_nonce": "9e2562d4-c54b-4b84-96d5-4e222ec3f88a",
+  "cutoff_utc": "2026-10-23 23:37:12 UTC",
+  "council_verdict": "DENIED_BAD_CYCLE_ENVELOPE",
+  "trigger": "digest_mismatched_required_artifact",
+  "severity": 3,
+  "fatal_field": "provenance.workbook_sha256",
+  "proof": {
+    "declared_workbook_sha256": "fb6aebf66db5eb4c98e9045884aab6515da160ed389431689f4283ef05c405b1",
+    "live_workbook_sha256": "e855a87fb055ab6f5d8f2be8e5cdab19afe786afaa62ae006984a2c6ef2f6fab",
+    "live_workbook_bytes": 2724657,
+    "live_workbook_mtime_utc": "2026-10-23 23:16:52 UTC",
+    "blob_at_declared_commit_1f1c73e": "e855a87fb055ab6f5d8f2be8e5cdab19afe786afaa62ae006984a2c6ef2f6fab",
+    "workbook_blob_across_10_commits": [
+      {
+        "commit": "ebd5f0a",
+        "utc": "2026-10-23 23:12:25",
+        "workbook": "e855a87f"
+      },
+      {
+        "commit": "cf28fa8",
+        "utc": "2026-10-23 23:17:28",
+        "workbook": "e855a87f"
+      },
+      {
+        "commit": "0f7cc8e",
+        "utc": "2026-10-23 23:21:40",
+        "workbook": "e855a87f"
+      },
+      {
+        "commit": "ef411c4",
+        "utc": "2026-10-23 23:24:31",
+        "workbook": "e855a87f"
+      },
+      {
+        "commit": "08d6f25",
+        "utc": "2026-10-23 23:26:36",
+        "workbook": "e855a87f"
+      },
+      {
+        "commit": "0382352",
+        "utc": "2026-10-23 23:31:52",
+        "workbook": "e855a87f"
+      },
+      {
+        "commit": "1f1c73e",
+        "utc": "2026-10-23 23:36:34",
+        "workbook": "e855a87f"
+      },
+      {
+        "commit": "e995f28",
+        "utc": "2026-10-23 23:42:16",
+        "workbook": "e855a87f"
+      },
+      {
+        "commit": "c69c4ff",
+        "utc": "2026-10-23 23:44:54",
+        "workbook": "e855a87f"
+      },
+      {
+        "commit": "be55e14",
+        "utc": "2026-10-23 23:49:52",
+        "workbook": "e855a87f"
+      }
+    ],
+    "alternate_xlsx_on_disk": {
+      "Data/audit_copy.xlsx": "188f8d35c278a99b",
+      "Data/tmp_database_read.xlsx": "fe08566f5b038984"
+    },
+    "conclusion": "No artifact in the workspace, and no commit across the 38-minute window 23:12:25-23:49:52 UTC that brackets the 23:37:12 cutoff, has sha256 fb6aebf6. The workbook has been byte-identical e855a87f since before the envelope was generated and after it. The declared digest therefore attests to nothing observable and cannot be a transient working-tree state."
+  },
+  "fields_verified": {
+    "risk_policy_sha256": {
+      "declared": "4633e4af56e52c71329c617aaee4cae5c7102ef9a9f33e7e747e46d26841f058",
+      "recomputed": "4633e4af56e52c71329c617aaee4cae5c7102ef9a9f33e7e747e46d26841f058",
+      "status": "MATCH"
+    },
+    "git_commit": {
+      "declared": "1f1c73e2340cf3b342be71b2d1843dfffeb50ccb",
+      "status": "PRESENT_ON_ORIGIN_MAIN",
+      "subject": "feat(sync): mirror full local workspace and telemetry [as_of 2026-10-23 23:36:24 UTC]"
+    },
+    "git_tree": {
+      "declared": "e07dec165865e926b63a39d84e44726776f90fb8",
+      "actual": "e07dec165865e926b63a39d84e44726776f90fb8",
+      "status": "MATCH"
+    },
+    "evidence_manifest_sha256": {
+      "declared": "5cf58f83",
+      "at_declared_commit": "96da1ec7",
+      "working_copy": "15fc034c",
+      "status": "MISMATCH_BUT_EXPLAINABLE",
+      "note": "master_manifest.json is a live telemetry index regenerated every ~5 min (last_updated 23:36:28Z at the commit); a slightly newer copy at 23:37:12 is plausible. Not the fatal defect."
+    },
+    "excel_freshness_verified": {
+      "declared": null,
+      "status": "NULL_NOT_VERIFIED"
+    }
+  },
+  "root_cause_hypothesis": "The dispatcher hashes Data/DataBase_Trading.xlsx while the Excel pipeline daemon may still be writing it, producing a torn-read digest that matches no on-disk or committed state. Alternative: the envelope builder cached a workbook hash across generations. Both are silent integrity failures and both are fixed by the same change.",
+  "recommended_fix": {
+    "file": "Terminal/generate_cycle_envelope.py",
+    "change": "Hash a byte-stable snapshot: stat the file (size, mtime_ns), stream sha256 twice with a short pause, require both digests equal and mtime unchanged; else raise. Emit workbook_bytes and workbook_hash_stable=true alongside workbook_sha256. Refuse to build the envelope if the workbook mtime is after cutoff or if the digest is not reproducible.",
+    "verifier": "Terminal/verify_cycle_envelope.py (added in this commit) re-derives every provenance field and exits non-zero on any mismatch."
+  },
+  "authorization_impact": {
+    "ttl": "900s from 23:37:12 => expires 2026-10-23 23:52:12 UTC",
+    "seconds_left_at_review": 71,
+    "replay_note": "Same nonce 9e2562d4 was already reviewed at 23:42 UTC; a duplicate dispatch cannot extend or renew the TTL.",
+    "post_cutoff_informational": "Snapshot 2026-10-23 23:48:55 UTC: balance 4865.07, flat, trade_authorization DENIED_UNVERIFIED_ORDERFLOW (informational only, cannot re-authorize the 23:37 cutoff)."
+  },
+  "no_ruling_emitted_reason": "Protocol: an envelope with a digest-invalid required artifact is rejected outright; downstream inventory, solvency, candidate and calibration arithmetic must not be presented as a ruling over unattestable evidence.",
+  "response_sha256": "7458972c42aae85a8e05f937bdb9b504e3a6d784309dc0dc3ba3646978dbca25"
+}
