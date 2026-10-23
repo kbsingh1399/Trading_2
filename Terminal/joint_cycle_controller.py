@@ -304,8 +304,11 @@ def run_watchdog() -> Dict[str, Any]:
                 else:
                     rem_min = diff_sec / 60.0
                     msg = f"Cycle {cycle_id} completed. Healthy rest period active ({rem_min:.1f} minutes remaining before Cycle {int(cycle_id)+1 if cycle_id.isdigit() else 'Next'})."
+                    watchdog_report["status"] = "HEALTHY_REST"
                     watchdog_report["actions"].append(msg)
                     logger.info(msg)
+                    state["watchdog"]["health"] = "HEALTHY"
+                    state["watchdog"]["message"] = msg
             except Exception as e:
                 logger.error("Error parsing next_cycle_scheduled_utc: %s", e)
                 
