@@ -62466,3 +62466,23 @@ You may create 12_Hyperdash and 13_Hyperliquid where you dump all intelligenve a
   * Role C: Completed (Solvency verified, Tier 2 House Money unlocked, +68.07 USD net headroom).
   * Role D: Completed (Clock & 156-asset universe audited: 98 TradFi closed, 58 crypto open 24/7).
   * Role A & Role B: In flight.
+
+---
+### Turn Log: Daemon Wakeup Mechanics & Arena Modal Bug Resolved (Cycle 312)
+- **Timestamp**: 2026-10-23 23:51:44 UTC
+- **Root Cause Autopsy (Why Daemon Did Not Wake Up)**:
+  1. Antigravity Wakeup Contract: Background tasks only trigger automatic wakeups when the command TERMINATES (exits with code 0).
+  2. Persistent Daemon vs Waiter: arena_completion_daemon.py running in --daemon mode (IsDaemon=true) runs an infinite loop that never exits, meaning it never emits a task completion signal to the runtime.
+  3. Paired Architecture Enforced: The canonical architecture requires pairing the persistent daemon with python Terminal/arena_completion_daemon.py --wait (IsDaemon=false). The waiter task runs until both frontier models finish, and then exits 0, triggering the instantaneous reactive wakeup.
+- **Arena.ai DOM Trap Autopsy & Fix**:
+  * Arena.ai was displaying a post-response modal banner: 'Was this task successful? [Yes] [No]'.
+  * While this banner is active, the ProseMirror editor is hidden.
+  * Dispatched scratch fix: Clicked 'Yes' on the banner, mounted .tiptap.ProseMirror, injected the full 15,170-character Cycle 312 prompt, and confirmed Send. Arena.ai is now actively generating (gen=True).
+- **Z.ai Status**: Z.ai completed its 11,680-character Cycle 312 ruling with text_hash 5d0c198385e49262.
+- **Antigravity 4-Quant Swarm Harvest**:
+  * Role A (Regime): STAND_ASIDE (VR=0.558 sub-diffusive, but negative drift alpha=-0.000048 reduces Long barrier hitting probability to P(TP)=0.387).
+  * Role B (Microstructure): STAND_ASIDE (18.25M USD whale wall at 80,500 USD is unreplenished; breaking it unleashes 135.99M USD in liquidation cascade, creating toxic adverse selection AS(5m)=-2.37 R0).
+  * Role C (Solvency): CAPITAL_ADMISSIBLE (Tier 2 House Money unlocked; +68.07 USD net headroom).
+  * Role D (Clock/Universe): STAND_ASIDE (98 TradFi assets closed for weekend; 58 crypto perpetuals open).
+  * Swarm cleanly pruned via kill_all.
+- **Active Reactive Sentry**: task-121459 running arena_completion_daemon.py --wait (IsDaemon=false) to trigger instant Antigravity wakeup the moment Arena.ai completes.
