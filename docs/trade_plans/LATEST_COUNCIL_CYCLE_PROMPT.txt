@@ -1,5 +1,5 @@
 # 🏛️ CO-EQUAL QUANTITATIVE COUNCIL CANDIDATE DISCOVERY & EVALUATION
-## BlueBerry Markets MT5 Account #5064568 | Cycle 277 | 2026-10-22 23:31:57 UTC
+## BlueBerry Markets MT5 Account #5064568 | Cycle 280 | 2026-10-23 00:12:46 UTC
 
 > **CANONICAL QUANT GOVERNANCE**: Follow line-by-line `STANDARDIZED_TRADING_DECISION_CHAIN.md`, `AUTONOMOUS_WAKEUP_CHECKLIST.md`, and `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md`.
 > **MISSION**: Reach 5,500.00 USD equity before Friday, 23rd October 2026 (23:59 UTC) (~21.0 hours runway remaining).
@@ -20,53 +20,35 @@
 - Formula Errors: Exactly 0 errors across all 33 sheets.
 - Continuous Pipeline Daemon: Task 109472 actively cycling Cycle #9.
 
-### SECTION 3: TOP CANDIDATES ON RADAR FOR ASIAN SESSION & TOKYO OPEN (00:00 UTC)
-1. **XAUUSD.pi (Gold — Model 2 Short Pullback to Daily VAH Shelf)**:
-   - Geometry: SELL_LIMIT @ 4,031.89 | Lots: 0.01 | SL: 4,048.13 (+16.24 pts) | TP: 3,991.30 (-40.59 pts / 2.50R)
-   - Risk & Solvency: Nominal Risk -$16.24 | Spread: 0.08 pts (0.20 bps | 0.20% friction) | Stressed Loss: -$22.30 | Stressed Equity: 4,796.21 USD (+1.21 USD buffer surplus, +21.21 USD floor surplus).
-   - Order Check Result: Retcode 0 (Done), Margin Required: 403.19 USD (8.37% utilization). Exact Broker Profit Calc: Loss=-$16.24 USD, Win=+$40.59 USD.
-   - Auction & Safe-Stop Validation:
-     * Daily VAH sits at 4,031.03; entry catches the failed auction retest of VAH.
-     * Prior-Day VAL sits at 4,040.73. Stop Loss at 4,048.13 is placed +7.40 pts safely ABOVE Prior-Day VAL, exceeding Arena 1's minimum safe-stop threshold (>= 4,044.05).
-     * State Machine: APPROACHING (Current Ask ~4,028.25; await probe into 4,031.00-4,032.50 with 5m CVD tape exhaustion before punch).
-2. **NAS100.p (Model 2 Short — Safe-Stop Geometry on 15m/1h EMA Shelf)**:
-   - Geometry: SELL_LIMIT @ 28,962.17 | Lots: 0.01 | SL: 29,120.85 (+158.68 pts, safe half-ATR buffer above Prior-Day VAL 29,087.86) | TP: 28,657.98 (-304.19 pts / 1.92R to 2.00R)
-   - Risk & Solvency: Nominal Risk -$15.87 | Stressed Loss: -$21.84 | Stressed Equity: 4,796.67 USD (+1.67 USD buffer surplus).
-   - State Machine: APPROACHING (Current Ask ~28,895; tracking 28,850 kill line; require 5m CVD <= 0).
-3. **BTCUSD.pi (Asian Session 23:00–02:00 UTC Cascade Reclaim Trigger)**:
+### SECTION 3: TOP CANDIDATES ON RADAR FOR ASIAN SESSION & TOKYO OPEN (00:10 UTC)
+1. **UKBRENT.p (Crude Oil — Model 2 Trend-Following Pullback to DVAH Shelf)**:
+   - Structure & Regime: Confirmed `TREND_UP_ACCEPTANCE` (+1.23 SD, 20/50 EMA ribbon bullish alignment).
+   - Geometry: BUY_LIMIT @ 113.595 | Lots: 0.65 | SL: 113.397 (-0.198 pts, safe structural bunker) | TP: 114.300 (+0.705 pts / 3.56R)
+   - Risk & Solvency: Nominal Risk -$12.87 | Spread: 0.033 pts (2.9 bps | 4.7% friction) | Stressed Loss: -$18.09 | Stressed Equity: 4,800.42 USD (+5.42 USD buffer surplus, +25.42 USD floor surplus).
+   - State Machine: APPROACHING (Current Ask ~113.88; awaiting pullback into 113.595–113.731 shelf with M5 tape deceleration).
+2. **BTCUSD.pi (Asian Cascade Debt Sweep & Reclaim Trigger)**:
    - Geometry: BUY_LIMIT @ 80,500.00 | Lots: 0.02 (0.03 disqualified by safe-stop stress) | SL: 79,942.20 (-557.80 pts, safe half-ATR beneath 80,050 mother pool) | TP: 82,000.00 (front-running 82,000 ask wall / 2.69R)
-   - Risk & Solvency: Nominal Risk -$11.16 | Stressed Loss: -$15.95 | Stressed Equity: 4,802.56 USD (+7.56 USD buffer surplus).
-   - Execution Trigger Sequence: Gate 1 sweep of 80,450 debt pool ($10.81M) -> Gate 2 CVD deceleration -> Gate 3 close > 80,500 -> Gate 4 retest hold.
-4. **USDJPY.pi (Model 2 Short Pullback — Post-CPI Re-Screen after 23:45 UTC)**:
-   - Japan Core CPI printed at 23:30 UTC. Tactical freeze lifts at 23:45 UTC.
-   - Screen for trend continuation short into Daily VAL (156.644) / Daily POC (156.736) shelf. Sizing: 0.05 lot (Nominal -$6.38, Stressed -$9.98).
-5. **US2000.p**: OFFICIALLY RETIRED (Target 2,787 traded without entry fill).
+   - Risk & Solvency: Nominal Risk -$11.16 | Stressed Loss: -$15.95 | Stressed Equity: 4,802.56 USD (+7.56 USD buffer surplus, +27.56 USD floor surplus).
+   - State Machine: ARMED ON RADAR (Price ~81,162 descending toward 80,450 cascade; trigger sequence: Gate 1 sweep of 80,450 pool -> Gate 2 CVD deceleration -> Gate 3 close > 80,500 -> Gate 4 retest hold).
+3. **USDJPY.pi (Post-CPI Trend Breakdown — Stand Aside at S1 Support)**:
+   - Japan Core CPI printed at 23:30 UTC. Blackout ended at 00:05 UTC. Price plunged to Daily S1 (156.214) with 3,106 ticks.
+   - Status: STAND ASIDE. Chasing into S1 support after a vertical flush violates anti-chasing rules. Await multi-candle pullback retest to 156.440–156.512 shelf before formulating short ticket.
+4. **XAUUSD.pi (Gold — Failed Breakdown Monitoring)**:
+   - Geometry: Former 4,031.89 ticket retired. Low tested 4,020.47, piercing 4,021.18 Prior-Day Low, but printed long lower wicks and reclaimed 4,023.72.
+   - Status: MONITORING. Await clear 15m structural consolidation or failed retest rejection.
+5. **NAS100.p & US2000.p**: OFFICIALLY RETIRED (NAS100 exceeded max 2 re-sites; US2000 target traded without fill).
 
 ### SECTION 4: 3-PERSONA MANDATORY INQUEST & DELIBERATION
 1. **Persona 1: Orderflow Analyst** (Steps 2, 4, 6 of SOP — L2 depth, CVD absorption, liquidation cascades, dynamic friction).
 2. **Persona 2: Position Manager** (Steps 1, 5, 8 of SOP — floor defense, stressed capacity, exact sizing).
 3. **Persona 3: Macro Risk Analyst** (Steps 3, 7 of SOP — macro calendar, ETF/CEX netflows, FX rollover embargo).
 
-### SECTION 5: 🔬 MANDATORY QUANT METHODOLOGY INQUEST (ALWAYS REQUIRED)
-**Each persona MUST explicitly answer Section 2.5 of STANDARDIZED_TRADING_DECISION_CHAIN.md**:
-*"Is our methodology for finding potential candidates truly sound, and how can we fundamentally improve it? Given that we monitor 156 assets with vast orderbook, CVD, and liquidation data, why has equity remained flat and why are profitable executions eluding the desk? How do we think like elite quants to bridge this gap?"*
-- Address: Are our filters overly conjunctive (Boolean AND death spiral)?
+### SECTION 5: 🔬 MANDATORY QUANT METHODOLOGY INQUEST (ALWAYS REQUIRED — OPERATOR MANDATE)
+**Each persona MUST explicitly answer this permanent improvement question**:
+*"Is our methodology for finding potential candidates truly sound, and how can we fundamentally improve it? Given that we monitor 156 assets with vast orderbook, CVD, and liquidation data, why has equity remained flat and why are profitable executions eluding the desk? How do we think like elite quants to bridge this gap and actively increase equity while fiercely defending the hard floor?"*
+- Address: Are our filters overly conjunctive (Boolean AND death spiral where 10 conditions eliminate 100% of trades)?
 - Address: Are our limit entries staged too passively or suffering from adverse selection?
 - Address: How should asset-class specialization (TradFi vs Crypto) be structured to capture high-probability alpha?
-
-Deliver dense, authoritative quantitative ruling with exact tickets and the completed 10-Point Pre-Punch Checklist.
-
-### SECTION 4: 3-PERSONA MANDATORY INQUEST & OUTPUT FORMAT
-Evaluate the candidates across the 3 quantitative personas:
-1. **Persona 1: Orderflow Analyst** (Steps 2, 4, 6 of SOP — L2 depth, CVD absorption, liquidation cascades, dynamic friction).
-2. **Persona 2: Position Manager** (Steps 1, 5, 8 of SOP — floor defense, stressed capacity, exact sizing).
-3. **Persona 3: Macro Risk Analyst** (Steps 3, 7 of SOP — macro calendar, ETF/CEX netflows, FX rollover embargo 21:15-22:30 UTC).
-
-### SECTION 5: 🔬 MANDATORY QUANT METHODOLOGY INQUEST (ALWAYS REQUIRED)
-**Each persona MUST explicitly answer Section 2.5 of STANDARDIZED_TRADING_DECISION_CHAIN.md**:
-*"Is our methodology for finding potential candidates truly sound, and how can we fundamentally improve it? Given that we monitor 156 assets with vast orderbook, CVD, and liquidation data, why has equity remained flat and why are profitable executions eluding the desk? How do we think like elite quants to bridge this gap?"*
-- Address: Are our filters overly conjunctive (Boolean AND death spiral)?
-- Address: Are our limit entries staged too passively or suffering from adverse selection?
-- Address: How should asset-class specialization (TradFi vs Crypto) be structured to capture high-probability alpha?
+- Address: How should risk escalation (e.g. expanding risk safely via house money) be executed once Trade #1 wins?
 
 Deliver dense, authoritative quantitative ruling with exact tickets and the completed 10-Point Pre-Punch Checklist.
