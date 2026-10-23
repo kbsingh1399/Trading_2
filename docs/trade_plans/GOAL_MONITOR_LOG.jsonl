@@ -14,3 +14,4 @@
 {"timestamp_utc": "2026-10-23 17:33:09", "event": "MONITOR_STARTED", "data": {"account": 5064568, "daemon": true, "max_cycles": 20, "interval_sec": 10}}
 {"timestamp_utc": "2026-10-23 18:30:39", "event": "RATCHET_STAGE1_EARLY_BE", "data": {"ticket": 19267445, "sym": "BTCUSD.pi", "old_sl": 82100.0, "new_sl": 81640.0, "r_mult": 0.774, "profit": 18.57}}
 {"timestamp_utc": "2026-10-23 22:36:01", "event": "RATCHET_STAGE2_PROFIT", "data": {"ticket": 19267445, "sym": "BTCUSD.pi", "old_sl": 81640.0, "new_sl": 81300.0, "r_mult": 1.66, "profit": 39.84}}
+{"timestamp_utc": "2026-10-23 22:49:31", "event": "RATCHET_STAGE3_RUNNER", "data": {"ticket": 19267445, "sym": "BTCUSD.pi", "old_sl": 81300.0, "new_sl": 81060.0, "r_mult": 2.203, "profit": 52.86}}

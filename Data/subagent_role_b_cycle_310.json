@@ -1,0 +1,109 @@
+{
+  "schema_version": "1.0.0",
+  "cycle_id": "Cycle 310",
+  "role": "ROLE_B_FILL_MICROSTRUCTURE_GEOMETRY",
+  "evidence_manifest_sha256": "98568cf51e8b5f30c182ba3d9a37a3c15a8c6c7d95ed2d40ba2dd6e5be829227",
+  "prompt_sha256": "120fc71b5a83246a643a54dd9daf0d8908e98114595daa6a599c5e306e5bf424",
+  "dispatch_nonce": "f2dfea8a-e6e1-4bd3-bc0a-28aa1c4892d0",
+  "claims": [
+    {
+      "claim_id": "CLAIM_B_001",
+      "statement": "Active Ticket #19267445 (BTCUSD.pi Short 0.06 lot @ 81,700.00 USD) take-profit geometry at 80,600.00 USD safely front-runs massive opposing whale bids clustered at 80,483.00 USD and 80,427.00 USD by +117.00 to +173.00 USD, avoiding absorption stall while harvesting the preceding stop-sweep cascade.",
+      "evidence_ids": [
+        "Data/DataBase_Trading.xlsx:12_Hyperdash:R197",
+        "Data/DataBase_Trading.xlsx:12_Hyperdash:R218",
+        "Data/cycle_envelope.json:inventory.active_positions[0]"
+      ],
+      "formula_or_test": "delta_TP_to_wall = TP_short - max(opposing_bid_cluster). Safety test: delta_TP_to_wall >= +50.0 USD.",
+      "result": "TP = 80,600.00 USD, opposing whale bid = 80,483.00 USD (66.793 BTC / 5.38M USD notional, wallet 0x31dea2...) and 80,427.00 USD (32.063 BTC / 2.58M USD notional, wallet 0x674982...). delta_TP_to_wall = +117.00 USD (+0.145%). Verified safe front-run.",
+      "uncertainty": "LOW (0.05) - Depth snapshot verified on Hyperliquid L1; basis translation spread < 0.12 bps",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM_B_002",
+      "statement": "Orderbook depth between current broker mark (81,037.00-81,045.00 USD) and TP (80,600.00 USD) is characterized by thin, fragmented resting bids on CEX venues (12-35 BTC per level) and dense cumulative sell stops / long liquidations (45.04M USD long liquidations vs 25.66M USD short liquidations; LIR = 1.76), providing ample exit fill liquidity for closing the 0.06 lot short at 80,600.00 USD.",
+      "evidence_ids": [
+        "Data/DataBase_Trading.xlsx:10_Whale_Orders",
+        "Data/DataBase_Trading.xlsx:12_Hyperdash:R6-R8",
+        "Data/DataBase_Trading.xlsx:15_Hyperdash_Stops_Map",
+        "Data/cycle_envelope.json:inventory.active_positions[0]"
+      ],
+      "formula_or_test": "LIR_long_short = Long_Liq_Notional / Short_Liq_Notional; Downside_Book_Liquidity_Test: Sum(Bids_80600_81045) vs Ticket_Volume (0.06 BTC).",
+      "result": "LIR = 1.76; resting bids between 80,806 and 81,045 total > 850 BTC across Binance/Bybit/OKX/Hyperliquid, while total downside long liquidations exceed 45.0M USD. Market liquidity exceeds ticket volume 0.06 BTC by > 14,000x.",
+      "uncertainty": "LOW (0.08) - CEX book fragmented; cross-venue slippage on 0.06 lot is negligible (< 0.5 points)",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM_B_003",
+      "statement": "Ticket #19267445 stop-loss ratchet to 81,300.00 USD (as reflected in cycle_envelope.json) is structurally validated and sheltered behind multi-venue resting whale ask walls totaling > 11.0M USD notional between 81,310.00 USD and 81,341.30 USD.",
+      "evidence_ids": [
+        "Data/cycle_envelope.json:inventory.active_positions[0]",
+        "Data/DataBase_Trading.xlsx:10_Whale_Orders:R2-R9"
+      ],
+      "formula_or_test": "SL_short <= min(Whale_Ask_Cluster) - Broker_Spread. Ratchet trigger test: Mark_Price <= 81,040.00 USD -> SL = 81,300.00 USD.",
+      "result": "Live mark = 81,037.00 USD <= 81,040.00 USD trigger threshold. SL successfully tightened from 81,640.00 to 81,300.00 USD. Resting ask cluster at 81,310.00 to 81,341.30 USD (Bybit 2.76M USD @ 81341.3, Bybit 1.60M USD @ 81330.4, OKX 2.19M USD @ 81323.7, Binance 1.08M USD @ 81319.9, OKX 2.27M USD @ 81313.1, Binance 1.10M USD @ 81310.0) provides an overhead barrier of 11.0M USD notional protecting the 81,300.00 USD stop.",
+      "uncertainty": "LOW (0.04) - Multi-venue wall verified across Bybit, OKX, Binance",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM_B_004",
+      "statement": "True orderbook wall refill ratio (rho >= 0.60) cannot be verified from Data/DataBase_Trading.xlsx Sheet 18 (10_Whale_Orders) due to the absence of continuous tick-level executed depletion prints and stable order IDs separating cancellations from authentic replenishment.",
+      "evidence_ids": [
+        "Data/DataBase_Trading.xlsx:10_Whale_Orders"
+      ],
+      "formula_or_test": "rho_refill = Sum(Displayed_Additions_post_depletion) / Sum(Executed_Depletion). Test: Availability of order-level event stream with fill vs cancel flags.",
+      "result": "Sheet 18 provides discrete snapshot timestamps (e.g. 2026-10-24 03:05:08 IST / 04:04:08 IST) and elapsed age strings, but zero microsecond trade prints or cancel logs. Executed depletion cannot be distinguished from spoof cancellation. Refill status is strictly UNAVAILABLE.",
+      "uncertainty": "HIGH (1.00) - Missing L3 execution stream",
+      "status": "UNAVAILABLE"
+    },
+    {
+      "claim_id": "CLAIM_B_005",
+      "statement": "P(fill before TTL) for any hypothetical passive buy limit resting at 80,500.00 USD with TTL = 60 minutes is estimated at 0.48 [0.35, 0.62], but carries severe adverse selection (AS_15m = -105 USD / -0.13% markout) due to cascading long liquidation momentum (OI dropping -0.29% 1h / -1.20% 24h, LIR = 1.76).",
+      "evidence_ids": [
+        "Data/DataBase_Trading.xlsx:5_OI",
+        "Data/DataBase_Trading.xlsx:12_Hyperdash",
+        "Data/DataBase_Trading.xlsx:14_Hyperdash_Liq_Map"
+      ],
+      "formula_or_test": "P(fill | d, q, x) = competing hazards model; Markout_15m = s * (m_{t+15m} - p_f).",
+      "result": "Downside momentum driven by 45.04M USD long liquidations causes fills at 80,500.00 USD to experience immediate markouts down to test 80,483.00 / 80,427.00 USD support. Expected adverse selection exceeds spread friction by 8.7x.",
+      "uncertainty": "MEDIUM (0.15) - Competing hazard parameters calibrated on historical liquidation cascades",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM_B_006",
+      "statement": "Emitting resting limit orders for TradFi instruments (e.g. GER40, UKBRENT, NZDUSD) during the interbank rollover and weekend closed sessions violates market clock and liquidity geometry, as quotes are stale (> 116m) and spreads expand by 5x-10x, creating severe execution slippage.",
+      "evidence_ids": [
+        "Data/cycle_envelope.json:market_clocks",
+        "docs/trade_plans/ARENA_LATEST_RAW.md:Section 4"
+      ],
+      "formula_or_test": "Tradable(s, t) = BrokerOpen AND NativeVenueOpen AND QuoteFresh AND NOT(Rollover).",
+      "result": "GER40 Eurex closed at Friday 20:00 UTC; CME/ICE futures closed Friday 21:00-22:00 UTC. Rollover window 21:15-22:30 UTC produces prohibitive spread friction. Only 24/7 crypto perpetuals (BTCUSD.pi, ETHUSD.pi) are geometrically executable.",
+      "uncertainty": "LOW (0.01) - Incontrovertible exchange market hours",
+      "status": "VERIFIED"
+    }
+  ],
+  "challenges": [
+    {
+      "challenge_id": "CHALLENGE_B_A_001",
+      "target_role": "ROLE_A_REGIME_CALIBRATION",
+      "statement": "Role A must not treat repeated snapshot presence of whale bids in Sheet 18 as proof of authentic wall refill (rho >= 0.60). Without tick-level execution prints distinguishing executed absorption from order cancellation, any refill parameter used in calibration is ungrounded."
+    },
+    {
+      "challenge_id": "CHALLENGE_B_A_002",
+      "target_role": "ROLE_A_REGIME_CALIBRATION",
+      "statement": "Role A must not model blind limit entries at round numbers (e.g. 80,500 USD) without conditioning P(win | fill) on adverse selection. In a long liquidation regime (LIR = 1.76, delta OI negative), unconditional fill probabilities generate false positive EV because fills coincide with toxic cascade continuation."
+    },
+    {
+      "challenge_id": "CHALLENGE_B_A_003",
+      "target_role": "ROLE_A_REGIME_CALIBRATION",
+      "statement": "Role A cannot transfer crypto microstructure features (Hyperliquid LIR, CoinGlass liquidation heatmap, Hyperdash Telegram alerts) to non-crypto assets (Forex, Metals, Indices). Each asset class requires venue-native liquidity geometry."
+    }
+  ],
+  "unknowns": [
+    "Exact broker-side queue position for pending orders on Blueberry Markets MT5 bridge (broker operates as STP/ECN aggregator with proprietary quote conversion and no public L3 depth).",
+    "Whether Hyperliquid wallet 0x31dea2... (66.793 BTC bid @ 80,483 USD) has an automated algorithmic cancel trigger if Binance spot price breaks below 80,600 USD."
+  ],
+  "severity_1_or_2_disputes": [],
+  "role_verdict": "RATIFY_BTC_SHORT_HOLD_AND_FRONT_RUN_TP_REJECT_NEW_RISK",
+  "response_sha256": "ca76a2bc2891771d37edcdf00bce8b5a5d6f377003032b27943a06934c828d15"
+}
