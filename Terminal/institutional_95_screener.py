@@ -229,9 +229,9 @@ def run_fast_screen(nominal_risk_target: Optional[float] = None) -> Dict[str, An
         if rr < 2.0:
             continue
             
-        # Check Relative Spread Friction Gate: Spread / TP Distance <= 15%
+        # Check Relative Spread Friction Gate: Spread / TP Distance <= 10.0% (Institutional Friction Invariant)
         spread_ratio = (item["spread_price"] / reward_dist) * 100.0
-        if spread_ratio > 15.0:
+        if spread_ratio > 10.0:
             continue
             
         # Precise Position Sizing using MT5 order_calc_profit
@@ -260,8 +260,9 @@ def run_fast_screen(nominal_risk_target: Optional[float] = None) -> Dict[str, An
         calc_gain = mt5.order_calc_profit(order_type, sym, snapped_lot, entry, tp)
         nominal_reward = abs(calc_gain) if calc_gain is not None else (nominal_risk * rr)
         
-        # Buffer Defense Sentry Check
-        stressed_loss = nominal_risk * 1.25 + 2.00
+        # Buffer Defense Sentry Check (Explicit Spread + 1.25x Slippage + $2 Fee)
+        spread_cost = item["spread_price"] * snapped_lot * item["contract_size"] if item["group"] == "Indices" or item["group"] == "Forex_Raw" else 0.0
+        stressed_loss = (nominal_risk + min(1.0, spread_cost)) * 1.25 + 2.00
         stressed_equity = equity - stressed_loss
         buffer_surplus = stressed_equity - BUFFER_FLOOR
         
