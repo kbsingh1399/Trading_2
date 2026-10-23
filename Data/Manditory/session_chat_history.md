@@ -757,3 +757,20 @@
   - Next Ratchet Trigger: 81,040.00 USD (+1.65 R0) -> auto-advances SL to 81,300.00 USD (+1.00 R0 / +.00 USD profit).
   - TP: 80,600.00 USD (+2.75 R0 / +.00 USD profit).
 - Pending Orders: 0 (100% Flat Cash Defense on Slots 2, 3, 4).
+
+
+## Turn Update: 2026-10-23 22:38 UTC — Cross-Account Bootstrap Upgrade & Graphify Skills Architecture
+
+### 1. Account Switch Bootstrap Protocol Upgraded
+- **ACCOUNT_SWITCH_BOOTSTRAP_PROTOCOL.md** upgraded comprehensively:
+  - Canonical ground-truth telemetry updated (Account #5064568, Balance: 4,799.88 USD, Equity: ~4,836+ USD).
+  - Active Ticket #19267445 (BTCUSD.pi Short 0.06 lot @ 81,700.00 USD, SL 81,640.00 Early-BE locked, TP 80,600.00, Next Ratchet 81,040 -> SL 81,300) documented.
+  - Three risk floors aligned: 4,600.00 USD Hard Floor, 4,650.00 USD Operating Buffer, 4,795.00 USD Solvency Kernel.
+  - All 5 persistent daemons documented with exact commands and auto-recovery instructions.
+  - Added Step 0 generate_cycle_envelope.py integration and 4 non-overlapping subagent roles.
+  - Pushed to GitHub origin/main at commit e20c72e25.
+
+### 2. Graphify Zero-Token Skills Architecture
+- Confirmed graphify-out/graph.json contains 23,326 nodes, 27,991 edges, and 3,478 skill-related nodes.
+- Verified that skills (e.g. systematic-debugging, clean-code, karpathy-guidelines) can be resolved in <200 tokens via python -m graphify query without reading large markdown files into context.
+- System RAM optimized via scripts/free_ram.ps1: reclaimed 3.46 GB free RAM, reducing used memory from 83% to 77.4% while preserving all background processes and browser CDP sessions.
