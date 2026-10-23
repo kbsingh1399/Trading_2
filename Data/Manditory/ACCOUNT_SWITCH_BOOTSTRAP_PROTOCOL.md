@@ -92,21 +92,35 @@ flowchart TD
 
 ---
 
-### STEP 3: PERSISTENT BACKGROUND DAEMONS AUDIT (IN ANTIGRAVITY TASK RUNNER)
+### STEP 3: PERSISTENT BACKGROUND DAEMONS & INFRASTRUCTURE AUDIT
 
-Audit all 5 persistent daemons using read-only task/process inspection (for example `manage_task(Action='list')` when available). Record PID/task identity, command line, health and observation time; report missing or unhealthy services without altering them:
+Audit all persistent operational daemons and core external services across both the Antigravity task runner (`manage_task(Action='list')`) and OS-level processes (`Get-CimInstance Win32_Process`). Record PID/task identity, command line, listening ports, health and observation time; report missing or unhealthy services without altering them.
 
-| Task / Daemon | Script Command | Frequency / Port | Purpose |
+#### A. Master Persistent Operational Daemons (The 7-Daemon Heptad)
+
+| Daemon ID | Script Command / Entrypoint | Runtime Environment | Port / Interval | Purpose |
+|---|---|---|---|---|
+| **Daemon 1** | `python Terminal/Data_Factory/autonomous_telemetry_git_daemon.py` | Antigravity Task Runner (`isDaemon=true`) | Every 60s | Pushes git commits & telemetry to GitHub `main` |
+| **Daemon 2** | `python Terminal/Data_Factory/heretic_daemon.py` | Antigravity Task Runner (`isDaemon=true`) | Port 8083 (HTTP) | Quantitative heretic microstructure service |
+| **Daemon 3** | `python Terminal/arena_completion_daemon.py --daemon` | Antigravity Task Runner (`isDaemon=true`) | CDP Port 9222 | Monitors Arena.ai & Z.ai completions, auto-harvests RAW output |
+| **Daemon 4** | `python Terminal/goal_trade_monitor.py --daemon --gap 10` | Antigravity Task Runner (`isDaemon=true`) | Every 10s | Continuous MT5 ratchet sentry, auto-locks profits to terminal |
+| **Daemon 5** | `python Terminal/Data_Factory/run_unified_30_sheets_cycle.py --continuous --interval 300` | Antigravity Task Runner (`isDaemon=true`) | Every 300s | Continuous 33-sheet master Excel data warehouse pipeline |
+| **Daemon 6** | `python Terminal/run_graphify_watcher.py` | OS Process / Antigravity Task | Continuous File Watcher | Monitors file mutations and hot-updates `graphify-out/graph.json` |
+| **Daemon 7** | `python gemini_web2api.py --config config.json` | OS Process / Antigravity Task | Port 8081 (HTTP) | Web2API Council Daemon (Endogen reverse-proxy, Auth: `Bearer sk-gemini`) |
+
+#### B. Essential External Infrastructure Daemons
+
+| Infrastructure Service | Executable / Binary | Port / Endpoint | Operational Role |
 |---|---|---|---|
-| **Daemon 1** | `python Terminal/Data_Factory/autonomous_telemetry_git_daemon.py` | Every 60s | Pushes git commits & telemetry to GitHub `main` |
-| **Daemon 2** | `python Terminal/Data_Factory/heretic_daemon.py` | Port 8083 | Quantitative heretic microstructure service |
-| **Daemon 3** | `python Terminal/arena_completion_daemon.py --daemon` | Port 9222 (CDP) | Monitors Arena.ai & Z.ai completions, auto-harvests RAW output |
-| **Daemon 4** | `python Terminal/goal_trade_monitor.py --daemon --gap 10` | Every 10s | Continuous MT5 ratchet sentry, auto-locks profits to terminal |
-| **Daemon 5** | `python Terminal/Data_Factory/run_unified_30_sheets_cycle.py --continuous --interval 300` | Every 300s | Continuous 33-sheet master Excel data warehouse pipeline |
+| **Chrome CDP Browser** | `chrome.exe` with `--remote-debugging-port=9222` | Port 9222 (WebSocket / HTTP) | Browser host for Arena.ai (GPT Astra) and Z.ai (GLM-5.3-Flash) |
+| **MetaTrader 5 Client** | `terminal64.exe` (Blueberry Markets SVG-Live) | Account #5064568 (IPC / API) | Live order routing, position tracking, and tick feed |
 
-**Lifecycle preservation**: All 5 persistent daemons must remain undisturbed across boots and chat/account reconnections. Bootstrap MUST NOT kill, restart, relaunch, or create a duplicate writer. Audit and report missing/unhealthy daemons for the operator; do not infer recovery authority from this SOP. Do not start a second spreadsheet pipeline or telemetry writer to obtain fresh evidence. Missing required health/evidence blocks the affected admission gate until resolved.
+#### C. Antigravity UI Task Counter Clarification
+- In the Antigravity UI, the indicator (e.g. "Background tasks 57") represents the **cumulative session task counter** of all tasks dispatched since conversation start.
+- Run `manage_task(Action='list')` to inspect only the **active running daemons** (currently 5 persistent tasks registered in Antigravity task manager).
+- Audit OS processes periodically via `Get-CimInstance Win32_Process | Where-Object { $_.Name -match 'python|node' }` to prune zombie or orphaned tasks (e.g. hung test runs or stale updates) and ensure system RAM remains below 75% via `scripts/free_ram.ps1`.
 
----
+**Lifecycle preservation**: All 7 persistent daemons must remain undisturbed across boots and chat/account reconnections. Bootstrap MUST NOT kill, restart, relaunch, or create a duplicate writer. Audit and report missing/unhealthy daemons for the operator; do not infer recovery authority from this SOP. Do not start a second spreadsheet pipeline or telemetry writer to obtain fresh evidence. Missing required health/evidence blocks the affected admission gate until resolved.
 
 ### STEP 4: AST GRAPHIFY & ZERO-TOKEN SKILL RESOLUTION
 
