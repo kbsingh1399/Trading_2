@@ -15,7 +15,7 @@
     "arena_ai": {
       "name": "Arena.ai Council (GPT Astra)",
       "status": "COMPLETED",
-      "completed_at_utc": "2026-10-23 21:48:20 UTC",
+      "completed_at_utc": "2026-10-23 22:20:33 UTC",
       "raw_file": "docs/trade_plans/ARENA_LATEST_RAW.md",
       "model": "GPT Astra",
       "verdict": "STAND_ASIDE_FLAT_CASH",
@@ -24,7 +24,7 @@
     "zai": {
       "name": "Z.ai Sovereign Council (GLM-5.3-Flash)",
       "status": "COMPLETED",
-      "completed_at_utc": "2026-10-23 21:47:47 UTC",
+      "completed_at_utc": "2026-10-23 22:22:21 UTC",
       "raw_file": "docs/trade_plans/ZAI_LATEST_RAW.md",
       "model": "GLM-5.3-Flash",
       "verdict": "OPTION_B_STAND_ASIDE_ARM_GATES",
