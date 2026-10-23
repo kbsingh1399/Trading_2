@@ -297,7 +297,7 @@ def print_status():
     sync_from_daemons(state)
     
     print("\n" + "="*80)
-    print(f"🏛️ JOINT-COMPLETION CYCLE CONTROLLER — CURRENT DESK STATUS")
+    print(f"[STATUS] JOINT-COMPLETION CYCLE CONTROLLER - CURRENT DESK STATUS")
     print("="*80)
     print(f"Cycle ID:                Cycle {state.get('current_cycle_id')}")
     print(f"Overall Cycle Status:    {state.get('cycle_status')}")
@@ -308,7 +308,7 @@ def print_status():
     print("-" * 80)
     print("MANDATORY 3-ENTITY JOINT COMPLETION STATUS:")
     for k, v in state.get("components", {}).items():
-        icon = "✅" if v.get("status") == "COMPLETED" else "⏳"
+        icon = "[OK]" if v.get("status") == "COMPLETED" else "[..]"
         print(f"  {icon} {v.get('name'):<42} -> {v.get('status')} (Done: {v.get('completed_at_utc') or 'In Flight'})")
     print("-" * 80)
     print(f"Watchdog Status:         {state.get('watchdog', {}).get('health', 'UNKNOWN')}")

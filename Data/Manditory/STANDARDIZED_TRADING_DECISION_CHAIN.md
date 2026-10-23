@@ -14,33 +14,61 @@
 
 Under strict institutional hedge fund governance, **no trading analysis, hypothesis formation, order staging, modification, or cancellation may ever occur in an ad-hoc or single-agent vacuum**.
 
-### 🚨 MANDATORY INVIOLATE 4-SUBAGENT SWARM & ARENA.AI DUAL-MANDATE DISPATCH (OPERATOR MANDATE)
+### 🚨 MANDATORY INVIOLATE TRI-TRACK COUNCIL & JOINT-COMPLETION LIFECYCLE (OPERATOR MANDATE)
 > **NEVER OMIT, BYPASS, OR SKIP UNDER ANY CIRCUMSTANCES**:
-> 1. **Mandatory 4-Subagent Swarm**: On EVERY 20-minute autonomous wake-up cron and on EVERY decision turn, Antigravity MUST physically invoke four specialized subagents via `invoke_subagent`:
->    - **Agent 1: Orderflow Analyst**: Microstructure orderflow, L2/L3 orderbook depth asymmetry, continuous CVD delta divergence (`zc_div > 0.8`), liquidation ladders (Sheets 10-17, 22), retail resting stop clusters (Sheet 23), and resting whale walls (Sheets 18 & 25).
->    - **Agent 2: Position Manager**: Live MT5 telemetry verification, exact broker quote-conversion risk sizing via `mt5.order_calc_profit()`, frozen R0 profit ratchets (Early-BE, Phase 0, Phase 1, Trailing), and stressed capacity calculations preserving the **4,775.00 USD hard floor** and **4,795.00 USD operating buffer**.
->    - **Agent 3: Macro Risk Analyst**: Sovereign economic calendar audit (Sheet 28: `19_Calendar`), institutional ETF net inflows (Sheets 00 & 01), CEX spot netflow accumulation (Sheet 02), Forex Factory news shocks (Sheet 27), and session rollover blackouts (21:30–22:30 UTC FX rollover, +-15m Crypto / +-35m TradFi high-impact event blackouts).
->    - **Agent 4: Excel Data Quality Auditor (`Excel Checker Agent`)**: Complete end-to-end verification of `Data/DataBase_Trading.xlsx`. Confirms all 33 worksheets are loaded cleanly in canonical sequence, verifies zero formula errors (`#REF!`, `#DIV/0!`, `#N/A`, `#VALUE!`), audits real-time sheet freshness (Orderbook, CVD, Auction Structure <= 15m old), and ensures Row 1 headers are unmerged with 100% column name integrity.
+> 1. **Mandatory 4-Subagent Quant Fleet (Fable 5)**: On EVERY autonomous cycle, Antigravity MUST physically invoke four specialized quantitative subagents via `invoke_subagent` (`Model='flash'` / Fable 5 runtime):
+>    - **Agent 1: Statistical Regime & Diffusion Quant**: Calculates Lo-MacKinlay Variance Ratio `VR(q)`, Kaufman Efficiency Ratio `ER`, Hurst exponent `H`, Ornstein-Uhlenbeck half-life `tau_half in [20m, 4h]`, and Newey-West drift `t`-stat. Strict stand-aside on `UNDEFINED` regime.
+>    - **Agent 2: Microstructure & Liquidation Quant**: L2/L3 orderbook depth asymmetry, continuous CVD delta divergence (`zc_div > 0.8`), liquidation ladders (Sheets 10-17, 22), retail resting stop clusters (Sheet 23), and resting whale walls (Sheets 18 & 25, persistence `tau >= 180s`, refill `rho >= 0.60`).
+>    - **Agent 3: Convex Portfolio & Solvency Sentry**: Live MT5 telemetry verification, exact broker quote-conversion risk sizing via `mt5.order_calc_profit()`, frozen R0 profit ratchets (Early-BE, Phase 0, Phase 1, Trailing), and stressed capacity calculations preserving the **4,775.00 USD hard floor** and **4,795.00 USD operating buffer**.
+>    - **Agent 4: Auction Profile & Friction Arbitrageur**: Value Area metrics (VAH, VAL, POC, Initial Balance), Relative Spread Gate (`Spread Price / TP Distance <= 10.0%`), 33-sheet data warehouse verification (all 33 sheets loaded, 0 formula errors, <= 15m fresh), and Event Risk Clock embargoes.
 >
-> 2. **Mandatory Arena.ai Dual-Mandate Dispatch (Adversarial Red-Team + Candidate Discovery)**:
->    - On EVERY wake-up cycle, a surgical prompt MUST be injected into Arena.ai via Chrome CDP on port 9222.
->    - **Arena.ai is NOT merely a passive critique tool**: It is explicitly mandated to perform **affirmative candidate discovery** across the 156-asset universe using all 3 operational personas (Orderflow Analyst, Position Manager, Macro Risk Analyst) alongside rigorous adversarial stress-testing. Arena.ai must propose specific candidate execution tickets and radar pre-condition checklists, which are then cross-verified against the internal subagent swarm findings.
+> 2. **Mandatory Parallel Dual Frontier Council Dispatch (Arena.ai GPT Astra & Z.ai GLM-5.3-Flash)**:
+>    - On EVERY cycle, the canonical unified prompt [`Arena_GLM_Standard_Prompt.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/Arena_GLM_Standard_Prompt.md) (15.5k chars, 4 quantitative personas, 0 LaTeX delimiters) MUST be injected SIMULTANEOUSLY into:
+>      * **Arena.ai (GPT Astra)** via Chrome CDP port 9222 using `Terminal/dispatch_arena_redteam.py`.
+>      * **Z.ai (GLM-5.3-Flash)** via Chrome CDP port 9222 using `Terminal/dispatch_zai_prompt.py`.
+>    - **Affirmative Candidate Discovery & Red-Team Mandate**: Both frontier councils are explicitly mandated to perform **affirmative candidate discovery** across the 156-asset universe using all 4 quantitative personas alongside rigorous adversarial stress-testing.
 >
-> 3. **Live Profit Ratchets Do Not Excuse Omission**:
->    - When live orders fill and dynamic ratchets (Early-BE, Phase 0, Phase 1) fire on MT5, the coordinator executes the ratchet IMMEDIATELY to secure capital, but MUST SIMULTANEOUSLY dispatch the 4-subagent swarm and Arena prompt. No operational event ever excuses skipping the multi-agent council.
+> 3. **Joint 3-Entity Completion Gate & Cycle Finish Rule (Operator Mandate)**:
+>    - A cycle is marked officially **FINISHED** only when **ALL THREE entities complete processing**:
+>      1. Antigravity 4-Quant Subagent Swarm (Fable 5)
+>      2. Arena.ai Frontier Council (GPT Astra)
+>      3. Z.ai Sovereign Council (GLM-5.3-Flash)
+>    - Neither prompt dispatch nor partial completion marks a cycle finished. All 3 must finish, and their outputs must be harvested into `docs/trade_plans/ARENA_LATEST_RAW.md` and `docs/trade_plans/ZAI_LATEST_RAW.md` for co-equal synthesis.
+>
+> 4. **Relative 20-Minute Post-Completion Delay (`T_finish + 20 min`)**:
+>    - The separation between completed Cycle X and the trigger for Cycle X+1 must be strictly **20 minutes** (1200 seconds).
+>    - Fixed wall-clock cron triggers that fire regardless of completion time are permanently eliminated to prevent cycle overlap, prompt collisions, and context collapse.
+>
+> 5. **30-Minute Watchdog Sentry Cron (`0,30 * * * *`)**:
+>    - Antigravity maintains an autonomous background watchdog cron (`0,30 * * * *` at :00 and :30 of every hour) via `Terminal/joint_cycle_controller.py --watchdog`.
+>    - The watchdog verifies desk health, checks for stalled cycles (>30 min), verifies persistent daemons, and triggers cycle advancement safely once the clean 20-minute post-completion separation has elapsed.
+>
+> 6. **Live Profit Ratchets Do Not Excuse Omission**:
+>    - When live orders fill and dynamic ratchets (Early-BE, Phase 0, Phase 1) fire on MT5, the coordinator executes the ratchet IMMEDIATELY to secure capital, but MUST SIMULTANEOUSLY dispatch the 4-subagent swarm and dual council prompts.
 
 ```mermaid
 flowchart TD
-    subgraph MultiAgentCouncil ["Autonomous Multi-Agent Council"]
-        A1["Orderflow Analyst<br/>(L2/L3 Book, CVD, Whales, Liq)"]
-        A2["Position Manager<br/>(MT5 Telemetry, Ratchets, Solvency)"]
-        A3["Macro Risk Analyst<br/>(Calendar, ETF Flows, Rollover)"]
-        A4["Excel Data Quality Auditor<br/>(33 Sheets, Zero Errors, Freshness)"]
-        Arena["Arena.ai (Chrome CDP 9222)<br/>(Affirmative Discovery + Red Team)"]
+    subgraph MultiAgentCouncil ["Autonomous Tri-Track Multi-Agent Council"]
+        subgraph TrackA ["Track A: Local Fleet (Fable 5)"]
+            A1["Statistical Regime Quant<br/>(VR, ER, Hurst, OU Half-Life)"]
+            A2["Microstructure Quant<br/>(L2/L3 Book, CVD, Whales, Liq)"]
+            A3["Solvency Sentry<br/>(MT5 Telemetry, Ratchets, Solvency)"]
+            A4["Auction Profile Quant<br/>(VAH/VAL/POC, Spread Gate, 33 Sheets)"]
+        end
+        subgraph TrackB ["Track B: Arena.ai (GPT Astra)"]
+            Arena["Arena.ai (Chrome CDP 9222)<br/>(Affirmative Discovery + Red Team)"]
+        end
+        subgraph TrackC ["Track C: Z.ai (GLM-5.3-Flash)"]
+            Zai["Z.ai Sovereign Council (CDP 9222)<br/>(Affirmative Discovery + Red Team)"]
+        end
     end
 
     subgraph DataWarehouse ["Canonical Data Warehouse"]
         DB["Data/DataBase_Trading.xlsx<br/>(All 33 Canonical Sheets)"]
+    end
+
+    subgraph CycleControl ["Joint Cycle Controller (Terminal/joint_cycle_controller.py)"]
+        State["Data/cycle_state.json<br/>- All 3 Entities Complete<br/>- Clean 20-Min Relative Delay<br/>- 30-Min Watchdog Sentry"]
     end
 
     subgraph ExecutionBridge ["MetaTrader 5 Institutional Desk"]
@@ -48,14 +76,14 @@ flowchart TD
         MT5["Autonomous MT5 Punch<br/>(BUY_LIMIT / SELL_LIMIT Passive Posture)"]
     end
 
-    DB --> A1
-    DB --> A2
-    DB --> A3
-    DB --> A4
+    DB --> A1 & A2 & A3 & A4
     DB --> Arena
-    Scanner --> A1
+    DB --> Zai
+    Scanner --> A1 & A2 & A3 & A4
     Scanner --> Arena
-    A1 & A2 & A3 & A4 & Arena --> MT5
+    Scanner --> Zai
+    TrackA & TrackB & TrackC --> State
+    State --> MT5
 ```
 
 ### The 8 Mandatory Foundation Skills:
@@ -435,11 +463,12 @@ stateDiagram-v2
 
 1. **Autonomous Execution**: Execute via `mt5.order_send()` with unique magic number (`888888`), passive `BUY_LIMIT` or `SELL_LIMIT`, and `ORDER_FILLING_IOC` (with automatic fallback to `RETURN` and `FOK`).
 2. **Frozen R0 Profit Ratchet Protocol**:
-   - **Phase Early-BE (+0.75R0 to +0.80R0)**: Move SL to $\text{Entry} + 0.10R_0$ once price reclaims session POC or VWAP. Eliminates 100% of risk and unlocks capacity for subsequent slots.
-   - **Phase 0 (+1.25R0)**: Move SL to $\text{Entry} + 0.15R_0$.
-   - **Phase 1 (+1.65R0)**: Move SL to $\text{Entry} + 0.80R_0$ (locks in guaranteed profit).
-   - **Phase 2 (>= +2.00R0)**: Continuous trailing stop at $0.50\text{ ATR}$ behind 15m swing shelves.
+   - **Phase Early-BE (+0.75R0 to +0.80R0)**: Move SL to Entry + 0.10R0 once price reclaims session POC or VWAP. Eliminates 100% of risk and unlocks capacity for subsequent slots.
+   - **Phase 0 (+1.25R0)**: Move SL to Entry + 0.15R0.
+   - **Phase 1 (+1.65R0)**: Move SL to Entry + 0.80R0 (locks in guaranteed profit).
+   - **Phase 2 (>= +2.00R0)**: Continuous trailing stop at 0.50 ATR behind 15m swing shelves.
 3. **Time-Decay Exit**: If active for 24 bars (6 hours) with gain < +0.20R0, market close to redeploy capital.
+4. **Joint-Completion Lifecycle & Sentry**: Orders and ratchets are managed via `Terminal/joint_cycle_controller.py` and `Data/cycle_state.json`. A cycle is complete only when all 3 entities finish. Next cycle triggers strictly 20 minutes after completion (`T_finish + 20 min`), supervised by the 30-minute watchdog sentry (`0,30 * * * *`).
 
 ---
 
