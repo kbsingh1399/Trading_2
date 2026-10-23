@@ -85,6 +85,31 @@ BROWSER_MODULES = [
 ]
 
 
+def reap_scraping_tabs():
+    """Forces closure of any lingering web scraping tabs on Edge port 9222 while preserving Arena and Z.ai."""
+    try:
+        req = urllib.request.urlopen(f"{CDP_BASE_URL}/json", timeout=3)
+        tabs = json.loads(req.read().decode())
+        reaped = 0
+        for t in tabs:
+            if t.get("type") == "page":
+                url = t.get("url", "").lower()
+                title = t.get("title", "").lower()
+                # Strictly protect Arena.ai and Z.ai
+                if any(k in url or k in title for k in ["arena.ai", "chat.z.ai", "z.ai"]):
+                    continue
+                tab_id = t.get("id")
+                try:
+                    urllib.request.urlopen(f"{CDP_BASE_URL}/json/close/{tab_id}", timeout=3)
+                    reaped += 1
+                except Exception:
+                    pass
+        if reaped > 0:
+            log.info(f"[TabReaper] Reaped {reaped} lingering scraping tab(s) in Edge.")
+    except Exception:
+        pass
+
+
 def preflight_hygiene():
     """Verifies Edge CDP on port 9222 and cleans temporary files."""
     # Check CDP
@@ -93,6 +118,7 @@ def preflight_hygiene():
         tabs = json.loads(req.read().decode())
         has_arena = any("arena.ai" in t.get("url", "").lower() for t in tabs)
         log.info(f"[Pre-Flight] Edge CDP active on port 9222 ({len(tabs)} tabs open). Arena.ai preserved: {has_arena}")
+        reap_scraping_tabs()
     except Exception as e:
         log.warning(f"[Pre-Flight] Edge CDP not reachable on port 9222: {e}")
 
@@ -139,6 +165,8 @@ def run_single_module(mod: dict) -> tuple[str, bool, float, str]:
     except Exception as e:
         elapsed = time.perf_counter() - t0
         return sheet, False, elapsed, str(e)
+    finally:
+        reap_scraping_tabs()
 
 
 def execute_unified_30_sheets_cycle() -> dict:

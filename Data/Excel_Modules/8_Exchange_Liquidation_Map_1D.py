@@ -294,7 +294,7 @@ async def harvest_exchange_liquidation_map_1d(symbols: list[str] = DEFAULT_UNIVE
 
                 # 3. Wait for Network response for this symbol
                 response_seen = False
-                end_wait = asyncio.get_event_loop().time() + 8
+                end_wait = asyncio.get_event_loop().time() + 2.5
                 while asyncio.get_event_loop().time() < end_wait:
                     try:
                         msg = await asyncio.wait_for(ws.recv(), timeout=1)

@@ -144,26 +144,10 @@ async def harvest_whale_orders(
     if not websockets:
         raise RuntimeError("websockets package is required. Run 'pip install websockets'.")
 
-    # Check if a tab with target URL is already open
-    tab_id = None
-    ws_url = None
-    is_ephemeral = False
-
-    try:
-        res = urllib.request.urlopen(f"{cdp_base_url}/json/list", timeout=5)
-        tabs = json.loads(res.read().decode())
-        existing = [t for t in tabs if "large-orderbook-statistics" in t.get("url", "")]
-        if existing:
-            tab_id = existing[0]["id"]
-            ws_url = existing[0]["webSocketDebuggerUrl"]
-            log.info(f"Reusing existing open tab (ID: {tab_id}) for Whale Orders.")
-    except Exception as e:
-        log.warning(f"Failed to check existing tabs: {e}")
-
-    if not ws_url:
-        tab_id, ws_url = open_ephemeral_tab(target_url, cdp_base_url)
-        is_ephemeral = True
-        log.info(f"Opened dedicated ephemeral tab (ID: {tab_id}) for Whale Orders.")
+    # Always open a clean dedicated ephemeral tab
+    tab_id, ws_url = open_ephemeral_tab(target_url, cdp_base_url)
+    is_ephemeral = True
+    log.info(f"Opened dedicated ephemeral tab (ID: {tab_id}) for Whale Orders.")
 
     t0 = time.time()
     try:
@@ -368,9 +352,11 @@ async def harvest_whale_orders(
             start_time_ms = o.get("startTime", 0)
             if start_time_ms > 0:
                 dt_utc = datetime.datetime.fromtimestamp(start_time_ms / 1000.0, tz=datetime.timezone.utc)
-                order_time_str = dt_utc.strftime("%Y-%m-%d %H:%M:%S")
+                dt_ist = dt_utc + datetime.timedelta(hours=5, minutes=30)
+                order_time_ist = dt_ist.strftime("%Y-%m-%d %H:%M:%S IST")
             else:
-                order_time_str = "N/A"
+                dt_ist = datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=5, minutes=30)
+                order_time_ist = dt_ist.strftime("%Y-%m-%d %H:%M:%S IST")
 
             # Order Duration
             duration_str = o.get("durationStr") or format_duration(start_time_ms, o.get("currentTime") or now_time)
@@ -390,7 +376,7 @@ async def harvest_whale_orders(
                 "initial_size_btc": start_amt,
                 "traded_size_btc": vol_amt,
                 "traded_size_pct": traded_amt_pct,
-                "order_time_utc": order_time_str,
+                "order_time_ist": order_time_ist,
                 "order_duration": duration_str,
                 "order_id": o.get("id", ""),
             })
@@ -401,7 +387,7 @@ async def harvest_whale_orders(
         return records
 
     finally:
-        if is_ephemeral and tab_id:
+        if tab_id:
             close_tab(tab_id, cdp_base_url)
 
 
@@ -475,8 +461,8 @@ def dump_whale_orders_to_excel(
             f"COINGLASS BITCOIN WHALE ORDERS & LARGE TRADES (> $100K) - "
             f"ALL EXCHANGES ({len(records)} ORDERS) [as_of {now_utc}]"
         )
-    title_cell.font = font_title
-    title_cell.fill = fill_title
+        title_cell.font = font_title
+        title_cell.fill = fill_title
     title_cell.alignment = Alignment(horizontal="center", vertical="center")
     ws.row_dimensions[1].height = 28
 
