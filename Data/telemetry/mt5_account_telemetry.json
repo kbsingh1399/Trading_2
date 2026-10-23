@@ -11,5 +11,8 @@
   "open_positions_count": 0,
   "open_positions": [],
   "pending_orders_count": 0,
-  "pending_orders": []
+  "pending_orders": [],
+  "timestamp_ist": "2026-10-23 21:23:59 IST",
+  "timestamp_utc": "2026-10-23 15:53:59 UTC",
+  "status": "LIVE_SYNCHRONIZED"
 }
