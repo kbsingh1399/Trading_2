@@ -1,22 +1,22 @@
 # ACTIVE CONTEXT CARD (LIVE SOVEREIGN QUANT DESK)
-**Last Updated**: 2026-10-23 18:38:00 UTC (2026-10-24 00:08 IST) | **Autonomous Cycle**: Cycle 305 Active Execution
+**Last Updated**: 2026-10-23 19:00:00 UTC (2026-10-24 00:30 IST) | **Autonomous Cycle**: Cycle 305 Completed & Enforced
 **Target Account**: Blueberry Markets MT5 Account #5064568
 **Mission**: Pass Phase 1 Challenge (Target: 5,500.00 USD) before Oct 23, 2026 (23:59 UTC).
 
 ---
 
 ## 1. REAL-TIME ACCOUNT TELEMETRY & SOLVENCY SENTRY
-- **Balance / Equity**: 4,799.88 USD / 4,817.61 USD (Floating profit in green: +17.73 USD)
-- **Margin / Free Margin**: 2,451.00 USD / 2,366.61 USD
-- **Goal Gap**: +682.39 USD to 5,500.00 USD
-- **Hard Floor (Inviolate)**: 4,600.00 USD | **Floor Cushion**: +217.61 USD
-- **Operating Buffer Floor**: 4,650.00 USD | **Buffer Cushion**: +167.61 USD
+- **Balance / Equity**: 4,799.88 USD / 4,817.19 USD (Floating profit in green: +17.31 USD)
+- **Margin / Free Margin**: 2,451.00 USD / 2,366.19 USD
+- **Goal Gap**: +682.81 USD to 5,500.00 USD
+- **Hard Floor (Inviolate)**: 4,600.00 USD | **Floor Cushion**: +217.19 USD
+- **Operating Buffer Floor**: 4,650.00 USD | **Buffer Cushion**: +167.19 USD
+- **Canonical Solvency Gate (Arena.ai Ruling)**: Hard Floor: 4,775.00 USD | Operating Threshold: 4,795.00 USD
+- **Worst-Case Stressed Book Equity**:
+  * Slot 1 (BTC short): 100% Risk-Free (Guaranteed payout at 81,640.00 = +3.60 USD profit; with $2 broker execution cost reserve = 4,797.88 USD, defending the 4,795.00 USD canonical threshold).
+  * Pending Orders: 0 (UKBRENT Order #19270994 canceled per Arena.ai Cycle 305 ruling).
 - **Active Filled Positions**: 1/4 consumed (Ticket #19267445 BTCUSD.pi Short)
-- **Resting Pending Orders**: 1/10 consumed (Order #19270994 UKBRENT.p Buy Limit)
-- **Worst-Case Simultaneous Stopout Equity**:
-  * Slot 1 (BTC short): 100% Risk-Free (Guaranteed payout at 81,640.00 = +3.60 USD profit).
-  * Slot 2 (Brent Buy Limit if filled): Stressed loss = 33.33 USD.
-  * Stressed Simultaneous Equity: 4,784.28 USD (+134.28 USD above 4,650.00 USD buffer, +184.28 USD above 4,600.00 USD floor).
+- **Resting Pending Orders**: 0/10 consumed (100% Flat Cash Defense on Slots 2 & 3)
 
 ---
 
@@ -25,20 +25,16 @@
 ### A. Active Running Position (`Ticket #19267445` — Slot 1 Consumed)
 - **Instrument**: `BTCUSD.pi` | **Direction**: `SELL` (Short)
 - **Volume / Size**: `0.06 lot` | **Filled Entry**: `81,700.00 USD`
-- **Current Price**: `81,404.50 USD` | **Floating Profit**: `+17.73 USD` in green (+0.74R)
-- **Stop Loss**: `81,640.00 USD` (Early-BE Locked in MT5! Trade is 100% risk-free).
-- **Take Profit**: `80,600.00 USD` (+66.00 USD / +2.75R target front-running 80,483–80,500 bid wall).
+- **Current Price**: `81,411.50 USD` | **Floating Profit**: `+17.31 USD` in green (+0.72R)
+- **Stop Loss**: `81,640.00 USD` (Ratified by Arena.ai Cycle 305. 100% risk-free; guaranteed minimum payout +$3.60 USD).
+- **Take Profit**: `80,600.00 USD` (+66.00 USD / +2.75R target front-running 80,483–80,500 bid shelf).
 - **Next Ratchet Level**: Profit-Lock Trigger @ `81,040.00 USD` (+1.65R) -> Auto-advances SL to `81,300.00 USD` (+24.00 USD locked profit).
+- **Council Ruling**: **HOLD / NO CHANGE.** Ratified broker-observed SL 81,640 and frozen-R0 next trigger 81,040 -> SL 81,300. Never widen the stop.
 
-### B. Active Resting Limit Order (`Order #19270994` — Slot 2 Staged)
-- **Instrument**: `UKBRENT.p` (Crude Oil — Orthogonal Energy Cluster)
-- **Order Type**: `BUY_LIMIT` (Strictly passive, entry 271 pts below live bid)
-- **Volume / Size**: `0.54 lot`
-- **Entry Price**: `117.050 USD`
-- **Stop Loss**: `116.590 USD` (460 pts / -$24.84 nominal risk)
-- **Take Profit**: `118.200 USD` (1,150 pts / +$62.10 reward / +2.50R)
-- **Relative Spread Cannibalization**: Spread / TP = 0.04 / 1.15 = 3.48% (Well under 10.0% cap).
-- **Order Check Status**: Confirmed Done (Retcode 0).
+### B. Order Cancellation Audit (`Order #19270994` — Slot 2 Canceled)
+- **Instrument**: `UKBRENT.p` Buy Limit
+- **Status**: **CANCELED IN MT5** (Executed via `TRADE_ACTION_REMOVE`, retcode 10009, 2026-10-23 18:58 UTC).
+- **Justification**: Arena.ai Cycle 305 binding ruling rejected UKBRENT due to lack of dedicated orderbook/CVD coverage, stale workbook data at cutoff, and failure to clear the strict canonical 4,795 USD solvency gate.
 
 ---
 

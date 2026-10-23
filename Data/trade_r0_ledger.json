@@ -19,6 +19,9 @@
     "early_be_executed_utc": "2026-10-23 18:30:39 UTC"
   },
   "19270994": {
+    "status": "CANCELED_PER_COUNCIL",
+    "cancellation_reason": "Cycle-305 Co-Equal Quantitative Council binding ruling: rejected due to stricter canonical solvency gate, stale workbook data, and lack of dedicated orderbook/CVD coverage",
+    "canceled_at_utc": "2026-10-23 18:58:00 UTC",
     "symbol": "UKBRENT.p",
     "direction": "BUY",
     "volume": 0.54,
