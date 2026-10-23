@@ -17,14 +17,14 @@
 | **Account Login** | **#5064568** | Blueberry Markets MT5 Live Server |
 | **Initial Starting Balance** | 5,000.00 USD | Baseline evaluation capital |
 | **Profit Target (Phase 1)** | **5,500.00 USD** (+500.00 USD / +10.0%) | Mandatory target to pass Phase 1 |
-| **Current Balance** | **4,834.83 USD** | Realized balance on MT5 |
-| **Current Equity** | **4,834.83 USD** | 100% Unencumbered liquid cash |
-| **Equity Needed to Pass** | **+665.17 USD** | Required gains to reach 5,500.00 USD target |
+| **Current Balance** | **4,818.51 USD** | Realized balance on MT5 |
+| **Current Equity** | **4,818.51 USD** | 100% Unencumbered liquid cash |
+| **Equity Needed to Pass** | **+681.49 USD** | Required gains to reach 5,500.00 USD target |
 | **Absolute Hard Floor** | **4,775.00 USD** | Inviolate liquidation boundary (Never breached) |
 | **Operating Defense Buffer** | **4,795.00 USD** | Hard floor + 20.00 USD operating buffer |
-| **Current Hard Floor Cushion** | **+59.83 USD** | Equity distance above 4,775.00 USD floor (+1.25%) |
-| **Current Buffer Cushion** | **+39.83 USD** | Equity distance above 4,795.00 USD buffer (+0.83%) |
-| **Target Deadline** | **23rd October 2026, 23:59 UTC** | End of trading week (Friday) (~33.0h remaining) |
+| **Current Hard Floor Cushion** | **+43.51 USD** | Equity distance above 4,775.00 USD floor (+1.25%) |
+| **Current Buffer Cushion** | **+23.51 USD** | Equity distance above 4,795.00 USD buffer (+0.83%) |
+| **Target Deadline** | **23rd October 2026, 23:59 UTC** | End of trading week (Friday) (~21.55h remaining) |
 
 ---
 
@@ -35,7 +35,7 @@
    - Pristine Confluence Rights: Up to **25.00 to 35.00 USD** per trade for pristine 5-pillar setups.
    - Stressed Post-Loss Floor Invariant:
      Stressed Equity = Current Equity - (Risk * 1.25 + 2.00) >= 4,795.00 USD
-   - Under current +39.83 USD buffer cushion, taking a 18.00 USD risk trade incurs 24.50 USD stressed loss, strictly preserving **+15.33 USD surplus** above the operating buffer and **+35.33 USD** above the hard floor.
+   - Under current +23.51 USD buffer cushion, taking a 18.00 USD risk trade incurs 24.50 USD stressed loss, strictly preserving **+15.33 USD surplus** above the operating buffer and **+35.33 USD** above the hard floor.
 2. **Position Capacity & Stressed Staging Rules**:
    - Authorized up to **4 concurrent running filled positions** across orthogonal asset clusters (Crypto, Indices, Metals, Forex).
    - Resting pending limit orders do **NOT** consume running slots! Up to 5 resting limits may be pre-staged at structural whale shelves.
@@ -63,7 +63,7 @@ All open trades are governed by the non-negotiable piecewise ratchet:
 
 ## 4. Current Active Trade State & Candidate Radar (Cycle 256)
 
-- **Account Status**: **100% FLAT CASH** | Realized Balance: 4,834.83 USD
+- **Account Status**: **100% FLAT CASH** | Realized Balance: 4,818.51 USD
 - **Open Positions**: 0
 - **Pending Orders**: 0
 - **Candidate Trigger Radar Across 156-Asset Universe**:
@@ -76,7 +76,7 @@ All open trades are governed by the non-negotiable piecewise ratchet:
 
 ## 5. Daily Compounding Pathway to 5,500.00 USD
 
-To bridge the +665.17 USD requirement by Friday, 23rd October 2026:
+To bridge the +681.49 USD requirement by Friday, 23rd October 2026:
 - Target profit velocity: ~200 to 220 USD net across the remaining sessions (~33.0 hours runway).
 - Compound risk-free ratchet wins while aggressively locking profits at +1.5R to +2.5R.
 - Deploy across orthogonal clusters: Crypto (BTC, ETH, SOL), Indices (NAS100, DJ30, SP500, UK100), Metals (Gold, Silver), Forex (EURUSD, GBPUSD, USDJPY).
