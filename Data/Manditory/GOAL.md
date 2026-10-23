@@ -20,7 +20,7 @@ All 6 core governance documents reside strictly in [`Data/Manditory/`](file:///c
 2. **[`AUTONOMOUS_WAKEUP_CHECKLIST.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/AUTONOMOUS_WAKEUP_CHECKLIST.md)**: 10-Step Non-bypassable Joint-Completion Wake-Up Sequence.
 3. **[`STANDARDIZED_TRADING_DECISION_CHAIN.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md)**: Standard Operating Procedure for 5-pillar quantitative confluence.
 4. **[`GOAL.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/GOAL.md)**: Operational `/goal` mission tracker.
-5. **[`PASS_BLUEBERRY_PHASE_1_BY_OCT_23_2026.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/PASS_BLUEBERRY_PHASE_1_BY_OCT_23_2026.md)**: Deep roadmap and risk sizing formulas to pass Phase 1.
+5. **[`PASS_BLUEBERRY_PHASE_1_BY_OCT_30_2026.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/PASS_BLUEBERRY_PHASE_1_BY_OCT_30_2026.md)**: Deep roadmap and risk sizing formulas to pass Phase 1.
 6. **[`SUBAGENT_PROMPT_TEMPLATES.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/SUBAGENT_PROMPT_TEMPLATES.md)**: Canonical Tier 2 Full Unabridged Big Prompts (~350–500 tokens) citing `STANDARDIZED_TRADING_DECISION_CHAIN.md`. **USE THESE TEMPLATES EVERY CYCLE.**
 
 ---

@@ -36,7 +36,7 @@ flowchart TD
         O1["ACCOUNT_SWITCH_BOOTSTRAP_PROTOCOL.md"]
         O2["CONTINUOUS_KAIZEN_SELF_IMPROVEMENT_PROTOCOL.md"]
         O3["GOAL.md"]
-        O4["PASS_BLUEBERRY_PHASE_1_BY_OCT_23_2026.md"]
+        O4["PASS_BLUEBERRY_PHASE_1_BY_OCT_30_2026.md"]
     end
 
     Core_SOPs --> MT5["Live MT5 Execution Desk"]
@@ -58,7 +58,7 @@ flowchart TD
 | 9 | [`ACCOUNT_SWITCH_BOOTSTRAP_PROTOCOL.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/ACCOUNT_SWITCH_BOOTSTRAP_PROTOCOL.md) | **Cross-Account Bootstrap & Reconnection** | Non-bypassable SOP when switching accounts or recovering state. Audits & auto-starts all 5 daemons in task manager, enforces Tier 2 Big Prompts, and prevents context amnesia. |
 | 10 | [`CONTINUOUS_KAIZEN_SELF_IMPROVEMENT_PROTOCOL.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/CONTINUOUS_KAIZEN_SELF_IMPROVEMENT_PROTOCOL.md) | **Continuous Kaizen Self-Improvement SOP** | Non-bypassable 5-stage PDCA-Ω feedback cycle, root cause autopsy methodology, case studies, and anti-regression rules. |
 | 11 | [`GOAL.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/GOAL.md) | **Perpetual Mission Contract** | Active mission objectives, account constraints, 4,775.00 USD hard floor, 4,795.00 USD operating buffer, and non-bypassable goals. |
-| 12 | [`PASS_BLUEBERRY_PHASE_1_BY_OCT_23_2026.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/PASS_BLUEBERRY_PHASE_1_BY_OCT_23_2026.md) | **Milestone Roadmap & Capital Bridge** | Mathematical runway, trade pacing, and equity trajectory to reach 5,500.00 USD. |
+| 12 | [`PASS_BLUEBERRY_PHASE_1_BY_OCT_30_2026.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/PASS_BLUEBERRY_PHASE_1_BY_OCT_30_2026.md) | **Milestone Roadmap & Capital Bridge** | Mathematical runway, trade pacing, and equity trajectory to reach 5,500.00 USD. |
 
 ---
 

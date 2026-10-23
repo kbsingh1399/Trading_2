@@ -17,13 +17,17 @@
 
 ---
 
-## STATIC COUNCIL REVIEW PROTOCOL
+## STATIC COUNCIL REVIEW PROTOCOL & ATTACHED CYCLE ENVELOPE
 
-The dispatcher attaches one immutable machine-generated `cycle_envelope.json`.
-This prompt contains no account-value, ticket, candidate, or cycle placeholders.
+The dispatcher embeds the complete immutable machine-generated cycle_envelope.json directly into this prompt as an integral attachment:
 
-If the attachment is absent, malformed, digest-mismatched, post-cutoff, or
-contains unresolved template markers, return only:
+### 📦 ATTACHED IMMUTABLE CYCLE ENVELOPE (cycle_envelope.json):
+`json
+{CYCLE_ENVELOPE_JSON}
+`
+
+Fresh reconciled envelope telemetry in the embedded JSON block above governs all calculations and supersedes any dated operator baselines.
+Evaluate the embedded cycle envelope against your quantitative models. If this embedded cycle envelope is absent, malformed, digest-mismatched, post-cutoff, or contains unresolved template markers, return only:
 DENIED_BAD_CYCLE_ENVELOPE
 
 ### Required review

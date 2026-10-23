@@ -17,17 +17,74 @@
 
 ---
 
-## STATIC COUNCIL REVIEW PROTOCOL
+## STATIC COUNCIL REVIEW PROTOCOL & ATTACHED CYCLE ENVELOPE
 
-The dispatcher attaches one immutable machine-generated `cycle_envelope.json`.
-This prompt contains no account-value, ticket, candidate, or cycle placeholders.
-Fresh reconciled envelope telemetry always supersedes the dated 2026-10-24
-operator baseline in `ACCOUNT_SWITCH_BOOTSTRAP_PROTOCOL.md`; the baseline is
-not proof of a current live query. The 11.38 USD minimum admission value is
-provisional screening only and cannot authorize a ticket.
+The dispatcher embeds the complete immutable machine-generated cycle_envelope.json directly into this prompt as an integral attachment:
 
-If the attachment is absent, malformed, digest-mismatched, post-cutoff, or
-contains unresolved template markers, return only:
+### 📦 ATTACHED IMMUTABLE CYCLE ENVELOPE (cycle_envelope.json):
+`json
+{
+  "schema_version": "1.1.0",
+  "cycle_id": "Cycle 311",
+  "uuid": "892e6901-3137-413c-92cd-638e1dbbba67",
+  "dispatch_nonce": "4d044865-e59b-405e-b81c-9871edbb8161",
+  "cutoff_utc": "2026-10-23 23:20:26 UTC",
+  "provenance": {
+    "git_commit": "cf28fa8a749d5dc833455b79deda5a684f03c4d3",
+    "git_tree": "4fd4e6a6e3e61cdf904c808da11524a242deecb4",
+    "risk_policy_sha256": "4633e4af56e52c71329c617aaee4cae5c7102ef9a9f33e7e747e46d26841f058",
+    "evidence_manifest_sha256": "303be24fe0005cbb3d240d0c30ed1ff22370e5de78148b5f41d38e904d4bd76e",
+    "workbook_sha256": "178cf1f84231e5764280dc6ee86a6807df818b93c43d437c5720506dfec7ca63",
+    "excel_freshness_verified": null
+  },
+  "inventory": {
+    "account_login": 5064568,
+    "server": "BlueberryMarketsSVG-Live",
+    "currency": "USD",
+    "balance": 4865.07,
+    "equity": 4865.07,
+    "margin_used": 0.0,
+    "margin_free": 4865.07,
+    "margin_level": 0.0,
+    "active_positions_count": 0,
+    "pending_orders_count": 0,
+    "active_positions": [],
+    "pending_orders": []
+  },
+  "solvency": {
+    "hard_floor_usd": 4600.0,
+    "operating_buffer_usd": 4650.0,
+    "solvency_kernel_usd": 4795.0,
+    "base_capital_usd": 4865.07,
+    "hard_floor_cushion_usd": 265.07,
+    "operating_buffer_cushion_usd": 215.07,
+    "kernel_cushion_usd": 70.07,
+    "global_contingency_reserve_usd": 2.0,
+    "existing_ticket_stress_usd": 0.0,
+    "realized_headroom_usd": 68.07,
+    "post_joint_stress_equity_usd": 4863.07,
+    "capital_mode": "TIER_2_HOUSE_MONEY",
+    "risk_min_usd": 15.0,
+    "risk_max_usd": 25.0,
+    "nominal_risk_capacity_usd": 25.0,
+    "max_concurrent_tickets": 2,
+    "new_risk_admissible": true,
+    "admission_scope": "CAPITAL_ONLY_REQUIRES_ALL_HARD_GATES_AND_BROKER_CHECK"
+  },
+  "market_clocks": {
+    "broker_clock_open": null,
+    "native_market_open": null,
+    "calendar_verified": null,
+    "rollover_embargo_active": false,
+    "rollover_window": "21:15-22:30 UTC"
+  },
+  "status": "ACCOUNT_AND_SOLVENCY_VERIFIED",
+  "authorization": "DENIED_PENDING_FULL_HARD_GATES"
+}
+`
+
+Fresh reconciled envelope telemetry in the embedded JSON block above governs all calculations and supersedes any dated operator baselines.
+Evaluate the embedded cycle envelope against your quantitative models. If this embedded cycle envelope is absent, malformed, digest-mismatched, post-cutoff, or contains unresolved template markers, return only:
 DENIED_BAD_CYCLE_ENVELOPE
 
 ### Required review

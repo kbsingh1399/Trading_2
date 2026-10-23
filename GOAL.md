@@ -19,7 +19,7 @@ All 4 core governance documents reside strictly in [`Data/Manditory/`](file:///c
 1. **[`AUTONOMOUS_WAKEUP_CHECKLIST.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/AUTONOMOUS_WAKEUP_CHECKLIST.md)**: 10-Step Non-bypassable Joint-Completion Wake-Up Sequence.
 2. **[`STANDARDIZED_TRADING_DECISION_CHAIN.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md)**: Standard Operating Procedure for 5-pillar quantitative confluence.
 3. **[`GOAL.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/GOAL.md)**: Operational `/goal` mission tracker.
-4. **[`PASS_BLUEBERRY_PHASE_1_BY_OCT_23_2026.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/PASS_BLUEBERRY_PHASE_1_BY_OCT_23_2026.md)**: Deep roadmap and risk sizing formulas to pass Phase 1.
+4. **[`PASS_BLUEBERRY_PHASE_1_BY_OCT_30_2026.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/PASS_BLUEBERRY_PHASE_1_BY_OCT_30_2026.md)**: Deep roadmap and risk sizing formulas to pass Phase 1.
 
 ---
 

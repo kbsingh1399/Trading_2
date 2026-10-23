@@ -121,6 +121,28 @@ def build_unified_prompt(cycle_id: str = "AUTO") -> str:
 
     worst_case_eq = f"{eq - 18.74:.2f}"
 
+    # Load and embed cycle_envelope.json directly
+    envelope_file = ROOT / "Data" / "cycle_envelope.json"
+    envelope_json_str = "{}"
+    if envelope_file.exists():
+        try:
+            import json
+            with open(envelope_file, "r", encoding="utf-8") as f:
+                env_obj = json.load(f)
+            envelope_json_str = json.dumps(env_obj, indent=2)
+        except Exception as e:
+            print("[DualCouncil] Warning loading cycle_envelope.json:", e)
+    
+    if "{CYCLE_ENVELOPE_JSON}" in prompt:
+        prompt = prompt.replace("{CYCLE_ENVELOPE_JSON}", envelope_json_str)
+    else:
+        # If template lacks placeholder, inject it right after the header
+        embed_block = f"\n\n### 📦 ATTACHED IMMUTABLE CYCLE ENVELOPE (`cycle_envelope.json`):\n```json\n{envelope_json_str}\n```\n\n"
+        if "## STATIC COUNCIL REVIEW PROTOCOL" in prompt:
+            prompt = prompt.replace("## STATIC COUNCIL REVIEW PROTOCOL", "## STATIC COUNCIL REVIEW PROTOCOL" + embed_block)
+        else:
+            prompt = embed_block + prompt
+
     # Replace placeholders
     prompt = prompt.replace("{CYCLE_ID}", cycle_id)
     prompt = prompt.replace("{CYCLE_UTC}", utc_now)
