@@ -34,6 +34,7 @@ import logging
 import os
 import pathlib
 import sys
+import time
 from typing import Dict, Any, Optional
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
@@ -338,6 +339,61 @@ def print_status():
     print("="*80 + "\n")
 
 
+def wait_rest():
+    """
+    Sleeps cleanly during the dynamic 20-minute quiet period until next_cycle_scheduled_utc.
+    If MT5 positions close (e.g. TP/SL triggered), wakes up immediately so the desk can advance.
+    Exits 0 to trigger reactive Antigravity wakeup for the next cycle.
+    """
+    state = load_cycle_state()
+    next_str = state.get("next_cycle_scheduled_utc")
+    if not next_str:
+        logger.info("No next cycle scheduled; exiting.")
+        return
+
+    try:
+        next_dt = datetime.datetime.strptime(next_str.replace(" UTC", ""), "%Y-%m-%d %H:%M:%S").replace(tzinfo=datetime.timezone.utc)
+    except Exception as e:
+        logger.error("Could not parse next_cycle_scheduled_utc: %s", e)
+        return
+
+    try:
+        import MetaTrader5 as mt5
+        has_mt5 = mt5.initialize()
+    except Exception:
+        has_mt5 = False
+
+    logger.info("Resting cleanly until %s. Early wakeup enabled on position closure.", next_str)
+    cycle_num = int(state.get("current_cycle_id", 305))
+
+    while True:
+        now_dt = datetime.datetime.now(datetime.timezone.utc)
+        rem_sec = (next_dt - now_dt).total_seconds()
+        if rem_sec <= 0:
+            logger.info("🎯 Dynamic rest period complete (20 minutes). Ready for Cycle %d!", cycle_num + 1)
+            print(f"\n🔔 REST PERIOD COMPLETE: Ready to trigger Cycle {cycle_num + 1}!")
+            break
+
+        # Check if active positions closed early
+        if has_mt5:
+            try:
+                positions = mt5.positions_get()
+                if positions is not None and len(positions) == 0:
+                    logger.info("🔔 POSITION EVENT: Active position closed (TP/SL hit)! Waking up immediately.")
+                    print(f"\n🔔 POSITION EVENT: Active position closed! Waking up immediately for Cycle {cycle_num + 1}!")
+                    break
+            except Exception:
+                pass
+
+        time.sleep(min(10, max(1, rem_sec)))
+
+    if has_mt5:
+        try:
+            mt5.shutdown()
+        except Exception:
+            pass
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Joint Cycle Controller & 30-Minute Watchdog")
     parser.add_argument("--status", action="store_true", help="Print current cycle state and component progress")
@@ -345,6 +401,7 @@ if __name__ == "__main__":
     parser.add_argument("--start", type=str, help="Start a new cycle with given ID")
     parser.add_argument("--complete", type=str, choices=["antigravity_subagents", "arena_ai", "zai"], help="Mark a component complete")
     parser.add_argument("--sync", action="store_true", help="Sync completion status from live daemons")
+    parser.add_argument("--wait-rest", action="store_true", help="Sleep cleanly until next cycle (or early on position close) and exit 0 for reactive wakeup")
     args = parser.parse_args()
 
     if args.start:
@@ -359,5 +416,7 @@ if __name__ == "__main__":
     elif args.sync:
         sync_from_daemons()
         print_status()
+    elif args.wait_rest:
+        wait_rest()
     else:
         print_status()
