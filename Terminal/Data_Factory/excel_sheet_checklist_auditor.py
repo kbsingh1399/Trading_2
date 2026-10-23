@@ -122,20 +122,28 @@ def run_checklist_audit(max_freshness_min: float = 30.0) -> tuple[bool, dict]:
         r2_vals = [c.value for c in ws[2]] if max_r >= 2 else []
         r3_vals = [c.value for c in ws[3]] if max_r >= 3 else []
         
-        # 1. Inspect Row 1 Banner
-        banner_text = str(r1_vals[0]) if (r1_vals and r1_vals[0]) else ""
-        has_banner = "LAST UPDATED" in banner_text
+        # 1. Inspect Row 1 and Row 2 for Banner
+        banner_text = ""
         banner_ist = ""
         banner_rows = None
+        has_banner = False
         
-        if has_banner:
-            bm = BANNER_PATTERN.search(banner_text)
-            if bm:
-                banner_ist = bm.group(1).strip()
-                try:
-                    banner_rows = int(bm.group(3))
-                except Exception:
-                    pass
+        for candidate in (r1_vals[:3] + r2_vals[:3]):
+            cs = str(candidate or "")
+            if "LAST UPDATED" in cs:
+                has_banner = True
+                banner_text = cs
+                bm = BANNER_PATTERN.search(cs)
+                if bm:
+                    banner_ist = bm.group(1).strip()
+                    # If prefix was included, clean it
+                    if "|" in banner_ist:
+                        banner_ist = banner_ist.split("|")[-1].strip()
+                    try:
+                        banner_rows = int(bm.group(3))
+                    except Exception:
+                        pass
+                break
 
         # 2. Check Table Timestamp Column in Headers (Row 1 or Row 2)
         has_ts_header = False

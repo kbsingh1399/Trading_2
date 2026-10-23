@@ -189,8 +189,8 @@ def get_live_mt5_data() -> dict:
                     }
             data["universe_quotes"] = quotes
             ist_tz = datetime.timezone(datetime.timedelta(hours=5, minutes=30))
-        data["timestamp_ist"] = datetime.datetime.now(ist_tz).strftime("%Y-%m-%d %H:%M:%S IST")
-        data["timestamp_utc"] = datetime.datetime.now(datetime.timezone.utc).isoformat()
+            data["timestamp_ist"] = datetime.datetime.now(ist_tz).strftime("%Y-%m-%d %H:%M:%S IST")
+            data["timestamp_utc"] = datetime.datetime.now(datetime.timezone.utc).isoformat()
             mt5.shutdown()
             return data
     except Exception as e:
