@@ -312,8 +312,8 @@
   ],
   "_temporal_meta": {
     "stream": "forex_factory",
-    "recorded_at_utc": "2026-10-23T23:37:36Z",
-    "recorded_at_epoch": 1792798656.175158,
+    "recorded_at_utc": "2026-10-23T23:46:10Z",
+    "recorded_at_epoch": 1792799170.078174,
     "gap_detected": false,
     "gap_duration_minutes": 0.0,
     "last_active_utc": null,
