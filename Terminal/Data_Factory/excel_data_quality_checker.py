@@ -16,7 +16,9 @@ import sys
 import time
 import json
 import re
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
+
+IST_TIMEZONE = timezone(timedelta(hours=5, minutes=30))
 
 if hasattr(sys.stdout, 'reconfigure'):
     sys.stdout.reconfigure(encoding='utf-8', errors='replace')
@@ -83,6 +85,7 @@ def audit_excel():
         col_count = 0
         first_row = []
         detected_ts = None
+        is_ist = False
         
         # Read sheet rows
         for r_idx, row in enumerate(ws.iter_rows(values_only=True), 1):
@@ -94,23 +97,36 @@ def audit_excel():
                     header_valid = False
                 # Check header for timestamp
                 for col in first_row:
-                    m = DATE_PATTERN.search(str(col))
-                    if m:
-                        detected_ts = m.group(1)
-                        break
+                    col_str = str(col)
+                    if "IST" in col_str:
+                        m = DATE_PATTERN.search(col_str)
+                        if m:
+                            detected_ts = m.group(1)
+                            is_ist = True
+                            break
+                    else:
+                        m = DATE_PATTERN.search(col_str)
+                        if m:
+                            detected_ts = m.group(1)
+                            break
             
             # Check rows for timestamps (track latest timestamp seen across sheet)
             for val in row:
                 ts_cand = None
+                val_is_ist = False
                 if isinstance(val, datetime):
                     ts_cand = val.strftime("%Y-%m-%d %H:%M:%S")
                 elif isinstance(val, str) and len(val) >= 10:
+                    if "IST" in val:
+                        val_is_ist = True
                     m = DATE_PATTERN.search(val)
                     if m:
                         ts_cand = m.group(1)
                 if ts_cand:
-                    if detected_ts is None or ts_cand > detected_ts:
+                    if detected_ts is None or ts_cand > detected_ts or (val_is_ist and not is_ist):
                         detected_ts = ts_cand
+                        if val_is_ist:
+                            is_ist = True
             
             # Inspect cells for formula errors (sample first 500 rows to keep it ultra-fast)
             if r_idx <= 500:
@@ -130,8 +146,13 @@ def audit_excel():
         if detected_ts:
             try:
                 ts_clean = str(detected_ts).replace('T', ' ')
-                dt = datetime.strptime(ts_clean[:19], '%Y-%m-%d %H:%M:%S').replace(tzinfo=timezone.utc)
-                diff = (now_dt - dt).total_seconds()
+                base_dt = datetime.strptime(ts_clean[:19], '%Y-%m-%d %H:%M:%S')
+                if is_ist:
+                    dt = base_dt.replace(tzinfo=IST_TIMEZONE).astimezone(timezone.utc)
+                else:
+                    dt = base_dt.replace(tzinfo=timezone.utc)
+                    
+                diff = max(0.0, (now_dt - dt).total_seconds())
                 sheet_age_seconds = diff
                 if diff < 3600:
                     sheet_age_str = f"{diff/60:.1f}m"

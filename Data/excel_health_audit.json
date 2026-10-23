@@ -1,16 +1,16 @@
 {
-  "timestamp_utc": "2026-10-23 11:03:00 UTC",
+  "timestamp_utc": "2026-10-23 11:18:06 UTC",
   "overall_status": "PASS",
   "excel_path": "Data/DataBase_Trading.xlsx",
   "file_size_mb": 13.14,
-  "file_age_seconds": 223.7,
+  "file_age_seconds": 99.0,
   "freshness_pass": true,
   "total_sheets": 33,
-  "fresh_sheets_count": 12,
-  "stale_sheets_count": 21,
+  "fresh_sheets_count": 7,
+  "stale_sheets_count": 26,
   "total_formula_errors": 0,
   "all_headers_valid": true,
-  "execution_time_seconds": 52.63,
+  "execution_time_seconds": 39.05,
   "sheets": [
     {
       "index": 1,
@@ -20,8 +20,8 @@
       "formula_errors": 0,
       "header_valid": true,
       "detected_timestamp": "2026-10-23T10:31:13",
-      "age_seconds": 1907.7,
-      "age_str": "31.8m",
+      "age_seconds": 2813.3,
+      "age_str": "46.9m",
       "freshness_tier": "PERIODIC (<24h)",
       "status": "PASS"
     },
@@ -33,7 +33,7 @@
       "formula_errors": 0,
       "header_valid": true,
       "detected_timestamp": "2026-10-17 13:23:21",
-      "age_seconds": 509979.7,
+      "age_seconds": 510885.3,
       "age_str": "5.9d",
       "freshness_tier": "FROZEN (>24h)",
       "status": "PASS"
@@ -46,8 +46,8 @@
       "formula_errors": 0,
       "header_valid": true,
       "detected_timestamp": "2026-10-23 09:57:17",
-      "age_seconds": 3943.7,
-      "age_str": "1.1h",
+      "age_seconds": 4849.3,
+      "age_str": "1.3h",
       "freshness_tier": "PERIODIC (<24h)",
       "status": "PASS"
     },
@@ -59,7 +59,7 @@
       "formula_errors": 0,
       "header_valid": true,
       "detected_timestamp": "2026-10-22 04:48:44",
-      "age_seconds": 108856.7,
+      "age_seconds": 109762.3,
       "age_str": "1.3d",
       "freshness_tier": "FROZEN (>24h)",
       "status": "PASS"
@@ -72,7 +72,7 @@
       "formula_errors": 0,
       "header_valid": true,
       "detected_timestamp": "2026-10-22 05:34:36",
-      "age_seconds": 106104.7,
+      "age_seconds": 107010.3,
       "age_str": "1.2d",
       "freshness_tier": "FROZEN (>24h)",
       "status": "PASS"
@@ -85,7 +85,7 @@
       "formula_errors": 0,
       "header_valid": true,
       "detected_timestamp": "2026-10-22 05:36:09",
-      "age_seconds": 106011.7,
+      "age_seconds": 106917.3,
       "age_str": "1.2d",
       "freshness_tier": "FROZEN (>24h)",
       "status": "PASS"
@@ -98,7 +98,7 @@
       "formula_errors": 0,
       "header_valid": true,
       "detected_timestamp": "2026-10-22 04:56:03",
-      "age_seconds": 108417.7,
+      "age_seconds": 109323.3,
       "age_str": "1.3d",
       "freshness_tier": "FROZEN (>24h)",
       "status": "PASS"
@@ -111,9 +111,9 @@
       "formula_errors": 0,
       "header_valid": true,
       "detected_timestamp": "2026-10-23 10:45:36",
-      "age_seconds": 1044.7,
-      "age_str": "17.4m",
-      "freshness_tier": "LIVE (<30m)",
+      "age_seconds": 1950.3,
+      "age_str": "32.5m",
+      "freshness_tier": "PERIODIC (<24h)",
       "status": "PASS"
     },
     {
@@ -124,8 +124,8 @@
       "formula_errors": 0,
       "header_valid": true,
       "detected_timestamp": "2026-10-23 10:55:29",
-      "age_seconds": 451.7,
-      "age_str": "7.5m",
+      "age_seconds": 1357.3,
+      "age_str": "22.6m",
       "freshness_tier": "LIVE (<30m)",
       "status": "PASS"
     },
@@ -137,8 +137,8 @@
       "formula_errors": 0,
       "header_valid": true,
       "detected_timestamp": "2026-10-23 10:58:06",
-      "age_seconds": 294.7,
-      "age_str": "4.9m",
+      "age_seconds": 1200.3,
+      "age_str": "20.0m",
       "freshness_tier": "LIVE (<30m)",
       "status": "PASS"
     },
@@ -150,8 +150,8 @@
       "formula_errors": 0,
       "header_valid": true,
       "detected_timestamp": "2026-10-23 10:01:53",
-      "age_seconds": 3667.7,
-      "age_str": "1.0h",
+      "age_seconds": 4573.3,
+      "age_str": "1.3h",
       "freshness_tier": "PERIODIC (<24h)",
       "status": "PASS"
     },
@@ -163,8 +163,8 @@
       "formula_errors": 0,
       "header_valid": true,
       "detected_timestamp": "2026-10-23 08:52:13",
-      "age_seconds": 7847.7,
-      "age_str": "2.2h",
+      "age_seconds": 8753.3,
+      "age_str": "2.4h",
       "freshness_tier": "PERIODIC (<24h)",
       "status": "PASS"
     },
@@ -176,9 +176,9 @@
       "formula_errors": 0,
       "header_valid": true,
       "detected_timestamp": "2026-10-22 11:14:42",
-      "age_seconds": 85698.7,
-      "age_str": "23.8h",
-      "freshness_tier": "PERIODIC (<24h)",
+      "age_seconds": 86604.3,
+      "age_str": "1.0d",
+      "freshness_tier": "FROZEN (>24h)",
       "status": "PASS"
     },
     {
@@ -189,7 +189,7 @@
       "formula_errors": 0,
       "header_valid": true,
       "detected_timestamp": "2026-10-22 05:45:35",
-      "age_seconds": 105445.7,
+      "age_seconds": 106351.3,
       "age_str": "1.2d",
       "freshness_tier": "FROZEN (>24h)",
       "status": "PASS"
@@ -202,7 +202,7 @@
       "formula_errors": 0,
       "header_valid": true,
       "detected_timestamp": "2026-10-22 05:46:58",
-      "age_seconds": 105362.7,
+      "age_seconds": 106268.3,
       "age_str": "1.2d",
       "freshness_tier": "FROZEN (>24h)",
       "status": "PASS"
@@ -215,7 +215,7 @@
       "formula_errors": 0,
       "header_valid": true,
       "detected_timestamp": "2026-10-22 05:49:04",
-      "age_seconds": 105236.7,
+      "age_seconds": 106142.3,
       "age_str": "1.2d",
       "freshness_tier": "FROZEN (>24h)",
       "status": "PASS"
@@ -228,7 +228,7 @@
       "formula_errors": 0,
       "header_valid": true,
       "detected_timestamp": "2026-10-22 05:49:51",
-      "age_seconds": 105189.7,
+      "age_seconds": 106095.3,
       "age_str": "1.2d",
       "freshness_tier": "FROZEN (>24h)",
       "status": "PASS"
@@ -241,7 +241,7 @@
       "formula_errors": 0,
       "header_valid": true,
       "detected_timestamp": "2026-10-22 05:50:44",
-      "age_seconds": 105136.7,
+      "age_seconds": 106042.3,
       "age_str": "1.2d",
       "freshness_tier": "FROZEN (>24h)",
       "status": "PASS"
@@ -254,9 +254,9 @@
       "formula_errors": 0,
       "header_valid": true,
       "detected_timestamp": "2026-10-23 10:42:31",
-      "age_seconds": 1229.7,
-      "age_str": "20.5m",
-      "freshness_tier": "LIVE (<30m)",
+      "age_seconds": 2135.3,
+      "age_str": "35.6m",
+      "freshness_tier": "PERIODIC (<24h)",
       "status": "PASS"
     },
     {
@@ -266,9 +266,9 @@
       "columns": 48,
       "formula_errors": 0,
       "header_valid": true,
-      "detected_timestamp": "2026-10-23 10:53:54",
-      "age_seconds": 546.7,
-      "age_str": "9.1m",
+      "detected_timestamp": "2026-10-23 11:12:19",
+      "age_seconds": 347.3,
+      "age_str": "5.8m",
       "freshness_tier": "LIVE (<30m)",
       "status": "PASS"
     },
@@ -280,8 +280,8 @@
       "formula_errors": 0,
       "header_valid": true,
       "detected_timestamp": "2026-10-23 10:05:02",
-      "age_seconds": 3478.7,
-      "age_str": "58.0m",
+      "age_seconds": 4384.3,
+      "age_str": "1.2h",
       "freshness_tier": "PERIODIC (<24h)",
       "status": "PASS"
     },
@@ -293,9 +293,9 @@
       "formula_errors": 0,
       "header_valid": true,
       "detected_timestamp": "2026-10-23 10:33:24",
-      "age_seconds": 1776.7,
-      "age_str": "29.6m",
-      "freshness_tier": "LIVE (<30m)",
+      "age_seconds": 2682.3,
+      "age_str": "44.7m",
+      "freshness_tier": "PERIODIC (<24h)",
       "status": "PASS"
     },
     {
@@ -306,7 +306,7 @@
       "formula_errors": 0,
       "header_valid": true,
       "detected_timestamp": "2026-10-22 05:51:36",
-      "age_seconds": 105084.7,
+      "age_seconds": 105990.3,
       "age_str": "1.2d",
       "freshness_tier": "FROZEN (>24h)",
       "status": "PASS"
@@ -319,9 +319,9 @@
       "formula_errors": 0,
       "header_valid": true,
       "detected_timestamp": "2026-10-23 10:33:50",
-      "age_seconds": 1750.7,
-      "age_str": "29.2m",
-      "freshness_tier": "LIVE (<30m)",
+      "age_seconds": 2656.3,
+      "age_str": "44.3m",
+      "freshness_tier": "PERIODIC (<24h)",
       "status": "PASS"
     },
     {
@@ -332,8 +332,8 @@
       "formula_errors": 0,
       "header_valid": true,
       "detected_timestamp": "2026-10-23 09:35:40",
-      "age_seconds": 5240.7,
-      "age_str": "1.5h",
+      "age_seconds": 6146.3,
+      "age_str": "1.7h",
       "freshness_tier": "PERIODIC (<24h)",
       "status": "PASS"
     },
@@ -345,15 +345,15 @@
       "formula_errors": 0,
       "header_valid": true,
       "detected_timestamp": "2026-10-23 08:32:24",
-      "age_seconds": 9036.7,
-      "age_str": "2.5h",
+      "age_seconds": 9942.3,
+      "age_str": "2.8h",
       "freshness_tier": "PERIODIC (<24h)",
       "status": "PASS"
     },
     {
       "index": 27,
       "sheet_name": "17_Orderbook",
-      "rows": 5674,
+      "rows": 5629,
       "columns": 14,
       "formula_errors": 0,
       "header_valid": true,
@@ -371,9 +371,9 @@
       "formula_errors": 0,
       "header_valid": true,
       "detected_timestamp": "2026-10-23 10:35:00",
-      "age_seconds": 1680.7,
-      "age_str": "28.0m",
-      "freshness_tier": "LIVE (<30m)",
+      "age_seconds": 2586.3,
+      "age_str": "43.1m",
+      "freshness_tier": "PERIODIC (<24h)",
       "status": "PASS"
     },
     {
@@ -383,9 +383,9 @@
       "columns": 11,
       "formula_errors": 0,
       "header_valid": true,
-      "detected_timestamp": "2026-10-23 10:36:25",
-      "age_seconds": 1595.7,
-      "age_str": "26.6m",
+      "detected_timestamp": "2026-10-23 11:02:48",
+      "age_seconds": 918.3,
+      "age_str": "15.3m",
       "freshness_tier": "LIVE (<30m)",
       "status": "PASS"
     },
@@ -423,7 +423,7 @@
       "formula_errors": 0,
       "header_valid": true,
       "detected_timestamp": "2026-10-17 13:23:21",
-      "age_seconds": 509979.7,
+      "age_seconds": 510885.3,
       "age_str": "5.9d",
       "freshness_tier": "FROZEN (>24h)",
       "status": "PASS"
@@ -436,7 +436,7 @@
       "formula_errors": 0,
       "header_valid": true,
       "detected_timestamp": "2026-10-17 13:23:21",
-      "age_seconds": 509979.7,
+      "age_seconds": 510885.3,
       "age_str": "5.9d",
       "freshness_tier": "FROZEN (>24h)",
       "status": "PASS"

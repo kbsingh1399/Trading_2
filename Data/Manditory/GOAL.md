@@ -4,10 +4,10 @@
 > **Target Account**: Blueberry Markets MT5 Account #5064568  
 > **Profit Target**: **5,500.00 USD** (+665.17 USD required from current 4,834.83 USD realized equity)  
 > **Deadline**: End of Friday, 23rd October 2026 (23:59 UTC)  
-> **Inviolable Floor**: **4,775.00 USD** (Never breach under any circumstance)  
-> **Operating Buffer**: **4,795.00 USD** (+20.00 USD defense cushion)  
-> **Risk Allocation**: 15.00 to 25.00 USD per trade | Frozen R0 Dynamic Profit Ratchet  
-> **Authority**: Full autonomous order execution granted by operator  
+> **Inviolable Floor**: **4,600.00 USD** (Based on 400.00 USD broker max breach limit; Never breach under any circumstance)  
+> **Operating Buffer**: **4,650.00 USD** (+50.00 USD defense cushion above hard floor)  
+> **Risk Allocation**: Tier 1 Standard: 12.50 USD (0.25%) | Tier 2 Pristine: 25.00 USD (0.50%) | Frozen R0 Dynamic Profit Ratchet  
+> **Authority**: Full autonomous order execution granted by operator ("You have all rights... It's your account only... dedicated to you")  
 > **Council Engine**: Antigravity Live Desk & Arena.ai Co-Equal Investment Council  
 > **Standard Dual-Council Prompt Template**: `Data/Manditory/Arena_GLM_Standard_Prompt.md` (Mirrored to `docs/prompts/Arena_GLM_Standard_Prompt.md`)  
 
@@ -39,7 +39,7 @@ The autonomous desk operates under a non-overlapping joint-completion lifecycle 
    - Read `Data/Manditory/SUBAGENT_PROMPT_TEMPLATES.md` — inject full Tier 2 Big Prompts citing `STANDARDIZED_TRADING_DECISION_CHAIN.md` for all 4 Fable 5 subagents.
    - Dispatch `Data/Manditory/Arena_GLM_Standard_Prompt.md` simultaneously to Arena.ai (GPT Astra) and Z.ai (GLM-5.3-Flash) via Chrome CDP port 9222.
    - Verify system health and continuous 33-sheet Excel data updation (5m rest interval).
-   - Query live MT5 account telemetry and audit floor cushion (+43.51 USD above 4,775 USD floor, +23.51 USD above 4,795 USD buffer).
+   - Query live MT5 account telemetry and audit floor cushion (+199.88 USD above 4,600.00 USD hard floor, +149.88 USD above 4,650.00 USD buffer).
    - Audit open positions and ratchet stops using Frozen R0 piecewise protocol.
    - Auto-harvest Arena and Z.ai outputs via `arena_completion_daemon.py` and `zai_completion_daemon.py`.
    - Cross-verify all reports across the Co-Equal Council. Macro blackout verdict overrides Orderflow recommendation.
