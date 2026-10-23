@@ -554,7 +554,7 @@ def export_cvd_to_excel(
     rows: List[Dict[str, Any]],
     excel_path: pathlib.Path = DEFAULT_EXCEL_PATH,
     sheet_name: str = SHEET_NAME,
-    max_excel_rows: int = 50000,
+    max_excel_rows: int = 1500,
 ) -> int:
     """Writes CVD dataset into Data/DataBase_Trading.xlsx at Index 26 with institutional formatting."""
     if openpyxl is None:
@@ -949,7 +949,7 @@ def main() -> int:
     parser.add_argument(
         "--max-excel-rows",
         type=int,
-        default=50000,
+        default=1500,
         help="Maximum rows to insert into Excel sheet (default: 50000, 0 for unlimited)",
     )
     parser.add_argument(
