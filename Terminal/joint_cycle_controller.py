@@ -61,7 +61,7 @@ def now_utc_str() -> str:
 
 def get_default_state() -> Dict[str, Any]:
     return {
-        "current_cycle_id": "296",
+        "current_cycle_id": "306",
         "cycle_status": "IN_PROGRESS",  # "IN_PROGRESS" | "COMPLETED" | "STALLED"
         "cycle_started_utc": now_utc_str(),
         "cycle_completed_utc": None,
@@ -69,15 +69,15 @@ def get_default_state() -> Dict[str, Any]:
         "rest_interval_seconds": 1200,  # 20 minutes
         "components": {
             "antigravity_subagents": {
-                "name": "Antigravity 4-Quant Swarm (Fable 5)",
-                "status": "COMPLETED",
-                "completed_at_utc": now_utc_str(),
-                "details": "Statistical Regime, Microstructure, Solvency, Auction Profile"
+                "name": "Antigravity 4-Quant Swarm (Orderflow, Position, Macro, Chain)",
+                "status": "IN_PROGRESS",
+                "completed_at_utc": None,
+                "details": "Awaiting independent 4-subagent research and findings"
             },
             "arena_ai": {
                 "name": "Arena.ai Council (GPT Astra)",
-                "status": "COMPLETED",
-                "completed_at_utc": now_utc_str(),
+                "status": "IN_PROGRESS",
+                "completed_at_utc": None,
                 "raw_file": "docs/trade_plans/ARENA_LATEST_RAW.md",
                 "model": "GPT Astra"
             },
