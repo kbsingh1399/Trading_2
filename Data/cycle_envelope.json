@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0.0",
+  "cycle_id": "Cycle 310",
+  "uuid": "1e36d582-4da3-4e85-aa2f-3624752f5cec",
+  "dispatch_nonce": "76d24e70-0632-4a5e-9c6b-252925fe8278",
+  "cutoff_utc": "2026-10-23 22:34:05 UTC",
+  "provenance": {
+    "git_commit": "d6f7df9add0064e94bcbfbe6cbab672939342cf4",
+    "evidence_manifest_sha256": "bbc0f2a18b8e18459319fa11fc72f9d3a17b4e517a5a59b0f175c30bea8b2c06",
+    "workbook_sha256": "0b4e3061281cd79fab5a1d07f1b50dac3250a5393338249a72106057f70eb0fc",
+    "excel_freshness_verified": true
+  },
+  "inventory": {
+    "account_login": 5064568,
+    "server": "BlueberryMarketsSVG-Live",
+    "currency": "USD",
+    "balance": 4799.88,
+    "equity": 4836.63,
+    "margin_used": 2451.0,
+    "margin_free": 2385.63,
+    "margin_level": 197.33292533659733,
+    "active_positions_count": 1,
+    "pending_orders_count": 0,
+    "active_positions": [
+      {
+        "ticket": 19267445,
+        "symbol": "BTCUSD.pi",
+        "type": "SELL",
+        "volume": 0.06,
+        "price_open": 81700.0,
+        "sl": 81640.0,
+        "tp": 80600.0,
+        "price_current": 81074.0,
+        "profit": 37.56,
+        "swap": -0.81,
+        "comment": "Council_BTC_Short"
+      }
+    ],
+    "pending_orders": []
+  },
+  "solvency": {
+    "hard_floor_usd": 4600.0,
+    "operating_buffer_usd": 4650.0,
+    "solvency_kernel_usd": 4795.0,
+    "base_capital_usd": 4799.88,
+    "hard_floor_cushion_usd": 236.63,
+    "operating_buffer_cushion_usd": 186.63,
+    "kernel_cushion_usd": 41.63,
+    "realized_headroom_usd": 2.88,
+    "new_risk_admissible": false
+  },
+  "market_clocks": {
+    "broker_clock_open": true,
+    "crypto_perpetuals_open": true,
+    "fx_open": true,
+    "metals_open": true,
+    "rollover_embargo_active": false,
+    "rollover_window": "21:15-22:30 UTC"
+  },
+  "status": "ENVELOPE_VALIDATED"
+}
