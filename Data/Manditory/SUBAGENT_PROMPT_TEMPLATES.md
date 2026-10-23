@@ -114,9 +114,11 @@ Before validating any candidate or radar setup, you MUST interrogate it against 
 6. 32-Sheet Real-World Interrogation: Evaluate concrete questions for Sheets 10–18, 20–26, 30.
 7. Continuous Kaizen: Extract lessons from SOL #19174858 autopsy and all session chat history setbacks. Guarantee ZERO repeat of past execution errors!
 
-STEP 4C — MANDATORY QUANT METHODOLOGY INQUEST (OPERATOR MANDATE):
+STEP 4C — MANDATORY QUANT METHODOLOGY & PROMPT SELF-IMPROVEMENT INQUEST (OPERATOR MANDATE):
 Explicitly answer Section 2.5 of STANDARDIZED_TRADING_DECISION_CHAIN.md:
 "Is our methodology for finding potential candidates truly sound, and how can we fundamentally improve it? Given that we monitor 156 assets with vast orderbook, CVD, and liquidation data, why has equity remained flat and why are profitable executions eluding the desk? How do we think like elite quants to bridge this gap?"
+AND MANDATORILY ANSWER THE OPERATOR'S CORE INQUEST:
+"How can we fundamentally improve ourselves in prompt engineering, prompt clarity, and instruction design — whether constructing prompts for internal subagents (Orderflow Analyst, Position Manager, Macro Risk Analyst, Excel Auditor) or external frontier councils (Arena.ai, Z.ai)? What exact prompt formatting, constraint phrasing, context injection upgrades, or reasoning frameworks will extract sharper, more mathematically grounded, and actionable quantitative decisions while preventing sycophancy, drift, and hallucinated fills?"
 Evaluate: Are our filters overly conjunctive? Are our entries front-running resting walls too passively? What specific quantitative upgrade will generate profitable setups that grow equity while defending the floor?
 
 STEP 5 — CANDIDATE FORMULATION, RADAR CHECKLIST & 10-POINT PRE-PUNCH TABLE:
@@ -203,9 +205,11 @@ Study `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (specifically Pitfall 10:
 - Enforce Kaizen anti-regression: verify exact live MT5 telemetry down to the cent, never rely on stale cache or static assumptions.
 - Interrogate Sheet 00 (`00_MT5_Account_Telemetry`) and margin requirements against `32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md`.
 
-TASK 4C — MANDATORY QUANT METHODOLOGY INQUEST (OPERATOR MANDATE):
+TASK 4C — MANDATORY QUANT METHODOLOGY & PROMPT SELF-IMPROVEMENT INQUEST (OPERATOR MANDATE):
 Explicitly answer Section 2.5 of STANDARDIZED_TRADING_DECISION_CHAIN.md:
 "Is our methodology for finding potential candidates truly sound, and how can we fundamentally improve it? Given that we monitor 156 assets with vast orderbook, CVD, and liquidation data, why has equity remained flat and why are profitable executions eluding the desk? How do we think like elite quants to bridge this gap?"
+AND MANDATORILY ANSWER THE OPERATOR'S CORE INQUEST:
+"How can we fundamentally improve ourselves in prompt engineering, prompt clarity, and instruction design — whether constructing prompts for internal subagents (Orderflow Analyst, Position Manager, Macro Risk Analyst, Excel Auditor) or external frontier councils (Arena.ai, Z.ai)? What exact prompt formatting, constraint phrasing, context injection upgrades, or reasoning frameworks will extract sharper, more mathematically grounded, and actionable quantitative decisions while preventing sycophancy, drift, and hallucinated fills?"
 Evaluate from a risk/capacity perspective: are we staging limits too conservatively? How can dynamic capacity be structured to enable profitable executions without risking floor solvency?
 
 TASK 5 — RESTING LIMIT ORDER HYGIENE:
@@ -287,9 +291,11 @@ Study `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md` (Pitfall 6: High Relative
 - Enforce Kaizen learning: audit session clock progression and interbank FX rollover spread blowout (21:15–22:30 UTC), preventing entries into off-hours spread traps.
 - Audit multi-source calendar synchronization (`19_Calendar` and `Data/macro_calendar.json`) to prevent unprovable macro blackout gaps.
 
-TASK 4C — MANDATORY QUANT METHODOLOGY INQUEST (OPERATOR MANDATE):
+TASK 4C — MANDATORY QUANT METHODOLOGY & PROMPT SELF-IMPROVEMENT INQUEST (OPERATOR MANDATE):
 Explicitly answer Section 2.5 of STANDARDIZED_TRADING_DECISION_CHAIN.md:
 "Is our methodology for finding potential candidates truly sound, and how can we fundamentally improve it? Given that we monitor 156 assets with vast orderbook, CVD, and liquidation data, why has equity remained flat and why are profitable executions eluding the desk? How do we think like elite quants to bridge this gap?"
+AND MANDATORILY ANSWER THE OPERATOR'S CORE INQUEST:
+"How can we fundamentally improve ourselves in prompt engineering, prompt clarity, and instruction design — whether constructing prompts for internal subagents (Orderflow Analyst, Position Manager, Macro Risk Analyst, Excel Auditor) or external frontier councils (Arena.ai, Z.ai)? What exact prompt formatting, constraint phrasing, context injection upgrades, or reasoning frameworks will extract sharper, more mathematically grounded, and actionable quantitative decisions while preventing sycophancy, drift, and hallucinated fills?"
 Evaluate from a macro/liquidity perspective: are our blackout windows or session boundaries over-restrictive? How can institutional ETF and CEX flow signals be translated into proactive directional candidates?
 
 TASK 5 — BREAKING NEWS SHOCK SCAN (Sheet 27: `19_News`):
@@ -363,9 +369,11 @@ Scan all cells across all 33 sheets for Excel formula error values:
 - Count occurrences of: `#REF!`, `#DIV/0!`, `#VALUE!`, `#N/A`, `#NAME?`, `#NUM!`, `#NULL!`.
 - Mandatory Attestation: Confirm exactly 0 formula errors exist across the entire workbook. If errors found: report exact sheet, row, column, and formula.
 
-TASK 4C — MANDATORY QUANT METHODOLOGY INQUEST (OPERATOR MANDATE):
+TASK 4C — MANDATORY QUANT METHODOLOGY & PROMPT SELF-IMPROVEMENT INQUEST (OPERATOR MANDATE):
 Explicitly answer Section 2.5 of STANDARDIZED_TRADING_DECISION_CHAIN.md:
 "Is our methodology for finding potential candidates truly sound, and how can we fundamentally improve it? Given that we monitor 156 assets with vast orderbook, CVD, and liquidation data, why has equity remained flat and why are profitable executions eluding the desk? How do we think like elite quants to bridge this gap?"
+AND MANDATORILY ANSWER THE OPERATOR'S CORE INQUEST:
+"How can we fundamentally improve ourselves in prompt engineering, prompt clarity, and instruction design — whether constructing prompts for internal subagents (Orderflow Analyst, Position Manager, Macro Risk Analyst, Excel Auditor) or external frontier councils (Arena.ai, Z.ai)? What exact prompt formatting, constraint phrasing, context injection upgrades, or reasoning frameworks will extract sharper, more mathematically grounded, and actionable quantitative decisions while preventing sycophancy, drift, and hallucinated fills?"
 Evaluate from a data pipeline perspective: what feature enhancements or real-time metrics in the 33 sheets would sharpen candidate discovery and eliminate blind spots?
 
 TASK 5 — CONTINUOUS PIPELINE DAEMON HEALTH MONITORING:
