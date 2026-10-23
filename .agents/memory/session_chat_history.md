@@ -61984,3 +61984,17 @@ You may create 12_Hyperdash and 13_Hyperliquid where you dump all intelligenve a
 - **Execution Strategy Reaffirmed**:
   * Screener qualification is Stage 1 (top of funnel). Stage 2 (microstructure) and Stage 3 (session alignment & single-slot solvency law) require standing aside through Asian lull.
   * Target staging execution window opens at 06:45:00 UTC (15m before Frankfurt cash open).
+
+---
+## Turn 308 - 06:00 UTC Hourly Candle Close & Staging Sentry (06:02 UTC)
+- **Time**: 2026-10-23 06:02:00 UTC
+- **Account State**: Balance: 4,818.51 USD | Equity: 4,818.51 USD | Free Margin: 4,818.51 USD | Margin: 0.00 USD (100% Flat Cash Defense).
+- **Floor Cushions**: Hard Floor Cushion: +43.51 USD | Operating Buffer Cushion: +23.51 USD | Target Deficit: +681.49 USD.
+- **Master Excel Verification**: Data/DataBase_Trading.xlsx verified fresh (127s age, 0 formula errors).
+- **GER40.p Auction Short Geometry Check**:
+  * Bid: 25,328.60 / Ask: 25,329.70 | Spread: 1.1 pts (0.43 bps).
+  * Entry: 25,381.39 (51.7 pts above current market, resting below Asian High 25,406.05).
+  * Sizing: 0.03 lot | SL: 25,420.23 | TP: 25,286.79 | 2.44R.
+  * Stressed Equity: 4,799.77 USD | Buffer Surplus: +4.77 USD.
+  * Status: PASS — 100% compliant with solvency buffer invariants.
+- **Action Plan**: Maintain 100% Flat Cash Defense through 06:20 and 06:40 wake-up audits. Action window opens at 06:45:00 UTC.
