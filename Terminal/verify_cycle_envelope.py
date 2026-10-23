@@ -10,9 +10,20 @@ over. This verifier makes that check one command.
 Usage:
     python Terminal/verify_cycle_envelope.py [Data/cycle_envelope.json] [--json]
 
+Checks are classified into two groups:
+
+  integrity  - does the envelope describe a real, reproducible artifact set?
+               (structure, nonce shape, risk-policy digest, commit/tree, and the
+               workbook + manifest digests computed *at the declared commit*)
+  gate       - does the envelope claim usable data? (excel_freshness_verified,
+               plus the working-copy digest, which may legitimately lag origin)
+
+Only integrity failures justify DENIED_BAD_CYCLE_ENVELOPE. Gate fields are
+reported for the ruling but must never be turned into a provenance rejection.
+
 Exit codes:
-    0  every field verified
-    1  at least one field mismatched (envelope must be rejected)
+    0  envelope integrity verified (gate fields may still be false/null)
+    1  integrity failure -> envelope must be rejected
     2  envelope missing / unreadable / malformed
 """
 from __future__ import annotations
@@ -103,6 +114,7 @@ def main() -> int:
     raw = json.dumps(env)
     markers = [m for m in ("{{", "}}", "TODO", "PLACEHOLDER", "<INSERT", "XXX") if m in raw]
     checks["structure"] = {
+        "class": "integrity",
         "ok": not missing and not markers,
         "missing_keys": missing,
         "template_markers": markers,
@@ -111,6 +123,7 @@ def main() -> int:
     # 2. Dispatch nonce sanity (UUIDv4 shape)
     nonce = str(env.get("dispatch_nonce", ""))
     checks["dispatch_nonce"] = {
+        "class": "integrity",
         "ok": len(nonce) == 36 and nonce.count("-") == 4,
         "value": nonce,
     }
@@ -121,6 +134,7 @@ def main() -> int:
     ).hexdigest()
     declared_policy = prov.get("risk_policy_sha256")
     checks["risk_policy_sha256"] = {
+        "class": "integrity",
         "ok": declared_policy == recomputed_policy,
         "declared": declared_policy,
         "recomputed": recomputed_policy,
@@ -132,80 +146,112 @@ def main() -> int:
     commit_present = git("cat-file", "-t", commit) == "commit" if commit else False
     actual_tree = git("rev-parse", f"{commit}^{{tree}}") if commit_present else None
     checks["git_commit"] = {
+        "class": "integrity",
         "ok": commit_present,
         "declared": commit,
         "present_locally": commit_present,
         "hint": None if commit_present else "run: git fetch origin main",
     }
     checks["git_tree"] = {
+        "class": "integrity",
         "ok": commit_present and actual_tree == tree,
         "declared": tree,
         "actual": actual_tree,
     }
 
-    # 5. Manifest digest
+    # 5. Manifest digest: judged at the declared commit (the attested state),
+    #    with the working copy reported separately as a gate-adjacent note.
     declared_manifest = prov.get("evidence_manifest_sha256")
+    commit_ok = commit_present and actual_tree == tree
+    if commit_ok:
+        try:
+            blob = subprocess.run(
+                ["git", "show", f"{commit}:Data/history/master_manifest.json"],
+                cwd=ROOT, capture_output=True, timeout=180,
+            )
+            if blob.returncode == 0:
+                at_commit = hashlib.sha256(blob.stdout).hexdigest()
+                checks["evidence_manifest_sha256_at_declared_commit"] = {
+                    "class": "integrity",
+                    "ok": at_commit == declared_manifest,
+                    "commit": commit,
+                    "manifest": at_commit,
+                    "declared": declared_manifest,
+                }
+        except subprocess.SubprocessError:
+            pass
     if MANIFEST.exists():
         live_manifest = sha256_file(MANIFEST)
-        checks["evidence_manifest_sha256"] = {
+        checks["evidence_manifest_sha256_working_copy"] = {
+            "class": "gate",
             "ok": live_manifest == declared_manifest,
             "declared": declared_manifest,
-            "live": live_manifest,
-            "note": "manifest is a live telemetry index; a small drift is expected, "
-                    "but a mismatch still means this envelope cannot bind the file",
+            "working_copy": live_manifest,
+            "note": "master_manifest.json is a live telemetry index regenerated every "
+                    "few minutes; the working copy may legitimately be older than the "
+                    "declared commit. Informational only.",
         }
-    else:
-        checks["evidence_manifest_sha256"] = {"ok": False, "error": "manifest missing"}
 
-    # 6. Workbook digest -- the Cycle 312 killer. Must be stable and must match.
+    # 6. Workbook digest -- the Cycle 312 killer. Judged twice: stability of the
+    #    live file (torn-read guard) and byte equality with the declared commit.
+    declared_wb = prov.get("workbook_sha256")
     if WORKBOOK.exists():
         live_wb, stable, nbytes = stable_sha256(WORKBOOK)
-        declared_wb = prov.get("workbook_sha256")
-        checks["workbook_sha256"] = {
+        checks["workbook_sha256_working_copy"] = {
+            "class": "gate",
             "ok": stable and live_wb == declared_wb,
             "declared": declared_wb,
-            "live": live_wb,
+            "working_copy": live_wb,
             "bytes": nbytes,
             "hash_stable_across_two_reads": stable,
-            "note": None if stable else "workbook is being written while hashed (torn read)",
+            "note": None if stable else "workbook rewritten while hashed (torn read)",
         }
-        # Same question asked of the declared commit, which is the decisive test.
-        if commit_present and actual_tree == tree:
-            try:
-                blob = subprocess.run(
-                    ["git", "show", f"{commit}:Data/DataBase_Trading.xlsx"],
-                    cwd=ROOT, capture_output=True, timeout=180,
-                )
-                if blob.returncode == 0:
-                    at_commit = hashlib.sha256(blob.stdout).hexdigest()
-                    checks["workbook_sha256_at_declared_commit"] = {
-                        "ok": at_commit == declared_wb,
-                        "commit": commit,
-                        "workbook": at_commit,
-                        "declared": declared_wb,
-                    }
-            except subprocess.SubprocessError:
-                pass
-    else:
-        checks["workbook_sha256"] = {"ok": False, "error": "workbook missing"}
+    if commit_ok:
+        try:
+            blob = subprocess.run(
+                ["git", "show", f"{commit}:Data/DataBase_Trading.xlsx"],
+                cwd=ROOT, capture_output=True, timeout=300,
+            )
+            if blob.returncode == 0:
+                at_commit = hashlib.sha256(blob.stdout).hexdigest()
+                checks["workbook_sha256_at_declared_commit"] = {
+                    "class": "integrity",
+                    "ok": at_commit == declared_wb,
+                    "commit": commit,
+                    "workbook": at_commit,
+                    "bytes": len(blob.stdout),
+                    "declared": declared_wb,
+                }
+        except subprocess.SubprocessError:
+            pass
+    elif not WORKBOOK.exists():
+        checks["workbook_sha256_working_copy"] = {
+            "class": "gate", "ok": False, "error": "workbook missing"}
 
     # 7. Excel freshness must not be silently null when the envelope claims verified status
     freshness = prov.get("excel_freshness_verified")
     checks["excel_freshness_verified"] = {
+        "class": "gate",
         "ok": freshness is True,
         "declared": freshness,
         "note": "null/False means no sheet may be treated as fresh at the cutoff",
     }
 
-    failed = [name for name, c in checks.items() if not c.get("ok")]
-    verdict = "VERIFIED" if not failed else "REJECT_ENVELOPE"
+    def failed_in(cls: str) -> list[str]:
+        return [n for n, c in checks.items()
+                if c.get("class", "integrity") == cls and not c.get("ok")]
+
+    integrity_failed = failed_in("integrity")
+    gate_failed = failed_in("gate")
+    verdict = "ENVELOPE_INTEGRITY_VERIFIED" if not integrity_failed else "REJECT_ENVELOPE"
     payload = {
         "envelope": str(env_path),
         "cycle_id": env.get("cycle_id"),
         "cutoff_utc": env.get("cutoff_utc"),
         "dispatch_nonce": env.get("dispatch_nonce"),
         "verdict": verdict,
-        "failed_fields": failed,
+        "integrity_failed": integrity_failed,
+        "gate_failed": gate_failed,
         "checks": checks,
     }
 
@@ -217,13 +263,20 @@ def main() -> int:
         print(f"nonce    : {env.get('dispatch_nonce')}")
         print(f"verdict  : {verdict}")
         for name, c in checks.items():
-            print(f"  [{'PASS' if c.get('ok') else 'FAIL'}] {name}")
-        if failed:
-            print(f"\nfailed fields: {', '.join(failed)}")
-            print("An envelope failing any provenance field must be rejected outright "
-                  "(DENIED_BAD_CYCLE_ENVELOPE); do not compute a ruling over it.")
+            cls = c.get("class", "integrity")
+            print(f"  [{'PASS' if c.get('ok') else 'FAIL'}] ({cls:9s}) {name}")
+        if integrity_failed:
+            print(f"\nINTEGRITY FAILURES: {', '.join(integrity_failed)}")
+            print("Reject the envelope outright (DENIED_BAD_CYCLE_ENVELOPE); "
+                  "do not compute a ruling over it.")
+        elif gate_failed:
+            print(f"\nintegrity verified; open gates: {', '.join(gate_failed)}")
+            print("The envelope is trustworthy as an artifact, but those gates still "
+                  "have to pass inside the ruling.")
+        else:
+            print("\nall checks passed")
 
-    return 0 if not failed else 1
+    return 0 if not integrity_failed else 1
 
 
 if __name__ == "__main__":

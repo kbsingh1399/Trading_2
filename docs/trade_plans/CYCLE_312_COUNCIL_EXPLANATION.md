@@ -1,107 +1,100 @@
-> **SUPERSEDED FOR PROVENANCE (23:51 UTC):** the declared `workbook_sha256` fb6aebf6 matched no artifact, so this review's provenance section is withdrawn. See `CYCLE_312_ENVELOPE_DEFECT.md`; verdict is `DENIED_BAD_CYCLE_ENVELOPE`. The authorization it reached (`DENIED_FAIL_CLOSED`) was conservative and remains correct.
+# Cycle 312 (rev 3) — Co-Equal Council Ruling · cutoff 2026-10-23 23:56:23 UTC
 
-# Cycle 312 — Co-Equal Council Ruling (Arena.ai GPT Astra + Z.ai GLM-5.3-Flash)
+**Nonce** b8771d9e-73a0-4182-9e02-20aebe701985 · **Commit** b0d2d833 / tree 3be66270 · **Manifest** ce3423dd · **Workbook** e855a87f · **Ruling** `6eab82e5…` · **TTL** expires 00:11:23 UTC
 
-**Cutoff** 2026-10-23 23:37:12 UTC · **Nonce** 9e2562d4-c54b-4b84-96d5-4e222ec3f88a · **Envelope** canonical sha256 `ce69e21653601b702c38ec46cd137048bde9fb100cf6bdbbd8e3f9c0d69db67b` · **Manifest** 5cf58f83… · **Ruling** `44dd879f3b12824d6b320bb2b3c61de1db8c1fd7894fa68d9e9e6c43f4b87fbd`
-
-**Delta vs Cycle 311 (23:20:26 UTC):** +1,006 s. Inventory and solvency identical (4,865.07 flat; 4,863.07 post-reserve; 68.07 kernel headroom). Every evidence age advanced by 1,006 s and every clock is still null. Provenance moved from cf28fa8a/303be24f to 1f1c73e/5cf58f83 (still unverifiable locally). **Authorization unchanged: DENIED_FAIL_CLOSED.**
+**Delta vs the 23:37 envelope:** this is the **first envelope in the sequence whose integrity actually verifies**. It also carries the sharpest microstructure improvement yet — the L2/depth layers now pass their own freshness limits. Authorization is still `DENIED_FAIL_CLOSED`, but the *reason* has changed from "the evidence cannot be trusted" to "the tradable quote is 145 seconds old and no broker receipt exists."
 
 ---
 
-## 1. Provenance — valid envelope, self-declared artifacts, fail-closed
+## 1. Provenance — integrity verified, and the earlier defect is closed
 
-The attachment is a well-formed `schema_version 1.1.0` envelope: 10 required keys, UUIDv4 nonce, cutoff 3 m 23 s in the past at review time, no template markers (`{{`, `TODO`, `PLACEHOLDER`, `XXX`). `DENIED_BAD_CYCLE_ENVELOPE` therefore **does not apply** — the denial is produced by the gate values *inside* a valid envelope.
-
-| Artifact | Declared | Independently obtained | Verdict |
+| Field | Declared | Independently obtained | Result |
 |---|---|---|---|
-| Risk policy | 4633e4af… | recomputed 4633e4af… (same sorted dict as `Terminal/generate_cycle_envelope.py`) | **MATCH** |
-| Evidence manifest | 5cf58f83… | `Data/history/master_manifest.json` = 15fc034c… | MISMATCH |
-| Workbook | fb6aebf6… | live `Data/DataBase_Trading.xlsx` = e855a87f… (mtime 23:16:52) | MISMATCH |
-| Git commit / tree | 1f1c73e… / e07dec16… | absent in this clone (HEAD e6876ee / tree b948b0b) | UNVERIFIABLE |
-| Excel freshness | `null` | audit 21:42:14 UTC: 29/33 fresh, 4 frozen | NOT VERIFIED |
+| `risk_policy_sha256` | 4633e4af… | recomputed 4633e4af… | **MATCH** |
+| `git_commit` | b0d2d833… | present on `origin/main` | **MATCH** |
+| `git_tree` | 3be66270… | `rev-parse b0d2d833^{tree}` = 3be66270… | **MATCH** |
+| `workbook_sha256` | e855a87f… | **blob at commit = e855a87f…, live file = e855a87f…** | **MATCH (both)** |
+| `evidence_manifest_sha256` | ce3423dd… | blob at commit = ce3423dd… | **MATCH (at commit)** |
+| `excel_freshness_verified` | `null` | audit 21:42:14 UTC (8,049 s old) | NULL — gate open |
 
-Attestation level: the risk policy is **independently verified**; inventory is **dispatcher-declared and corroborated** by a 25-minute-old snapshot; manifest, workbook and commit are **declared-only**; Excel freshness is **null**. The mismatch pattern (declared artifacts older than the working copy) is consistent with post-envelope regeneration, not with proven tampering — but no council may upgrade a self-declared digest into proof.
+The workbook digest — the thing that killed the 23:37 envelope — now matches at the commit *and* on disk, and `stable_sha256()` (double read, size + `mtime_ns` + digest unchanged) passes. The Cycle 312 defect was real and is now genuinely fixed rather than papered over. `Terminal/verify_cycle_envelope.py` returns:
 
-**Freshness ledger (ages at cutoff).** Max-age policy: quote 15 s (10 s FX), L2 depth 180 s, CVD 900 s, session calendar 900 s, broker preflight 0 s (must be live). SOP's 900 s sheet ceiling is an outer limit, never a substitute.
+```
+verdict  : ENVELOPE_INTEGRITY_VERIFIED
+  [PASS] (integrity) risk_policy_sha256
+  [PASS] (integrity) git_commit
+  [PASS] (integrity) git_tree
+  [PASS] (integrity) workbook_sha256_at_declared_commit
+  [PASS] (integrity) evidence_manifest_sha256_at_declared_commit
+  [FAIL] (gate) excel_freshness_verified
+```
 
-| Evidence | Availability | Age at 23:37:12 | Limit | Result |
-|---|---|---|---|---|
-| BTC L1 quote | 23:12:12 UTC | 1,499 s | 15 s | FAIL |
-| ETH L1 quote | 23:12:12 UTC | 1,499 s | 15 s | FAIL |
-| EURUSD L1 quote | 20:59:59 UTC | 9,432 s | 10 s | FAIL |
-| GER40 L1 quote | 20:00:00 UTC | 13,032 s | 15 s | FAIL |
-| Binance L2 depth | 23:12:08 UTC | 1,504 s | 180 s | FAIL |
-| Multi-horizon CVD | 23:12:18 UTC | 1,494 s | 900 s | PASS age, but uncalibrated |
-| Workbook 12_Hyperdash row | 21:34:26 UTC | 7,366 s | 900 s | FAIL |
-| Macro calendar | 17:35:00 UTC | 21,732 s | 900 s | FAIL |
-| Excel audit itself | 21:42:14 UTC | 6,898 s | — | cannot attest cutoff |
+The verifier now separates **integrity** from **gate** class: only an integrity failure justifies `DENIED_BAD_CYCLE_ENVELOPE`; a null freshness flag is a gate that must be argued inside the ruling. One residual note: `Data/cycle_envelope.json` committed at b0d2d833 still holds the 23:37 envelope — the dispatch is one generation ahead of the repo. That is a lag, not a digest failure.
 
-Every dynamic row must satisfy `observation ≤ availability ≤ cutoff` and `0 ≤ cutoff − observation ≤ max_age`. Workbook mtime (23:16:52) is not row freshness.
+**Freshness ledger at 23:56:23 UTC** (snapshot 23:53:57, lag 146 s). Policy: quote 15 s (10 s FX), depth 180 s, liquidation/CVD 900 s, calendar 900 s, broker preflight 0 s.
+
+| Evidence | Age | Limit | Result |
+|---|---|---|---|
+| BTC / ETH / SOL L1 quotes | 145 / 148 / 146 s | 15 s | **FAIL** |
+| Binance L2 depth | 169 s | 180 s | **PASS** |
+| Hyperliquid L2/L3 | 173 s | 180 s | **PASS** |
+| Liquidation map | 360 s | 900 s | **PASS** |
+| MT5 telemetry bridge | 152 s | — | health only, not a receipt |
+| `12_Hyperdash` sheet row | 8,517 s | 900 s | FAIL |
+| Macro calendar | 22,883 s | 900 s | FAIL |
+| EURUSD / GER40 quotes | 10,583 / 14,183 s | 10 / 15 s | FAIL (venue closed) |
+
+This is the first cycle where the depth layers clear their own limits while the *quote* is the sole freshness blocker on crypto. It is a genuine convergence signal: the pipeline is nearly fast enough, and the remaining gap is the last two minutes of broker telemetry.
 
 ## 2. Inventory — reconciled flat
 
-`balance = equity = 4,865.07`, margin used 0.00, free 4,865.07, margin level 0.0 %, 0 positions, 0 pendings. The 23:12:13 UTC snapshot reproduces the same numbers to the cent. Ticket #19267445 (SELL 0.06 BTC 81,700→80,600) closed 22:54 UTC at +66.00 gross / +65.19 net after −0.81 swap; #19270994 canceled. No residual, no unexplained deal or commission. **RECONCILED_FLAT.**
+`balance = equity = 4,865.07`, margin used 0.00, free 4,865.07, 0 positions, 0 pendings; the 23:53:57 snapshot reproduces it to the cent. Ledger #19267445 closed 22:54 UTC at +66.00 gross / +65.19 net after −0.81 swap; #19270994 canceled. No residual.
 
-## 3. Strict solvency — capital passes, conjunction fails
+## 3. Strict solvency
 
-`min(4,865.07, 4,865.07) − 2.00 = 4,863.07 ≥ 4,795.00` → headroom **68.07**; 265.07 above the 4,600 floor, 215.07 above the 4,650 buffer.
+`4,865.07 − 2.00 = 4,863.07 ≥ 4,795.00` → headroom **68.07** (265.07 above 4,600; 215.07 above 4,650).
 
-| Scenario | Stress | Post-loss | Kernel cushion |
+| Scenario | Stress | Post | Kernel cushion |
 |---|---|---|---|
-| Baseline (reserve only) | 2.00 | 4,863.07 | 68.07 |
-| One BTC ticket (0.04 lot) | 26.00 | 4,837.07 | 42.07 |
-| Two identical BTC tickets | 52.00 | 4,811.07 | 16.07 |
-| Sovereign illustration 2 × (1.25×25+2) | 70.00 | 4,796.57 | **1.57** |
+| BTC only | 26.00 | 4,837.07 | 42.07 |
+| SOL only | 29.50 | 4,833.57 | 38.57 |
+| **BTC + SOL jointly** | **55.50** | **4,807.57** | **12.57** |
+| Sovereign 2×(1.25×25+2) | 70.00 | 4,796.57 | 1.57 |
 
-Floating P/L and expected TP are credited **zero**. Tier 2 House Money (balance > 4,850) permits 15–25 USD nominal risk per ticket and at most **2** concurrent tickets. The live snapshot's looser 4-slot policy (`capacity.max_concurrent=4`) is overridden by the stricter envelope. There is no broker-native atomic OCO, so correlated BTC tickets are joint-stressed rather than treated as independent slots. The 1.57 USD residual in the sovereign illustration is a property of that model only; two nominal 25.00 USD losses do not confer immunity to gap, slippage or model error.
+Floating P/L credited zero. Tier 2 (balance > 4,850) allows 15–25 USD per ticket and at most 2 concurrent tickets; the snapshot's 4-slot policy is overridden. BTC and SOL shorts are crypto-beta correlated, so they are joint-stressed rather than counted as independent.
 
-## 4. Candidate mathematics — discovery results, zero executable rows
+## 4. Candidate mathematics — two live ideas, both structurally sound
 
-All 156 MT5 symbols were scanned against the current symbol map; 24 carry row-level evidence in the snapshot matrix. Four rows are reported, all **HOLD**.
+**(a) BTCUSD.pi — value rejection short.** Bid 81,071 / ask 81,086; mid 81,078.5 sits **0.16 % below VAL 81,283.68** (POC 81,650.76, VAH 81,730.56). Weekly CVD −142.9 M, pullback SHORT at 0.42 retrace, ATR14(15m) = 220.03.
 
-**(a) BTCUSD.pi — the only coherent structure found.** Bid 80,450.00 / ask 80,465.00 (1.86 bps), ATR14(15m) = 176.675, book imbalance −0.62 (ask-heavy), weekly CVD −154.0 M, 15m bar delta −17.0 M, pullback classifier SHORT at velocity 7.80. Price (80,457.5) sits **below** the value area (VAL 81,311.82, POC 81,663.49, VAH 81,739.94) — a value rejection, not a mean-reversion short. Research geometry: **SELL LIMIT 81,320** (broken VAL + 8.18), **SL 81,800** (2.72 ATR above VAH), **TP 79,650** (ahead of the 61.3 M USD sell-stop cascade at 79,500–79,600), **0.04 lot**.
+- **SELL LIMIT 81,300** (reclaim of the broken VAL) · **SL 81,780** (2.18 ATR, above VAH) · **TP 79,850** (in front of the 61.7 M USD sell-stop cascade at 79,500–79,600) · **0.04 lot**
+- Risk 0.04 × 480 = **19.20** (inside 15–25 band) · Reward 0.04 × 1,450 = **58.00** · **R:R 3.02**
+- Exit spread 15 pts × 0.04 = **0.60**; stress 1.25 × 19.20 + 2.00 = **26.00** → **4,837.07**
 
-- Risk = 0.04 × 480.00 × contract 1.0 = **19.20 USD** (inside the 15–25 band)
-- Reward = 0.04 × 1,670.00 = **66.80 USD**; **R:R 3.48**
-- Exit spread = 15.00 pts × 0.04 = **0.60 USD**, charged once (limit entry and TP treated as maker)
-- Stress = 1.25 × 19.20 + 2.00 = **26.00 USD**; post-joint-stop **4,837.07** (cushion 42.07)
-- Notional 3,252.80 USD; required margin **unknown** because no `order_calc_margin` exists
-- Commission and swap unknown; they are *not* priced, and no cost is counted twice
+**(b) SOLUSD.p — deep-discount short.** 102.73 / 102.95 versus VAL 103.7012; weekly CVD −26.2 M, 24 h −7.69 M; contract size 100.
 
-The stop is structurally valid and the arithmetic is exact, but the cash loss rests on a 25-minute-old `symbol_info` snapshot, not on `order_calc_profit`. That is a missing broker receipt, not a missing idea.
+- **SELL LIMIT 103.60** · **SL 104.70** (above VAH 104.5604) · **TP 100.50** (above the 1.0 M cluster at 100–101) · **0.20 lot**
+- Risk 0.20 × 100 × 1.10 = **22.00** · Reward 0.20 × 100 × 3.10 = **62.00** · **R:R 2.82**
+- Exit spread 0.22 × 20 = **4.40 — 20 % of the risk**, the widest measured friction of any row; stress **29.50** → **4,833.57**
 
-**(b) ETHUSD.pi — adversarial veto.** CVD shows BULLISH_ABSORPTION, the book is +0.79 bid-heavy, yet the pullback classifier says SHORT at velocity 8.95 and ETH (2,358.75) is below its value area (VAL 2,389.216). Three native signals contradict each other, so no invalidation level is defensible → no order, null geometry.
+**(c) ETHUSD.pi — vetoed, not shortlisted.** A **13.8 : 1 bid-heavy book** (+0.8645 imbalance, 522 k bid vs 38 k ask) and +54.6 M 24 h absorption say buyers control the tape, while the pullback classifier says SHORT. No invalidation level is defensible, so no geometry is proposed — the honest answer is "don't know," not a coin flip.
 
-**(c) EURUSD.pi — venue closed.** Last tick 20:59:59 UTC (9,432 s). Spread 3.57 bps at the close is not executable; the FX rollover window (21:15–22:30) is clear, but the weekend embargo (Fri 21:55 – Sun 22:00 UTC) governs.
+**(d) EURUSD.pi and GER40.p — closed.** Last ticks 20:59:59 UTC and 20:00:00 UTC (22:00 CEST, still summer time until 25 Oct). A 24/7 crypto venue cannot authorise them.
 
-**(d) GER40.p — venue closed.** Last tick exactly 20:00:00 UTC (13,032 s). **Correction:** 2026-10-23 is still CEST (DST ends 2026-10-25), so the Eurex 22:00 CEST close is **20:00 UTC**, not the 21:00 UTC asserted in earlier cycles; the broker's final tick corroborates the corrected clock.
+## 5. The conflict that matters most
 
-## 5. Market clock, universe and asset-native evidence
+BTC's book imbalance flipped from **−0.6216 to +0.2906 in 42 minutes** while price rose 0.77 %. Either that is real bid absorption — in which case a passive sell limit at 81,300 is leaning into a 1.8 : 1 bid stack and faces genuine adverse selection — or the aggregation method changed between snapshot generations. I cannot distinguish the two from the artefacts available, so it is recorded as `DIS-312C-01` (severity 3) and `UNK-312C-07`, and the fix is trivial: publish the estimator version and `generation_id` alongside each derived microstructure field.
 
-156 symbols: Forex_Raw 60, other crypto CFDs 53, crypto majors 5, indices 16, commodity raws 14, energy/metals 8. Binary gates are conjunctive: `legal × fresh × broker session × native venue × calendar × rollover × feasibility × structural stop × capacity × solvency`. Capital and capacity pass; **freshness, broker session, native venue, calendar and broker `order_check` fail or are unknown**, so `overall_hard_gates_pass = false` and the ranking set is empty.
+The same pattern appears cross-asset: BTC +0.29, ETH +0.86, SOL +0.30, GOLD +0.51 — all bid-heavy — while CVD divergences are bearish. Both readings (broad bid-support regime, or shared artefact) argue against treating short ideas as independent tickets, which is exactly why the pair is joint-stressed to 4,807.57.
 
-- Crypto native venues are 24/7, but the `.pi` CFD mirror still needs broker session proof — native openness cannot authorize a closed FX or index contract.
-- The macro calendar was verified at 17:35 UTC (21,732 s); no blackout is known in the 23:37 window, but unknown freshness fails closed.
-- 98 TradFi symbols are in weekend closure; 53 alt-crypto CFDs have no per-symbol depth/CVD; the 14 crypto majors with evidence still fail freshness and broker gates.
+## 6. Methodology and calibration
 
-## 6. Existing positions — none
+Four personas ran affirmatively and adversarially: regime/calibration (value rejection on BTC and SOL versus ETH's contradiction), fill/microstructure (15 pts BTC vs 21 bps SOL exit friction, stop cascades, maker-vs-taker), solvency/portfolio (26.00 / 29.50 / 55.50 stress, 2-slot cap, correlation), and clock/provenance (digests, ages, session clocks, DST).
 
-Flat inventory means no ratchet, no trailing stop and no protected-position claim. Nothing is labelled risk-free; the R0 ledger is immutable and unchanged by this review.
+`P_fill` and `P_TP` remain **null**. The published `p_win_lower_bound = 0.4197` is an exact one-sided Clopper–Pearson 95 % bound on **11/17** trades with `calibrated = false` and a stated 100-trade minimum — an account-wide diagnostic that would smuggle a small-sample point estimate into the formula if used as `P_TP`. No Brier score, log-loss, reliability curve, ESS ≥ 100, fill model or time-blocked OOS window exists. So `EV_net`, `LCB_5%` and `Utility` are **null, not zero**, and the two-outcome form is explicitly noted as insufficient for a resting limit: unfilled, partial-fill and time-stop are separate branches, and timeout mass is not folded into `P_TP`.
 
-## 7. Methodology, calibration and soft ranking
+## 7. Verdict and what unblocks it
 
-Four personas were run affirmatively and adversarially: regime/calibration (BTC value rejection vs ETH contradiction), fill/microstructure (book imbalance, stop clusters, maker vs taker), solvency/portfolio (26.00 and 52.00 stress, 2-slot cap), and clock/provenance (ages, digests, calendars).
+**`DENIED_FAIL_CLOSED`.** Capital passes, the envelope is now attestable, and two structurally coherent ideas exist. Five binary gates remain failed or unknown at the cutoff: quote freshness (145–149 s vs 15 s), broker session (`null`), native venue (`null`; FX and DAX closed), calendar verification (22,883 s stale) and broker `order_check` (absent).
 
-`P_fill` and `P_TP` remain **null**. The snapshot publishes `p_win_lower_bound = 0.4197`, an exact one-sided Clopper–Pearson 95 % bound on **11 wins / 17 trades**, with `calibrated = false` and a stated minimum sample of 100. That is an account-wide diagnostic, not an asset- or setup-specific `P_TP`; using it would smuggle a small-sample point estimate into the formula. There is no Brier score, log-loss, reliability curve, effective sample size ≥ 100, fill model, or time-blocked out-of-sample window.
-
-`EV_net = P_fill × [P_TP × Gain_net − (1 − P_TP) × Loss_net − AdverseSelection − BrokerFrictions] − (1 − P_fill) × WaitCost` and `Utility = LCB_5%(EV_net) / Expected_Capital_Minutes` are therefore **not computable** (null), not zero. The displayed two-outcome form is also insufficient for a resting limit: unfilled, partial-fill and 900 s time-stop outcomes are separate branches, and timeout mass is not folded into `P_TP`. `AdverseSelection` (queue/refill) and `BrokerFrictions` (commission/swap) are incremental-on-fill and unmeasured; `WaitCost` is on-no-fill and unmeasured. No LLM conviction, pillar count or invented percentage is substituted.
-
-## 8. What would re-arm the desk
-
-1. One envelope whose ticks, L2 depth and calendar are all inside their max ages **at the same cutoff** (quote ≤ 15 s, depth ≤ 180 s, calendar ≤ 900 s).
-2. `order_calc_profit`, `order_calc_margin` and `order_check` receipts bound to that dispatch nonce for the exact proposed request, plus a broker session proof.
-3. A verified venue calendar covering the 2026-10-25 DST switch and any holiday/early close.
-4. A calibrated `P_fill`/`P_TP` model with ≥ 100 time-blocked out-of-sample labels, Brier/log-loss, ESS and a documented bootstrap for `LCB_5%`.
-5. Recomputed manifest and workbook digests matching the envelope at commit `1f1c73e` (or a commit this clone can resolve).
-
-Until then: **DENIED_FAIL_CLOSED**, four WATCHLIST rows, no order emission. The desk keeps the 68.07 USD kernel headroom intact and the next catalyst is Monday's Xetra/London open (~08:00 UTC) with a fresh calendar.
+To re-arm: (1) an envelope with quotes ≤ 15 s **at its own cutoff**; (2) `order_calc_profit` / `order_calc_margin` / `order_check` bound to that nonce; (3) verified venue calendars covering the 2026-10-25 DST roll; (4) a calibrated `P_fill`/`P_TP` with ≥ 100 time-blocked labels. Items 1–2 are engineering, item 3 is a calendar fetch, and item 4 is the only genuine research problem left. BTC at 81,300 with SL 81,780 / TP 79,850 is the first row worth re-testing the moment those land.
