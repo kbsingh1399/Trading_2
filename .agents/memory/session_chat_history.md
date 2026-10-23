@@ -62389,3 +62389,11 @@ You may create 12_Hyperdash and 13_Hyperliquid where you dump all intelligenve a
   * Role D (`4671285e`): Active (Market clock & provenance)
 - **Councils**: Arena.ai (GPT Astra) and Z.ai (GLM-5.3-Flash) generating via Chrome CDP 9222.
 - **Desk Posture**: Flat cash baseline (4,865.07 USD); reactive standby for swarm and council completion.
+
+---
+### Turn Log: Fixed DENIED_BAD_CYCLE_ENVELOPE Bug, Oct 30 Goal Renamed & Swarm Harvested (Cycle 311)
+- **Timestamp**: 2026-10-23 23:26:00 UTC / 2026-10-24 04:56:00 IST
+- **Bug Fixed**: In `Data/Manditory/Arena_GLM_Standard_Prompt.md` and `Terminal/dispatch_dual_council.py`, the cycle envelope is now directly embedded as a complete JSON block inside the prompt. This resolved Z.ai's fail-closed `DENIED_BAD_CYCLE_ENVELOPE` error. Fresh 15,170-character prompt re-dispatched to Z.ai and Arena.ai via Chrome CDP 9222.
+- **Goal File Renamed & Updated**: Renamed to `PASS_BLUEBERRY_PHASE_1_BY_OCT_30_2026.md` in `docs/goals/` and `Data/Manditory/`. Mission deadline updated to Friday, 30th October 2026 (23:59 UTC). Explicitly authorized 24/7 continuous weekend crypto perpetual execution on Blueberry Markets. All governance links updated.
+- **Swarm Harvest Complete**: Role A, B, C, D completed their quantitative audits and were cleanly pruned. Track 1 marked `COMPLETED` in `Data/cycle_state.json`.
+- **Dual-Repo Parity**: Verified 100% byte-for-byte parity across 19,480 files.
