@@ -562,6 +562,9 @@ def dump_auction_structure_to_excel(
         wb = openpyxl.load_workbook(excel_path)
         if sheet_name in wb.sheetnames:
             wb.remove(wb[sheet_name])
+    except Exception as e:
+        log.error(f'Could not load Excel: {e}')
+        return False
 
     ws = wb.create_sheet(title=sheet_name, index=target_index)
 

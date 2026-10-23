@@ -18,6 +18,13 @@ proof of:
 
 from __future__ import annotations
 
+try:
+    from logger_config import stamp_sheet_completion_ist, get_current_timestamps
+except ImportError:
+    stamp_sheet_completion_ist = None
+    get_current_timestamps = None
+
+
 import datetime
 import json
 import logging
@@ -33,11 +40,6 @@ try:
 except ImportError:
     raise ImportError("openpyxl is required. Run 'pip install openpyxl'.")
 
-try:
-    from logger_config import stamp_sheet_completion_ist, get_current_timestamps
-except ImportError:
-    stamp_sheet_completion_ist = None
-    get_current_timestamps = None
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 DATA_DIR = ROOT / "Data"

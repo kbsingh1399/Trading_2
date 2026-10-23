@@ -1,8 +1,3 @@
-try:
-    from logger_config import stamp_sheet_completion_ist, get_current_timestamps
-except ImportError:
-    stamp_sheet_completion_ist = None
-    get_current_timestamps = None
 #!/usr/bin/env python3
 """
 Data/Excel_Modules/11_Technical.py
@@ -25,6 +20,13 @@ Position: Index 18 (immediately following '10_Whale_Orders').
 """
 
 from __future__ import annotations
+
+try:
+    from logger_config import stamp_sheet_completion_ist, get_current_timestamps
+except ImportError:
+    stamp_sheet_completion_ist = None
+    get_current_timestamps = None
+
 
 import argparse
 import datetime
