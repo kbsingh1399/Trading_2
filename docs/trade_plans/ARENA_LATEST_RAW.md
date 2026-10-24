@@ -1,161 +1,74 @@
-\n📚 **Active Skills Loaded & Applied:** `@[trader-signal]`, `@[trader-risk]`, `@[market-ingest]`, `@[market-pattern]`, `@[adaptive-wfo-epoch]`, `@[sharpe-ratio-non-iid-corrections]`, `@[time-series-decomposer]`, `@[clean-code]`, `@[systematic-debugging]`\n
-⚠️ **Execution qualifier:** These methodologies were applied in a deterministic single-controller audit. This environment exposes no compatible subagent API, so Arena.ai, Z.ai, the four named subagents, and the mandatory 100 independent competitors could not be created or authenticated. Their execution status is `BLOCKED_NO_SUBAGENT_BACKEND`; no agents or receipts are simulated.\n
-\n```\n{
-  "schema_version": "1.0.0-audit",
-  "cycle_id": "325",
-  "cutoff_utc": "2026-10-24 09:46:49 UTC",
-  "evidence_manifest_sha256": "0a886e0cb9dd2b1d3eeab8a171d4dddfe8d4da0d9333e64859822518b60f1b82",
-  "prompt_sha256": "5f9459010734cdf8be1c8c6295c677df140d44e12e93cea70446d9df113b6ff0",
+\n📚 **Active methodologies applied:** statistical-regime review, broker-risk arithmetic, timestamp/causality validation, SHA-256 verification, microstructure evidence auditing, and systematic discrepancy analysis. Named skill plugins and independent council agents were not available; I am not claiming they were loaded.\n
+\n[ALERT] TELEMETRY STALE WARNING: `Data/DataBase_Trading.xlsx / 00_MT5_Account_Telemetry` is stale (Last updated: 2026-10-24 11:43:18 UTC vs Current Cycle: 2026-10-24 12:17:58 UTC).\n\n[ALERT] TELEMETRY STALE WARNING: `Data/forex_factory_live.json` is stale (Last updated: 2026-10-19 11:21:58 UTC vs Current Cycle: 2026-10-24 12:17:58 UTC).\n\n[ALERT] TELEMETRY STALE WARNING: `Data/macro_calendar.json` verification is stale (Last updated: 2026-10-24 11:08:17.591729 UTC vs Current Cycle: 2026-10-24 12:17:58 UTC).\n\n# Cycle 326 — DENIED_FAIL_CLOSED\n\n\n**Disposition: HOLD the proposed BTC order; no new order authorized or submitted.** Capital arithmetic passes for one hypothetical ticket, but receipt freshness, evidence binding, market confluence, and calibrated utility do not.\n\n## §1. Provenance and temporal causality\n\n\nThe attached envelope matches the repository’s `Data/cycle_envelope.json` content. That establishes transcription consistency—not authenticated market evidence.\n\n**Two clocks must remain separate:**\n\n- Immutable Cycle 326 cutoff: **11:08:24 UTC**.\n- Requested current-cycle audit time: **12:17:58 UTC**.\n\nThe previous response’s 12:04 observations cannot be imported into an 11:08 decision as contemporaneous evidence.\n\n### Verification findings\n\n\n| Artifact | Finding |\n| --- | --- |\n| Envelope | Actual file SHA-256: `2862e7643c3275d0156ff6862b94c3b9d7c2d965551083b026e5f63ce0033f6d`; no independently supplied expected envelope digest |\n| Workbook | Actual SHA-256: `cbb5f52af2b63b70f9f256ee72b1fd75243755b4cbbd2b5bc9b131d44170079a`; **does not match envelope claim** |\n| Repository prompt | Actual SHA-256: `0a786382238694ec9b227ab31bf239737060dc3fec8fa6174d122d58e1813058`; **does not match envelope claim** |\n| Mirrored prompt | Matches the repository prompt byte-for-byte |\n| Claimed historical commit | `53524a…` not available in the local object database; historical tree not verified |\n| Risk policy / evidence manifest | Claimed artifacts not located and authenticated |\n| Master history manifest | Actual SHA-256: `16932bc9b736ffb06a6d1d3db7bafe7bc710d9e540c1c6e17065448ac178e383`; not established as the claimed evidence manifest |\n| Receipt | Actual whole-file SHA-256: `fc437a9cf7718fee8a5afb5c5f0bcb7157afe3aa0f5eee92843a45d30ac6337e`; embedded digest uses an unspecified hashing convention |\n\n\nA receipt containing its own hash requires a documented exclusion/canonicalization rule. Common compact JSON serializations excluding `receipt_sha256` did not reproduce the embedded digest. **Receipt integrity remains unverified**, rather than conclusively diagnosing corruption from an unspecified convention.\n\n### Decisive freshness failure\n\n\n- Tick: **10:32:46 UTC**.\n- Receipt observation: **10:32:47 UTC**.\n- Envelope cutoff: **11:08:24 UTC**.\n- Tick age at cutoff: **2,138 seconds**.\n- Receipt age at cutoff: **2,137 seconds**.\n- Receipt age at current audit time: **6,311 seconds**.\n\nThe tick was one second old **when originally observed**, but the receipt was already **35m 37s old at envelope freeze**, breaching the 60-second observation-to-freeze gate.\n\nThe calendar was only **6.408 seconds old at the historical cutoff**, but is **4,180.408 seconds old now**. Historical freshness and current freshness therefore have different verdicts.\n\n## §2. Role A — statistical regime and dual-engine audit\n\n\n**Cycle-causal VR, ER, HAC regression, EMA ribbon, OU equilibrium, ATR, and impulse anchors are not supplied in the envelope or receipt.** Their 11:08 values cannot be reconstructed from the currently authenticated evidence.\n\nImportant correction to the earlier analysis: its HAC statistic tested **mean log-return drift**. This prompt specifies **OLS log-price-on-time slope with HAC covariance**. Those estimators are different; the earlier statistic must not be relabeled as this cycle’s required result.\n\nAffirmative candidate examination:\n\n- A short at **81,300** is above the receipt mid of **80,616.50**, consistent with passive sell-limit geometry.\n- That fact establishes neither `TREND_DOWN` nor `MEAN_REVERT`.\n- Without verified impulse endpoints, entry membership in the **0.618–0.702 zone** is unknown.\n- Without a cycle-causal OU equilibrium, the adverse-drift veto cannot be evaluated.\n\n**Model 1:** not demonstrated.\n
+**Model 2:** not demonstrated.\n
+**Regime disposition:** unverified; stand aside.\n\nNeither barrier probability nor the proposed drift adjustment is calibrated. Also, the OU notation should distinguish **equilibrium level** from **mean-reversion speed** to prevent unit errors.\n\n## §3. Role B — microstructure and order geometry\n\n\n| Check | Result |\n| --- | --- |\n| Receipt spread | 29 / 80,616.5 × 10,000 = **3.5973 bps**; historical spread gate passes |\n| Entry distance above mid | **$683.50**, approximately **84.78 bps** |\n| Stop distance | **$480** |\n| Target distance | **$1,450** |\n| Persistent backing wall | Not authenticated at cutoff |\n| Sweep/reclaim | Not demonstrated |\n| 0.786 shelf + ATR stop buffer | Not computable |\n| TP 5–10 bps ahead of opposing cluster | Not demonstrated |\n| Queue/fill-before-TTL model | Unavailable |\n| Five-minute adverse-selection estimate | Unavailable |\n\n\nAn actual future fill markout cannot be observed before the fill. Ex-ante admission must use a validated historical conditional markout estimator; post-fill markouts belong to monitoring.\n\nNo candidate is rejected merely because a wall is absent from this text; it is rejected because the required evidence has not been authenticated. Similarly, sampled wallet-price recurrence is weaker than continuous order-level persistence.\n\n## §4. Role C — independent broker mathematics\n\n\nFor the supplied contract size of one:\n\n| Quantity | Recalculation |\n| --- | --- |\n| Nominal stop loss | 0.04 × (81,780 − 81,300) = **$19.20** |\n| Gross target reward | 0.04 × (81,300 − 79,850) = **$58.00** |\n| Gross reward/risk | **3.02083** |\n| Spread allowance | 0.04 × 29 = **$1.16** |\n| Loss including stated spread allowance | **$20.36** |\n| Required margin at 50% | 0.04 × 81,300 × 0.50 = **$1,626.00** |\n| Initial margin utilization | **33.4219%** |\n| Initial margin level | **299.2048%** |\n| Free margin after initial allocation | **$3,239.07** |\n\n\nThese reproduce the receipt’s principal arithmetic. They do not constitute a fresh broker API confirmation.\n\n### Stress-model dispute\n\n\nThe prompt and receipt define different formulas:\n\n- Prompt: `1.25 × 19.20 + 1.16 + 2 = $27.16`.\n- Receipt: `1.25 × (19.20 + 1.16) + 2 = $27.45`.\n\nUse the **larger $27.45** conservatively until policy is reconciled.\n\n**Post-stress capital after global reserve:**\n\n`4,865.07 − 27.45 − 2.00 = $4,835.62`\n\n- Kernel surplus: **$40.62**.\n- Operating-buffer surplus: **$185.62**.\n- Hard-floor surplus: **$235.62**.\n\n**Capital gate: conditional arithmetic PASS. Overall admission: FAIL.**\n\n### Two-ticket capacity is not preserved automatically\n\n\nTwo identical 0.04 BTC orders would require **$3,252 margin**, or **66.84% utilization**, failing the 50% limit. They also fail the non-correlation requirement.\n\nAfter this hypothetical first order, only **$806.535** of margin capacity remains under the initial-equity cap.\n\nAt the same entry, 0.06 BTC requires **$2,439**, already slightly above the **$2,432.535** cap. Thus “0.04–0.06 lots preserves two-ticket capacity” is not a valid general invariant.\n\nThe prompt’s 0.10 BTC example also contains an arithmetic error: at **81,000**, 50% margin is **$4,050**, not $4,047.50.\n\n## §5. Role D — universe, availability, and freshness\n\n\nThe 98/58 universe split is an envelope assertion, not an authenticated symbol-by-symbol session audit. A single BTC `trade_mode=4` observation does not certify all 58 crypto contracts or continuous weekend availability.\n\nThe earlier, **post-cutoff** snapshot provided 11 requested asset observations, with only **five** passing 25 bps. That is useful diagnostic evidence but cannot validate Cycle 326’s universe count.\n\nAt **12:17:58**, additional stale workbook metrics include:\n\n- Technical indicators: **32m 18s** old.\n- CVD: **51m 04s** old.\n- Orderbook sheet: **27m 44s** old.\n- Auction structure: **26m 49s** old.\n\nWorkbook document modification at 12:02:29 does not refresh these underlying sheets. The latest inspected Git commit was 12:04:42; all four requested files were published in that commit, including the five-day-old Forex Factory content.\n\n**Diagnostic conclusion:** asynchronous/stale source content is established. A writer lock, daemon outage, or missing push is **not** established without runtime logs.\n\nThe `/graphify` query was attempted; the module is absent. No large code-file reading was substituted.\n\n## §6. Calibrated utility and affirmative discovery\n\n\nFor the proposed candidate:\n\n- Gross breakeven win probability: **24.8705%**.\n- If the $1.16 allowance applies only to losing outcomes: **25.9826%**.\n- If it is also deducted from winning outcomes: **26.3731%**.\n\nThe cost convention must be resolved before using any of these as an admission threshold. Commission, financing, fill uncertainty, and adverse selection remain additional unknowns.\n\n**P(fill), P(TP first | fill), EV, EV lower confidence bound, and capital-minute utility remain null.** The previous snapshot’s 17-trade calibration is neither sufficient nor cycle-causal proof for this candidate.\n\nAffirmative discovery therefore yields **one reviewable proposed setup, zero hard-gate survivors**. No alternate exact-price ticket is justified by authenticated cutoff evidence.\n\n## §7. Council ruling\n\n\n**DENIED_FAIL_CLOSED — HOLD / flat-cash defense.**\n\nNo independent council completion is claimed. No pending order was canceled, no position modified, and no order submitted.\n\nRe-entry requires a newly frozen evidence bundle, reproducible digests, a fresh matching broker receipt, cycle-causal statistical and microstructure evidence, calibrated utility, and joint margin/solvency checks.\n\n## §8. Continuous Kaizen inquest\n\n\n- **Skills and methodology optimization:** separate historical review from live authorization; publish an explicit hash canonicalization specification; bind all artifacts to nonce, cutoff, and generation ID; enforce per-sheet freshness; implement exactly specified HAC estimators with unit tests.\n- **Omitted risk dimensions:** correlated crypto fills, pending-order margin on joint activation, stop gaps, broker-specific financing, venue basis changes, wall cancellation between samples, cost double-counting, uncertain calendar coverage, and deadline-induced risk escalation.\n- **Algorithmic alternatives:** time-blocked walk-forward fill/win calibration; bootstrap joint utility uncertainty; Hawkes arrival models only after validation; Kalman basis estimation; volatility-aware stress scenarios; isotonic calibration with adequate out-of-sample data.\n\n```\n{
+  "schema_version": "1.1.0",
+  "cycle_id": "Cycle 326",
+  "cutoff_utc": "2026-10-24 11:08:24 UTC",
+  "evidence_manifest_sha256": "89a9ece3c156ba3ccf4c00fc3961f902405493efac2f629a30dec04c688f1ef3",
+  "prompt_sha256": "34c4a0a31b7a01c24dd6e33ec5b6502659ddef7962e593c64e37efd1b2f7e578",
   "dispatch_nonce": "e8e04f37-6a1e-408d-bcda-6af0ca912a4f",
   "provenance_status": "DENIED_BAD_CYCLE_ENVELOPE",
-  "inventory_status": "UNVERIFIED_EMBEDDED_CLAIM",
+  "inventory_status": "REPORTED_FLAT_NOT_CURRENTLY_BROKER_VERIFIED",
   "hard_gate_results": {
-    "independent_council_execution": {
-      "pass": false,
-      "status": "BLOCKED_NO_SUBAGENT_BACKEND",
-      "detail": "No host interface proved independent Arena.ai, Z.ai, four-persona, or 100-competitor execution."
-    },
-    "source_artifact_authentication": {
-      "pass": false,
-      "status": "DENIED_MISSING_SOURCE_ARTIFACTS",
-      "detail": "The declared cycle envelope, execution receipt, evidence manifest, master manifest, workbook, and canonical prompt files were absent from their declared checkout paths."
-    },
-    "git_provenance_binding": {
-      "pass": false,
-      "status": "DENIED_GIT_IDENTITY_MISMATCH",
-      "claimed_commit": "ed89a0199a088b2303430c3d632708076e20d5e8",
-      "observed_commit": "3ee602ad4b69d01ea39d3a68ba8b7a440d87ab24",
-      "claimed_tree": "4cdab54e24f99be1f34859e7671d7b1be98c8a30",
-      "observed_tree": "123dadbf871afa50662cc959b57a7a875992fba7"
-    },
-    "cutoff_causality": {
-      "pass": false,
-      "status": "DENIED_POST_CUTOFF_RECEIPT",
-      "required_relation": "tick_time < observed_at < cutoff_utc",
-      "cutoff_utc": "2026-10-24 09:46:49 UTC",
-      "tick_time_utc": "2026-10-24 10:32:46 UTC",
-      "observed_at_utc": "2026-10-24 10:32:47 UTC",
-      "tick_after_cutoff_seconds": 2757,
-      "observation_after_cutoff_seconds": 2758
-    },
-    "receipt_internal_quote_freshness": {
-      "pass": true,
-      "status": "CONDITIONALLY_RECOMPUTED_ONLY",
-      "tick_to_observation_seconds": 1,
-      "detail": "The quote is internally one second old, but both timestamps are post-cutoff and therefore inadmissible."
-    },
-    "excel_freshness": {
-      "pass": false,
-      "status": "DENIED_STALE_EXCEL",
-      "excel_freshness_verified": false,
-      "excel_audit_scorecard_fresh": false
-    },
-    "macro_calendar_freshness": {
-      "pass": false,
-      "status": "DENIED_STALE_CALENDAR",
-      "observed_local_verified_at": "2026-10-09T18:59:59.042408+00:00",
-      "age_at_cutoff_seconds": 1262809.957592,
-      "maximum_age_seconds": 900
-    },
-    "statistical_regime": {
-      "pass": false,
-      "status": "UNKNOWN",
-      "detail": "No cutoff-bound returns were supplied for VR(4), heteroskedastic z*, ER(48), HAC drift, OU equilibrium, Z-score, or volatility estimation."
-    },
-    "microstructure_and_wall_persistence": {
-      "pass": false,
-      "status": "UNKNOWN",
-      "detail": "No authenticated L2/L3 book, CVD, queue position, cancellation history, wall notional, or 180-second persistence evidence was supplied."
-    },
-    "auction_and_fibonacci_geometry": {
-      "pass": false,
-      "status": "UNKNOWN",
-      "detail": "No impulse anchors, ATR, 0.618/0.702/0.786 levels, EMA ribbon, VWAP shelves, value areas, or session extremes were supplied."
-    },
-    "probability_calibration": {
-      "pass": false,
-      "status": "UNKNOWN_UNCALIBRATED",
-      "detail": "P(fill), P(TP first given fill), confidence intervals, effective sample size, and out-of-sample diagnostics are unavailable."
-    },
-    "spread_gate": {
-      "pass": true,
-      "status": "CONDITIONALLY_RECOMPUTED_ONLY",
-      "reported_spread_bps": 3.6,
-      "recomputed_spread_bps": 3.59695,
-      "maximum_spread_bps": 25.0
-    },
-    "single_ticket_margin": {
-      "pass": true,
-      "status": "CONDITIONALLY_RECOMPUTED_ONLY",
-      "margin_required_usd": 1626.0,
-      "margin_utilization_pct": 33.421924,
-      "margin_level_pct": 299.204797
-    },
-    "single_ticket_solvency": {
-      "pass": true,
-      "status": "CONDITIONALLY_RECOMPUTED_ONLY",
-      "stressed_loss_usd": 27.45,
-      "post_candidate_and_global_reserve_equity_usd": 4835.62,
-      "remaining_kernel_cushion_usd": 40.62
-    },
-    "two_ticket_capacity": {
-      "pass": false,
-      "status": "DENIED_FOR_TWO_IDENTICAL_BTC_TICKETS",
-      "two_ticket_margin_usd": 3252.0,
-      "two_ticket_margin_level_pct": 149.601476,
-      "detail": "Two BTC tickets of 0.04 each violate both the 50% margin-utilization cap and the 200% minimum margin-level rule."
-    },
-    "receipt_authentication": {
-      "pass": false,
-      "status": "DENIED_UNVERIFIED_RECEIPT",
-      "detail": "The original receipt artifact and a defined digest preimage were unavailable. A provider label and embedded hash cannot authenticate themselves."
-    }
+    "nonce_consistency": "PASS",
+    "current_workbook_matches_claimed_digest": "FAIL",
+    "current_repository_prompt_matches_claimed_digest": "FAIL",
+    "historical_artifact_binding": "UNVERIFIED",
+    "receipt_digest": "UNVERIFIED_HASH_CONVENTION",
+    "receipt_observation_within_60s_of_cutoff": "FAIL",
+    "tick_age_at_cutoff_seconds": 2138,
+    "receipt_age_at_cutoff_seconds": 2137,
+    "calendar_fresh_at_historical_cutoff": "PASS_TIMESTAMP_ONLY",
+    "calendar_fresh_at_current_audit": "FAIL",
+    "statistical_regime": "UNVERIFIED",
+    "continuous_wall_persistence": "UNVERIFIED",
+    "calibrated_utility": "UNAVAILABLE",
+    "single_ticket_capital_arithmetic": "PASS_CONDITIONAL",
+    "single_ticket_initial_margin_arithmetic": "PASS_CONDITIONAL"
   },
   "universe_coverage": {
-    "claimed_total_assets": 156,
-    "claimed_tradfi_assets": 98,
-    "claimed_crypto_perpetuals": 58,
-    "claimed_spread_qualified_crypto": 11,
-    "independently_verified_live_assets": 0,
-    "coverage_status": "DENIED_UNVERIFIED_UNIVERSE",
-    "reason": "No symbol-by-symbol cutoff-causal trade-mode, quote, spread, clock, and evidence manifest was supplied."
+    "reported_total": 156,
+    "reported_tradfi_closed": 98,
+    "reported_crypto_open": 58,
+    "reported_spread_qualified": 11,
+    "authenticated_cutoff_universe_scan_count": 0,
+    "receipt_candidates_reviewed": 1,
+    "hard_gate_survivors": 0,
+    "post_cutoff_diagnostic_asset_count": 11,
+    "post_cutoff_diagnostic_spread_pass_count": 5
   },
   "account_tier_and_contingent_capacity": {
-    "claimed_capital_mode": "TIER_2_HOUSE_MONEY",
-    "claimed_balance_usd": 4865.07,
-    "claimed_equity_usd": 4865.07,
-    "hard_floor_cushion_usd": 265.07,
-    "operating_buffer_cushion_usd": 215.07,
-    "kernel_cushion_usd": 70.07,
-    "realized_headroom_after_global_reserve_usd": 68.07,
-    "candidate_stressed_loss_usd": 27.45,
-    "remaining_kernel_cushion_after_candidate_usd": 40.62,
-    "claimed_max_concurrent_tickets": 2,
-    "authorized_new_tickets": 0,
-    "status": "CAPITAL_ARITHMETIC_CONDITIONALLY_PASSES_BUT_ADMISSION_DENIED"
+    "basis": "EMBEDDED_ENVELOPE_NOT_FRESH_BROKER_QUERY",
+    "tier": "TIER_2_HOUSE_MONEY",
+    "base_capital_usd": 4865.07,
+    "kernel_usd": 4795.0,
+    "headroom_after_global_reserve_usd": 68.07,
+    "max_concurrent_tickets": 2,
+    "nominal_risk_min_usd": 15.0,
+    "nominal_risk_max_usd": 25.0,
+    "initial_margin_cap_usd": 2432.535,
+    "candidate_margin_usd": 1626.0,
+    "remaining_initial_margin_capacity_usd": 806.535,
+    "executable_new_ticket_capacity": 0
   },
   "global_contingency_usd": 2.0,
-  "existing_ticket_actions": {
-    "claimed_active_positions_count": 0,
-    "claimed_pending_orders_count": 0,
-    "action": "NO_BROKER_ACTION",
-    "status": "UNVERIFIED_INVENTORY",
-    "reason": "No fresh authenticated broker inventory pull is available. No placement, modification, or cancellation is authorized."
-  },
+  "existing_ticket_actions": [],
   "candidate_rows": [
     {
-      "candidate_id": "cycle325-btcusdpi-sell-limit-81300",
+      "candidate_id": "C326-BTC-SELL-LIMIT-81300",
       "symbol": "BTCUSD.pi",
-      "native_market": "CRYPTO_DERIVATIVE_CLAIMED",
-      "clock_status": "DENIED_POST_CUTOFF",
+      "native_market": "BROKER_CRYPTO_CFD",
+      "clock_status": "REPORTED_OPEN_RECEIPT_STALE",
       "quote_timestamp": "2026-10-24 10:32:46 UTC",
       "evidence_availability_timestamps": {
-        "tick_time_utc": "2026-10-24 10:32:46 UTC",
-        "observed_at_utc": "2026-10-24 10:32:47 UTC"
+        "receipt_observed_at": "2026-10-24 10:32:47 UTC",
+        "envelope_cutoff": "2026-10-24 11:08:24 UTC",
+        "current_audit": "2026-10-24 12:17:58 UTC"
       },
-      "evidence_max_age_seconds": 1,
-      "evidence_age_at_cutoff_seconds": -2757,
-      "row_causality_status": "DENIED_POST_CUTOFF",
+      "evidence_max_age_seconds": null,
+      "evidence_age_at_cutoff_seconds": 2138,
+      "row_causality_status": "RECEIPT_PRE_CUTOFF_BUT_STALE_SUPPORTING_EVIDENCE_UNBOUND",
       "authorization_expiry_utc": null,
       "side": "SELL",
       "order_type": "SELL_LIMIT",
@@ -163,52 +76,45 @@
       "stop": 81780.0,
       "target": 79850.0,
       "volume": 0.04,
-      "broker_risk_usd": 20.36,
+      "broker_risk_usd": 19.2,
       "broker_reward_usd": 58.0,
-      "rr": 2.8487229862,
+      "rr": 3.0208333333,
       "spread_cost_usd": 1.16,
       "stressed_loss_usd": 27.45,
       "post_joint_stop_balance": 4835.62,
       "p_fill": null,
       "p_win_given_fill": null,
-      "probability_calibration_status": "UNKNOWN_UNCALIBRATED",
-      "estimator_references": {
-        "lo_mackinlay_vr4": "NOT_COMPUTABLE",
-        "kaufman_er48": "NOT_COMPUTABLE",
-        "newey_west_drift": "NOT_COMPUTABLE",
-        "ou_equilibrium": "NOT_COMPUTABLE",
-        "barrier_first_probability": "NOT_COMPUTABLE",
-        "queue_fill_model": "NOT_COMPUTABLE"
-      },
+      "probability_calibration_status": "UNVERIFIED",
+      "estimator_references": [
+        "Required Lo-MacKinlay heteroskedastic VR(4): no authenticated cutoff sample",
+        "Required HAC log-price slope regression: not available",
+        "Broker arithmetic independently recomputed from supplied receipt"
+      ],
       "calibration_diagnostics": {
-        "walk_forward_validation": null,
-        "reliability_curve": null,
-        "brier_score": null,
-        "log_loss": null,
-        "non_overlapping_folds_verified": false
+        "cycle_causal_training_data": null,
+        "validated_out_of_sample_results": null
       },
       "effective_sample_size": null,
       "probability_confidence_intervals": null,
       "outcome_model_and_timeout_branches": {
-        "filled_then_target_gross_usd": 58.0,
-        "filled_then_stop_spread_inclusive_usd": -20.36,
-        "filled_then_stressed_loss_usd": -27.45,
-        "no_fill_wait_cost_usd": null,
-        "partial_fill_branch": null,
-        "timeout_branch": null,
-        "gap_or_slippage_branch": null
+        "ttl": null,
+        "branches_required": [
+          "NO_FILL_BEFORE_TTL",
+          "TP_FIRST_GIVEN_FILL",
+          "SL_FIRST_GIVEN_FILL",
+          "TIMEOUT_OR_OTHER_EXIT_GIVEN_FILL"
+        ],
+        "branch_probabilities": null
       },
       "cost_ledger_and_conditioning": {
-        "spread_raw": 29.0,
-        "spread_bps_recomputed": 3.59695,
-        "entry_distance_above_mid_usd": 683.5,
-        "entry_distance_above_mid_bps": 84.784,
-        "stop_distance_usd": 480.0,
-        "target_distance_usd": 1450.0,
-        "base_stop_loss_usd": 19.2,
-        "spread_inclusive_nominal_loss_usd": 20.36,
-        "stress_formula_used_by_receipt": "(19.20 + 1.16) * 1.25 + 2.00",
-        "stress_formula_policy_conflict": true
+        "gross_loss_usd": 19.2,
+        "gross_gain_usd": 58.0,
+        "quoted_spread_allowance_usd": 1.16,
+        "commission_usd": null,
+        "financing_usd": null,
+        "spread_booking_convention": "UNRESOLVED",
+        "stress_convention_used": "1.25*(19.2+1.16)+2",
+        "post_joint_stop_balance_includes_global_reserve": true
       },
       "wait_cost_usd": null,
       "ev_net_usd": null,
@@ -218,11 +124,11 @@
       "uncertainty_method": null,
       "adverse_selection_usd": null,
       "evidence_ids": [
-        "embedded-cycle-envelope-unverified",
-        "embedded-execution-preflight-receipt-unverified"
+        "Data/cycle_envelope.json",
+        "Data/execution_preflight_receipt.json"
       ],
       "verdict": "HOLD",
-      "fib_prime_ema_alignment": "UNKNOWN",
+      "fib_prime_ema_alignment": "UNVERIFIED_AT_CUTOFF",
       "fib_golden_zone_confluence": {
         "gp_0618": null,
         "gp_0650": null,
@@ -237,220 +143,73 @@
         "value_area_status": "UNKNOWN"
       },
       "rejection_reasons": [
-        "The broker tick and preflight observation occur 2757 and 2758 seconds after the immutable cutoff.",
-        "The source cycle envelope and receipt artifacts could not be independently authenticated.",
-        "The embedded Git commit and tree do not match the observed checkout.",
-        "Both Excel freshness flags are explicitly false.",
-        "The available macro calendar exceeds the 900-second freshness limit.",
-        "No calibrated P(fill) or P(TP first given fill) is available.",
-        "No VR(4), ER(48), HAC drift, OU, Z-score, ATR, or regime evidence is available.",
-        "No L2/L3, CVD, queue, sweep/reclaim, or 180-second wall-persistence evidence is available.",
-        "No Fibonacci, EMA-ribbon, VWAP, value-area, or invalidation-shelf evidence is available.",
-        "No independent Arena.ai, Z.ai, four-subagent, or 100-competitor receipts exist.",
-        "Single-ticket arithmetic cannot override failed provenance and market-evidence gates."
+        "Receipt sampled 2137 seconds before cutoff, exceeding 60-second limit",
+        "Historical evidence bundle not authenticated",
+        "Current workbook and prompt differ from claimed digests",
+        "Receipt digest convention unresolved",
+        "Required regime and entry geometry unverified",
+        "Continuous backing liquidity and sweep evidence unverified",
+        "Calibrated fill, outcome, cost and utility evidence unavailable"
       ]
     }
   ],
   "arithmetic_validation": {
-    "hard_floor_cushion_usd": {
-      "reported": 265.07,
-      "recomputed": 265.07,
-      "pass": true
-    },
-    "operating_buffer_cushion_usd": {
-      "reported": 215.07,
-      "recomputed": 215.07,
-      "pass": true
-    },
-    "kernel_cushion_usd": {
-      "reported": 70.07,
-      "recomputed": 70.07,
-      "pass": true
-    },
-    "realized_headroom_usd": {
-      "formula": "4865.07 - 2.00 - 4795.00",
-      "reported": 68.07,
-      "recomputed": 68.07,
-      "pass": true
-    },
-    "margin_required_usd": {
-      "formula": "0.04 * 81300 * 0.50",
-      "reported": 1626.0,
-      "recomputed": 1626.0,
-      "pass": true
-    },
-    "single_ticket_margin_utilization_pct": 33.421924,
-    "single_ticket_margin_level_pct": {
-      "reported": 299.2,
-      "recomputed": 299.204797,
-      "pass": true
-    },
-    "single_ticket_margin_free_post_order_usd": {
-      "reported": 3239.07,
-      "recomputed": 3239.07,
-      "pass": true
-    },
-    "base_stop_loss_usd": {
-      "formula": "(81780 - 81300) * 0.04",
-      "reported": 19.2,
-      "recomputed": 19.2,
-      "pass": true
-    },
-    "gross_target_profit_usd": {
-      "formula": "(81300 - 79850) * 0.04",
-      "reported": 58.0,
-      "recomputed": 58.0,
-      "pass": true
-    },
-    "spread_cost_usd": {
-      "formula": "29 * 0.04",
-      "reported": 1.16,
-      "recomputed": 1.16,
-      "pass": true
-    },
-    "total_nominal_risk_usd": {
-      "formula": "19.20 + 1.16",
-      "reported": 20.36,
-      "recomputed": 20.36,
-      "pass": true
-    },
-    "ticket_stress_receipt_formula_usd": {
-      "formula": "(19.20 + 1.16) * 1.25 + 2.00",
-      "reported": 27.45,
-      "recomputed": 27.45,
-      "pass": true
-    },
-    "ticket_stress_role_c_formula_usd": {
-      "formula": "19.20 * 1.25 + 1.16 + 2.00",
-      "recomputed": 27.16,
-      "difference_from_receipt_usd": -0.29,
-      "status": "POLICY_FORMULA_AMBIGUITY"
-    },
-    "post_candidate_and_global_reserve_equity_usd": {
-      "formula": "4865.07 - 27.45 - 2.00",
-      "recomputed": 4835.62,
-      "hard_floor_cushion_usd": 235.62,
-      "operating_buffer_cushion_usd": 185.62,
-      "kernel_cushion_usd": 40.62,
-      "conditional_pass": true
-    },
-    "gross_rr": 3.0208333333,
-    "spread_inclusive_rr": 2.8487229862,
-    "breakeven_probability_base_loss": 0.2487046632,
-    "breakeven_probability_spread_inclusive": 0.2598264421,
-    "breakeven_probability_stressed_loss": 0.3212404915,
+    "gross_stop_loss_usd": 19.2,
+    "gross_target_reward_usd": 58.0,
+    "margin_required_usd": 1626.0,
+    "initial_margin_utilization_pct": 33.4219240422,
+    "initial_margin_level_pct": 299.204797048,
+    "free_margin_after_initial_allocation_usd": 3239.07,
+    "prompt_stress_formula_result_usd": 27.16,
+    "receipt_stress_formula_result_usd": 27.45,
+    "conservative_stress_used_usd": 27.45,
+    "post_stress_after_global_reserve_usd": 4835.62,
+    "kernel_surplus_usd": 40.62,
     "two_identical_ticket_margin_usd": 3252.0,
-    "two_identical_ticket_margin_level_pct": 149.601476,
-    "two_identical_ticket_margin_gate_pass": false,
-    "remaining_margin_under_50pct_cap_after_first_ticket_usd": 806.535,
-    "maximum_second_btc_volume_at_same_price_before_step_rounding": 0.0198409594
+    "two_identical_ticket_margin_gate": "FAIL",
+    "broker_api_requeried": false
   },
   "disputes": [
-    {
-      "code": "POST_CUTOFF_PREFLIGHT",
-      "detail": "The mandatory relation tick_time < observed_at < cutoff is false. The receipt is approximately 46 minutes after cutoff."
-    },
-    {
-      "code": "SOURCE_ARTIFACTS_MISSING",
-      "detail": "The declared cycle envelope, receipt, workbook, evidence manifest, master manifest, and canonical prompt copies were absent from their stated paths."
-    },
-    {
-      "code": "GIT_PROVENANCE_MISMATCH",
-      "detail": "The embedded commit and tree do not match the observed checkout commit and tree."
-    },
-    {
-      "code": "EXCEL_STALE_BY_DECLARATION",
-      "detail": "excel_freshness_verified and excel_audit_scorecard_fresh are both false."
-    },
-    {
-      "code": "CALENDAR_STALE",
-      "detail": "The locally available calendar was approximately 1.263 million seconds old at cutoff rather than less than 900 seconds."
-    },
-    {
-      "code": "COUNCIL_EXECUTION_UNPROVEN",
-      "detail": "No independent host receipts prove the named councils, personas, or mandatory 100 competitors."
-    },
-    {
-      "code": "RECEIPT_DIGEST_UNVERIFIED",
-      "detail": "The original receipt and digest-preimage convention were unavailable; receipt_sha256 cannot be independently validated."
-    },
-    {
-      "code": "STRESS_FORMULA_AMBIGUITY",
-      "detail": "The receipt stresses base loss plus spread together by 1.25, producing 27.45, while the written Role C formula stresses only base loss, producing 27.16. The receipt is more conservative, but policy must choose one canonical formula."
-    },
-    {
-      "code": "TWO_TICKET_CAPACITY_OVERSTATED",
-      "detail": "A single 0.04 BTC ticket passes margin checks, but two identical tickets do not. Two-ticket capacity must be tested jointly against actual candidate margins."
-    },
-    {
-      "code": "SELF_REFERENTIAL_RESPONSE_HASH",
-      "detail": "No convention defines whether response_sha256 is excluded from its own digest preimage, so the field is null rather than fabricated."
-    }
+    "Manifest and prompt hash fields above preserve envelope claims; they are not verified computed digests",
+    "Historical claimed commit unavailable locally",
+    "Current artifact mismatches do not establish historical artifact corruption",
+    "Receipt hash canonicalization unspecified",
+    "Prompt and receipt stress formulas disagree by 0.29 USD",
+    "0.04-0.06 BTC sizing does not generally preserve two-ticket margin capacity",
+    "Previous mean-return HAC statistic is not the required log-price-slope HAC statistic"
   ],
   "unknowns": [
-    "Current authenticated MT5 account, position, and pending-order state",
-    "Current tradability, contract, tick, and order-check state",
-    "Current full-universe quotes, spreads, and trade modes",
-    "VR(4), heteroskedastic z*, ER(48), HAC drift, OU theta, ATR, and Z-score",
-    "EMA 5/13/34/89/144/233 ordering",
-    "Fibonacci impulse anchors and 0.618/0.702/0.786 shelves",
-    "L2/L3 depth, queue position, CVD, wall persistence, and liquidation bands",
-    "Session, weekly, monthly, and value-area levels",
-    "P(fill), P(TP first given fill), wait cost, adverse selection, EV, LCB, and utility",
-    "Partial-fill, gap, slippage, timeout, financing, and swap distributions",
-    "Cross-asset correlation and joint concurrent-ticket stress",
-    "Independent Arena.ai, Z.ai, and 100-competitor execution receipts"
+    "Authenticated historical workbook, evidence manifest and risk policy",
+    "Current live broker inventory and quotes",
+    "Cutoff-causal regime and OU estimates",
+    "Impulse anchors and auction extremes",
+    "Continuous wall persistence and executable venue basis",
+    "Fill, outcome, timeout, adverse-selection and financing models",
+    "Current full-universe broker session availability"
   ],
-  "methodology_critique_and_improvements": {
-    "strengths": [
-      "The prompt separates binary gates from soft probabilistic ranking.",
-      "It requires spread-inclusive and stressed-loss accounting.",
-      "It requires causal timestamps, calibrated probabilities, microstructure evidence, and null treatment for unknowns."
-    ],
-    "required_corrections": [
-      "Freeze the envelope only after every source artifact is present and before the cutoff.",
-      "Define canonical digest preimages, including treatment of embedded digest fields.",
-      "Replace self-attested VERIFIED labels with independently authenticated receipts.",
-      "Resolve the conflicting ticket-stress formulas.",
-      "Test concurrent margin and tail risk jointly rather than extrapolating from one ticket.",
-      "Make all probability estimates setup-specific, time-blocked, and out-of-sample.",
-      "Bind every worker and council output to real host run IDs and signed receipts."
-    ]
-  },
+  "methodology_critique_and_improvements": [
+    "Publish reproducible digest canonicalization and signed evidence references",
+    "Separate historical review from current execution authorization",
+    "Use one stress formula with explicit cost conditioning",
+    "Validate the exact specified estimators and probability models"
+  ],
   "section_8_kaizen": {
     "skills_and_methodology_optimization": [
-      "Create a cutoff-causal feature store that emits VR, ER, HAC drift, OU, ATR, EMA, Fibonacci, auction, and microstructure features with observation timestamps and hashes.",
-      "Use non-overlapping anchored walk-forward folds partitioned by symbol, side, setup class, volatility regime, and session.",
-      "Sign cycle envelopes, evidence manifests, broker receipts, and subagent receipts with controller-held keys.",
-      "Run the pinned 100-competitor Arena bridge only on a host capable of returning genuine independent subagent receipts.",
-      "Add portfolio-level margin and stress optimization before claiming two-ticket capacity.",
-      "Generate a machine-readable gate ledger where every candidate references the exact evidence IDs used by each gate."
+      "Bind evidence to nonce, generation and cutoff",
+      "Enforce per-sheet freshness and adequate indicator warm-up",
+      "Unit-test HAC estimator identity and broker arithmetic"
     ],
     "omitted_risk_dimensions": [
-      "Partial fills, queue-priority decay, and cancellation latency at the 81300 limit",
-      "Weekend liquidity discontinuity and broker-versus-underlying basis risk",
-      "Spread expansion and stop slippage at liquidation or volatility shocks",
-      "Funding, swap, financing, commission, and broker markup costs",
-      "Cross-venue price divergence and stale broker quoting",
-      "Correlated second-ticket margin and joint stop-loss stress",
-      "Whale-wall cancellation, spoofing, and liquidation cascades",
-      "Platform disconnects, rejected modifications, and delayed cancellations",
-      "Model drift and calibration decay across volatility regimes"
+      "Joint-fill margin and crypto correlation",
+      "Gap slippage, financing and venue basis",
+      "Sampled wall cancellation and uncertain calendar coverage"
     ],
     "algorithmic_alternatives": [
-      "Marked Hawkes processes for trade, cancellation, and liquidation intensity",
-      "Competing-risks survival models for fill-before-cancel and TP-before-SL",
-      "Kalman or state-space models for broker-versus-underlying basis and dynamic spread",
-      "GARCH, realized-kernel, or HAR-RV volatility cones for stop and timeout calibration",
-      "Hidden semi-Markov or Bayesian change-point models for persistent regime classification",
-      "Isotonic, beta, or Platt calibration with time-blocked reliability diagnostics",
-      "Moving-block bootstrap or stationary bootstrap for dependent EV confidence bounds",
-      "Copula or scenario-based joint stress testing for concurrent candidates",
-      "Conformal prediction for distribution-free uncertainty bounds where exchangeability is defensible"
+      "Time-blocked walk-forward calibration and joint bootstrap utility bounds",
+      "Validated Hawkes arrival and Kalman basis models",
+      "Volatility-conditioned stress and out-of-sample isotonic calibration"
     ]
   },
   "authorization": "DENIED_FAIL_CLOSED",
   "response_sha256": null
-}\n```\n\n## §1 — Provenance and council execution review\n\n\nThe material task requires a real 100-competitor tournament. No compatible subagent interface is exposed here, so creating genuine independent Arena.ai, Z.ai, Fable, or GLM workers is impossible. Repeating one context under different persona labels would be simulation and is therefore rejected.\n\nGraphify is unavailable in this environment, so bounded filesystem and Git checks were used rather than unrestricted large-file inspection.\n\nThree independent provenance blockers exist:\n\n1. The receipt is post-cutoff: the tick is **2,757 seconds** after cutoff and the observation is **2,758 seconds** after cutoff.\n2. The claimed source artifacts are absent from their declared paths, preventing digest verification.\n3. The observed checkout commit/tree differ from the embedded identifiers.\n\nThe envelope also explicitly declares both Excel freshness gates false. Therefore `DENIED_BAD_CYCLE_ENVELOPE` is mandatory before any model ranking.\n\n## §2 — Role A: regime, diffusion, and probability audit\n\n\nNo cutoff-causal return vector accompanies the candidate. Consequently:\n\n- VR(4) and its heteroskedastic z-statistic are unknown.\n- ER(48) is unknown.\n- Newey–West drift significance is unknown.\n- OU equilibrium and the adverse-drift veto cannot be evaluated.\n- Z-score, ATR, EMA hierarchy, and trend/mean-reversion classification are unknown.\n- Neither Model 1 nor Model 2 is admissible.\n\nThe conditional barrier breakeven thresholds are:\n\n- Base-loss basis: **24.8705%**\n- Spread-inclusive basis: **25.9826%**\n- Stressed-loss basis: **32.1240%**\n\nNo calibrated `P(TP first | fill)` exists to clear any threshold. The candidate therefore remains `HOLD`.\n\n## §3 — Role B: microstructure and geometry audit\n\n\nThe supplied quote arithmetic is coherent:\n\n- Mid: `80616.5`\n- Spread: `29`, or approximately **3.597 bps**\n- Sell-limit entry: `81300`, approximately **84.784 bps above mid**\n- Stop distance: `480`\n- Target distance: `1450`\n\nThe order is syntactically consistent with a sell limit because entry is above the supplied ask. That does not establish economic validity.\n\nMissing hard evidence includes:\n\n- 180-second wall persistence and notional;\n- queue depth and queue priority;\n- CVD and aggressive-flow imbalance;\n- sweep/reclaim confirmation;\n- post-fill markouts;\n- ATR and 0.786 invalidation shelf;\n- opposing TP liquidity and 5–10 bps front-running;\n- session and macro auction levels.\n\nThus the entry, stop, and target cannot be structurally validated.\n\n## §4 — Role C: solvency and broker mathematics\n\n\nThe single-ticket arithmetic is internally consistent:\n\n| Check | Recomputed |\n| --- | --- |\n| Hard-floor cushion | `$265.07` |\n| Operating-buffer cushion | `$215.07` |\n| Kernel cushion | `$70.07` |\n| Realized headroom after `$2` reserve | `$68.07` |\n| Margin | `$1,626.00` |\n| Margin utilization | `33.4219%` |\n| Margin level | `299.2048%` |\n| Base SL loss | `$19.20` |\n| Spread cost | `$1.16` |\n| Spread-inclusive risk | `$20.36` |\n| Gross reward | `$58.00` |\n| Receipt-formula stress | `$27.45` |\n| Equity after ticket stress and global reserve | `$4,835.62` |\n| Remaining kernel cushion | `$40.62` |\n\n\nThis is only a **conditional single-ticket capital pass**.\n\nThe two-ticket assertion is not supported. Two identical `0.04` BTC tickets would consume `$3,252` margin and produce approximately `149.60%` margin level, failing both stated margin invariants. After the first ticket, only `$806.535` remains under the 50% margin cap; at the same BTC price that supports less than `0.02` additional volume before broker-step rounding.\n\nThere is also a formula ambiguity:\n\n- Receipt: `(base loss + spread) × 1.25 + 2 = 27.45`\n- Written Role C formula: `base loss × 1.25 + spread + 2 = 27.16`\n\nThe receipt is more conservative, but one canonical formula must be selected.\n\n## §5 — Role D: clock, market, and provenance audit\n\n\nThe quote is one second old relative to the receipt, but it is unusable because it is from the future relative to the immutable cycle cutoff.\n\nThe locally available macro calendar was approximately **1,262,810 seconds** old at cutoff, far beyond the 900-second limit. This conflicts with the embedded `calendar_verified: true` assertion.\n\nSaturday crypto-market availability may be plausible, but it was not independently proven symbol by symbol. The claimed 156-asset census therefore remains unverified, with TradFi constrained to watchlist-only and no crypto candidate authorized.\n\n## §6 — Candidate discovery and soft ranking\n\n\nOnly the supplied BTC candidate can be arithmetically inspected. No other candidate can be affirmatively discovered without current authenticated universe evidence.\n\nFor BTCUSD.pi:\n\n- Gross RR: `3.0208`\n- Spread-inclusive RR: `2.8487`\n- Capital and single-ticket margin: conditional pass\n- Causality: fail\n- Provenance: fail\n- Regime: unknown\n- Microstructure: unknown\n- Probability calibration: unknown\n- EV/LCB/utility: null\n- Verdict: **HOLD**\n\nA favorable RR does not substitute for fill probability, win probability, adverse selection, causal evidence, or authenticated market geometry.\n\n## §7 — Council synthesis and authorization\n\n\nThe deterministic gates dominate the candidate:\n\n- no authenticated cycle artifact;\n- post-cutoff receipt;\n- stale Excel and calendar evidence;\n- no calibrated probability model;\n- no microstructure or regime evidence;\n- no independently proven councils or 100 competitors.\n\n**Final recommendation:** `HOLD`\n
-**Authorization:** `DENIED_FAIL_CLOSED`\n
-**Broker activity:** none—no placement, modification, cancellation, or transmission.\n\n## §8 — Continuous Kaizen Inquest\n\n\n### Skills and methodology optimization\n\n\nBuild one signed, cutoff-causal evidence package containing all raw windows and derived features. Every estimator should record its sample interval, observation time, effective sample size, implementation version, and source hash. Probability models should use anchored, non-overlapping walk-forward evaluation and publish reliability diagnostics.\n\nThe subagent layer should operate through the pinned 100-competitor bridge with isolated contexts, exact write scopes, timeouts, retries, model identities, host run IDs, output hashes, and controller-signed receipts.\n\n### Omitted risk dimensions\n\n\nThe current envelope omits partial fills, queue decay, cancellation latency, basis divergence, stop slippage, spread expansion, financing, correlated second-ticket stress, liquidation cascades, spoofing, disconnect risk, and model-calibration decay.\n\n### Algorithmic alternatives\n\n\nPriority additions are:\n\n1. Competing-risks survival models for fill/cancel/TP/SL.\n2. Marked Hawkes processes for order-arrival and cancellation intensity.\n3. Kalman state-space models for dynamic broker basis.\n4. HAR-RV or realized-kernel volatility forecasting.\n5. Hidden semi-Markov or Bayesian change-point regimes.\n6. Isotonic or beta probability calibration.\n7. Moving-block bootstrap EV lower bounds.\n8. Copula/scenario-based portfolio margin and joint-tail stress.\n\nA new cycle must be generated with pre-cutoff evidence and authenticated receipts. The supplied cycle cannot be repaired retroactively.\n
+}\n```\n\n`response_sha256` is intentionally null: no response-byte canonicalization was specified, and an invented digest would undermine the audit.\n
