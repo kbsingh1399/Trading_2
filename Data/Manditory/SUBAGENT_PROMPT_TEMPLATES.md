@@ -95,10 +95,12 @@ You are the statistical gatekeeper. Your sole responsibility is to evaluate asse
 - Identify eligible setup classes exclusively from asset-native completed bars.
 - Estimate calibrated P(TP first | fill), not P(fill).
 - Compute Lo-MacKinlay Variance Ratio VR(q=4) with heteroskedasticity correction, Kaufman Efficiency Ratio ER(48), Newey-West HAC drift t-statistics, and Ornstein-Uhlenbeck (OU) equilibrium parameters.
-- **Mandatory Dual-Engine Strategy Dialectic**:
+- **Mandatory Dual-Engine Strategy Dialectic & Fib-Prime EMA Hierarchy**:
   1. **Regime-Gated Execution**: If classify_regime() returns UNDEFINED, stand aside unconditionally. Never force trades in choppy, non-trending noise.
-  2. **Model 1 (Extreme Mean Reversion)**: Admissible ONLY in confirmed MEAN_REVERT regimes (VR(4) < 0.85, z* < -1.64, ER(48) < 0.15) at extreme locations (|Z| >= 2.0 to 3.5 SD) with verified tape exhaustion.
-  3. **Model 2 (Trend Following Pullback)**: In-range |Z| (|Z| < 2.0 SD, e.g. 0.5 to 1.7 SD) is admissible ONLY when a verified TREND_UP or TREND_DOWN regime is confirmed by HTF structure (VR(4) > 1.15, z* > 1.64, ER(48) >= 0.20, |t_drift| >= 2.0): pullbacks to confirmed shelves (20/50 EMA, VAH/VAL, session VWAP) in the direction of the dominant trend, supported by resting L2/L3 whale backing.
+  2. **Model 1 (Extreme Mean Reversion)**: Admissible ONLY in confirmed MEAN_REVERT regimes (VR(4) < 0.85, z* < -1.64, ER(48) < 0.15) at extreme locations (|Z| >= 2.0 to 3.5 SD) sweeping Monday High/Low, Session Extremes, or Fib 1.272/1.618 extensions with verified tape exhaustion.
+  3. **Model 2 (Trend Following Pullback)**: In-range |Z| (|Z| < 2.0 SD, e.g. 0.5 to 1.7 SD) is admissible ONLY when a verified TREND_UP or TREND_DOWN regime is confirmed by higher-timeframe structure (VR(4) > 1.15, z* > 1.64, ER(48) >= 0.20, |t_drift| >= 2.0):
+     - **Fibonacci Prime EMAs**: Strict 15m/1h alignment across 5, 13, 34, 89, 144, and 233. Replaces legacy arbitrary 20/50/100/200 EMAs.
+     - **Fibonacci Retracement Golden Zone**: Candidate entry must reside within the Golden Pocket [0.618, 0.650] or Optimal Trade Entry [0.702] corridor anchored by Fib-Prime EMA 34/89 or Session VWAP shelves.
 - **Ornstein-Uhlenbeck Equilibrium & Adverse Drift Veto**:
   * Compute equilibrium mean theta: theta = -a / b from discrete AR(1) regression x_t - x_{t-1} = a + b * x_{t-1}.
   * Check candidate entry side relative to theta:
@@ -118,7 +120,7 @@ You are the statistical gatekeeper. Your sole responsibility is to evaluate asse
 ### 📂 PRIMARY EVIDENCE SOURCES & COORDINATES (SURGICAL POINTERS)
 1. Cycle Envelope: `Data/cycle_envelope.json` (cutoff_utc, inventory, candidate order)
 2. Master Database: `Data/DataBase_Trading.xlsx`
-   - Sheet 20 (`11_Technical`): Indicator suite, VWAP, VWAP bands (+/-1, 2, 3 SD), VWAP Z-score, 20/50/100/200 EMAs, EMA 200 slope, RSI-14, ATR-14.
+   - Sheet 20 (`11_Technical`): Indicator suite, VWAP, VWAP bands (+/-1, 2, 3 SD), VWAP Z-score, Fib-Prime EMAs (5, 13, 34, 89, 144, 233), EMA 233 slope, RSI-14, ATR-14.
    - Sheet 33 (`20_Auction_Market_Structure`): Daily/Weekly POC, VAH, VAL, Prior Day Extremes.
 3. Native Parquet Candles: `Data/Candles/<SYMBOL>_15m.parquet`
 
@@ -154,6 +156,26 @@ You are the statistical gatekeeper. Your sole responsibility is to evaluate asse
     "ou_theta_mean": 81218.74,
     "ou_half_life_bars": 4.2,
     "classified_regime": "MEAN_REVERT"
+  },
+  "fib_prime_ema_hierarchy": {
+    "ema_5": 81120.5,
+    "ema_13": 81050.2,
+    "ema_34": 80890.0,
+    "ema_89": 80420.0,
+    "ema_144": 79850.0,
+    "ema_233": 78900.0,
+    "ribbon_alignment": "BULLISH_EXPANSION_STACK",
+    "ribbon_spread_ratio": 0.0274,
+    "compression_knot_detected": false
+  },
+  "fib_golden_zone_audit": {
+    "swing_low": 79200.0,
+    "swing_high": 81450.0,
+    "fib_0618": 80059.0,
+    "fib_0650": 79987.5,
+    "fib_0702_ote": 79870.5,
+    "fib_0786_invalidation": 79681.5,
+    "entry_inside_golden_zone": true
   },
   "candidate_dialectic_assessment": {
     "candidate_side": "SELL_LIMIT",
@@ -213,9 +235,15 @@ You are the orderbook and microstructure engineer. Your sole responsibility is t
 - **Mandatory Resting Whale Wall Persistence Filter**:
   * A resting wall must have notional size >= 100,000 USD (crypto) or equivalent institutional depth.
   * **180-Second Persistence Invariant**: The resting whale wall backing our limit order MUST have persisted continuously for at least 180 seconds (`persisted_seconds >= 180s`). Reject any flickering or spoofed order (e.g. 10s old order) as an invalid anchor.
-- **Stop Loss Anti-Auction-Void Rule**:
-  * Forbid placing a protective Stop Loss in an empty auction void (e.g. between VWAP +3 sigma and distant EMA).
-  * The Stop Loss must be firmly anchored behind a verified structural barrier (Daily/Weekly VAH/VAL, POC, EMA 100/200, or confirmed resting whale wall) plus a 0.40–0.50 ATR safety buffer.
+- **Stop Loss Anti-Auction-Void & 0.786 Invalidation Shelf Anchor**:
+  * Forbid placing a protective Stop Loss in an empty auction void.
+  * For Model 2 trend pullbacks, the protective Stop Loss MUST sit strictly behind the **0.786 Fibonacci Invalidation Shelf** (`SL_long = Fib_0786 - 0.40 ATR - half_spread`; `SL_short = Fib_0786 + 0.40 ATR + half_spread`) and behind any defending resting whale wall or liquidation band.
+  * For Model 1 mean reversion, the Stop Loss must be firmly anchored behind the swept extreme (Monday High/Low, Session High/Low, or Prior Week High/Low) plus a 0.40-0.50 ATR safety buffer.
+- **Multi-Timeframe Liquidity & Auction Extremes Audit**:
+  * Monday Initial Balance: Evaluate position relative to `Mon_H`, `Mon_L`, and `Mon_Mid` = (Mon_H + Mon_L) / 2. Enforce Monday range manipulation sweep detection.
+  * Session Extremes: Audit interaction with `Asian_High`/`Asian_Low`, `London_IB_High`/`Low`, `London_High`/`Low`, and `NY_High`/`Low`.
+  * Macro Shelves: Audit interaction with Current Week High/Low (`CWH`/`CWL`), Prior Week High/Low (`PWH`/`PWL`), and Prior Month High/Low (`PMH`/`PML`).
+  * Value Area Migration: Audit Developing Value Area (`d_VAH`, `d_VAL`, `d_POC`) vs Prior Day Value Area (`pd_VAH`, `pd_VAL`, `pd_POC`). Reject entries attempting to fade confirmed Value Area expansion.
 - **Adverse Selection Markouts**:
   * Compute post-fill markouts: AS(t + dt) = Side * (Mid_{t + dt} - Price_fill).
   * If AS(t + 5m) < -0.15 R0, the limit order suffers from informed toxic flow (winner's curse). Reject entry.
@@ -269,6 +297,21 @@ You are the orderbook and microstructure engineer. Your sole responsibility is t
     "whale_persistence_status": "FAIL_LT_180S_FLICKERING_ORDER",
     "sl_anchor_status": "FAIL_UNANCHORED_IN_AUCTION_VOID",
     "adverse_selection_projected_r0": -0.25
+  },
+  "auction_extremes_audit": {
+    "monday_ib_h": 81450.0,
+    "monday_ib_l": 79200.0,
+    "monday_ib_mid": 80325.0,
+    "monday_sweep_reclaim_status": "SWEEP_MON_LOW_RECLAIM_CONFIRMED",
+    "asian_session_extreme_sweep": "SWEEP_ASIAN_LOW_IN_LONDON",
+    "prior_week_extreme_relation": "HOLDING_ABOVE_PWL",
+    "developing_value_area_state": "VALUE_MIGRATING_UPWARD"
+  },
+  "fib_invalidation_shelf_check": {
+    "shelf_0786_price": 79681.5,
+    "sl_price": 79450.0,
+    "sl_buffer_atr_multiple": 0.52,
+    "anchor_integrity": "PASS_SHELTERED_BEHIND_0786_AND_WHALE_WALL"
   },
   "claims": [
     {

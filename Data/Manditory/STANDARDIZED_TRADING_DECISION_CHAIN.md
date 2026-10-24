@@ -595,13 +595,13 @@ Prior to order transmission, the coordinator and subagents MUST physically outpu
 
 | # | Pitfall & Verification Check | Required Status | Verified? |
 |---|---|---|---|
-| 1 | **Asset-Native Structural Backing** | Crypto: genuine resting BID for longs / ASK for shorts, `persist >= 180s`, `notional >= 100K USD`; FX/metals/indices: verified native auction shelf under 2.3 | [ ] |
+| 1 | **Asset-Native Structural Backing** | Crypto: genuine resting BID for longs / ASK for shorts, `persist >= 180s`, `notional >= 100K USD`; FX/metals/indices: Sheet 33 auction shelf, Monday IB_W Mid/Extremes, or Fib-Prime EMA 34/89 | [ ] |
 | 2 | **Stop Cascade & Sweep Clearance** | Zero un-swept opposing retail stop clusters between market and entry | [ ] |
-| 3 | **Asset-Native Timing / Absorption** | Crypto: L2/L3 plus CVD divergence `zc_div > 0.8` and 180s wall persistence; FX/metals: Sheet 33 VAH/VAL/POC and London/New York sweeps; indices: native cash session and auction evidence | [ ] |
-| 4 | **Bunker SL Safe Buffer** | SL placed >= 0.40–0.50 ATR behind outer liquidation boundary & whale wall bunker | [ ] |
-| 5 | **Causal Auction Regime Location** | Model 1 Extreme (|Z| >= 2.0 SD) OR Model 2 HTF Pullback to EMA/VWAP/Fibonacci Golden Pocket | [ ] |
+| 3 | **Asset-Native Timing / Absorption** | Crypto: L2/L3 plus CVD divergence `zc_div > 0.8` and 180s wall persistence; FX/metals: Sheet 33 VAH/VAL/POC, Monday/Session sweeps; indices: native cash session and auction evidence | [ ] |
+| 4 | **Bunker SL Behind 0.786 Invalidation Shelf** | SL placed >= 0.40–0.50 ATR beyond 0.786 Fibonacci shelf & outer liquidation/whale bunker | [ ] |
+| 5 | **Causal Auction Regime Location** | Model 1 Extreme (|Z| >= 2.0 SD sweeping session/Monday extremes) OR Model 2 Pullback to Fib Golden Zone [0.618, 0.702] | [ ] |
 | 6 | **Dynamic Spread Efficiency Gate** | Spread points / TP distance <= 15%; baseline spread <= ceiling (Crypto <= 35, TradFi <= 10) | [ ] |
-| 7 | **HTF Trend & Hierarchy Alignment**| Respects 1H/4H market structure; no counter-trend longs in confirmed HTF bear trends | [ ] |
+| 7 | **Fib-Prime EMA Hierarchy Alignment**| 15m/1h Fib-Prime EMA stack aligned (5 > 13 > 34 > 89 > 144 > 233 for longs); no counter-trend entries against EMA 89/233 slope | [ ] |
 | 8 | **Pre-Condition Trigger Checklist** | All setup-specific empirical pre-conditions verified on live market data | [ ] |
 | 9 | **Clear TP Runway & R:R Ratio** | TP front-runs opposing liquidation magnet by 5-10 bps; realizable R:R >= 2.0R to 2.5R | [ ] |
 | 10 | **Stressed Solvency & Floor Defense** | min(balance,equity) after joint stress and reserves >= 4,795.00 USD kernel floor; two contingent slots; exact broker-native profit/margin/check | [ ] |

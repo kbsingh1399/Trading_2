@@ -112,8 +112,12 @@ def calc_ema_series(arr: np.ndarray, period: int) -> np.ndarray:
     return _calc_ema_series_numpy(arr_c, period)
 
 
-def calc_ema_ribbon(arr: np.ndarray, periods: Tuple[int, ...] = (9, 20, 50, 100, 200)) -> Dict[int, np.ndarray]:
-    """Computes multi-timeframe EMA ribbon series with institutional SMA seeding in a single pass."""
+SUPERSET_EMA_PERIODS: Tuple[int, ...] = (5, 9, 13, 20, 34, 50, 89, 100, 144, 200, 233)
+FIB_EMA_PERIODS: Tuple[int, ...] = (5, 13, 34, 89, 144, 233)
+
+
+def calc_ema_ribbon(arr: np.ndarray, periods: Tuple[int, ...] = SUPERSET_EMA_PERIODS) -> Dict[int, np.ndarray]:
+    """Computes multi-timeframe Fibonacci Prime & Superset EMA ribbon series with institutional SMA seeding in a single pass."""
     arr_c = np.ascontiguousarray(arr, dtype=np.float64)
     if NUMBA_AVAILABLE:
         p_arr = np.array(periods, dtype=np.int64)
@@ -133,32 +137,70 @@ def calc_ema(arr: np.ndarray, period: int) -> Optional[float]:
 
 def classify_ema_ribbon(
     price: float,
-    ema_9: Optional[float],
-    ema_20: Optional[float],
-    ema_50: Optional[float],
-    ema_100: Optional[float],
-    ema_200: Optional[float],
+    ema_5: Optional[float] = None,
+    ema_13: Optional[float] = None,
+    ema_34: Optional[float] = None,
+    ema_89: Optional[float] = None,
+    ema_144: Optional[float] = None,
+    ema_233: Optional[float] = None,
+    *,
+    slope_34: Optional[float] = None,
+    slope_233: Optional[float] = None,
+    ema_9: Optional[float] = None,
+    ema_20: Optional[float] = None,
+    ema_50: Optional[float] = None,
+    ema_100: Optional[float] = None,
+    ema_200: Optional[float] = None,
+    **kwargs,
 ) -> Tuple[str, Optional[float]]:
     """
-    Classifies structural alignment of the multi-timeframe EMA ribbon.
+    Classifies structural alignment of the multi-timeframe Fibonacci Prime EMA ribbon:
+    (5, 13, 34, 89, 144, 233) with O(1) slope validation and full legacy fallback.
     """
-    if not (ema_20 and ema_50 and ema_200):
+    # 1. Modern 6-tier Fibonacci Prime stack
+    if ema_5 and ema_13 and ema_34 and ema_89 and ema_144 and ema_233:
+        spread_pct = ((ema_13 - ema_233) / ema_233) * 100.0 if ema_233 > 0 else 0.0
+
+        is_bull_stack = ema_5 > ema_13 > ema_34 > ema_89 > ema_144 > ema_233
+        is_bear_stack = ema_5 < ema_13 < ema_34 < ema_89 < ema_144 < ema_233
+        macro_bull = ema_34 > ema_89 > ema_144 > ema_233 and (slope_233 is None or slope_233 >= 0)
+        macro_bear = ema_34 < ema_89 < ema_144 < ema_233 and (slope_233 is None or slope_233 <= 0)
+
+        if price > ema_5 and is_bull_stack and (slope_233 is None or slope_233 > 0):
+            return "PERFECT_BULLISH", spread_pct
+        elif macro_bull and (price < ema_5 or price < ema_13):
+            return "PULLBACK_IN_BULL", spread_pct
+        elif is_bull_stack:
+            return "BULLISH_ALIGNMENT", spread_pct
+        elif price < ema_5 and is_bear_stack and (slope_233 is None or slope_233 < 0):
+            return "PERFECT_BEARISH", spread_pct
+        elif macro_bear and (price > ema_5 or price > ema_13):
+            return "PULLBACK_IN_BEAR", spread_pct
+        elif is_bear_stack:
+            return "BEARISH_ALIGNMENT", spread_pct
+        else:
+            return "COMPRESSING_NEUTRAL", spread_pct
+
+    # 2. Legacy fallback
+    e20 = ema_20 or ema_13
+    e50 = ema_50 or ema_34
+    e200 = ema_200 or ema_233
+    e9 = ema_9 or ema_5 or price
+    if not (e20 and e50 and e200):
         return "INSUFFICIENT_DATA", None
 
-    e9 = ema_9 if ema_9 is not None else price
-    spread_pct = ((ema_20 - ema_200) / ema_200) * 100.0
-
-    if price > e9 > ema_20 > ema_50 > ema_200:
+    spread_pct = ((e20 - e200) / e200) * 100.0 if e200 > 0 else 0.0
+    if price > e9 > e20 > e50 > e200:
         return "PERFECT_BULLISH", spread_pct
-    elif ema_20 > ema_50 > ema_200 and price < e9:
+    elif e20 > e50 > e200 and price < e9:
         return "PULLBACK_IN_BULL", spread_pct
-    elif ema_20 > ema_50 > ema_200:
+    elif e20 > e50 > e200:
         return "BULLISH_ALIGNMENT", spread_pct
-    elif price < e9 < ema_20 < ema_50 < ema_200:
+    elif price < e9 < e20 < e50 < e200:
         return "PERFECT_BEARISH", spread_pct
-    elif ema_20 < ema_50 < ema_200 and price > e9:
+    elif e20 < e50 < e200 and price > e9:
         return "PULLBACK_IN_BEAR", spread_pct
-    elif ema_20 < ema_50 < ema_200:
+    elif e20 < e50 < e200:
         return "BEARISH_ALIGNMENT", spread_pct
     else:
         return "COMPRESSING_NEUTRAL", spread_pct
@@ -338,42 +380,55 @@ class CandleIndicatorEngine:
         lower_3 = primary_vwap - 3.0 * primary_sigma if lower_1 is not None else None
 
         # -------------------------------------------------------------
-        # 3. Vectorized Multi-Timeframe EMA Ribbon (9, 20, 50, 100, 200)
+        # 3. Vectorized Superset & Fibonacci Prime EMA Ribbon (5, 9, 13, 20, 34, 50, 89, 100, 144, 200, 233)
         # -------------------------------------------------------------
-        ribbon = calc_ema_ribbon(closes, (9, 20, 50, 100, 200))
-        s9 = ribbon[9]
-        s20 = ribbon[20]
-        s50 = ribbon[50]
-        s100 = ribbon[100]
-        s200 = ribbon[200]
+        ribbon = calc_ema_ribbon(closes, SUPERSET_EMA_PERIODS)
+        
+        # Fibonacci Prime & Sequence EMAs
+        ema_5 = float(ribbon[5][-1]) if len(closes) >= 5 and not np.isnan(ribbon[5][-1]) else None
+        ema_13 = float(ribbon[13][-1]) if len(closes) >= 13 and not np.isnan(ribbon[13][-1]) else None
+        ema_34 = float(ribbon[34][-1]) if len(closes) >= 34 and not np.isnan(ribbon[34][-1]) else None
+        ema_89 = float(ribbon[89][-1]) if len(closes) >= 89 and not np.isnan(ribbon[89][-1]) else None
+        ema_144 = float(ribbon[144][-1]) if len(closes) >= 144 and not np.isnan(ribbon[144][-1]) else None
+        ema_233 = float(ribbon[233][-1]) if len(closes) >= 233 and not np.isnan(ribbon[233][-1]) else None
 
-        ema_9 = float(s9[-1]) if len(closes) >= 9 and not np.isnan(s9[-1]) else None
-        ema_20 = float(s20[-1]) if len(closes) >= 20 and not np.isnan(s20[-1]) else None
-        ema_50 = float(s50[-1]) if len(closes) >= 50 and not np.isnan(s50[-1]) else None
-        ema_100 = float(s100[-1]) if len(closes) >= 100 and not np.isnan(s100[-1]) else None
-        ema_200 = float(s200[-1]) if len(closes) >= 200 and not np.isnan(s200[-1]) else None
+        # Legacy EMAs (Zero-regression compatibility)
+        ema_9 = float(ribbon[9][-1]) if len(closes) >= 9 and not np.isnan(ribbon[9][-1]) else None
+        ema_20 = float(ribbon[20][-1]) if len(closes) >= 20 and not np.isnan(ribbon[20][-1]) else None
+        ema_50 = float(ribbon[50][-1]) if len(closes) >= 50 and not np.isnan(ribbon[50][-1]) else None
+        ema_100 = float(ribbon[100][-1]) if len(closes) >= 100 and not np.isnan(ribbon[100][-1]) else None
+        ema_200 = float(ribbon[200][-1]) if len(closes) >= 200 and not np.isnan(ribbon[200][-1]) else None
 
         # O(1) Slope Calculations:
-        # EMA 200 slope over past 12 bars (3 hours)
-        if len(closes) >= 212 and ema_200 is not None and not np.isnan(s200[-13]) and s200[-13] > 0:
-            ema_200_slope_pct = (ema_200 - float(s200[-13])) / float(s200[-13]) * 100.0
-        else:
-            ema_200_slope_pct = None
+        s233 = ribbon[233]
+        ema_233_slope_pct = ((ema_233 - float(s233[-13])) / float(s233[-13]) * 100.0
+                             if len(closes) >= 246 and ema_233 is not None and not np.isnan(s233[-13]) and s233[-13] > 0 else None)
 
-        # EMA 20 slope over past 4 bars (1 hour)
-        if len(closes) >= 24 and ema_20 is not None and not np.isnan(s20[-5]) and s20[-5] > 0:
-            ema_20_slope_pct = (ema_20 - float(s20[-5])) / float(s20[-5]) * 100.0
-        else:
-            ema_20_slope_pct = None
+        s34 = ribbon[34]
+        ema_34_slope_pct = ((ema_34 - float(s34[-5])) / float(s34[-5]) * 100.0
+                            if len(closes) >= 39 and ema_34 is not None and not np.isnan(s34[-5]) and s34[-5] > 0 else None)
 
-        # EMA 50 slope over past 8 bars (2 hours)
-        if len(closes) >= 58 and ema_50 is not None and not np.isnan(s50[-9]) and s50[-9] > 0:
-            ema_50_slope_pct = (ema_50 - float(s50[-9])) / float(s50[-9]) * 100.0
-        else:
-            ema_50_slope_pct = None
+        s13 = ribbon[13]
+        ema_13_slope_pct = ((ema_13 - float(s13[-5])) / float(s13[-5]) * 100.0
+                            if len(closes) >= 18 and ema_13 is not None and not np.isnan(s13[-5]) and s13[-5] > 0 else None)
+
+        # Legacy slopes
+        s200 = ribbon[200]
+        ema_200_slope_pct = ((ema_200 - float(s200[-13])) / float(s200[-13]) * 100.0
+                             if len(closes) >= 212 and ema_200 is not None and not np.isnan(s200[-13]) and s200[-13] > 0 else None)
+
+        s50 = ribbon[50]
+        ema_50_slope_pct = ((ema_50 - float(s50[-9])) / float(s50[-9]) * 100.0
+                            if len(closes) >= 58 and ema_50 is not None and not np.isnan(s50[-9]) and s50[-9] > 0 else None)
+
+        s20 = ribbon[20]
+        ema_20_slope_pct = ((ema_20 - float(s20[-5])) / float(s20[-5]) * 100.0
+                            if len(closes) >= 24 and ema_20 is not None and not np.isnan(s20[-5]) and s20[-5] > 0 else None)
 
         ribbon_state, ribbon_spread_pct = classify_ema_ribbon(
-            last_price, ema_9, ema_20, ema_50, ema_100, ema_200
+            last_price, ema_5=ema_5, ema_13=ema_13, ema_34=ema_34, ema_89=ema_89, ema_144=ema_144, ema_233=ema_233,
+            slope_34=ema_34_slope_pct, slope_233=ema_233_slope_pct,
+            ema_9=ema_9, ema_20=ema_20, ema_50=ema_50, ema_100=ema_100, ema_200=ema_200
         )
 
         # -------------------------------------------------------------
@@ -429,6 +484,15 @@ class CandleIndicatorEngine:
             "lower_2sd": float(lower_2) if lower_2 is not None else None,
             "upper_3sd": float(upper_3) if upper_3 is not None else None,
             "lower_3sd": float(lower_3) if lower_3 is not None else None,
+            "ema_5": float(ema_5) if ema_5 is not None else None,
+            "ema_13": float(ema_13) if ema_13 is not None else None,
+            "ema_34": float(ema_34) if ema_34 is not None else None,
+            "ema_89": float(ema_89) if ema_89 is not None else None,
+            "ema_144": float(ema_144) if ema_144 is not None else None,
+            "ema_233": float(ema_233) if ema_233 is not None else None,
+            "ema_13_slope_pct": float(ema_13_slope_pct) if ema_13_slope_pct is not None else None,
+            "ema_34_slope_pct": float(ema_34_slope_pct) if ema_34_slope_pct is not None else None,
+            "ema_233_slope_pct": float(ema_233_slope_pct) if ema_233_slope_pct is not None else None,
             "ema_9": float(ema_9) if ema_9 is not None else None,
             "ema_20": float(ema_20) if ema_20 is not None else None,
             "ema_50": float(ema_50) if ema_50 is not None else None,
