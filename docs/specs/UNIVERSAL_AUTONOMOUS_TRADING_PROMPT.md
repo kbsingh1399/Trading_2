@@ -84,7 +84,7 @@ Inspect the latest telemetry and execute the following 3 tasks systematically:
 1. Screen all 24 assets in `assets_matrix_24` against the 10-step SOP.
 2. Evaluate candidates under the Dual-Engine Framework:
    - **Model 1 (Mean Reversion)**: Admissible ONLY in confirmed `MEAN_REVERT` regimes at extreme exhaustion (|Z| >= 2.0 SD to 3.5 SD), supported by tape deceleration and resting whale walls.
-   - **Model 2 (Trend Pullback)**: Admissible in confirmed `TREND_UP` or `TREND_DOWN` regimes: pullback to confirmed shelves (20/50 EMA, VAH/VAL, 1-Day VWAP band +1.0/-1.0 SD) backed by persistent resting L2/L3 whale walls (>= 180s) in the direction of the dominant HTF trend.
+- **Model 2 (Trend Pullback)**: Admissible in confirmed TREND_UP or TREND_DOWN regimes: pullback into Symmetrical Fibonacci Golden Zone [0.618 GP, 0.702 OTE] or confirmed shelves (Fib-Prime EMA 34/89, Monday IB_W, VAH/VAL, session VWAP) in the direction of the dominant trend, supported by resting L2/L3 whale backing and SL anchored >= 0.40 ATR beyond 0.786 Invalidation Shelf.
 3. Validate Spread: MT5 spread must be <= 25.0 bps (Crypto) or <= 5.0 bps (TradFi).
 4. Validate Entry Runway: Limit entry must be within 2.0 ATR of current market price.
 5. If no setup satisfies 100% of criteria, declare `STAND ASIDE` with mathematical rationale.

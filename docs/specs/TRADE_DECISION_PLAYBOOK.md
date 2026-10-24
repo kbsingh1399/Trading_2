@@ -86,8 +86,8 @@ The table below catalogs every parameter consolidated in `docs/telemetry/live_sn
 | `vwap_z_score` | `LIVE_BRIDGE` (Calculated) | Standardized distance from Session VWAP | Model 1 Extreme (|Z| >= 2.0 SD) vs Model 2 Pullback (|Z| < 2.0 SD) |
 | `session_sigma` | `LIVE_BRIDGE` (Calculated) | Session standard deviation volatility scalar | Volatility-adjusted band width |
 | `atr_14` / `atr_pct` | `LIVE_BRIDGE` (14-period Wilder ATR) | Average True Range in dollars and % | Stop-loss distance and order spacing anchor |
-| `ema_20`, `ema_50`, `ema_200` | `LIVE_BRIDGE` (800 completed 15m bars) | Exponential moving average hierarchy | Dynamic support/resistance and trend definition |
-| `ema_200_slope_3h_pct` | `LIVE_BRIDGE` (Calculated) | 3-hour slope of 200 EMA | Directional trend persistence confirmation |
+| ema_5, ema_13, ema_34, ema_89, ema_144, ema_233 | LIVE_BRIDGE (800 completed 15m bars) | Fibonacci Prime EMA hierarchy | Dynamic support/resistance and trend definition |
+| ema_233_slope_3h_pct | LIVE_BRIDGE (Calculated) | 3-hour slope of 233 Fibonacci Prime EMA | Directional macro trend persistence confirmation |
 | `rsi_14` | `LIVE_BRIDGE` (14-period RSI) | Relative Strength Index | Momentum divergence and exhaustion (< 35 oversold, > 65 overbought) |
 | `trend_regime` | `decision_gates_v3.py` (`classify_regime()`) | Categorical regime label | `BULLISH`, `BEARISH`, `RANGE_BOUND`, or `UNDEFINED` |
 
@@ -179,7 +179,7 @@ Trading decisions must never rely on a single parameter in isolation. High-proba
 |                           PARAMETER COINCIDENCE MATRIX                            |
 +-----------------------------------------------------------------------------------+
 |  ENTRY LEVEL         | Supported by:                                              |
-|                      |  - Structural shelf (EMA 20/50/200, Session VAL/VAH)       |
+|                      |  - Structural shelf (Fib-Prime EMAs 34/89/233, Session VAL/VAH, Monday IB_W, Fib Golden Zone [0.618-0.702]) |
 |                      |  - Resting L2/L3 Whale Wall (verified on-chain wallet)     |
 |                      |  - Psychological round number anchor                       |
 |                      |  - CVD absorption (aggressive selling into passive bids)   |
@@ -206,8 +206,8 @@ Trading decisions must never rely on a single parameter in isolation. High-proba
    - CVD confirmation: Aggressive selling delta must show deceleration or positive divergence across 5m/15m/30m windows.
 
 2. **Model 2: VWAP Trend-Continuation Pullback (`|Z| < 2.0 SD`)**
-   - The setup occurs in a confirmed directional regime (price > 200 EMA with positive slope, or higher-timeframe trend alignment).
-   - Entry is placed as a **passive limit order** resting at a pullback zone: Session VWAP, Value Area Low (VAL), or the 20/50 EMA shelf.
+   - The setup occurs in a confirmed directional regime (price > 233 EMA with positive slope, or Fibonacci Prime EMA hierarchy 5 > 13 > 34 > 89 > 144 > 233).
+   - Entry is placed as a **passive limit order** resting at a pullback zone: Symmetrical Fibonacci Golden Zone [0.618 GP, 0.702 OTE], Fibonacci Prime EMA 34/89, Monday IB_W, Session VWAP, or Value Area shelf.
    - Crucial check: Must be backed by resting L2/L3 whale bids within 0.25 - 0.50 ATR of the limit price.
 
 3. **Entry Proximity & Margin Efficiency Rule (`<= 2.0 ATR` Bound for Mandate 1 & Mandate 3)**
@@ -286,9 +286,9 @@ Before any order is staged or punched into MetaTrader 5, the desk conducts this 
    - *If NO: Stand aside until catalyst passes.*
 
 4. **Regime & Higher-Timeframe (HTF) Trend Hierarchy Gate (Strict Invariant):**
-   - [ ] **HTF Alignment Check (1H & 4H OHLCV + 20/50/200 EMAs):**
-     * **Bearish HTF Regime (Price < EMA20 < EMA50 on 1H/4H, declining closes):** **Model 1 Dip-Buying Longs are FORBIDDEN.** Do NOT catch falling knives even if `|Z| >= 2.0 SD` or RSI < 30. All priority is locked onto **Model 2 Trend Pullback SHORTS**.
-     * **Bullish HTF Regime (Price > EMA20 > EMA50 on 1H/4H, rising closes):** **Model 1 Top-Fading Shorts are FORBIDDEN.** Do NOT short into strong buying momentum. All priority is locked onto **Model 2 Trend Pullback LONGS**.
+   - [ ] **HTF Alignment Check (1H & 4H OHLCV + Fibonacci Prime EMAs 5/13/34/89/144/233):**
+     * **Bearish HTF Regime (Price < EMA13 < EMA34 < EMA89 < EMA233 on 1H/4H, declining closes):** **Model 1 Dip-Buying Longs are FORBIDDEN.** Do NOT catch falling knives even if |Z| >= 2.0 SD or RSI < 30. All priority is locked onto **Model 2 Trend Pullback SHORTS**.
+     * **Bullish HTF Regime (Price > EMA13 > EMA34 > EMA89 > EMA233 on 1H/4H, rising closes):** **Model 1 Top-Fading Shorts are FORBIDDEN.** Do NOT short into strong buying momentum. All priority is locked onto **Model 2 Trend Pullback LONGS**.
      * **Range-Bound / Rotational Regime (Flat EMAs, oscillating VWAP):** Both Model 1 Mean Reversion (|Z| >= 2.0 SD) and Value Area Boundary Reversals (buying VAL, shorting VAH) are active.
    - [ ] **Model 2 Pullback Short Qualification:** For Bearish regimes, wait for an intraday relief rally into the EMA20/EMA50/VAH shelf backed by resting **L2/L3 Ask Whale Walls** overhead to defend the Stop Loss.
    - [ ] **Broker Ticker Mapping:** Remember that Avalanche is mapped to `AVXUSD.p` on Blueberry Markets MT5 (contract size 100.0, volume min 0.01).
@@ -358,7 +358,7 @@ Following an empirical forensic audit and 1,044-trade intrabar replay by Arena T
 ### 7.3 Decoupling Model 1 vs. Model 2 (Eliminating Stand-Aside Paralysis)
 - **Model 2 Trend Following Pullbacks:**
   * **NO extreme |Z| requirement.** (Requiring |Z| >= 2.0 SD during strong trends was the sole cause of 20-cycle stand-aside paralysis).
-  * **Entry Trigger:** Price rallies/pulls back into 15m/1H EMA20/EMA50 or Session VWAP/VAH shelf in the direction of the 1H/4H trend (Price < EMA20 < EMA50 for shorts; Price > EMA20 > EMA50 for longs).
+  * **Entry Trigger:** Price rallies/pulls back into Symmetrical Fibonacci Golden Zone [0.618 GP, 0.702 OTE], 15m/1H Fib-Prime EMA 34/89, Monday IB_W, or Session VWAP/VAH shelf in the direction of the 1H/4H trend (Price < EMA34 < EMA89 for shorts; Price > EMA34 > EMA89 for longs) with SL anchored >= 0.40 ATR beyond 0.786 Invalidation Shelf.
   * **Backing:** Must be defended by verified resting L2/L3 whale walls above entry for shorts (or below entry for longs), calibrated by asset class.
   * **CVD Confirmation:** Negative session CVD for shorts / positive session CVD for longs.
 - **Model 1 Extreme Mean Reversion:**

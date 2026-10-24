@@ -28,6 +28,7 @@
 | **13** | **Hexad-Daemon Management in Antigravity Task Runner** | Daemons running as unmanaged external OS processes without reactive wakeups | All 5 persistent daemons must be launched via `run_command(IsDaemon=true)` or `schedule` so Antigravity tracks TaskIds | ✅ **ENFORCED IN TASK RUNNER** |
 | **14** | **Mandatory Tier 2 Full Unabridged Big Prompts** | Subagents dispatched with truncated prompts failing to inspect all 33 sheets | Mandatory Tier 2 Big Prompts (~350–500 tokens) citing `STANDARDIZED_TRADING_DECISION_CHAIN.md` enforced | ✅ **ENFORCED ON ALL TURNS** |
 | **15** | **Sheet 00 (`00_MT5_Account_Telemetry`) Pipeline Integration** | Module 0 missing from `api_parallel_harvester.py`, leading to stale broker telemetry | Appended Module 0 into `API_MODULES` in `api_parallel_harvester.py`; runs every parallel cycle | ✅ **RESOLVED & FRESH** |
+| **16** | **Fibonacci Prime EMAs, Auction Extremes & Golden Zone OTE** | Arbitrary moving averages (20/50/200) and missing weekly/monthly auction extremes | Replaced with Fib-Prime EMAs (5, 13, 34, 89, 144, 233), Monday IB_W, Session & Week/Month High/Low, and Symmetrical Fib Golden Zone (0.618-0.650 GP, 0.702 OTE, 0.786 Inval) across Excel Sheets 20 & 32 and all governance specs | ✅ **CODIFIED & VERIFIED** |
 
 ---
 
@@ -391,3 +392,19 @@ Every 20-minute wake-up cron cycle MUST systematically execute and verify each g
      * Codified into Step 1 of [`STANDARDIZED_TRADING_DECISION_CHAIN.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md).
      * Codified as Gateway 0 in [`AUTONOMOUS_WAKEUP_CHECKLIST.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/AUTONOMOUS_WAKEUP_CHECKLIST.md).
      * Embedded into Subagent 4 mandate in [`SUBAGENT_PROMPT_TEMPLATES.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/SUBAGENT_PROMPT_TEMPLATES.md).
+
+---
+
+### ISSUE 16: Fibonacci Prime EMAs, Multi-Timeframe Auction Extremes & Symmetrical Golden Zone OTE
+- **Operator Directives**:
+  * "In prompts or in standard thinking chain...did we add weeklowhigh, mondayhighlow, monthlowhigh, sessionhighlow etc along with val, vah, poc...and also check if we could consider fibonacci retracement in golden zone for entry in confirmation with other orderflow etc parameters. Also...i have seen you are using random EMA like 8,20,50 or 200 rather use fib prime number emas..."
+  * "update all document where required..."
+- **Forensic Diagnosis**:
+  1. Standard moving averages (8, 20, 50, 100, 200) are legacy calendar metrics that clash harmonically and lack fractal self-similarity.
+  2. Missing Monday Opening Range (Weekly Initial Balance IB_W), Session High/Low, and Monthly High/Low blinded the desk to key institutional auction reversal pivot points.
+  3. Fibonacci retracements were previously static approximations rather than mathematically symmetrical direction-aware Golden Zones [0.618-0.650 GP, 0.702 OTE] anchored by 0.786 Invalidation Shelves.
+- **Resolution**:
+  1. **Fibonacci Prime EMAs**: Upgraded `Terminal/Candle_Indicator_Engine.py` and `Data/Excel_Modules/11_Technical.py` (Sheet 20) with Numba SIMD-vectorized ribbons: `5, 13, 34, 89, 144, 233` (where 5, 13, 89, 233 are Fibonacci primes). Added `ema_233_slope_3h_pct` for macro trend bias.
+  2. **Multi-Timeframe Auction Extremes**: Upgraded `Data/Excel_Modules/20_Auction_Market_Structure.py` (Sheet 32) to compute and display Monday High/Low/Mid (`IB_W`), Asian/London/NY session extremes, Current/Prior Week High/Low (`CWH/CWL/PWH/PWL`), and Current/Prior Month High/Low (`CMH/CML/PMH/PML`) via dual-timeframe M15 + D1 data.
+  3. **Symmetrical Fibonacci Golden Zone**: Implemented direction-aware impulse retracement: Bullish impulse retracing down to Golden Pocket [0.618-0.650] and OTE 0.702 with SL beyond 0.786 Invalidation Shelf; Bearish impulse retracing up symmetrically.
+  4. **Universal Governance Synchronization**: Updated all governance files (`STANDARDIZED_TRADING_DECISION_CHAIN.md`, `Arena_GLM_Standard_Prompt.md`, `SUBAGENT_PROMPT_TEMPLATES.md`, `AUTONOMOUS_WAKEUP_CHECKLIST.md`, `TRADE_DECISION_PLAYBOOK.md`, `institutional_orderflow_live_checklist.md`, `UNIVERSAL_AUTONOMOUS_TRADING_PROMPT.md`, `ACTIVE_CONTEXT.md`) and verified 0 formula errors across all 33 sheets of `Data/DataBase_Trading.xlsx`.

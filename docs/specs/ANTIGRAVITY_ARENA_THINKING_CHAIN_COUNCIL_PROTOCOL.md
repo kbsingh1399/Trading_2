@@ -2,13 +2,13 @@
 
 > **CANONICAL SPECIFICATION & MULTI-AGENT RE-ENGAGEMENT BLUEPRINT**  
 > **Primary Locations**:  
-> - `docs/Mandatory_Rules/ANTIGRAVITY_ARENA_THINKING_CHAIN_COUNCIL_PROTOCOL.md`  
 > - `Data/Manditory/ANTIGRAVITY_ARENA_THINKING_CHAIN_COUNCIL_PROTOCOL.md`  
-> - `docs/specs/ANTIGRAVITY_ARENA_THINKING_CHAIN_COUNCIL_PROTOCOL.md`  
+> - `Data/Manditory/ANTIGRAVITY_ARENA_THINKING_CHAIN_COUNCIL_PROTOCOL.md`  
+> - `Data/Manditory/ANTIGRAVITY_ARENA_THINKING_CHAIN_COUNCIL_PROTOCOL.md`  
 > **Operational Status**: ACTIVE PRODUCTION STANDARD (100% Causal, Empirical & Anti-Lookahead)  
 > **Target Audience**: Antigravity Coordinators, Subagent Swarms, Arena.ai Council, GPT Astra, Human Operators across all sessions & accounts.  
 > **Master Data Warehouse**: `Data/DataBase_Trading.xlsx` (All 33 Canonical Production Worksheets)  
-> **Autonomous Cadence**: 20-Minute Cron Sentry (`0,20,40 * * * *` at :00, :20, :40 UTC) + Reactive Background Auto-Wakeup  
+> **Autonomous Cadence**: Joint 3-Entity Completion Lifecycle with Clean 20-Minute Relative Separation (`T_finish + 20 min`) + 30-Minute Watchdog Sentry Cron (`0,30 * * * *` at :00, :30 UTC).
 
 ---
 
@@ -29,7 +29,7 @@ We reject both single-agent hallucination and blind sycophancy. Our architecture
 |                                  ARENA.AI BIG BRAIN (CDP Bridge)                                   |
 | - Ingests 33-Sheet Master Excel Data Warehouse (DataBase_Trading.xlsx) across all 156 Assets       |
 | - Dual Mandate: Affirmative Candidate Discovery across all 156 Instruments AND Adversarial Red-Team|
-| - Injected via Chrome CDP port 9222 on 20-minute cron sentry (:00, :20, :40 UTC)                   |
+| - Injected via Chrome CDP port 9222 on joint autonomous cycle trigger (T_finish + 20 min)          |
 | - Deliberates with deep Linux terminal reasoning; auto-harvested by arena_completion_daemon.py     |
 +-------------------------------------------------+--------------------------------------------------+
                                                   |
@@ -58,7 +58,7 @@ We reject both single-agent hallucination and blind sycophancy. Our architecture
 ```
 
 ### The 20-Minute Cadence & Mandatory Fresh Revalidation Bundle
-1. **Autonomous Wake-Up Trigger (`0, 20, 40 * * * *`)**: The desk automatically wakes up at the 00th, 20th, and 40th minute of every hour via the native `schedule` cron sentry.
+1. **Autonomous Tri-Track Cycle Execution & 20-Minute Post-Completion Delay**: Cycles trigger with a strict 20-minute separation after all 3 entities (Antigravity Fleet, Arena.ai, Z.ai) finish processing, supervised by a 30-minute watchdog sentry (`0,30 * * * *`).
 2. **Simultaneous Dual-Track Dispatch**:
    - **Track A**: Antigravity invokes the 4-subagent swarm (`Model='flash'`) with full Tier 2 Big Prompts citing `STANDARDIZED_TRADING_DECISION_CHAIN.md`.
    - **Track B**: Antigravity dispatches the surgical dual-mandate prompt to Arena.ai via Chrome CDP on port 9222.
@@ -106,12 +106,14 @@ On EVERY cycle, every agent and subagent MUST step through these 7 verification 
 
 ### Gate 1: Capital Floor Defense & Stressed Worst-Case Simulation
 - **Initial Capital Baseline**: 5,000.00 USD.
-- **Hard Capital Floor (G-1)**: 4,775.00 USD (Mandatory Stop: 4.50% / 225.00 USD max drawdown).
-- **Operating Safety Buffer**: 4,795.00 USD (Mandatory >= 20.00 USD buffer above floor).
+- **Hard Capital Floor**: 4,600.00 USD (Blueberry 8.00% max drawdown from 5,000.00 USD).
+- **Operating Defense Buffer**: 4,650.00 USD (Defense buffer above hard floor).
+- **Solvency Kernel Admission Floor**: 4,795.00 USD (Mandatory minimum stressed equity required to stage ANY new risk ticket).
 - **Stressed Simulation Math (Unconditional Joint Reservation)**:
   $$\text{Stressed Worst-Case Equity} = \text{Current Equity} - \sum (\text{Nominal Risk}_i \times 1.25 + 2.00\text{ USD}) \ge 4,795.00\text{ USD}$$
-  $$\text{Hard Floor Cushion} = \text{Stressed Worst-Case Equity} - 4,775.00\text{ USD}$$
-  $$\text{Operating Buffer Cushion} = \text{Stressed Worst-Case Equity} - 4,795.00\text{ USD}$$
+  \text{Hard Floor Cushion} = \text{Stressed Worst-Case Equity} - 4,600.00\text{ USD}
+  \text{Operating Buffer Cushion} = \text{Stressed Worst-Case Equity} - 4,650.00\text{ USD}
+  \text{Kernel Floor Cushion} = \text{Stressed Worst-Case Equity} - 4,795.00\text{ USD}
 - **Gate Invariant**: If `Operating Buffer Cushion < 0.00 USD` (or `Hard Floor Cushion < 20.00 USD`), ALL new order staging is strictly BLOCKED.
 - **Current Live Solvency**: With Equity at 4,834.83 USD, buffer cushion is **+39.83 USD** (and hard floor cushion is **+59.83 USD**).
 
@@ -132,7 +134,7 @@ Every scan evaluates structural auction location using ground-truth levels from 
   * **Weekly Macro Shelves**: Weekly POC, CWH, CWL, PWH, PWL.
 - **Dual-Engine Assignment**:
   * **Model 1 (Extreme Mean Reversion)**: Admissible ONLY when `|VWAP Z-Score| >= 2.0 to 3.5 SD` in `MEAN_REVERT` regime with tape exhaustion.
-  * **Model 2 (Trend Pullback)**: Admissible ONLY when `|VWAP Z-Score| < 2.0 SD` (0.2 to 1.7 SD) in confirmed `TREND_UP` or `TREND_DOWN` with 20/50/200 EMA ribbon alignment, retracing to EMA20, Session VWAP, or VAH/VAL shelves.
+  * **Model 2 (Trend Pullback)**: Admissible ONLY when |VWAP Z-Score| < 2.0 SD (0.2 to 1.7 SD) in confirmed TREND_UP or TREND_DOWN with Fibonacci Prime EMA ribbon hierarchy (5 > 13 > 34 > 89 > 144 > 233), retracing into the Symmetrical Fibonacci Golden Zone [0.618 GP, 0.702 OTE] or Fib-Prime EMA 34 / Session VWAP / VAH-VAL shelves, with SL anchored >= 0.40 ATR beyond 0.786 Invalidation Shelf.
   * **Stand-Aside Invariant**: If `Trend Regime == UNDEFINED`, the desk stands aside unconditionally in 100% Cash Defense.
 
 ### Gate 4: The 5-Pillar Confluence Stack & Liquidation/Stop Sweep Dynamics
@@ -149,13 +151,13 @@ Every admitted candidate must satisfy all 5 pillars simultaneously, grounded in 
 5. **Hyperdash Resting Stop Clusters, Volume Profile & Fibonacci Golden Pocket**:
    - Hyperdash Resting Stop Orders Ladder (Sheet 24: `15_Hyperdash_Stops_Map`, 3,800+ rows mapping retail resting buy stops and sell stops). BANS placing limit orders inside un-swept stop clusters!
    - Sheet 33 (`20_Auction_Market_Structure`): Entry anchored at VPOC, VAH, VAL, or session shelves.
-   - **Fibonacci Retracement Confluence**: Retracement aligns with the 0.50–0.618 Golden Pocket coinciding with resting whale bunkers.
+   - **Symmetrical Fibonacci Golden Zone Confluence**: Retracement aligns with the Symmetrical Golden Zone [0.618–0.650 GP, 0.702 OTE] with Stop Loss anchored >= 0.40 ATR beyond the 0.786 Invalidation Shelf, coinciding with resting whale bunkers.
 
 ### Gate 5: Microstructure Execution Hygiene & Broker CFD Mechanics
-- **Passive Maker Limit Orders Only**: Strictly `BUY_LIMIT` or `SELL_LIMIT`. Maker limit orders do NOT eliminate the broker spread. Zero market orders crossing the spread.
+- **Passive Maker Limit Orders Only**: Strictly `BUY_LIMIT` or `SELL_LIMIT`. Zero market orders crossing the spread.
 - **Dynamic Spread Friction Budgeting**:
   $$\text{Efficiency Ratio} = \frac{\text{Spread Points}}{\text{TP Distance Points}} \le 15\%$$
-  - Baseline ceilings: Crypto <= 35.0 bps (or 20.00 bps for BTC/ETH), Indices/Commodities <= 10.0 bps, Forex <= 6.0 bps, Exotics <= 25.0 bps.
+  - Baseline ceilings: Crypto <= 35.0 bps, Indices/Commodities <= 10.0 bps, Forex <= 6.0 bps, Exotics <= 25.0 bps.
 - **2.0x ATR Drift Gate**: Limit order must rest within 2.0x ATR of current market price.
 - **Fresh Execution Revalidation**: Verify tick Bid/Ask, broker spread, and L2 depth immediately prior to order transmission.
 
@@ -184,7 +186,7 @@ To eliminate subjective debate between Arena.ai and Antigravity, every candidate
 |---|---|---|
 | **1. 33-Sheet Data Provenance & Freshness** | 20 pts | All 33 sheets loaded (10 pts), Orderbook/CVD/Auction age <= 15m (5 pts), 0 formula errors (#REF! = 0) (5 pts). Deduct 20 pts if stale or schema broken. |
 | **2. Structural Thesis & Invalidation** | 20 pts | Clear VPOC/VAH/VAL or EMA shelf anchor (10 pts), unambiguous structural SL outside liquidation/stop sweep band (10 pts). |
-| **3. Conditional Expected Utility & EV** | 20 pts | Reward:Risk >= 2.0R to 2.5R (10 pts), Positive Lower Confidence Bound Net EV > 0 USD (10 pts). Deduct 15 pts if negative skew. |
+| **2. Structural Thesis & Invalidation** | 20 pts | Clear VPOC/VAH/VAL, Monday IB_W, Session/Macro Extremes, or Fib-Prime EMA shelf anchor (10 pts), unambiguous structural SL outside 0.786 Invalidation Shelf / liquidation / stop sweep band (10 pts). |
 | **4. Capital Floor Defense & Capacity** | 20 pts | Stressed cushion >= +20 USD above 4,775 USD (10 pts), Stressed cushion >= +0 USD above 4,795 USD buffer (5 pts), Capacity slot available (5 pts). |
 | **5. Execution Hygiene & Spread Efficiency**| 10 pts | Efficiency Ratio (Spread / TP) <= 15% (10 pts), baseline within ceiling (5 pts), > 15% ratio (0 pts & VETO). Maker limit within 2.0x ATR. |
 | **6. Macro & Session Timing** | 10 pts | No Tier-1 macro event within blackout window (5 pts), Active liquid trading session / normal volatility (5 pts). |

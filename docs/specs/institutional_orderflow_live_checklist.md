@@ -22,7 +22,7 @@ Before any market order is sent or limit order is staged, verify all 7 sub-gates
   - For Longs: Candle closes in upper 30% of range (`(close - low) / (high - low) >= 0.70`).
   - For Shorts: Candle closes in lower 30% of range (`(close - low) / (high - low) <= 0.30`).
 - [ ] **Higher Timeframe (HTF) Trend Alignment**:
-  - 4-Hour 200 EMA slope must be strictly positive for longs (`ema200[t] >= ema200[t-12]` over 3 hours) and negative for shorts, evaluated with causal `shift(1)` backward-as-of join.
+- 4-Hour 233 Fibonacci Prime EMA slope must be strictly positive for longs (ema233[t] >= ema233[t-12] over 3 hours) and negative for shorts, with 15m/1h Fibonacci Prime EMA hierarchy (5 > 13 > 34 > 89 > 144 > 233).
 - [ ] **ICT Fair Value Gap (FVG) & Consequent Encroachment (CE)**:
   - Verify 3-bar imbalance zone.
   - Consequent Encroachment (50% midpoint) must be strictly untouched (`ce_untouched == True`).
@@ -126,7 +126,7 @@ Manage profit targets dynamically based on orderbook liquidity distribution:
 - [ ] **Evaluation Criteria**: If price approaches base TP and orderbook / CVD indicates strong trend continuation momentum (higher-timeframe EMA slope accelerating, heavy directional taker CVD, and opposing resting depth drops to near-zero with projected liquidation bands sitting further):
   - [ ] **Action**: Extend TP into the next structural liquidity cluster / vacuum (e.g. extending from +2.50R to +3.50R or higher).
   - [ ] **Mandatory Trailing SL Lock Prerequisite**: The Stop Loss MUST simultaneously be trailed and locked behind the nearest structural orderflow shelf (minimum +1.50R profit locked). Never loosen or expose capital when extending targets!
-  - [ ] **Intelligent Trailing SL Engine**: Continually trail the stop behind the 15m 20 EMA / local swing highs (for shorts) or swing lows (for longs) to let winning trend-continuation runners compound while guaranteeing profit.
+- [ ] **Intelligent Trailing SL Engine**: Continually trail the stop behind the 15m 34 Fibonacci Prime EMA / local swing highs (for shorts) or swing lows (for longs) or 0.786 Invalidation Shelf.
 
 ---
 

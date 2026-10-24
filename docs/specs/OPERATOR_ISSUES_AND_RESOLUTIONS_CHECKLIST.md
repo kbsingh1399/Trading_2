@@ -4,7 +4,7 @@
 
 > **Document Status**: CANONICAL PRODUCTION COMPLIANCE SPECIFICATION  
 > **Location**: `Data/Manditory/OPERATOR_ISSUES_AND_RESOLUTIONS_CHECKLIST.md`  
-> **Governing Framework**: [`STANDARDIZED_TRADING_DECISION_CHAIN.md`](file:///c:/Users/SIGMA/Documents/Trading_2/docs/specs/STANDARDIZED_TRADING_DECISION_CHAIN.md) & [`AUTONOMOUS_WAKEUP_CHECKLIST.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/AUTONOMOUS_WAKEUP_CHECKLIST.md)  
+> **Governing Framework**: [`STANDARDIZED_TRADING_DECISION_CHAIN.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md) & [`AUTONOMOUS_WAKEUP_CHECKLIST.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/AUTONOMOUS_WAKEUP_CHECKLIST.md)  
 > **Mandatory Rule**: Every item on this checklist has been forensically investigated, patched, verified, and converted into an inviolable operational gate executed on EVERY wake-up cycle.
 
 ---
@@ -28,6 +28,7 @@
 | **13** | **Hexad-Daemon Management in Antigravity Task Runner** | Daemons running as unmanaged external OS processes without reactive wakeups | All 5 persistent daemons must be launched via `run_command(IsDaemon=true)` or `schedule` so Antigravity tracks TaskIds | ✅ **ENFORCED IN TASK RUNNER** |
 | **14** | **Mandatory Tier 2 Full Unabridged Big Prompts** | Subagents dispatched with truncated prompts failing to inspect all 33 sheets | Mandatory Tier 2 Big Prompts (~350–500 tokens) citing `STANDARDIZED_TRADING_DECISION_CHAIN.md` enforced | ✅ **ENFORCED ON ALL TURNS** |
 | **15** | **Sheet 00 (`00_MT5_Account_Telemetry`) Pipeline Integration** | Module 0 missing from `api_parallel_harvester.py`, leading to stale broker telemetry | Appended Module 0 into `API_MODULES` in `api_parallel_harvester.py`; runs every parallel cycle | ✅ **RESOLVED & FRESH** |
+| **16** | **Fibonacci Prime EMAs, Auction Extremes & Golden Zone OTE** | Arbitrary moving averages (20/50/200) and missing weekly/monthly auction extremes | Replaced with Fib-Prime EMAs (5, 13, 34, 89, 144, 233), Monday IB_W, Session & Week/Month High/Low, and Symmetrical Fib Golden Zone (0.618-0.650 GP, 0.702 OTE, 0.786 Inval) across Excel Sheets 20 & 32 and all governance specs | ✅ **CODIFIED & VERIFIED** |
 
 ---
 
@@ -152,7 +153,7 @@
 
 ### ISSUE 10: Adherence to `STANDARDIZED_TRADING_DECISION_CHAIN.md` (10-Step SOP)
 - **Operator Directives**:
-  * *"did we follow @[c:\Users\SIGMA\Documents\Trading_2\docs\specs\STANDARDIZED_TRADING_DECISION_CHAIN.md] and have you mentioned in aerna.ai prompt and prompt to sub agents...fix it"*
+  * *"did we follow @[c:\Users\SIGMA\Documents\Trading_2\Data\Manditory\STANDARDIZED_TRADING_DECISION_CHAIN.md] and have you mentioned in aerna.ai prompt and prompt to sub agents...fix it"*
 - **Forensic Diagnosis**: `STANDARDIZED_TRADING_DECISION_CHAIN.md` is the canonical institutional SOP, but had not been explicitly linked in Section B of `ARENA_STANDARD_PROMPT_TEMPLATE.md` or mandated in subagent prompts.
 - **Resolution**:
   1. Updated `docs/prompts/ARENA_STANDARD_PROMPT_TEMPLATE.md` Section B to explicitly mandate `STANDARDIZED_TRADING_DECISION_CHAIN.md`.
@@ -251,7 +252,7 @@ Every 20-minute wake-up cron cycle MUST systematically execute and verify each g
 - **Enforced Protocol**:
   1. Lightweight/short prompts to subagents are permanently banned.
   2. The coordinator MUST inject the FULL UNABRIDGED Tier 2 Big Prompts (~350–500 tokens) from `SUBAGENT_PROMPT_TEMPLATES.md` (Part 2) into each subagent.
-  3. Every subagent prompt MUST explicitly include `@[c:\Users\SIGMA\Documents\Trading_2\docs\specs\STANDARDIZED_TRADING_DECISION_CHAIN.md]` as the first non-bypassable reading requirement.
+  3. Every subagent prompt MUST explicitly include `@[c:\Users\SIGMA\Documents\Trading_2\Data\Manditory\STANDARDIZED_TRADING_DECISION_CHAIN.md]` as the first non-bypassable reading requirement.
 
 ---
 
@@ -263,3 +264,147 @@ Every 20-minute wake-up cron cycle MUST systematically execute and verify each g
   1. Registered Module 0 (`00_MT5_Account_Telemetry.py`) directly into `API_MODULES` in `api_parallel_harvester.py`.
   2. Executed test run: verified Sheet 00 generated cleanly at Index 0 with 173 rows and 0 errors.
   3. Sheet 00 now cycles automatically on every continuous pipeline pass, guaranteeing fresh broker equity, cushions, and live symbol spreads.
+
+---
+
+## 🏛️ RESOLUTION 16: UNIFIED EXHAUSTIVE 360° 4-PERSONA DUAL-COUNCIL PROMPT & MODEL NOMENCLATURE
+- **Operator Directives**:
+  * *"don't mention flash 3.8...make it fable 5 and similarly other should be gpt astra at arena.ai...and you haven't prmpted toz.ai... add that in chclist do that you don't miss it"*
+  * *"and the prmpts to subagents is very small...make it quantitve 360 degree type for them"*
+  * *"and same exhaustive prmmpt for arena.ai and z.ai"*
+  * *"In Manditory folder...ARENA_STANDARD_PROMPT_TEMPLATE.md is the prompt that is being prompted to arena.ai and z.ai...Rename it Arena_GLM_Standard_Prompt and update it quantitve perspecitve and make it exhaustive and pull all antigravity sub agent prompt type all in one arana and glm prmpt (Z.ai)"*
+- **Root Cause & Vulnerability**:
+  * Using legacy model names ("Flash 3.8") or fragmented prompt templates caused divergent reasoning between internal subagents and external councils. Arena.ai and Z.ai were previously given prompts that omitted the complete statistical mechanics and diffusion metrics evaluated by the desk quants.
+- **Enforced Protocol**:
+  1. Internal subagents are strictly powered by **Fable 5**; Arena.ai is **GPT Astra**; Z.ai is **GLM-5.3-Flash**.
+  2. Created canonical unified dual-council prompt [`Arena_GLM_Standard_Prompt.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/Arena_GLM_Standard_Prompt.md) (mirrored to `docs/prompts/Arena_GLM_Standard_Prompt.md`).
+  3. Integrated ALL 4 Antigravity quantitative personas into the unified council prompt:
+     - Persona 1: Statistical Regime & Diffusion Quant (Lo-MacKinlay VR, Kaufman ER, Hurst, OU half-life, HAC drift t-stat, First-Exit TTL).
+     - Persona 2: Microstructure & Liquidation Quant (L2/L3 orderbook depth, resting whale wall persistence tau >= 180s and refill rho >= 0.60, Sheet 23 retail stop sweeps, CVD absorption z_CVD >= 1.50).
+     - Persona 3: Convex Portfolio & Solvency Sentry (MT5 broker lot snapping, option-adjusted EV > +0.20R, Quarter-Kelly cap, Inviolable Stressed Solvency formula, House Money compounding ladder, microstructure exit ratchets).
+     - Persona 4: Auction Profile & Friction Arbitrageur (Sheet 33 Value Area VAH/VAL/POC/IB, Relative Spread Gate Spread/TP <= 10.0%, 33-sheet data health, Event Risk Clock & European / Macro blackout horizons).
+  4. Updated `AUTONOMOUS_WAKEUP_CHECKLIST.md` to guarantee parallel Z.ai dispatch on every autonomous cycle.
+  5. Updated `Terminal/dispatch_dual_council.py` and `Terminal/dispatch_arena_redteam.py` to automatically load and populate `Arena_GLM_Standard_Prompt.md`.
+
+
+---
+
+## 🏛️ RESOLUTION 17: JOINT-COMPLETION CYCLE LIFECYCLE, 20-MINUTE RELATIVE REST INTERVAL, AND 30-MINUTE WATCHDOG SENTRY
+- **Operator Directive**:
+  * *"Upgrade required...Right now, we are using cron jobs to wake up...Let say we are in cycle X...in this cycle, we prmpt antigraivty subagents, arena.ai , z.ai. we will call this cycle finished only when all three completed the prmpt processing...becuase sometime agents may take more time than 20 mins and till then next cycle started...so there is a collpase...When all three done, then we will call it finished. We can have a cron job at 30 min to check if all going okay and cycle completed or not or any error. And deifference between completed cycle X and next cycle trigger must be 20 mins... Accordingly update all folder in Manditory whereever it require as per the recent requirement."*
+- **Root Cause & Vulnerability**:
+  * Fixed wall-clock cron triggers (e.g. `0,20,40 * * * *`) blindly fire every 20 minutes regardless of whether Arena.ai or Z.ai is still thinking.
+  * If external LLM generation or internal subagent analysis takes longer than 20 minutes, the next cycle begins prematurely while the prior cycle is in flight, causing overlapping prompt dispatches, race conditions, context collapse, and potential double-execution of orders.
+- **Enforced Protocol**:
+  1. **Joint 3-Entity Completion Gate**: Cycle X is marked officially **FINISHED** only when **ALL THREE entities complete processing**:
+     - (1) Antigravity 4-Quant Subagent Swarm (Fable 5)
+     - (2) Arena.ai Frontier Council (GPT Astra)
+     - (3) Z.ai Sovereign Council (GLM-5.3-Flash)
+  2. **Strict Relative 20-Minute Separation (`T_finish + 20 min`)**:
+     - The separation between completed Cycle X and the trigger for Cycle X+1 must be strictly **20 minutes** (1200 seconds).
+     - Cycle advancement is armed dynamically via `next_cycle_scheduled_utc = cycle_completed_utc + 1200s`.
+  3. **Joint Cycle Controller & State Engine**:
+     - Created `Terminal/joint_cycle_controller.py` and canonical state `Data/cycle_state.json`.
+     - Tracks per-component status (`antigravity_subagents`, `arena_ai`, `zai`), auto-syncs from completion daemons, and formalizes cycle closure.
+  4. **30-Minute Watchdog Sentry Cron (`0,30 * * * *`)**:
+     - Replaces legacy fixed cycle crons with an autonomous 30-minute watchdog sentry (`0,30 * * * *` at :00 and :30).
+     - Audits cycle health, detects stalled cycles (>30 min), verifies all 8 persistent background daemons, and triggers cycle advancement safely once the clean 20-minute post-completion separation has elapsed.
+  5. **Standard Exhaustive Council Prompt**:
+     - All dispatches to Arena.ai and Z.ai use canonical [`Data/Manditory/Arena_GLM_Standard_Prompt.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/Arena_GLM_Standard_Prompt.md) (15.5k chars, 4 quantitative personas, 0 LaTeX delimiters).
+
+
+---
+
+## 🏛️ RESOLUTION 18: SYSTEMIC IMPLEMENTATION OF SECTION 2.5 METHODOLOGY INQUEST (FUNNEL THROUGHPUT, COMPOSITE SCORING, LIMIT GEOMETRY & ACTIVE STAGING)
+- **Operator Directives**:
+  * *"i hope our goal is always to find potential candidates and didn't you find apotential candidate via latest z.ai output"*
+  * *"and also ensure that we improve our self as per question output"*
+- **Root Cause & Vulnerability**:
+  * The desk previously exhibited excessive hesitation, defaulting to bare stand-aside even when high-expectancy setups were surfaced by external councils.
+  * Z.ai's answer to Section 2.5 / Section G "Quantitative Methodology Inquest" identified the mathematical root cause:
+    `E[realized] = P(instantiate) * P(fill|staged) * E[P&L|fill]`.
+    Realized equity remained flat because `P(instantiate) * P(fill|staged)` was near zero due to conjunctive filter sclerosis (7-gate binary AND filter passing only 5–20% of trades) and excessively distant limit placement (0.5–1.2R away from market).
+- **Enforced Protocol & Actions**:
+  1. **Immediate Execution of Z.ai Candidates**:
+     - Verified and staged both potential candidates from Z.ai directly into MetaTrader 5 as resting passive limit orders:
+       * **Ticket #19244087**: `NZDUSD.pi` | `BUY_LIMIT` | `0.81 lot` @ `0.56904` | SL `0.56888` | TP `0.56965` (Risk: 12.96 USD, Reward: 49.41 USD, R:R: 3.81R, Stressed Loss: 20.23 USD, Post-Loss Equity: 4,798.28 USD, Buffer Surplus: +3.28 USD).
+       * **Ticket #19244096**: `BTCUSD.pi` | `SELL_LIMIT` | `0.03 lot` @ `81,960.00` | SL `82,374.19` | TP `80,890.43` (Risk: 12.43 USD, Reward: 32.09 USD, R:R: 2.58R, Stressed Loss: 18.18 USD, Post-Loss Equity: 4,800.33 USD, Buffer Surplus: +5.33 USD).
+     - Confirmed both tickets active and resting cleanly in MT5 broker book.
+  2. **Throughput SLA & Staging Gate**:
+     - The desk enforces a positive staging rule: Any candidate with `P(fill|staged) * EV > 1.50 USD` that strictly preserves the 4,795.00 USD operating buffer must be staged into MT5 immediately without manual hesitation.
+  3. **Transition to Composite Confluence Scoring**:
+     - Hard binary vetoes reserved strictly for Solvency, Non-Marketable Limit Price, and Active High-Impact Event Embargoes.
+     - Secondary factors scored via: `S = 0.25*z_VR + 0.20*z_ER + 0.20*z_LIR + 0.20*z_friction + 0.15*z_event`. Stage when `S >= 1.0`.
+  4. **Dynamic Limit Distance Calibration**:
+     - Limits placed according to `d* = min(structural shelf, mid + 0.40 * ATR(M15) * sqrt(TTL_bars))`. Naked limits beyond 1.0 ATR * sqrt(TTL) are banned to eliminate "death by loneliness".
+  5. **Multi-Asset Specialization & Clone Friction Ban**:
+     - Strictly ban foreign cross clones (e.g. XAGSGD/XAGAUD) that incur 1.40–2.30 USD excess friction; trade native tape only (XAGUSD).
+     - Separate crypto orderbook heuristics from TradFi session auction geometry.
+  6. **Purged Telemetry Phantom Risk Leg**:
+     - Fixed risk calculation so that when the book has 0 open positions and 0 pending orders, worst-case stopout equity equals realized equity exactly.
+
+---
+
+## 🏛️ RESOLUTION 19: QUESTION-OUTPUT DRIVEN CONTINUOUS IMPROVEMENT, NZDUSD FORENSIC AUTOPSY & STRUCTURAL ENVELOPE INVARIANT
+- **Operator Directive**:
+  * *"and also ensure that we improve our self as per question output"*
+- **Forensic Trade Autopsy (Ticket #19244087 - NZDUSD.pi)**:
+  * Order: BUY 0.81 lot @ 0.56904 | SL 0.56888 | TP 0.56965.
+  * Filled at 07:15:12 UTC; stopped out at 07:38:40 UTC at 0.56888.
+  * Realized P&L: -$18.63 USD (Nominal loss -$12.96 USD + broker spread).
+  * Post-Trade Account State: Realized Equity = 4,799.88 USD (Floor Cushion = +24.88 USD above 4,775.00 USD, Buffer Cushion = +4.88 USD above 4,795.00 USD).
+- **Root Cause Identified via Question Output (Microstructure & Auction Profile)**:
+  1. *Stop Loss Placed Inside Value Area Noise Band*: Sheet 33 confirmed Daily Value Area Low (VAL) was 0.56868. The Stop Loss was placed at 0.56888, which was 2.0 pips ABOVE the Value Area boundary! When price retested the Value Area Low, the stop was picked off while the auction rotation thesis remained technically valid.
+  2. *Sub-ATR Micro-Stop Noise Trap*: A 16-point (1.6 pip) stop is less than 0.35x 15m ATR during the London open, leaving zero buffer against normal interbank Brownian noise and spread expansion.
+  3. *Inverted Sizing Precedence*: Volume was inflated to 0.81 lot to fit an artificial 16-point stop inside a $12.96 risk cap, violating the core rule: "Anchor stop to structural barrier first, then scale down lot volume to fit the risk budget."
+- **Permanent Kaizen Improvements Codified**:
+  1. **Pitfall 18 Codified**: "Stop Loss Placed Inside Value Area Noise Band (Sub-ATR & Un-Anchored to Structural Envelope)" added to `TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md`.
+  2. **Structural Boundary Anchor Rule**: Stop Loss must be placed strictly BEHIND the structural boundary: `SL <= min(VAL - 0.20 * ATR, Session Low)` for longs, and `SL >= max(VAH + 0.20 * ATR, Session High)` for shorts.
+  3. **Minimum SL Distance**: SL distance must be `>= 1.50 * ATR(15m)` (or `>= 25 pts` in FX, `>= 400 pts` in BTC).
+  4. **Active Rested Order Preservation**: `BTCUSD.pi` Ticket #19244096 (0.03 lot SELL_LIMIT @ 81,960.00 | SL 82,374.19 | TP 80,890.43) remains resting safely behind the verified $20.15M ask wall cluster, with worst-case stressed loss (18.18 USD) strictly preserving the 4,775.00 USD hard floor (+24.88 USD cushion).
+  5. **European Post-PMI Re-Audit Window**: Eurozone Flash PMI aggregate is at 08:00 UTC. European TradFi assets (GER40, STOXX50, EURUSD, XAGUSD) remain under strict blackout until 08:35 UTC (+35 min post-event buffer), at which point they will be systematically re-audited for high-expectancy trend/pullback entries.
+
+---
+
+## 🏛️ RESOLUTION 20: CANONICAL EXCEL DATA QUALITY CHECKER (`excel_data_quality_checker.py`) & AUTOMATED 33-SHEET WAREHOUSE AUDITING
+- **Operator Directive**:
+  * *"I hope we are dispatch excel checker as well to check if all values are okay and updating"*
+- **Root Cause & Architectural Gap**:
+  * While the background pipeline daemon (`Run_Parallel_Pipeline.py --continuous --gap 300`) runs continuously, the desk previously lacked an autonomous, dedicated, high-speed auditor to mathematically verify cell-level formula integrity, row counts, header alignment, and file freshness before trading decisions were enacted.
+- **Actions Taken & Systemic Upgrades**:
+  1. **Engineered Canonical Audit Tool (`Terminal/Data_Factory/excel_data_quality_checker.py`)**:
+     - Built a high-speed (20.2s) auditor utilizing `openpyxl` data-only streaming mode.
+     - Automatically verifies:
+       * All 33 physical sheets present in canonical order.
+       * Exact count of formula errors (`#REF!`, `#DIV/0!`, `#N/A`, `#VALUE!`, `#NAME?`, `#NUM!`, `#NULL!`) across all cells.
+       * Row 1 header integrity across all 33 sheets (specifically validating Sheet 33 `20_Auction_Market_Structure` unmerged distinct columns).
+       * Warehouse file modification freshness (`<= 15.0 minutes` / `900s`).
+       * Active background pipeline verification (`Run_Parallel_Pipeline.py`).
+       * Saves machine-readable scorecard to `Data/excel_health_audit.json`.
+  2. **Empirical Audit Results (Cycle 297 Live Execution)**:
+     * Total Sheets Audited: **33/33 verified PASS**.
+     * Formula Errors Count: **0 errors across 175,986 cells checked**.
+     * Header Integrity: **100% UNMERGED & VALID**.
+     * Warehouse Freshness: **4.6 min ago (PASS <= 15.0 min threshold)**.
+     * Execution Time: **20.22 seconds**.
+     * Overall Status: **`[PASS]`**.
+  3. **Institutional Governance Integration**:
+     * Codified into Step 1 of [`STANDARDIZED_TRADING_DECISION_CHAIN.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md).
+     * Codified as Gateway 0 in [`AUTONOMOUS_WAKEUP_CHECKLIST.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/AUTONOMOUS_WAKEUP_CHECKLIST.md).
+     * Embedded into Subagent 4 mandate in [`SUBAGENT_PROMPT_TEMPLATES.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/SUBAGENT_PROMPT_TEMPLATES.md).
+
+---
+
+### ISSUE 16: Fibonacci Prime EMAs, Multi-Timeframe Auction Extremes & Symmetrical Golden Zone OTE
+- **Operator Directives**:
+  * "In prompts or in standard thinking chain...did we add weeklowhigh, mondayhighlow, monthlowhigh, sessionhighlow etc along with val, vah, poc...and also check if we could consider fibonacci retracement in golden zone for entry in confirmation with other orderflow etc parameters. Also...i have seen you are using random EMA like 8,20,50 or 200 rather use fib prime number emas..."
+  * "update all document where required..."
+- **Forensic Diagnosis**:
+  1. Standard moving averages (8, 20, 50, 100, 200) are legacy calendar metrics that clash harmonically and lack fractal self-similarity.
+  2. Missing Monday Opening Range (Weekly Initial Balance IB_W), Session High/Low, and Monthly High/Low blinded the desk to key institutional auction reversal pivot points.
+  3. Fibonacci retracements were previously static approximations rather than mathematically symmetrical direction-aware Golden Zones [0.618-0.650 GP, 0.702 OTE] anchored by 0.786 Invalidation Shelves.
+- **Resolution**:
+  1. **Fibonacci Prime EMAs**: Upgraded `Terminal/Candle_Indicator_Engine.py` and `Data/Excel_Modules/11_Technical.py` (Sheet 20) with Numba SIMD-vectorized ribbons: `5, 13, 34, 89, 144, 233` (where 5, 13, 89, 233 are Fibonacci primes). Added `ema_233_slope_3h_pct` for macro trend bias.
+  2. **Multi-Timeframe Auction Extremes**: Upgraded `Data/Excel_Modules/20_Auction_Market_Structure.py` (Sheet 32) to compute and display Monday High/Low/Mid (`IB_W`), Asian/London/NY session extremes, Current/Prior Week High/Low (`CWH/CWL/PWH/PWL`), and Current/Prior Month High/Low (`CMH/CML/PMH/PML`) via dual-timeframe M15 + D1 data.
+  3. **Symmetrical Fibonacci Golden Zone**: Implemented direction-aware impulse retracement: Bullish impulse retracing down to Golden Pocket [0.618-0.650] and OTE 0.702 with SL beyond 0.786 Invalidation Shelf; Bearish impulse retracing up symmetrically.
+  4. **Universal Governance Synchronization**: Updated all governance files (`STANDARDIZED_TRADING_DECISION_CHAIN.md`, `Arena_GLM_Standard_Prompt.md`, `SUBAGENT_PROMPT_TEMPLATES.md`, `AUTONOMOUS_WAKEUP_CHECKLIST.md`, `TRADE_DECISION_PLAYBOOK.md`, `institutional_orderflow_live_checklist.md`, `UNIVERSAL_AUTONOMOUS_TRADING_PROMPT.md`, `ACTIVE_CONTEXT.md`) and verified 0 formula errors across all 33 sheets of `Data/DataBase_Trading.xlsx`.
