@@ -1,13 +1,13 @@
 {
   "schema_version": "1.0.0",
-  "dispatch_nonce": "7d4df93f-a135-426b-901b-3b0f58879a2c",
-  "observed_at_utc": "2026-10-24 17:57:46 UTC",
+  "dispatch_nonce": "77029c03-e456-45b7-8ff8-13603238b3d3",
+  "observed_at_utc": "2026-10-24 18:37:46 UTC",
   "account": {
     "login": 5064568,
     "server": "BlueberryMarketsSVG-Live",
     "balance": 4865.07,
-    "equity": 4865.07,
-    "margin_free": 4865.07
+    "equity": 4867.42,
+    "margin_free": 2861.29
   },
   "candidate": {
     "symbol": "BTCUSD.pi",
@@ -18,17 +18,17 @@
     "tp": 79850.0
   },
   "broker_tick": {
-    "bid": 80146.0,
-    "ask": 80162.0,
-    "mid": 80154.0,
-    "spread_raw": 16.0,
-    "spread_bps": 2.0,
-    "spread_cost_usd": 0.64,
-    "broker_server_time_raw": 1792875465,
+    "bid": 80183.0,
+    "ask": 80198.0,
+    "mid": 80190.5,
+    "spread_raw": 15.0,
+    "spread_bps": 1.87,
+    "spread_cost_usd": 0.6,
+    "broker_server_time_raw": 1792877865,
     "broker_server_offset_seconds": 10800.0,
-    "tick_time_utc": "2026-10-24 17:57:45 UTC",
+    "tick_time_utc": "2026-10-24 18:37:45 UTC",
     "tick_age_seconds": 1.0,
-    "clock_skew_seconds": -10.97,
+    "clock_skew_seconds": -12.5,
     "quote_fresh": true
   },
   "broker_spec": {
@@ -47,18 +47,18 @@
     "profit_at_tp_usd": 58.0,
     "margin_required_usd": 1626.0,
     "base_nominal_risk_usd": 19.2,
-    "exit_spread_cost_usd": 0.64,
-    "total_nominal_risk_usd": 19.84,
-    "ticket_stress_usd": 26.8,
+    "exit_spread_cost_usd": 0.6,
+    "total_nominal_risk_usd": 19.8,
+    "ticket_stress_usd": 26.75,
     "stress_model": "(base_loss + exit_spread) * 1.25 + 2.00 USD"
   },
   "order_check": {
     "pass": true,
     "retcode": 0,
     "comment": "Done",
-    "margin_level_post_order": 299.2,
-    "margin_free_post_order": 3239.07
+    "margin_level_post_order": 299.35,
+    "margin_free_post_order": 1235.29
   },
   "preflight_verdict": "PREFLIGHT_PASS",
-  "receipt_sha256": "0e8000f5f4610c5f3c3627430be1123ba78414e26bd2979276a0922f967b9d48"
+  "receipt_sha256": "d0ee05e482a66fca5c98ff615f8ae0bf4619ec3d29349dd712134c86efd87d2d"
 }
