@@ -652,7 +652,11 @@ stateDiagram-v2
 > 🔬 **THE CORE QUANTITATIVE INQUEST (MANDATORY ON EVERY CYCLE, DELIBERATION & PROMPT)**:
 > *"Is our methodology for finding potential candidates truly sound, and how can we fundamentally improve it? Given that we monitor, ingest, and process immense multi-layered data across 156 assets (L2/L3 orderbooks, CVD delta, CoinGlass liquidation heatmaps, Hyperdash retail stop cascades, 33-sheet Excel warehouse, ETF flows, Auction market structure), why has equity remained flat/stagnant and why are profitable executions eluding the desk? How do we think like elite quantitative researchers to bridge this gap?"*
 
-### Mandatory 5-Point Quantitative Critique & Improvement Framework:
+### Mandatory 6-Point Quantitative Critique & Improvement Framework:
+On EVERY cycle, deliberation turn, and prompt response, the council models (Arena.ai, Z.ai), subagents, and coordinator MUST dedicate an explicit section to answering:
+0. **The Universal Metacognitive Skills Inquest (MANDATORY EVERYWHERE)**:
+   - *"If it use all the available skills related will it improve our response?"*
+   - Actively audit installed repository skills (@[trader-signal], @[trader-risk], @[market-ingest], @[market-pattern], @[clean-code], @[systematic-debugging], @[backtesting-frameworks], @[adaptive-wfo-epoch], @[sharpe-ratio-non-iid-corrections]). Prove whether applying their mathematical formulas, order flow estimators, or Tradfye footprint metrics directly improves trade expectancy or eliminates false signals.
 On EVERY cycle, deliberation turn, and prompt response, the council models (Arena.ai, Z.ai GLM-5.3-Flash), subagents, and coordinator MUST dedicate an explicit section to answering this question:
 
 1. **Conjunctive Sclerosis vs Probabilistic Expectancy**:

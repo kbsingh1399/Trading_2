@@ -44,6 +44,16 @@
 > 3. **Affirmative Candidate Discovery & High-Confluence Setup Engineering**:
 >    - You are explicitly commanded to conduct **affirmative candidate discovery** across the trade-eligible universe.
 >    - Do not default to passive stand-asides when resting institutional whale walls and high-expectancy setups exist. When structural criteria are satisfied, engineer exact limit entries, stops, and targets with R:R >= 2.0R to 3.0R.
+>
+> 4. **Mandatory Universal Metacognitive Prompt Question**:
+>    - You MUST explicitly evaluate, state, and answer this exact question across your entire deliberation:
+>      **"If it use all the available skills related will it improve our response?"**
+>    - Conduct a formal skills-gap audit: evaluate which skills from the repository (e.g. `@[trader-signal]`, `@[trader-risk]`, `@[market-ingest]`, `@[market-pattern]`, `@[clean-code]`, `@[systematic-debugging]`, `@[backtesting-frameworks]`) are mobilized, how their formal formulas were applied, and whether utilizing deeper econometric, orderflow, and footprint toolkits (including Tradfye whale absorption & delta imbalances) would sharpen your statistical expectancy and eliminate false signals.
+>
+> 5. **Strict Prohibition on Premature Veto / Superficial Quick-Bailout**:
+>    - Completing this prompt in 60-90 seconds with a superficial veto adds ZERO value to the trading desk.
+>    - Even if an artifact, timestamp, or header has a minor defect or warning, you are STRICTLY FORBIDDEN from short-circuiting or returning a quick refusal.
+>    - You MUST deliver an exhaustive, deep quantitative investigation: independently scan the trade-eligible crypto perpetuals, compute Lo-MacKinlay variance ratios, Newey-West drift t-statistics, resting L2/L3 whale walls, footprint volume delta, broker margin collateralization, and nominate concrete, positive EV trade geometries.
 
 To achieve peak quantitative precision and eliminate superficial responses, the autonomous council is commanded to **mobilize deep reasoning and deploy a complete multi-agent squad applying the maximum relevant quantitative methodologies and skills** across all touched domains:
 - `trader-signal`: Z-score anomaly detection, regime classification, and statistical signal generation.

@@ -1,6 +1,6 @@
 {
-  "harvest_timestamp_utc": "2026-10-24T14:09:15.813495+00:00",
-  "harvest_epoch": 1792850955.8710716,
+  "harvest_timestamp_utc": "2026-10-24T14:13:00.256138+00:00",
+  "harvest_epoch": 1792851180.301625,
   "domains": {
     "hyperliquid_whales": {
       "name": "Hyperliquid Whale Tracker",
@@ -11,245 +11,32 @@
     "hyperliquid_wallets": {
       "name": "Hyperliquid Wallet Position Distribution",
       "url": "https://www.coinglass.com/hl",
-      "data": {
-        "wallet_size_groups": [],
-        "pnl_groups": []
-      }
+      "error": "no close frame received or sent"
     },
     "liquidation_maxpain": {
       "name": "Liquidation Max Pain",
       "url": "https://www.coinglass.com/liquidation-maxpain",
-      "count": 0,
-      "data": []
+      "error": "no close frame received or sent"
     },
     "liquidations_summary": {
       "name": "24h Liquidation Summary",
       "url": "https://www.coinglass.com/liquidations",
-      "table_count": 4,
-      "tables": [
-        {
-          "headers": [
-            "Exchange",
-            "Liquidations",
-            "Long",
-            "Short",
-            "Market share",
-            "Long / Short"
-          ],
-          "rowCount": 1,
-          "rows": [
-            [
-              "Unable to load data"
-            ]
-          ]
-        },
-        {
-          "headers": [
-            "Rank",
-            "Time",
-            "Liquidations",
-            "Event"
-          ],
-          "rowCount": 1,
-          "rows": [
-            [
-              "Unable to load data"
-            ]
-          ]
-        },
-        {
-          "headers": [
-            "Ranking",
-            "Assets",
-            "Price",
-            "Price (24h%)",
-            "1h Long",
-            "1h Short",
-            "4h Long",
-            "4h Short",
-            "12h Long",
-            "12h Short",
-            "24h Long",
-            "24h Short"
-          ],
-          "rowCount": 0,
-          "rows": []
-        },
-        {
-          "headers": [],
-          "rowCount": 1,
-          "rows": [
-            [
-              "No data"
-            ]
-          ]
-        }
-      ],
-      "cards": [
-        "Market",
-        "Stocks",
-        "Exchanges",
-        "Open Interest",
-        "Funding Rate",
-        "Liquidation",
-        "Data",
-        "Supercharts",
-        "More",
-        "Unable to update. Please retry later. Retry",
-        "1h Rekt \u2014 Long \u2014 Short \u2014 4h Rekt \u2014 Long \u2014 Short \u2014 12h Rekt \u2014 Long \u2014 Short \u2014 24h Rekt \u2014 Long \u2014 Short \u2014",
-        "1h Rekt \u2014 Long \u2014 Short \u2014",
-        "Long \u2014",
-        "Short \u2014",
-        "4h Rekt \u2014 Long \u2014 Short \u2014",
-        "Long \u2014",
-        "Short \u2014",
-        "12h Rekt \u2014 Long \u2014 Short \u2014",
-        "Long \u2014",
-        "Short \u2014",
-        "24h Rekt \u2014 Long \u2014 Short \u2014",
-        "Long \u2014",
-        "Short \u2014",
-        "Unable to update. Please retry later. Retry",
-        "Unable to update. Please retry later. Retry",
-        "Unable to update. Please retry later. Retry",
-        "Unable to update. Please retry later. Retry",
-        "Loading\u2026",
-        "Loading\u2026",
-        "Total Liquidations Liquidation Value Ranking Assets Price Price (24h%) 1h Long 1h Short 4h Long 4h Short 12h Long 12h Short 24h Long 24h Short No data 1"
-      ]
+      "error": "no close frame received or sent"
     },
     "liquidation_levels": {
       "name": "Bitcoin Liquidation Levels Lines",
       "url": "https://www.coinglass.com/liquidation-levels",
-      "table_count": 1,
-      "tables": [
-        {
-          "headers": [
-            "Side",
-            "Price",
-            "Distance",
-            "Leverage",
-            "Strength",
-            ""
-          ],
-          "rowCount": 3,
-          "rows": [
-            [
-              "\u2014"
-            ],
-            [
-              "Last price \u2014"
-            ],
-            [
-              "\u2014"
-            ]
-          ]
-        }
-      ],
-      "cards": [
-        "Market",
-        "Stocks",
-        "Exchanges",
-        "Open Interest",
-        "Funding Rate",
-        "Liquidation",
-        "Data",
-        "Supercharts",
-        "More",
-        "Binance BTCUSDT Liquidation Levels LIVE \u00b7 3D \u00b7 1M By side By leverage Candles",
-        "Liquidations Liquidation Heatmap Estimated liquidation intensity at each price, showing where liquidity is stacked.",
-        "Liquidations Liquidation Map Cumulative long and short liquidations above and below price.",
-        "Liquidations Liquidation Max Pain The price with the most liquidations and its 24h hit probability.",
-        "Order flow Large Orders Bid and ask walls and big trades: are real orders resting near the levels?",
-        "Order flow Aggregated Order Book Depth merged across exchanges: how much size sits near price.",
-        "Order flow CVD Cumulative Volume Delta Cumulative taker buys minus sells: who is pushing price."
-      ]
+      "error": "no close frame received or sent"
     },
     "liquidation_map": {
       "name": "Crypto Liquidation Map",
       "url": "https://www.coinglass.com/pro/futures/LiquidationMap",
-      "table_count": 0,
-      "tables": [],
-      "cards": [
-        "Market",
-        "Stocks",
-        "Exchanges",
-        "Open Interest",
-        "Funding Rate",
-        "Liquidation",
-        "Data",
-        "Supercharts",
-        "More",
-        "All Categories",
-        "Options",
-        "Options Net Premium Strike Heatmap",
-        "Options/Futures OI Ratio",
-        "Options Open Interest",
-        "Options OI By Expiry",
-        "Options OI By Strike",
-        "Volume By Expiration",
-        "Volume By Strike Price",
-        "Option Greeks Tables",
-        "Max Pain",
-        "Liquidations",
-        "Liquidation History",
-        "Top Liquidation Events",
-        "Liquidation History Heatmap",
-        "Liquidation Map",
-        "Hyperliquid Liquidation Map",
-        "Liquidation Heatmap",
-        "Liquidation Heatmap(Model 2)",
-        "Liquidation Heatmap(Model 3)",
-        "Futures",
-        "Hyperliquid Long/Short Trader Ratio",
-        "Open Interest & Volume",
-        "Altcoin Open Interest & Volume",
-        "Orderbook Liquidity Delta",
-        "Insurance Fund History"
-      ]
+      "error": "no close frame received or sent"
     },
     "liquidation_heatmap": {
       "name": "Liquidation Heatmap",
       "url": "https://www.coinglass.com/pro/futures/LiquidationHeatMap",
-      "table_count": 0,
-      "tables": [],
-      "cards": [
-        "Market",
-        "Stocks",
-        "Exchanges",
-        "Open Interest",
-        "Funding Rate",
-        "Liquidation",
-        "Data",
-        "Supercharts",
-        "More",
-        "All Categories",
-        "Options",
-        "Options Net Premium Strike Heatmap",
-        "Options/Futures OI Ratio",
-        "Options Open Interest",
-        "Options OI By Expiry",
-        "Options OI By Strike",
-        "Volume By Expiration",
-        "Volume By Strike Price",
-        "Option Greeks Tables",
-        "Max Pain",
-        "Liquidations",
-        "Liquidation History",
-        "Top Liquidation Events",
-        "Liquidation History Heatmap",
-        "Liquidation Map",
-        "Hyperliquid Liquidation Map",
-        "Liquidation Heatmap",
-        "Liquidation Heatmap(Model 2)",
-        "Liquidation Heatmap(Model 3)",
-        "Futures",
-        "Hyperliquid Long/Short Trader Ratio",
-        "Open Interest & Volume",
-        "Altcoin Open Interest & Volume",
-        "Orderbook Liquidity Delta",
-        "Insurance Fund History"
-      ]
+      "error": "no close frame received or sent"
     },
     "bitcoin_etfs": {
       "name": "Spot Bitcoin ETF Flows & Holdings",
@@ -282,11 +69,11 @@
       "error": "no close frame received or sent"
     }
   },
-  "harvest_duration_seconds": 30.72,
+  "harvest_duration_seconds": 8.28,
   "_temporal_meta": {
     "stream": "coinglass",
-    "recorded_at_utc": "2026-10-24T14:09:15.813495+00:00",
-    "recorded_at_epoch": 1792850955.8710716,
+    "recorded_at_utc": "2026-10-24T14:13:00.256138+00:00",
+    "recorded_at_epoch": 1792851180.301625,
     "gap_detected": false,
     "gap_duration_minutes": 0.0,
     "last_active_utc": null,
