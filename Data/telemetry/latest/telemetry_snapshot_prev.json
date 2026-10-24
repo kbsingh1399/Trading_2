@@ -158582,7 +158582,7 @@
   "_temporal_meta": {
     "stream": "telemetry",
     "recorded_at_utc": "2026-10-24T18:11:46Z",
-    "recorded_at_epoch": 1792865506.241561,
+    "recorded_at_epoch": 1792865506.857041,
     "gap_detected": false,
     "gap_duration_minutes": 0.0,
     "last_active_utc": null,
