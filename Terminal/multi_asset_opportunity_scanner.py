@@ -17,8 +17,8 @@ Evaluates:
 2. Dual-Engine Confluence Stack:
    - Model 1 (Extreme Mean Reversion): |VWAP Z| >= 2.0 SD, RSI extremes (<35 or >65),
      liquidity sweep / rejection.
-   - Model 2 (Trend Continuation & Pullback): 20/50/200 EMA ribbon hierarchy,
-     pullback to EMA 20 / VWAP shelf (0.2 to 1.8 SD), Fibonacci 0.50-0.618 Golden Pocket.
+   - Model 2 (Trend Continuation & Pullback): Fibonacci Prime EMA ribbon hierarchy (13/34/89/233),
+     pullback to EMA 34 / VWAP shelf (0.2 to 1.7 SD), Symmetrical Fibonacci Golden Zone (0.618-0.650 GP, 0.702 OTE, 0.786 Invalidation Shelf).
 3. Institutional Position Sizing & Floor Cushion Defense:
    - Evaluated via exact broker quote conversion (mt5.order_calc_profit).
    - Nominal risk target: 18.00 USD (expandable to 25.00-35.00 USD for pristine confluence).
@@ -126,26 +126,51 @@ def scan_all_156_assets(nominal_risk_target: float = 18.00) -> Dict[str, Any]:
         vwap_z = (mid - vwap) / sigma
         rsi = ind.get("rsi_14", 50.0)
         atr = ind.get("atr_14", 0.0)
-        ema_20 = ind.get("ema_20")
-        ema_50 = ind.get("ema_50")
-        ema_200 = ind.get("ema_200")
+        
+        # Fibonacci Prime EMAs (with backward compatibility fallback)
+        ema_5 = ind.get("ema_5", ind.get("ema_9"))
+        ema_13 = ind.get("ema_13", ind.get("ema_20"))
+        ema_34 = ind.get("ema_34", ind.get("ema_20"))
+        ema_89 = ind.get("ema_89", ind.get("ema_50"))
+        ema_144 = ind.get("ema_144", ind.get("ema_100"))
+        ema_233 = ind.get("ema_233", ind.get("ema_200"))
 
-        if not atr or atr <= 0 or not ema_20 or not ema_50 or not ema_200:
+        if not atr or atr <= 0 or not ema_13 or not ema_34 or not ema_89 or not ema_233:
             continue
 
-        # Calculate Fibonacci Retracements over last 60 M15 bars (15 hours)
-        recent_bars = df.tail(60)
+        # Symmetrical Fibonacci Retracement impulse over last 96 M15 bars (24 hours)
+        recent_bars = df.tail(96)
+        high_idx = recent_bars["high"].idxmax()
+        low_idx = recent_bars["low"].idxmin()
         swing_high = float(recent_bars["high"].max())
         swing_low = float(recent_bars["low"].min())
         swing_range = swing_high - swing_low
 
-        # Trend & Regime classification
+        if swing_range <= 0:
+            continue
+
+        if low_idx < high_idx:
+            # Bullish Impulse (Low -> High), Retracement pulls down
+            fib_dir = "BULLISH"
+            fib_gp_max = swing_high - 0.618 * swing_range
+            fib_gp_min = swing_high - 0.650 * swing_range
+            fib_ote = swing_high - 0.702 * swing_range
+            fib_inval = swing_high - 0.786 * swing_range
+        else:
+            # Bearish Impulse (High -> Low), Retracement rallies up
+            fib_dir = "BEARISH"
+            fib_gp_min = swing_low + 0.618 * swing_range
+            fib_gp_max = swing_low + 0.650 * swing_range
+            fib_ote = swing_low + 0.702 * swing_range
+            fib_inval = swing_low + 0.786 * swing_range
+
+        # Trend & Regime classification: Fibonacci Prime Ribbon Hierarchy
         regime = "UNDEFINED"
-        if mid > ema_20 > ema_50 > ema_200:
+        if mid > ema_13 > ema_34 > ema_89 > ema_233:
             regime = "TREND_UP"
-        elif mid < ema_20 < ema_50 < ema_200:
+        elif mid < ema_13 < ema_34 < ema_89 < ema_233:
             regime = "TREND_DOWN"
-        elif abs(vwap_z) < 1.0:
+        elif abs(vwap_z) >= 2.0:
             regime = "MEAN_REVERT"
 
         # Signal Logic
@@ -180,33 +205,35 @@ def scan_all_156_assets(nominal_risk_target: float = 18.00) -> Dict[str, Any]:
                 rr_ratio = 2.2
                 fib_confluence = f"Deep Swing High Test ({swing_high:.{s_info.digits}f})"
 
-        # Model 2: Trend Following Pullback to EMA20 / VWAP / Fibonacci Shelf
-        elif regime == "TREND_UP" and 0.2 <= vwap_z <= 1.6 and mid >= ema_20 * 0.997:
-            # Bullish Fib: 50% to 61.8% Golden Pocket
-            fib_500 = swing_high - swing_range * 0.500
-            fib_618 = swing_high - swing_range * 0.618
+        # Model 2: Trend Following Pullback into Symmetrical Golden Zone [0.618 GP, 0.702 OTE] & EMA 34 Shelf
+        elif regime == "TREND_UP" and 0.2 <= vwap_z <= 1.7 and fib_dir == "BULLISH" and mid >= fib_inval:
+            # Bullish Pullback to Golden Zone or EMA 34 shelf
+            pullback_target = max(fib_gp_min, ema_34)
             setup_type = "MODEL_2_TREND_PULLBACK_BUY"
             side = "BUY_LIMIT"
-            entry_price = round(min(tick.bid, ema_20), s_info.digits)
-            sl_distance = max(1.2 * atr, (entry_price - ema_50) if entry_price > ema_50 else 1.2 * atr)
+            entry_price = round(min(tick.bid, pullback_target), s_info.digits)
+            # SL anchored >= 0.40 ATR beyond 0.786 Invalidation Shelf and below EMA 89
+            sl_candidate = min(fib_inval - 0.40 * atr, ema_89 - 0.20 * atr)
+            sl_distance = max(1.2 * atr, abs(entry_price - sl_candidate))
             sl_price = round(entry_price - sl_distance, s_info.digits)
             tp_distance = sl_distance * 2.5
             tp_price = round(entry_price + tp_distance, s_info.digits)
             rr_ratio = 2.5
-            fib_confluence = f"Fib 0.50-0.618 ({fib_618:.{s_info.digits}f}-{fib_500:.{s_info.digits}f})"
-        elif regime == "TREND_DOWN" and -1.6 <= vwap_z <= -0.2 and mid <= ema_20 * 1.003:
-            # Bearish Fib: 50% to 61.8% Golden Pocket
-            fib_500 = swing_low + swing_range * 0.500
-            fib_618 = swing_low + swing_range * 0.618
+            fib_confluence = f"OTE/GP [0.618-0.702] ({fib_ote:.{s_info.digits}f}-{fib_gp_max:.{s_info.digits}f}) | Inval 0.786: {fib_inval:.{s_info.digits}f}"
+        elif regime == "TREND_DOWN" and -1.7 <= vwap_z <= -0.2 and fib_dir == "BEARISH" and mid <= fib_inval:
+            # Bearish Pullback to Golden Zone or EMA 34 shelf
+            pullback_target = min(fib_gp_max, ema_34)
             setup_type = "MODEL_2_TREND_PULLBACK_SELL"
             side = "SELL_LIMIT"
-            entry_price = round(max(tick.ask, ema_20), s_info.digits)
-            sl_distance = max(1.2 * atr, (ema_50 - entry_price) if ema_50 > entry_price else 1.2 * atr)
+            entry_price = round(max(tick.ask, pullback_target), s_info.digits)
+            # SL anchored >= 0.40 ATR beyond 0.786 Invalidation Shelf and above EMA 89
+            sl_candidate = max(fib_inval + 0.40 * atr, ema_89 + 0.20 * atr)
+            sl_distance = max(1.2 * atr, abs(sl_candidate - entry_price))
             sl_price = round(entry_price + sl_distance, s_info.digits)
             tp_distance = sl_distance * 2.5
             tp_price = round(entry_price - tp_distance, s_info.digits)
             rr_ratio = 2.5
-            fib_confluence = f"Fib 0.50-0.618 ({fib_500:.{s_info.digits}f}-{fib_618:.{s_info.digits}f})"
+            fib_confluence = f"OTE/GP [0.618-0.702] ({fib_gp_min:.{s_info.digits}f}-{fib_ote:.{s_info.digits}f}) | Inval 0.786: {fib_inval:.{s_info.digits}f}"
 
         if not setup_type or not entry_price or not sl_price or not tp_price:
             continue

@@ -84,7 +84,7 @@ Before evaluating data, touching code, or dispatching orders, the coordinator an
 ### Gateway 5: Resting Limit Orders Structural, Liquidation & Microstructure Sentry
 > *"Are our resting limit orders still structurally valid, or has the underlying market thesis degraded?"*
 - **Distance to Market**: Is price approaching the limit? Is a fill imminent?
-- **Structural Shelf Integrity**: Is the underlying 20/50 EMA, Session VWAP, Volume Profile POC/VAL/VAH, or Fibonacci 0.50–0.618 shelf still intact?
+- **Structural Shelf Integrity**: Is the underlying Fibonacci Prime EMA (EMA 13 / 34 / 89 / 233), Session VWAP, Volume Profile POC/VAL/VAH, Multi-Timeframe Auction Extremes (Monday High/Low/Mid IB_W, Session Extremes, Week/Month High/Low), or Symmetrical Fibonacci Retracement Golden Zone (0.618–0.650 GP, 0.702 OTE, 0.786 Invalidation Shelf) still intact?
 - **Whale Wall Persistence**: Inspect Sheet 18 (`10_Whale_Orders`) and Sheet 25 (`17_Orderbook`). Do the resting whale walls (>= 100K USD) still persist (>= 180s), or were they cancelled/pulled?
 - **Comprehensive Liquidation & Stop Sweep Dynamics**:
   * Inspect BOTH Hyperdash stops/liquidation maps (Sheet 23 `15_Hyperdash_Stops_Map` & Sheet 24 `16_Hyperdash_Liquidation_Map`) AND CoinGlass liquidation heatmaps, live liquidation streams, and multi-exchange surfaces (Sheets 10, 11, 12, 13, 14, 15, 16, 17, 18, 22).
@@ -103,11 +103,11 @@ Before evaluating data, touching code, or dispatching orders, the coordinator an
   * **Tier 2 risk cap**: Fresh realized balance strictly above 4,850.00 USD permits nominal 15.00–25.00 USD per ticket across at most two independent assets, counting all jointly fillable pending orders in two contingent slots; confluence does not authorize a larger risk budget.
 - **5-Pillar Confluence Stack (Regime & Narrative Driven)**:
   * Prioritize the dominant Market Regime & Macro Narrative (The WHY) over rigid all-or-nothing conjunctive micro-gates.
-  * For Model 2 Trend Pullbacks: Retracements to EMA20/50, Session VWAP, VPOC, or Fibonacci 0.50–0.618 golden pocket at mild Z-scores (|Z| = 0.5 to 1.8 SD) qualify for pro-trend limit orders.
-  * For Forex and Indices: Volume Profile VPOC, Value Area High/Low, and EMA ribbons serve as structural anchors (interbank FX lacks centralized Binance-style L2 book depth).
+  * For Model 2 Trend Pullbacks: Retracements into the Symmetrical Fibonacci Golden Zone [0.618 GP, 0.702 OTE], Fibonacci Prime EMA 34 / 89 ribbon shelves, Session VWAP, or Volume Profile VPOC at mild Z-scores (|Z| = 0.2 to 1.7 SD) in confirmed TREND_UP/TREND_DOWN regimes qualify for pro-trend limit orders.
+  * For Forex and Indices: Volume Profile VPOC, Value Area High/Low (VAH/VAL), Multi-Timeframe Auction Extremes (Monday IB_W, Session High/Low, Week/Month High/Low), and Fibonacci Prime EMA ribbons (5/13/34/89/144/233) serve as structural anchors.
   1. Dynamic spread friction gate passed (Efficiency Ratio <= 15%).
   2. Multi-horizon taker CVD delta divergence/absorption (`zc_div > 0.8`, Spot > 0, Futures < 0, or tick absorption).
-  3. Auction location: Model 1 Extreme Mean Reversion (`|Z| >= 2.0 to 3.5 SD`, RSI < 35 or > 65) sweeping dense liquidation/stop pools OR Model 2 Trend Pullback to EMA20/50, VPOC, or Fibonacci 0.50–0.618 shelf in confirmed trend.
+  3. Auction location: Model 1 Extreme Mean Reversion (`|Z| >= 2.0 to 3.5 SD`, RSI < 35 or > 65) sweeping dense liquidation/stop pools OR Model 2 Trend Pullback into the Symmetrical Fibonacci Golden Zone [0.618 GP, 0.702 OTE], Fib-Prime EMA 34/89 shelf, or VPOC in confirmed trend with SL anchored >= 0.40 ATR beyond 0.786 Invalidation Shelf.
   4. Verified structural backing: Resting whale wall >= 100K USD (persistence >= 180s) for Crypto, or VPOC/EMA support for Forex/Indices, anchoring SL safely outside sweep zone.
   5. Macro clearance (zero Tier-1 event blackout).
 - **Authorization mandate**: An empty contingent slot and setup confluence are necessary screens. Require every SOP 2.1 hard gate, calibrated positive lower-bound utility under SOP 2.2, asset-native evidence under 2.3 and broker-grid sizing under SOP Step 8 before any new-risk ticket.
@@ -204,7 +204,7 @@ Two 25.00 USD nominal tickets require **66.50 USD** joint ticket stress: `2 * (1
     * Open Interest & Funding (Sheets 07–09): inspect OI expansion and funding carry costs line-by-line.
     * CoinGlass & Hyperdash Liquidation Maps (Sheets 10–17, 22, 24): trace continuous liquidation clusters line-by-line to map [min_price, max_price].
     * Resting Whale Orders & L2 Depth (Sheets 18 & 25): read every whale bid/ask line (>= 100K USD) to verify persistence (>= 180s).
-    * Quantitative Technicals (Sheet 19) & Auction Structure (Sheet 33): check 20/50/200 EMAs, Session VWAP SD bands, Z-score, RSI, ATR, Daily VPOC, VAH, VAL, Monday Open, and Fibonacci Golden Pocket retracements.
+    * Quantitative Technicals (Sheet 20 11_Technical) & Auction Structure (Sheet 32 20_Auction_Market_Structure): check Fibonacci Prime EMAs (5, 13, 34, 89, 144, 233), Session VWAP SD bands, Z-score, RSI, ATR, Monday High/Low/Mid (IB_W), Session Extremes (Asian, London, NY), Current/Prior Week & Month High/Low (CWH/CWL/PWH/PWL, CMH/CML/PMH/PML), Symmetrical Fibonacci Golden Zone (0.618-0.650 GP, 0.702 OTE, 0.786 Invalidation Shelf), and Daily Volume Profile VPOC, VAH, VAL.
     * Hyperdash Stop Order Maps (Sheet 23): check retail stop clusters line-by-line to avoid sweep traps.
     * Continuous CVD (Sheet 26): inspect 1m/5m/15m/1h Spot vs Futures taker delta divergence and absorption.
     * Breaking News & Calendar (Sheets 27 & 28): read upcoming economic events and news headlines line-by-line.
@@ -248,7 +248,7 @@ Two 25.00 USD nominal tickets require **66.50 USD** joint ticket stress: `2 * (1
     * **Time Decay**: Exit at market if profit remains < +0.20R0 after 24 bars (6 hours).
 - [ ] **Resting Limit Orders Re-Evaluation Audit (`mt5.orders_get()`)**:
   - For every resting pending limit order:
-    * **Structural Shelf Integrity**: Confirm whether the underlying 20/50 EMA, Session VWAP, or VAL/VAH shelf remains valid.
+    * **Structural Shelf Integrity**: Confirm whether the underlying Fibonacci Prime EMA (EMA 13 / 34 / 89 / 233), Session VWAP, Multi-Timeframe Auction Extremes (Monday IB_W, Session, Week, Month High/Low), or Symmetrical Fibonacci Golden Zone (0.618-0.650 GP, 0.702 OTE, 0.786 Invalidation Shelf) remains valid.
     * **Whale Wall Persistence**: Inspect Sheet 18 (`10_Whale_Orders`) and Sheet 25 (`17_Orderbook`) to confirm supporting whale walls (>= 100K USD) still persist (>= 180s). If the supporting wall cancelled or degraded, immediately cancel or re-anchor the limit order.
     * **CoinGlass & Hyperdash Sweep Dynamics**: Ensure no adverse retail stop sweep cluster or liquidation cascade pool has formed between current price and the limit entry.
     * **Distance & Opportunity Cost**: If price moved >= 3.0R0 away from the limit order without filling, re-evaluate whether to cancel or reposition.
@@ -268,13 +268,13 @@ Two 25.00 USD nominal tickets require **66.50 USD** joint ticket stress: `2 * (1
 - [ ] **Dual-Engine Model Screening & Dynamic Friction Budgeting**:
   * **Dynamic Spread Friction Gate**: `Spread Points / TP Distance Points <= 15.0%`. Include friction once in the declared cost ledger, preserve the 15.00–25.00 USD nominal cap, and require calibrated positive lower-bound utility. Friction can make a candidate unavailable.
   * **Model 1 (Extreme Mean Reversion)**: |VWAP Z-Score| >= 2.0 to 3.5 SD with RSI exhaustion (<35 or >65) sweeping dense CoinGlass/Hyperdash liquidation pools.
-  * **Model 2 (Trend Continuation / Pullback)**: Verified HTF trend pulling back to EMA20 / Session VWAP / Fibonacci 0.50–0.618 shelf (0.2 to 1.8 SD).
+  * **Model 2 (Trend Continuation / Pullback)**: Verified HTF trend pulling back into the Symmetrical Fibonacci Golden Zone [0.618 GP, 0.702 OTE] or Fib-Prime EMA 34 / Session VWAP shelf (0.2 to 1.7 SD), with Stop Loss anchored >= 0.40 ATR beyond the 0.786 Invalidation Shelf and EMA 89.
   * **Dynamic Risk Sizing**: Tier 2 nominal risk 15.00–25.00 USD only with fresh realized balance > 4,850.00 USD; at most two independent assets, with all jointly fillable pending orders consuming contingent slots. Preserve min(balance,equity) after joint stress and all reserves >= 4,795.00 USD kernel floor, above the 4,650.00 USD buffer and 4,600.00 USD hard floor.
 - [ ] **MANDATORY CANDIDATE RADAR CHECKLIST & TRIGGER MATRIX (OPERATOR MANDATE - NEVER OMIT)**:
   * Even when standing aside at current market prices, the coordinator and Orderflow Analyst MUST ALWAYS compile and output a structured **Potential Candidate Radar Checklist** detailing the top qualified multi-asset setups.
   * For each prospective candidate, specify:
     1. **Asset & Strategy Model**: (e.g. NAS100 Model 1 Oversold, USDJPY Model 2 Pullback, Gold Model 2 Pullback, BTC Model 1 Sweep).
-    2. **Mapped Structural Level**: Exact price shelf (Daily VWAP, EMA20/50, Volume Profile POC/VAL/VAH, Fibonacci Golden Pocket, Resting Whale Wall).
+    2. **Mapped Structural Level**: Exact price shelf (Daily VWAP, Fibonacci Prime EMA 34/89/233, Volume Profile POC/VAL/VAH, Monday High/Low/Mid IB_W, Session High/Low, Week/Month High/Low, Symmetrical Fibonacci Golden Zone [0.618 GP, 0.702 OTE, 0.786 Invalidation Shelf], Resting Whale Wall).
     3. **Proposed Ticket Geometry**: Lot Size, Entry Limit, Stop Loss (outside sweep band), Take Profit, R0 (>= 2.0R to 2.5R).
     4. **Current Status & Distance**: Distance in ATR or points from current market price.
     5. **Trigger Pre-Condition Checklist**: Exact empirical criteria required to punch (e.g. `[ ] Retail stop pool swept`, `[ ] 15m CVD delta flips positive/absorption`, `[ ] Resting bid wall >= 100K USD persists >= 180s`, `[ ] Session rollover/MOC gate cleared`).

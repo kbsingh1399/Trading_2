@@ -479,8 +479,8 @@ Screen candidates across the 156-asset universe using `Terminal/multi_asset_oppo
   1. **Orderflow Acceleration**: Accelerating Cumulative Volume Delta in the direction of the trend across 5m, 15m, and 1h horizons.
   2. **Open Interest Alignment**: Expanding Open Interest confirming new institutional capital entering the breakout, with funding rates remaining non-extreme (< 0.03%).
   3. **Liquidation Vacuum**: Presence of un-swept opposing liquidation bands / stop sweep clusters ahead, pulling price forward like a magnet.
-  4. **Fibonacci & Whale Confluence**: Retracement aligns with the 0.50–0.618 Fibonacci Golden Pocket coinciding directly with resting whale walls (>= 100K USD, persist >= 180s) trailing behind the move.
-- **Execution**: Pro-trend pullback limit order placed at the 20/50 EMA or Session VWAP shelf, targeting rapid liquidation sweep into the opposing debt pool.
+  4. **Fibonacci & Whale Confluence**: Retracement aligns with the Symmetrical Fibonacci Golden Zone [0.618 GP, 0.702 OTE] coinciding directly with resting whale walls (>= 100K USD, persist >= 180s) trailing behind the move.
+- **Execution**: Pro-trend pullback limit order placed at the Fibonacci Prime EMA 34/89, Symmetrical Golden Zone [0.618-0.702], or Session VWAP shelf, targeting rapid liquidation sweep into the opposing debt pool with SL anchored >= 0.40 ATR beyond 0.786 Invalidation Shelf.
 
 ---
 
@@ -493,8 +493,8 @@ Screen candidates across the 156-asset universe using `Terminal/multi_asset_oppo
 
 1. **Regime-Aligned Confluence Principles**:
    - **For Model 2 (Trend Continuation & Pullback)**:
-     * **Narrative**: A verified directional regime (`TREND_UP` or `TREND_DOWN` with 20/50 EMA ribbon alignment).
-     * **Location**: Trend pullbacks naturally occur at mild Z-scores (`|Z| = 0.5 to 1.8 SD`) into dynamic shelves (EMA20/50, Session VWAP, Volume Profile VPOC, or Fibonacci 0.50–0.618 golden pocket). Requiring extreme `|Z| >= 2.0 SD` on trend pullbacks is a mathematical error that invalidates the best trend continuation setups!
+     * **Narrative**: A verified directional regime (TREND_UP or TREND_DOWN with Fibonacci Prime EMA ribbon alignment: 5 > 13 > 34 > 89 > 144 > 233 for bullish, < for bearish).
+     * **Location**: Trend pullbacks naturally occur at mild Z-scores (|Z| = 0.2 to 1.7 SD) into dynamic shelves (Fibonacci Prime EMA 34/89, Session VWAP, Volume Profile VPOC, or Symmetrical Fibonacci Golden Zone [0.618 GP, 0.702 OTE]). Requiring extreme |Z| >= 2.0 SD on trend pullbacks is a mathematical error that invalidates the best trend continuation setups!
      * **Structural Backing**:
        - *For Crypto Perpetuals*: Resting whale walls >= 100K USD persisting >= 180s trailing behind the entry.
        - *For Forex & Indices*: Volume Profile High Volume Nodes (HVN/VPOC), Value Area boundaries (VAH/VAL), or session VWAP shelves (since interbank FX is an OTC ECN feed without centralized 1M USD book depth).
@@ -510,7 +510,7 @@ Screen candidates across the 156-asset universe using `Terminal/multi_asset_oppo
      * *Strict Prohibition*: Subagents and Arena.ai are **strictly forbidden from disqualifying Forex candidates for missing `zc_div` or missing Hyperdash maps**.
      * *Execution Anchor*: Raw interbank tick spread efficiency (`Spread / TP <= 15%`) + Auction Market Structure.
    - **Precious Metals & Commodities (XAUUSD Gold, SILVER, CL_OIL)**:
-     * *Canonical Anchor*: Sheet 33 (`20_Auction_Market_Structure`) VPOC/VAH/VAL + 20/50 EMA ribbon and London/New York liquidity sweeps; optional native depth only when available. Apply the 21:15–22:30 UTC rollover embargo.
+     * *Canonical Anchor*: Sheet 32 (20_Auction_Market_Structure) VPOC/VAH/VAL + Fibonacci Prime EMA 34/89/233 ribbon, Monday High/Low/Mid (IB_W), London/New York session liquidity sweeps, and Symmetrical Fibonacci Golden Zone; optional native depth only when available. Apply the 21:15–22:30 UTC rollover embargo.
      * *Execution Anchor*: High-efficiency tick spread + structural rejection/breakout from Daily Value Area.
    - **Equity Indices (NAS100, SP500, DJ30, GER40)**:
      * *Canonical Anchor*: Sheet 33 (`20_Auction_Market_Structure`) auction shelves (VPOC, VAH, VAL), optional native depth and session VWAP, with the index's actual native cash session, DST, holidays and early closes verified under 2.3.
