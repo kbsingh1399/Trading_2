@@ -62680,3 +62680,23 @@ You may create 12_Hyperdash and 13_Hyperliquid where you dump all intelligenve a
    - Vetoed by snapshot quote age (289s) and preflight observation timestamp (00:38:55 vs 00:38:47 cutoff).
    - 100% Flat Cash preserved.
 3. **Task `task-121987`**: Actively waiting on Z.ai's multi-step generation with the 900-second active-generation guard. Roles A, B, and D running.
+
+### Cycle 315 Complete Adjudication & Cycle 316 Dual Dispatch (2026-10-24 00:51 UTC)
+- **Broker State**: Blueberry Markets MT5 Live SVG Account #5064568.
+- **Balance / Equity**: 4,865.07 USD (100% Flat Cash; 0 positions, 0 orders).
+- **Floor Cushions**: Hard Floor (+265.07 USD) | Operating Buffer (+215.07 USD) | Solvency Kernel (+70.07 USD).
+- **Net Headroom**: +68.07 USD (4,865.07 - 2.00 - 4,795.00). Capital Regime: TIER 2 HOUSE MONEY.
+- **Cycle 315 Adjudication Summary**:
+  * Arena.ai: DENIED_FAIL_CLOSED / STAND_ASIDE (commit e496f68).
+  * Z.ai Sovereign Council: DENIED_FAIL_CLOSED / HOLD (103/103 tests passed, tick-age non-negative and stress model verified).
+  * Role A: STAND_ASIDE_NO_VALID_REGIME (VR(4)=0.5639 subdiffusive, ER(15m)=0.0415 noise, classify_regime=UNDEFINED).
+  * Role B: VERIFIED_LIQUIDITY_STAND_ASIDE_NEW_RISK (BTC limit 2.92 ATR above mid, P_fill=1.26%, 94.6% spoofed walls, AS(5m)=-0.3125 R0).
+  * Role C: SOLVENCY_VERIFIED_CAPITAL_ELIGIBLE_PENDING_ALL_HARD_GATES (Ticket stress 26.75 USD, admission stress 28.75 USD, headroom +68.07 USD).
+  * Role D: PROVENANCE_AND_CLOCK_VERIFIED_STAND_ASIDE (Tri-partition: 98 TradFi closed, 46 Crypto spread-disqualified >25 bps, 12 Crypto executable).
+  * Consensus: 100% Unanimous Agreement — STAND ASIDE IN 100% FLAT CASH DEFENSE.
+- **Cycle 316 Dispatch & Preflight**:
+  * Envelope: Data/cycle_envelope.json (Cutoff: 2026-10-24 00:49:20 UTC, Nonce: 3dc6f4b6-841c-4a94-83f4-73db2d809175, Commit: 346dc2cbfc4bd62d15c02ec3f7e05aaacc02e55e matching HEAD).
+  * Preflight Candidate: BTCUSD.pi SELL_LIMIT @ 80960.0, SL 81242.0, TP 80252.0, volume 0.06 lot, base nominal risk 16.92 USD, exit spread 0.90 USD, total nominal risk 17.82 USD, ticket stress 24.27 USD. Preflight PASS, tick age 0.0s, order check pass.
+  * Council Dispatch: 16,954 chars dispatched simultaneously to Z.ai, Arena.ai, and Gemini Web2API (port 8081).
+  * Waiter: Terminal/arena_completion_daemon.py --wait armed as background task task-122115.
+  * Subagents: Roles A, B, C, D dispatched on Fable 5 (flash).
