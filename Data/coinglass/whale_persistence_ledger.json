@@ -6,8 +6,8 @@
     "description": "Unified canonical immutable whale identity keyed by asset, side, user, entry_time_iso with duplicate zombie pruning.",
     "total_whales": 69,
     "pruned_zombies": 12,
-    "last_update_utc": "2026-10-24T00:49:25.248134+00:00",
-    "last_update_epoch": 1792802965.2481556
+    "last_update_utc": "2026-10-24T00:54:42.920647+00:00",
+    "last_update_epoch": 1792803282.920671
   },
   "ETH_SHORT_0x5b5d..60_2026-05-09T21:18:00+00:00": {
     "key": "ETH_SHORT_0x5b5d..60_2026-05-09T21:18:00+00:00",
