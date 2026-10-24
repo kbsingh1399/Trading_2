@@ -19,10 +19,12 @@ from typing import List, Optional
 
 logger = logging.getLogger("FloorDefense")
 
-HARD_FLOOR_USD    = 4_775.00
-BUFFER_USD        =    20.00
-MIN_RISK_USD      =     7.50
-MAX_RISK_USD      =    20.00
+HARD_FLOOR_USD        = 4_600.00
+OPERATING_BUFFER_USD  = 4_650.00
+SOLVENCY_KERNEL_USD   = 4_795.00
+BUFFER_USD            =    50.00
+MIN_RISK_USD          =     7.50
+MAX_RISK_USD          =    25.00
 
 # Cluster map for correlation governor
 CLUSTER_MAP: dict[str, list[str]] = {
@@ -70,7 +72,7 @@ class FloorDefense:
         buffer: float     = BUFFER_USD,
         min_risk: float   = MIN_RISK_USD,
         max_risk: float   = MAX_RISK_USD,
-        max_concurrent: int = 4,
+        max_concurrent: int = 2,  # Tier 2 House Money cap
     ):
         self.hard_floor    = hard_floor
         self.buffer        = buffer

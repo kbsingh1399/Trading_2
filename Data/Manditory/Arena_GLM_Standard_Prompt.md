@@ -193,7 +193,7 @@ Both Arena.ai and Z.ai MUST execute an affirmative and adversarial quantitative 
      - Classify all 156 assets:
        * 98 TradFi assets (Forex, Metals, Commodities, Indices): Weekend halt until Sunday 21:00 UTC -> CLOSED / WATCHLIST_ONLY.
        * 58 Crypto Perpetuals: Open 24/7/365 with SYMBOL_TRADE_MODE_FULL (4).
-       * Spread Gate: 11 crypto perpetuals pass spread gate (spread <= 25 bps: BTCUSD.pi, ETHUSD.pi, SOLUSD.p, BNBUSD.p, etc.); 47 spread-disqualified (> 25 bps).
+       * Spread Gate: 11 crypto perpetuals pass spread gate (spread <= 25 bps: BTCUSD.pi, ETHUSD.pi, SOLUSD.p, BNBUSD.p, XRPUSD.pi, ADAUSD.p, DOGUSD.p, TRXUSD.p, LNKUSD.p, AVXUSD.p, NERUSD.p); 47 spread-disqualified (> 25 bps).
   4. **Interbank Forex Rollover Embargo**:
      - TradFi FX and Metals are strictly EMBARGOED daily between 21:15 UTC and 22:30 UTC.
   5. **Cryptographic Integrity**:
