@@ -63037,3 +63037,22 @@ You may create 12_Hyperdash and 13_Hyperliquid where you dump all intelligenve a
   2. Z.ai (GLM-5.3-Flash on CDP port 9222)
   3. Gemini Web2API Council (port 8081)
 - **Persistent Daemons**: All 7 background daemons active and monitoring.
+
+### Turn: Cycle 325 Joint Completion, Subagent Parallel Dispatch Fix & 20m Dynamic Rest Arming (2026-10-24 10:44:53 UTC)
+- **Operator Prompt**: "opus..can you fix the error as antigravity should automatically dispatch subagents in parallel with arena.ai and z.ai on start of new cycle...but misses that. Also, can you check document and if dynamic cycle wkaeup and perform activities with gap of 20 mins between cycle is working okay...write document it if required so that antigravity flash never misses these points." + "continue and use all debug skills and fix error skills"
+- **Root Cause Identified & Fixed**:
+  1. The automated cycle dispatch script prompted external councils via CDP, but could not invoke Antigravity subagents (`invoke_subagent`).
+  2. The coordinator previously yielded control to wait for Arena without having called `invoke_subagent` in that same turn.
+  3. Solution shipped: `Terminal/dispatch_cycle_orchestrator.py` stages rendered prompt files on disk (`Data/subagent_prompts/cycle_{id}_role_{a,b,c,d}.txt`) and requires Antigravity to execute the atomic 5-tool invocation block in a single turn.
+  4. Patched `Terminal/arena_completion_daemon.py` with an automated subagent alert safeguard.
+  5. Codified canonical `Data/Manditory/CYCLE_LIFECYCLE_CHECKLIST.md` (and `docs/specs/`) detailing the exact 5-step lifecycle.
+  6. Added Issue 17 to `OPERATOR_ISSUES_AND_RESOLUTIONS_CHECKLIST.md`.
+  7. Updated Step 5 and Step 10 in `AUTONOMOUS_WAKEUP_CHECKLIST.md`.
+- **Cycle 325 Completed & Verified**:
+  - Arena.ai (GPT Astra): COMPLETED (38,657 bytes in `ARENA_LATEST_RAW.md`).
+  - Z.ai (GLM-5.3-Flash): COMPLETED (in `ZAI_LATEST_RAW.md`, verdict: OPTION_B_STAND_ASIDE).
+  - Antigravity 4 Subagents: COMPLETED (Role A, B, C, D all in mathematical agreement -> Stand Aside on unbacked BTC short candidate).
+  - Joint cycle controller marked Cycle 325 COMPLETED at 10:41:24 UTC.
+  - Subagents killed (`kill_all`) to prevent socket exhaustion.
+  - RAM optimized to 56.3% used (6.71 GB free).
+  - Pacing engine armed: `Terminal/joint_cycle_controller.py --wait-rest` launched (task-124801), resting cleanly until 11:01:24 UTC (clean 20m separation).

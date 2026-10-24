@@ -374,7 +374,15 @@ def wait_rest():
     except Exception:
         has_mt5 = False
 
-    logger.info("Resting cleanly until %s. Early wakeup enabled on position closure.", next_str)
+    initial_pos_count = 0
+    if has_mt5:
+        try:
+            init_pos = mt5.positions_get()
+            initial_pos_count = len(init_pos) if init_pos is not None else 0
+        except Exception:
+            initial_pos_count = 0
+
+    logger.info("Resting cleanly until %s. Initial open positions: %d. Early wakeup armed if open position closes.", next_str, initial_pos_count)
     import re
     cid_str = str(state.get("current_cycle_id", "309"))
     m = re.search(r"\d+", cid_str)
@@ -388,12 +396,12 @@ def wait_rest():
             print(f"\n[REST_COMPLETE] Ready to trigger Cycle {cycle_num + 1}!")
             break
 
-        # Check if active positions closed early
-        if has_mt5:
+        # Only trigger early wakeup if there WAS an active position and it has now closed
+        if has_mt5 and initial_pos_count > 0:
             try:
                 positions = mt5.positions_get()
                 if positions is not None and len(positions) == 0:
-                    logger.info("POSITION EVENT: Active position closed (TP/SL hit)! Waking up immediately.")
+                    logger.info("POSITION EVENT: Active position closed (TP/SL hit)! Waking up early.")
                     print(f"\n[POSITION_CLOSED] Active position closed! Waking up immediately for Cycle {cycle_num + 1}!")
                     break
             except Exception:
