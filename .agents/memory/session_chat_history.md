@@ -62763,3 +62763,25 @@ You may create 12_Hyperdash and 13_Hyperliquid where you dump all intelligenve a
   * Arena.ai: Concluded in 1,598 chars (DENIED_FAIL_CLOSED / STAND_ASIDE, commit 2c925cd on branch arena/b53cef09-trading-2). Formally verified: "The envelope verifies at its declared commit 8ffb37a3, including the manifest and workbook digests. Capital passes. The BTC 0.03-lot stress leaves 4,849.93."
   * Z.ai Sovereign Council: Actively thinking and generating (prose turn 11).
   * Waiter: Task 122289 (arena_completion_daemon.py --wait) actively running in background awaiting Z.ai completion.
+
+### Cycle 317 Complete Resolution & Cycle 318 Sovereign Pre-Cutoff Dispatch (2026-10-24 01:48 UTC)
+- **Broker State**: Blueberry Markets MT5 Live SVG Account #5064568.
+- **Balance / Equity**: 4,865.07 USD (100% Flat Cash; 0 positions, 0 orders).
+- **Floor Cushions**: Hard Floor (+265.07 USD) | Operating Buffer (+215.07 USD) | Solvency Kernel (+70.07 USD).
+- **Net Headroom**: +68.07 USD (4,865.07 - 2.00 - 4,795.00). Capital Regime: TIER 2 HOUSE MONEY.
+- **Cycle 317 Complete Adjudication Summary**:
+  * Arena.ai: Concluded in 1,598 chars (commit 2c925cd on branch arena/b53cef09-trading-2). Formally verified: "The envelope verifies at its declared commit 8ffb37a3, including the manifest and workbook digests. Capital passes." Ruled DENIED_FAIL_CLOSED / STAND_ASIDE.
+  * Z.ai Sovereign Council: Concluded in 19,487 chars (hash 43c75763). Executed scripts/c317_check.py with 73/73 tests PASSED (PASSED_TO_0.01_USD). Formally verified: "Three long-standing defects were RESOLVED this cycle: the clock triple is populated (true/true/true); excel_freshness_verified=true; order_check now simulates pending-order margin reservation exactly." Ruled DENIED_FAIL_CLOSED / HOLD.
+  * Subagents A, B, C, D: 4-0 unanimous consensus STAND ASIDE IN 100% FLAT CASH DEFENSE. Sockets cleanly terminated.
+- **Cycle 318 Systematic Causality & Sizing Engineering**:
+  * Causality Solved (DIS-317-01): Preflight receipt generated at 01:46:27 UTC, strictly PRE-CUTOFF before envelope cutoff at 01:46:29 UTC (01:46:27 <= 01:46:29 UTC, 2s pre-cutoff).
+  * Risk Band Solved (DIS-317-02): Volume sized at 0.06 lot, base nominal risk = 16.92 USD, total nominal risk = 17.82 USD (strictly in 15.00–25.00 USD Tier 2 band).
+  * Conservative Ceil Stress (DIS-316-06): Ticket stress = 24.28 USD.
+  * Margin Simulation (DIS-316-02): Post-order free margin 2,436.27 USD, margin level 200.31%.
+  * Git Provenance: Pushed commit 7a921cc49 to origin/main on GitHub.
+- **Cycle 318 Dual Dispatch**:
+  * Envelope: Data/cycle_envelope.json (Cutoff 01:46:29 UTC, Nonce ab50c695..., Commit 7a921cc49).
+  * Preflight Receipt: Data/execution_preflight_receipt.json (Observed 01:46:27 UTC, PREFLIGHT_PASS, tick age 0.0s).
+  * Prompt dispatched to Z.ai, Arena.ai, and Gemini Web2API (16,957 chars).
+  * Waiter: Task 122355 (arena_completion_daemon.py --wait) armed.
+  * Subagents: Roles A, B, C, D launched on Fable 5 (flash).
