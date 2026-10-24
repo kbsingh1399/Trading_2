@@ -87,11 +87,21 @@ def scan_all_156_assets(nominal_risk_target: float = 18.00) -> Dict[str, Any]:
         spread_bps = (spread_price / mid) * 10000.0
 
         group = s_info.path.split("\\")[0] if s_info.path else "Unknown"
-        is_crypto = "Crypto" in group
+        is_crypto = "Crypto" in group or any(k in sym for k in ["BTC", "ETH", "SOL", "XRP", "BNB", "ADA", "DOG", "LTC", "DOT"])
         is_forex = "Forex" in group
         is_index = "Indices" in group
         is_commodity = "Commodities" in group
         is_exotic = is_forex and any(c in sym for c in ["SGD", "CNH", "HKD", "MXN", "ZAR", "NOK", "SEK", "HUF", "THB"])
+
+        # Weekend venue gate: If weekend, exclusively trade 24/7 crypto perpetuals
+        import datetime
+        now_utc = datetime.datetime.now(datetime.timezone.utc)
+        if now_utc.weekday() in (5, 6) and not is_crypto:
+            continue
+
+        # Trade mode gate: Symbol must be active for full trading
+        if s_info.trade_mode != mt5.SYMBOL_TRADE_MODE_FULL:
+            continue
 
         # Refined Dynamic Spread Friction Gate
         # Baselines: Crypto <= 35 bps, Exotics <= 25 bps, Indices/Commodities <= 10 bps, Forex Majors <= 6 bps

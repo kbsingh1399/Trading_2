@@ -166,8 +166,12 @@ def build_cycle_envelope(cycle_id=None, nonce=None):
         except Exception:
             audit_valid = False
 
+    prompt_file = ROOT / "docs/trade_plans/LATEST_COUNCIL_CYCLE_PROMPT.txt"
+    prompt_sha = hashlib.sha256(prompt_file.read_bytes()).hexdigest() if prompt_file.exists() else None
+
     provenance = {"git_commit": get_latest_git_commit(),
                   "git_tree": subprocess.check_output(["git", "rev-parse", "HEAD^{tree}"], cwd=ROOT, text=True).strip(),
+                  "prompt_sha256": prompt_sha,
                   "risk_policy_sha256": hashlib.sha256(json.dumps(risk_policy, sort_keys=True).encode()).hexdigest(),
                   "evidence_manifest_sha256": get_git_blob_sha256(MANIFEST_PATH, get_latest_git_commit()),
                   "workbook_sha256": get_git_blob_sha256(WORKBOOK_PATH, get_latest_git_commit()),
@@ -188,13 +192,13 @@ def build_cycle_envelope(cycle_id=None, nonce=None):
                     clean_ts = tick_utc_str.replace(" UTC", "").strip()
                     tick_dt = datetime.datetime.strptime(clean_ts, "%Y-%m-%d %H:%M:%S").replace(tzinfo=datetime.timezone.utc)
                     if tick_dt >= cutoff_dt:
-                        cutoff_dt = tick_dt + datetime.timedelta(seconds=2)
+                        cutoff_dt = tick_dt + datetime.timedelta(seconds=3)
                 obs_utc_str = pref.get("observed_at_utc", "")
                 if obs_utc_str:
                     clean_obs = obs_utc_str.replace(" UTC", "").strip()
                     obs_dt = datetime.datetime.strptime(clean_obs, "%Y-%m-%d %H:%M:%S").replace(tzinfo=datetime.timezone.utc)
                     if obs_dt >= cutoff_dt:
-                        cutoff_dt = obs_dt + datetime.timedelta(seconds=1)
+                        cutoff_dt = obs_dt + datetime.timedelta(seconds=2)
         except Exception:
             pass
 

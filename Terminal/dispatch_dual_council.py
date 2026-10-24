@@ -116,10 +116,26 @@ def build_unified_prompt(cycle_id: str = "AUTO") -> str:
         for opp in top_opps:
             c_lines.append(f"| {opp.get('symbol')} ({opp.get('group', 'CFD')}) | {opp.get('side')} | {opp.get('entry')} | {opp.get('sl')} | {opp.get('tp')} | {opp.get('lot')} lot | ${opp.get('nominal_risk_usd', 13.0):.2f} | ${opp.get('nominal_risk_usd', 13.0)*1.25+2.0:.2f} | +${opp.get('buffer_surplus_usd', 4.5):.2f} |")
         candidate_table = "\n".join(c_lines)
+        worst_case_eq = f"{eq - (top_opps[0].get('nominal_risk_usd', 18.0)*1.25+2.0):.2f}"
     else:
-        candidate_table = "| GER40.p (DAX 40 CFD) | SELL_LIMIT | 25,381.39 | 25,420.23 | 25,286.79 | 0.03 lot | $13.06 | $18.74 | +$4.77 |\n| BTCUSD.pi (Crypto Perp) | BUY_LIMIT | 80,500.00 | 79,942.20 | 82,000.00 | 0.02 lot | $11.16 | $15.95 | +$7.56 |"
-
-    worst_case_eq = f"{eq - 18.74:.2f}"
+        rec_cand = None
+        receipt_file = ROOT / "Data" / "execution_preflight_receipt.json"
+        if receipt_file.exists():
+            try:
+                with open(receipt_file, "r", encoding="utf-8") as f:
+                    rec_data = json.load(f)
+                c_info = rec_data.get("candidate", {})
+                v_info = rec_data.get("broker_valuation", {})
+                if c_info:
+                    rec_cand = f"| {c_info.get('symbol')} (Crypto Perp) | {c_info.get('action')} | {c_info.get('price')} | {c_info.get('sl')} | {c_info.get('tp')} | {c_info.get('volume')} lot | ${v_info.get('total_nominal_risk_usd', 18.0):.2f} | ${v_info.get('ticket_stress_usd', 24.5):.2f} | +${cush_buf:.2f} |"
+                    worst_case_eq = f"{eq - v_info.get('ticket_stress_usd', 24.5):.2f}"
+            except Exception:
+                pass
+        if rec_cand:
+            candidate_table = "| Candidate Setup | Direction | Target Entry | Stop Loss | Take Profit | Lots | Risk USD | Stressed Loss | Buffer Surplus |\n|---|---|---|---|---|---|---|---|---|\n" + rec_cand
+        else:
+            candidate_table = "| — | — | — | — | — | — | $0.00 | $0.00 | +$0.00 |\n*No candidates qualified under strict confluence stack. 100% Cash Defense.*"
+            worst_case_eq = f"{eq:.2f}"
 
     # Load and embed cycle_envelope.json directly
     envelope_file = ROOT / "Data" / "cycle_envelope.json"
