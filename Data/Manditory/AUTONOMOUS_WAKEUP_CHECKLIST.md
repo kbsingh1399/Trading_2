@@ -11,7 +11,10 @@
 > **Operator Concerns & Perpetual Resolutions**: [`OPERATOR_ISSUES_AND_RESOLUTIONS_CHECKLIST.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/OPERATOR_ISSUES_AND_RESOLUTIONS_CHECKLIST.md)  
 > **Cadence & Separation**: Clean 20-Minute Relative Post-Completion Separation (`T_finish + 20 min`) between completed Cycle X and Cycle X+1 trigger, supervised by autonomous 30-Minute Watchdog Sentry Cron (`0,30 * * * *` at :00 and :30 of every hour).  
 > **Token Preservation Rule**: Always query the AST Knowledge Graph via `/graphify` or `python -m graphify query "<symbol/concept>"` FIRST before reading large code files.  
-> **Strict Joint-Completion Invariant (Operator Mandate)**: A cycle is NEVER completed upon prompt dispatch. A cycle is marked officially **FINISHED** only when **ALL THREE entities complete processing**: (1) Antigravity 4-Quant Subagent Swarm (Fable 5), (2) Arena.ai Frontier Council (GPT Astra), and (3) Z.ai Sovereign Council (GLM-5.3-Flash). The difference between completed Cycle X and the trigger for Cycle X+1 must be strictly **20 minutes** (1200 seconds), recorded in `Data/cycle_state.json` via `Terminal/joint_cycle_controller.py`.
+> **Strict Joint-Completion & Hardware Health Invariant (Operator Mandate)**: A cycle is NEVER completed upon prompt dispatch. A cycle is marked officially **FINISHED** only when:
+>    1. **ALL THREE entities complete processing**: (1) Antigravity 4-Quant Subagent Swarm (Fable 5), (2) Arena.ai Frontier Council (GPT Astra), and (3) Z.ai Sovereign Council (GLM-5.3-Flash), with their markdown responses harvested and verified non-empty.
+>    2. **Mandatory RAM & CPU Optimization**: Execute `powershell -ExecutionPolicy Bypass -File scripts/free_ram.ps1` to prune zombie processes, trim working sets, and reclaim physical RAM below 80%.
+>    3. **20-Minute Relative Post-Completion Separation**: The difference between completed Cycle X and the trigger for Cycle X+1 must be strictly **20 minutes** (1,200 seconds), recorded in `Data/cycle_state.json` via `Terminal/joint_cycle_controller.py`.
 
 ---
 
