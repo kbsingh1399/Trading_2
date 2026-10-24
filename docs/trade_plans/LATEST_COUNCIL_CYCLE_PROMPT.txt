@@ -88,19 +88,19 @@ The dispatcher embeds the complete immutable machine-generated `cycle_envelope.j
 ```json
 {
   "schema_version": "1.1.0",
-  "cycle_id": "Cycle-20261024T154632Z",
-  "uuid": "2a8b5520-4512-4d79-b19c-40d1b96c7e5c",
-  "dispatch_nonce": "b71d877b-d1c2-4133-9b25-db5adfbd5719",
-  "cutoff_utc": "2026-10-24 15:46:32 UTC",
+  "cycle_id": "Cycle-20261024T161048Z",
+  "uuid": "6c4fa349-25d3-4098-8f02-6a7590727300",
+  "dispatch_nonce": "950f77db-765b-495b-aa57-50c38da05505",
+  "cutoff_utc": "2026-10-24 16:10:48 UTC",
   "provenance": {
-    "git_commit": "ae61c409ccb8538d6d5a248846991b5093bd8bac",
-    "git_tree": "da8ce507462b29a2e06abb5dad3d93224a1bf5e5",
-    "prompt_sha256": "cb3715f545fe55a4e0df7d2ddb4b8a5ab34d85ed4002375a372872afaf0d0782",
+    "git_commit": "a0f1c42a136e6abe92954fb77d9d4cf878e9b561",
+    "git_tree": "efaa0bd79f91b8fb8001a2cce47e63bc010edc26",
+    "prompt_sha256": "75739b901f82a6347f1b54584832d62ad5142e6d1bd4ea8e546657a62d587dc7",
     "risk_policy_sha256": "4633e4af56e52c71329c617aaee4cae5c7102ef9a9f33e7e747e46d26841f058",
-    "evidence_manifest_sha256": "9107c213583d1a39e1f7206d93617ef1e6b0829ce5a4c2fbca3254d614d33546",
-    "workbook_sha256": "a33011067984453ba3f201d864ec8651060ab2e1708f62b31d47fed14caf947a",
-    "excel_freshness_verified": false,
-    "excel_audit_scorecard_fresh": false
+    "evidence_manifest_sha256": "fcc1546e6525ef3c2f2e7a157114c8ef606bd9ec5bc1dde2edc8c67f60b23d50",
+    "workbook_sha256": "9a009125d92817cd2d5982869fa062cc7d761ce5523222e990dc2a75911a66cd",
+    "excel_freshness_verified": true,
+    "excel_audit_scorecard_fresh": true
   },
   "inventory": {
     "account_login": 5064568,
@@ -132,10 +132,10 @@ The dispatcher embeds the complete immutable machine-generated `cycle_envelope.j
         "reason": 3,
         "volume_initial": 0.05,
         "volume_current": 0.05,
-        "price_open": 80845.0,
-        "sl": 81145.0,
-        "tp": 80315.0,
-        "price_current": 79457.0,
+        "price_open": 80245.0,
+        "sl": 80620.0,
+        "tp": 79385.0,
+        "price_current": 79659.0,
         "price_stoplimit": 0.0,
         "symbol": "BTCUSD.pi",
         "comment": "Fable5_Affirmative_C327",
@@ -152,9 +152,9 @@ The dispatcher embeds the complete immutable machine-generated `cycle_envelope.j
     "operating_buffer_cushion_usd": 215.07,
     "kernel_cushion_usd": 70.07,
     "global_contingency_reserve_usd": 2.0,
-    "existing_ticket_stress_usd": 20.75,
-    "realized_headroom_usd": 47.32,
-    "post_joint_stress_equity_usd": 4842.32,
+    "existing_ticket_stress_usd": 25.4375,
+    "realized_headroom_usd": 42.63,
+    "post_joint_stress_equity_usd": 4837.63,
     "capital_mode": "TIER_2_HOUSE_MONEY",
     "risk_min_usd": 15.0,
     "risk_max_usd": 25.0,
@@ -182,8 +182,8 @@ The dispatcher embeds the complete immutable machine-generated `cycle_envelope.j
 ```json
 {
   "schema_version": "1.0.0",
-  "dispatch_nonce": "b71d877b-d1c2-4133-9b25-db5adfbd5719",
-  "observed_at_utc": "2026-10-24 15:46:29 UTC",
+  "dispatch_nonce": "950f77db-765b-495b-aa57-50c38da05505",
+  "observed_at_utc": "2026-10-24 16:10:46 UTC",
   "account": {
     "login": 5064568,
     "server": "BlueberryMarketsSVG-Live",
@@ -195,22 +195,22 @@ The dispatcher embeds the complete immutable machine-generated `cycle_envelope.j
     "symbol": "BTCUSD.pi",
     "action": "SELL_LIMIT",
     "volume": 0.05,
-    "price": 80845.0,
-    "sl": 81145.0,
-    "tp": 80315.0
+    "price": 80245.0,
+    "sl": 80620.0,
+    "tp": 79385.0
   },
   "broker_tick": {
-    "bid": 79485.0,
-    "ask": 79501.0,
-    "mid": 79493.0,
-    "spread_raw": 16.0,
-    "spread_bps": 2.01,
-    "spread_cost_usd": 0.8,
-    "broker_server_time_raw": 1792867588,
+    "bid": 79645.0,
+    "ask": 79734.0,
+    "mid": 79689.5,
+    "spread_raw": 89.0,
+    "spread_bps": 11.17,
+    "spread_cost_usd": 4.45,
+    "broker_server_time_raw": 1792869045,
     "broker_server_offset_seconds": 10800.0,
-    "tick_time_utc": "2026-10-24 15:46:28 UTC",
+    "tick_time_utc": "2026-10-24 16:10:45 UTC",
     "tick_age_seconds": 1.0,
-    "clock_skew_seconds": -3.95,
+    "clock_skew_seconds": -3.92,
     "quote_fresh": true
   },
   "broker_spec": {
@@ -225,24 +225,24 @@ The dispatcher embeds the complete immutable machine-generated `cycle_envelope.j
     "contract_size": 1.0
   },
   "broker_valuation": {
-    "profit_at_sl_usd": -15.0,
-    "profit_at_tp_usd": 26.5,
-    "margin_required_usd": 2021.13,
-    "base_nominal_risk_usd": 15.0,
-    "exit_spread_cost_usd": 0.8,
-    "total_nominal_risk_usd": 15.8,
-    "ticket_stress_usd": 21.75,
+    "profit_at_sl_usd": -18.75,
+    "profit_at_tp_usd": 43.0,
+    "margin_required_usd": 2006.13,
+    "base_nominal_risk_usd": 18.75,
+    "exit_spread_cost_usd": 4.45,
+    "total_nominal_risk_usd": 23.2,
+    "ticket_stress_usd": 31.0,
     "stress_model": "(base_loss + exit_spread) * 1.25 + 2.00 USD"
   },
   "order_check": {
     "pass": true,
     "retcode": 0,
     "comment": "Done",
-    "margin_level_post_order": 240.71,
-    "margin_free_post_order": 2843.94
+    "margin_level_post_order": 242.51,
+    "margin_free_post_order": 2858.94
   },
   "preflight_verdict": "PREFLIGHT_PASS",
-  "receipt_sha256": "0dd57ef81035107811f39a1b27ce2b03e8290bbec870dd3d146e4bf0e1ada0cf"
+  "receipt_sha256": "6f96b9244de9723ba687d4d28f1e9ea87c843f9a70782ec5a7dbf9bdfc83f8d7"
 }
 ```
 ```
@@ -389,10 +389,10 @@ The council MUST deploy its full multi-agent squad with deep reasoning to execut
   5. **Cryptographic Integrity**:
      - Verify SHA-256 digests of `master_manifest.json`, `Data/DataBase_Trading.xlsx`, and `cycle_envelope.json`.
   6. **Mandatory Data & Workbook Timestamp Audit & Staleness Feedback Directive**:
-     - Explicitly inspect the latest modification and git commit timestamps of `Data/DataBase_Trading.xlsx`, `docs/telemetry/live_snapshot_latest.json`, `Data/forex_factory_live.json`, and `Data/macro_calendar.json` against current cycle UTC (2026-10-24 15:49:25 UTC).
+     - Explicitly inspect the latest modification and git commit timestamps of `Data/DataBase_Trading.xlsx`, `docs/telemetry/live_snapshot_latest.json`, `Data/forex_factory_live.json`, and `Data/macro_calendar.json` against current cycle UTC (2026-10-24 16:32:53 UTC).
      - **CRITICAL FEEDBACK REQUIREMENT**: If ANY data file or Excel workbook is stale, lagging behind the current cycle timestamp, or not updating (e.g. workbook commit or telemetry snapshot is older than 20 minutes):
        * You MUST output a prominent alert at the very top of your written response:
-         `[ALERT] TELEMETRY STALE WARNING: [File/Sheet] is stale (Last updated: [Timestamp] vs Current Cycle: 2026-10-24 15:49:25 UTC)`
+         `[ALERT] TELEMETRY STALE WARNING: [File/Sheet] is stale (Last updated: [Timestamp] vs Current Cycle: 2026-10-24 16:32:53 UTC)`
        * Provide detailed diagnostic feedback explaining which specific sheets, tables, or feeds are lagging, so the operator and Antigravity can immediately identify whether a git push, writer lock, or daemon issue is occurring.
 
 ---
