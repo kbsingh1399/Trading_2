@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "dispatch_nonce": "e8e04f37-6a1e-408d-bcda-6af0ca912a4f",
-  "observed_at_utc": "2026-10-24 09:15:08 UTC",
+  "observed_at_utc": "2026-10-24 10:32:47 UTC",
   "account": {
     "login": 5064568,
     "server": "BlueberryMarketsSVG-Live",
@@ -12,23 +12,23 @@
   "candidate": {
     "symbol": "BTCUSD.pi",
     "action": "SELL_LIMIT",
-    "volume": 0.05,
-    "price": 81150.0,
-    "sl": 81450.0,
-    "tp": 80550.0
+    "volume": 0.04,
+    "price": 81300.0,
+    "sl": 81780.0,
+    "tp": 79850.0
   },
   "broker_tick": {
-    "bid": 80503.0,
-    "ask": 80519.0,
-    "mid": 80511.0,
-    "spread_raw": 16.0,
-    "spread_bps": 1.99,
-    "spread_cost_usd": 0.8,
-    "broker_server_time_raw": 1792844101,
+    "bid": 80602.0,
+    "ask": 80631.0,
+    "mid": 80616.5,
+    "spread_raw": 29.0,
+    "spread_bps": 3.6,
+    "spread_cost_usd": 1.16,
+    "broker_server_time_raw": 1792848766,
     "broker_server_offset_seconds": 10800.0,
-    "tick_time_utc": "2026-10-24 09:15:01 UTC",
-    "tick_age_seconds": 7.02,
-    "clock_skew_seconds": 7.02,
+    "tick_time_utc": "2026-10-24 10:32:46 UTC",
+    "tick_age_seconds": 1.0,
+    "clock_skew_seconds": -4.0,
     "quote_fresh": true
   },
   "broker_spec": {
@@ -43,22 +43,22 @@
     "contract_size": 1.0
   },
   "broker_valuation": {
-    "profit_at_sl_usd": -15.0,
-    "profit_at_tp_usd": 30.0,
-    "margin_required_usd": 2028.75,
-    "base_nominal_risk_usd": 15.0,
-    "exit_spread_cost_usd": 0.8,
-    "total_nominal_risk_usd": 15.8,
-    "ticket_stress_usd": 21.75,
+    "profit_at_sl_usd": -19.2,
+    "profit_at_tp_usd": 58.0,
+    "margin_required_usd": 1626.0,
+    "base_nominal_risk_usd": 19.2,
+    "exit_spread_cost_usd": 1.16,
+    "total_nominal_risk_usd": 20.36,
+    "ticket_stress_usd": 27.45,
     "stress_model": "(base_loss + exit_spread) * 1.25 + 2.00 USD"
   },
   "order_check": {
     "pass": true,
     "retcode": 0,
     "comment": "Done",
-    "margin_level_post_order": 239.81,
-    "margin_free_post_order": 2836.32
+    "margin_level_post_order": 299.2,
+    "margin_free_post_order": 3239.07
   },
   "preflight_verdict": "PREFLIGHT_PASS",
-  "receipt_sha256": "58310746fc9bc1e1326a31b22a575677c262371012925ae8b57b9368f8429d3b"
+  "receipt_sha256": "a6319f3a495c799d096e2f2edf5135bc695898caf84beecd899500471af14814"
 }
