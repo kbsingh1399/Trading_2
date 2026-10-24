@@ -25,17 +25,17 @@ The dispatcher embeds the complete immutable machine-generated cycle_envelope.js
 `json
 {
   "schema_version": "1.1.0",
-  "cycle_id": "Cycle 316",
-  "uuid": "04f31992-d85f-4dd1-894c-4780ed874c20",
-  "dispatch_nonce": "3dc6f4b6-841c-4a94-83f4-73db2d809175",
-  "cutoff_utc": "2026-10-24 00:49:20 UTC",
+  "cycle_id": "Cycle 317",
+  "uuid": "3fa859ba-3d6e-4009-9bbe-8cae907cd686",
+  "dispatch_nonce": "a2fc999c-a416-4437-958f-0fb2d9391255",
+  "cutoff_utc": "2026-10-24 01:15:13 UTC",
   "provenance": {
-    "git_commit": "346dc2cbfc4bd62d15c02ec3f7e05aaacc02e55e",
-    "git_tree": "a69f46c15105ec36e349952fb155d584e48b507d",
+    "git_commit": "8ffb37a39afabd94b2b46eeeb989fb32f5560ba3",
+    "git_tree": "7ea60fb0e3ab7c56f4abc2b68385a10a567c075e",
     "risk_policy_sha256": "4633e4af56e52c71329c617aaee4cae5c7102ef9a9f33e7e747e46d26841f058",
-    "evidence_manifest_sha256": "c50bf337b1ece1736d9695bc82246a144bc880d754245d53178eb166edf7b95a",
-    "workbook_sha256": "d2559f44bc1b81b0d8966efdebc50cdd27a7545dec4db453f19e87bca88f33d5",
-    "excel_freshness_verified": null
+    "evidence_manifest_sha256": "c19f32bed5f9b3fdfbb95dc7a7f4a5b873989c947e3ec110002ac3c17bd2ffd8",
+    "workbook_sha256": "d4cd52fb083a6af3ebde25a1e414aca67f298749acc2e28ccdbad925d1853e50",
+    "excel_freshness_verified": true
   },
   "inventory": {
     "account_login": 5064568,
@@ -72,9 +72,9 @@ The dispatcher embeds the complete immutable machine-generated cycle_envelope.js
     "admission_scope": "CAPITAL_ONLY_REQUIRES_ALL_HARD_GATES_AND_BROKER_CHECK"
   },
   "market_clocks": {
-    "broker_clock_open": null,
-    "native_market_open": null,
-    "calendar_verified": null,
+    "broker_clock_open": true,
+    "native_market_open": true,
+    "calendar_verified": true,
     "rollover_embargo_active": false,
     "rollover_window": "21:15-22:30 UTC"
   },
@@ -86,8 +86,8 @@ The dispatcher embeds the complete immutable machine-generated cycle_envelope.js
 ```json
 {
   "schema_version": "1.0.0",
-  "dispatch_nonce": "3dc6f4b6-841c-4a94-83f4-73db2d809175",
-  "observed_at_utc": "2026-10-24 00:49:50 UTC",
+  "dispatch_nonce": "a2fc999c-a416-4437-958f-0fb2d9391255",
+  "observed_at_utc": "2026-10-24 01:15:26 UTC",
   "account": {
     "login": 5064568,
     "server": "BlueberryMarketsSVG-Live",
@@ -98,23 +98,23 @@ The dispatcher embeds the complete immutable machine-generated cycle_envelope.js
   "candidate": {
     "symbol": "BTCUSD.pi",
     "action": "SELL_LIMIT",
-    "volume": 0.06,
+    "volume": 0.03,
     "price": 80960.0,
     "sl": 81242.0,
     "tp": 80252.0
   },
   "broker_tick": {
-    "bid": 80641.0,
-    "ask": 80656.0,
-    "mid": 80648.5,
+    "bid": 80699.0,
+    "ask": 80714.0,
+    "mid": 80706.5,
     "spread_raw": 15.0,
     "spread_bps": 1.86,
-    "spread_cost_usd": 0.9,
-    "broker_server_time_raw": 1792813794,
+    "spread_cost_usd": 0.45,
+    "broker_server_time_raw": 1792815331,
     "broker_server_offset_seconds": 10800.0,
-    "tick_time_utc": "2026-10-24 00:49:54 UTC",
+    "tick_time_utc": "2026-10-24 01:15:31 UTC",
     "tick_age_seconds": 0.0,
-    "clock_skew_seconds": -4.69,
+    "clock_skew_seconds": -5.75,
     "quote_fresh": true
   },
   "broker_spec": {
@@ -129,24 +129,24 @@ The dispatcher embeds the complete immutable machine-generated cycle_envelope.js
     "contract_size": 1.0
   },
   "broker_valuation": {
-    "profit_at_sl_usd": -16.92,
-    "profit_at_tp_usd": 42.48,
-    "margin_required_usd": 2428.8,
-    "base_nominal_risk_usd": 16.92,
-    "exit_spread_cost_usd": 0.9,
-    "total_nominal_risk_usd": 17.82,
-    "ticket_stress_usd": 24.27,
+    "profit_at_sl_usd": -8.46,
+    "profit_at_tp_usd": 21.24,
+    "margin_required_usd": 1214.4,
+    "base_nominal_risk_usd": 8.46,
+    "exit_spread_cost_usd": 0.45,
+    "total_nominal_risk_usd": 8.91,
+    "ticket_stress_usd": 13.14,
     "stress_model": "(base_loss + exit_spread) * 1.25 + 2.00 USD"
   },
   "order_check": {
     "pass": true,
     "retcode": 0,
     "comment": "Done",
-    "margin_level_post_order": 0.0,
-    "margin_free_post_order": 4865.07
+    "margin_level_post_order": 400.62,
+    "margin_free_post_order": 3650.67
   },
   "preflight_verdict": "PREFLIGHT_PASS",
-  "receipt_sha256": "278cc54bab5de31418c2357005c37442fc2e7105cab2a4babff42078de7c4ea6"
+  "receipt_sha256": "6334b3b56de50f63552edd78a2388b50dd396933a939e854d69736c051c4354a"
 }
 ```
 `
