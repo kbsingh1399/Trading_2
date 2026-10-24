@@ -1,1 +1,380 @@
-\nDENIED_BAD_CYCLE_ENVELOPE\n
+\n**Active Skills Loaded & Applied:** `@[using-superpowers]`, `@[systematic-debugging]`, `@[quant-analyst]`, `@[risk-manager]`, `@[risk-metrics-calculation]`, `@[backtesting-frameworks]`, `@[verification-before-completion]`. **Methodologies applied:** causal cutoff validation, canonical hashing, strict solvency-kernel admission, variance-ratio/robust-z requirements, ER/HAC confirmation, AR(1)/OU safeguards, adaptive walk-forward calibration requirements, block-bootstrap uncertainty, queue-aware fill modeling, and microstructure/adverse-selection review. Exact packages `@[trader-signal]`, `@[trader-risk]`, `@[market-ingest]`, `@[market-pattern]`, `@[adaptive-wfo-epoch]`, `@[sharpe-ratio-non-iid-corrections]`, `@[time-series-decomposer]`, and `@[clean-code]` were not installed and are not falsely claimed as loaded.\n
+\n# Cycle 322 — Four-Persona Governance Audit\n\n\n**Final decision:** `HOLD`\n
+**Provenance:** `DENIED_BAD_CYCLE_ENVELOPE`\n
+**Authorization:** `DENIED_FAIL_CLOSED`\n
+**Broker action:** None. No order was transmitted, modified, or cancelled.\n\n## §1 — Schema, provenance, nonce, digests, and causality\n\n\nGraphify was attempted first but was unavailable with `No module named graphify`; bounded Git and filesystem inspection was used instead.\n\n| Check | Result | Finding |\n| --- | --- | --- |\n| Structural JSON parsing | PASS | The revised receipt is structurally parseable. |\n| Cycle/cutoff fields | Partial | The attachment identifies Cycle 322 and cutoff `07:59:36 UTC`, but the claimed commit contains Cycle 321. |\n| Nonce text equality | PASS | Envelope and revised receipt both show `425a9f55-8228-4bf5-9ad5-29961c2831bf`. |\n| Nonce cryptographic binding | **FAIL—fatal** | The receipt was not rehashed after inserting the nonce. |\n| Claimed receipt SHA-256 | — | `ab6373ba4f6d70c20e18f1fc5fc6fba01449322886bc2aeadf37d6f8b8616cd6` |\n| Recomputed revised receipt SHA-256 | **FAIL** | `3aeae5bb4d6ebff1aaae8749254b67963c9ea99182b609ec24b84a1f83b863d7` |\n| Empty-nonce recomputation | Exact match to claim | `ab6373ba4f6d70c20e18f1fc5fc6fba01449322886bc2aeadf37d6f8b8616cd6` |\n| Prompt binding | **FAIL—fatal** | The observed claimed prefix `b30ae844` matches neither identified committed prompt. |\n| Standard prompt digest | Mismatch | `7e14ee40ad4d65699e7d1eb213d088ce3ec60de19fbb8264ec79efbecf43f4c1` |\n| Latest council prompt digest | Mismatch | `62aaae2cf616a465392c0dff44a55fa7b5c89eadf81242ef87587ea12e2841ec` |\n| Commit/tree existence | PASS | Commit `8299ce45…` and tree `048284df…` exist and bind correctly. |\n| Commit signature | Weakness | GitHub reports the commit unsigned. |\n| Committed cycle artifact | **FAIL—fatal** | `Data/cycle_envelope.json` is Cycle 321 with nonce `77b50a3b-…`; its committed receipt has an empty nonce. |\n| Manifest digest | PASS | `ff27c7a9…` matches the claimed commit. |\n| Workbook digest | PASS | `4fd031f5…` matches the claimed commit. |\n| Risk-policy digest | PASS | Recomputed `4633e4af…`. |\n| Snapshot reconstructability | **FAIL—fatal** | Latest telemetry, account-equity, and Coinglass blobs referenced by the manifest are absent from the claimed tree. |\n| Receipt chronology | PASS only as timestamps | `07:59:33 tick < 07:59:34 observation < 07:59:36 cutoff`. |\n\n\nThe digest result is deterministic and not a rounding or serialization ambiguity: using the repository procedure—`json.dumps(..., sort_keys=True, indent=2)` after removing `receipt_sha256`—the claimed digest is exactly the empty-nonce version.\n\n## §2 — Data clocks, calendar, universe, and inventory\n\n\n- The commit-pinned macro calendar was verified at `07:58:06.380142 UTC`, **89.619858 seconds** before cutoff.\n- Within that committed calendar, no Tier-1 event fell inside the ±30-minute blackout window.\n- `2026-10-24` was Saturday: TradFi was closed; the BTC broker quote indicates the crypto CFD was quoting.\n- Manifest metadata ages at cutoff:
+\n- Telemetry: **43 seconds**\n- Account equity: **43 seconds**\n- Coinglass: **312.405193 seconds**\n- Forex Factory: **241 seconds**\n- Arkham: approximately **246,161 seconds**, stale\n\n- Fresh metadata does not substitute for source rows. The latest telemetry, account, and Coinglass blobs are not retrievable from the claimed Git tree.\n- Claimed universe: 156 assets, including 98 crypto and 58 TradFi.\n- Independently verifiable coverage:
+\n- Broker quote rows: **1**\n- Complete regime rows: **0**\n- Authenticated 180-second microstructure rows: **0**\n\n- Flat inventory, zero pending orders, and account balance/equity of `$4,865.07` are claims in the invalid provenance chain. The missing account snapshot prevents independent inventory reconciliation.\n\nTherefore, `inventory_status = UNVERIFIED_CLAIMED_FLAT`.\n\n## §3 — Role A: Market-regime specialist\n\n\nThe required regime evidence is absent:\n\n- No ≥200 completed-bar dataset.\n- No variance ratio or heteroskedasticity-robust inference.\n- No robust MAD-based regime z-score.\n- No efficiency ratio/HAC trend confirmation.\n- No AR(1) coefficient, OU theta, half-life, or stationarity safeguards.\n- No tail-index or volatility-state estimate.\n- No purged/adaptive walk-forward evaluation.\n- No non-IID Sharpe correction can be computed without returns and sample structure.\n\nA single broker tick cannot establish trend, mean reversion, or tail regime.\n\n**Role A vote: `HOLD_MISSING_AUTHENTICATED_REGIME_INPUTS`.**\n\n## §4 — Role B: Microstructure specialist\n\n\nThe attached quote’s arithmetic is internally consistent:\n\n- Bid: `80,610`\n- Ask: `80,626`\n- Mid: `80,618`\n- Raw spread: `16`\n- Recomputed spread: `16 / 80,618 × 10,000 = 1.9841727661 bps`\n- Sell-limit entry is `324` above ask, approximately `40.1855 bps`; order direction is syntactically valid.\n\nHowever, no authenticated evidence supports:\n\n- A 180-second venue observation window\n- L2/L3 depth\n- Queue position or queue-ahead\n- CVD or order-book imbalance\n- Cancel/replace intensity\n- Whale-wall notional and persistence\n- Structural stop anchor\n- Target liquidity cluster\n- Manipulation/spoofing filters\n- Adverse-selection markouts\n- Calibrated fill probability\n\nThe quote passes freshness at cutoff but cannot support an execution edge.\n\n**Role B vote: `HOLD_MISSING_AUTHENTICATED_180_SECOND_MARKET_EVIDENCE`.**\n\n## §5 — Role C: Risk and execution officer\n\n\n### Conditional broker arithmetic\n\n\n| Metric | Recalculation | Result |\n| --- | --- | --- |\n| Base SL loss | `(81,250−80,950)×0.05` | `$15.00` |\n| TP reward | `(80,950−80,400)×0.05` | `$27.50` |\n| Raw RR | `27.50/15.00` | `1.833333` |\n| Spread cost | `16×0.05` | `$0.80` |\n| Total nominal loss | `15.00+0.80` | `$15.80` |\n| Receipt stress formula | `(15.00+0.80)×1.25+2` | `$21.75` |\n| Separately stated governance formula | `15.00×1.25+0.80+2` | `$21.55` |\n| Conservative stress used | `max(21.75,21.55)` | `$21.75` |\n| Margin | `0.05×80,950×0.50` | `$2,023.75` |\n| Margin/equity | `2,023.75/4,865.07` | `41.5976%` |\n| Post-order margin level | `4,865.07/2,023.75×100` | `240.3988%` |\n| Post-order free margin | `4,865.07−2,023.75` | `$2,841.32` |\n| Post-joint-stress balance | `4,865.07−21.75−2.00` | `$4,841.32` |\n| Kernel surplus | `4,841.32−4,795` | `$46.32` |\n\n\nThis arithmetic conditionally passes the strict `$4,795` kernel, but only if the flat inventory and broker account fields are authentic—which they are not.\n\nTwo equal `0.05` tickets would require `$4,047.50` margin, or approximately `83.20%` of equity, violating the 50% aggregate-margin invariant. At the same entry and margin rate, the remaining slot could support only about `0.0100997` lot, rounded down to `0.01`.\n\nCapital admission is not trade authorization. The broker `order_check` is carried by a digest-invalid receipt.\n\n**Role C vote: `DENY_RECEIPT_AND_INVENTORY_UNAUTHENTICATED_DESPITE_CONDITIONAL_ARITHMETIC_PASS`.**\n\n## §6 — Role D, probability calibration, and candidate board\n\n\n| Candidate | Raw geometry | Calibrated estimates | Decision |\n| --- | --- | --- | --- |\n| `BTCUSD.pi` SELL LIMIT `80,950`, SL `81,250`, TP `80,400`, `0.05` lot | `$15.00` base risk, `$27.50` reward, `1.8333R` | `P_fill=null`, `P(TP|fill)=null`, EV=`null`, utility=`null`, ESS=`null`, CIs=`null` | **HOLD** |\n\n\nFor reference only, the frictionless break-even win probability is `15/(15+27.5)=35.2941%`. A simplistic spread-adjusted endpoint calculation gives `15.8/(15.8+26.7)=37.1765%`. Neither is a calibrated probability and neither authorizes the trade.\n\nFatal skeptical findings:\n\n1. Receipt digest does not authenticate the revised nonce.\n2. Claimed digest proves the nonce was changed after hashing.\n3. Prompt binding is unresolved.\n4. Claimed commit carries Cycle 321, not Cycle 322.\n5. Manifest-referenced source blobs cannot be reconstructed.\n6. Inventory and account state are unauthenticated.\n7. Regime and microstructure evidence are absent.\n8. No calibrated probabilities, confidence intervals, or effective sample size exist.\n9. Two-ticket economic capacity is not preserved at the proposed size.\n\nNo independently authenticated Antigravity or GLM response was harvested. The role labels here are governance analyses, not invented external-council votes.\n\n**Role D vote: `DENY_FATAL_DIGEST_CYCLE_AND_RECONSTRUCTABILITY_FAILURES`.**\n\n## §7 — Arbitration and authorization\n\n\n| Persona | Vote |\n| --- | --- |\n| Role A — regime | HOLD |\n| Role B — microstructure | HOLD |\n| Role C — risk/execution | DENY |\n| Role D — integrity/skeptic | DENY |\n| Senior arbiter | `DENIED_FAIL_CLOSED` |\n\n\nThe theoretical 15-second quote-freshness boundary was `07:59:48 UTC`; no authorization existed before or at that boundary.\n\nThe `$5,500` objective cannot override provenance, evidence, inventory, regime, microstructure, or solvency controls.\n\n**Binding outcome:**\n\n- Candidate verdict: `HOLD`\n- Provenance status: `DENIED_BAD_CYCLE_ENVELOPE`\n- Overall authorization: `DENIED_FAIL_CLOSED`\n- Transmission: `NO_ORDER_TRANSMITTED_MODIFIED_OR_CANCELLED`\n\n## §8 — Kaizen and next-cycle acceptance criteria\n\n\n### Root cause\n\n\nThe dispatch nonce was inserted after the receipt’s canonical hash had been calculated. In parallel, the claimed commit identifies an earlier cycle and does not contain the row-level evidence required to reconstruct the decision.\n\n### Required remediation\n\n\n1. Generate the nonce first; inject it into envelope and receipt before hashing.\n2. Hash immutable canonical bytes once, then prohibit manual artifact editing.\n3. Bind cycle ID, cutoff, nonce, prompt, receipt, and evidence bundle in one signed manifest.\n4. Commit or content-address the exact dispatched Cycle 322 artifacts.\n5. Define one prompt canonicalization, including exact path and byte length.\n6. Put snapshot blobs in Git LFS or an authenticated immutable object store with digests and retrievable URIs.\n7. Unify the `$21.55` versus `$21.75` stress formula and add a golden test.\n8. Supply point-in-time completed bars and regime outputs for every eligible row.\n9. Supply at least 180 seconds of venue-specific depth/trade evidence.\n10. Calibrate `P_fill` and `P(TP|fill)` out of sample, with effective sample size and block-bootstrap intervals.\n11. Reserve portfolio margin jointly across both ticket slots.\n12. Enforce nonce uniqueness, replay rejection, signatures, and short expiries.\n\n## Required JSON\n\n\n`response_sha256` is SHA-256 over the canonical JSON object excluding `response_sha256`, using sorted keys, UTF-8, and compact separators.\n\n```\n{
+  "schema_version": "1.0.0",
+  "cycle_id": "Cycle 322",
+  "cycle_cutoff_utc": "2026-10-24 07:59:36 UTC",
+  "prompt_sha256": null,
+  "evidence_manifest_sha256": "ff27c7a973f575d2019f731ce9d0eca91e2c9c9af4aff4c3a7413b593833757c",
+  "git_commit": "8299ce45c74ec5de9d866fef2c9373236ee5473a",
+  "git_tree": "048284dfe87998c130f5c173a72ba4d2537481ad",
+  "workbook_sha256": "4fd031f59aa7473d7a242d69b0f1ab8565375ad9da216afac6c2e204b3943eeb",
+  "dispatch_nonce": "425a9f55-8228-4bf5-9ad5-29961c2831bf",
+  "provenance_status": "DENIED_BAD_CYCLE_ENVELOPE",
+  "provenance_review": {
+    "status": "DENIED_BAD_CYCLE_ENVELOPE",
+    "schema_parse_status": "PASS_STRUCTURAL_PARSE",
+    "cycle_id_status": "PASS_FOR_ATTACHED_ENVELOPE_ONLY",
+    "cutoff_causality_status": "PASS_FOR_RECEIPT_TIMESTAMPS_ONLY",
+    "nonce_text_match_status": "PASS",
+    "nonce_cryptographic_binding_status": "FAIL",
+    "receipt_hash_algorithm": "SHA-256 over json.dumps(receipt_without_receipt_sha256, sort_keys=True, indent=2).encode()",
+    "receipt_sha256_claimed": "ab6373ba4f6d70c20e18f1fc5fc6fba01449322886bc2aeadf37d6f8b8616cd6",
+    "receipt_sha256_recomputed_revised": "3aeae5bb4d6ebff1aaae8749254b67963c9ea99182b609ec24b84a1f83b863d7",
+    "receipt_sha256_recomputed_with_empty_nonce": "ab6373ba4f6d70c20e18f1fc5fc6fba01449322886bc2aeadf37d6f8b8616cd6",
+    "prompt_hash_status": "FAIL_UNBOUND",
+    "prompt_sha256_claimed": null,
+    "prompt_sha256_claimed_prefix": "b30ae844",
+    "committed_standard_prompt_sha256": "7e14ee40ad4d65699e7d1eb213d088ce3ec60de19fbb8264ec79efbecf43f4c1",
+    "committed_latest_council_prompt_sha256": "62aaae2cf616a465392c0dff44a55fa7b5c89eadf81242ef87587ea12e2841ec",
+    "git_object_status": "PASS_COMMIT_AND_TREE_EXIST_BUT_COMMIT_IS_UNSIGNED",
+    "committed_cycle_artifact_status": "FAIL_COMMIT_CONTAINS_CYCLE_321_NOT_ATTACHED_CYCLE_322",
+    "evidence_manifest_digest_status": "PASS",
+    "workbook_digest_status": "PASS",
+    "risk_policy_digest_status": "PASS",
+    "risk_policy_sha256": "4633e4af56e52c71329c617aaee4cae5c7102ef9a9f33e7e747e46d26841f058",
+    "manifest_snapshot_availability_status": "FAIL_LATEST_TELEMETRY_ACCOUNT_AND_COINGLASS_BLOBS_ABSENT_FROM_CLAIMED_GIT_TREE",
+    "calendar_status": "PASS_AT_CUTOFF_NO_TIER_1_EVENT_WITHIN_PLUS_OR_MINUS_30_MINUTES",
+    "calendar_age_seconds_at_cutoff": 89.619858,
+    "quote_time_order": "2026-10-24 07:59:33 UTC < 2026-10-24 07:59:34 UTC < 2026-10-24 07:59:36 UTC",
+    "quote_age_seconds_at_observation": 1.0,
+    "quote_age_seconds_at_cutoff": 3.0
+  },
+  "inventory_status": "UNVERIFIED_CLAIMED_FLAT",
+  "universe_coverage": {
+    "claimed_total_assets": 156,
+    "claimed_crypto_assets": 98,
+    "claimed_tradfi_assets": 58,
+    "claimed_spread_eligible_crypto": 11,
+    "claimed_spread_eligible_tradfi": 47,
+    "verified_broker_quote_rows": 1,
+    "verified_full_regime_rows": 0,
+    "verified_180_second_microstructure_rows": 0,
+    "manifest_latest_telemetry_records_claimed": 24,
+    "row_level_coverage_status": "UNVERIFIED_AND_INCOMPLETE",
+    "tradfi_clock_status": "CLOSED_AT_CUTOFF",
+    "crypto_clock_status": "CLAIMED_OPEN_BUT_ONLY_BTCUSD_PI_QUOTE_WAS_ATTACHED"
+  },
+  "hard_gate_results": {
+    "schema": "PASS_STRUCTURAL_ONLY",
+    "cutoff_causality": "PASS_FOR_ATTACHED_RECEIPT_TIMESTAMPS",
+    "cycle_binding": "FAIL_COMMITTED_ARTIFACT_IS_CYCLE_321",
+    "nonce_text_binding": "PASS",
+    "nonce_digest_binding": "FAIL_RECEIPT_WAS_NOT_REHASHED_AFTER_NONCE_CHANGE",
+    "prompt_digest": "FAIL_UNMATCHED",
+    "evidence_manifest_digest": "PASS",
+    "workbook_digest": "PASS",
+    "risk_policy_digest": "PASS",
+    "commit_tree_binding": "PASS",
+    "commit_signature": "UNSIGNED",
+    "snapshot_reconstructability": "FAIL",
+    "inventory_authenticity": "FAIL_UNVERIFIED",
+    "macro_blackout": "PASS",
+    "broker_quote_freshness_at_cutoff": "PASS",
+    "broker_symbol_and_order_geometry": "PASS_ARITHMETIC_ONLY",
+    "broker_order_check_authenticity": "FAIL_RECEIPT_DIGEST_MISMATCH",
+    "solvency_arithmetic": "PASS_CONDITIONAL_ON_UNAUTHENTICATED_FLAT_INVENTORY",
+    "aggregate_margin_under_50_percent": "PASS_FOR_ONE_TICKET_ONLY",
+    "two_ticket_capacity_preserved": "FAIL_FOR_TWO_EQUAL_0_05_BTCUSD_PI_TICKETS",
+    "regime_evidence": "FAIL_MISSING",
+    "microstructure_evidence": "FAIL_MISSING",
+    "calibration_and_uncertainty": "FAIL_MISSING",
+    "stop_and_target_structure": "FAIL_UNPROVEN",
+    "overall": "FAIL_CLOSED"
+  },
+  "existing_ticket_actions": {
+    "status": "NO_AUTHENTICATED_EXISTING_TICKET_INVENTORY",
+    "positions_claimed": 0,
+    "pending_orders_claimed": 0,
+    "actions": [],
+    "instruction": "No modification, cancellation, or transmission is authorized."
+  },
+  "global_contingency_usd": 2.0,
+  "candidates": [
+    {
+      "symbol": "BTCUSD.pi",
+      "asset_class": "crypto_cfd",
+      "side": "SELL",
+      "execution": "SELL_LIMIT",
+      "entry": 80950.0,
+      "SL": 81250.0,
+      "TP": 80400.0,
+      "size": 0.05,
+      "risk_usd": 15.0,
+      "position_size_basis": "Recomputed from a claimed broker contract size of 1 BTC per lot: abs(81250-80950)*0.05 = 15.00 USD base SL loss. The 0.05-lot size was not accepted as authenticated because the receipt digest fails.",
+      "RR": 1.8333333333,
+      "broker_risk_usd": 15.0,
+      "broker_reward_usd": 27.5,
+      "spread_cost_usd": 0.8,
+      "total_nominal_risk_usd": 15.8,
+      "ticket_stress_usd": 21.75,
+      "post_joint_stop_balance_usd": 4841.32,
+      "regime_metrics": {
+        "completed_bars": null,
+        "required_completed_bars": 200,
+        "variance_ratio": null,
+        "variance_ratio_robust_z": null,
+        "efficiency_ratio": null,
+        "hac_t_statistic": null,
+        "ar1_phi": null,
+        "ou_theta": null,
+        "ou_half_life_bars": null,
+        "tail_index": null,
+        "regime_label": "UNKNOWN"
+      },
+      "microstructure_metrics": {
+        "observation_window_seconds": null,
+        "l2_l3_source": null,
+        "whale_wall_notional_usd": null,
+        "whale_wall_persistence_seconds": null,
+        "cvd": null,
+        "order_book_imbalance": null,
+        "queue_ahead": null,
+        "cancel_rate": null,
+        "adverse_selection_markout_bps": null,
+        "stop_anchor_verified": false,
+        "target_liquidity_cluster_verified": false,
+        "manipulation_screens": "NOT_RUN_FROM_AUTHENTICATED_INPUTS"
+      },
+      "calibrated_probabilities": {
+        "P_fill": null,
+        "P_win_conditional_on_fill": null,
+        "P_loss_conditional_on_fill": null,
+        "calibration_method": null,
+        "calibration_window": null,
+        "out_of_sample_status": "NOT_AVAILABLE"
+      },
+      "estimator_references": [
+        "Variance ratio VR(q) with heteroskedasticity-robust inference and robust MAD z-score",
+        "Efficiency ratio cross-checked against HAC/Newey-West trend t-statistic",
+        "AR(1) and OU mean-reversion half-life with stationarity safeguards",
+        "Adaptive walk-forward or purged out-of-sample calibration with block bootstrap uncertainty",
+        "Queue-aware fill model using distance, spread, depth, imbalance, cancel rate, latency, and time in force",
+        "Expected value conditional on fill and net of spread, slippage, and adverse selection"
+      ],
+      "confidence_intervals": {
+        "P_fill_95": null,
+        "P_win_conditional_on_fill_95": null,
+        "EV_usd_95": null,
+        "method": "NOT_COMPUTABLE_WITHOUT_AUTHENTICATED_SAMPLES"
+      },
+      "effective_sample_size": null,
+      "EV_gross": null,
+      "EV_net": null,
+      "spread_cost": 0.8,
+      "slippage_cost": null,
+      "adverse_selection_penalty": null,
+      "P_fill": null,
+      "P_win_conditional_on_fill": null,
+      "utility_score": null,
+      "utility_components": {
+        "expected_value": null,
+        "fill_quality": null,
+        "drawdown_penalty": null,
+        "tail_risk_penalty": null,
+        "capital_efficiency": null
+      },
+      "hard_gate_results": {
+        "quote_freshness": "PASS_AT_CUTOFF",
+        "spread_bps_under_25": "PASS_1_98_BPS",
+        "limit_order_geometry": "PASS_SELL_LIMIT_ABOVE_ASK",
+        "volume_grid": "PASS_0_05_ON_0_01_STEP",
+        "stop_and_target_direction": "PASS",
+        "margin_cap_single_ticket": "PASS_41_5975515255_PERCENT",
+        "solvency_kernel": "PASS_CONDITIONAL_4841_32_GT_4795",
+        "receipt_authenticity": "FAIL",
+        "inventory_authenticity": "FAIL",
+        "regime": "FAIL_MISSING",
+        "microstructure": "FAIL_MISSING",
+        "probability_calibration": "FAIL_MISSING",
+        "two_ticket_reservation": "FAIL_FOR_SECOND_EQUAL_TICKET"
+      },
+      "evidence_ids": {
+        "git_commit": "8299ce45c74ec5de9d866fef2c9373236ee5473a",
+        "git_tree": "048284dfe87998c130f5c173a72ba4d2537481ad",
+        "claimed_receipt_sha256": "ab6373ba4f6d70c20e18f1fc5fc6fba01449322886bc2aeadf37d6f8b8616cd6",
+        "recomputed_receipt_sha256": "3aeae5bb4d6ebff1aaae8749254b67963c9ea99182b609ec24b84a1f83b863d7",
+        "evidence_manifest_sha256": "ff27c7a973f575d2019f731ce9d0eca91e2c9c9af4aff4c3a7413b593833757c",
+        "workbook_sha256": "4fd031f59aa7473d7a242d69b0f1ab8565375ad9da216afac6c2e204b3943eeb"
+      },
+      "evidence_availability_timestamps": {
+        "git_commit_timestamp_utc": "2026-10-24 07:59:00 UTC",
+        "manifest_last_updated_utc": "2026-10-24 07:58:53 UTC",
+        "macro_calendar_verified_utc": "2026-10-24 07:58:06.380142 UTC",
+        "broker_tick_utc": "2026-10-24 07:59:33 UTC",
+        "receipt_observed_utc": "2026-10-24 07:59:34 UTC",
+        "cycle_cutoff_utc": "2026-10-24 07:59:36 UTC"
+      },
+      "evidence_age_at_cutoff_seconds": 3.0,
+      "evidence_max_age_seconds": 15.0,
+      "row_causality_status": "TIMESTAMPS_CAUSAL_BUT_PROVENANCE_AND_FEATURE_EVIDENCE_FAIL",
+      "authorization_expiry_utc": "2026-10-24 07:59:48 UTC",
+      "authorization_expiry_basis": "Theoretical tick-freshness boundary only; no authorization was ever issued.",
+      "rejection_reasons": [
+        "The revised receipt nonce text matches the envelope, but its SHA-256 does not: claimed ab6373ba4f6d70c20e18f1fc5fc6fba01449322886bc2aeadf37d6f8b8616cd6 versus recomputed 3aeae5bb4d6ebff1aaae8749254b67963c9ea99182b609ec24b84a1f83b863d7.",
+        "The claimed receipt digest is exactly the digest of the same receipt with an empty nonce, proving the visible nonce change was not rehashed.",
+        "The claimed prompt digest cannot be bound to either identified prompt artifact in the claimed commit.",
+        "The claimed commit contains a Cycle 321 envelope, not the attached Cycle 322 artifact.",
+        "Manifest-referenced telemetry, account-equity, and Coinglass snapshots are absent from the claimed Git tree.",
+        "No authenticated completed-bar regime metrics are available.",
+        "No authenticated 180-second L2/L3 or venue microstructure evidence is available.",
+        "P_fill, P_win conditional on fill, confidence intervals, effective sample size, EV, and utility cannot be calibrated.",
+        "The flat inventory and broker order_check cannot be trusted independently because the receipt is digest-invalid and the account snapshot blob is unavailable.",
+        "A second equal 0.05 BTCUSD.pi ticket would push aggregate margin to about 83.20 percent of equity, breaching the 50 percent invariant."
+      ],
+      "missing_evidence": [
+        "Authentic nonce-bound receipt",
+        "Prompt artifact whose SHA-256 begins with the observed claimed prefix b30ae844",
+        "Cycle 322 artifact committed or otherwise signed and content-addressed",
+        "Retrievable telemetry and account-equity snapshots",
+        "At least 200 completed bars with VR, ER, HAC, AR(1)/OU, and tail diagnostics",
+        "At least 180 seconds of authenticated venue/order-book evidence",
+        "Whale-wall persistence and notional proof",
+        "Structural stop anchor and target-cluster proof",
+        "Out-of-sample probability calibration, effective sample size, and block-bootstrap intervals",
+        "Expected adverse-selection markouts and slippage distribution"
+      ],
+      "verdict": "HOLD"
+    }
+  ],
+  "portfolio_constraints": {
+    "account_balance_usd_claimed": 4865.07,
+    "account_equity_usd_claimed": 4865.07,
+    "base_capital_usd_used_conditionally": 4865.07,
+    "solvency_kernel_usd": 4795.0,
+    "hard_floor_usd": 4600.0,
+    "operating_buffer_usd": 4650.0,
+    "global_reserve_usd": 2.0,
+    "existing_ticket_stress_usd_claimed": 0.0,
+    "realized_headroom_usd_claimed": 68.07,
+    "risk_tier_claimed": "TIER_2_HOUSE_MONEY",
+    "risk_min_usd": 15.0,
+    "risk_max_usd": 25.0,
+    "max_concurrent_tickets": 2,
+    "aggregate_margin_cap_percent": 50.0,
+    "candidate_margin_percent": 41.5975515255,
+    "second_equal_ticket_aggregate_margin_percent": 83.1951030509,
+    "maximum_second_btcusd_pi_volume_at_same_entry_after_grid_rounding": 0.01,
+    "floating_profit_counted_as_realized_headroom": false
+  },
+  "risk_arithmetic_validation": {
+    "base_sl_loss_formula": "(81250 - 80950) * 0.05",
+    "base_sl_loss_usd": 15.0,
+    "tp_reward_formula": "(80950 - 80400) * 0.05",
+    "tp_reward_usd": 27.5,
+    "raw_reward_risk_ratio": 1.8333333333,
+    "spread_cost_formula": "16 * 0.05",
+    "spread_cost_usd": 0.8,
+    "spread_bps_recomputed": 1.9841727661,
+    "receipt_stress_formula": "(15.00 + 0.80) * 1.25 + 2.00",
+    "receipt_stress_usd": 21.75,
+    "prompt_stress_formula": "1.25 * 15.00 + 0.80 + 2.00",
+    "prompt_stress_usd": 21.55,
+    "conservative_stress_used_usd": 21.75,
+    "post_joint_stop_formula": "4865.07 - 21.75 - 2.00",
+    "post_joint_stop_balance_usd": 4841.32,
+    "kernel_surplus_usd": 46.32,
+    "margin_formula": "0.05 * 80950 * 0.50",
+    "margin_required_usd": 2023.75,
+    "margin_utilization_percent": 41.5975515255,
+    "post_order_margin_level_percent": 240.3987646695,
+    "post_order_free_margin_usd": 2841.32,
+    "status": "ARITHMETIC_PASSES_CONDITIONALLY_BUT_CANNOT_OVERRIDE_PROVENANCE_AND_EVIDENCE_FAILURES"
+  },
+  "methodology_critique": [
+    "Capital arithmetic and a broker order_check are admission subchecks, not a trading signal.",
+    "The claimed 156-asset scan is not auditable from one attached candidate and unavailable snapshot blobs.",
+    "A single quote cannot identify trend, mean reversion, tail regime, fill probability, or adverse selection.",
+    "Continuous scores must not soften binary provenance, inventory, event, solvency, or broker-authenticity gates.",
+    "The stress formula is internally inconsistent by 0.20 USD; the more conservative 21.75 USD was used.",
+    "Ticket-count capacity is not equivalent to margin capacity; two equal proposed tickets breach the aggregate margin invariant."
+  ],
+  "disputes": [
+    {
+      "id": "D1_RECEIPT_DIGEST",
+      "severity": "FATAL",
+      "finding": "The revised receipt recomputes to 3aeae5bb4d6ebff1aaae8749254b67963c9ea99182b609ec24b84a1f83b863d7, not the claimed ab6373ba4f6d70c20e18f1fc5fc6fba01449322886bc2aeadf37d6f8b8616cd6."
+    },
+    {
+      "id": "D2_NONCE_REPLAY_BINDING",
+      "severity": "FATAL",
+      "finding": "The claimed digest exactly matches the otherwise identical receipt with an empty dispatch_nonce."
+    },
+    {
+      "id": "D3_PROMPT_DIGEST",
+      "severity": "FATAL",
+      "finding": "The observed claimed prompt-digest prefix b30ae844 matches neither the committed standard prompt digest nor the committed latest council prompt digest."
+    },
+    {
+      "id": "D4_COMMITTED_CYCLE",
+      "severity": "FATAL",
+      "finding": "The claimed commit/tree are real, but their canonical envelope is Cycle 321 rather than the submitted Cycle 322 envelope."
+    },
+    {
+      "id": "D5_EVIDENCE_RECONSTRUCTION",
+      "severity": "FATAL",
+      "finding": "The manifest hashes correctly, but its latest telemetry, account-equity, and Coinglass blobs are absent from the claimed Git tree."
+    },
+    {
+      "id": "D6_STRESS_FORMULA",
+      "severity": "MATERIAL",
+      "finding": "The receipt formula yields 21.75 USD while the separately stated governance ordering yields 21.55 USD."
+    },
+    {
+      "id": "D7_TWO_TICKET_MARGIN",
+      "severity": "MATERIAL",
+      "finding": "Two equal 0.05-lot tickets require 4047.50 USD margin, about 83.20 percent of equity, so equal-size two-ticket capacity is not preserved."
+    }
+  ],
+  "unknowns": [
+    "Authentic current positions and pending orders",
+    "Authentic current account equity, margin, and free margin",
+    "Regime metrics and bar-level source data",
+    "L2/L3 microstructure and venue coverage",
+    "Stop-anchor and target-liquidity evidence",
+    "P_fill and P_win conditional on fill",
+    "Effective sample size and calibration drift",
+    "Bootstrap confidence intervals",
+    "Slippage and adverse-selection distributions",
+    "Full 156-asset row-level scan coverage",
+    "Independent authenticated outputs from Antigravity, Arena.ai, and GLM"
+  ],
+  "council_votes": {
+    "role_A_market_regime_specialist": "HOLD_MISSING_AUTHENTICATED_REGIME_INPUTS",
+    "role_B_microstructure_specialist": "HOLD_MISSING_AUTHENTICATED_180_SECOND_MARKET_EVIDENCE",
+    "role_C_risk_and_execution_officer": "DENY_RECEIPT_AND_INVENTORY_UNAUTHENTICATED_DESPITE_CONDITIONAL_ARITHMETIC_PASS",
+    "role_D_data_integrity_and_skeptic": "DENY_FATAL_DIGEST_CYCLE_AND_RECONSTRUCTABILITY_FAILURES",
+    "senior_arbiter": "DENIED_FAIL_CLOSED"
+  },
+  "section_8_kaizen": {
+    "root_cause": "The receipt nonce was changed after the canonical receipt hash had been produced, while the claimed Git commit identifies an earlier cycle and does not carry the row-level evidence needed to reproduce the decision.",
+    "required_remediations": [
+      "Create the cycle nonce first, inject it into envelope and receipt, then hash immutable canonical bytes exactly once.",
+      "Commit or content-address the exact Cycle 322 envelope, receipt, prompt, and evidence bundle before dispatch.",
+      "Define one prompt canonicalization and hash the exact dispatched bytes; include the path and byte length.",
+      "Store manifest-referenced snapshots in Git LFS or an authenticated immutable object store and include object digests and retrievable URIs.",
+      "Unify the stress formula and add a golden test covering whether spread is inside or outside the 1.25 multiplier.",
+      "Attach point-in-time bar inputs, all regime outputs, and their timestamps for every eligible row.",
+      "Attach at least 180 seconds of venue-specific depth/trade evidence and calibration datasets for fill and conditional-win estimates.",
+      "Reserve aggregate margin and solvency jointly across both ticket slots rather than treating a count slot as economic capacity.",
+      "Sign the cycle bundle and enforce nonce uniqueness, replay rejection, and short evidence expiry."
+    ],
+    "next_cycle_acceptance_tests": [
+      "Recomputed receipt digest equals claimed digest after nonce insertion.",
+      "Envelope, receipt, and prompt all bind to one cycle_id, cutoff, and nonce.",
+      "Claimed commit or immutable bundle contains the exact submitted artifacts.",
+      "Every manifest object is retrievable and digest-valid.",
+      "Inventory and account state are authenticated and pre-cutoff.",
+      "All binary gates pass before any soft score is evaluated.",
+      "Calibrated probabilities and uncertainty intervals are available before EV or utility is reported.",
+      "Portfolio-level stress and margin remain compliant for all concurrently reservable tickets."
+    ]
+  },
+  "authorization": "DENIED_FAIL_CLOSED",
+  "transmission_status": "NO_ORDER_TRANSMITTED_MODIFIED_OR_CANCELLED",
+  "response_sha256": "34ef44a7f9f817d79838ade9f639396db2c17d1452eb27601211311c7c61cdfd"
+}\n```\n
