@@ -1,0 +1,304 @@
+{
+  "schema_version": "1.0.0",
+  "cycle_id": "Cycle 319",
+  "cutoff_utc": "2026-10-24 02:02:22 UTC",
+  "evidence_commit": "5d49653529389ad19b9f0bcb26475567e88c1d38",
+  "evidence_tree": "30740b616559266b2767ac74d4e92a622544ee0f",
+  "evidence_manifest_sha256": "bcf503b34d56745b717140478007ef50677da10ba86389bafcacab0b6c1cee5d",
+  "workbook_sha256": "4fd031f59aa7473d7a242d69b0f1ab8565375ad9da216afac6c2e204b3943eeb",
+  "prompt_sha256": "8dae957f3390e13b60232312b057b01c92f13ffbcc3bac72f3349dd03d73b19e",
+  "prompt_sha256_note": "Working copy Data/Manditory/Arena_GLM_Standard_Prompt.md. The copy committed at the declared commit 5d49653 is 2b436bee6df1b2e696d93a34c0ea28b1e7970414b02a5287002862de24c5b3b7 and carries the template placeholder. Prompt digest drift is disputed (DIS-319-06).",
+  "dispatch_nonce": "fc2770f4-dec3-49fa-9d08-c9bbea4b10c8",
+  "provenance_status": "ENVELOPE_INTEGRITY_VERIFIED_AT_DECLARED_COMMIT; GATES_OPEN: manifest and workbook working-copy digests FAIL; market-clock claims CONTRADICTED by snapshot",
+  "provenance_attestation": {
+    "envelope_source": "Embedded attachment; byte-equal to Data/cycle_envelope.json at de96941 (verified).",
+    "declared_commit_5d49653": "Committed 2026-10-24 07:32:20+05:30 (02:02:20 UTC), 2 s before cutoff. On origin/main.",
+    "freeze_commit_de96941": "Committed 07:32:22+05:30 (02:02:22 UTC), equal to the cutoff second. Changes only Data/cycle_envelope.json. Disputed (DIS-319-05).",
+    "manifest_at_declared_commit": "bcf503b3 PASS",
+    "workbook_at_declared_commit": "4fd031f5 PASS (2,724,657 bytes class; 33 sheets)",
+    "manifest_working_copy": "15fc034c FAIL (required bcf503b3)",
+    "workbook_working_copy": "e855a87f FAIL (required 4fd031f5)",
+    "attestation_level": "Snapshot and audit are repo-attested at declared commit (LIVE_OBSERVATION, MT5 L1, Binance/Hyperliquid L2). Macro calendar is file-attested, verified 2026-10-23 17:35 UTC, and rejected by the live calendar module. Receipt is broker-attested by the MT5 preflight but fails the causality ordering test."
+  },
+  "embedded_preflight_receipt_audit": {
+    "receipt_sha256_claimed": "41040be6d2dafd5b4cf85ed04df42fee2871c2b77ff55cc65a44e23ca5c3b017",
+    "receipt_sha256_recomputed": "41040be6d2dafd5b4cf85ed04df42fee2871c2b77ff55cc65a44e23ca5c3b017 (MATCH; sha256 of json.dumps(sort_keys=True, indent=2) with receipt_sha256 removed)",
+    "committed_receipt_equals_embedded": true,
+    "observed_at_utc": "2026-10-24 02:02:04 UTC (18 s before cutoff)",
+    "tick_time_utc": "2026-10-24 02:02:10 UTC (12 s before cutoff; 6 s AFTER observed_at)",
+    "clock_skew_seconds": -5.55,
+    "admissibility": "NOT_ADMISSIBLE. The receipt's tick is stamped 6 s after the moment the receipt says it was observed. Observation must precede availability, and the stated order is broken. The order_check therefore cannot be causally tied to the stated observation. The tick is pre-cutoff, so this is an ordering defect, not a post-cutoff defect. Compare Cycle 318, where the tick followed the cutoff."
+  },
+  "inventory_status": "RECONCILED_FLAT (balance = equity = margin_free = 4,865.07 USD; 0 positions, 0 pending orders; margin_used 0.00). Snapshot capacity shows max_concurrent 4 and is not used; envelope Tier 2 limit is 2.",
+  "inventory_detail": {
+    "balance_usd": 4865.07,
+    "equity_usd": 4865.07,
+    "margin_used_usd": 0.0,
+    "margin_free_usd": 4865.07,
+    "positions": 0,
+    "pending_orders": 0,
+    "swap_commission_residual_usd": 0.0,
+    "residual": "None. Snapshot account block and envelope inventory agree."
+  },
+  "hard_gate_results": {
+    "legal_account_authorization": {
+      "result": "PASS",
+      "detail": "Login 5064568, server BlueberryMarketsSVG-Live, USD, flat."
+    },
+    "causal_fresh_evidence": {
+      "result": "FAIL",
+      "detail": "Snapshot as_of 01:58:58 UTC is 204 s before cutoff, and the BTC depth layer age was 25.58 s at 01:59:04. Required sources are the receipt quote (inadmissible) and snapshot quotes (204+ s old against a 15 s gate). Layer 3 STALE (568,412 s). Layer 7 UNAVAILABLE. pioneer_microstructure_eval UNAVAILABLE_UNVERIFIED_ORDERFLOW."
+    },
+    "broker_session_open": {
+      "result": "UNVERIFIED",
+      "detail": "Receipt trade_mode FULL and tick flow observed for BTCUSD.pi. Session evidence is not admissible (receipt ordering defect). Snapshot trade_authorization DENIED_UNVERIFIED_ORDERFLOW."
+    },
+    "native_venue_session_open": {
+      "result": "PASS_BTC_ONLY",
+      "detail": "Saturday 2026-10-24. Crypto perpetuals open 24/7 (Binance/Hyperliquid). FX, indices and metals closed. Watchlist-only for those asset classes."
+    },
+    "event_calendar_clearance": {
+      "result": "FAIL",
+      "detail": "Snapshot macro_calendar: CALENDAR_UNAVAILABLE, error 'calendar event provenance/window invalid', blackout_active true, FAIL_CLOSED_BLOCKED. Repo file macro_calendar.json verified_at 2026-10-23 17:35 UTC is 30,442 s old at cutoff. Envelope claim calendar_verified=true is contradicted."
+    },
+    "blackout_window": {
+      "result": "FAIL",
+      "detail": "blackout_active true, FAIL_CLOSED_BLOCKED (live module)."
+    },
+    "fx_rollover_embargo_21_15_22_30_utc": {
+      "result": "PASS",
+      "detail": "02:02 UTC is outside 21:15–22:30 UTC."
+    },
+    "broker_feasibility_and_order_check": {
+      "result": "UNKNOWN_NOT_ADMISSIBLE",
+      "detail": "order_check retcode 0 'Done' is reported, but it is not causally tied (tick 6 s after observation). Volume 0.06 is valid (min 0.01, step 0.01, max 100). Stops level 0. Margin 2,430.00 reconciles. No admissible order_check."
+    },
+    "structural_stop_validity": {
+      "result": "UNPROVEN",
+      "detail": "SL 81,282 is 282 pts above entry, 544 pts below VAH 81,826.32, and 65.5 pts below VAL 81,347.52. It is not anchored to a documented structural high. ATR-14 226.57, so SL = 1.24 ATR."
+    },
+    "contingent_capacity_2_tickets": {
+      "result": "PASS",
+      "detail": "0 existing, 1 candidate, limit 2. Snapshot max_concurrent 4 is not the envelope limit."
+    },
+    "joint_solvency_4795": {
+      "result": "PASS",
+      "detail": "min(balance,equity) 4,865.07 - joint stress 24.35 - contingency 2.00 = 4,838.72 USD ≥ 4,795.00 (cushion 43.72). Hard-floor cushion 238.72. Operating-buffer cushion 188.72."
+    },
+    "quote_15s": {
+      "result": "FAIL",
+      "detail": "Receipt tick 12.0 s at cutoff, which is inadmissible. Snapshot BTC quote 204+ s. SOL and ETH snapshot quotes 204+ s."
+    },
+    "orderbook_depth_180s": {
+      "result": "FAIL",
+      "detail": "BTC depth layer age ≥204 s at cutoff (snapshot as_of 01:58:58, layer 1 age 25.58 s at 01:59:04)."
+    },
+    "liquidation_map_900s": {
+      "result": "PASS",
+      "detail": "Layer 4 245.4 s at snapshot 01:59:04, so ≈450 s at cutoff (inside 900 s). Not re-measured at cutoff."
+    },
+    "excel_freshness_900s": {
+      "result": "PASS",
+      "detail": "Audit 2026-10-24 02:01:54 UTC, 28 s before cutoff; 31/33 fresh sheets; 0 formula errors. Freshness is independently true this cycle, unlike Cycles 317 and 318 (21:42:14 audit)."
+    },
+    "tier2_risk_band_15_25": {
+      "result": "PASS",
+      "detail": "Nominal risk 16.92 USD (BTC 0.06 @ 81,000, SL 81,282)."
+    },
+    "manifest_working_copy": {
+      "result": "FAIL",
+      "detail": "15fc034c vs required bcf503b3"
+    },
+    "workbook_working_copy": {
+      "result": "FAIL",
+      "detail": "e855a87f vs required 4fd031f5"
+    },
+    "orderflow_authorization": {
+      "result": "FAIL",
+      "detail": "trade_authorization DENIED_UNVERIFIED_ORDERFLOW; pioneer_microstructure_eval UNAVAILABLE; admission frozen."
+    }
+  },
+  "universe_coverage": {
+    "declared_universe": "156 symbols (Data/Assets/mt5_full_symbol_universe.json sha 4d023fe8…, identical at 5d49653)",
+    "row_level_evidence_assets": 24,
+    "assets_passing_15s_quote_gate_at_cutoff": 0,
+    "in_window_receipts": 1,
+    "receipt_asset": "BTCUSD.pi (inadmissible)",
+    "executable": 0,
+    "exclusions": "FX (60), Indices (16), Commodities (22 incl. raw), Cryptos_Raw, and other non-crypto symbols: closed Saturday, watchlist-only. Crypto symbols other than BTC: snapshot quotes 204+ s, failing the 15 s gate and no in-window receipt."
+  },
+  "account_tier_and_contingent_capacity": {
+    "capital_mode": "TIER_2_HOUSE_MONEY",
+    "realized_balance_gt_4850": true,
+    "nominal_risk_band_usd": [
+      15.0,
+      25.0
+    ],
+    "max_concurrent_tickets": 2,
+    "existing_tickets": 0,
+    "pending_orders": 0,
+    "candidate_tickets_counted": 1,
+    "capacity_status": "PASS (1 of 2)"
+  },
+  "global_contingency_usd": 2.0,
+  "global_contingency_note": "Reserved once at the joint level. Not double-counted in the candidate ticket stress.",
+  "existing_ticket_actions": [],
+  "existing_positions_note": "No open positions or pending orders. No MANAGE_EXISTING_ONLY action is applicable.",
+  "candidate_rows": [
+    {
+      "candidate_id": "CAND-319-B01-HOLD",
+      "symbol": "BTCUSD.pi",
+      "native_market": "Binance/Hyperliquid BTC perp (24/7) mirrored by Blueberry CFD BTCUSD.pi",
+      "clock_status": "CRYPTO_NATIVE_OPEN; BROKER_SESSION_UNVERIFIED; CALENDAR_FAIL_CLOSED_BLOCKED",
+      "quote_timestamp": "2026-10-24 02:02:10 UTC (receipt tick, inadmissible). Snapshot BTC tick 01:58:51.8 UTC, 210 s old at cutoff.",
+      "evidence_availability_timestamps": {
+        "receipt_observed": "2026-10-24 02:02:04 UTC",
+        "receipt_tick": "2026-10-24 02:02:10 UTC",
+        "snapshot_as_of": "2026-10-24 01:58:58 UTC",
+        "excel_audit": "2026-10-24 02:01:54 UTC",
+        "macro_calendar_verified_at": "2026-10-23 17:35:00 UTC"
+      },
+      "evidence_max_age_seconds": {
+        "mt5_l1_quote": 15,
+        "orderbook_depth": 180,
+        "liquidation_map": 900,
+        "cvd": 900,
+        "session_calendar": 900,
+        "broker_preflight": 0
+      },
+      "evidence_age_at_cutoff_seconds": {
+        "mt5_l1_quote": "12.0 (receipt tick, inadmissible); 204+ (snapshot)",
+        "orderbook_depth": "≥204",
+        "liquidation_map": "≈450 (snapshot layer 4 age 245.4 s at 01:59:04 plus 204 s, not re-measured)",
+        "cvd": "≥204 (snapshot as_of, not re-measured)",
+        "session_calendar": "30,442 (macro file); invalid (live)",
+        "broker_preflight": "12.0 (inadmissible)"
+      },
+      "row_causality_status": "FAIL (receipt tick after observation; orderflow unverified; calendar invalid)",
+      "authorization_expiry_utc": null,
+      "side": "SELL",
+      "order_type": "SELL_LIMIT",
+      "entry": 81000.0,
+      "stop": 81282.0,
+      "target": 80292.0,
+      "volume": 0.06,
+      "broker_risk_usd": 16.92,
+      "broker_reward_usd": 42.48,
+      "rr": 2.511,
+      "spread_cost_usd": 0.96,
+      "stressed_loss_usd": 24.35,
+      "post_joint_stop_balance": 4838.72,
+      "p_fill": null,
+      "p_win_given_fill": null,
+      "probability_calibration_status": "UNCALIBRATED (snapshot p_win_lower_bound 0.4197 is uncalibrated, n=17, and is not P_TP)",
+      "estimator_references": [
+        "Snapshot p_win_calibration_method EXACT_ONE_SIDED_CLOPPER_PEARSON_95PCT (n=17)",
+        "No validated P_fill estimator exists in the repo at the declared commit"
+      ],
+      "calibration_diagnostics": "Not available. n=17 is far below the calibration minimum. No Brier, log-loss or reliability diagnostics.",
+      "effective_sample_size": 17,
+      "probability_confidence_intervals": null,
+      "outcome_model_and_timeout_branches": "Two-outcome hypothesis disclosed. TTL and timeout branches are unmodelled, so no executable EV is computed.",
+      "cost_ledger_and_conditioning": "Loss_net = 16.92 + 0.96 exit spread = 17.88. Gain_net = 42.48 - 0.96 = 41.52. Break-even P_TP = 17.88/59.40 = 0.3010. Driftless P_TP = 282/990 = 0.28485 (shortfall 1.6 pp). P_TP is uncalibrated.",
+      "wait_cost_usd": null,
+      "ev_net_usd": null,
+      "ev_lcb_5pct_usd": null,
+      "expected_capital_minutes": null,
+      "utility": null,
+      "uncertainty_method": "Not computed. Requires a calibrated estimator and time-blocked bootstrap.",
+      "adverse_selection_usd": null,
+      "evidence_ids": [
+        "5d49653:Data/execution_preflight_receipt.json",
+        "5d49653:docs/telemetry/live_snapshot_latest.json",
+        "5d49653:Data/excel_health_audit.json",
+        "5d49653:Data/macro_calendar.json"
+      ],
+      "verdict": "HOLD",
+      "rejection_reasons": [
+        "Calendar blackout FAIL_CLOSED_BLOCKED; live calendar provenance invalid.",
+        "Quote gate: snapshot 204+ s vs 15 s; receipt tick inadmissible.",
+        "Depth gate: ≥204 s vs 180 s.",
+        "Order flow DENIED_UNVERIFIED_ORDERFLOW; layer 3 STALE; layer 7 UNAVAILABLE.",
+        "Receipt causality: tick 6 s after observed_at.",
+        "Broker session unverified; order_check not admissible.",
+        "Structural stop not anchored to a documented high.",
+        "P_fill and P_TP uncalibrated (n=17); break-even 0.3010 vs driftless 0.28485.",
+        "Manifest and workbook working-copy digests FAIL."
+      ]
+    }
+  ],
+  "arithmetic_validation": {
+    "risk_usd": "282 × 0.06 = 16.92 (MATCH receipt)",
+    "reward_usd": "708 × 0.06 = 42.48 (MATCH receipt)",
+    "rr": "708 / 282 = 2.511 (MATCH receipt)",
+    "spread_cost_usd": "(80813 − 80797) × 0.06 = 0.96 (MATCH)",
+    "stress_usd": "(16.92 + 0.96) × 1.25 + 2.00 = 24.35 (MATCH receipt stress model)",
+    "margin": "0.06 × 81,000 ÷ 2 leverage = 2,430.00; free 4,865.07 − 2,430.00 = 2,435.07 (MATCH); margin level 4,865.07 ÷ 2,430.00 = 200.2% (MATCH)",
+    "joint_post": "4,865.07 − 24.35 − 2.00 = 4,838.72 ≥ 4,795.00 PASS (cushion 43.72)",
+    "driftless_p_tp": "282 ÷ (282 + 708) = 0.28485",
+    "break_even_p_tp": "17.88 ÷ (41.52 + 17.88) = 0.30101",
+    "sell_limit_distance": "81,000 − 80,805 mid = 195 pts = 0.86 ATR-14 (226.57)",
+    "envelope_post_joint_stop_equity_4863.07": "Baseline without candidate (4,865.07 − 2.00), which is not the candidate post-stop balance"
+  },
+  "discovery_personas": {
+    "regime_calibration": "BTC trend BEARISH (CVD −3.10 M session, −3.05 M 24h, divergence BEARISH_MOMENTUM). Price 80,805 below EMA 20/50/200 and session VWAP 80,670 (+). Calibration n=17 is uncalibrated, so any directional edge is a hypothesis, not a probability.",
+    "fill_microstructure": "Sell limit 195 pts above mid, 0.86 ATR. No validated P_fill exists. Book imbalance and pullback direction are quarantined (flipped across commits: DIS-314-02, DIS-315-09, DIS-317-09, DIS-318-08, UNK-315-07). Snapshot depth is ≥204 s old, so microstructure is not admissible at cutoff.",
+    "solvency_portfolio": "Single ticket, 24.35 stressed, post 4,838.72, cushion 43.72 over the kernel. Tier 2 band satisfied. No second ticket. Kernel binds at 4,795.",
+    "market_clock_provenance": "Saturday. Crypto open; FX/indices/metals closed (watchlist-only). Calendar FAIL_CLOSED_BLOCKED. Receipt ordering defect. Excel freshness PASS (28 s). De96941 froze the envelope at the cutoff second."
+  },
+  "disputes": [
+    {
+      "id": "DIS-319-01",
+      "item": "Receipt causality: tick 02:02:10 stamped 6 s after observed_at 02:02:04 (clock skew −5.55 s). Receipt not admissible."
+    },
+    {
+      "id": "DIS-319-02",
+      "item": "Envelope claims calendar_verified=true and native_market_open=true. Live calendar says CALENDAR_UNAVAILABLE/FAIL_CLOSED_BLOCKED. Claim contradicted."
+    },
+    {
+      "id": "DIS-319-03",
+      "item": "Snapshot depth and quote ages are 204+ s at cutoff. The receipt's 12 s tick does not rescue the snapshot-based gates."
+    },
+    {
+      "id": "DIS-319-04",
+      "item": "Orderflow authorization DENIED_UNVERIFIED_ORDERFLOW. Layer 3 STALE, layer 7 UNAVAILABLE."
+    },
+    {
+      "id": "DIS-319-05",
+      "item": "Freeze commit de96941 was created at 02:02:22 UTC, the cutoff second. It changes only Data/cycle_envelope.json. The envelope binds to pre-cutoff 5d49653, so the evidence is still admissible, but the timing is disputed."
+    },
+    {
+      "id": "DIS-319-06",
+      "item": "Prompt digest: working copy 8dae957f; declared commit copy 2b436bee (template placeholder). Dispatcher should commit the filled prompt, or the prompt digest must be pinned."
+    },
+    {
+      "id": "DIS-319-07",
+      "item": "Working-copy manifest (15fc034c) and workbook (e855a87f) do not match the declared commit digests. Gates FAIL."
+    },
+    {
+      "id": "DIS-319-08",
+      "item": "Structural stop 81,282 is not anchored to a documented structural high. It is 544 pts below VAH and inside the value area."
+    },
+    {
+      "id": "DIS-319-09",
+      "item": "Verifier gap (verify_cycle_envelope.py:232) remains latent. Excel freshness PASSES this cycle because the audit is truly fresh (28 s). Not triggered."
+    },
+    {
+      "id": "DIS-319-10",
+      "item": "Response-hash convention. The Cycle 318 response_sha256 could not be reproduced from the saved file under the conventions tested here. Cycle 319 uses the convention documented in response_sha256_note."
+    }
+  ],
+  "unknowns": [
+    "Admissible broker receipt with tick at or before observed_at and before cutoff.",
+    "Cutoff-time depth and quotes for BTC within 180 s and 15 s.",
+    "Verified calendar, with blackout status and provenance.",
+    "Broker session verification for BTCUSD.pi.",
+    "Calibrated P_fill and P_TP (n ≥ 100, time-blocked OOS).",
+    "Documented structural invalidation for any short above entry.",
+    "Working-copy manifest and workbook digests."
+  ],
+  "authorization": "DENIED_FAIL_CLOSED",
+  "authorization_details": "Calendar blackout FAIL_CLOSED_BLOCKED, quote and depth gates fail on snapshot, orderflow unverified, receipt causality defect, structural stop unproven, P_fill/P_TP uncalibrated. No row is executable. The Tier 2 band and solvency pass but are not authorization.",
+  "response_sha256_note": "response_sha256 = sha256 of json.dumps(obj without response_sha256, sort_keys=True, separators=(',',':'), ensure_ascii=False). Verify by removing the key and recomputing.",
+  "response_sha256": "896d7cd482344a3a2bc4518e3873adc64ca869bae0beaf0e7956aa66fb126bd7"
+}
