@@ -62873,3 +62873,16 @@ You may create 12_Hyperdash and 13_Hyperliquid where you dump all intelligenve a
 - Role C (Solvency & Sizing): SOLVENCY_VERIFIED_CAPITAL_ELIGIBLE_PENDING_ALL_HARD_GATES (Verified 4,865.07 USD baseline, +70.07 USD kernel cushion, +68.07 USD headroom, 24.35 USD ticket stress).
 - Role D (Clock & Provenance): PROVENANCE_AND_CLOCK_VERIFIED_AUCTION_STRUCTURE_CONFIRMED (Causality verified 02:02:04 <= 02:02:10 <= 02:02:22 UTC, 12 executable cryptos, auction levels confirmed).
 - Role B (Microstructure & Order Geometry): In-flight computing L2 orderbook, CVD, and whale persistence.
+
+
+### Turn 321 — Tradfye Platform Reverse-Engineering & Microstructure Feed Architecture
+
+- **User Directives**: Re-open Tradfye after automatic tab closures, inspect root cause of tab closures, scrape platform architecture, and extract underlying data API feeds.
+- **Root Cause Identified**: The 30-sheets Excel scraper daemon (`run_unified_30_sheets_cycle.py`) runs every 300s, launching up to 16 parallel CoinGlass modules over CDP port 9222. Each module opens an ephemeral tab and calls `/json/close/{tab_id}` upon completion. Concurrent headless scraping caused renderer socket aborts (`WinError 10053`) and tab cycling on Edge.
+- **Fix Implemented**: Opened Tradfye in a dedicated, isolated browser window (`msedge.exe --new-window https://tradfye.com/terminal`) unlinked from the port 9222 headless queue.
+- **Forensic Reverse-Engineering Findings**:
+  * **Frontend**: TanStack Start on Cloudflare edge via Lovable.
+  * **Backend**: Supabase (`https://pfrtjjxrczmvpdiewejg.supabase.co`, key `sb_publishable_T1ZPsQjpHSZpKHNAr9hXhA_Os4Msm5C`).
+  * **Plan Entitlement**: Active "Beta" plan (`c09aef2a-3313-47dd-a01f-5be02dfb89ea`) is 100% Free (`price_cents: 0`), unlocking all 11 terminal views (`heatmap`, `footprint`, `whales`, `profile`, `gamma`, `tape`, `liquidity`, `futures`, `sentiment`, `guide`, `chart`).
+  * **Data Feeds**: Tradfye possesses no proprietary backend. Client runtime (`jev-desk`) connects directly from the browser to public exchange endpoints: Binance Vision (`data-api.binance.vision/api/v3/aggTrades`, `wss://data-stream.binance.vision/stream`), Bybit Linear (`wss://stream.bybit.com/v5/public/linear`), Coinbase (`wss://ws-feed.exchange.coinbase.com`), and Deribit Options (`https://www.deribit.com/api/v2/public/...`).
+- **Pristine Hygiene**: Pruned all scratch files, documented full architecture in `docs/specs/TRADFYE_REVERSE_ENGINEERING_AND_API_ARCHITECTURE.md`.
