@@ -1,6 +1,6 @@
 {
-  "harvest_timestamp_utc": "2026-10-24T04:29:17.820216+00:00",
-  "harvest_epoch": 1792816157.8816354,
+  "harvest_timestamp_utc": "2026-10-24T04:34:27.956070+00:00",
+  "harvest_epoch": 1792816468.0008438,
   "domains": {
     "hyperliquid_whales": {
       "name": "Hyperliquid Whale Tracker",
@@ -121,54 +121,548 @@
     "liquidation_levels": {
       "name": "Bitcoin Liquidation Levels Lines",
       "url": "https://www.coinglass.com/liquidation-levels",
-      "error": "no close frame received or sent"
+      "table_count": 1,
+      "tables": [
+        {
+          "headers": [
+            "Side",
+            "Price",
+            "Distance",
+            "Leverage",
+            "Strength",
+            ""
+          ],
+          "rowCount": 3,
+          "rows": [
+            [
+              "\u2014"
+            ],
+            [
+              "Last price \u2014"
+            ],
+            [
+              "\u2014"
+            ]
+          ]
+        }
+      ],
+      "cards": [
+        "Market",
+        "Stocks",
+        "Exchanges",
+        "Open Interest",
+        "Funding Rate",
+        "Liquidation",
+        "Data",
+        "Supercharts",
+        "More",
+        "Binance BTCUSDT Liquidation Levels LIVE \u00b7 3D \u00b7 1M By side By leverage Candles",
+        "Liquidations Liquidation Heatmap Estimated liquidation intensity at each price, showing where liquidity is stacked.",
+        "Liquidations Liquidation Map Cumulative long and short liquidations above and below price.",
+        "Liquidations Liquidation Max Pain The price with the most liquidations and its 24h hit probability.",
+        "Order flow Large Orders Bid and ask walls and big trades: are real orders resting near the levels?",
+        "Order flow Aggregated Order Book Depth merged across exchanges: how much size sits near price.",
+        "Order flow CVD Cumulative Volume Delta Cumulative taker buys minus sells: who is pushing price."
+      ]
     },
     "liquidation_map": {
       "name": "Crypto Liquidation Map",
       "url": "https://www.coinglass.com/pro/futures/LiquidationMap",
-      "error": "no close frame received or sent"
+      "table_count": 0,
+      "tables": [],
+      "cards": [
+        "Market",
+        "Stocks",
+        "Exchanges",
+        "Open Interest",
+        "Funding Rate",
+        "Liquidation",
+        "Data",
+        "Supercharts",
+        "More",
+        "All Categories",
+        "Options",
+        "Options Net Premium Strike Heatmap",
+        "Options/Futures OI Ratio",
+        "Options Open Interest",
+        "Options OI By Expiry",
+        "Options OI By Strike",
+        "Volume By Expiration",
+        "Volume By Strike Price",
+        "Option Greeks Tables",
+        "Max Pain",
+        "Liquidations",
+        "Liquidation History",
+        "Top Liquidation Events",
+        "Liquidation History Heatmap",
+        "Liquidation Map",
+        "Hyperliquid Liquidation Map",
+        "Liquidation Heatmap",
+        "Liquidation Heatmap(Model 2)",
+        "Liquidation Heatmap(Model 3)",
+        "Futures",
+        "Hyperliquid Long/Short Trader Ratio",
+        "Open Interest & Volume",
+        "Altcoin Open Interest & Volume",
+        "Orderbook Liquidity Delta",
+        "Insurance Fund History"
+      ]
     },
     "liquidation_heatmap": {
       "name": "Liquidation Heatmap",
       "url": "https://www.coinglass.com/pro/futures/LiquidationHeatMap",
-      "error": "no close frame received or sent"
+      "table_count": 0,
+      "tables": [],
+      "cards": [
+        "Market",
+        "Stocks",
+        "Exchanges",
+        "Open Interest",
+        "Funding Rate",
+        "Liquidation",
+        "Data",
+        "Supercharts",
+        "More",
+        "All Categories",
+        "Options",
+        "Options Net Premium Strike Heatmap",
+        "Options/Futures OI Ratio",
+        "Options Open Interest",
+        "Options OI By Expiry",
+        "Options OI By Strike",
+        "Volume By Expiration",
+        "Volume By Strike Price",
+        "Option Greeks Tables",
+        "Max Pain",
+        "Liquidations",
+        "Liquidation History",
+        "Top Liquidation Events",
+        "Liquidation History Heatmap",
+        "Liquidation Map",
+        "Hyperliquid Liquidation Map",
+        "Liquidation Heatmap",
+        "Liquidation Heatmap(Model 2)",
+        "Liquidation Heatmap(Model 3)",
+        "Futures",
+        "Hyperliquid Long/Short Trader Ratio",
+        "Open Interest & Volume",
+        "Altcoin Open Interest & Volume",
+        "Orderbook Liquidity Delta",
+        "Insurance Fund History"
+      ]
     },
     "bitcoin_etfs": {
       "name": "Spot Bitcoin ETF Flows & Holdings",
       "url": "https://www.coinglass.com/etf/bitcoin",
-      "error": "no close frame received or sent"
+      "table_count": 4,
+      "tables": [
+        {
+          "headers": [
+            "Time(UTC)",
+            "GBTC",
+            "IBIT",
+            "FBTC",
+            "ARKB",
+            "BITB",
+            "BTCO",
+            "HODL",
+            "BRRR",
+            "EZBC",
+            "BTCW",
+            "BTC",
+            "MSBT",
+            "Total"
+          ],
+          "rowCount": 0,
+          "rows": []
+        },
+        {
+          "headers": [],
+          "rowCount": 1,
+          "rows": [
+            [
+              "No data"
+            ]
+          ]
+        },
+        {
+          "headers": [
+            "#",
+            "Ticker",
+            "ETF Name",
+            "Price",
+            "Price Change",
+            "Volume",
+            "Volume",
+            "Turnover Rate",
+            "Shares Outstanding",
+            "AUM",
+            "Market Cap",
+            "Expense Ratio"
+          ],
+          "rowCount": 0,
+          "rows": []
+        },
+        {
+          "headers": [],
+          "rowCount": 1,
+          "rows": [
+            [
+              "No data"
+            ]
+          ]
+        }
+      ],
+      "cards": [
+        "Market",
+        "Stocks",
+        "Exchanges",
+        "Open Interest",
+        "Funding Rate",
+        "Liquidation",
+        "Data",
+        "Supercharts",
+        "More",
+        "Total Net Inflow Last update : -",
+        "Daily Total Net Inflow Last update : -",
+        "Daily Trading Volume Last update : -",
+        "Total Net Assets Last update : -",
+        "Total Volume $0",
+        "Total Cap $0",
+        "Total AUM $0",
+        "Closed",
+        "Closed",
+        "2. What is the difference between a Bitcoin spot ETF and a futures ETF?",
+        "3. How can I use the Bitcoin ETF list to compare different funds?",
+        "4. What do inflows and outflows of a Bitcoin ETF indicate?",
+        "5. What do an ETF\u2019s assets under management (AUM) and net asset value (NAV) represent?",
+        "6. What is the difference between investing in a Bitcoin ETF and directly holding Bitcoin?",
+        "7. How do institutional investors view Bitcoin ETFs?",
+        "8. What risks are involved in ETF investing, especially for Bitcoin ETFs?",
+        "9. How can Bitcoin ETF data be analyzed together with crypto derivatives indicators?",
+        "10. Does CoinGlass provide ETF data APIs?",
+        "11. What ETF APIs are available for Bitcoin ETFs?",
+        "12. Does CoinGlass support accessing Ethereum ETF data via API?"
+      ]
     },
     "ethereum_etfs": {
       "name": "Spot Ethereum ETF Flows",
       "url": "https://www.coinglass.com/etf/ethereum",
-      "error": "no close frame received or sent"
+      "table_count": 4,
+      "tables": [
+        {
+          "headers": [
+            "Time(UTC)",
+            "ETHE Grayscale",
+            "ETH Grayscale",
+            "ETHA Blackrock",
+            "ETHB Blackrock",
+            "ETHW Bitwise",
+            "FETH Fidelity",
+            "ETHV VanEck",
+            "EZET Franklin",
+            "TETH 21 Shares",
+            "QETH Invesco",
+            "Total"
+          ],
+          "rowCount": 0,
+          "rows": []
+        },
+        {
+          "headers": [],
+          "rowCount": 1,
+          "rows": [
+            [
+              "No data"
+            ]
+          ]
+        },
+        {
+          "headers": [
+            "#",
+            "Ticker",
+            "ETF Name",
+            "Price",
+            "Price Change",
+            "Volume",
+            "Volume",
+            "Turnover Rate",
+            "Shares Outstanding",
+            "AUM",
+            "Market Cap",
+            "Expense Ratio",
+            "Status"
+          ],
+          "rowCount": 0,
+          "rows": []
+        },
+        {
+          "headers": [],
+          "rowCount": 1,
+          "rows": [
+            [
+              "No data"
+            ]
+          ]
+        }
+      ],
+      "cards": [
+        "Market",
+        "Stocks",
+        "Exchanges",
+        "Open Interest",
+        "Funding Rate",
+        "Liquidation",
+        "Data",
+        "Supercharts",
+        "More",
+        "Total Volume",
+        "Total Cap",
+        "Total AUM",
+        "2. What is the difference between a Ethereum spot ETF and a futures ETF?",
+        "3. How can I use the Ethereum ETF list to compare different funds?",
+        "4. What do inflows and outflows of a Ethereum ETF indicate?",
+        "5. What do an ETF\u2019s assets under management (AUM) and net asset value (NAV) represent?",
+        "6. What is the difference between investing in a Ethereum ETF and directly holding Ethereum?",
+        "7. How do institutional investors view Ethereum ETFs?",
+        "8. What risks are involved in ETF investing, especially for Ethereum ETFs?",
+        "9. How can Ethereum ETF data be analyzed together with crypto derivatives indicators?",
+        "10. Does CoinGlass provide ETF data APIs?",
+        "11. What ETF APIs are available for Bitcoin ETFs?",
+        "12. Does CoinGlass support accessing Ethereum ETF data via API?"
+      ]
     },
     "long_short_ratio": {
       "name": "Global Long/Short Ratio",
       "url": "https://www.coinglass.com/LongShortRatio",
-      "error": "no close frame received or sent"
+      "table_count": 8,
+      "tables": [
+        {
+          "headers": [
+            "Type",
+            "Long/Short",
+            "Sentiment"
+          ],
+          "rowCount": 0,
+          "rows": []
+        },
+        {
+          "headers": [],
+          "rowCount": 0,
+          "rows": []
+        },
+        {
+          "headers": [
+            "Type",
+            "Long/Short",
+            "Sentiment"
+          ],
+          "rowCount": 0,
+          "rows": []
+        },
+        {
+          "headers": [],
+          "rowCount": 0,
+          "rows": []
+        },
+        {
+          "headers": [
+            "Type",
+            "Long/Short",
+            "Sentiment"
+          ],
+          "rowCount": 0,
+          "rows": []
+        },
+        {
+          "headers": [],
+          "rowCount": 0,
+          "rows": []
+        },
+        {
+          "headers": [
+            "Ranking",
+            "Assets",
+            "Price",
+            "Price (24h%)",
+            "Long/Short (5m)",
+            "Binance Whale bias",
+            "Binance Retail",
+            "OKX Whale bias",
+            "OKX Retail",
+            "Bybit Whale bias"
+          ],
+          "rowCount": 0,
+          "rows": []
+        },
+        {
+          "headers": [],
+          "rowCount": 1,
+          "rows": [
+            [
+              "No data"
+            ]
+          ]
+        }
+      ],
+      "cards": [
+        "Market",
+        "Stocks",
+        "Exchanges",
+        "Open Interest",
+        "Funding Rate",
+        "Liquidation",
+        "Data",
+        "Supercharts",
+        "More",
+        "Cryptocurrency Longs vs Shorts Taker Buy/Sell Volume 1 hour 4 hour 12 hour 24 hour % 4H Long Volume $-- % 4H Short Volume $--",
+        "% 4H Long Volume $--",
+        "% 4H Short Volume $--",
+        "What Is Your Current BTC Sentiment? Very Bullish % Bullish % Neutral % Bearish % Very Bearish %",
+        "Binance Bitcoin Long/Short Ratio Type Long/Short Sentiment",
+        "Binance Bitcoin Long/Short Ratio Type Long/Short Sentiment",
+        "OKX Bitcoin Long/Short Ratio Type Long/Short Sentiment",
+        "OKX Bitcoin Long/Short Ratio Type Long/Short Sentiment",
+        "Bybit Bitcoin Long/Short Ratio Type Long/Short Sentiment",
+        "Bybit Bitcoin Long/Short Ratio Type Long/Short Sentiment",
+        "BTC Long/Short Ratio Chart Taker Buy/Sell Volume 30 minute",
+        "BTC Long/Short (Accounts) 4 hour",
+        "Exchanges BTC Long/Short Ratio Taker Buy/Sell Volume 4 hour 1.00% NaN% Long Short",
+        "Large Trades (Real-Time) All Pair Price Value Time",
+        "2. What Is the Taker Buy / Sell Long\u2013Short Ratio?",
+        "3. What Is the Exchange Account Long / Short Ratio?",
+        "4. What Is the Exchange Top Trader Account Long / Short Ratio?",
+        "5. What Is the Exchange Top Trader Position Long / Short Ratio?",
+        "6. How Should Crypto Derivatives Long / Short Ratios Be Interpreted and Used?",
+        "7. What Long / Short Ratio API Endpoints Does CoinGlass Provide?"
+      ]
     },
     "funding_rates": {
       "name": "Perpetual Funding Rates",
       "url": "https://www.coinglass.com/FundingRate",
-      "error": "no close frame received or sent"
+      "table_count": 2,
+      "tables": [
+        {
+          "headers": [
+            "",
+            "Symbol",
+            ""
+          ],
+          "rowCount": 0,
+          "rows": []
+        },
+        {
+          "headers": [],
+          "rowCount": 0,
+          "rows": []
+        }
+      ],
+      "cards": [
+        "Market",
+        "Stocks",
+        "Exchanges",
+        "Open Interest",
+        "Funding Rate",
+        "Liquidation",
+        "Data",
+        "Supercharts",
+        "More",
+        "- BTC OI-Weighted Funding Rate",
+        "- ETH OI-Weighted Funding Rate",
+        "- BTC Volume-Weighted Funding Rate",
+        "- ETH Volume-Weighted Funding Rate",
+        "Highest Funding Rate",
+        "Lowest Funding Rate"
+      ]
     },
     "exchange_balance": {
       "name": "Bitcoin Exchange Balance",
       "url": "https://www.coinglass.com/Balance",
-      "error": "no close frame received or sent"
+      "table_count": 2,
+      "tables": [
+        {
+          "headers": [
+            "Ranking",
+            "Exchanges",
+            "Balance",
+            "24h Change",
+            "7d Change",
+            "30d Change"
+          ],
+          "rowCount": 0,
+          "rows": []
+        },
+        {
+          "headers": [],
+          "rowCount": 1,
+          "rows": [
+            [
+              "No data"
+            ]
+          ]
+        }
+      ],
+      "cards": [
+        "Market",
+        "Stocks",
+        "Exchanges",
+        "Open Interest",
+        "Funding Rate",
+        "Liquidation",
+        "Data",
+        "Supercharts",
+        "More"
+      ]
     },
     "utxo_age_bands": {
       "name": "Bitcoin Realized Price UTXO Age Bands",
       "url": "https://www.coinglass.com/pro/i/utxo",
-      "error": "no close frame received or sent"
+      "table_count": 0,
+      "tables": [],
+      "cards": [
+        "Market",
+        "Stocks",
+        "Exchanges",
+        "Open Interest",
+        "Funding Rate",
+        "Liquidation",
+        "Data",
+        "Supercharts",
+        "More",
+        "All Categories",
+        "Bitcoin",
+        "Bitcoin ASOL (Average Spent Output Lifespan)",
+        "Bitcoin MSOL (Median Spent Output Lifespan)",
+        "Bitcoin SOPR (Spent Output Profit Ratio)",
+        "Bitcoin CDD (Coin Days Destroyed)",
+        "Bitcoin HODL Waves (Supply)",
+        "Bitcoin VDD Multiple",
+        "Bitcoin HODL Wave (1+ Year)",
+        "Bitcoin HODL Wave (5+ Year)",
+        "Bitcoin HODL Wave (10+ Year)",
+        "Bitcoin HODL Waves (Realized Cap Weighted)",
+        "Bitcoin Supply in Loss (Total)",
+        "Bitcoin Supply in Profit (Total)",
+        "Bitcoin Realized Price",
+        "Bitcoin NVT Ratio (Network Value to Transactions)",
+        "Bitcoin UTXOs in Loss (Count)",
+        "Bitcoin UTXOs in Profit (Count)",
+        "Bitcoin UTXOs in Profit (Percent)",
+        "Bitcoin Realized Loss",
+        "Bitcoin Realized Profit",
+        "Bitcoin Block Reward per Block",
+        "BTC Daily Block Rewards",
+        "Bitcoin Blockchain Height",
+        "Bitcoin Blockchain Weight",
+        "Bitcoin Average Block Time"
+      ]
     }
   },
-  "harvest_duration_seconds": 18.9,
+  "harvest_duration_seconds": 49.69,
   "_temporal_meta": {
     "stream": "coinglass",
-    "recorded_at_utc": "2026-10-24T04:29:17.820216+00:00",
-    "recorded_at_epoch": 1792816157.8816354,
+    "recorded_at_utc": "2026-10-24T04:34:27.956070+00:00",
+    "recorded_at_epoch": 1792816468.0008438,
     "gap_detected": false,
     "gap_duration_minutes": 0.0,
     "last_active_utc": null,
