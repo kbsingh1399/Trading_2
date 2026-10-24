@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0.0",
+  "cycle_id": "Cycle 320",
+  "cutoff_utc": "2026-10-24 02:25:20 UTC",
+  "dispatch_nonce": "b4f5506d-53f4-41c3-b958-594aa2e3db89",
+  "declared_evidence_commit": "1428d1e052f4f0c7d4f1625110ed51a61f05de09",
+  "declared_evidence_commit_time": "2026-10-24 02:25:11 UTC (9 s before cutoff)",
+  "freeze_commit": "c37d0042dd29077df1974a7dee8e224ac66ba8af (2026-10-24 02:25:31 UTC, 11 s AFTER cutoff; contents byte-equal to the embedded envelope)",
+  "verifier_result": "ENVELOPE_INTEGRITY_VERIFIED (exit 0). Gates open: working-copy manifest 15fc034c and workbook e855a87f FAIL.",
+  "authorization": "DENIED_BAD_CYCLE_ENVELOPE",
+  "reason": {
+    "class": "digest-mismatched",
+    "finding": "The envelope declares provenance.prompt_sha256 = d8d6492859d2f9865ef03998aa8283c2cd2d0a4c5c33494af3ee4f861cfc8cc2. None of the prompt copies in the repository matches it: docs/prompts/ARENA_CYCLE_320_COUNCIL_PROMPT.md at 1428d1e0 (inline envelope, no placeholder) = 21970ad2bc40b8ea…; Data/Manditory/Arena_GLM_Standard_Prompt.md at 1428d1e0 (template) = 2b436bee6df1b2e6…; working copy = 8dae957f3390e13b…. The envelope cannot be shown to belong to the prompt it was dispatched with.",
+    "note": "The prompt_sha256 field is new in this envelope. Prior envelopes (Cycles 313–319) carried no prompt digest, so only the repo drift was flagged as a dispute. Treating an unmatched declared digest as digest-mismatched is a judgment call, and the operator may overrule it."
+  },
+  "observations_not_affecting_authorization": [
+    "Macro calendar VERIFIED_COVERAGE, blackout_active false, ARMED. Verified 02:10:20 UTC, 899.2 s before cutoff (inside 900 s). Next event FOMC 2026-10-28 18:00 UTC.",
+    "Excel audit 02:21:12 UTC PASS, 248 s old, but 26/33 fresh. Stale: Crypto_ETF_Flows, Top_Institutions, ETF_Market_Overview, 1_Crypto_ETF_Flows, 7_Live_Liq (2,370 s), 8_Exchange_Liquidation_Map_1D (2,309 s), 20_Auction_Market_Structure. The overall PASS hides 7 stale sheets, two of which feed liquidation inputs.",
+    "Receipt causality is clean this cycle: observed 02:23:35, tick 02:23:34 (tick precedes observation). Self-hash 'fda584c4…' reproduces. Retcode 0.",
+    "Receipt quote is 106 s old at cutoff against the 15 s gate. Snapshot BTC quote is about 94 s old.",
+    "BTC depth (Binance mid) is about 96 s old at cutoff, inside 180 s.",
+    "BTCUSD.pi SELL_LIMIT 0.05 @ 81,000, SL 81,360, TP 80,440. Risk 18.00, reward 28.00, R:R 1.556, stressed loss 25.50, post-joint 4,837.57 (cushion 42.57). Driftless P_TP 0.3913 vs break-even 0.4087 (shortfall 1.7 pp).",
+    "Snapshot trade_authorization DENIED_UNVERIFIED_ORDERFLOW; pioneer UNAVAILABLE. Layer 3 STALE; layer 7 UNAVAILABLE.",
+    "Structural stop: SL 81,360 is 60 pts above the 16-bar 15m high (81,299.95) and 194 pts below the 32-bar high (81,554.5). Not anchored to a documented structural high."
+  ],
+  "required_to_proceed": [
+    "Dispatcher confirms which prompt the d8d64928 digest refers to, or re-freezes the envelope with the digest of the prompt actually dispatched.",
+    "Then re-run the full ruling. Open items: quote ≤ 15 s at cutoff, orderflow authorization, structural stop, calibrated P_fill/P_TP, and the working-copy digests."
+  ],
+  "authorization_detail": "No ruling was computed. No candidate is executable. Nothing was sent to the broker.",
+  "record_sha256": "4e6f1825d69ca2e431b8728bcbd8f1b210be36dfa0008d78a1922fff9944ebb0"
+}
