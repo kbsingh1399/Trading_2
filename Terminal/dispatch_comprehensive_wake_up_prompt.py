@@ -234,11 +234,13 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
     lines = []
     lines.append(f"TRADING DESK COUNCIL: CYCLE {cycle_num} TELEMETRY, PLAYBOOK & STANDARDIZED DECISION CHAIN PROMPT")
     if is_arena_astra:
-        lines.append("ROUTING TARGET: GPT_ASTRA (ARENA PRIMARY WORKSPACE - TAB 1)")
+        lines.append("ROUTING TARGET: ARENA.AI PRIMARY WORKSPACE (TAB 1)")
+        lines.append("CAPABILITIES REQUIRED: DEEP REASONING AND AUTONOMOUS MULTI-AGENT QUANTITATIVE SQUAD")
         lines.append("ROLE: SENIOR QUANTITATIVE STRATEGIST & MARKET SCREENER (ADVISORY & RATIFICATION)")
         lines.append("EXECUTION & GIT SEPARATION: You DO NOT need an active broker connection, MT5 terminal, or GitHub push rights. Antigravity handles all MT5 executions and all git commits autonomously. Your sole responsibility is to evaluate market data from Data/DataBase_Trading.xlsx and provide your recommended limit orders directly in markdown in this response.")
     elif is_fable:
-        lines.append("ROUTING TARGET: CLAUDE FABLE 5.1 / MYTHOS-CLASS FRONTIER REASONING ENGINE (ANTHROPIC FABLE ORCHESTRATOR - TAB 2)")
+        lines.append("ROUTING TARGET: ARENA.AI SECONDARY WORKSPACE (TAB 2)")
+        lines.append("CAPABILITIES REQUIRED: DEEP REASONING AND AUTONOMOUS MULTI-AGENT QUANTITATIVE SQUAD")
         lines.append("ROLE: LEAD QUANTITATIVE AUDITOR & MARKET SCREENER (ADVISORY & RATIFICATION)")
         lines.append("EXECUTION & GIT SEPARATION: You DO NOT need an active broker connection, MT5 terminal, or GitHub push rights. Antigravity handles all MT5 executions and all git commits autonomously. Your sole responsibility is to evaluate market data from Data/DataBase_Trading.xlsx and provide your recommended limit orders directly in markdown in this response.")
     elif is_copilot_opus:
@@ -826,12 +828,12 @@ def build_prompt(cycle_num: int = 65, target_agent: str = "arena_astra") -> str:
         lines.append("   • Output your complete 3-Mandate Quantitative Audit, Dialectic Deliberation, and Actionable Execution Summary Table directly here in your response.")
         lines.append("   • Antigravity automatically harvests your response directly from the Copilot Studio DOM into docs/trade_plans/COPILOT_OPUS_LATEST_RAW.md / COPILOT_ASTRA_LATEST_RAW.md for Quad-Council synthesis.")
     elif is_fable:
-        lines.append("9. COUNCIL SYNC PROTOCOL (ARENA.AI TAB 2 - CLAUDE FABLE ORCHESTRATOR):")
+        lines.append("9. COUNCIL SYNC PROTOCOL (ARENA.AI TAB 2 - DEEP REASONING MULTI-AGENT SQUAD):")
         lines.append("   • Output your complete 3-Mandate Council Report, Dialectic Deliberation, and Actionable Execution Table directly here in your markdown chat response.")
         lines.append("   • Antigravity automatically harvests your completed chat response via Chrome CDP into docs/trade_plans/ARENA_FABLE_LATEST_RAW.md and commits the record to main.")
         lines.append("   • You do NOT need to write local files or commit to git.")
     else:
-        lines.append("9. COUNCIL SYNC PROTOCOL (ARENA.AI TAB 1 - GPT ASTRA):")
+        lines.append("9. COUNCIL SYNC PROTOCOL (ARENA.AI TAB 1 - DEEP REASONING MULTI-AGENT SQUAD):")
         lines.append("   • Output your complete 3-Mandate Council Report, Dialectic Deliberation, and Actionable Execution Table directly here in your markdown chat response.")
         lines.append("   • Antigravity automatically harvests your completed chat response via Chrome CDP into docs/trade_plans/ARENA_LATEST_RAW.md and commits the record to main.")
         lines.append("   • You do NOT need to write local files or commit to git.")

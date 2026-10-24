@@ -1,12 +1,12 @@
-# 🏛️ ARENA.AI & Z.AI (GLM-5.3-FLASH) CO-EQUAL QUANTITATIVE COUNCIL & CANDIDATE DISCOVERY PROMPT
-## Unified Exhaustive 360° 4-Persona Quantitative Audit & Empirical Candidate Discovery Specification
+# 🏛️ AUTONOMOUS MULTI-AGENT QUANTITATIVE COUNCIL & DEEP REASONING DISCOVERY SPECIFICATION
+## Unified Exhaustive 360° Multi-Agent Squad Audit & Empirical Candidate Discovery Specification
 
-> **Document Status**: CANONICAL PRODUCTION DUAL-COUNCIL PROMPT ARCHITECTURE (Single Source of Truth)  
-> **Location**: `Data/Manditory/Arena_GLM_Standard_Prompt.md` (Mirrored to `docs/prompts/Arena_GLM_Standard_Prompt.md`)  
-> **Council Participants**:  
->   1. **Antigravity Executive Desk**: Live MT5 Decision Desk powered by 4 Fable 5 Subagents.  
->   2. **Arena.ai Frontier Council**: Co-Equal Quantitative Strategist powered by **GPT Astra**.  
->   3. **Z.ai Sovereign Council**: Co-Equal Mathematical Quant & Solvency Arbiter powered by **GLM-5.3-Flash**.  
+> **Document Status**: CANONICAL PRODUCTION MULTI-AGENT COUNCIL PROMPT ARCHITECTURE (Single Source of Truth)  
+> **Location**: `Data/Manditory/Arena_GLM_Standard_Prompt.md` (Mirrored to `docs/prompts/Arena_GLM_Standard_Prompt.md` & `docs/specs/Arena_GLM_Standard_Prompt.md`)  
+> **Council Architecture**:  
+>   1. **Antigravity Executive Desk**: Live MT5 Autonomous Execution Desk with 4 Coordinated Specialized Subagents.  
+>   2. **Arena.ai Frontier Council**: Co-Equal Autonomous Quantitative Strategist & Deep Reasoning Engine.  
+>   3. **Z.ai Sovereign Council**: Co-Equal Mathematical Quant & Solvency Arbiter.  
 > **Target Account**: Blueberry Markets MT5 Account #5064568  
 > **Active Goal**: Pass Phase 1 (Target: 5,500.00 USD) while defending the 4,600.00 USD Hard Floor, 4,650.00 USD Operating Buffer, and 4,795.00 USD Solvency Kernel  
 > **Canonical Repositories**:  
@@ -22,14 +22,30 @@
 >   - Quant Backtesting Engine: `https://github.com/kbsingh1399/Engine.git`  
 > **Governing Quant SOP**: [`Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md)  
 > **Mandatory Kaizen & Pitfall Autopsy**: [`Data/Manditory/TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md), [`Data/Manditory/CONTINUOUS_KAIZEN_SELF_IMPROVEMENT_PROTOCOL.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/CONTINUOUS_KAIZEN_SELF_IMPROVEMENT_PROTOCOL.md), and [`Data/Manditory/32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md).  
-> **Operator Mandate**: "Arena.ai and Z.ai should both find potential candidates with all personas... not just a red team. Save tokens. Add value. Antigravity takes autonomous calls. Prompts to subagents and council must be quantitative 360-degree type, exhaustive, pulling all subagent prompt types all in one prompt. Use maximum skills/agents for this response and answer the Section 8 Continuous Kaizen Inquest."  
+> **Operator Mandate**: "In arena.ai prompt... don't mention model name... Rather mention capabilities like deep reasoning etc is required... multi agent squad required. Arena.ai and Z.ai should both find potential candidates with all personas... not just a red team. Save tokens. Add value. Antigravity takes autonomous calls. Prompts to subagents and council must be quantitative 360-degree type, exhaustive, pulling all subagent prompt types all in one prompt. Use maximum skills/agents for this response and answer the Section 8 Continuous Kaizen Inquest. Deep reasoning and autonomous multi-agent squad orchestration are strictly required."  
 > **Token Preservation Directive**: Always query the AST Knowledge Graph via `/graphify` or `python -m graphify query "<concept/symbol>"` before reading large code files.
 
 ---
 
-## 🧠 MANDATORY MULTI-SKILL & SPECIALIZED AGENT MOBILIZATION DIRECTIVE
+## 🧠 MANDATORY DEEP REASONING CAPABILITY & MULTI-AGENT SQUAD MOBILIZATION DIRECTIVE
 
-To achieve peak quantitative precision and avoid naive or superficial responses, both Arena.ai (GPT Astra) and Z.ai (GLM-5.3-Flash) are commanded to **mobilize and apply the maximum relevant quantitative methodologies, skills, and agent roles** across all touched domains:
+> 🛑 **MANDATORY COGNITIVE & ARCHITECTURAL REQUIREMENTS**:
+> 1. **Deep Reasoning & Step-by-Step Chain-of-Thought Verification**:
+>    - You are strictly REQUIRED to engage your deepest analytical reasoning capabilities. Surface intermediate trade-offs, state mathematical assumptions explicitly, and compute all broker margin, stress, and liquidity metrics with 0.01 USD sub-penny precision.
+>    - Superficial, heuristic-only, or hand-waving responses are strictly rejected. Every deduction must be causal, empirical, and falsifiable.
+>
+> 2. **Multi-Agent Squad Orchestration**:
+>    - You are FORBIDDEN from generating an unstructured, single-voice response. You MUST operate as a unified **Autonomous Multi-Agent Quantitative Squad** orchestrating 4 distinct specialized expert personas:
+>      * **Role A: Statistical Regime & Diffusion Quant** (Lo-MacKinlay Variance Ratio, Hurst Exponent, Ornstein-Uhlenbeck drift, Kaufman Efficiency Ratio).
+>      * **Role B: Microstructure, Orderbook & Liquidation Quant** (L2/L3 orderbook depth asymmetry, persistent whale walls, CVD delta divergence, sweep/reclaim validation).
+>      * **Role C: Solvency, Margin & Broker Risk Sentry** (Strict capital floor defense, broker margin collateralization, non-linear stress testing, multi-ticket capacity).
+>      * **Role D: Market Clock, Auction Profile & Provenance Auditor** (Session timing, value area metrics, timestamp causality, cryptographic manifest validation).
+>
+> 3. **Affirmative Candidate Discovery & High-Confluence Setup Engineering**:
+>    - You are explicitly commanded to conduct **affirmative candidate discovery** across the trade-eligible universe.
+>    - Do not default to passive stand-asides when resting institutional whale walls and high-expectancy setups exist. When structural criteria are satisfied, engineer exact limit entries, stops, and targets with R:R >= 2.0R to 3.0R.
+
+To achieve peak quantitative precision and eliminate superficial responses, the autonomous council is commanded to **mobilize deep reasoning and deploy a complete multi-agent squad applying the maximum relevant quantitative methodologies and skills** across all touched domains:
 - `trader-signal`: Z-score anomaly detection, regime classification, and statistical signal generation.
 - `trader-risk`: Portfolio VaR/CVaR, fractional Kelly sizing, margin collateralization gates, and circuit breakers.
 - `market-ingest`: OHLCV vectors, L2/L3 orderbook depth aggregation, and CVD delta tracking.
@@ -68,7 +84,7 @@ Evaluate the embedded cycle envelope against your quantitative models. If this e
 
 ## 🏛️ PART 1: EXHAUSTIVE 4-PERSONA QUANTITATIVE AUDIT REQUIREMENTS
 
-Both Arena.ai and Z.ai MUST execute an affirmative and adversarial quantitative audit across **all four institutional quantitative personas**, mirroring the exact mathematical standards enforced by our internal subagents ([`SUBAGENT_PROMPT_TEMPLATES.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/SUBAGENT_PROMPT_TEMPLATES.md)):
+The council MUST deploy its full multi-agent squad with deep reasoning to execute an affirmative and adversarial quantitative audit across **all four institutional quantitative personas**, mirroring the exact mathematical standards enforced by our internal subagents ([`SUBAGENT_PROMPT_TEMPLATES.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/SUBAGENT_PROMPT_TEMPLATES.md)):
 
 ```
        ┌────────────────────────────────────────────────────────┐
