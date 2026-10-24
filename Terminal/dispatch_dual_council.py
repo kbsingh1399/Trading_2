@@ -43,11 +43,11 @@ def build_unified_prompt(cycle_id: str = "AUTO") -> str:
         template_path = ROOT / "docs" / "prompts" / "Arena_GLM_Standard_Prompt.md"
 
     if template_path.exists():
-        raw_text = template_path.read_text(encoding="utf-8")
-        if "```markdown" in raw_text:
-            prompt = raw_text.split("```markdown")[1].split("```")[0].strip()
+        raw_text = template_path.read_text(encoding="utf-8").strip()
+        if raw_text.startswith("```markdown") and raw_text.endswith("```"):
+            prompt = raw_text[len("```markdown"):-3].strip()
         else:
-            prompt = raw_text.strip()
+            prompt = raw_text
     else:
         logger.error("Template Arena_GLM_Standard_Prompt.md not found!")
         prompt = ""

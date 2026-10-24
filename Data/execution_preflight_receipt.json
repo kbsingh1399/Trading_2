@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "dispatch_nonce": "",
-  "observed_at_utc": "2026-10-24 07:27:20 UTC",
+  "observed_at_utc": "2026-10-24 07:59:34 UTC",
   "account": {
     "login": 5064568,
     "server": "BlueberryMarketsSVG-Live",
@@ -12,23 +12,23 @@
   "candidate": {
     "symbol": "BTCUSD.pi",
     "action": "SELL_LIMIT",
-    "volume": 0.1,
+    "volume": 0.05,
     "price": 80950.0,
-    "sl": 81115.0,
-    "tp": 80440.0
+    "sl": 81250.0,
+    "tp": 80400.0
   },
   "broker_tick": {
-    "bid": 80699.0,
-    "ask": 80716.0,
-    "mid": 80707.5,
-    "spread_raw": 17.0,
-    "spread_bps": 2.11,
-    "spread_cost_usd": 1.7,
-    "broker_server_time_raw": 1792837639,
+    "bid": 80610.0,
+    "ask": 80626.0,
+    "mid": 80618.0,
+    "spread_raw": 16.0,
+    "spread_bps": 1.98,
+    "spread_cost_usd": 0.8,
+    "broker_server_time_raw": 1792839573,
     "broker_server_offset_seconds": 10800.0,
-    "tick_time_utc": "2026-10-24 07:27:19 UTC",
+    "tick_time_utc": "2026-10-24 07:59:33 UTC",
     "tick_age_seconds": 1.0,
-    "clock_skew_seconds": -4.85,
+    "clock_skew_seconds": -4.9,
     "quote_fresh": true
   },
   "broker_spec": {
@@ -43,22 +43,22 @@
     "contract_size": 1.0
   },
   "broker_valuation": {
-    "profit_at_sl_usd": -16.5,
-    "profit_at_tp_usd": 51.0,
-    "margin_required_usd": 4047.5,
-    "base_nominal_risk_usd": 16.5,
-    "exit_spread_cost_usd": 1.7,
-    "total_nominal_risk_usd": 18.2,
-    "ticket_stress_usd": 24.75,
+    "profit_at_sl_usd": -15.0,
+    "profit_at_tp_usd": 27.5,
+    "margin_required_usd": 2023.75,
+    "base_nominal_risk_usd": 15.0,
+    "exit_spread_cost_usd": 0.8,
+    "total_nominal_risk_usd": 15.8,
+    "ticket_stress_usd": 21.75,
     "stress_model": "(base_loss + exit_spread) * 1.25 + 2.00 USD"
   },
   "order_check": {
     "pass": true,
     "retcode": 0,
     "comment": "Done",
-    "margin_level_post_order": 120.2,
-    "margin_free_post_order": 817.57
+    "margin_level_post_order": 240.4,
+    "margin_free_post_order": 2841.32
   },
   "preflight_verdict": "PREFLIGHT_PASS",
-  "receipt_sha256": "bb66d6d5bd2fdfd3cd04c4a9b0c648247fc7883bf1c109614212a71084eab874"
+  "receipt_sha256": "ab6373ba4f6d70c20e18f1fc5fc6fba01449322886bc2aeadf37d6f8b8616cd6"
 }
