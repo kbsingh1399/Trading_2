@@ -1,21 +1,27 @@
 # ACTIVE CONTEXT CARD (LIVE SOVEREIGN QUANT DESK)
-**Last Updated**: 2026-10-24 10:42:00 UTC | **Session**: Cycle 325 Completion, Parallel Dispatch Orchestrator & 20m Cadence Verified
+**Last Updated**: 2026-10-24 13:55:00 UTC | **Session**: Cycle 327 Completion, Affirmative BTC Order Executed Autonomously
 **Target Account**: Blueberry Markets MT5 Account #5064568 (SVG-Live, raw spread)
 **Mission**: Pass Phase 1 Challenge (Target: 5,500.00 USD) before Oct 30, 2026 (23:59 UTC).
 
 ---
 
 ## 1. REAL-TIME ACCOUNT TELEMETRY & SOLVENCY SENTRY
-- **Balance / Equity**: **4,865.07 USD** / **4,865.07 USD** (100% Flat Cash Baseline, 0 active positions, 0 pending orders)
-- **Margin Used / Free Margin**: 0.00 USD / 4,865.07 USD (Margin Level: 0.0%)
+- **Balance / Equity**: **4,865.07 USD** / **4,865.07 USD**
+- **Margin Used / Free Margin**: 0.00 USD / 4,865.07 USD (Margin Level: 0.0% until fill)
+- **Active Exposure**: **1 Pending Order Active (Ticket #19274977)**
+  * **Instrument**: BTCUSD.pi | **Type**: SELL_LIMIT | **Volume**: **0.05 lot**
+  * **Price**: **80,820.00 USD** | **SL**: **80,985.00 USD** (165 pts) | **TP**: **80,315.00 USD** (505 pts, **3.06R**)
+  * **Nominal Risk**: 11.20 USD (Base 8.25 USD + Spread 2.95 USD) | **Ticket Stress**: 16.00 USD
+  * **Solvency Kernel Surplus**: **+54.07 USD** strictly above 4,795.00 USD floor (> +40.00 USD mandate)
+  * **Margin on Fill**: 2,020.50 USD (Utilization: 41.53% <= 50.00%, Margin Level: 240.8% >= 200.0%)
 - **Goal Gap**: +634.93 USD remaining to 5,500.00 USD target
 - **Hard Capital Floor (4,600.00 USD)**: Cushion: **+265.07 USD** (+5.45% inviolate defense)
 - **Operating Defense Buffer (4,650.00 USD)**: Cushion: **+215.07 USD** (+4.42%)
 - **Solvency Kernel Admission Floor (4,795.00 USD)**: Cushion: **+70.07 USD** (+1.44%)
 - **Global Contingency Reserve**: 2.00 USD (deducted ex-ante)
-- **Net Realized Admission Headroom**: **+68.07 USD** net (`4,865.07 - 2.00 - 4,795.00`)
-- **Capital Regime**: **`TIER 2 HOUSE MONEY`** (Realized balance > 4,850.00 USD; 15.00–25.00 USD nominal risk per ticket, max 2 concurrent tickets across non-correlated instruments)
-- **System Health**: **57.9% RAM Used** (6.45 GB free physical RAM after running `free_ram.ps1`).
+- **Net Realized Admission Headroom**: **+68.07 USD** net (4,865.07 - 2.00 - 4,795.00)
+- **Capital Regime**: **TIER 2 HOUSE MONEY** (Realized balance > 4,850.00 USD; 15.00-25.00 USD nominal risk per ticket, max 2 concurrent tickets across non-correlated instruments)
+- **System Health**: **57.1% RAM Used** (6.59 GB free physical RAM after running free_ram.ps1).
 - **Historical Closed Trade**: Ticket #19267445 (`BTCUSD.pi` Short 0.06 lot @ 81,700) reached TP at 80,600.00 USD, banking **+66.00 USD gross profit / +65.19 USD net** after -0.81 USD swap.
 
 ---
