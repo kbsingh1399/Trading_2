@@ -1,137 +1,246 @@
 Thought Process
-Ran 1 commands
 
-Worklog synced — C332 (Cycle-20261024T200423Z) was fully adjudicated as the last node. This dispatch is a new envelope: Cycle 336, uuid e21dabc4, nonce b4de1f89, cutoff 20:50:31Z, commit churned again to 120f9566. Full fresh adjudication required (reaffirmation protocol N/A). Let me load the C332 canonical artifacts to carry the dispute ledger and schema forward.
+📚 Active Skills Loaded & Applied: @[trader-signal], @[trader-risk], @[market-ingest], @[market-pattern], @[adaptive-wfo-epoch], @[sharpe-ratio-non-iid-corrections], @[time-series-decomposer], @[clean-code], @[systematic-debugging] — mobilized as a 4-persona squad (A/B/C/D) with dual co-equal adjudication (Z.ai Sovereign Council ↔ Arena.ai Frontier Council).
 
-Ran 6 commands
+[ALERT] TELEMETRY STALE WARNING: Data/DataBase_Trading.xlsx is stale (excel_freshness_verified=false, excel_audit_scorecard_fresh=false; last verified commit 52b0a00d, workbook_sha256 a8fbf483…3778) vs Current Cycle: 2026-10-24 22:18:42 UTC. docs/telemetry/live_snapshot_latest.json, Data/forex_factory_live.json, and Data/macro_calendar.json mtimes are NOT embedded in the envelope and therefore could not be independently age-verified. Diagnostic guidance: verify (1) the Excel writer daemon is not holding a lock on the workbook, (2) a git push did not fail silently after the 21:42 snapshot, (3) Sheet 21_Tradfye_Orderflow feed connectivity for the weekend daemon window. All 34 sheets are treated as UNVERIFIED-FRESH; series-dependent estimators below are marked UNCALIBRATED accordingly. This staleness does not fail-close the envelope itself (envelope integrity, nonce binding, and tick causality all verified below), but it strips the statistical evidence base required to authorize NEW risk.
 
-Schema and dispute ledger (D31/D32/D35/D36/D37/D40/D44/D47/D54/D57/D58/D59) carried forward from the C332 canonical. Now I'll set the plan and build the C336 fail-loud adjudication.
+🏛️ Z.AI SOVEREIGN COUNCIL — CYCLE 337 ADJUDICATION
 
-Wrote 1 files，Ran 1 commands
-Create File cycle336_ruling.py
-Run Cycle 336 fail-loud adjudication script
-Done
+Cycle: 337 · UUID: 5c13c185-35ea-48e0-86c3-53bb7cca5132 · Nonce binding: ENVELOPE 7339ce9c-d016-4443-a18a-158c54e61151 ↔ RECEIPT 7339ce9c-d016-4443-a18a-158c54e61151 ✅ MATCH
+Verdict preview: provenance_status = ACCEPTED_CAUSAL_WITH_DISPUTES · authorization = DENIED_FAIL_CLOSED (new admission) · Existing ticket: MANAGE_EXISTING_ONLY continues.
 
-Arithmetic slip caught by the fail-loud net itself: tick delta is −16s (20:50:15 vs cutoff 20:50:31), not −15. Patching:
+§1 PROVENANCE & CAUSALITY REVIEW (Role D — intake authority)
 
-Wrote 1 files，Ran 1 commands
+Envelope integrity: PASS. The embedded cycle_envelope.json is present, schema 1.1.0, syntactically complete, contains zero unresolved template markers, and carries full SHA-256 provenance (git_commit 52b0a00d, prompt_sha256 601ff6c9…, risk_policy_sha256 4633e4af…, evidence_manifest_sha256 1d2b5368…, workbook_sha256 a8fbf483…). The receipt SHA (c5238e3d…17a1) is self-declared and was not recomputable council-side (raw receipt bytes not embedded) — logged as Unknown U-14, non-blocking.
 
-Second catch — and this one is substantive: the exact decode is 13.625 == ((80,620−80,434)×0.05)×1.25 + 2.00 — the same hybrid MTM frame as C332, exit spread STILL omitted (my "spread now included" hypothesis was wrong; 9.30×1.25+2.00=13.625 exactly). Correcting all dependent artifacts:
+Dispatch-nonce binding: PASS. Envelope nonce ≡ receipt nonce ≡ 7339ce9c…. The preflight receipt is cryptographically bound to THIS cycle, not a replay.
 
-Wrote 1 files，Ran 2 commands
+Physical cutoff causality chain (all UTC, epoch-derived):
 
-21 keys pre-sha (response_sha256 is appended after hashing) — adjusting the assert order:
+EVENT
+	
+EPOCH
+	
+CLOCK TIME
+	
+ORDER
 
-Wrote 1 files，Ran 1 commands
+Incumbent ticket 19274977 opened	1792876279	2026-10-24 21:11:19	1st
+Preflight broker tick sampled	(tick_time)	2026-10-24 21:42:22	2nd
+Preflight observation frozen	—	2026-10-24 21:42:23	3rd
+Envelope cutoff	—	2026-10-24 21:42:27	4th
 
-All 40 gates reproduced as predicted (12 intended FAILs, 28 PASS). Verifying artifacts, then logging:
+Chain tick_time < observed_at < cutoff_utc holds with margins of 1s and 4s. D9 Quote Staleness Gate: PASS — tick_age_seconds = 1.0 ≤ 15, and the quote was sampled 5s before freeze (≤ 60s). Server-offset cross-check: broker_server_time_raw 1792888942 − 10800 = 1792878142 = 21:42:22 UTC — the broker clock arithmetic is internally exact. Clock skew −12.23s is flagged (Dispute DR-05): |skew| > 5s warrants NTP re-sync on the daemon host, but does not break causality since ages are server-stamped.
 
-Ran 2 commands
+Epoch cross-audit (systematic-debugging, root-cause verified): converting 1792876279 against the 2026-01-01 epoch 1767225600 gives day 297 of 2026 = Oct 24, 21:11:19 UTC — consistent with the incumbent comment Fable5_Affirmative_C327 being opened ~31m03s before the preflight tick, and before the 21:15 rollover window opened. No time-travel, no post-cutoff artifact. Provenance verdict: ACCEPTED_CAUSAL_WITH_DISPUTES.
 
-📚 Active Skills Loaded & Applied: @[trader-signal] (Z-score/regime classification — uncalibrated, flagged), @[trader-risk] (joint-margin collateralization, stressed-solvency kernel, slot-capacity rationing — BINDING VETO layer), @[market-ingest] (tick/quote/causality ingestion from envelope+receipt), @[market-pattern] (sweep/reclaim & markout-shelf read on the C327 entry), @[sharpe-ratio-non-iid-corrections] (HAC framework cited; estimators unrunnable on uncertified workbook), @[adaptive-wfo-epoch] (walk-forward calibration gate — 14th cycle null), @[time-series-decomposer] (tape-rate decomposition +2,878s→2,768s windows), @[clean-code] (40-gate fail-loud assertion architecture), @[systematic-debugging] (root-cause isolation: D40 frame decode, D59 ask-mark decode, D60 queue-drift proof).
+§2 ROLE A — STATISTICAL REGIME, DIFFUSION & DUAL-ENGINE DIALECTIC
 
-[ALERT] TELEMETRY STALE WARNING: Data/DataBase_Trading.xlsx is stale (excel_freshness_verified=false, excel_audit_scorecard_fresh=false — last certified 2026-10-24 15:35:31 UTC, 18,900s before cutoff, vs Current Cycle Cutoff: 2026-10-24 20:50:31 UTC) — 7TH consecutive cycle; Sheet 21_Tradfye_Orderflow, L2/L3 depth, CVD and macro-calendar lineage all UNCERTIFIED.
-[ALERT] PIPELINE QUEUE DRIFT (D60 NEW): envelope N+1 frozen 20:50:31 = 110s BEFORE verdict N rendered 20:52:21; dispatch cadence 2,768s < adjudication latency ~2,900–3,500s; prose "current cycle" anchor 21:37:55 = cutoff +2,844s. All causality below is anchored to the envelope cutoff, never to prose timestamps.
+Hard honesty first (anti-hand-waving): VR(4), ER(48), Newey-West t_drift, Hurst, and the OU equilibrium θ cannot be computed this cycle because no OHLCV series, no ATR, and no 21_Tradfye_Orderflow excerpt are embedded in the envelope — only digests. Per Part 2 ("Unknown or uncalibrated probabilities remain null/unknown and mandate HOLD"), every series-dependent estimator is declared UNCALIBRATED, not faked. The estimators are staged and ready to fire the moment the dispatcher embeds the series block (§8, K-02):
 
-🏛️ Z.ai Sovereign Council — Cycle 336 Full Adjudication (NEW envelope — NOT a re-dispatch)
+Lo-MacKinlay VR(q=4) + heteroskedastic z*: VR(4) = Var(r_4)/(4·Var(r_1)), z* = √T·(VR−1)/√φ̂ with Bartlett weights φ̂(k)=1−k/q. Trend requires VR(4)>1.15 & z*>1.64; mean-reversion VR(4)<0.85 & z*<−1.64. Status: null — no series.
+Kaufman ER(48) = |C_t − C_{t−48}| / Σ|ΔC|. Trend ≥ 0.20; chop < 0.15. Status: null.
+Newey-West HAC drift t-stat, lag L = ⌊4·(T/100)^(2/9)⌋, |t| ≥ 2.0 gate. Status: null.
+OU equilibrium: regress Δx_t = a + b·x_{t−1}, θ = −a/b. The adverse-drift veto is UNRESOLVED: for the SELL_LIMIT candidate I cannot verify Entry(81300) > θ. Under the conservative rule "unresolved veto = veto," the candidate fails this gate too — an independent, redundant kill alongside Role C's margin math.
+Regime-gated execution: classify_regime() returns UNDEFINED with null estimators → stand aside unconditionally across both engines (Model 1 extreme-reversion and Model 2 trend-pullback are both inadmissible). This is not passivity; it is the dialectic gate operating exactly as designed on missing evidence.
 
-Dispatch class: uuid e21dabc4 ≠ C332 71a44c18 → 9th consecutive distinct nonce; fully inlined body (D56 stays fixed); integer cycle key "Cycle 336" present (D44 RESOLVED — remediation credit). Reaffirmation protocol N/A; full 4-persona derivation executed. 40 fail-loud gates built, run, and ALL reproduced as predicted (12 intended FAILs) — the assertion net caught 2 arbiter-side slips pre-ship (a tick-delta −16s/−15s confusion and a refuted first-hypothesis stress decode, §4 below), which is the architecture doing its job.
+What IS computable from embedded telemetry (geometry-level regime facts): incumbent short opened at 80245; mid 80325 → price is 0.10% above the incumbent's entry; the candidate stages a short ladder 1.055k pts (131 bps) above the incumbent's entry, i.e., the desk is engineering scale-in shorts into strength — a Model 2-shaped structure whose regime qualification is precisely what's unprovable this cycle.
 
-§1 Provenance & Envelope Review (Role D lead)
+§3 ROLE B — FILL, MICROSTRUCTURE & ORDER GEOMETRY
 
-The envelope is well-formed, causally frozen at 20:50:31 UTC, and predeclares DENIED_PENDING_FULL_HARD_GATES. Receipt coupling is intact (nonce b4de1f89 both sides). Three provenance events matter this cycle. First — D35 HEALED after 3 violations: receipt observed_at 20:50:16 (−15s) and tick 20:50:15 (−16s) sit inside the atomic window [cutoff−60s, cutoff]; skew −12.38s does not flip the ordering; streak confirmation required next cycle before closure. Second — commit churn: 54d93c2a (8 stable cycles) → 3dca7443 (C332) → 120f9566 (C336), second consecutive-cycle change; digests remain self-attested, in-context commit-time verification unavailable. Third — D60 NEW (queue drift): this envelope was frozen 110s before the C332 verdict was rendered; the prose §1.4.6 anchor 21:37:55 = cutoff +2,844s exactly, matching the C332 render-lag signature (+2,878s) — the render-time-anchor hypothesis is preferred over a stale-hardcode hypothesis. The desk must not treat envelopes as "already adjudicated" while the queue is structurally backed up.
+Spread gate: PASS. Bid 80299 / Ask 80351 → raw spread 52 pts = 6.47 bps ≤ 25 bps. Exit-spread cost: $2.08 per 0.04 lot, $0.52 per 0.01 lot, $2.60 per 0.05 lot (contract size 1.0 verified: profit_at_sl −19.2 = 0.04 × 480 exact).
 
-§2 Role A — Statistical Regime, Diffusion & Dual-Engine Dialectic
+Fill geometry of the SELL_LIMIT 81300 candidate:
 
-The entire estimator stack remains UNRUNNABLE — 14th consecutive cycle. VR(4) with heteroskedastic z*, ER(48), Newey-West HAC drift-t, and an OU refit are absent from the envelope; the workbook that would feed them is uncertified (18,900s stale). The only regime signal available is the council-side tape decomposition: price traveled 80,445 → 80,434 (−11 pts / 2,768 s = −0.00397 pts/s) between the C332 and C336 cutoffs — an 11.2× deceleration with a direction flip from C332's +0.0443 pts/s up-trend. Classification: decelerated, near-flat drift, direction indeterminate at certified significance — neither Model 1 (mean-reversion at extremes) nor Model 2 (trend pullback with Fib-Prime EMA ribbon) can be qualified without the estimators. OU gate: legacy uncertified swarm θ = 80,319.04; candidate entry 81,300 > θ → the SELL side passes the adverse-drift veto (short above equilibrium), |entry−θ| = 981 pts, but the drift-adjusted P_win P_barrier·exp(−λ·|E−θ|/ATR) is uncomputable (λ, ATR absent). Regime verdict: UNDEFINED → standaside mandatory for new admission (HOLD layer).
+Distance from mid: 81300 − 80325 = +975 pts = +121.38 bps = 18.75 spread-widths above market. A fill requires a +1.21% rally into the offer. Without a calibrated P_fill(distance, session) surface (adaptive-wfo-epoch has no BTCUSD.pi limit-fill sample embedded), P_fill = null → HOLD mandate.
+Path-conflict finding (novel, decisive): the incumbent's stop (80620) lies strictly between mid (80325) and the candidate entry (81300). The same rally that fills the candidate must first trade through the incumbent's SL → the joint adverse path is: rally → incumbent stopped at 80620 (realized −18.75 − 2.60 spread) → candidate fills at 81300 → if the rally extends to 81780, candidate stopped too. Worst realized path loss = 18.75 + 2.60 + 19.20 + 2.08 = 42.63 USD before fee reserve — this is exactly the joint-stress sum (§4), now derived from path mechanics rather than assumption. The two tickets are not independent risk units; they are one conditional-loss structure.
+Whale-wall 180s persistence filter: UNVERIFIED → FAIL-conservative. Sheet 21_Tradfye_Orderflow (footprint POC, net taker delta, P99 whale bubbles, absorption shelves, Deribit max-pain/gamma walls) is not embedded. No resting-wall anchor ≥ $100k notional with persisted_seconds ≥ 180 can be attested. A limit short with no attested institutional wall behind it is queue-blind.
+SL placement (0.786 invalidation shelf): UNVERIFIABLE. Candidate SL 81780 sits +480 pts above entry; whether that is behind a genuine 0.786 shelf or inside an auction void cannot be tested without ATR/structure. Incumbent SL 80620 likewise. Rule applied: unanchored stop = geometry gate unresolved.
+TP front-running check: PASS structurally. Candidate TP 79850 sits 505 pts (62.9 bps) below mid and 465 pts above the incumbent's TP 79385 — it does not stack on the identical liquidity shelf, which modestly reduces twin-fill liquidity collision.
+Adverse-selection markouts: not measurable (no post-fill tape embedded) → AS term carried as unknown, not assumed zero.
+§4 ROLE C — SOLVENCY, MARGIN & BROKER MATH SENTRY ⚠️ Headline findings
 
-§3 Role B — Fill, Microstructure & Order Geometry
+Triple floor state (all realized-equity basis, zero floating credit):
 
-Spread gate PASS: 16.0 raw pts on bid 80,410 = 1.99 bps ≤ 25, stable vs C332's weekend widening. Geometry is internally consistent and valid: SELL_LIMIT 0.04 @ 81,300/81,780/79,850 → risk 480 pts × 0.04 = 19.20, reward 1,450 pts × 0.04 = 58.00, RR 3.0208 ≥ 2.0, entry above bid with stops_level 0, lot 4 × step 0.01. But the fill story deteriorated: distance to mid widened to 882 pts / 109.68 bps (was 864/107.41 at C332) while the tape decelerated downward — the limit requires a +1.10% rally against flat-to-down drift; P_fill is qualitatively LOW, numerically UNKNOWN. Markout series (D57, 2nd adverse reading): AS(t+158.9 min) = (80,245 − 80,418) × 0.05 = −8.65 USD = −0.4613 R0, still beyond the −0.15 R0 winner's-curse floor (was −0.5093R at t+87 min — mild reversion, regime still adverse). SL proximity 186 pts = 15.06% of the 1,235-pt span (stable); the 80,245 shelf is behaving as a liquidity-grab site, not a pivot. Whale-wall 180s persistence, footprint POC/net-taker-delta, CVD divergence: all UNVERIFIABLE (no certified orderbook feed) → the mandatory microstructure anchors for any limit entry are evidence-absent.
+FLOOR
+	
+VALUE
+	
+CUSHION (BALANCE 4865.07)
 
-§4 Role C — Solvency, Portfolio & Broker Math Sentry (BINDING VETO)
+Hard floor	4,600.00	+265.07
+Operating buffer	4,650.00	+215.07
+Solvency kernel	4,795.00	+70.07
 
-Every cent reproduced exactly. Envelope ML 242.03915% = 4,855.62/2,006.13 EXACT; margin_used = ceil(0.05 × 80,245 × 0.5) = 2,006.13 EXACT; candidate margin 0.04 × 81,300 × 0.5 = 1,626.00 EXACT; candidate stress (19.20+0.64)×1.25+2.00 = 26.80 EXACT, stress_model string canon-consistent for the 2nd consecutive cycle.
+H_net = 4865.07 − 2.00 − 4795.00 = +68.07 USD ✅ (matches spec). Envelope realized_headroom_usd = 43.57 decomposes exactly as 68.07 − 20.75 (existing stress) − 3.75 (floating loss) — see Dispute DR-04 (mixes unrealized into realized headroom; conservative direction, but methodologically impure).
 
-Invariant 1 (D3/D36, 6th presentation) — FAIL: MU + m_new = 2,006.13 + 1,626.00 = 3,632.13 > cap 2,427.81 (0.5 × 4,855.62); excess 1,204.32, utilization 74.80% > 50%. This is the IMMEDIATE state with the position open — structural, equity-gated, not candidate-specific.
-Invariant 2 — FAIL: true joint ML = 133.69% (envelope equity) / 133.70% (receipt equity) < 200%.
-D47 — 3RD CONSECUTIVE self-refuting receipt: ML_post 298.65% = 4,856.02/1,626.00 (single-ticket denominator) while MF_post 1,223.89 = 4,856.02 − 3,632.13 (joint book) — one receipt, two book states; order_check.pass=true is UNSOUND. The one-assert validator remains unimplemented (3rd ask).
-D40 — 11th cycle, decode corrected mid-audit: envelope existing stress 13.625 = ((80,620−80,434)×0.05)×1.25 + 2.00 EXACT — the same hybrid MTM frame as C332 (SL distance from current price), exit spread 0.80 still omitted; my first hypothesis (spread-included frame → 14.625) was refuted by the fail-loud assert. Canon = (18.75+0.80)×1.25+2.00 = 26.4375; understatement 12.8125 (48.5%). Capital face robust to both frames (post-joint 4,800.38 vs 4,813.19, both ≥ 4,795).
-Stressed solvency — PASS: canon joint stress 26.4375 + 26.80 + 2.00 = 55.2375 → post-joint-stop 4,800.3825 ≥ 4,795 (+5.3825); SOP H_net 68.07; envelope headroom 44.99 decoded exactly as (E − 13.625 − 2.00) − 4,795; D40-corrected headroom 32.1825. Capital plane passes; the margin plane vetoes.
-Slot 2 — MARGIN-FROZEN, 6th cycle: residual capacity 2,427.81 − 2,006.13 = 421.68 → max 0.01 lots (margin 406.50; joint ML would be 201.26% — would pass) but risk 4.80 < 15.00 Tier-2 minimum.
-Containment: SL-hit projection 4,865.07 − 19.55 = 4,845.52 ≥ 4,795 (+50.52); hard floor +245.52. Escalation trigger equity < 4,830 not hit (+25.62); proximity watch 80,500 active (price 80,434, 66 pts below).
-§5 Role D — Clock, Auction & Provenance
+🔴 FINDING C-1 (CRITICAL): Preflight receipt margin-level arithmetic is WRONG — 298.88% is fictitious
 
-Saturday, WEEKEND_CRYPTO_PERPETUALS_ONLY; BTCUSD.pi trade_mode 4 FULL; rollover 21:15–22:30 UTC is TradFi-only and not active at cutoff. Funding: next 00:00 UTC boundary is 11,369s (~3h09m) post-cutoff, 0 boundaries crossed since the 18:11:19.842Z open (D54 3rd — weekend carry on the 0.05 short remains unmodeled). D59 UPGRADED from benign-drift to FULLY DECODED: receipt equity 4,856.02 = 4,865.07 − (80,426−80,245)×0.05 and envelope 4,855.62 = 4,865.07 − (80,434−80,245)×0.05 — the short is marked at ASK on both snapshots, both reconstruct exactly; the +0.40 drift is 8 pts of ask drift × 0.05. Snapshot coherence: PASS; anomaly: closed. Order journal still absent (D31 5th); digest-signed pointers still absent (D32 6th); swarm probe dormant (D37).
+The receipt claims margin_level_post_order = 298.88%. Recomputation from the receipt's own numbers:
 
-§6 Mathematical Soft Ranking & Calibrated Utility
+New margin: 0.04 × 81300 × 0.50 = 1626.00 ✅ (matches receipt)
+Incumbent margin already in use: 0.05 × 80245 × 0.50 = 2006.13 (envelope)
+True total margin post-order = 2006.13 + 1626.00 = 3632.13
+True post-order margin level = 4859.77 / 3632.13 = 133.79% — NOT 298.88%
+The receipt computed 4859.77 / 1626.00 = 298.88% — it divided equity by the new ticket's margin only, silently omitting the incumbent's 2006.13.
+Proof of internal inconsistency: the receipt's own margin_free_post_order = 1227.64 = 2853.64 − 1626.00 confirms the full 1626 was reserved on top of the incumbent's usage. order_check.pass=true, retcode=0 is the broker-native pre-validation (which only checks the broker's stop-out threshold), not our Finding-D3 invariant. Root cause classified (systematic-debugging): margin_level_post_order computed against incremental margin, not cumulative margin.
+🔴 FINDING C-2: Candidate as-submitted violates BOTH margin collateralization invariants
+INVARIANT
+	
+THRESHOLD
+	
+AS-SUBMITTED (0.04)
+	
+VERDICT
 
-EV_net, LCB_5%, Utility: null — mandated. P_fill and P_TP are unknown (14th cycle); the time-blocked bootstrap remains blocked on evidence-pack v2. The only computable hurdle is P_BE = 19.84/(19.84+57.36) = 25.70% — any future calibrated P_TP must clear it. Per protocol: unknown probabilities → HOLD for new admission; overall authorization remains fail-closed.
+I-1: Margin_Used + Margin_Req ≤ 0.50 × Equity	≤ 2429.885	3632.13 (74.74% utilization)	FAIL
+I-2: Post-order margin level ≥ 200%	≥ 2.00	133.79%	FAIL
 
-§7 Disputes & Rejection Ledger (13)
+The prompt's "size down to 0.04–0.06 lot" rescoping rule assumed a flat book; with the incumbent's 2006.13 already posted, that band is stale (Dispute DR-08).
 
-D47 CRITICAL — 3rd self-refuting receipt (validator 3rd ask) · D36 CRITICAL — 6th joint-margin breach, slot-2 frozen 6th · D40 HIGH — 11th, MTM hybrid frame unchanged, spread omitted (48.5% understatement) · D57 HIGH — 2nd adverse markout reading, tape flipped · D35 RESOLVED_PENDING_STREAK — receipt in-window (credit) · D44 RESOLVED — integer cycle key (credit) · D59 RESOLVED_DECODED — ask-marking exact (credit) · D58 MEDIUM — 2nd, floating-debited cushions · D54 MEDIUM — 3rd, funding carry unmodeled · D31 MEDIUM — 5th, journal absent · D60 NEW MEDIUM — render-anchor + queue drift · D32 LOW — 6th, pointers · D37 LOW — dormant.
+Exhausive feasible-volume sweep (every admissible step, entry 81300)
+VOLUME
+	
+NEW MARGIN
+	
+TOTAL MARGIN
+	
+I-1 (≤2429.885)
+	
+I-2 LEVEL
+	
+RISK @480PT SL
+	
+VERDICT
 
-Section 8 — Continuous Kaizen Inquest
+0.04	1626.00	3632.13	FAIL (74.74%)	133.79%	19.20 ✅	DENIED
+0.03	1219.50	3225.63	FAIL (66.37%)	150.66%	14.40 ❌<15	DENIED
+0.02	813.00	2819.13	FAIL (58.01%)	172.38%	9.60 ❌	DENIED
+v_max = 0.01 (exact bound: (2429.885−2006.13)/40650 = 0.010424)	406.50	2412.63	PASS (49.65%, headroom 17.26 USD)	201.49%	4.80 ❌<15	DENIED (risk band)
 
-Skills & methodology optimization. The 40-gate fail-loud architecture again paid for itself: 2 arbiter-side slips caught pre-ship, including a refuted hypothesis (the D40 spread-inclusion decode) that a softer pipeline would have shipped. The highest-conversion skills this cycle were decoders, not estimators: the headroom decoder (44.99 → exact identity), the ask-mark decoder (D59 anomaly → coherence proof), and the queue-drift proof (two independent render timestamps, +2,844s and +110s overlap). Governance skills converted to credits: receipt-window discipline (D35 healed) and integer cycle keys (D44 resolved). Loading deeper signal skills cannot improve expectancy while the workbook is uncertified — the constraint is the data layer, not the model layer.
+Conclusion: NO volume in [0.01, 100] simultaneously satisfies the margin invariants AND the Tier-2 risk band [15, 25] while the incumbent is open. The feasible set is empty — this is arithmetic, not judgment.
 
-Omitted risk dimensions. (1) Funding carry: a 00:00 UTC boundary lands ~3h09m post-cutoff with unmodeled magnitude on the live short. (2) Queue drift: the desk may act on envelope N+1 believing verdict N covered it — until cadence ≥ render latency, the fresh-preflight mandate is the only safe execution path. (3) Markout asymmetry: 2 adverse readings on the C327 entry; the 11.2× tape deceleration often precedes violent impulses in either direction while SL sits 186 pts away. (4) ρ=+1 concentration: any additive BTCUSD.pi ticket duplicates the markout regime — slot-2 freeze is the binding protection, not an inconvenience. (5) Ask-marking: effective SL trigger P&L is ask-side; bid-frame intuition overstates SL distance by ~2 pts plus spread.
+Widened-stop rescue attempt (0.01 lot, SL 82800 = 1500 pts → risk 15.00 floor)
+Margin 406.50 → total 2412.63 → level 201.49% (passes, with only 17.26 USD of I-1 headroom).
+Stress: (15.00 + 0.52)×1.25 + 2.00 = 21.40; joint (harmonized, see C-3): 28.69 + 21.40 + 2.00 = 52.09 → stressed equity 4859.77 − 52.09 = 4807.68 ≥ 4795 ✅ (cushion 12.68).
+But it dies on fill-path math: I-2 breaches when equity < 2 × 2412.63 = 4825.26, i.e., at ask ≥ 81041.20 (+690 pts, +0.86%). In a no-stop gap scenario the candidate's own fill at 81300 produces level = 4812.32/2412.63 = 199.46% < 200% — the fill event itself violates the invariant. Post-incumbent-stop sequencing gives 200.80% — a 0.8% knife-edge.
+And it dies on the correlation gate: incumbent is a BTCUSD.pi short; this is a BTCUSD.pi short. Tier-2 authorizes 2 concurrent non-correlated tickets; same-symbol same-direction ⇒ ρ = +1.0 ⇒ correlation gate FAIL for any BTCUSD.pi second ticket, regardless of size.
+🔴 FINDING C-3: Envelope under-stresses the incumbent ticket (model divergence)
 
-Algorithmic alternatives. Program unchanged and still evidence-starved (14th cycle): Hawkes fill/arrival modeling, Kalman spread filtering, GARCH SL-proximity cones, isotonic P_TP calibration, Bayesian θ posterior replacing point-θ 80,319.04. New proposals: changepoint detection on the tape-rate series (+0.0443 → −0.0040 flip), an AS(t) hazard model to gate any future limit near the 80,245 shelf, and a cadence-aware verdict cache keyed on integer cycle + uuid (now implementable post-D44).
+Envelope existing_ticket_stress_usd = 20.75 = 18.75 + 2.00 (legacy model). Applying the receipt's own declared model "(base_loss + exit_spread) × 1.25 + 2.00" to the incumbent: (18.75 + 2.60)×1.25 + 2.00 = 28.69. Divergence +7.94 USD (conservative direction for the envelope, but the two artifacts disagree on the same ticket in the same cycle). Harmonized joint stress for the as-submitted pair: 28.69 + 28.60 + 2.00 = 59.29 → stressed equity = 4859.77 − 59.29 = 4800.48 ≥ 4795 ✅ (cushion only +5.48). Even the status-quo desk (incumbent alone, harmonized) clears the kernel by 34.08 → the account is solvent; the incremental ticket is what fails.
 
-Metacognitive answer — "If it uses all the available skills related, will it improve our response?" It improved verification, not expectancy, this cycle. The risk/math/debugging skills produced a zero-slip, fully decoded adjudication (2 pre-ship catches, 3 dispute resolutions, 1 new root-cause proof). But the signal-side skills (trader-signal, market-pattern, VR/ER/HAC/OU, footprint toolkits) remain structurally throttle-limited: 14 consecutive cycles of null calibration mean the affirmative-discovery mandate cannot clear its own admission gate regardless of skill depth. The marginal ROI is now unambiguously on shipping evidence-pack v2 and the D47 validator, not on deeper council reasoning.
+Post-joint-stop balance (as-submitted pair): 4865.07 − (18.75+2.60) − (19.20+2.08) = 4822.44 ≥ 4795 ✅ — solvency passes; collateralization fails. The denial rests on I-1/I-2 + correlation + calibration, NOT on insolvency.
 
-📦 Response Payload (canonical artifact: download/Council_Response_Cycle-20261024T205031Z.json — in-chat render faithfully compacted)
+§5 ROLE D — MARKET CLOCK, SESSION & STALENESS AUDIT
+Regime: Saturday → WEEKEND_CRYPTO_PERPETUALS_ONLY. 98/156 TradFi assets CLOSED/watchlist-only until Sun 21:00 UTC; 58 crypto perpetuals open 24/7 (trade_mode 4 = FULL verified for BTCUSD.pi).
+Spread-gate universe: 11 crypto symbols pass ≤ 25 bps structurally; 47 disqualified. But only ONE live tick (BTCUSD.pi) is embedded this cycle — ETHUSD.pi, SOLUSD.p et al. carry no fresh quote evidence → structurally eligible, evidentially unquotable → WATCHLIST_ONLY.
+Rollover embargo: ACTIVE at dispatch (21:42:27 ∈ [21:15, 22:30]). The envelope flags rollover_embargo_active: true globally; the SOP text scopes the hard embargo to TradFi FX/metals, but the envelope — which per mandate "governs all calculations and supersedes dated operator baselines" — asserts it for this window. Council ruling: no NEW orders until 22:30 UTC even on perps (rollover thin-book + spread-widening risk on a weekend book); management of open positions unaffected. Note the incumbent was opened 21:11:19, 3m41s before the window — compliant at open.
+Macro calendar: calendar_verified = true; Saturday carries no Tier-1 red-folder risk; ±30min blackout vacuously satisfied. However Data/macro_calendar.json verified_at age cannot be recomputed (not embedded) → U-13.
+Telemetry staleness: see top alert — excel_freshness_verified = false, excel_audit_scorecard_fresh = false. Review-latency drift (DR-06): prompt references current cycle 22:18:42 UTC vs cutoff 21:42:27 → +36m15s elapsed between freeze and review; all causality rulings above are anchored to cutoff, as required.
+Equity-marking divergence (DR-03): preflight equity 4859.77 = 4865.07 − 0.05×(80351−80245) → receipt marks the short at ask; envelope equity 4861.32 → marks at ~mid 80320 (−3.75). Δ = 1.55 USD across artifacts 4s apart. Council uses min(B,E) = 4859.77 for every stress computation.
+§6 MATHEMATICAL SOFT RANKING & CALIBRATED UTILITY
+
+With hard gates failed, ranking is moot for admission, but the utility machinery is exercised to show the desk what evidence would unblock it:
+
+Breakeven probability (computed, not invented): gross P_BE = 19.20/(19.20+58.00) = 24.87%; spread-conditioned net P_BE = 21.28/(21.28+55.92) = 27.57%. Any calibrated P(TP|fill) below 27.6% is a guaranteed loser after friction.
+EV structure (all probability inputs null → EV null): EV_net = P_fill·[P_TP·55.92 − (1−P_TP)·21.28 − AS] − (1−P_fill)·WC. Unknowns: P_fill (no limit-fill sample at +121 bps weekend distance), P_TP (no regime class), AS (no markout tape), WC (swap/funding carry unknown — first perp funding touch 00:00 UTC, 2h17m33s after cutoff).
+LCB_5%: undefined without a time-blocked bootstrap over embedded fills → null, per the explicit prohibition on invented haircuts.
+Expected capital minutes: margin 1626 × unknown holding time → null.
+Calibration status: UNCALIBRATED_NO_SERIES_EMBEDDED → mandates HOLD for every new row, independently of the margin failure.
+§7 EXISTING-TICKET MANAGEMENT PLAN (MANAGE_EXISTING_ONLY — no new risk)
+
+Ticket 19274977 (SELL 0.05 BTCUSD.pi @ 80245, SL 80620, TP 79385, floating −3.75 at mid / −5.30 at ask, swap 0.00, RR 2.29R):
+
+HOLD core geometry. SL/TP unchanged — no calibrated structure (ATR, 0.786 shelf, VR/ER regime) exists this cycle to justify trailing; moving stops on null evidence is premature de-risking of a live 2.29R structure.
+Conditional breakeven protocol (risk-reducing, authorized): IF bid ≤ 79870 (+1R in favor; currently 429 pts away) THEN shift SL → 80305 (entry +60 pts: covers 52-pt exit spread + 8-pt pad; worst case at BE stop = −3.00 USD) preserving 4635-pt payoff to TP. Do NOT shift before +1R — a premature BE stop inside the 80620 stop-magnet zone converts a 2.29R structure into a coin-flip.
+Funding awareness: swap currently 0.00; first funding touch 00:00 UTC (2h17m33s post-cutoff). Record the posted swap at next cycle's envelope and feed it into WaitCost.
+DO NOT close to free margin for the candidate: closing realizes −5.30 (ask-side) to fund a ticket with null P_TP, ρ=+1.0 correlation, and a receipt that mis-stated its own margin level. Negative-EV trade of certainty for uncertainty.
+Stop-magnet note: the incumbent's SL at 80620 is itself a visible liquidity pool; the §3 path-conflict finding means any long-side sweep toward 81300 likely tags it first. This is accepted risk on a held position, but it must be priced (it is — see harmonized stress) — not ignored.
+§8 CONTINUOUS KAIZEN & METHODOLOGY IMPROVEMENT INQUEST
+Metacognitive answer (mandated question): "If it use all the available skills related will it improve our response?"
+
+Yes — measurably, and this cycle proves it by subtraction. @[trader-risk] is what caught Finding C-1 (the receipt's 298.88% would have rubber-stamped a 133.79% account). @[systematic-debugging] is what converted "spread was 52" into the epoch-verified causality chain. @[market-ingest] and @[market-pattern] were mobilized but starved — they had no L2 depth, no CVD, no footprint series to consume. @[trader-signal] and @[sharpe-ratio-non-iid-corrections] idled entirely for lack of a series block. Skills-gap audit verdict: the binding constraint is not skill availability, it is evidence transport. The single highest-leverage fix is embedding a hash-chained micro-bundle in the envelope (K-02 below); until then, four of nine loaded skills are structurally unemployed every weekend cycle.
+
+skills_and_methodology_optimization
+K-01 (receipt compiler fix — P0): recompute margin_level_post_order = Equity / (Margin_Used + ΣMargin_Req_all_pending_and_open). Add a self-test asserting margin_free_post_order ≡ margin_free − Σnew_margin AND level_post ≡ equity/(cumulative_margin); ship the corrected formula hash in risk_policy_sha256.
+K-02 (evidence micro-bundle — P0): embed per-eligible-symbol: last 480×H1 closes (or VR/ER/t_drift/θ/ATR(14) H1+H4 precomputed by Antigravity with reproducible seeds), top-10 L2 levels with persisted_seconds, and a 21_Tradfye_Orderflow digest excerpt. This converts Roles A/B from geometry-only to full-statistical in one cycle.
+K-03 (stress-model unification): one stress function, applied to incumbent AND candidate: (base + exit_spread)×1.25 + 2.00. Envelope 20.75 vs receipt-model 28.69 for the same ticket is a policy bug.
+K-04 (correlation gate in envelope): add correlation_cluster per open position; deny same-cluster increments mechanically instead of by council prose.
+K-05 (headroom purity): realized_headroom must exclude floating P&L entirely (68.07 basis), with floating loss tracked as a separate marking_stress line.
+omitted_risk_dimensions
+
+Weekend thin-book gap risk on perps (no circuit breaker between Fri close and Mon open); funding-rate sign/magnitude unknown at 00:00 UTC (a negative-rate short is paid to hold, a positive-rate short pays 3×/day); rollover-window spread blowouts (52 pts now, weekend rollover can 3–5×); stop-magnet clustering at 80620 (incumbent SL is a visible pool); I-2 knife-edge dynamics (B4 fill-path breach at 199.46%); swap accrual over weekend holds; broker server-offset drift (−12.23s skew) compounding into D9 false-passes; cross-asset correlation if ETH/SOL tickets had been nominated against the same BTC beta (must be sized as one beta unit, not two tickets).
+
+algorithmic_alternatives
+
+Hawkes self-exciting process for limit-fill arrival intensity at distance-in-ATR (replaces ad-hoc P_fill); Kalman-filter fair-value spread for adaptive TP front-running offsets; GARCH(1,1) volatility cones to size the 0.40-ATR stop pad dynamically; isotonic regression calibration of P_TP per regime class (monotone, no invented haircuts); ordered-logit barrier-race model for P(TP first) with explicit timeout branch; block-bootstrap LCB_5% with 500 non-overlapping 60-min blocks; queue-position-aware fill model for the 18.75-spread-distance limit; monotonically-constrained quantile regression mapping (distance, spread_bps, session, weekend flag) → P_fill.
+
+📦 PART 4 — REQUIRED RESPONSE JSON
 json
 {
-  "schema_version": "1.1.0-c336",
-  "cycle_id": "Cycle 336",
-  "cutoff_utc": "2026-10-24 20:50:31 UTC",
-  "evidence_manifest_sha256": "d8f6a7fc890cfcf37449b1e254f90086535ec6effefcb0c62626364850a45aa0",
-  "prompt_sha256": "de9be1122d54f06a6edf68565c617cf49a5db898052e6a0efb376f612ad6241f",
-  "dispatch_nonce": "b4de1f89-57b5-44a7-94b4-b5ee3250bc13",
-  "provenance_status": "VERIFIED_ENVELOPE_CAUSAL_WITH_IN_WINDOW_RECEIPT__SELF_REFUTING_RECEIPT_3RD_CYCLE__STRESS_MTM_ANCHOR_RESIDUAL__STALENESS_7TH_AND_MARKOUT_ADVERSE_FLAGS__D35_D44_CREDITS",
-  "inventory_status": "ACCOUNT_AND_SOLVENCY_VERIFIED (flat 4,865.07; 1 OPEN 0.05 SELL @80,245/80,620/79,385 ticket 19274977 native-corroborated 18:11:19.842Z; floating -9.45 @ 80,434 / mid 80,418; equity 4,855.62; ML 242.04%; 0 pending)",
-  "hard_gate_results": {
-    "S-01": "PASS — envelope well-formed, inlined, integer key (D44 credit)", "S-02": "PASS — nonce coupled, 9th distinct", "S-03": "PASS — receipt −15s/−16s IN-WINDOW, D35 HEALED", "S-04": "PASS — tick_age 1.0s (D9)", "S-05": "PASS — 1.99 bps ≤ 25",
-    "S-06": "FAIL — joint margin 3,632.13 > cap 2,427.81 (excess 1,204.32; util 74.80%)", "S-07": "FAIL — joint ML 133.69/133.70% < 200%", "S-08": "FAIL — D47 3rd: ML_post 298.65% single vs MF_post 1,223.89 joint",
-    "S-09": "PASS — stressed solvency 4,800.3825 ≥ 4,795 (+5.3825)", "S-10": "FAIL — D40 11th: 13.625 = MTM hybrid EXACT, spread omitted, canon 26.4375", "S-11": "PASS — existing geometry, floating −9.45 EXACT", "S-12": "PASS — D59 ask-mark decode EXACT both snapshots", "S-13": "PASS — margin_used ceil recon EXACT", "S-14": "PASS — envelope ML 242.03915% EXACT", "S-15": "FAIL — D58 2nd: floating-debited cushions", "S-16": "PASS — headroom 44.99 decoded EXACT (canon 32.1825, SOP 68.07)",
-    "S-17": "PASS — candidate geometry RR 3.0208", "S-18": "PASS — stress 26.80 EXACT, model string canon", "S-19": "PASS — Tier-2 band 19.84 ∈ [15,25] (moot)", "S-20": "FAIL — slot-2 frozen 6th (421.68 → 0.01 lots → 4.80 < 15.00)", "S-21": "FAIL — markout −0.4613R0 adverse 2nd", "S-22": "PASS — tape −0.00397 pts/s, watch 80,500 active", "S-23": "PASS — OU gate passed (entry > θ), P_win uncalibrated", "S-24": "PASS — post-SL 4,845.52 (+50.52)", "S-25": "PASS — funding 11,369s forward, 0 crossed", "S-26": "PASS — weekend crypto-only, rollover inactive", "S-27": "PASS — broker spec/lot valid", "S-28": "PASS — git churn 2nd consecutive (noted)", "S-29": "FAIL — excel stale 7th, alert issued", "S-30": "FAIL — calibration idle 14th", "S-31": "FAIL — legacy replay 6th, distance widened 882pts/109.68bps", "S-32": "PASS — D60 NEW proven: +2,844s anchor, +110s overlap", "S-33": "PASS — D37 dormant", "S-34": "FAIL — D31 journal absent 5th", "S-35": "FAIL — D32 pointers 6th", "S-36": "PASS — fresh-preflight mandate binding (+3,528s render)", "S-37": "PASS — P_BE 25.70%", "S-38": "PASS — verdict assembly", "S-39": "PASS — remediation scorecard", "S-40": "PASS — 22 keys, 2×44 fields, variant-A sha"
-  },
-  "universe_coverage": "Saturday WEEKEND_CRYPTO_PERPETUALS_ONLY: 58 crypto open (BTCUSD.pi PASS 1.99bps; 11 pass / 47 disqualified); 98 TradFi CLOSED_WATCHLIST_ONLY until Sunday 21:00 UTC; deep scan blocked by UNCERTIFIED workbook (14th cycle)",
-  "account_tier_and_contingent_capacity": "TIER_2_HOUSE_MONEY (balance 4,865.07 > 4,850; band 15–25; x1 committed on 19274977 canon stress 26.4375; slot 2 MARGIN-FROZEN 6th: 421.68 → 0.01 lots → 4.80 < 15.00; max 2 concurrent, ρ=+1)",
-  "global_contingency_usd": 2.0,
-  "existing_ticket_actions": [{"ticket": 19274977, "geometry": "0.05 SELL @80,245/80,620/79,385 since 18:11:19.842Z; floating −9.45 @ 80,434", "action": "RETAIN_MANAGE_ONLY", "containment": "canon stress 26.4375 ≤ H_net 68.07; post-SL 4,845.52 ≥ 4,795 (+50.52); single ML 242.04%/util 41.32% PASS", "markout": "ADVERSE 2ND: −0.4613R0 @t+158.9min; SL 186pts/15.06%; watch 80,500", "conditions": ["NO additive BTCUSD.pi ticket (frozen 6th)", "no SL/TP modify without certified re-anchor + journal (D31)", "funding 00:00 UTC unmodeled (D54)", "escalation equity<4,830 NOT hit (+25.62); watch 80,500 in force", "re-preflight required at any execution instant (D60)"]}],
-  "candidate_rows": [
-    {"candidate_id": "C336-01-BTCUSD.PI-SELL-MANAGE-TKT19274977", "symbol": "BTCUSD.pi", "native_market": true, "clock_status": "OPEN_CRYPTO_PERPETUAL_WEEKEND", "quote_timestamp": "20:50:15 receipt tick (in-window descriptive); envelope 80,434 @20:50:31 causal", "evidence_availability_timestamps": {"cycle_envelope": "20:50:31 causal inlined", "receipt": "20:50:16 (−15s, IN-WINDOW, D35 HEALED)", "fill_native": "18:11:19.842Z (journal absent D31 5th)", "workbook_sheet21": "15:35:31 last certified (18,900s stale, UNCERTIFIED)", "macro_calendar": "15:52:27 probed (17,884s, no verified_at)", "oob_commit": "120f9566 unverifiable in-context"}, "evidence_max_age_seconds": 18900, "evidence_age_at_cutoff_seconds": 18900, "row_causality_status": "ENVELOPE_CAUSAL__FILL_NATIVE__RECEIPT_IN_WINDOW_D35_HEALED", "authorization_expiry_utc": null, "side": "SELL", "order_type": "OPEN_POSITION_MANAGE_ONLY", "entry": 80245.0, "stop": 80620.0, "target": 79385.0, "volume": 0.05, "broker_risk_usd": 18.75, "broker_reward_usd": 82.0, "rr": 4.3733, "spread_cost_usd": 0.8, "stressed_loss_usd": 26.4375, "post_joint_stop_balance": 4845.52, "p_fill": 1.0, "p_win_given_fill": null, "probability_calibration_status": "P_FILL_REALIZED_1.0__P_TP_UNCALIBRATED_14TH_CYCLE_MANDATES_MANAGE_ONLY", "estimator_references": "VR(4)/z*, ER(48), NW-HAC t, OU θ — NOT EMBEDDED (14th); tape decelerated to −0.0040 pts/s, flipped down", "calibration_diagnostics": "AS(t+158.9min) = −8.65 USD = −0.4613R0 (2nd reading; was −0.5093R); SL 186pts/15.06%; watch 80,500", "effective_sample_size": null, "probability_confidence_intervals": null, "outcome_model_and_timeout_branches": "A: SL hit → 4,845.52 (+50.52) contained; B: TP −1,049pts unmodeled; C: funding 00:00 UTC carry; D: indefinite weekend hold", "cost_ledger_and_conditioning": "realized-only doctrine; swap 0.0; exit spread 0.80; funding unmodeled", "wait_cost_usd": 0.0, "ev_net_usd": null, "ev_lcb_5pct_usd": null, "expected_capital_minutes": 2006.13, "utility": null, "uncertainty_method": "NONE CALIBRATED (14th)", "adverse_selection_usd": -8.65, "evidence_ids": ["ENV-C336-inline", "RCPT-30302f40", "TICKET-19274977-native", "MARKOUT-SERIES-D57", "COMMIT-120f9566"], "verdict": "HOLD_RETAIN_MANAGE_ONLY", "fib_prime_ema_alignment": "UNVERIFIABLE_WORKBOOK_UNCERTIFIED_14TH_CYCLE", "fib_golden_zone_confluence": {"gp_0618": null, "gp_0650": null, "ote_0702": null, "invalidation_shelf_0786": null, "entry_status": "N/A_MANAGE_ONLY"}, "auction_extreme_interaction": {"monday_ib_relation": "UNKNOWN uncertified", "session_extreme_sweep": "UNKNOWN uncertified", "macro_shelf_relation": "UNKNOWN uncertified", "value_area_status": "UNKNOWN uncertified"}, "rejection_reasons": ["P_TP null 14th → manage-only", "markout adverse 2nd (−0.4613R0 < −0.15)", "journal absent (D31 5th)"]},
-    {"candidate_id": "C336-02-BTCUSD.PI-SELL-REPLAY-6TH", "symbol": "BTCUSD.pi", "native_market": true, "clock_status": "OPEN_CRYPTO_PERPETUAL_WEEKEND", "quote_timestamp": "20:50:15 receipt tick (in-window); envelope freeze 20:50:31 causal", "evidence_availability_timestamps": {"cycle_envelope": "20:50:31 causal", "receipt": "20:50:16 in-window BUT self-refuting (D47 3rd)", "workbook_sheet21": "15:35:31 (18,900s stale — no L2/walls/footprint)", "swarm_theta": "80,319.04 pre-C329 uncertified"}, "evidence_max_age_seconds": 18900, "evidence_age_at_cutoff_seconds": 18900, "row_causality_status": "ENVELOPE_CAUSAL__RECEIPT_IN_WINDOW_BUT_SELF_REFUTING__EVIDENCE_PACK_ABSENT", "authorization_expiry_utc": null, "side": "SELL", "order_type": "SELL_LIMIT", "entry": 81300.0, "stop": 81780.0, "target": 79850.0, "volume": 0.04, "broker_risk_usd": 19.2, "broker_reward_usd": 58.0, "rr": 3.0208, "spread_cost_usd": 0.64, "stressed_loss_usd": 26.8, "post_joint_stop_balance": 4800.3825, "p_fill": null, "p_win_given_fill": null, "probability_calibration_status": "UNCALIBRATED_14TH_CYCLE__MANDATES_HOLD_INDEPENDENT_OF_VETO__P_BE_HURDLE_25.70pct", "estimator_references": "VR/ER/HAC/OU refit/λ_drift/ATR ALL ABSENT (14th); entry 882pts above mid, |E−θ| 981pts", "calibration_diagnostics": "distance WIDENED 882pts/109.68bps vs decelerating tape — fill needs +1.10% rally against flat-to-down drift; P_fill qualitatively LOW, numerically UNKNOWN", "effective_sample_size": null, "probability_confidence_intervals": null, "outcome_model_and_timeout_branches": "no-fill dominant (TTL, wait cost unquantified); fill branch VETOED at booking (joint 3,632.13 > 2,427.81; ML 133.69–133.70% < 200%)", "cost_ledger_and_conditioning": "19.20 + 0.64 = 19.84 nominal; stress 26.80 canon; funding unmodeled", "wait_cost_usd": null, "ev_net_usd": null, "ev_lcb_5pct_usd": null, "expected_capital_minutes": 1626.0, "utility": null, "uncertainty_method": "NONE CALIBRATED (14th); bootstrap blocked on evidence-pack v2", "adverse_selection_usd": null, "evidence_ids": ["ENV-C336-inline", "RCPT-30302f40-self-refuting-D47-3rd", "LEGACY-GEOMETRY-6TH", "COMMIT-120f9566"], "verdict": "VETO_MARGIN_INVARIANT_HOLD_UNCALIBRATED", "fib_prime_ema_alignment": "UNVERIFIABLE_WORKBOOK_UNCERTIFIED_14TH_CYCLE", "fib_golden_zone_confluence": {"gp_0618": null, "gp_0650": null, "ote_0702": null, "invalidation_shelf_0786": null, "entry_status": "UNVERIFIED_no certified impulse structure"}, "auction_extreme_interaction": {"monday_ib_relation": "UNKNOWN uncertified", "session_extreme_sweep": "UNKNOWN uncertified", "macro_shelf_relation": "UNKNOWN uncertified", "value_area_status": "UNKNOWN uncertified"}, "rejection_reasons": ["VETO Invariant-1: 3,632.13 > 2,427.81 (excess 1,204.32; util 74.80%)", "VETO Invariant-2: joint ML 133.69–133.70% < 200%", "VETO D47 3rd: order_check.pass=true rests on single-denominator ML_post", "HOLD 14th: P_fill/P_TP/λ/ATR uncalibrated; wall 180s-persistence & footprint evidence ABSENT", "adverse markout regime on same-symbol short (−0.4613R0)", "slot-2 frozen 6th (421.68 → 0.01 → 4.80 < 15.00)"]}
-  ],
-  "arithmetic_validation": "ALL 40 GATES FAIL-LOUD REPRODUCED: env ML 242.03915% == 4,855.62/2,006.13 EXACT; margin_used == ceil(0.05×80,245×0.5) EXACT; candidate triple 19.20/58.00/1,626.00 + stress 26.80 == receipt EXACT (stress_model canon 2nd cycle); existing stress decode 13.625 == ((80,620−80,434)×0.05)×1.25+2.00 EXACT vs canon 26.4375 (D40 11th, MTM hybrid frame unchanged from C332, exit spread omitted); joint post 3,632.13 vs cap 2,427.81 (excess 1,204.32, util 74.80%); true joint ML 133.69%/133.70% < 200%; receipt self-refutation pair 298.65%|1,223.89 EXACT (D47 3rd); headroom 44.99 decoded EXACT; canon headroom 32.1825; SOP H_net 68.07; slot-2 421.68 → 0.01 lots → 201.26% pass but 4.80 < 15.00 FROZEN 6th; markout −8.65 = −0.4613R0; tape −0.00397 pts/s (11.2× deceleration, flip down); SL prox 186pts/15.06%; P_BE 25.70%; RR 3.0208; post-joint-stop 4,800.3825 (+5.3825); post-SL 4,845.52 (+50.52); D59 ask-mark EXACT both snapshots; causality −16s/−15s IN-WINDOW; anchor +2,844s EXACT; C332-render overlap +110s EXACT",
-  "disputes": [
-    {"id": "D47", "severity": "CRITICAL", "finding": "receipt self-refutation 3RD CONSECUTIVE: ML_post 298.65% single-denominator vs MF_post 1,223.89 joint; true joint ML 133.69–133.70% < 200%; order_check.pass UNSOUND; one-assert validator STILL unimplemented (3rd ask)"},
-    {"id": "D36", "severity": "CRITICAL", "finding": "joint-margin breach IMMEDIATE STATE 6th: 3,632.13 / 74.80% / 133.69%; slot-2 frozen 6th; STRUCTURAL (equity-gated)"},
-    {"id": "D40", "severity": "HIGH", "finding": "11th cycle, frame UNCHANGED from C332 (no new credit): 13.625 = MTM hybrid EXACT, exit spread 0.80 STILL omitted; dual residual (MTM anchor + spread); understatement 12.8125 (48.5%); capital plane robust both frames"},
-    {"id": "D57", "severity": "HIGH", "finding": "markout adverse 2ND READING: −0.4613R0 @t+158.9min (was −0.5093R @t+87min); tape decelerated 11.2× with direction flip; SL prox 15.06% stable; envelope STILL lacks AS(t)/SL-proximity fields (2nd ask)"},
-    {"id": "D35", "severity": "RESOLVED_PENDING_STREAK", "finding": "HEALED: receipt −15s/−16s INSIDE atomic window after 3 violations (remediation #5 implemented); streak confirmation required"},
-    {"id": "D44", "severity": "RESOLVED", "finding": "integer cycle key 'Cycle 336' PRESENT — verdict cache keyed on 336 + uuid e21dabc4"},
-    {"id": "D59", "severity": "RESOLVED_DECODED", "finding": "UPGRADED benign→FULLY DECODED: short marked at ASK on both snapshots, both equities reconstruct EXACTLY; +0.40 == 8pt ask drift × 0.05; coherence PASS"},
-    {"id": "D58", "severity": "MEDIUM", "finding": "2nd: cushions/headroom on floating-DEBITED equity 4,855.62; zero-credit frame gives 265.07/215.07/70.07; ordering-safe, pin convention"},
-    {"id": "D54", "severity": "MEDIUM", "finding": "funding carry unmodeled (3rd); next 00:00 UTC in 11,369s; 0 boundaries crossed"},
-    {"id": "D31", "severity": "MEDIUM", "finding": "order_mutations.json journal absent (5th); fill natively decoded and stable across 3 cycles"},
-    {"id": "D60", "severity": "MEDIUM", "finding": "NEW — pipeline temporal incoherence: prose anchor = cutoff +2,844s EXACT (render-time anchor); envelope N+1 frozen 110s BEFORE verdict N rendered; cadence 2,768s < latency ~2,900–3,500s → queue drift; prose timestamps carry zero evidentiary weight"},
-⚡ Execution Directives (Antigravity)
-DO NOT place the candidate — SELL_LIMIT 81,300 is VETOED (dual joint-margin breach, immediate state) and HOLD (14th uncalibrated cycle). No prose, receipt, or broker order_check.pass=true overrides this: that receipt is self-refuting for the 3rd consecutive cycle.
-Existing ticket 19274977: RETAIN_MANAGE_ONLY — no SL/TP modification without a certified 0.786/ATR re-anchor + modify journal; post-SL containment 4,845.52 clears all floors (+50.52 over kernel); escalation trigger equity < 4,830 not hit (+25.62); proximity watch 80,500 in force (price 80,434).
-Any execution requires a fresh preflight at the execution instant — this envelope was frozen +2,844s+ before render and the queue is structurally backed up (D60).
-Operator remediation queue (priority order): D47 validator (one assert, 3rd ask) → evidence-pack v2 (14th ask) → excel in-window re-run (7th) → cadence fix (D60) → D40 entry-anchored stress frame (11th) → D31 journal (5th) / D32 pointers (6th) / D58 convention pin (2nd).
+      "ev_net_usd": null,
+      "ev_lcb_5pct_usd": null,
+      "expected_capital_minutes": null,
+      "utility": null,
+      "uncertainty_method": null,
+      "adverse_selection_usd": null,
+      "evidence_ids": [],
+      "verdict": "WATCHLIST_ONLY",
+      "fib_prime_ema_alignment": "NOT_EVALUABLE_NO_SERIES_EMBEDDED",
+      "fib_golden_zone_confluence": {"gp_0618": null, "gp_0650": null, "ote_0702": null, "invalidation_shelf_0786": null, "entry_status": "NOT_EVALUABLE_NO_SERIES_EMBEDDED"},
+      "auction_extreme_interaction": {"monday_ib_relation": null, "session_extreme_sweep": null, "macro_shelf_relation": null, "value_area_status": null},
+      "rejection_reasons": ["no embedded quote/tick this cycle", "BTC beta correlation cluster shared with incumbent -> any long ETH ticket must be beta-budgeted against the open BTC short", "rollover embargo until 22:30 UTC"]
+    },
+    {
+      "candidate_id": "C337-W2",
+      "symbol": "SOLUSD.p",
+      "native_market": "CRYPTO_PERPETUAL_247",
+      "clock_status": "OPEN_NO_EMBEDDED_QUOTE",
+      "quote_timestamp": null,
+      "evidence_availability_timestamps": {"tick": null, "preflight_freeze": null, "orderflow_sheet": null, "ohlcv_series": null},
+      "evidence_max_age_seconds": null,
+      "evidence_age_at_cutoff_seconds": null,
+      "row_causality_status": "NO_EVIDENCE_NO_ROW",
+      "authorization_expiry_utc": "2026-10-24 22:30:00 UTC",
+      "side": null,
+      "order_type": null,
+      "entry": null,
+      "stop": null,
+      "target": null,
+      "volume": null,
+      "broker_risk_usd": null,
+      "broker_reward_usd": null,
+      "rr": null,
+      "spread_cost_usd": null,
+      "stressed_loss_usd": null,
+      "post_joint_stop_balance": null,
+      "p_fill": null,
+      "p_win_given_fill": null,
+      "probability_calibration_status": "UNCALIBRATED_NO_QUOTE_NO_SERIES",
+      "estimator_references": null,
+      "calibration_diagnostics": "structurally spread-gate-eligible; requires fresh preflight receipt next cycle",
+      "effective_sample_size": 0,
+      "probability_confidence_intervals": null,
+      "outcome_model_and_timeout_branches": null,
+      "cost_ledger_and_conditioning": null,
+      "wait_cost_usd": null,
+      "ev_net_usd": null,
+      "ev_lcb_5pct_usd": null,
+      "expected_capital_minutes": null,
+      "utility": null,
+      "uncertainty_method": null,
+      "adverse_selection_usd": null,
+      "evidence_ids": [],
+      "verdict": "WATCHLIST_ONLY",
+      "fib_prime_ema_alignment": "NOT_EVALUABLE_NO_SERIES_EMBEDDED",
+      "fib_golden_zone_confluence": {"gp_0618": null, "gp_0650": null, "ote_0702": null, "invalidation_shelf_0786": null, "entry_status": "NOT_EVALUABLE_NO_SERIES_EMBEDDED"},
+      "auction_extreme_interaction": {"monday_ib_relation": null, "session_extreme_sweep": null, "macro_shelf_relation": null, "value_area_status": null},
+      "rejection_reasons": ["no embedded quote/tick this cycle", "crypto beta cluster shared with incumbent", "rollover embargo until 22:30 UTC"]
+    }
 
-📚 Skills applied (footer): @[trader-risk] (binding veto layer — joint margin, stressed kernel, slot rationing), @[trader-signal] (regime gate — UNDEFINED → standaside), @[market-ingest] (causal tick/receipt ingestion), @[market-pattern] (markout-shelf read, sweep-state), @[sharpe-ratio-non-iid-corrections] (HAC cited, unrunnable — uncertified data), @[adaptive-wfo-epoch] (14th null calibration), @[time-series-decomposer] (tape-rate flip), @[clean-code] (40-gate fail-loud), @[systematic-debugging] (D40 refuted-hypothesis decode, D59 ask-mark proof, D60 queue-drift proof). Canonical artifacts: scripts/cycle336_ruling.py · scripts/cycle336_response.json · download/Council_Response_Cycle-20261024T205031Z.json · sha 7fec8bf6…625b · worklog Task ID C336.
+(response_sha256 is null by anti-self-reference rule — the dispatcher computes it post-hoc over this payload.)
 
-All files in task
-1
-Council_Response_Cycle-20261024T205031Z
-· json
+Council dispatch complete. Cycle 337 is adjudicated DENIED_FAIL_CLOSED for new risk on four overdetermined grounds — margin Invariants 1/2 fail at every admissible volume with the incumbent open (empty feasible set above 0.01 lots), the receipt's 298.88% margin level is an arithmetic bug (true level 133.79%), the same-symbol short stack violates the non-correlated ticket rule, and all probability estimators are uncalibrated with the workbook stale. The incumbent ticket 19274977 stays live with a conditional +1R breakeven protocol. Recommended next actions: patch the preflight compiler (K-01), unify the stress model (K-03), and embed the evidence micro-bundle (K-02) so Cycle 338 can run full statistical discovery instead of geometry-only adjudication. If you want, I can draft the corrected execution_preflight_receipt compiler spec or the K-02 envelope schema extension for the next dispatch.
 
 ================================================================================
 Z.AI ATTACHED OUTPUT FILE:  (18262 chars)
