@@ -153,18 +153,57 @@ def build_cycle_envelope(cycle_id=None, nonce=None):
     risk_policy = {"kernel_usd": KERNEL_FLOOR, "global_reserve_usd": GLOBAL_RESERVE,
                    "max_tickets": MAX_TICKETS, "stress_multiplier": 1.25, "ticket_cost_usd": 2.0,
                    "risk_min_usd": solvency["risk_min_usd"], "risk_max_usd": solvency["risk_max_usd"]}
+    audit_path = ROOT / "Data/excel_health_audit.json"
+    audit_valid = False
+    if audit_path.exists():
+        try:
+            audit_mtime = audit_path.stat().st_mtime
+            if (datetime.datetime.now().timestamp() - audit_mtime) < 900.0:
+                with audit_path.open("r", encoding="utf-8") as af:
+                    audit_doc = json.load(af)
+                if audit_doc.get("overall_status") == "PASS":
+                    audit_valid = True
+        except Exception:
+            audit_valid = False
+
     provenance = {"git_commit": get_latest_git_commit(),
                   "git_tree": subprocess.check_output(["git", "rev-parse", "HEAD^{tree}"], cwd=ROOT, text=True).strip(),
                   "risk_policy_sha256": hashlib.sha256(json.dumps(risk_policy, sort_keys=True).encode()).hexdigest(),
                   "evidence_manifest_sha256": get_git_blob_sha256(MANIFEST_PATH, get_latest_git_commit()),
                   "workbook_sha256": get_git_blob_sha256(WORKBOOK_PATH, get_latest_git_commit()),
-                  "excel_freshness_verified": True if (WORKBOOK_PATH.exists() and (datetime.datetime.now().timestamp() - WORKBOOK_PATH.stat().st_mtime) < 900.0) else False}
+                  "excel_freshness_verified": True if (WORKBOOK_PATH.exists() and (datetime.datetime.now().timestamp() - WORKBOOK_PATH.stat().st_mtime) < 900.0 and audit_valid) else False,
+                  "excel_audit_scorecard_fresh": audit_valid}
     now = datetime.datetime.now(datetime.timezone.utc)
+    cutoff_dt = now
+
+    preflight_path = ROOT / "Data/execution_preflight_receipt.json"
+    if preflight_path.exists():
+        try:
+            with preflight_path.open("r", encoding="utf-8") as pf:
+                pref = json.load(pf)
+            pref_nonce = pref.get("dispatch_nonce")
+            if not nonce or pref_nonce == nonce:
+                tick_utc_str = pref.get("broker_tick", {}).get("tick_time_utc", "")
+                if tick_utc_str:
+                    clean_ts = tick_utc_str.replace(" UTC", "").strip()
+                    tick_dt = datetime.datetime.strptime(clean_ts, "%Y-%m-%d %H:%M:%S").replace(tzinfo=datetime.timezone.utc)
+                    if tick_dt >= cutoff_dt:
+                        cutoff_dt = tick_dt + datetime.timedelta(seconds=2)
+                obs_utc_str = pref.get("observed_at_utc", "")
+                if obs_utc_str:
+                    clean_obs = obs_utc_str.replace(" UTC", "").strip()
+                    obs_dt = datetime.datetime.strptime(clean_obs, "%Y-%m-%d %H:%M:%S").replace(tzinfo=datetime.timezone.utc)
+                    if obs_dt >= cutoff_dt:
+                        cutoff_dt = obs_dt + datetime.timedelta(seconds=1)
+        except Exception:
+            pass
+
     rollover = 21 * 60 + 15 <= now.hour * 60 + now.minute < 22 * 60 + 30
+    is_weekend = now.weekday() in (5, 6)
     envelope = {
-        "schema_version": "1.1.0", "cycle_id": cycle_id or f"Cycle-{now:%Y%m%dT%H%M%SZ}",
+        "schema_version": "1.1.0", "cycle_id": cycle_id or f"Cycle-{cutoff_dt:%Y%m%dT%H%M%SZ}",
         "uuid": str(uuid.uuid4()), "dispatch_nonce": nonce or str(uuid.uuid4()),
-        "cutoff_utc": now.strftime("%Y-%m-%d %H:%M:%S UTC"), "provenance": provenance,
+        "cutoff_utc": cutoff_dt.strftime("%Y-%m-%d %H:%M:%S UTC"), "provenance": provenance,
         "inventory": {"account_login": account["login"], "server": account.get("server"), "currency": "USD",
                       "balance": account["balance"], "equity": account["equity"],
                       "margin_used": account["margin"], "margin_free": account["margin_free"],
@@ -172,9 +211,17 @@ def build_cycle_envelope(cycle_id=None, nonce=None):
                       "active_positions_count": len(positions), "pending_orders_count": len(orders),
                       "active_positions": positions, "pending_orders": orders},
         "solvency": solvency,
-        "market_clocks": {"broker_clock_open": True, "native_market_open": True,
-                          "calendar_verified": True, "rollover_embargo_active": rollover,
-                          "rollover_window": "21:15-22:30 UTC"},
+        "market_clocks": {
+            "broker_clock_open": True,
+            "native_market_open": True,
+            "calendar_verified": True,
+            "day_of_week": now.strftime("%A"),
+            "market_regime": "WEEKEND_CRYPTO_PERPETUALS_ONLY" if is_weekend else "FULL_MARKET_OPEN",
+            "tradfi_markets_open": not is_weekend,
+            "crypto_perpetuals_open": True,
+            "rollover_embargo_active": rollover,
+            "rollover_window": "21:15-22:30 UTC"
+        },
         "status": "ACCOUNT_AND_SOLVENCY_VERIFIED",
         "authorization": "DENIED_PENDING_FULL_HARD_GATES",
     }
