@@ -143,7 +143,7 @@ def atomic_json(path, document):
         pathlib.Path(name).unlink(missing_ok=True)
 
 
-def build_cycle_envelope(cycle_id=None):
+def build_cycle_envelope(cycle_id=None, nonce=None):
     if not mt5.initialize():
         raise RuntimeError(f"MT5 initialization failed: {mt5.last_error()}")
     try:
@@ -163,7 +163,7 @@ def build_cycle_envelope(cycle_id=None):
     rollover = 21 * 60 + 15 <= now.hour * 60 + now.minute < 22 * 60 + 30
     envelope = {
         "schema_version": "1.1.0", "cycle_id": cycle_id or f"Cycle-{now:%Y%m%dT%H%M%SZ}",
-        "uuid": str(uuid.uuid4()), "dispatch_nonce": str(uuid.uuid4()),
+        "uuid": str(uuid.uuid4()), "dispatch_nonce": nonce or str(uuid.uuid4()),
         "cutoff_utc": now.strftime("%Y-%m-%d %H:%M:%S UTC"), "provenance": provenance,
         "inventory": {"account_login": account["login"], "server": account.get("server"), "currency": "USD",
                       "balance": account["balance"], "equity": account["equity"],
@@ -187,5 +187,9 @@ def build_cycle_envelope(cycle_id=None):
 
 
 if __name__ == "__main__":
-    import sys
-    build_cycle_envelope(sys.argv[1] if len(sys.argv) > 1 else None)
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("cycle_id", nargs="?", default=None)
+    parser.add_argument("--nonce", default=None)
+    args = parser.parse_args()
+    build_cycle_envelope(args.cycle_id, nonce=args.nonce)
