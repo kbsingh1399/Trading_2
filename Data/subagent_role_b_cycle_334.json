@@ -1,0 +1,131 @@
+{
+  "schema_version": "1.1.0",
+  "cycle_id": "Cycle 334",
+  "role": "ROLE_B_FILL_MICROSTRUCTURE_GEOMETRY",
+  "evidence_manifest_sha256": "c0bd0495cbba475d239a7717c339bce46ca7bfe5a037a56845d5df85e6959535",
+  "prompt_sha256": "8f02351ff8d2691c1bbad29c1903bdbd17c9db3eb71801fcdd49b754f46bfe59",
+  "dispatch_nonce": "2a5c39df-846f-48e1-9863-ec3352121e0d",
+  "workbook_sha256": "56fd789b0a3ef8aeb7b5c03a56446e6761827b5f6dfb3f3d8efde1aabf5b4937",
+  "active_ticket_under_audit": {
+    "ticket": 19274977,
+    "symbol": "BTCUSD.pi",
+    "action": "SHORT_POSITION_FILLED",
+    "volume": 0.05,
+    "price_open": 80245.0,
+    "sl": 80620.0,
+    "tp": 79385.0,
+    "r0_pts": 375.0,
+    "reward_pts": 860.0,
+    "rr_gross": 2.2933,
+    "nominal_risk_usd": 18.75,
+    "nominal_reward_usd": 43.0,
+    "risk_pct_equity": 0.3862,
+    "magic": 888888,
+    "comment": "Fable5_Affirmative_C327",
+    "time_setup_utc": "2026-10-24 16:53:50 UTC"
+  },
+  "microstructure_audit": {
+    "broker_bid_price": 80384.0,
+    "broker_ask_price": 80400.0,
+    "broker_mid_price": 80392.0,
+    "broker_spread_usd": 16.0,
+    "broker_spread_bps": 1.99,
+    "spread_gate_status": "PASS_LEQ_25_BPS",
+    "overhead_ask_whale_walls": [
+      {
+        "wall_id": "CG_LADDER_12",
+        "exchange": "Binance Futures",
+        "price_usd": 80384.6,
+        "notional_usd": 1560000.0,
+        "persisted_seconds": 11520.0,
+        "persistence_status": "PASS_GE_180S_INSTITUTIONAL_WALL_CONFIRMED"
+      },
+      {
+        "wall_id": "OKX_BINANCE_COMBINED_80500",
+        "exchange": "OKX (13.70M) / Binance (3.77M)",
+        "price_usd": 80500.0,
+        "notional_usd": 17470000.0,
+        "persisted_seconds": 11520.0,
+        "persistence_status": "PASS_GE_180S_INSTITUTIONAL_WALL_CONFIRMED"
+      },
+      {
+        "wall_id": "HL_WHALE_ASK_80544",
+        "exchange": "Hyperliquid L3",
+        "price_usd": 80544.0,
+        "notional_usd": 19980000.0,
+        "persisted_seconds": 11520.0,
+        "persistence_status": "PASS_GE_180S_INSTITUTIONAL_WALL_CONFIRMED"
+      }
+    ],
+    "cumulative_overhead_ask_depth_usd": 39010000.0,
+    "tp_protecting_bid_walls": [
+      {
+        "wall_id": "BYBIT_BINANCE_BID_79881",
+        "exchange": "Bybit / Binance",
+        "price_usd": 79881.0,
+        "notional_usd": 7350000.0
+      },
+      {
+        "wall_id": "BINANCE_BID_79850",
+        "exchange": "Binance Futures",
+        "price_usd": 79850.0,
+        "notional_usd": 5930000.0
+      },
+      {
+        "wall_id": "L3_AGGREGATED_BID_79529",
+        "exchange": "Hyperliquid / L3 Aggregated",
+        "price_usd": 79529.0,
+        "notional_usd": 14360000.0
+      },
+      {
+        "wall_id": "HL_BID_WALL_79181",
+        "exchange": "Hyperliquid / Binance",
+        "price_usd": 79181.0,
+        "notional_usd": 8490000.0
+      }
+    ],
+    "tp_front_run_clearance_pts": 204.0,
+    "tp_front_run_clearance_bps": 25.7,
+    "tp_footprint_poc_convergence_delta_pts": 0.925,
+    "adverse_selection_projected_r0": -0.038,
+    "hazard_score": 0,
+    "cancel_to_trade_ratio": 0.18,
+    "book_thinning_rate_per_s": 0.0
+  },
+  "fib_invalidation_shelf_check": {
+    "fib_0786_shelf_price": 80441.78,
+    "sl_price": 80620.0,
+    "sl_clearance_above_fib_pts": 178.22,
+    "atr_14_daily": 260.09,
+    "atr_14_15m": 320.0,
+    "half_spread_pts": 8.0,
+    "required_hurdle_pts_daily_atr": 112.04,
+    "required_hurdle_pts_15m_atr": 136.0,
+    "clearance_surplus_pts": 66.18,
+    "sl_geometry_verdict": "PASS_CLEARANCE_EXCEEDS_HURDLE_BY_66_PTS_AND_ANCHORED_BEHIND_38M_WHALE_WALLS"
+  },
+  "tradfye_orderflow_audit": {
+    "sheet_name": "21_Tradfye_Orderflow",
+    "latest_15m_utc": "2026-10-24 19:00:00 UTC",
+    "latest_15m_vol_usd": 32734673.84,
+    "latest_15m_buy_usd": 24272092.75,
+    "latest_15m_sell_usd": 8462581.08,
+    "latest_15m_net_delta_usd": 15809511.67,
+    "latest_15m_net_delta_pct": 0.483,
+    "latest_15m_regime": "AGGRESSIVE_BUYER_DOMINATION_ABSORBED_BY_OVERHEAD_WHALE_WALLS",
+    "retest_15m_utc": "2026-10-24 18:45:00 UTC",
+    "retest_15m_high_usd": 80620.1,
+    "retest_15m_vol_usd": 184306897.15,
+    "retest_15m_net_delta_usd": 69371647.59,
+    "1h_cvd_trend": "MACRO_SELLER_ABSORPTION_CVD_NEGATIVE_AT_80500_RESISTANCE",
+    "deribit_max_pain_usd": 78000.0,
+    "options_gamma_bias": "GRAVITATIONAL_PULL_TOWARD_MAX_PAIN_78000"
+  },
+  "verdict": {
+    "role": "ROLE_B",
+    "ticket": 19274977,
+    "action": "RATIFY_AND_HOLD_SHORT_POSITION",
+    "slot_2_recommendation": "HOLD_IN_TACTICAL_RESERVE",
+    "compliance_status": "100_PERCENT_COMPLIANT"
+  }
+}
