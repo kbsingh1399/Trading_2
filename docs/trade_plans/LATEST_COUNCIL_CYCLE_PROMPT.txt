@@ -242,10 +242,12 @@ Both Arena.ai and Z.ai MUST execute an affirmative and adversarial quantitative 
      - ER(48) < 0.15 -> Choppy / Noise or Mean-Reverting.
   3. **Newey-West HAC Drift t-Statistic**:
      OLS regression of log price on time with Bartlett kernel lag L = floor(4 * (T/100)^(2/9)). |t_drift| >= 2.0 -> Statistically significant drift at 95% confidence.
-  4. **Dual-Engine Strategy Dialectic**:
+  4. **Dual-Engine Strategy Dialectic & Fibonacci Prime EMA Confluence**:
      - **Regime-Gated Execution**: If classify_regime() returns UNDEFINED, stand aside unconditionally across both engines. Never force trades in choppy, non-trending noise.
-     - **Model 1 (Extreme Mean Reversion)**: Admissible ONLY in confirmed MEAN_REVERT regimes (VR(4) < 0.85, z* < -1.64, ER(48) < 0.15) at extreme locations (|Z| >= 2.0 to 3.5 SD) with verified tape exhaustion.
-     - **Model 2 (Trend Following Pullbacks)**: In-range |Z| (|Z| < 2.0 SD, e.g. 0.5 to 1.7 SD) is admissible ONLY when a verified TREND_UP or TREND_DOWN regime is confirmed by HTF structure (VR(4) > 1.15, z* > 1.64, ER(48) >= 0.20, |t_drift| >= 2.0): pullbacks to confirmed shelves (20/50 EMA, VAH/VAL, session VWAP) in the direction of dominant trend, supported by resting L2/L3 whale backing.
+     - **Model 1 (Extreme Mean Reversion)**: Admissible ONLY in confirmed MEAN_REVERT regimes (VR(4) < 0.85, z* < -1.64, ER(48) < 0.15) at extreme locations (|Z| >= 2.0 to 3.5 SD) sweeping Monday High/Low (Mon_H/Mon_L), Session Extremes (Asian_H/L, London_H/L), or Fibonacci 1.272/1.618 extensions with verified tape exhaustion.
+     - **Model 2 (Trend Following Pullbacks)**: In-range |Z| (|Z| < 2.0 SD, e.g. 0.5 to 1.7 SD) is admissible ONLY when a verified TREND_UP or TREND_DOWN regime is confirmed by HTF structure (VR(4) > 1.15, z* > 1.64, ER(48) >= 0.20, |t_drift| >= 2.0):
+       * **Fibonacci Prime EMA Ribbon Alignment**: Strict hierarchy enforced (Bullish: EMA 5 > EMA 13 > EMA 34 > EMA 89 > EMA 144 > EMA 233; Bearish: EMA 5 < EMA 13 < EMA 34 < EMA 89 < EMA 144 < EMA 233). Replaces legacy arbitrary 20/50/100/200 EMAs.
+       * **Fibonacci Golden Zone Gate**: Entry MUST sit inside the Fibonacci Retracement Golden Zone: [0.618 GP, 0.702 OTE] of the prevailing impulse wave, coinciding with Fib-Prime EMA 34/89 or Session VWAP shelves.
   5. **Ornstein-Uhlenbeck (OU) Equilibrium & Adverse Drift Veto**:
      - Discrete regression: x_t - x_{t-1} = a + b * x_{t-1}. Equilibrium mean theta = -a / b.
      - **Adverse Drift Veto**:
@@ -261,9 +263,17 @@ Both Arena.ai and Z.ai MUST execute an affirmative and adversarial quantitative 
   1. **Mandatory 180-Second Whale Wall Persistence Filter**:
      - Candidate limit orders MUST be backed by genuine resting institutional liquidity (notional >= 100,000 USD on crypto).
      - **180-Second Persistence Invariant**: The backing whale order MUST have persisted continuously for at least 180 seconds (`persisted_seconds >= 180s`). Reject any flickering or spoofed order (e.g. 10s old order) as an invalid anchor.
-  2. **Stop Loss Anti-Auction-Void Rule**:
+  2. **Stop Loss Geometry & 0.786 Invalidation Shelf Anchor**:
      - Forbid placing a protective Stop Loss in an empty auction void (e.g. between VWAP +3 sigma and distant EMA).
-     - The Stop Loss must be firmly anchored behind a verified structural barrier (Daily/Weekly VAH/VAL, POC, EMA 100/200, or confirmed resting whale wall) plus a 0.40–0.50 ATR buffer.
+     - **0.786 Invalidation Shelf Rule**: For Model 2 trend pullbacks, the protective Stop Loss MUST sit strictly behind the 0.786 Fibonacci Invalidation Shelf (SL_long = Price_0786 - 0.40 ATR - half_spread; SL_short = Price_0786 + 0.40 ATR + half_spread) and outside any defending resting whale wall or liquidation band.
+     - For Model 1 mean reversion, the Stop Loss must be firmly anchored behind the swept extreme (Monday High/Low, Session High/Low, or Prior Week High/Low) plus a 0.40-0.50 ATR safety buffer.
+  3. **Multi-Timeframe Auction Extremes & Liquidity Sweep Gate**:
+     - Candidates must explicitly evaluate location relative to:
+       * Monday Initial Balance: Mon_H, Mon_L, and Mon_Mid = (Mon_H + Mon_L) / 2.
+       * Session Extremes: Asian High/Low (Asian_H, Asian_L), London Initial Balance (London_IB_H, London_IB_L), London High/Low, and NY High/Low.
+       * Macro Extremes: Current Week High/Low (CWH, CWL), Prior Week High/Low (PWH, PWL), and Prior Month High/Low (CMH, PML).
+       * Value Area Interaction: Developing Value Area (d_VAH, d_VAL, d_POC) vs Prior Day Value Area (pd_VAH, pd_VAL, pd_POC).
+     - Limit entries must NEVER be placed in front of un-swept liquidity pools. Require confirmed sweep and reclaim before staging entries.
   3. **Adverse Selection Markouts**:
      - Compute post-fill markouts: AS(t + dt) = Side * (Mid_{t + dt} - Price_fill).
      - If AS(t + 5m) < -0.15 R0, the limit order suffers from informed toxic flow (winner's curse). Reject entry.
@@ -419,6 +429,9 @@ Each candidate row must contain:
 - `adverse_selection_usd`
 - `evidence_ids`
 - `verdict`
+- `fib_prime_ema_alignment`
+- `fib_golden_zone_confluence`: { `gp_0618`, `gp_0650`, `ote_0702`, `invalidation_shelf_0786`, `entry_status` }
+- `auction_extreme_interaction`: { `monday_ib_relation`, `session_extreme_sweep`, `macro_shelf_relation`, `value_area_status` }
 - `rejection_reasons`
 
 Permitted authorization values:

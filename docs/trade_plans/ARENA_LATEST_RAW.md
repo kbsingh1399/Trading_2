@@ -1,13 +1,10 @@
-\n📚 **Active Skills Loaded & Applied:** `@[using-superpowers]`, `@[systematic-debugging]`, `@[quant-analyst]`, `@[risk-manager]`, `@[risk-metrics-calculation]`, `@[backtesting-frameworks]`, `@[verification-before-completion]`. **Prompt-specified methodologies applied:** variance-ratio/HAC/ER regime gates, OU adverse-drift veto, queue-aware fill modeling, strict solvency and margin admission, cutoff causality, canonical hashing, anti-replay validation, walk-forward calibration requirements, and block-bootstrap uncertainty. The exact packages `@[trader-signal]`, `@[trader-risk]`, `@[market-ingest]`, `@[market-pattern]`, `@[adaptive-wfo-epoch]`, `@[sharpe-ratio-non-iid-corrections]`, `@[time-series-decomposer]`, and `@[clean-code]` were not installed and are not falsely claimed as loaded.\n
+\n📚 **Active Skills Loaded & Applied:** `@[using-superpowers]`, `@[systematic-debugging]`, `@[quant-analyst]`, `@[risk-manager]`, `@[risk-metrics-calculation]`, `@[backtesting-frameworks]`, `@[verification-before-completion]`. **Applied methodologies:** VR/HAC/ER regime validation, OU adverse-drift veto, Fibonacci Prime EMA and auction-location evidence requirements, queue-aware fill modeling, strict solvency/margin admission, cutoff causality, canonical hashing, anti-replay validation, purged walk-forward calibration, and block-bootstrap uncertainty. The exact packages `@[trader-signal]`, `@[trader-risk]`, `@[market-ingest]`, `@[market-pattern]`, `@[adaptive-wfo-epoch]`, `@[sharpe-ratio-non-iid-corrections]`, `@[time-series-decomposer]`, and `@[clean-code]` were not installed and are not falsely claimed as loaded.\n
 \n# Cycle 325 Quantitative Council Audit\n\n\n**Candidate:** `BTCUSD.pi` SELL LIMIT\n
 **Candidate verdict:** `HOLD`\n
 **Provenance:** `DENIED_BAD_CYCLE_ENVELOPE`\n
 **Authorization:** `DENIED_FAIL_CLOSED`\n
-**Broker action:** None.\n\nGraphify was not retried because its known bounded invocation failed with `No module named graphify`; targeted GitHub and file inspection was used instead.\n\n## §1 — Provenance, nonce, receipt, and commit review\n\n\n### Fatal receipt replay failure\n\n\nThe visible receipt nonce matches the envelope textually, but not cryptographically:\n\n- Visible Cycle 325 nonce: `e8e04f37-6a1e-408d-bcda-6af0ca912a4f`\n- Claimed receipt SHA-256:\n
-`58310746fc9bc1e1326a31b22a575677c262371012925ae8b57b9368f8429d3b`\n- Recomputed hash with visible Cycle 325 nonce:\n
-`b93e9cba3bdd89057a4cc6a7443eb1e731c18f91c1d851a9b70495e539df5e08`\n- Recomputed hash after restoring the prior Cycle-324 nonce `fac378e4-…`:\n
-`58310746fc9bc1e1326a31b22a575677c262371012925ae8b57b9368f8429d3b`\n\nThe claimed hash is therefore exactly the old Cycle-324 receipt hash. The receipt was reused, its nonce was edited, and it was not rehashed.\n\n### Other provenance findings\n\n\n| Check | Result |\n| --- | --- |\n| Structural JSON parsing | PASS |\n| Cycle ID normalization | Disputed: attached value is bare `"325"` while generated artifacts use `Cycle-*` |\n| Envelope digest | Unverifiable: no claimed envelope digest field |\n| Canonical attached-envelope hash | `b7465e6f2d4e8230c29e5ec1038249accf2639a471830fa287679903cd42da9e` |\n| Commit/tree existence | PASS; commit is unsigned |\n| Claimed commit contents | **FAIL:** contains Cycle-324 envelope, receipt, nonce, and latest prompt |\n| Prompt digest | **FAIL:** claimed `5f945901…` matches neither committed canonical prompt nor latest-cycle prompt |\n| Manifest digest | PASS |\n| Workbook digest | PASS |\n| Risk-policy digest | PASS |\n| Excel freshness | **FAIL:** both envelope flags are false |\n| Macro-calendar freshness | **FAIL:** 1,995.030873 seconds old versus 900-second maximum |\n| Snapshot availability | **FAIL:** all latest manifest-referenced source blobs are absent |\n\n\n## §2 — Role A: Statistical regime and diffusion\n\n\nNo authenticated bar matrix or regime outputs were supplied. Therefore the following are all unavailable:\n\n- VR(4) and heteroskedasticity-corrected z∗z^*z∗\n- ER(48)\n- Newey-West HAC drift statistic\n- AR(1)/OU equilibrium θ\thetaθ and half-life\n- ATR and standardized price location\n- Tail and volatility-state estimates\n- Completed-bar count\n- Purged/adaptive walk-forward validation\n- Effective sample size and uncertainty intervals\n\nThe SELL adverse-drift veto cannot be evaluated. Regime is `UNDEFINED`; neither mean reversion nor trend-pullback admission is established.\n\n**Role A: `HOLD_MISSING_REGIME_AND_CALIBRATION_EVIDENCE`.**\n\n## §3 — Role B: Microstructure and order geometry\n\n\nThe historical receipt geometry recomputes correctly:\n\n- Historical bid/ask/mid: `80,503 / 80,519 / 80,511`\n- Historical spread: `16`, or `1.987306 bps`\n- Entry was `631` points or `78.3666 bps` above the historical ask.\n- Entry-to-target distance: `600` points.\n- Historical spread/target ratio: `2.6667%`.\n\nBut the receipt cannot govern Cycle 325:\n\n- Tick: `09:15:01 UTC`\n- Observation: `09:15:08 UTC`\n- Cycle cutoff: `09:46:49 UTC`\n- Tick-to-freeze age: **1,908 seconds**\n- Maximum: **60 seconds**\n- Excess: **1,848 seconds**\n- Theoretical expiry: `09:16:01 UTC`\n\nThus current spread, current distance-to-entry, order feasibility, and current market geometry are unknown.\n\nNo authenticated 180-second L2/L3, CVD, queue, whale-wall, stop-anchor, target-cluster, or adverse-selection evidence exists.\n\n**Role B: `HOLD_STALE_PREFLIGHT_AND_MISSING_180_SECOND_MARKET_EVIDENCE`.**\n\n## §4 — Role C: Solvency and broker arithmetic\n\n\nThe fixed-price arithmetic is independently reproducible but conditional on stale, unauthenticated Cycle 325 account evidence:\n\n| Calculation | Result |\n| --- | --- |\n| SL loss | `(81,450−81,150)×0.05 = $15.00` |\n| TP reward | `(81,150−80,550)×0.05 = $30.00` |\n| Raw RR | `2.00` |\n| Historical spread cost | `$0.80` |\n| Receipt stress convention | `$21.75` |\n| Prompt stress convention | `$21.55` |\n| SOP literal convention | `$20.75` |\n| Conservative ticket stress | `$21.75` |\n| Admission stress with global reserve | `$23.75` |\n| Conditional post-stress balance | `$4,841.32` |\n| Conditional kernel surplus | `$46.32` |\n| Required margin | `$2,028.75` |\n| Margin utilization | `41.7003%` |\n| Conditional margin level | `239.8063%` |\n| Conditional free margin | `$2,836.32` |\n\n\nTwo-ticket capacity is not preserved:\n\n- Remaining capacity under the 50% cap: `$403.785`\n- Margin for a second minimum `0.01` BTC ticket: `$405.75`\n- Shortfall: `$1.965`\n- Two equal `0.05` tickets: `83.4006%` margin utilization and about `119.90%` margin level\n\n**Role C: `DENY_OVERALL_DESPITE_CONDITIONAL_ONE_TICKET_ARITHMETIC_PASS`.**\n\n## §5 — Role D: Clock, calendar, inventory, and universe\n\n\n- Strict ordering passes: `tick < observation < cutoff`.\n- The 60-second freeze-age gate fails by 1,848 seconds.\n- Saturday classification supports crypto-only operation; TradFi is closed.\n- Cutoff was outside the FX rollover embargo.\n- Macro calendar age was `1,995.030873s`, so its apparent lack of nearby events cannot pass the calendar hard gate.\n- Excel audit age was `3,556s`; five stale sheets were reported.\n- Manifest metadata was relatively recent:
-\n- Telemetry/account: 165 seconds\n- Coinglass: 423.759191 seconds\n- Forex Factory: 377 seconds\n- Arkham: 252,594 seconds\n\n- All corresponding latest blobs are absent from the claimed Git tree.\n- Flat inventory and zero margin cannot be independently reconstructed.\n- No cutoff-current quote row is verified.\n- No 156-asset scan or 11-symbol crypto eligibility list is reconstructable.\n\n**Role D: `DENY_FATAL_RECEIPT_REPLAY_CYCLE_PROMPT_CALENDAR_AND_RECONSTRUCTABILITY_FAILURES`.**\n\n## §6 — Candidate probability and calibrated utility board\n\n\n| Candidate | Static RR | Arithmetic PBE | Calibrated values | Verdict |\n| --- | --- | --- | --- | --- |\n| `BTCUSD.pi` SELL LIMIT `81,150`, SL `81,450`, TP `80,550`, `0.05` | `2.00` | Frictionless `33.3333%`; historical-spread benchmark `35.1111%` | `P_fill=null`, `P_win_given_fill=null`, ESS=`null`, EV=`null`, LCB=`null`, utility=`null` | **HOLD** |\n\n\nNo TTL, timeout branch, partial-fill model, current spread, slippage distribution, funding cost, adverse-selection estimate, calibration sample, or joint bootstrap exists. The EV equation cannot be evaluated.\n\nNo independently authenticated Antigravity or Z.ai output was attached; the persona assessments are governance analyses, not invented external votes.\n\n## §7 — Arbitration and authorization\n\n\n| Role | Decision |\n| --- | --- |\n| Role A | HOLD |\n| Role B | HOLD |\n| Role C | DENY |\n| Role D | DENY |\n| Senior arbiter | `DENIED_FAIL_CLOSED` |\n\n\nThe valid static risk geometry does not override receipt replay, quote expiry, stale macro/workbook evidence, missing source blobs, or absent calibrated signals.\n\n- `provenance_status = DENIED_BAD_CYCLE_ENVELOPE`\n- Candidate `verdict = HOLD`\n- `authorization = DENIED_FAIL_CLOSED`\n- No order was transmitted, modified, or cancelled.\n- No repository commit, push, or pull request was created.\n\n## §8 — Continuous Kaizen Inquest\n\n\n### Skills and methodology optimization\n\n\n1. Add a deterministic anti-replay validator before council dispatch.\n2. Generate the nonce first, then generate and hash a fresh receipt for that nonce.\n3. Include both `receipt_sha256` and an envelope digest in a signed bundle.\n4. Reject preflight receipts older than 60 seconds at envelope freeze.\n5. Require fresh calendar, workbook audit, inventory, and source blobs before publishing.\n6. Validate a canonical `cycle_id` format.\n7. Build purged walk-forward calibration with recorded feature, label, model, and epoch versions.\n8. Model fill and post-fill outcomes separately and propagate dependence through block bootstrap.\n\n### Omitted risk dimensions\n\n\n- Cross-cycle receipt substitution and replay\n- Weekend broker/underlying basis dislocation\n- Gap-through-stop execution\n- Spread and margin-rate expansion while pending\n- Funding, commission, conversion, and overnight financing\n- Partial fills and cancellation latency\n- Whale-wall spoofing and polarity inversion\n- BTC concentration across concurrent tickets\n- Exchange outage, oracle divergence, and liquidation cascade risk\n- Calibration drift and effective-sample-size collapse\n\n### Algorithmic alternatives\n\n\n- Marked Hawkes processes\n- Robust Kalman/state-space basis models\n- GARCH/EGARCH and realized-volatility cones\n- Survival fill models and competing-risk outcome models\n- Isotonic, beta, or Platt calibration under purged OOS tests\n- HMM/Bayesian online change-point regimes\n- Moving/stationary-block bootstrap and conformal intervals\n- Queue-reactive point-process spoof classifiers\n\n## Required JSON\n\n\n`response_sha256` is computed over compact canonical JSON with sorted keys, excluding the `response_sha256` member.\n\n```\n{
+**Broker action:** None.\n\nGraphify was not retried because its known invocation fails with `No module named graphify`; bounded, targeted GitHub and file inspection was used.\n\n## §1 — Provenance, cryptographic integrity, and schema\n\n\n### Fatal nonce/receipt replay\n\n\nThe visible nonce matches textually but not cryptographically:\n\n- Cycle 325 nonce: `e8e04f37-6a1e-408d-bcda-6af0ca912a4f`\n- Claimed receipt hash: `58310746fc9bc1e1326a31b22a575677c262371012925ae8b57b9368f8429d3b`\n- Recomputed with visible nonce: `b93e9cba3bdd89057a4cc6a7443eb1e731c18f91c1d851a9b70495e539df5e08`\n- Recomputed with prior Cycle-324 nonce `fac378e4-…`: exactly `58310746fc9bc1e1326a31b22a575677c262371012925ae8b57b9368f8429d3b`\n\nThis proves the Cycle-324 receipt was reused and its nonce edited without rehashing.\n\n### Other provenance failures\n\n\n- Commit `ed89a019…` and tree `4cdab54e…` exist, but the commit is unsigned.\n- The claimed commit contains Cycle-324 envelope, receipt, nonce, and latest prompt—not Cycle 325.\n- Claimed prompt hash `5f945901…` matches neither:
+\n- Canonical mirrors: `00d027ff…`\n- Latest committed cycle prompt: `76837f1e…`\n\n- The newly added Fibonacci Prime EMA, Golden Zone, 0.786 invalidation, auction-extreme, and response-schema markers are absent from both claimed-commit prompt artifacts.\n- The attached bare cycle ID `"325"` differs from the observed generated convention `Cycle-*`.\n- Manifest, workbook, and risk-policy hashes pass.\n- No claimed envelope digest exists, and the envelope does not carry `receipt_sha256`.\n\n## §2 — Role A: Regime, diffusion, Fibonacci, and OU\n\n\nNo authenticated point-in-time bars or features support:\n\n- VR(4), robust z∗z^*z∗, ER(48), HAC drift\n- OU equilibrium, half-life, or adverse-drift veto\n- EMA 5/13/34/89/144/233 values or hierarchy\n- Deterministic impulse anchors\n- Fibonacci 0.618, 0.650, 0.702, or 0.786 levels\n- Golden Zone entry classification\n- Adaptive walk-forward or out-of-sample diagnostics\n\nAll Fib/EMA numeric fields are therefore `null`; regime remains `UNDEFINED`.\n\n**Role A:** `HOLD_MISSING_REGIME_AND_CALIBRATION_EVIDENCE`.\n\n## §3 — Role B: Microstructure, auction extremes, and geometry\n\n\nHistorical arithmetic:\n\n- Historical bid/ask/mid: `80,503 / 80,519 / 80,511`\n- Historical spread: `1.987306 bps`\n- Entry was historically `631` points or `78.3666 bps` above ask.\n- Historical spread/target-distance ratio: `2.6667%`\n\nBut the quote expired:\n\n- Tick: `09:15:01 UTC`\n- Cutoff: `09:46:49 UTC`\n- Age at cutoff: `1,908s`\n- Allowed freeze age: `60s`\n- Excess: `1,848s`\n\nUnavailable evidence includes:\n\n- 180-second L2/L3 and CVD\n- Whale-wall persistence and polarity\n- Monday initial balance\n- Asian/London/New York sweeps\n- Current/prior week and month shelves\n- Developing/prior-day VAH, VAL, and POC\n- 0.786 stop invalidation shelf\n- ATR buffer\n- TP liquidity cluster\n- Adverse-selection markouts\n\n**Role B:** `HOLD_STALE_PREFLIGHT_AND_MISSING_180_SECOND_MARKET_EVIDENCE`.\n\n## §4 — Role C: Solvency and broker arithmetic\n\n\n| Metric | Result |\n| --- | --- |\n| SL loss | `$15.00` |\n| TP reward | `$30.00` |\n| Raw RR | `2.00` |\n| Historical spread cost | `$0.80` |\n| Conservative ticket stress | `$21.75` |\n| Admission stress with reserve | `$23.75` |\n| Conditional post-stress balance | `$4,841.32` |\n| Kernel surplus | `$46.32` |\n| Margin required | `$2,028.75` |\n| Margin utilization | `41.7003%` |\n| Conditional margin level | `239.8063%` |\n| Remaining capacity under 50% cap | `$403.785` |\n| Minimum second 0.01 BTC margin | `$405.75` |\n| Second-ticket shortfall | `$1.965` |\n\n\nOne-ticket arithmetic conditionally passes, but inventory and account state are not cutoff-authenticated. The claimed 0.05 size does not preserve minimum second-BTC-ticket capacity.\n\n**Role C:** `DENY_OVERALL_DESPITE_CONDITIONAL_ONE_TICKET_ARITHMETIC_PASS`.\n\n## §5 — Role D: Clock, calendar, workbook, and universe\n\n\n- Timestamp ordering passes, but freshness fails.\n- Macro calendar age: `1,995.030873s > 900s`; blackout status is unknown.\n- Excel audit age: `3,556s > 900s`; both envelope freshness flags are false.\n- Manifest age: 165 seconds, but all latest source blobs are absent.\n- Arkham metadata is approximately 252,594 seconds old.\n- Flat inventory cannot be reconstructed.\n- No cutoff-current quote row is verified.\n- No complete 156-asset classification or 11-symbol eligible-crypto set is reproducible.\n- Saturday crypto-only market classification passes; TradFi is closed.\n- Cutoff is outside the rollover embargo.\n\n**Role D:** `DENY_FATAL_RECEIPT_REPLAY_CYCLE_PROMPT_CALENDAR_AND_RECONSTRUCTABILITY_FAILURES`.\n\n## §6 — Candidate probability and utility board\n\n\n| Candidate | Static RR | Probability/calibration | Fib/auction evidence | Verdict |\n| --- | --- | --- | --- | --- |\n| `BTCUSD.pi` SELL LIMIT `81,150`, SL `81,450`, TP `80,550`, 0.05 | `2.00` | `P_fill=null`, `P_win_given_fill=null`, ESS/EV/LCB/utility=`null` | All required levels and relations unavailable | **HOLD** |\n\n\nThe frictionless `33.3333%` and historical-spread `35.1111%` break-even values are arithmetic benchmarks—not calibrated forecasts.\n\n## §7 — Arbitration and authorization\n\n\n| Role | Vote |\n| --- | --- |\n| Role A | HOLD |\n| Role B | HOLD |\n| Role C | DENY |\n| Role D | DENY |\n| Senior arbiter | `DENIED_FAIL_CLOSED` |\n\n\nNo authenticated Antigravity or Z.ai artifact was supplied; no external vote is invented.\n\n- `provenance_status = DENIED_BAD_CYCLE_ENVELOPE`\n- `verdict = HOLD`\n- `authorization = DENIED_FAIL_CLOSED`\n- No order was transmitted, modified, or cancelled.\n- No repository commit, push, or pull request was created.\n\n## §8 — Continuous Kaizen Inquest\n\n\n### Skills and methodology optimization\n\n\n1. Generate nonce before receipt creation; prohibit post-hash nonce edits.\n2. Validate cycle, nonce, receipt digest, prompt bytes, quote age, calendar age, workbook age, inventory, and source objects before dispatch.\n3. Version canonical prompt and response schema atomically.\n4. Include `receipt_sha256` and envelope digest in a signed bundle.\n5. Generate EMA/Fibonacci/auction features from timestamped, deterministic anchors.\n6. Freeze session boundaries and swing anchors before scoring to prevent look-ahead bias.\n7. Use purged walk-forward probability calibration and dependent-data bootstrap intervals.\n\n### Omitted risks\n\n\n- Receipt replay and cross-cycle substitution\n- Subjective Fib anchor and data-snooping bias\n- Session/DST boundary errors\n- False cross-venue sweep/reclaim signals\n- Weekend CFD basis dislocation\n- Gap-through-stop execution\n- Spread/margin expansion\n- Funding, partial fills, queue loss, and cancellation latency\n- Correlated BTC exposure\n- Calibration drift and effective-sample-size collapse\n\n### Algorithmic alternatives\n\n\n- Marked Hawkes order-flow models\n- Kalman/state-space basis estimation\n- GARCH/EGARCH volatility cones\n- Survival and competing-risk outcome models\n- Isotonic/beta/Platt calibration\n- HMM/Bayesian change-point regimes\n- Block bootstrap and conformal bounds\n- Deterministic multiscale pivot segmentation\n- Hierarchical Bayesian incremental-confluence testing\n\n## Required JSON\n\n\n```\n{
   "schema_version": "1.0.0",
   "cycle_id": "325",
   "cutoff_utc": "2026-10-24 09:46:49 UTC",
@@ -65,7 +62,11 @@
     "macro_calendar_status": "FAIL_STALE_AT_CUTOFF",
     "macro_calendar_age_at_cutoff_seconds": 1995.030873,
     "macro_calendar_max_age_seconds": 900.0,
-    "tier_1_events_within_30_minutes_in_stale_file": []
+    "tier_1_events_within_30_minutes_in_stale_file": [],
+    "attached_prompt_fibonacci_schema_claimed": true,
+    "committed_standard_prompt_fibonacci_markers_present": false,
+    "committed_latest_prompt_fibonacci_markers_present": false,
+    "prompt_schema_feature_binding_status": "FAIL_VISIBLE_FIBONACCI_AND_AUCTION_SCHEMA_NOT_PRESENT_IN_CLAIMED_COMMIT_PROMPTS"
   },
   "inventory_status": "UNVERIFIED_CLAIMED_FLAT",
   "hard_gate_results": {
@@ -102,7 +103,12 @@
     "target_liquidity_geometry": "FAIL_UNPROVEN",
     "probability_calibration": "FAIL_MISSING",
     "positive_ev_lower_bound": "FAIL_NOT_COMPUTABLE",
-    "overall": "FAIL_CLOSED"
+    "overall": "FAIL_CLOSED",
+    "prompt_schema_feature_binding": "FAIL",
+    "fib_prime_ema_alignment": "FAIL_MISSING",
+    "fib_golden_zone_confluence": "FAIL_MISSING",
+    "fib_0786_invalidation_stop_anchor": "FAIL_MISSING",
+    "auction_extreme_sweep_and_reclaim": "FAIL_MISSING"
   },
   "universe_coverage": {
     "claimed_total_assets": 156,
@@ -264,13 +270,40 @@
         "The 09:15:01 UTC quote was 1908 seconds old at the 09:46:49 UTC freeze, exceeding the 60-second limit by 1848 seconds.",
         "The claimed commit contains Cycle-324 artifacts and prompt material rather than the attached Cycle 325 envelope and receipt.",
         "The claimed prompt digest cannot be reproduced from either canonical prompt mirror or the latest cycle prompt in the claimed commit.",
+        "The newly asserted Fibonacci Prime EMA, Golden Zone, 0.786 invalidation, and auction-extreme schema is absent from both prompt artifacts in the claimed commit.",
         "Both envelope Excel freshness flags are false; the available Excel audit was 3556 seconds old at cutoff and reported five stale sheets.",
         "The macro calendar was 1995.030873 seconds old at cutoff, exceeding the 900-second limit; no-blackout status is therefore unknown.",
         "All latest data blobs referenced by the evidence manifest are absent from the claimed Git tree, preventing row-level reconstruction.",
         "Flat inventory and current account state cannot be independently reconstructed from the missing account-equity snapshot.",
         "No authenticated regime, 180-second microstructure, stop-anchor, target-cluster, probability-calibration, or adverse-selection evidence was supplied.",
+        "No point-in-time EMA 5/13/34/89/144/233 hierarchy, Fibonacci 0.618/0.650/0.702/0.786 levels, impulse anchors, Monday/session/macro extremes, sweep-reclaim evidence, or value-area levels were supplied.",
         "The proposed 0.05-lot ticket leaves only 403.785 USD of margin capacity, less than the 405.75 USD required for a second minimum 0.01-lot BTC ticket at the same entry."
-      ]
+      ],
+      "fib_prime_ema_alignment": {
+        "ema_5": null,
+        "ema_13": null,
+        "ema_34": null,
+        "ema_89": null,
+        "ema_144": null,
+        "ema_233": null,
+        "bullish_hierarchy_verified": null,
+        "bearish_hierarchy_verified": null,
+        "alignment_status": "UNKNOWN_MISSING_POINT_IN_TIME_EMA_SERIES",
+        "evidence_timestamp_utc": null
+      },
+      "fib_golden_zone_confluence": {
+        "gp_0618": null,
+        "gp_0650": null,
+        "ote_0702": null,
+        "invalidation_shelf_0786": null,
+        "entry_status": "UNKNOWN_MISSING_IMPULSE_ANCHORS_AND_FIBONACCI_LEVELS"
+      },
+      "auction_extreme_interaction": {
+        "monday_ib_relation": "UNKNOWN_MISSING_MONDAY_HIGH_LOW_AND_MID",
+        "session_extreme_sweep": "UNKNOWN_MISSING_ASIAN_LONDON_NEW_YORK_SWEEP_AND_RECLAIM_DATA",
+        "macro_shelf_relation": "UNKNOWN_MISSING_CURRENT_PRIOR_WEEK_AND_MONTH_EXTREMES",
+        "value_area_status": "UNKNOWN_MISSING_DEVELOPING_AND_PRIOR_DAY_VAH_VAL_POC"
+      }
     }
   ],
   "arithmetic_validation": {
@@ -387,6 +420,11 @@
       "id": "D12_UNIVERSE_COVERAGE",
       "severity": "MATERIAL",
       "finding": "The stated 156-asset and 11 spread-eligible-crypto counts are unsupported by retrievable row-level evidence; only one quote row is attached."
+    },
+    {
+      "id": "D13_CANONICAL_PROMPT_SCHEMA_DRIFT",
+      "severity": "FATAL",
+      "finding": "The visible prompt adds Fibonacci Prime EMA, 0.618/0.650/0.702/0.786, auction-extreme, and new candidate-row requirements, but none of those markers appears in either claimed-commit prompt artifact; the visible prompt still claims an unreproducible digest."
     }
   ],
   "unknowns": [
@@ -405,7 +443,13 @@
     "TTL, fill hazard, timeout outcomes, and partial-fill branches",
     "Out-of-sample calibration diagnostics and effective sample size",
     "Joint block-bootstrap EV distribution and fifth-percentile lower bound",
-    "Independent authenticated Antigravity and Z.ai council outputs"
+    "Independent authenticated Antigravity and Z.ai council outputs",
+    "Point-in-time EMA 5, 13, 34, 89, 144, and 233 values and hierarchy",
+    "Objective impulse anchors and Fibonacci 0.618, 0.650, 0.702, and 0.786 levels",
+    "Monday initial-balance high, low, and midpoint relations",
+    "Asian, London, and New York extreme sweep-and-reclaim evidence",
+    "Current/prior week and month shelf relations",
+    "Developing and prior-day VAH, VAL, and POC status"
   ],
   "methodology_critique_and_improvements": {
     "critique": [
@@ -417,7 +461,8 @@
       "The stress ledger has three inconsistent spread conventions.",
       "Ticket-count capacity is conflated with economic margin capacity.",
       "A single stale quote and copied order_check cannot establish cutoff-current spread or geometry and cannot estimate regime, fill probability, conditional win probability, or adverse selection.",
-      "The envelope lacks a receipt_sha256 field and the cycle bundle is not reproducible from the claimed commit."
+      "The envelope lacks a receipt_sha256 field and the cycle bundle is not reproducible from the claimed commit.",
+      "The visible prompt introduces new Fibonacci and auction-schema requirements without updating either claimed-commit prompt artifact, creating governance schema drift."
     ],
     "improvements": [
       "Generate a new nonce first and then generate, hash, and freeze a new receipt for that nonce; never edit nonce text after hashing.",
@@ -427,7 +472,10 @@
       "Make the manifest validator retrieve and hash every referenced blob before setting data-integrity PASS.",
       "Include receipt_sha256 and an envelope digest in a signed content-addressed cycle bundle.",
       "Use one typed cost ledger and reserve margin jointly across every independently fillable ticket scenario.",
-      "Require point-in-time regime and microstructure feature matrices plus calibration-model version IDs for every candidate."
+      "Require point-in-time regime and microstructure feature matrices plus calibration-model version IDs for every candidate.",
+      "Version the response schema and canonical prompt together; reject dispatch when newly required fields are absent from the commit-pinned prompt.",
+      "Compute Fibonacci levels only from deterministic, timestamped impulse anchors and publish anchor-selection rules to prevent hindsight bias.",
+      "Publish session-calendar, Monday-initial-balance, macro-shelf, and value-area features with timezone and daylight-saving definitions."
     ]
   },
   "section_8_kaizen": {
@@ -437,7 +485,9 @@
       "Build purged adaptive walk-forward pipelines with non-overlapping test epochs and explicit model, feature, label, and calibration versions.",
       "Report VR, robust z, ER, HAC drift, OU parameters, stationarity checks, tail metrics, and uncertainty from one point-in-time bar cut.",
       "Calibrate fill and outcome probabilities separately and propagate their dependence through a time-blocked joint bootstrap.",
-      "Do not claim unavailable named skill packages as loaded; provenance-pin them before relying on package-specific behavior."
+      "Do not claim unavailable named skill packages as loaded; provenance-pin them before relying on package-specific behavior.",
+      "Add deterministic point-in-time EMA ribbon, swing-anchor, Fibonacci Golden Zone, 0.786 invalidation, and auction-extreme feature generation to the evidence bundle.",
+      "Guard Fibonacci and auction features against look-ahead bias by freezing impulse anchors and session boundaries before candidate scoring."
     ],
     "omitted_risk_dimensions": [
       "Replay and cross-cycle receipt substitution risk",
@@ -449,7 +499,10 @@
       "Whale-wall spoofing, polarity inversion, replenishment, and cross-venue migration",
       "BTC-beta concentration and correlated margin demand from a second crypto ticket",
       "Liquidation cascades, exchange outages, oracle divergence, and broker price bands",
-      "Calibration drift, class imbalance, multiple-testing bias, and effective-sample-size collapse"
+      "Calibration drift, class imbalance, multiple-testing bias, and effective-sample-size collapse",
+      "Subjective swing-anchor selection and Fibonacci data-snooping bias",
+      "Session-boundary, timezone, and daylight-saving misclassification",
+      "False sweep-and-reclaim signals caused by fragmented cross-venue liquidity"
     ],
     "algorithmic_alternatives": [
       "Marked Hawkes processes for clustered arrivals, cancellations, and self-exciting liquidation flow",
@@ -459,7 +512,9 @@
       "Isotonic, beta, or Platt calibration selected only through purged out-of-sample scoring",
       "Hidden Markov or Bayesian online change-point models for regime transitions",
       "Stationary or moving-block bootstrap and conformal prediction for dependent uncertainty bounds",
-      "Queue-reactive marked point-process models and spoof-probability classifiers"
+      "Queue-reactive marked point-process models and spoof-probability classifiers",
+      "Deterministic multiscale pivot or change-point segmentation instead of discretionary impulse selection",
+      "Hierarchical Bayesian confluence models that estimate incremental value of Fibonacci, EMA, and auction features out of sample"
     ]
   },
   "council_votes": {
@@ -471,5 +526,5 @@
   },
   "authorization": "DENIED_FAIL_CLOSED",
   "transmission_status": "NO_ORDER_TRANSMITTED_MODIFIED_OR_CANCELLED",
-  "response_sha256": "cbb89cb5aa8d3cd8ed1ed96e27678206ee1db984c9290c08b95e602bf75a18f8"
+  "response_sha256": "8b24b0bc8aa9412700c37e6ba9f6b5fe8e445b36a94dc9c815003533e6db5e46"
 }\n```\n
