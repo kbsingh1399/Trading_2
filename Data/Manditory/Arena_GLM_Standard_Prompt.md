@@ -9,11 +9,42 @@
 >   3. **Z.ai Sovereign Council**: Co-Equal Mathematical Quant & Solvency Arbiter powered by **GLM-5.3-Flash**.  
 > **Target Account**: Blueberry Markets MT5 Account #5064568  
 > **Active Goal**: Pass Phase 1 (Target: 5,500.00 USD) while defending the 4,600.00 USD Hard Floor, 4,650.00 USD Operating Buffer, and 4,795.00 USD Solvency Kernel  
-> **Canonical Repo**: `https://github.com/kbsingh1399/Trading_2.git` (Branch `main`)  
+> **Canonical Repositories**:  
+>   - Core Trading: `https://github.com/kbsingh1399/Trading_2.git` (Branch `main`)  
+>   - Dual-Repo Twin: `https://github.com/kbsingh1399/Engine_2.git` (Parity mirror)  
+>   - Heretic Microstructure Daemon: `https://github.com/p-e-w/heretic.git`  
+>   - Web2API Council Daemon: `https://github.com/Sophomoresty/gemini-web2api.git` / `https://github.com/Endogen/web2api`  
+>   - Prime Intellect Compute CLI: `https://github.com/PrimeIntellect-ai/prime.git`  
+>   - Everything Claude Code (ECC) Skills: `https://github.com/affaan-m/ECC.git` (3,478 skills)  
+>   - Ponytail Architecture Auditor: `https://github.com/dietrichgebert/ponytail.git`  
+>   - Future AGI Harness: `https://github.com/future-agi/future-agi.git`  
+>   - Historical Backtesting Data: `https://github.com/kbsingh1399/Backtesting_Data.git`  
+>   - Quant Backtesting Engine: `https://github.com/kbsingh1399/Engine.git`  
 > **Governing Quant SOP**: [`Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md)  
 > **Mandatory Kaizen & Pitfall Autopsy**: [`Data/Manditory/TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md), [`Data/Manditory/CONTINUOUS_KAIZEN_SELF_IMPROVEMENT_PROTOCOL.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/CONTINUOUS_KAIZEN_SELF_IMPROVEMENT_PROTOCOL.md), and [`Data/Manditory/32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md).  
-> **Operator Mandate**: "Arena.ai and Z.ai should both find potential candidates with all personas... not just a red team. Save tokens. Add value. Antigravity takes autonomous calls. Prompts to subagents and council must be quantitative 360-degree type, exhaustive, pulling all subagent prompt types all in one prompt."  
+> **Operator Mandate**: "Arena.ai and Z.ai should both find potential candidates with all personas... not just a red team. Save tokens. Add value. Antigravity takes autonomous calls. Prompts to subagents and council must be quantitative 360-degree type, exhaustive, pulling all subagent prompt types all in one prompt. Use maximum skills/agents for this response and answer the Section 8 Continuous Kaizen Inquest."  
 > **Token Preservation Directive**: Always query the AST Knowledge Graph via `/graphify` or `python -m graphify query "<concept/symbol>"` before reading large code files.
+
+---
+
+## 🧠 MANDATORY MULTI-SKILL & SPECIALIZED AGENT MOBILIZATION DIRECTIVE
+
+To achieve peak quantitative precision and avoid naive or superficial responses, both Arena.ai (GPT Astra) and Z.ai (GLM-5.3-Flash) are commanded to **mobilize and apply the maximum relevant quantitative methodologies, skills, and agent roles** across all touched domains:
+- `trader-signal`: Z-score anomaly detection, regime classification, and statistical signal generation.
+- `trader-risk`: Portfolio VaR/CVaR, fractional Kelly sizing, margin collateralization gates, and circuit breakers.
+- `market-ingest`: OHLCV vectors, L2/L3 orderbook depth aggregation, and CVD delta tracking.
+- `market-pattern`: Structural candlestick patterns, sweep/reclaim validation, and exhaustion classification.
+- `adaptive-wfo-epoch`: Adaptive epoch selection, non-overlapping walk-forward window calibration.
+- `sharpe-ratio-non-iid-corrections`: Heteroskedasticity and autocorrelation adjustments for variance ratios.
+- `time-series-decomposer`: Decomposition into trend, session cycle, and stationary residual components.
+- `clean-code`: Pragmatic, unambiguous structural constraints without narrative hand-waving.
+- `systematic-debugging`: Rigorous root cause analysis, proving causality before assertions.
+
+**Mandatory Response Header Requirement**:
+At the very top of your written response, you MUST include an explicit header confirming the active methodologies and skills applied:
+```markdown
+> 📚 **Active Skills Loaded & Applied:** `@[trader-signal]`, `@[trader-risk]`, `@[market-ingest]`, `@[clean-code]`, ...
+```
 
 ---
 
@@ -173,9 +204,9 @@ Separate hard gates from calibrated ranking. Hard-gate survivors are evaluated u
 
 ---
 
-## 🏛️ PART 3: CONTINUOUS KAIZEN & METHODOLOGY IMPROVEMENT INQUEST
+## 🏛️ PART 3: CONTINUOUS KAIZEN & METHODOLOGY IMPROVEMENT INQUEST (STRICTLY MANDATORY)
 
-In every evaluation cycle, the council MUST provide an explicit meta-evaluation answering:
+In every evaluation cycle, both Arena.ai and Z.ai MUST provide an explicit meta-evaluation answering:
 - **Skills & Methodology Optimization**: How could our response, mathematical precision, and candidate discovery be fundamentally improved using all available relevant quantitative methodologies, skills, and agent roles?
 - **Omitted Risk Dimensions**: What hidden execution risks, cross-asset correlations, spread expansions, or microstructural traps were omitted or underestimated?
 - **Algorithmic Alternatives**: What superior statistical or machine learning alternatives (e.g. Hawkes processes for order arrival, Kalman filters for spread estimation, GARCH volatility cones, Isotonic probability calibration) should be integrated into our next cycle?
@@ -205,6 +236,11 @@ The JSON object must contain:
 - `disputes`
 - `unknowns`
 - `methodology_critique_and_improvements`
+- `section_8_kaizen`: {
+    `skills_and_methodology_optimization`,
+    `omitted_risk_dimensions`,
+    `algorithmic_alternatives`
+  }
 - `authorization`
 - `response_sha256`
 

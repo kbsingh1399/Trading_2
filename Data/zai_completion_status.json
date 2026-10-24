@@ -1,11 +1,11 @@
 {
-  "completed_at_utc": "2026-10-24 07:43:07 UTC",
-  "completed_at_epoch": 1792827787.881678,
-  "prose_count": 16,
-  "text_length": 17159,
-  "workspace_file_name": "",
+  "completed_at_utc": "2026-10-24 07:56:40 UTC",
+  "completed_at_epoch": 1792828600.0217688,
+  "prose_count": 17,
+  "text_length": 5494,
+  "workspace_file_name": "INDEX.md",
   "workspace_file_length": 3267,
-  "text_hash": "e8f20dcfcd0ef52a",
+  "text_hash": "10d11a0d69817596",
   "is_generating": false,
   "latest_raw_path": "C:\\Users\\SIGMA\\Documents\\Trading_2\\docs\\trade_plans\\ZAI_LATEST_RAW.md",
   "latest_attachment_path": "C:\\Users\\SIGMA\\Documents\\Trading_2\\docs\\trade_plans\\ZAI_LATEST_ATTACHMENT.md"
