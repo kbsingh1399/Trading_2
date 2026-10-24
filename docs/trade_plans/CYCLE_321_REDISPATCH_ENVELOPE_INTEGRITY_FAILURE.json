@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0.0",
+  "cycle_id": "Cycle 321 (re-dispatch)",
+  "cutoff_utc": "2026-10-24 06:55:20 UTC",
+  "dispatch_nonce": "77b50a3b-f40e-4a17-bd0a-a470f2b64571",
+  "envelope_uuid": "6e6b7857-e9ac-4d0e-b677-a2bdde045335 (same uuid as the earlier Cycle 321 envelope, with different provenance)",
+  "declared_evidence_commit": "81fdf4161e0727e74ad37bb2cbefd73909a3b0c7 (tree e5851140), committed 2026-10-24 06:56:09 UTC, 49 s AFTER cutoff.",
+  "verifier_result": "ENVELOPE_INTEGRITY_VERIFIED (exit 0) because the commit and tree resolve. The integrity pass does not test commit time, so it misses this defect.",
+  "authorization": "DENIED_BAD_CYCLE_ENVELOPE",
+  "reasons": [
+    {
+      "class": "post-cutoff",
+      "finding": "The declared git_commit 81fdf416 was created 49 s after the cycle cutoff. The envelope binds to evidence that did not exist at cutoff. This is a clear rule violation, not a judgment call."
+    },
+    {
+      "class": "digest-mismatched",
+      "finding": "prompt_sha256 146f4eb3332ce3c5387367a7e3b57d11d793dc7b992679252d9e0e2df3528380 matches no prompt file in the tree. The commit message 'verified matching prompt digest' is not supported: docs/prompts/ARENA_CYCLE_321_COUNCIL_PROMPT.md = ae23e1c9…; docs/prompts/Arena_GLM_Standard_Prompt.md = d69e32ba… at 81fdf416 and 2f10a896… on main; Data/Manditory = 2b436bee… (template)."
+    }
+  ],
+  "receipt_observations": [
+    "Receipt dispatch_nonce is the empty string, not 77b50a3b. Its nonce does not bind to this dispatch.",
+    "Receipt observed_at 07:27:20 UTC and tick 07:27:19 UTC are 32 min AFTER cutoff. The receipt is post-cutoff and inadmissible.",
+    "Receipt geometry: SELL_LIMIT 0.10 @ 80,950, SL 81,115, TP 80,440. Spread 1.70. Stress 24.75 (recomputed (16.50+1.70)*1.25+2 = 24.75). Self-hash not checked, because the receipt is inadmissible regardless."
+  ],
+  "observations_not_affecting_authorization": [
+    "Earlier Cycle 321 denial (record 6aee813) used commit 630c6633 and prompt 3176dfb7. This envelope replaces that dispatch with different provenance under the same uuid and nonce. Two envelopes now claim the same cycle identity, and the dispatcher should explain which is authoritative.",
+    "Main head is now b94d4d1. This review used the declared commit, not main."
+  ],
+  "required_to_proceed": [
+    "A dispatch whose declared evidence commit is created before the cutoff. The current commit is 49 s late.",
+    "A prompt digest that matches a committed prompt file, or a re-frozen envelope that declares the correct one.",
+    "A receipt that carries the dispatch nonce and is observed and ticked before cutoff, with the quote within 15 s."
+  ],
+  "authorization_detail": "No ruling was computed. No candidate is executable. Nothing was sent to the broker.",
+  "record_sha256": "8e4e2e3497d3dfd24eaa360e7b78eb94090eae5cc6b3c73381360a4d9b2267c2"
+}
