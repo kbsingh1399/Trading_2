@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0.0",
+  "dispatch_nonce": "46044d1a-ecf4-44eb-8c85-769ebc85f29b",
+  "observed_at_utc": "2026-10-24 00:13:03 UTC",
+  "account": {
+    "login": 5064568,
+    "server": "BlueberryMarketsSVG-Live",
+    "balance": 4865.07,
+    "equity": 4865.07,
+    "margin_free": 4865.07
+  },
+  "candidate": {
+    "symbol": "BTCUSD.pi",
+    "action": "SELL_LIMIT",
+    "volume": 0.04,
+    "price": 81300.0,
+    "sl": 81780.0,
+    "tp": 79850.0
+  },
+  "broker_tick": {
+    "bid": 80927.0,
+    "ask": 80942.0,
+    "mid": 80934.5,
+    "spread_raw": 15.0,
+    "spread_bps": 1.85,
+    "tick_time_utc": "2026-10-24 00:13:08 UTC",
+    "tick_age_seconds": -5.1,
+    "quote_fresh": true
+  },
+  "broker_spec": {
+    "digits": 2,
+    "point": 0.01,
+    "trade_mode": 4,
+    "trade_mode_desc": "FULL",
+    "volume_min": 0.01,
+    "volume_step": 0.01,
+    "volume_max": 100.0,
+    "stops_level": 0
+  },
+  "broker_valuation": {
+    "profit_at_sl_usd": -19.2,
+    "profit_at_tp_usd": 58.0,
+    "margin_required_usd": 1626.0,
+    "nominal_risk_usd": 19.2,
+    "ticket_stress_usd": 26.0
+  },
+  "order_check": {
+    "pass": true,
+    "retcode": 0,
+    "comment": "Done",
+    "margin_level_post_order": 0.0,
+    "margin_free_post_order": 4865.07
+  },
+  "preflight_verdict": "PREFLIGHT_PASS",
+  "receipt_sha256": "ba50bf91483c2729fd7aa4f5647b9953f4d2c2a98ec587f3e9339707a772cee6"
+}
