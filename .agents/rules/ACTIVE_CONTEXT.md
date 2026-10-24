@@ -28,15 +28,15 @@
 
 ---
 
-## 3. LATEST CYCLE STATUS (CYCLE 314)
-- **Cutoff UTC**: 2026-10-24 00:15:12 UTC | **Dispatch Nonce**: `2faf3bab-8760-409f-8ee7-093f4834ddb6`
+## 3. LATEST CYCLE STATUS (CYCLE 321)
+- **Cutoff UTC**: 2026-10-24 06:55:20 UTC | **Dispatch Nonce**: 77b50a3b-9a84-4775-9b8e-e2e1762c9c22
 - **Multi-Council & Swarm Ruling**:
-  * **Arena.ai Primary Council (GPT Astra)**: `DENIED_FAIL_CLOSED` / `STAND_ASIDE` (28,096 chars, commit `048dda7`).
-  * **Z.ai Sovereign Council (GLM-5.3-Flash)**: `DENIED_FAIL_CLOSED` / `HOLD` (28,715 chars, 95/95 programmatic verification checks passed).
-  * **Role A (Regime & Diffusion)**: `STAND_ASIDE_NO_VALID_REGIME` (VR(4)=0.5333, ER(48)=0.0685 noisy chop, OU tau=3.79 bars).
-  * **Role B (Fill & Microstructure)**: `VERIFIED_LIQUIDITY_STAND_ASIDE_NEW_RISK` (BTC limit entry 2.28 ATR above mid, P_fill=2.99%, 85% spoofed walls, AS(5m)=-0.250 R0 toxic adverse selection, unanchored TP).
-  * **Role C (Solvency & Broker Math)**: `CAPITAL_ELIGIBLE_NEW_RISK_DENIED_PENDING_FULL_HARD_GATES` (Reconciled 0.00 USD discrepancy, +68.07 USD headroom, post-stress equity 4,837.07 USD > 4,795.00 USD kernel).
-  * **Role D (Clock & Universe)**: `PROVENANCE_AND_CLOCK_VERIFIED_STAND_ASIDE` (156 assets: 98 TradFi weekend-closed, 48 crypto spread-disqualified > 25 bps, 10 crypto executable in rotational balance).
+  * **Arena.ai Primary Council (GPT Astra)**: DENIED_BAD_CYCLE_ENVELOPE / STAND_ASIDE (Refused unbacked candidate; recommended fresh envelope alignment).
+  * **Z.ai Sovereign Council (GLM-5.3-Flash)**: DENIED_FAIL_CLOSED / HOLD (20,767 chars, 95/95 programmatic verification checks passed; flagged D3 margin saturation, D9 quote age, uncalibrated probabilities).
+  * **Role A (Regime & Diffusion)**: HOLD (ER=0.1118 noisy chop; mean-reversion equilibrium theta=81,218.74; entry at 80,950 suffers toxic upward OU drift).
+  * **Role B (Fill & Microstructure)**: HOLD (Whale wall at 80,950 only 10s old, failing 180s persistence; SL unanchored in auction void).
+  * **Role C (Solvency & Broker Math)**: HOLD (Solvency kernel +43.44 surplus PASS, but 0.10 BTC consumes 83.2% margin; practical capacity is strictly 1 ticket).
+  * **Role D (Clock & Universe)**: DENIED (Causality verified, but quote was 522s old at cutoff; weekend crypto perpetuals only).
 - **Consensus**: 100% Unanimous Agreement — **STAND ASIDE IN 100% FLAT CASH DEFENSE**.
 
 ---

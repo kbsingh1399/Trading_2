@@ -2,7 +2,7 @@
 **Joint Operational Ledger**: Antigravity (Local Execution Muscle) ⇄ Arena.ai (Cloud Quant Council) ⇄ Z.ai (GLM-5.3-Flash Sovereign Arbiter)
 **Target Repository**: https://github.com/kbsingh1399/Trading_2 | Branch: main
 **Execution Broker**: MetaTrader 5 | Account #5064568 (Blueberry Markets SVG-Live)
-**Established**: 2026-10-07 13:15:00 UTC | **Last Updated**: 2026-10-23 10:30 UTC (Cycle 300 Consensus: UNANIMOUS 3-0 STAND ASIDE in 100% Flat Cash; Arena.ai GPT Astra + Z.ai GLM-5.3-Flash + Antigravity Fable 5 Tri-Council Alignment; Realized Balance 4,799.88 USD; OPERATOR RECALIBRATION RATIFIED: Hard Floor 4,600.00 USD, Operating Buffer 4,650.00 USD; Real Floor Cushion +199.88 USD; Real Buffer Cushion +149.88 USD; Risk Envelope 0.25% [12.50 USD] / 0.50% [25.00 USD]; Continuous Excel Daemon task-116602 Active; Next Cycle 301 Trigger Armed for 10:50:20 UTC)
+**Established**: 2026-10-07 13:15:00 UTC | **Last Updated**: 2026-10-24 07:35 UTC (Cycle 321 Consensus: UNANIMOUS 3-0 STAND ASIDE in 100% Flat Cash; Arena.ai GPT Astra + Z.ai GLM-5.3-Flash + Antigravity 4-Quant Swarm Roles A/B/C/D Alignment; Realized Balance & Equity: 4,865.07 USD; Inviolate Hard Floor 4,600.00 USD [+265.07 USD cushion], Operating Buffer 4,650.00 USD [+215.07 USD cushion], Solvency Kernel 4,795.00 USD [+70.07 USD cushion, +68.07 USD net headroom]; Dynamic 20-Minute Stabilization Interval Armed)
 
 ---
 
@@ -26,18 +26,18 @@
      * Structural shelf reclaim with bid replenishment >= 80% within 2 seconds.
 
 ---
+## 2. ACTIVE MT5 POSITIONS & PENDING ORDERS LEDGER (LIVE MONITORING - CYCLE 321)
 
-## 2. ACTIVE MT5 POSITIONS & PENDING ORDERS LEDGER (LIVE MONITORING - CYCLE 252)
+### Active Open Positions (0 / 2 capacity slots occupied):
+* **None currently open** (Account is 100% FLAT in cash: Balance & Equity = **4,865.07 USD**).
+  - Hard Floor (4,600.00 USD) Cushion: **+265.07 USD** (+5.45%)
+  - Operating Buffer (4,650.00 USD) Cushion: **+215.07 USD** (+4.42%)
+  - Solvency Kernel (4,795.00 USD) Cushion: **+70.07 USD** (+1.44%, Net Realized Headroom: **+68.07 USD**)
+  - Free Margin: **4,865.07 USD** | Margin Used: **0.00 USD** (Margin Level: 0.0%)
+  - Capital Regime: **TIER 2 HOUSE MONEY** (Nominal risk 15.00–25.00 USD per ticket, max 2 concurrent tickets; practical capacity 1 ticket on BTC due to 50% margin requirement)
 
-### Active Open Positions (0 / 4 capacity slots occupied):
-* **None currently open** (Account is 100% FLAT in cash: Balance & Equity = **4,834.83 USD**).
-  - Hard Floor (4,775.00 USD) Cushion: **+59.83 USD** (+1.25%)
-  - Operating Buffer (4,795.00 USD) Cushion: **+39.83 USD** (+0.83%)
-  - Free Margin: **4,834.83 USD** | Running Capacity Slots Available: **4 / 4 slots**
-  - Sizing Constraint: Single filled trade sized at 16.00–20.00 USD nominal risk (stressed loss <= 27.00 USD, leaving >= +12.83 USD buffer surplus). Early-BE drops risk to 0.00 USD, freeing capacity dynamically.
-
-### Active Pending Limit Orders (0 resting | Limit orders do NOT consume slots):
-* **None currently resting** (Staging gated strictly on 5-pillar confluence and Anti-Knife Contract).
+### Active Pending Limit Orders (0 resting | Staging gated strictly on 5-pillar confluence):
+* **None currently resting** (Candidate BTCUSD.pi short @ 80,950 unanimously rejected due to adverse OU drift, 10s whale wall persistence failure, unanchored stop, and margin saturation).
 
 ### Potential Candidate Radar (Post-News Cycle 252 Calibrated - Arena Rulings Synthesized):
 1. **BTCUSD.pi** (Model 1 Daily VAL Rebound & Anti-Cluster Defense):
@@ -9522,7 +9522,8 @@ Arena completed the unified 4-step council audit across all 4 Mandates:
 - **BTC Whale Backing Verified (Pillar 5)**:
   * BTC nearest wall carries SAMPLED_RECURRENCE_VERIFIED, persist_s = 4,234.6s, notional = 24,516,228 USD, presence_frac = 0.9722, gate_g7_eligible = true, wall_class = GENUINE.
 - **Binding Blocker Identified & Merged (Commit 2dea4dab)**:
-  * Arena diagnosed that 100% of the 798 G-7 whale walls are sourced from HYPERLIQUID, but the telemetry published only inance_mid without a matching hyperliquid_mid or enue_basis mapping.
+  * Arena diagnosed that 100% of the 798 G-7 whale walls are sourced from HYPERLIQUID, but the telemetry published only inance_mid without a matching hyperliquid_mid or 
+enue_basis mapping.
   * Arena shipped udit_wall_venue_coverage() and rewrote g7_readiness() in Terminal/gate_diagnostics.py (+148 lines) and added 17 tests in Tests/Test_Gate_Diagnostics.py (+109 lines).
   * Merged cleanly into main and verified: **76/76 gate diagnostic tests passing in 0.20s**.
 
@@ -21546,5 +21547,4 @@ Capacity 2/4 joint-fill · `total_contingent_stress_usd` after the punch **20.25
   - Candidate Evaluations (E4): BTC Deep-Sweep Long: **DISQUALIFIED**; Gold Bunker Long: **DISQUALIFIED**; BTC Relief Short: **DISQUALIFIED**.
   - Final Synthesis (E5): 100% Cash Defense confirmed. Concurrency limit of strictly 1 solo position reaffirmed.
 - **Desk Decision**: Zero orders staged. Flat cash strictly protected. Next autonomous evaluation scheduled for 10:20 UTC cron sentry mark.
-
 
