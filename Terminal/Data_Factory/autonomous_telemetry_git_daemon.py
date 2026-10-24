@@ -223,7 +223,7 @@ def sync_git_cycle(generated_snapshot=None, *, clock=None):
         import zipfile
         is_valid_excel = False
         try:
-            if zipfile.is_zipfile(excel_file) and excel_file.stat().st_size > 10000000:
+            if zipfile.is_zipfile(excel_file) and excel_file.stat().st_size > 1000000:
                 with zipfile.ZipFile(excel_file, "r") as zf:
                     if "[Content_Types].xml" in zf.namelist():
                         is_valid_excel = True
