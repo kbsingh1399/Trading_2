@@ -36,8 +36,16 @@
   - Free Margin: **4,865.07 USD** | Margin Used: **0.00 USD** (Margin Level: 0.0%)
   - Capital Regime: **TIER 2 HOUSE MONEY** (Nominal risk 15.00–25.00 USD per ticket, max 2 concurrent tickets; practical capacity 1 ticket on BTC due to 50% margin requirement)
 
-### Active Pending Limit Orders (0 resting | Staging gated strictly on 5-pillar confluence):
-* **None currently resting** (Candidate BTCUSD.pi short @ 80,950 unanimously rejected due to adverse OU drift, 10s whale wall persistence failure, unanchored stop, and margin saturation).
+### Active Pending Limit Orders (1 resting | Monitored 24/7 by goal_trade_monitor.py):
+* **Ticket #19274977** (BTCUSD.pi SELL_LIMIT @ 80,820.00 USD):
+  - **Volume**: 0.05 lot | **Stop Loss**: 80,985.00 USD (165 pts) | **Take Profit**: 80,315.00 USD (505 pts)
+  - **Reward:Risk**: 3.06 R0 (Payoff: +25.25 USD gross / +22.30 USD net)
+  - **Nominal Risk**: 11.20 USD (8.25 USD base + 2.95 USD spread) | **Ticket Stress**: 16.00 USD
+  - **Post-Stress Equity**: 4,849.07 USD (+54.07 USD kernel surplus strictly above 4,795.00 USD)
+  - **Margin Utilization**: 41.53% (2,020.50 USD <= 50.0% cap; Margin Level: 240.79% >= 200.0%)
+  - **Microstructure Defense**: Anchored behind 10.60M USD Binance institutional ask wall at 80,850.00 USD (persisting > 3h 36m) and Daily VAH (80,854.20 USD).
+  - **Tradfye Confirmation**: Front-runs Tradfye Footprint POC at 80,300.00 USD (Delta: -1.45M USD, AGGRESSIVE_SELLER_DOMINATION).
+  - **Ratchets**: Early-BE (+0.75R @ 80,696.25), Phase 0 (+1.25R @ 80,613.75), Phase 1 (+1.65R @ 80,547.75).
 
 ### Potential Candidate Radar (Post-News Cycle 252 Calibrated - Arena Rulings Synthesized):
 1. **BTCUSD.pi** (Model 1 Daily VAL Rebound & Anti-Cluster Defense):
