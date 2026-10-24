@@ -1,0 +1,361 @@
+{
+  "schema_version": "1.1.0",
+  "cycle_id": "Cycle 337",
+  "role": "ROLE_B_FILL_MICROSTRUCTURE_GEOMETRY",
+  "evidence_manifest_sha256": "4a7ce6902fddb0ade0c42dc7e501cd78f4856315f9884d01239debab09a83958",
+  "prompt_sha256": "f71441d4fd30f33e6e0baf529c735bc138f8957c105a8888d9ef658b4b5c8f72",
+  "dispatch_nonce": "0e83e751-ea68-4665-b3cf-ec7122fd916d",
+  "workbook_sha256": "171f04833513e800792ae68a5bc1501fbc847045d2105caad60b7bea8185a6fb",
+  "cutoff_utc": "2026-10-24 21:36:01 UTC",
+  "active_ticket_under_audit": {
+    "ticket": 19274977,
+    "symbol": "BTCUSD.pi",
+    "action": "SHORT_POSITION_FILLED",
+    "direction": "SELL",
+    "volume": 0.05,
+    "price_open": 80245.0,
+    "sl": 80620.0,
+    "tp": 79385.0,
+    "current_price": 80343.0,
+    "r0_pts": 375.0,
+    "reward_pts": 860.0,
+    "rr_gross": 2.2933,
+    "nominal_risk_usd": 18.75,
+    "nominal_reward_usd": 43.0,
+    "floating_pnl_usd": -4.9,
+    "floating_r0": -0.2613,
+    "risk_pct_equity": 0.3858,
+    "magic": 888888,
+    "comment": "Fable5_Affirmative_C327",
+    "time_setup_utc": "2026-10-24 16:53:50 UTC",
+    "ratchet_status": "UNLOCKED / EARLY-BE"
+  },
+  "microstructure_audit": {
+    "broker_bid_price": 80377.0,
+    "broker_ask_price": 80378.0,
+    "broker_mid_price": 80377.5,
+    "broker_spread_usd": 1.0,
+    "broker_spread_bps": 0.12,
+    "spread_gate_status": "PASS_LEQ_25_BPS",
+    "l2_orderbook_imbalance": {
+      "bid_depth_usd": 9094114.82,
+      "ask_depth_usd": 2817774.77,
+      "depth_imbalance_ratio": 0.7634,
+      "orderbook_regime": "BID_ABSORPTION_SHELF"
+    },
+    "overhead_ask_whale_walls": [
+      {
+        "wall_id": "CG_WHALE_T_21 / LADDER_36",
+        "exchange": "Coinbase / Binance",
+        "price_usd": 80459.1,
+        "notional_usd": 1080000.0,
+        "persisted_seconds": 185.0,
+        "persistence_status": "PASS_GE_180S_INSTITUTIONAL_WALL_CONFIRMED"
+      },
+      {
+        "wall_id": "CG_WHALE_T_12 / LADDER_27",
+        "exchange": "Binance",
+        "price_usd": 80504.1,
+        "notional_usd": 1210000.0,
+        "persisted_seconds": 1051.0,
+        "persistence_status": "PASS_GE_180S_INSTITUTIONAL_WALL_CONFIRMED"
+      },
+      {
+        "wall_id": "CG_WHALE_T_11 / LADDER_26",
+        "exchange": "Coinbase / Binance",
+        "price_usd": 80510.6,
+        "notional_usd": 1380000.0,
+        "persisted_seconds": 185.0,
+        "persistence_status": "PASS_GE_180S_INSTITUTIONAL_WALL_CONFIRMED"
+      },
+      {
+        "wall_id": "CG_WHALE_T_7 / LADDER_22",
+        "exchange": "Binance",
+        "price_usd": 80532.4,
+        "notional_usd": 1870000.0,
+        "persisted_seconds": 1862.0,
+        "persistence_status": "PASS_GE_180S_INSTITUTIONAL_WALL_CONFIRMED"
+      },
+      {
+        "wall_id": "CG_WHALE_T_5 / LADDER_20",
+        "exchange": "Binance",
+        "price_usd": 80534.7,
+        "notional_usd": 1530000.0,
+        "persisted_seconds": 1862.0,
+        "persistence_status": "PASS_GE_180S_INSTITUTIONAL_WALL_CONFIRMED"
+      },
+      {
+        "wall_id": "CG_LADDER_9",
+        "exchange": "Binance",
+        "price_usd": 80611.9,
+        "notional_usd": 4420000.0,
+        "persisted_seconds": 185.0,
+        "persistence_status": "PASS_GE_180S_INSTITUTIONAL_WALL_CONFIRMED"
+      },
+      {
+        "wall_id": "CG_LADDER_7",
+        "exchange": "Binance",
+        "price_usd": 80633.2,
+        "notional_usd": 1000000.0,
+        "persisted_seconds": 657.0,
+        "persistence_status": "PASS_GE_180S_INSTITUTIONAL_WALL_CONFIRMED"
+      },
+      {
+        "wall_id": "CG_LADDER_6",
+        "exchange": "Binance",
+        "price_usd": 80638.0,
+        "notional_usd": 10900000.0,
+        "persisted_seconds": 746.0,
+        "persistence_status": "PASS_GE_180S_INSTITUTIONAL_WALL_CONFIRMED"
+      }
+    ],
+    "cumulative_overhead_ask_depth_usd": 23390000.0,
+    "tp_protecting_bid_walls": [
+      {
+        "wall_id": "CG_WHALE_T_48 / LADDER_62",
+        "exchange": "Bybit / Binance",
+        "price_usd": 80259.5,
+        "notional_usd": 1770000.0,
+        "persisted_seconds": 9000.0
+      },
+      {
+        "wall_id": "CG_WHALE_T_52 / LADDER_66",
+        "exchange": "Binance",
+        "price_usd": 80215.6,
+        "notional_usd": 3320000.0,
+        "persisted_seconds": 241.0
+      },
+      {
+        "wall_id": "CG_WHALE_T_65 / LADDER_79",
+        "exchange": "Binance",
+        "price_usd": 80134.3,
+        "notional_usd": 1640000.0,
+        "persisted_seconds": 1603.0
+      },
+      {
+        "wall_id": "CG_WHALE_T_69 / LADDER_83",
+        "exchange": "Binance",
+        "price_usd": 80119.2,
+        "notional_usd": 3610000.0,
+        "persisted_seconds": 241.0
+      },
+      {
+        "wall_id": "CG_WHALE_T_72 / LADDER_86",
+        "exchange": "Binance",
+        "price_usd": 80100.0,
+        "notional_usd": 3820000.0,
+        "persisted_seconds": 296.0
+      },
+      {
+        "wall_id": "CG_LADDER_92",
+        "exchange": "Binance",
+        "price_usd": 80050.0,
+        "notional_usd": 3480000.0,
+        "persisted_seconds": 602.0
+      },
+      {
+        "wall_id": "CG_LADDER_103",
+        "exchange": "Binance",
+        "price_usd": 80008.0,
+        "notional_usd": 1190000.0,
+        "persisted_seconds": 808.0
+      },
+      {
+        "wall_id": "HL_BID_WALL_79181",
+        "exchange": "Hyperliquid / Binance",
+        "price_usd": 79181.0,
+        "notional_usd": 8490000.0,
+        "persisted_seconds": 11520.0
+      }
+    ],
+    "tp_front_run_clearance_pts": 204.0,
+    "tp_front_run_clearance_bps": 25.7,
+    "tp_footprint_poc_convergence_delta_pts": 0.925,
+    "adverse_selection_projected_r0": -0.2613,
+    "hazard_score": 0,
+    "cancel_to_trade_ratio": 0.16,
+    "book_thinning_rate_per_s": 0.0
+  },
+  "fib_invalidation_shelf_check": {
+    "fib_impulse_direction": "BEARISH_IMPULSE",
+    "fib_swing_high": 81344.0,
+    "fib_swing_low": 79071.0,
+    "fib_gp_lower_0618": 80475.71,
+    "fib_gp_upper_0650": 80548.45,
+    "fib_ote_0702": 80666.65,
+    "fib_0786_shelf_price": 80857.58,
+    "intraday_fib_0786_shelf_price": 80441.78,
+    "sl_price": 80620.0,
+    "sl_clearance_above_fib_gp_pts": 71.55,
+    "sl_clearance_above_intraday_fib_pts": 178.22,
+    "atr_14_daily": 227.89,
+    "half_spread_pts": 0.5,
+    "required_hurdle_pts_daily_atr": 91.66,
+    "clearance_surplus_pts": 86.56,
+    "sl_geometry_verdict": "PASS_CLEARANCE_EXCEEDS_HURDLE_AND_ANCHORED_BEHIND_23M_PERSISTED_WHALE_WALLS"
+  },
+  "tradfye_orderflow_audit": {
+    "sheet_name": "21_Tradfye_Orderflow",
+    "latest_15m_utc": "2026-10-24 21:30:00 UTC",
+    "latest_15m_vol_usd": 13507560.24,
+    "latest_15m_buy_usd": 8473696.49,
+    "latest_15m_sell_usd": 5033863.75,
+    "latest_15m_net_delta_usd": 3439832.74,
+    "latest_15m_net_delta_pct": 0.2547,
+    "latest_15m_poc_usd": 80403.48,
+    "latest_15m_vwap_usd": 80410.28,
+    "prior_15m_utc": "2026-10-24 21:15:00 UTC",
+    "prior_15m_vol_usd": 53199185.82,
+    "prior_15m_net_delta_usd": 18733017.81,
+    "prior_15m_net_delta_pct": 0.3521,
+    "prior_15m_poc_usd": 80403.2,
+    "prior_15m_regime": "AGGRESSIVE_BUYER_DOMINATION",
+    "cumulative_cvd_15m_usd": -274306118.1,
+    "binance_futures_cvd_usd": -2927626110.1,
+    "orderflow_regime": "EXHAUSTION_OF_AGGRESSIVE_BUYERS_PRICE_REJECTS_BELOW_POC_80403_MACRO_CVD_DEEPLY_NEGATIVE",
+    "deribit_max_pain_usd": 78000.0,
+    "deribit_call_wall_usd": 95000.0,
+    "deribit_put_wall_usd": 60000.0,
+    "options_gamma_bias": "GRAVITATIONAL_PULL_TOWARD_MAX_PAIN_78000"
+  },
+  "auction_extremes_audit": {
+    "daily_poc_usd": 80191.53,
+    "daily_vah_usd": 80359.26,
+    "daily_val_usd": 80181.05,
+    "prior_day_poc_usd": 80665.9,
+    "prior_day_vah_usd": 80914.86,
+    "prior_day_val_usd": 80105.74,
+    "monday_h_usd": 83087.5,
+    "monday_l_usd": 80743.0,
+    "monday_mid_usd": 81915.25,
+    "asian_high_usd": 80429.5,
+    "asian_low_usd": 80115.0,
+    "london_high_usd": 80815.0,
+    "london_low_usd": 80280.91,
+    "ny_high_usd": 80785.0,
+    "ny_low_usd": 79071.0,
+    "ib_high_usd": 80788.0,
+    "ib_low_usd": 80583.0,
+    "current_week_high_usd": 84855.5,
+    "current_week_low_usd": 79071.0,
+    "prior_week_high_usd": 84074.5,
+    "prior_week_low_usd": 79634.0,
+    "value_area_migration": "LOWER_VALUE_ACCEPTANCE (pd_POC 80665 -> d_POC 80191; pd_VAH 80914 -> d_VAH 80359)",
+    "auction_geometry_verdict": "TICKET_19274977_SELLS_INTO_DAILY_ROTATIONAL_BALANCE_BELOW_VALUE_AREA_HIGH_80359_TARGETING_VAL_80181_AND_MACRO_LOW_79071"
+  },
+  "second_capacity_slot_evaluation": {
+    "total_capacity_slots": 2,
+    "occupied_slots": 1,
+    "vacant_slots": 1,
+    "slot_1_allocation": "Ticket #19274977 (BTCUSD.pi SHORT 0.05 lot @ 80,245.00 USD)",
+    "slot_2_evaluated_asset": "ETHUSD.pi",
+    "eth_current_price_usd": 2335.65,
+    "eth_spread_bps": 21.86,
+    "eth_correlation_to_btc": 0.88,
+    "slot_2_policy_verdict": "HOLD_SLOT_2_IN_TACTICAL_RESERVE_PREVENT_CORRELATED_CLUSTER_RISK",
+    "rationale": "Reject deploying Slot 2 to ETH due to 0.88 co-movement correlation with BTC and wide 21.86 bps spread near the 25.0 bps gate limit. Hold Slot 2 in Tactical Reserve until Ticket #19274977 ratchets to Breakeven (+0.80R / 79,945 USD) or Sunday TradFi market opening."
+  },
+  "claims": [
+    {
+      "claim_id": "CLAIM_B_01_MT5_ACCOUNT_STATE_AND_INVENTORY_AUDIT",
+      "statement": "Blueberry Markets MT5 Account #5064568 holds active filled short position Ticket #19274977 (BTCUSD.pi SHORT @ 80,245.00 USD, volume 0.05 lot, SL 80,620.00 USD, TP 79,385.00 USD, magic 888888). Realized Balance is 4,865.07 USD, floating equity is 4,860.17 USD, margin used is 2,006.13 USD, and free usable margin is 2,854.04 USD. Nominal risk is 18.75 USD (375 pts * 0.05 lot; 0.386% equity risk <= 0.50% ceiling), leaving cushion of 260.17 USD above the 4,600.00 USD Hard Floor and 210.17 USD above the 4,650.00 USD Operating Buffer.",
+      "evidence_ids": [
+        "Data/DataBase_Trading.xlsx:00_MT5_Account_Telemetry",
+        "Data/cycle_envelope.json:inventory",
+        "Data/trade_r0_ledger.json:19274977"
+      ],
+      "formula_or_test": "Inventory_Verification: (ticket == 19274977) AND (volume == 0.05) AND (price_open == 80245.0) AND (sl == 80620.0) AND (tp == 79385.0).",
+      "result": {
+        "ticket": 19274977,
+        "symbol": "BTCUSD.pi",
+        "volume": 0.05,
+        "price_open": 80245.0,
+        "sl": 80620.0,
+        "tp": 79385.0,
+        "hard_floor_cushion_usd": 260.17,
+        "operating_buffer_cushion_usd": 210.17,
+        "status": "VERIFIED"
+      }
+    },
+    {
+      "claim_id": "CLAIM_B_02_WHALE_WALL_PERSISTENCE_AUDIT",
+      "statement": "Ticket #19274977 SHORT @ 80,245.00 USD is sheltered overhead by massive resting institutional whale walls: 1.08M USD Coinbase/Binance ask wall at 80,459.10 USD (dur: 185s), 1.21M USD Binance ask wall at 80,504.10 USD (dur: 1,051s / 17m 31s), 1.38M USD Coinbase/Binance ask wall at 80,510.60 USD (dur: 185s), 1.87M USD Binance ask wall at 80,532.40 USD (dur: 1,862s / 31m 02s), 1.53M USD Binance ask wall at 80,534.70 USD (dur: 1,862s / 31m 02s), 4.42M USD Binance ask wall at 80,611.90 USD (dur: 185s), and 10.90M USD Bybit/Binance ask wall at 80,638.00 USD (dur: 746s / 12m 26s). All walls strictly satisfy the mandatory 180s persistence filter (persisted_seconds >= 180s), providing verifiable institutional absorption ceiling against upward drift.",
+      "evidence_ids": [
+        "Data/DataBase_Trading.xlsx:10_Whale_Orders",
+        "Data/DataBase_Trading.xlsx:17_Orderbook"
+      ],
+      "formula_or_test": "Whale_Persistence_Gate: (persisted_seconds >= 180.0) AND (notional_usd >= 100000.0) AND (price_wall >= price_entry).",
+      "result": {
+        "persisted_ask_walls_count": 8,
+        "cumulative_overhead_notional_usd": 23390000.0,
+        "nearest_wall_price": 80459.1,
+        "nearest_wall_notional_usd": 1080000.0,
+        "defending_sl_wall_price": 80611.9,
+        "defending_sl_notional_usd": 4420000.0,
+        "persistence_status": "PASS_GE_180S"
+      }
+    },
+    {
+      "claim_id": "CLAIM_B_03_STOP_LOSS_ANTI_AUCTION_VOID_ANCHOR",
+      "statement": "Protective Stop Loss @ 80,620.00 USD sits strictly behind the 0.650 Fibonacci Golden Pocket upper boundary at 80,548.45 USD (+71.55 pts clearance) and the intraday 0.786 Fibonacci shelf at 80,441.78 USD (+178.22 pts clearance, exceeding the 91.66 pts ATR hurdle by +86.56 pts surplus). It is anchored beneath the 10.90M USD ask wall at 80,638.00 USD and safely below predatory buy-stop sweep clusters at 80,850 USD ($5.22M) and 81,150 USD ($3.69M / $14M cluster), eliminating auction void vulnerability.",
+      "evidence_ids": [
+        "Data/DataBase_Trading.xlsx:15_Hyperdash_Stops_Map",
+        "Data/DataBase_Trading.xlsx:20_Auction_Market_Structure",
+        "Data/DataBase_Trading.xlsx:11_Technical"
+      ],
+      "formula_or_test": "SL_Anchor_Gate: (SL > Fib_GP_80548_45) AND (SL_clearance >= 0.40 * ATR + half_spread) AND (SL < Sweep_Cluster_80850).",
+      "result": {
+        "sl_price": 80620.0,
+        "fib_gp_price": 80548.45,
+        "fib_0786_intraday": 80441.78,
+        "hurdle_pts": 91.66,
+        "actual_clearance_pts": 178.22,
+        "clearance_surplus_pts": 86.56,
+        "anchor_integrity": "PASS_OPTIMALLY_SHIELDED"
+      }
+    },
+    {
+      "claim_id": "CLAIM_B_04_TAKE_PROFIT_FRONT_RUNNING_GEOMETRY",
+      "statement": "Take Profit @ 79,385.00 USD front-runs the massive $54.4M Long Liquidation pool spanning 79,050 to 79,350 USD ($27.07M at 79,250; $14.66M at 79,150; $7.28M at 79,350) and the 8.49M USD resting bid wall at 79,181.00 USD by +204.0 pts (25.7 bps). Furthermore, it converges precisely with the 15:15 UTC institutional Footprint POC at 79,385.93 USD (delta of only 0.93 pts), locking high execution probability into massive opposing absorption liquidity.",
+      "evidence_ids": [
+        "Data/DataBase_Trading.xlsx:21_Tradfye_Orderflow",
+        "Data/DataBase_Trading.xlsx:14_Hyperdash_Liq_Map",
+        "Data/DataBase_Trading.xlsx:17_Orderbook"
+      ],
+      "formula_or_test": "TP_Front_Run_Gate: (TP > Bid_Wall_79181) AND (abs(TP - Footprint_POC_79385_93) <= 5.0).",
+      "result": {
+        "tp_price": 79385.0,
+        "bid_wall_price": 79181.0,
+        "footprint_poc": 79385.925,
+        "front_run_clearance_pts": 204.0,
+        "poc_alignment_delta_pts": 0.925,
+        "execution_probability": "VERY_HIGH"
+      }
+    },
+    {
+      "claim_id": "CLAIM_B_05_TACTICAL_RESERVE_SLOT_2_POLICY",
+      "statement": "Slot 2 remains in TACTICAL RESERVE. Evaluation of candidate ETHUSD.pi indicates 0.88 correlation with BTCUSD.pi and 21.86 bps spread, which would violate cross-asset diversification invariants and compound directional crypto downside beta during weekend illiquidity. Holding Slot 2 in Tactical Reserve preserves capital capacity for Sunday TradFi opening (Gold / Forex) and maintains full margin cushion.",
+      "evidence_ids": [
+        "Data/cycle_envelope.json:solvency",
+        "Data/DataBase_Trading.xlsx:00_MT5_Account_Telemetry"
+      ],
+      "formula_or_test": "Slot_2_Allocation_Gate: Correlation(BTC, ETH) > 0.80 -> REJECT_CORRELATED_CLUSTER -> HOLD_IN_RESERVE.",
+      "result": {
+        "evaluated_symbol": "ETHUSD.pi",
+        "correlation_to_btc": 0.88,
+        "spread_bps": 21.86,
+        "slot_2_status": "HOLD_IN_TACTICAL_RESERVE",
+        "next_evaluation": "Sunday_TradFi_Open"
+      }
+    }
+  ],
+  "verdict": {
+    "role": "ROLE_B",
+    "ticket": 19274977,
+    "action": "RATIFY_AND_HOLD_SHORT_POSITION",
+    "slot_2_recommendation": "HOLD_IN_TACTICAL_RESERVE",
+    "compliance_status": "100_PERCENT_COMPLIANT"
+  },
+  "final_role_b_verdict": "RATIFY_AND_HOLD_ACTIVE_TICKET_19274977_WHALE_BACKED_SHORT_AND_HOLD_SLOT_2_IN_TACTICAL_RESERVE",
+  "response_sha256": "21eb0e9e97e3328eeb1b0527888df4908906373460856406695d8066bae604c1"
+}
