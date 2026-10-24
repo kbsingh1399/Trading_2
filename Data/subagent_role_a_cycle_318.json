@@ -1,0 +1,350 @@
+{
+  "schema_version": "1.0.0",
+  "cycle_id": "Cycle 318",
+  "role": "ROLE_A_REGIME_AND_CALIBRATION",
+  "evidence_manifest_sha256": "e5b2814e14523aca96b080471784335065822a6102be6b9b81a13357146d92df",
+  "prompt_sha256": "8cc86259fb5003d1d070958ee1456d464c413992b2586463da19782338284993",
+  "dispatch_nonce": "ab50c695-1f3c-4d92-bdac-ea6b9af73c53",
+  "claims": [
+    {
+      "claim_id": "CLAIM_A_01_ACCOUNT_INVENTORY_AUDIT",
+      "statement": "Blueberry Markets Account #5064568 holds 0 active market positions and 0 pending limit/stop orders (100% flat cash), with verified balance and equity of 4,865.07 USD, providing 70.07 USD solvency cushion above the 4,795.00 USD Solvency Kernel, 215.07 USD above the 4,650.00 USD Operating Buffer, and 265.07 USD cushion above the 4,600.00 USD Hard Floor.",
+      "evidence_ids": [
+        "Data/cycle_envelope.json:inventory",
+        "Data/cycle_envelope.json:solvency",
+        "Data/execution_preflight_receipt.json:account"
+      ],
+      "formula_or_test": "len(active_positions) == 0 and len(pending_orders) == 0 and balance == equity == 4865.07",
+      "result": {
+        "account_login": 5064568,
+        "balance_usd": 4865.07,
+        "equity_usd": 4865.07,
+        "active_positions_count": 0,
+        "pending_orders_count": 0,
+        "solvency_kernel_usd": 4795.0,
+        "solvency_cushion_usd": 70.07,
+        "operating_buffer_usd": 4650.0,
+        "operating_buffer_cushion_usd": 215.07,
+        "hard_floor_usd": 4600.0,
+        "hard_floor_cushion_usd": 265.07,
+        "nominal_risk_capacity_usd": 25.0,
+        "capital_mode": "TIER_2_HOUSE_MONEY"
+      },
+      "uncertainty": "0.00 USD residual error, verified directly against live broker telemetry and immutable envelope.",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM_A_02_VARIANCE_RATIO_SUBDIFFUSIVE_REGIME",
+      "statement": "Lo-MacKinlay Variance Ratio VR(q=4) with heteroskedasticity-robust z* demonstrates statistically significant sub-diffusive mean-reverting dynamics for BTCUSD.pi (VR=0.6127, z*=-1.8551, z* < -1.64 90% CI), with ETHUSD.pi (VR=0.7133, z*=-1.3719) and SOLUSD.p (VR=0.7149, z*=-1.4831) exhibiting sub-diffusive compression. Mid-caps exhibit mean-reverting/random-walk chop: BNBUSD.p (VR=0.9134, z*=-0.4322), BCHUSD.p (VR=0.8839, z*=-0.6118), XMRUSD.p (VR=0.8917, z*=-0.5466), and ZECUSD.p (VR=1.0122, z*=0.0568). Exactly zero assets across the 7 majors exhibit super-diffusive trend expansion (VR > 1.15, z* > 1.64).",
+      "evidence_ids": [
+        "Data/Candles/BTC_15m.parquet",
+        "Data/Candles/ETH_15m.parquet",
+        "Data/Candles/SOL_15m.parquet",
+        "Data/Candles/BNB_15m.parquet",
+        "Data/Candles/BCH_15m.parquet",
+        "Data/Candles/XMR_15m.parquet",
+        "Data/Candles/ZEC_15m.parquet"
+      ],
+      "formula_or_test": "VR(q) = Var(q) / (q * Var(1)); z* = sqrt(T)*(VR(q)-1)/sqrt(phi)",
+      "result": {
+        "BTCUSD.pi": {
+          "VR_4": 0.6127,
+          "z_star": -1.8551,
+          "regime": "SUB_DIFFUSIVE_MEAN_REVERTING"
+        },
+        "ETHUSD.pi": {
+          "VR_4": 0.7133,
+          "z_star": -1.3719,
+          "regime": "SUB_DIFFUSIVE_CHOP"
+        },
+        "SOLUSD.p": {
+          "VR_4": 0.7149,
+          "z_star": -1.4831,
+          "regime": "SUB_DIFFUSIVE_CHOP"
+        },
+        "BNBUSD.p": {
+          "VR_4": 0.9134,
+          "z_star": -0.4322,
+          "regime": "RANDOM_WALK_CHOP"
+        },
+        "BCHUSD.p": {
+          "VR_4": 0.8839,
+          "z_star": -0.6118,
+          "regime": "RANDOM_WALK_CHOP"
+        },
+        "XMRUSD.p": {
+          "VR_4": 0.8917,
+          "z_star": -0.5466,
+          "regime": "RANDOM_WALK_CHOP"
+        },
+        "ZECUSD.p": {
+          "VR_4": 1.0122,
+          "z_star": 0.0568,
+          "regime": "RANDOM_WALK_DIFFUSIVE"
+        }
+      },
+      "uncertainty": "Evaluated on 120 completed M15 bars; heteroskedasticity correction phi applied.",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM_A_03_EFFICIENCY_RATIO_NOISE_FLOOR_BREACH",
+      "statement": "Kaufman Efficiency Ratio on rolling 48-period completed M15 bars ER(48) fails the institutional trend qualification threshold ER >= 0.20 on 5 of 7 crypto perpetuals: ETH (0.1733), SOL (0.1771), BNB (0.1537), BCH (0.1612), and ZEC (0.1562), with BNB sitting right on the 0.15 noise floor. While BTC reaches ER(48)=0.2143 and XMR reaches 0.3849, both fail trend qualification due to sub-diffusive VR(4)=0.6127 for BTC and random-walk VR=0.8917 for XMR. On 15m completed bars, ER(15m) shows transient pullback noise (BTC: 0.2756, ETH: 0.2637, SOL: 0.3922, BNB: 0.1881, BCH: 0.3344, XMR: 0.4994, ZEC: 0.4032), confirming rotational noise and triggering the mandatory STAND_ASIDE invariant.",
+      "evidence_ids": [
+        "Data/Candles/*_15m.parquet",
+        "Data/DataBase_Trading.xlsx:11_Technical"
+      ],
+      "formula_or_test": "ER(n) = |Close_t - Close_{t-n}| / sum_{i=1..n} |Close_{t-i+1} - Close_{t-i}|",
+      "result": {
+        "BTCUSD.pi_ER15m": 0.2756,
+        "BTCUSD.pi_ER48": 0.2143,
+        "ETHUSD.pi_ER15m": 0.2637,
+        "ETHUSD.pi_ER48": 0.1733,
+        "SOLUSD.p_ER15m": 0.3922,
+        "SOLUSD.p_ER48": 0.1771,
+        "BNBUSD.p_ER15m": 0.1881,
+        "BNBUSD.p_ER48": 0.1537,
+        "BCHUSD.p_ER15m": 0.3344,
+        "BCHUSD.p_ER48": 0.1612,
+        "XMRUSD.p_ER15m": 0.4994,
+        "XMRUSD.p_ER48": 0.3849,
+        "ZECUSD.p_ER15m": 0.4032,
+        "ZECUSD.p_ER48": 0.1562,
+        "trend_threshold": 0.2,
+        "noise_floor": 0.15,
+        "classification": "NOISY_ROTATIONAL_CHOP"
+      },
+      "uncertainty": "Empirical ER computed over rolling completed M15 bars.",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM_A_04_DIFFUSION_PARAMETERS_AND_OU_HALF_LIFE",
+      "statement": "Ornstein-Uhlenbeck (OU) mean-reversion parameter estimation confirms rapid decay for top majors: BTCUSD.pi (theta=0.07385, tau_half=9.39 bars / 2.35h), ETHUSD.pi (theta=0.11057, tau_half=6.27 bars / 1.57h), SOLUSD.p (theta=0.04186, tau_half=16.56 bars / 4.14h), and ZECUSD.p (theta=0.04558, tau_half=15.21 bars / 3.80h). Mid-caps show moderate decay: BCHUSD.p (theta=0.03575, tau_half=19.39 bars / 4.85h), BNBUSD.p (theta=0.02708, tau_half=25.59 bars / 6.40h), and XMRUSD.p (theta=0.00963, tau_half=71.97 bars / 17.99h). Mean-reversion timescales are fast (1.6 to 4.1 hours for majors), indicating excursions mean-revert rapidly into rotational chop rather than evolving into sustained directional trends.",
+      "evidence_ids": [
+        "Data/Candles/*_15m.parquet",
+        "Data/DataBase_Trading.xlsx:11_Technical"
+      ],
+      "formula_or_test": "dx_t = a + b * x_{t-1} + eps; theta = -b / dt; tau_half = ln(2) / theta",
+      "result": {
+        "BTCUSD.pi": {
+          "theta": 0.07385,
+          "tau_half_bars": 9.39,
+          "tau_half_hours": 2.35
+        },
+        "ETHUSD.pi": {
+          "theta": 0.11057,
+          "tau_half_bars": 6.27,
+          "tau_half_hours": 1.57
+        },
+        "SOLUSD.p": {
+          "theta": 0.04186,
+          "tau_half_bars": 16.56,
+          "tau_half_hours": 4.14
+        },
+        "BNBUSD.p": {
+          "theta": 0.02708,
+          "tau_half_bars": 25.59,
+          "tau_half_hours": 6.4
+        },
+        "BCHUSD.p": {
+          "theta": 0.03575,
+          "tau_half_bars": 19.39,
+          "tau_half_hours": 4.85
+        },
+        "XMRUSD.p": {
+          "theta": 0.00963,
+          "tau_half_bars": 71.97,
+          "tau_half_hours": 17.99
+        },
+        "ZECUSD.p": {
+          "theta": 0.04558,
+          "tau_half_bars": 15.21,
+          "tau_half_hours": 3.8
+        }
+      },
+      "uncertainty": "OLS discrete regression on 120 completed bars; dt = 1 M15 bar.",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM_A_05_REGIME_CLASSIFICATION_TWO_TIER_FAIL",
+      "statement": "Two-tier trend router (classify_regime) evaluated on 15m, 1H, and 4H completed candles yields UNDEFINED across all 7 crypto assets. For BTCUSD.pi, although 1H drift t-statistic reaches -2.2158 with 1H ER=0.3767, 4H drift t-statistic is only -0.3126 (failing the STAT tier confirmation threshold drift_t_4h_confirm >= 1.0), while price trades in rotational balance. All other assets similarly fail multi-timeframe drift alignment (|t_drift_1h| < 2.0 or opposing 4H drift), confirming lack of persistent directional drift.",
+      "evidence_ids": [
+        "Terminal/decision_gates_v3.py:classify_regime",
+        "Data/Candles/*_15m.parquet"
+      ],
+      "formula_or_test": "classify_regime(closes_15m, closes_1h, closes_4h)",
+      "result": {
+        "BTCUSD.pi": {
+          "regime": "UNDEFINED",
+          "15m_er": 0.2756,
+          "1h_er": 0.3767,
+          "1h_drift_t": -2.2158,
+          "4h_drift_t": -0.3126
+        },
+        "ETHUSD.pi": {
+          "regime": "UNDEFINED",
+          "15m_er": 0.2637,
+          "1h_er": 0.2692,
+          "1h_drift_t": -1.7191,
+          "4h_drift_t": -0.2257
+        },
+        "SOLUSD.p": {
+          "regime": "UNDEFINED",
+          "15m_er": 0.3922,
+          "1h_er": 0.2746,
+          "1h_drift_t": -1.6404,
+          "4h_drift_t": 0.4758
+        },
+        "BNBUSD.p": {
+          "regime": "UNDEFINED",
+          "15m_er": 0.1881,
+          "1h_er": 0.1329,
+          "1h_drift_t": -0.6784,
+          "4h_drift_t": 1.1876
+        },
+        "BCHUSD.p": {
+          "regime": "UNDEFINED",
+          "15m_er": 0.3344,
+          "1h_er": 0.0954,
+          "1h_drift_t": -0.478,
+          "4h_drift_t": 0.8628
+        },
+        "XMRUSD.p": {
+          "regime": "UNDEFINED",
+          "15m_er": 0.4994,
+          "1h_er": 0.2002,
+          "1h_drift_t": -0.9227,
+          "4h_drift_t": null
+        },
+        "ZECUSD.p": {
+          "regime": "UNDEFINED",
+          "15m_er": 0.4032,
+          "1h_er": 0.2676,
+          "1h_drift_t": -1.6816,
+          "4h_drift_t": null
+        }
+      },
+      "uncertainty": "Strict mathematical execution of two-tier router without subjective overrides.",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM_A_06_MODEL1_AND_MODEL2_DISQUALIFICATION",
+      "statement": "Both Model 1 Extreme Mean Reversion and Model 2 Trend Following are disqualified across the universe. Model 1 requires extreme dislocation |Z| in [2.0, 3.5] with sub-diffusive VR < 0.85 and verified tape exhaustion. In Sheet 20 of DataBase_Trading.xlsx, BTC trades at VWAP Z = -2.5043 SD, but sits inside Daily Value Area balance (VAL 80350.0, POC 80600.0, VAH 81100.0) with zero tape exhaustion. Crucially, the candidate order in preflight is a SELL_LIMIT (short), which directly contradicts fading an oversold negative Z dip. Model 2 is disqualified due to sub-diffusive VR(4) < 1.15, ER(48) noise, and UNDEFINED regime across all assets.",
+      "evidence_ids": [
+        "Data/DataBase_Trading.xlsx:11_Technical",
+        "Data/DataBase_Trading.xlsx:20_Auction_Market_Structure",
+        "Data/execution_preflight_receipt.json:candidate"
+      ],
+      "formula_or_test": "Model 1: |Z| in [2.0, 3.5] & VR < 0.85 & Exhaustion == True; Model 2: |Z| < 2.0 & VR > 1.15 & ER >= 0.20 & Regime in [TREND_UP, TREND_DOWN]",
+      "result": {
+        "Model_1_Extreme_MR": {
+          "BTCUSD.pi": {
+            "Z_VWAP": -2.5043,
+            "VR_4": 0.6127,
+            "Auction_Status": "INSIDE_VALUE (Balance)",
+            "Candidate_Direction": "SELL_LIMIT",
+            "Status": "DISQUALIFIED_DIRECTION_AND_AUCTION_BALANCE"
+          },
+          "ETHUSD.pi": {
+            "Z_VWAP": -1.8904,
+            "VR_4": 0.7133,
+            "Auction_Status": "INSIDE_VALUE (Balance)",
+            "Status": "DISQUALIFIED_NOT_EXTREME_AND_BALANCE"
+          },
+          "SOLUSD.p": {
+            "Z_VWAP": -1.9874,
+            "VR_4": 0.7149,
+            "Auction_Status": "INSIDE_VALUE (Balance)",
+            "Status": "DISQUALIFIED_NOT_EXTREME_AND_BALANCE"
+          },
+          "BNBUSD.p": {
+            "Z_VWAP": -0.8411,
+            "VR_4": 0.9134,
+            "Status": "DISQUALIFIED_NOT_EXTREME"
+          },
+          "BCHUSD.p": {
+            "Z_VWAP": -0.8397,
+            "VR_4": 0.8839,
+            "Status": "DISQUALIFIED_NOT_EXTREME"
+          },
+          "XMRUSD.p": {
+            "Z_VWAP": -3.0395,
+            "VR_4": 0.8917,
+            "Status": "DISQUALIFIED_RANDOM_WALK_VR"
+          },
+          "ZECUSD.p": {
+            "Z_VWAP": -2.7701,
+            "VR_4": 1.0122,
+            "Status": "DISQUALIFIED_RANDOM_WALK_VR"
+          }
+        },
+        "Model_2_Trend_Following": {
+          "All_Assets": "DISQUALIFIED_UNDEFINED_REGIME_SUBDIFFUSIVE_VR_AND_ER_CHOP"
+        }
+      },
+      "uncertainty": "Deterministic invariant evaluation; zero model discretion.",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM_A_07_CANDIDATE_BARRIER_PROBABILITY_ANALYSIS",
+      "statement": "Analysis of the Cycle 318 Preflight candidate (BTCUSD.pi SELL_LIMIT @ 80960.0, SL 81242.0, TP 80252.0, volume 0.06 lot, risk:reward = 1:2.5106): Conditioned on fill at 80960.0, continuous GBM barrier hitting probability yields P(TP first | fill) = 34.46% under empirical return drift (mu_bar = -5.72e-5, sigma_bar = 1.57e-3 per 15m bar, theta_gbm = 47.26) versus driftless baseline of 28.36% (log scale) / 28.48% (linear scale). While this yields positive conditional expected value (+0.2097R gross EV, +2.96 USD net EV for 0.06 lot ticket with 17.82 USD total nominal risk), the order is unanchored to a valid trending or mean-reverting regime, resides 191.5 USD (+0.237%) above current market mid (80768.5) inside Daily Value Area balance, and cannot be authorized under the mandatory STAND_ASIDE rule for UNDEFINED regime.",
+      "evidence_ids": [
+        "Data/execution_preflight_receipt.json",
+        "Data/Candles/BTC_15m.parquet"
+      ],
+      "formula_or_test": "P(hit BL before BU) = [exp(theta * ln(BU/S0)) - 1] / [exp(theta * ln(BU/S0)) - exp(theta * ln(BL/S0))]",
+      "result": {
+        "candidate_order": "BTCUSD.pi SELL_LIMIT @ 80960.0",
+        "volume_lot": 0.06,
+        "entry_price": 80960.0,
+        "stop_loss": 81242.0,
+        "take_profit": 80252.0,
+        "current_mid": 80768.5,
+        "distance_to_entry_usd": 191.5,
+        "distance_to_entry_pct": 0.237,
+        "risk_distance_usd": 282.0,
+        "reward_distance_usd": 708.0,
+        "reward_to_risk_ratio": 2.5106,
+        "base_nominal_risk_usd": 16.92,
+        "exit_spread_cost_usd": 0.9,
+        "total_nominal_risk_usd": 17.82,
+        "profit_at_tp_usd": 42.48,
+        "p_driftless_tp_first_log": 0.2836,
+        "p_driftless_tp_first_lin": 0.2848,
+        "p_calibrated_tp_first_fill": 0.3446,
+        "gross_ev_r_units": 0.2097,
+        "net_ev_ticket_usd": 2.96,
+        "regime_status": "DISQUALIFIED_UNDEFINED_REGIME"
+      },
+      "uncertainty": "Continuous GBM assumption; real discrete jumps and spread widenings may degrade realized fill markout.",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM_A_08_PERPETUAL_QUANT_INQUEST",
+      "statement": "In response to Section 2.5 of the Standardized Trading Decision Chain: The candidate scanning methodology correctly protects portfolio capital by refusing to execute unanchored trades in low-efficiency rotational noise (ER(48) < 0.20 on 5/7 assets, classify_regime == UNDEFINED). Flat equity at 4,865.07 USD is a deliberate feature of institutional solvency defense (preserving the 70.07 USD kernel cushion above the 4,795.00 USD Solvency Kernel), not an execution failure. Staging limit sells without regime confirmation exposes the desk to toxic adverse selection if volatility expands. The binding statistical boundary is the lack of confirmed multi-timeframe trend drift (4H drift_t = -0.3126 < 1.0) coupled with sub-diffusive variance ratios (VR(4) = 0.6127 < 0.85) and rotational value area balance.",
+      "evidence_ids": [
+        "Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md:Section_2.5",
+        "Data/cycle_envelope.json:solvency"
+      ],
+      "formula_or_test": "Kaizen Inquest Protocol Evaluation",
+      "result": {
+        "inquest_finding": "ZERO_CAPITAL_EROSION_IN_ROTATIONAL_CHOP",
+        "binding_statistical_boundary": "classify_regime == UNDEFINED across all 7 assets; VR(4) < 0.85 (BTC 0.6127, ETH 0.7133, SOL 0.7149); ER(48) < 0.20 (ETH 0.1733, SOL 0.1771, BNB 0.1537, BCH 0.1612, ZEC 0.1562)",
+        "solvency_kernel_status": "PRESERVED_4865.07_VS_4795.00",
+        "recommendation": "STAND_ASIDE_UNCONDITIONALLY"
+      },
+      "uncertainty": "Non-probabilistic governance evaluation.",
+      "status": "VERIFIED"
+    }
+  ],
+  "challenges": [
+    "CHALLENGE_A_01: The proposed BTCUSD.pi SELL_LIMIT @ 80960.0 (volume 0.06 lot, total nominal risk 17.82 USD, ticket stress 24.28 USD), while passing technical broker preflight (PREFLIGHT_PASS) with positive conditional fill EV (+0.2097R, P(TP|fill)=34.46% vs 28.36% driftless), violates the desk's cardinal regime invariant: classify_regime is strictly UNDEFINED across all 7 assets, and VR(4) is 0.6127 (sub-diffusive mean-reverting, z*=-1.8551). Staging resting limit orders in UNDEFINED chop without super-diffusive drift or confirmed tape exhaustion risks toxic adverse selection.",
+    "CHALLENGE_A_02: Any attempt to classify BTC's current structure as Model 1 Extreme Mean Reversion to justify a short trade is mathematically invalid; BTC trades at VWAP Z = -2.50 SD (oversold dip), meaning any mean-reversion trade would be a LONG fade, not a SHORT. A short limit order at 80960.0 is a counter-momentum fade of an anticipated rally into resistance, which requires verified resting whale walls (Role B) and cannot be ratified by Role A alone."
+  ],
+  "unknowns": [
+    "UNKNOWN_A_01: Whether the 80,960.0 USD level contains genuine, persistent (>=180s), non-spoofed resting ask liquidity / whale walls on Binance L2 and Hyperliquid L3 orderbooks to provide bunker protection must be independently verified by Role B.",
+    "UNKNOWN_A_02: Final solvency kernel headroom and stressed margin sizing for the 0.06 lot ticket must be verified by Role C, while calendar / macro event proximity must be verified by Role D."
+  ],
+  "severity_1_or_2_disputes": [],
+  "role_verdict": "STAND_ASIDE_NO_VALID_REGIME",
+  "response_sha256": "62ca3c64e3a768ba2265b13cc20e562bc8cd440dd9aa5508af3daeeb38fc0219"
+}
