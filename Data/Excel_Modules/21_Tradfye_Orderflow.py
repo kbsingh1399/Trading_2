@@ -426,19 +426,35 @@ def update_excel_workbook(rows: List[Dict[str, Any]], max_retries: int = 6, retr
                 col_letter = openpyxl.utils.get_column_letter(col_idx)
                 ws.column_dimensions[col_letter].width = width
 
-            # Atomic file write to avoid file-lock conflicts
-            temp_dir = DATA_DIR
-            temp_fd, temp_path_str = tempfile.mkstemp(prefix="DataBase_Trading_tmp_", suffix=".xlsx", dir=temp_dir)
-            os.close(temp_fd)
-            temp_path = pathlib.Path(temp_path_str)
-            
-            wb.save(temp_path)
+            # Atomic verified save pattern matching 11_Technical.py
+            temp_excel = EXCEL_PATH.with_name(f"{EXCEL_PATH.stem}_{os.getpid()}_{int(time.time()*1000)}.tmp.xlsx")
+            wb.save(temp_excel)
             wb.close()
             
-            # Replace atomically
-            temp_path.replace(EXCEL_PATH)
-            logger.info(f"Successfully saved {len(rows)} orderflow rows into {EXCEL_PATH} in {time.time()-t0:.2f}s")
-            return True
+            import zipfile
+            _is_valid = False
+            with zipfile.ZipFile(temp_excel, "r") as _z:
+                _is_valid = (_z.testzip() is None)
+                
+            if _is_valid:
+                replaced = False
+                for _att in range(30):
+                    try:
+                        temp_excel.replace(EXCEL_PATH)
+                        replaced = True
+                        break
+                    except Exception:
+                        time.sleep(0.5)
+                        
+                if replaced:
+                    logger.info(f"Successfully saved {len(rows)} orderflow rows into {EXCEL_PATH} in {time.time()-t0:.2f}s")
+                    return True
+                else:
+                    logger.warning("Could not atomically replace EXCEL_PATH after 30 attempts.")
+            else:
+                logger.error("Generated temp Excel file failed zip integrity test!")
+                if temp_excel.exists():
+                    temp_excel.unlink()
             
         except Exception as e:
             logger.warning(f"Attempt {attempt}/{max_retries} failed with {type(e).__name__}: {e}. Retrying in {retry_delay}s...")
