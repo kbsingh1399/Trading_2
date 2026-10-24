@@ -133,8 +133,23 @@ def build_unified_prompt(cycle_id: str = "AUTO") -> str:
         except Exception as e:
             print("[DualCouncil] Warning loading cycle_envelope.json:", e)
     
+    # Load and embed execution_preflight_receipt.json directly
+    receipt_file = ROOT / "Data" / "execution_preflight_receipt.json"
+    receipt_json_str = "{}"
+    if receipt_file.exists():
+        try:
+            with open(receipt_file, "r", encoding="utf-8") as f:
+                rec_obj = json.load(f)
+            receipt_json_str = json.dumps(rec_obj, indent=2)
+        except Exception as e:
+            print("[DualCouncil] Warning loading execution_preflight_receipt.json:", e)
+
+    combined_envelope_str = envelope_json_str
+    if receipt_json_str and receipt_json_str != "{}":
+        combined_envelope_str += f"\n\n### ⚡ VERIFIED LIVE EXECUTION PREFLIGHT RECEIPT (`execution_preflight_receipt.json`):\n```json\n{receipt_json_str}\n```"
+
     if "{CYCLE_ENVELOPE_JSON}" in prompt:
-        prompt = prompt.replace("{CYCLE_ENVELOPE_JSON}", envelope_json_str)
+        prompt = prompt.replace("{CYCLE_ENVELOPE_JSON}", combined_envelope_str)
     else:
         # If template lacks placeholder, inject it right after the header
         embed_block = f"\n\n### 📦 ATTACHED IMMUTABLE CYCLE ENVELOPE (`cycle_envelope.json`):\n```json\n{envelope_json_str}\n```\n\n"

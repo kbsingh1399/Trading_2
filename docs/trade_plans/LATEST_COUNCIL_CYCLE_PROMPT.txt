@@ -25,15 +25,15 @@ The dispatcher embeds the complete immutable machine-generated cycle_envelope.js
 `json
 {
   "schema_version": "1.1.0",
-  "cycle_id": "Cycle 313",
-  "uuid": "ea872a20-f2be-48c0-9ccf-710b098e01d5",
-  "dispatch_nonce": "46044d1a-ecf4-44eb-8c85-769ebc85f29b",
-  "cutoff_utc": "2026-10-24 00:02:46 UTC",
+  "cycle_id": "Cycle 314",
+  "uuid": "f583cce1-0a47-4242-b39d-ae94bb7f8f73",
+  "dispatch_nonce": "2faf3bab-8760-409f-8ee7-093f4834ddb6",
+  "cutoff_utc": "2026-10-24 00:15:12 UTC",
   "provenance": {
-    "git_commit": "f73a6513bd61e2db7fb65cd0f1109c788dae6ff4",
-    "git_tree": "acde38c4b0fad5f91a452f13da2dd3a04adf4d46",
+    "git_commit": "254b7f39cf832c050a7b422a6e7b63395953981e",
+    "git_tree": "d32642fc5856abeafb085536cf016553f1f4ffb5",
     "risk_policy_sha256": "4633e4af56e52c71329c617aaee4cae5c7102ef9a9f33e7e747e46d26841f058",
-    "evidence_manifest_sha256": "4c273f6421647293395e12aa42f4ee404b33f28a35e8a093c7aeba2012396986",
+    "evidence_manifest_sha256": "60dd9731ae220f798d58298b61330de1df3d8231367b66be334f66ff7ff0b3f8",
     "workbook_sha256": "e855a87fb055ab6f5d8f2be8e5cdab19afe786afaa62ae006984a2c6ef2f6fab",
     "excel_freshness_verified": null
   },
@@ -81,6 +81,66 @@ The dispatcher embeds the complete immutable machine-generated cycle_envelope.js
   "status": "ACCOUNT_AND_SOLVENCY_VERIFIED",
   "authorization": "DENIED_PENDING_FULL_HARD_GATES"
 }
+
+### ⚡ VERIFIED LIVE EXECUTION PREFLIGHT RECEIPT (`execution_preflight_receipt.json`):
+```json
+{
+  "schema_version": "1.0.0",
+  "dispatch_nonce": "2faf3bab-8760-409f-8ee7-093f4834ddb6",
+  "observed_at_utc": "2026-10-24 00:19:11 UTC",
+  "account": {
+    "login": 5064568,
+    "server": "BlueberryMarketsSVG-Live",
+    "balance": 4865.07,
+    "equity": 4865.07,
+    "margin_free": 4865.07
+  },
+  "candidate": {
+    "symbol": "BTCUSD.pi",
+    "action": "SELL_LIMIT",
+    "volume": 0.04,
+    "price": 81300.0,
+    "sl": 81780.0,
+    "tp": 79850.0
+  },
+  "broker_tick": {
+    "bid": 80762.0,
+    "ask": 80777.0,
+    "mid": 80769.5,
+    "spread_raw": 15.0,
+    "spread_bps": 1.86,
+    "tick_time_utc": "2026-10-24 00:19:17 UTC",
+    "tick_age_seconds": -5.82,
+    "quote_fresh": true
+  },
+  "broker_spec": {
+    "digits": 2,
+    "point": 0.01,
+    "trade_mode": 4,
+    "trade_mode_desc": "FULL",
+    "volume_min": 0.01,
+    "volume_step": 0.01,
+    "volume_max": 100.0,
+    "stops_level": 0
+  },
+  "broker_valuation": {
+    "profit_at_sl_usd": -19.2,
+    "profit_at_tp_usd": 58.0,
+    "margin_required_usd": 1626.0,
+    "nominal_risk_usd": 19.2,
+    "ticket_stress_usd": 26.0
+  },
+  "order_check": {
+    "pass": true,
+    "retcode": 0,
+    "comment": "Done",
+    "margin_level_post_order": 0.0,
+    "margin_free_post_order": 4865.07
+  },
+  "preflight_verdict": "PREFLIGHT_PASS",
+  "receipt_sha256": "392291720436797708e4db58cf2b1e0d81a776cc2c3ebcee4396963c437ba8cd"
+}
+```
 `
 
 Fresh reconciled envelope telemetry in the embedded JSON block above governs all calculations and supersedes any dated operator baselines.
