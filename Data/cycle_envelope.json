@@ -1,14 +1,14 @@
 {
   "schema_version": "1.1.0",
-  "cycle_id": "Cycle 313",
-  "uuid": "ea872a20-f2be-48c0-9ccf-710b098e01d5",
-  "dispatch_nonce": "46044d1a-ecf4-44eb-8c85-769ebc85f29b",
-  "cutoff_utc": "2026-10-24 00:02:46 UTC",
+  "cycle_id": "Cycle 314",
+  "uuid": "f583cce1-0a47-4242-b39d-ae94bb7f8f73",
+  "dispatch_nonce": "2faf3bab-8760-409f-8ee7-093f4834ddb6",
+  "cutoff_utc": "2026-10-24 00:15:12 UTC",
   "provenance": {
-    "git_commit": "f73a6513bd61e2db7fb65cd0f1109c788dae6ff4",
-    "git_tree": "acde38c4b0fad5f91a452f13da2dd3a04adf4d46",
+    "git_commit": "254b7f39cf832c050a7b422a6e7b63395953981e",
+    "git_tree": "d32642fc5856abeafb085536cf016553f1f4ffb5",
     "risk_policy_sha256": "4633e4af56e52c71329c617aaee4cae5c7102ef9a9f33e7e747e46d26841f058",
-    "evidence_manifest_sha256": "4c273f6421647293395e12aa42f4ee404b33f28a35e8a093c7aeba2012396986",
+    "evidence_manifest_sha256": "60dd9731ae220f798d58298b61330de1df3d8231367b66be334f66ff7ff0b3f8",
     "workbook_sha256": "e855a87fb055ab6f5d8f2be8e5cdab19afe786afaa62ae006984a2c6ef2f6fab",
     "excel_freshness_verified": null
   },
