@@ -1,130 +1,65 @@
 Thought Process
-Explored 1 files
-Explored 2 files，Ran 1 commands
-
-Worklog and C316 precedent loaded. The C317 dispatch shows major remediation progress (clock triple populated, freshness true, order_check fixed) plus two new defects (volume halved to 0.03 → below Tier-2 band; 4th consecutive post-cutoff receipt). Let me read the rest of the C316 response format and helper modules to keep the C317 ruling methodologically identical.
-
-Explored 1 files
-
-C316 format fully loaded. Now building the C317 check script with exact-envelope transcription, independent Decimal arithmetic, remediation-ledger updates, and the canonical hash pipeline (prompt_sha256 = sha256(canonical envelope re-serialization); response_sha256 = sha256(canonical response minus response_sha256)).
-
 Wrote 1 files，Ran 1 commands
-Create File c317_check.py
-Run Cycle 317 council check + response builder
+Create File cycle318_ruling.py
+Compute Cycle 318 ruling JSON and self-hash
 Done
 
-71/73 — two check failures to resolve before archiving: (1) net R:R — my hand-copied C316 value 2.3336 is wrong; canonical 20.79/8.91 = 7/3 = 2.3333 exact (C316 slip to correct); (2) fill distance is 0.3141%, not 0.3142%. Also the script reveals margin_level_post_order 400.62 = q2(400.6151) — exact under half-up, so order_check is fully consistent (my earlier 400.574 hand-calc was wrong) — and two band-table margin figures need correction (0.05 → 4048.00, 0.08 → 6476.80). Patching in place:
-
-Wrote 1 files
-
-Two residual strings to patch (S4_ledger net R:R still says 2.3336 on line 211; arithmetic_validation 0.08 dual margin says 6473.60):
-
-Wrote 1 files，Ran 1 commands
-
-73/73 PASS — response archived (scripts/c317_response.json, 4 rows × 41 fields). Now appending the worklog entry and closing out the todos before emitting the verdict:
-
-Wrote 1 files
-
-✅ 33-SHEET CONFIRMATION — CYCLE 317 (GLM-5.3-Flash, Z.ai Sovereign Council — Solvency Arbiter; check harness c317_check.py: 73/73 PASS)
-
-ENVELOPE: VALID — well-formed schema 1.1.0, no unresolved markers, nonce a2fc999c fresh (8th distinct) and receipt-bound → full adjudication merited; DENIED_BAD_CYCLE_ENVELOPE not triggered.
-VERDICT: DENIED_FAIL_CLOSED — 4 HOLD rows, 0 executable. Solvency/telemetry stack is now the cleanest in the cycle chain (3 long-standing defects RESOLVED), but the S4 receipt fails on receipt timing (+13s post-cutoff, 4th consecutive) and a NEW defect class: Tier-2 nominal band violation (8.46 < 15.00), and no calibrated admission evidence exists. Authoritative artifact: scripts/c317_response.json.
+✅ 33-SHEET CONFIRMATION — Cycle 318 | Sole candidate BTCUSD.pi SELL_LIMIT 0.06 → HOLD (uncalibrated probabilities + disputed post-cutoff tick) | Overall authorization: DENIED_FAIL_CLOSED | All arithmetic verified against broker receipt; kernel PASS with cushion +43.79 USD.
 
 json
-        "Dual-clone margin at 0.06 razor-thin (residual 7.47 / level ~100.15%) - the defect S4 was cut to fix",
-        "P_fill/P_TP uncalibrated -> HOLD mandatory"
-      ]
-    }
-  ],
-  "arithmetic_validation": {
-    "tolerance_usd": 0.005,
-    "method": "independent Decimal recomputation vs envelope + receipt (PASSED_TO_0.01_USD)",
-    "checks": [
-      "floor cushion 265.07 = 4865.07-4600 OK",
-      "operating cushion 215.07 = 4865.07-4650 OK",
-      "kernel cushion 70.07 = 4865.07-4795 OK",
-      "realized headroom 68.07 = 4865.07-2.00-0-4795 OK",
-      "post_joint_stress_equity 4863.07 = 4865.07-2.00-0 OK",
-      "illustrative dual-full stress 2x(1.25x25+2)=66.50 -> post 4796.57 OK",
-      "L2 carry: 22.89 / 55.00 / 2.4028 / 31.55 / single 4831.52 / dual 4799.97 / margin 2010.00 OK",
-      "S2 carry: 19.20 / 58.00 / 3.0208 / 26.75 / single 4836.32 / dual 4809.57 / margin 1626.00 OK",
-      "S3 carry: 16.92 / 42.48 / 2.5106 / 24.275 / single 4838.795 / dual 4814.52 / margin 2428.80 OK",
-      "S4 receipt: 8.46 / 21.24 / 2.5106 gross / 2.3336 net / margin 1214.40 = 0.5x80960x0.03 / spread 0.45 / bps 1.86 / mid 80706.5 / total_nominal 8.91 OK",
-      "S4 canonical stress (8.46+0.45)*1.25+2.00 = 13.1375 vs receipt 13.14 -> +0.0025 conservative rounding DETECTED (DIS-317-04)",
-      "S4 single post 4849.9325; dual-clone 4836.795; dual margin 2428.80 residual 2436.27 level ~200.31% (DIS-316-07 RELAXED)",
-      "mixed S4+S2 joint 4823.1825 / margin 2840.40 (level ~171.28%) OK",
-      "TIER-2 BAND: 8.46 / 8.91 / 13.1375 ALL < 15.00 DETECTED (DIS-317-02); in-band steps 0.06/0.07/0.08 = 16.92/19.74/22.56; 0.05 = 14.10 out; 0.09 = 25.38 out (>25)",
-      "dual-clone feasibility: 0.06 margin 4857.60 (residual 7.47); 0.07 margin 5667.20 INFEASIBLE; 0.08 margin 6476.80 INFEASIBLE",
-      "volume 0.03 legality (min 0.01 / step 0.01 / max 100) OK",
-      "order_check margin_free_post_order 3650.67 = 4865.07-1214.40 EXACT; margin_level_post_order 400.62 = q2(400.6151) EXACT under half-up (DIS-315-02/316-02 RESOLVED)",
-      "net R:R canonical 20.79/8.91 = 7/3 = 2.3333 exact; C316 archived 2.3336 corrected (council rounding slip, LOW)",
-      "temporal: observed-cutoff +13s; tick-cutoff +18s; IMPROVED vs +30s at C316 but 4th consecutive violation (DIS-317-01)",
-      "server epoch 1792815331-10800 -> 2026-10-24 01:15:31 UTC exact OK",
-      "staleness: S2 carry 2178s and S3 carry 1523s at cutoff - BOTH OVER the 900s outer ceiling",
-      "telemetry: mid +58.0 vs C316 (80648.5 -> 80706.5); L2 drift widened 241.0 -> 299.0 below bid; S2 drift narrowed 651.5 -> 593.5 above mid; cutoff delta +1553s vs C316"
-    ]
-  },
-  "disputes": [
-    {"id": "DIS-317-01", "severity": "CRITICAL", "finding": "Execution preflight receipt POST-CUTOFF for the 4th consecutive cycle: observed_at 01:15:26 UTC > cutoff 01:15:13 UTC (+13s); tick_time 01:15:31 (+18s). Delta IMPROVED vs C316 (+30s). Sequence +239s -> +8s -> +30s -> +13s. Per receipt-discipline canon a post-cutoff receipt can never authorize its own cycle.", "action": "Bind receipts to the NEXT cycle's envelope, or generate within [envelope_generation, cutoff]; never admit observation_time > cutoff as cycle evidence. With +13s the fix is trivial: cut the envelope 15s earlier."},
-    {"id": "DIS-317-02", "severity": "CRITICAL", "finding": "TIER-2 NOMINAL RISK BAND VIOLATION - NEW defect class: S4 base nominal 8.46, total nominal 8.91, canonical stress 13.1375 are ALL below risk_min_usd 15.00. The volume halving (0.06 -> 0.03) that RELAXED DIS-316-07 (dual-clone margin razor-thinness) overshot below the Tier-2 floor. In-band steps for this geometry: 0.06 (16.92; dual-clone residual 7.47 razor-thin), 0.07 (19.74; dual-clone infeasible 5667.20), 0.08 (22.56; dual-clone infeasible). Two-ticket in-band capacity exists only as 0.06 clone (razor-thin) or mixed S4@0.06 + S2@0.04 (margin 4054.80, level ~119.98%).", "action": "Re-issue the receipt at 0.06 (single-ticket in-band; accept razor-thin dual-clone) or 0.07/0.08 (single-ticket only), with the receipt generated inside the window and bound to the next envelope."},
-    {"id": "DIS-317-03", "severity": "MEDIUM", "finding": "Geometry drift ESCALATED to a 4th distinct ticket config in 6 cycles (DIS-311-02 BUY 80,400 @ 0.05; C314/C15 SELL_LIMIT 81,300 @ 0.04; C316 SELL_LIMIT 80,960 @ 0.06; C317 SELL_LIMIT 80,960 @ 0.03). S3 is superseded-in-fact (identical levels, volume halved) without a supersede declaration; L2/S2 carries remain unreconciled.", "action": "Bind exactly one canonical geometry per cycle with estimator lineage; explicitly supersede or reaffirm carried rows."},
-    {"id": "DIS-317-04", "severity": "LOW", "finding": "ticket_stress_usd 13.14 rounds the exact canonical (8.46+0.45)*1.25+2.00 = 13.1375 UP by 0.0025 - conservative direction (improvement over the C316 -0.005 truncation).", "action": "Publish the canonical-exact stress value; keep rounding conservative (half-up/ceil)."},
-    {"id": "DIS-317-05", "severity": "LOW", "finding": "tick_age_seconds declared 0.0 while the raw observed_at -> tick_time gap is +5s; self-consistent only within the disclosed |clock_skew| 5.75s. Age remains a skew-adjusted declaration, not a measurement (carries DIS-316-08).", "action": "Publish raw microsecond timestamps for observation and tick so age is independently recomputable."}
-  ],
-  "unknowns": [
-    "P_fill / P_win_given_fill for all four geometries - no estimator version, training/eval windows, labels, Brier/log-loss, ESS, CIs",
-    "swap/commission schedule for BTCUSD.pi (absent from receipt; stress reserves illustrative)",
-    "per-asset session/calendar matrix for the 156-asset universe (global crypto-scope triple only)",
-    "itemized evidence rows behind manifest c19f32be (digest-only)",
-    "workbook content delta d2559f44 -> d4cd52fb: which rows changed and cycle relevance (freshness now attested, delta undisclosed)",
-    "row-level event-calendar clearance behind calendar_verified=true (global attest)",
-    "raw microsecond tick/observation timestamps (tick_age declared, not measured; DIS-317-05)",
-    "TTL / wait-cost model for pending orders (WaitCost and Expected_Capital_Minutes not computable)",
-    "formal supersede/reaffirm status of L2/S2/S3 carries under the S4 re-issue (declaration absent)"
-  ],
-  "authorization": "DENIED_FAIL_CLOSED",
-  "response_sha256": "173f897286d95162ddee910e893f584e5b5919fac3e3bebbc9e21bbb494b3243"
-}
-1) Provenance
+{
+  "schema_version": "1.1.0",
+  "cycle_id": "Cycle 318",
+  "cutoff_utc": "2026-10-24 01:46:29 UTC",
+  "evidence_manifest_sha256": "e5b2814e14523aca96b080471784335065822a6102be6b9b81a13357146d92df",
+  "prompt_sha256": null,
+  "dispatch_nonce": "ab50c695-1f3c-4d92-bdac-ea6b9af73c53",
+  "provenance_status": "PARTIAL_VERIFIED_ENVELOPE_VALID_NONCE_BOUND_DIGESTS_DECLARED_NOT_RECOMPUTABLE",
+  "inventory_status": "RECONCILED_FULL_ZERO_RESIDUALS",
+  "hard_gate_results": [
+    {
+      "gate": "account_authorization",
+      "status": "PASS",
+      "detail": "Live account 5064568 BlueberryMarketsSVG-Live USD; envelope status ACCOUNT_AND_SOLVENCY_VERIFIED; envelope pre-authorization DENIED_PENDING_FULL_HARD_GATES respected"
+    },
+    {
+      "gate": "legal_trade_mode_and_volume",
+      "status": "PASS",
+      "detail": "BTCUSD.pi trade_mode 4 FULL; volume 0.06 = 6 x step 0.01, within [0.01, 100.0]"
+    },
+    {
+      "gate": "causal_fresh_evidence",
+      "status": "FAIL_STRICT_DISPUTED",
+      "detail": "Reported tick_time_utc 01:46:31 is +2s post-cutoff (evidence_age_at_cutoff = -2s, future-dated on its face); clock_skew -4.33s sign convention undocumented so skew cure unverifiable; observed_at 01:46:27 is pre-cutoff. Strict rule observation <= availability <= cutoff fails on the reported tick timestamp (D1)"
+    },
+    {
+      "gate": "broker_session_open",
+      "status": "PASS",
+      "detail": "broker_clock_open true"
+    },
+    {
+      "gate": "native_venue_session_open",
+      "status": "PASS",
+      "detail": "Crypto native 24/7; native_market_open true; no cross-asset transfer attempted"
+    },
+    {
+Council Ruling — Z.ai Sovereign Council (GLM-5.3-Flash), Co-Equal Quant & Solvency Arbiter
 
-Envelope admitted: schema 1.1.0 complete, zero unresolved template markers, Cycle 317 is the 6th consecutive monotonic increment, cutoff +1,553s vs C316, nonce a2fc999c is the 8th distinct identity and binds the preflight receipt; risk-policy digest stable for the 8th cycle. Actual attestation levels: git commit/tree present-unverified-remotely; manifest digest-only (zero itemized rows, so dynamic-row causality observation ≤ availability ≤ cutoff remains unvalidatable); receipt broker-native PREFLIGHT_PASS retcode 0 but post-cutoff +13s — inadmissible as own-cycle authorization evidence per the C314 canon. Three long-standing defects were RESOLVED this cycle: the clock triple is populated (true/true/true) for the first time in 7 cycles from the same feed that generated the receipt; excel_freshness_verified=true accompanies the second consecutive workbook rotation (d2559f44 → d4cd52fb); order_check now simulates pending-order margin reservation exactly. prompt_sha256 = sha256(canonical envelope re-serialization) = 65a2f843…d3b1; response_sha256 = 173f8972…4243 over the canonical 18-field payload.
+1. Provenance — Envelope schema 1.1.0 is well-formed: Cycle 318, uuid f2e8d0f4-96b3-4d97-80c9-b4c4efc1fd3c, dispatch_nonce ab50c695-1f3c-4d92-bdac-ea6b9af73c53 bound to the receipt, cutoff 2026-10-24 01:46:29 UTC, all template markers resolved. Digests advanced correctly vs Cycle 317 (commit 7a921cc4/tree ab721aaa vs 8ffb37a3/7ea60fb0; new manifest e5b2814e…, workbook 4fd031f5…, excel_freshness_verified: true). Attestation level: declared and internally consistent but not independently recomputable — no manifest rows accompany the dispatch, so evidence IDs resolve only to the two embedded artifacts (envelope + receipt). prompt_sha256 is absent from the provenance block and is echoed null (D2). Causal chain: observed_at 01:46:27 ≤ cutoff 01:46:29 ✓ — this fixes Cycle 317's post-cutoff capture defect — but the reported tick_time_utc 01:46:31 is +2s future-dated against cutoff; the −4.33s skew could cure it only under an undocumented sign convention, so the strict gate fails closed (D1). Response integrity method: response_sha256 = SHA-256 over UTF-8 compact JSON (insertion order, ,: separators) of this object with response_sha256 set to "".
 
-2) Inventory
+2. Inventory — balance = equity = margin_free = 4,865.07; margin_used 0.00; margin_level 0; 0 positions, 0 pendings; no swap, commission, or deal residuals requiring explanation. Full reconciliation, zero unexplained residual. Equity equals balance, so there is no floating P/L and — per protocol — zero credit is taken for unrealized value. The candidate's 2,428.80 margin reservation and 24.28 stress are modeled in §3–§4 but are not yet booked; inventory is unchanged.
 
-Flat book: balance = equity = margin_free = 4,865.07; margin_used 0.00; margin_level 0.0 (MT5 flat sentinel); 0 positions, 0 pending orders; no deals/swap/commission residual. The receipt's account block matches the envelope byte-for-byte (4,865.07 / 4,865.07 / 4,865.07). Zero residual → RECONCILED. The book is fully realized (no floating P/L), so the Tier-2 fresh-realized-balance gate passes: 4,865.07 > 4,850.00 by 15.07.
+3. Strict solvency — min(balance, equity) = 4,865.07. Exactly one independently fillable scenario exists (1 slot of 2 nominal). Single ticket: 4,865.07 − 24.28 − 2.00 = 4,838.79 ≥ 4,795.00 → kernel PASS, cushion +43.79 (full-precision stress 24.275 → 4,838.795, also PASS). Two-ticket illustrative worst-band: 4,865.07 − 2×(1.25×25.00 + 2.00) − 2.00 = 4,796.57 ≥ 4,795.00, residual cushion 1.57 — conditional on the stress model; two nominal 25.00 losses do not establish immunity to gap, slippage, or model error. The 2.00 USD global contingency is reserved exactly once, separate from each ticket's in-model reserve — no double counting. realized_headroom 68.07 reproduces exactly. Tier 2 admission: realized 4,865.07 > 4,850.00 ✓, and per-ticket nominal risk 16.92/17.82 sits inside [15.00, 25.00] — the 0.06-lot sizing correctly cures Cycle 317's 8.46 USD bandwidth breach; bandwidth and kernel are simultaneously satisfied for the first time since this tier activated. New finding (D3): at 50% margin, a second concurrent 0.06-lot ticket would consume 4,857.60 margin (free margin 7.47, margin_level 100.15%) — practical contingent capacity is 1 ticket, not 2. The 1.25× multiplier implies a 3.21 USD slippage budget plus the 2.00 reserve — adequate at 0.06 BTC notional against the measured 15.00-unit spread regime, remaining illustrative until measured slippage supersedes it.
 
-3) Strict solvency
+4. Candidate mathematics — All price arithmetic verified against the broker receipt: risk 0.06 × 1.0 × 282.00 = 16.92 = profit_at_sl −16.92 ✓; reward 0.06 × 708.00 = 42.48 ✓; R:R 708/282 = 2.51 ✓; spread 15.00 units = 1.857 bps of mid 80,768.5 (receipt 1.86 ✓); exit cost 0.90 ✓; all-in stress (16.92 + 0.90) × 1.25 + 2.00 = 24.28 ✓; joint post-stop balance 4,840.79. Broker-native evidence present and bound: order_calc_profit, order_calc_margin 2,428.80 (50.0% of 4,857.60 notional; margin_level_post 200.31% ✓; margin_free_post 2,436.27 ✓), order_check retcode 0 "Done"; structural stops valid (stops_level 0; SL/TP 282/708 units on correct sides; trade_mode FULL; volume step-legal); receipt sha256 0a71647a… recorded. Fill persona: the limit sits 199.00 above bid (24.6 bps) — passive maker entry with no entry-spread charge, but conditional fill probability and winner's-curse adverse selection are unquantified (D6). The ticket's price integrity is sound; what is missing is calibration, not arithmetic — verdict HOLD.
 
-min(B,E) = 4,865.07 with the 2.00 global contingency reserved once. S4 single: post-stop net 4,849.9325 → +54.9325 over the 4,795 kernel. S4 dual-clone (capacity 2): 4,836.795 (+41.795), dual margin 2,428.80 → residual 2,436.27, level ~200.31% — the DIS-316-07 razor-thinness is RELAXED by the volume cut. Mixed S4+S2: 4,823.1825 (+28.1825), margin 2,840.40, level ~171.28%. Illustrative dual-full baseline unchanged: 4,796.57 (+1.57, conditional on the stress model — not immunity). Every solvency scenario PASSES with zero credit to floating P/L or TP. The failure is not solvential — it is policy: the Tier-2 band.
+5. Market clock, universe and asset-native evidence — Broker open ✓, native crypto venue 24/7 open ✓, calendar verified, cutoff outside the 21:15–22:30 UTC rollover embargo ✓. Asset-native coherence holds: the sole candidate is crypto resting on crypto-native evidence; no open crypto venue is used to authorize any closed index/FX/commodity; no cross-asset causal transfer was attempted. No closed symbols generated ticket rows (watchlist discipline intact; zero watchlist rows). Universe coverage: the 156-asset sweep is attested at envelope level with a fresh workbook digest, but no per-symbol evidence rows accompany the dispatch, so per-asset session/quote verification beyond BTCUSD.pi is not independently reviewable this cycle (D7) — reported honestly as declared-156 / receipt-verified-1 / candidates-1 / watchlist-0.
 
-4) Candidate mathematics
+6. Existing positions — Zero positions, zero pendings; no R0 ledger entries exist, no ticket-specific ratchets apply, existing_ticket_actions = []. MANAGE_EXISTING_ONLY is inapplicable because there is nothing to manage. No position is characterized as risk-free — there are none — and the global 2.00 contingency attaches to new-risk adjudication only.
 
-Independent Decimal recomputation matches the receipt to the cent: SL distance 282.0 pts × 0.03 = 8.46; TP distance 708.0 × 0.03 = 21.24; R:R gross 2.5106, net-of-spread 20.79/8.91 = 7/3 = 2.3333 exact (C316's archived 2.3336 corrected as a council rounding slip); spread 15.0 × 0.03 = 0.45 (1.86 bps); total nominal 8.91; canonical stress 13.1375 vs receipt 13.14 (+0.0025, conservative direction — DIS-317-04); margin 1,214.40 = 0.5×80,960×0.03 (crypto FIXED 50% canon); order_check free_post 3,650.67 exact and level 400.62 = q2(400.6151) exact under half-up → the 3-cycle order_check defect is fully RESOLVED. SELL_LIMIT 80,960 is structurally legal: +246.0 above ask 80,714, +253.5 (+0.3141%) above mid, stops_level 0. THE BLOCKER (DIS-317-02): base 8.46 / total 8.91 / stressed 13.1375 are ALL below the Tier-2 floor of 15.00 — the volume halving that fixed the dual-clone margin problem overshot below the policy minimum. In-band steps for this geometry: 0.06 → 16.92 (dual-clone razor-thin, residual 7.47), 0.07 → 19.74 (dual-clone infeasible 5,667.20), 0.08 → 22.56 (infeasible 6,476.80); 0.05 → 14.10 is out; two-ticket in-band capacity exists only as the 0.06 clone or the mixed S4@0.06 + S2@0.04 pair (margin 4,054.80, level ~119.98%).
+7. Methodology and soft statistical ranking — Four-persona synthesis. Regime/calibration: no calibrated P_fill or P_TP estimator, no estimator version, training/evaluation windows, horizon, label definition, Brier/log-loss, reliability diagnostics, effective sample size, or confidence intervals accompany the dispatch; per the governing SOP these remain null and force HOLD for new admission — EV_net and Utility are left unevaluated rather than invented, and LCB_5% is not computable without a documented time-blocked bootstrap jointly propagating fill/win/cost/wait uncertainty. Fill/microstructure: spread healthy at 1.86 bps; entry 24.6 bps OTM makes fill uncertainty the dominant economic variable, and it is uncalibrated (D6). Solvency/portfolio: kernel passes with +43.79 cushion; practical capacity 1 (D3). Market-clock/provenance: sessions and clocks pass; causality disputed (D1); prompt digest absent (D2). Two-outcome hypothesis disclosed: only TP-first/SL-first branches are modeled conditional on fill; TTL/timeout/partial-fill masses are unknown and must not be forced into P_SL (D5). Hard/soft separation is preserved — even if D1 were resolved favorably, the uncalibrated-probability HOLD independently mandates DENIED_FAIL_CLOSED. Path to re-admission (Kaizen, all four required in one cycle): (1) calibrated P_fill(distance, session, side) and P_TP(setup class) with lineage, windows, diagnostics, ESS, CIs, and time-blocked bootstrap LCB_5%; (2) receipt re-emitted with documented skew convention and tick timestamp ≤ cutoff; (3) BTCUSD.pi commission/swap disclosure completing the cost ledger; (4) fresh order_check receipt bound to the then-current envelope at execution time.
 
-5) Market clock, universe & asset-native evidence
-
-FX rollover embargo inactive (cutoff 01:15:13 UTC outside 21:15–22:30; flag false consistent). Crypto session triple-attested — broker/native/calendar all true for the first time in 7 cycles — consistent with the live receipt tick 01:15:31 UTC; mid 80,706.5 (+58.0 vs C316). Saturday 01:15 UTC: FX/metals/indices/energies remain inside the weekend embargo (Fri 21:55 → Sun 22:00) → watchlist-only; no closed symbol generated an executable row, and crypto openness was not transferred to any TradFi class. Universe: 156 assets declared; 0/156 per-asset session matrix embedded (global crypto-scope attest only) — honest coverage report; the digest-only manifest keeps the itemized-evidence causality gate FAIL_CLOSED.
-
-6) Existing positions
-
-None — 0 positions, 0 pendings; no R0 ledger, no ratchets, nothing to manage; MANAGE_EXISTING_ONLY vacuous; existing_ticket_actions = []. L2/S2/S3 are research carries, not positions: this cycle they first breached the 900s outer ceiling (S2 2,178s; S3 1,523s), remain nonce-bound to C315/C316, and L2 drift widened to 299.0 below bid. Carries are re-issued or superseded — never grandfathered.
-
-7) Methodology & soft ranking
-
-Persona verdicts — Regime/calibration: no estimator registered for any of the four geometries; P_fill/P_TP null → HOLD mandatory; no Brier/log-loss/reliability/ESS/CIs exist to cite. Fill/microstructure: spread 1.86 bps measured, but fill probability at +0.3141% distance is unmodeled; tick_age still declared-not-measured (DIS-317-05). Solvency/portfolio: capital stack now fully clean; binding failures are the Tier-2 band and receipt timing. Clock/provenance: session gates PASS at crypto scope; receipt causality FAIL. Per the operator formula, EV_net, LCB_5%, and Utility require calibrated inputs and a documented time-blocked bootstrap — none supplied; no invented percentages; the two-outcome (TP/SL) hypothesis stays disclosed and unpopulated, and no timeout mass is forced into P_SL. Verdict: 4 × HOLD, authorization DENIED_FAIL_CLOSED. Re-admission path: (1) generate the receipt inside [envelope_generation, cutoff] — at +13s the fix is trivial (cut the envelope 15s earlier) or bind this receipt to the next envelope; (2) re-issue at 0.06–0.08 with a fresh nonce-bound preflight; (3) supply the calibrated probability pack (estimator versions, windows, labels, Brier/log-loss, reliability, ESS, CIs, bootstrap LCB_5%); (4) formally supersede/reaffirm the carries — one canonical geometry per cycle.
-
-Todos
-4
-Validate Cycle 317 envelope integrity (nonce binding, template markers, internal consistency)
-Persist & run council arithmetic script: receipt reconciliation, solvency kernel, Tier-2 band check, resize table, canonical response_sha256
-Emit 19-field schema verdict + 7-section prose adjudication in chat
-Append worklog entry and save authoritative verdict JSON artifact
-
-Cycle 317 adjudicated — 73/73 checks PASS, verdict DENIED_FAIL_CLOSED logged to the worklog and archived at scripts/c317_response.json.
-
-Big picture: this was the strongest dispatch yet — clock triple, workbook freshness, and order_check all RESOLVED in one cycle. Two blockers remain, both cheap to fix: re-issue the receipt inside the window (+13s → cut the envelope 15s earlier) and restore the volume to 0.06–0.08 so nominal risk re-enters the 15–25 Tier-2 band. The hard part is unchanged: supply the calibrated P_fill/P_TP pack with bootstrap LCB_5% — without it, every row stays HOLD no matter how clean the plumbing is.
-
-Next cycle, send C318 with those three fixes and I'll re-run the full gauntlet.
+Disposition: The 2.00 USD global contingency remains intact; capital stays un-deployed at 4,865.07. This cycle materially improves on 317 — correct Tier 2 sizing, pre-cutoff capture, verified broker receipt — and the candidate is structurally admissible; only calibration evidence and the timestamp dispute stand between HOLD and executable ranking. No prose, vote, or label overrides the schema above.
 
 ================================================================================
 Z.AI ATTACHED OUTPUT FILE:  (3267 chars)
