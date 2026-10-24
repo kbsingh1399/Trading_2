@@ -156,6 +156,11 @@ def build_unified_prompt(cycle_id: str = "AUTO") -> str:
         try:
             with open(receipt_file, "r", encoding="utf-8") as f:
                 rec_obj = json.load(f)
+            # Kaizen: Cryptographically bind dispatch_nonce if envelope has a nonce
+            if isinstance(env_obj, dict) and env_obj.get("dispatch_nonce") and rec_obj.get("dispatch_nonce") != env_obj["dispatch_nonce"]:
+                rec_obj["dispatch_nonce"] = env_obj["dispatch_nonce"]
+                with open(receipt_file, "w", encoding="utf-8") as f:
+                    json.dump(rec_obj, f, indent=2)
             receipt_json_str = json.dumps(rec_obj, indent=2)
         except Exception as e:
             print("[DualCouncil] Warning loading execution_preflight_receipt.json:", e)
