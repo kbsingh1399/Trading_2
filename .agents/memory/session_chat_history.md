@@ -63056,3 +63056,12 @@ You may create 12_Hyperdash and 13_Hyperliquid where you dump all intelligenve a
   - Subagents killed (`kill_all`) to prevent socket exhaustion.
   - RAM optimized to 56.3% used (6.71 GB free).
   - Pacing engine armed: `Terminal/joint_cycle_controller.py --wait-rest` launched (task-124801), resting cleanly until 11:01:24 UTC (clean 20m separation).
+
+### Turn: Docs/Specs & Data/Manditory Merge and Inactive Archive to Other_MD (2026-10-24 10:50:45 UTC)
+- **Operator Prompt**: "merge C:\Users\SIGMA\Documents\Trading_2\docs\specs with Manditory and if files which are not active now...move to Other_MD"
+- **Actions Executed**:
+  1. Forensically classified all 34 Markdown files into Active (16) vs Inactive (18).
+  2. Moved all 18 inactive files to `Other_MD` (both `Data/Manditory/Other_MD` and mirrored in `docs/specs/Other_MD`). Removed all inactive files from the root of both directories.
+  3. Synchronized all 16 active files byte-for-byte between `Data/Manditory` and `docs/specs`.
+  4. Updated `README.md` in both directories to provide a clean index of the 16 active specifications and the 18 archived documents.
+  5. Verified 100% byte-for-byte parity across both directories.
