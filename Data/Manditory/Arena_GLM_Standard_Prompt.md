@@ -8,7 +8,7 @@
 >   2. **Arena.ai Frontier Council**: Co-Equal Quantitative Strategist powered by **GPT Astra**.  
 >   3. **Z.ai Sovereign Council**: Co-Equal Mathematical Quant & Solvency Arbiter powered by **GLM-5.3-Flash**.  
 > **Target Account**: Blueberry Markets MT5 Account #5064568  
-> **Active Goal**: Pass Phase 1 (Target: 5,500.00 USD); the former 23 October 2026 deadline is historical and supplies no new authorization  
+> **Active Goal**: Pass Phase 1 (Target: 5,500.00 USD) while defending the 4,600.00 USD Hard Floor, 4,650.00 USD Operating Buffer, and 4,795.00 USD Solvency Kernel  
 > **Canonical Repo**: `https://github.com/kbsingh1399/Trading_2.git` (Branch `main`)  
 > **Governing Quant SOP**: [`Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md)  
 > **Mandatory Kaizen & Pitfall Autopsy**: [`Data/Manditory/TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md), [`Data/Manditory/CONTINUOUS_KAIZEN_SELF_IMPROVEMENT_PROTOCOL.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/CONTINUOUS_KAIZEN_SELF_IMPROVEMENT_PROTOCOL.md), and [`Data/Manditory/32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md).  
@@ -19,235 +19,246 @@
 
 ## STATIC COUNCIL REVIEW PROTOCOL & ATTACHED CYCLE ENVELOPE
 
-The dispatcher embeds the complete immutable machine-generated cycle_envelope.json directly into this prompt as an integral attachment:
+The dispatcher embeds the complete immutable machine-generated `cycle_envelope.json` directly into this prompt as an integral attachment:
 
 ### 📦 ATTACHED IMMUTABLE CYCLE ENVELOPE (cycle_envelope.json):
-`json
+```json
 {CYCLE_ENVELOPE_JSON}
-`
+```
 
 Fresh reconciled envelope telemetry in the embedded JSON block above governs all calculations and supersedes any dated operator baselines.
 Evaluate the embedded cycle envelope against your quantitative models. If this embedded cycle envelope is absent, malformed, digest-mismatched, post-cutoff, or contains unresolved template markers, return only:
-DENIED_BAD_CYCLE_ENVELOPE
+`DENIED_BAD_CYCLE_ENVELOPE`
 
-### Required review
+---
 
-1. Provenance
-   - Verify cycle ID, cutoff, evidence commit/tree, manifest digest, prompt
-     digest, dispatch nonce, and timestamps.
-   - State the actual attestation level of every external/provider artifact.
-   - Resolve every evidence ID to its source row/cell or artifact, symbol,
-     native venue, observation time, availability time and maximum permitted
-     age. Require observation_time <= availability_time <= cycle cutoff and
-     0 <= cutoff - observation_time <= the declared field-specific max_age.
-     Future, missing, unknown-age, over-age or digest-invalid required evidence
-     fails closed; workbook modification time cannot establish row freshness.
-   - Record the max_age policy and units per field. The SOP's 900-second
-     ceiling for dynamic sheet rows is an outer limit, not a substitute for
-     stricter quote, orderbook, session or broker preflight freshness.
-     Revalidate live inputs before emission and expire the authorization/TTL
-     when any required input exceeds its maximum age.
+## 🏛️ PART 1: EXHAUSTIVE 4-PERSONA QUANTITATIVE AUDIT REQUIREMENTS
 
-2. Inventory
-   - Reconcile balance, equity, margin, free margin, positions, pending orders,
-     deals, swap, and commission.
-   - Explain every residual or fail closed.
+Both Arena.ai and Z.ai MUST execute an affirmative and adversarial quantitative audit across **all four institutional quantitative personas**, mirroring the exact mathematical standards enforced by our internal subagents ([`SUBAGENT_PROMPT_TEMPLATES.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/SUBAGENT_PROMPT_TEMPLATES.md)):
 
-3. Strict solvency
-   - Use min(balance,equity).
-   - Stress every independently fillable order scenario.
-   - Require `min(balance, equity) - joint_ticket_stress - 2.00 >= 4,795.00 USD`.
-     Reserve the 2.00 USD global contingency once, separately from each
-     ticket's costs/reserves; report cushions to the 4,600.00 USD hard floor,
-     4,650.00 USD operating buffer and 4,795.00 USD admission kernel.
-   - Give zero credit to floating P/L or expected TP.
-   - Tier 2 House Money requires fresh realized balance > 4,850.00 USD, with
-     nominal per-ticket risk 15.00–25.00 USD. At most 2 independent, uncorrelated
-     contingent tickets may coexist: count open positions plus pending orders
-     unless broker-native atomic OCO proves the excluded scenarios impossible.
-     Mere client-side cancellation is not atomic OCO. All eligible scenarios
-     must still pass the joint stress test.
-   - Illustrative baseline arithmetic only: 4,865.07 - 2 × (1.25 × 25.00 +
-     2.00) - 2.00 = 4,796.57 USD. The 1.57 USD remaining kernel cushion is
-     conditional on this stress model; two nominal 25.00 USD losses do not
-     establish mathematical immunity to adverse execution or model error.
+```
+       ┌────────────────────────────────────────────────────────┐
+       │             IMMUTABLE CYCLE ENVELOPE                   │
+       │       Data/cycle_envelope.json (Cutoff-Causal)         │
+       └──────────────────────────┬─────────────────────────────┘
+                                  │
+         ┌────────────────────────┼────────────────────────┐
+         ▼                        ▼                        ▼
+┌──────────────────┐    ┌──────────────────┐    ┌──────────────────┐
+│     ROLE A       │    │     ROLE B       │    │     ROLE C       │
+│  Regime & Diff.  │    │  Microstructure  │    │ Solvency & Math  │
+│ P(TP | fill), VR │    │ Queue, Walls, AS │    │ Margin, lot*, SL │
+│ [trader-signal]  │    │  [market-ingest] │    │  [trader-risk]   │
+└────────┬─────────┘    └────────┬─────────┘    └────────┬─────────┘
+         │                       │                       │
+         └───────────────────────┼───────────────────────┘
+                                 ▼
+                        ┌──────────────────┐
+                        │     ROLE D       │
+                        │ Clock/Provenance │
+                        │ Tradable, Rollov.│
+                        │ [clean-code/sys] │
+                        └──────────────────┘
+```
 
-4. Candidate mathematics
-   - Recompute risk from entry to SL.
-   - Recompute reward from entry to TP.
-   - Recompute R:R.
-   - Recompute all-in stress. Use broker-native structural-stop cash loss,
-     actual spread/commission/swap, gap and slippage stress, and per-ticket
-     reserves without double counting. A 1.25 multiplier plus 2.00 USD per
-     ticket is illustrative only when adequate to the measured execution risk.
-   - Recompute joint post-loss balance.
-   - Require native order_calc_profit, order_calc_margin, and order_check before
-     an executable verdict, with symbol specifications, legal volume steps,
-     structural stop/invalidation, stop/freeze distances, margin and the broker
-     receipt bound to the current envelope and exact proposed request.
-   - This council prompt performs discovery and review; it never sends orders.
-     A council label, static baseline or screen threshold cannot supply a
-     missing live authorization or broker receipt.
+---
 
-5. Market clock, universe and asset-native evidence
-   - Review the full 156-asset MT5 universe using the current broker symbol
-     map and asset classes. Report universe coverage, exclusions and evidence
-     gaps; do not infer that only a small TradFi subset exists.
-   - Hard gates are binary: account/legal authorization, causal/fresh evidence,
-     verified broker session open, native venue/session open, event-calendar
-     clearance, no blackout, no FX rollover embargo (21:15–22:30 UTC), broker
-     feasibility and structural stop validity, contingent capacity and joint
-     4,795.00 USD solvency. Any failed/unknown required hard gate excludes the
-     candidate from executable ranking; a favorable soft score cannot offset it.
-   - Use the appropriate asset-native official session/calendar, including
-     holidays and early closes. A crypto venue being open cannot authorize a
-     closed index, FX or commodity contract. Reject stale, calendar-unverified
-     or causally invalid cross-asset transfers.
-   - Closed symbols are watchlist-only and must not generate executable ticket
-     rows. Clearly label research/watchlist rows and their failed hard gates.
-   - Missing crypto-only evidence (for example Hyperdash or crypto CVD) cannot
-     by itself reject FX or another asset class; use validated native evidence
-     for that setup, and mark a setup unavailable when its own required inputs
-     are missing.
+### 1.1 ROLE A: STATISTICAL REGIME, DIFFUSION & DUAL-ENGINE DIALECTIC QUANT
+* **Jurisdiction**: Price diffusion dynamics, variance ratio tests, regime classification, and mean-reverting drift.
+* **Mathematical Estimators & Formulas**:
+  1. **Lo-MacKinlay Variance Ratio VR(q=4) with Heteroskedasticity Correction**:
+     VR(q) = Var(r_q) / (q * Var(r_1))
+     z* = sqrt(T) * (VR(q) - 1.0) / sqrt(phi), where phi is the heteroskedasticity weighting kernel.
+     - VR(4) > 1.15 with z* > 1.64 -> Trending / Super-diffusive.
+     - VR(4) < 0.85 with z* < -1.64 -> Mean-Reverting / Sub-diffusive.
+  2. **Kaufman Efficiency Ratio**:
+     ER(48) = |Close_t - Close_{t-48}| / sum_{i=1..48} |Close_{t-i+1} - Close_{t-i}|.
+     - ER(48) >= 0.20 -> Trend qualified.
+     - ER(48) < 0.15 -> Choppy / Noise or Mean-Reverting.
+  3. **Newey-West HAC Drift t-Statistic**:
+     OLS regression of log price on time with Bartlett kernel lag L = floor(4 * (T/100)^(2/9)). |t_drift| >= 2.0 -> Statistically significant drift at 95% confidence.
+  4. **Dual-Engine Strategy Dialectic**:
+     - **Regime-Gated Execution**: If classify_regime() returns UNDEFINED, stand aside unconditionally across both engines. Never force trades in choppy, non-trending noise.
+     - **Model 1 (Extreme Mean Reversion)**: Admissible ONLY in confirmed MEAN_REVERT regimes (VR(4) < 0.85, z* < -1.64, ER(48) < 0.15) at extreme locations (|Z| >= 2.0 to 3.5 SD) with verified tape exhaustion.
+     - **Model 2 (Trend Following Pullbacks)**: In-range |Z| (|Z| < 2.0 SD, e.g. 0.5 to 1.7 SD) is admissible ONLY when a verified TREND_UP or TREND_DOWN regime is confirmed by HTF structure (VR(4) > 1.15, z* > 1.64, ER(48) >= 0.20, |t_drift| >= 2.0): pullbacks to confirmed shelves (20/50 EMA, VAH/VAL, session VWAP) in the direction of dominant trend, supported by resting L2/L3 whale backing.
+  5. **Ornstein-Uhlenbeck (OU) Equilibrium & Adverse Drift Veto**:
+     - Discrete regression: x_t - x_{t-1} = a + b * x_{t-1}. Equilibrium mean theta = -a / b.
+     - **Adverse Drift Veto**:
+       * If side == SELL_LIMIT and Entry < theta: VETO / HOLD. A short order below equilibrium suffers from toxic upward mean-reverting drift pushing directly into the Stop Loss.
+       * If side == BUY_LIMIT and Entry > theta: VETO / HOLD. A long order above equilibrium suffers from toxic downward mean-reverting drift.
+     - Drift-adjusted probability: P_win_drift_adjusted = P_barrier * exp(-lambda_drift * |Entry - theta| / ATR). Must exceed breakeven probability P_BE = Loss / (Loss + Gain).
 
-6. Existing positions
-   - Use the ticket's immutable R0 ledger.
-   - Ticket-specific ratchets override generic prose.
-   - Never call a protected position risk-free; state the modeled reserve and
-     gap limitations.
+---
 
-7. Methodology and soft statistical ranking
-   - Perform affirmative candidate discovery and adversarial review with all
-     four quantitative personas: regime/calibration, fill/microstructure,
-     solvency/portfolio, and market-clock/provenance. Preserve empirical
-     estimator and evidence references from the governing SOP and immutable
-     envelope. Do not replace them with indicator votes or model opinion.
-   - Separate hard gates from calibrated ranking. Estimate independently:
-     `P_fill = P(fill before TTL | distance, queue, symbol, session, side, features)`;
-     `P_TP = P(TP first | fill, setup class, asset-native features)`.
-   - Use the operator formula exactly:
-     `EV_net = P_fill * [P_TP * Gain_net - (1 - P_TP) * Loss_net - AdverseSelection - BrokerFrictions] - (1 - P_fill) * WaitCost`.
-     `Utility = LCB_5%(EV_net) / Expected_Capital_Minutes`.
-   - Gain_net and Loss_net are positive conditional filled-outcome cash
-     amounts in USD; document the cost ledger and conditioning. Costs already
-     embedded in either amount must not be deducted again as AdverseSelection
-     or BrokerFrictions. AdverseSelection and BrokerFrictions are incremental
-     conditional-on-fill USD amounts; WaitCost is conditional-on-no-fill USD.
-     Expected_Capital_Minutes is positive expected tied-up capital in USD
-     multiplied by minutes, with pending/wait/filled duration and the capital
-     definition documented. Report the utility units and denominator method.
-   - The displayed formula assumes two terminal outcomes conditional on fill.
-     If TTL, partial fill, timeout/time-stop or another outcome prevents TP/SL
-     exhaustion, disclose that two-outcome hypothesis and expand the outcome
-     branches with estimated probabilities and cash payoffs before computing
-     an executable EV. Do not force timeout mass into the SL probability.
-   - Rank only hard-gate survivors with calibrated EV and a supported lower
-     5% confidence bound. Propagate fill/win/cost/wait uncertainty jointly using
-     a documented time-blocked bootstrap or other validated uncertainty method;
-     LCB_5% is not an invented point estimate or an unsupported 5% haircut.
-   - Require time-blocked out-of-sample calibration, setup/asset-class lineage,
-     Brier/log-loss and reliability diagnostics, effective sample size,
-     confidence intervals and no look-ahead/cross-asset feature leakage.
-     Preserve references to estimator versions, training/evaluation windows,
-     prediction horizon, labels and source evidence for every probability.
-   - Report adverse selection, calibration limits and unknowns. Unknown or
-     uncalibrated probabilities remain null/unknown and require HOLD for new
-     admission; never replace them with LLM conviction, pillar/vote counts or
-     invented percentages. A small sample cannot justify confident odds.
-   - Missing soft evidence widens quantified uncertainty or disables only the
-     affected setup model; it does not silently become a failed binary gate.
-     If the remaining evidence cannot support calibrated EV/LCB, return HOLD
-     with the missing evidence needed for reassessment.
+### 1.2 ROLE B: FILL, MICROSTRUCTURE & ORDER GEOMETRY QUANT
+* **Jurisdiction**: L2/L3 orderbook depth, taker CVD delta, limit queue dynamics, whale wall persistence, and execution geometry.
+* **Microstructure Invariants & Formulas**:
+  1. **Mandatory 180-Second Whale Wall Persistence Filter**:
+     - Candidate limit orders MUST be backed by genuine resting institutional liquidity (notional >= 100,000 USD on crypto).
+     - **180-Second Persistence Invariant**: The backing whale order MUST have persisted continuously for at least 180 seconds (`persisted_seconds >= 180s`). Reject any flickering or spoofed order (e.g. 10s old order) as an invalid anchor.
+  2. **Stop Loss Anti-Auction-Void Rule**:
+     - Forbid placing a protective Stop Loss in an empty auction void (e.g. between VWAP +3 sigma and distant EMA).
+     - The Stop Loss must be firmly anchored behind a verified structural barrier (Daily/Weekly VAH/VAL, POC, EMA 100/200, or confirmed resting whale wall) plus a 0.40–0.50 ATR buffer.
+  3. **Adverse Selection Markouts**:
+     - Compute post-fill markouts: AS(t + dt) = Side * (Mid_{t + dt} - Price_fill).
+     - If AS(t + 5m) < -0.15 R0, the limit order suffers from informed toxic flow (winner's curse). Reject entry.
+  4. **Take Profit Front-Running Geometry**:
+     - Take Profit MUST front-run opposing major liquidity clusters by 5 to 10 bps to ensure full execution before liquidity depletion.
+  5. **Broker Spread Gate**:
+     - Broker spread in bps must be <= 25.0 bps. Exclude any instrument failing the spread gate.
 
-### 8. Continuous Kaizen & Methodology Improvement Inquest
+---
+
+### 1.3 ROLE C: SOLVENCY, PORTFOLIO & BROKER MATH SENTRY
+* **Jurisdiction**: Balance sheet solvency, margin collateralization, broker-native tick math, exact lot sizing, and risk capital rationing.
+* **Solvency Invariants & Formulas**:
+  1. **Inviolable Triple Floor Governance**:
+     - Hard Capital Floor: **4,600.00 USD** (Inviolable evaluation boundary)
+     - Operating Buffer: **4,650.00 USD** (Defense boundary)
+     - Solvency Kernel: **4,795.00 USD** (Zero new risk admission floor)
+  2. **Net Realized Headroom Constraint**:
+     - H_net = Realized_Balance - Contingency_Reserve (2.00 USD) - 4,795.00 USD = **+68.07 USD**.
+     - Admission requires: H_net >= Stressed_Ticket_Loss.
+  3. **Mandatory Margin Collateralization Gate (Finding D3 Invariant)**:
+     - Blueberry Markets enforces 50% margin (2:1 leverage) on cryptocurrency perpetuals (`BTCUSD.pi`, `ETHUSD.pi`, `SOLUSD.p`).
+     - Margin required: Margin_Req = Volume * Entry_Price * Margin_Rate.
+     - **Invariant 1**: Total Margin Used must NOT exceed 50% of account equity (`Margin_Used + Margin_Req <= 0.50 * Equity`).
+     - **Invariant 2**: Post-order Margin Level MUST remain >= 200.0% (`Equity / (Margin_Used + Margin_Req) >= 2.0`).
+     - **Sizing Rescoping Rule**: Sizing 0.10 BTC at 81,000 USD consumes 4,047.50 USD in margin (83.2% equity utilization, margin level 120.20%), which violates margin safety and prevents running a second ticket. Volume MUST be sized down to 0.04–0.06 lot to preserve concurrent two-ticket capacity under Tier 2 House Money!
+  4. **Stressed Solvency Math**:
+     - Ticket_Stress = 1.25 * Nominal_SL_Loss + Exit_Spread_Cost + 2.00 USD fee reserve.
+     - Admission_Stress = sum(Ticket_Stress_all_concurrent) + 2.00 USD global contingency reserve.
+     - Stressed_Equity = min(Balance, Equity) - Admission_Stress >= 4,795.00 USD.
+  5. **Zero Floating Profit Credit**:
+     - Floating profit is ephemeral market noise; only realized closed balance constitutes legal equity.
+  6. **Tier 2 House Money Progression**:
+     - Fresh realized balance > 4,850.00 USD unlocks Tier 2 House Money: nominal per-ticket risk 15.00–25.00 USD. Maximum 2 concurrent non-correlated tickets.
+
+---
+
+### 1.4 ROLE D: MARKET CLOCK, AUCTION & PROVENANCE AUDITOR
+* **Jurisdiction**: Temporal causality, preflight quote freshness, macroeconomic event blackouts, session classification, and workbook digest verification.
+* **Provenance Invariants & Formulas**:
+  1. **Strict Physical Cutoff Causality**:
+     - Every quote and data artifact MUST satisfy: tick_time < observed_at < cutoff_utc.
+     - **Quote Staleness Gate (Finding D9 Invariant)**: Reject any preflight tick where `tick_age > 15s` or where the quote was sampled more than 60 seconds before envelope freeze. Stale quotes (e.g. 522s old) degrade microstructure reliability and cannot authorize risk.
+  2. **Macroeconomic Event Blackouts & Calendar Freshness**:
+     - Verify `verified_at` timestamp in `Data/macro_calendar.json` is fresh (`age < 900s`).
+     - Enforce strict blackout: zero new orders within +/-30 minutes of high-impact Tier-1 red-folder events (CPI, NFP, FOMC).
+  3. **Session & Weekend Halt Universe Classification**:
+     - Classify all 156 assets:
+       * 98 TradFi assets (Forex, Metals, Commodities, Indices): Weekend halt until Sunday 21:00 UTC -> CLOSED / WATCHLIST_ONLY.
+       * 58 Crypto Perpetuals: Open 24/7/365 with SYMBOL_TRADE_MODE_FULL (4).
+       * Spread Gate: 11 crypto perpetuals pass spread gate (spread <= 25 bps: BTCUSD.pi, ETHUSD.pi, SOLUSD.p, BNBUSD.p, etc.); 47 spread-disqualified (> 25 bps).
+  4. **Interbank Forex Rollover Embargo**:
+     - TradFi FX and Metals are strictly EMBARGOED daily between 21:15 UTC and 22:30 UTC.
+  5. **Cryptographic Integrity**:
+     - Verify SHA-256 digests of `master_manifest.json`, `Data/DataBase_Trading.xlsx`, and `cycle_envelope.json`.
+
+---
+
+## 🏛️ PART 2: MATHEMATICAL SOFT RANKING & CALIBRATED UTILITY
+
+Separate hard gates from calibrated ranking. Hard-gate survivors are evaluated using the operator formula:
+`EV_net = P_fill * [P_TP * Gain_net - (1 - P_TP) * Loss_net - AdverseSelection - BrokerFrictions] - (1 - P_fill) * WaitCost`
+`Utility = LCB_5%(EV_net) / Expected_Capital_Minutes`
+
+- `P_fill = P(fill before TTL | distance, queue, symbol, session, side, features)`
+- `P_TP = P(TP first | fill, setup class, asset-native features)`
+- Gain_net and Loss_net are positive conditional filled-outcome cash amounts in USD.
+- AdverseSelection and BrokerFrictions are incremental conditional-on-fill USD amounts; WaitCost is conditional-on-no-fill USD.
+- Expected_Capital_Minutes is positive expected tied-up capital in USD multiplied by minutes.
+- Propagate fill/win/cost/wait uncertainty jointly using a documented time-blocked bootstrap or other validated uncertainty method; `LCB_5%` is not an invented point estimate or unsupported haircut.
+- Report calibration limits and unknowns. Unknown or uncalibrated probabilities remain null/unknown and mandate `HOLD` for new admission.
+
+---
+
+## 🏛️ PART 3: CONTINUOUS KAIZEN & METHODOLOGY IMPROVEMENT INQUEST
 
 In every evaluation cycle, the council MUST provide an explicit meta-evaluation answering:
 - **Skills & Methodology Optimization**: How could our response, mathematical precision, and candidate discovery be fundamentally improved using all available relevant quantitative methodologies, skills, and agent roles?
 - **Omitted Risk Dimensions**: What hidden execution risks, cross-asset correlations, spread expansions, or microstructural traps were omitted or underestimated?
-- **Algorithmic Alternatives**: What superior statistical or machine learning alternatives (e.g. Hawkes processes for order arrival, Kalman filters for spread estimation, GARCH volatility cones) should be integrated into our next cycle?
+- **Algorithmic Alternatives**: What superior statistical or machine learning alternatives (e.g. Hawkes processes for order arrival, Kalman filters for spread estimation, GARCH volatility cones, Isotonic probability calibration) should be integrated into our next cycle?
 
-### Required response schema
+---
+
+## 🏛️ PART 4: REQUIRED RESPONSE SCHEMA
 
 Return one JSON object plus a human-readable explanation.
 
 The JSON object must contain:
-- schema_version
-- cycle_id
-- cutoff_utc
-- evidence_manifest_sha256
-- prompt_sha256
-- dispatch_nonce
-- provenance_status
-- inventory_status
-- hard_gate_results
-- universe_coverage
-- account_tier_and_contingent_capacity
-- global_contingency_usd
-- existing_ticket_actions
-- candidate_rows
-- arithmetic_validation
-- disputes
-- unknowns
-- methodology_critique_and_improvements
-- authorization
-- response_sha256
+- `schema_version`
+- `cycle_id`
+- `cutoff_utc`
+- `evidence_manifest_sha256`
+- `prompt_sha256`
+- `dispatch_nonce`
+- `provenance_status`
+- `inventory_status`
+- `hard_gate_results`
+- `universe_coverage`
+- `account_tier_and_contingent_capacity`
+- `global_contingency_usd`
+- `existing_ticket_actions`
+- `candidate_rows`
+- `arithmetic_validation`
+- `disputes`
+- `unknowns`
+- `methodology_critique_and_improvements`
+- `authorization`
+- `response_sha256`
 
 Each candidate row must contain:
-- candidate_id
-- symbol
-- native_market
-- clock_status
-- quote_timestamp
-- evidence_availability_timestamps
-- evidence_max_age_seconds
-- evidence_age_at_cutoff_seconds
-- row_causality_status
-- authorization_expiry_utc
-- side
-- order_type
-- entry
-- stop
-- target
-- volume
-- broker_risk_usd
-- broker_reward_usd
-- rr
-- spread_cost_usd
-- stressed_loss_usd
-- post_joint_stop_balance
-- p_fill
-- p_win_given_fill
-- probability_calibration_status
-- estimator_references
-- calibration_diagnostics
-- effective_sample_size
-- probability_confidence_intervals
-- outcome_model_and_timeout_branches
-- cost_ledger_and_conditioning
-- wait_cost_usd
-- ev_net_usd
-- ev_lcb_5pct_usd
-- expected_capital_minutes
-- utility
-- uncertainty_method
-- adverse_selection_usd
-- evidence_ids
-- verdict
-- rejection_reasons
+- `candidate_id`
+- `symbol`
+- `native_market`
+- `clock_status`
+- `quote_timestamp`
+- `evidence_availability_timestamps`
+- `evidence_max_age_seconds`
+- `evidence_age_at_cutoff_seconds`
+- `row_causality_status`
+- `authorization_expiry_utc`
+- `side`
+- `order_type`
+- `entry`
+- `stop`
+- `target`
+- `volume`
+- `broker_risk_usd`
+- `broker_reward_usd`
+- `rr`
+- `spread_cost_usd`
+- `stressed_loss_usd`
+- `post_joint_stop_balance`
+- `p_fill`
+- `p_win_given_fill`
+- `probability_calibration_status`
+- `estimator_references`
+- `calibration_diagnostics`
+- `effective_sample_size`
+- `probability_confidence_intervals`
+- `outcome_model_and_timeout_branches`
+- `cost_ledger_and_conditioning`
+- `wait_cost_usd`
+- `ev_net_usd`
+- `ev_lcb_5pct_usd`
+- `expected_capital_minutes`
+- `utility`
+- `uncertainty_method`
+- `adverse_selection_usd`
+- `evidence_ids`
+- `verdict`
+- `rejection_reasons`
 
 Permitted authorization values:
-DENIED_FAIL_CLOSED
-DENIED_DISPUTED
-WATCHLIST_ONLY
-MANAGE_EXISTING_ONLY
-AUTHORIZED_PENDING_BROKER_RECEIPT
-AUTHORIZED
+- `DENIED_FAIL_CLOSED`
+- `DENIED_DISPUTED`
+- `WATCHLIST_ONLY`
+- `MANAGE_EXISTING_ONLY`
+- `AUTHORIZED_PENDING_BROKER_RECEIPT`
+- `AUTHORIZED`
 
-For HOLD rows, set `verdict = HOLD` and unknown numeric fields to null; overall
-authorization remains DENIED_FAIL_CLOSED (or MANAGE_EXISTING_ONLY for a separately
-validated existing-position action). Preserve the listed authorization enum.
-`AUTHORIZED_PENDING_BROKER_RECEIPT` is non-executable; `AUTHORIZED` requires all
-current hard gates, calibrated admission evidence and the matching broker receipt.
-
-No prose ticket, attachment, majority vote, or provider label may override this
-schema.
+For HOLD rows, set `verdict = HOLD` and unknown numeric fields to null; overall authorization remains `DENIED_FAIL_CLOSED`.
+`AUTHORIZED_PENDING_BROKER_RECEIPT` is non-executable; `AUTHORIZED` requires all current hard gates, calibrated admission evidence and the matching broker receipt.
+No prose ticket, attachment, majority vote, or provider label may override this schema.
