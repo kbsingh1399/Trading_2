@@ -1,13 +1,13 @@
 {
   "schema_version": "1.0.0",
-  "dispatch_nonce": "",
-  "observed_at_utc": "2026-10-24 21:41:34 UTC",
+  "dispatch_nonce": "7339ce9c-d016-4443-a18a-158c54e61151",
+  "observed_at_utc": "2026-10-24 21:42:23 UTC",
   "account": {
     "login": 5064568,
     "server": "BlueberryMarketsSVG-Live",
     "balance": 4865.07,
-    "equity": 4861.27,
-    "margin_free": 2855.14
+    "equity": 4859.77,
+    "margin_free": 2853.64
   },
   "candidate": {
     "symbol": "BTCUSD.pi",
@@ -18,17 +18,17 @@
     "tp": 79850.0
   },
   "broker_tick": {
-    "bid": 80300.0,
-    "ask": 80321.0,
-    "mid": 80310.5,
-    "spread_raw": 21.0,
-    "spread_bps": 2.61,
-    "spread_cost_usd": 0.84,
-    "broker_server_time_raw": 1792888893,
+    "bid": 80299.0,
+    "ask": 80351.0,
+    "mid": 80325.0,
+    "spread_raw": 52.0,
+    "spread_bps": 6.47,
+    "spread_cost_usd": 2.08,
+    "broker_server_time_raw": 1792888942,
     "broker_server_offset_seconds": 10800.0,
-    "tick_time_utc": "2026-10-24 21:41:33 UTC",
+    "tick_time_utc": "2026-10-24 21:42:22 UTC",
     "tick_age_seconds": 1.0,
-    "clock_skew_seconds": 0.81,
+    "clock_skew_seconds": -12.23,
     "quote_fresh": true
   },
   "broker_spec": {
@@ -47,18 +47,18 @@
     "profit_at_tp_usd": 58.0,
     "margin_required_usd": 1626.0,
     "base_nominal_risk_usd": 19.2,
-    "exit_spread_cost_usd": 0.84,
-    "total_nominal_risk_usd": 20.04,
-    "ticket_stress_usd": 27.05,
+    "exit_spread_cost_usd": 2.08,
+    "total_nominal_risk_usd": 21.28,
+    "ticket_stress_usd": 28.6,
     "stress_model": "(base_loss + exit_spread) * 1.25 + 2.00 USD"
   },
   "order_check": {
     "pass": true,
     "retcode": 0,
     "comment": "Done",
-    "margin_level_post_order": 298.97,
-    "margin_free_post_order": 1229.14
+    "margin_level_post_order": 298.88,
+    "margin_free_post_order": 1227.64
   },
   "preflight_verdict": "PREFLIGHT_PASS",
-  "receipt_sha256": "fb8c064c38318442c0f962f1d4236aea5091bb01bc7f76247675539e92be2030"
+  "receipt_sha256": "c5238e3d452c7c8620cae0acfdb2a9030df2a013e6f7bcd08c9819ecc02b17a1"
 }
