@@ -8,18 +8,18 @@
   "components": {
     "antigravity_subagents": {
       "name": "Antigravity 4-Quant Swarm (Fable 5)",
-      "status": "IN_PROGRESS",
-      "completed_at_utc": null,
-      "details": "All 4 roles verified: Role A (VR=0.558 sub-diffusive; barrier P(TP)=0.387 under negative drift -> Stand Aside), Role B (80,500 whale bid wall unreplenished; AS=-2.37 R0 toxic cascade underneath -> Stand Aside), Role C (4,865.07 USD balance; Tier 2 House Money unlocked; +68.07 USD headroom), Role D (98 TradFi closed, 58 crypto open 24/7; provenance verified)."
+      "status": "COMPLETED",
+      "completed_at_utc": "2026-10-24 12:29:19 UTC",
+      "details": "All 4 subagents completed: Role A (Affirmative nomination), Role B (80,820 whale ask wall backing), Role C (Solvency verified, +54 USD cushion), Role D (Provenance & 1.0s quote freshness verified)."
     },
     "arena_ai": {
       "name": "Arena.ai Council (GPT Astra)",
-      "status": "IN_PROGRESS",
-      "completed_at_utc": null,
+      "status": "COMPLETED",
+      "completed_at_utc": "2026-10-24 12:24:14 UTC",
       "raw_file": "docs/trade_plans/ARENA_LATEST_RAW.md",
       "model": "GPT Astra",
-      "verdict": null,
-      "details": "Envelope provenance fixed (workbook_sha256 matches committed git blob e855a87f). Ready for dispatch."
+      "verdict": "DENIED_FAIL_CLOSED_LEGACY_81300",
+      "details": "Completed 20,400 chars. Provenance & capital arithmetic passed, but legacy 81,300 entry rejected due to auction void and receipt age."
     },
     "zai": {
       "name": "Z.ai Sovereign Council (GLM-5.3-Flash)",
