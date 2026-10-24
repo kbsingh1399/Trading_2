@@ -191,14 +191,12 @@ def build_cycle_envelope(cycle_id=None, nonce=None):
                 if tick_utc_str:
                     clean_ts = tick_utc_str.replace(" UTC", "").strip()
                     tick_dt = datetime.datetime.strptime(clean_ts, "%Y-%m-%d %H:%M:%S").replace(tzinfo=datetime.timezone.utc)
-                    if tick_dt >= cutoff_dt:
-                        cutoff_dt = tick_dt + datetime.timedelta(seconds=3)
+                    cutoff_dt = max(cutoff_dt, tick_dt + datetime.timedelta(seconds=3))
                 obs_utc_str = pref.get("observed_at_utc", "")
                 if obs_utc_str:
                     clean_obs = obs_utc_str.replace(" UTC", "").strip()
                     obs_dt = datetime.datetime.strptime(clean_obs, "%Y-%m-%d %H:%M:%S").replace(tzinfo=datetime.timezone.utc)
-                    if obs_dt >= cutoff_dt:
-                        cutoff_dt = obs_dt + datetime.timedelta(seconds=2)
+                    cutoff_dt = max(cutoff_dt, obs_dt + datetime.timedelta(seconds=2))
         except Exception:
             pass
 
