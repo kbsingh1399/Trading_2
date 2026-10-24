@@ -58,8 +58,11 @@ The dispatcher embeds the complete immutable machine-generated `cycle_envelope.j
 ```
 
 Fresh reconciled envelope telemetry in the embedded JSON block above governs all calculations and supersedes any dated operator baselines.
-Evaluate the embedded cycle envelope against your quantitative models. If this embedded cycle envelope is absent, malformed, digest-mismatched, post-cutoff, or contains unresolved template markers, return only:
-`DENIED_BAD_CYCLE_ENVELOPE`
+Evaluate the embedded cycle envelope against your quantitative models. If this embedded cycle envelope is absent, malformed, digest-mismatched, post-cutoff, or contains unresolved template markers:
+- Record `"provenance_status": "DENIED_BAD_CYCLE_ENVELOPE"` (or `"DENIED_FAIL_CLOSED"`) in your response JSON.
+- Record the exact failure details under `"disputes"`, `"rejection_reasons"`, and in your human-readable §1 Provenance review.
+- Set overall `"authorization": "DENIED_FAIL_CLOSED"`.
+- **STRICT PROHIBITION ON SINGLE-LINE ABORTS**: You are STRICTLY FORBIDDEN from returning only a short string or aborting the response. You MUST ALWAYS deliver the complete, exhaustive 4-persona quantitative audit (§1 to §7), independently verify all broker mathematics, evaluate candidate market geometry, and provide the complete Section 8 Kaizen Inquest and full JSON payload under all circumstances!
 
 ---
 
