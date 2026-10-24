@@ -1,21 +1,21 @@
 {
-  "current_cycle_id": "Cycle 334",
-  "cycle_status": "COMPLETED",
-  "cycle_started_utc": "2026-10-24 19:28:08 UTC",
-  "cycle_completed_utc": "2026-10-24 19:43:47 UTC",
-  "next_cycle_scheduled_utc": "2026-10-24 20:03:47 UTC",
+  "current_cycle_id": "Cycle 335",
+  "cycle_status": "IN_PROGRESS",
+  "cycle_started_utc": "2026-10-24 20:04:17 UTC",
+  "cycle_completed_utc": null,
+  "next_cycle_scheduled_utc": null,
   "rest_interval_seconds": 1200,
   "components": {
     "antigravity_subagents": {
       "name": "Antigravity 4-Quant Swarm (Fable 5)",
-      "status": "COMPLETED",
-      "completed_at_utc": "2026-10-24 19:36:50 UTC",
+      "status": "IN_PROGRESS",
+      "completed_at_utc": null,
       "details": "Cycle 331 Swarm 100% unanimous pass: Role A (Trend Down Acceptance, P_win 47.43% > P_BE 32.39%, +15.04% net edge, distance narrowed to 221 pts / 0.69 ATR, SL +300.96 USD above OU theta), Role B (Whale wall at 80,384.60 USD 1.56M USD 9,720s duration + 19.98M USD Hyperliquid wall at 80,544 USD, SL 80,620 USD behind 0.786 shelf and clears 14.05M sweep trap by 480 pts, TP 79,385 USD front-runs 8.49M bid wall by 204 pts), Role C (Solvency verified 0.00 USD residual error, Margin Level 242.51% >= 200.0%, 41.24% margin utilization <= 50% cap, base risk 18.75 USD satisfies Tier 2 corridor, +41.63 USD kernel surplus), Role D (Cutoff causality verified, quote age 1.0s, 0 red-folder events, Sheet 21 Tradfye certified with 6,914 rows)."
     },
     "arena_ai": {
       "name": "Arena.ai Council (GPT Astra)",
-      "status": "COMPLETED",
-      "completed_at_utc": "2026-10-24 19:43:47 UTC",
+      "status": "IN_PROGRESS",
+      "completed_at_utc": null,
       "raw_file": "docs/trade_plans/ARENA_LATEST_RAW.md",
       "model": "GPT Astra",
       "verdict": "ANALYZED_CYCLE_331",
@@ -23,8 +23,8 @@
     },
     "zai": {
       "name": "Z.ai Sovereign Council (GLM-5.3-Flash)",
-      "status": "COMPLETED",
-      "completed_at_utc": "2026-10-24 19:40:45 UTC",
+      "status": "IN_PROGRESS",
+      "completed_at_utc": null,
       "raw_file": "docs/trade_plans/ZAI_LATEST_RAW.md",
       "model": "GLM-5.3-Flash",
       "verdict": "ANALYZED_CYCLE_331",
