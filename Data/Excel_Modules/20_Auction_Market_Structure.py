@@ -211,6 +211,21 @@ COLUMNS_DEF = [
     ("ny_low", "NY Low (13-20z)", 16, "right"),
     ("ib_high", "IB High (08-09z)", 15, "right"),
     ("ib_low", "IB Low (08-09z)", 15, "right"),
+    ("monday_high", "Monday High ($)", 15, "right"),
+    ("monday_low", "Monday Low ($)", 15, "right"),
+    ("monday_mid", "Monday Mid / WIB ($)", 16, "right"),
+    ("cmh", "Current Month High ($)", 16, "right"),
+    ("cml", "Current Month Low ($)", 16, "right"),
+    ("pmh", "Prior Month High ($)", 16, "right"),
+    ("pml", "Prior Month Low ($)", 16, "right"),
+    ("fib_swing_h", "Fib Swing High ($)", 15, "right"),
+    ("fib_swing_l", "Fib Swing Low ($)", 15, "right"),
+    ("fib_dir", "Fib Impulse Dir", 16, "center"),
+    ("fib_gp_min", "Fib GP Lower ($)", 15, "right"),
+    ("fib_gp_max", "Fib GP Upper ($)", 15, "right"),
+    ("fib_ote", "Fib OTE 0.702 ($)", 16, "right"),
+    ("fib_inval", "Fib Inval 0.786 ($)", 16, "right"),
+    ("fib_status", "Fib Golden Zone Status", 22, "center"),
     ("auction_regime", "Auction Market Regime", 22, "center"),
     ("timestamp", "Timestamp (IST)", 22, "center"),
 ]
@@ -327,11 +342,16 @@ def harvest_auction_market_structure() -> Tuple[List[Dict[str, Any]], List[Dict[
         spread_bps = ((ask - bid) / bid * 10000.0) if bid > 0 else 0.0
         spread_gate = "PASS" if spread_bps <= max_spread_bps else "FAIL"
 
-        # 2. Fetch M15 bars (last 1200 bars = ~12.5 trading days)
+        # 2. Fetch M15 bars (last 1200 bars = ~12.5 trading days) and D1 bars (last 70 days for monthly macro extents)
         bars = mt5.copy_rates_from_pos(sym, mt5.TIMEFRAME_M15, 0, 1200)
         if bars is None or len(bars) < 30:
             log.warning(f"Insufficient bars for {sym} ({asset}). Skipping.")
             continue
+
+        bars_d1 = mt5.copy_rates_from_pos(sym, mt5.TIMEFRAME_D1, 0, 70)
+        df_d1 = pd.DataFrame(bars_d1) if (bars_d1 is not None and len(bars_d1) > 0) else pd.DataFrame()
+        if not df_d1.empty:
+            df_d1["dt"] = pd.to_datetime(df_d1["time"], unit="s", utc=True)
 
         df = pd.DataFrame(bars)
         df["dt"] = pd.to_datetime(df["time"], unit="s", utc=True)
@@ -354,6 +374,27 @@ def harvest_auction_market_structure() -> Tuple[List[Dict[str, Any]], List[Dict[
         df_yesterday = df[df["dt"].dt.date == prior_trading_date]
         df_curr_week = df[df["dt"] >= curr_week_start]
         df_prior_week = df[(df["dt"] >= prior_week_start) & (df["dt"] < prior_week_end)]
+
+        # Monday Opening Range (Weekly Initial Balance - WIB)
+        df_monday = df[(df["dt"] >= curr_week_start) & (df["dt"] < curr_week_start + datetime.timedelta(days=1))]
+        if df_monday.empty or len(df_monday) < 4:
+            df_monday = df[(df["dt"] >= prior_week_start) & (df["dt"] < prior_week_start + datetime.timedelta(days=1))]
+
+        # Monthly Macro Extents from D1
+        if not df_d1.empty:
+            curr_month_bars = df_d1[(df_d1["dt"].dt.year == now_dt.year) & (df_d1["dt"].dt.month == now_dt.month)]
+            prior_year = now_dt.year - 1 if now_dt.month == 1 else now_dt.year
+            prior_month = 12 if now_dt.month == 1 else now_dt.month - 1
+            prior_month_bars = df_d1[(df_d1["dt"].dt.year == prior_year) & (df_d1["dt"].dt.month == prior_month)]
+            cmh_val = float(curr_month_bars["high"].max()) if not curr_month_bars.empty else None
+            cml_val = float(curr_month_bars["low"].min()) if not curr_month_bars.empty else None
+            pmh_val = float(prior_month_bars["high"].max()) if not prior_month_bars.empty else None
+            pml_val = float(prior_month_bars["low"].min()) if not prior_month_bars.empty else None
+        else:
+            cmh_val = float(df_curr_week["high"].max()) if not df_curr_week.empty else None
+            cml_val = float(df_curr_week["low"].min()) if not df_curr_week.empty else None
+            pmh_val = float(df_prior_week["high"].max()) if not df_prior_week.empty else None
+            pml_val = float(df_prior_week["low"].min()) if not df_prior_week.empty else None
 
         # Session subsets today
         df_asian = df_today[(df_today["dt"].dt.hour >= 0) & (df_today["dt"].dt.hour < 8)]
@@ -425,6 +466,66 @@ def harvest_auction_market_structure() -> Tuple[List[Dict[str, Any]], List[Dict[
         else:
             regime = "DEVELOPING"
 
+        # Monday Opening Range (Weekly Initial Balance)
+        mon_h = float(df_monday["high"].max()) if not df_monday.empty else None
+        mon_l = float(df_monday["low"].min()) if not df_monday.empty else None
+        mon_mid = (mon_h + mon_l) / 2.0 if (mon_h is not None and mon_l is not None) else None
+
+        # Symmetrical Fibonacci Golden Zone (OTE) across governing 96-bar (24h) swing
+        swing_window = df.tail(96)
+        if len(swing_window) >= 16:
+            sw_h = float(swing_window["high"].max())
+            sw_l = float(swing_window["low"].min())
+            idx_sw_h = int(swing_window["high"].values.argmax())
+            idx_sw_l = int(swing_window["low"].values.argmin())
+            sw_delta = sw_h - sw_l
+
+            if sw_delta > 0:
+                if idx_sw_h >= idx_sw_l:
+                    # Bullish impulse (L -> H), retrace drops from H towards L
+                    fib_dir = "BULLISH_IMPULSE"
+                    fib_gp_min = round(sw_h - 0.650 * sw_delta, digits)
+                    fib_gp_max = round(sw_h - 0.618 * sw_delta, digits)
+                    fib_ote = round(sw_h - 0.702 * sw_delta, digits)
+                    fib_inval = round(sw_h - 0.786 * sw_delta, digits)
+
+                    if cur_px > sw_h:
+                        fib_status = "EXPANSION_NEW_HIGH"
+                    elif cur_px > fib_gp_max:
+                        fib_status = "SHALLOW_RETRACE"
+                    elif cur_px >= fib_gp_min:
+                        fib_status = "IN_GOLDEN_POCKET (0.618-0.650)"
+                    elif cur_px >= fib_ote:
+                        fib_status = "IN_OTE_ZONE (0.702)"
+                    elif cur_px >= fib_inval:
+                        fib_status = "DEEP_SHELF_TEST (0.786)"
+                    else:
+                        fib_status = "STRUCTURE_INVALIDATED"
+                else:
+                    # Bearish impulse (H -> L), retrace rallies from L towards H
+                    fib_dir = "BEARISH_IMPULSE"
+                    fib_gp_min = round(sw_l + 0.618 * sw_delta, digits)
+                    fib_gp_max = round(sw_l + 0.650 * sw_delta, digits)
+                    fib_ote = round(sw_l + 0.702 * sw_delta, digits)
+                    fib_inval = round(sw_l + 0.786 * sw_delta, digits)
+
+                    if cur_px < sw_l:
+                        fib_status = "EXPANSION_NEW_LOW"
+                    elif cur_px < fib_gp_min:
+                        fib_status = "SHALLOW_RETRACE"
+                    elif cur_px <= fib_gp_max:
+                        fib_status = "IN_GOLDEN_POCKET (0.618-0.650)"
+                    elif cur_px <= fib_ote:
+                        fib_status = "IN_OTE_ZONE (0.702)"
+                    elif cur_px <= fib_inval:
+                        fib_status = "DEEP_SHELF_TEST (0.786)"
+                    else:
+                        fib_status = "STRUCTURE_INVALIDATED"
+            else:
+                sw_h, sw_l, fib_dir, fib_gp_min, fib_gp_max, fib_ote, fib_inval, fib_status = None, None, "FLAT", None, None, None, None, "N/A"
+        else:
+            sw_h, sw_l, fib_dir, fib_gp_min, fib_gp_max, fib_ote, fib_inval, fib_status = None, None, "N/A", None, None, None, None, "N/A"
+
         now_ist = (datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=5, minutes=30)).strftime("%Y-%m-%d %H:%M:%S IST")
         structure_records.append({
             "timestamp": now_ist,
@@ -448,6 +549,9 @@ def harvest_auction_market_structure() -> Tuple[List[Dict[str, Any]], List[Dict[
             "pdh": round(pdh, digits) if pdh else None,
             "pdl": round(pdl, digits) if pdl else None,
             "pdc": round(pdc, digits) if pdc else None,
+            "monday_high": round(mon_h, digits) if mon_h else None,
+            "monday_low": round(mon_l, digits) if mon_l else None,
+            "monday_mid": round(mon_mid, digits) if mon_mid else None,
             "weekly_poc": round(prof_curr_week["poc"], digits) if prof_curr_week["poc"] else None,
             "weekly_vah": round(prof_curr_week["vah"], digits) if prof_curr_week["vah"] else None,
             "weekly_val": round(prof_curr_week["val"], digits) if prof_curr_week["val"] else None,
@@ -455,6 +559,10 @@ def harvest_auction_market_structure() -> Tuple[List[Dict[str, Any]], List[Dict[
             "cwl": round(cwl, digits) if cwl else None,
             "pwh": round(pwh, digits) if pwh else None,
             "pwl": round(pwl, digits) if pwl else None,
+            "cmh": round(cmh_val, digits) if cmh_val else None,
+            "cml": round(cml_val, digits) if cml_val else None,
+            "pmh": round(pmh_val, digits) if pmh_val else None,
+            "pml": round(pml_val, digits) if pml_val else None,
             "asian_high": round(asian_h, digits) if asian_h else None,
             "asian_low": round(asian_l, digits) if asian_l else None,
             "london_high": round(london_h, digits) if london_h else None,
@@ -463,6 +571,14 @@ def harvest_auction_market_structure() -> Tuple[List[Dict[str, Any]], List[Dict[
             "ny_low": round(ny_l, digits) if ny_l else None,
             "ib_high": round(ib_h, digits) if ib_h else None,
             "ib_low": round(ib_l, digits) if ib_l else None,
+            "fib_swing_h": round(sw_h, digits) if sw_h else None,
+            "fib_swing_l": round(sw_l, digits) if sw_l else None,
+            "fib_dir": fib_dir,
+            "fib_gp_min": fib_gp_min,
+            "fib_gp_max": fib_gp_max,
+            "fib_ote": fib_ote,
+            "fib_inval": fib_inval,
+            "fib_status": fib_status,
             "auction_regime": regime,
         })
 

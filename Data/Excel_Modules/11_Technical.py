@@ -107,6 +107,13 @@ COLUMNS_DEF = [
     ("lower_3sd", "VWAP -3σ ($)", 14, "right"),
     ("dist_to_vwap_pct", "Dist VWAP (%)", 14, "right"),
     ("rolling_vwap_24h", "24h VWAP ($)", 14, "right"),
+    ("ema_5", "EMA 5 ($)", 13, "right"),
+    ("ema_13", "EMA 13 ($)", 13, "right"),
+    ("ema_34", "EMA 34 ($)", 13, "right"),
+    ("ema_89", "EMA 89 ($)", 13, "right"),
+    ("ema_144", "EMA 144 ($)", 14, "right"),
+    ("ema_233", "EMA 233 ($)", 14, "right"),
+    ("ema_233_slope_pct", "EMA 233 Slope (%/3h)", 18, "right"),
     ("ema_9", "EMA 9 ($)", 14, "right"),
     ("ema_20", "EMA 20 ($)", 14, "right"),
     ("ema_50", "EMA 50 ($)", 14, "right"),
@@ -356,6 +363,13 @@ def compute_asset_indicators(bars: List[Dict[str, Any]], asset: str, symbol: str
         "lower_3sd": base_ind.get("lower_3sd"),
         "dist_to_vwap_pct": dist_vwap_pct,
         "rolling_vwap_24h": base_ind.get("rolling_vwap_24h"),
+        "ema_5": base_ind.get("ema_5"),
+        "ema_13": base_ind.get("ema_13"),
+        "ema_34": base_ind.get("ema_34"),
+        "ema_89": base_ind.get("ema_89"),
+        "ema_144": base_ind.get("ema_144"),
+        "ema_233": base_ind.get("ema_233"),
+        "ema_233_slope_pct": base_ind.get("ema_233_slope_pct"),
         "ema_9": ema_9,
         "ema_20": e20,
         "ema_50": e50,
@@ -641,7 +655,7 @@ def dump_technical_to_excel(
             # Format cell values and number formats
             if col_key in ("last_price", "session_vwap", "upper_1sd", "lower_1sd", "upper_1_28sd", "lower_1_28sd",
                            "upper_2sd", "lower_2sd", "upper_2_01sd", "lower_2_01sd", "upper_2_51sd", "lower_2_51sd",
-                           "upper_3sd", "lower_3sd", "rolling_vwap_24h", "ema_9", "ema_20", "ema_50", "ema_100", "ema_200",
+                           "upper_3sd", "lower_3sd", "rolling_vwap_24h", "ema_5", "ema_13", "ema_34", "ema_89", "ema_144", "ema_233", "ema_9", "ema_20", "ema_50", "ema_100", "ema_200",
                            "atr_14", "bb_upper", "bb_mid", "bb_lower", "high_24h", "low_24h", "daily_poc", "daily_vah", "daily_val", "week_high", "week_low"):
                 if val is not None and not (isinstance(val, float) and (math.isnan(val) or math.isinf(val))):
                     cell.value = float(val)
