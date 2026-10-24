@@ -198,6 +198,12 @@ Both Arena.ai and Z.ai MUST execute an affirmative and adversarial quantitative 
      - TradFi FX and Metals are strictly EMBARGOED daily between 21:15 UTC and 22:30 UTC.
   5. **Cryptographic Integrity**:
      - Verify SHA-256 digests of `master_manifest.json`, `Data/DataBase_Trading.xlsx`, and `cycle_envelope.json`.
+  6. **Mandatory Data & Workbook Timestamp Audit & Staleness Feedback Directive**:
+     - Explicitly inspect the latest modification and git commit timestamps of `Data/DataBase_Trading.xlsx`, `docs/telemetry/live_snapshot_latest.json`, `Data/forex_factory_live.json`, and `Data/macro_calendar.json` against current cycle UTC ({CYCLE_UTC}).
+     - **CRITICAL FEEDBACK REQUIREMENT**: If ANY data file or Excel workbook is stale, lagging behind the current cycle timestamp, or not updating (e.g. workbook commit or telemetry snapshot is older than 20 minutes):
+       * You MUST output a prominent alert at the very top of your written response:
+         `[ALERT] TELEMETRY STALE WARNING: [File/Sheet] is stale (Last updated: [Timestamp] vs Current Cycle: {CYCLE_UTC})`
+       * Provide detailed diagnostic feedback explaining which specific sheets, tables, or feeds are lagging, so the operator and Antigravity can immediately identify whether a git push, writer lock, or daemon issue is occurring.
 
 ---
 
