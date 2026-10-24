@@ -149,7 +149,11 @@ def run_preflight(
         exit_spread_usd = round(spread_raw * volume * contract_sz, 2)
         base_nominal_risk = round(abs(profit_sl), 2) if profit_sl is not None else 0.0
         total_nominal_risk = round(base_nominal_risk + exit_spread_usd, 2)
-        ticket_stress = round(1.25 * total_nominal_risk + 2.0, 2)
+        ticket_stress = round(math.ceil((1.25 * total_nominal_risk + 2.0) * 100.0) / 100.0, 2)
+
+        # Simulated post-order margin reservation (DIS-316-02 fix)
+        simulated_margin_free = round(acc.margin_free - margin_req, 2) if (margin_req is not None and acc.margin_free is not None) else (round(check_dict.get("margin_free", 0.0), 2) if check_dict else None)
+        simulated_margin_level = round((acc.equity / margin_req) * 100.0, 2) if (margin_req and margin_req > 0 and acc.equity is not None) else (check_dict.get("margin_level") if check_dict else None)
 
         receipt = {
             "schema_version": "1.0.0",
@@ -209,8 +213,8 @@ def run_preflight(
                 "pass": check_pass,
                 "retcode": check_retcode,
                 "comment": check_dict.get("comment") if check_dict else "NO_RESULT",
-                "margin_level_post_order": check_dict.get("margin_level") if check_dict else None,
-                "margin_free_post_order": round(check_dict.get("margin_free", 0.0), 2) if check_dict else None,
+                "margin_level_post_order": simulated_margin_level,
+                "margin_free_post_order": simulated_margin_free,
             },
             "preflight_verdict": "PREFLIGHT_PASS" if (quote_fresh and check_pass and sym_info.trade_mode == mt5.SYMBOL_TRADE_MODE_FULL) else "PREFLIGHT_FAIL",
         }
