@@ -14,8 +14,8 @@
     },
     "arena_ai": {
       "name": "Arena.ai Council (GPT Astra)",
-      "status": "IN_PROGRESS",
-      "completed_at_utc": null,
+      "status": "COMPLETED",
+      "completed_at_utc": "2026-10-24 21:56:33 UTC",
       "raw_file": "docs/trade_plans/ARENA_LATEST_RAW.md",
       "model": "GPT Astra",
       "verdict": "HOLD_AND_STAGE_TP_FRONT_RUN_MODIFICATION",
