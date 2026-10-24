@@ -56,16 +56,16 @@ The dispatcher embeds the complete immutable machine-generated `cycle_envelope.j
 ```json
 {
   "schema_version": "1.1.0",
-  "cycle_id": "Cycle-324",
-  "uuid": "b6f6aae0-79bc-41df-9ea8-280a4edb1895",
-  "dispatch_nonce": "fac378e4-3caf-4dc9-97a9-4e60c1811542",
-  "cutoff_utc": "2026-10-24 09:15:27 UTC",
+  "cycle_id": "325",
+  "uuid": "9c628065-4d12-4764-b9b2-9c33e4689b0a",
+  "dispatch_nonce": "e8e04f37-6a1e-408d-bcda-6af0ca912a4f",
+  "cutoff_utc": "2026-10-24 09:46:49 UTC",
   "provenance": {
-    "git_commit": "8b510d072a62c8b6d6c345fbf304202621226d7a",
-    "git_tree": "d712e10c2acc770fb9d965cf272ba164802ed387",
-    "prompt_sha256": "c9f090e8990aa8d1f196950622fb96d52bbc4e35a39f05632cb651e788367f4f",
+    "git_commit": "ed89a0199a088b2303430c3d632708076e20d5e8",
+    "git_tree": "4cdab54e24f99be1f34859e7671d7b1be98c8a30",
+    "prompt_sha256": "5f9459010734cdf8be1c8c6295c677df140d44e12e93cea70446d9df113b6ff0",
     "risk_policy_sha256": "4633e4af56e52c71329c617aaee4cae5c7102ef9a9f33e7e747e46d26841f058",
-    "evidence_manifest_sha256": "bd69f839a84cc2288d80d332b0d41a73e434ad62e811fbe022ac8da2ee75dd9c",
+    "evidence_manifest_sha256": "0a886e0cb9dd2b1d3eeab8a171d4dddfe8d4da0d9333e64859822518b60f1b82",
     "workbook_sha256": "4fd031f59aa7473d7a242d69b0f1ab8565375ad9da216afac6c2e204b3943eeb",
     "excel_freshness_verified": false,
     "excel_audit_scorecard_fresh": false
@@ -123,7 +123,7 @@ The dispatcher embeds the complete immutable machine-generated `cycle_envelope.j
 ```json
 {
   "schema_version": "1.0.0",
-  "dispatch_nonce": "fac378e4-3caf-4dc9-97a9-4e60c1811542",
+  "dispatch_nonce": "e8e04f37-6a1e-408d-bcda-6af0ca912a4f",
   "observed_at_utc": "2026-10-24 09:15:08 UTC",
   "account": {
     "login": 5064568,
