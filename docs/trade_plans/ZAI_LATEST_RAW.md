@@ -14,7 +14,6 @@ Done
 Math independently verified (risk 15.00, stress 21.75, kernel 4841.32 +46.32, margin invariants PASS single-slot; the inline rr echo in my checker was a malformed verification expression — the ruling JSON carries the correct 550/300 = 1.83). Appending worklog, then issuing the verdict:
 
 Wrote 1 files
-Edit File worklog.md
 
 📚 Active Skills Loaded & Applied: @[systematic-debugging] (superpowers — loaded from disk, root-cause discipline applied to the D1 skew-margin question), @[trader-signal](inline spec: VR(4)/ER(48)/NW-t/OU — no local SKILL.md), @[trader-risk](inline spec: VaR-family stress, collateralization gates), @[market-ingest](inline spec: tick/depth freshness), @[market-pattern](inline spec: structural-stop anchoring), @[adaptive-wfo-epoch](inline spec: calibration-window requirements), @[sharpe-ratio-non-iid-corrections](inline spec: HAC variance adjustments), @[time-series-decomposer](inline spec: trend/session/residual decomposition), @[clean-code](inline spec: schema-strict emission) — plus registry analogues consulted: ECC/llm-trading-agent-security, ECC/prediction-market-risk-review.
 
@@ -94,7 +93,7 @@ Authorization: DENIED_FAIL_CLOSED. The pipeline has converged — causality, col
 Skills applied: superpowers/systematic-debugging (loaded from /home/z/my-project/external-skills/superpowers/skills/systematic-debugging/SKILL.md); trader-signal, trader-risk, market-ingest, market-pattern, adaptive-wfo-epoch, sharpe-ratio-non-iid-corrections, time-series-decomposer, clean-code applied as inline specs from the dispatch's own formula definitions (no local SKILL.md exists — flagged in §8 for materialization); registry consulted per external-skills/INDEX.md protocol; no conflicts with council SOP.
 
 ================================================================================
-Z.AI ATTACHED OUTPUT FILE: INDEX.md (3267 chars)
+Z.AI ATTACHED OUTPUT FILE:  (3267 chars)
 ================================================================================
 
 {
