@@ -1,0 +1,122 @@
+{
+  "as_of_utc": "2026-10-24 14:23:49 UTC",
+  "as_of_epoch": 1792851829.478561,
+  "source": "Tradfye Client-Engine Reverse-Engineered Microstructure Feed",
+  "assets": {
+    "BTC": {
+      "symbol": "BTCUSDT",
+      "asset_key": "BTC",
+      "sample_trades_count": 1000,
+      "total_volume_usd": 1926349.09,
+      "total_buy_usd": 238437.57,
+      "total_sell_usd": 1687911.52,
+      "net_delta_usd": -1449473.96,
+      "net_delta_pct": -75.24,
+      "footprint_poc_price": 80300.0,
+      "orderflow_regime": "AGGRESSIVE_SELLER_DOMINATION",
+      "p99_whale_threshold_usd": 47982.04,
+      "whale_bubbles_count": 9,
+      "recent_whale_bubbles": [
+        {
+          "time_ms": 1792851819814,
+          "price": 80302.63,
+          "qty": 2.72349,
+          "notional_usd": 218703.41,
+          "side": "SELL"
+        },
+        {
+          "time_ms": 1792851819814,
+          "price": 80300.21,
+          "qty": 0.66415,
+          "notional_usd": 53331.38,
+          "side": "SELL"
+        },
+        {
+          "time_ms": 1792851819814,
+          "price": 80300.0,
+          "qty": 1.57626,
+          "notional_usd": 126573.68,
+          "side": "SELL"
+        },
+        {
+          "time_ms": 1792851819814,
+          "price": 80297.73,
+          "qty": 1.29836,
+          "notional_usd": 104255.36,
+          "side": "SELL"
+        },
+        {
+          "time_ms": 1792851824438,
+          "price": 80295.44,
+          "qty": 2.02331,
+          "notional_usd": 162462.57,
+          "side": "SELL"
+        }
+      ],
+      "nearest_bid_absorption_shelf": {
+        "price": 80270.19,
+        "notional_usd": 480177.88
+      },
+      "nearest_ask_absorption_shelf": {
+        "price": 80290.55,
+        "notional_usd": 171662.0
+      },
+      "deribit_gamma": {
+        "max_pain": 78000.0,
+        "major_call_wall": 95000.0,
+        "major_put_wall": 60000.0
+      }
+    },
+    "ETH": {
+      "symbol": "ETHUSDT",
+      "asset_key": "ETH",
+      "sample_trades_count": 1000,
+      "total_volume_usd": 434960.41,
+      "total_buy_usd": 242207.73,
+      "total_sell_usd": 192752.68,
+      "net_delta_usd": 49455.05,
+      "net_delta_pct": 11.37,
+      "footprint_poc_price": 2346.0,
+      "orderflow_regime": "TWO_SIDED_ABSORPTION",
+      "p99_whale_threshold_usd": 9081.87,
+      "whale_bubbles_count": 0,
+      "recent_whale_bubbles": [],
+      "nearest_bid_absorption_shelf": {
+        "price": 2346.0,
+        "notional_usd": 231666.8
+      },
+      "nearest_ask_absorption_shelf": {
+        "price": 2346.13,
+        "notional_usd": 134627.27
+      },
+      "deribit_gamma": {
+        "max_pain": 2300.0,
+        "major_call_wall": 3200.0,
+        "major_put_wall": 2300.0
+      }
+    },
+    "SOL": {
+      "symbol": "SOLUSDT",
+      "asset_key": "SOL",
+      "sample_trades_count": 1000,
+      "total_volume_usd": 838938.44,
+      "total_buy_usd": 500664.64,
+      "total_sell_usd": 338273.8,
+      "net_delta_usd": 162390.84,
+      "net_delta_pct": 19.36,
+      "footprint_poc_price": 100.5,
+      "orderflow_regime": "AGGRESSIVE_BUYER_DOMINATION",
+      "p99_whale_threshold_usd": 17275.81,
+      "whale_bubbles_count": 0,
+      "recent_whale_bubbles": [],
+      "nearest_bid_absorption_shelf": {
+        "price": 100.51,
+        "notional_usd": 352064.22
+      },
+      "nearest_ask_absorption_shelf": {
+        "price": 100.68,
+        "notional_usd": 313064.26
+      }
+    }
+  }
+}
