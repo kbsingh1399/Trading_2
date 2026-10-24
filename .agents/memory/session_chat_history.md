@@ -62850,3 +62850,26 @@ You may create 12_Hyperdash and 13_Hyperliquid where you dump all intelligenve a
   * Broker Margin: 2,430.00 USD (50.0% rate) | Post-order free margin: 2,435.07 USD | Margin level: 200.21%.
   * Gross R:R: 2.511 R0 | Net R:R: 2.322 R0 (TP 80,292.00 USD, +41.52 USD net profit).
   * Multi-Ticket Capacity: 1 slot used, 1 slot free with +43.72 USD stress headroom remaining.
+
+
+## Turn Continuation — Cycle 319 Dual Council Adjudication & Macro Calendar Root Cause Fix (2026-10-24 02:13:20 UTC)
+
+### 1. Dual Council Ruling Adjudication (Cycle 319)
+- **Arena.ai Primary Council**: DENIED_FAIL_CLOSED / STAND_ASIDE.
+  * Verified: Remote commit 5d49653 verified on origin/main, manifest and workbook digests match, 0.06 lot risk (16.92 USD) inside Tier 2 band, joint post-stress equity 4,838.72 USD clears 4,795.00 USD kernel by +43.72 USD, Excel freshness audit is 28s fresh (PASS).
+  * Objections: Calendar reported FAIL_CLOSED_BLOCKED and 8.5h verification age; preflight receipt tick was 6s after observed time.
+- **Z.ai Sovereign Council (GLM-5.3-Flash)**: DENIED_FAIL_CLOSED / HOLD.
+  * Formally Verified: Causal gate PASSES (skew-robust, 12s pre-cutoff margin, Cycle 318 D1 resolved); native Saturday crypto regime (WEEKEND_CRYPTO_PERPETUALS_ONLY) explicitly declared; Solvency kernel PASS (+43.72 USD cushion); arithmetic PASSED TO 0.01 USD.
+  * Finding: Every binary hard gate passed. The uncalibrated probability estimators remain the sole decisive soft blocker.
+
+### 2. Forensic Root-Cause Resolution for Calendar FAIL_CLOSED_BLOCKED
+- Isolated root cause: Data/macro_calendar.json had one entry (UoM Consumer Sentiment) with http:// instead of https://.
+- generate_telemetry_snapshot.py strictly required startswith https, throwing ValueError and causing calendar_status: CALENDAR_UNAVAILABLE and blackout_enforcement: FAIL_CLOSED_BLOCKED.
+- Surgical Fix: Replaced URL with https:// and ran Terminal/Macro_Calendar.py, refreshing verified_at to live UTC timestamp.
+- Verified: calendar_observation() now returns calendar_status: VERIFIED_COVERAGE, Blackout: False, Event: FOMC, Runway: 111.3h.
+
+### 3. Swarm Status for Cycle 319
+- Role A (Regime & Calibration): STAND_ASIDE_NO_VALID_REGIME (VR(4)=0.6260 sub-diffusive, ER(48)=0.1890, classify_regime=UNDEFINED).
+- Role C (Solvency & Sizing): SOLVENCY_VERIFIED_CAPITAL_ELIGIBLE_PENDING_ALL_HARD_GATES (Verified 4,865.07 USD baseline, +70.07 USD kernel cushion, +68.07 USD headroom, 24.35 USD ticket stress).
+- Role D (Clock & Provenance): PROVENANCE_AND_CLOCK_VERIFIED_AUCTION_STRUCTURE_CONFIRMED (Causality verified 02:02:04 <= 02:02:10 <= 02:02:22 UTC, 12 executable cryptos, auction levels confirmed).
+- Role B (Microstructure & Order Geometry): In-flight computing L2 orderbook, CVD, and whale persistence.

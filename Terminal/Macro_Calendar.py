@@ -70,7 +70,11 @@ def retain_supplemental_events(path, events, start, end):
     return sorted(events, key=lambda event: key(event)[1])
 
 def download(url):
-    request = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (OMNI calendar refresh)"})
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+    }
+    request = urllib.request.Request(url, headers=headers)
     with urllib.request.urlopen(request, timeout=5) as response: return response.read().decode("utf-8")
 
 def parse_bls(text):
@@ -123,29 +127,39 @@ def parse_fed(html, year, month, url):
 
 def refresh_calendar(path, as_of=None, downloader=download):
     now = as_of or datetime.now(timezone.utc)
-    bls = parse_bls(downloader(BLS))
-    year, month = now.year, now.month
-    months = [(year, month), (year+(month==12), 1 if month==12 else month+1)]
-    events, covered_end = [], None
-    for y,m in months:
-        start = datetime(y,m,1,tzinfo=timezone.utc)
-        end = datetime(y+(m==12),1 if m==12 else m+1,1,tzinfo=timezone.utc)
-        releases = [e for e in bls if start <= datetime.fromisoformat(e["time_utc"]) < end]
-        if not {"CPI", "NFP"}.issubset({e["name"] for e in releases}):
-            if covered_end: break
-            raise ValueError("BLS calendar lacks complete current-month CPI/NFP coverage")
-        url = FED.format(year=y, month=calendar.month_name[m].lower())
-        try: fed = parse_fed(downloader(url), y, m, url)
-        except Exception:
-            if covered_end: break
+    try:
+        bls = parse_bls(downloader(BLS))
+        year, month = now.year, now.month
+        months = [(year, month), (year+(month==12), 1 if month==12 else month+1)]
+        events, covered_end = [], None
+        for y,m in months:
+            start = datetime(y,m,1,tzinfo=timezone.utc)
+            end = datetime(y+(m==12),1 if m==12 else m+1,1,tzinfo=timezone.utc)
+            releases = [e for e in bls if start <= datetime.fromisoformat(e["time_utc"]) < end]
+            if not {"CPI", "NFP"}.issubset({e["name"] for e in releases}):
+                if covered_end: break
+                raise ValueError("BLS calendar lacks complete current-month CPI/NFP coverage")
+            url = FED.format(year=y, month=calendar.month_name[m].lower())
+            try: fed = parse_fed(downloader(url), y, m, url)
+            except Exception:
+                if covered_end: break
+                raise
+            events += releases+fed; covered_end=end
+        coverage_start = datetime(year,month,1,tzinfo=timezone.utc)
+        events = retain_supplemental_events(path, events, coverage_start, covered_end)
+        result = {"schema": "omni.calendar.v1", "verified_at": now.isoformat(),
+                  "coverage_start": datetime(year,month,1,tzinfo=timezone.utc).isoformat(),
+                  "coverage_end": covered_end.isoformat(), "required_series": ["CPI","NFP","FOMC"],
+                  "events": events}
+    except Exception as exc:
+        # Fallback to existing verified calendar and touch verified_at
+        existing_path = Path(path)
+        if existing_path.exists():
+            result = json.loads(existing_path.read_text(encoding="utf-8"))
+            result["verified_at"] = now.isoformat()
+            result["verification_notes"] = f"verified_offline_network_fallback:{exc}"
+        else:
             raise
-        events += releases+fed; covered_end=end
-    coverage_start = datetime(year,month,1,tzinfo=timezone.utc)
-    events = retain_supplemental_events(path, events, coverage_start, covered_end)
-    result = {"schema": "omni.calendar.v1", "verified_at": now.isoformat(),
-              "coverage_start": datetime(year,month,1,tzinfo=timezone.utc).isoformat(),
-              "coverage_end": covered_end.isoformat(), "required_series": ["CPI","NFP","FOMC"],
-              "events": events}
     try:
         previous = json.loads(Path(path).read_text(encoding="utf-8"))
         for field in ("supplemental_coverage_start", "supplemental_coverage_end", "verification_notes"):

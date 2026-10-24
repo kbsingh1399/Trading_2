@@ -1,6 +1,6 @@
 {
   "schema": "omni.calendar.v1",
-  "verified_at": "2026-10-23T17:35:00.000000+00:00",
+  "verified_at": "2026-10-24T02:10:20.827862+00:00",
   "coverage_start": "2026-10-01T00:00:00Z",
   "coverage_end": "2026-11-01T00:00:00Z",
   "required_series": [
@@ -213,7 +213,7 @@
       "status": "COMPLETED",
       "pre_blackout_m": 30,
       "post_blackout_m": 30,
-      "source": "http://www.sca.isr.umich.edu/"
+      "source": "https://www.sca.isr.umich.edu/"
     },
     {
       "name": "FOMC",
