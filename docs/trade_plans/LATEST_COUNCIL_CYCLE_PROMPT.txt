@@ -27,6 +27,12 @@
 
 ---
 
+> 📚 **EXCLUSIVE SINGLE DEFINITIVE SOURCE OF TRADING TRUTH: Data/DataBase_Trading.xlsx (ALL 34 PRODUCTION SHEETS)**:
+> - Master workbook `Data/DataBase_Trading.xlsx` is our **exclusive, single definitive source of trading truth**.
+> - All market data — real-time quotes, level 2/3 depth, multi-horizon CVD, venue basis spreads, economic calendar, auction profiles, and Tradfye orderflow (Sheet `21_Tradfye_Orderflow`) — are consolidated into this workbook.
+> - **Zero Fragmented Data Sources Mandate**: AI agents, external models (Arena.ai, Z.ai), and Antigravity subagents are strictly FORBIDDEN from seeking multiple fragmented secondary files. All market observations, footprint metrics, and solvency checks must be read directly from `Data/DataBase_Trading.xlsx`.
+
+
 ## 🧠 MANDATORY DEEP REASONING CAPABILITY & MULTI-AGENT SQUAD MOBILIZATION DIRECTIVE
 
 > 🛑 **MANDATORY COGNITIVE & ARCHITECTURAL REQUIREMENTS**:
@@ -37,13 +43,23 @@
 > 2. **Multi-Agent Squad Orchestration**:
 >    - You are FORBIDDEN from generating an unstructured, single-voice response. You MUST operate as a unified **Autonomous Multi-Agent Quantitative Squad** orchestrating 4 distinct specialized expert personas:
 >      * **Role A: Statistical Regime & Diffusion Quant** (Lo-MacKinlay Variance Ratio, Hurst Exponent, Ornstein-Uhlenbeck drift, Kaufman Efficiency Ratio).
->      * **Role B: Microstructure, Orderbook & Liquidation Quant** (L2/L3 orderbook depth asymmetry, persistent whale walls, CVD delta divergence, sweep/reclaim validation).
+>      * **Role B: Microstructure, Orderbook & Liquidation Quant** (L2/L3 orderbook depth asymmetry, persistent whale walls, CVD delta divergence, sweep/reclaim validation, and Tradfye orderflow: Footprint POC, net taker delta, 99th-percentile whale bubbles, resting absorption shelves, Deribit options max pain and gamma walls read exclusively from master workbook Data/DataBase_Trading.xlsx worksheet '21_Tradfye_Orderflow').
 >      * **Role C: Solvency, Margin & Broker Risk Sentry** (Strict capital floor defense, broker margin collateralization, non-linear stress testing, multi-ticket capacity).
 >      * **Role D: Market Clock, Auction Profile & Provenance Auditor** (Session timing, value area metrics, timestamp causality, cryptographic manifest validation).
 >
 > 3. **Affirmative Candidate Discovery & High-Confluence Setup Engineering**:
 >    - You are explicitly commanded to conduct **affirmative candidate discovery** across the trade-eligible universe.
 >    - Do not default to passive stand-asides when resting institutional whale walls and high-expectancy setups exist. When structural criteria are satisfied, engineer exact limit entries, stops, and targets with R:R >= 2.0R to 3.0R.
+>
+> 4. **Mandatory Universal Metacognitive Prompt Question**:
+>    - You MUST explicitly evaluate, state, and answer this exact question across your entire deliberation:
+>      **"If it use all the available skills related will it improve our response?"**
+>    - Conduct a formal skills-gap audit: evaluate which skills from the repository (e.g. `@[trader-signal]`, `@[trader-risk]`, `@[market-ingest]`, `@[market-pattern]`, `@[clean-code]`, `@[systematic-debugging]`, `@[backtesting-frameworks]`) are mobilized, how their formal formulas were applied, and whether utilizing deeper econometric, orderflow, and footprint toolkits (including Tradfye whale absorption & delta imbalances) would sharpen your statistical expectancy and eliminate false signals.
+>
+> 5. **Strict Prohibition on Premature Veto / Superficial Quick-Bailout**:
+>    - Completing this prompt in 60-90 seconds with a superficial veto adds ZERO value to the trading desk.
+>    - Even if an artifact, timestamp, or header has a minor defect or warning, you are STRICTLY FORBIDDEN from short-circuiting or returning a quick refusal.
+>    - You MUST deliver an exhaustive, deep quantitative investigation: independently scan the trade-eligible crypto perpetuals, compute Lo-MacKinlay variance ratios, Newey-West drift t-statistics, resting L2/L3 whale walls, footprint volume delta, broker margin collateralization, and nominate concrete, positive EV trade geometries.
 
 To achieve peak quantitative precision and eliminate superficial responses, the autonomous council is commanded to **mobilize deep reasoning and deploy a complete multi-agent squad applying the maximum relevant quantitative methodologies and skills** across all touched domains:
 - `trader-signal`: Z-score anomaly detection, regime classification, and statistical signal generation.
@@ -72,17 +88,17 @@ The dispatcher embeds the complete immutable machine-generated `cycle_envelope.j
 ```json
 {
   "schema_version": "1.1.0",
-  "cycle_id": "Cycle 327",
-  "uuid": "e1fb53e3-bab8-4d0d-933f-16ac2998f0f2",
-  "dispatch_nonce": "67853606-2058-4841-9e70-3252416a00a5",
-  "cutoff_utc": "2026-10-24 12:22:43 UTC",
+  "cycle_id": "Cycle-20261024T154632Z",
+  "uuid": "2a8b5520-4512-4d79-b19c-40d1b96c7e5c",
+  "dispatch_nonce": "b71d877b-d1c2-4133-9b25-db5adfbd5719",
+  "cutoff_utc": "2026-10-24 15:46:32 UTC",
   "provenance": {
-    "git_commit": "761f03df9fdec9fe10506115ffa6fed00c2aa92b",
-    "git_tree": "7f799fb329700f8d8fbfad8b079d6e38d8d5f3df",
-    "prompt_sha256": "f6c093bac051d9e621f4ae7ce77907722a819b696a937f13988865f5465dc803",
+    "git_commit": "ae61c409ccb8538d6d5a248846991b5093bd8bac",
+    "git_tree": "da8ce507462b29a2e06abb5dad3d93224a1bf5e5",
+    "prompt_sha256": "cb3715f545fe55a4e0df7d2ddb4b8a5ab34d85ed4002375a372872afaf0d0782",
     "risk_policy_sha256": "4633e4af56e52c71329c617aaee4cae5c7102ef9a9f33e7e747e46d26841f058",
-    "evidence_manifest_sha256": "060fb3f2c3781d864cabefd52e5a9bacafcb65997d515963e4bffd8a93425289",
-    "workbook_sha256": "96ce0230002ec6c9b5aa0714c86b0d29bfe72dc4880f35f838ab78c4d0f95d64",
+    "evidence_manifest_sha256": "9107c213583d1a39e1f7206d93617ef1e6b0829ce5a4c2fbca3254d614d33546",
+    "workbook_sha256": "a33011067984453ba3f201d864ec8651060ab2e1708f62b31d47fed14caf947a",
     "excel_freshness_verified": false,
     "excel_audit_scorecard_fresh": false
   },
@@ -96,9 +112,36 @@ The dispatcher embeds the complete immutable machine-generated `cycle_envelope.j
     "margin_free": 4865.07,
     "margin_level": 0.0,
     "active_positions_count": 0,
-    "pending_orders_count": 0,
+    "pending_orders_count": 1,
     "active_positions": [],
-    "pending_orders": []
+    "pending_orders": [
+      {
+        "ticket": 19274977,
+        "time_setup": 1792860830,
+        "time_setup_msc": 1792860830841,
+        "time_done": 0,
+        "time_done_msc": 0,
+        "time_expiration": 0,
+        "type": 3,
+        "type_time": 0,
+        "type_filling": 2,
+        "state": 1,
+        "magic": 888888,
+        "position_id": 0,
+        "position_by_id": 0,
+        "reason": 3,
+        "volume_initial": 0.05,
+        "volume_current": 0.05,
+        "price_open": 80845.0,
+        "sl": 81145.0,
+        "tp": 80315.0,
+        "price_current": 79457.0,
+        "price_stoplimit": 0.0,
+        "symbol": "BTCUSD.pi",
+        "comment": "Fable5_Affirmative_C327",
+        "external_id": ""
+      }
+    ]
   },
   "solvency": {
     "hard_floor_usd": 4600.0,
@@ -109,9 +152,9 @@ The dispatcher embeds the complete immutable machine-generated `cycle_envelope.j
     "operating_buffer_cushion_usd": 215.07,
     "kernel_cushion_usd": 70.07,
     "global_contingency_reserve_usd": 2.0,
-    "existing_ticket_stress_usd": 0.0,
-    "realized_headroom_usd": 68.07,
-    "post_joint_stress_equity_usd": 4863.07,
+    "existing_ticket_stress_usd": 20.75,
+    "realized_headroom_usd": 47.32,
+    "post_joint_stress_equity_usd": 4842.32,
     "capital_mode": "TIER_2_HOUSE_MONEY",
     "risk_min_usd": 15.0,
     "risk_max_usd": 25.0,
@@ -139,8 +182,8 @@ The dispatcher embeds the complete immutable machine-generated `cycle_envelope.j
 ```json
 {
   "schema_version": "1.0.0",
-  "dispatch_nonce": "67853606-2058-4841-9e70-3252416a00a5",
-  "observed_at_utc": "2026-10-24 12:22:29 UTC",
+  "dispatch_nonce": "b71d877b-d1c2-4133-9b25-db5adfbd5719",
+  "observed_at_utc": "2026-10-24 15:46:29 UTC",
   "account": {
     "login": 5064568,
     "server": "BlueberryMarketsSVG-Live",
@@ -151,23 +194,23 @@ The dispatcher embeds the complete immutable machine-generated `cycle_envelope.j
   "candidate": {
     "symbol": "BTCUSD.pi",
     "action": "SELL_LIMIT",
-    "volume": 0.04,
-    "price": 81300.0,
-    "sl": 81780.0,
-    "tp": 79850.0
+    "volume": 0.05,
+    "price": 80845.0,
+    "sl": 81145.0,
+    "tp": 80315.0
   },
   "broker_tick": {
-    "bid": 80599.0,
-    "ask": 80640.0,
-    "mid": 80619.5,
-    "spread_raw": 41.0,
-    "spread_bps": 5.09,
-    "spread_cost_usd": 1.64,
-    "broker_server_time_raw": 1792855348,
+    "bid": 79485.0,
+    "ask": 79501.0,
+    "mid": 79493.0,
+    "spread_raw": 16.0,
+    "spread_bps": 2.01,
+    "spread_cost_usd": 0.8,
+    "broker_server_time_raw": 1792867588,
     "broker_server_offset_seconds": 10800.0,
-    "tick_time_utc": "2026-10-24 12:22:28 UTC",
+    "tick_time_utc": "2026-10-24 15:46:28 UTC",
     "tick_age_seconds": 1.0,
-    "clock_skew_seconds": -4.41,
+    "clock_skew_seconds": -3.95,
     "quote_fresh": true
   },
   "broker_spec": {
@@ -182,24 +225,24 @@ The dispatcher embeds the complete immutable machine-generated `cycle_envelope.j
     "contract_size": 1.0
   },
   "broker_valuation": {
-    "profit_at_sl_usd": -19.2,
-    "profit_at_tp_usd": 58.0,
-    "margin_required_usd": 1626.0,
-    "base_nominal_risk_usd": 19.2,
-    "exit_spread_cost_usd": 1.64,
-    "total_nominal_risk_usd": 20.84,
-    "ticket_stress_usd": 28.05,
+    "profit_at_sl_usd": -15.0,
+    "profit_at_tp_usd": 26.5,
+    "margin_required_usd": 2021.13,
+    "base_nominal_risk_usd": 15.0,
+    "exit_spread_cost_usd": 0.8,
+    "total_nominal_risk_usd": 15.8,
+    "ticket_stress_usd": 21.75,
     "stress_model": "(base_loss + exit_spread) * 1.25 + 2.00 USD"
   },
   "order_check": {
     "pass": true,
     "retcode": 0,
     "comment": "Done",
-    "margin_level_post_order": 299.2,
-    "margin_free_post_order": 3239.07
+    "margin_level_post_order": 240.71,
+    "margin_free_post_order": 2843.94
   },
   "preflight_verdict": "PREFLIGHT_PASS",
-  "receipt_sha256": "f685531bb50eb640174f2107e42b6e89854b35efff16ee2bb82b0ee79036cb4e"
+  "receipt_sha256": "0dd57ef81035107811f39a1b27ce2b03e8290bbec870dd3d146e4bf0e1ada0cf"
 }
 ```
 ```
@@ -346,10 +389,10 @@ The council MUST deploy its full multi-agent squad with deep reasoning to execut
   5. **Cryptographic Integrity**:
      - Verify SHA-256 digests of `master_manifest.json`, `Data/DataBase_Trading.xlsx`, and `cycle_envelope.json`.
   6. **Mandatory Data & Workbook Timestamp Audit & Staleness Feedback Directive**:
-     - Explicitly inspect the latest modification and git commit timestamps of `Data/DataBase_Trading.xlsx`, `docs/telemetry/live_snapshot_latest.json`, `Data/forex_factory_live.json`, and `Data/macro_calendar.json` against current cycle UTC (2026-10-24 14:04:55 UTC).
+     - Explicitly inspect the latest modification and git commit timestamps of `Data/DataBase_Trading.xlsx`, `docs/telemetry/live_snapshot_latest.json`, `Data/forex_factory_live.json`, and `Data/macro_calendar.json` against current cycle UTC (2026-10-24 15:49:25 UTC).
      - **CRITICAL FEEDBACK REQUIREMENT**: If ANY data file or Excel workbook is stale, lagging behind the current cycle timestamp, or not updating (e.g. workbook commit or telemetry snapshot is older than 20 minutes):
        * You MUST output a prominent alert at the very top of your written response:
-         `[ALERT] TELEMETRY STALE WARNING: [File/Sheet] is stale (Last updated: [Timestamp] vs Current Cycle: 2026-10-24 14:04:55 UTC)`
+         `[ALERT] TELEMETRY STALE WARNING: [File/Sheet] is stale (Last updated: [Timestamp] vs Current Cycle: 2026-10-24 15:49:25 UTC)`
        * Provide detailed diagnostic feedback explaining which specific sheets, tables, or feeds are lagging, so the operator and Antigravity can immediately identify whether a git push, writer lock, or daemon issue is occurring.
 
 ---

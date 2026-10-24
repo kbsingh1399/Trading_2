@@ -1,21 +1,21 @@
 {
-  "current_cycle_id": "Cycle 328",
-  "cycle_status": "COMPLETED",
-  "cycle_started_utc": "2026-10-24 14:04:55 UTC",
-  "cycle_completed_utc": "2026-10-24 15:03:01 UTC",
-  "next_cycle_scheduled_utc": "2026-10-24 15:23:01 UTC",
+  "current_cycle_id": "Cycle 329",
+  "cycle_status": "IN_PROGRESS",
+  "cycle_started_utc": "2026-10-24 15:49:25 UTC",
+  "cycle_completed_utc": null,
+  "next_cycle_scheduled_utc": null,
   "rest_interval_seconds": 1200,
   "components": {
     "antigravity_subagents": {
       "name": "Antigravity 4-Quant Swarm (Fable 5)",
-      "status": "COMPLETED",
-      "completed_at_utc": "2026-10-24 14:15:56 UTC",
+      "status": "IN_PROGRESS",
+      "completed_at_utc": null,
       "details": "Cycle 328 Swarm complete: Role A (Affirmative ticket ratified), Role B (Whale wall at 80,850 backing entry), Role C (Solvency verified, Slot 2 headroom approved), Role D (Provenance verified, 1.0s quote age, 22.9s calendar age, 0 disputes)."
     },
     "arena_ai": {
       "name": "Arena.ai Council (GPT Astra)",
-      "status": "COMPLETED",
-      "completed_at_utc": "2026-10-24 15:03:01 UTC",
+      "status": "IN_PROGRESS",
+      "completed_at_utc": null,
       "raw_file": "docs/trade_plans/ARENA_LATEST_RAW.md",
       "model": "GPT Astra",
       "verdict": "DENIED_FAIL_CLOSED_LEGACY_81300",
@@ -23,8 +23,8 @@
     },
     "zai": {
       "name": "Z.ai Sovereign Council (GLM-5.3-Flash)",
-      "status": "COMPLETED",
-      "completed_at_utc": "2026-10-24 14:23:35 UTC",
+      "status": "IN_PROGRESS",
+      "completed_at_utc": null,
       "raw_file": "docs/trade_plans/ZAI_LATEST_RAW.md",
       "model": "GLM-5.3-Flash",
       "verdict": "OPTION_B_STAND_ASIDE",
