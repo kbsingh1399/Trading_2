@@ -8,9 +8,9 @@
   "components": {
     "antigravity_subagents": {
       "name": "Antigravity 4-Quant Swarm (Fable 5)",
-      "status": "IN_PROGRESS",
-      "completed_at_utc": null,
-      "details": "Cycle 335 Swarm 100% unanimous pass: Role A (Rotational Balance in HTF Downtrend, P_win 44.50% > P_BE 32.39%, +12.11% net edge, OU theta 80,212.37 USD, SL +201.36 USD above theta_96 repelling at -39.63 USD/bar, SL shielded behind EMA 89 @ 80,525.97 USD), Role B (Whale ask walls >46M USD: 1.56M @ 80,384.60, 17.47M @ 80,500.00, 19.98M Hyperliquid @ 80,544.00, SL 80,620 USD clears 0.786 Fib shelf by +178.22 USD / +0.942 ATR, CVD -246.55M USD), Role C (Solvency verified, Balance 4,865.07 USD, Margin Level 242.05% >= 200%, 41.24% margin utilization <= 50% cap, base risk 18.75 USD, +42.12 USD kernel surplus post-stress), Role D (Cutoff causality verified, quote age 1.0s, 0 red-folder events, Sheet 21 Tradfye certified with 6,914 rows, 100% twin parity verified across 20,283 files)."
+      "status": "COMPLETED",
+      "completed_at_utc": "2026-10-24 21:06:56 UTC",
+      "details": "Cycle 336 Swarm 100% unanimous pass: Role A (Rotational Balance in HTF Downtrend, P_win 44.50% > P_BE 32.39%, +12.11% net edge, OU theta 80,220.52 USD, downward restoring force dx_t = -21.20 USD/bar, SL clears EMA 89 by +90.88 USD), Role B (Overhead ask depth 38.57M USD defending SL >180s persistence, SL clears 0.786 Fib shelf by +178.22 pts, TP converges within 0.925 pts of 15:15 UTC Footprint POC and front-runs 8.49M bid wall by 204 pts), Role C (Solvency verified, Balance 4,865.07 USD, Margin Level 242.00% >= 200%, 41.24% margin utilization <= 50% cap, base risk 18.75 USD, +41.63 USD kernel surplus post-stress, candidate 81,300 USD disqualified on margin grounds), Role D (Strict physical causality verified, tick age 1.0s, 0 red-folder events, Sheet 21 Tradfye certified with 6,914 rows across 18 assets, 100% twin parity verified across 20,283 files)."
     },
     "arena_ai": {
       "name": "Arena.ai Council (GPT Astra)",
@@ -23,8 +23,8 @@
     },
     "zai": {
       "name": "Z.ai Sovereign Council (GLM-5.3-Flash)",
-      "status": "IN_PROGRESS",
-      "completed_at_utc": null,
+      "status": "COMPLETED",
+      "completed_at_utc": "2026-10-24 20:58:18 UTC",
       "raw_file": "docs/trade_plans/ZAI_LATEST_RAW.md",
       "model": "GLM-5.3-Flash",
       "verdict": "OPTION_B_STAND_ASIDE",
