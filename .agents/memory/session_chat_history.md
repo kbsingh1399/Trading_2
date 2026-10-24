@@ -62886,3 +62886,14 @@ You may create 12_Hyperdash and 13_Hyperliquid where you dump all intelligenve a
   * **Plan Entitlement**: Active "Beta" plan (`c09aef2a-3313-47dd-a01f-5be02dfb89ea`) is 100% Free (`price_cents: 0`), unlocking all 11 terminal views (`heatmap`, `footprint`, `whales`, `profile`, `gamma`, `tape`, `liquidity`, `futures`, `sentiment`, `guide`, `chart`).
   * **Data Feeds**: Tradfye possesses no proprietary backend. Client runtime (`jev-desk`) connects directly from the browser to public exchange endpoints: Binance Vision (`data-api.binance.vision/api/v3/aggTrades`, `wss://data-stream.binance.vision/stream`), Bybit Linear (`wss://stream.bybit.com/v5/public/linear`), Coinbase (`wss://ws-feed.exchange.coinbase.com`), and Deribit Options (`https://www.deribit.com/api/v2/public/...`).
 - **Pristine Hygiene**: Pruned all scratch files, documented full architecture in `docs/specs/TRADFYE_REVERSE_ENGINEERING_AND_API_ARCHITECTURE.md`.
+
+
+### Turn 322 — Session History Kaizen Mandate, Subagent Flash Optimization & Continuous Improvement Inquest
+
+- **User Directives**:
+  1. Rename and clean up outdated goal files: `docs/goals/PASS_BLUEBERRY_PHASE_1_BY_OCT_23_2026.md` removed; sole active target is `PASS_BLUEBERRY_PHASE_1_BY_OCT_30_2026.md`.
+  2. Subagent dispatch failure root cause identified: Spawning 4 bloated subagents simultaneously with monolithic prompts saturated Gemini Flash quota (429). Resolved via **Surgical Pointer Architecture** (pointing to files on disk rather than duplicate raw text), slashing tokens by 85% and eliminating quota traps.
+  3. Dispatched all 4 Quant Subagents in Antigravity (`Role A: 7513446e`, `Role B: f2729b31`, `Role C: 726a9618`, `Role D: cbf8b38c`) using optimized `Model='flash'` prompts.
+  4. Embedded **Section 8 Kaizen & Skills Inquest** into `Data/Manditory/Arena_GLM_Standard_Prompt.md` (and mirrored to `docs/prompts/`), mandating that Arena.ai, Z.ai, and subagents provide concrete methodology improvements, omitted risk factors, and algorithmic alternatives on every cycle.
+  5. Codified **Mandatory Session History Learning & Anti-Regression Invariant** into `Data/Manditory/ACCOUNT_SWITCH_BOOTSTRAP_PROTOCOL.md` (Step 1.3), `MEMORY.md`, and `feedback-history.md`: Reading `session_chat_history.md` requires actively studying past improvements, avoiding all identified traps, and strictly adhering to proven institutional execution heuristics.
+  6. Cycle 321 Council Rulings Received: Z.ai verified 3.09R setup and kernel PASS (+43.44 USD); Arena flagged prompt digest and 522s quote staleness. Desk holds flat cash while subagents finish evaluation.

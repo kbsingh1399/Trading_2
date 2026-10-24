@@ -53,7 +53,17 @@ flowchart TD
      * `.agents/rules/ACTIVE_CONTEXT.md` (Real-time live account state, open positions, floor cushions)
      * `.agents/memory/session_chat_history.md` (Full conversation trajectory, past setbacks, operator directives)
 
-3. **Governance Read Status and Formatting**:
+3. **Mandatory Session History Learning & Anti-Regression Mandate (Read, Internalize & Follow)**:
+   - **Active Study & Behavioral Alignment**: Reading `.agents/memory/session_chat_history.md` is NOT a passive formality. On EVERY account switch, coordinator turn, and subagent dispatch, agents MUST actively study, internalize, and follow the historical trajectory of our decisions.
+   - **Continuous Self-Improvement & Kaizen Loop**: Systematically analyze how the desk has improved over time: trace past setbacks, analyze why past losses occurred (e.g. choking stops, unaligned limits without resting whale walls, premature entries into intra-bar chop, or 429 rate limit saturations), and adopt the winning, proven institutional execution heuristics.
+   - **Zero Regression / Never Repeat Past Mistakes**: Under NO circumstances may the desk repeat an identified error. Every cycle must be more refined, disciplined, and mathematically sound than the previous cycle.
+   - **Tri-Layer Context Verification**:
+     * Layer 1 (AST Knowledge Graph): Query semantic nodes via `python -m graphify query "<concept>"`.
+     * Layer 2 (Roadmap & Context): `@[.agents/memory/SESSION_CONTEXT_MAP.md]` and `@[.agents/memory/feedback-history.md]`.
+     * Layer 3 (Live Card): `@[.agents/rules/ACTIVE_CONTEXT.md]`.
+     * Layer 4 (Session History): `@[.agents/memory/session_chat_history.md]`.
+
+4. **Governance Read Status and Formatting**:
    - State which governance sources were actually read. If `.agents/rules/AGENTS.md`, `.agents/rules/ACTIVE_CONTEXT.md`, or `RTK.md` is unavailable, record the missing reference and continue with the available canonical sources; do not fabricate a successful load or live telemetry.
    - Use plain text and unicode. Do not use raw LaTeX currency delimiters.
 
