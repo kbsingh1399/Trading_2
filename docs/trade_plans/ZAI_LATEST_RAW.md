@@ -7,34 +7,31 @@ Done
 ✅ 33-SHEET CONFIRMATION — Cycle 320 | Sole candidate BTCUSD.pi SELL_LIMIT 0.05 @ 81,000 → HOLD (uncalibrated probabilities — sole decisive hard blocker persists) | Overall authorization: DENIED_FAIL_CLOSED | prompt_sha256 now present — D2 closed | Causality clean (−106s, skew-robust) | Kernel PASS +42.57 | New soft flag: R:R regression 2.51 → 1.56 (D8).
 
 json
-{
-  "schema_version": "1.1.0",
-  "cycle_id": "Cycle 320",
-  "cutoff_utc": "2026-10-24 02:25:20 UTC",
-  "evidence_manifest_sha256": "218d966bfacbf9bc47019382ee80fcfc5a21036a6d9bac77b6fec7236c51ee4f",
-  "prompt_sha256": "d8d6492859d2f9865ef03998aa8283c2cd2d0a4c5c33494af3ee4f861cfc8cc2",
-  "dispatch_nonce": "b4f5506d-53f4-41c3-b958-594aa2e3db89",
-  "provenance_status": "MOSTLY_VERIFIED_SCHEMA_VALID_NONCE_BOUND_PROMPT_DIGEST_PRESENT_DECLARED_DIGESTS_NOT_INDEPENDENTLY_RECOMPUTABLE",
-  "inventory_status": "RECONCILED_FULL_ZERO_RESIDUALS",
-  "hard_gate_results": [
-    {
-      "gate": "account_authorization",
-      "status": "PASS",
-      "detail": "Live account 5064568 BlueberryMarketsSVG-Live USD; envelope status ACCOUNT_AND_SOLVENCY_VERIFIED; envelope pre-authorization DENIED_PENDING_FULL_HARD_GATES respected"
-    },
-    {
-      "gate": "legal_trade_mode_and_volume",
-      "status": "PASS",
-      "detail": "BTCUSD.pi trade_mode 4 FULL; volume 0.05 = 5 x step 0.01, within [0.01, 100.0]"
-    },
-    {
-      "gate": "causal_fresh_evidence",
-      "status": "PASS",
-      "detail": "observed_at 02:23:35 (-105s) and tick_time_utc 02:23:34 (-106s) both pre-cutoff within 900s outer limit; clock_skew -5.31s immaterial; tick_age 1.0s, quote_fresh true; prompt_sha256 now present in envelope (Cycle 318/319 D2 resolved)"
-    },
-    {
-      "gate": "broker_session_open",
-      "status": "PASS",
+    "causality_check": "cutoff 02:25:20 - tick_time 02:23:34 = +106s (0 <= 106 <= 900 OK); cutoff - observed_at = +105s; tick_age 1.0s; skew-robust since |skew| 5.31s << 106s margin",
+    "all_recomputations_match_broker_receipt": true
+  },
+  "disputes": [
+    "D2_RESOLUTION_NOTE: prompt_sha256 d8d6492859d2f9865ef03998aa8283c2cd2d0a4c5c33494af3ee4f861cfc8cc2 is now present in envelope provenance and echoed in this response; attestation level DECLARED - this council cannot independently recompute the digest over the prompt bytes (canonicalization unspecified), but the Cycle 318/319 attestation gap is closed.",
+    "D3_RESCOPED_CAPACITY_AND_CORRELATION: at 0.05 lots two concurrent tickets are margin-feasible (margin_level 120.13%, margin_free 815.07) and pass joint stress (4812.07, cushion 17.07); however two BTCUSD.pi tickets are the same instrument and cannot be counted as independent/uncorrelated contingent tickets - a second slot requires a genuinely uncorrelated instrument, and the 120% margin level leaves thin floating-loss headroom.",
+    "D4_COST_LEDGER_INCOMPLETE: BTCUSD.pi commission and swap schedule not disclosed in receipt; EV calibration cannot run without the full cost ledger (persisting since 318).",
+    "D5_TWO_OUTCOME_HYPOTHESIS: TP/SL exhaustion assumed conditional on fill; TTL/timeout/partial-fill branch masses unknown; timeout mass must not be forced into P_SL (persisting).",
+    "D6_FILL_ADVERSE_SELECTION_WORSENED: SELL_LIMIT 81000 sits 240.00 above mid (29.7 bps) and 248.00 above bid (30.7 bps); mid fell 80805 -> 80760 between cycles while the limit was held, pushing the entry farther OTM; conditional-on-fill winner's-curse magnitude unquantified (no estimator).",
+    "D7_UNIVERSE_GRANULARITY: per-symbol evidence rows still absent; verification beyond BTCUSD.pi rests on envelope attestation (persisting).",
+    "D8_RR_REGRESSION_SOFT_FLAG: R:R fell 2.51 -> 1.56 (SL 282 -> 360, TP 708 -> 560) while entry is farther OTM; breakeven P_TP rises to ~40.9% cost-inclusive; not a hard gate, but any future executable ranking requires setup-model lineage justifying the wider stop / tighter target before calibrated EV is computed.",
+    "D1_PREVIOUSLY_RESOLVED: causality clean second consecutive cycle (319, 320) with skew-robust margins; no dispute carried."
+  ],
+  "unknowns": [
+    "p_fill (no calibrated estimator; entry 248.00 above bid in weekend liquidity, queue dynamics unknown)",
+    "p_win_given_fill (no setup-class calibration lineage; R:R geometry changed vs prior cycles)",
+    "commission_usd and swap_usd for BTCUSD.pi",
+    "TTL/timeout branch mass and Expected_Capital_Minutes denominator (fill-time distribution absent)",
+    "adverse_selection_usd magnitude conditional on fill",
+    "per-symbol evidence rows for the remaining 155 universe assets",
+    "freeze_level for BTCUSD.pi (stops_level 0 provided; freeze level not stated)",
+    "setup-model lineage justifying the 360/560 stop-target geometry (D8)"
+  ],
+  "authorization": "DENIED_FAIL_CLOSED",
+  "response_sha256": "30e10b9a8f88651ce9062899c49a469fa7fe37a9146b9719ef3697636a79c538"
 }
 Council Ruling — Z.ai Sovereign Council (GLM-5.3-Flash), Co-Equal Quant & Solvency Arbiter
 
