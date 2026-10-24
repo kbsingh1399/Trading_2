@@ -59,7 +59,18 @@ def audit_excel():
     print(f"File Freshness:    {freshness_str} (Threshold: <= 15.0 min) -> {'PASS' if freshness_pass else 'STALE WARNING'}")
     print("=" * 80)
     
-    wb = openpyxl.load_workbook(EXCEL_PATH, read_only=True, data_only=True)
+    wb = None
+    for _attempt in range(10):
+        try:
+            wb = openpyxl.load_workbook(EXCEL_PATH, read_only=True, data_only=True)
+            break
+        except Exception as e:
+            time.sleep(1.5)
+            
+    if not wb:
+        print("Failed to load workbook after 10 attempts!")
+        return False
+        
     sheet_names = wb.sheetnames
     total_sheets = len(sheet_names)
     
