@@ -540,7 +540,7 @@ async def run_wait_for_completion(poll_interval: float = 2.0, timeout_s: float =
             if arena_done and arena_done_ts > 0.0:
                 elapsed_since_arena = time.time() - arena_done_ts
                 if zai_is_gen:
-                    if elapsed_since_arena >= 900.0:
+                    if elapsed_since_arena >= 1800.0:
                         zai_timed_out = True
                 else:
                     if elapsed_since_arena >= 180.0:
