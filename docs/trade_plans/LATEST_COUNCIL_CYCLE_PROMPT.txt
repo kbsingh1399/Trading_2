@@ -56,19 +56,19 @@ The dispatcher embeds the complete immutable machine-generated `cycle_envelope.j
 ```json
 {
   "schema_version": "1.1.0",
-  "cycle_id": "325",
-  "uuid": "9c628065-4d12-4764-b9b2-9c33e4689b0a",
+  "cycle_id": "Cycle 326",
+  "uuid": "a800cb41-e441-463d-b5f7-4556e91e343b",
   "dispatch_nonce": "e8e04f37-6a1e-408d-bcda-6af0ca912a4f",
-  "cutoff_utc": "2026-10-24 09:46:49 UTC",
+  "cutoff_utc": "2026-10-24 11:08:24 UTC",
   "provenance": {
-    "git_commit": "ed89a0199a088b2303430c3d632708076e20d5e8",
-    "git_tree": "4cdab54e24f99be1f34859e7671d7b1be98c8a30",
-    "prompt_sha256": "5f9459010734cdf8be1c8c6295c677df140d44e12e93cea70446d9df113b6ff0",
+    "git_commit": "53524a256b5e1674ea5d5a33f6a6a8e7853bbfba",
+    "git_tree": "6a43d80f219953a58e2130daaccd89ee9f6a96d7",
+    "prompt_sha256": "34c4a0a31b7a01c24dd6e33ec5b6502659ddef7962e593c64e37efd1b2f7e578",
     "risk_policy_sha256": "4633e4af56e52c71329c617aaee4cae5c7102ef9a9f33e7e747e46d26841f058",
-    "evidence_manifest_sha256": "0a886e0cb9dd2b1d3eeab8a171d4dddfe8d4da0d9333e64859822518b60f1b82",
+    "evidence_manifest_sha256": "89a9ece3c156ba3ccf4c00fc3961f902405493efac2f629a30dec04c688f1ef3",
     "workbook_sha256": "4fd031f59aa7473d7a242d69b0f1ab8565375ad9da216afac6c2e204b3943eeb",
-    "excel_freshness_verified": false,
-    "excel_audit_scorecard_fresh": false
+    "excel_freshness_verified": true,
+    "excel_audit_scorecard_fresh": true
   },
   "inventory": {
     "account_login": 5064568,
@@ -324,11 +324,17 @@ Both Arena.ai and Z.ai MUST execute an affirmative and adversarial quantitative 
      - Classify all 156 assets:
        * 98 TradFi assets (Forex, Metals, Commodities, Indices): Weekend halt until Sunday 21:00 UTC -> CLOSED / WATCHLIST_ONLY.
        * 58 Crypto Perpetuals: Open 24/7/365 with SYMBOL_TRADE_MODE_FULL (4).
-       * Spread Gate: 11 crypto perpetuals pass spread gate (spread <= 25 bps: BTCUSD.pi, ETHUSD.pi, SOLUSD.p, BNBUSD.p, etc.); 47 spread-disqualified (> 25 bps).
+       * Spread Gate: 11 crypto perpetuals pass spread gate (spread <= 25 bps: BTCUSD.pi, ETHUSD.pi, SOLUSD.p, BNBUSD.p, XRPUSD.pi, ADAUSD.p, DOGUSD.p, TRXUSD.p, LNKUSD.p, AVXUSD.p, NERUSD.p); 47 spread-disqualified (> 25 bps).
   4. **Interbank Forex Rollover Embargo**:
      - TradFi FX and Metals are strictly EMBARGOED daily between 21:15 UTC and 22:30 UTC.
   5. **Cryptographic Integrity**:
      - Verify SHA-256 digests of `master_manifest.json`, `Data/DataBase_Trading.xlsx`, and `cycle_envelope.json`.
+  6. **Mandatory Data & Workbook Timestamp Audit & Staleness Feedback Directive**:
+     - Explicitly inspect the latest modification and git commit timestamps of `Data/DataBase_Trading.xlsx`, `docs/telemetry/live_snapshot_latest.json`, `Data/forex_factory_live.json`, and `Data/macro_calendar.json` against current cycle UTC (2026-10-24 12:17:58 UTC).
+     - **CRITICAL FEEDBACK REQUIREMENT**: If ANY data file or Excel workbook is stale, lagging behind the current cycle timestamp, or not updating (e.g. workbook commit or telemetry snapshot is older than 20 minutes):
+       * You MUST output a prominent alert at the very top of your written response:
+         `[ALERT] TELEMETRY STALE WARNING: [File/Sheet] is stale (Last updated: [Timestamp] vs Current Cycle: 2026-10-24 12:17:58 UTC)`
+       * Provide detailed diagnostic feedback explaining which specific sheets, tables, or feeds are lagging, so the operator and Antigravity can immediately identify whether a git push, writer lock, or daemon issue is occurring.
 
 ---
 
