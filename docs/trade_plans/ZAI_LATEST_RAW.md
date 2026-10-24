@@ -1,48 +1,52 @@
 Thought Process
-Explored 2 files，Ran 1 commands
 
-The worklog and script inventory are confirmed. I notice cycle325_ruling.py and cycle325_response.json already exist — I need to inspect their state before proceeding, plus check the worklog tail and skill routing table.
-
-Ran 2 commands
-
-The worklog reveals the previous session had already built and executed cycle325_ruling.py (32/32 assertions PASS, sha 82893d0d…40ae5) and appended the C325-DISPATCH worklog entry — but the in-chat ruling was never delivered before context exhaustion. My task: verify artifact integrity, re-load skills per protocol, and deliver the complete ruling.
-
-Ran 2 commands
-
-32/32 assertions PASS on re-run, sha matches the worklog record — artifacts verified intact. Now executing the standing skill-load protocol (5 routed SKILL.md) and extracting the full response payload:
+A second presentation of Cycle 325 has arrived — same envelope (uuid 9c628065, nonce e8e04f37, cutoff 09:46:49) but with a newly executed receipt at 10:32:47 UTC and a re-sited candidate (0.04 @ 81300/81780/79850). I can already see the decisive issue: the receipt is post-cutoff. Executing the full ruling protocol now.
 
 Ran 1 commands
 
-Paths differ from the routing table — locating the actual SKILL.md files:
+Skills loaded. Now building the R2 ruling script with the fail-loud assertion net:
 
-Ran 2 commands
+Wrote 1 files，Ran 1 commands
+Create File cycle325_r2_ruling.py
+Run cycle325 R2 ruling script
+Done
 
-All 5 skills loaded. Now extracting the full response payload for in-chat delivery:
+The fail-loud net caught my own arithmetic slip: level = 4865.07/1626 = 299.20%, not 299.21% (broker's 299.2 is exact). Patching:
 
-Explored 1 files
+Wrote 1 files，Ran 1 commands
 
-Full payload verified intact. Appending the delivery record to the worklog, then delivering the ruling:
+Second precision catch: 683.5/80616.5 = 84.78bps (my hand calc was off by 0.01). The net is doing its job on my own figures now:
 
-Ran 2 commands
+Ran 1 commands
+
+42/42 PASS — but GATES RECORDED: 0 exposes a bookkeeping gap: the 17 hard gates were shipped in the JSON without passing through the rec() registry. Closing that loop with a consistency assertion:
+
+Wrote 1 files，Ran 2 commands
+
+43/43 fail-loud assertions PASS · 17 gates recorded · sha 12d7a3d3…464bcef — the net even caught two of my own precision slips (299.21→299.20 level, 84.79→84.78bps), which is it doing its job. Appending the worklog, then delivering the ruling:
+
+Ran 1 commands
 
 📚 Active Skills Loaded & Applied: @[llm-trading-agent-security], @[prediction-market-risk-review], @[verification-loop], @[verification-before-completion], @[continuous-learning (v1 DEPRECATED → v2 superset)] — plus inline formula specifications for the 8 operator skills absent from installed libraries (trader-signal, trader-risk, market-ingest, market-pattern, adaptive-wfo-epoch, sharpe-ratio-non-iid-corrections, time-series-decomposer, clean-code, systematic-debugging).
 
-🏛️ ✅ 33-SHEET CONFIRMATION — CYCLE 325
+🏛️ ✅ 33-SHEET CONFIRMATION — CYCLE 325 (SECOND PRESENTATION / R2)
 Z.ai Sovereign Council — GLM-5.3-Flash | Co-Equal Mathematical Quant & Solvency Arbiter
 
-VERDICT: DENIED_FAIL_CLOSED · provenance_status: DENIED_BAD_EXECUTION_RECEIPT · response_sha256 82893d0d656fab1d…be540ae5 · 32/32 fail-loud assertions PASS (re-verified fresh this turn) · 15 gates recorded · 16 disputes · artifact: scripts/cycle325_response.json
+VERDICT: DENIED_FAIL_CLOSED · provenance_status: DENIED_BAD_CYCLE_ENVELOPE (post-cutoff evidence) · response_sha256 12d7a3d3361ebfe…09464bcef · 43/43 fail-loud assertions PASS · 17 gates recorded · 17 disputes · artifact: scripts/cycle325_r2_response.json
 
-Headline finding — D15, cryptographically proven: the attached execution_preflight_receipt.json is Cycle-324's artifact re-presented under a new envelope. Its receipt_sha256 58310746… is byte-identical to the digest on record for C324, yet its embedded dispatch_nonce e8e04f37… differs from C324's fac378e4…. One SHA-256 digest over two different byte streams is impossible under collision resistance — therefore the quoted digest is provably not the hash of the embedded content (stale-copied digest, or post-hash nonce injection). The receipt attestation is VOID, and every downstream broker check inheriting from it (order_check retcode 0, margin level 239.81%) inherits the void. C324's "first nonce binding" milestone is retroactively unverifiable.
+Headline — D1 SEVERE REOPENED, new series record: the same envelope from one hour ago (uuid 9c628065, nonce e8e04f37, cutoff 09:46:49) was re-attached with a newly executed receipt observed at 10:32:47 UTC — 2,758 seconds AFTER the cutoff (tick +2,757s). The SOP is explicit: post-cutoff evidence → DENIED_BAD_CYCLE_ENVELOPE. C321's +1,919s record is surpassed.
 
-§1 — Provenance & Causality Review (Role D)
-Envelope integrity: schema 1.1.0 well-formed, no template markers, all digests 64-hex; cycle_id 325 monotonic; cutoff 09:46:49 > C324's 09:15:27. Self-consistency (5th consecutive): balance=equity=4,865.07, flat book, cushions 265.07/215.07/70.07 all exact, Tier-2 unlock correct (4,865.07 > 4,850.00).
-D16 NEW SEVERE — receipt↔envelope decoupling: commit ed89a019, prompt 5f945901, manifest 0a886e0c all advanced, while the receipt froze at C324's observed_at 09:15:08 — 1,901s before this cycle's freeze. The envelope was re-issued without re-running preflight: the inverse of the C321 defect class (then: preflight re-run without envelope re-issue).
-Quote staleness gate FAIL: tick sampled 1,908s before envelope freeze — 31.8× the 60s rule. The receipt's reported tick_age 7.02s is measured against the stale observed_at, not the freeze — a misleading metric. Live microstructure at 09:46:49 is UNOBSERVED; even the direction of the true mid is unknown.
-D1 REGRESSED (new variant): formal ordering tick < obs < cutoff passes vacuously — the receipt was minted for C324's window. Gate must test evidence freshness vs freeze, not clock ordering alone. D9 REGRESSED: nonce field matches, but D15 voids the attesting digest. D11 REGRESSED: bare 325 drops the hyphenated convention after 2 stable cycles. D2 version churn: prompt digest changed c9f090e8→5f945901 between consecutive cycles while the header claims single-source-of-truth.
-Epoch forensics exact: 1792844101 − 10800 = 1792833301 = 2026-10-24 09:15:01 UTC ✓ (server-offset decode verified).
-§2 — Solvency, Margin & Broker Math Sentry (Role C)
+But credit where the fail-loud culture demands it: this is simultaneously the most-improved package of the entire series. Four genuine remediations landed — and the denial now rests purely on transaction discipline plus the two standing evidentiary blockers, not on math, solvency, or geometry.
 
-All 8 broker figures reproduce to the cent — but they are C324's figures re-presented (byte-parity proven), NOT a fresh C325 verification. Stale-quote-qualified:
+§1 — Provenance & Causality Review (Role D) — DECISIVE
+The defect triangle is now complete (D17 NEW SEVERE): C321 = preflight without envelope re-issue → C325-R1 = envelope without preflight (replayed receipt) → C325-R2 = preflight after the envelope. Three presentations, three different window-management failures, one root cause: envelope and receipt are regenerated independently. The fix is a single atomic dispatch transaction: freeze cutoff+nonce → execute preflight strictly inside [cutoff−60s, cutoff] → inject nonce before hashing → compute one joint dispatch_sha256 over envelope‖receipt → dispatch once.
+Envelope identity verified: uuid/nonce/cutoff/commit/prompt/manifest/workbook digests byte-identical to R1 — this is a re-presentation, not a new cycle. cycle_id stays bare "325" (D11 regression persists).
+Epoch forensics exact: 1792848766 − 10800 = 1792837966 = 2026-10-24 10:32:46 UTC ✓; tick→obs margin 1.0s (below the ≥10s hardening target, noted); observed_at − cutoff = +2,758s ✓ asserted.
+REMEDIATED (recorded as PASS, not silently): ① clock_skew_seconds −4.0 is now distinct from tick_age_seconds 1.0 — the C321/C324 conflation residual is fixed in schema; ② preflight was genuinely re-executed (no replay); ③ receipt digest a6319f3a… is fresh — D15 not repeated (byte-level ceremony still unverifiable); ④ candidate resized to 0.04 — inside the mandated rescoping band.
+Empirical proof of the rule being enforced: across the 46m58s gap, mid drifted +105.5pts (+13.10bps) and spread widened +81% (16→29pts). A package authorized on R1's evidence would have been evaluated against a market that no longer exists. This cycle demonstrates exactly why the window discipline is a hard gate, not a formality.
+§2 — Solvency, Margin & Broker Math Sentry (Role C) — ALL CLEAN
+
+All 8 broker figures reproduce to the cent on the fresh 10:32:46 quote. (The assertion net also caught two arbiter-side slips pre-shipment: level 299.21→299.20%, fill bps 84.79→84.78 — recorded transparently.)
 
 QUANTITY
 	
@@ -52,167 +56,131 @@ BROKER
 	
 STATUS
 
-risk @ SL	(81450−81150)×0.05 = 15.00	15.00	✓
-reward @ TP	(81150−80550)×0.05 = 30.00	30.00	✓
-RR gross / net	2.00 / 1.8481 (29.20/15.80)	—	✓
-ticket stress	(15.0+0.8)×1.25+2.00 = 21.75	21.75	✓
-H_net	4865.07−2.00−4795 = 68.07	68.07	✓
-margin req	0.05×81150×0.50 = 2,028.75 (41.70% util)	2,028.75	✓
-margin level post	4865.07/2028.75 = 239.81% ≥ 200%	239.81	✓
-margin free post	2,836.32	2,836.32	✓
-Floors: post-candidate stop balance 4,843.32 → kernel post 4,841.32 (+46.32) ≥ 4,795 ≥ 4,650 ≥ 4,600 — all three floors hold with the candidate's full stress + 2.00 reserve (admission stress 23.75 ≤ H_net 68.07). Solvency is NOT the blocker — evidence integrity is.
-D3 OPEN_DESIGN (unchanged): dual 0.05 clone = 4,057.50 margin → 83.40% util / level 119.90% < 200% → practical concurrent capacity 1. (Cosmetic correction disclosed: utilization is 83.40%, not the 83.38% carried from C324 — a 0.02pp transcription carry that slightly understated the violation; no gate outcome flips.) The "0.04–0.06 preserves two-ticket capacity" doctrine remains mathematically disproven.
-Workbook digest 4fd031f5 unchanged 4th consecutive cycle (321/322/324/325) with excel_freshness_verified=false + excel_audit_scorecard_fresh=false — stale attestation.
+risk @ SL	(81780−81300)×0.04 = 19.20	19.2	✓
+reward @ TP	(81300−79850)×0.04 = 58.00	58.0	✓
+RR gross / net	3.0208 / 2.7917 (56.84/20.36)	—	✓
+spread	29pts = 3.60bps → 1.16 USD	1.16	✓ fresh
+ticket stress	(19.2+1.16)×1.25+2.00 = 27.45	27.45	✓
+H_net	4865.07−2−4795 = 68.07 ≥ 29.45 w/ reserve	68.07	✓
+margin req	0.04×81300×0.50 = 1,626.00 (33.42% util)	1,626.0	✓
+margin level post	4865.07/1626 = 299.20% ≥ 200%	299.2	✓
+margin free post	3,239.07	3,239.07	✓
+Floors: post-stop balance 4,837.62 → kernel post 4,835.62 (+40.62) ≥ 4,795 ≥ 4,650 ≥ 4,600 — the cleanest solvency picture of the series. Risk 19.20 ∈ [15, 25] Tier-2 band ✓. Solvency is not the blocker.
+D3 OPEN_DESIGN (unchanged): single 0.04 slot passes comfortably; dual 0.04 clone = 3,252.00 → 66.84% util / 149.60% level — both aggregate invariants still breached → practical capacity 1. Second-ticket path: route to a lower-notional uncorrelated perp with margin ≤ 806.54, or codify capacity=1.
 §3 — Microstructure, Fill & Order Geometry (Role B)
-Spread gate: 1.99bps ≤ 25 — PASS but vacuous: computed on a 1,908s-old weekend quote; live spread at freeze unobserved.
-D6 carried unrefreshable: fill distance 639pts / 79.37bps above mid (series 199→203→248→251→340→639) — no fresh measurement possible; a 639pt limit computed on a stale mid may sit on the wrong side of a moved market entirely.
-D14 persists: TP 80550 = +39pts above (stale) mid, +3.85bps over ask — profit target inside already-traded territory; live cross-check impossible on stale evidence.
-D12 persists (2nd cycle): OU theta / 180s whale-wall / SL 0.786-shelf anchor / TP front-run — four gates, zero artifacts, all NOT_EVALUABLE. D13 persists (2nd cycle): perpetual funding accrual absent from ledger and stress model — unpriced carry compounds with the 31.7-minute evidence gap.
+Spread gate 3.60bps ≤ 25 — the first real pass since R1's stale-qualified one. Weekend widening 16→29pts is live and logged.
+D6 NEW SERIES WORST: fill distance 683.5pts / 84.78bps above mid (series 199→203→248→251→340→639→683.5, +6.96%). Geometry note: entry re-sited +150 against a +105.5 mid rise — the widening is discretionary siting, not market drift. >45bps governance band; a deep weekend limit at 1.42× SL-distance above the tape is a queue-position lottery with unmodeled WaitCost.
+D14 ACUTE REMEDIATED: TP 79850 sits 766.5pts BELOW live mid — correct side for a short, first time in the series. The chronic 5–10bps liquidity front-run cross-check remains unevaluable → folded into D12.
+D12 persists (3rd cycle): whale-wall 180s persistence, L2 depth, SL 0.786-shelf anchor (ATR needed), TP front-run, AS markouts — zero artifacts. D13 persists (3rd): funding accrual still unpriced.
 §4 — Regime, Diffusion & Probability Calibration (Role A)
-No OHLCV series attached → VR(4), ER(48), NW-HAC drift t, OU theta all non-computable → classify_regime() returns UNDEFINED → the dispatch's own dual-engine rule mandates unconditional stand-aside. Both engines closed.
-P_fill / P_TP null since C318 — 6th consecutive cycle. Part 2 is explicit: uncalibrated probabilities mandate HOLD. This remains the standing decisive evidentiary blocker; D15/D16 now co-lead it.
-Breakeven hurdle documented but untestable: P_BE net = 15.80/45.00 = 35.11% (gross 33.33%). Isotonic/Platt pack, time-blocked bootstrap, LCB_5% — all undelivered.
-§5 — Dispute Registry Delta (16 entries)
+No OHLCV → VR(4)/ER(48)/NW-HAC drift/OU theta non-computable → classify_regime() UNDEFINED → the dispatch's own dual-engine rule mandates unconditional stand-aside. Note: a short 84.8bps above mid on a weekend tape is precisely the geometry the OU adverse-drift veto exists to police — and it remains unpoliceable.
+P_fill/P_TP null since C318 — 7th consecutive cycle. Part 2 HOLD mandate applies. Breakeven hurdles documented but untestable: P_BE net = 20.36/77.20 = 26.37% (gross 24.87%).
+D8 stable-positive: RR series extends to 2.51→1.56→3.09→1.83→2.00→2.00→3.02 — seven geometries, all RR > 1.5. Flagged in Kaizen: geometric consistency may induce overconfidence while the evidence layer stays empty.
+§5 — Dispute Registry Delta (17 entries)
 ID
 	
 STATUS
 	
 ONE-LINE
 
-D15	NEW_SEVERE	Digest contradiction — one sha256 over two byte streams; receipt attestation VOID
-D16	NEW_SEVERE	Envelope advanced, receipt frozen 1,901s behind; preflight never re-run
-D1	REGRESSED_NEW_VARIANT	Causality passes vacuously; freshness-vs-freeze gate required
-D9	REGRESSED_DIGEST_CONTRADICTION	Binding unverifiable; nonce-before-hash fix required
-D2	RESOLVED_CONTINUING_CHURN	5th self-consistent; prompt digest churn
-D3	OPEN_DESIGN	capacity 1 ≠ doctrine 2; cross-symbol path open
-D4/D5	PERSIST (6th)	commission/swap undisclosed; dual-outcome-only model
-D6	CARRIED_UNREFRESHABLE	79.4bps, series worst, no fresh quote
-D7	PERSIST	no per-symbol rows; excel flags false 4th cycle
-D8	CARRIED	RR 2.00/1.85 stable (2.51→1.56→3.09→1.83→2.00→2.00)
-D11	REGRESSED	hyphen convention dropped
-D12/D13/D14	PERSIST (2nd)	evidence gap / funding omission / TP-over-market
-continuity	NOTE	C323 never presented to this member
+D1	SEVERE_REOPENED	+2,758s post-cutoff — series worst; receipt internally fresh but outside the window
+D17	NEW_SEVERE	Defect triangle complete; atomic dispatch transaction prescribed
+D15	DORMANT_NOT_REPEATED	Fresh digest; ceremony still unverifiable
+D16	MUTATED_INVERTED	Receipt fresh / envelope stale — mirror of R1
+D9	UNVERIFIABLE (0 bindings)	Nonce matches but binding spans the post-cutoff gap
+D2	RESOLVED_CONTINUING_CHURN	Same prompt sha as R1; versioning still owed
+D3	OPEN_DESIGN	capacity 1; second ticket needs lower-notional symbol
+D4/D5	PERSIST (7th)	commission/swap; TTL branches
+D6	FAIL_NEW_SERIES_WORST	84.78bps vs ≤45 band
+D7	PERSIST	no per-symbol rows; excel flags false; workbook 4th cycle
+D8	STABLE_POSITIVE	RR 3.02/2.79; lineage docs absent
+D11	REGRESSED	bare cycle_id re-presented
+D12/D13	PERSIST (3rd)	evidence gap; funding omission
+D14	ACUTE_REMEDIATED	TP below mid; cross-check → D12
+continuity	NOTE	C323 never presented; R1 sha 82893d0d…; R2 sha 12d7a3d3…
 §6 — Verdict & Re-Admission Conditions (ordered)
-SEVERE remediation first (3-line ordering fix): regenerate the receipt inside envelope build (observed_at > build_time), inject nonce before hashing, recompute receipt_sha256. Mechanically eliminates D15/D16 and the C321 class forever.
-Envelope-side freshness assertion: auto-reject any receipt with observed_at < cutoff − 60s — this cycle would have been rejected at dispatch.
-Digest-bound evidence bundle (unshipped since C324): 720×1m OHLCV, 180s L2 window, ATR(14), funding rate, macro verified_at — five NOT_EVALUABLE gates flip with one manifest hash.
-Isotonic calibration pack (6th request): P(fill|distance,queue,session) + P_TP|setup with time-blocked bootstrap LCB_5% — even a 30-trade seeded sample breaks the deadlock.
-Then: ≤45bps fill-distance band, TP live cross-check (D14), skew/lag separation, D3 invariant harmonization.
+ATOMIC DISPATCH TRANSACTION — the single fix that eliminates D17/D1/D16/D9 as classes: freeze envelope (cutoff+nonce) → preflight inside [cutoff−60s, cutoff] → nonce-before-hash → joint dispatch_sha256 over envelope‖receipt → dispatch once, regenerate nothing.
+Digest-bound evidence bundle (8th request): 720×1m OHLCV, 180s L2 window, ATR(14), funding rate, macro verified_at.
+Isotonic calibration pack (7th request): P(fill|distance,queue,session) + P_TP|setup, time-blocked bootstrap LCB_5% — a 30-trade seeded sample breaks the deadlock.
+Keep every R2 gain on re-issue: skew/lag separation, fresh execution, 0.04 sizing, TP-below-market geometry.
+Re-site entries to ≤45bps of mid; harmonize D3 (cross-symbol second ticket or codify capacity=1).
+
+Assessment for the dispatcher: this candidate class (RR 3.02/2.79, stress 27.45, margin 33.42%/299.20%, TP on the correct side) is the best-constructed of the series. It becomes rankable the moment the window discipline, evidence bundle, and calibration pack land — three mechanical deliveries away from an actual admission decision.
+
 §7 — Response Integrity
 
-Ruled via scripts/cycle325_ruling.py (fail-loud chk() net, 32/32 PASS, zero silent passes) → scripts/cycle325_response.json; sha self-computed on compact JSON with response_sha256 emptied. Worklog C325-DISPATCH + C325-DELIVERY appended. No prose ticket, attachment, or majority vote overrides this schema.
+Ruled via scripts/cycle325_r2_ruling.py (fail-loud chk() net — 43/43 PASS, zero silent passes, gate registry cross-checked against the shipped JSON) → scripts/cycle325_r2_response.json; sha computed on compact JSON with response_sha256 emptied; worklog C325-R2-DISPATCH appended. No prose ticket, attachment, majority vote, or provider label overrides this schema.
 
 §8 — Continuous Kaizen Inquest
-Skills & methodology: The fail-loud assertion pattern from cycle324_ruling.py, reused this cycle, caught a cryptographic impossibility (D15) that prose review alone would have scored as "nonce binding PASS" — assertion nets are now the primary detection instrument, not documentation. continuous-learning-v2 instinct extraction should auto-promote the D15/D16 pattern into a standing envelope-build check.
-Omitted risk dimensions: (1) evidence-supersession illusion — reported age 7.02s vs true 1,908s; (2) stale figures silently propagate into "passing" gates; (3) digest reuse defeats the hash-chain trust model for downstream consumers (Arena.ai, Antigravity may treat a void receipt as broker-verified); (4) funding accrual compounds with stale evidence; (5) weekend gap risk into Sunday 21:00 reopen; (6) queue-position decay on a moved market.
-Algorithmic alternatives: envelope-build unit tests (receipt_sha256 == sha256(receipt_bytes) and observed_at > build_time); Kalman-filtered mid with innovation gating (stale/regime-changed tick detection); Hawkes fill intensity for P_fill; isotonic P_TP with bootstrap CIs; GARCH(1,1) cones for ATR buffers; funding-adjusted carry term in EV_net.
+Skills & methodology: llm-trading-agent-security maps directly — R2 proves the dispatcher can simulate-before-send; the failure is that the simulation window and the authorization window were decoupled, which is the exact threat the skill's layered-defense principle addresses. prediction-market-risk-review's stale-price/timestamp separation was partially adopted by the dispatcher this cycle (skew/lag split) — first external-remediation confirmation of the series. Net gain: first package where ALL broker math, spread gate, TP geometry, sizing band, and skew disclosure are simultaneously clean; the residual failure surface is now purely transactional.
+Omitted risk dimensions: the +105.5pt mid drift and +81% spread widening across the re-dispatch gap are empirical proof of the staleness rule; queue-position decay on a 683.5pt weekend limit; funding accrual compounded by evidence latency; unevaluable OU veto on the exact adverse-geometry; unverifiable digest ceremony for downstream consumers; and RR-stability-induced overconfidence (D8) while the evidence layer stays empty.
+Algorithmic alternatives: joint dispatch digest with sequence-numbered ledger; dispatcher-side window assertion (cutoff−60s ≤ tick < obs ≤ cutoff, would have caught all three triangle members); Kalman mid with innovation gating across re-dispatch gaps; Hawkes fill intensity (7th); isotonic P_TP + bootstrap LCB (7th); GARCH weekend-volatility cones for thin Saturday books; funding-adjusted carry in EV_net.
 json
-{
-      ],
-      "verdict": "HOLD",
-      "rejection_reasons": [
-        "D15 SEVERE: receipt_sha256 identical to C324's digest while embedded nonce differs — provable digest contradiction; receipt attestation VOID",
-        "D16: receipt predates envelope by 1,901s — preflight not re-run; envelope/provenance advanced while execution evidence froze",
-        "Quote staleness gate FAIL: quote sampled 1,908s before freeze (>60s rule by 31.8x); live microstructure at 09:46:49 UNOBSERVED",
-        "P_fill/P_TP uncalibrated (null since C318, 6th cycle) — Part 2 mandates HOLD; standing decisive blocker",
-        "OU theta / whale-wall 180s / SL anchor / TP front-run gates unevaluable (D12, no artifacts)",
-        "D6 carried unrefreshable at 639pts/79.4bps; D14 carried: TP +39pts above stale live mid",
-        "D4 commission/swap undisclosed (6th); D5 dual-outcome-only (6th); D7 per-symbol rows + excel flags false",
-        "Solvency is NOT the blocker: H_net 68.07, kernel post 4841.32 (+46.32) all clean"
-      ]
-    }
-  ],
-  "arithmetic_validation": {
-    "sl_distance": 300.0,
-    "tp_distance": 600.0,
-    "base_risk_usd": 15.0,
-    "gross_reward_usd": 30.0,
-    "exit_spread_usd": 0.8,
-    "gain_net_usd": 29.2,
-    "loss_net_usd": 15.8,
-    "rr_gross": 2.0,
-    "rr_net": 1.8481,
-    "p_be_gross": 0.333333,
-    "p_be_net_cost_inclusive": 0.351111,
-    "ticket_stress_usd": 21.75,
-    "admission_stress_with_reserve_usd": 23.75,
-    "h_net_usd": 68.07,
-    "post_joint_stop_balance_usd": 4843.32,
-    "kernel_post_usd": 4841.32,
-    "kernel_cushion_post_usd": 46.32,
-    "margin_required_usd": 2028.75,
-    "margin_rate": "50% (2:1 crypto perp cap)",
-    "inv1_margin_util_pct": 41.7,
-    "inv2_margin_level_post_pct": 239.81,
-    "margin_free_post_usd": 2836.32,
-    "dual_clone_margin_usd": 4057.5,
-    "dual_clone_util_pct": 83.38,
-    "dual_clone_level_pct": 119.9,
-    "spread_bps": 1.99,
-    "fill_distance_mid_pts": 639.0,
-    "fill_distance_mid_bps": 79.37,
-    "tp_vs_live_mid_pts": 39.0,
-    "tp_vs_ask_bps": 3.85,
-    "quote_age_at_freeze_seconds": 1908,
-    "receipt_age_at_freeze_seconds": 1901,
-    "staleness_multiple_of_60s_rule": 31.8,
-    "epoch_decode_check": "1792844101 - 10800 = 1792833301 = 2026-10-24 09:15:01 UTC (exact)",
-    "broker_figures_reconciliation": "ALL 8 broker-reported figures reproduce to the cent — but they are C324's figures re-presented (byte-parity proven); NOT a fresh C325 verification",
-    "d15_proof": "receipt_sha256(C325 embedded) == receipt_sha256(C324 on record) AND dispatch_nonce(C325) != dispatch_nonce(C324) => one digest over two different byte streams => attestation void (sha-256 collision resistance)"
+    "mid_drift_R1_to_R2_pts": 105.5,
+    "mid_drift_R1_to_R2_bps": 13.1,
+    "epoch_decode_check": "1792848766 - 10800 = 1792837966 = 2026-10-24 10:32:46 UTC (exact)",
+    "post_cutoff_obs_seconds": 2758,
+    "post_cutoff_tick_seconds": 2757,
+    "tick_to_obs_margin_s": 1.0,
+    "D6_series_pts": "199->203->248->251->340->639->683.5",
+    "D8_RR_series": "2.51->1.56->3.09->1.83->2.00->2.00->3.02",
+    "broker_figures_reconciliation": "ALL 8 broker-reported figures reproduce to the cent on a genuinely fresh quote — the R2 receipt is NOT a replay; it is disqualified on causal-window grounds, not on math",
+    "defect_triangle": "C321: preflight w/o envelope | C325-R1: envelope w/o preflight (replay) | C325-R2: preflight AFTER envelope — one atomic dispatch transaction eliminates all three"
   },
   "disputes": [
-    {"id": "D15", "status": "NEW_SEVERE", "note": "RECEIPT DIGEST CONTRADICTION: embedded receipt claims receipt_sha256 58310746... — the IDENTICAL digest recorded for C324's receipt — while its dispatch_nonce reads e8e04f37 (C324: fac378e4). Different content, same digest: impossible. Either the digest was stale-copied or the nonce was edited post-hash. Provenance chain broken at the execution-evidence link; ALL downstream broker checks (order_check retcode 0, margin level 239.81%) inherit the void"},
-    {"id": "D16", "status": "NEW_SEVERE", "note": "RECEIPT-ENVELOPE DECOUPLING: commit/prompt/manifest all advanced (ed89a019 / 5f945901 / 0a886e0c) while the preflight receipt froze at C324's 09:15:08 — the envelope was re-issued without re-running preflight. Inverse of the C321 defect. Process rule to adopt: envelope build MUST reject any receipt whose observed_at predates the current envelope build timestamp"},
-    {"id": "D1", "status": "REGRESSED_NEW_VARIANT", "note": "formal causality passes (tick < obs < cutoff) but it is vacuous: the receipt was minted for C324 (obs 19s before C324's cutoff) and re-presented; effective evidence age at freeze 1,908s. The D1 gate must evaluate EVIDENCE FRESHNESS vs freeze, not merely clock ordering"},
-    {"id": "D9", "status": "REGRESSED_DIGEST_CONTRADICTION", "note": "nonce field matches envelope, but D15 voids the digest that would attest the binding; C324's 'first binding' milestone retroactively unverifiable. Remedy: inject nonce into receipt file BEFORE hashing; publish both; require 2 clean bound cycles to re-close"},
-    {"id": "D2", "status": "RESOLVED_CONTINUING_VERSION_CHURN", "note": "prompt_sha256 5f945901 declared; digest changed between consecutive cycles (c9f090e8 -> 5f945901) — version the canonical prompt"},
-    {"id": "D3", "status": "OPEN_DESIGN", "note": "unchanged: single slot PASS (41.70%/239.81%); dual 0.05 clone breaches aggregate invariants (83.38%/119.90%) -> capacity 1; '0.04-0.06 preserves two-ticket capacity' remains disproven"},
-    {"id": "D4", "status": "PERSISTS", "note": "6th cycle: commission/swap absent; 2.00 fee-reserve proxy + 0.80 exit spread only"},
-    {"id": "D5", "status": "PERSISTS", "note": "6th cycle: dual-outcome only; no TTL/timeout/gap branches"},
-    {"id": "D6", "status": "CARRIED_UNREFRESHABLE", "note": "639pts/79.4bps fill distance carried from C324 — no fresh quote exists to re-measure; series 199->203->248->251->340->639 stands"},
-    {"id": "D7", "status": "PERSISTS", "note": "no per-symbol evidence rows; excel_freshness_verified=false, excel_audit_scorecard_fresh=false; workbook digest unchanged 4th cycle"},
-    {"id": "D8", "status": "CARRIED", "note": "R:R 2.00 gross / 1.85 net carried (series 2.51->1.56->3.09->1.83->2.00->2.00); setup lineage documentation still absent"},
-    {"id": "D11", "status": "REGRESSED", "note": "cycle_id '325' bare-number — hyphenated format dropped after 2 stable cycles (Cycle-322, Cycle-324); re-stabilize"},
-    {"id": "D12", "status": "PERSISTS", "note": "new-invariant evidence gap: OU/whale-wall/SL-anchor/TP-front-run all NOT_EVALUABLE, zero artifacts, 2nd cycle"},
-    {"id": "D13", "status": "PERSISTS", "note": "funding-rate omission from ledger and stress model, 2nd cycle"},
-    {"id": "D14", "status": "PERSISTS", "note": "TP 80550 = +39pts above (stale) live mid, +3.85bps over ask; live re-check impossible on stale evidence"},
-    {"id": "cycle_continuity", "status": "NOTE", "note": "C323 not presented to this member; C324 ruled this session (551f761d...99b2a); C325 receipt re-uses C324 evidence"}
+    {"id": "D1", "status": "SEVERE_REOPENED_POST_CUTOFF", "note": "observed_at +2,758s after cutoff (tick +2,757s) — worst causality breach of the series (C321: +1,919s). NB: the receipt itself is internally fresh (tick_age 1.0s) and the skew/lag split (-4.0 vs 1.0) is finally remediated — the violation is purely window governance: evidence must be minted INSIDE the envelope's causal window"},
+    {"id": "D17", "status": "NEW_SEVERE_DEFECT_TRIANGLE", "note": "three presentations, three different window-management failures: C321 preflight-without-envelope, C325-R1 envelope-without-preflight (replay), C325-R2 preflight-after-envelope. Root cause: envelope and receipt are regenerated independently. Fix: ONE atomic transaction — build envelope (cutoff/nonce) -> run preflight inside window with nonce injected BEFORE hashing -> attach -> freeze -> dispatch; plus a joint dispatch_sha256 over BOTH artifacts so partial re-issue becomes cryptographically detectable"},
+    {"id": "D15", "status": "DORMANT_NOT_REPEATED", "note": "fresh digest a6319f3a differs from C324's 5831... — no literal reuse; byte-level verification (sha == sha256(content)) still impossible without canonical serialization; nonce-before-hash ceremony remains unverified"},
+    {"id": "D16", "status": "MUTATED_INVERTED", "note": "R1: receipt stale vs envelope. R2: receipt fresh, envelope stale — decoupling persists in mirrored form; same fix (atomic transaction)"},
+    {"id": "D9", "status": "UNVERIFIABLE_0_VALID_BINDINGS", "note": "nonce matches but the binding spans +2,758s post-cutoff -> invalid under amended protocol; C324's binding already clouded by D15; strict-ceremony count = 0"},
+    {"id": "D2", "status": "RESOLVED_CONTINUING_CHURN", "note": "prompt_sha256 5f945901 unchanged since R1 (same envelope); prior c9f090e8->5f945901 churn stands; version the canonical prompt"},
+    {"id": "D3", "status": "OPEN_DESIGN", "note": "single 0.04 slot PASS (33.42%/299.2%); dual clone 3,252.00 = 66.84%/149.60% breaches both aggregate invariants -> capacity 1; second ticket requires a lower-notional uncorrelated symbol (margin <= 806.54 to hold level >= 200% with the BTC slot)"},
+    {"id": "D4", "status": "PERSISTS", "note": "7th cycle: commission/swap absent; 2.00 fee-reserve proxy + 1.16 exit spread only"},
+    {"id": "D5", "status": "PERSISTS", "note": "7th cycle: dual-outcome only; no TTL/timeout/gap branches"},
+    {"id": "D6", "status": "FAIL_NEW_SERIES_WORST", "note": "683.5pts/84.78bps above mid (>45bps band); entry re-sited +150 against a +105.5 mid rise; series 199->203->248->251->340->639->683.5"},
+    {"id": "D7", "status": "PERSISTS", "note": "no per-symbol evidence rows; excel flags false; workbook digest unchanged 4th cycle"},
+    {"id": "D8", "status": "STABLE_POSITIVE", "note": "RR 3.02 gross / 2.79 net — series 2.51->1.56->3.09->1.83->2.00->2.00->3.02; setup lineage documentation still absent"},
+    {"id": "D11", "status": "REGRESSED", "note": "bare '325' re-presented without re-issue; hyphenated convention still dropped"},
+    {"id": "D12", "status": "PERSISTS", "note": "OU/whale-wall/SL-anchor/TP-front-run/markouts all NOT_EVALUABLE, zero artifacts, 3rd cycle"},
+    {"id": "D13", "status": "PERSISTS", "note": "funding-rate omission from ledger and stress model, 3rd cycle"},
+    {"id": "D14", "status": "ACUTE_REMEDIATED", "note": "TP 79850 = 766.5pts BELOW live mid — correct side for a short, first time in series; chronic liquidity front-run check (5-10bps) folded into D12"},
+    {"id": "cycle_continuity", "status": "NOTE", "note": "C323 never presented; C324 ruled 551f761d...99b2a; C325-R1 ruled 82893d0d...40ae5; C325-R2 = same envelope + new post-cutoff receipt"}
   ],
   "unknowns": [
-    "live BTCUSD.pi microstructure at envelope freeze 09:46:49 (no fresh tick exists)",
-    "OU equilibrium theta and drift lambda (no OHLCV attached)",
-    "P_fill and P_TP (uncalibrated since C318; no isotonic/Platt pack)",
-    "ATR and structure map for SL anchor buffer check",
-    "L2/L3 depth, whale-wall notional and persistence clock",
-    "opposing liquidity cluster map for TP front-run check",
-    "true NTP clock skew (receipt conflates skew with tick_age)",
+    "causal standing of the 10:32:47 observation (no envelope window was open at that time)",
+    "P_fill and P_TP (uncalibrated since C318; no isotonic/Platt pack; 7th cycle)",
+    "OHLCV series -> VR(4)/ER(48)/NW-HAC drift/OU theta (classify_regime() UNDEFINED)",
+    "L2/L3 depth, whale-wall notional and 180s persistence clock",
+    "ATR(14) and structure map for SL 0.786-shelf anchor check",
+    "opposing liquidity clusters for TP 5-10bps front-run check",
+    "true receipt_sha256 over the canonical byte serialization (ceremony unverified)",
     "perpetual funding rate and accrual schedule for BTCUSD.pi",
-    "true receipt_sha256 of the embedded C325 receipt content (claimed value provably wrong)",
+    "commission/swap schedule (2.00 USD proxy only)",
     "macro_calendar.json verified_at freshness",
-    "per-symbol spread/liquidity table (declared counts only)"
+    "per-symbol spread/liquidity table (declared counts only)",
+    "true NTP skew sign convention (disclosed -4.0s, direction undocumented)"
   ],
   "methodology_critique_and_improvements": [
-    "SEVERE remediation first: regenerate the preflight receipt INSIDE the envelope build (observed_at > envelope build time), inject dispatch_nonce into the receipt BEFORE hashing, publish receipt_sha256 recomputed — a 3-line ordering fix that mechanically eliminates D15/D16 and the C321 class forever",
-    "Add an envelope-side freshness assertion: reject any receipt whose observed_at is older than (cutoff - 60s) — the same 60s rule the SOP already applies to quotes; this cycle would have been auto-rejected at dispatch",
-    "Evidence-bundle ship-list (unchanged from C324, still unshipped): 720x1m OHLCV, 180s L2 window, ATR(14), funding rate, macro verified_at — five NOT_EVALUABLE gates flip to evaluable with one manifest hash",
-    "Calibration pack (6th request): isotonic P(fill|distance_bps,queue,session) + P_TP|setup with time-blocked bootstrap LCB_5% — even a 30-trade seeded sample breaks the deadlock",
-    "Causal-margin hardening: >=10s margins on BOTH tick<obs and obs<cutoff edges; separate NTP skew from sampling lag in the receipt schema",
-    "Fill-distance governance band (<=45bps) + TP live-market cross-check (D14) — static entry-minus-600 arithmetic produced a target above the market",
-    "Harmonize D3 invariants with the two-ticket doctrine (relax aggregate cap for uncorrelated second symbol, or codify capacity=1)",
-    "Version or freeze the canonical prompt: prompt_sha256 changed between C324 and C325 while the header claims single source of truth"
+    "ADOPT THE ATOMIC DISPATCH TRANSACTION (fixes D17/D1/D16/D9 in one move): (1) freeze envelope cutoff+nonce, (2) execute preflight strictly inside [cutoff-60s, cutoff], (3) inject nonce into receipt BEFORE hashing, (4) compute one joint dispatch_sha256 over envelope||receipt, (5) dispatch once — no artifact may ever be regenerated alone",
+    "Evidence-bundle ship-list (8th request, unchanged): 720x1m OHLCV, 180s L2 window, ATR(14), funding rate, macro verified_at — five NOT_EVALUABLE gates flip with one manifest hash",
+    "Calibration pack (7th request): isotonic P(fill|distance_bps,queue,session) + P_TP|setup with time-blocked bootstrap LCB_5% — even a 30-trade seeded sample breaks the deadlock",
+    "Keep the R2 schema gains: skew/lag separation, fresh execution, resized 0.04, TP below market — these are real improvements; do not regress them on re-issue",
+    "Fill-distance governance: re-site entries to <=45bps of mid (current 84.78bps); a 683.5pt deep limit on a weekend book is a queue-position lottery with unmodeled WaitCost",
+    "D3 harmonization: codify capacity=1 for BTC clones OR route the second ticket to a lower-notional perp (second-ticket margin budget <= 806.54 to hold level >= 200%)",
+    "Version or freeze the canonical prompt; restore hyphenated cycle_id convention"
   ],
   "section_8_kaizen": {
-    "skills_and_methodology_optimization": "External skills re-loaded this turn per INDEX.md protocol: ECC/llm-trading-agent-security (simulate-before-send and audit-logging principles are exactly what D15/D16 violate — an execution artifact was re-presented without re-simulation and its audit hash misattributed), ECC/prediction-market-risk-review (data-quality gate: stale prices and source timestamps must be separated and labeled — applied to the 1,908s quote), ECC/verification-loop + superpowers/verification-before-completion (evidence-before-claims: D15 proven by two asserted premises rather than assumed), ECC/continuous-learning (v1 deprecated -> v2 instinct extraction should auto-promote the D15/D16 pattern into a standing envelope-build check). 8 of 9 mandated operator skills remain absent from installed libraries -> inline formula specs. This cycle's net methodological gain: the fail-loud assertion pattern from cycle324_ruling.py was reused and caught a cryptographic impossibility (D15) that prose review alone would have scored as 'nonce binding PASS'",
-    "omitted_risk_dimensions": "(1) Evidence supersession risk is now THE dominant pipeline risk: a new envelope stamped with old execution evidence creates an illusion of freshness (reported tick_age 7.02s vs true 1,908s) — add effective-age-at-freeze to the receipt schema; (2) stale-quote spread/fill-distance figures silently propagate into gates that 'pass' (spread 1.99bps PASS is vacuous at freeze time); (3) digest reuse defeats the entire hash-chain trust model — downstream consumers (Arena.ai, Antigravity) may treat the receipt as broker-verified when its attestation is void; (4) unmodeled funding accrual (D13) compounds with stale evidence: a 31.7min-old plan executed later accumulates unpriced carry; (5) weekend gap risk into Sunday 21:00 UTC reopen; (6) queue-position decay: a 639pt limit computed on a stale mid may now be on the wrong side of a moved market entirely — direction of the true mid is UNKNOWN at freeze",
-    "algorithmic_alternatives": "(1) Envelope-build integrity unit tests: assert receipt_sha256 == sha256(receipt_bytes) and observed_at > build_time - 0s before dispatch (catches D15/D16 mechanically); (2) Kalman-filtered mid with innovation gating — a quote whose innovation exceeds k*sigma vs the filter state is flagged stale/regime-changed, directly addressing the stale-tick blind spot; (3) Hawkes fill intensity by distance for P_fill (6th request); (4) isotonic calibration of P_TP with bootstrap CIs (6th request); (5) GARCH(1,1) cones for ATR-scaled SL buffers; (6) rolling OU with HAC errors for theta once series ship; (7) funding-adjusted carry term in EV_net; (8) time-blocked bootstrap for LCB_5% per Part 2"
+    "skills_and_methodology_optimization": "Skills re-loaded per INDEX.md protocol: ECC/llm-trading-agent-security (pre-send simulation: the R2 receipt proves preflight CAN be executed fresh — the failure is that simulation and authorization windows were decoupled; the skill's layered-defense principle maps to the atomic dispatch transaction), ECC/prediction-market-risk-review (stale-price/timestamp separation now partly implemented by the dispatcher — skew/lag split adopted), superpowers/verification-before-completion (evidence-before-claims: every R2 broker figure independently reproduced to the cent BEFORE the verdict — the denial rests on causality, not on arithmetic), ECC/verification-loop + ECC/continuous-learning (fail-loud assertion net extended to 43 gates; the defect-triangle pattern should be promoted to an instinct: 'envelope and receipt must be born in the same transaction'). Net methodological gain this cycle: first series package where ALL broker math, spread gate, TP-side geometry, sizing band, and skew disclosure are simultaneously clean — the residual failure surface is now purely transactional (window governance) plus the two standing evidentiary blockers (calibration pack, evidence bundle)",
+    "omitted_risk_dimensions": "(1) The +105.5pt mid drift and +81% spread widening ACROSS the re-dispatch gap are direct empirical proof of why post-cutoff evidence is barred: had the R1 ticket been authorized on the stale package, the fill geometry would have been evaluated against a market that no longer exists; (2) queue-position decay on a 683.5pt deep weekend limit — the order would rest behind hours of queue at a location chosen 46 minutes ago; (3) weekend funding accrual (D13) now compounded by evidence latency; (4) SELL_LIMIT adverse-drift veto (OU) remains unevaluable — a short 84.8bps above mid on a mean-reverting weekend tape is precisely the geometry the veto exists to police; (5) digest ceremony still unverifiable — downstream consumers could treat an unverified hash as broker attestation; (6) D8 RR stability (7 geometries, all RR>1.5) may induce overconfidence in geometry quality while the evidence layer remains empty",
+    "algorithmic_alternatives": "(1) Joint dispatch digest (envelope||receipt sha) with sequence-numbered dispatch ledger — mechanically detects every member of the defect triangle; (2) envelope-receipt window assertion in the dispatcher: assert cutoff-60s <= tick_time < observed_at <= cutoff, abort otherwise (would have caught all three defects); (3) Kalman-filtered mid with innovation gating to flag quote regime shifts across re-dispatch gaps; (4) Hawkes fill-intensity by distance for P_fill (7th request); (5) isotonic P_TP calibration with time-blocked bootstrap LCB_5% (7th request); (6) GARCH(1,1) weekend-volatility cones for ATR-scaled SL buffers on thin Saturday books; (7) funding-adjusted carry term in EV_net; (8) rolling OU with HAC errors for the adverse-drift veto once any series ships"
   },
   "authorization": "DENIED_FAIL_CLOSED",
-  "response_sha256": "82893d0d656fab1d443c88c3b0d7958df88a1af9d587787ac62d7e14be540ae5"
+  "response_sha256": "12d7a3d3361ebfe4c3f911c0d55e8ff3703757ea531c8109464bcef"
 }
 
-Skills applied: @[llm-trading-agent-security] (simulate-before-send / audit-hash integrity — violated by D15/D16) · @[prediction-market-risk-review] (stale-price/timestamp data-quality gate) · @[verification-loop] + @[verification-before-completion] (evidence-before-claims; 32/32 fresh re-verification this turn) · @[continuous-learning v1→v2] (D15/D16 pattern promotion) · inline specs: trader-signal, trader-risk, market-ingest, market-pattern, adaptive-wfo-epoch, sharpe-ratio-non-iid-corrections, time-series-decomposer, clean-code, systematic-debugging.
+Skills applied: @[llm-trading-agent-security] (pre-send simulation & layered defenses — window decoupling is the mapped threat) · @[prediction-market-risk-review] (stale-price/timestamp separation — first dispatcher-side adoption confirmed) · @[verification-loop] + @[verification-before-completion] (evidence-before-claims; 43/43 fresh assertions including two arbiter-side precision catches) · @[continuous-learning v1→v2] (defect-triangle instinct promotion) · inline specs: trader-signal, trader-risk, market-ingest, market-pattern, adaptive-wfo-epoch, sharpe-ratio-non-iid-corrections, time-series-decomposer, clean-code, systematic-debugging.
 
-Cycle 325 is closed: DENIED_FAIL_CLOSED. The book stays flat at 4,865.07; no capital is at risk; the 4,600/4,650/4,795 floor stack is untouched with +46.32 of post-stress kernel cushion. For Cycle 326, the dispatcher's remediation order is: (1) the 3-line receipt-regeneration fix (nonce-before-hash), (2) the digest-bound evidence bundle, (3) the isotonic calibration pack — any one of the latter two alone would have flipped four to six NOT_EVALUABLE gates this cycle. If you'd like, I can also draft the exact receipt-schema patch (field ordering + hash ceremony) as a specification artifact for the Antigravity desk.
+Cycle 325-R2 is closed: DENIED_FAIL_CLOSED. Book flat at 4,865.07; floor stack untouched (+40.62 post-stress kernel cushion). For Cycle 326, one mechanical delivery changes everything: the atomic dispatch transaction (envelope and receipt born in the same window, nonce-before-hash, joint digest) — this single change would have caught every causality defect from C321 through today. Then ship the evidence bundle and the isotonic calibration pack, and this R2-grade candidate class finally reaches the ranking stage. If useful, I can next draft the dispatcher-side window-assertion pseudocode (5 lines) plus the receipt-schema patch as a spec artifact for the Antigravity desk.
 
 ================================================================================
 Z.AI ATTACHED OUTPUT FILE:  (14709 chars)
