@@ -26,13 +26,13 @@ The dispatcher embeds the complete immutable machine-generated cycle_envelope.js
 {
   "schema_version": "1.1.0",
   "cycle_id": "Cycle 320",
-  "uuid": "e11fcae7-1687-41a3-af93-e54a293d0601",
+  "uuid": "dd69b1a0-4369-4899-9c9b-7e26f82c4171",
   "dispatch_nonce": "b4f5506d-53f4-41c3-b958-594aa2e3db89",
-  "cutoff_utc": "2026-10-24 02:24:18 UTC",
+  "cutoff_utc": "2026-10-24 02:25:20 UTC",
   "provenance": {
-    "git_commit": "597a8f0dcc337cbf7e27b17d2c457124406ff4ec",
-    "git_tree": "b898c60d3f14d9d95707dd88d7326a9836917e9b",
-    "prompt_sha256": "9703ad119243e74f5b5699315a01e899926ba990506fa2d186056d1641d4a35d",
+    "git_commit": "1428d1e052f4f0c7d4f1625110ed51a61f05de09",
+    "git_tree": "aaedd5d81fa5205244dcc06930d171d18fbbfdf8",
+    "prompt_sha256": "d8d6492859d2f9865ef03998aa8283c2cd2d0a4c5c33494af3ee4f861cfc8cc2",
     "risk_policy_sha256": "4633e4af56e52c71329c617aaee4cae5c7102ef9a9f33e7e747e46d26841f058",
     "evidence_manifest_sha256": "218d966bfacbf9bc47019382ee80fcfc5a21036a6d9bac77b6fec7236c51ee4f",
     "workbook_sha256": "4fd031f59aa7473d7a242d69b0f1ab8565375ad9da216afac6c2e204b3943eeb",
