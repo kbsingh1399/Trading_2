@@ -70,6 +70,7 @@ CANONICAL_SHEETS = [
     (27, "19_News"),
     (28, "19_Calendar"),
     (29, "20_Auction_Market_Structure"),
+    (30, "21_Tradfye_Orderflow"),
 ]
 
 DATE_PATTERN = re.compile(r'(\d{4}-\d{2}-\d{2}[ T]\d{2}:\d{2}:\d{2})')
