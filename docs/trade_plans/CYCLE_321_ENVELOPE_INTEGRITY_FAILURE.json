@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0.0",
+  "cycle_id": "Cycle 321",
+  "cutoff_utc": "2026-10-24 06:55:20 UTC",
+  "dispatch_nonce": "77b50a3b-f40e-4a17-bd0a-a470f2b64571",
+  "declared_evidence_commit": "630c66334bf454696d369944e87994e5e93d1555 (tree 6c5cd78d; 2026-10-24 06:53:49 UTC, 91 s before cutoff). NOT an ancestor of origin/main (1582353) and contained in no remote branch.",
+  "freeze_commit": "51cb8a7667c4d03570501ffcd3f3f7bafa1358ab on origin/main, 2026-10-24 07:12:23 UTC, 17 min AFTER cutoff. Its message claims 'synchronized prompt digest'.",
+  "verifier_result": "ENVELOPE_INTEGRITY_VERIFIED at 630c6633 (exit 0). Manifest and workbook digests at the declared commit PASS. Gates open: working-copy manifest 15fc034c and workbook e855a87f FAIL.",
+  "authorization": "DENIED_BAD_CYCLE_ENVELOPE",
+  "reason": {
+    "class": "digest-mismatched",
+    "finding": "Envelope provenance.prompt_sha256 = 3176dfb7c07b11c204c7a0835cc37be03f87d171b2074724a763313cb73aaef9 matches no prompt file in the repository tree at origin/main (1582353) or at the declared commit. Declared commit 630c6633 has no ARENA_CYCLE_321 prompt file (empty-hash). docs/prompts/Arena_GLM_Standard_Prompt.md = d69e32ba…; docs/trade_plans/LATEST_COUNCIL_CYCLE_PROMPT.txt (at 630c6633) = 5ccc9f79…; Data/Manditory copy = 2b436bee… (template). The ARENA_CYCLE_321 prompt on main (51cb8a7 / 1582353) = ae23e1c9…, which also does not match.",
+    "consistency": "Same class of defect as Cycle 320 (DENIED_BAD_CYCLE_ENVELOPE, declared prompt digest unmatched). Denied on the same rule for consistency; the operator may overrule."
+  },
+  "observations_not_affecting_authorization": [
+    "Receipt self-hash f7363aa4… reproduces. Causality is clean (tick 06:46:38 precedes observed 06:46:39). Retcode 0.",
+    "Receipt quote is 522 s old at cutoff against the 15 s gate. Snapshot BTC quote (06:53:40 as_of) is about 100 s old. FAIL.",
+    "Calendar: snapshot reports VERIFIED_COVERAGE, blackout_active false, ARMED, but verified_at is 2026-10-24 02:10:20 UTC, about 17,460 s before cutoff. This is FAR beyond the 900 s session-calendar max age. Calendar gate FAILS on age. The envelope claim calendar_verified=true is contradicted.",
+    "Excel audit 06:44:24 UTC PASS, 656 s old, 26/33 fresh. Inside 900 s.",
+    "BTC depth (Binance mid ts 06:53:38) is about 103 s old, inside 180 s. PASS.",
+    "Liquidation layer 4 is 199.5 s at 06:53:46, roughly 300 s at cutoff. Inside 900 s.",
+    "Snapshot trade_authorization DENIED_UNVERIFIED_ORDERFLOW. pioneer UNAVAILABLE. Layer 3 STALE (586,093 s). Layer 7 UNAVAILABLE. FAIL.",
+    "Geometry: BTCUSD.pi SELL_LIMIT 0.10 @ 80,950, SL 81,115 (+165 pts, 1.09 ATR-14 of 151.80), TP 80,440 (-510 pts). Risk 16.50, reward 51.00, R:R 3.091, exit spread 1.60, stressed loss 24.63, post-joint 4,838.44 (kernel cushion 43.44). Tier 2 band PASS (16.50 USD).",
+    "Driftless P_TP = 165/675 = 0.2444. Break-even = 18.10/(18.10+49.40) = 0.2682. Shortfall 2.4 pp. P_TP is uncalibrated (n=17).",
+    "Margin: required 4,047.50 on equity 4,865.07. Free margin post-order 817.57. Margin level 120.2%. A single 0.10 BTC ticket consumes 83% of equity as margin. This is a solvency-persona risk and is not a binary gate in the spec.",
+    "Structural stop: SL 81,115 is 10 pts above the 32-bar 15m high (81,105) and 121 pts above the 16-bar high (80,994). The only anchor is that recent high. No documented structural level. UNPROVEN.",
+    "Snapshot VAH 81,730.56, VAL 81,156.00, POC not restated here. The entry at 80,950 sits 206 pts below VAL."
+  ],
+  "required_to_proceed": [
+    "Dispatcher confirms which prompt the 3176dfb7 digest refers to, or re-freezes the envelope with the digest of the prompt actually committed at the declared commit. The prompt file is missing from 630c6633.",
+    "Dispatcher re-freezes the envelope before the cutoff, or explains why the calendar was verified 4.8 h before cutoff yet is shown ARMED.",
+    "Fresh receipt with a tick within 15 s of cutoff.",
+    "Orderflow authorization, calibrated P_fill/P_TP, and a documented structural stop."
+  ],
+  "authorization_detail": "No ruling was computed. No candidate is executable. Nothing was sent to the broker.",
+  "record_sha256": "ae4263e98a7a52d61e29ded21c0dd9083e1d3aa29554ed9c4493ecd4945b0baf"
+}
