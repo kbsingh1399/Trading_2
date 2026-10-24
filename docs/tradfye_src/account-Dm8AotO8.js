@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime-B-hcVAMW.js";import{a as t}from"./access-BLgtcX1_.js";import{t as n}from"./account-gate-BjPk_6Qq.js";var r=e(),i=()=>{let{data:e}=t();return e?(0,r.jsx)(n,{access:e}):(0,r.jsxs)(`div`,{className:`terminal-loading`,children:[`Tradfye `,(0,r.jsx)(`span`,{children:`Loading…`})]})};export{i as component};
