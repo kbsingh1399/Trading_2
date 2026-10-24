@@ -1,23 +1,23 @@
 {
-  "timestamp": "2026-10-24T16:24:49.403211+00:00",
+  "timestamp": "2026-10-24T17:04:53.869254+00:00",
   "assets_count": 84,
   "records": [
     {
-      "timestamp": "2026-10-24 21:54:40 IST",
+      "timestamp": "2026-10-24 22:33:40 IST",
       "sr_no": 1,
       "asset": "BTC",
       "symbol": "BTCUSD.pi",
       "category": "Crypto Major",
-      "price": 79497.0,
-      "spread_bps": 2.01,
+      "price": 80077.0,
+      "spread_bps": 2.5,
       "spread_gate": "PASS",
       "va_position": "BELOW_VALUE (Imbalance)",
       "daily_poc": 80665.9,
-      "daily_vah": 81008.22,
-      "daily_val": 80339.14,
-      "dist_poc_pct": -1.45,
-      "dist_vah_pct": -1.87,
-      "dist_val_pct": -1.05,
+      "daily_vah": 81086.02,
+      "daily_val": 80276.9,
+      "dist_poc_pct": -0.73,
+      "dist_vah_pct": -1.24,
+      "dist_val_pct": -0.25,
       "pd_poc": 81591.05,
       "pd_vah": 81777.71,
       "pd_val": 81335.26,
@@ -46,32 +46,32 @@
       "ny_low": 79071.0,
       "ib_high": 80788.0,
       "ib_low": 80583.0,
-      "fib_swing_h": 81763.5,
+      "fib_swing_h": 81751.5,
       "fib_swing_l": 79071.0,
       "fib_dir": "BEARISH_IMPULSE",
-      "fib_gp_min": 80734.96,
-      "fib_gp_max": 80821.12,
-      "fib_ote": 80961.13,
-      "fib_inval": 81187.3,
+      "fib_gp_min": 80727.55,
+      "fib_gp_max": 80813.32,
+      "fib_ote": 80952.71,
+      "fib_inval": 81177.87,
       "fib_status": "SHALLOW_RETRACE",
       "auction_regime": "TREND_DOWN_ACCEPTANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:42 IST",
+      "timestamp": "2026-10-24 22:33:41 IST",
       "sr_no": 2,
       "asset": "ETH",
       "symbol": "ETHUSD.pi",
       "category": "Crypto Major",
-      "price": 2293.5,
-      "spread_bps": 13.96,
+      "price": 2312.8,
+      "spread_bps": 14.71,
       "spread_gate": "PASS",
       "va_position": "BELOW_VALUE (Imbalance)",
       "daily_poc": 2375.72,
       "daily_vah": 2384.05,
-      "daily_val": 2351.55,
-      "dist_poc_pct": -3.46,
-      "dist_vah_pct": -3.8,
-      "dist_val_pct": -2.47,
+      "daily_val": 2344.05,
+      "dist_poc_pct": -2.65,
+      "dist_vah_pct": -2.99,
+      "dist_val_pct": -1.33,
       "pd_poc": 2399.97,
       "pd_vah": 2406.73,
       "pd_val": 2390.41,
@@ -100,32 +100,32 @@
       "ny_low": 2275.3,
       "ib_high": 2377.9,
       "ib_low": 2370.2,
-      "fib_swing_h": 2409.2,
+      "fib_swing_h": 2408.6,
       "fib_swing_l": 2275.3,
       "fib_dir": "BEARISH_IMPULSE",
-      "fib_gp_min": 2358.05,
-      "fib_gp_max": 2362.34,
-      "fib_ote": 2369.3,
-      "fib_inval": 2380.55,
+      "fib_gp_min": 2357.68,
+      "fib_gp_max": 2361.95,
+      "fib_ote": 2368.88,
+      "fib_inval": 2380.07,
       "fib_status": "SHALLOW_RETRACE",
       "auction_regime": "TREND_DOWN_ACCEPTANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:43 IST",
+      "timestamp": "2026-10-24 22:33:41 IST",
       "sr_no": 3,
       "asset": "SOL",
       "symbol": "SOLUSD.p",
       "category": "Crypto Alt L1",
-      "price": 99.38,
-      "spread_bps": 23.17,
+      "price": 100.28,
+      "spread_bps": 23.96,
       "spread_gate": "PASS",
       "va_position": "BELOW_VALUE (Imbalance)",
       "daily_poc": 102.23,
-      "daily_vah": 102.69,
-      "daily_val": 101.07,
-      "dist_poc_pct": -2.79,
-      "dist_vah_pct": -3.23,
-      "dist_val_pct": -1.68,
+      "daily_vah": 102.83,
+      "daily_val": 100.86,
+      "dist_poc_pct": -1.91,
+      "dist_vah_pct": -2.48,
+      "dist_val_pct": -0.57,
       "pd_poc": 104.16,
       "pd_vah": 104.51,
       "pd_val": 103.69,
@@ -165,21 +165,21 @@
       "auction_regime": "TREND_DOWN_ACCEPTANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:43 IST",
+      "timestamp": "2026-10-24 22:33:42 IST",
       "sr_no": 4,
       "asset": "BNB",
       "symbol": "BNBUSD.p",
       "category": "Crypto Major",
-      "price": 719.3,
-      "spread_bps": 8.34,
+      "price": 722.75,
+      "spread_bps": 6.92,
       "spread_gate": "PASS",
       "va_position": "BELOW_VALUE (Imbalance)",
       "daily_poc": 736.34,
       "daily_vah": 740.15,
-      "daily_val": 728.37,
-      "dist_poc_pct": -2.31,
-      "dist_vah_pct": -2.82,
-      "dist_val_pct": -1.25,
+      "daily_val": 727.04,
+      "dist_poc_pct": -1.85,
+      "dist_vah_pct": -2.35,
+      "dist_val_pct": -0.59,
       "pd_poc": 746.37,
       "pd_vah": 749.26,
       "pd_val": 738.53,
@@ -190,7 +190,7 @@
       "monday_low": 707.0,
       "monday_mid": 718.25,
       "weekly_poc": 726.46,
-      "weekly_vah": 742.27,
+      "weekly_vah": 742.56,
       "weekly_val": 724.12,
       "cwh": 750.9,
       "cwl": 707.0,
@@ -208,32 +208,32 @@
       "ny_low": 716.5,
       "ib_high": 739.0,
       "ib_low": 736.5,
-      "fib_swing_h": 748.0,
+      "fib_swing_h": 747.8,
       "fib_swing_l": 716.5,
       "fib_dir": "BEARISH_IMPULSE",
-      "fib_gp_min": 735.97,
-      "fib_gp_max": 736.98,
-      "fib_ote": 738.61,
-      "fib_inval": 741.26,
+      "fib_gp_min": 735.84,
+      "fib_gp_max": 736.85,
+      "fib_ote": 738.47,
+      "fib_inval": 741.1,
       "fib_status": "SHALLOW_RETRACE",
       "auction_regime": "TREND_DOWN_ACCEPTANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:43 IST",
+      "timestamp": "2026-10-24 22:33:42 IST",
       "sr_no": 5,
       "asset": "XRP",
       "symbol": "XRPUSD.pi",
       "category": "Crypto Major",
-      "price": 1.2625,
-      "spread_bps": 39.68,
+      "price": 1.274,
+      "spread_bps": 31.45,
       "spread_gate": "FAIL",
-      "va_position": "BELOW_VALUE (Imbalance)",
+      "va_position": "INSIDE_VALUE (Balance)",
       "daily_poc": 1.285,
       "daily_vah": 1.2915,
-      "daily_val": 1.2691,
-      "dist_poc_pct": -1.75,
-      "dist_vah_pct": -2.24,
-      "dist_val_pct": -0.52,
+      "daily_val": 1.2679,
+      "dist_poc_pct": -0.86,
+      "dist_vah_pct": -1.35,
+      "dist_val_pct": 0.48,
       "pd_poc": 1.3059,
       "pd_vah": 1.3187,
       "pd_val": 1.3029,
@@ -244,7 +244,7 @@
       "monday_low": 1.253,
       "monday_mid": 1.286,
       "weekly_poc": 1.2998,
-      "weekly_vah": 1.3356,
+      "weekly_vah": 1.3365,
       "weekly_val": 1.2853,
       "cwh": 1.396,
       "cwl": 1.251,
@@ -270,24 +270,24 @@
       "fib_ote": 1.2945,
       "fib_inval": 1.2997,
       "fib_status": "SHALLOW_RETRACE",
-      "auction_regime": "TREND_DOWN_ACCEPTANCE"
+      "auction_regime": "ROTATIONAL_BALANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:43 IST",
+      "timestamp": "2026-10-24 22:33:43 IST",
       "sr_no": 6,
       "asset": "ADA",
       "symbol": "ADAUSD.p",
       "category": "Crypto Alt L1",
-      "price": 0.2021,
-      "spread_bps": 109.45,
+      "price": 0.2044,
+      "spread_bps": 103.3,
       "spread_gate": "FAIL",
-      "va_position": "BELOW_VALUE (Imbalance)",
+      "va_position": "INSIDE_VALUE (Balance)",
       "daily_poc": 0.2067,
       "daily_vah": 0.2109,
-      "daily_val": 0.2041,
-      "dist_poc_pct": -2.24,
-      "dist_vah_pct": -4.17,
-      "dist_val_pct": -0.97,
+      "daily_val": 0.2036,
+      "dist_poc_pct": -1.15,
+      "dist_vah_pct": -3.1,
+      "dist_val_pct": 0.37,
       "pd_poc": 0.2151,
       "pd_vah": 0.216,
       "pd_val": 0.2135,
@@ -299,7 +299,7 @@
       "monday_mid": 0.2165,
       "weekly_poc": 0.2152,
       "weekly_vah": 0.225,
-      "weekly_val": 0.2135,
+      "weekly_val": 0.2133,
       "cwh": 0.2291,
       "cwl": 0.1992,
       "pwh": 0.2547,
@@ -324,24 +324,24 @@
       "fib_ote": 0.2109,
       "fib_inval": 0.2123,
       "fib_status": "SHALLOW_RETRACE",
-      "auction_regime": "TREND_DOWN_ACCEPTANCE"
+      "auction_regime": "ROTATIONAL_BALANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:43 IST",
+      "timestamp": "2026-10-24 22:33:44 IST",
       "sr_no": 7,
       "asset": "DOGE",
       "symbol": "DOGUSD.p",
       "category": "Crypto Meme",
-      "price": 0.07545,
-      "spread_bps": 282.26,
+      "price": 0.07625,
+      "spread_bps": 279.26,
       "spread_gate": "FAIL",
-      "va_position": "BELOW_VALUE (Imbalance)",
+      "va_position": "INSIDE_VALUE (Balance)",
       "daily_poc": 0.0764,
       "daily_vah": 0.07794,
-      "daily_val": 0.0759,
-      "dist_poc_pct": -1.25,
-      "dist_vah_pct": -3.19,
-      "dist_val_pct": -0.6,
+      "daily_val": 0.07562,
+      "dist_poc_pct": -0.2,
+      "dist_vah_pct": -2.17,
+      "dist_val_pct": 0.83,
       "pd_poc": 0.0788,
       "pd_vah": 0.07911,
       "pd_val": 0.07804,
@@ -353,7 +353,7 @@
       "monday_mid": 0.0773,
       "weekly_poc": 0.07818,
       "weekly_vah": 0.07964,
-      "weekly_val": 0.07624,
+      "weekly_val": 0.07618,
       "cwh": 0.0827,
       "cwl": 0.0736,
       "pwh": 0.087,
@@ -378,24 +378,24 @@
       "fib_ote": 0.07753,
       "fib_inval": 0.078,
       "fib_status": "SHALLOW_RETRACE",
-      "auction_regime": "TREND_DOWN_ACCEPTANCE"
+      "auction_regime": "ROTATIONAL_BALANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:43 IST",
+      "timestamp": "2026-10-24 22:33:45 IST",
       "sr_no": 8,
       "asset": "TRX",
       "symbol": "TRXUSD.p",
       "category": "Crypto Alt L1",
-      "price": 0.329,
-      "spread_bps": 30.44,
+      "price": 0.3294,
+      "spread_bps": 33.45,
       "spread_gate": "FAIL",
       "va_position": "INSIDE_VALUE (Balance)",
       "daily_poc": 0.3292,
-      "daily_vah": 0.3296,
+      "daily_vah": 0.3297,
       "daily_val": 0.329,
-      "dist_poc_pct": -0.06,
-      "dist_vah_pct": -0.19,
-      "dist_val_pct": null,
+      "dist_poc_pct": 0.05,
+      "dist_vah_pct": -0.09,
+      "dist_val_pct": 0.11,
       "pd_poc": 0.3291,
       "pd_vah": 0.3297,
       "pd_val": 0.3286,
@@ -431,11 +431,11 @@
       "fib_gp_max": 0.3292,
       "fib_ote": 0.3293,
       "fib_inval": 0.3295,
-      "fib_status": "SHALLOW_RETRACE",
+      "fib_status": "DEEP_SHELF_TEST (0.786)",
       "auction_regime": "ROTATIONAL_BALANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:43 IST",
+      "timestamp": "2026-10-24 22:33:45 IST",
       "sr_no": 9,
       "asset": "DOT",
       "symbol": "DOTUSD.pi",
@@ -444,12 +444,12 @@
       "spread_bps": 206.49,
       "spread_gate": "FAIL",
       "va_position": "BELOW_VALUE (Imbalance)",
-      "daily_poc": 1.0688,
-      "daily_vah": 1.0806,
-      "daily_val": 1.0452,
-      "dist_poc_pct": -3.86,
-      "dist_vah_pct": -4.91,
-      "dist_val_pct": -1.69,
+      "daily_poc": 1.0689,
+      "daily_vah": 1.0819,
+      "daily_val": 1.0418,
+      "dist_poc_pct": -3.88,
+      "dist_vah_pct": -5.03,
+      "dist_val_pct": -1.37,
       "pd_poc": 1.1139,
       "pd_vah": 1.164,
       "pd_val": 1.0982,
@@ -459,11 +459,11 @@
       "monday_high": 1.17,
       "monday_low": 1.042,
       "monday_mid": 1.106,
-      "weekly_poc": 1.1145,
-      "weekly_vah": 1.1617,
-      "weekly_val": 1.1006,
+      "weekly_poc": 1.1139,
+      "weekly_vah": 1.1635,
+      "weekly_val": 1.1033,
       "cwh": 1.19,
-      "cwl": 1.017,
+      "cwl": 1.013,
       "pwh": 1.272,
       "pwl": 1.035,
       "cmh": 1.284,
@@ -475,35 +475,35 @@
       "london_high": 1.075,
       "london_low": 1.044,
       "ny_high": 1.059,
-      "ny_low": 1.017,
+      "ny_low": 1.013,
       "ib_high": 1.075,
       "ib_low": 1.066,
       "fib_swing_h": 1.119,
-      "fib_swing_l": 1.017,
+      "fib_swing_l": 1.013,
       "fib_dir": "BEARISH_IMPULSE",
-      "fib_gp_min": 1.08,
-      "fib_gp_max": 1.0833,
-      "fib_ote": 1.0886,
-      "fib_inval": 1.0972,
+      "fib_gp_min": 1.0785,
+      "fib_gp_max": 1.0819,
+      "fib_ote": 1.0874,
+      "fib_inval": 1.0963,
       "fib_status": "SHALLOW_RETRACE",
       "auction_regime": "TREND_DOWN_ACCEPTANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:43 IST",
+      "timestamp": "2026-10-24 22:33:46 IST",
       "sr_no": 10,
       "asset": "LINK",
       "symbol": "LNKUSD.p",
       "category": "Crypto DeFi",
-      "price": 11.322,
-      "spread_bps": 75.35,
+      "price": 11.442,
+      "spread_bps": 74.57,
       "spread_gate": "FAIL",
-      "va_position": "BELOW_VALUE (Imbalance)",
+      "va_position": "INSIDE_VALUE (Balance)",
       "daily_poc": 11.743,
       "daily_vah": 11.844,
-      "daily_val": 11.475,
-      "dist_poc_pct": -3.58,
-      "dist_vah_pct": -4.4,
-      "dist_val_pct": -1.33,
+      "daily_val": 11.432,
+      "dist_poc_pct": -2.57,
+      "dist_vah_pct": -3.4,
+      "dist_val_pct": 0.08,
       "pd_poc": 11.994,
       "pd_vah": 12.053,
       "pd_val": 11.852,
@@ -514,7 +514,7 @@
       "monday_low": 11.57,
       "monday_mid": 11.89,
       "weekly_poc": 11.952,
-      "weekly_vah": 12.298,
+      "weekly_vah": 12.308,
       "weekly_val": 11.794,
       "cwh": 12.754,
       "cwl": 11.181,
@@ -540,24 +540,24 @@
       "fib_ote": 11.781,
       "fib_inval": 11.853,
       "fib_status": "SHALLOW_RETRACE",
-      "auction_regime": "TREND_DOWN_ACCEPTANCE"
+      "auction_regime": "ROTATIONAL_BALANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:44 IST",
+      "timestamp": "2026-10-24 22:33:46 IST",
       "sr_no": 11,
       "asset": "BCH",
       "symbol": "BCHUSD.p",
       "category": "Crypto PoW",
-      "price": 268.65,
-      "spread_bps": 21.61,
+      "price": 272.15,
+      "spread_bps": 21.33,
       "spread_gate": "PASS",
       "va_position": "BELOW_VALUE (Imbalance)",
       "daily_poc": 275.91,
-      "daily_vah": 278.93,
-      "daily_val": 274.95,
-      "dist_poc_pct": -2.63,
-      "dist_vah_pct": -3.68,
-      "dist_val_pct": -2.29,
+      "daily_vah": 279.14,
+      "daily_val": 274.84,
+      "dist_poc_pct": -1.36,
+      "dist_vah_pct": -2.5,
+      "dist_val_pct": -0.98,
       "pd_poc": 284.86,
       "pd_vah": 287.1,
       "pd_val": 282.11,
@@ -568,7 +568,7 @@
       "monday_low": 264.76,
       "monday_mid": 272.41,
       "weekly_poc": 275.98,
-      "weekly_vah": 284.41,
+      "weekly_vah": 284.58,
       "weekly_val": 272.1,
       "cwh": 290.06,
       "cwl": 264.76,
@@ -597,21 +597,21 @@
       "auction_regime": "TREND_DOWN_ACCEPTANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:44 IST",
+      "timestamp": "2026-10-24 22:33:46 IST",
       "sr_no": 12,
       "asset": "LTC",
       "symbol": "LTCUSD.pi",
       "category": "Crypto PoW",
-      "price": 55.415,
-      "spread_bps": 54.28,
+      "price": 55.85,
+      "spread_bps": 53.86,
       "spread_gate": "FAIL",
-      "va_position": "BELOW_VALUE (Imbalance)",
+      "va_position": "INSIDE_VALUE (Balance)",
       "daily_poc": 56.784,
       "daily_vah": 57.244,
-      "daily_val": 55.674,
-      "dist_poc_pct": -2.41,
-      "dist_vah_pct": -3.2,
-      "dist_val_pct": -0.47,
+      "daily_val": 55.611,
+      "dist_poc_pct": -1.64,
+      "dist_vah_pct": -2.44,
+      "dist_val_pct": 0.43,
       "pd_poc": 58.484,
       "pd_vah": 58.844,
       "pd_val": 57.92,
@@ -622,7 +622,7 @@
       "monday_low": 57.05,
       "monday_mid": 58.645,
       "weekly_poc": 59.254,
-      "weekly_vah": 61.195,
+      "weekly_vah": 61.244,
       "weekly_val": 57.943,
       "cwh": 62.19,
       "cwl": 54.91,
@@ -648,24 +648,24 @@
       "fib_ote": 57.623,
       "fib_inval": 57.948,
       "fib_status": "SHALLOW_RETRACE",
-      "auction_regime": "TREND_DOWN_ACCEPTANCE"
+      "auction_regime": "ROTATIONAL_BALANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:44 IST",
+      "timestamp": "2026-10-24 22:33:47 IST",
       "sr_no": 13,
       "asset": "AVAX",
       "symbol": "AVXUSD.p",
       "category": "Crypto Alt L1",
-      "price": 8.75,
-      "spread_bps": 34.32,
+      "price": 8.86,
+      "spread_bps": 45.25,
       "spread_gate": "FAIL",
-      "va_position": "BELOW_VALUE (Imbalance)",
+      "va_position": "INSIDE_VALUE (Balance)",
       "daily_poc": 9.03,
       "daily_vah": 9.05,
-      "daily_val": 8.82,
-      "dist_poc_pct": -3.05,
-      "dist_vah_pct": -3.29,
-      "dist_val_pct": -0.71,
+      "daily_val": 8.81,
+      "dist_poc_pct": -1.89,
+      "dist_vah_pct": -2.13,
+      "dist_val_pct": 0.55,
       "pd_poc": 9.1,
       "pd_vah": 9.2,
       "pd_val": 9.04,
@@ -702,24 +702,24 @@
       "fib_ote": 9.0,
       "fib_inval": 9.04,
       "fib_status": "SHALLOW_RETRACE",
-      "auction_regime": "TREND_DOWN_ACCEPTANCE"
+      "auction_regime": "ROTATIONAL_BALANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:44 IST",
+      "timestamp": "2026-10-24 22:33:47 IST",
       "sr_no": 14,
       "asset": "NEAR",
       "symbol": "NERUSD.p",
       "category": "Crypto Alt L1",
-      "price": 4.38,
-      "spread_bps": 68.73,
+      "price": 4.415,
+      "spread_bps": 65.89,
       "spread_gate": "FAIL",
-      "va_position": "BELOW_VALUE (Imbalance)",
+      "va_position": "INSIDE_VALUE (Balance)",
       "daily_poc": 4.618,
       "daily_vah": 4.693,
-      "daily_val": 4.406,
-      "dist_poc_pct": -5.14,
-      "dist_vah_pct": -6.67,
-      "dist_val_pct": -0.6,
+      "daily_val": 4.391,
+      "dist_poc_pct": -4.38,
+      "dist_vah_pct": -5.91,
+      "dist_val_pct": 0.55,
       "pd_poc": 4.909,
       "pd_vah": 4.954,
       "pd_val": 4.836,
@@ -756,24 +756,24 @@
       "fib_ote": 4.685,
       "fib_inval": 4.74,
       "fib_status": "SHALLOW_RETRACE",
-      "auction_regime": "TREND_DOWN_ACCEPTANCE"
+      "auction_regime": "ROTATIONAL_BALANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:44 IST",
+      "timestamp": "2026-10-24 22:33:48 IST",
       "sr_no": 15,
       "asset": "UNI",
       "symbol": "UNIUSD.p",
       "category": "Crypto DeFi",
-      "price": 6.554,
-      "spread_bps": 35.15,
+      "price": 6.654,
+      "spread_bps": 34.63,
       "spread_gate": "FAIL",
       "va_position": "BELOW_VALUE (Imbalance)",
       "daily_poc": 6.83,
-      "daily_vah": 7.0,
-      "daily_val": 6.775,
-      "dist_poc_pct": -4.04,
-      "dist_vah_pct": -6.36,
-      "dist_val_pct": -3.26,
+      "daily_vah": 7.015,
+      "daily_val": 6.728,
+      "dist_poc_pct": -2.59,
+      "dist_vah_pct": -5.16,
+      "dist_val_pct": -1.11,
       "pd_poc": 7.159,
       "pd_vah": 7.183,
       "pd_val": 7.034,
@@ -813,21 +813,21 @@
       "auction_regime": "TREND_DOWN_ACCEPTANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:44 IST",
+      "timestamp": "2026-10-24 22:33:49 IST",
       "sr_no": 16,
       "asset": "XLM",
       "symbol": "XLMUSD.p",
       "category": "Crypto Payment",
-      "price": 0.1681,
-      "spread_bps": 19.06,
+      "price": 0.1691,
+      "spread_bps": 17.76,
       "spread_gate": "PASS",
-      "va_position": "BELOW_VALUE (Imbalance)",
+      "va_position": "INSIDE_VALUE (Balance)",
       "daily_poc": 0.1721,
       "daily_vah": 0.1735,
-      "daily_val": 0.1693,
-      "dist_poc_pct": -2.37,
-      "dist_vah_pct": -3.15,
-      "dist_val_pct": -0.74,
+      "daily_val": 0.1691,
+      "dist_poc_pct": -1.76,
+      "dist_vah_pct": -2.55,
+      "dist_val_pct": 0.02,
       "pd_poc": 0.1762,
       "pd_vah": 0.1776,
       "pd_val": 0.1753,
@@ -838,7 +838,7 @@
       "monday_low": 0.1721,
       "monday_mid": 0.1758,
       "weekly_poc": 0.1764,
-      "weekly_vah": 0.1825,
+      "weekly_vah": 0.1828,
       "weekly_val": 0.1745,
       "cwh": 0.1869,
       "cwl": 0.166,
@@ -864,24 +864,24 @@
       "fib_ote": 0.1738,
       "fib_inval": 0.1748,
       "fib_status": "SHALLOW_RETRACE",
-      "auction_regime": "TREND_DOWN_ACCEPTANCE"
+      "auction_regime": "ROTATIONAL_BALANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:44 IST",
+      "timestamp": "2026-10-24 22:33:50 IST",
       "sr_no": 17,
       "asset": "XMR",
       "symbol": "XMRUSD.p",
       "category": "Crypto Privacy",
-      "price": 599.44,
-      "spread_bps": 7.34,
+      "price": 604.97,
+      "spread_bps": 6.94,
       "spread_gate": "PASS",
       "va_position": "ABOVE_VALUE (Imbalance)",
-      "daily_poc": 593.14,
-      "daily_vah": 596.72,
-      "daily_val": 580.73,
-      "dist_poc_pct": 1.06,
-      "dist_vah_pct": 0.46,
-      "dist_val_pct": 3.22,
+      "daily_poc": 593.16,
+      "daily_vah": 596.44,
+      "daily_val": 579.44,
+      "dist_poc_pct": 1.99,
+      "dist_vah_pct": 1.43,
+      "dist_val_pct": 4.41,
       "pd_poc": 610.53,
       "pd_vah": 616.21,
       "pd_val": 600.65,
@@ -906,36 +906,36 @@
       "asian_low": 563.77,
       "london_high": 596.35,
       "london_low": 579.74,
-      "ny_high": 605.13,
+      "ny_high": 608.53,
       "ny_low": 583.58,
       "ib_high": 582.96,
       "ib_low": 579.74,
-      "fib_swing_h": 606.88,
+      "fib_swing_h": 608.53,
       "fib_swing_l": 563.77,
-      "fib_dir": "BEARISH_IMPULSE",
-      "fib_gp_min": 590.41,
-      "fib_gp_max": 591.79,
-      "fib_ote": 594.03,
-      "fib_inval": 597.65,
-      "fib_status": "STRUCTURE_INVALIDATED",
+      "fib_dir": "BULLISH_IMPULSE",
+      "fib_gp_min": 579.44,
+      "fib_gp_max": 580.87,
+      "fib_ote": 577.11,
+      "fib_inval": 573.35,
+      "fib_status": "SHALLOW_RETRACE",
       "auction_regime": "RANGE_EXPANSION"
     },
     {
-      "timestamp": "2026-10-24 21:54:44 IST",
+      "timestamp": "2026-10-24 22:33:50 IST",
       "sr_no": 18,
       "asset": "ATOM",
       "symbol": "ATMUSD.p",
       "category": "Crypto Alt L1",
-      "price": 1.611,
-      "spread_bps": 143.84,
+      "price": 1.629,
+      "spread_bps": 142.24,
       "spread_gate": "FAIL",
-      "va_position": "BELOW_VALUE (Imbalance)",
+      "va_position": "INSIDE_VALUE (Balance)",
       "daily_poc": 1.68,
       "daily_vah": 1.705,
-      "daily_val": 1.627,
-      "dist_poc_pct": -4.12,
-      "dist_vah_pct": -5.53,
-      "dist_val_pct": -1.01,
+      "daily_val": 1.62,
+      "dist_poc_pct": -3.05,
+      "dist_vah_pct": -4.47,
+      "dist_val_pct": 0.51,
       "pd_poc": 1.777,
       "pd_vah": 1.795,
       "pd_val": 1.75,
@@ -947,7 +947,7 @@
       "monday_mid": 1.697,
       "weekly_poc": 1.731,
       "weekly_vah": 1.778,
-      "weekly_val": 1.699,
+      "weekly_val": 1.698,
       "cwh": 1.804,
       "cwl": 1.59,
       "pwh": 1.92,
@@ -964,32 +964,32 @@
       "ny_low": 1.59,
       "ib_high": 1.664,
       "ib_low": 1.645,
-      "fib_swing_h": 1.785,
+      "fib_swing_h": 1.778,
       "fib_swing_l": 1.59,
       "fib_dir": "BEARISH_IMPULSE",
-      "fib_gp_min": 1.711,
-      "fib_gp_max": 1.717,
-      "fib_ote": 1.727,
-      "fib_inval": 1.743,
+      "fib_gp_min": 1.706,
+      "fib_gp_max": 1.712,
+      "fib_ote": 1.722,
+      "fib_inval": 1.738,
       "fib_status": "SHALLOW_RETRACE",
-      "auction_regime": "TREND_DOWN_ACCEPTANCE"
+      "auction_regime": "ROTATIONAL_BALANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:44 IST",
+      "timestamp": "2026-10-24 22:33:51 IST",
       "sr_no": 19,
       "asset": "AAVE",
       "symbol": "AVEUSD.p",
       "category": "Crypto DeFi",
-      "price": 134.01,
-      "spread_bps": 20.17,
+      "price": 135.25,
+      "spread_bps": 22.21,
       "spread_gate": "PASS",
       "va_position": "BELOW_VALUE (Imbalance)",
       "daily_poc": 142.71,
       "daily_vah": 145.83,
-      "daily_val": 138.96,
-      "dist_poc_pct": -6.09,
-      "dist_vah_pct": -8.1,
-      "dist_val_pct": -3.56,
+      "daily_val": 137.35,
+      "dist_poc_pct": -5.23,
+      "dist_vah_pct": -7.26,
+      "dist_val_pct": -1.53,
       "pd_poc": 147.71,
       "pd_vah": 148.28,
       "pd_val": 146.18,
@@ -1000,7 +1000,7 @@
       "monday_low": 144.45,
       "monday_mid": 149.37,
       "weekly_poc": 147.62,
-      "weekly_vah": 154.87,
+      "weekly_vah": 155.05,
       "weekly_val": 144.97,
       "cwh": 160.27,
       "cwl": 133.73,
@@ -1029,21 +1029,21 @@
       "auction_regime": "TREND_DOWN_ACCEPTANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:44 IST",
+      "timestamp": "2026-10-24 22:33:52 IST",
       "sr_no": 20,
       "asset": "ALGO",
       "symbol": "ALGUSD.p",
       "category": "Crypto Alt L1",
-      "price": 0.1016,
-      "spread_bps": 229.08,
+      "price": 0.1027,
+      "spread_bps": 226.6,
       "spread_gate": "FAIL",
-      "va_position": "BELOW_VALUE (Imbalance)",
+      "va_position": "INSIDE_VALUE (Balance)",
       "daily_poc": 0.1044,
       "daily_vah": 0.1057,
-      "daily_val": 0.1026,
-      "dist_poc_pct": -2.75,
-      "dist_vah_pct": -3.91,
-      "dist_val_pct": -1.01,
+      "daily_val": 0.1021,
+      "dist_poc_pct": -1.69,
+      "dist_vah_pct": -2.87,
+      "dist_val_pct": 0.58,
       "pd_poc": 0.1063,
       "pd_vah": 0.1073,
       "pd_val": 0.1055,
@@ -1080,24 +1080,24 @@
       "fib_ote": 0.105,
       "fib_inval": 0.1057,
       "fib_status": "SHALLOW_RETRACE",
-      "auction_regime": "TREND_DOWN_ACCEPTANCE"
+      "auction_regime": "ROTATIONAL_BALANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:44 IST",
+      "timestamp": "2026-10-24 22:33:53 IST",
       "sr_no": 21,
       "asset": "DASH",
       "symbol": "DSHUSD.p",
       "category": "Crypto PoW",
-      "price": 49.231,
-      "spread_bps": 11.58,
+      "price": 49.832,
+      "spread_bps": 9.44,
       "spread_gate": "PASS",
       "va_position": "BELOW_VALUE (Imbalance)",
       "daily_poc": 51.15,
       "daily_vah": 52.167,
-      "daily_val": 50.206,
-      "dist_poc_pct": -3.75,
-      "dist_vah_pct": -5.63,
-      "dist_val_pct": -1.94,
+      "daily_val": 50.061,
+      "dist_poc_pct": -2.58,
+      "dist_vah_pct": -4.48,
+      "dist_val_pct": -0.46,
       "pd_poc": 53.674,
       "pd_vah": 55.109,
       "pd_val": 53.146,
@@ -1137,21 +1137,21 @@
       "auction_regime": "TREND_DOWN_ACCEPTANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:44 IST",
+      "timestamp": "2026-10-24 22:33:54 IST",
       "sr_no": 22,
       "asset": "ZEC",
       "symbol": "ZECUSD.p",
       "category": "Crypto Privacy",
-      "price": 1139.55,
-      "spread_bps": 6.58,
+      "price": 1157.48,
+      "spread_bps": 6.74,
       "spread_gate": "PASS",
-      "va_position": "BELOW_VALUE (Imbalance)",
+      "va_position": "INSIDE_VALUE (Balance)",
       "daily_poc": 1170.43,
       "daily_vah": 1178.52,
-      "daily_val": 1151.33,
-      "dist_poc_pct": -2.64,
-      "dist_vah_pct": -3.31,
-      "dist_val_pct": -1.02,
+      "daily_val": 1150.59,
+      "dist_poc_pct": -1.11,
+      "dist_vah_pct": -1.78,
+      "dist_val_pct": 0.6,
       "pd_poc": 1222.48,
       "pd_vah": 1235.95,
       "pd_val": 1214.56,
@@ -1188,24 +1188,24 @@
       "fib_ote": 1215.61,
       "fib_inval": 1227.22,
       "fib_status": "SHALLOW_RETRACE",
-      "auction_regime": "TREND_DOWN_ACCEPTANCE"
+      "auction_regime": "ROTATIONAL_BALANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:45 IST",
+      "timestamp": "2026-10-24 22:33:55 IST",
       "sr_no": 23,
       "asset": "YFI",
       "symbol": "YFIUSD.p",
       "category": "Crypto DeFi",
-      "price": 2127.5,
-      "spread_bps": 15.05,
+      "price": 2141.5,
+      "spread_bps": 14.95,
       "spread_gate": "PASS",
-      "va_position": "BELOW_VALUE (Imbalance)",
+      "va_position": "INSIDE_VALUE (Balance)",
       "daily_poc": 2164.8,
-      "daily_vah": 2181.2,
-      "daily_val": 2131.8,
-      "dist_poc_pct": -1.72,
-      "dist_vah_pct": -2.46,
-      "dist_val_pct": -0.2,
+      "daily_vah": 2175.5,
+      "daily_val": 2124.9,
+      "dist_poc_pct": -1.07,
+      "dist_vah_pct": -1.56,
+      "dist_val_pct": 0.78,
       "pd_poc": 2175.7,
       "pd_vah": 2196.0,
       "pd_val": 2158.2,
@@ -1234,32 +1234,32 @@
       "ny_low": 2104.9,
       "ib_high": 2181.9,
       "ib_low": 2165.9,
-      "fib_swing_h": 2236.9,
+      "fib_swing_h": 2222.9,
       "fib_swing_l": 2104.9,
       "fib_dir": "BEARISH_IMPULSE",
-      "fib_gp_min": 2186.5,
-      "fib_gp_max": 2190.7,
-      "fib_ote": 2197.6,
-      "fib_inval": 2208.7,
+      "fib_gp_min": 2177.9,
+      "fib_gp_max": 2181.6,
+      "fib_ote": 2187.8,
+      "fib_inval": 2197.7,
       "fib_status": "SHALLOW_RETRACE",
-      "auction_regime": "TREND_DOWN_ACCEPTANCE"
+      "auction_regime": "ROTATIONAL_BALANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:45 IST",
+      "timestamp": "2026-10-24 22:33:55 IST",
       "sr_no": 24,
       "asset": "FIL",
       "symbol": "FILUSD.p",
       "category": "Crypto Storage",
-      "price": 0.917,
-      "spread_bps": 457.59,
+      "price": 0.929,
+      "spread_bps": 440.04,
       "spread_gate": "FAIL",
       "va_position": "INSIDE_VALUE (Balance)",
       "daily_poc": 0.921,
       "daily_vah": 0.957,
-      "daily_val": 0.909,
-      "dist_poc_pct": -0.48,
-      "dist_vah_pct": -4.21,
-      "dist_val_pct": 0.86,
+      "daily_val": 0.908,
+      "dist_poc_pct": 0.87,
+      "dist_vah_pct": -2.9,
+      "dist_val_pct": 2.33,
       "pd_poc": 0.96,
       "pd_vah": 0.973,
       "pd_val": 0.956,
@@ -1271,7 +1271,7 @@
       "monday_mid": 1.012,
       "weekly_poc": 1.016,
       "weekly_vah": 1.04,
-      "weekly_val": 0.96,
+      "weekly_val": 0.959,
       "cwh": 1.072,
       "cwl": 0.889,
       "pwh": 1.244,
@@ -1299,21 +1299,21 @@
       "auction_regime": "ROTATIONAL_BALANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:45 IST",
+      "timestamp": "2026-10-24 22:33:56 IST",
       "sr_no": 25,
       "asset": "HBAR",
       "symbol": "BARUSD.p",
       "category": "Crypto Enterprise",
-      "price": 0.0759,
-      "spread_bps": 30.36,
+      "price": 0.0765,
+      "spread_bps": 28.81,
       "spread_gate": "FAIL",
       "va_position": "INSIDE_VALUE (Balance)",
-      "daily_poc": 0.0771,
+      "daily_poc": 0.0761,
       "daily_vah": 0.0775,
       "daily_val": 0.0758,
-      "dist_poc_pct": -1.58,
-      "dist_vah_pct": -2.1,
-      "dist_val_pct": 0.05,
+      "dist_poc_pct": 0.51,
+      "dist_vah_pct": -1.27,
+      "dist_val_pct": 0.87,
       "pd_poc": 0.0795,
       "pd_vah": 0.0802,
       "pd_val": 0.0785,
@@ -1353,21 +1353,21 @@
       "auction_regime": "ROTATIONAL_BALANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:45 IST",
+      "timestamp": "2026-10-24 22:33:57 IST",
       "sr_no": 26,
       "asset": "SAND",
       "symbol": "SNDUSD.p",
       "category": "Crypto Metaverse",
-      "price": 0.0489,
-      "spread_bps": 460.25,
+      "price": 0.0493,
+      "spread_bps": 456.43,
       "spread_gate": "FAIL",
       "va_position": "INSIDE_VALUE (Balance)",
       "daily_poc": 0.0495,
-      "daily_vah": 0.0501,
+      "daily_vah": 0.0504,
       "daily_val": 0.0489,
-      "dist_poc_pct": -1.2,
-      "dist_vah_pct": -2.42,
-      "dist_val_pct": 0.02,
+      "dist_poc_pct": -0.39,
+      "dist_vah_pct": -2.22,
+      "dist_val_pct": 0.87,
       "pd_poc": 0.0513,
       "pd_vah": 0.0529,
       "pd_val": 0.0503,
@@ -1396,32 +1396,32 @@
       "ny_low": 0.0478,
       "ib_high": 0.0496,
       "ib_low": 0.0492,
-      "fib_swing_h": 0.0516,
+      "fib_swing_h": 0.0515,
       "fib_swing_l": 0.0478,
       "fib_dir": "BEARISH_IMPULSE",
       "fib_gp_min": 0.0501,
-      "fib_gp_max": 0.0503,
-      "fib_ote": 0.0505,
-      "fib_inval": 0.0508,
+      "fib_gp_max": 0.0502,
+      "fib_ote": 0.0504,
+      "fib_inval": 0.0507,
       "fib_status": "SHALLOW_RETRACE",
       "auction_regime": "ROTATIONAL_BALANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:45 IST",
+      "timestamp": "2026-10-24 22:33:57 IST",
       "sr_no": 27,
       "asset": "SNX",
       "symbol": "SNXUSD.p",
       "category": "Crypto DeFi",
-      "price": 0.194,
-      "spread_bps": 1086.96,
+      "price": 0.197,
+      "spread_bps": 1069.52,
       "spread_gate": "FAIL",
-      "va_position": "INSIDE_VALUE (Balance)",
+      "va_position": "ABOVE_VALUE (Imbalance)",
       "daily_poc": 0.194,
-      "daily_vah": 0.195,
+      "daily_vah": 0.196,
       "daily_val": 0.189,
-      "dist_poc_pct": -0.03,
-      "dist_vah_pct": -0.55,
-      "dist_val_pct": 2.55,
+      "dist_poc_pct": 1.52,
+      "dist_vah_pct": 0.64,
+      "dist_val_pct": 4.26,
       "pd_poc": 0.205,
       "pd_vah": 0.206,
       "pd_val": 0.203,
@@ -1457,25 +1457,25 @@
       "fib_gp_max": 0.198,
       "fib_ote": 0.199,
       "fib_inval": 0.201,
-      "fib_status": "SHALLOW_RETRACE",
-      "auction_regime": "ROTATIONAL_BALANCE"
+      "fib_status": "IN_GOLDEN_POCKET (0.618-0.650)",
+      "auction_regime": "RANGE_EXPANSION"
     },
     {
-      "timestamp": "2026-10-24 21:54:45 IST",
+      "timestamp": "2026-10-24 22:33:58 IST",
       "sr_no": 28,
       "asset": "NEO",
       "symbol": "NEOUSD.p",
       "category": "Crypto Alt L1",
-      "price": 2.07,
-      "spread_bps": 116.5,
+      "price": 2.09,
+      "spread_bps": 110.63,
       "spread_gate": "FAIL",
       "va_position": "BELOW_VALUE (Imbalance)",
       "daily_poc": 2.14,
       "daily_vah": 2.18,
       "daily_val": 2.11,
-      "dist_poc_pct": -3.21,
-      "dist_vah_pct": -4.87,
-      "dist_val_pct": -1.97,
+      "dist_poc_pct": -2.35,
+      "dist_vah_pct": -4.02,
+      "dist_val_pct": -0.84,
       "pd_poc": 2.2,
       "pd_vah": 2.21,
       "pd_val": 2.18,
@@ -1515,21 +1515,21 @@
       "auction_regime": "TREND_DOWN_ACCEPTANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:45 IST",
+      "timestamp": "2026-10-24 22:33:59 IST",
       "sr_no": 29,
       "asset": "CRV",
       "symbol": "CRVUSD.p",
       "category": "Crypto DeFi",
-      "price": 0.349,
-      "spread_bps": 682.49,
+      "price": 0.348,
+      "spread_bps": 684.52,
       "spread_gate": "FAIL",
       "va_position": "ABOVE_VALUE (Imbalance)",
       "daily_poc": 0.343,
       "daily_vah": 0.345,
-      "daily_val": 0.339,
-      "dist_poc_pct": 1.6,
-      "dist_vah_pct": 1.0,
-      "dist_val_pct": 2.86,
+      "daily_val": 0.338,
+      "dist_poc_pct": 1.31,
+      "dist_vah_pct": 0.71,
+      "dist_val_pct": 2.74,
       "pd_poc": 0.353,
       "pd_vah": 0.355,
       "pd_val": 0.35,
@@ -1540,8 +1540,8 @@
       "monday_low": 0.319,
       "monday_mid": 0.343,
       "weekly_poc": 0.354,
-      "weekly_vah": 0.368,
-      "weekly_val": 0.337,
+      "weekly_vah": 0.367,
+      "weekly_val": 0.336,
       "cwh": 0.398,
       "cwl": 0.319,
       "pwh": 0.36,
@@ -1569,21 +1569,21 @@
       "auction_regime": "RANGE_EXPANSION"
     },
     {
-      "timestamp": "2026-10-24 21:54:45 IST",
+      "timestamp": "2026-10-24 22:33:59 IST",
       "sr_no": 30,
       "asset": "AXS",
       "symbol": "AXSUSD.p",
       "category": "Crypto Gaming",
-      "price": 0.93,
-      "spread_bps": 2409.64,
+      "price": 0.94,
+      "spread_bps": 2380.95,
       "spread_gate": "FAIL",
       "va_position": "ABOVE_VALUE (Imbalance)",
       "daily_poc": 0.88,
       "daily_vah": 0.89,
       "daily_val": 0.87,
-      "dist_poc_pct": 5.68,
-      "dist_vah_pct": 4.42,
-      "dist_val_pct": 7.24,
+      "dist_poc_pct": 6.82,
+      "dist_vah_pct": 5.54,
+      "dist_val_pct": 8.6,
       "pd_poc": 0.92,
       "pd_vah": 0.92,
       "pd_val": 0.9,
@@ -1623,21 +1623,21 @@
       "auction_regime": "TREND_UP_ACCEPTANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:45 IST",
+      "timestamp": "2026-10-24 22:34:00 IST",
       "sr_no": 31,
       "asset": "SUSHI",
       "symbol": "XSIUSD.p",
       "category": "Crypto DeFi",
-      "price": 0.198,
-      "spread_bps": 1176.47,
+      "price": 0.2,
+      "spread_bps": 1164.02,
       "spread_gate": "FAIL",
-      "va_position": "INSIDE_VALUE (Balance)",
+      "va_position": "ABOVE_VALUE (Imbalance)",
       "daily_poc": 0.195,
       "daily_vah": 0.199,
-      "daily_val": 0.194,
-      "dist_poc_pct": 1.58,
-      "dist_vah_pct": -0.63,
-      "dist_val_pct": 2.11,
+      "daily_val": 0.193,
+      "dist_poc_pct": 2.61,
+      "dist_vah_pct": 0.38,
+      "dist_val_pct": 3.4,
       "pd_poc": 0.211,
       "pd_vah": 0.215,
       "pd_val": 0.204,
@@ -1674,10 +1674,10 @@
       "fib_ote": 0.204,
       "fib_inval": 0.206,
       "fib_status": "SHALLOW_RETRACE",
-      "auction_regime": "ROTATIONAL_BALANCE"
+      "auction_regime": "RANGE_EXPANSION"
     },
     {
-      "timestamp": "2026-10-24 21:54:45 IST",
+      "timestamp": "2026-10-24 22:34:01 IST",
       "sr_no": 32,
       "asset": "DJ30",
       "symbol": "DJ30.p",
@@ -1731,7 +1731,7 @@
       "auction_regime": "ROTATIONAL_BALANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:45 IST",
+      "timestamp": "2026-10-24 22:34:01 IST",
       "sr_no": 33,
       "asset": "SP500",
       "symbol": "SP500.p",
@@ -1785,7 +1785,7 @@
       "auction_regime": "ROTATIONAL_BALANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:45 IST",
+      "timestamp": "2026-10-24 22:34:02 IST",
       "sr_no": 34,
       "asset": "NAS100",
       "symbol": "NAS100.p",
@@ -1839,7 +1839,7 @@
       "auction_regime": "ROTATIONAL_BALANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:45 IST",
+      "timestamp": "2026-10-24 22:34:02 IST",
       "sr_no": 35,
       "asset": "US2000",
       "symbol": "US2000.p",
@@ -1893,7 +1893,7 @@
       "auction_regime": "ROTATIONAL_BALANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:46 IST",
+      "timestamp": "2026-10-24 22:34:03 IST",
       "sr_no": 36,
       "asset": "GER40",
       "symbol": "GER40.p",
@@ -1947,7 +1947,7 @@
       "auction_regime": "ROTATIONAL_BALANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:46 IST",
+      "timestamp": "2026-10-24 22:34:03 IST",
       "sr_no": 37,
       "asset": "UK100",
       "symbol": "UK100.p",
@@ -2001,7 +2001,7 @@
       "auction_regime": "RANGE_EXPANSION"
     },
     {
-      "timestamp": "2026-10-24 21:54:46 IST",
+      "timestamp": "2026-10-24 22:34:04 IST",
       "sr_no": 38,
       "asset": "JP225",
       "symbol": "JP225.p",
@@ -2055,7 +2055,7 @@
       "auction_regime": "RANGE_EXPANSION"
     },
     {
-      "timestamp": "2026-10-24 21:54:46 IST",
+      "timestamp": "2026-10-24 22:34:05 IST",
       "sr_no": 39,
       "asset": "AU200",
       "symbol": "AU200.p",
@@ -2109,7 +2109,7 @@
       "auction_regime": "ROTATIONAL_BALANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:46 IST",
+      "timestamp": "2026-10-24 22:34:05 IST",
       "sr_no": 40,
       "asset": "FR40",
       "symbol": "FR40.p",
@@ -2163,7 +2163,7 @@
       "auction_regime": "ROTATIONAL_BALANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:46 IST",
+      "timestamp": "2026-10-24 22:34:05 IST",
       "sr_no": 41,
       "asset": "HK50",
       "symbol": "HK50.p",
@@ -2217,7 +2217,7 @@
       "auction_regime": "ROTATIONAL_BALANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:46 IST",
+      "timestamp": "2026-10-24 22:34:06 IST",
       "sr_no": 42,
       "asset": "STOXX50",
       "symbol": "STOXX50.p",
@@ -2271,7 +2271,7 @@
       "auction_regime": "ROTATIONAL_BALANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:46 IST",
+      "timestamp": "2026-10-24 22:34:06 IST",
       "sr_no": 43,
       "asset": "CHINA50",
       "symbol": "CHINA50.p",
@@ -2325,7 +2325,7 @@
       "auction_regime": "ROTATIONAL_BALANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:46 IST",
+      "timestamp": "2026-10-24 22:34:07 IST",
       "sr_no": 44,
       "asset": "CHINAH",
       "symbol": "CHINAH.p",
@@ -2379,7 +2379,7 @@
       "auction_regime": "ROTATIONAL_BALANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:46 IST",
+      "timestamp": "2026-10-24 22:34:07 IST",
       "sr_no": 45,
       "asset": "NETH25",
       "symbol": "NETH25.p",
@@ -2433,7 +2433,7 @@
       "auction_regime": "RANGE_EXPANSION"
     },
     {
-      "timestamp": "2026-10-24 21:54:46 IST",
+      "timestamp": "2026-10-24 22:34:08 IST",
       "sr_no": 46,
       "asset": "SWISS20",
       "symbol": "SWISS20.p",
@@ -2487,7 +2487,7 @@
       "auction_regime": "ROTATIONAL_BALANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:46 IST",
+      "timestamp": "2026-10-24 22:34:09 IST",
       "sr_no": 47,
       "asset": "GOLD",
       "symbol": "XAUUSD.pi",
@@ -2541,7 +2541,7 @@
       "auction_regime": "TREND_DOWN_ACCEPTANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:46 IST",
+      "timestamp": "2026-10-24 22:34:09 IST",
       "sr_no": 48,
       "asset": "SILVER",
       "symbol": "XAGUSD.pi",
@@ -2595,7 +2595,7 @@
       "auction_regime": "ROTATIONAL_BALANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:46 IST",
+      "timestamp": "2026-10-24 22:34:10 IST",
       "sr_no": 49,
       "asset": "GOLD_EUR",
       "symbol": "XAUEUR.pi",
@@ -2649,7 +2649,7 @@
       "auction_regime": "TREND_DOWN_ACCEPTANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:46 IST",
+      "timestamp": "2026-10-24 22:34:12 IST",
       "sr_no": 50,
       "asset": "GOLD_AUD",
       "symbol": "XAUAUD.pi",
@@ -2703,7 +2703,7 @@
       "auction_regime": "TREND_DOWN_ACCEPTANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:47 IST",
+      "timestamp": "2026-10-24 22:34:14 IST",
       "sr_no": 51,
       "asset": "GOLD_GBP",
       "symbol": "XAUGBP.pi",
@@ -2757,7 +2757,7 @@
       "auction_regime": "TREND_DOWN_ACCEPTANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:47 IST",
+      "timestamp": "2026-10-24 22:34:15 IST",
       "sr_no": 52,
       "asset": "USWTI",
       "symbol": "USWTI.p",
@@ -2811,7 +2811,7 @@
       "auction_regime": "TREND_UP_ACCEPTANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:47 IST",
+      "timestamp": "2026-10-24 22:34:16 IST",
       "sr_no": 53,
       "asset": "UKBRENT",
       "symbol": "UKBRENT.p",
@@ -2865,7 +2865,7 @@
       "auction_regime": "TREND_UP_ACCEPTANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:47 IST",
+      "timestamp": "2026-10-24 22:34:17 IST",
       "sr_no": 54,
       "asset": "GAS",
       "symbol": "GAS.p",
@@ -2919,7 +2919,7 @@
       "auction_regime": "ROTATIONAL_BALANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:47 IST",
+      "timestamp": "2026-10-24 22:34:18 IST",
       "sr_no": 55,
       "asset": "COPPER",
       "symbol": "COPPER.p",
@@ -2973,7 +2973,7 @@
       "auction_regime": "RANGE_EXPANSION"
     },
     {
-      "timestamp": "2026-10-24 21:54:47 IST",
+      "timestamp": "2026-10-24 22:34:19 IST",
       "sr_no": 56,
       "asset": "PLATINUM",
       "symbol": "XPTUSD.pi",
@@ -3027,7 +3027,7 @@
       "auction_regime": "TREND_DOWN_ACCEPTANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:47 IST",
+      "timestamp": "2026-10-24 22:34:20 IST",
       "sr_no": 57,
       "asset": "PALLADIUM",
       "symbol": "XPDUSD.pi",
@@ -3081,7 +3081,7 @@
       "auction_regime": "RANGE_EXPANSION"
     },
     {
-      "timestamp": "2026-10-24 21:54:47 IST",
+      "timestamp": "2026-10-24 22:34:20 IST",
       "sr_no": 58,
       "asset": "ALUMINIUM",
       "symbol": "ALUMINIUM.p",
@@ -3135,7 +3135,7 @@
       "auction_regime": "TREND_UP_ACCEPTANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:47 IST",
+      "timestamp": "2026-10-24 22:34:20 IST",
       "sr_no": 59,
       "asset": "LEAD",
       "symbol": "LEAD.p",
@@ -3189,7 +3189,7 @@
       "auction_regime": "ROTATIONAL_BALANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:47 IST",
+      "timestamp": "2026-10-24 22:34:21 IST",
       "sr_no": 60,
       "asset": "ZINC",
       "symbol": "ZINC.p",
@@ -3243,7 +3243,7 @@
       "auction_regime": "ROTATIONAL_BALANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:47 IST",
+      "timestamp": "2026-10-24 22:34:22 IST",
       "sr_no": 61,
       "asset": "EURUSD",
       "symbol": "EURUSD.pi",
@@ -3297,7 +3297,7 @@
       "auction_regime": "ROTATIONAL_BALANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:47 IST",
+      "timestamp": "2026-10-24 22:34:22 IST",
       "sr_no": 62,
       "asset": "GBPUSD",
       "symbol": "GBPUSD.pi",
@@ -3351,7 +3351,7 @@
       "auction_regime": "ROTATIONAL_BALANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:47 IST",
+      "timestamp": "2026-10-24 22:34:23 IST",
       "sr_no": 63,
       "asset": "USDJPY",
       "symbol": "USDJPY.pi",
@@ -3405,7 +3405,7 @@
       "auction_regime": "ROTATIONAL_BALANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:47 IST",
+      "timestamp": "2026-10-24 22:34:25 IST",
       "sr_no": 64,
       "asset": "AUDUSD",
       "symbol": "AUDUSD.pi",
@@ -3459,7 +3459,7 @@
       "auction_regime": "RANGE_EXPANSION"
     },
     {
-      "timestamp": "2026-10-24 21:54:47 IST",
+      "timestamp": "2026-10-24 22:34:26 IST",
       "sr_no": 65,
       "asset": "USDCAD",
       "symbol": "USDCAD.pi",
@@ -3513,7 +3513,7 @@
       "auction_regime": "ROTATIONAL_BALANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:47 IST",
+      "timestamp": "2026-10-24 22:34:28 IST",
       "sr_no": 66,
       "asset": "USDCHF",
       "symbol": "USDCHF.pi",
@@ -3567,7 +3567,7 @@
       "auction_regime": "ROTATIONAL_BALANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:48 IST",
+      "timestamp": "2026-10-24 22:34:30 IST",
       "sr_no": 67,
       "asset": "NZDUSD",
       "symbol": "NZDUSD.pi",
@@ -3621,7 +3621,7 @@
       "auction_regime": "ROTATIONAL_BALANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:48 IST",
+      "timestamp": "2026-10-24 22:34:31 IST",
       "sr_no": 68,
       "asset": "EURGBP",
       "symbol": "EURGBP.pi",
@@ -3675,7 +3675,7 @@
       "auction_regime": "RANGE_EXPANSION"
     },
     {
-      "timestamp": "2026-10-24 21:54:48 IST",
+      "timestamp": "2026-10-24 22:34:33 IST",
       "sr_no": 69,
       "asset": "EURJPY",
       "symbol": "EURJPY.pi",
@@ -3729,7 +3729,7 @@
       "auction_regime": "ROTATIONAL_BALANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:48 IST",
+      "timestamp": "2026-10-24 22:34:34 IST",
       "sr_no": 70,
       "asset": "GBPJPY",
       "symbol": "GBPJPY.pi",
@@ -3783,7 +3783,7 @@
       "auction_regime": "ROTATIONAL_BALANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:48 IST",
+      "timestamp": "2026-10-24 22:34:36 IST",
       "sr_no": 71,
       "asset": "AUDJPY",
       "symbol": "AUDJPY.pi",
@@ -3837,7 +3837,7 @@
       "auction_regime": "ROTATIONAL_BALANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:48 IST",
+      "timestamp": "2026-10-24 22:34:37 IST",
       "sr_no": 72,
       "asset": "CHFJPY",
       "symbol": "CHFJPY.pi",
@@ -3891,7 +3891,7 @@
       "auction_regime": "ROTATIONAL_BALANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:48 IST",
+      "timestamp": "2026-10-24 22:34:39 IST",
       "sr_no": 73,
       "asset": "CADJPY",
       "symbol": "CADJPY.pi",
@@ -3945,7 +3945,7 @@
       "auction_regime": "ROTATIONAL_BALANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:48 IST",
+      "timestamp": "2026-10-24 22:34:40 IST",
       "sr_no": 74,
       "asset": "EURAUD",
       "symbol": "EURAUD.pi",
@@ -3999,7 +3999,7 @@
       "auction_regime": "ROTATIONAL_BALANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:48 IST",
+      "timestamp": "2026-10-24 22:34:41 IST",
       "sr_no": 75,
       "asset": "GBPAUD",
       "symbol": "GBPAUD.pi",
@@ -4053,7 +4053,7 @@
       "auction_regime": "TREND_DOWN_ACCEPTANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:48 IST",
+      "timestamp": "2026-10-24 22:34:45 IST",
       "sr_no": 76,
       "asset": "EURCAD",
       "symbol": "EURCAD.pi",
@@ -4107,7 +4107,7 @@
       "auction_regime": "ROTATIONAL_BALANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:48 IST",
+      "timestamp": "2026-10-24 22:34:46 IST",
       "sr_no": 77,
       "asset": "EURCHF",
       "symbol": "EURCHF.pi",
@@ -4161,7 +4161,7 @@
       "auction_regime": "ROTATIONAL_BALANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:48 IST",
+      "timestamp": "2026-10-24 22:34:47 IST",
       "sr_no": 78,
       "asset": "GBPCAD",
       "symbol": "GBPCAD.pi",
@@ -4215,7 +4215,7 @@
       "auction_regime": "ROTATIONAL_BALANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:48 IST",
+      "timestamp": "2026-10-24 22:34:47 IST",
       "sr_no": 79,
       "asset": "GBPCHF",
       "symbol": "GBPCHF.pi",
@@ -4269,7 +4269,7 @@
       "auction_regime": "ROTATIONAL_BALANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:49 IST",
+      "timestamp": "2026-10-24 22:34:48 IST",
       "sr_no": 80,
       "asset": "AUDCAD",
       "symbol": "AUDCAD.pi",
@@ -4323,7 +4323,7 @@
       "auction_regime": "RANGE_EXPANSION"
     },
     {
-      "timestamp": "2026-10-24 21:54:49 IST",
+      "timestamp": "2026-10-24 22:34:49 IST",
       "sr_no": 81,
       "asset": "AUDCHF",
       "symbol": "AUDCHF.pi",
@@ -4377,7 +4377,7 @@
       "auction_regime": "TREND_UP_ACCEPTANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:49 IST",
+      "timestamp": "2026-10-24 22:34:50 IST",
       "sr_no": 82,
       "asset": "CADCHF",
       "symbol": "CADCHF.pi",
@@ -4431,7 +4431,7 @@
       "auction_regime": "ROTATIONAL_BALANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:49 IST",
+      "timestamp": "2026-10-24 22:34:52 IST",
       "sr_no": 83,
       "asset": "NZDJPY",
       "symbol": "NZDJPY.pi",
@@ -4485,7 +4485,7 @@
       "auction_regime": "ROTATIONAL_BALANCE"
     },
     {
-      "timestamp": "2026-10-24 21:54:49 IST",
+      "timestamp": "2026-10-24 22:34:53 IST",
       "sr_no": 84,
       "asset": "USDCNH",
       "symbol": "USDCNH.pi",
@@ -4541,11 +4541,11 @@
   ],
   "pivots": [
     {
-      "timestamp": "2026-10-24 21:54:40 IST",
+      "timestamp": "2026-10-24 22:33:40 IST",
       "sr_no": 1,
       "asset": "BTC",
       "symbol": "BTCUSD.pi",
-      "price": 79497.0,
+      "price": 80077.0,
       "pivot": 81403.33,
       "r1": 81889.67,
       "s1": 80852.67,
@@ -4557,11 +4557,11 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:42 IST",
+      "timestamp": "2026-10-24 22:33:41 IST",
       "sr_no": 2,
       "asset": "ETH",
       "symbol": "ETHUSD.pi",
-      "price": 2293.5,
+      "price": 2312.8,
       "pivot": 2387.67,
       "r1": 2421.73,
       "s1": 2362.03,
@@ -4573,11 +4573,11 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:43 IST",
+      "timestamp": "2026-10-24 22:33:41 IST",
       "sr_no": 3,
       "asset": "SOL",
       "symbol": "SOLUSD.p",
-      "price": 99.38,
+      "price": 100.28,
       "pivot": 103.8,
       "r1": 104.88,
       "s1": 102.6,
@@ -4589,11 +4589,11 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:43 IST",
+      "timestamp": "2026-10-24 22:33:42 IST",
       "sr_no": 4,
       "asset": "BNB",
       "symbol": "BNBUSD.p",
-      "price": 719.3,
+      "price": 722.75,
       "pivot": 739.64,
       "r1": 750.59,
       "s1": 729.96,
@@ -4605,11 +4605,11 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:43 IST",
+      "timestamp": "2026-10-24 22:33:42 IST",
       "sr_no": 5,
       "asset": "XRP",
       "symbol": "XRPUSD.pi",
-      "price": 1.2625,
+      "price": 1.274,
       "pivot": 1.31,
       "r1": 1.324,
       "s1": 1.292,
@@ -4621,11 +4621,11 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:43 IST",
+      "timestamp": "2026-10-24 22:33:43 IST",
       "sr_no": 6,
       "asset": "ADA",
       "symbol": "ADAUSD.p",
-      "price": 0.2021,
+      "price": 0.2044,
       "pivot": 0.2133,
       "r1": 0.2169,
       "s1": 0.2092,
@@ -4637,11 +4637,11 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:43 IST",
+      "timestamp": "2026-10-24 22:33:44 IST",
       "sr_no": 7,
       "asset": "DOGE",
       "symbol": "DOGUSD.p",
-      "price": 0.07545,
+      "price": 0.07625,
       "pivot": 0.07827,
       "r1": 0.07933,
       "s1": 0.07703,
@@ -4653,11 +4653,11 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:43 IST",
+      "timestamp": "2026-10-24 22:33:45 IST",
       "sr_no": 8,
       "asset": "TRX",
       "symbol": "TRXUSD.p",
-      "price": 0.329,
+      "price": 0.3294,
       "pivot": 0.3291,
       "r1": 0.331,
       "s1": 0.3276,
@@ -4666,10 +4666,10 @@
       "weekly_pivot": 0.3308,
       "weekly_r1": 0.3374,
       "weekly_s1": 0.3248,
-      "session_bias": "BEARISH (Below Pivot)"
+      "session_bias": "BULLISH (Above Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:43 IST",
+      "timestamp": "2026-10-24 22:33:45 IST",
       "sr_no": 9,
       "asset": "DOT",
       "symbol": "DOTUSD.pi",
@@ -4685,11 +4685,11 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:43 IST",
+      "timestamp": "2026-10-24 22:33:46 IST",
       "sr_no": 10,
       "asset": "LINK",
       "symbol": "LNKUSD.p",
-      "price": 11.322,
+      "price": 11.442,
       "pivot": 11.971,
       "r1": 12.139,
       "s1": 11.72,
@@ -4701,11 +4701,11 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:44 IST",
+      "timestamp": "2026-10-24 22:33:46 IST",
       "sr_no": 11,
       "asset": "BCH",
       "symbol": "BCHUSD.p",
-      "price": 268.65,
+      "price": 272.15,
       "pivot": 281.75,
       "r1": 290.91,
       "s1": 275.65,
@@ -4717,11 +4717,11 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:44 IST",
+      "timestamp": "2026-10-24 22:33:46 IST",
       "sr_no": 12,
       "asset": "LTC",
       "symbol": "LTCUSD.pi",
-      "price": 55.415,
+      "price": 55.85,
       "pivot": 58.437,
       "r1": 59.178,
       "s1": 57.253,
@@ -4733,11 +4733,11 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:44 IST",
+      "timestamp": "2026-10-24 22:33:47 IST",
       "sr_no": 13,
       "asset": "AVAX",
       "symbol": "AVXUSD.p",
-      "price": 8.75,
+      "price": 8.86,
       "pivot": 9.12,
       "r1": 9.29,
       "s1": 8.93,
@@ -4749,11 +4749,11 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:44 IST",
+      "timestamp": "2026-10-24 22:33:47 IST",
       "sr_no": 14,
       "asset": "NEAR",
       "symbol": "NERUSD.p",
-      "price": 4.38,
+      "price": 4.415,
       "pivot": 4.83,
       "r1": 4.956,
       "s1": 4.667,
@@ -4765,11 +4765,11 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:44 IST",
+      "timestamp": "2026-10-24 22:33:48 IST",
       "sr_no": 15,
       "asset": "UNI",
       "symbol": "UNIUSD.p",
-      "price": 6.554,
+      "price": 6.654,
       "pivot": 7.109,
       "r1": 7.265,
       "s1": 6.941,
@@ -4781,11 +4781,11 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:44 IST",
+      "timestamp": "2026-10-24 22:33:49 IST",
       "sr_no": 16,
       "asset": "XLM",
       "symbol": "XLMUSD.p",
-      "price": 0.1681,
+      "price": 0.1691,
       "pivot": 0.1759,
       "r1": 0.1776,
       "s1": 0.1732,
@@ -4797,11 +4797,11 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:44 IST",
+      "timestamp": "2026-10-24 22:33:50 IST",
       "sr_no": 17,
       "asset": "XMR",
       "symbol": "XMRUSD.p",
-      "price": 599.44,
+      "price": 604.97,
       "pivot": 598.93,
       "r1": 611.63,
       "s1": 580.08,
@@ -4813,11 +4813,11 @@
       "session_bias": "BULLISH (Above Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:44 IST",
+      "timestamp": "2026-10-24 22:33:50 IST",
       "sr_no": 18,
       "asset": "ATOM",
       "symbol": "ATMUSD.p",
-      "price": 1.611,
+      "price": 1.629,
       "pivot": 1.741,
       "r1": 1.8,
       "s1": 1.679,
@@ -4829,11 +4829,11 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:44 IST",
+      "timestamp": "2026-10-24 22:33:51 IST",
       "sr_no": 19,
       "asset": "AAVE",
       "symbol": "AVEUSD.p",
-      "price": 134.01,
+      "price": 135.25,
       "pivot": 146.51,
       "r1": 148.57,
       "s1": 143.24,
@@ -4845,11 +4845,11 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:44 IST",
+      "timestamp": "2026-10-24 22:33:52 IST",
       "sr_no": 20,
       "asset": "ALGO",
       "symbol": "ALGUSD.p",
-      "price": 0.1016,
+      "price": 0.1027,
       "pivot": 0.1064,
       "r1": 0.1078,
       "s1": 0.1045,
@@ -4861,11 +4861,11 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:44 IST",
+      "timestamp": "2026-10-24 22:33:53 IST",
       "sr_no": 21,
       "asset": "DASH",
       "symbol": "DSHUSD.p",
-      "price": 49.231,
+      "price": 49.832,
       "pivot": 53.643,
       "r1": 55.764,
       "s1": 51.371,
@@ -4877,11 +4877,11 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:44 IST",
+      "timestamp": "2026-10-24 22:33:54 IST",
       "sr_no": 22,
       "asset": "ZEC",
       "symbol": "ZECUSD.p",
-      "price": 1139.55,
+      "price": 1157.48,
       "pivot": 1229.61,
       "r1": 1260.69,
       "s1": 1201.28,
@@ -4893,11 +4893,11 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:45 IST",
+      "timestamp": "2026-10-24 22:33:55 IST",
       "sr_no": 23,
       "asset": "YFI",
       "symbol": "YFIUSD.p",
-      "price": 2127.5,
+      "price": 2141.5,
       "pivot": 2187.3,
       "r1": 2242.7,
       "s1": 2137.6,
@@ -4909,11 +4909,11 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:45 IST",
+      "timestamp": "2026-10-24 22:33:55 IST",
       "sr_no": 24,
       "asset": "FIL",
       "symbol": "FILUSD.p",
-      "price": 0.917,
+      "price": 0.929,
       "pivot": 0.958,
       "r1": 0.974,
       "s1": 0.936,
@@ -4925,11 +4925,11 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:45 IST",
+      "timestamp": "2026-10-24 22:33:56 IST",
       "sr_no": 25,
       "asset": "HBAR",
       "symbol": "BARUSD.p",
-      "price": 0.0759,
+      "price": 0.0765,
       "pivot": 0.0791,
       "r1": 0.0805,
       "s1": 0.0766,
@@ -4941,11 +4941,11 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:45 IST",
+      "timestamp": "2026-10-24 22:33:57 IST",
       "sr_no": 26,
       "asset": "SAND",
       "symbol": "SNDUSD.p",
-      "price": 0.0489,
+      "price": 0.0493,
       "pivot": 0.0517,
       "r1": 0.053,
       "s1": 0.0494,
@@ -4957,11 +4957,11 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:45 IST",
+      "timestamp": "2026-10-24 22:33:57 IST",
       "sr_no": 27,
       "asset": "SNX",
       "symbol": "SNXUSD.p",
-      "price": 0.194,
+      "price": 0.197,
       "pivot": 0.203,
       "r1": 0.205,
       "s1": 0.198,
@@ -4973,11 +4973,11 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:45 IST",
+      "timestamp": "2026-10-24 22:33:58 IST",
       "sr_no": 28,
       "asset": "NEO",
       "symbol": "NEOUSD.p",
-      "price": 2.07,
+      "price": 2.09,
       "pivot": 2.19,
       "r1": 2.22,
       "s1": 2.15,
@@ -4989,11 +4989,11 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:45 IST",
+      "timestamp": "2026-10-24 22:33:59 IST",
       "sr_no": 29,
       "asset": "CRV",
       "symbol": "CRVUSD.p",
-      "price": 0.349,
+      "price": 0.348,
       "pivot": 0.352,
       "r1": 0.358,
       "s1": 0.345,
@@ -5005,11 +5005,11 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:45 IST",
+      "timestamp": "2026-10-24 22:33:59 IST",
       "sr_no": 30,
       "asset": "AXS",
       "symbol": "AXSUSD.p",
-      "price": 0.93,
+      "price": 0.94,
       "pivot": 0.9,
       "r1": 0.92,
       "s1": 0.89,
@@ -5021,11 +5021,11 @@
       "session_bias": "BULLISH (Above Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:45 IST",
+      "timestamp": "2026-10-24 22:34:00 IST",
       "sr_no": 31,
       "asset": "SUSHI",
       "symbol": "XSIUSD.p",
-      "price": 0.198,
+      "price": 0.2,
       "pivot": 0.209,
       "r1": 0.218,
       "s1": 0.203,
@@ -5037,7 +5037,7 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:45 IST",
+      "timestamp": "2026-10-24 22:34:01 IST",
       "sr_no": 32,
       "asset": "DJ30",
       "symbol": "DJ30.p",
@@ -5053,7 +5053,7 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:45 IST",
+      "timestamp": "2026-10-24 22:34:01 IST",
       "sr_no": 33,
       "asset": "SP500",
       "symbol": "SP500.p",
@@ -5069,7 +5069,7 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:45 IST",
+      "timestamp": "2026-10-24 22:34:02 IST",
       "sr_no": 34,
       "asset": "NAS100",
       "symbol": "NAS100.p",
@@ -5085,7 +5085,7 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:45 IST",
+      "timestamp": "2026-10-24 22:34:02 IST",
       "sr_no": 35,
       "asset": "US2000",
       "symbol": "US2000.p",
@@ -5101,7 +5101,7 @@
       "session_bias": "BULLISH (Above Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:46 IST",
+      "timestamp": "2026-10-24 22:34:03 IST",
       "sr_no": 36,
       "asset": "GER40",
       "symbol": "GER40.p",
@@ -5117,7 +5117,7 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:46 IST",
+      "timestamp": "2026-10-24 22:34:03 IST",
       "sr_no": 37,
       "asset": "UK100",
       "symbol": "UK100.p",
@@ -5133,7 +5133,7 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:46 IST",
+      "timestamp": "2026-10-24 22:34:04 IST",
       "sr_no": 38,
       "asset": "JP225",
       "symbol": "JP225.p",
@@ -5149,7 +5149,7 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:46 IST",
+      "timestamp": "2026-10-24 22:34:05 IST",
       "sr_no": 39,
       "asset": "AU200",
       "symbol": "AU200.p",
@@ -5165,7 +5165,7 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:46 IST",
+      "timestamp": "2026-10-24 22:34:05 IST",
       "sr_no": 40,
       "asset": "FR40",
       "symbol": "FR40.p",
@@ -5181,7 +5181,7 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:46 IST",
+      "timestamp": "2026-10-24 22:34:05 IST",
       "sr_no": 41,
       "asset": "HK50",
       "symbol": "HK50.p",
@@ -5197,7 +5197,7 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:46 IST",
+      "timestamp": "2026-10-24 22:34:06 IST",
       "sr_no": 42,
       "asset": "STOXX50",
       "symbol": "STOXX50.p",
@@ -5213,7 +5213,7 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:46 IST",
+      "timestamp": "2026-10-24 22:34:06 IST",
       "sr_no": 43,
       "asset": "CHINA50",
       "symbol": "CHINA50.p",
@@ -5229,7 +5229,7 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:46 IST",
+      "timestamp": "2026-10-24 22:34:07 IST",
       "sr_no": 44,
       "asset": "CHINAH",
       "symbol": "CHINAH.p",
@@ -5245,7 +5245,7 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:46 IST",
+      "timestamp": "2026-10-24 22:34:07 IST",
       "sr_no": 45,
       "asset": "NETH25",
       "symbol": "NETH25.p",
@@ -5261,7 +5261,7 @@
       "session_bias": "BULLISH (Above Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:46 IST",
+      "timestamp": "2026-10-24 22:34:08 IST",
       "sr_no": 46,
       "asset": "SWISS20",
       "symbol": "SWISS20.p",
@@ -5277,7 +5277,7 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:46 IST",
+      "timestamp": "2026-10-24 22:34:09 IST",
       "sr_no": 47,
       "asset": "GOLD",
       "symbol": "XAUUSD.pi",
@@ -5293,7 +5293,7 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:46 IST",
+      "timestamp": "2026-10-24 22:34:09 IST",
       "sr_no": 48,
       "asset": "SILVER",
       "symbol": "XAGUSD.pi",
@@ -5309,7 +5309,7 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:46 IST",
+      "timestamp": "2026-10-24 22:34:10 IST",
       "sr_no": 49,
       "asset": "GOLD_EUR",
       "symbol": "XAUEUR.pi",
@@ -5325,7 +5325,7 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:46 IST",
+      "timestamp": "2026-10-24 22:34:12 IST",
       "sr_no": 50,
       "asset": "GOLD_AUD",
       "symbol": "XAUAUD.pi",
@@ -5341,7 +5341,7 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:47 IST",
+      "timestamp": "2026-10-24 22:34:14 IST",
       "sr_no": 51,
       "asset": "GOLD_GBP",
       "symbol": "XAUGBP.pi",
@@ -5357,7 +5357,7 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:47 IST",
+      "timestamp": "2026-10-24 22:34:15 IST",
       "sr_no": 52,
       "asset": "USWTI",
       "symbol": "USWTI.p",
@@ -5373,7 +5373,7 @@
       "session_bias": "BULLISH (Above Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:47 IST",
+      "timestamp": "2026-10-24 22:34:16 IST",
       "sr_no": 53,
       "asset": "UKBRENT",
       "symbol": "UKBRENT.p",
@@ -5389,7 +5389,7 @@
       "session_bias": "BULLISH (Above Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:47 IST",
+      "timestamp": "2026-10-24 22:34:17 IST",
       "sr_no": 54,
       "asset": "GAS",
       "symbol": "GAS.p",
@@ -5405,7 +5405,7 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:47 IST",
+      "timestamp": "2026-10-24 22:34:18 IST",
       "sr_no": 55,
       "asset": "COPPER",
       "symbol": "COPPER.p",
@@ -5421,7 +5421,7 @@
       "session_bias": "BULLISH (Above Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:47 IST",
+      "timestamp": "2026-10-24 22:34:19 IST",
       "sr_no": 56,
       "asset": "PLATINUM",
       "symbol": "XPTUSD.pi",
@@ -5437,7 +5437,7 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:47 IST",
+      "timestamp": "2026-10-24 22:34:20 IST",
       "sr_no": 57,
       "asset": "PALLADIUM",
       "symbol": "XPDUSD.pi",
@@ -5453,7 +5453,7 @@
       "session_bias": "BULLISH (Above Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:47 IST",
+      "timestamp": "2026-10-24 22:34:20 IST",
       "sr_no": 58,
       "asset": "ALUMINIUM",
       "symbol": "ALUMINIUM.p",
@@ -5469,7 +5469,7 @@
       "session_bias": "BULLISH (Above Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:47 IST",
+      "timestamp": "2026-10-24 22:34:20 IST",
       "sr_no": 59,
       "asset": "LEAD",
       "symbol": "LEAD.p",
@@ -5485,7 +5485,7 @@
       "session_bias": "BULLISH (Above Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:47 IST",
+      "timestamp": "2026-10-24 22:34:21 IST",
       "sr_no": 60,
       "asset": "ZINC",
       "symbol": "ZINC.p",
@@ -5501,7 +5501,7 @@
       "session_bias": "BULLISH (Above Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:47 IST",
+      "timestamp": "2026-10-24 22:34:22 IST",
       "sr_no": 61,
       "asset": "EURUSD",
       "symbol": "EURUSD.pi",
@@ -5517,7 +5517,7 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:47 IST",
+      "timestamp": "2026-10-24 22:34:22 IST",
       "sr_no": 62,
       "asset": "GBPUSD",
       "symbol": "GBPUSD.pi",
@@ -5533,7 +5533,7 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:47 IST",
+      "timestamp": "2026-10-24 22:34:23 IST",
       "sr_no": 63,
       "asset": "USDJPY",
       "symbol": "USDJPY.pi",
@@ -5549,7 +5549,7 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:47 IST",
+      "timestamp": "2026-10-24 22:34:25 IST",
       "sr_no": 64,
       "asset": "AUDUSD",
       "symbol": "AUDUSD.pi",
@@ -5565,7 +5565,7 @@
       "session_bias": "BULLISH (Above Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:47 IST",
+      "timestamp": "2026-10-24 22:34:26 IST",
       "sr_no": 65,
       "asset": "USDCAD",
       "symbol": "USDCAD.pi",
@@ -5581,7 +5581,7 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:47 IST",
+      "timestamp": "2026-10-24 22:34:28 IST",
       "sr_no": 66,
       "asset": "USDCHF",
       "symbol": "USDCHF.pi",
@@ -5597,7 +5597,7 @@
       "session_bias": "BULLISH (Above Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:48 IST",
+      "timestamp": "2026-10-24 22:34:30 IST",
       "sr_no": 67,
       "asset": "NZDUSD",
       "symbol": "NZDUSD.pi",
@@ -5613,7 +5613,7 @@
       "session_bias": "BULLISH (Above Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:48 IST",
+      "timestamp": "2026-10-24 22:34:31 IST",
       "sr_no": 68,
       "asset": "EURGBP",
       "symbol": "EURGBP.pi",
@@ -5629,7 +5629,7 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:48 IST",
+      "timestamp": "2026-10-24 22:34:33 IST",
       "sr_no": 69,
       "asset": "EURJPY",
       "symbol": "EURJPY.pi",
@@ -5645,7 +5645,7 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:48 IST",
+      "timestamp": "2026-10-24 22:34:34 IST",
       "sr_no": 70,
       "asset": "GBPJPY",
       "symbol": "GBPJPY.pi",
@@ -5661,7 +5661,7 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:48 IST",
+      "timestamp": "2026-10-24 22:34:36 IST",
       "sr_no": 71,
       "asset": "AUDJPY",
       "symbol": "AUDJPY.pi",
@@ -5677,7 +5677,7 @@
       "session_bias": "BULLISH (Above Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:48 IST",
+      "timestamp": "2026-10-24 22:34:37 IST",
       "sr_no": 72,
       "asset": "CHFJPY",
       "symbol": "CHFJPY.pi",
@@ -5693,7 +5693,7 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:48 IST",
+      "timestamp": "2026-10-24 22:34:39 IST",
       "sr_no": 73,
       "asset": "CADJPY",
       "symbol": "CADJPY.pi",
@@ -5709,7 +5709,7 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:48 IST",
+      "timestamp": "2026-10-24 22:34:40 IST",
       "sr_no": 74,
       "asset": "EURAUD",
       "symbol": "EURAUD.pi",
@@ -5725,7 +5725,7 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:48 IST",
+      "timestamp": "2026-10-24 22:34:41 IST",
       "sr_no": 75,
       "asset": "GBPAUD",
       "symbol": "GBPAUD.pi",
@@ -5741,7 +5741,7 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:48 IST",
+      "timestamp": "2026-10-24 22:34:45 IST",
       "sr_no": 76,
       "asset": "EURCAD",
       "symbol": "EURCAD.pi",
@@ -5757,7 +5757,7 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:48 IST",
+      "timestamp": "2026-10-24 22:34:46 IST",
       "sr_no": 77,
       "asset": "EURCHF",
       "symbol": "EURCHF.pi",
@@ -5773,7 +5773,7 @@
       "session_bias": "BULLISH (Above Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:48 IST",
+      "timestamp": "2026-10-24 22:34:47 IST",
       "sr_no": 78,
       "asset": "GBPCAD",
       "symbol": "GBPCAD.pi",
@@ -5789,7 +5789,7 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:48 IST",
+      "timestamp": "2026-10-24 22:34:47 IST",
       "sr_no": 79,
       "asset": "GBPCHF",
       "symbol": "GBPCHF.pi",
@@ -5805,7 +5805,7 @@
       "session_bias": "BULLISH (Above Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:49 IST",
+      "timestamp": "2026-10-24 22:34:48 IST",
       "sr_no": 80,
       "asset": "AUDCAD",
       "symbol": "AUDCAD.pi",
@@ -5821,7 +5821,7 @@
       "session_bias": "BULLISH (Above Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:49 IST",
+      "timestamp": "2026-10-24 22:34:49 IST",
       "sr_no": 81,
       "asset": "AUDCHF",
       "symbol": "AUDCHF.pi",
@@ -5837,7 +5837,7 @@
       "session_bias": "BULLISH (Above Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:49 IST",
+      "timestamp": "2026-10-24 22:34:50 IST",
       "sr_no": 82,
       "asset": "CADCHF",
       "symbol": "CADCHF.pi",
@@ -5853,7 +5853,7 @@
       "session_bias": "BULLISH (Above Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:49 IST",
+      "timestamp": "2026-10-24 22:34:52 IST",
       "sr_no": 83,
       "asset": "NZDJPY",
       "symbol": "NZDJPY.pi",
@@ -5869,7 +5869,7 @@
       "session_bias": "BEARISH (Below Pivot)"
     },
     {
-      "timestamp": "2026-10-24 21:54:49 IST",
+      "timestamp": "2026-10-24 22:34:53 IST",
       "sr_no": 84,
       "asset": "USDCNH",
       "symbol": "USDCNH.pi",
