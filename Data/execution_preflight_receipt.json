@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "dispatch_nonce": "ab50c695-1f3c-4d92-bdac-ea6b9af73c53",
-  "observed_at_utc": "2026-10-24 01:46:27 UTC",
+  "dispatch_nonce": "fc2770f4-dec3-49fa-9d08-c9bbea4b10c8",
+  "observed_at_utc": "2026-10-24 02:02:04 UTC",
   "account": {
     "login": 5064568,
     "server": "BlueberryMarketsSVG-Live",
@@ -13,22 +13,22 @@
     "symbol": "BTCUSD.pi",
     "action": "SELL_LIMIT",
     "volume": 0.06,
-    "price": 80960.0,
-    "sl": 81242.0,
-    "tp": 80252.0
+    "price": 81000.0,
+    "sl": 81282.0,
+    "tp": 80292.0
   },
   "broker_tick": {
-    "bid": 80761.0,
-    "ask": 80776.0,
-    "mid": 80768.5,
-    "spread_raw": 15.0,
-    "spread_bps": 1.86,
-    "spread_cost_usd": 0.9,
-    "broker_server_time_raw": 1792817191,
+    "bid": 80797.0,
+    "ask": 80813.0,
+    "mid": 80805.0,
+    "spread_raw": 16.0,
+    "spread_bps": 1.98,
+    "spread_cost_usd": 0.96,
+    "broker_server_time_raw": 1792818130,
     "broker_server_offset_seconds": 10800.0,
-    "tick_time_utc": "2026-10-24 01:46:31 UTC",
+    "tick_time_utc": "2026-10-24 02:02:10 UTC",
     "tick_age_seconds": 0.0,
-    "clock_skew_seconds": -4.33,
+    "clock_skew_seconds": -5.55,
     "quote_fresh": true
   },
   "broker_spec": {
@@ -45,20 +45,20 @@
   "broker_valuation": {
     "profit_at_sl_usd": -16.92,
     "profit_at_tp_usd": 42.48,
-    "margin_required_usd": 2428.8,
+    "margin_required_usd": 2430.0,
     "base_nominal_risk_usd": 16.92,
-    "exit_spread_cost_usd": 0.9,
-    "total_nominal_risk_usd": 17.82,
-    "ticket_stress_usd": 24.28,
+    "exit_spread_cost_usd": 0.96,
+    "total_nominal_risk_usd": 17.88,
+    "ticket_stress_usd": 24.35,
     "stress_model": "(base_loss + exit_spread) * 1.25 + 2.00 USD"
   },
   "order_check": {
     "pass": true,
     "retcode": 0,
     "comment": "Done",
-    "margin_level_post_order": 200.31,
-    "margin_free_post_order": 2436.27
+    "margin_level_post_order": 200.21,
+    "margin_free_post_order": 2435.07
   },
   "preflight_verdict": "PREFLIGHT_PASS",
-  "receipt_sha256": "0a71647ad1bd2c8f5ec6248fab0a7e226b200ad2551f3dbf2b5c1aa255a49fca"
+  "receipt_sha256": "41040be6d2dafd5b4cf85ed04df42fee2871c2b77ff55cc65a44e23ca5c3b017"
 }
