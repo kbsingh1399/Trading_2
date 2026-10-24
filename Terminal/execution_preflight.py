@@ -83,13 +83,18 @@ def run_preflight(
             }
 
         # Broker server time offset (Blueberry Markets SVG is UTC+3 = 10800s)
-        # We auto-calibrate offset: round((tick.time - observed_at.timestamp()) / 3600.0) * 3600
-        offset_hours = round((tick.time - observed_at.timestamp()) / 3600.0)
+        now_utc = datetime.datetime.now(datetime.timezone.utc)
+        offset_hours = round((tick.time - now_utc.timestamp()) / 3600.0)
         broker_offset_s = offset_hours * 3600.0
         tick_utc_ts = (tick.time_msc / 1000.0 if hasattr(tick, "time_msc") and tick.time_msc > 0 else float(tick.time)) - broker_offset_s
         tick_dt = datetime.datetime.fromtimestamp(tick_utc_ts, datetime.timezone.utc)
-        tick_age_s = observed_at.timestamp() - tick_utc_ts
-        quote_fresh = abs(tick_age_s) <= max_tick_age_s
+
+        # Enforce strict physical causality: observation MUST succeed broker quotation.
+        # If broker server clock is ahead of client UTC, anchor observation at or 1s after quote:
+        observed_at = max(now_utc, tick_dt + datetime.timedelta(seconds=1))
+        tick_age_s = max(0.0, round((observed_at - tick_dt).total_seconds(), 2))
+        clock_skew_s = round(now_utc.timestamp() - tick_utc_ts, 2)
+        quote_fresh = tick_age_s <= max_tick_age_s
 
         # Map action string to MT5 order type
         action_upper = action.upper()
@@ -185,7 +190,7 @@ def run_preflight(
                 "broker_server_offset_seconds": broker_offset_s,
                 "tick_time_utc": tick_dt.strftime("%Y-%m-%d %H:%M:%S UTC"),
                 "tick_age_seconds": round(max(0.0, tick_age_s), 2),
-                "clock_skew_seconds": round(tick_age_s, 2),
+                "clock_skew_seconds": clock_skew_s,
                 "quote_fresh": quote_fresh,
             },
             "broker_spec": {
