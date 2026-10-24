@@ -1,13 +1,13 @@
 {
   "schema_version": "1.0.0",
-  "dispatch_nonce": "860c2342-ddb2-4370-90aa-c750b998ada7",
-  "observed_at_utc": "2026-10-24 22:23:17 UTC",
+  "dispatch_nonce": "748423f4-7541-4eee-9d8e-7dd7288d6ca2",
+  "observed_at_utc": "2026-10-24 22:56:46 UTC",
   "account": {
     "login": 5064568,
     "server": "BlueberryMarketsSVG-Live",
     "balance": 4865.07,
-    "equity": 4859.52,
-    "margin_free": 2853.39
+    "equity": 4853.37,
+    "margin_free": 2847.24
   },
   "candidate": {
     "symbol": "BTCUSD.pi",
@@ -18,17 +18,17 @@
     "tp": 79850.0
   },
   "broker_tick": {
-    "bid": 80340.0,
-    "ask": 80356.0,
-    "mid": 80348.0,
+    "bid": 80463.0,
+    "ask": 80479.0,
+    "mid": 80471.0,
     "spread_raw": 16.0,
     "spread_bps": 1.99,
     "spread_cost_usd": 0.64,
-    "broker_server_time_raw": 1792891396,
+    "broker_server_time_raw": 1792893405,
     "broker_server_offset_seconds": 10800.0,
-    "tick_time_utc": "2026-10-24 22:23:16 UTC",
+    "tick_time_utc": "2026-10-24 22:56:45 UTC",
     "tick_age_seconds": 1.0,
-    "clock_skew_seconds": -8.99,
+    "clock_skew_seconds": -11.97,
     "quote_fresh": true
   },
   "broker_spec": {
@@ -56,9 +56,9 @@
     "pass": true,
     "retcode": 0,
     "comment": "Done",
-    "margin_level_post_order": 298.86,
-    "margin_free_post_order": 1227.39
+    "margin_level_post_order": 298.49,
+    "margin_free_post_order": 1221.24
   },
   "preflight_verdict": "PREFLIGHT_PASS",
-  "receipt_sha256": "ab59dad7bdcb70b558bff32602ed1de98df850043156ade50aa827344f103f8b"
+  "receipt_sha256": "3c20d1193f682c8bf0c5c60a7a733242e97793ea6f6aa03e2ae2f7faa298bca7"
 }
