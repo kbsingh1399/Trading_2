@@ -1,94 +1,9 @@
 {
   "stream": "telemetry",
-  "curr_timestamp_utc": "2026-10-24T15:57:36Z",
-  "prev_timestamp_utc": "2026-10-24T15:52:44Z",
+  "curr_timestamp_utc": "2026-10-24T16:03:00Z",
+  "prev_timestamp_utc": "2026-10-24T16:02:59Z",
   "time_gap_minutes": 0.0,
   "changes": {
-    "symbol_shifts": {
-      "BTC": {
-        "price_diff": 88.0,
-        "z_score_diff": 0.25,
-        "regime_prev": "BEARISH",
-        "regime_curr": "BEARISH"
-      },
-      "ETH": {
-        "price_diff": 4.8,
-        "z_score_diff": 0.17,
-        "regime_prev": "BEARISH",
-        "regime_curr": "BEARISH"
-      },
-      "SOL": {
-        "price_diff": 0.28,
-        "z_score_diff": 0.28,
-        "regime_prev": "BEARISH",
-        "regime_curr": "BEARISH"
-      },
-      "BNB": {
-        "price_diff": 0.7,
-        "z_score_diff": 0.12,
-        "regime_prev": "BEARISH",
-        "regime_curr": "BEARISH"
-      },
-      "XRP": {
-        "price_diff": 0.002,
-        "z_score_diff": 0.21,
-        "regime_prev": "BEARISH",
-        "regime_curr": "BEARISH"
-      },
-      "ADA": {
-        "price_diff": 0.0008,
-        "z_score_diff": 0.23,
-        "regime_prev": "BEARISH",
-        "regime_curr": "BEARISH"
-      },
-      "DOGE": {
-        "price_diff": 0.0002,
-        "z_score_diff": 0.18,
-        "regime_prev": "BEARISH",
-        "regime_curr": "BEARISH"
-      },
-      "TRX": {
-        "price_diff": 0.0002,
-        "z_score_diff": 0.51,
-        "regime_prev": "BEARISH",
-        "regime_curr": "BEARISH"
-      },
-      "DOT": {
-        "price_diff": 0.004,
-        "z_score_diff": 0.22,
-        "regime_prev": "BEARISH",
-        "regime_curr": "BEARISH"
-      },
-      "LINK": {
-        "price_diff": 0.03,
-        "z_score_diff": 0.16,
-        "regime_prev": "BEARISH",
-        "regime_curr": "BEARISH"
-      },
-      "BCH": {
-        "price_diff": 1.153,
-        "z_score_diff": 0.49,
-        "regime_prev": "BEARISH",
-        "regime_curr": "BEARISH"
-      },
-      "LTC": {
-        "price_diff": 0.18,
-        "z_score_diff": 0.29,
-        "regime_prev": "BEARISH",
-        "regime_curr": "BEARISH"
-      },
-      "AVAX": {
-        "price_diff": 0.01,
-        "z_score_diff": 0.14,
-        "regime_prev": "BEARISH",
-        "regime_curr": "BEARISH"
-      },
-      "NEAR": {
-        "price_diff": 0.018,
-        "z_score_diff": 0.15,
-        "regime_prev": "BEARISH",
-        "regime_curr": "BEARISH"
-      }
-    }
+    "symbol_shifts": {}
   }
 }

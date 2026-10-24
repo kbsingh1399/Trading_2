@@ -1,42 +1,71 @@
 Thought Process
-Explored 1 files，Ran 2 commands
+Explored 4 files
 
-Worklog continuity confirmed — C318→C326 chain intact, D-registry at D19, canonical remediation order for C327 on record (atomic dispatch + per-dispatch nonce, digest-bound evidence bundle, isotonic calibration pack, D19 ingestion fix). C327's nonce is now 67853606 (≠ e8e04f37) — first per-dispatch nonce of the series. Executing the standing OOB probe layer (adopted C326) before building the ruling script:
+OOB layer is explosive this cycle: commit ae61c409 exists (15:42:15Z, 4m30s pre-cutoff, 4th monotonic commit; absent from Engine_2 twin), cycle_state shows Antigravity ratified the affirmative ticket post-placement ("whale wall at 80,850", "0 disputes", "Slot 2 headroom approved"), Arena.ai also ruled DENIED_FAIL_CLOSED_LEGACY_81300, the zai verdict slot is STILL frozen at Cycle 312 (timestamp updated 14:23:35, verdict not), the excel audit is STILL 11:01:55 (never re-run — so sheet 21_Tradfye_Orderflow has never been certified), and watchdog is still frozen at 11:00:12. Pulling the macro calendar to settle S-11 before building the ruling:
 
-Explored 3 files
+Explored 1 files
 
-OOB probe layer results (3/3 fetches, standing C326 gate):
+Macro calendar OOB pull settles S-11: verified_at 2026-10-24T14:12:28Z → 5,644s (94m04s) stale at cutoff (>900s rule → FAIL), but zero Tier-1 events Oct 24–26 (next: FOMC Oct 28 18:00) → blackout substance PASS. The swarm's "22.9s calendar age" claim was only true at its own 14:12:51 check. Now building the fail-loud ruling with the full forensic timeline:
 
-Commit 761f03d EXISTS — 12:20:02Z, "as_of 12:19:44 UTC" → 179s pre-cutoff, ledger monotonic (ed89a019→53524a25→761f03d), 3rd consecutive real-infrastructure cycle
-cycle_state.json: Cycle 327 IN_PROGRESS since 12:17:58 ✓ — but D19 STILL FROZEN (zai verdict stuck at "Cycle 312", 5th cycle); watchdog heartbeat stale at 11:00:12
-excel_health_audit.json @ 761f03d still carries timestamp 11:01:55 UTC → 4,848s (80m48s) stale at cutoff → the envelope's excel_freshness_verified:false + excel_audit_scorecard_fresh:false flags are OOB-CONFIRMED TRUE — first honest in-band declaration of the freshness gate failure
-
-Now building the fail-loud ruling script:
-
-Wrote 1 files，Ran 1 commands
-Create File cycle327_ruling.py
-Run C327 fail-loud adjudication script
+Explored 1 files，Wrote 1 files，Ran 1 commands
+Create File cycle328_ruling.py
+Run C328 fail-loud adjudication script
+Read File cycle328_ruling.py
 Done
 
-Net caught an arbiter-side arithmetic slip (fail-loud working as designed): 12:22:43 − 12:17:58 = 285s, not 305s. Patching:
+Found it — line 404 has a doubled } that prematurely closes the PAYLOAD dict. Fixing:
 
 Wrote 1 files，Ran 1 commands
 
-62/62 fail-loud assertions PASS (net caught one arbiter-side slip — A14 305s→285s — before ship). Artifacts written. Appending worklog and pulling the payload for delivery:
+Net catches another precision slip: integer-second delta is 6,762 (the .841s msc fraction gives 6,761.159 exact). Patching:
+
+Wrote 1 files，Ran 1 commands
+
+Same msc-fraction pattern: 50,695 − 50,030 = 665s integer (664.159 exact). Patching:
+
+Wrote 1 files，Ran 1 commands
+
+A11: 14:15:56 − 13:53:50 = 1,326s integer (1,325.159 exact). Patching and re-running:
+
+Wrote 1 files，Ran 1 commands
+
+A17: 15:46:32 − 15:03:01 = 43m31s = 2,611s (I mistyped 4,371). Patching:
+
+Wrote 1 files，Ran 1 commands
+Re-run C328 adjudication after A17 fix
+
+在交付前，净额计算在我的理论计算中发现了一个真实的算术误差：1352/79493 = 170.08 bps，而非 170.20（分母失误）。正在修复所有引用：
+
+Wrote 1 files，Ran 1 commands
+MultiEdit /home/z/my-project/scripts/cycle328_ruling.py
+
+All references now read 170.08 (the ARITH key was already converted by the replace-all pass). Verifying and running:
 
 Ran 1 commands
-🏛️ Z.AI SOVEREIGN COUNCIL — CYCLE 327 ADJUDICATION
 
-📚 Active Skills Loaded & Applied: @[trader-signal], @[trader-risk], @[market-ingest], @[market-pattern], @[adaptive-wfo-epoch], @[sharpe-ratio-non-iid-corrections], @[time-series-decomposer], @[clean-code], @[systematic-debugging] — plus standing OOB probe layer (commit ledger / cycle_state / excel audit), fail-loud script mode, 33-SHEET confirmation protocol, D-registry continuity C280→C326.
+86/86 fail-loud PASS — the net caught 6 arbiter-side slips before ship this cycle (1 syntax, 3 msc-fraction deltas, 1 typo, 1 real bps miscomputation). Appending the worklog record:
 
-[ALERT] TELEMETRY STALE WARNING: Data/DataBase_Trading.xlsx freshness verification DECLARED FALSE in-envelope (excel_freshness_verified: false, excel_audit_scorecard_fresh: false) vs Current Cycle: 2026-10-24 14:04:55 UTC. OOB pull of Data/excel_health_audit.json @ commit 761f03df confirms the audit artifact is frozen at 2026-10-24 11:01:55 UTC → 4,848s (80m48s) stale at envelope cutoff 12:22:43 UTC. Diagnostic detail: the 33-sheet audit (29 fresh / 4 stale, file_age 3.0s) is a C326-era artifact that was never re-executed for C327; the evidence plane it certifies (sheets 17_Orderbook, 18_CVD, 5_Funding_Rate, 10_Whale_Orders, 20_Auction_Market_Structure) is therefore unverifiable at freeze. The envelope's false flags are HONEST (in-band declaration matches OOB truth — a trust-model improvement), but the data-freshness hard gate FAILS. Secondary staleness: cycle_state.json watchdog heartbeat frozen at 11:00:12 UTC (still referencing "Cycle 325→326 transition", 4,951s old at cutoff).
+Ran 1 commands
+Todos
+4
+OOB probe layer: commit ae61c409 (Trading_2 + Engine_2 twin), cycle_state.json, excel_health_audit.json, macro_calendar.json
+Decode live pending order ticket 19274977 (time_setup server-encoding, governance vs C327 DENIED ruling)
+Write & run cycle328_ruling.py — fail-loud recompute incl. D24 stress-formula deviation, R:R 1.7667 gate, ticket-action matrix
+Append worklog + deliver full in-chat adjudication (skills header, alerts, 33-sheet grid, §1–§8, metacognitive answer, 22-field JSON)
+🏛️ Z.AI SOVEREIGN COUNCIL — CYCLE C328 ADJUDICATION (Cycle-20261024T154632Z)
+
+📚 Active Skills Loaded & Applied: @[trader-signal], @[trader-risk], @[market-ingest], @[market-pattern], @[adaptive-wfo-epoch], @[sharpe-ratio-non-iid-corrections], @[time-series-decomposer], @[clean-code], @[systematic-debugging] — plus standing OOB probe layer (5 live fetches: commit ledger ×2, cycle_state, excel audit, macro_calendar), fail-loud script mode, 33-SHEET protocol, D-registry C280→C327.
+
+[ALERT] TELEMETRY STALE WARNING (3rd artifact-cycle): Data/DataBase_Trading.xlsx freshness DECLARED FALSE in-envelope (excel_freshness_verified: false, excel_audit_scorecard_fresh: false) vs Current Cycle: 2026-10-24 15:49:25 UTC. OOB pull of excel_health_audit.json @ ae61c409 confirms the audit is frozen at 11:01:55 UTC — 17,077s (4h44m37s) stale at cutoff — and was never re-run. Diagnostic: the last certified audit covers 33 sheets ending at 20_Auction_Market_Structure; the workbook is now declared the exclusive single source of truth with 34 sheets — sheet 21_Tradfye_Orderflow has NEVER been certified by any audit. The entire new Role B Tradfye jurisdiction (footprint POC, net taker delta, 99th-pct whale bubbles, absorption shelves, Deribit max pain/gamma walls) is unreadable at gate level. Secondary staleness: macro_calendar.json verified_at 14:12:28 → 5,644s stale at cutoff (>900s rule); watchdog heartbeat frozen 11:00:12 (17,180s, still "Cycle 325→326"); cycle_state.json watchdog/comments plane lagging.
+
+[ALERT] GOVERNANCE NOTICE (D25 NEW SEVERE): the book is no longer flat. Pending order ticket 19274977 — BTCUSD.pi SELL_LIMIT 0.05 @ 80,845 / SL 81,145 / TP 80,315, GTC, magic 888888, comment Fable5_Affirmative_C327 — was placed 13:53:50.841 UTC: 5,467.8s after the C327 cutoff, 665s before the C327 dispatch render (adjudication pending), and 1,325.2s before the Antigravity swarm's own ratification (14:15:56). Both co-equal councils were on DENIED lineage at placement (Arena.ai OOB verdict: DENIED_FAIL_CLOSED_LEGACY_81300 — auction void; Z.ai C327: DENIED_FAIL_CLOSED). Capital containment is verified (solvency intact), but the admission governance invariant was bypassed. Full ruling below.
 
 text
 ╔══════════════════════════════════════════════════════════════════════════╗
-║  Z.AI SOVEREIGN COUNCIL — 33-SHEET CONFIRMATION — CYCLE 327              ║
-║  Envelope e1fb53e3 | Nonce 67853606 (FIRST per-dispatch nonce of series) ║
-║  Cutoff 12:22:43 UTC | Commit 761f03df @ 12:20:02Z | FAIL-LOUD 62/62     ║
-║  VERDICT: DENIED_FAIL_CLOSED | Provenance: VERIFIED_CAUSAL_WITH_FLAGS    ║
+║  Z.AI SOVEREIGN COUNCIL — 33-SHEET CONFIRMATION — CYCLE C328             ║
+║  Envelope 2a8b5520 | Nonce b71d877b (2nd consecutive per-dispatch)       ║
+║  Cutoff 15:46:32 UTC | Commit ae61c409 @ 15:42:15Z | FAIL-LOUD 86/86     ║
+║  VERDICT: DENIED_FAIL_CLOSED | Ticket 19274977: RETIRE recommended       ║
 ╚══════════════════════════════════════════════════════════════════════════╝
 SHEET
 	
@@ -44,189 +73,124 @@ VERDICT
 	
 GATE
 
-S-01	PASS	causality tick(12:22:28) < observed(12:22:29) < cutoff(12:22:43)
-S-02	PASS	freshness-vs-freeze 15s ≤ 60s — FIRST IN-SPEC OF SERIES C318–C327
-S-03	PASS	tick_age 1.0s ≤ 15s
-S-04	PASS	clock_skew −4.41s within ±60s
-S-05	PASS	server-time encoding: raw 1792855348 − offset 10800 == tick_epoch 1792844548 EXACT
+S-01	PASS	causality tick(15:46:28) < observed(15:46:29) < cutoff(15:46:32)
+S-02	PASS	freshness-vs-freeze 4s ≤ 60s — 2nd consecutive in-spec, tighter
+S-03	PASS	tick_age 1.0s
+S-04	PASS	clock_skew −3.95s
+S-05	PASS	server encoding formally proven on both fields: raw−10800==tick_epoch AND time_setup→13:53:50.841 EXACT
 S-06	PASS	nonce binding envelope==receipt
-S-07	PASS	nonce uniqueness 67853606 ≠ e8e04f37×3 — D18 CLASS CLEARED
-S-08	NOT_REPRODUCED	receipt digest over 4 serializations (ef46…/091b…/99b7…/7df4…) — D15 persists
-S-09	FAIL	workbook freshness (envelope-declared false)
-S-10	FAIL	audit scorecard stale 4,848s (OOB-confirmed) — D20 NEW SEVERE
-S-11	UNKNOWN	macro calendar freshness (not embedded)
-S-12	UNKNOWN	VR(4)/z*/ER(48)/t_drift absent in-band (OOB swarm: VR=0.558)
-S-13	UNKNOWN	OU theta veto (no θ in envelope)
-S-14	FAIL	180s whale-wall persistence unbound (OOB: 80,500 wall unreplenished, AS −2.37 R0)
-S-15	UNKNOWN	auction extremes Mon/Session/CW/PW/VA absent
-S-16	UNKNOWN	SL 0.786 shelf + 0.40 ATR (no ATR)
-S-17	UNKNOWN	Fib-Prime EMA 5/13/34/89/144/233 absent
-S-18	UNKNOWN	golden zone [0.618, 0.702] locus absent
-S-19	PASS	spread 5.09 bps ≤ 25
-S-20	PASS	margin util 33.42% ≤ 50%; level 299.21% ≥ 200%
-S-21	PASS	kernel_post 4,835.02 ≥ 4,795 (+40.02)
-S-22	PASS	Tier-2 sizing 19.20 ∈ [15, 25]
-S-23	PASS	R:R 3.0208 gross / 2.7044 net ≥ 2.0
-S-24	FAIL_NULL_HOLD	P_fill/P_TP uncalibrated — 8th cycle
-S-25	N/A	rollover embargo (weekend crypto-only)
-S-26	UNKNOWN	macro blackout (weekend-mitigated, unverified)
-S-27	PASS	order_check retcode 0, margin_level_post 299.2
-S-28	PASS	OOB commit ledger monotonic (ed89a019→53524a25→761f03d, 161s pre-cutoff)
-S-29	PASS	OOB cycle_state: Cycle 327 IN_PROGRESS 12:17:58
-S-30	FAIL	OOB D19: zai verdict frozen at "Cycle 312" — 5th cycle
-S-31	FAIL	OOB excel audit staleness 4,848s
-S-32	INFO	OOB swarm detail byte-identical to C326 (copy-paste suspicion; corroboration-only)
+S-07	PASS	nonce uniqueness 2nd consecutive (b71d877b)
+S-08	NOT_REPRODUCED	receipt digest ×4 serializations (cf39…/4fc5…/78fa…/0231…) — D15, 6th cycle
+S-09	FAIL	workbook freshness (declared false, 2nd cycle)
+S-10	FAIL	audit never re-run — 17,077s stale
+S-11	FAIL	macro calendar 5,644s > 900s at cutoff
+S-12	PASS	blackout substance: zero Tier-1 events Oct 24–26; next FOMC Oct 28 18:00
+S-13	UNKNOWN	VR(4)/z*/ER(48)/t_drift absent in-band
+S-14	UNKNOWN	OU θ veto
+S-15	FAIL	whale-wall persistence unbound (OOB claim: wall @ 80,850; C326-era wall was 80,500 bid — narrative migrated, zero bound evidence)
+S-16	UNKNOWN	auction map (Arena OOB: legacy 81,300 = auction void; 80,845 unverified)
+S-17	UNKNOWN	SL 0.786 shelf + 0.40 ATR (SL 300pts/37.11bps, no ATR)
+S-18	UNKNOWN	Fib-Prime EMA hierarchy
+S-19	UNKNOWN	golden zone locus
+S-20	PASS	spread 2.01 bps ≤ 25 — tightest since C325-R1
+S-21	PASS	margin util 41.54% ≤ 50%; level 240.71% ≥ 200% (single ticket)
+S-22	PASS	kernel_post 4,841.32 ≥ 4,795 (D24-restated canon)
+S-23	PASS	Tier-2 sizing 15.00 == minimum boundary
+S-24	FAIL	R:R 1.7667 gross / 1.6266 net < 2.0 hard minimum
+S-25	FAIL_NULL_HOLD	P_fill/P_TP uncalibrated — 9th cycle
+S-26	N/A	rollover embargo (weekend crypto-only)
+S-27	PASS	order_check retcode 0
+S-28	PASS_D30	OOB commit ledger 4th monotonic; Engine_2 twin ABSENT (D30)
+S-29	PASS_D28	OOB cycle_state "COMPLETED 15:03:01" vs dispatch cutoff 15:46:32 (D28, 2,611s divergence)
+S-30	FAIL	D19 6th cycle: zai verdict still "Cycle 312" despite 14:23:35 stamp
+S-31	FAIL	D20/D26: audit never re-run; 21_Tradfye_Orderflow never certified
+S-32	SEVERE_INFO	governance D25: affirmative order bypassed both councils; post-hoc ratification
 S-33	DENIED_FAIL_CLOSED	FINAL ARBITER aggregate
-§1 PROVENANCE & COUPLING REVIEW (Role D + OOB)
+§1 PROVENANCE & FORENSIC TIMELINE
 
-The defect triangle that defined C321→C326 is closed. Commit 761f03df exists publicly (12:20:02Z, "as_of 12:19:44 UTC" → 179s pre-cutoff; 210,330 changes; ledger monotonic for the 3rd consecutive cycle: ed89a019 @ 09:43:56 → 53524a25 @ ~11:04 → 761f03df @ 12:20:02). The receipt was genuinely re-executed inside the atomic window for the first time in ten cycles: fresh digest (f685531b…, ≠ C326's a6319f3a… and ≠ C325's 58310746…), tick_age 1.0s, observed_at 14s pre-cutoff, freshness-vs-freeze 15s = 0.25× of the 60s rule. Nonce 67853606 is a true per-dispatch UUIDv4 (D18's collision class across C325-R1/R2/C326 cleared). Server-time encoding is cryptographically coherent: broker_server_time_raw 1792855348 − offset 10800 == tick_epoch 1792844548 exactly, internally corroborated by tick_age/skew. Residuals: in-band digest reproduction still fails over 4 canonical serializations (D15, artifact bytes unavailable); receipt schema 1.0.0 still lacks a cycle_uuid field (D23); dispatch render watermark 14:04:55 lags cutoff by 6,132s (D21 — envelope remains the governing frozen artifact, re-quote mandatory before any execution).
+Infrastructure is real and monotonic (4th consecutive commit: ed89a019→53524a25→761f03df→ae61c409 @ 15:42:15Z, as_of 15:42:02 = 270s pre-cutoff), the receipt is genuinely fresh (tick_age 1.0s, freshness-vs-freeze 4s — twice as tight as C327's series-first 15s), the nonce discipline holds (2nd consecutive per-dispatch UUIDv4), and the server-time encoding is now formally documented: broker_server_time_raw 1792867588 − 10800 = 1792856788 == tick epoch EXACT, and the same convention decodes the ticket's time_setup 1792860830 → 13:53:50.841 UTC — the D2 IST-mislabel family resolves into this stated convention. In-band digest reproduction still fails (D15). New divergence classes: D28 — cycle_state declares "Cycle 328" COMPLETED at 15:03:01 while the live dispatch cuts off at 15:46:32 (state machine ≠ dispatch plane); D27 — third cycle_id format in five cycles; D30 — the Engine_2 parity twin does not contain this commit (422); D21 CLEARED — render lag collapsed 6,132s → 173s (35.4× improvement).
 
-§2 ROLE A — REGIME & DIFFUSION: UNDEFINED IN-BAND → MANDATORY STAND-ASIDE
+Timeline (all UTC): 11:00:12 watchdog last beat · 11:01:55 last excel audit · 12:22:43 C327 cutoff · 13:53:50.841 ORDER PLACED · 14:04:55 C327 render (= C328 cycle start) · 14:12:28 macro_calendar verified · 14:15:56 swarm ratifies ticket · 14:23:35 zai completed_at stamped (verdict string still "Cycle 312") · 15:03:01 cycle_state "COMPLETED" + Arena DENIED_FAIL_CLOSED_LEGACY_81300 · 15:42:15 commit ae61c409 · 15:46:32 this cutoff.
 
-The envelope ships zero Role A estimators: no VR(4), no HAC z*, no ER(48), no Newey-West drift t, no OU θ. Under the Regime-Gated Execution rule, classify_regime() == UNDEFINED → stand aside unconditionally across both engines. The candidate (SELL_LIMIT 84.41 bps above mid) is directionally unclassifiable: admissible only as Model 1 (confirmed MEAN_REVERT + |Z| ≥ 2.0–3.5 SD at a swept extreme with tape exhaustion) or Model 2 pullback in verified TREND_DOWN with Fib-Prime EMA 5<13<34<89<144<233 bearish hierarchy and golden-zone [0.618, 0.702] confluence — none verifiable. OOB corroboration (corroboration-only, NOT imported as Z.ai estimators): the Antigravity swarm's frozen detail reports VR(4) = 0.558 sub-diffusive with barrier P(TP) = 0.387 — a mean-revert-flavored read that would permit a premium short in principle, but the same record reports AS = −2.37 R0 and an unreplenished 80,500 whale bid wall, producing swarm-input EV ≈ −1.847 R0 — corroborating the HOLD. The swarm detail string is byte-identical to C326's (S-32 INFO: copy-paste suspicion), so it carries zero fresh evidentiary weight either way.
+§2 ROLE A — REGIME: UNDEFINED IN-BAND
 
-§3 ROLE B — MICROSTRUCTURE & GEOMETRY: STRUCTURALLY UNANCHORED
+No VR(4), z*, ER(48), drift-t, or OU θ in the envelope → classify_regime() == UNDEFINED → unconditional stand-aside for new admissions. The live ticket's own thesis is regime-dependent (premium fade needs MEAN_REVERT or TREND_DOWN confirmation) and carries zero in-band regime evidence. Directional context: mid fell 80,619.5 → 79,457 (−1.40%) between C327's tick and the order capture, then +36 to 79,493 at this receipt — the desk re-sited its short lower into a falling market, keeping the entry 1,352 pts above spot.
 
-Fill geometry: entry 81,300 sits 680.5 pts (84.41 bps) above mid / 701.0 pts (86.98 bps) above bid — second-worst of the series (199→203→248→251→340→639→683.5→680.5). A premium-limit short fills precisely when momentum is running against it; without a 180s-persistent ≥ $100k whale wall bound to the receipt, the anchor requirement FAILS outright (S-14), and OOB adds that the historical 80,500 bid wall was unreplenished with a toxic cascade underneath — meaning the TP path at 79,850 must traverse a liquidity vacuum. SL 81,780 (+480 pts) cannot be validated against the 0.786 invalidation shelf + 0.40 ATR + half-spread rule (no ATR, no shelf, no liquidation-band map in envelope). Spread gate passes on the fresh quote (41.0 raw / 5.09 bps ≤ 25 — note weekend widening 16→29→41 across the series, +41% vs C325-R2). Sweep/reclaim precondition for staging in front of liquidity pools: no auction map (Mon_H/L, session extremes, CWH/CWL, PWH/PWL, d/pd-VA) → every location test UNKNOWN. TP 79,850 remains 769.5 pts below live mid (D14 remediation maintained).
+§3 ROLE B — MICROSTRUCTURE & GEOMETRY: SERIES-WORST DISTANCE, UNBOUND ANCHOR
 
-§4 ROLE C — SOLVENCY, MARGIN & BROKER MATH: FLAWLESS (independently reproduced to the cent)
+Fill geometry: entry 80,845 = 1,352 pts / 170.08 bps above mid (1,360 pts / 171.10 bps above bid) — 1.98× the prior series worst (series: 199→203→248→251→340→639→683.5→680.5→1,352). R:R 530/300 = 1.7667 gross, (530−16)/(300+16) = 1.6266 net — both below the 2.0R hard minimum (S-24 FAIL), and the re-site from 81,300→80,845 degraded R:R 3.02→1.77 while lifting the TP to 80,315 — now 822 pts ABOVE the live mid (D14-class regression; TP reachability requires the +1.71% rally to hold through the entry). The swarm's OOB claim of a whale wall at 80,850 "backing entry" carries no notional, no persistence duration, no timestamp bound to the receipt — S-14 FAIL (and the C326-era claim referenced a bid wall at 80,500; the narrative migrated without evidence). SL 81,145 (+37.11 bps) cannot be validated against the 0.786 shelf (no ATR). Spread gate: 16 raw / 2.01 bps — PASS, tightest since C325-R1. The newly mandated Tradfye orderflow jurisdiction (sheet 21_Tradfye_Orderflow) is never-certified → all footprint/max-pain/gamma inputs UNKNOWN.
 
-The capital layer is the cleanest of the entire series and PASSES in full: balance = equity = margin_free = 4,865.07, flat book, zero floating-P&L credit. Cushions 265.07 / 215.07 / 70.07 ✓. H_net = 4,865.07 − 2.00 − 4,795.00 = +68.07 ✓. Tier-2 unlock verified (4,865.07 > 4,850.00) with nominal risk 19.20 ∈ [15, 25], total nominal 20.84 ✓. Stress: canon (R+S)×1.25+2.00 = (19.20+1.64)×1.25+2.00 = 28.05 — receipt matches C280 canon exactly; the prompt §1.3 inline variant (1.25R+S+2.00 = 27.64) is the outlier and is superseded by the conservative max 28.05 ✓. H_net 68.07 ≥ 28.05 (residual 40.02) ✓. Kernel_post = 4,865.07 − 28.05 − 2.00 = 4,835.02 (+40.02) ✓; post-joint-stop balance 4,837.02 ≥ 4,795 ≥ 4,650 ≥ 4,600 ✓. Margin: 0.04 × 81,300 × 0.5 = 1,626.00 (33.42% util ≤ 50%; level 4,865.07/1,626 = 299.21% ≥ 200%, broker-reported 299.2 ✓; free_post 3,239.07 ✓). D3 persists: a dual 0.04 clone consumes 3,252.00 → 66.84% util / 149.60% level, breaching both aggregate invariants → practical capacity 1 at Tier-2 sizing; true dual E_req = 0.0299205/ticket step-rounds to 0.02 (nominal 9.60 < Tier-2 min 15). R:R 1,450/480 = 3.0208 gross, (1450−41)/(480+41) = 2.7044 net, P_BE_net 26.99%. Broker order_check retcode 0 ✓.
+§4 ROLE C — SOLVENCY, MARGIN & THE D24/D29 FINDINGS
 
-§5 ROLE D — CLOCKS, CALENDAR & DATA FRESHNESS
+Balance = equity = 4,865.07, zero positions, cushions 265.07/215.07/70.07, gross H_net 68.07, Tier-2 verified. Ticket math reproduced to the cent: SL loss 0.05×300 = 15.00 (== Tier-2 minimum boundary), TP reward 26.50, margin 0.05×80,845×0.5 = 2,021.125 → broker 2,021.13, util 41.54% ≤ 50%, level 240.71% ≥ 200%, free_post 2,843.94, spread cost 0.80, stress canon (15.00+0.80)×1.25+2.00 = 21.75 — matching the receipt's own model. D24 (NEW MODERATE): the envelope's existing_ticket_stress_usd = 20.75 contradicts the receipt's 21.75 for the identical ticket (20.75 == 1.25·base+2.00 == 1.25·(base+2·spread): spread omitted or double-counted) → realized_headroom overstated 47.32→46.32, post_joint_stress_equity 4,842.32→4,841.32; conservative canon adopted (kernel_post 4,841.32 ≥ 4,795, surplus +46.32; post-SL balance 4,843.32, surplus +48.32 — solvency intact). D29 (NEW MODERATE): the swarm's "Slot 2 headroom approved" is placement-only — a joint fill of 0.05+0.05 consumes 4,042.25 margin (83.09% > 50%; level 120.36% < 200%), breaching both aggregate invariants; while ticket 1 rests, the residual margin budget is 411.41 → max 0.01 lots (nominal 3.00 < Tier-2 min 15.00) → the second Tier-2 ticket is margin-frozen.
 
-Saturday 2026-10-24: WEEKEND_CRYPTO_PERPETUALS_ONLY, 98 TradFi CLOSED/WATCHLIST_ONLY, 58 crypto open, 11 spread-gated tradable / 47 disqualified; rollover embargo N/A. Causality/freshness: PASS (S-01…S-05). Macro calendar: not embedded, and the only certifying audit is 4,848s stale → S-11/S-26 UNKNOWN (weekend mitigates Tier-1 risk but does not satisfy the gate). The staleness alert block at the top of this ruling constitutes the mandated diagnostic feedback: the excel audit daemon was not re-run for C327; a per-cycle audit execution clears D20 mechanically.
+EXISTING TICKET DECISION MATRIX (19274977):
 
-§6 PART 2 — CALIBRATED UTILITY: NULL BY MANDATE
+RETIRE — RECOMMENDED. R:R < 2.0 hard breach; series-worst distance; TP above live mid; unbound anchor. Frees 15.00 nominal + full margin budget (restores second-ticket admissibility up to 0.05 lots) and full 68.07 headroom. Zero cost — the order has never filled. MT5 action: DELETE pending order 19274977.
+RETAIN — CONDITIONAL. Capital containment verified (post-SL 4,843.32 ≥ kernel +48.32), but it freezes slot 2 (D29) and carries adverse-selection exposure on a +1.71% rally fill. Requires binding the 80,850 wall evidence (≥$100k notional, ≥180s persistence) to the receipt and recording the sub-standard R:R.
+RE-SITE — ALTERNATIVE. Only under confirmed regime (MEAN_REVERT or TREND_DOWN), entry inside golden zone [0.618, 0.702], SL behind 0.786 shelf + 0.40 ATR + half-spread, R:R ≥ 2.0 enforced, sizing joint-margin-compliant.
+§5 ROLE D — CLOCKS & CALENDAR
 
-P_fill (distance/queue/weekend-depth), P_TP|fill, AdverseSelection, WaitCost: no samples, no bootstrap, no isotonic pack bound to the receipt — 8th consecutive request. EV_net, LCB_5%, Expected_Capital_Minutes, Utility: null. Unknown probabilities mandate HOLD; the OOB swarm-input EV (−1.847 R0) is corroboration-tier only and is not a Z.ai estimate. The candidate is geometrically well-built (best-constructed class of the series: 3.02R gross / 2.70R net / 28.05 stress / 299.21% level) and becomes rankable the moment the evidence bundle + calibration pack land.
+Weekend crypto-only regime confirmed; rollover N/A. Blackout substance PASSES (macro calendar OOB: zero Tier-1 events Oct 24–26; next FOMC Oct 28 18:00 UTC — the swarm's "22.9s calendar age" was true at its own 14:12:51 check but the calendar is 5,644s stale at this cutoff). Freshness plane at series-best; certification plane (workbook/audit/Tradfye) at series-worst — the "exclusive single source of truth" is elevated in the same cycle its freshness gate is declared false.
 
-§7 DISPOSITION
+§6 PART 2 — CALIBRATED UTILITY: NULL, 9TH CYCLE
 
-Verdict HOLD on candidate C327-01-BTCUSD.PI-SELLLIMIT; overall authorization DENIED_FAIL_CLOSED. Capital-only admission scope requires ALL hard gates; S-09/S-10/S-14/S-24 fail, S-11…S-13/S-15…S-18 unknown. No executable order is authorized; the preflight receipt is bankable as geometry evidence within its freshness window only. Existing tickets: none; flat book; contingency 2.00 USD intact.
+P_fill for a GTC order 1,360 pts above bid under a −1.40% drift, P_TP|fill with the TP 822 pts above mid, AS(t+5m), WaitCost: no samples, no bootstrap, no isotonic pack (9th request). EV_net, LCB_5%, Expected_Capital_Minutes, Utility: null → HOLD mandated. The affirmative scan across the 11 spread-gated perpetuals yields no additional nominee: the envelope carries a single tick (BTCUSD.pi), so per-symbol spread re-verification of the other 10 is impossible in-band, and the one live geometry fails R:R ≥ 2.0. Affirmative value delivered instead as the decision matrix + re-site recipe above.
+
+METACOGNITIVE ANSWER (mandated question)
+
+"If it use all the available skills related will it improve our response?" — Yes, but the marginal value of additional SKILLS is currently capped by missing DATA. Formal skills-gap audit: of the 33 gate lines, 8 FAIL and 6 are UNKNOWN for lack of bound evidence, not lack of method. Mobilized this cycle: trader-risk (stress/margin/capacity invariants), market-ingest (tick/quote/order forensics), market-pattern (geometry/invalidation), clean-code (86 fail-loud assertions), systematic-debugging (timeline root-cause). Available but data-starved: trader-signal, adaptive-wfo-epoch, sharpe-ratio-non-iid-corrections, time-series-decomposer, backtesting-frameworks — Hawkes fill intensity, Kalman fair value, and GARCH cones each consume exactly the OHLCV/L2/ATR data the envelope omits; running them on absent data produces sophisticated noise. New jurisdiction unreadable: Tradfye orderflow (sheet never certified). The highest-leverage improvements this cycle were procedural, not algorithmic — a desk-side pre-placement invariant interceptor would have mechanically caught D25 (R:R), D29 (joint-fill), and the D14 regression before submission.
 
 §8 CONTINUOUS KAIZEN INQUEST
 
-Skills & methodology optimization — Three defect classes closed this cycle prove the remediation channel works when prescriptions are mechanically checkable. Codify C327's passing pattern as a regression test (receipt inside [cutoff−60s, cutoff], nonce-before-hash, fresh digest); embed a digest-bound evidence-bundle block (regime_stats, orderbook_persistence ≥ 180s, auction_map, ATR 1H/4H, funding, calibration intervals) so both councils adjudicate from one artifact; freeze classify_regime() output into the envelope server-side; align the prompt §1.3 stress text to the C280 canon (R+S)×1.25+2.00; add cycle_uuid + git_commit to receipt schema (D23).
+Skills & methodology optimization — (1) Desk-side pre-placement interceptor recomputing R:R ≥ 2.0, joint-fill margin invariants, and TP-vs-mid sanity as a hard submit-time gate (eliminates D25/D29/D14 classes mechanically); (2) digest-bind the swarm's evidence claims (wall notional/persistence, calendar verified_at) INTO the envelope — claims true at check time are worthless if unbound; (3) re-run excel_health_audit per cycle so the "exclusive single source of truth" is certifiable, including the never-audited 21_Tradfye_Orderflow; (4) ingest council verdicts, not just timestamps, into cycle_state (D19, 6th cycle — completed_at updated to 14:23:35 while the verdict string still reads "Cycle 312"); (5) reconcile cycle labeling (D28) and re-sync the Engine_2 twin (D30); (6) align the envelope stress generator to canon (base+spread)×1.25+2.00 (D24).
 
-Omitted risk dimensions — Weekend depth vacua on the TP path (the unreplenished 80,500 wall zone); perpetual funding drag across multiple 8h settlements during a weekend hold (rate absent from envelope); exchange basis BTCUSD.pi vs index; adverse selection on premium-limit fills during momentum bursts (AS −2.37 R0 OOB); single-broker quote dependency; BTC–ETH correlation ~0.8+ undermining the "non-correlated two-ticket" Tier-2 premise; Monday open gap risk against the full 1,930-pt bracket; monitoring-plane staleness (watchdog heartbeat 4,951s old) as an operational risk independent of market risk.
+Omitted risk dimensions — GTC no-expiry on a weekend book = unbounded time-in-market: funding drag across multiple 8h settlements if filled, and fill risk during thin-liquidity spikes (Sunday reopen gap); the fade thesis requires the rally to hold through 80,845 before TP 80,315 becomes reachable — a momentum rally may never print the target before Monday TradFi liquidity returns; joint-fill breach is silent until simultaneous triggers; the Engine_2 parity gap means twin-repo disaster recovery is one commit behind; state-machine divergence (D28) risks double-dispatch of the same envelope class.
 
-Algorithmic alternatives — Hawkes intensity for resting-limit fill probability; Kalman-filtered fair value for entry siting vs broker mid; GARCH/harmonic volatility cones for weekend ATR to price the SL buffer against the 0.786 shelf; isotonic/Platt calibration of P_TP from historical sweep-reclaim outcomes (8th request); conformal prediction for LCB_5%; Markov regime-switching classifier frozen at envelope build; flicker-entropy spoof heuristics for wall persistence.
+Algorithmic alternatives — submit-time invariant interceptor (deterministic); Hawkes intensity for 1,360-pt limit fill probability; Kalman fair-value flagging the 80,845 site as 170 bps stale; conformal bands on P_fill/P_TP once the isotonic pack lands; Markov regime-switching frozen at envelope build; flicker-entropy spoof detection for the 80,850 wall claim; audit scheduler with alerting on skipped runs.
 
 CANONICAL JSON PAYLOAD (22 fields; canonical 21 + cycle_presentation)
 json
 {
   "schema_version": "1.1.0",
-  "cycle_id": "Cycle 327",
-  "cutoff_utc": "2026-10-24 12:22:43 UTC",
-  "evidence_manifest_sha256": "060fb3f2c3781d864cabefd52e5a9bacafcb65997d515963e4bffd8a93425289",
-  "prompt_sha256": "f6c093bac051d9e621f4ae7ce77907722a819b696a937f13988865f5465dc803",
-  "dispatch_nonce": "67853606-2058-4841-9e70-3252416a00a5",
-  "cycle_presentation": "FIRST_PRESENTATION_C327",
-  "provenance_status": "VERIFIED_CAUSAL_WITH_DATA_STALENESS_FLAGS",
-  "inventory_status": "ACCOUNT_AND_SOLVENCY_VERIFIED_FLAT_NO_EXPOSURE",
+  "cycle_id": "Cycle-20261024T154632Z",
+  "cutoff_utc": "2026-10-24 15:46:32 UTC",
+  "evidence_manifest_sha256": "9107c213583d1a39e1f7206d93617ef1e6b0829ce5a4c2fbca3254d614d33546",
+  "prompt_sha256": "cb3715f545fe55a4e0df7d2ddb4b8a5ab34d85ed4002375a372872afaf0d0782",
+  "dispatch_nonce": "b71d877b-d1c2-4133-9b25-db5adfbd5719",
+  "cycle_presentation": "FIRST_PRESENTATION_C328_TIMESTAMP_SCHEME (registry alias C328; cycle_state labels it 'Cycle 328' COMPLETED 15:03:01 - D28 divergence)",
+  "provenance_status": "VERIFIED_CAUSAL_WITH_STALENESS_AND_GOVERNANCE_FLAGS",
+  "inventory_status": "ACCOUNT_AND_SOLVENCY_VERIFIED_FLAT_POSITIONS_ONE_PENDING_ORDER_TKT19274977",
   "hard_gate_results": [
-    {"sheet": "S-01", "gate": "causality_chain tick<observed<cutoff", "verdict": "PASS"},
-    {"sheet": "S-02", "gate": "freshness_vs_freeze 15s <= 60s (FIRST in-spec of series C318-C327)", "verdict": "PASS"},
-    {"sheet": "S-03", "gate": "tick_age 1.0s <= 15s", "verdict": "PASS"},
-    {"sheet": "S-04", "gate": "clock_skew -4.41s within +/-60s", "verdict": "PASS"},
-    {"sheet": "S-05", "gate": "server_time_encoding raw-offset==tick_epoch", "verdict": "PASS"},
-    {"sheet": "S-06", "gate": "per-dispatch nonce binding envelope==receipt", "verdict": "PASS"},
-    {"sheet": "S-07", "gate": "nonce uniqueness vs registry [D18 CLEARED]", "verdict": "PASS"},
-    {"sheet": "S-08", "gate": "receipt digest reproduction (4 serializations)", "verdict": "NOT_REPRODUCED"},
-    {"sheet": "S-09", "gate": "workbook freshness excel_freshness_verified=false", "verdict": "FAIL"},
-    {"sheet": "S-10", "gate": "excel audit stale 4,848s OOB-confirmed", "verdict": "FAIL"},
-    {"sheet": "S-11", "gate": "macro calendar freshness", "verdict": "UNKNOWN"},
-    {"sheet": "S-12", "gate": "regime VR/ER/t_drift absent in-band", "verdict": "UNKNOWN"},
-    {"sheet": "S-13", "gate": "OU theta adverse-drift veto", "verdict": "UNKNOWN"},
-    {"sheet": "S-14", "gate": "180s whale-wall persistence bound to receipt", "verdict": "FAIL"},
-    {"sheet": "S-15", "gate": "auction extremes map", "verdict": "UNKNOWN"},
-    {"sheet": "S-16", "gate": "SL 0.786 shelf + 0.40 ATR", "verdict": "UNKNOWN"},
-    {"sheet": "S-17", "gate": "Fib-Prime EMA hierarchy", "verdict": "UNKNOWN"},
-    {"sheet": "S-18", "gate": "Fib golden zone locus", "verdict": "UNKNOWN"},
-    {"sheet": "S-19", "gate": "spread gate 5.09 <= 25 bps", "verdict": "PASS"},
-    {"sheet": "S-20", "gate": "margin util 33.42% <= 50%, level 299.21% >= 200%", "verdict": "PASS"},
-    {"sheet": "S-21", "gate": "kernel_post 4,835.02 >= 4,795", "verdict": "PASS"},
-    {"sheet": "S-22", "gate": "Tier-2 sizing 19.20 in [15,25]", "verdict": "PASS"},
-    {"sheet": "S-23", "gate": "R:R 3.0208 gross / 2.7044 net >= 2.0", "verdict": "PASS"},
-    {"sheet": "S-24", "gate": "probability calibration P_fill/P_TP", "verdict": "FAIL_NULL_HOLD"},
-    {"sheet": "S-25", "gate": "rollover embargo (weekend crypto-only)", "verdict": "N/A"},
-    {"sheet": "S-26", "gate": "macro blackout (weekend-mitigated)", "verdict": "UNKNOWN"},
-    {"sheet": "S-27", "gate": "broker order_check retcode 0", "verdict": "PASS"},
-    {"sheet": "S-28", "gate": "OOB commit ledger monotonic 161s pre-cutoff", "verdict": "PASS"},
-    {"sheet": "S-29", "gate": "OOB cycle_state Cycle 327 IN_PROGRESS", "verdict": "PASS"},
-    {"sheet": "S-30", "gate": "OOB D19 ingestion frozen at Cycle 312 (5th cycle)", "verdict": "FAIL"},
-    {"sheet": "S-31", "gate": "OOB excel audit staleness 4,848s", "verdict": "FAIL"},
-    {"sheet": "S-32", "gate": "OOB swarm detail byte-identical to C326", "verdict": "INFO"},
-    {"sheet": "S-33", "gate": "FINAL ARBITER aggregate", "verdict": "DENIED_FAIL_CLOSED"}
-  ],
-  "universe_coverage": {"total_assets": 156, "tradfi_closed_watchlist_only": 98, "crypto_perpetuals_open": 58, "crypto_spread_gate_pass": 11, "crypto_spread_gate_fail": 47, "tradable_universe_now": "11 crypto perpetuals (BTCUSD.pi ETHUSD.pi SOLUSD.p BNBUSD.p XRPUSD.pi ADAUSD.p DOGUSD.p TRXUSD.p LNKUSD.p AVXUSD.p NERUSD.p)"},
-  "account_tier_and_contingent_capacity": {"tier": "TIER_2_HOUSE_MONEY", "unlock_threshold_usd": 4850.0, "max_concurrent_tickets": 2, "committed_tickets": 0, "residual_stress_headroom_usd": 40.02, "practical_capacity_note": "dual 0.04 clone breaches both aggregate margin invariants (66.84%/149.60%) -> capacity 1 at Tier-2 sizing; true dual E_req 0.0299/ticket step-rounds to 0.02 (nominal 9.60 < Tier-2 min 15)"},
-  "global_contingency_usd": 2.00,
-  "existing_ticket_actions": "NONE_FLAT_BOOK",
-  "candidate_rows": [{
-    "candidate_id": "C327-01-BTCUSD.PI-SELLLIMIT",
-    "symbol": "BTCUSD.pi", "native_market": "CRYPTO_PERPETUAL_24_7", "clock_status": "OPEN_WEEKEND_CRYPTO_ONLY",
-    "quote_timestamp": "2026-10-24 12:22:28 UTC",
-    "evidence_availability_timestamps": {"broker_tick": "2026-10-24 12:22:28 UTC", "preflight_receipt": "2026-10-24 12:22:29 UTC", "regime_stats": null, "orderbook_persistence": null, "auction_map": null, "calibration_bootstrap": null, "oob_commit": "2026-10-24T12:20:02Z", "oob_cycle_state": "2026-10-24T12:20:02Z", "oob_excel_audit": "2026-10-24 11:01:55 UTC"},
-    "evidence_max_age_seconds": 1.0, "evidence_age_at_cutoff_seconds": 15,
-    "row_causality_status": "CAUSAL_TICK_LT_OBSERVED_LT_CUTOFF_FRESH_15S",
-    "authorization_expiry_utc": null,
-    "side": "SELL", "order_type": "SELL_LIMIT", "entry": 81300.0, "stop": 81780.0, "target": 79850.0, "volume": 0.04,
-    "broker_risk_usd": 19.2, "broker_reward_usd": 58.0, "rr": 3.0208, "spread_cost_usd": 1.64,
-    "stressed_loss_usd": 28.05, "post_joint_stop_balance": 4837.02,
-    "p_fill": null, "p_win_given_fill": null,
-    "probability_calibration_status": "UNCALIBRATED_NO_BOOTSTRAP_8TH_CYCLE_HOLD_MANDATED",
-    "estimator_references": ["Lo-MacKinlay VR(q=4) HAC - DATA ABSENT in-band", "Kaufman ER(48) - DATA ABSENT in-band", "Newey-West HAC drift t-stat - DATA ABSENT in-band", "OU theta adverse-drift veto - DATA ABSENT in-band", "180s whale-wall persistence filter - DATA ABSENT in-band", "isotonic P_fill/P_TP calibration pack - UNDELIVERED 8TH REQUEST"],
-    "calibration_diagnostics": "NO_FILL_OR_OUTCOME_SAMPLES_BOUND_TO_RECEIPT; OOB swarm inputs (VR=0.558, P(TP)=0.387, AS=-2.37 R0) are corroboration-only, not imported as Z.ai estimators",
-    "effective_sample_size": null, "probability_confidence_intervals": null,
-    "outcome_model_and_timeout_branches": "UNDEFINED - fill/TTL branches uncomputable without P_fill model; weekend depth profile absent in-band",
-    "cost_ledger_and_conditioning": {"entry_maker_usd": 0.0, "sl_exit_taker_spread_usd": 1.64, "tp_exit_maker_usd": 0.0, "funding_8h_usd": null, "commission_usd": null, "swap_weekend_usd": null, "note": "funding/commission/swap absent from envelope; weekend hold crosses multiple 8h funding windows"},
-    "wait_cost_usd": null, "ev_net_usd": null, "ev_lcb_5pct_usd": null, "expected_capital_minutes": null, "utility": null,
-    "uncertainty_method": "NONE - no time-blocked bootstrap or validated uncertainty method bound to receipt; joint fill/win/cost propagation impossible",
-    "adverse_selection_usd": null,
-    "evidence_ids": ["cycle_envelope.json@e1fb53e3-bab8-4d0d-933f-16ac2998f0f2", "execution_preflight_receipt.json@f685531bb50eb640174f2107e42b6e89854b35efff16ee2bb82b0ee79036cb4e", "dispatch_nonce:67853606-2058-4841-9e70-3252416a00a5", "oob:git_commit:761f03df", "oob:Data/cycle_state.json@761f03df", "oob:Data/excel_health_audit.json@761f03df"],
-    "verdict": "HOLD",
-    "fib_prime_ema_alignment": "UNVERIFIED_NO_EMA_DATA",
-    "fib_golden_zone_confluence": {"gp_0618": null, "gp_0650": null, "ote_0702": null, "invalidation_shelf_0786": null, "entry_status": "UNVERIFIED_NO_IMPULSE_LEG_OR_ATR_DATA"},
-    "auction_extreme_interaction": {"monday_ib_relation": "UNVERIFIED_NO_MON_HL_DATA", "session_extreme_sweep": "NO_SWEEP_EVIDENCE_WEEKEND_SESSION_STRUCTURE_DEGRADED", "macro_shelf_relation": "UNVERIFIED_NO_CWH_CWL_PWH_PWL_DATA", "value_area_status": "UNVERIFIED_NO_VAH_VAL_POC_DATA"},
-    "rejection_reasons": ["HARD-GATE S-09/S-10: workbook freshness FAIL (envelope-declared, OOB-confirmed 4,848s stale audit)", "HARD-GATE S-14: 180s whale-wall persistence unproven in-band; OOB: 80,500 wall unreplenished, AS=-2.37 R0", "HARD-GATE S-24: P_fill/P_TP uncalibrated (8th cycle) -> mandatory HOLD", "S-12/S-13: regime class and OU theta absent in-band (OOB swarm: VR=0.558 sub-diffusive -> stand aside)", "S-15..S-18: auction extremes, 0.786 shelf, Fib-Prime EMA, golden zone all unverified", "D6: entry 84.41 bps premium over mid - adverse-selection exposure corroborated by OOB AS=-2.37 R0", "capital layer PASSES (S-19..S-23, S-27) but capital-only admission scope requires ALL hard gates"]
-  }],
-  "arithmetic_validation": {"assertions_passed": 62, "fail_loud": true, "script": "scripts/cycle327_ruling.py", "checks": {"balance_equity_margin_free_4865.07": true, "margin_used_zero_flat_book": true, "floor_cushion_265.07": true, "operating_buffer_cushion_215.07": true, "kernel_cushion_70.07": true, "H_net_68.07": true, "post_joint_stress_equity_4863.07": true, "tier2_unlock_gt_4850": true, "nominal_risk_19.20_in_[15,25]": true, "total_nominal_20.84": true, "stress_canon_28.05_(R+S)x1.25+2.00": true, "stress_variant_27.64_1.25R+S+2.00": true, "H_net_ge_stress_residual_40.02": true, "kernel_post_4835.02_ge_4795": true, "post_joint_stop_balance_4837.02": true, "margin_1626.00": true, "util_33.42pct_le_50": true, "margin_level_299.21_ge_200": true, "margin_free_post_3239.07": true, "dual_clone_3252.00_66.84pct_149.60pct_BREACH": true, "e_req_dual_0.02992_step_0.02": true, "rr_gross_3.0208": true, "rr_net_2.7044": true, "p_be_gross_24.87pct": true, "p_be_net_26.99pct": true, "spread_41raw_5.09bps_le_25": true, "fill_dist_680.5pts_84.41bps": true, "sl_480_tp_1450_bracket_1930": true, "tp_769.5pts_below_mid": true, "server_time_encoding_consistent": true}, "digest_reproduction": {"attempted": ["indent2", "indent2_nl", "compact", "default"], "results": {"indent2": "ef46495090796535", "indent2_nl": "091b8d55159f4d7e", "compact": "99b798160c897c6c", "default": "7df4658eb9c8a2f7"}, "reproduced": false}},
-  "disputes": [
-    {"id": "D20", "status": "NEW", "severity": "SEVERE", "note": "excel health audit frozen at 11:01:55 UTC (C326-era), 4,848s (80m48s) stale at cutoff - OOB-confirmed; envelope honestly declares excel_freshness_verified=false and excel_audit_scorecard_fresh=false; first honest in-band freshness-gate failure declaration; evidence plane (33 sheets incl. 17_Orderbook, 18_CVD, 5_Funding_Rate, 20_Auction_Market_Structure) unverifiable at freeze"},
-    {"id": "D21", "status": "NEW", "severity": "MODERATE", "note": "dispatch render lag 6,132s (102.2 min): prompt audit watermark 14:04:55 UTC vs cutoff 12:22:43; envelope remains governing artifact (frozen causal) but re-quote mandatory before any execution; C325-R2 precedent: mid drifted +105.5pts across a similar gap"},
-    {"id": "D22", "status": "NEW", "severity": "LOW", "note": "watchdog heartbeat stale: last_check 11:00:12 UTC still references 'Cycle 325 completed / before Cycle 326' while commit 761f03d carries Cycle 327 started 12:17:58 (4,951s heartbeat age at cutoff)"},
-    {"id": "D23", "status": "NEW", "severity": "LOW", "note": "receipt schema 1.0.0 binds dispatch_nonce only; cycle_uuid field still absent from receipt - D18 remediation partial (nonce uniqueness achieved, cycle_uuid-in-receipt prescription open)"},
-    {"id": "D19", "status": "PERSISTS_5TH_CYCLE", "severity": "SEVERE", "note": "zai verdict frozen at 'Cycle 312' in cycle_state.json @ 761f03d; C313..C326 rulings (11 x DENIED_FAIL_CLOSED) never ingested; feedback loop still broken"},
-    {"id": "D15", "status": "PERSISTENT_UNVERIFIED", "severity": "MODERATE", "note": "in-band receipt_sha256 not reproduced over 4 canonical serializations (ef46/091b/99b7/7df4); artifact bytes remain unavailable in-band"},
-    {"id": "D3", "status": "PERSISTS", "severity": "MODERATE", "note": "dual 0.04 clone: margin 3,252.00 (66.84% util > 50%), level 149.60% < 200% - both aggregate invariants breach; practical capacity 1; true dual E_req 0.0299/ticket step-rounds to 0.02 (nominal 9.60 < Tier-2 min 15)"},
-    {"id": "D6", "status": "PERSISTS", "severity": "MODERATE", "note": "fill distance 680.5pts / 84.41 bps above mid (series 199-203-248-251-340-639-683.5-680.5; second-worst); premium-limit short carries structural adverse-selection exposure; OOB swarm AS=-2.37 R0 corroborates"},
-    {"id": "D2", "status": "PERSISTS", "severity": "LOW", "note": "IST serialization mislabel family: stale audit sheet timestamps 16:xx vs 11:xx UTC (+5:30) unchanged"},
-    {"id": "D18", "status": "REMEDIATED_THIS_CYCLE", "severity": "RESOLVED", "note": "per-dispatch UUIDv4 nonce 67853606 deployed; collision class (e8e04f37 across 2 uuids / 3 presentations) cleared"},
-    {"id": "D16_D17", "status": "REMEDIATED_THIS_CYCLE", "severity": "RESOLVED", "note": "envelope-receipt coupling restored: receipt frozen 14s pre-cutoff with 1.0s tick age; genuinely atomic presentation, no replay (fresh digest, fresh tick)"},
-    {"id": "D1", "status": "REMEDIATED_THIS_CYCLE", "severity": "RESOLVED", "note": "causality no longer vacuous: cutoff no longer inflated; freshness-vs-freeze 15s = 0.25x of the 60s rule - first in-spec of series"},
-    {"id": "D14", "status": "REMEDIATED_C325R2_MAINTAINED", "severity": "RESOLVED", "note": "TP 79,850 remains 769.5pts below live mid 80,619.5"}
-  ],
-  "unknowns": ["P_fill(distance,queue,weekend_depth)", "P_TP|fill(barrier path crosses 80,500 vacuum)", "VR(4)/z*/ER(48)/t_drift in-band", "OU theta", "ATR(1H/4H)", "0.786 invalidation shelf", "whale wall presence/persistence bound to receipt", "auction extreme map (Mon/Session/CW/PW/VA)", "Fib-Prime EMA 5/13/34/89/144/233 state", "funding rate + 8h settlement schedule", "commission schedule", "macro_calendar verified_at age", "L2 depth at entry/SL/TP", "post-fill markouts AS(t+5m) for THIS quote", "weekend depth/volatility profile"],
-  "methodology_critique_and_improvements": [
-    "REMEDIATION CREDIT (fail-loud both ways): 3 defect classes closed this cycle - D18 (per-dispatch nonce), D16/D17 (envelope-receipt coupling restored: receipt 14s pre-cutoff, tick 1.0s), D1 (causality real, freshness-vs-freeze 15s = 0.25x of 60s rule, first in-spec of series C318-C327)",
-    "REMAINING PATH TO RANKABLE: (1) digest-bind evidence bundle (existence OOB-proven: 17_Orderbook, 18_CVD, 5_Funding_Rate, 20_Auction_Market_Structure, 10_Whale_Orders all fresh-at-11:01-audit - gap is packaging, not availability), (2) isotonic calibration pack (8th request), (3) re-run excel_health_audit per cycle (D20), (4) ingest council verdicts into cycle_state.json (D19)",
-    "stress-model harmonization: receipt matches C280 canon (R+S)x1.25+2.00 = 28.05; prompt section 1.3 inline variant 1.25R+S+2.00 = 27.64 is the outlier - align prompt text to canon",
-    "receipt schema 1.0.0 should add cycle_uuid field (D23) and git_commit for self-contained provenance"
-  ],
-  "section_8_kaizen": {
-    "skills_and_methodology_optimization": "Dispatcher should embed a compact evidence-bundle block (regime_stats, orderbook_persistence>=180s, auction_map, ATR(1H/4H), funding, calibration intervals) digest-bound to the receipt; run classify_regime() server-side and freeze the output into the envelope; codify this cycle's passing causality/freshness pattern as a regression test; Z.ai will keep the OOB probe layer (commit ledger, cycle_state, excel audit) as standing gates",
-    "omitted_risk_dimensions": "weekend liquidity thinning and depth vacua (TP path crosses the unreplenished 80,500 wall zone); perpetual funding drag across multiple 8h windows over a weekend hold; exchange-basis risk BTCUSD.pi vs index; adverse selection on premium-limit fills during momentum bursts (OOB AS=-2.37 R0); single-broker quote dependency; BTC-ETH correlation ~0.8+ undermining non-correlated two-ticket requirement; Monday open gap risk against the whole 1,930pt bracket",
-    "algorithmic_alternatives": "Hawkes process intensity for resting-limit fill probability; Kalman-filtered fair-value vs broker mid for entry-siting; GARCH/harmonic volatility cones for weekend ATR to validate the 480pt SL buffer against the 0.786 shelf; isotonic/Platt calibration of P_TP from historical sweep-reclaim outcomes; conformal prediction for LCB_5% EV; Markov-regime-switching classifier to freeze TREND/MEAN_REVERT/UNDEFINED at freeze time; flicker-entropy spoof heuristics for wall persistence"
-  },
-  "authorization": "DENIED_FAIL_CLOSED",
-  "response_sha256": "5423b59027847e8f85ad785e6ee7d25829fc4fe60ea12a956f2f637519781c5a"
-}
+    {"sheet": "S-01", "gate": "causality tick<observed<cutoff", "verdict": "PASS"},
+    {"sheet": "S-02", "gate": "freshness_vs_freeze 4s <= 60s (2nd consecutive)", "verdict": "PASS"},
+    {"sheet": "S-03", "gate": "tick_age 1.0s", "verdict": "PASS"},
+    {"sheet": "S-04", "gate": "clock_skew -3.95s", "verdict": "PASS"},
+    {"sheet": "S-05", "gate": "server encoding exact on both fields", "verdict": "PASS"},
+    {"sheet": "S-06", "gate": "nonce binding", "verdict": "PASS"},
+    {"sheet": "S-07", "gate": "nonce uniqueness 2nd consecutive", "verdict": "PASS"},
+    {"sheet": "S-08", "gate": "receipt digest reproduction x4", "verdict": "NOT_REPRODUCED"},
+    {"sheet": "S-09", "gate": "workbook freshness false (2nd cycle)", "verdict": "FAIL"},
+    {"sheet": "S-10", "gate": "audit never re-run 17,077s stale", "verdict": "FAIL"},
+    {"sheet": "S-11", "gate": "macro calendar 5,644s > 900s", "verdict": "FAIL"},
+    {"sheet": "S-12", "gate": "blackout substance zero events Oct 24-26", "verdict": "PASS"},
+    {"sheet": "S-13", "gate": "regime VR/ER/t_drift", "verdict": "UNKNOWN"},
+    {"sheet": "S-14", "gate": "OU theta veto", "verdict": "UNKNOWN"},
+    {"sheet": "S-15", "gate": "whale-wall persistence bound to receipt", "verdict": "FAIL"},
+    {"sheet": "S-16", "gate": "auction extremes map", "verdict": "UNKNOWN"},
+    {"sheet": "S-17", "gate": "SL 0.786 shelf + 0.40 ATR", "verdict": "UNKNOWN"},
+    {"sheet": "S-18", "gate": "Fib-Prime EMA hierarchy", "verdict": "UNKNOWN"},
+    {"sheet": "S-19", "gate": "golden zone locus", "verdict": "UNKNOWN"},
+    {"sheet": "S-20", "gate": "spread 2.01 bps <= 25", "verdict": "PASS"},
+    {"sheet": "S-21", "gate": "margin 41.54%/240.71% single ticket", "verdict": "PASS"},
+    {"sheet": "S-22", "gate": "kernel_post 4,841.32 >= 4,795 (D24 canon)", "verdict": "PASS"},
+    {"sheet": "S-23", "gate": "Tier-2 sizing 15.00 == min boundary", "verdict": "PASS"},
+    {"sheet": "S-24", "gate": "R:R 1.7667/1.6266 < 2.0 hard minimum", "verdict": "FAIL"},
+    {"sheet": "S-25", "gate": "probability calibration (9th cycle)", "verdict": "FAIL_NULL_HOLD"},
 
-SCRIPT MODE — scripts/cycle327_ruling.py executed: 62/62 fail-loud assertions PASS (net caught one arbiter-side precision slip — cycle-start gap 305s→285s — before ship, continuing the C325/C326 fail-loud discipline); canonical payload persisted to scripts/cycle327_response.json; response_sha256 = 5423b590…815c5a reproduced deterministically; OOB probe layer 3/3 live fetches (standing gate adopted C326); D-registry updated D20–D23, worklog appended.
+SCRIPT MODE — scripts/cycle328_ruling.py: 86/86 fail-loud assertions PASS (net caught 6 arbiter-side slips pre-ship, including one real bps miscomputation: 1352/79493 = 170.08, not 170.20); canonical payload persisted scripts/cycle328_response.json; response_sha256 = ae45b6a3…c64f04; OOB probe layer 5/5 live fetches; D-registry updated D24–D30; worklog appended.
 
-Bottom line for the operator: the plumbing is finally fixed — receipt causality, freshness, and nonce discipline all passed in-band for the first time in ten cycles, and the envelope honestly flagged its own stale data layer. What remains is purely evidentiary: the excel audit daemon must be re-run per cycle (D20), the council-verdict ingestion into cycle_state.json is still frozen at Cycle 312 (D19), the evidence bundle (orderbook persistence, regime stats, ATR, auction map — all of which exist in the workbook) still isn't digest-bound to the receipt, and the isotonic calibration pack remains undelivered (8th request). The 0.04 BTC SELL_LIMIT @ 81,300/81,780/79,850 is the best-constructed candidate of the series and turns rankable the moment those four items ship — until then, every future presentation lands exactly here: DENIED_FAIL_CLOSED, capital preserved at 4,865.07.
+Bottom line for the operator: the plumbing is at series-best (causality 4s, freshness, nonce, coupling all green for a 2nd consecutive cycle; render lag down 35×) — but the governance layer is now the dominant defect class. The desk placed an affirmative GTC order while the C327 adjudication was pending, with R:R 1.77 (below its own 2.0R mandate), an unbound wall claim, and a TP sitting above the live market — then the swarm ratified it post-hoc with "0 disputes". Solvency is intact (post-SL 4,843.32 ≥ kernel +48.32; margin 240.71%), so nothing urgent is broken — but my standing recommendation is DELETE ticket 19274977 (zero cost, restores full budget and slot-2 capacity), and the single highest-leverage fix is a submit-time invariant interceptor on the desk. The four standing blockers are unchanged: per-cycle excel audit (now including the never-certified 21_Tradfye_Orderflow), verdict ingestion into cycle_state, digest-bound evidence bundle, isotonic calibration pack (9th request). Until then, every admission lands exactly here: DENIED_FAIL_CLOSED, capital defended at 4,865.07.
 
 ================================================================================
 Z.AI ATTACHED OUTPUT FILE:  (19533 chars)
