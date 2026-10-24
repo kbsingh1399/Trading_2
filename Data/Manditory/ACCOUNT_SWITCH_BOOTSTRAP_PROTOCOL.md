@@ -158,13 +158,42 @@ Audit all persistent operational daemons and core external services across both 
 
 ---
 
-### STEP 6: REACTIVE HARVEST, DIALECTIC RESOLUTION & CLEAN SOCKET PRUNING
+### STEP 6: TRI-ENTITY JOINT COMPLETION, DIALECTIC RESOLUTION & DYNAMIC 20-MINUTE CYCLE PACING PROTOCOL
 
-1. **Reactive Auto-Wakeup**: Standby for background task wakeup (zero token polling).
-2. **Dialectic Cross-Examination**: Compare Subagent findings against Arena.ai and Z.ai outputs. Severity-1 arithmetic or solvency disputes cannot be settled by majority vote and trigger `AUTHORIZATION = DENIED_DISPUTED`.
-3. **Cycle-Owned Socket Cleanup**: Release only completed subagents and connections created by this cycle, using recorded identities. Never use blanket kill-all/process-pruning actions or touch any persistent daemon, browser session, or workbook writer.
-4. **Dual-Repo Parity Verification**: Run `python .agents/scripts/verify_and_sync_agents.py` to confirm 100% byte-for-byte parity across `Trading_2` and `Engine_2`.
-5. **Desk Ledger Append**: Record cycle output in `docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md` and append turn summary to `.agents/memory/session_chat_history.md`.
+#### 1. Tri-Entity Joint Completion Gate (Zero Premature Advancement)
+Under institutional trading desk governance, a quantitative cycle is officially complete ONLY when ALL 3 independent evaluation entities have concluded their execution and registered their formal rulings:
+1. **Entity 1 (Antigravity Quant Subagent Swarm)**: Role A (Regime/Diffusion), Role B (Microstructure/Liquidity Walls), Role C (Solvency/Mathematics), and Role D (Clock/Provenance). If Gemini API quota limits (429) occur, harvest available roles, log the constraint, and cleanly prune sockets via `manage_subagents(Action='kill_all')`.
+2. **Entity 2 (Arena.ai Council - GPT Astra)**: Monitored via Chrome CDP port 9222. Harvest full markdown to `docs/trade_plans/ARENA_LATEST_RAW.md` upon appearance of the Copy button / task feedback banner.
+3. **Entity 3 (Z.ai Sovereign Council - GLM-5.3-Flash)**: Monitored via Chrome CDP port 9222. Harvest full markdown and attached python ruling artifacts to `docs/trade_plans/ZAI_LATEST_RAW.md`.
+
+*Reactive Wakeup Mechanism*: Prompt dispatch MUST immediately be paired with `python Terminal/arena_completion_daemon.py --wait` (`IsDaemon=false`, `WaitMsBeforeAsync=500`). This finite task terminates with exit code 0 the exact second all active council members finish, automatically triggering an event-driven reactive wake-up in Antigravity with zero token polling.
+
+#### 2. Dialectic Cross-Examination & Desk Ledger Synchronization
+- Compare Subagent empirical findings against Arena.ai and Z.ai formal rulings.
+- Any Severity-1 arithmetic, quote causality, or solvency kernel dispute cannot be settled by majority vote and automatically mandates `AUTHORIZATION = DENIED_FAIL_CLOSED`.
+- Record verified cycle metrics and rulings into `docs/trade_plans/LIVE_COLLABORATIVE_ORDER_DESK.md`.
+- Append complete prompt, rulings, and turn summary to `.agents/memory/session_chat_history.md`.
+- Confirm byte-for-byte parity across `Trading_2` and `Engine_2` via `python .agents/scripts/verify_and_sync_agents.py`.
+
+#### 3. Mandatory 20-Minute Market Consolidation Gap & Dynamic Timer Protocol
+Under NO circumstances may an incoming cycle be launched immediately after current cycle completion:
+- **Market Consolidation Invariant**: Market microstructure, orderbook liquidity, and 15m candle volatility require temporal settling. Launching back-to-back cycles into intra-bar chop risks entering on unabsorbed noise.
+- **Dynamic 20-Minute Quiet Interval**: After all 3 entities have completed and their rulings are reconciled, the coordinator MUST enforce a strict **minimum 20-minute (1,200 seconds)** quiet window before the next cycle envelope can be initialized.
+- **Dynamic Timer Execution Gate**: The 20-minute gap MUST be enforced by scheduling a dynamic one-shot timer:
+  ```python
+  schedule(DurationSeconds=1200, Prompt="Dynamic 20-minute market stabilization interval elapsed. Tri-entity completion verified. Initialize, audit, and launch Cycle N+1.")
+  ```
+- **Quiet Window Desk State**: During this 20-minute interval:
+  * Persistent daemons (Heptad) continue updating the 33-sheet master Excel warehouse (`DataBase_Trading.xlsx`).
+  * System RAM is maintained (<80%) via `scripts/free_ram.ps1`.
+  * The desk maintains an unbreached 100% Cash Defense posture.
+- **Automated Cycle N+1 Launch Chain**: Upon reactive wakeup from the 1,200s schedule notification, the desk immediately executes:
+  1. Fresh 33-sheet Excel health audit (`Terminal/Data_Factory/excel_data_quality_checker.py`).
+  2. Fresh telemetry snapshot & macro calendar verification (`Terminal/Data_Factory/generate_telemetry_snapshot.py`).
+  3. Fresh broker preflight receipt with `tick_time < observed_at < cutoff` causality (`Terminal/execution_preflight.py`).
+  4. Cycle envelope freeze bound to git commit hash (`Terminal/generate_cycle_envelope.py`).
+  5. Atomic prompt compilation, file commit, and SHA-256 matching.
+  6. Tri-entity dispatch & re-arming of reactive completion waiter.
 
 ---
 
