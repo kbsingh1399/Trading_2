@@ -28,16 +28,17 @@
 
 ---
 
-## 3. LATEST CYCLE STATUS (CYCLE 321)
-- **Cutoff UTC**: 2026-10-24 06:55:20 UTC | **Dispatch Nonce**: 77b50a3b-9a84-4775-9b8e-e2e1762c9c22
+## 3. LATEST CYCLE STATUS (CYCLE 322)
+- **Cutoff UTC**: 2026-10-24 07:59:36 UTC | **Dispatch Nonce**: 425a9f55-8228-4bf5-9ad5-29961c2831bf
 - **Multi-Council & Swarm Ruling**:
-  * **Arena.ai Primary Council (GPT Astra)**: DENIED_BAD_CYCLE_ENVELOPE / STAND_ASIDE (Refused unbacked candidate; recommended fresh envelope alignment).
-  * **Z.ai Sovereign Council (GLM-5.3-Flash)**: DENIED_FAIL_CLOSED / HOLD (20,767 chars, 95/95 programmatic verification checks passed; flagged D3 margin saturation, D9 quote age, uncalibrated probabilities).
-  * **Role A (Regime & Diffusion)**: HOLD (ER=0.1118 noisy chop; mean-reversion equilibrium theta=81,218.74; entry at 80,950 suffers toxic upward OU drift).
-  * **Role B (Fill & Microstructure)**: HOLD (Whale wall at 80,950 only 10s old, failing 180s persistence; SL unanchored in auction void).
-  * **Role C (Solvency & Broker Math)**: HOLD (Solvency kernel +43.44 surplus PASS, but 0.10 BTC consumes 83.2% margin; practical capacity is strictly 1 ticket).
-  * **Role D (Clock & Universe)**: DENIED (Causality verified, but quote was 522s old at cutoff; weekend crypto perpetuals only).
+  * **Arena.ai Primary Council (GPT Astra)**: DENIED_BAD_CYCLE_ENVELOPE (Strict envelope gate triggered: receipt dispatch_nonce was empty; permanently fixed in dispatch pipeline).
+  * **Z.ai Sovereign Council (GLM-5.3-Flash)**: DENIED_FAIL_CLOSED (19,209 chars, all broker arithmetic verified, limit 80,950 sits 340 pts / 42.2 bps above bid as adverse selection trap; classify_regime() UNDEFINED mandates unconditional stand-aside).
+  * **Role A (Regime & Diffusion)**: VETO_ADVERSE_OU_DRIFT (VR(4)=0.5693; entry 80,950 sits below theta=81,136.70 USD, suffering toxic upward drift into 81,250 SL; P_win=24.44% << P_BE=36.49%).
+  * **Role B (Fill & Microstructure)**: STAND_ASIDE_UNBACKED (Whale wall at 80,950 only 10s old, failing 180s persistence; SL in auction void; AS(5m) = -0.25 R0 toxic fill).
+  * **Role C (Solvency & Broker Math)**: APPROVED_SINGLE_SLOT_PENDING (Stressed loss 21.75 USD, kernel cushion +46.32 USD, margin 41.60% <= 50% cap, post-order margin level 240.40% >= 200%).
+  * **Role D (Clock & Provenance)**: VERIFIED (Preflight tick age 1.0s, cutoff age 3.0s PASS <= 15s; digests verified byte-for-byte).
 - **Consensus**: 100% Unanimous Agreement — **STAND ASIDE IN 100% FLAT CASH DEFENSE**.
+- **Next Cycle**: Dynamic 20-minute stabilization interval active (task-123847); Cycle 323 initializing upon timer expiration (~08:46 UTC).
 
 ---
 

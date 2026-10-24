@@ -1,55 +1,38 @@
 {
-  "as_of_epoch": 1792791594.5963867,
-  "generation_id": "gen_1792791594596",
+  "as_of_epoch": 1792830683.0114174,
+  "generation_id": "gen_1792830683011",
   "snapshot_status": "LIVE_OBSERVATION",
-  "timestamp_utc": "2026-10-23T21:39:54.596372+00:00",
-  "harvest_duration_seconds": 2.357,
+  "timestamp_utc": "2026-10-24T08:31:23.011402+00:00",
+  "harvest_duration_seconds": 19.101,
   "account": {
     "login": 5064568,
     "company": "Blueberry Markets (SVG) LLC",
     "currency": "USD",
-    "balance_usd": 4799.88,
-    "equity_usd": 4822.53,
-    "margin_free_usd": 2371.53,
+    "balance_usd": 4865.07,
+    "equity_usd": 4865.07,
+    "margin_free_usd": 4865.07,
     "hard_floor_usd": 4600.0,
     "operating_buffer_usd": 4650.0,
-    "hard_floor_cushion_usd": 222.53,
-    "operating_buffer_cushion_usd": 172.53,
+    "hard_floor_cushion_usd": 265.07,
+    "operating_buffer_cushion_usd": 215.07,
     "capacity_status": "FULL_CAPACITY: Max 4 running filled positions authorized across orthogonal clusters",
     "max_concurrent_positions": 4,
     "base_risk_usd": 15.0,
     "max_risk_usd": 25.0
   },
-  "open_positions_count": 1,
-  "open_positions": [
-    {
-      "ticket": 19267445,
-      "identifier": 19267445,
-      "time": 1792773947,
-      "symbol": "BTCUSD.pi",
-      "direction": "SHORT",
-      "volume": 0.06,
-      "price_open": 81700.0,
-      "sl": 81640.0,
-      "tp": 80600.0,
-      "price_current": 81309.0,
-      "profit_usd": 23.46,
-      "swap_usd": -0.81,
-      "magic": 0,
-      "comment": "Council_BTC_Short"
-    }
-  ],
+  "open_positions_count": 0,
+  "open_positions": [],
   "pending_orders_count": 0,
   "pending_orders": [],
   "universe_quotes": {
     "BTC": {
       "broker_symbol": "BTCUSD.pi",
       "asset_class": "CRYPTO",
-      "bid": 81294.0,
-      "ask": 81309.0,
-      "mid": 81301.5,
-      "spread_points": 1500,
-      "spread_bps": 1.84,
+      "bid": 80770.4,
+      "ask": 80783.5,
+      "mid": 80776.95,
+      "spread_points": 1310,
+      "spread_bps": 1.62,
       "spread_eligible": true,
       "contract_size": 1.0,
       "point": 0.01,
@@ -59,11 +42,11 @@
     "ETH": {
       "broker_symbol": "ETHUSD.pi",
       "asset_class": "CRYPTO",
-      "bid": 2396.2,
-      "ask": 2399.5,
-      "mid": 2397.85,
-      "spread_points": 330,
-      "spread_bps": 13.76,
+      "bid": 2370.58,
+      "ask": 2373.76,
+      "mid": 2372.17,
+      "spread_points": 318,
+      "spread_bps": 13.41,
       "spread_eligible": true,
       "contract_size": 1.0,
       "point": 0.01,
@@ -73,11 +56,11 @@
     "SOL": {
       "broker_symbol": "SOLUSD.p",
       "asset_class": "CRYPTO",
-      "bid": 103.69,
-      "ask": 103.92,
-      "mid": 103.805,
+      "bid": 101.95,
+      "ask": 102.18,
+      "mid": 102.065,
       "spread_points": 23,
-      "spread_bps": 22.16,
+      "spread_bps": 22.53,
       "spread_eligible": true,
       "contract_size": 100.0,
       "point": 0.01,
@@ -87,11 +70,11 @@
     "BNB": {
       "broker_symbol": "BNBUSD.p",
       "asset_class": "CRYPTO",
-      "bid": 740.9,
-      "ask": 741.5,
-      "mid": 741.2,
-      "spread_points": 60,
-      "spread_bps": 8.09,
+      "bid": 735.27,
+      "ask": 735.48,
+      "mid": 735.375,
+      "spread_points": 21,
+      "spread_bps": 2.86,
       "spread_eligible": true,
       "contract_size": 1.0,
       "point": 0.01,
@@ -101,25 +84,25 @@
     "XRP": {
       "broker_symbol": "XRPUSD.pi",
       "asset_class": "CRYPTO",
-      "bid": 1.303,
-      "ask": 1.308,
-      "mid": 1.3054999999999999,
-      "spread_points": 5,
-      "spread_bps": 38.3,
-      "spread_eligible": false,
+      "bid": 1.282,
+      "ask": 1.285,
+      "mid": 1.2835,
+      "spread_points": 3,
+      "spread_bps": 23.37,
+      "spread_eligible": true,
       "contract_size": 1000.0,
       "point": 0.001,
       "tick_size": 0.001,
-      "status": "SPREAD_DISQUALIFIED"
+      "status": "PASS"
     },
     "ADA": {
       "broker_symbol": "ADAUSD.p",
       "asset_class": "CRYPTO",
-      "bid": 0.2127,
-      "ask": 0.2148,
-      "mid": 0.21375,
-      "spread_points": 21,
-      "spread_bps": 98.25,
+      "bid": 0.2073,
+      "ask": 0.2095,
+      "mid": 0.2084,
+      "spread_points": 22,
+      "spread_bps": 105.57,
       "spread_eligible": false,
       "contract_size": 5000.0,
       "point": 0.0001,
@@ -129,11 +112,11 @@
     "DOGE": {
       "broker_symbol": "DOGUSD.p",
       "asset_class": "CRYPTO",
-      "bid": 0.0781,
-      "ask": 0.0803,
-      "mid": 0.07919999999999999,
-      "spread_points": 22,
-      "spread_bps": 277.78,
+      "bid": 0.0768,
+      "ask": 0.0788,
+      "mid": 0.0778,
+      "spread_points": 20,
+      "spread_bps": 257.07,
       "spread_eligible": false,
       "contract_size": 10000.0,
       "point": 0.0001,
@@ -143,11 +126,11 @@
     "TRX": {
       "broker_symbol": "TRXUSD.p",
       "asset_class": "CRYPTO",
-      "bid": 0.3295,
+      "bid": 0.3294,
       "ask": 0.3304,
-      "mid": 0.32995,
-      "spread_points": 9,
-      "spread_bps": 27.28,
+      "mid": 0.3299,
+      "spread_points": 10,
+      "spread_bps": 30.31,
       "spread_eligible": false,
       "contract_size": 10000.0,
       "point": 0.0001,
@@ -157,11 +140,11 @@
     "DOT": {
       "broker_symbol": "DOTUSD.pi",
       "asset_class": "CRYPTO",
-      "bid": 1.099,
-      "ask": 1.12,
-      "mid": 1.1095000000000002,
-      "spread_points": 21,
-      "spread_bps": 189.27,
+      "bid": 1.053,
+      "ask": 1.075,
+      "mid": 1.064,
+      "spread_points": 22,
+      "spread_bps": 206.77,
       "spread_eligible": false,
       "contract_size": 1000.0,
       "point": 0.001,
@@ -171,11 +154,11 @@
     "LINK": {
       "broker_symbol": "LNKUSD.p",
       "asset_class": "CRYPTO",
-      "bid": 11.888,
-      "ask": 11.974,
-      "mid": 11.931000000000001,
-      "spread_points": 86,
-      "spread_bps": 72.08,
+      "bid": 11.644,
+      "ask": 11.728,
+      "mid": 11.686,
+      "spread_points": 84,
+      "spread_bps": 71.88,
       "spread_eligible": false,
       "contract_size": 100.0,
       "point": 0.001,
@@ -185,11 +168,11 @@
     "BCH": {
       "broker_symbol": "BCHUSD.p",
       "asset_class": "CRYPTO",
-      "bid": 284.8,
-      "ask": 285.4,
-      "mid": 285.1,
-      "spread_points": 600,
-      "spread_bps": 21.05,
+      "bid": 276.13,
+      "ask": 276.813,
+      "mid": 276.4715,
+      "spread_points": 683,
+      "spread_bps": 24.7,
       "spread_eligible": true,
       "contract_size": 10.0,
       "point": 0.001,
@@ -199,11 +182,11 @@
     "LTC": {
       "broker_symbol": "LTCUSD.pi",
       "asset_class": "CRYPTO",
-      "bid": 57.815,
-      "ask": 58.115,
-      "mid": 57.965,
-      "spread_points": 300,
-      "spread_bps": 51.76,
+      "bid": 56.53,
+      "ask": 56.86,
+      "mid": 56.695,
+      "spread_points": 330,
+      "spread_bps": 58.21,
       "spread_eligible": false,
       "contract_size": 100.0,
       "point": 0.001,
@@ -213,11 +196,11 @@
     "AVAX": {
       "broker_symbol": "AVXUSD.p",
       "asset_class": "CRYPTO",
-      "bid": 9.09,
-      "ask": 9.12,
-      "mid": 9.105,
-      "spread_points": 3,
-      "spread_bps": 32.95,
+      "bid": 8.9,
+      "ask": 8.95,
+      "mid": 8.925,
+      "spread_points": 5,
+      "spread_bps": 56.02,
       "spread_eligible": false,
       "contract_size": 100.0,
       "point": 0.01,
@@ -227,11 +210,11 @@
     "NEAR": {
       "broker_symbol": "NERUSD.p",
       "asset_class": "CRYPTO",
-      "bid": 4.793,
-      "ask": 4.822,
-      "mid": 4.8075,
+      "bid": 4.543,
+      "ask": 4.572,
+      "mid": 4.5575,
       "spread_points": 29,
-      "spread_bps": 60.32,
+      "spread_bps": 63.63,
       "spread_eligible": false,
       "contract_size": 100.0,
       "point": 0.001,
@@ -241,25 +224,25 @@
     "AAVE": {
       "broker_symbol": "AVEUSD.p",
       "asset_class": "CRYPTO",
-      "bid": 145.29,
-      "ask": 149.19,
-      "mid": 147.24,
-      "spread_points": 390,
-      "spread_bps": 264.87,
-      "spread_eligible": false,
+      "bid": 140.98,
+      "ask": 141.19,
+      "mid": 141.08499999999998,
+      "spread_points": 21,
+      "spread_bps": 14.88,
+      "spread_eligible": true,
       "contract_size": 100.0,
       "point": 0.01,
       "tick_size": 0.01,
-      "status": "SPREAD_DISQUALIFIED"
+      "status": "PASS"
     },
     "ALGO": {
       "broker_symbol": "ALGUSD.p",
       "asset_class": "CRYPTO",
-      "bid": 0.106,
-      "ask": 0.1083,
-      "mid": 0.10715,
-      "spread_points": 23,
-      "spread_bps": 214.65,
+      "bid": 0.1036,
+      "ask": 0.1058,
+      "mid": 0.1047,
+      "spread_points": 22,
+      "spread_bps": 210.12,
       "spread_eligible": false,
       "contract_size": 1000.0,
       "point": 0.0001,
@@ -269,11 +252,11 @@
     "AR": {
       "broker_symbol": "ARWUSD.p",
       "asset_class": "CRYPTO",
-      "bid": 3.583,
-      "ask": 3.604,
-      "mid": 3.5935,
+      "bid": 3.502,
+      "ask": 3.523,
+      "mid": 3.5125,
       "spread_points": 21,
-      "spread_bps": 58.44,
+      "spread_bps": 59.79,
       "spread_eligible": false,
       "contract_size": 100.0,
       "point": 0.001,
@@ -283,11 +266,11 @@
     "ATOM": {
       "broker_symbol": "ATMUSD.p",
       "asset_class": "CRYPTO",
-      "bid": 1.737,
-      "ask": 1.76,
-      "mid": 1.7485,
-      "spread_points": 23,
-      "spread_bps": 131.54,
+      "bid": 1.642,
+      "ask": 1.675,
+      "mid": 1.6585,
+      "spread_points": 33,
+      "spread_bps": 198.97,
       "spread_eligible": false,
       "contract_size": 1000.0,
       "point": 0.001,
@@ -297,11 +280,11 @@
     "AXS": {
       "broker_symbol": "AXSUSD.p",
       "asset_class": "CRYPTO",
-      "bid": 0.9,
-      "ask": 1.1,
-      "mid": 1.0,
+      "bid": 0.87,
+      "ask": 1.07,
+      "mid": 0.97,
       "spread_points": 20,
-      "spread_bps": 2000.0,
+      "spread_bps": 2061.86,
       "spread_eligible": false,
       "contract_size": 1000.0,
       "point": 0.01,
@@ -311,11 +294,11 @@
     "COMP": {
       "broker_symbol": "COMUSD.p",
       "asset_class": "CRYPTO",
-      "bid": 24.22,
-      "ask": 24.46,
-      "mid": 24.34,
+      "bid": 23.7,
+      "ask": 23.94,
+      "mid": 23.82,
       "spread_points": 24,
-      "spread_bps": 98.6,
+      "spread_bps": 100.76,
       "spread_eligible": false,
       "contract_size": 100.0,
       "point": 0.01,
@@ -325,11 +308,11 @@
     "CRV": {
       "broker_symbol": "CRVUSD.p",
       "asset_class": "CRYPTO",
-      "bid": 0.35,
-      "ask": 0.372,
-      "mid": 0.361,
+      "bid": 0.343,
+      "ask": 0.365,
+      "mid": 0.354,
       "spread_points": 22,
-      "spread_bps": 609.42,
+      "spread_bps": 621.47,
       "spread_eligible": false,
       "contract_size": 1000.0,
       "point": 0.001,
@@ -339,11 +322,11 @@
     "DASH": {
       "broker_symbol": "DSHUSD.p",
       "asset_class": "CRYPTO",
-      "bid": 53.493,
-      "ask": 53.549,
-      "mid": 53.521,
-      "spread_points": 56,
-      "spread_bps": 10.46,
+      "bid": 51.55,
+      "ask": 51.607,
+      "mid": 51.5785,
+      "spread_points": 57,
+      "spread_bps": 11.05,
       "spread_eligible": true,
       "contract_size": 100.0,
       "point": 0.001,
@@ -353,11 +336,11 @@
     "FIL": {
       "broker_symbol": "FILUSD.p",
       "asset_class": "CRYPTO",
-      "bid": 0.952,
-      "ask": 0.992,
-      "mid": 0.972,
+      "bid": 0.923,
+      "ask": 0.963,
+      "mid": 0.9430000000000001,
       "spread_points": 40,
-      "spread_bps": 411.52,
+      "spread_bps": 424.18,
       "spread_eligible": false,
       "contract_size": 1000.0,
       "point": 0.001,
@@ -367,11 +350,11 @@
     "HBAR": {
       "broker_symbol": "BARUSD.p",
       "asset_class": "CRYPTO",
-      "bid": 0.07802,
-      "ask": 0.07825,
-      "mid": 0.07813500000000001,
-      "spread_points": 23,
-      "spread_bps": 29.44,
+      "bid": 0.07677,
+      "ask": 0.07701,
+      "mid": 0.07689,
+      "spread_points": 24,
+      "spread_bps": 31.21,
       "spread_eligible": false,
       "contract_size": 10000.0,
       "point": 1e-05,
@@ -381,11 +364,11 @@
     "IOTA": {
       "broker_symbol": "IOTUSD.p",
       "asset_class": "CRYPTO",
-      "bid": 0.0435,
-      "ask": 0.0457,
-      "mid": 0.0446,
+      "bid": 0.0427,
+      "ask": 0.0449,
+      "mid": 0.043800000000000006,
       "spread_points": 22,
-      "spread_bps": 493.27,
+      "spread_bps": 502.28,
       "spread_eligible": false,
       "contract_size": 1000.0,
       "point": 0.0001,
@@ -395,11 +378,11 @@
     "NEO": {
       "broker_symbol": "NEOUSD.p",
       "asset_class": "CRYPTO",
-      "bid": 2.181,
-      "ask": 2.206,
-      "mid": 2.1935000000000002,
+      "bid": 2.145,
+      "ask": 2.17,
+      "mid": 2.1574999999999998,
       "spread_points": 250,
-      "spread_bps": 113.97,
+      "spread_bps": 115.87,
       "spread_eligible": false,
       "contract_size": 100.0,
       "point": 0.0001,
@@ -409,11 +392,11 @@
     "SAND": {
       "broker_symbol": "SNDUSD.p",
       "asset_class": "CRYPTO",
-      "bid": 0.0508,
-      "ask": 0.053,
-      "mid": 0.0519,
-      "spread_points": 22,
-      "spread_bps": 423.89,
+      "bid": 0.0494,
+      "ask": 0.0517,
+      "mid": 0.05055,
+      "spread_points": 23,
+      "spread_bps": 455.0,
       "spread_eligible": false,
       "contract_size": 1000.0,
       "point": 0.0001,
@@ -423,11 +406,11 @@
     "SNX": {
       "broker_symbol": "SNXUSD.p",
       "asset_class": "CRYPTO",
-      "bid": 0.201,
-      "ask": 0.221,
-      "mid": 0.21100000000000002,
+      "bid": 0.192,
+      "ask": 0.212,
+      "mid": 0.202,
       "spread_points": 20,
-      "spread_bps": 947.87,
+      "spread_bps": 990.1,
       "spread_eligible": false,
       "contract_size": 1000.0,
       "point": 0.001,
@@ -437,11 +420,11 @@
     "SUSHI": {
       "broker_symbol": "XSIUSD.p",
       "asset_class": "CRYPTO",
-      "bid": 0.212,
-      "ask": 0.214,
-      "mid": 0.213,
-      "spread_points": 2,
-      "spread_bps": 93.9,
+      "bid": 0.195,
+      "ask": 0.218,
+      "mid": 0.20650000000000002,
+      "spread_points": 23,
+      "spread_bps": 1113.8,
       "spread_eligible": false,
       "contract_size": 1000.0,
       "point": 0.001,
@@ -451,11 +434,11 @@
     "UNI": {
       "broker_symbol": "UNIUSD.p",
       "asset_class": "CRYPTO",
-      "bid": 7.097,
-      "ask": 7.121,
-      "mid": 7.109,
-      "spread_points": 24,
-      "spread_bps": 33.76,
+      "bid": 6.853,
+      "ask": 6.875,
+      "mid": 6.864,
+      "spread_points": 22,
+      "spread_bps": 32.05,
       "spread_eligible": false,
       "contract_size": 1000.0,
       "point": 0.001,
@@ -465,11 +448,11 @@
     "XLM": {
       "broker_symbol": "XLMUSD.p",
       "asset_class": "CRYPTO",
-      "bid": 0.17492,
-      "ask": 0.17502,
-      "mid": 0.17497000000000001,
-      "spread_points": 10,
-      "spread_bps": 5.72,
+      "bid": 0.17046,
+      "ask": 0.17069,
+      "mid": 0.170575,
+      "spread_points": 23,
+      "spread_bps": 13.48,
       "spread_eligible": true,
       "contract_size": 100000.0,
       "point": 1e-05,
@@ -479,11 +462,11 @@
     "XMR": {
       "broker_symbol": "XMRUSD.p",
       "asset_class": "CRYPTO",
-      "bid": 592.77,
-      "ask": 592.78,
-      "mid": 592.775,
-      "spread_points": 1,
-      "spread_bps": 0.17,
+      "bid": 588.95,
+      "ask": 589.21,
+      "mid": 589.08,
+      "spread_points": 26,
+      "spread_bps": 4.41,
       "spread_eligible": true,
       "contract_size": 100.0,
       "point": 0.01,
@@ -493,11 +476,11 @@
     "ZEC": {
       "broker_symbol": "ZECUSD.p",
       "asset_class": "CRYPTO",
-      "bid": 1232.37,
-      "ask": 1233.02,
-      "mid": 1232.695,
-      "spread_points": 65,
-      "spread_bps": 5.27,
+      "bid": 1166.04,
+      "ask": 1166.92,
+      "mid": 1166.48,
+      "spread_points": 88,
+      "spread_bps": 7.54,
       "spread_eligible": true,
       "contract_size": 100.0,
       "point": 0.01,
@@ -507,11 +490,11 @@
     "BAT": {
       "broker_symbol": "BATUSD.p",
       "asset_class": "CRYPTO",
-      "bid": 0.1698,
-      "ask": 0.1719,
-      "mid": 0.17085,
+      "bid": 0.162,
+      "ask": 0.1641,
+      "mid": 0.16305,
       "spread_points": 21,
-      "spread_bps": 122.91,
+      "spread_bps": 128.79,
       "spread_eligible": false,
       "contract_size": 1000.0,
       "point": 0.0001,
@@ -535,11 +518,11 @@
     "CHR": {
       "broker_symbol": "CHRUSD.p",
       "asset_class": "CRYPTO",
-      "bid": 0.017,
-      "ask": 0.0191,
-      "mid": 0.01805,
-      "spread_points": 21,
-      "spread_bps": 1163.43,
+      "bid": 0.0169,
+      "ask": 0.0189,
+      "mid": 0.0179,
+      "spread_points": 20,
+      "spread_bps": 1117.32,
       "spread_eligible": false,
       "contract_size": 1000.0,
       "point": 0.0001,
@@ -549,11 +532,11 @@
     "CHZ": {
       "broker_symbol": "CHZUSD.p",
       "asset_class": "CRYPTO",
-      "bid": 0.01319,
-      "ask": 0.0136,
-      "mid": 0.013395,
+      "bid": 0.01291,
+      "ask": 0.01332,
+      "mid": 0.013115,
       "spread_points": 41,
-      "spread_bps": 306.08,
+      "spread_bps": 312.62,
       "spread_eligible": false,
       "contract_size": 10000.0,
       "point": 1e-05,
@@ -563,11 +546,11 @@
     "EGLD": {
       "broker_symbol": "EGLUSD.p",
       "asset_class": "CRYPTO",
-      "bid": 3.41,
-      "ask": 3.61,
-      "mid": 3.51,
+      "bid": 3.26,
+      "ask": 3.46,
+      "mid": 3.36,
       "spread_points": 20,
-      "spread_bps": 569.8,
+      "spread_bps": 595.24,
       "spread_eligible": false,
       "contract_size": 100.0,
       "point": 0.01,
@@ -577,11 +560,11 @@
     "ENJ": {
       "broker_symbol": "ENJUSD.p",
       "asset_class": "CRYPTO",
-      "bid": 0.0254,
-      "ask": 0.0275,
-      "mid": 0.02645,
-      "spread_points": 21,
-      "spread_bps": 793.95,
+      "bid": 0.0246,
+      "ask": 0.0266,
+      "mid": 0.025599999999999998,
+      "spread_points": 20,
+      "spread_bps": 781.25,
       "spread_eligible": false,
       "contract_size": 1000.0,
       "point": 0.0001,
@@ -605,11 +588,11 @@
     "GRT": {
       "broker_symbol": "GRTUSD.p",
       "asset_class": "CRYPTO",
-      "bid": 0.02374,
-      "ask": 0.02396,
-      "mid": 0.02385,
-      "spread_points": 22,
-      "spread_bps": 92.24,
+      "bid": 0.02289,
+      "ask": 0.0231,
+      "mid": 0.022995,
+      "spread_points": 21,
+      "spread_bps": 91.32,
       "spread_eligible": false,
       "contract_size": 100.0,
       "point": 1e-05,
@@ -619,11 +602,11 @@
     "INCH": {
       "broker_symbol": "INCUSD.p",
       "asset_class": "CRYPTO",
-      "bid": 0.0901,
-      "ask": 0.0929,
-      "mid": 0.0915,
+      "bid": 0.0886,
+      "ask": 0.0914,
+      "mid": 0.09,
       "spread_points": 28,
-      "spread_bps": 306.01,
+      "spread_bps": 311.11,
       "spread_eligible": false,
       "contract_size": 1000.0,
       "point": 0.0001,
@@ -633,11 +616,11 @@
     "KAVA": {
       "broker_symbol": "KAVUSD.p",
       "asset_class": "CRYPTO",
-      "bid": 0.0689,
-      "ask": 0.0709,
-      "mid": 0.0699,
+      "bid": 0.0691,
+      "ask": 0.0711,
+      "mid": 0.0701,
       "spread_points": 20,
-      "spread_bps": 286.12,
+      "spread_bps": 285.31,
       "spread_eligible": false,
       "contract_size": 1000.0,
       "point": 0.0001,
@@ -647,11 +630,11 @@
     "KNC": {
       "broker_symbol": "KNCUSD.p",
       "asset_class": "CRYPTO",
-      "bid": 0.116,
-      "ask": 0.137,
-      "mid": 0.1265,
-      "spread_points": 21,
-      "spread_bps": 1660.08,
+      "bid": 0.114,
+      "ask": 0.134,
+      "mid": 0.124,
+      "spread_points": 20,
+      "spread_bps": 1612.9,
       "spread_eligible": false,
       "contract_size": 1000.0,
       "point": 0.001,
@@ -661,11 +644,11 @@
     "KSM": {
       "broker_symbol": "KSMUSD.p",
       "asset_class": "CRYPTO",
-      "bid": 3.88,
-      "ask": 4.08,
-      "mid": 3.98,
+      "bid": 3.85,
+      "ask": 4.05,
+      "mid": 3.95,
       "spread_points": 20,
-      "spread_bps": 502.51,
+      "spread_bps": 506.33,
       "spread_eligible": false,
       "contract_size": 100.0,
       "point": 0.01,
@@ -689,11 +672,11 @@
     "MANA": {
       "broker_symbol": "MANUSD.p",
       "asset_class": "CRYPTO",
-      "bid": 0.0811,
-      "ask": 0.0832,
-      "mid": 0.08215,
-      "spread_points": 21,
-      "spread_bps": 255.63,
+      "bid": 0.0793,
+      "ask": 0.0813,
+      "mid": 0.0803,
+      "spread_points": 20,
+      "spread_bps": 249.07,
       "spread_eligible": false,
       "contract_size": 1000.0,
       "point": 0.0001,
@@ -703,11 +686,11 @@
     "ONT": {
       "broker_symbol": "ONTUSD.p",
       "asset_class": "CRYPTO",
-      "bid": 0.0508,
-      "ask": 0.0529,
-      "mid": 0.05185,
+      "bid": 0.0498,
+      "ask": 0.0519,
+      "mid": 0.05085,
       "spread_points": 21,
-      "spread_bps": 405.01,
+      "spread_bps": 412.98,
       "spread_eligible": false,
       "contract_size": 1000.0,
       "point": 0.0001,
@@ -717,11 +700,11 @@
     "QTUM": {
       "broker_symbol": "QTMUSD.p",
       "asset_class": "CRYPTO",
-      "bid": 0.856,
-      "ask": 0.878,
-      "mid": 0.867,
-      "spread_points": 22,
-      "spread_bps": 253.75,
+      "bid": 0.836,
+      "ask": 0.857,
+      "mid": 0.8465,
+      "spread_points": 21,
+      "spread_bps": 248.08,
       "spread_eligible": false,
       "contract_size": 1000.0,
       "point": 0.001,
@@ -731,11 +714,11 @@
     "SKL": {
       "broker_symbol": "SKLUSD.p",
       "asset_class": "CRYPTO",
-      "bid": 0.00398,
-      "ask": 0.00418,
-      "mid": 0.00408,
+      "bid": 0.00392,
+      "ask": 0.00412,
+      "mid": 0.00402,
       "spread_points": 20,
-      "spread_bps": 490.2,
+      "spread_bps": 497.51,
       "spread_eligible": false,
       "contract_size": 100000.0,
       "point": 1e-05,
@@ -773,11 +756,11 @@
     "THETA": {
       "broker_symbol": "THTUSD.p",
       "asset_class": "CRYPTO",
-      "bid": 0.1936,
-      "ask": 0.1962,
-      "mid": 0.19490000000000002,
-      "spread_points": 26,
-      "spread_bps": 133.4,
+      "bid": 0.191,
+      "ask": 0.1935,
+      "mid": 0.19225,
+      "spread_points": 25,
+      "spread_bps": 130.04,
       "spread_eligible": false,
       "contract_size": 1000.0,
       "point": 0.0001,
@@ -787,11 +770,11 @@
     "VET": {
       "broker_symbol": "VETUSD.p",
       "asset_class": "CRYPTO",
-      "bid": 0.00717,
-      "ask": 0.00719,
-      "mid": 0.007180000000000001,
-      "spread_points": 2,
-      "spread_bps": 27.86,
+      "bid": 0.00699,
+      "ask": 0.00703,
+      "mid": 0.00701,
+      "spread_points": 4,
+      "spread_bps": 57.06,
       "spread_eligible": false,
       "contract_size": 10000.0,
       "point": 1e-05,
@@ -801,11 +784,11 @@
     "XTZ": {
       "broker_symbol": "XTZUSD.p",
       "asset_class": "CRYPTO",
-      "bid": 0.303,
-      "ask": 0.3056,
-      "mid": 0.3043,
-      "spread_points": 26,
-      "spread_bps": 85.44,
+      "bid": 0.2964,
+      "ask": 0.3011,
+      "mid": 0.29874999999999996,
+      "spread_points": 47,
+      "spread_bps": 157.32,
       "spread_eligible": false,
       "contract_size": 1000.0,
       "point": 0.0001,
@@ -815,11 +798,11 @@
     "YFI": {
       "broker_symbol": "YFIUSD.p",
       "asset_class": "CRYPTO",
-      "bid": 2193.0,
-      "ask": 2196.0,
-      "mid": 2194.5,
-      "spread_points": 300,
-      "spread_bps": 13.67,
+      "bid": 2162.9,
+      "ask": 2166.1,
+      "mid": 2164.5,
+      "spread_points": 320,
+      "spread_bps": 14.78,
       "spread_eligible": true,
       "contract_size": 1.0,
       "point": 0.01,
@@ -829,11 +812,11 @@
     "ZIL": {
       "broker_symbol": "ZILUSD.p",
       "asset_class": "CRYPTO",
-      "bid": 0.00208,
-      "ask": 0.00209,
-      "mid": 0.002085,
-      "spread_points": 1,
-      "spread_bps": 47.96,
+      "bid": 0.00192,
+      "ask": 0.00212,
+      "mid": 0.00202,
+      "spread_points": 20,
+      "spread_bps": 990.1,
       "spread_eligible": false,
       "contract_size": 10000.0,
       "point": 1e-05,
@@ -843,11 +826,11 @@
     "ZRX": {
       "broker_symbol": "ZRXUSD.p",
       "asset_class": "CRYPTO",
-      "bid": 0.1072,
-      "ask": 0.1075,
-      "mid": 0.10735,
-      "spread_points": 3,
-      "spread_bps": 27.95,
+      "bid": 0.1032,
+      "ask": 0.1055,
+      "mid": 0.10435,
+      "spread_points": 23,
+      "spread_bps": 220.41,
       "spread_eligible": false,
       "contract_size": 1000.0,
       "point": 0.0001,
@@ -862,11 +845,11 @@
       "mid": 7631.645,
       "spread_points": 87,
       "spread_bps": 1.14,
-      "spread_eligible": true,
+      "spread_eligible": false,
       "contract_size": 10.0,
       "point": 0.01,
       "tick_size": 0.01,
-      "status": "PASS"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "NAS100": {
       "broker_symbol": "NAS100.p",
@@ -876,11 +859,11 @@
       "mid": 28992.42,
       "spread_points": 142,
       "spread_bps": 0.49,
-      "spread_eligible": true,
+      "spread_eligible": false,
       "contract_size": 10.0,
       "point": 0.01,
       "tick_size": 0.01,
-      "status": "PASS"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "DJ30": {
       "broker_symbol": "DJ30.p",
@@ -890,11 +873,11 @@
       "mid": 52247.08,
       "spread_points": 204,
       "spread_bps": 0.39,
-      "spread_eligible": true,
+      "spread_eligible": false,
       "contract_size": 10.0,
       "point": 0.01,
       "tick_size": 0.01,
-      "status": "PASS"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "GER40": {
       "broker_symbol": "GER40.p",
@@ -904,11 +887,11 @@
       "mid": 25128.0,
       "spread_points": 80,
       "spread_bps": 0.32,
-      "spread_eligible": true,
+      "spread_eligible": false,
       "contract_size": 10.0,
       "point": 0.01,
       "tick_size": 0.01,
-      "status": "PASS"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "UK100": {
       "broker_symbol": "UK100.p",
@@ -918,11 +901,11 @@
       "mid": 10695.84,
       "spread_points": 200,
       "spread_bps": 1.87,
-      "spread_eligible": true,
+      "spread_eligible": false,
       "contract_size": 10.0,
       "point": 0.01,
       "tick_size": 0.01,
-      "status": "PASS"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "FR40": {
       "broker_symbol": "FR40.p",
@@ -936,7 +919,7 @@
       "contract_size": 10.0,
       "point": 0.01,
       "tick_size": 0.01,
-      "status": "SPREAD_DISQUALIFIED"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "JP225": {
       "broker_symbol": "JP225.p",
@@ -946,11 +929,11 @@
       "mid": 62533.11,
       "spread_points": 810,
       "spread_bps": 1.3,
-      "spread_eligible": true,
+      "spread_eligible": false,
       "contract_size": 10.0,
       "point": 0.01,
       "tick_size": 0.01,
-      "status": "PASS"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "AU200": {
       "broker_symbol": "AU200.p",
@@ -960,11 +943,11 @@
       "mid": 8742.2,
       "spread_points": 110,
       "spread_bps": 1.26,
-      "spread_eligible": true,
+      "spread_eligible": false,
       "contract_size": 10.0,
       "point": 0.01,
       "tick_size": 0.01,
-      "status": "PASS"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "STOXX50": {
       "broker_symbol": "STOXX50.p",
@@ -978,7 +961,7 @@
       "contract_size": 10.0,
       "point": 0.01,
       "tick_size": 0.01,
-      "status": "SPREAD_DISQUALIFIED"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "US2000": {
       "broker_symbol": "US2000.p",
@@ -988,11 +971,11 @@
       "mid": 2776.8500000000004,
       "spread_points": 32,
       "spread_bps": 1.15,
-      "spread_eligible": true,
+      "spread_eligible": false,
       "contract_size": 10.0,
       "point": 0.01,
       "tick_size": 0.01,
-      "status": "PASS"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "HK50": {
       "broker_symbol": "HK50.p",
@@ -1006,7 +989,7 @@
       "contract_size": 10.0,
       "point": 0.01,
       "tick_size": 0.01,
-      "status": "SPREAD_DISQUALIFIED"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "CHINA50": {
       "broker_symbol": "CHINA50.p",
@@ -1020,7 +1003,7 @@
       "contract_size": 10.0,
       "point": 0.01,
       "tick_size": 0.01,
-      "status": "SPREAD_DISQUALIFIED"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "CHINAH": {
       "broker_symbol": "CHINAH.p",
@@ -1048,7 +1031,7 @@
       "contract_size": 10.0,
       "point": 0.01,
       "tick_size": 0.01,
-      "status": "SPREAD_DISQUALIFIED"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "SWISS20": {
       "broker_symbol": "SWISS20.p",
@@ -1062,7 +1045,7 @@
       "contract_size": 10.0,
       "point": 0.01,
       "tick_size": 0.01,
-      "status": "SPREAD_DISQUALIFIED"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "GER30": {
       "broker_symbol": "GER30.p",
@@ -1086,11 +1069,11 @@
       "mid": 3995.9049999999997,
       "spread_points": 19,
       "spread_bps": 0.48,
-      "spread_eligible": true,
+      "spread_eligible": false,
       "contract_size": 100.0,
       "point": 0.01,
       "tick_size": 0.01,
-      "status": "PASS"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "SILVER": {
       "broker_symbol": "XAGUSD.pi",
@@ -1104,7 +1087,7 @@
       "contract_size": 5000.0,
       "point": 0.001,
       "tick_size": 0.001,
-      "status": "SPREAD_DISQUALIFIED"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "USWTI": {
       "broker_symbol": "USWTI.p",
@@ -1114,11 +1097,11 @@
       "mid": 104.324,
       "spread_points": 30,
       "spread_bps": 2.88,
-      "spread_eligible": true,
+      "spread_eligible": false,
       "contract_size": 100.0,
       "point": 0.001,
       "tick_size": 0.001,
-      "status": "PASS"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "UKBRENT": {
       "broker_symbol": "UKBRENT.p",
@@ -1128,11 +1111,11 @@
       "mid": 117.74549999999999,
       "spread_points": 41,
       "spread_bps": 3.48,
-      "spread_eligible": true,
+      "spread_eligible": false,
       "contract_size": 100.0,
       "point": 0.001,
       "tick_size": 0.001,
-      "status": "PASS"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "COPPER": {
       "broker_symbol": "COPPER.p",
@@ -1160,7 +1143,7 @@
       "contract_size": 10000.0,
       "point": 0.001,
       "tick_size": 0.001,
-      "status": "SPREAD_DISQUALIFIED"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "ALUMINIUM": {
       "broker_symbol": "ALUMINIUM.p",
@@ -1230,7 +1213,7 @@
       "contract_size": 100.0,
       "point": 0.01,
       "tick_size": 0.01,
-      "status": "SPREAD_DISQUALIFIED"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "PALLADIUM": {
       "broker_symbol": "XPDUSD.pi",
@@ -1244,7 +1227,7 @@
       "contract_size": 100.0,
       "point": 0.001,
       "tick_size": 0.001,
-      "status": "SPREAD_DISQUALIFIED"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "GAUUSD": {
       "broker_symbol": "GAUUSD.pi",
@@ -1254,11 +1237,11 @@
       "mid": 128.44225,
       "spread_points": 139,
       "spread_bps": 1.08,
-      "spread_eligible": true,
+      "spread_eligible": false,
       "contract_size": 100.0,
       "point": 0.0001,
       "tick_size": 0.0001,
-      "status": "PASS"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "GAUCNH": {
       "broker_symbol": "GAUCNH.pi",
@@ -1268,11 +1251,11 @@
       "mid": 856.636,
       "spread_points": 406,
       "spread_bps": 4.74,
-      "spread_eligible": true,
+      "spread_eligible": false,
       "contract_size": 100.0,
       "point": 0.001,
       "tick_size": 0.001,
-      "status": "PASS"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "EURUSD": {
       "broker_symbol": "EURUSD.pi",
@@ -1282,11 +1265,11 @@
       "mid": 1.120225,
       "spread_points": 35,
       "spread_bps": 3.12,
-      "spread_eligible": true,
+      "spread_eligible": false,
       "contract_size": 100000.0,
       "point": 1e-05,
       "tick_size": 1e-05,
-      "status": "PASS"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "GBPUSD": {
       "broker_symbol": "GBPUSD.pi",
@@ -1296,11 +1279,11 @@
       "mid": 1.33743,
       "spread_points": 40,
       "spread_bps": 2.99,
-      "spread_eligible": true,
+      "spread_eligible": false,
       "contract_size": 100000.0,
       "point": 1e-05,
       "tick_size": 1e-05,
-      "status": "PASS"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "USDJPY": {
       "broker_symbol": "USDJPY.pi",
@@ -1314,7 +1297,7 @@
       "contract_size": 100000.0,
       "point": 0.001,
       "tick_size": 0.001,
-      "status": "SPREAD_DISQUALIFIED"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "AUDUSD": {
       "broker_symbol": "AUDUSD.pi",
@@ -1324,11 +1307,11 @@
       "mid": 0.70356,
       "spread_points": 16,
       "spread_bps": 2.27,
-      "spread_eligible": true,
+      "spread_eligible": false,
       "contract_size": 100000.0,
       "point": 1e-05,
       "tick_size": 1e-05,
-      "status": "PASS"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "USDCAD": {
       "broker_symbol": "USDCAD.pi",
@@ -1342,7 +1325,7 @@
       "contract_size": 100000.0,
       "point": 1e-05,
       "tick_size": 1e-05,
-      "status": "SPREAD_DISQUALIFIED"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "USDCHF": {
       "broker_symbol": "USDCHF.pi",
@@ -1356,7 +1339,7 @@
       "contract_size": 100000.0,
       "point": 1e-05,
       "tick_size": 1e-05,
-      "status": "SPREAD_DISQUALIFIED"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "NZDUSD": {
       "broker_symbol": "NZDUSD.pi",
@@ -1370,7 +1353,7 @@
       "contract_size": 100000.0,
       "point": 1e-05,
       "tick_size": 1e-05,
-      "status": "SPREAD_DISQUALIFIED"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "EURGBP": {
       "broker_symbol": "EURGBP.pi",
@@ -1384,7 +1367,7 @@
       "contract_size": 100000.0,
       "point": 1e-05,
       "tick_size": 1e-05,
-      "status": "SPREAD_DISQUALIFIED"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "EURJPY": {
       "broker_symbol": "EURJPY.pi",
@@ -1398,7 +1381,7 @@
       "contract_size": 100000.0,
       "point": 0.001,
       "tick_size": 0.001,
-      "status": "SPREAD_DISQUALIFIED"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "GBPJPY": {
       "broker_symbol": "GBPJPY.pi",
@@ -1412,7 +1395,7 @@
       "contract_size": 100000.0,
       "point": 0.001,
       "tick_size": 0.001,
-      "status": "SPREAD_DISQUALIFIED"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "AUDJPY": {
       "broker_symbol": "AUDJPY.pi",
@@ -1426,7 +1409,7 @@
       "contract_size": 100000.0,
       "point": 0.001,
       "tick_size": 0.001,
-      "status": "SPREAD_DISQUALIFIED"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "CADJPY": {
       "broker_symbol": "CADJPY.pi",
@@ -1440,7 +1423,7 @@
       "contract_size": 100000.0,
       "point": 0.001,
       "tick_size": 0.001,
-      "status": "SPREAD_DISQUALIFIED"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "CHFJPY": {
       "broker_symbol": "CHFJPY.pi",
@@ -1450,11 +1433,11 @@
       "mid": 190.077,
       "spread_points": 74,
       "spread_bps": 3.89,
-      "spread_eligible": true,
+      "spread_eligible": false,
       "contract_size": 100000.0,
       "point": 0.001,
       "tick_size": 0.001,
-      "status": "PASS"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "EURAUD": {
       "broker_symbol": "EURAUD.pi",
@@ -1468,7 +1451,7 @@
       "contract_size": 100000.0,
       "point": 1e-05,
       "tick_size": 1e-05,
-      "status": "SPREAD_DISQUALIFIED"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "EURCAD": {
       "broker_symbol": "EURCAD.pi",
@@ -1482,7 +1465,7 @@
       "contract_size": 100000.0,
       "point": 1e-05,
       "tick_size": 1e-05,
-      "status": "SPREAD_DISQUALIFIED"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "EURCHF": {
       "broker_symbol": "EURCHF.pi",
@@ -1496,7 +1479,7 @@
       "contract_size": 100000.0,
       "point": 1e-05,
       "tick_size": 1e-05,
-      "status": "SPREAD_DISQUALIFIED"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "EURNZD": {
       "broker_symbol": "EURNZD.pi",
@@ -1510,7 +1493,7 @@
       "contract_size": 100000.0,
       "point": 1e-05,
       "tick_size": 1e-05,
-      "status": "SPREAD_DISQUALIFIED"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "GBPAUD": {
       "broker_symbol": "GBPAUD.pi",
@@ -1524,7 +1507,7 @@
       "contract_size": 100000.0,
       "point": 1e-05,
       "tick_size": 1e-05,
-      "status": "SPREAD_DISQUALIFIED"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "GBPCAD": {
       "broker_symbol": "GBPCAD.pi",
@@ -1538,7 +1521,7 @@
       "contract_size": 100000.0,
       "point": 1e-05,
       "tick_size": 1e-05,
-      "status": "SPREAD_DISQUALIFIED"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "GBPCHF": {
       "broker_symbol": "GBPCHF.pi",
@@ -1552,7 +1535,7 @@
       "contract_size": 100000.0,
       "point": 1e-05,
       "tick_size": 1e-05,
-      "status": "SPREAD_DISQUALIFIED"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "GBPNZD": {
       "broker_symbol": "GBPNZD.pi",
@@ -1566,7 +1549,7 @@
       "contract_size": 100000.0,
       "point": 1e-05,
       "tick_size": 1e-05,
-      "status": "SPREAD_DISQUALIFIED"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "AUDCAD": {
       "broker_symbol": "AUDCAD.pi",
@@ -1580,7 +1563,7 @@
       "contract_size": 100000.0,
       "point": 1e-05,
       "tick_size": 1e-05,
-      "status": "SPREAD_DISQUALIFIED"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "AUDCHF": {
       "broker_symbol": "AUDCHF.pi",
@@ -1594,7 +1577,7 @@
       "contract_size": 100000.0,
       "point": 1e-05,
       "tick_size": 1e-05,
-      "status": "SPREAD_DISQUALIFIED"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "AUDNZD": {
       "broker_symbol": "AUDNZD.pi",
@@ -1608,7 +1591,7 @@
       "contract_size": 100000.0,
       "point": 1e-05,
       "tick_size": 1e-05,
-      "status": "SPREAD_DISQUALIFIED"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "CADCHF": {
       "broker_symbol": "CADCHF.pi",
@@ -1622,7 +1605,7 @@
       "contract_size": 100000.0,
       "point": 1e-05,
       "tick_size": 1e-05,
-      "status": "SPREAD_DISQUALIFIED"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "NZDCAD": {
       "broker_symbol": "NZDCAD.pi",
@@ -1636,7 +1619,7 @@
       "contract_size": 100000.0,
       "point": 1e-05,
       "tick_size": 1e-05,
-      "status": "SPREAD_DISQUALIFIED"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "NZDCHF": {
       "broker_symbol": "NZDCHF.pi",
@@ -1650,7 +1633,7 @@
       "contract_size": 100000.0,
       "point": 1e-05,
       "tick_size": 1e-05,
-      "status": "SPREAD_DISQUALIFIED"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "NZDJPY": {
       "broker_symbol": "NZDJPY.pi",
@@ -1664,7 +1647,7 @@
       "contract_size": 100000.0,
       "point": 0.001,
       "tick_size": 0.001,
-      "status": "SPREAD_DISQUALIFIED"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "USDCNH": {
       "broker_symbol": "USDCNH.pi",
@@ -1674,11 +1657,11 @@
       "mid": 6.669335,
       "spread_points": 75,
       "spread_bps": 1.12,
-      "spread_eligible": true,
+      "spread_eligible": false,
       "contract_size": 100000.0,
       "point": 1e-05,
       "tick_size": 1e-05,
-      "status": "PASS"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "USDHKD": {
       "broker_symbol": "USDHKD.pi",
@@ -1688,11 +1671,11 @@
       "mid": 7.84235,
       "spread_points": 128,
       "spread_bps": 1.63,
-      "spread_eligible": true,
+      "spread_eligible": false,
       "contract_size": 100000.0,
       "point": 1e-05,
       "tick_size": 1e-05,
-      "status": "PASS"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "USDSGD": {
       "broker_symbol": "USDSGD.pi",
@@ -1706,7 +1689,7 @@
       "contract_size": 100000.0,
       "point": 1e-05,
       "tick_size": 1e-05,
-      "status": "SPREAD_DISQUALIFIED"
+      "status": "MARKET_CLOSED_OR_STALE"
     },
     "AUDSGD": {
       "broker_symbol": "AUDSGD.pi",
@@ -1720,7 +1703,7 @@
       "contract_size": 100000.0,
       "point": 1e-05,
       "tick_size": 1e-05,
-      "status": "SPREAD_DISQUALIFIED"
+      "status": "MARKET_CLOSED_OR_STALE"
     }
   }
 }
