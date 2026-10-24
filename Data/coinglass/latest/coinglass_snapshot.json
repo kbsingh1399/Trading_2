@@ -1,6 +1,6 @@
 {
-  "harvest_timestamp_utc": "2026-10-24T15:08:03.604963+00:00",
-  "harvest_epoch": 1792854483.65017,
+  "harvest_timestamp_utc": "2026-10-24T15:12:53.493937+00:00",
+  "harvest_epoch": 1792854773.5357165,
   "domains": {
     "hyperliquid_whales": {
       "name": "Hyperliquid Whale Tracker",
@@ -435,29 +435,234 @@
     "long_short_ratio": {
       "name": "Global Long/Short Ratio",
       "url": "https://www.coinglass.com/LongShortRatio",
-      "error": "no close frame received or sent"
+      "table_count": 8,
+      "tables": [
+        {
+          "headers": [
+            "Type",
+            "Long/Short",
+            "Sentiment"
+          ],
+          "rowCount": 0,
+          "rows": []
+        },
+        {
+          "headers": [],
+          "rowCount": 0,
+          "rows": []
+        },
+        {
+          "headers": [
+            "Type",
+            "Long/Short",
+            "Sentiment"
+          ],
+          "rowCount": 0,
+          "rows": []
+        },
+        {
+          "headers": [],
+          "rowCount": 0,
+          "rows": []
+        },
+        {
+          "headers": [
+            "Type",
+            "Long/Short",
+            "Sentiment"
+          ],
+          "rowCount": 0,
+          "rows": []
+        },
+        {
+          "headers": [],
+          "rowCount": 0,
+          "rows": []
+        },
+        {
+          "headers": [
+            "Ranking",
+            "Assets",
+            "Price",
+            "Price (24h%)",
+            "Long/Short (5m)",
+            "Binance Whale bias",
+            "Binance Retail",
+            "OKX Whale bias",
+            "OKX Retail",
+            "Bybit Whale bias"
+          ],
+          "rowCount": 0,
+          "rows": []
+        },
+        {
+          "headers": [],
+          "rowCount": 1,
+          "rows": [
+            [
+              "No data"
+            ]
+          ]
+        }
+      ],
+      "cards": [
+        "Market",
+        "Stocks",
+        "Exchanges",
+        "Open Interest",
+        "Funding Rate",
+        "Liquidation",
+        "Data",
+        "Supercharts",
+        "More",
+        "Cryptocurrency Longs vs Shorts Taker Buy/Sell Volume 1 hour 4 hour 12 hour 24 hour % 4H Long Volume $-- % 4H Short Volume $--",
+        "% 4H Long Volume $--",
+        "% 4H Short Volume $--",
+        "What Is Your Current BTC Sentiment? Very Bullish % Bullish % Neutral % Bearish % Very Bearish %",
+        "Binance Bitcoin Long/Short Ratio Type Long/Short Sentiment",
+        "Binance Bitcoin Long/Short Ratio Type Long/Short Sentiment",
+        "OKX Bitcoin Long/Short Ratio Type Long/Short Sentiment",
+        "OKX Bitcoin Long/Short Ratio Type Long/Short Sentiment",
+        "Bybit Bitcoin Long/Short Ratio Type Long/Short Sentiment",
+        "Bybit Bitcoin Long/Short Ratio Type Long/Short Sentiment",
+        "BTC Long/Short Ratio Chart Taker Buy/Sell Volume 30 minute",
+        "BTC Long/Short (Accounts) 4 hour",
+        "Exchanges BTC Long/Short Ratio Taker Buy/Sell Volume 4 hour 1.00% NaN% Long Short",
+        "Large Trades (Real-Time) All Pair Price Value Time",
+        "2. What Is the Taker Buy / Sell Long\u2013Short Ratio?",
+        "3. What Is the Exchange Account Long / Short Ratio?",
+        "4. What Is the Exchange Top Trader Account Long / Short Ratio?",
+        "5. What Is the Exchange Top Trader Position Long / Short Ratio?",
+        "6. How Should Crypto Derivatives Long / Short Ratios Be Interpreted and Used?",
+        "7. What Long / Short Ratio API Endpoints Does CoinGlass Provide?"
+      ]
     },
     "funding_rates": {
       "name": "Perpetual Funding Rates",
       "url": "https://www.coinglass.com/FundingRate",
-      "error": "no close frame received or sent"
+      "table_count": 2,
+      "tables": [
+        {
+          "headers": [
+            "",
+            "Symbol",
+            ""
+          ],
+          "rowCount": 0,
+          "rows": []
+        },
+        {
+          "headers": [],
+          "rowCount": 0,
+          "rows": []
+        }
+      ],
+      "cards": [
+        "Market",
+        "Stocks",
+        "Exchanges",
+        "Open Interest",
+        "Funding Rate",
+        "Liquidation",
+        "Data",
+        "Supercharts",
+        "More",
+        "- BTC OI-Weighted Funding Rate",
+        "- ETH OI-Weighted Funding Rate",
+        "- BTC Volume-Weighted Funding Rate",
+        "- ETH Volume-Weighted Funding Rate",
+        "Highest Funding Rate",
+        "Lowest Funding Rate"
+      ]
     },
     "exchange_balance": {
       "name": "Bitcoin Exchange Balance",
       "url": "https://www.coinglass.com/Balance",
-      "error": "no close frame received or sent"
+      "table_count": 2,
+      "tables": [
+        {
+          "headers": [
+            "Ranking",
+            "Exchanges",
+            "Balance",
+            "24h Change",
+            "7d Change",
+            "30d Change"
+          ],
+          "rowCount": 0,
+          "rows": []
+        },
+        {
+          "headers": [],
+          "rowCount": 1,
+          "rows": [
+            [
+              "No data"
+            ]
+          ]
+        }
+      ],
+      "cards": [
+        "Market",
+        "Stocks",
+        "Exchanges",
+        "Open Interest",
+        "Funding Rate",
+        "Liquidation",
+        "Data",
+        "Supercharts",
+        "More"
+      ]
     },
     "utxo_age_bands": {
       "name": "Bitcoin Realized Price UTXO Age Bands",
       "url": "https://www.coinglass.com/pro/i/utxo",
-      "error": "no close frame received or sent"
+      "table_count": 0,
+      "tables": [],
+      "cards": [
+        "Market",
+        "Stocks",
+        "Exchanges",
+        "Open Interest",
+        "Funding Rate",
+        "Liquidation",
+        "Data",
+        "Supercharts",
+        "More",
+        "All Categories",
+        "Bitcoin",
+        "Bitcoin ASOL (Average Spent Output Lifespan)",
+        "Bitcoin MSOL (Median Spent Output Lifespan)",
+        "Bitcoin SOPR (Spent Output Profit Ratio)",
+        "Bitcoin CDD (Coin Days Destroyed)",
+        "Bitcoin HODL Waves (Supply)",
+        "Bitcoin VDD Multiple",
+        "Bitcoin HODL Wave (1+ Year)",
+        "Bitcoin HODL Wave (5+ Year)",
+        "Bitcoin HODL Wave (10+ Year)",
+        "Bitcoin HODL Waves (Realized Cap Weighted)",
+        "Bitcoin Supply in Loss (Total)",
+        "Bitcoin Supply in Profit (Total)",
+        "Bitcoin Realized Price",
+        "Bitcoin NVT Ratio (Network Value to Transactions)",
+        "Bitcoin UTXOs in Loss (Count)",
+        "Bitcoin UTXOs in Profit (Count)",
+        "Bitcoin UTXOs in Profit (Percent)",
+        "Bitcoin Realized Loss",
+        "Bitcoin Realized Profit",
+        "Bitcoin Block Reward per Block",
+        "BTC Daily Block Rewards",
+        "Bitcoin Blockchain Height",
+        "Bitcoin Blockchain Weight",
+        "Bitcoin Average Block Time"
+      ]
     }
   },
-  "harvest_duration_seconds": 37.35,
+  "harvest_duration_seconds": 48.05,
   "_temporal_meta": {
     "stream": "coinglass",
-    "recorded_at_utc": "2026-10-24T15:08:03.604963+00:00",
-    "recorded_at_epoch": 1792854483.65017,
+    "recorded_at_utc": "2026-10-24T15:12:53.493937+00:00",
+    "recorded_at_epoch": 1792854773.5357165,
     "gap_detected": false,
     "gap_duration_minutes": 0.0,
     "last_active_utc": null,
