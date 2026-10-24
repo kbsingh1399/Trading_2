@@ -1,7 +1,7 @@
 {
   "stream": "account_equity",
-  "curr_timestamp_utc": "2026-10-24T03:44:07Z",
-  "prev_timestamp_utc": "2026-10-24T03:39:05Z",
+  "curr_timestamp_utc": "2026-10-24T03:48:51Z",
+  "prev_timestamp_utc": "2026-10-24T03:44:07Z",
   "time_gap_minutes": 0.0,
   "changes": {
     "equity_change_usd": 0.0,
