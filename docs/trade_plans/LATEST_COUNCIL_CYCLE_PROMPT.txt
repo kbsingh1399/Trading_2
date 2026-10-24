@@ -1,12 +1,12 @@
-# 🏛️ ARENA.AI & Z.AI (GLM-5.3-FLASH) CO-EQUAL QUANTITATIVE COUNCIL & CANDIDATE DISCOVERY PROMPT
-## Unified Exhaustive 360° 4-Persona Quantitative Audit & Empirical Candidate Discovery Specification
+# 🏛️ AUTONOMOUS MULTI-AGENT QUANTITATIVE COUNCIL & DEEP REASONING DISCOVERY SPECIFICATION
+## Unified Exhaustive 360° Multi-Agent Squad Audit & Empirical Candidate Discovery Specification
 
-> **Document Status**: CANONICAL PRODUCTION DUAL-COUNCIL PROMPT ARCHITECTURE (Single Source of Truth)  
-> **Location**: `Data/Manditory/Arena_GLM_Standard_Prompt.md` (Mirrored to `docs/prompts/Arena_GLM_Standard_Prompt.md`)  
-> **Council Participants**:  
->   1. **Antigravity Executive Desk**: Live MT5 Decision Desk powered by 4 Fable 5 Subagents.  
->   2. **Arena.ai Frontier Council**: Co-Equal Quantitative Strategist powered by **GPT Astra**.  
->   3. **Z.ai Sovereign Council**: Co-Equal Mathematical Quant & Solvency Arbiter powered by **GLM-5.3-Flash**.  
+> **Document Status**: CANONICAL PRODUCTION MULTI-AGENT COUNCIL PROMPT ARCHITECTURE (Single Source of Truth)  
+> **Location**: `Data/Manditory/Arena_GLM_Standard_Prompt.md` (Mirrored to `docs/prompts/Arena_GLM_Standard_Prompt.md` & `docs/specs/Arena_GLM_Standard_Prompt.md`)  
+> **Council Architecture**:  
+>   1. **Antigravity Executive Desk**: Live MT5 Autonomous Execution Desk with 4 Coordinated Specialized Subagents.  
+>   2. **Arena.ai Frontier Council**: Co-Equal Autonomous Quantitative Strategist & Deep Reasoning Engine.  
+>   3. **Z.ai Sovereign Council**: Co-Equal Mathematical Quant & Solvency Arbiter.  
 > **Target Account**: Blueberry Markets MT5 Account #5064568  
 > **Active Goal**: Pass Phase 1 (Target: 5,500.00 USD) while defending the 4,600.00 USD Hard Floor, 4,650.00 USD Operating Buffer, and 4,795.00 USD Solvency Kernel  
 > **Canonical Repositories**:  
@@ -22,14 +22,30 @@
 >   - Quant Backtesting Engine: `https://github.com/kbsingh1399/Engine.git`  
 > **Governing Quant SOP**: [`Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md)  
 > **Mandatory Kaizen & Pitfall Autopsy**: [`Data/Manditory/TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md), [`Data/Manditory/CONTINUOUS_KAIZEN_SELF_IMPROVEMENT_PROTOCOL.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/CONTINUOUS_KAIZEN_SELF_IMPROVEMENT_PROTOCOL.md), and [`Data/Manditory/32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md).  
-> **Operator Mandate**: "Arena.ai and Z.ai should both find potential candidates with all personas... not just a red team. Save tokens. Add value. Antigravity takes autonomous calls. Prompts to subagents and council must be quantitative 360-degree type, exhaustive, pulling all subagent prompt types all in one prompt. Use maximum skills/agents for this response and answer the Section 8 Continuous Kaizen Inquest."  
+> **Operator Mandate**: "In arena.ai prompt... don't mention model name... Rather mention capabilities like deep reasoning etc is required... multi agent squad required. Arena.ai and Z.ai should both find potential candidates with all personas... not just a red team. Save tokens. Add value. Antigravity takes autonomous calls. Prompts to subagents and council must be quantitative 360-degree type, exhaustive, pulling all subagent prompt types all in one prompt. Use maximum skills/agents for this response and answer the Section 8 Continuous Kaizen Inquest. Deep reasoning and autonomous multi-agent squad orchestration are strictly required."  
 > **Token Preservation Directive**: Always query the AST Knowledge Graph via `/graphify` or `python -m graphify query "<concept/symbol>"` before reading large code files.
 
 ---
 
-## 🧠 MANDATORY MULTI-SKILL & SPECIALIZED AGENT MOBILIZATION DIRECTIVE
+## 🧠 MANDATORY DEEP REASONING CAPABILITY & MULTI-AGENT SQUAD MOBILIZATION DIRECTIVE
 
-To achieve peak quantitative precision and avoid naive or superficial responses, both Arena.ai (GPT Astra) and Z.ai (GLM-5.3-Flash) are commanded to **mobilize and apply the maximum relevant quantitative methodologies, skills, and agent roles** across all touched domains:
+> 🛑 **MANDATORY COGNITIVE & ARCHITECTURAL REQUIREMENTS**:
+> 1. **Deep Reasoning & Step-by-Step Chain-of-Thought Verification**:
+>    - You are strictly REQUIRED to engage your deepest analytical reasoning capabilities. Surface intermediate trade-offs, state mathematical assumptions explicitly, and compute all broker margin, stress, and liquidity metrics with 0.01 USD sub-penny precision.
+>    - Superficial, heuristic-only, or hand-waving responses are strictly rejected. Every deduction must be causal, empirical, and falsifiable.
+>
+> 2. **Multi-Agent Squad Orchestration**:
+>    - You are FORBIDDEN from generating an unstructured, single-voice response. You MUST operate as a unified **Autonomous Multi-Agent Quantitative Squad** orchestrating 4 distinct specialized expert personas:
+>      * **Role A: Statistical Regime & Diffusion Quant** (Lo-MacKinlay Variance Ratio, Hurst Exponent, Ornstein-Uhlenbeck drift, Kaufman Efficiency Ratio).
+>      * **Role B: Microstructure, Orderbook & Liquidation Quant** (L2/L3 orderbook depth asymmetry, persistent whale walls, CVD delta divergence, sweep/reclaim validation).
+>      * **Role C: Solvency, Margin & Broker Risk Sentry** (Strict capital floor defense, broker margin collateralization, non-linear stress testing, multi-ticket capacity).
+>      * **Role D: Market Clock, Auction Profile & Provenance Auditor** (Session timing, value area metrics, timestamp causality, cryptographic manifest validation).
+>
+> 3. **Affirmative Candidate Discovery & High-Confluence Setup Engineering**:
+>    - You are explicitly commanded to conduct **affirmative candidate discovery** across the trade-eligible universe.
+>    - Do not default to passive stand-asides when resting institutional whale walls and high-expectancy setups exist. When structural criteria are satisfied, engineer exact limit entries, stops, and targets with R:R >= 2.0R to 3.0R.
+
+To achieve peak quantitative precision and eliminate superficial responses, the autonomous council is commanded to **mobilize deep reasoning and deploy a complete multi-agent squad applying the maximum relevant quantitative methodologies and skills** across all touched domains:
 - `trader-signal`: Z-score anomaly detection, regime classification, and statistical signal generation.
 - `trader-risk`: Portfolio VaR/CVaR, fractional Kelly sizing, margin collateralization gates, and circuit breakers.
 - `market-ingest`: OHLCV vectors, L2/L3 orderbook depth aggregation, and CVD delta tracking.
@@ -56,19 +72,19 @@ The dispatcher embeds the complete immutable machine-generated `cycle_envelope.j
 ```json
 {
   "schema_version": "1.1.0",
-  "cycle_id": "Cycle 326",
-  "uuid": "a800cb41-e441-463d-b5f7-4556e91e343b",
-  "dispatch_nonce": "e8e04f37-6a1e-408d-bcda-6af0ca912a4f",
-  "cutoff_utc": "2026-10-24 11:08:24 UTC",
+  "cycle_id": "Cycle 327",
+  "uuid": "e1fb53e3-bab8-4d0d-933f-16ac2998f0f2",
+  "dispatch_nonce": "67853606-2058-4841-9e70-3252416a00a5",
+  "cutoff_utc": "2026-10-24 12:22:43 UTC",
   "provenance": {
-    "git_commit": "53524a256b5e1674ea5d5a33f6a6a8e7853bbfba",
-    "git_tree": "6a43d80f219953a58e2130daaccd89ee9f6a96d7",
-    "prompt_sha256": "34c4a0a31b7a01c24dd6e33ec5b6502659ddef7962e593c64e37efd1b2f7e578",
+    "git_commit": "761f03df9fdec9fe10506115ffa6fed00c2aa92b",
+    "git_tree": "7f799fb329700f8d8fbfad8b079d6e38d8d5f3df",
+    "prompt_sha256": "f6c093bac051d9e621f4ae7ce77907722a819b696a937f13988865f5465dc803",
     "risk_policy_sha256": "4633e4af56e52c71329c617aaee4cae5c7102ef9a9f33e7e747e46d26841f058",
-    "evidence_manifest_sha256": "89a9ece3c156ba3ccf4c00fc3961f902405493efac2f629a30dec04c688f1ef3",
-    "workbook_sha256": "4fd031f59aa7473d7a242d69b0f1ab8565375ad9da216afac6c2e204b3943eeb",
-    "excel_freshness_verified": true,
-    "excel_audit_scorecard_fresh": true
+    "evidence_manifest_sha256": "060fb3f2c3781d864cabefd52e5a9bacafcb65997d515963e4bffd8a93425289",
+    "workbook_sha256": "96ce0230002ec6c9b5aa0714c86b0d29bfe72dc4880f35f838ab78c4d0f95d64",
+    "excel_freshness_verified": false,
+    "excel_audit_scorecard_fresh": false
   },
   "inventory": {
     "account_login": 5064568,
@@ -123,8 +139,8 @@ The dispatcher embeds the complete immutable machine-generated `cycle_envelope.j
 ```json
 {
   "schema_version": "1.0.0",
-  "dispatch_nonce": "e8e04f37-6a1e-408d-bcda-6af0ca912a4f",
-  "observed_at_utc": "2026-10-24 10:32:47 UTC",
+  "dispatch_nonce": "67853606-2058-4841-9e70-3252416a00a5",
+  "observed_at_utc": "2026-10-24 12:22:29 UTC",
   "account": {
     "login": 5064568,
     "server": "BlueberryMarketsSVG-Live",
@@ -141,17 +157,17 @@ The dispatcher embeds the complete immutable machine-generated `cycle_envelope.j
     "tp": 79850.0
   },
   "broker_tick": {
-    "bid": 80602.0,
-    "ask": 80631.0,
-    "mid": 80616.5,
-    "spread_raw": 29.0,
-    "spread_bps": 3.6,
-    "spread_cost_usd": 1.16,
-    "broker_server_time_raw": 1792848766,
+    "bid": 80599.0,
+    "ask": 80640.0,
+    "mid": 80619.5,
+    "spread_raw": 41.0,
+    "spread_bps": 5.09,
+    "spread_cost_usd": 1.64,
+    "broker_server_time_raw": 1792855348,
     "broker_server_offset_seconds": 10800.0,
-    "tick_time_utc": "2026-10-24 10:32:46 UTC",
+    "tick_time_utc": "2026-10-24 12:22:28 UTC",
     "tick_age_seconds": 1.0,
-    "clock_skew_seconds": -4.0,
+    "clock_skew_seconds": -4.41,
     "quote_fresh": true
   },
   "broker_spec": {
@@ -170,9 +186,9 @@ The dispatcher embeds the complete immutable machine-generated `cycle_envelope.j
     "profit_at_tp_usd": 58.0,
     "margin_required_usd": 1626.0,
     "base_nominal_risk_usd": 19.2,
-    "exit_spread_cost_usd": 1.16,
-    "total_nominal_risk_usd": 20.36,
-    "ticket_stress_usd": 27.45,
+    "exit_spread_cost_usd": 1.64,
+    "total_nominal_risk_usd": 20.84,
+    "ticket_stress_usd": 28.05,
     "stress_model": "(base_loss + exit_spread) * 1.25 + 2.00 USD"
   },
   "order_check": {
@@ -183,7 +199,7 @@ The dispatcher embeds the complete immutable machine-generated `cycle_envelope.j
     "margin_free_post_order": 3239.07
   },
   "preflight_verdict": "PREFLIGHT_PASS",
-  "receipt_sha256": "a6319f3a495c799d096e2f2edf5135bc695898caf84beecd899500471af14814"
+  "receipt_sha256": "f685531bb50eb640174f2107e42b6e89854b35efff16ee2bb82b0ee79036cb4e"
 }
 ```
 ```
@@ -199,7 +215,7 @@ Evaluate the embedded cycle envelope against your quantitative models. If this e
 
 ## 🏛️ PART 1: EXHAUSTIVE 4-PERSONA QUANTITATIVE AUDIT REQUIREMENTS
 
-Both Arena.ai and Z.ai MUST execute an affirmative and adversarial quantitative audit across **all four institutional quantitative personas**, mirroring the exact mathematical standards enforced by our internal subagents ([`SUBAGENT_PROMPT_TEMPLATES.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/SUBAGENT_PROMPT_TEMPLATES.md)):
+The council MUST deploy its full multi-agent squad with deep reasoning to execute an affirmative and adversarial quantitative audit across **all four institutional quantitative personas**, mirroring the exact mathematical standards enforced by our internal subagents ([`SUBAGENT_PROMPT_TEMPLATES.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/SUBAGENT_PROMPT_TEMPLATES.md)):
 
 ```
        ┌────────────────────────────────────────────────────────┐
@@ -330,10 +346,10 @@ Both Arena.ai and Z.ai MUST execute an affirmative and adversarial quantitative 
   5. **Cryptographic Integrity**:
      - Verify SHA-256 digests of `master_manifest.json`, `Data/DataBase_Trading.xlsx`, and `cycle_envelope.json`.
   6. **Mandatory Data & Workbook Timestamp Audit & Staleness Feedback Directive**:
-     - Explicitly inspect the latest modification and git commit timestamps of `Data/DataBase_Trading.xlsx`, `docs/telemetry/live_snapshot_latest.json`, `Data/forex_factory_live.json`, and `Data/macro_calendar.json` against current cycle UTC (2026-10-24 12:17:58 UTC).
+     - Explicitly inspect the latest modification and git commit timestamps of `Data/DataBase_Trading.xlsx`, `docs/telemetry/live_snapshot_latest.json`, `Data/forex_factory_live.json`, and `Data/macro_calendar.json` against current cycle UTC (2026-10-24 14:04:55 UTC).
      - **CRITICAL FEEDBACK REQUIREMENT**: If ANY data file or Excel workbook is stale, lagging behind the current cycle timestamp, or not updating (e.g. workbook commit or telemetry snapshot is older than 20 minutes):
        * You MUST output a prominent alert at the very top of your written response:
-         `[ALERT] TELEMETRY STALE WARNING: [File/Sheet] is stale (Last updated: [Timestamp] vs Current Cycle: 2026-10-24 12:17:58 UTC)`
+         `[ALERT] TELEMETRY STALE WARNING: [File/Sheet] is stale (Last updated: [Timestamp] vs Current Cycle: 2026-10-24 14:04:55 UTC)`
        * Provide detailed diagnostic feedback explaining which specific sheets, tables, or feeds are lagging, so the operator and Antigravity can immediately identify whether a git push, writer lock, or daemon issue is occurring.
 
 ---
