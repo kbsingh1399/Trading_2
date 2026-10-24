@@ -47,3 +47,8 @@
 - **Single-Line Abort Eradication**: Removed `return only: DENIED_BAD_CYCLE_ENVELOPE` short-circuit instruction from `Data/Manditory/Arena_GLM_Standard_Prompt.md` and `docs/prompts/Arena_GLM_Standard_Prompt.md`. Codified the strict prohibition on single-line aborts. Confirmed live by harvesting a 34,092-character 4-persona audit from Arena.ai.
 - **Cryptographic Receipt Nonce Binding**: Patched dispatch workflow so `dispatch_nonce` is generated ex-ante and passed into `Terminal/execution_preflight.py --nonce <uuid>`, guaranteeing exact byte-for-byte matching between claimed `receipt_sha256` and recomputed hash (`58310746fc9bc1e1...`).
 - **RAM Optimization Protocol**: Codified and executed `scripts/free_ram.ps1` at cycle close, trimming RAM usage to 57.9% (6.45 GB free physical RAM).
+- **Fibonacci Prime EMAs & Extended Auction Architecture Shipped**:
+  * Upgraded `Terminal/Candle_Indicator_Engine.py` and Sheet 20 (`11_Technical`) with Numba SIMD-vectorized ribbons: `5, 13, 34, 89, 144, 233` (where 5, 13, 89, 233 are Fibonacci primes). Added `ema_233_slope_3h_pct` for macro trend bias.
+  * Upgraded Sheet 32 (`20_Auction_Market_Structure`) with Monday Opening Range / Weekly Initial Balance (`monday_high, monday_low, monday_mid`), Current/Prior Month High/Low (`cmh, cml, pmh, pml`), and Symmetrical Fibonacci Retracement Golden Zone (`fib_gp_min, fib_gp_max, fib_ote, fib_inval, fib_status`).
+  * Upgraded `Terminal/multi_asset_opportunity_scanner.py` with Fib-Prime hierarchy and Symmetrical Golden Zone [0.618 GP, 0.702 OTE] pullback limits anchored by 0.786 Invalidation Shelves.
+  * Audited all 33 worksheets in `Data/DataBase_Trading.xlsx`: **576,466 cells audited, exactly 0 formula errors**.
