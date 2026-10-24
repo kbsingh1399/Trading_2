@@ -100,6 +100,17 @@ When `AGENTS.md` is loaded, execute sequentially without asking:
 
 ---
 
+8. **Mandatory Continuous Kaizen & Methodology Improvement Inquest (Permanent Invariant)**:
+   - On EVERY coordinator response, and in EVERY prompt generated for subagents, Arena.ai, and Z.ai, the agent MUST include and address this exact Kaizen block:
+   ```markdown
+   ### 8. Continuous Kaizen & Methodology Improvement Inquest
+
+   In every evaluation cycle, the council MUST provide an explicit meta-evaluation answering:
+   - **Skills & Methodology Optimization**: How could our response, mathematical precision, and candidate discovery be fundamentally improved using all available relevant quantitative methodologies, skills, and agent roles?
+   - **Omitted Risk Dimensions**: What hidden execution risks, cross-asset correlations, spread expansions, or microstructural traps were omitted or underestimated?
+   - **Algorithmic Alternatives**: What superior statistical or machine learning alternatives (e.g. Hawkes processes for order arrival, Kalman filters for spread estimation, GARCH volatility cones) should be integrated into our next cycle?
+   ```
+
 # PART 4: COMMIT, SCRATCH & WEB2API EXECUTION GATES
 1. **Execution Over Inspection**: Prove code works by live execution, not diff inspection.
 2. **NEVER POLL & Token Preservation Mandate (Strict)**: 
