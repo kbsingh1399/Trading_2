@@ -25,16 +25,16 @@ The dispatcher embeds the complete immutable machine-generated cycle_envelope.js
 `json
 {
   "schema_version": "1.1.0",
-  "cycle_id": "Cycle 320",
-  "uuid": "dd69b1a0-4369-4899-9c9b-7e26f82c4171",
-  "dispatch_nonce": "b4f5506d-53f4-41c3-b958-594aa2e3db89",
-  "cutoff_utc": "2026-10-24 02:25:20 UTC",
+  "cycle_id": "Cycle 321",
+  "uuid": "6e6b7857-e9ac-4d0e-b677-a2bdde045335",
+  "dispatch_nonce": "77b50a3b-f40e-4a17-bd0a-a470f2b64571",
+  "cutoff_utc": "2026-10-24 06:55:20 UTC",
   "provenance": {
-    "git_commit": "1428d1e052f4f0c7d4f1625110ed51a61f05de09",
-    "git_tree": "aaedd5d81fa5205244dcc06930d171d18fbbfdf8",
-    "prompt_sha256": "d8d6492859d2f9865ef03998aa8283c2cd2d0a4c5c33494af3ee4f861cfc8cc2",
+    "git_commit": "630c66334bf454696d369944e87994e5e93d1555",
+    "git_tree": "6c5cd78da37f31489ef548e6ec7002866c1ac00b",
+    "prompt_sha256": "3176dfb7c07b11c204c7a0835cc37be03f87d171b2074724a763313cb73aaef9",
     "risk_policy_sha256": "4633e4af56e52c71329c617aaee4cae5c7102ef9a9f33e7e747e46d26841f058",
-    "evidence_manifest_sha256": "218d966bfacbf9bc47019382ee80fcfc5a21036a6d9bac77b6fec7236c51ee4f",
+    "evidence_manifest_sha256": "33ea3925a971bbe9fad4925511a53bd1b05605ddd6da0fe5a0866f6a10debaa0",
     "workbook_sha256": "4fd031f59aa7473d7a242d69b0f1ab8565375ad9da216afac6c2e204b3943eeb",
     "excel_freshness_verified": true,
     "excel_audit_scorecard_fresh": true
@@ -92,8 +92,8 @@ The dispatcher embeds the complete immutable machine-generated cycle_envelope.js
 ```json
 {
   "schema_version": "1.0.0",
-  "dispatch_nonce": "b4f5506d-53f4-41c3-b958-594aa2e3db89",
-  "observed_at_utc": "2026-10-24 02:23:35 UTC",
+  "dispatch_nonce": "77b50a3b-f40e-4a17-bd0a-a470f2b64571",
+  "observed_at_utc": "2026-10-24 06:46:39 UTC",
   "account": {
     "login": 5064568,
     "server": "BlueberryMarketsSVG-Live",
@@ -104,23 +104,23 @@ The dispatcher embeds the complete immutable machine-generated cycle_envelope.js
   "candidate": {
     "symbol": "BTCUSD.pi",
     "action": "SELL_LIMIT",
-    "volume": 0.05,
-    "price": 81000.0,
-    "sl": 81360.0,
+    "volume": 0.1,
+    "price": 80950.0,
+    "sl": 81115.0,
     "tp": 80440.0
   },
   "broker_tick": {
-    "bid": 80752.0,
-    "ask": 80768.0,
-    "mid": 80760.0,
+    "bid": 80659.0,
+    "ask": 80675.0,
+    "mid": 80667.0,
     "spread_raw": 16.0,
     "spread_bps": 1.98,
-    "spread_cost_usd": 0.8,
-    "broker_server_time_raw": 1792819414,
+    "spread_cost_usd": 1.6,
+    "broker_server_time_raw": 1792835198,
     "broker_server_offset_seconds": 10800.0,
-    "tick_time_utc": "2026-10-24 02:23:34 UTC",
+    "tick_time_utc": "2026-10-24 06:46:38 UTC",
     "tick_age_seconds": 1.0,
-    "clock_skew_seconds": -5.31,
+    "clock_skew_seconds": -1.91,
     "quote_fresh": true
   },
   "broker_spec": {
@@ -135,24 +135,24 @@ The dispatcher embeds the complete immutable machine-generated cycle_envelope.js
     "contract_size": 1.0
   },
   "broker_valuation": {
-    "profit_at_sl_usd": -18.0,
-    "profit_at_tp_usd": 28.0,
-    "margin_required_usd": 2025.0,
-    "base_nominal_risk_usd": 18.0,
-    "exit_spread_cost_usd": 0.8,
-    "total_nominal_risk_usd": 18.8,
-    "ticket_stress_usd": 25.5,
+    "profit_at_sl_usd": -16.5,
+    "profit_at_tp_usd": 51.0,
+    "margin_required_usd": 4047.5,
+    "base_nominal_risk_usd": 16.5,
+    "exit_spread_cost_usd": 1.6,
+    "total_nominal_risk_usd": 18.1,
+    "ticket_stress_usd": 24.63,
     "stress_model": "(base_loss + exit_spread) * 1.25 + 2.00 USD"
   },
   "order_check": {
     "pass": true,
     "retcode": 0,
     "comment": "Done",
-    "margin_level_post_order": 240.25,
-    "margin_free_post_order": 2840.07
+    "margin_level_post_order": 120.2,
+    "margin_free_post_order": 817.57
   },
   "preflight_verdict": "PREFLIGHT_PASS",
-  "receipt_sha256": "fda584c486645ffcc24d462739bcad6cd879aa35e6d0fde1855b8367be017db0"
+  "receipt_sha256": "f7363aa41dc4b90b0c3f4494d130400ac8a5d8f3fe5c751ecd8b30684f9ebb33"
 }
 ```
 `
