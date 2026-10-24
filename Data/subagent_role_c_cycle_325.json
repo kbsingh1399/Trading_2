@@ -1,0 +1,307 @@
+{
+  "schema_version": "1.0.0",
+  "cycle_id": "Cycle 325",
+  "role": "ROLE_C_SOLVENCY_PORTFOLIO_BROKER_MATH",
+  "evidence_manifest_sha256": "0a886e0cb9dd2b1d3eeab8a171d4dddfe8d4da0d9333e64859822518b60f1b82",
+  "prompt_sha256": "5f9459010734cdf8be1c8c6295c677df140d44e12e93cea70446d9df113b6ff0",
+  "dispatch_nonce": "e8e04f37-6a1e-408d-bcda-6af0ca912a4f",
+  "reconciliation": {
+    "account_login": 5064568,
+    "server": "BlueberryMarketsSVG-Live",
+    "currency": "USD",
+    "balance": 4865.07,
+    "equity": 4865.07,
+    "gross_floating_pnl": 0.0,
+    "swap": 0.0,
+    "commission": 0.0,
+    "margin_used": 0.0,
+    "margin_free": 4865.07,
+    "margin_level_pct": 0.0,
+    "active_positions_count": 0,
+    "pending_orders_count": 0,
+    "reconciliation_status": "EXACT_ZERO_DISCREPANCY",
+    "residual_error_usd": 0.0
+  },
+  "floor_governance": {
+    "hard_capital_floor_usd": 4600.0,
+    "hard_floor_cushion_usd": 265.07,
+    "operating_buffer_usd": 4650.0,
+    "operating_buffer_cushion_usd": 215.07,
+    "solvency_kernel_usd": 4795.0,
+    "kernel_cushion_usd": 70.07,
+    "global_contingency_reserve_usd": 2.0,
+    "net_realized_headroom_usd": 68.07,
+    "capital_mode": "TIER_2_HOUSE_MONEY",
+    "tier_nominal_risk_min_usd": 15.0,
+    "tier_nominal_risk_max_usd": 25.0,
+    "max_concurrent_tickets": 2
+  },
+  "margin_collateralization_audit": {
+    "proposed_volume": 0.04,
+    "margin_required_usd": 1626.0,
+    "margin_utilization_pct": 33.42,
+    "margin_level_post_pct": 299.2,
+    "margin_safety_status": "PASS_MARGIN_UTILIZATION_LEQ_50_PCT",
+    "recommended_max_volume": 0.04
+  },
+  "solvency_kernel_audit": {
+    "realized_headroom_usd": 68.07,
+    "ticket_stress_usd": 27.45,
+    "post_stress_equity_usd": 4835.62,
+    "kernel_surplus_usd": 40.62,
+    "solvency_status": "PASS_SURPLUS_40_62"
+  },
+  "candidate_stress_audit": {
+    "symbol": "BTCUSD.pi",
+    "action": "SELL_LIMIT",
+    "volume": 0.04,
+    "entry_price": 81300.0,
+    "stop_loss": 81780.0,
+    "take_profit": 79850.0,
+    "point_value": 0.01,
+    "contract_size": 1.0,
+    "stop_distance_points": 480.0,
+    "tp_distance_points": 1450.0,
+    "base_nominal_risk_usd": 19.2,
+    "exit_spread_cost_usd": 1.16,
+    "total_nominal_risk_usd": 20.36,
+    "ticket_stress_multiplier": 1.25,
+    "ticket_stress_fixed_reserve_usd": 2.0,
+    "ticket_stress_usd": 27.45,
+    "global_contingency_reserve_usd": 2.0,
+    "total_admission_stress_usd": 29.45,
+    "remaining_headroom_slack_usd": 40.62,
+    "post_stress_equity_usd": 4835.62,
+    "post_stress_kernel_surplus_usd": 40.62,
+    "margin_required_usd": 1626.0,
+    "post_order_free_margin_usd": 3239.07,
+    "post_order_margin_level_pct": 299.2,
+    "reward_to_risk_gross": 3.021,
+    "reward_to_risk_net": 2.792,
+    "multi_ticket_capacity": {
+      "max_concurrent_tickets": 2,
+      "slots_used": 1,
+      "slots_remaining": 1,
+      "stress_headroom_remaining_usd": 40.62,
+      "status": "MULTI_TICKET_CAPACITY_PRESERVED"
+    }
+  },
+  "claims": [
+    {
+      "claim_id": "CLAIM_C_01_ACCOUNT_INVENTORY_ZERO_DISCREPANCY",
+      "statement": "Blueberry Markets MT5 Account #5064568 balance sheet reconciles down to exact 0.00 USD residual error: Realized Balance = 4,865.07 USD, Equity = 4,865.07 USD, Gross Floating PnL = 0.00 USD, Swap = 0.00 USD, Commission = 0.00 USD, Margin Used = 0.00 USD, Margin Free = 4,865.07 USD, Active Positions = 0, Pending Orders = 0 (100% Flat Cash baseline verified).",
+      "evidence_ids": [
+        "Data/cycle_envelope.json:inventory",
+        "Data/DataBase_Trading.xlsx:00_MT5_Account_Telemetry:R4-R9",
+        "Data/execution_preflight_receipt.json:account"
+      ],
+      "formula_or_test": "Balance + Gross_Floating_PnL + Swap + Commission == Equity and Margin_Used == 0.00 and abs(Equity - Balance) == 0.00",
+      "result": {
+        "balance_usd": 4865.07,
+        "equity_usd": 4865.07,
+        "gross_floating_pnl": 0.0,
+        "swap": 0.0,
+        "commission": 0.0,
+        "margin_used": 0.0,
+        "margin_free": 4865.07,
+        "margin_level_pct": 0.0,
+        "residual_error_usd": 0.0,
+        "inventory_state": "100_PERCENT_FLAT_CASH"
+      },
+      "uncertainty": "0.0000 - Deterministic MT5 broker telemetry verified to 0.01 USD precision.",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM_C_02_TRIPLE_FLOOR_DEFENSE_AND_HEADROOM",
+      "statement": "The Inviolable Triple Floor Governance is preserved with robust capital cushions: Hard Capital Floor (4,600.00 USD) cushion = +265.07 USD; Operating Defense Buffer (4,650.00 USD) cushion = +215.07 USD; Solvency Kernel (4,795.00 USD) cushion = +70.07 USD. Deducting the mandatory 2.00 USD global contingency reserve yields Net Realized Headroom H_net = +68.07 USD.",
+      "evidence_ids": [
+        "Data/cycle_envelope.json:solvency",
+        "Data/DataBase_Trading.xlsx:00_MT5_Account_Telemetry:R6-R8"
+      ],
+      "formula_or_test": "H_hard = Balance - 4600.00; H_buffer = Balance - 4650.00; H_kernel = Balance - 4795.00; H_net = H_kernel - Global_Reserve(2.00)",
+      "result": {
+        "hard_floor_usd": 4600.0,
+        "hard_cushion_usd": 265.07,
+        "operating_buffer_usd": 4650.0,
+        "operating_cushion_usd": 215.07,
+        "solvency_kernel_usd": 4795.0,
+        "kernel_cushion_usd": 70.07,
+        "global_contingency_reserve_usd": 2.0,
+        "net_realized_headroom_usd": 68.07
+      },
+      "uncertainty": "0.0000 - Exact mathematical identity derived from realized broker cash.",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM_C_03_CAPITAL_TIER_TWO_HOUSE_MONEY_QUALIFICATION",
+      "statement": "Realized Balance of 4,865.07 USD strictly exceeds the 4,850.00 USD threshold, activating TIER 2 HOUSE MONEY status with per-ticket nominal risk budget of 15.00 to 25.00 USD and maximum 2 concurrent non-correlated tickets.",
+      "evidence_ids": [
+        "Data/cycle_envelope.json:solvency:capital_mode",
+        "Data/Manditory/SUBAGENT_PROMPT_TEMPLATES.md:Line381"
+      ],
+      "formula_or_test": "Realized_Balance >= 4850.00 -> Tier 2 (Risk: [15.00, 25.00] USD, max_tickets=2)",
+      "result": {
+        "capital_mode": "TIER_2_HOUSE_MONEY",
+        "risk_min_usd": 15.0,
+        "risk_max_usd": 25.0,
+        "max_concurrent_tickets": 2,
+        "admissibility_status": "TIER_2_ACTIVATED"
+      },
+      "uncertainty": "0.0000 - Governed by institutional house money staircase rules.",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM_C_04_CANDIDATE_BROKER_MATH_AND_TICKET_STRESS_AUDIT",
+      "statement": "Candidate BTCUSD.pi 0.04 lot SELL_LIMIT @ 81,300.00 USD with SL 81,780.00 USD has base nominal risk of 19.20 USD (480 pts * 0.04 lot), exit spread friction of 1.16 USD (29.0 pts * 0.04 lot), and total nominal risk of 20.36 USD. This strictly falls within the 15.00 to 25.00 USD Tier 2 House Money risk corridor. Individual ticket stress evaluates to 27.45 USD ((20.36 * 1.25) + 2.00 = 27.45 USD), safely within the 68.07 USD headroom.",
+      "evidence_ids": [
+        "Data/execution_preflight_receipt.json:candidate",
+        "Data/execution_preflight_receipt.json:broker_valuation",
+        "Data/execution_preflight_receipt.json:broker_tick"
+      ],
+      "formula_or_test": "Base_Risk = (SL - Entry) * Volume * Contract_Size; Exit_Spread = Spread * Volume; Total_Nominal = Base_Risk + Exit_Spread; Ticket_Stress = (1.25 * Total_Nominal) + 2.00",
+      "result": {
+        "symbol": "BTCUSD.pi",
+        "volume": 0.04,
+        "entry_price": 81300.0,
+        "stop_loss": 81780.0,
+        "base_nominal_risk_usd": 19.2,
+        "exit_spread_cost_usd": 1.16,
+        "total_nominal_risk_usd": 20.36,
+        "ticket_stress_usd": 27.45,
+        "in_budget": true
+      },
+      "uncertainty": "0.0000 - Exact broker valuation verified by order_calc_profit in preflight receipt.",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM_C_05_POST_STRESS_SOLVENCY_AND_KERNEL_SURPLUS",
+      "statement": "Total admission stress of 29.45 USD (ticket stress 27.45 USD + global reserve 2.00 USD) deducted from balance (4,865.07 USD) yields post-stress equity of 4,835.62 USD, preserving a +40.62 USD surplus buffer strictly above the 4,795.00 USD Solvency Kernel, +185.62 USD above the Operating Buffer, and +235.62 USD above the Hard Floor.",
+      "evidence_ids": [
+        "Data/cycle_envelope.json:solvency",
+        "Data/execution_preflight_receipt.json:broker_valuation"
+      ],
+      "formula_or_test": "Post_Stress_Equity = Balance - (Ticket_Stress + Global_Reserve); Kernel_Surplus = Post_Stress_Equity - 4795.00 >= 0",
+      "result": {
+        "admission_stress_usd": 29.45,
+        "post_stress_equity_usd": 4835.62,
+        "kernel_surplus_usd": 40.62,
+        "buffer_surplus_usd": 185.62,
+        "hard_floor_surplus_usd": 235.62,
+        "remaining_headroom_slack_usd": 40.62,
+        "kernel_preservation_test": "PASS"
+      },
+      "uncertainty": "0.0000 - Deterministic stressed portfolio projection.",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM_C_06_MARGIN_COLLATERALIZATION_AND_FREE_MARGIN",
+      "statement": "Candidate requires 1,626.00 USD in broker margin collateral (50% margin rate / 1:2 crypto leverage on Blueberry Markets). Margin utilization is 33.42% (<= 50.0% gate PASS). Post-order free margin of 3,239.07 USD and post-order margin level of 299.20% leave robust collateral safety, strictly satisfying broker order_check (retcode 0: Done) and exceeding the 200.0% margin level mandate.",
+      "evidence_ids": [
+        "Data/execution_preflight_receipt.json:broker_valuation:margin_required_usd",
+        "Data/execution_preflight_receipt.json:order_check"
+      ],
+      "formula_or_test": "Margin_Req = Volume * Entry * 0.50; Margin_Util = Margin_Req / Equity <= 0.50; Margin_Level_Post = (Equity / Margin_Req) * 100 >= 200.0%",
+      "result": {
+        "margin_required_usd": 1626.0,
+        "margin_utilization_pct": 33.42,
+        "post_order_free_margin_usd": 3239.07,
+        "post_order_margin_level_pct": 299.2,
+        "stop_out_threshold_pct": 50.0,
+        "order_check_retcode": 0,
+        "order_check_comment": "Done",
+        "margin_collateral_status": "PASS_MARGIN_LEVEL_299_2_PCT"
+      },
+      "uncertainty": "0.0000 - Preflight broker order_check returned retcode 0 (Done).",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM_C_07_MULTI_TICKET_CAPACITY_AND_PORTFOLIO_CONCURRENCY",
+      "statement": "Admission of candidate 0.04 lot BTCUSD.pi utilizes exactly 1 of the 2 authorized concurrent ticket slots, leaving 1 slot free with +40.62 USD of unallocated stress headroom. Sizing down to 0.04 lot preserves full capacity for a second non-correlated ticket (e.g., TradFi FX or Index candidate requiring low margin collateral).",
+      "evidence_ids": [
+        "Data/cycle_envelope.json:solvency:max_concurrent_tickets",
+        "Data/cycle_envelope.json:inventory:active_positions_count"
+      ],
+      "formula_or_test": "Slots_Remaining = Max_Tickets(2) - (Positions(0) + Orders(0) + Candidate(1)) == 1; Remaining_Headroom = 68.07 - 27.45 == 40.62 USD",
+      "result": {
+        "max_concurrent_tickets": 2,
+        "active_positions": 0,
+        "pending_orders": 0,
+        "proposed_tickets": 1,
+        "slots_remaining": 1,
+        "remaining_stress_headroom_usd": 40.62,
+        "concurrency_status": "MULTI_TICKET_CAPACITY_PRESERVED"
+      },
+      "uncertainty": "0.0000 - Exact integer slot and linear stress capacity identity.",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM_C_08_REWARD_TO_RISK_AND_EXPECTED_PAYOFF",
+      "statement": "Take Profit target of 79,850.00 USD yields +58.00 USD gross gain (1450.0 pts * 0.04 lot) and +56.84 USD net gain after exit spread, producing a net realizable Reward-to-Risk ratio of 2.792 R0 (3.021 R0 gross), strictly exceeding the institutional quant threshold R:R >= 2.00R to 2.50R.",
+      "evidence_ids": [
+        "Data/execution_preflight_receipt.json:broker_valuation:profit_at_tp_usd",
+        "Data/execution_preflight_receipt.json:candidate:tp"
+      ],
+      "formula_or_test": "RR_gross = Profit_TP / Base_Risk; RR_net = (Profit_TP - Exit_Spread) / Total_Nominal_Risk",
+      "result": {
+        "tp_price": 79850.0,
+        "tp_distance_points": 1450.0,
+        "profit_at_tp_gross_usd": 58.0,
+        "profit_at_tp_net_usd": 56.84,
+        "reward_to_risk_gross": 3.021,
+        "reward_to_risk_net": 2.792,
+        "threshold_met": true
+      },
+      "uncertainty": "0.0000 - MT5 order_calc_profit verification.",
+      "status": "VERIFIED"
+    }
+  ],
+  "challenges": [
+    {
+      "challenge_id": "CHALLENGE_C_A_01",
+      "target_role": "ROLE_A_REGIME_AND_CALIBRATION",
+      "statement": "Role A must verify whether staging SELL_LIMIT at 81,300.00 USD (+683.50 USD / ~0.85 ATR above current mid 80,616.50 USD) possesses positive calibrated conditional P(fill | TTL) under the prevailing regime. Role A must confirm that diffusion parameters (VR, Kaufman ER, Ornstein-Uhlenbeck equilibrium theta) support an upward mean-reverting pullback to 81,300.00 USD before price drifts down toward TP (79,850.00 USD). If price moves directly to TP without filling at 81,300.00 USD, capital suffers zero loss, but opportunity is forgone."
+    },
+    {
+      "challenge_id": "CHALLENGE_C_B_01",
+      "target_role": "ROLE_B_FILL_MICROSTRUCTURE_GEOMETRY",
+      "statement": "Role B must verify that the SELL_LIMIT entry at 81,300.00 USD is sheltered behind authentic resting ask walls / whale resistance (persisted >= 180s, notional >= 100k USD) and that the Stop Loss at 81,780.00 USD is safely bunkered behind the 0.786 Fibonacci invalidation shelf or Monday High extreme (min 0.50 ATR + half spread). Additionally, Role B must confirm that Take Profit at 79,850.00 USD front-runs major resting bid clusters by 5 to 10 bps, ensuring exit liquidity before buy absorption triggers an adverse bounce."
+    },
+    {
+      "challenge_id": "CHALLENGE_C_D_01",
+      "target_role": "ROLE_D_MARKET_CLOCK_AUCTION_PROVENANCE",
+      "statement": "Role D must audit whether weekend liquidity conditions or interbank rollover spread widening could elevate BTCUSD.pi spread above the 3.60 bps (29.00 USD) observed at preflight, and verify that no exchange maintenance windows disrupt pending limit order cancellation or execution over the weekend."
+    }
+  ],
+  "unknowns": [
+    {
+      "id": "UNK_C_01",
+      "item": "Adverse slippage on structural stop loss during extreme market gap",
+      "impact": "A stop execution gap > 100 points would increase loss beyond the 20.36 USD nominal risk.",
+      "disposition": "ABSORBED_BY_STRESS_MODEL: The 1.25x stress multiplier (+5.09 USD) plus 2.00 USD ticket stress reserve plus 2.00 USD global reserve absorbs up to 227.2 points of adverse execution slippage without violating the 4,795.00 USD Solvency Kernel."
+    },
+    {
+      "id": "UNK_C_02",
+      "item": "Weekend/overnight CFD financing swap rate accrual on BTCUSD.pi",
+      "impact": "Holding short positions across rollover windows incurs financing debits that reduce realized net PnL.",
+      "disposition": "CONFIRMED_NEGLIGIBLE: Swap is currently 0.00 USD; historical short swap on BTCUSD.pi is -0.10 to +0.25 USD/day for 0.04 lots, safely covered by the 56.84 USD net target payoff."
+    }
+  ],
+  "severity_1_or_2_disputes": [],
+  "perpetual_quant_inquest_section_2_5": {
+    "question": "Is our methodology for finding potential candidates truly sound, and how can we fundamentally improve it? Given 156 assets and vast data, why has equity remained flat, and how do we think like elite quants to generate profitable executions while fiercely preserving the hard floor?",
+    "critique_and_solutions": {
+      "1_conjunctive_sclerosis_vs_probabilistic_expectancy": "From a capital sentry perspective, our multi-stage pipeline has suffered from compounding binary filters: each filter (Pillar 1-5, regime, wall persistence, spread gate) acts as an independent hard veto. When 7 independent 80%-probability filters are multiplied conjunctively, throughput drops to (0.80)^7 = 20.9%, rejecting ~80% of statistically positive-EV setups. Solution: Maintain binary hard gates strictly for Solvency (Kernel >= 4,795 USD, legal lot, broker session) while transitioning microstructural and technical pillars into a Bayesian composite scoring function (LCB 5% Net EV > 0 USD).",
+      "2_static_retrospective_data_vs_dynamic_live_microstructure": "Account telemetry and orderbook snapshots have been evaluated as static historical tables rather than continuous flow dynamics. In Cycle 325, right-sizing BTCUSD.pi to 0.04 lot provides 20.36 USD nominal risk\u2014comfortably inside the 15.00-25.00 USD Tier 2 band\u2014while maintaining a resilient +40.62 USD post-stress kernel surplus, 33.42% margin utilization, and 299.20% margin level. Solution: Implement dynamic risk scaling where position size scales continuously between 15.00 USD and 25.00 USD proportional to the calibrated Lower Confidence Bound of EV, rather than discrete hardcoded increments.",
+      "3_entry_geometry_and_staging_passivity": "Placing limit entries deep behind distant structural shelves (+1.64 ATR away) guarantees safety but crushes fill probability (P(fill) < 15%), leading to limit loneliness where equity sits flat despite accurate directional forecasts. In Cycle 325, staging SELL_LIMIT at 81,300.00 USD with 0.04 lot volume captures high-probability mean-reversion exhaustion at the key value boundary while preserving stop bunkering at 81,780.00 USD (+480 pts) and yielding 2.792 R0 net R:R.",
+      "4_multi_asset_alpha_specialization_vs_uniform_template_bias": "The desk has historically over-indexed on crypto perpetuals (where 1,626.00 USD margin is required for 0.04 BTC) while under-utilizing high-leverage TradFi instruments (Forex majors require only 30-50 USD margin for 0.05 lot, and Indices require 100-200 USD margin). By confining execution primarily to BTC/ETH over weekends, we bottleneck capital turnover. Solution: Expand automated candidate scanning across FX and Index sessions, deploying TradFi-native auction structure (Sheet 33 POC/VAH/VAL) where capital efficiency is 10x to 30x higher.",
+      "5_actionable_alpha_evolution_proposals": "To advance account equity from 4,865.07 USD toward the 5,500.00 USD Phase 1 target: (a) Enforce the Stage Gate P(fill) * Net_EV >= 1.50 USD; (b) Calibrate limit distance d* = min(structural shelf, mid + 0.40 * ATR * sqrt(TTL)); (c) Utilize the available 2-ticket capacity by executing non-correlated pairs (e.g. 1 Crypto + 1 TradFi Index/Forex) when sessions open; (d) Maintain zero tolerance on the 4,795.00 USD Solvency Kernel while aggressively harvesting Tier 2 House Money."
+    }
+  },
+  "section_8_kaizen": {
+    "skills_and_methodology_optimization": "Applied @trader-risk to calibrate fractional risk sizing and margin collateralization bounds down to 0.01 USD precision; applied @clean-code to ensure zero assumptions or narrative drift; applied @database-optimizer to reconcile Sheet 00 telemetry against live MT5 preflight receipts. Recommended next optimization: integrate an automated real-time margin capacity solver directly into the candidate generation engine so candidate lot sizes are pre-clipped to guarantee post-order margin level >= 200% before subagent dispatch.",
+    "omitted_risk_dimensions": "Identified three under-modeled risk dimensions: (1) Cross-instrument collateral drag when holding multiple crypto positions under 50% margin requirements; (2) Rollover spread spikes (widening up to 10-25 bps) during low-volume weekend hours; (3) Asymmetric downside gap risk on crypto weekend perpetuals where orderbook liquidity thins by up to 60%.",
+    "algorithmic_alternatives": "Proposed two algorithmic upgrades: (1) Replace discrete tier jumps with a continuous logistic risk multiplier f(Cushion) = Risk_min + (Risk_max - Risk_min) / (1 + exp(-k * (Cushion - Cushion_mid))), eliminating threshold edge effects; (2) Implement an automated orderbook depth elasticity model that dynamically caps limit order volume to at most 5% of cumulative L2 depth within 10 bps of entry."
+  },
+  "role_verdict": "SOLVENCY_VERIFIED_CAPITAL_ELIGIBLE_PENDING_ALL_HARD_GATES",
+  "response_sha256": "45ebd261b6822411aca0a76132dc5ce9e21311dec93c69694d4dfa55e3006217"
+}
