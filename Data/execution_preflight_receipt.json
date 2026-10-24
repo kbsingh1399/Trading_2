@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "dispatch_nonce": "315-test-nonce",
-  "observed_at_utc": "2026-10-24 00:38:11 UTC",
+  "dispatch_nonce": "443f36be-72ac-43d3-a78d-efac412a162d",
+  "observed_at_utc": "2026-10-24 00:38:55 UTC",
   "account": {
     "login": 5064568,
     "server": "BlueberryMarketsSVG-Live",
@@ -18,17 +18,17 @@
     "tp": 79850.0
   },
   "broker_tick": {
-    "bid": 80594.0,
-    "ask": 80609.0,
-    "mid": 80601.5,
+    "bid": 80589.0,
+    "ask": 80604.0,
+    "mid": 80596.5,
     "spread_raw": 15.0,
     "spread_bps": 1.86,
     "spread_cost_usd": 0.6,
-    "broker_server_time_raw": 1792813096,
+    "broker_server_time_raw": 1792813140,
     "broker_server_offset_seconds": 10800.0,
-    "tick_time_utc": "2026-10-24 00:38:16 UTC",
+    "tick_time_utc": "2026-10-24 00:39:00 UTC",
     "tick_age_seconds": 0.0,
-    "clock_skew_seconds": -5.0,
+    "clock_skew_seconds": -5.31,
     "quote_fresh": true
   },
   "broker_spec": {
@@ -60,5 +60,5 @@
     "margin_free_post_order": 4865.07
   },
   "preflight_verdict": "PREFLIGHT_PASS",
-  "receipt_sha256": "d91b76c80088126c80eb16ff1050e6f5cfaec072548999b854988197657c8e92"
+  "receipt_sha256": "5dedd0c5c51a6953424cb5447f61513d7d026cf826abbca2efaee2bdf25d4327"
 }

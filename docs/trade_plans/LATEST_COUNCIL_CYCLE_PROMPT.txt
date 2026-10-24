@@ -25,15 +25,15 @@ The dispatcher embeds the complete immutable machine-generated cycle_envelope.js
 `json
 {
   "schema_version": "1.1.0",
-  "cycle_id": "Cycle 314",
-  "uuid": "f583cce1-0a47-4242-b39d-ae94bb7f8f73",
-  "dispatch_nonce": "2faf3bab-8760-409f-8ee7-093f4834ddb6",
-  "cutoff_utc": "2026-10-24 00:15:12 UTC",
+  "cycle_id": "Cycle 315",
+  "uuid": "b22775ee-6d96-451b-840c-6997a69c584c",
+  "dispatch_nonce": "443f36be-72ac-43d3-a78d-efac412a162d",
+  "cutoff_utc": "2026-10-24 00:38:47 UTC",
   "provenance": {
-    "git_commit": "254b7f39cf832c050a7b422a6e7b63395953981e",
-    "git_tree": "d32642fc5856abeafb085536cf016553f1f4ffb5",
+    "git_commit": "382d10746035f88801d896fe1ddc1d246abc2846",
+    "git_tree": "dd1256eff25bb41271db21ea3cf493079f8621cd",
     "risk_policy_sha256": "4633e4af56e52c71329c617aaee4cae5c7102ef9a9f33e7e747e46d26841f058",
-    "evidence_manifest_sha256": "60dd9731ae220f798d58298b61330de1df3d8231367b66be334f66ff7ff0b3f8",
+    "evidence_manifest_sha256": "4086741b0e8c966cdad5aef3596ec1519a62d26cabfd1500143fc58a2001fbf3",
     "workbook_sha256": "e855a87fb055ab6f5d8f2be8e5cdab19afe786afaa62ae006984a2c6ef2f6fab",
     "excel_freshness_verified": null
   },
@@ -86,8 +86,8 @@ The dispatcher embeds the complete immutable machine-generated cycle_envelope.js
 ```json
 {
   "schema_version": "1.0.0",
-  "dispatch_nonce": "2faf3bab-8760-409f-8ee7-093f4834ddb6",
-  "observed_at_utc": "2026-10-24 00:19:11 UTC",
+  "dispatch_nonce": "443f36be-72ac-43d3-a78d-efac412a162d",
+  "observed_at_utc": "2026-10-24 00:38:55 UTC",
   "account": {
     "login": 5064568,
     "server": "BlueberryMarketsSVG-Live",
@@ -104,13 +104,17 @@ The dispatcher embeds the complete immutable machine-generated cycle_envelope.js
     "tp": 79850.0
   },
   "broker_tick": {
-    "bid": 80762.0,
-    "ask": 80777.0,
-    "mid": 80769.5,
+    "bid": 80589.0,
+    "ask": 80604.0,
+    "mid": 80596.5,
     "spread_raw": 15.0,
     "spread_bps": 1.86,
-    "tick_time_utc": "2026-10-24 00:19:17 UTC",
-    "tick_age_seconds": -5.82,
+    "spread_cost_usd": 0.6,
+    "broker_server_time_raw": 1792813140,
+    "broker_server_offset_seconds": 10800.0,
+    "tick_time_utc": "2026-10-24 00:39:00 UTC",
+    "tick_age_seconds": 0.0,
+    "clock_skew_seconds": -5.31,
     "quote_fresh": true
   },
   "broker_spec": {
@@ -121,14 +125,18 @@ The dispatcher embeds the complete immutable machine-generated cycle_envelope.js
     "volume_min": 0.01,
     "volume_step": 0.01,
     "volume_max": 100.0,
-    "stops_level": 0
+    "stops_level": 0,
+    "contract_size": 1.0
   },
   "broker_valuation": {
     "profit_at_sl_usd": -19.2,
     "profit_at_tp_usd": 58.0,
     "margin_required_usd": 1626.0,
-    "nominal_risk_usd": 19.2,
-    "ticket_stress_usd": 26.0
+    "base_nominal_risk_usd": 19.2,
+    "exit_spread_cost_usd": 0.6,
+    "total_nominal_risk_usd": 19.8,
+    "ticket_stress_usd": 26.75,
+    "stress_model": "(base_loss + exit_spread) * 1.25 + 2.00 USD"
   },
   "order_check": {
     "pass": true,
@@ -138,7 +146,7 @@ The dispatcher embeds the complete immutable machine-generated cycle_envelope.js
     "margin_free_post_order": 4865.07
   },
   "preflight_verdict": "PREFLIGHT_PASS",
-  "receipt_sha256": "392291720436797708e4db58cf2b1e0d81a776cc2c3ebcee4396963c437ba8cd"
+  "receipt_sha256": "5dedd0c5c51a6953424cb5447f61513d7d026cf826abbca2efaee2bdf25d4327"
 }
 ```
 `
