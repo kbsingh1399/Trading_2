@@ -1,0 +1,712 @@
+{
+  "schema_version": "1.1.0",
+  "cycle_id": "Cycle 315",
+  "cutoff_utc": "2026-10-24 00:38:47 UTC",
+  "evidence_commit": "382d10746035f88801d896fe1ddc1d246abc2846",
+  "evidence_tree": "dd1256eff25bb41271db21ea3cf493079f8621cd",
+  "evidence_manifest_sha256": "4086741b0e8c966cdad5aef3596ec1519a62d26cabfd1500143fc58a2001fbf3",
+  "workbook_sha256": "e855a87fb055ab6f5d8f2be8e5cdab19afe786afaa62ae006984a2c6ef2f6fab",
+  "prompt_sha256": "8dae957f3390e13b60232312b057b01c92f13ffbcc3bac72f3349dd03d73b19e",
+  "prompt_sha256_note": "Dispatched prompt is the filled variant (no template placeholder). Working copy Data/Manditory/Arena_GLM_Standard_Prompt.md = 8dae957f. Committed copy at 254b7f39 = 2b436bee and still contains the {CYCLE_ENVELOPE_JSON} placeholder (DIS-314-05).",
+  "dispatch_nonce": "443f36be-72ac-43d3-a78d-efac412a162d",
+  "provenance_status": "INTEGRITY_VERIFIED_FAIL_CLOSED_ON_GATES",
+  "provenance_attestation": {
+    "envelope_integrity": "Terminal/verify_cycle_envelope.py -> ENVELOPE_INTEGRITY_VERIFIED, exit 0. Structure, nonce, risk_policy, git_commit, git_tree, manifest at declared commit and workbook at declared commit all PASS. Open gates: manifest working copy (FAIL), excel_freshness_verified (null). Fourth consecutive integrity-clean envelope.",
+    "field_by_field": {
+      "risk_policy_sha256": "4633e4af... MATCH",
+      "git_commit": "382d1074 present; snapshot as_of 2026-10-24 00:34:00 UTC = 287 s before cutoff",
+      "git_tree": "dd1256ef MATCH",
+      "evidence_manifest_sha256": "4086741b MATCH at declared commit; working copy differs (gate FAIL)",
+      "workbook_sha256": "e855a87f MATCH at commit and on disk",
+      "excel_freshness_verified": "null, not verified"
+    },
+    "undeclared_newer_commit": {
+      "commit": "df8e0b1",
+      "as_of": "2026-10-24 00:38:43 UTC (4 s before cutoff)",
+      "manifest_sha256": "876f8defa5e2a44f... (differs from envelope 4086741b)",
+      "tree": "0630e355",
+      "admissible_under_this_envelope": false,
+      "reason": "Not the declared evidence commit, and its manifest digest is not the attested one. Excluded under the digest rule (DIS-315-01). Its BTC tick (~00:38:39) would have been ~8 s old at cutoff, so a commit pinned at 00:38:43 could have passed the 15 s quote gate."
+    },
+    "attestation_levels": "Risk policy recomputed MATCH; commit and tree resolved MATCH; workbook byte-identical at commit and on disk; manifest MATCH at declared commit; inventory dispatcher-declared and corroborated by the 00:34:00 snapshot; Excel freshness NULL.",
+    "repo_lag_note": "Data/cycle_envelope.json on origin/main is not the attested envelope. Not a digest failure."
+  },
+  "embedded_preflight_receipt_audit": {
+    "receipt_sha256_claimed": "5dedd0c5c51a6953424cb5447f61513d7d026cf826abbca2efaee2bdf25d4327",
+    "receipt_sha256_self_consistent": "TRUE under json sort_keys indent=2 over the receipt body. Internal consistency only, not provenance.",
+    "verdict": "NOT_ADMISSIBLE_AS_EVIDENCE",
+    "defects": [
+      "observed_at_utc 00:38:55 UTC is 8 s AFTER the 00:38:47 cutoff. Post-cutoff evidence fails closed.",
+      "tick_time_utc 00:39:00 UTC is 13 s after cutoff. quote_fresh = true is asserted against a post-cutoff tick.",
+      "clock_skew_seconds -5.31 and broker_server_offset 10,800 s are declared without a broker-time receipt to reconcile them.",
+      "The receipt changes the stress model to (base_loss + exit_spread) x 1.25 + 2.00 = 26.75 for BTC. This is more conservative than the 26.00 used in 313/314. It is adopted here as the conservative basis.",
+      "margin_required_usd 1626.0 is still unreconciled with margin_free_post_order 4865.07 (UNK-315-02).",
+      "PREFLIGHT_PASS is a label, not a Terminal/execution_preflight.py output."
+    ],
+    "market_geometry_at_receipt": "Receipt mid 80,596.5 (00:39:00). BTC SELL_LIMIT 81,300 is 703.5 pts (+0.87%) above mid."
+  },
+  "inventory_status": "RECONCILED_FLAT",
+  "inventory_detail": "Balance 4,865.07 = equity; margin_used 0.00; margin_free 4,865.07; margin_level 0.0%; 0 positions; 0 pendings. Floating P/L credited zero. Snapshot risk block BROKER_VALUED, tickets [], total_contingent_stress 0, post_joint_stop_equity 4,865.07. Zero residual.",
+  "hard_gate_results": {
+    "legal_account_authorized": true,
+    "legal_details": "Account 5064568 BlueberryMarketsSVG-Live USD, matching envelope and snapshot.",
+    "evidence_freshness_verified": false,
+    "evidence_freshness_details": "Declared-commit snapshot 00:34:00 is 287 s before cutoff. BTC quote tick age at cutoff 291.7 s vs 15 s (FAIL). Depth 291.4 s vs 180 s (FAIL). Liquidation map ~507 s vs 900 s (PASS). The 00:38:43 commit df8e0b1 is excluded (undeclared, manifest mismatch). The 00:39:00 receipt tick is post-cutoff.",
+    "broker_session_open_verified": false,
+    "broker_session_details": "broker_clock_open = null. Layer 5 MT5 telemetry HEALTHY is a health flag, not an order_check bound to nonce 443f36be. The receipt's clock_skew -5.31 is not reconciled.",
+    "native_venue_open_verified": false,
+    "native_venue_details": "Saturday 2026-10-24 00:15 UTC. Crypto perps are 24/7 native. FX, indices and metals are weekend-closed (weekend embargo Fri 21:55 to Sun 22:00 UTC). The 21:15-22:30 UTC rollover window is not active at cutoff.",
+    "calendar_blackout_clear_verified": false,
+    "calendar_details": "Declared-commit snapshot macro_calendar (00:34:00): CALENDAR_UNAVAILABLE, blackout_active TRUE, FAIL_CLOSED_BLOCKED, 'event provenance/window invalid'. macro_calendar.json verified_at 2026-10-23 17:35:00 UTC = 25,427 s before cutoff (> 900 s). Blackout cannot be cleared.",
+    "fx_rollover_embargo": {
+      "window": "21:15-22:30 UTC",
+      "active_at_cutoff": false,
+      "clear": true
+    },
+    "broker_feasibility_order_check": false,
+    "broker_feasibility_details": "No admissible order_calc_profit, order_calc_margin or order_check bound to nonce 2faf3bab. The embedded receipt is post-cutoff and internally contradictory (see embedded_preflight_receipt_audit).",
+    "structural_stop_validated": false,
+    "structural_stop_details": "BTC SL 81,780 sits 2.18 ATR-14 (232.57) above VAH 81,730.56. Structure is analysable, but the broker-native stop/freeze distance is unverified (stops_level 0 is a snapshot spec, not a receipt). SOL SL 104.70 sits above VAH 104.5604.",
+    "joint_solvency_kernel_met": true,
+    "solvency_details": "min(4,865.07, 4,865.07) - 2.00 = 4,863.07 >= 4,795.00 (headroom 68.07). BTC stress 26.75 -> 4,836.32 (41.32). SOL stress 35.25 (22.00 risk + 4.60 spread, x1.25 + 2.00) -> 4,827.82 (32.82). Joint 62.00 -> 4,801.07 (6.07 cushion, down from 12.57 in Cycle 314). Sovereign illustration 4,796.57 (1.57). Zero credit for floating P/L or TP.",
+    "contingent_capacity": {
+      "max_concurrent_tickets": 2,
+      "used": 0,
+      "available": 2,
+      "eligible": true,
+      "source": "Envelope Tier 2 = 2. Snapshot capacity max_concurrent = 4 is overridden (stricter envelope applies, DIS-314-07)."
+    },
+    "overall_hard_gates_pass": false,
+    "summary": "Integrity verifies and capital passes, with a thinner joint cushion (6.07). Freshness fails at 292 s, the pipeline calendar asserts a fail-closed blackout, the venue is closed (Saturday), and there is no order_check. The admissible ranking set is empty."
+  },
+  "universe_coverage": {
+    "total_symbols_declared": 156,
+    "verified_in_file": 156,
+    "file_digest_note": "Data/Assets/mt5_full_symbol_universe.json sha 4d023fe8 identical at f73a6513 and working copy.",
+    "by_asset_class": {
+      "Forex_Raw": 60,
+      "Cryptos_other_CFDs": 53,
+      "Cryptos_Raw_majors": 5,
+      "Indices": 16,
+      "Commodities_Raw": 14,
+      "Commodities": 8
+    },
+    "deep_evidence_assets_in_snapshot": 24,
+    "deep_evidence_pass_quote_gate_at_cutoff": 0,
+    "deep_evidence_fresh_at_generation": "14 crypto CFDs (quote age at generation 0.2-46.7 s). Every one is over 15 s at cutoff (+~79 s from snapshot). DOGE is STALE at generation (46.7 s).",
+    "deep_evidence_non_crypto": "SP500, NAS100, DJ30, GER40, GOLD, SILVER, USWTI, EURUSD, GBPUSD, USDJPY are all STALE at generation (11,633 to 15,233 s). Weekend venues closed.",
+    "exclusions": "None excluded from scan. Gate-driven: 98 TradFi symbols in weekend native closure, 53 alt-crypto CFDs without per-symbol depth or CVD, all 24 deep-evidence assets failing the 15 s quote gate.",
+    "evidence_gaps": {
+      "alt_cryptos_53": "No per-symbol depth, CVD or liquidation map",
+      "forex_60": "No FX-native L2; weekend closed",
+      "indices_16": "Weekend closed; 2026-10-25 DST roll unverified",
+      "commodities_22": "CME/ICE weekend closed; XAUUSD has no volume_profile"
+    },
+    "coverage_assessment": "156/156 declared and reconciled to the file. 24 with row-level evidence (6 reported as rows here). 0 executable."
+  },
+  "account_tier_and_contingent_capacity": {
+    "tier": "TIER_2_HOUSE_MONEY",
+    "tier_basis": "Realized balance 4,865.07 > 4,850.00",
+    "risk_band_per_ticket": "15.00-25.00 USD",
+    "max_concurrent_tickets": 2,
+    "used_tickets": 0,
+    "available_slots": 2,
+    "nominal_risk_capacity_usd": 25.0,
+    "kernel_cushions": {
+      "hard_floor_4600": 265.07,
+      "operating_buffer_4650": 215.07,
+      "admission_kernel_4795": 70.07,
+      "realized_headroom_post_reserve": 68.07
+    },
+    "joint_stress_scenarios": {
+      "btc_only_26_75": "4,836.32 (41.32)",
+      "sol_only_35_25": "4,827.82 (32.82)",
+      "btc_plus_sol_62_00": "4,801.07 (6.07)",
+      "sovereign_illustration_2x25": "4,796.57 (1.57)",
+      "atomic_oco_eligible": false,
+      "note": "No broker-native atomic OCO. BTC and SOL are correlated crypto-beta shorts, so they are joint-stressed."
+    },
+    "new_risk_admissible_capital_only": true,
+    "new_risk_admissible_fully": false,
+    "reason_fully_denied": "Hard gates failed or unknown at cutoff. Capital alone authorises nothing."
+  },
+  "global_contingency_usd": 2.0,
+  "global_contingency_note": "Reserved once, separately from each ticket's 1.25 x loss + 2.00. Reflected in every cushion.",
+  "existing_ticket_actions": [],
+  "existing_positions_note": "Flat. No ticket to manage. The 22:54 UTC closure of #19267445 (+65.19 net after -0.81 swap) is historical. No protected position is claimed risk-free.",
+  "candidate_rows": [
+    {
+      "candidate_id": "CAND-315-B01-WATCH",
+      "symbol": "BTCUSD.pi",
+      "native_market": "Binance/Hyperliquid BTC perp (24/7 native) mirrored by Blueberry CFD BTCUSD.pi",
+      "clock_status": "CRYPTO_NATIVE_24_7_OPEN_BROKER_UNVERIFIED",
+      "quote_timestamp": "2026-10-24 00:33:55.4 UTC last MT5 L1 tick bid 80,633.00 / ask 80,649.00 (mid 80,641.00), age at cutoff 291.7 s",
+      "evidence_availability_timestamps": {
+        "mt5_l1_quote": "2026-10-24 00:33:55 UTC",
+        "binance_l2_depth": "2026-10-24 00:33:55.7 UTC",
+        "snapshot_as_of": "2026-10-24 00:34:00 UTC",
+        "data_layer_status_as_of": "2026-10-24 00:34:20 UTC",
+        "macro_calendar_verified_at": "2026-10-23 17:35:00 UTC"
+      },
+      "evidence_max_age_seconds": {
+        "mt5_l1_quote": 15,
+        "orderbook_depth": 180,
+        "liquidation_map": 900,
+        "cvd": 900,
+        "session_calendar": 900,
+        "broker_preflight": 0
+      },
+      "evidence_age_at_cutoff_seconds": {
+        "mt5_l1_quote": 291.7,
+        "binance_l2_depth": 291.4,
+        "liquidation_map": "~507 (layer age 239.6 s at 00:34:20 + 267 s)",
+        "cvd": "<=287 (snapshot-level bound)",
+        "session_calendar": 25427,
+        "broker_preflight": null
+      },
+      "row_causality_status": "FAIL_QUOTE_OVER_AGE (291.7 s > 15 s). FAIL_DEPTH_OVER_AGE (291.4 s > 180 s). PASS liquidation map (~507 s <= 900 s). FAIL calendar (25,427 s; pipeline blackout FAIL_CLOSED_BLOCKED).",
+      "authorization_expiry_utc": null,
+      "side": "SELL",
+      "order_type": "LIMIT",
+      "entry": 81300.0,
+      "stop": 81780.0,
+      "target": 79850.0,
+      "volume": 0.04,
+      "broker_risk_usd": 19.2,
+      "broker_reward_usd": 58.0,
+      "rr": 3.021,
+      "spread_cost_usd": 0.6,
+      "stressed_loss_usd": 26.75,
+      "post_joint_stop_balance": 4836.32,
+      "p_fill": null,
+      "p_win_given_fill": null,
+      "probability_calibration_status": "UNAVAILABLE_UNCALIBRATED_N17_BELOW_MIN100",
+      "estimator_references": "Account-wide record 11/17 (Clopper-Pearson), snapshot p_win_calibration_method. No BTC-specific estimator version, training window or horizon.",
+      "calibration_diagnostics": "p_win_lower_bound 0.4197, calibrated=false, minimum sample 100, n=17. No Brier, log-loss, reliability curve, lineage or time-blocked OOS window.",
+      "effective_sample_size": 17,
+      "probability_confidence_intervals": {
+        "method": "EXACT_ONE_SIDED_CLOPPER_PEARSON_95PCT",
+        "p_win_lower_95": 0.4197,
+        "upper_95": "NOT_REPORTED",
+        "wins": 11,
+        "n": 17,
+        "admissible": false
+      },
+      "outcome_model_and_timeout_branches": "Two-outcome TP/SL form insufficient. TP 14.45 sigma_5min away (~17.4 h) against a 900 s TTL. Unfilled, partial and time-stop branches are separate and unpriced. Fill-hazard bound (driftless reflection, sigma_5min 100.36, TTL sigma 173.8): entry 659 pts above the declared mid (z = 3.79) gives <= 0.00015; 703.5 pts above the receipt mid (z = 4.05) gives <= 0.00005. Heuristic, not calibrated.",
+      "cost_ledger_and_conditioning": "Risk 0.04 x 480 = 19.20. Reward 0.04 x 1,450 = 58.00. Exit spread 0.60 (receipt, 15 pts x 0.04). Commission and swap UNKNOWN. Stress (19.20 + 0.60) x 1.25 + 2.00 = 26.75 (receipt model, adopted; 0.75 above Cycle 314). Driftless P_TP = 480/1,930 = 0.24870. Break-even with spread = 19.80/77.20 = 0.25648 (+0.78 pp needed).",
+      "wait_cost_usd": null,
+      "ev_net_usd": null,
+      "ev_lcb_5pct_usd": null,
+      "expected_capital_minutes": null,
+      "utility": null,
+      "uncertainty_method": "NOT_APPLICABLE_NO_CALIBRATED_DISTRIBUTION. P_fill and P_TP are null, so no bootstrap, LCB or Utility exists. The barrier and fill-hazard figures are geometry, not probability estimates.",
+      "adverse_selection_usd": null,
+      "evidence_ids": [
+        "snapshot@382d1074:BTC quotes (00:34:00 header; tick 00:33:55.4; mid 80,641)",
+        "snapshot@382d1074:BTC.volume_profile POC 81,650.76 / VAH 81,730.56 / VAL 81,283.68",
+        "snapshot@382d1074:BTC.causal_indicators ATR14 240.69, trend BEARISH",
+        "snapshot@382d1074:BTC.pullback_geometry LONG (retrace 3.0) - direction flipped from SHORT at 254b7f3 (quarantine, DIS-315-09)",
+        "snapshot@382d1074:BTC.structural_stop_clusters nearest buy-stops 80,800 (310.6k USD), 80,900 (95.1k USD)",
+        "snapshot@382d1074:BTC.orderbook_live_depth book_imbalance +0.6648 (noise, quarantined)",
+        "snapshot@382d1074:data_layer_status layer_1 HEALTHY 38.6 s, layer_3 STALE 563,328 s, layer_7 UNAVAILABLE",
+        "snapshot@382d1074:macro_calendar CALENDAR_UNAVAILABLE, blackout FAIL_CLOSED_BLOCKED"
+      ],
+      "verdict": "HOLD",
+      "rejection_reasons": [
+        "HARD_GATE evidence_freshness: quote 291.7 s vs 15 s; depth 291.4 s vs 180 s.",
+        "HARD_GATE broker_session_open: broker_clock_open = null; a health flag is not an order_check.",
+        "HARD_GATE calendar: pipeline blackout_active TRUE, FAIL_CLOSED_BLOCKED; calendar 25,427 s stale.",
+        "HARD_GATE broker_feasibility: no order_calc_profit, order_calc_margin or order_check bound to nonce 443f36be. The embedded receipt is post-cutoff and not admissible.",
+        "SOFT_GATE: P_fill and P_TP null (n=17 < 100). EV_net, LCB_5% and Utility not formable.",
+        "FILL GEOMETRY: 81,300 is 659 pts (+0.82%) above the declared mid. Touch within TTL is <= 0.015% (heuristic).",
+        "HORIZON: TP is 14.45 sigma_5min away (~17.4 h) against a 900 s TTL."
+      ]
+    },
+    {
+      "candidate_id": "CAND-315-S01-WATCH",
+      "symbol": "SOLUSD.p",
+      "native_market": "Solana perp (24/7 native) mirrored by Blueberry CFD SOLUSD.p, contract size 100",
+      "clock_status": "CRYPTO_NATIVE_24_7_OPEN_BROKER_UNVERIFIED",
+      "quote_timestamp": "2026-10-24 00:33:58.2 UTC last MT5 L1 tick bid 101.98 / ask 102.21 (mid 102.095), age at cutoff 288.9 s",
+      "evidence_availability_timestamps": {
+        "mt5_l1_quote": "2026-10-24 00:33:58 UTC",
+        "snapshot_as_of": "2026-10-24 00:34:00 UTC",
+        "macro_calendar_verified_at": "2026-10-23 17:35:00 UTC"
+      },
+      "evidence_max_age_seconds": {
+        "mt5_l1_quote": 15,
+        "orderbook_depth": 180,
+        "cvd": 900,
+        "session_calendar": 900,
+        "broker_preflight": 0
+      },
+      "evidence_age_at_cutoff_seconds": {
+        "mt5_l1_quote": 288.9,
+        "orderbook_depth": "~287 (snapshot-level)",
+        "session_calendar": 25427,
+        "broker_preflight": null
+      },
+      "row_causality_status": "FAIL_QUOTE_OVER_AGE (288.9 s > 15 s). FAIL calendar (25,427 s; pipeline blackout).",
+      "authorization_expiry_utc": null,
+      "side": "SELL",
+      "order_type": "LIMIT",
+      "entry": 103.6,
+      "stop": 104.7,
+      "target": 100.5,
+      "volume": 0.2,
+      "broker_risk_usd": 22.0,
+      "broker_reward_usd": 62.0,
+      "rr": 2.818,
+      "spread_cost_usd": 4.6,
+      "stressed_loss_usd": 35.25,
+      "post_joint_stop_balance": 4827.82,
+      "p_fill": null,
+      "p_win_given_fill": null,
+      "probability_calibration_status": "UNAVAILABLE_UNCALIBRATED_N17_BELOW_MIN100",
+      "estimator_references": "Same account-wide 11/17 record. No SOL-specific labels or asset-native fill model.",
+      "calibration_diagnostics": "p_win_lower_bound 0.4197 (11/17), calibrated=false, n=17 < 100. No Brier, log-loss, reliability or time-blocked OOS.",
+      "effective_sample_size": 17,
+      "probability_confidence_intervals": {
+        "method": "EXACT_ONE_SIDED_CLOPPER_PEARSON_95PCT",
+        "p_win_lower_95": 0.4197,
+        "wins": 11,
+        "n": 17,
+        "admissible": false
+      },
+      "outcome_model_and_timeout_branches": "Two-outcome form insufficient. Unfilled, partial and time-stop branches unpriced. Entry 103.60 is 1.505 pts (+1.47%) above the declared mid, so the fill-hazard is structurally lower than BTC's.",
+      "cost_ledger_and_conditioning": "Contract 100. 0.20 x 100 x 1.10 = 22.00 risk. 0.20 x 100 x 3.10 = 62.00 reward. Exit spread 0.23 x 20 = 4.60 (21% of risk). Commission and swap UNKNOWN. Stress (22.00 + 4.60) x 1.25 + 2.00 = 35.25 (receipt model applied consistently). Driftless P_TP = 110/420 = 0.26190. Break-even 26.60/84.00 = 0.31667, so SOL needs +5.48 pp.",
+      "wait_cost_usd": null,
+      "ev_net_usd": null,
+      "ev_lcb_5pct_usd": null,
+      "expected_capital_minutes": null,
+      "utility": null,
+      "uncertainty_method": "NOT_APPLICABLE_NO_CALIBRATED_DISTRIBUTION. Nothing substituted.",
+      "adverse_selection_usd": null,
+      "evidence_ids": [
+        "snapshot@382d1074:SOL quotes (bid 101.98 / ask 102.21, tick 00:33:58.2)",
+        "snapshot@382d1074:SOL.volume_profile VAL 103.6296 / POC 104.3098 / VAH 104.5604",
+        "snapshot@382d1074:SOL.causal_indicators ATR14 0.5035, trend BEARISH",
+        "snapshot@382d1074:SOL.structural_stop_clusters buy-stops 103-104 (1.93M USD), 102-103 (0.50M USD)",
+        "snapshot@382d1074:macro_calendar CALENDAR_UNAVAILABLE, blackout FAIL_CLOSED_BLOCKED"
+      ],
+      "verdict": "HOLD",
+      "rejection_reasons": [
+        "HARD_GATE evidence_freshness: quote 288.9 s vs 15 s.",
+        "HARD_GATE broker_session_open and calendar: null; pipeline blackout FAIL_CLOSED_BLOCKED; calendar 25,427 s stale.",
+        "HARD_GATE broker_feasibility: no order_check. Contract 100 and stops_level 0 are snapshot specs, not receipts.",
+        "SOFT_GATE: P_fill and P_TP null. No SOL-native calibration.",
+        "FRICTION: 4.60 spread is 21% of risk; break-even 31.67% vs 26.19% driftless, a 5.48 pp requirement.",
+        "FILL GEOMETRY: entry 1.47% above mid, so P_fill is structurally lower than BTC's."
+      ]
+    },
+    {
+      "candidate_id": "CAND-315-E01-VETO",
+      "symbol": "ETHUSD.pi",
+      "native_market": "Ethereum perp (24/7 native) mirrored by Blueberry CFD ETHUSD.pi",
+      "clock_status": "CRYPTO_NATIVE_24_7_OPEN_BROKER_UNVERIFIED",
+      "quote_timestamp": "2026-10-24 00:33:57.5 UTC last MT5 L1 tick bid 2,369.00 / ask 2,372.10 (mid 2,370.55), age at cutoff 289.6 s",
+      "evidence_availability_timestamps": {
+        "mt5_l1_quote": "~00:13:50 UTC (snapshot age 1.5 s)",
+        "snapshot_as_of": "2026-10-24 00:13:53 UTC"
+      },
+      "evidence_max_age_seconds": {
+        "mt5_l1_quote": 15,
+        "orderbook_depth": 180,
+        "cvd": 900
+      },
+      "evidence_age_at_cutoff_seconds": {
+        "mt5_l1_quote": 289.6,
+        "orderbook_depth": "~287 (snapshot-level)",
+        "cvd": "<=287 (snapshot-level)"
+      },
+      "row_causality_status": "FAIL_QUOTE_OVER_AGE (289.6 s > 15 s)",
+      "authorization_expiry_utc": null,
+      "side": null,
+      "order_type": null,
+      "entry": null,
+      "stop": null,
+      "target": null,
+      "volume": null,
+      "broker_risk_usd": null,
+      "broker_reward_usd": null,
+      "rr": null,
+      "spread_cost_usd": null,
+      "stressed_loss_usd": null,
+      "post_joint_stop_balance": null,
+      "p_fill": null,
+      "p_win_given_fill": null,
+      "probability_calibration_status": "UNAVAILABLE_UNCALIBRATED_N17_BELOW_MIN100",
+      "estimator_references": "Same account-wide 11/17 record. No ETH-specific labels.",
+      "calibration_diagnostics": "calibrated=false, n=17 < 100. No ETH lineage.",
+      "effective_sample_size": 17,
+      "probability_confidence_intervals": {
+        "method": "EXACT_ONE_SIDED_CLOPPER_PEARSON_95PCT",
+        "p_win_lower_95": 0.4197,
+        "wins": 11,
+        "n": 17,
+        "admissible": false
+      },
+      "outcome_model_and_timeout_branches": "Not reached. No admissible direction, so no outcome tree exists.",
+      "cost_ledger_and_conditioning": "No order proposed. The native signals disagree on direction, so nothing is priced.",
+      "wait_cost_usd": null,
+      "ev_net_usd": null,
+      "ev_lcb_5pct_usd": null,
+      "expected_capital_minutes": null,
+      "utility": null,
+      "uncertainty_method": "NOT_APPLICABLE_NO_CALIBRATED_DISTRIBUTION.",
+      "adverse_selection_usd": null,
+      "evidence_ids": [
+        "snapshot@382d1074:ETH quotes (mid 2,370.55) and causal_indicators (trend BEARISH, ATR14 9.69)",
+        "snapshot@382d1074:ETH.volume_profile VAL 2,389.216 / POC 2,396.575 / VAH 2,405.272",
+        "Cycle 313/314 ETH CVD absorption (carried; not re-extracted at 382d1074, so the directional veto is not re-verified)"
+      ],
+      "verdict": "HOLD",
+      "rejection_reasons": [
+        "NO_COHERENT_SETUP (adversarial veto, carried): CVD absorption conflicts with BEARISH trend. Not re-verified at the declared commit, so this reason is advisory only.",
+        "HARD_GATE evidence_freshness: quote 289.6 s vs 15 s.",
+        "HARD_GATE broker_session_open and calendar: null; pipeline blackout FAIL_CLOSED_BLOCKED."
+      ]
+    },
+    {
+      "candidate_id": "CAND-315-G01-WATCH",
+      "symbol": "GER40.p",
+      "native_market": "Eurex DAX (futures to 22:00 CEST = 20:00 UTC), weekend closed",
+      "clock_status": "NATIVE_VENUE_CLOSED_WEEKEND",
+      "quote_timestamp": "2026-10-23 20:00:00 UTC last MT5 L1 tick bid 25,127.6 / ask 25,128.4 (16,727 s before cutoff)",
+      "evidence_availability_timestamps": {
+        "mt5_l1_quote": "2026-10-23 20:00:00 UTC",
+        "snapshot_as_of": "2026-10-24 00:13:53 UTC (STALE at generation)",
+        "macro_calendar_verified_at": "2026-10-23 17:35:00 UTC"
+      },
+      "evidence_max_age_seconds": {
+        "mt5_l1_quote": 15,
+        "native_session": 900,
+        "broker_preflight": 0
+      },
+      "evidence_age_at_cutoff_seconds": {
+        "mt5_l1_quote": 16727,
+        "session_calendar": 25427,
+        "broker_preflight": null
+      },
+      "row_causality_status": "FAIL_NATIVE_CLOSED_AND_QUOTE_OVER_AGE (last tick 20:00:00 UTC, 16,727 s)",
+      "authorization_expiry_utc": null,
+      "side": null,
+      "order_type": null,
+      "entry": null,
+      "stop": null,
+      "target": null,
+      "volume": null,
+      "broker_risk_usd": null,
+      "broker_reward_usd": null,
+      "rr": null,
+      "spread_cost_usd": null,
+      "stressed_loss_usd": null,
+      "post_joint_stop_balance": null,
+      "p_fill": null,
+      "p_win_given_fill": null,
+      "probability_calibration_status": "UNAVAILABLE_NO_INDEX_NATIVE_FILL_MODEL",
+      "estimator_references": "None. No index-native fill or TP labels.",
+      "calibration_diagnostics": "No GER40 subset in the 17-trade record. calibrated=false.",
+      "effective_sample_size": 0,
+      "probability_confidence_intervals": null,
+      "outcome_model_and_timeout_branches": "Not reached: venue closed.",
+      "cost_ledger_and_conditioning": "No order proposed. The 0.32 bps print is a closed-market quote, not executable.",
+      "wait_cost_usd": null,
+      "ev_net_usd": null,
+      "ev_lcb_5pct_usd": null,
+      "expected_capital_minutes": null,
+      "utility": null,
+      "uncertainty_method": "NOT_APPLICABLE_NO_CALIBRATED_DISTRIBUTION.",
+      "adverse_selection_usd": null,
+      "evidence_ids": [
+        "snapshot@254b7f39:GER40 (STALE, age 15,233 s at generation)",
+        "Eurex CEST until 2026-10-25: 22:00 CEST = 20:00 UTC, matching the last tick"
+      ],
+      "verdict": "HOLD",
+      "rejection_reasons": [
+        "HARD_GATE native_venue: Eurex closed since 20:00 UTC Friday; Saturday.",
+        "HARD_GATE evidence: quote 15,312 s vs 15 s; calendar 24,012 s vs 900 s.",
+        "HARD_GATE calendar: pipeline blackout FAIL_CLOSED_BLOCKED.",
+        "HARD_GATE broker_feasibility: Monday gap and 2026-10-25 DST roll unverified."
+      ]
+    },
+    {
+      "candidate_id": "CAND-315-F01-WATCH",
+      "symbol": "EURUSD.pi",
+      "native_market": "Interbank FX via Blueberry Forex_Raw; weekend closed",
+      "clock_status": "NATIVE_FX_CLOSED_WEEKEND_BROKER_UNVERIFIED",
+      "quote_timestamp": "2026-10-23 20:59:59 UTC last MT5 L1 tick bid 1.1200 / ask 1.1204 (13,128 s before cutoff)",
+      "evidence_availability_timestamps": {
+        "mt5_l1_quote": "2026-10-23 20:59:59 UTC",
+        "snapshot_as_of": "2026-10-24 00:13:53 UTC (STALE at generation)",
+        "macro_calendar_verified_at": "2026-10-23 17:35:00 UTC"
+      },
+      "evidence_max_age_seconds": {
+        "mt5_l1_quote": 10,
+        "session_calendar": 900,
+        "broker_preflight": 0
+      },
+      "evidence_age_at_cutoff_seconds": {
+        "mt5_l1_quote": 13128,
+        "session_calendar": 25427,
+        "broker_preflight": null
+      },
+      "row_causality_status": "FAIL_NATIVE_CLOSED_AND_QUOTE_OVER_AGE (last tick 20:59:59 UTC, 13,128 s)",
+      "authorization_expiry_utc": null,
+      "side": null,
+      "order_type": null,
+      "entry": null,
+      "stop": null,
+      "target": null,
+      "volume": null,
+      "broker_risk_usd": null,
+      "broker_reward_usd": null,
+      "rr": null,
+      "spread_cost_usd": null,
+      "stressed_loss_usd": null,
+      "post_joint_stop_balance": null,
+      "p_fill": null,
+      "p_win_given_fill": null,
+      "probability_calibration_status": "UNAVAILABLE_NO_FX_NATIVE_FILL_MODEL",
+      "estimator_references": "None. Crypto CVD and L2 do not transfer to FX. The workbook has no FX-native L2.",
+      "calibration_diagnostics": "No FX subset in the 17-trade record. calibrated=false.",
+      "effective_sample_size": 0,
+      "probability_confidence_intervals": null,
+      "outcome_model_and_timeout_branches": "Not reached: venue closed.",
+      "cost_ledger_and_conditioning": "No order proposed. The 3.57 bps print is a closed-market quote.",
+      "wait_cost_usd": null,
+      "ev_net_usd": null,
+      "ev_lcb_5pct_usd": null,
+      "expected_capital_minutes": null,
+      "utility": null,
+      "uncertainty_method": "NOT_APPLICABLE_NO_CALIBRATED_DISTRIBUTION.",
+      "adverse_selection_usd": null,
+      "evidence_ids": [
+        "snapshot@254b7f39:EURUSD (STALE, age 11,634 s at generation)",
+        "macro_calendar.json verified_at 2026-10-23 17:35:00 UTC (24,012 s before cutoff)"
+      ],
+      "verdict": "HOLD",
+      "rejection_reasons": [
+        "HARD_GATE native_venue: FX closed since Friday 21:00 UTC; Saturday weekend embargo applies.",
+        "HARD_GATE calendar: pipeline blackout FAIL_CLOSED_BLOCKED; calendar 24,012 s stale.",
+        "HARD_GATE broker_session_open: null. No order_check. Swap, commission and Monday gap unmeasured."
+      ]
+    },
+    {
+      "candidate_id": "CAND-315-X01-WATCH",
+      "symbol": "XAUUSD.pi",
+      "native_market": "COMEX gold via Blueberry Commodities_Raw; CME Globex weekend closed",
+      "clock_status": "NATIVE_VENUE_CLOSED_WEEKEND",
+      "quote_timestamp": "2026-10-23 20:57:58 UTC last MT5 L1 tick bid 3,995.81 / ask 3,996.00 (13,249 s before cutoff)",
+      "evidence_availability_timestamps": {
+        "mt5_l1_quote": "2026-10-23 20:57:58 UTC",
+        "snapshot_as_of": "2026-10-24 00:13:53 UTC (STALE at generation)",
+        "macro_calendar_verified_at": "2026-10-23 17:35:00 UTC"
+      },
+      "evidence_max_age_seconds": {
+        "mt5_l1_quote": 15,
+        "native_session": 900,
+        "broker_preflight": 0
+      },
+      "evidence_age_at_cutoff_seconds": {
+        "mt5_l1_quote": 13249,
+        "session_calendar": 25427,
+        "broker_preflight": null
+      },
+      "row_causality_status": "FAIL_NATIVE_CLOSED_AND_QUOTE_OVER_AGE (last tick 20:57:58 UTC, 13,249 s)",
+      "authorization_expiry_utc": null,
+      "side": null,
+      "order_type": null,
+      "entry": null,
+      "stop": null,
+      "target": null,
+      "volume": null,
+      "broker_risk_usd": null,
+      "broker_reward_usd": null,
+      "rr": null,
+      "spread_cost_usd": null,
+      "stressed_loss_usd": null,
+      "post_joint_stop_balance": null,
+      "p_fill": null,
+      "p_win_given_fill": null,
+      "probability_calibration_status": "UNAVAILABLE_NO_COMMODITY_NATIVE_FILL_MODEL",
+      "estimator_references": "None. No XAU-native fill or TP labels.",
+      "calibration_diagnostics": "No XAU subset in the 17-trade record. calibrated=false.",
+      "effective_sample_size": 0,
+      "probability_confidence_intervals": null,
+      "outcome_model_and_timeout_branches": "Not reached: venue closed.",
+      "cost_ledger_and_conditioning": "No order proposed. The 0.48 bps print is a closed-market quote.",
+      "wait_cost_usd": null,
+      "ev_net_usd": null,
+      "ev_lcb_5pct_usd": null,
+      "expected_capital_minutes": null,
+      "utility": null,
+      "uncertainty_method": "NOT_APPLICABLE_NO_CALIBRATED_DISTRIBUTION.",
+      "adverse_selection_usd": null,
+      "evidence_ids": [
+        "snapshot@254b7f39:GOLD (STALE, age 11,755 s at generation; no volume_profile)",
+        "GOLD imbalance swing +0.6753 to -0.0408 across generations (noise)"
+      ],
+      "verdict": "HOLD",
+      "rejection_reasons": [
+        "HARD_GATE native_venue: CME Globex weekend closed.",
+        "HARD_GATE evidence: quote 11,834 s vs 15 s; no volume profile to anchor a structural stop.",
+        "HARD_GATE calendar: pipeline blackout FAIL_CLOSED_BLOCKED.",
+        "HARD_GATE broker_session_open: null. No order_check."
+      ]
+    }
+  ],
+  "arithmetic_validation": {
+    "base_capital": "min(4,865.07, 4,865.07) = 4,865.07",
+    "global_reserve": 2.0,
+    "existing_stress": 0.0,
+    "post_baseline": "4,863.07",
+    "cushions": {
+      "vs_4600": 265.07,
+      "vs_4650": 215.07,
+      "vs_4795": 68.07,
+      "vs_4795_after_btc": 41.32,
+      "vs_4795_after_sol": 32.82,
+      "vs_4795_after_joint": 6.07
+    },
+    "spec_arithmetic_verified": "4,865.07 - 2 x (1.25 x 25.00 + 2.00) - 2.00 = 4,796.57, exact",
+    "candidate_arithmetic": "BTC 0.04 x 480 = 19.20 risk; 0.04 x 1,450 = 58.00 reward; R:R 3.021; spread 0.60; stress (19.20+0.60) x 1.25 + 2 = 26.75; post 4,836.32. SOL 0.20 x 100 x 1.10 = 22.00; 0.20 x 100 x 3.10 = 62.00; R:R 2.818; spread 4.60; stress (22.00+4.60) x 1.25 + 2 = 35.25; post 4,827.82. Joint 62.00 -> 4,801.07 (6.07).",
+    "hurdle_arithmetic": "BTC driftless P_TP = 480/1,930 = 0.24870; break-even 19.80/77.20 = 0.25648 (+0.78 pp). SOL 110/420 = 0.26190; break-even 26.60/84.00 = 0.31667 (+5.48 pp).",
+    "fill_hazard_arithmetic": "sigma_5min 100.36 (Cycle 313 estimate, not re-estimated); TTL sigma = 173.8. BTC 659 pts from declared mid -> z = 3.79 -> <= 0.00015. 703.5 pts from receipt mid -> z = 4.05 -> <= 0.00005. Heuristic.",
+    "volatility_arithmetic": "SL 480 = 4.78 sigma_5min; TP 1,450 = 14.45 sigma_5min; diffusion time 17.4 h.",
+    "residuals": "None. The ledger reconciles to flat inventory.",
+    "validation_status": "PASSED_TO_0.01_USD; joint stress corrected to the receipt model (6.07 cushion)"
+  },
+  "discovery_personas": {
+    "regime_calibration": "BTC, SOL, ETH all BEARISH at the declared commit (EMA200 slope about -0.1% per 3 h). p_win 11/17, uncalibrated. No setup clears n >= 100.",
+    "fill_microstructure": "Book imbalance is noise (BTC +0.66 at 382d1074, -0.69 at 254b7f3). BTC pullback classifier flipped LONG at 382d1074, SHORT at 254b7f3, so it is also not a stable input. Depth FAILS at 291 s this cycle (PASSED at 83 s in 314): sampling-dependent. The 81,300 entry is 0.82% above the declared mid, so the fill-hazard bound is ~0.015%.",
+    "solvency_portfolio": "Kernel 4,795 binds. Joint BTC+SOL 4,801.07 (6.07 cushion, down from 12.57) once spread is in the stress. Two-slot limit holds. No atomic OCO.",
+    "market_clock_provenance": "Saturday 00:39 UTC. Crypto 24/7; FX, indices, metals weekend-closed. Calendar blackout FAIL_CLOSED_BLOCKED. Declared commit 382d1074 attested; newer df8e0b1 unattested. Receipt post-cutoff."
+  },
+  "disputes": [
+    {
+      "id": "DIS-315-01",
+      "severity": 3,
+      "issue": "Pinning: the envelope attests commit 382d1074 (as_of 00:34:00). origin/main has df8e0b1 (as_of 00:38:43, 4 s before cutoff) with manifest 876f8def and tree 0630e355. That newer commit is undeclared and not attested.",
+      "resolution": "EXCLUDED_UNATTESTED_NEWER_COMMIT",
+      "evidence": "Had the dispatcher pinned df8e0b1, BTC's tick would be ~8 s old at cutoff and could pass the 15 s gate. Dispatcher should pin the latest pre-cutoff commit with a matching manifest."
+    },
+    {
+      "id": "DIS-315-02",
+      "severity": 3,
+      "issue": "Embedded receipt post-cutoff: observed 00:38:55 (8 s after cutoff), tick 00:39:00 (13 s after).",
+      "resolution": "EXCLUDED_AS_FUTURE_EVIDENCE",
+      "evidence": "Observation <= availability <= cutoff. The PASS label cannot override the timestamp rule."
+    },
+    {
+      "id": "DIS-315-03",
+      "severity": 2,
+      "issue": "Stress model change: receipt stress 26.75 for BTC includes exit spread. Cycle 314 used 26.00.",
+      "resolution": "ADOPTED_CONSERVATIVE_MODEL",
+      "evidence": "Applied to SOL too (35.25). Joint cushion falls from 12.57 to 6.07. Still passes 4,795."
+    },
+    {
+      "id": "DIS-315-04",
+      "severity": 2,
+      "issue": "Pipeline calendar blackout FAIL_CLOSED_BLOCKED, carried from 314. Event provenance/window invalid.",
+      "resolution": "HARD_GATE_FAIL_CLOSED",
+      "evidence": "Snapshot macro_calendar at 00:34:00."
+    },
+    {
+      "id": "DIS-315-05",
+      "severity": 1,
+      "issue": "Snapshot internal ordering: data_layer_status as_of 00:34:20 is 20 s after the header 00:34:00.",
+      "resolution": "NOTED_LAYER_AGES_RELATIVE_TO_LAYER_AS_OF",
+      "evidence": "Per-row timestamps used where available."
+    },
+    {
+      "id": "DIS-315-06",
+      "severity": 1,
+      "issue": "Capacity conflict: envelope 2 tickets vs snapshot max_concurrent 4.",
+      "resolution": "STRICTER_ENVELOPE_LIMIT_APPLIES",
+      "evidence": "Envelope governs."
+    },
+    {
+      "id": "DIS-315-07",
+      "severity": 2,
+      "issue": "Depth layer flips across cycles: PASS at 83 s (314), FAIL at 291 s (315), same pipeline.",
+      "resolution": "DO_NOT_REPORT_LAYER_STATUS_AS_DATA_QUALITY",
+      "evidence": "Sampling-dependent (DIS-313-04, DIS-314-10). The 15 s quote gate fails for every row either way."
+    },
+    {
+      "id": "DIS-315-08",
+      "severity": 1,
+      "issue": "Prompt digest: committed copy 2b436bee has the template placeholder; working copy 8dae957f; dispatched prompt is the filled variant.",
+      "resolution": "NOTE_ONLY",
+      "evidence": "No unresolved markers in the envelope."
+    },
+    {
+      "id": "DIS-315-09",
+      "severity": 2,
+      "issue": "BTC directional classifiers flip between generations: pullback SHORT (254b7f3) to LONG (382d1074); book imbalance -0.69 to +0.66.",
+      "resolution": "NOT_USED_AS_EVIDENCE",
+      "evidence": "Quarantined alongside imbalance (DIS-314-02)."
+    }
+  ],
+  "unknowns": [
+    {
+      "id": "UNK-315-01",
+      "item": "A valid sub-second preflight at emission, bound to nonce 443f36be, with tick time <= cutoff",
+      "impact": "No executable quote at cutoff",
+      "disposition": "REQUIRE_LIVE_PREFLIGHT_BEFORE_CUTOFF",
+      "needed_for_reassessment": "Terminal/execution_preflight.py run on the trading host, timestamped inside the window"
+    },
+    {
+      "id": "UNK-315-02",
+      "item": "Margin reconciliation: receipt margin_required 1,626 vs unchanged margin_free 4,865.07",
+      "impact": "Margin feasibility unverified",
+      "disposition": "REQUIRE_BROKER_RECEIPT",
+      "needed_for_reassessment": "order_calc_margin and order_check for the exact request"
+    },
+    {
+      "id": "UNK-315-03",
+      "item": "Pipeline calendar provenance (event provenance/window invalid)",
+      "impact": "Blackout cannot be cleared",
+      "disposition": "REQUIRE_VALID_CALENDAR",
+      "needed_for_reassessment": "Signed calendar with event provenance and windows"
+    },
+    {
+      "id": "UNK-315-04",
+      "item": "P_fill and P_TP calibration (fill model, timeout branch, Brier/log-loss, ESS >= 100, CIs)",
+      "impact": "EV_net, LCB_5% and Utility null, so HOLD",
+      "disposition": "MODEL_UNAVAILABLE_REQUIRES_HOLD",
+      "needed_for_reassessment": "Time-blocked OOS labels, lineage, estimator version and horizon"
+    },
+    {
+      "id": "UNK-315-05",
+      "item": "Weekend carry: swap, commission and Monday open gap",
+      "impact": "A 17.4 h diffusion horizon forces unpriced carry",
+      "disposition": "REQUIRE_SWAP_TABLE",
+      "needed_for_reassessment": "Per-symbol swap and commission table"
+    },
+    {
+      "id": "UNK-315-06",
+      "item": "CoinGlass L3 whale orders stale 563,328 s; Arkham on-chain UNAVAILABLE",
+      "impact": "Resting-order and on-chain evidence unusable",
+      "disposition": "UNAVAILABLE",
+      "needed_for_reassessment": "Fresh L3 harvest and an Arkham feed"
+    },
+    {
+      "id": "UNK-315-07",
+      "item": "Book imbalance and pullback direction have no documented stable method",
+      "impact": "Cannot be used for P_fill",
+      "disposition": "QUARANTINE_FEATURE",
+      "needed_for_reassessment": "Documented window and estimator version"
+    },
+    {
+      "id": "UNK-315-08",
+      "item": "Dispatcher pinning: the envelope pins 382d1074 while df8e0b1 is newer and pre-cutoff",
+      "impact": "A later pin might satisfy the 15 s gate, so the current pin decides admissibility",
+      "disposition": "DISPATCHER_ACTION",
+      "needed_for_reassessment": "Envelope pinned to the latest pre-cutoff commit with a matching manifest"
+    }
+  ],
+  "authorization": "DENIED_FAIL_CLOSED",
+  "authorization_details": "Envelope integrity verified at the declared commit 382d1074. Capital passes: 4,863.07 post-reserve, 68.07 headroom, and joint BTC+SOL 4,801.07 (6.07 cushion) once exit spread is in the stress. Denied because the hard gates fail or are unknown: quote 289-292 s vs 15 s, the pipeline calendar asserts blackout FAIL_CLOSED_BLOCKED, the venues are weekend-closed for FX/indices/metals, broker session is unverified and there is no order_check. The embedded receipt is post-cutoff. The newer commit df8e0b1 is unattested and excluded.",
+  "response_sha256": "0293162d136209544401488b9b5318a29320d1edb2e64b5289c38c0c9bb4cb3c"
+}
