@@ -63,6 +63,9 @@
     "magic": 888888,
     "comment": "Fable5_Affirmative_C327",
     "registered_utc": "2026-10-24 13:54:25 UTC",
-    "cycle_origin": "Cycle 327"
+    "cycle_origin": "Cycle 327",
+    "closed_utc": "2026-10-24 23:31:08 UTC",
+    "closed_balance": 4846.32,
+    "closed_equity": 4846.32
   }
 }
