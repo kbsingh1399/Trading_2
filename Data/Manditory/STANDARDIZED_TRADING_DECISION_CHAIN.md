@@ -147,7 +147,7 @@ flowchart TD
 | **17** | `9_Liquidation_Max_Pain_7D` | **7D Macro Liquidation Max Pain** | `Asset`, `Timeframe (7D)`, `Current Price`, `Max Pain Strike Price`, `Distance to Max Pain %`, `Total Long Risk USD`, `Total Short Risk USD`, `Pain Disparity Ratio`, `Target Bias`, `Timestamp UTC`. | Macro weekly max pain target defining the prevailing weekly auction bias. |
 | **18** | `8_Exchange_Liquidation_Map_7D` | **7D Cumulative Liquidation Surface** | `Asset`, `Timeframe (7D)`, `Price Bucket`, `Long Cumulative Liq USD`, `Short Cumulative Liq USD`, `Net Delta Liq USD`, `Density Score`, `Nearest Magnet Flag`, `Timestamp UTC`. | High-conviction macro TP magnet selection: targets multi-hundred-million-dollar squeeze pools (e.g. 1B USD+ short liquidation pools on BTC). |
 | **19** | `10_Whale_Orders` | **Resting Whale Orders (> 100K USD)** | `Sr. No.`, `Asset`, `Venue/Exchange`, `Side (BUY/SELL)`, `Price`, `From Price`, `Initial USD`, `Remaining USD`, `Filled USD`, `Duration`, `Status`, `Distance to Spot %`, `Whale Entity Tag`, `Timestamp UTC`. | Inviolable stop bunker anchor: Stop Loss MUST shelter behind persistent resting whale bids (longs) or asks (shorts) with confirmed persistence (persist >= 180s). |
-| **20** | `11_Technical` | **Quantitative Indicators & VWAP Bands** | `Asset`, `Close`, `20 EMA`, `50 EMA`, `100 EMA`, `200 EMA`, `VWAP`, `VWAP +1.0 SD`, `VWAP +2.0 SD`, `VWAP -1.0 SD`, `VWAP -2.0 SD`, `VWAP Z-Score`, `RSI-14`, `ATR-14`, `Volume Profile POC`, `VAH`, `VAL`, `Trend Regime`, `Timestamp UTC`. | Primary statistical regime filter: assigns Model 1 (|Z_VWAP| >= 2.0 SD in MEAN_REVERT) or Model 2 (|Z_VWAP| < 2.0 SD in TREND_UP/DOWN). If UNDEFINED, stand aside unconditionally. |
+| **20** | `11_Technical` | **Quantitative Indicators, Fib-Prime EMAs & VWAP Bands** | `Asset`, `Close`, `EMA 5`, `EMA 13`, `EMA 34`, `EMA 89`, `EMA 144`, `EMA 233`, `Fib Ribbon State`, `VWAP`, `VWAP +1.0 SD`, `VWAP +2.0 SD`, `VWAP -1.0 SD`, `VWAP -2.0 SD`, `VWAP Z-Score`, `RSI-14`, `ATR-14`, `Volume Profile POC`, `VAH`, `VAL`, `Fib 0.618 GP`, `Fib 0.702 OTE`, `Fib 0.786 Inval`, `Trend Regime`, `Timestamp UTC`. | Primary statistical regime and dynamic shelf filter: assigns Model 1 (|Z_VWAP| >= 2.0 SD in MEAN_REVERT) or Model 2 (|Z_VWAP| < 2.0 SD in TREND_UP/DOWN with Fib-Prime EMA ribbon alignment). If UNDEFINED, stand aside unconditionally. |
 | **21** | `12_Hyperdash` | **Hyperdash Flow Sentiment & KPIs** | `Metric Identifier`, `Symbol`, `Metric Name`, `Value`, `24h Change`, `Sentiment Bias`, `Signal Strength`, `Timestamp UTC`. | Synthesizes aggregate smart money flow metrics, on-chain sentiment scores, and multi-asset volume velocity. |
 | **22** | `13_Hyperliquid` | **Hyperliquid L1 Native Exchange Engine** | `Sr. No.`, `Asset`, `Open Interest USD`, `24h Volume USD`, `Funding Rate`, `Premium/Discount`, `Predicted Funding`, `Long/Short Skew`, `Net Taker Flow`, `Timestamp UTC`. | Real-time L1 DEX orderbook health, basis premium/discount relative to Binance, and decentralized taker flow pressure. |
 | **23** | `14_Hyperdash_Liq_Map` | **Continuous Liquidation Price Ladder** | `Asset`, `Mark Price`, `Price Level`, `Side (Long/Short)`, `Leverage Tier`, `Liquidation Notional USD`, `Cumulative Liq USD`, `Distance to Mark %`, `Cluster Rank`, `Status`, `Timestamp UTC`. | Fine-grained continuous dollar-by-dollar liquidation ladder (5,700+ rows). Accurately maps the boundary [min_price, max_price] of long cascade bands and short squeeze bands. |
@@ -159,7 +159,7 @@ flowchart TD
 | **29** | `19_Calendar` | **Forex Factory Macroeconomic Calendar** | `Date`, `Time UTC`, `Currency`, `Impact (Red/Orange/Yellow/Grey)`, `Event Name`, `Detail / Description`, `Actual`, `Forecast`, `Previous`, `Deviation / Surprise`, `Trade Blackout Window`, `Timestamp UTC`. | Sovereign Macro Defense Gate: Enforces the mandatory blackout window (+-15m for Crypto, +-35m for TradFi) around high-impact red-folder releases (CPI, FOMC, NFP, GDP, Interest Rates). |
 | **30** | `Top_Institutions` | **Institutional Whale Holders & Allocations** | `Rank`, `Institution/Entity`, `Holdings (BTC/ETH)`, `USD Notional`, `AUM %`, `Portfolio Weight`, `Filing Date`, `Net Change 30D`, `Timestamp UTC`. | Discloses deep institutional whale balance sheets (MicroStrategy, BlackRock, Fidelity). Identifies macro custody accumulations. |
 | **31** | `ETF_Market_Overview` | **Aggregate ETF Market Cap & Volume Heatmap** | `Category`, `Total Net Inflow (USD)`, `Total Volume (USD)`, `Total AUM`, `Day-over-Day %`, `Week-over-Week %`, `Leading ETF`, `Timestamp UTC`. | Macro TradFi capital velocity across spot ETFs. Confirms systemic ETF liquidity tailwinds. |
-| **32** | `20_Auction_Market_Structure` | **Auction Market Structure & Key Levels (54 Assets)** | `sr_no`, `asset`, `symbol`, `category`, `price`, `spread_bps`, `spread_gate`, `va_position`, `daily_poc`, `daily_vah`, `daily_val`, `dist_poc_pct`, `dist_vah_pct`, `dist_val_pct`, `pd_poc`, `pd_vah`, `pd_val`, `pdh`, `pdl`, `pdc`, `weekly_poc`, `weekly_vah`, `weekly_val`, `cwh`, `cwl`, `pwh`, `pwl`, `asian_high`, `asian_low`, `london_high`, `london_low`, `ny_high`, `ny_low`, `ib_high`, `ib_low`, `auction_regime`. | Ground-truth auction profiling. Maps Volume Profile POC/VAH/VAL shelves, Monday Opening Range, Prior Day Extremes, Session Extremes, and Floor Pivots (P, R1, S1, R2, S2). Row 1 unmerged headers. |
+| **32** | `20_Auction_Market_Structure` | **Auction Market Structure, MTF Extremes & Fibonacci Golden Zone (54 Assets)** | `sr_no`, `asset`, `symbol`, `category`, `price`, `spread_bps`, `spread_gate`, `va_position`, `daily_poc`, `daily_vah`, `daily_val`, `dist_poc_pct`, `dist_vah_pct`, `dist_val_pct`, `pd_poc`, `pd_vah`, `pd_val`, `pdh`, `pdl`, `pdc`, `monday_high`, `monday_low`, `monday_mid`, `weekly_poc`, `weekly_vah`, `weekly_val`, `cwh`, `cwl`, `pwh`, `pwl`, `cmh`, `cml`, `pmh`, `pml`, `asian_high`, `asian_low`, `london_high`, `london_low`, `ny_high`, `ny_low`, `ib_high`, `ib_low`, `fib_long_0618`, `fib_long_0702`, `fib_short_0618`, `fib_short_0702`, `fib_ote_status`, `auction_regime`. | Ground-truth auction profiling. Maps Volume Profile POC/VAH/VAL shelves, Monday Opening Range (Weekly Initial Balance IB_W), Session Extremes (Asian, London IB, London, NY), Weekly/Monthly Extremes (CWH/CWL, PWH/PWL, CMH/CML, PMH/PML), Fibonacci Retracement Golden Zone (0.618-0.702 OTE), and Floor Pivots (P, R1, S1, R2, S2). Row 1 unmerged headers. |
 
 ---
 
@@ -354,9 +354,87 @@ Determine the macro structural environment using ground-truth auction levels fro
    - **Weekly Macro Shelves**: Weekly POC, Current Week High/Low (CWH/CWL), and Prior Week High/Low (PWH/PWL).
 
 2. **Causal Regime Classification**:
-   - **Model 1 (Mean Reversion)**: Admissible ONLY when `|VWAP Z-Score| >= 2.0 to 3.5 SD` in `MEAN_REVERT` regime with tape exhaustion.
-   - **Model 2 (Trend Pullback)**: Admissible ONLY when `|VWAP Z-Score| < 2.0 SD` (0.2 to 1.7 SD) in confirmed `TREND_UP` or `TREND_DOWN` with 20/50/200 EMA ribbon alignment, pulling back to EMA20, Session VWAP, or VAH/VAL shelves.
+   - **Model 1 (Mean Reversion)**: Admissible ONLY when `|VWAP Z-Score| >= 2.0 to 3.5 SD` in `MEAN_REVERT` regime with tape exhaustion sweeping Monday High/Low, Session Extremes, or Fibonacci 1.272/1.618 outer extensions.
+   - **Model 2 (Trend Pullback)**: Admissible ONLY when `|VWAP Z-Score| < 2.0 SD` (0.2 to 1.7 SD) in confirmed `TREND_UP` or `TREND_DOWN` with Fibonacci Prime EMA ribbon alignment (5 > 13 > 34 > 89 > 144 > 233 for longs), pulling back to Fib-Prime EMA 34/89, Session VWAP, or Fibonacci Golden Zone (`[0.618 GP, 0.702 OTE]`) shelves.
    - **Stand-Aside Invariant**: If `Trend Regime == UNDEFINED` or auction structure shows conflicting low-volume chop, the desk **stands aside unconditionally in 100% Cash Defense**.
+
+#### 4.1 Fibonacci Prime Exponential Moving Averages (5, 13, 34, 89, 144, 233) & Ribbon Dynamics
+Arbitrary calendar-based moving averages (20, 50, 100, 200) from legacy equity trading fail to capture the self-similar fractal geometry and memory decay of continuous 24/7 auctions. The desk permanently replaces them with the canonical **Fibonacci Prime EMA Suite**:
+
+1. **Hierarchy & Microstructure Jurisdictions**:
+   - **EMA 5 (Micro Momentum & Scalp Trigger)**: Immediate orderflow pressure vector on 15m. Fast trailing gate for active excursion protection. (Fibonacci prime).
+   - **EMA 13 (Fast Trend & Break-of-Structure Sentry)**: First warning line of impulse exhaustion. Cross against EMA 13 signals early pullback inception. (Fibonacci prime).
+   - **EMA 34 (Dynamic Intermediate Baseline / Model 2 Shelf)**: Replaces legacy arbitrary 20 EMA. Serves as the primary institutional dynamic support/resistance shelf for shallow trend pullbacks in high-momentum regimes. (Fibonacci number).
+   - **EMA 89 (Structural Medium-Term Pivot / Major Trend Shelf)**: Replaces legacy arbitrary 50 EMA. Primary trend qualification boundary. Deep pullbacks must find structural absorption at EMA 89 to preserve pro-trend validity. (Fibonacci prime).
+   - **EMA 144 (Institutional Macro Cycle Barrier)**: Replaces legacy arbitrary 100 EMA. Major higher-timeframe wave boundary (12 squared, Fibonacci node). Represents equilibrium between intermediate and macro participants. (Fibonacci number).
+   - **EMA 233 (Regime Divider & Ultimate Macro Anchor)**: Replaces legacy arbitrary 200 EMA. Absolute dividing line between macro bull and bear regimes across 15m, 1h, and 4h. Price above EMA 233 disqualifies macro short expansion; price below EMA 233 disqualifies macro long expansion. (Fibonacci prime).
+
+2. **Fibonacci Ribbon Dynamics & Expansion Gates**:
+   - **Bullish Expansion Stack**: `EMA 5 > EMA 13 > EMA 34 > EMA 89 > EMA 144 > EMA 233` with positive slope across all vectors (`d(EMA)/dt > 0`). Mandatory for Model 2 Bullish Continuation.
+   - **Bearish Expansion Stack**: `EMA 5 < EMA 13 < EMA 34 < EMA 89 < EMA 144 < EMA 233` with negative slope across all vectors (`d(EMA)/dt < 0`). Mandatory for Model 2 Bearish Continuation.
+   - **Ribbon Spread Ratio (RSR)**:
+     `RSR = (max(EMA_Suite) - min(EMA_Suite)) / Close`
+   - **Compression Coil Invariant**: When `RSR <= 10th percentile(RSR_90d)`, the ribbon is in a "Compression Knot". In a knot, trend pullbacks are prohibited; the desk prepares for explosive volatility breakout acceptance.
+
+---
+
+#### 4.2 Multi-Timeframe Liquidity & Auction Extremes
+Ground-truth auction geometry is mapped across multi-timeframe boundaries from Sheet 33 (`20_Auction_Market_Structure`):
+
+1. **Monday Opening Range & Weekly Initial Balance (IB_W)**:
+   - **Definition**: The entire price range established between Monday 00:00:00 UTC and Monday 23:59:59 UTC forms the Weekly Initial Balance (`IB_W`).
+     * `Mon_H`: Monday High (Weekly Initial Balance High).
+     * `Mon_L`: Monday Low (Weekly Initial Balance Low).
+     * `Mon_Mid`: Weekly Balance Pivot = `(Mon_H + Mon_L) / 2`.
+   - **Manipulation Sweep Mechanics (Judas Swing)**:
+     * Tuesday/Wednesday London or NY open frequently probes outside `Mon_H` or `Mon_L` to trigger retail breakout stops and engineer exit liquidity for smart-money accumulation.
+     * **Sweep & Reclaim Rule**: If price sweeps below `Mon_L`, pierces retail resting sell stops, and immediately prints an absorption tail closing back inside the Monday range with positive CVD divergence (`zc_div > 0.8`), it confirms a false breakdown. Triggers Model 1B/Model 2 Long targeting `Mon_Mid` (TP1) and `Mon_H` (TP2).
+     * Conversely, a sweep of `Mon_H` with rejection closing back inside triggers a Short targeting `Mon_Mid` and `Mon_L`.
+   - **Weekly Range Acceptance**: Minimum two consecutive 15m candle closes outside `Mon_H` (with RVOL > 1.30) confirms Bullish Weekly Expansion; mean-reversion shorting is vetoed.
+
+2. **Session Extremes & Intraday Liquidity Hand-Off**:
+   - **Asian Session (00:00–08:00 UTC)**: `Asian_High`, `Asian_Low`. Accumulates resting retail stop brackets.
+   - **London Initial Balance (08:00–09:00 UTC)**: `London_IB_High`, `London_IB_Low`. The opening hour of European interbank trade sets the directional auction template.
+   - **London Core Session (08:00–16:00 UTC)**: `London_High`, `London_Low`. Often executes the primary sweep of Asian extremes.
+   - **New York Cash Session (13:30–20:00 UTC)**: `NY_High`, `NY_Low`. Injects TradFi institutional liquidity, testing London boundaries or driving trend extension.
+   - **Session Liquidity Run Rules**:
+     * London Open Asian Sweep: Sweep of `Asian_Low` during 08:00–09:30 UTC followed by reclaim of `Asian_Low` creates an institutional long staging gate.
+     * New York Open London Sweep: Sweep of `London_High` during 13:30–15:00 UTC followed by rejection creates an institutional short staging gate.
+
+3. **Macro Timeframe Extremes**:
+   - Current Week High/Low (`CWH`, `CWL`) & Prior Week High/Low (`PWH`, `PWL`).
+   - Current Month High/Low (`CMH`, `CML`) & Prior Month High/Low (`PMH`, `PML`).
+   - `PWL` and `PML` represent major macro stop sweep magnets. Fading sweeps of `PWL`/`PML` with confirmed tape exhaustion offers multi-day swing expectancy.
+
+4. **Value Area Dynamics: Developing vs Prior Day**:
+   - **Prior Day Value Area (`pd_VAH`, `pd_VAL`, `pd_POC`)**: Fixed historical volume profile anchors representing the previous session's 70% consensus fair value.
+   - **Developing Value Area (`d_VAH`, `d_VAL`, `d_POC`)**: Real-time intraday cumulative volume distribution calculated from session open.
+   - **Auction State Governance**:
+     * *Value Migration Upward* (`d_POC > pd_VAH`): Confirms buyer dominance and value migration. Only pro-trend long pullbacks permitted.
+     * *Value Migration Downward* (`d_POC < pd_VAL`): Confirms seller dominance and value migration. Only pro-trend short pullbacks permitted.
+     * *Overlapping Value* (`pd_VAL <= d_POC <= pd_VAH`): Confirms balanced auction chop. Limit entries must target rotational extremes fading back to `d_POC`.
+
+---
+
+#### 4.3 Fibonacci Retracement Golden Zone Mandatory Confluence Gate
+All candidate limit entries (Model 1 and Model 2) MUST satisfy structural mathematical confluence with the **Fibonacci Golden Zone**:
+
+1. **Mathematical Definitions (Derived from Anchor Swing Low to Swing High of Active Impulse Wave)**:
+   - `0.618 Golden Pocket Lower/Upper Edge`: `Price_Swing_High - 0.618 * (Price_Swing_High - Price_Swing_Low)` (for Longs).
+   - `0.650 Golden Pocket Bound`: Exact mathematical pocket mid-corridor between 0.618 and 0.682.
+   - `0.702 Optimal Trade Entry (OTE)`: Derived from `sqrt(0.5) = 0.7071` / institutional OTE anchor. Provides peak reward-to-risk geometry.
+   - `0.786 Invalidation Shelf`: `sqrt(0.618033) = 0.78615`. The terminal structural invalidation boundary.
+
+2. **Mandatory Confluence Rules by Setup Model**:
+   - **Model 2 (Pro-Trend Pullbacks)**:
+     * **Golden Zone Staging Gate**: Limit entry price MUST sit within the Golden Zone corridor: `[0.618 GP, 0.702 OTE]`.
+     * **Structural Coincidence**: The Golden Zone must directly coincide with at least one active structural barrier: Fib-Prime EMA 34, Fib-Prime EMA 89, Session VWAP, Developing POC (`d_POC`), or Prior Day VAH/VAL.
+     * **0.786 Invalidation Shelf Stop**: Protective Stop Loss MUST sit strictly beyond the 0.786 shelf:
+       - For Longs: `SL = Price_0786_Shelf - 0.40 * ATR - half_spread`
+       - For Shorts: `SL = Price_0786_Shelf + 0.40 * ATR + half_spread`
+       - If price closes beyond the 0.786 shelf on a 15m bar, the impulse wave is mathematically invalidated. Placing stops beyond 0.786 avoids premature stop-outs while strictly containing catastrophic downside.
+   - **Model 1 (Extreme Mean Reversion)**:
+     * Must occur at outer exhaustion extensions (1.272 or 1.618 Fibonacci extension of the internal consolidation range) that simultaneously pierce `Asian_High/Low`, `London_High/Low`, or `Mon_H/Mon_L` before snapping back inside.
 
 ---
 
