@@ -160,13 +160,15 @@ Audit all persistent operational daemons and core external services across both 
 
 ### STEP 6: TRI-ENTITY JOINT COMPLETION, DIALECTIC RESOLUTION & DYNAMIC 20-MINUTE CYCLE PACING PROTOCOL
 
-#### 1. Tri-Entity Joint Completion Gate (Zero Premature Advancement)
+#### 1. Tri-Entity Joint Completion Gate & Antigravity Flash Optimization (Zero Premature Advancement)
 Under institutional trading desk governance, a quantitative cycle is officially complete ONLY when ALL 3 independent evaluation entities have concluded their execution and registered their formal rulings:
-1. **Entity 1 (Antigravity Quant Subagent Swarm)**: Role A (Regime/Diffusion), Role B (Microstructure/Liquidity Walls), Role C (Solvency/Mathematics), and Role D (Clock/Provenance). If Gemini API quota limits (429) occur, harvest available roles, log the constraint, and cleanly prune sockets via `manage_subagents(Action='kill_all')`.
-2. **Entity 2 (Arena.ai Council - GPT Astra)**: Monitored via Chrome CDP port 9222. Harvest full markdown to `docs/trade_plans/ARENA_LATEST_RAW.md` upon appearance of the Copy button / task feedback banner.
-3. **Entity 3 (Z.ai Sovereign Council - GLM-5.3-Flash)**: Monitored via Chrome CDP port 9222. Harvest full markdown and attached python ruling artifacts to `docs/trade_plans/ZAI_LATEST_RAW.md`.
-
-*Reactive Wakeup Mechanism*: Prompt dispatch MUST immediately be paired with `python Terminal/arena_completion_daemon.py --wait` (`IsDaemon=false`, `WaitMsBeforeAsync=500`). This finite task terminates with exit code 0 the exact second all active council members finish, automatically triggering an event-driven reactive wake-up in Antigravity with zero token polling.
+1. **Entity 1 (Antigravity Quant Subagent Swarm - Flash Optimized)**:
+   - **Root Cause of Past 429 Failures**: Spawning 4 bloated subagents simultaneously with raw 40k+ token prompt bodies saturated the Gemini Flash API quota bucket.
+   - **Flash Optimization Invariant**: Subagents MUST be dispatched using **Surgical Pointer Architecture**: reference canonical files (Data/cycle_envelope.json, docs/trade_plans/LATEST_COUNCIL_CYCLE_PROMPT.txt, STANDARDIZED_TRADING_DECISION_CHAIN.md) by path rather than embedding duplicate monolithic texts. This slashes prompt tokens by 85%, guarantees sub-second instantiation, and prevents 429 rate limit exceptions.
+   - **Automatic Fallback Policy**: If a subagent encounters a temporary 429 on Model='flash', automatically retry with Model='flash_lite' or stagger dispatch by 1.5 seconds. Under NO circumstances may the desk skip subagent dispatch and rely solely on external models.
+   - **Mandatory Skills & Kaizen Inquest**: Every subagent MUST address: *How can this analysis and our execution desk be improved using all available relevant quantitative skills (trader-risk, systematic-debugging, clean-code, market-ingest)?*
+2. **Entity 2 (Arena.ai Council - GPT Astra)**: Monitored via Chrome CDP port 9222. Harvest full markdown to docs/trade_plans/ARENA_LATEST_RAW.md upon appearance of the Copy button / task feedback banner.
+3. **Entity 3 (Z.ai Sovereign Council - GLM-5.3-Flash)**: Monitored via Chrome CDP port 9222. Harvest full markdown and attached python ruling artifacts to docs/trade_plans/ZAI_LATEST_RAW.md.
 
 #### 2. Dialectic Cross-Examination & Desk Ledger Synchronization
 - Compare Subagent empirical findings against Arena.ai and Z.ai formal rulings.

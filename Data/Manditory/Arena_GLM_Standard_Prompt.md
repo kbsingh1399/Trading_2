@@ -159,6 +159,13 @@ DENIED_BAD_CYCLE_ENVELOPE
      If the remaining evidence cannot support calibrated EV/LCB, return HOLD
      with the missing evidence needed for reassessment.
 
+### 8. Continuous Kaizen & Methodology Improvement Inquest
+
+In every evaluation cycle, the council MUST provide an explicit meta-evaluation answering:
+- **Skills & Methodology Optimization**: How could our response, mathematical precision, and candidate discovery be fundamentally improved using all available relevant quantitative methodologies, skills, and agent roles?
+- **Omitted Risk Dimensions**: What hidden execution risks, cross-asset correlations, spread expansions, or microstructural traps were omitted or underestimated?
+- **Algorithmic Alternatives**: What superior statistical or machine learning alternatives (e.g. Hawkes processes for order arrival, Kalman filters for spread estimation, GARCH volatility cones) should be integrated into our next cycle?
+
 ### Required response schema
 
 Return one JSON object plus a human-readable explanation.
@@ -181,6 +188,7 @@ The JSON object must contain:
 - arithmetic_validation
 - disputes
 - unknowns
+- methodology_critique_and_improvements
 - authorization
 - response_sha256
 
