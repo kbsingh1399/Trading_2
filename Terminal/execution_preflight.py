@@ -141,10 +141,15 @@ def run_preflight(
         check_retcode = check_dict.get("retcode") if check_dict else -1
         check_pass = check_retcode == 0
 
-        # Spread metrics
+        # Spread metrics & valuation
         spread_raw = tick.ask - tick.bid
         mid = (tick.ask + tick.bid) / 2.0
         spread_bps = (spread_raw / mid * 10000.0) if mid > 0 else 0.0
+        contract_sz = sym_info.trade_contract_size if sym_info.trade_contract_size > 0 else 1.0
+        exit_spread_usd = round(spread_raw * volume * contract_sz, 2)
+        base_nominal_risk = round(abs(profit_sl), 2) if profit_sl is not None else 0.0
+        total_nominal_risk = round(base_nominal_risk + exit_spread_usd, 2)
+        ticket_stress = round(1.25 * total_nominal_risk + 2.0, 2)
 
         receipt = {
             "schema_version": "1.0.0",
@@ -171,8 +176,12 @@ def run_preflight(
                 "mid": round(mid, sym_info.digits),
                 "spread_raw": round(spread_raw, sym_info.digits),
                 "spread_bps": round(spread_bps, 2),
+                "spread_cost_usd": exit_spread_usd,
+                "broker_server_time_raw": tick.time,
+                "broker_server_offset_seconds": broker_offset_s,
                 "tick_time_utc": tick_dt.strftime("%Y-%m-%d %H:%M:%S UTC"),
-                "tick_age_seconds": round(tick_age_s, 2),
+                "tick_age_seconds": round(max(0.0, tick_age_s), 2),
+                "clock_skew_seconds": round(tick_age_s, 2),
                 "quote_fresh": quote_fresh,
             },
             "broker_spec": {
@@ -184,13 +193,17 @@ def run_preflight(
                 "volume_step": sym_info.volume_step,
                 "volume_max": sym_info.volume_max,
                 "stops_level": sym_info.trade_stops_level,
+                "contract_size": contract_sz,
             },
             "broker_valuation": {
                 "profit_at_sl_usd": round(profit_sl, 2) if profit_sl is not None else None,
                 "profit_at_tp_usd": round(profit_tp, 2) if profit_tp is not None else None,
                 "margin_required_usd": round(margin_req, 2) if margin_req is not None else None,
-                "nominal_risk_usd": round(abs(profit_sl), 2) if profit_sl is not None else None,
-                "ticket_stress_usd": round(1.25 * abs(profit_sl) + 2.0, 2) if profit_sl is not None else None,
+                "base_nominal_risk_usd": base_nominal_risk,
+                "exit_spread_cost_usd": exit_spread_usd,
+                "total_nominal_risk_usd": total_nominal_risk,
+                "ticket_stress_usd": ticket_stress,
+                "stress_model": "(base_loss + exit_spread) * 1.25 + 2.00 USD",
             },
             "order_check": {
                 "pass": check_pass,
