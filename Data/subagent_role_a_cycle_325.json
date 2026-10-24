@@ -1,0 +1,323 @@
+{
+  "schema_version": "1.0.0",
+  "cycle_id": "Cycle 325",
+  "role": "ROLE_A_REGIME_AND_CALIBRATION",
+  "evidence_manifest_sha256": "0a886e0cb9dd2b1d3eeab8a171d4dddfe8d4da0d9333e64859822518b60f1b82",
+  "prompt_sha256": "5f9459010734cdf8be1c8c6295c677df140d44e12e93cea70446d9df113b6ff0",
+  "dispatch_nonce": "e8e04f37-6a1e-408d-bcda-6af0ca912a4f",
+  "regime_classification": {
+    "vr_4": 0.558,
+    "z_star": -2.0705,
+    "er_48": 0.2025,
+    "hac_drift_t": -1.2257,
+    "ou_theta_mean": 80924.79,
+    "ou_half_life_bars": 22.26,
+    "classified_regime": "MEAN_REVERT"
+  },
+  "fib_prime_ema_hierarchy": {
+    "ema_5": 80478.85,
+    "ema_13": 80568.95,
+    "ema_34": 80700.35,
+    "ema_89": 80989.76,
+    "ema_144": 81287.7,
+    "ema_233": 81758.06,
+    "ribbon_alignment": "BEARISH_EXPANSION_STACK",
+    "ribbon_spread_ratio": 0.01589,
+    "compression_knot_detected": false
+  },
+  "fib_golden_zone_audit": {
+    "swing_low": 80280.91,
+    "swing_high": 81954.0,
+    "fib_0618": 81314.88,
+    "fib_0650": 81368.42,
+    "fib_0702_ote": 81455.42,
+    "fib_0786_invalidation": 81595.96,
+    "entry_inside_golden_zone": false
+  },
+  "candidate_dialectic_assessment": {
+    "candidate_side": "SELL_LIMIT",
+    "candidate_entry": 81150.0,
+    "distance_to_theta": 225.21,
+    "adverse_drift_detected": false,
+    "p_breakeven_cost_inclusive": 0.3511,
+    "p_win_drift_adjusted": 0.3836,
+    "dialectic_verdict": "VETO_DISQUALIFIED_REGIME_AND_GEOMETRY"
+  },
+  "claims": [
+    {
+      "claim_id": "CLAIM_A_01_ACCOUNT_INVENTORY_AUDIT",
+      "statement": "Blueberry Markets Account #5064568 holds 0 active market positions and 0 pending limit/stop orders (100% flat cash), with verified balance and equity of 4,865.07 USD, providing 70.07 USD solvency cushion above the 4,795.00 USD Solvency Kernel, 215.07 USD above the 4,650.00 USD Operating Buffer, and 265.07 USD cushion above the 4,600.00 USD Hard Floor.",
+      "evidence_ids": [
+        "Data/cycle_envelope.json:inventory",
+        "Data/cycle_envelope.json:solvency",
+        "Data/execution_preflight_receipt.json:account"
+      ],
+      "formula_or_test": "len(active_positions) == 0 and len(pending_orders) == 0 and balance == equity == 4865.07",
+      "result": {
+        "account_login": 5064568,
+        "balance_usd": 4865.07,
+        "equity_usd": 4865.07,
+        "active_positions_count": 0,
+        "pending_orders_count": 0,
+        "solvency_kernel_usd": 4795.0,
+        "solvency_cushion_usd": 70.07,
+        "operating_buffer_usd": 4650.0,
+        "operating_buffer_cushion_usd": 215.07,
+        "hard_floor_usd": 4600.0,
+        "hard_floor_cushion_usd": 265.07,
+        "nominal_risk_capacity_usd": 25.0,
+        "capital_mode": "TIER_2_HOUSE_MONEY"
+      },
+      "uncertainty": "0.00 USD residual error, verified directly against live broker telemetry and immutable envelope.",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM_A_02_VARIANCE_RATIO_SUBDIFFUSIVE_REGIME",
+      "statement": "Lo-MacKinlay Variance Ratio VR(q=4) with heteroskedasticity-robust z* demonstrates statistically significant sub-diffusive mean-reverting dynamics for BTCUSD.pi (VR=0.5580 to 0.5945, z*=-1.5809 to -2.0705), with ETHUSD.pi (VR=0.6882, z*=-1.2056), SOLUSD.p (VR=0.7653, z*=-1.0631), BNBUSD.p (VR=0.8027, z*=-0.9020), BCHUSD.p (VR=0.8157, z*=-0.8240), and XMRUSD.p (VR=0.7833, z*=-0.9561) all exhibiting sub-diffusive compression below 0.85. Only ZECUSD.p (VR=1.1651, z*=0.6687) exhibits diffusive expansion but fails trend significance (z* < 1.64). Exactly zero assets across the 7 crypto perpetuals exhibit super-diffusive trend expansion with aligned drift.",
+      "evidence_ids": [
+        "Data/Candles/BTC_15m.parquet",
+        "Data/Candles/ETH_15m.parquet",
+        "Data/Candles/SOL_15m.parquet",
+        "Data/Candles/BNB_15m.parquet",
+        "Data/Candles/BCH_15m.parquet",
+        "Data/Candles/XMR_15m.parquet",
+        "Data/Candles/ZEC_15m.parquet"
+      ],
+      "formula_or_test": "VR(q) = Var(q) / (q * Var(1)); z* = sqrt(T)*(VR(q)-1)/sqrt(phi)",
+      "result": {
+        "BTCUSD.pi": {
+          "VR_4": 0.558,
+          "z_star": -2.0705,
+          "regime": "SUB_DIFFUSIVE_MEAN_REVERTING"
+        },
+        "ETHUSD.pi": {
+          "VR_4": 0.6882,
+          "z_star": -1.2056,
+          "regime": "SUB_DIFFUSIVE_COMPRESSION"
+        },
+        "SOLUSD.p": {
+          "VR_4": 0.7653,
+          "z_star": -1.0631,
+          "regime": "SUB_DIFFUSIVE_COMPRESSION"
+        },
+        "BNBUSD.p": {
+          "VR_4": 0.8027,
+          "z_star": -0.902,
+          "regime": "SUB_DIFFUSIVE_COMPRESSION"
+        },
+        "BCHUSD.p": {
+          "VR_4": 0.8157,
+          "z_star": -0.824,
+          "regime": "SUB_DIFFUSIVE_COMPRESSION"
+        },
+        "XMRUSD.p": {
+          "VR_4": 0.7833,
+          "z_star": -0.9561,
+          "regime": "SUB_DIFFUSIVE_COMPRESSION"
+        },
+        "ZECUSD.p": {
+          "VR_4": 1.1651,
+          "z_star": 0.6687,
+          "regime": "RANDOM_WALK_DIFFUSIVE"
+        }
+      },
+      "uncertainty": "Evaluated on completed M15 bars; heteroskedasticity correction phi applied.",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM_A_03_EFFICIENCY_RATIO_AND_HAC_DRIFT",
+      "statement": "Kaufman Efficiency Ratio and Newey-West HAC drift t-statistics reveal absence of directional efficiency across the crypto perpetual universe. For BTCUSD.pi, ER(48)=0.2025 and ER(15)=0.1402, with 15m HAC drift t = -1.2257, 1H drift t = -1.4229, and 4H drift t = -0.5758. All timeframes fail the statistical trend threshold (|t_drift| >= 2.0). ETH exhibits ER(48)=0.1894 (breaching below 0.20 trend floor), while XMR exhibits ER(48)=0.0310 (extreme noise chop). The lack of persistent directional drift confirms the market is in sub-diffusive rotational balance.",
+      "evidence_ids": [
+        "Data/Candles/*_15m.parquet",
+        "Data/DataBase_Trading.xlsx:11_Technical"
+      ],
+      "formula_or_test": "ER(n) = |Close_t - Close_{t-n}| / sum(|diff|); t_drift = beta_1 / se(beta_1) [Newey-West Bartlett kernel]",
+      "result": {
+        "BTCUSD.pi": {
+          "ER_15m": 0.1402,
+          "ER_48": 0.2025,
+          "t_drift_15m": -1.2257,
+          "t_drift_1h": -1.4229,
+          "t_drift_4h": -0.5758
+        },
+        "ETHUSD.pi": {
+          "ER_15m": 0.223,
+          "ER_48": 0.1894,
+          "t_drift_1h": -1.35
+        },
+        "SOLUSD.p": {
+          "ER_15m": 0.1952,
+          "ER_48": 0.2581,
+          "t_drift_1h": -1.41
+        },
+        "BNBUSD.p": {
+          "ER_15m": 0.4083,
+          "ER_48": 0.2034,
+          "t_drift_1h": -0.85
+        },
+        "BCHUSD.p": {
+          "ER_15m": 0.2558,
+          "ER_48": 0.2217,
+          "t_drift_1h": -0.92
+        },
+        "XMRUSD.p": {
+          "ER_15m": 0.208,
+          "ER_48": 0.031,
+          "t_drift_1h": -0.45
+        },
+        "ZECUSD.p": {
+          "ER_15m": 0.3992,
+          "ER_48": 0.3423,
+          "t_drift_1h": -1.68
+        }
+      },
+      "uncertainty": "Computed on completed M15 candles; Bartlett kernel lag L=floor(4*(T/100)^(2/9)).",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM_A_04_DIFFUSION_PARAMETERS_AND_OU_EQUILIBRIUM",
+      "statement": "Ornstein-Uhlenbeck (OU) mean-reversion parameter estimation on completed bars yields discrete AR(1) parameters for BTCUSD.pi: a = 2520.0061, b = -0.031140, establishing equilibrium mean theta = 80,924.79 USD with mean-reversion speed theta_speed = 0.031140/bar and half-life tau_half = 22.26 bars (5.56 hours). The candidate entry at 81,150.0 USD sits +225.21 USD above theta. While placing a SELL_LIMIT above theta avoids adverse mean-reverting drift (Entry > theta), the rapid half-life ensures that price fluctuations remain bound to rotational chop around 80,925 USD.",
+      "evidence_ids": [
+        "Data/Candles/BTC_15m.parquet",
+        "Data/DataBase_Trading.xlsx:11_Technical"
+      ],
+      "formula_or_test": "x_t - x_{t-1} = a + b * x_{t-1}; theta = -a / b; tau_half = ln(2) / (-b)",
+      "result": {
+        "BTCUSD.pi_OU": {
+          "a": 2520.0061,
+          "b": -0.03114,
+          "theta_mean_usd": 80924.79,
+          "theta_speed_per_bar": 0.03114,
+          "tau_half_bars": 22.26,
+          "tau_half_hours": 5.56,
+          "candidate_entry_usd": 81150.0,
+          "distance_to_theta_usd": 225.21,
+          "adverse_drift_detected": false
+        }
+      },
+      "uncertainty": "OLS regression on 120 completed M15 bars; dt = 15m.",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM_A_05_REGIME_CLASSIFICATION_AND_DUAL_ENGINE_GATING",
+      "statement": "Evaluation under the Mandatory Dual-Engine Strategy Dialectic strictly disqualifies both Model 1 (Extreme Mean Reversion) and Model 2 (Trend Following Pullback). Model 1 is disqualified because BTC trades at VWAP Z-Score = -1.4333 SD inside Daily Value Area balance (VAL 80509.47, POC 80674.34, VAH 80891.67) with zero tape exhaustion and no sweep of Monday Extremes (Mon_H 83087.5, Mon_L 80743.0); furthermore, fading an oversold negative Z dip requires a LONG entry, directly contradicting the candidate SELL_LIMIT. Model 2 is disqualified because classify_regime returns MEAN_REVERT rather than TREND_UP or TREND_DOWN, VR(4)=0.5580 is sub-diffusive (< 1.15), and 1H/4H drift t-statistics fail the >= 2.0 / >= 1.0 threshold.",
+      "evidence_ids": [
+        "Terminal/decision_gates_v3.py:classify_regime",
+        "Data/DataBase_Trading.xlsx:11_Technical",
+        "Data/DataBase_Trading.xlsx:20_Auction_Market_Structure",
+        "Data/execution_preflight_receipt.json:candidate"
+      ],
+      "formula_or_test": "Model 1: |Z| in [2.0, 3.5] & VR < 0.85 & Exhaustion & Side aligned; Model 2: |Z| < 2.0 & VR > 1.15 & ER >= 0.20 & Regime in [TREND_UP, TREND_DOWN]",
+      "result": {
+        "Model_1_Extreme_MR": {
+          "Z_VWAP": -1.4333,
+          "Z_threshold_min": 2.0,
+          "Auction_State": "INSIDE_VALUE (Balance)",
+          "Candidate_Action": "SELL_LIMIT",
+          "Direction_Alignment": "CONTRADICTORY_SHORT_ON_OVERSOLD_DIP",
+          "Exhaustion_Verified": false,
+          "Status": "DISQUALIFIED_NOT_EXTREME_AND_OPPOSING_DIRECTION"
+        },
+        "Model_2_Trend_Pullback": {
+          "Classified_Regime": "MEAN_REVERT",
+          "Required_Regime": "TREND_DOWN",
+          "VR_4": 0.558,
+          "VR_trend_threshold": 1.15,
+          "Status": "DISQUALIFIED_SUBDIFFUSIVE_CHOP"
+        }
+      },
+      "uncertainty": "Deterministic rule evaluation based on canonical governance invariants.",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM_A_06_FIBONACCI_PRIME_EMA_AND_GOLDEN_ZONE_AUDIT",
+      "statement": "Fibonacci-Prime EMA hierarchy and Retracement Golden Zone audit reveal structural invalidation of the candidate geometry. Fib-Prime EMAs (EMA 5: 80478.85, EMA 13: 80568.95, EMA 34: 80700.35, EMA 89: 80989.76, EMA 144: 81287.70, EMA 233: 81758.06) exhibit a Bearish Expansion Stack (spread ratio 1.589%). From Swing High (81954.0) to Swing Low (80280.91), the Golden Pocket [0.618, 0.650] spans [81314.88, 81368.42] and OTE [0.702] sits at 81455.42. The candidate entry at 81150.0 sits at ~0.520 retracement, failing to reach the Golden Zone. Crucially, the proposed Stop Loss at 81450.0 sits precisely at the 0.702 OTE shelf, violating the invariant that protective stops must sit behind the 0.786 Invalidation Shelf (81595.96) plus 0.40 ATR buffer (81677.94).",
+      "evidence_ids": [
+        "Data/DataBase_Trading.xlsx:11_Technical",
+        "Data/DataBase_Trading.xlsx:20_Auction_Market_Structure",
+        "Data/execution_preflight_receipt.json:candidate"
+      ],
+      "formula_or_test": "Golden_Pocket = [Low + 0.618*(High-Low), Low + 0.650*(High-Low)]; SL_rule = Fib_0786 + 0.40*ATR + half_spread",
+      "result": {
+        "swing_high": 81954.0,
+        "swing_low": 80280.91,
+        "fib_0500": 81117.46,
+        "fib_0618": 81314.88,
+        "fib_0650": 81368.42,
+        "fib_0702_ote": 81455.42,
+        "fib_0786_invalidation": 81595.96,
+        "candidate_entry": 81150.0,
+        "candidate_sl": 81450.0,
+        "entry_in_golden_zone": false,
+        "sl_behind_0786_shelf": false,
+        "sl_required_min": 81677.94,
+        "ribbon_alignment": "BEARISH_EXPANSION_STACK"
+      },
+      "uncertainty": "Deterministic Fibonacci geometry anchored to completed session extremes.",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM_A_07_CANDIDATE_BARRIER_PROBABILITY_AND_DRIFT_ANALYSIS",
+      "statement": "Continuous GBM barrier hitting probability analysis for candidate BTCUSD.pi SELL_LIMIT @ 81150.0 (SL 81450.0, TP 80550.0, volume 0.05 lot, risk:reward = 1:2.0): Conditioned on fill at 81150.0 (+639 USD above mid 80511.0), driftless hitting probability yields P(TP first | fill) = 33.33% (linear) / 33.21% (log scale). Under empirical return drift (mu_bar = -1.076e-4, sigma_bar = 1.471e-3 per 15m bar, theta_drift = -100.36), continuous barrier hitting probability yields P_barrier = 46.05%. With OU distance attenuation (|Entry - theta| = 225.21 USD, ATR = 184.96 USD), P_win_drift_adjusted = 38.36% (or ~38.7% under negative drift) versus breakeven win rate P_BE = 35.11%. While gross conditional EV is positive, the trade fails all regime admission invariants and cannot be authorized.",
+      "evidence_ids": [
+        "Data/execution_preflight_receipt.json",
+        "Data/Candles/BTC_15m.parquet"
+      ],
+      "formula_or_test": "P(hit BL before BU) = [exp(theta*(bU-x0))-1] / [exp(theta*(bU-bL))-1]; P_drift_adj = P_barrier * exp(-lambda*dist/ATR)",
+      "result": {
+        "candidate_order": "BTCUSD.pi SELL_LIMIT @ 81150.0",
+        "volume_lot": 0.05,
+        "entry_price": 81150.0,
+        "stop_loss": 81450.0,
+        "take_profit": 80550.0,
+        "current_mid": 80511.0,
+        "distance_to_entry_usd": 639.0,
+        "base_nominal_risk_usd": 15.0,
+        "exit_spread_cost_usd": 0.8,
+        "total_nominal_risk_usd": 15.8,
+        "profit_at_tp_usd": 30.0,
+        "p_driftless_tp_first": 0.3333,
+        "p_barrier_continuous_gbm": 0.4605,
+        "p_win_drift_adjusted": 0.3836,
+        "p_breakeven_cost_inclusive": 0.3511,
+        "conditional_positive_ev": true,
+        "admission_status": "VETO_DISQUALIFIED_BY_REGIME_GATES"
+      },
+      "uncertainty": "Continuous diffusion approximation; real execution faces discrete weekend jump risks.",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM_A_08_PERPETUAL_QUANT_INQUEST",
+      "statement": "In response to Section 2.5 of the Standardized Trading Decision Chain: Flat equity at 4,865.07 USD is a deliberate feature of institutional solvency defense, preserving 70.07 USD above the 4,795.00 USD Solvency Kernel and 265.07 USD above the 4,600.00 USD Hard Floor. Refusing to execute unanchored trades in sub-diffusive chop (VR=0.558 to 0.595, ER(15)=0.1402, lack of aligned drift) prevents toxic capital erosion. Elite quant execution requires standing aside when neither Model 1 (extreme dislocation) nor Model 2 (trend pullback in Golden Zone) is satisfied.",
+      "evidence_ids": [
+        "Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md:Section_2.5",
+        "Data/cycle_envelope.json:solvency"
+      ],
+      "formula_or_test": "Kaizen Inquest Protocol Evaluation",
+      "result": {
+        "inquest_finding": "ZERO_CAPITAL_EROSION_IN_ROTATIONAL_CHOP",
+        "binding_statistical_boundary": "BTC VR(4) = 0.558 (sub-diffusive compression); ER(15) = 0.1402 (< 0.15 noise floor); classify_regime == MEAN_REVERT without extreme Z-score (|Z|=1.43 < 2.0); Entry outside Golden Zone; SL violates 0.786 shelf",
+        "solvency_kernel_status": "PRESERVED_4865.07_VS_4795.00",
+        "recommendation": "STAND_ASIDE_UNCONDITIONALLY"
+      },
+      "uncertainty": "Deterministic governance evaluation.",
+      "status": "VERIFIED"
+    }
+  ],
+  "challenges": [
+    "CHALLENGE_A_01: The proposed candidate BTCUSD.pi SELL_LIMIT @ 81150.0 (volume 0.05 lot, total nominal risk 15.8 USD, margin 2028.75 USD) is disqualified under both Model 1 and Model 2 regime gates. Model 1 requires extreme dislocation |Z| >= 2.0 SD with tape exhaustion fading towards equilibrium; here VWAP Z is -1.4333 SD (oversold dip), making a short order an unanchored fade inside Value Area balance. Model 2 requires confirmed trend expansion (VR > 1.15, |t_drift| >= 2.0); here VR(4)=0.558 is sub-diffusive compression and classify_regime is MEAN_REVERT.",
+    "CHALLENGE_A_02: The candidate order geometry fails both Fibonacci and Stop Loss structural invariants. Entry at 81150.0 sits at ~0.520 retracement, failing to reach the Golden Pocket [0.618, 0.650] ([81314.88, 81368.42]). Furthermore, the Stop Loss at 81450.0 sits precisely at the 0.702 OTE level (81455.42) instead of behind the 0.786 Invalidation Shelf (81595.96 + 0.40 ATR = 81677.94), making it vulnerable to liquidity sweep invalidation."
+  ],
+  "unknowns": [
+    "UNKNOWN_A_01: Whether the 81,150.0 USD level contains genuine, persistent (>=180s), non-spoofed resting ask liquidity and whale walls on Binance Futures L2 and Hyperliquid L3 orderbooks must be independently verified by Role B.",
+    "UNKNOWN_A_02: Broker margin capacity and solvency kernel stress headroom for the 0.05 lot ticket must be verified by Role C; weekend crypto session hours and rollover embargo clearance must be verified by Role D."
+  ],
+  "severity_1_or_2_disputes": [],
+  "role_verdict": "STAND_ASIDE_UNCONDITIONALLY",
+  "section_8_kaizen": {
+    "skills_and_methodology_optimization": "Incorporate adaptive epoch selection (@[adaptive-wfo-epoch]) to dynamically tune the rolling lookback window for the Variance Ratio kernel during weekend low-liquidity regimes, and apply heteroskedasticity and autocorrelation adjustments (@[sharpe-ratio-non-iid-corrections]) to prevent false regime transitions during session rollovers.",
+    "omitted_risk_dimensions": "Current candidate geometry ignores the 0.786 Fibonacci Invalidation Shelf anchor and fails to front-run the Weekly VAL (81,150.08 USD) liquidity shelf, exposing the limit order to toxic adverse selection if volatility expands into London close.",
+    "algorithmic_alternatives": "Deploy an Ornstein-Uhlenbeck barrier co-integration model paired with @[trader-signal] Z-score anomaly classification that automatically withholds limit staging until price reaches at least |Z| >= 2.2 SD with confirmed resting whale wall replenishment (>=180s persistence)."
+  },
+  "response_sha256": "74fd643366db5430e16b7e2949b9fb22b414ec7776dc5a8519cfe07a6141520c"
+}

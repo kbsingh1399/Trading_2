@@ -283,6 +283,24 @@ Two 25.00 USD nominal tickets require **66.50 USD** joint ticket stress: `2 * (1
 ---
 
 ### Step 5: Antigravity, Arena.ai & Z.ai Co-Equal Quantitative Council Initiation
+- [ ] **MASTER PARALLEL DISPATCH TRIGGER (OPERATOR MANDATE)**:
+  - Execute the master orchestrator to start the cycle and stage all prompt files on disk:
+    ```bash
+    python Terminal/dispatch_cycle_orchestrator.py --cycle "Cycle X"
+    ```
+  - This initializes `Data/cycle_state.json`, dispatches Arena.ai + Z.ai via Chrome CDP (port 9222), and writes rendered prompt files to `Data/subagent_prompts/cycle_{id}_role_{a,b,c,d}.txt`.
+
+- [ ] **🚨 ATOMIC SINGLE-TURN TOOL INVOCATION BLOCK (NON-NEGOTIABLE FOR FLASH MODELS)**:
+  - **MANDATORY**: Antigravity MUST invoke ALL 4 subagents AND the wait watcher in the **EXACT SAME TURN** immediately following `dispatch_cycle_orchestrator.py`:
+    ```python
+    invoke_subagent(Role='Statistical Regime Quant', TypeName='self', Prompt=read_file('Data/subagent_prompts/cycle_{id}_role_a.txt'))
+    invoke_subagent(Role='Microstructure Quant', TypeName='self', Prompt=read_file('Data/subagent_prompts/cycle_{id}_role_b.txt'))
+    invoke_subagent(Role='Solvency Sentry', TypeName='self', Prompt=read_file('Data/subagent_prompts/cycle_{id}_role_c.txt'))
+    invoke_subagent(Role='Clock Provenance Auditor', TypeName='self', Prompt=read_file('Data/subagent_prompts/cycle_{id}_role_d.txt'))
+    run_command(CommandLine='python Terminal/arena_completion_daemon.py --wait', WaitMsBeforeAsync=500, toolSummary='Wait for Arena and Z.ai completion')
+    ```
+  - *Warning*: Under NO circumstances may Antigravity yield control or wait for Arena without all 4 subagents active!
+
 - [ ] **Track A: Antigravity Internal Subagent Swarm Dispatch (MANDATORY 360° QUANT PROMPTS ONLY — FABLE 5)**:
   - Dispatch the 4 authorized internal subagents via `invoke_subagent` (`Model='flash'` — Fable 5 runtime):
     1. `Role='Statistical Regime Quant', Model='flash'` (Fable 5): Full 360° quant prompt calculating Lo-MacKinlay Variance Ratio `VR(q)`, Kaufman Efficiency Ratio `ER`, Ornstein-Uhlenbeck half-life `tau_half in [20m, 4h]`, Newey-West drift `t`-stat, and First-Exit diffusion probability & TTL.
@@ -386,6 +404,21 @@ DIALECTIC_RESOLVED → FINALIZED → QUIET → READY
 
 The next full cycle is:
 max(validated_final_at + 1200 seconds, data_ready_at)
+
+- [ ] **EXECUTE 20-MINUTE DYNAMIC CADENCE PACING & CLEANUP (OPERATOR MANDATE)**:
+  1. Mark subagents completed in the cycle controller:
+     ```bash
+     python Terminal/joint_cycle_controller.py --complete antigravity_subagents
+     ```
+  2. Kill lingering subagent threads to prevent socket exhaustion:
+     `manage_subagents(Action='kill_all')`
+  3. Optimize system RAM:
+     `powershell -ExecutionPolicy Bypass -File scripts/free_ram.ps1`
+  4. Launch the reactive 20-minute rest waiter:
+     ```python
+     run_command(CommandLine='python Terminal/joint_cycle_controller.py --wait-rest', WaitMsBeforeAsync=500, toolSummary='Dynamic 20m rest interval before Cycle X+1')
+     ```
+     *Pacing Contract*: The `--wait-rest` command sleeps cleanly until `T_finish + 1200s` (or early if an MT5 position closes via TP/SL). Upon completion, it exits with code 0 to trigger an immediate reactive wake-up of Antigravity for the next cycle with ZERO token polling.
 
 Position-risk interrupts may run during QUIET but may not open new risk or shorten the 20-minute interval.
 

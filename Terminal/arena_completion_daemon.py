@@ -399,6 +399,17 @@ async def run_wait_for_completion(poll_interval: float = 2.0, timeout_s: float =
         f"Z.ai: connected={zai_active}, gen={saw_zai_generating})",
         flush=True,
     )
+    cycle_state_file = ROOT / "Data" / "cycle_state.json"
+    if cycle_state_file.exists():
+        try:
+            with open(cycle_state_file, "r", encoding="utf-8") as f:
+                cs = json.load(f)
+            sub_status = cs.get("components", {}).get("antigravity_subagents", {}).get("status")
+            print(f"[CouncilWatcher] Antigravity Subagent status in cycle_state: {sub_status}", flush=True)
+            if sub_status != "COMPLETED":
+                print(f"[CouncilWatcher] 🚨 REMINDER: Ensure Antigravity has dispatched 4 Fable 5 subagents in parallel!", flush=True)
+        except Exception:
+            pass
 
     stable_ready_ticks = 0
     last_seen_hash = initial_hash

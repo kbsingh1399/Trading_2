@@ -29,6 +29,7 @@
 | **14** | **Mandatory Tier 2 Full Unabridged Big Prompts** | Subagents dispatched with truncated prompts failing to inspect all 33 sheets | Mandatory Tier 2 Big Prompts (~350–500 tokens) citing `STANDARDIZED_TRADING_DECISION_CHAIN.md` enforced | ✅ **ENFORCED ON ALL TURNS** |
 | **15** | **Sheet 00 (`00_MT5_Account_Telemetry`) Pipeline Integration** | Module 0 missing from `api_parallel_harvester.py`, leading to stale broker telemetry | Appended Module 0 into `API_MODULES` in `api_parallel_harvester.py`; runs every parallel cycle | ✅ **RESOLVED & FRESH** |
 | **16** | **Fibonacci Prime EMAs, Auction Extremes & Golden Zone OTE** | Arbitrary moving averages (20/50/200) and missing weekly/monthly auction extremes | Replaced with Fib-Prime EMAs (5, 13, 34, 89, 144, 233), Monday IB_W, Session & Week/Month High/Low, and Symmetrical Fib Golden Zone (0.618-0.650 GP, 0.702 OTE, 0.786 Inval) across Excel Sheets 20 & 32 and all governance specs | ✅ **CODIFIED & VERIFIED** |
+| **17** | **Parallel Subagent Dispatch & 20m Dynamic Cadence** | Coordinator yielding to wait for Arena before invoking subagents | `dispatch_cycle_orchestrator.py` + atomic single-turn 5-tool dispatch block + `CYCLE_LIFECYCLE_CHECKLIST.md` | ✅ **CODIFIED & VERIFIED** |
 
 ---
 
@@ -408,3 +409,24 @@ Every 20-minute wake-up cron cycle MUST systematically execute and verify each g
   2. **Multi-Timeframe Auction Extremes**: Upgraded `Data/Excel_Modules/20_Auction_Market_Structure.py` (Sheet 32) to compute and display Monday High/Low/Mid (`IB_W`), Asian/London/NY session extremes, Current/Prior Week High/Low (`CWH/CWL/PWH/PWL`), and Current/Prior Month High/Low (`CMH/CML/PMH/PML`) via dual-timeframe M15 + D1 data.
   3. **Symmetrical Fibonacci Golden Zone**: Implemented direction-aware impulse retracement: Bullish impulse retracing down to Golden Pocket [0.618-0.650] and OTE 0.702 with SL beyond 0.786 Invalidation Shelf; Bearish impulse retracing up symmetrically.
   4. **Universal Governance Synchronization**: Updated all governance files (`STANDARDIZED_TRADING_DECISION_CHAIN.md`, `Arena_GLM_Standard_Prompt.md`, `SUBAGENT_PROMPT_TEMPLATES.md`, `AUTONOMOUS_WAKEUP_CHECKLIST.md`, `TRADE_DECISION_PLAYBOOK.md`, `institutional_orderflow_live_checklist.md`, `UNIVERSAL_AUTONOMOUS_TRADING_PROMPT.md`, `ACTIVE_CONTEXT.md`) and verified 0 formula errors across all 33 sheets of `Data/DataBase_Trading.xlsx`.
+
+---
+
+### ISSUE 17: Parallel Subagent Dispatch & 20-Minute Dynamic Cadence Governance
+- **Operator Directives**:
+  * "opus..can you fix the error as antigravity should automatically dispatch subagents in parallel with arena.ai and z.ai on start of new cycle...but misses that. Also, can you check document and if dynamic cycle wkaeup and perform activities with gap of 20 mins between cycle is working okay...write document it if required so that antigravity flash never misses these points."
+  * "continue and use all debug skills and fix error skills"
+- **Forensic Diagnosis**:
+  1. Automated cycle dispatch scripts (`dispatch_dual_council.py`) prompted Arena.ai and Z.ai via Chrome CDP, but could not directly invoke the 4 Fable 5 subagents because subagent spawning requires Antigravity LLM tool calls (`invoke_subagent`).
+  2. In previous cycles, the coordinator agent ran `dispatch_dual_council.py` and then immediately launched `arena_completion_daemon.py --wait`, yielding control and falling asleep before invoking the 4 internal subagents.
+  3. Staging and generation of rendered subagent prompts on disk was missing, forcing the coordinator to construct prompts on the fly.
+  4. The 20-minute post-completion quiet interval (`joint_cycle_controller.py --wait-rest`) lacked a standardized single-turn execution contract for fast / Flash-tier models.
+- **Resolution**:
+  1. **Master Cycle Dispatch Orchestrator**: Developed `Terminal/dispatch_cycle_orchestrator.py` which:
+     * Calls `joint_cycle_controller.py --start "Cycle X"`.
+     * Generates unified external prompts and pushes to Arena.ai & Z.ai via Chrome CDP (port 9222).
+     * Automatically renders the 4 subagent prompt files to `Data/subagent_prompts/cycle_{id}_role_{a,b,c,d}.txt`.
+     * Outputs an explicit, non-negotiable tool execution block demanding that Antigravity invoke all 4 subagents in the EXACT SAME TURN.
+  2. **Daemon Guardrail**: Patched `Terminal/arena_completion_daemon.py` to audit `cycle_state.json` and print a prominent alert if subagents have not been dispatched.
+  3. **Dedicated Cycle Checklist**: Codified `Data/Manditory/CYCLE_LIFECYCLE_CHECKLIST.md` (synced to `docs/specs/`) detailing the exact 5-step atomic lifecycle.
+  4. **Dynamic 20-Minute Separation Validated**: Verified that `joint_cycle_controller.py --wait-rest` calculates `T_finish + 1200s`, sleeps until the rest period expires (or wakes up early if an MT5 position closes via TP/SL), and exits 0 for an instant reactive wake-up.
