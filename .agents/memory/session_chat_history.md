@@ -62949,3 +62949,11 @@ You may create 12_Hyperdash and 13_Hyperliquid where you dump all intelligenve a
 - Capital Cushions: Hard Floor (+265.07 USD), Buffer (+215.07 USD), Solvency Kernel (+70.07 USD), Net Realized Headroom (+68.07 USD).
 - Telemetry Refresh: task-123868 in progress to sync Data/telemetry/mt5_account_telemetry.json.
 - Cycle Pacing: 20-minute stabilization timer active (task-123847); standing by for Cycle 323 initialization.
+
+
+---
+### [Turn Entry: 2026-10-24 08:39:15 UTC]
+- Arena Abort Root Cause Identified: Prompt template contained 'return only: DENIED_BAD_CYCLE_ENVELOPE', causing Arena to abort without full 4-persona evaluation when finding envelope discrepancies.
+- Fix Shipped: Replaced single-line abort instruction in Data/Manditory/Arena_GLM_Standard_Prompt.md and docs/prompts/Arena_GLM_Standard_Prompt.md with strict prohibition on single-line aborts, mandating full 4-persona audit under all conditions.
+- Nonce Binding Hardened: Terminal/dispatch_dual_council.py synchronizes dispatch_nonce to execution_preflight_receipt.json.
+- Arena Reprompted Live: 24,101-character prompt dispatched over Chrome CDP, generation verified active (task-123968 waiter armed).
