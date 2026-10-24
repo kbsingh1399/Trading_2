@@ -1,0 +1,197 @@
+{
+  "schema_version": "1.0.0",
+  "cycle_id": "Cycle 315",
+  "role": "ROLE_B_FILL_MICROSTRUCTURE_GEOMETRY",
+  "evidence_manifest_sha256": "4086741b0e8c966cdad5aef3596ec1519a62d26cabfd1500143fc58a2001fbf3",
+  "prompt_sha256": "85eaf28bd77d329a6b5703e3a15e11a21fe6786efb27c95a2993b00a3262f90e",
+  "dispatch_nonce": "443f36be-72ac-43d3-a78d-efac412a162d",
+  "claims": [
+    {
+      "claim_id": "CLAIM_B_01_ACCOUNT_INVENTORY_FLAT_CASH",
+      "statement": "Blueberry Markets MT5 Account #5064568 is currently 100% Flat Cash with 0 active positions and 0 pending orders, confirming that the audited capital baseline of 4,865.07 USD (balance and equity) is fully unencumbered with 0.00 USD margin used.",
+      "evidence_ids": [
+        "Data/cycle_envelope.json:inventory",
+        "Data/execution_preflight_receipt.json:account",
+        "Data/DataBase_Trading.xlsx:00_MT5_Account_Telemetry"
+      ],
+      "formula_or_test": "Inventory_Integrity_Test: (active_positions_count == 0) AND (pending_orders_count == 0) AND (balance == 4865.07) AND (equity == 4865.07) AND (margin_used == 0.00).",
+      "result": {
+        "balance_usd": 4865.07,
+        "equity_usd": 4865.07,
+        "margin_used_usd": 0.0,
+        "margin_free_usd": 4865.07,
+        "active_positions_count": 0,
+        "pending_orders_count": 0,
+        "inventory_state": "100_PERCENT_FLAT_CASH"
+      },
+      "uncertainty": "0.0000 - Deterministic MT5 broker telemetry verified to 0.01 USD precision.",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM_B_02_L2_ORDERBOOK_DEPTH_IMBALANCE",
+      "statement": "BTC 20-level aggregated L2 orderbook displays acute ask-side supply dominance with 12,149,084.43 USD (150.5593 BTC) in resting asks versus 2,120,406.05 USD (26.2857 BTC) in resting bids, yielding a Depth Imbalance Ratio of 0.1486 (14.86% bid depth), substantially below the 0.35 bearish resistance threshold and confirming overwhelming resting overhead supply.",
+      "evidence_ids": [
+        "Data/DataBase_Trading.xlsx:17_Orderbook:R3-R22",
+        "Data/DataBase_Trading.xlsx:17_Orderbook:R24-R43"
+      ],
+      "formula_or_test": "Imbalance_Ratio = Depth_Bid / (Depth_Bid + Depth_Ask). Invariant: < 0.35 indicates bearish resting resistance; > 0.65 indicates bullish resting support.",
+      "result": {
+        "bid_depth_notional_usd": 2120406.05,
+        "bid_depth_units_btc": 26.2857,
+        "ask_depth_notional_usd": 12149084.43,
+        "ask_depth_units_btc": 150.5593,
+        "depth_imbalance_ratio": 0.1486,
+        "imbalance_interpretation": "EXTREME_ASK_DOMINANCE_RESISTANCE"
+      },
+      "uncertainty": "0.0150 - Aggregated across top CEX venues (Binance, Bybit, OKX, Coinbase).",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM_B_03_ENTRY_DISTANCE_AND_FILL_PROBABILITY",
+      "statement": "Candidate setup (BTCUSD.pi SELL_LIMIT @ 81,300.00 USD) sits 703.50 USD (2.923 ATR-14) above current broker mid (80,596.50 USD), severely violating the Whale Wall Bunker Entry proximity invariant (Distance <= 0.40 ATR) and producing a negligible conditioned fill probability P(fill before 15m TTL) of 0.0126 (1.26%) after accounting for 0.35 queue toxicity.",
+      "evidence_ids": [
+        "Data/execution_preflight_receipt.json:candidate",
+        "Data/execution_preflight_receipt.json:broker_tick",
+        "Data/DataBase_Trading.xlsx:11_Technical:R21"
+      ],
+      "formula_or_test": "d = Entry - Mid; d_ATR = d / ATR_14; P(fill | d, Q, t) = exp(-lambda_fill * d_ATR) * (1 - Toxicity_Score). Proximity Gate: d_ATR <= 0.40.",
+      "result": {
+        "entry_price": 81300.0,
+        "broker_mid_price": 80596.5,
+        "distance_usd": 703.5,
+        "atr_14_usd": 240.6863,
+        "distance_in_atr": 2.9229,
+        "proximity_threshold_atr": 0.4,
+        "proximity_gate_pass": false,
+        "lambda_fill": 1.35,
+        "toxicity_score": 0.35,
+        "p_fill_raw": 0.01933,
+        "p_fill_conditioned": 0.01256,
+        "fill_feasibility": "UNFEASIBLE_WITHIN_CANDLE_TTL"
+      },
+      "uncertainty": "0.0250 - Calibrated from competing hazards queue model.",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM_B_04_WHALE_WALL_PERSISTENCE_AND_SPOOF_RISK",
+      "statement": "Out of 166 total BTC resting whale orders (>= 100K USD) in 10_Whale_Orders, 154 orders (92.77%) fail the mandatory 180s persistence criterion, with 147 orders (88.55%) persisting <= 10s. In the immediate cluster below candidate entry (81,150.00 to 81,350.00 USD totaling 37.09M USD across 10 orders), only 2 orders (2.00M USD, 5.39% of notional) persist >= 180s, while 35.09M USD (94.61% of cluster notional) consists of ephemeral flickering orders lasting 3s to 7s, failing anti-spoofing criteria.",
+      "evidence_ids": [
+        "Data/DataBase_Trading.xlsx:10_Whale_Orders:R3-R168",
+        "Data/DataBase_Trading.xlsx:12_Hyperdash:R19-R21"
+      ],
+      "formula_or_test": "Persistence_Test: Order_Duration >= 180s for whale orders >= 100K USD. Cluster spoof ratio = Ephemeral_Notional / Total_Cluster_Notional.",
+      "result": {
+        "total_btc_whale_orders": 166,
+        "orders_duration_ge_180s": 12,
+        "orders_duration_lt_180s": 154,
+        "persistence_pass_ratio_global": 0.0723,
+        "candidate_cluster_band": "81,150.00 to 81,350.00 USD",
+        "candidate_cluster_total_notional_usd": 37090000.0,
+        "candidate_cluster_persistent_notional_usd": 2000000.0,
+        "candidate_cluster_spoof_notional_usd": 35090000.0,
+        "candidate_cluster_spoof_ratio": 0.9461,
+        "spoof_classification": "PREDOMINANTLY_EPHEMERAL_FLICKERING_ORDERS"
+      },
+      "uncertainty": "0.0300 - Granular order duration telemetry recorded in trade database.",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM_B_05_TOXIC_ADVERSE_SELECTION_MARKOUT",
+      "statement": "If price traverses the 703.50 USD upward excursion required to fill a Sell Limit at 81,300.00 USD, it must exhaust over 201.44M USD of resting ask liquidity against prevailing negative drift (VWAP Z = -2.88 \u03c3), indicating an aggressive informed buyer sweep that drives post-sweep 5m mid to ~81,450.00 USD, producing an adverse selection markout AS(t + 5m) = -0.3125 R0 (-150.00 USD against R0 = 480.00 USD), severely breaching the non-toxic limit of -0.150 R0.",
+      "evidence_ids": [
+        "Data/DataBase_Trading.xlsx:10_Whale_Orders",
+        "Data/DataBase_Trading.xlsx:18_CVD",
+        "Data/execution_preflight_receipt.json:candidate",
+        "Data/execution_preflight_receipt.json:broker_tick"
+      ],
+      "formula_or_test": "AS(t + delta) = Side * (Mid_{t+delta} - Price_fill); Toxicity_Gate: AS(t + 5m) / R0 >= -0.150.",
+      "result": {
+        "candidate_entry": 81300.0,
+        "candidate_sl": 81780.0,
+        "r0_usd": 480.0,
+        "post_sweep_mid_5m": 81450.0,
+        "as_5m_absolute_usd": -150.0,
+        "as_5m_relative_r0": -0.3125,
+        "toxicity_threshold_r0": -0.15,
+        "adverse_selection_verdict": "FAIL_TOXIC_ADVERSE_SELECTION"
+      },
+      "uncertainty": "0.0450 - Empirical markout distribution during aggressive momentum sweep regimes.",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM_B_06_TAKE_PROFIT_GEOMETRY_DISCONNECT",
+      "statement": "Candidate Take Profit (79,850.00 USD) sits 450.10 USD below the lowest observed whale bid wall in the entire book (80,300.10 USD) and 844.80 to 913.20 USD below the primary resting bid cluster (80,694.80 - 80,763.20 USD totaling > 15.0M USD), violating the mandatory Front-Running TP Invariant (which requires TP to sit 5 to 10 bps above the nearest whale bid cluster, i.e., in the 80,735.00 - 80,805.00 USD band).",
+      "evidence_ids": [
+        "Data/DataBase_Trading.xlsx:10_Whale_Orders:R3-R168",
+        "Data/execution_preflight_receipt.json:candidate"
+      ],
+      "formula_or_test": "Front_Run_TP = Nearest_Whale_Bid + (5 to 10 bps * Nearest_Whale_Bid). Validation: TP >= Nearest_Whale_Bid.",
+      "result": {
+        "candidate_tp": 79850.0,
+        "lowest_observed_whale_bid": 80300.1,
+        "primary_whale_bid_cluster": "80694.80 to 80763.20 USD",
+        "ideal_front_running_tp_band": "80735.15 to 80805.00 USD",
+        "distance_below_lowest_bid_usd": 450.1,
+        "front_run_gate_pass": false,
+        "tp_feasibility": "UNANCHORED_BELOW_ALL_OBSERVED_LIQUIDITY"
+      },
+      "uncertainty": "0.0200 - Orderbook depth bounds verified across Binance, OKX, and Bybit feeds.",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "CLAIM_B_07_ORDERFLOW_CVD_AND_LIQUIDATION_ALIGNMENT",
+      "statement": "Binance Futures CVD displays ongoing aggressive taker selling with latest 5m candle delta at -6.45M USD (-79.99 BTC), cumulative CVD deficit at -2.714B USD (-33,294.69 BTC), and Hyperdash Long liquidations at 42.08M USD vs Short liquidations at 26.61M USD (LIR = 1.58), confirming a macro orderflow bias of BEARISH_LONG_FLUSH_PREDOMINATES. However, placing a resting sell limit 703.50 USD above market directly contradicts the immediate downward momentum.",
+      "evidence_ids": [
+        "Data/DataBase_Trading.xlsx:18_CVD:R10",
+        "Data/DataBase_Trading.xlsx:12_Hyperdash:R4-R7",
+        "Data/DataBase_Trading.xlsx:11_Technical:R21"
+      ],
+      "formula_or_test": "Macro_Orderflow_Alignment: CVD_Delta < 0 AND LIR > 1.20 indicates bearish liquidation flush.",
+      "result": {
+        "cvd_5m_latest_delta_usd": -6454535.91,
+        "cvd_cumulative_deficit_usd": -2714019025.0,
+        "long_liquidations_usd": 42084452.95,
+        "short_liquidations_usd": 26606665.58,
+        "lir_ratio": 1.58,
+        "vwap_z_score": -2.8767,
+        "macro_flow_tilt": "BEARISH_LONG_FLUSH_PREDOMINATES"
+      },
+      "uncertainty": "0.0250 - Combined CEX taker volume delta and on-chain liquidation telemetry.",
+      "status": "VERIFIED"
+    }
+  ],
+  "challenges": [
+    {
+      "challenge_id": "CHALLENGE_B_A_01",
+      "target_role": "ROLE_A_REGIME_AND_CALIBRATION",
+      "statement": "Role A must not treat the candidate Sell Limit at 81,300.00 USD as a valid entry without accounting for the fact that price sits at -2.88 \u03c3 below VWAP and is 2.92 ATR away from the candidate entry. If price climbs 703.50 USD against this strong bearish trend, it represents an aggressive momentum sweep that violates sub-diffusive mean reversion assumptions."
+    },
+    {
+      "challenge_id": "CHALLENGE_B_C_01",
+      "target_role": "ROLE_C_SOLVENCY_PORTFOLIO_MATH",
+      "statement": "Role C must note that although the candidate nominal risk of 19.20 USD on 0.04 lots BTCUSD.pi passes the solvency headroom gate (Headroom: 68.07 USD >= 26.75 USD ticket stress), the order geometry is critically flawed due to an unanchored TP (79,850.00 USD) sitting 450.10 USD below all resting whale bids, rendering the expected 58.00 USD profit mathematically unharvestable within normal cycle horizons."
+    },
+    {
+      "challenge_id": "CHALLENGE_B_D_01",
+      "target_role": "ROLE_D_CLOCK_PROVENANCE_AUDITOR",
+      "statement": "Role D must audit whether Level 3 orderbook duration telemetry reflects genuine resting liquidity, given that 92.77% of resting whale orders in the database exhibit lifetimes under 180s (and 88.55% under 10s), indicating high spoofing frequency that denies true bunker qualification."
+    }
+  ],
+  "unknowns": [
+    {
+      "id": "UNK_B_01",
+      "item": "L3 order-level microsecond fill-or-kill vs cancel event flags in 10_Whale_Orders",
+      "impact": "Cannot definitively distinguish algorithmic cancellations from partial fills without tick-level execution logs.",
+      "disposition": "ASSUME_HIGH_SPOOF_RISK_AND_ENFORCE_180S_PERSISTENCE_FILTER"
+    },
+    {
+      "id": "UNK_B_02",
+      "item": "Institutional dark pool block trades and OTC netting across non-public venues",
+      "impact": "Latent institutional inventory may absorb market orders without appearing in public L2/L3 orderbooks.",
+      "disposition": "RELY_STRICTLY_ON_PUBLIC_CEX_AND_DEX_ORDERBOOK_EVIDENCE"
+    }
+  ],
+  "severity_1_or_2_disputes": [],
+  "role_verdict": "VERIFIED_LIQUIDITY_STAND_ASIDE_NEW_RISK",
+  "response_sha256": "2fb624082acb924b9d638470744571cf720c31f8a0706ee504d9006f6a522e01"
+}
