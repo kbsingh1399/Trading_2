@@ -5,8 +5,8 @@
   "dispatch_nonce": "77b50a3b-f40e-4a17-bd0a-a470f2b64571",
   "cutoff_utc": "2026-10-24 06:55:20 UTC",
   "provenance": {
-    "git_commit": "630c66334bf454696d369944e87994e5e93d1555",
-    "git_tree": "6c5cd78da37f31489ef548e6ec7002866c1ac00b",
+    "git_commit": "81fdf4161e0727e74ad37bb2cbefd73909a3b0c7",
+    "git_tree": "e58511404dd0e6ab5a016d7827d734b2fb382dc9",
     "prompt_sha256": "ae23e1c93345164bada59907759a70cfe82568a34cff0ed8e348d05e441a374c",
     "risk_policy_sha256": "4633e4af56e52c71329c617aaee4cae5c7102ef9a9f33e7e747e46d26841f058",
     "evidence_manifest_sha256": "33ea3925a971bbe9fad4925511a53bd1b05605ddd6da0fe5a0866f6a10debaa0",
