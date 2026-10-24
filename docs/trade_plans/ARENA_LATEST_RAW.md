@@ -1,806 +1,456 @@
-\n```\n\n```\n\n# 🏛️ ARENA.AI & Z.AI (GLM-5.3-FLASH) CO-EQUAL QUANTITATIVE COUNCIL & CANDIDATE DISCOVERY PROMPT\n\n\n## Unified Exhaustive 360° 4-Persona Quantitative Audit & Empirical Candidate Discovery Specification\n\n
-\n**Document Status**: CANONICAL PRODUCTION DUAL-COUNCIL PROMPT ARCHITECTURE (Single Source of Truth)\n
-
-\n**Location**: `Data/Manditory/Arena_GLM_Standard_Prompt.md` (Mirrored to `docs/prompts/Arena_GLM_Standard_Prompt.md`)\n
-
-\n**Council Participants**:\n
-
-\n1. **Antigravity Executive Desk**: Live MT5 Decision Desk powered by 4 Fable 5 Subagents.\n
-
-\n1. **Arena.ai Frontier Council**: Co-Equal Quantitative Strategist powered by **GPT Astra**.\n
-
-\n1. **Z.ai Sovereign Council**: Co-Equal Mathematical Quant & Solvency Arbiter powered by **GLM-5.3-Flash**.\n
-
-\n**Target Account**: Blueberry Markets MT5 Account #5064568\n
-
-\n**Active Goal**: Pass Phase 1 (Target: 5,500.00 USD) while defending the 4,600.00 USD Hard Floor, 4,650.00 USD Operating Buffer, and 4,795.00 USD Solvency Kernel\n
-
-\n**Canonical Repositories**:\n
-
-\n- Core Trading: `https://github.com/kbsingh1399/Trading_2.git` (Branch `main`)\n
-
-\n- Dual-Repo Twin: `https://github.com/kbsingh1399/Engine_2.git` (Parity mirror)\n
-
-\n- Heretic Microstructure Daemon: `https://github.com/p-e-w/heretic.git`\n
-
-\n- Web2API Council Daemon: `https://github.com/Sophomoresty/gemini-web2api.git` / `https://github.com/Endogen/web2api`\n
-
-\n- Prime Intellect Compute CLI: `https://github.com/PrimeIntellect-ai/prime.git`\n
-
-\n- Everything Claude Code (ECC) Skills: `https://github.com/affaan-m/ECC.git` (3,478 skills)\n
-
-\n- Ponytail Architecture Auditor: `https://github.com/dietrichgebert/ponytail.git`\n
-
-\n- Future AGI Harness: `https://github.com/future-agi/future-agi.git`\n
-
-\n- Historical Backtesting Data: `https://github.com/kbsingh1399/Backtesting_Data.git`\n
-
-\n- Quant Backtesting Engine: `https://github.com/kbsingh1399/Engine.git`\n
-
-\n**Governing Quant SOP**: `Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md`\n
-
-\n**Mandatory Kaizen & Pitfall Autopsy**: `Data/Manditory/TOP_10_TRADE_EXECUTION_PITFALLS_AND_AUTOPSY.md`, `Data/Manditory/CONTINUOUS_KAIZEN_SELF_IMPROVEMENT_PROTOCOL.md`, and `Data/Manditory/32_SHEET_REAL_WORLD_PITFALL_AVOIDANCE_QUESTIONS.md`.\n
-
-\n**Operator Mandate**: "Arena.ai and Z.ai should both find potential candidates with all personas... not just a red team. Save tokens. Add value. Antigravity takes autonomous calls. Prompts to subagents and council must be quantitative 360-degree type, exhaustive, pulling all subagent prompt types all in one prompt. Use maximum skills/agents for this response and answer the Section 8 Continuous Kaizen Inquest."\n
-
-\n**Token Preservation Directive**: Always query the AST Knowledge Graph via `/graphify` or `python -m graphify query "<concept/symbol>"` before reading large code files.\n
-\n---\n\n## 🧠 MANDATORY MULTI-SKILL & SPECIALIZED AGENT MOBILIZATION DIRECTIVE\n\n\nTo achieve peak quantitative precision and avoid naive or superficial responses, both Arena.ai (GPT Astra) and Z.ai (GLM-5.3-Flash) are commanded to **mobilize and apply the maximum relevant quantitative methodologies, skills, and agent roles** across all touched domains:\n\n- \n`trader-signal`: Z-score anomaly detection, regime classification, and statistical signal generation.\n\n- \n`trader-risk`: Portfolio VaR/CVaR, fractional Kelly sizing, margin collateralization gates, and circuit breakers.\n\n- \n`market-ingest`: OHLCV vectors, L2/L3 orderbook depth aggregation, and CVD delta tracking.\n\n- \n`market-pattern`: Structural candlestick patterns, sweep/reclaim validation, and exhaustion classification.\n\n- \n`adaptive-wfo-epoch`: Adaptive epoch selection, non-overlapping walk-forward window calibration.\n\n- \n`sharpe-ratio-non-iid-corrections`: Heteroskedasticity and autocorrelation adjustments for variance ratios.\n\n- \n`time-series-decomposer`: Decomposition into trend, session cycle, and stationary residual components.\n\n- \n`clean-code`: Pragmatic, unambiguous structural constraints without narrative hand-waving.\n\n- \n`systematic-debugging`: Rigorous root cause analysis, proving causality before assertions.\n\n\n**Mandatory Response Header Requirement**:\n\nAt the very top of your written response, you MUST include an explicit header confirming the active methodologies and skills applied:\n\n```\n
-> 📚 **Active Skills Loaded & Applied:** `@[trader-signal]`, `@[trader-risk]`, `@[market-ingest]`, `@[clean-code]`, ...
-\n```\n\n---\n\n## STATIC COUNCIL REVIEW PROTOCOL & ATTACHED CYCLE ENVELOPE\n\n\nThe dispatcher embeds the complete immutable machine-generated `cycle_envelope.json` directly into this prompt as an integral attachment:\n\n### 📦 ATTACHED IMMUTABLE CYCLE ENVELOPE (cycle_envelope.json):\n\n\n```\n
-{
-
-  "schema_version": "1.1.0",
-
+\n📚 **Active Skills Loaded & Applied:** `@[trader-signal]`, `@[trader-risk]`, `@[market-ingest]`, `@[market-pattern]`, `@[adaptive-wfo-epoch]`, `@[sharpe-ratio-non-iid-corrections]`, `@[time-series-decomposer]`, `@[clean-code]`, `@[systematic-debugging]`\n
+⚠️ **Execution qualifier:** These methodologies were applied in a deterministic single-controller audit. This environment exposes no compatible subagent API, so Arena.ai, Z.ai, the four named subagents, and the mandatory 100 independent competitors could not be created or authenticated. Their execution status is `BLOCKED_NO_SUBAGENT_BACKEND`; no agents or receipts are simulated.\n
+\n```\n{
+  "schema_version": "1.0.0-audit",
   "cycle_id": "325",
-
-  "uuid": "9c628065-4d12-4764-b9b2-9c33e4689b0a",
-
-  "dispatch_nonce": "e8e04f37-6a1e-408d-bcda-6af0ca912a4f",
-
   "cutoff_utc": "2026-10-24 09:46:49 UTC",
-
-  "provenance": {
-
-    "git_commit": "ed89a0199a088b2303430c3d632708076e20d5e8",
-
-    "git_tree": "4cdab54e24f99be1f34859e7671d7b1be98c8a30",
-
-    "prompt_sha256": "5f9459010734cdf8be1c8c6295c677df140d44e12e93cea70446d9df113b6ff0",
-
-    "risk_policy_sha256": "4633e4af56e52c71329c617aaee4cae5c7102ef9a9f33e7e747e46d26841f058",
-
-    "evidence_manifest_sha256": "0a886e0cb9dd2b1d3eeab8a171d4dddfe8d4da0d9333e64859822518b60f1b82",
-
-    "workbook_sha256": "4fd031f59aa7473d7a242d69b0f1ab8565375ad9da216afac6c2e204b3943eeb",
-
-    "excel_freshness_verified": false,
-
-    "excel_audit_scorecard_fresh": false
-
-  },
-
-  "inventory": {
-
-    "account_login": 5064568,
-
-    "server": "BlueberryMarketsSVG-Live",
-
-    "currency": "USD",
-
-    "balance": 4865.07,
-
-    "equity": 4865.07,
-
-    "margin_used": 0.0,
-
-    "margin_free": 4865.07,
-
-    "margin_level": 0.0,
-
-    "active_positions_count": 0,
-
-    "pending_orders_count": 0,
-
-    "active_positions": [],
-
-    "pending_orders": []
-
-  },
-
-  "solvency": {
-
-    "hard_floor_usd": 4600.0,
-
-    "operating_buffer_usd": 4650.0,
-
-    "solvency_kernel_usd": 4795.0,
-
-    "base_capital_usd": 4865.07,
-
-    "hard_floor_cushion_usd": 265.07,
-
-    "operating_buffer_cushion_usd": 215.07,
-
-    "kernel_cushion_usd": 70.07,
-
-    "global_contingency_reserve_usd": 2.0,
-
-    "existing_ticket_stress_usd": 0.0,
-
-    "realized_headroom_usd": 68.07,
-
-    "post_joint_stress_equity_usd": 4863.07,
-
-    "capital_mode": "TIER_2_HOUSE_MONEY",
-
-    "risk_min_usd": 15.0,
-
-    "risk_max_usd": 25.0,
-
-    "nominal_risk_capacity_usd": 25.0,
-
-    "max_concurrent_tickets": 2,
-
-    "new_risk_admissible": true,
-
-    "admission_scope": "CAPITAL_ONLY_REQUIRES_ALL_HARD_GATES_AND_BROKER_CHECK"
-
-  },
-
-  "market_clocks": {
-
-    "broker_clock_open": true,
-
-    "native_market_open": true,
-
-    "calendar_verified": true,
-
-    "day_of_week": "Saturday",
-
-    "market_regime": "WEEKEND_CRYPTO_PERPETUALS_ONLY",
-
-    "tradfi_markets_open": false,
-
-    "crypto_perpetuals_open": true,
-
-    "rollover_embargo_active": false,
-
-    "rollover_window": "21:15-22:30 UTC"
-
-  },
-
-  "status": "ACCOUNT_AND_SOLVENCY_VERIFIED",
-
-  "authorization": "DENIED_PENDING_FULL_HARD_GATES"
-
-}
-
-
-
-### ⚡ VERIFIED LIVE EXECUTION PREFLIGHT RECEIPT (`execution_preflight_receipt.json`):
-
-```json
-
-{
-
-  "schema_version": "1.0.0",
-
+  "evidence_manifest_sha256": "0a886e0cb9dd2b1d3eeab8a171d4dddfe8d4da0d9333e64859822518b60f1b82",
+  "prompt_sha256": "5f9459010734cdf8be1c8c6295c677df140d44e12e93cea70446d9df113b6ff0",
   "dispatch_nonce": "e8e04f37-6a1e-408d-bcda-6af0ca912a4f",
-
-  "observed_at_utc": "2026-10-24 10:32:47 UTC",
-
-  "account": {
-
-    "login": 5064568,
-
-    "server": "BlueberryMarketsSVG-Live",
-
-    "balance": 4865.07,
-
-    "equity": 4865.07,
-
-    "margin_free": 4865.07
-
+  "provenance_status": "DENIED_BAD_CYCLE_ENVELOPE",
+  "inventory_status": "UNVERIFIED_EMBEDDED_CLAIM",
+  "hard_gate_results": {
+    "independent_council_execution": {
+      "pass": false,
+      "status": "BLOCKED_NO_SUBAGENT_BACKEND",
+      "detail": "No host interface proved independent Arena.ai, Z.ai, four-persona, or 100-competitor execution."
+    },
+    "source_artifact_authentication": {
+      "pass": false,
+      "status": "DENIED_MISSING_SOURCE_ARTIFACTS",
+      "detail": "The declared cycle envelope, execution receipt, evidence manifest, master manifest, workbook, and canonical prompt files were absent from their declared checkout paths."
+    },
+    "git_provenance_binding": {
+      "pass": false,
+      "status": "DENIED_GIT_IDENTITY_MISMATCH",
+      "claimed_commit": "ed89a0199a088b2303430c3d632708076e20d5e8",
+      "observed_commit": "3ee602ad4b69d01ea39d3a68ba8b7a440d87ab24",
+      "claimed_tree": "4cdab54e24f99be1f34859e7671d7b1be98c8a30",
+      "observed_tree": "123dadbf871afa50662cc959b57a7a875992fba7"
+    },
+    "cutoff_causality": {
+      "pass": false,
+      "status": "DENIED_POST_CUTOFF_RECEIPT",
+      "required_relation": "tick_time < observed_at < cutoff_utc",
+      "cutoff_utc": "2026-10-24 09:46:49 UTC",
+      "tick_time_utc": "2026-10-24 10:32:46 UTC",
+      "observed_at_utc": "2026-10-24 10:32:47 UTC",
+      "tick_after_cutoff_seconds": 2757,
+      "observation_after_cutoff_seconds": 2758
+    },
+    "receipt_internal_quote_freshness": {
+      "pass": true,
+      "status": "CONDITIONALLY_RECOMPUTED_ONLY",
+      "tick_to_observation_seconds": 1,
+      "detail": "The quote is internally one second old, but both timestamps are post-cutoff and therefore inadmissible."
+    },
+    "excel_freshness": {
+      "pass": false,
+      "status": "DENIED_STALE_EXCEL",
+      "excel_freshness_verified": false,
+      "excel_audit_scorecard_fresh": false
+    },
+    "macro_calendar_freshness": {
+      "pass": false,
+      "status": "DENIED_STALE_CALENDAR",
+      "observed_local_verified_at": "2026-10-09T18:59:59.042408+00:00",
+      "age_at_cutoff_seconds": 1262809.957592,
+      "maximum_age_seconds": 900
+    },
+    "statistical_regime": {
+      "pass": false,
+      "status": "UNKNOWN",
+      "detail": "No cutoff-bound returns were supplied for VR(4), heteroskedastic z*, ER(48), HAC drift, OU equilibrium, Z-score, or volatility estimation."
+    },
+    "microstructure_and_wall_persistence": {
+      "pass": false,
+      "status": "UNKNOWN",
+      "detail": "No authenticated L2/L3 book, CVD, queue position, cancellation history, wall notional, or 180-second persistence evidence was supplied."
+    },
+    "auction_and_fibonacci_geometry": {
+      "pass": false,
+      "status": "UNKNOWN",
+      "detail": "No impulse anchors, ATR, 0.618/0.702/0.786 levels, EMA ribbon, VWAP shelves, value areas, or session extremes were supplied."
+    },
+    "probability_calibration": {
+      "pass": false,
+      "status": "UNKNOWN_UNCALIBRATED",
+      "detail": "P(fill), P(TP first given fill), confidence intervals, effective sample size, and out-of-sample diagnostics are unavailable."
+    },
+    "spread_gate": {
+      "pass": true,
+      "status": "CONDITIONALLY_RECOMPUTED_ONLY",
+      "reported_spread_bps": 3.6,
+      "recomputed_spread_bps": 3.59695,
+      "maximum_spread_bps": 25.0
+    },
+    "single_ticket_margin": {
+      "pass": true,
+      "status": "CONDITIONALLY_RECOMPUTED_ONLY",
+      "margin_required_usd": 1626.0,
+      "margin_utilization_pct": 33.421924,
+      "margin_level_pct": 299.204797
+    },
+    "single_ticket_solvency": {
+      "pass": true,
+      "status": "CONDITIONALLY_RECOMPUTED_ONLY",
+      "stressed_loss_usd": 27.45,
+      "post_candidate_and_global_reserve_equity_usd": 4835.62,
+      "remaining_kernel_cushion_usd": 40.62
+    },
+    "two_ticket_capacity": {
+      "pass": false,
+      "status": "DENIED_FOR_TWO_IDENTICAL_BTC_TICKETS",
+      "two_ticket_margin_usd": 3252.0,
+      "two_ticket_margin_level_pct": 149.601476,
+      "detail": "Two BTC tickets of 0.04 each violate both the 50% margin-utilization cap and the 200% minimum margin-level rule."
+    },
+    "receipt_authentication": {
+      "pass": false,
+      "status": "DENIED_UNVERIFIED_RECEIPT",
+      "detail": "The original receipt artifact and a defined digest preimage were unavailable. A provider label and embedded hash cannot authenticate themselves."
+    }
   },
-
-  "candidate": {
-
-    "symbol": "BTCUSD.pi",
-
-    "action": "SELL_LIMIT",
-
-    "volume": 0.04,
-
-    "price": 81300.0,
-
-    "sl": 81780.0,
-
-    "tp": 79850.0
-
+  "universe_coverage": {
+    "claimed_total_assets": 156,
+    "claimed_tradfi_assets": 98,
+    "claimed_crypto_perpetuals": 58,
+    "claimed_spread_qualified_crypto": 11,
+    "independently_verified_live_assets": 0,
+    "coverage_status": "DENIED_UNVERIFIED_UNIVERSE",
+    "reason": "No symbol-by-symbol cutoff-causal trade-mode, quote, spread, clock, and evidence manifest was supplied."
   },
-
-  "broker_tick": {
-
-    "bid": 80602.0,
-
-    "ask": 80631.0,
-
-    "mid": 80616.5,
-
-    "spread_raw": 29.0,
-
-    "spread_bps": 3.6,
-
-    "spread_cost_usd": 1.16,
-
-    "broker_server_time_raw": 1792848766,
-
-    "broker_server_offset_seconds": 10800.0,
-
-    "tick_time_utc": "2026-10-24 10:32:46 UTC",
-
-    "tick_age_seconds": 1.0,
-
-    "clock_skew_seconds": -4.0,
-
-    "quote_fresh": true
-
+  "account_tier_and_contingent_capacity": {
+    "claimed_capital_mode": "TIER_2_HOUSE_MONEY",
+    "claimed_balance_usd": 4865.07,
+    "claimed_equity_usd": 4865.07,
+    "hard_floor_cushion_usd": 265.07,
+    "operating_buffer_cushion_usd": 215.07,
+    "kernel_cushion_usd": 70.07,
+    "realized_headroom_after_global_reserve_usd": 68.07,
+    "candidate_stressed_loss_usd": 27.45,
+    "remaining_kernel_cushion_after_candidate_usd": 40.62,
+    "claimed_max_concurrent_tickets": 2,
+    "authorized_new_tickets": 0,
+    "status": "CAPITAL_ARITHMETIC_CONDITIONALLY_PASSES_BUT_ADMISSION_DENIED"
   },
-
-  "broker_spec": {
-
-    "digits": 2,
-
-    "point": 0.01,
-
-    "trade_mode": 4,
-
-    "trade_mode_desc": "FULL",
-
-    "volume_min": 0.01,
-
-    "volume_step": 0.01,
-
-    "volume_max": 100.0,
-
-    "stops_level": 0,
-
-    "contract_size": 1.0
-
+  "global_contingency_usd": 2.0,
+  "existing_ticket_actions": {
+    "claimed_active_positions_count": 0,
+    "claimed_pending_orders_count": 0,
+    "action": "NO_BROKER_ACTION",
+    "status": "UNVERIFIED_INVENTORY",
+    "reason": "No fresh authenticated broker inventory pull is available. No placement, modification, or cancellation is authorized."
   },
-
-  "broker_valuation": {
-
-    "profit_at_sl_usd": -19.2,
-
-    "profit_at_tp_usd": 58.0,
-
-    "margin_required_usd": 1626.0,
-
-    "base_nominal_risk_usd": 19.2,
-
-    "exit_spread_cost_usd": 1.16,
-
-    "total_nominal_risk_usd": 20.36,
-
-    "ticket_stress_usd": 27.45,
-
-    "stress_model": "(base_loss + exit_spread) * 1.25 + 2.00 USD"
-
+  "candidate_rows": [
+    {
+      "candidate_id": "cycle325-btcusdpi-sell-limit-81300",
+      "symbol": "BTCUSD.pi",
+      "native_market": "CRYPTO_DERIVATIVE_CLAIMED",
+      "clock_status": "DENIED_POST_CUTOFF",
+      "quote_timestamp": "2026-10-24 10:32:46 UTC",
+      "evidence_availability_timestamps": {
+        "tick_time_utc": "2026-10-24 10:32:46 UTC",
+        "observed_at_utc": "2026-10-24 10:32:47 UTC"
+      },
+      "evidence_max_age_seconds": 1,
+      "evidence_age_at_cutoff_seconds": -2757,
+      "row_causality_status": "DENIED_POST_CUTOFF",
+      "authorization_expiry_utc": null,
+      "side": "SELL",
+      "order_type": "SELL_LIMIT",
+      "entry": 81300.0,
+      "stop": 81780.0,
+      "target": 79850.0,
+      "volume": 0.04,
+      "broker_risk_usd": 20.36,
+      "broker_reward_usd": 58.0,
+      "rr": 2.8487229862,
+      "spread_cost_usd": 1.16,
+      "stressed_loss_usd": 27.45,
+      "post_joint_stop_balance": 4835.62,
+      "p_fill": null,
+      "p_win_given_fill": null,
+      "probability_calibration_status": "UNKNOWN_UNCALIBRATED",
+      "estimator_references": {
+        "lo_mackinlay_vr4": "NOT_COMPUTABLE",
+        "kaufman_er48": "NOT_COMPUTABLE",
+        "newey_west_drift": "NOT_COMPUTABLE",
+        "ou_equilibrium": "NOT_COMPUTABLE",
+        "barrier_first_probability": "NOT_COMPUTABLE",
+        "queue_fill_model": "NOT_COMPUTABLE"
+      },
+      "calibration_diagnostics": {
+        "walk_forward_validation": null,
+        "reliability_curve": null,
+        "brier_score": null,
+        "log_loss": null,
+        "non_overlapping_folds_verified": false
+      },
+      "effective_sample_size": null,
+      "probability_confidence_intervals": null,
+      "outcome_model_and_timeout_branches": {
+        "filled_then_target_gross_usd": 58.0,
+        "filled_then_stop_spread_inclusive_usd": -20.36,
+        "filled_then_stressed_loss_usd": -27.45,
+        "no_fill_wait_cost_usd": null,
+        "partial_fill_branch": null,
+        "timeout_branch": null,
+        "gap_or_slippage_branch": null
+      },
+      "cost_ledger_and_conditioning": {
+        "spread_raw": 29.0,
+        "spread_bps_recomputed": 3.59695,
+        "entry_distance_above_mid_usd": 683.5,
+        "entry_distance_above_mid_bps": 84.784,
+        "stop_distance_usd": 480.0,
+        "target_distance_usd": 1450.0,
+        "base_stop_loss_usd": 19.2,
+        "spread_inclusive_nominal_loss_usd": 20.36,
+        "stress_formula_used_by_receipt": "(19.20 + 1.16) * 1.25 + 2.00",
+        "stress_formula_policy_conflict": true
+      },
+      "wait_cost_usd": null,
+      "ev_net_usd": null,
+      "ev_lcb_5pct_usd": null,
+      "expected_capital_minutes": null,
+      "utility": null,
+      "uncertainty_method": null,
+      "adverse_selection_usd": null,
+      "evidence_ids": [
+        "embedded-cycle-envelope-unverified",
+        "embedded-execution-preflight-receipt-unverified"
+      ],
+      "verdict": "HOLD",
+      "fib_prime_ema_alignment": "UNKNOWN",
+      "fib_golden_zone_confluence": {
+        "gp_0618": null,
+        "gp_0650": null,
+        "ote_0702": null,
+        "invalidation_shelf_0786": null,
+        "entry_status": "UNVERIFIED"
+      },
+      "auction_extreme_interaction": {
+        "monday_ib_relation": "UNKNOWN",
+        "session_extreme_sweep": "UNKNOWN",
+        "macro_shelf_relation": "UNKNOWN",
+        "value_area_status": "UNKNOWN"
+      },
+      "rejection_reasons": [
+        "The broker tick and preflight observation occur 2757 and 2758 seconds after the immutable cutoff.",
+        "The source cycle envelope and receipt artifacts could not be independently authenticated.",
+        "The embedded Git commit and tree do not match the observed checkout.",
+        "Both Excel freshness flags are explicitly false.",
+        "The available macro calendar exceeds the 900-second freshness limit.",
+        "No calibrated P(fill) or P(TP first given fill) is available.",
+        "No VR(4), ER(48), HAC drift, OU, Z-score, ATR, or regime evidence is available.",
+        "No L2/L3, CVD, queue, sweep/reclaim, or 180-second wall-persistence evidence is available.",
+        "No Fibonacci, EMA-ribbon, VWAP, value-area, or invalidation-shelf evidence is available.",
+        "No independent Arena.ai, Z.ai, four-subagent, or 100-competitor receipts exist.",
+        "Single-ticket arithmetic cannot override failed provenance and market-evidence gates."
+      ]
+    }
+  ],
+  "arithmetic_validation": {
+    "hard_floor_cushion_usd": {
+      "reported": 265.07,
+      "recomputed": 265.07,
+      "pass": true
+    },
+    "operating_buffer_cushion_usd": {
+      "reported": 215.07,
+      "recomputed": 215.07,
+      "pass": true
+    },
+    "kernel_cushion_usd": {
+      "reported": 70.07,
+      "recomputed": 70.07,
+      "pass": true
+    },
+    "realized_headroom_usd": {
+      "formula": "4865.07 - 2.00 - 4795.00",
+      "reported": 68.07,
+      "recomputed": 68.07,
+      "pass": true
+    },
+    "margin_required_usd": {
+      "formula": "0.04 * 81300 * 0.50",
+      "reported": 1626.0,
+      "recomputed": 1626.0,
+      "pass": true
+    },
+    "single_ticket_margin_utilization_pct": 33.421924,
+    "single_ticket_margin_level_pct": {
+      "reported": 299.2,
+      "recomputed": 299.204797,
+      "pass": true
+    },
+    "single_ticket_margin_free_post_order_usd": {
+      "reported": 3239.07,
+      "recomputed": 3239.07,
+      "pass": true
+    },
+    "base_stop_loss_usd": {
+      "formula": "(81780 - 81300) * 0.04",
+      "reported": 19.2,
+      "recomputed": 19.2,
+      "pass": true
+    },
+    "gross_target_profit_usd": {
+      "formula": "(81300 - 79850) * 0.04",
+      "reported": 58.0,
+      "recomputed": 58.0,
+      "pass": true
+    },
+    "spread_cost_usd": {
+      "formula": "29 * 0.04",
+      "reported": 1.16,
+      "recomputed": 1.16,
+      "pass": true
+    },
+    "total_nominal_risk_usd": {
+      "formula": "19.20 + 1.16",
+      "reported": 20.36,
+      "recomputed": 20.36,
+      "pass": true
+    },
+    "ticket_stress_receipt_formula_usd": {
+      "formula": "(19.20 + 1.16) * 1.25 + 2.00",
+      "reported": 27.45,
+      "recomputed": 27.45,
+      "pass": true
+    },
+    "ticket_stress_role_c_formula_usd": {
+      "formula": "19.20 * 1.25 + 1.16 + 2.00",
+      "recomputed": 27.16,
+      "difference_from_receipt_usd": -0.29,
+      "status": "POLICY_FORMULA_AMBIGUITY"
+    },
+    "post_candidate_and_global_reserve_equity_usd": {
+      "formula": "4865.07 - 27.45 - 2.00",
+      "recomputed": 4835.62,
+      "hard_floor_cushion_usd": 235.62,
+      "operating_buffer_cushion_usd": 185.62,
+      "kernel_cushion_usd": 40.62,
+      "conditional_pass": true
+    },
+    "gross_rr": 3.0208333333,
+    "spread_inclusive_rr": 2.8487229862,
+    "breakeven_probability_base_loss": 0.2487046632,
+    "breakeven_probability_spread_inclusive": 0.2598264421,
+    "breakeven_probability_stressed_loss": 0.3212404915,
+    "two_identical_ticket_margin_usd": 3252.0,
+    "two_identical_ticket_margin_level_pct": 149.601476,
+    "two_identical_ticket_margin_gate_pass": false,
+    "remaining_margin_under_50pct_cap_after_first_ticket_usd": 806.535,
+    "maximum_second_btc_volume_at_same_price_before_step_rounding": 0.0198409594
   },
-
-  "order_check": {
-
-    "pass": true,
-
-    "retcode": 0,
-
-    "comment": "Done",
-
-    "margin_level_post_order": 299.2,
-
-    "margin_free_post_order": 3239.07
-
+  "disputes": [
+    {
+      "code": "POST_CUTOFF_PREFLIGHT",
+      "detail": "The mandatory relation tick_time < observed_at < cutoff is false. The receipt is approximately 46 minutes after cutoff."
+    },
+    {
+      "code": "SOURCE_ARTIFACTS_MISSING",
+      "detail": "The declared cycle envelope, receipt, workbook, evidence manifest, master manifest, and canonical prompt copies were absent from their stated paths."
+    },
+    {
+      "code": "GIT_PROVENANCE_MISMATCH",
+      "detail": "The embedded commit and tree do not match the observed checkout commit and tree."
+    },
+    {
+      "code": "EXCEL_STALE_BY_DECLARATION",
+      "detail": "excel_freshness_verified and excel_audit_scorecard_fresh are both false."
+    },
+    {
+      "code": "CALENDAR_STALE",
+      "detail": "The locally available calendar was approximately 1.263 million seconds old at cutoff rather than less than 900 seconds."
+    },
+    {
+      "code": "COUNCIL_EXECUTION_UNPROVEN",
+      "detail": "No independent host receipts prove the named councils, personas, or mandatory 100 competitors."
+    },
+    {
+      "code": "RECEIPT_DIGEST_UNVERIFIED",
+      "detail": "The original receipt and digest-preimage convention were unavailable; receipt_sha256 cannot be independently validated."
+    },
+    {
+      "code": "STRESS_FORMULA_AMBIGUITY",
+      "detail": "The receipt stresses base loss plus spread together by 1.25, producing 27.45, while the written Role C formula stresses only base loss, producing 27.16. The receipt is more conservative, but policy must choose one canonical formula."
+    },
+    {
+      "code": "TWO_TICKET_CAPACITY_OVERSTATED",
+      "detail": "A single 0.04 BTC ticket passes margin checks, but two identical tickets do not. Two-ticket capacity must be tested jointly against actual candidate margins."
+    },
+    {
+      "code": "SELF_REFERENTIAL_RESPONSE_HASH",
+      "detail": "No convention defines whether response_sha256 is excluded from its own digest preimage, so the field is null rather than fabricated."
+    }
+  ],
+  "unknowns": [
+    "Current authenticated MT5 account, position, and pending-order state",
+    "Current tradability, contract, tick, and order-check state",
+    "Current full-universe quotes, spreads, and trade modes",
+    "VR(4), heteroskedastic z*, ER(48), HAC drift, OU theta, ATR, and Z-score",
+    "EMA 5/13/34/89/144/233 ordering",
+    "Fibonacci impulse anchors and 0.618/0.702/0.786 shelves",
+    "L2/L3 depth, queue position, CVD, wall persistence, and liquidation bands",
+    "Session, weekly, monthly, and value-area levels",
+    "P(fill), P(TP first given fill), wait cost, adverse selection, EV, LCB, and utility",
+    "Partial-fill, gap, slippage, timeout, financing, and swap distributions",
+    "Cross-asset correlation and joint concurrent-ticket stress",
+    "Independent Arena.ai, Z.ai, and 100-competitor execution receipts"
+  ],
+  "methodology_critique_and_improvements": {
+    "strengths": [
+      "The prompt separates binary gates from soft probabilistic ranking.",
+      "It requires spread-inclusive and stressed-loss accounting.",
+      "It requires causal timestamps, calibrated probabilities, microstructure evidence, and null treatment for unknowns."
+    ],
+    "required_corrections": [
+      "Freeze the envelope only after every source artifact is present and before the cutoff.",
+      "Define canonical digest preimages, including treatment of embedded digest fields.",
+      "Replace self-attested VERIFIED labels with independently authenticated receipts.",
+      "Resolve the conflicting ticket-stress formulas.",
+      "Test concurrent margin and tail risk jointly rather than extrapolating from one ticket.",
+      "Make all probability estimates setup-specific, time-blocked, and out-of-sample.",
+      "Bind every worker and council output to real host run IDs and signed receipts."
+    ]
   },
-
-  "preflight_verdict": "PREFLIGHT_PASS",
-
-  "receipt_sha256": "a6319f3a495c799d096e2f2edf5135bc695898caf84beecd899500471af14814"
-
-}
-\n```\n\n```\n
-
-
-Fresh reconciled envelope telemetry in the embedded JSON block above governs all calculations and supersedes any dated operator baselines.
-
-Evaluate the embedded cycle envelope against your quantitative models. If this embedded cycle envelope is absent, malformed, digest-mismatched, post-cutoff, or contains unresolved template markers:
-
-- Record `"provenance_status": "DENIED_BAD_CYCLE_ENVELOPE"` (or `"DENIED_FAIL_CLOSED"`) in your response JSON.
-
-- Record the exact failure details under `"disputes"`, `"rejection_reasons"`, and in your human-readable §1 Provenance review.
-
-- Set overall `"authorization": "DENIED_FAIL_CLOSED"`.
-
-- **STRICT PROHIBITION ON SINGLE-LINE ABORTS**: You are STRICTLY FORBIDDEN from returning only a short string or aborting the response. You MUST ALWAYS deliver the complete, exhaustive 4-persona quantitative audit (§1 to §7), independently verify all broker mathematics, evaluate candidate market geometry, and provide the complete Section 8 Kaizen Inquest and full JSON payload under all circumstances!
-
-
-
----
-
-
-
-## 🏛️ PART 1: EXHAUSTIVE 4-PERSONA QUANTITATIVE AUDIT REQUIREMENTS
-
-
-
-Both Arena.ai and Z.ai MUST execute an affirmative and adversarial quantitative audit across **all four institutional quantitative personas**, mirroring the exact mathematical standards enforced by our internal subagents ([`SUBAGENT_PROMPT_TEMPLATES.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/SUBAGENT_PROMPT_TEMPLATES.md)):
-
-
-\n```\n\n```\n   ┌────────────────────────────────────────────────────────┐
-
-   │             IMMUTABLE CYCLE ENVELOPE                   │
-
-   │       Data/cycle_envelope.json (Cutoff-Causal)         │
-
-   └──────────────────────────┬─────────────────────────────┘
-
-                              │
-
-     ┌────────────────────────┼────────────────────────┐
-
-     ▼                        ▼                        ▼\n```\n\n┌──────────────────┐    ┌──────────────────┐    ┌──────────────────┐\n\n│     ROLE A       │    │     ROLE B       │    │     ROLE C       │\n\n│  Regime & Diff.  │    │  Microstructure  │    │ Solvency & Math  │\n\n│ P(TP | fill), VR │    │ Queue, Walls, AS │    │ Margin, lot*, SL │\n\n│ [trader-signal]  │    │  [market-ingest] │    │  [trader-risk]   │\n\n└────────┬─────────┘    └────────┬─────────┘    └────────┬─────────┘\n\n```\n     │                       │                       │
-
-     └───────────────────────┼───────────────────────┘
-
-                             ▼
-
-                    ┌──────────────────┐
-
-                    │     ROLE D       │
-
-                    │ Clock/Provenance │
-
-                    │ Tradable, Rollov.│
-
-                    │ [clean-code/sys] │
-
-                    └──────────────────┘\n```\n\n```\n
-
-
----
-
-
-
-### 1.1 ROLE A: STATISTICAL REGIME, DIFFUSION & DUAL-ENGINE DIALECTIC QUANT
-
-* **Jurisdiction**: Price diffusion dynamics, variance ratio tests, regime classification, and mean-reverting drift.
-
-* **Mathematical Estimators & Formulas**:
-
-  1. **Lo-MacKinlay Variance Ratio VR(q=4) with Heteroskedasticity Correction**:
-
-     VR(q) = Var(r_q) / (q * Var(r_1))
-
-     z* = sqrt(T) * (VR(q) - 1.0) / sqrt(phi), where phi is the heteroskedasticity weighting kernel.
-
-     - VR(4) > 1.15 with z* > 1.64 -> Trending / Super-diffusive.
-
-     - VR(4) < 0.85 with z* < -1.64 -> Mean-Reverting / Sub-diffusive.
-
-  2. **Kaufman Efficiency Ratio**:
-
-     ER(48) = |Close_t - Close_{t-48}| / sum_{i=1..48} |Close_{t-i+1} - Close_{t-i}|.
-
-     - ER(48) >= 0.20 -> Trend qualified.
-
-     - ER(48) < 0.15 -> Choppy / Noise or Mean-Reverting.
-
-  3. **Newey-West HAC Drift t-Statistic**:
-
-     OLS regression of log price on time with Bartlett kernel lag L = floor(4 * (T/100)^(2/9)). |t_drift| >= 2.0 -> Statistically significant drift at 95% confidence.
-
-  4. **Dual-Engine Strategy Dialectic & Fibonacci Prime EMA Confluence**:
-
-     - **Regime-Gated Execution**: If classify_regime() returns UNDEFINED, stand aside unconditionally across both engines. Never force trades in choppy, non-trending noise.
-
-     - **Model 1 (Extreme Mean Reversion)**: Admissible ONLY in confirmed MEAN_REVERT regimes (VR(4) < 0.85, z* < -1.64, ER(48) < 0.15) at extreme locations (|Z| >= 2.0 to 3.5 SD) sweeping Monday High/Low (Mon_H/Mon_L), Session Extremes (Asian_H/L, London_H/L), or Fibonacci 1.272/1.618 extensions with verified tape exhaustion.
-
-     - **Model 2 (Trend Following Pullbacks)**: In-range |Z| (|Z| < 2.0 SD, e.g. 0.5 to 1.7 SD) is admissible ONLY when a verified TREND_UP or TREND_DOWN regime is confirmed by HTF structure (VR(4) > 1.15, z* > 1.64, ER(48) >= 0.20, |t_drift| >= 2.0):
-
-       * **Fibonacci Prime EMA Ribbon Alignment**: Strict hierarchy enforced (Bullish: EMA 5 > EMA 13 > EMA 34 > EMA 89 > EMA 144 > EMA 233; Bearish: EMA 5 < EMA 13 < EMA 34 < EMA 89 < EMA 144 < EMA 233). Replaces legacy arbitrary 20/50/100/200 EMAs.
-
-       * **Fibonacci Golden Zone Gate**: Entry MUST sit inside the Fibonacci Retracement Golden Zone: [0.618 GP, 0.702 OTE] of the prevailing impulse wave, coinciding with Fib-Prime EMA 34/89 or Session VWAP shelves.
-
-  5. **Ornstein-Uhlenbeck (OU) Equilibrium & Adverse Drift Veto**:
-
-     - Discrete regression: x_t - x_{t-1} = a + b * x_{t-1}. Equilibrium mean theta = -a / b.
-
-     - **Adverse Drift Veto**:
-
-       * If side == SELL_LIMIT and Entry < theta: VETO / HOLD. A short order below equilibrium suffers from toxic upward mean-reverting drift pushing directly into the Stop Loss.
-
-       * If side == BUY_LIMIT and Entry > theta: VETO / HOLD. A long order above equilibrium suffers from toxic downward mean-reverting drift.
-
-     - Drift-adjusted probability: P_win_drift_adjusted = P_barrier * exp(-lambda_drift * |Entry - theta| / ATR). Must exceed breakeven probability P_BE = Loss / (Loss + Gain).
-
-
-
----
-
-
-
-### 1.2 ROLE B: FILL, MICROSTRUCTURE & ORDER GEOMETRY QUANT
-
-* **Jurisdiction**: L2/L3 orderbook depth, taker CVD delta, limit queue dynamics, whale wall persistence, and execution geometry.
-
-* **Microstructure Invariants & Formulas**:
-
-  1. **Mandatory 180-Second Whale Wall Persistence Filter**:
-
-     - Candidate limit orders MUST be backed by genuine resting institutional liquidity (notional >= 100,000 USD on crypto).
-
-     - **180-Second Persistence Invariant**: The backing whale order MUST have persisted continuously for at least 180 seconds (`persisted_seconds >= 180s`). Reject any flickering or spoofed order (e.g. 10s old order) as an invalid anchor.
-
-  2. **Stop Loss Geometry & 0.786 Invalidation Shelf Anchor**:
-
-     - Forbid placing a protective Stop Loss in an empty auction void (e.g. between VWAP +3 sigma and distant EMA).
-
-     - **0.786 Invalidation Shelf Rule**: For Model 2 trend pullbacks, the protective Stop Loss MUST sit strictly behind the 0.786 Fibonacci Invalidation Shelf (SL_long = Price_0786 - 0.40 ATR - half_spread; SL_short = Price_0786 + 0.40 ATR + half_spread) and outside any defending resting whale wall or liquidation band.
-
-     - For Model 1 mean reversion, the Stop Loss must be firmly anchored behind the swept extreme (Monday High/Low, Session High/Low, or Prior Week High/Low) plus a 0.40-0.50 ATR safety buffer.
-
-  3. **Multi-Timeframe Auction Extremes & Liquidity Sweep Gate**:
-
-     - Candidates must explicitly evaluate location relative to:
-
-       * Monday Initial Balance: Mon_H, Mon_L, and Mon_Mid = (Mon_H + Mon_L) / 2.
-
-       * Session Extremes: Asian High/Low (Asian_H, Asian_L), London Initial Balance (London_IB_H, London_IB_L), London High/Low, and NY High/Low.
-
-       * Macro Extremes: Current Week High/Low (CWH, CWL), Prior Week High/Low (PWH, PWL), and Prior Month High/Low (CMH, PML).
-
-       * Value Area Interaction: Developing Value Area (d_VAH, d_VAL, d_POC) vs Prior Day Value Area (pd_VAH, pd_VAL, pd_POC).
-
-     - Limit entries must NEVER be placed in front of un-swept liquidity pools. Require confirmed sweep and reclaim before staging entries.
-
-  3. **Adverse Selection Markouts**:
-
-     - Compute post-fill markouts: AS(t + dt) = Side * (Mid_{t + dt} - Price_fill).
-
-     - If AS(t + 5m) < -0.15 R0, the limit order suffers from informed toxic flow (winner's curse). Reject entry.
-
-  4. **Take Profit Front-Running Geometry**:
-
-     - Take Profit MUST front-run opposing major liquidity clusters by 5 to 10 bps to ensure full execution before liquidity depletion.
-
-  5. **Broker Spread Gate**:
-
-     - Broker spread in bps must be <= 25.0 bps. Exclude any instrument failing the spread gate.
-
-
-
----
-
-
-
-### 1.3 ROLE C: SOLVENCY, PORTFOLIO & BROKER MATH SENTRY
-
-* **Jurisdiction**: Balance sheet solvency, margin collateralization, broker-native tick math, exact lot sizing, and risk capital rationing.
-
-* **Solvency Invariants & Formulas**:
-
-  1. **Inviolable Triple Floor Governance**:
-
-     - Hard Capital Floor: **4,600.00 USD** (Inviolable evaluation boundary)
-
-     - Operating Buffer: **4,650.00 USD** (Defense boundary)
-
-     - Solvency Kernel: **4,795.00 USD** (Zero new risk admission floor)
-
-  2. **Net Realized Headroom Constraint**:
-
-     - H_net = Realized_Balance - Contingency_Reserve (2.00 USD) - 4,795.00 USD = **+68.07 USD**.
-
-     - Admission requires: H_net >= Stressed_Ticket_Loss.
-
-  3. **Mandatory Margin Collateralization Gate (Finding D3 Invariant)**:
-
-     - Blueberry Markets enforces 50% margin (2:1 leverage) on cryptocurrency perpetuals (`BTCUSD.pi`, `ETHUSD.pi`, `SOLUSD.p`).
-
-     - Margin required: Margin_Req = Volume * Entry_Price * Margin_Rate.
-
-     - **Invariant 1**: Total Margin Used must NOT exceed 50% of account equity (`Margin_Used + Margin_Req <= 0.50 * Equity`).
-
-     - **Invariant 2**: Post-order Margin Level MUST remain >= 200.0% (`Equity / (Margin_Used + Margin_Req) >= 2.0`).
-
-     - **Sizing Rescoping Rule**: Sizing 0.10 BTC at 81,000 USD consumes 4,047.50 USD in margin (83.2% equity utilization, margin level 120.20%), which violates margin safety and prevents running a second ticket. Volume MUST be sized down to 0.04–0.06 lot to preserve concurrent two-ticket capacity under Tier 2 House Money!
-
-  4. **Stressed Solvency Math**:
-
-     - Ticket_Stress = 1.25 * Nominal_SL_Loss + Exit_Spread_Cost + 2.00 USD fee reserve.
-
-     - Admission_Stress = sum(Ticket_Stress_all_concurrent) + 2.00 USD global contingency reserve.
-
-     - Stressed_Equity = min(Balance, Equity) - Admission_Stress >= 4,795.00 USD.
-
-  5. **Zero Floating Profit Credit**:
-
-     - Floating profit is ephemeral market noise; only realized closed balance constitutes legal equity.
-
-  6. **Tier 2 House Money Progression**:
-
-     - Fresh realized balance > 4,850.00 USD unlocks Tier 2 House Money: nominal per-ticket risk 15.00–25.00 USD. Maximum 2 concurrent non-correlated tickets.
-
-
-
----
-
-
-
-### 1.4 ROLE D: MARKET CLOCK, AUCTION & PROVENANCE AUDITOR
-
-* **Jurisdiction**: Temporal causality, preflight quote freshness, macroeconomic event blackouts, session classification, and workbook digest verification.
-
-* **Provenance Invariants & Formulas**:
-
-  1. **Strict Physical Cutoff Causality**:
-
-     - Every quote and data artifact MUST satisfy: tick_time < observed_at < cutoff_utc.
-
-     - **Quote Staleness Gate (Finding D9 Invariant)**: Reject any preflight tick where `tick_age > 15s` or where the quote was sampled more than 60 seconds before envelope freeze. Stale quotes (e.g. 522s old) degrade microstructure reliability and cannot authorize risk.
-
-  2. **Macroeconomic Event Blackouts & Calendar Freshness**:
-
-     - Verify `verified_at` timestamp in `Data/macro_calendar.json` is fresh (`age < 900s`).
-
-     - Enforce strict blackout: zero new orders within +/-30 minutes of high-impact Tier-1 red-folder events (CPI, NFP, FOMC).
-
-  3. **Session & Weekend Halt Universe Classification**:
-
-     - Classify all 156 assets:
-
-       * 98 TradFi assets (Forex, Metals, Commodities, Indices): Weekend halt until Sunday 21:00 UTC -> CLOSED / WATCHLIST_ONLY.
-
-       * 58 Crypto Perpetuals: Open 24/7/365 with SYMBOL_TRADE_MODE_FULL (4).
-
-       * Spread Gate: 11 crypto perpetuals pass spread gate (spread <= 25 bps: BTCUSD.pi, ETHUSD.pi, SOLUSD.p, BNBUSD.p, etc.); 47 spread-disqualified (> 25 bps).
-
-  4. **Interbank Forex Rollover Embargo**:
-
-     - TradFi FX and Metals are strictly EMBARGOED daily between 21:15 UTC and 22:30 UTC.
-
-  5. **Cryptographic Integrity**:
-
-     - Verify SHA-256 digests of `master_manifest.json`, `Data/DataBase_Trading.xlsx`, and `cycle_envelope.json`.
-
-
-
----
-
-
-
-## 🏛️ PART 2: MATHEMATICAL SOFT RANKING & CALIBRATED UTILITY
-
-
-
-Separate hard gates from calibrated ranking. Hard-gate survivors are evaluated using the operator formula:
-
-`EV_net = P_fill * [P_TP * Gain_net - (1 - P_TP) * Loss_net - AdverseSelection - BrokerFrictions] - (1 - P_fill) * WaitCost`
-
-`Utility = LCB_5%(EV_net) / Expected_Capital_Minutes`
-
-
-
-- `P_fill = P(fill before TTL | distance, queue, symbol, session, side, features)`
-
-- `P_TP = P(TP first | fill, setup class, asset-native features)`
-
-- Gain_net and Loss_net are positive conditional filled-outcome cash amounts in USD.
-
-- AdverseSelection and BrokerFrictions are incremental conditional-on-fill USD amounts; WaitCost is conditional-on-no-fill USD.
-
-- Expected_Capital_Minutes is positive expected tied-up capital in USD multiplied by minutes.
-
-- Propagate fill/win/cost/wait uncertainty jointly using a documented time-blocked bootstrap or other validated uncertainty method; `LCB_5%` is not an invented point estimate or unsupported haircut.
-
-- Report calibration limits and unknowns. Unknown or uncalibrated probabilities remain null/unknown and mandate `HOLD` for new admission.
-
-
-
----
-
-
-
-## 🏛️ PART 3: CONTINUOUS KAIZEN & METHODOLOGY IMPROVEMENT INQUEST (STRICTLY MANDATORY)
-
-
-
-In every evaluation cycle, both Arena.ai and Z.ai MUST provide an explicit meta-evaluation answering:
-
-- **Skills & Methodology Optimization**: How could our response, mathematical precision, and candidate discovery be fundamentally improved using all available relevant quantitative methodologies, skills, and agent roles?
-
-- **Omitted Risk Dimensions**: What hidden execution risks, cross-asset correlations, spread expansions, or microstructural traps were omitted or underestimated?
-
-- **Algorithmic Alternatives**: What superior statistical or machine learning alternatives (e.g. Hawkes processes for order arrival, Kalman filters for spread estimation, GARCH volatility cones, Isotonic probability calibration) should be integrated into our next cycle?
-
-
-
----
-
-
-
-## 🏛️ PART 4: REQUIRED RESPONSE SCHEMA
-
-
-
-Return one JSON object plus a human-readable explanation.
-
-
-
-The JSON object must contain:
-
-- `schema_version`
-
-- `cycle_id`
-
-- `cutoff_utc`
-
-- `evidence_manifest_sha256`
-
-- `prompt_sha256`
-
-- `dispatch_nonce`
-
-- `provenance_status`
-
-- `inventory_status`
-
-- `hard_gate_results`
-
-- `universe_coverage`
-
-- `account_tier_and_contingent_capacity`
-
-- `global_contingency_usd`
-
-- `existing_ticket_actions`
-
-- `candidate_rows`
-
-- `arithmetic_validation`
-
-- `disputes`
-
-- `unknowns`
-
-- `methodology_critique_and_improvements`
-
-- `section_8_kaizen`: {
-
-    `skills_and_methodology_optimization`,
-
-    `omitted_risk_dimensions`,
-
-    `algorithmic_alternatives`
-
-  }
-
-- `authorization`
-
-- `response_sha256`
-
-
-
-Each candidate row must contain:
-
-- `candidate_id`
-
-- `symbol`
-
-- `native_market`
-
-- `clock_status`
-
-- `quote_timestamp`
-
-- `evidence_availability_timestamps`
-
-- `evidence_max_age_seconds`
-
-- `evidence_age_at_cutoff_seconds`
-
-- `row_causality_status`
-
-- `authorization_expiry_utc`
-
-- `side`
-
-- `order_type`
-
-- `entry`
-
-- `stop`
-
-- `target`
-
-- `volume`
-
-- `broker_risk_usd`
-
-- `broker_reward_usd`
-
-- `rr`
-
-- `spread_cost_usd`
-
-- `stressed_loss_usd`
-
-- `post_joint_stop_balance`
-
-- `p_fill`
-
-- `p_win_given_fill`
-
-- `probability_calibration_status`
-
-- `estimator_references`
-
-- `calibration_diagnostics`
-
-- `effective_sample_size`
-
-- `probability_confidence_intervals`
-
-- `outcome_model_and_timeout_branches`
-
-- `cost_ledger_and_conditioning`
-
-- `wait_cost_usd`
-
-- `ev_net_usd`
-
-- `ev_lcb_5pct_usd`
-
-- `expected_capital_minutes`
-
-- `utility`
-
-- `uncertainty_method`
-
-- `adverse_selection_usd`
-
-- `evidence_ids`
-
-- `verdict`
-
-- `fib_prime_ema_alignment`
-
-- `fib_golden_zone_confluence`: { `gp_0618`, `gp_0650`, `ote_0702`, `invalidation_shelf_0786`, `entry_status` }
-
-- `auction_extreme_interaction`: { `monday_ib_relation`, `session_extreme_sweep`, `macro_shelf_relation`, `value_area_status` }
-
-- `rejection_reasons`
-
-
-
-Permitted authorization values:
-
-- `DENIED_FAIL_CLOSED`
-
-- `DENIED_DISPUTED`
-
-- `WATCHLIST_ONLY`
-
-- `MANAGE_EXISTING_ONLY`
-
-- `AUTHORIZED_PENDING_BROKER_RECEIPT`
-
-- `AUTHORIZED`
-
-
-
-For HOLD rows, set `verdict = HOLD` and unknown numeric fields to null; overall authorization remains `DENIED_FAIL_CLOSED`.
-
-`AUTHORIZED_PENDING_BROKER_RECEIPT` is non-executable; `AUTHORIZED` requires all current hard gates, calibrated admission evidence and the matching broker receipt.
-
-No prose ticket, attachment, majority vote, or provider label may override this schema.\n```\n\n```\n\n```\n
+  "section_8_kaizen": {
+    "skills_and_methodology_optimization": [
+      "Create a cutoff-causal feature store that emits VR, ER, HAC drift, OU, ATR, EMA, Fibonacci, auction, and microstructure features with observation timestamps and hashes.",
+      "Use non-overlapping anchored walk-forward folds partitioned by symbol, side, setup class, volatility regime, and session.",
+      "Sign cycle envelopes, evidence manifests, broker receipts, and subagent receipts with controller-held keys.",
+      "Run the pinned 100-competitor Arena bridge only on a host capable of returning genuine independent subagent receipts.",
+      "Add portfolio-level margin and stress optimization before claiming two-ticket capacity.",
+      "Generate a machine-readable gate ledger where every candidate references the exact evidence IDs used by each gate."
+    ],
+    "omitted_risk_dimensions": [
+      "Partial fills, queue-priority decay, and cancellation latency at the 81300 limit",
+      "Weekend liquidity discontinuity and broker-versus-underlying basis risk",
+      "Spread expansion and stop slippage at liquidation or volatility shocks",
+      "Funding, swap, financing, commission, and broker markup costs",
+      "Cross-venue price divergence and stale broker quoting",
+      "Correlated second-ticket margin and joint stop-loss stress",
+      "Whale-wall cancellation, spoofing, and liquidation cascades",
+      "Platform disconnects, rejected modifications, and delayed cancellations",
+      "Model drift and calibration decay across volatility regimes"
+    ],
+    "algorithmic_alternatives": [
+      "Marked Hawkes processes for trade, cancellation, and liquidation intensity",
+      "Competing-risks survival models for fill-before-cancel and TP-before-SL",
+      "Kalman or state-space models for broker-versus-underlying basis and dynamic spread",
+      "GARCH, realized-kernel, or HAR-RV volatility cones for stop and timeout calibration",
+      "Hidden semi-Markov or Bayesian change-point models for persistent regime classification",
+      "Isotonic, beta, or Platt calibration with time-blocked reliability diagnostics",
+      "Moving-block bootstrap or stationary bootstrap for dependent EV confidence bounds",
+      "Copula or scenario-based joint stress testing for concurrent candidates",
+      "Conformal prediction for distribution-free uncertainty bounds where exchangeability is defensible"
+    ]
+  },
+  "authorization": "DENIED_FAIL_CLOSED",
+  "response_sha256": null
+}\n```\n\n## §1 — Provenance and council execution review\n\n\nThe material task requires a real 100-competitor tournament. No compatible subagent interface is exposed here, so creating genuine independent Arena.ai, Z.ai, Fable, or GLM workers is impossible. Repeating one context under different persona labels would be simulation and is therefore rejected.\n\nGraphify is unavailable in this environment, so bounded filesystem and Git checks were used rather than unrestricted large-file inspection.\n\nThree independent provenance blockers exist:\n\n1. The receipt is post-cutoff: the tick is **2,757 seconds** after cutoff and the observation is **2,758 seconds** after cutoff.\n2. The claimed source artifacts are absent from their declared paths, preventing digest verification.\n3. The observed checkout commit/tree differ from the embedded identifiers.\n\nThe envelope also explicitly declares both Excel freshness gates false. Therefore `DENIED_BAD_CYCLE_ENVELOPE` is mandatory before any model ranking.\n\n## §2 — Role A: regime, diffusion, and probability audit\n\n\nNo cutoff-causal return vector accompanies the candidate. Consequently:\n\n- VR(4) and its heteroskedastic z-statistic are unknown.\n- ER(48) is unknown.\n- Newey–West drift significance is unknown.\n- OU equilibrium and the adverse-drift veto cannot be evaluated.\n- Z-score, ATR, EMA hierarchy, and trend/mean-reversion classification are unknown.\n- Neither Model 1 nor Model 2 is admissible.\n\nThe conditional barrier breakeven thresholds are:\n\n- Base-loss basis: **24.8705%**\n- Spread-inclusive basis: **25.9826%**\n- Stressed-loss basis: **32.1240%**\n\nNo calibrated `P(TP first | fill)` exists to clear any threshold. The candidate therefore remains `HOLD`.\n\n## §3 — Role B: microstructure and geometry audit\n\n\nThe supplied quote arithmetic is coherent:\n\n- Mid: `80616.5`\n- Spread: `29`, or approximately **3.597 bps**\n- Sell-limit entry: `81300`, approximately **84.784 bps above mid**\n- Stop distance: `480`\n- Target distance: `1450`\n\nThe order is syntactically consistent with a sell limit because entry is above the supplied ask. That does not establish economic validity.\n\nMissing hard evidence includes:\n\n- 180-second wall persistence and notional;\n- queue depth and queue priority;\n- CVD and aggressive-flow imbalance;\n- sweep/reclaim confirmation;\n- post-fill markouts;\n- ATR and 0.786 invalidation shelf;\n- opposing TP liquidity and 5–10 bps front-running;\n- session and macro auction levels.\n\nThus the entry, stop, and target cannot be structurally validated.\n\n## §4 — Role C: solvency and broker mathematics\n\n\nThe single-ticket arithmetic is internally consistent:\n\n| Check | Recomputed |\n| --- | --- |\n| Hard-floor cushion | `$265.07` |\n| Operating-buffer cushion | `$215.07` |\n| Kernel cushion | `$70.07` |\n| Realized headroom after `$2` reserve | `$68.07` |\n| Margin | `$1,626.00` |\n| Margin utilization | `33.4219%` |\n| Margin level | `299.2048%` |\n| Base SL loss | `$19.20` |\n| Spread cost | `$1.16` |\n| Spread-inclusive risk | `$20.36` |\n| Gross reward | `$58.00` |\n| Receipt-formula stress | `$27.45` |\n| Equity after ticket stress and global reserve | `$4,835.62` |\n| Remaining kernel cushion | `$40.62` |\n\n\nThis is only a **conditional single-ticket capital pass**.\n\nThe two-ticket assertion is not supported. Two identical `0.04` BTC tickets would consume `$3,252` margin and produce approximately `149.60%` margin level, failing both stated margin invariants. After the first ticket, only `$806.535` remains under the 50% margin cap; at the same BTC price that supports less than `0.02` additional volume before broker-step rounding.\n\nThere is also a formula ambiguity:\n\n- Receipt: `(base loss + spread) × 1.25 + 2 = 27.45`\n- Written Role C formula: `base loss × 1.25 + spread + 2 = 27.16`\n\nThe receipt is more conservative, but one canonical formula must be selected.\n\n## §5 — Role D: clock, market, and provenance audit\n\n\nThe quote is one second old relative to the receipt, but it is unusable because it is from the future relative to the immutable cycle cutoff.\n\nThe locally available macro calendar was approximately **1,262,810 seconds** old at cutoff, far beyond the 900-second limit. This conflicts with the embedded `calendar_verified: true` assertion.\n\nSaturday crypto-market availability may be plausible, but it was not independently proven symbol by symbol. The claimed 156-asset census therefore remains unverified, with TradFi constrained to watchlist-only and no crypto candidate authorized.\n\n## §6 — Candidate discovery and soft ranking\n\n\nOnly the supplied BTC candidate can be arithmetically inspected. No other candidate can be affirmatively discovered without current authenticated universe evidence.\n\nFor BTCUSD.pi:\n\n- Gross RR: `3.0208`\n- Spread-inclusive RR: `2.8487`\n- Capital and single-ticket margin: conditional pass\n- Causality: fail\n- Provenance: fail\n- Regime: unknown\n- Microstructure: unknown\n- Probability calibration: unknown\n- EV/LCB/utility: null\n- Verdict: **HOLD**\n\nA favorable RR does not substitute for fill probability, win probability, adverse selection, causal evidence, or authenticated market geometry.\n\n## §7 — Council synthesis and authorization\n\n\nThe deterministic gates dominate the candidate:\n\n- no authenticated cycle artifact;\n- post-cutoff receipt;\n- stale Excel and calendar evidence;\n- no calibrated probability model;\n- no microstructure or regime evidence;\n- no independently proven councils or 100 competitors.\n\n**Final recommendation:** `HOLD`\n
+**Authorization:** `DENIED_FAIL_CLOSED`\n
+**Broker activity:** none—no placement, modification, cancellation, or transmission.\n\n## §8 — Continuous Kaizen Inquest\n\n\n### Skills and methodology optimization\n\n\nBuild one signed, cutoff-causal evidence package containing all raw windows and derived features. Every estimator should record its sample interval, observation time, effective sample size, implementation version, and source hash. Probability models should use anchored, non-overlapping walk-forward evaluation and publish reliability diagnostics.\n\nThe subagent layer should operate through the pinned 100-competitor bridge with isolated contexts, exact write scopes, timeouts, retries, model identities, host run IDs, output hashes, and controller-signed receipts.\n\n### Omitted risk dimensions\n\n\nThe current envelope omits partial fills, queue decay, cancellation latency, basis divergence, stop slippage, spread expansion, financing, correlated second-ticket stress, liquidation cascades, spoofing, disconnect risk, and model-calibration decay.\n\n### Algorithmic alternatives\n\n\nPriority additions are:\n\n1. Competing-risks survival models for fill/cancel/TP/SL.\n2. Marked Hawkes processes for order-arrival and cancellation intensity.\n3. Kalman state-space models for dynamic broker basis.\n4. HAR-RV or realized-kernel volatility forecasting.\n5. Hidden semi-Markov or Bayesian change-point regimes.\n6. Isotonic or beta probability calibration.\n7. Moving-block bootstrap EV lower bounds.\n8. Copula/scenario-based portfolio margin and joint-tail stress.\n\nA new cycle must be generated with pre-cutoff evidence and authenticated receipts. The supplied cycle cannot be repaired retroactively.\n
