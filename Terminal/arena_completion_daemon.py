@@ -533,9 +533,24 @@ async def run_wait_for_completion(poll_interval: float = 2.0, timeout_s: float =
             # If actively generating, allow up to 45 minutes (2700s)
             if arena_done and (time.time() - arena_done_ts) >= 2700.0:
                 fable_timed_out = True
+        # Z.ai timeout handling (allow up to 900s if actively generating)
+        zai_is_gen = zstate.get("isGenerating", False) if (zai_active and not zai_done and 'zstate' in locals()) else False
+        zai_timed_out = False
+        if zai_active and not zai_done:
+            if arena_done and arena_done_ts > 0.0:
+                elapsed_since_arena = time.time() - arena_done_ts
+                if zai_is_gen:
+                    if elapsed_since_arena >= 900.0:
+                        zai_timed_out = True
+                else:
+                    if elapsed_since_arena >= 180.0:
+                        zai_timed_out = True
+        else:
+            zai_timed_out = True
+
         all_arenas_done = arena_done and (fable_done or fable_timed_out)
-        if all_arenas_done and (zai_done or (time.time() - arena_done_ts) >= 60.0):
-            print("\n✅ COUNCIL WAKE UP TRIGGERED (Both Arena instances ready for Antigravity synthesis)!", flush=True)
+        if all_arenas_done and (zai_done or zai_timed_out):
+            print("\n✅ COUNCIL WAKE UP TRIGGERED (Both Arena and Z.ai ready for Antigravity synthesis)!", flush=True)
             return 0
 
     print("[CouncilWatcher] Timeout reached while waiting for council completion.", file=sys.stderr, flush=True)
