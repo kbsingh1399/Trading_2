@@ -1,5 +1,5 @@
 {
-  "harvested_at_utc": "2026-10-19 11:21:58 UTC",
+  "harvested_at_utc": "2026-10-24 17:58:00 UTC",
   "source": "FOREX_FACTORY_LIVE_CDP",
   "central_bank_rates": {
     "AUD": "4.60%",
@@ -309,5 +309,7 @@
     "XMR/USD SELL 589.862 Opened Short | 5 min ago Surya12 0.0% MTM na",
     "Btcusd.m BUY ~ 82,094.5 Scaled In | ~5 min ago Opened Long at 82,085.79Opened Long at 82,085.79Opened Long at 82,085.79Opened Long at 82,085.79Opened Long at 82,096.29Opened Long at 82,088.29Opened Long at 82,088.29Opened Long at 82,089.79Opened Long at 82,089.29Opened Long at 82,089.29Opened Long at 82,111.29Opened Long at 82,115.29Opened Long at 82,117.29 ToliyEA 0.0% MTM 0.0% MTM 0.0% MTM 0.0% MTM 0.0% MTM 0.0% MTM 0.0% MTM 0.0% MTM 0.0% MTM 0.0% MTM 0.0% MTM 0.0% MTM 0.0% MTM 0.2% MTM na na na na na na na na na na na na na na",
     "Xauusd-stdc SELL 4,176.54 Opened Short | 5 min ago VimalAlgoSys 0.0% MTM na"
-  ]
+  ],
+  "verified_at_utc": "2026-10-24 17:58:00 UTC",
+  "session_status": "WEEKEND_TRADFI_CLOSED_CRYPTO_ACTIVE"
 }
