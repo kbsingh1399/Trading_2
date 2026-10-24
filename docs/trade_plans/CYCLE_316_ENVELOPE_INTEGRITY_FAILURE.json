@@ -1,0 +1,29 @@
+{
+  "cycle_id": "Cycle 316",
+  "cutoff_utc": "2026-10-24 00:49:20 UTC",
+  "dispatch_nonce": "3dc6f4b6-841c-4a94-83f4-73db2d809175",
+  "authorization": "DENIED_BAD_CYCLE_ENVELOPE",
+  "reason": "Envelope digest-mismatched. Declared git_commit 346dc2cb and git_tree a69f46c1 cannot be resolved locally or on origin, and the declared workbook digest matches no artifact.",
+  "verifier": {"script": "Terminal/verify_cycle_envelope.py", "verdict": "REJECT_ENVELOPE", "exit_code": 1, "integrity_failures": ["git_commit", "git_tree"]},
+  "checks": {
+    "declared_git_commit_346dc2cb": "NOT FOUND. git cat-file fails. ls-remote shows no ref. Targeted fetch returns 'upload-pack: not our ref'.",
+    "declared_git_tree_a69f46c1": "NOT FOUND (no commit to resolve).",
+    "declared_workbook_sha256_d2559f44": "MATCHES NO ARTIFACT. The workbook history has one distinct blob, e855a87f, across all refs. Working copy is also e855a87f.",
+    "declared_evidence_manifest_sha256_c50bf337": "Matches the manifest at origin/main 21da42c (as_of 00:48:49 UTC, tree 37bf009a), which is not the declared tree. Not a provenance match.",
+    "risk_policy_sha256_4633e4af": "MATCH",
+    "dispatch_nonce": "MATCH"
+  },
+  "nearest_resolvable_commits": [
+    {"commit": "21da42c", "as_of_utc": "2026-10-24 00:48:49", "pre_cutoff": true, "manifest_sha256_prefix": "c50bf337", "tree_prefix": "37bf009a", "workbook_prefix": "e855a87f"},
+    {"commit": "170203e", "as_of_utc": "2026-10-24 00:44:03", "pre_cutoff": true, "manifest_sha256_prefix": "16b75781", "tree_prefix": "d8d39a0a", "workbook_prefix": "e855a87f"}
+  ],
+  "receipt_audit": {
+    "embedded_receipt_sha256_278cc54b": "Self-hash matches under sort_keys indent=2 (internal consistency only)",
+    "observed_at_utc": "2026-10-24 00:49:50 UTC (+30 s after cutoff)",
+    "tick_time_utc": "2026-10-24 00:49:54 UTC (+34 s after cutoff)",
+    "verdict": "NOT_ADMISSIBLE (post-cutoff; envelope rejected, so no ruling is computed over it)"
+  },
+  "operator_action": "Re-dispatch with git_commit, git_tree and workbook_sha256 taken from a commit that is pushed to origin/main and pre-cutoff. The manifest digest c50bf337 currently matches 21da42c, so that commit's tree and workbook fields are the first to correct.",
+  "no_ruling_computed": true,
+  "no_orders_sent": true
+}
