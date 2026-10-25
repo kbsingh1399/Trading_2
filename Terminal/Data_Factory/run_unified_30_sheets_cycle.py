@@ -146,11 +146,8 @@ def run_single_module(mod: dict) -> tuple[str, bool, float, str]:
     if not script_path.exists():
         return sheet, False, 0.0, "Script file not found"
 
-    cmd = [
-        sys.executable,
-        "-c",
-        f"import sys; sys.path.insert(0, r'{MODULES_DIR}'); import excel_lock_hook; import runpy; sys.argv=[r'{script_path}'] + {args}; runpy.run_path(r'{script_path}', run_name='__main__')"
-    ]
+    runner_script = ROOT_DIR / "Terminal" / "Data_Factory" / "module_runner.py"
+    cmd = [sys.executable, str(runner_script), str(script_path)] + args
     t0 = time.perf_counter()
     try:
         proc = subprocess.run(

@@ -2,10 +2,9 @@
 """
 Data/Excel_Modules/excel_lock_hook.py
 ======================================
-Global cross-process and cross-thread FileLock hook for openpyxl operations on Data/DataBase_Trading.xlsx.
-Intercepts `openpyxl.load_workbook` and `openpyxl.Workbook.save` to serialize all Excel read/write
-operations across parallel browser CDP harvesters, API workers, and streaming daemons.
-Prevents zipfile EOFError and Windows file-sharing collisions.
+High-performance cross-process FileLock hook for openpyxl operations on Data/DataBase_Trading.xlsx.
+Serializes openpyxl.Workbook.save calls with an exclusive file lock (~0.8s hold time).
+Allows concurrent read_only loads with automatic retry on transient write collisions.
 """
 
 import os
@@ -28,27 +27,34 @@ _orig_workbook_save = openpyxl.Workbook.save
 
 
 def locked_load_workbook(filename, *args, **kwargs):
-    """Acquires lock before loading workbook if targeting DataBase_Trading.xlsx."""
+    """Loads workbook safely with retry on transient write collisions."""
     is_target = "DataBase_Trading.xlsx" in str(filename)
-    if is_target and FileLock is not None:
-        lock = FileLock(str(LOCK_PATH), timeout=120)
-        # For read_only loads, retry on transient read collisions
-        for attempt in range(5):
-            try:
-                with lock:
-                    return _orig_load_workbook(filename, *args, **kwargs)
-            except (EOFError, PermissionError, OSError) as e:
-                if attempt == 4:
-                    raise
-                time.sleep(0.5 * (attempt + 1))
-    return _orig_load_workbook(filename, *args, **kwargs)
+    if not is_target or FileLock is None:
+        return _orig_load_workbook(filename, *args, **kwargs)
+
+    # For read operations, attempt direct read with fast retry backoff
+    for attempt in range(6):
+        try:
+            return _orig_load_workbook(filename, *args, **kwargs)
+        except (EOFError, PermissionError, OSError, Exception) as e:
+            if "not a zip file" in str(e).lower() or isinstance(e, (EOFError, PermissionError)):
+                if attempt == 5:
+                    # Final attempt: wait on lock
+                    try:
+                        with FileLock(str(LOCK_PATH), timeout=15):
+                            return _orig_load_workbook(filename, *args, **kwargs)
+                    except Exception:
+                        raise e
+                time.sleep(0.3 * (attempt + 1))
+            else:
+                raise
 
 
 def locked_workbook_save(self, filename, *args, **kwargs):
-    """Acquires lock before saving workbook if targeting DataBase_Trading.xlsx."""
+    """Acquires exclusive lock before saving workbook to eliminate zipfile corruptions."""
     is_target = "DataBase_Trading.xlsx" in str(filename)
     if is_target and FileLock is not None:
-        lock = FileLock(str(LOCK_PATH), timeout=120)
+        lock = FileLock(str(LOCK_PATH), timeout=30)
         with lock:
             return _orig_workbook_save(self, filename, *args, **kwargs)
     return _orig_workbook_save(self, filename, *args, **kwargs)
