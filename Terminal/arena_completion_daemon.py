@@ -207,7 +207,7 @@ async def probe_zai_state() -> dict:
     if not ws_url:
         return {"connected": False, "error": "Z.ai tab not found on CDP 9222"}
 
-    js = """(async () => {
+    js = """(() => {
         const stopBtn = document.querySelector('button[aria-label*="Stop"], button[title*="Stop"], button.stop-button');
         const stopSquare = document.querySelector('button span.size-3.rounded-xs');
         const sendBtn = document.querySelector('button#send-message-button');
@@ -220,49 +220,25 @@ async def probe_zai_state() -> dict:
 
         let workspaceFileName = '';
         let workspaceFileText = '';
-        if (!isGenerating && lastProse) {
-            const outer = lastProse.parentElement && lastProse.parentElement.parentElement ? lastProse.parentElement.parentElement : lastProse;
-            const wroteBtns = Array.from(outer.querySelectorAll('button')).filter(b => (b.innerText || '').includes('Wrote'));
-            for (const wb of wroteBtns) {
-                const container = wb.parentElement && wb.parentElement.parentElement ? wb.parentElement.parentElement : wb.parentElement;
-                if (container && !container.querySelector('.ToolCallTraceList')) {
-                    wb.click();
-                    await new Promise(r => setTimeout(r, 300));
-                }
-            }
-            const createBtns = Array.from(outer.querySelectorAll('.ToolCallTraceList button, button')).filter(b => (b.innerText || '').includes('Create File') && (b.innerText || '').includes('.md'));
-            if (createBtns.length > 0) {
-                const latestCreateBtn = createBtns[createBtns.length - 1];
-                const rawLabel = (latestCreateBtn.innerText || '').trim();
-                const match = rawLabel.match(/([A-Za-z0-9_.-]+\\.md)/);
-                const targetFile = match ? match[1] : '';
-                const curHeader = Array.from(document.querySelectorAll('.text-sm.flex-1.truncate.line-clamp-1')).map(e => (e.innerText || '').trim()).find(t => t.endsWith('.md')) || '';
-                if (targetFile && curHeader !== targetFile) {
-                    latestCreateBtn.click();
-                    await new Promise(r => setTimeout(r, 500));
-                }
-                if (targetFile) workspaceFileName = targetFile;
-            }
-            if (!workspaceFileName) {
-                const curHeader = Array.from(document.querySelectorAll('.text-sm.flex-1.truncate.line-clamp-1')).map(e => (e.innerText || '').trim()).find(t => t.endsWith('.md')) || '';
-                if (curHeader) workspaceFileName = curHeader;
-            }
-            const cm = document.querySelector('.cm-content');
-            if (cm && cm.cmView) {
-                let v = cm.cmView;
-                while (v && !v.state && v.parent) v = v.parent;
-                if (v && v.view && v.view.state) workspaceFileText = v.view.state.doc.toString();
-                else if (v && v.state) workspaceFileText = v.state.doc.toString();
-            }
-            if (!workspaceFileText) {
-                const wsProse = document.querySelector('.workspaceContent .markdown-prose, .workspace .markdown-prose, .workspaceContent pre');
-                if (wsProse) {
-                    workspaceFileText = (wsProse.innerText || '').trim();
-                }
+        const curHeader = Array.from(document.querySelectorAll('.text-sm.flex-1.truncate.line-clamp-1')).map(e => (e.innerText || '').trim()).find(t => t.endsWith('.md')) || '';
+        if (curHeader) workspaceFileName = curHeader;
+        
+        const cm = document.querySelector('.cm-content');
+        if (cm && cm.cmView) {
+            let v = cm.cmView;
+            while (v && !v.state && v.parent) v = v.parent;
+            if (v && v.view && v.view.state) workspaceFileText = v.view.state.doc.toString();
+            else if (v && v.state) workspaceFileText = v.state.doc.toString();
+        }
+        if (!workspaceFileText) {
+            const wsProse = document.querySelector('.workspaceContent .markdown-prose, .workspace .markdown-prose, .workspaceContent pre');
+            if (wsProse) {
+                workspaceFileText = (wsProse.innerText || '').trim();
             }
         }
+
         const combined = workspaceFileText
-            ? (chatText + "\\n\\n================================================================================\\nZ.AI ATTACHED OUTPUT FILE: " + workspaceFileName + " (" + workspaceFileText.length + " chars)\\n================================================================================\\n\\n" + workspaceFileText)
+            ? (chatText + "\n\n================================================================================\nZ.AI ATTACHED OUTPUT FILE: " + workspaceFileName + " (" + workspaceFileText.length + " chars)\n================================================================================\n\n" + workspaceFileText)
             : chatText;
         return {
             connected: true,
@@ -281,9 +257,9 @@ async def probe_zai_state() -> dict:
             await ws.send(json.dumps({
                 "id": 2,
                 "method": "Runtime.evaluate",
-                "params": {"expression": js, "returnByValue": True, "awaitPromise": True}
+                "params": {"expression": js, "returnByValue": True}
             }))
-            resp = json.loads(await asyncio.wait_for(ws.recv(), timeout=35))
+            resp = json.loads(await asyncio.wait_for(ws.recv(), timeout=10))
             val = resp.get("result", {}).get("result", {}).get("value")
             if isinstance(val, dict):
                 text = val.get("lastText") or ""
