@@ -1,9 +1,9 @@
 {
   "current_cycle_id": "Cycle 349",
-  "cycle_status": "IN_PROGRESS",
+  "cycle_status": "COMPLETED",
   "cycle_started_utc": "2026-10-25 05:54:20 UTC",
-  "cycle_completed_utc": null,
-  "next_cycle_scheduled_utc": null,
+  "cycle_completed_utc": "2026-10-25 06:33:38 UTC",
+  "next_cycle_scheduled_utc": "2026-10-25 06:53:38 UTC",
   "rest_interval_seconds": 1200,
   "components": {
     "antigravity_subagents": {
@@ -23,8 +23,8 @@
     },
     "zai": {
       "name": "Z.ai Sovereign Council (GLM-5.3-Flash)",
-      "status": "IN_PROGRESS",
-      "completed_at_utc": null,
+      "status": "COMPLETED",
+      "completed_at_utc": "2026-10-25 06:33:38 UTC",
       "raw_file": "docs/trade_plans/ZAI_LATEST_RAW.md",
       "model": "GLM-5.3-Flash",
       "verdict": "OPTION_B_STAND_ASIDE",
