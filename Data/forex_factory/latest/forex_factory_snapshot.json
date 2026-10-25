@@ -1,5 +1,5 @@
 {
-  "harvested_at_utc": "2026-10-25 08:21:25 UTC",
+  "harvested_at_utc": "2026-10-25 09:04:55 UTC",
   "source": "FOREX_FACTORY_LIVE_CDP",
   "central_bank_rates": {
     "AUD": "4.60%",
@@ -314,8 +314,8 @@
   "session_status": "WEEKEND_TRADFI_CLOSED_CRYPTO_ACTIVE",
   "_temporal_meta": {
     "stream": "forex_factory",
-    "recorded_at_utc": "2026-10-25T08:59:49Z",
-    "recorded_at_epoch": 1792918789.26814,
+    "recorded_at_utc": "2026-10-25T09:05:26Z",
+    "recorded_at_epoch": 1792919126.110124,
     "gap_detected": false,
     "gap_duration_minutes": 0.0,
     "last_active_utc": null,
