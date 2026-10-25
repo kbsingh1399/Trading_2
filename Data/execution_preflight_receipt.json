@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "dispatch_nonce": "91712b2e-6040-4608-b64a-592de6dbf0a2",
-  "observed_at_utc": "2026-10-25 01:24:08 UTC",
+  "dispatch_nonce": "50f58804-d0ae-4968-a6d8-34f6786f94a6",
+  "observed_at_utc": "2026-10-25 01:53:43 UTC",
   "account": {
     "login": 5064568,
     "server": "BlueberryMarketsSVG-Live",
@@ -18,17 +18,17 @@
     "tp": 79850.0
   },
   "broker_tick": {
-    "bid": 80684.0,
-    "ask": 80701.0,
-    "mid": 80692.5,
-    "spread_raw": 17.0,
-    "spread_bps": 2.11,
-    "spread_cost_usd": 0.68,
-    "broker_server_time_raw": 1792902247,
+    "bid": 80728.0,
+    "ask": 80744.0,
+    "mid": 80736.0,
+    "spread_raw": 16.0,
+    "spread_bps": 1.98,
+    "spread_cost_usd": 0.64,
+    "broker_server_time_raw": 1792904022,
     "broker_server_offset_seconds": 10800.0,
-    "tick_time_utc": "2026-10-25 01:24:07 UTC",
+    "tick_time_utc": "2026-10-25 01:53:42 UTC",
     "tick_age_seconds": 1.0,
-    "clock_skew_seconds": -11.59,
+    "clock_skew_seconds": -9.79,
     "quote_fresh": true
   },
   "broker_spec": {
@@ -47,9 +47,9 @@
     "profit_at_tp_usd": 58.0,
     "margin_required_usd": 1626.0,
     "base_nominal_risk_usd": 19.2,
-    "exit_spread_cost_usd": 0.68,
-    "total_nominal_risk_usd": 19.88,
-    "ticket_stress_usd": 26.85,
+    "exit_spread_cost_usd": 0.64,
+    "total_nominal_risk_usd": 19.84,
+    "ticket_stress_usd": 26.8,
     "stress_model": "(base_loss + exit_spread) * 1.25 + 2.00 USD"
   },
   "order_check": {
@@ -60,5 +60,5 @@
     "margin_free_post_order": 3220.32
   },
   "preflight_verdict": "PREFLIGHT_PASS",
-  "receipt_sha256": "0b03db37a397d3ac519f1576dd8bdcfc7db800c6b6b50d02fb09244bffdea38d"
+  "receipt_sha256": "4749d63eb6d3e621136edb4a6b75dd363fffb95da084e7178757404429f3bf81"
 }
