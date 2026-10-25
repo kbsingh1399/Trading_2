@@ -43,10 +43,9 @@ logging.basicConfig(
 )
 log = logging.getLogger("MasterPipeline")
 
-# 18 Pure-API Collectors
+# 17 Pure-API Collectors
 API_COLLECTORS = [
     "00_MT5_Account_Telemetry.py",
-    "2_Spot_Netflow_S.py",
     "3_Exchanges_LS_Ratio_15M.py",
     "3_Exchanges_LS_Ratio_1H.py",
     "3_Exchanges_LS_Ratio_4H.py",
@@ -65,9 +64,10 @@ API_COLLECTORS = [
     "22_Forced_Liquidations_MTF.py",
 ]
 
-# 14 Browser CDP Collectors
+# 15 Browser CDP Collectors
 BROWSER_COLLECTORS = [
     "1_Crypto_ETF_Flows.py",
+    "2_Spot_Netflow_S.py",
     "4_Hyperliquid_Analysis.py",
     "6_Funding_Fee_Settlement.py",
     "7_Liq_Heapmap.py",
