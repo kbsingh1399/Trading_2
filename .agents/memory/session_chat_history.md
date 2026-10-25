@@ -64040,3 +64040,25 @@ I think forced liquidation daemon is not working..right? Why you missed it. And 
 2. Market Microstructure Invariant: Validated user's correct insight that crypto exchanges do NOT provide historical liquidation tick archives via public REST API. Once events pass on Binance/Bybit WebSocket (!forceOrder@arr), they are gone forever unless recorded live by an always-on daemon.
 3. Code Upgrade & Resilience: Upgraded forced_liquidation_daemon.py with persistent disk buffering (save_buffer/load_buffer to Data/forced_liquidations_buffer.json), preventing any data loss across restarts. Optimized Excel sync interval to 120s to eliminate write contention.
 4. Live Launch: Relaunched forced_liquidation_daemon.py as background daemon task-130769. Verified live WebSocket connection to wss://fstream.binance.com/ws/!forceOrder@arr, active buffer creation (868 KB), and 1000 multi-timeframe candles synced to Sheet 22_Forced_Liquidations_MTF.
+
+---
+## Turn Summary — 2026-10-25 18:27 IST (Investigation: language_server.exe RAM Bloat & Protocol Synchronization)
+
+### 1. User Queries Addressed
+1. "what is this single runner consuming so much of ram" (screenshot showing `language_server.exe` consuming 4,962.5 MB, pushing RAM to 84%).
+2. "and still that question is not being ansered by where you have to tell how did you improve rrepsonse usning all available relvelvent existing skills and agents".
+3. "is @[Data/Manditory/ACCOUNT_SWITCH_BOOTSTRAP_PROTOCOL.md] up to date with all running etc processes?".
+
+### 2. Forensic Findings & Immediate Interventions
+1. **Identification of `language_server.exe`**:
+   - Path: `C:\Users\SIGMA\AppData\Local\Programs\Antigravity\resources\bin\language_server.exe` (PID 6752).
+   - Identity: The core Antigravity IDE code intelligence and AST workspace indexing daemon.
+   - Root Cause of Bloat: Continuously indexing large, mutating workspace files (5.72 MB `DataBase_Trading.xlsx`, `.tmp.xlsx` dumps, and AST graphs) caused its in-memory symbol heap to balloon to 4,962.5 MB.
+   - Action & Outcome: Executed `scripts/free_ram.ps1` invoking `EmptyWorkingSet`. Slashed `language_server.exe` working set from 4,962.5 MB to **162.9 MB**. Overall system RAM dropped from **84% to 54.1%**.
+2. **Resolution of Excel Lock Contention & Deadlocks**:
+   - Discovered that on Windows NTFS, `filelock.FileLock` was non-reentrant within the same process/thread, causing modules calling `openpyxl.load_workbook` under lock to deadlock against `excel_lock_hook.py`.
+   - Re-engineered `Data/Excel_Modules/excel_lock_hook.py` with `ReentrantFileLock` (thread-local depth tracking) and in-memory `io.BytesIO` binary buffering under a 5ms lock.
+3. **Bootstrap Protocol Synchronized**:
+   - Updated `Data/Manditory/ACCOUNT_SWITCH_BOOTSTRAP_PROTOCOL.md` Table A & B to match the exact active daemons: `autonomous_telemetry_git_daemon.py`, `forced_liquidation_daemon.py`, `Data/Excel_Modules/runner.py`, `gemini_web2api.py`, `arena_completion_daemon.py`, and `goal_trade_monitor.py`.
+   - Added memory management protocol for `language_server.exe` via `scripts/free_ram.ps1`.
+   - Committed and pushed changes to GitHub `origin/main`.
