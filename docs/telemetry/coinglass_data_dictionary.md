@@ -1,5 +1,5 @@
 # 📊 COINGLASS DATA DICTIONARY & HARVEST SPECIFICATION
-**Last Harvested**: `2026-10-25T00:28:24.212213+00:00` | **Cadence**: `5 Minutes` | **Engine**: `Terminal/Data_Factory/coinglass_harvester.py`
+**Last Harvested**: `2026-10-25T00:33:08.531691+00:00` | **Cadence**: `5 Minutes` | **Engine**: `Terminal/Data_Factory/coinglass_harvester.py`
 
 ## 1. EXTRACTED DATA DOMAINS & DATA POINTS SUMMARY
 
@@ -39,6 +39,6 @@
 ```
 
 ## 3. INGESTION STATUS & DATA FRESHNESS
-- **Latest Ingestion**: `2026-10-25T00:28:24.212213+00:00`
-- **Duration**: `30.91 seconds`
+- **Latest Ingestion**: `2026-10-25T00:33:08.531691+00:00`
+- **Duration**: `49.6 seconds`
 - **Sinks**: `C:\Users\SIGMA\Documents\Trading_2\Data\coinglass\latest\coinglass_snapshot.json` and `C:\Users\SIGMA\Documents\Trading_2\Data\coinglass\whale_persistence_ledger.json`
