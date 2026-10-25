@@ -314,8 +314,8 @@
   "session_status": "WEEKEND_TRADFI_CLOSED_CRYPTO_ACTIVE",
   "_temporal_meta": {
     "stream": "forex_factory",
-    "recorded_at_utc": "2026-10-25T07:24:50Z",
-    "recorded_at_epoch": 1792913090.922445,
+    "recorded_at_utc": "2026-10-25T07:30:01Z",
+    "recorded_at_epoch": 1792913401.110919,
     "gap_detected": false,
     "gap_duration_minutes": 0.0,
     "last_active_utc": null,
