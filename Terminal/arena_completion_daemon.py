@@ -260,11 +260,17 @@ async def probe_zai_state() -> dict:
                 "params": {"expression": js, "returnByValue": True}
             }))
             resp = json.loads(await asyncio.wait_for(ws.recv(), timeout=10))
-            val = resp.get("result", {}).get("result", {}).get("value")
+            if "error" in resp:
+                return {"connected": False, "error": str(resp["error"])}
+            res_obj = resp.get("result", {})
+            if "exceptionDetails" in res_obj:
+                return {"connected": False, "error": f"JS Exception: {res_obj['exceptionDetails']}"}
+            val = res_obj.get("result", {}).get("value")
             if isinstance(val, dict):
                 text = val.get("lastText") or ""
                 val["textHash"] = hashlib.sha256(text.encode("utf-8")).hexdigest()[:16] if text else ""
                 return val
+            return {"connected": False, "error": f"Unexpected value: {type(val)} {str(val)[:200]}"}
     except Exception as e:
         return {"connected": False, "error": str(e)}
     return {"connected": False, "error": "Empty Z.ai CDP evaluation response"}
