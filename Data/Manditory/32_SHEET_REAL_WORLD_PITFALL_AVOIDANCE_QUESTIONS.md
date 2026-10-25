@@ -441,6 +441,20 @@ flowchart TD
 
 ---
 
+---
+
+### SHEET 32: `22_Forced_Liquidations_MTF`
+- **Functional Domain**: Multi-Timeframe (5m, 15m, 1h, 4h) Aggregated Forced Liquidation Tracking & Cascading Volume Exhaustion.
+- **Key Columns Inspected**: `Time_IST`, `Time_UTC`, `Timeframe`, `Symbol`, `Long_Liq_USD`, `Short_Liq_USD`, `Net_Liq_Bias_USD`, `Liq_Vol_Ratio_Pct`, `Cascading_Alert_Flag`.
+- **Core Real-World Thinking Questions**:
+  1. *Across 5m, 15m, 1h, and 4h candles, is forced liquidation acceleration expanding or dissipating?*
+  2. *Did a massive 4H or 1H liquidation cluster just get completely absorbed (confirming smart money accumulation), or are we in the middle of a cascading waterfall?*
+  3. *Is the candidate entry staging into the aftermath of a completed multi-timeframe stop run, or are we catching a falling knife during active liquidation acceleration?*
+- **Lethal Pitfall Avoided**: **Pitfall 1 (Ignoring Buying/Selling Liquidation Pressure)** and **Pitfall 3 (Liquidation Magnet Intrusion)**. Entering trades while aggressive forced liquidations are actively filling market maker bids/asks guarantees adverse fills and slippage.
+- **Fail-Closed Condition**: Non-Bypassable Invariant: Zero limit orders may be staged in the direction of active cascading forced liquidations until the 5m and 15m liquidation bias confirms tape exhaustion and reversal delta.
+
+---
+
 ## 📋 SECTION 3: THE PRE-PUNCH 32-SHEET AUDIT CARD
 
 Before ANY order is punched into MetaTrader 5, the desk must compile this exact checkable audit block in the decision transcript:
@@ -463,4 +477,5 @@ Before ANY order is punched into MetaTrader 5, the desk must compile this exact 
 - [ ] Sheet 28 (L2/L3 Orderbook Depth): Orderbook asymmetry > +0.25; no overhead ask wall choking TP runway (R:R >= 1.5R)
 - [ ] Sheet 29 (CVD Engine): Tape confirms taker absorption / positive divergence (zc_div > 0.8)
 - [ ] Sheets 30-31 (News & Calendar): Out of macro blackout window (+-15m Crypto / +-35m TradFi); zero toxic news
+- [ ] Sheet 32 (Forced Liquidations MTF): 5m/15m/1h/4h liquidation waterfall halted; multi-timeframe bias confirms tape exhaustion
 ```

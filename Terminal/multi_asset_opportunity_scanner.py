@@ -109,8 +109,8 @@ def scan_all_156_assets(nominal_risk_target: float = 18.00) -> Dict[str, Any]:
         if spread_bps > max_spread_bps:
             continue
 
-        # Pull 200 M15 bars
-        rates = mt5.copy_rates_from_pos(sym, mt5.TIMEFRAME_M15, 0, 200)
+        # Pull 350 M15 bars (ensures 233-period Fibonacci Prime EMA has sufficient historical depth)
+        rates = mt5.copy_rates_from_pos(sym, mt5.TIMEFRAME_M15, 0, 350)
         if rates is None or len(rates) < 50:
             continue
 
@@ -133,9 +133,9 @@ def scan_all_156_assets(nominal_risk_target: float = 18.00) -> Dict[str, Any]:
         ema_34 = ind.get("ema_34", ind.get("ema_20"))
         ema_89 = ind.get("ema_89", ind.get("ema_50"))
         ema_144 = ind.get("ema_144", ind.get("ema_100"))
-        ema_233 = ind.get("ema_233", ind.get("ema_200"))
+        ema_233 = ind.get("ema_233") or ind.get("ema_144") or ind.get("ema_89")
 
-        if not atr or atr <= 0 or not ema_13 or not ema_34 or not ema_89 or not ema_233:
+        if not atr or atr <= 0 or not ema_13 or not ema_34 or not ema_89:
             continue
 
         # Symmetrical Fibonacci Retracement impulse over last 96 M15 bars (24 hours)
@@ -149,7 +149,17 @@ def scan_all_156_assets(nominal_risk_target: float = 18.00) -> Dict[str, Any]:
         if swing_range <= 0:
             continue
 
-        if low_idx < high_idx:
+        # Trend & Regime classification: Fibonacci Prime Ribbon Hierarchy
+        # Allows pullbacks into dynamic EMA 34/89 shelves while maintaining structural hierarchy
+        regime = "UNDEFINED"
+        if ema_13 > ema_34 > ema_89 and mid >= ema_89:
+            regime = "TREND_UP"
+        elif ema_13 < ema_34 < ema_89 and mid <= ema_89:
+            regime = "TREND_DOWN"
+        elif abs(vwap_z) >= 1.8:
+            regime = "MEAN_REVERT"
+
+        if regime == "TREND_UP" or (regime != "TREND_DOWN" and low_idx < high_idx):
             # Bullish Impulse (Low -> High), Retracement pulls down
             fib_dir = "BULLISH"
             fib_gp_max = swing_high - 0.618 * swing_range
@@ -164,15 +174,6 @@ def scan_all_156_assets(nominal_risk_target: float = 18.00) -> Dict[str, Any]:
             fib_ote = swing_low + 0.702 * swing_range
             fib_inval = swing_low + 0.786 * swing_range
 
-        # Trend & Regime classification: Fibonacci Prime Ribbon Hierarchy
-        regime = "UNDEFINED"
-        if mid > ema_13 > ema_34 > ema_89 > ema_233:
-            regime = "TREND_UP"
-        elif mid < ema_13 < ema_34 < ema_89 < ema_233:
-            regime = "TREND_DOWN"
-        elif abs(vwap_z) >= 2.0:
-            regime = "MEAN_REVERT"
-
         # Signal Logic
         setup_type = None
         side = None
@@ -182,37 +183,35 @@ def scan_all_156_assets(nominal_risk_target: float = 18.00) -> Dict[str, Any]:
         rr_ratio = 0.0
         fib_confluence = "N/A"
 
-        # Model 1: Extreme Mean Reversion (|Z| >= 2.0 to 3.5 SD)
-        if abs(vwap_z) >= 2.0:
-            if vwap_z <= -2.0 and rsi <= 35.0:
-                setup_type = "MODEL_1_EXTREME_OVERSOLD"
+        # Model 1A: Extreme Statistical Mean Reversion (|Z| >= 1.8 to 3.5 SD)
+        if abs(vwap_z) >= 1.8:
+            if vwap_z <= -1.8 and rsi <= 38.0:
+                setup_type = "MODEL_1A_EXTREME_OVERSOLD"
                 side = "BUY_LIMIT"
                 entry_price = round(tick.bid, s_info.digits)
-                sl_distance = max(1.5 * atr, spread_price * 4)
+                sl_distance = max(1.4 * atr, spread_price * 4)
                 sl_price = round(entry_price - sl_distance, s_info.digits)
                 tp_distance = sl_distance * 2.2
                 tp_price = round(entry_price + tp_distance, s_info.digits)
                 rr_ratio = 2.2
                 fib_confluence = f"Deep Swing Low Test ({swing_low:.{s_info.digits}f})"
-            elif vwap_z >= 2.0 and rsi >= 65.0:
-                setup_type = "MODEL_1_EXTREME_OVERBOUGHT"
+            elif vwap_z >= 1.8 and rsi >= 62.0:
+                setup_type = "MODEL_1A_EXTREME_OVERBOUGHT"
                 side = "SELL_LIMIT"
                 entry_price = round(tick.ask, s_info.digits)
-                sl_distance = max(1.5 * atr, spread_price * 4)
+                sl_distance = max(1.4 * atr, spread_price * 4)
                 sl_price = round(entry_price + sl_distance, s_info.digits)
                 tp_distance = sl_distance * 2.2
                 tp_price = round(entry_price - tp_distance, s_info.digits)
                 rr_ratio = 2.2
                 fib_confluence = f"Deep Swing High Test ({swing_high:.{s_info.digits}f})"
 
-        # Model 2: Trend Following Pullback into Symmetrical Golden Zone [0.618 GP, 0.702 OTE] & EMA 34 Shelf
+        # Model 2B: Trend Following Pullback into Symmetrical Golden Zone & Fib-Prime EMA Shelf
         elif regime == "TREND_UP" and 0.2 <= vwap_z <= 1.7 and fib_dir == "BULLISH" and mid >= fib_inval:
-            # Bullish Pullback to Golden Zone or EMA 34 shelf
             pullback_target = max(fib_gp_min, ema_34)
-            setup_type = "MODEL_2_TREND_PULLBACK_BUY"
+            setup_type = "MODEL_2B_TREND_PULLBACK_BUY"
             side = "BUY_LIMIT"
             entry_price = round(min(tick.bid, pullback_target), s_info.digits)
-            # SL anchored >= 0.40 ATR beyond 0.786 Invalidation Shelf and below EMA 89
             sl_candidate = min(fib_inval - 0.40 * atr, ema_89 - 0.20 * atr)
             sl_distance = max(1.2 * atr, abs(entry_price - sl_candidate))
             sl_price = round(entry_price - sl_distance, s_info.digits)
@@ -221,12 +220,10 @@ def scan_all_156_assets(nominal_risk_target: float = 18.00) -> Dict[str, Any]:
             rr_ratio = 2.5
             fib_confluence = f"OTE/GP [0.618-0.702] ({fib_ote:.{s_info.digits}f}-{fib_gp_max:.{s_info.digits}f}) | Inval 0.786: {fib_inval:.{s_info.digits}f}"
         elif regime == "TREND_DOWN" and -1.7 <= vwap_z <= -0.2 and fib_dir == "BEARISH" and mid <= fib_inval:
-            # Bearish Pullback to Golden Zone or EMA 34 shelf
             pullback_target = min(fib_gp_max, ema_34)
-            setup_type = "MODEL_2_TREND_PULLBACK_SELL"
+            setup_type = "MODEL_2B_TREND_PULLBACK_SELL"
             side = "SELL_LIMIT"
             entry_price = round(max(tick.ask, pullback_target), s_info.digits)
-            # SL anchored >= 0.40 ATR beyond 0.786 Invalidation Shelf and above EMA 89
             sl_candidate = max(fib_inval + 0.40 * atr, ema_89 + 0.20 * atr)
             sl_distance = max(1.2 * atr, abs(sl_candidate - entry_price))
             sl_price = round(entry_price + sl_distance, s_info.digits)
@@ -234,6 +231,56 @@ def scan_all_156_assets(nominal_risk_target: float = 18.00) -> Dict[str, Any]:
             tp_price = round(entry_price - tp_distance, s_info.digits)
             rr_ratio = 2.5
             fib_confluence = f"OTE/GP [0.618-0.702] ({fib_gp_min:.{s_info.digits}f}-{fib_ote:.{s_info.digits}f}) | Inval 0.786: {fib_inval:.{s_info.digits}f}"
+
+        # Model 1B: Failed Auction / Swing Liquidity Sweep Reclaim
+        elif not setup_type:
+            # Check for swing low sweep and reclaim in the last 4 bars
+            if recent_bars["low"].iloc[-4:].min() <= swing_low and mid > swing_low and rsi < 48:
+                setup_type = "MODEL_1B_SWEEP_RECLAIM_BUY"
+                side = "BUY_LIMIT"
+                entry_price = round(tick.bid, s_info.digits)
+                sl_distance = max(1.2 * atr, abs(entry_price - (recent_bars["low"].min() - 0.40 * atr)))
+                sl_price = round(entry_price - sl_distance, s_info.digits)
+                tp_distance = sl_distance * 2.2
+                tp_price = round(entry_price + tp_distance, s_info.digits)
+                rr_ratio = 2.2
+                fib_confluence = f"Swing Low Liquidity Sweep & Reclaim ({swing_low:.{s_info.digits}f})"
+            elif recent_bars["high"].iloc[-4:].max() >= swing_high and mid < swing_high and rsi > 52:
+                setup_type = "MODEL_1B_SWEEP_RECLAIM_SELL"
+                side = "SELL_LIMIT"
+                entry_price = round(tick.ask, s_info.digits)
+                sl_distance = max(1.2 * atr, abs((recent_bars["high"].max() + 0.40 * atr) - entry_price))
+                sl_price = round(entry_price + sl_distance, s_info.digits)
+                tp_distance = sl_distance * 2.2
+                tp_price = round(entry_price - tp_distance, s_info.digits)
+                rr_ratio = 2.2
+                fib_confluence = f"Swing High Liquidity Sweep & Reclaim ({swing_high:.{s_info.digits}f})"
+
+        # Model 4A: Volatility Squeeze & Compression Ribbon Breakout
+        elif not setup_type and regime in ("TREND_UP", "TREND_DOWN"):
+            ema_spread = abs(ema_13 - ema_89) / mid
+            if ema_spread < 0.008:  # Ribbon compression knot < 0.8%
+                if regime == "TREND_UP" and mid > ema_13 and rsi > 50:
+                    setup_type = "MODEL_4A_SQUEEZE_BREAKOUT_BUY"
+                    side = "BUY_LIMIT"
+                    entry_price = round(min(tick.bid, ema_13), s_info.digits)
+                    sl_distance = max(1.2 * atr, abs(entry_price - (ema_89 - 0.30 * atr)))
+                    sl_price = round(entry_price - sl_distance, s_info.digits)
+                    tp_distance = sl_distance * 2.5
+                    tp_price = round(entry_price + tp_distance, s_info.digits)
+                    rr_ratio = 2.5
+                    fib_confluence = f"Compression Knot Breakout (Spread: {ema_spread*100:.2f}%)"
+                elif regime == "TREND_DOWN" and mid < ema_13 and rsi < 50:
+                    setup_type = "MODEL_4A_SQUEEZE_BREAKOUT_SELL"
+                    side = "SELL_LIMIT"
+                    entry_price = round(max(tick.ask, ema_13), s_info.digits)
+                    sl_distance = max(1.2 * atr, abs((ema_89 + 0.30 * atr) - entry_price))
+                    sl_price = round(entry_price + sl_distance, s_info.digits)
+                    tp_distance = sl_distance * 2.5
+                    tp_price = round(entry_price - tp_distance, s_info.digits)
+                    rr_ratio = 2.5
+                    fib_confluence = f"Compression Knot Breakdown (Spread: {ema_spread*100:.2f}%)"
+
 
         if not setup_type or not entry_price or not sl_price or not tp_price:
             continue

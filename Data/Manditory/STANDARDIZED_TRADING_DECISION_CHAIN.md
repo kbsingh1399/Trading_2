@@ -22,7 +22,7 @@ Under strict institutional hedge fund governance, **no trading analysis, hypothe
 >    - **Agent 3: Convex Portfolio & Solvency Sentry**: Live MT5 telemetry verification, exact broker quote-conversion risk sizing via `mt5.order_calc_profit()`, frozen R0 profit ratchets (Early-BE, Phase 0, Phase 1, Trailing), and stressed capacity calculations preserving the **4,600.00 USD hard floor** and **4,650.00 USD operating buffer**.
 >    - **Agent 4: Auction Profile & Friction Arbitrageur**: Value Area metrics (VAH, VAL, POC, Initial Balance), Relative Spread Gate (`Spread Price / TP Distance <= 10.0%`), 33-sheet data warehouse verification (all 33 sheets loaded, 0 formula errors, <= 15m fresh), and Event Risk Clock embargoes.
 >
-> 2. **Mandatory Parallel Dual Frontier Council Dispatch (Arena.ai GPT Astra & Z.ai GLM-5.3-Flash)**:
+> 2. **Mandatory Parallel Quad-Council Dispatch (Arena.ai GPT Astra, Z.ai GLM-5.3-Flash, and Gemini Web2API Gemini 3.8 Flash)**:
 >    - On EVERY cycle, the canonical unified prompt [`Arena_GLM_Standard_Prompt.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/Arena_GLM_Standard_Prompt.md) (15.5k chars, 4 quantitative personas, 0 LaTeX delimiters) MUST be injected SIMULTANEOUSLY into:
 >      * **Arena.ai (GPT Astra)** via Chrome CDP port 9222 using `Terminal/dispatch_arena_redteam.py`.
 >      * **Z.ai (GLM-5.3-Flash)** via Chrome CDP port 9222 using `Terminal/dispatch_zai_prompt.py`.
@@ -60,6 +60,10 @@ flowchart TD
         end
         subgraph TrackC ["Track C: Z.ai (GLM-5.3-Flash)"]
             Zai["Z.ai Sovereign Council (CDP 9222)<br/>(Affirmative Discovery + Red Team)"]
+        end
+
+        subgraph TrackD ["Track D: Gemini Web2API (Gemini 3.8 Flash)"]
+            Web2API["Gemini Web2API (Port 8081)<br/>(Zero-Token Deep Reasoning Council)"]
         end
     end
 
@@ -353,10 +357,18 @@ Determine the macro structural environment using ground-truth auction levels fro
    - **Previous Session Extremes**: Asian Session High/Low (00:00–08:00 UTC), London Session High/Low (08:00–16:00 UTC), and New York Session High/Low (13:30–20:00 UTC).
    - **Weekly Macro Shelves**: Weekly POC, Current Week High/Low (CWH/CWL), and Prior Week High/Low (PWH/PWL).
 
-2. **Causal Regime Classification**:
-   - **Model 1 (Mean Reversion)**: Admissible ONLY when `|VWAP Z-Score| >= 2.0 to 3.5 SD` in `MEAN_REVERT` regime with tape exhaustion sweeping Monday High/Low, Session Extremes, or Fibonacci 1.272/1.618 outer extensions.
-   - **Model 2 (Trend Pullback)**: Admissible ONLY when `|VWAP Z-Score| < 2.0 SD` (0.2 to 1.7 SD) in confirmed `TREND_UP` or `TREND_DOWN` with Fibonacci Prime EMA ribbon alignment (5 > 13 > 34 > 89 > 144 > 233 for longs), pulling back to Fib-Prime EMA 34/89, Session VWAP, or Fibonacci Golden Zone (`[0.618 GP, 0.702 OTE]`) shelves.
-   - **Stand-Aside Invariant**: If `Trend Regime == UNDEFINED` or auction structure shows conflicting low-volume chop, the desk **stands aside unconditionally in 100% Cash Defense**.
+2. **Causal Regime Classification & 8-Model Tactical Routing**:
+   - **Trend Regimes (`TREND_UP` / `TREND_DOWN`)**:
+     * Routes to **Model 2A** (Auction Value Area Acceptance & Expansion Breakout), **Model 2B** (Orderflow Momentum Continuation & Liquidation Vacuum Drive), **Model 4A** (Fib-Prime Ribbon Breakout Acceptance), or **Model 5B** (Fibonacci Golden Zone `[0.618 GP, 0.702 OTE]` Trend Retracement).
+     * Trend pullbacks occur at mild Z-scores (`|VWAP Z| = 0.2 to 1.7 SD`) into dynamic Fibonacci Prime EMA 34/89 or Session VWAP shelves.
+   - **Mean-Reverting & Rotational Regimes (`MEAN_REVERT`)**:
+     * Routes to **Model 1A** (Extreme Statistical VWAP Reversion at `|VWAP Z| >= 2.0 to 3.5 SD`), **Model 1B** (Auction Value Area Rejection & Look Above/Below & Fail), **Model 4B** (Asian/London Session Extreme Sweep & Judas Reclaim), **Model 5A** (Cross-Asset Pairs Cointegration Dispersion), or **Model 3B** (Perpetual Funding Rate Dislocation).
+   - **Volatility Compression Regimes (`VOLATILITY_COMPRESSION` / Consolidation Coils)**:
+     * Routes to **Model 4A** (Volatility Squeeze & Fibonacci-Prime Ribbon Breakout Acceptance). Ribbon Spread Ratio `RSR <= 10th percentile` with Bollinger Bands compressed inside Keltner Channels.
+   - **Liquidation Capitulation Regimes (`LIQUIDATION_FLUSH` / Stop Cascade Exhaustion)**:
+     * Routes to **Model 3A** (MTF Forced Liquidation Flush & Stop Sweep Absorption). Triggered by 90th percentile liquidation spike in Sheet 32 (`22_Forced_Liquidations_MTF`) and stop cluster sweep in Sheet 23 (`15_Hyperdash_Stops_Map`) met with aggressive delta absorption (`zc_div > 0.8`).
+   - **Unconfirmed Chop & Noise Stand-Aside Invariant**:
+     * If the market exhibits unconfirmed low-volume chop where NONE of the 8 canonical structural models confirm valid mathematical confluence, the desk **stands aside unconditionally in 100% Cash Defense**.
 
 #### 4.1 Fibonacci Prime Exponential Moving Averages (5, 13, 34, 89, 144, 233) & Ribbon Dynamics
 Arbitrary calendar-based moving averages (20, 50, 100, 200) from legacy equity trading fail to capture the self-similar fractal geometry and memory decay of continuous 24/7 auctions. The desk permanently replaces them with the canonical **Fibonacci Prime EMA Suite**:
@@ -438,12 +450,12 @@ All candidate limit entries (Model 1 and Model 2) MUST satisfy structural mathem
 
 ---
 
-### STEP 5: Quad-Engine Opportunity Screening & Strategy Dialectic
-*Active Skills: `@[quant-analyst]`, `@[clean-code]`, `@[ai-ml]`*
+### STEP 5: Institutional Multi-Engine Opportunity Screening & Strategy Suite (Models 1 through 8)
+*Active Skills: `@[quant-analyst]`, `@[clean-code]`, `@[ai-ml]`, `@[trader-signal]`, `@[trader-risk]`*
 
-Screen candidates across the 156-asset universe using `Terminal/multi_asset_opportunity_scanner.py` into distinct quantitative engines:
+Screen candidates across the 156-asset universe using `Terminal/multi_asset_opportunity_scanner.py` into distinct quantitative engines. By activating 8 mathematically grounded models across mean reversion, trend continuation, liquidation exhaustion, volatility squeeze, session auction rotation, funding basis dislocation, statistical cointegration, and Fibonacci golden zone pullbacks, the desk eliminates the low-frequency bottleneck while enforcing strict capital preservation.
 
-#### Engine 1: Mean Reversion Suite
+#### Engine 1: Statistical & Auction Mean Reversion Suite
 ##### Model 1A: Extreme Statistical VWAP Reversion
 - **Condition**: Market reaches extreme statistical dispersion (|Z_VWAP| >= 2.0 to 3.5 SD) in a verified `MEAN_REVERT` regime.
 - **Required Confluence**:
@@ -451,7 +463,7 @@ Screen candidates across the 156-asset universe using `Terminal/multi_asset_oppo
   2. **Sweeping Dense Liquidation Pools or Stop Clusters**: Price pierces into high-density liquidation bands (Sheets 10, 11, 14, 22) or sweeps retail resting stop clusters (Sheet 23 `15_Hyperdash_Stops_Map`) immediately before stalling, confirming liquidity grab and capitulation.
   3. Orderflow confirms **Trapped Traders** (`TRAPPED_BUYERS_ABOVE` for Shorts, `TRAPPED_SELLERS_BELOW` for Longs).
   4. Microstructure tape reveals momentum exhaustion (CVD delta decelerating > 30%, lack of aggressive taker follow-through).
-  5. Sheltered behind resting institutional whale wall (>= 100K USD to 1M USD+, persisting >= 180s).
+  5. Sheltered behind resting institutional whale wall (>= 100K USD to 1M USD+, persisting >= 180s, verified `is_bid == True` for longs, `is_ask == True` for shorts).
 - **Execution**: Counter-trend passive limit order targeting mean reversion back toward Volume POC or Session VWAP.
 
 ##### Model 1B: Auction Value Area Rejection & Failed Auction (Look Above/Below & Fail)
@@ -463,7 +475,7 @@ Screen candidates across the 156-asset universe using `Terminal/multi_asset_oppo
   4. Rejection confirmed by return inside Value Area with volume profile high-volume node rejection.
 - **Execution**: Fade the failed auction with passive limit entry on re-test of the Value Area boundary (VAH/VAL), targeting rotation across the entire Value Area toward the opposite boundary (Target 1: POC, Target 2: opposite VA boundary).
 
-#### Engine 2: Trend Following & Momentum Suite
+#### Engine 2: Trend Following & Momentum Expansion Suite
 ##### Model 2A: Auction Value Area Acceptance & Expansion Breakout
 - **Condition**: Price breaks out of Prior Day / Session Value Area and establishes confirmed **Value Acceptance**.
 - **Required Confluence**:
@@ -481,6 +493,90 @@ Screen candidates across the 156-asset universe using `Terminal/multi_asset_oppo
   3. **Liquidation Vacuum**: Presence of un-swept opposing liquidation bands / stop sweep clusters ahead, pulling price forward like a magnet.
   4. **Fibonacci & Whale Confluence**: Retracement aligns with the Symmetrical Fibonacci Golden Zone [0.618 GP, 0.702 OTE] coinciding directly with resting whale walls (>= 100K USD, persist >= 180s) trailing behind the move.
 - **Execution**: Pro-trend pullback limit order placed at the Fibonacci Prime EMA 34/89, Symmetrical Golden Zone [0.618-0.702], or Session VWAP shelf, targeting rapid liquidation sweep into the opposing debt pool with SL anchored >= 0.40 ATR beyond 0.786 Invalidation Shelf.
+
+#### Engine 3: Liquidation & Microstructure Orderflow Suite (Forensic Autopsy Enhanced)
+##### Model 3A: MTF Forced Liquidation Flush & Stop Sweep Absorption (The "Capitulation Sweep" Model)
+- **Condition**: Multi-timeframe forced liquidations spike above the 90th percentile across 5m, 15m, or 1h horizons in Sheet 32 (`22_Forced_Liquidations_MTF`), sweeping through dense retail stop clusters in Sheet 23 (`15_Hyperdash_Stops_Map`) or Sheet 14 (`8_Exchange_Liquidation_Map_1D`).
+- **Autopsy Protection (Never Catch a Falling Knife)**:
+  * Staging directly inside or ahead of an un-swept liquidation cascade is strictly FORBIDDEN.
+  * Entry is authorized ONLY after the liquidation cascade sweeps through the stop pool, exhausts aggressive taker volume, and prints confirmed orderflow absorption:
+    1. Taker CVD deceleration > 30% or positive divergence (`zc_div > 0.80`).
+    2. 15m bar prints an absorption wick closing back inside the pre-sweep level.
+    3. Backed by a verified defending institutional whale bunker (Sheet 18 `10_Whale_Orders` / Sheet 25 `14_Hyperdash_L2_Depth`): `is_bid == True` for longs, `is_ask == True` for shorts, size >= 250k–1M USD+, persistence >= 180s.
+- **Execution**: Passive limit order staged on the shallow re-test of the absorption pivot. Protective SL placed safely behind the defending whale bunker outside the swept range with >= 0.50 ATR buffer. Target: Rotation back toward developing VPOC or opposing liquidation vacuum.
+
+##### Model 3B: Perpetual Funding Rate & Microstructure Basis Skew Dislocation (The "Crowded Squeeze" Model)
+- **Condition**: Perpetual funding rates in Sheet 09 (`5_Funding_Rate`) reach extreme statistical dislocation (Annualized FR > +30% or < -20%) while retail positioning in Sheet 04/05/06 (`3_Exchanges_LS_Ratio`) is heavily skewed (> 70% or < 30% long/short), signaling extreme crowded leverage vulnerable to a cascade flush.
+- **Institutional Smart-Money Divergence**:
+  * Spot exchange netflows in Sheet 03 (`2_Spot_Netflow_S`) are moving in the OPPOSITE direction: institutional spot accumulation while futures crowd is short, or institutional spot distribution while futures crowd is leveraged long.
+  * Futures Open Interest in Sheet 08 (`5_OI`) begins to stagnate or roll over while funding fee settlement in Sheet 10 (`6_Funding_Fee_Settlement`) imposes punitive carrying costs on the crowded side.
+- **Execution**: Passive limit order staged at the dynamic session VWAP or Fib-Prime EMA 34/89 shelf once the crowded side experiences tape deceleration. Protective SL placed >= 0.40 ATR beyond the recent structural swing. Target: Rapid squeeze toward opposing retail liquidation debt pools (Sheets 11-16).
+
+#### Engine 4: Volatility Compression & Session Auction Dynamics Suite
+##### Model 4A: Volatility Squeeze & Fibonacci-Prime Ribbon Breakout Acceptance (The "Coil Expansion" Model)
+- **Condition**: Market coils into an extreme volatility compression state across 15m/1h horizons:
+  1. Ribbon Spread Ratio `RSR = (max(EMA_Suite) - min(EMA_Suite)) / Close <= 10th percentile(RSR_90d)` (Compression Knot).
+  2. Bollinger Bands compress entirely inside Keltner Channels on 15m in Sheet 20 (`11_Technical`) (`BB_Upper < KC_Upper` and `BB_Lower > KC_Lower`).
+- **Breakout Acceptance Confluence**:
+  1. First clean 15m candle close outside the compression knot with Relative Volume `RVOL > 1.30`.
+  2. Open Interest in Sheet 08 (`5_OI`) expands (`d(OI)/dt > 0`), proving new capital commitment rather than mere liquidation chop.
+  3. Directional CVD delta expansion confirms aggressive taker dominance aligned with the breakout direction.
+- **Execution**: Pro-trend passive limit order staged on the shallow re-test of the broken EMA 13 / EMA 34 baseline. Protective SL anchored behind the opposite edge of the compression knot (+ 0.40 ATR buffer). Target: Minimum 2.5R expansion into next macro auction shelf.
+
+##### Model 4B: Session Liquidity Sweep & Opening Range Reversal (The "Judas Swing" Model)
+- **Applicability**: Highly effective across Forex Majors, Crosses, Precious Metals (XAUUSD, SILVER), and Crypto Perpetuals.
+- **Auction Mechanics & Timing**:
+  1. **Asian Session Sweep during London Open (08:00–10:00 UTC)**: Price sweeps Asian Session High (`Asian_High`) or Low (`Asian_Low`) from Sheet 33 (`20_Auction_Market_Structure`) to engineer exit liquidity.
+  2. **London Session Sweep during New York Open (13:30–15:30 UTC)**: Price probes outside London Initial Balance High/Low.
+  3. **Weekly Initial Balance Sweep (Monday Range)**: Price probes outside `Mon_H` or `Mon_L`.
+- **Rejection & Reclaim Rule**:
+  * Price sweeps the session extreme but fails to establish Value Acceptance (no two consecutive 15m closes outside).
+  * 15m candle prints an absorption tail and closes back inside the session envelope with negative CVD delta on highs (or positive CVD on lows).
+- **Execution**: Passive limit entry staged on the re-test of the session boundary. Protective SL placed 0.40 ATR beyond the sweep wick extreme. Target 1: Session VPOC / `Mon_Mid`. Target 2: Opposing session extreme. Reward-to-Risk typically 2.5R to 4.5R.
+
+#### Engine 5: Statistical Cointegration & Structural Wave Suite
+##### Model 5A: Statistical Pairs Cointegration & Cross-Asset Spread Dispersion (StatArb Dispersion)
+- **Condition**: Normalized spread Z-score between cointegrated pairs (BTC vs ETH, SOL vs ETH, EURUSD vs GBPUSD, XAUUSD vs SILVER) exceeds `|Z_spread| >= 2.5 SD` of the rolling 48-bar spread distribution with Ornstein-Uhlenbeck mean-reversion half-life `tau_half < 12 bars`.
+- **Orderflow Confluence**:
+  * The lagging/dislocated asset exhibits orderflow absorption at its dynamic session VWAP or developing VPOC shelf in Sheet 33 (`20_Auction_Market_Structure`).
+  * Microstructure tape confirms taker exhaustion on the extended leg.
+- **Execution**: Passive limit entry on the dislocated asset at the VWAP shelf. Protective SL anchored beyond 3.2 SD of the spread distribution (+ 0.40 ATR). Target: Mean reversion of the spread back to historical equilibrium (`Z_spread = 0.0`).
+
+##### Model 5B: Fibonacci Prime Golden Zone Trend Continuation (Wave 3/5 Retracement)
+- **Condition**: Confirmed higher-timeframe trend (1h/4h Fibonacci Prime EMA ribbon in full expansion: 5 > 13 > 34 > 89 > 144 > 233 for bullish, < for bearish).
+- **Golden Zone Retracement Geometry**:
+  * 15m price retraces cleanly into the Symmetrical Fibonacci Golden Zone: `[0.618 GP, 0.702 OTE]` derived from the active impulse wave swing low to swing high.
+  * The Golden Zone corridor directly coincides with Fib-Prime EMA 34, Fib-Prime EMA 89, or Developing VPOC (`d_POC`).
+  * Volume Profile indicates a Low Volume Node (LVN) in the retracement corridor, confirming thin volume pullback rather than aggressive distribution.
+- **Microstructure Trigger**: Taker selling dries up (15m CVD decelerating), followed by the first bullish orderflow absorption print.
+- **Execution**: Limit buy staged at the 0.650 Golden Pocket corridor. Protective SL placed strictly beyond the 0.786 Invalidation Shelf (`SL = Price_0786 - 0.40 * ATR - half_spread`). Target: 1.618 Fibonacci expansion extension of the impulse wave (R:R >= 2.5R).
+
+---
+
+#### SECTION 5.5: THE 6 INVIOLABLE LESSONS OF THE FORENSIC AUTOPSY (NEVER REPEAT YESTERDAY'S LOSSES)
+
+To permanently protect capital and eliminate recurring execution errors, every trading candidate and subagent analysis MUST audit against the 6 forensic lessons extracted from recent losing trades (`SOLUSD.p Ticket #19174858` and `NZDUSD.pi Ticket #19244087`):
+
+1. **Lesson 1: Anti-Falling Knife CVD Waterfall Ban**:
+   - *Microstructure Trap*: Buying while 5m/15m Cumulative Volume Delta (CVD) is cascading downward with expanding negative deltas (`zc_div <= 0`).
+   - *Mandatory Invariant*: Limit buying into a sharp sell-off is strictly PROHIBITED unless tape absorption is mathematically verified: `zc_div > 0.80` or CVD delta deceleration > 30% over the last two 15m bars.
+2. **Lesson 2: Orderbook Polarity Verification (No Ghost Walls)**:
+   - *Microstructure Trap*: Mistaking an ask/sell wall for a bid/buy wall (the SOL trap: staging a buy under a 7.71M USD ask wall).
+   - *Mandatory Invariant*: For every limit order, the defending whale wall in Sheet 18 (`10_Whale_Orders`) and Sheet 25 (`14_Hyperdash_L2_Depth`) MUST have its polarity explicitly verified:
+     * For BUY orders: `is_bid == True` with `price <= entry_price`.
+     * For SELL orders: `is_ask == True` with `price >= entry_price`.
+3. **Lesson 3: Never Stage Inside or Above Un-Swept Retail Stop Cascades**:
+   - *Microstructure Trap*: Staging a buy limit directly above an un-swept retail sell-stop cluster, guaranteeing getting overrun when the cascade triggers.
+   - *Mandatory Invariant*: If an un-swept retail stop cluster (Sheet 23 `15_Hyperdash_Stops_Map`) sits within 0.50 ATR of the candidate entry, the desk MUST wait for the stop sweep to execute and print tape absorption first before staging an order.
+4. **Lesson 4: Permanent Sub-ATR & Value Area Stop Loss Ban**:
+   - *Microstructure Trap*: Placing a stop loss inside the Value Area or within sub-ATR noise (< 0.40 ATR / < 20 points in FX) to artificially fit a smaller risk dollar amount (the NZD autopsy: 1.6 pip stop above VAL).
+   - *Mandatory Invariant*: Protective stops must NEVER sit inside the Value Area or within random Brownian noise. Stops MUST be anchored strictly outside structural shelves (VAL/VAH, Asian Low/High, 0.786 Invalidation Shelf, or Defending Whale Wall) with a minimum 0.40 to 0.50 ATR safety buffer.
+5. **Lesson 5: Overhead Liquidity Clearance Gate**:
+   - *Microstructure Trap*: Staging an entry where an impenetrable opposing whale wall sits between the entry price and TP1, capping upside and destroying realizable R:R.
+   - *Mandatory Invariant*: The path to TP1 must be verified clear of opposing whale walls (>= 500K USD notional within 0.75 ATR) to ensure that the required 2.0R reward-to-risk ratio is achievable without obstruction.
+6. **Lesson 6: Lot Sizing Follows Structural Stops, Never Squeezed Stops**:
+   - *Microstructure Trap*: Squeezing a stop price closer to entry so that a larger lot can be traded.
+   - *Mandatory Invariant*: The structural stop price is fixed first based on auction geometry. Volume is then calculated using `mt5.order_calc_profit()` to match the authorized nominal risk budget (10.00 to 12.00 USD). If the resulting volume is below broker minimum volume (`volume_min`), the trade is rejected/held; the stop is NEVER compressed.
 
 ---
 

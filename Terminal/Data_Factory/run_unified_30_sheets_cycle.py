@@ -241,13 +241,56 @@ def execute_unified_30_sheets_cycle() -> dict:
     }
 
 
+
+
+def execute_refresh_stale() -> dict:
+    """Audits Data/DataBase_Trading.xlsx, identifies stale or failed sheets, and refreshes ONLY those modules."""
+    log.info("Checking for stale sheets via checklist auditor...")
+    checklist_json_path = DATA_DIR / "excel_all_sheets_checklist.json"
+    
+    proc = subprocess.run([sys.executable, str(CHECKLIST_SCRIPT)], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    stale_sheets = []
+    if checklist_json_path.exists():
+        try:
+            with open(checklist_json_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+            stale_sheets = [s["sheet_name"] for s in data.get("checklist", []) if not s.get("is_fresh", False) or s.get("status") != "PASS"]
+        except Exception:
+            pass
+
+    if not stale_sheets:
+        log.info("All sheets are currently fresh (<30m IST). No refresh required!")
+        return {"passed": 0, "total": 0, "checklist_passed": True}
+
+    log.info("Targeting %d stale sheets: %s", len(stale_sheets), stale_sheets)
+    target_mods = [m for m in (API_MODULES + BROWSER_MODULES) if m["sheet"] in stale_sheets]
+    
+    results = []
+    for mod in target_mods:
+        sheet, success, duration, err = run_single_module(mod)
+        status_str = "PASS" if success else "FAIL"
+        err_msg = f" | Error: {err}" if not success else ""
+        log.info(f"  [{status_str}] {sheet:<30} ({duration:>5.1f}s){err_msg}")
+        results.append({"sheet": sheet, "success": success, "duration": duration, "error": err})
+
+    # Re-run auditor
+    proc_check = subprocess.run([sys.executable, str(CHECKLIST_SCRIPT)], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    print(proc_check.stdout)
+    checklist_passed = (proc_check.returncode == 0)
+    return {"passed": sum(1 for r in results if r["success"]), "total": len(results), "checklist_passed": checklist_passed, "results": results}
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Unified 30-Sheet Excel Refresh Cycle")
     parser.add_argument("--continuous", action="store_true", help="Run continuously in background")
     parser.add_argument("--interval", type=int, default=300, help="Interval between cycles in seconds (default: 300s = 5m)")
+    parser.add_argument("--refresh-stale", action="store_true", help="Refresh only stale sheets (>30m)")
     args = parser.parse_args()
 
-    if args.continuous:
+    if args.refresh_stale:
+        summary = execute_refresh_stale()
+        sys.exit(0 if summary.get("checklist_passed") else 1)
+    elif args.continuous:
         log.info(f"Starting continuous 30-sheet refresh daemon (cycle interval: {args.interval}s)...")
         while True:
             try:

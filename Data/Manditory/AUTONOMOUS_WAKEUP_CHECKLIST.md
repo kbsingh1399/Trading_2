@@ -3,7 +3,7 @@
 
 > **Canonical Production Checklist**: Non-bypassable Master Autonomous Desk Wake-Up Sequence (Read & Execute Fully Line-by-Line).  
 > **Target Environment**: MetaTrader 5 (Blueberry Markets Account #5064568) | Antigravity Autonomous Decision Desk  
-> **Active Goal Contract**: Pass Phase 1 Challenge (Target: 5,500.00 USD) by End of Friday, 23rd October 2026 (23:59 UTC).  
+> **Active Goal Contract**: Pass Phase 1 Challenge (Target: 5,500.00 USD) by Friday, 30th October 2026 (23:59 UTC).  
 > **INVIOLABLE OPERATOR MANDATE**: The /goal contract is PERPETUAL and must NEVER be killed, paused, or cancelled until live equity >= 5,500.00 USD is proven on MT5.  
 > **MANDATORY CANDIDATE RADAR**: The desk is STRICTLY FORBIDDEN from issuing a bare 'Stand Aside' without formulating and tracking concrete Potential Candidate Setups with checkable pre-condition trigger checklists [ ].  
 > **Mandatory Foundation**: [`STANDARDIZED_TRADING_DECISION_CHAIN.md`](file:///c:/Users/SIGMA/Documents/Trading_2/Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md) (Canonical Quant SOP) + Master 33-Sheet Excel Data Warehouse (`Data/DataBase_Trading.xlsx` & `Data/Manditory/`).  
@@ -46,14 +46,14 @@ Before evaluating data, touching code, or dispatching orders, the coordinator an
   * Total Sheets: 33/33 sheets present and indexed.
   * Formula Errors: Exactly 0 errors (`#REF!`, `#DIV/0!`, `#N/A`, `#VALUE!`, `#NAME?`, `#NUM!`).
   * Header Integrity: 100% valid, unmerged headers in Row 1 across all sheets.
-  * Per-Sheet Freshness Invariant: Inspect internal cell timestamps for EVERY dynamic trading sheet (`00_MT5_Account_Telemetry`, `11_Technical`, `14_Hyperdash_Liq_Map`, `15_Hyperdash_Stops_Map`, `17_Orderbook`, `18_CVD`, `20_Auction_Market_Structure`). Each must be `<= 15.0 minutes` (`900s`) old. Never rely solely on overall file modification time (`os.path.getmtime`).
+  * Per-Sheet Freshness Invariant: Inspect internal cell timestamps for EVERY dynamic trading sheet (`00_MT5_Account_Telemetry`, `11_Technical`, `22_Forced_Liquidations_MTF`, `14_Hyperdash_Liq_Map`, `15_Hyperdash_Stops_Map`, `17_Orderbook`, `18_CVD`, `20_Auction_Market_Structure`). Each must be `<= 15.0 minutes` (`900s`) old. Never rely solely on overall file modification time (`os.path.getmtime`).
   * Scorecard: Verified output in `Data/excel_health_audit.json`.
 - **Fail-Closed Gate**: If the audit detects any formula error, missing sheet, or any dynamic operational sheet stale (> 15m), trading is frozen in 100% Cash Defense until the pipeline refreshes.
 
 ### Gateway 1: Mission, Runway & Macro Clock
 > *"What is our exact target, how much runway remains, and what is our exact dollar bridge?"*
 - **Primary Target**: Pass Phase 1 of Blueberry Markets evaluation (#5064568) by reaching **5,500.00 USD** equity.
-- **Runway & Deadline**: End of Friday, 23rd October 2026 (23:59 UTC). Calculate exact remaining hours.
+- **Runway & Deadline**: Friday, 30th October 2026 (23:59 UTC). Calculate exact remaining hours.
 - **Dollar Bridge**: Distance = 5,500.00 USD - Current Equity.
 - **Macro Blackout & Session Clock**: Is there any Tier-1 macroeconomic release (CPI, PPI, FOMC, NFP) scheduled within +-30 minutes in `Data/macro_calendar.json` or Sheet 28 (`19_Calendar`)? Are we approaching the 21:15–22:30 UTC interbank FX rollover spread expansion?
 

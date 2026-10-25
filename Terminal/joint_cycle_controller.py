@@ -50,6 +50,7 @@ if str(ROOT) not in sys.path:
 CYCLE_STATE_FILE = ROOT / "Data" / "cycle_state.json"
 ARENA_STATUS_FILE = ROOT / "Data" / "arena_completion_status.json"
 ZAI_STATUS_FILE = ROOT / "Data" / "zai_completion_status.json"
+WEB2API_STATUS_FILE = ROOT / "Data" / "web2api_completion_status.json"
 
 logging.basicConfig(level=logging.INFO, format="[%(asctime)s][JointCycleController] %(message)s")
 logger = logging.getLogger("JointCycleController")
@@ -87,6 +88,13 @@ def get_default_state() -> Dict[str, Any]:
                 "completed_at_utc": None,
                 "raw_file": "docs/trade_plans/ZAI_LATEST_RAW.md",
                 "model": "GLM-5.3-Flash"
+            },
+            "web2api": {
+                "name": "Gemini Web2API Council (Gemini 3.8 Flash)",
+                "status": "IN_PROGRESS",
+                "completed_at_utc": None,
+                "raw_file": "docs/trade_plans/GEMINI_WEB2API_LATEST_RAW.md",
+                "model": "Gemini 3.8 Flash"
             }
         },
         "watchdog": {
@@ -205,6 +213,30 @@ def sync_from_daemons(state: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         except Exception:
             pass
 
+    # 3. Check Gemini Web2API Output Status
+    if WEB2API_STATUS_FILE.exists():
+        try:
+            with open(WEB2API_STATUS_FILE, "r", encoding="utf-8") as f:
+                wd = json.load(f)
+            if wd.get("response_chars", 0) > 2000:
+                web_ts = wd.get("completed_at_utc", now_utc_str())
+                wd_dt = datetime.datetime.strptime(web_ts.replace(" UTC", ""), "%Y-%m-%d %H:%M:%S").replace(tzinfo=datetime.timezone.utc)
+                if not start_dt or wd_dt >= start_dt:
+                    if "web2api" not in state["components"]:
+                        state["components"]["web2api"] = {
+                            "name": "Gemini Web2API Council (Gemini 3.8 Flash)",
+                            "status": "IN_PROGRESS",
+                            "completed_at_utc": None,
+                            "raw_file": "docs/trade_plans/GEMINI_WEB2API_LATEST_RAW.md",
+                            "model": "Gemini 3.8 Flash"
+                        }
+                    if state["components"]["web2api"]["status"] != "COMPLETED" or state["components"]["web2api"]["completed_at_utc"] != web_ts:
+                        state["components"]["web2api"]["status"] = "COMPLETED"
+                        state["components"]["web2api"]["completed_at_utc"] = web_ts
+                        logger.info("Auto-synced Gemini Web2API completion from status: %s", web_ts)
+        except Exception:
+            pass
+
     save_cycle_state(state)
     check_cycle_completion(state)
     return state
@@ -219,10 +251,11 @@ def check_cycle_completion(state: Optional[Dict[str, Any]] = None) -> bool:
     sub_done = comps.get("antigravity_subagents", {}).get("status") == "COMPLETED"
     arena_done = comps.get("arena_ai", {}).get("status") == "COMPLETED"
     zai_done = comps.get("zai", {}).get("status") == "COMPLETED"
+    web2api_done = comps.get("web2api", {}).get("status") == "COMPLETED" if "web2api" in comps else True
 
-    if sub_done and arena_done and zai_done:
+    if sub_done and arena_done and zai_done and web2api_done:
         ts_list = []
-        for c in [comps.get("antigravity_subagents", {}), comps.get("arena_ai", {}), comps.get("zai", {})]:
+        for c in comps.values():
             c_ts = c.get("completed_at_utc")
             if c_ts:
                 try:
@@ -421,7 +454,7 @@ if __name__ == "__main__":
     parser.add_argument("--status", action="store_true", help="Print current cycle state and component progress")
     parser.add_argument("--watchdog", action="store_true", help="Execute 30-minute watchdog sentry check")
     parser.add_argument("--start", type=str, help="Start a new cycle with given ID")
-    parser.add_argument("--complete", type=str, choices=["antigravity_subagents", "arena_ai", "zai"], help="Mark a component complete")
+    parser.add_argument("--complete", type=str, choices=["antigravity_subagents", "arena_ai", "zai", "web2api"], help="Mark a component complete")
     parser.add_argument("--sync", action="store_true", help="Sync completion status from live daemons")
     parser.add_argument("--wait-rest", action="store_true", help="Sleep cleanly until next cycle (or early on position close) and exit 0 for reactive wakeup")
     args = parser.parse_args()

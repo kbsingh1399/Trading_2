@@ -143,12 +143,24 @@ The council MUST deploy its full multi-agent squad with deep reasoning to execut
      - ER(48) < 0.15 -> Choppy / Noise or Mean-Reverting.
   3. **Newey-West HAC Drift t-Statistic**:
      OLS regression of log price on time with Bartlett kernel lag L = floor(4 * (T/100)^(2/9)). |t_drift| >= 2.0 -> Statistically significant drift at 95% confidence.
-  4. **Dual-Engine Strategy Dialectic & Fibonacci Prime EMA Confluence**:
-     - **Regime-Gated Execution**: If classify_regime() returns UNDEFINED, stand aside unconditionally across both engines. Never force trades in choppy, non-trending noise.
-     - **Model 1 (Extreme Mean Reversion)**: Admissible ONLY in confirmed MEAN_REVERT regimes (VR(4) < 0.85, z* < -1.64, ER(48) < 0.15) at extreme locations (|Z| >= 2.0 to 3.5 SD) sweeping Monday High/Low (Mon_H/Mon_L), Session Extremes (Asian_H/L, London_H/L), or Fibonacci 1.272/1.618 extensions with verified tape exhaustion.
-     - **Model 2 (Trend Following Pullbacks)**: In-range |Z| (|Z| < 2.0 SD, e.g. 0.5 to 1.7 SD) is admissible ONLY when a verified TREND_UP or TREND_DOWN regime is confirmed by HTF structure (VR(4) > 1.15, z* > 1.64, ER(48) >= 0.20, |t_drift| >= 2.0):
-       * **Fibonacci Prime EMA Ribbon Alignment**: Strict hierarchy enforced (Bullish: EMA 5 > EMA 13 > EMA 34 > EMA 89 > EMA 144 > EMA 233; Bearish: EMA 5 < EMA 13 < EMA 34 < EMA 89 < EMA 144 < EMA 233). Replaces legacy arbitrary 20/50/100/200 EMAs.
-       * **Fibonacci Golden Zone Gate**: Entry MUST sit inside the Fibonacci Retracement Golden Zone: [0.618 GP, 0.702 OTE] of the prevailing impulse wave, coinciding with Fib-Prime EMA 34/89 or Session VWAP shelves.
+  4. **Institutional 8-Model Strategy Dialectic (Models 1 through 8)**:
+     - **Regime Routing**:
+       * `TREND_UP` / `TREND_DOWN`: Route to **Model 2A** (VA Acceptance Breakout), **Model 2B** (Momentum Continuation), **Model 4A** (Fib-Prime Ribbon Breakout Acceptance), or **Model 5B** (Fibonacci Golden Zone Retracement).
+       * `MEAN_REVERT`: Route to **Model 1A** (Extreme VWAP Reversion at |Z| >= 2.0 to 3.5 SD), **Model 1B** (Failed Auction Look Above/Below & Fail), **Model 4B** (Asian/London Session Judas Reversal), **Model 5A** (Pairs Cointegration Dispersion), or **Model 3B** (Perpetual Funding Rate Dislocation).
+       * `VOLATILITY_COMPRESSION`: Route to **Model 4A** (Volatility Squeeze Breakout Acceptance: Ribbon Spread Ratio `RSR <= 10th percentile` + BB inside Keltner Channel in Sheet 20).
+       * `LIQUIDATION_FLUSH`: Route to **Model 3A** (MTF Forced Liquidation Flush & Stop Sweep Absorption triggered by 90th percentile spike in Sheet 32 `22_Forced_Liquidations_MTF`).
+       * `UNCONFIRMED NOISE`: Stand aside unconditionally in 100% Cash Defense only if NONE of the 8 canonical structural models confirm valid mathematical confluence.
+     - **Summary of the 8 Canonical Production Models**:
+       * **Model 1A (Extreme VWAP Reversion)**: |VWAP Z| >= 2.0 to 3.5 SD sweeping outer distribution bands with tape exhaustion.
+       * **Model 1B (Auction Value Area Rejection)**: Probes outside VAH/VAL, fails to accept, closes back inside Value Area with absorption wick.
+       * **Model 2A (Auction Value Area Breakout Acceptance)**: 2 consecutive 15m candle closes outside VA with RVOL > 1.30 and developing POC migration.
+       * **Model 2B (Orderflow Momentum Continuation)**: In-range |Z| (0.2 to 1.7 SD) pulling back to Fib-Prime EMA 34/89 with expanding OI and positive CVD alignment.
+       * **Model 3A (MTF Forced Liquidation Flush & Stop Sweep Absorption)**: 5m/15m/1h liquidation spike > 90th percentile sweeping retail stops, met with confirmed absorption (`zc_div > 0.80`, CVD deceleration > 30%, absorption wick).
+       * **Model 3B (Funding Rate & Skew Dislocation)**: Extreme funding rate (Annualized FR > +30% or < -20%) divergent from spot exchange netflow and retail L/S ratio.
+       * **Model 4A (Volatility Squeeze Breakout)**: Bollinger Bands compressed inside Keltner Channels on 15m/1h breaking out with volume expansion RVOL > 1.30.
+       * **Model 4B (Session Liquidity Sweep & Opening Range Reversal)**: Judas swing sweeping Asian High/Low or Monday High/Low during London/NY open with immediate reclaim.
+       * **Model 5A (Statistical Pairs Cointegration Dispersion)**: Rolling 48-bar spread Z-score `|Z_spread| >= 2.5 SD` on cointegrated pairs with OU half-life `tau_half < 12 bars`.
+       * **Model 5B (Fibonacci Prime Golden Zone Trend Continuation)**: Clean retracement into `[0.618 GP, 0.702 OTE]` corridor coinciding with Fib-Prime EMA 34/89 or developing VPOC, stop anchored beyond 0.786 Invalidation Shelf.
   5. **Ornstein-Uhlenbeck (OU) Equilibrium & Adverse Drift Veto**:
      - Discrete regression: x_t - x_{t-1} = a + b * x_{t-1}. Equilibrium mean theta = -a / b.
      - **Adverse Drift Veto**:
@@ -161,10 +173,16 @@ The council MUST deploy its full multi-agent squad with deep reasoning to execut
 ### 1.2 ROLE B: FILL, MICROSTRUCTURE & ORDER GEOMETRY QUANT
 * **Jurisdiction**: L2/L3 orderbook depth, taker CVD delta, limit queue dynamics, whale wall persistence, and execution geometry.
 * **Microstructure Invariants & Formulas**:
-  1. **Mandatory 180-Second Whale Wall Persistence Filter**:
+  1. **Mandatory 180-Second Whale Wall Persistence & Polarity Filter (Forensic Autopsy Rule 2)**:
      - Candidate limit orders MUST be backed by genuine resting institutional liquidity (notional >= 100,000 USD on crypto).
-     - **180-Second Persistence Invariant**: The backing whale order MUST have persisted continuously for at least 180 seconds (`persisted_seconds >= 180s`). Reject any flickering or spoofed order (e.g. 10s old order) as an invalid anchor.
-  2. **Stop Loss Geometry & 0.786 Invalidation Shelf Anchor**:
+     - **180-Second Persistence Invariant**: Backing whale order MUST have persisted continuously for at least 180 seconds (`persisted_seconds >= 180s`). Reject flickering or spoofed orders as invalid anchors.
+     - **Orderbook Polarity Verification (No Ghost Walls)**: Explicitly verify `is_bid == True` for BUY orders (price <= entry) and `is_ask == True` for SELL orders (price >= entry). Never buy under a resting ask wall!
+  2. **Forensic Autopsy Anti-Falling Knife & Stop Cascade Invariants (Autopsy Rules 1, 3, 4, 5)**:
+     - **Anti-Falling Knife CVD Waterfall Ban**: Never stage a buy limit into an accelerating negative CVD waterfall (`zc_div <= 0`). Entry requires confirmed tape absorption: `zc_div > 0.80` or CVD delta deceleration > 30% over the last two 15m bars.
+     - **Un-Swept Stop Cascade Clearance**: If an un-swept retail stop cluster (Sheet 23 `15_Hyperdash_Stops_Map`) sits within 0.50 ATR of the entry, wait for the sweep to complete and absorb first before staging an order.
+     - **Sub-ATR & Value Area Stop Ban**: Protective stops must NEVER sit inside the Value Area or within sub-ATR noise (< 0.40 ATR / < 20 points in FX).
+     - **Overhead Liquidity Clearance**: Verify that no impenetrable opposing whale wall (>= 500K USD notional within 0.75 ATR) blocks the path to TP1, ensuring realizable R:R >= 2.0R.
+  3. **Stop Loss Geometry & 0.786 Invalidation Shelf Anchor**:
      - Forbid placing a protective Stop Loss in an empty auction void (e.g. between VWAP +3 sigma and distant EMA).
      - **0.786 Invalidation Shelf Rule**: For Model 2 trend pullbacks, the protective Stop Loss MUST sit strictly behind the 0.786 Fibonacci Invalidation Shelf (SL_long = Price_0786 - 0.40 ATR - half_spread; SL_short = Price_0786 + 0.40 ATR + half_spread) and outside any defending resting whale wall or liquidation band.
      - For Model 1 mean reversion, the Stop Loss must be firmly anchored behind the swept extreme (Monday High/Low, Session High/Low, or Prior Week High/Low) plus a 0.40-0.50 ATR safety buffer.

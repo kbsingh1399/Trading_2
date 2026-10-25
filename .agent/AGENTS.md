@@ -1,57 +1,19 @@
-# Superpowers for Antigravity
+# AGENTS.md — Master Autonomous Agent Instructions & Trading Governance
+> **Blueberry Markets Phase 1 Evaluation (Account #5064568)**
 
-You have superpowers.
+This profile routes all agent execution strictly to the Canonical Master Agent Enforcement Rules.
 
-This profile adapts Superpowers workflows for Antigravity with strict single-flow execution.
+## Canonical Master Governance
+- **Canonical Master Router**: [.agents/rules/AGENTS.md](../.agents/rules/AGENTS.md)
+- **Standardized Trading Decision Chain**: [Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md](../Data/Manditory/STANDARDIZED_TRADING_DECISION_CHAIN.md)
+- **Autonomous Wakeup Checklist**: [Data/Manditory/AUTONOMOUS_WAKEUP_CHECKLIST.md](../Data/Manditory/AUTONOMOUS_WAKEUP_CHECKLIST.md)
+- **Subagent Prompt Templates (4-Quant Swarm)**: [Data/Manditory/SUBAGENT_PROMPT_TEMPLATES.md](../Data/Manditory/SUBAGENT_PROMPT_TEMPLATES.md)
+- **Active Real-Time Context**: [.agents/rules/ACTIVE_CONTEXT.md](../.agents/rules/ACTIVE_CONTEXT.md)
 
-## Core Rules
-
-0. **Token Preservation**: ALWAYS query the AST Knowledge Graph via `/graphify` or `python -m graphify query "<concept/symbol>"` FIRST before reading large code files to save context tokens.
-1. Prefer local skills in `.agent/skills/<skill-name>/SKILL.md`.
-2. Execute one core task at a time with `task_boundary`.
-3. Use `browser_subagent` only for browser automation tasks.
-4. Track checklist progress in `<project-root>/docs/plans/task.md` (table-only live tracker).
-5. Keep changes scoped to the requested task and verify before completion claims.
-
-## Tool Translation Contract
-
-When source skills reference legacy tool names, use these Antigravity equivalents:
-
-- Legacy assistant/platform names -> `Antigravity`
-- `Task` tool -> `browser_subagent` for browser tasks, otherwise sequential `task_boundary`
-- `Skill` tool -> `view_file ~/.gemini/skills/<skill-name>/SKILL.md` (or project-local `.agent/skills/<skill-name>/SKILL.md`)
-- `TodoWrite` -> update `<project-root>/docs/plans/task.md` task list
-- File operations -> `view_file`, `write_to_file`, `replace_file_content`, `multi_replace_file_content`
-- Directory listing -> `list_dir`
-- Code structure -> `view_file_outline`, `view_code_item`
-- Search -> `grep_search`, `find_by_name`
-- Shell -> `run_command`
-- Web fetch -> `read_url_content`
-- Web search -> `search_web`
-- Image generation -> `generate_image`
-- User communication during tasks -> `notify_user`
-- MCP tools -> `mcp_*` tool family
-
-## Skill Loading
-
-- First preference: project skills at `.agent/skills`.
-- Second preference: user skills at `~/.gemini/skills`.
-- If both exist, project-local skills win for this profile.
-- Optional parity assets may exist at `.agent/workflows/*` and `.agent/agents/*` as entrypoint shims/reference profiles.
-- These assets do not change the strict single-flow execution requirements in this file.
-
-## Single-Flow Execution Model
-
-- Do not dispatch multiple coding agents in parallel.
-- Decompose large work into ordered, explicit steps.
-- Keep exactly one active task at a time in `<project-root>/docs/plans/task.md`.
-- If browser work is required, isolate it in a dedicated browser step.
-
-## Verification Discipline
-
-Before saying a task is done:
-
-1. Run the relevant verification command(s).
-2. Confirm exit status and key output.
-3. Update `<project-root>/docs/plans/task.md`.
-4. Report evidence, then claim completion.
+## Core Operational Directives
+1. **Mandatory Multi-Agent Orchestration**: Coordinate 4-Quant subagents (Roles A, B, C, D) alongside Quad-Council cross-checks (Arena.ai, Z.ai, Gemini 3.8 Web2API).
+2. **Zero-Token Web2API Council**: Always-on zero-token reverse proxy on port 8081 (`gemini-3.8-flash`).
+3. **Mandatory Meta-Audit Check**: Before EVERY response, execute the non-bypassable pre-response self-check:
+   *"Can I improve the response further using existing skills or agents I have?"*
+4. **Token Preservation & AST Graphify**: Query AST knowledge graph before reading code files to preserve context tokens.
+5. **Triple Floor Protection**: Solvency Kernel (4,795.00 USD), Operating Buffer (4,650.00 USD), Hard Floor (4,600.00 USD) must NEVER be breached.

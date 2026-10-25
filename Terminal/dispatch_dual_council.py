@@ -305,8 +305,15 @@ async def dispatch_all(cycle_id: str = "AUTO", prompt_file: str = None):
     # 3. Dispatch to Gemini Web2API in background subprocess (port 8081)
     print("[DualCouncil] Dispatching prompt to Gemini Web2API (port 8081)...")
     try:
-        subprocess.Popen([sys.executable, str(WEB2API_COUNCIL), "--file", str(PROMPT_FILE), "--model", "gemini-3.6-flash"])
-        print("[DualCouncil] Gemini Web2API background council task launched successfully.")
+        log_path = ROOT / "Data" / "web2api_council.log"
+        log_path.parent.mkdir(parents=True, exist_ok=True)
+        web2api_log_file = open(log_path, "a", encoding="utf-8")
+        subprocess.Popen(
+            [sys.executable, str(WEB2API_COUNCIL), "--file", str(PROMPT_FILE), "--model", "gemini-3.8-flash"],
+            stdout=web2api_log_file,
+            stderr=web2api_log_file
+        )
+        print("[DualCouncil] Gemini Web2API background council task launched successfully (Model: gemini-3.8-flash).")
     except Exception as e:
         print(f"[DualCouncil] Gemini Web2API dispatch error: {e}")
 
