@@ -64062,3 +64062,24 @@ I think forced liquidation daemon is not working..right? Why you missed it. And 
    - Updated `Data/Manditory/ACCOUNT_SWITCH_BOOTSTRAP_PROTOCOL.md` Table A & B to match the exact active daemons: `autonomous_telemetry_git_daemon.py`, `forced_liquidation_daemon.py`, `Data/Excel_Modules/runner.py`, `gemini_web2api.py`, `arena_completion_daemon.py`, and `goal_trade_monitor.py`.
    - Added memory management protocol for `language_server.exe` via `scripts/free_ram.ps1`.
    - Committed and pushed changes to GitHub `origin/main`.
+
+---
+## Turn Summary — 2026-10-25 18:40 IST (Purge: Direct Excel Architecture & Data/ Cleanliness)
+
+### 1. User Directives Executed
+- Purged all dump `.xlsx` files, orphaned `.tmp.xlsx` files, and junk JSON/staging files in `Data/`.
+- Mandated that ALL data fetched via CDP or API MUST be dumped DIRECTLY into `DataBase_Trading.xlsx` with zero intermediate disk files.
+
+### 2. Actions & Verifiable Outcomes
+1. **Purged Over 180 MB of Stranded Excel Dumps**:
+   - Deleted 30 orphaned `DataBase_Trading_*.tmp.xlsx` files (~166 MB).
+   - Deleted duplicate `.xlsx` files: `audit_copy.xlsx`, `temp_inspect.xlsx`, `tmp_database_read.xlsx`, `DataBase_Trading.tmp.xlsx`.
+   - Result: Exactly ONE master Excel file remains: `Data/DataBase_Trading.xlsx`.
+2. **Purged Obsolete Directories & Intermediate Files**:
+   - Completely deleted: `Data/arkham/`, `Data/staging/`, `Data/staging_sheets/`, `Data/ForexFactory/`, `Data/subagent_prompts/`, and `Data/subagent_reports/`.
+   - Deleted root clutter: `role_b_message_payload.txt`, `socratic_audit_table.md`, `ratchet_daemon.log`, `web2api_council.log`, `arena_completion_status.json`, `forex_factory_live.json`, `zai_completion_status.json`, `whale_persistence_ledger.bak`, and `coinglass_harvester_status.json`.
+3. **Refactored Harvester Modules for Direct Excel Streaming**:
+   - Removed intermediate parquet writers from `1_Crypto_ETF_Flows.py`, `2_Spot_Netflow_S.py`, and `20_Auction_Market_Structure.py`.
+   - Removed intermediate JSON archive dumpers from `19_Calendar.py` and `19_News.py`.
+   - Added automated cleanup of any stranded `.tmp.xlsx` artifacts directly into `runner.py` (`cleanup_temp_artifacts()`).
+   - All changes committed and pushed to GitHub `origin/main` (commit `0ca87df36`).
