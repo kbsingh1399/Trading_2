@@ -82,6 +82,18 @@ log = logging.getLogger("18_CVD")
 
 MODULES_DIR = pathlib.Path(__file__).resolve().parent
 ROOT_DIR = MODULES_DIR.parents[1]
+CORE_DIR = ROOT_DIR / "Collectors" / "Core"
+DF_DIR = ROOT_DIR / "Terminal" / "Data_Factory"
+if str(CORE_DIR) not in sys.path:
+    sys.path.insert(0, str(CORE_DIR))
+if str(DF_DIR) not in sys.path:
+    sys.path.insert(0, str(DF_DIR))
+
+try:
+    from parquet_writer import write_parquet_feed
+except Exception:
+    write_parquet_feed = None
+
 DEFAULT_EXCEL_PATH = ROOT_DIR / "Data" / "DataBase_Trading.xlsx"
 DEFAULT_PARQUET_DIR = ROOT_DIR / "Data" / "CVD"
 BINANCE_FAPI_URL = "https://fapi.binance.com/fapi/v1/klines"
@@ -710,6 +722,41 @@ def export_cvd_to_excel(
         cell.font = hdr_font
         cell.fill = hdr_fill
         cell.alignment = Alignment(horizontal="center", vertical="center", wrap_text=False)
+
+    # Direct Atomic Parquet Feed Export
+    if write_parquet_feed is not None and display_rows:
+        try:
+            feed_rows = []
+            for r in display_rows:
+                feed_rows.append({
+                    "Timestamp_IST": r.get("timestamp_ist", r.get("timestamp_utc", "")),
+                    "Asset_Class": r.get("category", ""),
+                    "Symbol": r.get("symbol", ""),
+                    "Market_Pair": r.get("market_pair", ""),
+                    "Data_Source": r.get("source", ""),
+                    "Timeframe": r.get("timeframe", ""),
+                    "Open_Price": r.get("open", 0.0),
+                    "High_Price": r.get("high", 0.0),
+                    "Low_Price": r.get("low", 0.0),
+                    "Close_Price": r.get("close", 0.0),
+                    "Total_Volume": r.get("total_volume", 0.0),
+                    "Quote_Volume_USD": r.get("quote_volume_usd", 0.0),
+                    "Taker_Buy_Volume": r.get("taker_buy_vol", 0.0),
+                    "Taker_Sell_Volume": r.get("taker_sell_vol", 0.0),
+                    "Candle_Delta_USD": r.get("candle_delta", 0.0),
+                    "Candle_Delta_Coins": r.get("candle_delta_base", 0.0),
+                    "Delta_%_of_Vol": r.get("delta_pct", 0.0) / 100.0,
+                    "Cumulative_CVD_USD": r.get("cumulative_cvd", 0.0),
+                    "Cumulative_CVD_Coins": r.get("cumulative_cvd_base", 0.0),
+                    "CVD_Z-Score_20": r.get("cvd_zscore", 0.0),
+                    "Price_Return_%": r.get("price_return_pct", 0.0) / 100.0,
+                    "Orderflow_Regime": r.get("regime", ""),
+                    "Trades___Ticks": r.get("trades_count", 0),
+                })
+            write_parquet_feed("18_CVD", feed_rows)
+            log.info(f"[PASS] Directly dumped {len(feed_rows)} rows to Data/feeds/18_CVD.parquet!")
+        except Exception as exc:
+            log.warning(f"Direct parquet write warning: {exc}")
 
     log.info(f"Writing {len(display_rows):,} rows to worksheet '{sheet_name}'...")
     t0 = time.time()

@@ -101,8 +101,14 @@ def _dump_workbook_sheets_to_parquet(wb):
             sys.path.insert(0, str(df_dir))
         from parquet_feed_writer import write_parquet_feed
 
+        PURE_API_FEEDS = {
+            "Crypto_ETF_Flows", "Top_Institutions", "ETF_Market_Overview",
+            "2_Spot_Netflow_S",
+            "3_Exchanges_LS_Ratio_15M", "3_Exchanges_LS_Ratio_1H", "3_Exchanges_LS_Ratio_4H",
+            "5_Funding_Rate", "5_OI"
+        }
         for sheet_name in wb.sheetnames:
-            if sheet_name in {"Crypto_ETF_Flows", "Top_Institutions", "ETF_Market_Overview"}:
+            if sheet_name in PURE_API_FEEDS:
                 continue
             ws = wb[sheet_name]
             rows = list(ws.iter_rows(values_only=True))

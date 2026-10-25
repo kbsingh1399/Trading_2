@@ -61,6 +61,12 @@ log = logging.getLogger("ParquetRunner")
 # 1. Tier 1: Pure API Modules (High Throughput, 6 workers)
 API_MODULES = [
     {"id": 0, "name": "MT5 Telemetry", "script": _resolve_script(API_DIR, MODULES_DIR, "00_MT5_Account_Telemetry.py"), "feed": "00_MT5_Account_Telemetry", "timeout": 120, "args": []},
+    {"id": 2, "name": "Spot & Futures Netflows", "script": _resolve_script(API_DIR, MODULES_DIR, "2_Spot_Netflow_S.py"), "feed": "2_Spot_Netflow_S", "timeout": 60, "args": []},
+    {"id": 3, "name": "LS Ratio 15M", "script": _resolve_script(API_DIR, MODULES_DIR, "3_Exchanges_LS_Ratio_15M.py"), "feed": "3_Exchanges_LS_Ratio_15M", "timeout": 60, "args": []},
+    {"id": 4, "name": "LS Ratio 1H", "script": _resolve_script(API_DIR, MODULES_DIR, "3_Exchanges_LS_Ratio_1H.py"), "feed": "3_Exchanges_LS_Ratio_1H", "timeout": 60, "args": []},
+    {"id": 5, "name": "LS Ratio 4H", "script": _resolve_script(API_DIR, MODULES_DIR, "3_Exchanges_LS_Ratio_4H.py"), "feed": "3_Exchanges_LS_Ratio_4H", "timeout": 60, "args": []},
+    {"id": 7, "name": "Futures Open Interest", "script": _resolve_script(API_DIR, MODULES_DIR, "5_OI.py"), "feed": "5_OI", "timeout": 60, "args": []},
+    {"id": 8, "name": "Funding Rates", "script": _resolve_script(API_DIR, MODULES_DIR, "5_Funding_Rate.py"), "feed": "5_Funding_Rate", "timeout": 60, "args": []},
     {"id": 19, "name": "Technical Indicators", "script": _resolve_script(API_DIR, MODULES_DIR, "11_Technical.py"), "feed": "11_Technical", "timeout": 120, "args": []},
     {"id": 20, "name": "Hyperdash Flow", "script": _resolve_script(API_DIR, MODULES_DIR, "12_Hyperdash.py"), "feed": "12_Hyperdash", "timeout": 120, "args": []},
     {"id": 21, "name": "Hyperliquid L1", "script": _resolve_script(API_DIR, MODULES_DIR, "13_Hyperliquid.py"), "feed": "13_Hyperliquid", "timeout": 120, "args": []},
@@ -74,16 +80,10 @@ API_MODULES = [
     {"id": 31, "name": "Forced Liquidations MTF", "script": _resolve_script(API_DIR, MODULES_DIR, "22_Forced_Liquidations_MTF.py"), "feed": "22_Forced_Liquidations_MTF", "timeout": 120, "args": []},
 ]
 
-# 2. Tier 2: Browser CDP Modules (Paced to 2 workers to protect browser renderer)
+# 2. Tier 2: Browser CDP Modules (Paced to 1 worker to protect browser renderer)
 BROWSER_MODULES = [
     {"id": 1, "name": "Crypto ETF Flows", "script": _resolve_script(BROWSER_DIR, MODULES_DIR, "1_Crypto_ETF_Flows.py"), "feed": "1_Crypto_ETF_Flows", "timeout": 120, "args": []},
-    {"id": 2, "name": "Spot Netflow", "script": _resolve_script(BROWSER_DIR, MODULES_DIR, "2_Spot_Netflow_S.py"), "feed": "2_Spot_Netflow_S", "timeout": 180, "args": ["--pages", "10"]},
-    {"id": 3, "name": "LS Ratio 15M", "script": _resolve_script(BROWSER_DIR, MODULES_DIR, "3_Exchanges_LS_Ratio_15M.py"), "feed": "3_Exchanges_LS_Ratio_15M", "timeout": 180, "args": []},
-    {"id": 4, "name": "LS Ratio 1H", "script": _resolve_script(BROWSER_DIR, MODULES_DIR, "3_Exchanges_LS_Ratio_1H.py"), "feed": "3_Exchanges_LS_Ratio_1H", "timeout": 180, "args": []},
-    {"id": 5, "name": "LS Ratio 4H", "script": _resolve_script(BROWSER_DIR, MODULES_DIR, "3_Exchanges_LS_Ratio_4H.py"), "feed": "3_Exchanges_LS_Ratio_4H", "timeout": 180, "args": []},
     {"id": 6, "name": "Hyperliquid Whale", "script": _resolve_script(BROWSER_DIR, MODULES_DIR, "4_Hyperliquid_Analysis.py"), "feed": "4_Hyperliquid_Analysis", "timeout": 120, "args": ["--pages", "10"]},
-    {"id": 7, "name": "Futures Open Interest", "script": _resolve_script(BROWSER_DIR, MODULES_DIR, "5_OI.py"), "feed": "5_OI", "timeout": 180, "args": []},
-    {"id": 8, "name": "Funding Rates", "script": _resolve_script(BROWSER_DIR, MODULES_DIR, "5_Funding_Rate.py"), "feed": "5_Funding_Rate", "timeout": 120, "args": ["--pages", "10"]},
     {"id": 9, "name": "Funding Fee Settlement", "script": _resolve_script(BROWSER_DIR, MODULES_DIR, "6_Funding_Fee_Settlement.py"), "feed": "6_Funding_Fee_Settlement", "timeout": 120, "args": ["--pages", "10"]},
     {"id": 10, "name": "Liquidation Heatmap", "script": _resolve_script(BROWSER_DIR, MODULES_DIR, "7_Liq_Heapmap.py"), "feed": "7_Liq_Heapmap", "timeout": 120, "args": []},
     {"id": 11, "name": "Live Liquidations", "script": _resolve_script(BROWSER_DIR, MODULES_DIR, "7_Live_Liq.py"), "feed": "7_Live_Liq", "timeout": 120, "args": []},
